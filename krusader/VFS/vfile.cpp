@@ -41,21 +41,21 @@
 
 #include <kdebug.h>
 
-vfile::vfile(QString name,	                  // useful construtor
-						KIO::filesize_t size,
-						QString perm,
-						time_t mtime,
-						bool symLink,
-						uid_t	owner,
-						gid_t group,
-						QString mime,
-						QString symDest,
-						mode_t mode){
+vfile::vfile(const QString& name,	                  // useful construtor
+             const KIO::filesize_t size,
+             const QString& perm,
+             const time_t mtime,
+             const bool symLink,
+             const uid_t	owner,
+             const gid_t group,
+             const QString& mime,
+             const QString& symDest,
+             const mode_t mode){
 	vfile_name=name;
 	vfile_size=size;
-  vfile_owner=QString::null;
+	vfile_owner=QString::null;
 	vfile_ownerId=owner;  
-  vfile_group=QString::null;
+	vfile_group=QString::null;
 	vfile_groupId=group;
 	vfile_perm=perm;
 	vfile_time_t=mtime;
@@ -63,72 +63,72 @@ vfile::vfile(QString name,	                  // useful construtor
 	vfile_mimeType=mime;
 	vfile_symDest=symDest;
 	vfile_mode=mode;
-  if (vfile_isDir())
-    vfile_size = 0;
+	if (vfile_isDir())
+		vfile_size = 0;
 }
 
-vfile::vfile(QString name,	                  // useful construtor
-						KIO::filesize_t size,	
-						QString perm,
-						time_t mtime,
-						bool symLink,
-						QString	owner,
-						QString group,
-            QString userName,
-						QString mime,
-						QString symDest,
-						mode_t mode){
-		vfile_name=name;
-		vfile_size=size;
-    vfile_owner=owner;
-    vfile_group=group;
-    vfile_userName=userName;
-		vfile_ownerId=KRpermHandler::user2uid(owner) ;
-		vfile_groupId=KRpermHandler::group2gid(group);
-		vfile_perm=perm;
-		vfile_time_t=mtime;
-		vfile_symLink=symLink;
-		vfile_mimeType=mime;
-		vfile_symDest=symDest;
-		vfile_mode=mode;
-    if (vfile_isDir())
-    vfile_size = 0;
+vfile::vfile(const QString& name,	                  // useful construtor
+             const KIO::filesize_t size,	
+             const QString& perm,
+             const time_t mtime,
+             const bool symLink,
+             const QString& owner,
+             const QString& group,
+             const QString& userName,
+             const QString& mime,
+             const QString& symDest,
+             const mode_t mode){
+	vfile_name=name;
+	vfile_size=size;
+	vfile_owner=owner;
+	vfile_group=group;
+	vfile_userName=userName;
+	vfile_ownerId=KRpermHandler::user2uid(owner) ;
+	vfile_groupId=KRpermHandler::group2gid(group);
+	vfile_perm=perm;
+	vfile_time_t=mtime;
+	vfile_symLink=symLink;
+	vfile_mimeType=mime;
+	vfile_symDest=symDest;
+	vfile_mode=mode;
+	if (vfile_isDir())
+		vfile_size = 0;
 }
 
-char vfile::vfile_isReadable(){
-  if( vfile_owner.isEmpty() )
-  	return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId);
-  else
-  	return KRpermHandler::ftpReadable(vfile_userName, vfile_owner, vfile_perm);
+char vfile::vfile_isReadable() const {
+	if( vfile_owner.isEmpty() )
+		return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId);
+	else
+		return KRpermHandler::ftpReadable(vfile_userName, vfile_owner, vfile_perm);
 }
 
-char vfile::vfile_isWriteable(){
-  if( vfile_owner.isEmpty() )
-  	return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId);
-  else
-  	return KRpermHandler::ftpWriteable(vfile_userName, vfile_owner, vfile_perm);
+char vfile::vfile_isWriteable() const {
+	if( vfile_owner.isEmpty() )
+		return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId);
+	else
+		return KRpermHandler::ftpWriteable(vfile_userName, vfile_owner, vfile_perm);
 }
 
-char vfile::vfile_isExecutable(){
-  if( vfile_owner.isEmpty() )
-  	return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
-  else
-  	return KRpermHandler::ftpExecutable(vfile_userName, vfile_owner, vfile_perm);
+char vfile::vfile_isExecutable() const {
+	if( vfile_owner.isEmpty() )
+		return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
+	else
+		return KRpermHandler::ftpExecutable(vfile_userName, vfile_owner, vfile_perm);
 }
 
-QString vfile::vfile_getOwner(){
-  if( vfile_owner.isEmpty() )
-    vfile_owner=KRpermHandler::uid2user(vfile_getUid());
-  return vfile_owner;
+const QString& vfile::vfile_getOwner(){
+	if( vfile_owner.isEmpty() )
+		vfile_owner=KRpermHandler::uid2user(vfile_getUid());
+	return vfile_owner;
 }
 
-QString vfile::vfile_getGroup(){
-  if( vfile_group.isEmpty() )
-    vfile_group=KRpermHandler::gid2group(vfile_getGid());
-  return vfile_group;
+const QString& vfile::vfile_getGroup(){
+	if( vfile_group.isEmpty() )
+		vfile_group=KRpermHandler::gid2group(vfile_getGid());
+	return vfile_group;
 }
 
-KIO::UDSEntry vfile::vfile_getEntry(){
+const KIO::UDSEntry vfile::vfile_getEntry() {
 	KIO::UDSEntry entry;
 	KIO::UDSAtom atom;
 
@@ -140,7 +140,7 @@ KIO::UDSEntry vfile::vfile_getEntry(){
 	atom.m_long = vfile_getSize();
 	entry.append(atom);
 
- 	atom.m_uds = KIO::UDS_MODIFICATION_TIME;
+	atom.m_uds = KIO::UDS_MODIFICATION_TIME;
 	atom.m_long = vfile_getTime_t();
 	entry.append(atom);
 
@@ -152,7 +152,7 @@ KIO::UDSEntry vfile::vfile_getEntry(){
 	atom.m_str = vfile_getOwner(); 
 	entry.append(atom);
 
- 	atom.m_uds = KIO::UDS_MIME_TYPE;
+	atom.m_uds = KIO::UDS_MIME_TYPE;
 	atom.m_str = vfile_getMime();
 	entry.append(atom);
 
@@ -164,15 +164,15 @@ KIO::UDSEntry vfile::vfile_getEntry(){
 	atom.m_long = vfile_getMode() & 07777; // keep permissions only
 	entry.append( atom );
 
- 	atom.m_uds = KIO::UDS_MIME_TYPE;
+	atom.m_uds = KIO::UDS_MIME_TYPE;
 	atom.m_str = vfile_getMime();
 	entry.append(atom);
 
-  if( vfile_isSymLink() ){
+	if( vfile_isSymLink() ){
 		atom.m_uds = KIO::UDS_LINK_DEST;
 		atom.m_str = vfile_getSymDest();
 		entry.append(atom);
-  }
+	}
 
 	return entry;
 }
