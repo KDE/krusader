@@ -60,8 +60,9 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 		u = vfs::fromPathOrURL(dlg->urlRequester()->completionObject()->replacedPath(
 			dlg->urlRequester()->lineEdit()->text()));
 		if (u.isRelativeURL(u.url())) {
+			KURL temp = u;
 			u = cwd;
-			u.addPath(u.url());
+			u.addPath(temp.url());
 		}
 	}
 	delete dlg;
