@@ -321,11 +321,9 @@ bool Krusader::versionControl() {
    oldVerText.truncate( oldVerText.find( "-" ) );
    float oldVer = oldVerText.toFloat();
 
-   krOut << QString( "version = %1" ).arg( oldVer ) << flush << endl;
-
    // older icompatible version
    if ( oldVer <= 1.51 ) {
-      KMessageBox::information( krApp, i18n( "A configuration of 1.51 or older was detected. Krusader has to reset your configuration to default values. Krusader will now run Konfigurator." ) );
+      KMessageBox::information( krApp, i18n( "A configuration of 1.51 or older was detected. Krusader has to reset your configuration to default values.\nNote: Your bookmarks and keybindings will remain intact.\n Krusader will now run Konfigurator." ) );
       if ( !QDir::home().remove( ".kde/share/config/krusaderrc" ) ) {
          KMessageBox::error( krApp, i18n( "Unable to remove your krusaderrc file! Please remove it manually and rerun Krusader." ) );
          exit( 1 );
