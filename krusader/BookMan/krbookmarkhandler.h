@@ -1,23 +1,31 @@
 #ifndef KRBOOKMARK_HANDLER_H
 #define KRBOOKMARK_HANDLER_H
 
+#include "krbookmark.h"
 #include <qobject.h>
 #include <kpopupmenu.h>
 #include <kurl.h>
+#include <qptrlist.h>
+#include <qdom.h>
 
 class KActionCollection;
-class KrBookmark;
 
 class KrBookmarkHandler: public QObject {
 	Q_OBJECT
 
-	enum Actions { BookmarkCurrent, ManageBookmarks };
+	enum Actions { Border, BookmarkCurrent, ManageBookmarks };
 public:
 	KrBookmarkHandler(QWidget *parent, KPopupMenu *menu);
 
 protected:
 	void bookmarkCurrent(KURL url);
-
+	void addBookmark(KrBookmark *bm);
+	void deleteBookmark(KrBookmark *bm);
+	void importFromFile();
+	bool importFromFileBookmark(QDomElement &e, QString *errorMsg);
+	void exportToFile();
+	void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
+	
 signals:
 	void openUrl(const KURL& url);
 
@@ -28,6 +36,7 @@ protected slots:
 private:
 	KPopupMenu *_menu;
 	KActionCollection *_collection;
+	QPtrList<KrBookmark> _bookmarks;
 };
 
 #endif // KRBOOKMARK_HANDLER_H
