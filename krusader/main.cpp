@@ -46,6 +46,7 @@ static KCmdLineOptions options[] =
 {
   { "left <path>", I18N_NOOP("Start left panel at <path>"), 0},
   { "right <path>", I18N_NOOP("Start right panel at <path>"), 0},
+  { "profile <panel-profile>", I18N_NOOP("Load this profile on startup"), 0},
   { 0, 0, 0 }
   // INSERT YOUR COMMANDLINE OPTIONS HERE
 };

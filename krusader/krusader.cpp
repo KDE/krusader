@@ -155,7 +155,7 @@ KrBookmarkHandler *Krusader::bookman = 0;
 Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
-   QString leftPath, rightPath;
+   QString leftPath, rightPath, startProfile;
 
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
@@ -170,6 +170,9 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
       if ( !rightPath.startsWith( "/" ) && rightPath.find( ":/" ) < 0 )    // make sure we don't touch things like ftp://
          rightPath = QDir::currentDirPath() + "/" + rightPath;
    } else rightPath = QString::null;
+   if ( args->isSet( "profile" ) ) {
+      startProfile = args->getOption( "profile" );
+   } else startProfile = QString::null;
 
    // create the "krusader"
    App = this;
@@ -278,6 +281,9 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
    resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
 
+   if ( ! startProfile.isEmpty() )
+       mainView->profiles( startProfile );
+   
    if ( krConfig->readBoolEntry( "Maximized" ) )
       showMaximized();
    else
