@@ -1,10 +1,9 @@
 ======================
     ADDED: some GUI touch-ups: make buttons smaller, and bars leaner. all in all, the
            thing should look better.
+    ADDED: FreeBSD compatability issues - patchs by Heiner, thanks man!
     ADDED: move to next-gen view (at last)
           TODO: dragn'drop quirky.
-          TODO: can't enter archives
-          TODO: remove dragMoveEvent() from panel
           TODO: add progressbar to totals (?)
 
     FIXED: popup-menu poping out of place.
@@ -12,6 +11,8 @@
     FIXED: krBack() clean up.
     FIXED: moved all the logic from ListPanel to ListPanelFunc
     FIXED: integrated the openUrl() API.
+    FIXED: minor bug in mountman
+    FIXED: bug in arc_vfs, concerning full-paths in tars (thanks Heiner)
 
     REMOVED: Tree & Quickview panels.
 

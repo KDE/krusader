@@ -58,8 +58,8 @@ void KrusaderView::start() {
 
   // add 2 pseudo widgets and layouts to allow a smoother movement of the
   // whole screen, and allow the status bars to resize with the panels
-  left=new ListPanel(horiz_splitter,false);
-	right=new ListPanel(horiz_splitter,true);
+  left=new ListPanel(horiz_splitter);
+	right=new ListPanel(horiz_splitter);
 
   left->setOther(right); right->setOther(left);
 
