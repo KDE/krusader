@@ -21,6 +21,22 @@
 #include <qwidget.h>
 #include <kpopupmenu.h>
 #include <qstringlist.h>
+#include <kaction.h>
+
+class UserMenuGui: public KPopupMenu {
+  Q_OBJECT
+public:
+  UserMenuGui(QWidget *parent=0);
+  QString run();
+
+protected:
+  void readEntries();
+    
+private:
+  QStringList _entries;
+};
+
+////////////////////////////////////////////////////////////////////////////////
 
 // an expander is a function that receives a QString input, expands
 // it and returns a new QString output containing the expanded expression
@@ -46,8 +62,7 @@ protected:
   QString expPath(const QString& str);
 
 private:
-  KPopupMenu _popup;
-  QStringList _entries;
+  UserMenuGui _popup;
   static UMCmd _expressions[NUM_EXPS];
 };
 
