@@ -58,7 +58,7 @@ public:
 	// rename file
 	void vfs_rename(QString fileName,QString newName);
 	// calculate space
-	void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool* stop = 0);
+	void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool* stop);
 	// return the working dir
 	QString vfs_workingDir();
 	

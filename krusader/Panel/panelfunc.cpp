@@ -700,7 +700,8 @@ void ListPanelFunc::pack() {
 	KIO::filesize_t totalSize = 0;
 	unsigned long totalDirs = 0, totalFiles = 0;
 	for ( QStringList::Iterator file = fileNames.begin(); file != fileNames.end(); ++file ) {
-		files() ->vfs_calcSpace( ( *file ), &totalSize, &totalFiles, &totalDirs );
+		bool stop = false;
+		files() ->vfs_calcSpace( ( *file ), &totalSize, &totalFiles, &totalDirs, &stop );
 	}
 
 	// download remote URL-s if necessary

@@ -39,7 +39,7 @@
 #include <qdir.h>
 #include <qregexp.h>
 #include <qtimer.h>
-#include <qeventloop.h> 
+#include <qeventloop.h>
 // KDE includes
 #include <kmimetype.h>
 #include <kio/jobclasses.h>
