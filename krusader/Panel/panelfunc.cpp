@@ -775,16 +775,17 @@ void ListPanelFunc::properties() {
   if ( names.isEmpty() )
     return ;  // no names...
   KFileItemList fi;
-	fi.setAutoDelete(true);
+  fi.setAutoDelete(true);
 
-	KURL::List* urls = files() ->vfs_getFiles( &names );
-  for ( unsigned int i = 0 ; i < urls->count() ; ++i ) {
-    KURL url = (*urls->at(i));
-    vfile* vf = files()->vfs_search( url.fileName() );
-    if( !vf ) continue;
+  for ( unsigned int i = 0 ; i < names.count() ; ++i ) {
+    vfile* vf = files()->vfs_search( names[i] );
+    if( !vf ) continue;    
+    //KURL url = files()->vfs_getFile( names[i] );
     fi.append( new KFileItem(vf->vfile_getEntry(),files()->vfs_getOrigin(),false,true) );
   }
-
+  
+  if( fi.isEmpty() ) return;
+  
   // Show the properties dialog
   KPropertiesDialog *dlg = new KPropertiesDialog( fi );
   connect( dlg, SIGNAL( applied() ), SLOTS, SLOT( refresh() ) );
