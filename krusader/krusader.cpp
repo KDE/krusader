@@ -30,8 +30,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <sys/types.h>
 #include <sys/stat.h> 
 #include <sys/param.h>
-#ifdef BSD
 #include <unistd.h>
+#ifdef BSD
 #include <sys/types.h>
 #endif
 // KDE includes
