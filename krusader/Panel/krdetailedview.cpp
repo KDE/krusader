@@ -346,6 +346,7 @@ void KrDetailedView::setCurrentItem( const QString& name ) {
 }
 
 void KrDetailedView::clear() {
+  emit KListView::selectionChanged(); /* to avoid rename crash at refresh */
   KListView::clear();
   _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
 }
@@ -651,6 +652,7 @@ void KrDetailedView::rename(QListViewItem *item, int c) {
    }
 
    KListView::rename(item, c);
+   renameLineEdit()->selectAll();
 }
 
 void KrDetailedView::renameCurrentItem() {
