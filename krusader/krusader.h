@@ -46,6 +46,7 @@
 #include <kaccel.h>
 #include <qstringlist.h>
 #include <qtextstream.h>
+#include <kdebug.h>
 
 #ifdef __KJSEMBED__
 #include <kjsembed/kjsembedpart.h>
@@ -64,7 +65,8 @@ class Expander;
 class KMountMan;
 class KrBookmarkHandler;
 
-static QTextOStream krOut(stdout);
+//static QTextOStream krOut(stdout);
+#define krOut kdDebug(50010)
 
 class Krusader : public KParts::MainWindow {
     Q_OBJECT

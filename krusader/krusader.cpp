@@ -171,7 +171,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 	// parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
    QString leftPath, rightPath, startProfile;
-
+   
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
       leftPath = args->getOption( "left" );

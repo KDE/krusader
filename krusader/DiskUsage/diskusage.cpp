@@ -737,7 +737,7 @@ void DiskUsage::executeAction( int action, File * fileItem )
         uri = fileItem->fullPath();
       else
         uri = currentDirectory->fullPath();      
-      ACTIVE_FUNC->delayedOpenUrl(vfs::fromPathOrURL( uri ));
+      ACTIVE_FUNC->openUrl(vfs::fromPathOrURL( uri ));
     }
     break;
   case LINES_VIEW_ID:

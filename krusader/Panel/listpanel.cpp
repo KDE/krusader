@@ -131,11 +131,11 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    dirHistoryQueue = new DirHistoryQueue( this );
    historyButton = new DirHistoryButton( dirHistoryQueue, this, "historyButton" );
    connect( historyButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-   connect( historyButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
+   connect( historyButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
 
 	bookmarksButton = new KrBookmarkButton(this);
 	connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-   connect( bookmarksButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
+   connect( bookmarksButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
 	QWhatsThis::add
       ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
                                "current location to the list, edit bookmarks "

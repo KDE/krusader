@@ -334,7 +334,7 @@ void LocateDlg::slotDoubleClick(QListViewItem *item)
   if( !QDir( dirName ).exists() )
     dirName.truncate( dirName.findRev( '/' ) );
     
-  ACTIVE_FUNC->delayedOpenUrl(vfs::fromPathOrURL( dirName ) );
+  ACTIVE_FUNC->openUrl(vfs::fromPathOrURL( dirName ) );
   KDialogBase::accept();
 }
 
