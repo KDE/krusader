@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.40\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-04-26 13:50+0200\n"
-"PO-Revision-Date: 2004-06-03 23:43+0200\n"
+"PO-Revision-Date: 2004-06-04 08:32+0200\n"
 "Last-Translator: Anders Bruun Olsen <anders@bruun-olsen.net>\n"
 "Language-Team: Danish\n"
 "MIME-Version: 1.0\n"
@@ -549,9 +549,8 @@ msgid "No permissions to edit this file."
 msgstr "Ingen rettigheder til at redigere denne fil."
 
 #: Panel/panelfunc.cpp:303
-#, fuzzy
 msgid "Moving into archive is disabled"
-msgstr "'Flyt-ind-i-pakkede-filer' er slået fra i Konfigurator!"
+msgstr "'Flyt-ind-i-pakkede-filer' er slået fra"
 
 #: Panel/panelfunc.cpp:312
 msgid "Move "
@@ -743,8 +742,7 @@ msgid "Search string not found!"
 msgstr "Søgestreng ikke fundet!"
 
 #: krusader.cpp:207
-msgid ""
-"Status bar will show  basic informations about file below mouse pointer."
+msgid "Status bar will show  basic informations about file below mouse pointer."
 msgstr "Statuslinien vil vise basis informationer om filen under musepilen."
 
 #: krusader.cpp:256
@@ -1057,8 +1055,7 @@ msgid "KrViewer is unable to download: "
 msgstr "KrViewer kan ikke downloade: "
 
 #: KViewer/krviewer.cpp:353
-msgid ""
-"The Document has been changed. Do you want to quit loosing the modifications?"
+msgid "The Document has been changed. Do you want to quit loosing the modifications?"
 msgstr ""
 "Dokumentet har ændringer der ikke er gemt, ønsker du alligevel at afslutte? "
 "(ændringerne går i såfald tabt)"
@@ -1589,10 +1586,8 @@ msgid "Free %"
 msgstr "Ledig %"
 
 #: MountMan/kmountmangui.cpp:218
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
-msgstr ""
-"MountMan har en intern fejl. Underret venligst udviklerne. På forhånd tak."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgstr "MountMan har en intern fejl. Underret venligst udviklerne. På forhånd tak."
 
 #: MountMan/kmountmangui.cpp:223
 msgid "MountMan"
@@ -2484,8 +2479,7 @@ msgstr "Benyt mimetype magi"
 
 #: Konfigurator/kggeneral.cpp:64
 msgid "Mimetype magic allows better distinction of file types, but is slower"
-msgstr ""
-"Mimetype magi gør det nemmere at skelne mellem filer, men tager længere tid"
+msgstr "Mimetype magi gør det nemmere at skelne mellem filer, men tager længere tid"
 
 #: Konfigurator/kggeneral.cpp:70
 msgid "Editor:"
@@ -2982,9 +2976,8 @@ msgid "Background:"
 msgstr "Baggrund:"
 
 #: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:129
-#, fuzzy
 msgid "Same as background"
-msgstr "Samme som markeret baggrund"
+msgstr "Samme som baggrund"
 
 #: Konfigurator/kgcolors.cpp:100 Konfigurator/kgcolors.cpp:130
 msgid "Alternate background:"
@@ -2999,9 +2992,8 @@ msgid "Marked background:"
 msgstr "Markeret baggrund:"
 
 #: Konfigurator/kgcolors.cpp:103 Konfigurator/kgcolors.cpp:133
-#, fuzzy
 msgid "Same as alt. background"
-msgstr "Samme som markeret baggrund"
+msgstr "Samme som alternativ baggrund"
 
 #: Konfigurator/kgcolors.cpp:104 Konfigurator/kgcolors.cpp:135
 msgid "Alternate marked background:"
@@ -3181,18 +3173,15 @@ msgid "Test archive when finished packing"
 msgstr "Test pakket fil efter færdiggørelse"
 
 #: Konfigurator/kgarchives.cpp:93
-msgid ""
-"If checked, Krusader will test the archive's intergrity after packing it."
-msgstr ""
-"Hvis markeret tester Krusader den pakkede fils integritet efter pakning."
+msgid "If checked, Krusader will test the archive's intergrity after packing it."
+msgstr "Hvis markeret tester Krusader den pakkede fils integritet efter pakning."
 
 #: Konfigurator/kgarchives.cpp:94
 msgid "Test archive before unpacking"
 msgstr "Test pakket fil før udpakning"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"Some corrupted archives might cause a crash, therefore testing is suggested"
+msgid "Some corrupted archives might cause a crash, therefore testing is suggested"
 msgstr ""
 "Visse pakkede filer kan resultere i et crash, derfor foreslås det at teste "
 "dem"
@@ -3567,8 +3556,7 @@ msgid "Not a valid CRC file!"
 msgstr "Ikke en gyldig CRC fil!"
 
 #: Splitter/combiner.cpp:138
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr "Validitetstjek er umuligt uden en god CRC fil. Fortsæt kombineringen?"
 
 #: Splitter/combiner.cpp:239
@@ -4269,3 +4257,4 @@ msgstr "Fejl ved læsning af filen %1!"
 
 #~ msgid "Can't find "
 #~ msgstr "Kan ikke finde "
+
