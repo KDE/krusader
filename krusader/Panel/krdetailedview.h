@@ -68,7 +68,6 @@ class KrDetailedView : public KListView, public KrView {
     QString getCurrentItem() const;
     void makeItemVisible( const KrViewItem *item ) { ensureItemVisible( dynamic_cast<const QListViewItem*>( item ) ); }
     void setCurrentItem( const QString& name );
-    void renameTimerExpired( KrRenameTimerObject *object, QRect rect );
     virtual void updateView() { triggerUpdate(); emit selectionChanged(); }
     virtual void clear();
     virtual void sort() { KListView::sort(); }
@@ -118,39 +117,10 @@ class KrDetailedView : public KListView, public KrView {
   private:
     ColumnType _columns[ MAX_COLUMNS ];
     static QString ColumnName[ MAX_COLUMNS ];
-    static QString LastSelectedItem;
-    static void *  LastSelectingView;
-    static KrRenameTimerObject * WaitedTimer;
     bool _withIcons, _focused;
     KrViewItem *_currDragItem;
     QString _nameInKConfig;
     bool _left;
-};
-
-class KrRenameTimerObject : public QObject
-{
-    Q_OBJECT
-  private:
-    KrDetailedView *detailed_view;
-    QRect rectangle;
-
-  public:
-    KrRenameTimerObject( KrDetailedView *caller_view, QRect rect )
-    {
-      detailed_view = caller_view;
-      rectangle = rect;
-    }
-
-    void start( int msec )
-    {
-      QTimer::singleShot( msec, this, SLOT( expired() ) );
-    }
-
-  public slots:
-    void expired()
-    {
-      detailed_view->renameTimerExpired( this, rectangle );
-    }
 };
 
 #endif /* KRDETAILEDVIEW_H */
