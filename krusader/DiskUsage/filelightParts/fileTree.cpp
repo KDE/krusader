@@ -4,13 +4,20 @@
 #include "fileTree.h"
 #include <kglobal.h>
 #include <klocale.h>
+#include <kurl.h>
 #include <qstring.h>
-
 
 //static definitions
 const FileSize File::DENOMINATOR[4] = { 1ull<<0, 1ull<<10, 1ull<<20, 1ull<<30 };
-const char File::PREFIX[5][3]   = { "", "Ki", "Mi", "Gi", "Ti" };
+const char File::PREFIX[5][2]   = { "", "K", "M", "G", "T" };
 
+KURL baseURL;
+
+void 
+File::setBaseURL( KURL url )
+{
+  baseURL = url;
+}
 
 QString
 File::fullPath( const Directory *root /*= 0*/ ) const
@@ -19,15 +26,18 @@ File::fullPath( const Directory *root /*= 0*/ ) const
 
     if( root == this ) root = 0; //prevent returning empty string when there is something we could return
 
-    for( const Directory *d = (Directory*)this; d != root && d; d = d->parent() )
+    for( const Directory *d = (Directory*)this; d != root && d && d->parent() != 0; d = d->parent() )
     {
       if( !path.isEmpty() )
         path += "/";
         
       path += d->fileName();
     }
+    
+    KURL url = baseURL;
+    url.addPath( path );
 
-    return path;
+    return url.prettyURL(0, KURL::StripFileProtocol);
 }
 
 QString

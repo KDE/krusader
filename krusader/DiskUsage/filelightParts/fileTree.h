@@ -154,6 +154,7 @@ private:
 
 class Directory;
 class QString;
+class KURL;
 
 class File
 {
@@ -223,12 +224,13 @@ public:
   enum UnitPrefix { kilo, mega, giga, tera };
 
   static const FileSize DENOMINATOR[4];
-  static const char PREFIX[5][3];
+  static const char PREFIX[5][2];
 
   QString fullPath( const Directory* = 0 ) const;
   QString humanReadableSize( UnitPrefix key = mega ) const;
 
   static QString humanReadableSize( FileSize size, UnitPrefix Key = mega );
+  static void    setBaseURL( KURL url );
   
   friend class Directory;
 };

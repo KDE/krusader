@@ -43,6 +43,7 @@ public:
 
 public slots:
   void slotDirChanged( Directory * );
+  void clear();
   
 protected:
   DiskUsage *diskUsage;  

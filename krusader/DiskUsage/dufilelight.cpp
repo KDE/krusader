@@ -34,12 +34,18 @@ DUFilelight::DUFilelight( DiskUsage *usage, QWidget *parent, const char *name )
   : RadialMap::Widget( parent, name ), diskUsage( usage )
 {
   connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
+  connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
 }
 
 void DUFilelight::slotDirChanged( Directory *dir )
 {
+  File::setBaseURL( diskUsage->getBaseURL() );
   create( dir );
 }
 
+void DUFilelight::clear()
+{
+  invalidate( false );
+}
 
 #include "dufilelight.moc"

@@ -99,6 +99,8 @@ public:
   Directory* getCurrentDir();
   QPixmap    getIcon( QString mime );
   
+  KURL       getBaseURL() { return baseURL; }
+  
 signals:
   void       enteringDirectory( Directory * );
   void       clearing();
