@@ -29,6 +29,7 @@
       <terminal>false</terminal>
       <envvars/>
       <autocompile>true</autocompile>
+      <directoryradio>executable</directoryradio>
     </run>
     <make>
       <envvars>
@@ -94,18 +95,19 @@
     </groups>
     <tree>
       <hidenonprojectfiles>false</hidenonprojectfiles>
-      <hidepatterns>*.o,*.lo,CVS</hidepatterns>
+      <hidepatterns></hidepatterns>
+      <showvcsfields>true</showvcsfields>
     </tree>
   </kdevfileview>
   <kdevcvs>
     <cvsoptions>-f -z3</cvsoptions>
-    <commitoptions/>
+    <commitoptions></commitoptions>
     <updateoptions>-dP</updateoptions>
-    <addoptions/>
+    <addoptions></addoptions>
     <removeoptions>-f</removeoptions>
     <diffoptions>-u3 -p</diffoptions>
-    <logoptions/>
-    <rshoptions/>
+    <logoptions></logoptions>
+    <rshoptions></rshoptions>
     <revertoptions>-C -d -P</revertoptions>
   </kdevcvs>
   <kdevcppsupport>
@@ -118,6 +120,9 @@
       <automaticArgumentsHint>true</automaticArgumentsHint>
       <codeCompletionDelay>250</codeCompletionDelay>
       <argumentsHintDelay>400</argumentsHintDelay>
+      <automaticHeaderCompletion>true</automaticHeaderCompletion>
+      <headerCompletionDelay>250</headerCompletionDelay>
     </codecompletion>
+    <references/>
   </kdevcppsupport>
 </kdevelop>
