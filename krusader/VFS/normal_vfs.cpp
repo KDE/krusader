@@ -291,6 +291,10 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 void normal_vfs::vfs_slotCreated(const QString& path){  
 	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();	
+	// if it's in the CVS - it's an update not new file
+	if( vfs_search(name) )
+		return vfs_slotDirty(path);
+	
 	vfile* vf = vfileFromName(name,true);
 	addToList(vf);
 	emit addedVfile(vf);	
@@ -300,6 +304,7 @@ void normal_vfs::vfs_slotDeleted(const QString& path){
 	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();
 	
+	// if it's not in the CVS - do nothing
 	if( vfs_search(name) ){
 		emit deletedVfile(name);
 		removeFromList(name);	
