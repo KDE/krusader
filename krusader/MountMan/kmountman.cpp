@@ -43,8 +43,12 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kprocctrl.h>
 #include <kio/job.h>
 #include <klocale.h>
+#include <kpopupmenu.h>
+
+#if KDE_IS_VERSION(3,2,0)
 #include <kmountpoint.h>
-#include <kpopupmenu.h> 
+#endif
+
 // Krusader includes
 #include "../resources.h"
 #include "../krusader.h"
@@ -799,10 +803,11 @@ QString KMountMan::convertSize( KIO::filesize_t size ) {
   return s;
   }
 
-#if KDE_IS_VERSION(3,2,0)
-
 // populate the pop-up menu of the mountman tool-button with actions
 void KMountMan::quickList() {
+
+#if KDE_IS_VERSION(3,2,0)
+
   // clear the popup menu
   ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu() ->clear();
 
@@ -841,9 +846,14 @@ void KMountMan::quickList() {
   connect( ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu(), SIGNAL( activated( int ) ),
            this, SLOT( performAction( int ) ) );
 
+#endif /* KDE 3.2 */
+
   }
 
 void KMountMan::performAction( int idx ) {
+
+#if KDE_IS_VERSION(3,2,0)
+
 	while (qApp->hasPendingEvents()) qApp->processEvents();
 	
   if ( idx < 0 ) return ;
@@ -859,8 +869,10 @@ void KMountMan::performAction( int idx ) {
   delete[] _actions;
   _actions = 0L;
   disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu(), SIGNAL( activated( int ) ), 0, 0 );
-  }
 
 #endif /* KDE 3.2 */
+
+  }
+
 
 #include "kmountman.moc"

@@ -84,13 +84,11 @@ namespace MountMan {
       ~KMountMan();
 
 		public slots:
-#if KDE_IS_VERSION(3,2,0)
 			void performAction(int idx);	
 			void quickList();
 			
 		private:
 			QString *_actions;
-#endif /* KDE 3.2 */
     
 		protected slots:
       void parseDfData( QString filename );  // parse a FULL list of filesystems
