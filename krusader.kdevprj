@@ -21,17 +21,17 @@ addcxxflags=-DKDE_NO_COMPAT -DQT_NO_ASCII_CAST
 bin_program=krusader
 cflags=-DKDE_NO_COMPAT
 cppflags=-DKDE_NO_COMPAT
-cxxflags=\s-O0 -Wall
+cxxflags=\s-O0 -g3 -Wall
 ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s            \s
+ldflags=\s             \s
 
 [General]
 AMChanged=false
 author=Shie Erlich & Rafi Yanai
-configure_args=--prefix=/usr\s
+configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux\s
 email=
 kdevprj_version=1.3
-lfv_open_groups=
+lfv_open_groups=GNU
 make_options=\s-j1
 makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am
 modifyMakefiles=true
@@ -739,31 +739,49 @@ install_location=
 type=HEADER
 
 [krusader/Panel/Makefile.am]
-files=krusader/Panel/kfilelist.cpp,krusader/Panel/kfilelist.h,krusader/Panel/krlistitem.cpp,krusader/Panel/krlistitem.h,krusader/Panel/listpanel.cpp,krusader/Panel/panelfunc.cpp,krusader/Panel/panelfunc.h,krusader/Panel/listpanel.h
+files=krusader/Panel/listpanel.cpp,krusader/Panel/panelfunc.cpp,krusader/Panel/panelfunc.h,krusader/Panel/listpanel.h,krusader/Panel/krdetailedview.cpp,krusader/Panel/krdetailedview.h,krusader/Panel/krdetailedviewitem.cpp,krusader/Panel/krdetailedviewitem.h,krusader/Panel/krview.cpp,krusader/Panel/krview.h,krusader/Panel/krviewitem.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=Panel
 sub_dirs=
 type=static_library
 
-[krusader/Panel/kfilelist.cpp]
+[krusader/Panel/krdetailedview.cpp]
 dist=true
 install=false
 install_location=
 type=SOURCE
 
-[krusader/Panel/kfilelist.h]
+[krusader/Panel/krdetailedview.h]
 dist=true
 install=false
 install_location=
 type=HEADER
 
-[krusader/Panel/krlistitem.cpp]
+[krusader/Panel/krdetailedviewitem.cpp]
 dist=true
 install=false
 install_location=
 type=SOURCE
 
-[krusader/Panel/krlistitem.h]
+[krusader/Panel/krdetailedviewitem.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Panel/krview.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Panel/krview.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Panel/krviewitem.h]
 dist=true
 install=false
 install_location=
