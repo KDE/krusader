@@ -29,6 +29,8 @@
 *                                                                         *
 ***************************************************************************/
 
+#include <kglobalsettings.h>
+
 ///////////////////////   [Startup]
 // UI Save Settings
 #define _UiSave           false 
@@ -68,7 +70,7 @@
 
 ////////////////////////[Look&Feel]
 // Filelist Font ///////
-#define _FilelistFont   new QFont("helvetica",11) 
+#define _FilelistFont   new QFont(KGlobalSettings::generalFont())
 // Warn On Exit ////////
 #define _WarnOnExit     false 
 // Minimize To Tray ////
