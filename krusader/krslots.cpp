@@ -338,6 +338,10 @@ void KRslots::runRemoteMan() {
 }
 
 void KRslots::runMountMan() {
+//// hack: remove soon!!!
+	krApp->mountMan->quickList();
+	return;
+//// end of hack
   if( !KrServices::cmdExist( "df" ) || !KrServices::cmdExist( "mount" ) )
   {
     KMessageBox::error(0,

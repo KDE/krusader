@@ -75,6 +75,8 @@ namespace MountMan {
       QString getMtab();          // reads the mount table
       bool    checkMtabChanged(); // checks whether mtab was changed
       
+			void quickList();
+			
       //////////////////////////// service functions /////////////////////////////////
       static QString nextWord( QString &s );
       static QString nextWord( QString &s, char c );
