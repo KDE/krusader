@@ -187,6 +187,15 @@ public:
    EXP_FUNC;
 };
 
+/**
+  * This loads the panel-profile with a given name
+  */
+class exp_Profile : public exp_placeholder {
+public:
+   exp_Profile();
+   EXP_FUNC;
+};
+
 
 /**
  * The Expander expands the command of an UserAction by replacing all placeholders by thier current values.@n

@@ -154,8 +154,10 @@ ParameterDialog::ParameterDialog( exp_placeholder* currentPlaceholder, QWidget *
          _parameter.append( new ParameterGoto( currentPlaceholder->parameter( i ), plainPage() ) );
       else if ( currentPlaceholder->parameter( i )->preset() == "__syncprofile" )
          _parameter.append( new ParameterSyncprofile( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__search" )
+      else if ( currentPlaceholder->parameter( i )->preset() == "__searchprofile" )
          _parameter.append( new ParameterSearch( currentPlaceholder->parameter( i ), plainPage() ) );
+      else if ( currentPlaceholder->parameter( i )->preset() == "__panelprofile" )
+         _parameter.append( new ParameterPanelprofile( currentPlaceholder->parameter( i ), plainPage() ) );
       else
          _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), plainPage() ) );
    }
@@ -508,3 +510,29 @@ void ParameterSearch::reset() {
 bool ParameterSearch::valid() {
       return true;
 } 
+
+///////////// ParameterPanelprofile
+ParameterPanelprofile::ParameterPanelprofile( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+   QVBoxLayout* layout = new QVBoxLayout( this );
+   layout->setAutoAdd( true );
+   layout->setSpacing( 6 );
+   
+   new QLabel( parameter->description(), this );
+   _combobox = new KComboBox( this );
+   
+   _combobox->insertStringList( ProfileManager::availableProfiles("Panel") );
+}
+
+QString ParameterPanelprofile::text() {
+   return _combobox->currentText();
+} 
+QString ParameterPanelprofile::preset() {
+   return _combobox->text( 0 );
+} 
+void ParameterPanelprofile::reset() {
+   _combobox->setCurrentItem( 0 );
+} 
+bool ParameterPanelprofile::valid() {
+      return true;
+} 
+

@@ -10,7 +10,7 @@
 //
 //
 
-#include <expander.h>
+#include "expander.h"
 
 #include "../krusader.h"
 #include "../krusaderview.h"
@@ -19,6 +19,7 @@
 #include "../Panel/panelfunc.h"
 #include "../Synchronizer/synchronizergui.h"
 #include "../Search/krsearchdialog.h"
+#include "../GUI/profilemanager.h"
 
 #include <kdebug.h>
 #include <kinputdialog.h>
@@ -243,8 +244,8 @@ exp_Goto::exp_Goto() {
    _description = i18n("Jump to a location");
    _needPanel = true;
    
-   addParameter( new exp_parameter( i18n("please choose the bookmark"), "__bookmark", true ) );
-   addParameter( new exp_parameter( i18n("open the bookmark in a new tab"), "__no", false ) );
+   addParameter( new exp_parameter( i18n("please choose a path"), "__goto", true ) );
+   addParameter( new exp_parameter( i18n("open the location in a new tab"), "__no", false ) );
 }
 QString exp_Goto::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
    NEED_PANEL
@@ -271,7 +272,7 @@ exp_Search::exp_Search() {
    _description = i18n("Search for files");
    _needPanel = true;
 
-   addParameter( new exp_parameter( i18n("please choose the setting"), "__search", true ) );  //TODO: add this action as soon as the search supports saving search-settings
+   addParameter( new exp_parameter( i18n("please choose the setting"), "__searchprofile", true ) );
    addParameter( new exp_parameter( i18n("open the search in a new tab"), "__yes", false ) );  //TODO: add this also to panel-dependent as soon as vfs support the display of search-results
 }
 */
@@ -342,7 +343,7 @@ QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const
 
 exp_Sync::exp_Sync() {
    _expression = "Sync";
-   _description = i18n("Opens a synchronizer-profile");
+   _description = i18n("Open a synchronizer-profile");
    _needPanel = false;
    
    addParameter( new exp_parameter( i18n("Choose a profile"), "__syncprofile", true ) );
@@ -360,10 +361,10 @@ QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const
 
 exp_NewSearch::exp_NewSearch() {
    _expression = "NewSearch";
-   _description = i18n("Opens a searchmodule-profile");
+   _description = i18n("Open a searchmodule-profile");
    _needPanel = false;
    
-   addParameter( new exp_parameter( i18n("Choose a profile"), "__search", true ) );
+   addParameter( new exp_parameter( i18n("Choose a profile"), "__searchprofile", true ) );
 }
 QString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
    if ( parameter[0].isEmpty() ) {
@@ -372,6 +373,25 @@ QString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, 
    }
 
    new KrSearchDialog( parameter[0] );
+
+   return QString::null;  // this doesn't return everything, that's normal!
+}
+
+exp_Profile::exp_Profile() {
+   _expression = "Profile";
+   _description = i18n("Load a panel-profile");
+   _needPanel = false;
+   
+   addParameter( new exp_parameter( i18n("Choose a profile"), "__panelprofile", true ) );
+}
+QString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+   if ( parameter[0].isEmpty() ) {
+      kdWarning() << "Expander: no profile specified for %_Profile(profile)%; ignoring..." << endl;
+      return QString::null;
+   }
+   
+   kdDebug() << "Panelprofiles are not working yet through UserActions." << endl;
+//    krProfileManager->loadByName( parameter[0] );
 
    return QString::null;  // this doesn't return everything, that's normal!
 }
@@ -398,6 +418,7 @@ Expander::Expander() {
    addPlaceholder( new exp_Copy() );
    addPlaceholder( new exp_Sync() );
    addPlaceholder( new exp_NewSearch() );
+   addPlaceholder( new exp_Profile() );
 //    addPlaceholder( new exp_Run() );
 }
 

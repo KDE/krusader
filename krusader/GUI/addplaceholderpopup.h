@@ -241,8 +241,23 @@ private:
 };
 
 /**
+ *  A ComboBox with all profiles available for the panels
+ *  used with default = "__panelprofile"
+ */
+class ParameterPanelprofile : public ParameterBase {
+public:
+   ParameterPanelprofile( exp_parameter* parameter, QWidget* parent );
+   QString text();
+   QString preset();
+   void reset();
+   bool valid();
+private:
+   KComboBox * _combobox;
+};
+
+/**
  *  A ComboBox with all profiles available for the Searchmodule
- *  used with default = "__search"
+ *  used with default = "__searchprofile"
  */
 class ParameterSearch : public ParameterBase {
 public:
