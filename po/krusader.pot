@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2003-05-09 02:18+0300\n"
+"POT-Creation-Date: 2003-05-27 23:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "F5 Copy  "
 msgstr ""
 
-#: GUI/kfnkeys.cpp:57 krusader.cpp:259
+#: GUI/kfnkeys.cpp:57 krusader.cpp:262
 msgid "F6 Move"
 msgstr ""
 
@@ -58,11 +58,11 @@ msgstr ""
 msgid "F7 Mkdir "
 msgstr ""
 
-#: GUI/kfnkeys.cpp:63 krusader.cpp:265
+#: GUI/kfnkeys.cpp:63 krusader.cpp:268
 msgid "F8 Delete"
 msgstr ""
 
-#: GUI/kfnkeys.cpp:66 krusader.cpp:268
+#: GUI/kfnkeys.cpp:66 krusader.cpp:271
 msgid "F9 Rename"
 msgstr ""
 
@@ -70,13 +70,13 @@ msgstr ""
 msgid "F10 Quit "
 msgstr ""
 
-#: VFS/ftp_vfs.cpp:176
+#: VFS/ftp_vfs.cpp:177
 msgid ""
 "Malformed URL:\n"
 "%1"
 msgstr ""
 
-#: VFS/ftp_vfs.cpp:178
+#: VFS/ftp_vfs.cpp:179
 msgid "Protocol not supported by Krusader:\n"
 msgstr ""
 
@@ -195,7 +195,7 @@ msgid ""
 "bytes math"
 msgstr ""
 
-#: Panel/listpanel.cpp:176 Panel/listpanel.cpp:641
+#: Panel/listpanel.cpp:176 Panel/listpanel.cpp:642
 msgid " Select Files "
 msgstr ""
 
@@ -209,8 +209,8 @@ msgstr ""
 msgid "homepage"
 msgstr ""
 
-#: Panel/listpanel.cpp:232 Panel/listpanel.cpp:239 krusader.cpp:425
-#: krusader.cpp:428 Konfigurator/kgstartup.cpp:157
+#: Panel/listpanel.cpp:232 Panel/listpanel.cpp:239 krusader.cpp:428
+#: krusader.cpp:431 Konfigurator/kgstartup.cpp:157
 #: Konfigurator/kgstartup.cpp:179
 msgid "the last place it was"
 msgstr ""
@@ -227,79 +227,83 @@ msgstr ""
 msgid "Mt.Man: working ..."
 msgstr ""
 
-#: Panel/listpanel.cpp:389
-msgid "Copy Here"
+#: Panel/listpanel.cpp:368
+msgid "Can't drop here, no write permissions."
 msgstr ""
 
 #: Panel/listpanel.cpp:390
+msgid "Copy Here"
+msgstr ""
+
+#: Panel/listpanel.cpp:391
 msgid "Move Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:393
+#: Panel/listpanel.cpp:394
 msgid "Link Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:475
+#: Panel/listpanel.cpp:476
 msgid "Run"
 msgstr ""
 
-#: Panel/listpanel.cpp:486
+#: Panel/listpanel.cpp:487
 msgid "Preview"
 msgstr ""
 
-#: Panel/listpanel.cpp:503
+#: Panel/listpanel.cpp:504
 msgid "Terminal"
 msgstr ""
 
-#: Panel/listpanel.cpp:504
+#: Panel/listpanel.cpp:505
 msgid "Other..."
 msgstr ""
 
-#: Panel/listpanel.cpp:516
+#: Panel/listpanel.cpp:517
 msgid "Rename"
 msgstr ""
 
-#: Panel/listpanel.cpp:522
+#: Panel/listpanel.cpp:523
 msgid "Shred"
 msgstr ""
 
-#: Panel/listpanel.cpp:527
+#: Panel/listpanel.cpp:528
 msgid "new symlink"
 msgstr ""
 
-#: Panel/listpanel.cpp:528
+#: Panel/listpanel.cpp:529
 msgid "new hardlink"
 msgstr ""
 
-#: Panel/listpanel.cpp:530
+#: Panel/listpanel.cpp:531
 msgid "redirect link"
 msgstr ""
 
-#: Panel/listpanel.cpp:532
+#: Panel/listpanel.cpp:533
 msgid "Link handling"
 msgstr ""
 
-#: Panel/listpanel.cpp:539 MountMan/kmountmangui.cpp:221
+#: Panel/listpanel.cpp:540 MountMan/kmountmangui.cpp:221
 msgid "Unmount"
 msgstr ""
 
-#: Panel/listpanel.cpp:541 MountMan/kmountmangui.cpp:220
+#: Panel/listpanel.cpp:542 MountMan/kmountmangui.cpp:220
 msgid "Mount"
 msgstr ""
 
-#: Panel/listpanel.cpp:543 MountMan/kmountmangui.cpp:224
+#: Panel/listpanel.cpp:544 MountMan/kmountmangui.cpp:224
 msgid "Eject"
 msgstr ""
 
-#: Panel/listpanel.cpp:547
+#: Panel/listpanel.cpp:548
 msgid "Send by email"
 msgstr ""
 
-#: Panel/listpanel.cpp:584
+#: Panel/listpanel.cpp:585
 msgid "Are you sure you want to shred "
 msgstr ""
 
-#: Panel/listpanel.cpp:624 Panel/panelfunc.cpp:274 Panel/panelfunc.cpp:296
+#: Panel/listpanel.cpp:625 Panel/panelfunc.cpp:296 Panel/panelfunc.cpp:324
 #: krslots.cpp:302
 msgid "Can't open "
 msgstr ""
@@ -358,430 +362,438 @@ msgstr ""
 msgid "ListPanel"
 msgstr ""
 
-#: Panel/panelfunc.cpp:161
+#: Panel/panelfunc.cpp:171
 msgid "Can't re-enter archive. Going to the nearest path"
 msgstr ""
 
-#: Panel/panelfunc.cpp:179
+#: Panel/panelfunc.cpp:191
 msgid "You can edit links only on local file systems"
 msgstr ""
 
-#: Panel/panelfunc.cpp:189
+#: Panel/panelfunc.cpp:202
 msgid "The current file is not a link, so i can't redirect it."
 msgstr ""
 
-#: Panel/panelfunc.cpp:196
+#: Panel/panelfunc.cpp:209
 msgid "Please enter the new link destination:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:202
+#: Panel/panelfunc.cpp:216
 msgid "Can't remove old link: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:207 Panel/panelfunc.cpp:246
+#: Panel/panelfunc.cpp:221 Panel/panelfunc.cpp:261
 msgid "Failed to create a new link: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:214
+#: Panel/panelfunc.cpp:228
 msgid "You can create links only on local file systems"
 msgstr ""
 
-#: Panel/panelfunc.cpp:223
+#: Panel/panelfunc.cpp:237
 msgid "Create a new link to: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:230 Panel/panelfunc.cpp:377
+#: Panel/panelfunc.cpp:245 Panel/panelfunc.cpp:415
 msgid "A directory or a file with this file already exists."
 msgstr ""
 
-#: Panel/panelfunc.cpp:242
+#: Panel/panelfunc.cpp:257
 msgid "Failed to create a new symlink: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:243 Panel/panelfunc.cpp:247
+#: Panel/panelfunc.cpp:258 Panel/panelfunc.cpp:262
 msgid " To: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:284
+#: Panel/panelfunc.cpp:276
+msgid "No permissions to view this file."
+msgstr ""
+
+#: Panel/panelfunc.cpp:307
 msgid "You can't edit a directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:310
+#: Panel/panelfunc.cpp:312
+msgid "No permissions to edit this file."
+msgstr ""
+
+#: Panel/panelfunc.cpp:340
 msgid "Move "
 msgstr ""
 
-#: Panel/panelfunc.cpp:310 Panel/panelfunc.cpp:398 Panel/panelfunc.cpp:680
-#: Panel/panelfunc.cpp:682
+#: Panel/panelfunc.cpp:340 Panel/panelfunc.cpp:438 Panel/panelfunc.cpp:751
+#: Panel/panelfunc.cpp:753
 msgid "to"
 msgstr ""
 
-#: Panel/panelfunc.cpp:311
+#: Panel/panelfunc.cpp:342
 #, c-format
 msgid "Move %d files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:342
+#: Panel/panelfunc.cpp:377
 msgid "You can't move files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:356
+#: Panel/panelfunc.cpp:392
 msgid "Rename "
 msgstr ""
 
-#: Panel/panelfunc.cpp:356
+#: Panel/panelfunc.cpp:392
 msgid " to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:370
+#: Panel/panelfunc.cpp:407
 msgid "Directory's name:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:398
+#: Panel/panelfunc.cpp:438
 msgid "Copy "
 msgstr ""
 
-#: Panel/panelfunc.cpp:399
+#: Panel/panelfunc.cpp:440
 #, c-format
 msgid "Copy %d files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:427
+#: Panel/panelfunc.cpp:472
 msgid "You can't copy files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:438
+#: Panel/panelfunc.cpp:483
 msgid "You do not have write permission to this directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:452
+#: Panel/panelfunc.cpp:500
 #, c-format
 msgid " %d files ?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:456
+#: Panel/panelfunc.cpp:504
 msgid "trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:457
+#: Panel/panelfunc.cpp:505
 msgid "&Trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:459
+#: Panel/panelfunc.cpp:507
 msgid "delete"
 msgstr ""
 
-#: Panel/panelfunc.cpp:463
+#: Panel/panelfunc.cpp:511
 msgid "Are you sure you want to "
 msgstr ""
 
-#: Panel/panelfunc.cpp:482
+#: Panel/panelfunc.cpp:531
 msgid "Directory "
 msgstr ""
 
-#: Panel/panelfunc.cpp:482
+#: Panel/panelfunc.cpp:531
 msgid ""
 " is not empty !\n"
 "Skip this one or Delete All ?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:483
+#: Panel/panelfunc.cpp:532
 msgid "&Skip"
 msgstr ""
 
-#: Panel/panelfunc.cpp:483
+#: Panel/panelfunc.cpp:532
 msgid "&Delete All"
 msgstr ""
 
-#: Panel/panelfunc.cpp:617
+#: Panel/panelfunc.cpp:683
 msgid "When Packing into archive - you must use the active directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:626
+#: Panel/panelfunc.cpp:692
 msgid "The Archive "
 msgstr ""
 
-#: Panel/panelfunc.cpp:627
+#: Panel/panelfunc.cpp:693
 msgid " already exists, Do you want to overwrite the archive "
 msgstr ""
 
-#: Panel/panelfunc.cpp:628
+#: Panel/panelfunc.cpp:694
 msgid "(all data in previous archive will be lost)"
 msgstr ""
 
-#: Panel/panelfunc.cpp:628
+#: Panel/panelfunc.cpp:694
 msgid "&Overwite"
 msgstr ""
 
-#: Panel/panelfunc.cpp:632
+#: Panel/panelfunc.cpp:699
 msgid "Counting files to pack"
 msgstr ""
 
-#: Panel/panelfunc.cpp:661
+#: Panel/panelfunc.cpp:731
 msgid "%1, unknown archive type."
 msgstr ""
 
-#: Panel/panelfunc.cpp:667
+#: Panel/panelfunc.cpp:737
 msgid "%1, test passed."
 msgstr ""
 
-#: Panel/panelfunc.cpp:669
+#: Panel/panelfunc.cpp:739
 msgid "%1, test failed !"
 msgstr ""
 
-#: Panel/panelfunc.cpp:680 Panel/panelfunc.cpp:682
+#: Panel/panelfunc.cpp:751 Panel/panelfunc.cpp:753
 msgid "Unpack "
 msgstr ""
 
-#: Panel/panelfunc.cpp:682
+#: Panel/panelfunc.cpp:753
 msgid "%1 files"
 msgstr ""
 
-#: Panel/panelfunc.cpp:693
+#: Panel/panelfunc.cpp:765
 msgid "When unpacking into archive - you must use the active directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:709
+#: Panel/panelfunc.cpp:784
 msgid "%1, unknown archive type"
 msgstr ""
 
-#: Panel/panelfunc.cpp:736
+#: Panel/panelfunc.cpp:813
 msgid "Name: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:737
+#: Panel/panelfunc.cpp:814
 msgid ""
 "Total occupied space: %1\n"
 "in %2 directories and %3 files"
 msgstr ""
 
-#: krusader.cpp:202
+#: krusader.cpp:210
 msgid ""
 "A configuration older then v0.90 was detected Krusader has to reset your "
 "configuration to default values. Krusader will now run Konfigurator."
 msgstr ""
 
-#: krusader.cpp:204
+#: krusader.cpp:212
 msgid ""
 "Unable to remove your krusaderrc file! Please remove it manually and rerun "
 "Krusader."
 msgstr ""
 
-#: krusader.cpp:212
+#: krusader.cpp:220
 msgid ""
 "Welcome to Krusader, as this is your first run, Krusader will now run "
 "Konfigurator."
 msgstr ""
 
-#: krusader.cpp:247
+#: krusader.cpp:250
 msgid "F2 Terminal"
 msgstr ""
 
-#: krusader.cpp:250
+#: krusader.cpp:253
 msgid "F3 View"
 msgstr ""
 
-#: krusader.cpp:253
+#: krusader.cpp:256
 msgid "F4 Edit"
 msgstr ""
 
-#: krusader.cpp:256
+#: krusader.cpp:259
 msgid "F5 Copy"
 msgstr ""
 
-#: krusader.cpp:262
+#: krusader.cpp:265
 msgid "F7 Mkdir"
 msgstr ""
 
-#: krusader.cpp:271
+#: krusader.cpp:274
 msgid "F10 Quit"
 msgstr ""
 
-#: krusader.cpp:274
+#: krusader.cpp:277
 msgid "Tab: switch panel"
 msgstr ""
 
-#: krusader.cpp:299
+#: krusader.cpp:302
 msgid "Compare Mode"
 msgstr ""
 
-#: krusader.cpp:302
+#: krusader.cpp:305
 msgid "Show &FN Keys Bar"
 msgstr ""
 
-#: krusader.cpp:305
+#: krusader.cpp:308
 msgid "Show &Command Line"
 msgstr ""
 
-#: krusader.cpp:308
+#: krusader.cpp:311
 msgid "Show &Terminal Emulator"
 msgstr ""
 
-#: krusader.cpp:311
+#: krusader.cpp:314
 msgid "Show H&idden Files"
 msgstr ""
 
-#: krusader.cpp:313
+#: krusader.cpp:316
 msgid "Sort By E&xtention"
 msgstr ""
 
-#: krusader.cpp:320
+#: krusader.cpp:323
 msgid "Configure compare-mode"
 msgstr ""
 
-#: krusader.cpp:322
+#: krusader.cpp:325
 msgid "Test Archi&ve(s)"
 msgstr ""
 
-#: krusader.cpp:324
+#: krusader.cpp:327
 msgid "&FTP Connect"
 msgstr ""
 
-#: krusader.cpp:326
+#: krusader.cpp:329
 msgid "FT&P New Connection"
 msgstr ""
 
-#: krusader.cpp:328
+#: krusader.cpp:331
 msgid "Calculate &Occupied Space"
 msgstr ""
 
-#: krusader.cpp:330
+#: krusader.cpp:333
 msgid "&Properties"
 msgstr ""
 
-#: krusader.cpp:332
+#: krusader.cpp:335
 msgid "Pac&k"
 msgstr ""
 
-#: krusader.cpp:334
+#: krusader.cpp:337
 msgid "&Unpack"
 msgstr ""
 
-#: krusader.cpp:336
+#: krusader.cpp:339
 msgid "Select &Group"
 msgstr ""
 
-#: krusader.cpp:338
+#: krusader.cpp:341
 msgid "&Select All"
 msgstr ""
 
-#: krusader.cpp:340
+#: krusader.cpp:343
 msgid "U&nselect All"
 msgstr ""
 
-#: krusader.cpp:342
+#: krusader.cpp:345
 msgid "&Terminal"
 msgstr ""
 
-#: krusader.cpp:344
+#: krusader.cpp:347
 msgid "FTP Disc&onnect"
 msgstr ""
 
-#: krusader.cpp:346
+#: krusader.cpp:349
 msgid "&MountMan"
 msgstr ""
 
-#: krusader.cpp:348
+#: krusader.cpp:351
 msgid "&BookMan"
 msgstr ""
 
-#: krusader.cpp:350
+#: krusader.cpp:353
 msgid "&Search"
 msgstr ""
 
-#: krusader.cpp:352
+#: krusader.cpp:355
 msgid "&Invert Selection"
 msgstr ""
 
-#: krusader.cpp:354
+#: krusader.cpp:357
 msgid "&Unselect &Group"
 msgstr ""
 
-#: krusader.cpp:356 BookMan/bookmanguibase.cpp:527
+#: krusader.cpp:359 BookMan/bookmanguibase.cpp:527
 msgid "Add Bookmark"
 msgstr ""
 
-#: krusader.cpp:358
+#: krusader.cpp:361
 msgid "&Konfigurator"
 msgstr ""
 
-#: krusader.cpp:362
+#: krusader.cpp:365
 msgid "Root"
 msgstr ""
 
-#: krusader.cpp:364
+#: krusader.cpp:367
 msgid "&Device Manager"
 msgstr ""
 
-#: krusader.cpp:366
+#: krusader.cpp:369
 msgid "Save &Position"
 msgstr ""
 
-#: krusader.cpp:368
+#: krusader.cpp:371
 msgid "&All Files"
 msgstr ""
 
-#: krusader.cpp:370
+#: krusader.cpp:373
 msgid "&Executables"
 msgstr ""
 
-#: krusader.cpp:372
+#: krusader.cpp:375
 msgid "&Custom"
 msgstr ""
 
-#: krusader.cpp:374
+#: krusader.cpp:377
 msgid "Compare b&y content"
 msgstr ""
 
-#: krusader.cpp:376
+#: krusader.cpp:379
 msgid "Multi Rename"
 msgstr ""
 
-#: krusader.cpp:378
+#: krusader.cpp:381
 msgid "Right-click menu"
 msgstr ""
 
-#: krusader.cpp:382
+#: krusader.cpp:385
 msgid "Highlight files by using a filter"
 msgstr ""
 
-#: krusader.cpp:383
+#: krusader.cpp:386
 msgid "Highlight all the files in the current directory"
 msgstr ""
 
-#: krusader.cpp:384
+#: krusader.cpp:387
 msgid "Remove selection from all highlight files"
 msgstr ""
 
-#: krusader.cpp:385
+#: krusader.cpp:388
 msgid "Mount.Man: Krusader's mount-manager. Try it!"
 msgstr ""
 
-#: krusader.cpp:386
+#: krusader.cpp:389
 msgid "Setup Krusader the way you like it"
 msgstr ""
 
-#: krusader.cpp:387
+#: krusader.cpp:390
 msgid "Back to the place you came from"
 msgstr ""
 
-#: krusader.cpp:388
+#: krusader.cpp:391
 msgid "ROOT (/)"
 msgstr ""
 
-#: krusader.cpp:389
+#: krusader.cpp:392
 msgid "Search for files"
 msgstr ""
 
-#: krusader.cpp:390
+#: krusader.cpp:393
 msgid "Add the current path to your bookmarks"
 msgstr ""
 
-#: krusader.cpp:424 krusader.cpp:427 Konfigurator/kgstartupimpl.cpp:167
+#: krusader.cpp:427 krusader.cpp:430 Konfigurator/kgstartupimpl.cpp:167
 #: Konfigurator/kgstartupimpl.cpp:178
 msgid "List"
 msgstr ""
 
-#: krusader.cpp:470
+#: krusader.cpp:473
 msgid "Ok to shutdown Krusader ?"
 msgstr ""
 
@@ -1606,23 +1618,23 @@ msgstr ""
 msgid "Exclusive files (compare mode)"
 msgstr ""
 
-#: RemoteMan/remoteman.cpp:84 RemoteMan/remoteman.cpp:87
+#: RemoteMan/remoteman.cpp:85 RemoteMan/remoteman.cpp:88
 msgid "New group"
 msgstr ""
 
-#: RemoteMan/remoteman.cpp:103
+#: RemoteMan/remoteman.cpp:104
 msgid "New session"
 msgstr ""
 
-#: RemoteMan/remoteman.cpp:251 RemoteMan/remotemanbase.cpp:81
+#: RemoteMan/remoteman.cpp:252 RemoteMan/remotemanbase.cpp:81
 msgid "Sessions"
 msgstr ""
 
-#: RemoteMan/remoteman.cpp:358
+#: RemoteMan/remoteman.cpp:360
 msgid "RemoteMan"
 msgstr ""
 
-#: RemoteMan/remoteman.cpp:359
+#: RemoteMan/remoteman.cpp:361
 msgid "Are you sure you want to delete this item ???"
 msgstr ""
 
@@ -1909,6 +1921,10 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:110
 msgid "If checked, Krusader will mount FSTAB mount-points when needed."
+msgstr ""
+
+#: Konfigurator/kglookfeelimpl.cpp:51
+msgid "Show a tray icon"
 msgstr ""
 
 #: Konfigurator/kgstartup.cpp:112
