@@ -1,14 +1,20 @@
 #include <kmessagebox.h>
 #include <klocale.h>
+#include <klistview.h>
+#include <klistviewsearchline.h>
+#include <qheader.h>
+#include <qlayout.h>
 #include "../krusader.h"
 #include "popularurls.h"
 
 PopularUrls::PopularUrls(QObject *parent, const char *name) : QObject(parent, name), 
 	head(0), tail(0), count(0) {
+	dlg = new PopularUrlsDlg();
 }
 
 PopularUrls::~PopularUrls() {
 	clearList();
+	delete dlg;
 }
 
 void PopularUrls::clearList() {
@@ -186,6 +192,45 @@ void PopularUrls::dumpList() {
 		p = p->next;
 	}
 	fflush(stdout);
+}
+
+void PopularUrls::showDialog() {
+	dlg->run(getMostPopularUrls(maxUrls));
+}
+
+// ===================================== PopularUrlsDlg ======================================
+PopularUrlsDlg::PopularUrlsDlg(): 
+	KDialogBase(Plain, i18n("Popular Urls"), KDialogBase::Close, KDialogBase::NoDefault, krApp) {
+	QVBoxLayout *layout = new QVBoxLayout( plainPage(), 0, KDialog::spacingHint() );
+	// listview to contain the urls
+	urls = new KListView(plainPage());
+	urls->header()->hide();
+	urls->addColumn("");
+	urls->setSorting(-1);
+	// quick search
+	search = new KListViewSearchLine(plainPage(), urls);
+	
+	layout->addWidget(search);
+	layout->addWidget(urls);
+	setMaximumSize(600, 500);
+}
+
+PopularUrlsDlg::~ PopularUrlsDlg() {
+	delete search;
+	delete urls;
+}
+
+void PopularUrlsDlg::run(KURL::List list) {
+	// populate the listview
+	urls->clear();
+	KURL::List::Iterator it;
+	for (it = list.begin(); it!=list.end(); ++it) {
+		KListViewItem *item = new KListViewItem(urls, urls->lastItem());
+		item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).prettyURL());
+	}
+	
+	setMinimumSize(urls->sizeHint().width()+50, 200);
+	exec();
 }
 
 #include "popularurls.moc"

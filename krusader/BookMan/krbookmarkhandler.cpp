@@ -268,8 +268,11 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			bm->plug(newMenu);
 			CONNECT_BM(bm);
 		}
-		menu->insertSeparator();
+		newMenu->insertSeparator();
+		krPopularUrls->plug(newMenu);
 		
+		// finished with popular links
+		menu->insertSeparator();
 		floc += 2; bloc +=2; // 1 group + separator
 	}
 

@@ -4,6 +4,7 @@
 #include <qobject.h>
 #include <kurl.h>
 #include <qdict.h>
+#include <kdialogbase.h>
 
 // the class holds a list of most popular links in a dual data structure
 // * linked list, with head and tail: for fast append/prepend support
@@ -23,8 +24,10 @@ typedef struct _UrlNode {
 	UrlNodeP next;
 } UrlNode;
 
+class PopularUrlsDlg;
+
 class PopularUrls : public QObject {
-Q_OBJECT
+	Q_OBJECT
 public:
 	PopularUrls(QObject *parent = 0, const char *name = 0);
 	~PopularUrls();
@@ -32,6 +35,9 @@ public:
 	void load();
 	void addUrl(const KURL& url);
 	KURL::List getMostPopularUrls(int max);
+
+public slots:	
+	void showDialog(); 
 
 protected:
 	// NOTE: the following methods append/insert/remove a node to the list 
@@ -50,6 +56,23 @@ private:
 	int count;
 	static const int maxUrls = 30; 
 	static const int hardLimit = 50;
+	PopularUrlsDlg *dlg;
 };
+
+class KListView;
+class KListViewSearchLine;
+
+class PopularUrlsDlg: public KDialogBase {
+	Q_OBJECT
+public:
+	PopularUrlsDlg();
+	~PopularUrlsDlg();
+	void run(KURL::List list);
+			
+private:
+	KListView *urls;
+	KListViewSearchLine *search;
+};
+
 
 #endif

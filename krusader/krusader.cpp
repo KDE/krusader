@@ -148,6 +148,7 @@ KAction *Krusader::actF7 = 0;
 KAction *Krusader::actF8 = 0;
 KAction *Krusader::actF9 = 0;
 KAction *Krusader::actF10 = 0;
+KAction *Krusader::actPopularUrls = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
 KRadioAction  *Krusader::actMarkNewerAndSingle = 0;
 KRadioAction  *Krusader::actMarkSingle = 0;
@@ -593,6 +594,8 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
 	actF10 = new KAction( i18n( "F10 - Quit" ), Key_F10,
                 this, SLOT( quitKrusader() ) , actionCollection(), "F10_Quit" );
+	actPopularUrls = new KAction( i18n("Popular Urls"), CTRL+Key_Z,
+					popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
 										
    // and at last we can set the tool-tips
    actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );
