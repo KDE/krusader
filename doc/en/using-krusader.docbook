@@ -27,12 +27,13 @@
 <title>User Interface</title>
 
 <sect2 id="mainwindow">
-<title>Main Window</title>
+<title>&krusader; Main Window</title>
 <screenshot><screeninfo>&krusader; Main Window</screeninfo><mediaobject>
       <imageobject><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
       <imageobject><imagedata fileref="mainwindow.png" format="EPS"/></imageobject>
       <textobject><phrase>&krusader; Main Window</phrase></textobject>
-      <caption><para>The &krusader; Main Window with all the different parts marked up.</para></caption>
+      <caption><para>The &krusader; Main Window with all the different parts
+labeled.</para></caption>
 </mediaobject></screenshot>
 
 <para>This is &krusader;'s main window with all the different parts named on the screen.
@@ -43,7 +44,8 @@
    <listitem><para>The <link linkend="commands">Menu Bar</link> which has a chapter of its own.</para>
        </listitem>
    <listitem><para>The <emphasis role="bold">Status Bar</emphasis> shows the properties of the current
-	 file that has the focus. It accepts that you drop an &URL; on it.</para>
+	 file that has the focus. You can use "drag and drop" to drop a &URL; "into"
+the Status Bar.</para>
        </listitem>
 </itemizedlist>
 </sect2>
@@ -58,29 +60,33 @@
 </screenshot>
 
 <para>
-There isn't a lot to say about the &krusader; Main Toolbar, it's a standard &kde; toolbar
+The &krusader; Main Toolbar, is a standard &kde; toolbar
 that can be dragged around the application or configured via a <keycap>Right-Click</keycap> menu.
 You can decide if you want to display it (or not) every time you start &krusader;
 in the &konfigstartpg_lnk;, and you can toggle its use in the current session in the &viewmenu_lnk;.
 The Main Toolbar contents can be configured from the <guimenuitem>Configure Toolbars</guimenuitem>
 in the &settingsmenu_lnk; or the <guilabel>Toolbar</guilabel> tab in the &konfiglookandfeel_lnk;.
 Since the various commands and options in &krusader; are context dependent, some commands are not 
-always available (&ie;: you can't disconnect from an &FTP; session if you're not connected), 
+always available (&ie;: you can't disconnect from an &FTP; session if you're not
+already connected), 
 the icon of an inappropriate or inactive action will be deactivated (grayed-out) and you won't 
-be able to click it.
-&bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar.</para>
+be able to click or select it.
+&bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar
+with the mouse using "drag and drop".</para>
 
 </sect2>
 
 <sect2 id="actions_toolbar">
 <title>Actions Toolbar</title>
 <para>
-&useractions_lnk; and &bookmarks_lnk; can be plugged in the <guilabel>Actions Toolbar</guilabel>.
+&useractions_lnk; and &bookmarks_lnk; can be "plugged into" the
+<guilabel>Actions Toolbar</guilabel>.
 To show it use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
 <guimenuitem>Show Actions Toolbar</guimenuitem></menuchoice></emphasis>.
 To add useractions use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
 <guimenuitem>Configure Toolbars</guimenuitem></menuchoice></emphasis> and select Actions Toolbar.
-You could &eg; drag the Actions Toolbar to the right side.
+You could, for example, drag the Actions Toolbar to the right side using the
+mouse.
 </para>
 </sect2>
 
@@ -94,19 +100,26 @@ Currently, there are two types of panels:
  <itemizedlist>
   <listitem><para>&list_panel_lnk;: shows the files and directories.
             </para></listitem>
-  <listitem><para>&popup_panel_lnk;: shows the directory tree or a preview of the file that has the focus.
+  <listitem><para>&popup_panel_lnk;: shows the directory tree or a preview of
+the file that has the focus.  The PopUp Panel may be left open, or closed, as
+desired.
             </para></listitem>
   </itemizedlist>
       
-&krusader; is a twin-panel file manager so there are two panels, the left panel and the right panel. 
-Or a more important logical distinction, the *active* panel and the *inactive* panel. 
-This is the key to making the best use of Krusader!
-The active panel is the one that will accept your mouse and keyboard input. 
-It is the panel *acted upon*. If you choose a command from the <guilabel>menu-bar</guilabel> or 
-<guilabel>toolbar</guilabel> the command will act upon the selected files/directories in the active 
-panel and direct the result to the inactive one. 
-The few exceptions to this mode of operation will be detailed as necessary in the applicable sections 
-of the documentation.
+&krusader; is a "twin-panel" file manager so there are two panels, the "Left"
+panel and the "Right" panel, or "Top" and "Bottom" panels if in "Vertical Mode
+". 
+Or a more important logical distinction, the *Active* panel and the *Inactive*
+panel. 
+<emphasis>This is the key to making the best use of Krusader!</emphasis>
+The Active panel is the one that will accept your mouse and keyboard input. 
+It is the panel *acted upon*. If you choose a command from the
+<guilabel>Menu-Bar</guilabel> or 
+<guilabel>Toolbar</guilabel> the command will act upon the selected
+files/directories in the active 
+panel <emphasis>and direct the result to the Inactive one.</emphasis> 
+The few exceptions to this mode of operation will be detailed as necessary in
+the applicable sections of the documentation.
 You can switch between panels using the &Tab; key or by clicking on the
 <guilabel>Information or Totals labels</guilabel>, or by selecting any file in a panel with the mouse.
 As always: default startup settings can be modified with the &konfigstartpg_lnk;,
