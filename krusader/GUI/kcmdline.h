@@ -94,6 +94,7 @@ public slots:
   void slotHistoryUp();
   void slotHistoryDown();
   void setCmdLineText(int id);
+  void addText(QString text) { cmdLine->setText(cmdLine->text()+text); }
 
 private:
 	void addToHistory(QString cmd);

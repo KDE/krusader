@@ -702,6 +702,9 @@ void ListPanel::keyPressEvent( QKeyEvent *e )
       } else e->ignore();
 
       default:
-      e->ignore();
+      // if we got this, it means that the view is not doing
+      // the quick search thing, so send the characters to the commandline
+      krApp->mainView->cmdLine->addText(e->text());
+      //e->ignore();
   }
 }

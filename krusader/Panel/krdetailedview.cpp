@@ -67,6 +67,10 @@
 #define _OwnerColumn        false
 // Group Column
 #define _GroupColumn        false
+// Do Quicksearch
+#define _DoQuicksearch      true
+// Classic Quicksearch
+#define _ClassicQuicksearch true
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "Type" ),
@@ -89,15 +93,18 @@ KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const 
     _columns[ i ] = Unused;
 
   /////////////////////////////// listview ////////////////////////////////////
-  krConfig->setGroup( "Look&Feel" );
-  setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
-  // a change in the selection needs to update totals
-  connect( this, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( slotClicked( QListViewItem* ) ) );
-  connect( this, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( slotDoubleClicked( QListViewItem* ) ) );
-  connect( this, SIGNAL( returnPressed( QListViewItem* ) ), this, SIGNAL( executed( QListViewItem* ) ) );
-  connect( this, SIGNAL( onItem( QListViewItem* ) ), this, SLOT( slotItemDescription( QListViewItem* ) ) );
-  connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
-           this, SLOT( handleContextMenu( QListViewItem*, const QPoint&, int ) ) );
+  { // use the {} so that KConfigGroupSaver will work correctly!
+    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+    krConfig->setGroup( "Look&Feel" );
+    setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
+    // a change in the selection needs to update totals
+    connect( this, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( slotClicked( QListViewItem* ) ) );
+    connect( this, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( slotDoubleClicked( QListViewItem* ) ) );
+    connect( this, SIGNAL( returnPressed( QListViewItem* ) ), this, SIGNAL( executed( QListViewItem* ) ) );
+    connect( this, SIGNAL( onItem( QListViewItem* ) ), this, SLOT( slotItemDescription( QListViewItem* ) ) );
+    connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
+            this, SLOT( handleContextMenu( QListViewItem*, const QPoint&, int ) ) );
+  }
 
   setWidget( this );
 
@@ -507,6 +514,8 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent *e )
 
 void KrDetailedView::keyPressEvent( QKeyEvent *e )
 {
+  KConfigGroupSaver grpSvr( _config, nameInKConfig() );
+
   if ( !e || !firstChild() )
     return ; // subclass bug
   switch ( e->key() )
@@ -583,8 +592,14 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e )
       }
       break;
       default:
-      KListView::keyPressEvent( e );
-      //updateView();
+      // are we doing quicksearch? if not, send keys to panel
+      if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
+        // are we using krusader's classic quicksearch, or wincmd style?
+        if (_config->readBoolEntry( "Classic Quicksearch", _ClassicQuicksearch))
+          KListView::keyPressEvent( e );
+        else {}
+      } else e->ignore(); // send to panel
+
       return ;
   }
 }
