@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-13 00:48+0100\n"
+"POT-Creation-Date: 2005-02-14 15:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -568,13 +568,13 @@ msgstr ""
 msgid "Can't create a directory. Check your permissions."
 msgstr ""
 
-#: VFS/virt_vfs.cpp:88
+#: VFS/virt_vfs.cpp:89
 msgid ""
 "You can't copy files directly to the 'virt:/' directory.\n"
 "You can create a sub directory and copy your files into it."
 msgstr ""
 
-#: VFS/virt_vfs.cpp:153
+#: VFS/virt_vfs.cpp:154
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr ""
 
@@ -639,178 +639,185 @@ msgstr ""
 msgid "This archive is encrypted, please supply the password:"
 msgstr ""
 
-#: UserAction/expander.cpp:62
+#: UserAction/expander.cpp:63
 msgid "panel's path"
 msgstr ""
 
-#: UserAction/expander.cpp:65 UserAction/expander.cpp:127
-#: UserAction/expander.cpp:161 UserAction/expander.cpp:450
+#: UserAction/expander.cpp:66 UserAction/expander.cpp:128
+#: UserAction/expander.cpp:162 UserAction/expander.cpp:231
+#: UserAction/expander.cpp:531
 msgid "Automatic escape spaces"
 msgstr ""
 
-#: UserAction/expander.cpp:85
+#: UserAction/expander.cpp:86
 msgid "number of ..."
 msgstr ""
 
-#: UserAction/expander.cpp:88
+#: UserAction/expander.cpp:89
 msgid "count all:"
 msgstr ""
 
-#: UserAction/expander.cpp:112
+#: UserAction/expander.cpp:113
 msgid "filter mask: *.h, *.cpp, etc."
 msgstr ""
 
-#: UserAction/expander.cpp:123
+#: UserAction/expander.cpp:124
 msgid "current file (!= selected file)"
 msgstr ""
 
-#: UserAction/expander.cpp:126 UserAction/expander.cpp:159
-#: UserAction/expander.cpp:448
+#: UserAction/expander.cpp:127 UserAction/expander.cpp:160
+#: UserAction/expander.cpp:229 UserAction/expander.cpp:529
 msgid "Omit the current path (optional)"
 msgstr ""
 
-#: UserAction/expander.cpp:154
+#: UserAction/expander.cpp:155
 msgid "Item list of ..."
 msgstr ""
 
-#: UserAction/expander.cpp:157 UserAction/expander.cpp:447
+#: UserAction/expander.cpp:158 UserAction/expander.cpp:227
+#: UserAction/expander.cpp:528
 msgid "Which items"
 msgstr ""
 
-#: UserAction/expander.cpp:158
+#: UserAction/expander.cpp:159 UserAction/expander.cpp:228
 msgid "Separator between the items (optional)"
 msgstr ""
 
-#: UserAction/expander.cpp:160 UserAction/expander.cpp:449
+#: UserAction/expander.cpp:161 UserAction/expander.cpp:230
+#: UserAction/expander.cpp:530
 msgid "Mask (optional, all but 'Selected')"
 msgstr ""
 
-#: UserAction/expander.cpp:223
+#: UserAction/expander.cpp:224
+msgid "Filename of an itemlist ..."
+msgstr ""
+
+#: UserAction/expander.cpp:304
 msgid "Manipulate the selection"
 msgstr ""
 
-#: UserAction/expander.cpp:226
+#: UserAction/expander.cpp:307
 msgid "Selection mask"
 msgstr ""
 
-#: UserAction/expander.cpp:227
+#: UserAction/expander.cpp:308
 msgid "Manipulate in which way"
 msgstr ""
 
-#: UserAction/expander.cpp:252
+#: UserAction/expander.cpp:333
 msgid "Jump to a location"
 msgstr ""
 
-#: UserAction/expander.cpp:255
+#: UserAction/expander.cpp:336
 msgid "please choose a path"
 msgstr ""
 
-#: UserAction/expander.cpp:256
+#: UserAction/expander.cpp:337
 msgid "open the location in a new tab"
 msgstr ""
 
-#: UserAction/expander.cpp:290
+#: UserAction/expander.cpp:371
 msgid "Ask the user for a parameter"
 msgstr ""
 
-#: UserAction/expander.cpp:293
+#: UserAction/expander.cpp:374
 msgid "Question"
 msgstr ""
 
-#: UserAction/expander.cpp:294
+#: UserAction/expander.cpp:375
 msgid "Preset (optional)"
 msgstr ""
 
-#: UserAction/expander.cpp:295
+#: UserAction/expander.cpp:376
 msgid "Caption (optional)"
 msgstr ""
 
-#: UserAction/expander.cpp:301
+#: UserAction/expander.cpp:382
 msgid "User Action"
 msgstr ""
 
-#: UserAction/expander.cpp:324
+#: UserAction/expander.cpp:405
 msgid "Copy to clipboard"
 msgstr ""
 
-#: UserAction/expander.cpp:327 UserAction/expander.cpp:345
+#: UserAction/expander.cpp:408 UserAction/expander.cpp:426
 msgid "What should be copied"
 msgstr ""
 
-#: UserAction/expander.cpp:328
+#: UserAction/expander.cpp:409
 msgid "Append to the current clipboard-content with this separator (optional)"
 msgstr ""
 
-#: UserAction/expander.cpp:342
+#: UserAction/expander.cpp:423
 msgid "Copy a file/folder"
 msgstr ""
 
-#: UserAction/expander.cpp:346
+#: UserAction/expander.cpp:427
 msgid "Where it should be copied"
 msgstr ""
 
-#: UserAction/expander.cpp:366
+#: UserAction/expander.cpp:447
 msgid "Move/Rename a file/folder"
 msgstr ""
 
-#: UserAction/expander.cpp:369
+#: UserAction/expander.cpp:450
 msgid "What moved/renamed"
 msgstr ""
 
-#: UserAction/expander.cpp:370
+#: UserAction/expander.cpp:451
 msgid "New target/name"
 msgstr ""
 
-#: UserAction/expander.cpp:390
+#: UserAction/expander.cpp:471
 msgid "Open a synchronizer-profile"
 msgstr ""
 
-#: UserAction/expander.cpp:393 UserAction/expander.cpp:411
-#: UserAction/expander.cpp:429
+#: UserAction/expander.cpp:474 UserAction/expander.cpp:492
+#: UserAction/expander.cpp:510
 msgid "Choose a profile"
 msgstr ""
 
-#: UserAction/expander.cpp:408
+#: UserAction/expander.cpp:489
 msgid "Open a searchmodule-profile"
 msgstr ""
 
-#: UserAction/expander.cpp:426
+#: UserAction/expander.cpp:507
 msgid "Load a panel-profile"
 msgstr ""
 
-#: UserAction/expander.cpp:444
+#: UserAction/expander.cpp:525
 msgid "Separate programm call for each..."
 msgstr ""
 
-#: UserAction/expander.cpp:504
+#: UserAction/expander.cpp:585
 msgid "Set the sorting for this panel"
 msgstr ""
 
-#: UserAction/expander.cpp:507
+#: UserAction/expander.cpp:588
 msgid "Choose a column"
 msgstr ""
 
-#: UserAction/expander.cpp:508
+#: UserAction/expander.cpp:589
 msgid "Choose the sort sequence"
 msgstr ""
 
-#: UserAction/expander.cpp:598
+#: UserAction/expander.cpp:679
 msgid "Set the relation between the two panels"
 msgstr ""
 
-#: UserAction/expander.cpp:601
+#: UserAction/expander.cpp:682
 msgid "Set the new size in percent"
 msgstr ""
 
-#: UserAction/expander.cpp:637
+#: UserAction/expander.cpp:718
 msgid "Executes a JavaScript-extension"
 msgstr ""
 
-#: UserAction/expander.cpp:640
+#: UserAction/expander.cpp:721
 msgid "Location of the script"
 msgstr ""
 
-#: UserAction/expander.cpp:641
+#: UserAction/expander.cpp:722
 msgid "Read the JS-variable 'cmd' for execution"
 msgstr ""
 
@@ -1324,8 +1331,8 @@ msgstr ""
 msgid "Move "
 msgstr ""
 
-#: Panel/panelfunc.cpp:375 Panel/panelfunc.cpp:478 Panel/panelfunc.cpp:786
-#: Panel/panelfunc.cpp:788
+#: Panel/panelfunc.cpp:375 Panel/panelfunc.cpp:478 Panel/panelfunc.cpp:787
+#: Panel/panelfunc.cpp:789
 msgid "to"
 msgstr ""
 
@@ -1355,105 +1362,105 @@ msgstr ""
 msgid "Copy %d files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:501
+#: Panel/panelfunc.cpp:502
 msgid "You can't copy files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:512
+#: Panel/panelfunc.cpp:513
 msgid "You do not have write permission to this directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:529
+#: Panel/panelfunc.cpp:530
 msgid " this item?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:531
+#: Panel/panelfunc.cpp:532
 #, c-format
 msgid " these %d items?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:534
+#: Panel/panelfunc.cpp:535
 msgid "trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:535
+#: Panel/panelfunc.cpp:536
 msgid "&Trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:537
+#: Panel/panelfunc.cpp:538
 msgid "delete"
 msgstr ""
 
-#: Panel/panelfunc.cpp:542
+#: Panel/panelfunc.cpp:543
 msgid "Are you sure you want to "
 msgstr ""
 
-#: Panel/panelfunc.cpp:561
+#: Panel/panelfunc.cpp:562
 msgid "Directory "
 msgstr ""
 
-#: Panel/panelfunc.cpp:561
+#: Panel/panelfunc.cpp:562
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:562
+#: Panel/panelfunc.cpp:563
 msgid "&Skip"
 msgstr ""
 
-#: Panel/panelfunc.cpp:562
+#: Panel/panelfunc.cpp:563
 msgid "&Delete All"
 msgstr ""
 
-#: Panel/panelfunc.cpp:680
+#: Panel/panelfunc.cpp:681
 msgid "The Archive "
 msgstr ""
 
-#: Panel/panelfunc.cpp:681
+#: Panel/panelfunc.cpp:682
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr ""
 
-#: Panel/panelfunc.cpp:683
+#: Panel/panelfunc.cpp:684
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
 msgstr ""
 
-#: Panel/panelfunc.cpp:687
+#: Panel/panelfunc.cpp:688
 msgid "&Overwrite"
 msgstr ""
 
-#: Panel/panelfunc.cpp:692
+#: Panel/panelfunc.cpp:693
 msgid "Counting files to pack"
 msgstr ""
 
-#: Panel/panelfunc.cpp:754 Panel/panelfunc.cpp:809 krslots.cpp:191
+#: Panel/panelfunc.cpp:755 Panel/panelfunc.cpp:810 krslots.cpp:191
 #: krslots.cpp:197
 msgid "Krusader is unable to download: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:762
+#: Panel/panelfunc.cpp:763
 msgid "%1, unknown archive type."
 msgstr ""
 
-#: Panel/panelfunc.cpp:768
+#: Panel/panelfunc.cpp:769
 msgid "%1, test passed."
 msgstr ""
 
-#: Panel/panelfunc.cpp:770
+#: Panel/panelfunc.cpp:771
 msgid "%1, test failed!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:786 Panel/panelfunc.cpp:788
+#: Panel/panelfunc.cpp:787 Panel/panelfunc.cpp:789
 msgid "Unpack "
 msgstr ""
 
-#: Panel/panelfunc.cpp:788
+#: Panel/panelfunc.cpp:789
 msgid "%1 files"
 msgstr ""
 
-#: Panel/panelfunc.cpp:835
+#: Panel/panelfunc.cpp:836
 msgid "%1, unknown archive type"
 msgstr ""
 
@@ -2203,51 +2210,51 @@ msgstr ""
 msgid "Function keys allow performing fast operations on files."
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:122 Konfigurator/kglookfeel.cpp:103
+#: Dialogs/krdialogs.cpp:123 Konfigurator/kglookfeel.cpp:103
 msgid "Custom Selection Mode"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:125
+#: Dialogs/krdialogs.cpp:126
 msgid "Based on QT selection mode"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:126
+#: Dialogs/krdialogs.cpp:127
 msgid "Left mouse button selects"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:127
+#: Dialogs/krdialogs.cpp:128
 msgid "Left mouse button preserves selection"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:128
+#: Dialogs/krdialogs.cpp:129
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:129
+#: Dialogs/krdialogs.cpp:130
 msgid "Right mouse button selects"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:130
+#: Dialogs/krdialogs.cpp:131
 msgid "Right mouse button preserves selection"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:131
+#: Dialogs/krdialogs.cpp:132
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:132
+#: Dialogs/krdialogs.cpp:133
 msgid "Spacebar moves down"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:133
+#: Dialogs/krdialogs.cpp:134
 msgid "Spacebar calculates disk space"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:134
+#: Dialogs/krdialogs.cpp:135
 msgid "Insert moves down"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:135
+#: Dialogs/krdialogs.cpp:136
 msgid "Right clicking pops context menu immediately"
 msgstr ""
 
@@ -2431,9 +2438,9 @@ msgstr ""
 #: Dialogs/generalfilter.cpp:76 Synchronizer/synchronizergui.cpp:1087
 msgid ""
 "Here you enter the filename filtering criteria. You can use wildcards\n"
-"(*.o.* *.c?? etc.), and give more items separated by space.\n"
+"(*.o .* *.c?? etc.), and give more items separated by space.\n"
 "If you type 'text' that results the same as '*text*'. You can exclude\n"
-"patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' ). "
+"patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' )."
 msgstr ""
 
 #: Dialogs/generalfilter.cpp:82
@@ -2916,7 +2923,7 @@ msgid "Right directory:"
 msgstr ""
 
 #: Synchronizer/synchronizergui.cpp:1438
-msgid "URL must be the descendent of either the left or the right base URL!"
+msgid "URL must be the descendant of either the left or the right base URL!"
 msgstr ""
 
 #: Synchronizer/synchronizergui.cpp:1477
