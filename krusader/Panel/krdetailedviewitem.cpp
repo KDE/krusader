@@ -305,7 +305,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   } else QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
 }
 
-static const QColor * KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor * background, const QColor * color1, const QColor * color2)
+const QColor * KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor * background, const QColor * color1, const QColor * color2)
 {
    #define sqr(x) ((x)*(x))
    int contrast = sqr(color1->red() - background->red()) + sqr(color1->green() - background->green()) + sqr(color1->blue() - background->blue());
