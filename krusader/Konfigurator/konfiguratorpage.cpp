@@ -46,7 +46,7 @@ bool KonfiguratorPage::apply()
 
   while( item )
   {
-    restartNeeded = restartNeeded || item->apply();
+    restartNeeded = item->apply() || restartNeeded;
     item = itemList.next();
   }
 
