@@ -48,6 +48,7 @@
 #include <kpopupmenu.h>
 #include <qcursor.h>
 #include <qclipboard.h>
+#include <qheader.h>
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, WFlags fl )
@@ -147,12 +148,15 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   int i=QFontMetrics(resultsList->font()).width("W");
   int j=QFontMetrics(resultsList->font()).width("0");
   j=(i>j ? i : j);
-  resultsList->setColumnWidth(0, j*14);
-  resultsList->setColumnWidth(1, j*25);
-  resultsList->setColumnWidth(2, j*6);
-  resultsList->setColumnWidth(3, j*7);
-  resultsList->setColumnWidth(4, j*7);
+  
+  resultsList->setColumnWidth(0, krConfig->readNumEntry("Name Width", j*14) );
+  resultsList->setColumnWidth(1, krConfig->readNumEntry("Path Width", j*25) );
+  resultsList->setColumnWidth(2, krConfig->readNumEntry("Size Width", j*6) );
+  resultsList->setColumnWidth(3, krConfig->readNumEntry("Date Width", j*7) );
+  resultsList->setColumnWidth(4, krConfig->readNumEntry("Perm Width", j*7) );
   resultsList->setColumnAlignment( 2, AlignRight );
+  
+  resultsList->header()->setStretchEnabled( true, 1 );
   
   resultLayout->addWidget( resultsList, 0, 0 );
   searcherTabs->insertTab( resultTab, i18n( "&Results" ) );
@@ -184,7 +188,17 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   QString path = krApp->mainView->activePanel->getPath();
   generalFilter->searchInEdit->setText(path);
   
-  show();
+  krConfig->setGroup( "Search" );
+  int sx = krConfig->readNumEntry( "Window Width",  -1 );
+  int sy = krConfig->readNumEntry( "Window Height",  -1 );
+  
+  if( sx != -1 && sy != -1 )
+    resize( sx, sy );
+  
+  if( krConfig->readBoolEntry( "Window Maximized",  false ) )
+      showMaximized();
+  else  
+      show();
   
   // disable the search action ... no 2 searchers !
   krFind->setEnabled(false);
@@ -200,7 +214,20 @@ void KrSearchDialog::closeDialog()
     delete searcher;
     searcher = 0;
   }
-  hide();
+  
+  krConfig->setGroup( "Search" );
+  
+  krConfig->writeEntry("Window Width", sizeX );
+  krConfig->writeEntry("Window Height", sizeY );
+  krConfig->writeEntry("Window Maximized", isMaximized() );
+  
+  krConfig->writeEntry("Name Width",  resultsList->columnWidth( 0 ) );
+  krConfig->writeEntry("Path Width",  resultsList->columnWidth( 1 ) );
+  krConfig->writeEntry("Size Width",  resultsList->columnWidth( 2 ) );
+  krConfig->writeEntry("Date Width",  resultsList->columnWidth( 3 ) );
+  krConfig->writeEntry("Perm Width",  resultsList->columnWidth( 4 ) );
+  
+  hide();  
   // re-enable the search action
   krFind->setEnabled(true);
   accept();
@@ -209,6 +236,15 @@ void KrSearchDialog::closeDialog()
 void KrSearchDialog::reject() {
   closeDialog();
   QDialog::reject();
+}
+
+void KrSearchDialog::resizeEvent( QResizeEvent *e )
+{   
+  if( !isMaximized() )
+  {
+    sizeX = e->size().width();
+    sizeY = e->size().height();
+  }
 }
 
 void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm){

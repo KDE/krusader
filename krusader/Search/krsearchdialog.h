@@ -66,6 +66,7 @@ public slots:
   virtual void keyPressEvent(QKeyEvent *e);
   virtual void closeEvent(QCloseEvent *e);
   virtual void rightClickMenu(QListViewItem*, const QPoint&, int);
+  virtual void resizeEvent( QResizeEvent *e );
 
 protected slots:
   void reject();
@@ -98,6 +99,9 @@ private:
   QStringList savedSearches;
   bool isSearching;
   bool closed;
+  
+  int            sizeX;
+  int            sizeY;
 };
 
 #endif
