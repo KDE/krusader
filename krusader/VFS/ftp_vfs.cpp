@@ -84,7 +84,7 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	vfs_type = "ftp";
   vfs_origin = url.prettyURL(-1);
 
-  vfs_refresh();	
+  vfs_refresh(vfs_origin);	
 }
 
 void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
@@ -220,7 +220,7 @@ void ftp_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QWid
   if ( port ) destUrl.setPort(port);
 	
   KIO::Job* job = new KIO::CopyJob(*fileUrls,destUrl,mode,false,true );
-  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()) );
+  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)) );
   if(mode == KIO::CopyJob::Move) // notify the other panel
     connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(refresh()) );
 }
@@ -241,7 +241,7 @@ void ftp_vfs::vfs_delFiles(QStringList *fileNames){
     filesUrls.append( url );
 	}
 	KIO::Job *job = new KIO::DeleteJob(filesUrls, false, true);
-	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()));
+	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
 
@@ -283,7 +283,7 @@ void ftp_vfs::vfs_mkdir(QString name){
   if ( port ) url.setPort(port);
 
 	KIO::SimpleJob* job = KIO::mkdir(url);
-	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()));
+	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
 
@@ -303,7 +303,7 @@ void ftp_vfs::vfs_rename(QString fileName,QString newName){
 	if ( port ) dest.setPort(port);
 
   KIO::Job *job = new KIO::CopyJob(fileUrls,dest,KIO::CopyJob::Move,false,true );
-	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()));
+	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
 QString ftp_vfs::vfs_workingDir(){

@@ -51,7 +51,7 @@
 #include <kshred.h>
 #include <kcursor.h>
 #include <kmessagebox.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kglobalsettings.h>
 #include <kdeversion.h>
 #include <qimage.h>
@@ -81,7 +81,7 @@ typedef QValueList<KServiceOffer> OfferList;
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
-  QWidget(parent, name), _left(left), colorMask(255), compareMode(false), currDragItem(0), statsAgent(0) {
+  QWidget(parent, name), colorMask(255), compareMode(false), currDragItem(0), statsAgent(0), _left(left) {
 
   func = new ListPanelFunc(this);
   setAcceptDrops(true);

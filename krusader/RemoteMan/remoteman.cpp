@@ -43,7 +43,7 @@
 #include <qstringlist.h>
 #include <qmessagebox.h>
 #include <qcheckbox.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 QString remoteMan::url=QString::null;
 

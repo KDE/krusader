@@ -35,7 +35,7 @@ A
 #include <kcursor.h>
 #include <ksystemtray.h>
 #include <kmenubar.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <dcopclient.h>
 #include <kglobal.h>
 #include <klocale.h> 

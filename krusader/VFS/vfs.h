@@ -93,7 +93,7 @@ public:
 public slots:
 	// actually reads files and stats
 	virtual bool vfs_refresh(QString origin)=0;
-	inline  bool vfs_refresh(){return vfs_refresh(vfs_origin);}
+	virtual bool vfs_refresh(KIO::Job* job=0);
 
 signals: 	
   void startUpdate();

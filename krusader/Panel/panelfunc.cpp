@@ -39,7 +39,7 @@ A
 #include <kopenwith.h>
 #include <kmessagebox.h>
 #include <kcursor.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <ktempfile.h>
 #include <kurl.h>
 #include <krun.h>
@@ -129,7 +129,7 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
       if ( mypath.isEmpty() )
         mypath = "/";
     }
-    chdir( mypath );
+    chdir( mypath.latin1() );
     refresh( mypath );
   }
 }

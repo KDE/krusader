@@ -351,7 +351,7 @@ install_location=
 type=HEADER
 
 [krusader/Dialogs/Makefile.am]
-files=krusader/Dialogs/colormaskdialogbase.cpp,krusader/Dialogs/colormaskdialogbase.h,krusader/Dialogs/colormaskdialog.cpp,krusader/Dialogs/colormaskdialog.h,krusader/Dialogs/krdialogs.cpp,krusader/Dialogs/krdialogs.h,krusader/Dialogs/krmaskchoice.cpp,krusader/Dialogs/krmaskchoice.h,krusader/Dialogs/krpleasewait.cpp,krusader/Dialogs/krpleasewait.h,krusader/Dialogs/krspecialwidgets.cpp,krusader/Dialogs/krspecialwidgets.h,krusader/Dialogs/krspwidgets.cpp,krusader/Dialogs/krspwidgets.h,krusader/Dialogs/newftpgui.cpp,krusader/Dialogs/newftpgui.h,krusader/Dialogs/packguibase.cpp,krusader/Dialogs/packguibase.h,krusader/Dialogs/packgui.cpp,krusader/Dialogs/packgui.h,krusader/Dialogs/krprogress.cpp,krusader/Dialogs/krprogress.h
+files=krusader/Dialogs/colormaskdialogbase.cpp,krusader/Dialogs/colormaskdialogbase.h,krusader/Dialogs/colormaskdialog.cpp,krusader/Dialogs/colormaskdialog.h,krusader/Dialogs/krdialogs.cpp,krusader/Dialogs/krdialogs.h,krusader/Dialogs/krmaskchoice.cpp,krusader/Dialogs/krmaskchoice.h,krusader/Dialogs/krpleasewait.cpp,krusader/Dialogs/krpleasewait.h,krusader/Dialogs/krspecialwidgets.cpp,krusader/Dialogs/krspecialwidgets.h,krusader/Dialogs/krspwidgets.cpp,krusader/Dialogs/krspwidgets.h,krusader/Dialogs/newftpgui.cpp,krusader/Dialogs/newftpgui.h,krusader/Dialogs/packguibase.cpp,krusader/Dialogs/packguibase.h,krusader/Dialogs/packgui.cpp,krusader/Dialogs/packgui.h,krusader/Dialogs/krprogress.cpp,krusader/Dialogs/krprogress.h,krusader/Dialogs/krsqueezedtextlabel.cpp,krusader/Dialogs/krsqueezedtextlabel.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=Dialogs
 sub_dirs=
@@ -448,6 +448,18 @@ install_location=
 type=SOURCE
 
 [krusader/Dialogs/krspwidgets.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Dialogs/krsqueezedtextlabel.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Dialogs/krsqueezedtextlabel.h]
 dist=true
 install=false
 install_location=

@@ -282,7 +282,7 @@ void arc_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QWid
 	dest.setPath(tmpDir+path+dir);
 
   KIO::Job* job = new KIO::CopyJob(*fileUrls,dest,mode,false,true);
-  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()) );
+  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)) );
   if(mode == KIO::CopyJob::Move) // notify the other panel
    connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(refresh()) );
 }
@@ -299,7 +299,7 @@ void arc_vfs::vfs_delFiles(QStringList *fileNames){
 	  changed = true;
 	
 	  KIO::Job *job = new KIO::CopyJob(*filesUrls,KGlobalSettings::trashPath(),KIO::CopyJob::Move,false,true );
-	  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()));
+	  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 	}
 	// else we have to delete the files from both the archive and the temp dir
 	else {
@@ -339,7 +339,7 @@ void arc_vfs::vfs_delFiles(QStringList *fileNames){
 
 	  changed = true;
 	  chdir (save.local8Bit());
-	  vfs_refresh();
+	  vfs_refresh(vfs_origin);
   }
 }	
 
@@ -422,7 +422,7 @@ void arc_vfs::vfs_mkdir(QString name){
 
   QDir(tmpDir).mkdir(path+name);
   changed = true; //rescan the archive
-  vfs_refresh();
+  vfs_refresh(vfs_origin);
 }
 	
 // rename file
@@ -440,7 +440,7 @@ void arc_vfs::vfs_rename(QString fileName,QString newName){
 	dest.setPath(tmpDir+path+"/"+newName);
 
   KIO::Job* job = new KIO::CopyJob(temp,dest,KIO::CopyJob::Move,false,false);
-  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()) );
+  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)) );
 }
 
 bool arc_vfs::vfs_refresh(QString origin){

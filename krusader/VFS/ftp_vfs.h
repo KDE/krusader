@@ -66,7 +66,6 @@ public slots:
   void slotListResult(KIO::Job *job);
 	// actually reads files and stats
 	bool vfs_refresh(QString origin);
-	inline  void vfs_refresh(){vfs_refresh(vfs_origin);}
 
 protected:
 	QList<vfile>  vfs_files;    // list of pointers to vfile

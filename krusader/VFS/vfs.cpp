@@ -32,8 +32,9 @@
  ***************************************************************************/
 
 #include "vfs.h"
-#include <kapp.h>
+#include <kapplication.h>
 #include <time.h>
+#include "../krusader.h"
 
 vfs::vfs(QObject* panel, bool quiet): error(false),quietMode(quiet){
 		if ( panel ){
@@ -100,6 +101,13 @@ QString vfs::dateTime2QString(const QDateTime& datetime){
 	        "/"+round(date.year()%100)+
 		     +" "+round(time.hour())+":"+round(time.minute());
 	return dateTime;
+}
+
+bool vfs::vfs_refresh(KIO::Job* job){
+  if(job && job->error()){
+		job->showErrorDialog(krApp); 		
+	}
+	return vfs_refresh(vfs_origin);
 }
 
 #include "vfs.moc"

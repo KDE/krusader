@@ -73,8 +73,8 @@ QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "T
                                          i18n( "Owner" ), i18n( "Group" ) };
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
-KListView( parent, name ), KrView( cfg ), _focused( false ),  _left(left), _currDragItem( 0L ),
-_nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))) {
+KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
+_nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left(left){
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   // setup the default sort and filter
   _filter = KrView::All;

@@ -65,7 +65,6 @@ public:
 public slots:
 	// actually reads files and stats
 	bool vfs_refresh(QString origin);
-	inline  bool vfs_refresh(){return vfs_refresh(vfs_origin);}
   void repack();
 	
 protected:

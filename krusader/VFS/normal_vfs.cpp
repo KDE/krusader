@@ -154,7 +154,7 @@ void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,Q
   KIO::Job* job = new KIO::CopyJob(*fileUrls,dest,mode,false,true );
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()) );
   if(mode == KIO::CopyJob::Move) // notify the other panel
-    connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(refresh()) );
+    connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(refresh(KIO::Job*)) );
 }
 
 // remove a file from the vfs (physical)
@@ -184,7 +184,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	else
 	  job = new KIO::DeleteJob(filesUrls, false, true);
 	
-	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()));
+	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
 // return a path to the file
@@ -206,7 +206,7 @@ KURL::List* normal_vfs::vfs_getFiles(QStringList* names){
 void normal_vfs::vfs_mkdir(QString name){
 	if (!QDir(vfs_workingDir()).mkdir(name))
 	  if (!quietMode) KMessageBox::sorry(krApp,i18n("Can't create a directory check your permissions."));
-	else vfs_refresh();
+	else vfs_refresh(vfs_origin);
 }
 
 
@@ -221,7 +221,7 @@ void normal_vfs::vfs_rename(QString fileName,QString newName){
 	dest.setPath(vfs_workingDir()+"/"+newName);
 
   KIO::Job *job = new KIO::CopyJob(fileUrls,dest,KIO::CopyJob::Move,false,false );
-	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()));
+	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
 void normal_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs){

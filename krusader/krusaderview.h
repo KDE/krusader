@@ -36,7 +36,7 @@
 #include <klistview.h>
 #include <klocale.h>
 #include <kaccel.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <kparts/part.h>
 
 // QT includes

@@ -38,8 +38,8 @@
 #include <qfontmetrics.h>
 // KDE includes
 #include <klocale.h>
-#include <kapp.h>
-#include <kstddirs.h>
+#include <kapplication.h>
+#include <kstandarddirs.h>
 #include <klineedit.h>
 #include <kurlrequester.h>
 #include <kstandarddirs.h>
