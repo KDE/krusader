@@ -99,8 +99,10 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   int sheight = QFontMetrics( status->font() ).height() + 4;
   status->setMaximumHeight( sheight );
   QWhatsThis::add
-    ( status, i18n( "The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of 
-filesystem etc." ) );  connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
+    ( status, i18n( "The status bar displays information about the FILESYSTEM "
+                    "which hold your current directory: Total size, free space, "
+                    "type of filesystem etc." ) );
+  connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
 
   // ... create the bookmark list
   bookmarksButton = new BookmarksButton( this );
