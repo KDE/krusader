@@ -401,7 +401,7 @@ void Krusader::setupActions() {
 
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
-  actTest = new KAction( i18n( "&Test Archive(s)" ), "ark", ALT + Key_T,
+  actTest = new KAction( i18n( "T&est Archive(s)" ), "ark", ALT + Key_E,
                          SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
   actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", CTRL + Key_C,
                                SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
