@@ -111,6 +111,8 @@ class KRslots : public QObject {
     void terminal();
     // F3
     void view();
+    // Shift F3
+    void viewDlg();
     // F4
     void edit();
     // F5

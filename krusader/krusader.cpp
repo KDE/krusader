@@ -267,6 +267,9 @@ void Krusader::setupAccels() {
   // F3
   accels->insert( "F3_View", i18n( "F3 View" ), QString::null,
                   Key_F3, SLOTS, SLOT( view() ) );
+  // SHIFT+F3
+  accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString::null,
+                  SHIFT+Key_F3, SLOTS, SLOT( viewDlg() ) );  
   // F4
   accels->insert( "F4_Edit", i18n( "F4 Edit" ), QString::null,
                   Key_F4, SLOTS, SLOT( edit() ) );

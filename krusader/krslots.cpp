@@ -43,6 +43,7 @@
 #include <kio/netaccess.h>
 #include <kedittoolbar.h>
 #include <kdeversion.h>
+#include <KViewer/krviewer.h>
 // Krusader includes
 #include "krslots.h"
 #include "krusader.h"
@@ -394,5 +395,15 @@ void KRslots::mkdir()          { ACTIVE_FUNC->mkdir();      }
 void KRslots::deleteFiles()    { ACTIVE_FUNC->deleteFiles();}     	
 // F9
 void KRslots::rename()         { ACTIVE_FUNC->rename();     }
+
+// Shift F3
+void KRslots::viewDlg(){
+  // ask the user for a url to view
+  KChooseDir *chooser = new KChooseDir( 0,i18n("Enter a URL to view:"), QString::null);
+  QString dest = chooser->dest;
+  if ( dest == QString::null ) return ; // the usr canceled
+  else KrViewer::view( KURL::fromPathOrURL(dest) ); // view the file
+  // nothing more to it!
+}
 
 #include "krslots.moc"
