@@ -7,19 +7,25 @@
 class KActionCollection;
 
 class KrBookmark: public KAction {
+	Q_OBJECT
 public:
 	KrBookmark(QString name, KURL url, KActionCollection *parent);
 	// use text() and setText() to change the name of the bookmark
-	const KURL& url() const;
-	bool isGroup() const;
-	
+	// use setIconSet() for changing icons
+	const KURL& url() const;	
 	void setURL(const KURL& url);
-	void setGroup(bool group);
-	
+
+	// special bookmarks
+	static KrBookmark* devices(KActionCollection *collection);
+
+signals:
+	void activated(KrBookmark *bookmark);
+
+protected slots:
+	void activatedProxy();
 	
 private:
 	KURL _url;
-	bool _group;
 };
 
 #endif // KRBOOKMARK_H
