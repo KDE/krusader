@@ -467,7 +467,6 @@ bool arc_vfs::vfs_refresh(QString origin){
   vfs_filesP = findDir(path);
 
   if (!quietMode) emit startUpdate();
-	if (!quietMode) emit endUpdate();
   return true;
 }
 

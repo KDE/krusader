@@ -270,13 +270,6 @@ void ListPanel::start( QString path ) {
 }
 
 void ListPanel::slotStartUpdate() {
-  // if the vfs couldn't make it  - go back
-  if ( func->files() ->vfs_error() ) {
-    func->inRefresh = false;
-    func->dirUp();
-    return ;
-  }
-
   while ( func->inRefresh ); // wait until the last refresh finish
   func->inRefresh = true;  // make sure the next refresh wait for this one
   krApp->setCursor( KCursor::workingCursor() );
@@ -291,9 +284,7 @@ void ListPanel::slotStartUpdate() {
   this->origin->setURL( virtualPath );
   emit pathChanged( this );
   emit cmdLineUpdate( realPath );	// update the command line
-}
 
-void ListPanel::slotEndUpdate() {
   slotGetStats( virtualPath );
   slotUpdate();
   if ( compareMode ) {

@@ -16,6 +16,14 @@
  ***************************************************************************/
 
 #include "krvfshandler.h"
+#include "normal_vfs.h"
+#include "temp_vfs.h"
+#include "ftp_vfs.h"
+
+#include <qdir.h>
+
+#include <kdebug.h>
+
 
 KrVfsHandler::KrVfsHandler(){
 }
@@ -23,7 +31,9 @@ KrVfsHandler::~KrVfsHandler(){
 }
 
 vfs::VFS_TYPE KrVfsHandler::getVfsType(const KURL& url){
-	if(url.isLocalFile() ) return vfs::NORMAL;
+	if( url.isLocalFile() || QDir(url.path(-1)).exists() ){
+		return vfs::NORMAL;
+	}
   else{
 		if(url.protocol() == "virt") return vfs::VIRT;
 		else return vfs::FTP;
@@ -31,10 +41,23 @@ vfs::VFS_TYPE KrVfsHandler::getVfsType(const KURL& url){
 	return vfs::ERROR;
 }
 
-vfs* KrVfsHandler::getVfs(const KURL& url,vfs* oldVfs){
+vfs* KrVfsHandler::getVfs(const KURL& url,QObject* parent,vfs* oldVfs){
 	vfs::VFS_TYPE newType,oldType = vfs::ERROR;
+
 	if(oldVfs) oldType = oldVfs->vfs_getType();
+	newType = getVfsType(url);
+	
 
+	vfs* newVfs = oldVfs;
 
-	return 0;
+	if( oldType != newType ){
+		switch( newType ){
+		  case (vfs::NORMAL) : newVfs = new normal_vfs(parent); break;
+		  case (vfs::FTP   ) : newVfs = new ftp_vfs(parent)   ; break;
+//		  case (vfs::TEMP  ) : newVfs = new temp_vfs(parent)  ; break;
+      case (vfs::ERROR ) : newVfs = 0                     ; break;
+		}
+  }
+
+	return newVfs;
 }

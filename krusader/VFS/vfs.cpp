@@ -39,7 +39,6 @@
 vfs::vfs(QObject* panel, bool quiet): error(false),quietMode(quiet){
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
-    	connect(this,SIGNAL(endUpdate()),panel,SLOT(slotEndUpdate()));
 		}
 		else quietMode = true;
 }

@@ -34,7 +34,7 @@ public:
 	~KrVfsHandler();
 
   static vfs::VFS_TYPE getVfsType(const KURL& url);
-  static vfs* getVfs(const KURL& url,vfs* oldVfs);
+  static vfs* getVfs(const KURL& url,QObject* parent=0,vfs* oldVfs=0);
 };
 
 #endif

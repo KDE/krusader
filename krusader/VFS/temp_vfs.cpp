@@ -40,7 +40,7 @@
 #include "../resources.h"
 
 temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
-          normal_vfs(origin,panel){
+          normal_vfs(panel){
   vfs_type=TEMP;
   // first we need to create a temp diretory
 	tmpDir = krApp->getTempDir();
@@ -50,12 +50,9 @@ temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
   }
 
 	// then we must get the files from the origin to the tmp dir
-  if( type == "-arj" || type == "-ace" )
-  	handleAceArj(origin,type);
-  else if( type == "-rpm" )
-  	handleRpm(origin);
-	else if( type == "-iso" )
-		handleIso(origin);
+  if( type == "-arj" || type == "-ace" ) handleAceArj(origin,type);
+  else if( type == "-rpm" ) handleRpm(origin);
+	else if( type == "-iso" ) handleIso(origin);
 	else{
     if (!quietMode) KMessageBox::error(krApp,"Unknown temp_vfs type.");
     error = true;

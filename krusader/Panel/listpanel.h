@@ -87,7 +87,6 @@ public slots:
 	void slotUpdate();			                  // when the vfs finish to update...
   void slotUpdateTotals();
 	void slotStartUpdate();                   // internal
-	void slotEndUpdate();                     // internal
 	void slotGetStats(QString path);          // get the disk-free stats
 	void setFilter(KrView::FilterSpec f);
 

@@ -41,7 +41,7 @@ class ftp_vfs : public vfs{
 	Q_OBJECT
 public:
 	// the constructor simply uses the inherited constructor
-	ftp_vfs(const KURL& origin,QWidget* panel);
+	ftp_vfs(QObject* panel);
  ~ftp_vfs(){}
 
 	/// Copy a file to the vfs (physical).
@@ -58,12 +58,10 @@ public:
 	virtual void vfs_rename(const QString& fileName,const QString& newName);
 	/// Calculate the amount of space occupied by a file or directory (recursive).
   /// Not implemted (yet) in ftp_vfs
-	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0){};
+	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0);
 
 	/// Return the VFS working dir	
 	QString vfs_workingDir();
-  /// Return true while the VFS is refreshing itself
-	inline bool isBusy(){ return busy; }
 	
 public slots:
 	/// Handles new files from the dir lister
@@ -75,20 +73,14 @@ public slots:
 	/// Active the dir listing job
 	bool vfs_refresh(const KURL& origin);
 
+  void startLister();
+
 protected:
 	QList<vfile>  vfs_files;    //< List of pointers to vfile.
-  QList<vfile>  vfs_files2;   //< The second list of pointers to vfiles.
-  QList<vfile>  *vfs_filesP2; //< pointer to the second list
+  //QList<vfile>  vfs_files2;   //< The second list of pointers to vfiles.
+  //QList<vfile>  *vfs_filesP2; //< pointer to the second list
   KURL origin_backup;         //< used to backup the old URL when refreshing to a new one,
 
-  bool notConnected;
-
-  QString loginName;
-	QString password;
-	QString hostName;
-	int port;
-
-  KURL separateUserAndPassword( QString origin );
   bool busy;
 };
 

@@ -57,6 +57,7 @@ A
 #include "../VFS/vfile.h"
 #include "../VFS/krarchandler.h"
 #include "../VFS/krpermhandler.h"
+#include "../VFS/krvfshandler.h"
 #include "../Dialogs/packgui.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krpleasewait.h"
@@ -193,10 +194,8 @@ void KrCalcSpaceDialog::exec(){
 //////////////////////////////////////////////////////////
 
 ListPanelFunc::ListPanelFunc( ListPanel *parent ) :
-panel( parent ), inRefresh( false ) {
-  vfsStack.setAutoDelete( true );
-  vfsStack.push( new normal_vfs( "/", panel ) );
-  //files() ->vfs_refresh();
+panel( parent ), inRefresh( false ), vfsP(0){
+  urlStack.push( "file:/" );
 }
 
 void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent) {
@@ -205,6 +204,24 @@ void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent
 
 
 void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
+  kdDebug() << "openUrl: " << url.url() << endl;
+
+	// check for special cases:
+  if( !url.isValid() ){
+		if( url.url() == "~" ){
+			openUrl(QDir::homeDirPath());
+    }
+    else if( !url.url().startsWith("/") ){  // possible relative URL
+			KURL u = files()->vfs_getOrigin();
+			u.addPath(url.url());
+			openUrl(u);
+		}
+		else panel->slotStartUpdate();  // refresh the panel
+		return;
+  }
+	// change the cursor to busy
+  krApp->setCursor( KCursor::waitCursor() );
+
   panel->slotFocusOnMe();
 
   // clear the view - to avoid a repaint crash
@@ -213,85 +230,42 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 		panel->view->setNameToMakeCurrent( nameToMakeCurrent );
   }
 
-  // remote file systems
-  if ( !url.isLocalFile() ) {
-    // first close all open archives / remote connections
-    while ( files() ->vfs_getType() != vfs::NORMAL ) vfsStack.remove();
-    vfs* v = new ftp_vfs(url,panel);
-    if ( v->vfs_error() ) {
-      kdWarning() << "Failed to create vfs: " << url.prettyURL() << endl;
-      delete v;
-      refresh();
-      return ;
-    }
-    // save the current vfs
-    files() ->blockSignals( true );
-    vfsStack.push( v );
-  } else { // local directories
-    // first close all open archives / remote connections
-    while ( files() ->vfs_getType() != vfs::NORMAL )
-      vfsStack.remove();
-    // now we have a normal vfs- refresh it.
-    QString mypath = url.path(-1);
-    if( mypath == "~" ) mypath = QDir::homeDirPath();
-    //if( !mypath.startsWith("/") ) mypath = files()->vfs_getOrigin().prettyURL(1)+mypath;
-
-    mypath = QDir::cleanDirPath(mypath);
-
-    while ( !KRpermHandler::dirExist(mypath) ) {
-      panel->view->setNameToMakeCurrent( mypath.mid(mypath.findRev('/')+1 ) );
-      mypath = mypath.left( mypath.findRev( '/' ) );
-      if ( mypath.isEmpty() )
-        mypath = "/";
-    }
-
-    chdir( mypath.latin1() );
-    refresh( KURL::fromPathOrURL(mypath) );
+  vfs* v = 0;
+  if( !urlStack.top().equals(url) ) urlStack.push( url );
+  while( true ){
+		KURL u = urlStack.pop();
+		u.adjustPath(-1); // remove trailing "/"
+		u.cleanPath(); // Resolves "." and ".." components in path.
+		v = KrVfsHandler::getVfs(u,panel,files());
+    if( !v ) continue; //this should not happen !
+		if( v != vfsP ){
+      delete vfsP;
+			vfsP = v; // v != 0 so this is safe
+		} 
+    if( vfsP->vfs_refresh(u) ) break; // we have a valid refreshed URL now
   }
+	// update the urls stack
+	if( !files()->vfs_getOrigin().equals(urlStack.top()) ){
+		urlStack.push( files()->vfs_getOrigin() );
+	}
+	// on local file system change the working directory
+	if( files()->vfs_getType() == vfs::NORMAL )
+		chdir( files()->vfs_getOrigin().path().latin1() );
 }
+
 
 void ListPanelFunc::refresh( const KURL& url ) {
-  // change the cursor to busy
-  krApp->setCursor( KCursor::waitCursor() );
-
-  // if we could not refresh try to dir up
-  QString origin = url.prettyURL(-1);
-  if ( !files() ->vfs_refresh( origin ) ) {
-    panel->virtualPath = origin;
-    dirUp();
-    return ; // dirUp() calls refresh again...
-  }
-  // update the backStack
-  if ( backStack.last() != panel->realPath ) {
-    krBack->setEnabled( true );
-    backStack.append( panel->realPath );
-    //the size of the backStack is hard coded - 30
-    if ( backStack.count() > 30 )
-      backStack.remove( backStack.begin() );
-  }
+	openUrl(url);
 }
 
+
 void ListPanelFunc::goBack() {
-  if ( backStack.isEmpty() )
-    return ;
+  if ( urlStack.isEmpty() ) return ;
 
-  if ( backStack.last() == "//WARNING//" ) {
-    KMessageBox::information( 0, i18n( "Can't re-enter archive. Going to the nearest path" ), QString::null, "BackArchiveWarning" );
-    backStack.remove( backStack.fromLast() ); //remove the //WARNING// entry
-  }
-  // avoid going back to the same place
-  while ( !backStack.isEmpty() && backStack.last() == panel->realPath )
-    backStack.remove( backStack.fromLast() );
+  urlStack.pop();
+  openUrl( urlStack.top() );
 
-  if ( backStack.isEmpty() )
-    return ;
-  QString path = backStack.last();
-
-  refresh( path );
-  backStack.remove( backStack.fromLast() );
-
-  if ( backStack.isEmpty() )
-    krBack->setEnabled( false );
+  if ( urlStack.isEmpty() ) krBack->setEnabled( false );
 }
 
 void ListPanelFunc::redirectLink() {
@@ -685,7 +659,7 @@ void ListPanelFunc::execute( QString& name ) {
     if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
 			path.setProtocol("tar");
 		} else {
-			path.setProtocol("krarc:");
+			path.setProtocol("krarc");
     }
     openUrl( path );
 	} else {
@@ -695,44 +669,7 @@ void ListPanelFunc::execute( QString& name ) {
 }
 
 void ListPanelFunc::dirUp() {
-  QString origin = panel->virtualPath;
-	QString newOrigin = origin;
-  // remove one dir from the new path
-  newOrigin.truncate( newOrigin.findRev('/') );
-
-  // Do we need to change vfs ?
-  bool changeVFS = files()->vfs_error();
-
-	if( origin.contains(":/") ){ // ftp_vfs
-    if( QFileInfo(origin.mid(origin.find(":/")+1)).exists() ){
-			changeVFS = true;
-			// make the current archive the current item on the new list
-			panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1) );
-	  }
-	}
-
-  // clear the view - to avoid a repaint crash
-  panel->view->clear();
-  
-	if( changeVFS ){
-    vfsStack.remove();
-    files()->blockSignals( false );
-    files()->vfs_refresh();
-    return ;
-	}
-
-  // make the current dir the current item on the new list
-  panel->view->setNameToMakeCurrent(origin.mid(origin.findRev("/")+1));
-
-
-  // check the '/' case
-  if ( newOrigin == "" ) newOrigin = "/";
-  // and the '/' case for urls
-  if ( newOrigin.contains( ":/" ) && newOrigin.find( "/", newOrigin.find( ":/" ) + 3 ) == -1 )
-    newOrigin = newOrigin + "/";
-
-  // change dir..
-  refresh( newOrigin );
+	openUrl(files()->vfs_getOrigin().upURL());
 }
 
 void ListPanelFunc::pack() {
@@ -875,18 +812,11 @@ bool ListPanelFunc::calcSpace(QStringList & names,KIO::filesize_t & totalSize,un
 }
 
 void ListPanelFunc::FTPDisconnect() {
-  // clear the view - to avoid a repaint crash
-  panel->view->clear();
-
   // you can disconnect only if connected !
   if ( files() ->vfs_getType() == vfs::FTP ) {
-    vfsStack.remove();
-    files() ->blockSignals( false );
-    if ( files() ->vfs_getType() != vfs::FTP )
-      krFTPDiss->setEnabled( false );
-    krFTPNew->setEnabled( true );
+    krFTPDiss->setEnabled( false );
     panel->view->setNameToMakeCurrent( QString::null );
-    files() ->vfs_refresh();
+    openUrl(panel->realPath); // open the last local URL
   }
 }
 
@@ -947,15 +877,12 @@ void ListPanelFunc::refreshActions() {
 ListPanelFunc::~ListPanelFunc() {
   // clear the view - to avoid a repaint crash
   panel->view->clear();
-  while ( vfsStack.remove() ); // delete all vfs objects
+  delete files(); // delete all vfs objects
 }
 
 vfs* ListPanelFunc::files() {
-  // make sure we return a valid VFS*
-  if ( vfsStack.isEmpty() ) {
-    vfsStack.push( new normal_vfs( "/", panel ) );
-  }
-  return vfsStack.top();
+	if( !vfsP ) vfsP = new normal_vfs(panel);
+	return vfsP;
 }
 
 #include "panelfunc.moc"

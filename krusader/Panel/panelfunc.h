@@ -34,7 +34,7 @@
 #define PANELFUNC_H
 #include "listpanel.h"
 #include <qobject.h>
-#include <qptrstack.h>
+#include <qvaluestack.h>
 #include <qthread.h>
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
@@ -139,10 +139,10 @@ public:
 protected:
 	void refresh(const KURL& url);
 
-	ListPanel	     *panel;    // our ListPanel
-	QStringList    backStack; // Path stack for the "back" button
-	bool           inRefresh; // true when we are in refresh()
-	QPtrStack<vfs> vfsStack; // the vfs stack.
+	ListPanel*           panel;     // our ListPanel
+	QValueStack<KURL>    urlStack;  // Path stack for the "back" button
+	bool                 inRefresh; // true when we are in refresh()
+	vfs*                 vfsP;      // pointer to vfs.
 };
 
 #endif

@@ -55,11 +55,10 @@
 #include "../defaults.h"
 #include "../resources.h"
 
-normal_vfs::normal_vfs(QString url,QWidget* panel):vfs(panel){
+normal_vfs::normal_vfs(QObject* panel):vfs(panel){
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
   
-  vfs_origin = KURL::fromPathOrURL(url);
   vfs_type=NORMAL;
 	
 	// connect the watcher to vfs_slotDirty
@@ -93,18 +92,16 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 
 	// set the origin...
   vfs_origin = origin;
+  vfs_origin.setProtocol("file"); // do not remove !
 	vfs_origin.cleanPath();
   // clear the the list
 	vfs_files.clear();
-
 	
 	DIR* dir = opendir(path.local8Bit());
   if(!dir) return false;
 
   //change directory to the new directory
   chdir(path.local8Bit());
-
-	if (!quietMode) emit startUpdate();
 
 	struct dirent* dirEnt;
   QString name;
@@ -149,7 +146,7 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	// clean up
 	closedir(dir);
 	
-	if (!quietMode) emit endUpdate();
+	if (!quietMode) emit startUpdate();
   watcher.startScan();
 
   return true;

@@ -48,7 +48,7 @@ class normal_vfs : public vfs{
 	Q_OBJECT
 public:
 	// the constructor simply uses the inherited constructor
-	normal_vfs(QString origin,QWidget* panel);
+	normal_vfs(QObject* panel);
  ~normal_vfs(){}
 
 	/// Copy a file to the vfs (physical).

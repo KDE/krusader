@@ -106,7 +106,6 @@ public slots:
 
 signals: 	
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
-	void endUpdate();   //< emmitted when the the vfile list is stable.
 
 protected:
 	/// Add a new vfile to the list.
