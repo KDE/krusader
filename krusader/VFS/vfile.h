@@ -38,6 +38,8 @@
 #include <qstring.h>
 // System includes
 #include <sys/types.h>
+// KDE includes
+#include <kio/global.h>
 
 class vfile{
 protected:
@@ -89,11 +91,12 @@ public:
 	inline QString					vfile_getMime()			{ return vfile_mimeType;	}
 	inline QString					vfile_getSymDest()	{ return vfile_symDest;		}
 	inline mode_t						vfile_getMode()			{ return vfile_mode;			}		
-	inline uid_t						vfile_getUid()			{ return vfile_ownerId;					}
-  inline gid_t						vfile_getGid()			{ return vfile_groupId;					}
-	virtual char			vfile_isReadable();
-	virtual char 			vfile_isWriteable();
-  virtual char			vfile_isExecutable();
+	inline uid_t						vfile_getUid()			{ return vfile_ownerId;		}
+  inline gid_t						vfile_getGid()			{ return vfile_groupId;		}
+	virtual char			      vfile_isReadable();
+	virtual char 			      vfile_isWriteable();
+  virtual char			      vfile_isExecutable();
+	KIO::UDSEntry           vfile_getEntry(); // return the UDSEntry from the vfile
 
   virtual ~vfile(){}
 };

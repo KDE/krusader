@@ -29,9 +29,16 @@
  ***************************************************************************/
 // System includes
 #include <unistd.h>
+#include <pwd.h>
+#include <grp.h>
+#include <sys/types.h>
+// Qt includes
+#include <qdatetime.h>
 // Krusader includes
 #include "vfile.h"
 #include "krpermhandler.h"
+
+#include <kdebug.h>
 
 vfile::vfile(QString name,	                  // useful construtor
 						unsigned long size,	
@@ -88,4 +95,57 @@ char vfile::vfile_isWriteable(){
 
 char vfile::vfile_isExecutable(){
 	return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
+}
+
+KIO::UDSEntry vfile::vfile_getEntry(){
+	KIO::UDSEntry entry;
+	KIO::UDSAtom atom;
+
+	atom.m_uds = KIO::UDS_NAME;
+	atom.m_str = vfile_getName();
+	entry.append(atom);
+
+	atom.m_uds = KIO::UDS_SIZE;
+	atom.m_long = vfile_getSize();
+	entry.append(atom);
+
+ 	atom.m_uds = KIO::UDS_MODIFICATION_TIME;
+	atom.m_long = KRpermHandler::QString2time( vfile_getDateTime() );
+	entry.append(atom);
+
+  struct passwd *pass = getpwuid(vfile_getUid());
+	if( pass ){
+		atom.m_uds = KIO::UDS_USER;
+		atom.m_str = pass->pw_name;
+		entry.append(atom);
+  }
+  struct group* gr = getgrgid(vfile_getGid());
+	if( gr ){
+		atom.m_uds = KIO::UDS_GROUP;
+		atom.m_str = gr->gr_name; 
+		entry.append(atom);
+  }
+ 	atom.m_uds = KIO::UDS_MIME_TYPE;
+	atom.m_str = vfile_getMime();
+	entry.append(atom);
+
+	atom.m_uds = KIO::UDS_FILE_TYPE;
+	atom.m_long = vfile_getMode() & S_IFMT;
+	entry.append(atom);
+
+	atom.m_uds = KIO::UDS_ACCESS;
+	atom.m_long = vfile_getMode() & 07777; // keep permissions only
+	entry.append( atom );
+
+ 	atom.m_uds = KIO::UDS_MIME_TYPE;
+	atom.m_str = vfile_getMime();
+	entry.append(atom);
+
+  if( vfile_isSymLink() ){
+		atom.m_uds = KIO::UDS_LINK_DEST;
+		atom.m_str = vfile_getSymDest();
+		entry.append(atom);
+  }
+
+	return entry;
 }
