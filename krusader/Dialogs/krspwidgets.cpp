@@ -56,7 +56,7 @@ QString KRSpWidgets::getMask(QString caption) {
   KRMaskChoiceSub *p=new KRMaskChoiceSub();
   p->setCaption(caption);
   p->exec();
-  if (p->selection->currentText()=="") return QString::null; 
+  if (p->selection->currentText()=="") return QString::null;
     else return p->selection->currentText();
 }
 
@@ -170,8 +170,17 @@ void KRMaskChoiceSub::reject() {
 }
 
 void KRMaskChoiceSub::accept() {
-  QString topItem=KRSpWidgets::maskList.getFirst();
-  if (topItem!=selection->currentText())
+  bool add = true;
+  char *tmp;
+  // make sure we don't have that already
+  for ( tmp = KRSpWidgets::maskList.first(); tmp ; tmp = KRSpWidgets::maskList.next() )
+    if (QString(tmp).simplifyWhiteSpace() == selection->currentText().simplifyWhiteSpace()) {
+      // break if we found one such as this
+      add = false;
+      break;
+    }
+
+  if (add)
     KRSpWidgets::maskList.insert(0,selection->currentText().local8Bit());
   // write down the predefined selections list
   QStrList list;
@@ -192,9 +201,9 @@ void KRMaskChoiceSub::addSelection() {
   QListBoxItem *i=preSelections->firstItem();
   // check if the selection already exists
   while (i!=0)
-    if (i->text()==temp) { 
-      itemExists=true; 
-      break; 
+    if (i->text()==temp) {
+      itemExists=true;
+      break;
     } else i=i->next();
   if (temp!="" && !itemExists) {
     preSelections->insertItem(selection->currentText());

@@ -40,8 +40,9 @@
 #include <qwhatsthis.h>
 #include <qmessagebox.h>
 #include <klocale.h>
+#include <qlineedit.h>
 
-/* 
+/*
  *  Constructs a KRMaskChoice which is a child of 'parent', with the 
  *  name 'name' and widget flags set to 'f' 
  *
@@ -53,7 +54,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
 {
     if ( !name )
 	setName( "KRMaskChoice" );
-    resize( 401, 314 ); 
+    resize( 401, 314 );
     setCaption( i18n( "Choose Files"  ) );
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5 ) );
 
@@ -138,8 +139,10 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     connect( PushButton7, SIGNAL( clicked() ), this, SLOT( addSelection() ) );
     connect( PushButton7_2, SIGNAL( clicked() ), this, SLOT( deleteSelection() ) );
     connect( PushButton7_3, SIGNAL( clicked() ), this, SLOT( clearSelections() ) );
-    connect( selection, SIGNAL( activated(const QString&) ), this, SLOT( accept() ) );
+    connect( selection, SIGNAL( activated(const QString&) ), this, SLOT( setEditText(const QString &) ) );
+    connect( selection->lineEdit(), SIGNAL( returnPressed() ), this, SLOT( accept() ));
     connect( preSelections, SIGNAL( doubleClicked(QListBoxItem*) ), this, SLOT( acceptFromList(QListBoxItem *) ) );
+    connect( preSelections, SIGNAL( highlighted(const QString&) ), selection, SLOT( setEditText(const QString &) ) );
     connect( preSelections, SIGNAL( returnPressed(QListBoxItem*) ), this, SLOT( acceptFromList(QListBoxItem *) ) );
 }
 
