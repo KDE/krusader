@@ -172,13 +172,13 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   } else if (col == _view->column(KrDetailedView::DateTime)) {
       QString dt = dateTime();
       QString dti = other->dateTime();
-			QString  d = "" +
+			QString  d = ((dt[6] < '7')? "20" : "19") +
       		dt[6] + dt[7] + // year
 					dt[3] + dt[4] + // month
 					dt[0] + dt[1] + // day
           dt[9] + dt[10]+ //	hour
 					dt[12]+ dt[13]; // minute
-			QString  id = "" +
+			QString  id = ((dti[6] < '7')? "20" : "19")  +
       		dti[6] + dti[7] + // year
 					dti[3] + dti[4] + // month
 					dti[0] + dti[1] + // day
