@@ -1,23 +1,23 @@
 /***************************************************************************
-                             listpanel.cpp
-                          -------------------
- copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
- e-mail               : krusader@users.sourceforge.net
- web site             : http://krusader.sourceforge.net
+                            listpanel.cpp
+                         -------------------
+copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
+e-mail               : krusader@users.sourceforge.net
+web site             : http://krusader.sourceforge.net
 ---------------------------------------------------------------------------
 Description 
 ***************************************************************************
 
 A 
 
-  db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
-  88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
-  88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
-  88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
-  88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
-  YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+ 88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+ 88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+ 88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+ 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                  S o u r c e    F i l e
+                                                 S o u r c e    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -98,16 +98,18 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   status->setText( "" );        // needed for initialization code!
   int sheight = QFontMetrics( status->font() ).height() + 4;
   status->setMaximumHeight( sheight );
-  QWhatsThis::add( status, i18n( "The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of filesystem etc." ) );
-  connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
+  QWhatsThis::add
+    ( status, i18n( "The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of 
+filesystem etc." ) );  connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
 
   // ... create the bookmark list
   bookmarksButton = new BookmarksButton( this );
   connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
   connect( bookmarksButton, SIGNAL( openUrl( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
-  QWhatsThis::add( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
-			  							  "current location to the list, edit bookmarks "
-										  "or add subfolder to the list." ) );
+  QWhatsThis::add
+    ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
+                             "current location to the list, edit bookmarks "
+                             "or add subfolder to the list." ) );
 
   totals = new KrSqueezedTextLabel( this );
   krConfig->setGroup( "Look&Feel" );
@@ -116,8 +118,9 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   totals->setBackgroundMode( PaletteBackground );
   totals->setLineWidth( 1 );		// a nice 3D touch :-)
   totals->setMaximumHeight( sheight );
-  QWhatsThis::add( totals, i18n( "The totals bar shows how much files exist, "
-			  					 "how many did you select and the bytes math" ) );
+  QWhatsThis::add
+    ( totals, i18n( "The totals bar shows how much files exist, "
+                    "how many did you select and the bytes math" ) );
   connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
 
   quickSearch = new KrQuickSearch( this );
@@ -128,12 +131,14 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   quickSearch->setMaximumHeight( sheight );
 
   origin = new KURLRequester( this );
-  QWhatsThis::add( origin, i18n( "Use superb KDE file dialog to choose location. " ) );
+  QWhatsThis::add
+    ( origin, i18n( "Use superb KDE file dialog to choose location. " ) );
   origin->setShowLocalProtocol( false );
   origin->lineEdit() ->setURLDropsEnabled( true );
-  QWhatsThis::add( origin->lineEdit(), i18n( "Name of directory where you are. You can also "
-			  					 "enter name of desired location to move there. "
-								 "Use of Net protocols like ftp or fish is possible." ) );
+  QWhatsThis::add
+    ( origin->lineEdit(), i18n( "Name of directory where you are. You can also "
+                                "enter name of desired location to move there. "
+                                "Use of Net protocols like ftp or fish is possible." ) );
   origin->setMode( KFile::Directory | KFile::ExistingOnly );
   connect( origin, SIGNAL( returnPressed( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
   connect( origin, SIGNAL( urlSelected( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
@@ -157,7 +162,8 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   layout->addWidget( status, 1, 0 );
   layout->addWidget( bookmarksButton, 1, 1 );
   layout->addMultiCellWidget( dynamic_cast<KrDetailedView*>( view ) ->widget(), 2, 2, 0, 1 );
-  layout->addMultiCellWidget( quickSearch, 3, 3, 0, 1 ); quickSearch->hide();
+  layout->addMultiCellWidget( quickSearch, 3, 3, 0, 1 );
+  quickSearch->hide();
   layout->addMultiCellWidget( totals, 4, 4, 0, 1 );
 
   filter = ALL;
@@ -169,14 +175,19 @@ void ListPanel::slotUpdateTotals() {
 
 void ListPanel::select( bool select, bool all ) {
   if ( all )
-    if ( select ) view->select( QString( "*" ) );
-    else view->unselect( QString( "*" ) );
+    if ( select )
+      view->select( QString( "*" ) );
+    else
+      view->unselect( QString( "*" ) );
   else {
     QString answer = KRSpWidgets::getMask( ( select ? i18n( " Select Files " ) : i18n( " Unselect Files " ) ) );
     // if the user canceled - quit
-    if ( answer == QString::null ) return ;
-    if ( select ) view->select( answer );
-    else view->unselect( answer );
+    if ( answer == QString::null )
+      return ;
+    if ( select )
+      view->select( answer );
+    else
+      view->unselect( answer );
   }
 }
 
@@ -214,27 +225,29 @@ void ListPanel::slotFocusOnMe() {
 
 // this is used to start the panel, AFTER setOther() has been used
 //////////////////////////////////////////////////////////////////
-void ListPanel::start(QString path) {
+void ListPanel::start( QString path ) {
   bool left = _left;
   krConfig->setGroup( "Startup" );
 
   // set the startup path
-  if (path != QString::null)  {
+  if ( path != QString::null ) {
     virtualPath = path;
   } else
-  if ( left ) {
-    if ( krConfig->readEntry( "Left Panel Origin", _LeftPanelOrigin ) == i18n( "homepage" ) )
-      virtualPath = krConfig->readEntry( "Left Panel Homepage", _LeftHomepage );
-    else if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
-      virtualPath = krConfig->readEntry( "lastHomeLeft", "/" );
-    else virtualPath = getcwd( 0, 0 ); //get_current_dir_name();
-  } else { // right
-    if ( krConfig->readEntry( "Right Panel Origin", _RightPanelOrigin ) == i18n( "homepage" ) )
-      virtualPath = krConfig->readEntry( "Right Panel Homepage", _RightHomepage );
-    else if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
-      virtualPath = krConfig->readEntry( "lastHomeRight", "/" );
-    else virtualPath = getcwd( 0, 0 );
-  }
+    if ( left ) {
+      if ( krConfig->readEntry( "Left Panel Origin", _LeftPanelOrigin ) == i18n( "homepage" ) )
+        virtualPath = krConfig->readEntry( "Left Panel Homepage", _LeftHomepage );
+      else if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
+        virtualPath = krConfig->readEntry( "lastHomeLeft", "/" );
+      else
+        virtualPath = getcwd( 0, 0 ); //get_current_dir_name();
+    } else { // right
+      if ( krConfig->readEntry( "Right Panel Origin", _RightPanelOrigin ) == i18n( "homepage" ) )
+        virtualPath = krConfig->readEntry( "Right Panel Homepage", _RightHomepage );
+      else if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
+        virtualPath = krConfig->readEntry( "lastHomeRight", "/" );
+      else
+        virtualPath = getcwd( 0, 0 );
+    }
 
   realPath = virtualPath;
   func->openUrl( virtualPath );
@@ -248,7 +261,8 @@ void ListPanel::slotStartUpdate() {
     return ;
   }
 
-  while ( func->inRefresh ) ; // wait until the last refresh finish
+  while ( func->inRefresh )
+    ; // wait until the last refresh finish
   func->inRefresh = true;  // make sure the next refresh wait for this one
   krApp->setCursor( KCursor::workingCursor() );
   view->clear();
@@ -258,7 +272,7 @@ void ListPanel::slotStartUpdate() {
   if ( func->files() ->vfs_getType() == "normal" )
     realPath = virtualPath;
   this->origin->setURL( virtualPath );
-  emit pathChanged(this);
+  emit pathChanged( this );
   emit cmdLineUpdate( realPath );	// update the command line
 }
 
@@ -280,7 +294,8 @@ void ListPanel::slotUpdate() {
   if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == "ftp" ) &&
                                       origin.find( '/', origin.find( ":/" ) + 3 ) == -1 ) ) {
     view->addItems( func->files() );
-  } else view->addItems( func->files(), false );
+  } else
+    view->addItems( func->files(), false );
 
   func->inRefresh = false;
 }
@@ -308,7 +323,8 @@ void ListPanel::slotGetStats( QString path ) {
 
 void ListPanel::gotStats( QString data ) {
   status->setText( data );
-  if ( statsAgent ) delete statsAgent;
+  if ( statsAgent )
+    delete statsAgent;
 }
 
 void ListPanel::handleDropOnView( QDropEvent *e ) {
@@ -322,16 +338,19 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
   vfile *file;
   KrViewItem *i = view->getKrViewItemAt( e->pos() );
 
-  if ( e->source() == otherPanel ) dragFromOtherPanel = true;
-  if ( e->source() == this ) dragFromThisPanel = true;
+  if ( e->source() == otherPanel )
+    dragFromOtherPanel = true;
+  if ( e->source() == this )
+    dragFromThisPanel = true;
 
   if ( i ) {
     file = func->files() ->vfs_search( i->name() );
 
     if ( !file ) { // trying to drop on the ".."
-      if ( virtualPath.right( 1 ) == "\\" )    // root of archive..
+      if ( virtualPath.right( 1 ) == "\\" )     // root of archive..
         isWritable = false;
-      else copyToDirInPanel = true;
+      else
+        copyToDirInPanel = true;
     } else {
       if ( file->vfile_isDir() ) {
         copyToDirInPanel = true;
@@ -341,7 +360,8 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
           // if the folder is writeable, to avoid flicker
         }
       } else
-        if ( e->source() == this ) return ; // no dragging onto ourselves
+        if ( e->source() == this )
+          return ; // no dragging onto ourselves
     }
   } else    // if dragged from this panel onto an empty spot in the panel...
     if ( dragFromThisPanel ) {  // leave!
@@ -374,7 +394,8 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
   // --> display the COPY/MOVE/LINK menu
   QPopupMenu popup( this );
   popup.insertItem( i18n( "Copy Here" ), 1 );
-  if ( func->files() ->vfs_isWritable() ) popup.insertItem( i18n( "Move Here" ), 2 );
+  if ( func->files() ->vfs_isWritable() )
+    popup.insertItem( i18n( "Move Here" ), 2 );
   if ( func->files() ->vfs_getType() == "normal" &&
        otherPanel->func->files() ->vfs_getType() == "normal" )
     popup.insertItem( i18n( "Link Here" ), 3 );
@@ -391,7 +412,7 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
       case 3 :
       mode = KIO::CopyJob::Link;
       break;
-      case - 1 :     // user pressed outside the menu
+      case - 1 :      // user pressed outside the menu
       case 4:
       return ; // cancel was pressed;
   }
@@ -450,15 +471,17 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   // a quick hack to check if we've got more that one file selected
   KrViewItemList items;
   view->getSelectedKrViewItems( &items );
-  if ( items.empty() ) return ;
-  if ( items.size() > 1 ) multipleSelections = true;
+  if ( items.empty() )
+    return ;
+  if ( items.size() > 1 )
+    multipleSelections = true;
   KrViewItem *item = items.first();
   // create the menu
   QPopupMenu popup, openWith, linkPopup;
   // the OPEN option - open preferd service
   popup.insertItem( "Open/Run", OPEN_ID );      // create the open option
   if ( !multipleSelections ) { // meaningful only if one file is selected
-    popup.changeItem( OPEN_ID, item->icon(),    // and add pixmap
+    popup.changeItem( OPEN_ID, item->icon(),     // and add pixmap
                       i18n( ( item->isExecutable() ) && ( !item->isDir() ) ? "Run" : "Open" ) );
     popup.insertSeparator();
   }
@@ -479,8 +502,8 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   // have the same mimetype !
   QString mime = item->mime();
   // check if all the list have the same mimetype
-  for(unsigned int i=1; i<items.size(); ++i){
-    if( (*items.at(i))->mime() != mime ){
+  for ( unsigned int i = 1; i < items.size(); ++i ) {
+    if ( ( *items.at( i ) ) ->mime() != mime ) {
       mime = QString::null;
       break;
     }
@@ -489,7 +512,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
     offers = KServiceTypeProfile::offers( mime );
     for ( unsigned int i = 0; i < offers.count(); ++i ) {
       KService::Ptr service = offers[ i ].service();
-      if ( service->isValid() && service->type()=="Application" ) {
+      if ( service->isValid() && service->type() == "Application" ) {
         openWith.insertItem( service->name(), SERVICE_LIST_ID + i );
         openWith.changeItem( SERVICE_LIST_ID + i, service->pixmap( KIcon::Small ), service->name() );
       }
@@ -553,8 +576,9 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   KURL::List lst;
 
   switch ( result ) {
-      case - 1 : return ;     // the user clicked outside of the menu
-      case OPEN_ID :           // Open/Run
+      case - 1 :
+      return ;     // the user clicked outside of the menu
+      case OPEN_ID :            // Open/Run
       for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
         u.setPath( func->files() ->vfs_getFile( ( *it ) ->name() ) );
         KRun::runURL( u, item->mime() );
@@ -582,10 +606,10 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
                                                QString::null, KStdGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
         KShred::shred( func->files() ->vfs_getFile( item->name() ) );
       break;
-      case OPEN_KONQ_ID :      // open in konqueror
+      case OPEN_KONQ_ID :       // open in konqueror
       kapp->startServiceByDesktopName( "konqueror", func->files() ->vfs_getFile( item->name() ) );
       break;
-      case CHOOSE_ID :         // Other...
+      case CHOOSE_ID :          // Other...
       u.setPath( func->files() ->vfs_getFile( item->name() ) );
       lst.append( u );
       KRun::displayOpenWithDialog( lst );
@@ -608,14 +632,15 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       case SEND_BY_EMAIL :
       SLOTS->sendFileByEmail( func->files() ->vfs_getFile( item->name() ) );
       break;
-      case OPEN_TERM_ID :      // open in terminal
+      case OPEN_TERM_ID :       // open in terminal
       QString save = getcwd( 0, 0 );
       chdir( func->files() ->vfs_getFile( item->name() ).local8Bit() );
       KProcess proc;
       krConfig->setGroup( "General" );
       QString term = krConfig->readEntry( "Terminal", _Terminal );
       proc << term;
-      if ( !item->isDir() ) proc << "-e" << item->name();
+      if ( !item->isDir() )
+        proc << "-e" << item->name();
       if ( !proc.start( KProcess::DontCare ) )
         KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + term + "\"" );
       chdir( save.local8Bit() );
@@ -624,31 +649,38 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   if ( result >= SERVICE_LIST_ID ) {
     QStringList names;
     getSelectedNames( &names );
-    KRun::run( *(offers[result-SERVICE_LIST_ID].service()),
-                *(func->files()->vfs_getFiles(&names)) );
+    KRun::run( *( offers[ result - SERVICE_LIST_ID ].service() ),
+               *( func->files() ->vfs_getFiles( &names ) ) );
   }
 }
 
 void ListPanel::setFilter( FilterSpec f ) {
   switch ( f ) {
-      case ALL : filter = ALL;
+      case ALL :
+      filter = ALL;
       break;
-      case EXEC: filter = EXEC;
+      case EXEC:
+      filter = EXEC;
       break;
-      case CUSTOM : filterMask = KRSpWidgets::getMask( i18n( " Select Files " ) );
+      case CUSTOM :
+      filterMask = KRSpWidgets::getMask( i18n( " Select Files " ) );
       // if the user canceled - quit
-      if ( filterMask == QString::null ) return ;
+      if ( filterMask == QString::null )
+        return ;
       filter = CUSTOM;
       break;
-      default: return ;
+      default:
+      return ;
   }
   func->refresh();
 }
 
 QString ListPanel::getCurrentName() {
   QString name = view->getCurrentItem();
-  if ( name != ".." ) return name;
-  else return QString::null;
+  if ( name != ".." )
+    return name;
+  else
+    return QString::null;
 }
 
 void ListPanel::prepareToDelete() {
@@ -659,11 +691,21 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
   switch ( e->key() ) {
       case Key_Right :
       case Key_Left :
-      if ( e->state() == ControlButton ) { // user pressed CTRL+Right/Left - refresh other panel to the same path as this one
-        otherPanel->func->openUrl( realPath );
+      if ( e->state() == ControlButton ) {
+        // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
+        // directory otherwise as this one
+        QString newPath;
+        if ( view->getCurrentKrViewItem() ->isDir() ) {
+          newPath = func->files() ->vfs_getFile( view->getCurrentKrViewItem() ->name() );
+        } else {
+          newPath = realPath;
+        }
+        otherPanel->func->openUrl( newPath );
+
         slotFocusOnMe(); // return focus to us!
         return ;
-      } else e->ignore();
+      } else
+        e->ignore();
 
       case Key_Down :
       if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
@@ -672,13 +714,14 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
         else if ( krApp->mainView->terminal_dock->isVisible() )
           krApp->mainView->terminal_dock->setFocus();
         return ;
-      } else e->ignore();
+      } else
+        e->ignore();
 
       default:
       // if we got this, it means that the view is not doing
       // the quick search thing, so send the characters to the commandline, if normal key
-      if (e->state() == NoButton)
-         krApp->mainView->cmdLine->addText( e->text() );
+      if ( e->state() == NoButton )
+        krApp->mainView->cmdLine->addText( e->text() );
 
       //e->ignore();
   }
