@@ -338,6 +338,19 @@ bool KgUserActions::apply() {
    return KonfiguratorPage::apply();
 }
 
+void KgUserActions::loadInitialValues() {
+  // revert the changes
+   delete _workXML;
+   _workXML = new UserActionXML();
+   actionList->clear();
+   actionList->insertStringList( _workXML->getActionNames() );
+
+   _needApply = false;
+   emit sigChanged();   // nessesary to disable the apply-button again
+
+  KonfiguratorPage::loadInitialValues();
+}
+
 void KgUserActions::setDefaults() {
    delete _workXML;
    _workXML = new UserActionXML();

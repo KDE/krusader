@@ -51,6 +51,7 @@ public:
   bool isChanged();
   bool apply();
   void setDefaults();
+  void loadInitialValues();
 
 public slots:
   void slotChangeAction();	//loads a new action into the detail-view
