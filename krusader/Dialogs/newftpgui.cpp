@@ -779,6 +779,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     connect( url, SIGNAL( activated( const QString& )),
              url, SLOT( addToHistory( const QString& )));
     // load the history and completion list after creating the history combo
+    krConfig->setGroup("Private");
     QStringList list = krConfig->readListEntry( "newFTP Completion list" );
     url->completionObject()->setItems( list );
     list = krConfig->readListEntry( "newFTP History list" );

@@ -145,6 +145,7 @@ void newFTPSub::accept() {
   url->addToHistory( url->currentText() );
   // save the history and completion list when the history combo is
   // destroyed
+  krConfig->setGroup("Private");
   QStringList list = url->completionObject()->items();
   krConfig->writeEntry( "newFTP Completion list", list );
   list = url->historyItems();
