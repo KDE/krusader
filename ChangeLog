@@ -1,4 +1,6 @@
 ======================
+    FIXED: mountman detects those devices as supermount, which are mounted and missing from fstab
+    FIXED: mountman inserts '/dev/' before NFS shares and mounted devices which are missing from fstab
     FIXED: mountman does not watch readonly directories (mount can change its permissions!)
     FIXED: mountman does not stop dirwatch after close + memory leak
     FIXED: compare fix at directories with escape characters

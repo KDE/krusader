@@ -410,8 +410,11 @@ void KMountMan::parseDfData(QString filename) {
     if (loc==0) {
       kdWarning() << "Mt.Man: filesystem [" << temp << "] found by DF is unlisted in /etc/fstab." << endl;
       loc=new fsData();
+      loc->supermount = false;
       filesystems.append(loc);
-			if (temp.contains("//")>0) // if it contains '//', it's a smb share
+			if (temp.contains("//")>0 ||    // if it contains '//', it's a smb share
+          temp.contains(":")>0  ||    // if it contains ':' , it's an nfs share
+          temp.startsWith("/") )      // if it is a fullpath device name
 			  loc->setName(temp);      // <patch> thanks to Cristi Dumitrescu
 			else loc->setName("/dev/"+temp);
 			newFS=true;
