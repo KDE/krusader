@@ -1,34 +1,63 @@
 =====> Krusader II <=======
-* the "select mask" dialog should handle compare mode gracefully
-* new gui !
-* configure bookmarks per panel.
+The online TODO list can be found on:
+http://sourceforge.net/tracker/?atid=560746&group_id=6488&func=browse
+
+TODO list, (last updated 2004-02-03)
+------------------------------------
 * remember last X places visited.
-* F2 can open internal terminal.
-* Type directly to command/line terminal.
-* Samba browser.
-* directory sync.
+* a new embedded SMB browser.
 * fstab editing for mountMan.
-* ctrl+enter --> copy the current file to the command-line.
 * allow to change the ratio between panels (20/80, 40/60 ...)
 * download management.
-* hex viewer.
-* multi-rename tool.
 * open a tree, which allows quick-search, and pressing enter, does chdir (like alt+f10 in nc)
 * tools menu.
 * ask the user for root password for some operations.
-
+* Macro/Script support
+* Scriptable VFS
+* Catalog
+* brief-view
+* add mc-like search results functionality
+* new multi-use panel
+* embedded tree view
+* a new embedded SMB browser.
+* url drops into the panel
+* Colorize files by type
+* add external programs to toolbar
+* add a directory menu (r.click from origin)
+* configurable keyboard input mode
+* import konqueror's actions into right-click menu
+* tweak "run in terminal" option
+* right-click menu on an EMPTY area
+* new keyboard shortcuts
+* integration with KGET (dl. manager)
+* progress bar on refreshes
+* fix the damn butt-ugly icons
+* add compression strength option to dialogs
+* re-do konfigurator and VIEW configuration
+* add a windows-like send-to to the context menu
+* make konfigurator's 1st page look like kcontrol's
+* better viewer
+* enqueue operations
+* Marked shared directories
+* Shortcuts in Dialogs
+* configure diff tool
+* change file association
+* configure view tool
+* copy file to/from konqueror via clipboard
+* resolve '*' on copy / move operations
+* FTP proxy configuration with GUI
+* MountMan format drive implementation
+* human readable size in view
+* Configurable fullpath commands for df,mount,...
+* save button in 'new net connection'
+* virtual folder
+* Open terminal args
+* Select files/folders
+* add shift-del functionality
+* file-extension connected to the filename 
+* ...
 
 BUGS
 ====
-versionControl(): sometimes deletes the wrong rc file. fix it !
-dragging files / copying files changes active panel (at least command line)
-
-KNOWN BUGS (LOW PRIORITY)
-=========================
-* Remoteman sometimes displays the connections with different ordering - this is
-  actually a bug in QListView.
-
-For Translators
-===============
-to extract a .pot file, go to krusader_kde3/
-and do: make -f admin/Makefile.common package-messages
+The online BUG list can be found on:
+http://sourceforge.net/tracker/?atid=106488&group_id=6488&func=browse
