@@ -337,7 +337,7 @@ void KRslots::multiRename(){
 
 	for( KURL::List::iterator u=urls->begin(); u != urls->end(); ++u){
     if( QFileInfo((*u).path()).isDir() ) proc << "-r";
-		proc << (*u).path();	
+		proc << "\"" + (*u).path() + "\""; // patch thanks to Tobias Vogele
 	}
 
 	proc.start(KProcess::DontCare);
