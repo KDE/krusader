@@ -1,46 +1,10 @@
-Krusader 1.40-beta1
+Krusader 1.40-beta2
 ===================
-Finally, it's here. This beta is the first in the 1.40 series. A lot has
-happened since 1.30, and we're quite execited over 1.40, and hope you are too.
-Some of the big changes are:
- * new icons for krusader (thanks to adios for providing them)
- * configuring the colors of the panel
- * quickmode for mountman. press and HOLD the mountman icon for new
-   functionality
- * ability to enable/disable icons in the views (filelists)
- * Konfigurator was re-written by Csaba, and has lots of new things in it.
- * Ability to configure the fields of the panel (Ext, Size, Perm, ...)
- * Single click selection mode
- * Panel level toolbar ('..', '/', '~', '=' buttons), thanks to David Harel
- * A Locate frontend (integrating the findutils-locate package of GNU into
-   Krusader). TEST IT
- * A Quicksearch a-la totalCommander. Thanks to heiner.
- * Ability to edit/view file in the search result window (F3, F4, right click)
- * A folder-history button, a-la-total commander. thanks to Hans Loffler!
- * A directory synchronizer (thanks to Csaba). TEST IT
- * A file splitter module
-Also, many bugs have been fixed, including:
- * internal editor quits without notification even if the edited file was not
-   saved
- * KDE 3.2 terminal exit at Ctrl+C
- * bug [ 906386 ] regarding refreshes of dirwatch with fam enabled
- * bug [ 906538 ] which now makes a faster unpacking process
- * bug [ 894771 ] regarding over-expanding window due to long command line
- * permission handling for FTP URL-s
- * no restart at changing the icon tray's state in konfigurator
- * krusader freezes if the `df` process does not terminate (at network errors,
-   IO wait)
- * increased speed of search, by emitting lesssignals (thanks to Lars)
- * statusbar updated only on mouse clicks, not on keyboard
- * crash at rename if the directory is refreshed by the watcher
- * crash at ftp://user@server@proxy:port FTP URL-s
- * no parent directory at tar://... and zip://... URL-s
-Read the ChangeLog file to see more changes.
+This second beta in the 1.40 series is focussed on bugfixes and translation
+updates.
 
-As you can see, a lot has happened, and we need help to test it.
-
-Notice: if you've got bugs to report, please do it using krusader's website, and
-        not using KDE's bugzilla (bugs.kde.org).
+Notice: if you've got bugs to report, please do it using krusader's website,
+        and not using KDE's bugzilla (bugs.kde.org).
 
             as always, enjoy
                  Krusader Krew.
