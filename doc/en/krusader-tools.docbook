@@ -113,7 +113,7 @@
             and therefore unfinished.
 	    &hesbugreport_lnk;
 	    If you have a good idea, don&apos;t hesitate to send us
-            <link linkend="faqq_wish_patch">User feedback</link>.</para></note>
+            <link linkend="faqg_wish_patch">User feedback</link>.</para></note>
 
 <para>"Quickmode for MountMan" is only available on &kde; 3.2 - earlier versions will see no difference.</para>
 
@@ -164,6 +164,23 @@
       <keycombo action="simul">&Alt;<keycap>right/left arrow</keycap></keycombo> to
       <keycap>open right/left panel bookmarks list</keycap></para>
 
+<para>Navigation in bookmarks:
+      <orderedlist>
+          <listitem>
+             <para>start typing letters</para>
+          </listitem> 
+          <listitem>
+              <para>&eg; when you type <literal>'h'</literal> and only 1 bookmark starts with <literal>'h'</literal>, 
+                    it is executed immediatly - no enter needed</para>
+          </listitem>
+          <listitem>
+             <para>if more than one bookmarks start with <literal>'h'</literal>, 
+                   you shall have to continue adding letters, 
+                   until you specified enough and again, the bookmark is executed.</para>
+          </listitem> 
+      </orderedlist>
+</para>
+
 <screenshot>
 	<screeninfo>&keditbookmarks; edit and organize your Bookmarks</screeninfo>
 	<mediaobject>
@@ -193,6 +210,7 @@
 <para>Welcome to &krusader;'s powerful search module - nicknamed Krusearcher.
       It is the most able tool (that we know of) for &Linux;, since it allows so many different ways to
       quickly find the file you're looking for.
+      The search function is also possible on remote file systems as well.
       It is divided into two levels, the general and the advanced.
       Let's take a look at the general page ...</para>
 
@@ -215,6 +233,8 @@
            <listitem><para><guilabel>"Search for"</guilabel>: here you enter the main search criteria.
                      You can enter a filename, a wildcard (<literal role="extension">*.o.*</literal>,
                      <literal role="extension">*.c</literal> &etc;) or both - separated by a space.
+                     If you type <literal>'text'</literal> the results is the same as <literal>'*text*'</literal>.
+                     You can exclude files from the search with '|' (&eg; <literal role="extension">'*.cpp *.h | *.moc.cpp'</literal> ).
                      </para></listitem>
            <listitem><para><guilabel>"Case sensitive"</guilabel>: unchecking it will allow lower and upper case
                       search (&ie;: <literal role="extension">*.c</literal> interprets as
@@ -269,6 +289,10 @@
                </para></listitem>
     <listitem><para><guilabel>"Follow links"</guilabel>: if checked,  &krusader; will follow soft-links during
                the search.
+               </para></listitem>
+    <listitem><para><guilabel>"Profiles"</guilabel>: if you have to do regular the same search operations 
+               you can save the search settings &eg; include files, exclude files, ...
+               Press the 'profile' button, and you'll be able to add/ load / save / remove search profiles. 
                </para></listitem>
 </itemizedlist>
 
@@ -1127,6 +1151,10 @@ HTML_PARSING-->
                     <literal role="extension">*.moc.cpp</literal>
                     </para>
               </listitem>
+   <listitem><para><guilabel>"General filters"</guilabel>: search for, containing text</para>
+               </listitem>
+   <listitem><para><guilabel>"Advanced filters"</guilabel>: size, date, ownership</para>
+               </listitem>	      
    </itemizedlist>
    </listitem>
 </varlistentry>
@@ -1243,7 +1271,7 @@ HTML_PARSING-->
     <listitem>
     <itemizedlist>
     	<listitem><para><guibutton>"Compare"</guibutton>:
-	           compares the directories, the results are displayed in the file list.</para></listitem>
+	           compares the directories, the results are displayed in the <guilabel>File List</guilabel>.</para></listitem>
     	<listitem><para><guibutton>"Stop"</guibutton>:
 	           stops comparing.</para></listitem>
 	<listitem><para><guibutton>"Synchronize"</guibutton>:
@@ -1262,7 +1290,7 @@ HTML_PARSING-->
     </itemizedlist></listitem>
     </varlistentry>
 
-    <varlistentry id="synccomp_right_click"><term>Right click menu on the File List</term>
+    <varlistentry id="synccomp_right_click"><term>Right click menu on the <guilabel>File List</guilabel></term>
     <listitem>
     <para>The right click menu is split up in three sections:</para>
 
@@ -1314,6 +1342,36 @@ HTML_PARSING-->
     </listitem>
     </varlistentry>
 
+  <varlistentry><term>Other buttons</term>
+  <listitem>
+   <itemizedlist>
+     <listitem>
+       <para><guibutton>"Profiles"</guibutton>: If you have to synchronize often the same directories you can save the settings
+                         &eg; include files, exclude files, ...
+                         Press the 'profile' button, and you'll be able to add/ load / save / remove synchronizer profiles.</para>
+     </listitem>
+     <listitem>
+       <para><guibutton>"Swap sides"</guibutton>: swaps the <guilabel>File List</guilabel>.</para>
+    </listitem> 
+   </itemizedlist>
+  </listitem>   
+  </varlistentry>
+
+              
+  <varlistentry><term>Synchronize with &kget;</term>
+   <listitem>
+     <para>If you want to synchronize a local directory with an instable ftp server, 
+           &kget; is a much better solution than simple file copying.
+	   After comparing you may right click on the result list and select 
+	   <guimenuitem>"Synchronize with kget"</guimenuitem>
+           to execute the synchronization, after that the listed files will be 
+           downloaded with kget instead of krusader.
+	   Ofcource <application>kget</application> needs to be installed on your computer, 
+	   otherwise it will not be available.</para>
+    </listitem>
+  </varlistentry>
+    
+    
     </variablelist>
 
 

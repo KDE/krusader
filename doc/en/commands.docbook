@@ -87,8 +87,8 @@
 	<listitem>
 	<para>
 	This action compares the two current files - one from each panel via an external graphical diff utility.
-        Right now there are two supported applications:
-        &kompare; (part of the kdebase package) and &xxdiff_url;.
+        By default &kompare; (part of the kdebase package) is used, but you can also use 
+        &eg; &xxdiff_url; or &kdiff3_url; , change it in the &konfigependencie_lnk;.  
 	</para>
 	</listitem>
     </varlistentry>
@@ -261,6 +261,37 @@
 	</para></listitem>
   </varlistentry>
 
+  <varlistentry>
+	<term><menuchoice>
+	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></shortcut> -->
+	<guimenu>View</guimenu>
+	<guimenuitem>Compare Directories</guimenuitem>
+	</menuchoice></term>
+	<listitem><para>Toggles &krusader; &comparedir_lnk; function.</para>
+	</listitem>
+  </varlistentry>
+
+  <varlistentry>
+	<term><menuchoice>
+	<guimenu>View</guimenu>
+	<guimenuitem>Compare setup</guimenuitem>
+	</menuchoice></term>
+	<listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>
+	 <itemizedlist>
+            <listitem><para><guimenuitem>Mark Newer and Single</guimenuitem> (default)
+                      </para></listitem>
+            <listitem><para><guimenuitem>Mark Single</guimenuitem>
+	              </para></listitem>
+            <listitem><para><guimenuitem>Mark Newer</guimenuitem>
+	              </para></listitem>
+            <listitem><para><guimenuitem>Mark Different and Single</guimenuitem>
+	              </para></listitem>
+            <listitem><para><guimenuitem>Mark Different</guimenuitem>
+	              </para></listitem>
+         </itemizedlist>
+	</listitem>
+  </varlistentry>
+    
 </variablelist>
 </sect1>
 
@@ -289,15 +320,6 @@
 	Opens the &locate_lnk;, allows fast file searching.
 	</para></listitem>
   </varlistentry>
-
-<!-- removed  1.00.2 -->
-<!--    <varlistentry><term><menuchoice>
-	<guimenu>Device Manager</guimenu>
-			</menuchoice></term>
-      <listitem><para>
-			Open the &kde; device information module.
-      </para></listitem>
-    </varlistentry> -->
 
   <varlistentry>
 	<term><menuchoice>
@@ -396,7 +418,7 @@
 	&newfeaturenote;
 	</para>
 	<para>
-	In the &usermenu_lnk; you can create and use your own often used commands.
+	In the &useractions_lnk; you can create and use your own often used commands.
 	</para>
 	</listitem>
   </varlistentry>
@@ -415,56 +437,11 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<shortcut><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></shortcut>
-	<guimenu>View</guimenu>
-	<guimenuitem>Compare Mode</guimenuitem>
-	</menuchoice></term>
-	<listitem><para>Toggles &krusader;'s &comparemode_lnk;.</para>
-	</listitem>
-  </varlistentry>
-
-  <varlistentry>
-	<term><menuchoice>
-	<guimenu>View</guimenu>
-	<guimenuitem>Configure Compare-mode</guimenuitem>
-	</menuchoice></term>
-	<listitem><para>Open the dialog which configures &krusader;'s &comparemode_lnk;.</para>
-	</listitem>
-  </varlistentry>
-
-  <varlistentry>
-	<term><menuchoice>
 	<shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut>
 	<guimenu>View</guimenu>
 	<guimenuitem>Show Hidden Files</guimenuitem>
 	</menuchoice></term>
 	<listitem><para>Toggles the option to display (or not) hidden files in the &krusader; panels.</para>
-	</listitem>
-  </varlistentry>
-
-  <varlistentry>
-	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
-	<guimenu>View</guimenu>
-	<guimenuitem>Sort By Extention</guimenuitem>
-	</menuchoice></term>
-	<listitem><para>When this action is turned on, the main sorting key in the &krusader; panel becomes
-	  the file extention (the part of the filename after the last '.'). This is useful for grouping
-          files of the same type closer together.
-	</para>
-	&disablenote;
-	</listitem>
-  </varlistentry>
-
-  <varlistentry>
-	<term><menuchoice>
-	<shortcut><keycombo action="simul">&Ctrl;<keycap>F11</keycap></keycombo></shortcut>
-	<guimenu>View</guimenu>
-	<guimenuitem>Executables</guimenuitem>
-	</menuchoice></term>
-	<listitem><para>Display only executables and directories.
-	</para>
-	&disablenote;
 	</listitem>
   </varlistentry>
 
@@ -499,6 +476,35 @@
 	use or files may not be visible.</para>
 	</listitem>
   </varlistentry>
+  
+<!--          
+  <varlistentry>
+	<term><menuchoice>
+	 <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut>
+	<guimenu>View</guimenu>
+	<guimenuitem>Sort By Extention</guimenuitem>
+	</menuchoice></term>
+	<listitem><para>When this action is turned on, the main sorting key in the &krusader; panel becomes
+	  the file extention (the part of the filename after the last '.'). This is useful for grouping
+          files of the same type closer together.
+	</para>
+	&disablenote;
+	</listitem>
+  </varlistentry>
+
+  <varlistentry>
+	<term><menuchoice>
+	<shortcut><keycombo action="simul">&Ctrl;<keycap>F11</keycap></keycombo></shortcut>
+	<guimenu>View</guimenu>
+	<guimenuitem>Executables</guimenuitem>
+	</menuchoice></term>
+	<listitem><para>Display only executables and directories.
+	</para>
+	&disablenote;
+	</listitem>
+  </varlistentry>
+-->
+
 
 <!-- vertical bar -->
 
@@ -663,7 +669,7 @@
 		http://bugs.kde.org/, &kde;'s Bug Tracking System.
 		Click on the next link to find out howto send &faqbugreports_lnk;.</remark></para></note>
 		<para>If you have a wish, a patch or a comment click
-		<link linkend="faqq_wish_patch">here</link>.</para>
+		<link linkend="faqg_wish_patch">here</link>.</para>
 	</listitem>
   </varlistentry>
 

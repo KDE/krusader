@@ -164,7 +164,9 @@
                  <emphasis><guilabel>Totals Label</guilabel></emphasis> at the bottom
                  of the panel, which displays how many files you've selected (and how much disk space they use)
                  as well as the total file and disk usage of the current directory (as opposed to the information label
-                 that displays information for the whole file system). It accepts that you drop an &URL; on it.
+                 that displays information for the whole file system).
+		 If a directory contains a lot of subdirectories, it may not possible to drop the &URL; onto the panel 
+		 (on which only directories are visible), but the &URL; can be dropped onto the "Status Bar" or "Totals Label" instead.
                  </para></listitem>
     </itemizedlist>
     When using the "&kde; default <link linkend="konfig-color">colors</link>",
@@ -211,9 +213,11 @@
           is used to quickly browse the local directory tree. The panel behaves like the
           list panel but only one directory may be selected at a time and double clicking or pressing
           &Enter; on a directory will open that directory in the active panel.
+	  It's supports drag and drop (copy,move,link).
           </para></listitem>
 <listitem><para><emphasis><guilabel>Quickselect</guilabel></emphasis>: 
            select quickely files, &eg; <literal role="extension">*.png</literal> and click on the <guibutton>"Go"</guibutton> button.
+	   The "floppy" button stores the current selection. The "select group dialog" is also available. 
               </para></listitem>
 </itemizedlist>
       Click on the arrow down button to close the <guilabel>3rd Hand Panel</guilabel>.
@@ -316,8 +320,9 @@
       For each button on this bar there is a corresponding function key that performs the same action. 
       This bar is derived from the design of the first twin-panel file managers and the FN keys usually act 
       the same with two changes: the <keycap>F2</keycap> key will open a terminal at the last local path that 
-      the active panel pointed to, and the <keycap>F9</keycap> key is used to rename files. 
-      You can choose to display <link linkend="resize">or not</link> the <guilabel>FN keys bar</guilabel> 
+      the active panel pointed to, and the <keycap>F9</keycap> key is used to rename files.
+      <guilabel>Mkdir</guilabel> <keycap>F7</keycap> can create whole directory trees on the fly &eg; <literal>foo/bar/test</literal>.
+      You can choose to display <link linkend="faqu_resize">or not</link> the <guilabel>FN keys bar</guilabel> 
       when starting up &krusader; via the &konfigstartpg_lnk;, and you can toggle its use in the current 
       session with the &viewmenu_lnk;.</para>
 
@@ -338,7 +343,7 @@
 <para>With <guibutton>Folder Tabs</guibutton> you can quickly change to multiple folders, each panel has is own
       <guibutton>Folder Tabs</guibutton>.
       The <guibutton>Folder Tabs</guibutton> positions are saved when closing &krusader;.
-      To switch between tabs, click them with the mouse. Squeezed tabs have tooltips to display the path.  
+      To switch between tabs, click them with the mouse. Squeezed tabs have tooltips to display the full path.  
       The next <guibutton>Folder Tabs</guibutton> operations are available:
 <itemizedlist>
     <listitem><para>To <keycap>open a new tab</keycap> and keep the current directory: <keycap>Right-click</keycap> on a
@@ -360,6 +365,11 @@
     <listitem><para>To create a <keycap>"home" tab</keycap>: click on the Tabbed Browsing
     <guibutton>"Bookmark"</guibutton> button.
     </para></listitem>
+    
+    <listitem><para>To <keycap>change tabs</keycap>: <keycombo action="simul">&Shift;<keycap>Left Arrow</keycap></keycombo>
+    or <keycombo action="simul">&Shift;<keycap>Right Arrow</keycap></keycombo>.
+    </para></listitem>
+
 </itemizedlist>
 </para>
 </sect2>
@@ -721,8 +731,8 @@ TODO
 
 
 <sect2 id="compare-dir">
-<title>Comparing directories</title>
-&disablenote;
+<title>Compare Directories</title>
+&betafeaturenote;
 <para>&krusader; offers a graphical directory compare mode. To activate it select
       <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
       <guimenuitem>Compare Mode</guimenuitem></menuchoice></emphasis> or
@@ -958,8 +968,8 @@ TODO
 </sect2>
 
 
-<sect2  id="user_menu">
-<title>User Menu</title>
+<sect2  id="useractions">
+<title>User Menu - Useractions</title>
 
 &newfeaturenote;
 
@@ -969,9 +979,12 @@ TODO
     </emphasis>
     or
     <keycombo action="simul">&Ctrl;<keycap>`</keycap></keycombo>
-    opens the <guimenuitem>User Menu</guimenuitem>, here you can create and use your own often used commands.
+    opens the <guimenuitem>User Menu</guimenuitem>, here you can create and use your own often used commands and actions.
     It can run things via terminal, via an output-collection window or just run it.
     It allows you to use normal strings or &URL;'s, and select where to pop the certain entry (in what directory).
+    Useractions can appear nearly everywhere, not only in the usermenu.
+    The <guimenuitem>User Menu</guimenuitem> is only one place from where you can access useractions.
+    Currently only local (per user) useractions are read.
 </para>
 
 <para><guimenuitem>"Add new entry"</guimenuitem> will open the dialog box to add a new useraction into the <guimenuitem>User Menu</guimenuitem>.
@@ -1164,6 +1177,12 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <entry><para><keycombo action="simul">&Shift;<keycap>F11</keycap></keycombo></para></entry>
 <entry><para><link linkend="view-menu">Executables</link></para></entry></row>
 -->
+<row>
+<entry><para><keycombo action="simul">&Shift;<keycap>Left Arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="folder_tabs">Change to left tab</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Shift;<keycap>Right Arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="folder_tabs">Change to right tab</link></para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>
@@ -1199,7 +1218,7 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <entry><para><link linkend="mount-man">MountMan</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>`</keycap></keycombo></para></entry>
-<entry><para>&usermenu_lnk;</para></entry></row>
+<entry><para>&useractions_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>Left Arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Left bookmarks</link></para></entry></row>

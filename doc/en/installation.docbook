@@ -45,9 +45,13 @@
 <para>&debian; DEB packages can be found &deb_download_url;
       and overview can be found &deb_overviewdownload_url; .</para>   
    
-<para>A &krufreebsd_port_url; of &krusader; is maintained, the <guibutton>"Search"</guibutton> button will
-      lead you to the latest &freebsd; version.
+<para>A &krufreebsd_port_url; of &krusader; is maintained. 
       Many thanks to <link linkend="credits">Heiner Eichmann</link> !</para>
+
+<para>A &mac_download_url; port with the kdelibs (3.1.4) from &fink_prj_url; of is maintained.
+      Many thanks to <link linkend="credits">Jonas Ba&euml;hr</link> !</para>
+
+<para>For &gentoo; click &gentoo_ebuild_url; .</para>
 
 <para>If you can't find a RPM or DEB package, don't wurry.
       We provide a verry detailled installation procedure. This howto allows that even newcomers will be able
@@ -164,9 +168,7 @@
 
 <para>Note: all &krusader; versions >=1.02 are &kde; 3.x.x only.</para>
 
-<para>A &freebsd; port of &krusader; is available.</para>
-
-<para>We have received reports that &krusader; runs on &Solaris;.</para>
+<para>Platforms: &Linux;, &freebsd;, &Solaris; and &MacOS; 10.3 (Panther).</para>
 
 <para>&krusader; uses about 3-4 MByte of memory to run 
       (and about 15 Mbyte shared memory which is also used by more processes), 
@@ -591,7 +593,7 @@ foo</screen>
 
 <para><emphasis role="bold">krusaderui.rc</emphasis></para>
 <para>This file stores the users toolbar settings and the menu structure.
-      Tip: please read also the <link linkend="krusaderui_rc">krusaderui.rc &FAQ;</link>.</para>
+      Tip: please read also the <link linkend="faqi_krusaderui_rc">krusaderui.rc &FAQ;</link>.</para>
 <para>Location: <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> or
       <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename></para>
 
@@ -631,7 +633,7 @@ foo</screen>
 
 
 <para><emphasis role="bold">useractions.xml</emphasis></para>
-<para>This file stores the &usermenu_lnk; configuration.</para>
+<para>This file stores the &useractions_lnk; configuration.</para>
 <para>Location: <filename>~/.kde/share/apps/krusader/useractions.xml</filename></para>
 
 

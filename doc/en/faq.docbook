@@ -44,7 +44,7 @@
 <qandaset>
 
    <qandaentry>
-   <question id="faqq_missing_libs">
+   <question id="faqi_missing_libs">
    <para>I have followed all steps but <command>configure</command> complains about missing libs or headers.
          What do I need to do?</para>
    </question>
@@ -80,7 +80,7 @@
 
 
    <qandaentry>
-   <question id="path">
+   <question id="faqi_path">
    <para>I have successfully installed &krusader; from source. Everything went fine but I can't start it.
    What's going wrong here?</para>
    </question>
@@ -104,7 +104,7 @@
    </qandaentry>
 
 <qandaentry>
-<question id="rpm_source">
+<question id="faqi_rpm_source">
   <para>I have downloaded the Source RPM <filename>krusader-x.xx.dist.src.rpm</filename>  What now?</para>
   </question>
   <answer>
@@ -116,7 +116,7 @@
          <listitem><para>To produce the binary RPM for your computer, do this:
             <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>--rebuild</option> <replaceable>&lt;/path/to/rpmfile/&gt; krusader-x.xx.dist.src.rpm</replaceable></userinput></screen>
          </para></listitem>
-         <listitem><para>If all <link linkend="faqq_missing_libs">dependencies</link> are ok,
+         <listitem><para>If all <link linkend="faqi_missing_libs">dependencies</link> are ok,
                          a binary RPM <filename>krusader-x.xx.dist.rpm</filename> will be created at
                          <filename class="directory">/usr/src/RPM/RPMS/i586</filename> (replace i586 with your architecture).
          </para></listitem>
@@ -142,7 +142,7 @@
 
 
    <qandaentry>
-   <question id="rpm_fails">
+   <question id="faqi_rpm_fails">
    <para>I'm trying to install binary foo (RPM or DEB package), but it fails. What's wrong?</para>
    </question>
    <answer>
@@ -168,7 +168,7 @@
    </qandaentry>
 
 <qandaentry>
-   <question id="rpm_notfound">
+   <question id="faqi_rpm_notfound">
    <para>I can't find a RPM or DEB package for &krusader;, What now?</para>
    </question>
    <answer>
@@ -185,7 +185,7 @@
 </qandaentry>
 
    <qandaentry>
-   <question id="krusaderui_rc">
+   <question id="faqi_krusaderui_rc">
    <para>I've installed &krusader;, but when I start it, only the <guimenu>"Help"</guimenu>
 	 menu appears. Why?</para></question>
    <answer>
@@ -205,7 +205,7 @@
    </qandaentry>
 
   <qandaentry>
-  <question id="missing_menus">
+  <question id="faqi_missing_menus">
   <para>Some new menu items are missing after updating &krusader;, what is wrong?</para>
   </question>
   <answer>
@@ -236,7 +236,7 @@
   </qandaentry>
 
   <qandaentry>
-  <question id="libfam_la">
+  <question id="faqi_libfam_la">
   <para>When I run <command>make</command> it complains about <filename>libfam.la</filename></para>
   </question>
   <answer>
@@ -253,7 +253,7 @@
    </qandaentry>
 
   <qandaentry>
-  <question id="faqq_deb_qt">
+  <question id="faqi_deb_qt">
   <para>&debian; complains about &Qt; when running <command>./configure</command></para>
   </question>
   <answer>
@@ -272,7 +272,7 @@
    </qandaentry>
 
   <qandaentry>
-  <question id="help_request">
+  <question id="faqi_help_request">
   <para>I am having trouble compiling and installing &krusader;, how do I send a help request?</para>
   </question>
   <answer>
@@ -306,7 +306,7 @@
   </qandaentry>
 
 <qandaentry>
-   <question id="rpm_build">
+   <question id="faqi_rpm_build">
    <para>How can i build a RPM package for &krusader;?</para>
    </question>
    <answer>
@@ -344,7 +344,7 @@
          <listitem><para>If it is not ok you will receive an error message during the rpmbuild process,
 	 try to fix it and run <command>rpmbuild</command> again.
          </para></listitem>
-         <listitem><para>And final: <link linkend="rpm_source">test</link> the RPM before sending it in.
+         <listitem><para>And final: <link linkend="faqi_rpm_source">test</link> the RPM before sending it in.
          </para></listitem>
     </orderedlist></para>
 
@@ -362,7 +362,7 @@
 <qandaset>
 
   <qandaentry>
-  <question id="supermount">
+  <question id="faqu_supermount">
   <para>When I try to mount/unmount my cdrom/floppy, &krusader; says
              something about supermount, what's this about? </para>
   </question>
@@ -382,7 +382,7 @@
   </qandaentry>
 
   <qandaentry>
-  <question id="resize">
+  <question id="faqu_resize">
   <para>When I try to resize &krusader;, so that it's smaller, I discover that I can't
         resize it below a certain size. Basically, it doesn't get much smaller. Why?</para>
   </question>
@@ -398,7 +398,7 @@
   </qandaentry>
 
   <qandaentry>
-  <question id="refresh">
+  <question id="faqu_refresh">
   <para>When I do some file operation, &krusader;'s panel doesn't refresh / i'm using
        &krusader; with fam installed, but updates to the panel are now shown.</para>
    </question>
@@ -420,7 +420,7 @@
 
   <!-- Thanks to Karai Csaba -->
   <qandaentry>
-  <question id="samba_codepage">
+  <question id="faqu_samba_codepage">
   <para><application>Samba</application> ISO 8859-x codepage / what to do if &krusader; does not read shared
         directories containing national characters?</para>
   </question>
@@ -443,7 +443,7 @@
 
   <!-- Thanks to Karai Csaba -->
   <qandaentry>
-  <question id="krarc_protocol">
+  <question id="faqu_krarc_protocol">
   <para>&krusader; reports "krarc:... protocol not supported" error at opening an archive file.</para>
   </question>
   <answer>
@@ -460,7 +460,7 @@
 
   <!-- Thanks to Dirk Eschler -->
   <qandaentry>
-  <question id="ftp_firewall">
+  <question id="faqu_ftp_firewall">
   <para>When I try to establish an &FTP; connection, I get an error message after 'Connect OK'
         saying 'Could not connect to host'.</para>
   </question>
@@ -469,7 +469,7 @@
       Enable "Passive &FTP;" through &kde;'s &kcontrolcenter; and try again.
       <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
       <guimenuitem>Network</guimenuitem><guimenuitem>Preferences</guimenuitem></menuchoice></emphasis> ,
-      <guilabel>Enable Passive Mode (PASV)</guilabel> has to be checked.
+      <guilabel>"Enable Passive Mode (PASV)"</guilabel> has to be checked.
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
@@ -477,7 +477,7 @@
 
   <!-- Thanks to Karai Csaba -->
   <qandaentry>
-  <question id="ftp_http_proxy">
+  <question id="faqu_ftp_http_proxy">
   <para>I get <errorcode>"FTP protocol not supported by &krusader;"</errorcode> error at trying to open
         a remote &FTP; directory.</para>
   </question>
@@ -490,6 +490,21 @@
   </answer>
   </qandaentry>
 
+  <!-- Thanks to thepieman at the Krusader Forum -->
+  <qandaentry>
+  <question id="faqu_sound">
+  <para>How can i disable the default sounds &eg; when i do a delete action ?</para>
+  </question>
+  <answer>
+  <para>Those are the default &kde; System sounds, and not related to &krusader;. 
+        If you want to disable them globally open your &kde; &kcontrolcenter; (<application>kcontrol</application>):
+       <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
+       <guimenuitem>Sound &amp; Multimedia</guimenuitem><guimenuitem>System Notifications</guimenuitem></menuchoice></emphasis> ,
+       <guilabel>Event Source: "KDE System Notifications"</guilabel> and uncheck sound items you don't like.</para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
 
 </qandaset>
 </sect1>
@@ -497,27 +512,29 @@
 <sect1 id="faq_general">
 <title>General &FAQ;</title>
 <qandaset>
-
+ 
   <qandaentry>
-  <question id="faqq_wish_patch">
+  <question id="faqg_wish_patch">
   <para>Where can I report a wish, a patch or a comment?</para>
   </question>
   <answer>
   <para>An open source projects greatest strength is derived from getting user feedback.
       That is why we love to hear what you have to say.
       The most convenient way is to use the &forum_lnk;.
-      For information on what remains to be done look at the &online_todolist_url;.
-      Posting to the online todo list is for developers only, but feel free to post to the &featureforum_url;
-      for things that aren't on the list, but should be. If you have a nice feature request, the &krusader;
-      Krew will add your request to the online todo list. You can reach us by &mail_url;
-      or drop us a note in our <link linkend="faqq_kru_forum">&krusader; Forum</link>.
+      For information on what remains to be done look at the &todoforum_url;.
+      Adding todo items into the &todoforum_url; is for developers only, but feel free to post to the &featureforum_url;
+      for things that aren't on the &todoforum_url;, but should be. If you have a nice feature request, the &krusader;
+      Krew will add your request to the &forum_lnk;.
+      For more information about the forum click <link linkend="faqg_kru_forum">here</link> .
+      You can reach us by &mail_url;
+      or drop us a note in our <link linkend="faqg_kru_forum">&krusader; Forum</link>.
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
   <qandaentry>
-    <question id="faqq_bug_report">
+    <question id="faqg_bug_report">
     <para>Where can I report a bug?</para>
     </question>
     <answer>
@@ -555,7 +572,7 @@
   </qandaentry>
 
   <qandaentry>
-  <question id="faqq_mail_list">
+  <question id="faqg_mail_list">
   <para>Does &krusader; have a mailing list?</para>
   </question>
   <answer>
@@ -565,7 +582,8 @@
   <para>Tip. with the &URL;'s below you can view the mailing lists archive with a browser.
      <itemizedlist>
      <listitem><para>&krunews_url; is used to notify &krusader; users about new releases, major bugfixes &etc; .
-                     See also &krulatestnews_url; to view online announcements of our homepage.
+                     The news can also been read online at &krulatestnews_url; and &newsforum_url; 
+                     who are basically the same but displayed in an other format.
                      </para></listitem>
      <listitem><para>&krucommits_url; is used to follow the &krusader; development ... live!
                      This means that everything the &krusader; Krew puts into CVS is reported in this mailing list.
@@ -582,7 +600,7 @@
 
 
 <qandaentry>
-  <question id="faqq_irc">
+  <question id="faqg_irc">
   <para>Does &krusader; have a IRC channel?</para>
   </question>
   <answer>
@@ -597,7 +615,7 @@
 
 
 <qandaentry>
-  <question id="faqq_kru_forum">
+  <question id="faqg_kru_forum">
   <para>How does the &krusader; forum work?</para>
   </question>
   <answer>
@@ -619,14 +637,25 @@
          Some issues are asked over and over again, for this issues whe have the made the &faq_lnk; ;-)
          This also allows us also to spend more time in developing &krusader;.</para>
 
-<para>The &kruforum_url; is split up in three major sections:
+<para>The &kruforum_url; is split up in five sections:
   <itemizedlist>
+     <listitem><para>&newsforum_url; all the latest news.</para></listitem>  
      <listitem><para>&bugforum_url;: discussions about bugs, please DO NOT use the forum for &faqbugreports_lnk;
                          (except if you are unsure if you have found a bug).</para></listitem>
      <listitem><para>&featureforum_url;: discussions about new features for future &krusader;
-                       versions.</para></listitem>
+                     versions.</para></listitem>
+     <listitem><para>&todoforum_url; here you will find the list of the planned features.
+               Registered users will be able to VOTE and COMMENT on the TODO items.
+               Here you get the chance to push your favourite features (+3) 
+               and still prefer certain features over others (+1), 
+               if you don't care about a feature just simply don't vote on that feature. 
+               Unregistered users may only browse the &todoforum_url;.
+               The &todoranking_url; contains the results based on the votes.  
+               <link linkend="faqg_wish_patch">Adding TODO items</link> or removing TODO items which 
+               have been implemented will done by the &krusader; Krew. 
+               </para></listitem>
      <listitem><para>&krugenforum_url;: everything that is &krusader; related and doesn't belong in the other
-                       forums.</para></listitem>
+                      forums.</para></listitem>             
   </itemizedlist>
   </para>
   <para>Thanks for your cooperation!</para>
@@ -635,7 +664,7 @@
 </qandaentry>
 
 <qandaentry>
-  <question id="faqq_i18n">
+  <question id="faqg_i18n">
   <para>How can i translate &krusader; to my native language?</para>
   </question>
   <answer>
@@ -644,7 +673,6 @@
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
 </qandaentry>
-
 
 
 </qandaset>

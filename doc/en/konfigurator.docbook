@@ -424,6 +424,10 @@ HTML_PARSING-->
 		    is mounted. If not, it will try and mount it for you and then enter, so that you'd see the contents
 		    of your cdrom. Note, however, that &krusader;  will NOT unmount when exiting
 		    <filename class="directory">/mnt/cdrom</filename>.</para></listitem>
+	<listitem><para><guilabel>"MountMan won't (un)mount the following mount-points"</guilabel>:
+	            If you have filesystems that you don't want to accidently unmount (or mount) then 
+		    enter a list of mountpoints seperated by commas
+                    (&eg; <literal>/, /boot, /tmp</literal>) and &mountman_lnk; won't try to (un)mount them.</para></listitem>  
   </itemizedlist>
   </listitem>
   </varlistentry>
@@ -461,7 +465,7 @@ you'll see a list of archive formats. Some are checked and some are grayed-out. 
 and let you open them as folders. Otherwise, &krusader; will attempt to invoke an application which opens that
 type of archive. If a certain archive is grayed-out, it means that &krusader; couldn't find the appropriate
 executables in the configured path. Please configure the full path of the packagers in the
-<link linkend="konfig-dependencies">Konfigurator Dependencies page</link> (&eg; to handle ZIP archives, &krusader;
+&konfigependencie_lnk; (&eg; to handle ZIP archives, &krusader;
 needs the <command>unzip</command> and <command>zip</command> executables).</para>
 
 <screenshot>
@@ -527,6 +531,10 @@ new archive should be available and checked.</para>
 <entry><para><filename class="directory"><replaceable>/usr/bin/kdesu</replaceable></filename></para></entry>
 </row>
 <row>
+<entry><para><command>kget</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/kget</replaceable></filename></para></entry>
+</row>
+<row>
 <entry><para><command>kmail</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/kmail</replaceable></filename></para></entry>
 </row>
@@ -564,6 +572,9 @@ new archive should be available and checked.</para>
 </informaltable>
 </para>
 
+<tip><para>By default &kompare; (part of the kdebase package) is used as external diff utility but you can also use
+           your favorite diff utility &eg; &xxdiff_url; or &kdiff3_url; , just fill in the full path and enjoy.</para></tip>
+
 <para><emphasis role="bold">Packers tab</emphasis></para>
 <para>Here you can configure the full path of the following external packers:
 <informaltable>
@@ -572,6 +583,10 @@ new archive should be available and checked.</para>
 <row>
 <entry>packer</entry>
 <entry>configurable full path</entry>
+</row>
+<row>
+<entry><para><command>arj</command></para></entry>
+<entry><para><filename class="directory"><replaceable>usr/bin/arj</replaceable></filename></para></entry>
 </row>
 <row>
 <entry><para><command>bzip2</command></para></entry>
@@ -584,6 +599,10 @@ new archive should be available and checked.</para>
 <row>
 <entry><para><command>gzip</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/gzip</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>lha</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/lha</replaceable></filename></para></entry>
 </row>
 <row>
 <entry><para><command>rar</command></para></entry>
@@ -623,10 +642,19 @@ new archive should be available and checked.</para>
 <sect1 id="konfig-useractions">
 <title>User Actions</title>
 
-<para>This page configures the user actions of the &usermenu_lnk;.
+<para>This page configures the user actions of the &useractions_lnk;.
       Here you can edit, create, delete, import or export user actions.
-      For more information about this screen, look at the &usermenu_lnk;.</para>
+      For more information about this screen, look at the &useractions_lnk;.</para>
             
 </sect1>       
+
+<sect1 id="protocols">
+<title>Protocols</title>
+
+<para>This page links the mimes to protocols.
+      &eg; protocol "tar" is linked to mime "application/x-tar".</para>
+            
+</sect1>       
+
 
 </chapter>
