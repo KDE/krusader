@@ -113,7 +113,7 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   dirHistoryQueue = new DirHistoryQueue(this);
   historyButton = new DirHistoryButton(dirHistoryQueue, this, "historyButton");
   connect(historyButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-  connect(historyButton, SIGNAL(openUrl(const KURL&)), func, SLOT( openUrl( const KURL& ) ) );  
+  connect(historyButton, SIGNAL(openUrl(const KURL&)), func, SLOT( delayedOpenUrl( const KURL& ) ) );  
 
   // ... create the bookmark list
   bookmarksButton = new BookmarksButton( this );

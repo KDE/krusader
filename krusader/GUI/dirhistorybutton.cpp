@@ -20,6 +20,7 @@
 
 #include "../VFS/vfs.h"
 #include <qpopupmenu.h>
+#include <qdir.h>
 #include <klocale.h>
 #include <kiconloader.h>
 
@@ -58,15 +59,15 @@ void DirHistoryButton::openPopup()
   {
     popup()->exec(mapToGlobal(QPoint(0, height())));
   }
-  kdDebug() << "History popup" << endl;
+//  kdDebug() << "History popup" << endl;
 }
 /** No descriptions */
 void DirHistoryButton::slotPopup(){
-  kdDebug() << "History slot" << endl;
+//  kdDebug() << "History slot" << endl;
 }
 /** No descriptions */
 void DirHistoryButton::slotAboutToShow(){
-  kdDebug() << "about to show" << endl;
+//  kdDebug() << "about to show" << endl;
   popupMenu->clear();
   QStringList::iterator it;
 
@@ -79,8 +80,18 @@ void DirHistoryButton::slotAboutToShow(){
 }  
 /** No descriptions */
 void DirHistoryButton::slotPopupActivated(int id){
-  kdDebug() << "popup activated" << endl;
+//  kdDebug() << "popup activated" << endl;
   KURL url(historyQueue->pathQueue[id]);
+  QString p = url.path();
+  kdDebug() << p <<  "file: " << url.fileName() << ", dir: " << url.directory() <<  endl;
+  if (url.protocol() == "file")
+  {
+    QDir dir(historyQueue->pathQueue[id]);
+    if (!dir.exists())
+    {
+      historyQueue->RemovePath(historyQueue->pathQueue[id]);
+    }
+  }
   emit openUrl( vfs::fromPathOrURL( url.prettyURL() ) );
 //  emit openUrl(historyQueue->pathQueue[id]);
 }

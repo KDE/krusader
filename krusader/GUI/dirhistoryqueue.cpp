@@ -30,7 +30,7 @@ DirHistoryQueue::~DirHistoryQueue(){
 
 /** No descriptions */
 void DirHistoryQueue::slotPathChanged(ListPanel* p){
-  int dummy = 1;
+//  int dummy = 1;
   AddPath(p->getPath());
 }
 
@@ -50,11 +50,22 @@ void DirHistoryQueue::AddPath(const QString& path)
   }
   // prevent non file paths from occuring in the list: prevent
   // infinite loop when calling such a path from the history menu
-  KURL url(path);
-  if (url.protocol() == "file")
+//  KURL url(path);
+//  if (url.protocol() == "file")
   {
     pathQueue.push_front(path);
   }
+}
+
+void DirHistoryQueue::RemovePath(const QString& path)
+{
+  QStringList::iterator it;
+  it = pathQueue.find(path);
+  if (it != pathQueue.end())
+  {
+    pathQueue.remove(it);
+  }
+      
 }
 
 void DirHistoryQueue::DumpQueue()

@@ -34,6 +34,7 @@ public:
 	~DirHistoryQueue();
   QStringList pathQueue;
 
+  void RemovePath(const QString& path);
 private:
   void AddPath(const QString& path);
   
