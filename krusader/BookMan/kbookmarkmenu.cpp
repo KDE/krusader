@@ -389,7 +389,7 @@ void KBookmarkMenu::slotBookmarkSelected()
   Q_ASSERT(!bookmark.isNull());
   Q_ASSERT(!bookmark.isGroup());
 
-  m_pOwner->openBookmarkURL( bookmark.url().url() );  
+  m_pOwner->openBookmarkURL( bookmark.url().prettyURL() );  
 }
 
 // -----------------------------------------------------------------------------
