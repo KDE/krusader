@@ -83,7 +83,8 @@ QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
 
 KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg, const char *name ) :
       KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
-_nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
+      _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ),
+      currentlyRenamedItem( 0 )    {
 	initProperties(); // don't forget this!
         lastSwushPosition = 0;
 
@@ -188,6 +189,8 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
    //-->  setRenameable( column( Name ), true );
    //-------------------------------------------------------------------------------
 
+   renameLineEdit()->installEventFilter( this );
+   
    // allow in-place renaming
    connect( renameLineEdit(), SIGNAL( done( QListViewItem *, int ) ),
             this, SLOT( inplaceRenameFinished( QListViewItem*, int ) ) );
@@ -267,7 +270,7 @@ void KrDetailedView::addItem( vfile *vf ) {
    dict.insert( vf->vfile_getName(), item );
    if ( isDir )
       ++_numDirs;
-   else _countSize += dynamic_cast<KrViewItem*>( item ) ->size();
+   else _countSize += static_cast<KrViewItem*>( item ) ->size();
    ++_count;
    
    if (item->name() == nameToMakeCurrent() )
@@ -321,7 +324,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
 
    // add the up-dir arrow if needed
    if ( addUpDir ) {
-      KListViewItem * item = new KrDetailedViewItem( this, ( QListViewItem* ) 0L, ( vfile* ) 0L );
+      new KrDetailedViewItem( this, ( QListViewItem* ) 0L, ( vfile* ) 0L );
    }
 
    // add a progress bar to the totals statusbar
@@ -360,17 +363,16 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
          }
       }
 
-      item = new KrDetailedViewItem( this, item, vf );
-      dict.insert( vf->vfile_getName(), dynamic_cast<KrDetailedViewItem*>(item) );
+      KrDetailedViewItem *dvitem = new KrDetailedViewItem( this, item, vf );
+      dict.insert( vf->vfile_getName(), dvitem );
       if ( isDir )
          ++_numDirs;
       else
-         _countSize += dynamic_cast<KrViewItem*>( item ) ->size();
+         _countSize += dvitem->size();
       ++_count;
       // if the item should be current - make it so
-      if ( ( dynamic_cast<KrViewItem*>( item ) ) ->
-            name() == nameToMakeCurrent() )
-         currentItem = item;
+      if ( dvitem->name() == nameToMakeCurrent() )
+         currentItem = static_cast<QListViewItem*>(dvitem);
 
       cnt++;
       //    if (cnt % 300 == 0) {
@@ -408,7 +410,7 @@ void KrDetailedView::setCurrentItem( const QString& name ) {
       KListView::setCurrentItem( it );
 #if 0
    for ( QListViewItem * it = firstChild(); it != 0; it = it->itemBelow() )
-      if ( dynamic_cast<KrViewItem*>( it ) ->
+      if ( static_cast<KrViewItem*>( it ) ->
             name() == name ) {
          KListView::setCurrentItem( it );
          break;
@@ -516,7 +518,7 @@ void KrDetailedView::prepareForPassive() {
 }
 
 void KrDetailedView::slotItemDescription( QListViewItem * item ) {
-   KrViewItem * it = dynamic_cast<KrViewItem*>( item );
+   KrViewItem * it = static_cast<KrDetailedViewItem*>( item );
    if ( !it )
       return ;
    QString desc = it->description();
@@ -545,7 +547,7 @@ void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
    CANCEL_TWO_CLICK_RENAME;
    if ( !item )
       return ;
-   _nameToMakeCurrent = dynamic_cast<KrViewItem*>( item ) ->name();
+   _nameToMakeCurrent = static_cast<KrDetailedViewItem*>( item ) ->name();
 }
 
 void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
@@ -749,7 +751,7 @@ void KrDetailedView::handleContextMenu( QListViewItem * it, const QPoint & pos, 
       emit needFocus();
    if ( !it )
       return ;
-   if ( dynamic_cast<KrViewItem*>( it ) ->
+   if ( static_cast<KrDetailedViewItem*>( it ) ->
          name() == ".." )
       return ;
    int i = KrSelectionMode::getSelectionHandler()->showContextMenu();
@@ -779,7 +781,7 @@ void KrDetailedView::startDrag() {
 }
 
 KrViewItem *KrDetailedView::getKrViewItemAt( const QPoint & vp ) {
-   return dynamic_cast<KrViewItem*>( KListView::itemAt( vp ) );
+   return static_cast<KrDetailedViewItem*>( KListView::itemAt( vp ) );
 }
 
 bool KrDetailedView::acceptDrag( QDropEvent* ) const {
@@ -788,7 +790,7 @@ bool KrDetailedView::acceptDrag( QDropEvent* ) const {
 
 void KrDetailedView::contentsDropEvent( QDropEvent * e ) {
    /*  if (_currDragItem)
-       dynamic_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));*/
+       static_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));*/
    e->setPoint( contentsToViewport( e->pos() ) );
    emit gotDrop( e );
    e->ignore();
@@ -799,7 +801,7 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
    /*  KrViewItem *i=getKrViewItemAt(contentsToViewport(e->pos()));
      // reset the last used icon
      if (_currDragItem != i && _currDragItem)
-       dynamic_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));
+       static_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));
      if (!i) {
        e->acceptAction();
        _currDragItem = 0L;
@@ -814,7 +816,7 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
        return;
      }
      if (i->isDir()) {
-       dynamic_cast<KListViewItem*>(i)->setPixmap(column(Name),FL_LOADICON("folder_open"));
+       static_cast<KListViewItem*>(i)->setPixmap(column(Name),FL_LOADICON("folder_open"));
        _currDragItem = i;
        KListView::contentsDragMoveEvent(e);
      }*/
@@ -978,7 +980,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             return ; 
          }
          case Key_Space : {
-            KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
+            KrDetailedViewItem * viewItem = static_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
             if ( !viewItem || viewItem->name() == ".." ) { // wrong type, just mark(unmark it)
                if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
                   KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
@@ -1066,9 +1068,10 @@ void KrDetailedView::rename( QListViewItem * item, int c ) {
    // do we have an EXT column? if so, handle differently:
    // copy the contents of the EXT column over to the name
    if ( COLUMN( Extention ) != -1 ) {
-      item->setText( COLUMN( Name ), dynamic_cast<KrViewItem*>( item ) ->name() );
+      item->setText( COLUMN( Name ), static_cast<KrDetailedViewItem*>( item ) ->name() );
       item->setText( COLUMN( Extention ), QString::null );
       repaintItem( item );
+      currentlyRenamedItem = item;
    }
 
    renameLineEdit()->setBackgroundMode(Qt::FixedColor);
@@ -1082,7 +1085,7 @@ void KrDetailedView::renameCurrentItem() {
    int c;
    QString newName, fileName;
 
-   KrViewItem *it = getCurrentKrViewItem();
+   KrDetailedViewItem *it = static_cast<KrDetailedViewItem*>(getCurrentKrViewItem());
    if ( it )
       fileName = it->name();
    else
@@ -1099,7 +1102,7 @@ void KrDetailedView::renameCurrentItem() {
       c = -1; // failsafe
 
    if ( c >= 0 ) {
-      rename( dynamic_cast<QListViewItem*>( it ), c );
+      rename( static_cast<QListViewItem*>( it ), c );
       // signal will be emited when renaming is done, and finalization
       // will occur in inplaceRenameFinished()
    } else { // do this in case inplace renaming is disabled
@@ -1119,16 +1122,20 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       krOut << "Major failure at inplaceRenameFinished(): item is null" << endl;
       return;
    }
+   
+   if( COLUMN( Extention ) != -1 && !currentlyRenamedItem )
+     return; /* does the event filter restored the original state? */
+   
    // check if the item was indeed renamed
    bool restoreView = false;
-   if ( it->text( COLUMN( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() ) { // was renamed
-      emit renameItem( dynamic_cast<KrDetailedViewItem*>( it ) ->name(), it->text( COLUMN( Name ) ) );
+   if ( it->text( COLUMN( Name ) ) != static_cast<KrDetailedViewItem*>( it ) ->name() ) { // was renamed
+      emit renameItem( static_cast<KrDetailedViewItem*>( it ) ->name(), it->text( COLUMN( Name ) ) );
    } else restoreView = true;
 
    if ( COLUMN( Extention ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
       int i;
-      QString ext, name = dynamic_cast<KrDetailedViewItem*>( it ) ->name();
-      if ( !dynamic_cast<KrDetailedViewItem*>( it ) ->isDir() )
+      QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
+      if ( !static_cast<KrDetailedViewItem*>( it ) ->isDir() )
          if ( ( i = name.findRev( '.' ) ) > 0 ) {
             ext = name.mid( i + 1 );
             name = name.mid( 0, i );
@@ -1138,6 +1145,8 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       repaintItem( it );
    }
    setFocus();
+   
+   currentlyRenamedItem = 0;
 }
 
 void KrDetailedView::quickSearch( const QString & str, int direction ) {
@@ -1180,7 +1189,7 @@ void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
 //}
 
 void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
-   KrView::setNameToMakeCurrent( dynamic_cast<KrViewItem*>( it ) ->name() );
+   KrView::setNameToMakeCurrent( static_cast<KrDetailedViewItem*>( it ) ->name() );
 }
 
 void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const QPoint&, int ) {
@@ -1193,7 +1202,7 @@ void KrDetailedView::refreshColors() {
       // KDE deafult is not choosen: set the background color (as this paints the empty areas) and the alternate color
       bool isActive = hasFocus();
       if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
-         isActive = ( dynamic_cast<KrView *>( this ) == ACTIVE_PANEL->view );
+         isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
       QColor color = KrColorCache::getColorCache().getBackgroundColor( isActive );
       setPaletteBackgroundColor( color );
       color = KrColorCache::getColorCache().getAlternateBackgroundColor( isActive );
@@ -1221,9 +1230,43 @@ bool KrDetailedView::event( QEvent *e ) {
    return KListView::event( e );
 }
 
+bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
+{
+  if( currentlyRenamedItem && watched == renameLineEdit() )
+  {
+    if( e->type() == QEvent::Hide )
+    {
+      for( QListViewItem *it = firstChild(); it; it = it->nextSibling() )
+        if( it == currentlyRenamedItem )
+        {
+          if ( it->text( COLUMN( Name ) ) == static_cast<KrDetailedViewItem*>( it ) ->name()  && COLUMN( Extention ) != -1 ) 
+          {
+            int i;
+            QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
+            if ( !static_cast<KrDetailedViewItem*>( it ) ->isDir() )
+              if ( ( i = name.findRev( '.' ) ) > 0 ) {
+                ext = name.mid( i + 1 );
+                name = name.mid( 0, i );
+              }
+                
+            it->setText( COLUMN( Name ), name );
+            it->setText( COLUMN( Extention ), ext );
+            repaintItem( it );
+            
+            currentlyRenamedItem = 0;
+            setFocus();
+          }
+          break;
+        }
+    }
+    return FALSE;
+  }
+  return KListView::eventFilter( watched, e );
+}
+
 void KrDetailedView::makeItemVisible( const KrViewItem *item ) {
 	qApp->processEvents();
-	ensureItemVisible( dynamic_cast<const QListViewItem*>( item ) ); 
+	ensureItemVisible( static_cast<const KrDetailedViewItem*>( item ) ); 
 }
 
 void KrDetailedView::initProperties() {

@@ -123,6 +123,7 @@ protected:
    virtual void contentsDragMoveEvent( QDragMoveEvent *e );
    virtual void startDrag();
    virtual bool event( QEvent *e );
+   virtual bool eventFilter( QObject * watched, QEvent * e );
 	virtual void initProperties();
 
 protected slots:
@@ -169,6 +170,8 @@ private:
    QTimer contextMenuTimer;
    QPoint contextMenuPoint;
 	QDict<KrDetailedViewItem> dict;
+        
+   QListViewItem *currentlyRenamedItem;
 };
 
 #endif /* KRDETAILEDVIEW_H */
