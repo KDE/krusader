@@ -77,9 +77,9 @@ bool normal_vfs::vfs_refresh(QString origin){
 	}
 	//watcher.clearList();
 
-	// set the writable attribute
-	if( getgid()==0 ) isWritable = true;
-	else isWritable = KRpermHandler::fileWriteable(origin);
+	// set the writable attribute to true, if that's not the case - the KIO job
+  // will give the warnings and errors
+	isWritable = true;
 	
  	krConfig->setGroup("Look&Feel");
 	bool hidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
@@ -94,6 +94,9 @@ bool normal_vfs::vfs_refresh(QString origin){
 	DIR* dir = opendir(origin.local8Bit());
   if(!dir) return false;
 
+  // change directory to the new directory
+  chdir(origin);
+  
 	if (!quietMode) emit startUpdate();
 	
 	struct dirent* dirEnt;
