@@ -355,7 +355,7 @@ void KRslots::multiRename(){
 	QStringList lst = Krusader::supportedTools();
 	int i = lst.findIndex("RENAME");
 	if (i == -1){
-  	KMessageBox::sorry(krApp,i18n("Can't find a batch renamer tool.\nYou can get Krename at http://krename.sf.net"));
+  	KMessageBox::sorry(krApp,i18n("Can't find a batch renamer tool.\nYou can get Krename at http://www.krename.net"));
   	return;
 	}
 	QString pathToRename = lst[i+1];
@@ -404,7 +404,7 @@ void KRslots::configKeys(){
 // misc
 void KRslots::changeTrashIcon(){
 	// update trash bin icon - this is "stolen" konqi code
-	// Copyright (C) 2000  David Faure <faure@kde.org>
+	// Copyright (C) 2000  David Faure <faure@kde.org>
 	KURL trash;
 	trash.setPath(KGlobalSettings::trashPath());
 	KURL::List lst;
