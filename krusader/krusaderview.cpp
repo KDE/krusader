@@ -44,7 +44,7 @@
 #include <klibloader.h> //<>
 #include "GUI/profilemanager.h"
 
-KrusaderView::KrusaderView( QWidget *parent, const char *name ) : QWidget( parent, name ), activePanel(0), 
+KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" ), activePanel(0), 
 								konsole_part( 0L ) {}
 
 void KrusaderView::start( QString leftPath, QString rightPath ) {
