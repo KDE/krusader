@@ -9,13 +9,19 @@
 ======================
     ADDED: Introducing extention column
     ADDED: Italian translation (thanks to Giuseppe Bordoni)
+    ADDED: Preview to the right-click menu.
 
     FIXED: minimize to tray didn't behave correctly
     FIXED: crash when mounting failed (no cdrom in drive)
     FIXED: icon too big when minimized to tray
     FIXED: origin bar now accepts local urls (file:/) gracefully
     FIXED: origin bug, which caused the focus to go to the panel too soon.
-		FIXED: right click menu in mountman (thanx to Heiner).
+    FIXED: right click menu in mountman (thanx to Heiner).
+    FIXED: new 'admin' folder (support automake 1.7).
+    FIXED: ESC key close the viewer.
+    FIXED: crash when trying to open non-existing directory.
+    FIXED: directory sorting.
+    FIXED:
 
     TODO: automark directories won't work in 1.12!!!
     TODO: can we add a krProgress to normal-vfs refreshes ?
