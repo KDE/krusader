@@ -431,8 +431,11 @@ void KrDetailedView::setSortMode( KrViewProperties::SortSpec mode ) {
    if ( mode & KrViewProperties::Name )
       cl = COLUMN( Name );
    else
+	if ( mode & KrViewProperties::Ext )
+      cl = COLUMN( Extention );
+	else
       if ( mode & KrViewProperties::Size )
-         cl = COLUMN( Extention );
+         cl = COLUMN( Size );
       else
          if ( mode & KrViewProperties::Type )
             cl = COLUMN( Mime );
