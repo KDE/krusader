@@ -1,26 +1,25 @@
-Krusader 1.29-beta
-==================
-We're glad to release 1.29-beta. Hopefully, the last beta before
-releasing stable 1.30. This release introduces a lot of bugfixes,
-but some new (and may we say exciting ?) features:
+Krusader 1.30 - Stable
+==============
+Stable is finally here. Follows is a list of changes of MAJOR changes from the
+latest stable (which was 1.20 actually):
+* Creating new files with SHIFT+F4
+* Tabbed - browsing! (try to click the middle mouse button on a folder, or right-click on it)
+* a new view dialog, click SHIFT-F3 
+* Panel swapping by Ctrl+U
+* Right click menu, can now "open" multiple files (if they have the same mimetype)
+* Updates to the search module
+* A new command line widget, with many tweaks (try ctrl+enter, ctrl+shift+enter, ctrl+/)
+* Fixed: run-in-terminal would cause the terminal to close prematuraly and results would be lost.
+* A new bookmark system is here! courtasy of Jan Halasa
+* In-place renaming (thanks to Heiner Eichmann)
+* New KIO slaves to handle archives.
+* Support for multi-file properties.
+* Krusader now obeys KDE's date time format
+* FreeBSD compatability in KrARC (thanks to Heiner Eichmann)
+* Fixed many i18n issues - thanks to Frank Schoolmeesters
+* Fixed the panel flicker patch (thanks to Gabor Takacs for the patch)
 
-* Tabbed-Browsing.
-  Check out right-click on a directory --> open in a new tab ;-)
-* ROOT-mode: press ALT-K (or Commands->Root-mode krusader) to start krusader in root-mode at the same location
-* Shift-F4 edits a new file (total-commander style)
-* Shift-F3 views a url on demand - try man:/printf
-* CTRL-Enter / CTRL-shift-Enter sends files to command line (again, TC-style)
-* Highly request panel swapping (ctrl-u)
-* Improved command line (check ChangeLog for details)
-* Multiple files sharing a mimetype can be "open"ed together via right-click menu
-* Calculate-occupied-space can now be cancelled
-* Pressing SPACE over folders calculates their size (TC-style)
-* Last but certainly not least, improvements to archive handling, including KIO-rar support
-* Many bugfixes... read ChangeLog
-
-This version effects a feature-freeze until the stable, only bugs will be fixed. This means
-that translators can use the time to update their translations, for the comming stable.
-
+Also, all translations have been updates many times...
 
 Notice: if you've got bugs to report, please do it using krusader's website, and
         not using KDE's bugzilla (bugs.kde.org).

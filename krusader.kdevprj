@@ -23,10 +23,10 @@ cflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cppflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cxxflags=\s-O0 -Wall
 ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                                   \s
+ldflags=\s                                    \s
 
 [General]
-AMChanged=true
+AMChanged=false
 author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
@@ -39,7 +39,7 @@ project_name=Krusader
 project_type=mini_kde2
 short_info=
 sub_dir=krusader/
-version=1.29-beta2
+version=1.30
 version_control=None
 workspace=1
 
@@ -154,7 +154,7 @@ install_location=$$(mandir)/man1/krusader.1
 type=DATA
 
 [doc/pics/Makefile.am]
-files=doc/pics/bookmanadd.png,doc/pics/bookmanedit.png,doc/pics/bookmanuse.png,doc/pics/cmdline.png,doc/pics/fnkeys.png,doc/pics/kgadvanced.png,doc/pics/kgarchives.png,doc/pics/kggeneral.png,doc/pics/kglookfeel.png,doc/pics/kgstartup.png,doc/pics/krusader1.png,doc/pics/listpanel.png,doc/pics/mainwindow.png,doc/pics/mountman.png,doc/pics/remoteman.png,doc/pics/search_advanced.png,doc/pics/search_general.png,doc/pics/terminalEmu.png,doc/pics/toolbar.png
+files=doc/pics/bookmanadd.png,doc/pics/bookmanedit.png,doc/pics/cmdline.png,doc/pics/fnkeys.png,doc/pics/kgadvanced.png,doc/pics/kgarchives.png,doc/pics/kggeneral.png,doc/pics/kglookfeel.png,doc/pics/kgstartup.png,doc/pics/krusader1.png,doc/pics/listpanel.png,doc/pics/mainwindow.png,doc/pics/mountman.png,doc/pics/remoteman.png,doc/pics/search_advanced.png,doc/pics/search_general.png,doc/pics/terminalEmu.png,doc/pics/toolbar.png,doc/pics/tabbed_browsing.png,doc/pics/krusader_title.png
 sub_dirs=
 type=normal
 
@@ -168,12 +168,6 @@ type=DATA
 dist=true
 install=true
 install_location=$$(kde_htmldir)/en/krusader/bookmanedit.png
-type=DATA
-
-[doc/pics/bookmanuse.png]
-dist=true
-install=true
-install_location=$$(kde_htmldir)/en/krusader/bookmanuse.png
 type=DATA
 
 [doc/pics/cmdline.png]
@@ -224,6 +218,12 @@ install=true
 install_location=$$(kde_htmldir)/en/krusader/krusader1.png
 type=DATA
 
+[doc/pics/krusader_title.png]
+dist=true
+install=false
+install_location=
+type=DATA
+
 [doc/pics/listpanel.png]
 dist=true
 install=true
@@ -258,6 +258,12 @@ type=DATA
 dist=true
 install=true
 install_location=$$(kde_htmldir)/en/krusader/search_general.png
+type=DATA
+
+[doc/pics/tabbed_browsing.png]
+dist=true
+install=false
+install_location=
 type=DATA
 
 [doc/pics/terminalEmu.png]
