@@ -1,7 +1,7 @@
 ####### kdevelop will overwrite this part!!! (begin)##########
 
 
-EXTRA_DIST = commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml 
+EXTRA_DIST = index.docbook commands.docbook credits.docbook faq.docbook installation.docbook introduction.docbook konfigurator.docbook krusader-tools.docbook using-krusader.docbook 
 
 ####### kdevelop will overwrite this part!!! (end)############
 
