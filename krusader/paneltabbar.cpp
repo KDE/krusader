@@ -75,7 +75,7 @@ int PanelTabBar::addPanel(ListPanel *panel) {
 
   // make sure all tabs lengths are correct
   for (int i=0; i<count(); i++)
-    tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath));
+    tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath, i));
   layoutTabs();
   setCurrentTab(newId);
 
@@ -97,7 +97,7 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
   removeTab(tab(id));
 
   for (int i=0; i<count(); i++)
-    tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath));
+    tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath, i));
   layoutTabs();
 
   // setup current one
@@ -116,7 +116,7 @@ void PanelTabBar::updateTab(ListPanel *panel) {
   // find which is the correct tab
   for (int i=0; i<count(); i++) {
     if (dynamic_cast<PanelTab*>(tabAt(i))->panel == panel) {
-      tabAt(i)->setText(squeeze(panel->virtualPath));
+      tabAt(i)->setText(squeeze(panel->virtualPath,i));
       break;
     }
   }
@@ -131,7 +131,7 @@ void PanelTabBar::closeTab() {
   emit closeCurrentTab();
 }
 
-QString PanelTabBar::squeeze(QString text) {
+QString PanelTabBar::squeeze(QString text, int index) {
   QFontMetrics fm(fontMetrics());
 
   // set the real max length
@@ -172,6 +172,9 @@ QString PanelTabBar::squeeze(QString text) {
         } while (letters && squeezedWidth > labelWidth);
     }
 
+    if( index >= 0 )
+      setToolTip( tabAt(index)->identifier(), text );
+
     if (letters < 5) {
     	// too few letters added -> we give up squeezing
       //return text;
@@ -179,14 +182,11 @@ QString PanelTabBar::squeeze(QString text) {
     } else {
 	    return squeezedText;
     }
-
-    QToolTip::add( this, text );
-
   } else {
+    if( index >= 0 )
+      removeToolTip( tabAt(index)->identifier() );
+      
     return text;
-
-    QToolTip::remove( this );
-    QToolTip::hide();
   };
 }
 

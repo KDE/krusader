@@ -80,7 +80,7 @@ signals:
 protected:
   void mousePressEvent( QMouseEvent* );
   void insertAction( KAction* );
-  QString squeeze(QString text);
+  QString squeeze(QString text, int index=-1);
   virtual void dragEnterEvent(QDragEnterEvent *);
   virtual void dragMoveEvent(QDragMoveEvent *);
 
