@@ -1124,12 +1124,14 @@ void ListPanel::slotItemUpdated(vfile *vf) {
 	view->updateItem(vf);
 }
 
-void ListPanel::showEvent( QShowEvent * ) {
+void ListPanel::showEvent( QShowEvent *e ) {
   panelActive();
+  QWidget::showEvent(e);
 }
 
-void ListPanel::hideEvent( QHideEvent * ) {
+void ListPanel::hideEvent( QHideEvent *e ) {
   panelInactive();
+  QWidget::hideEvent(e);
 }
 
 void ListPanel::panelActive() {
