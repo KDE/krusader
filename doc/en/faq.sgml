@@ -172,9 +172,11 @@
    <para>I can't find a RPM or DEB package for &krusader;, What now?</para>
    </question>
    <answer>
-   <para>Compile &krusader; from source :)
+   <para>
+   Dit you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and noting found?
+   Then you will have to compile &krusader; from source :)
    Even when you think that you have no skills, you will probably succeed in compiling &krusader;!
-   We provide a verry detailled &install_proc_lnk;. This will allow that even newcomers will be able
+   We provide a verry detailled &install_proc_lnk;. This howto allows that even newcomers will be able
    to compile &krusader; from source, even when you dit never before a compilation from source.
    Feel free to post a &help_request_lnk; if you encounter problems.
    </para>
@@ -242,7 +244,7 @@
 	<filename>libfam.la</filename>, and <command>make</command> needs <filename>libfam.la</filename>
 	to compile &krusader;. If you know how this can be solved, please let us know.
 	Install <filename>libfam0-devel-foo.rpm</filename>.
-	Note: when you install <application>Mandrake 9.1</application> with the default settings, this
+	Note: when you install &Mandrake;-&Linux; 9.2 with the default settings, this
 	package is not installed.
 	If you need more information take a look at &missing_libs_lnk;.
    </para>
@@ -445,7 +447,7 @@
   </question>
   <answer>
   <para>You are probably behind a firewall/proxy and haven't enabled "Passive Mode".
-      Enable "Passive &FTP;" through &kde;'s <application>Control Center</application> and try again.
+      Enable "Passive &FTP;" through &kde;'s &kcontrolcenter; and try again.
       <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
       <guimenuitem>Network</guimenuitem><guimenuitem>Preferences</guimenuitem></menuchoice></emphasis> ,
       <guilabel>Enable Passive Mode (PASV)</guilabel> has to be checked.
@@ -462,7 +464,7 @@
   </question>
   <answer>
   <para>The reason of this error is that '&FTP; via &HTTP; proxy' feature is not yet supported by &krusader;.
-        This error can occur at misconfiguring the proxy settings in &kde; (Control Center).
+        This error can occur at misconfiguring the proxy settings in &kcontrolcenter;.
         Modify the proxy setting to not use &HTTP; proxy and &FTP; will work.
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
@@ -519,9 +521,12 @@
     </para></listitem>
     </orderedlist></para>
     <para>Thanks for your cooperation!</para>
-    <note><para>If possible try todo the same operation with &konqueror;, if you have the same problem than it is
-    probably a &kioslave_url; (kdelibs) bug, and not a &krusader; bug.
-    &krusader; uses the &kde; libraries and the &kioslaves_url; for several operations.
+    <note><para>If possible, try todo the same operation with &konqueror; or an other &kde; application.
+    If you encounter the same problem than it is possibly a &kioslave_url; or &kde; (kdelibs) bug,
+    and not a &krusader; bug.
+    &krusader; uses the &kde; libraries and the &kioslaves_url; for many operations.
+    In some cases you can encounter problems when your distribution is bad configured, please test it first
+    as explained above, thanks!
     </para></note>
     <para> </para> <!-- Empty line to make it more readable -->
     <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla http://bugs.kde.org/,

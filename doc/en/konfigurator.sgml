@@ -114,6 +114,14 @@ into pages, each containing items related to that page. For some changes to the 
 
 <sect1 id="konfig-looknfeel">
 <title>Look &amp; Feel page</title>
+
+<para>Here you can determine the look &amp; feel of things - which basically means fine-tuning the
+      application to your needs. The page is divided into five tabs: <guilabel>Operation</guilabel>,
+      <guilabel>Panel</guilabel>, <guilabel>Toolbar</guilabel>, <guilabel>Key-bindings</guilabel> and
+      <guilabel>Panel Toolbar</guilabel>. Since <guilabel>Toolbar</guilabel>
+       and <guilabel>Key-bindings</guilabel> are &kde; standard tools we'll focus on
+       the other sections:</para>
+
 <screenshot>
 	<screeninfo>Konfigurator Look &amp; Feel page</screeninfo>
 	<mediaobject>
@@ -123,14 +131,6 @@ into pages, each containing items related to that page. For some changes to the 
 	<caption><para>Konfigurator Look &amp; Feel page.</para></caption>
 	</mediaobject>
 </screenshot>
-
-
-<para>Here you can determine the look &amp; feel of things - which basically means fine-tuning the
-       application to your needs. The page is divided into three tabs: <guilabel>General</guilabel>,
-       <guilabel>Toolbar</guilabel> and <guilabel>Key-bindings</guilabel>. Since <guilabel>Toolbar</guilabel>
-       and <guilabel>Key-bindings</guilabel> are &kde;'s standard toolbar and keyboard editor, we'll focus on
-       the <guilabel>General</guilabel> section:</para>
-
 
 <sect2 id="konfig-looknfeel-operation">
 <title>Operation</title>
@@ -148,7 +148,7 @@ into pages, each containing items related to that page. For some changes to the 
 		   using Select Group or by using Select All), &krusader; will check this option. If it is checked,
 		   than directories matching the select criteria will also be marked. Otherwise, only files will be
 		   marked.</para></listitem>
-	<listitem><para><guilabel>"Case sensitive sorting"</guilabel>: if checked (the Unix default), all
+	<listitem><para><guilabel>"Case sensitive sorting"</guilabel>: if checked (the &UNIX; default), all
 		   files beginning with capital letters appear before files beginning with non-capital letters,
 		   otherwise, all files beginning with a specified letter (capital or otherwise) will appear
 		   together.</para></listitem>
@@ -157,7 +157,7 @@ into pages, each containing items related to that page. For some changes to the 
 	<listitem><para><guilabel>"New style quicksearch"</guilabel>: The new
 	           <link linkend="quicksearch">Quicksearch</link> feature is used.</para></listitem>
 	<listitem><para><guilabel>"Case sensitive quicksearch"</guilabel>: When using the
-	           <link linkend="quicksearch">Quicksearch</link> feature: if checked (the Unix default), all
+	           <link linkend="quicksearch">Quicksearch</link> feature: if checked (the &UNIX; default), all
 		   files beginning with capital letters appear before files beginning with non-capital letters,
 		   otherwise, all files beginning with a specified letter (capital or otherwise) will appear
 		   together.</para></listitem>
@@ -176,19 +176,19 @@ into pages, each containing items related to that page. For some changes to the 
 			<itemizedlist>
 			<listitem><para><guilabel>Classic</guilabel>: the way &krusader; used to work from day one.
 			   Both keys allow selecting files. To select more than one file, hold the
-			   &Ctrl; key and click the <keycap>left</keycap> mouse button. Right-click
-			   menu is invoked using a short click on the <keycap>right</keycap> mouse
-			   button.</para></listitem>
+			   &Ctrl; key and click the &LMB;. Right-click
+			   menu is invoked using a short click on the &RMB;.
+                           </para></listitem>
 	<listitem><para><guilabel>"Left mouse button selects":</guilabel> this way, pressing the
-			<keycap>left</keycap> mouse button selects files - you can click and select multiple files.
-			   Right-click menu is invoked using a short click on the <keycap>right</keycap> mouse
-			   button.</para></listitem>
+			   &LMB; selects files - you can click and select multiple files.
+			   Right-click menu is invoked using a short click on the &RMB;.
+			   </para></listitem>
 	<listitem><para><guilabel>"Right button selects"</guilabel>: this way (sometimes referred to as
-			   'total (windows) commander style') the <keycap>left</keycap> mouse button does not select,
+			   'total (windows) commander style') the &LMB; does not select,
 			   but sets the current file without affecting the current selection. The
-			   <keycap>right</keycap> mouse button selects multiple files and the right-click menu is
-			   invoked by <guilabel>pressing and holding</guilabel> the <keycap>right</keycap> mouse
-			   button.</para></listitem>
+			   &RMB; selects multiple files and the right-click menu is
+			   invoked by <guilabel>pressing and holding</guilabel> the &RMB;.
+			   </para></listitem>
 			</itemizedlist>
 		</para></listitem>
 </itemizedlist>
@@ -202,16 +202,15 @@ into pages, each containing items related to that page. For some changes to the 
 	<listitem><para><guilabel>"Panel font"</guilabel>: allows you to change the font used inside the file
 		   lists.</para></listitem>
 	<listitem><para><guilabel>"Filelist icon size"</guilabel>: allows you to change the size of the icons in
-		   the file lists. available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
+		   the file lists. The available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
 	<listitem><para><guilabel>"Extension Column"</guilabel>: if checked,
 	                  show the extension field (part after the last dot of the filename).</para></listitem>
 	<listitem><para><guilabel>"Permission Column"</guilabel>: if checked,
-	                  show the full perissions field.</para></listitem>
+	                  show the full perissions &eg; "-rw-r--r--".</para></listitem>
 	<listitem><para><guilabel>"Mimetype Column"</guilabel>: if checked,
 	                  show the mimetype field.</para></listitem>
 	<listitem><para><guilabel>"&krusader; Permission Column"</guilabel>: if checked,
-	                  show the &krusader; permission field
-			  (only the rights of the current user).</para></listitem>
+	                  show only the rights of the current user &eg; "-rw".</para></listitem>
 	<listitem><para><guilabel>"Size Column"</guilabel>: if checked,
 	                  show the size field.</para></listitem>
 	<listitem><para><guilabel>"Owner Column"</guilabel>: if checked,
@@ -221,8 +220,12 @@ into pages, each containing items related to that page. For some changes to the 
 	<listitem><para><guilabel>"Group Column"</guilabel>: if checked,
 	                  show the group field.</para></listitem>
 	<listitem><para><guilabel>"Use icons in filenames"</guilabel>: if checked,
-	                  show the icons in filenames.</para></listitem>
+	                  show the icons in filenames and folders.</para></listitem>
 </itemizedlist>
+
+<tip><para>Uncheck the not used columns, this allows to have more space for the used columns.
+     </para></tip>
+
 </sect2>
 
 
@@ -236,7 +239,7 @@ into pages, each containing items related to that page. For some changes to the 
 
 <sect2 id="konfig-looknfeel-keybindings">
 <title>Key-bindings</title>
-<para>Here you can configure the Key-bindings. Configure the Key-bindings
+<para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
 	        of your favourite functions the way you want.</para>
 </sect2>
 
@@ -245,17 +248,17 @@ into pages, each containing items related to that page. For some changes to the 
 <title>Panel Toolbar</title>
 <para><guilabel>"Panel Toolbar visible"</guilabel>: if checked, &krusader; will display the Panel Toolbar.</para>
 
-<para>Panel Toolbar buttons can be made visible/hidden
+<para>The buttons on the <guilabel>Panel Toolbar</guilabel> can be made visible or hidden:
 <itemizedlist>
-	<listitem><para><guilabel>"Open"</guilabel> button (in)visible</para>
+	<listitem><para><guilabel>"Open"</guilabel> button</para>
 	           </listitem>
-	<listitem><para><guilabel>"Equal (=)"</guilabel> button (in)visible</para>
+	<listitem><para><guilabel>"Equal (=)"</guilabel> button</para>
 	           </listitem>
-	<listitem><para><guilabel>"Up (..)"</guilabel> button (in)visible</para>
+	<listitem><para><guilabel>"Up (..)"</guilabel> button</para>
 	           </listitem>
-	<listitem><para><guilabel>"Home (~)"</guilabel> button (in)visible</para>
+	<listitem><para><guilabel>"Home (~)"</guilabel> button</para>
 	           </listitem>
-	<listitem><para><guilabel>"Root (/)"</guilabel> button (in)visible</para>
+	<listitem><para><guilabel>"Root (/)"</guilabel> button</para>
 	           </listitem>
 </itemizedlist>
 </para>
@@ -268,52 +271,58 @@ into pages, each containing items related to that page. For some changes to the 
 <sect1 id="konfig-color">
 <title>Colors page</title>
 
-<para>This page configures the <link linkend="krusader_screenshot">colors</link> in the list panel.</para>
+<para>This page configures the <link linkend="krusader_screenshot">colors</link> in the list panel.
+      The <guilabel>"KDE default colors"</guilabel> is the default color configuration,
+      <guilabel>"Use alternate background color"</guilabel> checkbox will enable/disable the alternate &kde; colors.
+      </para>
+
+<!--HTML_PARSING
+<screenshot>
+	<screeninfo>Konfigurator color page</screeninfo>
+	<mediaobject>
+	<imageobject><imagedata fileref="kgcolor.png" format="PNG"/></imageobject>
+	<imageobject><imagedata fileref="kgcolor.eps" format="EPS"/></imageobject>
+	<textobject><phrase>Konfigurator color page</phrase></textobject>
+	<caption><para>Konfigurator color page.</para></caption>
+	</mediaobject>
+</screenshot>
+HTML_PARSING-->
 
 <variablelist>
  <varlistentry><term><guilabel>General</guilabel></term>
   <listitem>
   <itemizedlist>
-	<listitem><para><guilabel>"Use the KDE default colors"</guilabel>:
-	                   this is the default color configuration of &krusader;.</para>
-		    </listitem>
 	<listitem><para><guilabel>"Use alternate background color"</guilabel>:
 	                   If checked, the <guilabel>"Background"</guilabel> color and the
 	                   <guilabel>"Alternate background"</guilabel> color alternates line by line.
-			   </para>
+                           When you don't use the &kde; default colors, you can configure the
+                           alternate colors in the <guilabel>Colors</guilabel> box.</para>
 		    </listitem>
 	<listitem><para><guilabel>"Show current item even if not focused"</guilabel>:
-	                  If checked, show the latest cursor position in the non active list panel.</para>
+	                  If checked, show the latest cursor position in the non active list panel. 
+			  This option is available when you don't use the &kde; default colors.</para>
 		    </listitem>
   </itemizedlist>
   </listitem>
  </varlistentry>
 
  <varlistentry><term><guilabel>Colors</guilabel></term>
-  <listitem><para>Configures the colors the way you like,
-	     if <guilabel>"Use the KDE default colors"</guilabel> is unchecked.</para>
+  <listitem><para>Chose the colors the way you like. In the <guilabel>"Preview"</guilabel> section you can
+  see the result. The colors of the active and inactive panel can be configured. The following items can
+  be configured</para>
   <itemizedlist>
-         <listitem><para><guilabel>"Active"</guilabel> tab: color settings for the active panel
-	                              (the panel who has the focus).</para></listitem>
-         <listitem><para><guilabel>"Inactive"</guilabel> tab: color settings for the inactive panel
-	                              (the panel who does not have the focus).</para></listitem>
-	<listitem><para><guilabel>"Foreground"</guilabel>: general foreground color.</para></listitem>
-	<listitem><para><guilabel>"Directory foreground"</guilabel>: directory color.</para></listitem>
-	<listitem><para><guilabel>"Executable foreground"</guilabel>: executable color.</para></listitem>
-	<listitem><para><guilabel>"Symbolic link foreground"</guilabel>: symbolic link color.</para></listitem>
-	<listitem><para><guilabel>"Invalid symlink foreground"</guilabel>:
-	                              invalid symlink color.</para></listitem>
-	<listitem><para><guilabel>"Background"</guilabel>: general background color.</para></listitem>
-	<listitem><para><guilabel>"Alternate background"</guilabel>:
-	                              general alternate background color.</para></listitem>
-	<listitem><para><guilabel>"Marked foreground"</guilabel>: marked color.</para></listitem>
-	<listitem><para><guilabel>"Marked background"</guilabel>: marked background color.</para></listitem>
-	<listitem><para><guilabel>"Alternate marked background"</guilabel>:
-	                              alternate marked background color.</para></listitem>
-	<listitem><para><guilabel>"Current foreground"</guilabel>:
-	                              cursor position foreground color in the active list panel.</para></listitem>
-	<listitem><para><guilabel>"Current background"</guilabel>:
-	                              cursor position background color in the active list panel.</para></listitem>
+        <listitem><para><guilabel>Foreground</guilabel></para></listitem>
+	<listitem><para><guilabel>Directory foreground</guilabel></para></listitem>
+	<listitem><para><guilabel>Executable foreground</guilabel></para></listitem>
+	<listitem><para><guilabel>Symbolic link foreground</guilabel></para></listitem>
+	<listitem><para><guilabel>Invalid symlink foreground</guilabel></para></listitem>
+	<listitem><para><guilabel>Background"</guilabel></para></listitem>
+	<listitem><para><guilabel>Alternate background</guilabel></para></listitem>
+	<listitem><para><guilabel>Marked foreground</guilabel></para></listitem>
+	<listitem><para><guilabel>Marked background</guilabel></para></listitem>
+	<listitem><para><guilabel>Alternate marked background</guilabel></para></listitem>
+	<listitem><para><guilabel>Current foreground</guilabel></para></listitem>
+	<listitem><para><guilabel>Current background</guilabel></para></listitem>
   </itemizedlist>
   </listitem>
  </varlistentry>
@@ -328,6 +337,8 @@ into pages, each containing items related to that page. For some changes to the 
 
 <sect1 id="konfig-general">
 <title>General page</title>
+<para>Here you configure the basic operations.</para>
+
 <screenshot>
 	<screeninfo>Konfigurator General page</screeninfo>
 	<mediaobject>
@@ -367,6 +378,9 @@ into pages, each containing items related to that page. For some changes to the 
 
 <sect1 id="konfig-advanced">
 <title>Advanced page</title>
+<para>This page handles more advanced issues, so you should double-check what you do here, since modifying
+       things around here <remark>makes &krusader; a more powerful AND dangerous tool.</remark></para>
+
 <screenshot>
 	<screeninfo>Konfigurator Advanced page</screeninfo>
 	<mediaobject>
@@ -377,8 +391,6 @@ into pages, each containing items related to that page. For some changes to the 
 	</mediaobject>
 </screenshot>
 
-<para>This page handles more advanced issues, so you should double-check what you do here, since modifying
-       things around here <remark>makes &krusader; a more powerful AND dangerous tool.</remark></para>
 <para>The page is divided into three parts:</para>
 
 <variablelist>
@@ -399,9 +411,13 @@ into pages, each containing items related to that page. For some changes to the 
 
 <varlistentry><term><guilabel>Confirmations</guilabel></term>
 	<listitem><para>By checking the options in this section, you'll make &krusader; ask for confirmation
-	  	   before doing a specific action. Otherwise, the actions will be done without warning.</para>
-		   <para>These operations are: deleting non empty directorie(s), deleting file(s), copying file(s) and
-		   moving file(s).</para>
+	  	   before doing a specific action. Otherwise, the following actions will be done without warning.</para>
+                   <itemizedlist>
+                       <listitem><para>deleting non empty directorie(s)</para></listitem>
+		       <listitem><para>deleting file(s)</para></listitem>
+		       <listitem><para>copying file(s)</para></listitem>
+		       <listitem><para>moving file(s)</para></listitem>
+		   </itemizedlist>
 	</listitem></varlistentry>
 
 <varlistentry><term><guilabel>Fine-Tuning</guilabel></term>
@@ -411,8 +427,7 @@ into pages, each containing items related to that page. For some changes to the 
 		  icons and further speed operations, but the memory footprint of &krusader; will be
 		  bigger.</para></listitem>
 	<listitem><para><guilabel>"Arguments of updatedb"</guilabel>: sets additional arguments for
-	                  <command>updatedb</command>, please read
-			  <command>man updatedb</command>.</para></listitem>
+	                  <command>updatedb</command>, please read the manpages for more information.</para></listitem>
 	</itemizedlist>
 	</listitem></varlistentry>
 
@@ -421,6 +436,15 @@ into pages, each containing items related to that page. For some changes to the 
 
 <sect1 id="konfig-archives">
 <title>Archives page</title>
+<para>This page handles the way &krusader; works with archives. In the <guilabel>General</guilabel> section
+you'll see a list of archive formats. Some are checked and some are grayed-out. The ones that are available
+(not grayed-out) are supported by &krusader;. If  you check them, then &krusader; will handle them transparently
+and let you open them as folders. Otherwise, &krusader; will attempt to invoke an application which opens that
+type of archive. If a certain archive is grayed-out, it means that &krusader; couldn't find the appropriate
+executables in the configured path. Please configures the full path of the packagers in the
+<link linkend="konfig-dependencies">Konfigurator Dependencies page</link> (&eg; to handle ZIP archives, &krusader;
+needs the <command>unzip</command> and <command>zip</command> executables).</para>
+
 <screenshot>
 	<screeninfo>Konfigurator Archives page</screeninfo>
 	<mediaobject>
@@ -431,18 +455,13 @@ into pages, each containing items related to that page. For some changes to the 
 	</mediaobject>
 </screenshot>
 
-<para>This page handles the way &krusader; works with archives. In the <guilabel>General</guilabel> section
-you'll see a list of archive formats. Some are checked and some are grayed-out. The ones that are available
-(not grayed-out) are supported by &krusader;. If  you check them, then &krusader; will handle them transparently
-and let you open them as folders. Otherwise, &krusader; will attempt to invoke an application which opens that
-type of archive. If a certain archive is grayed-out, it means that &krusader; couldn't find the appropriate
-executables in the <envar>PATH</envar> (to handle ZIP archives, &krusader; needs 'unzip' and 'zip' executables).</para>
+<para>If you've installed a certain archive application (let's say <command>arj</command>) and want &krusader;
+to know about it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; will search for all
+supported executables and print a report listing the archive formats that can be handled. If all went well the
+new archive should be available and checked.</para>
 
-<para>If you've installed a certain archive application (let's say 'arj') and want &krusader; to know about
-it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; will search for all supported executables and print a report listing the archive formats that can be handled. If all went well the new archive should be available and checked.
-
-<note><para>Please install new archives to your <envar>PATH</envar> (&ie;: <filename>/usr/bin</filename> or
-             <filename>/usr/local/bin</filename> &etc;)</para></note></para>
+<note><para>Please install new packagers to your <envar>PATH</envar> (&ie;: <filename>/usr/bin</filename> or
+             <filename>/usr/local/bin</filename> &etc;)</para></note>
 
 <para><guilabel>Fine-Tuning</guilabel>
 	<itemizedlist>
@@ -451,7 +470,8 @@ it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; wi
 		  failure occurs during the process, the files that were moved might already be deleted, but not yet
 		  packed into the archive.
     <note><para> If such thing happens, the file(s) are NOT LOST. They were actually moved into a subfolder in the
-		&krusader;'s temp directory. You can search that directory and find your files, safe and sound.
+		&krusader;'s <link linkend="konfig-general">temp directory</link>.
+		You can search that directory and find your files, safe and sound.
 		</para></note></para></listitem>
 		<listitem><para><guilabel>"Test archives when finished packing"</guilabel>: this option automatically
 		   runs a test on a newly packed archive. It is safer, but takes longer.</para></listitem>

@@ -48,10 +48,14 @@ Previous used Docbook
 <!ENTITY viewcvs_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader">ViewCVS</ulink>'>
 <!ENTITY sfmirrors_url '<ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>'>
 <!ENTITY online_changelog_url 
-'<ulink url="http://krusader.sourceforge.net/text.php?note=cvs.changelog&amp;path=dev">online <filename>ChangeLog</filename></ulink>'>
-<!ENTITY online_docchangelog_url '<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/doc">online documentation <filename>ChangeLog</filename></ulink>'>
+'<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/ChangeLog?view=markup">online</ulink>'>
+<!ENTITY online_cvsnews_url 
+'<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/CVSNEWS?view=markup">online</ulink>'>
+<!ENTITY online_docchangelog_url '<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/doc/ChangeLog?view=markup">online</ulink>'>
 <!ENTITY i18nhowto_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389">Krusader translation howto</ulink>'>
 <!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/down.php">&krusader;  downloadpage</ulink>'>
+<!ENTITY deb_download_url '<ulink url="http://packages.debian.org/Krusader">here</ulink>'>
+<!ENTITY deb_overviewdownload_url '<ulink url="http://packages.qa.debian.org/k/krusader.html">here</ulink>'>
 <!ENTITY krunews_url '<ulink url="http://lists.sourceforge.net/lists/listinfo/krusader-news">&krusader;-news</ulink>'>
 <!ENTITY krunewsarch_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum=krusader-news">&krusader;-news Archives</ulink>'>
 <!ENTITY krulatestnews_url '<ulink url="http://krusader.sourceforge.net/news.php">latest news</ulink>'>
@@ -59,6 +63,7 @@ Previous used Docbook
 <!ENTITY krucommitsarch_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum=krusader-commits">&krusader; commits Archives</ulink>'>
 <!ENTITY online_todolist_url '<ulink url="http://sourceforge.net/tracker/?atid=560746&amp;group_id=6488&amp;func=browse">online todo list</ulink>'>
 <!ENTITY online_buglist_url '<ulink url="http://sourceforge.net/tracker/?atid=106488&amp;group_id=6488&amp;func=browse">online bug list</ulink>'>
+<!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/">more translator credits</ulink>'>
 
 <!ENTITY freshmeat_url '<ulink url="http://www.freshmeat.net">freshmeat.net</ulink>'>
 <!ENTITY rpmfind_url '<ulink url="http://www.rpmfind.net">rpmfind.net</ulink>'>
@@ -97,11 +102,11 @@ Previous used Docbook
 <!ENTITY tree_panel_lnk '<link linkend="tree_panel">Tree Panel</link>'>
 <!ENTITY qview_panel_lnk '<link linkend="qview_panel">Quick View Panel</link>'>
 <!ENTITY quick_search_lnk '<link linkend="quicksearch">Quick search</link>'>
-<!ENTITY locate_lnk '<link linkend="locate">Locate</link> GUI frontend'>
-<!ENTITY tabbrowse_lnk ' <link linkend="tabbrowsing">Tabbed Browsing</link>'>
-<!ENTITY mountman_lnk ' <link linkend="mount-man">MountMan</link>'>
-<!ENTITY cmdline_lnk ' <link linkend="cmdline">Command Line</link>'>
-<!ENTITY termemu_lnk ' <link linkend="cmdline">Terminal emulator</link>'>
+<!ENTITY locate_lnk '<link linkend="locate">Locate</link> &GUI; frontend'>
+<!ENTITY foldertabs_lnk '<link linkend="folder_tabs">Folder tabs</link>'>
+<!ENTITY mountman_lnk '<link linkend="mount-man">MountMan</link>'>
+<!ENTITY cmdline_lnk '<link linkend="cmdline">Command Line</link>'>
+<!ENTITY termemu_lnk '<link linkend="cmdline">Terminal emulator</link>'>
 <!ENTITY missing_libs_lnk '<link linkend="faqq_missing_libs">&FAQ; missing libs or headers</link>'>
 <!ENTITY install_proc_lnk '<link linkend="installation">installation procedure</link>'>
 <!ENTITY disablenote '<note><para>This feature is temporarily disabled and will be rewritten, sorry.</para></note>'>
@@ -119,15 +124,18 @@ Previous used Docbook
          installed on your computer, there is a possibility that you will have to update the
          <filename>krusaderui.rc</filename> file, click <link linkend="krusaderui_rc">here</link> for more info.</para>'>
 
+<!ENTITY gpl_lnk '<link linkend="credits">&GNU; General Public License (GPL)</link>'>
+
+
 <!-- other ENTITIES -->
 <!ENTITY keditbookmarks '<application>KeditBookmarks</application>'>
-<!ENTITY konqueror '<application>Konqueror</application>'>
 <!ENTITY mc '<application>Midnight Commander</application>'>
 <!ENTITY nc '<application>Norton Commander</application>'>
-<!ENTITY kompare '<application>Kompare</application>'>
 <!ENTITY xxdiff '<application>xxdiff</application>'>
-<!ENTITY konsole '<application>konsole</application>'>
 <!ENTITY krename '<application>Krename</application>'>
+<!ENTITY debian '<trademark class="registered">Debian</trademark>'>
+<!ENTITY feodora '<trademark class="registered">Feodora</trademark>'>
+<!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
 
 <!-- each chapter is in a separate sgml file -->
 	<!ENTITY introduction SYSTEM "introduction.sgml">
@@ -169,6 +177,11 @@ Previous used Docbook
         <contrib>Developer</contrib>
         <affiliation><address><email>h.eichmann@gmx.de</email></address></affiliation>
         </othercredit>
+	<othercredit role="developer">
+        <firstname>Jonas</firstname><surname>Ba&euml;hr</surname>
+        <contrib>Developer</contrib>
+        <affiliation><address><email>jonas.baehr@web.de</email></address></affiliation>
+        </othercredit>	
 	<author>
         <firstname>Frank</firstname>
 	<surname>Schoolmeesters</surname>
@@ -203,8 +216,8 @@ Previous used Docbook
 	</copyright>
 
 	<legalnotice>&FDLNotice;</legalnotice>
-	<date>17/05/2004</date>
-	<releaseinfo>1.40.01</releaseinfo>
+	<date>21/07/2004</date>
+	<releaseinfo>1.40.02</releaseinfo>
 
    <abstract>
 	<para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x.</para>
@@ -212,19 +225,14 @@ Previous used Docbook
 
 	<keywordset>
 	<keyword>KDE</keyword>
-	<keyword>commander</keyword>
 	<keyword>krusader</keyword>
-        <keyword>samba</keyword>
-	<keyword>file</keyword>
-	<keyword>manager</keyword>
-	<keyword>filemanager</keyword>
+	<keyword>commander</keyword>
+        <keyword>filemanager</keyword>
 	<keyword>twinpanel</keyword>
-	<keyword>archive</keyword>
 	<keyword>ftp</keyword>
+	<keyword>archive</keyword>
 	<keyword>mount</keyword>
-	<keyword>midnight</keyword>
-	<keyword>handbook</keyword>
-	<keyword>documentation</keyword>
+	<keyword>samba</keyword>
 	</keywordset>
 
 </bookinfo>
@@ -232,26 +240,15 @@ Previous used Docbook
 <preface id="foreword">
   <title>Foreword</title>
 
-	<note><para>
-	Krusader is under continuous development, so it is possible that the latest new features are not
-	yet in the The Krusader Handbook.
-	Please read the &online_changelog_url;
-        file or the <filename>ChangeLog</filename> file in the Krusader sources to find out
-	the latest new features.
-	Please read also the <link linkend="editors_note">Note from the Editors</link>,
-	if you have ideas on how to improve the content or would like to contribute at the Krusader Handbook.
-	</para></note>
-
 	<para>
 	Our aim is to give you a tool that does the two most important things:
 	manage your files the way you want it, and look great doing it!
-	To do just that, Krusader wears a great looking GUI,
+	To do just that, Krusader wears a great looking &GUI;,
 	supports drag n' drop and mimetypes (with or without magic!) -
 	all you need to feel right at home using it.
 	Krusader is packed with cool features, is fast and handles archives transparently,
 	basically, all you'd come to expect from tools like &mc;.
-	Krusader is open-source, free and is released under the
-	<link linkend="credits">GNU General Public License (GPL)</link>,
+	Krusader is open-source, free and is released under the &gpl_lnk;,
 	although we (the developers) still retain the copyright for the project and its name.
 	</para>
 
@@ -271,7 +268,8 @@ Previous used Docbook
 	(un)mount filesystems with a single mouse click, and get usage information.
 	A Bookmark-Manager, Remote-Connections Manager and Advanced Search module are also included.
 	We are planning to develop more modules in the near future,
-	thereby enhancing Krusader greatly. (&eg;: samba browser).
+	thereby enhancing Krusader greatly.
+	For information on what remains to be done look at the &online_todolist_url; .
 	</para>
 
 	<para>We hope you'll enjoy it, we do!</para>
@@ -284,7 +282,7 @@ Previous used Docbook
   <para>As you may notice this handbook is written by various authors.
         We have taken much care in insuring technical and vocabulary consistency.</para>
 
-  <para>Most of the authors write in English even though it is not their native language.
+  <para>The authors write in English even though it is not their native language.
         Therefore, you may notice strange sentence constructions.
         Do not hesitate to let us know if something is not clear to you.</para>
 
@@ -296,15 +294,34 @@ Previous used Docbook
 	if you have remarks or suggestions about the &krusader; Handbook. Please let us know.
         You can contact us even if you find typos!</para>
 
-   <para>The Handbook "releaseinfo" matches the &krusader; version number.
-         &eg; "&krusader; Handbook revision 1.40.xx" describes "&krusader; version 1.40"</para>
+   <para>The Handbook "revision" matches the &krusader; version number.
+         &eg; "&krusader; Handbook revision 1.40.xx" describes "&krusader; 1.40"</para>
 
-   <para>Please read the the &online_docchangelog_url; file or the <filename>krusader_kde3/doc/ChangeLog</filename> 
-         file in the &krusader; sources, to find out the latest changes in the &krusader; Handbook.</para>
+   <para>btw. this handbook (revision 1.40.02) that you are currently reading is the final handbook version for "&krusader; 1.40".</para>
+   	 
+   <para>Please read the documentation <filename>ChangeLog</filename> file &online_docchangelog_url;
+         or in the Krusader sources to find out the latest changes in the &krusader; Handbook.</para>
 
    <para>For information about the &krusader; documentation project,
          please contact the &krusader; documentation coordinator Frank Schoolmeesters
 	 <email>codeknight@users.sourceforge.net</email>.</para>
+
+<!--HTML_PARSING
+<para>The e-mail adresses in the HTML version of the Handbook are "manipulated"  to prevent that
+      spam bots catch the e-mail adresses, please fix first manually the e-mail adress before sending an e-mail,
+      You can also dop a post in our &forum_lnk;. Thanks!</para>
+HTML_PARSING-->
+
+	<note><para>
+	If u are using a &krusader; development version, it is possible that the latest new features are not
+	yet in the "The Krusader Handbook".
+	Please read the <filename>ChangeLog</filename> file &online_changelog_url; or in the Krusader sources
+	to find out more about the latest new features.
+
+<!--    (Uncomment when CSVNEW will be active)	
+        Please read the <filename>CVSNEWS</filename> file &online_cvsnews_url; or in the Krusader sources
+	to read a discription of these new features. -->
+	</para></note>
 
 </preface>
 

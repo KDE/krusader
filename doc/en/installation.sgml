@@ -24,34 +24,43 @@
 <sect1 id = "getting-krusader">
 <title>How to obtain &krusader;</title>
 
-<sect2 id="krusader_stable">
-<title>Stable version</title>
-<para><filename>krusader-x.xx.tar.gz</filename></para>
-<note><para>&krusader; is released under the
-      <link linkend="credits">GNU General Public License (GPL)</link>, this means that
-      THE PROGRAM IS PROVIDED "AS IS" WITH NO WARRANTY OF ANY KIND,
-      even when it is marked as a stable release.</para></note>
+
+
+<sect2 id="krusader_download">
+<title>Download &krusader;</title>
 
 <para>
-  The latest stable version can be found on the &krudownload_url;.
-  It contains the source tarballs and RPM packages to whatever distro we are currently
-  using. There might be some other packages on the site, but that depends on
-  other users contributions.</para>
+  The latest version can be found on the &krudownload_url; and on the &sfmirrors_url;.
+  It contains the source tarballs and RPM packages to whatever distro we are currently using.
+  The &Mandrake; RPM is currenly provided by the &krusader; Krew,
+  often &feodora; and &SuSE; RPM's are available, sended in by &krusader; users.
+  There might be some other packages on the site, but that depends on other users contributions.</para>
 
 <para>You may also find copies on &Linux; software archives such as
    &freshmeat_url; or &kde_apps_url;.
    If you can't find a RPM package for your &Linux; distribution,
    we recommend searching for it with &rpmfind_url; or &rpmpbone_url;.</para>
 
+<para>&debian; DEB packages can be found &deb_download_url;
+      and overview can be found &deb_overviewdownload_url; .</para>   
+   
 <para>A &krufreebsd_port_url; of &krusader; is maintained, the <guibutton>"Search"</guibutton> button will
-      lead you to the latest BSD version.
-       Many thanks to <link linkend="credits">Heiner Eichmann</link> !</para>
+      lead you to the latest &freebsd; version.
+      Many thanks to <link linkend="credits">Heiner Eichmann</link> !</para>
 
-<para>If you can't find a RPM package, don't wurry.
-      We provide a verry detailled installation procedure. This will allow that even newcomers will be able
+<para>If you can't find a RPM or DEB package, don't wurry.
+      We provide a verry detailled installation procedure. This howto allows that even newcomers will be able
       to compile &krusader; from source, even when you dit never before a compilation from source.
-      Please continue reading this chapter.</para>
+      Please continue to read this chapter :)</para>
 
+</sect2>
+
+<sect2 id="krusader_stable">
+<title>Stable version</title>
+<para><filename>krusader-x.xx.tar.gz</filename></para>
+<note><para>&krusader; is released under the &gpl_lnk;, this means that
+      THE PROGRAM IS PROVIDED "AS IS" WITH NO WARRANTY OF ANY KIND,
+      even when it is marked as a stable release.</para></note>
 </sect2>
 
 
@@ -119,7 +128,7 @@
 <para><emphasis role="bold">Checkout from CVS</emphasis>.
   &krusader; can be checked out through anonymous (pserver) CVS with the following instruction set.
   The module you wish to check out must be specified as the modulename.
-  When prompted for a password for anonymous, simply press the Enter key.</para>
+  When prompted for a password for anonymous, simply press the &Enter; key.</para>
   <para>Currently there are two module options:
   <itemizedlist>
   <listitem><para>krusader_kde2: the KDE2 branch, stable but it's basically v1.01 and there are no
@@ -154,7 +163,9 @@
 
 <para>Note: all &krusader; versions >=1.02 are &kde; 3.x.x only.</para>
 
-<para>A FreeBSD port of &krusader; is available.</para>
+<para>A &freebsd; port of &krusader; is available.</para>
+
+<para>We have received reports that &krusader; runs on &Solaris;.</para>
 
 <para>&krusader; uses about 3-4 MByte of memory to run 
       (and about 15 Mbyte shared memory which is also used by more processes), 
@@ -163,9 +174,7 @@
 
 <para>A package of popular (un)packers, &krusader; itself and addons can be found on the &krudownload_url;.</para>
 
-<para>
-    You can find a list of changes in the &online_changelog_url; file or in the <filename>ChangeLog</filename>
-    file of the &krusader; sources.</para>
+<para>For more requirements, continue to read this chapter and read also the &faq_lnk; section.</para>
 
 </sect1>
 
@@ -266,7 +275,8 @@
 <prompt>$</prompt> <userinput><command>echo</command> $KDEDIR</userinput>
 /usr</screen>
 
-  If both commands give an output, the enviroment variables are set (the above example are the settings of Mandrake).
+  If both commands give an output, the enviroment variables are set 
+  (the above example are the settings of &Mandrake;-&Linux;).
   In case you just receive empty lines, the variables are not set and you have to set them it manually.
   If you have no idea what to set the variables to, or if you want to check if the variables are right set,
   ask your distributor or use the <command>find</command> command.
@@ -370,7 +380,7 @@ qt_includes:          /usr/lib/qt3/include
 KDEDIR:               /usr
 QTDIR:                /usr/lib/qt3
 Install path:         /usr/bin
-krusader version:     1.30
+krusader version:     1.40
 krusader binary:      /usr/bin/krusader     (after 'make install')
 Thank you for using Krusader
 
@@ -380,7 +390,7 @@ Good - your configure finished. Start make now
 </informalexample>
 </para>
 
-<para>This is the output for Mandrake 9.1, other distributions may give a different output.</para>
+<para>This is the output for &Mandrake;-&Linux; 9.2, other distributions may give a different output.</para>
 
 <tip><para>At the end of the <command>./configure</command> script you will find a summary of the most
            important settings, &eg; where the &krusader; binary will be installed (after the
@@ -495,7 +505,7 @@ make[1]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD'
 <sect1 id="starting-krusader">
 <title>Starting &krusader;</title>
 
-<para>Type <userinput><command>krusader</command></userinput> at a command prompt.
+<para>Type <userinput><command>krusader</command></userinput> (lower case) at a command prompt.
       You can create shortcut on your desktop or create an entry in the (&kde;) menu.
       Read the previous page and the &faq_lnk; if &krusader; doesn't start.</para>
 
@@ -512,9 +522,14 @@ foo</screen>
 <note><para>Don't worry about the messages you get in the &konsole;. These messages are log messages,
       they can be used for debugging &krusader;.</para></note>
 
+<para>You can also use <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> to open the Run Command dialog box,
+      type <userinput><command>krusader</command></userinput> (lower case) and press &Enter; or click on the
+      <guibutton>"Run"</guibutton> button.</para>
+
 <para>If &krusader; is installed by an RPM (and if the packager dit use the <filename>krusader.spec</filename> file that
-      we provide), than &krusader; can be started at <emphasis role="bold"><menuchoice><guimenu>KDE menu</guimenu>
-      <guimenuitem>Applications</guimenuitem><guimenuitem>File tools</guimenuitem>
+      we provide), than &krusader; can be started from the &kmenu;.
+      Click on the &kicon; button and choose
+      <emphasis role="bold"><menuchoice><guimenuitem>Applications</guimenuitem><guimenuitem>File tools</guimenuitem>
       <guimenuitem>&krusader;</guimenuitem></menuchoice></emphasis>.</para>
 
 <para><option>--left</option>
@@ -583,7 +598,7 @@ foo</screen>
 
 <para><emphasis role="bold">krusaderui.rc</emphasis></para>
 <para>This file stores the users toolbar settings and the menu structure.
-      Tip: read also the <link linkend="krusaderui_rc">&FAQ;'s</link>.</para>
+      Tip: please read also the <link linkend="krusaderui_rc">krusaderui.rc &FAQ;</link>.</para>
 <para>Location: <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename> or
       <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename></para>
 
