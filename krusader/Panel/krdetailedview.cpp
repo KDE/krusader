@@ -71,7 +71,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // Do Quicksearch
 #define _DoQuicksearch      true 
 // Classic Quicksearch
-#define _ClassicQuicksearch true 
+#define _ClassicQuicksearch false
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
@@ -412,9 +412,9 @@ void KrDetailedView::prepareForActive() {
 }
 
 void KrDetailedView::prepareForPassive() {
-   //if ( krApp && krApp->mainView && krApp->mainView->activePanel &&
-   //    krApp->mainView->activePanel->quickSearch && krApp->mainView->activePanel->quickSearch->isShown() )
-   //  stopQuickSearch(0);
+   if ( krApp && krApp->mainView && krApp->mainView->activePanel &&
+       krApp->mainView->activePanel->quickSearch && krApp->mainView->activePanel->quickSearch->isShown() )
+     stopQuickSearch(0);
    _focused = false;
 }
 
