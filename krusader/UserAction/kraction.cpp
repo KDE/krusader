@@ -208,6 +208,10 @@ void KrAction::exec() {
    // replace %% and prepare string
    QStringList commandList = krExpander->expand( *_properties->command(), _properties->acceptURLs() );
    
+   // stop here if the commandline is empty
+   if ( commandList.count() == 1 && commandList[0].stripWhiteSpace().isEmpty() )
+      return;
+   
    if ( _properties->confirmExecution() ) {
       for ( QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it ) {
          bool exec = true;

@@ -27,9 +27,10 @@
 #include <qstringlist.h>
 #include <qclipboard.h>
 
+#define UA_CANCEL		return "@CANCEL@";
 #define NEED_PANEL		if ( panel == 0 ) { \
 					   krOut << "Expander: no panel specified for %_" << _expression << "%; ignoring..." << endl; \
-					   return QString::null; \
+					   UA_CANCEL \
 					}
 
 ////////////////////////////////////////////////////////////
@@ -98,8 +99,8 @@ QString exp_Count::expFunc( const ListPanel* panel, const QStringList& parameter
    else if ( parameter[ 0 ].lower() == "selected" )
       n = panel->view->numSelected();
    else {
-      krOut << "Expander: no Items specified for %_Count%; ignoring..." << endl;
-      return QString::null;
+      krOut << "Expander: no Items specified for %_Count%; abort..." << endl;
+      UA_CANCEL
    }
 
    return QString("%1").arg( n );
@@ -179,8 +180,8 @@ QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter,
    else if ( parameter[ 0 ].lower() == "selected" )
       panel->view->getSelectedItems( &items );
    else {
-      krOut << "Expander: no Items specified for %_List%; ignoring..." << endl;
-      return QString::null;
+      krOut << "Expander: no Items specified for %_List%; abort..." << endl;
+      UA_CANCEL
    }
 
    QString separator;
@@ -293,7 +294,8 @@ exp_Ask::exp_Ask() {
    addParameter( new exp_parameter( i18n("Caption (optional)"), "", false ) );
 }
 QString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
-   QString caption, preset;
+   QString caption, preset, result;
+   
    if ( parameter.count() <= 2 || parameter[2].isEmpty() )
       caption = i18n("User Action");
    else
@@ -302,10 +304,18 @@ QString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, const 
       preset = QString::null;
    else
       preset = parameter[1];
-   return KInputDialog::getText(
+   
+   bool ok;
+   result = KInputDialog::getText(
 		caption,
 		parameter[0],
-		preset );
+		preset,
+		&ok );
+   
+   if (ok)
+      return result;
+   else
+      UA_CANCEL
 }
 
 exp_Clipboard::exp_Clipboard() {
@@ -342,7 +352,7 @@ QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const
    
    if ( !dest.isValid() || !src.isValid() ) {
       krOut << "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%" << endl;
-      return QString::null; // do nothing with invalid url's
+      UA_CANCEL // do nothing with invalid url's
    }
 
    new KIO::CopyJob( src, dest, KIO::CopyJob::Copy, false, true );
@@ -366,7 +376,7 @@ QString exp_Move::expFunc( const ListPanel*, const QStringList& parameter, const
    
    if ( !dest.isValid() || !src.isValid() ) {
       krOut << "Expander: invalid URL's in %_Move(\"src\", \"dest\")%" << endl;
-      return QString::null; // do nothing with invalid url's
+      UA_CANCEL // do nothing with invalid url's
    }
 
    new KIO::CopyJob( src, dest, KIO::CopyJob::Move, false, true );
@@ -383,8 +393,8 @@ exp_Sync::exp_Sync() {
 }
 QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    if ( parameter[0].isEmpty() ) {
-      krOut << "Expander: no profile specified for %_Sync(profile)%; ignoring..." << endl;
-      return QString::null;
+      krOut << "Expander: no profile specified for %_Sync(profile)%; abort..." << endl;
+      UA_CANCEL
    }
 
    new SynchronizerGUI( MAIN_VIEW, parameter[0] );
@@ -401,8 +411,8 @@ exp_NewSearch::exp_NewSearch() {
 }
 QString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    if ( parameter[0].isEmpty() ) {
-      krOut << "Expander: no profile specified for %_NewSearch(profile)%; ignoring..." << endl;
-      return QString::null;
+      krOut << "Expander: no profile specified for %_NewSearch(profile)%; abort..." << endl;
+      UA_CANCEL
    }
 
    new KrSearchDialog( parameter[0] );
@@ -419,8 +429,8 @@ exp_Profile::exp_Profile() {
 }
 QString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    if ( parameter[0].isEmpty() ) {
-      krOut << "Expander: no profile specified for %_Profile(profile)%; ignoring..." << endl;
-      return QString::null;
+      krOut << "Expander: no profile specified for %_Profile(profile)%; abort..." << endl;
+      UA_CANCEL
    }
    
    MAIN_VIEW->profiles( parameter[0] );
@@ -461,8 +471,8 @@ QString exp_Each::expFunc( const ListPanel* panel, const QStringList& parameter,
    else if ( parameter[ 0 ].lower() == "selected" )
       mark += "s";
    else {
-      krOut << "Expander: no Items specified for %_Each%; ignoring..." << endl;
-      return QString::null;
+      krOut << "Expander: no Items specified for %_Each%; abort..." << endl;
+      UA_CANCEL
    }
 
    if ( parameter[1].lower() == "yes" )  // ommit the current path
@@ -500,8 +510,8 @@ QString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& paramet
    NEED_PANEL
 
    if ( parameter[0].isEmpty() ) {
-      krOut << "Expander: no column specified for %_ColSort(column)%; ignoring..." << endl;
-      return QString::null;
+      krOut << "Expander: no column specified for %_ColSort(column)%; abort..." << endl;
+      UA_CANCEL
    }
    
    int mode = (int) panel->view->sortMode();
@@ -600,7 +610,7 @@ QString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& param
    
    if ( newSize < 0 || newSize > 100 ) {
       krOut << "Expander: Value out of range for %_PanelSize(percent)%. The first parameter has to be >0 and <100" << endl;
-      return QString::null;
+      UA_CANCEL
    }
 
     QValueList<int> panelSizes = MAIN_VIEW->horiz_splitter->sizes();
@@ -689,6 +699,7 @@ QStringList Expander::expand( const QString& stringToExpand, bool useUrl ) {
 
 QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) {
    QString result = QString::null, exp = QString::null;
+   QString tmpResult;
    int begin, end, i;
 //    int brackets = 0;
 //    bool inQuotes = false;
@@ -714,7 +725,11 @@ QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) {
         for ( i = 0; i < placeholderCount(); ++i )
            if ( exp == placeholder( i )->expression() ) {
 //               kdDebug() << "---------------------------------------" << endl;
-              result += placeholder( i )->expFunc( getPanel( panelIndicator ), parameter, useUrl );
+              tmpResult = placeholder( i )->expFunc( getPanel( panelIndicator ), parameter, useUrl );
+              if ( tmpResult == "@CANCEL@" )
+                 return QString::null;
+              else
+                 result += tmpResult;
 //               kdDebug() << "---------------------------------------" << endl;
               break;
            }
