@@ -57,8 +57,8 @@ class KrDetailedView : public KListView, public KrView {
    friend class KrDetailedViewItem;
 
 public:
-   enum ColumnType { Name = 0x0, Extention = 0x1, Mime = 0x2, Size = 0x3, DateTime = 0x4,
-                     Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, Unused = 0x9 };
+   enum ColumnType { Unused = -1, Name = 0x0, Extention = 0x1, Mime = 0x2, Size = 0x3, DateTime = 0x4,
+                     Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8 };
 
    KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
    virtual ~KrDetailedView();
@@ -138,7 +138,7 @@ public slots:
    void refreshColors();
 
 private:
-   ColumnType _columns[ MAX_COLUMNS ];
+   int _columns[ MAX_COLUMNS ];
    static QString ColumnName[ MAX_COLUMNS ];
    bool _focused;
    bool caseSensitiveSort;

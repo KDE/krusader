@@ -83,7 +83,6 @@ QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
 KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg, const char *name ) :
       KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
 _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
-
 	initProperties();
 
    if ( ColumnName[ 0 ].isEmpty() ) {
@@ -136,8 +135,8 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
 
    // add whatever columns are needed to the listview
    krConfig->setGroup( "Look&Feel" );
-   //=>_withIcons = _config->readBoolEntry( "With Icons", _WithIcons ); // do we display icons ?
-   newColumn( Name );  // we always have a name
+   
+	newColumn( Name );  // we always have a name
    setColumnWidthMode( column( Name ), QListView::Manual );
    if ( _config->readBoolEntry( "Ext Column", _ExtColumn ) ) {
       newColumn( Extention );
@@ -226,15 +225,17 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
 KrDetailedView::~KrDetailedView() {}
 
 void KrDetailedView::newColumn( ColumnType type ) {
-   int i;
-   for ( i = 0; i < MAX_COLUMNS; i++ )
-      if ( _columns[ i ] == Unused )
-         break;
-   if ( i >= MAX_COLUMNS )
+	// get the next available column
+	int max = Unused;
+	for (int i=0; i<MAX_COLUMNS; ++i) {
+		if (_columns[i]>=max)
+			max = _columns[i]+1;
+	}
+	if ( max >= MAX_COLUMNS )
       perror( "KrDetailedView::newColumn() - too many columns" );
-   // add the new type to the column handler
-   _columns[ i ] = type;
-   addColumn( ColumnName[ type ], -1 );
+	
+	_columns[type] = max;
+	addColumn( ColumnName[type], -1 );
 }
 
 /**
@@ -242,10 +243,7 @@ void KrDetailedView::newColumn( ColumnType type ) {
  * if such values are not presented in the view, -1 is returned.
  */
 int KrDetailedView::column( ColumnType type ) {
-   for ( int i = 0; i < MAX_COLUMNS; i++ )
-      if ( _columns[ i ] == type )
-         return i;
-   return -1;
+	return _columns[type];
 }
 
 void KrDetailedView::addItem( vfile *vf ) {
