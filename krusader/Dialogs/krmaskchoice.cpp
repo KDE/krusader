@@ -58,7 +58,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5 ) );
 
     selection = new QComboBox( FALSE, this, "selection" );
-    selection->setGeometry( QRect( 12, 48, 377, 22 ) ); 
+    selection->setGeometry( QRect( 12, 48, 377, selection->font().pointSize()*2 + 4) );
     selection->setEditable( TRUE );
     selection->setInsertionPolicy( QComboBox::AtTop );
     selection->setAutoCompletion( TRUE );
@@ -80,7 +80,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     hbox->addWidget( label );
 
     GroupBox1 = new QGroupBox( this, "GroupBox1" );
-    GroupBox1->setGeometry( QRect( 11, 77, 379, 190 ) ); 
+    GroupBox1->setGeometry( QRect( 11, 77, 379, 190 ) );
     GroupBox1->setTitle( i18n( "Predefined Selections"  ) );
 
     QWidget* Layout6 = new QWidget( GroupBox1, "Layout6" );

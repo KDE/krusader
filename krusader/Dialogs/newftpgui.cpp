@@ -770,7 +770,11 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     username = new QLineEdit( this, "username" );
     username->setGeometry( QRect( 10, 120, 320, 22 ) );
 
+    QFont font;
+    font.setPointSize( 9 );
     url = new KHistoryCombo( this, "url" );
+    url->setFont( font );
+    url->setMaximumHeight( 20 );
     url->setGeometry( QRect( 80, 70, 200, 22 ) );
     connect( url, SIGNAL( activated( const QString& )),
              url, SLOT( addToHistory( const QString& )));
