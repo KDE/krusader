@@ -277,8 +277,6 @@ QString KRpermHandler::time2QString(long time){
   // construct the string
   dateTime = KGlobal::locale()->formatDateTime(tmp);
 
-  //dateTime=round(t->tm_mday)+"/"+round(t->tm_mon+1)+"/"+round(t->tm_year%100)+
-	//	     +" "+round(t->tm_hour)+":"+round(t->tm_min);
 	return dateTime;
 }
 
