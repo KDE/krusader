@@ -36,13 +36,11 @@
 #include "../VFS/vfile.h"
 #include <klistview.h>
 #include <qguardedptr.h>
-#include <qobject.h>
 
 class QPixmap;
 class KrDetailedView;
 
-class KrDetailedViewItem : public QObject, public KListViewItem, public KrViewItem {
-  Q_OBJECT
+class KrDetailedViewItem : public KListViewItem, public KrViewItem {
 
 friend class KrDetailedView;
 friend class KrCalcSpaceDialog;
@@ -70,9 +68,6 @@ public:
   int compare(QListViewItem *i,int col,bool ascending ) const;
   void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
   void repaintItem();
-
-signals:
-  void renameCancelled(KrDetailedViewItem *);
 
 protected:
   // text() was made protected in order to catch every place where text(x) is used

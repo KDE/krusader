@@ -48,7 +48,7 @@
 #include <kmimetype.h>
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
-  QObject(parent), KListViewItem(parent, after), KrViewItem(),_vf(vf), _view(parent) {
+  KListViewItem(parent, after), KrViewItem(),_vf(vf), _view(parent) {
   
   caseSensitiveSort = _view->isCaseSensitiveSort();
     
@@ -334,8 +334,8 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   } else if (col == dateTimeColumn ) {
       return (getTime_t() > other->getTime_t() ? 1 : -1);
   } else {
-      QString e1 = (!caseSensitiveSort ? text(col) : text(col).lower());
-      QString e2 = (!caseSensitiveSort ? i->text(col) : i->text(col).lower());
+      QString e1 = (caseSensitiveSort ? text(col) : text(col).lower());
+      QString e2 = (caseSensitiveSort ? i->text(col) : i->text(col).lower());
       return QString::compare(e1, e2);
   }
 }
