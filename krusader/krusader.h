@@ -85,6 +85,8 @@ class Krusader : public KParts::MainWindow {
     bool versionControl();  // handle version differences in krusaderrc
     void showEvent ( QShowEvent * );
     void hideEvent ( QHideEvent * );
+    void moveEvent ( QMoveEvent * );
+    void resizeEvent ( QResizeEvent * );
 
   public:
     static Krusader *App;       // a kApp style pointer
@@ -124,6 +126,8 @@ class Krusader : public KParts::MainWindow {
 
   private:
     KSystemTray *sysTray;
+    QPoint       oldPos;
+    QSize        oldSize;
 };
 
 // main modules

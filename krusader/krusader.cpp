@@ -198,7 +198,6 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
   setCentralWidget( mainView );
   config->setGroup( "Look&Feel" );
-  show();
 
   // manage our keyboard short-cuts
   //KAcceleratorManager::manage(this,true);
@@ -206,8 +205,13 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   setCursor( KCursor::arrowCursor() );
   // first, resize and move to starting point
   config->setGroup( "Private" );
-  move( krConfig->readPointEntry( "Start Position", _StartPosition ) );
-  resize( krConfig->readSizeEntry( "Start Size", _StartSize ) );
+  move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
+  resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
+
+  if( krConfig->readBoolEntry( "Maximized" ) )
+    showMaximized();
+  else
+    show();
 
   // let the good times rool :)
   updateGUI( true );
@@ -268,6 +272,16 @@ void Krusader::hideEvent ( QHideEvent *e ) {
     hide(); // needed to make sure krusader is removed from
             // the taskbar when minimizing (system tray issue)
   else KParts::MainWindow::hideEvent(e);
+}
+
+void Krusader::moveEvent ( QMoveEvent *e ) {
+  oldPos = e->oldPos();
+  KParts::MainWindow::moveEvent(e);
+}
+
+void Krusader::resizeEvent ( QResizeEvent *e ) {
+  oldSize = e->oldSize();
+  KParts::MainWindow::resizeEvent(e);
 }
 
 void Krusader::setupAccels() {
@@ -448,8 +462,9 @@ void Krusader::setupActions() {
 
 void Krusader::savePosition() {
   config->setGroup( "Private" );
-  config->writeEntry( "Start Position", pos() );
-  config->writeEntry( "Start Size", size() );
+  config->writeEntry( "Start Position", isMaximized() ? oldPos : pos() );
+  config->writeEntry( "Start Size", isMaximized() ? oldSize : size() );
+  config->writeEntry( "Maximized", isMaximized() );
   config->writeEntry( "Panel Size", mainView->vert_splitter->sizes() [ 0 ] );
   config->writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
   QValueList<int> lst = mainView->horiz_splitter->sizes();
