@@ -52,6 +52,7 @@
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../resources.h"
+#include "../krslots.h"
 
 normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
   setVfsFilesP(&vfs_files);
@@ -167,8 +168,12 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	// delete of move to trash ?
 	krConfig->setGroup("General");
 	if( krConfig->readBoolEntry("Move To Trash",_MoveToTrash) ){
+#if KDE_IS_VERSION(3,4,0)
+	  job = KIO::trash(filesUrls, true );
+#else
 	  job = new KIO::CopyJob(filesUrls,KGlobalSettings::trashPath(),KIO::CopyJob::Move,false,true );
-	  connect(job,SIGNAL(result(KIO::Job*)),krApp,SLOT(changeTrashIcon()));
+#endif
+	  connect(job,SIGNAL(result(KIO::Job*)),SLOTS,SLOT(changeTrashIcon()));
 	}
 	else
 	  job = new KIO::DeleteJob(filesUrls, false, true);
