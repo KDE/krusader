@@ -149,7 +149,7 @@ bool KMountMan::createFilesystems() {
 		// now, we check if a remark was inserted in the line
 		for (int cnt=0; cnt<3; ++cnt)
 			if (temp[cnt][i]=="#" || temp[cnt][i].left(1)=="#") {
-				kdDebug() << "MountMan: found a remark in fstab, skipping the line." << endl;
+				//kdDebug() << "MountMan: found a remark in fstab, skipping the line." << endl;
         remark=true;
         break;
 			}
@@ -372,6 +372,7 @@ void KMountMan::parseDfData(QString filename) {
     loc->setMounted(true);
     ++countFilesystems;
   }
+
   Operational=Ready=true; // we are finished here
   if (countFilesystems>0) kdDebug() << "Mt.Man: Alive and kicking. " << endl;
    else {
@@ -395,6 +396,7 @@ void KMountMan::collectOutput(KProcess *p, char *buffer,int buflen) {
   if (!p) return; // don't collect data from unknown/undefined processes
   if (!outputBuffer) outputBuffer=new QString();  // create buffer if needed
   // add new buffer to the main output buffer
+
   for (int i=0; i<buflen; ++i) (*outputBuffer)+=buffer[i];
 }
 

@@ -62,7 +62,7 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	supportMoveTo = true;
 	// set the writable attribute
 	isWritable = true;
- 	  kdDebug() << origin << endl;
+// 	  kdDebug() << origin << endl;
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
   vfs_filesP2 = &vfs_files2;

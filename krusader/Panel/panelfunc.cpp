@@ -595,7 +595,9 @@ void ListPanelFunc::dirUp(){
 	QString origin= panel->virtualPath;
 	
 	//do we need to change vfs ?
-	if( origin.right(1) == "\\" || panel->files->vfs_error()) { //yes
+	if( origin.right(1) == "\\"   ||
+      panel->files->vfs_error() ||
+      (origin.contains(":/") && origin.right(1)=="/")) { //yes
 	  delete panel->files;
     panel->files = panel->vfsStack->pop();
     panel->files->blockSignals(false);
@@ -613,7 +615,10 @@ void ListPanelFunc::dirUp(){
 	panel->nameToMakeCurrent = panel->virtualPath.right(panel->virtualPath.length()-origin.length()-1 );
 	
 	// check the '/' case
-	if (origin=="") origin="/";
+	if ( origin=="" ) origin="/";
+  // and the '/' case for urls
+  if ( origin.contains(":/") && origin.find("/",origin.find(":/")+3)==-1 )
+		origin=origin+"/";
 	
 	// change dir..
 	panel->refresh(origin);
