@@ -689,7 +689,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     setMinimumSize( QSize( 342, 261 ) );
 
     TextLabel1 = new QLabel( this, "TextLabel1" );
-    TextLabel1->setGeometry( QRect( 10, 50, 30, 20 ) );
+    TextLabel1->setGeometry( QRect( 10, 50, 60, 20 ) );
     TextLabel1->setText( i18n( "Host:"  ) );
 
     QStringList protocols = KProtocolInfo::protocols();
@@ -710,15 +710,15 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
                this,SLOT(slotTextChanged(const QString& )));
 
     TextLabel1_2_2 = new QLabel( this, "TextLabel1_2_2" );
-    TextLabel1_2_2->setGeometry( QRect( 10, 150, 60, 20 ) );
+    TextLabel1_2_2->setGeometry( QRect( 10, 150, 150, 20 ) );
     TextLabel1_2_2->setText( i18n( "Password:"  ) );
 
     TextLabel1_2 = new QLabel( this, "TextLabel1_2" );
-    TextLabel1_2->setGeometry( QRect( 10, 100, 60, 20 ) );
+    TextLabel1_2->setGeometry( QRect( 10, 100, 150, 20 ) );
     TextLabel1_2->setText( i18n( "Username:"  ) );
 
     TextLabel1_3 = new QLabel( this, "TextLabel1_3" );
-    TextLabel1_3->setGeometry( QRect( 230, 50, 30, 20 ) );
+    TextLabel1_3->setGeometry( QRect( 230, 50, 80, 20 ) );
     TextLabel1_3->setText( i18n( "Port:"  ) );
 
     port = new QSpinBox( this, "port" );
