@@ -25,6 +25,7 @@
 #include <qevent.h>
 #include <qwidgetstack.h>
 #include <qfontmetrics.h>
+#include <kdebug.h>
 
 PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent) {
   _panelActionMenu = new KActionMenu( i18n("Panel"), this );
@@ -38,8 +39,7 @@ PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent) {
   insertAction(_closeAction);
   _closeAction->setEnabled(false); //can't close a single tab
 
-  setShape(QTabBar::RoundedBelow);
-  //addTab(new QTab("")); // ugly hack - don't remove
+  setShape(QTabBar::TriangularBelow);
 
   if (HIDE_ON_SINGLE_TAB) hide();
 }
@@ -52,6 +52,7 @@ void PanelTabBar::mousePressEvent( QMouseEvent* e ) {
   }
   // else implied
   setCurrentTab( clickedTab );
+  emit changePanel(dynamic_cast<PanelTab*>(clickedTab)->panel);
 
   if ( e->button() == Qt::RightButton ) {
     // show the popup menu
@@ -61,26 +62,10 @@ void PanelTabBar::mousePressEvent( QMouseEvent* e ) {
   if ( e->button() == Qt::LeftButton ) { // we need to change tabs
     // first, find the correct panel to load
     int id = currentTab();
-    ListPanel *listpanel = 0L;
-    //QValueList<PanelTab>::Iterator it;
-    //for (it = _panelTabs.begin(); it != _panelTabs.end(); ++it) {
-    //  if ((*it).id == id) {
-    //    listpanel = (*it).panel;
-    //    break;
-    //  }
-    //}
-    // now, check if we're on the left or right
-    /*bool needSetFocus = ((_master->_self) != (_master->_active));
-    _master->_self = listpanel;
-    _master->_stack->raiseWidget(_master->_self);
-    _master->_self->setOther(_master->_other);
-    _master->_other->setOther(_master->_self);
-    _master->_active = _master->_self;
-
-    kapp->processEvents();
-    if (needSetFocus) _master->_active->slotFocusOnMe();*/
+    ListPanel *listpanel = dynamic_cast<PanelTab*>(tab(id))->panel;
+    emit changePanel(listpanel);
   }
-//  QTabBar::mousePressEvent(e);
+  QTabBar::mousePressEvent(e);
 }
 
 void PanelTabBar::insertAction( KAction* action ) {
@@ -88,12 +73,7 @@ void PanelTabBar::insertAction( KAction* action ) {
 }
 
 int PanelTabBar::addPanel(ListPanel *panel) {
-  int h = QFontMetrics(font()).height()+2;
-  int newId = addTab(new PanelTab(panel->virtualPath));
-  PanelTab *ptab= dynamic_cast<PanelTab*>(tab(newId));
-  ptab->rect().setHeight(3);
-
-  ptab->panel = panel;
+  int newId = addTab(new PanelTab(panel->virtualPath, panel));
 
   layoutTabs();
   setCurrentTab(newId);
@@ -101,78 +81,56 @@ int PanelTabBar::addPanel(ListPanel *panel) {
   // enable close-tab action
   if (count()>1) {
     _closeAction->setEnabled(true);
-    show();
+    show(); // todo-do we need this?
   }
 
-  connect(ptab->panel, SIGNAL(pathChanged(ListPanel*)), this, SLOT(updateTab(ListPanel*)));
+  connect(dynamic_cast<PanelTab*>(tab(newId))->panel, SIGNAL(pathChanged(ListPanel*)),
+          this, SLOT(updateTab(ListPanel*)));
 
   return newId;
+}
+
+ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
+  int id = currentTab();
+  ListPanel *oldp = dynamic_cast<PanelTab*>(tab(id))->panel; // old panel to kill later
+  disconnect(dynamic_cast<PanelTab*>(tab(id))->panel);
+  removeTab(tab(id));
+  layoutTabs();
+
+  // setup current one
+  id = currentTab();
+  ListPanel *p = dynamic_cast<PanelTab*>(tab(id))->panel;
+  // disable close action?
+  if (count()==1) {
+    _closeAction->setEnabled(false);
+  }
+
+  panelToDelete = oldp;
+  return p;
 }
 
 void PanelTabBar::updateTab(ListPanel *panel) {
   // find which is the correct tab
   for (int i=0; i<count(); i++) {
-    if (dynamic_cast<PanelTab*>(tab(i))->panel == panel) {
-      tab(i)->setText(panel->virtualPath);
+    if (dynamic_cast<PanelTab*>(tabAt(i))->panel == panel) {
+      tabAt(i)->setText(panel->virtualPath);
       break;
     }
   }
-
-  //QValueList<PanelTab>::Iterator it;
-  //for (it = _panelTabs.begin(); it!=_panelTabs.end(); ++it) {
-  //  if ( (*it).panel == panel ) {
-  //    tab((*it).id)->setText(panel->virtualPath);
-  //    break;
-  //  }
-  //}
-
 }
 
 void PanelTabBar::duplicateTab() {
-/*  int id = currentTab();
-  ListPanel *listpanel;
-  QValueList<PanelTab>::Iterator it;
-  for (it = _panelTabs.begin(); it != _panelTabs.end(); ++it) {
-    if ((*it).id == id) {
-      listpanel = (*it).panel;
-      break;
-    }
-  }*/
-
-  //SLOTS->newTab(listpanel->virtualPath);
+  int id = currentTab();
+  emit newTab(dynamic_cast<PanelTab*>(tab(id))->panel->virtualPath);
 }
 
 void PanelTabBar::closeTab() {
-  // find the panel to kill
-/*  int id = currentTab();
-  ListPanel *listpanel = 0L;
-  QValueList<PanelTab>::Iterator it;
-  for (it = _panelTabs.begin(); it != _panelTabs.end(); ++it) {
-    if ((*it).id == id) {
-      listpanel = (*it).panel;
-      _panelTabs.remove(it); // remove from the list of tabs
-      break;
-    }
-  }
-  // now, remove the panel and the tab
-  /*bool needSetFocus = ((_master->_self) != (_master->_active));
-  removeTab(tab(id));
-  id = currentTab(); // get the NEW current tab
-  _master->removePanel(listpanel, id);
-
-  kapp->processEvents();
-  if (needSetFocus) {
-    _master->_active = _master->_self;
-    _master->_active->slotFocusOnMe();
-  }
-  if (count()==1) {
-    _closeAction->setEnabled(false);
-    if (HIDE_ON_SINGLE_TAB) hide();
-  }*/
+  emit closeCurrentTab();
 }
 
 // -----------------------------> PanelTab <----------------------------
 
 PanelTab::PanelTab(const QString & text): QTab(text) {}
+PanelTab::PanelTab(const QString & text, ListPanel *p): QTab(text), panel(p) {}
 
 #include "paneltabbar.moc"

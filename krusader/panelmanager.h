@@ -7,20 +7,45 @@
 
 class ListPanel;
 class QWidgetStack;
+class QToolButton;
 
+/**
+ * Implements tabbed-browsing by managing a list of tabs and corrosponding panels.
+ */
 class PanelManager: public QWidget {
     Q_OBJECT
 
   public:
-    PanelManager( QWidget *parent, bool left );
+    /**
+     * PanelManager is created where once panels were created. It accepts three references to pointers
+     * (self, other, active), which enables it to manage pointers held by the panels transparently.
+     * It also receives a bool (left) which is true if the manager is the left one, or false otherwise.
+     */
+    PanelManager( QWidget *parent, bool left, ListPanel* &self, ListPanel* &other, ListPanel* &active);
+    /**
+     * Called once by KrusaderView to create the first panel. Subsequent called are done internally
+     * Note: only creates the panel, but doesn't start the VFS inside it. Use startPanel() for that.
+     */
     ListPanel* createPanel();
+    /**
+     * Called once by KrusaderView to start the first panel. Subsequent called are done internally
+     * Only starts the VFS inside the panel, you must first use createPanel() !
+     */
     void startPanel(ListPanel *panel, QString path);
 
+  protected slots:
+    void slotNewTab();
+    void slotNewTab(QString path);
+    void slotCloseTab();
+    void slotChangePanel(ListPanel *p);
+
   private:
-    QVBoxLayout *_layout;
+    QGridLayout *_layout;
     bool _left;
     PanelTabBar *_tabbar;
     QWidgetStack *_stack;
+    QToolButton *_newTab, *_closeTab;
+    ListPanel *&_self, *&_other, *&_active;
 };
 
 

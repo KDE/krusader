@@ -60,8 +60,8 @@ void KrusaderView::start( QString leftPath, QString rightPath ) {
   cmdLine = new KCMDLine( this );
 
   // add a panel manager for each side of the splitter
-  leftMng  = new PanelManager(horiz_splitter, true);
-  rightMng = new PanelManager(horiz_splitter, false);
+  leftMng  = new PanelManager(horiz_splitter, true, left, right, activePanel);
+  rightMng = new PanelManager(horiz_splitter, false, right, left, activePanel);
 
   // now, create the panels inside the manager
   //left = new ListPanel( leftMng, true );
