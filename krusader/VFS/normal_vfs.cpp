@@ -270,6 +270,15 @@ vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 	return temp;
 }
 
+void normal_vfs::vfs_slotRefresh()
+{
+	krConfig->setGroup("Advanced");
+	int maxRefreshFrequency = krConfig->readNumEntry("Max Refresh Frequency", 1000);
+	vfs_refresh();
+	disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
+	refreshTimer.start( maxRefreshFrequency, true );
+}
+
 void normal_vfs::vfs_slotDirty(const QString& path){ 
 	if( disableRefresh ){
 		dirty = true;
@@ -277,9 +286,15 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 	}
 	
 	if( path == vfs_getOrigin().path(-1) ){
-		// the directory itself is dirty - full refresh is needed
-		QTimer::singleShot(0, this, SLOT( vfs_refresh() ) ); // safety: dirty signal comes from KDirWatch!
-		return;
+		if( !refreshTimer.isActive() ) {
+			// the directory itself is dirty - full refresh is needed
+			QTimer::singleShot(0, this, SLOT( vfs_slotRefresh() ) ); // safety: dirty signal comes from KDirWatch!
+			return;
+		}
+		disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
+		connect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
+		dirty = true;
+		return;                
 	}
 	
 	KURL url = fromPathOrURL(path);
@@ -292,7 +307,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 	removeFromList(name);
 	vfile* vf = vfileFromName(name,true);
 	addToList(vf);
-	emit updatedVfile(vf);		
+	emit updatedVfile(vf);
 }
 
 void normal_vfs::vfs_slotCreated(const QString& path){  

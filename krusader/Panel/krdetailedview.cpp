@@ -313,7 +313,7 @@ void KrDetailedView::updateItem( vfile *vf ) {
    } else {
 		bool selected = it->isSelected();
       bool current = ( getCurrentKrViewItem() == it );
-	  kdWarning() << "updated" << endl;
+//    kdWarning() << "updated" << endl;
       delItem( vf->vfile_getName() );
       addItem( vf );
       // restore settings

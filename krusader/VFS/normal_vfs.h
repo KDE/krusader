@@ -70,6 +70,7 @@ public:
 	virtual QString vfs_workingDir() { return vfs_origin.path(-1); }
 
 public slots:
+	void vfs_slotRefresh();
 	void vfs_slotDirty(const QString& path);
 	void vfs_slotCreated(const QString& path);
 	void vfs_slotDeleted(const QString& path);
@@ -79,6 +80,7 @@ protected:
 	virtual bool populateVfsList(const KURL& origin, bool showHidden);
 
 	QDict<vfile>  vfs_files;     //< Dictionary of pointers to vfile	
+	QTimer refreshTimer;         //< Timer to exclude sudden refreshes
 	KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories
 	vfile* vfileFromName(const QString& name,bool mimeTypeMagic);
 };
