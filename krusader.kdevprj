@@ -26,7 +26,7 @@ ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a -lm $(LIB_KPARTS) $
 ldflags=\s         \s
 
 [General]
-AMChanged=false
+AMChanged=true
 author=Shie Erlich & Rafi Yanai
 configure_args=
 email=
@@ -50,16 +50,18 @@ install_location=
 type=DATA
 
 [LFV Groups]
+Docs=*.sgml,*.docbook
 GNU=AUTHORS,COPYING,ChangeLog,INSTALL,README,TODO,NEWS
 Headers=*.h,*.hh,*.hxx,*.hpp,*.H
 Others=*
+Pics=*.png,*.jpeg,*.jpg
 Sources=*.cpp,*.c,*.cc,*.C,*.cxx,*.ec,*.ecpp,*.lxx,*.l++,*.ll,*.l
 Translations=*.po
 User Interface=*.kdevdlg,*.ui,*.rc,*.dlg
-groups=Headers,Sources,User Interface,Translations,GNU,Others
+groups=Docs,Pics,Headers,Sources,User Interface,Translations,GNU,Others
 
 [Makefile.am]
-files=krusader.kdevprj,admin,AUTHORS,COPYING,ChangeLog,INSTALL,README,TODO,krusader.lsm,backup,full_backup,krusader.spec,panel_design.txt
+files=krusader.kdevprj,admin,AUTHORS,COPYING,ChangeLog,INSTALL,README,TODO,krusader.lsm,krusader.spec
 sub_dirs=krusader,po,pics,doc
 type=normal
 
@@ -76,12 +78,6 @@ install_location=
 type=DATA
 
 [admin]
-dist=true
-install=false
-install_location=
-type=DATA
-
-[backup]
 dist=true
 install=false
 install_location=
@@ -267,12 +263,6 @@ type=DATA
 dist=true
 install=true
 install_location=$$(kde_htmldir)/en/krusader/toolbar.png
-type=DATA
-
-[full_backup]
-dist=true
-install=false
-install_location=
 type=DATA
 
 [krusader.kdevprj]
@@ -1134,12 +1124,6 @@ type=HEADER
 dist=true
 install=true
 install_location=$$(kde_mimedir)/application/x-ace.desktop
-type=DATA
-
-[panel_design.txt]
-dist=true
-install=false
-install_location=
 type=DATA
 
 [pics/Makefile]
