@@ -98,11 +98,8 @@ public:
 	 */
 	inline void             vfile_setSize(KIO::filesize_t size) {vfile_size = size;}
 
-  virtual ~vfile(){emit vfile_destructed();}
+  virtual ~vfile(){}
 
-signals:
-  void             vfile_destructed();  /* signal of the destruction */
-    
 protected:
   // the file information list
   QString 	       vfile_name;     //< file name
