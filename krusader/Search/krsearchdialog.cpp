@@ -129,6 +129,7 @@ void KrSearchDialog::invalidDateMessage(QLineEdit *p) {
 
 void KrSearchDialog::prepareGUI() {
   //=======> to be moved ...
+  searchForCase->setChecked(false);
   resultsList->setSorting(1); // sort by location
   belongsToUserData->setEditable(false); belongsToGroupData->setEditable(false);
 	searchInArchives->setEnabled(true);
