@@ -491,7 +491,8 @@ void ListPanelFunc::copyFiles() {
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(1);
 		KIO::Job* job = new KIO::CopyJob( *fileUrls, dest, KIO::CopyJob::Copy, false, true );
-		if ( dest.equals( panel->virtualPath(), true ) )
+		if ( dest.equals( panel->virtualPath(), true ) ||
+			dest.upURL().equals( panel->virtualPath(), true ) )
 			// refresh our panel when done
 			connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
 	// let the other panel do the dirty job
