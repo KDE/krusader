@@ -754,7 +754,7 @@ void ListPanelFunc::changeVFS( QString type, QString origin ) {
   if ( type == "ftp" )
     v = new ftp_vfs( origin, panel );
   else if ( type == "-ace" || type == "-arj" || type == "-rpm" )
-    v = new temp_v/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */fs( origin, type, panel, files() ->vfs_isWritable() );
+    v = new temp_vfs( origin, type, panel, files() ->vfs_isWritable() );
   else
     v = new arc_vfs( origin, type, panel, files() ->vfs_isWritable() );
 
