@@ -539,6 +539,7 @@ void Krusader::saveSettings() {
 
   // save the gui
   if ( uisavesettings ) {
+    config->setGroup( "Startup" );
     config->writeEntry( "Show status bar", actShowStatusBar->isChecked() );
     config->writeEntry( "Show tool bar", actShowToolBar->isChecked() );
     config->writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );

@@ -99,6 +99,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
      {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Restore last position and size" ), false,  ""}};
 
   uiCbGroup = createCheckBoxGroup( 1, 0, uiCheckBoxes, 7, uiGrp );
+  connect( uiCbGroup->find( "UI Save Settings" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
   uiGrid->addWidget( uiCbGroup, 1, 0 );
 
@@ -110,6 +111,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 void KgStartup::slotDisable()
 {
   bool isDontSave = saveRadio->find( i18n( "Start with the following settings:" ) )->isChecked();
+  bool isUiSave   = !uiCbGroup->find( "UI Save Settings" )->isChecked();
   bool isLeftHp   = leftOrigin->currentText() ==i18n("homepage");
   bool isRightHp  = rightOrigin->currentText()==i18n("homepage");
 
@@ -125,9 +127,9 @@ void KgStartup::slotDisable()
   rightHomePage->lineEdit()->setEnabled( isDontSave && isRightHp );
   rightHomePage->button()->setEnabled( isDontSave && isRightHp );
 
-  int i=0;
+  int i=1;
   while( uiCbGroup->find( i ) )
-    uiCbGroup->find( i++ )->setEnabled( isDontSave );
+    uiCbGroup->find( i++ )->setEnabled( isUiSave );
 }
 
 #include "kgstartup.moc"
