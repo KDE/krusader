@@ -174,24 +174,6 @@ KAction *Krusader::actShowJSConsole = 0;
 Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 	// parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
-   QString leftPath, rightPath, startProfile;
-   
-   // get command-line arguments
-   if ( args->isSet( "left" ) ) {
-      leftPath = args->getOption( "left" );
-      // make sure left or right are not relative paths
-      if ( !leftPath.startsWith( "/" ) && leftPath.find( ":/" ) < 0 )    // make sure we don't touch things like ftp://
-         leftPath = QDir::currentDirPath() + "/" + leftPath;
-   } else leftPath = QString::null;
-   if ( args->isSet( "right" ) ) {
-      rightPath = args->getOption( "right" );
-      // make sure left or right are not relative paths
-      if ( !rightPath.startsWith( "/" ) && rightPath.find( ":/" ) < 0 )    // make sure we don't touch things like ftp://
-         rightPath = QDir::currentDirPath() + "/" + rightPath;
-   } else rightPath = QString::null;
-   if ( args->isSet( "profile" ) ) {
-      startProfile = args->getOption( "profile" );
-   } else startProfile = QString::null;
 
    // create the "krusader"
    App = this;
@@ -248,38 +230,50 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    // init the protocol handler
    KgProtocols::init();
 
+   krConfig->setGroup( "Startup" );             
+   QStringList l1( krConfig->readPathListEntry( "Left Tab Bar" ) );
+   QStringList l2( krConfig->readPathListEntry( "Right Tab Bar" ) );
+   
+   QString leftPath, rightPath, startProfile;   
+   // get command-line arguments
+   if ( args->isSet( "left" ) ) {
+      leftPath = args->getOption( "left" );
+      // make sure left or right are not relative paths
+      if ( !leftPath.startsWith( "/" ) && leftPath.find( ":/" ) < 0 )    // make sure we don't touch things like ftp://
+         leftPath = QDir::currentDirPath() + "/" + leftPath;
+   } else leftPath = QString::null;
+   if ( args->isSet( "right" ) ) {
+      rightPath = args->getOption( "right" );
+      // make sure left or right are not relative paths
+      if ( !rightPath.startsWith( "/" ) && rightPath.find( ":/" ) < 0 )    // make sure we don't touch things like ftp://
+         rightPath = QDir::currentDirPath() + "/" + rightPath;
+   } else rightPath = QString::null;
+   if ( args->isSet( "profile" ) ) {
+      startProfile = args->getOption( "profile" );
+   } else startProfile = QString::null;
+   
    // starting the panels
    mainView->start( leftPath, rightPath );
 
    // restore TabBar
-   if (!runKonfig) {
-      KConfigGroupSaver grp( krConfig, "Startup" );
-      QStringList l1( krConfig->readPathListEntry( "Left Tab Bar" ) );
-      QStringList l2( krConfig->readPathListEntry( "Right Tab Bar" ) );
+   if (!runKonfig && startProfile.isEmpty() ) {
       QStringList::const_iterator it;
       
+      krConfig->setGroup( "Startup" );             
       if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
-      {
-         it = l1.begin();
-         mainView->left->func->openUrl( *it );
-         for ( it++; it != l1.end(); ++it )
+         for ( it = ++(l1.begin()); it != l1.end(); ++it )
            mainView->leftMng->slotNewTab( *it );
-      }
 
       krConfig->setGroup( "Startup" );             
       if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
-      {
-         it = l2.begin();
-         mainView->right->func->openUrl( *it );
-         for ( it++; it != l2.end(); ++it )
+         for ( it = ++(l2.begin()); it != l2.end(); ++it )
            mainView->rightMng->slotNewTab( *it );
-      }
    
       krConfig->setGroup( "Startup" );             
       mainView->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
       krConfig->setGroup( "Startup" );             
       mainView->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
-	}
+   }
    
    // create the user menu
    userMenu = new UserMenu( this );

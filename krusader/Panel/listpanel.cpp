@@ -505,7 +505,7 @@ void ListPanel::start( KURL url, bool immediate ) {
 	krConfig->setGroup( "Startup" );
 
    // set the startup path
-   if ( url != KURL() ) {
+   if ( !url.isEmpty() ) {
       virt = url;
    } else
       if ( left ) {
@@ -530,7 +530,7 @@ void ListPanel::start( KURL url, bool immediate ) {
    if ( !virt.isValid() )
       virt = URL("/");
    _realPath = virt;
-	if( immediate )
+   if( immediate )
      func->immediateOpenUrl( virt );
    else
      func->openUrl( virt );
