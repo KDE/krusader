@@ -56,35 +56,39 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   KonfiguratorURLRequester *dfPath = createURLRequester( "Dependencies", "df", "", general_tab, false );
   pathsGrid->addWidget( dfPath, 0, 1 );
 
+  addLabel( pathsGrid, 1, 0, "eject", general_tab, "ejectName" );
+  KonfiguratorURLRequester *ejectPath = createURLRequester( "Dependencies", "eject", "", general_tab, false );
+  pathsGrid->addWidget( ejectPath, 1, 1 );
+
   KrServices::fullPathName( "kdesu" ); /* try to autodetect the full path name */
-  addLabel( pathsGrid, 1, 0, "kdesu", general_tab, "kdesuName" );
+  addLabel( pathsGrid, 2, 0, "kdesu", general_tab, "kdesuName" );
   KonfiguratorURLRequester *kdesuPath = createURLRequester( "Dependencies", "kdesu", "", general_tab, false );
-  pathsGrid->addWidget( kdesuPath, 1, 1 );
+  pathsGrid->addWidget( kdesuPath, 2, 1 );
 
-  addLabel( pathsGrid, 2, 0, "kmail", general_tab, "kmailName" );
+  addLabel( pathsGrid, 3, 0, "kmail", general_tab, "kmailName" );
   KonfiguratorURLRequester *kmailPath = createURLRequester( "Dependencies", "kmail", "", general_tab, false );
-  pathsGrid->addWidget( kmailPath, 2, 1 );
+  pathsGrid->addWidget( kmailPath, 3, 1 );
 
-  addLabel( pathsGrid, 3, 0, "kompare", general_tab, "kompareName" );
+  addLabel( pathsGrid, 4, 0, "kompare", general_tab, "kompareName" );
   KonfiguratorURLRequester *komparePath = createURLRequester( "Dependencies", "kompare", "", general_tab, false );
-  pathsGrid->addWidget( komparePath, 3, 1 );
+  pathsGrid->addWidget( komparePath, 4, 1 );
 
-  addLabel( pathsGrid, 4, 0, "krename", general_tab, "krenameName" );
+  addLabel( pathsGrid, 5, 0, "krename", general_tab, "krenameName" );
   KonfiguratorURLRequester *krenamePath = createURLRequester( "Dependencies", "krename", "", general_tab, false );
-  pathsGrid->addWidget( krenamePath, 4, 1 );
+  pathsGrid->addWidget( krenamePath, 5, 1 );
 
   KrServices::fullPathName( "krusader" ); /* try to autodetect the full path name */
-  addLabel( pathsGrid, 5, 0, "krusader", general_tab, "krusaderName" );
+  addLabel( pathsGrid, 6, 0, "krusader", general_tab, "krusaderName" );
   KonfiguratorURLRequester *krusaderPath = createURLRequester( "Dependencies", "krusader", "", general_tab, false );
-  pathsGrid->addWidget( krusaderPath, 5, 1 );
+  pathsGrid->addWidget( krusaderPath, 6, 1 );
 
-  addLabel( pathsGrid, 6, 0, "mount", general_tab, "mountName" );
+  addLabel( pathsGrid, 7, 0, "mount", general_tab, "mountName" );
   KonfiguratorURLRequester *mountPath = createURLRequester( "Dependencies", "mount", "", general_tab, false );
-  pathsGrid->addWidget( mountPath, 6, 1 );
+  pathsGrid->addWidget( mountPath, 7, 1 );
 
-  addLabel( pathsGrid, 7, 0, "umount", general_tab, "umountName" );
+  addLabel( pathsGrid, 8, 0, "umount", general_tab, "umountName" );
   KonfiguratorURLRequester *umountPath = createURLRequester( "Dependencies", "umount", "", general_tab, false );
-  pathsGrid->addWidget( umountPath, 7, 1 );
+  pathsGrid->addWidget( umountPath, 8, 1 );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );
