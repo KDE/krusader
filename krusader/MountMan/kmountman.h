@@ -71,6 +71,10 @@ namespace MountMan {
       static void eject( QString mntPoint );
       bool ejectable( QString path );
       QString convertSize( KIO::filesize_t size );
+      
+      QString getMtab();          // reads the mount table
+      bool    checkMtabChanged(); // checks whether mtab was changed
+      
       //////////////////////////// service functions /////////////////////////////////
       static QString nextWord( QString &s );
       static QString nextWord( QString &s, char c );
@@ -81,6 +85,7 @@ namespace MountMan {
       void parseDfData( QString filename );  // parse a FULL list of filesystems
       void forceUpdate();
       void collectOutput( KProcess *p, char *buffer, int buflen );
+      void collectMtab(KProcess *p, char *buffer,int buflen);
       void finishUpdateFilesystems();
       void killMountMan();                  // called when df never finished (error)
 
@@ -107,7 +112,6 @@ namespace MountMan {
       }
 
     private:
-      QString getMtab();        // reads the mount table
       QStringList mountPoints;  // all mountPoints excluding SUPERMOUNTED ones
       QList<fsData> filesystems;
       int noOfFilesystems;
@@ -118,6 +122,8 @@ namespace MountMan {
       KTempFile *tempFile;
       KShellProcess dfProc;
       KMountManGUI *mountManGui;
+
+      QString mtab;       // the mount table
   };
 
   // collects statistics about a path, create a label with the results and emit a singal

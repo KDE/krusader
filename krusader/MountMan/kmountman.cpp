@@ -57,7 +57,7 @@
 using namespace MountMan;
 
 KMountMan::KMountMan() : QObject(), Ready(false), Operational(false),
-                         outputBuffer(0), tempFile(0), mountManGui(0) {
+                         outputBuffer(0), tempFile(0), mountManGui(0), mtab("") {
 	filesystems.setAutoDelete(true);
 	localDf=new fsData();				 // will be used to move around information
   forceUpdate();
@@ -265,6 +265,7 @@ bool KMountMan::createFilesystems() {
 // run DF process and when it finishes, catch output with "parseDfData"
 ///////////////////////////////////////////////////////////////////////
 void KMountMan::updateFilesystems() {
+  getMtab();  // here we get the current state of mtab for watching it later
   // create the "df -P -T" process
   tempFile = new KTempFile();
   tempFile->setAutoDelete(true);
@@ -312,22 +313,35 @@ fsData* KMountMan::location(QString name) {
   return it;
 }
 
+/* we cannot use collectOutput as other processes may connected to it */
+void KMountMan::collectMtab(KProcess *p, char *buffer,int buflen) {
+  // add new buffer to mtab
+  for (int i=0; i<buflen; ++i)
+    mtab += buffer[i];
+}
+
 QString KMountMan::getMtab()
 {
   KShellProcess proc;
   proc << "mount";
 
-  // connect all outputs to collectOutput
+  // connect all outputs by collectMtab ( collectOutput can not be used because of the watcher )
   connect(&proc,SIGNAL(receivedStdout(KProcess*, char*, int)),
-          this,SLOT(collectOutput(KProcess*, char*,int)));
+          this,SLOT(collectMtab(KProcess*, char*,int)));
   // launch
-  clearOutput();
+  mtab = "";
   if (!proc.start(KProcess::Block,KProcess::Stdout)) {
     kdDebug() << "Unable to execute 'mount' !!!" << endl;
     return "";
   }
 
-  return getOutput();
+  return mtab;
+}
+
+bool KMountMan::checkMtabChanged()
+{
+  QString LastMtab = mtab;
+  return getMtab() != LastMtab;
 }
 
 QString KMountMan::devFromMtab(QString mntPoint) {

@@ -35,7 +35,6 @@
 #include "../krusader.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../kicons.h"
-#include "../VFS/krdirwatch.h"
 #include "../defaults.h"
 #include <klocale.h>
 #include <qpixmap.h>
@@ -52,10 +51,10 @@ using namespace MountMan;
 
 KMountManGUI::KMountManGUI() : KDialogBase(krApp, 0,true,"Mount.Man"),
       info(0), mountList(0) {
-  watcher = new KRdirWatch();
+  watcher = new QTimer(this);
+  connect(watcher,SIGNAL(timeout()), this, SLOT(checkMountChange())); //<>
 
   connect((QObject*)&krMtMan,SIGNAL(updated()),this,SLOT(updateList())); // <>
-  connect(watcher,SIGNAL(dirty()),(QObject*)&krMtMan,SLOT(forceUpdate())); //<>
   setButtonOKText(i18n("&Close"),i18n("Close the Mount.Man window."),0);
   showButtonApply(false); showButtonCancel(false);
   setPlainCaption(i18n("MountMan - Your Mount-Manager"));
@@ -82,6 +81,7 @@ KMountManGUI::KMountManGUI() : KDialogBase(krApp, 0,true,"Mount.Man"),
 
 KMountManGUI::~KMountManGUI()
 {
+  watcher->stop();
   delete watcher;
 }
 
@@ -135,7 +135,6 @@ void KMountManGUI::createMainPage() {
 }
 
 void KMountManGUI::updateList() {
-  createDirwatch();
   fsData *it;
   mountList->clear();
   for (it=krMtMan.filesystems.first(); it!=0 ; it=krMtMan.filesystems.next()) {
@@ -169,15 +168,14 @@ void KMountManGUI::updateList() {
     info->setEmpty(true);
     info->repaint();
   }
-  watcher->startScan();
+  watcher->start( WATCHER_DELAY, true);   // starting the watch timer ( single shot )
 }
 
-void KMountManGUI::createDirwatch() {
-  fsData* it;
-  watcher->clearList();
-  for (it=krMtMan.filesystems.first(); it!=0 ; it=krMtMan.filesystems.next()) {
-    watcher->addDir(it->mntPoint(), false);
-  }
+void KMountManGUI::checkMountChange()
+{
+  if( krMtMan.checkMtabChanged() )
+    krMtMan.forceUpdate();
+  watcher->start( WATCHER_DELAY, true);   // starting the watch timer ( single shot )
 }
 
 void KMountManGUI::doubleClicked(QListViewItem *i) {

@@ -39,6 +39,9 @@
 #include <qlistview.h>
 #include <qcheckbox.h>
 #include <kjanuswidget.h>
+#include <qtimer.h>
+
+#define  WATCHER_DELAY    500
 
 class KRFSDisplay;
 class KRdirWatch;
@@ -57,25 +60,23 @@ public:
   ~KMountManGUI();
   void createLayout();   // calls the various tab layout-creators
   void createMainPage(); // creator of the main page - filesystems
-
+  
 public slots:
   void updateList();     // fill-up the filesystems list
   void doubleClicked(QListViewItem *);
   void clicked(QListViewItem *);
   void changeActive(QListViewItem *);
+  void checkMountChange(); // check whether the mount table was changed
 
 signals:
   void refreshPanel(QString);
-
-protected:
-  void createDirwatch();
 
 private:
   KRFSDisplay *info;
   QFrame *mainPage;
   KJanusWidget *widget;
   QListView *mountList;
-  KRdirWatch *watcher;
+  QTimer *watcher;
 };
 
 };
