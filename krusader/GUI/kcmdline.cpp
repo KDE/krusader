@@ -118,7 +118,7 @@ void KCMDLine::setCurrent( const QString &p ) {
 KCMDLine::~KCMDLine() {
    KConfigGroupSaver grpSvr( krConfig, "Private" );
    QStringList list = cmdLine->historyItems();
-   kdWarning() << list[0] << endl;
+   //kdWarning() << list[0] << endl;
    krConfig->writeEntry( "cmdline history", list );
    krConfig->sync();
 }
