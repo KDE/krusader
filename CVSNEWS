@@ -1,28 +1,34 @@
-This file is only itended for the CVS.
-It should contain a brief description of new features; in some way an extension to the changelog.
+This file is only intended for the CVS.
+It should contain a brief description of new features;
+in some way an extension to the changelog.
 
 
 Sync-browsing:
-	With a little toggle-button in the panel-level toolbar the syncbrowse-mode is de-/activated.
-	when active, each directory-change in the specific panel is performed in the other too.
+  With a little toggle-button in the panel-level toolbar the syncbrowse-mode is
+  de-/activated.
+  when active, each directory-change in the specific panel is performed in the
+  other too.
 
 User-actions:
-	With the useraction-system the user can make its own actions on files in the panel or to access
-	krusader-internal functions with parameter directly using placeholder.
-	The actions integrate seamless into KDE's action-system, so the std. edit-toolbar/shortcut-dialogs can
-	will show/manipulate the useractions too.
-	The useractions are stored in ~/.kde/share/apps/krusader/useraction.xml (the file-structure is ducomentated
-	in doxygen-headers of UserActionXML)
-	Useractions can be edit/add/im-/export using a new Konfigurator-module (although I plan to move all
-	action-related to a new ActionMan. for more info see http://www.jonas-baehr.de/forum/Krusader-ideas.txt)
-	Currently theese placeholder are implemented (for details see UserAction/expander.cpp or doxygen):
-		Path		replaced by the panels path
-		Count	replaced by the number of <first parameter>
-		Filter		replaced by the panels filter-mask
-		Current	replaced bythe current item
-		List		replaced by a list of all <first paremeter>
-		Select	manipulates the selection in a panel
-		Bookmark	changes the panels's path to <first parameter>
-		Ask		asks the user for a some text and is replaced by the answer
-		Clipboard	manipulates the clipboard
-	A GUI-based helper for placholder-adding is provided.
+  With the useraction-system the user can make its own actions on files in the
+  panel or to access krusader-internal functions with parameter directly using
+  placeholder.
+  The actions integrate seamless into KDE's action-system, so the std.
+  edit-toolbar/shortcut-dialogs can will show/manipulate the useractions too.
+  The useractions are stored in ~/.kde/share/apps/krusader/useraction.xml (the
+  file-structure is documentated in doxygen-headers of UserActionXML)
+  Useractions can be edit/add/im-/export using a new Konfigurator-module
+  (although I plan to move all action-related to a new ActionMan. for more
+  info see http://www.jonas-baehr.de/forum/Krusader-ideas.txt)
+  Currently these placeholder are implemented (for details see
+  UserAction/expander.cpp or doxygen):
+    Path       replaced by the panels path
+    Count      replaced by the number of <first parameter>
+    Filter     replaced by the panels filter-mask
+    Current    replaced by the current item
+    List       replaced by a list of all <first paremeter>
+    Select     manipulates the selection in a panel
+    Bookmark   changes the panels's path to <first parameter>
+    Ask        asks the user for a some text and is replaced by the answer
+    Clipboard  manipulates the clipboard
+  A GUI-based helper for placeholder-adding is provided.

@@ -1,54 +1,74 @@
 ======================
-    ADDED: synchronizer: excluding files with '|' in the file filter (ex. '*.cpp *.h | *.moc.cpp' )
+    ADDED: synchronizer: excluding files with '|' in the file filter
+           (ex. '*.cpp *.h | *.moc.cpp' )
     ADDED: tooltips for squeezed tabs
-    ADDED: sync-browse mode (if on, a directory-change in the active is also performed in the inactive panel)
+    ADDED: sync-browse mode (if on, a directory-change in the active is also
+           performed in the inactive panel)
     ADDED: beta-state incremental refresh. test it with fam enabled!
-    ADDED: synchronizer: ability to give more files in the file filter (ex. '*.cpp *.h')
+    ADDED: synchronizer: ability to give more files in the file filter
+           (ex. '*.cpp *.h')
     ADDED: Two single click rename (Total Commander rename)
-    ADDED: The 3rd hand of krusader. click the litle arrow below the panel's scrollbar to see..
+    ADDED: The 3rd hand of krusader. click the litle arrow below the panel's
+           scrollbar to see..
     ADDED: showing suid, sgid and sticky bits in the permissions column
-    REACTIVATED: usermenu (now using the new useraction-system)
     ADDED: New useraction-system (partly based on Shies usermenu-prototype)
+    
+    REACTIVATED: usermenu (now using the new useraction-system)
+    
     FIXED: [ 988835 ] window size of synchronize dirs is not stored
     FIXED: [ 946567 ] krusader minimizes to tray on desktop change
     FIXED: mountman changes... read the email ;-)    
 
+
 1.40
 ======================
-    ADDED: when searching in files (grep), push the string we're searching for into
-           the clipboard when pressing F3 or F4. this saves an extra copy when searching
-           inside the file
+    ADDED: when searching in files (grep), push the string we're searching for
+           into the clipboard when pressing F3 or F4. this saves an extra copy
+           when searching inside the file
     ADDED: Catalan translation
-    DISABLED usermenu for 1.40
+ 
+ DISABLED: usermenu for 1.40
+    
     FIXED: [ 962340 ] Alt-T broken to call Tools menu
     FIXED: [ 980252 ] Compare by Content: right/left position swapped
     FIXED: [ 990141 ] F3/F4 in root mode trouble with permissions    
     FIXED: [ 959916 ] Krusader window too large on startup
     FIXED: username and group information are wrong for ftp_vfs
     FIXED: UMR (uninitialized memory read) in vfs::fromPathOrURL
-    UPDATED: Polish translation
+    
+  UPDATED: Polish translation
+
 
 1.40-beta2
 ======================
     ADDED: Chinese Simplified translation
-    FIXED: the new ftp dialog URLs are saved into a stochastic configuration group
+    
+    FIXED: the new ftp dialog URLs are saved into a stochastic configuration
+           group
     FIXED: [ 960003 ] Swapped letters in quick-search
-    FIXED: KIO::Slave url redirection handling (e.g. now devices:/ and settings:/ works !)
+    FIXED: KIO::Slave url redirection handling
+           (e.g. now devices:/ and settings:/ works !)
     FIXED: [ 962598 ] viewer didn't display XML files 
-    FIXED: [ 960595 ] problem with paths containing more '@' characters (FTP proxy hack)
+    FIXED: [ 960595 ] problem with paths containing more '@' characters
+           (FTP proxy hack)
     FIXED: [ 957145 ] krusader closes editor without asking
     FIXED: ports cannot be added for fish, sftp in the new connection GUI
     FIXED: [ 943962 ] the summary status is not updated after calc space
     FIXED: [ 950762 ] missing pemission check on entering a folder
     FIXED: setting "xterm -e vim" as editor didn't work...
-    FIXED: [ 953874 ] allowing editors which are not url-aware to be used as default editor
-    FIXED: [ 948315 ] security hole, krusader changes its temp directory's rights to 0777
+    FIXED: [ 953874 ] allowing editors which are not url-aware to be used as
+           default editor
+    FIXED: [ 948315 ] security hole, krusader changes its temp directory's
+           rights to 0777
     FIXED: the UI settings are not saved at exit
     FIXED: [ 951274 ] shift+home and shift+end does not work
-    FIXED: [ 948726 ] problem with ctrl+left from the left panel and ctrl+right from the right panel
-    FIXED: extension is separated from the dirname after renaming directories containing '.'
+    FIXED: [ 948726 ] problem with ctrl+left from the left panel and ctrl+right
+           from the right panel
+    FIXED: extension is separated from the dirname after renaming directories
+           containing '.'
     FIXED: locate does not call kdesu any more
-    FIXED: [ 950052 ] synchronizer: the left and right side depends of the active panel
+    FIXED: [ 950052 ] synchronizer: the left and right side depends of the
+           active panel
     FIXED: [ 770676 ] krarc does not handle password zips
     FIXED: [ 928746 ] symlinks pointing to directories using fish protocol fail
     FIXED: [ 939214 ] synchronizer, wrong behaviour of compare by content
@@ -60,61 +80,76 @@
     FIXED: krusader exits at viewing dvi files (missing arguments from KPart).
     FIXED: drag line remains visible after dropping an URL
     FIXED: panel swapping corrupts ctrl+arrow and alt+arrow
-    FIXED: error at dropping URLs containing non-english characters from konqueror
+    FIXED: error at dropping URLs containing non-english characters from
+           konqueror
     FIXED: KDE 3.2, right justified tabs bug
     FIXED: dragging over a new tab changes active tab
     FIXED: crash at pressing space on the '..' directory
-    UPDATED: Bulgarian translation
-    UPDATED: Czech translation
-    UPDATED: Danish translation
-    UPDATED: Dutch translation
-    UPDATED: French translation
-    UPDATED: German translation
-    UPDATED: Hungarian translation
-    UPDATED: Italian translation
-    UPDATED: Slovak translation
+  
+  UPDATED: Bulgarian translation
+  UPDATED: Czech translation
+  UPDATED: Danish translation
+  UPDATED: Dutch translation
+  UPDATED: French translation
+  UPDATED: German translation
+  UPDATED: Hungarian translation
+  UPDATED: Italian translation
+  UPDATED: Slovak translation
+
 
 1.40-beta1
 ======================   
     ADDED: configuring the colors of the panel
     ADDED: (a bug fix really) ability to "not test archives before unpacking"
     ADDED: new icons (thanks to adios for providing them)
-    ADDED: quickmode for mountman. press and HOLD the mountman icon for new functionality
+    ADDED: quickmode for mountman. press and HOLD the mountman icon for new
+           functionality
     ADDED: Bulgarian translation (thanks to Milen Ivanov)
-    ADDED: krusader restart is not necessary from now after changing the configuration
+    ADDED: krusader restart is not necessary from now after changing the
+           configuration
     ADDED: ability to give arguments for the terminal
     ADDED: enable/disable icons in the filenames
     ADDED: ability to configure the fields of the panel (Ext, Size, Perm, ...)
     ADDED: single click selects / executes
-    ADDED: panel level toolbar ('..', '/', '~', '=' buttons), thanks to David Harel
-    ADDED: Locate (integrating the findutils-locate package of GNU into Krusader). TEST IT
-    ADDED: Heiner's patch for 'logical selection mode' is applied and used as default. TEST IT
+    ADDED: panel level toolbar ('..', '/', '~', '=' buttons), thanks to David
+           Harel
+    ADDED: Locate (integrating the findutils-locate package of GNU into
+           Krusader). TEST IT
+    ADDED: Heiner's patch for 'logical selection mode' is applied and used as
+           default. TEST IT
     ADDED: application dependency setting in konfigurator
     ADDED: Csaba's new konfigurator is here, boys and girls!
     ADDED: heiner's quicksearch patch
-    ADDED: calculate occupied space prints the directory's size (wincmd-style) - thanks heiner!
+    ADDED: calculate occupied space prints the directory's size (wincmd-style)
+           - thanks heiner!
     ADDED: current directory in history menu is checked
     ADDED: a working user menu (try alt+~), but a bit rough on the edges
-    ADDED: KrSearch edit/view file in the result list window (F3, F4, right click)
-    ADDED: a folder-history button, a-la-total commander. thanks to Hans Loffler!
+    ADDED: KrSearch edit/view file in the result list window (F3, F4, right
+           click)
+    ADDED: a folder-history button, a-la-total commander. thanks to Hans
+           Loffler!
     ADDED: selectall at rename
     ADDED: new shortcuts to search dialog (heiner)
     ADDED: directory synchronizer
     ADDED: file splitter
     ADDED: a missing credit for Frank in the about box
-    FIXED: krusader exits at closing the viewer when minimized to tray
+    
+	FIXED: krusader exits at closing the viewer when minimized to tray
     FIXED: KDE 3.2 terminal exit at Ctrl+C
     FIXED: bug [ 906386 ] regarding refreshes of dirwatch with fam enabled
     FIXED: bug [ 906538 ] which now makes a faster unpacking process
-    FIXED: bug [ 894771 ] regarding over-expanding window due to long command line
+    FIXED: bug [ 894771 ] regarding over-expanding window due to long command
+           line
     FIXED: edit new file on KDE 3.2
     FIXED: permission handling for FTP URL-s
     FIXED: calc space crash at vfs refresh (thanks to Heiner)
     FIXED: krarc created non-executable directories (0666)
     FIXED: reimplementing the 'allow move into archive' setting
     FIXED: no restart at changing the icon tray's state in konfigurator
-    FIXED: krusader freezes if the `df` process does not terminate (at network errors, IO wait)
-    FIXED: krusaderui.rc bug, new menuitems does not appear after a krusader update
+    FIXED: krusader freezes if the `df` process does not terminate (at network
+           errors, IO wait)
+    FIXED: krusaderui.rc bug, new menuitems does not appear after a krusader
+           update
     FIXED: sort by EXT did not obey the 'case sensative sort' flag
     FIXED: 2 items on the view menu had the same shortcuts
     FIXED: increased speed of search, by emitting lesssignals (thanks to Lars)
@@ -128,7 +163,8 @@
     FIXED: crash at ftp://user@server@proxy:port FTP URL-s
     FIXED: no parent directory at tar://... and zip://... URL-s
     FIXED: font size problems in KCmdLine and KrMaskChoice
-    FIXED: internal editor quits without notification even if the edited file was not saved
+    FIXED: internal editor quits without notification even if the edited file
+           was not saved
     FIXED: no i18n for Name, Ext, Size, Modified
     FIXED: obsolete QT header files
     FIXED: crash at closing the progressbar window at packing
@@ -137,43 +173,53 @@
     FIXED: KrSearch permissions panel placing bug
     FIXED: ftp port limit changed from 999 to 65535
 
-    UPDATED: new package description - Thanks to Jonas Bï¿½r
-    UPDATED: Krusader Handbook (read ./doc/ChangeLog for more info)
-    UPDATED: Japanese translation
-    UPDATED: Dutch translation
-    UPDATED: Czech translation (thanks to Martin Sixta)
-    UPDATED: Spanish translation
-    UPDATED: Krename url   http://www.krename.net
-    REMOVED: arc_vfs support completly replaced with KIO:Slave technolegy.
+  REMOVED: arc_vfs support completly replaced with KIO:Slave technolegy.
+  
+  UPDATED: new package description - Thanks to Jonas Bähr
+  UPDATED: Krusader Handbook (read ./doc/ChangeLog for more info)
+  UPDATED: Japanese translation
+  UPDATED: Dutch translation
+  UPDATED: Czech translation (thanks to Martin Sixta)
+  UPDATED: Spanish translation
+  UPDATED: Krename url   http://www.krename.net
+
 
 1.30
 ======================
     ADDED: middle mouse button: click on a folder, and create a new tab.
     ADDED: middle mouse button: click on a tab, and close it
-    FIXED: krarc QByteArray buffer freeing bug
+    
+	FIXED: krarc QByteArray buffer freeing bug
     FIXED: mountman watches 'mount' instead of the directories
-    FIXED: keyboard-shortcuts issues for new-tab(alt+ctrl+n), close-tab(alt+ctrl+c)
-           and duplicate-tab(alt+ctrl+shift+n)
+    FIXED: keyboard-shortcuts issues for new-tab(alt+ctrl+n),
+           close-tab(alt+ctrl+c) and duplicate-tab(alt+ctrl+shift+n)
     FIXED: mountman FreeBSD bug (/etc/mtab does not exist in FreeBSD)
     FIXED: All files / Custom files. Executable was removed.
-    FIXED: when selecting something from the combobox in "mark files" dialog, combo doesn't close immediatly
+    FIXED: when selecting something from the combobox in "mark files" dialog,
+           combo doesn't close immediatly
     FIXED: mark files dialog added the same selection more than once
     FIXED: disabled panel-types in konfigurator
     FIXED: font size problems with the Select dialog, and New Net Connection
-    FIXED: mountman detects those devices as supermount, which are mounted and missing from fstab
-    FIXED: mountman inserts '/dev/' before NFS shares and mounted devices which are missing from fstab
-    FIXED: mountman does not watch readonly directories (mount can change its permissions!)
+    FIXED: mountman detects those devices as supermount, which are mounted and
+           missing from fstab
+    FIXED: mountman inserts '/dev/' before NFS shares and mounted devices which
+           are missing from fstab
+    FIXED: mountman does not watch readonly directories (mount can change its
+           permissions!)
     FIXED: mountman does not stop dirwatch after close + memory leak
     FIXED: compare fix at directories with escape characters
     FIXED: Sorry - Archive test passed
     FIXED: FTP proxy bug (more than one @ characters in the URL)
-    REMOVED: SortByExtention menu item (which did nothing)
-    REMOVED: KrSearch-Help + Pack-Move into archive (did nothing)
-    UPDATED: Dutch translation
-    UPDATED: Danish translation
-    UPDATED: Hungarian translation
-    UPDATED: Italian translation
-    UPDATED: Slovak translation
+  
+  REMOVED: SortByExtention menu item (which did nothing)
+  REMOVED: KrSearch-Help + Pack-Move into archive (did nothing)
+
+  UPDATED: Dutch translation
+  UPDATED: Danish translation
+  UPDATED: Hungarian translation
+  UPDATED: Italian translation
+  UPDATED: Slovak translation
+
 
 1.29-beta
 ======================
@@ -185,38 +231,46 @@
     ADDED: Russian translation (thanks to Dmitry Chernyak)
     ADDED: Ctrl+Enter and Ctrl+Shift+Enter keyboard shortcuts
     ADDED: default shortcut for refreshing the panel is Ctrl+R
-    ADDED: ctrl-left/right arrow checks if we're on a folder, if so it refreshes the other panel with the contents
-           of the folder, otherwise to the same path as current one (Wincmd style)
+    ADDED: ctrl-left/right arrow checks if we're on a folder, if so it refreshes
+           the other panel with the contents of the folder, otherwise to the
+           same path as current one (Wincmd style)
     ADDED: tabbed-browsing beta
     ADDED: SHIFT-F3 view dialog.
     ADDED: The internal viewer follow links on HTML pages.
     ADDED: panel swapping by Ctrl+U
-    ADDED: command line improvments: ctrl+/ opens history list, up&down keys work again, and general usability
+    ADDED: command line improvments: ctrl+/ opens history list, up&down keys
+           work again, and general usability
     ADDED: krusader can now be started from commandline with new options:
-           try: krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net !
+           try: krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net!
     ADDED: new command line widget. should fix some issues and requests
     ADDED: Missing WhatsThis information (thanks to Mikolaj!)
     ADDED: a new shortcut for 'show hidden files' - ctrl+. (ctrl plus dot)
     ADDED: rar support to krArc KIO slave.
-    ADDED: open with in the right click menu for multiple files with the same mimetype.
-    ADDED: Patch by Heiner <h.eichmann_at_gmx.de>  which adds a cancel button to the calculate space action.
+    ADDED: open with in the right click menu for multiple files with the same
+           mimetype.
+    ADDED: Patch by Heiner <h.eichmann_at_gmx.de>  which adds a cancel button to
+           the calculate space action.
     FIXED: KrSearch does not find texts at the last row
     FIXED: Strange KrSearch GUI (SearchIn and DontSearchIn adding)
     FIXED: KrSearch crash at pressing Escape or Closing the window during search
     FIXED: cmdline would start-up focused on the wrong panel
-    FIXED: when pressing ctrl-enter (or ctrl-shift-enter), focus goes to command line
+    FIXED: when pressing ctrl-enter (or ctrl-shift-enter), focus goes to command
+           line
     FIXED: Terminal Emulator bug at ` and Backspace keys
     FIXED: internal editor / viewer crash at invalid symlinks
-    FIXED: run-in-terminal would cause the terminal to close prematuraly and results would be lost.
+    FIXED: run-in-terminal would cause the terminal to close prematuraly and
+           results would be lost.
     FIXED: free disk capacity miscalculation for Ext2 and Ext3 file systems.
     FIXED: crash when editing a file with # in the filename
     FIXED: inplace renaming bug with extention when pressing ctrl+click
     FIXED: whenever the folder gets refreshed, the current file would be lost
-    FIXED: problematic behavior when trying to SPACE a folder without permissions
+    FIXED: problematic behavior when trying to SPACE a folder without
+           permissions
     FIXED: Ctrl-A didn't work properly
     FIXED: crash when unmounting a busy mountpoint
     FIXED: date-time sorting bug
-    FIXED: changed pop-up delay of the history button on the command line to zero
+    FIXED: changed pop-up delay of the history button on the command line to
+           zero
     FIXED: right-click menu via keyboard appeared in the wrong place
     FIXED: crash when using spacebar on the ".." (thanks to heiner)
     FIXED: automark directories didn't work (thanks to Anarky)
@@ -225,46 +279,59 @@
     FIXED: compilation problem with GCC >= 3.3 (thanks to Adios)
     FIXED: Force refresh when creating a new directory.
     FIXED: a crash when trying to repaint when the VFS was deleted.
-    REMOVED: Device Manager action
-    UPDATED: many usability issues (thanks to Mikolaj)
-    UPDATED: German translation
-    UPDATED: Hungarian translation
-    UPDATED: Dutch translation
-    UPDATED: Spanish translation
+	
+  REMOVED: Device Manager action
+  
+  UPDATED: many usability issues (thanks to Mikolaj)
+  UPDATED: German translation
+  UPDATED: Hungarian translation
+  UPDATED: Dutch translation
+  UPDATED: Spanish translation
+
 
 1.25-beta1
 ======================
     ADDED: Finally, the new bookmark system is here! courtasy of Jan Halasa
-    ADDED: new Hungarian translation, thanks to Kukk Zoltï¿½
-    FIXED: mountMan bug - didn't allow to umount/mount filesystem with trailing /
+    ADDED: new Hungarian translation, thanks to Kukk Zoltán
+
+    FIXED: mountMan bug - didn't allow to umount/mount filesystem with
+           trailing /
     FIXED: width of modified column for i18n (thanks to heiner)
     FIXED: dirUp() bug - selection goes to top.
     FIXED: the @ in ftp passwords bug.
-    UPDATED: Slovak translation
-    UPDATED: Dutch translation
+	
+  UPDATED: Slovak translation
+  UPDATED: Dutch translation
+
 
 1.21-beta1
 ======================
-    ADDED: Opening left/right bookmarks (alt+left/right arrow) is now an action, and can be remapped.
+    ADDED: Opening left/right bookmarks (alt+left/right arrow) is now an action,
+           and can be remapped.
     ADDED: In-place renaming (thanks to Heiner Eichmann)
     ADDED: New KIO slaves to handle archives.
     ADDED: multi-file properties.
     ADDED: Krusader now obeys KDE's date time format
-    ADDED: Total-Commander style directory selection. Press SPACE to check it out!
-           Thanks goes (again) to Heiner Eichmann!
-
-    FIXED: column sizes are saved when doing 'save postion', or if 'save settings' is set in konfigurator.
+    ADDED: Total-Commander style directory selection. Press SPACE to check it
+           out! Thanks goes (again) to Heiner Eichmann!
+		   
+    FIXED: column sizes are saved when doing 'save postion', or if
+           'save settings' is set in konfigurator.
     FIXED: double-catching of the ~ (tilda) key
     FIXED: double-catching of the backspace key
     FIXED: closing krusader using Alt-F4 or clicking X didn't save settings
     FIXED: Wrong focus after renaming
-    FIXED: Error using KRename with filenames containing spaces (thanks to Tobias Vogele)
+    FIXED: Error using KRename with filenames containing spaces (thanks to
+           Tobias Vogele)
     FIXED: FreeBSD compatability in KrARC (thanks to Heiner Eichmann)
     FIXED: a crash in the dirUp() function.
-    FIXED: when opening bookmarks using keyboard, active panel didn't change properly
-    FIXED: in search dialog - you can now simply click text, and press ENTER. no need to click Search
+    FIXED: when opening bookmarks using keyboard, active panel didn't change
+           properly
+    FIXED: in search dialog - you can now simply click text, and press ENTER.
+           no need to click Search
     FIXED: a lot of usability issues (thanks to Mikolaj Machowski)
-    FIXED: double-click in search dialog bug (thanks to heiner eichmann for the patch)
+    FIXED: double-click in search dialog bug (thanks to heiner eichmann for the
+           patch)
     FIXED: i18n issues - thanks to Frank Schoolmeesters
     FIXED: Panel flicker patch (thanks to Gabor Takacs for the patch)
     FIXED: Krusader failed to report permission errors while deleting files
@@ -273,26 +340,32 @@
     FIXED: removed unsafe debug messages
     FIXED: proper properties and owner/group for non-local files
 
-    UPDATED: Dutch translation
-    UPDATED: German translation
+  UPDATED: Dutch translation
+  UPDATED: German translation
 
       BUG: krArc slow when unpacking large files
 
 
 1.20 - KDE 3
 ======================
-    ADDED: Clicking on the status or totals bars (above and below file list) changes focus
-    ADDED: Each panel remembers the way it was sorted (might be different for each)
+    ADDED: Clicking on the status or totals bars (above and below file list)
+           changes focus
+    ADDED: Each panel remembers the way it was sorted (might be different for
+           each)
     ADDED: Each panel remembers the column width (might be different for each)
     ADDED: Dutch translation, thanks to Frank Schoolmeesters
-    FIXED: Crash when saying NO to "really exit krusader?"
+    
+	FIXED: Crash when saying NO to "really exit krusader?"
+  
   UPDATED: German translation
   UPDATED: Polish translation
+
 
 1.20
 ======================
     ADDED: Japanese translation, thanks to UTUMI Hirosi
-    ADDED: error window when attempting to drag-n-drop to a target without enough permissions
+    ADDED: error window when attempting to drag-n-drop to a target without
+           enough permissions
 
     FIXED: crash when viewing/editing a file without permissions to read
     FIXED: icon touchup - to make the thing look more consistent
@@ -303,6 +376,7 @@
     FIXED: the remote connections rename function
     FIXED: blank hex viewer with short text files
     FIXED: anonymous checkbox in remote-man not respected
+
 
 1.12 beta2
 ======================
@@ -320,19 +394,18 @@
     FIXED: ESC key close the viewer.
     FIXED: crash when trying to open non-existing directory.
     FIXED: directory sorting.
-    FIXED:
 
-    TODO: automark directories won't work in 1.12!!!
-    TODO: can we add a krProgress to normal-vfs refreshes ?
-    TODO: dragn'drop quirky.
-    TODO: add progressbar to totals (?)
-    TODO: COMPAREMODE
+     TODO: automark directories won't work in 1.12!!!
+     TODO: can we add a krProgress to normal-vfs refreshes ?
+     TODO: dragn'drop quirky.
+     TODO: add progressbar to totals (?)
+     TODO: COMPAREMODE
 
     
 1.12 beta1
 ======================
-    ADDED: some GUI touch-ups: make buttons smaller, and bars leaner. all in all, the
-           thing should look better.
+    ADDED: some GUI touch-ups: make buttons smaller, and bars leaner. all in
+           all, the thing should look better.
     ADDED: FreeBSD compatability issues - patchs by Heiner, thanks man!
     ADDED: move to next-gen view (at last)
           
@@ -345,7 +418,8 @@
     FIXED: bug in arc_vfs, concerning full-paths in tars (thanks Heiner)
     FIXED: right align size column
 
-    REMOVED: Tree & Quickview panels.
+  REMOVED: Tree & Quickview panels.
+
 
 1.11 KDE 3
 ======================
@@ -357,6 +431,7 @@
     FIXED: Crash when Krusader is called with open viewer/internal editor.
     FIXED: Keyboard shortcuts not saved in Konfigurator.    
 
+
 1.10 - KDE 3
 ======================
     ADDED: new and improved viewer.
@@ -366,14 +441,18 @@
     ADDED: you can try to execute files in remote filesystem.
     ADDED: new command detection function instead of using 'which'
 
-    FIXED: rewritten the panel sorting function, it should be better and faster now.
-    FIXED: back to KRDirWatch, since KDirWatch crashed us on systems with FAM enabled.
-    FIXED: removed the "panel start path is invalid" error message. if the start
-           path is invalid try to find the closest path (the previous solution was '/');
-    FIXED: don't watch read-only/not-readable directories - this should improve performance
-           and avoid a loooong wait time on super-mounted cdroms.
+    FIXED: rewritten the panel sorting function, it should be better and faster
+           now.
+    FIXED: back to KRDirWatch, since KDirWatch crashed us on systems with FAM
+           enabled.
+    FIXED: removed the "panel start path is invalid" error message. if the
+           start path is invalid try to find the closest path (the previous
+           solution was '/');
+    FIXED: don't watch read-only/not-readable directories - this should improve
+           performance and avoid a loooong wait time on super-mounted cdroms.
     FIXED: multiple selctions modes are no-more. default mode is Konqueror.
-           the multi-mode become unstable after the kde3 porting and we had to disable it.
+           the multi-mode become unstable after the kde3 porting and we had to
+           disable it.
     FIXED: memory leak when starting konfigurator.
 
 
@@ -381,12 +460,12 @@
 ======================
     ADDED: new icon.
     ADDED: sftp & scp support.
-    ADDED: multi-protocol and history to the new connection
-           dialog.
+    ADDED: multi-protocol and history to the new connection dialog.
 
-    FIXED: normal_vfs now uses the KDE dir watch,
-           in other words: better directory refresh.
+    FIXED: normal_vfs now uses the KDE dir watch, in other words: better
+           directory refresh.
     FIXED: new 'admin' folder.
+
 
 1.0.1 - KDE 3
 ======================
@@ -402,7 +481,8 @@
            of files according to their compare-mode status - newer, older, etc.
     ADDED: Terminal emulator now "follows mouse" - konqueror style.
     ADDED: French translation.
-    ADDED: A new icon for Krusader. new we've got krusader.png and krusader2.png !
+    ADDED: A new icon for Krusader. new we've got krusader.png and
+           krusader2.png!
 
     FIXED: errors compiling on kde 2.1 - convertSizeFromKB
     FIXED: compatability issue with installing to debian
