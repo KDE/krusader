@@ -66,9 +66,6 @@ signals:
 
 private:
   bool stopSearch;
-  bool checkPerm(QString perm);
-  bool checkType(QString mime);
-  bool fileMatch(QString name);
   QValueStack<KURL> scannedUrls;
   QValueStack<KURL> unScannedUrls;
   KRQuery *query;

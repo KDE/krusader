@@ -33,11 +33,15 @@
 #include <qstringlist.h>
 #include <time.h>
 #include <kurl.h>
+#include "../VFS/vfile.h"
 
 class KRQuery {
 public: 
   KRQuery();
   ~KRQuery() {};
+
+  bool match( vfile *file );     // checks if the given vfile object matches the conditions
+  void normalize();              // make sure KRSearchMod can use the data
 
   QStringList matches;           // what to search
   QStringList excludes;          // what to exclude
@@ -69,7 +73,12 @@ public:
   //    in the member QStringList customType
   QString type;
   QStringList customType;
-  void normalize();            // make sure KRSearchMod can use the data
+
+private:
+  bool checkPerm(QString perm);
+  bool checkType(QString mime);
+  bool fileMatch(QString name);
+  bool containsContent( QString file );
 };
 
 #endif

@@ -33,6 +33,14 @@
 #include "krquery.h"
 #include "../krusader.h"
 #include "../resources.h"
+#include "../VFS/krarchandler.h"
+
+#include <qtextstream.h>
+#include <qregexp.h>
+#include <klargefile.h>
+#include <klocale.h>
+#include <kmimetype.h>
+#include <qfile.h>
 
 // set the defaults
 KRQuery::KRQuery(): matches(""),matchesCaseSensitive(true),
@@ -49,3 +57,107 @@ void KRQuery::normalize(){
     (*it).setPath( (*it).path( -1 ));
 }
 
+bool KRQuery::checkPerm( QString filePerm )
+{
+  for ( int i = 0; i < 9; ++i )
+    if ( perm[ i ] != '?' && perm[ i ] != filePerm[ i + 1 ] ) return false;
+  return true;
+}
+
+bool KRQuery::checkType( QString mime )
+{
+  if ( type == mime ) return true;
+  if ( type == i18n( "Archives" ) ) return KRarcHandler::arcSupported( mime.right( 4 ) );
+  if ( type == i18n( "Directories" ) ) return mime.contains( "directory" );
+  if ( type == i18n( "Image Files" ) ) return mime.contains( "image/" );
+  if ( type == i18n( "Text Files" ) ) return mime.contains( "text/" );
+  if ( type == i18n( "Video Files" ) ) return mime.contains( "video/" );
+  if ( type == i18n( "Audio Files" ) ) return mime.contains( "audio/" );
+  if ( type == i18n( "Custom" ) ) return customType.contains( mime );
+  return false;
+}
+
+bool KRQuery::fileMatch( const QString name )
+{
+  unsigned int len;
+  for ( unsigned int i = 0; i < excludes.count(); ++i )
+  {
+    QRegExp( *excludes.at( i ), matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
+    if ( len == name.length() ) return false;
+  }
+  for ( unsigned int i = 0; i < matches.count(); ++i )
+  {
+    QRegExp( *matches.at( i ), matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
+    if ( len == name.length() ) return true;
+  }
+  return false;
+}
+
+bool KRQuery::match( vfile *vf )
+{
+  // see if the name matches
+  if ( !fileMatch( vf->vfile_getName() ) ) return false;
+  // check that the size fit
+  KIO::filesize_t size = vf->vfile_getSize();
+  if ( minSize && size < minSize ) return false;
+  if ( maxSize && size > maxSize ) return false;
+  // check the time frame
+  time_t mtime = vf->vfile_getTime_t();
+  if ( olderThen && mtime > olderThen ) return false;
+  if ( newerThen && mtime < newerThen ) return false;
+  // check owner name
+  if ( !owner.isEmpty() && vf->vfile_getOwner() != owner ) return false;
+  // check group name
+  if ( !group.isEmpty() && vf->vfile_getGroup() != group ) return false;
+  //check permission
+  if ( !perm.isEmpty() && !checkPerm( vf->vfile_getPerm() ) ) return false;
+
+  if ( !contain.isEmpty() )
+  {
+    if( vf->vfile_getUrl().isLocalFile() )
+    {
+      if( !containsContent( vf->vfile_getUrl().path() ) ) return false;
+    }
+    else
+    {
+      /* TODO: search in remote vfs is not yet implemented */
+    }
+  }
+    
+  return true;
+}
+
+bool KRQuery::containsContent( QString file )
+{
+  QFile qf( file );
+
+  qf.open( IO_ReadOnly );
+  QTextStream text( &qf );
+  text.setEncoding( QTextStream::Locale );
+  QString line;
+  while ( !text.atEnd() )
+  {
+    line = text.readLine();
+    if ( line.isNull() ) break;
+    if ( containWholeWord )
+    {
+      int ndx = 0;
+
+      while ( ( ndx = line.find( contain, ndx, containCaseSensetive ) ) != -1 )
+      {
+        QChar before = line.at( ndx - 1 );
+        QChar after = line.at( ndx + contain.length() );
+
+        if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
+          after != '_' && before != '_' )
+            return true;
+        
+        ndx++;
+      }
+    }
+    else if ( line.find( contain, 0, containCaseSensetive ) != -1 )
+      return true;
+
+  }
+  return false;
+}

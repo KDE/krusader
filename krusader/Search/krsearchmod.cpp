@@ -83,45 +83,6 @@ void KRSearchMod::stop()
   stopSearch = true;
 }
 
-bool KRSearchMod::checkPerm( QString perm )
-{
-  QString q_perm = query->perm;
-  for ( int i = 0; i < 9; ++i )
-    if ( q_perm[ i ] != '?' && q_perm[ i ] != perm[ i + 1 ] ) return false;
-  return true;
-}
-
-bool KRSearchMod::checkType( QString mime )
-{
-  QString type = query->type;
-  if ( type == mime ) return true;
-  if ( type == i18n( "Archives" ) )
-    return KRarcHandler::arcSupported( mime.right( 4 ) );
-  if ( type == i18n( "Directories" ) ) return mime.contains( "directory" );
-  if ( type == i18n( "Image Files" ) ) return mime.contains( "image/" );
-  if ( type == i18n( "Text Files" ) ) return mime.contains( "text/" );
-  if ( type == i18n( "Video Files" ) ) return mime.contains( "video/" );
-  if ( type == i18n( "Audio Files" ) ) return mime.contains( "audio/" );
-  if ( type == i18n( "Custom" ) ) return query->customType.contains( mime );
-  return false;
-}
-
-bool KRSearchMod::fileMatch( const QString name )
-{
-  unsigned int len;
-  for ( unsigned int i = 0; i < query->excludes.count(); ++i )
-    {
-    QRegExp( *query->excludes.at( i ), query->matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
-    if ( len == name.length() ) return false;
-    }
-  for ( unsigned int i = 0; i < query->matches.count(); ++i )
-    {
-    QRegExp( *query->matches.at( i ), query->matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
-    if ( len == name.length() ) return true;
-    }
-  return false;
-}
-
 void KRSearchMod::scanURL( KURL url )
 {
   if( stopSearch ) return;
@@ -162,23 +123,29 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
   if ( !d ) return ;
 
   struct dirent* dirEnt;
-  QString name;
-  unsigned long size;
-  time_t mtime;
-  KURL url;
 
   while ( ( dirEnt = readdir( d ) ) != NULL )
   {
-    name = QString::fromLocal8Bit( dirEnt->d_name );
-    url = vfs::fromPathOrURL( dir + name );
-    
-    QString mime = QString::null;
+    QString name = QString::fromLocal8Bit( dirEnt->d_name );
     
     // we dont scan the ".",".." enteries
     if ( name == "." || name == ".." ) continue;
 
     KDE_struct_stat stat_p;
     KDE_lstat( ( dir + name ).local8Bit(), &stat_p );
+    
+    KURL url = vfs::fromPathOrURL( dir + name );
+    
+    QString mime = QString::null;
+    if ( query->inArchive || !query->type.isEmpty() )
+      mime = KMimeType::findByURL( url, stat_p.st_mode, true, false ) ->name();
+
+    // creating a vfile object for matching with krquery    
+    vfile * vf = new vfile(name, (KIO::filesize_t)stat_p.st_size, KRpermHandler::mode2QString(stat_p.st_mode),
+                           stat_p.st_mtime, S_ISLNK(stat_p.st_mode), stat_p.st_uid, stat_p.st_gid,
+                           mime, "", stat_p.st_mode);
+    vf->vfile_setUrl( url );
+    
     if ( query->recurse )
     {
       if ( S_ISLNK( stat_p.st_mode ) && query->followLinks )
@@ -188,7 +155,6 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
     }
     if ( query->inArchive )
     {
-      mime = KMimeType::findByURL( url, stat_p.st_mode, true, false ) ->name();
       QString type = mime.right( 4 );
       if ( mime.contains( "-rar" ) ) type = "-rar";
 
@@ -204,79 +170,16 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
         unScannedUrls.push( archiveURL );
       }
     }
-    // see if the name matches
-    if ( !fileMatch( name ) ) continue;
-    // check that the size fit
-    size = stat_p.st_size;
-    if ( query->minSize && size < query->minSize ) continue;
-    if ( query->maxSize && size > query->maxSize ) continue;
-    // check the time frame
-    mtime = stat_p.st_mtime;
-    if ( query->olderThen && mtime > query->olderThen ) continue;
-    if ( query->newerThen && mtime < query->newerThen ) continue;
-    // check the type
-    if ( !query->type.isEmpty() )
+    
+    if( query->match( vf ) )
     {
-      if ( mime.isEmpty() )
-        mime = KMimeType::findByURL( url, stat_p.st_mode, true, false ) ->name();
-      if ( !checkType( mime ) ) continue;
+      // if we got here - we got a winner
+      results.append( dir + name );
+      //  kdWarning() << "Found: " << (dir+name).local8Bit() << endl;
+      emit found( name, dir, ( KIO::filesize_t ) stat_p.st_size, stat_p.st_mtime, KRpermHandler::mode2QString( stat_p.st_mode ) );
+      if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
     }
-    // check owner name
-    if ( !query->owner.isEmpty() &&
-         stat_p.st_uid != KRpermHandler::user2uid( query->owner ) ) continue;
-    // check group name
-    if ( !query->group.isEmpty() &&
-         stat_p.st_gid != KRpermHandler::group2gid( query->group ) ) continue;
-    // check permission
-    if ( !query->perm.isEmpty() &&
-         !checkPerm( KRpermHandler::mode2QString( stat_p.st_mode ) ) ) continue;
-    // check if it contains the text (avoid the /dev diretory).
-    // grep code from KFind ( the copyright goes with our thanx to the unknown author )
-    if ( !query->contain.isEmpty() && !dir.startsWith( "/dev" ) )
-    {
-      QFile qf( dir + name );
-
-      qf.open( IO_ReadOnly );
-      QTextStream text( &qf );
-      text.setEncoding( QTextStream::Locale );
-      QString line;
-      bool found = false;
-      while ( !stopSearch && !text.atEnd() )
-        {
-        line = text.readLine();
-        if ( line.isNull() ) break;
-        if ( query->containWholeWord )
-        {
-          int ndx = 0;
-
-          while ( ( ndx = line.find( query->contain, ndx, query->containCaseSensetive ) ) != -1 )
-          {
-            QChar before = line.at( ndx - 1 );
-            QChar after = line.at( ndx + query->contain.length() );
-
-            if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
-                 after != '_' && before != '_' )
-            {
-              found = true;
-              break;
-            }
-            ndx++;
-          }
-        }
-        else if ( line.find( query->contain, 0, query->containCaseSensetive ) != -1 )
-          found = true;
-
-        if ( found )
-          break;
-        }
-      if ( !found ) continue;
-    }
-
-    // if we got here - we got a winner
-    results.append( dir + name );
-    //  kdWarning() << "Found: " << (dir+name).local8Bit() << endl;
-    emit found( name, dir, ( KIO::filesize_t ) stat_p.st_size, stat_p.st_mtime, KRpermHandler::mode2QString( stat_p.st_mode ) );
-    if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
+    delete vf;
   }
   // clean up
   closedir( d );
@@ -305,34 +208,14 @@ void KRSearchMod::scanRemoteDir( KURL url )
         unScannedUrls.push( recurseURL );
       }
     }
-    // see if the name matches
-    if ( !fileMatch( name ) ) continue;
-    // check that the size fit
-    KIO::filesize_t size = vf->vfile_getSize();
-    if ( query->minSize && size < query->minSize ) continue;
-    if ( query->maxSize && size > query->maxSize ) continue;
-    // check the time frame
-    time_t mtime = vf->vfile_getTime_t();
-    if ( query->olderThen && mtime > query->olderThen ) continue;
-    if ( query->newerThen && mtime < query->newerThen ) continue;
-    // check owner name
-    if ( !query->owner.isEmpty() &&
-         vf->vfile_getOwner() != query->owner ) continue;
-    // check group name
-    if ( !query->group.isEmpty() &&
-         vf->vfile_getGroup() != query->group ) continue;
-    //check permission
-    if ( !query->perm.isEmpty() && !checkPerm( vf->vfile_getPerm() ) ) continue;
-
-    if ( !query->contain.isEmpty() )
-    {
-      /* TODO: search in remote vfs is not yet implemented */
-    }
     
-    // if we got here - we got a winner
-    results.append( remote_vfs->vfs_getOrigin().prettyURL( 1 ) + name );
-    emit found( name, remote_vfs->vfs_getOrigin().prettyURL( -1 ), size, vf->vfile_getTime_t(), vf->vfile_getPerm() );
-    if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
+    if( query->match( vf ) )
+    {
+      // if we got here - we got a winner
+      results.append( remote_vfs->vfs_getOrigin().prettyURL( 1 ) + name );
+      emit found( name, remote_vfs->vfs_getOrigin().prettyURL( -1 ), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm() );
+      if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
+    }
   }
 }
 
