@@ -45,7 +45,7 @@
 KrusaderView::KrusaderView(QWidget *parent, const char *name ) : QWidget(parent,name),
   konsole_part(0L) {}
 
-void KrusaderView::start() {
+void KrusaderView::start(QString leftPath, QString rightPath) {
   ////////////////////////////////
   // make a 1x1 mainLayout, it will auto-expand:
 	mainLayout = new QGridLayout(this, 1, 1);
@@ -85,7 +85,7 @@ void KrusaderView::start() {
 
   qApp->processEvents();
   // make the left panel focused at program start
-  right->start();left->start();
+  right->start(rightPath);left->start(leftPath);
   activePanel=left; activePanel->slotFocusOnMe();  // left starts out active
 }
 
