@@ -135,6 +135,7 @@ void KrSearchDialog::prepareGUI() {
 	searchInArchives->setEnabled(true);
 	connect(searchInArchives, SIGNAL(toggled(bool)), containsText, SLOT(setDisabled(bool)));
 	connect(searchInArchives, SIGNAL(toggled(bool)), containsTextCase, SLOT(setDisabled(bool)));
+	connect(searchInArchives, SIGNAL(toggled(bool)), containsWholeWord, SLOT(setDisabled(bool)));
 	
   ofType->insertItem(i18n("All Files"));
   ofType->insertItem(i18n("Archives"));
@@ -641,8 +642,9 @@ void KrSearchDialog::editCurrent()
   QListViewItem *current = resultsList->currentItem();
   if( current )
   {
-    KURL url = vfs::fromPathOrURL(current->text(1));
-    url.setFileName( current->text(0) );
+    QString name = current->text(1);
+    name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
+    KURL url = vfs::fromPathOrURL( name );
     KrViewer::edit( url, true );
   }
 }
@@ -652,8 +654,9 @@ void KrSearchDialog::viewCurrent()
   QListViewItem *current = resultsList->currentItem();
   if( current )
   {
-    KURL url = vfs::fromPathOrURL(current->text(1));
-    url.setFileName( current->text(0) );
+    QString name = current->text(1);
+    name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
+    KURL url = vfs::fromPathOrURL( name );
     KrViewer::view( url );
   }
 }
