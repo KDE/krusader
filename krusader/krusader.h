@@ -144,6 +144,10 @@ class Krusader : public KParts::MainWindow {
 #define krMtMan      (*(Krusader::App->mountMan))
 #define SLOTS        Krusader::App->slot
 #define krLoader     Krusader::App->iconLoader
+#define ACTIVE_PANEL (krApp->mainView->activePanel)
+#define ACTIVE_FUNC  (krApp->mainView->activePanel->func)
+#define MAIN_VIEW    (krApp->mainView)
+
 // krusader's actions - things krusader can do!
 #define krProperties      Krusader::App->actProperties     // file properties
 #define krPack            Krusader::App->actPack           // pack files into an archive
