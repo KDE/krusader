@@ -261,7 +261,7 @@ void KRslots::setListView()     { MAIN_VIEW->setListView();                  }
 void KRslots::setQuickView()		{ MAIN_VIEW->setQuickView();						     }
 
 // run external modules / programs
-void KRslots::runKonfigurator(bool firstTime) { new Konfigurator(firstTime); }
+void KRslots::runKonfigurator(bool firstTime) { delete new Konfigurator(firstTime); }
 
 void KRslots::toggleSortByExt() {
   krConfig->setGroup("Look&Feel");

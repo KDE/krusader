@@ -1,7 +1,7 @@
 # derived from spec file by Laurent MONTEL <lmontel@mandrakesoft.com>
 
 %define name krusader
-%define version 1.00
+%define version 1.10
 %define release 1
 
 Summary: 	 A twin panel file manager for kde
@@ -95,6 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %_datadir/apps/krusader/icons/hicolor/32x32/
 %dir %_datadir/apps/krusader/icons/hicolor/32x32/actions/
 %_datadir/apps/krusader/icons/hicolor/32x32/actions/*.png
+
+
+
+
 
 # remove when building Mandrake RPM
 # %_menudir/*

@@ -36,7 +36,7 @@ dnl Perform program name transformation
 AC_ARG_PROGRAM
 
 dnl Automake doc recommends to do this only here. (Janos)
-AM_INIT_AUTOMAKE(krusader, 1.03-beta2) dnl searches for some needed programs
+AM_INIT_AUTOMAKE(krusader, 1.10) dnl searches for some needed programs
 
 KDE_SET_PREFIX
 
@@ -67,22 +67,21 @@ dnl KDE_NEED_FLEX dnl __kdevelop__
 dnl AC_PROG_YACC dnl __kdevelop__
 
 KDE_CREATE_SUBDIRSLIST
-AC_OUTPUT( \
-./Makefile \
-doc/Makefile \
-doc/en/Makefile \
-doc/pics/Makefile \
-krusader/Makefile \
-krusader/BookMan/Makefile \
-krusader/Dialogs/Makefile \
-krusader/GUI/Makefile \
-krusader/KViewer/Makefile \
-krusader/Konfigurator/Makefile \
-krusader/MountMan/Makefile \
-krusader/Panel/Makefile \
-krusader/RemoteMan/Makefile \
-krusader/Search/Makefile \
-krusader/VFS/Makefile \
-pics/Makefile \
-po/Makefile \
-)
+AC_CONFIG_FILES([ ./Makefile ])
+AC_CONFIG_FILES([ doc/Makefile ])
+AC_CONFIG_FILES([ doc/en/Makefile ])
+AC_CONFIG_FILES([ doc/pics/Makefile ])
+AC_CONFIG_FILES([ krusader/Makefile ])
+AC_CONFIG_FILES([ krusader/BookMan/Makefile ])
+AC_CONFIG_FILES([ krusader/Dialogs/Makefile ])
+AC_CONFIG_FILES([ krusader/GUI/Makefile ])
+AC_CONFIG_FILES([ krusader/KViewer/Makefile ])
+AC_CONFIG_FILES([ krusader/Konfigurator/Makefile ])
+AC_CONFIG_FILES([ krusader/MountMan/Makefile ])
+AC_CONFIG_FILES([ krusader/Panel/Makefile ])
+AC_CONFIG_FILES([ krusader/RemoteMan/Makefile ])
+AC_CONFIG_FILES([ krusader/Search/Makefile ])
+AC_CONFIG_FILES([ krusader/VFS/Makefile ])
+AC_CONFIG_FILES([ pics/Makefile ])
+AC_CONFIG_FILES([ po/Makefile ])
+AC_OUTPUT

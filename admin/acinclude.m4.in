@@ -21,9 +21,7 @@ dnl    Boston, MA 02111-1307, USA.
 
 dnl IMPORTANT NOTE:
 dnl Please do not modify this file unless you expect your modifications to be
-dnl carried into every other module in the repository. If you decide that you
-dnl really want to modify it, contact coolo@kde.org mentioning that you have
-dnl and that the modified file should be committed to every module.
+dnl carried into every other module in the repository. 
 dnl
 dnl Single-module modifications are best placed in configure.in for kdelibs
 dnl and kdebase or configure.in.in if present.
@@ -261,6 +259,37 @@ configure.
 ])
 ])
 
+
+AC_DEFUN(KDE_CHECK_UIC_FLAG,
+[
+    AC_MSG_CHECKING([whether uic supports -$1 ])
+    kde_cache=`echo $1 | sed 'y% .=/+-%____p_%'`
+    AC_CACHE_VAL(kde_cv_prog_uic_$kde_cache,
+    [
+        cat >conftest.ui <<EOT
+        <!DOCTYPE UI><UI version="3" stdsetdef="1"></UI>
+EOT
+        ac_uic_testrun="$UIC -$1 $2 conftest.ui >/dev/null"
+        if AC_TRY_EVAL(ac_uic_testrun); then
+            eval "kde_cv_prog_uic_$kde_cache=yes"
+        else
+            eval "kde_cv_prog_uic_$kde_cache=no"
+        fi
+        rm -f conftest*
+    ])
+
+    if eval "test \"`echo '$kde_cv_prog_uic_'$kde_cache`\" = yes"; then
+        AC_MSG_RESULT([yes])
+        :
+        $3
+    else
+        AC_MSG_RESULT([no])
+        :
+        $4
+    fi
+])
+
+
 dnl ------------------------------------------------------------------------
 dnl Find the meta object compiler and the ui compiler in the PATH,
 dnl in $QTDIR/bin, and some more usual places
@@ -283,6 +312,16 @@ AC_DEFUN(AC_PATH_QT_MOC_UIC,
      if test -z "$UIC" ; then
        KDE_UIC_ERROR_MESSAGE
        exit 1
+     elif test $kde_qtver = 3; then
+       KDE_CHECK_UIC_FLAG(L,[/nonexistant],ac_uic_supports_libpath=yes,ac_uic_supports_libpath=no)
+       KDE_CHECK_UIC_FLAG(nounload,,ac_uic_supports_nounload=yes,ac_uic_supports_nounload=no)
+
+       if test x$ac_uic_supports_libpath = xyes; then
+           UIC="$UIC -L \$(kde_widgetdir)"
+       fi
+       if test x$ac_uic_supports_nounload = xyes; then
+           UIC="$UIC -nounload"
+       fi
      fi
    else
      UIC="echo uic not available: "
@@ -422,16 +461,16 @@ if test "$1" = "default"; then
   fi
   if test -z "$kde_moduledir"; then
     if test "$kde_qtver" = "2"; then
-      kde_moduledir='\${exec_prefix}/lib/kde2'
+      kde_moduledir='\${libdir}/kde2'
     else
-      kde_moduledir='\${exec_prefix}/lib/kde3'
+      kde_moduledir='\${libdir}/kde3'
     fi
   fi
   if test -z "$kde_styledir"; then
-    kde_styledir='\${exec_prefix}/lib/kde3/plugins/styles'
+    kde_styledir='\${libdir}/kde3/plugins/styles'
   fi
   if test -z "$kde_widgetdir"; then
-    kde_widgetdir='\${exec_prefix}/lib/kde3/plugins/designer'
+    kde_widgetdir='\${libdir}/kde3/plugins/designer'
   fi
 
   KDE_SET_PATHS(defaults)
@@ -470,6 +509,13 @@ Please check whether you installed KDE correctly.
 ])
 ])
 
+AC_DEFUN(KDE_MISSING_ARTS_ERROR,
+[
+    AC_MSG_ERROR([The important program $1 was not found!
+Please check whether you installed aRts correctly.
+])
+])
+
 AC_DEFUN(KDE_SUBST_PROGRAMS,
 [
 
@@ -485,8 +531,8 @@ AC_DEFUN(KDE_SUBST_PROGRAMS,
         kde_default_bindirs="$exec_prefix/bin $prefix/bin $kde_default_bindirs"
         KDE_FIND_PATH(dcopidl, DCOPIDL, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(dcopidl)])
         KDE_FIND_PATH(dcopidl2cpp, DCOPIDL2CPP, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(dcopidl2cpp)])
-        KDE_FIND_PATH(mcopidl, MCOPIDL, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(mcopidl)])
-        KDE_FIND_PATH(artsc-config, ARTSCCONFIG, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(artsc-config)])
+        KDE_FIND_PATH(mcopidl, MCOPIDL, [$kde_default_bindirs], [KDE_MISSING_ARTS_ERROR(mcopidl)])
+        KDE_FIND_PATH(artsc-config, ARTSCCONFIG, [$kde_default_bindirs], [KDE_MISSING_ARTS_ERROR(artsc-config)])
         KDE_FIND_PATH(kde-config, KDECONFIG, [$kde_default_bindirs])
         KDE_FIND_PATH(meinproc, MEINPROC, [$kde_default_bindirs])
       
@@ -652,6 +698,22 @@ support])
    AC_CHECK_FUNC(shmat, ,
      AC_CHECK_LIB(ipc, shmat, X_EXTRA_LIBS="$X_EXTRA_LIBS -lipc"))
    
+   # darwin needs this to initialize the environment
+   AC_CHECK_HEADERS(crt_externs.h)
+   AC_CHECK_FUNC(_NSGetEnviron, [AC_DEFINE(HAVE_NSGETENVIRON, 1, [Define if your system needs _NSGetEnviron to set up the environment])])
+ 
+   # more headers that need to be explicitly included on darwin
+   AC_CHECK_HEADERS(sys/types.h stdint.h)
+
+   # darwin requires a poll emulation library
+   AC_CHECK_LIB(poll, poll, LIB_POLL="-lpoll")
+
+   # CoreAudio framework
+   AC_CHECK_HEADER(CoreAudio/CoreAudio.h, [
+     AC_DEFINE(HAVE_COREAUDIO, 1, [Define if you have the CoreAudio API])
+     FRAMEWORK_COREAUDIO="-framework CoreAudio"
+   ])
+
    # Solaris 2.6 and others need -lresolv for res_init
    AC_CHECK_FUNCS(res_init, , [
      kde_libs_safe="$LIBS"
@@ -670,6 +732,8 @@ res_init();
      LIBS=$kde_libs_safe
    ])
 
+   AC_SUBST(LIB_POLL)
+   AC_SUBST(FRAMEWORK_COREAUDIO)
    LIBSOCKET="$X_EXTRA_LIBS"
    AC_SUBST(LIBSOCKET)
    AC_SUBST(LIBRESOLV)
@@ -708,7 +772,7 @@ AC_ARG_ENABLE(
 
 AC_ARG_ENABLE(
   qtopia,
-  [  --enable-qtopia       link to Qt-embedded, link to the Qtopia Environment],
+  [  --enable-qtopia         link to Qt-embedded, link to the Qtopia Environment],
   kde_use_qt_emb_palm=$enableval,
   kde_use_qt_emb_palm=no
 )
@@ -921,9 +985,8 @@ QTE_NORTTI=""
 
 else
   dnl We're using QT Embedded
-  CXXFLAGS="$CXXFLAGS -fno-rtti -DQWS"
-  CFLAGS="$CFLAGS -DQWS"
-  LDFLAGS="$LDFLAGS -DQWS"
+  CPPFLAGS=-DQWS
+  CXXFLAGS="$CXXFLAGS -fno-rtti"
   QTE_NORTTI="-fno-rtti -DQWS"
   X_PRE_LIBS=""
   LIB_X11=""
@@ -1038,7 +1101,7 @@ if test -z "$2"; then
     fi
   fi
   if test "$kde_qtver" = "3"; then
-    kde_qt_minversion=">= Qt 3.0.1"
+    kde_qt_minversion=">= Qt 3.0.3"
   fi
   if test "$kde_qtver" = "1"; then
     kde_qt_minversion=">= 1.42 and < 2.0"
@@ -1049,7 +1112,7 @@ fi
 
 if test -z "$3"; then
    if test $kde_qtver = 3; then
-     kde_qt_verstring="QT_VERSION >= 301"
+     kde_qt_verstring="QT_VERSION >= 303"
    fi
    if test $kde_qtver = 2; then
      if test $kde_qtsubver -gt 0; then
@@ -1417,10 +1480,12 @@ AC_SUBST(QT_INCLUDES)
 AC_SUBST(QT_LDFLAGS)
 AC_PATH_QT_MOC_UIC
 
+KDE_CHECK_QT_JPEG
+
 if test "x$kde_use_qt_emb" != "xyes"; then
-LIB_QT="$kde_int_qt "'$(LIBPNG) $(LIBJPEG) -lXext $(LIB_X11) $(LIBSM)'
+LIB_QT="$kde_int_qt $LIBJPEG_QT "'$(LIBPNG) -lXext $(LIB_X11) $(LIBSM)'
 else
-LIB_QT="$kde_int_qt "'$(LIBPNG) $(LIBJPEG)'
+LIB_QT="$kde_int_qt $LIBJPEG_QT "'$(LIBPNG)'
 fi
 test -z "$KDE_MT_LIBS" || LIB_QT="$LIB_QT $KDE_MT_LIBS"
 
@@ -1484,11 +1549,11 @@ if test "${prefix}" != NONE; then
   ac_kde_includes=$prefix/include
 
   if test "${exec_prefix}" != NONE; then
-    kde_libraries=${exec_prefix}/lib
-    ac_kde_libraries=$exec_prefix/lib
+     kde_libraries=${libdir}
+     ac_kde_libraries=$libdir
   else
-    kde_libraries=${prefix}/lib
-    ac_kde_libraries=$prefix/lib
+     kde_libraries=${prefix}/lib
+     ac_kde_libraries=$prefix/lib
   fi
 else
   ac_kde_includes=
@@ -1524,7 +1589,7 @@ fi
 
 kde_libdirs="/usr/lib/kde/lib /usr/local/kde/lib /usr/kde/lib /usr/lib/kde /usr/lib/kde3 /usr/lib /usr/X11R6/lib /usr/local/lib /opt/kde3/lib /opt/kde/lib /usr/X11R6/kde/lib"
 test -n "$KDEDIR" && kde_libdirs="$KDEDIR/lib $KDEDIR $kde_libdirs"
-kde_libdirs="$ac_kde_libraries $kde_libdirs"
+kde_libdirs="$ac_kde_libraries $libdir $kde_libdirs"
 AC_FIND_FILE($kde_check_lib, $kde_libdirs, kde_libdir)
 ac_kde_libraries="$kde_libdir"
 
@@ -1565,7 +1630,7 @@ if test "$have_kde" != "yes"; then
   AC_MSG_RESULT([will be installed in $ac_kde_prefix and $ac_kde_exec_prefix])
  fi
 
- kde_libraries="${ac_kde_exec_prefix}/lib"
+ kde_libraries="${libdir}"
  kde_includes=${ac_kde_prefix}/include
 
 else
@@ -1733,7 +1798,7 @@ AC_CACHE_VAL(kde_cv_have_kdeqtaddon,
 
  LDFLAGS=$kde_ldflags_safe
  LIBS=$kde_libs_safe
- kde_cxxflags_safe="$CXXFLAGS"
+ CXXFLAGS=$kde_cxxflags_safe
 ])
 
 AC_MSG_RESULT($kde_cv_have_kdeqtaddon)
@@ -1781,63 +1846,36 @@ AC_DEFUN(KDE_CREATE_LIBS_ALIASES,
    AC_REQUIRE([K_PATH_X])
 
 if test $kde_qtver = 3; then
-   LIB_KDECORE='-lkdecore'
-   AC_SUBST(LIB_KDECORE)
-   LIB_KDEUI='-lkdeui'
-   AC_SUBST(LIB_KDEUI)
-   LIB_KIO='-lkio'
-   AC_SUBST(LIB_KIO)
-   LIB_SMB='-lsmb'
-   AC_SUBST(LIB_SMB)
-   LIB_KAB='-lkab'
-   AC_SUBST(LIB_KAB)
-   LIB_KHTML='-lkhtml'
-   AC_SUBST(LIB_KHTML)
-   LIB_KSPELL='-lkspell'
-   AC_SUBST(LIB_KSPELL)
-   LIB_KPARTS='-lkparts'
-   AC_SUBST(LIB_KPARTS)
-   LIB_KDEPRINT='-lkdeprint'
-   AC_SUBST(LIB_KDEPRINT)
+   AC_SUBST(LIB_KDECORE, "-lkdecore")
+   AC_SUBST(LIB_KDEUI, "-lkdeui")
+   AC_SUBST(LIB_KIO, "-lkio")
+   AC_SUBST(LIB_SMB, "-lsmb")
+   AC_SUBST(LIB_KAB, "-lkab")
+   AC_SUBST(LIB_KHTML, "-lkhtml")
+   AC_SUBST(LIB_KSPELL, "-lkspell")
+   AC_SUBST(LIB_KPARTS, "-lkparts")
+   AC_SUBST(LIB_KDEPRINT, "-lkdeprint")
 # these are for backward compatibility
-   LIB_KSYCOCA='-lkio'
-   AC_SUBST(LIB_KSYCOCA)
-   LIB_KFILE='-lkio'
-   AC_SUBST(LIB_KFILE)
+   AC_SUBST(LIB_KSYCOCA, "-lkio")
+   AC_SUBST(LIB_KFILE, "-lkio")
 elif test $kde_qtver = 2; then
-   LIB_KDECORE='-lkdecore'
-   AC_SUBST(LIB_KDECORE)
-   LIB_KDEUI='-lkdeui'
-   AC_SUBST(LIB_KDEUI)
-   LIB_KIO='-lkio'
-   AC_SUBST(LIB_KIO)
-   LIB_KSYCOCA='-lksycoca'
-   AC_SUBST(LIB_KSYCOCA)
-   LIB_SMB='-lsmb'
-   AC_SUBST(LIB_SMB)
-   LIB_KFILE='-lkfile'
-   AC_SUBST(LIB_KFILE)
-   LIB_KAB='-lkab'
-   AC_SUBST(LIB_KAB)
-   LIB_KHTML='-lkhtml'
-   AC_SUBST(LIB_KHTML)
-   LIB_KSPELL='-lkspell'
-   AC_SUBST(LIB_KSPELL)
-   LIB_KPARTS='-lkparts'
-   AC_SUBST(LIB_KPARTS)
-   LIB_KDEPRINT='-lkdeprint'
-   AC_SUBST(LIB_KDEPRINT)
+   AC_SUBST(LIB_KDECORE, "-lkdecore")
+   AC_SUBST(LIB_KDEUI, "-lkdeui")
+   AC_SUBST(LIB_KIO, "-lkio")
+   AC_SUBST(LIB_KSYCOCA, "-lksycoca")
+   AC_SUBST(LIB_SMB, "-lsmb")
+   AC_SUBST(LIB_KFILE, "-lkfile")
+   AC_SUBST(LIB_KAB, "-lkab")
+   AC_SUBST(LIB_KHTML, "-lkhtml")
+   AC_SUBST(LIB_KSPELL, "-lkspell")
+   AC_SUBST(LIB_KPARTS, "-lkparts")
+   AC_SUBST(LIB_KDEPRINT, "-lkdeprint")
 else
-   LIB_KDECORE='-lkdecore -lXext $(LIB_QT)'
-   AC_SUBST(LIB_KDECORE)
-   LIB_KDEUI='-lkdeui $(LIB_KDECORE)'
-   AC_SUBST(LIB_KDEUI)
-   LIB_KFM='-lkfm $(LIB_KDECORE)'
-   AC_SUBST(LIB_KFM)
-   LIB_KFILE='-lkfile $(LIB_KFM) $(LIB_KDEUI)'
-   AC_SUBST(LIB_KFILE)
-   LIB_KAB='-lkab $(LIB_KIMGIO) $(LIB_KDECORE)'
-   AC_SUBST(LIB_KAB)
+   AC_SUBST(LIB_KDECORE, "-lkdecore -lXext $(LIB_QT)")
+   AC_SUBST(LIB_KDEUI, "-lkdeui $(LIB_KDECORE)")
+   AC_SUBST(LIB_KFM, "-lkfm $(LIB_KDECORE)")
+   AC_SUBST(LIB_KFILE, "-lkfile $(LIB_KFM) $(LIB_KDEUI)")
+   AC_SUBST(LIB_KAB, "-lkab $(LIB_KIMGIO) $(LIB_KDECORE)")
 fi
 ])
 
@@ -2147,7 +2185,7 @@ KDE_FIND_JPEG_HELPER(6b, 6b,
 
 dnl then search the headers (can't use simply AC_TRY_xxx, as jpeglib.h
 dnl requires system dependent includes loaded before it)
-jpeg_incdirs="/usr/include /usr/local/include $kde_extra_includes"
+jpeg_incdirs="$includedir /usr/include /usr/local/include $kde_extra_includes"
 AC_FIND_FILE(jpeglib.h, $jpeg_incdirs, jpeg_incdir)
 test "x$jpeg_incdir" = xNO && jpeg_incdir=
 
@@ -2174,6 +2212,41 @@ Disabling JPEG support.
 fi
 
 AC_SUBST(LIBJPEG)
+])
+
+AC_DEFUN(KDE_CHECK_QT_JPEG,
+[
+AC_MSG_CHECKING([if Qt needs $LIBJPEG])
+AC_CACHE_VAL(kde_cv_qt_jpeg,
+[
+AC_LANG_SAVE
+AC_LANG_CPLUSPLUS
+ac_save_LIBS="$LIBS"
+LIBS="$all_libraries $USER_LDFLAGS $LIBQT"
+LIBS=`echo $LIBS | sed "s/$LIBJPEG//"`
+ac_save_CXXFLAGS="$CXXFLAGS"
+CXXFLAGS="$CXXFLAGS $all_includes $USER_INCLUDES"
+AC_TRY_LINK(
+[#include <qapplication.h>],
+            [
+            int argc;
+            char** argv;
+            QApplication app(argc, argv);],
+            eval "kde_cv_qt_jpeg=no",
+            eval "kde_cv_qt_jpeg=yes")
+LIBS="$ac_save_LIBS"
+CXXFLAGS="$ac_save_CXXFLAGS"
+AC_LANG_RESTORE
+])
+
+if eval "test ! \"`echo $kde_cv_qt_jpeg`\" = no"; then
+  AC_MSG_RESULT(yes)
+  LIBJPEG_QT='$(LIBJPEG)'
+else
+  AC_MSG_RESULT(no)
+  LIBJPEG_QT=
+fi
+
 ])
 
 AC_DEFUN(AC_FIND_ZLIB,
@@ -2440,14 +2513,14 @@ AC_DEFUN(AC_CHECK_COMPILERS,
     fi
    ], [kde_use_strict_options="no"])
 
-  AC_ARG_ENABLE(warnings,[  --enable-warnings         compiles with -Wall and similiar],
+  AC_ARG_ENABLE(warnings,[  --disable-warnings      disables compilation with -Wall and similiar],
    [
     if test $enableval = "no"; then
          kde_use_warnings="no"
        else
          kde_use_warnings="yes"
     fi
-   ], [kde_use_warnings="no"])
+   ], [kde_use_warnings="yes"])
 
   dnl enable warnings for debug build
   if test "$kde_use_debug_code" != "no"; then
@@ -2618,42 +2691,9 @@ AC_DEFUN(AC_CHECK_COMPILERS,
 
   AC_PROG_CXXCPP
 
-  # the following is to allow programs, that are known to
-  # have problems when compiled with -O2
-  if test -n "$CXXFLAGS"; then
-      kde_safe_IFS=$IFS
-      IFS=" "
-      NOOPT_CXXFLAGS=""
-      for i in $CXXFLAGS; do
-        case $i in
-          -O*)
-                ;;
-          *)
-                NOOPT_CXXFLAGS="$NOOPT_CXXFLAGS $i"
-                ;;
-        esac
-      done
-      IFS=$kde_safe_IFS
-  fi
-
-  if test -n "$CFLAGS"; then
-      kde_safe_IFS=$IFS
-      IFS=" "
-      NOOPT_CFLAGS=""
-      for i in $CFLAGS; do
-        case $i in
-          -O*)
-                ;;
-          *)
-                NOOPT_CFLAGS="$NOOPT_CFLAGS $i"
-                ;;
-        esac
-      done
-      IFS=$kde_safe_IFS
-  fi
-
-  if test "x$kde_use_qt_emb" = "xyes"; then
-    NOOPT_CXXFLAGS="$NOOPT_CXXFLAGS -fno-rtti -DQWS"
+  if test "$GCC" = yes; then
+     NOOPT_CXXFLAGS=-O0
+     NOOPT_CFLAGS=-O0
   fi
 
   AC_SUBST(NOOPT_CXXFLAGS)
@@ -2662,9 +2702,6 @@ AC_DEFUN(AC_CHECK_COMPILERS,
   KDE_CHECK_FINAL
 
   ifdef([AM_DEPENDENCIES], AC_REQUIRE([KDE_ADD_DEPENDENCIES]), [])
-
-  KDE_CXXFLAGS=
-  AC_SUBST(KDE_CXXFLAGS)
 ])
 
 AC_DEFUN(KDE_ADD_DEPENDENCIES,
@@ -2695,6 +2732,30 @@ LIBTOOL_SHELL="/bin/sh ./libtool"
 #  LIBTOOL="$LIBTOOL --silent"
 KDE_PLUGIN="-avoid-version -module -no-undefined \$(KDE_RPATH) \$(KDE_MT_LDFLAGS)"
 AC_SUBST(KDE_PLUGIN)
+
+AC_ARG_ENABLE(objprelink, [  --enable-objprelink     prelink apps using objprelink (experimental [only tested on linux/386])],
+       kde_use_objprelink=$enableval, kde_use_objprelink=no)
+  if test "x$kde_use_objprelink" = "xyes"; then 
+
+      KDE_FIND_PATH(objprelink, OBJPRELINK, [], [kde_use_objprelink=no])   
+     
+      if test "x$kde_use_objprelink" = "xyes"; then
+      AC_MSG_CHECKING([Patching libtool to run objprelink.])
+      mv libtool libtool.orig
+      cat > libtool <<\EOF
+#! /bin/sh
+for n ; do case $n in
+  *.o)  test -r $n && echo objprelink $n && objprelink $n ;;
+  *.lo) m=`basename $n .lo`".o" && test -r $m && echo objprelink $m && objprelink $m 
+        m=".libs/$m" && test -r $m && echo objprelink $m && objprelink $m ;;
+esac; done
+EOF
+      cat >> libtool libtool.orig
+      rm libtool.orig
+      chmod a+x libtool
+      AC_MSG_RESULT(done)
+	fi
+  fi
 ])
 
 AC_DEFUN(KDE_CHECK_TYPES,
@@ -3644,7 +3705,7 @@ AC_DEFUN(KDE_CHECK_PTHREAD_OPTION,
 
     if test "$kde_use_kernthreads" = "yes"; then
       ac_save_CXXFLAGS="$CXXFLAGS"
-      ac_save_CFLAGS="$CXXFLAGS"
+      ac_save_CFLAGS="$CFLAGS"
       CXXFLAGS="-I/usr/local/include/pthread/linuxthreads $CXXFLAGS"
       CFLAGS="-I/usr/local/include/pthread/linuxthreads $CFLAGS"
       AC_CHECK_HEADERS(pthread/linuxthreads/pthread.h)
@@ -3880,9 +3941,10 @@ fi
 
 AC_DEFUN(KDE_CHECK_PYTHON,
 [
-  KDE_CHECK_PYTHON_INTERN("2.1", [KDE_CHECK_PYTHON_INTERN("2.0",
-        [ KDE_CHECK_PYTHON_INTERN($1, $2) ])
-  ])
+  KDE_CHECK_PYTHON_INTERN("2.2", 
+    [KDE_CHECK_PYTHON_INTERN("2.1", 
+      [KDE_CHECK_PYTHON_INTERN("2.0", [ KDE_CHECK_PYTHON_INTERN($1, $2) ])
+  ])])
 ])
 
 AC_DEFUN(KDE_CHECK_STL_SGI,
@@ -4086,8 +4148,12 @@ for i in $ac_topsubdirs; do
     install_it="no"
   fi
   AC_MSG_RESULT($install_it)
+  vari=`echo $i | sed -e 's,[[-+]],_,g'`
   if test $install_it = "yes"; then
     TOPSUBDIRS="$TOPSUBDIRS $i"
+    eval "$vari""_SUBDIR_included=yes"
+  else
+    eval "$vari""_SUBDIR_included=no"
   fi
 done
 
@@ -4236,6 +4302,19 @@ AC_DEFUN(KDE_CHECK_HEADER,
    AC_LANG_RESTORE
 ])
 
+AC_DEFUN(KDE_CHECK_HEADERS,
+[
+   AC_LANG_SAVE
+   kde_safe_cppflags=$CPPFLAGS
+   CPPFLAGS="$CPPFLAGS $all_includes"
+   AC_LANG_CPLUSPLUS
+   for k_header in $1; do
+      AC_CHECK_HEADER($k_header, $2, $3)
+   done
+   CPPFLAGS=$kde_safe_cppflags
+   AC_LANG_RESTORE
+])
+
 AC_DEFUN(KDE_FAST_CONFIGURE,
 [
   dnl makes configure fast (needs perl)
@@ -4266,7 +4345,7 @@ AC_DEFUN(KDE_SET_PREFIX,
 
   if test "x$prefix" = "xNONE"; then
     prefix=$ac_default_prefix
-    ac_configure_args="$ac_configure_args --prefix $prefix"
+    ac_configure_args="$ac_configure_args --prefix=$prefix"
   fi
   KDE_FAST_CONFIGURE
   KDE_CONF_FILES
@@ -4371,14 +4450,17 @@ fi
 
 AC_DEFUN(KDE_CHECK_LIB,
 [
+     kde_save_LDFLAGS="$LDFLAGS"
+     dnl AC_CHECK_LIB modifies LIBS, so save it here
      kde_save_LIBS="$LIBS"
-     LIBS="$LIBS $all_libraries"
+     LDFLAGS="$LDFLAGS $all_libraries"
      case $host_os in
-      aix*) LIBS="-brtl $LIBS"
-	test "$GCC" = yes && LIBS="-Wl,$LIBS"
+      aix*) LDFLAGS="-brtl $LDFLAGS"
+	test "$GCC" = yes && LDFLAGS="-Wl,$LDFLAGS"
 	;;
      esac
      AC_CHECK_LIB($1, $2, $3, $4, $5)
+     LDFLAGS="$kde_save_LDFLAGS"
      LIBS="$kde_save_LIBS"
 ])
 
@@ -4424,10 +4506,31 @@ AC_DEFUN(KDE_CHECK_INITGROUPS,
            [initgroups may exist but not its prototype (e.g. AIX<4.3.3:8)])
 ])
 
+AC_DEFUN(KDE_JAVA_PREFIX,
+[
+	dir=`dirname "$1"`
+	base=`basename "$1"`
+	list=`ls -1 $dir`
+	for entry in $list; do 
+		if test -d $dir/$entry/bin; then
+			case $entry in
+			   $base)
+				javadirs="$javadirs $dir/$entry/bin"
+				;;
+			esac
+		elif test -d $dir/$entry/jre/bin; then
+			case $entry in
+			   $base)
+				javadirs="$javadirs $dir/$entry/jre/bin"
+				;;
+			esac
+		fi
+	done
+])
 
+dnl KDE_CHEC_JAVA_DIR(onlyjre)
 AC_DEFUN(KDE_CHECK_JAVA_DIR,
 [
-AC_MSG_CHECKING([for Java directory])
 
 AC_ARG_WITH(java,
 [  --with-java=javadir     use java installed in javadir, --without-java disables ],
@@ -4435,111 +4538,180 @@ AC_ARG_WITH(java,
 ], ac_java_dir=""
 )
 
+AC_MSG_CHECKING([for Java])
+
 dnl at this point ac_java_dir is either a dir, 'no' to disable, or '' to say look in $PATH
-if test "x$ac_java_dir" = xno; then
-   kde_cv_java_bindir=no
-   kde_cv_java_includedir=no
+if test "x$ac_java_dir" = "xno"; then
+   kde_java_bindir=no
+   kde_java_includedir=no
    kde_java_libjvmdir=no
    kde_java_libhpidir=no
 else
-  if test "x$ac_java_dir" = x; then
-    dnl No option set -> look in $PATH
-    AC_CACHE_VAL(kde_cv_java_bindir,
-    [
-      dnl First look for javac in $PATH. If not found we'll look at the option.
-      KDE_FIND_PATH(javac, JAVAC, [], [])
+  if test "x$ac_java_dir" = "x"; then
+     
+     
+      dnl No option set -> look in $PATH
+      KDE_JAVA_PREFIX(/usr/j*dk*)
+      KDE_JAVA_PREFIX(/usr/lib/j*dk*)
+      KDE_JAVA_PREFIX(/opt/j*sdk*)
+      KDE_JAVA_PREFIX(/usr/lib/java*)
+      KDE_JAVA_PREFIX(/usr/java*)
+      KDE_JAVA_PREFIX(/usr/lib/SunJava2*)
+      KDE_JAVA_PREFIX(/usr/lib/SunJava*)
+      KDE_JAVA_PREFIX(/usr/lib/IBMJava2*)
+      KDE_JAVA_PREFIX(/usr/lib/IBMJava*)
+      KDE_JAVA_PREFIX(/opt/java*)
+    
+      kde_cv_path="NONE"
+      kde_save_IFS=$IFS
+      IFS=':'
+      for dir in $PATH; do
+	  javadirs="$javadirs $dir"
+      done
+      IFS=$kde_save_IFS
+      jredirs=
+
+      for dir in $javadirs; do
+	  if test ! -d $dir; then break; fi
+          if test -x "$dir/java"; then
+                libjvmdir=`find $dir/.. -name libjvm.so | sed 's,libjvm.so,,'|head -n 1`
+		if test ! -f $libjvmdir/libjvm.so; then continue; fi
+		jredirs="$jredirs $dir"
+	  fi
+      done
+
+      JAVAC=
+      JAVA=
+      kde_java_bindir=no
+      for dir in $jredirs; do
+	  JAVA="$dir/java"
+	  kde_java_bindir=$dir
+	  if test -x "$dir/javac"; then
+		JAVAC="$dir/javac"
+                break
+	  fi
+      done
+
       if test -n "$JAVAC"; then
-          kde_cv_java_bindir=`echo $JAVAC | sed -e 's,/javac$,/,'`
           dnl this substitution might not work - well, we test for jni.h below
-          kde_cv_java_includedir=`echo $kde_cv_java_bindir | sed -e 's,bin/$,include/,'`
+          kde_java_includedir=`echo $JAVAC | sed -e 's,bin/javac$,include/,'`
       else
-          kde_cv_java_bindir=no
+          kde_java_includedir=no
       fi
-    ])
   else
     dnl config option set
-    kde_cv_java_bindir=$ac_java_dir/bin
-    kde_cv_java_includedir=$ac_java_dir/include
+    kde_java_bindir=$ac_java_dir/bin
+    if test -x $ac_java_dir/bin/java && test ! -x $ac_java_dir/bin/javac; then
+	kde_java_includedir=no
+    else
+        kde_java_includedir=$ac_java_dir/include
+    fi
   fi
 fi
 
-dnl At this point kde_cv_java_bindir and kde_cv_java_includedir are either set or "no"
-if test ! "x$kde_cv_java_bindir" = xno; then
+dnl At this point kde_java_bindir and kde_java_includedir are either set or "no"
+if test "x$kde_java_bindir" != "xno"; then
 
   dnl Look for libjvm.so
-  kde_java_libjvmdir=`find $kde_cv_java_bindir/.. -name libjvm.so | sed 's,libjvm.so,,'|head -n 1`
+  kde_java_libjvmdir=`find $kde_java_bindir/.. -name libjvm.so | sed 's,libjvm.so,,'|head -n 1`
   dnl Look for libhpi.so and avoid green threads
-  kde_java_libhpidir=`find $kde_cv_java_bindir/.. -name libhpi.so | grep -v green | sed 's,libhpi.so,,'`
+  kde_java_libhpidir=`find $kde_java_bindir/.. -name libhpi.so | grep -v green | sed 's,libhpi.so,,' | tail -n 1`
 
   dnl Now check everything's fine under there
+  dnl the include dir is our flag for having the JDK
+  if test -d "$kde_java_includedir"; then
+    if test ! -x "$kde_java_bindir/javac"; then
+      AC_MSG_ERROR([javac not found under $kde_java_bindir - it seems you passed a wrong --with-java.])
+    fi
+    if test ! -x "$kde_java_bindir/javah"; then
+      AC_MSG_ERROR([javah not found under $kde_java_bindir. javac was found though! Use --with-java or --without-java.])
+    fi
+    if test ! -x "$kde_java_bindir/jar"; then
+      AC_MSG_ERROR([jar not found under $kde_java_bindir. javac was found though! Use --with-java or --without-java.])
+    fi
+    if test ! -r "$kde_java_includedir/jni.h"; then
+      AC_MSG_ERROR([jni.h not found under $kde_java_includedir. Use --with-java or --without-java.])
+    fi
 
-  if test ! -x "$kde_cv_java_bindir/javac"; then
-    AC_MSG_ERROR([javac not found under $kde_cv_java_bindir - it seems you passed a wrong --with-java.])
+    jni_includes="-I$kde_java_includedir"
+    dnl Strange thing, jni.h requires jni_md.h which is under genunix here..
+    dnl and under linux here..
+    test -d "$kde_java_includedir/linux" && jni_includes="$jni_includes -I$kde_java_includedir/linux"
+    test -d "$kde_java_includedir/genunix" && jni_includes="$jni_includes -I$kde_java_includedir/genunix"
+
+  else
+    JAVAC=
+    jni_includes=
   fi
-  if test ! -x "$kde_cv_java_bindir/javah"; then
-    AC_MSG_ERROR([javah not found under $kde_cv_java_bindir. javac was found though! Use --with-java or --without-java.])
-  fi
-  if test ! -x "$kde_cv_java_bindir/jar"; then
-    AC_MSG_ERROR([jar not found under $kde_cv_java_bindir. javac was found though! Use --with-java or --without-java.])
-  fi
-  if test ! -r "$kde_cv_java_includedir/jni.h"; then
-    AC_MSG_ERROR([jni.h not found under $kde_cv_java_includedir. Use --with-java or --without-java.])
-  fi
+
   if test ! -r "$kde_java_libjvmdir/libjvm.so"; then
-    AC_MSG_ERROR([libjvm.so not found under $kde_java_libjvmdir. Use --without-java.])
+     AC_MSG_ERROR([libjvm.so not found under $kde_java_libjvmdir. Use --without-java.])
+  fi 
+
+  if test ! -x "$kde_java_bindir/java"; then
+      AC_MSG_ERROR([java not found under $kde_java_bindir. javac was found though! Use --with-java or --without-java.])
   fi
+
   if test ! -r "$kde_java_libhpidir/libhpi.so"; then
     AC_MSG_ERROR([libhpi.so not found under $kde_java_libhpidir. Use --without-java.])
   fi
 
-  jni_includes="-I$kde_cv_java_includedir"
-  dnl Strange thing, jni.h requires jni_md.h which is under genunix here..
-  dnl and under linux here..
-  test -d "$kde_cv_java_includedir/linux" && jni_includes="$jni_includes -I$kde_cv_java_includedir/linux"
-  test -d "$kde_cv_java_includedir/genunix" && jni_includes="$jni_includes -I$kde_cv_java_includedir/genunix"
+  if test -n "$jni_includes"; then
+    dnl Check for JNI version
+    AC_LANG_SAVE
+    AC_LANG_CPLUSPLUS
+    ac_cxxflags_safe="$CXXFLAGS"
+    CXXFLAGS="$CXXFLAGS $all_includes $jni_includes"
 
-  dnl Check for JNI version
-  AC_LANG_SAVE
-  AC_LANG_CPLUSPLUS
-  ac_cxxflags_safe="$CXXFLAGS"
-  CXXFLAGS="$CXXFLAGS $all_includes $jni_includes"
+    AC_TRY_COMPILE([
+  #include <jni.h>
+	      ],
+	      [
+  #ifndef JNI_VERSION_1_2
+  Syntax Error
+  #endif
+	      ],[ kde_jni_works=yes ],
+	      [ kde_jni_works=no ])
 
-  AC_TRY_COMPILE([
-#include <jni.h>
-	    ],
-	    [
-#ifndef JNI_VERSION_1_2
-Syntax Error
-#endif
-	    ],[ kde_jni_works=yes ],
-            [ kde_jni_works=no ])
+    if test $kde_jni_works = no; then
+      AC_MSG_ERROR([Incorrect version of $kde_java_includedir/jni.h.
+		    You need to have Java Development Kit (JDK) version 1.2. 
 
-  if test $kde_jni_works = no; then
-    AC_MSG_ERROR([Incorrect version of $kde_cv_java_includedir/jni.h.
-	          You need to have Java Development Kit (JDK) version 1.2. 
-	
-	          Use --with-java to specify another location.
-	          Use --without-java to configure without java support.
-        	  Or download a newer JDK and try again. 
-	          See e.g. http://java.sun.com/products/jdk/1.2 ])
+		    Use --with-java to specify another location.
+		    Use --without-java to configure without java support.
+		    Or download a newer JDK and try again. 
+		    See e.g. http://java.sun.com/products/jdk/1.2 ])
+    fi
+
+    CXXFLAGS="$ac_cxxflags_safe"    
+    AC_LANG_RESTORE
+
+    dnl All tests ok, inform and subst the variables
+
+    JAVAC=$kde_java_bindir/javac
+    JAVAH=$kde_java_bindir/javah
+    JAR=$kde_java_bindir/jar
+    AC_DEFINE_UNQUOTED(PATH_JAVA, "$kde_java_bindir/java", [Define where your java executable is])
+    JVMLIBS="-L$kde_java_libjvmdir -ljvm -L$kde_java_libhpidir -lhpi"
+    AC_MSG_RESULT([java JDK in $kde_java_bindir])
+
+  else
+      AC_DEFINE_UNQUOTED(PATH_JAVA, "$kde_java_bindir/java", [Define where your java executable is])
+      AC_MSG_RESULT([java JRE in $kde_java_bindir])
   fi
-
-  CXXFLAGS="$ac_cxxflags_safe"    
-  AC_LANG_RESTORE
-
-  dnl All tests ok, inform and subst the variables
-  AC_MSG_RESULT([javac/javah/jar in $kde_cv_java_bindir, jni.h in $kde_cv_java_includedir])
-
-  JAVAC=$kde_cv_java_bindir/javac
-  AC_SUBST(JAVAC)
-  JAVAH=$kde_cv_java_bindir/javah
-  AC_SUBST(JAVAH)
-  JAR=$kde_cv_java_bindir/jar
-  AC_SUBST(JAR)
-  AC_SUBST(jni_includes)
-  JVMLIBS="-L$kde_java_libjvmdir -ljvm -L$kde_cv_java_libhpidir -lhpi"
-  AC_SUBST(JVMLIBS)
+else # no
+  AC_MSG_RESULT([none found])
 fi
+
+AC_SUBST(JAVAC)
+AC_SUBST(JAVAH)
+AC_SUBST(JAR)
+AC_SUBST(JVMLIBS)
+AC_SUBST(jni_includes)
+
+# for backward compat
+kde_cv_java_includedir=$kde_java_includedir
+kde_cv_java_bindir=$kde_java_bindir
 ])
 
 dnl this is a redefinition of autoconf 2.5x's AC_FOREACH.
@@ -4560,7 +4732,10 @@ m4_define([AC_FOREACH],
 
 AC_DEFUN(KDE_NEED_FLEX,
 [
-AC_REQUIRE([AM_PROG_LEX])
+kde_libs_safe=$LIBS
+LIBS="$LIBS $USER_LDFLAGS"
+AM_PROG_LEX
+LIBS=$kde_libs_safe
 if test -z "$LEXLIB"; then
     AC_MSG_ERROR([You need to have flex installed.])
 fi
@@ -4670,3 +4845,39 @@ the end of config.log])
   AC_MSG_RESULT([found version $qtopia_verstr with headers at $qtopia_incdir])
 ])
 
+
+AC_DEFUN(KDE_INIT_DOXYGEN,
+[
+AC_MSG_CHECKING([for Qt docs])
+kde_qtdir=
+if test "${with_qt_dir+set}" = set; then
+  kde_qtdir="$with_qt_dir"
+fi
+
+AC_FIND_FILE(qsql.html, [ $kde_qtdir/doc/html $QTDIR/doc/html /usr/share/doc/packages/qt3/html /usr/lib/qt/doc /usr/lib/qt3/doc /usr/lib/qt3/doc/html /usr/doc/qt3/html /usr/doc/qt3], QTDOCDIR)
+AC_MSG_RESULT($QTDOCDIR)
+
+AC_SUBST(QTDOCDIR)
+
+KDE_FIND_PATH(dot, DOT, [], [])
+if test -n "$DOT"; then
+  KDE_HAVE_DOT="YES"
+else
+  KDE_HAVE_DOT="NO"
+fi
+AC_SUBST(KDE_HAVE_DOT)
+KDE_FIND_PATH(doxygen, DOXYGEN, [], [])
+AC_SUBST(DOXYGEN)
+
+DOXYGEN_PROJECT_NAME="$1"
+DOXYGEN_PROJECT_NUMBER="$2"
+AC_SUBST(DOXYGEN_PROJECT_NAME)
+AC_SUBST(DOXYGEN_PROJECT_NUMBER)
+
+KDE_HAS_DOXYGEN=no
+if test -n "$DOXYGEN" && test -x "$DOXYGEN" && test -f $QTDOCDIR/qsql.html; then
+  KDE_HAS_DOXYGEN=yes
+fi
+AC_SUBST(KDE_HAS_DOXYGEN)
+
+])
