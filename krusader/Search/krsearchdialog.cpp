@@ -261,11 +261,11 @@ void KrSearchDialog::closeDialog( bool isAccept )
   // re-enable the search action
   krFind->setEnabled(true);
   if( isAccept )
-    accept();
+    QDialog::accept();
   else
-    reject();
+    QDialog::reject();
   
-  delete this;
+  this->deleteLater();
 }
 
 void KrSearchDialog::reject() {
