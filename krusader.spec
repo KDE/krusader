@@ -1,9 +1,11 @@
-# krusader.spec      use rpmbuild to build a Krusader RPM package
-# this spec file works on Mandrake 10.0 for krusader 1.50
-# other distributions may need todo some modifications
-# If you have comments or suggestions about this spec file please send it to
-# [frank_schoolmeesters {*} fastmail {.} fm] Krusader Krew.
-# Thanks for your cooperation!
+# krusader.spec  --  use rpmbuild to build a Krusader RPM package
+# this spec file works on Mandrake 10.0 for Krusader-1.50
+# other distributions may need to make some modifications
+# If you have comments or suggestions about this spec file,
+# please send to: [frank_schoolmeesters {*} fastmail {.} fm]
+# 		Thanks for your cooperation!
+# 					Krusader Krew.
+
 # NOTE: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
 
 %define version 1.50
@@ -11,7 +13,7 @@
 #%define beta beta1
 
 # Package information
-Summary: 	 Advanced twin-panel file-manager for KDE 3.2
+Summary: 	 Advanced, twin-panel file-manager for KDE 3.2.x
 Name: 		 krusader
 Version: 	 1.50
 Release: 	 %{release}
@@ -30,10 +32,9 @@ BuildRequires: libfam-devel arts libart_lgpl2 libstdc++5 libpcre0
 BuildRequires: libxfree86 libfreetype6 libfontconfig1 libnas2 libexpat0
 BuildRequires: rpm-build gcc-cpp gcc-c++ glibc libgcc1
 
-# BuildRoot: dir who acts as a staging area that looks like the final install dir
-# tipicaly (for Mandrake): /var/tmp/krusader-buildroot
+# BuildRoot: dir that acts as a staging area, that looks like the final install dir
+# typically (for Mandrake): /var/tmp/krusader-buildroot
 # this will become the %%RPM_BUILD_ROOT enviroment variable
-#BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRoot:       %{_tmppath}/%{name}-buildroot
 URL: 		 http://krusader.sourceforge.net
 Vendor:          Krusader Krew [krusader {*} users {.} sourceforge {.}net]
@@ -48,17 +49,18 @@ Prefix:          /usr
 Requires: 	kdelibs >= 3.2.0
 
 %description
-Krusader is an advanced twin-panel (commander-style) file-manager for KDE 3.2
-(similar to Midnight or Total Commander) but with many extras.
-It provides all the file-management features you could possibly want.
-Plus: extensive archive handling, mounted filesystem support, FTP,
-advanced search module, viewer/editor, directory synchronisation,
-file content comparisons, powerful batch renaming and much much more.
-It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace,
-arj and rpm and can handle other KIOSlaves such as smb:// or fish://
-It is (almost) completely customizable, very user friendly,
-fast and looks great on your desktop! :-)
+Krusader is an advanced, twin-panel (commander-style) file-manager for 
+KDE 3.2.x (similar to Midnight or Total Commander) but with many extras.
+It provides all the File-Management features you could possibly want; plus: 
+extensive Archive Handling, Mounted Filesystem Support, FTP, Advanced Search 
+module, Viewer/Editor, Directory Synchronisation, File Content Comparisons, 
+powerful Batch Renaming, and much, much more.
+It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace, 
+arj and rpm; and can handle other KIOSlaves, such as, smb:// or fish://.
+It is (almost) completely customizable, very user friendly, fast and looks 
+great on your desktop! :-)
 You should give it a try.
+
 
 # preparing for the build by unpacking the sources and applying any patches
 # in /usr/src/RPM/BUILD/krusader-%version on Mandrake
@@ -162,13 +164,13 @@ rm -rf $RPM_BUILD_ROOT
 
 
 
-# all the files that the RPM package should install, this list must be exhausitive
+# all the files that the RPM package should install, this list must be exhaustive
 # i18n   /usr/share/locale/foo/LC_MESSAGES/krusader.mo on mandrake
 # installs language file(s) if the language(s) is(are) installed on the target computer
 %files -f %{name}.lang
 
 # default attributes for all files in the package (-, user, group)
-# - = leave the permissions like the are in the source tarball e.g. 644
+# - = leave the permissions like they are in the source tarball, e.g., 644
 %defattr(-,root,root)
 # documentation files (docdir name does not need to be included)
 %doc README AUTHORS ChangeLog TODO COPYING krusader.lsm INSTALL krusader.spec
@@ -261,24 +263,25 @@ rm -rf $RPM_BUILD_ROOT
   Note: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
   
 * Wed Oct 13 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
-- 1.50-mdk100-beta1
+-  1.50-beta1.mdk100
   new file added in RPM package:
   /usr/share/apps/konqueror/servicemenus/isoservice.desktop
   /usr/share/config/kio_isorc  
+
 * Thu Jul 26 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
-- 1.40-mdk10
+- 1.40.mdk100
   Mandrake 10.0 has changed the KDE-menu entries
   Former KDE menu entry "Applications/File tools" in Mdk 9.2 is now "System/File tools/"
-  Using now a distro independent script to create create the file "/usr/lib/menu/krusader"
-  and not the Mandrake Perl script kdedesktop2mdkmenu.pl 
-  This adds krusader in the KDE menu in the "System/File tools" section.
+  Now using distro independent script to create "/usr/lib/menu/krusader" and
+  not the Mandrake Perl script kdedesktop2mdkmenu.pl
+  This adds Krusader in the KDE menu in the "System/File tools" section.
       
 * Fri Jun 25 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
 - 1.40-beta2.mdk92
 - x-ace.desktop is removed in krusader-1.40-beta2/krusader/Makefile.am
-  x-ace.desktop is now supllied by KDE
+  x-ace.desktop is now supplied by KDE
 - binary rpm is now relocatable, default is /usr
-  you can relocate it to e.g. /usr/local or /opt
+  you can relocate it to, e.g., /usr/local or /opt
   then run $ rpm -Uvh --relocate /usr=/opt krusader-1.40.mdk92.i586.rpm
 
 * Wed May 12 2003 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
