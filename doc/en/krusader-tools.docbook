@@ -80,11 +80,13 @@
  <itemizedlist>
      <listitem><para><userinput><command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</replaceable></userinput></para>
                </listitem>
+  <listitem><para><userinput><command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable></userinput></para>
+               </listitem> 
      <listitem><para><userinput><command>sftp://</command><replaceable>sftp.foo.org/</replaceable></userinput></para>
                </listitem>
      <listitem><para><userinput><command>fish://</command><replaceable>username@hostname/</replaceable></userinput></para>
                </listitem>
-     <listitem><para><userinput><command>smb://</command><replaceable>user:password@server/share</replaceable></userinput></para>
+     <listitem><para><userinput><command>smb://</command><replaceable>username:password@server/share</replaceable></userinput></para>
                </listitem>               
  </itemizedlist>          
 
@@ -1827,16 +1829,29 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
     </listitem>
     <listitem><para><userinput>Script</userinput> - Executes an external 
                     <link linkend="javascript_console">Javascript</link> file.</para>
+              <para>NOTE: is still experimental and the interface may change, feedback is always welcome.</para>
           <orderedlist>
           <listitem><para>&useraction_parameter; path to the external foo.js file,
-                          if the path is relative the file will be read from 
-                          <filename>KDEappdata/krusader/js/</filename>.
+                          absolut path or relative to <filename>&lt;kde-data>/krusader/js/</filename>
+                          &gt;kde-data> is <filename>$(kde-config --localprefix)/share/apps/</filename> or
+                          <filename>$(kde-config --prefix)/share/apps/</filename>, for those who don't know 
+                          where so copy the scripts/extensions. If all the needed files
+                          (normaly <filename>.js</filename> and maybe <filename>.ui</filename>)
+                          are in one of these dirs it's sufficient to give the filename only as 1. parameter.
                     </para></listitem>
-          <listitem><para>&useraction_optional_parameter; if "yes" to execute the return of a script,
-                          in this case the Variable 'cmd' will be read.
+          <listitem><para>&useraction_optional_parameter; a list of variables which should be set, 
+                    like "return=cmd, a=lalala, b='%_Ask(..)'" so that the variable cmd is used for the 
+                    return (like today if 2. parameter is yes) and the other two have already these
+                    values if the script starts.
                     </para></listitem>                             
          </orderedlist>
      </listitem>
+     <listitem><para><userinput>ListFile</userinput> - is replaced by path/filename of a temporary 
+               file containing a list of items usefull for external scripts</para>
+          <orderedlist>
+         <listitem><para>&useraction_parameter; path/filename</para></listitem>
+    </orderedlist>
+    </listitem>
 </itemizedlist>
 
 A GUI-based helper for placeholder-adding is provided.
@@ -1865,12 +1880,34 @@ You can also set a user under which the command should be executed.
 <para>NOTE: this description is incomplete. (TODO)</para>
 
 <para><keycombo action="simul">&Alt;&Ctrl;<keycap>j</keycap></keycombo> opens a
-      JavaScript console based on &kjsembed_url;. 
+      JavaScript console based on &kjsembed_url;.
+      The scripting-abilites are only present if at compile- (and run-) -time the package KDEBindings 
+      (or the KJSEmbed-library) are installed 
       A testingscript can be found on <ulink url="http://xmelegance.org/kjsembed/examples/index.html"></ulink> 
       copy both to a location of your choice and addapt the path to calc.ui at the bottom of calc.js
       Click 
       <ulink url="http://sourceforge.net/mailarchive/forum.php?thread_id=6417325&amp;forum_id=43320">here</ulink> 
       for more info.</para>
+
+<para><keycombo action="simul">&Alt;&Ctrl;<keycap>j</keycap></keycombo> opens the JavaScript-console. 
+      There you can play around: try 'Krusader.setCaption("Hey Ho, Let's go!");', "Krusader.children();",
+      "Krusader.child("help").slots();", "alert(Krusader.properties())"
+      and "Krusader.child("help").show();"....
+      In addition a new placeholder for the useraction,
+      %_Script(path/to/script.js)% executes an external file.
+      If the path is relative the file will be read from &lt;KDE-app-data>/krusader/js/
+      If a UserAction should execute the return of a script, set the second
+      parameter of %_Script()% to "return=cmd".
+      In this case the Variable 'cmd' will be read.
+      additional the second parameter can be used to pass variables to the script:
+      "return=lala;foo=bar". here the variable foo will have at the beginning of the
+      execution the value 'bar' and the return-variable is called lala instead of cmd.
+      Warning: very alpha!!</para>
+
+<para>The object 'Krusader' will change. currently the user can play in the JS-Console with Krusader.children() 
+      to get a list of all children, Krusader.slots() and Krusader.properties() to get some information. 
+      But this interface will change</para>
+
 </sect1>
 
 <sect1  id="diskusage">

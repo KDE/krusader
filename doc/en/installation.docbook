@@ -28,19 +28,31 @@
 
 <para>In order to successfully use the most recent &krusader;, you need &kde;libs &gt;= 3.3.x.</para>
 
-<note><para>&krusader; v1.01 needs &kde;libs 2.x.x</para>
-      <para>&krusader; v1.02 - 1.40 needs &kde;libs 3.x.x</para>
-      <para>&krusader; 1.40 prefers &gt;= 3.2.x (otherwise not all features will be available)</para>
-      <para>&krusader; v1.50 - 1.60 needs &kde;libs &gt;= 3.2.x but prefers
-            &kde;libs &gt;= 3.3.x for stability</para></note>
+<note>
+<itemizedlist>
+   <listitem><para>&krusader; v1.01 needs &kde;libs 2.x.x</para>
+             </listitem>
+      <listitem><para>&krusader; v1.02 - 1.40 needs &kde;libs 3.x.x</para>
+             </listitem>
+      <listitem><para>&krusader; 1.40 prefers &gt;= 3.2.x (otherwise not all features will be available)</para>
+              </listitem>
+      <listitem><para>&krusader; v1.50 - 1.60 needs &gt;= 3.3.x</para>
+              </listitem>
+</itemizedlist>
+</note>
 
-<para>Platforms: All POSIX (&Linux;/BSD/UNIX-like OSes), &Solaris; and
-                 All BSD Platforms (FreeBSD/NetBSD/OpenBSD/&MacOS; 10.3 "Panther").</para>
+<para>Platforms:
+ <itemizedlist>
+   <listitem><para>All POSIX (&Linux;/BSD/UNIX-like OSes), &Solaris;</para></listitem>
+   <listitem><para>All BSD Platforms (FreeBSD/NetBSD/OpenBSD/&MacOS; 10.3 "Panther").</para></listitem>
+ </itemizedlist>
+</para>
 
 <para>&krusader; uses about 3-4 MByte of memory to run
       (and about 15 Mbyte shared memory which is also used by other processes),
       but this may vary depending on your platform and configuration.
-      In order to handle archives the archivers must be configured <link linkend="konfig-dependencies">here</link>.</para>
+      In order to handle archives the archivers must be configured 
+      <link linkend="konfig-dependencies">here</link>.</para>
 
 <para>A package of popular (un)packers, &krusader; itself and addons can be found on the &krudownload_url;.</para>
 
@@ -64,14 +76,15 @@
 
 <itemizedlist>
   <listitem>
-     <para>Often &Mandrake;, &fedora; and &SuSE; RPM's are available, sent in by &krusader; users.
-                 There might be some other packages on our website, but that depends on other users contributions.</para>
+     <para>Often &Mandrake;, &fedora; and &SuSE; RPM's and &debian; DEB's are available on our website, 
+           sended in by &krusader; users.
+           There might be some other packages, but that depends on users contributions.</para>
   </listitem>
   <listitem>
-     <para>&debian_download_url; DEB packages and a &deb_packages_overview_url; are available.</para>
+     <para>&debian_download_url; &deb_packages_url; are available.</para>
   </listitem>
   <listitem>
-     <para>There is a &krufreebsd_port_url; thanks to <link linkend="credits">Heiner Eichmann</link> .</para>
+     <para>A &krufreebsd_port_url; is maintained by <link linkend="credits">Heiner Eichmann</link> .</para>
   </listitem>
         <listitem>
      <para>There is a &mac_download_url; port with the kdelibs (3.1.4) and &fink_prj_url;
@@ -121,14 +134,14 @@
 <para>The beta release has 3 goals:
   <itemizedlist>
   <listitem>
-     <para>1. Apply a feature-freeze until the stable is released, only bugs will be fixed.
+     <para>Apply a feature-freeze until the stable is released, only bugs will be fixed.
            New features have to wait until the stable is released.</para>
   </listitem>
   <listitem>
-     <para>2. Obtain feedback from &krusader; users so that we can fix the bugs.</para>
+     <para>Obtain feedback from &krusader; users so that we can fix the bugs.</para>
   </listitem>
   <listitem>
-     <para>3. Give translators the time to update the translations, for the coming stable.
+     <para>Give translators the time to update the translations, for the coming stable.
            Please read the &i18nhowto_url;</para>
   </listitem>
   </itemizedlist>

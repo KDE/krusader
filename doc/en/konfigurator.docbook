@@ -185,21 +185,38 @@ HTML_PARSING-->
            </para></listitem>
 </itemizedlist>
 
-<itemizedlist><title><guilabel>Mouse selection modes</guilabel></title>
-      <listitem><para><guilabel>"&krusader; mode"</guilabel>: the way &krusader; has worked from day one.
+<itemizedlist><title><guilabel>Mouse selection Modes</guilabel></title>
+      <listitem><para><guilabel>&krusader; Mode</guilabel>: the way &krusader; has worked from day one.
          Both keys allow selecting files. To select more than one file, hold the
          &Ctrl; key and click the &LMB;. Right-click menu is invoked using a short click on
          the &RMB;.</para></listitem>
-  <listitem><para><guilabel>"Konqueror mode"</guilabel>: pressing the &LMB; selects files --
+  <listitem><para><guilabel>Konqueror Mode</guilabel>: pressing the &LMB; selects files --
   <!-- Openjade does not like an application element for "Konqueror" here -->
           you can click and select multiple files.
          Right-click menu is invoked using a short click on the &RMB;.
          </para></listitem>
-  <listitem><para><guilabel>"Total commander mode"</guilabel>: pressing the &RMB; selects multiple files
+  <listitem><para><guilabel>Total commander Mode</guilabel>: pressing the &RMB; selects multiple files
   <!-- Openjade does not like an trademark element for "Total commander" here -->
          and the right-click menu is invoked by <guilabel>pressing and holding</guilabel> the &RMB;
          The &LMB; does not select, but sets the current file without affecting the current selection.
          </para></listitem>
+  <listitem><para><guilabel>Custom Selection Mode</guilabel>: create your own selection style!
+        The next configurations are available:
+        <itemizedlist>
+         <listitem><para><guilabel>Based on KDE's selection mode</guilabel></para></listitem>
+         <listitem><para><guilabel>Left mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Left mouse button preserves selection</guilabel></para></listitem>
+         <listitem><para><guilabel>Shift/Ctrl-Left mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Right mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Right mouse button preserves selection</guilabel></para></listitem>
+         <listitem><para><guilabel>Shift/Ctrl-Right mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Spacebar moves down</guilabel></para></listitem>
+         <listitem><para><guilabel>Spacebar calculates diskspace</guilabel></para></listitem>
+         <listitem><para><guilabel>Insert moves down</guilabel></para></listitem>
+         <listitem><para><guilabel>Right clicking pops context-menu immediately</guilabel></para></listitem>
+        </itemizedlist>
+         </para></listitem>
+
 </itemizedlist>
 </sect2>
 
