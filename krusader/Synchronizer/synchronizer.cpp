@@ -54,6 +54,10 @@
 #include <kprogress.h>
 #include <qlayout.h>
 
+#include <sys/types.h>
+#include <sys/time.h>
+#include <utime.h>
+
 #define  DISPLAY_UPDATE_PERIOD        2
 
 Synchronizer::Synchronizer() : displayUpdateCount( 0 ), markEquals( true ), markDiffers ( true ),
@@ -815,7 +819,37 @@ void Synchronizer::executeTask()
 void Synchronizer::slotTaskFinished(KIO::Job *job )
 {
   do {
-    if( job->error() )
+    if( !job->error() )
+    {
+      switch( currentTask->task() )
+      {
+      case TT_COPY_TO_LEFT:
+        if( leftURL.isLocalFile() )
+        {
+          struct utimbuf timestamp;
+
+          timestamp.actime = time( 0 );
+          timestamp.modtime = currentTask->rightDate();
+
+          utime( (const char *)( leftURL.path( -1 ).local8Bit() ), &timestamp );
+        }
+        break;
+      case TT_COPY_TO_RIGHT:
+        if( rightURL.isLocalFile() )
+        {
+          struct utimbuf timestamp;
+
+          timestamp.actime = time( 0 );
+          timestamp.modtime = currentTask->leftDate();
+
+          utime( (const char *)( rightURL.path( -1 ).local8Bit() ), &timestamp );
+        }
+        break;
+      default:
+        break;
+      }
+    }
+    else
     {
       if( job->error() == KIO::ERR_FILE_ALREADY_EXIST && currentTask->task() != TT_DELETE )
       {
