@@ -81,64 +81,76 @@ const QColor * KrColorCache::getColor(const QString & colorName) const
    return 0;
 }
 
-const QColor * KrColorCache::getForegroundColor() const
+const QColor * KrColorCache::getForegroundColor(bool isActive) const
 {
-   return getColor("Foreground");
+   const QColor * color = isActive?0:getColor("Inactive Foreground");
+   return color?color:getColor("Foreground");
 }
 
-const QColor * KrColorCache::getDirectoryForegroundColor() const
+const QColor * KrColorCache::getDirectoryForegroundColor(bool isActive) const
 {
-   return getColor("Directory Foreground");
+   const QColor * color = isActive?0:getColor("Inactive Directory Foreground");
+   return color?color:getColor("Directory Foreground");
 }
 
-const QColor * KrColorCache::getExecutableForegroundColor() const
+const QColor * KrColorCache::getExecutableForegroundColor(bool isActive) const
 {
-   return getColor("Executable Foreground");
+   const QColor * color = isActive?0:getColor("Inactive Executable Foreground");
+   return color?color:getColor("Executable Foreground");
 }
 
-const QColor * KrColorCache::getSymlinkForegroundColor() const
+const QColor * KrColorCache::getSymlinkForegroundColor(bool isActive) const
 {
-   return getColor("Symlink Foreground");
+   const QColor * color = isActive?0:getColor("Inactive Symlink Foreground");
+   return color?color:getColor("Symlink Foreground");
 }
 
-const QColor * KrColorCache::getInvalidSymlinkForegroundColor() const
+const QColor * KrColorCache::getInvalidSymlinkForegroundColor(bool isActive) const
 {
-   return getColor("Invalid Symlink Foreground");
+   const QColor * color = isActive?0:getColor("Inactive Invalid Symlink Foreground");
+   return color?color:getColor("Invalid Symlink Foreground");
 }
 
-const QColor * KrColorCache::getMarkedForegroundColor() const
+const QColor * KrColorCache::getMarkedForegroundColor(bool isActive) const
 {
-   return getColor("Marked Foreground");
+   const QColor * color = isActive?0:getColor("Inactive Marked Foreground");
+   return color?color:getColor("Marked Foreground");
 }
 
-const QColor * KrColorCache::getMarkedBackgroundColor() const
+const QColor * KrColorCache::getMarkedBackgroundColor(bool isActive) const
 {
-   return getColor("Marked Background");
+   const QColor * color = isActive?0:getColor("Inactive Marked Background");
+   return color?color:getColor("Marked Background");
 }
 
-const QColor * KrColorCache::getCurrentForegroundColor() const
+const QColor * KrColorCache::getCurrentForegroundColor(bool isActive) const
 {
-   return getColor("Current Foreground");
+   const QColor * color = isActive?0:getColor("Inactive Current Foreground");
+   return color?color:getColor("Current Foreground");
 }
 
-const QColor * KrColorCache::getCurrentBackgroundColor() const
+const QColor * KrColorCache::getCurrentBackgroundColor(bool isActive) const
 {
-   return getColor("Current Background");
+   const QColor * color = isActive?0:getColor("Inactive Current Background");
+   return color?color:getColor("Current Background");
 }
 
-const QColor * KrColorCache::getBackgroundColor() const
+const QColor * KrColorCache::getBackgroundColor(bool isActive) const
 {
-   return getColor("Background");
+   const QColor * color = isActive?0:getColor("Inactive Background");
+   return color?color:getColor("Background");
 }
 
-const QColor * KrColorCache::getAlternateBackgroundColor() const
+const QColor * KrColorCache::getAlternateBackgroundColor(bool isActive) const
 {
-   return getColor("Alternate Background");
+   const QColor * color = isActive?0:getColor("Inactive Alternate Background");
+   return color?color:getColor("Alternate Background");
 }
 
-const QColor * KrColorCache::getAlternateMarkedBackgroundColor() const
+const QColor * KrColorCache::getAlternateMarkedBackgroundColor(bool isActive) const
 {
-   return getColor("Alternate Marked Background");
+   const QColor * color = isActive?0:getColor("Inactive Alternate Marked Background");
+   return color?color:getColor("Alternate Marked Background");
 }
 
 void KrColorCache::refreshColors()

@@ -16,18 +16,18 @@ public:
   static KrColorCache & getColorCache();
   const QString & getTextValue(const QString & textName) const;
   const QColor * getColor(const QString & colorName) const;
-  const QColor * getForegroundColor() const;
-  const QColor * getDirectoryForegroundColor() const;
-  const QColor * getExecutableForegroundColor() const;
-  const QColor * getSymlinkForegroundColor() const;
-  const QColor * getInvalidSymlinkForegroundColor() const;
-  const QColor * getMarkedForegroundColor() const;
-  const QColor * getMarkedBackgroundColor() const;
-  const QColor * getCurrentForegroundColor() const;
-  const QColor * getCurrentBackgroundColor() const;
-  const QColor * getBackgroundColor() const;
-  const QColor * getAlternateBackgroundColor() const;
-  const QColor * getAlternateMarkedBackgroundColor() const;
+  const QColor * getForegroundColor(bool isActive) const;
+  const QColor * getDirectoryForegroundColor(bool isActive) const;
+  const QColor * getExecutableForegroundColor(bool isActive) const;
+  const QColor * getSymlinkForegroundColor(bool isActive) const;
+  const QColor * getInvalidSymlinkForegroundColor(bool isActive) const;
+  const QColor * getMarkedForegroundColor(bool isActive) const;
+  const QColor * getMarkedBackgroundColor(bool isActive) const;
+  const QColor * getCurrentForegroundColor(bool isActive) const;
+  const QColor * getCurrentBackgroundColor(bool isActive) const;
+  const QColor * getBackgroundColor(bool isActive) const;
+  const QColor * getAlternateBackgroundColor(bool isActive) const;
+  const QColor * getAlternateMarkedBackgroundColor(bool isActive) const;
   bool isKDEDefault() const {return kdeDefault;}
   bool isAlternateBackgroundEnabled() const {return alternateBackgroundEnabled;}
   bool isShowCurrentItemAlways() const {return showCurrentItemAlways;}

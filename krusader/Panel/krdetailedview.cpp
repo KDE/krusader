@@ -955,9 +955,12 @@ void KrDetailedView::refreshColors()
   if (!KrColorCache::getColorCache().isKDEDefault())
   {
     // KDE deafult is not choosen: set the background color (as this paints the empty areas) and the alternate color
-    const QColor * color = KrColorCache::getColorCache().getBackgroundColor();
+    bool isActive = hasFocus();
+    if (krApp->mainView && krApp->mainView->activePanel && krApp->mainView->activePanel->view)
+       isActive = (dynamic_cast<KrView *>(this) == krApp->mainView->activePanel->view);
+    const QColor * color = KrColorCache::getColorCache().getBackgroundColor(isActive);
     setPaletteBackgroundColor(color?*color:KGlobalSettings::baseColor());
-    color = KrColorCache::getColorCache().getAlternateBackgroundColor();
+    color = KrColorCache::getColorCache().getAlternateBackgroundColor(isActive);
     setAlternateBackground(color?*color:KGlobalSettings::alternateBackgroundColor());
   }
   else

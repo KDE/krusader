@@ -31,9 +31,11 @@
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../kicons.h"
+#include "../krusaderview.h"
 #include "krdetailedviewitem.h"
 #include "krdetailedview.h"
 #include "krcolorcache.h"
+#include "listpanel.h"
 #include "../VFS/krpermhandler.h"
 #include <sys/types.h>
 #include <time.h>
@@ -196,7 +198,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   // if KDE deafault: do not touch color group!
   if (!KrColorCache::getColorCache().isKDEDefault())
   {
-    bool hasFocus = listView()->hasFocus();
+    bool isActive = (dynamic_cast<KrView *>(listView()) == krApp->mainView->activePanel->view);
     bool isCurrent = listView()->currentItem() == this;
     
     // As i deal with pointers here, the KDE default colors have to be stored here so that I can make
@@ -214,19 +216,19 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
     #define SETCOLOR(target, col) { color = col; if (color) target = color; }
     
     // First calculate fore and background. Th eKDe deafult is not taken into account here
-    SETCOLOR(background, isAlternate()?KrColorCache::getColorCache().getAlternateBackgroundColor():KrColorCache::getColorCache().getBackgroundColor())
-    SETCOLOR(foreground, KrColorCache::getColorCache().getForegroundColor())
+    SETCOLOR(background, isAlternate()?KrColorCache::getColorCache().getAlternateBackgroundColor(isActive):KrColorCache::getColorCache().getBackgroundColor(isActive))
+    SETCOLOR(foreground, KrColorCache::getColorCache().getForegroundColor(isActive))
     if (isSymLink())
     {
        if (_vf->vfile_getMime() == "Broken Link !" )
-          SETCOLOR(foreground, KrColorCache::getColorCache().getInvalidSymlinkForegroundColor())
+          SETCOLOR(foreground, KrColorCache::getColorCache().getInvalidSymlinkForegroundColor(isActive))
        else
-          SETCOLOR(foreground, KrColorCache::getColorCache().getSymlinkForegroundColor())
+          SETCOLOR(foreground, KrColorCache::getColorCache().getSymlinkForegroundColor(isActive))
     }
     else if (isDir())
-       SETCOLOR(foreground, KrColorCache::getColorCache().getDirectoryForegroundColor())
+       SETCOLOR(foreground, KrColorCache::getColorCache().getDirectoryForegroundColor(isActive))
     else if (isExecutable())
-       SETCOLOR(foreground, KrColorCache::getColorCache().getExecutableForegroundColor())
+       SETCOLOR(foreground, KrColorCache::getColorCache().getExecutableForegroundColor(isActive))
        
     // set the background color
     _cg.setColor(QColorGroup::Base, *background);
@@ -239,13 +241,13 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
     const QColor * markedForeground = &defaultMarkedForeground, * markedBackground = &defaultMarkedBackground;
 
     // Seek the correct background color. Set it as marked background, if it is defined.
-    SETCOLOR(markedBackground, KrColorCache::getColorCache().getMarkedBackgroundColor())
+    SETCOLOR(markedBackground, KrColorCache::getColorCache().getMarkedBackgroundColor(isActive))
        
     if (isAlternate())
     {
        // Now set it as alternate marked background, if it is defined. As the result the alternate marked background
        // has a higher priority than the marked background, which has a higher priority than the KDe default.
-       SETCOLOR(markedBackground, KrColorCache::getColorCache().getAlternateMarkedBackgroundColor())
+       SETCOLOR(markedBackground, KrColorCache::getColorCache().getAlternateMarkedBackgroundColor(isActive))
     }
     // set it in the color group (different group color than normal background!)
     _cg.setColor(QColorGroup::Highlight, *markedBackground);
@@ -253,7 +255,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
     if (KrColorCache::getColorCache().getTextValue("Marked Foreground") == "transparent")
        markedForeground = setColorIfContrastIsSufficient(markedBackground, foreground, background);
     else
-       SETCOLOR(markedForeground, KrColorCache::getColorCache().getMarkedForegroundColor())
+       SETCOLOR(markedForeground, KrColorCache::getColorCache().getMarkedForegroundColor(isActive))
       // set it in the color group (different group color than normal foreground!)
     _cg.setColor(QColorGroup::HighlightedText, *markedForeground);
     
@@ -265,17 +267,17 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
     }
 
     // finally the current item
-    if (isCurrent && (markCurrentAlways || hasFocus))
+    if (isCurrent && (markCurrentAlways || isActive))
     {
        // if this is the current item AND the panels has tho focus OR the current should be marked always
        const QColor * currentBackground = background;
-       SETCOLOR(currentBackground, KrColorCache::getColorCache().getCurrentBackgroundColor())
+       SETCOLOR(currentBackground, KrColorCache::getColorCache().getCurrentBackgroundColor(isActive))
        // set the background, if defined
        _cg.setColor(QColorGroup::Highlight, *currentBackground);
        _cg.setColor(QColorGroup::Base, *currentBackground);
        _cg.setColor(QColorGroup::Background, *currentBackground);
 
-       color = KrColorCache::getColorCache().getCurrentForegroundColor();
+       color = KrColorCache::getColorCache().getCurrentForegroundColor(isActive);
        if (color)
        {
          // set the foreground, if defined
