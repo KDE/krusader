@@ -59,7 +59,8 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Shie Erlich","Author", "manson@users.sourceforge.net");
   aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "homebass@gmx.net", 0);
   aboutData.addAuthor("Jan Halasa", "Developer", "xhalasa@fi.muni.cz", 0);
-  aboutData.addCredit("Heiner Eichmann","FreeBSD port, patchs and general help", "h.eichmann@gmx.de", 0);
+  aboutData.addCredit("Heiner Eichmann","FreeBSD port, patches and general help", "h.eichmann@gmx.de", 0);
+  aboutData.addCredit("Mikolaj Machowski", "Usability and QA", "<mikmach@wp.pl>", 0);
   aboutData.addCredit("Cristi Dumitrescu","QA, bug-hunting, patches and general help","cristid@chip.ro",0);
   aboutData.addCredit("Aurelien Gateau","patch for KViewer","aurelien.gateau@free.fr",0);
   aboutData.addCredit("Rafael Munoz","Spanish translation","muror@hotpop.com",0);
