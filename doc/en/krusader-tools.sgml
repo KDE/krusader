@@ -1,0 +1,219 @@
+<chapter id="krusader-tools">
+<title>Krusader Tools</title>
+<sect1 id = "remote-man">
+	<title>Remote Man: the FTP/SMB connection manager</title>
+	<screenshot>
+		<screeninfo>RemoteMan</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="remoteman.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="remoteman.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>RemoteMan is a central place for all your FTP/SMB needs. It is a tree-like list of remote locations,
+	each with its own username and password. You can create new "folders" (or groups) in the tree and place
+	remote sessions inside the groups. Each session includes a name (something that best describes the url)
+	and a host. A hostname is a url which can begin with 'ftp://' or 'smb://'. Additional information that
+	can be filled is the username and password. Not filling these values will trigger an anonymous login. You
+	can also click the 'anonymous' checkbox, which will force an anonymous login. One can also decide on a
+	different port - or keep the default 21. If you choose a 'smb://' host, you cannot change the port.
+	Optional are the description (a freetext area) and remote directory. If you enter a remote directory,
+	Krusader will try, upon connection, to cd into that directory.</para>
+	<itemizedlist>
+		<listitem><para>Double clicking on a session makes Krusader connect to that host. You can also use the 'connect'
+		button for that purpose.</para></listitem>
+		<listitem><para>The 'more' button does nothing for now. We keep some tricks for Krusader 2.</para></listitem>
+	</itemizedlist>
+</sect1>
+
+<sect1 id = "mount-man">
+	<title>Mount Man: handle your mounted filesystems</title>
+	<screenshot>
+		<screeninfo>MountMan</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="mountman.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="mountman.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>MountMan is a tool which helps you manage your mounted filesystems. Once invoked, it displays
+	a list of every mounted filesystem. For each filesystem, MountMan displays its name (which is the
+	actual device name - i.e. /dev/fd0 for a floppy), its type (vfat, ext2 ...) and its mount-point
+	(the directory on which the filesystem is mounted). MountMan also displays usage information using
+	total size, free size and free percentage. If those numbers say "N/A", it usually means that the filesystem
+	isn't mounted. Left clicking on a filesystem displays a pie chart on the left of the window, which
+	graphically displays the usage information for the filesystem. Clicking on a non-mounted filesystem will
+	display "not mounted" instead of the graph.</para>
+	<itemizedlist>
+		<listitem><para>Double clicking on a filesystem will close MountMan and open that filesystem
+		inside Krusader's active panel.</para></listitem>
+		<listitem><para>Right clicking on a filesystem will open a small menu which displays what actions can
+		be performed on that filesystem. For now, you can only mount, unmount and eject (if clicked on a
+		removable filesystem - a cdrom).</para></listitem>
+	</itemizedlist>
+	<note><para>We plan to expand MountMan in the next evolution of Krusader. It'll be able to format floppies,
+	edit /etc/fstab, create new filesystems and more...</para></note>
+</sect1>
+
+<sect1 id = "bookman">
+<title>Book Man: Organize your bookmarks</title>
+	<para>BookMan is a tool which allows your to bookmark folders using Krusader, and later return to them
+	in a click of a button. All you need to do is click on the "add bookmark" icon (or press CTRL+B).
+	The following screen will appear:</para>
+	<screenshot>
+		<screeninfo>Bookman adding a bookmark</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="bookmanadd.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="bookmanadd.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>The lower line (URL) indicates where will the bookmark point to. Usually, you click the "add bookmark"
+	button when you're in the target folder. For example, to bookmark '/usr/tmp', navigate Krusader there and
+	click the add bookmark button. When the "add bookmark" window appear, the URL line will say '/usr/tmp'.
+	The upper line (name) is what you'd like to call the bookmark (for example: temporary folder). If you add
+	the bookmark without entering a name, the bookmark's name will be the same as its target.</para>
+	<note><para>You can bookmark inside a remote filesystem (FTP or SAMBA) and later use the bookmark to quickly connect
+	to the remote machine. You CANNOT bookmark inside an archive.</para></note>
+	<para>To use your new bookmarks, click the bookmarks button and choose one - as shown in the picture below.
+  You may also use the keyboard shortcut <keycap>Alt+right/left arrow</keycap> to open right/left
+  panel bookmarks list</para>
+	<screenshot>
+		<screeninfo>Bookman using bookmarks</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="bookmanuse.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="bookmanuse.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>BookMan is also used to edit and organize your bookmarks. Once you click the "edit bookmarks" tab,
+	the following screen will be displayed. This is where you can edit/remove and re-arrange the bookmarks.</para>
+	<screenshot>
+		<screeninfo>Bookman editing bookmarks</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="bookmanedit.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="bookmanedit.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<itemizedlist>
+		<listitem><para>Clicking the edit button allows you to modify the bookmark's
+		name and destination.</para></listitem>
+		<listitem><para>Clicking remove will delete the bookmark.</para></listitem>
+		<listitem><para>Both edit and remove are not final. They must be applied - by clicking the apply button.
+		Clicking apply activates your changes.</para></listitem>
+		<listitem><para>If you click 'close' before applying, BookMan will respond and ask if you wish
+		to abandon the changes.</para></listitem>
+		<listitem><para>Clicking OK is just like clicking apply and then close.</para></listitem>
+		<listitem><para>The up/down arrows allow you to order the bookmarks the way you want. Notice, however,
+		that if the 'sorted bookmarks' checkbox is checked, than the bookmarks are sorted, and your
+		changes aren't shown.</para></listitem>
+	</itemizedlist>
+</sect1>
+
+<sect1 id = "krusearcher">
+<title>KruSearcher: find what you're looking for</title>
+	<para>Welcome to Krusader's new and powerful search module - nicknamed Krusearcher. It is the most able
+	tool (that we know of) for Linux, since it allows so many different ways to quickly find the file you're
+	looking for. It is divided into two levels, the general and the advanced. Let's take a look at the general
+	page ...</para>
+	<screenshot>
+		<screeninfo>Krusearcher general</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="search_general.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="search_general.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>The page is divided into four parts: top (search for) part, bottom part - titled 'containing text',
+	left part - titled 'search in' and right part which is called 'don't search in'. Obviously, each part
+	handles different aspects of the search. Let's look at them closely.</para>
+	<itemizedlist>
+		<listitem><para>Search for: here you enter the main search criteria. You can enter a filename, a wildcard
+		(*.o.*, *.c etc.) or both - seperated by a space. Notice, the "case sensative" button below this line.
+		Unchecking it will allow lower and upper case search (ie: *.c interprets as *.c AND *.C).</para></listitem>
+		<listitem><para>Of type: this box let's you search for a file not only by its name, but also by its
+		mimetype. For example, you can search for all the audio files whose name begins with B. Usually this
+		option defaults to 'all files', but you can choose to search for archives, directories, images, text
+		files, videos and audio files.</para></listitem>
+		<listitem><para>Search in (also Don't search in): Using those two parts, you can specify a search exactly
+		the way you want it. For example, you might want to search for a file in the whole filesystem (beginning
+		with /), but don't want to search inside /mnt. All you need to do is write '/' in the 'search in' box,
+		and write '/mnt' in the 'dont search in' box. If you want to enter more than one directory in one of the
+		boxes, just write the first name and press <keycap>Enter</keycap>. The directory's name will be copied to
+		the bigger box and you'll be able to enter another name.
+			<note><para>The input line has an auto completion feature, corrosponding to KDE's global settings.
+			If you wish, you can click on the folder icon, and browse to the directory you wish to add.</para></note>
+		</para></listitem>
+		<listitem><para>Text: entering text here makes Krusader search for it inside the files (grep).
+		That way, you can search for all header files (*.h) which include the word 'krusader' inside them.
+		Notice, the 'case sensative' checkbox. It refers to your text being searched for in upper and lower case
+		or the exact phrase you entered.</para></listitem>
+		<listitem><para>Search in directories: do a recursive search and dive into every directory
+		on the way.</para></listitem>
+		<listitem><para>Search in archives: Krusader will search for your files inside every supported archive.
+		This, however, takes longer to perfrom.<note><para>If you check this checkbox, you'll notice you cannot
+		'grep' inside files anymore. This is done, since looking inside files which are archived, forces Krusader
+		to extract them, which will results in an extremely long search.</para></note></para></listitem>
+		<listitem><para>Follow links: if checked,  Krusader will follow soft-links during the search.</para></listitem>
+		<listitem><para>The screenshot shows a search for all the files which end with c, cpp or h and include the string
+	'testing 123'. Krusader will search in /root, /opt, /bin and /usr, but not in /usr/lib and /usr/share.</para></listitem>
+	</itemizedlist>
+	<para>Clicking the search button starts the search and displays the results page. During the search, you
+	may press the stop button to stop the search. The close button is not operational during a search, so you
+	must first stop the search and then close the window. When a result is found, double clicking on it will
+	make Krusader's active panel point to the found files - but will not close the search window, so you'll be
+	able to click on a different result.</para>
+	<para>Sometimes, you need to narrow your search even more. Krusearcher allows a much finer search, and
+	for that, let's look at the advanced page...</para>
+	<screenshot>
+		<screeninfo>Krusearcher general</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="search_advanced.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="search_advanced.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>This screenshot shows a search for files which size is between 10KB and 150KB, which were modified
+	between October 10th and November 1st. Which belong to any user in the 'ftp' group, and are readable and
+	writeable by anyone in the 'ftp' group but only readable to the rest of the world.</para>
+	<para>The advanced page is divided into three parts: size, date and ownership.</para>
+	<para>Size</para>
+	<para>Allows you to choose the size range of the file you're looking for. By checking the checkboxes, you can
+	search for a file which is bigger than XXX bytes (or KB, MB), smaller than XXX bytes or, by checking both,
+	search for a file which size is bigger than XXX but smaller than YYY.</para>
+	<para>Date</para>
+	<para>This part offers three different ways of defining a date criteria:
+	<itemizedlist>
+		<listitem><para>Modified between: allows you to enter two dates. Krusader will search for files with
+		a modification date between the first date and the second one. If you only enter a date in the left
+		box, you'll be searching for files older than that date. If you only enter a date in the right box,
+		you'll be searching for files newer than that date.<note><para>You can click on the date icon (near the
+		input boxes) to open a standard date window - which allows you to easily browse through the calender
+		and search for the desired date. Clicking on a date will close the window and the date will appear in
+		the input box.</para></note></para></listitem>
+		<listitem><para>Not modified after: choosing this option makes Krusader search for files that were NOT
+		modified after a given date, which is the same as searching for files older than that date.</para></listitem>
+		<listitem><para>Modified in the last / not modified in the last: in these input boxes, you enter not a
+		date, but a number. This number represents days/weeks/months (as chosen in the near dropbox). Entering
+		the number 5 in the upper input box, makes Krusader search for files that were modified in the 5 days.
+		Entering the number 2 in the lower input box makes Krusader search for files that did NOT change in the
+		last 2 days. The combination of both results in a search for files that were changed in the last 5 days,
+		but NOT in the last 2 days.</para></listitem>
+	</itemizedlist></para>
+	<para>Ownership</para>
+	<itemizedlist>
+		<listitem><para>Belongs to user / group: by checking each of the corrosponding checkboxes, you can
+		search for files which belong to a certain user and/or group. The dropbox lists all the user names and
+		group names in the system, just choose one and go ahead.</para></listitem>
+		<listitem><para>Permissions: divided into owner, group and all - it allows you to choose certain
+		permissions for the file. You can choose to specify permissions for the owner, group, all or any
+		combination. The question mark (?) is a wildcard - which means that any permission is valid.
+		<note><para>To clarify, the screenshot above (the permissions part) describes a search for files
+		that belong to any user in group 'ftp', are readable, writable but not executable to any user in
+		the group, are readable but not writable or executable to the rest of the world and have unknown
+		permissions to its owner.</para></note></para></listitem>
+	</itemizedlist>
+</sect1>
+
+</chapter>

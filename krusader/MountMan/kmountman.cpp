@@ -1,0 +1,627 @@
+/***************************************************************************
+                                kmountman.cpp
+                             -------------------
+    copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
+    e-mail               : krusader@users.sourceforge.net
+    web site             : http://krusader.sourceforge.net
+ ---------------------------------------------------------------------------
+
+  A 
+
+     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                                     S o u r c e    F i l e
+
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+
+
+#include "kmountman.h"
+// QT incldues
+#include <qcstring.h>
+#include <qfileinfo.h>
+#include <qtextstream.h>
+#include <qfile.h>
+#include <qtimer.h>
+#include <qdir.h>
+// KDE includes
+#include <kmessagebox.h>
+#include <kprocess.h>
+#include <kio/job.h>
+#include <klocale.h>
+// Krusader includes
+#include "../resources.h"
+#include "../krusader.h"
+#include "../Dialogs/krdialogs.h"
+#include "kmountmangui.h"
+#include <unistd.h>
+
+#ifdef _OS_SOLARIS_
+#define FSTAB "/etc/vfstab"
+#else
+#define FSTAB "/etc/fstab"
+#endif
+
+#define MTAB "/etc/mtab"
+
+using namespace MountMan;
+
+KMountMan::KMountMan() : QObject(), Ready(false), Operational(false),
+                         outputBuffer(0), tempFile(0) {
+	filesystems.setAutoDelete(true);	
+	localDf=new fsData();				 // will be used to move around information
+  forceUpdate();
+}
+
+KMountMan::~KMountMan(){
+}
+
+// find the next word delimited by 'c'
+QString KMountMan::nextWord(QString &s,char c) {
+  s=s.stripWhiteSpace();
+  int j=s.find(c,0);
+  if (j==-1) {    // if the delimiter wasn't found, return the entire
+    QString tmp=s;// input, clearing the original string, to indicate
+    s="";         // that the whole input was taken
+    return tmp;
+  }
+  QString temp=s.left(j); // find the leftmost word.
+  s.remove(0,j);
+  return temp;
+}
+
+void KMountMan::mainWindow() { new KMountManGUI(); }
+
+// this version find the next word, delimeted by anything from
+// comma, space, tab or newline, in this order
+QString KMountMan::nextWord(QString &s) {
+  s=s.stripWhiteSpace();
+  int j;
+  j=s.find(',',0);
+  if (j==-1) j=s.find(' ',0);
+  if (j==-1) j=s.find('\t',0);
+  if (j==-1) j=s.find('\n',0);
+  // one of the above must have made j>0, if something went wrong,
+  // we return the entire input, clearing the original string
+  if (j==-1) {
+    QString tmp=s;
+    s="";
+    return tmp;
+  }
+  QString temp=s.left(j); // find the leftmost word.
+  s.remove(0,j);
+  return temp;
+}
+
+QString KMountMan::followLink(QString source) {
+  QFileInfo temp(source);
+  // if the file doesn't exist and it contains //, it's probably a samba share
+  // <patch> thanks to Cristi Dumitrescu
+  if (!temp.exists() && temp.filePath().contains("//")>0)
+    return source;
+  while (temp.isSymLink()) temp.setFile(temp.readLink());
+  return temp.fileName();
+}
+
+bool KMountMan::createFilesystems() {
+  QString temp[5][100];  // a temporary array which allows parsing of upto 100 fs
+  QString dumb;          // my very-own dumb pipe: nothing goes out of it :-)
+  QString s;
+  int i=0,j=0;
+
+  noOfFilesystems=0;
+  // if |filesystems|>0, than we are re-creating, delete the old list
+  if (filesystems.count()>0) while (filesystems.removeLast());
+  // open the /etc/fstab file...
+  QFile fstab(FSTAB);
+	if (!fstab.open(IO_ReadOnly)) {
+    kdWarning() << "Mt.Man: Unable to read " << QString(FSTAB) << " !!! Shutting down. (sorry)" << endl;
+    return false;
+  }
+  // and read it into the temporary array
+	QTextStream t(&fstab);
+  while (!fstab.atEnd()) {
+    s = t.readLine();
+    s = s.simplifyWhiteSpace(); // remove TABs
+    if (s==QString::null || s=="") break;  // skip empty lines in fstab
+    // temp[0]==name, temp[1]==type, temp[2]==mount point, temp[3]==options
+    // temp[4] is reserved for special cases, right now, only for supermount
+ 		bool remark=false;
+    (temp[0][i])=nextWord(s,' ');
+    (temp[2][i])=nextWord(s,' ');
+    (temp[1][i])=nextWord(s,' ');
+    (temp[3][i])=nextWord(s,' ');
+		// now, we check if a remark was inserted in the line
+		for (int cnt=0; cnt<3; ++cnt)
+			if (temp[cnt][i]=="#" || temp[cnt][i].left(1)=="#") {
+				kdWarning() << "MountMan: found a remark in fstab, skipping the line." << endl;
+        remark=true;
+        break;
+			}
+    // if the filesystem is supermount, then the whole fstab is not like
+    // we expected, so alterations must be made... mucho work...
+    if (temp[1][i]=="supermount") {
+      temp[4][i]="supermount"; // mark the filesystem
+      // temp[3][i] holds the entire 'options' string
+      QString t=(temp[3][i]).mid((temp[3][i]).find("fs=",0)+3);
+      temp[1][i]=nextWord(t);
+      t=(temp[3][i]).mid((temp[3][i]).find("dev=",0)+4);
+      temp[0][i]=nextWord(t);
+      // now we have to cut temp[3][i] down to remove supermount info from it
+      int i1=(temp[3][i]).find("fs=",0)+3;
+      int i2=(temp[3][i]).find("dev=",0)+4;
+      // find where the supermount info ends and the other options begin
+      int i3=(temp[3][i]).find(',',(i1>i2 ? i1 : i2));
+      t=(temp[3][i]).mid(i3+1);    // got the entire line ... all we need to do
+      (temp[3][i])=nextWord(t,' ');// is remove the '0 0' or '0 1' at the end
+      (temp[3][i]).simplifyWhiteSpace(); // make sure an empty string is empty!
+    }
+    if (!remark) ++i; // count this as a filesystem, only if it's not a remark
+  }
+  --i; fstab.close();  // finished with it
+  for (j=0; j<=i; ++j) {
+  	if (temp[0][j]=="" || temp[1][j]=="proc" || temp[1][j]=="/dev/pts" ||
+  			temp[1][j]=="swap" || temp[0][j]=="none" || temp[0][j]=="proc" ||
+        temp[0][j]=="swap" || temp[4][j]=="supermount") continue;
+  	++noOfFilesystems;
+  }
+  // now, create the main list
+  QString forDebugOnly="";
+  i=0; j=0;
+  while (i<noOfFilesystems) {
+		if (temp[0][j]=="" || temp[1][j]=="proc" || temp[1][j]=="/dev/pts" ||
+  			temp[1][j]=="swap" || temp[0][j]=="none" || temp[0][j]=="proc" ||
+        temp[0][j]=="swap" || temp[4][j]=="supermount") ++j;
+    else {
+	    fsData* system=new fsData();
+	    system->setName(temp[0][j]);
+  	  system->setType(temp[1][j]);
+   	  system->setMntPoint(temp[2][j]);
+  	  system->supermount=(temp[4][j]=="supermount" ? true : false);
+  	  system->options=temp[3][j];
+  	  filesystems.append(system);
+  	  forDebugOnly=forDebugOnly+"["+system->name()+"] on ["+system->mntPoint()+
+																"] ("+temp[3][j]+")"+'\n';
+  	  ++i;++j;
+  	  // if not supermounted, we add the mount point to our list
+  	  if (!system->supermount) mountPoints+=system->mntPoint();
+    }
+  }
+	kdDebug() << "Mt.Man: found the followning:\n" << forDebugOnly << "Trying DF..." << endl;
+	return true;
+}
+
+// run DF process and when it finishes, catch output with "parseDfData"
+///////////////////////////////////////////////////////////////////////
+void KMountMan::updateFilesystems() {
+  // create the "df -P -T" process
+  tempFile = new KTempFile();
+  tempFile->setAutoDelete(true);
+  dfProc.clearArguments();
+  dfProc.setExecutable("df");
+  dfProc << "-T" << "-P" << ">" << tempFile->name();
+  connect(&dfProc, SIGNAL(processExited(KProcess *)), this,
+          SLOT(finishUpdateFilesystems()));
+  dfProc.start(KProcess::NotifyOnExit);
+  // if 'df' doesn't return in 5 seconds, stop mountman
+  QTimer::singleShot(5*1000,this,SLOT(killMountMan()));
+}
+
+// if df didn't return, stop mountman
+void KMountMan::killMountMan() {
+  // if Operational and !Ready, than df didn't return (yet)
+  if (Operational && !Ready) {
+    dfProc.kill(SIGKILL);    // kill the process
+    Operational=Ready=false; // stop mountman
+  }
+}
+
+// gets notified when df is finished.
+void KMountMan::finishUpdateFilesystems() {
+  // call parseDfData to work on the data
+  parseDfData(tempFile->name());
+  disconnect(&dfProc,0,0,0);
+  delete tempFile;
+  tempFile=0;
+  emit updated();
+}
+
+fsData* KMountMan::location(QString name) {
+  fsData* it;
+  for (it=filesystems.first() ; (it!=0) ; it=filesystems.next())
+   if (followLink(it->name())==followLink(name)) break;
+  return it;
+}
+
+QString KMountMan::devFromMtab(QString mntPoint) {
+  QFile mtab(MTAB);
+	if (!mtab.open(IO_ReadOnly)) {
+    kdWarning() << "Mt.Man: Unable to read /etc/mtab !!! Shutting down. (sorry)" << endl;
+    // since mtab can't be read safely, mountman stops operating.
+    Operational=Ready=false;
+    return QString::null;
+  }
+
+  // and read it into the temporary array
+	QTextStream t(&mtab);
+  while (!mtab.atEnd()) {
+    QString dev,point;
+    QString s = t.readLine().simplifyWhiteSpace();
+    dev = nextWord(s,' '); point = nextWord(s,' ');
+    if (point==mntPoint) {
+      mtab.close();
+      return dev;
+    }
+  }
+  mtab.close();
+  return QString::null;
+}
+
+QString KMountMan::pointFromMtab(QString device) {
+  QFile mtab(MTAB);
+	if (!mtab.open(IO_ReadOnly)) {
+    kdWarning() << "Mt.Man: Unable to read /etc/mtab !!! Shutting down. (sorry)" << endl;
+    // since mtab can't be read safely, mountman stops operating.
+    Operational=Ready=false;
+    return QString::null;
+  }
+
+  // and read it into the temporary array
+	QTextStream t(&mtab);
+  while (!mtab.atEnd()) {
+    QString dev,mntPoint;
+    QString s = t.readLine().simplifyWhiteSpace();
+    dev = nextWord(s,' '); mntPoint = nextWord(s,' ');
+    if (dev==device) {
+      mtab.close();
+      return mntPoint;
+    }
+  }
+  mtab.close();
+  return QString::null;
+}
+
+KMountMan::mntStatus KMountMan::getStatus(QString mntPoint) {
+  // parse /etc/mtab and search for mntPoint
+  bool mounted=(devFromMtab(mntPoint) != QString::null);
+  if (mounted) return KMountMan::MOUNTED;
+  if (mountPoints.findIndex(mntPoint)==-1)  // no such mountPoint is /etc/fstab
+    return KMountMan::DOESNT_EXIST;
+  else return KMountMan::NOT_MOUNTED;
+}
+
+QString KMountMan::getDevice(QString mntPoint) {
+  fsData* it;
+  for (it=filesystems.first() ; (it!=0) ; it=filesystems.next())
+    if (it->mntPoint()==mntPoint)
+      return it->name();
+  // if we got here, the mntPoint doesn't exist in the database
+  return QString::null;
+}
+
+// parseDfData assumes that DF always knows better than FSTAB about currently
+// mounted filesystems.
+/////////////////////////////////////////////////////////////////////////////
+void KMountMan::parseDfData(QString filename) {
+  QString temp;
+  QFile f(filename);
+  if (!f.open(IO_ReadOnly)) { // error reading temp file
+    Operational=false;
+    Ready=false;
+    return;                   // make mt.man non-operational
+  }
+  QTextStream t( &f );        // use a text stream
+  QString s;
+  s = t.readLine();  // read the 1st line - it's trash for us
+  // now that we have a QString containing all the output of DF, let's get to work.
+  int countFilesystems=0; // sucessfully found filesystems
+  while (!t.eof()) {
+		bool newFS=false;
+    s = t.readLine();  // this is the important one!
+    temp=nextWord(s,' ');
+    temp=followLink(temp);  // make sure DF gives us the true device and not a link
+    fsData* loc=location(temp); // where is the filesystem located in our list?
+    if (loc==0) {
+      kdWarning() << "Mt.Man: filesystem [" << temp << "] found by DF is unlisted in /etc/fstab." << endl;
+      loc=new fsData();
+      filesystems.append(loc);
+			if (temp.contains("//")>0) // if it contains '//', it's a smb share
+			  loc->setName(temp);      // <patch> thanks to Cristi Dumitrescu
+			else loc->setName("/dev/"+temp);
+			newFS=true;
+    }
+    temp=nextWord(s,' ');   // catch the TYPE
+    // is it supermounted ?
+    if (temp=="supermount") loc->supermount=true;
+    loc->setType(temp);
+    if (loc->type()!=temp) {
+    	kdWarning() << "Mt.Man: according to DF, filesystem [" << loc->name() <<
+    				 "] has a different type from what's stated in /etc/fstab." << endl;
+      loc->setType(temp);  // DF knows best
+    }
+    temp=nextWord(s,' ');
+    loc->setTotalBlks(temp.toLong());
+    temp=nextWord(s,' ');
+    loc->setUsedBlks(temp.toLong());
+    temp=nextWord(s,' ');   // get rid of the next 2 words
+    temp=nextWord(s,' ');
+    temp=nextWord(s,'\n');  // read the "mounted on" thing
+    if (loc->mntPoint()!=temp) {
+    	if (!newFS)
+				kdWarning() << "Mt.Man: according to DF, filesystem [" << loc->name() <<
+    		           		 "] is mounted on a point which is different from what's stated in /etc/fstab." << endl;
+      loc->setMntPoint(temp);  // DF knows best
+    }
+    loc->setMounted(true);
+    ++countFilesystems;
+  }
+  Operational=Ready=true; // we are finished here
+  if (countFilesystems>0) kdDebug() << "Mt.Man: Alive and kicking. " << endl;
+   else {
+    kdWarning() << "Mt.Man: failed running DF. Shutting down (sorry)." << endl;
+    Operational=Ready=false;
+   }
+}
+
+void KMountMan::forceUpdate() {
+	kdWarning() << "Mt.Man: Born, looking around to get familiar." << endl;
+  mountPoints.clear();
+  // first create our list from /etc/fstab
+  if (!createFilesystems()) {  // create the potential fs from /etc/fstab
+  	Operational=Ready=false;
+		return;										 // if something went wrong, bail out!
+	} else Operational=true;     // mountman is alive but not yet ready
+	updateFilesystems();         // use the output of "DF -T -P" to update data
+}
+
+void KMountMan::collectOutput(KProcess *p, char *buffer,int buflen) {
+  if (!p) return; // don't collect data from unknown/undefined processes
+  if (!outputBuffer) outputBuffer=new QString();  // create buffer if needed
+  // add new buffer to the main output buffer
+  for (int i=0; i<buflen; ++i) (*outputBuffer)+=buffer[i];
+}
+
+// this is the generic version of mount - it receives a mntPoint and try to
+// mount it the usual way - via /etc/fstab
+void KMountMan::mount(QString mntPoint) {
+  if (mountPoints.findIndex(mntPoint)==-1) return; // safety measure
+  KProcess mountProc;
+  mountProc << "mount" << mntPoint.latin1();
+  // connect all outputs to collectOutput, to be displayed later
+  connect(&mountProc,SIGNAL(receivedStderr(KProcess*, char*, int)),
+          this,SLOT(collectOutput(KProcess*, char*,int)));
+  // launch
+  clearOutput();
+  if (!mountProc.start(KProcess::Block,KProcess::Stderr)) {
+    KMessageBox::error(0,
+      i18n("Unable to execute 'mount' !!!\ncheck that /bin/mount or /sbin/mount are availble"));
+    return;
+  }
+  if (mountProc.normalExit())
+    if (mountProc.exitStatus()==0) return; // incase of a normal exit
+  // on any other case,report an error
+  KMessageBox::sorry(0,i18n("Unable to complete the mount.")+
+    i18n("The error reported was:\n\n")+getOutput());
+}
+
+// this version of mount is used strictly by the GUI
+// don't call it explicitly !
+void KMountMan::mount(fsData *p) {
+	// first, if the user isn't ROOT, he won't be able to mount it, unless
+	// the option states 'user'. if so, we'll mount the mntPoint
+	if (p->options.contains("user") && getuid()!=0) {
+	  mount(p->mntPoint()); // call the alternative method
+	  return;
+	}
+	bool ro=(p->type()=="iso9660");
+  KProcess mountProc;
+  mountProc << "mount";
+  if (ro) mountProc << "-r";                // read only
+  mountProc << "-t" << p->type().latin1();  // latin1 == normal ascii
+  if (!p->options.isEmpty()) mountProc << "-o" << p->options; // -o options
+  mountProc << p->name().latin1() << p->mntPoint().latin1();
+
+  // don't allow mounting 'supermount' filesystems
+  if (p->supermount) {
+    KMessageBox::information(0,i18n("Warning: you're trying to mount a 'supermount' filesystem. Supermount filesystems are (un)mounted automatically by linux upon insert/eject. This is usually a Linux-Mandrake feature.Krusader will not allow this, as it creates unpredictable behaviour."),i18n("Error"),"SupermountWarning");
+    return;
+  }
+  // connect all outputs to collectOutput, to be displayed later
+  connect(&mountProc,SIGNAL(receivedStderr(KProcess*, char*, int)),
+          this,SLOT(collectOutput(KProcess*, char*,int)));
+  // launch
+  clearOutput();
+  if (!mountProc.start(KProcess::Block,KProcess::Stderr)) {
+    KMessageBox::error(0,
+      i18n("Unable to execute 'mount' !!! check that /bin/mount or /sbin/mount are availble"));
+    return;
+  }
+  if (mountProc.normalExit())
+    if (mountProc.exitStatus()==0) return; // incase of a normal exit
+  // on any other case,report an error
+  KMessageBox::sorry(0,i18n("Unable to complete the mount.")+
+    i18n("The error reported was:\n\n")+getOutput());
+}
+
+// this version of unmount is generic - it doesn't care which device is mounted
+// on the mntPoint, it simply unmounts it --- used with externally mounted systems
+void KMountMan::unmount(QString mntPoint) {
+  fsData *tmp=new fsData();
+  tmp->setMntPoint(mntPoint);// mount-point and supermount=false is all that's
+  tmp->supermount=false;     // needed to normally unmount
+  unmount(tmp);
+  delete tmp;                // no memory-leaks here !
+}
+
+// this version is used strictly by the GUI or by the unmount(QString) version
+// you've got no need to call it explicitly
+void KMountMan::unmount(fsData *p) {
+  KProcess umountProc;
+  umountProc << "umount";
+  umountProc << p->mntPoint().latin1();
+
+  // don't allow unmounting 'supermount' filesystems
+  if (p->supermount) {
+    KMessageBox::information(0,i18n("Warning: you're trying to unmount a 'supermount' filesystem. Supermount filesystems are (un)mounted automatically by linux upon insert/eject. This is usually a Linux-Mandrake feature. Krusader will not allow this, as it creates unpredictable behaviour."),i18n("Error"),"SupermountWarning");
+    return;
+  }
+  // connect outputs to collectOutput, to be displayed later
+  connect(&umountProc,SIGNAL(receivedStderr(KProcess*, char*, int)),
+          this,SLOT(collectOutput(KProcess*, char*,int)));
+  // launch
+  krApp->startWaiting(i18n("Unmounting device, please wait ..."),0,false);
+
+  clearOutput();
+  if (!umountProc.start(KProcess::NotifyOnExit,KProcess::Stderr)) {
+    KMessageBox::error(0,
+      i18n("Unable to execute 'umount' !!! check that /bin/umount or /sbin/umount are availble"));
+    return;
+  } else while (umountProc.isRunning()) qApp->processEvents();
+  krApp->stopWait();
+  if (umountProc.normalExit())
+    if (umountProc.exitStatus()==0) return; // incase of a normal exit
+  // on any other case,report an error
+  KMessageBox::sorry(0,i18n("Unable to complete the un-mount.")+
+    i18n("The error reported was:\n\n")+getOutput());
+}
+
+void KMountMan::toggleMount(QString device) {
+  fsData* p=location(device);
+  // request mountMan to (un)mount something, if he does his job (and he does)
+  // we will be notified by signal
+  (p->mounted() ? unmount(p) : mount(p));
+}
+
+void KMountMan::autoMount(QString path) {
+  if (getStatus(path)==NOT_MOUNTED) mount(path);
+}
+
+void KMountMan::eject(QString mntPoint) {
+  KShellProcess proc;
+  proc << "eject" << "\"" + mntPoint + "\"";
+  proc.start(KProcess::Block);
+  if (!proc.normalExit() || proc.exitStatus()!=0) // if we failed with eject
+    KMessageBox::information(0,i18n("Error ejecting device ! You need to have 'eject' in your path."),i18n("Error"),"CantExecuteEjectWarning");
+}
+
+// returns true if the path is an ejectable mount point (at the moment CDROM)
+bool KMountMan::ejectable(QString path) {
+  fsData* it;
+  for (it=filesystems.first() ; (it!=0) ; it=filesystems.next())
+    if (it->mntPoint()==path &&
+        (it->type()=="iso9660" || followLink(it->name()).left(2)=="cd"))
+      return true;
+  return false;
+}
+
+///////////////////////////////////// statsCollector /////////////////////////////////////
+statsCollector::statsCollector(QString path, QObject *caller): QObject() {
+  QString stats;
+  connect(this, SIGNAL(gotStats(QString)), caller, SLOT(gotStats(QString)));
+  if (path.left(5)=="/proc") { // /proc is a special case - no volume information
+    stats=i18n("No space information on a [proc]");
+    emit gotStats(stats);
+    return;
+  }
+  fsData *d = new fsData;
+  getData(path, d);
+  if ( !d->mounted() ) { // something went wrong
+    stats = i18n("MtMan: internal error, sorry.");
+    kdWarning() << "Failed to get DF data: " << path << endl;
+    emit gotStats(stats);
+    delete d;
+    return;
+  }
+	QString tmp=KIO::convertSizeFromKB(d->freeBlks())+i18n(" free out of ")+
+              KIO::convertSizeFromKB(d->totalBlks())+" (";
+  stats.sprintf("%d",(100-d->usedPerct()));
+  stats=tmp+stats+i18n("%) on [ ")+d->mntPoint()+" ("+d->type()+") ]";
+  emit gotStats(stats);
+  delete d;
+}
+
+// works the same as parseDfData, only for single files
+///////////////////////////////////////////////////////
+void statsCollector::parseDf(QString filename, fsData *data) {
+  QFile f(filename);
+  if (!f.open(IO_ReadOnly)){  // error reading temp file
+    data->setMounted(false);
+    return;                   // make mt.man non-operational
+  }
+  QTextStream t( &f );        // use a text stream
+  QString s;
+  s = t.readLine();  // read the 1st line - it's trash for us
+  s = t.readLine();  // this is the important one!
+  data->setName(KMountMan::nextWord(s,' '));
+  data->setType(KMountMan::nextWord(s,' '));
+  data->setTotalBlks( KMountMan::nextWord(s,' ').toLong() );
+  data->setUsedBlks( KMountMan::nextWord(s,' ').toLong() );
+  KMountMan::nextWord(s,' '); KMountMan::nextWord(s,' ');
+	data->setMntPoint(KMountMan::nextWord(s,'\n'));
+  data->setMounted(true);
+  f.close();
+}
+
+// return the information about where does PATH resides
+///////////////////////////////////////////////////////
+void statsCollector::getData(QString path, fsData *data) {
+  KShellProcess dfProc;
+  QString tmpFile = krApp->getTempFile();
+
+  dfProc << "df" << "-T" << "-P" << "\""+path+"\"" << ">" << tmpFile;
+  dfProc.start(KProcess::Block);
+  parseDf(tmpFile, data);
+  QDir().remove(tmpFile);
+}
+
+// a mountMan special version of KIO::convertSize, which deals
+// with large filesystems ==> >4GB, it actually recieve size in
+// a minimum block of 1024 ==> data is KB not bytes
+QString KMountMan::convertSize( unsigned long size )
+{
+    float fsize;
+    QString s;
+    // Tera-byte
+    if ( size >= 1073741824 )
+    {
+        fsize = (float) size / (float) 1073741824;
+        if ( fsize > 1024 ) // no name for something bigger than tera byte
+                            // let's call it Zega-Byte, who'll ever find out? :-)
+            s = i18n( "%1 ZB" ).arg( KGlobal::locale()->formatNumber(fsize / (float)1024, 1));
+        else
+            s = i18n( "%1 TB" ).arg( KGlobal::locale()->formatNumber(fsize, 1));
+    }
+    // Giga-byte
+    else if ( size >= 1048576 )
+    {
+        fsize = (float) size / (float) 1048576;
+        s = i18n( "%1 GB" ).arg( KGlobal::locale()->formatNumber(fsize, 1));
+    }
+    // Mega-byte
+    else if ( size > 1024 )
+    {
+        fsize = (float) size / (float) 1024;
+        s = i18n( "%1 MB" ).arg( KGlobal::locale()->formatNumber(fsize, 1));
+    }
+    // Kilo-byte
+    else
+    {
+        fsize = (float) size;
+        s = i18n( "%1 KB" ).arg( KGlobal::locale()->formatNumber(fsize, 0));
+    }
+    return s;
+}
+
+#include "kmountman.moc"

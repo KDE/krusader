@@ -1,0 +1,57 @@
+<chapter id="faq">
+<title>Questions and Answers</title>
+	&reporting.bugs;
+	&updating.documentation;
+  <qandaset id="faqlist">
+
+  <qandaentry>
+    <question><para>Where can i report bug/wish/patch ?</para></question>
+    <answer><para>An open source project greatest strength is derived from getting user
+    feedback. That why we'd love to hear what you have to say. You can reach us by
+    <ulink url="mailto:krusader@users.sourceforge.net">mail</ulink> or drop us a note
+    in the <ulink url="http://krusader.sourceforce.net/phpBB/">krusader forum</ulink>.</para></answer>
+	</qandaentry>
+  
+	<qandaentry>
+	  <question><para>I've installed Krusader from RPM, but when I run it, the menus don't appear.
+    Why ?</para></question>
+	  <answer><para>Some distributions put the 'krusaderrc.ui' file in the wrong place.
+    To solve the problem, just copy the file (form the package or the installed path)
+    to either $KDEDIR/share/apps/krusader or ~/.kde/share/apps/krusader and re-run the
+    program.</para></answer>
+	</qandaentry>
+
+	<qandaentry>
+	  <question><para>Why can't I change the colors in Krusader ?
+    (or: I used to be able to change the colors in prior versions, but not anymore -
+    what's up with that ?)</para></question>
+	  <answer><para>In versions prior to 0.75, we supported changing some of the colors
+    in Krusader. After some debates in the KDE mailing-list regarding the matter, we decided
+    that Krusader's colors will match KDE's current color-scheme. This makes Krusader more
+    compatible and coherent. As a result, we don't support changing colors inside the program.
+    Sorry.</para></answer>
+	</qandaentry>
+
+  <qandaentry>
+    <question><para>When I try to mount/unmount my cdrom/floppy, Krusader says
+    something about supermount, what's this about ? </para></question>
+    <answer><para>Supermount is a daemon which handles mounting/unmounting of removable
+    filesystems for you. Just insert a floppy, and 'cd /mnt/floppy' - supermount will do
+    the mount for you automatically and transparently. All this is great, however,
+    supermount manipulates the system into thinking that the floppy/cdrom is mounted
+    at all times ! This creates a few problems for Krusader, as it can't really know what's
+    going on - is there really a floppy in the drive ? Of course, this can be solved, but
+    as for now, we don't consider it a priority.</para></answer>
+	</qandaentry>
+
+
+<!--
+  <qandaentry>
+    <question><para> </para></question>
+    <answer><para>  </para></answer>
+	</qandaentry>
+-->
+      
+	</qandaset>
+
+</chapter>

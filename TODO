@@ -1,0 +1,29 @@
+=====> Krusader II <=======
+* the "select mask" dialog should handle compare mode gracefully
+* new gui !
+* configure bookmarks per panel.
+* remember last X places visited.
+* F2 can open internal terminal.
+* Type directly to command/line terminal.
+* Samba browser.
+* directory sync.
+* fstab editing for mountMan.
+* ctrl+enter --> copy the current file to the command-line.
+* allow to change the ratio between panels (20/80, 40/60 ...)
+* download management.
+* hex viewer.
+* multi-rename tool.
+* open a tree, which allows quick-search, and pressing enter, does chdir (like alt+f10 in nc)
+* tools menu.
+* ask the user for root password for some operations.
+
+
+BUGS
+====
+versionControl(): sometimes deletes the wrong rc file. fix it !
+dragging files / copying files changes active panel (at least command line)
+
+KNOWN BUGS (LOW PRIORITY)
+=========================
+* Remoteman sometimes displays the connections with different ordering - this is
+  actually a bug in QListView.

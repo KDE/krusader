@@ -1,0 +1,227 @@
+<chapter id="konfigurator">
+<title>Konfigurator: Making Your Own Krusader</title>
+<para>Konfigurator is Krusader's configuration center. Here you can modify the way Krusader does
+things and customize it to your own needs. At all times, pressing the <keycap>OK</keycap> button
+will apply the changes, pressing <keycap>Cancel</keycap> will cancel them, and pressing
+<keycap>Defaults</keycap> will reapply Krusder's "factory" settings. Konfigurator is divided
+into pages, each containing items related to that page.</para>
+	<sect1 id="konfig-startup">
+	<title>The startup page</title>
+	<screenshot>
+		<screeninfo>Konfigurator startup page</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="kgstartup.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="kgstartup.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>The startup page determines the way Krusader look (and work) when it is launched.
+	It is divided into two main parts:</para>
+  <variablelist>
+	<varlistentry><term><guilabel>Panels</guilabel></term>
+		<listitem><para>Save settings on exit: when Krusader launches, the panels current
+		directory will be the same as it was, when Krusader was shutdown - providing the location is
+		within a local filesystem.</para>
+		<para>Start with the following settings: allows you to define a startup status
+		for each of the panel in the following manner:
+		</para>
+    <itemizedlist>
+			<listitem><para>Panel types: select one of the available combinations.</para></listitem>
+			<listitem><para>Panel starts at: the following options are available
+				<itemizedlist>
+					<listitem><para>homepage: This panel will start at a specified homepage. In this case, you also need to
+					choose a directory in which will be this panel's homepage.</para></listitem>
+					<listitem><para>workdir: This panel will start at the folder it was executed from.</para></listitem>
+					<listitem><para>last place it was: This panel will start at the last directory it was
+					when Krusader was shut down.</para></listitem>
+				</itemizedlist>
+			</para></listitem>
+		</itemizedlist>
+	</listitem></varlistentry>
+	<varlistentry><term><guilabel>User Interface</guilabel></term>
+		<listitem><para>Determine which parts of the user interface are visible during startup.
+		<itemizedlist>
+			<listitem><para>Save settings on exit: when shutdown, Krusader checks the state of the user
+			interface components, and restores them to the condition they were during shutdown.</para></listitem>
+			<listitem><para>Toolbar visible: if checked, the <link linkend="toolbar">toolbar</link> will be
+			visible during startup.</para></listitem>
+			<listitem><para>Statusbar visible: if checked, the statusbar will be visible during startup.</para></listitem>
+			<listitem><para>Function keys visible: if checked, the <link linkend="fnkeys">function keys bar</link>
+			will be visible during startup.</para></listitem>
+			<listitem><para>Command line visible: if checked, the <link linkend="cmdline">command line</link>
+			will be visible during startup.</para></listitem>
+			<listitem><para>Terminal emulator visible: if checked, the terminal emulator will be visible during startup.</para></listitem>
+			<listitem><para>Restore last postion and size: when launched, Krusader will resize itself to the last size it
+			was when last shutdown. Krusader will also appear in the same location on the screen.</para></listitem>
+		</itemizedlist>
+		</para></listitem>
+	</varlistentry>
+	</variablelist>
+  </sect1>
+
+	<sect1 id="konfig-lookNfeel">
+	<title>The look and feel page</title>
+	<screenshot>
+		<screeninfo>Konfigurator look and feel page</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="kglookfeel.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="kglookfeel.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>Here you can determine the look and feel of things - which basically means fine-tuning the
+	application to you needs. The page is divided into three tabs: <guilabel>General</guilabel>,
+	<guilabel>Toolbar</guilabel> and <guilabel>Key-bindings</guilabel>. Since <guilabel>Toolbar</guilabel>
+	and <guilabel>Key-bindings</guilabel> are KDE's standard toolbar and keyboard editor, we'll focus on
+	the <guilabel>General</guilabel> section:
+
+  <itemizedlist>
+		<listitem><para>Warn on exit: if checked, Krusader will display an "Are you sure ?" warning when you're
+		trying to shut it down. Otherwise, it will exit without protest.</para></listitem>
+		<listitem><para>Minimize to tray: if checked, when you minimize Krusader, its icon will appear in the
+		system tray instead of the taskbar.</para></listitem>
+		<listitem><para>Show hidden files: if checked, Krusader will display the "dot files" which are otherwise
+		hidden.</para></listitem>
+		<listitem><para>Automark directories: when marking a group of files (either by using Select Group or by
+		using Select All), Krusader will check this option. If it is checked, than directories matching the
+		select criteria will also be marked. Otherwise, only files will be marked.</para></listitem>
+		<listitem><para>Case sensitive sorting: if checked (the Unix default), than all files beginning with capital
+		letters appear before files beginning with non-capital letters, otherwise, all files begining with a
+		specified letter (capital or otherwise) will appear together.</para></listitem>
+		<listitem><para>Panel font: allows you to change the font used inside the file lists.</para></listitem>
+		<listitem><para>Filelist icon size: allows you to change the size of the icons in the file lists.
+		available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
+		<listitem><para>HTML viewer's minimal font size: when viewing an HTML file (usually using
+		<keycap>F3</keycap>),Krusader invokes KDE's built-in HTML parser. This option sets the
+		minimal font size for the viewer, and aligns other font sizes according to it.</para></listitem>
+		<listitem><para>Mouse selection modes: three modes are available,
+			<itemizedlist>
+			<listitem><para>Classic: the way Krusader used to work from day one. Both keys allow selecting
+			files. To select more than one file, hold the <keycap>CTRL</keycap> key and click the
+			<keycap>left</keycap> mouse button. Right-click menu is invoked using a short click on
+			the <keycap>right</keycap> mouse button.</para></listitem>
+			<listitem><para>Left mouse button selects: this way, pressing the <keycap>left</keycap> mouse button
+			selects files - you can click and select multiple files. Right-click menu is invoked using a short
+			click on	the <keycap>right</keycap> mouse button.</para></listitem>
+			<listitem><para>Right button selects: this way (sometimes referred to as 'windows commander style') the
+			<keycap>left</keycap> mouse button does not select, but sets the current file without affecting the
+			current selection. The <keycap>right</keycap> mouse button selects multiple files and the right-click
+			menu is invoked by <guilabel>pressing and holding</guilabel> the <keycap>right</keycap>
+			mouse button.</para></listitem>
+			</itemizedlist>
+		</para></listitem>
+	</itemizedlist>
+	</para>
+	</sect1>
+
+	<sect1 id="konfig-general">
+	<title>The general page</title>
+	<screenshot>
+		<screeninfo>Konfigurator general page</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="kggeneral.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="kggeneral.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>The following options determine basic aspects of operation:
+	<itemizedlist>
+		<listitem><para>Delete files / Move to trash: when Krusader deletes files it can either 'really' delete them
+		or move them to the trash folder, thereby making them available via KDE's trash.</para></listitem>
+		<listitem><para>Use mimetype magic: mimetype magic is a mechanism which allows Krusader to inspect the files
+		in the panels and determine their type even if the file has no identifying extention. For example, if
+		you take an image file - 'image1.jpg' - and rename it to 'image1', Krusader will still know it's an
+		image file and work with it accordingly. However, this mode of operation is slower (while refreshing
+		the panel, or changing directories), so try Krusader with and without mimetype magic and decide what's
+		best for you</para></listitem>
+		<listitem><para>Editor: choose what editor will be used when editing a file (via F4).</para></listitem>
+		<listitem><para>Terminal: choose what terminal emulator will be used when Krusader opens a console window
+		(via F2, or Commands->Terminal menu option).</para></listitem>
+		<listitem><para>Temp directory: this option selects the base directory for Krusader's temporary files. The
+		actual files will be created in separate directories under the 'Temp directory', so that each user
+		running Krusader will have his/hers own temporary subdirectories under the chosen directory.
+		<note><para>You must choose a temporary directory such that all the users who are running Krusader will have
+		full permissions to it !</para></note></para></listitem>
+	</itemizedlist></para>
+	</sect1>
+
+	<sect1 id="konfig-advanced">
+	<title>The advanced page</title>
+	<screenshot>
+		<screeninfo>Konfigurator advanced page</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="kgadvanced.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="kgadvanced.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>This page handles more advanced issues, so you should double-check what you do here, since modifying
+	things around here makes Krusader a more powerful AND dangerous tool.</para>
+	<para>The page is divided into three parts:</para>
+	<variablelist>
+	<varlistentry><term><guilabel>General</guilabel></term>
+	<listitem>
+  <itemizedlist>
+		<listitem><para>I AM ROOT: usually, when doing any operation, Krusader checks permissions. This means that if
+		root wants to remove a folder owned by a user, Krusader will not let him/her do that !!! By checking
+		this option, you make Krusader assume you are root, which means that Krusader WON'T DO ANY PERMISSION
+		CHECKS ! AT ALL ! NOTHING ! This obviously makes life easier for power users, but it also means that if
+		you make a mistake, there's no going back ! and you won't even get a warning. USE WITH CAUTION !</para></listitem>
+		<listitem><para>Automount filesystems: this makes Krusader try to mount a filesystem before entering it. For
+		example, if you'd click on /mnt/cdrom (and /mnt/cdrom appears in /etc/fstab as a mount point), Krusader
+		will check if it is mounted. If not, it will try and mount it for you and then enter, so that you'd see
+		the contents of your cdrom. Note, however, that Krusader will NOT unmount when exiting /mnt/cdrom.</para></listitem>
+	</itemizedlist></listitem>
+	</varlistentry>
+	<varlistentry>
+	<term><guilabel>Confirmations</guilabel></term>
+		<listitem><para>By checking the options in this section, you'll make Krusader ask for confirmation before
+		doing the specific action. Otherwise, the actions will be done without warning.</para>
+	</listitem></varlistentry>
+	<varlistentry>
+	<term><guilabel>Fine-Tuning</guilabel></term>
+	<listitem><itemizedlist>
+		<listitem><para>Icon cache size: Krusader uses an icon cache, so it won't have to reload icons that were
+		already used before. Ofcourse, as the cache grows bigger, it can store more icons and further speed
+		operations, but the memory footprint of Krusader will be bigger.</para></listitem>
+	</itemizedlist>
+	</listitem></varlistentry>
+	</variablelist>
+	</sect1>
+
+	<sect1 id="konfig-archives">
+	<title>The archives page</title>
+	<screenshot>
+		<screeninfo>Konfigurator archives page</screeninfo>
+		<mediaobject>
+		<imageobject><imagedata fileref="kgarchives.png" format="PNG"/></imageobject>
+		<imageobject><imagedata fileref="kgarchives.eps" format="EPS"/></imageobject>
+		<textobject><phrase>Screenshot</phrase></textobject>
+		</mediaobject>
+	</screenshot>
+	<para>This page handles the way Krusader works with archives. In the <guilabel>General</guilabel> section
+	you'll see a list of archive formats. Some are checked and some are grayed-out. The ones that are available
+	(not grayed-out) are supported by Krusader. If  you check them, than Krusader will handle them transparently
+	and let you open them as folders. Otherwise, Krusader will attempt to invoke an application which opens that
+	type of archive. If a certain archive is grayed-out, it means that Krusader couldn't find the appropriate
+	executables in the PATH (to handle ZIP archives, Krusader needs 'unzip' and 'zip' executables).</para>
+	<para>If you've installed a certain archive application (let's say 'arj') and want Krusader to know about
+	it, just click the 'Auto Configure' button. Krusader will search for all supported executables, and print
+	a report regarding what archives can be handled. If all went well, the new archive will be availble and
+	checked.
+  <note><para>Please install new archives to your PATH (ie: /usr/bin; /usr/local/bin etc.)</para></note></para>
+	<para><guilabel>Fine-Tuning</guilabel>
+	<itemizedlist>
+		<listitem><para>Allow moving into archives: this option allows you to move files into an archive (as opposed
+		to just copying into the archive). The down side is that if a power failure occurs during the process,
+		the files that were moved might already be deleted, but not yet packed into the archive.
+    <note><para> If such thing happens, the file are NOT LOST. they were actually moved into a subfolder in the
+		Krusader's temp directory.	You can search that directory and find your files, safe and sound.
+		</para></note></para></listitem>
+		<listitem><para>Test archives when finished packing: this option automatically runs a test on a newly packed
+		archive. It is safer, but takes longer.</para></listitem>
+	</itemizedlist></para>
+
+ </sect1>
+
+</chapter>

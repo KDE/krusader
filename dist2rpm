@@ -1,0 +1,6 @@
+#! /bin/sh
+mkdir /usr/tmp/rpms
+export RPM_BUILD_ROOT=/usr/tmp/rpms
+mv krusader*.tar.gz /usr/src/RPM/SOURCES
+rpm -ba krusader.spec
+

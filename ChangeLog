@@ -1,0 +1,35 @@
+1.0.2 - KDE 3
+======================
+    ADDED: new icon.
+    ADDED: sftp & scp support.
+    ADDED: multi-protocol and history to the new connection
+           dialog.
+
+    FIXED: normal_vfs now uses the KDE dir watch,
+           in other words: better directory refresh.
+    FIXED: new 'admin' folder.
+
+1.0.1 - KDE 3
+======================
+    ADDED: Krusader now compiles on KDE 3 (tested with RC3).
+    ADDED: New ftp/smb vfs due to KDE 3 API changes.
+
+
+1.0.1
+======================
+    ADDED: When compare-mode is active, pressing the 'Select Files' icon (or the
+           equivelent keyboard short-cut), will open the usual dialog with 4 new
+           options in the predefined selections. This allows automatic selection
+           of files according to their compare-mode status - newer, older, etc.
+    ADDED: Terminal emulator now "follows mouse" - konqueror style.
+    ADDED: French translation.
+    ADDED: A new icon for Krusader. new we've got krusader.png and krusader2.png !
+
+    FIXED: errors compiling on kde 2.1 - convertSizeFromKB
+    FIXED: compatability issue with installing to debian
+    FIXED: compatability issue with Solaris
+    FIXED: keyboard settings are not saved.
+    FIXED: a small bug causing 'rrr' to show instead of 'rwx'.
+
+1/1/02 - 1.00
+=====================

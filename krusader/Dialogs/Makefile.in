@@ -1,0 +1,636 @@
+# KDE tags expanded automatically by am_edit - $Revision$ 
+# Makefile.in generated automatically by automake 1.5 from Makefile.am.
+
+# Copyright 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001
+# Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+@SET_MAKE@
+
+####### kdevelop will overwrite this part!!! (begin)##########
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+top_builddir = ../..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+INSTALL_HEADER = $(INSTALL_DATA)
+transform = @program_transform_name@
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+build_alias = @build_alias@
+build_triplet = @build@
+host_alias = @host_alias@
+host_triplet = @host@
+target_alias = @target_alias@
+target_triplet = @target@
+AMTAR = @AMTAR@
+ARTSCCONFIG = @ARTSCCONFIG@
+AS = @AS@
+AUTODIRS = @AUTODIRS@
+AWK = @AWK@
+CC = @CC@
+CONF_FILES = @CONF_FILES@
+CPP = @CPP@
+CXX = @CXX@
+CXXCPP = @CXXCPP@
+DCOPIDL = @DCOPIDL@
+DCOPIDL2CPP = @DCOPIDL2CPP@
+DCOP_DEPENDENCIES = @DCOP_DEPENDENCIES@
+DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
+DPMSINC = @DPMSINC@
+DPMSLIB = @DPMSLIB@
+EXEEXT = @EXEEXT@
+GCJ = @GCJ@
+GCJFLAGS = @GCJFLAGS@
+GLINC = @GLINC@
+GLLIB = @GLLIB@
+GMSGFMT = @GMSGFMT@
+IDL = @IDL@
+IDL_DEPENDENCIES = @IDL_DEPENDENCIES@
+INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+JAR = @JAR@
+JAVAC = @JAVAC@
+JAVAH = @JAVAH@
+JVMLIBS = @JVMLIBS@
+KDECONFIG = @KDECONFIG@
+KDE_CXXFLAGS = @KDE_CXXFLAGS@
+KDE_EXTRA_RPATH = @KDE_EXTRA_RPATH@
+KDE_INCLUDES = @KDE_INCLUDES@
+KDE_LDFLAGS = @KDE_LDFLAGS@
+KDE_MT_LDFLAGS = @KDE_MT_LDFLAGS@
+KDE_MT_LIBS = @KDE_MT_LIBS@
+KDE_PLUGIN = @KDE_PLUGIN@
+KDE_RPATH = @KDE_RPATH@
+KDE_USE_CLOSURE_FALSE = @KDE_USE_CLOSURE_FALSE@
+KDE_USE_CLOSURE_TRUE = @KDE_USE_CLOSURE_TRUE@
+KDE_USE_FINAL_FALSE = @KDE_USE_FINAL_FALSE@
+KDE_USE_FINAL_TRUE = @KDE_USE_FINAL_TRUE@
+KDE_XSL_STYLESHEET = @KDE_XSL_STYLESHEET@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LIBCOMPAT = @LIBCOMPAT@
+LIBCRYPT = @LIBCRYPT@
+LIBDL = @LIBDL@
+LIBGEN = @LIBGEN@
+LIBJPEG = @LIBJPEG@
+LIBMICO = @LIBMICO@
+LIBOBJS = @LIBOBJS@
+LIBPNG = @LIBPNG@
+LIBPTHREAD = @LIBPTHREAD@
+LIBPYTHON = @LIBPYTHON@
+LIBQIMGIO = @LIBQIMGIO@
+LIBRESOLV = @LIBRESOLV@
+LIBSHADOW = @LIBSHADOW@
+LIBSM = @LIBSM@
+LIBSOCKET = @LIBSOCKET@
+LIBTIFF = @LIBTIFF@
+LIBTOOL = @LIBTOOL@
+LIBUCB = @LIBUCB@
+LIBUTIL = @LIBUTIL@
+LIBXINERAMA = @LIBXINERAMA@
+LIBZ = @LIBZ@
+LIB_KAB = @LIB_KAB@
+LIB_KDECORE = @LIB_KDECORE@
+LIB_KDEPRINT = @LIB_KDEPRINT@
+LIB_KDEUI = @LIB_KDEUI@
+LIB_KFILE = @LIB_KFILE@
+LIB_KFM = @LIB_KFM@
+LIB_KHTML = @LIB_KHTML@
+LIB_KIMGIO = @LIB_KIMGIO@
+LIB_KIO = @LIB_KIO@
+LIB_KPARTS = @LIB_KPARTS@
+LIB_KSPELL = @LIB_KSPELL@
+LIB_KSYCOCA = @LIB_KSYCOCA@
+LIB_QPE = @LIB_QPE@
+LIB_QT = @LIB_QT@
+LIB_QTOPIA = @LIB_QTOPIA@
+LIB_SMB = @LIB_SMB@
+LIB_X11 = @LIB_X11@
+LIB_XEXT = @LIB_XEXT@
+LN_S = @LN_S@
+MCOPIDL = @MCOPIDL@
+MEINPROC = @MEINPROC@
+MICO_INCLUDES = @MICO_INCLUDES@
+MICO_LDFLAGS = @MICO_LDFLAGS@
+MOC = @MOC@
+MSGFMT = @MSGFMT@
+NOOPT_CFLAGS = @NOOPT_CFLAGS@
+NOOPT_CXXFLAGS = @NOOPT_CXXFLAGS@
+NOREPO = @NOREPO@
+OBJDUMP = @OBJDUMP@
+OBJEXT = @OBJEXT@
+PACKAGE = @PACKAGE@
+PAMLIBS = @PAMLIBS@
+PASSWDLIBS = @PASSWDLIBS@
+PYTHONINC = @PYTHONINC@
+PYTHONLIB = @PYTHONLIB@
+PYTHONMODDIR = @PYTHONMODDIR@
+QTE_NORTTI = @QTE_NORTTI@
+QTOPIA_INCLUDES = @QTOPIA_INCLUDES@
+QT_INCLUDES = @QT_INCLUDES@
+QT_LDFLAGS = @QT_LDFLAGS@
+RANLIB = @RANLIB@
+REPO = @REPO@
+SETUIDFLAGS = @SETUIDFLAGS@
+STRIP = @STRIP@
+TOPSUBDIRS = @TOPSUBDIRS@
+UIC = @UIC@
+UIC_TR = @UIC_TR@
+USER_INCLUDES = @USER_INCLUDES@
+USER_LDFLAGS = @USER_LDFLAGS@
+USE_EXCEPTIONS = @USE_EXCEPTIONS@
+USE_RTTI = @USE_RTTI@
+USE_THREADS = @USE_THREADS@
+VERSION = @VERSION@
+WOVERLOADED_VIRTUAL = @WOVERLOADED_VIRTUAL@
+XGETTEXT = @XGETTEXT@
+XPMINC = @XPMINC@
+XPMLIB = @XPMLIB@
+X_EXTRA_LIBS = @X_EXTRA_LIBS@
+X_INCLUDES = @X_INCLUDES@
+X_LDFLAGS = @X_LDFLAGS@
+X_PRE_LIBS = @X_PRE_LIBS@
+all_includes = @all_includes@
+all_libraries = @all_libraries@
+am__include = @am__include@
+am__quote = @am__quote@
+idldir = @idldir@
+install_sh = @install_sh@
+jni_includes = @jni_includes@
+kde_appsdir = @kde_appsdir@
+kde_bindir = @kde_bindir@
+kde_confdir = @kde_confdir@
+kde_datadir = @kde_datadir@
+kde_htmldir = @kde_htmldir@
+kde_icondir = @kde_icondir@
+kde_includes = @kde_includes@
+kde_libraries = @kde_libraries@
+kde_libs_htmldir = @kde_libs_htmldir@
+kde_libs_prefix = @kde_libs_prefix@
+kde_locale = @kde_locale@
+kde_mimedir = @kde_mimedir@
+kde_moduledir = @kde_moduledir@
+kde_qtver = @kde_qtver@
+kde_servicesdir = @kde_servicesdir@
+kde_servicetypesdir = @kde_servicetypesdir@
+kde_sounddir = @kde_sounddir@
+kde_styledir = @kde_styledir@
+kde_templatesdir = @kde_templatesdir@
+kde_wallpaperdir = @kde_wallpaperdir@
+kde_widgetdir = @kde_widgetdir@
+micodir = @micodir@
+qt_includes = @qt_includes@
+qt_libraries = @qt_libraries@
+x_includes = @x_includes@
+x_libraries = @x_libraries@
+
+noinst_LIBRARIES = libDialogs.a
+
+INCLUDES = $(all_includes)
+
+#>- libDialogs_a_METASOURCES = AUTO
+
+libDialogs_a_SOURCES = krprogress.cpp packgui.cpp packguibase.cpp newftpgui.cpp krspwidgets.cpp krspecialwidgets.cpp krpleasewait.cpp krmaskchoice.cpp krdialogs.cpp colormaskdialog.cpp colormaskdialogbase.cpp 
+
+EXTRA_DIST = colormaskdialogbase.cpp colormaskdialogbase.h colormaskdialog.cpp colormaskdialog.h krdialogs.cpp krdialogs.h krmaskchoice.cpp krmaskchoice.h krpleasewait.cpp krpleasewait.h krspecialwidgets.cpp krspecialwidgets.h krspwidgets.cpp krspwidgets.h newftpgui.cpp newftpgui.h packguibase.cpp packguibase.h packgui.cpp packgui.h krprogress.cpp krprogress.h 
+subdir = krusader/Dialogs
+mkinstalldirs = $(SHELL) $(top_srcdir)/admin/mkinstalldirs
+CONFIG_HEADER = $(top_builddir)/config.h
+CONFIG_CLEAN_FILES =
+LIBRARIES = $(noinst_LIBRARIES)
+
+libDialogs_a_AR = $(AR) cru
+libDialogs_a_LIBADD =
+am_libDialogs_a_OBJECTS = krprogress.$(OBJEXT) packgui.$(OBJEXT) \
+	packguibase.$(OBJEXT) newftpgui.$(OBJEXT) krspwidgets.$(OBJEXT) \
+	krspecialwidgets.$(OBJEXT) krpleasewait.$(OBJEXT) \
+	krmaskchoice.$(OBJEXT) krdialogs.$(OBJEXT) \
+	colormaskdialog.$(OBJEXT) colormaskdialogbase.$(OBJEXT)
+#>- libDialogs_a_OBJECTS = $(am_libDialogs_a_OBJECTS)
+#>+ 9
+libDialogs_a_final_OBJECTS = libDialogs_a.all_cpp.o 
+libDialogs_a_nofinal_OBJECTS = krprogress.$(OBJEXT) packgui.$(OBJEXT) \
+	packguibase.$(OBJEXT) newftpgui.$(OBJEXT) krspwidgets.$(OBJEXT) \
+	krspecialwidgets.$(OBJEXT) krpleasewait.$(OBJEXT) \
+	krmaskchoice.$(OBJEXT) krdialogs.$(OBJEXT) \
+	colormaskdialog.$(OBJEXT) colormaskdialogbase.$(OBJEXT) \
+	libDialogs_a_meta_unload.o 
+@KDE_USE_FINAL_FALSE@libDialogs_a_OBJECTS = $(libDialogs_a_nofinal_OBJECTS)
+@KDE_USE_FINAL_TRUE@libDialogs_a_OBJECTS = $(libDialogs_a_final_OBJECTS)
+
+DEFS = @DEFS@
+DEFAULT_INCLUDES =  -I. -I$(srcdir) -I$(top_builddir)
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+depcomp = $(SHELL) $(top_srcdir)/admin/depcomp
+@AMDEP_TRUE@DEP_FILES = $(DEPDIR)/colormaskdialog.Po \
+	@AMDEP_TRUE@	$(DEPDIR)/colormaskdialogbase.Po \
+	@AMDEP_TRUE@	$(DEPDIR)/krdialogs.Po $(DEPDIR)/krmaskchoice.Po \
+	@AMDEP_TRUE@	$(DEPDIR)/krpleasewait.Po $(DEPDIR)/krprogress.Po \
+	@AMDEP_TRUE@	$(DEPDIR)/krspecialwidgets.Po \
+	@AMDEP_TRUE@	$(DEPDIR)/krspwidgets.Po $(DEPDIR)/newftpgui.Po \
+	@AMDEP_TRUE@	$(DEPDIR)/packgui.Po $(DEPDIR)/packguibase.Po
+#>- CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+#>- $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+#>+ 2
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) $(KDE_CXXFLAGS)
+#>- LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) \
+#>- $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
+#>- $(AM_CXXFLAGS) $(CXXFLAGS)
+#>+ 3
+LTCXXCOMPILE = $(LIBTOOL) --mode=compile $(CXX) $(DEFS) \
+	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
+	$(AM_CXXFLAGS) $(CXXFLAGS) $(KDE_CXXFLAGS)
+CXXLD = $(CXX)
+#>- CXXLINK = $(LIBTOOL) --mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
+#>- $(AM_LDFLAGS) $(LDFLAGS) -o $@
+#>+ 2
+CXXLINK = $(LIBTOOL) --mode=link --tag=CXX $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(KDE_CXXFLAGS) \
+	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+CXXFLAGS = @CXXFLAGS@
+DIST_SOURCES = $(libDialogs_a_SOURCES)
+DIST_COMMON = Makefile.am Makefile.in
+SOURCES = $(libDialogs_a_SOURCES)
+
+#>- all: all-am
+#>+ 1
+all: docs-am  all-am
+
+.SUFFIXES:
+.SUFFIXES: .cpp .lo .o .obj
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+	-rm -f libtool
+$(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
+#>- 	cd $(top_srcdir) && \
+#>- $(AUTOMAKE) --gnu  krusader/Dialogs/Makefile
+#>+ 3
+	cd $(top_srcdir) && \
+	$(AUTOMAKE) --gnu  krusader/Dialogs/Makefile
+	cd $(top_srcdir) && perl admin/am_edit krusader/Dialogs/Makefile.in
+Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) && \
+	CONFIG_HEADERS= CONFIG_LINKS= \
+	CONFIG_FILES=$(subdir)/$@ $(SHELL) ./config.status
+
+AR = ar
+
+clean-noinstLIBRARIES:
+	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
+libDialogs.a: $(libDialogs_a_OBJECTS) $(libDialogs_a_DEPENDENCIES) 
+	-rm -f libDialogs.a
+	$(libDialogs_a_AR) libDialogs.a $(libDialogs_a_OBJECTS) $(libDialogs_a_LIBADD)
+	$(RANLIB) libDialogs.a
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT) core *.core
+
+distclean-compile:
+	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/colormaskdialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/colormaskdialogbase.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/krdialogs.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/krmaskchoice.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/krpleasewait.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/krprogress.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/krspecialwidgets.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/krspwidgets.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/newftpgui.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/packgui.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/packguibase.Po@am__quote@
+
+distclean-depend:
+	-rm -rf $(DEPDIR)
+
+.cpp.o:
+@AMDEP_TRUE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXXCOMPILE) -c -o $@ `test -f $< || echo '$(srcdir)/'`$<
+
+.cpp.obj:
+@AMDEP_TRUE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(CXXCOMPILE) -c -o $@ `cygpath -w $<`
+
+.cpp.lo:
+@AMDEP_TRUE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@	depfile='$(DEPDIR)/$*.Plo' tmpdepfile='$(DEPDIR)/$*.TPlo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(LTCXXCOMPILE) -c -o $@ `test -f $< || echo '$(srcdir)/'`$<
+CXXDEPMODE = @CXXDEPMODE@
+uninstall-info-am:
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	done | \
+	$(AWK) '    { files[$$0] = 1; } \
+	END { for (i in files) print i; }'`; \
+	mkid -fID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+	$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	done | \
+	$(AWK) '    { files[$$0] = 1; } \
+	END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	|| etags $(ETAGS_ARGS) $$tags  $$unique $(LISP)
+
+GTAGS:
+	here=`CDPATH=: && cd $(top_builddir) && pwd` \
+	&& cd $(top_srcdir) \
+	&& gtags -i $(GTAGS_ARGS) $$here
+
+distclean-tags:
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
+
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+
+top_distdir = ../..
+distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
+
+distdir: $(DISTFILES)
+	@for file in $(DISTFILES); do \
+	if test -f $$file; then d=.; else d=$(srcdir); fi; \
+	dir=`echo "$$file" | sed -e 's,/[^/]*$$,,'`; \
+	if test "$$dir" != "$$file" && test "$$dir" != "."; then \
+	$(mkinstalldirs) "$(distdir)/$$dir"; \
+	fi; \
+	if test -d $$d/$$file; then \
+	cp -pR $$d/$$file $(distdir) \
+	|| exit 1; \
+	else \
+	test -f $(distdir)/$$file \
+	|| cp -p $$d/$$file $(distdir)/$$file \
+	|| exit 1; \
+	fi; \
+	done
+check-am: all-am
+check: check-am
+all-am: Makefile $(LIBRARIES)
+
+installdirs:
+
+install: install-am
+install-exec: install-exec-am
+install-data: install-data-am
+uninstall: uninstall-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+
+installcheck: installcheck-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
+	`test -z '$(STRIP)' || \
+	echo "INSTALL_PROGRAM_ENV=STRIPPROG='$(STRIP)'"` install
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES) stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+	@echo "This command is intended for maintainers to use"
+	@echo "it deletes files that may require special tools to rebuild."
+#>- clean: clean-am
+#>+ 1
+clean: kde-rpo-clean  clean-am
+
+#>- clean-am: clean-generic clean-libtool clean-noinstLIBRARIES \
+#>- mostlyclean-am
+#>+ 2
+clean-am: clean-metasources clean-moc-classes clean-final  clean-generic clean-libtool clean-noinstLIBRARIES \
+	mostlyclean-am
+
+distclean: distclean-am
+
+distclean-am: clean-am distclean-compile distclean-depend \
+	distclean-generic distclean-libtool distclean-tags
+
+dvi: dvi-am
+
+dvi-am:
+
+info: info-am
+
+info-am:
+
+install-data-am:
+
+install-exec-am:
+
+install-info: install-info-am
+
+install-man:
+
+installcheck-am:
+
+maintainer-clean: maintainer-clean-am
+
+maintainer-clean-am: distclean-am maintainer-clean-generic
+
+mostlyclean: mostlyclean-am
+
+mostlyclean-am: mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool
+
+uninstall-am: uninstall-info-am
+
+.PHONY: GTAGS all all-am check check-am clean clean-generic \
+	clean-libtool clean-noinstLIBRARIES distclean distclean-compile \
+	distclean-depend distclean-generic distclean-libtool \
+	distclean-tags distdir dvi dvi-am info info-am install \
+	install-am install-data install-data-am install-exec \
+	install-exec-am install-info install-info-am install-man \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	tags uninstall uninstall-am uninstall-info-am
+
+
+####### kdevelop will overwrite this part!!! (end)############
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:
+
+#>+ 3
+packgui.moc: $(srcdir)/packgui.h
+	$(MOC) $(srcdir)/packgui.h -o packgui.moc
+
+#>+ 3
+packguibase.moc: $(srcdir)/packguibase.h
+	$(MOC) $(srcdir)/packguibase.h -o packguibase.moc
+
+#>+ 3
+newftpgui.moc: $(srcdir)/newftpgui.h
+	$(MOC) $(srcdir)/newftpgui.h -o newftpgui.moc
+
+#>+ 3
+krdialogs.moc: $(srcdir)/krdialogs.h
+	$(MOC) $(srcdir)/krdialogs.h -o krdialogs.moc
+
+#>+ 3
+colormaskdialogbase.moc: $(srcdir)/colormaskdialogbase.h
+	$(MOC) $(srcdir)/colormaskdialogbase.h -o colormaskdialogbase.moc
+
+#>+ 3
+colormaskdialog.moc: $(srcdir)/colormaskdialog.h
+	$(MOC) $(srcdir)/colormaskdialog.h -o colormaskdialog.moc
+
+#>+ 3
+krprogress.moc: $(srcdir)/krprogress.h
+	$(MOC) $(srcdir)/krprogress.h -o krprogress.moc
+
+#>+ 3
+krmaskchoice.moc: $(srcdir)/krmaskchoice.h
+	$(MOC) $(srcdir)/krmaskchoice.h -o krmaskchoice.moc
+
+#>+ 3
+krpleasewait.moc: $(srcdir)/krpleasewait.h
+	$(MOC) $(srcdir)/krpleasewait.h -o krpleasewait.moc
+
+#>+ 3
+krspecialwidgets.moc: $(srcdir)/krspecialwidgets.h
+	$(MOC) $(srcdir)/krspecialwidgets.h -o krspecialwidgets.moc
+
+#>+ 3
+clean-metasources:
+	-rm -f  packgui.moc packguibase.moc newftpgui.moc krdialogs.moc colormaskdialogbase.moc colormaskdialog.moc krprogress.moc krmaskchoice.moc krpleasewait.moc krspecialwidgets.moc
+
+#>+ 2
+docs-am:
+
+#>+ 6
+force-reedit:
+		cd $(top_srcdir) && \
+	$(AUTOMAKE) --gnu  krusader/Dialogs/Makefile
+	cd $(top_srcdir) && perl admin/am_edit krusader/Dialogs/Makefile.in
+
+
+#>+ 12
+libDialogs_a_meta_unload.cpp:  colormaskdialog.moc packgui.moc packguibase.moc krpleasewait.moc krmaskchoice.moc krprogress.moc newftpgui.moc krspecialwidgets.moc krdialogs.moc colormaskdialogbase.moc
+	@echo 'creating libDialogs_a_meta_unload.cpp'
+	@-rm -f libDialogs_a_meta_unload.cpp
+	@if test ${kde_qtver} = 2; then \
+		echo 'static const char * _metalist_libDialogs_a[] = {' > libDialogs_a_meta_unload.cpp ;\
+		cat  colormaskdialog.moc packgui.moc packguibase.moc krpleasewait.moc krmaskchoice.moc krprogress.moc newftpgui.moc krspecialwidgets.moc krdialogs.moc colormaskdialogbase.moc | grep 'char.*className' | sed -e 's/.*[^A-Za-z0-9_:]\([A-Za-z0-9_:]*\)::className.*$$/\"\1\",/' | sort | uniq >> libDialogs_a_meta_unload.cpp ;\
+		echo '0};' >> libDialogs_a_meta_unload.cpp ;\
+		echo '#include <kunload.h>' >> libDialogs_a_meta_unload.cpp ;\
+		echo '_UNLOAD(libDialogs_a)' >> libDialogs_a_meta_unload.cpp ;\
+	else echo > libDialogs_a_meta_unload.cpp; fi
+
+
+#>+ 3
+clean-moc-classes:
+	-rm -f  libDialogs_a_meta_unload.cpp
+
+#>+ 11
+libDialogs_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krprogress.cpp $(srcdir)/packgui.cpp $(srcdir)/packguibase.cpp $(srcdir)/newftpgui.cpp $(srcdir)/krspwidgets.cpp $(srcdir)/krspecialwidgets.cpp $(srcdir)/krpleasewait.cpp $(srcdir)/krmaskchoice.cpp $(srcdir)/krdialogs.cpp $(srcdir)/colormaskdialog.cpp $(srcdir)/colormaskdialogbase.cpp libDialogs_a_meta_unload.cpp   packgui.moc packguibase.moc newftpgui.moc krdialogs.moc colormaskdialogbase.moc colormaskdialog.moc krprogress.moc krmaskchoice.moc krpleasewait.moc krspecialwidgets.moc 
+	@echo 'creating libDialogs_a.all_cpp.cpp ...'; \
+	rm -f libDialogs_a.all_cpp.files libDialogs_a.all_cpp.final; \
+	echo "#define KDE_USE_FINAL 1" >> libDialogs_a.all_cpp.final; \
+	for file in krprogress.cpp packgui.cpp packguibase.cpp newftpgui.cpp krspwidgets.cpp krspecialwidgets.cpp krpleasewait.cpp krmaskchoice.cpp krdialogs.cpp colormaskdialog.cpp colormaskdialogbase.cpp libDialogs_a_meta_unload.cpp ; do \
+	  echo "#include \"$$file\"" >> libDialogs_a.all_cpp.files; \
+	  test ! -f $(srcdir)/$$file || egrep '^#pragma +implementation' $(srcdir)/$$file >> libDialogs_a.all_cpp.final; \
+	done; \
+	cat libDialogs_a.all_cpp.final libDialogs_a.all_cpp.files  > libDialogs_a.all_cpp.cpp; \
+	rm -f libDialogs_a.all_cpp.final libDialogs_a.all_cpp.files
+
+#>+ 3
+clean-final:
+	-rm -f libDialogs_a.all_cpp.cpp
+
+#>+ 2
+final:
+	$(MAKE) libDialogs_a_OBJECTS="$(libDialogs_a_final_OBJECTS)" all-am
+#>+ 2
+final-install:
+	$(MAKE) libDialogs_a_OBJECTS="$(libDialogs_a_final_OBJECTS)" install-am
+#>+ 2
+no-final:
+	$(MAKE) libDialogs_a_OBJECTS="$(libDialogs_a_nofinal_OBJECTS)" all-am
+#>+ 2
+no-final-install:
+	$(MAKE) libDialogs_a_OBJECTS="$(libDialogs_a_nofinal_OBJECTS)" install-am
+#>+ 3
+cvs-clean:
+	$(MAKE) -f $(top_srcdir)/admin/Makefile.common cvs-clean
+
+#>+ 3
+kde-rpo-clean:
+	-rm -f *.rpo
+
+#>+ 11
+$(srcdir)/packguibase.cpp: packguibase.moc 
+$(srcdir)/krdialogs.cpp: krdialogs.moc 
+$(srcdir)/colormaskdialog.cpp: colormaskdialog.moc 
+$(srcdir)/newftpgui.cpp: newftpgui.moc 
+$(srcdir)/packgui.cpp: packgui.moc 
+$(srcdir)/colormaskdialogbase.cpp: colormaskdialogbase.moc 
+$(srcdir)/krmaskchoice.cpp: krmaskchoice.moc 
+$(srcdir)/krpleasewait.cpp: krpleasewait.moc 
+$(srcdir)/krspecialwidgets.cpp: krspecialwidgets.moc 
+$(srcdir)/krprogress.cpp: krprogress.moc 

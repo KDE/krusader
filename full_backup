@@ -1,0 +1,28 @@
+#! /bin/bash
+
+make distclean
+
+rm -rdf krusader/.deps/*.*
+rm -rdf krusader/BookMan/.deps/*.*
+rm -rdf krusader/Base/.deps/*.*
+rm -rdf krusader/Dialogs/.deps/*.*
+rm -rdf krusader/VFS/.deps/*.*
+rm -rdf krusader/Panel/.deps/*.*
+rm -rdf krusader/RemoteMan/.deps/*.*
+rm -rdf krusader/Konfigurator/.deps/*.*
+rm -rdf krusader/MountMan/.deps/*.*
+
+cd ..
+zip -r  krusader.zip krusader
+rm -rdf ~/krusader-`date -I`.zip
+mv krusader.zip ~/krusader_full-`date -I`.zip
+
+
+
+
+
+
+
+
+
+

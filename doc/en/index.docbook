@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY krusader '<application>Krusader</application>'>
+  <!ENTITY kapp "&krusader;"><!-- replace test here -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE"><!-- change language only here -->
+  <!-- each chapter is in a seperate sgml file -->
+	<!ENTITY introduction SYSTEM "introduction.sgml">
+	<!ENTITY using-krusader SYSTEM "using-krusader.sgml">
+  <!ENTITY commands SYSTEM "commands.sgml">
+	<!ENTITY konfigurator SYSTEM "konfigurator.sgml">
+	<!ENTITY krusader-tools SYSTEM "krusader-tools.sgml">
+	<!ENTITY faq SYSTEM "faq.sgml">
+	<!ENTITY credits SYSTEM "credits.sgml">
+	<!ENTITY installation SYSTEM "installation.sgml">
+]>
+<book lang="&language;">
+<bookinfo>
+<title>The Krusader Handbook</title>
+
+	<authorgroup>
+	<author>
+	<firstname>Shie</firstname>
+	<surname>Erlich</surname>
+	<affiliation>
+	<address><email>manson@users.sourceforge.net</email></address>
+	</affiliation>
+	</author>
+	<author>
+	<firstname>Rafi</firstname>
+	<surname>Yanai</surname>
+	<affiliation>
+	<address><email>yanai@users.sourceforge.net</email></address>
+	</affiliation>
+	</author>
+	</authorgroup>
+
+	<copyright>
+	<year>2000</year>
+	<year>2001</year>
+	<year>2002</year>
+  <holder>Rafi Yanai</holder>
+  <holder>Shie Erlich</holder>
+	</copyright>
+
+	<legalnotice>&FDLNotice;</legalnotice>
+
+	<date>01/01/2002</date>
+	<releaseinfo>1.00.00</releaseinfo>
+
+	<abstract>
+	<para>
+	Krusader is a file-manager for KDE 2.x,
+	patterned after old-school managers like midnight commander and norton commander.
+	It features basically all your file-management needs, plus extensive archive handling,
+	mounted filesystems support, built-in advanced search module that can search in archives,
+   internal viewer, ftp/samba client and much much more.
+	</para>
+	</abstract>
+
+	<keywordset>
+	<keyword>KDE</keyword>
+	<keyword>commander</keyword>
+	<keyword>krusader</keyword>
+  <keyword>samba</keyword>
+	<keyword>file</keyword>
+	<keyword>manager</keyword>
+	<keyword>archive</keyword>
+	<keyword>ftp</keyword>
+	<keyword>mount</keyword>
+	</keywordset>
+
+</bookinfo>
+
+	&introduction;
+	&using-krusader;
+	&commands;
+	&konfigurator;
+	&krusader-tools;
+	&faq;
+	&credits;
+ 	&installation;
+ 	&documentation.index;
+
+</book>
+

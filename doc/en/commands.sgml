@@ -1,0 +1,289 @@
+<chapter id="commands">
+<title>Command Reference</title>
+
+	<sect1 id="file-menu">
+	<title>The <guimenu>file</guimenu> menu</title>
+	<variablelist>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Properties</guimenu>
+			</menuchoice></term>
+      <listitem><para>Pop up the file properties dialog which allows you to change the file's permissions
+      owner and group (if you have the rights to do so).
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Pack</guimenu>
+			</menuchoice></term>
+      <listitem><para>Pop up a dialog which allows you to <link linkend="pack-archive">pack</link> 
+      all the selected file in the active panel.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Unpack</guimenu>
+			</menuchoice></term>
+      <listitem><para>This action tries to <link linkend="unpacking-archives">unpack</link> 
+      all the selected files in the active panel.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Test Archive</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			This menu option <link linkend="test-archive">tests the selected archive for corruption</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Compare by content</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			This action compare the two current files - one from each panel via an external graphical diff utility.
+      Right now there are two supported applications: 
+      <ulink url="http://members.home.nl/bruggie/kdiff2">kdiff2</ulink> and 
+      <ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Calculate Occupied Space</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+      <link linkend="calculate">Calculate</link> the disk space occupied by the selected
+      files/directories in the active panel. The disk space for directories is calculated recursively.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Quit</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Close Kruasder and clean up the temporary directory, the same as pressing <keycap>F10</keycap> key.
+      </para></listitem>
+    </varlistentry>
+  </variablelist>
+  </sect1>
+
+	<sect1 id="mark-menu">
+	<title>The <guimenu>mark</guimenu> menu</title>
+	<para>The actions in this menu allows you to select or unselect multiple files in the
+  active panel. Directories will be selected (or not) according to your choice in
+  <link linkend="konfig-lookNfeel">Konfigurator look and feel page</link>.</para>
+  <variablelist>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Select Group</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+      Open a dialog which allows you to select files in the active panel.
+      You can enter a list of space-separated file patterns (ie: *.c *.cpp).
+      Using the <guilabel>Add</guilabel> button you can store your selection for future use,
+      double-clicking on a previous selection is the same as entering the selection and pressing
+      the <guilabel>Ok</guilabel> button.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Unselect Group</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			The same as <guimenu>Select Group</guimenu> only that the files that match the pattern
+      in the active panel will be unselected.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Select All</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Selects all the files in the active panel.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Unselect All</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Unselects all the files in the active panel.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Invert Selection</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Invert the selection status of all the files in the active panel
+      (ie: marked files will become unmarked and unmarked files will be marked).
+      </para></listitem>
+    </varlistentry>
+  </variablelist>
+  </sect1>
+
+	<sect1 id="commands-menu">
+	<title>The <guimenu>commands</guimenu> menu</title>
+	<variablelist>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Search</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Open the <link linkend="krusearcher">Krusader search module</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Device Manager</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Open the KDE device information module.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Terminal</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Open a terminal window in the default directory (usually your home directory).
+			You can choose your favorite terminal application in the
+      <link linkend="konfig-general">Konfigurator general page</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>FTP Connect</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Open the <link linkend="remote-man">FTP connection manager</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>FTP New Connection</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Open the FTP connection dialog which allows you to open a FTP connection to a remote host.
+      If you leave the username and password fields empty you'll login as anonymous.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>FTP Disconnect</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			End the active FTP/smb connection in the active panel. This action is disabled if the active panel
+      is not in FTP/smb mode.
+      </para></listitem>
+    </varlistentry>
+  </variablelist>
+	</sect1>
+
+	<sect1 id="view-menu">
+	<title>The <guimenu>view</guimenu> menu</title>
+  <para>The action in this sub menu usually effect the current Krusader session,
+  If you want to make permanent changes use <link linkend="konfig-startup">
+  Konfigurator startup page</link>.</para>
+	<variablelist>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Full Panel</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Change the active panel to <link linkend="panels">"list panel"</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Tree Panel</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Change the active panel to <link linkend="panels">"tree panel"</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Quickview Panel</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Change the active panel to <link linkend="panels">"quickview panel"</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Compare Mode</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Toggles Krusader's <link linkend="compare-dir">compare mode</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Configure Compare-mode</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Open the dialog which configures Krusader's <link linkend="compare-dir">compare mode</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Show Hidden Files</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Toggles the option to display (or not) hidden files in the Krusader panels.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Sort By Extention</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			When this action is turned on, the main sorting key in the Krusader panels becomes the 
+      file extention (the part of the file name after the last '.'). this is useful to group
+      files of the same type closer together.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>ALL Files</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Turn off all filters and display all the files.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Executables</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Display only executables and directories.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Custom</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Allows you to install a custom filter on the Krusader panel. Only files that match the
+      filter pattern(s) and directories will be displayed.
+      </para></listitem>
+    </varlistentry>
+  </variablelist>
+	</sect1>
+
+	<sect1 id="settings-menu">
+	<title>The <guimenu>Settings</guimenu> menu</title>
+	<variablelist>
+
+    <varlistentry><term><menuchoice>
+    	<guimenu>Konfigurator</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Opens the Krusader <link linkend="konfigurator">configuration</link> module.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Configure Toolbars</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Opens a dialog which allows you to configure the Krusader tool bar.
+      The same dialog can be reached from the
+      <link linkend="konfig-lookNfeel">Konfigurator look and feel page</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Configure Key Bindings</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Opens a dialog which allows you to configure the Krusader key bindings.
+      The same dialog can be reached from the
+      <link linkend="konfig-lookNfeel">Konfigurator look and feel page</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Save Position</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Saves the current size and position of the Krusader main window. If you selected
+      <guilabel>Restore last position and size</guilabel> in
+      <link linkend="konfig-startup">Konfigurator startup page</link>.
+      </para></listitem>
+    </varlistentry>
+
+ 	</variablelist>
+	</sect1>
+
+</chapter>
