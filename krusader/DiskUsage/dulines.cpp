@@ -112,7 +112,7 @@ void DULinesToolTip::maybeTip( const QPoint &pos )
     
   if( col != 0 && width > view->columnWidth( col ) )
     tip( r, item->text( col ) );
-  else if( col == 1 )
+  else if( col == 1 && item->text( 0 ) != ".." )
   {
     File *fileItem = ((DULinesItem *)item)->getFile();
     tip( r, diskUsage->getToolTip( fileItem ) );
