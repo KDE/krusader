@@ -695,7 +695,7 @@ void ListPanelFunc::execute( QString& name ) {
     refresh( origin );
   } else if ( KRarcHandler::arcHandled( type ) && !origin.contains(":/")) {
     QString path = files()->vfs_getFile(vf->vfile_getName());
-		if( type == "-zip" || type.contains("rar") ){
+		if( type == "-zip" || type.contains("rar") || type == "-rpm" ){
 			path = "krarc:"+path;
 		} else if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
     	path = "tar:"+path;
