@@ -103,6 +103,7 @@ KAction *Krusader::actUnselectAll = 0;
 KAction *Krusader::actInvert = 0;
 KAction *Krusader::actCompDirs = 0;
 KAction *Krusader::actSync = 0;
+KAction *Krusader::actDiskUsage = 0;
 KAction *Krusader::actHomeTerminal = 0;
 KAction *Krusader::actFTPConnect = 0;
 KAction *Krusader::actFTPNewConnect = 0;
@@ -519,6 +520,8 @@ void Krusader::setupActions() {
                             SLOTS, SLOT( locate() ), actionCollection(), "locate" );
    actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_Y,
                               SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
+   actDiskUsage = new KAction( i18n( "D&isk Usage" ), "kchart", ALT + Key_D,
+                              SLOTS, SLOT( slotDiskUsage() ), actionCollection(), "disk usage" );
    actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                             SLOTS, SLOT( invert() ), actionCollection(), "invert" );
    actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,
@@ -555,10 +558,10 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
    new KAction( i18n( "Right history" ), ALT + CTRL + Key_Right,
                 SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
-	new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Key_Down, SLOTS,
+        new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Key_Down, SLOTS,
                                           SLOT( togglePopupPanel() ), actionCollection(), "toggle popup panel" );
-	new KToggleAction( i18n( "Vertical Mode" ), ALT + CTRL + Key_V, MAIN_VIEW, 
-					SLOT( toggleVerticalMode() ), actionCollection(), "toggle vertical mode" );
+        new KToggleAction( i18n( "Vertical Mode" ), ALT + CTRL + Key_V, MAIN_VIEW, 
+                                        SLOT( toggleVerticalMode() ), actionCollection(), "toggle vertical mode" );
    actNewTab = new KAction( i18n( "New tab" ), ALT + CTRL + Key_N, SLOTS,
                             SLOT( newTab() ), actionCollection(), "new tab" );
    actDupTab = new KAction( i18n( "Duplicate tab" ), ALT + CTRL + SHIFT + Key_N, SLOTS,

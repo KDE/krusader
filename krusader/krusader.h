@@ -100,7 +100,7 @@ class Krusader : public KParts::MainWindow {
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
     static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate;
-    static KAction *actUnselectAll, *actInvert, *actSync, *actSavePosition, *actCompDirs;
+    static KAction *actUnselectAll, *actInvert, *actSync, *actDiskUsage, *actSavePosition, *actCompDirs;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect, *actProfiles;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool, *actSwapPanels;
     static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp;

@@ -74,6 +74,7 @@
 #include "UserMenu/usermenu.h"
 #include "Panel/panelpopup.h"
 #include "Synchronizer/synchronizergui.h"
+#include "DiskUsage/diskusagegui.h"
 #include "krservices.h"
 
 #define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
@@ -787,6 +788,11 @@ void KRslots::compareSetup()
 
 void KRslots::togglePopupPanel() {
 	ACTIVE_PANEL->togglePanelPopup();
+}
+
+void KRslots::slotDiskUsage()
+{
+  DiskUsageGUI du( ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1,KURL::StripFileProtocol), MAIN_VIEW, "DiskUsage" );
 }
 
 #include "krslots.moc"

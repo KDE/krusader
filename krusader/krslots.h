@@ -132,6 +132,7 @@ class KRslots : public QObject {
     void slotCombine();
     void userMenu();
     void slotSynchronizeDirs();
+    void slotDiskUsage();
     void updatePopupPanel(QListViewItem*);
     // F2
     void terminal();
