@@ -57,14 +57,15 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   addApplication( "df",       pathsGrid, 0, general_tab );
   addApplication( "eject",    pathsGrid, 1, general_tab );
   addApplication( "kdesu",    pathsGrid, 2, general_tab );
-  addApplication( "kmail",    pathsGrid, 3, general_tab );
-  addApplication( "kompare",  pathsGrid, 4, general_tab );
-  addApplication( "krename",  pathsGrid, 5, general_tab );
-  addApplication( "krusader", pathsGrid, 6, general_tab );
-  addApplication( "locate",   pathsGrid, 7, general_tab );
-  addApplication( "mount",    pathsGrid, 8, general_tab );
-  addApplication( "umount",   pathsGrid, 9, general_tab );
-  addApplication( "updatedb", pathsGrid,10, general_tab );
+  addApplication( "kget",     pathsGrid, 3, general_tab );
+  addApplication( "kmail",    pathsGrid, 4, general_tab );
+  addApplication( "kompare",  pathsGrid, 5, general_tab );
+  addApplication( "krename",  pathsGrid, 6, general_tab );
+  addApplication( "krusader", pathsGrid, 7, general_tab );
+  addApplication( "locate",   pathsGrid, 8, general_tab );
+  addApplication( "mount",    pathsGrid, 9, general_tab );
+  addApplication( "umount",   pathsGrid,10, general_tab );
+  addApplication( "updatedb", pathsGrid,11, general_tab );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );
