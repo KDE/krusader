@@ -158,7 +158,7 @@ void KRslots::compareContent() {
 	// but if one of the files isn't local, download them first
 	KURL url1 = ACTIVE_FUNC->files()->vfs_getFile(name1);
 	KURL url2 = ACTIVE_PANEL->otherPanel->func->files()->vfs_getFile(name2);
-	
+
 	QString tmp1 = QString::null, tmp2 = QString::null;
   if (!url1.isLocalFile()) {
  		if( !KIO::NetAccess::download( url1, tmp1 ) ){
@@ -174,12 +174,12 @@ void KRslots::compareContent() {
 	} else tmp2 = url2.path();
 
   KProcess p;
-  p << diffProg << tmp1.mid(tmp1.find('/')) << tmp2.mid(tmp2.find('/'));
+  p << diffProg << tmp1 << tmp2;
 	if (!p.start(KProcess::DontCare))
     KMessageBox::error(0,i18n("Error executing ")+diffProg+" !");
   else
     p.detach();
-  sleep(2);	
+  sleep(2);
 
 	if( tmp1 != url1.path() ) KIO::NetAccess::removeTempFile( tmp1 );
 	if( tmp2 != url2.path() ) KIO::NetAccess::removeTempFile( tmp2 );
