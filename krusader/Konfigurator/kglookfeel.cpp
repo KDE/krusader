@@ -131,19 +131,19 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   panelGrid->addWidget( createLine( panelGrp, "lookSep2" ), 2, 0 );
 
-  addLabel( panelGrid, 3, 0, i18n( "Fields:" ),
+  addLabel( panelGrid, 3, 0, i18n( "Visible Columns:" ),
             panelGrp, "panelLabel" );
 
   KONFIGURATOR_CHECKBOX_PARAM fields[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
-    {{"Look&Feel","Ext Column",           true,   i18n( "Extension Column" ),           true ,  ""},
-     {"Look&Feel","Mime Column",          false,  i18n( "Mimetype Column" ),            true ,  ""},
-     {"Look&Feel","Size Column",          true,   i18n( "Size Column" ),                true ,  ""},
-     {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time Column" ),       true ,  ""},
-     {"Look&Feel","Perm Column",          false,  i18n( "Permission Column" ),          true ,  ""},
-     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission Column" ), true ,  ""},
-     {"Look&Feel","Owner Column",         false,  i18n( "Owner Column" ),               true ,  ""},
-     {"Look&Feel","Group Column",         false,  i18n( "Group Column" ),               true ,  ""},
+    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  ""},
+     {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  ""},
+     {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  ""},
+     {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  ""},
+     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  ""},
+     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  ""},
+     {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  ""},
+     {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  ""},
     };
 
   KonfiguratorCheckBoxGroup *flds = createCheckBoxGroup( 0, 4, fields, 8, panelGrp );
@@ -199,18 +199,18 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive");
   connect( panelToolbarActive->find( "Panel Toolbar visible" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotEnablePanelToolbar() ) );
     
-  QGroupBox * panelToolbarGrp = createFrame( i18n( "Panel Toolbar buttons" ), tab_4, "panelToolbarGrp");
+  QGroupBox * panelToolbarGrp = createFrame( i18n( "Visible Panel Toolbar buttons" ), tab_4, "panelToolbarGrp");
   QGridLayout * panelToolbarGrid = createGridLayout( panelToolbarGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = 
     {
   //   cfg_class    cfg_name                default             text                       restart tooltip
-     {"Look&Feel",  "Open Button Visible",  _Open,      i18n( "Open button visible" ),     true ,  ""},
-     {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n( "Equal button (=) visible" ),true ,  ""},
-     {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n( "Up button (..) visible" ),  true ,  ""},
-     {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n( "Home button (~) visible" ), true ,  ""},
-     {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n( "Root button (/) visible" ), true ,  ""},
-     {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n( "Toggle-button for synchron-browsing visible" ), true ,  ""},
+     {"Look&Feel",  "Open Button Visible",  _Open,      i18n( "Open button" ),     true ,  ""},
+     {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n( "Equal button (=)" ),true ,  ""},
+     {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n( "Up button (..)" ),  true ,  ""},
+     {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n( "Home button (~)" ), true ,  ""},
+     {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n( "Root button (/)" ), true ,  ""},
+     {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n( "Toggle-button for sync-browsing" ), true ,  ""},
     };
   
   
