@@ -45,11 +45,11 @@ class DULinesItem : public QListViewItem
 {
 public:
   DULinesItem( DiskUsage *diskUsageIn, File *fileItem, QListView * parent, QString label1, 
-               QString label2, QString label3 ) : QListViewItem( parent, label1, label2, label3 ), 
-               diskUsage( diskUsageIn ), file( fileItem ) {}
+               QString label2, QString label3, unsigned int italicPos ) : QListViewItem( parent, label1, label2, label3 ), 
+               diskUsage( diskUsageIn ), file( fileItem ), isTruncated( false ), italicTextPos( italicPos ) {}
   DULinesItem( DiskUsage *diskUsageIn, File *fileItem, QListView * parent, QListViewItem * after, 
-               QString label1, QString label2, QString label3 ) : QListViewItem( parent, after, label1, 
-               label2, label3 ), diskUsage( diskUsageIn ), file( fileItem ) {}
+               QString label1, QString label2, QString label3, unsigned int italicPos ) : QListViewItem( parent, after, label1, 
+               label2, label3 ), diskUsage( diskUsageIn ), file( fileItem ), isTruncated( false ), italicTextPos( italicPos ) {}
   
   virtual int compare ( QListViewItem * i, int col, bool ascending ) const 
   {
@@ -71,12 +71,106 @@ public:
       return QListViewItem::compare( i, col, ascending );
     }
   }
-  
+
+  virtual void paintCell( QPainter * p, const QColorGroup & cg, int column, int width, int align )
+  {
+    if( column == 2 )
+    {
+      if ( isSelected() ) 
+        p->fillRect( 0, 0, width, height(), cg.brush( QColorGroup::Highlight ) );
+      else
+        p->fillRect( 0, 0, width, height(), cg.brush( QColorGroup::Base ) );
+        
+      QListView *lv = listView();
+      
+      int pos = lv->itemMargin();      
+            
+      const QPixmap *icon = pixmap( column );
+      if( icon )
+      {
+        int iconWidth = icon->width() + lv->itemMargin();
+        int xo = pos;
+        int yo = ( height() - icon->height() ) / 2;
+
+        p->drawPixmap( xo, yo, *icon );
+        
+        pos += iconWidth;
+      }
+    
+      QFontMetrics fm( p->fontMetrics() );
+      
+      if( isSelected() )
+        p->setPen( cg.highlightedText() );
+      else
+        p->setPen( cg.text() );
+      
+      QString t = text( column );
+      QString b;
+      
+      if( t.length() > italicTextPos )
+      {
+        b = t.mid( italicTextPos );
+        t.truncate( italicTextPos );
+      }
+      
+      isTruncated = false;
+      if( !t.isEmpty() )
+      {
+        int remWidth = width-pos;
+        
+        if( fm.width( t ) > remWidth )
+        {
+          while( !t.isEmpty() )
+          {
+            t.truncate( t.length() - 1 );
+            if( fm.width( t + "..." ) <= remWidth )
+              break;
+          }          
+          t += "...";
+          isTruncated = true;
+        }
+        
+        p->drawText( pos, 0, width, height(), align, t );
+        pos += fm.width( t );
+      }
+                    
+      if( !b.isEmpty() && !isTruncated )
+      {
+        QFont font( p->font() );
+        font.setItalic( true );
+        p->setFont( font );
+
+        QFontMetrics fm2( p->fontMetrics() );
+        
+        int remWidth = width-pos;
+        
+        if( fm2.width( b ) > remWidth )
+        {
+          while( !b.isEmpty() )
+          {
+            b.truncate( b.length() - 1 );
+            if( fm2.width( b + "..." ) <= remWidth )
+              break;
+          }          
+          b += "...";
+          isTruncated = true;
+        }
+        
+        p->drawText( pos, 0, width, height(), align, b );
+      }
+    }
+    else
+      QListViewItem::paintCell( p, cg, column, width, align );
+  }
+    
   inline File * getFile() { return file; }
   
 private:
   DiskUsage *diskUsage;
-  File *file;                  
+  File *file;
+  
+  bool isTruncated;
+  unsigned int italicTextPos;
 };
 
 class DULinesToolTip : public QToolTip
@@ -200,19 +294,22 @@ void DULines::slotDirChanged( Directory *dirEntry )
     File *item = *it;
     
     QString fileName = item->fileName();
+    
+    unsigned int italicStart = fileName.length();
+    
     if( showFileSize )
       fileName += "  [" + KIO::convertSize( item->size() ) + "]";
     
     if( lastItem == 0 )
-      lastItem = new DULinesItem( diskUsage, item, this, "", item->percent() + "  ", fileName );
+      lastItem = new DULinesItem( diskUsage, item, this, "", item->percent() + "  ", fileName, italicStart );
     else
-      lastItem = new DULinesItem( diskUsage, item, this, lastItem, "", item->percent() + "  ", fileName );
+      lastItem = new DULinesItem( diskUsage, item, this, lastItem, "", item->percent() + "  ", fileName, italicStart );
    
     if( item->isExcluded() )
       lastItem->setVisible( false );
                                     
     lastItem->setPixmap( 2, diskUsage->getIcon( item->mime() ) );
-    lastItem->setPixmap( 0, createPixmap( item->intPercent(), maxPercent, columnWidth( 0 ) ) );
+    lastItem->setPixmap( 0, createPixmap( item->intPercent(), maxPercent, columnWidth( 0 ) - itemMargin() ) );
   }
   
   setCurrentItem( firstChild() );
