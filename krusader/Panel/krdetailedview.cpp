@@ -463,8 +463,8 @@ void KrDetailedView::handleQuickSearchEvent(QKeyEvent * e)
           break;
    }
 }
-  
-  
+
+
 void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
   if ( !item )
     return ;
@@ -774,7 +774,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
       case Key_Space : {
         KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
         if ( !viewItem || viewItem->name()==".." ) {
-          KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
+          KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
           return ; // wrong type, just mark(unmark it)
           }
         if ( !( viewItem->isDir() && viewItem->size() <= 0 ) ) {
@@ -793,13 +793,13 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         if ( krApp->mainView->activePanel->func->calcSpace( items, totalSize, totalFiles, totalDirs ) ) {
           // did we succeed to calcSpace? we'll fail if we don't have permissions
           if ( totalSize == 0 ) { // just mark it, and bail out
-            KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
+            KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
             return ;
             }
           viewItem->setSize( totalSize );
           viewItem->repaintItem();
           }
-        KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
+        KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
         }
       break;
       case Key_A :                // mark all
@@ -818,7 +818,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                        ( e->key() >= Key_0 && e->key() <= Key_9 ) ||
                        ( e->key() == Key_Backspace ) ||
                        ( e->key() == Key_Down ) ||
-                       ( e->key() == Key_Period ) ) */{ 
+                       ( e->key() == Key_Period ) ) */{
         // are we doing quicksearch? if not, send keys to panel
         if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
           // are we using krusader's classic quicksearch, or wincmd style?
