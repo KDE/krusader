@@ -10,15 +10,27 @@ So in essence, releasing 1.60.0, means that we believe that krusader is about 60
 done with all the features we'd schedule for thr 1.x.x series. Only 40% left to
 go until version 2.0.0 ;-) We hope it'd be easy to understand.
 
+As usual, a lot of bugfixes and a lot of features. some of the interesting ones:
+* Ability to select you own color scheme. Comes with total-commander and midnight-commander
+  color schemes by default. Try Konfigurator->Colors->Import Color-Scheme
+* Import/Export keyboard shortcuts. Comes with a total-commander keybindings scheme.
+* 4 Selection Modes to choose from. The last one is actually a user-defined selection mode.
+* Many improvements to the user-action system. Included are some actions suggested by
+  our users in the forum.
+* Popular Urls - Krusader keeps a list of the most visited urls, and allows you to _quickly_
+  go anywhere you need. Click ctrl-Z to give it a try
+* Virtual Vfs: an implementation of virtual folders. To try it, perform a search and click
+  "feed to listbox". Also, you can type something like "virt:/test1" into the origin bar
+* Bookmarks can now be placed into toolbars, and krusader has a new "action toolbar" especially
+  for user actions and bookmarks
+* When opening a remote url or an archive, krusader does not block the user interface. you can
+  keep working in any other panel or tab while krusader opens the remote location.
+* Many improvements to the synchronizer module
+* A new disk-usage module. Available either by ALT-D, or by choosing the component in the 3rd panel.
+* A new full-viewer (as opposed to a thumbnail viewer) in the 3rd panel.
 
-
-
-
-
-
-Krusader Krew
-
-
+enjoy!
+  Krusader Krew
 
 Notice: if you've got bugs to report, please do so using Krusader's website,
         and not using KDE's bugzilla (bugs.kde.org).
