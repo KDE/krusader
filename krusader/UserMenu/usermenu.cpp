@@ -26,17 +26,17 @@ email                :
 #include <qvbox.h>
 
 /**
- 
+
 Command: %xYYY%
          x - can be either 'a' for active panel, or 'o' for other panel
          YYY - the specific command
- 
+
          For example:
            %ap% - active panel path
            %op% - other panel path
- 
+
 In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute as needed.
- 
+
 %_p%    - panel path
 %_c%    - current file (or folder). Note: current != selected
 %_s%    - selected files and folders
@@ -48,7 +48,7 @@ In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute a
 %_anf%  - number of files
 %_and%  - number of folders
 %_fm%   - filter mask (for example: *, *.cpp, *.h etc.)
- 
+
 */
 UMCmd UserMenu::_expressions[ NUM_EXPS ] = {
          {"%_p%", expPath}
@@ -74,7 +74,7 @@ void UserMenu::exec() {
    //kdWarning() << cmd << endl;
 
    // ............... run the cmd from the shell .............
-   QString save = getcwd( 0, 0 );
+   //QString save = getcwd( 0, 0 );
    //===> chdir( panelPath.local8Bit() ); // run the command in the panel's path
 
    // run in  terminal

@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>572</width>
-            <height>476</height>
+            <height>520</height>
         </rect>
     </property>
     <property name="caption">
@@ -36,36 +36,106 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QLabel" row="0" column="0">
+                <widget class="QButtonGroup" row="6" column="0" rowspan="1" colspan="3">
                     <property name="name">
-                        <cstring>textLabel1</cstring>
+                        <cstring>buttonGroup1</cstring>
                     </property>
-                    <property name="text">
-                        <string>Command line</string>
+                    <property name="title">
+                        <string>Show this entry</string>
                     </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QRadioButton" row="0" column="0" rowspan="1" colspan="2">
+                            <property name="name">
+                                <cstring>showEverywhere</cstring>
+                            </property>
+                            <property name="text">
+                                <string>everywhere</string>
+                            </property>
+                            <property name="checked">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QRadioButton" row="1" column="0">
+                            <property name="name">
+                                <cstring>showOnlyIn</cstring>
+                            </property>
+                            <property name="text">
+                                <string>only in</string>
+                            </property>
+                        </widget>
+                        <widget class="KLineEdit" row="1" column="1">
+                            <property name="name">
+                                <cstring>showIn</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                        </widget>
+                        <widget class="QToolButton" row="1" column="2">
+                            <property name="name">
+                                <cstring>toolButton2</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Add</string>
+                            </property>
+                        </widget>
+                    </grid>
                 </widget>
-                <widget class="KLineEdit" row="1" column="0">
+                <widget class="QButtonGroup" row="5" column="0" rowspan="1" colspan="3">
                     <property name="name">
-                        <cstring>cmdLine</cstring>
+                        <cstring>buttonGroup1_2</cstring>
                     </property>
+                    <property name="title">
+                        <string>Command accepts</string>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QRadioButton" row="1" column="0" rowspan="1" colspan="2">
+                            <property name="name">
+                                <cstring>acceptLocalURLs</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Local files (URLs)</string>
+                            </property>
+                        </widget>
+                        <widget class="QRadioButton" row="0" column="0">
+                            <property name="name">
+                                <cstring>acceptLocals</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Local files (no URLs)</string>
+                            </property>
+                            <property name="checked">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QRadioButton" row="2" column="0" rowspan="1" colspan="2">
+                            <property name="name">
+                                <cstring>acceptRemote</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Local and remote files (URLs)</string>
+                            </property>
+                        </widget>
+                    </grid>
                 </widget>
-                <widget class="QToolButton" row="1" column="1">
-                    <property name="name">
-                        <cstring>addButton</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>1</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>Add</string>
-                    </property>
-                </widget>
-                <widget class="QButtonGroup" row="2" column="0" rowspan="1" colspan="2">
+                <widget class="QButtonGroup" row="4" column="0" rowspan="1" colspan="3">
                     <property name="name">
                         <cstring>buttonGroup1_3</cstring>
                     </property>
@@ -116,104 +186,47 @@
                         </widget>
                     </grid>
                 </widget>
-                <widget class="QButtonGroup" row="3" column="0" rowspan="1" colspan="2">
+                <widget class="QToolButton" row="3" column="2">
                     <property name="name">
-                        <cstring>buttonGroup1_2</cstring>
+                        <cstring>addButton</cstring>
                     </property>
-                    <property name="title">
-                        <string>Command accepts</string>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
                     </property>
-                    <grid>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QRadioButton" row="1" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>acceptLocalURLs</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Local files (URLs)</string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="0" column="0">
-                            <property name="name">
-                                <cstring>acceptLocals</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Local files (no URLs)</string>
-                            </property>
-                            <property name="checked">
-                                <bool>true</bool>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="2" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>acceptRemote</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Local and remote files (URLs)</string>
-                            </property>
-                        </widget>
-                    </grid>
+                    <property name="text">
+                        <string>Add</string>
+                    </property>
                 </widget>
-                <widget class="QButtonGroup" row="4" column="0" rowspan="1" colspan="2">
+                <widget class="QLabel" row="2" column="0" rowspan="1" colspan="2">
                     <property name="name">
-                        <cstring>buttonGroup1</cstring>
+                        <cstring>textLabel1</cstring>
                     </property>
-                    <property name="title">
-                        <string>Show this entry</string>
+                    <property name="text">
+                        <string>Command line</string>
                     </property>
-                    <grid>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QRadioButton" row="0" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>showEverywhere</cstring>
-                            </property>
-                            <property name="text">
-                                <string>everywhere</string>
-                            </property>
-                            <property name="checked">
-                                <bool>true</bool>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="1" column="0">
-                            <property name="name">
-                                <cstring>showOnlyIn</cstring>
-                            </property>
-                            <property name="text">
-                                <string>only in</string>
-                            </property>
-                        </widget>
-                        <widget class="KLineEdit" row="1" column="1">
-                            <property name="name">
-                                <cstring>showIn</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>true</bool>
-                            </property>
-                        </widget>
-                        <widget class="QToolButton" row="1" column="2">
-                            <property name="name">
-                                <cstring>toolButton2</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>true</bool>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="text">
-                                <string>Add</string>
-                            </property>
-                        </widget>
-                    </grid>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>textLabel1_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Name</string>
+                    </property>
+                </widget>
+                <widget class="KLineEdit" row="3" column="0" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>cmdLine</cstring>
+                    </property>
+                </widget>
+                <widget class="KLineEdit" row="1" column="0">
+                    <property name="name">
+                        <cstring>cmdName</cstring>
+                    </property>
                 </widget>
             </grid>
         </widget>
@@ -285,9 +298,37 @@
         <receiver>separateStderr</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
+    <connection>
+        <sender>showOnlyIn</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>showIn</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>showOnlyIn</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>toolButton2</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>cancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>UserMenuAdd</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>okButton</sender>
+        <signal>clicked()</signal>
+        <receiver>UserMenuAdd</receiver>
+        <slot>accept()</slot>
+    </connection>
 </connections>
+<slots>
+    <slot>saveEntry()</slot>
+</slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
+    <includehint>klineedit.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
