@@ -193,4 +193,28 @@ void vfs::vfs_enableRefresh(bool enable){
 	dirty = false;
 }
 
+void vfs::slotKdsResult(KIO::Job *job){
+
+
+}
+
+/// to be implemented
+void vfs::vfs_calcSpace( QString /*name*/ , KIO::filesize_t* /*totalSize*/, unsigned long* /*totalFiles*/, unsigned long* /*totalDirs*/, bool* /*stop*/ ) {
+#if 0
+	if ( stop && *stop ) return ;
+	busy = true;
+	KDirSize* kds = KDirSize::dirSizeJob( vfs_getFile( name ) );
+	krOut << "vfs_calcSpace: " << vfs_getFile( name ) << endl;
+	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotListResult( KIO::Job* ) ) );
+
+	//while (busy && (!stop || !(*stop))) qApp->processEvents();
+
+	*totalSize += kds->totalSize();
+	*totalFiles += kds->totalFiles();
+	*totalDirs += kds->totalSubdirs();
+
+	kds->kill( true );
+#endif
+}
+
 #include "vfs.moc"

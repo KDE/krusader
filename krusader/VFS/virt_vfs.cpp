@@ -15,7 +15,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "virt_vfs.h"
+#include <unistd.h>
+ 
 #include <kfileitem.h>
 #include <kglobalsettings.h>
 #include <kurl.h>
@@ -27,6 +28,7 @@
 #include "krpermhandler.h"
 #include "../krusader.h"
 #include "../defaults.h"
+#include "virt_vfs.h"
 
 #define VIRT_VFS_DB "virt_vfs.db"
 
@@ -185,26 +187,6 @@ void virt_vfs::vfs_rename( const QString& fileName, const QString& newName ) {
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
 }
 
-/// to be implemented
-void virt_vfs::vfs_calcSpace( QString /*name*/ , KIO::filesize_t* /*totalSize*/, unsigned long* /*totalFiles*/, unsigned long* /*totalDirs*/, bool* /*stop*/ ) {
-#if 0
-	if ( stop && *stop ) return ;
-	busy = true;
-	KDirSize* kds = KDirSize::dirSizeJob( vfs_getFile( name ) );
-	krOut << "vfs_calcSpace: " << vfs_getFile( name ) << endl;
-	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotListResult( KIO::Job* ) ) );
-
-	//while (busy && (!stop || !(*stop))) qApp->processEvents();
-
-	*totalSize += kds->totalSize();
-	*totalFiles += kds->totalFiles();
-	*totalDirs += kds->totalSubdirs();
-
-	kds->kill( true );
-#endif
-}
-
-
 void virt_vfs::slotStatResult( KIO::Job* job ) {
 	if( !job || job->error() ) entry = KIO::UDSEntry();
 	else entry = static_cast<KIO::StatJob*>(job)->statResult();
@@ -226,7 +208,7 @@ vfile* virt_vfs::stat( const KURL& url ) {
 	else {
 		busy = true;
 		KIO::StatJob* statJob = KIO::stat( url, false );
-		connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotJobResult( KIO::Job* ) ) );
+		connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
 		while ( busy ) qApp->processEvents();
 		if( entry.isEmpty()  ) return 0; // statJob failed
 		
@@ -279,12 +261,12 @@ vfile* virt_vfs::stat( const KURL& url ) {
 
 bool virt_vfs::save(){
 	//QString filename = locateLocal( "data", VIRT_VFS_DB );
-	
+	return false;
 }
 
 bool virt_vfs::restore(){
 	//QString filename = locateLocal( "data", VIRT_VFS_DB );
-	
+	return false;
 }
 
 

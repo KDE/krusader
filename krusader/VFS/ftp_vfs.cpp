@@ -267,8 +267,4 @@ QString ftp_vfs::vfs_workingDir() {
 	return vfs_origin.url( -1 );
 }
 
-// to be implemented
-void ftp_vfs::vfs_calcSpace( QString , KIO::filesize_t*, unsigned long*, unsigned long*, bool* ) {
-}
-
 #include "ftp_vfs.moc"

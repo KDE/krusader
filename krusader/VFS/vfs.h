@@ -73,7 +73,7 @@ public:
 	/// Rename file
 	virtual void vfs_rename(const QString& fileName,const QString& newName)=0;
 	/// Calculate the amount of space occupied by a file or directory (recursive).
-	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0)=0;
+	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = false);
 
 	/// Return the VFS working dir
 	virtual QString vfs_workingDir()=0;
@@ -137,10 +137,20 @@ protected:
 	bool dirty;                 //< true if a watcher signal arrived while in disabled refresh.
 	bool mimeTypeMagicDisabled; //< true if the mime type magic is disabled
 
+	
+protected slots:
+	// The slot for the KDirSize job
+	void slotKdsResult(KIO::Job *job);
+	
 private:
 	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
 	vfileDict*  vfs_searchP;   //< Searches are preformed in this dictionary (usualy points to vfs_files)	
 	QDictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
+	
+	// used in the calcSpace function
+	KIO::filesize_t *totalSize;
+	unsigned long *totalFiles;
+	unsigned long *totalDirs;
 };
 
 #endif
