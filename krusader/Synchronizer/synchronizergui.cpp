@@ -776,8 +776,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   grid->setMargin( 11 );
 
    
-  QLabel *leftDirLabel = new QLabel( compareDirs, "leftDirLabel" );
-  leftDirLabel->setText( i18n( "Left directory:" ) );
+  leftDirLabel = new QLabel( compareDirs, "leftDirLabel" );
   leftDirLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( leftDirLabel, 0 ,0 );
 
@@ -786,8 +785,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   filterLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( filterLabel, 0 ,1 );
 
-  QLabel *rightDirLabel = new QLabel( compareDirs, "rightDirLabel" );
-  rightDirLabel->setText( i18n( "Right directory:" ) );
+  rightDirLabel = new QLabel( compareDirs, "rightDirLabel" );
   rightDirLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( rightDirLabel, 0 ,2 );
 
@@ -1032,6 +1030,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnCloseSync,      SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
 
   connect( cbSubdirs,         SIGNAL( toggled(bool) ), this, SLOT( subdirsChecked( bool ) ) );
+  connect( cbAsymmetric,      SIGNAL( toggled(bool) ), this, SLOT( setPanelLabels() ) );
   
   connect( &synchronizer,     SIGNAL( comparedFileData( SynchronizerFileItem * ) ), this,
                               SLOT( addFile( SynchronizerFileItem * ) ) );
@@ -1046,7 +1045,9 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnDeletable,      SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnDuplicates,     SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnSingles,        SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
-    
+  
+  setPanelLabels();  
+  
   int sx = krConfig->readNumEntry( "Window Width",  -1 );
   int sy = krConfig->readNumEntry( "Window Height",  -1 );
   
@@ -1068,6 +1069,20 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 SynchronizerGUI::~SynchronizerGUI()
 {
   syncList->clear(); // for sanity: deletes the references to the synchronizer list
+}
+
+void SynchronizerGUI::setPanelLabels()
+{
+  if( cbAsymmetric->isChecked() )
+  {
+    leftDirLabel->setText( i18n( "Target directory:" ) );
+    rightDirLabel->setText( i18n( "Source directory:" ) );
+  }
+  else
+  {
+    leftDirLabel->setText( i18n( "Left directory:" ) );
+    rightDirLabel->setText( i18n( "Right directory:" ) );
+  }
 }
 
 void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)

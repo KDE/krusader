@@ -102,6 +102,7 @@ protected slots:
   void markChanged( SynchronizerFileItem * );
   void statusInfo( QString );
   void subdirsChecked( bool );
+  void setPanelLabels();
 
 private:
   QString convertTime(time_t time) const;
@@ -142,6 +143,8 @@ protected:
   QPushButton   *btnSingles;
 
   QLabel        *statusLabel;
+  QLabel        *leftDirLabel;
+  QLabel        *rightDirLabel;
   
 private:
   QPixmap        fileIcon;
