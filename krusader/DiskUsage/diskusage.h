@@ -124,6 +124,7 @@ protected:
   KIO::filesize_t currentSize;
  
   virtual void keyPressEvent( QKeyEvent * );
+  virtual bool event( QEvent * );
   
   void       calculateSizes( Directory *dir = 0, bool emitSig = false );
   void       calculatePercents( bool emitSig = false, Directory *dir = 0  );

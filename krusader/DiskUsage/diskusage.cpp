@@ -211,6 +211,8 @@ DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidget
       
   Filelight::Config::read();  
   propertyMap.setAutoDelete( true );
+  
+  setFocusPolicy( StrongFocus );
 }
 
 DiskUsage::~DiskUsage()
@@ -948,6 +950,52 @@ File * DiskUsage::getCurrentFile()
   }
   
   return file;
+}
+
+bool DiskUsage::event( QEvent * e )
+{
+  if ( e->type() == QEvent::AccelOverride ) 
+  {
+    QKeyEvent* ke = (QKeyEvent*) e;
+    
+    if ( ke->state() == NoButton || ke->state() == Keypad ) 
+    {
+      switch ( ke->key() ) 
+      {
+        case Key_Delete:
+        case Key_Plus:
+        case Key_Minus:
+          ke->accept();
+          break;
+      }
+    }else if( ke->state() == ShiftButton )
+    {
+      switch ( ke->key() ) 
+      {        
+        case Key_Left:
+        case Key_Right:
+        case Key_Up:
+        case Key_Down:
+          ke->accept();
+          break;
+      }
+    }else if ( ke->state() & ControlButton ) 
+    {
+      switch ( ke->key() )       
+      {
+        case Key_D:
+        case Key_E:
+        case Key_F:
+        case Key_I:
+        case Key_L:
+        case Key_N:
+        case Key_R:
+          ke->accept();
+          break;
+      }
+    }
+  }
+  return QWidgetStack::event( e );    
 }
 
 #include "diskusage.moc"
