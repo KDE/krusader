@@ -8,6 +8,10 @@
 #include "Panel/listpanel.h"
 #include "krusaderview.h"
 
+#define HIDE_ON_SINGLE_TAB  false
+
+#define SHOW  { _newTab->show(); _tabbar->show(); _closeTab->show(); }
+#define HIDE  { _newTab->hide(); _tabbar->hide(); _closeTab->hide(); }
 
 PanelManager::PanelManager( QWidget *parent, bool left, ListPanel* &self, ListPanel* &other, ListPanel* &active ) :
 QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), _active( active ) {
@@ -17,7 +21,7 @@ QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), 
   // new tab button
   _newTab = new QToolButton( this );
   _newTab->setFixedSize( 22, 22 );
-  _newTab->setTextLabel( i18n( "Open a new tab in -home-" ) );
+  _newTab->setTextLabel( i18n( "Open a new tab in home" ) );
   QImage im = krLoader->loadIcon( "favorites", KIcon::Panel ).convertToImage();
   _newTab->setPixmap( im.scale( _newTab->height() - 5, _newTab->height() - 5 ) );
   connect( _newTab, SIGNAL( clicked() ), this, SLOT( slotNewTab() ) );
@@ -41,6 +45,9 @@ QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), 
   _layout->addWidget( _newTab, 1, 0 );
   _layout->addWidget( _tabbar, 1, 1 );
   _layout->addWidget( _closeTab, 1, 2 );
+
+  if (HIDE_ON_SINGLE_TAB) HIDE
+  else SHOW
 }
 
 void PanelManager::slotChangePanel( ListPanel *p ) {
@@ -62,8 +69,10 @@ ListPanel* PanelManager::createPanel() {
   _tabbar->addPanel( p );
 
   // allow close button if more than 1 tab
-  if ( _tabbar->count() > 1 )
+  if ( _tabbar->count() > 1 ) {
     _closeTab->setEnabled( true );
+    SHOW // needed if we were hidden
+  }
   _stack->raiseWidget( p );
 
   return p;
@@ -100,8 +109,10 @@ void PanelManager::slotCloseTab() {
   _self->slotFocusOnMe();
 
   // disable close button if only 1 tab is left
-  if ( _tabbar->count() == 1 )
+  if ( _tabbar->count() == 1 ) {
     _closeTab->setEnabled( false );
+    if (HIDE_ON_SINGLE_TAB) HIDE
+  }
 }
 
 
