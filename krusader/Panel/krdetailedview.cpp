@@ -747,7 +747,7 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
   bool caseSensitive = true; // make it configurable!!!!
   KrViewItem * item = getCurrentKrViewItem();
   if ( !direction ) {
-    if ( item->name().startsWith( str, caseSensitive ) )
+    if ( item->name().startsWith( str/*, caseSensitive*/ ) )
       return ;
     direction = 1;
     }
