@@ -107,9 +107,9 @@ public slots:
 
 signals: 	
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
-	void addedVfile(const vfile* vf);
+	void addedVfile(vfile* vf);
 	void deletedVfile(const QString& name);
-	void updatedVfile(const vfile* vf);
+	void updatedVfile(vfile* vf);
 
 protected:
 	/// Set the vfile list pointer
