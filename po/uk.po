@@ -3,21 +3,21 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
-# Ivan Petrouchtchak <iip@telus.net>, 2004.
+# Ivan Petrouchtchak <iip@telus.net>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.60.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-02-20 02:36+0100\n"
-"PO-Revision-Date: 2004-11-16 22:23+0000\n"
+"PO-Revision-Date: 2005-02-21 23:08-0800\n"
 "Last-Translator: Ivan Petrouchtchak <iip@telus.net>\n"
-"Language-Team: Ukrainian\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -49,14 +49,13 @@ msgid "Enter the profile name:"
 msgstr "Введіть назву профілю:"
 
 #: GUI/syncbrowsebutton.cpp:45
-#, fuzzy
 msgid ""
 "This button toggles the sync-browse mode.\n"
 "When active, each directory change is performed in the\n"
 "active and inactive panel - if possible."
 msgstr ""
 "Ця кнопка вмикає/вимикає режим синхронізованої навігації.\n"
-"Якщо ввімкнена, кожна зміна каталогу відображається в активній\n"
+"Якщо ввімкнено, кожна зміна каталогу виконується в активній\n"
 "і неактивній панелі (якщо можливо)."
 
 #: GUI/actionproperty.cpp:192
@@ -72,18 +71,16 @@ msgid "Edit protocol"
 msgstr "Редагувати протокол"
 
 #: GUI/actionproperty.cpp:209
-#, fuzzy
 msgid "Set another protocol:"
-msgstr "Введіть інший протокол:"
+msgstr "Вкажіть інший протокол:"
 
 #: GUI/actionproperty.cpp:239
 msgid "Edit path"
 msgstr "Редагувати шлях"
 
 #: GUI/actionproperty.cpp:240
-#, fuzzy
 msgid "Set another path:"
-msgstr "Введіть інший шлях:"
+msgstr "Вкажіть інший шлях:"
 
 #: GUI/actionproperty.cpp:259
 msgid "New mime-type"
@@ -95,12 +92,11 @@ msgstr "Введіть тип mime:"
 
 #: GUI/actionproperty.cpp:275
 msgid "Edit mime-type"
-msgstr "Редагувати тип mime"
+msgstr "Редагувати тип MIME"
 
 #: GUI/actionproperty.cpp:276
-#, fuzzy
 msgid "Set another mime-type:"
-msgstr "Введіть інший тип mime:"
+msgstr "Вкажіть інший тип MIME:"
 
 #: GUI/actionproperty.cpp:295
 msgid "New filename"
@@ -115,9 +111,8 @@ msgid "Edit filename"
 msgstr "Редагувати назву файла"
 
 #: GUI/actionproperty.cpp:312
-#, fuzzy
 msgid "Set another filename:"
-msgstr "Ввести іншу назву файла:"
+msgstr "Вкажіть іншу назву файла:"
 
 #: GUI/actionproperty.cpp:331
 msgid "Please set a unique name for the useraction"
@@ -152,7 +147,6 @@ msgid "Command accepts"
 msgstr "Команда приймає"
 
 #: GUI/actionpropertybase.cpp:390
-#, fuzzy
 msgid "Local files only (no URLs)"
 msgstr "Тільки локальні файли (не URL)"
 
@@ -161,12 +155,10 @@ msgid "Substitute the placeholders with local filenames"
 msgstr "Замініть шаблони назвами локальних файлів"
 
 #: GUI/actionpropertybase.cpp:392
-#, fuzzy
 msgid "URLs (remote and local)"
 msgstr "Адреси URL (віддалені і локальні)"
 
 #: GUI/actionpropertybase.cpp:393
-#, fuzzy
 msgid "Substitute the placeholders with valid URLs"
 msgstr "Замініть шаблони чинними адресами URL"
 
@@ -179,7 +171,6 @@ msgid "Title"
 msgstr "Заголовок"
 
 #: GUI/actionpropertybase.cpp:396
-#, fuzzy
 msgid "A unique name for the action"
 msgstr "Унікальна назва для цієї дії"
 
@@ -208,7 +199,6 @@ msgid "Distinct name"
 msgstr "Назва"
 
 #: GUI/actionpropertybase.cpp:403
-#, fuzzy
 msgid "Command line"
 msgstr "Командний рядок"
 
@@ -225,9 +215,8 @@ msgid "Tooltip"
 msgstr "Підказка"
 
 #: GUI/actionpropertybase.cpp:408
-#, fuzzy
 msgid "This command line is executed"
-msgstr "Цей командний рядок виконаний"
+msgstr "Цей командний рядок виконано"
 
 #: GUI/actionpropertybase.cpp:409
 msgid "Category"
@@ -248,7 +237,6 @@ msgid "The description is only displayed in the Konfigurator and via Shift-F1"
 msgstr "Опис показується тільки в Конфігураторі і через Shift-F1"
 
 #: GUI/actionpropertybase.cpp:413
-#, fuzzy
 msgid "Start path"
 msgstr "Шлях початку"
 
@@ -344,8 +332,7 @@ msgstr "Тип MIME"
 
 #: GUI/actionpropertybase.cpp:442
 msgid "Show the action only for these filenames (you may use '?' and '*')"
-msgstr ""
-"Показувати цю дію тільки для цих назв файлів (можна вживати \"?\" і \"*\")"
+msgstr "Показувати цю дію тільки для цих назв файлів (можна вживати \"?\" і \"*\")"
 
 #: GUI/actionpropertybase.cpp:446
 msgid "Filename"
@@ -356,7 +343,6 @@ msgid "Confirm each program call separately"
 msgstr "Окремо підтверджувати кожний виклик програми"
 
 #: GUI/actionpropertybase.cpp:448
-#, fuzzy
 msgid "This allows you to tweak the command line before executing"
 msgstr "Це дозволяє підправити командний рядок перед виконанням команди"
 
@@ -365,9 +351,8 @@ msgid "Run as different user"
 msgstr "Запускати як інший користувач"
 
 #: GUI/actionpropertybase.cpp:450
-#, fuzzy
 msgid "execute the command under another user-id"
-msgstr "запускати команду під ІД іншого користувача"
+msgstr "запустити команду під ІД іншого користувача"
 
 #: GUI/actionpropertybase.cpp:451
 msgid "Advanced Properties"
@@ -410,15 +395,14 @@ msgid "Name of directory where command will be processed."
 msgstr "Назва каталогу, в якому буде виконана команда."
 
 #: GUI/kcmdline.cpp:91
-#, fuzzy
 msgid ""
 "<qt>Well, it's actually quite simple: You type your command here and "
 "Krusader obeys.<p><Tip:>Move within command line history with &lt;Up&gt; and "
 "&lt;Down&gt; arrows.</qt>"
 msgstr ""
-"<qt>Це справді, досить просто: ви вводите сюди свою команду і Krusader вам "
+"<qt>Це досить просто: ви вводите сюди свою команду і Krusader вам "
 "підкоряється.<p><Tip:>Пересуватись по історії командного рядка можна за "
-"допомогою стрілок &lt;Вверх&gt; і &lt;Вниз&gt;.</qt>"
+"допомогою стрілок &lt;Вгору&gt; та &lt;Вниз&gt;.</qt>"
 
 #: GUI/kcmdline.cpp:97
 msgid "If pressed, Krusader executes command line in a terminal."
@@ -452,15 +436,15 @@ msgstr ""
 
 #: GUI/kfnkeys.cpp:57
 msgid "F3 View  "
-msgstr "F3 Перег"
+msgstr "F3 Огляд"
 
 #: GUI/kfnkeys.cpp:58
 msgid "Open file in viewer."
-msgstr "Відкрити файл для перегляду."
+msgstr "Відкрити файл в переглядачі."
 
 #: GUI/kfnkeys.cpp:62
 msgid "F4 Edit  "
-msgstr "F4 Ред"
+msgstr "F4 Правка"
 
 #: GUI/kfnkeys.cpp:63
 msgid ""
@@ -519,49 +503,40 @@ msgid "Quit Krusader."
 msgstr "Вийти з Krusader."
 
 #: GUI/kfnkeys.cpp:121
-#, fuzzy
 msgid " Term"
-msgstr "F2 Терм"
+msgstr " Терм"
 
 #: GUI/kfnkeys.cpp:122
-#, fuzzy
 msgid " View"
-msgstr "F3 Перегляд"
+msgstr " Огляд"
 
 #: GUI/kfnkeys.cpp:123
-#, fuzzy
 msgid " Edit"
-msgstr "F4 Редагування"
+msgstr " Правка"
 
 #: GUI/kfnkeys.cpp:124
-#, fuzzy
 msgid " Copy"
-msgstr "F5 Копіювання"
+msgstr " Копіювання"
 
 #: GUI/kfnkeys.cpp:125
-#, fuzzy
 msgid " Move"
-msgstr "F6 Перес"
+msgstr " Пересування"
 
 #: GUI/kfnkeys.cpp:126
-#, fuzzy
 msgid " Mkdir"
-msgstr "F7 СтвКатал"
+msgstr " СтвКатал"
 
 #: GUI/kfnkeys.cpp:127
-#, fuzzy
 msgid " Delete"
-msgstr "F8 Видал"
+msgstr " Видалити"
 
 #: GUI/kfnkeys.cpp:128
-#, fuzzy
 msgid " Rename"
-msgstr "Перейменувати"
+msgstr " Перейменувати"
 
 #: GUI/kfnkeys.cpp:129
-#, fuzzy
 msgid " Quit"
-msgstr "Тихо"
+msgstr " Вийти"
 
 #: VFS/ftp_vfs.cpp:142
 msgid ""
@@ -612,19 +587,20 @@ msgid "Access denied to"
 msgstr "Відмовлено в доступі до"
 
 #: VFS/normal_vfs.cpp:198
-#, fuzzy
 msgid "Can't create a directory. Check your permissions."
-msgstr "Неможливо створити каталог. Перевірте права доступу."
+msgstr "Не вдається створити теку. Перевірте ваші права доступу."
 
 #: VFS/virt_vfs.cpp:89
 msgid ""
 "You can't copy files directly to the 'virt:/' directory.\n"
 "You can create a sub directory and copy your files into it."
 msgstr ""
+"Не можна копіювати файли прямо в теку \"virt:/\".\n"
+"Можна створити підтеку і скопіювати файли в неї."
 
 #: VFS/virt_vfs.cpp:154
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
+msgstr "Створення нових тек дозволяється тільки в теці \"virt:/\"."
 
 #: VFS/krquery.cpp:81 Dialogs/generalfilter.cpp:90
 #: Konfigurator/konfigurator.cpp:105
@@ -706,9 +682,8 @@ msgid "count all:"
 msgstr "підрахувати всі:"
 
 #: UserAction/expander.cpp:113
-#, fuzzy
 msgid "filter mask: *.h, *.cpp, etc."
-msgstr "маска фільтра (*.h, *.cpp ...)"
+msgstr "маска фільтра: *.h, *.cpp, та ін."
 
 #: UserAction/expander.cpp:124
 msgid "current file (!= selected file)"
@@ -739,7 +714,7 @@ msgstr "Маска (не обов'язкова для всіх, крім \"Ви�
 
 #: UserAction/expander.cpp:224
 msgid "Filename of an itemlist ..."
-msgstr ""
+msgstr "Назва файла списку елементів..."
 
 #: UserAction/expander.cpp:304
 msgid "Manipulate the selection"
@@ -766,7 +741,6 @@ msgid "open the location in a new tab"
 msgstr "відкрити адресу в новій вкладці"
 
 #: UserAction/expander.cpp:371
-#, fuzzy
 msgid "Ask the user for a parameter"
 msgstr "Запитати користувача про параметр"
 
@@ -807,18 +781,16 @@ msgid "Where it should be copied"
 msgstr "Куди це має бути скопійовано"
 
 #: UserAction/expander.cpp:447
-#, fuzzy
 msgid "Move/Rename a file/folder"
-msgstr "Скопіювати файл/теку"
+msgstr "Пересунути/перейменувати файл/теку"
 
 #: UserAction/expander.cpp:450
 msgid "What moved/renamed"
-msgstr ""
+msgstr "Що пересунуто/перейменовано"
 
 #: UserAction/expander.cpp:451
-#, fuzzy
 msgid "New target/name"
-msgstr "Нова назва файла"
+msgstr "Нова ціль/назва"
 
 #: UserAction/expander.cpp:471
 msgid "Open a synchronizer-profile"
@@ -839,43 +811,43 @@ msgstr "Завантажити профіль панелі"
 
 #: UserAction/expander.cpp:525
 msgid "Separate programm call for each..."
-msgstr ""
+msgstr "Виклик окремої програми для кожного..."
 
 #: UserAction/expander.cpp:585
 msgid "Set the sorting for this panel"
-msgstr ""
+msgstr "Вкажіть впорядкування для цієї панелі"
 
 #: UserAction/expander.cpp:588
-#, fuzzy
 msgid "Choose a column"
-msgstr "Виберіть профіль"
+msgstr "Виберіть стовпчик"
 
 #: UserAction/expander.cpp:589
 msgid "Choose the sort sequence"
-msgstr ""
+msgstr "Виберіть послідовність впорядкування"
 
 #: UserAction/expander.cpp:679
-#, fuzzy
 msgid "Set the relation between the two panels"
-msgstr "Роздільник між елементами (не обов'язковий)"
+msgstr "Вкажіть взаємозв'язок між двома панелями"
 
 #: UserAction/expander.cpp:682
 msgid "Set the new size in percent"
-msgstr ""
+msgstr "Вкажіть новий розмір у відсотках"
 
 #: UserAction/expander.cpp:718
 msgid "Executes a JavaScript-extension"
-msgstr ""
+msgstr "Виконує розширення JavaScript"
 
 #: UserAction/expander.cpp:721
 msgid "Location of the script"
-msgstr ""
+msgstr "Адреса скрипту"
 
 #: UserAction/expander.cpp:722
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
 msgstr ""
+"Вкажіть якісь змінні для виконання (необов'язково).\n"
+"i.e. \"return=cmd;foo=bar\", див. в Підручник для докладнішої інформації"
 
 #: UserAction/kraction.cpp:43
 msgid "Kill"
@@ -922,16 +894,14 @@ msgid "%1 (Link)"
 msgstr "%1 (посилання)"
 
 #: Panel/diff_panelpopup.cpp:6 Panel/panelpopup.cpp:80
-#, fuzzy
 msgid "Disk Usage Panel: view the usage of a directory"
-msgstr "Розділити файл %1 в каталог:"
+msgstr "Панель використання диска: перегляд використання каталогу"
 
 #: Panel/krpreviewpopup.cpp:32
 msgid "Preview not available"
 msgstr "Перегляд не доступний"
 
 #: Panel/listpanel.cpp:127
-#, fuzzy
 msgid ""
 "The statusbar displays information about the FILESYSTEM which holds your "
 "current directory: Total size, free space, type of filesystem, etc."
@@ -1176,19 +1146,16 @@ msgid "Can't open "
 msgstr "Неможливо відкрити "
 
 #: Panel/listpanel.cpp:1195
-#, fuzzy
 msgid ">> Reading..."
-msgstr "Повторне пакування..."
+msgstr ">> Читання..."
 
 #: Panel/listpanel.cpp:1207
-#, fuzzy
 msgid "Reading"
-msgstr " (Читання)"
+msgstr "Читання"
 
 #: Panel/listpanel.cpp:1212
-#, fuzzy
 msgid "Reading: "
-msgstr " (Читання)"
+msgstr "Читання: "
 
 #: Panel/krdetailedview.cpp:97 Search/krsearchdialog.cpp:149
 #: MountMan/kmountmangui.cpp:124 Synchronizer/synchronizergui.cpp:1239
@@ -1244,36 +1211,32 @@ msgid " to:"
 msgstr " в:"
 
 #: Panel/krdetailedview.cpp:1288
-#, fuzzy
 msgid "Columns"
-msgstr "&Команди"
+msgstr "Стовпчики"
 
 #: Panel/krview.cpp:125
-#, fuzzy
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
-msgstr "%1 з %2 вибрані, %3 з %4"
+msgstr "%1 з %2, %3 (%4) з %5 (%6)"
 
 #: Panel/panelpopup.cpp:51
 msgid "Tree Panel: a tree view of the local file system"
-msgstr "Панель дерева: перегляд дерева локальної файлової системи"
+msgstr "Панель дерева: вигляд дерева локальної файлової системи"
 
 #: Panel/panelpopup.cpp:59
 msgid "Preview Panel: display a preview of the current file"
-msgstr "Панель перегляду: показує перегляд поточного файла"
+msgstr "Панель перегляду: показати перегляд поточного файла"
 
 #: Panel/panelpopup.cpp:66
 msgid "Quick Panel: quick way to perform actions"
 msgstr "Швидка панель: швидкий спосіб виконання дій"
 
 #: Panel/panelpopup.cpp:73
-#, fuzzy
 msgid "View Panel: view the current file"
-msgstr "Панель перегляду: показує перегляд поточного файла"
+msgstr "Панель перегляду: огляд поточного файла"
 
 #: Panel/panelpopup.cpp:132 Panel/panelpopup.cpp:269
-#, fuzzy
 msgid "Disk Usage: "
-msgstr "Krusader::Місцезнаходження"
+msgstr "Використання диска: "
 
 #: Panel/panelpopup.cpp:141
 msgid "Quick Select"
@@ -1304,24 +1267,20 @@ msgid "Quick Select:"
 msgstr "Швидкий вибір:"
 
 #: Panel/panelpopup.cpp:237
-#, fuzzy
 msgid "View:"
-msgstr "F3 Перегляд"
+msgstr "Огляд:"
 
 #: Panel/panelpopup.cpp:241
-#, fuzzy
 msgid "Disk Usage:"
-msgstr "Krusader::Місцезнаходження"
+msgstr "Використання диска:"
 
 #: Panel/panelpopup.cpp:258
-#, fuzzy
 msgid "Preview: "
-msgstr "Перегляд:"
+msgstr "Перегляд: "
 
 #: Panel/panelpopup.cpp:262
-#, fuzzy
 msgid "View: "
-msgstr "F3 Перегляд"
+msgstr "Огляд: "
 
 #: Panel/krcalcspacedialog.cpp:95
 msgid "Calculate Occupied Space"
@@ -1348,7 +1307,6 @@ msgid "You can edit links only on local file systems"
 msgstr "Посилання можна редагувати тільки на локальних файлових системах"
 
 #: Panel/panelfunc.cpp:235
-#, fuzzy
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Поточний файл - це не посилання, отже неможливо його перенаправити."
 
@@ -1452,12 +1410,11 @@ msgid "You do not have write permission to this directory"
 msgstr "Ви не маєте дозволу на запис у цей каталог"
 
 #: Panel/panelfunc.cpp:532
-#, fuzzy
 msgid " this item?"
 msgstr " цей елемент ?"
 
 #: Panel/panelfunc.cpp:534
-#, fuzzy, c-format
+#, c-format
 msgid " these %d items?"
 msgstr " ці %d елементи?"
 
@@ -1482,12 +1439,11 @@ msgid "Directory "
 msgstr "Каталог "
 
 #: Panel/panelfunc.cpp:564
-#, fuzzy
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
 msgstr ""
-"не порожня!\n"
+"не порожній!\n"
 "Оминути цей чи видалити всі?"
 
 #: Panel/panelfunc.cpp:565
@@ -1503,18 +1459,16 @@ msgid "The Archive "
 msgstr "Архів "
 
 #: Panel/panelfunc.cpp:684
-#, fuzzy
 msgid " already exists. Do you want to overwrite the archive ?\n"
-msgstr " вже існує. Хочете перезаписати архів "
+msgstr " вже існує. Хочете перезаписати архів?\n"
 
 #: Panel/panelfunc.cpp:686
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
-msgstr ""
+msgstr "(ZIP перезапише в архіві zip елементи з однаковими назвами або додасть елементи, у яких відмінні назви)"
 
 #: Panel/panelfunc.cpp:690
-#, fuzzy
 msgid "&Overwrite"
 msgstr "&Перезаписати"
 
@@ -1536,7 +1490,6 @@ msgid "%1, test passed."
 msgstr "%1, перевірка закінчилась успішно."
 
 #: Panel/panelfunc.cpp:773
-#, fuzzy
 msgid "%1, test failed!"
 msgstr "%1, перевірка зазнала невдачі!"
 
@@ -1600,17 +1553,16 @@ msgstr ""
 "\n"
 
 #: Locate/locate.cpp:238
-#, fuzzy
 msgid "Error during the start of 'locate' process!"
 msgstr "Помилка під час запуску процесу \"locate\"!"
 
 #: Locate/locate.cpp:320
 msgid "View (F3)"
-msgstr "Перегляд (F3)"
+msgstr "Огляд (F3)"
 
 #: Locate/locate.cpp:321
 msgid "Edit (F4)"
-msgstr "Редагувати (F4)"
+msgstr "Правка (F4)"
 
 #: Locate/locate.cpp:325
 msgid "Find (Ctrl+F)"
@@ -1629,42 +1581,38 @@ msgid "Search string not found!"
 msgstr "Шуканий рядок не знайдено!"
 
 #: Locate/locate.cpp:485
-#, fuzzy
 msgid "Locate results"
-msgstr "Місцезнаходження"
+msgstr "Знайти результати"
 
 #: Locate/locate.cpp:491 Search/krsearchdialog.cpp:502
-#, fuzzy
 msgid "Query name"
-msgstr "Ім'я користувача:"
+msgstr "Назва запиту"
 
 #: Locate/locate.cpp:492 Search/krsearchdialog.cpp:503
 msgid "Here you can name the file collection"
-msgstr ""
+msgstr "Тут можна назвати збірку файлів"
 
 #: krusader.cpp:288
-#, fuzzy
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Смужка стану показуватиме основну інформацію про файл під курсором."
 
 #: krusader.cpp:341
-#, fuzzy
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
 "configuration to default values.\n"
 "Note: Your bookmarks and keybindings will remain intact.\n"
 " Krusader will now run Konfigurator."
 msgstr ""
-"Була виявлена конфігурація давніша за v0.90. Krusader мусить змінити ваші "
-"параметри на стандартні. Krusader зараз запустить Конфігуратор."
+"Було виявлено конфігурацію з 1.51 або давнішу. Krusader мусить змінити ваші параметри на типові значення.\n"
+"Примітка: Ваші закладки та прив'язки клавіш залишаться без змін.\n"
+"Krusader зараз запустить Конфігуратор."
 
 #: krusader.cpp:351
-#, fuzzy
 msgid ""
 "Welcome to Krusader! As this is your first run, Krusader will now run "
 "Konfigurator."
 msgstr ""
-"Ласкаво просимо до Krusader. Оскільки це ваш перший раз, Krusader зараз "
+"Ласкаво просимо до Krusader! Оскільки це ваш перший раз, Krusader зараз "
 "запустить Конфігуратор."
 
 #: krusader.cpp:402
@@ -1676,9 +1624,8 @@ msgid "Tab: switch panel"
 msgstr "Tab: перемикання панелей"
 
 #: krusader.cpp:428
-#, fuzzy
 msgid "Show Actions Toolbar"
-msgstr "Показувати параметри"
+msgstr "Показувати пенал дій"
 
 #: krusader.cpp:440
 msgid "Show &FN Keys Bar"
@@ -1705,12 +1652,10 @@ msgid "popup cmdline"
 msgstr "показ командного рядка"
 
 #: krusader.cpp:460 DiskUsage/diskusage.cpp:668
-#, fuzzy
 msgid "Up one directory"
-msgstr "В каталозі"
+msgstr "Вгору на один каталог"
 
 #: krusader.cpp:461
-#, fuzzy
 msgid "&Edit New File"
 msgstr "&Редагувати новий файл"
 
@@ -1747,12 +1692,10 @@ msgid "&Unpack"
 msgstr "&Розпакувати"
 
 #: krusader.cpp:480
-#, fuzzy
 msgid "Sp&lit File"
 msgstr "Розді&лити файл"
 
 #: krusader.cpp:482
-#, fuzzy
 msgid "Com&bine Files"
 msgstr "О&б'єднати файли"
 
@@ -1773,26 +1716,22 @@ msgid "&Compare Directories"
 msgstr "&Порівняти каталоги"
 
 #: krusader.cpp:492
-#, fuzzy
 msgid "&Mark Newer And Single"
 msgstr "&Позначити новіші і одинарні"
 
 #: krusader.cpp:494
 msgid "Mark &Newer"
-msgstr ""
+msgstr "Позначити &новіші"
 
 #: krusader.cpp:496
-#, fuzzy
 msgid "Mark &Single"
-msgstr "Одинарні"
+msgstr "Позначити &одинарні"
 
 #: krusader.cpp:498
-#, fuzzy
 msgid "Mark Different &And Single"
-msgstr "Позначити відмінні &і одинарні"
+msgstr "Позначити відмінні &й одинарні"
 
 #: krusader.cpp:500
-#, fuzzy
 msgid "Mark &Different"
 msgstr "Позначити &відмінні"
 
@@ -1821,14 +1760,12 @@ msgid "Synchronize &Directories"
 msgstr "Синхронізувати ката&логи"
 
 #: krusader.cpp:529
-#, fuzzy
 msgid "S&ynchron directory changes"
-msgstr "Синхронізувати каталоги"
+msgstr "Син&хронізувати зміни в каталозі"
 
 #: krusader.cpp:531
-#, fuzzy
 msgid "D&isk Usage"
-msgstr "Krusader::Місцезнаходження"
+msgstr "Використання ди&ска"
 
 #: krusader.cpp:533
 msgid "&Invert Selection"
@@ -1855,7 +1792,6 @@ msgid "&Custom"
 msgstr "&Нетипове"
 
 #: krusader.cpp:551
-#, fuzzy
 msgid "Compare b&y Content"
 msgstr "Порівняти з&а вмістом"
 
@@ -1888,13 +1824,12 @@ msgid "Right history"
 msgstr "Історія правої"
 
 #: krusader.cpp:569
-#, fuzzy
 msgid "Toggle Popup Panel"
-msgstr "Закрити панель-вигульк"
+msgstr "Увімкнути/вимкнути панель-вигульк"
 
 #: krusader.cpp:571
 msgid "Vertical Mode"
-msgstr ""
+msgstr "Вертикальний режим"
 
 #: krusader.cpp:573
 msgid "New tab"
@@ -1921,73 +1856,60 @@ msgid "User Menu"
 msgstr "Меню користувачів"
 
 #: krusader.cpp:585 UserMenu/usermenu.cpp:59
-#, fuzzy
 msgid "Manage user actions"
-msgstr "Додати дію користувача"
+msgstr "Керування діями користувача"
 
 #: krusader.cpp:589
-#, fuzzy
 msgid "F2 - Open a terminal"
-msgstr "F2 Термінал"
+msgstr "F2 - Відкрити термінал"
 
 #: krusader.cpp:591
-#, fuzzy
 msgid "F3 - View a file"
-msgstr "F3 Перег"
+msgstr "F3 Огляд файла"
 
 #: krusader.cpp:593
-#, fuzzy
 msgid "F4 - Edit a file"
-msgstr "F4 Ред"
+msgstr "F4 - Редагувати файл"
 
 #: krusader.cpp:595
-#, fuzzy
 msgid "F5 - Copy"
-msgstr "F5 Копіювання"
+msgstr "F5 - Копіювати"
 
 #: krusader.cpp:597
-#, fuzzy
 msgid "F6 - Move"
-msgstr "F6 Перес"
+msgstr "F6 - Пересунути"
 
 #: krusader.cpp:599
-#, fuzzy
 msgid "F7 - Mkdir"
-msgstr "F7 СтвКатал"
+msgstr "F7 - СтвКатал"
 
 #: krusader.cpp:601
-#, fuzzy
 msgid "F8 - Delete"
-msgstr "F8 Видал"
+msgstr "F8 - Видалити"
 
 #: krusader.cpp:603
-#, fuzzy
 msgid "F9 - Rename"
-msgstr "F9 Перейм"
+msgstr "F9 - Перейменувати"
 
 #: krusader.cpp:605
-#, fuzzy
 msgid "F10 - Quit"
-msgstr "F10 Вихід"
+msgstr "F10 - Вийти"
 
 #: krusader.cpp:607 BookMan/krbookmarkhandler.cpp:254
 msgid "Popular URLs"
-msgstr ""
+msgstr "Популярні URL"
 
 #: krusader.cpp:611
-#, fuzzy
 msgid "Select files using a filter"
-msgstr "Виділяти файли за допомогою фільтра"
+msgstr "Вибрати файли за допомогою фільтра"
 
 #: krusader.cpp:612
-#, fuzzy
 msgid "Select all files in the current directory"
-msgstr "Виділяти всі файли в поточному каталозі"
+msgstr "Вибрати всі файли в поточному каталозі"
 
 #: krusader.cpp:613
-#, fuzzy
 msgid "Un-select all selected files"
-msgstr "Виберіть тільки один розділений файл!"
+msgstr "Відмінити вибір всіх вибраних файлів"
 
 #: krusader.cpp:614
 msgid "Setup Krusader the way you like it"
@@ -2007,40 +1929,35 @@ msgstr "Пошук файлів"
 
 #: krusader.cpp:627
 msgid "JavaScript console"
-msgstr ""
+msgstr "Консоль JavaScript"
 
 #: krusader.cpp:657 Konfigurator/kgcolors.cpp:451
-#, fuzzy
 msgid "File "
-msgstr "Всі файли"
+msgstr "Файл "
 
 #: krusader.cpp:657 Konfigurator/kgcolors.cpp:451
-#, fuzzy
 msgid " already exists. Are you sure you want to overwrite it?"
-msgstr " вже існує. Хочете перезаписати архів "
+msgstr " вже існує. Ви дійсно хочете перезаписати його?"
 
 #: krusader.cpp:658 Konfigurator/kgcolors.cpp:452
-#, fuzzy
 msgid "Overwrite"
-msgstr "&Перезаписати"
+msgstr "Перезаписати"
 
 #: krusader.cpp:660 Konfigurator/kgcolors.cpp:454
-#, fuzzy
 msgid "Error: unable to write to file"
-msgstr "Не вдається записати в"
+msgstr "Помилка: не вдається записати у файл"
 
 #: krusader.cpp:713 krusader.cpp:716
 msgid "List"
 msgstr "Список"
 
 #: krusader.cpp:763
-#, fuzzy
 msgid "Are you sure you want to quit?"
-msgstr "Ви впевнені, що хочете "
+msgstr "Ви дійсно хочете вийти?"
 
 #: KViewer/panelviewer.cpp:22
 msgid "No file selected or selected file can't be displayed."
-msgstr ""
+msgstr "Не вибрано файл або неможливо показати вибраний файл."
 
 #: KViewer/krviewer.cpp:72
 msgid "&Generic viewer"
@@ -2076,7 +1993,7 @@ msgstr "Krusader::Пошук"
 
 #: Search/krsearchdialog.cpp:89
 msgid "Feed to listbox"
-msgstr ""
+msgstr "Подача у список"
 
 #: Search/krsearchdialog.cpp:94
 msgid "Search"
@@ -2135,18 +2052,15 @@ msgstr "Krusader пошук"
 
 #: Search/krsearchdialog.cpp:474
 msgid "View File (F3)"
-msgstr "Перегляд файла (F3)"
+msgstr "Огляд файла (F3)"
 
 #: Search/krsearchdialog.cpp:475
 msgid "Edit File (F4)"
-msgstr "Редагування файла (F4)"
+msgstr "Правка файла (F4)"
 
 #: Search/krsearchdialog.cpp:496
-#, fuzzy
 msgid "Search results"
-msgstr ""
-"Результати пошуку:\n"
-"\n"
+msgstr "Результати пошуку"
 
 #: panelmanager.cpp:26
 msgid "Open a new tab in home"
@@ -2194,9 +2108,8 @@ msgid "Devices"
 msgstr "Пристрої"
 
 #: BookMan/krbookmark.cpp:11
-#, fuzzy
 msgid "Virtual Filesystem"
-msgstr "Файлові системи"
+msgstr "Віртуальна файлова система"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2223,10 +2136,8 @@ msgid "Folder name:"
 msgstr "Назва теки:"
 
 #: MountMan/kmountman.cpp:197
-#, fuzzy
 msgid "Error ejecting device! You need to have 'eject' in your path."
-msgstr ""
-"Помилка виштовхування пристрою! Необхідно мати \"eject\" у вашому шляху."
+msgstr "Помилка виштовхування пристрою! Необхідно мати \"eject\" у вашому шляху."
 
 #: MountMan/kmountman.cpp:224
 msgid "%1 ZB"
@@ -2297,8 +2208,7 @@ msgstr ""
 "Повідомте розробників"
 
 #: MountMan/kmountmangui.cpp:322
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "В менеджері монтування сталася внутрішня помилка. Будь ласка, повідомте "
 "розробників."
@@ -2319,7 +2229,7 @@ msgstr "Готовий."
 msgid ""
 "_: NAME OF TRANSLATORS\n"
 "Your names"
-msgstr "Ivan Petrouchtchak"
+msgstr "Іван Петрущак"
 
 #: _translatorinfo.cpp:3
 msgid ""
@@ -2345,7 +2255,7 @@ msgstr "Запускати праву панель з <path>"
 
 #: main.cpp:51
 msgid "Load this profile on startup"
-msgstr ""
+msgstr "Завантажувати профіль при запуску"
 
 #: main.cpp:58
 msgid "Krusader"
@@ -2360,116 +2270,114 @@ msgid "Function keys allow performing fast operations on files."
 msgstr "Клавіші функцій прискорюють роботу з файлами."
 
 #: Dialogs/krdialogs.cpp:124 Konfigurator/kglookfeel.cpp:103
-#, fuzzy
 msgid "Custom Selection Mode"
-msgstr "Режим мишки для вибору:"
+msgstr "Нетиповий режим вибору"
 
 #: Dialogs/krdialogs.cpp:127
-#, fuzzy
 msgid "Based on KDE's selection mode"
-msgstr "Підкорятись глобальним правилам вибору KDE"
+msgstr "Оснований на режимі вибору KDE"
 
 #: Dialogs/krdialogs.cpp:128
 msgid "Left mouse button selects"
-msgstr ""
+msgstr "Ліва кнопка мишки вибирає"
 
 #: Dialogs/krdialogs.cpp:129
 msgid "Left mouse button preserves selection"
-msgstr ""
+msgstr "Ліва кнопка мишки зберігає вибір"
 
 #: Dialogs/krdialogs.cpp:130
 msgid "Shift/Ctrl-Left mouse button selects"
-msgstr ""
+msgstr "Shift/Ctrl-ліва кнопка мишки вибирає"
 
 #: Dialogs/krdialogs.cpp:131
 msgid "Right mouse button selects"
-msgstr ""
+msgstr "Права кнопка мишки вибирає"
 
 #: Dialogs/krdialogs.cpp:132
 msgid "Right mouse button preserves selection"
-msgstr ""
+msgstr "Права кнопка мишки зберігає вибір"
 
 #: Dialogs/krdialogs.cpp:133
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr ""
+msgstr "Shift/Ctrl-права кнопка мишки вибирає"
 
 #: Dialogs/krdialogs.cpp:134
 msgid "Spacebar moves down"
-msgstr ""
+msgstr "Кнопка пробілу пересуває вниз"
 
 #: Dialogs/krdialogs.cpp:135
 msgid "Spacebar calculates disk space"
-msgstr ""
+msgstr "Кнопка пробілу підраховує місце на диску"
 
 #: Dialogs/krdialogs.cpp:136
 msgid "Insert moves down"
-msgstr ""
+msgstr "Insert пересуває вниз"
 
 #: Dialogs/krdialogs.cpp:137
 msgid "Right clicking pops context menu immediately"
-msgstr ""
+msgstr "Клацання на праву кнопку мишки негайно викликає контекстне меню"
 
 #: Dialogs/krdialogs.cpp:139
 msgid "Checking this will create a mode based on KDE's style."
-msgstr ""
+msgstr "Увімкнення цього параметра створить режим оснований на стилі KDE."
 
 #: Dialogs/krdialogs.cpp:140
 msgid "If checked, left clicking an item will select it."
-msgstr ""
+msgstr "Якщо увімкнено, клацання лівою кнопкою мишки на елемент - вибирає його."
 
 #: Dialogs/krdialogs.cpp:141
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
-msgstr ""
+msgstr "Якщо увімкнено, клацання лівою кнопкою мишки на елемент - вибирає його, але не не відміняє вибору інших вже вибраних елементів."
 
 #: Dialogs/krdialogs.cpp:143
 msgid ""
 "If checked, shift/ctrl left clicking will select items. Note: This is "
 "meaningless if 'Left Button Selects' is checked."
-msgstr ""
+msgstr "Якщо увімкнено, клацання shift/ctrl та лівою кнопкою мишки на елемент - вибирає його. Примітка: не має сенсу, якщо увімкнено \"Ліва кнопка мишки вибирає\"."
 
 #: Dialogs/krdialogs.cpp:145
 msgid "If checked, right clicking an item will select it."
-msgstr ""
+msgstr "Якщо увімкнено, клацання правою кнопкою мишки на елемент - вибирає його."
 
 #: Dialogs/krdialogs.cpp:146
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
-msgstr ""
+msgstr "Якщо увімкнено, клацання правою кнопкою мишки на елемент - вибирає його, але не не відміняє вибору інших вже вибраних елементів."
 
 #: Dialogs/krdialogs.cpp:148
 msgid ""
 "If checked, shift/ctrl right clicking will select items. Note: This is "
 "meaningless if 'Right Button Selects' is checked."
-msgstr ""
+msgstr "Якщо увімкнено, клацання shift/ctrl та правою кнопкою мишки на елемент - вибирає його. Примітка: не має сенсу, якщо увімкнено \"Права кнопка мишки вибирає\"."
 
 #: Dialogs/krdialogs.cpp:150
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. Otherwise, current item is selected, but remains the current item."
-msgstr ""
+msgstr "Якщо увімкнено, натискання на клавішу пробілу буде вибирати поточний елемент й пересуватись вниз. Інакше, буде вибрано поточний елемент, але залишиться поточний елемент."
 
 #: Dialogs/krdialogs.cpp:152
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) calculate space occupied by the folder "
 "(recursively)."
-msgstr ""
+msgstr "Якщо увімкнено, натискання на клавішу пробілу, коли поточний елемент - це тека, буде підраховувати місце зайняти текою (рекурсивно)."
 
 #: Dialogs/krdialogs.cpp:154
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. Otherwise, current item is not changed."
-msgstr ""
+msgstr "Якщо увімкнено, натискання INSERT буде вибирати поточний елемент й пересуватись вниз до іншого елемента. Інакше, поточний елемент залишиться без зміни."
 
 #: Dialogs/krdialogs.cpp:156
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
 "context menu. Otherwise, user needs to click and hold the right mouse button "
 "for 500ms."
-msgstr ""
+msgstr "Якщо увімкнено, натискання правою кнопкою мишки призведе до негайного показу контекстного меню. Інакше, користувач мусить натиснути і потримати праву кнопку мишки 500 мс."
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -2538,7 +2446,6 @@ msgid "Predefined Selections"
 msgstr "Готовий вибір"
 
 #: Dialogs/krmaskchoice.cpp:97
-#, fuzzy
 msgid ""
 "A predefined selection is a file-mask which you use often.\n"
 "Some examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\n"
@@ -2549,7 +2456,7 @@ msgid ""
 "can scroll it, if needed."
 msgstr ""
 "Готовий вибір - це файлова маска, яку ви часто вживаєте, напр.,\n"
-"*.c, *.h, *.c *.o, тощо. Можна додати ці маски до списку\n"
+"\"*.c, *.h\", \"*.c, *.o\", тощо. Можна додати ці маски до списку\n"
 "ввівши їх і натиснувши кнопку \"Додати\". \"Видалити\" видаляє\n"
 "готовий вибір, а \"Очистити\" - видаляє їх всіх. Рядок, в якому ви редагуєте "
 "маску, має власну історію, отже можна її переглядати."
@@ -2567,9 +2474,8 @@ msgid "Clears the entire list of selections"
 msgstr "Очищає весь список вибору"
 
 #: Dialogs/newftpgui.cpp:49
-#, fuzzy
 msgid "New Network Connection"
-msgstr "Нове &з'єднання мережі"
+msgstr "Нове з'єднання мережі"
 
 #: Dialogs/newftpgui.cpp:62
 msgid "About to connect to..."
@@ -2617,16 +2523,15 @@ msgstr "&З'єднати"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
+msgstr "Збережені \"Популярні URL\" не чинні. Список буде очищено"
 
 #: Dialogs/popularurls.cpp:228
 msgid "Popular Urls"
-msgstr ""
+msgstr "Популярні URL"
 
 #: Dialogs/popularurls.cpp:243
-#, fuzzy
 msgid " &Search: "
-msgstr "&Пошук"
+msgstr " &Пошук: "
 
 #: Dialogs/krspecialwidgets.cpp:103
 msgid "Capacity: "
@@ -2645,9 +2550,8 @@ msgid "Not mounted."
 msgstr "Не змонтовано."
 
 #: Dialogs/generalfilter.cpp:52
-#, fuzzy
 msgid "File name"
-msgstr "Назва файла:"
+msgstr "Назва файла"
 
 #: Dialogs/generalfilter.cpp:62
 msgid "&Case sensitive"
@@ -2664,6 +2568,10 @@ msgid ""
 "If you type 'text' that results the same as '*text*'. You can exclude\n"
 "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' )."
 msgstr ""
+"Тут вводяться критерії фільтрування назв файлів. Можна використовувати\n"
+"шаблони (*.o .* *.c?? тощо.) й додавати елементи розділені пропусками.\n"
+"Якщо ввести \"text\", то це те саме що й \"*text*\". Можна виключати\n"
+"шаблони з пошуку за допомогою \"|\" (напр., \"*.cpp *.h | *.moc.cpp\")."
 
 #: Dialogs/generalfilter.cpp:82
 msgid "&Of type:"
@@ -2710,7 +2618,6 @@ msgid "Follow &links"
 msgstr "&Йти по символічних посиланнях"
 
 #: Dialogs/generalfilter.cpp:273
-#, fuzzy
 msgid "No search criteria entered!"
 msgstr "Не введено критерії пошуку!"
 
@@ -2874,7 +2781,6 @@ msgid "The date '"
 msgstr "Дата \""
 
 #: Dialogs/advancedfilter.cpp:475
-#, fuzzy
 msgid ""
 "' is not valid according to your locale.\n"
 "Please re-enter a valid date (use the date button for easy access)."
@@ -2883,26 +2789,22 @@ msgstr ""
 "Будь ласка, ще раз введіть дату (вживайте кнопку дати для легкого доступу)."
 
 #: Dialogs/advancedfilter.cpp:505
-#, fuzzy
 msgid "Specified sizes are inconsistent!"
 msgstr "Вказані розміри не сходяться!"
 
 #: Dialogs/advancedfilter.cpp:506
-#, fuzzy
 msgid ""
 "Please re-enter the values, so that the left-side size\n"
 "will be smaller than (or equal to) the right-side size."
 msgstr ""
-"Будь ласка, ще раз введіть значення, щоб розмір зліва\n"
-"був менший (або рівний) за розмір на правому боці."
+"Будь ласка, ще раз введіть значення, щоб розмір ліворуч\n"
+"був менший (або рівний) за розмір праворуч."
 
 #: Dialogs/advancedfilter.cpp:524 Dialogs/advancedfilter.cpp:574
-#, fuzzy
 msgid "Dates are inconsistent!"
 msgstr "Дати не сходяться!"
 
 #: Dialogs/advancedfilter.cpp:525
-#, fuzzy
 msgid ""
 "The date on the left is later than the date on the right.\n"
 "Please re-enter the dates, so that the left-side date will be\n"
@@ -2913,14 +2815,13 @@ msgstr ""
 "боку була раніше, ніж та, що з правого."
 
 #: Dialogs/advancedfilter.cpp:575
-#, fuzzy
 msgid ""
 "The date on top is later than the date on the bottom.\n"
 "Please re-enter the dates, so that the top date will be\n"
 "earlier than the bottom date."
 msgstr ""
-"Дата зверху пізніша, ніж дата внизу.\n"
-"Будь ласка, ще раз введіть дати, щоб дата зверху\n"
+"Дата вгорі пізніша, ніж дата внизу.\n"
+"Будь ласка, ще раз введіть дати, щоб дата вгорі\n"
 "була раніше, ніж та, що внизу."
 
 #: RemoteMan/remoteman.cpp:84 RemoteMan/remoteman.cpp:87
@@ -2996,7 +2897,6 @@ msgid "Krusader::Synchronize Directories"
 msgstr "Krusader::Синхронізувати каталоги"
 
 #: Synchronizer/synchronizergui.cpp:1039
-#, fuzzy
 msgid "Directory Comparison"
 msgstr "Порівняння каталогів"
 
@@ -3033,9 +2933,8 @@ msgid "Compare by content"
 msgstr "Порівняти за вмістом"
 
 #: Synchronizer/synchronizergui.cpp:1117
-#, fuzzy
 msgid "Compares duplicated files with same size, by their content"
-msgstr "Порівнює за вмістом файли дублікати з однаковим розміром"
+msgstr "Порівнює за вмістом файли-дублікати з однаковим розміром"
 
 #: Synchronizer/synchronizergui.cpp:1118
 msgid "Ignore Date"
@@ -3054,7 +2953,6 @@ msgid "Asymmetric"
 msgstr "Асиметрично"
 
 #: Synchronizer/synchronizergui.cpp:1123
-#, fuzzy
 msgid ""
 "Asymmetric mode: the left side is the destination, the right is the source "
 "directory.\n"
@@ -3067,8 +2965,7 @@ msgstr ""
 "джерела.\n"
 "Файли, які існують тільки в лівому каталозі, будуть видалені, інші, які "
 "мають розходження\n"
-"будуть скопійовані з правого боку на лівий (придатне при поновленні каталогу "
-"з сервера файлів)."
+"будуть скопійовані з правого боку на лівий (придатне при поновленні каталогу з сервера файлів)."
 
 #: Synchronizer/synchronizergui.cpp:1126
 msgid "Ignore Case"
@@ -3176,7 +3073,7 @@ msgstr "Правий каталог:"
 
 #: Synchronizer/synchronizergui.cpp:1438
 msgid "URL must be the descendant of either the left or the right base URL!"
-msgstr ""
+msgstr "URL повинна походити або з лівої або з правої базової адреси URL!"
 
 #: Synchronizer/synchronizergui.cpp:1477
 msgid "Synchronize Directories"
@@ -3322,9 +3219,8 @@ msgid "Krusader::Synchronizer"
 msgstr "Krusader::Синхронізатор"
 
 #: Synchronizer/synchronizer.cpp:1268
-#, fuzzy
 msgid "Feeding the URLs to Kget"
-msgstr "Адреси URL подаються в kget"
+msgstr "Подача адрес URL в Kget"
 
 #: Synchronizer/synchronizer.cpp:1317 krslots.cpp:113 krslots.cpp:208
 msgid "Error executing "
@@ -3335,269 +3231,244 @@ msgid "Panel"
 msgstr "Панель"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:159
-#, fuzzy
 msgid "Open &Konqueror Here"
-msgstr "Меню Konqueror-а"
+msgstr "Відкрити &Konqueror тут"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:161
 msgid "Open &Konsole Here"
-msgstr ""
+msgstr "Відкрити &Konsole тут"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:166
 msgid "&Center Map Here"
-msgstr ""
+msgstr "&Центрувати карту тут"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:169
 msgid "&Open"
-msgstr ""
+msgstr "&Відкрити"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:192
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!"
 msgstr ""
+"<qt>Каталог на <i>\"%1\"</i> буде <b>рекурсивно</b> і "
+"<b>назавжди</b> видалено!"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!"
-msgstr ""
+msgstr "<qt><i>\"%1\"</i> буди <b>назавжди</b> видалено!"
 
 #: DiskUsage/radialMap/builder.cpp:134
-#, fuzzy
 msgid "%1 files: ~ %2"
-msgstr "%1 файлів"
+msgstr "%1 файлів: ~ %2"
 
 #: DiskUsage/radialMap/segmentTip.cpp:103
-#, fuzzy
 msgid "Files: %1"
-msgstr "Номер файла:%1"
+msgstr "Файли:%1"
 
 #: DiskUsage/dulines.cpp:232
-#, fuzzy
 msgid "Line View"
-msgstr "F3 Перегляд"
+msgstr "Рядковий вигляд"
 
 #: DiskUsage/dulines.cpp:235 DiskUsage/dulistview.cpp:59
 msgid "Percent"
-msgstr ""
+msgstr "Відсотків"
 
 #: DiskUsage/dulines.cpp:458
-#, fuzzy
 msgid "Show file sizes"
-msgstr "Макс. розмір файла:"
+msgstr "Показати розміри файлів"
 
 #: DiskUsage/dulines.cpp:461 DiskUsage/diskusage.cpp:688
-#, fuzzy
 msgid "Lines"
-msgstr "Посилання"
+msgstr "Рядки"
 
 #: DiskUsage/dufilelight.cpp:115
 msgid "Zoom In"
-msgstr ""
+msgstr "Збільшити"
 
 #: DiskUsage/dufilelight.cpp:116
 msgid "Zoom Out"
-msgstr ""
+msgstr "Зменшити"
 
 #: DiskUsage/dufilelight.cpp:119
 msgid "Rainbow"
-msgstr ""
+msgstr "Райдуга"
 
 #: DiskUsage/dufilelight.cpp:120
 msgid "High Contrast"
-msgstr ""
+msgstr "Висока контрастність"
 
 #: DiskUsage/dufilelight.cpp:121
 msgid "KDE"
-msgstr ""
+msgstr "KDE"
 
 #: DiskUsage/dufilelight.cpp:124
 msgid "Scheme"
-msgstr ""
+msgstr "Схема"
 
 #: DiskUsage/dufilelight.cpp:126
 msgid "Increase contrast"
-msgstr ""
+msgstr "Збільшити контрастність"
 
 #: DiskUsage/dufilelight.cpp:127
 msgid "Decrease contrast"
-msgstr ""
+msgstr "Зменшити контрастність"
 
 #: DiskUsage/dufilelight.cpp:129
 msgid "Use anti-aliasing"
-msgstr ""
+msgstr "Використовувати згладжування"
 
 #: DiskUsage/dufilelight.cpp:132
-#, fuzzy
 msgid "Show small files"
-msgstr "*|всі файли"
+msgstr "Показувати малі файли"
 
 #: DiskUsage/dufilelight.cpp:135
 msgid "Vary label font sizes"
-msgstr ""
+msgstr "Різні розміри шрифтів надписів"
 
 #: DiskUsage/dufilelight.cpp:138 DiskUsage/dufilelight.cpp:207
 msgid "Minimum font size"
-msgstr ""
+msgstr "Мінімальний розмір шрифту"
 
 #: DiskUsage/dufilelight.cpp:140 DiskUsage/diskusage.cpp:692
 msgid "Filelight"
-msgstr ""
+msgstr "Filelight"
 
 #: DiskUsage/dufilelight.cpp:206
-#, fuzzy
 msgid "Krusader::Filelight"
-msgstr "Krusader::Розділення"
+msgstr "Krusader::Filelight"
 
 #: DiskUsage/diskusagegui.cpp:45
-#, fuzzy
 msgid "Krusader::Disk Usage"
-msgstr "Krusader::Місцезнаходження"
+msgstr "Krusader::Використання диска"
 
 #: DiskUsage/diskusagegui.cpp:60
 msgid "Start new disk usage search"
-msgstr ""
+msgstr "Почати новий пошук використання диску"
 
 #: DiskUsage/diskusagegui.cpp:64 DiskUsage/diskusage.cpp:672
 msgid "Refresh"
-msgstr ""
+msgstr "Оновити"
 
 #: DiskUsage/diskusagegui.cpp:68
-#, fuzzy
 msgid "Parent directory"
-msgstr "Каталог цілі:"
+msgstr "Батьківський каталог"
 
 #: DiskUsage/diskusagegui.cpp:76
-#, fuzzy
 msgid "Line view"
-msgstr "F3 Перегляд"
+msgstr "Рядковий вигляд"
 
 #: DiskUsage/diskusagegui.cpp:81
 msgid "Detailed view"
-msgstr ""
+msgstr "Детальний вигляд"
 
 #: DiskUsage/diskusagegui.cpp:86
-#, fuzzy
 msgid "Filelight view"
-msgstr "Переглянути правий файл"
+msgstr "Filelight-вигляд"
 
 #: DiskUsage/diskusagegui.cpp:219
-#, fuzzy
 msgid "Viewing the usage of directory:"
-msgstr "Розділити файл %1 в каталог:"
+msgstr "Перегляд використання каталогу:"
 
 #: DiskUsage/dulistview.cpp:62
-#, fuzzy
 msgid "Total size"
 msgstr "Загальний розмір"
 
 #: DiskUsage/dulistview.cpp:65
-#, fuzzy
 msgid "Own size"
-msgstr "Власник"
+msgstr "Власний розмір"
 
 #: DiskUsage/diskusage.cpp:99
 msgid "Loading Usage Information"
-msgstr ""
+msgstr "Завантаження інформації про використання"
 
 #: DiskUsage/diskusage.cpp:103
-#, fuzzy
 msgid "Files:"
-msgstr "Всі файли"
+msgstr "Файли:"
 
 #: DiskUsage/diskusage.cpp:108
-#, fuzzy
 msgid "Directories:"
-msgstr "Каталоги"
+msgstr "Каталоги:"
 
 #: DiskUsage/diskusage.cpp:113
-#, fuzzy
 msgid "Total Size:"
-msgstr "Загальний розмір"
+msgstr "Загальний розмір:"
 
 #: DiskUsage/diskusage.cpp:234
 msgid "Loading the disk usage information..."
-msgstr ""
+msgstr "Завантаження інформації про використання диска..."
 
 #: DiskUsage/diskusage.cpp:379
 msgid ""
 "Stepping into the parent directory requires loading the content of the \"%1"
 "\" URL. Do you wish to continue?"
 msgstr ""
+"Крок у батьківський каталог вимагає завантаження вмісту адреси URL \"%1"
+"\". Хочете продовжити?"
 
 #: DiskUsage/diskusage.cpp:383
-#, fuzzy
 msgid "Krusader::DiskUsage"
-msgstr "Krusader::Місцезнаходження"
+msgstr "Krusader::Використання диска"
 
 #: DiskUsage/diskusage.cpp:532
-#, fuzzy
 msgid "Are you sure you want to delete "
-msgstr "Ви впевнені, що хочете "
+msgstr "Ви дійсно хочете видалити "
 
 #: DiskUsage/diskusage.cpp:631
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
-msgstr ""
+msgstr "Поточний каталог:%1,  Загальний розмір:%2,  Власний розмір:%3"
 
 #: DiskUsage/diskusage.cpp:657
 msgid "Disk Usage"
-msgstr ""
+msgstr "Використання диска"
 
 #: DiskUsage/diskusage.cpp:670
-#, fuzzy
 msgid "New search"
-msgstr "Швидкий пошук у новому стилі"
+msgstr "Новий пошук"
 
 #: DiskUsage/diskusage.cpp:674
 msgid "Include all"
-msgstr ""
+msgstr "Включити все"
 
 #: DiskUsage/diskusage.cpp:676
 msgid "Step into"
-msgstr ""
+msgstr "Зайти в"
 
 #: DiskUsage/diskusage.cpp:690
-#, fuzzy
 msgid "Detailed"
-msgstr "Видалити файли"
+msgstr "Детально"
 
 #: DiskUsage/diskusage.cpp:695
-#, fuzzy
 msgid "Next"
-msgstr "Наступна вкладка"
+msgstr "Наступн."
 
 #: DiskUsage/diskusage.cpp:697
-#, fuzzy
 msgid "Previous"
-msgstr "Попередня вкладка"
+msgstr "Попередн."
 
 #: DiskUsage/diskusage.cpp:927
-#, fuzzy
 msgid "Type:"
-msgstr "Тип"
+msgstr "Тип:"
 
 #: DiskUsage/diskusage.cpp:928
-#, fuzzy
 msgid "Size:"
-msgstr "Розмір"
+msgstr "Розмір:"
 
 #: DiskUsage/diskusage.cpp:931
 msgid "Own size:"
-msgstr ""
+msgstr "Власний розмір:"
 
 #: DiskUsage/diskusage.cpp:933
-#, fuzzy
 msgid "Last modified:"
-msgstr "Змінено"
+msgstr "Остання модифікація:"
 
 #: DiskUsage/diskusage.cpp:934
-#, fuzzy
 msgid "Permissions:"
-msgstr "Права доступу"
+msgstr "Права доступу:"
 
 #: DiskUsage/diskusage.cpp:935
-#, fuzzy
 msgid "Owner:"
-msgstr "Власник"
+msgstr "Власник:"
 
 #: rc.cpp:4
 #, no-c-format
@@ -3615,9 +3486,9 @@ msgid "&Commands"
 msgstr "&Команди"
 
 #: rc.cpp:16
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "&Useractions"
-msgstr "Дії користувача"
+msgstr "Дії &користувача"
 
 #: Konfigurator/kgdependencies.cpp:50 Konfigurator/kggeneral.cpp:51
 #: Konfigurator/konfigurator.cpp:98 Konfigurator/kgadvanced.cpp:47
@@ -3643,7 +3514,7 @@ msgstr "Видалити файли"
 
 #: Konfigurator/kggeneral.cpp:56
 msgid "Files will be permanently deleted."
-msgstr ""
+msgstr "Файли буде видалено назавжди."
 
 #: Konfigurator/kggeneral.cpp:57
 msgid "Move to trash"
@@ -3651,7 +3522,7 @@ msgstr "Пересунути у смітник"
 
 #: Konfigurator/kggeneral.cpp:57
 msgid "Files will be moved to Trash when deleted."
-msgstr ""
+msgstr "При видаленні файли буде пересунуто в смітник."
 
 #: Konfigurator/kggeneral.cpp:64
 msgid "Use mimetype magic"
@@ -3682,7 +3553,6 @@ msgid "Temp Directory:"
 msgstr "Тимчасовий каталог:"
 
 #: Konfigurator/kggeneral.cpp:98
-#, fuzzy
 msgid "NOTE: You must have full permissions for the temporary directory!"
 msgstr "Примітка: ви мусите мати повні права доступу до тимчасового каталогу!"
 
@@ -3705,14 +3575,13 @@ msgid ", compare by content available.\n"
 msgstr ", порівняти за наявним вмістом.\n"
 
 #: Konfigurator/kggeneral.cpp:122
-#, fuzzy
 msgid ""
 "diff: no diff frontends found. Compare by content disabled.\n"
 "hint: Krusader supports Kompare, Kdiff3 and Xxdiff\n"
 "\n"
 msgstr ""
 "diff: не знайдено інтерфейсу для diff. Порівняння за вмістом вимкнене.\n"
-"Підказка: Krusader підтримує kdiff і xxdiff\n"
+"Підказка: Krusader підтримує Kdiff3 та Xxdiff\n"
 "\n"
 
 #: Konfigurator/kggeneral.cpp:124
@@ -3724,16 +3593,14 @@ msgid ", sending files by email enabled.\n"
 msgstr ", надсилання файлів по ел. пошті ввімкнено.\n"
 
 #: Konfigurator/kggeneral.cpp:125
-#, fuzzy
 msgid ""
 "mail: no compatible mail-programs found. Sending files by email is "
 "disabled.\n"
 "hint: Krusader supports Kmail\n"
 "\n"
 msgstr ""
-"mail: не знайдено сумісної програми пошти. Надсилання файлів по ел. пошті "
-"вимкнено.\n"
-"Підказка: Krusader підтримує kmail\n"
+"mail: не знайдено сумісної програми пошти. Надсилання файлів по ел. пошті вимкнено.\n"
+"Підказка: Krusader підтримує Kmail\n"
 "\n"
 
 #: Konfigurator/kggeneral.cpp:127
@@ -3745,15 +3612,13 @@ msgid ", multiple rename enabled.\n"
 msgstr ", групове перейменування ввімкнене.\n"
 
 #: Konfigurator/kggeneral.cpp:128
-#, fuzzy
 msgid ""
 "rename: no compatible rename-programs found. Multiple rename is disabled.\n"
 "hint: Krusader supports Krename\n"
 "\n"
 msgstr ""
-"rename: не знайдено сумісної програми перейменування. Групове перейменування "
-"вимкнене.\n"
-"Підказка: Krusader підтримує krename\n"
+"rename: не знайдено сумісної програми перейменування. Групове перейменування вимкнене.\n"
+"Підказка: Krusader підтримує Krename\n"
 "\n"
 
 #: Konfigurator/kggeneral.cpp:131
@@ -3765,25 +3630,28 @@ msgstr ""
 "Якщо ви робите інсталяцію нових засобів, будь ласка, встановіть їх"
 
 #: Konfigurator/kggeneral.cpp:132
-#, fuzzy
 msgid ""
 "\n"
 "to your path, e.g. /usr/bin, /usr/local/bin, etc."
 msgstr ""
 "\n"
-"у ваш шлях. (тобто: /usr/bin, /usr/local/bin, тощо)"
+"у ваш шлях, тобто, /usr/bin, /usr/local/bin, тощо"
 
 #: Konfigurator/kggeneral.cpp:133
 msgid ""
 "\n"
 "and-or (re)configure the Tools path in"
 msgstr ""
+"\n"
+"і/або вкажіть (знов) шлях засобів у"
 
 #: Konfigurator/kggeneral.cpp:134
 msgid ""
 "\n"
 "Konfigurator->Dependencies if needed."
 msgstr ""
+"\n"
+"Konfigurator->Залежності, якщо треба."
 
 #: Konfigurator/konfigurator.cpp:62
 msgid "Defaults"
@@ -3799,7 +3667,6 @@ msgstr "Запуск"
 
 #: Konfigurator/konfigurator.cpp:89 Konfigurator/diff_konfigurator.cpp:7
 #: Konfigurator/diff_konfigurator.cpp:8
-#, fuzzy
 msgid "Krusader's settings upon startup"
 msgstr "Налаштування Krusader-а при запуску"
 
@@ -3822,9 +3689,8 @@ msgid "Advanced"
 msgstr "Додаткові"
 
 #: Konfigurator/konfigurator.cpp:102
-#, fuzzy
 msgid "Be sure you know what you're doing!"
-msgstr "Переконайтесь, що ви знаєте що робите"
+msgstr "Переконайтесь, що ви знаєте що робите!"
 
 #: Konfigurator/konfigurator.cpp:105
 msgid "Customize the way Krusader deals with archives"
@@ -3868,7 +3734,7 @@ msgstr "Попереджувати при виході"
 
 #: Konfigurator/kglookfeel.cpp:66
 msgid "Display a warning when you try to exit Krusader."
-msgstr ""
+msgstr "Показувати попередження при спробі виходу з Krusader."
 
 #: Konfigurator/kglookfeel.cpp:67
 msgid "Minimize to tray"
@@ -3878,16 +3744,15 @@ msgstr "Мінімізувати в лоток"
 msgid ""
 "When minimizing Krusader, its icon will appear in the system tray instead of "
 "the taskbar."
-msgstr ""
+msgstr "При мінімізації Krusader його піктограма з'явиться в системному лотку, а не в панелі задач."
 
 #: Konfigurator/kglookfeel.cpp:68
 msgid "Show hidden files"
 msgstr "Показувати приховані файли"
 
 #: Konfigurator/kglookfeel.cpp:68
-#, fuzzy
 msgid "Display the dot files"
-msgstr "Видає список невключених файлів"
+msgstr "Показувати файли з крапками"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "Automark directories"
@@ -3895,7 +3760,7 @@ msgstr "Автоматичне позначення каталогів"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "When matching the select criteria, directories will also be marked"
-msgstr ""
+msgstr "Коли критерії вибору співпадають, каталоги також будуть позначені"
 
 #: Konfigurator/kglookfeel.cpp:70
 msgid "Case sensitive sorting"
@@ -3905,18 +3770,17 @@ msgstr "Впорядкування з урахуванням регістру"
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
-msgstr ""
+msgstr "Всі файли, назви яких починаються з великої літери будуть показані перед файлами з малих літер (типово для UNIX)."
 
 #: Konfigurator/kglookfeel.cpp:71
-#, fuzzy
 msgid "Use full path tab names"
-msgstr "Вживати у вкладках назви з повним шляхом"
+msgstr "Використовувати у вкладках назви з повним шляхом"
 
 #: Konfigurator/kglookfeel.cpp:71
 msgid ""
 "Display the full path in the Folder Tabs; otherwise, only the last part of "
 "the path will be displayed."
-msgstr ""
+msgstr "Показувати повний шлях вкладок тек; інакше, буде показано тільки останню частину шляху."
 
 #: Konfigurator/kglookfeel.cpp:73
 msgid "New style quicksearch"
@@ -3924,7 +3788,7 @@ msgstr "Швидкий пошук у новому стилі"
 
 #: Konfigurator/kglookfeel.cpp:73
 msgid "Opens a quick search dialog box."
-msgstr ""
+msgstr "Відкриває вікно швидкого пошуку."
 
 #: Konfigurator/kglookfeel.cpp:74
 msgid "Case sensitive quicksearch"
@@ -3942,7 +3806,7 @@ msgstr "Подвійне клацання вибирає (класичне)"
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
-msgstr ""
+msgstr "Одинарне клацання на файл буде вибирати й фокусувати, а подвійне клацання відкриває файл або входить в каталог."
 
 #: Konfigurator/kglookfeel.cpp:89
 msgid "Obey KDE's global selection policy"
@@ -3950,16 +3814,15 @@ msgstr "Підкорятись глобальним правилам вибор�
 
 #: Konfigurator/kglookfeel.cpp:89
 msgid "Use the KDE Kcontrol setting: KDE Control Center->Peripherals->Mouse"
-msgstr ""
+msgstr "Використовувати параметри KDE Kcontrol: Центр керування KDE ->Периферійні пристрої->Мишка"
 
 #: Konfigurator/kglookfeel.cpp:96
 msgid "Mouse Selection Mode:"
 msgstr "Режим мишки для вибору:"
 
 #: Konfigurator/kglookfeel.cpp:100
-#, fuzzy
 msgid "Krusader Mode"
-msgstr "Krusader"
+msgstr "Режим Krusader"
 
 #: Konfigurator/kglookfeel.cpp:100
 msgid ""
@@ -3967,11 +3830,12 @@ msgid ""
 "key and click the left mouse button.\n"
 "Right-click menu is invoked using a short click on the right mouse button."
 msgstr ""
+"Обидві клавіші дають змогу вибирати файли. Щоб вибрати більше ніж один файл, натисніть на клавішу Ctrl й клацніть\n"
+"на ліву кнопку мишки. Контекстне меню викликається при швидкому клацанні на праву кнопку мишки."
 
 #: Konfigurator/kglookfeel.cpp:101
-#, fuzzy
 msgid "Konqueror Mode"
-msgstr "Меню Konqueror-а"
+msgstr "Режим Konqueror"
 
 #: Konfigurator/kglookfeel.cpp:101
 msgid ""
@@ -3979,10 +3843,12 @@ msgid ""
 "multiple files.\n"
 "Right-click menu is invoked using a short click on the right mouse button."
 msgstr ""
+"Натискання на ліву кнопку мишки вибирає файли - можна клацнути і вибрати декілька файлів.\n"
+"Контекстне меню викликається при швидкому клацанні на праву кнопку мишки."
 
 #: Konfigurator/kglookfeel.cpp:102
 msgid "Total-Commander Mode"
-msgstr ""
+msgstr "Режим Total-Commander"
 
 #: Konfigurator/kglookfeel.cpp:102
 msgid ""
@@ -3992,10 +3858,13 @@ msgid ""
 "invoked by pressing\n"
 "and holding the right mouse button."
 msgstr ""
+"Ліва кнопка мишки не вибирає, але вказує поточний файл не впливаючи на вибір.\n"
+"Права кнопка мишки вибирає декілька файлів, а контекстне меню викликається,\n"
+"коли натиснути і тримати праву кнопку мишки."
 
 #: Konfigurator/kglookfeel.cpp:103
 msgid "Design your own selection mode!"
-msgstr ""
+msgstr "Створіть свій власний режим вибору!"
 
 #: Konfigurator/kglookfeel.cpp:118
 msgid "Panel settings"
@@ -4026,9 +3895,8 @@ msgid "48"
 msgstr "48"
 
 #: Konfigurator/kglookfeel.cpp:142
-#, fuzzy
 msgid "Show Columns:"
-msgstr "Показувати параметри"
+msgstr "Показати стовпчики:"
 
 #: Konfigurator/kglookfeel.cpp:147
 msgid "Extension"
@@ -4040,6 +3908,8 @@ msgid ""
 "Extension Column and\n"
 "not as a complete filename in the Name Column like e.g. Konqueror does."
 msgstr ""
+"Показувати останню частину назви файла (частина після останньої крапки) в стовпчику розширення,\n"
+"а не як повну назву файла в стовпчику назви як у Konqueror."
 
 #: Konfigurator/kglookfeel.cpp:148
 msgid "Mimetype"
@@ -4047,20 +3917,19 @@ msgstr "Тип MIME"
 
 #: Konfigurator/kglookfeel.cpp:148
 msgid "Show the Mimetype Column"
-msgstr ""
+msgstr "Показати стовпчик типів MIME"
 
 #: Konfigurator/kglookfeel.cpp:149
 msgid "Show the Size Column"
-msgstr ""
+msgstr "Показати стовпчик розміру"
 
 #: Konfigurator/kglookfeel.cpp:150
 msgid "Date and Time"
 msgstr "Дата та час"
 
 #: Konfigurator/kglookfeel.cpp:150
-#, fuzzy
 msgid "Show the Date and Time Column"
-msgstr "Дата та час"
+msgstr "Показати стовпчик дати та часу"
 
 #: Konfigurator/kglookfeel.cpp:151
 msgid "Permission"
@@ -4068,7 +3937,7 @@ msgstr "Право доступу"
 
 #: Konfigurator/kglookfeel.cpp:151
 msgid "Show the Full Permissions Column, e.g. '-rw-r--r--'"
-msgstr ""
+msgstr "Показати стовпчик повних прав доступу, тобто, \"-rw-r--r--\""
 
 #: Konfigurator/kglookfeel.cpp:152
 msgid "Krusader Permission"
@@ -4076,15 +3945,15 @@ msgstr "Права Krusader"
 
 #: Konfigurator/kglookfeel.cpp:152
 msgid "Show only the rights of the current user, e.g. '-rw'"
-msgstr ""
+msgstr "Показати права доступу тільки поточного користувача, напр., \"-rw\""
 
 #: Konfigurator/kglookfeel.cpp:153
 msgid "Show the Owner Column"
-msgstr ""
+msgstr "Показати стовпчик власника"
 
 #: Konfigurator/kglookfeel.cpp:154
 msgid "Show the Group Column"
-msgstr ""
+msgstr "Показати стовпчик групи"
 
 #: Konfigurator/kglookfeel.cpp:165
 msgid "Use icons in the filenames"
@@ -4092,7 +3961,7 @@ msgstr "Вживати піктограми в назвах файлів"
 
 #: Konfigurator/kglookfeel.cpp:165
 msgid "Show the icons for filenames and folders."
-msgstr ""
+msgstr "Показати піктограми для назв файлів та тек."
 
 #: Konfigurator/kglookfeel.cpp:166
 msgid "Use human-readable file size"
@@ -4100,7 +3969,7 @@ msgstr "Вживати розмір шрифту, легкий для читан
 
 #: Konfigurator/kglookfeel.cpp:166
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr ""
+msgstr "Розміри файлів показуються Б, КБ, МБ та ГБ, а не тільки в байтах."
 
 #: Konfigurator/kglookfeel.cpp:176
 msgid "Toolbar"
@@ -4111,35 +3980,32 @@ msgid "Key-bindings"
 msgstr "Прив'язки клавіш"
 
 #: Konfigurator/kglookfeel.cpp:195
-#, fuzzy
 msgid "Import shortcuts"
-msgstr "Імпортувати дію"
+msgstr "Імпортувати скорочення"
 
 #: Konfigurator/kglookfeel.cpp:197
 msgid "Load a Key-binding profile, e.g., total_commander.keymap"
-msgstr ""
+msgstr "Завантажити профіль прив'язки клавіш, напр., total_commander.keymap"
 
 #: Konfigurator/kglookfeel.cpp:198
-#, fuzzy
 msgid "Export shortcuts"
-msgstr "Експортувати дію"
+msgstr "Експортувати скорочення"
 
 #: Konfigurator/kglookfeel.cpp:200
 msgid "Save current Key-bindings in a keymap file."
-msgstr ""
+msgstr "Зберегти поточні прив'язки клавіш у файл карти клавіш."
 
 #: Konfigurator/kglookfeel.cpp:207
 msgid "Panel Toolbar"
 msgstr "Пенал панелі"
 
 #: Konfigurator/kglookfeel.cpp:215
-#, fuzzy
 msgid "Show Panel Toolbar"
-msgstr "Пенал панелі"
+msgstr "Показати пенал панелі"
 
 #: Konfigurator/kglookfeel.cpp:215
 msgid "Krusader will display the Panel Toolbar."
-msgstr ""
+msgstr "Krusader покаже пенал панелі."
 
 #: Konfigurator/kglookfeel.cpp:221
 msgid "Visible Panel Toolbar buttons"
@@ -4150,9 +4016,8 @@ msgid "Open button"
 msgstr "Кнопка відкривання"
 
 #: Konfigurator/kglookfeel.cpp:227
-#, fuzzy
 msgid "Opens the directory browser."
-msgstr "Відкрити список історії каталогу"
+msgstr "Відкриває навігатор каталогів."
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Equal button (=)"
@@ -4160,7 +4025,7 @@ msgstr "Кнопка дорівнює (=)"
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Changes the panel directory to the other panel directory."
-msgstr ""
+msgstr "Змінює каталог у панелі на каталог іншої панелі."
 
 #: Konfigurator/kglookfeel.cpp:229
 msgid "Up button (..)"
@@ -4168,7 +4033,7 @@ msgstr "Кнопка вверх (..)"
 
 #: Konfigurator/kglookfeel.cpp:229
 msgid "Changes the panel directory to the parent directory."
-msgstr ""
+msgstr "Змінює каталог у панелі на батьківський каталог."
 
 #: Konfigurator/kglookfeel.cpp:230
 msgid "Home button (~)"
@@ -4176,7 +4041,7 @@ msgstr "Кнопка домівки (~)"
 
 #: Konfigurator/kglookfeel.cpp:230
 msgid "Changes the panel directory to the home directory."
-msgstr ""
+msgstr "Змінює каталог у панелі на каталог домівки."
 
 #: Konfigurator/kglookfeel.cpp:231
 msgid "Root button (/)"
@@ -4184,27 +4049,27 @@ msgstr "Кнопка кореневого каталогу (/)"
 
 #: Konfigurator/kglookfeel.cpp:231
 msgid "Changes the panel directory to the root directory."
-msgstr ""
+msgstr "Змінює каталог у панелі на кореневий каталог."
 
 #: Konfigurator/kglookfeel.cpp:232
 msgid "Toggle-button for sync-browsing"
 msgstr "Кнопка перемикання синхронізованої навігації"
 
 #: Konfigurator/kglookfeel.cpp:232
-msgid ""
-"Each directory-change in the panel is also performed in the other panel."
-msgstr ""
+msgid "Each directory-change in the panel is also performed in the other panel."
+msgstr "Кожна зміна каталогу в панелі також виконується в іншій панелі."
 
 #: Konfigurator/kglookfeel.cpp:295 Konfigurator/kglookfeel.cpp:313
-#, fuzzy
 msgid "Select a shortcuts file"
-msgstr "Виберіть тільки один розділений файл!"
+msgstr "Виберіть файл скорочень"
 
 #: Konfigurator/kglookfeel.cpp:302
 msgid ""
 "The following information was attached to the keymap.\n"
 "Are you sure you want to import this keymap ?"
 msgstr ""
+"Наступна інформація була долучена до карти клавіш.\n"
+"Ви дійсно хочете імпортувати цю карту клавіш?"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "Automount filesystems"
@@ -4224,44 +4089,37 @@ msgstr "Підтвердження"
 
 #: Konfigurator/kgadvanced.cpp:74
 msgid "Krusader will request user confirmation for the following operations:"
-msgstr ""
-"Для наступних дій Krusader буде запитувати у користувача про підтвердження:"
+msgstr "Для наступних дій Krusader буде запитувати у користувача про підтвердження:"
 
 #: Konfigurator/kgadvanced.cpp:79
-#, fuzzy
 msgid "Deleting non-empty directories"
-msgstr "Видалення непорожніх каталогу(ів)"
+msgstr "Видалення непорожніх каталогів"
 
 #: Konfigurator/kgadvanced.cpp:80
-#, fuzzy
 msgid "Deleting files"
-msgstr "Видалення файла(ів)"
+msgstr "Видалення файлів"
 
 #: Konfigurator/kgadvanced.cpp:81
-#, fuzzy
 msgid "Copying files"
-msgstr "Копіювання файла(ів)"
+msgstr "Копіювання файлів"
 
 #: Konfigurator/kgadvanced.cpp:82
-#, fuzzy
 msgid "Moving files"
-msgstr "Пересування файла(ів)"
+msgstr "Пересування файлів"
 
 #: Konfigurator/kgadvanced.cpp:83
-#, fuzzy
 msgid "Confirm feed to listbox"
-msgstr "Підтвердити виконання"
+msgstr "Підтвердити подачу у список"
 
 #: Konfigurator/kgadvanced.cpp:83
 msgid ""
 "if checked, Krusader will ask for a result-name; else the default value will "
 "be used"
-msgstr ""
+msgstr "Якщо увімкнено, Krusader буде запитувати про назву результату; інакше буде використовуватись типове значення"
 
 #: Konfigurator/kgadvanced.cpp:84
-#, fuzzy
 msgid "Removing Useractions"
-msgstr "Дії користувача"
+msgstr "Видалення дій користувача"
 
 #: Konfigurator/kgadvanced.cpp:95 Konfigurator/kgarchives.cpp:85
 msgid "Fine-Tuning"
@@ -4272,12 +4130,11 @@ msgid "Icon cache size (KB):"
 msgstr "Розмір кешу для піктограм (КБ):"
 
 #: Konfigurator/kgadvanced.cpp:100 Konfigurator/kgadvanced.cpp:104
-#, fuzzy
 msgid ""
 "Cache size determines how fast Krusader can display the contents of a panel; "
 "however, too large a cache might consume your memory."
 msgstr ""
-"Розмір кешу визначатиме швидкість, з якою Krusader зможе показувати вміст "
+"Розмір кешу визначає швидкість, з якою Krusader зможе показувати вміст "
 "панелі. Однак, занадто великий розмір може споживати забагато пам'яті."
 
 #: Konfigurator/kgadvanced.cpp:108
@@ -4390,7 +4247,7 @@ msgstr "Вживати типові кольори KDE"
 
 #: Konfigurator/kgcolors.cpp:60
 msgid "Krusader default color configuration."
-msgstr ""
+msgstr "Налаштування типового кольору програми Krusader."
 
 #: Konfigurator/kgcolors.cpp:61
 msgid "Use alternate background color"
@@ -4403,6 +4260,8 @@ msgid ""
 "When you don't use the KDE default colors, you can configure the alternate "
 "colors in the Colors box."
 msgstr ""
+"Колір тла та альтернативний колір тла чергуються рядок за рядком.\n"
+"Якщо ви не використовуєте типові кольори KDE, ви можете налаштувати альтернативні кольори в рамці кольорів."
 
 #: Konfigurator/kgcolors.cpp:62
 msgid "Show current item even if not focused"
@@ -4413,6 +4272,8 @@ msgid ""
 "Shows the last cursor position in the non active list panel.\n"
 "This option is only available when you don't use the KDE default colors."
 msgstr ""
+"Показує останню позицію курсора в неактивній панелі списку. Цей\n"
+"параметр доступний тільки, якщо ви не використовуєте типові кольори KDE."
 
 #: Konfigurator/kgcolors.cpp:88
 msgid "Active"
@@ -4545,26 +4406,23 @@ msgstr "Каталог"
 
 #: Konfigurator/kgcolors.cpp:180
 msgid "Import color-scheme"
-msgstr ""
+msgstr "Імпортувати схему кольорів"
 
 #: Konfigurator/kgcolors.cpp:182
 msgid "Export color-scheme"
-msgstr ""
+msgstr "Експортувати схему кольорів"
 
 #: Konfigurator/kgcolors.cpp:433
-#, fuzzy
 msgid "Select a color-scheme file"
-msgstr "Виберіть тільки один розділений файл!"
+msgstr "Виберіть файл схеми кольорів"
 
 #: Konfigurator/kgcolors.cpp:437
-#, fuzzy
 msgid "Error: unable to read from file"
-msgstr "Помилка при читанні файла %1!"
+msgstr "Помилка: не вдається прочитати з файли"
 
 #: Konfigurator/kgcolors.cpp:447
-#, fuzzy
 msgid "Select a color scheme file"
-msgstr "Виберіть тільки один розділений файл!"
+msgstr "Виберіть файл схеми кольорів"
 
 #: Konfigurator/kgstartup.cpp:45
 msgid "Panels"
@@ -4578,7 +4436,7 @@ msgstr "Зберегти параметри при виході"
 msgid ""
 "When Krusader launches, the panels current directories will be the same as "
 "they were when Krusader was last shutdown."
-msgstr ""
+msgstr "При запуску програми Krusader поточні каталоги в панелях будуть ті самі, які були перед закриттям Krusader."
 
 #: Konfigurator/kgstartup.cpp:51 Konfigurator/kgstartup.cpp:56
 #: Konfigurator/kgstartup.cpp:115
@@ -4587,7 +4445,7 @@ msgstr "Починати з наступними параметрами:"
 
 #: Konfigurator/kgstartup.cpp:51
 msgid "Defines a startup status for each panel."
-msgstr ""
+msgstr "Визначає стан запуску для кожної панелі."
 
 #: Konfigurator/kgstartup.cpp:60
 msgid "work dir"
@@ -4614,58 +4472,52 @@ msgid ""
 "Krusader checks the state of the user interface components,\n"
 "and restores them to their condition when last shutdown."
 msgstr ""
+"Krusader перевіряє стан компонентів інтерфейсу користувача\n"
+"й відновлює їх до стану, у якому вони були перед закриттям."
 
 #: Konfigurator/kgstartup.cpp:95
-#, fuzzy
 msgid "Show toolbar"
-msgstr "Пенал"
+msgstr "Показати пенал"
 
 #: Konfigurator/kgstartup.cpp:95
 msgid "Toolbar will be visible after startup."
-msgstr ""
+msgstr "Пенал буде видимий після запуску."
 
 #: Konfigurator/kgstartup.cpp:96
 msgid "Show statusbar"
-msgstr ""
+msgstr "Показати рядок стану"
 
 #: Konfigurator/kgstartup.cpp:96
 msgid "Statusbar will be visible after startup."
-msgstr ""
+msgstr "Рядок стану буде видимий після запуску."
 
 #: Konfigurator/kgstartup.cpp:97
-#, fuzzy
 msgid "Show function keys"
-msgstr "Показувати параметри"
+msgstr "Показати клавіші функцій"
 
 #: Konfigurator/kgstartup.cpp:97
-#, fuzzy
 msgid "Function keys will be visible after startup."
-msgstr "Клавіші функцій видимі"
+msgstr "Клавіші функцій будуть видимі після запуску."
 
 #: Konfigurator/kgstartup.cpp:98
-#, fuzzy
 msgid "Show command line"
-msgstr "Показувати &командний рядок"
+msgstr "Показати командний рядок"
 
 #: Konfigurator/kgstartup.cpp:98
-#, fuzzy
 msgid "Command line will be visible after startup."
-msgstr "Командний рядок видимий"
+msgstr "Командний рядок буде видимий після запуску."
 
 #: Konfigurator/kgstartup.cpp:99
-#, fuzzy
 msgid "Show terminal emulator"
-msgstr "Показувати &емулятор термінала"
+msgstr "Показувати емулятор термінала"
 
 #: Konfigurator/kgstartup.cpp:99
-#, fuzzy
 msgid "Terminal emulator will be visible after startup."
-msgstr "Емулятор термінала видимий"
+msgstr "Емулятор термінала буде видимий після запуску."
 
 #: Konfigurator/kgstartup.cpp:100
-#, fuzzy
 msgid "Save last position, size and panel settings"
-msgstr "Відновити останню позицію і розмір"
+msgstr "Зберегти останню позицію і розмір та параметри панелі"
 
 #: Konfigurator/kgstartup.cpp:100
 msgid ""
@@ -4676,6 +4528,10 @@ msgid ""
 "If this option is disabled, you can use the menu 'Settings-Save Position'\n"
 "option to manually set Krusader's size and position at startup"
 msgstr ""
+"При запуску Krusader змінить свої розміри до тих, які були перед закриттям.\n"
+"Також, Krusader з'явиться на екрані в тому самому місці, а його панелі впорядковані та вирівняні як і були.\n"
+"Якщо цей параметр вимкнено, можете скористатись меню \"Параметри - Зберегти позицію,\n"
+"щоб вручну вказати розмір та позицію програми Krusader при запуску"
 
 #: Konfigurator/kgarchives.cpp:53
 msgid "Krusader transparently handles the following types of archives:"
@@ -4718,13 +4574,12 @@ msgid "Lha"
 msgstr "Lha"
 
 #: Konfigurator/kgarchives.cpp:71
-#, fuzzy
 msgid ""
 "The archives that are \"greyed-out\" were unavailable on your\n"
 "system last time Krusader checked. If you wish Krusader to\n"
 "search again, click the 'Auto Configure' button."
 msgstr ""
-"Архіви, які \"затінені\" не були доступні на вашій системі,\n"
+"Архіви, які \"затінені\" не були доступні у вашій системі,\n"
 "коли Krusader востаннє зондував її. Якщо хочете, щоб Krusader\n"
 "знову пошукав, натисніть кнопку \"Автоматичне налаштування\"."
 
@@ -4737,22 +4592,16 @@ msgid "Test archive when finished packing"
 msgstr "Після пакування перевіряти архів"
 
 #: Konfigurator/kgarchives.cpp:91
-#, fuzzy
-msgid ""
-"If checked, Krusader will test the archive's integrity after packing it."
-msgstr "Якщо ввімкнено, Krusader буде після пакування перевіряти архів."
+msgid "If checked, Krusader will test the archive's integrity after packing it."
+msgstr "Якщо ввімкнено, Krusader буде перевіряти архів після пакування."
 
 #: Konfigurator/kgarchives.cpp:92
 msgid "Test archive before unpacking"
 msgstr "Перевіряти архів перед розпакуванням"
 
 #: Konfigurator/kgarchives.cpp:92
-#, fuzzy
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Деякі пошкоджені архіви можуть приводити до збою програми, отже "
-"рекомендується перевірка"
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Деякі пошкоджені архіви можуть спричиняти крах, отже, рекомендується робити перевірку."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid ""
@@ -4931,13 +4780,12 @@ msgstr ""
 "Якщо ви робите інсталяцію нових архіваторів, будь ласка, встановіть їх"
 
 #: Konfigurator/kgarchives.cpp:147
-#, fuzzy
 msgid ""
 "\n"
 "to your path, e.g., /usr/bin, /usr/local/bin, etc."
 msgstr ""
 "\n"
-"у ваш шлях. (тобто: /usr/bin, /usr/local/bin, тощо)"
+"у ваш шлях, напр., /usr/bin, /usr/local/bin, тощо"
 
 #: Konfigurator/kgarchives.cpp:148
 msgid ""
@@ -4996,7 +4844,6 @@ msgid "No actions found in this file."
 msgstr "В цьому файлі не знайдено жодних дій."
 
 #: Konfigurator/kguseractions.cpp:290
-#, fuzzy
 msgid ""
 "Couldn't import all actions because of name conflicts. Check the action-list "
 "on the left to fix them.\n"
@@ -5005,16 +4852,13 @@ msgid ""
 msgstr ""
 "Не вдалося імпортувати всі дії через конфлікт назв. Перегляньте список дій "
 "зліва і виправте їх.\n"
-"Примітка: ці дії не будуть імпортовані, якщо ви зараз закриєте Конфігуратор!"
+"Примітка: ці дії не буде імпортовано, якщо ви зараз закриєте Конфігуратор!"
 
 #: krslots.cpp:100
-#, fuzzy
 msgid ""
 "Krusader can't find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports Kmail."
-msgstr ""
-"Krusader не може знайти ніякого поштового клієнта, що підтримується. Будь "
-"ласка, встановіть його у ваш шлях. Підказка: Krusader підтримує kmail."
+msgstr "Krusader не може знайти ніякого поштового клієнта, що підтримується. Будь ласка, встановіть якийсь у ваш шлях. Підказка: Krusader підтримує Kmail."
 
 #: krslots.cpp:107
 msgid "Sending file: "
@@ -5025,7 +4869,6 @@ msgid "Don't know which files to compare."
 msgstr "Невідомо які файли порівняти."
 
 #: krslots.cpp:144
-#, fuzzy
 msgid ""
 "To compare 2 files by content, you can either\n"
 "- select (mark) one file in the left panel, and one in the right panel\n"
@@ -5036,18 +4879,15 @@ msgstr ""
 "Порівняти 2 файли за вмістом можна наступними способами:\n"
 "- вибрати (позначити) один файл в лівій панелі, а один в правій\n"
 "- вибрати точно два файли в активній панелі\n"
-"- переконайтесь, що є файл в іншій панелі з такою самою назвою, як поточний "
-"в активній панелі"
+"- переконайтесь, що є файл в іншій панелі з такою самою назвою, як поточний в активній панелі"
 
 #: krslots.cpp:183
-#, fuzzy
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."
 msgstr ""
 "Krusader не може знайти ніяких інтерфейсів до diff. Будь ласка, встановіть "
-"його у ваш шлях. Підказка: Krusader підтримує kompare, kdiff3, kdiff і "
-"xxdiff."
+"якийсь інтерфейс у ваш шлях. Підказка: Krusader підтримує Kompare, Kdiff3 та Xxdiff."
 
 #: krslots.cpp:372
 msgid ""
@@ -5081,11 +4921,9 @@ msgstr ""
 
 #: krslots.cpp:435
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-msgstr ""
-"Не вдається знайти \"KsysCtrl\". Будь ласка, встановіть пакет admin для KDE"
+msgstr "Не вдається знайти \"KsysCtrl\". Будь ласка, встановіть пакет admin для KDE"
 
 #: krslots.cpp:443
-#, fuzzy
 msgid ""
 "Can't find a batch rename tool.\n"
 "You can get Krename at http://www.krename.net"
@@ -5126,12 +4964,10 @@ msgid "You can't combine a directory!"
 msgstr "Не можна об'єднувати каталоги!"
 
 #: krslots.cpp:664
-#, fuzzy
 msgid "Not a split file %1!"
-msgstr "%1 не являється розділеним файлом!"
+msgstr "%1 не є розділеним файлом!"
 
 #: krslots.cpp:679
-#, fuzzy
 msgid "Select only one split file!"
 msgstr "Виберіть тільки один розділений файл!"
 
@@ -5168,14 +5004,12 @@ msgid "250 MB (ZIP)"
 msgstr "250 МБ (ZIP)"
 
 #: Splitter/splittergui.cpp:45
-#, fuzzy
 msgid "650 MB (CD-R)"
-msgstr "250 МБ (ZIP)"
+msgstr "650 МБ (CD-R)"
 
 #: Splitter/splittergui.cpp:46
-#, fuzzy
 msgid "700 MB (CD-R)"
-msgstr "100 МБ (ZIP)"
+msgstr "700 МБ (CD-R)"
 
 #: Splitter/splittergui.cpp:61
 msgid "Split the file %1 to directory:"
@@ -5242,14 +5076,12 @@ msgid "Not a valid CRC file!"
 msgstr "Недійсний файл CRC!"
 
 #: Splitter/combiner.cpp:133
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr "Без чинного файла CRC перевірка неможлива. Продовжити об'єднання?"
 
 #: Splitter/combiner.cpp:237
-#, fuzzy
 msgid "Can't open the first split file of %1!"
-msgstr "Неможливо відкрити перший розділений файл %1!"
+msgstr "Неможливо відкрити перший розділений файл з %1!"
 
 #: Splitter/combiner.cpp:249
 msgid "Incorrect filesize! The file might have been corrupted!"
@@ -5260,7 +5092,6 @@ msgid "Incorrect CRC checksum! The file might have been corrupted!"
 msgstr "Невірна CRC контрольна сума! Ймовірно, файл пошкоджений!"
 
 #: Splitter/combiner.cpp:277 Splitter/splitter.cpp:201
-#, fuzzy
 msgid "Error writing file %1!"
 msgstr "Помилка при записі файла %1!"
 
@@ -5277,7 +5108,6 @@ msgid "Can't split a directory!"
 msgstr "Не можна розділяти каталог!"
 
 #: Splitter/splitter.cpp:127
-#, fuzzy
 msgid "Error reading file %1!"
 msgstr "Помилка при читанні файла %1!"
 
@@ -5285,16 +5115,3 @@ msgstr "Помилка при читанні файла %1!"
 msgid "Error at writing file %1!"
 msgstr "Помилка при записі файла %1!"
 
-#, fuzzy
-#~ msgid "Select &Newer"
-#~ msgstr "Вибрати &групу"
-
-#, fuzzy
-#~ msgid "Select S&ingle"
-#~ msgstr " Вибрати файли "
-
-#~ msgid "New FTP Connection"
-#~ msgstr "Нове з'єднання FTP"
-
-#~ msgid "Filtering by the filename"
-#~ msgstr "Фільтрування за назвою файла"
