@@ -153,7 +153,7 @@ class KRslots : public QObject {
     // F7
     void mkdir();
     // F8
-    void deleteFiles();
+    void deleteFiles(bool reallyDelete=false);
     // F9
     void rename();
 

@@ -505,7 +505,7 @@ void KRslots::moveFiles()      { ACTIVE_FUNC->moveFiles();  }
 // F7
 void KRslots::mkdir()          { ACTIVE_FUNC->mkdir();      }
 // F8
-void KRslots::deleteFiles()    { ACTIVE_FUNC->deleteFiles();}     	
+void KRslots::deleteFiles(bool reallyDelete)    { ACTIVE_FUNC->deleteFiles(reallyDelete);}     	
 // F9
 void KRslots::rename()         { ACTIVE_FUNC->rename();     }
 

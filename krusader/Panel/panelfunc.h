@@ -71,7 +71,7 @@ public:
 	void unpack();
 	void testArchive();
 	void copyFiles();
-	void deleteFiles();
+	void deleteFiles(bool reallyDelete=false);
 	void calcSpace(); // calculate the occupied space and show it in a dialog
 	void copyToClipboard( bool move=false );
 	void pasteFromClipboard();

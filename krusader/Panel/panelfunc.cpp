@@ -510,7 +510,7 @@ void ListPanelFunc::copyFiles() {
 	}
 }
 
-void ListPanelFunc::deleteFiles() {
+void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	// check that the you have write perm
 	if ( !files() ->vfs_isWritable() ) {
 		KMessageBox::sorry( krApp, i18n( "You do not have write permission to this directory" ) );
@@ -523,6 +523,8 @@ void ListPanelFunc::deleteFiles() {
 	if ( fileNames.isEmpty() )
 		return ;
 
+	krConfig->setGroup( "General" );
+	bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
 	// now ask the user if he want to delete:
 	krConfig->setGroup( "Advanced" );
 	if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
@@ -531,9 +533,8 @@ void ListPanelFunc::deleteFiles() {
 			s = i18n( " this item ?" );
 		else
 			s.sprintf( i18n( " these %d items ?" ).local8Bit(), fileNames.count() );
-		krConfig->setGroup( "General" );
-		if ( krConfig->readBoolEntry( "Move To Trash", _MoveToTrash ) &&
-		        files() ->vfs_getType() == vfs::NORMAL ) {
+		
+		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
 			s = i18n( "trash" ) + s;
 			b = i18n( "&Trash" );
 		} else {
@@ -585,7 +586,16 @@ void ListPanelFunc::deleteFiles() {
 	panel->prepareToDelete();
 
 	// let the vfs do the job...
+	if (reallyDelete) {
+		// if reallyDelete, then make sure nothing gets moved to trash
+		krConfig->setGroup("General");
+		krConfig->writeEntry( "Move To Trash", false );
+	}
 	files() ->vfs_delFiles( &fileNames );
+	if (reallyDelete) {
+		krConfig->setGroup("General");
+		krConfig->writeEntry( "Move To Trash", trash);
+	}
 }
 
 // this is done when you double click on a file

@@ -957,7 +957,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
          break;
 #endif*/
          case Key_Delete :                   // kill file
-         SLOTS->deleteFiles();
+         SLOTS->deleteFiles(e->state() == ShiftButton);
+				
          return ;
          case Key_Insert : {
             if (KrSelectionMode::getSelectionHandler()->insertMovesDown())
