@@ -35,6 +35,7 @@
 #include "krdetailedview.h"
 #include "../VFS/krpermhandler.h"
 #include <sys/types.h>
+#include <time.h>
 #include <qpainter.h>
 #include <pwd.h>
 #include <grp.h>
