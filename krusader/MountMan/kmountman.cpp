@@ -51,7 +51,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define FSTAB "/etc/fstab"
 #endif
 
-static QString __mntPoint; // ugly way to pass the deadlock situation described below
+static int __delayedIdx; // ugly: pass the processEvents deadlock
 
 KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountManGui( 0 ) {
    _actions = 0L;
@@ -287,14 +287,23 @@ void KMountMan::quickList() {
       ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu() ->insertItem( text, idx );
    }
    connect( ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu(), SIGNAL( activated( int ) ),
-            this, SLOT( performAction( int ) ) );
+            this, SLOT( delayedPerformAction( int ) ) );
 
+}
+
+void KMountMan::delayedPerformAction( int idx ) {
+   __delayedIdx = idx;
+   QTimer::singleShot(0, this, SLOT(performAction(int)));   
 }
 
 void KMountMan::performAction( int idx ) {
    while ( qApp->hasPendingEvents() )
       qApp->processEvents();
 
+   // ugly !!! take idx from the value put there by delayedPerformAction so 
+   // as to NOT DIE because of a processEvents deadlock!!! @#$@!@
+   idx = __delayedIdx;
+   
    if ( idx < 0 )
       return ;
    bool domount = _actions[ idx ].left( 3 ) == "_M_";

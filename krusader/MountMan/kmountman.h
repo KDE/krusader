@@ -71,6 +71,7 @@ public:
    ~KMountMan();
 
 public slots:
+   void delayedPerformAction( int idx );
    void performAction( int idx );
    void quickList();
 
@@ -93,7 +94,7 @@ private:
 	QStringList invalid_fs;
 	QStringList nonmount_fs;
 	// the following is the FS name
-	QStringList nonmount_fs_mntpoint;
+		QStringList nonmount_fs_mntpoint;
 };
 
 #endif
