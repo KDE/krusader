@@ -39,6 +39,8 @@
 #include "krsearchdialogbase.h"
 #include "krquery.h"
 #include "krsearchmod.h"
+#include <sys/types.h>
+#include <time.h>
 
 
 class KrSearchDialog : public KrSearchBase  {
@@ -55,7 +57,7 @@ public slots:
   void loadSearch(QListViewItem *);
   void startSearch();
   void stopSearch();
-  void found(QString what, QString where, long size, QString date, QString perm);
+  void found(QString what, QString where, long size, time_t mtime, QString perm);
   void closeDialog();
   void addToSearchIn();
   void addToSearchInManually();

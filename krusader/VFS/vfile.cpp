@@ -44,8 +44,7 @@
 vfile::vfile(QString name,	                  // useful construtor
 						unsigned long size,	
 						QString perm,
-						QString	dateTime,
-            time_t mtime,
+						time_t mtime,
 						bool symLink,
 						uid_t	owner,
 						gid_t group,
@@ -57,8 +56,7 @@ vfile::vfile(QString name,	                  // useful construtor
 	vfile_ownerId=owner;
 	vfile_groupId=group;
 	vfile_perm=perm;
-	vfile_dateTime=dateTime;
-  vfile_time_t=mtime;
+	vfile_time_t=mtime;
 	vfile_symLink=symLink;
 	vfile_mimeType=mime;
 	vfile_symDest=symDest;
@@ -70,8 +68,7 @@ vfile::vfile(QString name,	                  // useful construtor
 vfile::vfile(QString name,	                  // useful construtor
 						unsigned long size,	
 						QString perm,
-						QString	dateTime,
-            time_t mtime,
+						time_t mtime,
 						bool symLink,
 						QString	owner,
 						QString group,
@@ -85,8 +82,7 @@ vfile::vfile(QString name,	                  // useful construtor
 		vfile_ownerId=KRpermHandler::user2uid(owner) ;
 		vfile_groupId=KRpermHandler::group2gid(group);
 		vfile_perm=perm;
-		vfile_dateTime=dateTime;
-    vfile_time_t=mtime;
+		vfile_time_t=mtime;
 		vfile_symLink=symLink;
 		vfile_mimeType=mime;
 		vfile_symDest=symDest;
@@ -132,7 +128,7 @@ KIO::UDSEntry vfile::vfile_getEntry(){
 	entry.append(atom);
 
  	atom.m_uds = KIO::UDS_MODIFICATION_TIME;
-	atom.m_long = KRpermHandler::QString2time( vfile_getDateTime() );
+	atom.m_long = vfile_getTime_t();
 	entry.append(atom);
 
 	atom.m_uds = KIO::UDS_USER;

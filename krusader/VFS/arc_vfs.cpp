@@ -660,8 +660,7 @@ QString arc_vfs::changeDir(QString name){
    if(Pname.isEmpty()) return name;
    QString tempName = arcFile;
    QFileInfo qfi(tempName.replace(QRegExp("\\"),""));
-   vfile* vf=new vfile(Pname,0,"drwxr-xr-x",dateTime2QString(qfi.lastModified()),
-                       qfi.lastModified().toTime_t(),false,
+   vfile* vf=new vfile(Pname,0,"drwxr-xr-x",qfi.lastModified().toTime_t(),false,
                  qfi.owner(),qfi.group(),"inode/directory","",0 );
    // add  dirs if needed
    changeDir(path);
@@ -742,7 +741,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
   QString perm;
   QFileInfo qfi(arcFile);
   time_t mtime = qfi.lastModified().toTime_t();
-  QString dateTime;
   bool link = false;
   uid_t owner = getuid();
   gid_t group = getgid();
@@ -761,7 +759,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
     name = nextWord(line,'\n');
     if(name.contains('/')) name = name.mid(name.findRev('/')+1,name.length());
     perm  = KRpermHandler::mode2QString(stat_p.st_mode) ;
-    dateTime = dateTime2QString(qfi.lastModified());
     owner = KRpermHandler::user2uid(qfi.owner());
     group = KRpermHandler::group2gid(qfi.group());
     mode  = stat_p.st_mode;
@@ -776,7 +773,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
     name = name.left(name.findRev('.'));
     //long size = qfi.size();
     perm  = KRpermHandler::mode2QString(stat_p.st_mode) ;
-    dateTime = dateTime2QString(qfi.lastModified());
     owner = KRpermHandler::user2uid(qfi.owner());
     group = KRpermHandler::group2gid(qfi.group());
     mode  = stat_p.st_mode;
@@ -790,14 +786,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
     group = temp.mid(temp.find('/')+1,temp.length()).toInt();
     size = nextWord(line).toLong();
     temp = nextWord(line);
-#ifdef BSD
-    dateTime = nextWord(line) + "/" + month2Qstring(temp) + "/";
-    temp = nextWord(line);
-    dateTime += nextWord(line) + " " + temp;
-#else
-    dateTime = temp.mid(8,2)+"/"+temp.mid(5,2)+"/"+temp.mid(2,2)+
-                       " "+nextWord(line).left(5);
-#endif
     name = nextWord(line,'\n');
     if (name.startsWith("/"))  // fix full-paths problem in tar (thanks to Heiner!)
       name.remove(0, 1);
@@ -818,8 +806,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
     size = nextWord(line).toLong();
     nextWord(line);nextWord(line);
     QString temp = nextWord(line);
-    dateTime = temp.mid(6,2)+"/"+temp.mid(4,2)+"/"+temp.mid(2,2)+
-                       " "+temp.mid(9,2)+":"+temp.mid(11,2);
     name = nextWord(line,'\n');
   }
 
@@ -831,7 +817,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
 		nextWord(line);nextWord(line);nextWord(line);
 		QString tempName = arcFile;
     QFileInfo qfi(tempName.replace(QRegExp("\\"),""));
-    dateTime = dateTime2QString(qfi.lastModified()) ;
 		name = nextWord(line,'\n');
     if ( name.left(1) == "/" ) name.remove(0,1);
     if( name.contains(" -> ") ){
@@ -847,7 +832,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
     size = nextWord(line).toLong();
     nextWord(line);
     nextWord(line);
-    dateTime = nextWord(line).replace(QRegExp("-"),"/")+" "+nextWord(line);
     perm = nextWord(line);
     if(perm.length() != 10)
       perm = (perm.at(1)=='D')? "drwxr-xr-x" : "-rw-r--r--" ;
@@ -857,8 +841,7 @@ void arc_vfs::parseLine(QString line, QFile* temp){
 		name = nextWord(line);
     if ( name.left(1) == "/" ) name.remove(0,1);
     size = nextWord(line).toLong();
-    long time = nextWord(line).toLong();
-    dateTime = KRpermHandler::time2QString(time);
+    mtime = nextWord(line).toLong();
     nextWord(line);
     perm = KRpermHandler::mode2QString(nextWord(line).toLong());
     perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
@@ -870,7 +853,7 @@ void arc_vfs::parseLine(QString line, QFile* temp){
 
 
   QString mime = KMimeType::findByURL( "/"+name,0,true,true)->name();
-  vfile* vf=new vfile(name,size,perm,dateTime,mtime,link,owner,group,mime,dest,mode);
+  vfile* vf=new vfile(name,size,perm,mtime,link,owner,group,mime,dest,mode);
   vfile* vf2 = vfs_search(name);
   if(vf2 != 0) vfs_removeFromList(vf2);
   vfs_addToList(vf);

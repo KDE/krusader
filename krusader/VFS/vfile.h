@@ -52,7 +52,6 @@ protected:
   QString       vfile_owner;    // owner name
   QString       vfile_group;    // group name
 	QString     	vfile_perm;			// permissions
-	QString			  vfile_dateTime;	// modification date&time
   time_t        vfile_time_t;   // modification in time_t format
 	bool					vfile_symLink;  // true==yes
 	QString				vfile_mimeType; // file mimetype
@@ -65,8 +64,7 @@ public:
 	vfile(QString name,	
 				unsigned long size,	
 			  QString perm,
-				QString	dateTime,
-        time_t mtime,
+				time_t mtime,
 				bool symLink,
 				uid_t	owner,
 				gid_t group,
@@ -77,8 +75,7 @@ public:
 	vfile(QString name,	
 				unsigned long size,	
 			  QString perm,
-				QString	dateTime,
-        time_t mtime,
+				time_t mtime,
 				bool symLink,
 				QString	owner,
 				QString group,
@@ -89,7 +86,6 @@ public:
 	// following functions give-out file details
 	inline QString  			 	vfile_getName() 	 	{ return vfile_name;  		}
 	inline unsigned long		vfile_getSize() 	 	{ return vfile_size;  		}
-	inline QString 		  		vfile_getDateTime() { return vfile_dateTime;	}
 	inline QString					vfile_getPerm()			{ return vfile_perm;			}
 	inline bool							vfile_isDir()				{ return (vfile_perm[0]=='d');}
 	inline bool							vfile_isSymLink()		{ return vfile_symLink;   }

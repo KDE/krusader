@@ -113,7 +113,6 @@ bool normal_vfs::vfs_refresh(QString origin){
 	  lstat(vfs_workingDir().local8Bit()+"/"+name.local8Bit(),&stat_p);
 	  unsigned long size = stat_p.st_size;
     QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
-    QString	dateTime=KRpermHandler::time2QString(stat_p.st_mtime);
 	  bool symLink= S_ISLNK(stat_p.st_mode);
 	  if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
 	
@@ -133,7 +132,7 @@ bool normal_vfs::vfs_refresh(QString origin){
 	  }
 	  	
 	  // create a new virtual file object
-    vfile* temp=new vfile(name,size,perm,dateTime,stat_p.st_mtime,symLink,stat_p.st_uid,
+    vfile* temp=new vfile(name,size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
                           stat_p.st_gid,mime,symDest,stat_p.st_mode);
     vfs_addToList(temp);
   }

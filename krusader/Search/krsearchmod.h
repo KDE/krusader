@@ -35,6 +35,7 @@
 
 #include <qobject.h>
 #include <qstringlist.h>
+#include <time.h>
 
 class KRQuery;
 class vfs;
@@ -54,7 +55,7 @@ public:
 signals:
   void finished();
   void searching(const QString&);
-  void found(QString what, QString where, long size, QString date, QString perm);
+  void found(QString what, QString where, long size, time_t mtime, QString perm);
 
 private:
 	bool stopSearch;

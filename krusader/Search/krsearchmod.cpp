@@ -191,8 +191,7 @@ void KRSearchMod::scanDir( QString dir){
     // if we got here - we got a winner
     results.append(dir+name);
 		//  kdWarning() << "Found: " << (dir+name).local8Bit() << endl;
-    emit found(name, dir, stat_p.st_size, KRpermHandler::time2QString(stat_p.st_mtime),
-               KRpermHandler::mode2QString(stat_p.st_mode) );
+    emit found(name, dir, stat_p.st_size, stat_p.st_mtime,KRpermHandler::mode2QString(stat_p.st_mode) );
     qApp->processEvents();
   }
 	// clean up
@@ -232,7 +231,7 @@ void KRSearchMod::scanVfsDir( vfs* v, QString dir, QString archive ){
 		if( query->minSize && size < query->minSize ) continue;
     if( query->maxSize && size > query->maxSize ) continue;
 		// check the time frame
-    time_t mtime = KRpermHandler::QString2time(vf->vfile_getDateTime());
+    time_t mtime = vf->vfile_getTime_t();
 		if( query->olderThen && mtime > query->olderThen ) continue;
     if( query->newerThen && mtime < query->newerThen ) continue;
     // check owner name
@@ -246,7 +245,7 @@ void KRSearchMod::scanVfsDir( vfs* v, QString dir, QString archive ){
 
 		// if we got here - we got a winner
     results.append(dir+name);
-		emit found(name, archive+dir, size, vf->vfile_getDateTime(),vf->vfile_getPerm());
+		emit found(name, archive+dir, size, vf->vfile_getTime_t(),vf->vfile_getPerm());
     qApp->processEvents();
 	}
 }

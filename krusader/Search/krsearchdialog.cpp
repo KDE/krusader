@@ -262,9 +262,12 @@ void KrSearchDialog::addToDontSearchInManually() {
   dontSearchInEdit->clear();
 }
 
-void KrSearchDialog::found(QString what, QString where, long size, QString date, QString perm){
+void KrSearchDialog::found(QString what, QString where, long size, time_t mtime, QString perm){
+  // convert the time_t to struct tm
+  struct tm* t=localtime((time_t *)&mtime);
+  QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
   new QListViewItem(resultsList, what, where.replace(QRegExp("\\\\"),"#"),
-                    KRpermHandler::parseSize(size), date, perm);
+                    KRpermHandler::parseSize(size), KGlobal::locale()->formatDateTime(tmp), perm);
   QString totals = QString("Found %1 matches.").arg(resultsList->childCount());
   foundLabel->setText(totals);
 }
