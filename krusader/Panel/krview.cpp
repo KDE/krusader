@@ -39,10 +39,7 @@
 #include <klocale.h>
 
 KrView::KrView( KConfig *cfg ) : _config( cfg ), _nameToMakeCurrent( QString::null ),
-_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ) {
-	// TODO: fix this
-	// initProperties(); // must be implemented by any predecessors
-}
+_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ) {}
 
 QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ ) {
    //krConfig->setGroup("Advanced");

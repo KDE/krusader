@@ -123,7 +123,6 @@ protected:
    virtual void startDrag();
    virtual bool event( QEvent *e );
 	virtual void initProperties();
-   //virtual void focusOutEvent( QFocusEvent * );
 
 protected slots:
    void rename( QListViewItem *item, int c );

@@ -77,6 +77,8 @@ public:
  *    to the current item (used in detailedview for safe iterating), thus your loop should be:
  *       for (KrViewItem *it = view->getFirst(); it!=0; it = view->getNext(it)) { blah; }
  * 5) nameToMakeCurrent(), setNameToMakeCurrent() - work with QString
+ *
+ * IMPORTANT NOTE: every one who subclasses this must call initProperties() in the constructor !!!
  */
 class KrViewItem;
  
@@ -109,7 +111,7 @@ public:
   virtual QString nameInKConfig() = 0;
   virtual void renameCurrentItem() = 0; // Rename current item. returns immediatly
 protected:
-  virtual void initProperties() { qFatal("initProperties not implemented!"); }
+  virtual void initProperties() = 0;
   
 public:  
   // also, the following must be implemented (but must be remarked here)
