@@ -645,7 +645,7 @@ bool kio_krarcProtocol::initArcParameters(){
   } else if (arcType == "rar"){
     cmd = "unrar" ;
     listCmd = "unrar -c- v ";
-    getCmd  = "unrar x -y ";
+    getCmd  = "unrar p -y ";
     delCmd  = "rar d ";
     putCmd  = "rar -r a ";
   } else {
