@@ -1,6 +1,12 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
+FIXED: Proof read and fixed spelling etc. - Thanks to Richard Hold
+FIXED: uncommented <?xml version="1.0" ?> in index.docbook
+FIXED: removed some acronym elements, the jade parser does not like them
+FIXED: <imagedata fileref="foo.eps" ...> -> foo.png 
+REMOVED: bookmanuse.png not used anymore since hanbook 1.00.02
+         it was forgotten to delete it in cvs
 ADDED: useraction: Parameter-description for the placeholder
 
 1.50.03
