@@ -33,6 +33,7 @@
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
 #include "../KViewer/krviewer.h"
+#include "../Dialogs/krspwidgets.h"
 #include "synchronizedialog.h"
 #include <qlayout.h>
 #include <kurlrequester.h>
@@ -45,6 +46,7 @@
 #include <kio/netaccess.h>
 #include <qeventloop.h>
 #include <qtooltip.h>
+#include <qregexp.h>
 
 static const char * const right_arrow_button_data[] = {
 "18 18 97 2",
@@ -1053,6 +1055,9 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   #define VIEW_LEFT_FILE_ID   96
   #define VIEW_RIGHT_FILE_ID  97
   #define COMPARE_FILES_ID    98
+  #define SELECT_ITEMS_ID     99
+  #define DESELECT_ITEMS_ID   100
+  #define INVERT_SELECTION_ID 101
   //////////////////////////////////////////////////////////
   if (!itemIn)
     return;
@@ -1095,6 +1100,15 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   popup.setItemEnabled(VIEW_RIGHT_FILE_ID, !isDir && item->existsInRight() );
   popup.insertItem(i18n("Compare Files"),COMPARE_FILES_ID);  
   popup.setItemEnabled(COMPARE_FILES_ID, !isDir && isDuplicate );
+
+  popup.insertSeparator();
+
+  popup.insertItem(i18n("Select items"),SELECT_ITEMS_ID);
+  popup.setItemEnabled(SELECT_ITEMS_ID, true );
+  popup.insertItem(i18n("Deselect items"),DESELECT_ITEMS_ID);
+  popup.setItemEnabled(DESELECT_ITEMS_ID, true );
+  popup.insertItem(i18n("Invert selection"),INVERT_SELECTION_ID);
+  popup.setItemEnabled(INVERT_SELECTION_ID, true );
 
   int result=popup.exec(QCursor::pos());
 
@@ -1152,6 +1166,29 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
       break;
     case COMPARE_FILES_ID:
       rightMenuCompareFiles( leftURL, rightURL );
+      break;
+    case SELECT_ITEMS_ID:
+    case DESELECT_ITEMS_ID:
+      {
+        QString mask = KRSpWidgets::getMask( result == SELECT_ITEMS_ID ? i18n("Select items") :
+                                             i18n( "Deselect items" ) );
+        unsigned              ndx = 0;
+        SynchronizerFileItem  *currentItem;
+
+        while( ( currentItem = synchronizer.getItemAt( ndx++ ) ) != 0 )
+        {
+          SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+
+          if( !viewItem || !viewItem->isVisible() )
+            continue;
+
+          if( QRegExp(mask,true,true).exactMatch( currentItem->name() ) )
+            syncList->setSelected( viewItem, result == SELECT_ITEMS_ID );
+        }
+      }
+      break;
+    case INVERT_SELECTION_ID:
+      syncList->invertSelection();
       break;
     case -1 : return;     // the user clicked outside of the menu
   }  
