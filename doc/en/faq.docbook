@@ -230,8 +230,8 @@
    <para>I've installed &krusader;, but when I start it, only the <guimenu>"Help"</guimenu>
    menu appears. Why?</para></question>
    <answer>
-   <para>In this case only the <guimenu>"Help"</guimenu> menu is visible and all other menu items
-   like &eg; <guimenu>"File"</guimenu> and <guimenu>"Mark"</guimenu> are missing.
+   <para>In this case only the <guimenu>Help</guimenu> menu is visible and all other menu items
+   like &eg; <guimenu>File</guimenu> and <guimenu>Select</guimenu> are missing.
    This is because some distributions put the <filename>krusaderui.rc</filename> file in the wrong directory.
    To solve the problem, just copy the <filename>krusaderui.rc</filename> file
    from the package <filename>krusader_kde3/krusader/krusaderui.rc</filename> to

@@ -78,8 +78,6 @@
      <link linkend="list_panel">Location Toolbar</link> some examples:</para>
  
  <itemizedlist>
-     <listitem><para><userinput><replaceable>/mnt/cdrom/</replaceable></userinput></para>
-               </listitem>
      <listitem><para><userinput><command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</replaceable></userinput></para>
                </listitem>
      <listitem><para><userinput><command>sftp://</command><replaceable>sftp.foo.org/</replaceable></userinput></para>
@@ -93,7 +91,40 @@
 <para>You can Bookmark these &URL;'s, please read the <link linkend="bookman">Bookman</link> section 
       regarding securely save your passwords.</para>
 
-<!-- TODO: Some more text need to be added here -->
+<para>There are three ways to start a Remote Connection:
+<itemizedlist>
+      <listitem><para>Type the &URL; in the <link linkend="list_panel">Location Toolbar</link></para>
+               </listitem>
+      <listitem><para>Selecting <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+                <guimenuitem>FTP New Connection</guimenuitem></menuchoice></emphasis> which will pop-up a
+                dialog that will ask for the remote site details.
+                This dialog is handy if you are not used to type remote &URL;'s in the Location Toolbar.
+                Leaving the password and user name fields empty will try to log you in as annonymous.
+                NOTE: we are planning to update this dialog window.</para>
+                </listitem>
+      <listitem><para>You can bookmark a directory on a remote host and return to this
+                directory from the bookmark button on the top corner of your panel just like in a web browser.</para>
+                </listitem>
+</itemizedlist>
+</para>
+
+<para>After you logon to a remote server you can browse it just like your local hard drive
+      with the following exceptions:
+      <itemizedlist>
+      <listitem><para>You cannot execute files on remote servers.</para>
+                </listitem>
+      <listitem><para>Permissions cannot always be calculated on remote servers (depends on server and access method) 
+                so you might get a "?" on the permissions columns for some files. </para>
+                </listitem>
+  <listitem><para>Disk usage information is not availble for most remote filesystems.</para>
+            </listitem>
+    </itemizedlist>
+</para>
+
+<para>To end the current Active Connection select <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+      <guimenuitem>FTP Disconnect</guimenuitem></menuchoice></emphasis>.</para>
+
+
 </sect1>
 
 <sect1 id = "mount-man">
@@ -218,6 +249,8 @@
 <para>Bookman supports "special / permanent bookmarks" which means that they are added by the &krusader;-Krew to the top
       bookmark menu without the need of being saved to the file, right now the only one is <filename>"devices:/"</filename>
       You are able to turn them off.</para>
+
+<tip><para>&bookmarks_lnk; can be placed into the &main_toolbar_lnk; and the &actions_toolbar_lnk;.</para></tip>
 
 <para><emphasis role="bold">Password handling</emphasis></para>
 <para>One of the benefits of the <link linkend="bookman">new bookmark manager</link> is that the password
@@ -479,11 +512,13 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
        the current panel directory. When you close the Krusearcher window, the selected item is selected in the
        active panel.</para>
 
-<para>When you click the <guibutton>"feed to listbox"</guibutton> button after the results are displayed,
-      then &krusader; opens a new results-tab with the resulting files/folders.
+<para><emphasis role="bold">Feed to listbox</emphasis></para>
+
+<para>When you click the <guibutton>"Feed to listbox"</guibutton> button after the results are displayed,
+      then &krusader; makes a Results-Tab in the List Panel with the resulting files/folders.
       You can do whatever you want on the files in the new tab.</para>
 
-<warning><para>The files in the results-tab are actually the original files.
+<warning><para>The files in the Results-Tab are actually the original files.
                if you delete a file - it is removed!</para></warning>
 
 </sect1>
@@ -1410,11 +1445,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
         <listitem><para><guibutton>"Select items"</guibutton>:
              Opens a dialog which allows you to select items.
        This is the <guimenuitem>Select Group</guimenuitem> dialog from the
-       &markmenu_lnk;.</para></listitem>
+       &selectmenu_lnk;.</para></listitem>
         <listitem><para><guibutton>"Unselect items"</guibutton>:
              Opens a dialog which allows you to unselect items.
        This is the <guimenuitem>Unselect Group</guimenuitem> dialog from the
-       &markmenu_lnk;.</para></listitem>
+       &selectmenu_lnk;.</para></listitem>
         <listitem><para><guibutton>"Invert selection"</guibutton>:
              Invert the selection status of all items.</para></listitem>
     </itemizedlist>

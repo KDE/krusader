@@ -194,8 +194,8 @@
 </variablelist>
 </sect1>
 
-<sect1 id="mark-menu">
-<title>The <guimenu>Mark</guimenu> menu</title>
+<sect1 id="select-menu">
+<title>The <guimenu>Select</guimenu> menu</title>
   <para>The actions in this menu allow you to select or unselect multiple files in the
                active panel. Directories are selected (or not) according to your choice in the
                &konfiglookandfeel_lnk;.
@@ -205,7 +205,7 @@
   <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></shortcut>
-  <guimenu>Mark</guimenu>
+  <guimenu>Select</guimenu>
   <guimenuitem>Select Group</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -220,7 +220,7 @@
   <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut>
-  <guimenu>Mark</guimenu>
+  <guimenu>Select</guimenu>
   <guimenuitem>Unselect Group</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -232,7 +232,7 @@
   <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>+</keycap></keycombo></shortcut>
-  <guimenu>Mark</guimenu>
+  <guimenu>Select</guimenu>
   <guimenuitem>Select All</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -243,7 +243,7 @@
   <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>-</keycap></keycombo></shortcut>
-  <guimenu>Mark</guimenu>
+  <guimenu>Select</guimenu>
   <guimenuitem>Unselect All</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -254,7 +254,7 @@
   <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>*</keycap></keycombo></shortcut>
-  <guimenu>Mark</guimenu>
+  <guimenu>Select</guimenu>
   <guimenuitem>Invert Selection</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -265,7 +265,7 @@
 
   <varlistentry>
   <term><menuchoice>
-  <guimenu>Mark</guimenu>
+  <guimenu>Select</guimenu>
   <guimenuitem>Compare Directories</guimenuitem>
   </menuchoice></term>
   <listitem><para>Toggles &krusader; &comparedir_lnk; function.</para>
@@ -274,20 +274,20 @@
 
   <varlistentry>
   <term><menuchoice>
-  <guimenu>Mark</guimenu>
+  <guimenu>Select</guimenu>
   <guimenuitem>Compare setup</guimenuitem>
   </menuchoice></term>
   <listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>
    <itemizedlist>
-            <listitem><para><guimenuitem>Mark Newer and Single</guimenuitem> (default)
+            <listitem><para><guimenuitem>Select Newer and Single</guimenuitem> (default)
                       </para></listitem>
-            <listitem><para><guimenuitem>Mark Single</guimenuitem>
+            <listitem><para><guimenuitem>Select Single</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Mark Newer</guimenuitem>
+            <listitem><para><guimenuitem>Select Newer</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Mark Different and Single</guimenuitem>
+            <listitem><para><guimenuitem>Select Different and Single</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Mark Different</guimenuitem>
+            <listitem><para><guimenuitem>Select Different</guimenuitem>
                 </para></listitem>
          </itemizedlist>
   </listitem>
@@ -639,6 +639,31 @@
   </menuchoice></term>
   <listitem><para>Saves the current size and position of the &krusader; main window. If you selected
                        <guilabel>"Restore last position and size"</guilabel> in &konfigstartpg_lnk;.</para>
+  </listitem>
+  </varlistentry>
+
+</variablelist>
+</sect1>
+
+<sect1 id="useractions-menu">
+<title>The <guimenu>Useractions</guimenu> menu</title>
+<variablelist>
+
+  <varlistentry>
+  <term><menuchoice>
+  <guimenu>Useractions</guimenu>
+  <guimenuitem>Manage useractions</guimenuitem>
+  </menuchoice></term>
+  <listitem><para>Opens the &useractions_lnk; manager.</para>
+  </listitem>
+  </varlistentry>
+
+  <varlistentry>
+  <term><menuchoice>
+  <guimenu>Useractions</guimenu>
+  <guimenuitem>Your foo Useractions</guimenuitem>
+  </menuchoice></term>
+  <listitem><para>Opens the default Useractions and Useractions created by the user.</para>
   </listitem>
   </varlistentry>
 

@@ -62,8 +62,8 @@
       You can decide if you want to display it (or not) every time you start &krusader;
       in the &konfigstartpg_lnk;, and you can toggle
       its use in the current session in the &viewmenu_lnk;.
-      The Main Toolbar contents can be configured from the <guimenuitem>"Configure Toolbars"</guimenuitem>
-      in the &settingsmenu_lnk; or the <guilabel>"toolbar"</guilabel> tab in the &konfiglookandfeel_lnk;.
+      The Main Toolbar contents can be configured from the <guimenuitem>Configure Toolbars</guimenuitem>
+      in the &settingsmenu_lnk; or the <guilabel>Toolbar</guilabel> tab in the &konfiglookandfeel_lnk;.
       Since the various commands and options in &krusader; are context dependent, some commands are not always available
       (&ie;: you can't disconnect from an &FTP; session if you're not connected), the icon of an
       inappropriate or inactive action will be deactivated (grayed-out) and you won't be able to click it.
@@ -116,8 +116,8 @@
 <title>List Panel</title>
 <para>
     This is the default panel and the one you'll probably use most of the time. This panel shows the
-		contents of one directory which can be local (part of your mounted file systems, either a native file or the files inside an archive) or remote files (accessed
-		via &FTP; or Samba).
+    contents of one directory which can be local (part of your mounted file systems, 
+    either a native file or the files inside an archive) or remote files (accessed via &FTP; or Samba).
     File copy/paste/cut via Clipboard between &konqueror; and &krusader;
     <keycombo action="simul">&Ctrl;<keycap>c</keycap></keycombo>,
     <keycombo action="simul">&Ctrl;<keycap>v</keycap></keycombo>,
@@ -129,20 +129,14 @@
 <para>The following items are available:
    <itemizedlist>
        <listitem><para><emphasis><guibutton>Location Toolbar</guibutton></emphasis> : shows the path the
-			 panel is currently pointing to. If the selected path is too long, it will be automatically 
-			 shortened and an ellipsis "..." will replace the omitted part of the pathname. When entering archives the path will
-			 consist of the "archive name:/directory/archive_filename/the directory inside the archive". This format makes the paths uniform and easy to read.
-      With a single mouse click you can enter the desired path &eg;
+	         panel is currently pointing to. If the selected path is too long, it will be automatically 
+ 		 shortened and an ellipsis "..." will replace the omitted part of the pathname. 
+ 		 When entering archives the path will consist of the 
+ 		 "archive name:/directory/archive_filename/the directory inside the archive". 
+ 		 This format makes the paths uniform and easy to read.
+                 With a single mouse click you can enter the desired path &eg;
      <itemizedlist>
                  <listitem><para><userinput><replaceable>/mnt/cdrom/</replaceable></userinput></para>
-               </listitem>
-     <listitem><para><userinput><command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</replaceable></userinput></para>
-               </listitem>
-     <listitem><para><userinput><command>sftp://</command><replaceable>sftp.foo.org/</replaceable></userinput></para>
-               </listitem>
-     <listitem><para><userinput><command>fish://</command><replaceable>username@hostname/</replaceable></userinput></para>
-               </listitem>
-     <listitem><para><userinput><command>smb://</command><replaceable>user:password@server/share</replaceable></userinput></para>
                </listitem>
      <listitem><para><userinput><command>settings:/</command></userinput> will browse and open entries of the
                <application>KDE control center</application></para>
@@ -150,6 +144,8 @@
      <listitem><para><userinput><command>devices:/</command></userinput> gives an overiew of the devices &eg;
                      <hardware>floppy</hardware> or <hardware>cdrom</hardware> drives.</para>
          </listitem>
+         <listitem><para>And last but not least &remote_connections_lnk; !</para>
+               </listitem>
     </itemizedlist>
      You can copy-paste an &URL; in the <guibutton>Location Toolbar</guibutton>.
      With the Right-Click menu you can configure the autocomplete function.
@@ -178,8 +174,8 @@
                  in the browsed directory. The &quick_search_lnk; allows you to search for
                  files by typing their names, or the first few characters of a filename.
                  Pressing &Enter; or double clicking on a file will open/execute that file.
-                 You can mark/unmark files using the mouse with the <keycap>Insert</keycap> key or the
-                 &markmenu_lnk;.</para></listitem>
+                 You can select/unselect files using the mouse with the <keycap>Insert</keycap> key or the
+                 &selectmenu_lnk;.</para></listitem>
       <listitem><para><emphasis><guilabel>Totals Label</guilabel></emphasis> :
                  marking or unmarking files will change the
                  <emphasis><guilabel>Totals Label</guilabel></emphasis> at the bottom
@@ -223,7 +219,8 @@
 <sect3 id="popup_panel">
 <title>PopUp Panel</title>
 
-<para>This is our <link linkend="krusader_screenshot">3rd Panel</link>, click on the arrow up button on the left of the <guilabel>Totals Label</guilabel> or
+<para>This is "&krusader;'s 3rd Hand" or the 3rd Panel, click on the arrow up button on the left of the 
+      <guilabel>Totals Label</guilabel> or
       <keycombo action="simul">&Alt;<keycap>Down Arrow</keycap></keycombo> to open the
       <guilabel>PopUp Panel</guilabel>.
       This panel has several display modes which can be activated by clicking on the apropriate button
@@ -288,7 +285,9 @@
       On every new start of Krusader, the history list is empty.
       </para>
 
-<para>The submenu <guilabel>Popular &URL;s</guilabel> holds persistent the most popular visited &URL;'s 
+<para>The submenu <guilabel>Popular URL's</guilabel> 
+      <!-- Openjade does not like an acronym element for "URL" here -->
+      holds persistent the most popular visited &URL;'s 
       (local or remote). This submenu displays the top 15 popular urls, sorted by ranking, 
       so that the top &URL; is the most popular.
       This is easy for when u need to visit &URL;s often, but don't want to create &bookmarks_lnk;,
@@ -421,11 +420,11 @@
 <title>General</title>
 <para>This is a rather short but important section that will go into the details of controlling &krusader;.
        This section doesn't try to cover all the various key combinations for two reasons: 1) there are
-			 just too many of them and 2) most of &krusader;'s actions are configurable in the &konfiglookandfeel_lnk;.
+       just too many of them and 2) most of &krusader;'s actions are configurable in the &konfiglookandfeel_lnk;.
        We will only mention the most important keyboard shortcuts with the default configuration but keep
-			 in mind that most of the key-bindings are configurable. If you find that you use a certain command
-			 a lot and want to know the shortcut for this command, or you want to change this command
-			 shortcut, then check out the "key-bindings" tab at the &konfiglookandfeel_lnk;.</para>
+       in mind that most of the key-bindings are configurable. If you find that you use a certain command
+       a lot and want to know the shortcut for this command, or you want to change this command
+       shortcut, then check out the "key-bindings" tab at the &konfiglookandfeel_lnk;.</para>
 </sect2>
 
 <sect2 id="moving-around">
@@ -435,7 +434,8 @@
       the Left or Right Panel, the Menu Bar, the Command Line or the Terminal Emulator.
       The panel that has the focus is called the Active Panel. An Active Panel will remain active
       until the other panel receives the focus (&ie;: if the Left Panel was active and you clicked on
-      the Command Line - then the Left Panel remains the Active Panel). You must deliberately change which panel is active.</para>
+      the Command Line - then the Left Panel remains the Active Panel). 
+      You must deliberately change which panel is active.</para>
 
 <para>The most common way to transfer the focus to a specific panel is to use the mouse to click on that panel.
        But you should be aware of the following:
@@ -478,11 +478,12 @@
 <sect2 id="marking-files">
 <title>Marking (Selecting) Files</title>
 <para>Marking is a skill you need to master in order to get the most out of &krusader;. Since you can't
-      mark files in the Quick View Panel, and the Tree Panel only lets you mark one directory at a time,
-      this paragraph mainly explains how to mark files in the List Panel filelist.</para>
+      select files in the Quick View Panel, and the Tree Panel only lets you select one directory at a time,
+      this paragraph mainly explains how to select files in the List Panel filelist.</para>
 
 <para>Moving the cursor is easy. Left-clicking on
-      a file or directory (referred to herein as "elements" meaning, files AND directories) will mark it. Here are some useful pointers that will make Krusader even easier to use:
+      a file or directory (referred to herein as "elements" meaning, files AND directories) will select it. 
+      Here are some useful pointers that will make Krusader even easier to use:
       (assuming you're using &krusader;'s Mouse Selection Mode)
 <itemizedlist>
     <listitem><para>The <keycap>SPACE</keycap> key will toggle the marking of the file under the cursor without
@@ -495,14 +496,14 @@
     <listitem><para>The <keycap>Insert</keycap> key will do the same as the <keycap>SPACE</keycap> key but it
                       will go one position down to toggle the next file.</para>
           </listitem>
-    <listitem><para><keycap>Left Clicking</keycap> on a file will mark, or unmark, all previously marked
+    <listitem><para><keycap>Left Clicking</keycap> on a file will select, or unselect, all previously marked
                       files.</para>
           </listitem>
     <listitem><para><keycombo action="simul">&Ctrl;<keycap>Left Clicking</keycap></keycombo> has
                       the same effect as the <keycap>SPACE</keycap> key.</para>
           </listitem>
     <listitem><para><keycombo action="simul">&Shift;<keycap>Left Clicking</keycap></keycombo> will
-                      mark all the elements between the previous cursor location and the new one.</para>
+                      select all the elements between the previous cursor location and the new one.</para>
           </listitem>
     <listitem><para><keycombo action="simul">&Shift;<keycap>Home</keycap></keycombo> will
                       clear existing marks and also marks the cursor and all elements above the cursor.</para>
@@ -512,11 +513,11 @@
           </listitem>
     <listitem><para><keycombo action="simul">&Ctrl;<keycap>Up Arrow</keycap></keycombo>
                       or  <keycombo action="simul">&Ctrl;<keycap>Down Arrow</keycap></keycombo>
-                      will "toggle" the mark state of the files under the cursor to the reverse of their current state.</para>
+                      will "toggle" the select state of the files under the cursor to the reverse of their current state.</para>
           </listitem>
 <!--
 TODO
-     <listitem><para>Moving the mouse while holding the &RMB; will mark all the files
+     <listitem><para>Moving the mouse while holding the &RMB; will select all the files
                       the cursor moves over, but will unmark all the rest.</para></listitem>
 
   This opens the "right click menu"
@@ -524,7 +525,7 @@ TODO
 -->
     <listitem><para>The ".." entry is not markable.</para>
                       </listitem>
-    <listitem><para>The &markmenu_lnk; can offer more ways to mark your files.</para>
+    <listitem><para>The &selectmenu_lnk; can offer more ways to select your files.</para>
                       </listitem>
     <listitem><para>&konfiglookandfeel_lnk; can offer you other ways of using your mouse to select
                       files.</para>
@@ -540,8 +541,8 @@ TODO
       <link linkend="konfig-looknfeel">3 mouse selection modes</link> , the default one should be
        familiar from other file managers and include the use of the &Shift; key or the
        &Ctrl; key to select multiple files.
-       However, notice that Left-Clicking will mark the file under the cursor but will unmark all other files.
-       Holding the &RMB; while dragging will mark all the files the mouse passes over (and unmarks the rest).
+       However, notice that Left-Clicking will select the file under the cursor but will unmark all other files.
+       Holding the &RMB; while dragging will select all the files the mouse passes over (and unmarks the rest).
        Holding down the mouse button without moving it will pop up the Right-Click menu.
        </para>
 </sect2>
@@ -549,7 +550,7 @@ TODO
 
 <sect2 id="executing_commands">
 <title>Executing Commands</title>
-<para>There isn't a lot to say here, all you need to do is mark some files (if you don't &krusader; will operate on
+<para>There isn't a lot to say here, all you need to do is select some files (if you don't &krusader; will operate on
        the file(s) or directory(s) that have the focus), choose a <link linkend="commands">Command</link>
        from the Menu Bar or use a Keyboard Shortcut (or the Right Click Menu) and the selected Command executes.
        See also <link linkend="executing_files">Executing Files</link>.
@@ -632,7 +633,7 @@ TODO
 
 <sect2 id="copying">
 <title>Deleting, Copying, and Moving files</title>
-<para>To copy or move files just mark the files/directories you want to copy/move
+<para>To copy or move files just select the files/directories you want to copy/move
        and press <keycap>F5</keycap> to <keycap>copy</keycap> files or <keycap>F6</keycap> to
        <keycap>move</keycap> them.
        A dialog will appear and allow you to choose the operation destination, the default
@@ -706,7 +707,7 @@ TODO
 <title>Unpack Files</title>
 <para>There are 2 ways to extract files from archives:</para>
 
-<para>If you want to unpack a whole archive(s), browse to the archive location, mark the archive(s)
+<para>If you want to unpack a whole archive(s), browse to the archive location, select the archive(s)
       and select <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Unpack</guimenuitem></menuchoice></emphasis> or
       <keycombo action="simul">&Alt;<keycap>U</keycap></keycombo>.
@@ -743,7 +744,7 @@ TODO
 <para>Krusader will not handle corrupted archives since it may result in data loss.
       If you receive an error message when opening an archive, or if you suspect that there something
       wrong with the archive you should test it before use. To test an archive, browse (navigate) to the archive location,
-      mark the archive. Next select <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
+      select the archive. Next select <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Test Archive</guimenuitem></menuchoice></emphasis> or
       <keycombo action="simul">&Alt;<keycap>E</keycap></keycombo>.
       &krusader; will test the archive file and inform you if the archive passed or failed the file integrity test.</para>
@@ -757,7 +758,7 @@ TODO
 
 <sect2 id="compare-files">
 <title>Comparing Files (Compare by Content)</title>
-<para>To find the difference between two files mark one in each panel and select
+<para>To find the difference between two files select one in each panel and select
       <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Compare by content</guimenuitem></menuchoice></emphasis>.
       Right now &krusader; does not include a built-in graphical difference tool but supports two
@@ -771,7 +772,7 @@ TODO
 <title>Compare Directories</title>
 
 <para>&krusader; offers a graphical directory compare mode. To activate it select
-      <emphasis role="bold"><menuchoice><guimenu>Mark</guimenu>
+      <emphasis role="bold"><menuchoice><guimenu>Select</guimenu>
       <guimenuitem>Compare Directories</guimenuitem></menuchoice></emphasis>
 
 <note><para>The files are not compared by content but by their names and dates only.</para></note>
@@ -780,20 +781,20 @@ TODO
 <variablelist>
 <varlistentry>
   <term><menuchoice>
-  <guimenu>Mark</guimenu>
+  <guimenu>Select</guimenu>
   <guimenuitem>Compare Setup</guimenuitem>
   </menuchoice></term>
   <listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>
    <itemizedlist>
-            <listitem><para><guimenuitem>Mark Newer and Single</guimenuitem> (default)
+            <listitem><para><guimenuitem>Select Newer and Single</guimenuitem> (default)
                       </para></listitem>
-            <listitem><para><guimenuitem>Mark Single</guimenuitem>
+            <listitem><para><guimenuitem>Select Single</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Mark Newer</guimenuitem>
+            <listitem><para><guimenuitem>Select Newer</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Mark Different and Single</guimenuitem>
+            <listitem><para><guimenuitem>Select Different and Single</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Mark Different</guimenuitem>
+            <listitem><para><guimenuitem>Select Different</guimenuitem>
                 </para></listitem>
          </itemizedlist>
   </listitem>
@@ -833,43 +834,6 @@ TODO
   </itemizedlist>
 </para>
 </sect2>
-
-
-<sect2 id="browse-remote">
-<title>Browse Remote &FTP;/SMB Servers</title>
-<para>There are three ways to browse a remote &FTP;/SMB server:
-<itemizedlist>
-      <listitem><para>Using the built-in <link linkend="remote-man">Remote-Connection Manger</link>.
-                Important: RemoteMan has been replaced by a new Bookmark Manager since &krusader; 1.25-beta1.</para>
-               </listitem>
-      <listitem><para>Selecting <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-                <guimenuitem>FTP New Connection</guimenuitem></menuchoice></emphasis> which will pop-up a
-                dialog that will ask for the remote site details. Leaving the password and user name fields empty will
-                try to log you in as annonymous.</para>
-                </listitem>
-      <listitem><para>You can bookmark a directory on a remote host and return to this
-                directory from the bookmark button on the top corner of your panel just like in a web browser.</para>
-                </listitem>
-</itemizedlist>
-</para>
-
-<para>After you logon to a remote server you can browse it just like your local hard drive
-      with the following exceptions:
-      <itemizedlist>
-      <listitem><para>You cannot execute files on remote servers.</para>
-                </listitem>
-      <listitem><para>Permissions cannot always be calculated on remote servers (depends on server and access method) so you might
-                get a "?" on the permissions columns for some files. </para>
-                </listitem>
-  <listitem><para>Disk usage information is not availble for most remote filesystems.</para>
-            </listitem>
-    </itemizedlist>
-</para>
-
-<para>To end the current Active Connection select <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-      <guimenuitem>FTP Disconnect</guimenuitem></menuchoice></emphasis>.</para>
-</sect2>
-
 
 <sect2 id="send-email">
 <title>Send Files by e-mail</title>
@@ -1126,13 +1090,13 @@ TODO
 <entry><para><link linkend="unpacking-archives">Unpack files</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>+</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Select All</link></para></entry></row>
+<entry><para><link linkend="select-menu">Select All</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>-</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Unselect All</link></para></entry></row>
+<entry><para><link linkend="select-menu">Unselect All</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>*</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Invert Selection</link></para></entry></row>
+<entry><para><link linkend="select-menu">Invert Selection</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>/</keycap></keycombo></para></entry>
 <entry><para><link linkend="mount-man">MountMan</link></para></entry></row>
@@ -1183,10 +1147,10 @@ TODO
 <tbody>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Select Group</link></para></entry></row>
+<entry><para><link linkend="select-menu">Select Group</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Unselect Group</link></para></entry></row>
+<entry><para><link linkend="select-menu">Unselect Group</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></para></entry>
 <entry><para><link linkend="view-menu">Compare directories</link> (Compare Mode)</para></entry></row>

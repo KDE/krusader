@@ -33,18 +33,18 @@
 </screenshot>
 
 <para>&krusader; is an advanced, twin-panel, "commander"-style file-manager
-			for &kde; 3.2.x (similar to <application>Midnight or Total Commander</application>)
-			but with many extras.
-			&krusader; offers all the file-management features you could possibly want, and more!</para>
+      for &kde; 3.2.x (similar to <application>Midnight or Total Commander</application>)
+      but with many extras.
+      &krusader; offers all the file-management features you could possibly want, and more!</para>
 
 <para>Plus: extensive Archive handling, mounted Filesystem support, &FTP;,
      advanced Search module, viewer/Editor, directory Synchronisation,
      file content Comparisons, powerful batch Renaming and much, much more.
-			Supports archive formats: ace, arj, bzip2, gzip, iso, lha, rar, rpm, tar and zip.
+     Supports archive formats: ace, arj, bzip2, gzip, iso, lha, rar, rpm, tar and zip.
      Handles other &kioslaves1_url; such as smb:// or fish://.</para>
 
 <para>Almost completely customizable, very user friendly, fast,
-			and looks great on your desktop! :-)</para>
+      and looks great on your desktop! :-)</para>
 
 <para>Give &krusader; a try.</para>
 
@@ -55,7 +55,7 @@
     <imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
           <imageobject><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
     <textobject><phrase>&krusader; screenshot</phrase></textobject>
-    <caption><para>&krusader; 1.50 with two PopUp panels.</para></caption>
+    <caption><para>&krusader;-1.60</para></caption>
   </mediaobject>
 </screenshot>
 
@@ -79,8 +79,8 @@ You can discover even more features in this documentation or in the &changelog_u
   </listitem>
 
   <listitem>
-     <para>Full ace, arj, bzip2, gzip, iso, lha, rar, rpm, tar and zip support
-     <link linkend="archives">support</link>.</para></listitem>
+     <para>Supported &archives_lnk; : ace, arj, bzip2, gzip, iso, lha, rar, rpm, tar and zip.
+     </para></listitem>
   <listitem>
 
       <para><link linkend="krusearcher">Advanced search module</link> that can search in archives.</para>
@@ -92,25 +92,28 @@ You can discover even more features in this documentation or in the &changelog_u
   </listitem>
 
    <listitem>
-      <para><link linkend="panels">Quick View and Tree panels</link>.</para>
+      <para><link linkend="panels">(Pre)View and Tree panels</link>.</para>
    </listitem>
 
   <listitem>
-       <para>&FTP;/SAMBA client with a <link linkend="remote-man">connection manager</link>
-             with SFTP/SCP support.</para>
+       <para>&remote_connections_lnk; &eg; &FTP;/SAMBA with SFTP/SCP support.</para>
   </listitem>
 
   <listitem>
-       <para>Open a <link linkend="commands-menu">terminal</link> to the browsed path.</para>
+       <para>Open a <link linkend="commands-menu">Terminal</link> &eg; &konsole; to the browsed path.</para>
   </listitem>
 
   <listitem>
-       <para>Optional embedded &termemu_lnk;.</para>
+       <para>Embedded &termemu_lnk;.</para>
   </listitem>
 
   <listitem>
-      <para>Configurable <link linkend="bookman">bookmark</link> list (using BookMan, the bookmark
-      manager).</para>
+       <para>A &cmdline_lnk; capable of running something in a terminal with a single click
+             of a button.</para>
+   </listitem>
+
+  <listitem>
+      <para><link linkend="bookman">Bookmark-Manager</link>.</para>
   </listitem>
 
   <listitem>
@@ -130,11 +133,6 @@ You can discover even more features in this documentation or in the &changelog_u
   </listitem>
 
   <listitem>
-       <para>Offers a &cmdline_lnk; capable of running something in a terminal with a single click
-             of a button.</para>
-   </listitem>
-
-  <listitem>
        <para>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, from
        &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!</para>
   </listitem>
@@ -145,12 +143,12 @@ You can discover even more features in this documentation or in the &changelog_u
   </listitem>
 
   <listitem>
-       <para><link linkend="test-archive">Tests the integrity of archives.</link>.</para>
+       <para><link linkend="test-archive">Tests the integrity of archives</link>.</para>
   </listitem>
 
   <listitem>
        <para><link linkend="compare-files">Compare files by content</link> (via external diff program
-        such as &kompare;, &kdiff3_url;  or &xxdiff;).</para>
+        such as &kompare;, &kdiff3_url;  or &xxdiff_url;).</para>
   </listitem>
 
   <listitem>
@@ -163,7 +161,7 @@ You can discover even more features in this documentation or in the &changelog_u
 
   <listitem>
       <para><link linkend="multi_rename">Krename</link> support, a very powerful
-                                external batch renamer for &kde; 3.x.</para>
+                                external batch renamer for &kde;</para>
   </listitem>
 
   <listitem>
@@ -240,30 +238,35 @@ You can discover even more features in this documentation or in the &changelog_u
 <para>
 <itemizedlist>
   <title>New features in version 1.60</title>
-  <listitem>
-      <para><link linkend="konfig-looknfeel-keybindings">Keybinding profiles</link>.</para>
-  </listitem>
+  
   <listitem>
         <para>&diskusage_lnk;.</para>
   </listitem>
+  
   <listitem>
         <para><link linkend="konfig-color">Import/export Color schemes</link>.</para>
   </listitem>
+  
   <listitem>
         <para><link linkend="konfig-looknfeel-keybindings">Import/export Keybindings</link>.</para>
   </listitem>
+  
   <listitem>
         <para>Searcher: <link linkend="krusearcher">Feed to listbox</link> (with virtual folders).</para>
   </listitem>
+  
   <listitem>
         <para><link linkend="actions_toolbar">Actions Toolbar</link> for user actions and bookmarks.</para>
   </listitem>
+  
   <listitem>
         <para><link linkend="mouse_usage">3 mouse selection modes</link>.</para>
   </listitem>
+  
   <listitem>
         <para><link linkend="folderhistory">Popular &URL;s</link>.</para>
   </listitem>
+  
   <listitem>
         <para>&bookmarks_lnk; can be placed into toolbars.</para>
   </listitem>
