@@ -1663,7 +1663,28 @@ You can also set a user under which the command should be executed.
 </itemizedlist>
 </para>
 
+</sect1>
 
+
+<sect1  id="diskusage">
+<title>Disk Usage</title>
+
+<para>The Disk Usage is based on the code of &filelight;.
+      The Disk Usage allows you to understand exactly where your diskspace is being used by a graphically representating
+      of your filesystem. The following presentations are possible:
+ <itemizedlist>
+  <listitem><para>Line view</para></listitem>
+  <listitem><para>Detailed view</para></listitem>
+  <listitem><para>&filelight; view: as a set of concentric segmented-rings.</para></listitem>
+ </itemizedlist>
+
+ Choose <emphasis role="bold"><menuchoice><guimenu>Tools</guimenu>
+      <guimenuitem>Disk Usage</guimenuitem></menuchoice></emphasis>
+      or
+      <keycombo action="simul">&Alt;<keycap>d</keycap></keycombo> to start this feature.
+      It is also available in the &popup_panel_lnk;.
+</para>
+     
 </sect1>
 
 
