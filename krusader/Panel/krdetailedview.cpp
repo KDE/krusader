@@ -242,11 +242,72 @@ void KrDetailedView::newColumn( ColumnType type ) {
  * if such values are not presented in the view, -1 is returned.
  */
 int KrDetailedView::column( ColumnType type ) {
-  for ( int i = 0; i < MAX_COLUMNS; i++ )
-    if ( _columns[ i ] == type )
-      return i;
-  return -1;
-  }
+   for ( int i = 0; i < MAX_COLUMNS; i++ )
+      if ( _columns[ i ] == type )
+         return i;
+   return -1;
+}
+
+void KrDetailedView::addItem(vfile *vf ) {
+   QString size = KRpermHandler::parseSize( vf->vfile_getSize() );
+   QString name = vf->vfile_getName();
+   bool isDir = vf->vfile_isDir();
+   if ( !isDir || ( isDir && ( _filter & ApplyToDirs ) ) ) {
+      switch ( _filter ) {
+            case KrView::All :
+               break;
+            case KrView::Custom :
+            if ( !QDir::match( _filterMask, name ) ) return ;
+            break;
+            case KrView::Dirs:
+            if ( !vf->vfile_isDir() ) return ;
+            break;
+            case KrView::Files:
+            if ( vf->vfile_isDir() ) return ;
+            break;
+            case KrView::ApplyToDirs :
+            break; // no-op, stop compiler complaints
+      }
+   }
+   // passed the filter ...
+   QListViewItem *item = new KrDetailedViewItem( this, lastItem(), vf );
+	// add to dictionary
+	dict.insert(vf->vfile_getName(), item);
+   if ( isDir )
+      ++_numDirs;
+   else _countSize += dynamic_cast<KrViewItem*>( item ) ->size();
+   ++_count;
+   ensureItemVisible( currentItem() );
+}
+
+void KrDetailedView::delItem( const QString &name ) {
+	QListViewItem *it = dict[name];
+	if (!it) 
+		kdWarning() << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
+	else delete it;
+}
+
+void KrDetailedView::updateItem(vfile *vf) {
+   // since we're deleting the item, make sure we keep
+	// it's properties first and repair it later
+	QListViewItem *it = dict[vf->vfile_getName()];
+	if (!it) {
+		kdWarning() << "got signal updatedVfile(" << vf->vfile_getName() << ") but can't find KrViewItem" << endl;
+	} else {
+		// ugly hack: KrDetailedViewItem::isSelected() returns false if _vf is dead
+		// so we can't use that to check for the 'selected' property. that's why
+		// check directly the KListViewItem's selected property
+		bool selected = dynamic_cast<KListViewItem*>(it)->isSelected();
+		bool current = (getCurrentKrViewItem() == dynamic_cast<KrViewItem*>(it));
+		delItem( vf->vfile_getName() );
+   	addItem( vf );
+		// restore settings
+		dynamic_cast<KrViewItem*>(dict[vf->vfile_getName()])->setSelected(selected);
+		if (current)
+			setCurrentItem(vf->vfile_getName());
+	}
+}
+
 
 void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
   QListViewItem * item = firstChild();
@@ -316,6 +377,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       }
 
     item = new KrDetailedViewItem( this, item, vf );
+	 dict.insert(vf->vfile_getName(), item);
     if ( isDir )
       ++_numDirs;
     else
@@ -357,18 +419,24 @@ QString KrDetailedView::getCurrentItem() const {
   }
 
 void KrDetailedView::setCurrentItem( const QString& name ) {
+	QListViewItem *it = dict[name];
+	if (it)
+		KListView::setCurrentItem(it);
+#if 0  
   for ( QListViewItem * it = firstChild(); it != 0; it = it->itemBelow() )
     if ( dynamic_cast<KrViewItem*>( it ) ->
          name() == name ) {
       KListView::setCurrentItem( it );
       break;
       }
+#endif
   }
 
 void KrDetailedView::clear() {
   emit KListView::selectionChanged(); /* to avoid rename crash at refresh */
   KListView::clear();
   _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
+  dict.clear();
   }
 
 void KrDetailedView::setSortMode( SortSpec mode ) {
@@ -1049,17 +1117,6 @@ bool KrDetailedView::event( QEvent *e )
   default:
     CANCEL_TWO_CLICK_RENAME;
   }
-  KListView::event( e );
+  return KListView::event( e );
 }
 
-void KrDetailedView::addedVfile( const vfile *vf ) {
-	kdWarning() << "added: " << vf->vfile_getName() << endl;
-}
-
-void KrDetailedView::updatedVfile( const vfile *vf ) {
-	kdWarning() << "updated: " << vf->vfile_getName() << endl;
-}
-
-void KrDetailedView::deletedVfile( const QString &name ) {
-	kdWarning() << "deleted: " << name << endl;
-}
