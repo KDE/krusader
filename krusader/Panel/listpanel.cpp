@@ -482,7 +482,7 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
       return ;
     }
 
-  if ( !isWritable ) {
+  if ( !isWritable && getuid()!=0 ) {
     e->ignore();
     KMessageBox::sorry( 0, i18n( "Can't drop here, no write permissions." ) );
     return ;
