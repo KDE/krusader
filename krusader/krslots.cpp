@@ -76,6 +76,7 @@
 #include "Synchronizer/synchronizergui.h"
 #include "DiskUsage/diskusagegui.h"
 #include "krservices.h"
+#include "Panel/krviewitem.h"
 
 #define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
                               MAIN_VIEW->left->func->refresh(); \
