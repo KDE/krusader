@@ -5,9 +5,9 @@ INCLUDES = $(all_includes)
 
 libKonfigurator_a_METASOURCES = AUTO
 
-libKonfigurator_a_SOURCES = konfigurator.cpp kgwelcome.cpp kgstartupimpl.cpp kgstartup.cpp kglookfeelimpl.cpp kglookfeel.cpp kggeneralimpl.cpp kggeneral.cpp kgarchivesimpl.cpp kgarchives.cpp kgadvancedimpl.cpp kgadvanced.cpp 
+libKonfigurator_a_SOURCES = konfiguratorpage.cpp konfiguratoritems.cpp konfigurator.cpp kgwelcome.cpp kgstartup.cpp kglookfeel.cpp kggeneral.cpp kgarchives.cpp kgadvanced.cpp 
 
 
-EXTRA_DIST = kgadvanced.cpp kgadvanced.h kgadvancedimpl.cpp kgadvancedimpl.h kgarchives.cpp kgarchives.h kgarchivesimpl.cpp kgarchivesimpl.h kggeneral.cpp kggeneral.h kggeneralimpl.cpp kggeneralimpl.h kglookfeel.cpp kglookfeel.h kglookfeelimpl.cpp kglookfeelimpl.h kgstartup.cpp kgstartup.h kgstartupimpl.cpp kgstartupimpl.h kgwelcome.cpp kgwelcome.h konfigurator.cpp konfigurator.h 
+EXTRA_DIST = kgadvanced.cpp kgadvanced.h kgarchives.cpp kgarchives.h kggeneral.cpp kggeneral.h kglookfeel.cpp kglookfeel.h kgstartup.cpp kgstartup.h kgwelcome.cpp kgwelcome.h konfigurator.cpp konfigurator.h konfiguratoritems.cpp konfiguratoritems.h konfiguratorpage.cpp konfiguratorpage.h 
 
 ####### kdevelop will overwrite this part!!! (end)############

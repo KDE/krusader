@@ -33,40 +33,45 @@
 #ifndef KONFIGURATOR_H
 #define KONFIGURATOR_H
 
+#include "konfiguratorpage.h"
 #include <qwidget.h>
 #include <kdialogbase.h>
 #include <kjanuswidget.h>
+#include <qtimer.h>
 
 class QLineEdit;
 class QString;
 
-class Konfigurator : public KDialogBase  {
+class Konfigurator : public KDialogBase
+{
    Q_OBJECT
 
 public:
-	Konfigurator(bool f=false); // true if Konfigurator is run for the first time
- ~Konfigurator();
-  // the following are used by all the KgFrames
-static void genericBrowse(QLineEdit *&target, QString startDir, QString caption);
-	
+  Konfigurator(bool f=false); // true if Konfigurator is run for the first time
+  ~Konfigurator() {};
+
 protected:
-  QFrame* newPage(QString name, QString desc, QPixmap pix=QPixmap());
-  void newContent(QFrame *widget);// adds widget into newPage and connects to slot
+  void newContent(KonfiguratorPage *widget);// adds widget into newPage and connects to slot
   void createLayout();
 
 protected slots:
-  void slotOk();
+  void slotUser1();
   void slotApply();   // actually used for defaults
   void slotCancel();
-
-signals:
-  void applyChanges();
-  void defaultSettings();
+  void slotApplyEnable();
+  bool slotPageSwitch();
+  void slotRestorePage();
 
 private:
-  QList<QFrame> kgFrames;
-  KJanusWidget *widget;
-  bool firstTime;
+  int  searchPage( int pageNum );
+
+private:
+  QPtrList<KonfiguratorPage>  kgFrames;
+  KJanusWidget               *widget;
+  bool                        firstTime;
+  int                         lastPage;
+  bool                        internalCall;
+  QTimer                      restoreTimer;
 };
 
 #endif

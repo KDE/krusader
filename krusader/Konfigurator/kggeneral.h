@@ -1,65 +1,48 @@
-/****************************************************************************
-** Form interface generated from reading ui file 'kggeneral.ui'
-**
-** Created: Fri Jun 1 18:20:39 2001
-**      by:  The User Interface Compiler (uic)
-**
-** WARNING! All changes made in this file will be lost!
-****************************************************************************/
-#ifndef KGGENERAL_H
-#define KGGENERAL_H
+/***************************************************************************
+                         kgadvanced.h  -  description
+                             -------------------
+    copyright            : (C) 2004 by Csaba Karai
+    e-mail               : krusader@users.sourceforge.net
+    web site             : http://krusader.sourceforge.net
+ ---------------------------------------------------------------------------
+  Description
+ ***************************************************************************
 
-#include <qvariant.h>
-#include <qframe.h>
-class QVBoxLayout; 
-class QHBoxLayout; 
-class QGridLayout; 
-class QButtonGroup;
-class QCheckBox;
-class QGroupBox;
-class QLabel;
-class QLineEdit;
-class QRadioButton;
-class QToolButton;
+  A
 
-class kgGeneral : public QFrame
-{ 
-    Q_OBJECT
+     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                                     H e a d e r    F i l e
+
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+#ifndef __KGGENERAL_H__
+#define __KGGENERAL_H__
+ 
+#include "konfiguratorpage.h"
+
+class KgGeneral : public KonfiguratorPage
+{
+  Q_OBJECT
 
 public:
-    kgGeneral( QWidget* parent = 0, const char* name = 0 );
-    ~kgGeneral();
-
-    QGroupBox* GroupBox2;
-    QLineEdit* kgTerminal;
-    QLabel* TextLabel2;
-    QLineEdit* kgEditor;
-    QToolButton* kgBrowseEditor;
-    QLabel* TextLabel1_2;
-    QToolButton* kgBrowseTerminal;
-    QFrame* Line2_2;
-    QLineEdit* kgTempDir;
-    QToolButton* kgBrowseTempDir;
-    QLabel* TextLabel2_2;
-    QLabel* TextLabel1;
-    QButtonGroup* ButtonGroup1;
-    QRadioButton* kgMoveToTrash;
-    QRadioButton* kgDeleteFiles;
-    QFrame* Line2;
-    QCheckBox* kgMimetypeMagic;
+  KgGeneral( bool first, QWidget* parent=0,  const char* name=0 );
 
 public slots:
-    virtual void slotBrowseTempDir();
-    virtual void slotApplyChanges();
-    virtual void slotBrowseEditor();
-    virtual void slotBrowseTerminal();
-    virtual void slotDefaultSettings();
-
-protected:
-    QGridLayout* kgGeneralLayout;
-    QGridLayout* GroupBox2Layout;
-    QGridLayout* Layout8;
-    QGridLayout* ButtonGroup1Layout;
+  void  applyTempDir(QObject *,QString, QString);
+  void  slotFindTools();
 };
 
-#endif // KGGENERAL_H
+#endif /* __KGGENERAL_H__ */

@@ -1,170 +1,168 @@
 /***************************************************************************
-** Form implementation generated from reading ui file 'kgarchives.ui'
-**
-** Created: Tue Apr 17 20:21:46 2001
-**      by:  The User Interface Compiler (uic)
-**
-** WARNING! All changes made in this file will be lost!
-****************************************************************************/
+                         kgarchives.cpp  -  description
+                             -------------------
+    copyright            : (C) 2004 by Csaba Karai
+    e-mail               : krusader@users.sourceforge.net
+    web site             : http://krusader.sourceforge.net
+ ---------------------------------------------------------------------------
+  Description
+ ***************************************************************************
+
+  A
+
+     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                                     S o u r c e    F i l e
+
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 #include "kgarchives.h"
-
-#include <qcheckbox.h>
-#include <qgroupbox.h>
-#include <qlabel.h>
-#include <qpushbutton.h>
-#include <qlayout.h>
-#include <qvariant.h>
-#include <qtooltip.h>
-#include <qwhatsthis.h>
+#include "../defaults.h"
+#include "../VFS/krarchandler.h"
+#include "../krusader.h"
 #include <klocale.h>
+#include <qpushbutton.h>
+#include <qhbox.h>
+#include <qstringlist.h>
+#include <kmessagebox.h>
 
-/*
- *  Constructs a kgArchives which is a child of 'parent', with the 
- *  name 'name'.'
- */
-kgArchives::kgArchives( QWidget* parent,  const char* name )
-    : QFrame( parent, name )
+KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
+      KonfiguratorPage( first, parent, name )
 {
-    if ( !name )
-	setName( "kgArchives" );
-    resize( 378, 348 ); 
-    setCaption( i18n( "Archives" ) );
-    setFrameShape( QFrame::NoFrame );
-    setFrameShadow( QFrame::MShadow );
-    QToolTip::add(  this, "" );
-    kgArchivesLayout = new QGridLayout( parent );
-    kgArchivesLayout->setSpacing( 6 );
-    kgArchivesLayout->setMargin( 11 );
+  if( first )
+    slotAutoConfigure();
+  
+  QGridLayout *kgArchivesLayout = new QGridLayout( parent );
+  kgArchivesLayout->setSpacing( 6 );
+  kgArchivesLayout->setMargin( 11 );
 
-    GroupBox13 = new QGroupBox( parent, "GroupBox13" );
-    GroupBox13->setFrameShape( QGroupBox::Box );
-    GroupBox13->setFrameShadow( QGroupBox::Sunken );
-    GroupBox13->setTitle( i18n( "General" ) );
-    GroupBox13->setColumnLayout(0, Qt::Vertical );
-    GroupBox13->layout()->setSpacing( 0 );
-    GroupBox13->layout()->setMargin( 0 );
-    GroupBox13Layout = new QGridLayout( GroupBox13->layout() );
-    GroupBox13Layout->setAlignment( Qt::AlignTop );
-    GroupBox13Layout->setSpacing( 6 );
-    GroupBox13Layout->setMargin( 11 );
+  //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-    kgBZip2 = new QCheckBox( GroupBox13, "kgBZip2" );
-    kgBZip2->setText( i18n( "BZip2" ) );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "generalGrp" );    
+  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
-    GroupBox13Layout->addWidget( kgBZip2, 1, 6 );
+  addLabel( generalGrid, 0, 0, i18n( "Krusader transparently handles the following types of archives:" ),
+            generalGrp, "KgLabel1" );
 
-    kgGZip = new QCheckBox( GroupBox13, "kgGZip" );
-    kgGZip->setText( i18n( "GZip" ) );
+  KONFIGURATOR_CHECKBOX_PARAM packers[] =
+  //   cfg_class  cfg_name   default   text             restart tooltip
+    {{"Archives","Do Tar",   _DoTar,   i18n( "Tar" ),   false,  ""},
+     {"Archives","Do GZip",  _DoGZip,  i18n( "GZip" ),  false,  ""},
+     {"Archives","Do BZip2", _DoBZip2, i18n( "BZip2" ), false,  ""},
+     {"Archives","Do UnZip", _DoUnZip, i18n( "Zip" ),   false,  ""},
+     {"Archives","Do UnRar", _DoUnRar, i18n( "Rar" ),   false,  ""},
+     {"Archives","Do Unarj", _DoArj,   i18n( "Arj" ),   false,  ""},
+     {"Archives","Do RPM",   _DoRPM,   i18n( "Rpm" ),   false,  ""},
+     {"Archives","Do UnAce", _DoUnAce, i18n( "Ace" ),   false,  ""}};
 
-    GroupBox13Layout->addWidget( kgGZip, 1, 3 );
+  QWidget *cbs = createCheckBoxGroup( 3, 0, packers, 8, packerCbs,  generalGrp );
+  generalGrid->addWidget( cbs, 1, 0 );
+  
+  addLabel( generalGrid, 2, 0, i18n( "The archives that are \"greyed-out\" were unavaible on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ),
+            generalGrp, "KgLabel2" );
 
-    kgRpm = new QCheckBox( GroupBox13, "kgRpm" );
-    kgRpm->setText( i18n( "Rpm" ) );
+  QHBox *hbox = new QHBox( generalGrp );
+  createSpacer( hbox, "spacer1" );
+  QPushButton *btnAutoConfigure = new QPushButton( i18n( "Auto Configure" ), hbox, "kgAutoConfigure" );
+  createSpacer( hbox, "spacer2" );
+  generalGrid->addWidget( hbox, 3, 0 );
+  connect( btnAutoConfigure, SIGNAL( clicked() ), this, SLOT( slotAutoConfigure() ) );
 
-    GroupBox13Layout->addWidget( kgRpm, 3, 0 );
+  kgArchivesLayout->addWidget( generalGrp, 0 ,0 );
 
-    kgZip = new QCheckBox( GroupBox13, "kgZip" );
-    kgZip->setText( i18n( "Zip" ) );
+  //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-    GroupBox13Layout->addWidget( kgZip, 2, 0 );
-    QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    GroupBox13Layout->addMultiCell( spacer, 2, 2, 4, 5 );
+  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent, "fineTuneGrp" );
+  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
 
-    kgTar = new QCheckBox( GroupBox13, "kgTar" );
-    kgTar->setText( i18n( "Tar" ) );
+  KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
+  //   cfg_class  cfg_name                  default           text                                          restart ToolTip
+    {{"Archives","Allow Move Into Archive", _MoveIntoArchive, i18n( "Allow moving into archives" ),         false,  i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." )},
+     {"Archives","Test Archives",           _TestArchives,    i18n( "Test archive when finished packing" ), false,  i18n( "If checked, Krusader will test the archive's intergrity after packing it." )}};
 
-    GroupBox13Layout->addWidget( kgTar, 1, 0 );
-    QSpacerItem* spacer_2 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    GroupBox13Layout->addMultiCell( spacer_2, 1, 1, 4, 5 );
-
-    kgArj = new QCheckBox( GroupBox13, "kgArj" );
-    kgArj->setText( i18n( "Arj" ) );
-
-    GroupBox13Layout->addWidget( kgArj, 2, 6 );
-    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    GroupBox13Layout->addMultiCell( spacer_3, 1, 1, 1, 2 );
-    QSpacerItem* spacer_4 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    GroupBox13Layout->addMultiCell( spacer_4, 5, 5, 0, 1 );
-
-    kgAutoConfigure = new QPushButton( GroupBox13, "kgAutoConfigure" );
-    kgAutoConfigure->setText( i18n( "Auto Configure" ) );
-
-    GroupBox13Layout->addMultiCellWidget( kgAutoConfigure, 5, 5, 2, 4 );
-    QSpacerItem* spacer_5 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    GroupBox13Layout->addMultiCell( spacer_5, 5, 5, 5, 6 );
-
-    TextLabel1_2 = new QLabel( GroupBox13, "TextLabel1_2" );
-    TextLabel1_2->setText( i18n( "Krusader transparently handles the following types of archives:" ) );
-
-    GroupBox13Layout->addMultiCellWidget( TextLabel1_2, 0, 0, 0, 6 );
-
-    kgRar = new QCheckBox( GroupBox13, "kgRar" );
-    kgRar->setText( i18n( "Rar" ) );
-
-    GroupBox13Layout->addWidget( kgRar, 2, 3 );
-
-    kgAce = new QCheckBox( GroupBox13, "kgAce" );
-    kgAce->setText( i18n( "Ace" ) );
-
-    GroupBox13Layout->addWidget( kgAce, 3, 3 );
-
-    TextLabel1 = new QLabel( GroupBox13, "TextLabel1" );
-    TextLabel1->setText( i18n( "The archives that are \"greyed-out\" were unavaible on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ) );
-
-    GroupBox13Layout->addMultiCellWidget( TextLabel1, 4, 4, 0, 6 );
-    QSpacerItem* spacer_6 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    GroupBox13Layout->addMultiCell( spacer_6, 2, 2, 1, 2 );
-    QSpacerItem* spacer_7 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    GroupBox13Layout->addMultiCell( spacer_7, 3, 3, 1, 2 );
-
-    kgArchivesLayout->addWidget( GroupBox13, 0, 0 );
-
-    GroupBox2 = new QGroupBox( parent, "GroupBox2" );
-    GroupBox2->setTitle( i18n( "Fine-Tuning" ) );
-
-    QWidget* privateLayoutWidget = new QWidget( GroupBox2, "Layout4" );
-    privateLayoutWidget->setGeometry( QRect( 10, 20, 430, 60 ) );
-    Layout4 = new QVBoxLayout( privateLayoutWidget );
-    Layout4->setSpacing( 6 );
-    Layout4->setMargin( 0 );
-
-    kgMoveIntoArchives = new QCheckBox( privateLayoutWidget, "kgMoveIntoArchives" );
-    kgMoveIntoArchives->setText( i18n( "Allow moving into archives" ) );
-    QToolTip::add(  kgMoveIntoArchives, i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." ) );
-    Layout4->addWidget( kgMoveIntoArchives );
-
-    kgTestArchives = new QCheckBox( privateLayoutWidget, "kgTestArchives" );
-    kgTestArchives->setText( i18n( "Test archive when finished packing                    " ) );
-    QToolTip::add(  kgTestArchives, i18n( "If checked, Krusader will test the archive's intergrity after packing it." ) );
-    Layout4->addWidget( kgTestArchives );
-
-    kgArchivesLayout->addWidget( GroupBox2, 1, 0 );
-
-    // signals and slots connections
-    connect( kgAutoConfigure, SIGNAL( clicked() ), this, SLOT( slotAutoConfigure() ) );
+  QWidget *finetunes = createCheckBoxGroup( 1, 0, finetuners, 2, tunerCbs, fineTuneGrp );
+   
+  disableNonExistingPackers();    
+  fineTuneGrid->addWidget( finetunes, 1, 0 );
+    
+  kgArchivesLayout->addWidget( fineTuneGrp, 1 ,0 );
 }
 
-/*
- *  Destroys the object and frees any allocated resources
- */
-kgArchives::~kgArchives()
+void KgArchives::slotAutoConfigure()
 {
-    // no need to delete child widgets, Qt does it all for us
+  #define PS(x) lst.contains(x)>0
+  
+  QString info;
+  QStringList lst=KRarcHandler::supportedPackers(); // get list of availble packers
+
+  info+=i18n("Search results:\n\n");
+  if (PS("tar")) info+=i18n("tar: found, packing and unpacking enabled.\n");
+  else info+=i18n("tar: NOT found, packing and unpacking DISABLED.\n==> tar can be obtained at www.gnu.org\n");
+  if (PS("gzip")) info+=i18n("gzip: found, packing and unpacking enabled.\n");
+  else info+=i18n("gzip: NOT found, packing and unpacking DISABLED.\n==> gzip can be obtained at www.gnu.org\n");
+  if (PS("bzip2")) info+=i18n("bzip2: found, packing and unpacking enabled.\n");
+  else info+=i18n("bzip2: NOT found, packing and unpacking DISABLED.\n==> bzip2 can be obtained at www.gnu.org\n");
+  if (PS("unzip")) info+=i18n("unzip: found, unpacking enabled.\n");
+  else info+=i18n("unzip: NOT found, unpacking DISABLED.\n==> unzip can be obtained at www.info-zip.org\n");
+  if (PS("zip")) info+=i18n("zip: found, packing enabled.\n");
+  else info+=i18n("zip: NOT found, packing DISABLED.\n==> zip can be obtained at www.info-zip.org\n");
+  if (PS("rpm") && PS("cpio")) info+=i18n("rpm: found, unpacking enabled.\n");
+  else if (PS("rpm") && !PS("cpio")) info+=i18n("rpm found but cpio NOT found: unpacking DISABLED.\n==>cpio can be obtained at www.gnu.org\n");
+  else info+=i18n("rpm: NOT found, unpacking is DISABLED.\n==> rpm can be obtained at www.gnu.org\n");
+  if (PS("unrar")) info+=i18n("unrar: found, unpacking is enabled.\n");
+  else info+=i18n("unrar: NOT found, unpacking is DISABLED.\n==> unrar can be obtained at www.rarsoft.com\n");
+  if (PS("rar")) info+=i18n("rar: found, packing is enabled.\n");
+  else info+=i18n("rar: NOT found, packing is DISABLED.\n==> rar can be obtained at www.rarsoft.com\n");
+  if (PS("unarj")) info+=i18n("unarj: found, unpacking is enabled.\n");
+  else info+=i18n("unarj: NOT found, unpacking is DISABLED.\n==> unarj can be obtained at www.arjsoft.com\n");
+  if (PS("unace")) info+=i18n("unace: found, unpacking is enabled.\n");
+  else info+=i18n("unace: NOT found, unpacking is DISABLED.\n==> unace can be obtained at www.winace.com\n");
+
+  info+=i18n("\nIf you install new packers, please install them");
+  info+=i18n("\nto your path. (ie: /usr/bin, /usr/local/bin etc.)");
+  info+=i18n("\nThanks for flying Krusader :-)");
+  KMessageBox::information(0,info,i18n("Results"));
+  disableNonExistingPackers();
 }
 
-void kgArchives::slotApplyChanges()
+void KgArchives::disableNonExistingPackers()
 {
-    qWarning( "kgArchives::slotApplyChanges(): Not implemented yet!" );
+  #define PS(x) lst.contains(x)>0
+
+  QStringList lst=KRarcHandler::supportedPackers(); // get list of availble packers
+  packerCbs.at( PK_Tar )->setEnabled(PS("tar"));
+  packerCbs.at( PK_GZip )->setEnabled(PS("gzip"));
+  packerCbs.at( PK_BZip2 )->setEnabled(PS("bzip2"));
+  packerCbs.at( PK_UnZip )->setEnabled(PS("unzip"));
+  packerCbs.at( PK_RPM )->setEnabled(PS("rpm") || PS("cpio"));
+  packerCbs.at( PK_UnRar )->setEnabled(PS("unrar"));
+  packerCbs.at( PK_UnAce )->setEnabled(PS("unace"));
+  packerCbs.at( PK_UnArj )->setEnabled(PS("unarj"));
 }
 
-void kgArchives::slotAutoConfigure()
+bool KgArchives::apply()
 {
-    qWarning( "kgArchives::slotAutoConfigure(): Not implemented yet!" );
+  krConfig->writeEntry("Supported Packers",KRarcHandler::supportedPackers());
+  return KonfiguratorPage::apply();
 }
 
-void kgArchives::slotDefaultSettings()
+void KgArchives::setDefaults()
 {
-    qWarning( "kgArchives::slotDefaultSettings(): Not implemented yet!" );
+  krConfig->writeEntry("Supported Packers",KRarcHandler::supportedPackers());
+  return KonfiguratorPage::setDefaults();
 }
 
 #include "kgarchives.moc"
+

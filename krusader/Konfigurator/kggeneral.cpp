@@ -1,272 +1,135 @@
-/****************************************************************************
-** Form implementation generated from reading ui file 'kggeneral.ui'
-**
-** Created: Fri Jun 1 18:20:56 2001
-**      by:  The User Interface Compiler (uic)
-**
-** WARNING! All changes made in this file will be lost!
-****************************************************************************/
+/***************************************************************************
+                         kggeneral.cpp  -  description
+                             -------------------
+    copyright            : (C) 2004 by Csaba Karai
+    e-mail               : krusader@users.sourceforge.net
+    web site             : http://krusader.sourceforge.net
+ ---------------------------------------------------------------------------
+  Description
+ ***************************************************************************
+
+  A
+
+     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                                     S o u r c e    F i l e
+
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 #include "kggeneral.h"
-
-#include <qbuttongroup.h>
-#include <qcheckbox.h>
-#include <qframe.h>
-#include <qgroupbox.h>
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
-#include <qradiobutton.h>
-#include <qtoolbutton.h>
-#include <qlayout.h>
-#include <qvariant.h>
-#include <qtooltip.h>
-#include <qwhatsthis.h>
-#include <qimage.h>
-#include <qpixmap.h>
+#include "../defaults.h"
+#include "../krusader.h"
 #include <klocale.h>
+#include <qlabel.h>
+#include <qhbox.h>
+#include <kmessagebox.h>
 
-static const char* const image0_data[] = { 
-"16 16 53 1",
-". c None",
-"# c #000000",
-"R c #080808",
-"Q c #101010",
-"Y c #181c18",
-"K c #202020",
-"w c #313031",
-"X c #313431",
-"W c #414041",
-"V c #414441",
-"g c #4a3018",
-"E c #4a484a",
-"U c #4a4c4a",
-"l c #524c4a",
-"h c #52504a",
-"j c #525052",
-"i c #5a5952",
-"J c #6a6962",
-"P c #6a6d6a",
-"T c #8b8d8b",
-"D c #949594",
-"S c #9c999c",
-"O c #9c9d9c",
-"C c #a4a19c",
-"M c #a4a1a4",
-"N c #a4a5a4",
-"I c #acaaac",
-"B c #acaeac",
-"F c #b47d41",
-"v c #b4b2b4",
-"u c #b4b6b4",
-"A c #bdbabd",
-"t c #bdbebd",
-"k c #c5854a",
-"H c #c5c2c5",
-"s c #c5c6c5",
-"r c #cdcacd",
-"L c #cdcecd",
-"z c #d5d2d5",
-"q c #d5d6d5",
-"x c #dedade",
-"p c #dedede",
-"a c #e6a562",
-"G c #e6e2e6",
-"o c #e6e6e6",
-"y c #eeeae6",
-"n c #eeeeee",
-"m c #f6f6f6",
-"e c #ffae62",
-"d c #ffc283",
-"c c #ffc683",
-"f c #ffca8b",
-"b c #ffd29c",
-"......####......",
-".....##.####.#..",
-"....#.....####..",
-"...........###..",
-"..........####..",
-".####...........",
-"#abca#######....",
-"#bcdeeeeeeee#...",
-"#fdghhhihhjjh###",
-"#dklmmnopqrstuvw",
-"#dgxpyopzsABCDE.",
-"#FhxxGpqrHuICJK.",
-"#gLrqqzLHABMDE..",
-"#jLtssHtuBNOPQ..",
-"RtNIBBINMSDTE...",
-"KEEUUUEEVWWXY..."};
-
-
-/* 
- *  Constructs a kgGeneral which is a child of 'parent', with the 
- *  name 'name'.' 
- */
-kgGeneral::kgGeneral( QWidget* parent,  const char* name )
-    : QFrame( parent, name )
+KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
+      KonfiguratorPage( first, parent, name )
 {
-    QPixmap image0( ( const char** ) image0_data );
-    if ( !name )
-	setName( "kgGeneral" );
-    resize( 393, 277 ); 
-    setCaption( i18n( "General" ) );
-    setFrameShape( QFrame::NoFrame );
-    setFrameShadow( QFrame::MShadow );
-    kgGeneralLayout = new QGridLayout( parent );
-    kgGeneralLayout->setSpacing( 6 );
-    kgGeneralLayout->setMargin( 11 );
+  if( first )
+    slotFindTools();
 
-    GroupBox2 = new QGroupBox( parent, "GroupBox2" );
-    GroupBox2->setTitle( i18n( "General" ) );
-    GroupBox2->setColumnLayout(0, Qt::Vertical );
-    GroupBox2->layout()->setSpacing( 0 );
-    GroupBox2->layout()->setMargin( 0 );
-    GroupBox2Layout = new QGridLayout( GroupBox2->layout() );
-    GroupBox2Layout->setAlignment( Qt::AlignTop );
-    GroupBox2Layout->setSpacing( 6 );
-    GroupBox2Layout->setMargin( 11 );
+  QGridLayout *kgGeneralLayout = new QGridLayout( parent );
+  kgGeneralLayout->setSpacing( 6 );
+  kgGeneralLayout->setMargin( 11 );
 
-    Layout8 = new QGridLayout;
-    Layout8->setSpacing( 6 );
-    Layout8->setMargin( 0 );
+  //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
-    kgTerminal = new QLineEdit( GroupBox2, "kgTerminal" );
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgGenGeneralGrp" );
+  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
-    Layout8->addWidget( kgTerminal, 2, 1 );
+  KONFIGURATOR_NAME_VALUE_PAIR deleteMode[] =
+    {{ i18n( "Delete files" ),  "false" },
+     { i18n( "Move to trash" ), "true" }};
+  
+  KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
+      "true", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );
+  generalGrid->addMultiCellWidget( trashRadio->getGroupWidget(), 0, 0, 0, 1 );
 
-    TextLabel2 = new QLabel( GroupBox2, "TextLabel2" );
-    TextLabel2->setText( i18n( "Terminal:" ) );
+  KonfiguratorCheckBox *checkBox = createCheckBox( "General", "Mimetype Magic", _MimetypeMagic,
+                     i18n( "Use mimetype magic" ), generalGrp, false,
+                     i18n( "Mimetype magic allows better distinction of file types, but is slower" ) );
+  generalGrid->addMultiCellWidget( checkBox, 1, 1, 0, 1 );
 
-    Layout8->addWidget( TextLabel2, 2, 0 );
+  QFrame *line1 = createLine( generalGrp, "line1" );
+  generalGrid->addMultiCellWidget( line1, 2, 2, 0, 1 );
 
-    QLabel* hint = new QLabel(GroupBox2,"hint");
-    hint->setText(i18n("Hint: use 'internal editor' if you want to use Krusader's fast built-in editor") );
-    Layout8->addMultiCellWidget(hint,1,1,0,2);
+  QLabel *label1 = new QLabel( i18n( "Editor:" ), generalGrp, "EditorLabel" );
+  generalGrid->addWidget( label1, 3, 0 );
+  KonfiguratorURLRequester *urlReq = createURLRequester( "General", "Editor", "internal editor",
+                                      generalGrp, false );
+  generalGrid->addWidget( urlReq, 3, 1 );
 
-    kgEditor = new QLineEdit( GroupBox2, "kgEditor" );
+  QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp, "EditorLabel" );
+  generalGrid->addMultiCellWidget( label2, 4, 4, 0, 1 );
+    
+  QLabel *label3 = new QLabel( i18n( "Terminal:" ), generalGrp, "TerminalLabel" );
+  generalGrid->addWidget( label3, 5, 0 );
+  KonfiguratorURLRequester *urlReq2 = createURLRequester( "General", "Terminal", "konsole",
+                                      generalGrp, false );
+  generalGrid->addWidget( urlReq2, 5, 1 );
 
-    Layout8->addWidget( kgEditor, 0, 1 );
+  QFrame *line2 = createLine( generalGrp, "line2" );
+  generalGrid->addMultiCellWidget( line2, 6, 6, 0, 1 );
 
-    kgBrowseEditor = new QToolButton( GroupBox2, "kgBrowseEditor" );
-    kgBrowseEditor->setText( "" );
-    kgBrowseEditor->setPixmap( image0 );
-
-    Layout8->addWidget( kgBrowseEditor, 0, 2 );
-
-    TextLabel1_2 = new QLabel( GroupBox2, "TextLabel1_2" );
-    TextLabel1_2->setText( i18n( "Editor:" ) );
-
-    Layout8->addWidget( TextLabel1_2, 0, 0 );
-
-    kgBrowseTerminal = new QToolButton( GroupBox2, "kgBrowseTerminal" );
-    kgBrowseTerminal->setText( "" );
-    kgBrowseTerminal->setPixmap( image0 );
-
-    Layout8->addWidget( kgBrowseTerminal, 2, 2 );
-
-    GroupBox2Layout->addMultiCellLayout( Layout8, 3, 3, 0, 2 );
-
-    Line2_2 = new QFrame( GroupBox2, "Line2_2" );
-    Line2_2->setFrameStyle( QFrame::HLine | QFrame::Sunken );
-
-    GroupBox2Layout->addMultiCellWidget( Line2_2, 4, 4, 0, 2 );
-
-    kgTempDir = new QLineEdit( GroupBox2, "kgTempDir" );
-
-    GroupBox2Layout->addWidget( kgTempDir, 5, 1 );
-
-    kgBrowseTempDir = new QToolButton( GroupBox2, "kgBrowseTempDir" );
-    kgBrowseTempDir->setText( "" );
-    kgBrowseTempDir->setPixmap( image0 );
-
-    GroupBox2Layout->addWidget( kgBrowseTempDir, 5, 2 );
-
-    TextLabel2_2 = new QLabel( GroupBox2, "TextLabel2_2" );
-    TextLabel2_2->setText( i18n( "Temp Directory:" ) );
-
-    GroupBox2Layout->addWidget( TextLabel2_2, 5, 0 );
-
-    TextLabel1 = new QLabel( GroupBox2, "TextLabel1" );
-    TextLabel1->setText( i18n( "Note: you must have full permissions for the temporary directory !" ) );
-
-    GroupBox2Layout->addMultiCellWidget( TextLabel1, 6, 6, 0, 2 );
-
-    ButtonGroup1 = new QButtonGroup( GroupBox2, "ButtonGroup1" );
-    ButtonGroup1->setFrameShape( QButtonGroup::NoFrame );
-    ButtonGroup1->setFrameShadow( QButtonGroup::Sunken );
-    ButtonGroup1->setTitle( "" );
-    ButtonGroup1->setExclusive( TRUE );
-    ButtonGroup1->setRadioButtonExclusive( TRUE );
-    ButtonGroup1->setColumnLayout(0, Qt::Vertical );
-    ButtonGroup1->layout()->setSpacing( 0 );
-    ButtonGroup1->layout()->setMargin( 0 );
-    ButtonGroup1Layout = new QGridLayout( ButtonGroup1->layout() );
-    ButtonGroup1Layout->setAlignment( Qt::AlignTop );
-    ButtonGroup1Layout->setSpacing( 6 );
-    ButtonGroup1Layout->setMargin( 11 );
-
-    kgMoveToTrash = new QRadioButton( ButtonGroup1, "kgMoveToTrash" );
-    kgMoveToTrash->setText( i18n( "Move to trash" ) );
-
-    ButtonGroup1Layout->addWidget( kgMoveToTrash, 0, 1 );
-
-    kgDeleteFiles = new QRadioButton( ButtonGroup1, "kgDeleteFiles" );
-    kgDeleteFiles->setText( i18n( "Delete files" ) );
-
-    ButtonGroup1Layout->addWidget( kgDeleteFiles, 0, 0 );
-
-    GroupBox2Layout->addMultiCellWidget( ButtonGroup1, 0, 0, 0, 2 );
-
-    Line2 = new QFrame( GroupBox2, "Line2" );
-    Line2->setFrameStyle( QFrame::HLine | QFrame::Sunken );
-
-    GroupBox2Layout->addMultiCellWidget( Line2, 2, 2, 0, 2 );
-
-    kgMimetypeMagic = new QCheckBox( GroupBox2, "kgMimetypeMagic" );
-    kgMimetypeMagic->setText( i18n( "Use mimetype magic" ) );
-    QToolTip::add(  kgMimetypeMagic, i18n( "Mimetype magic allows better distinction of file types, but is slower" ) );
-
-    GroupBox2Layout->addMultiCellWidget( kgMimetypeMagic, 1, 1, 0, 2 );
-
-    kgGeneralLayout->addWidget( GroupBox2, 0, 0 );
-
-    // signals and slots connections
-    connect( kgBrowseEditor, SIGNAL( clicked() ), this, SLOT( slotBrowseEditor() ) );
-    connect( kgBrowseTerminal, SIGNAL( clicked() ), this, SLOT( slotBrowseTerminal() ) );
-    connect( kgBrowseTempDir, SIGNAL( clicked() ), this, SLOT( slotBrowseTempDir() ) );
+  QHBox *hbox = new QHBox( generalGrp, "hbox" );
+  new QLabel( i18n( "Temp Directory:" ), hbox, "TempDirectory" );
+  KonfiguratorURLRequester *urlReq3 = createURLRequester( "General", "Temp Directory", "/tmp/krusader.tmp",
+                                      hbox, false );
+  urlReq3->setMode( KFile::Directory );
+  connect( urlReq3->extension(), SIGNAL( applyManually(QObject *,QString, QString) ),
+           this, SLOT( applyTempDir(QObject *,QString, QString) ) );
+  generalGrid->addMultiCellWidget( hbox, 7, 7, 0, 1 );
+  
+  QLabel *label4 = new QLabel( i18n( "Note: you must have full permissions for the temporary directory !" ),
+                               generalGrp, "NoteLabel"  );
+  generalGrid->addMultiCellWidget( label4, 8, 8, 0, 1 );
+  
+  kgGeneralLayout->addWidget( generalGrp, 0 ,0 );
 }
 
-/*  
- *  Destroys the object and frees any allocated resources
- */
-kgGeneral::~kgGeneral()
+void KgGeneral::applyTempDir(QObject *obj,QString cls, QString name)
 {
-    // no need to delete child widgets, Qt does it all for us
+  KonfiguratorURLRequester *urlReq = (KonfiguratorURLRequester *)obj;
+  QString value = QDir(urlReq->url()).path();
+  
+  krConfig->setGroup( cls );
+  krConfig->writeEntry( name, value );
 }
 
-void kgGeneral::slotBrowseTempDir()
+void KgGeneral::slotFindTools()
 {
-    qWarning( "kgGeneral::slotBrowseTempDir(): Not implemented yet!" );
-}
+  #define PS(x) lst.contains(x)>0
+  QString info;
+  QStringList lst=Krusader::supportedTools(); // get list of availble tools
 
-void kgGeneral::slotApplyChanges()
-{
-    qWarning( "kgGeneral::slotApplyChanges(): Not implemented yet!" );
-}
+  info+=i18n("Searching for tools...\nSearch results:\n\n");
+  if (PS("DIFF")) info+=i18n("diff: found ")+lst[lst.findIndex("DIFF") + 1]+i18n(", compare by content availble.\n");
+  else info+=i18n("diff: no diff frontends found. Compare by content disabled.\nhint: Krusader supports kdiff and xxdiff\n\n");
 
-void kgGeneral::slotBrowseEditor()
-{
-    qWarning( "kgGeneral::slotBrowseEditor(): Not implemented yet!" );
-}
+  if (PS("MAIL")) info+=i18n("mail: found ")+lst[lst.findIndex("MAIL") + 1]+i18n(", sending files by email enabled.\n");
+  else info+=i18n("mail: no compatible mail-programs found. Sending files by email is disabled.\nhint: Krusader supports kmail\n\n");
 
-void kgGeneral::slotBrowseTerminal()
-{
-    qWarning( "kgGeneral::slotBrowseTerminal(): Not implemented yet!" );
-}
+  if (PS("RENAME")) info+=i18n("rename: found ")+lst[lst.findIndex("RENAME") + 1]+i18n(", multipule rename enabled.\n");
+  else info+=i18n("rename: no compatible renamer-programs found. multipule rename is disabled.\nhint: Krusader supports krename\n\n");
 
-void kgGeneral::slotDefaultSettings()
-{
-    qWarning( "kgGeneral::slotDefaultSettings(): Not implemented yet!" );
+
+  info+=i18n("\nIf you install new tools, please install them");
+  info+=i18n("\nto your path. (ie: /usr/bin, /usr/local/bin etc.)");
+  KMessageBox::information(0,info,i18n("Results"));
 }
 
 #include "kggeneral.moc"

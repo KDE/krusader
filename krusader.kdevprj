@@ -26,7 +26,7 @@ ldadd=UserMenu/libUserMenu.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialog
 ldflags=\s                                       \s
 
 [General]
-AMChanged=false
+AMChanged=true
 author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
@@ -601,7 +601,7 @@ install_location=
 type=HEADER
 
 [krusader/Konfigurator/Makefile.am]
-files=krusader/Konfigurator/kgadvanced.cpp,krusader/Konfigurator/kgadvanced.h,krusader/Konfigurator/kgadvancedimpl.cpp,krusader/Konfigurator/kgadvancedimpl.h,krusader/Konfigurator/kgarchives.cpp,krusader/Konfigurator/kgarchives.h,krusader/Konfigurator/kgarchivesimpl.cpp,krusader/Konfigurator/kgarchivesimpl.h,krusader/Konfigurator/kggeneral.cpp,krusader/Konfigurator/kggeneral.h,krusader/Konfigurator/kggeneralimpl.cpp,krusader/Konfigurator/kggeneralimpl.h,krusader/Konfigurator/kglookfeel.cpp,krusader/Konfigurator/kglookfeel.h,krusader/Konfigurator/kglookfeelimpl.cpp,krusader/Konfigurator/kglookfeelimpl.h,krusader/Konfigurator/kgstartup.cpp,krusader/Konfigurator/kgstartup.h,krusader/Konfigurator/kgstartupimpl.cpp,krusader/Konfigurator/kgstartupimpl.h,krusader/Konfigurator/kgwelcome.cpp,krusader/Konfigurator/kgwelcome.h,krusader/Konfigurator/konfigurator.cpp,krusader/Konfigurator/konfigurator.h
+files=krusader/Konfigurator/kgadvanced.cpp,krusader/Konfigurator/kgadvanced.h,krusader/Konfigurator/kgarchives.cpp,krusader/Konfigurator/kgarchives.h,krusader/Konfigurator/kggeneral.cpp,krusader/Konfigurator/kggeneral.h,krusader/Konfigurator/kglookfeel.cpp,krusader/Konfigurator/kglookfeel.h,krusader/Konfigurator/kgstartup.cpp,krusader/Konfigurator/kgstartup.h,krusader/Konfigurator/kgwelcome.cpp,krusader/Konfigurator/kgwelcome.h,krusader/Konfigurator/konfigurator.cpp,krusader/Konfigurator/konfigurator.h,krusader/Konfigurator/konfiguratoritems.cpp,krusader/Konfigurator/konfiguratoritems.h,krusader/Konfigurator/konfiguratorpage.cpp,krusader/Konfigurator/konfiguratorpage.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=Konfigurator
 sub_dirs=
@@ -619,18 +619,6 @@ install=false
 install_location=
 type=HEADER
 
-[krusader/Konfigurator/kgadvancedimpl.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
-[krusader/Konfigurator/kgadvancedimpl.h]
-dist=true
-install=false
-install_location=
-type=HEADER
-
 [krusader/Konfigurator/kgarchives.cpp]
 dist=true
 install=false
@@ -638,18 +626,6 @@ install_location=
 type=SOURCE
 
 [krusader/Konfigurator/kgarchives.h]
-dist=true
-install=false
-install_location=
-type=HEADER
-
-[krusader/Konfigurator/kgarchivesimpl.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
-[krusader/Konfigurator/kgarchivesimpl.h]
 dist=true
 install=false
 install_location=
@@ -667,18 +643,6 @@ install=false
 install_location=
 type=HEADER
 
-[krusader/Konfigurator/kggeneralimpl.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
-[krusader/Konfigurator/kggeneralimpl.h]
-dist=true
-install=false
-install_location=
-type=HEADER
-
 [krusader/Konfigurator/kglookfeel.cpp]
 dist=true
 install=false
@@ -691,18 +655,6 @@ install=false
 install_location=
 type=HEADER
 
-[krusader/Konfigurator/kglookfeelimpl.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
-[krusader/Konfigurator/kglookfeelimpl.h]
-dist=true
-install=false
-install_location=
-type=HEADER
-
 [krusader/Konfigurator/kgstartup.cpp]
 dist=true
 install=false
@@ -710,18 +662,6 @@ install_location=
 type=SOURCE
 
 [krusader/Konfigurator/kgstartup.h]
-dist=true
-install=false
-install_location=
-type=HEADER
-
-[krusader/Konfigurator/kgstartupimpl.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
-[krusader/Konfigurator/kgstartupimpl.h]
 dist=true
 install=false
 install_location=
@@ -746,6 +686,30 @@ install_location=
 type=SOURCE
 
 [krusader/Konfigurator/konfigurator.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Konfigurator/konfiguratoritems.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Konfigurator/konfiguratoritems.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Konfigurator/konfiguratorpage.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Konfigurator/konfiguratorpage.h]
 dist=true
 install=false
 install_location=

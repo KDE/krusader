@@ -45,81 +45,151 @@
 
 // the frames
 #include "kgwelcome.h"
-#include "kgstartupimpl.h"
-#include "kglookfeelimpl.h"
-#include "kggeneralimpl.h"
-#include "kgadvancedimpl.h"
-#include "kgarchivesimpl.h"
+#include "kgstartup.h"
+#include "kglookfeel.h"
+#include "kggeneral.h"
+#include "kgadvanced.h"
+#include "kgarchives.h"
 
-Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator"), firstTime(f) {
-  setButtonApplyText(i18n("Defaults"),i18n("Reset ALL of Krusader's options to factory defaults"),0);
+Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
+      KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
+      KDialogBase::User1, false, i18n("Defaults") ), firstTime(f), internalCall( false )
+{
   setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
   kgFrames.setAutoDelete(true);
   widget=new KJanusWidget(this,0,KJanusWidget::IconList);
+
+  connect( widget, SIGNAL( aboutToShowPage(QWidget *) ), this, SLOT( slotPageSwitch() ) );
+  connect( &restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
+  
   createLayout();
   setMainWidget(widget);
-  if (exec()) {
-	  KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
-	    QString::null,"konfigGUInotify");
-  }
+  exec();
 }
 
-
-Konfigurator::~Konfigurator(){
+void Konfigurator::newContent(KonfiguratorPage *page)
+{
+  kgFrames.append(page);
+  connect( page, SIGNAL( sigChanged( bool ) ), this, SLOT( slotApplyEnable() ) );
 }
 
-void Konfigurator::newContent(QFrame *widget) {
-  kgFrames.append(widget);
-  connect(this,SIGNAL(applyChanges()),widget,SLOT(slotApplyChanges()));
-  connect(this,SIGNAL(defaultSettings()),widget,SLOT(slotDefaultSettings()));
-}
-
-void Konfigurator::createLayout() {
+void Konfigurator::createLayout()
+{
   // welcome
-  new kgWelcome(widget->addPage(i18n("Welcome"),i18n("Welcome to Konfigurator"),
-    QPixmap(krLoader->loadIcon("krusader",KIcon::Desktop,32))));
+  newContent(new KgWelcome(firstTime, widget->addPage(i18n("Welcome"),i18n("Welcome to Konfigurator"),
+    QPixmap(krLoader->loadIcon("krusader",KIcon::Desktop,32)))));
   // startup
-  newContent(new kgStartupImpl(firstTime, widget->addPage(i18n("Startup"),
+  newContent(new KgStartup(firstTime, widget->addPage(i18n("Startup"),
     i18n("Krusader's setting upon startup"),QPixmap(krLoader->loadIcon("gear",
       KIcon::Desktop,32)))));
   // look n' feel
-  newContent(new kgLookFeelImpl(firstTime, widget->addPage(i18n("Look & Feel"),
+  newContent(new KgLookFeel(firstTime, widget->addPage(i18n("Look & Feel"),
     i18n("Look & Feel"),QPixmap(krLoader->loadIcon("appearance",KIcon::Desktop,32)))));
   // general
-  newContent(new kgGeneralImpl(firstTime, widget->addPage(i18n("General"),
+  newContent(new KgGeneral(firstTime, widget->addPage(i18n("General"),
     i18n("Basic Operations"),QPixmap(krLoader->loadIcon("configure",KIcon::Desktop,32)))));
   // advanced
-  newContent(new kgAdvancedImpl(firstTime, widget->addPage(i18n("Advanced"),
+  newContent(new KgAdvanced(firstTime, widget->addPage(i18n("Advanced"),
     i18n("Be sure you know what you're doing"),
     QPixmap(krLoader->loadIcon("file_important",KIcon::Desktop,32)))));
   // archives
-  newContent(new kgArchivesImpl(firstTime, widget->addPage(i18n("Archives"),
-    i18n("Costumize the way Krusader deals with archives"),QPixmap(krLoader->loadIcon(
-    "tgz",KIcon::Desktop,32)))));
+  newContent(new KgArchives(firstTime, widget->addPage(i18n("Archives"),i18n("Costumize the way Krusader deals with archives"),
+    QPixmap(krLoader->loadIcon("tgz",KIcon::Desktop,32)))));
+
   widget->showPage(0);
+  slotApplyEnable();
 }
 
-void Konfigurator::slotOk(){
-  emit applyChanges();
-  accept();
+void Konfigurator::slotUser1()
+{
+  int ndx = searchPage( lastPage = widget->activePageIndex() );
+  kgFrames.at( ndx )->setDefaults();
 }
 
-// actually defaults all values
-///////////////////////////////
-void Konfigurator::slotApply() {
-  emit defaultSettings();
-  accept();
+void Konfigurator::slotApply()
+{
+  int ndx = searchPage( lastPage = widget->activePageIndex() );
+  if( kgFrames.at( ndx )->apply() )
+  {
+    KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
+     QString::null,"konfigGUInotify");
+  }
 }
 
-void Konfigurator::slotCancel() {
-  reject();
+void Konfigurator::slotCancel()
+{
+  lastPage = widget->activePageIndex();
+  if( slotPageSwitch() )
+    reject();
 }
 
-void Konfigurator::genericBrowse(QLineEdit *&target, QString startDir, QString caption) {
-  startDir=startDir.simplifyWhiteSpace();
-  if (startDir.isEmpty()) startDir="/";
-  QString dir=KFileDialog::getExistingDirectory (startDir,0,caption);
-  if (dir!=QString::null)target->setText(dir);
+int Konfigurator::searchPage( int pageNum )
+{
+  KonfiguratorPage *page;
+  int i=0;
+
+  while( ( page = kgFrames.at( i ) ) )
+  {
+    if( pageNum == widget->pageIndex( page->parentWidget() ) )
+      return i;
+
+    i++;
+  }
+  
+  return 0;
+}
+
+void Konfigurator::slotApplyEnable()
+{  
+  int ndx = searchPage( lastPage = widget->activePageIndex() );
+  enableButtonApply( kgFrames.at( ndx )->isChanged() );
+}
+
+bool Konfigurator::slotPageSwitch()
+{
+  int ndx = searchPage( lastPage );
+  KonfiguratorPage *currentPage = kgFrames.at( ndx );
+
+  if( internalCall )
+  {
+    internalCall = false;
+    return true;
+  }
+  
+  if( currentPage->isChanged() )
+  {
+    int result = KMessageBox::questionYesNoCancel( 0, i18n("The current page has been changed. Do you want to apply changes?" ));
+
+    switch( result )
+    {
+    case KMessageBox::No:
+      currentPage->loadInitialValues();
+      break;
+    case KMessageBox::Yes:
+      if( currentPage->apply() )
+      {
+        KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
+          QString::null,"konfigGUInotify");
+      }
+      break;
+    default:
+      restoreTimer.start( 0, true );
+      return false;
+    }
+  }
+
+  enableButtonApply( currentPage->isChanged() );
+  lastPage = widget->activePageIndex();
+  return true;
+}
+
+void Konfigurator::slotRestorePage()
+{
+  if( lastPage != widget->activePageIndex() )
+  {
+    internalCall = true;
+    widget->showPage( lastPage );
+  }
 }
 
 #include "konfigurator.moc"

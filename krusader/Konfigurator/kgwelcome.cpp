@@ -1,58 +1,51 @@
-/****************************************************************************
-** Form implementation generated from reading ui file 'kgwelcome.ui'
-**
-** Created: Sun Feb 18 22:39:46 2001
-**      by:  The User Interface Compiler (uic)
-**
-** WARNING! All changes made in this file will be lost!
-****************************************************************************/
+/***************************************************************************
+                        kgwelcome.cpp  -  description
+                             -------------------
+    copyright            : (C) 2004 by Csaba Karai
+    e-mail               : krusader@users.sourceforge.net
+    web site             : http://krusader.sourceforge.net
+ ---------------------------------------------------------------------------
+  Description
+ ***************************************************************************
+
+  A
+
+     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                                     S o u r c e    F i l e
+
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 #include "kgwelcome.h"
-
-#include <qlabel.h>
-#include <qpushbutton.h>
-#include <qlayout.h>
-#include <qvariant.h>
-#include <qtooltip.h>
-#include <qwhatsthis.h>
-#include <qimage.h>
-#include <qpixmap.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
-#include <klocale.h>
 #include <kstandarddirs.h>
 
-/* 
- *  Constructs a kgWelcome which is a child of 'parent', with the 
- *  name 'name'.' 
- */
-kgWelcome::kgWelcome( QWidget* parent,  const char* name )
-    : QFrame( parent, name )
+KgWelcome::KgWelcome( bool first, QWidget* parent,  const char* name ) :
+  KonfiguratorPage( first, parent, name )
 {
-    QString pix=KGlobal::dirs()->findResource("appdata","konfig_small.jpg");
-    QPixmap image0( pix );
-    if ( !name )
-    setName( "kgWelcome" );
-    resize( 598, 468 ); 
-    setFrameShape( QFrame::NoFrame );
-    setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)0, sizePolicy().hasHeightForWidth() ) );
-    setCaption( i18n( "Konfigurator" ) );
-    kgWelcomeLayout = new QGridLayout( parent );
-    kgWelcomeLayout->setSpacing( 6 );
-    kgWelcomeLayout->setMargin( 11 );
+  QGridLayout *kgWelcomeLayout = new QGridLayout( parent );
+  kgWelcomeLayout->setSpacing( 6 );
+  kgWelcomeLayout->setMargin( 11 );
 
-    PixmapLabel1 = new QLabel( parent, "PixmapLabel1" );
-    PixmapLabel1->setPixmap( image0 );
-    PixmapLabel1->setScaledContents( TRUE );
+  QString pix=KGlobal::dirs()->findResource("appdata","konfig_small.jpg");
+  QPixmap image0( pix );
+  
+  QLabel *pixmapLabel = new QLabel( parent, "pixmapLabel" );
+  pixmapLabel->setPixmap( image0 );
+  pixmapLabel->setScaledContents( TRUE );
 
-    kgWelcomeLayout->addWidget( PixmapLabel1, 0, 0 );
-}
-
-/*  
- *  Destroys the object and frees any allocated resources
- */
-kgWelcome::~kgWelcome()
-{
-    // no need to delete child widgets, Qt does it all for us
+  kgWelcomeLayout->addWidget( pixmapLabel, 0, 0 );
 }
 
 #include "kgwelcome.moc"

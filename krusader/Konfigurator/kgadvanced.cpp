@@ -1,141 +1,101 @@
-/****************************************************************************
-** Form implementation generated from reading ui file 'kgadvanced.ui'
-**
-** Created: Tue Apr 10 01:13:24 2001
-**      by:  The User Interface Compiler (uic)
-**
-** WARNING! All changes made in this file will be lost!
-****************************************************************************/
+/***************************************************************************
+                         kgadvanced.cpp  -  description
+                             -------------------
+    copyright            : (C) 2004 by Csaba Karai
+    e-mail               : krusader@users.sourceforge.net
+    web site             : http://krusader.sourceforge.net
+ ---------------------------------------------------------------------------
+  Description
+ ***************************************************************************
+
+  A
+
+     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                                     S o u r c e    F i l e
+
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 #include "kgadvanced.h"
-#include <sys/param.h>
-#include <qcheckbox.h>
-#include <qgroupbox.h>
-#include <qlabel.h>
-#include <qpushbutton.h>
-#include <qspinbox.h>
-#include <qlayout.h>
-#include <qvariant.h>
-#include <qtooltip.h>
-#include <qwhatsthis.h>
+#include "../defaults.h"
 #include <klocale.h>
+#include <qhbox.h>
+#include <qtooltip.h>
 
-/* 
- *  Constructs a kgAdvanced which is a child of 'parent', with the 
- *  name 'name'.' 
- */
-kgAdvanced::kgAdvanced( QWidget* parent,  const char* name )
-    : QFrame( parent, name )
+KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
+      KonfiguratorPage( first, parent, name )
 {
-    if ( !name )
-	setName( "kgAdvanced" );
-    resize( 430, 354 ); 
-    setCaption( i18n( "Advanced" ) );
-    setFrameShape( QFrame::NoFrame );
-    setFrameShadow( QFrame::MShadow );
-    kgAdvancedLayout = new QGridLayout( parent );
-    kgAdvancedLayout->setSpacing( 6 );
-    kgAdvancedLayout->setMargin( 11 );
+  QGridLayout *kgAdvancedLayout = new QGridLayout( parent );
+  kgAdvancedLayout->setSpacing( 6 );
+  kgAdvancedLayout->setMargin( 11 );
 
-    GroupBox6 = new QGroupBox( parent, "GroupBox6" );
-    GroupBox6->setTitle( i18n( "Confirmations" ) );
+  //  -------------------------- GENERAL GROUPBOX ----------------------------------
+  
+  QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgAdvGeneralGrp" );
+  QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
-    QWidget* privateLayoutWidget = new QWidget( GroupBox6, "Layout6" );
-    privateLayoutWidget->setGeometry( QRect( 11, 21, 420, 140 ) );
-    Layout6 = new QVBoxLayout( privateLayoutWidget );
-    Layout6->setSpacing( 6 );
-    Layout6->setMargin( 0 );
+  KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
+  //   cfg_class  cfg_name           default     text                                      restart tooltip
+    {{"Advanced","Permission Check", false,      i18n( "I AM ROOT - use with caution !" ), false,  i18n( "Root Switch: if checked, Krusader will try to act as root - thus attempting to perform actions WITHOUT checking permissions !!!" )},
+     {"Advanced","AutoMount",        _AutoMount, i18n( "Automount filesystems" ),          false,  i18n( "If checked, Krusader will mount FSTAB mount-points when needed." )}};
 
-    TextLabel1 = new QLabel( privateLayoutWidget, "TextLabel1" );
-    TextLabel1->setText( i18n( "Krusader will request user confirmation for the following operations:" ) );
-    Layout6->addWidget( TextLabel1 );
+  QWidget *generals = createCheckBoxGroup( 2, 0, generalSettings, 2, generalCbs, generalGrp );
+  generalGrid->addWidget( generals, 1, 0 );
 
-    kgNonEmpty = new QCheckBox( privateLayoutWidget, "kgNonEmpty" );
-    kgNonEmpty->setText( i18n( "Deleting non-empty directorie(s)" ) );
-    Layout6->addWidget( kgNonEmpty );
+  generalCbs.at(0)->setEnabled( false ); /* disable Permission Check */
+    
+  kgAdvancedLayout->addWidget( generalGrp, 0 ,0 );
 
-    kgDelete = new QCheckBox( privateLayoutWidget, "kgDelete" );
-    kgDelete->setText( i18n( "Deleting file(s)" ) );
-    Layout6->addWidget( kgDelete );
+  //  ----------------------- CONFIRMATIONS GROUPBOX -------------------------------
+  
+  QGroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), parent, "confirmGrp" );
+  QGridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
 
-    kgCopy = new QCheckBox( privateLayoutWidget, "kgCopy" );
-    kgCopy->setText( i18n( "Copying file(s)" ) );
-    Layout6->addWidget( kgCopy );
+  addLabel( confirmGrid, 0, 0, "\n"+i18n( "Krusader will request user confirmation for the following operations:" )+"\n",
+            confirmGrp, "KgAdvLabel1" );
+            
+  KONFIGURATOR_CHECKBOX_PARAM confirmations[] =
+  //   cfg_class  cfg_name                default             text                                          restart ToolTip
+    {{"Advanced","Confirm Unempty Dir",   _ConfirmUnemptyDir, i18n( "Deleting non-empty directorie(s)" ),   false,  ""},
+     {"Advanced","Confirm Delete",        _ConfirmDelete,     i18n( "Deleting file(s)" ),                   false,  ""},
+     {"Advanced","Confirm Copy",          _ConfirmCopy,       i18n( "Copying file(s)" ),                    false,  ""},
+     {"Advanced","Confirm Move",          _ConfirmMove,       i18n( "Moving file(s)" ),                     false,  ""}};
 
-    kgMove = new QCheckBox( privateLayoutWidget, "kgMove" );
-    kgMove->setText( i18n( "Moving file(s)" ) );
-    Layout6->addWidget( kgMove );
+  QWidget *confWnd = createCheckBoxGroup( 1, 0, confirmations, 4, confCbs, confirmGrp );
 
-    kgAdvancedLayout->addWidget( GroupBox6, 1, 0 );
+  confirmGrid->addWidget( confWnd, 1, 0 );
 
-    GroupBox15 = new QGroupBox( parent, "GroupBox15" );
-    GroupBox15->setTitle( i18n( "Fine-Tuning" ) );
+  kgAdvancedLayout->addWidget( confirmGrp, 1 ,0 );
 
-    QWidget* privateLayoutWidget_2 = new QWidget( GroupBox15, "Layout5" );
-    privateLayoutWidget_2->setGeometry( QRect( 10, 20, 230, 27 ) );
-    Layout5 = new QHBoxLayout( privateLayoutWidget_2 );
-    Layout5->setSpacing( 6 );
-    Layout5->setMargin( 0 );
 
-    TextLabel2_2 = new QLabel( privateLayoutWidget_2, "TextLabel2_2" );
-    TextLabel2_2->setText( i18n( "Icon cache size (KB):" ) );
-    QToolTip::add(  TextLabel2_2, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
-    Layout5->addWidget( TextLabel2_2 );
+  //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
 
-    kgCacheSize = new QSpinBox( privateLayoutWidget_2, "kgCacheSize" );
-    kgCacheSize->setButtonSymbols( QSpinBox::UpDownArrows );
-    kgCacheSize->setMaxValue( 8192 );
-    kgCacheSize->setMinValue( 1 );
-    QToolTip::add(  kgCacheSize, i18n( "Cache size determines how fast can Krusader display the contents of a panel. However too big a cache might consume your memory." ) );
-    Layout5->addWidget( kgCacheSize );
+  QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent, "kgFineTuneGrp" );
+  QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
 
-    kgAdvancedLayout->addWidget( GroupBox15, 2, 0 );
-
-    GroupBox2 = new QGroupBox( parent, "GroupBox2" );
-    GroupBox2->setTitle( i18n( "General" ) );
-
-    QWidget* privateLayoutWidget_3 = new QWidget( GroupBox2, "Layout3" );
-    privateLayoutWidget_3->setGeometry( QRect( 10, 20, 450, 40 ) );
-    Layout3 = new QGridLayout( privateLayoutWidget_3 );
-    Layout3->setSpacing( 6 );
-    Layout3->setMargin( 0 );
-
-    kgRootSwitch = new QCheckBox( privateLayoutWidget_3, "kgRootSwitch" );
-    kgRootSwitch->setText( i18n( "I AM ROOT - use with caution !" ) );
-    QToolTip::add(  kgRootSwitch, i18n( "Root Switch: if checked, Krusader will try to act as root - thus attempting to perform actions WITHOUT checking permissions !!!" ) );
-
-    Layout3->addWidget( kgRootSwitch, 0, 0 );
-
-    kgAutomount = new QCheckBox( privateLayoutWidget_3, "kgAutomount" );
-    kgAutomount->setText( i18n( "Automount filesystems             " ) );
-    QToolTip::add(  kgAutomount, i18n( "If checked, Krusader will mount FSTAB mount-points when needed." ) );
-#ifdef BSD
-    kgAutomount->hide();
-#endif
-    Layout3->addWidget( kgAutomount, 0, 1 );
-
-    kgAdvancedLayout->addWidget( GroupBox2, 0, 0 );
-
-    // signals and slots connections
-}
-
-/*  
- *  Destroys the object and frees any allocated resources
- */
-kgAdvanced::~kgAdvanced()
-{
-    // no need to delete child widgets, Qt does it all for us
-}
-
-void kgAdvanced::slotApplyChanges()
-{
-    qWarning( "kgAdvanced::slotApplyChanges(): Not implemented yet!" );
-}
-
-void kgAdvanced::slotDefaultSettings()
-{
-    qWarning( "kgAdvanced::slotDefaultSettings(): Not implemented yet!" );
+  QHBox *hbox = new QHBox( fineTuneGrp, "fineTuneHBox" );
+  QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), hbox, "iconCacheLabel" );
+  QToolTip::add( label, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
+  KonfiguratorSpinBox *spinBox = createSpinBox( "Advanced", "Icon Cache Size", _IconCacheSize,
+                                                1, 8192, hbox, false );
+  QToolTip::add( spinBox, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
+  createSpacer( hbox, "fineTuneSpacer" );
+  
+  fineTuneGrid->addWidget( hbox, 0, 0 );
+    
+  kgAdvancedLayout->addWidget( fineTuneGrp, 2 ,0 );
 }
 
 #include "kgadvanced.moc"
-
-

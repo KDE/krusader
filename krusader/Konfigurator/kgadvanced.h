@@ -1,54 +1,48 @@
-/****************************************************************************
-** Form interface generated from reading ui file 'kgadvanced.ui'
-**
-** Created: Tue Apr 10 01:13:00 2001
-**      by:  The User Interface Compiler (uic)
-**
-** WARNING! All changes made in this file will be lost!
-****************************************************************************/
-#ifndef KGADVANCED_H
-#define KGADVANCED_H
+/***************************************************************************
+                         kgadvanced.h  -  description
+                             -------------------
+    copyright            : (C) 2004 by Csaba Karai
+    e-mail               : krusader@users.sourceforge.net
+    web site             : http://krusader.sourceforge.net
+ ---------------------------------------------------------------------------
+  Description
+ ***************************************************************************
 
-#include <qvariant.h>
-#include <qframe.h>
-class QVBoxLayout; 
-class QHBoxLayout; 
-class QGridLayout; 
-class QCheckBox;
-class QGroupBox;
-class QLabel;
-class QSpinBox;
+  A
 
-class kgAdvanced : public QFrame
-{ 
-    Q_OBJECT
+     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                                     H e a d e r    F i l e
+
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+#ifndef __KGADVANCED_H__
+#define __KGADVANCED_H__
+
+#include "konfiguratorpage.h"
+
+class KgAdvanced : public KonfiguratorPage
+{
+  Q_OBJECT
 
 public:
-    kgAdvanced( QWidget* parent = 0, const char* name = 0 );
-    ~kgAdvanced();
-
-    QGroupBox* GroupBox6;
-    QLabel* TextLabel1;
-    QCheckBox* kgNonEmpty;
-    QCheckBox* kgDelete;
-    QCheckBox* kgCopy;
-    QCheckBox* kgMove;
-    QGroupBox* GroupBox15;
-    QLabel* TextLabel2_2;
-    QSpinBox* kgCacheSize;
-    QGroupBox* GroupBox2;
-    QCheckBox* kgRootSwitch;
-    QCheckBox* kgAutomount;
-
-public slots:
-    virtual void slotApplyChanges();
-    virtual void slotDefaultSettings();
+  KgAdvanced( bool first, QWidget* parent=0,  const char* name=0 );
 
 protected:
-    QGridLayout* kgAdvancedLayout;
-    QVBoxLayout* Layout6;
-    QHBoxLayout* Layout5;
-    QGridLayout* Layout3;
+  QPtrList<KonfiguratorCheckBox>  generalCbs;
+  QPtrList<KonfiguratorCheckBox>  confCbs;
 };
 
-#endif // KGADVANCED_H
+#endif /* __KGADVANCED_H__ */
