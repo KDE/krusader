@@ -140,7 +140,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM fields[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
-    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  i18n( "Show the extension Column (part after the last dot of the filename)" ) },
+    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  i18n( "Show the last part of the filename (part after the last dot) in the Extension Column and\nnot as a complete filename in the Name Column like e.g. Konqueror does." ) },
      {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  i18n( "Show the mimetype Column" ) },
      {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  i18n( "Show the Size Column" ) },
      {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  i18n( "Show the Date and Time Column" ) },
