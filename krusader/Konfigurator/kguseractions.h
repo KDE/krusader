@@ -47,6 +47,10 @@ class KgUserActions : public KonfiguratorPage
 public:
   KgUserActions( bool first, QWidget* parent=0,  const char* name=0 );
   ~KgUserActions();
+  
+  bool isChanged();
+  bool apply();
+  void setDefaults();
 
 public slots:
   void slotChangeAction();	//loads a new action into the detail-view
@@ -58,10 +62,11 @@ public slots:
   void slotExport();
 
 protected:
+ bool _needApply;
  KListBox *actionList;
  ActionProperty *actionProperties;
  KPushButton *okButton, *resetButton, *newButton, *removeButton, *importButton, *exportButton;
- UserActionXML *_importXML;	//holds all the actions w/ nameconflicts after an import
+ UserActionXML *_workXML, *_importXML;	//holds all the actions w/ nameconflicts after an import
 };
 
 #endif /* __KGUSERACTIONS_H__ */

@@ -85,11 +85,13 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
   kgStartupLayout->addLayout( vboxButtons, 0, 1 );
   
   _importXML = 0;
+  _workXML = new UserActionXML();
+  _needApply = false;
   
   // fill the ListBox with all actions
   //TODO display the titles, not the names
   //TODO change this to an tree-view, grouped by category
-  actionList->insertStringList( krUserAction->xml()->getActionNames() ); 
+  actionList->insertStringList( _workXML->getActionNames() ); 
  
   
   connect(  actionList, SIGNAL( currentChanged(QListBoxItem*) ), this, SLOT( slotChangeAction() ) );
@@ -108,6 +110,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
 
 KgUserActions::~KgUserActions() {
   delete _importXML;
+  delete _workXML;
 }
 
 void KgUserActions::slotChangeAction() {
@@ -120,7 +123,7 @@ void KgUserActions::slotChangeAction() {
   else {
     // the discinct name is used as ID it is not allowd to change it afterwards because it is may referenced anywhere else
     actionProperties->leDistinctName->setEnabled(false);
-    actionProperties->updateGUI( krUserAction->xml()->readAction( actionList->currentText() ) );
+    actionProperties->updateGUI( _workXML->readAction( actionList->currentText() ) );
   }
 
 }
@@ -135,8 +138,7 @@ void KgUserActions::slotUpdateAction() {
   // This is to resolve name-conflicts after the import
   if ( _importXML != 0 ) {
     _importXML->removeAction( actionList->currentText() );
-    krUserAction->xml()->addActionToDom( actionProperties->properties() );
-    krUserAction->addKrAction( actionProperties->properties() );
+    _workXML->addActionToDom( actionProperties->properties() );
     actionList->removeItem( actionList->currentItem() );
     
     //check if there still are imported actions with name-conflicts
@@ -146,7 +148,7 @@ void KgUserActions::slotUpdateAction() {
       
       // re-fill the action-list with the stored actions
       actionList->clear();
-      actionList->insertStringList( krUserAction->xml()->getActionNames() );
+      actionList->insertStringList( _workXML->getActionNames() );
       
       newButton->setEnabled( true );
       importButton->setEnabled( true );
@@ -156,18 +158,17 @@ void KgUserActions::slotUpdateAction() {
   else {
     if ( actionProperties->leDistinctName->isEnabled() ) {
       // := new entry
-      krUserAction->xml()->addActionToDom( actionProperties->properties() );
-      krUserAction->addKrAction( new UserActionProperties( actionProperties->properties() ) );
+      _workXML->addActionToDom( actionProperties->properties() );
       actionList->insertItem( *actionProperties->properties()->name() );
     }
     else // := edit an existing
-      krUserAction->xml()->updateAction( actionProperties->properties() );
+      _workXML->updateAction( actionProperties->properties() );
       //krUserAction->updateKrAction( actionProperties->properties()->name, actionProperties->properties() );
   }
   
-  krUserAction->updateKrAction( *actionProperties->properties()->name(), actionProperties->properties() );
-  krUserAction->xml()->writeActionDom();
-  krApp->userMenu->update();
+
+  _needApply = true;
+  emit sigChanged();
   
   slotChangeAction();
   
@@ -230,12 +231,11 @@ void KgUserActions::slotRemoveAction() {
   } //finished with the name-conflict stuff
   else {
     //TODO: make actionList multiselect and remove all selected actions  
-    krUserAction->xml()->removeAction( actionList->currentText() );
-    krUserAction->removeKrAction( *actionProperties->properties()->name() );
+    _workXML->removeAction( actionList->currentText() );
     actionList->removeItem( actionList->currentItem() );
 
-    krUserAction->xml()->writeActionDom();
-    krApp->userMenu->update();
+    _needApply = true;
+    emit sigChanged();
   }
   
   slotChangeAction();  
@@ -268,15 +268,14 @@ void KgUserActions::slotImport() {
   for ( QStringList::iterator it = actionNames.begin(); it != actionNames.end(); ++it ) {
     if ( ! krUserAction->xml()->nameExists( *it ) ) {
       UserActionProperties* prop = _importXML->readAction( *it );
-      krUserAction->addKrAction( prop );
-      krUserAction->xml()->addActionToDom( prop );
+      _workXML->addActionToDom( prop );
       _importXML->removeAction( *it );
       actionList->insertItem( *it );
     }
   } //for
   
-  krUserAction->xml()->writeActionDom();
-  krApp->userMenu->update();
+  _needApply = true;
+  emit sigChanged();
   
   //check if there still are actions which aren't imported because of name-conflicts
   actionNames = _importXML->getActionNames();
@@ -318,6 +317,36 @@ void KgUserActions::slotExport() {
   exportXML->writeActionDom();
   
   delete exportXML;
+}
+
+bool KgUserActions::isChanged() {
+   bool changed = KonfiguratorPage::isChanged();
+
+   return changed || _needApply;
+}
+
+bool KgUserActions::apply() {
+
+   _workXML->writeActionDom();
+   delete krUserAction;
+   krUserAction = new UserAction();
+   krApp->userMenu->update();
+   krApp->updateGUI();
+   
+   _needApply = false;
+   emit sigChanged();   // nessesary to disable the apply-button again
+   return KonfiguratorPage::apply();
+}
+
+void KgUserActions::setDefaults() {
+   delete _workXML;
+   _workXML = new UserActionXML();
+   actionList->clear();
+   actionList->insertStringList( _workXML->getActionNames() );
+
+   _needApply = false;
+   emit sigChanged();   // nessesary to disable the apply-button again
+   return KonfiguratorPage::setDefaults();
 }
 
 #include "kguseractions.moc"

@@ -57,7 +57,11 @@ KrAction* UserAction::action( const QString& name ) {
 }
 
 void UserAction::updateKrAction( const QString& name, UserActionProperties* prop ) {
-   updateKrAction( action( name ), prop );
+   KrAction* a = action( name );
+   if ( a )
+      updateKrAction( a, prop );
+   else
+      addKrAction( prop );
 }
 
 void UserAction::updateKrAction( KrAction* action, UserActionProperties* prop ) {
