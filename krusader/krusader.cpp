@@ -138,6 +138,7 @@ KAction *Krusader::actPreviousTab = 0;
 KAction *Krusader::actSplit = 0;
 KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
+KAction *Krusader::actManageUseractions = 0;
 KAction *Krusader::actSyncDirs = 0;
 KAction *Krusader::actF2 = 0;
 KAction *Krusader::actF3 = 0;
@@ -157,6 +158,7 @@ KRadioAction  *Krusader::actMarkDifferentAndSingle = 0;
 KRadioAction  *Krusader::actMarkDifferent = 0;
 KRadioAction  **Krusader::compareArray[] = {&actMarkNewerAndSingle, &actMarkNewer, &actMarkSingle, 
                                             &actMarkDifferentAndSingle, &actMarkDifferent, 0};
+KPopupMenu *Krusader::userActionMenu = 0;
 UserAction *Krusader::userAction = 0;
 Expander *Krusader::expander = 0;
 UserMenu *Krusader::userMenu = 0;
@@ -313,6 +315,12 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 	}
    // let the good times rool :)
    updateGUI( true );
+   
+   // this needs to be called AFTER updateGUI() !!!
+   userActionMenu = (KPopupMenu*) guiFactory()->container( "useractionmenu", this );
+   if ( userActionMenu )
+      userAction->populateMenu( userActionMenu );
+
    if ( runKonfig )
       slot->runKonfigurator( true );
 
@@ -574,6 +582,8 @@ void Krusader::setupActions() {
 	     SLOT( previousTab() ), actionCollection(), "previous tab" );										
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );
+   actManageUseractions = new KAction( i18n( "Manage user actions" ), 0, SLOTS,
+                              SLOT( manageUseractions() ), actionCollection(), "manage useractions" );
 
         // setup the Fn keys
         actF2 = new KAction( i18n( "F2 - Open a terminal" ), Key_F2,

@@ -12,6 +12,7 @@
 
 #include <kdebug.h>
 #include <kurl.h>
+#include <kpopupmenu.h>
 
 #include <qstring.h>
 #include <qdom.h>
@@ -91,5 +92,10 @@ UserActionXML* UserAction::xml() {
 UserAction::KrActionList* UserAction::actionList() {
 //    kdDebug() << "UserAction::actionList() provide " << _actions.count() << " useractions" << endl;
    return &_actions;
+}
+
+void UserAction::populateMenu( KPopupMenu* menu ) {
+   for ( KrActionList::iterator it = _actions.begin(); it != _actions.end(); ++it )
+      (*it)->plug( menu );
 }
 

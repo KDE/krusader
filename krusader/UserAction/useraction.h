@@ -21,6 +21,7 @@ class QString;
 class QStringList;
 class KrAction;
 class KURL;
+class KPopupMenu;
 
 /**
  * Useractions are Krusaders backend for user-defined actions on current/selected files in its panels and for krusader's internal actions which need some parameter. @n
@@ -97,6 +98,12 @@ public:
    * @return A pointer to the useraction-xml-handler
    */
   UserActionXML* xml();
+  
+  /**
+   * Fills a KPopupMenu with all available UserActions from the xml
+   * @param  popupmenu to populate
+   */
+  void populateMenu(KPopupMenu* menu);
 
 private:
   KrActionList _actions;

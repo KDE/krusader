@@ -783,6 +783,10 @@ void KRslots::userMenu() {
   krApp->userMenu->exec();
 }
 
+void KRslots::manageUseractions() {
+   Konfigurator konfigurator( false, 7 ); // page 7 are the UserActions
+}
+
 void KRslots::slotSynchronizeDirs() {
   SynchronizerGUI *sync = new SynchronizerGUI( MAIN_VIEW,
                 MAIN_VIEW->left->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol),
