@@ -42,16 +42,15 @@ friend class ListPanel;
 public slots:
 	void execute(QString&);
   void openUrl(const QString& path,const QString& type=QString::null );
+	void refresh(){ refresh(panel->virtualPath); } // re-read the files
 
 public:
 	ListPanelFunc(class ListPanel *parent);
  ~ListPanelFunc();
 
-  inline void refresh(){ refresh(panel->virtualPath); } // re-read the files
 	vfs* files();  // return a pointer to the vfs
-  void refresh(const QString path);
-  void refreshActions();
 
+  void refreshActions();
 	void redirectLink();
 	void krlink(bool sym);
 	void goBack();
@@ -75,6 +74,8 @@ public:
 	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
 protected:
+  void refresh(const QString path);
+
 	ListPanel	     *panel;    // our ListPanel
 	QStringList    backStack; // Path stack for the "back" button
 	bool           inRefresh; // true when we are in refresh()

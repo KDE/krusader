@@ -141,15 +141,7 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
 void ListPanelFunc::refresh( const QString path ) {
   // change the cursor to busy
   krApp->setCursor( KCursor::waitCursor() );
-  // first, make this panel the active one
-  //	panel->slotFocusOnMe();
-  // second make sure we're in the right vfs..
-  if ( ( panel->virtualPath.contains( '\\' ) && !path.contains( '\\' ) ) ||     // arc -> normal
-       panel->virtualPath.left( 1 ) != "/" && path.left( 1 ) == "/" ) {     // ftp -> normal
-    while ( files() ->vfs_getType() != "normal" )
-      vfsStack.remove(); //empty the vfsStack
-    files() ->blockSignals( false );
-  }
+
   // if we could not refresh try to dir up
   QString origin = path;
   if ( !files() ->vfs_refresh( origin ) ) {
@@ -357,12 +349,10 @@ void ListPanelFunc::moveFiles() {
 
   KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 
-  // if we are not copyning to the other panel :
+  // if we are not moving to the other panel :
   if ( panel->otherPanel->getPath() != dest ) {
-    bool changed = false;
     if ( dest.left( 1 ) != "/" ) {
       dest = files() ->vfs_workingDir() + "/" + dest;
-      changed = true;
     }
     // you can rename only *one* file not a batch,
     // so a batch dest must alwayes be a directory
@@ -372,17 +362,20 @@ void ListPanelFunc::moveFiles() {
     KURL destUrl;
     destUrl.setPath( dest );
     KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, KIO::CopyJob::Move, false, true );
-    if ( changed )
-      connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
-    //else let the other panel do the dirty job
-  } else {
+    // refresh our panel when done
+		connect(job,SIGNAL(result(KIO::Job*)),this,SLOT( refresh() ) );
+    // and if needed the other panel as well
+    if( dest.startsWith(panel->otherPanel->getPath()) )
+			connect(job,SIGNAL(result(KIO::Job*)),panel->otherPanel->func,SLOT( refresh() ) );	
+
+  } else { // let the other panel do the dirty job
     //check if copy is supported
     if ( !otherFunc() ->files() ->vfs_isWritable() ) {
       KMessageBox::sorry( krApp, i18n( "You can't move files to this file system" ) );
       return ;
     }
     // finally..
-    otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Move, panel );
+    otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Move, files() );
   }
 }
 
@@ -572,10 +565,12 @@ void ListPanelFunc::execute( QString& name ) {
   QString origin = files() ->vfs_getOrigin();
 
   QString type = vf->vfile_getMime().right( 4 );
-  if ( type == "-tbz" )
+  /*
+	if ( type == "-tbz" )
     type = "zip2";
   if ( type == "-tgz" || type == "tarz" )
     type = "gzip";
+	*/
   if ( vf->vfile_getMime().contains( "-rar" ) )
     type = "-rar";
 
@@ -584,8 +579,16 @@ void ListPanelFunc::execute( QString& name ) {
     panel->view->setNameToMakeCurrent( QString::null );
     refresh( origin );
   } else if ( KRarcHandler::arcHandled( type ) ) {
-    openUrl( files() ->vfs_getFile( vf->vfile_getName() ) + "\\", type );
-  } else {
+    QString path = files()->vfs_getFile(vf->vfile_getName());
+		if(type == "-zip"){
+			path = "krzip:"+path;
+		} else if ( type == "-tbz" || type == "-tgz" || type == "tarz" ){
+    	path = "tar:"+path;
+		} else {
+    	path = path+"\\";
+		}
+    openUrl( path, type );
+	} else {
     KURL url;
     url.setPath( files() ->vfs_getFile( name ) );
     KRun::runURL( url, vf->vfile_getMime() );
@@ -594,35 +597,40 @@ void ListPanelFunc::execute( QString& name ) {
 
 void ListPanelFunc::dirUp() {
   QString origin = panel->virtualPath;
-
-  //do we need to change vfs ?
-  if ( origin.right( 1 ) == "\\" ||
-       files() ->vfs_error() ||
-       ( origin.contains( ":/" ) && origin.right( 1 ) == "/" ) ) { //yes
-    vfsStack.remove();
-    files() ->blockSignals( false );
+	QString newOrigin = origin;
+  // remove one dir from the new path
+  newOrigin.truncate( newOrigin.findRev('/') );
+	
+  // Do we need to change vfs ?
+  bool changeVFS = files()->vfs_error();
+	if ( origin.right( 1 ) == "\\" ) { // leaving arc_vfs
+		changeVFS = true;
     // make the current archive the current item on the new list
-    panel->view->setNameToMakeCurrent( origin.mid( origin.findRev( '/' ) + 1, origin.length() - origin.findRev( '/' ) - 2 ) );
-    files() ->vfs_refresh();
-    return ;
+    panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1,origin.length()-origin.findRev('/')-2) );
   }
 
-  // remove one dir from the path
-  origin.truncate( origin.findRev( '/' ) );
+	if( origin.contains(":/") ){ // ftp_vfs
+    if( QFileInfo(origin.mid(origin.find(":/")+1)).exists() ) changeVFS = true;
+	}
+
+	if( changeVFS ){
+    vfsStack.remove();
+    files()->blockSignals( false );
+    files()->vfs_refresh();
+    return ;
+	}
 
   // make the current dir the current item on the new list
-  panel->view->setNameToMakeCurrent(
-    panel->virtualPath.right( panel->virtualPath.length() - origin.length() - 1 ) );
+  panel->view->setNameToMakeCurrent(newOrigin.mid(newOrigin.findRev("/")+1));
 
   // check the '/' case
-  if ( origin == "" )
-    origin = "/";
+  if ( newOrigin == "" ) newOrigin = "/";
   // and the '/' case for urls
-  if ( origin.contains( ":/" ) && origin.find( "/", origin.find( ":/" ) + 3 ) == -1 )
-    origin = origin + "/";
+  //if ( origin.contains( ":/" ) && origin.find( "/", origin.find( ":/" ) + 3 ) == -1 )
+  //  origin = origin + "/";
 
   // change dir..
-  refresh( origin );
+  refresh( newOrigin );
 }
 
 void ListPanelFunc::changeVFS( QString type, QString origin ) {
@@ -849,12 +857,22 @@ void ListPanelFunc::properties() {
   panel->getSelectedNames( &names );
   if ( names.isEmpty() )
     return ;  // no names...
-  KURL::List* urls = files() ->vfs_getFiles( &names );
-  KFileItemList fi;
-
+/*
+	KURL::List* urls = files() ->vfs_getFiles( &names );
   for ( unsigned int i = 0 ; i < urls->count() ; ++i ) {
-    fi.append( new KFileItem( ( mode_t ) - 1, ( mode_t ) - 1, *( urls->at( i ) ) ) );
+    fi.append( new KFileItem( KFileItem::Unknown, KFileItem::Unknown, *( urls->at( i ) ) ) );
   }
+*/
+  KFileItemList fi;
+	fi.setAutoDelete(true);
+	QStringList::Iterator it;
+	for( it = names.begin(); it != names.end(); ++it ){
+  	vfile* vf = files()->vfs_search(*it);
+		if( !vf ) continue;
+		KURL url = files()->vfs_getFile(*it);
+		fi.append( new KFileItem(vf->vfile_getEntry(),url) );
+	}
+
   // create a new url and get the file's mode
   KPropertiesDialog *dlg = new KPropertiesDialog( fi );
   connect( dlg, SIGNAL( applied() ), SLOTS, SLOT( refresh() ) );
