@@ -63,7 +63,7 @@ void KrDetailedViewItem::repaintItem() {
     }
 
     if ((id = _view->column(KrDetailedView::DateTime)) != -1)
-      setText(id, _vf->vfile_getDateTime());
+      setText(id, dateTime());
     if ((id = _view->column(KrDetailedView::KrPermissions)) != -1) {
       // first, build the krusader permissions
       QString tmp;
