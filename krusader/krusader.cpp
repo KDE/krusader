@@ -286,18 +286,20 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    //KAcceleratorManager::manage(this,true);
 
    setCursor( KCursor::arrowCursor() );
-   // first, resize and move to starting point
-   config->setGroup( "Private" );
-   move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
-   resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
 
    if ( ! startProfile.isEmpty() )
        mainView->profiles( startProfile );
    
+   config->setGroup( "Private" );
    if ( krConfig->readBoolEntry( "Maximized" ) )
       showMaximized();
    else
+   {
+      // first, resize and move to starting point
+      move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
+      resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
       show();
+   }
 
    // let the good times rool :)
    updateGUI( true );
