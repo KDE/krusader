@@ -17,6 +17,7 @@
 #include "../panelmanager.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
+#include "../Panel/krview.h"
 #include "../Synchronizer/synchronizergui.h"
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
@@ -487,6 +488,99 @@ QString exp_Each::expFunc( const ListPanel* panel, const QStringList& parameter,
    return mark + mask + "@";
 }
 
+exp_ColSort::exp_ColSort() {
+   _expression = "ColSort";
+   _description = i18n("Set the sorting for this panel");
+   _needPanel = true;
+   
+   addParameter( new exp_parameter( i18n("Choose a column"), "__choose:Name;Ext;Type;Size;Modified;Perms;rwx;Owner;Group", true ) );
+   addParameter( new exp_parameter( i18n("Choose the sort sequence"), "__choose:Toggle;Asc;Desc", false ) );
+}
+QString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& ) {
+   NEED_PANEL
+
+   if ( parameter[0].isEmpty() ) {
+      krOut << "Expander: no column specified for %_ColSort(column)%; ignoring..." << endl;
+      return QString::null;
+   }
+   
+   KrViewProperties::SortSpec mode = panel->view->sortMode();
+   
+   /* from Panel/krview.h:
+      enum SortSpec { Name=0x1, 
+                              Ext=0x2,
+                              Size=0x4,
+                              Type=0x8,
+                              Modified=0x10,
+                              Permissions=0x20,
+                              KrPermissions=0x40,
+                              Owner=0x80,
+                              Group=0x100,
+                              Descending=0x200,
+                              DirsFirst=0x400,
+                              IgnoreCase=0x800 };
+   */
+   
+   krOut << "start: exp_ColSort::expFunc" << endl;
+   #define MODE_OUT krOut << QString( "mode: %1" ).arg( mode, 0, 2 ) << endl; // displays mode in base-2
+   MODE_OUT
+      
+   if ( parameter.count() <= 1 || ( parameter[1].lower() != "asc" && parameter[1].lower() != "desc" ) ) {  //default == toggle
+      if ( mode & KrViewProperties::Descending )
+         (int)mode &= ~KrViewProperties::Descending; // == asc
+      else
+         (int)mode |= KrViewProperties::Descending; // == desc
+   } else
+   if ( parameter[1].lower() == "asc" ) {
+      (int)mode &= ~KrViewProperties::Descending;
+   }
+   else { // == desc
+      (int)mode |= KrViewProperties::Descending;
+   }
+   
+   MODE_OUT
+   
+   // clear all column-infromation:
+   (int)mode &= ~( KrViewProperties::Name | KrViewProperties::Ext | KrViewProperties::Size | KrViewProperties::Type | KrViewProperties::Modified | KrViewProperties::Permissions | KrViewProperties::KrPermissions | KrViewProperties::Owner | KrViewProperties::Group );
+   
+   MODE_OUT
+   
+   if ( parameter[0].lower() == "name" ) {
+      (int)mode |= KrViewProperties::Name;
+   } else
+   if ( parameter[0].lower() == "ext" ) {
+      (int)mode |= KrViewProperties::Ext;
+   } else
+   if ( parameter[0].lower() == "type" ) {
+      (int)mode |= KrViewProperties::Type;
+   } else
+   if ( parameter[0].lower() == "size" ) {
+      (int)mode |= KrViewProperties::Size;
+   } else
+   if ( parameter[0].lower() == "modified" ) {
+      (int)mode |= KrViewProperties::Modified;
+   } else
+   if ( parameter[0].lower() == "perms" ) {
+      (int)mode |= KrViewProperties::Permissions;
+   } else
+   if ( parameter[0].lower() == "rwx" ) {
+      (int)mode |= KrViewProperties::KrPermissions;
+   } else
+   if ( parameter[0].lower() == "owner" ) {
+      (int)mode |= KrViewProperties::Owner;
+   } else
+   if ( parameter[0].lower() == "group" ) {
+      (int)mode |= KrViewProperties::Group;
+   } else {
+      krOut << "Expander: unknown column specified for %_ColSort(column)%; ignoring..." << endl;
+      return QString::null;
+   }
+   
+   MODE_OUT
+   panel->view->setSortMode( mode );
+   krOut << "end: exp_ColSort::expFunc" << endl;
+   return QString::null;  // this doesn't return everything, that's normal!
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// end of expander classes ////////////////////////////////
@@ -503,6 +597,8 @@ Expander::Expander() {
    addPlaceholder( new exp_separator( true ) );
    addPlaceholder( new exp_Select() );
    addPlaceholder( new exp_Goto() );
+   //FIXME: activate this placehodler as soon as KrView::SortMode works
+   //addPlaceholder( new exp_ColSort() );
 //    addPlaceholder( new exp_Search() );
    //Panel-independent:
    addPlaceholder( new exp_Ask() );
