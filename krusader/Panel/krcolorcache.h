@@ -12,6 +12,7 @@ class KrColorCache : public QObject
   QDict<QColor> colorCache;
   QDict<QString> textCache;
   bool kdeDefault, alternateBackgroundEnabled, showCurrentItemAlways;
+  void serializeItem(class QDataStream &, const char * name);
 public:
   static KrColorCache & getColorCache();
   const QString & getTextValue(const QString & textName) const;
@@ -32,6 +33,8 @@ public:
   bool isKDEDefault() const {return kdeDefault;}
   bool isAlternateBackgroundEnabled() const {return alternateBackgroundEnabled;}
   bool isShowCurrentItemAlways() const {return showCurrentItemAlways;}
+  void serialize(class QDataStream &);
+  void deserialize(class QDataStream &);
   
 public slots:
   void refreshColors();

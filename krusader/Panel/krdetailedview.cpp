@@ -554,7 +554,8 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    QListViewItem *newCurrent = itemAt( contentsToViewport( e->pos() ) );
    if (e->button() == RightButton)
    {
-     if (KrSelectionMode::getSelectionHandler()->rightButtonSelects())
+	if (KrSelectionMode::getSelectionHandler()->rightButtonSelects() || 
+		(((e->state() & ShiftButton) || (e->state() & ControlButton))) && KrSelectionMode::getSelectionHandler()->shiftCtrlRightButtonSelects())
      {
        if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && !(e->state() & ShiftButton)
           && !(e->state() & ControlButton) && !(e->state() & AltButton))
@@ -585,7 +586,9 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    if (e->button() == LeftButton)
    {
      dragStartPos = e->pos();
-     if (KrSelectionMode::getSelectionHandler()->leftButtonSelects())
+	  if (KrSelectionMode::getSelectionHandler()->leftButtonSelects() || 
+	  		(((e->state() & ShiftButton) || (e->state() & ControlButton))) &&
+			KrSelectionMode::getSelectionHandler()->shiftCtrlLeftButtonSelects())
      {
        if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection() && !(e->state() & ShiftButton)
           && !(e->state() & ControlButton) && !(e->state() & AltButton))

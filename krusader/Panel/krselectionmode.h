@@ -25,12 +25,14 @@ public:
    inline bool leftButtonSelects() { return _leftButtonSelects; }
    inline bool rightButtonPreservesSelection() { return _rightButtonPreservesSelection; }
    inline bool leftButtonPreservesSelection() { return _leftButtonPreservesSelection; }
+   inline bool shiftCtrlRightButtonSelects() { return _shiftCtrlRightButtonSelects; }
+   inline bool shiftCtrlLeftButtonSelects() { return _shiftCtrlLeftButtonSelects; }	
    inline int showContextMenu() { return _showContextMenu; } // 0: no, -1: yes, n>0: after n milliseconds
 
 protected:
 	bool _useQTSelection, _spaceMovesDown, _insertMovesDown, _spaceCalculatesDiskSpace;
 	bool _rightButtonSelects, _leftButtonSelects, _rightButtonPreservesSelection;
-	bool _leftButtonPreservesSelection;
+	bool _leftButtonPreservesSelection, _shiftCtrlRightButtonSelects, _shiftCtrlLeftButtonSelects;	
 	int _showContextMenu;
 };
 
@@ -45,6 +47,8 @@ public:
 		_leftButtonSelects = true;
 		_rightButtonPreservesSelection = false;
 		_leftButtonPreservesSelection = false;
+		_shiftCtrlRightButtonSelects = false;
+		_shiftCtrlLeftButtonSelects = false;		
 		_showContextMenu = -1;
 	}
 };
@@ -60,6 +64,8 @@ public:
 		_leftButtonSelects = true;
 		_rightButtonPreservesSelection = false;
 		_leftButtonPreservesSelection = false;
+		_shiftCtrlRightButtonSelects = false;
+		_shiftCtrlLeftButtonSelects = false;		
 		_showContextMenu = -1;
 	}
 };
@@ -75,6 +81,8 @@ public:
 		_leftButtonSelects = false;
 		_rightButtonPreservesSelection = true;
 		_leftButtonPreservesSelection = false;
+		_shiftCtrlRightButtonSelects = false;
+		_shiftCtrlLeftButtonSelects = true;		
 		_showContextMenu = 500;
 	}
 };

@@ -60,7 +60,7 @@ class Expander;
 class KMountMan;
 class KrBookmarkHandler;
 
-static QTextOStream krOut(::stdout);
+static QTextOStream krOut(stdout);
 
 class Krusader : public KParts::MainWindow {
     Q_OBJECT

@@ -291,7 +291,10 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
        mainView->profiles( startProfile );
    
    config->setGroup( "Private" );
-   if ( krConfig->readBoolEntry( "Maximized" ) )
+	move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
+	restoreWindowSize(config);
+	
+/*   if ( krConfig->readBoolEntry( "Maximized" ) )
       showMaximized();
    else
    {
@@ -299,7 +302,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
       move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
       resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
       show();
-   }
+   }*/
 
    // let the good times rool :)
    updateGUI( true );
@@ -652,9 +655,10 @@ void Krusader::exportKeyboardShortcuts(QString filename) {
 
 void Krusader::savePosition() {
    config->setGroup( "Private" );
-   config->writeEntry( "Start Position", isMaximized() ? oldPos : pos() );
+   /*config->writeEntry( "Start Position", isMaximized() ? oldPos : pos() );
    config->writeEntry( "Start Size", isMaximized() ? oldSize : size() );
-   config->writeEntry( "Maximized", isMaximized() );
+   config->writeEntry( "Maximized", isMaximized() );*/
+	saveWindowSize(config);
    config->writeEntry( "Panel Size", mainView->vert_splitter->sizes() [ 0 ] );
    config->writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
    QValueList<int> lst = mainView->horiz_splitter->sizes();

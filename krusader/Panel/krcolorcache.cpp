@@ -31,6 +31,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krusader.h"
 #include "../defaults.h"
 #include <kglobalsettings.h> 
+#include <qfile.h> 
 
 
 KrColorCache * KrColorCache::instance = 0;
@@ -94,7 +95,7 @@ QColor KrColorCache::getForegroundColor(bool isActive) const
 
 QColor KrColorCache::getDirectoryForegroundColor(bool isActive) const
 {
-   if (!isActive && getTextValue("Inactive Directory Background") == "Inactive Foreground")
+   if (!isActive && getTextValue("Inactive Directory Foreground") == "Inactive Foreground")
       return getForegroundColor(false);
    QColor color = getColor("Directory Foreground");
    if (!isActive) SETCOLOR(color, getColor("Inactive Directory Foreground"))
@@ -105,7 +106,7 @@ QColor KrColorCache::getDirectoryForegroundColor(bool isActive) const
 
 QColor KrColorCache::getExecutableForegroundColor(bool isActive) const
 {
-   if (!isActive && getTextValue("Inactive Executable Background") == "Inactive Foreground")
+   if (!isActive && getTextValue("Inactive Executable Foreground") == "Inactive Foreground")
       return getForegroundColor(false);
    QColor color = getColor("Executable Foreground");
    if (!isActive) SETCOLOR(color, getColor("Inactive Executable Foreground"))
@@ -116,7 +117,7 @@ QColor KrColorCache::getExecutableForegroundColor(bool isActive) const
 
 QColor KrColorCache::getSymlinkForegroundColor(bool isActive) const
 {
-   if (!isActive && getTextValue("Inactive Symlink Background") == "Inactive Foreground")
+   if (!isActive && getTextValue("Inactive Symlink Foreground") == "Inactive Foreground")
       return getForegroundColor(false);
    QColor color = getColor("Symlink Foreground");
    if (!isActive) SETCOLOR(color, getColor("Inactive Symlink Foreground"))
@@ -127,7 +128,7 @@ QColor KrColorCache::getSymlinkForegroundColor(bool isActive) const
 
 QColor KrColorCache::getInvalidSymlinkForegroundColor(bool isActive) const
 {
-   if (!isActive && getTextValue("Inactive Invalid Symlink Background") == "Inactive Foreground")
+   if (!isActive && getTextValue("Inactive Invalid Symlink Foreground") == "Inactive Foreground")
       return getForegroundColor(false);
    QColor color = getColor("Invalid Symlink Foreground");
    if (!isActive) SETCOLOR(color, getColor("Inactive Invalid Symlink Foreground"))
@@ -238,6 +239,63 @@ void KrColorCache::refreshColors()
    showCurrentItemAlways = krConfig->readBoolEntry("Show Current Item Always", _ShowCurrentItemAlways);
    colorsRefreshed();
 }
+
+void KrColorCache::serialize(QDataStream & stream)
+{
+   serializeItem(stream, "Alternate Background");
+   serializeItem(stream, "Alternate Marked Background");
+   serializeItem(stream, "Background");
+   serializeItem(stream, "Current Background");
+   serializeItem(stream, "Current Foreground");
+   serializeItem(stream, "Enable Alternate Background");
+   serializeItem(stream, "Foreground");
+   serializeItem(stream, "Directory Foreground");
+   serializeItem(stream, "Executable Foreground");
+   serializeItem(stream, "Symlink Foreground");
+   serializeItem(stream, "Invalid Symlink Foreground");
+   serializeItem(stream, "Inactive Alternate Background");
+   serializeItem(stream, "Inactive Alternate Marked Background");
+   serializeItem(stream, "Inactive Background");
+   serializeItem(stream, "Inactive Current Foreground");
+   serializeItem(stream, "Inactive Current Background");
+   serializeItem(stream, "Inactive Marked Background");
+   serializeItem(stream, "Inactive Marked Current Foreground");
+   serializeItem(stream, "Inactive Marked Foreground");
+   serializeItem(stream, "Inactive Foreground");
+   serializeItem(stream, "Inactive Directory Foreground");
+   serializeItem(stream, "Inactive Executable Foreground");
+   serializeItem(stream, "Inactive Symlink Foreground");
+   serializeItem(stream, "Inactive Invalid Symlink Foreground");
+   serializeItem(stream, "KDE Default");
+   serializeItem(stream, "Marked Background");
+   serializeItem(stream, "Marked Current Foreground");
+   serializeItem(stream, "Marked Foreground");
+   serializeItem(stream, "Show Current Item Always");
+   stream << QString("") << QString("");
+}
+
+void KrColorCache::deserialize(QDataStream & stream)
+{
+   for (;;)
+   {
+      QString name, value;
+      stream >> name >> value;
+      if (name == "")
+         break;
+      krConfig->setGroup("Colors");
+      krConfig->writeEntry(name, value);
+   }
+   refreshColors();
+}
+
+void KrColorCache::serializeItem(class QDataStream & stream, const char * name)
+{
+   stream << QString(name);
+   krConfig->setGroup("Colors");
+   QString text = krConfig->readEntry(name, "");
+   stream << text;
+}
+
 
 
 #include "krcolorcache.moc"
