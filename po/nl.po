@@ -7,9 +7,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.50-cvs\n"
+"Project-Id-Version: krusader-1.50-beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-12 17:58+0200\n"
+"POT-Creation-Date: 2004-10-15 19:51+0200\n"
 "PO-Revision-Date: 2004-05-03 20:25+0200\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@fastmail.fm>\n"
 "Language-Team: Dutch\n"
@@ -71,346 +71,326 @@ msgid ""
 "active and inactive panel - if possible."
 msgstr ""
 
-#: GUI/actionproperty.cpp:180 GUI/actionproperty.cpp:364
-msgid "There already is an action with this name"
-msgstr ""
-
-#: GUI/actionproperty.cpp:184
-msgid "The name is unique"
-msgstr ""
-
-#: GUI/actionproperty.cpp:209
+#: GUI/actionproperty.cpp:192
 msgid "New protocol"
 msgstr ""
 
-#: GUI/actionproperty.cpp:210
+#: GUI/actionproperty.cpp:193
 msgid "Set a protocol:"
 msgstr ""
 
-#: GUI/actionproperty.cpp:225
+#: GUI/actionproperty.cpp:208
 msgid "Edit protocol"
 msgstr ""
 
-#: GUI/actionproperty.cpp:226
+#: GUI/actionproperty.cpp:209
 msgid "Set an other protocol:"
 msgstr ""
 
-#: GUI/actionproperty.cpp:256
+#: GUI/actionproperty.cpp:239
 msgid "Edit path"
 msgstr ""
 
-#: GUI/actionproperty.cpp:257
+#: GUI/actionproperty.cpp:240
 msgid "Set an other path:"
 msgstr ""
 
-#: GUI/actionproperty.cpp:276
+#: GUI/actionproperty.cpp:259
 #, fuzzy
 msgid "New mime-type"
 msgstr "Mimetype kolom"
 
-#: GUI/actionproperty.cpp:277
+#: GUI/actionproperty.cpp:260
 #, fuzzy
 msgid "Set a mime-type:"
 msgstr "Mimetype kolom"
 
-#: GUI/actionproperty.cpp:292
+#: GUI/actionproperty.cpp:275
 msgid "Edit mime-type"
 msgstr ""
 
-#: GUI/actionproperty.cpp:293
+#: GUI/actionproperty.cpp:276
 msgid "Set an other mime-type:"
 msgstr ""
 
-#: GUI/actionproperty.cpp:312
+#: GUI/actionproperty.cpp:295
 msgid "New filename"
 msgstr ""
 
-#: GUI/actionproperty.cpp:313
+#: GUI/actionproperty.cpp:296
 msgid "Set a filename:"
 msgstr ""
 
-#: GUI/actionproperty.cpp:328
+#: GUI/actionproperty.cpp:311
 #, fuzzy
 msgid "Edit filename"
 msgstr "&Nieuw bestand bewerken"
 
-#: GUI/actionproperty.cpp:329
+#: GUI/actionproperty.cpp:312
 #, fuzzy
 msgid "Set an other filename:"
 msgstr "Iconen gebruiken in bestandsnamen"
 
-#: GUI/actionproperty.cpp:348
+#: GUI/actionproperty.cpp:331
 #, fuzzy
 msgid "Please set a unique name for the useraction"
 msgstr "Geef a.u.b. een naam voor de menu ingang"
 
-#: GUI/actionproperty.cpp:353
+#: GUI/actionproperty.cpp:336
 #, fuzzy
 msgid "Please set a title for the menu entry"
 msgstr "Geef a.u.b. een naam voor de menu ingang"
 
-#: GUI/actionproperty.cpp:358
+#: GUI/actionproperty.cpp:341
 msgid "Command line is empty"
 msgstr "Commandoregel is leeg"
 
-#: GUI/actionproperty.cpp:376
-msgid "Check"
+#: GUI/actionproperty.cpp:347
+msgid "There already is an action with this name"
 msgstr ""
 
-#: GUI/actionproperty.cpp:379
-msgid "Propose"
-msgstr ""
-
-#: GUI/actionpropertybase.cpp:392
+#: GUI/actionpropertybase.cpp:385
 msgid "Action Property"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:393
+#: GUI/actionpropertybase.cpp:386
 #, fuzzy
 msgid "..."
 msgstr ".."
 
-#: GUI/actionpropertybase.cpp:394
+#: GUI/actionpropertybase.cpp:387
 #, fuzzy
 msgid "Description"
 msgstr "Beschrijving:"
 
-#: GUI/actionpropertybase.cpp:395
+#: GUI/actionpropertybase.cpp:388
 msgid "Command accepts"
 msgstr "Commando aanvaard"
 
-#: GUI/actionpropertybase.cpp:396
+#: GUI/actionpropertybase.cpp:389
 #, fuzzy
 msgid "Local files only (no URL's)"
 msgstr "Lokale bestanden (geen URL's)"
 
-#: GUI/actionpropertybase.cpp:397
+#: GUI/actionpropertybase.cpp:390
 msgid "Substitute the placeholders with local filenames"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:398
+#: GUI/actionpropertybase.cpp:391
 msgid "URL's (remote and local)"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:399
+#: GUI/actionpropertybase.cpp:392
 msgid "Substitute the placeholders with valid URL's"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:400
+#: GUI/actionpropertybase.cpp:393
 msgid "The title displayed in the menu"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:401
+#: GUI/actionpropertybase.cpp:394
 #, fuzzy
 msgid "Title"
 msgstr "Wit"
 
-#: GUI/actionpropertybase.cpp:402
+#: GUI/actionpropertybase.cpp:395
 msgid "An unique name for the action"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:403
-msgid "propose"
-msgstr ""
-
-#: GUI/actionpropertybase.cpp:404
-msgid "Propose a unique name"
-msgstr ""
-
-#: GUI/actionpropertybase.cpp:405
+#: GUI/actionpropertybase.cpp:396
 msgid "Choose a category for a better overview"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:406
+#: GUI/actionpropertybase.cpp:397
 msgid "icon"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:407
+#: GUI/actionpropertybase.cpp:398
 msgid "Choose an icon for the action"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:408
+#: GUI/actionpropertybase.cpp:399
 msgid "use tooltip"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:409
+#: GUI/actionpropertybase.cpp:400
 msgid "You may use the tooltip as description"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:410
+#: GUI/actionpropertybase.cpp:401
 #, fuzzy
 msgid "Distinct name"
 msgstr "Sessie naam:"
 
-#: GUI/actionpropertybase.cpp:411
+#: GUI/actionpropertybase.cpp:402
 #, fuzzy
 msgid "Commandline"
 msgstr "Commandoregel"
 
-#: GUI/actionpropertybase.cpp:412
+#: GUI/actionpropertybase.cpp:403
 msgid "A tooltip for the action"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:413
+#: GUI/actionpropertybase.cpp:404
 #, fuzzy
 msgid "You may want to set a working directory"
 msgstr "Je kan geen directory bewerken"
 
-#: GUI/actionpropertybase.cpp:414
+#: GUI/actionpropertybase.cpp:405
 msgid "Tooltip"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:416
+#: GUI/actionpropertybase.cpp:407
 #, fuzzy
 msgid "This commandline is executed"
 msgstr "Commandoregel is leeg"
 
-#: GUI/actionpropertybase.cpp:417
+#: GUI/actionpropertybase.cpp:408
 msgid "Category"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:418 GUI/actionpropertybase.cpp:441
-#: GUI/actionpropertybase.cpp:446 GUI/addplaceholderpopup.cpp:252
+#: GUI/actionpropertybase.cpp:409 GUI/actionpropertybase.cpp:432
+#: GUI/actionpropertybase.cpp:437 GUI/addplaceholderpopup.cpp:252
 msgid "add"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:419
+#: GUI/actionpropertybase.cpp:410
 msgid "Add placeholders for the selected files in the panel"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:420
+#: GUI/actionpropertybase.cpp:411
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:421
+#: GUI/actionpropertybase.cpp:412
 #, fuzzy
 msgid "Startpath"
 msgstr "Opstarten"
 
-#: GUI/actionpropertybase.cpp:422
+#: GUI/actionpropertybase.cpp:413
 #, fuzzy
 msgid "Default shortcut:"
 msgstr "Standaard instellingen"
 
-#: GUI/actionpropertybase.cpp:423
+#: GUI/actionpropertybase.cpp:414
 msgid "None"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:424
+#: GUI/actionpropertybase.cpp:415
 msgid "set a default keyboad shortcut"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:425
+#: GUI/actionpropertybase.cpp:416
 msgid "Execution mode"
 msgstr "Uitvoer modus"
 
-#: GUI/actionpropertybase.cpp:426
+#: GUI/actionpropertybase.cpp:417
 msgid "Collect output"
 msgstr "Uitvoer verzamelen"
 
-#: GUI/actionpropertybase.cpp:427
-msgid "Collect the output of the executed programm"
+#: GUI/actionpropertybase.cpp:418
+msgid "Collect the output of the executed program"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:428
+#: GUI/actionpropertybase.cpp:419
 msgid "Separate standard error"
 msgstr "Aparte standaard error"
 
-#: GUI/actionpropertybase.cpp:429
+#: GUI/actionpropertybase.cpp:420
 #, fuzzy
 msgid "Separate standard out and standard error"
 msgstr "Aparte standaard error"
 
-#: GUI/actionpropertybase.cpp:430
+#: GUI/actionpropertybase.cpp:421
 #, fuzzy
 msgid "Normal"
 msgstr "Formatteren"
 
-#: GUI/actionpropertybase.cpp:431
+#: GUI/actionpropertybase.cpp:422
 msgid "Run in terminal"
 msgstr "In een terminal uitvoeren"
 
-#: GUI/actionpropertybase.cpp:432
+#: GUI/actionpropertybase.cpp:423
 #, fuzzy
 msgid "Run the command in a terminal"
 msgstr "In een terminal uitvoeren"
 
-#: GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:424
 #, fuzzy
 msgid "Basic Properties"
 msgstr "Algemene instellingen"
 
-#: GUI/actionpropertybase.cpp:434
+#: GUI/actionpropertybase.cpp:425
 msgid "This Action is only available for the following"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:435 GUI/actionpropertybase.cpp:451
+#: GUI/actionpropertybase.cpp:426 GUI/actionpropertybase.cpp:442
 msgid "new"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:436 GUI/actionpropertybase.cpp:442
-#: GUI/actionpropertybase.cpp:447 GUI/actionpropertybase.cpp:452
+#: GUI/actionpropertybase.cpp:427 GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:443
 msgid "edit"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:437 GUI/actionpropertybase.cpp:443
-#: GUI/actionpropertybase.cpp:448 GUI/actionpropertybase.cpp:453
+#: GUI/actionpropertybase.cpp:428 GUI/actionpropertybase.cpp:434
+#: GUI/actionpropertybase.cpp:439 GUI/actionpropertybase.cpp:444
 #, fuzzy
 msgid "remove"
 msgstr "Voorbeeld"
 
-#: GUI/actionpropertybase.cpp:438
+#: GUI/actionpropertybase.cpp:429
 msgid "Show the action only for these protocols"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:439
+#: GUI/actionpropertybase.cpp:430
 msgid "Protocol"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:440
+#: GUI/actionpropertybase.cpp:431
 msgid "Show the action only in these paths"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:444
+#: GUI/actionpropertybase.cpp:435
 msgid "Path"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:436
 msgid "Show the action only for these file-types"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:449
+#: GUI/actionpropertybase.cpp:440
 #, fuzzy
 msgid "Mime-type"
 msgstr "Mimetype kolom"
 
-#: GUI/actionpropertybase.cpp:450
+#: GUI/actionpropertybase.cpp:441
 msgid "Show the action only for these filenames (you may use '?' and '*')"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:454
+#: GUI/actionpropertybase.cpp:445
 #, fuzzy
 msgid "Filename"
 msgstr "Hernoemen"
 
-#: GUI/actionpropertybase.cpp:455
-msgid "Confirm each programmcall separately"
+#: GUI/actionpropertybase.cpp:446
+msgid "Confirm each program call separately"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:456
+#: GUI/actionpropertybase.cpp:447
 msgid "This allows you to tweak the commandline before beeing executed"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:457
+#: GUI/actionpropertybase.cpp:448
 msgid "Run as different user"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:458
+#: GUI/actionpropertybase.cpp:449
 #, fuzzy
 msgid "execute the command under an other user-id"
 msgstr "In een terminal uitvoeren"
 
-#: GUI/actionpropertybase.cpp:459
+#: GUI/actionpropertybase.cpp:450
 #, fuzzy
 msgid "Advanced Properties"
 msgstr "&Eigenschappen"
@@ -695,8 +675,9 @@ msgid "current file (!= selected file)"
 msgstr "huidig bestand (!= geselecteert bestand)"
 
 #: UserAction/expander.cpp:105 UserAction/expander.cpp:150
-msgid "Ommit the current path (optional)"
-msgstr ""
+#, fuzzy
+msgid "Omit the current path (optional)"
+msgstr "Een selectie invoeren:"
 
 #: UserAction/expander.cpp:145
 msgid "Item list of ..."
@@ -722,7 +703,7 @@ msgstr "Een selectie invoeren:"
 
 #: UserAction/expander.cpp:217
 #, fuzzy
-msgid "Selectionmask"
+msgid "Selection mask"
 msgstr "Items selecteren"
 
 #: UserAction/expander.cpp:218
@@ -774,7 +755,7 @@ msgid "What should be copied"
 msgstr ""
 
 #: UserAction/expander.cpp:310
-msgid "Append to the current clipboard-content with this seperator (optional)"
+msgid "Append to the current clipboard-content with this separator (optional)"
 msgstr ""
 
 #: UserAction/expander.cpp:324
@@ -833,7 +814,7 @@ msgstr "Bevestigingen"
 
 #: UserAction/kraction.cpp:216
 #, fuzzy
-msgid "Command beeing executed:"
+msgid "Command being executed:"
 msgstr "Commandoregel"
 
 #: UserAction/kraction.moc.cpp:34 UserAction/kraction.moc.cpp:42
@@ -850,19 +831,19 @@ msgstr ""
 msgid "KrAction"
 msgstr "Applicatie"
 
-#: Panel/krdetailedviewitem.cpp:351
+#: Panel/krdetailedviewitem.cpp:356
 msgid "Climb up the directory tree"
 msgstr "Omhoog gaan in de directory boom"
 
-#: Panel/krdetailedviewitem.cpp:363
+#: Panel/krdetailedviewitem.cpp:368
 msgid "Symbolic Link"
 msgstr "Symbolische Link"
 
-#: Panel/krdetailedviewitem.cpp:364
+#: Panel/krdetailedviewitem.cpp:369
 msgid "(broken link !)"
 msgstr "(verbroken link !)"
 
-#: Panel/krdetailedviewitem.cpp:365
+#: Panel/krdetailedviewitem.cpp:370
 msgid "%1 (Link)"
 msgstr "%1 (Link)"
 
@@ -870,15 +851,16 @@ msgstr "%1 (Link)"
 msgid "Preview not available"
 msgstr "Vooraf bekijken niet beschikbaar"
 
-#: Panel/listpanel.cpp:120
+#: Panel/listpanel.cpp:124
+#, fuzzy
 msgid ""
-"The status bar displays information about the FILESYSTEM which hold your "
-"current directory: Total size, free space, type of filesystem etc."
+"The status bar displays information about the FILESYSTEM which holds your "
+"current directory: Total size, free space, type of filesystem, etc."
 msgstr ""
 "De statusbalk toont informatie over het BESTANDSSYSTEEM van uw huidige "
 "directory: Totale grootte, vrije ruimte, type bestandssysteem enz."
 
-#: Panel/listpanel.cpp:136
+#: Panel/listpanel.cpp:140
 msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
@@ -887,24 +869,25 @@ msgstr ""
 "bladwijzer menu, bladwijzers bewerken of een subfolder toevoegen aan de "
 "lijst."
 
-#: Panel/listpanel.cpp:150
+#: Panel/listpanel.cpp:154
+#, fuzzy
 msgid ""
-"The totals bar shows how much files exist, how many did you select and the "
-"bytes math"
+"The totals bar shows how many files exist, how many selected and the bytes "
+"math"
 msgstr ""
 "De totaalbalk toont hoeveel bestanden dat er geselecteerd zijn, het totaal "
 "aantal bestanden en het aantal bytes"
 
-#: Panel/listpanel.cpp:160 Panel/listpanel.cpp:288
+#: Panel/listpanel.cpp:164 Panel/listpanel.cpp:293
 #, fuzzy
 msgid "Open the popup panel"
 msgstr "Andere venster"
 
-#: Panel/listpanel.cpp:176
+#: Panel/listpanel.cpp:180
 msgid "Use superb KDE file dialog to choose location. "
 msgstr "Gebruik superb KDE bestand dialoog om uw locatie te kiezen. "
 
-#: Panel/listpanel.cpp:180
+#: Panel/listpanel.cpp:184
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
@@ -913,211 +896,211 @@ msgstr ""
 "de gewenste locatie. Gebruik van Net protocollen zoals ftp of fish is "
 "mogelijk."
 
-#: Panel/listpanel.cpp:189
+#: Panel/listpanel.cpp:193
 msgid "="
 msgstr "="
 
-#: Panel/listpanel.cpp:190
+#: Panel/listpanel.cpp:194
 msgid "Equal"
 msgstr ""
 
-#: Panel/listpanel.cpp:195
+#: Panel/listpanel.cpp:199
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:196 krusader.cpp:453
+#: Panel/listpanel.cpp:200 krusader.cpp:453
 msgid "Up"
 msgstr "Omhoog"
 
-#: Panel/listpanel.cpp:201
+#: Panel/listpanel.cpp:205
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:202 Panel/panelpopup.cpp:87 Panel/panelpopup.cpp:88
+#: Panel/listpanel.cpp:206 Panel/panelpopup.cpp:87 Panel/panelpopup.cpp:88
 #: Panel/panelpopup.cpp:89 Panel/panelpopup.cpp:100
 #, fuzzy
 msgid "Home"
 msgstr "Homepagina:"
 
-#: Panel/listpanel.cpp:207
+#: Panel/listpanel.cpp:211
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:208 Panel/panelpopup.cpp:91 Panel/panelpopup.cpp:92
+#: Panel/listpanel.cpp:212 Panel/panelpopup.cpp:91 Panel/panelpopup.cpp:92
 #: Panel/panelpopup.cpp:94 Panel/panelpopup.cpp:95 Panel/panelpopup.cpp:99
 #: krusader.cpp:530
 msgid "Root"
 msgstr "Root"
 
-#: Panel/listpanel.cpp:282
+#: Panel/listpanel.cpp:287
 #, fuzzy
 msgid "Close the popup panel"
 msgstr "Andere venster"
 
-#: Panel/listpanel.cpp:373 Panel/listpanel.cpp:1021
+#: Panel/listpanel.cpp:378 Panel/listpanel.cpp:1029
 msgid " Select Files "
 msgstr " Bestanden selecteren "
 
-#: Panel/listpanel.cpp:373
+#: Panel/listpanel.cpp:378
 msgid " Unselect Files "
 msgstr " Bestanden deselecteren "
 
-#: Panel/listpanel.cpp:487 Panel/listpanel.cpp:495
+#: Panel/listpanel.cpp:492 Panel/listpanel.cpp:500
 #: Konfigurator/kgstartup.cpp:58 Konfigurator/kgstartup.cpp:64
 #: Konfigurator/kgstartup.cpp:75 Konfigurator/kgstartup.cpp:115
 #: Konfigurator/kgstartup.cpp:116
 msgid "homepage"
 msgstr "de homepagina"
 
-#: Panel/listpanel.cpp:489 Panel/listpanel.cpp:497 krusader.cpp:236
+#: Panel/listpanel.cpp:494 Panel/listpanel.cpp:502 krusader.cpp:236
 #: krusader.cpp:241 krusader.cpp:617 krusader.cpp:620
 #: Konfigurator/kgstartup.cpp:60
 msgid "the last place it was"
 msgstr "de laatste positie"
 
-#: Panel/listpanel.cpp:558
+#: Panel/listpanel.cpp:563
 msgid "No space information on non-local filesystems"
 msgstr "Geen ruimte informatie in niet locale bestandsytemen"
 
-#: Panel/listpanel.cpp:564
+#: Panel/listpanel.cpp:569
 #, fuzzy
 msgid "No space information on [dev]"
 msgstr "Geen ruimte informatie in [proc]"
 
-#: Panel/listpanel.cpp:569
+#: Panel/listpanel.cpp:574
 #, fuzzy
 msgid "No space information on [procfs]"
 msgstr "Geen ruimte informatie in [procfs]"
 
-#: Panel/listpanel.cpp:574
+#: Panel/listpanel.cpp:579
 #, fuzzy
 msgid "No space information on [proc]"
 msgstr "Geen ruimte informatie in [proc]"
 
-#: Panel/listpanel.cpp:579
+#: Panel/listpanel.cpp:584
 msgid "Mt.Man: working ..."
 msgstr "Mt.Man: bezig ..."
 
-#: Panel/listpanel.cpp:593
+#: Panel/listpanel.cpp:598
 msgid "unknown"
 msgstr ""
 
-#: Panel/listpanel.cpp:601
+#: Panel/listpanel.cpp:606
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr "%1 vrij van de %2 (%3%) op %4 [ (%5) ]"
 
-#: Panel/listpanel.cpp:665
+#: Panel/listpanel.cpp:670
 msgid "Can't drop here, no write permissions."
 msgstr "Kan hier niet droppen, geen schrijfpermissie."
 
-#: Panel/listpanel.cpp:681 Panel/panelpopup.cpp:262
+#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:234
 msgid "Copy Here"
 msgstr "Hier kopiëren"
 
-#: Panel/listpanel.cpp:683 Panel/panelpopup.cpp:263
+#: Panel/listpanel.cpp:688 Panel/panelpopup.cpp:235
 msgid "Move Here"
 msgstr "Hier verplaatsen"
 
-#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:264
+#: Panel/listpanel.cpp:691 Panel/panelpopup.cpp:236
 msgid "Link Here"
 msgstr "Hier linken"
 
-#: Panel/listpanel.cpp:775
+#: Panel/listpanel.cpp:780
 msgid "Run"
 msgstr "Uitvoeren"
 
-#: Panel/listpanel.cpp:778 Panel/listpanel.cpp:779
+#: Panel/listpanel.cpp:783 Panel/listpanel.cpp:784
 msgid "Open in a new tab"
 msgstr "In een nieuwe tab openen"
 
-#: Panel/listpanel.cpp:791 Konfigurator/kgcolors.cpp:152
+#: Panel/listpanel.cpp:796 Konfigurator/kgcolors.cpp:152
 msgid "Preview"
 msgstr "Voorbeeld"
 
-#: Panel/listpanel.cpp:817
+#: Panel/listpanel.cpp:822
 msgid "Terminal"
 msgstr "Terminal"
 
-#: Panel/listpanel.cpp:818
+#: Panel/listpanel.cpp:823
 msgid "Other..."
 msgstr "Andere..."
 
-#: Panel/listpanel.cpp:820
+#: Panel/listpanel.cpp:825
 msgid "Open with"
 msgstr "Openen met"
 
-#: Panel/listpanel.cpp:824
+#: Panel/listpanel.cpp:829
 #, fuzzy
 msgid "Useractions"
 msgstr "Gebruikers instellingen"
 
-#: Panel/listpanel.cpp:838
+#: Panel/listpanel.cpp:845
 msgid "Konqueror menu"
 msgstr ""
 
-#: Panel/listpanel.cpp:848 Panel/krdetailedview.cpp:988
+#: Panel/listpanel.cpp:856 Panel/krdetailedview.cpp:988
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: Panel/listpanel.cpp:854
+#: Panel/listpanel.cpp:862
 msgid "Shred"
 msgstr "Vernietigen"
 
-#: Panel/listpanel.cpp:859
+#: Panel/listpanel.cpp:867
 msgid "new symlink"
 msgstr "nieuwe symlink"
 
-#: Panel/listpanel.cpp:860
+#: Panel/listpanel.cpp:868
 msgid "new hardlink"
 msgstr "nieuwe hardlink"
 
-#: Panel/listpanel.cpp:862
+#: Panel/listpanel.cpp:870
 msgid "redirect link"
 msgstr "link redirigeren"
 
-#: Panel/listpanel.cpp:864
+#: Panel/listpanel.cpp:872
 msgid "Link handling"
 msgstr "Link beheer"
 
-#: Panel/listpanel.cpp:871 MountMan/kmountman.cpp:268
+#: Panel/listpanel.cpp:879 MountMan/kmountman.cpp:268
 #: MountMan/kmountmangui.cpp:322
 msgid "Unmount"
 msgstr "Unmount"
 
-#: Panel/listpanel.cpp:873 MountMan/kmountman.cpp:268
+#: Panel/listpanel.cpp:881 MountMan/kmountman.cpp:268
 #: MountMan/kmountmangui.cpp:318
 msgid "Mount"
 msgstr "Mount"
 
-#: Panel/listpanel.cpp:875 MountMan/kmountmangui.cpp:328
+#: Panel/listpanel.cpp:883 MountMan/kmountmangui.cpp:328
 msgid "Eject"
 msgstr "Uitwerpen"
 
-#: Panel/listpanel.cpp:879
+#: Panel/listpanel.cpp:887
 msgid "Send by email"
 msgstr "Met e-mail verzenden"
 
-#: Panel/listpanel.cpp:883
+#: Panel/listpanel.cpp:891
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:886
+#: Panel/listpanel.cpp:894
 msgid "Cut to Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:887 Panel/listpanel.cpp:1003
+#: Panel/listpanel.cpp:895 Panel/listpanel.cpp:1011
 msgid "Paste from Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:929
+#: Panel/listpanel.cpp:937
 msgid "Are you sure you want to shred "
 msgstr "Bent u zeker dat u wilt vernietigen : "
 
-#: Panel/listpanel.cpp:930
+#: Panel/listpanel.cpp:938
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr ""
 
-#: Panel/listpanel.cpp:986 Panel/panelfunc.cpp:307 KViewer/krviewer.cpp:212
+#: Panel/listpanel.cpp:994 Panel/panelfunc.cpp:307 KViewer/krviewer.cpp:212
 #: krslots.cpp:408
 msgid "Can't open "
 msgstr "Kan niet openen "
@@ -1138,7 +1121,7 @@ msgstr "Type"
 
 #: Panel/krdetailedview.cpp:91 Search/krsearchdialog.cpp:141
 #: Search/advancedfilter.cpp:94 Synchronizer/synchronizergui.cpp:1237
-#: Synchronizer/synchronizergui.cpp:1241
+#: Synchronizer/synchronizergui.cpp:1241 Konfigurator/kglookfeel.cpp:141
 msgid "Size"
 msgstr "Grootte"
 
@@ -1154,11 +1137,11 @@ msgstr "Permis"
 msgid "rwx"
 msgstr "rwx"
 
-#: Panel/krdetailedview.cpp:95
+#: Panel/krdetailedview.cpp:95 Konfigurator/kglookfeel.cpp:145
 msgid "Owner"
 msgstr "Eigenaar"
 
-#: Panel/krdetailedview.cpp:96
+#: Panel/krdetailedview.cpp:96 Konfigurator/kglookfeel.cpp:146
 msgid "Group"
 msgstr "Groep"
 
@@ -1190,11 +1173,6 @@ msgstr ""
 #: Panel/panelpopup.cpp:65
 msgid "Quick Panel: quick way to perform actions"
 msgstr ""
-
-#: Panel/panelpopup.cpp:103 Panel/panelpopup.cpp:194 Panel/panelpopup.cpp:226
-#, fuzzy
-msgid "No preview available"
-msgstr "Vooraf bekijken niet beschikbaar"
 
 #: Panel/panelpopup.cpp:111
 msgid "Quick Select"
@@ -1228,15 +1206,6 @@ msgstr "Voorbeeld"
 #: Panel/panelpopup.cpp:179
 msgid "Quick Select:"
 msgstr ""
-
-#: Panel/panelpopup.cpp:202
-msgid "Please wait..."
-msgstr ""
-
-#: Panel/panelpopup.cpp:219
-#, fuzzy
-msgid "Preview: "
-msgstr "Voorbeeld"
 
 #: Panel/krdetailedview.moc.cpp:34 Panel/krdetailedview.moc.cpp:42
 msgid "KrDetailedView"
@@ -1876,7 +1845,8 @@ msgid "List"
 msgstr "Lijst"
 
 #: krusader.cpp:662
-msgid "Ok to shutdown Krusader ?"
+#, fuzzy
+msgid "Ok to shutdown Krusader?"
 msgstr "Ok om Krusader af te sluiten ?"
 
 #: KViewer/krviewer.moc.cpp:34 KViewer/krviewer.moc.cpp:42
@@ -1917,8 +1887,9 @@ msgid "KrViewer is unable to download: "
 msgstr "KrViewer is niet in staat om te downloaden: "
 
 #: KViewer/krviewer.cpp:380
+#, fuzzy
 msgid ""
-"The Document has been changed. Do you want to quit loosing the modifications?"
+"The Document has been changed. Do you want to quit, losing the modifications?"
 msgstr ""
 "Het Document is gewijzigd. Wilt u afsluiten zonder deze wijzigingen op te "
 "slaan?"
@@ -2531,7 +2502,8 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - ROOT PRIVILEGES"
 
 #: krusaderview.cpp:80
-msgid "Function keys allow to perform fast operations on files."
+#, fuzzy
+msgid "Function keys allow performing fast operations on files."
 msgstr "Functie toetsen laten snelle bestandsbewerkingen toe."
 
 #: Dialogs/krprogress.cpp:59
@@ -2577,8 +2549,8 @@ msgid "%1 / %n file"
 msgstr "%1 / %n bestand"
 
 #: Dialogs/krprogress.cpp:225
-msgid "Stalled"
-msgstr "Blijven hangen"
+msgid "Working"
+msgstr ""
 
 #: Dialogs/krprogress.cpp:228
 msgid "%1/s ( %2 remaining )"
@@ -2796,8 +2768,9 @@ msgid "UserMenuGui"
 msgstr "GebruikersMenuGui"
 
 #: UserMenu/usermenuadd.cpp:29
-msgid "Add an useraction"
-msgstr ""
+#, fuzzy
+msgid "Add a useraction"
+msgstr "Gebruikers instellingen"
 
 #: Synchronizer/synchronizergui.cpp:1020
 msgid "Krusader::Synchronize Directories"
@@ -2865,10 +2838,11 @@ msgid "Asymmetric"
 msgstr "Asymmetrisch"
 
 #: Synchronizer/synchronizergui.cpp:1120
+#, fuzzy
 msgid ""
 "Asymmetric mode. The left side is the destination, the right is the source "
 "directory.\n"
-"The files existed only in the left directory will be deleted, the other "
+"The files existing only in the left directory will be deleted, the other "
 "differing ones\n"
 "will be copied from right to left (useful at updating a directory from a "
 "file server)."
@@ -2881,12 +2855,15 @@ msgstr ""
 "een fileserver)."
 
 #: Synchronizer/synchronizergui.cpp:1123
-msgid "Automatic Scrolling"
-msgstr "Automatisch scrollen"
+#, fuzzy
+msgid "Ignore Case"
+msgstr "Datum negeren"
 
 #: Synchronizer/synchronizergui.cpp:1125
-msgid "Scrolls the results of comparing (slow)"
-msgstr "De resultaten van de vergelijking scrollen (traag)"
+msgid ""
+"Case insensitive filename compare. Use at synchronizing on Windows "
+"filesystems."
+msgstr ""
 
 #: Synchronizer/synchronizergui.cpp:1130
 msgid "Show options"
@@ -2956,91 +2933,101 @@ msgstr "Vensters v&erwisselen"
 msgid "Compare"
 msgstr "Vergelijken"
 
-#: Synchronizer/synchronizergui.cpp:1301
+#: Synchronizer/synchronizergui.cpp:1301 Synchronizer/synchronizergui.cpp:2004
+#, fuzzy
+msgid "Quiet"
+msgstr "Sessies"
+
+#: Synchronizer/synchronizergui.cpp:1303 Synchronizer/synchronizergui.cpp:2006
+#, fuzzy
+msgid "Scroll Results"
+msgstr "Resultaten"
+
+#: Synchronizer/synchronizergui.cpp:1312
 msgid "Synchronize"
 msgstr "Synchroniseren"
 
-#: Synchronizer/synchronizergui.cpp:1378
+#: Synchronizer/synchronizergui.cpp:1390
 #, fuzzy
 msgid "Target directory:"
 msgstr "Linkse directory:"
 
-#: Synchronizer/synchronizergui.cpp:1379
+#: Synchronizer/synchronizergui.cpp:1391
 #, fuzzy
 msgid "Source directory:"
 msgstr "Remote directory:"
 
-#: Synchronizer/synchronizergui.cpp:1383
+#: Synchronizer/synchronizergui.cpp:1395
 msgid "Left directory:"
 msgstr "Linkse directory:"
 
-#: Synchronizer/synchronizergui.cpp:1384
+#: Synchronizer/synchronizergui.cpp:1396
 msgid "Right directory:"
 msgstr "Rechtse directory:"
 
-#: Synchronizer/synchronizergui.cpp:1423
+#: Synchronizer/synchronizergui.cpp:1436
 msgid "Synchronize Directories"
 msgstr "Directories synchroniseren"
 
-#: Synchronizer/synchronizergui.cpp:1425
+#: Synchronizer/synchronizergui.cpp:1438
 msgid "Exclude"
 msgstr "Uitsluiten"
 
-#: Synchronizer/synchronizergui.cpp:1427
+#: Synchronizer/synchronizergui.cpp:1440
 msgid "Restore original operation"
 msgstr "Oorspronkelijke bewerking ongedaan maken."
 
-#: Synchronizer/synchronizergui.cpp:1429
+#: Synchronizer/synchronizergui.cpp:1442
 msgid "Reverse direction"
 msgstr "Richting omkeren"
 
-#: Synchronizer/synchronizergui.cpp:1431
+#: Synchronizer/synchronizergui.cpp:1444
 msgid "Copy from right to left"
 msgstr "Kopiëren van rechts naar links"
 
-#: Synchronizer/synchronizergui.cpp:1433
+#: Synchronizer/synchronizergui.cpp:1446
 msgid "Copy from left to right"
 msgstr "Kopiëren van links naar rechts"
 
-#: Synchronizer/synchronizergui.cpp:1435
+#: Synchronizer/synchronizergui.cpp:1448
 msgid "Delete (left single)"
 msgstr "Wissen (links enkelvoudig)"
 
-#: Synchronizer/synchronizergui.cpp:1440
+#: Synchronizer/synchronizergui.cpp:1453
 msgid "View left file"
 msgstr "Links bestand bekijken"
 
-#: Synchronizer/synchronizergui.cpp:1442
+#: Synchronizer/synchronizergui.cpp:1455
 msgid "View right file"
 msgstr "Rechts bestand bekijken"
 
-#: Synchronizer/synchronizergui.cpp:1444
+#: Synchronizer/synchronizergui.cpp:1457
 msgid "Compare Files"
 msgstr "Bestanden vergelijken"
 
-#: Synchronizer/synchronizergui.cpp:1449 Synchronizer/synchronizergui.cpp:1528
+#: Synchronizer/synchronizergui.cpp:1462 Synchronizer/synchronizergui.cpp:1541
 msgid "Select items"
 msgstr "Items selecteren"
 
-#: Synchronizer/synchronizergui.cpp:1451 Synchronizer/synchronizergui.cpp:1529
+#: Synchronizer/synchronizergui.cpp:1464 Synchronizer/synchronizergui.cpp:1542
 msgid "Deselect items"
 msgstr "Items deselecteren"
 
-#: Synchronizer/synchronizergui.cpp:1453
+#: Synchronizer/synchronizergui.cpp:1466
 msgid "Invert selection"
 msgstr "Markering omkeren"
 
-#: Synchronizer/synchronizergui.cpp:1464
+#: Synchronizer/synchronizergui.cpp:1477
 #, fuzzy
 msgid "Synchronize with KGet"
 msgstr "Synchroniseren"
 
-#: Synchronizer/synchronizergui.cpp:1673 Synchronizer/synchronizergui.cpp:1680
-#: Synchronizer/synchronizergui.cpp:1728 Synchronizer/synchronizergui.cpp:1735
+#: Synchronizer/synchronizergui.cpp:1688 Synchronizer/synchronizergui.cpp:1695
+#: Synchronizer/synchronizergui.cpp:1744 Synchronizer/synchronizergui.cpp:1751
 msgid "<DIR>"
 msgstr "<DIR>"
 
-#: Synchronizer/synchronizergui.cpp:1822
+#: Synchronizer/synchronizergui.cpp:1838
 msgid "Synchronizer has nothing to do!"
 msgstr "Er is niets om te synchroniseren!"
 
@@ -3094,48 +3081,48 @@ msgstr "Pauze"
 msgid "Resume"
 msgstr "Hervatten"
 
-#: Synchronizer/synchronizer.cpp:99 Synchronizer/synchronizer.cpp:475
+#: Synchronizer/synchronizer.cpp:103 Synchronizer/synchronizer.cpp:485
 msgid "File number:%1"
 msgstr "Bestand nummer:%1"
 
-#: Synchronizer/synchronizer.cpp:227
+#: Synchronizer/synchronizer.cpp:237
 msgid "Error at opening URL:%1!"
 msgstr "Fout bij het openenen van URL:%1!"
 
-#: Synchronizer/synchronizer.cpp:232 Synchronizer/synchronizer.cpp:992
+#: Synchronizer/synchronizer.cpp:242 Synchronizer/synchronizer.cpp:1020
 msgid "Scanned directories:%1"
 msgstr "Gescande directories:%1"
 
-#: Synchronizer/synchronizer.cpp:800 Synchronizer/synchronizer.cpp:808
+#: Synchronizer/synchronizer.cpp:826 Synchronizer/synchronizer.cpp:834
 msgid "File Already Exists"
 msgstr "Bestand bestaat reeds"
 
-#: Synchronizer/synchronizer.cpp:848 Synchronizer/synchronizer.cpp:853
+#: Synchronizer/synchronizer.cpp:874 Synchronizer/synchronizer.cpp:879
 msgid "Error at copying file %1 to %2!"
 msgstr "Fout bij het kopiëren van bestand %1 naar %2!"
 
-#: Synchronizer/synchronizer.cpp:858
+#: Synchronizer/synchronizer.cpp:884
 msgid "Error at deleting file %1!"
 msgstr "Fout bij het wissen van bestand %1!"
 
-#: Synchronizer/synchronizer.cpp:1064
+#: Synchronizer/synchronizer.cpp:1092
 msgid "IO error at comparing file %1 with %2!"
 msgstr "IO fout bij het vergelijken van bestand %1 met %2!"
 
-#: Synchronizer/synchronizer.cpp:1093 Synchronizer/synchronizer.cpp:1104
+#: Synchronizer/synchronizer.cpp:1121 Synchronizer/synchronizer.cpp:1132
 msgid "Comparing file %1..."
 msgstr "Bestand vergelijken %1..."
 
-#: Synchronizer/synchronizer.cpp:1136
+#: Synchronizer/synchronizer.cpp:1165
 msgid "Feeding the URL-s to kget"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:1138
+#: Synchronizer/synchronizer.cpp:1167
 #, fuzzy
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Synchroniseren"
 
-#: Synchronizer/synchronizer.cpp:1184 krslots.cpp:104 krslots.cpp:199
+#: Synchronizer/synchronizer.cpp:1216 krslots.cpp:104 krslots.cpp:199
 msgid "Error executing "
 msgstr "Fout bij het uitvoeren "
 
@@ -3238,7 +3225,8 @@ msgid "diff: found "
 msgstr "diff: gevonden "
 
 #: Konfigurator/kggeneral.cpp:120
-msgid ", compare by content availble.\n"
+#, fuzzy
+msgid ", compare by content available.\n"
 msgstr ", inhoud vergelijken is beschikbaar.\n"
 
 #: Konfigurator/kggeneral.cpp:121
@@ -3276,12 +3264,14 @@ msgid "rename: found "
 msgstr "hernoemen: gevonden "
 
 #: Konfigurator/kggeneral.cpp:126
-msgid ", multipule rename enabled.\n"
+#, fuzzy
+msgid ", multiple rename enabled.\n"
 msgstr ", meervoudig hernoemen geactiveerd.\n"
 
 #: Konfigurator/kggeneral.cpp:127
+#, fuzzy
 msgid ""
-"rename: no compatible renamer-programs found. multipule rename is disabled.\n"
+"rename: no compatible renamer-programs found. multiple rename is disabled.\n"
 "hint: Krusader supports krename\n"
 "\n"
 msgstr ""
@@ -3360,7 +3350,7 @@ msgid "User Actions"
 msgstr ""
 
 #: Konfigurator/konfigurator.cpp:113
-msgid "Configure you personal actions"
+msgid "Configure your personal actions"
 msgstr ""
 
 #: Konfigurator/konfigurator.cpp:116 Konfigurator/kgprotocols.cpp:102
@@ -3472,88 +3462,91 @@ msgid "48"
 msgstr "48"
 
 #: Konfigurator/kglookfeel.cpp:134
-msgid "Fields:"
-msgstr "Velden:"
+#, fuzzy
+msgid "Visible Columns:"
+msgstr "Grootte kolom"
 
 #: Konfigurator/kglookfeel.cpp:139
-msgid "Extension Column"
+#, fuzzy
+msgid "Extension"
 msgstr "Extensie kolom"
 
 #: Konfigurator/kglookfeel.cpp:140
-msgid "Mimetype Column"
+#, fuzzy
+msgid "Mimetype"
 msgstr "Mimetype kolom"
 
-#: Konfigurator/kglookfeel.cpp:141
-msgid "Size Column"
-msgstr "Grootte kolom"
-
 #: Konfigurator/kglookfeel.cpp:142
-msgid "Date and Time Column"
+#, fuzzy
+msgid "Date and Time"
 msgstr "Datum en tijd kolom"
 
 #: Konfigurator/kglookfeel.cpp:143
-msgid "Permission Column"
-msgstr "Permissies kolom"
+#, fuzzy
+msgid "Permission"
+msgstr "Permissies"
 
 #: Konfigurator/kglookfeel.cpp:144
-msgid "Krusader Permission Column"
+#, fuzzy
+msgid "Krusader Permission"
 msgstr "Krusader permissie kolom"
 
-#: Konfigurator/kglookfeel.cpp:145
-msgid "Owner Column"
-msgstr "Eigenaar kolom"
-
-#: Konfigurator/kglookfeel.cpp:146
-msgid "Group Column"
-msgstr "Groep kolom"
-
-#: Konfigurator/kglookfeel.cpp:156
+#: Konfigurator/kglookfeel.cpp:157
 msgid "Use icons in the filenames"
 msgstr "Iconen gebruiken in bestandsnamen"
 
-#: Konfigurator/kglookfeel.cpp:166
+#: Konfigurator/kglookfeel.cpp:158
+msgid "Use human-readable file size"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:168
 msgid "Toolbar"
 msgstr "Werkbalk"
 
-#: Konfigurator/kglookfeel.cpp:176
+#: Konfigurator/kglookfeel.cpp:178
 msgid "Key-bindings"
 msgstr "Sneltoetsen"
 
-#: Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
 msgstr "Venster werkbalk"
 
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Panel Toolbar visible"
 msgstr "Venster werkbalk zichtbaar"
 
-#: Konfigurator/kglookfeel.cpp:200
+#: Konfigurator/kglookfeel.cpp:202
 #, fuzzy
-msgid "Panel Toolbar buttons"
+msgid "Visible Panel Toolbar buttons"
 msgstr "Venster werkbalk"
 
-#: Konfigurator/kglookfeel.cpp:206
-msgid "Open button visible"
+#: Konfigurator/kglookfeel.cpp:208
+#, fuzzy
+msgid "Open button"
 msgstr "OpenDir knop zichtbaar"
 
-#: Konfigurator/kglookfeel.cpp:207
-msgid "Equal button (=) visible"
+#: Konfigurator/kglookfeel.cpp:209
+#, fuzzy
+msgid "Equal button (=)"
 msgstr "Gelijk knop (=) zichtbaar"
 
-#: Konfigurator/kglookfeel.cpp:208
-msgid "Up button (..) visible"
+#: Konfigurator/kglookfeel.cpp:210
+#, fuzzy
+msgid "Up button (..)"
 msgstr "Omhoog knop (..) zichtbaar"
 
-#: Konfigurator/kglookfeel.cpp:209
-msgid "Home button (~) visible"
+#: Konfigurator/kglookfeel.cpp:211
+#, fuzzy
+msgid "Home button (~)"
 msgstr "Home knop (~) zichtbaar"
 
-#: Konfigurator/kglookfeel.cpp:210
-msgid "Root button (/) visible"
+#: Konfigurator/kglookfeel.cpp:212
+#, fuzzy
+msgid "Root button (/)"
 msgstr "Root knop (/) zichtbaar"
 
-#: Konfigurator/kglookfeel.cpp:211
-msgid "Toggle-button for synchron-browsing visible"
+#: Konfigurator/kglookfeel.cpp:213
+msgid "Toggle-button for sync-browsing"
 msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:52
@@ -3720,7 +3713,8 @@ msgid "Use the default KDE colors"
 msgstr "KDE default kleuren gebruiken"
 
 #: Konfigurator/kgcolors.cpp:58
-msgid "Use alternate backround color"
+#, fuzzy
+msgid "Use alternate background color"
 msgstr "Afwisselende achtergrondkleur gebruiken"
 
 #: Konfigurator/kgcolors.cpp:59
@@ -4221,29 +4215,29 @@ msgstr "Markering omkeren"
 msgid "Export Action"
 msgstr ""
 
-#: Konfigurator/kguseractions.cpp:202
+#: Konfigurator/kguseractions.cpp:203
 msgid ""
 "Are you sure that you want to remove this action?\n"
 "A recovery is not possible!"
 msgstr ""
 
-#: Konfigurator/kguseractions.cpp:203
+#: Konfigurator/kguseractions.cpp:204
 #, fuzzy
 msgid "Remove this action?"
 msgstr "Richting omkeren"
 
-#: Konfigurator/kguseractions.cpp:253
-msgid "The file you've choosen don't seem to be a valid action-file."
+#: Konfigurator/kguseractions.cpp:254
+msgid "The file you've chosen doesn't seem to be a valid action-file."
 msgstr ""
 
-#: Konfigurator/kguseractions.cpp:261
+#: Konfigurator/kguseractions.cpp:262
 #, fuzzy
 msgid "No actions found in this file."
 msgstr "Geen permissies om dit bestand te bewerken."
 
-#: Konfigurator/kguseractions.cpp:289
+#: Konfigurator/kguseractions.cpp:290
 msgid ""
-"Cound't import all actions because of name-conflicts. Check the action-list "
+"Couldn't import all actions because of name-conflicts. Check the action-list "
 "on the left to fix them.\n"
 "Please note that these actions won't be imported if you close the "
 "Konfigurator now!"
@@ -4270,8 +4264,8 @@ msgid ""
 "To compare 2 files by content, you can either\n"
 "- select (mark) one file in the left panel, and one in the right panel\n"
 "- select exactly two files in the active panel\n"
-"- make sure in the other panel is a file with the same name then the current "
-"in the active panel"
+"- make sure there is a file in the other panel, with the same name as the "
+"current file in the active panel"
 msgstr ""
 
 #: krslots.cpp:174
@@ -4302,12 +4296,13 @@ msgstr ""
 "pakket van GNU, of configureer de afhankelijkheden in Konfigurator."
 
 #: krslots.cpp:366
+#, fuzzy
 msgid ""
-"Important: RemoteMan has been replaced by our new bookmark manager.The new "
-"manager handles local files and remote url the same way.RemoteMan is being "
-"left around to allow an easier transition andgive you a chance to move your "
+"Important: RemoteMan has been replaced by our new bookmark manager. The new "
+"manager handles local files and remote URLs the same way. RemoteMan is being "
+"left around to allow an easier transition and give you a chance to move your "
 "bookmarks. IT WILL BE REMOVED SOON!\n"
-"Try the new bookmark-manager: open a new remote connection. oncedone, press "
+"Try the new bookmark-manager: open a new remote connection, once done, press "
 "the bookmark button, select 'Add bookmark' and that's it!"
 msgstr ""
 "Belangrijk: RemoteMan is vervangen door onze nieuwe bladwijzer manager. De "
@@ -4520,6 +4515,38 @@ msgstr "Je kan geen directory splitsen!"
 #: Splitter/splitter.cpp:127
 msgid "Error at reading file %1!"
 msgstr "Fout bij het lezen van bestand %1!"
+
+#, fuzzy
+#~ msgid "No preview available"
+#~ msgstr "Vooraf bekijken niet beschikbaar"
+
+#, fuzzy
+#~ msgid "Preview: "
+#~ msgstr "Voorbeeld"
+
+#~ msgid "Stalled"
+#~ msgstr "Blijven hangen"
+
+#~ msgid "Automatic Scrolling"
+#~ msgstr "Automatisch scrollen"
+
+#~ msgid "Scrolls the results of comparing (slow)"
+#~ msgstr "De resultaten van de vergelijking scrollen (traag)"
+
+#~ msgid "Fields:"
+#~ msgstr "Velden:"
+
+#~ msgid "Mimetype Column"
+#~ msgstr "Mimetype kolom"
+
+#~ msgid "Permission Column"
+#~ msgstr "Permissies kolom"
+
+#~ msgid "Owner Column"
+#~ msgstr "Eigenaar kolom"
+
+#~ msgid "Group Column"
+#~ msgstr "Groep kolom"
 
 #, fuzzy
 #~ msgid "On multiple selection"
