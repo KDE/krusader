@@ -109,7 +109,7 @@
 
 <sect1 id = "krusearcher">
 <title>KruSearcher: find what you're looking for</title>
-	<para>Welcome to Krusader's new and powerful search module - nicknamed Krusearcher. It is the most able
+	<para>Welcome to Krusader's powerful search module - nicknamed Krusearcher. It is the most able
 	tool (that we know of) for Linux, since it allows so many different ways to quickly find the file you're
 	looking for. It is divided into two levels, the general and the advanced. Let's take a look at the general
 	page ...</para>
@@ -210,6 +210,123 @@
 		the group, are readable but not writable or executable to the rest of the world and have unknown
 		permissions to its owner.</para></note></para></listitem>
 	</itemizedlist>
+	<para>Clicking on the <keycap>Search</keycap> button to start the search and opens the Results window.
+	Here you can see the progress and the the results of the search action. If you want you can stop the current
+	search action with the <keycap>Stop</keycap> button.
+	When you click on a found item, the directory of the active panel will change if the selected item is not in the
+	current panel directory. When you close the Krusearcher window, the selected item is selected in the
+	active panel.</para>
 </sect1>
 
+<sect1 id = "krviewer">
+<title>KrViewer: Krusader's internal viewer-editor</title>
+	<para>To <keycap>view</keycap> a file as fast as possible according to it's type just put it under
+	the cursor and press <keycap>F3</keycap>.
+	Krusader's internal viewer is actually a Konqueror part, which can basically view every file type
+	viewable by Konqueror (ex. display pictures, play music, show the content of an archive),
+	this is called the 'Generic viewer'.</para>
+	<para>The viewer works as follows:<itemizedlist>
+		<listitem><para>It will try to view the file with the <remark>'Generic
+		                  viewer'.</remark></para></listitem>
+		<listitem><para>When the file type cannot be determined or when a file (ex. a binary)
+				  don't has a associated action, it disables the 'generic viewer'.
+				  The file will be treated as a text file, this is the <remark>'Text viewer'</remark>.
+				  </para></listitem>
+		<listitem><para>The user can change in the 'KrViewer' menu between: 'Generic viewer' (if available),
+				  'Text viewer' and <remark>'Hex viewer'</remark>.</para></listitem>
+	</itemizedlist></para>
+
+	<para><keycombo><keycap>Shift</keycap><keycap>F3</keycap></keycombo> views a url on demand,
+	e.g. <screen>man:/krusader, http://krusader.sourceforce.net/, ftp://ftp.foo</screen></para>
+	<para>KrViewer has the following menu's: File, Edit, View, Settings and Krviewer. They will be discussed
+	in the Editor section. With <keycombo><keycap>Ctrl</keycap><keycap>E</keycap></keycombo> the viewer will
+	start Krusader's internal editor (which is basicly the same application).</para>
+
+	<para>Pressing <keycap>enter</keycap> on a selected file opens the file with the associated
+	application.</para>
+
+	<para><keycap>Editing</keycap> is similar to viewing but with the <keycap>F4</keycap> key.
+	The default editor is Krusader's internal editor. You can choose the used "F4" editor in the
+	<link linkend="konfig-general">Konfigurator general tab</link> .</para>
+	<para>Krusader internal editor has almost everything what you can expect of an editor.
+	Most of what is in the menu's is pretty self-explanatory.</para>
+	<para>File menu:
+	<itemizedlist>
+		<listitem><para>Save (Ctrl+S)</para></listitem>
+		<listitem><para>Save As</para></listitem>
+		<listitem><para>Reload (F5), reload the file</para></listitem>
+		<listitem><para>Export, export to html</para></listitem>
+		<listitem><para>Print (Ctrl+P)</para></listitem>
+	</itemizedlist></para>
+
+	<para>Edit menu:
+	<itemizedlist>
+		<listitem><para>Undo (Ctrl+Z)</para></listitem>
+		<listitem><para>Redo (Ctrl+Shift+Z)</para></listitem>
+		<listitem><para>Cut  (Ctrl+X)</para></listitem>
+		<listitem><para>Copy (Ctrl+C)</para></listitem>
+		<listitem><para>Paste (Ctrl+V)</para></listitem>
+		<listitem><para>Select All (Ctrl+A)</para></listitem>
+		<listitem><para>Deselect (Ctrl+Shift+A)</para></listitem>
+		<listitem><para>Toggle Block Selection (Ctrl+Shift+B)</para></listitem>
+		<listitem><para>Toggle Insert (insert)</para></listitem>
+		<listitem><para>Find (Ctrl+F)</para></listitem>
+		<listitem><para>Find Next (F3)</para></listitem>
+		<listitem><para>Find Previous (Shift+F3)</para></listitem>
+		<listitem><para>Replace (Ctrl+R)</para></listitem>
+		<listitem><para>Go to line (Ctrl+G)</para></listitem>
+	</itemizedlist></para>
+
+	<para>File menu:
+	<itemizedlist>
+		<listitem><para>Dynamic Word Wrap (F12)</para></listitem>
+		<listitem><para>Show Folding Markers (F9)(</para></listitem>
+		<listitem><para>Show Icon Border (F6)</para></listitem>
+		<listitem><para>Show Line Numbers (F11)</para></listitem>
+		<listitem><para>Set Encoding: e.g. ISO8859-1, utf8, ...</para></listitem>
+	</itemizedlist></para>
+
+	<para>Bookmarks menu:
+	<itemizedlist>
+		<listitem><para>Toggle Bookmark (Ctrl+B)</para></listitem>
+		<listitem><para>Clear Bookmarks</para></listitem>
+		<listitem><para>Next Bookmark (Alt+PageDown)</para></listitem>
+		<listitem><para>Prevous Bookmark (Alt+PageUp)</para></listitem>
+	</itemizedlist></para>
+
+	<para>Tools menu:
+	<itemizedlist>
+		<listitem><para>Highlight mode: e.g. Python, C++, SQL, XML, ... </para></listitem>
+		<listitem><para>End of Line: UNIX, Windows/DOS, Macintosh</para></listitem>
+		<listitem><para>Indent  (Ctrl+I)</para></listitem>
+		<listitem><para>Unindent  (Ctrl+Shift+I)</para></listitem>
+		<listitem><para>Clean Indendation</para></listitem>
+		<listitem><para>Comment (Ctrl+#)</para></listitem>
+		<listitem><para>Uncomment (Ctrl+Shift+#)</para></listitem>
+		<listitem><para>Apply Word Wrap</para></listitem>
+		<listitem><para>Editing command (Ctrl+M)</para></listitem>
+	</itemizedlist></para>
+
+	<para>Settings menu: here you can configure the editor.
+	<itemizedlist>
+		<listitem><para>Colors</para></listitem>
+		<listitem><para>Fonts</para></listitem>
+		<listitem><para>Idendation</para></listitem>
+		<listitem><para>Selection</para></listitem>
+		<listitem><para>Editing</para></listitem>
+		<listitem><para>Shorcuts</para></listitem>
+		<listitem><para>Highlighting</para></listitem>
+		<listitem><para>View defaults and Plugins</para></listitem>
+	</itemizedlist>It's recommended to look at each section, and set them the way you like.</para>
+
+	<para>KrViewer menu:
+	<itemizedlist>
+		<listitem><para>Generic viewer (Ctrl+G)</para></listitem>
+		<listitem><para>Text viewer (Ctrl+T)</para></listitem>
+		<listitem><para>Hex viewer (Ctrl+H)</para></listitem>
+		<listitem><para>Text editor (Ctrl+E)</para></listitem>
+		<listitem><para>Close (esc)</para></listitem>
+	</itemizedlist></para>
+
+</sect1>
 </chapter>

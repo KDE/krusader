@@ -73,26 +73,29 @@ into pages, each containing items related to that page.</para>
 	application to you needs. The page is divided into three tabs: <guilabel>General</guilabel>,
 	<guilabel>Toolbar</guilabel> and <guilabel>Key-bindings</guilabel>. Since <guilabel>Toolbar</guilabel>
 	and <guilabel>Key-bindings</guilabel> are KDE's standard toolbar and keyboard editor, we'll focus on
-	the <guilabel>General</guilabel> section:
+	the <guilabel>General</guilabel> section:</para>
 
-  <itemizedlist>
-		<listitem><para>Warn on exit: if checked, Krusader will display an "Are you sure ?" warning when you're
-		trying to shut it down. Otherwise, it will exit without protest.</para></listitem>
+	<sect2 id="konfig-lookNfeel-General">
+        <title>General</title><para>
+	<itemizedlist>
+		<listitem><para>Warn on exit: if checked, Krusader will display an "Are you sure ?"
+		warning when you're trying to shut it down. Otherwise, it will exit without protest.</para></listitem>
 		<listitem><para>Minimize to tray: if checked, when you minimize Krusader, its icon will appear in the
 		system tray instead of the taskbar.</para></listitem>
-		<listitem><para>Show hidden files: if checked, Krusader will display the "dot files" which are otherwise
-		hidden.</para></listitem>
-		<listitem><para>Automark directories: when marking a group of files (either by using Select Group or by
-		using Select All), Krusader will check this option. If it is checked, than directories matching the
-		select criteria will also be marked. Otherwise, only files will be marked.</para></listitem>
-		<listitem><para>Case sensitive sorting: if checked (the Unix default), than all files beginning with capital
-		letters appear before files beginning with non-capital letters, otherwise, all files begining with a
-		specified letter (capital or otherwise) will appear together.</para></listitem>
-		<listitem><para>Panel font: allows you to change the font used inside the file lists.</para></listitem>
+		<listitem><para>Show hidden files: if checked, Krusader will display the "dot files" which are
+		otherwise hidden.</para></listitem>
+		<listitem><para>Automark directories: when marking a group of files (either by using Select Group
+		or by using Select All), Krusader will check this option. If it is checked, than directories matching
+		the select criteria will also be marked. Otherwise, only files will be marked.</para></listitem>
+		<listitem><para>Case sensitive sorting: if checked (the Unix default), than all files beginning with
+		capital letters appear before files beginning with non-capital letters, otherwise, all files begining
+		with a specified letter (capital or otherwise) will appear together.</para></listitem>
+		<listitem><para>Panel font: allows you to change the font used inside the file
+		lists.</para></listitem>
 		<listitem><para>Filelist icon size: allows you to change the size of the icons in the file lists.
 		available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
 		<listitem><para>HTML viewer's minimal font size: when viewing an HTML file (usually using
-		<keycap>F3</keycap>),Krusader invokes KDE's built-in HTML parser. This option sets the
+		<keycap>F3</keycap>), Krusader invokes KDE's built-in HTML parser. This option sets the
 		minimal font size for the viewer, and aligns other font sizes according to it.</para></listitem>
 		<listitem><para>Mouse selection modes: three modes are available,
 			<itemizedlist>
@@ -100,18 +103,29 @@ into pages, each containing items related to that page.</para>
 			files. To select more than one file, hold the <keycap>CTRL</keycap> key and click the
 			<keycap>left</keycap> mouse button. Right-click menu is invoked using a short click on
 			the <keycap>right</keycap> mouse button.</para></listitem>
-			<listitem><para>Left mouse button selects: this way, pressing the <keycap>left</keycap> mouse button
-			selects files - you can click and select multiple files. Right-click menu is invoked using a short
-			click on	the <keycap>right</keycap> mouse button.</para></listitem>
-			<listitem><para>Right button selects: this way (sometimes referred to as 'windows commander style') the
-			<keycap>left</keycap> mouse button does not select, but sets the current file without affecting the
-			current selection. The <keycap>right</keycap> mouse button selects multiple files and the right-click
-			menu is invoked by <guilabel>pressing and holding</guilabel> the <keycap>right</keycap>
-			mouse button.</para></listitem>
+			<listitem><para>Left mouse button selects: this way, pressing the <keycap>left</keycap>
+			mouse button selects files - you can click and select multiple files. Right-click menu is
+			invoked using a short click on	the <keycap>right</keycap> mouse button.</para></listitem>
+			<listitem><para>Right button selects: this way (sometimes referred to as 'windows commander
+			style') the <keycap>left</keycap> mouse button does not select, but sets the current file
+			without affecting the current selection. The <keycap>right</keycap> mouse button selects
+			multiple files and the right-click menu is invoked by <guilabel>pressing and
+			holding</guilabel> the <keycap>right</keycap> mouse button.</para></listitem>
 			</itemizedlist>
 		</para></listitem>
-	</itemizedlist>
-	</para>
+	</itemizedlist></para></sect2>
+
+	<sect2 id="konfig-lookNfeel-Toolbar">
+	<title>Toolbar</title>
+	<para>Here you can configure the <link linkend="toolbar">Toolbar</link> the way you like. Add the icons
+	of your favorite functions into the Toolbar.</para>
+        </sect2>
+
+	<sect2 id="konfig-lookNfeel-KeyBindings">
+	<title>Key-bindings</title>
+	<para>Here you can configure the Key-bindings. Configure the Key-bindings
+	of your favorite functions the way you like.</para>
+        </sect2>
 	</sect1>
 
 	<sect1 id="konfig-general">

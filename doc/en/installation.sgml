@@ -67,7 +67,7 @@
                     <screen><prompt>%</prompt> <userinput><command>cp /"krusader_dir"/krusader-x.xx.tar.gz ~/source</command></userinput></screen>
                     <screen><prompt>%</prompt> <userinput><command>cd ~/source</command></userinput></screen>
                     <screen><prompt>%</prompt> <userinput><command>tar -xzvf krusader-x.xx.tar.gz</command></userinput></screen></para></listitem>
-    <listitem><para>The tarball is no longer needed at this point, just delete it.
+    <listitem><para>The tarball is no longer needed at this point, you can delete it if you want.
                     <screen><prompt>%</prompt> <userinput><command>rm krusader-x.xx.tar.gz</command></userinput></screen></para></listitem>
     <listitem><para>Change to the directory containing the sources.
                     <screen><prompt>%</prompt> <userinput><command>cd  krusader-x.xx</command></userinput></screen></para></listitem>
@@ -125,17 +125,21 @@
    <para>Install them. ;-)</para>
    <para>Here is a (obviously incomplete) list of Krusader's dependencies:</para>
    <para><itemizedlist><listitem><para>gcc (other compilers may work but haven't been tested) </para></listitem>
-                   <listitem><para>autoconf</para></listitem>
-                   <listitem><para>automake</para></listitem>
+                   <listitem><para>autoconf (e.g. autoconf-2.x-xmdk.i586.rpm)</para></listitem>
+                   <listitem><para>automake (e.g. automake1.x-x.x.x-xmdk.i586.rpm)</para></listitem>
                    <listitem><para>xfree</para></listitem>
                    <listitem><para>qt (all Krusader versions >=1.02 are QT3.x only)</para></listitem>
                    <listitem><para>kdelibs (all Krusader versions >=1.02 are KDE3.x only)</para></listitem>
                    <listitem><para>libpng </para></listitem>
-                   <listitem><para>fam</para></listitem></itemizedlist>
+                   <listitem><para>fam and famlibs (e.g. fam-2.x.x-xmdk.rpm and libfam0-devel-2.x.x-5mdk.i586.rpm)
+		    	      </para></listitem></itemizedlist>
                    </para><para>
                    Most RPM-based distributions seperate the headers from the libs. The headers are needed to compile
-                   Krusader. Look for packages in the form foo-devel-*.rpm (e.g. kdelibs-devel-3.1-58mdk.i586.rpm).
-                   They most likely come with your distribution.</para>
+                   Krusader. Look for packages in the form foo-devel-*.rpm (e.g. kdelibs-devel-3.1-58mdk.i586.rpm)
+		   or foo-dev-*.deb for Debian based distributions. They most likely come with your
+		   distribution. <tip><para>If you can't find the needed package, use then
+		   <ulink url="http://www.rpmfind.net/"> Rpmfind.net</ulink> or "apt-cache search" to find the
+		   corresponding package.</para></tip></para>
    </sect2>
 
    <sect2 id="PATH">
@@ -158,7 +162,7 @@
     <para><itemizedlist>
             <listitem><para>To recompile a SourceRPM for your machine, do this (being root):
             <screen><prompt>%</prompt> <userinput><command>su -c 'rpm --rebuild /path/to/filename'</command></userinput></screen>You will be asked to enter your root password.</para></listitem>
-            <listitem><para>f nothing goes wrong, a RPM will be created at /usr/src/RPM/RPMS/i386 (replace i386 with your arch) Install as usual, for example.
+            <listitem><para>If nothing goes wrong, a RPM will be created at /usr/src/RPM/RPMS/i386 (replace i386 with your arch) Install as usual, for example.
             <screen><prompt>%</prompt> <userinput><command>su -c 'rpm -ivh /path/to/filename'</command></userinput></screen>You will be asked to enter your root password.</para></listitem>
 
      </itemizedlist></para>
@@ -175,7 +179,7 @@
 
 <sect2 id="goto_faqlist">
    <title>See also the FAQ's</title>
-   <para><screen>Goto <link linkend="faqlist">Questions and Answers</link></screen></para>
+   <para><link linkend="faqlist">Questions and Answers</link></para>
 </sect2>
 
 </sect1>

@@ -196,15 +196,27 @@
     </screenshot>
 
     <para>This is a new feature since Krusader 1.29-beta. With the tabbed browsing bar you can change fast to an other
-    directory by clicking on the tab. To <keycap>create</keycap> a tab: <keycap>Right-click</keycap> on a
-    directory, <keycap>open in a new tab</keycap> or use
+    directory by clicking on the tab.
+    <itemizedlist>
+    <listitem><para>To <keycap>create a tab</keycap>: <keycap>Right-click</keycap> on a
+    directory and select <keycap>open in a new tab</keycap>, or use the middle mouse button, or use
     <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>n</keycap></keycombo>.
-    To <keycap>duplicate</keycap> a tab: <keycap>right-click</keycap> on the tab or use
+    </para></listitem>
+
+    <listitem><para>To <keycap>duplicate a tab</keycap>: <keycap>right-click</keycap> on the tab and select
+    <keycap>duplicate tab</keycap>, or use
     <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>c</keycap></keycombo>.
-    To <keycap>close</keycap> a tab (except the left tab): <keycap>right-click</keycap> on the tab or use
-    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>n</keycap></keycombo>
-    or use the red cross button.
-    When you click on the bookmark button it will create a "home" tab.
+    </para></listitem>
+
+    <listitem><para>To <keycap>close a tab</keycap> (except the left tab): <keycap>right-click</keycap> on the
+    tab and select <keycap>close tab</keycap>, or use the middle mouse button, or use the Tabbed Browsing red cross
+    button, or use
+    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>n</keycap></keycombo>.
+    </para></listitem>
+
+    <listitem><para>To create a <keycap>"home" tab</keycap>: click on the Tabbed Browsing bookmark button.
+    </para></listitem>
+    </itemizedlist>
     </para>
     </sect2>
   </sect1>
@@ -275,6 +287,8 @@
     <itemizedlist>
     <listitem><para>The <keycap>SPACE</keycap> key will toggle the marking of the file under the cursor without
     effecting the other files.</para></listitem>
+    <listitem><para>The <keycap>SPACE</keycap> key will toggle the marking of the directory under the cursor,
+    and calculates the size, without effecting the other files or directories.</para></listitem>
     <listitem><para>The <keycap>Insert</keycap> key will do the same as te SPACE key but it will go one position
     down to toggle te next file.</para></listitem>
     <listitem><para>Left clicking on a file will mark a file but will not unmark it and will unmark
@@ -338,16 +352,7 @@
 
     <sect2 id="viewing">
     <title>Viewing and editing files</title>
-		<para>To <keycap>view</keycap> files just put them under the cursor and press <keycap>F3</keycap>.
-    Krusader's internal viewer is actually a Konqueror part, which can basically view every file type
-    viewable by Konqueror (ex. display pictures, play music, show the content of an archive), this is the
-    'Generic viewer'.
-    If the file type cannot be determined or when a file (ex. a binary) don't has a associated action,
-    the file will be treated as a text file, this is the 'Text viewer'. In the 'KrViewer' menu you can change
-    between 'Generic viewer', 'Text viewer' and 'Hex viewer'.</para>
-    <para><keycap>Editing</keycap> is similar to viewing but with the <keycap>F4</keycap> key. All files are
-    edited with the same editor, which you can choose in the <link linkend="konfig-general">Konfigurator general
-    tab</link>.</para>
+    <para><link linkend="krviewer">KrViewer</link> has a chapter of its own.</para>
     </sect2>
 
     <sect2 id="renaming">
