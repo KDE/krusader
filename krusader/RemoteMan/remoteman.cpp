@@ -335,11 +335,14 @@ void remoteMan::connection() {
   if (protocol->currentText()=="ftp://" && portNum->value()!=21 )
 		port=":"+portNum->cleanText();
 
-	url=protocol->currentText()+
-      userName->text()+":"+
-      password->text()+"@"+
-      hostName->text()+
-      port+remoteDir->text();
+	url=protocol->currentText();
+	if( !userName->text().isEmpty() ){
+		url = url+userName->text();
+		if( !password->text().isEmpty() );
+			url = url+":"+password->text();
+		url = url+"@";
+	}
+	url=url+ hostName->text()+port+remoteDir->text();
 
   // now, let's close cleanly
   refreshData();  // make sure all is updated

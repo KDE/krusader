@@ -38,6 +38,8 @@
 #include <klocale.h>
 #include <kio/job.h>
 #include <kmessagebox.h>
+#include <kprotocolinfo.h>
+#include <kdebug.h>
 // Krusader includes
 #include "ftp_vfs.h"
 #include "krpermhandler.h"
@@ -60,7 +62,7 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	supportMoveTo = true;
 	// set the writable attribute
 	isWritable = true;
- 	
+ 	  kdDebug() << origin << endl;
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
   vfs_filesP2 = &vfs_files2;
@@ -68,30 +70,13 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
   notConnected = true;
 		
 	// breakdown the url;
-	QString remoteDir = origin.mid(origin.find("/",7));
-	origin.truncate(origin.find("/",7));
-	port = 0;	
+	KURL url = origin;
+	port = url.port();
+	loginName = url.user();
+	password = url.pass();
 
-	if ( origin.contains('@') ) { // url contains at least loginName		
-		if( origin.find("@") < origin.findRev(":") ) { // url contains port
-			port = origin.mid(origin.find(":",origin.find("@"))+1).toInt();
-			origin.truncate(origin.find(":",origin.find("@")));
-		}
-		hostName = origin.mid(origin.findRev("@")+1);
-		origin.truncate(origin.findRev("@"));
-		if( origin.find(":",origin.find("://")+3) != -1 ) {// url contains password
-			password = origin.mid(origin.findRev(":")+1);
-			origin.truncate(origin.find(":",origin.find("://")+3));
-		}
-		loginName = origin.mid(origin.findRev("/")+1);
-		origin.truncate(origin.findRev("/")+1);
-	}
-  else { // no @ but we did add a port number...
-  	port = origin.mid(origin.find(":",origin.find("://")+3)+1).toInt();
-		origin.truncate(origin.find(":",origin.find("://")+3));
-	}
-	vfs_type="ftp";
-  vfs_origin=origin+hostName+remoteDir;
+	vfs_type = "ftp";
+  vfs_origin = url.prettyURL(-1);
 
   vfs_refresh();	
 }
@@ -142,6 +127,7 @@ void ftp_vfs::slotRedirection(KIO::Job *, const KURL &url){
 	vfs_origin = KURL::decode_string(url.prettyURL(-1));
   password   = url.pass();
   loginName  = url.user();
+	port       = url.port();
 }
 
 void ftp_vfs::slotListResult(KIO::Job *job){
@@ -172,25 +158,24 @@ void ftp_vfs::slotListResult(KIO::Job *job){
 
 bool ftp_vfs::vfs_refresh(QString origin) {
 	error = false;
-
-  // "fix" the origin in special cases
-  origin.replace(QRegExp("//"),"/");
-  origin.replace(QRegExp(":/"),"://");
-  if(origin.find(origin.find("://"+3)) == -1 && !notConnected)
-   origin = origin+"/";
-
- 	
 	KURL url = origin;
+
   if( !loginName.isEmpty()) url.setUser(loginName);
 	if( !password.isEmpty() ) url.setPass(password);
-	if ( port ) url.setPort(port);
-	
-	if ( url.isMalformed() ) {
-    QString tmp = i18n("Malformed URL\n%1").arg(url.url());
-    if (!quietMode) KMessageBox::sorry(krApp, tmp);
+	//if( port ) url.setPort(port);
+
+	QString errorMsg = QString::null;	
+	if ( url.isMalformed() )
+    errorMsg = i18n("Malformed URL:\n%1").arg(url.url());
+  if( !KProtocolInfo::supportsListing(url) )
+		errorMsg = i18n("Protocol not supported by Krusader:\n").arg(url.url());
+
+	if( !errorMsg.isEmpty() ){
+    if (!quietMode) KMessageBox::sorry(krApp, errorMsg);
 		error = true;
     return false;
-  }
+	}
+
   // clear the the list and back up out current situation
 	vfs_filesP2->clear();
   kr_swap(vfs_filesP2,vfs_filesP);

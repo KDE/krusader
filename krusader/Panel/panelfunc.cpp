@@ -565,17 +565,20 @@ void ListPanelFunc::execute(QListViewItem *i) {
 	  panel->nameToMakeCurrent = QString::null;
 		panel->refresh(origin);
 	}
-	else if(panel->files->vfs_getType() == "ftp" ){
-	  if( !vf->vfile_isSymLink() ){
-		  QString tmp = i18n("If you want to execute %1,\nTransfer it first to your computer.").arg(name);
-      KMessageBox::sorry( krApp, tmp);
+	/*
+	else {
+		if(panel->files->vfs_getType() == "ftp" ){
+	  	if( !vf->vfile_isSymLink() ){
+		  	QString tmp = i18n("If you want to execute %1,\nTransfer it first to your computer.").arg(name);
+      	KMessageBox::sorry( krApp, tmp);
     }
 	  else {
-		  origin+="/"+name;
-	    panel->nameToMakeCurrent = QString::null;
-		  panel->refresh(origin);
+			origin+="/"+name;
+	  	panel->nameToMakeCurrent = QString::null;
+			panel->refresh(origin);
 		}
 	}
+	*/
 	else if( KRarcHandler::arcHandled(type)){
   	changeVFS( type,panel->files->vfs_getFile(vf->vfile_getName()) );
 	  // add warning to the backStack

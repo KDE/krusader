@@ -389,7 +389,7 @@ void ListPanel::slotUpdate(){
 	// if we are not at the root add the ".." entery
 	QString origin = files->vfs_getOrigin();
 	if( origin.right(1)!="/" && !((files->vfs_getType()=="ftp")&&
-      origin.find('/',origin.find("://")+3)==-1) ) {
+      origin.find('/',origin.find(":/")+3)==-1) ) {
 		QListViewItem * item=new KRListItem(fileList,"..","<DIR>");
 		item->setPixmap(0,FL_LOADICON("up"));
 	  item->setSelectable(false);
@@ -598,8 +598,8 @@ void ListPanel::slotGetStats(QString path) {
     return;
 	}
 	
-	if (path.contains("://")) {
-    status->setText(i18n("No space information on remote filesystems"));
+	if (path.contains(":/")) {
+    status->setText(i18n("No space information on non-local filesystems"));
     return;
   }
 
@@ -1092,7 +1092,8 @@ void ListPanel::openUrl( QString path, QString file ){
 		refresh(path);
 	}	
 	// remote file systems
-	else if( path.contains("://") ){
+	else if( path.contains(":/") ){
+		
 		func->changeVFS("ftp",path);
 	}
 	else{ // local directories

@@ -114,7 +114,7 @@ void KCMDLine::slotRun(){
 		QString dir = command1.right(command1.length()-command1.find(" ")).stripWhiteSpace();
 		if (dir == "~") dir = QDir::homeDirPath();
 		else
-		if (dir.left(1)!="/") dir=panelPath+(panelPath=="/" ? "" : "/")+dir;
+		if (dir.left(1)!="/" && !dir.contains(":/")) dir=panelPath+(panelPath=="/" ? "" : "/")+dir;
 		SLOTS->refresh(dir);
 	} else {
 		QString save = getcwd(0,0);
