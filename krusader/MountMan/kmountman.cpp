@@ -374,7 +374,7 @@ fsData* KMountMan::location( QString name ) {
          break;
 #if defined(BSD) || defined(_OS_SOLARIS_)
 
-      if ( name.left( 2 ) == "//" && !strcasecmp( followLink( it->name() ).latin1(), followLink( name ).latin1() ) )
+      if ( name.left( 2 ) == "//" && !strcasecmp( followLink( it->name() ).local8Bit(), followLink( name ).local8Bit() ) )
          break; // FreeBSD: ignore case due to smbfs mounts
 #endif
 
@@ -598,7 +598,7 @@ void KMountMan::mount( QString mntPoint ) {
    }
 
    KProcess mountProc;
-   mountProc << KrServices::fullPathName( "mount" ) << mntPoint.latin1();
+   mountProc << KrServices::fullPathName( "mount" ) << mntPoint.local8Bit();
    // connect all outputs to collectOutput, to be displayed later
    connect( &mountProc, SIGNAL( receivedStderr( KProcess*, char*, int ) ),
             this, SLOT( collectOutput( KProcess*, char*, int ) ) );
@@ -638,10 +638,10 @@ void KMountMan::mount( fsData *p ) {
    mountProc << KrServices::fullPathName( "mount" );
    if ( ro )
       mountProc << "-r";                // read only
-   mountProc << "-t" << p->type().latin1();  // latin1 == normal ascii
+   mountProc << "-t" << p->type().local8Bit();  // local8Bit == normal ascii
    if ( !p->options.isEmpty() )
       mountProc << "-o" << p->options; // -o options
-   mountProc << p->name().latin1() << p->mntPoint().latin1();
+   mountProc << p->name().local8Bit() << p->mntPoint().local8Bit();
 
    // don't allow mounting 'supermount' filesystems
    if ( p->supermount ) {
@@ -687,7 +687,7 @@ void KMountMan::unmount( fsData *p ) {
 
    KProcess umountProc;
    umountProc << KrServices::fullPathName( "umount" );
-   umountProc << p->mntPoint().latin1();
+   umountProc << p->mntPoint().local8Bit();
 
    // don't allow unmounting 'supermount' filesystems
    if ( p->supermount ) {

@@ -306,7 +306,7 @@ void KrViewer::viewHex(){
         KMessageBox::sorry(this,i18n("KrViewer is unable to download: ")+url.url());
         return;
       }
-    } else file = url.url().mid(url.url().find("/"));
+    } else file = url.path();
 
 
     // create a hex file
@@ -314,7 +314,7 @@ void KrViewer::viewHex(){
     f_in.open( IO_ReadOnly );
     QDataStream in( &f_in );
 
-    FILE *out = KDE_fopen(tmpFile.name().mid(tmpFile.name().find("/")).latin1(),"w");
+    FILE *out = KDE_fopen(tmpFile.name().local8Bit(),"w");
 
     KIO::filesize_t fileSize = f_in.size();
     KIO::filesize_t address = 0;

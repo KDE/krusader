@@ -303,14 +303,14 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
 
   // check the return value
   if ( !proc.normalExit() || proc.exitStatus() != 0 ) {
-    KMessageBox::error( krApp, i18n( "Failed to pack: " ) + dest.latin1(), i18n( "Error" ) );
+    KMessageBox::error( krApp, i18n( "Failed to pack: " ) + dest, i18n( "Error" ) );
     return false;
     }
 
   krConfig->setGroup( "Archives" );
   if ( krConfig->readBoolEntry( "Test Archives", _TestArchives ) &&
        !test( dest, type, count ) ) {
-    KMessageBox::error( krApp, i18n( "Failed to pack" ) + dest.latin1(), i18n( "Error" ) );
+    KMessageBox::error( krApp, i18n( "Failed to pack: " ) + dest, i18n( "Error" ) );
     return false;
     }
   return true; // SUCCESS

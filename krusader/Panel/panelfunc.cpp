@@ -160,7 +160,7 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 	
 	// on local file system change the working directory
 	if( files()->vfs_getType() == vfs::NORMAL )
-		chdir( files()->vfs_getOrigin().path().latin1() );
+		chdir( files()->vfs_getOrigin().path().local8Bit() );
 }
 
 void ListPanelFunc::delayedOpenUrl( const KURL& url ) {
@@ -209,12 +209,12 @@ void ListPanelFunc::redirectLink() {
     return ;
   // delete the current link
   if ( unlink( file.local8Bit() ) == -1 ) {
-    KMessageBox::sorry( krApp, i18n( "Can't remove old link: " ) + file.latin1() );
+    KMessageBox::sorry( krApp, i18n( "Can't remove old link: " ) + file );
     return ;
   }
   // try to create a new symlink
   if ( symlink( newLink.local8Bit(), file.local8Bit() ) == -1 ) {
-    KMessageBox::/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry( krApp, i18n( "Failed to create a new link: " ) + file.latin1() );
+    KMessageBox::/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry( krApp, i18n( "Failed to create a new link: " ) + file );
     return ;
   }
 }
@@ -230,7 +230,7 @@ void ListPanelFunc::krlink( bool sym ) {
   // ask the new link name..
   bool ok = false;
   QString linkName =
-    KInputDialog::getText( i18n("New link"),i18n( "Create a new link to: " ) + name.latin1(), name.latin1(), &ok, krApp );
+    KInputDialog::getText( i18n("New link"),i18n( "Create a new link to: " ) + name, name, &ok, krApp );
 
   // if the user canceled - quit
   if ( !ok || linkName == name )
@@ -249,11 +249,11 @@ void ListPanelFunc::krlink( bool sym ) {
     name = files()->vfs_getFile( name ).path(-1);
 
   if ( sym ) {
-    if ( symlink( name.latin1(), linkName.latin1() ) == -1 )
+    if ( symlink( name.local8Bit(), linkName.local8Bit() ) == -1 )
       KMessageBox::sorry( krApp, i18n( "Failed to create a new symlink: " ) + linkName +
                           i18n( " To: " ) + name );
   } else {
-    if ( link( name.latin1(), linkName.latin1() ) == -1 )
+    if ( link( name.local8Bit(), linkName.local8Bit() ) == -1 )
       KMessageBox::sorry( krApp, i18n( "Failed to create a new link: " ) + linkName +
                           i18n( " To: " ) + name );
   }
@@ -530,7 +530,7 @@ void ListPanelFunc::deleteFiles() {
       dir.setPath( panel->getPath() + "/" + ( *name ) );
       if ( dir.count() > 2 ) {
         switch ( KMessageBox::warningYesNoCancel( krApp,
-                                                  i18n( "Directory " ) + ( *name ).latin1() + i18n( " is not empty !\nSkip this one or Delete All ?" ),
+                                                  i18n( "Directory " ) + ( *name ) + i18n( " is not empty !\nSkip this one or Delete All ?" ),
                                                   QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
             case KMessageBox::Cancel :
             return ;
