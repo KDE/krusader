@@ -110,7 +110,22 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
 }
 
 void KCMDLine::setCurrent( const QString &p ) {
-  path->setText( p + ">" );
+
+  QString pathName = p;
+  QFontMetrics fm(path->fontMetrics());
+  int textWidth = fm.width(pathName);
+  int maxWidth = ( cmdLine->width() + path->width() ) * 2 / 5;
+  int letters = p.length() / 2;
+
+  while ( letters && textWidth > maxWidth )
+  {
+    pathName = p.left( letters ) + "..." + p.right( letters );
+    letters--;
+    textWidth = fm.width(pathName);
+  }
+  
+  path->setText( pathName + ">" );
+  
   completion.setDir( p );
   // make sure our command is executed in the right directory
   // This line is important for Krusader overall functions -> do not remove !
