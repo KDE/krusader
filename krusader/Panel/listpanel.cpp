@@ -72,6 +72,7 @@
 #include "../Dialogs/krdialogs.h"
 #include "../BookMan/bookman.h"
 #include "../Dialogs/krspwidgets.h"
+#include "../GUI/kcmdline.h"
 #include "krdetailedview.h"
 #include "krpreviewpopup.h"
 
@@ -734,7 +735,18 @@ void ListPanel::keyPressEvent( QKeyEvent *e )
           otherPanel->func->openUrl(realPath);
           slotFocusOnMe(); // return focus to us!
           return ;
-      }
+      } else e->ignore();
+
+      case Key_Down :
+      if ( e->state() == ControlButton )
+      { // give the keyboard focus to the command line
+        if ( krApp->mainView->cmdLine->isVisible() )
+          krApp->mainView->cmdLineFocus();
+        else if ( krApp->mainView->terminal_dock->isVisible() )
+          krApp->mainView->terminal_dock->setFocus();
+        return ;
+      } else e->ignore();
+
       default:
       e->ignore();
   }

@@ -518,59 +518,42 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e )
         break;
       }
       case Key_Right :
-      if ( e->state() == ControlButton )
-      { // user pressed CTRL+Right
-        if ( krApp->mainView->activePanel == krApp->mainView->left )
-        {
-          // refresh the other panel (if possible) with our path
-          krApp->mainView->activePanel->otherPanel->func->openUrl(
-            krApp->mainView->activePanel->realPath );
-          krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
-          return ;
-        }
-      } else
-        { // just a normal click - do a lynx-like moving thing
-          KrViewItem *i = getCurrentKrViewItem();
-          if ( i->name() == ".." )
-          { // if clicking on the ".." entry
-            SLOTS->dirUp(); // ask krusader to move up a directory
-            return ;
-          }
-          if ( i->isDir() )
-          {             // we create a return-pressed event,
-            QString tmp = i->name();
-            emit executed( tmp );  // thereby emulating a chdir
-          }
-          return ; // safety
-        }
-      case Key_Left :
-      if ( e->state() == ControlButton )
-      { // user pressed CTRL+Left
-        if ( krApp->mainView->activePanel == krApp->mainView->right )
-        {
-          // refresh the other panel (if possible) with our path
-          krApp->mainView->activePanel->otherPanel->func->openUrl(
-            krApp->mainView->activePanel->realPath );
-          krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
-          return ;
-        }
-      } else
-        {          // a normal click - do a lynx-like moving thing
+      if (e->state() == ControlButton)
+      { // let the panel handle it
+        e->ignore(); break;
+      }
+      else
+      { // just a normal click - do a lynx-like moving thing
+        KrViewItem *i = getCurrentKrViewItem();
+        if ( i->name() == ".." )
+        { // if clicking on the ".." entry
           SLOTS->dirUp(); // ask krusader to move up a directory
-          return ;         // safety
+          return ;
         }
+        if ( i->isDir() )
+        {             // we create a return-pressed event,
+          QString tmp = i->name();
+          emit executed( tmp );  // thereby emulating a chdir
+        }
+        return ; // safety
+      }
+      case Key_Left :
+      if (e->state() == ControlButton)
+      { // let the panel handle it
+        e->ignore(); break;
+      }
+      else
+      {          // a normal click - do a lynx-like moving thing
+        SLOTS->dirUp(); // ask krusader to move up a directory
+        return ;         // safety
+      }
       case Key_Up :
       KListView::keyPressEvent( e );
       break;
       case Key_Down :
       if ( e->state() == ControlButton )
-      { // user pressed CTRL+Down
-        // give the keyboard focus to the command line
-        if ( krApp->mainView->cmdLine->isVisible() )
-          krApp->mainView->cmdLineFocus();
-        else if ( krApp->mainView->terminal_dock->isVisible() )
-          krApp->mainView->terminal_dock->setFocus();
-        return ;
+      { // let the panel handle it
+        e->ignore(); break;
       }
       else
         KListView::keyPressEvent( e );
