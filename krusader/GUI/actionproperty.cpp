@@ -274,8 +274,16 @@ void ActionProperty::removePath() {
 }
 
 void ActionProperty::addMime() { 
-  //TODO read from an textfile with each mime-type in a seperate line
-  KMessageBox::sorry( this, "sorry, not implemnted yet...\nTODO: Popup-menu with 'text', 'image', 'video', etc...\nand submenus with 'text/*', 'text/plain', 'text/html', etc... " );
+  bool ok;
+  QString text = KInputDialog::getText(
+		i18n( "New mime-type" ),
+		i18n( "Set a mime-type:" ),
+		lbShowonlyMime->currentText(),
+		&ok, this );
+    if ( ok && !text.isEmpty() ) {
+      lbShowonlyMime->insertStringList( QStringList::split( ";", text ) );
+      changedShowonlyMime();
+    }
 }
 
 void ActionProperty::editMime() { 

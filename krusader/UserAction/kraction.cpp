@@ -25,6 +25,10 @@
 #include "useractionproperties.h"
 #include "../krusader.h"
 
+//for the availabilitycheck:
+#include <kmimetype.h>
+#include <qregexp.h>
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////  KrActionProcDlg  /////////////////////////////////////////
@@ -258,10 +262,38 @@ bool KrAction::isAvailable( const KURL& currentURL ) {
       }
    } //check the Path-list: done
    
-   //TODO: check mime-type
+   //check mime-type
+   if ( ! _properties->showonlyMime()->empty() ) {
+      available = false;
+      KMimeType::Ptr mime = KMimeType::findByURL( currentURL );
+      for ( QStringList::Iterator it = _properties->showonlyMime()->begin(); it != _properties->showonlyMime()->end(); ++it ) {
+         if ( (*it).contains("/") ) {
+            if ( mime->is( *it ) ) {  // don't use ==; use 'is()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
+               available = true;
+               break;
+            }
+         }
+         else {
+            if ( mime->name().find( *it ) == 0 ) {  // 0 is the beginning, -1 is not found
+               available = true;
+               break;
+            }
+         }
+      } //for
+   } //check the mime-type: done
    
-   //TODO: check filename
-      
+   //check filename
+   if ( ! _properties->showonlyFile()->empty() ) {
+      available = false;
+      for ( QStringList::Iterator it = _properties->showonlyFile()->begin(); it != _properties->showonlyFile()->end(); ++it ) {
+         QRegExp regex = QRegExp( *it, false, true ); // case-sensitive = false; wildcards = true
+         if ( regex.exactMatch( currentURL.fileName() ) ) {
+            available = true;
+            break;
+         }
+      }
+   } //check the filename: done
+   
    return available;
 }
 
