@@ -1120,10 +1120,10 @@ void ListPanel::slotItemUpdated(vfile *vf) {
 
 void ListPanel::showEvent( QShowEvent * )
 {
-  func->files()->vfs_enableRefresh();
+  func->files()->vfs_enableRefresh(true);
 }
 
 void ListPanel::hideEvent( QHideEvent * )
 {
-  func->files()->vfs_disableRefresh();
+  func->files()->vfs_enableRefresh(false);
 }

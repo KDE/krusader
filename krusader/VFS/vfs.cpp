@@ -185,17 +185,10 @@ bool vfs::vfs_refresh(const KURL& origin){
 	return true;
 }
 
-void vfs::vfs_disableRefresh()
-{
-  disableRefresh = quietMode = true;
-  dirty = false;
-}
-
-void vfs::vfs_enableRefresh()
-{
-  disableRefresh = quietMode = false;
-  if( dirty )
-    vfs_refresh();
+void vfs::vfs_enableRefresh(bool enable){
+	disableRefresh = quietMode = !enable;
+  if( enable && dirty ) vfs_refresh();
+	dirty = false;
 }
 
 #include "vfs.moc"

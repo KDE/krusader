@@ -1,24 +1,24 @@
 /***************************************************************************
-                             panelfunc.cpp
-                          -------------------
- copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
- e-mail               : krusader@users.sourceforge.net
- web site             : http://krusader.sourceforge.net
+                            panelfunc.cpp
+                         -------------------
+copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
+e-mail               : krusader@users.sourceforge.net
+web site             : http://krusader.sourceforge.net
 ---------------------------------------------------------------------------
 Description 
 ***************************************************************************
- 
+
 A 
- 
-  db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
-  88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
-  88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
-  88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
-  88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
-  YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
- 
-                                                  S o u r c e    F i l e
- 
+
+ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+ 88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+ 88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+ 88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+ 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+
+                                                 S o u r c e    F i l e
+
 ***************************************************************************
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -27,7 +27,7 @@ A
 *   (at your option) any later version.                                   *
 *                                                                         *
 ***************************************************************************/
-#include <unistd.h>
+#include <unistd.h> 
 // Qt Includes
 #include <qdir.h>
 #include <qtextstream.h>
@@ -48,7 +48,7 @@ A
 #include <kdebug.h>
 #include <kio/netaccess.h>
 #include <kstandarddirs.h>
-#include <ktempdir.h>
+#include <ktempdir.h> 
 // Krusader Includes
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
@@ -77,921 +77,923 @@ A
 //////////////////////////////////////////////////////////
 
 ListPanelFunc::ListPanelFunc( ListPanel *parent ) :
-panel( parent ), inRefresh( false ), vfsP(0){
-  urlStack.push( "file:/" );
-  connect( &delayTimer, SIGNAL(timeout()), this, SLOT(doOpenUrl()));
+panel( parent ), inRefresh( false ), vfsP( 0 ) {
+	urlStack.push( "file:/" );
+	connect( &delayTimer, SIGNAL( timeout() ), this, SLOT( doOpenUrl() ) );
 }
 
-void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent) {
-  openUrl( vfs::fromPathOrURL(url),nameToMakeCurrent);
+void ListPanelFunc::openUrl( const QString& url, const QString& nameToMakeCurrent ) {
+	openUrl( vfs::fromPathOrURL( url ), nameToMakeCurrent );
 }
 
-void ListPanelFunc::openUrl( const KURL& urlIn,const QString& nameToMakeCurrent) {
-  //kdDebug() << "openUrl: " << url.url() << endl;
-  KURL url = urlIn;
-  url.cleanPath();
-  
-  //prevents that the sync-browsing circles itself to death
-  static bool bMaster = true;
-  
-  // first the other dir, then the active! Else the focus changes and the other becomes active
-  if ( panel->syncBrowseButton->state() == SYNCBROWSE_CD && bMaster) {
-        bMaster = false;
-        //do sync-browse stuff....
-        //QString relative_path = KURL::relativeURL( panel->getPath()+"/", url.url() );
-        //kdDebug() << "Sync: from: " << panel->getPath()+"/" << " to: " << url.url() << " -> relativeURL: " << relative_path << endl;
-        //OTHER_FUNC->openUrl( relative_path );
-        OTHER_FUNC->files()->vfs_setQuiet( true );
-        OTHER_FUNC->openUrl( KURL::relativeURL( panel->getPath()+"/", url.url() ) );    // the trailing slash is nessesary because krusader provides Dir's without it
-        OTHER_FUNC->files()->vfs_setQuiet( false );
-        bMaster = true;
-  }
+void ListPanelFunc::openUrl( const KURL& urlIn, const QString& nameToMakeCurrent ) {
+	KURL url = urlIn;
+	url.cleanPath();
 
-        // check for special cases:
-  if( !url.isValid() ){
-                if( url.url() == "~" ){
-                        openUrl(QDir::homeDirPath());
-    }
-    else if( !url.url().startsWith("/") ){  // possible relative URL
-                        KURL u = files()->vfs_getOrigin();
-                        u.addPath(url.url());
-                        openUrl(u);
-                }
-                else panel->slotStartUpdate();  // refresh the panel
-                return;
-  }
-  
-        panel->slotFocusOnMe();
-        
-        // if we are not refreshing to current URL
-        if( !files()->vfs_getOrigin().equals(url,true) ){
-                // change the cursor to busy
-                krApp->setCursor( KCursor::waitCursor() );
-                // clear the view - to avoid a repaint crash
-                panel->view->clear();   
-        }
+	// check for special cases first - don't refresh here !
+	// you may call openUrl or vfs_refresh()
+	if ( !url.isValid() ) {
+		if ( url.url() == "~" ) {
+			return openUrl( QDir::homeDirPath() );
+		} else if ( !url.url().startsWith( "/" ) ) {
+			// possible relative URL - translate to full URL
+			url = files() ->vfs_getOrigin();
+			url.addPath( urlIn.url() );
+			kdDebug()<< urlIn.url() << "," << url.url() <<endl;
+		} else {
+			panel->slotStartUpdate();  // refresh the panel
+			return ;
+		}
+	}
 
-  if( !nameToMakeCurrent.isEmpty() ){
-                panel->view->setNameToMakeCurrent( nameToMakeCurrent );
-  }
+	// first the other dir, then the active! Else the focus changes and the other becomes active
+	if ( panel->syncBrowseButton->state() == SYNCBROWSE_CD ) {
+		// prevents that the sync-browsing circles itself to death	
+		static bool inSync = false;
+		if( !inSync ){
+			inSync = true;
+			//do sync-browse stuff....
+			OTHER_FUNC->files() ->vfs_setQuiet( true );
+			// the trailing slash is nessesary because krusader provides Dir's without it
+			OTHER_FUNC->openUrl( KURL::relativeURL( panel->getPath() + "/", url.url() ) );
+			OTHER_FUNC->files() ->vfs_setQuiet( false );
+		
+			inSync = false;
+		}
+	}
 
-  vfs* v = 0;
-  if( !urlStack.top().equals(url) ) urlStack.push( url );
-  while( true ){
-                KURL u = urlStack.pop();
-                //u.adjustPath(-1); // remove trailing "/"
-                u.cleanPath(); // Resolves "." and ".." components in path.
-                v = KrVfsHandler::getVfs(u,panel,files());
-    if( !v ) continue; //this should not happen !
-                if( v != vfsP ){
-      delete vfsP;
-                        vfsP = v; // v != 0 so this is safe
-                }
-    if( vfsP->vfs_refresh(u) ) break; // we have a valid refreshed URL now
-    vfsP->vfs_setQuiet( true );
-  }
-  vfsP->vfs_setQuiet( false );
-  
-        // update the urls stack
-        if( !files()->vfs_getOrigin().equals(urlStack.top()) ){
-                urlStack.push( files()->vfs_getOrigin() );
-        }
-        // disconnect older signals
-        disconnect(files(), SIGNAL(addedVfile(vfile* )), 0, 0); 
-        disconnect(files(), SIGNAL(updatedVfile(vfile* )), 0, 0);
-        disconnect(files(), SIGNAL(deletedVfile(const QString& )), 0, 0);
-                
-        // connect to the vfs's dirwatch signals
-        connect(files(), SIGNAL(addedVfile(vfile* )), 
-                panel, SLOT(slotItemAdded(vfile* )));
-        connect(files(), SIGNAL(updatedVfile(vfile* )), 
-                panel, SLOT(slotItemUpdated(vfile* )));
-        connect(files(), SIGNAL(deletedVfile(const QString& )), 
-                panel, SLOT(slotItemDeleted(const QString&)));
-        
-        // on local file system change the working directory
-        if( files()->vfs_getType() == vfs::NORMAL )
-                chdir( files()->vfs_getOrigin().path().local8Bit() );
+	panel->slotFocusOnMe();
+
+	// if we are not refreshing to current URL
+	if ( !files() ->vfs_getOrigin().equals( url, true ) ) {
+		// change the cursor to busy
+		krApp->setCursor( KCursor::waitCursor() );
+		// clear the view - to avoid a repaint crash
+		panel->view->clear();
+	}
+
+	if ( !nameToMakeCurrent.isEmpty() ) {
+		panel->view->setNameToMakeCurrent( nameToMakeCurrent );
+	}
+
+	vfs* v = 0;
+	if ( !urlStack.top().equals( url ) )
+		urlStack.push( url );
+	while ( true ) {
+		KURL u = urlStack.pop();
+		//u.adjustPath(-1); // remove trailing "/"
+		u.cleanPath(); // Resolves "." and ".." components in path.
+		v = KrVfsHandler::getVfs( u, panel, files() );
+		if ( !v )
+			continue; //this should not happen !
+		if ( v != vfsP ) {
+			delete vfsP;
+			vfsP = v; // v != 0 so this is safe
+		}
+		if ( vfsP->vfs_refresh( u ) )
+			break; // we have a valid refreshed URL now
+		// prevent repeated error messages
+		vfsP->vfs_setQuiet( true );
+	}
+	vfsP->vfs_setQuiet( false );
+
+	// update the urls stack
+	if ( !files() ->vfs_getOrigin().equals( urlStack.top() ) ) {
+		urlStack.push( files() ->vfs_getOrigin() );
+	}
+	// disconnect older signals
+	disconnect( files(), SIGNAL( addedVfile( vfile* ) ), 0, 0 );
+	disconnect( files(), SIGNAL( updatedVfile( vfile* ) ), 0, 0 );
+	disconnect( files(), SIGNAL( deletedVfile( const QString& ) ), 0, 0 );
+	// connect to the vfs's dirwatch signals
+	connect( files(), SIGNAL( addedVfile( vfile* ) ),
+	         panel, SLOT( slotItemAdded( vfile* ) ) );
+	connect( files(), SIGNAL( updatedVfile( vfile* ) ),
+	         panel, SLOT( slotItemUpdated( vfile* ) ) );
+	connect( files(), SIGNAL( deletedVfile( const QString& ) ),
+	         panel, SLOT( slotItemDeleted( const QString& ) ) );
+
+	// on local file system change the working directory
+	if ( files() ->vfs_getType() == vfs::NORMAL )
+		chdir( files() ->vfs_getOrigin().path().local8Bit() );
 }
 
 void ListPanelFunc::delayedOpenUrl( const KURL& url ) {
-   delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
-   delayTimer.start( 0, true );  /* to avoid qApp->processEvents() deadlock situaltion */
+	delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
+	delayTimer.start( 0, true );  /* to avoid qApp->processEvents() deadlock situaltion */
 }
 
 void ListPanelFunc::doOpenUrl() {
-   openUrl( delayURL );
+	openUrl( delayURL );
 }
 
 void ListPanelFunc::goBack() {
-  if ( urlStack.isEmpty() ) return ;
+	if ( urlStack.isEmpty() )
+		return ;
 
-  urlStack.pop();
-  openUrl( urlStack.top(), files()->vfs_getOrigin().fileName());
+	urlStack.pop();
+	openUrl( urlStack.top(), files() ->vfs_getOrigin().fileName() );
 
-  if ( urlStack.isEmpty() ) krBack->setEnabled( false );
+	if ( urlStack.isEmpty() )
+		krBack->setEnabled( false );
 }
 
 void ListPanelFunc::redirectLink() {
-  if ( files() ->vfs_getType() != vfs::NORMAL ) {
-    KMessageBox::sorry( krApp, i18n( "You can edit links only on local file systems" ) );
-    return ;
-  }
+	if ( files() ->vfs_getType() != vfs::NORMAL ) {
+		KMessageBox::sorry( krApp, i18n( "You can edit links only on local file systems" ) );
+		return ;
+	}
 
-  vfile *vf = files() ->vfs_search( panel->getCurrentName() );
-  if ( !vf )
-    return ;
+	vfile *vf = files() ->vfs_search( panel->getCurrentName() );
+	if ( !vf )
+		return ;
 
-  QString file = files() ->vfs_getFile( vf->vfile_getName() ).path(-1);
-  QString currentLink = vf->vfile_getSymDest();
-  if ( currentLink.isEmpty() ) {
-    KMessageBox::sorry( krApp, i18n( "The current file is not a link, so i can't redirect it." ) );
-    return ;
-  }
+	QString file = files() ->vfs_getFile( vf->vfile_getName() ).path( -1 );
+	QString currentLink = vf->vfile_getSymDest();
+	if ( currentLink.isEmpty() ) {
+		KMessageBox::sorry( krApp, i18n( "The current file is not a link, so i can't redirect it." ) );
+		return ;
+	}
 
-  // ask the user for a new destination
-  bool ok = false;
-  QString newLink =
-    KInputDialog::getText( i18n("Link Redirection"),
-                                       i18n("Please enter the new link destination:"), currentLink, &ok, krApp );
+	// ask the user for a new destination
+	bool ok = false;
+	QString newLink =
+	    KInputDialog::getText( i18n( "Link Redirection" ),
+	                           i18n( "Please enter the new link destination:" ), currentLink, &ok, krApp );
 
-  // if the user canceled - quit
-  if ( !ok || newLink == currentLink )
-    return ;
-  // delete the current link
-  if ( unlink( file.local8Bit() ) == -1 ) {
-    KMessageBox::sorry( krApp, i18n( "Can't remove old link: " ) + file );
-    return ;
-  }
-  // try to create a new symlink
-  if ( symlink( newLink.local8Bit(), file.local8Bit() ) == -1 ) {
-    KMessageBox::/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry( krApp, i18n( "Failed to create a new link: " ) + file );
-    return ;
-  }
+	// if the user canceled - quit
+	if ( !ok || newLink == currentLink )
+		return ;
+	// delete the current link
+	if ( unlink( file.local8Bit() ) == -1 ) {
+		KMessageBox::sorry( krApp, i18n( "Can't remove old link: " ) + file );
+		return ;
+	}
+	// try to create a new symlink
+	if ( symlink( newLink.local8Bit(), file.local8Bit() ) == -1 ) {
+		KMessageBox:: /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry( krApp, i18n( "Failed to create a new link: " ) + file );
+		return ;
+	}
 }
 
 void ListPanelFunc::krlink( bool sym ) {
-  if ( files() ->vfs_getType() != vfs::NORMAL ) {
-    KMessageBox::sorry( krApp, i18n( "You can create links only on local file systems" ) );
-    return ;
-  }
+	if ( files() ->vfs_getType() != vfs::NORMAL ) {
+		KMessageBox::sorry( krApp, i18n( "You can create links only on local file systems" ) );
+		return ;
+	}
 
-  QString name = panel->getCurrentName();
+	QString name = panel->getCurrentName();
 
-  // ask the new link name..
-  bool ok = false;
-  QString linkName =
-    KInputDialog::getText( i18n("New link"),i18n( "Create a new link to: " ) + name, name, &ok, krApp );
+	// ask the new link name..
+	bool ok = false;
+	QString linkName =
+	    KInputDialog::getText( i18n( "New link" ), i18n( "Create a new link to: " ) + name, name, &ok, krApp );
 
-  // if the user canceled - quit
-  if ( !ok || linkName == name )
-    return ;
+	// if the user canceled - quit
+	if ( !ok || linkName == name )
+		return ;
 
-  // if the name is already taken - quit
-  if ( files() ->vfs_search( linkName ) != 0 ) {
-    KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
-    return ;
-  }
+	// if the name is already taken - quit
+	if ( files() ->vfs_search( linkName ) != 0 ) {
+		KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
+		return ;
+	}
 
-  if ( linkName.left( 1 ) != "/" )
-    linkName = files()->vfs_workingDir() + "/" + linkName;
+	if ( linkName.left( 1 ) != "/" )
+		linkName = files() ->vfs_workingDir() + "/" + linkName;
 
-  if ( linkName.contains( "/" ) )
-    name = files()->vfs_getFile( name ).path(-1);
+	if ( linkName.contains( "/" ) )
+		name = files() ->vfs_getFile( name ).path( -1 );
 
-  if ( sym ) {
-    if ( symlink( name.local8Bit(), linkName.local8Bit() ) == -1 )
-      KMessageBox::sorry( krApp, i18n( "Failed to create a new symlink: " ) + linkName +
-                          i18n( " To: " ) + name );
-  } else {
-    if ( link( name.local8Bit(), linkName.local8Bit() ) == -1 )
-      KMessageBox::sorry( krApp, i18n( "Failed to create a new link: " ) + linkName +
-                          i18n( " To: " ) + name );
-  }
+	if ( sym ) {
+		if ( symlink( name.local8Bit(), linkName.local8Bit() ) == -1 )
+			KMessageBox::sorry( krApp, i18n( "Failed to create a new symlink: " ) + linkName +
+			                    i18n( " To: " ) + name );
+	} else {
+		if ( link( name.local8Bit(), linkName.local8Bit() ) == -1 )
+			KMessageBox::sorry( krApp, i18n( "Failed to create a new link: " ) + linkName +
+			                    i18n( " To: " ) + name );
+	}
 }
 
 void ListPanelFunc::view() {
-  QString fileName = panel->getCurrentName();
-  if ( fileName.isNull() )
-    return ;
+	QString fileName = panel->getCurrentName();
+	if ( fileName.isNull() )
+		return ;
 
-  // if we're trying to view a directory, just exit
-  vfile * vf = files()->vfs_search( fileName );
-  if ( !vf || vf->vfile_isDir() )
-    return ;
-  if ( !vf->vfile_isReadable() ) {
-    KMessageBox::sorry(0,i18n("No permissions to view this file."));
-    return;
-  }
-  // call KViewer.
-  KrViewer::view( files()->vfs_getFile( fileName ) );
-  // nothing more to it!
+	// if we're trying to view a directory, just exit
+	vfile * vf = files() ->vfs_search( fileName );
+	if ( !vf || vf->vfile_isDir() )
+		return ;
+	if ( !vf->vfile_isReadable() ) {
+		KMessageBox::sorry( 0, i18n( "No permissions to view this file." ) );
+		return ;
+	}
+	// call KViewer.
+	KrViewer::view( files() ->vfs_getFile( fileName ) );
+	// nothing more to it!
 }
 
 void ListPanelFunc::terminal() {
-  QString save = getcwd( 0, 0 );
-  chdir( panel->realPath.local8Bit() );
+	QString save = getcwd( 0, 0 );
+	chdir( panel->realPath.local8Bit() );
 
-  KProcess proc;
-  krConfig->setGroup( "General" );
-  QString term = krConfig->readEntry( "Terminal", _Terminal );
-  proc << KrServices::separateArgs( term );
-  
-  if( term.contains( "konsole" ) )   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
-  {                                  /* Please remove the patch if the bug is corrected */
-    proc << "&";
-    proc.setUseShell( true );
-  }
-  
-  if ( !proc.start( KProcess::DontCare ) )
-    KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + term + "\"" );
+	KProcess proc;
+	krConfig->setGroup( "General" );
+	QString term = krConfig->readEntry( "Terminal", _Terminal );
+	proc << KrServices::separateArgs( term );
 
-  chdir( save.local8Bit() );
+	if ( term.contains( "konsole" ) )    /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
+	{                                  /* Please remove the patch if the bug is corrected */
+		proc << "&";
+		proc.setUseShell( true );
+	}
+
+	if ( !proc.start( KProcess::DontCare ) )
+		KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + term + "\"" );
+
+	chdir( save.local8Bit() );
 }
 
 void ListPanelFunc::editFile() {
-  QString name = panel->getCurrentName();
-  if ( name.isNull() )
-    return ;
+	QString name = panel->getCurrentName();
+	if ( name.isNull() )
+		return ;
 
-  if ( files()->vfs_search( name )->vfile_isDir() ) {
-    KMessageBox::sorry( krApp, i18n( "You can't edit a directory" ) );
-    return ;
-  }
+	if ( files() ->vfs_search( name ) ->vfile_isDir() ) {
+		KMessageBox::sorry( krApp, i18n( "You can't edit a directory" ) );
+		return ;
+	}
 
-  if ( !files()->vfs_search( name )->vfile_isReadable() ) {
-    KMessageBox::sorry(0,i18n("No permissions to edit this file."));
-    return;
-  }
+	if ( !files() ->vfs_search( name ) ->vfile_isReadable() ) {
+		KMessageBox::sorry( 0, i18n( "No permissions to edit this file." ) );
+		return ;
+	}
 
-  KrViewer::edit( files() ->vfs_getFile(name) );
+	KrViewer::edit( files() ->vfs_getFile( name ) );
 }
 
 void ListPanelFunc::moveFiles() {
-  QStringList fileNames;
-  panel->getSelectedNames( &fileNames );
-  if ( fileNames.isEmpty() )
-    return ;  // safety
+	QStringList fileNames;
+	panel->getSelectedNames( &fileNames );
+	if ( fileNames.isEmpty() )
+		return ;  // safety
 
-  QString dest = panel->otherPanel->getPath();
-                 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
+	QString dest = panel->otherPanel->getPath();
+	/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 
-  //krConfig->setGroup( "Archives" );
-  //if ( !krConfig->readBoolEntry( "Allow Move Into Archive", _MoveIntoArchive ) )
-  //{  
-    QString destProtocol = panel->otherPanel->func->files()->vfs_getOrigin().protocol();
-    if( destProtocol == "krarc" || destProtocol == "tar" || destProtocol == "zip" )
-    {
-      KMessageBox::sorry( krApp, i18n( "Moving into archive is disabled" ) );
-      return ;
-    }
-  //}
-                 
-  krConfig->setGroup( "Advanced" );
-  if ( krConfig->readBoolEntry( "Confirm Move", _ConfirmMove ) ) {
-    QString s;
-    if ( fileNames.count() == 1 )
-      s = i18n( "Move " ) + fileNames.first() + " " + i18n( "to" ) + ":";
-    else
-      s.sprintf( i18n( "Move %d files to:" ).local8Bit(), fileNames.count() );
+	//krConfig->setGroup( "Archives" );
+	//if ( !krConfig->readBoolEntry( "Allow Move Into Archive", _MoveIntoArchive ) )
+	//{
+	QString destProtocol = panel->otherPanel->func->files() ->vfs_getOrigin().protocol();
+	if ( destProtocol == "krarc" || destProtocol == "tar" || destProtocol == "zip" ) {
+		KMessageBox::sorry( krApp, i18n( "Moving into archive is disabled" ) );
+		return ;
+	}
+	//}
 
-    // ask the user for the copy dest
-    KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
-    dest = chooser->dest;
-    if ( dest == QString::null )
-      return ; // the usr canceled
-  }
+	krConfig->setGroup( "Advanced" );
+	if ( krConfig->readBoolEntry( "Confirm Move", _ConfirmMove ) ) {
+		QString s;
+		if ( fileNames.count() == 1 )
+			s = i18n( "Move " ) + fileNames.first() + " " + i18n( "to" ) + ":";
+		else
+			s.sprintf( i18n( "Move %d files to:" ).local8Bit(), fileNames.count() );
 
-  if ( fileNames.isEmpty() )
-    return ; // nothing to copy
+		// ask the user for the copy dest
+		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
+		dest = chooser->dest;
+		if ( dest == QString::null )
+			return ; // the usr canceled
+	}
 
-  KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
+	if ( fileNames.isEmpty() )
+		return ; // nothing to copy
 
-  // after the delete return the cursor to the first unmarked
-  // file above the current item;
-  panel->prepareToDelete();
+	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 
-  // if we are not moving to the other panel :
-  if ( panel->otherPanel->getPath() != dest ) {
-    if ( dest.left( 1 ) != "/" ) {
-      dest = files() ->vfs_workingDir() + "/" + dest;
-    }
-    // you can rename only *one* file not a batch,
-    // so a batch dest must alwayes be a directory
-    if ( ( fileNames.count() > 1 ) && ( dest.right( 1 ) != "/" ) )
-      dest = dest + "/";
-    QDir().mkdir( dest.left( dest.findRev( "/" ) ) );
-    KURL destUrl;
-    destUrl.setPath( dest );
-    KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, KIO::CopyJob::Move, false, true );
-    // refresh our panel when done
-                connect(job,SIGNAL(result(KIO::Job*)),this,SLOT( refresh() ) );
-    // and if needed the other panel as well
-    if( dest.startsWith(panel->otherPanel->getPath()) )
-                        connect(job,SIGNAL(result(KIO::Job*)),panel->otherPanel->func,SLOT( refresh() ) );      
+	// after the delete return the cursor to the first unmarked
+	// file above the current item;
+	panel->prepareToDelete();
 
-  } else { // let the other panel do the dirty job
-    //check if copy is supported
-    if ( !otherFunc() ->files() ->vfs_isWritable() ) {
-      KMessageBox::sorry( krApp, i18n( "You can't move files to this file system" ) );
-      return ;
-    }
-    // finally..
-    otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Move, files() );
-  }
+	// if we are not moving to the other panel :
+	if ( panel->otherPanel->getPath() != dest ) {
+		if ( dest.left( 1 ) != "/" ) {
+			dest = files() ->vfs_workingDir() + "/" + dest;
+		}
+		// you can rename only *one* file not a batch,
+		// so a batch dest must alwayes be a directory
+		if ( ( fileNames.count() > 1 ) && ( dest.right( 1 ) != "/" ) )
+			dest = dest + "/";
+		QDir().mkdir( dest.left( dest.findRev( "/" ) ) );
+		KURL destUrl;
+		destUrl.setPath( dest );
+		KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, KIO::CopyJob::Move, false, true );
+		// refresh our panel when done
+		connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
+		// and if needed the other panel as well
+		if ( dest.startsWith( panel->otherPanel->getPath() ) )
+			connect( job, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+
+	} else { // let the other panel do the dirty job
+		//check if copy is supported
+		if ( !otherFunc() ->files() ->vfs_isWritable() ) {
+			KMessageBox::sorry( krApp, i18n( "You can't move files to this file system" ) );
+			return ;
+		}
+		// finally..
+		otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Move, files() );
+	}
 }
 
 // called from SLOTS to begin the renaming process
 void ListPanelFunc::rename() {
-  panel->view->renameCurrentItem();
+	panel->view->renameCurrentItem();
 }
 
 // called by signal itemRenamed() from the view to complete the renaming process
-void ListPanelFunc::rename(const QString &oldname, const QString &newname) {
-  kdWarning() << "old " << oldname << " new " << newname << endl;
-  if (oldname == newname) return; // do nothing
-  panel->view->setNameToMakeCurrent( newname );
-  // as always - the vfs do the job
-  files() ->vfs_rename( oldname, newname );  
+void ListPanelFunc::rename( const QString &oldname, const QString &newname ) {
+	kdWarning() << "old " << oldname << " new " << newname << endl;
+	if ( oldname == newname )
+		return ; // do nothing
+	panel->view->setNameToMakeCurrent( newname );
+	// as always - the vfs do the job
+	files() ->vfs_rename( oldname, newname );
 }
 
 void ListPanelFunc::mkdir() {
-  // ask the new dir name..
-  bool ok = false;
-  QString dirName =
-    KInputDialog::getText(i18n("New directory"),i18n( "Directory's name:" ), "", &ok, krApp );
+	// ask the new dir name..
+	bool ok = false;
+	QString dirName =
+	    KInputDialog::getText( i18n( "New directory" ), i18n( "Directory's name:" ), "", &ok, krApp );
 
-  // if the user canceled - quit
-  if ( !ok || dirName.isEmpty() )
-    return ;
+	// if the user canceled - quit
+	if ( !ok || dirName.isEmpty() )
+		return ;
 
-  QStringList dirTree = QStringList::split( "/", dirName );
-  
-  for ( QStringList::Iterator it = dirTree.begin(); it != dirTree.end(); ++it ) {
-    // check if the name is already taken
-    if ( files()->vfs_search( *it ) ) {
-      // if it is the last dir to be created - quit
-      if ( *it == dirTree.last() ) {
-    KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
-        return;
-      }
-      // else go into this dir
-      else {
-        openUrl( *it );
-        continue;
-      }
-  }
+	QStringList dirTree = QStringList::split( "/", dirName );
 
-    panel->view->setNameToMakeCurrent( *it );
-  // as always - the vfs do the job
-    files() ->vfs_mkdir( *it );
-    if ( dirTree.count() > 1)
-      openUrl( *it );
-  } // for
+	for ( QStringList::Iterator it = dirTree.begin(); it != dirTree.end(); ++it ) {
+		// check if the name is already taken
+		if ( files() ->vfs_search( *it ) ) {
+			// if it is the last dir to be created - quit
+			if ( *it == dirTree.last() ) {
+				KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
+				return ;
+			}
+			// else go into this dir
+			else {
+				openUrl( *it );
+				continue;
+			}
+		}
+
+		panel->view->setNameToMakeCurrent( *it );
+		// as always - the vfs do the job
+		files() ->vfs_mkdir( *it );
+		if ( dirTree.count() > 1 )
+			openUrl( *it );
+	} // for
 }
 
 void ListPanelFunc::copyFiles() {
-  QStringList fileNames;
-  panel->getSelectedNames( &fileNames );
-  if ( fileNames.isEmpty() )
-    return ;  // safety
+	QStringList fileNames;
+	panel->getSelectedNames( &fileNames );
+	if ( fileNames.isEmpty() )
+		return ;  // safety
 
-  QString dest = panel->otherPanel->getPath();
+	QString dest = panel->otherPanel->getPath();
 
-  // confirm copy
-  krConfig->setGroup( "Advanced" );
-  if ( krConfig->readBoolEntry( "Confirm Copy", _ConfirmCopy ) ) {
-    QString s;
-    if ( fileNames.count() == 1 )
-      s = i18n( "Copy " ) + fileNames.first() + " " + i18n( "to" ) + ":";
-    else
-      s.sprintf( i18n( "Copy %d files to:" ).local8Bit(), fileNames.count() );
-    // ask the user for the copy dest
-    KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
-    dest = chooser->dest;
-    if ( dest == QString::null )
-      return ; // the usr canceled
-  }
+	// confirm copy
+	krConfig->setGroup( "Advanced" );
+	if ( krConfig->readBoolEntry( "Confirm Copy", _ConfirmCopy ) ) {
+		QString s;
+		if ( fileNames.count() == 1 )
+			s = i18n( "Copy " ) + fileNames.first() + " " + i18n( "to" ) + ":";
+		else
+			s.sprintf( i18n( "Copy %d files to:" ).local8Bit(), fileNames.count() );
+		// ask the user for the copy dest
+		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
+		dest = chooser->dest;
+		if ( dest == QString::null )
+			return ; // the usr canceled
+	}
 
-  KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
+	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 
-  // if we are  not copying to the other panel :
-  if ( panel->otherPanel->getPath() != dest ) {
-    bool refresh = false;
-    if ( dest.left( 1 ) != "/" ) {
-      dest = files() ->vfs_workingDir() + "/" + dest;
-      if ( !dest.contains( "/" ) )
-        refresh = true;
-    }
-    // you can rename only *one* file not a batch,
-    // so a batch dest must alwayes be a directory
-    if ( ( fileNames.count() > 1 ) && ( dest.right( 1 ) != "/" ) )
-      dest = dest + "/";
-    QDir().mkdir( dest.left( dest.findRev( "/" ) ) );
-    KURL destUrl;
-    destUrl.setPath( dest );
-    KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, KIO::CopyJob::Copy, false, true );
-    if ( refresh )
-      connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
-    // let the other panel do the dirty job
-  } else {
-    //check if copy is supported
-    if ( !otherFunc() ->files() ->vfs_isWritable() ) {
-      KMessageBox::sorry( krApp, i18n( "You can't copy files to this file system" ) );
-      return ;
-    }
-    // finally..
-    otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Copy, 0 );
-  }
+	// if we are  not copying to the other panel :
+	if ( panel->otherPanel->getPath() != dest ) {
+		bool refresh = false;
+		if ( dest.left( 1 ) != "/" ) {
+			dest = files() ->vfs_workingDir() + "/" + dest;
+			if ( !dest.contains( "/" ) )
+				refresh = true;
+		}
+		// you can rename only *one* file not a batch,
+		// so a batch dest must alwayes be a directory
+		if ( ( fileNames.count() > 1 ) && ( dest.right( 1 ) != "/" ) )
+			dest = dest + "/";
+		QDir().mkdir( dest.left( dest.findRev( "/" ) ) );
+		KURL destUrl;
+		destUrl.setPath( dest );
+		KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, KIO::CopyJob::Copy, false, true );
+		if ( refresh )
+			connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
+		// let the other panel do the dirty job
+	} else {
+		//check if copy is supported
+		if ( !otherFunc() ->files() ->vfs_isWritable() ) {
+			KMessageBox::sorry( krApp, i18n( "You can't copy files to this file system" ) );
+			return ;
+		}
+		// finally..
+		otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Copy, 0 );
+	}
 }
 
 void ListPanelFunc::deleteFiles() {
-  // check that the you have write perm
-  if ( !files() ->vfs_isWritable() ) {
-    KMessageBox::sorry( krApp, i18n( "You do not have write permission to this directory" ) );
-    return ;
-  }
+	// check that the you have write perm
+	if ( !files() ->vfs_isWritable() ) {
+		KMessageBox::sorry( krApp, i18n( "You do not have write permission to this directory" ) );
+		return ;
+	}
 
-  // first get the selected file names list
-  QStringList fileNames;
-  panel->getSelectedNames( &fileNames );
-  if ( fileNames.isEmpty() )
-    return ;
+	// first get the selected file names list
+	QStringList fileNames;
+	panel->getSelectedNames( &fileNames );
+	if ( fileNames.isEmpty() )
+		return ;
 
-  // now ask the user if he want to delete:
-  krConfig->setGroup( "Advanced" );
-  if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
-    QString s, b;
-    if ( fileNames.count() == 1 )
-      s = i18n( " this item ?" );
-    else
-      s.sprintf( i18n( " these %d items ?" ).local8Bit(), fileNames.count() );
-    krConfig->setGroup( "General" );
-    if ( krConfig->readBoolEntry( "Move To Trash", _MoveToTrash ) &&
-         files() ->vfs_getType() == vfs::NORMAL ) {
-      s = i18n( "trash" ) + s;
-      b = i18n( "&Trash" );
-    } else {
-      s = i18n( "delete" ) + s;
-      b = i18n( "&Delete" );
-    }
-    // show message
-         // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-         if ( KMessageBox::warningContinueCancelList(krApp, i18n("Are you sure you want to " ) + s
-                        , fileNames, i18n("Warning"), b ) != KMessageBox::Continue)
-                return;
-  }
-  //we want to warn the user about non empty dir
-  // and files he don't have permission to delete
-  krConfig->setGroup( "Advanced" );
-  bool emptyDirVerify = krConfig->readBoolEntry( "Confirm Unempty Dir", _ConfirmUnemptyDir );
-  emptyDirVerify = ( ( emptyDirVerify ) && ( files() ->vfs_getType() == vfs::NORMAL ) );
+	// now ask the user if he want to delete:
+	krConfig->setGroup( "Advanced" );
+	if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
+		QString s, b;
+		if ( fileNames.count() == 1 )
+			s = i18n( " this item ?" );
+		else
+			s.sprintf( i18n( " these %d items ?" ).local8Bit(), fileNames.count() );
+		krConfig->setGroup( "General" );
+		if ( krConfig->readBoolEntry( "Move To Trash", _MoveToTrash ) &&
+		        files() ->vfs_getType() == vfs::NORMAL ) {
+			s = i18n( "trash" ) + s;
+			b = i18n( "&Trash" );
+		} else {
+			s = i18n( "delete" ) + s;
+			b = i18n( "&Delete" );
+		}
+		// show message
+		// note: i'm using continue and not yes/no because the yes/no has cancel as default button
+		if ( KMessageBox::warningContinueCancelList( krApp, i18n( "Are you sure you want to " ) + s
+		                                             , fileNames, i18n( "Warning" ), b ) != KMessageBox::Continue )
+			return ;
+	}
+	//we want to warn the user about non empty dir
+	// and files he don't have permission to delete
+	krConfig->setGroup( "Advanced" );
+	bool emptyDirVerify = krConfig->readBoolEntry( "Confirm Unempty Dir", _ConfirmUnemptyDir );
+	emptyDirVerify = ( ( emptyDirVerify ) && ( files() ->vfs_getType() == vfs::NORMAL ) );
 
-  QDir dir;
-  for ( QStringList::Iterator name = fileNames.begin(); name != fileNames.end(); ) {
-    vfile * vf = files() ->vfs_search( *name );
+	QDir dir;
+	for ( QStringList::Iterator name = fileNames.begin(); name != fileNames.end(); ) {
+		vfile * vf = files() ->vfs_search( *name );
 
-    // verify non-empty dirs delete... (only for norml vfs)
-    if ( emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink() ) {
-      dir.setPath( panel->getPath() + "/" + ( *name ) );
-      if ( dir.count() > 2 ) {
-        switch ( KMessageBox::warningYesNoCancel( krApp,
-                                                  i18n( "Directory " ) + ( *name ) + i18n( " is not empty !\nSkip this one or Delete All ?" ),
-                                                  QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
-            case KMessageBox::Cancel :
-            return ;
-            case KMessageBox::No :
-            emptyDirVerify = false;
-            break;
-            case KMessageBox::Yes :
-            name = fileNames.remove( name );
-            continue;
-        }
-      }
-    }
-    ++name;
-  }
+		// verify non-empty dirs delete... (only for norml vfs)
+		if ( emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink() ) {
+			dir.setPath( panel->getPath() + "/" + ( *name ) );
+			if ( dir.count() > 2 ) {
+				switch ( KMessageBox::warningYesNoCancel( krApp,
+				                                          i18n( "Directory " ) + ( *name ) + i18n( " is not empty !\nSkip this one or Delete All ?" ),
+				                                          QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
+						case KMessageBox::Cancel :
+						return ;
+						case KMessageBox::No :
+						emptyDirVerify = false;
+						break;
+						case KMessageBox::Yes :
+						name = fileNames.remove( name );
+						continue;
+				}
+			}
+		}
+		++name;
+	}
 
-  if ( fileNames.count() == 0 )
-    return ;  // nothing to delete
+	if ( fileNames.count() == 0 )
+		return ;  // nothing to delete
 
-  // after the delete return the cursor to the first unmarked
-  // file above the current item;
-  panel->prepareToDelete();
+	// after the delete return the cursor to the first unmarked
+	// file above the current item;
+	panel->prepareToDelete();
 
-  // let the vfs do the job...
-  files() ->vfs_delFiles( &fileNames );
+	// let the vfs do the job...
+	files() ->vfs_delFiles( &fileNames );
 }
 
 // this is done when you double click on a file
 void ListPanelFunc::execute( QString& name ) {
-        if ( name == ".." ) {
-                dirUp();
-                return ;
-        }
+	if ( name == ".." ) {
+		dirUp();
+		return ;
+	}
 
-        vfile *vf = files() ->vfs_search( name );
-        if ( vf == 0 ) return ;
-        KURL origin = files() ->vfs_getOrigin();
+	vfile *vf = files() ->vfs_search( name );
+	if ( vf == 0 )
+		return ;
+	KURL origin = files() ->vfs_getOrigin();
 
-        QString protocol = origin.isLocalFile() ? KrServices::registerdProtocol(vf->vfile_getMime()) : "";        
- 
-        if( protocol == "tar" || protocol == "krarc" )
-        {
-                QString type = vf->vfile_getMime().right( 4 );        
-                if ( vf->vfile_getMime().contains( "-rar" ) ) type = "-rar";
-                if ( !KRarcHandler::arcHandled( type ) )  // if the specified archive is disabled delete the protocol
-                        protocol = "";
-        }
+	QString protocol = origin.isLocalFile() ? KrServices::registerdProtocol( vf->vfile_getMime() ) : "";
 
-        if ( vf->vfile_isDir() ) {
-                //origin.addPath(name);
-                origin = files()->vfs_getFile( name );
-                panel->view->setNameToMakeCurrent( QString::null );
-                openUrl( origin );
-        } else if ( !protocol.isEmpty() ){
-                KURL path = files()->vfs_getFile(vf->vfile_getName());
-                path.setProtocol(protocol);
-                openUrl( path );
-        } else {
-                KURL url = files()->vfs_getFile( name );
-                KRun::runURL( url, vf->vfile_getMime() );
-        }
+	if ( protocol == "tar" || protocol == "krarc" ) {
+		QString type = vf->vfile_getMime().right( 4 );
+		if ( vf->vfile_getMime().contains( "-rar" ) )
+			type = "-rar";
+		if ( !KRarcHandler::arcHandled( type ) )   // if the specified archive is disabled delete the protocol
+			protocol = "";
+	}
+
+	if ( vf->vfile_isDir() ) {
+		//origin.addPath(name);
+		origin = files() ->vfs_getFile( name );
+		panel->view->setNameToMakeCurrent( QString::null );
+		openUrl( origin );
+	} else if ( !protocol.isEmpty() ) {
+		KURL path = files() ->vfs_getFile( vf->vfile_getName() );
+		path.setProtocol( protocol );
+		openUrl( path );
+	} else {
+		KURL url = files() ->vfs_getFile( name );
+		KRun::runURL( url, vf->vfile_getMime() );
+	}
 }
 
 void ListPanelFunc::dirUp() {
-        openUrl(files()->vfs_getOrigin().upURL(), files()->vfs_getOrigin().fileName());
+	openUrl( files() ->vfs_getOrigin().upURL(), files() ->vfs_getOrigin().fileName() );
 }
 
 void ListPanelFunc::pack() {
-  QStringList fileNames;
-  panel->getSelectedNames( &fileNames );
-  if ( fileNames.isEmpty() )
-    return ;  // safety
+	QStringList fileNames;
+	panel->getSelectedNames( &fileNames );
+	if ( fileNames.isEmpty() )
+		return ;  // safety
 
-  if ( fileNames.count() == 0 )
-    return ; // nothing to pack
+	if ( fileNames.count() == 0 )
+		return ; // nothing to pack
 
-  // choose the default name
-  QString defaultName = panel->virtualPath.right( panel->virtualPath.length() - panel->virtualPath.findRev( '/' ) - 1 );
-  if ( defaultName == "" )
-    defaultName = "pack";
-  if ( fileNames.count() == 1 )
-    defaultName = fileNames.first();
-  // ask the user for archive name and packer
-  new PackGUI( defaultName, panel->otherPanel->virtualPath, fileNames.count(), fileNames.first() );
-  if ( PackGUI::type == QString::null )
-    return ; // the user canceled
+	// choose the default name
+	QString defaultName = panel->virtualPath.right( panel->virtualPath.length() - panel->virtualPath.findRev( '/' ) - 1 );
+	if ( defaultName == "" )
+		defaultName = "pack";
+	if ( fileNames.count() == 1 )
+		defaultName = fileNames.first();
+	// ask the user for archive name and packer
+	new PackGUI( defaultName, panel->otherPanel->virtualPath, fileNames.count(), fileNames.first() );
+	if ( PackGUI::type == QString::null )
+		return ; // the user canceled
 
-  bool packToOtherPanel = ( PackGUI::destination == panel->otherPanel->virtualPath );
+	bool packToOtherPanel = ( PackGUI::destination == panel->otherPanel->virtualPath );
 
-  // on remote URL-s first pack into a temp file then copy to its right place
-  KURL destURL = vfs::fromPathOrURL( PackGUI::destination + "/" + PackGUI::filename + "." + PackGUI::type );
-  KTempFile *tempDestFile = 0;
-  QString arcFile;
-  if( destURL.isLocalFile() )
-    arcFile = destURL.path();
-  else
-  {
-    tempDestFile = new KTempFile( QString::null, "." + PackGUI::type );
-    tempDestFile->setAutoDelete( true );
-    arcFile = tempDestFile->name();
-    QFile::remove( arcFile );
-  }
+	// on remote URL-s first pack into a temp file then copy to its right place
+	KURL destURL = vfs::fromPathOrURL( PackGUI::destination + "/" + PackGUI::filename + "." + PackGUI::type );
+	KTempFile *tempDestFile = 0;
+	QString arcFile;
+	if ( destURL.isLocalFile() )
+		arcFile = destURL.path();
+	else {
+		tempDestFile = new KTempFile( QString::null, "." + PackGUI::type );
+		tempDestFile->setAutoDelete( true );
+		arcFile = tempDestFile->name();
+		QFile::remove
+			( arcFile );
+	}
 
-  if ( PackGUI::type != "zip" && QFileInfo( arcFile ).exists() ) {
-    if ( KMessageBox::warningContinueCancel( krApp,
-                                             i18n( "The Archive " ) + PackGUI::filename + "." + PackGUI::type +
-                                             i18n( " already exists, Do you want to overwrite the archive " ) +
-                                             i18n( "(all data in previous archive will be lost)" ), QString::null, i18n( "&Overwite" ) )
-         == KMessageBox::Cancel )
-      return ; // stop operation
-  }
-  // tell the user to wait
-  krApp->startWaiting( i18n( "Counting files to pack" ), 0 );
+	if ( PackGUI::type != "zip" && QFileInfo( arcFile ).exists() ) {
+		if ( KMessageBox::warningContinueCancel( krApp,
+		                                         i18n( "The Archive " ) + PackGUI::filename + "." + PackGUI::type +
+		                                         i18n( " already exists, Do you want to overwrite the archive " ) +
+		                                         i18n( "(all data in previous archive will be lost)" ), QString::null, i18n( "&Overwite" ) )
+		        == KMessageBox::Cancel )
+			return ; // stop operation
+	}
+	// tell the user to wait
+	krApp->startWaiting( i18n( "Counting files to pack" ), 0 );
 
-  // get the files to be packed:
-  files() ->vfs_getFiles( &fileNames );
+	// get the files to be packed:
+	files() ->vfs_getFiles( &fileNames );
 
-  KIO::filesize_t totalSize = 0;
-  unsigned long totalDirs = 0, totalFiles = 0;
-  for ( QStringList::Iterator file = fileNames.begin(); file != fileNames.end(); ++file ) {
-    files() ->vfs_calcSpace( ( *file ), &totalSize, &totalFiles, &totalDirs );
-  }
+	KIO::filesize_t totalSize = 0;
+	unsigned long totalDirs = 0, totalFiles = 0;
+	for ( QStringList::Iterator file = fileNames.begin(); file != fileNames.end(); ++file ) {
+		files() ->vfs_calcSpace( ( *file ), &totalSize, &totalFiles, &totalDirs );
+	}
 
-  // download remote URL-s if necessary
-  QString arcDir;
-  KTempDir *tempDir = 0;
-    
-  if( files() ->vfs_getOrigin().isLocalFile() )
-    arcDir = files() ->vfs_workingDir();
-  else
-  {
-    tempDir = new KTempDir();
-    tempDir->setAutoDelete( true );
-    arcDir = tempDir->name();
-    KURL::List *urlList = files() ->vfs_getFiles( &fileNames );
-    KIO::NetAccess::dircopy( *urlList, vfs::fromPathOrURL( arcDir ), 0 );
-    delete urlList;
-  }
-  
-  // pack the files
-  // we must chdir() first because we supply *names* not URL's
-  QString save = getcwd( 0, 0 );
-  chdir( arcDir.local8Bit() );
-  KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs );
-  chdir( save.local8Bit() );
+	// download remote URL-s if necessary
+	QString arcDir;
+	KTempDir *tempDir = 0;
 
-  // delete the temporary directory if created
-  if( tempDir )
-    delete tempDir;
-  
-  // copy from the temp file to it's right place
-  if( tempDestFile )
-  {
-    KIO::NetAccess::file_move( vfs::fromPathOrURL( arcFile ), destURL );
-    delete tempDestFile;
-  }
-  
-  if ( packToOtherPanel )
-    panel->otherPanel->func->refresh();
+	if ( files() ->vfs_getOrigin().isLocalFile() )
+		arcDir = files() ->vfs_workingDir();
+	else {
+		tempDir = new KTempDir();
+		tempDir->setAutoDelete( true );
+		arcDir = tempDir->name();
+		KURL::List *urlList = files() ->vfs_getFiles( &fileNames );
+		KIO::NetAccess::dircopy( *urlList, vfs::fromPathOrURL( arcDir ), 0 );
+		delete urlList;
+	}
+
+	// pack the files
+	// we must chdir() first because we supply *names* not URL's
+	QString save = getcwd( 0, 0 );
+	chdir( arcDir.local8Bit() );
+	KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs );
+	chdir( save.local8Bit() );
+
+	// delete the temporary directory if created
+	if ( tempDir )
+		delete tempDir;
+
+	// copy from the temp file to it's right place
+	if ( tempDestFile ) {
+		KIO::NetAccess::file_move( vfs::fromPathOrURL( arcFile ), destURL );
+		delete tempDestFile;
+	}
+
+	if ( packToOtherPanel )
+		panel->otherPanel->func->refresh();
 }
 
 void ListPanelFunc::testArchive() {
-  QString arcName = panel->getCurrentName();
-  if ( arcName.isNull() )
-    return ;
-  if ( arcName == ".." )
-    return ; // safety
-    
-  KURL arcURL = files() ->vfs_getFile( arcName );
-  QString type = files() ->vfs_search( arcName )->vfile_getMime().right( 4 );
-  QString url = QString::null;
-  
-  // download the file if it's on a remote filesystem
-  if( !arcURL.isLocalFile() )
-  {
-    url = locateLocal( "tmp", QString( arcName ) );
-    if( !KIO::NetAccess::download( arcURL, url, 0 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+arcURL.fileName());
-      return;
-    }
-  }else url = arcURL.path(-1);
-    
-  // check we that archive is supported
-  if ( !KRarcHandler::arcSupported( type ) ) {
-    KMessageBox::sorry( krApp, i18n( "%1, unknown archive type." ).arg( arcName ) );
-    return ;
-  }
-  
-  // test the archive
-  if ( KRarcHandler::test( url, type ) )
-    KMessageBox::information( krApp, i18n( "%1, test passed." ).arg( arcName ) );
-  else
-    KMessageBox::error( krApp, i18n( "%1, test failed !" ).arg( arcName ) );
-    
-  // remove the downloaded file if necessary
-  if( url != arcURL.path( -1 ) )
-    QFile( url ).remove();
+	QString arcName = panel->getCurrentName();
+	if ( arcName.isNull() )
+		return ;
+	if ( arcName == ".." )
+		return ; // safety
+
+	KURL arcURL = files() ->vfs_getFile( arcName );
+	QString type = files() ->vfs_search( arcName ) ->vfile_getMime().right( 4 );
+	QString url = QString::null;
+
+	// download the file if it's on a remote filesystem
+	if ( !arcURL.isLocalFile() ) {
+		url = locateLocal( "tmp", QString( arcName ) );
+		if ( !KIO::NetAccess::download( arcURL, url, 0 ) ) {
+			KMessageBox::sorry( krApp, i18n( "Krusader is unable to download: " ) + arcURL.fileName() );
+			return ;
+		}
+	} else
+		url = arcURL.path( -1 );
+
+	// check we that archive is supported
+	if ( !KRarcHandler::arcSupported( type ) ) {
+		KMessageBox::sorry( krApp, i18n( "%1, unknown archive type." ).arg( arcName ) );
+		return ;
+	}
+
+	// test the archive
+	if ( KRarcHandler::test( url, type ) )
+		KMessageBox::information( krApp, i18n( "%1, test passed." ).arg( arcName ) );
+	else
+		KMessageBox::error( krApp, i18n( "%1, test failed !" ).arg( arcName ) );
+
+	// remove the downloaded file if necessary
+	if ( url != arcURL.path( -1 ) )
+		QFile( url ).remove();
 }
 
 void ListPanelFunc::unpack() {
 
-  QStringList fileNames;
-  panel->getSelectedNames( &fileNames );
-  if ( fileNames.isEmpty() )
-    return ;  // safety
+	QStringList fileNames;
+	panel->getSelectedNames( &fileNames );
+	if ( fileNames.isEmpty() )
+		return ;  // safety
 
-  QString s;
-  if ( fileNames.count() == 1 )
-    s = i18n( "Unpack " ) + fileNames[ 0 ] + " " + i18n( "to" ) + ":";
-  else
-    s = i18n( "Unpack " ) + i18n( "%1 files" ).arg( fileNames.count() ) + i18n( "to" ) + ":";
+	QString s;
+	if ( fileNames.count() == 1 )
+		s = i18n( "Unpack " ) + fileNames[ 0 ] + " " + i18n( "to" ) + ":";
+	else
+		s = i18n( "Unpack " ) + i18n( "%1 files" ).arg( fileNames.count() ) + i18n( "to" ) + ":";
 
-  // ask the user for the copy dest
-  KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
-  QString dest = chooser->dest;
-  if ( dest == QString::null )
-    return ; // the usr canceled
+	// ask the user for the copy dest
+	KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
+	QString dest = chooser->dest;
+	if ( dest == QString::null )
+		return ; // the usr canceled
 
-  bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath );
+	bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath );
 
-  for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
-    QString arcName = fileNames[ i ];
-    if ( arcName.isNull() )
-      return ;
-    if ( arcName == ".." )
-      return ; // safety
+	for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
+		QString arcName = fileNames[ i ];
+		if ( arcName.isNull() )
+			return ;
+		if ( arcName == ".." )
+			return ; // safety
 
-    // download the file if it's on a remote filesystem
-    KURL arcURL = files() ->vfs_getFile( arcName );
-    QString url = QString::null;  
-    if( !arcURL.isLocalFile() )
-    {
-      url = locateLocal( "tmp", QString( arcName ) );
-      if( !KIO::NetAccess::download( arcURL, url, 0 ) ){
-        KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+arcURL.fileName());
-        continue;
-        }
-    }else url = arcURL.path(-1);
-    
-    // if the destination is in remote directory use temporary one instead
-    if( !dest.endsWith( "/" ) ) dest += "/";
-    KURL destURL = vfs::fromPathOrURL( dest );
-    KURL originalDestURL;
-    KTempDir *tempDir = 0;
-    
-    if( !destURL.isLocalFile() )
-    {
-      originalDestURL = destURL;
-      tempDir = new KTempDir();
-      tempDir->setAutoDelete( true );
-      destURL = tempDir->name();
-    }
-  
-    // determining the type  
-    QString mime = files() ->vfs_search( arcName ) ->vfile_getMime();
-    QString type = mime.right( 4 );
-    if ( mime.contains( "-rar" ) )
-      type = "-rar";
+		// download the file if it's on a remote filesystem
+		KURL arcURL = files() ->vfs_getFile( arcName );
+		QString url = QString::null;
+		if ( !arcURL.isLocalFile() ) {
+			url = locateLocal( "tmp", QString( arcName ) );
+			if ( !KIO::NetAccess::download( arcURL, url, 0 ) ) {
+				KMessageBox::sorry( krApp, i18n( "Krusader is unable to download: " ) + arcURL.fileName() );
+				continue;
+			}
+		} else
+			url = arcURL.path( -1 );
 
-    // check we that archive is supported
-    if ( !KRarcHandler::arcSupported( type ) ) {
-      KMessageBox::sorry( krApp, i18n( "%1, unknown archive type" ).arg( arcName ) );
-      continue;
-    }
-    // unpack the files
-    KRarcHandler::unpack( url, type, destURL.path(-1) );
-  
-    // remove the downloaded file if necessary
-    if( url != arcURL.path( -1 ) )
-      QFile( url ).remove();
-    
-    // copy files to the destination directory at remote files
-    if( tempDir )
-    {
-      QStringList nameList = QDir( destURL.path( -1 ) ).entryList();
-      KURL::List urlList;
-      for( unsigned int i=0; i!= nameList.count(); i++ )
-        if( nameList[ i ] != "." && nameList[ i ] != ".." )
-          urlList.append( vfs::fromPathOrURL( destURL.path( 1 ) + nameList[ i ] ) );
-      if( urlList.count() > 0 )
-        KIO::NetAccess::dircopy( urlList, originalDestURL, 0 );
-      delete tempDir;
-    }
-  }
-  if ( packToOtherPanel )
-    panel->otherPanel->func->refresh();
+		// if the destination is in remote directory use temporary one instead
+		if ( !dest.endsWith( "/" ) )
+			dest += "/";
+		KURL destURL = vfs::fromPathOrURL( dest );
+		KURL originalDestURL;
+		KTempDir *tempDir = 0;
+
+		if ( !destURL.isLocalFile() ) {
+			originalDestURL = destURL;
+			tempDir = new KTempDir();
+			tempDir->setAutoDelete( true );
+			destURL = tempDir->name();
+		}
+
+		// determining the type
+		QString mime = files() ->vfs_search( arcName ) ->vfile_getMime();
+		QString type = mime.right( 4 );
+		if ( mime.contains( "-rar" ) )
+			type = "-rar";
+
+		// check we that archive is supported
+		if ( !KRarcHandler::arcSupported( type ) ) {
+			KMessageBox::sorry( krApp, i18n( "%1, unknown archive type" ).arg( arcName ) );
+			continue;
+		}
+		// unpack the files
+		KRarcHandler::unpack( url, type, destURL.path( -1 ) );
+
+		// remove the downloaded file if necessary
+		if ( url != arcURL.path( -1 ) )
+			QFile( url ).remove();
+
+		// copy files to the destination directory at remote files
+		if ( tempDir ) {
+			QStringList nameList = QDir( destURL.path( -1 ) ).entryList();
+			KURL::List urlList;
+			for ( unsigned int i = 0; i != nameList.count(); i++ )
+				if ( nameList[ i ] != "." && nameList[ i ] != ".." )
+					urlList.append( vfs::fromPathOrURL( destURL.path( 1 ) + nameList[ i ] ) );
+			if ( urlList.count() > 0 )
+				KIO::NetAccess::dircopy( urlList, originalDestURL, 0 );
+			delete tempDir;
+		}
+	}
+	if ( packToOtherPanel )
+		panel->otherPanel->func->refresh();
 }
 
 void ListPanelFunc::calcSpace() {
-        QStringList items;
-        panel->view->getSelectedItems(&items);
-        if ( items.isEmpty() )
-        {
-          panel->view->selectAllIncludingDirs();
-          panel->view->getSelectedItems(&items);
-          if ( items.isEmpty() ) return ; // nothing to do
-        }
+	QStringList items;
+	panel->view->getSelectedItems( &items );
+	if ( items.isEmpty() ) {
+		panel->view->selectAllIncludingDirs();
+		panel->view->getSelectedItems( &items );
+		if ( items.isEmpty() )
+			return ; // nothing to do
+	}
 
-        KrCalcSpaceDialog calc(krApp, panel, items, false);
-        calc.exec();
-        KrDetailedView * view = dynamic_cast<KrDetailedView *> ( panel->view );
-        if (!view)
-                return;
-        for ( QStringList::ConstIterator it = items.begin(); it != items.end(); ++it )
-        {
-                KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( view->findItemByName(*it) );
-                if (viewItem)
-                     viewItem->repaintItem();
-        }
-  panel->slotUpdateTotals();
+	KrCalcSpaceDialog calc( krApp, panel, items, false );
+	calc.exec();
+	KrDetailedView * view = dynamic_cast<KrDetailedView *> ( panel->view );
+	if ( !view )
+		return ;
+	for ( QStringList::ConstIterator it = items.begin(); it != items.end(); ++it ) {
+		KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( view->findItemByName( *it ) );
+		if ( viewItem )
+			viewItem->repaintItem();
+	}
+	panel->slotUpdateTotals();
 }
 
-bool ListPanelFunc::calcSpace(const QStringList & items,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs) {
-        KrCalcSpaceDialog calc(krApp, panel, items, true);
-        calc.exec();
-        totalSize = calc.getTotalSize();
-        totalFiles = calc.getTotalFiles();
-        totalDirs = calc.getTotalDirs();
-        return !calc.wasCanceled();
+bool ListPanelFunc::calcSpace( const QStringList & items, KIO::filesize_t & totalSize, unsigned long & totalFiles, unsigned long & totalDirs ) {
+	KrCalcSpaceDialog calc( krApp, panel, items, true );
+	calc.exec();
+	totalSize = calc.getTotalSize();
+	totalFiles = calc.getTotalFiles();
+	totalDirs = calc.getTotalDirs();
+	return !calc.wasCanceled();
 }
 
 void ListPanelFunc::FTPDisconnect() {
-  // you can disconnect only if connected !
-  if ( files() ->vfs_getType() == vfs::FTP ) {
-    krFTPDiss->setEnabled( false );
-    panel->view->setNameToMakeCurrent( QString::null );
-    openUrl(panel->realPath); // open the last local URL
-  }
+	// you can disconnect only if connected !
+	if ( files() ->vfs_getType() == vfs::FTP ) {
+		krFTPDiss->setEnabled( false );
+		panel->view->setNameToMakeCurrent( QString::null );
+		openUrl( panel->realPath ); // open the last local URL
+	}
 }
 
 void ListPanelFunc::newFTPconnection() {
-  QString url;
-  url = KRSpWidgets::newFTP();
-  // if the user canceled - quit
-  if ( url.isEmpty() ) return ;
-   
-  krFTPDiss->setEnabled( true );
-  openUrl(url );
+	QString url;
+	url = KRSpWidgets::newFTP();
+	// if the user canceled - quit
+	if ( url.isEmpty() )
+		return ;
+
+	krFTPDiss->setEnabled( true );
+	openUrl( url );
 }
 
 void ListPanelFunc::properties() {
-  QStringList names;
-  panel->getSelectedNames( &names );
-  if ( names.isEmpty() )
-    return ;  // no names...
-  KFileItemList fi;
-  fi.setAutoDelete(true);
+	QStringList names;
+	panel->getSelectedNames( &names );
+	if ( names.isEmpty() )
+		return ;  // no names...
+	KFileItemList fi;
+	fi.setAutoDelete( true );
 
-  for ( unsigned int i = 0 ; i < names.count() ; ++i ) {
-    vfile* vf = files()->vfs_search( names[i] );
-    if( !vf ) continue;    
-    //KURL url = files()->vfs_getFile( names[i] );
-    fi.append( new KFileItem(vf->vfile_getEntry(),files()->vfs_getOrigin(),false,true) );
-  }
-  
-  if( fi.isEmpty() ) return;
-  
-  // Show the properties dialog
-  KPropertiesDialog *dlg = new KPropertiesDialog( fi );
-  connect( dlg, SIGNAL( applied() ), SLOTS, SLOT( refresh() ) );
+	for ( unsigned int i = 0 ; i < names.count() ; ++i ) {
+		vfile* vf = files() ->vfs_search( names[ i ] );
+		if ( !vf )
+			continue;
+		//KURL url = files()->vfs_getFile( names[i] );
+		fi.append( new KFileItem( vf->vfile_getEntry(), files() ->vfs_getOrigin(), false, true ) );
+	}
+
+	if ( fi.isEmpty() )
+		return ;
+
+	// Show the properties dialog
+	KPropertiesDialog *dlg = new KPropertiesDialog( fi );
+	connect( dlg, SIGNAL( applied() ), SLOTS, SLOT( refresh() ) );
 }
 
 void ListPanelFunc::refreshActions() {
-  vfs::VFS_TYPE vfsType = files() ->vfs_getType();
-  //  set up actions
-  krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
-  krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
-  krFTPDiss    ->setEnabled( vfsType == vfs::FTP );     // disconnect an FTP session
-  /*
-    krUnpack->setEnabled(true);                            // unpack archive
-    krTest->setEnabled(true);                              // test archive
-    krSelect->setEnabled(true);                            // select a group by filter
-    krSelectAll->setEnabled(true);                         // select all files
-    krUnselect->setEnabled(true);                          // unselect by filter
-    krUnselectAll->setEnabled( true);                      // remove all selections
-    krInvert->setEnabled(true);                            // invert the selection
-    krFTPConnect->setEnabled(true);                        // connect to an ftp
-    krFTPNew->setEnabled(true);                            // create a new connection
-    krAllFiles->setEnabled(true);                          // show all files in list
-    krCustomFiles->setEnabled(true);                       // show a custom set of files
-    krBack->setEnabled(func->canGoBack());                 // go back
-    krRoot->setEnabled(true);                              // go all the way up
-        krExecFiles->setEnabled(true);                         // show only executables
-  */
+	vfs::VFS_TYPE vfsType = files() ->vfs_getType();
+	//  set up actions
+	krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
+	krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
+	krFTPDiss ->setEnabled( vfsType == vfs::FTP );     // disconnect an FTP session
+	/*
+	  krUnpack->setEnabled(true);                            // unpack archive
+	  krTest->setEnabled(true);                              // test archive
+	  krSelect->setEnabled(true);                            // select a group by filter
+	  krSelectAll->setEnabled(true);                         // select all files
+	  krUnselect->setEnabled(true);                          // unselect by filter
+	  krUnselectAll->setEnabled( true);                      // remove all selections
+	  krInvert->setEnabled(true);                            // invert the selection
+	  krFTPConnect->setEnabled(true);                        // connect to an ftp
+	  krFTPNew->setEnabled(true);                            // create a new connection
+	  krAllFiles->setEnabled(true);                          // show all files in list
+	  krCustomFiles->setEnabled(true);                       // show a custom set of files
+	  krBack->setEnabled(func->canGoBack());                 // go back
+	  krRoot->setEnabled(true);                              // go all the way up
+	      krExecFiles->setEnabled(true);                         // show only executables
+	*/
 }
 
 ListPanelFunc::~ListPanelFunc() {
-  // clear the view - to avoid a repaint crash
-  panel->view->clear();
-  delete files(); // delete all vfs objects
+	// clear the view - to avoid a repaint crash
+	panel->view->clear();
+	delete files(); // delete all vfs objects
 }
 
 vfs* ListPanelFunc::files() {
-        if( !vfsP ) vfsP = KrVfsHandler::getVfs("/",panel,0);
-        return vfsP;
+	if ( !vfsP )
+		vfsP = KrVfsHandler::getVfs( "/", panel, 0 );
+	return vfsP;
 }
 
 
-void ListPanelFunc::copyToClipboard( bool move )
-{
-  QStringList fileNames;
+void ListPanelFunc::copyToClipboard( bool move ) {
+	QStringList fileNames;
 
-  panel->getSelectedNames( &fileNames );
-  if ( fileNames.isEmpty() )
-    return ;  // safety
+	panel->getSelectedNames( &fileNames );
+	if ( fileNames.isEmpty() )
+		return ;  // safety
 
-  KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
-  if (fileUrls)
-  {
-    KRDrag *urlData = KRDrag::newDrag( *fileUrls, move, krApp->mainView, "krusader");
-    QApplication::clipboard()->setData( urlData );
-    delete fileUrls;
-  }
+	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
+	if ( fileUrls ) {
+		KRDrag * urlData = KRDrag::newDrag( *fileUrls, move, krApp->mainView, "krusader" );
+		QApplication::clipboard() ->setData( urlData );
+		delete fileUrls;
+	}
 }
 
-void ListPanelFunc::pasteFromClipboard()
-{
-   QClipboard *cb = QApplication::clipboard();
-   QMimeSource * data = cb->data();
-   QStringList fileNames;
-   if (QUriDrag::canDecode(data))
-   {
-      QUriDrag::decodeToUnicodeUris(data, fileNames);
-      bool cutSelection = KRDrag::decodeIsCutSelection(data);
-   
-      KURL::List* fileUrls = new KURL::List();
-      for(QStringList::Iterator name = fileNames.begin(); name != fileNames.end(); ++name){
-        fileUrls->append( vfs::fromPathOrURL( *name ) );
-      }
+void ListPanelFunc::pasteFromClipboard() {
+	QClipboard * cb = QApplication::clipboard();
+	QMimeSource * data = cb->data();
+	QStringList fileNames;
+	if ( QUriDrag::canDecode( data ) ) {
+		QUriDrag::decodeToUnicodeUris( data, fileNames );
+		bool cutSelection = KRDrag::decodeIsCutSelection( data );
 
-      KURL destUrl = vfs::fromPathOrURL( panel->getPath() );
-      
-      KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, cutSelection?KIO::CopyJob::Move:KIO::CopyJob::Copy, false, true );
-      connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
-    }
+		KURL::List* fileUrls = new KURL::List();
+		for ( QStringList::Iterator name = fileNames.begin(); name != fileNames.end(); ++name ) {
+			fileUrls->append( vfs::fromPathOrURL( *name ) );
+		}
 
+		KURL destUrl = vfs::fromPathOrURL( panel->getPath() );
+
+		KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, false, true );
+		connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
+	}
 }
 
 #include "panelfunc.moc"

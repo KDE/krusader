@@ -105,8 +105,7 @@ public slots:
 	virtual bool vfs_refresh(KIO::Job* job);
 	virtual bool vfs_refresh();
 	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
-	virtual void vfs_disableRefresh();
-	virtual void vfs_enableRefresh();        
+	virtual void vfs_enableRefresh(bool enable);        
 
 signals: 	
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
