@@ -755,11 +755,14 @@ void KMountMan::eject( QString mntPoint ) {
 // returns true if the path is an ejectable mount point (at the moment CDROM)
 bool KMountMan::ejectable( QString path ) {
 #if !defined(BSD) && !defined(_OS_SOLARIS_)
-   fsData * it;
-   for ( it = filesystems.first() ; ( it != 0 ) ; it = filesystems.next() )
-      if ( it->mntPoint() == path &&
-            ( it->type() == "iso9660" || followLink( it->name() ).left( 2 ) == "cd" ) )
-         return KrServices::cmdExist( "eject" );
+	KMountPoint::List possible = KMountPoint::possibleMountPoints();
+	KMountPoint *m;
+	for ( KMountPoint::List::iterator it = possible.begin(); it != possible.end(); ++it ) {
+      m = *it;
+      if (m->mountPoint() == path && 
+			 (m->mountType()=="iso9660" || m->mountedFrom().left(7)=="/dev/cd"))
+			return KrServices::cmdExist( "eject" );
+	}
 #endif
 
    return false;
