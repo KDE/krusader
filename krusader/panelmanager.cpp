@@ -7,6 +7,7 @@
 #include <kiconloader.h>
 #include "panelmanager.h"
 #include "Panel/listpanel.h"
+#include "Panel/panelfunc.h"
 #include "krusaderview.h"
 
 #define HIDE_ON_SINGLE_TAB  false
@@ -114,7 +115,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
       {
          t->panel->otherPanel = _other;
          _other->otherPanel = t->panel;
-         t->panel->start( l[ i ] );
+         t->panel->func->openUrl( vfs::fromPathOrURL( l[ i ] ) );
       }
       ++i;
    }
