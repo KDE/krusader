@@ -1,0 +1,16 @@
+[Protocol]
+exec=kio_krzip
+protocol=krzip
+mimetype=application/x-zip
+input=none
+output=filesystem
+listing=Name,Type,Size,Date,Access,Owner,Group,Link
+reading=true
+writing=true
+makedir=true
+deleting=true
+linking=false
+moving=false
+Icon=ark
+Description=ZIP archive slave with write capability.
+
