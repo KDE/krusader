@@ -76,7 +76,8 @@ void UserMenuGui::readEntries() {
 
 void UserMenuGui::run() {
    //disable unwanted actions:
-   krApp->userAction->setAvailability();
+   // disabled due to conflicts with the toolbar (a check on each file-cursor-movement would be nessesary; hit the performance)
+//    krApp->userAction->setAvailability();
 
    int idx = exec();
    if ( idx == -1 ) // nothing was selected
