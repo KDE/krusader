@@ -47,7 +47,7 @@ PredefinedDevice SplitterGUI::predefinedDevices[] = {
   };
 
 SplitterGUI::SplitterGUI( QWidget* parent,  QString fileName, QString defaultDir ) :
-    QDialog( parent, "Krusader::SplitterGUI", true, 0 ), splittedFileSize( 0 ),
+    QDialog( parent, "Krusader::SplitterGUI", true, 0 ), 
     userDefinedSize ( 0x100000 ), lastSelectedDevice( 0 ), resultCode( QDialog::Rejected )
 {
   fileToSplit = fileName;
@@ -153,7 +153,7 @@ void SplitterGUI::predefinedComboActivated( int item )
   if( item < predefinedDeviceNum )
   {
     if( lastSelectedDevice == predefinedDeviceNum )
-      userDefinedSize = spinBox->value();
+      userDefinedSize = spinBox->longValue();
     
     spinBox->setEnabled( false );
     capacity = predefinedDevices[item].capacity;
@@ -161,7 +161,7 @@ void SplitterGUI::predefinedComboActivated( int item )
   else
     spinBox->setEnabled( true );
   
-  spinBox->setValue( capacity );
+  spinBox->setLongValue( capacity );
   
   if( capacity >= 0x40000000 )           /* Gbyte */
   {

@@ -64,7 +64,7 @@ public:
   Splitter( QWidget* parent,  QString fileNameIn, QString destinationDirIn );
   ~Splitter();
   
-  void split( int splitSizeIn );
+  void split( KIO::filesize_t splitSizeIn );
 
 private:
   void splitCreateWriteJob();

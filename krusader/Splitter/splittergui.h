@@ -37,13 +37,12 @@
 #include <qvalidator.h>
 #include <qcombobox.h>
 #include <kurlrequester.h>
-
-
+#include <kio/global.h>
 
 struct PredefinedDevice
 {
   QString name;
-  int     capacity;
+  KIO::filesize_t capacity;
 };
 
 class SplitterGUI : QDialog
@@ -54,11 +53,10 @@ public:
   class   SplitterSpinBox;
   
 private:
-  int     predefinedDeviceNum;
-  int     splittedFileSize;
-  int     userDefinedSize;
-  int     lastSelectedDevice;
-  int     resultCode;
+  int                             predefinedDeviceNum;
+  KIO::filesize_t                 userDefinedSize;
+  int                             lastSelectedDevice;
+  int                             resultCode;
 
   static PredefinedDevice predefinedDevices[];
   QString fileToSplit;
@@ -71,9 +69,9 @@ private:
 public:
   SplitterGUI( QWidget* parent,  QString fileName, QString defaultDir );
 
-  QString getDestinationDir() {return urlReq->url();}
-  int     getSplitSize()      {return spinBox->value();}
-  int     result()            {return resultCode;}
+  QString getDestinationDir()     {return urlReq->url();}
+  KIO::filesize_t getSplitSize()  {return spinBox->longValue();}
+  int     result()                {return resultCode;}
 
 public slots:
   virtual void sizeComboActivated( int item );
@@ -87,10 +85,11 @@ public:
   class SplitterSpinBox : public QSpinBox
   {
   private:
-    int division;
+    KIO::filesize_t division;
+    KIO::filesize_t value;
     
   public:
-    SplitterSpinBox ( QWidget * parent = 0, const char * name = 0 ) : QSpinBox( parent, name ), division( 1 )
+    SplitterSpinBox ( QWidget * parent = 0, const char * name = 0 ) : QSpinBox( parent, name ), division( 1 ), value( 1 )
     {
       setMaxValue( 0x7FFFFFFF );     /* setting the minimum and maximum values */
       setMinValue( 1 );
@@ -98,16 +97,30 @@ public:
       setValidator ( dval );
     }
 
-    QString mapValueToText( int value )
+    void setLongValue( KIO::filesize_t valueIn ) {
+      value = valueIn;
+      if( value == 0 )
+        value++;
+      updateDisplay();
+    }
+    
+    KIO::filesize_t longValue() {
+      KIO::filesize_t val = (KIO::filesize_t)( division * text().toDouble() + 0.5 ) ;
+      if( val == 0 )
+        val++;
+      return val;
+    }
+    
+    QString mapValueToText( int )
     {
       QString frac("");
       
-      int int_part  = value / division;
-      int frac_mod = value % division;
+      KIO::filesize_t int_part  = value / division;
+      KIO::filesize_t frac_mod = value % division;
             
       if( frac_mod )
       {
-        int frac_part = (int)((1000. * frac_mod) /division + 0.5);
+        KIO::filesize_t frac_part = (KIO::filesize_t)((1000. * frac_mod) /division + 0.5);
 
         if( frac_part )
         {
@@ -123,14 +136,40 @@ public:
 
     int mapTextToValue( bool * )
     {
-      return (int) ( division * text().toDouble() + 0.5 ) ;
+      value = longValue();
+    
+      if( value > 0x7FFFFFFF )
+        return 0x7FFFFFFF;
+      else
+        return value;
     }
 
-    void setDivision( int div )
+    void setDivision( KIO::filesize_t div )
     {
       division = div;
-      setLineStep( div );
       updateDisplay();
+    }
+    
+  public slots:
+    
+    void stepUp()
+    {
+      value = longValue();
+    
+      if( value + division > value )
+        value += division;
+      updateDisplay();
+    }
+    
+    void stepDown()
+    {
+      value = longValue();
+    
+      if( value < division + 1 )
+        value = 1;
+      else
+        value -= division;
+      updateDisplay();     
     }
   };
 };

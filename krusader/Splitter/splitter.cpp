@@ -59,7 +59,7 @@ Splitter::~Splitter()
   delete crcContext;
 }
 
-void Splitter::split( int splitSizeIn )
+void Splitter::split( KIO::filesize_t splitSizeIn )
 {
   KFileItem file(KFileItem::Unknown, KFileItem::Unknown, fileName );
   file.refresh();
