@@ -26,7 +26,7 @@
 <sect1 id="file-menu">
 <title>The <guimenu>File</guimenu> Menu</title>
 <variablelist>
-    <varlistentry>
+<varlistentry>
   <term>
   <menuchoice>
   <guimenu>File</guimenu>
@@ -37,10 +37,10 @@
         <emphasis role="bold">file permissions</emphasis>, owner, and group (providing you have the rights to do so).
   </para>
   </listitem>
-    </varlistentry>
+</varlistentry>
 
 
-    <varlistentry>
+<varlistentry>
   <term>
   <menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>P</keycap></keycombo></shortcut>
@@ -52,9 +52,9 @@
         all the selected files in the active panel.
   </para>
   </listitem>
-    </varlistentry>
+</varlistentry>
 
-    <varlistentry>
+<varlistentry>
   <term>
   <menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>U</keycap></keycombo></shortcut>
@@ -66,9 +66,9 @@
   in the active panel.
   </para>
   </listitem>
-    </varlistentry>
+</varlistentry>
 
-   <varlistentry>
+<varlistentry>
   <term>
   <menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>E</keycap></keycombo></shortcut>
@@ -79,9 +79,9 @@
   This menu option <link linkend="test-archive">tests the selected archive for corruption</link>.
   </para>
   </listitem>
-    </varlistentry>
+</varlistentry>
 
-   <varlistentry>
+<varlistentry>
   <term>
   <menuchoice>
   <guimenu>File</guimenu>
@@ -93,9 +93,9 @@
         &eg; &xxdiff_url; or &kdiff3_url; , change it in the &konfigependencie_lnk;.
   </para>
   </listitem>
-    </varlistentry>
+</varlistentry>
 
-    <varlistentry>
+<varlistentry>
   <term>
   <menuchoice>
   <shortcut><keycombo action="simul">&Shift;<keycap>F4</keycap></keycombo></shortcut>
@@ -106,9 +106,9 @@
   This menu option creates a new file to edit.
   </para>
   </listitem>
-    </varlistentry>
+</varlistentry>
 
-    <varlistentry id="multi_rename">
+<varlistentry id="multi_rename">
   <term>
   <menuchoice>
   <shortcut><keycombo action="simul">&Shift;<keycap>F9</keycap></keycombo></shortcut>
@@ -135,9 +135,9 @@
     <listitem><para>And many more....</para></listitem>
         </itemizedlist>
   </listitem>
-    </varlistentry>
+</varlistentry>
 
-    <varlistentry>
+<varlistentry>
   <term>
   <menuchoice>
   <guimenu>File</guimenu>
@@ -148,11 +148,11 @@
         files/directories in the active panel. The disk space for directories is calculated recursively.
   </para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
  <!-- vertical bar -->
 
-  <varlistentry>
+<varlistentry>
   <term>
   <menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>P</keycap></keycombo></shortcut>
@@ -164,9 +164,9 @@
         on several smaller media (like <hardware>diskettes, zip-drives...</hardware>) or sent by e-mail.
   </para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo></shortcut>
   <guimenu>File</guimenu>
@@ -176,11 +176,11 @@
   The &combinefiles_lnk; function combines multiple files into one file after the &splitfile_lnk;
         function was used.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
  <!--vertical bar -->
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
   <guimenu>File</guimenu>
@@ -189,7 +189,7 @@
   <listitem><para>
   Closes &krusader; and cleans up the temporary directory, the same as pressing <keycap>F10</keycap> key.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
 </variablelist>
 </sect1>
@@ -215,9 +215,9 @@
         double-clicking on a previous selection is the same as entering the selection and pressing
         the <guibutton>OK</guibutton> button.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut>
   <guimenu>Selection</guimenu>
@@ -227,9 +227,9 @@
   The opposite of <guimenuitem>Select Group</guimenuitem>, the files that match the pattern
         in the active panel will be unselected.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>+</keycap></keycombo></shortcut>
   <guimenu>Selection</guimenu>
@@ -238,9 +238,9 @@
   <listitem><para>
   Selects all files in the active panel.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>-</keycap></keycombo></shortcut>
   <guimenu>Selection</guimenu>
@@ -249,9 +249,9 @@
   <listitem><para>
   Unselects all the files in the active panel.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>*</keycap></keycombo></shortcut>
   <guimenu>Selection</guimenu>
@@ -261,18 +261,18 @@
   Invert the selection status of all the files in the active panel
         (&ie;: marked files will become unmarked and unmarked files will be marked).
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Selection</guimenu>
   <guimenuitem>Compare Directories</guimenuitem>
   </menuchoice></term>
   <listitem><para>Toggles &krusader; &comparedir_lnk; function.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Selection</guimenu>
   <guimenuitem>Compare setup</guimenuitem>
@@ -291,7 +291,7 @@
                 </para></listitem>
          </itemizedlist>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 </variablelist>
 </sect1>
@@ -300,7 +300,7 @@
 <title>The <guimenu>Commands</guimenu> menu</title>
 <variablelist>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
@@ -309,9 +309,9 @@
   <listitem><para>
   Opens the <link linkend="krusearcher">&krusader; search module</link>.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
@@ -320,9 +320,9 @@
   <listitem><para>
   Opens the &locate_lnk;, allows fast file searching.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
@@ -334,11 +334,11 @@
   After the compare function, you can move files/directories so that they can be synchronized.
   </para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
  <!-- vertical bar -->
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul"><keycap>F2</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
@@ -348,11 +348,11 @@
   Opens a terminal window in the default directory (usually your home directory).
   You can choose your favorite terminal application in the &konfiggereral_lnk;.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
  <!-- vertical bar -->
 
-  <varlistentry id="root-mode">
+<varlistentry id="root-mode">
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>K</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
@@ -362,11 +362,11 @@
   Starts &krusader; in &rootmode_lnk; at the same location.</para>
         <caution><para>Be careful when using &krusader; with ROOT PRIVILEGES.</para></caution>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
  <!-- vertical bar -->
 
-  <varlistentry>  <!-- FTP Connect -->
+<varlistentry>  <!-- FTP Connect -->
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
@@ -386,9 +386,9 @@
          Once done, press the <guibutton>bookmark</guibutton> button, select
          <guimenuitem>'Add bookmark'</guimenuitem> and that's it!
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
@@ -398,9 +398,9 @@
   Opens the new connection dialog which allows you to open a &FTP;, SMB, FISH or SFTP connection to a remote host.
         If you leave the username and password fields empty you'll login as anonymous.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
         <term>
   <menuchoice>
   <shortcut><keycombo action="simul">&Shift;&Ctrl;<keycap>N</keycap></keycombo></shortcut>
@@ -410,9 +410,9 @@
   End the active &FTP;/SMB connection in the active panel. This action is disabled if the active panel
         is not in &FTP;/SMB mode.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry id="panel_profiles">
+<varlistentry id="panel_profiles">
         <term>
   <menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>L</keycap></keycombo></shortcut>
@@ -430,10 +430,10 @@
   With the <link linkend="starting-krusader">commandline</link> you can load a
   <replaceable>&lt;panel-profile&gt;</replaceable> on startup.
   </para></listitem>
-  </varlistentry>
+</varlistentry>
 
 
- <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>`</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
@@ -445,7 +445,7 @@
   User Actions; they can appear nearly everywhere &eg; Toolbar, right-click menu.
   </para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 </variablelist>
 </sect1>
@@ -459,7 +459,7 @@
 
 <variablelist>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut>
   <guimenu>View</guimenu>
@@ -467,9 +467,9 @@
   </menuchoice></term>
   <listitem><para>Toggles the option to display or not the hidden files in the &krusader; panels.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>U</keycap></keycombo></shortcut>
   <guimenu>View</guimenu>
@@ -477,9 +477,9 @@
   </menuchoice></term>
   <listitem><para>Swaps the panels. The left panel wil become the right panel and vice versa.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Shift;<keycap>F10</keycap></keycombo></shortcut>
   <guimenu>View</guimenu>
@@ -487,9 +487,9 @@
   </menuchoice></term>
   <listitem><para>Turn off all filters and display all files.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Shift;<keycap>F12</keycap></keycombo></shortcut>
   <guimenu>View</guimenu>
@@ -499,7 +499,7 @@
   the filter pattern(s) and directories will be displayed. 
   Don't forget to deactivate the custom filter after use, or some files may not be visible.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 <!--
   <varlistentry>
@@ -532,7 +532,7 @@
 
  <!-- vertical bar -->
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;&Ctrl;<keycap>r</keycap></keycombo></shortcut>
   <guimenu>View</guimenu>
@@ -540,61 +540,61 @@
   </menuchoice></term>
   <listitem><para>Toggels the &list_panel_lnk; between horizontal and vertical mode.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>View</guimenu>
   <guimenuitem>Show Main Toolbar</guimenuitem>
   </menuchoice></term>
   <listitem><para>Shows the &main_toolbar_lnk; if checked.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>View</guimenu>
   <guimenuitem>Show Actions Toolbar</guimenuitem>
   </menuchoice></term>
   <listitem><para>Shows the &actions_toolbar_lnk; if checked.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>View</guimenu>
   <guimenuitem>Show Statusbar</guimenuitem>
   </menuchoice></term>
   <listitem><para>Shows the <link linkend="mainwindow">Statusbar</link> if checked.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>View</guimenu>
   <guimenuitem>Show FN Keys bar</guimenuitem>
   </menuchoice></term>
   <listitem><para>Shows the &fnkeybar_lnk; if checked.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>View</guimenu>
   <guimenuitem>Show Command Line</guimenuitem>
   </menuchoice></term>
   <listitem><para>Shows the <link linkend="cmdline">Command Line</link> if checked.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>View</guimenu>
   <guimenuitem>Show Terminal Emulator</guimenuitem>
   </menuchoice></term>
   <listitem><para>Show the <link linkend="cmdline">Terminal Emulator</link> if checked.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 </variablelist>
 </sect1>
@@ -603,16 +603,16 @@
 <title>The <guimenu>Settings</guimenu> menu</title>
 <variablelist>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Settings</guimenu>
   <guimenuitem>Configure &krusader;</guimenuitem>
   </menuchoice></term>
   <listitem><para>Opens the &krusader; configuration center: <link linkend="konfigurator">Konfigurator</link>.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Settings</guimenu>
   <guimenuitem>Configure Toolbars</guimenuitem>
@@ -620,9 +620,9 @@
   <listitem><para>Opens a dialog which allows you to configure the &main_toolbar_lnk; or the &actions_toolbar_lnk;.
                   The same dialog can be reached from the &konfiglookandfeel_lnk;.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Settings</guimenu>
   <guimenuitem>Configure Shortcuts</guimenuitem>
@@ -630,9 +630,9 @@
   <listitem><para>Opens a dialog which allows you to configure the &krusader; key bindings.
                         The same dialog can be reached from the &konfiglookandfeel_lnk;.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Settings</guimenu>
   <guimenuitem>Save Position</guimenuitem>
@@ -640,7 +640,7 @@
   <listitem><para>Saves the current size and position of the &krusader; main window. If you selected
                        <guilabel>"Restore last position and size"</guilabel> in &konfigstartpg_lnk;.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 </variablelist>
 </sect1>
@@ -649,23 +649,23 @@
 <title>The <guimenu>Useractions</guimenu> menu</title>
 <variablelist>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Useractions</guimenu>
   <guimenuitem>Manage useractions</guimenuitem>
   </menuchoice></term>
   <listitem><para>Opens the &useractions_lnk; manager.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Useractions</guimenu>
   <guimenuitem>Your foo Useractions</guimenuitem>
   </menuchoice></term>
   <listitem><para>Opens the default Useractions and Useractions created by the user.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 </variablelist>
 </sect1>
@@ -674,7 +674,7 @@
 <title>The <guimenu>Tools</guimenu> menu</title>
 <variablelist>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>/</keycap></keycombo></shortcut>
   <guimenu>Tools</guimenu>
@@ -682,9 +682,9 @@
   </menuchoice></term>
   <listitem><para>Opens <link linkend="mount-man">MountMan</link> - your Mount-Manager.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>d</keycap></keycombo></shortcut>
   <guimenu>Tools</guimenu>
@@ -692,7 +692,7 @@
   </menuchoice></term>
   <listitem><para>Opens &diskusage_lnk;.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 </variablelist>
 </sect1>
@@ -701,16 +701,16 @@
 <title>The <guimenu>Help</guimenu> menu</title>
 <variablelist>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Help</guimenu>
   <guimenuitem>Krusader Handbook</guimenuitem>
   </menuchoice></term>
   <listitem><para>Invokes the &kde; Help system starting at the &krusader; help pages (this document).</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Shift;<keycap>F1</keycap></keycombo></shortcut>
   <guimenu>Help</guimenu>
@@ -720,11 +720,11 @@
       Clicking on items within &krusader; will open a help window (if one exists for that particular item)
       explaining the item's function.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
  <!-- vertical bar -->
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Help</guimenu>
   <guimenuitem>Report Bug</guimenuitem>
@@ -737,27 +737,27 @@
     <para>If you have a wish, a patch, or a comment click
     <link linkend="faqg_wish_patch">here</link>.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
  <!-- vertical bar -->
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Help</guimenu>
   <guimenuitem>About Krusader</guimenuitem>
   </menuchoice></term>
   <listitem><para>This will display version, author, and license information.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
-  <varlistentry>
+<varlistentry>
   <term><menuchoice>
   <guimenu>Help</guimenu>
   <guimenuitem>About KDE</guimenuitem>
   </menuchoice></term>
   <listitem><para>This displays the &kde; version and basic information.</para>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 </variablelist>
 </sect1>

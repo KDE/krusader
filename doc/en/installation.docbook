@@ -152,7 +152,7 @@
 
 <sect2 id="krusader_cvs">
 <title>CVS builds</title>
-<para><filename>krusader-cvs-yyyy-mm-dd.tar.gz</filename></para>
+<para><filename>krusader-cvs-yyyymmdd.tar.gz</filename></para>
 
 <warning><para>These builds are untested and come without any warranty.
                They may contain bugfixes, new features or new bugs!</para></warning>
@@ -167,11 +167,11 @@
 <para>&krusader; provides 2 nightly snapshots:
   <orderedlist numeration="arabic">
   <listitem>
-     <para><filename>krusader-cvs-yyyy-mm-dd.tar.gz</filename>: <command>make -f Makefile.cvs</command> must be run before the <command>./configure</command>
+     <para><filename>krusader-cvs-yyyymmdd.tar.gz</filename>: <command>make -f Makefile.cvs</command> must be run before the <command>./configure</command>
       script is available</para>
   </listitem>
   <listitem>
-     <para><filename>krusader-cvs2-yyyy-mm-dd.tar.gz</filename>: for users who have problems with the <command>make -f Makefile.cvs</command> command,
+     <para><filename>krusader-cvs2-yyyymmdd.tar.gz</filename>: for users who have problems with the <command>make -f Makefile.cvs</command> command,
      we have already done this for you and the <command>./configure</command> script is included
      in the tarball (This tarball is a bit bigger then the first one).
            </para>

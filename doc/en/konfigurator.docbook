@@ -48,16 +48,16 @@ and restart &krusader;.</para>
 
 <variablelist>
 <varlistentry><term><guilabel>Panels</guilabel></term>
-   <listitem><para><guilabel>"Save settings on exit"</guilabel>: when &krusader; launches, the panels
+   <listitem><para><guilabel>Save settings on exit</guilabel>: when &krusader; launches, the panels
   current directory will be the same as it was, when &krusader; was shutdown - providing the location is
   within a local filesystem. When checked, all the other checkboxes of the the startup page will be
   disabled.</para>
 
-  <para><guilabel>"Start with the following settings"</guilabel>: allows you to define a startup status
+  <para><guilabel>Start with the following settings</guilabel>: allows you to define a startup status
     for each panel in the following manner:</para>
 
   <itemizedlist>
-  <listitem><para><guilabel>"Left/Right Panel starts at"</guilabel>: the following options are available:
+  <listitem><para><guilabel>Left/Right Panel starts at</guilabel>: the following options are available:
     <itemizedlist>
     <listitem><para><remark>homepage:</remark> This panel will start at a
              specified homepage. In this case, you also need to choose a directory
@@ -76,23 +76,23 @@ and restart &krusader;.</para>
    <varlistentry><term><guilabel>User Interface</guilabel></term>
   <listitem><para>Determine which parts of the user interface are visible during startup.
   <itemizedlist>
-  <listitem><para><guilabel>"Save settings on exit"</guilabel>: at shutdown, &krusader; saves the
+  <listitem><para><guilabel>Save settings on exit</guilabel>: at shutdown, &krusader; saves the
          state of the user interface components, and restores them to that state when next
          started.</para></listitem>
-  <listitem><para><guilabel>"Main Toolbar visible"</guilabel>: if checked, the
+  <listitem><para><guilabel>Main Toolbar visible</guilabel>: if checked, the
          &main_toolbar_lnk; will be visible after startup.</para></listitem>
-  <listitem><para><guilabel>"Statusbar visible"</guilabel>: if checked, the statusbar will be
+  <listitem><para><guilabel>Statusbar visible</guilabel>: if checked, the statusbar will be
          visible during startup.</para></listitem>
-  <listitem><para><guilabel>"Function keys visible"</guilabel>: if checked, the
+  <listitem><para><guilabel>Function keys visible</guilabel>: if checked, the
          &fnkeybar_lnk; will be visible after startup.
          </para></listitem>
-  <listitem><para><guilabel>"Command line visible"</guilabel>: if checked, the
+  <listitem><para><guilabel>Command line visible</guilabel>: if checked, the
          <link linkend="cmdline">command line</link> will be visible after startup.
          </para></listitem>
-  <listitem><para><guilabel>"Terminal emulator visible"</guilabel>: if checked, the terminal
+  <listitem><para><guilabel>Terminal emulator visible</guilabel>: if checked, the terminal
          emulator will be visible after startup.
          </para></listitem>
-  <listitem><para><guilabel>"Restore last postion and size"</guilabel>: when launched, &krusader;
+  <listitem><para><guilabel>Restore last postion and size</guilabel>: when launched, &krusader;
           will resize itself to the size and position in effect when it was shutdown.
           &krusader; will appear in the same location on the screen.
           </para></listitem>
@@ -129,28 +129,28 @@ HTML_PARSING-->
 <title>Operation</title>
 
 <itemizedlist><title><guilabel>Look &amp; Feel</guilabel></title>
-  <listitem><para><guilabel>"Warn on exit"</guilabel>: if checked, &krusader; will display an "Are you
+  <listitem><para><guilabel>Warn on exit</guilabel>: if checked, &krusader; will display an "Are you
        sure?" warning when you try to shut it down; otherwise, it will exit without
        protest.</para></listitem>
-  <listitem><para><guilabel>"Minimize to tray"</guilabel>: if checked, when you minimize &krusader;,
+  <listitem><para><guilabel>Minimize to tray</guilabel>: if checked, when you minimize &krusader;,
        it's icon will appear in the system tray instead of the taskbar.</para></listitem>
-  <listitem><para><guilabel>"Show Hidden files"</guilabel>: if checked, &krusader; will display the "dot-
+  <listitem><para><guilabel>Show Hidden files</guilabel>: if checked, &krusader; will display the "dot-
        files" which are otherwise hidden.</para></listitem>
-  <listitem><para><guilabel>"Automark Directories"</guilabel>: when
+  <listitem><para><guilabel>Automark Directories</guilabel>: when
        <link linkend="select-menu">selecting a group of files</link> (either by
        using Select Group or by using Select All), &krusader; will check this option. If checked,
        then directories matching the select criteria will also be marked; otherwise, only files will be
        marked.</para></listitem>
-  <listitem><para><guilabel>"Case Sensitive Sorting"</guilabel>: if checked (the &UNIX; default), all
+  <listitem><para><guilabel>Case Sensitive Sorting</guilabel>: if checked (the &UNIX; default), all
        files beginning with capital letters appear before files beginning with non-capital letters;
        otherwise, all files beginning with a specified letter (capital or otherwise) will appear
        together.</para></listitem>
-  <listitem><para><guilabel>"Use fullpath tab names"</guilabel>: if checked, display the full path
+  <listitem><para><guilabel>Use fullpath tab names</guilabel>: if checked, display the full path
                              in the &foldertabs_lnk;, otherwise only the last part of the path will
 														 be displayed.</para></listitem>
-  <listitem><para><guilabel>"New style Quicksearch"</guilabel>: The new
+  <listitem><para><guilabel>New style Quicksearch</guilabel>: The new
              <link linkend="quicksearch">Quicksearch</link> feature is used.</para></listitem>
-  <listitem><para><guilabel>"Case Sensitive Quicksearch"</guilabel>: When using the
+  <listitem><para><guilabel>Case Sensitive Quicksearch</guilabel>: When using the
              <link linkend="quicksearch">Quicksearch</link> feature: if checked (the &UNIX; default), all
        files beginning with capital letters appear before files beginning with non-capital letters;
        otherwise, all files beginning with a specified letter (capital or otherwise) will appear
@@ -165,13 +165,12 @@ HTML_PARSING-->
 </itemizedlist>
 
 <itemizedlist><title><guilabel>Single click / Double click selection</guilabel></title>
-  <listitem><para><guilabel>"Double click executes"</guilabel>: if checked,
+  <listitem><para><guilabel>Double click executes</guilabel>: if checked,
                         with a single click on a file it will be selected and focused,
       with a double click it opens the file or steps into the directory.
                   </para></listitem>
-        <listitem><para><guilabel>"Obeys KDE's
+        <listitem><para><guilabel>Obeys KDE's global policy</guilabel>: if checked,
                                  <!-- jade does not like an acronym element for "KDE" here -->
-                                global policy"</guilabel>: if checked,
                   it uses &kde;'s <command>kcontrol</command> setting.
       <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
                         <guimenuitem>Peripherals</guimenuitem><guimenuitem>Mouse</guimenuitem></menuchoice></emphasis>
@@ -185,7 +184,7 @@ HTML_PARSING-->
            </para></listitem>
 </itemizedlist>
 
-<itemizedlist><title><guilabel>Mouse selection Modes</guilabel></title>
+<itemizedlist><title><guilabel>Selection Modes</guilabel></title>
       <listitem><para><guilabel>&krusader; Mode</guilabel>: the way &krusader; has worked from day one.
          Both keys allow selecting files. To select more than one file, hold the
          &Ctrl; key and click the &LMB;. Right-click menu is invoked using a short click on
@@ -224,30 +223,30 @@ HTML_PARSING-->
 <title>Panel</title>
 
 <itemizedlist>
-  <listitem><para><guilabel>"Panel font"</guilabel>: allows you to change the font used inside the file
+  <listitem><para><guilabel>Panel font</guilabel>: allows you to change the font used inside the file
        lists.</para></listitem>
-  <listitem><para><guilabel>"Filelist icon size"</guilabel>: allows you to change the size of the icons in
+  <listitem><para><guilabel>Filelist icon size</guilabel>: allows you to change the size of the icons in
        the file lists. The available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
-  <listitem><para><guilabel>"Extension Column"</guilabel>: if checked,
+  <listitem><para><guilabel>Extension Column</guilabel>: if checked,
                     show the last part of the filename (part after the last dot) in the Ext Column and not
                     as a complete filename in the Name Column like e.g. &konqueror; does.</para></listitem>
-  <listitem><para><guilabel>"Permission Column"</guilabel>: if checked,
+  <listitem><para><guilabel>Permission Column</guilabel>: if checked,
                     show the full perissions &eg; "-rw-r--r--".</para></listitem>
-  <listitem><para><guilabel>"Mimetype Column"</guilabel>: if checked,
+  <listitem><para><guilabel>Mimetype Column</guilabel>: if checked,
                     show the mimetype field.</para></listitem>
-  <listitem><para><guilabel>"&krusader; Permission Column"</guilabel>: if checked,
+  <listitem><para><guilabel>&krusader; Permission Column</guilabel>: if checked,
                     show only the rights of the current user &eg; "-rw".</para></listitem>
-  <listitem><para><guilabel>"Size Column"</guilabel>: if checked,
+  <listitem><para><guilabel>Size Column</guilabel>: if checked,
                     show the size field.</para></listitem>
-  <listitem><para><guilabel>"Owner Column"</guilabel>: if checked,
+  <listitem><para><guilabel>Owner Column</guilabel>: if checked,
                     show the owner field.</para></listitem>
-  <listitem><para><guilabel>"Date and Time Column"</guilabel>: if checked,
+  <listitem><para><guilabel>Date and Time Column</guilabel>: if checked,
                     show the date and time field.</para></listitem>
-  <listitem><para><guilabel>"Group Column"</guilabel>: if checked,
+  <listitem><para><guilabel>Group Column</guilabel>: if checked,
                     show the group field.</para></listitem>
-  <listitem><para><guilabel>"Use icons in filenames"</guilabel>: if checked,
+  <listitem><para><guilabel>Use icons in filenames</guilabel>: if checked,
                     show the icons in filenames and folders.</para></listitem>
-  <listitem><para><guilabel>"Human readable file size"</guilabel>: if checked,
+  <listitem><para><guilabel>Human readable file size</guilabel>: if checked,
                     the file size will be displayed in kB, Mb &etc; and not in bytes (default).</para></listitem>
 </itemizedlist>
 
@@ -290,21 +289,21 @@ HTML_PARSING-->
 
 <sect2 id="konfig-looknfeel-ptoolbar">
 <title>Panel Toolbar</title>
-<para><guilabel>"Panel Toolbar visible"</guilabel>: if checked, &krusader; will display the Panel Toolbar.</para>
+<para><guilabel>Panel Toolbar visible</guilabel>: if checked, &krusader; will display the Panel Toolbar.</para>
 
 <para>The buttons on the <guilabel>Panel Toolbar</guilabel> can be made visible or hidden:
 <itemizedlist>
-  <listitem><para><guilabel>"Open"</guilabel> button</para>
+  <listitem><para><guilabel>Open</guilabel> button</para>
              </listitem>
-  <listitem><para><guilabel>"Equal (=)"</guilabel> button</para>
+  <listitem><para><guilabel>Equal (=)</guilabel> button</para>
              </listitem>
-  <listitem><para><guilabel>"Up (..)"</guilabel> button</para>
+  <listitem><para><guilabel>Up (..)</guilabel> button</para>
              </listitem>
-  <listitem><para><guilabel>"Home (~)"</guilabel> button</para>
+  <listitem><para><guilabel>Home (~)</guilabel> button</para>
              </listitem>
-  <listitem><para><guilabel>"Root (/)"</guilabel> button</para>
+  <listitem><para><guilabel>Root (/)</guilabel> button</para>
              </listitem>
-  <listitem><para><guilabel>"Toggle-button for sync-browsing"</guilabel>: if checked,
+  <listitem><para><guilabel>Toggle-button for sync-browsing</guilabel>: if checked,
                      show the &sync_browsing_lnk; button.</para></listitem>
 </itemizedlist>
 </para>
@@ -318,8 +317,8 @@ HTML_PARSING-->
 <title>Colors page</title>
 
 <para>This page configures the <link linkend="mainwindow">colors</link> in the list panel.
-      The <guilabel>"KDE default colors"</guilabel> is the default color configuration,
-      <guilabel>"Use Alternate Background color"</guilabel> checkbox will enable/disable
+      The <guilabel>KDE default colors</guilabel> is the default color configuration,
+      <guilabel>Use Alternate Background color</guilabel> checkbox will enable/disable
 			the alternate &kde; colors.
       </para>
 
@@ -339,13 +338,13 @@ HTML_PARSING-->
  <varlistentry><term><guilabel>General</guilabel></term>
   <listitem>
   <itemizedlist>
-  <listitem><para><guilabel>"Use Alternate Background color"</guilabel>:
-                     If checked, the <guilabel>"Background"</guilabel> color and the
-                     <guilabel>"Alternate background"</guilabel> color alternates line by line.
+  <listitem><para><guilabel>Use Alternate Background color</guilabel>:
+                     If checked, the <guilabel>Background</guilabel> color and the
+                     <guilabel>Alternate background</guilabel> color alternates line by line.
                            When you don't use the &kde; default colors, you can configure the
                            alternate colors in the <guilabel>Colors</guilabel> box.</para>
         </listitem>
-  <listitem><para><guilabel>"Show current item even if not focused"</guilabel>:
+  <listitem><para><guilabel>Show current item even if not focused</guilabel>:
                     If checked, shows the last cursor position in the non active list panel.
         This option is only available when you don't use the &kde; default colors.</para>
         </listitem>
@@ -354,7 +353,7 @@ HTML_PARSING-->
  </varlistentry>
 
  <varlistentry><term><guilabel>Colors</guilabel></term>
-  <listitem><para>Choose the colors the way you like. In the <guilabel>"Preview"</guilabel> section you can
+  <listitem><para>Choose the colors the way you like. In the <guilabel>Preview</guilabel> section you can
   see the result. The colors of the active and inactive panel can be configured. The following items can
   be configured:</para>
   <itemizedlist>
@@ -411,20 +410,20 @@ HTML_PARSING-->
 <para>The following options determine basic aspects of operation:
 
 <itemizedlist>
-  <listitem><para><guilabel>"Delete files/Move to trash"</guilabel>: when &krusader; deletes files it can
+  <listitem><para><guilabel>Delete files/Move to trash</guilabel>: when &krusader; deletes files it can
        either 'really' delete them or move them to the trash folder, thereby making them available via
        &kde;'s trash.</para></listitem>
-  <listitem><para><guilabel>"Use mimetype magic"</guilabel>: mimetype magic is a mechanism which allows
+  <listitem><para><guilabel>Use mimetype magic</guilabel>: mimetype magic is a mechanism which allows
        &krusader; to inspect the files in the panels and determine their type even if the file has no
        identifying extension. For example, if you take an image file - 'image1.jpg' - and rename it to
        'image1', &krusader; will still know it's an image file and work with it accordingly. However, this
        mode of operation is slower (while refreshing the panel, or changing directories), so try &krusader;
        with and without mimetype magic and decide what's best for you.</para></listitem>
-  <listitem><para><guilabel>"Editor"</guilabel>: choose what editor will be used when editing a file (via
+  <listitem><para><guilabel>Editor</guilabel>: choose what editor will be used when editing a file (via
        F4).</para></listitem>
-  <listitem><para><guilabel>"Terminal"</guilabel>: choose what terminal emulator will be used when &krusader;
+  <listitem><para><guilabel>Terminal</guilabel>: choose what terminal emulator will be used when &krusader;
        opens a console window (via F2, or Commands->Terminal menu option).</para></listitem>
-  <listitem><para><guilabel>"Temp Directory"</guilabel>: this option selects the base directory for
+  <listitem><para><guilabel>Temp Directory</guilabel>: this option selects the base directory for
        &krusader;'s temporary files. The actual files will be created in separate directories under the
        'Temp directory', so that each user running &krusader; will have his/her own temporary
        subdirectories under the chosen directory.
@@ -458,7 +457,7 @@ HTML_PARSING-->
 <varlistentry><term><guilabel>General</guilabel></term>
   <listitem>
   <itemizedlist>
-  <listitem><para><guilabel>"Automount filesystems"</guilabel>: this makes &krusader; try to mount a
+  <listitem><para><guilabel>Automount filesystems</guilabel>: this makes &krusader; try to mount a
         filesystem before entering it. For example, if you click on
         <filename class="directory">/mnt/cdrom</filename>
         (and <filename class="directory">/mnt/cdrom</filename> appears in
@@ -466,7 +465,7 @@ HTML_PARSING-->
         is mounted. If not, it will try and mount it for you and then enter, so that you'd see the contents
         of your cdrom. Note, however, that &krusader;  will NOT unmount when exiting
         <filename class="directory">/mnt/cdrom</filename>.</para></listitem>
-  <listitem><para><guilabel>"MountMan won't (un)mount the following mount-points"</guilabel>:
+  <listitem><para><guilabel>MountMan won't (un)mount the following mount-points</guilabel>:
               If you have filesystems that you don't want to accidentally unmount (or mount) then
         enter a list of mountpoints separated by commas
                     (&eg; <literal>/, /boot, /tmp</literal>) and &mountman_lnk; won't try to (un)mount them.</para></listitem>
@@ -487,11 +486,11 @@ HTML_PARSING-->
 
 <varlistentry><term><guilabel>Fine-Tuning</guilabel></term>
   <listitem><itemizedlist>
-  <listitem><para><guilabel>"Icon Cache Size"</guilabel>: &krusader; uses an icon cache, so it won't have to
+  <listitem><para><guilabel>Icon Cache Size</guilabel>: &krusader; uses an icon cache, so it won't have to
       reload icons that were already used before. Of course, as the cache grows bigger, it can store more
       icons and further speed operations, but the memory footprint of &krusader; will be
       bigger.</para></listitem>
-  <listitem><para><guilabel>"Arguments of updatedb"</guilabel>: sets additional arguments for
+  <listitem><para><guilabel>Arguments of updatedb</guilabel>: sets additional arguments for
                     <command>updatedb</command>, please read the manpages for more information.</para></listitem>
   </itemizedlist>
   </listitem></varlistentry>
@@ -532,7 +531,7 @@ new archive should be available and checked.</para>
 
 <para><guilabel>Fine-Tuning</guilabel>
   <itemizedlist>
-    <listitem><para><guilabel>"Allow moving into archives"</guilabel>: this option allows you to move files
+    <listitem><para><guilabel>Allow moving into archives</guilabel>: this option allows you to move files
       into an archive (as opposed to just copying into the archive). The down side is that if a power
       failure occurs during the process, the files that were moved might already be deleted, but not yet
       packed into the archive.
@@ -540,7 +539,7 @@ new archive should be available and checked.</para>
     &krusader;'s <link linkend="konfig-general">temp directory</link>.
     You can search that directory and find your files, safe and sound.
     </para></note></para></listitem>
-    <listitem><para><guilabel>"Test archives when finished packing"</guilabel>: this option automatically
+    <listitem><para><guilabel>Test archives when finished packing</guilabel>: this option automatically
        runs a test on a newly packed archive. It is safer, but takes longer.</para></listitem>
   </itemizedlist></para>
 
@@ -680,6 +679,18 @@ new archive should be available and checked.</para>
 </tgroup>
 </informaltable>
 </para>
+
+
+<note><para>
+It is possible that unace doesn't work, but please don't blame us.
+ACE doesn't want, that other programs could cooperate with it. 
+Unace has closed source, and they wrote some additional lines, that if the stdin is redirected 
+to somewhere else, unace gets into infinite loop. 
+It works with the same manner as 'su', where you cannot enter the password only from the stdin. 
+&krusader;1-51 and 1-60 emulates the command line environment for being able to cooperate with unace,
+but we noticed that unace always changes its output's format from release to release, 
+making the cooperation almost impossible.
+</para></note>
 
 </sect1>
 

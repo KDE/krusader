@@ -31,18 +31,23 @@ Previous used Docbook
 <!ENTITY kapp "&krusader;">
 <!ENTITY kappname "&krusader;">
 <!ENTITY % addindex "IGNORE">
-<!ENTITY % English "INCLUDE"> <!-- ONLY If you are writing non-English original documentation, change
-                                   the language here -->
-<!ENTITY package "kde-module"> <!-- kdebase, kdeadmin, etc. Leave this unchanged if your
-                                   application is not maintained in KDE CVS -->
 
-<!-- internet links -->
-<!ENTITY onlinedoc_url '<ulink url="http://krusader.sourceforge.net/handbook/index.html">online</ulink>'>
+<!-- ONLY If you are writing non-English original documentation, change the language here -->
+<!ENTITY % English "INCLUDE">
+
+<!-- kdebase, kdeadmin, etc. Leave this unchanged if your application is not maintained in KDE CVS -->
+<!ENTITY package "kde-module">
+
+<!-- internet links, Krusader -->
+<!ENTITY onlinehandbook_url '<ulink url="http://krusader.sourceforge.net/handbook/index.html">Online Handbook</ulink>'>
+<!ENTITY kru_screenshots_url '<ulink url="http://krusader.sourceforge.net/scr.php">&krusader; Screenshot</ulink>'>
 <!ENTITY mail_url '<ulink url="mailto:krusader@users.sourceforge.net">mail</ulink>'>
+
 <!ENTITY kruwebsite_url '<ulink url="http://krusader.sourceforge.net">Krusader website</ulink>'>
 <!ENTITY kruproject_url '<ulink url="http://sourceforge.net/projects/krusader">here</ulink>'>
 <!ENTITY contribute_url '<ulink url="http://krusader.sourceforge.net/help.php">contribute</ulink>'>
-<!ENTITY donate_url '<ulink url="http://sourceforge.net/project/project_donations.php?group_id=6488">donate</ulink>'>
+<!ENTITY donate_url '<ulink url="http://sourceforge.net/project/project_donations.php?group_id=6488">Donate</ulink>'>
+
 <!ENTITY kruforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/index.php">&krusader; Forum</ulink>'>
 <!ENTITY kruforumsearch_url '<ulink url="http://krusader.sourceforge.net/phpBB/search.php">Search</ulink>'>
 <!ENTITY krugenforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=1">General Discussion Forum</ulink>'>
@@ -81,6 +86,7 @@ Previous used Docbook
 <!ENTITY online_buglist_url '<ulink url="http://sourceforge.net/tracker/?atid=106488&amp;group_id=6488&amp;func=browse">online bug list</ulink>'>
 <!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/">more translator credits</ulink>'>
 
+<!-- internet links, Krusader binaries -->
 <!ENTITY freshmeat_url '<ulink url="http://www.freshmeat.net">freshmeat.net</ulink>'>
 <!ENTITY rpmfind_url '<ulink url="http://www.rpmfind.net">rpmfind.net</ulink>'>
 <!ENTITY rpmpbone_url '<ulink url="http://rpm.pbone.net">rpmpbone.net</ulink>'>
@@ -88,7 +94,7 @@ Previous used Docbook
 <!ENTITY gentoo_url '<ulink url="http://packages.gentoo.org/search/?sstring=krusader"><trademark class="registered">Gentoo</trademark></ulink>'>
 <!ENTITY gentoo_life_ebuild_url '<ulink url="http://krusader.sourceforge.net/data/krusader-cvs-1.ebuild">Gentoo Live Ebuild</ulink>'>
 
-
+<!-- internet links, others -->
 <!ENTITY xxdiff_url '<ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>'>
 <!ENTITY kdiff3_url '<ulink url="http://kdiff3.sourceforge.net">kdiff3</ulink>'>
 <!ENTITY krename_url '<ulink url="http://www.krename.net"><application>Krename</application></ulink>'>
@@ -109,6 +115,7 @@ Previous used Docbook
 <!ENTITY kjsembed_url '<ulink url="http://xmelegance.org/kjsembed/">KJSEmbed</ulink>'>
 
 <!-- documentation links -->
+<!ENTITY selection_modes_lnk '<link linkend="selection_modes">Selection Modes</link>'>
 <!ENTITY konfigstartpg_lnk '<link linkend="konfigurator">Konfigurator Startup page</link>'>
 <!ENTITY konfiglookandfeel_lnk '<link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>'>
 <!ENTITY konfiggereral_lnk '<link linkend="konfig-general">Konfigurator General page</link>'>
@@ -180,23 +187,24 @@ Previous used Docbook
                  </para></note>'>
 
 
-<!-- other ENTITIES -->
-<!ENTITY keditbookmarks '<application>KeditBookmarks</application>'>
+<!-- application ENTITIES -->
 <!ENTITY mc '<application>Midnight Commander</application>'>
-<!ENTITY nc '<application>Norton Commander</application>'>
 <!ENTITY xxdiff '<application>xxdiff</application>'>
 <!ENTITY krename '<application>Krename</application>'>
 <!ENTITY kget '<application>kget</application>'>
 <!ENTITY filelight '<application>Filelight</application>'>
 <!ENTITY kdevelop '<application>Kdevelop</application>'>
+<!ENTITY keditbookmarks '<application>KeditBookmarks</application>'>
 
+<!-- trademark ENTITIES -->
 <!ENTITY fedora '<trademark class="registered">Fedora</trademark>'>
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
 <!ENTITY debian '<trademark class="registered">Debian</trademark>'>
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
 <!ENTITY tcmd '<trademark class="registered">Total commander</trademark>'>
+<!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
 
-
+<!-- useraction ENTITIES -->
 <!ENTITY useraction_parameter 'Parameter:'>
 <!ENTITY useraction_optional_parameter 'Parameter (optional):'>
 <!ENTITY useraction_default 'Default:'>
@@ -221,45 +229,51 @@ Previous used Docbook
         <firstname>Shie</firstname><surname>Erlich</surname>
         <contrib>Author and initial Handbook author</contrib>
         <affiliation><address><email>erlich@users.sourceforge.net</email></address></affiliation>
-        </othercredit>
+  </othercredit>
+  
   <othercredit role="developer">
         <firstname>Rafi</firstname><surname>Yanai</surname>
         <contrib>Author and initial Handbook author</contrib>
         <affiliation><address><email>yanai@users.sourceforge.net</email></address></affiliation>
-        </othercredit>
+  </othercredit>
+  
   <othercredit role="developer">
         <firstname>Dirk</firstname><surname>Eschler</surname>
         <contrib>Webmaster and i18n coordinator</contrib>
         <affiliation><address><email>deschler@users.sourceforge.net</email></address></affiliation>
-        </othercredit>
+  </othercredit>
+  
   <othercredit role="developer">
         <firstname>Csaba</firstname><surname>Karai</surname>
         <contrib>Developer</contrib>
         <affiliation><address><email>ckarai@users.sourceforge.net</email></address></affiliation>
-        </othercredit>
+  </othercredit>
+  
   <othercredit role="developer">
         <firstname>Heiner</firstname><surname>Eichmann</surname>
         <contrib>Developer</contrib>
         <affiliation><address><email>h.eichmann@gmx.de</email></address></affiliation>
-        </othercredit>
+  </othercredit>
+  
   <othercredit role="developer">
         <firstname>Jonas</firstname><surname>B&auml;hr</surname>
         <contrib>Developer</contrib>
         <affiliation><address><email>jonas.baehr@web.de</email></address></affiliation>
-        </othercredit>
+  </othercredit>
+  
   <author>
         <firstname>Frank</firstname>
-  <surname>Schoolmeesters</surname>
-  <contrib>Documentation Coordinator</contrib>
-  <affiliation>
-  <address><email>frank_schoolmeesters@yahoo.com</email></address>
-  </affiliation>
+        <surname>Schoolmeesters</surname>
+        <contrib>Documentation Coordinator</contrib>
+        <affiliation><address><email>frank_schoolmeesters@yahoo.com</email></address></affiliation>
   </author>
+  
   <othercredit role="reviewer">
         <firstname>Richard</firstname><surname>Holt</surname>
         <contrib>Documentation</contrib>
         <affiliation><address><email>richard.holt@gmail.com</email></address></affiliation>
-        </othercredit>
+  </othercredit>
+        
   <othercredit role="reviewer">
         <firstname>Mark</firstname><surname>Eatough</surname>
         <contrib>Handbook proofreader</contrib>
@@ -283,14 +297,14 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-02-20</date>
+  <date>2005-02-21</date>
   <releaseinfo>1.60.0</releaseinfo>
 
    <abstract>
-  <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x</para>
+   <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x</para>
    </abstract>
 
-  <keywordset>
+ <keywordset>
   <keyword>KDE</keyword>
   <keyword>krusader</keyword>
   <keyword>commander</keyword>
@@ -302,7 +316,7 @@ Previous used Docbook
   <keyword>dual pane</keyword>
   <keyword>linux-commander</keyword>
   <keyword>kde-commander</keyword>
-  </keywordset>
+ </keywordset>
 
 </bookinfo>
 
@@ -382,7 +396,7 @@ Previous used Docbook
   IceWM, BlackBox, Wiamea, XFCE, etc. -- when the &kde;libraries are installed.</para>
 
   <para>
-  New extensibility is provided by the flexible <link linkend="useractions">"User Actions Framework"</link>,
+  New extensibility is provided by the flexible &useractions_lnk;,
   a &krusader; innovation, that allows unlimited additional custom functionality to be added to suit the
   user's specific needs and wishes.
   We are planning to develop more modules in the near future, thereby enhancing &krusader; greatly.
@@ -407,11 +421,10 @@ Previous used Docbook
 
   <para><emphasis role="bold">Translations</emphasis></para>
   <para>&krusader; is available in many languages, several translations need an update and new untranslated
-        languages are always welcome, please read the &i18nhowto_url;</para>
+        languages are always welcome, please read the &i18nhowto_url; .</para>
 
   <para><emphasis role="bold">Documentation</emphasis></para>
-  <para>&krusader; is in need of documentation, since this is a time consuming task
-        Help is always welcome.</para>
+  <para>&krusader; is in need of documentation, all help is welcome.</para>
 
   <para><emphasis role="bold">Donations</emphasis></para>
   <para>Honestly, we didn't consider donations, until users asked us for a way to &donate_url; to the project.
@@ -421,7 +434,9 @@ Previous used Docbook
         be it by purchasing hardware, or promoting of the project.</para>
 
   <para><emphasis role="bold">Packagers</emphasis></para>
-  <para>We are always in need of packagers for rpm's, deb's, &MacOS; port, etc.</para>
+  <para>We are always in need of packagers for rpm's, deb's, &MacOS; port, etc. 
+        In theory a &Windows; port is (maybe) possible.
+        All help is welcome.</para>
 
   <para><emphasis role="bold">FAQ</emphasis></para>
   <para>If you have a question that is missing in the &faq_lnk;, we would like to hear it.</para>
@@ -439,9 +454,8 @@ Previous used Docbook
   <title>Note from the Editors</title>
 
   <para>As you may notice this handbook is written by various authors.
-        We have taken much care in ensuring technical and vocabulary consistency.</para>
-
-  <para>The authors write in English even though it is not their native language;
+        We have taken much care in ensuring technical and vocabulary consistency.
+        The authors write in English even though it is not their native language;
         therefore, you may notice strange sentence constructions.
         Do not hesitate to let us know if something is not clear to you.</para>
 
@@ -469,16 +483,17 @@ Previous used Docbook
       You can also dop a post in our &forum_lnk;. Thanks!</para>
 HTML_PARSING-->
 
-<para>This handbook is available in several formats. You can read it in three ways:
+<para>This handbook is available in several formats.
 <itemizedlist>
   <listitem>
-      <para>when using &krusader; it is available via the Help menu</para>
+      <para>via the Help menu when using &krusader;</para>
   </listitem>
   <listitem>
-      <para>read it at &onlinedoc_url;</para>
+      <para>the &onlinehandbook_url;</para>
   </listitem>
         <listitem>
-        <para>download the documentation tarballs (HTML, TXT, RTF, PDF) from the &sfmirrors_url;</para>
+        <para>As documentation tarballs (HTML, TXT, RTF, PDF, XML-SOURCE), 
+              download them from the &sfmirrors_url;</para>
   </listitem>
 </itemizedlist>
 The most recent version of this handbook is available when downloading and installing &krusader; from cvs.

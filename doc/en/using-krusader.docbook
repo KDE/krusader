@@ -57,28 +57,30 @@
     </mediaobject>
 </screenshot>
 
-<para>There isn't a lot to say about the &krusader; Main Toolbar, it's a standard &kde; toolbar
-      that can be dragged around the application or configured via a <keycap>Right-Click</keycap> menu.
-      You can decide if you want to display it (or not) every time you start &krusader;
-      in the &konfigstartpg_lnk;, and you can toggle
-      its use in the current session in the &viewmenu_lnk;.
-      The Main Toolbar contents can be configured from the <guimenuitem>Configure Toolbars</guimenuitem>
-      in the &settingsmenu_lnk; or the <guilabel>Toolbar</guilabel> tab in the &konfiglookandfeel_lnk;.
-      Since the various commands and options in &krusader; are context dependent, some commands are not always available
-      (&ie;: you can't disconnect from an &FTP; session if you're not connected), the icon of an
-      inappropriate or inactive action will be deactivated (grayed-out) and you won't be able to click it.
-      &bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar.</para>
+<para>
+There isn't a lot to say about the &krusader; Main Toolbar, it's a standard &kde; toolbar
+that can be dragged around the application or configured via a <keycap>Right-Click</keycap> menu.
+You can decide if you want to display it (or not) every time you start &krusader;
+in the &konfigstartpg_lnk;, and you can toggle its use in the current session in the &viewmenu_lnk;.
+The Main Toolbar contents can be configured from the <guimenuitem>Configure Toolbars</guimenuitem>
+in the &settingsmenu_lnk; or the <guilabel>Toolbar</guilabel> tab in the &konfiglookandfeel_lnk;.
+Since the various commands and options in &krusader; are context dependent, some commands are not 
+always available (&ie;: you can't disconnect from an &FTP; session if you're not connected), 
+the icon of an inappropriate or inactive action will be deactivated (grayed-out) and you won't 
+be able to click it.
+&bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar.</para>
 
 </sect2>
 
 <sect2 id="actions_toolbar">
 <title>Actions Toolbar</title>
-<para>&useractions_lnk; and &bookmarks_lnk; can be plugged in the <guilabel>Actions Toolbar</guilabel>.
-      To show it use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
-      <guimenuitem>Show Actions Toolbar</guimenuitem></menuchoice></emphasis>.
-      To add useractions use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
-      <guimenuitem>Configure Toolbars</guimenuitem></menuchoice></emphasis> and select Actions Toolbar.
-      You could &eg; drag the Actions Toolbar to the right side.
+<para>
+&useractions_lnk; and &bookmarks_lnk; can be plugged in the <guilabel>Actions Toolbar</guilabel>.
+To show it use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
+<guimenuitem>Show Actions Toolbar</guimenuitem></menuchoice></emphasis>.
+To add useractions use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
+<guimenuitem>Configure Toolbars</guimenuitem></menuchoice></emphasis> and select Actions Toolbar.
+You could &eg; drag the Actions Toolbar to the right side.
 </para>
 </sect2>
 
@@ -86,24 +88,30 @@
 <sect2 id="panels">
 <title>Panels</title>
 
-<para>The &krusader; panels are where most of the action takes place.
-      Currently, there are two types of panels:
-      <itemizedlist>
-      <listitem><para>&list_panel_lnk;: shows the files and directories.
-                 </para></listitem>
-      <listitem><para>&popup_panel_lnk;: shows the directory tree or a preview of the file that has the focus.
-                 </para></listitem>
-      </itemizedlist>
-      &krusader; is a twin-panel file manager so there are two panels, the left panel and
-      the right panel. Or a more important logical distinction, the *active* panel and the *inactive* panel. This is the key to making the best use of Krusader!
-      The active panel is the one that will accept your mouse and keyboard input. It is the panel *acted upon*. If you choose a command
-      from the <guilabel>menu-bar</guilabel> or <guilabel>toolbar</guilabel> the command will
-      act upon the selected files/directories in the active panel and direct the result to the inactive one.  The few exceptions to this mode of operation will be detailed as necessary in the applicable sections of the documentation.
-      You can switch between panels using the &Tab; key or by clicking on the
-      <guilabel>Information or Totals labels</guilabel>, or by selecting any file in a panel with the mouse.
-      As always: default startup settings can be modified with the &konfigstartpg_lnk;,
-      and you control the current session with the &viewmenu_lnk;.
-      </para>
+<para>
+The &krusader; panels are where most of the action takes place.
+Currently, there are two types of panels:
+ <itemizedlist>
+  <listitem><para>&list_panel_lnk;: shows the files and directories.
+            </para></listitem>
+  <listitem><para>&popup_panel_lnk;: shows the directory tree or a preview of the file that has the focus.
+            </para></listitem>
+  </itemizedlist>
+      
+&krusader; is a twin-panel file manager so there are two panels, the left panel and the right panel. 
+Or a more important logical distinction, the *active* panel and the *inactive* panel. 
+This is the key to making the best use of Krusader!
+The active panel is the one that will accept your mouse and keyboard input. 
+It is the panel *acted upon*. If you choose a command from the <guilabel>menu-bar</guilabel> or 
+<guilabel>toolbar</guilabel> the command will act upon the selected files/directories in the active 
+panel and direct the result to the inactive one. 
+The few exceptions to this mode of operation will be detailed as necessary in the applicable sections 
+of the documentation.
+You can switch between panels using the &Tab; key or by clicking on the
+<guilabel>Information or Totals labels</guilabel>, or by selecting any file in a panel with the mouse.
+As always: default startup settings can be modified with the &konfigstartpg_lnk;,
+and you control the current session with the &viewmenu_lnk;.
+</para>
 
 <screenshot><screeninfo>List Panel</screeninfo><mediaobject>
       <imageobject><imagedata fileref="listpanel.png" format="PNG"/></imageobject>
@@ -160,7 +168,7 @@
       <listitem><para><emphasis><guilabel>Column Headers</guilabel></emphasis> :
                  here you can change the sort order of the files and directories as desired.
                  The default sort order is by <guilabel>name</guilabel>. The sort order can be instantly changed
-								 by clicking on one of the <guilabel>Column Headers</guilabel>.
+		 by clicking on one of the <guilabel>Column Headers</guilabel>.
                  To reverse the sort order, click a second time on the Column Header. An arrow will apear on the right of the
                  Column Header text, showing the sort direction (Up arrow = a to z sorting,
      Down arrow = z to a sorting).
@@ -468,6 +476,9 @@
 
 <sect2 id="marking-files">
 <title>Marking (Selecting) Files</title>
+
+<note><para>&krusader; offers 4 &selection_modes_lnk;</para></note>
+
 <para>Marking is a skill you need to master in order to get the most out of &krusader;. Since you can't
       select files in the Quick View Panel, and the Tree Panel only lets you select one directory at a time,
       this paragraph mainly explains how to select files in the List Panel filelist.</para>
@@ -518,18 +529,15 @@ TODO
                       </listitem>
     <listitem><para>The &selectmenu_lnk; can offer more ways to select your files.</para>
                       </listitem>
-    <listitem><para>&konfiglookandfeel_lnk; can offer you other ways of using your mouse to select
-                      files.</para>
-          </listitem>
 </itemizedlist>
 </para>
 </sect2>
 
 
-<sect2 id="mouse_usage">
-<title>Mouse Usage</title>
+<sect2 id="selection_modes">
+<title>Selection Modes</title>
 <para>There are several methods of using the mouse with &krusader;, we provide
-      <link linkend="konfig-looknfeel">3 mouse selection modes</link> , the default one should be
+      <link linkend="konfig-looknfeel">4 Selection Modes</link> , the default one should be
        familiar from other file managers and include the use of the &Shift; key or the
        &Ctrl; key to select multiple files.
        However, notice that Left-Clicking will select the file under the cursor but will unmark all other files.
@@ -775,7 +783,7 @@ TODO
   <guimenu>Select</guimenu>
   <guimenuitem>Compare Setup</guimenuitem>
   </menuchoice></term>
-  <listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>
+  <listitem><para>Configures the <guimenuitem>Compare Directories</guimenuitem> function.</para>
    <itemizedlist>
             <listitem><para><guimenuitem>Select Newer and Single</guimenuitem> (default)
                       </para></listitem>
@@ -928,27 +936,27 @@ TODO
 
 <para>Checkbox Options
 <itemizedlist>
-     <listitem><para><guilabel>"Show only the existing files"</guilabel>:
+     <listitem><para><guilabel>Show only the existing files</guilabel>:
                if the database contains entries which do not exist any more (deleted, moved since the
                last <command>updatedb</command>), <command>locate</command> will not list them.
                It checks the existence of each file before listing in the results window (slow).</para>
          </listitem>
-     <listitem><para><guilabel>"Case Sensitive"</guilabel>:
+     <listitem><para><guilabel>Case Sensitive</guilabel>:
                unchecking it will allow lower and upper case search.</para>
          </listitem>
 </itemizedlist></para>
 
 <para>Action buttons
 <itemizedlist>
-      <listitem><para><guibutton>"Locate"</guibutton>:
+      <listitem><para><guibutton>Locate</guibutton>:
              executes <command>locate <replaceable>foo foo</replaceable></command>
        and places its output into the results window.</para></listitem>
-  <listitem><para><guibutton>"Stop"</guibutton>:
+  <listitem><para><guibutton>Stop</guibutton>:
              stops the locate process.</para></listitem>
-      <listitem><para><guibutton>"UpdateDB"</guibutton>:
+      <listitem><para><guibutton>UpdateDB</guibutton>:
              starts <command>updatedb</command> for updating the locate database after
        entering the root password.</para></listitem>
-  <listitem><para><guibutton>"Close"</guibutton>:
+  <listitem><para><guibutton>Close</guibutton>:
              closes the locate window.</para></listitem>
 </itemizedlist>
 </para>
@@ -1063,7 +1071,7 @@ TODO
 <tbody>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>d</keycap></keycombo></para></entry>
-<entry><para>Disk Usage</para></entry></row>
+<entry><para>&diskusage_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>e</keycap></keycombo></para></entry>
 <entry><para><link linkend="test-archive">Test Archive</link></para></entry></row>
@@ -1108,7 +1116,7 @@ TODO
 <entry><para><link linkend="folder_tabs">Close tab</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>j</keycap></keycombo></para></entry>
-<entry><para>JavaScript console (based on KJSEmbed) TODO.</para></entry></row>
+<entry><para>&javascript_console_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="folder_tabs">New tab</link></para></entry></row>

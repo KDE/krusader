@@ -78,7 +78,7 @@
      <link linkend="list_panel">Location Toolbar</link> some examples:</para>
  
  <itemizedlist>
-     <listitem><para><userinput><command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</replaceable></userinput></para>
+     <listitem><para><userinput><command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable></userinput></para>
                </listitem>
   <listitem><para><userinput><command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable></userinput></para>
                </listitem> 
@@ -149,10 +149,10 @@
 </screenshot>
 
 <para>MountMan also displays usage information using total size, free size, and percentage of available space free.
-      If those numbers say <guilabel>"N/A"</guilabel>, it usually means that the filesystem isn't mounted.
+      If those numbers say <guilabel>N/A</guilabel>, it usually means that the filesystem isn't mounted.
       Left clicking on a filesystem displays a pie chart on the left of the window, this
       graphically displays the usage information for the filesystem.
-      Clicking on a non-mounted filesystem will display <guilabel>"not mounted"</guilabel>
+      Clicking on a non-mounted filesystem will display <guilabel>not mounted</guilabel>
       instead of the graph.</para>
   <itemizedlist>
       <listitem><para><keycap>Double-clicking</keycap> on a filesystem will close MountMan and open
@@ -207,17 +207,17 @@
       For example, to bookmark <filename class="directory">/usr/tmp</filename>, navigate &krusader;
       there and click the <guibutton>"Bookmark"</guibutton> button and select
       <guimenuitem>"Bookmark Current"</guimenuitem>.
-      When the <guilabel>"Bookmark Current"</guilabel> dialog box appears, the &URL; line will say
+      When the <guilabel>Bookmark Current</guilabel> dialog box appears, the &URL; line will say
       <filename class="directory">/usr/tmp</filename>.
-      <guilabel>"Name"</guilabel> is for the name you would like to give to the bookmark (for example: temporary
+      <guilabel>Name</guilabel> is for the name you would like to give to the bookmark (for example: temporary
       folder). Hotkeys are supported by adding <literal>&amp;</literal> to the bookmarkname &eg;
       <literal>&amp;sourceforge, &amp;home, down&amp;loads</literal> &etc;,
       so you can quickly call the bookmark name with <keycombo action="simul">&Alt;<keycap>foo</keycap></keycombo>.
       If you add the bookmark without entering a name, the bookmarks name will be the same as its target.
-      <guilabel>"URL"</guilabel>
+      <guilabel>URL</guilabel>
       <!-- Openjade does not like an acronym element for "URL" here -->
       is where the bookmark points to.
-      <guilabel>"Create in"</guilabel> allows to make bookmark folders for organizing your bookmarks</para>
+      <guilabel>Create in</guilabel> allows to make bookmark folders for organizing your bookmarks</para>
 
 <note><para>You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark 
        to quickly connect to the remote machine. NOTE:You CANNOT bookmark inside an archive.</para></note>
@@ -383,18 +383,18 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
       Let's look at them closely.</para>
 
 <itemizedlist><title>Top Part:</title>
-           <listitem><para><guilabel>"Search for"</guilabel>: here you enter the main search criteria.
+           <listitem><para><guilabel>Search for</guilabel>: here you enter the main search criteria.
                      You can enter a filename, a wildcard (<literal role="extension">*.o.*</literal>,
                      <literal role="extension">*.c</literal> &etc;) or both - separated by a space.
                      If you type <literal>'text'</literal> the results is the same as <literal>'*text*'</literal>.
                      You can exclude files from the search with '|' (&eg; <literal role="extension">'*.cpp *.h | *.moc.cpp'</literal> ).
                      </para></listitem>
-           <listitem><para><guilabel>"Case sensitive"</guilabel>: unchecking it will allow lower and upper case
+           <listitem><para><guilabel>Case sensitive</guilabel>: unchecking it will allow lower and upper case
                       search (&ie;: <literal role="extension">*.c</literal> interprets as
                       <literal role="extension">*.c</literal> AND
                       <literal role="extension">*.C</literal>).
                       </para></listitem>
-           <listitem><para><guilabel>"Of type"</guilabel>: this box lets you search for a file not only by its
+           <listitem><para><guilabel>Of type</guilabel>: this box lets you search for a file not only by its
                       name, but also by its mimetype. For example, you can search for all the audio files whose
                       name begins with B. Usually this option defaults to 'all files', but you can choose to search
                       for archives, directories, images, text files, videos and audio files.
@@ -402,13 +402,13 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 </itemizedlist>
 
 <itemizedlist><title>Left and Right Part:</title>
-    <listitem><para><guilabel>"Search in"</guilabel> and <guilabel>"Don't search in"</guilabel>:
+    <listitem><para><guilabel>Search in</guilabel> and <guilabel>Don't search in</guilabel>:
                 Using those two parts, you can specify a search exactly the way you want it.
                 For example, you might want to search for a file in the whole filesystem
                 (beginning with <filename>/</filename>), but don't want to search inside
                 <filename>/mnt</filename>.
-                All you need to do is write <filename>/</filename> in the <guilabel>'search in'</guilabel> box,
-                and write <filename>/mnt</filename> in the <guilabel>'dont search in'</guilabel> box.
+                All you need to do is write <filename>/</filename> in the <guilabel>search in</guilabel> box,
+                and write <filename>/mnt</filename> in the <guilabel>dont search in</guilabel> box.
                 If you want to enter more than one directory in one of the boxes, just type the first name and
                 press &Enter;. The directory's name will be copied to the bigger box and you'll be
                 able to enter another name.
@@ -420,30 +420,30 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 </itemizedlist>
 
 <itemizedlist><title>Bottom Part:</title>
-    <listitem><para><guilabel>"Text"</guilabel>: entering text here makes &krusader; search for it inside the
+    <listitem><para><guilabel>Text</guilabel>: entering text here makes &krusader; search for it inside the
                files (<command>grep</command>). That way, you can search for all header files
                (<literal role="extension">*.h</literal>) which include the word <literal>'testing 123'</literal>
                inside them.
                </para></listitem>
-    <listitem><para><guilabel>"Match whole word only"</guilabel>
+    <listitem><para><guilabel>Match whole word only</guilabel>
                </para></listitem>
-    <listitem><para><guilabel>"Case sensitive"</guilabel>: refers to your text being searched for in upper
+    <listitem><para><guilabel>Case sensitive</guilabel>: refers to your text being searched for in upper
                and lower case or the exact phrase you entered.
                </para></listitem>
-    <listitem><para><guilabel>"Search in subdirectories"</guilabel>: do a recursive search and dive into
+    <listitem><para><guilabel>Search in subdirectories</guilabel>: do a recursive search and dive into
                every directory on the way.
                </para></listitem>
-    <listitem><para><guilabel>"Search in archives"</guilabel>: &krusader; will search for your files inside
+    <listitem><para><guilabel>Search in archives</guilabel>: &krusader; will search for your files inside
                every supported archive. This, however, takes longer to perform.
                <note><para>If you check this checkbox, you'll notice you cannot <command>grep</command> inside files
                anymore.
                This is done, since looking inside archived files forces &krusader;
                to extract them, which results in an extremely time-consuming search.</para></note>
                </para></listitem>
-    <listitem><para><guilabel>"Follow links"</guilabel>: if checked,  &krusader; will follow soft-links during
+    <listitem><para><guilabel>Follow links</guilabel>: if checked,  &krusader; will follow soft-links during
                the search.
                </para></listitem>
-    <listitem><para><guilabel>"Profiles"</guilabel>: if you have to regularly perform the same search operation,
+    <listitem><para><guilabel>Profiles</guilabel>: if you have to regularly perform the same search operation,
                you can save the search settings &eg; include files, exclude files, etc....
                Press the 'profile' button, and you'll be able to add/load/save/remove search profiles.
                </para></listitem>
@@ -464,7 +464,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
       files - but will not close the search window, so you'll be able to click on a different result.</para>
 
 <para>Sometimes, you need to narrow your search even more. Krusearcher allows a much finer search, and
-      for that, let's look at the <guilabel>"Advanced Page"</guilabel>...</para>
+      for that, let's look at the <guilabel>Advanced Page</guilabel>...</para>
 
 <screenshot>
   <screeninfo>Krusearcher Advanced</screeninfo>
@@ -495,7 +495,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <para>This part offers three different ways of defining a date criteria:
 <itemizedlist>
-   <listitem><para><guilabel>"Modified between"</guilabel>: allows you to enter two dates. &krusader; will
+   <listitem><para><guilabel>Modified between</guilabel>: allows you to enter two dates. &krusader; will
              search for files with a modification date between the first date and the second one, inclusive.
              If you only enter a date in the left box, you'll be searching for files older than that date.
              If you only enter a date in the right box, you'll be searching for files newer than that date.
@@ -504,11 +504,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
                    Clicking on a date will close the window and the date will appear in the input box.
              </para></note>
              </para></listitem>
-  <listitem><para><guilabel>"Not modified after"</guilabel>: choosing this option makes &krusader; search
+  <listitem><para><guilabel>Not modified after</guilabel>: choosing this option makes &krusader; search
             for files that were NOT modified after a given date, which is the same as searching for files older
             than that date.
              </para></listitem>
-  <listitem><para><guilabel>"Modified in the last/not modified in the last"</guilabel>: in these input
+  <listitem><para><guilabel>Modified in the last/not modified in the last</guilabel>: in these input
              boxes, you enter not a date, but a number. This number represents days/weeks/months
              (as chosen in the near dropbox). Entering the number 5 in the upper input box, makes &krusader;
              search for files that were modified in the last 5 days.
@@ -522,11 +522,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 <para><emphasis role="bold">Ownership</emphasis></para>
 
 <itemizedlist>
-   <listitem><para><guilabel>"Belongs to user/group"</guilabel>: by checking each of the corresponding checkboxes,
+   <listitem><para><guilabel>Belongs to user/group</guilabel>: by checking each of the corresponding checkboxes,
              you can search for files which belong to a certain user and/or group.
              The dropbox lists all the user names and group names in the system, just choose one and go ahead.
              </para></listitem>
-   <listitem><para><guilabel>"Permissions"</guilabel>: divided into owner, group and all - it allows you to choose
+   <listitem><para><guilabel>Permissions</guilabel>: divided into owner, group and all - it allows you to choose
               certain permissions for the file. You can choose to specify permissions for the owner,
               group, all or any combination. The question mark (?) is a wildcard - which means that any permission
               is valid.
@@ -1243,7 +1243,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <para>This function compares the left and the right panel directories and shows the difference between them.
       After selecting some options and the "compare" function you can synchronize the files and directories.
-      One panel could be an &FTP; server. Don't forget the <guilabel>"compare by content"</guilabel> option
+      One panel could be an &FTP; server. Don't forget the <guilabel>compare by content</guilabel> option
       if the file size stays equal.
       Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
       <guimenuitem>Synchronize Directories</guimenuitem></menuchoice></emphasis>
@@ -1267,9 +1267,9 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
     <listitem><para>Configure the optional file filter.</para>
               </listitem>
     <listitem><para>Set the <link linkend="synccomp_checkb_options">checkbox options</link>:
-                   <guilabel>"Recurse subdirectories"</guilabel>,
-                   <guilabel>"Follow symlinks"</guilabel>, <guilabel>"Compare by content"</guilabel>,
-                   <guilabel>"Ignore Date"</guilabel> and <guilabel>"Asymmetric"</guilabel>.</para>
+                   <guilabel>Recurse subdirectories</guilabel>,
+                   <guilabel>Follow symlinks</guilabel>, <guilabel>Compare by content</guilabel>,
+                   <guilabel>Ignore Date</guilabel> and <guilabel>Asymmetric</guilabel>.</para>
               </listitem>
     <listitem><para>Click on the <guibutton>"Compare"</guibutton> button to compare the directories.</para>
               </listitem>
@@ -1277,7 +1277,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
                       include/exclude particular filetypes.
                       Those files, that are not in the list, will be untouched by synchronization.</para>
               </listitem>
-    <listitem><para>If needed you can change the <guilabel>"Task"</guilabel> operations
+    <listitem><para>If needed you can change the <guilabel>Task</guilabel> operations
                 determined by the Comparator with the
           <link linkend="synccomp_right_click">right click menu</link>.</para>
               </listitem>
@@ -1298,11 +1298,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 <varlistentry><term>Panel elements</term>
   <listitem>
    <itemizedlist>
-     <listitem><para><guilabel>"Left Directory"</guilabel>: the left side base directory.</para>
+     <listitem><para><guilabel>Left Directory</guilabel>: the left side base directory.</para>
              </listitem>
-     <listitem><para><guilabel>"Right Directory"</guilabel>: the right side base directory.</para>
+     <listitem><para><guilabel>Right Directory</guilabel>: the right side base directory.</para>
                </listitem>
-    <listitem><para><guilabel>"File Filter"</guilabel>: filter the filenames at synchronizing. &eg;
+    <listitem><para><guilabel>File Filter</guilabel>: filter the filenames at synchronizing. &eg;
                     <literal role="extension">*.png</literal> selects only those files whose name's end
         with <literal role="extension">.png</literal>
                     Directories will be listed if the directory name ends with
@@ -1313,9 +1313,9 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
                     <literal role="extension">*.moc.cpp</literal>
                     </para>
               </listitem>
-   <listitem><para><guilabel>"General filters"</guilabel>: search for, containing text</para>
+   <listitem><para><guilabel>General filters</guilabel>: search for, containing text</para>
                </listitem>
-   <listitem><para><guilabel>"Advanced filters"</guilabel>: size, date, ownership</para>
+   <listitem><para><guilabel>Advanced filters</guilabel>: size, date, ownership</para>
                </listitem>
    </itemizedlist>
    </listitem>
@@ -1324,22 +1324,22 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 <varlistentry id="synccomp_checkb_options"><term>Checkbox options</term>
   <listitem>
    <itemizedlist>
-     <listitem><para><guilabel>"Recurse subdirectories"</guilabel>:
+     <listitem><para><guilabel>Recurse subdirectories</guilabel>:
                the Synchronizer walks through subdirectories when comparing.</para>
          </listitem>
-     <listitem><para><guilabel>"Follow symlinks"</guilabel>:
+     <listitem><para><guilabel>Follow symlinks</guilabel>:
                the Synchronizer follows the symbolic links to directories (not the files!).</para>
          </listitem>
-     <listitem><para><guilabel>"Compare by content"</guilabel>:
+     <listitem><para><guilabel>Compare by content</guilabel>:
                those files whose sizes are equal will be compared by content as well.</para>
          </listitem>
-     <listitem><para><guilabel>"Ignore Date"</guilabel>:
+     <listitem><para><guilabel>Ignore Date</guilabel>:
                Ignores the date information (useful for &FTP;, smb, archive, ... )
                      the date information is relevant *only* in the local file system.</para>
                </listitem>
-     <listitem><para><guilabel>"Asymmetric"</guilabel>:
-               The <guilabel>"Left Directory"</guilabel> is the target directory,
-                     the <guilabel>"Right Directory"</guilabel> is the source directory.
+     <listitem><para><guilabel>Asymmetric</guilabel>:
+               The <guilabel>Left Directory</guilabel> is the target directory,
+                     the <guilabel>Right Directory</guilabel> is the source directory.
                      This functions synchronizes the content of the left directory to the right directory.
                      <itemizedlist>
                      <listitem><para>Those files that exist only on the left side will be deleted.</para>
@@ -1357,7 +1357,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
                    NOTE: do NOT use this to option to synchronize a desktop and a notebook
                    (&eg; files that exists only in the left side will be deleted!).</para>
                 </listitem>
-      <listitem><para><guilabel>"Automatic Scrolling"</guilabel>:
+      <listitem><para><guilabel>Automatic Scrolling</guilabel>:
                    Is for slow &FTP; servers, ... When the Synchronizer is finished
                       comparing a file, it puts the file into the end of the list at once and
                       scrolls the window, if necessary. It is important if you want to
@@ -1377,7 +1377,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <variablelist><varlistentry><term>"File List"</term>
   <listitem>
-    <para>The <guilabel>"File List"</guilabel> has the following columns: "Left name | Left size | Left time |
+    <para>The <guilabel>File List</guilabel> has the following columns: "Left name | Left size | Left time |
            Task | Right time | Right size | Right name".</para>
     </listitem>
   </varlistentry>
@@ -1545,16 +1545,16 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
     <listitem>
     <para>Here you confirm the copy and delete operations of the Synchronizer</para>
     <itemizedlist>
-      <listitem><para><guilabel>"Right to left"</guilabel>:
+      <listitem><para><guilabel>Right to left</guilabel>:
              copy X1 files ( Y1 bytes )
                    enable / disable the copy from right to left.</para></listitem>
-      <listitem><para><guilabel>"Left to right"</guilabel>:
+      <listitem><para><guilabel>Left to right</guilabel>:
              copy X2 files ( Y2 bytes )
                    enable / disable the copy from left to right.</para></listitem>
-  <listitem><para><guilabel>"Left"</guilabel>:
+  <listitem><para><guilabel>Left</guilabel>:
              delete X3 files ( Y3 bytes )
                    enable / disable the left side deleting.</para></listitem>
-  <listitem><para><guilabel>"Confirm overwrites"</guilabel>:
+  <listitem><para><guilabel>Confirm overwrites</guilabel>:
              By switching this option on, Krusader will show the
                    <guibutton>"rename, skip, overwrite, skip all, overwrite all"</guibutton> dialog box,
                    before overwriting the file.</para></listitem>
@@ -1564,11 +1564,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
     <varlistentry><term>Status labels</term>
     <listitem>
     <itemizedlist>
-      <listitem><para><guilabel>"Ready"</guilabel>:
+      <listitem><para><guilabel>Ready</guilabel>:
              A1/A2 files, B1/B2.
        This line is changed at synchronizing, showing that synchronizer finished
                    with A1 files from A2 ( B1 bytes from B2 ).</para></listitem>
-      <listitem><para><guilabel>"Progress bar"</guilabel>:
+      <listitem><para><guilabel>Progress bar</guilabel>:
              Shows the progress on the synchronization (based on bytes).</para></listitem>
     </itemizedlist></listitem>
     </varlistentry>
