@@ -19,7 +19,7 @@ krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./DiskUsage/lib
 SUBDIRS = BookMan Dialogs DiskUsage GUI Konfigurator KViewer MountMan Panel RemoteMan VFS \
         Search Splitter Synchronizer Locate UserAction UserMenu
 
-EXTRA_DIST = krusader.desktop krusader_root-mode.desktop defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h useractions.xml krusaderui.rc krusaderview.cpp krusaderview.h main.cpp resources.h krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 16-blue-krusader.png 22-blue-krusader.png 32-blue-krusader.png 48-blue-krusader.png 64-blue-krusader.png 16-red-krusader.png 22-red-krusader.png 32-red-krusader.png 48-red-krusader.png 64-red-krusader.png total_commander.keymap total_commander.keymap.info midnight_commander.color total_commander.color
+EXTRA_DIST = krusader.desktop krusader_root-mode.desktop defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h useractions.xml krusaderui.rc krusaderview.cpp krusaderview.h main.cpp resources.h krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 16-blue-krusader.png 22-blue-krusader.png 32-blue-krusader.png 48-blue-krusader.png 64-blue-krusader.png 16-red-krusader.png 22-red-krusader.png 32-red-krusader.png 48-red-krusader.png 64-red-krusader.png 22-shield-krusader.png 32-shield-krusader.png 48-shield-krusader.png 64-shield-krusader.png total_commander.keymap total_commander.keymap.info midnight_commander.color total_commander.color
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Applications/
@@ -58,6 +58,10 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/48-red-krusader.png $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/krusader_red.png
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/
 	$(INSTALL_DATA) $(srcdir)/64-red-krusader.png $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/krusader_red.png
+	$(INSTALL_DATA) $(srcdir)/22-shield-krusader.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/krusader_shield.png
+	$(INSTALL_DATA) $(srcdir)/32-shield-krusader.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/krusader_shield.png
+	$(INSTALL_DATA) $(srcdir)/48-shield-krusader.png $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/krusader_shield.png
+	$(INSTALL_DATA) $(srcdir)/64-shield-krusader.png $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/krusader_shield.png
 
 uninstall-local:
 	-rm -f $(DESTDIR)$(kde_appsdir)/Applications/krusader.desktop
@@ -78,6 +82,10 @@ uninstall-local:
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/krusader_red.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/krusader_red.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/krusader_red.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/krusader_shield.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/krusader_shield.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/krusader_shield.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/krusader_shield.png
 
 ####### kdevelop will overwrite this part!!! (end)############
 # These paths are KDE specific. Use them:
