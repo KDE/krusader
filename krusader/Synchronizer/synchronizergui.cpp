@@ -1036,7 +1036,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   
   QGroupBox *compareDirs = new QGroupBox( synchronizerTab, "SyncCompareDirectories" );
   compareDirs->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed);
-  compareDirs->setTitle( i18n( "Directory Comparation" ) );
+  compareDirs->setTitle( i18n( "Directory Comparison" ) );
   compareDirs->setColumnLayout(0, Qt::Vertical );
   compareDirs->layout()->setSpacing( 0 );
   compareDirs->layout()->setMargin( 0 );
