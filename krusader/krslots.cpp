@@ -319,6 +319,38 @@ void KRslots::sysInfo(){
   }
 }
 
+void KRslots::multiRename(){
+	QStringList lst = Krusader::supportedTools();
+	int i = lst.findIndex("RENAME");
+	if (i == -1){
+  	KMessageBox::sorry(krApp,i18n("Can't find a batch renamer tool.\nYou can get Krename at http://krename.sf.net"));
+  	return;
+	}
+	QString pathToRename = lst[i+1];
+
+	if ( ACTIVE_PANEL->type != "list" ) return; // safety
+	
+  QStringList names;
+  ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&names);
+	KURL::List* urls = ((ListPanel*)ACTIVE_PANEL)->files->vfs_getFiles(&names);
+
+	if( urls->isEmpty() ){
+		delete urls;
+		return;
+	}
+
+	KShellProcess proc;
+	proc << pathToRename;
+
+	for( KURL::List::iterator u=urls->begin(); u != urls->end(); ++u){
+    if( QFileInfo((*u).path()).isDir() ) proc << "-r";
+		proc << (*u).path();	
+	}
+
+	proc.start(KProcess::DontCare);
+	delete urls;
+}
+
 
 // settings slots
 void KRslots::configToolbar(){

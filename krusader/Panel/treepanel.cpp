@@ -211,6 +211,7 @@ void TreePanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
   krAddBookmark->setEnabled(false);     // add a bookmark
 	krCompare->setEnabled(false);         // compare by content
   krCompareDirs->setEnabled(false); compareMode=false; otherPanel->compareMode=false;
+	krMultiRename->setEnabled(false);
 }
 
 // this is used to start the panel, AFTER setOther() has been used

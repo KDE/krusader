@@ -83,6 +83,7 @@ KAction  *Krusader::actKonfigurator=0;  KAction  *Krusader::actToolsSetup=0;
 KAction  *Krusader::actBack=0;          KAction  *Krusader::actRoot=0;
 KAction  *Krusader::actFind=0;          KAction  *Krusader::actAddBookmark=0;
 KAction  *Krusader::actSavePosition=0;  KAction  *Krusader::actSelectColorMask=0;
+KAction  *Krusader::actMultiRename=0;
 KToggleAction *Krusader::actToggleTerminal=0;
 
 
@@ -344,15 +345,17 @@ void Krusader::setupActions() {
 	                      krApp,     SLOT(savePosition()),     actionCollection(), "save position");
   actAllFilter =  		new KAction(i18n("&All Files"),  SHIFT+Key_F10,
 												SLOTS, 		SLOT(allFilter()),				 actionCollection(), "all files");
-	actExecFilter = new KAction(i18n("&Executables"),    SHIFT+Key_F11,
-												SLOTS, 		SLOT(execFilter()), 			 actionCollection(), "exec files");
-	actCustomFilter=new KAction(i18n("&Custom"),                                				SHIFT+Key_F12,
-												SLOTS,			SLOT(customFilter()), 		actionCollection(), "custom files");
-  actQuickPanel = new KAction(i18n("&Quickview Panel"), ALT+Key_3,
-												SLOTS,			SLOT(setQuickView()), 		actionCollection(), "quickview panel");
-  actCompare = new KAction(i18n("Compare b&y content"), "kr_compare",
-                           0, SLOTS, SLOT(compareContent()), actionCollection(), "compare");
-  new KAction(i18n("Right-click menu"), Key_Menu,
+	actExecFilter = 		new KAction(i18n("&Executables"),SHIFT+Key_F11,
+												SLOTS, 		SLOT(execFilter()),     	 actionCollection(), "exec files");
+	actCustomFilter=		new KAction(i18n("&Custom"), 				 SHIFT+Key_F12,
+												SLOTS,			SLOT(customFilter()), 	 actionCollection(), "custom files");
+  actQuickPanel = 		new KAction(i18n("&Quickview Panel"), ALT+Key_3,
+												SLOTS,			SLOT(setQuickView()), 	 actionCollection(), "quickview panel");
+  actCompare = 				new KAction(i18n("Compare b&y content"), "kr_compare", 0,
+												SLOTS, SLOT(compareContent()), actionCollection(), "compare");
+  actMultiRename = 		new KAction(i18n("Multi Rename"), "krename", SHIFT+Key_F9,
+                        SLOTS, SLOT(multiRename()), actionCollection(), "multirename");
+	new KAction(i18n("Right-click menu"), Key_Menu,
       				SLOTS,			SLOT(rightclickMenu()), 		actionCollection(), "rightclick menu");
 																
 	// and at last we can set the tool-tips
@@ -538,7 +541,7 @@ void Krusader::updateGUI(bool enforce) {
 // return a list in the format of TOOLS,PATH. for example
 // DIFF,kdiff,TERMINAL,konsole,...
 //
-// currently supported tools: DIFF,
+// currently supported tools: DIFF, MAIL, RENAME
 //
 // to use it: QStringList lst = supportedTools();
 //            int i = lst.findIndex("DIFF");
@@ -585,6 +588,16 @@ QStringList Krusader::supportedTools() {
       skip = true;
     }
   }
+	// rename tool: krename
+  skip = false;
+  if (!skip) {
+    proc.clearArguments();
+  	proc << "which krename >/dev/null 2>&1";
+  	if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 ) {
+  		tools.append("RENAME"); tools.append("krename");
+      skip = true;
+		}
+	}
 
   return tools;
 }

@@ -96,7 +96,7 @@ public:
   static KAction *actFullPanel, *actTreePanel, *actQuickPanel, *actAllFilter;
   static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actBookMan, *actNewTool;
   static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actAddBookmark;
-	static KAction *actSelectColorMask;
+	static KAction *actSelectColorMask, *actMultiRename;
 	static KToggleAction *actToggleTerminal;
   KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
                 *actShowStatusBar,*actToggleHidden, *actCompareDirs, *actToggleSortByExt;
@@ -158,6 +158,7 @@ signals:
 #define krBack            Krusader::App->actBack
 #define krRoot            Krusader::App->actRoot
 #define krFind            Krusader::App->actFind           // find files
+#define krMultiRename     Krusader::App->actMultiRename
 #define krAddBookmark     Krusader::App->actAddBookmark    // add a bookmark
 #define krSelectColorMask Krusader::App->actSelectColorMask// select compare-mask
 #define krToggleTerminal  Krusader::App->actToggleTerminal

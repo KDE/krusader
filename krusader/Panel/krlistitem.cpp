@@ -45,9 +45,9 @@ QString num2qstring(QString text){
 
 int KRListItem::compare(QListViewItem *i,int col,bool ascending ) const {
   int asc = ( ascending ? -1 : 1 );
-
-
+ 
   if (text(0)== "..") return 1*asc;
+	if (i->text(0)== "..") return -1*asc;
 
   if( text(1)== "<DIR>" ){
     if( i->text(1) != "<DIR>" ) return 1*asc;
@@ -67,20 +67,34 @@ int KRListItem::compare(QListViewItem *i,int col,bool ascending ) const {
 
   int result = 0;
 
-
-  if( col == 0 )
-    result = QString::compare(text(col),i->text(col));
-  if( col == 1 )
-    result = QString::compare(num2qstring(text(1)),num2qstring(i->text(1)));
-  if( col == 3 )
-    result = QString::compare(KRpermHandler::date2qstring(text(2)),
-                              KRpermHandler::date2qstring(i->text(2)));
-
+  switch (col) {
+  	case 0:
+    	result = QString::compare(text0,itext0);
+			break;
+		case 1:
+    	result = QString::compare(num2qstring(text(1)),num2qstring(i->text(1)));
+			break;
+ 		case 2:
+			QString  d = "" +
+      		text(2)[6] + text(2)[7] + // year
+					text(2)[3] + text(2)[4] + // month
+					text(2)[0] + text(2)[1] + // day
+          text(2)[9] + text(2)[10]+ //	hour
+					text(2)[12]+ text(2)[13]; // minute
+			QString  id = "" +
+      		i->text(2)[6] + i->text(2)[7] + // year
+					i->text(2)[3] + i->text(2)[4] + // month
+					i->text(2)[0] + i->text(2)[1] + // day
+          i->text(2)[9] + i->text(2)[10]+ //	hour
+					i->text(2)[12]+ i->text(2)[13]; // minute
+    	result = QString::compare(d,id);
+			break;
+  }
 
   if( krToggleSortByExt->isChecked() ){
-    QString ext;
+    QString ext, iext;
+
     if( text0.find('.',2) != -1) ext = text0.mid(text0.findRev('.'));
-    QString iext;
     if( itext0.find('.',2) != -1) iext = itext0.mid(itext0.findRev('.'));
     int extResult = QString::compare(ext,iext);
     if( extResult != 0 ) return extResult;

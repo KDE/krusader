@@ -119,6 +119,9 @@ void kgGeneralImpl::slotFindTools() {
   if (PS("MAIL")) info+=i18n("mail: found ")+lst[lst.findIndex("MAIL") + 1]+i18n(", sending files by email enabled.\n");
   else info+=i18n("mail: no compatible mail-programs found. Sending files by email is disabled.\nhint: Krusader supports kmail\n\n");
 
+  if (PS("RENAME")) info+=i18n("rename: found ")+lst[lst.findIndex("RENAME") + 1]+i18n(", multipule rename enabled.\n");
+  else info+=i18n("rename: no compatible renamer-programs found. multipule rename is disabled.\nhint: Krusader supports krename\n\n");
+
 
   info+=i18n("\nIf you install new tools, please install them");
   info+=i18n("\nto your path. (ie: /usr/bin, /usr/local/bin etc.)");

@@ -120,6 +120,7 @@ void QuickViewPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar
   krAddBookmark->setEnabled(false);     // add a bookmark
 	krCompare->setEnabled(false);         // compare by content
 	krCompareDirs->setEnabled(false); compareMode=false; otherPanel->compareMode=false;
+  krMultiRename->setEnabled(false);
 	emit cmdLineUpdate(getPath());
 }
 

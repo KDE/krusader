@@ -98,6 +98,7 @@ public slots:
 	void toggleCmdline();
 	void changeTrashIcon();
   void showAboutApplication();
+	void multiRename();
 	// F2
 	void terminal();
 	// F3

@@ -106,6 +106,9 @@ QString KMountMan::nextWord(QString &s) {
 }
 
 QString KMountMan::followLink(QString source) {
+  // ugly hack - disable link following because of devfs
+  return source;
+
   QFileInfo temp(source);
   // if the file doesn't exist and it contains //, it's probably a samba share
   // <patch> thanks to Cristi Dumitrescu
@@ -135,7 +138,7 @@ bool KMountMan::createFilesystems() {
   while (!fstab.atEnd()) {
     s = t.readLine();
     s = s.simplifyWhiteSpace(); // remove TABs
-    if (s==QString::null || s=="") break;  // skip empty lines in fstab
+    if (s==QString::null || s=="") continue;  // skip empty lines in fstab
     // temp[0]==name, temp[1]==type, temp[2]==mount point, temp[3]==options
     // temp[4] is reserved for special cases, right now, only for supermount
  		bool remark=false;
@@ -146,7 +149,7 @@ bool KMountMan::createFilesystems() {
 		// now, we check if a remark was inserted in the line
 		for (int cnt=0; cnt<3; ++cnt)
 			if (temp[cnt][i]=="#" || temp[cnt][i].left(1)=="#") {
-				kdWarning() << "MountMan: found a remark in fstab, skipping the line." << endl;
+				kdDebug() << "MountMan: found a remark in fstab, skipping the line." << endl;
         remark=true;
         break;
 			}
@@ -172,16 +175,16 @@ bool KMountMan::createFilesystems() {
   }
   --i; fstab.close();  // finished with it
   for (j=0; j<=i; ++j) {
-  	if (temp[0][j]=="" || temp[1][j]=="proc" || temp[1][j]=="/dev/pts" ||
-  			temp[1][j]=="swap" || temp[0][j]=="none" || temp[0][j]=="proc" ||
-        temp[0][j]=="swap" || temp[4][j]=="supermount") continue;
+  	if (temp[0][j]=="" || temp[0][j]=="tmpfs" || temp[0][j]=="none" || temp[0][j]=="proc" ||
+        temp[0][j]=="swap" || temp[1][j]=="proc" || temp[1][j]=="/dev/pts" ||	
+        temp[1][j]=="swap" || temp[4][j]=="supermount") continue;
   	++noOfFilesystems;
   }
   // now, create the main list
   QString forDebugOnly="";
   i=0; j=0;
   while (i<noOfFilesystems) {
-		if (temp[0][j]=="" || temp[1][j]=="proc" || temp[1][j]=="/dev/pts" ||
+		if (temp[0][j]=="" || temp[1][j]=="proc" || temp[1][j]=="/dev/pts" || temp[0][j]=="tmpfs" ||
   			temp[1][j]=="swap" || temp[0][j]=="none" || temp[0][j]=="proc" ||
         temp[0][j]=="swap" || temp[4][j]=="supermount") ++j;
     else {
@@ -323,14 +326,16 @@ void KMountMan::parseDfData(QString filename) {
     return;                   // make mt.man non-operational
   }
   QTextStream t( &f );        // use a text stream
-  QString s;
+  QString s,s2;
   s = t.readLine();  // read the 1st line - it's trash for us
   // now that we have a QString containing all the output of DF, let's get to work.
   int countFilesystems=0; // sucessfully found filesystems
   while (!t.eof()) {
 		bool newFS=false;
-    s = t.readLine();  // this is the important one!
+    s2 = s = t.readLine();  // this is the important one!
     temp=nextWord(s,' ');
+    // avoid adding unwanted filesystems to the list
+    if (temp=="tmpfs") continue;
     temp=followLink(temp);  // make sure DF gives us the true device and not a link
     fsData* loc=location(temp); // where is the filesystem located in our list?
     if (loc==0) {
@@ -361,7 +366,7 @@ void KMountMan::parseDfData(QString filename) {
     if (loc->mntPoint()!=temp) {
     	if (!newFS)
 				kdWarning() << "Mt.Man: according to DF, filesystem [" << loc->name() <<
-    		           		 "] is mounted on a point which is different from what's stated in /etc/fstab." << endl;
+    		           		 "] is mounted on " << temp << " and not on " << loc->mntPoint()<< endl;
       loc->setMntPoint(temp);  // DF knows best
     }
     loc->setMounted(true);
@@ -625,3 +630,4 @@ QString KMountMan::convertSize( unsigned long size )
 }
 
 #include "kmountman.moc"
+

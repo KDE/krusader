@@ -291,6 +291,7 @@ void ListPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
                           || files->vfs_getType()=="ftp");
   krCompare->setEnabled(otherPanel->type=="list");    // compare by content
   krCompareDirs->setEnabled(otherPanel->type=="list");// compare dirs
+	krMultiRename->setEnabled(files->vfs_getType()=="normal");
 }
 
 // overload this to control the NAME column resize
