@@ -134,7 +134,7 @@ kgArchives::kgArchives( QWidget* parent,  const char* name )
     Layout4->addWidget( kgMoveIntoArchives );
 
     kgTestArchives = new QCheckBox( privateLayoutWidget, "kgTestArchives" );
-    kgTestArchives->setText( i18n( "Test archive when finished packingsdfsfsdfsdfsdfsdf!" ) );
+    kgTestArchives->setText( i18n( "Test archive when finished packing                    " ) );
     QToolTip::add(  kgTestArchives, i18n( "If checked, Krusader will test the archive's intergrity after packing it." ) );
     Layout4->addWidget( kgTestArchives );
 
