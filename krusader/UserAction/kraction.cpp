@@ -92,7 +92,10 @@ void KrActionProc::start( QString cmdLine ) {
 void KrActionProc::start( QStringList cmdLineList ) {
    _proc->clearArguments();
    QString cmd;
-   
+
+	if (!_properties->startpath()->isEmpty())
+		_proc->setWorkingDirectory(*_properties->startpath());
+	   
    if ( _properties->execType() == UserActionProperties::Terminal && cmdLineList.count() > 1)
       KMessageBox::sorry( 0, "Support for more then one command don't work in a terminal. Only the first is executed in the terminal" );
    
