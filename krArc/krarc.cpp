@@ -48,7 +48,7 @@
 	QFile f("/tmp/debug");    \
 	f.open(IO_WriteOnly | IO_Append);     \
 	QTextStream stream( &f ); \
-  stream <<__FUNCTION__<<"(" <<__LINE__<<"): "; \
+  stream << "Pid:" << (int)getpid() << " " <<__FUNCTION__<<"(" <<__LINE__<<"): "; \
   stream << X << endl;      \
 	f.close();                \
 } while(0);
@@ -109,7 +109,13 @@ void kio_krarcProtocol::receivedData(KProcess*,char* buf,int len){
 
 void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
   KRDEBUG(url.path());
+  
   setArcFile(url.path());
+  if( newArchiveURL && !initDirDict(url) ){ 
+    error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
+    return;
+  }
+  
   if( putCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Creating directories is not supported with %1 archives").arg(arcType) );
@@ -157,6 +163,11 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
 void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool resume){
   KRDEBUG(url.path());
   setArcFile(url.path());
+  if( newArchiveURL && !initDirDict(url) ){ 
+    error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
+    return;
+  }
+  
   if( putCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Writing to %1 archives is not supported").arg(arcType) );
@@ -213,7 +224,13 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 void kio_krarcProtocol::get(const KURL& url ){
   bool isArjGet = false;
   KRDEBUG(url.path());
+  
   if( !setArcFile(url.path()) ) return;
+  if( newArchiveURL && !initDirDict(url) ){ 
+    error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
+    return;
+  }
+  
   if( getCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Retrieving data from %1 archives is not supported").arg(arcType) );
@@ -346,7 +363,13 @@ void kio_krarcProtocol::get(const KURL& url ){
 
 void kio_krarcProtocol::del(KURL const & url, bool isFile){
   KRDEBUG(url.path());
+  
   setArcFile(url.path());
+  if( newArchiveURL && !initDirDict(url) ){ 
+    error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
+    return;
+  }
+  
   if( delCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Deleting files from %1 archives is not supported").arg(arcType) );
@@ -375,6 +398,11 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 void kio_krarcProtocol::stat( const KURL & url ){  
   KRDEBUG(url.path());
   if( !setArcFile(url.path()) ) return;
+  if( newArchiveURL && !initDirDict(url) ){ 
+    error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
+    return;
+  }
+  
   if( listCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Accessing files is not supported with the %1 archives").arg(arcType) );
@@ -411,7 +439,15 @@ void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool) {
   if( dest.isLocalFile() )
     do
     {
+      if( url.fileName() != dest.fileName() )
+        break;
+      
       setArcFile(url.path());
+      if( newArchiveURL && !initDirDict(url) ){ 
+        error(ERR_CANNOT_ENTER_DIRECTORY,url.path());
+        return;
+      }
+      
       UDSEntry* entry = findFileEntry(url);
       if( copyCmd.isEmpty() || !entry )
         break;
@@ -490,8 +526,10 @@ void kio_krarcProtocol::listDir(const KURL& url){
 bool kio_krarcProtocol::setArcFile(const QString& path){
 	time_t currTime = time( 0 );
 	archiveChanged = true;
+	newArchiveURL = true;
 	// is the file already set ?
 	if( arcFile && arcFile->url().path(-1) == path.left(arcFile->url().path(-1).length()) ){
+		newArchiveURL = false;        
 		// Has it changed ?
 		KFileItem* newArcFile = new KFileItem(arcFile->url(),QString::null,0);
 		if( !newArcFile->cmp( *arcFile ) ){

@@ -79,6 +79,7 @@ private:
 	QDict<KIO::UDSEntryList> dirDict; //< the directoris data structure.
   bool archiveChanged;              //< true if the archive was changed.
   bool archiveChanging;             //< true if the archive is currently changing.
+  bool newArchiveURL;               //< true if new archive was entered for the protocol
 	KFileItem* arcFile;               //< the archive file item.
   QString arcPath;                  //< the archive location
 	QString arcTempDir;               //< the currently used temp directory.
