@@ -30,7 +30,7 @@
 
 #include "../krusader.h"
 #include "advancedfilter.h"
-#include "../Dialogs/krdialogs.h"
+#include "krdialogs.h"
 
 #include <qgroupbox.h>
 #include <klocale.h>

@@ -33,8 +33,8 @@
 
 #include "synchronizer.h"
 #include "../GUI/profilemanager.h"
-#include "../Search/advancedfilter.h"
-#include "../Search/generalfilter.h"
+#include "../Dialogs/advancedfilter.h"
+#include "../Dialogs/generalfilter.h"
 #include <qdialog.h>
 #include <qlistview.h>
 #include <kcombobox.h>

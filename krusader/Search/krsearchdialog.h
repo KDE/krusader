@@ -33,8 +33,8 @@
 #ifndef KRSEARCHDIALOG_H
 #define KRSEARCHDIALOG_H
 
-#include "generalfilter.h"
-#include "advancedfilter.h"
+#include "../Dialogs/generalfilter.h"
+#include "../Dialogs/advancedfilter.h"
 #include "../VFS/krquery.h"
 #include "krsearchmod.h"
 #include "../GUI/profilemanager.h"
