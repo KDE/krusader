@@ -10,7 +10,6 @@
 #include <kdebug.h>
 #include <kstandarddirs.h>
 #include <qfile.h>
-#include <kdirwatch.h>
 
 #define SPECIAL_BOOKMARKS	true
 
@@ -18,9 +17,7 @@
 #define BOOKMARKS_FILE	"krusader/bookman2.xml"
 #define TOP_OF_MENU		0
 #define BOTTOM_OF_MENU	_menu->indexOf(Border)
-#define CONNECT_BM(X)	connect(X, SIGNAL(activated(KrBookmark *)), this, SLOT(bookmarkActivated(KrBookmark *)));
-#define STOPWATCH		_dirwatch->stopDirScan(_filename)
-#define STARTWATCH	_dirwatch->restartDirScan(_filename)
+#define CONNECT_BM(X)	connect(X, SIGNAL(activated(const KURL&)), SLOTS, SLOT(refresh(const KURL&)));
 											
 KrBookmarkHandler::KrBookmarkHandler(): QObject(0) {
 	// create our own action collection and make the shortcuts apply only to parent
@@ -29,12 +26,11 @@ KrBookmarkHandler::KrBookmarkHandler(): QObject(0) {
 	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
 	_root = new KrBookmark("root");
 
-	// load bookmarks and populate the menu
-	_filename = locateLocal( "data", BOOKMARKS_FILE );
+	// load bookmarks 
 	importFromFile();
 }
 
-KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject(parent), _menu(menu) {
+KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject(parent) {
 // create our own action collection and make the shortcuts apply only to parent
 	_collection = new KActionCollection(0, parent);
 	
@@ -42,16 +38,16 @@ KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject
 	_root = new KrBookmark("root");
 
 	// start watching the bookmarks file for updates
-	_filename = locateLocal( "data", BOOKMARKS_FILE );
-	_dirwatch = new KDirWatch(this);
+	//_filename = locateLocal( "data", BOOKMARKS_FILE );
+	//_dirwatch = new KDirWatch(this);
 	//_dirwatch->addFile(locateLocal("data", BOOKMARKS_FILE));
-	connect(_dirwatch, SIGNAL(dirty(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
-	connect(_dirwatch, SIGNAL(created(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
+	//connect(_dirwatch, SIGNAL(dirty(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
+	//connect(_dirwatch, SIGNAL(created(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
 
 	// add quick navigation
-	_menu->setKeyboardShortcutsEnabled(true);
-	_menu->setKeyboardShortcutsExecute(true);
-	connect(_menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
+	//_menu->setKeyboardShortcutsEnabled(true);
+	//_menu->setKeyboardShortcutsExecute(true);
+	//connect(_menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
 	
 	// load bookmarks and populate the menu
 	importFromFile();
@@ -59,26 +55,22 @@ KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject
 	
 	// border: a dummy item used to separate normal bookmarks from special ones,
 	// operations etc. we use it later when inserting bookmarks at the bottom
-	_menu->insertItem("border-dummy", Border);
-	_menu->setItemVisible(Border, false);
+	//_menu->insertItem("border-dummy", Border);
+	//_menu->setItemVisible(Border, false);
 
 	// do we need to add special bookmarks?
 	if (SPECIAL_BOOKMARKS) {
 		// note: special bookmarks are not kept inside the _bookmarks list and added ad-hoc
-		_menu->insertSeparator();
+		//_menu->insertSeparator();
 		KrBookmark *bm = KrBookmark::devices(_collection);
-		bm->plug(_menu);
+		//bm->plug(_menu);
 		CONNECT_BM(bm);
 	}
-	_menu->insertSeparator();
-	_menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
-		i18n("Bookmark Current"), BookmarkCurrent);
-	_menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
-		i18n("Manage Bookmarks"), ManageBookmarks);
-}
-
-void KrBookmarkHandler::bookmarkActivated(KrBookmark *bm) {
-	emit openUrl(bm->url());
+	//_menu->insertSeparator();
+	//_menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
+	//	i18n("Bookmark Current"), BookmarkCurrent);
+	//_menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
+	//	i18n("Manage Bookmarks"), ManageBookmarks);
 }
 
 void KrBookmarkHandler::menuOperation(int id) {
@@ -108,8 +100,8 @@ void KrBookmarkHandler::addBookmark(KrBookmark *bm, bool saveData, KrBookmark *f
 	folder->children().append(bm);
 
 	// add to menu
-	bm->plug(_menu, BOTTOM_OF_MENU);
-	CONNECT_BM(bm);
+	//bm->plug(_menu, BOTTOM_OF_MENU);
+	//CONNECT_BM(bm);
 
 	if (saveData) // save
 		exportToFile();
@@ -160,26 +152,20 @@ void KrBookmarkHandler::exportToFileFolder(QDomDocument &doc, QDomElement &paren
 //    </folder>
 //  </xbel>
 void KrBookmarkHandler::exportToFile() {
-	// disable the dirwatch while saving the file
-	STOPWATCH;
-
 	QDomDocument doc( "xbel" );
    QDomElement root = doc.createElement( "xbel" );
    doc.appendChild( root );
 
 	exportToFileFolder(doc, root, _root);
-
-	QFile file(_filename);
+	QString filename = locateLocal( "data", BOOKMARKS_FILE );
+	QFile file(filename);
 	if ( file.open( IO_WriteOnly ) ) {
 		QTextStream stream( &file );
 		stream << doc.toString();
 		file.close();
 	} else {
-		KMessageBox::error(krApp, i18n("Error"), i18n("Unable to write to ") + _filename);
+		KMessageBox::error(krApp, i18n("Error"), i18n("Unable to write to ") + filename);
 	}
-
-	// re-enable the dirwatch
-	STARTWATCH;
 }
 
 bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg) {
@@ -237,8 +223,8 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 
 
 void KrBookmarkHandler::importFromFile() {
-	//STOPWATCH;
-	QFile file( _filename );
+	QString filename = locateLocal( "data", BOOKMARKS_FILE );
+	QFile file( filename );
 	if ( !file.open(IO_ReadOnly))
 		return; // no bookmarks file
 
@@ -255,7 +241,7 @@ void KrBookmarkHandler::importFromFile() {
 		n = n.nextSibling();
 
 	if (n.isNull() || n.toElement().tagName()!="xbel") {
-		errorMsg = _filename+i18n(" doesn't seem to be a valid Bookmarks file");
+		errorMsg = filename+i18n(" doesn't seem to be a valid Bookmarks file");
 		goto ERROR;
 	} else n = n.firstChild(); // skip the xbel part
 	importFromFileFolder(n, _root, &errorMsg);
@@ -266,8 +252,6 @@ ERROR:
 
 SUCCESS:
 	file.close();
-	//buildMenu(_root, _menu);
-	//STARTWATCH;
 }
 
 void KrBookmarkHandler::populate(KPopupMenu *menu) {

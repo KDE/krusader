@@ -8,13 +8,14 @@ class KrBookmarkButton: public QToolButton {
 	Q_OBJECT
 public:
 	KrBookmarkButton(QWidget *parent);
-	KrBookmarkHandler *handler() const { return _handler; }
 
 signals:
 	void openUrl(const KURL &url);
+
+protected slots:
+	void populate();
 	
 private:
-	KrBookmarkHandler *_handler;
 	KActionMenu *acmBookmarks;
 };
 

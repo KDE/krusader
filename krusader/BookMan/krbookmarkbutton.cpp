@@ -6,6 +6,7 @@
 #include <kaction.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
+#include <kdebug.h>
 
 KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 	QPixmap icon = krLoader->loadIcon("bookmark", KIcon::Toolbar, 16);
@@ -17,8 +18,13 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 
 	acmBookmarks = new KActionMenu(i18n("Bookmarks"), "bookmark", 0, 0);
 	acmBookmarks->setDelayed(false);
+	acmBookmarks->popupMenu()->setKeyboardShortcutsEnabled(true);
+	acmBookmarks->popupMenu()->setKeyboardShortcutsExecute(true);
 
-	//_handler = new KrBookmarkHandler(this, acmBookmarks->popupMenu());
 	setPopup(acmBookmarks->popupMenu());
+	connect(this, SIGNAL(pressed()), this, SLOT(populate()));
 }
 
+void KrBookmarkButton::populate() {
+	krBookMan->populate(static_cast<KPopupMenu*>(popup()));
+}

@@ -22,7 +22,7 @@ public:
 	static KrBookmark* devices(KActionCollection *collection);
 
 signals:
-	void activated(KrBookmark *bookmark);
+	void activated(const KURL& url);
 
 protected slots:
 	void activatedProxy();
