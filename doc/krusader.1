@@ -1,19 +1,22 @@
-.TH krusader 1 "30 December 2003" Linux "Krusader Manpage"
+.TH krusader 1 "5 February 2004" Linux "Krusader Manpage"
 .SH "NAME"
-krusader \- twin-panel file manager and ftp client for KDE 3.x
+krusader \- advanced twin-panel file manager and ftp client for KDE 3.x
 .SH "USAGE"
 .B krusader [Qt-options] [KDE-options] [options]
 .SH "DESCRIPTION"
-Krusader is a new "old-school" file manager and ftp/smb/fish client.
-It's twin-panel look follows in the footsteps of the great file managers
-of old: GNU's Midnight Commander and the DOS all time favorite Norton Commander.
-
-Krusader features:
-
-intuitive GUI, complete drag n' drop support, transparent handling of archives
-and ftp volumes, bookmarks (with a bookmark manager), pack and unpack,
-command line with history and "run in terminal" option, internal viewer-editor,
-built-in mount manager with an auto-mount option and much more.
+Krusader is an advanced twin-panel (commander-style)
+file-manager for KDE 3.x (similar to Midnight or Total Commander)
+but with many extras. It provides all the file-management features
+you could possibly want. Plus: extensive archive handling,
+mounted filesystem support, FTP, advanced search module,
+viewer/editor, directory synchronisation, file content comparisons,
+powerful batch renaming and much much more.
+It supports the following archive formats: tar, zip, bzip2,
+gzip, rar, ace, arj and rpm
+and can handle other KIOSlaves such as smb:// or fish://
+It is (almost) completely customizable, very user friendly,
+fast and looks great on your desktop! :-)
+You should give it a try.
 
 .SH "OPTIONS"
 .TP
@@ -44,17 +47,17 @@ show the license
 .SH "EXAMPLE"
 .B $ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net
 .SH "FILES"
-The configuration file "krusaderrc" can be stored at 2 locations:
-
-.I $KDEDIR/share/config/krusaderrc
-
-or
+Configuration files:
 
 .I ~/.kde/share/config/krusaderrc
 
-Bookmarks file:
-
 .I ~/.kde/share/apps/krusader/krbookmarks.xml
+
+.I $KDEDIR/share/apps/krusader/krusaderui.rc or
+.I ~/.kde/share/apps/krusader/krusaderui.rc
+
+.I ~/.kde/share/apps/krusader/krusermenu.dat
+
 .SH "PLATFORMS"
 Linux, FreeBSD
 
@@ -116,12 +119,14 @@ Root mode.
 File splitter & Combine files.
 
 Synchronize Directories.
+
+User menu.
 .SH "LICENSE"
 Krusader is distributed under the terms of the GNU General Public
 
-License version 2 as published by the Free Software Foundation. See the built-in
+License version 2 as published by the Free Software Foundation.
 
-help for details on the License and the lack of warranty.
+See the built-in help for details on the License and the lack of warranty.
 
 The copyright for the project and its name are still held by Shie Erlich and Rafi Yanai.
 .SH "i18n"
@@ -135,7 +140,7 @@ Read the Krusader translation howto if you want translate Krusader in your nativ
 .SH "FAQ'S"
 The latest version of the KRUSADER FAQ'S can be found at the Krusader website.
 .SH "SEE ALSO"
-The Krusader USERS MANUAL, at the krusader help menu.
+The Krusader Handbook, at the krusader help menu.
 
 The Krusader homepage on the World Wide Web:
 
@@ -145,15 +150,15 @@ http://krusader.sourceforge.net
 
 Krusader is developed by a dedicated team of individuals, known as the Krusader Krew.
 
-Shie Erlich, author <manson@users.sourceforge.net>
+Shie Erlich, author <erlich@users.sourceforge.net>
 
 Rafi Yanai, author <yanai@users.sourceforge.net>
 
 Dirk Eschler, Webmaster and i18n coordinator <deschler@users.sourceforge.net>
 
-Csaba Karai, Developer <csaba.karai@nokia.com>
+Csaba Karai, Developer <ckarai@users.sourceforge.net>
 
-Frank Schoolmeesters, Documentation and patches <codeknight@users.sourceforge.net>
+Frank Schoolmeesters, Documentation coordinator <codeknight@users.sourceforge.net>
 
 Mark Eatough, Krusader handbook proof reader <markeatough@yahoo.com>
 

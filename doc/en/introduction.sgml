@@ -2,8 +2,9 @@
 <!-- **********************************************************************
                             introduction.sgml
                           +++++++++++++++++++++
-  copyright            : (C) 2000, 2001, 2002, 2003 Rafi Yanai, Shie Erlich
-                             2003 Frank Schoolmeesters
+  copyright            : (C) 2000, 2001, 2002, 2003, 2004
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
   e-mail               : krusader@users.sourceforge.net
   web site             : http://krusader.sourceforge.net
   description          : a Krusader Documentation File
@@ -26,16 +27,27 @@
 		<imageobject><imagedata fileref="krusader_title.png" format="EPS"/></imageobject>
 	  <textobject><phrase>Krusader Logo</phrase></textobject>
 	</mediaobject>
-	</screenshot>
+</screenshot>
 
-
-	<para>
-	&krusader; is a twin-panel file-manager for &Linux;,
-	for the &kde; 3.x desktop environment.
-	</para>
-	<para>
-	<itemizedlist>
-  <title>&krusader; Features</title>
+<para>&krusader; is an advanced twin-panel (commander-style)
+      file-manager for &kde; 3.x (similar to <application>Midnight or Total Commander</application>)
+      with many extras.</para>
+      
+<para>It provides all the file-management features you could possibly want.
+      Plus: extensive archive handling, mounted filesystem support, &FTP;,
+      advanced search module, viewer/editor, directory synchronisation,
+      file content comparisons, powerful batch renaming and much much more.
+      It supports the following archive formats: tar, zip, bzip2, gzip, rar,ace, arj and rpm 
+      and can handle other KIOSlaves such as smb:// or fish://
+      It is (almost) completely customizable, very user friendly,
+      fast and looks great on your desktop! :-)
+      You should give it a try.</para>
+	
+<para>Thank you for using &krusader;.</para>
+	
+<para>
+<itemizedlist>
+<title>&krusader; Features</title>
 	<listitem>
 	   <para>Configurable &toolbar_lnk; and
 	   <link linkend="key_bindings">key-bindings</link>.</para>
@@ -45,13 +57,14 @@
 	<listitem>
 	    <para><link linkend="krusearcher">Advanced search module</link> that can search in archives.</para>
 	</listitem>
-  <listitem><para><link linkend="compare-dir">Directory comparison</link> and
-  <link linkend="view-menu">filtering</link>.</para></listitem>
+        <listitem><para><link linkend="compare-dir">Directory comparison</link> and
+                  <link linkend="view-menu">filtering</link>.</para></listitem>
  	<listitem>
             <para><link linkend="panels">Quick view and Tree panels</link>.</para>
 	</listitem>
-  <listitem><para>Ftp/Samba client with a <link linkend="remote-man">connection manager</link>
-  with SFTP/SCP support.</para></listitem>
+        <listitem><para>&FTP;/SAMBA client with a <link linkend="remote-man">connection manager</link>
+                   with SFTP/SCP support.</para>
+        </listitem>
 	<listitem><para>Opens a <link linkend="commands-menu">terminal</link> to the browsed
 	 path.</para></listitem>
 	<listitem>
@@ -100,11 +113,17 @@
 	    <para><link linkend="multi_rename">Krename</link> support, a very powerfull
 	                              external batch renamer for &kde; 3.x.</para>
 	</listitem>
+        </itemizedlist>
+</para>
+
+<para>
+<itemizedlist>
+  <title>New &krusader; Features</title>
 	<listitem>
 	   <para><link linkend="tabbrowsing">Tabbed Browsing</link>.</para>
 	</listitem>
 	<listitem>
-	    <para>&rootmode_lnk;.</para>
+	    <para>New &rootmode_lnk;.</para>
 	</listitem>
 	<listitem>
 	    <para><link linkend="split">File splitter</link> &amp; &combinefiles_lnk;.</para>
@@ -115,16 +134,22 @@
         <listitem>
 	    <para>&usermenu_lnk;.</para>
 	</listitem>
-	</itemizedlist>
-	</para>
+	        <listitem>
+	    <para>New &quick_search_lnk;.</para>
+	</listitem>
+	<listitem>
+	    <para>New <link linkend="konfig-startup">Konfigurator</link>.</para>
+	</listitem>
+</itemizedlist>
+</para>
 
-  <screenshot>
-	<screeninfo>Here's a screenshot of &krusader;</screeninfo>
+<screenshot>
+	<screeninfo>&krusader; screenshot</screeninfo>
 	<mediaobject>
 		<imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
-	  <imageobject><imagedata fileref="krusader1.eps" format="EPS"/></imageobject>
-	  <textobject><phrase>Screenshot</phrase></textobject>
+	        <imageobject><imagedata fileref="krusader1.eps" format="EPS"/></imageobject>
+	  <textobject><phrase>&krusader; screenshot</phrase></textobject>
+	  <caption><para>Here's a screenshot of &krusader;.</para></caption>
 	</mediaobject>
-	</screenshot>
-
+</screenshot>
 </chapter>

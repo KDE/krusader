@@ -2,8 +2,9 @@
 <!-- **********************************************************************
                             konfigurator.sgml
                           +++++++++++++++++++++
-  copyright            : (C) 2000, 2001, 2002, 2003 Rafi Yanai, Shie Erlich
-                             2003 Frank Schoolmeesters
+  copyright            : (C) 2000, 2001, 2002, 2003, 2004
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
   e-mail               : krusader@users.sourceforge.net
   web site             : http://krusader.sourceforge.net
   description          : a Krusader Documentation File
@@ -18,38 +19,49 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-<title>Konfigurator: Making Your Own &krusader;</title>
+<title>Konfigurator: &krusader;'s configuration center</title>
 
-<note><para>Konfigurator will be rewritten, some of the information in this handbook could be obsolete.</para></note>
+&rwfeaturenote;
 
 <para>Konfigurator is &krusader;'s configuration center. Here you can modify the way &krusader; does
-things and customize it to your own needs. At all times, pressing the <keycap>OK</keycap> button
-will apply the changes, pressing <keycap>Cancel</keycap> will cancel them, and pressing
-<keycap>Defaults</keycap> will reapply &krusader;'s "factory" settings. Konfigurator is divided
-into pages, each containing items related to that page.</para>
+things and customize it to your own needs. At all times, pressing the <guibutton>"Apply"</guibutton> button
+will apply the changes, pressing <guibutton>"Close"</guibutton> will close Konfigurator, and pressing
+<guibutton>"Defaults"</guibutton> will reapply &krusader;'s "factory" settings. Konfigurator is divided
+into pages, each containing items related to that page. For some changes to the &GUI;, you will have to close
+&krusader; and restart &krusader;.</para>
 
-	<sect1 id="konfig-startup">
-	<title>The startup page</title>
-	<screenshot>
-		<screeninfo>Konfigurator startup page</screeninfo>
-		<mediaobject>
-		<imageobject><imagedata fileref="kgstartup.png" format="PNG"/></imageobject>
-		<imageobject><imagedata fileref="kgstartup.eps" format="EPS"/></imageobject>
-		<textobject><phrase>Screenshot</phrase></textobject>
-		</mediaobject>
-	</screenshot>
-	<para>The startup page determines the way that &krusader; looks (and works) when it is launched.
-	It is divided into two main parts:</para>
+<sect1 id="konfig-startup">
+<title>Startup page</title>
+<screenshot>
+	<screeninfo>Konfigurator startup page</screeninfo>
+	<mediaobject>
+	<imageobject><imagedata fileref="kgstartup.png" format="PNG"/></imageobject>
+	<imageobject><imagedata fileref="kgstartup.eps" format="EPS"/></imageobject>
+	<textobject><phrase>Konfigurator startup page</phrase></textobject>
+	<caption><para>Konfigurator startup page.</para></caption>
+	</mediaobject>
+</screenshot>
 
-	  <variablelist>
-	<varlistentry><term><guilabel>Panels</guilabel></term>
-		<listitem><para><keycap>Save settings on exit:</keycap> when &krusader; launches, the panels current
-		directory will be the same as it was, when &krusader; was shutdown - providing the location is
-		within a local filesystem.</para>
-		<para><keycap>Start with the following settings:</keycap> allows you to define a startup status
-		for each of the panel in the following manner:
-		</para>
-	<itemizedlist><listitem><para><keycap>Panel types:</keycap> select one of the available combinations.
+<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
+       so they will contain some obsolete settings.</para>
+
+<para>The startup page determines the way that &krusader; looks (and works) when it is launched.
+       It is divided into two main parts:</para>
+
+<variablelist>
+<varlistentry><term><guilabel>Panels</guilabel></term>
+   <listitem><para><guilabel>"Save settings on exit"</guilabel>: when &krusader; launches, the panels
+	current directory will be the same as it was, when &krusader; was shutdown - providing the location is
+	within a local filesystem. When checked, all the other checkboxes of the the startup page will be
+	disabled.</para>
+
+	<para><guilabel>"Start with the following settings"</guilabel>: allows you to define a startup status
+		for each of the panel in the following manner:</para>
+
+	<itemizedlist><!-- This feature is not available at this moment
+	                    (Tree & ListView ara deactivated for the moment)
+	                <listitem><para><guilabel>"Panel types"</guilabel>: select one of the available
+	                                  combinations.
 				<itemizedlist>
 					<listitem><para>List, List</para></listitem>
 					<listitem><para>List, Tree</para></listitem>
@@ -57,107 +69,121 @@ into pages, each containing items related to that page.</para>
 					<listitem><para>Tree, List</para></listitem>
 					<listitem><para>Quickview, List</para></listitem>
 				</itemizedlist>
-			</para></listitem>
+			</para></listitem> -->
 
-			<listitem><para><keycap>Panel starts at:</keycap> the following options are available
-				<itemizedlist>
-					<listitem><para><remark>homepage:</remark> This panel will start at a
+	<listitem><para><guilabel>"Left/Right Panel starts at"</guilabel>: the following options are available
+		<itemizedlist>
+		<listitem><para><remark>homepage:</remark> This panel will start at a
 					   specified homepage. In this case, you also need to choose a directory in
 					   which will be this panels homepage.</para></listitem>
-					<listitem><para><remark>workdir:</remark> This panel will start at the
+		<listitem><para><remark>workdir:</remark> This panel will start at the
 					   folder it was executed from.</para></listitem>
-					<listitem><para><remark>last place it was:</remark> This panel will start
-					   at the last directory it was when &krusader; was shut down.</para></listitem>
+		<listitem><para><remark>last place it was:</remark> This panel will start
+					   at the last directory it was when &krusader; was shut
+					   down.</para></listitem>
 				</itemizedlist>
 			</para></listitem>
 	</itemizedlist>
 
-	</listitem></varlistentry>
+   </listitem></varlistentry>
 
-	<varlistentry><term><guilabel>User Interface</guilabel></term>
-		<listitem><para>Determine which parts of the user interface are visible during startup.
-		<itemizedlist>
-			<listitem><para><keycap>Save settings on exit:</keycap> when shutdown, &krusader; checks the
+   <varlistentry><term><guilabel>User Interface</guilabel></term>
+	<listitem><para>Determine which parts of the user interface are visible during startup.
+	<itemizedlist>
+	<listitem><para><guilabel>"Save settings on exit"</guilabel>: when shutdown, &krusader; checks the
 			   state of the user interface components, and restores them to the condition they were during
 			   shutdown.</para></listitem>
-			<listitem><para><keycap>Toolbar visible:</keycap> if checked, the
+	<listitem><para><guilabel>"Toolbar visible"</guilabel>: if checked, the
 			   &toolbar_lnk; will be visible during startup.</para></listitem>
-			<listitem><para><keycap>Statusbar visible:</keycap> if checked, the statusbar will be
+	<listitem><para><guilabel>"Statusbar visible"</guilabel>: if checked, the statusbar will be
 			   visible during startup.</para></listitem>
-			<listitem><para><keycap>Function keys visible:</keycap> if checked, the
+	<listitem><para><guilabel>"Function keys visible"</guilabel>: if checked, the
 			   &fnkeybar_lnk; will be visible during
 			   startup.</para></listitem>
-			<listitem><para><keycap>Command line visible:</keycap> if checked, the
+	<listitem><para><guilabel>"Command line visible"</guilabel>: if checked, the
 			   <link linkend="cmdline">command line</link> will be visible during
 			   startup.</para></listitem>
-			<listitem><para><keycap>Terminal emulator visible:</keycap> if checked, the terminal
+	<listitem><para><guilabel>"Terminal emulator visible"</guilabel>: if checked, the terminal
 			   emulator will be visible during startup.</para></listitem>
-			<listitem><para><keycap>Restore last postion and size:</keycap> when launched, &krusader;
+	<listitem><para><guilabel>"Restore last postion and size"</guilabel>: when launched, &krusader;
 			    will resize itself to
 			    the last size it was when last shutdown. &krusader; will also appear in the same location
 			    on the screen.</para></listitem>
-		</itemizedlist>
-		</para></listitem>
-	</varlistentry>
-	</variablelist>
+	</itemizedlist>
+	</para></listitem>
+   </varlistentry>
+</variablelist>
 
-  </sect1>
+</sect1>
 
-	<sect1 id="konfig-looknfeel">
-	<title>The Look &amp; Feel page</title>
-	<screenshot>
-		<screeninfo>Konfigurator look and feel page</screeninfo>
-		<mediaobject>
-		<imageobject><imagedata fileref="kglookfeel.png" format="PNG"/></imageobject>
-		<imageobject><imagedata fileref="kglookfeel.eps" format="EPS"/></imageobject>
-		<textobject><phrase>Screenshot</phrase></textobject>
-		</mediaobject>
-	</screenshot>
-	<para>Here you can determine the look and feel of things - which basically means fine-tuning the
-	application to your needs. The page is divided into three tabs: <guilabel>General</guilabel>,
-	<guilabel>Toolbar</guilabel> and <guilabel>Key-bindings</guilabel>. Since <guilabel>Toolbar</guilabel>
-	and <guilabel>Key-bindings</guilabel> are &kde;'s standard toolbar and keyboard editor, we'll focus on
-	the <guilabel>General</guilabel> section:</para>
+<sect1 id="konfig-looknfeel">
+<title>Look &amp; Feel page</title>
+<screenshot>
+	<screeninfo>Konfigurator Look &amp; Feel page</screeninfo>
+	<mediaobject>
+	<imageobject><imagedata fileref="kglookfeel.png" format="PNG"/></imageobject>
+	<imageobject><imagedata fileref="kglookfeel.eps" format="EPS"/></imageobject>
+	<textobject><phrase>Konfigurator Look &amp; Feel page</phrase></textobject>
+	<caption><para>Konfigurator Look &amp; Feel page.</para></caption>
+	</mediaobject>
+</screenshot>
+
+<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
+       so they will contain some obsolete settings.</para>
+
+<para>Here you can determine the look &amp; feel of things - which basically means fine-tuning the
+       application to your needs. The page is divided into three tabs: <guilabel>General</guilabel>,
+       <guilabel>Toolbar</guilabel> and <guilabel>Key-bindings</guilabel>. Since <guilabel>Toolbar</guilabel>
+       and <guilabel>Key-bindings</guilabel> are &kde;'s standard toolbar and keyboard editor, we'll focus on
+       the <guilabel>General</guilabel> section:</para>
 
 
-	<itemizedlist>
-	<title id="konfig-lookNfeel-General">General</title>
-		<listitem><para><keycap>Warn on exit:</keycap> if checked, &krusader; will display an "Are you
+<itemizedlist>
+<title id="konfig-looknfeel-general">General</title>
+	<listitem><para><guilabel>"Warn on exit"</guilabel>: if checked, &krusader; will display an "Are you
 		   sure?" warning when you're trying to shut it down. Otherwise, it will exit without
 		   protest.</para></listitem>
-		<listitem><para><keycap>Minimize to tray:</keycap> if checked, when you minimize &krusader;,
+	<listitem><para><guilabel>"Minimize to tray"</guilabel>: if checked, when you minimize &krusader;,
 		   its icon will appear in the system tray instead of the taskbar.</para></listitem>
-		<listitem><para><keycap>Show hidden files:</keycap> if checked, &krusader; will display the "dot
+	<listitem><para><guilabel>"Show hidden files"</guilabel>: if checked, &krusader; will display the "dot
 		   files" which are otherwise hidden.</para></listitem>
-		<listitem><para><keycap>Automark directories:</keycap> when
+	<listitem><para><guilabel>"Automark directories"</guilabel>: when
 		   <link linkend="mark-menu">marking a group of files</link> (either by
 		   using Select Group or by using Select All), &krusader; will check this option. If it is checked,
 		   than directories matching the select criteria will also be marked. Otherwise, only files will be
 		   marked.</para></listitem>
-		<listitem><para><keycap>Case sensitive sorting:</keycap> if checked (the Unix default), than all
+	<listitem><para><guilabel>"Case sensitive sorting"</guilabel>: if checked (the Unix default), than all
 		   files beginning with capital letters appear before files beginning with non-capital letters,
 		   otherwise, all files beginning with a specified letter (capital or otherwise) will appear
 		   together.</para></listitem>
-		<listitem><para><keycap>Panel font:</keycap> allows you to change the font used inside the file
+	<listitem><para><guilabel>"New style quicksearch"</guilabel>: The new
+	           <link linkend="quicksearch">Quicksearch</link> feature is used.</para></listitem>
+	<listitem><para><guilabel>"Case sensitive quicksearch"</guilabel>: When using the
+	           <link linkend="quicksearch">Quicksearch</link> feature: if checked (the Unix default), than all
+		   files beginning with capital letters appear before files beginning with non-capital letters,
+		   otherwise, all files beginning with a specified letter (capital or otherwise) will appear
+		   together.</para></listitem>
+	<listitem><para><guilabel>"Panel font"</guilabel>: allows you to change the font used inside the file
 		   lists.</para></listitem>
-		<listitem><para><keycap>Filelist icon size:</keycap> allows you to change the size of the icons in
+	<listitem><para><guilabel>"Filelist icon size"</guilabel>: allows you to change the size of the icons in
 		   the file lists. available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
-		<listitem><para><keycap>HTML viewer's minimal font size:</keycap> when viewing an HTML file
+	<listitem><para><guilabel>HTML viewers minimal font size</guilabel>: when viewing an HTML file
 		   (usually using <keycap>F3</keycap>), &krusader; invokes &kde;'s built-in HTML parser. This option
 		   sets the minimal font size for the viewer, and aligns other font sizes accordingly.
 		   </para></listitem>
-		<listitem><para><keycap>Mouse selection modes:</keycap> three modes are available:
+	<listitem><para><guilabel>"Mouse selection modes"</guilabel>: three modes are available:</para>
+	           <para><keycap>NOTE:</keycap> this feature is disabled for the moment, due to a bug, sorry
 			<itemizedlist>
-			<listitem><para><keycap>Classic:</keycap> the way &krusader; used to work from day one.
+			<listitem><para><guilabel>Classic</guilabel>: the way &krusader; used to work from day one.
 			   Both keys allow selecting files. To select more than one file, hold the
-			   <keycap>CTRL</keycap> key and click the <keycap>left</keycap> mouse button. Right-click
+			   &Ctrl; key and click the <keycap>left</keycap> mouse button. Right-click
 			   menu is invoked using a short click on the <keycap>right</keycap> mouse
 			   button.</para></listitem>
-			<listitem><para><keycap>Left mouse button selects:</keycap> this way, pressing the
+	<listitem><para><guilabel>"Left mouse button selects":</guilabel> this way, pressing the
 			<keycap>left</keycap> mouse button selects files - you can click and select multiple files.
 			   Right-click menu is invoked using a short click on the <keycap>right</keycap> mouse
 			   button.</para></listitem>
-			<listitem><para><keycap>Right button selects:</keycap> this way (sometimes referred to as
+	<listitem><para><guilabel>"Right button selects"</guilabel>: this way (sometimes referred to as
 			   'total (windows) commander style') the <keycap>left</keycap> mouse button does not select,
 			   but sets the current file without affecting the current selection. The
 			   <keycap>right</keycap> mouse button selects multiple files and the right-click menu is
@@ -165,145 +191,279 @@ into pages, each containing items related to that page.</para>
 			   button.</para></listitem>
 			</itemizedlist>
 		</para></listitem>
-	</itemizedlist>
+</itemizedlist>
 
-	<variablelist>
-	<varlistentry><term><guilabel id="konfig-lookNfeel-Toolbar">Toolbar</guilabel></term>
-		<listitem><para>Here you can configure the &toolbar_lnk; the way you like.
+<variablelist>
+	<varlistentry><term><guilabel id="konfig-looknfeel-toolbar">Toolbar</guilabel></term>
+		<listitem><para>Here you can configure the &toolbar_lnk; the way you want.
 		  Add the icons of your favorite functions to the Toolbar.</para>
                 </listitem>
 	</varlistentry>
-	</variablelist>
+</variablelist>
 
-	<variablelist>
-	<varlistentry><term><guilabel id="konfig-lookNfeel-KeyBindings">Key-bindings</guilabel></term>
+<variablelist>
+	<varlistentry><term><guilabel id="konfig-looknfeel-keybindings">Key-bindings</guilabel></term>
 		<listitem><para>Here you can configure the Key-bindings. Configure the Key-bindings
-	        of your favourite functions the way you like.</para>
+	        of your favourite functions the way you want.</para>
                 </listitem>
 	</varlistentry>
-	</variablelist>
+</variablelist>
 
 
-	</sect1>
+</sect1>
 
-	<sect1 id="konfig-general">
-	<title>The general page</title>
-	<screenshot>
-		<screeninfo>Konfigurator general page</screeninfo>
-		<mediaobject>
-		<imageobject><imagedata fileref="kggeneral.png" format="PNG"/></imageobject>
-		<imageobject><imagedata fileref="kggeneral.eps" format="EPS"/></imageobject>
-		<textobject><phrase>Screenshot</phrase></textobject>
-		</mediaobject>
-	</screenshot>
-	<para>The following options determine basic aspects of operation:
-	<itemizedlist>
-		<listitem><para><keycap>Delete files / Move to trash:</keycap> when &krusader; deletes files it can
+<sect1 id="konfig-general">
+<title>General page</title>
+<screenshot>
+	<screeninfo>Konfigurator General page</screeninfo>
+	<mediaobject>
+	<imageobject><imagedata fileref="kggeneral.png" format="PNG"/></imageobject>
+	<imageobject><imagedata fileref="kggeneral.eps" format="EPS"/></imageobject>
+	<textobject><phrase>Konfigurator General page</phrase></textobject>
+	<caption><para>Konfigurator General page.</para></caption>
+	</mediaobject>
+</screenshot>
+
+<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
+       so they will contain some obsolete settings.</para>
+
+<para>The following options determine basic aspects of operation:
+
+<itemizedlist>
+	<listitem><para><guilabel>"Delete files / Move to trash"</guilabel>: when &krusader; deletes files it can
 		   either 'really' delete them or move them to the trash folder, thereby making them available via
 		   &kde;'s trash.</para></listitem>
-		<listitem><para><keycap>Use mimetype magic:</keycap> mimetype magic is a mechanism which allows
+	<listitem><para><guilabel>"Use mimetype magic"</guilabel>: mimetype magic is a mechanism which allows
 		   &krusader; to inspect the files in the panels and determine their type even if the file has no
-		   identifying extention. For example, if you take an image file - 'image1.jpg' - and rename it to
+		   identifying extension. For example, if you take an image file - 'image1.jpg' - and rename it to
 		   'image1', &krusader; will still know it's an image file and work with it accordingly. However, this
 		   mode of operation is slower (while refreshing the panel, or changing directories), so try &krusader;
-		   with and without mimetype magic and decide what's best for you</para></listitem>
-		<listitem><para><keycap>Editor:</keycap> choose what editor will be used when editing a file (via
+		   with and without mimetype magic and decide what's best for you.</para></listitem>
+	<listitem><para><guilabel>"Editor"</guilabel>: choose what editor will be used when editing a file (via
 		   F4).</para></listitem>
-		<listitem><para><keycap>Terminal:</keycap> choose what terminal emulator will be used when &krusader;
+	<listitem><para><guilabel>"Terminal"</guilabel>: choose what terminal emulator will be used when &krusader;
 		   opens a console window (via F2, or Commands->Terminal menu option).</para></listitem>
-		<listitem><para><keycap>Temp directory:</keycap> this option selects the base directory for
-		   &krusader;'s temporary files. The actual files will be created in separate directories under the 'Temp
-		   directory', so that each user running &krusader; will have his/her own temporary subdirectories under
-		   the chosen directory.
+	<listitem><para><guilabel>"Temp directory"</guilabel>: this option selects the base directory for
+		   &krusader;'s temporary files. The actual files will be created in separate directories under the
+		   'Temp directory', so that each user running &krusader; will have his/her own temporary
+		   subdirectories under the chosen directory.
 
-		<note><para>You must choose a temporary directory such that all the users who are running &krusader;
-		    will have full permissions to it !</para></note></para></listitem>
-	</itemizedlist></para>
-	</sect1>
+	<note><para>You must choose a temporary directory such that all the users who are running &krusader;
+	 	      will have full permissions to it!</para></note></para></listitem>
+</itemizedlist></para>
 
-	<sect1 id="konfig-advanced">
-	<title>The advanced page</title>
-	<screenshot>
-		<screeninfo>Konfigurator advanced page</screeninfo>
-		<mediaobject>
-		<imageobject><imagedata fileref="kgadvanced.png" format="PNG"/></imageobject>
-		<imageobject><imagedata fileref="kgadvanced.eps" format="EPS"/></imageobject>
-		<textobject><phrase>Screenshot</phrase></textobject>
-		</mediaobject>
-	</screenshot>
-	<para>This page handles more advanced issues, so you should double-check what you do here, since modifying
-	things around here <remark>makes &krusader; a more powerful AND dangerous tool.</remark></para>
-	<para>The page is divided into three parts:</para>
-	<variablelist>
-	<varlistentry><term><guilabel>General</guilabel></term>
-	<listitem>
+</sect1>
+
+<sect1 id="konfig-advanced">
+<title>Advanced page</title>
+<screenshot>
+	<screeninfo>Konfigurator Advanced page</screeninfo>
+	<mediaobject>
+	<imageobject><imagedata fileref="kgadvanced.png" format="PNG"/></imageobject>
+	<imageobject><imagedata fileref="kgadvanced.eps" format="EPS"/></imageobject>
+	<textobject><phrase>Konfigurator Advanced page</phrase></textobject>
+	<caption><para>Konfigurator Advanced page.</para></caption>
+	</mediaobject>
+</screenshot>
+
+<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
+       so they will contain some obsolete settings.</para>
+
+<para>This page handles more advanced issues, so you should double-check what you do here, since modifying
+       things around here <remark>makes &krusader; a more powerful AND dangerous tool.</remark></para>
+<para>The page is divided into three parts:</para>
+
+<variablelist>
+<varlistentry><term><guilabel>General</guilabel></term>
+  <listitem>
   <itemizedlist>
-		<listitem><para>Note: This function does not exist anymore and is replaced by
-		&rootmode_lnk; &krusader; (Alt+k)</para>
-		<para>( I AM ROOT: usually, when doing any operation, &krusader; checks permissions. This means that if
-		root wants to remove a folder owned by a user, &krusader; will not let him/her do that !!! By checking
-		this option, you make &krusader; assume you are root, which means that &krusader; WON'T DO ANY PERMISSION
-		CHECKS! AT ALL! NOTHING! This obviously makes life easier for power users, but it also means that if
-		you make a mistake, there's no going back! And you won't even get a warning. USE WITH CAUTION!
-		  )</para></listitem>
-		<listitem><para><keycap>Automount filesystems:</keycap> this makes &krusader; try to mount a
-		 filesystem before entering it. For example, if you'd click on /mnt/cdrom (and /mnt/cdrom appears in
-		 /etc/fstab as a mount point), &krusader; will check if it is mounted. If not, it will try and mount it
-		 for you and then enter, so that you'd see the contents of your cdrom. Note, however, that &krusader;
-		 will NOT unmount when exiting /mnt/cdrom.</para></listitem>
-	</itemizedlist></listitem>
-	</varlistentry>
-	<varlistentry>
-	<term><guilabel>Confirmations</guilabel></term>
-		<listitem><para>By checking the options in this section, you'll make &krusader; ask for confirmation
-		   before doing the specific action. Otherwise, the actions will be done without warning.</para>
+	<listitem><para><guilabel>"Automount filesystems"</guilabel>: this makes &krusader; try to mount a
+		    filesystem before entering it. For example, if you click on
+		    <filename class="directory">/mnt/cdrom</filename>
+		    (and <filename class="directory">/mnt/cdrom</filename> appears in
+		    <filename class="directory">/etc/fstab</filename> as a mount point), &krusader; will check if it
+		    is mounted. If not, it will try and mount it for you and then enter, so that you'd see the contents
+		    of your cdrom. Note, however, that &krusader;  will NOT unmount when exiting
+		    <filename class="directory">/mnt/cdrom</filename>.</para></listitem>
+  </itemizedlist>
+  </listitem>
+  </varlistentry>
+
+<varlistentry><term><guilabel>Confirmations</guilabel></term>
+	<listitem><para>By checking the options in this section, you'll make &krusader; ask for confirmation
+	  	   before doing the specific action. Otherwise, the actions will be done without warning.</para>
+		   <para>These operations are: deleting non empty directorie(s), deleting file(s), copying file(s)
+		   moving file(s).</para>
 	</listitem></varlistentry>
-	<varlistentry>
-	<term><guilabel>Fine-Tuning</guilabel></term>
+
+<varlistentry><term><guilabel>Fine-Tuning</guilabel></term>
 	<listitem><itemizedlist>
-		<listitem><para><keycap>Icon cache size:</keycap> &krusader; uses an icon cache, so it won't have to
-		  reload icons that were already used before. Ofcourse, as the cache grows bigger, it can store more
+	<listitem><para><guilabel>"Icon cache size"</guilabel>: &krusader; uses an icon cache, so it won't have to
+		  reload icons that were already used before. Of course, as the cache grows bigger, it can store more
 		  icons and further speed operations, but the memory footprint of &krusader; will be
 		  bigger.</para></listitem>
 	</itemizedlist>
 	</listitem></varlistentry>
-	</variablelist>
-	</sect1>
 
-	<sect1 id="konfig-archives">
-	<title>The archives page</title>
-	<screenshot>
-		<screeninfo>Konfigurator archives page</screeninfo>
-		<mediaobject>
-		<imageobject><imagedata fileref="kgarchives.png" format="PNG"/></imageobject>
-		<imageobject><imagedata fileref="kgarchives.eps" format="EPS"/></imageobject>
-		<textobject><phrase>Screenshot</phrase></textobject>
-		</mediaobject>
-	</screenshot>
-	<para>This page handles the way &krusader; works with archives. In the <guilabel>General</guilabel> section
-	you'll see a list of archive formats. Some are checked and some are grayed-out. The ones that are available
-	(not grayed-out) are supported by &krusader;. If  you check them, then &krusader; will handle them transparently
-	and let you open them as folders. Otherwise, &krusader; will attempt to invoke an application which opens that
-	type of archive. If a certain archive is grayed-out, it means that &krusader; couldn't find the appropriate
-	executables in the PATH (to handle ZIP archives, &krusader; needs 'unzip' and 'zip' executables).</para>
-	<para>If you've installed a certain archive application (let's say 'arj') and want &krusader; to know about
-	it, just click the 'Auto Configure' button. &krusader; will search for all supported executables, and print
-	a report regarding what archives can be handled. If all went well, the new archive will be availble and
-	checked.
-  <note><para>Please install new archives to your PATH (ie: /usr/bin; /usr/local/bin etc.)</para></note></para>
-	<para><guilabel>Fine-Tuning</guilabel>
+</variablelist>
+</sect1>
+
+<sect1 id="konfig-archives">
+<title>Archives page</title>
+<screenshot>
+	<screeninfo>Konfigurator Archives page</screeninfo>
+	<mediaobject>
+	<imageobject><imagedata fileref="kgarchives.png" format="PNG"/></imageobject>
+	<imageobject><imagedata fileref="kgarchives.eps" format="EPS"/></imageobject>
+	<textobject><phrase>Screenshot</phrase></textobject>
+	<caption><para>Konfigurator Archives page.</para></caption>
+	</mediaobject>
+</screenshot>
+
+<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
+       so they will contain some obsolete settings.</para>
+
+<para>This page handles the way &krusader; works with archives. In the <guilabel>General</guilabel> section
+you'll see a list of archive formats. Some are checked and some are grayed-out. The ones that are available
+(not grayed-out) are supported by &krusader;. If  you check them, then &krusader; will handle them transparently
+and let you open them as folders. Otherwise, &krusader; will attempt to invoke an application which opens that
+type of archive. If a certain archive is grayed-out, it means that &krusader; couldn't find the appropriate
+executables in the <envar>PATH</envar> (to handle ZIP archives, &krusader; needs 'unzip' and 'zip' executables).</para>
+
+<para>If you've installed a certain archive application (let's say 'arj') and want &krusader; to know about
+it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; will search for all supported executables, and print a report regarding what archives can be handled. If all went well, the new archive will be availble and checked.
+
+<note><para>Please install new archives to your <envar>PATH</envar> (&ie;: /usr/bin; /usr/local/bin &etc;)</para></note></para>
+
+<para><guilabel>Fine-Tuning</guilabel>
 	<itemizedlist>
-		<listitem><para><keycap>Allow moving into archives:</keycap> this option allows you to move files
+		<listitem><para><guilabel>"Allow moving into archives"</guilabel>: this option allows you to move files
 		  into an archive (as opposed to just copying into the archive). The down side is that if a power
 		  failure occurs during the process, the files that were moved might already be deleted, but not yet
 		  packed into the archive.
     <note><para> If such thing happens, the file(s) are NOT LOST. They were actually moved into a subfolder in the
 		&krusader;'s temp directory. You can search that directory and find your files, safe and sound.
 		</para></note></para></listitem>
-		<listitem><para><keycap>Test archives when finished packing:</keycap> this option automatically
+		<listitem><para><guilabel>"Test archives when finished packing"</guilabel>: this option automatically
 		   runs a test on a newly packed archive. It is safer, but takes longer.</para></listitem>
 	</itemizedlist></para>
 
- </sect1>
+</sect1>
+
+<sect1 id="konfig-dependencies">
+<title>Dependencies page</title>
+
+&newfeaturenote;
+
+<para>Here you can configure the full path of the external applications. It is even possible to configure
+      the full path of &krusader;!</para>
+
+
+<para><emphasis role="bold">General tab</emphasis></para>
+<para>Here you can configure the full path of the next external applications:
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>application</entry>
+<entry>configurable full path</entry>
+</row>
+<row>
+<entry><para><command>df</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/df</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>eject</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/eject</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>kdesu</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/kdesu</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>kmail</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/kmail</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>kompare</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/kompare</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>krename</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/krename</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>krusader</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/krusader</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>mount</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/mount</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>umount</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/umount</replaceable></filename></para></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</para>
+
+<para><emphasis role="bold">Packers tab</emphasis></para>
+<para>Here you can configure the full path of the next external packers:
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>packer</entry>
+<entry>configurable full path</entry>
+</row>
+<row>
+<entry><para><command>bzip2</command></para></entry>
+<entry><para><filename class="directory"><replaceable>usr/bin/bzip2</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>cpio</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/cpio</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>gzip</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/gzip</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>rar</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/rar</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>tar</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/tar</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>unace</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/unace</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>unarj</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/unarj</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>unrar</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/unrar</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>unzip</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/unzip</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>zip</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/zip</replaceable></filename></para></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</para>
+
+
+</sect1>
 
 </chapter>
