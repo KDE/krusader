@@ -54,7 +54,7 @@ void KRdirWatch::removeDir(QString path){
   if (!stopped) startScan();
 }
 
-void KRdirWatch::addDir(QString path){
+void KRdirWatch::addDir(QString path, bool checkPermissions){
   t.stop();
 
   krDirEntry* temp = new krDirEntry;
@@ -62,14 +62,16 @@ void KRdirWatch::addDir(QString path){
     //kdDebug() << "KRDirWatch: can't watch " + path +", (don't exist)" << endl;
     return;
   }
-  // if we can't read it - don't bother
-  if (getgid() != 0 && !KRpermHandler::fileReadable(path) ){
-    //kdDebug() << "KRDirWatch: can't watch " + path +", (not readable)" << endl;
-    return;
-  }
-  if (!KRpermHandler::fileWriteable(path) ){ // read-only directorys can't be changed
-    //kdDebug() << "KRDirWatch: not watching " + path +", (read-only directory)" << endl;
-    return;
+  if( checkPermissions ) {
+    // if we can't read it - don't bother
+    if (getgid() != 0 && !KRpermHandler::fileReadable(path) ){
+      //kdDebug() << "KRDirWatch: can't watch " + path +", (not readable)" << endl;
+      return;
+    }
+    if (!KRpermHandler::fileWriteable(path) ){ // read-only directorys can't be changed
+      //kdDebug() << "KRDirWatch: not watching " + path +", (read-only directory)" << endl;
+      return;
+    }
   }
   qfi.setFile(path);
 

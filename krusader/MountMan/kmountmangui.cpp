@@ -174,8 +174,9 @@ void KMountManGUI::updateList() {
 
 void KMountManGUI::createDirwatch() {
   fsData* it;
+  watcher->clearList();
   for (it=krMtMan.filesystems.first(); it!=0 ; it=krMtMan.filesystems.next()) {
-    watcher->addDir(it->mntPoint());
+    watcher->addDir(it->mntPoint(), false);
   }
 }
 

@@ -50,9 +50,9 @@ typedef struct krDirEntry_s{
 class KRdirWatch : public QObject  {
   Q_OBJECT
 public:
-	KRdirWatch(int msec = 1000 , bool dirOnly = false );
+	KRdirWatch(int msec = 250 , bool dirOnly = false );
 	~KRdirWatch();
-	void addDir(QString path);
+	void addDir(QString path,bool checkPermissions = true );
 	void removeDir(QString path);
 	
 	inline void clearList(){watched.clear();}
