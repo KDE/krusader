@@ -161,7 +161,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
     itext0 = itext0.lower();
   }
 
-	kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
+	//kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
 
   int result = 0;
 
