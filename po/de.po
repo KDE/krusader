@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.50-cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-20 16:13+0200\n"
-"PO-Revision-Date: 2004-08-20 16:38+0200\n"
+"POT-Creation-Date: 2004-08-25 19:50+0200\n"
+"PO-Revision-Date: 2004-08-25 19:51+0200\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -568,35 +568,35 @@ msgstr "Zugriff verweigert auf"
 msgid "Can't create a directory check your permissions."
 msgstr "Verzeichnis kann nicht angelegt werden. Überprüfen Sie Ihre Rechte."
 
-#: VFS/krarchandler.cpp:144
+#: VFS/krarchandler.cpp:150
 msgid "Counting files in archive"
 msgstr "Dateien im Archiv werden gezählt"
 
-#: VFS/krarchandler.cpp:167 VFS/krarchandler.cpp:223
+#: VFS/krarchandler.cpp:173 VFS/krarchandler.cpp:232
 msgid "Failed to unpack"
 msgstr "Entpacken fehlgeschlagen"
 
-#: VFS/krarchandler.cpp:206
+#: VFS/krarchandler.cpp:215
 msgid "Unpacking File(s)"
 msgstr "Dateien werden entpackt"
 
-#: VFS/krarchandler.cpp:256
+#: VFS/krarchandler.cpp:266
 msgid "Testing Archive"
 msgstr "Archiv wird getestet"
 
-#: VFS/krarchandler.cpp:290
+#: VFS/krarchandler.cpp:307
 msgid "Packing File(s)"
 msgstr "Dateien werden gepackt"
 
-#: VFS/krarchandler.cpp:306 VFS/krarchandler.cpp:313
+#: VFS/krarchandler.cpp:323 VFS/krarchandler.cpp:330
 msgid "Failed to pack: "
 msgstr "Packen fehlgeschlagen: "
 
-#: VFS/krarchandler.cpp:360
+#: VFS/krarchandler.cpp:377
 msgid "Password Needed"
 msgstr "Passwort benötigt"
 
-#: VFS/krarchandler.cpp:361
+#: VFS/krarchandler.cpp:378
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Dieses Archiv ist verschlüsselt, geben Sie bitte das Passwort ein:"
 
@@ -767,19 +767,19 @@ msgstr "KrActionProc"
 msgid "KrAction"
 msgstr "KrAction"
 
-#: Panel/krdetailedviewitem.cpp:361
+#: Panel/krdetailedviewitem.cpp:347
 msgid "Climb up the directory tree"
 msgstr "Ebene hoch im Verzeichnisbaum"
 
-#: Panel/krdetailedviewitem.cpp:373
+#: Panel/krdetailedviewitem.cpp:359
 msgid "Symbolic Link"
 msgstr "Symbolische Verknüpfung"
 
-#: Panel/krdetailedviewitem.cpp:374
+#: Panel/krdetailedviewitem.cpp:360
 msgid "(broken link !)"
 msgstr "(ungültige Verknüpfung!)"
 
-#: Panel/krdetailedviewitem.cpp:375
+#: Panel/krdetailedviewitem.cpp:361
 msgid "%1 (Link)"
 msgstr "%1 (Verknüpfung)"
 
@@ -955,7 +955,7 @@ msgstr "Andere..."
 msgid "Open with"
 msgstr "Öffnen mit"
 
-#: Panel/listpanel.cpp:759 Panel/krdetailedview.cpp:1026
+#: Panel/listpanel.cpp:759 Panel/krdetailedview.cpp:980
 msgid "Rename"
 msgstr "Umbenennen"
 
@@ -1010,51 +1010,51 @@ msgstr " ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verlore
 msgid "Can't open "
 msgstr "Kann nicht geöffnet werden "
 
-#: Panel/krdetailedview.cpp:89 Search/krsearchdialogbase.cpp:729
+#: Panel/krdetailedview.cpp:88 Search/krsearchdialogbase.cpp:729
 #: MountMan/kmountmangui.cpp:117 Synchronizer/synchronizergui.cpp:1361
 #: Synchronizer/synchronizergui.cpp:1367
 msgid "Name"
 msgstr "Name"
 
-#: Panel/krdetailedview.cpp:90
+#: Panel/krdetailedview.cpp:89
 msgid "Ext"
 msgstr "Erw"
 
-#: Panel/krdetailedview.cpp:91 MountMan/kmountmangui.cpp:118
+#: Panel/krdetailedview.cpp:90 MountMan/kmountmangui.cpp:118
 msgid "Type"
 msgstr "Typ"
 
-#: Panel/krdetailedview.cpp:92 Search/krsearchdialogbase.cpp:420
+#: Panel/krdetailedview.cpp:91 Search/krsearchdialogbase.cpp:420
 #: Search/krsearchdialogbase.cpp:731 Synchronizer/synchronizergui.cpp:1362
 #: Synchronizer/synchronizergui.cpp:1366
 msgid "Size"
 msgstr "Größe"
 
-#: Panel/krdetailedview.cpp:93
+#: Panel/krdetailedview.cpp:92
 msgid "Modified"
 msgstr "Geändert"
 
-#: Panel/krdetailedview.cpp:94
+#: Panel/krdetailedview.cpp:93
 msgid "Perms"
 msgstr "Berechtigungen"
 
-#: Panel/krdetailedview.cpp:95
+#: Panel/krdetailedview.cpp:94
 msgid "rwx"
 msgstr "rwx"
 
-#: Panel/krdetailedview.cpp:96
+#: Panel/krdetailedview.cpp:95
 msgid "Owner"
 msgstr "Eigentümer"
 
-#: Panel/krdetailedview.cpp:97
+#: Panel/krdetailedview.cpp:96
 msgid "Group"
 msgstr "Gruppe"
 
-#: Panel/krdetailedview.cpp:1026
+#: Panel/krdetailedview.cpp:980
 msgid "Rename "
 msgstr "Umbenennen "
 
-#: Panel/krdetailedview.cpp:1026
+#: Panel/krdetailedview.cpp:980
 msgid " to:"
 msgstr " nach:"
 
@@ -1240,10 +1240,14 @@ msgstr "Sie können keine Dateien auf dieses Dateisystem kopieren"
 msgid "You do not have write permission to this directory"
 msgstr "Sie haben keine Schreib-Berechtigung für dieses Verzeichnis"
 
+#: Panel/panelfunc.cpp:500
+msgid " this item ?"
+msgstr " dieses Element wirklich löschen?"
+
 #: Panel/panelfunc.cpp:502
 #, c-format
-msgid " %d files ?"
-msgstr "%d Dateien ?"
+msgid " these %d items ?"
+msgstr " diese %d Elemente wirklich löschen?"
 
 #: Panel/panelfunc.cpp:506
 msgid "trash"
@@ -1257,9 +1261,9 @@ msgstr "&Mülleimer"
 msgid "delete"
 msgstr " "
 
-#: Panel/panelfunc.cpp:513
+#: Panel/panelfunc.cpp:514
 msgid "Are you sure you want to "
-msgstr "Möchten Sie folgenden Eintrag wirklich löschen:"
+msgstr "Möchten Sie "
 
 #: Panel/panelfunc.cpp:533
 msgid "Directory "
@@ -1358,7 +1362,7 @@ msgid "Case Sensitive"
 msgstr "Groß-/Kleinschreibung beachten"
 
 #: Locate/locate.cpp:109 Konfigurator/kggeneral.cpp:132
-#: Konfigurator/kgarchives.cpp:137
+#: Konfigurator/kgarchives.cpp:148
 msgid "Results"
 msgstr "Ergebnisse"
 
@@ -1731,52 +1735,52 @@ msgstr ""
 "' ist gemäß Ihrer Lokalisierung ungültig.\n"
 "Bitte ein gültiges Datum eingeben (benutzen Sie den Datum-Knopf)."
 
-#: Search/krsearchdialog.cpp:138 Search/krsearchdialog.cpp:308
+#: Search/krsearchdialog.cpp:139 Search/krsearchdialog.cpp:309
 msgid "All Files"
 msgstr "Alle Dateien"
 
-#: Search/krsearchdialog.cpp:139 Search/krsearchmod.cpp:91
+#: Search/krsearchdialog.cpp:140 Search/krsearchmod.cpp:91
 #: Konfigurator/konfigurator.cpp:106
 msgid "Archives"
 msgstr "Archive"
 
-#: Search/krsearchdialog.cpp:140 Search/krsearchmod.cpp:93
+#: Search/krsearchdialog.cpp:141 Search/krsearchmod.cpp:93
 msgid "Directories"
 msgstr "Verzeichnisse"
 
-#: Search/krsearchdialog.cpp:141 Search/krsearchmod.cpp:94
+#: Search/krsearchdialog.cpp:142 Search/krsearchmod.cpp:94
 msgid "Image Files"
 msgstr "Bilddateien"
 
-#: Search/krsearchdialog.cpp:142 Search/krsearchmod.cpp:95
+#: Search/krsearchdialog.cpp:143 Search/krsearchmod.cpp:95
 msgid "Text Files"
 msgstr "Textdateien"
 
-#: Search/krsearchdialog.cpp:143 Search/krsearchmod.cpp:96
+#: Search/krsearchdialog.cpp:144 Search/krsearchmod.cpp:96
 msgid "Video Files"
 msgstr "Videodateien"
 
-#: Search/krsearchdialog.cpp:144 Search/krsearchmod.cpp:97
+#: Search/krsearchdialog.cpp:145 Search/krsearchmod.cpp:97
 msgid "Audio Files"
 msgstr "Audiodateien"
 
-#: Search/krsearchdialog.cpp:280
+#: Search/krsearchdialog.cpp:281
 msgid "Found %1 matches."
 msgstr "%1 Übereinstimmungen gefunden."
 
-#: Search/krsearchdialog.cpp:335
+#: Search/krsearchdialog.cpp:336
 msgid "No search criteria entered !"
 msgstr "Kein Suchkriterium eingegeben!"
 
-#: Search/krsearchdialog.cpp:341
+#: Search/krsearchdialog.cpp:342
 msgid "Please specify a location to search in."
 msgstr "Bitte geben Sie einen Ort zum Suchen an."
 
-#: Search/krsearchdialog.cpp:370
+#: Search/krsearchdialog.cpp:371
 msgid "Specified sizes are inconsistent !"
 msgstr "Die angegebenen Größen sind inkonsistent!"
 
-#: Search/krsearchdialog.cpp:371
+#: Search/krsearchdialog.cpp:372
 msgid ""
 "Please re-enter the values, so that the leftmost size will\n"
 "be smaller (or equal) to the right size."
@@ -1784,11 +1788,11 @@ msgstr ""
 "Bitte die Werte erneut eingeben, so dass die ganz linke Größe kleiner\n"
 "(oder gleich) der rechten Größe ist."
 
-#: Search/krsearchdialog.cpp:390 Search/krsearchdialog.cpp:441
+#: Search/krsearchdialog.cpp:391 Search/krsearchdialog.cpp:442
 msgid "Dates are inconsistent !"
 msgstr "Die Daten sind inkonsistent!"
 
-#: Search/krsearchdialog.cpp:391
+#: Search/krsearchdialog.cpp:392
 msgid ""
 "The date on the left side is later than the date on the right.\n"
 "Please re-enter the dates, so that the leftmost date will be\n"
@@ -1798,7 +1802,7 @@ msgstr ""
 "Bitte die Daten erneut eingeben, so dass das linke Datum vor dem \n"
 "rechten liegt."
 
-#: Search/krsearchdialog.cpp:442
+#: Search/krsearchdialog.cpp:443
 msgid ""
 "The date on the top is later than the date on the bottom.\n"
 "Please re-enter the dates, so that the top date will be\n"
@@ -1808,7 +1812,7 @@ msgstr ""
 "Bitte die Daten erneut eingeben, so dass das Datum am Anfang\n"
 "vor dem des Endes liegt."
 
-#: Search/krsearchdialog.cpp:471
+#: Search/krsearchdialog.cpp:472
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
 "1. Krusader will search in all of the supported archives, NOT INCLUDING arj, "
@@ -1822,23 +1826,23 @@ msgstr ""
 "2. Sie können nicht in einem Text suchen (grep), während eine Suche läuft, "
 "die Archive beinhaltet."
 
-#: Search/krsearchdialog.cpp:490 Search/krsearchdialogbase.cpp:716
+#: Search/krsearchdialog.cpp:491 Search/krsearchdialogbase.cpp:716
 msgid "Found 0 matches."
 msgstr "Keine Übereinstimmungen gefunden."
 
-#: Search/krsearchdialog.cpp:525
+#: Search/krsearchdialog.cpp:526
 msgid "Finished searching."
 msgstr "Suche beendet."
 
-#: Search/krsearchdialog.cpp:671
+#: Search/krsearchdialog.cpp:672
 msgid "Krusader Search"
 msgstr "Krusader::Suche"
 
-#: Search/krsearchdialog.cpp:673
+#: Search/krsearchdialog.cpp:674
 msgid "View File (F3)"
 msgstr "Datei anzeigen (F3)"
 
-#: Search/krsearchdialog.cpp:674
+#: Search/krsearchdialog.cpp:675
 msgid "Edit File (F4)"
 msgstr "Datei editieren (F4)"
 
@@ -2343,7 +2347,7 @@ msgstr "Steht"
 msgid "%1/s ( %2 remaining )"
 msgstr "%1/s ( %2 verbleibend )"
 
-#: Dialogs/packgui.cpp:88
+#: Dialogs/packgui.cpp:90
 msgid "Please select a directory"
 msgstr "Bitte ein Verzeichnis auswählen"
 
@@ -3018,11 +3022,11 @@ msgstr "Allgemein"
 msgid "Packers"
 msgstr "Packer"
 
-#: Konfigurator/kgdependencies.cpp:117
+#: Konfigurator/kgdependencies.cpp:119
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "Der Pfad %1 ist nicht korrekt, es wurde kein gültiger Pfad gefunden."
 
-#: Konfigurator/kgdependencies.cpp:120
+#: Konfigurator/kgdependencies.cpp:122
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "Der Pfad %1 ist nicht korrekt, stattdessen wurde %2 benutzt."
 
@@ -3144,7 +3148,7 @@ msgstr ""
 "\n"
 "Wenn Sie neue Werkzeuge installieren, bitte installieren Sie diese"
 
-#: Konfigurator/kggeneral.cpp:131 Konfigurator/kgarchives.cpp:135
+#: Konfigurator/kggeneral.cpp:131 Konfigurator/kgarchives.cpp:146
 msgid ""
 "\n"
 "to your path. (ie: /usr/bin, /usr/local/bin etc.)"
@@ -3425,7 +3429,7 @@ msgstr "Kopieren von Dateien"
 msgid "Moving file(s)"
 msgstr "Verschieben von Dateien"
 
-#: Konfigurator/kgadvanced.cpp:86 Konfigurator/kgarchives.cpp:87
+#: Konfigurator/kgadvanced.cpp:86 Konfigurator/kgarchives.cpp:88
 msgid "Fine-Tuning"
 msgstr "Feineinstellungen"
 
@@ -3747,7 +3751,11 @@ msgstr "rpm"
 msgid "Ace"
 msgstr "ace"
 
-#: Konfigurator/kgarchives.cpp:73
+#: Konfigurator/kgarchives.cpp:69
+msgid "Lha"
+msgstr "Lha"
+
+#: Konfigurator/kgarchives.cpp:74
 msgid ""
 "The archives that are \"greyed-out\" were unavaible on your\n"
 "system last time Krusader checked. If you wish Krusader to\n"
@@ -3757,29 +3765,29 @@ msgstr ""
 "Krusader es das letzte Mal überprüft hat. Wenn Sie möchten, dass Krusader\n"
 "erneut sucht, klicken Sie den 'Automatische Konfiguration'-Knopf."
 
-#: Konfigurator/kgarchives.cpp:78
+#: Konfigurator/kgarchives.cpp:79
 msgid "Auto Configure"
 msgstr "Automatische Konfiguration"
 
-#: Konfigurator/kgarchives.cpp:93
+#: Konfigurator/kgarchives.cpp:94
 msgid "Test archive when finished packing"
 msgstr "Archiv nach dem Packen testen"
 
-#: Konfigurator/kgarchives.cpp:93
+#: Konfigurator/kgarchives.cpp:94
 msgid "If checked, Krusader will test the archive's intergrity after packing it."
 msgstr "Falls ausgewählt, wird Krusader die Archivintegrität nach dem Packen testen."
 
-#: Konfigurator/kgarchives.cpp:94
+#: Konfigurator/kgarchives.cpp:95
 msgid "Test archive before unpacking"
 msgstr "Archiv vor dem Entpacken testen"
 
-#: Konfigurator/kgarchives.cpp:94
+#: Konfigurator/kgarchives.cpp:95
 msgid "Some corrupted archives might cause a crash, therefore testing is suggested"
 msgstr ""
 "Einige korrupte Archive können einen Absturz verursachen, daher ist das "
 "Testen zu empfehlen"
 
-#: Konfigurator/kgarchives.cpp:111
+#: Konfigurator/kgarchives.cpp:112
 msgid ""
 "Search results:\n"
 "\n"
@@ -3787,11 +3795,11 @@ msgstr ""
 "Suchergebnisse:\n"
 "\n"
 
-#: Konfigurator/kgarchives.cpp:112
+#: Konfigurator/kgarchives.cpp:113
 msgid "tar: found, packing and unpacking enabled.\n"
 msgstr "tar: gefunden, packen und entpacken aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:113
+#: Konfigurator/kgarchives.cpp:114
 msgid ""
 "tar: NOT found, packing and unpacking DISABLED.\n"
 "==> tar can be obtained at www.gnu.org\n"
@@ -3799,11 +3807,11 @@ msgstr ""
 "tar: NICHT gefunden, packen und entpacken DEAKTIVIERT.\n"
 "==> tar kann bei http://www.gnu.org/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:114
+#: Konfigurator/kgarchives.cpp:115
 msgid "gzip: found, packing and unpacking enabled.\n"
 msgstr "gzip: gefunden, packen und entpacken aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:115
+#: Konfigurator/kgarchives.cpp:116
 msgid ""
 "gzip: NOT found, packing and unpacking DISABLED.\n"
 "==> gzip can be obtained at www.gnu.org\n"
@@ -3811,11 +3819,11 @@ msgstr ""
 "gzip: NICHT gefunden, packen und entpacken DEAKTIVIERT.\n"
 "==> gzip kann bei http://www.gnu.org/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:116
+#: Konfigurator/kgarchives.cpp:117
 msgid "bzip2: found, packing and unpacking enabled.\n"
 msgstr "bzip2: gefunden, packen und entpacken aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:117
+#: Konfigurator/kgarchives.cpp:118
 msgid ""
 "bzip2: NOT found, packing and unpacking DISABLED.\n"
 "==> bzip2 can be obtained at www.gnu.org\n"
@@ -3823,11 +3831,11 @@ msgstr ""
 "bzip2: NICHT gefunden, packen und entpacken DEAKTIVIERT.\n"
 "==> bzip2 kann bei http://www.gnu.org/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:118
+#: Konfigurator/kgarchives.cpp:119
 msgid "unzip: found, unpacking enabled.\n"
 msgstr "unzip: gefunden, entpacken aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:119
+#: Konfigurator/kgarchives.cpp:120
 msgid ""
 "unzip: NOT found, unpacking DISABLED.\n"
 "==> unzip can be obtained at www.info-zip.org\n"
@@ -3835,11 +3843,11 @@ msgstr ""
 "unzip: NICHT gefunden, entpacken DEAKTIVIERT.\n"
 "==> unzip kann bei http://www.info-zip/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:120
+#: Konfigurator/kgarchives.cpp:121
 msgid "zip: found, packing enabled.\n"
 msgstr "zip: gefunden, packen aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:121
+#: Konfigurator/kgarchives.cpp:122
 msgid ""
 "zip: NOT found, packing DISABLED.\n"
 "==> zip can be obtained at www.info-zip.org\n"
@@ -3847,11 +3855,23 @@ msgstr ""
 "zip: NICHT gefunden, packen DEAKTIVIERT.\n"
 "==> zip kann bei http://www.info-zip.org/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:122
+#: Konfigurator/kgarchives.cpp:123
+msgid "lha: found, packing and unpacking enabled.\n"
+msgstr "lha: gefunden, packen und entpacken aktiviert.\n"
+
+#: Konfigurator/kgarchives.cpp:124
+msgid ""
+"lha: NOT found, packing and unpacking DISABLED.\n"
+"==> lha can be obtained at www.gnu.org\n"
+msgstr ""
+"lha: NICHT gefunden, packen und entpacken DEAKTIVIERT.\n"
+"==> lha kann bei http://www.gnu.org/ heruntergeladen werden.\n"
+
+#: Konfigurator/kgarchives.cpp:125
 msgid "rpm: found, unpacking enabled.\n"
 msgstr "rpm: gefunden, entpacken aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:123
+#: Konfigurator/kgarchives.cpp:126
 msgid ""
 "rpm found but cpio NOT found: unpacking DISABLED.\n"
 "==>cpio can be obtained at www.gnu.org\n"
@@ -3859,7 +3879,7 @@ msgstr ""
 "rpm: gefunden aber cpio NICHT gefunden, entpacken DEAKTIVIERT.\n"
 "==> cpio kann bei http://www.gnu.org/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:124
+#: Konfigurator/kgarchives.cpp:127
 msgid ""
 "rpm: NOT found, unpacking is DISABLED.\n"
 "==> rpm can be obtained at www.gnu.org\n"
@@ -3867,11 +3887,15 @@ msgstr ""
 "rpm: NICHT gefunden, entpacken DEAKTIVIERT.\n"
 "==> rpm kann bei http://www.gnu.org/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:125
+#: Konfigurator/kgarchives.cpp:128
 msgid "unrar: found, unpacking is enabled.\n"
 msgstr "unrar: gefunden, entpacken aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:126
+#: Konfigurator/kgarchives.cpp:130
+msgid "unrar: NOT found.\n"
+msgstr "unrar: NICHT gefunden.\n"
+
+#: Konfigurator/kgarchives.cpp:131
 msgid ""
 "unrar: NOT found, unpacking is DISABLED.\n"
 "==> unrar can be obtained at www.rarsoft.com\n"
@@ -3879,11 +3903,11 @@ msgstr ""
 "unrar: NICHT gefunden, entpacken DEAKTIVIERT.\n"
 "==> rar kann bei http://www.rarsoft.com/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:127
-msgid "rar: found, packing is enabled.\n"
-msgstr "rar: gefunden, packen aktiviert.\n"
+#: Konfigurator/kgarchives.cpp:133
+msgid "rar: found, packing and unpacking is enabled.\n"
+msgstr "rar: gefunden, packen und entpacken aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:128
+#: Konfigurator/kgarchives.cpp:134
 msgid ""
 "rar: NOT found, packing is DISABLED.\n"
 "==> rar can be obtained at www.rarsoft.com\n"
@@ -3891,23 +3915,39 @@ msgstr ""
 "rar: NICHT gefunden, packen DEAKTIVIERT.\n"
 "==> tar kann bei http://www.rarsoft.com/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:129
+#: Konfigurator/kgarchives.cpp:135
 msgid "unarj: found, unpacking is enabled.\n"
 msgstr "unarj: gefunden, entpacken aktiviert.\n"
 
-#: Konfigurator/kgarchives.cpp:130
+#: Konfigurator/kgarchives.cpp:137
+msgid "unarj: NOT found.\n"
+msgstr "unarj: NICHT gefunden.\n"
+
+#: Konfigurator/kgarchives.cpp:138
 msgid ""
 "unarj: NOT found, unpacking is DISABLED.\n"
 "==> unarj can be obtained at www.arjsoft.com\n"
 msgstr ""
 "unarj: NICHT gefunden, entpacken DEAKTIVIERT.\n"
+"==> unarj kann bei http://www.arjsoft.com/ heruntergeladen werden.\n"
+
+#: Konfigurator/kgarchives.cpp:140
+msgid "arj: found, packing and unpacking is enabled.\n"
+msgstr "arj: gefunden, packen und entpacken aktiviert.\n"
+
+#: Konfigurator/kgarchives.cpp:141
+msgid ""
+"arj: NOT found, packing is DISABLED.\n"
+"==> arj can be obtained at www.arjsoft.com\n"
+msgstr ""
+"arj: NICHT gefunden, entpacken DEAKTIVIERT.\n"
 "==> tar kann bei http://www.arjsoft.com/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:131
+#: Konfigurator/kgarchives.cpp:142
 msgid "unace: found, unpacking is enabled.\n"
 msgstr "unace: gefunden, entpacken aktiviert\n"
 
-#: Konfigurator/kgarchives.cpp:132
+#: Konfigurator/kgarchives.cpp:143
 msgid ""
 "unace: NOT found, unpacking is DISABLED.\n"
 "==> unace can be obtained at www.winace.com\n"
@@ -3915,7 +3955,7 @@ msgstr ""
 "unace: NICHT gefunden, entpacken DEAKTIVIERT.\n"
 "==> unace kann bei http://www.winace.com/ heruntergeladen werden.\n"
 
-#: Konfigurator/kgarchives.cpp:134
+#: Konfigurator/kgarchives.cpp:145
 msgid ""
 "\n"
 "If you install new packers, please install them"
@@ -3923,7 +3963,7 @@ msgstr ""
 "\n"
 "Wenn Sie neue Packer installieren, dann bitte"
 
-#: Konfigurator/kgarchives.cpp:136
+#: Konfigurator/kgarchives.cpp:147
 msgid ""
 "\n"
 "Thanks for flying Krusader :-)"
