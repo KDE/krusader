@@ -142,7 +142,6 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
       ( totals, i18n( "The totals bar shows how much files exist, "
                       "how many did you select and the bytes math" ) );
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
-	totalsLayout->addWidget(totals);
 	
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
@@ -151,6 +150,7 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(popupBtn);
+	totalsLayout->addWidget(totals);
 	
    quickSearch = new KrQuickSearch( this );
    krConfig->setGroup( "Look&Feel" );
@@ -222,6 +222,13 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
 
 	// add a popup
 	popup = new PanelPopup(splt);
+#if 0	
+	// set initial size to be 1/3 of the panel's height
+	QValueList<int> sizes;
+	sizes.append(height()/2); sizes.append(height()/2);
+	kdWarning()<<sizes[0]<<"--"<<sizes[1]<<"--"<<this->height()<<endl;
+	splt->setSizes(sizes); 
+#endif	
 	connect(popup, SIGNAL(selection(const KURL&)), SLOTS, SLOT(refresh(const KURL&)));
 	connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
 	popup->hide();
