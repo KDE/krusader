@@ -508,7 +508,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     ButtonGroup2Layout->addMultiCellWidget( notModifiedAfterData, 1, 1, 2, 3 );
 
     modifiedInTheLastEnabled = new QRadioButton( ButtonGroup2, "modifiedInTheLastEnabled" );
-    modifiedInTheLastEnabled->setText( "Mod&ified in the last" );
+    modifiedInTheLastEnabled->setText( i18n("Mod&ified in the last") );
     ButtonGroup2->insert( modifiedInTheLastEnabled, 0 );
 
     ButtonGroup2Layout->addWidget( modifiedInTheLastEnabled, 2, 0 );
