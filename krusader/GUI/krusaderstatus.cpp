@@ -1,5 +1,5 @@
 /***************************************************************************
- 												    krusaderstatus.cpp
+                 krusaderstatus.cpp
                              -------------------
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
     e-mail               : krusader@users.sourceforge.net
@@ -36,7 +36,8 @@
 
 KrusaderStatus::KrusaderStatus(QWidget *parent, const char *name ):
   KStatusBar(parent,name){
-	insertItem(i18n(S_READY.local8Bit()),S_READY_ID);
+ //insertItem(i18n(S_READY.local8Bit()),S_READY_ID);
+ insertItem(S_READY,S_READY_ID);
   setMaximumHeight(QFontMetrics(font()).height()+2);
 }
 
