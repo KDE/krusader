@@ -57,6 +57,10 @@ public slots:
   void slotInactiveAltBackgroundChanged();
   void slotInactiveMarkedBackgroundChanged();
   void generatePreview();
+  
+protected slots:
+  void slotImportColors();
+  void slotExportColors();
 
 private:
   int                        addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName = QString::null,

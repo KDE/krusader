@@ -31,8 +31,11 @@
 #include "kgcolors.h"
 #include "../defaults.h"
 #include "../Panel/krcolorcache.h"
+#include <kmessagebox.h>
 #include <klocale.h>
+#include <kfiledialog.h>
 #include <kglobalsettings.h>
+#include <kstandarddirs.h>
 #include <qhbox.h>
 #include <qheader.h>
 #include <qtabwidget.h>
@@ -67,7 +70,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   connect( generals->find( "Enable Alternate Background" ), SIGNAL( stateChanged( int ) ), this, SLOT( generatePreview() ) );
   connect( generals->find( "Show Current Item Always" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
-  kgColorsLayout->addWidget( generalGrp, 0 ,0 );
+  kgColorsLayout->addMultiCellWidget( generalGrp, 0 ,0, 0, 2 );
   QHBox *hbox = new QHBox( parent );
 
   //  -------------------------- COLORS GROUPBOX ----------------------------------
@@ -172,7 +175,15 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 
   previewGrid->addWidget( preview, 0 ,0 );
 
-  kgColorsLayout->addWidget( hbox, 1 ,0 );
+  kgColorsLayout->addMultiCellWidget( hbox, 1 ,1, 0, 2 );
+  
+  KPushButton *importBtn = new KPushButton(i18n("Import color-scheme"),parent);
+  kgColorsLayout->addWidget(importBtn,2,0);
+  KPushButton *exportBtn = new KPushButton(i18n("Export color-scheme"),parent);
+  kgColorsLayout->addWidget(exportBtn,2,1);
+  kgColorsLayout->addWidget(createSpacer(parent, ""), 2,2);
+  connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportColors()));
+  connect(exportBtn, SIGNAL(clicked()), this, SLOT(slotExportColors()));
 
   slotDisable();
 }
@@ -411,6 +422,39 @@ bool KgColors::apply()
   KrColorCache::getColorCache().refreshColors();
   return result;
 }
+
+void KgColors::slotImportColors() {
+	// find $KDEDIR/share/apps/krusader
+	QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
+	// let the user select a file to load
+	QString file = KFileDialog::getOpenFileName(basedir, "*.color", 0, i18n("Select a color-scheme file"));
+	if (file == QString::null) return;
+	QFile f(file);
+	if (!f.open(IO_ReadOnly)) {
+		KMessageBox::error(this, i18n("Error: unable to read from file"), i18n("Error"));
+		return;
+	}
+	QDataStream stream(&f);
+	// ok, import away
+	KrColorCache::getColorCache().deserialize(stream);
+	// TODO: how to make the preview update?
+}
+
+void KgColors::slotExportColors() {
+	QString file = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a color scheme file"));
+	if (file == QString::null) return;
+	QFile f(file);
+	if (f.exists() && KMessageBox::warningContinueCancel(this, 
+		i18n("File ")+file+i18n(" already exists. Are you sure you want to overwrite it?"),
+		i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) return;
+	if (!f.open(IO_WriteOnly)) {
+		KMessageBox::error(this, i18n("Error: unable to write to file"), i18n("Error"));
+		return;
+	}
+	QDataStream stream(&f);
+	KrColorCache::getColorCache().serialize(stream);
+}
+
 
 #include "kgcolors.moc"
 

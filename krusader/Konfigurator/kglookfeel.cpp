@@ -188,10 +188,10 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   registerObject( keyBindings );
   
   // import and export shortcuts
-  QPushButton *importBtn = new QPushButton(i18n("Import shortcuts"),tab_3);
+  KPushButton *importBtn = new KPushButton(i18n("Import shortcuts"),tab_3);
   keyBindingsLayout->addWidget(importBtn,1,0);
   QToolTip::add(  importBtn, i18n( "Load a Key-binding profile, e.g. total_commander.keymap" ) );
-  QPushButton *exportBtn = new QPushButton(i18n("Export shortcuts"),tab_3);
+  KPushButton *exportBtn = new KPushButton(i18n("Export shortcuts"),tab_3);
   keyBindingsLayout->addWidget(exportBtn,1,1);
   QToolTip::add(  exportBtn, i18n( "Save current Key-bindings in a keymap file." ) );
   keyBindingsLayout->addWidget(createSpacer(tab_3, "tab3spacer"), 1,2);
@@ -302,7 +302,7 @@ void KgLookFeel::slotImportShortcuts() {
 	// ok, import away
 	krApp->importKeyboardShortcuts(file);
 	slotReload(keyBindings);	
-	keyBindings->setChanged();
+	//keyBindings->setChanged();
 }
 
 void KgLookFeel::slotExportShortcuts() {
