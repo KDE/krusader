@@ -66,6 +66,9 @@
 #include "Search/krsearchdialog.h"
 #include "VFS/vfs.h"
 #include "panelmanager.h"
+#include "Splitter/splittergui.h"
+#include "Splitter/splitter.h"
+#include "Splitter/combiner.h"
 
 #define ACTIVE_PANEL        (krApp->mainView->activePanel)
 #define ACTIVE_FUNC         (krApp->mainView->activePanel->func)
@@ -492,6 +495,109 @@ void KRslots::newTab(QListViewItem *item) {
 
 void KRslots::closeTab() {
   ACTIVE_PANEL_MANAGER->slotCloseTab();
+}
+
+void KRslots::slotSplit()
+{
+  QStringList list;
+  QString name;
+
+  ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&list);
+
+  // first, see if we've got exactly 1 selected file, if not, try the current one
+  if (list.count() == 1) name = list[0];
+
+  if ( name.isEmpty() ) {
+    // if we got here, then one of the panel can't be sure what file to diff
+    KMessageBox::error(0,i18n("Don't know which file to split."));
+    return;
+  }
+
+  QString fileName = ACTIVE_FUNC->files()->vfs_getFile(name);
+  if( fileName == QString::null )
+    return;
+
+  if ( ACTIVE_FUNC->files()->vfs_search( name )->vfile_isDir() ) {
+    KMessageBox::sorry( krApp, i18n( "You can't split a directory!" ) );
+    return ;
+  }
+
+  QString destDir  = ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin();
+
+  SplitterGUI splitterGUI( MAIN_VIEW, fileName, destDir );
+
+  if( splitterGUI.result() == QDialog::Accepted )
+  {
+    bool splitToOtherPanel = ( splitterGUI.getDestinationDir() == ACTIVE_PANEL->otherPanel->virtualPath );
+
+    Splitter split( MAIN_VIEW, fileName, splitterGUI.getDestinationDir() );
+    split.split( splitterGUI.getSplitSize() );
+
+    if ( splitToOtherPanel )
+      ACTIVE_PANEL->otherPanel->func->refresh();
+  }
+}
+
+void KRslots::slotCombine()
+{
+  QStringList list;
+  QString fileName;
+
+  ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&list);
+  if ( list.isEmpty() )
+  {
+    KMessageBox::error(0,i18n("Don't know which files to combine."));
+    return;
+  }
+
+  for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
+  {
+    QString name = ACTIVE_FUNC->files()->vfs_getFile(*it);
+    if( name == QString::null )
+      return;
+
+    if ( ACTIVE_FUNC->files()->vfs_search( *it )->vfile_isDir() ) {
+      KMessageBox::sorry( krApp, i18n( "You can't combine a directory!" ) );
+      return ;
+    }
+
+    int extPos = name.findRev( '.' );
+
+    QString ext = name.mid( extPos + 1 );
+    bool isExtInt;
+    ext.toInt( &isExtInt, 10 );
+
+    if( extPos < 1 || ext.isEmpty() || ( ext != "spl" && !isExtInt ) )
+    {
+      KMessageBox::error(0,i18n("Not a splitted file %1!").arg( name ));
+      return;
+    }
+
+    name.truncate( extPos );
+
+    if( fileName.isEmpty() )
+       fileName = name;
+    else if( fileName != name )
+    {
+      KMessageBox::error(0,i18n("Select only one splitted file!"));
+      return;
+    }
+  }
+
+  // ask the user for the copy dest
+  KChooseDir *chooser = new KChooseDir( 0, i18n( "Combining %1.* to directory:" ).arg( fileName ),
+                                        ACTIVE_PANEL->otherPanel->getPath() );
+  QString dest = chooser->dest;
+  if ( dest == QString::null )
+    return ; // the usr canceled
+
+  bool combineToOtherPanel = ( dest == ACTIVE_PANEL->otherPanel->virtualPath );
+
+  Combiner combine( MAIN_VIEW, fileName, dest );
+  combine.combine();
+
+  if ( combineToOtherPanel )
+    ACTIVE_PANEL->otherPanel->func->refresh();
 }
 
 #include "krslots.moc"
