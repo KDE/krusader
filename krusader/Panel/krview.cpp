@@ -120,7 +120,7 @@ QString KrView::statistics() {
 }
 
 void KrView::changeSelection(const QString& filter, bool select) {
-  KConfigGroupSaver grpSvr(_config, nameInKConfig());
+  KConfigGroupSaver grpSvr(_config, "Look&Feel"/*nameInKConfig()*/);
   bool markDirs = _config->readBoolEntry("Mark Dirs",_MarkDirs);
 
   KrViewItem *temp=getCurrentKrViewItem();
@@ -148,7 +148,7 @@ void KrView::changeSelection(const QString& filter, bool select) {
 }
 
 void KrView::invertSelection() {
-  KConfigGroupSaver grpSvr(_config, nameInKConfig());
+  KConfigGroupSaver grpSvr(_config, "Look&Feel"/*nameInKConfig()*/);
   bool markDirs = _config->readBoolEntry("Mark Dirs",_MarkDirs);
 
   KrViewItem *temp=getCurrentKrViewItem();
