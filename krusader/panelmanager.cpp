@@ -41,10 +41,12 @@ QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), 
   connect( _tabbar, SIGNAL( closeCurrentTab() ), this, SLOT( slotCloseTab() ) );
   connect( _tabbar, SIGNAL( newTab(QString) ), this, SLOT( slotNewTab(QString) ) );
 
-  _layout->addMultiCellWidget( _stack, 0, 0, 0, 2 );
+  _layout->addMultiCellWidget( _stack, 0, 0, 0, 3 );
   _layout->addWidget( _newTab, 1, 0 );
   _layout->addWidget( _tabbar, 1, 1 );
-  _layout->addWidget( _closeTab, 1, 2 );
+  /* KDE 3.2 error, inserting a new spacer item to fix the left justification bug */
+  _layout->addItem( new QSpacerItem(0,0, QSizePolicy::Expanding, QSizePolicy::Minimum), 1, 2 );
+  _layout->addWidget( _closeTab, 1, 3 );
 
   if (HIDE_ON_SINGLE_TAB) HIDE
   else SHOW
