@@ -178,7 +178,7 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	stack->addWidget(quickPanel, QuickPanel);
 	
 	// -------- finish the layout (General one)
-	layout->addMultiCellWidget(stack,1,1,0,4);
+	layout->addMultiCellWidget(stack,1,1,0,5);
 	
    // set the wanted widget
 	// ugly: are we left or right?
