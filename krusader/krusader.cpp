@@ -309,7 +309,7 @@ void Krusader::setupActions() {
   actToggleTerminal = new KToggleAction( i18n( "Show &Terminal Emulator" ), 0, SLOTS,
                                          SLOT( toggleTerminal() ), actionCollection(), "toggle terminal emulator" );
   actToggleTerminal->setChecked( false );
-  actToggleHidden = new KToggleAction( i18n( "Show H&idden Files" ), 0, SLOTS,
+  actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), CTRL + Key_Period, SLOTS,
                                        SLOT( toggleHidden() ), actionCollection(), "toggle hidden files" );
   actToggleSortByExt = new KToggleAction( i18n( "Sort By E&xtention" ), 0, SLOTS,
                                           SLOT( toggleSortByExt() ), actionCollection(), "toggle sort by extention" );
@@ -324,7 +324,7 @@ void Krusader::setupActions() {
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
   actTest = new KAction( i18n( "&Test Archive(s)" ), "kr_arc_test", CTRL + Key_T,
                          SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
-  actFTPConnect = new KAction( i18n( "&Net Connections" ), "socket", CTRL + Key_F,
+  actFTPConnect = new KAction( i18n( "&Net Connections" ), "socket", CTRL + Key_C,
                                SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
   actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "ftp", CTRL + Key_N,
                                   SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
@@ -344,7 +344,7 @@ void Krusader::setupActions() {
                                 SLOTS, SLOT( unmarkAll() ), actionCollection(), "unselect all" );
   actHomeTerminal = new KAction( i18n( "&Terminal" ), "kr_terminal", 0,
                                  SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
-  actFTPDisconnect = new KAction( i18n( "FTP Disc&onnect" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
+  actFTPDisconnect = new KAction( i18n( "Disconnect &From Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
                                   SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
   actMountMan = new KAction( i18n( "&MountMan" ), "kcmpartitions", ALT + Key_Slash,
                              SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
