@@ -49,6 +49,7 @@ A
 #include <kio/netaccess.h>
 #include <kstandarddirs.h>
 #include <ktempdir.h> 
+#include <kurlrequester.h>
 // Krusader Includes
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
@@ -84,7 +85,12 @@ panel( parent ), inRefresh( false ), vfsP( 0 ) {
 }
 
 void ListPanelFunc::openUrl( const QString& url, const QString& nameToMakeCurrent ) {
-	openUrl( vfs::fromPathOrURL( url ), nameToMakeCurrent );
+	openUrl( vfs::fromPathOrURL( 
+		// KURLRequester is buggy: it should return a string containing "/home/shie/downloads"
+		// but it returns "~/downloads" which is parsed incorrectly by vfs::fromPathOrURL.
+		// replacedPath should replace ONLY $HOME and environment variables
+		panel->origin->completionObject()->replacedPath(url) )
+		, nameToMakeCurrent );
 }
 
 void ListPanelFunc::delayedOpenUrl( const KURL& urlIn ) {
