@@ -183,7 +183,12 @@ void KRslots::compareContent() {
 }
 
 void KRslots::rightclickMenu() {
-  ACTIVE_PANEL->popRightClickMenu(QPoint(0,0));
+  ACTIVE_PANEL->popRightClickMenu(
+   ACTIVE_PANEL->mapToGlobal(
+   dynamic_cast<KListView*>(ACTIVE_PANEL->view)->itemRect(dynamic_cast<QListViewItem*>
+   (ACTIVE_PANEL->view->getCurrentKrViewItem())).topLeft()
+   )
+  );
 }
 
 void KRslots::addBookmark(){
