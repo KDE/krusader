@@ -1,11 +1,12 @@
+    ADDED: a working user menu (try alt+~), but a bit rough on the edges
     ADDED: KrSearch edit/view file in the result list window (F3, F4, right click)
     ADDED: a folder-history button, a-la-total commander. thanks to Hans Loffler!
     ADDED: selectall at rename
-    ADDED: a paritialy working user menu (try alt+~)
     ADDED: new shortcuts to search dialog (heiner)
     ADDED: directory synchronizer
     ADDED: file splitter
     ADDED: a missing credit for Frank in the about box
+    FIXED: statusbar updated only on mouse clicks, not on keyboard 
     FIXED: translation: forcing non-english languages with a strange structure
     FIXED: freeze at modal dialogs and icon tray
     FIXED: crash at rename if the directory is refreshed by the watcher
@@ -30,6 +31,7 @@
     UPDATED: Spanish translation
     UPDATED: Krename url   http://www.krename.net
     REMOVED: arc_vfs support completly replaced with KIO:Slave technolegy.
+
 1.30
 ======================
     ADDED: middle mouse button: click on a folder, and create a new tab.
