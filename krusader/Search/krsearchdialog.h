@@ -68,6 +68,9 @@ public slots:
   void notModifiedAfterSetDate();
   void resultClicked(QListViewItem*);
 
+  virtual void keyPressEvent(QKeyEvent *e);
+  virtual void closeEvent(QCloseEvent *e);
+
 protected slots:
   void reject();
 
@@ -83,6 +86,8 @@ private:
   KRSearchMod *searcher;
   KShellCompletion completion;
   QStringList savedSearches;
+  bool isSearching;
+  bool closed;
 };
 
 #endif

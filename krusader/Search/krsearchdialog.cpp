@@ -107,6 +107,8 @@ KrSearchDialog::KrSearchDialog(QWidget *parent, const char *name ) :
   krFind->setEnabled(false);
   searchFor->setFocus();
 	resultsList->setColumnAlignment(2, AlignRight);
+
+  isSearching = closed = false;
 }
 
 KrSearchDialog::~KrSearchDialog(){
@@ -479,7 +481,11 @@ void KrSearchDialog::startSearch() {
                 this, SLOT(found(QString,QString,KIO::filesize_t,time_t,QString)));
   connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
 
+  isSearching = true;
   searcher->start();
+  isSearching = false;
+  if( closed )
+    emit closeDialog();
 }
 
 void KrSearchDialog::stopSearch() {
@@ -537,5 +543,26 @@ void KrSearchDialog::loadSearch() {
 
 void KrSearchDialog::loadSearch(QListViewItem *) {
 }
+
+void KrSearchDialog::closeEvent(QCloseEvent *e)
+{                     /* if searching is in progress we must not close the window */
+  if( isSearching )   /* because qApp->processEvents() is called by the searcher and */
+  {                   /* at window desruction, the searcher object will be deleted */
+    stopSearch();         /* instead we stop searching */
+    closed = true;        /* and after stopping: startSearch can close the window */
+    e->ignore();          /* ignoring the close event */
+  }
+  else
+    QDialog::closeEvent( e );   /* if no searching, let QDialog handle the event */
+}
+
+void KrSearchDialog::keyPressEvent(QKeyEvent *e)
+{
+  if( isSearching && e->key() == Key_Escape ) /* at searching we must not close the window */
+    stopSearch();         /* so we simply stop searching */
+  else
+    QDialog::keyPressEvent( e );
+}
+
 
 #include "krsearchdialog.moc"
