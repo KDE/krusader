@@ -590,7 +590,7 @@ void ListPanelFunc::dirUp() {
 	QString newOrigin = origin;
   // remove one dir from the new path
   newOrigin.truncate( newOrigin.findRev('/') );
-	
+
   // Do we need to change vfs ?
   bool changeVFS = files()->vfs_error();
 	if ( origin.right( 1 ) == "\\" ) { // leaving arc_vfs
@@ -611,7 +611,8 @@ void ListPanelFunc::dirUp() {
 	}
 
   // make the current dir the current item on the new list
-  panel->view->setNameToMakeCurrent(newOrigin.mid(newOrigin.findRev("/")+1));
+  panel->view->setNameToMakeCurrent(origin.mid(origin.findRev("/")+1));
+
 
   // check the '/' case
   if ( newOrigin == "" ) newOrigin = "/";
