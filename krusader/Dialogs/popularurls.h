@@ -46,16 +46,15 @@ protected:
 	void insertNode(UrlNodeP node, UrlNodeP after);
 	void removeNode(UrlNodeP node);
 	void relocateIfNeeded(UrlNodeP node);
-	void collectGarbage();
 	void clearList();
 	void dumpList();
+	void decreaseRanks();
 	
 private:
 	UrlNodeP head, tail;
 	QDict<UrlNode> ranks; // actually holds UrlNode*
 	int count;
 	static const int maxUrls = 30; 
-	static const int hardLimit = 50;
 	PopularUrlsDlg *dlg;
 };
 

@@ -12,6 +12,10 @@
 #include "../krslots.h"
 #include "popularurls.h"
 
+#define STARTING_RANK	20
+#define INCREASE			2
+#define DECREASE			1
+
 PopularUrls::PopularUrls(QObject *parent, const char *name) : QObject(parent, name), 
 	head(0), tail(0), count(0) {
 	dlg = new PopularUrlsDlg();
@@ -59,6 +63,7 @@ void PopularUrls::load() {
 		return;
 	}
 	clearList();
+	count = 0;
 	// iterate through both lists and
 	QStringList::Iterator uit;
 	QValueList<int>::Iterator rit;
@@ -95,9 +100,10 @@ void PopularUrls::addUrl(const KURL& url) {
 	tmpurl.adjustPath(1); // make a uniform trailing slash policy
 	UrlNodeP pnode;
 	
+	decreaseRanks();
 	if (!head) { // if the list is empty ... (assumes dict to be empty as well)
 		pnode = new UrlNode;
-		pnode->rank = 1;
+		pnode->rank = STARTING_RANK;
 		pnode->url = tmpurl;
 		appendNode(pnode);
 		ranks.insert(tmpurl.url(), head);
@@ -105,30 +111,22 @@ void PopularUrls::addUrl(const KURL& url) {
 		pnode = ranks.find(tmpurl.url());
 		if (!pnode) { // is the added url new? if so, append it
 			pnode = new UrlNode;
-			pnode->rank = 1;
+			pnode->rank = STARTING_RANK;
 			pnode->url = tmpurl;
 			appendNode(pnode);
 			ranks.insert(tmpurl.url(), pnode);
 		} else {
-			pnode->rank++;
-			// do we need to change location for this one?
-			relocateIfNeeded(pnode);
+			pnode->rank += INCREASE;
 		}
 	}
-	//dumpList();
-}
+	
+	// do we need to change location for this one?
+	relocateIfNeeded(pnode);
 
-// once we have 'hardLimit' urls, remove the bottom urls
-// until we have only 'maxUrls' urls left
-void PopularUrls::collectGarbage() {
-	UrlNodeP n;
-	while (count > maxUrls) {
-		n = tail;
-		removeNode(n);
-		ranks.remove( n->url.url() );
-		delete n;
-		--count;
-	}
+	// too many urls?
+	if (count > maxUrls) removeNode(tail);
+	
+	//dumpList();
 }
 
 // checks if 'node' needs to be bumped-up the ranking list and does it if needed
@@ -147,6 +145,19 @@ void PopularUrls::relocateIfNeeded(UrlNodeP node) {
 		insertNode(node, tmp);
 	}
 }
+	
+	
+// iterate over the list, decreasing each url's rank
+// this is very naive, but a 1..30 for loop is acceptable (i hope)
+void PopularUrls::decreaseRanks() {
+	if (head) {
+		UrlNodeP p=head;
+		while (p) {
+			p->rank -= DECREASE;
+			p=p->next;
+		}
+	}
+}
 
 // removes a node from the list, but doesn't free memory!
 // note: this will be buggy in case the list becomes empty (which should never happen)
@@ -159,6 +170,7 @@ void PopularUrls::removeNode(UrlNodeP node) {
 		if (head == node) head = node->next;
 		node->next->prev = node->prev;
 	}
+	--count;
 }
 
 void PopularUrls::insertNode(UrlNodeP node, UrlNodeP after) {
@@ -176,6 +188,7 @@ void PopularUrls::insertNode(UrlNodeP node, UrlNodeP after) {
 			after->next = node;
 		}
 	}
+	++count;
 }
 
 // appends 'node' to the end of the list, collecting garbage if needed
@@ -189,12 +202,12 @@ void PopularUrls::appendNode(UrlNodeP node) {
 		tail->next = node;
 		tail = node;
 	}
-	if (++count == hardLimit) collectGarbage();
+	++count;
 }
 
 void PopularUrls::dumpList() {
 	UrlNodeP p = head;
-	printf("====start====\n");
+	printf("====start %d====\n",count);
 	while (p) {
 		printf("%d : %s\n", p->rank, p->url.url().latin1());
 		p = p->next;
