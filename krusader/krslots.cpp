@@ -235,6 +235,13 @@ void KRslots::toggleToolbar() {
 	else krApp->toolBar()->show();
 }
 
+void KRslots::toggleActionsToolbar() {
+  if (krApp->toolBar("actionsToolBar")->isVisible())
+		krApp->toolBar("actionsToolBar")->hide();
+	else krApp->toolBar("actionsToolBar")->show();
+}
+
+
 void KRslots::toggleStatusbar() {
   if (krApp->statusBar()->isVisible())
 		krApp->statusBar()->hide();

@@ -63,6 +63,7 @@
    <Separator/>
 	<Action name="toggle vertical mode" />
    <Action name="std_toolbar" />
+	<Action name="toggle actions toolbar"/>
    <Action name="std_statusbar" />
    <Action name="toggle fn bar" />
    <Action name="toggle command line" />
@@ -111,6 +112,8 @@
   <Action name="profile" />
   <Separator name="separator_0" />
   <Action name="konfigurator" />
+ </ToolBar>
+ <ToolBar noMerge="1" name="actionsToolBar" fullWidth="false" >
  </ToolBar>
  <ActionProperties>
   <Action accel="" name="sysinfo" />

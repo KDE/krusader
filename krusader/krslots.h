@@ -68,6 +68,7 @@ class KRslots : public QObject {
     void configToolbar();
     void configKeys();
     void toggleToolbar();
+	 void toggleActionsToolbar();
     void toggleStatusbar();
     void toggleTerminal();
     void home();

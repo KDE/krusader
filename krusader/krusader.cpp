@@ -410,6 +410,8 @@ void Krusader::setupActions() {
    KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" ); /*->setShortcut(Key_QuoteLeft);*/
    new KAction(  i18n( "&Reload" ), "reload", CTRL + Key_R, SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
    actShowToolBar = KStdAction::showToolbar( SLOTS, SLOT( toggleToolbar() ), actionCollection(), "std_toolbar" );
+	new KToggleAction(i18n("Show Actions Toolbar"), 0, SLOTS, SLOT( toggleActionsToolbar() ),
+		actionCollection(), "toggle actions toolbar");
    actShowStatusBar = KStdAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
    KStdAction::quit( this, SLOT( quitKrusader() ), actionCollection(), "std_quit" );
    KStdAction::configureToolbars( SLOTS, SLOT( configToolbar() ), actionCollection(), "std_config_toolbar" );
@@ -669,6 +671,7 @@ void Krusader::savePosition() {
 
 void Krusader::saveSettings() {
    toolBar() ->saveSettings( krConfig, "Private" );
+	toolBar("actionsToolBar")->saveSettings( krConfig, "Actions Toolbar" );
    config->setGroup( "Startup" );
    config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
    config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
@@ -789,6 +792,11 @@ void Krusader::updateGUI( bool enforce ) {
    // call the XML GUI function to draw the UI
    createGUI( mainView->konsole_part );
    toolBar() ->applySettings( krConfig, "Private" );
+	
+	toolBar("actionsToolBar") ->applySettings( krConfig, "Actions Toolbar" );
+	static_cast<KToggleAction*>(actionCollection()->action("toggle actions toolbar"))->
+		setChecked(toolBar("actionsToolBar")->isVisible());
+	
    if ( enforce ) {
       // now, hide what need to be hidden
       if ( !krConfig->readBoolEntry( "Show tool bar", _ShowToolBar ) ) {
