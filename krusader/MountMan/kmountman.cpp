@@ -57,6 +57,8 @@
 #define FSTAB "/etc/fstab"
 #endif
 
+#define  DF_WAIT_TIME             30
+
 bool  dfStartFailed = false;
 
 using namespace MountMan;
@@ -291,8 +293,8 @@ void KMountMan::updateFilesystems() {
   connect(&dfProc, SIGNAL(processExited(KProcess *)), this,
           SLOT(finishUpdateFilesystems()));
   dfProc.start(KProcess::NotifyOnExit);
-  // if 'df' doesn't return in 5 seconds, stop mountman
-  QTimer::singleShot(5*1000,this,SLOT(killMountMan()));
+  // if 'df' doesn't return in DF_WAIT_TIME seconds, stop mountman
+  QTimer::singleShot(DF_WAIT_TIME*1000,this,SLOT(killMountMan()));
 }
 
 // if df didn't return, stop mountman
@@ -754,7 +756,7 @@ void statsCollector::getData(QString path, fsData *data) {
   {
     KProcessController::theKProcessController->waitForProcessExit(1);
 
-    if( ::time(0) - startTime > 5 )
+    if( ::time(0) - startTime > DF_WAIT_TIME )
     {
       dfProc.kill(SIGKILL);    // kill the process
       QDir().remove(tmpFile);
