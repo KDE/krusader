@@ -54,6 +54,9 @@ protected:
   virtual bool queryClose();
   virtual bool queryExit();
 
+protected slots:
+  void slotStatResult( KIO::Job* job );
+  
 private:
   KrViewer(QWidget *parent=0, const char *name=0);
   ~KrViewer();
@@ -70,6 +73,9 @@ private:
   KParts::ReadWritePart *editor_part;
 
   KTempFile tmpFile;
+  
+  bool busy;
+  KIO::UDSEntry entry;
 };
 
 #endif

@@ -28,6 +28,8 @@
 #include <klibloader.h>
 #include <ktrader.h>
 #include <kio/netaccess.h>
+#include <kio/jobclasses.h>
+#include <kio/job.h>
 #include <kstatusbar.h>
 #include <kdebug.h>
 #include <klargefile.h>
@@ -112,6 +114,12 @@ KrViewer::~KrViewer(){
   }
 }
 
+void KrViewer::slotStatResult( KIO::Job* job ) {
+  if( !job || job->error() ) entry = KIO::UDSEntry();
+  else entry = static_cast<KIO::StatJob*>(job)->statResult();
+  busy = false;
+}
+
 KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool create){
   KParts::Part *part = 0L;
   KLibFactory  *factory = 0;
@@ -120,9 +128,16 @@ KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool 
   
   if( create )
   {
-    KFileItem file( KFileItem::Unknown, KFileItem::Unknown, url );
-    if( file.isReadable() )
-      create = false;
+    KIO::StatJob* statJob = KIO::stat( url, false );
+    connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
+    busy = true;
+    while ( busy ) qApp->processEvents();
+    if( !entry.isEmpty() )
+    {
+      KFileItem file( entry, url );
+      if( file.isReadable() )
+        create = false;
+    }
   }
 
   // in theory, we only care about the first one.. but let's try all
