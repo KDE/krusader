@@ -101,6 +101,7 @@ class KrDetailedView : public KListView, public KrView {
     virtual void startDrag();
 
   protected slots:
+    void rename(QListViewItem *item, int c);
     void slotClicked( QListViewItem *item );
     void slotDoubleClicked( QListViewItem *item );
     void slotItemDescription( QListViewItem *item );

@@ -606,6 +606,20 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
   }
 }
 
+// overridden to make sure EXTENTION won't be lost during rename
+void KrDetailedView::rename(QListViewItem *item, int c) {
+   kdWarning() << "!!" << endl;
+   // do we have an EXT column? if so, handle differently:
+   // copy the contents of the EXT column over to the name
+   if ( column( Extention ) != -1 ) {
+     item->setText( column( Name ), dynamic_cast<KrViewItem*>(item)->name() );
+     item->setText( column( Extention ), QString::null );
+     repaintItem( item );
+   }
+
+   KListView::rename(item, c);
+}
+
 void KrDetailedView::renameCurrentItem() {
   int c;
   QString newName, fileName;
@@ -626,13 +640,6 @@ void KrDetailedView::renameCurrentItem() {
     c = -1; // failsafe
 
   if ( c >= 0 ) {
-    // do we have an EXT column? if so, handle differently:
-    // copy the contents of the EXT column over to the name
-    if ( column( Extention ) != -1 ) {
-      dynamic_cast<QListViewItem*>( it ) ->setText( column( Name ), fileName );
-      dynamic_cast<QListViewItem*>( it ) ->setText( column( Extention ), QString::null );
-      repaintItem( dynamic_cast<QListViewItem*>( it ) );
-    }
     rename( dynamic_cast<QListViewItem*>( it ), c );
     // signal will be emited when renaming is done, and finalization
     // will occur in inplaceRenameFinished()
