@@ -28,7 +28,7 @@
 
 <para>In order to successfully use the most recent &krusader;, you need &kde;libs &gt;= 3.3.x.</para>
 
-<note>
+<para>Required &kde; version:
 <itemizedlist>
    <listitem><para>&krusader; v1.01 needs &kde;libs 2.x.x</para>
              </listitem>
@@ -36,15 +36,15 @@
              </listitem>
       <listitem><para>&krusader; 1.40 prefers &gt;= 3.2.x (otherwise not all features will be available)</para>
               </listitem>
-      <listitem><para>&krusader; v1.50 - 1.60 needs &gt;= 3.3.x</para>
+      <listitem><para>&krusader; v1.50 - 1.60.0 needs &gt;= 3.3.x</para>
               </listitem>
 </itemizedlist>
-</note>
+</para>
 
 <para>Platforms:
  <itemizedlist>
-   <listitem><para>All POSIX (&Linux;/BSD/UNIX-like OSes), &Solaris;</para></listitem>
-   <listitem><para>All BSD Platforms (FreeBSD/NetBSD/OpenBSD/&MacOS; 10.3 "Panther").</para></listitem>
+   <listitem><para>All POSIX (&Linux;/BSD/&UNIX;-like OSes), &Solaris;</para></listitem>
+   <listitem><para>All BSD Platforms (&freebsd;/NetBSD/OpenBSD/&MacOS; 10.3 "Panther").</para></listitem>
  </itemizedlist>
 </para>
 
@@ -124,7 +124,7 @@ We use a new version scheme since &krusader;-1.60.0
                 </para></listitem>
 </itemizedlist>
 So in essence, releasing &krusader;-1.60.0, means that we believe that &krusader; is about 60%
-done with all the features we'd schedule for thr 1.x.x series.
+done with all the features we'd schedule for the 1.x.x series.
 Only 40% left to go until version 2.0.0 ;-)
 We hope it'd be easy to understand.
 </para>
@@ -263,8 +263,8 @@ We hope it'd be easy to understand.
 </sect2>
 
 
-<sect2 id="detailinstall">
-<title>Detailed Installation Instructions</title>
+<sect2 id="install_tutorial">
+<title>Installation Tutorial</title>
 
 <para>The next section will explain step by step, in detail, how to install &krusader;.
       This question has been asked many times and especially users new to &Linux; often have

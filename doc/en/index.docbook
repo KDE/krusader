@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
-<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
 
 <!--
 Previous used Docbook
-<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
 -->
 
 <!-- **********************************************************************
@@ -197,12 +197,15 @@ Previous used Docbook
 <!ENTITY keditbookmarks '<application>KeditBookmarks</application>'>
 
 <!-- trademark ENTITIES -->
-<!ENTITY fedora '<trademark class="registered">Fedora</trademark>'>
+<!ENTITY fedora '<trademark>Fedora</trademark>'>
+
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
 <!ENTITY debian '<trademark class="registered">Debian</trademark>'>
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
-<!ENTITY tcmd '<trademark class="registered">Total commander</trademark>'>
 <!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
+
+<!ENTITY freebsd '<trademark class="copyright">FreeBSD</trademark>'>
+<!ENTITY tcmd '<trademark class="copyright">Total commander</trademark>'>
 
 <!-- useraction ENTITIES -->
 <!ENTITY useraction_parameter 'Parameter:'>
@@ -273,6 +276,12 @@ Previous used Docbook
         <contrib>Documentation</contrib>
         <affiliation><address><email>richard.holt@gmail.com</email></address></affiliation>
   </othercredit>
+
+  <othercredit role="reviewer">
+        <firstname>Terry "Fudoki"</firstname><surname>Wilkinson</surname>
+        <contrib>Documentation</contrib>
+        <affiliation><address><email>sekhmet_616@yahoo.com</email></address></affiliation>
+  </othercredit>
         
   <othercredit role="reviewer">
         <firstname>Mark</firstname><surname>Eatough</surname>
@@ -297,7 +306,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-03-01</date>
+  <date>2005-03-17</date>
   <releaseinfo>1.60.0</releaseinfo>
 
    <abstract>
@@ -433,10 +442,34 @@ Previous used Docbook
         Donations for this project will be used for further development of &krusader;,
         be it by purchasing hardware, or promoting of the project.</para>
 
+  <para><emphasis role="bold">UserActions</emphasis></para>
+  <para>Krusader comes with a nice set of &useractions_lnk; , 
+        providing simple and advanced features of all sorts.
+        If you have made a useful User action please post it in the  &useractionsforum_url;
+        we are collecting UserActions on our website, the "best ones" will be shipped with Krusader.
+        Thanks!</para>
+
   <para><emphasis role="bold">Packagers</emphasis></para>
-  <para>We are always in need of packagers for rpm's, deb's, &MacOS; port, etc. 
-        In theory a &Windows; port is (maybe) possible.
+  <para>We are always in need of packagers for rpm's, deb's, etc. 
         All help is welcome.</para>
+
+  <para><emphasis role="bold">Maintainer for porting &krusader; to &MacOS; X</emphasis></para>
+  <para>Krusader can be ported to &MacOS; X with &fink_prj_url; and &kde;libs (3.1.4),
+        Jonas B&auml;hr has proven this with &krusader;-1.40 on &MacOS; 10.3 "Panther".
+        Unfortunately Jonas doesn't have the time to maintain this port and &krusader;-1.40 is the only
+        successfull port to &MacOS; X. An attempt to port &krusader;-1.50 to &MacOS; X dit fail due some
+        small porting problems and some lack of time. 
+        At this moment the &MacOS; X &krusader; port doesn't have the same power then in a native &kde; 
+        environement, once a native &kde;lib on &MacOS; without X will allow it to run &krusader; smoothly.
+        Jonas will help with pleasure this maintainer, the <filename>krusader-1.xx.info</filename> files are 
+        available in cvs.</para>
+
+    <para><emphasis role="bold">Porting &krusader; to &Windows;</emphasis></para>
+    <para>&krusader; is written using &Qt;, but also using &kde;libs.
+          As long as &kde;libs do not run on &Windows;, poting &krusader; is not an option.
+          However, we do believe, that once &Qt;4-GPL is released, efforts will be made to port &kde;libs 
+          to &Windows;, and if that happens, we're in business and than we need a maintainer for porting 
+          &krusader; to &Windows;.</para>
 
   <para><emphasis role="bold">FAQ</emphasis></para>
   <para>If you have a question that is missing in the &faq_lnk;, we would like to hear it.</para>

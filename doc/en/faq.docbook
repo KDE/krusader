@@ -439,7 +439,7 @@
   <qandaentry>
   <question id="faqu_supermount">
   <para>When I try to mount/unmount my cdrom/floppy, &krusader; says
-             something about supermount, what's this about? </para>
+             something about supermount, what's this about?</para>
   </question>
   <answer>
   <para>Supermount is a daemon which handles mounting/unmounting of removable filesystems for you.
@@ -451,6 +451,28 @@
        is there really a <hardware>floppy</hardware> in the <hardware>drive</hardware>?
        Of course, this can be solved, but as for now, we don't consider it a priority.
        Feel free to write a patch for it ;-).
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
+  <qandaentry>
+  <question id="faqu_dead_mountpoint">
+  <para>Why does &krusader; freezes on a dead mountpoint?</para>
+  </question>
+  <answer>
+  <para>When &krusader; is &eg; browsing a NFS share and the NFS server goes down,
+        then &krusader; will freeze. &krusader; (including all open internal viewers/editors) 
+        freeze and can only be killed with <command>kill -9</command>.
+        We have no solution for it in short term.
+        The problem is that you "hang" on the first access to the dead share - 
+        so there is no way around it, no check to avoid it, even <command>ls</command> will freeze.
+        Just trying to read something - anything - is enough to get you stuck.
+        The one and only way around is using a multi-threaded design - this way if we get stuck, 
+        we don't hang the entire application event loop, but we don't think that the time is right 
+        for adding threads, we are not sure that *all* the &kde; system out there are using &Qt;-mt 
+        (the multi threaded version of the &Qt; library) so currently it's a bug we have to learn to 
+        live with.
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
@@ -648,15 +670,19 @@
 
   <qandaentry>
   <question id="faqg_wish_patch">
-  <para>Where can I report a wish, a patch or a comment?</para>
+  <para>How can I report a wish, a patch or a comment?</para>
   </question>
   <answer>
   <para>An open source project's greatest strength is derived from getting user feedback.
       That is why we love to hear what you have to say.
+      Your "Gripes" are our instructions. After about 6 months, programmers can no longer see their own mistakes. 
+      It's natural. We want the ideas, xritiques, and feedback because we all want to make &krusader; the best, 
+      most useful, file manager available anywhere.
       The most convenient way is to use the &forum_lnk;.
       For information on what remains to be done look at the &todoforum_url;.
-      Adding ToDo items into the &todoforum_url; is for developers only, but feel free to post to the &featureforum_url;
-      for things that aren't on the &todoforum_url;, but should be. If you have a nice feature request, the &krusader;
+      Adding ToDo items into the &todoforum_url; is for developers only, but feel free to post to the 
+      &featureforum_url; for things that aren't on the &todoforum_url;, but should be. If you have a nice 
+      feature request, the &krusader;
       Krew will add your request to the &forum_lnk;.
       For more information about the forum click <link linkend="faqg_kru_forum">here</link> .
       You can reach us by &mail_url;
@@ -668,7 +694,7 @@
 
   <qandaentry>
     <question id="faqg_bug_report">
-    <para>Where can I report a bug?</para>
+    <para>How can I report a bug?</para>
     </question>
     <answer>
     <para>We have an online Bug Tracking System.</para>
