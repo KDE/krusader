@@ -71,6 +71,7 @@ public slots:
 	//////////////////////////////////////////////
   // Tab - switch focus
   void panelSwitch();
+  void toggleVerticalMode();
   
   void profiles( QString profileName = QString::null );  
   void loadPanelProfiles( QString group );

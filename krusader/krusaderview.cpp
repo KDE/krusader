@@ -194,4 +194,10 @@ void KrusaderView::savePanelProfiles( QString group )
   krConfig->writeEntry( "Left Side Is Active", MAIN_VIEW->activePanel->isLeft() );
 }
 
+void KrusaderView::toggleVerticalMode() {
+	if (horiz_splitter->orientation() == QSplitter::Vertical)
+		horiz_splitter->setOrientation(QSplitter::Horizontal);
+	else horiz_splitter->setOrientation(QSplitter::Vertical);
+}
+
 #include "krusaderview.moc"
