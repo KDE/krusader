@@ -1,34 +1,25 @@
-Krusader 1.50
+Krusader 1.51
 =============
-The team is pleased to announce the latest stable version of krusader.
-Many many things have changed, so here's some highlights:
+The team is pleased to announce the latest release of krusader.
+The main focus of this release is documentation: it was updated to
+include the new features introduced in 1.50. kudos to documentation team!
 
-* New user-action system, which allows you to define your own
-  personal krusader-actions.
-  Please take a look at the tutorial that comes in the doc\ section
-* Profiles: you can now save a profile that contains the entire tabs on both
-  panels, and restore the state at will. See the new profiles icon.
-* 3rd Panel: new popup-panel that can display quick view, tree etc. Just click
-  the little arrow button on the bottom of each panel.
-* A new, compare directories menu. TC-Style
-* Support for selecting certain protcols for certain mime-types
-* ISO protocol now allows you to step into .iso files
-* Cut, Copy and Paste: ctrl-v, ctrl-c and ctrl-x is working
-* Konqueror's right-click actions are shown in Krusader
-* Human-readable size in the file list (optional)
-* ALT-O now synchronizes the panels (other panel becomes as current)
-* CTRL-D opens the bookmark in the active panel - TotalCommander style
-* Search now includes support for profiles
-* Search now searches on remote filesystems
-* Search: TC like search ( 'text' == '*text*' ),
-  excluding files with '|' (ex. '*.cpp *.h | *.moc.cpp' )
-* Packing/Unpacking to/from remote URL is supported.
-* Arj, Lha, and ace are now fully supported
-* Two single-click Rename (total commander-like)
-* New refresh method, should make Krusader take less cpu time
+Also, some new features:
+* You can now change the keyboard shortcuts for the Fn keys (much requested)
+* Panels are not refreshed when Krusader is not focused (total-commander style)
+* Vertical mode: hit ALT+CTRL+R to try it out !
 
-and that's without mentioning other features and COUNTLESS bug fixes.
-Please check the changelog for information, as many high-profile bugs were fixed.
+Some bugfixes:
+* Krusader can be resized to a small size, even with Fn keys shown (old bug)
+* Deleting a folder didn't update the totals correctly
+* World class bug: when using quicksearch, sometimes the selected file would
+  get hidden beneath the quicksearch bar
+
+Check out the changelog for details.
+
+Krusader Krew
+
+
 
 Notice: if you've got bugs to report, please do so using Krusader's website,
         and not using KDE's bugzilla (bugs.kde.org).

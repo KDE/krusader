@@ -580,7 +580,7 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
         new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Key_Down, SLOTS,
                                           SLOT( togglePopupPanel() ), actionCollection(), "toggle popup panel" );
-        new KToggleAction( i18n( "Vertical Mode" ), ALT + CTRL + Key_V, MAIN_VIEW, 
+        new KToggleAction( i18n( "Vertical Mode" ), ALT + CTRL + Key_R, MAIN_VIEW, 
                                         SLOT( toggleVerticalMode() ), actionCollection(), "toggle vertical mode" );
    actNewTab = new KAction( i18n( "New tab" ), ALT + CTRL + Key_N, SLOTS,
                             SLOT( newTab() ), actionCollection(), "new tab" );

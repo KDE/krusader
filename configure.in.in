@@ -5,7 +5,7 @@ KDE_CHECK_HEADER(konqbookmarkmanager.h, ,[have_libkonq=no] )
 
 AM_CONDITIONAL(include_libkonq, test "$have_libkonq" = yes)
 
-AM_INIT_AUTOMAKE(krusader,1.50)
+AM_INIT_AUTOMAKE(krusader,1.51)
 
 dnl CXXFLAGS="$NOOPT_CXXFLAGS" dnl __kdevelop[noopt]__
 dnl CFLAGS="$NOOPT_CFLAGS" dnl __kdevelop[noopt]__
