@@ -3,6 +3,16 @@ It should contain a brief description of new features;
 in some way an extension to the changelog.
 ------------------------------------------------------
 
+Panel profiles: from know it is possible to store environment profiles.
+  An environment profile contains the followings:
+  - all the tabs path (left / right)
+  - the current tab ( left / right )
+  - and the selected side ( left or right )
+  You can save / restore these tabulator profiles. Please test it.
+  Those users who uses CVS version of krusader, should delete the krusaderui.rc 
+  from their home directory, for getting the new menu and toolbar item visible.
+  (rm ~/.kde/share/apps/krusader/krusaderui.rc)
+
 Synchronizer: from now you can use the search filters in the synchronizer
 
 Useraction: removed placeholder 'Bookmark'. It is deprecated now since the new

@@ -61,20 +61,21 @@ void PanelManager::slotChangePanel( ListPanel *p ) {
    _self->slotFocusOnMe();
 }
 
-ListPanel* PanelManager::createPanel() {
+ListPanel* PanelManager::createPanel( bool setCurrent ) {
    // create the panel and add it into the widgetstack
    ListPanel * p = new ListPanel( _stack, _left );
    _stack->addWidget( p );
 
    // now, create the corrosponding tab
-   _tabbar->addPanel( p );
+   _tabbar->addPanel( p, setCurrent );
 
    // allow close button if more than 1 tab
    if ( _tabbar->count() > 1 ) {
       _closeTab->setEnabled( true );
       SHOW // needed if we were hidden
    }
-   _stack->raiseWidget( p );
+   if( setCurrent )
+     _stack->raiseWidget( p );
 
    // connect the activePanelChanged signal to enable/disable actions
    connect( p, SIGNAL( activePanelChanged( ListPanel* ) ), this, SLOT( slotRefreshActions() ) );
@@ -111,41 +112,34 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) 
       {
-         _tabbar->setCurrentTab( t );
-         slotChangePanel( t->panel );
+         t->panel->otherPanel = _other;
+         _other->otherPanel = t->panel;
          t->panel->start( l[ i ] );
       }
       ++i;
    }
    
    while( i <  totalTabs )
-   {
-      PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt( --totalTabs ));
-      if (t && t->panel) 
-      {
-        _tabbar->setCurrentTab( _tabbar->tabAt( totalTabs ) );
-        slotChangePanel( t->panel );
-        slotCloseTab();
-      }
-   }
-   
+     slotCloseTab( --totalTabs );
+      
    for(; i < (int)l.count(); i++ )
-   {
-     slotNewTab( l[i] );
-   }
+     slotNewTab( l[i], false );
 }
 
 void PanelManager::slotNewTab() {
    slotNewTab( QDir::home().absPath() );
 }
 
-void PanelManager::slotNewTab( QString path ) {
-   _self = createPanel();
+void PanelManager::slotNewTab( QString path, bool setCurrent ) {
+   ListPanel *p = createPanel( setCurrent );   
    // update left/right pointers
-   _self->otherPanel = _other;
-   _other->otherPanel = _self;
-
-   startPanel( _self, path );
+   p->otherPanel = _other;
+   if( setCurrent )
+   {
+     _self = p;
+     _other->otherPanel = _self;
+   }
+   startPanel( p, path );
 }
 
 void PanelManager::slotCloseTab() {
@@ -171,6 +165,36 @@ void PanelManager::slotCloseTab() {
       }
 }
 
+void PanelManager::slotCloseTab( int index ) {
+   PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt( index ));
+   if (t && t->panel) 
+   {
+      ListPanel *oldp = t->panel;
+      disconnect( oldp );
+      if( t->identifier() == _tabbar->currentTab() )
+      {
+         PanelTab *newCurrent = dynamic_cast<PanelTab*>( _tabbar->tabAt( 0 ) );
+         if( newCurrent != 0 )
+         {
+            _tabbar->setCurrentTab( newCurrent );
+            _self = newCurrent->panel;
+            _self->otherPanel = _other;
+            _other->otherPanel = _self;
+         }
+      }  
+      _tabbar->removeTab( t );
+
+      _stack->removeWidget( oldp );
+      delete oldp;      
+   }
+
+   if ( _tabbar->count() == 1 ) 
+   {
+      _closeTab->setEnabled( false );
+      if ( HIDE_ON_SINGLE_TAB ) HIDE
+   }
+}
+
 void PanelManager::slotRefreshActions() {
    krCloseTab->setEnabled( _tabbar->count() > 1 );
    krNextTab->setEnabled(_tabbar->count() > 1);
@@ -189,6 +213,19 @@ void PanelManager::setActiveTab( int panelIndex )
     return;  
   _tabbar->setCurrentTab( current );
   slotChangePanel ( dynamic_cast<PanelTab*>( _tabbar->tabAt( panelIndex ) )->panel );
+}
+
+void PanelManager::setCurrentTab( int panelIndex )
+{
+  PanelTab *current = dynamic_cast<PanelTab*>(_tabbar->tabAt( panelIndex ) );
+  if( current == 0 )
+    return;  
+  _tabbar->setCurrentTab( current );
+  _self = current->panel;
+  _self->otherPanel = _other;
+  _other->otherPanel = _self;
+
+  _stack->raiseWidget( _self );
 }
 
 void PanelManager::recreatePanels() {

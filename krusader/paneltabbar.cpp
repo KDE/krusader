@@ -73,14 +73,16 @@ void PanelTabBar::insertAction( KAction* action ) {
   _panelActionMenu->insert( action );
 }
 
-int PanelTabBar::addPanel(ListPanel *panel) {
+int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent ) {
   int newId = addTab(new PanelTab(squeeze(panel->virtualPath), panel));
 
   // make sure all tabs lengths are correct
   for (int i=0; i<count(); i++)
     tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath, i));
   layoutTabs();
-  setCurrentTab(newId);
+  
+  if( setCurrent )
+    setCurrentTab(newId);
 
   // enable close-tab action
   if (count()>1) {
