@@ -29,6 +29,7 @@
  ***************************************************************************/
 // QT includes
 #include <qbitmap.h>
+#include <qheader.h>
 #include <qwhatsthis.h>
 #include <qstringlist.h>
 #include <qstrlist.h>
@@ -52,6 +53,7 @@
 #include <kstddirs.h>
 #include <kglobalsettings.h>
 #include <kdeversion.h>
+#include <qimage.h>
 #include <qtabbar.h>
 // Krusader includes
 #include "../krusader.h"
@@ -83,10 +85,23 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
   setAcceptDrops(true);
   setMouseTracking(false);
 	layout=new QGridLayout(this,3,2);
-  	// ... create the bookmark list
+
+  status = new KSqueezedTextLabel(this);
+  krConfig->setGroup("Look&Feel");
+  status->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
+  status->setBackgroundMode(PaletteBackground);
+  status->setFrameStyle( QFrame::Box | QFrame::Raised);
+  status->setLineWidth(1);		// a nice 3D touch :-)
+  status->setText("");        // needed for initialization code!
+  int sheight = QFontMetrics(status->font()).height()+4;
+  status->setMaximumHeight(sheight);
+  QWhatsThis::add(status,i18n("The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of filesystem etc."));
+
+   // ... create the bookmark list
   bookmarkList=new QToolButton(this);
-  bookmarkList->setPixmap(krLoader->loadIcon("kr_bookmark",KIcon::Toolbar));
-  bookmarkList->setMaximumWidth(32);
+  bookmarkList->setFixedSize(sheight, sheight);
+  QImage im = krLoader->loadIcon("kr_bookmark",KIcon::Toolbar).convertToImage();
+  bookmarkList->setPixmap(im.scale(sheight,sheight));
   bookmarkList->setTextLabel(i18n("Open your bookmarks"),true);
   bookmarkList->setPopupDelay(10); // 0.01 seconds press
   connect(bookmarkList,SIGNAL(pressed()),this,SLOT(slotFocusOnMe()));
@@ -104,23 +119,16 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
   connect(bookmarks,SIGNAL(activated(int)),this,
           SLOT(slotBookmarkChosen(int)));
 
-  status = new KSqueezedTextLabel(this);
-  krConfig->setGroup("Look&Feel");
-  status->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
-  status->setBackgroundMode(PaletteBackground);
-  status->setFrameStyle( QFrame::Box | QFrame::Raised);
-  status->setLineWidth(1);		// a nice 3D touch :-)
-  status->setText("");        // needed for initialization code!
-  QWhatsThis::add(status,i18n("The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of filesystem etc."));
-
   totals = new KSqueezedTextLabel(this);
   totals->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
   totals->setFrameStyle( QFrame::Box | QFrame::Raised);
   totals->setBackgroundMode(PaletteBackground);
   totals->setLineWidth(1);		// a nice 3D touch :-)
+  totals->setMaximumHeight(sheight);
   QWhatsThis::add(totals,i18n("The totals bar shows how much files exist, how many did you select and the bytes math"));
 
   origin = new QPushButton("", this);
+  origin->setMaximumHeight(QFontMetrics(origin->font()).height()+4);
   QWhatsThis::add(origin,i18n("This shows the full path to your current directory"));
   connect(origin,SIGNAL(clicked()),this,SLOT(slotFocusOnMe()));
 
@@ -133,6 +141,7 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
 	fileList->setShowSortIndicator(true);
 	fileList->setVScrollBarMode(QScrollView::AlwaysOn);
 	fileList->setHScrollBarMode(QScrollView::Auto);
+  //fileList->header()->setMaximumHeight(QFontMetrics(fileList->header()->font()).height()+2);
 	int i=QFontMetrics(fileList->font()).width("W");
 	int j=QFontMetrics(fileList->font()).width("0");
   if (i<j) i=j;

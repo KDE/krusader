@@ -47,6 +47,8 @@
 #include <qdir.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
+#include <qfontmetrics.h>
+#include <qimage.h>
 
 
 KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
@@ -56,18 +58,22 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
   path->setFrameStyle(QFrame::Box | QFrame::Sunken);
   path->setLineWidth(1);
   path->setFont(KGlobalSettings::generalFont());
+  path->setMaximumHeight(QFontMetrics(path->font()).height()+4);
   layout->addWidget(path,0,0);
   // and editable command line
   completion.setMode(KURLCompletion::FileCompletion);
 	cmdLine=new KRLineEdit(this);
   cmdLine->setFont(KGlobalSettings::generalFont());
+  cmdLine->setMaximumHeight(QFontMetrics(cmdLine->font()).height()+4);
   cmdLine->setCompletionObject(&completion);
 	QWhatsThis::add(cmdLine,i18n("Well, it's quite simple actually: You write you command in here, and Krusader obays."));
   layout->addWidget(cmdLine,0,1);
   // history button
   history=new QToolButton(this);
+  history->setFixedSize(cmdLine->maximumHeight(),cmdLine->maximumHeight());
   history->setTextLabel("Show the last commands you typed in the command line.");
-  history->setPixmap(krLoader->loadIcon("date",KIcon::Panel));
+  QImage im = krLoader->loadIcon("date",KIcon::Panel).convertToImage();
+  history->setPixmap(im.scale(history->height(), history->height()));
 	historyMenu=new QPopupMenu(this);
 	historyMenu->setFont(KGlobalSettings::generalFont());
   history->setPopup(historyMenu);	
@@ -78,10 +84,12 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
   layout->addWidget(history,0,2);
   // a run in terminal button
   terminal=new QToolButton(this);
+  terminal->setFixedSize(cmdLine->maximumHeight(),cmdLine->maximumHeight());
   terminal->setTextLabel("If pressed, Krusader executes command line in a terminal.");
   terminal->setToggleButton(true);
   terminal->setOn(false);
-  terminal->setPixmap(krLoader->loadIcon("konsole",KIcon::Panel));
+  im = krLoader->loadIcon("konsole",KIcon::Panel).convertToImage();
+  terminal->setPixmap(im.scale(terminal->height(), terminal->height()));
   QWhatsThis::add(terminal,i18n("The 'run in terminal' button allows Krusader to run console (or otherwise non-graphical) programs in a terminal of your choice. If it's pressed, termial mode is active."));
   layout->addWidget(terminal,0,3);
   layout->activate();
@@ -104,7 +112,7 @@ KCMDLine::~KCMDLine(){
 void KCMDLine::slotRun(){
   QString command1=cmdLine->text();
   if(command1.isEmpty()) return;
-  krConfig->setGroup("General"); 	
+  krConfig->setGroup("General"); 
   cmdLine->clear();
 	addToHistory(command1);
 	currentItem=-1;	// reset the up/down keys

@@ -30,6 +30,7 @@
 
 #include <klocale.h>
 #include <kglobalsettings.h>
+#include <qfontmetrics.h>
 #include "kfnkeys.h"
 #include "../krusader.h"
 #include "../defaults.h"
@@ -41,7 +42,7 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 		
 		setFont( KGlobalSettings::generalFont() );
 		layout=new QGridLayout(this,1,9);	// 9 keys
-		F2=new QPushButton( i18n("F2 Term  ") ,this);	
+		F2=new QPushButton( i18n("F2 Term  ") ,this);
 			connect(F2,SIGNAL(clicked()), SLOTS,
 						SLOT(terminal()));
 		F3=new QPushButton( i18n("F3 View  ") ,this);	
@@ -68,7 +69,15 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 		F10=new QPushButton( i18n("F10 Quit ") ,this);
 			connect(F10,SIGNAL(clicked()),krApp,
 						SLOT(quitKrusader()));
-		
+
+    // set a tighter box around the keys
+    int h = QFontMetrics(F2->font()).height()+2;
+    F2->setMaximumHeight(h); F3->setMaximumHeight(h);
+    F4->setMaximumHeight(h); F5->setMaximumHeight(h);
+    F6->setMaximumHeight(h); F7->setMaximumHeight(h);
+    F8->setMaximumHeight(h); F9->setMaximumHeight(h);
+    F10->setMaximumHeight(h);
+    
 		layout->addWidget(F2,0,0);
 		layout->addWidget(F3,0,1);
 		layout->addWidget(F4,0,2);

@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 // Krusader includes
+#include <qfontmetrics.h>
 #include "krusaderstatus.h"
 #include "../resources.h"
 
@@ -36,6 +37,7 @@
 KrusaderStatus::KrusaderStatus(QWidget *parent, const char *name ):
   KStatusBar(parent,name){
 	insertItem(i18n(S_READY.local8Bit()),S_READY_ID);
+  setMaximumHeight(QFontMetrics(font()).height()+2);
 }
 
 KrusaderStatus::~KrusaderStatus(){
