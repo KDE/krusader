@@ -81,7 +81,6 @@ KAction *Krusader::actSelectAll = 0;
 KAction *Krusader::actUnselect = 0;
 KAction *Krusader::actUnselectAll = 0;
 KAction *Krusader::actInvert = 0;
-KAction *Krusader::actSysInfo = 0;
 KAction *Krusader::actSync = 0;
 KAction *Krusader::actHomeTerminal = 0;
 KAction *Krusader::actFTPConnect = 0;
@@ -377,8 +376,6 @@ void Krusader::setupActions() {
                          SLOTS, SLOT( back() ), actionCollection(), "back" );
   actRoot = new KAction( i18n( "Root" ), "top", CTRL + Key_Backspace,
                          SLOTS, SLOT( root() ), actionCollection(), "root" );
-  actSysInfo = new KAction( i18n( "&Device Manager" ), "kr_hwinfo", 0,
-                            SLOTS, SLOT( sysInfo() ), actionCollection(), "sysinfo" );
   actSavePosition = new KAction( i18n( "Save &Position" ), 0,
                                  krApp, SLOT( savePosition() ), actionCollection(), "save position" );
   actAllFilter = new KAction( i18n( "&All Files" ), SHIFT + Key_F10,

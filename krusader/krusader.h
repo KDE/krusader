@@ -94,7 +94,7 @@ class Krusader : public KParts::MainWindow {
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare;
     static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll;
-    static KAction *actUnselectAll, *actInvert, *actSysInfo, *actSync, *actSavePosition;
+    static KAction *actUnselectAll, *actInvert, *actSync, *actSavePosition;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool;
     static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp;
@@ -142,7 +142,6 @@ class Krusader : public KParts::MainWindow {
 #define krUnselect        Krusader::App->actUnselect       // unselect by filter
 #define krUnselectAll     Krusader::App->actUnselectAll    // remove all selections
 #define krInvert          Krusader::App->actInvert         // invert the selection
-#define krSysInfo         Krusader::App->actSysInfo        // system information
 #define krSyncDirs        Krusader::App->actSync           // syncronize directories
 #define krHomeTerm        Krusader::App->actHomeTerminal   // open terminal@home dir
 #define krFTPConnect      Krusader::App->actFTPConnect     // connect to an ftp
