@@ -41,7 +41,7 @@ protected slots:
 	void slotActivated(const KURL& url);
 
 private:
-	KActionCollection *_collection;
+	KActionCollection *_collection, *_privateCollection;
 	KrBookmark *_root;
 	// the whole KBookmarkManager is an ugly hack. use it until we have our own
 	KBookmarkManager *manager;

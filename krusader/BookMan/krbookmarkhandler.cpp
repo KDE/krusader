@@ -22,6 +22,7 @@
 											
 KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false) {
 	// create our own action collection and make the shortcuts apply only to parent
+	_privateCollection = new KActionCollection(krApp, "private collection");
 	_collection = krApp->actionCollection();
 
 	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
@@ -37,6 +38,7 @@ KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false) {
 
 KrBookmarkHandler::~KrBookmarkHandler() {
 	delete manager;
+	delete _privateCollection;
 }
 
 void KrBookmarkHandler::menuOperation(int id) {
@@ -258,9 +260,11 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			QString name;
 			if ((*it).isLocalFile()) name = (*it).path();
 			else name = (*it).prettyURL();
-			KrBookmark *bm = KrBookmark::getExistingBookmark(name, _collection);
+			// note: these bookmark are put into the private collection
+			// as to not spam the general collection
+			KrBookmark *bm = KrBookmark::getExistingBookmark(name, _privateCollection);
 			if (!bm)
-				bm = new KrBookmark(name, *it, _collection);
+				bm = new KrBookmark(name, *it, _privateCollection);
 			bm->plug(newMenu);
 			CONNECT_BM(bm);
 		}
