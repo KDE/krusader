@@ -46,7 +46,7 @@
 #include <qpushbutton.h>
 #include <qhbox.h>
 
-class KVFSPanel;
+class ListPanel;
 
 // forward declaration
 class KFnKeys;
@@ -62,11 +62,8 @@ public:
   void cmdLineUnFocus();// return focus from command line to active panel
   	
 public slots:
-	void setListView();
-	void setTreeView();
-	void setQuickView();
   void slotCurrentChanged(QString p);
-	void slotSetActivePanel(KVFSPanel *p);
+	void slotSetActivePanel(ListPanel *p);
   void slotTerminalEmulator(bool);
 	// manage the function keys to the CURRENT vfs
 	//////////////////////////////////////////////
@@ -77,8 +74,8 @@ protected slots:
   void killTerminalEmulator();
 
 public:
-  KVFSPanel	  *activePanel;
-  KVFSPanel	  *left,*right;								// the actual panels
+  ListPanel  *activePanel;
+  ListPanel  *left,*right;								// the actual panels
   KFnKeys			*fnKeys;										// function keys
   KCMDLine    *cmdLine;                   // command line widget
   QHBox       *terminal_dock;             // docking widget for terminal emulator

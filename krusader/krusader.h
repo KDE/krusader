@@ -60,7 +60,6 @@ class Krusader : public KParts::MainWindow {
 public:
   Krusader();
   ~Krusader();
-  void disableFutureItems(); // disable the menu for features not implemented
   void refreshView();				 // re-create the main view
   static QStringList supportedTools(); // find supported tools
 
@@ -93,10 +92,9 @@ public:
 	static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll;
 	static KAction *actUnselectAll, *actInvert, *actSysInfo, *actSync, *actSavePosition;
 	static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
-  static KAction *actFullPanel, *actTreePanel, *actQuickPanel, *actAllFilter;
   static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actBookMan, *actNewTool;
   static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actAddBookmark;
-	static KAction *actSelectColorMask, *actMultiRename;
+	static KAction *actSelectColorMask, *actMultiRename, *actAllFilter;
 	static KToggleAction *actToggleTerminal;
   KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
                 *actShowStatusBar,*actToggleHidden, *actCompareDirs, *actToggleSortByExt;
@@ -144,9 +142,6 @@ signals:
 #define krFTPConnect      Krusader::App->actFTPConnect     // connect to an ftp
 #define krFTPNew          Krusader::App->actFTPNewConnect  // create a new connection
 #define krFTPDiss         Krusader::App->actFTPDisconnect  // disconnect an FTP session
-#define krFullPanel       Krusader::App->actFullPanel
-#define krTreePanel       Krusader::App->actTreePanel
-#define krQuickPanel      Krusader::App->actQuickPanel
 #define krAllFiles        Krusader::App->actAllFilter      // show all files in list
 #define krExecFiles       Krusader::App->actExecFilter     // show only executables
 #define krCustomFiles     Krusader::App->actCustomFilter   // show a custom set of files

@@ -83,9 +83,6 @@ public slots:
 	void customFilter();
   void newFTPconnection();
   void newFTPconnection(QString host);
-  void setTreeView();
-  void setListView();
-  void setQuickView();
   void runKonfigurator(bool firstTime=false);
   void startKonfigurator() { runKonfigurator(false); }
   void search();						 				// call the search module	

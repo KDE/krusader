@@ -32,48 +32,15 @@
 
 #ifndef PANELFUNC_H
 #define PANELFUNC_H
-#include "kvfspanel.h"
-#include <qlistview.h>
+#include "listpanel.h"
 #include <qobject.h>
 
-class PanelFunc : public QObject{
-  Q_OBJECT
-public:
-	           PanelFunc(){}
-	virtual  	~PanelFunc(){}
-
-public slots:
-	virtual void redirectLink   (){}
-	virtual void krlink         (bool){}
-	virtual void goBack         (){}
-  virtual void properties     (){}
-	virtual void dirUp          (){}
- 	virtual void terminal       (){}
-	virtual void editFile      	(){}
-	virtual void view         	(){}
-	virtual void mkdir        	(){}
-	virtual void moveFiles    	(){}
-	virtual void rename       	(){}
-  virtual void pack         	(){}
-  virtual void unpack       	(){}
-  virtual	void copyFiles    	(){}
-	virtual	void deleteFiles  	(){}
-	virtual void calcSpace    	(){}
-	virtual void testArchive  	(){}
-  virtual void FTPDisconnect	(){}
-  virtual void execute(QListViewItem *){}
-	virtual void changeVFS(QString ,QString){}
-  //	inline  void refresh(const QString path){ panel->refresh(path) }
-  virtual void getSelectedNames(QStringList*){}
-  inline  bool canGoBack(){return !backStack.isEmpty();}
-	virtual void newFTPconnection(QString){}
-
-public:
-  QStringList backStack; // Path stack for the "back" button
-};
-
-class ListPanelFunc : public PanelFunc{
+class ListPanelFunc : public QObject{
+friend class ListPanel;
 	Q_OBJECT
+public slots:
+	void execute(QListViewItem *i);
+
 public:
 	ListPanelFunc(class ListPanel *parent);
  ~ListPanelFunc(){}
@@ -94,42 +61,15 @@ public:
   void testArchive();
   void copyFiles();
 	void deleteFiles();
-	void execute(QListViewItem *i);
   void calcSpace();
   void FTPDisconnect();
   void newFTPconnection(QString host=QString::null);
   void changeVFS(QString type, QString origin);
+  inline  bool canGoBack(){return !backStack.isEmpty();}
 
 protected:
 	ListPanel	  *panel;
-};
-
-class TreePanelFunc : public PanelFunc{
-	Q_OBJECT
-public:	
-	TreePanelFunc(class TreePanel *parent);
- ~TreePanelFunc(){}
-	
-	void execute(QListViewItem*){}
-  void properties();
-	void terminal();
-	void mkdir();
-	void moveFiles();
-	void rename();
-  void pack();
-	void copyFiles();
-	void deleteFiles();
-	void calcSpace();
-	
-protected:
-	TreePanel	  *panel;
-};
-
-class QuickViewPanelFunc : public PanelFunc{
-	Q_OBJECT
-public:	
-	QuickViewPanelFunc(){}
- ~QuickViewPanelFunc(){}
+	QStringList backStack; // Path stack for the "back" button
 };
 
 #endif

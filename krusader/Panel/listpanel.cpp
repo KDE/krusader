@@ -55,13 +55,14 @@
 #include <kdeversion.h>
 #include <qimage.h>
 #include <qtabbar.h>
+#include <kdebug.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../krslots.h"
 #include "../kicons.h"
 #include "../VFS/normal_vfs.h"
 #include "../VFS/krpermhandler.h"
-#include "kvfspanel.h"
+#include "listpanel.h"
 #include "krlistitem.h"
 #include "../defaults.h"
 #include "../resources.h"
@@ -77,9 +78,9 @@ typedef QValueList<KServiceOffer> OfferList;
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
-					 KVFSPanel(parent,name), currDragItem(0), statsAgent(0) {
+					 QWidget(parent,name), colorMask(255), compareMode(false),
+           currDragItem(0), statsAgent(0) {
 
-  type = "list";
   setNameToMakeCurrent(QString::null);
   func = new ListPanelFunc(this);
   setAcceptDrops(true);
@@ -193,8 +194,8 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
 		// make sure that a focus/path change reflects in the command line and activePanel
 	connect(this,SIGNAL(cmdLineUpdate(QString)),this->parent()->parent()->parent(),
 					SLOT(slotCurrentChanged(QString)) );
-	connect(this,SIGNAL(activePanelChanged(KVFSPanel *)),this->parent()->parent()->parent(),
-					SLOT(slotSetActivePanel(KVFSPanel *)) );
+	connect(this,SIGNAL(activePanelChanged(ListPanel *)),this->parent()->parent()->parent(),
+					SLOT(slotSetActivePanel(ListPanel *)) );
 
     // when the BookMan asks to refresh bookmarks...
   connect(krBookMan, SIGNAL(refreshBookmarks()), this, SLOT(slotRefreshBookmarks()));
@@ -232,6 +233,13 @@ void ListPanel::refresh(const QString path){
     }
 		files->blockSignals(false);
   }
+	// if we could not refresh try to dir up
+	QString origin = path;
+	if (!files->vfs_refresh(origin)) {
+	  virtualPath = origin;
+	  func->dirUp();
+		return; // dirUp() calls refresh again...
+	}
 	// update the backStack
   if ( func->backStack.last() != realPath ){
     krBack->setEnabled(true);
@@ -239,12 +247,6 @@ void ListPanel::refresh(const QString path){
     //the size of the backStack is hard coded - 30
     if(func->backStack.count() > 30) func->backStack.remove(func->backStack.begin());
   }
-	// if we could not refresh try to dir up
-	QString origin = path;
-	if (!files->vfs_refresh(origin)) {
-	  virtualPath = origin;
-	  func->dirUp();
-	}
 }
 
 
@@ -266,15 +268,38 @@ void ListPanel::invertSelection(){
 }
 
 void ListPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
-  // we start by calling the KVFS function
-  KVFSPanel::slotFocusOnMe();
+  krConfig->setGroup("Look&Feel");
+	otherPanel->focused=false;
+  QPalette q( otherPanel->status->palette() );
+  q.setColor( QColorGroup::Foreground,KGlobalSettings::textColor());
+  q.setColor( QColorGroup::Background,KGlobalSettings::baseColor());
 
-  QPalette p( bookmarks->palette() );
-  p.setColor( QColorGroup::Foreground,KGlobalSettings::activeTextColor() );
-  p.setColor( QColorGroup::Background,KGlobalSettings::activeTitleColor() );
-  bookmarks->setPalette(p);
+  otherPanel->origin->setPalette(q);
+  otherPanel->status->setPalette(q);
+  otherPanel->totals->setPalette(q);
+	otherPanel->bookmarkList->setBackgroundMode(PaletteBackground);
+  otherPanel->bookmarkList->setPalette(q);
 
-  // then we set up actions
+  focused=true;
+  QPalette sp( status->palette() );
+  sp.setColor( QColorGroup::Foreground,KGlobalSettings::highlightedTextColor() );
+  sp.setColor( QColorGroup::Background,KGlobalSettings::highlightColor() );
+  status->setPalette(sp);
+  origin->setPalette(sp);
+  totals->setPalette(sp);
+  bookmarkList->setBackgroundMode(PaletteBackground);
+  bookmarkList->setPalette(sp);
+
+	fileList->setFocus();     // get the keyboard attention to the file list
+	emit cmdLineUpdate(realPath);
+	emit activePanelChanged(this);
+
+  QPalette bp( bookmarks->palette() );
+  bp.setColor( QColorGroup::Foreground,KGlobalSettings::activeTextColor() );
+  bp.setColor( QColorGroup::Background,KGlobalSettings::activeTitleColor() );
+  bookmarks->setPalette(bp);
+
+  //  set up actions
   krProperties->setEnabled(files->vfs_getType()=="normal" ); // file properties
   krUnpack->setEnabled(true);                         // unpack archive
   krTest->setEnabled(true);                           // test archive
@@ -286,9 +311,6 @@ void ListPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
   krFTPConnect->setEnabled(true);                     // connect to an ftp
   krFTPNew->setEnabled(true);                         // create a new connection
   krFTPDiss->setEnabled(files->vfs_getType()=="ftp"); // disconnect an FTP session
-  krFullPanel->setEnabled(false);                     // switch to list panel
-  krTreePanel->setEnabled(otherPanel->type=="list");  // switch to tree panel
-  krQuickPanel->setEnabled(otherPanel->type=="list"); // switch to quick view panel
   krAllFiles->setEnabled(true);                       // show all files in list
   krExecFiles->setEnabled(files->vfs_getType()!="ftp");// show only executables
   krCustomFiles->setEnabled(true);                    // show a custom set of files
@@ -296,8 +318,6 @@ void ListPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
   krRoot->setEnabled(true);                           // go all the way up
   krAddBookmark->setEnabled( files->vfs_getType()=="normal"  // add a bookmark
                           || files->vfs_getType()=="ftp");
-  krCompare->setEnabled(otherPanel->type=="list");    // compare by content
-  krCompareDirs->setEnabled(otherPanel->type=="list");// compare dirs
 	krMultiRename->setEnabled(files->vfs_getType()=="normal");
 }
 
@@ -306,7 +326,6 @@ void ListPanel::resizeEvent ( QResizeEvent *e ) {
   QWidget::resizeEvent(e);
 	int delta=e->size().width() - fileList->columnWidth(0) - fileList->columnWidth(1)
 															- fileList->columnWidth(2) - fileList->columnWidth(3)*5+11;
-  if (type == "tree") delta=e->size().width() - fileList->columnWidth(0);															
 	// do not down-size below base-size of 8 letters to the name column
 	int w=QFontMetrics(fileList->font()).width("W");
 	if (fileList->columnWidth(0)<(w*8) && delta<0) return;
@@ -372,14 +391,27 @@ void ListPanel::slotStartUpdate(){
 	virtualPath = files->vfs_getOrigin();
 	if(files->vfs_getType() == "normal")
 	  realPath = virtualPath;
-	this->origin->setText(shortPath());
+	// set the origin path
+  QString shortPath = virtualPath ,s1,s2;
+	shortPath.replace( QRegExp("\\"),"#");
+	if ( QFontMetrics(origin->font()).width(shortPath)+40 > origin->width() ){
+		s1 = shortPath.left((shortPath.length()/2));
+		s2 = shortPath.right((shortPath.length()/2));
+		while( QFontMetrics(origin->font()).width(s1+"..."+s2)+40 > origin->width() ){
+			s1.truncate(s1.length()-1);
+			s2 = s2.right(s2.length()-1);
+  	}
+  	shortPath = s1+"..."+s2;
+  }
+	this->origin->setText(shortPath);
+
 	emit cmdLineUpdate(realPath);	// update the command line
 }
 
 void ListPanel::slotEndUpdate(){	
 	slotGetStats(virtualPath);
 	slotUpdate();
-	if (compareMode && otherPanel->type == "list") {
+	if( compareMode ) {
 	  otherPanel->fileList->clear();
 	  ((ListPanel*)otherPanel)->slotUpdate();
 	}
@@ -408,7 +440,7 @@ void ListPanel::slotUpdate(){
 		name =  vf->vfile_getName();
 		bool isDir = vf->vfile_isDir();
 		KRListItem::cmpColor color = KRListItem::none;
-		if( otherPanel->type == "list" && compareMode ){
+		if( compareMode ){
 		  vfile* ovf = otherPanel->files->vfs_search(vf->vfile_getName());
 		  if (ovf == 0 ) color = KRListItem::exclusive;  // this file doesn't exist on the other panel
 		  else{ // if we found such a file
@@ -836,8 +868,7 @@ void ListPanel::startDragging(int mode) {
 }
 
 // pops a right-click menu for items
-void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint &loc2) {
-  QPoint loc = loc2;
+void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint &loc) {
   // these are the values that will always exist in the menu
   #define OPEN_ID       90
   #define OPEN_WITH_ID  91
@@ -953,8 +984,7 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   popup.insertSeparator();
   krProperties->plug(&popup);
   // run it, on the mouse location
-  int j=QFontMetrics(popup.font()).height()*2;
-  int result=popup.exec(QPoint(loc.x()+5,loc.y()+j));
+  int result=popup.exec(loc);
   // check out the user's option
   KURL u;
   KURL::List lst;
@@ -1077,10 +1107,10 @@ QString ListPanel::getCurrentName() {
 }
 
 void ListPanel::prepareToDelete() {
- setNameToMakeCurrent(fileList->getFilename(fileList->firstUnmarkedAboveCurrent()));
+	setNameToMakeCurrent(fileList->getFilename(fileList->firstUnmarkedAboveCurrent()));
 }
 
-void ListPanel::openUrl( QString path, QString file ){
+void ListPanel::openUrl( QString path, QString file, QString type){
 	// first close all open archives / remote connections
 	while(!vfsStack->isEmpty()){
   	delete files;
@@ -1088,12 +1118,14 @@ void ListPanel::openUrl( QString path, QString file ){
   }
 	
 	// check for archive:
-	if ( path.contains('\\') ){
+	if ( path.contains('\\') ) {
 		QString archive = path.left( path.find('\\') );
-    QString mime = KMimeType::findByURL(archive)->name();
-		QString type = mime.right(4);
-		if( type == "-rpm" ) type = "+rpm"; // open the rpm as normal archive
-    if( mime.contains("-rar") ) type = "-rar";
+		if( type.isEmpty() ){
+    	QString mime = KMimeType::findByURL(archive)->name();
+			type = mime.right(4);
+			if( type == "-rpm" ) type = "+rpm"; // open the rpm as normal archive
+			if( mime.contains("-rar") ) type = "-rar";
+		}
 		func->changeVFS(type,archive);
 		setNameToMakeCurrent(file);
 		refresh(path);
@@ -1108,4 +1140,13 @@ void ListPanel::openUrl( QString path, QString file ){
 		setNameToMakeCurrent(file);
 		refresh( path );
 	}
+}
+
+// this is called if the rightclick menu is popped from the keyboard
+void ListPanel::popRightClickMenu() {
+  // find out what's the current item and it's location
+  QListViewItem *item = fileList->currentItem();
+  if (item == 0) return;
+  QPoint loc(fileList->mapToGlobal(fileList->itemRect(item).topLeft()));
+  popRightClickMenu(fileList, item, loc);
 }

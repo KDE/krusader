@@ -55,7 +55,7 @@
 #include "RemoteMan/remoteman.h"
 #include "Dialogs/krpleasewait.h"
 #include "krusaderview.h"
-#include "Panel/kvfspanel.h"
+#include "Panel/listpanel.h"
 #include "Konfigurator/konfigurator.h"
 #include "MountMan/kmountman.h"
 #include "defaults.h"
@@ -75,8 +75,7 @@ KAction  *Krusader::actUnselect=0;      KAction  *Krusader::actUnselectAll=0;
 KAction  *Krusader::actInvert=0;        KAction  *Krusader::actSysInfo=0;
 KAction  *Krusader::actSync=0;          KAction  *Krusader::actHomeTerminal=0;
 KAction  *Krusader::actFTPConnect=0;    KAction  *Krusader::actFTPNewConnect=0;
-KAction  *Krusader::actFTPDisconnect=0; KAction  *Krusader::actFullPanel=0;
-KAction  *Krusader::actTreePanel=0;     KAction  *Krusader::actQuickPanel=0;
+KAction  *Krusader::actFTPDisconnect=0; KAction  *Krusader::actMultiRename=0;
 KAction  *Krusader::actAllFilter=0;     KAction  *Krusader::actExecFilter=0;
 KAction  *Krusader::actCustomFilter=0;  KAction  *Krusader::actMountMan=0;
 KAction  *Krusader::actBookMan=0;       KAction  *Krusader::actNewTool=0;
@@ -84,7 +83,7 @@ KAction  *Krusader::actKonfigurator=0;  KAction  *Krusader::actToolsSetup=0;
 KAction  *Krusader::actBack=0;          KAction  *Krusader::actRoot=0;
 KAction  *Krusader::actFind=0;          KAction  *Krusader::actAddBookmark=0;
 KAction  *Krusader::actSavePosition=0;  KAction  *Krusader::actSelectColorMask=0;
-KAction  *Krusader::actMultiRename=0;
+
 KToggleAction *Krusader::actToggleTerminal=0;
 
 
@@ -148,8 +147,6 @@ Krusader::Krusader() : KParts::MainWindow() {
 	// This enables Krusader to minimize to tray if needed
 	KSystemTray *st=new KSystemTray(this);
 	st->setPixmap(iconLoader->loadIcon("krusader",KIcon::Panel));
-	
-	disableFutureItems();
 
   setCentralWidget(mainView);
   config->setGroup("Look&Feel");
@@ -206,14 +203,6 @@ bool Krusader::versionControl() {
 void Krusader::statusBarUpdate(QString mess) {
   // change the message on the statusbar for 2 seconds
   statusBar()->message(mess,5000);
-}
-
-void Krusader::disableFutureItems() {
-  //krCompare->setEnabled(false);
-  //krSyncDirs->setEnabled(false);
-  //krNewTool->setEnabled(false);
-  //krToolsSetup->setEnabled(false);
-  //actionCollection()->action("std_print")->setEnabled(false);
 }
 
 void Krusader::setupAccels() {
@@ -318,10 +307,6 @@ void Krusader::setupActions() {
                         SLOTS,     SLOT(homeTerminal()),     actionCollection(), "terminal@home");
   actFTPDisconnect =  new KAction(i18n("FTP Disc&onnect"),  "kr_ftp_disconnect",     SHIFT+CTRL+Key_F,
 	                      SLOTS,     SLOT(FTPDisconnect()),    actionCollection(), "ftp disconnect");
-	actFullPanel =      new KAction(i18n("&Full Panel"),            "kr_fullview",      ALT+Key_1,
-	                      SLOTS,     SLOT(setListView()),      actionCollection(), "full panel");
-	actTreePanel =      new KAction(i18n("&Tree Panel"),            "kr_treeview",      ALT+Key_2,
-	                      SLOTS,     SLOT(setTreeView()),      actionCollection(), "tree panel");
 	actMountMan =       new KAction(i18n("&MountMan"),        "kr_mountman",       ALT+Key_Slash,
                         SLOTS,     SLOT(runMountMan()),      actionCollection(), "mountman");
 	actBookMan =        new KAction(i18n("&BookMan"),         "kr_bookman",  0,
@@ -350,8 +335,6 @@ void Krusader::setupActions() {
 												SLOTS, 		SLOT(execFilter()),     	 actionCollection(), "exec files");
 	actCustomFilter=		new KAction(i18n("&Custom"), 				 SHIFT+Key_F12,
 												SLOTS,			SLOT(customFilter()), 	 actionCollection(), "custom files");
-  actQuickPanel = 		new KAction(i18n("&Quickview Panel"), ALT+Key_3,
-												SLOTS,			SLOT(setQuickView()), 	 actionCollection(), "quickview panel");
   actCompare = 				new KAction(i18n("Compare b&y content"), "kr_compare", 0,
 												SLOTS, SLOT(compareContent()), actionCollection(), "compare");
   actMultiRename = 		new KAction(i18n("Multi Rename"), "krename", SHIFT+Key_F9,
@@ -399,26 +382,15 @@ void Krusader::saveSettings() {
   config->setGroup("Startup");
   if (config->readBoolEntry("Panels Save Settings",_PanelsSave)){
     // left panel
-    if      (mainView->left->type == "tree")      config->writeEntry("Left Panel Type",i18n("Tree"));
-    else if (mainView->left->type == "quickview") config->writeEntry("Left Panel Type",i18n("Quickview"));
-    else { // list view - save both type and homepage
-      config->writeEntry("Left Panel Type",i18n("List"));
-      config->writeEntry("Left Panel Origin",i18n("the last place it was"));
-    }
+    config->writeEntry("Left Panel Type",i18n("List"));
+    config->writeEntry("Left Panel Origin",i18n("the last place it was"));
     // right panel
-    if      (mainView->right->type == "tree")      config->writeEntry("Right Panel Type",i18n("Tree"));
-    else if (mainView->right->type == "quickview") config->writeEntry("Right Panel Type",i18n("Quickview"));
-    else { // list view - save both type and homepage
-      config->writeEntry("Right Panel Type",i18n("List"));
-      config->writeEntry("Right Panel Origin",i18n("the last place it was"));
-    }
+    config->writeEntry("Right Panel Type",i18n("List"));
+    config->writeEntry("Right Panel Origin",i18n("the last place it was"));
   }
 
-  if( mainView->left->type=="list" )
-    config->writeEntry("lastHomeLeft",mainView->left->realPath);
-
-  if( mainView->right->type=="list" )
-    config->writeEntry("lastHomeRight",mainView->right->realPath);
+  config->writeEntry("lastHomeLeft",mainView->left->realPath);
+  config->writeEntry("lastHomeRight",mainView->right->realPath);
 
   // save size and position
   if (config->readBoolEntry("Remember Position",_RememberPos) ||

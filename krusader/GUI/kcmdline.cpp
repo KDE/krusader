@@ -43,7 +43,7 @@
 #include "../resources.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
-#include "../Panel/kvfspanel.h"
+#include "../Panel/listpanel.h"
 #include <qdir.h>
 #include <klocale.h>
 #include <kglobalsettings.h>

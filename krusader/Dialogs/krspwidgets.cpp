@@ -31,7 +31,7 @@
 #include "krspwidgets.h"
 #include "../krusader.h"
 #include "../krusaderview.h"
-#include "../Panel/kvfspanel.h"
+#include "../Panel/listpanel.h"
 #include "../kicons.h"
 #include <qcombobox.h>
 #include <qlabel.h>

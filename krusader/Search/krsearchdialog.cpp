@@ -35,7 +35,7 @@
 #include "../krusader.h"
 #include "../VFS/vfs.h"
 #include "../krusaderview.h"
-#include "../Panel/kvfspanel.h"
+#include "../Panel/listpanel.h"
 #include "../resources.h"
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
@@ -172,8 +172,7 @@ void KrSearchDialog::prepareGUI() {
   searchIn->clear(); dontSearchIn->clear();
 
 	// the path in the active panel should be the default search location
-	if (krApp->mainView->activePanel->type == "list" &&
-	    krApp->mainView->activePanel->files->vfs_getType() != "ftp") {
+	if (krApp->mainView->activePanel->files->vfs_getType() != "ftp") {
 		QString path = krApp->mainView->activePanel->getPath();
 		// if we're inside an archive, show its directory
 		int i = path.find('\\');
@@ -523,9 +522,7 @@ void KrSearchDialog::fillList(QComboBox *list, QString filename) {
 }
 
 void KrSearchDialog::resultClicked(QListViewItem* i) {
- 	KVFSPanel *lst = krApp->mainView->activePanel;
- 	if (lst->type != "list") lst = lst->otherPanel;
- 	lst->openUrl((i->text(1)).replace(QRegExp("#"),"\\"),i->text(0));
+ 	krApp->mainView->activePanel->openUrl((i->text(1)).replace(QRegExp("#"),"\\"),i->text(0));
   showMinimized();
 }
 

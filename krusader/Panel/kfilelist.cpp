@@ -42,7 +42,7 @@
 #include <qtooltip.h>
 #include <qheader.h>
 #include "../krusaderview.h"
-#include "kvfspanel.h"
+#include "listpanel.h"
 #include "../krslots.h"
 #include "../resources.h"
 #include <kdeversion.h>
@@ -150,22 +150,18 @@ void KFileList::keyPressEvent(QKeyEvent *e) {
     case Key_Right :
       if (e->state()==ControlButton) { // user pressed CTRL+Right
        if (krApp->mainView->activePanel==krApp->mainView->left) {
-        // refresh the other panel (if possible) with our path
-        if (krApp->mainView->activePanel->otherPanel->type=="list") {
-          krApp->mainView->activePanel->otherPanel->openUrl(
+        // refresh the other panel with our path
+        krApp->mainView->activePanel->otherPanel->openUrl(
             krApp->mainView->activePanel->realPath);
-          krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
-          return;
-        }
+        krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
+        return;
        }
       } else
       if (e->state()==AltButton) { // user pressed Alt+Right
-       if (krApp->mainView->right->type=="list") { // and the right panel is list
-        KVFSPanel *p=krApp->mainView->activePanel;
-        krApp->mainView->right->popBookmarks();
+      	ListPanel *p = krApp->mainView->activePanel;
+				krApp->mainView->right->popBookmarks();
         p->slotFocusOnMe();
         return;
-       }
       } else { // just a normal click - do a lynx-like moving thing
         QListViewItem *iterator=currentItem();
         if (iterator->text(1)=="<DIR>")  // we create a return-pressed event,
@@ -174,23 +170,19 @@ void KFileList::keyPressEvent(QKeyEvent *e) {
       }
     case Key_Left  :
       if (e->state()==ControlButton) { // user pressed CTRL+Left
-       if (krApp->mainView->activePanel==krApp->mainView->right) {
-        // refresh the other panel (if possible) with our path
-        if (krApp->mainView->activePanel->otherPanel->type=="list") {
-          krApp->mainView->activePanel->otherPanel->openUrl(
+      	if (krApp->mainView->activePanel==krApp->mainView->right) {
+        	// refresh the other panel with our path
+        	krApp->mainView->activePanel->otherPanel->openUrl(
             krApp->mainView->activePanel->realPath);
-          krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
-          return;
-        }
-       }
+        	krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
+        	return;
+      	}
       } else
       if (e->state()==AltButton) { // user pressed Alt+Right
-       if (krApp->mainView->left->type=="list") { // and the right panel is list
-        KVFSPanel *p=krApp->mainView->activePanel;
+       	ListPanel *p=krApp->mainView->activePanel;
         krApp->mainView->left->popBookmarks();
         p->slotFocusOnMe();
         return;
-       }
       } else {  // a normal click - do a lynx-like moving thing
         SLOTS->dirUp(); // ask krusader to move up a directory
         return; // safety

@@ -46,13 +46,12 @@
 #include "krslots.h"
 #include "krusader.h"
 #include "krusaderview.h"
-#include "Panel/kvfspanel.h"
+#include "Panel/listpanel.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
 #include "BookMan/bookman.h"
 #include "GUI/krusaderstatus.h"
 #include "RemoteMan/remoteman.h"
-#include "Panel/kvfspanel.h"
 #include "Panel/panelfunc.h"
 #include "Konfigurator/konfigurator.h"
 #include "MountMan/kmountman.h"
@@ -68,7 +67,7 @@
 #define ACTIVE_PANEL        (krApp->mainView->activePanel)
 #define ACTIVE_FUNC         (krApp->mainView->activePanel->func)
 #define MAIN_VIEW           (krApp->mainView)
-#define REFRESH_BOTH_PANELS { KVFSPanel *p=ACTIVE_PANEL;MAIN_VIEW->left->refresh(); \
+#define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;MAIN_VIEW->left->refresh(); \
 	                            MAIN_VIEW->right->refresh(); p->slotFocusOnMe(); }
 
 
@@ -80,8 +79,7 @@ void KRslots::selectCompareMask() {
   kdWarning() << left << endl;
     MAIN_VIEW->left->colorMask = left;
     MAIN_VIEW->right->colorMask = right;
-    if (krCompareDirs->isChecked() && MAIN_VIEW->left->type == "list" &&
-        MAIN_VIEW->right->type == "list") {
+    if (krCompareDirs->isChecked() ) {
       ((ListPanel*)MAIN_VIEW->left)->fileList->clear();
       ((ListPanel*)MAIN_VIEW->left)->slotUpdate();
       ((ListPanel*)MAIN_VIEW->right)->fileList->clear();
@@ -133,9 +131,6 @@ void KRslots::compareContent() {
     KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports kdiff and xxdiff."));
     return;
   }
-
-  if (ACTIVE_PANEL->type != "list" || ACTIVE_PANEL->otherPanel->type != "list")
-    return; // safety
 
   QStringList lst1, lst2;
   QString name1, name2;
@@ -232,9 +227,9 @@ void KRslots::showAboutApplication() {
 }
 
 // directory list functions
-void KRslots::allFilter()			  {	ACTIVE_PANEL->setFilter(KVFSPanel::ALL);	 }
-void KRslots::execFilter()			{	ACTIVE_PANEL->setFilter(KVFSPanel::EXEC);	 }
-void KRslots::customFilter()		{	ACTIVE_PANEL->setFilter(KVFSPanel::CUSTOM);}
+void KRslots::allFilter()			  {	ACTIVE_PANEL->setFilter(ListPanel::ALL);	 }
+void KRslots::execFilter()			{	ACTIVE_PANEL->setFilter(ListPanel::EXEC);	 }
+void KRslots::customFilter()		{	ACTIVE_PANEL->setFilter(ListPanel::CUSTOM);}
 void KRslots::markAll()         { ACTIVE_PANEL->select(true,true);           }
 void KRslots::unmarkAll()       { ACTIVE_PANEL->select(false,true);          }
 void KRslots::markGroup()       { ACTIVE_PANEL->select(true,false);          }
@@ -256,10 +251,6 @@ void KRslots::FTPDisconnect()   { ACTIVE_FUNC->FTPDisconnect();              }
 void KRslots::newFTPconnection(){ newFTPconnection(QString::null); 					 }
 void KRslots::newFTPconnection(QString host)
                					        { ACTIVE_FUNC->newFTPconnection(host);       }
-void KRslots::setTreeView()     { MAIN_VIEW->setTreeView();                  }
-void KRslots::setListView()     { MAIN_VIEW->setListView();                  }
-void KRslots::setQuickView()		{ MAIN_VIEW->setQuickView();						     }
-
 // run external modules / programs
 void KRslots::runKonfigurator(bool firstTime) { delete new Konfigurator(firstTime); }
 
@@ -327,8 +318,6 @@ void KRslots::multiRename(){
   	return;
 	}
 	QString pathToRename = lst[i+1];
-
-	if ( ACTIVE_PANEL->type != "list" ) return; // safety
 	
   QStringList names;
   ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&names);
