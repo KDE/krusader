@@ -25,96 +25,25 @@
 #include <qclipboard.h>
 
 #define ACTIVE    krApp->mainView->activePanel
+#define NEED_PANEL		if ( panel == 0 ) { \
+					   kdWarning() << "Expander: no panel specified for %_" << _expression << "%; ignoring..." << endl; \
+					   return QString::null; \
+					}
 
-ListPanel* Expander::getPanel( const char& panelIndicator ) {
-   switch ( panelIndicator ) {
-   case 'a':
-      return krApp->mainView->activePanel;
-   case 'o':
-      return krApp->mainView->activePanel->otherPanel;
-   case 'l':
-      return krApp->mainView->left;
-   case 'r':
-      return krApp->mainView->right;
-   case '_':
-      return 0;
-   default:
-      kdWarning() << "Expander: unknown Panel " << panelIndicator << endl;
-      return 0;
-   }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// expander classes ////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+exp_Path::exp_Path() {
+   _expression = "Path";
+   _description = i18n("panel's path");
+   _needPanel = true;
+   
+   addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
 }
-
-
-Expander::Placeholder Expander::placeholder[ Expander::numOfPlaceholder ] = {
-// { "expression", "description", expander_func, {parameter}, no. of parameters, need a panel }
-// if "expression" == "" => instertSeparator()
-// parameter: { "description", "default", nessesary }, ... (max 5, see .h)
-         {"Path", i18n("panel's path"), exp_Path, {
-                        {i18n("Automatic escape spaces"), "__yes", false}
-                    }, 1, true},
-         {"Count", i18n("number of ..."), exp_Count, {
-                        {i18n("count all:"), "__choose:All;Files;Dirs;Selected", false}
-                    }, 1, true},
-         {"Filter", i18n("filter mask (*.h, *.cpp ...)"), exp_Filter, {
-                    }, 0, true},
-         {"Current", i18n("current file (!= selected file)"), exp_Current, {
-                        {i18n("Ommit the current path (optional)"), "__no", false},
-                        {i18n("Automatic escape spaces"), "__yes", false}
-                    }, 2, true},
-         {"List", i18n("Item list of ..."), exp_List, {
-                        {i18n("Which items"), "__choose:All;Files;Dirs;Selected", false},
-                        {i18n("Separator between the items (optional)"), " ", false},
-                        {i18n("Ommit the current path (optional)"), "__no", false},
-                        {i18n("Mask (optional, all but 'Selected')"), "__select", false},
-                        {i18n("Automatic escape spaces"), "__yes", false}
-                    }, 5, true},
-//--------- Internals --------------
-         {"", "", 0, {}, 0, true},  // Separator
-         {"Select", i18n("Manipulate the selection"), exp_Select, {
-                        {i18n("Selectionmask"), "__select", true},
-                        {i18n("Manipulate in which way"), "__choose:Set;Add;Remove", false}
-                    }, 2, true},
-         {"Bookmark", i18n("Jump to a bookmark"), exp_Bookmark, {
-                        {i18n("please choose the bookmark"), "__bookmark", true},
-                        {i18n("open the bookmark in a new tab"), "__no", false}
-                    }, 2, true},
-//          {"Search", i18n("Search for files using"),0, {
-//                         {i18n("please choose the setting"), "__search", true},  //TODO: add this action as soon as the search supports saving search-settings
-//                         {i18n("open the search in a new tab"), "__yes", false}  //TODO: add this also to panel-dependent as soon as vfs support the display of search-results
-//                     }, 1, true},
-//--------- Panel independent --------------
-         {"Ask", i18n("Question the user for a parameter"), exp_Ask, {
-                        {i18n("Question"), "Where do you want do go today?", true},
-                        {i18n("Preset (optional)"), "", false},
-                        {i18n("Caption (optional)"), "", false}
-                    }, 3, false},
-         {"Clipboard", i18n("Copy to clipboard"), exp_Clipboard, {
-                        {i18n("What should be copied"), "__placeholder", true},
-                        {i18n("Append to the current clipboard-content with this seperator (optional)"), "", false}
-                    }, 2, false},
-         {"Copy", i18n("Copy a file/folder"), exp_Copy, {
-                        {i18n("What should be copied"), "__placeholder", true},
-                        {i18n("Where it should be copied"), "__placeholder", true},
-                    }, 2, false},
-         {"Sync", i18n("Opens a synchronizer-profile"), exp_Sync, {
-                        {i18n("Choose a profile"), "__syncprofile", true},
-                    }, 1, false},
-         {"Run", i18n("Execute a script"), 0, {
-                        {i18n("Script"), "__file", true},
-                    }, 1, false}
-//          {"Search", i18n("Search for files using"),0, {
-//                         {i18n("please choose the setting"), "__search", true},  //TODO: add this action as soon as the search supports saving search-settings
-//                     }, 1, false},
-    };
-
-
-///////// expander functions //////////////////////////////////////////////////////////
-
-QString Expander::exp_Path( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& ) {
-   if ( panel == 0 ) {
-      kdWarning() << "Expander: no panel specified for %_Path%; ignoring..." << endl;
-      return QString::null;
-   }
+QString exp_Path::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& ) {
+   NEED_PANEL
    
    QString result;
    
@@ -129,11 +58,15 @@ QString Expander::exp_Path( const ListPanel* panel, const QStringList& parameter
       return result.replace(" ", "\\ ");
 }
 
-QString Expander::exp_Count( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
-   if ( panel == 0 ) {
-      kdWarning() << "Expander: no panel specified for %_Count%; ignoring..." << endl;
-      return QString::null;
-   }
+exp_Count::exp_Count() {
+   _expression = "Count";
+   _description = i18n("number of ...");
+   _needPanel = true;
+   
+   addParameter( new exp_parameter( i18n("count all:"), "__choose:All;Files;Dirs;Selected", false ) );
+}
+QString exp_Count::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
+   NEED_PANEL
    
    int n = -1;
    if ( parameter[ 0 ].isEmpty() || parameter[ 0 ].lower() == "all" )
@@ -152,19 +85,28 @@ QString Expander::exp_Count( const ListPanel* panel, const QStringList& paramete
    return QString("%1").arg( n );
 }
 
-QString Expander::exp_Filter( const ListPanel* panel, const QStringList&, const bool&, const int& ) {
-   if ( panel == 0 ) {
-      kdWarning() << "Expander: no panel specified for %_Filter%; ignoring..." << endl;
-      return QString::null;
-   }
+exp_Filter::exp_Filter() {
+   _expression = "Filter";
+   _description = i18n("filter mask (*.h, *.cpp ...)");
+   _needPanel = true;
+}
+QString exp_Filter::expFunc( const ListPanel* panel, const QStringList&, const bool&, const int& ) {
+   NEED_PANEL
+   
    return panel->view->filterMask();
 }
 
-QString Expander::exp_Current( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem ) {
-   if ( panel == 0 ) {
-      kdWarning() << "Expander: no panel specified for %_Current%; ignoring..." << endl;
-      return QString::null;
-   }
+exp_Current::exp_Current() {
+   _expression = "Current";
+   _description = i18n("current file (!= selected file)");
+   _needPanel = true;
+   
+   addParameter( new exp_parameter( i18n("Ommit the current path (optional)"), "__no", false ) );
+   addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
+}
+QString exp_Current::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem ) {
+   NEED_PANEL
+   
    QString item;
    if ( currentItem >= 0) {  // in a callEach-cycle
       if ( panel == ACTIVE ) {  // callEach works only in the active panel
@@ -197,12 +139,20 @@ QString Expander::exp_Current( const ListPanel* panel, const QStringList& parame
       return result.replace(" ", "\\ ");
 }
 
-// items are separated by the second parameter
-QString Expander::exp_List( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& ) {
-   if ( panel == 0 ) {
-      kdWarning() << "Expander: no panel specified for %_List%; ignoring..." << endl;
-      return QString::null;
-   }
+exp_List::exp_List() {
+   _expression = "List";
+   _description = i18n("Item list of ...");
+   _needPanel = true;
+
+   addParameter( new exp_parameter( i18n("Which items"), "__choose:All;Files;Dirs;Selected", false ) );
+   addParameter( new exp_parameter( i18n("Separator between the items (optional)"), " ", false ) );
+   addParameter( new exp_parameter( i18n("Ommit the current path (optional)"), "__no", false ) );
+   addParameter( new exp_parameter( i18n("Mask (optional, all but 'Selected')"), "__select", false ) );
+   addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
+}
+QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& ) {
+   NEED_PANEL
+
    // get selected items from view
    QStringList items;
    QString mask;
@@ -258,12 +208,16 @@ kdDebug() << "result: '" << result << "'" << endl;
    return result;
 }
 
-// select in the panel using parameter[0] as mask
-QString Expander::exp_Select( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
-   if ( panel == 0 ) {
-      kdWarning() << "Expander: no panel specified for %_Select%; ignoring..." << endl;
-      return QString::null;
-   }
+exp_Select::exp_Select() {
+   _expression = "Select";
+   _description = i18n("Manipulate the selection");
+   _needPanel = true;
+
+   addParameter( new exp_parameter( i18n("Selectionmask"), "__select", true ) );
+   addParameter( new exp_parameter( i18n("Manipulate in which way"), "__choose:Set;Add;Remove", false ) );
+}
+QString exp_Select::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
+   NEED_PANEL
    
    QString mask;
     if ( parameter.count() <= 0 || parameter[0].isEmpty() )
@@ -283,41 +237,16 @@ QString Expander::exp_Select( const ListPanel* panel, const QStringList& paramet
    return QString::null;  // this doesn't return everything, that's normal!
 }
 
-
-// asks the user for an input
-QString Expander::exp_Ask( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
-   QString caption, preset;
-   if ( parameter.count() <= 2 || parameter[2].isEmpty() )
-      caption = i18n("User Action");
-   else
-      caption = parameter[2];
-   if ( parameter.count() <= 1 || parameter[1].isEmpty() )
-      preset = QString::null;
-   else
-      preset = parameter[1];
-   return KInputDialog::getText(
-		caption,
-		parameter[0],
-		preset );
+exp_Goto::exp_Goto() {
+   _expression = "Goto";
+   _description = i18n("Jump to a location");
+   _needPanel = true;
+   
+   addParameter( new exp_parameter( i18n("please choose the bookmark"), "__bookmark", true ) );
+   addParameter( new exp_parameter( i18n("open the bookmark in a new tab"), "__no", false ) );
 }
-
-// copies parameter[0] to clipboard
-QString Expander::exp_Clipboard( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
-//    kdDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
-    if ( parameter.count() <= 1 || parameter[1].isEmpty() || KApplication::clipboard()->text().isEmpty() )
-       KApplication::clipboard()->setText( parameter[0] );
-    else
-       KApplication::clipboard()->setText( KApplication::clipboard()->text() + parameter[1] + parameter[0] );
-
-   return QString::null;  // this doesn't return everything, that's normal!
-}
-
-// changes the path to parameter[0]
-QString Expander::exp_Bookmark( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
-   if ( panel == 0 ) {
-      kdWarning() << "Expander: no panel specified for %_Bookmark%; ignoring..." << endl;
-      return QString::null;
-   }
+QString exp_Goto::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
+   NEED_PANEL
    
    bool newTab = false;
    if ( parameter[1].lower() == "yes" )
@@ -335,7 +264,69 @@ QString Expander::exp_Bookmark( const ListPanel* panel, const QStringList& param
    return QString::null;  // this doesn't return everything, that's normal!
 }
 
-QString Expander::exp_Copy( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+/*
+exp_Search::exp_Search() {
+   _expression = "Search";
+   _description = i18n("Search for files");
+   _needPanel = true;
+
+   addParameter( new exp_parameter( i18n("please choose the setting"), "__search", true ) );  //TODO: add this action as soon as the search supports saving search-settings
+   addParameter( new exp_parameter( i18n("open the search in a new tab"), "__yes", false ) );  //TODO: add this also to panel-dependent as soon as vfs support the display of search-results
+}
+*/
+
+exp_Ask::exp_Ask() {
+   _expression = "Ask";
+   _description = i18n("Question the user for a parameter");
+   _needPanel = false;
+
+   addParameter( new exp_parameter( i18n("Question"), "Where do you want do go today?", true ) );
+   addParameter( new exp_parameter( i18n("Preset (optional)"), "", false ) );
+   addParameter( new exp_parameter( i18n("Caption (optional)"), "", false ) );
+}
+QString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+   QString caption, preset;
+   if ( parameter.count() <= 2 || parameter[2].isEmpty() )
+      caption = i18n("User Action");
+   else
+      caption = parameter[2];
+   if ( parameter.count() <= 1 || parameter[1].isEmpty() )
+      preset = QString::null;
+   else
+      preset = parameter[1];
+   return KInputDialog::getText(
+		caption,
+		parameter[0],
+		preset );
+}
+
+exp_Clipboard::exp_Clipboard() {
+   _expression = "Clipboard";
+   _description = i18n("Copy to clipboard");
+   _needPanel = false;
+
+   addParameter( new exp_parameter( i18n("What should be copied"), "__placeholder", true ) );
+   addParameter( new exp_parameter( i18n("Append to the current clipboard-content with this seperator (optional)"), "", false ) );
+}
+QString exp_Clipboard::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+//    kdDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
+    if ( parameter.count() <= 1 || parameter[1].isEmpty() || KApplication::clipboard()->text().isEmpty() )
+       KApplication::clipboard()->setText( parameter[0] );
+    else
+       KApplication::clipboard()->setText( KApplication::clipboard()->text() + parameter[1] + parameter[0] );
+
+   return QString::null;  // this doesn't return everything, that's normal!
+}
+
+exp_Copy::exp_Copy() {
+   _expression = "Copy";
+   _description = i18n("Copy a file/folder");
+   _needPanel = false;
+
+   addParameter( new exp_parameter( i18n("What should be copied"), "__placeholder", true ) );
+   addParameter( new exp_parameter( i18n("Where it should be copied"), "__placeholder", true ) );
+}                    
+QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
 
    KURL src = parameter[0];
    KURL dest = parameter[1];
@@ -348,31 +339,70 @@ QString Expander::exp_Copy( const ListPanel*, const QStringList& parameter, cons
    return QString::null;  // this doesn't return everything, that's normal!
 }
 
-QString Expander::exp_Sync( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+exp_Sync::exp_Sync() {
+   _expression = "Sync";
+   _description = i18n("Opens a synchronizer-profile");
+   _needPanel = false;
+   
+   addParameter( new exp_parameter( i18n("Choose a profile"), "__syncprofile", true ) );
+}
+QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
    if ( parameter[0].isEmpty() ) {
       kdWarning() << "Expander: no profile specified for %_Sync(profile)%; ignoring..." << endl;
       return QString::null;
    }
 
    SynchronizerGUI *sync = new SynchronizerGUI( krApp->mainView, parameter[0] );
-
-   bool refresh = sync->wasSynchronization();
+   // do the sync:
+   sync->wasSynchronization();
    delete sync;
-
-   // refresh both panels:
-   if( refresh ) {
-      // first the other, then the active; else the focus would change
-      getPanel( 'o' )->func->refresh();
-      getPanel( 'a' )->func->refresh();
-   }
 
    return QString::null;  // this doesn't return everything, that's normal!
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////// end of expander functions //////////////////////////////
+////////////////////////////// end of expander classes ////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
+
+Expander::Expander() {
+kdDebug() << "new Expander" << endl;
+   //Penel-dependent:
+   addPlaceholder( new exp_Path() );
+   addPlaceholder( new exp_Count() );
+   addPlaceholder( new exp_Filter() );
+   addPlaceholder( new exp_Current() );
+   addPlaceholder( new exp_List() );
+   addPlaceholder( new exp_separator( true ) );
+   addPlaceholder( new exp_Select() );
+   addPlaceholder( new exp_Goto() );
+//    addPlaceholder( new exp_Search() );
+   //Panel-independent:
+   addPlaceholder( new exp_Ask() );
+   addPlaceholder( new exp_Clipboard() );
+   addPlaceholder( new exp_Copy() );
+   addPlaceholder( new exp_Sync() );
+//    addPlaceholder( new exp_Run() );
+//    addPlaceholder( new exp_SearchExt() );
+}
+
+ListPanel* Expander::getPanel( const char& panelIndicator ) {
+   switch ( panelIndicator ) {
+   case 'a':
+      return krApp->mainView->activePanel;
+   case 'o':
+      return krApp->mainView->activePanel->otherPanel;
+   case 'l':
+      return krApp->mainView->left;
+   case 'r':
+      return krApp->mainView->right;
+   case '_':
+      return 0;
+   default:
+      kdWarning() << "Expander: unknown Panel " << panelIndicator << endl;
+      return 0;
+   }
+}
 
 QStringList Expander::expand( const QString& stringToExpand, bool useUrl, bool callEach ) {
    QStringList result;
@@ -412,14 +442,14 @@ QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl, int
         QStringList parameter = separateParameter( &exp, useUrl );
         char panelIndicator = exp.lower()[0].latin1();
         exp.replace( 0, 1, "" );
-        for ( i = 0; i < numOfPlaceholder; ++i )
-           if ( exp == placeholder[ i ].expression ) {
+        for ( i = 0; i < placeholderCount(); ++i )
+           if ( exp == placeholder( i )->expression() ) {
 //               kdDebug() << "---------------------------------------" << endl;
-              result += ( placeholder[ i ].expFunc ) ( getPanel( panelIndicator ), parameter, useUrl, currentItem );
+              result += placeholder( i )->expFunc( getPanel( panelIndicator ), parameter, useUrl, currentItem );
 //               kdDebug() << "---------------------------------------" << endl;
               break;
            }
-        if ( i == numOfPlaceholder ) { // didn't find an expander
+        if ( i == placeholderCount() ) { // didn't find an expander
            kdWarning() << "Error: unrecognized %" << panelIndicator << exp << "% in Expander::expand" << endl;
            return QString::null;
         }

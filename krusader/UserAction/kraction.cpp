@@ -23,6 +23,7 @@
 #include "kraction.h"
 #include "expander.h"
 #include "useractionproperties.h"
+#include "../krusader.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,7 +189,8 @@ void KrAction::exec() {
    KrActionProc *proc;
    
    // replace %% and prepare string
-   QStringList commandList = Expander::expand( *_properties->command(), _properties->acceptURLs(), _properties->callEach() );
+//    QStringList commandList = Expander::expand( *_properties->command(), _properties->acceptURLs(), _properties->callEach() );
+   QStringList commandList = krExpander->expand( *_properties->command(), _properties->acceptURLs(), _properties->callEach() );
    
    if ( _properties->confirmExecution() ) {
       for ( QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it ) {

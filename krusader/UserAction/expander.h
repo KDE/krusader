@@ -16,8 +16,166 @@
 // class QString;
 #include <qstring.h>
 class QStringList;
+#include <qvaluelist.h>
 // #include <qstringlist.h>
 class ListPanel;
+
+/**
+ * This holds informations about each parameter
+ */
+class exp_parameter {
+public:
+   inline exp_parameter( QString desc, QString pre, bool ness)
+      { _description = desc; _preset = pre; _nessesary = ness; }
+   inline QString description() ///< A description of the parameter
+      { return _description; }
+   inline QString preset() ///< the default of the parameter
+      { return _preset; }
+   inline bool nessesary() ///< false if the parameter is optional
+      { return _nessesary; }
+
+private:
+   QString _description;
+   QString _preset;
+   bool _nessesary;
+};
+
+#define EXP_FUNC  QString expFunc ( const ListPanel*, const QStringList&, const bool&, const int& )
+/** 
+  *  Abstract baseclass for all expander-functions (which replace placeholder).
+  *  A Placeholder is an entry containing the expression, its expanding function and Parameter.
+  *
+  * @author Jonas Bähr (http://www.jonas-baehr.de)
+  */
+class exp_placeholder {
+public:
+   inline QString expression()  ///< The placeholder (without '%' or panel-prefix)
+      { return _expression; }
+   inline QString description() ///< A description of the placeholder
+      { return _description; }
+   inline bool needPanel() ///< true if the placeholder needs a panel to operate on
+      { return _needPanel; }
+   inline void addParameter( exp_parameter* parameter ) ///< adds parameter to the placeholder
+      { _parameter.append(parameter); }
+   inline int parameterCount() ///< returns the number of placeholders
+      { return _parameter.count(); }
+   inline exp_parameter* parameter( int id )
+      { return _parameter[ id ]; }
+
+   virtual EXP_FUNC = 0;
+protected:
+   QString _expression;
+   QString _description;
+   QValueList <exp_parameter*> _parameter;
+   bool _needPanel;
+};
+
+class exp_separator  : public exp_placeholder {
+public:
+   inline exp_separator( bool needPanel )
+      { _needPanel = needPanel; }
+   inline EXP_FUNC {}
+};
+
+/**
+  * expands %_Path% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the path of the specified panel
+  */
+class exp_Path : public exp_placeholder {
+public:
+   exp_Path();
+   EXP_FUNC;
+};
+
+/**
+  * expands %_Count% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the number of items, which type is specified by the first Parameter
+  */
+class exp_Count : public exp_placeholder {
+public:
+   exp_Count();
+   EXP_FUNC;
+};
+
+/**
+  * expands %_Filter% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the correspondend filter (ie: "*.cpp")
+  */
+class exp_Filter : public exp_placeholder {
+public:
+   exp_Filter();
+   EXP_FUNC;
+};
+
+/**
+  * expands %_Current% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the current item ( != the selected onec)
+  */
+class exp_Current : public exp_placeholder {
+public:
+   exp_Current();
+   EXP_FUNC;
+};
+
+/**
+  * expands %_List% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with a list of items, which type is specified by the first Parameter
+  */
+class exp_List : public exp_placeholder {
+public:
+   exp_List();
+   EXP_FUNC;
+};
+  
+/**
+  * expands %_Ask% ('_' is nessesary because there is no panel needed) with the return of an input-dialog
+  */
+class exp_Ask : public exp_placeholder {
+public:
+   exp_Ask();
+   EXP_FUNC;
+};
+  
+/**
+  * This copies it's first Parameter to the clipboard
+  */
+class exp_Clipboard : public exp_placeholder {
+public:
+   exp_Clipboard();
+   EXP_FUNC;
+};
+  
+/**
+  * This selects all items by the mask given with the first Parameter
+  */
+class exp_Select : public exp_placeholder {
+public:
+   exp_Select();
+   EXP_FUNC;
+};
+  
+/**
+  * This changes the panel'spath to the value given with the first Parameter.
+  */
+class exp_Goto : public exp_placeholder {
+public:
+   exp_Goto();
+   EXP_FUNC;
+};
+
+/**
+  * This is equal to 'cp <first Parameter> <second Parameter>'.
+  */
+class exp_Copy : public exp_placeholder {
+public:
+   exp_Copy();
+   EXP_FUNC;
+};
+  
+/**
+  * This opens the synchronizer with a given profile
+  */
+class exp_Sync : public exp_placeholder {
+public:
+   exp_Sync();
+   EXP_FUNC;
+};
+
 
 /**
  * The Expander expands the command of an UserAction by replacing all placeholders by thier current values.@n
@@ -70,95 +228,26 @@ class ListPanel;
  */
 class Expander {
 public:
-  /** an expander is a function that receives a QString input, expands
-   * it and returns a new QString output containing the expanded expression.
-   */
-  typedef QString ( *EXPANDER ) ( const ListPanel*, const QStringList&, const bool&, const int& );
+  Expander();
+  
+   inline void addPlaceholder( exp_placeholder* placeholder ) ///< adds placeholder to the expander.
+      { _placeholder.append(placeholder); }
+   inline int placeholderCount() ///< returns the number of placeholders
+      { return _placeholder.count(); }
+   inline exp_placeholder* placeholder( int id )
+      { return _placeholder[ id ]; }
 
-  /**
-   * This holds informations about each parameter
-   */
-  typedef struct Parameter {
-     QString description; ///< A description of the parameter
-     QString preset; ///< the default of the parameter
-     bool nessesary; ///< false if the parameter is optional
-  };
-  
-  /**
-   * a Placeholder is an entry containing the expression, its expanding function and Parameter
-   */
-  typedef struct Placeholder {
-     QString expression; ///< The placeholder (without '%' or panel-prefix)
-     QString description; ///< A description of the placeholder
-     EXPANDER expFunc; ///< The function used to expand it
-     Parameter parameter[5]; ///< All Parameter of this placeholder (WARNING: max 4; if needed more, change it in the header)
-     int parameterCount; ///< How many parameter are realy defined
-     bool needPanel; ///< true if the placeholder needs a panel to operate on
-  };
-  
-  /**
-   * This expands a whole commandline by calling (if callEach is true) expandCurrent for each selected item (else only once)
-   * 
-   * @param stringToExpand the commandline with the placeholder
-   * @param useUrl true if the path's should be expanded to an URL instead of an local path
-   * @param callEach true if %_Current% should be expanded once for every selected item
-   * @return a list of all commands (one if callEach is false or one for every selectet item if true)
-   */
-  static QStringList expand( const QString& stringToExpand, bool useUrl, bool callEach );
-  
-  static const int numOfPlaceholder = 13; ///< How many Placeholder are realy defined
-  /**
-   * A List of all Placeholder and thier Parameter. This is used to generate the AddPlaceholderPopup as well as by the expand function
-   */
-  static Placeholder placeholder[ numOfPlaceholder ];
+   /**
+     * This expands a whole commandline by calling (if callEach is true) expandCurrent for each selected item (else only once)
+     * 
+     * @param stringToExpand the commandline with the placeholder
+     * @param useUrl true if the path's should be expanded to an URL instead of an local path
+     * @param callEach true if %_Current% should be expanded once for every selected item
+     * @return a list of all commands (one if callEach is false or one for every selectet item if true)
+     */
+   QStringList expand( const QString& stringToExpand, bool useUrl, bool callEach );
 
 protected:
-  /**
-   * expands %_Path% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the path of the specified panel
-   */
-  static QString exp_Path( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * expands %_Count% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the number of items, which type is specified by the first Parameter
-   */
-  static QString exp_Count( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * expands %_Filter% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the correspondend filter (ie: "*.cpp")
-   */
-  static QString exp_Filter( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * expands %_Current% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the current item ( != the selected onec)
-   */
-  static QString exp_Current( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * expands %_List% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with a list of items, which type is specified by the first Parameter
-   */
-  static QString exp_List( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * expands %_Ask% ('_' is nessesary because there is no panel needed) with the return of an input-dialog
-   */
-  static QString exp_Ask( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * This copies it's first Parameter to the clipboard
-   */
-  static QString exp_Clipboard( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * This selects all items by the mask given with the first Parameter
-   */
-  static QString exp_Select( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * This changes the panel'spath to the value given with the first Parameter.
-   */
-  static QString exp_Bookmark( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * This is equal to 'cp <first Parameter> <second Parameter>'.
-   */
-  static QString exp_Copy( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  /**
-   * This opens the synchronizer with a given profile
-   */
-  static QString exp_Sync( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-
-    
   /**
    * This expands a whole commandline by calling for each Placeholder the correspondend expander
    * 
@@ -167,25 +256,27 @@ protected:
    * @param currentItem the number of the current item (to expand once with every selectet item) or -1.
    * @return the expanded commanline for the current item
    */
-  static QString expandCurrent( const QString& stringToExpand, bool useUrl, int currentItem );
+  QString expandCurrent( const QString& stringToExpand, bool useUrl, int currentItem );
   /**
    * @param panelIndicator either '_' for panel-independent placeholders, 'a', 'o', 'r', or 'l' for the active, other (inactive), right or left panel
    * @return a pointer to the right panel or NULL if no panel is needed.
    */
-  static ListPanel* getPanel( const char& panelIndicator );
+  ListPanel* getPanel( const char& panelIndicator );
   /**
    *  This splits the parameter-string into separate parameter and expands each
    * @param exp the string holding all parameter
    * @param useUrl true if the path's should be expanded to an URL instead of an local path
    * @return a list of all parameter
    */
-  static QStringList separateParameter( QString* exp, bool useUrl );
+  QStringList separateParameter( QString* exp, bool useUrl );
   /**
    * This finds the end of a placeholder, taking care of the parameter
    * @return the position where the placeholder ends
    */
-  static int findEnd( const QString& str, int start );
+  int findEnd( const QString& str, int start );
   
+private:
+   QValueList <exp_placeholder*> _placeholder;
 };
 
 #endif // ifndef EXPANDER_H

@@ -82,6 +82,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krslots.h"
 #include "krservices.h"
 #include "UserAction/useraction.h"
+#include "UserAction/expander.h"
 #include "UserMenu/usermenu.h"
 #include "panelmanager.h"
 #include "MountMan/kmountman.h"
@@ -143,6 +144,7 @@ KRadioAction  *Krusader::actMarkDifferent = 0;
 KRadioAction  **Krusader::compareArray[] = {&actMarkNewerAndSingle, &actMarkNewer, &actMarkSingle, 
                                             &actMarkDifferentAndSingle, &actMarkDifferent, 0};
 UserAction *Krusader::userAction = 0;
+Expander *Krusader::expander = 0;
 UserMenu *Krusader::userMenu = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
@@ -558,6 +560,7 @@ void Krusader::setupActions() {
    actFind->setToolTip( i18n( "Search for files" ) );
 
    // setup all UserActions
+   expander = new Expander();
    userAction = new UserAction();
 }
 

@@ -48,7 +48,7 @@ protected:
     * @param currentPlaceholder A pointer to the Placeholder the user has choosen
     * @return a parameter-string
     */
-   QString getParameter( Expander::Placeholder* currentPlaceholder );
+   QString getParameter( exp_placeholder* currentPlaceholder );
    
 private:
    KPopupMenu *_activeSub, *_otherSub, *_leftSub, *_rightSub, *_independentSub;
@@ -65,7 +65,7 @@ private:
  */
 class ParameterBase : public QWidget {
 public:
-   inline ParameterBase( Expander::Parameter* parameter, QWidget* parent ) : QWidget( parent ) { _nessesary = parameter->nessesary; }
+   inline ParameterBase( exp_parameter* parameter, QWidget* parent ) : QWidget( parent ) { _nessesary = parameter->nessesary(); }
    /**
     * @return the text for the parameter
     */
@@ -96,7 +96,7 @@ private:
  */
 class ParameterText : public ParameterBase {
 public:
-   ParameterText( Expander::Parameter* parameter, QWidget* parent );
+   ParameterText( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -113,7 +113,7 @@ private:
 class ParameterPlaceholder : public ParameterBase {
 Q_OBJECT
 public:
-   ParameterPlaceholder( Expander::Parameter* parameter, QWidget* parent );
+   ParameterPlaceholder( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -131,7 +131,7 @@ private slots:
  */
 class ParameterYes : public ParameterBase {
 public:
-   ParameterYes( Expander::Parameter* parameter, QWidget* parent );
+   ParameterYes( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -146,7 +146,7 @@ private:
  */
 class ParameterNo : public ParameterBase {
 public:
-   ParameterNo( Expander::Parameter* parameter, QWidget* parent );
+   ParameterNo( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -162,7 +162,7 @@ private:
 class ParameterFile : public ParameterBase {
 Q_OBJECT
 public:
-   ParameterFile( Expander::Parameter* parameter, QWidget* parent );
+   ParameterFile( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -180,7 +180,7 @@ private slots:
  */
 class ParameterChoose : public ParameterBase {
 public:
-   ParameterChoose( Expander::Parameter* parameter, QWidget* parent );
+   ParameterChoose( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -195,7 +195,7 @@ private:
  */
 class ParameterSelect : public ParameterBase {
 public:
-   ParameterSelect( Expander::Parameter* parameter, QWidget* parent );
+   ParameterSelect( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -211,7 +211,7 @@ private:
 class ParameterBookmark : public ParameterBase {
 Q_OBJECT
 public:
-   ParameterBookmark( Expander::Parameter* parameter, QWidget* parent );
+   ParameterBookmark( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -231,7 +231,7 @@ private slots:
  */
 class ParameterSyncprofile : public ParameterBase {
 public:
-   ParameterSyncprofile( Expander::Parameter* parameter, QWidget* parent );
+   ParameterSyncprofile( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -251,7 +251,7 @@ private:
 class ParameterDialog : public KDialogBase {
 Q_OBJECT
 public:
-   ParameterDialog( Expander::Placeholder* currentPlaceholder, QWidget *parent );
+   ParameterDialog( exp_placeholder* currentPlaceholder, QWidget *parent );
    
    /**
     * Use this to execute the dialog.

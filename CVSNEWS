@@ -2,6 +2,11 @@ This file is only intended for the CVS.
 It should contain a brief description of new features;
 in some way an extension to the changelog.
 ------------------------------------------------------
+
+Useraction: removed placeholder 'Bookmark'. It is deprecated now since the new
+bookmark-system can be accessed directly like an useraction. If you need it anyway
+use 'Goto' instead.
+
 TC like searching: if you type 'text' -> results the same as '*text*'
 You can exclude files from the search with '|' (ex. '*.cpp *.h | *.moc.cpp' )
            
@@ -64,7 +69,7 @@ User-actions:
     Current    replaced by the current item
     List       replaced by a list of all <first paremeter>
     Select     manipulates the selection in a panel
-    Bookmark   changes the panels's path to <first parameter>
+    Goto      changes the panels's path to <first parameter>
     Ask        asks the user for a some text and is replaced by the answer
     Clipboard  manipulates the clipboard
     Copy     copies a file, useful for quick, local, backups

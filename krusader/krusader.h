@@ -55,6 +55,7 @@ class KIconLoader;
 class KSystemTray;
 class UserMenu;
 class UserAction;
+class Expander;
 class KMountMan;
 
 class Krusader : public KParts::MainWindow {
@@ -127,6 +128,7 @@ class Krusader : public KParts::MainWindow {
     KAccel *accels; // global accelerators
     static UserMenu *userMenu;
     static UserAction *userAction;
+    static Expander *expander;
 
   signals:
     void changeMessage( QString );
@@ -191,5 +193,6 @@ class Krusader : public KParts::MainWindow {
 #define krCombine         Krusader::App->actCombine
 #define krUserMenu        Krusader::App->actUserMenu
 #define krUserAction           Krusader::App->userAction
+#define krExpander           Krusader::App->expander
 
 #endif
