@@ -161,7 +161,7 @@ UserMenu *Krusader::userMenu = 0;
 KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
-#ifdef krJS
+#ifdef __KJSEMBED__
 KJSEmbed::KJSEmbedPart *Krusader::js = 0;
 KAction *Krusader::actShowJSConsole = 0;
 #endif
