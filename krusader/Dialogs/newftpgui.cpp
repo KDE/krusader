@@ -148,8 +148,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     setTabOrder( password, connectBtn );
     setTabOrder( connectBtn, cancelBtn );
     setTabOrder( cancelBtn, prefix );
-    setTabOrder( prefix, port );
-    setTabOrder( port, saveBtn );
+    setTabOrder( prefix, url );
 }
 
 /*
