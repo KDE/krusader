@@ -183,8 +183,8 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
   else if ( type == "-tgz" ) packer = KrServices::fullPathName( "tar" ) + " -xvzf";
   else if ( type == "tarz" ) packer = KrServices::fullPathName( "tar" ) + " -xvzf";
   else if ( type == "-tbz" ) packer = KrServices::fullPathName( "tar" ) + " -xjvf";
-  else if ( type == "gzip" ) packer = KrServices::fullPathName( "gzip" ) + " -d";
-  else if ( type == "zip2" ) packer = KrServices::fullPathName( "bzip2" ) + " -d";
+  else if ( type == "gzip" ) packer = KrServices::fullPathName( "gzip" ) + " -cd";
+  else if ( type == "zip2" ) packer = KrServices::fullPathName( "bzip2" ) + " -cdk";
   else if ( type == "-rar" ) packer = KrServices::fullPathName( "unrar" ) + " x";
   else if ( type == "-ace" ) packer = KrServices::fullPathName( "unace" ) + " x";
   else if ( type == "-arj" ) packer = KrServices::fullPathName( "unarj" ) + " x";
@@ -192,7 +192,13 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
 
   // unpack the files
   KShellProcess proc;
-  proc << packer << + "\"" + archive + "\"";
+  proc << packer << " \"" + archive + "\"";
+  if( type == "zip2" || type=="gzip" ){
+    QString arcname = archive.mid(archive.findRev("/")+1);
+    if( arcname.contains(".") ) arcname = arcname.left(arcname.findRev("."));
+    proc << ">" << "\""+dest+"/"+arcname+"\"";
+  }
+  
   QString save = getcwd( 0, 0 );
   chdir( dest.local8Bit() );
 
