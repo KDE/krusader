@@ -74,7 +74,7 @@ void KrusaderView::start( QString leftPath, QString rightPath ) {
 
   // create the function keys widget
   fnKeys = new KFnKeys( this );
-  fnKeys->show();
+  fnKeys->hide();
   QWhatsThis::add
     ( fnKeys, i18n( "Function keys allow to perform fast "
                     "operations on files." ) );
