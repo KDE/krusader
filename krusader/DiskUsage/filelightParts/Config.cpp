@@ -9,7 +9,7 @@ bool Config::showSmallFiles = false;
 uint Config::contrast = 50;
 uint Config::antiAliasFactor = 2;
 uint Config::minFontPitch = 10;
-uint Config::defaultRingDepth = 4;
+uint Config::defaultRingDepth = 2;
 Filelight::MapScheme Config::scheme;
 
 
@@ -33,7 +33,7 @@ Filelight::Config::read()
     minFontPitch       = config.readNumEntry( "minFontPitch", QFont().pointSize() - 3);
     scheme = (MapScheme) config.readNumEntry( "scheme", 0 );
 
-    defaultRingDepth   = 4;
+    defaultRingDepth   = 2;
 }
 
 void

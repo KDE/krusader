@@ -195,7 +195,7 @@ void LoaderWidget::slotCancelled()
 }
 
 DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidgetStack( parent, name ), 
-                      root( 0 ), configGroup( confGroup )
+                      currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ), abortLoading( false )
 {
   listView = new DUListView( this, "DU ListView" );
   lineView = new DULines( this, "DU LineView" );
@@ -228,15 +228,26 @@ DiskUsage::~DiskUsage()
 
 bool DiskUsage::load( KURL baseDir )
 {
+  if( loading )
+  {
+    stopLoad();
+    urlToLoad = baseDir;
+    QTimer::singleShot( 0, this, SLOT( loadAfterStop() ) );
+    return false;
+  }
+  
   int fileNum = 0, dirNum = 0;
   bool result = true;
-  baseURL = baseDir;
   KIO::filesize_t totalSize = 0;
   Directory *parent = 0;
       
   emit status( i18n( "Loading the disk usage information..." ) );
   
   clear();
+  
+  baseURL = baseDir;
+  baseURL.setPath( baseDir.path( -1 ) );
+
   root = new Directory( baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
 
   QValueStack<QString> directoryStack;
@@ -254,10 +265,12 @@ bool DiskUsage::load( KURL baseDir )
   int lastView = activeView;
   setView( VIEW_LOADER );
   
+  loading = true;
+  
   loaderView->init();  
   
   while( !directoryStack.isEmpty() )
-  {
+  {      
     QString dirToCheck = directoryStack.pop();
     parent = parentStack.pop();
     
@@ -315,7 +328,7 @@ bool DiskUsage::load( KURL baseDir )
     loaderView->setValues( fileNum, dirNum, totalSize );    
     qApp->processEvents();
     
-    if( loaderView->wasCancelled() )
+    if( loaderView->wasCancelled() || abortLoading )
     {
       result = false;
       break;
@@ -328,8 +341,20 @@ bool DiskUsage::load( KURL baseDir )
   calculateSizes();
   changeDirectory( root );
   
+  loading = abortLoading = false;
+  
   emit loadFinished( result );  
   return result;
+}
+
+void DiskUsage::loadAfterStop()
+{
+  load( urlToLoad );
+}
+
+void DiskUsage::stopLoad()
+{
+  abortLoading = true;
 }
 
 void DiskUsage::dirUp()
@@ -340,13 +365,19 @@ void DiskUsage::dirUp()
 
 Directory * DiskUsage::getDirectory( QString dir )
 {
+  while( dir.endsWith( "/" ) )
+    dir.truncate( dir.length() - 1 );
+    
+  if( dir.isEmpty() )
+    return root;
+    
   return contentMap.find( dir );
 }
 
 File * DiskUsage::getFile( QString path )
 {
   if( path == "" )
-    return 0;
+    return root;
     
   QString dir = path;
       
@@ -371,6 +402,7 @@ File * DiskUsage::getFile( QString path )
 
 void DiskUsage::clear()
 {
+  baseURL = KURL();
   emit clearing();
   propertyMap.clear();
   contentMap.clear();
@@ -894,7 +926,7 @@ void DiskUsage::setView( int view )
     break;    
   }
   
-  visibleWidget()->setFocus();  
+  setFocus();  
   emit viewChanged( activeView = view );
 }
 

@@ -66,6 +66,8 @@ public:
   ~DiskUsage();
   
   bool       load( KURL dirName );
+  void       stopLoad();
+  bool       isLoading()     { return loading; }
   
   void       setView( int view );
   int        getActiveView() { return activeView; }
@@ -110,7 +112,10 @@ signals:
   void       viewChanged( int );
   void       loadFinished( bool );
   void       newSearch();
-  
+
+protected slots:
+  void       loadAfterStop();
+
 protected:
   QDict< Directory > contentMap;
   QPtrDict<Properties> propertyMap;
@@ -138,6 +143,11 @@ protected:
   int        activeView;
   
   QString    configGroup;
+  
+  bool       loading;
+  bool       abortLoading;
+  
+  KURL       urlToLoad;
 };
 
 

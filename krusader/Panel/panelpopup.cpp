@@ -20,6 +20,7 @@
 #include <kio/jobclasses.h>
 #include "../KViewer/kimagefilepreview.h"
 #include "../KViewer/panelviewer.h"
+#include "../KViewer/diskusageviewer.h"
 
 PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ), 
 	stack( 0 ), viewer( 0 ), pjob( 0 ) {
@@ -75,11 +76,19 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	viewerBtn->setToggleButton(true);
 	btns->insert(viewerBtn, View);	
 		
+	duBtn = new QToolButton(this);
+	QToolTip::add(duBtn, i18n("Disk Usage Panel: view the usage of a directory"));
+	duBtn->setPixmap(krLoader->loadIcon( "contents", KIcon::Toolbar, 16 ));
+	duBtn->setFixedSize(20, 20);
+	duBtn->setToggleButton(true);
+	btns->insert(duBtn, DskUsage);	
+		
 	layout->addWidget(dataLine,0,0);
 	layout->addWidget(treeBtn,0,1);
 	layout->addWidget(previewBtn,0,2);
 	layout->addWidget(quickBtn,0,3);
 	layout->addWidget(viewerBtn,0,4);
+	layout->addWidget(duBtn,0,5);
 	
 	// create a widget stack on which to put the parts
    stack = new QWidgetStack( this );
@@ -116,6 +125,12 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	panelviewer = new PanelViewer(stack);
 	stack->addWidget(panelviewer, View);
 	connect(panelviewer, SIGNAL(openURLRequest(const KURL &)), this, SLOT(handleOpenURLRequest(const KURL &)));
+	
+	// create the disk usage view
+	
+	diskusage = new DiskUsageViewer( stack );
+	stack->addWidget( diskusage, DskUsage );
+	connect(diskusage, SIGNAL(openURLRequest(const KURL &)), this, SLOT(handleOpenURLRequest(const KURL &)));
 	
 	// create the quick-panel part ----
 	
@@ -174,6 +189,8 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 		id = krConfig->readNumEntry("Right Panel Popup", _RightPanelPopup);	
 	}
 	btns->setButton(id);
+
+	hide(); // for not to open the 3rd hand tool at start (selecting the last used tab)
 	tabSelected(id);
 }
 
@@ -188,6 +205,7 @@ void PanelPopup::show() {
 void PanelPopup::hide() {
   QWidget::hide();
   if (stack->id(stack->visibleWidget()) == View) panelviewer->closeURL();
+  if (stack->id(stack->visibleWidget()) == DskUsage) diskusage->closeURL();
 }
 
 void PanelPopup::handleOpenURLRequest(const KURL &url) {
@@ -218,6 +236,10 @@ void PanelPopup::tabSelected( int id ) {
 			dataLine->setText( i18n("View:") );
 			update(url);
 			break;
+		case DskUsage:
+			dataLine->setText( i18n("Disk Usage:") );
+			update(url);
+			break;
 	}
 	if (id != View) panelviewer->closeURL();  
 }
@@ -237,7 +259,15 @@ void PanelPopup::update( KURL url ) {
       case View:
 			panelviewer->openURL(url);
 			dataLine->setText( i18n("View: ")+url.fileName() );
-      case Tree:  // nothing to do
+      case DskUsage:
+			if( url.fileName() == ".." )
+				url.setFileName( "" );
+			if (KMimeType::findByURL(url.url())->name() != "inode/directory")
+				url = url.upURL();
+			diskusage->openURL(url);
+			dataLine->setText( i18n("Disk Usage: ")+url.fileName() );
+         break;
+      case Tree:  // nothing to do      
          break;
    }
 }

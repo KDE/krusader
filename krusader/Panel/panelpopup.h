@@ -19,10 +19,11 @@ class KLineEdit;
 class KComboBox;
 class KImageFilePreview;
 class PanelViewer;
+class DiskUsageViewer;
 
 class PanelPopup: public QWidget {
    Q_OBJECT
-   enum Parts { Tree, Preview, QuickPanel, View, Last=0xFF };
+   enum Parts { Tree, Preview, QuickPanel, View, DskUsage, Last=0xFF };
 public:
    PanelPopup( QWidget *parent, bool left );
    ~PanelPopup();
@@ -52,11 +53,12 @@ protected:
 	KrSqueezedTextLabel *dataLine;
 	QGuardedPtr<KIO::PreviewJob> pjob;
 	KFileTreeView *tree;
-	QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn;
+	QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn, *duBtn;
 	QButtonGroup *btns;
 	KLineEdit *quickFilter;
 	KComboBox *quickSelectCombo;
 	PanelViewer *panelviewer;
+	DiskUsageViewer *diskusage;
 };
 
 #endif // _PANELPOPUP_H
