@@ -86,6 +86,12 @@ private:
   int nameColumn;         // the important columns are stored for faster comparation
   int sizeColumn;
   int dateTimeColumn;
+  int mimeColumn;
+  int krPermColumn;
+  int permColumn;
+  int ownerColumn;
+  int groupColumn;
+  int extColumn;
   bool humanReadableSize;
 };
 
