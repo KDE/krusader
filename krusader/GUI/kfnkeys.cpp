@@ -42,7 +42,6 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 		krConfig->setGroup("Look&Feel");
 		////////////////////////////////
 #define SETUP(TARGET) {\
-	TARGET->setAccel(Key_##TARGET);\
 	TARGET->setMinimumWidth(45);\
 }
 				
