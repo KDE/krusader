@@ -43,6 +43,7 @@
 #include "GUI/dirhistorybutton.h"
 
 class ListPanel;
+class KURL;
 
 class KRslots : public QObject {
     Q_OBJECT
@@ -58,6 +59,7 @@ class KRslots : public QObject {
     void compareDirectories();
     void sendFileByEmail( QString filename );
     void compareContent();
+    void compareContent( KURL, KURL );
     void rightclickMenu();
     void insertFileName(bool full_path);
     void rootKrusader();

@@ -35,6 +35,7 @@
 #include "../KViewer/krviewer.h"
 #include "../Dialogs/krspwidgets.h"
 #include "../krservices.h"
+#include "../krslots.h"
 #include "synchronizedialog.h"
 #include <qlayout.h>
 #include <kurlrequester.h>
@@ -1639,7 +1640,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
       KrViewer::view( rightURL ); // view the file
       break;
     case COMPARE_FILES_ID:
-      rightMenuCompareFiles( leftURL, rightURL );
+      SLOTS->compareContent( leftURL, rightURL );
       break;
     case SELECT_ITEMS_ID:
     case DESELECT_ITEMS_ID:
@@ -1964,45 +1965,6 @@ void SynchronizerGUI::statusInfo( QString info )
 {
   statusLabel->setText( info );
   qApp->processEvents();
-}
-
-void SynchronizerGUI::rightMenuCompareFiles( KURL url1, KURL url2 )
-{
-  QString diffProg;
-  QStringList lst = Krusader::supportedTools();
-  if (lst.contains("DIFF")) diffProg=lst[lst.findIndex("DIFF") + 1];
-  else {
-    KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports kdiff and xxdiff."));
-    return;
-  }
-
-  // else implied: all ok, let's call kdiff
-  // but if one of the files isn't local, download them first
-
-  QString tmp1 = QString::null, tmp2 = QString::null;
-  if (!url1.isLocalFile()) {
-    if( !KIO::NetAccess::download( url1, tmp1 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url1.prettyURL(0,KURL::StripFileProtocol));
-      return;
-    }
-  } else tmp1 = url1.path();
-  if (!url2.isLocalFile()) {
-    if( !KIO::NetAccess::download( url2, tmp2 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url2.prettyURL(0,KURL::StripFileProtocol));
-      return;
-    }
-  } else tmp2 = url2.path();
-
-  KProcess p;
-  p << diffProg << tmp1 << tmp2;
-  if (!p.start(KProcess::DontCare))
-    KMessageBox::error(0,i18n("Error executing ")+diffProg+" !");
-  else
-    p.detach();
-  sleep(3);
-
-  if( tmp1 != url1.path() ) KIO::NetAccess::removeTempFile( tmp1 );
-  if( tmp2 != url2.path() ) KIO::NetAccess::removeTempFile( tmp2 );
 }
 
 void SynchronizerGUI::swapSides()

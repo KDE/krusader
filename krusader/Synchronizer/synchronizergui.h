@@ -117,8 +117,6 @@ private:
   void    loadProfile( QString );
   void    saveProfile( QString, int );
   
-  void    rightMenuCompareFiles( KURL url1, KURL url2 );
-
 protected:
   virtual void keyPressEvent( QKeyEvent * );
   virtual void resizeEvent( QResizeEvent *e );

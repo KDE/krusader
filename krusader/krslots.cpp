@@ -140,14 +140,6 @@ void KRslots::sendFileByEmail(QString filename) {
 }
 
 void KRslots::compareContent() {
-  QString diffProg;
-  QStringList lst = Krusader::supportedTools();
-  if (lst.contains("DIFF")) diffProg=lst[lst.findIndex("DIFF") + 1];
-  else {
-    KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports kdiff and xxdiff."));
-    return;
-  }
-
   QStringList lst1, lst2;
   QString name1, name2;
 
@@ -168,34 +160,64 @@ void KRslots::compareContent() {
   }
 
   // else implied: all ok, let's call kdiff
-	// but if one of the files isn't local, download them first
-	KURL url1 = MAIN_VIEW->left->func->files()->vfs_getFile(name1);
-	KURL url2 = MAIN_VIEW->right->func->files()->vfs_getFile(name2);
+  // but if one of the files isn't local, download them first
+  compareContent( MAIN_VIEW->left->func->files()->vfs_getFile(name1), 
+                  MAIN_VIEW->right->func->files()->vfs_getFile(name2) );
+}
 
-	QString tmp1 = QString::null, tmp2 = QString::null;
+class KrProcess: public KProcess
+{
+  QString tmp1, tmp2;
+  
+public:
+  KrProcess( QString in1, QString in2 )
+  {
+    tmp1 = in1;
+    tmp2 = in2;
+  }
+  
+  virtual void processHasExited (int )
+  {
+    if( !tmp1.isEmpty() )
+      KIO::NetAccess::removeTempFile( tmp1 );
+    if( !tmp2.isEmpty() )
+      KIO::NetAccess::removeTempFile( tmp2 );
+    delete this;
+  }
+};
+
+void KRslots::compareContent( KURL url1, KURL url2 )
+{
+  QString diffProg;
+  QStringList lst = Krusader::supportedTools();
+  if (lst.contains("DIFF")) diffProg=lst[lst.findIndex("DIFF") + 1];
+  else {
+    KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports kdiff and xxdiff."));
+    return;
+  }
+
+  QString tmp1 = QString::null, tmp2 = QString::null;
+  
   if (!url1.isLocalFile()) {
- 		if( !KIO::NetAccess::download( url1, tmp1 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+name1);
+    if( !KIO::NetAccess::download( url1, tmp1, 0 ) ){
+      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url1.fileName());
       return;
     }
-	} else tmp1 = url1.path();
+  } else tmp1 = url1.path();
   if (!url2.isLocalFile()) {
- 		if( !KIO::NetAccess::download( url2, tmp2 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+name1);
+    if( !KIO::NetAccess::download( url2, tmp2, 0 ) ){
+      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url2.fileName());
+      if( tmp1 != url1.path() )
+        KIO::NetAccess::removeTempFile( tmp1 );
       return;
     }
-	} else tmp2 = url2.path();
+  } else tmp2 = url2.path();
 
-  KProcess p;
-  p << diffProg << tmp1 << tmp2;
-	if (!p.start(KProcess::DontCare))
+  KrProcess *p = new KrProcess( tmp1 != url1.path() ? tmp1 : QString::null,
+                                tmp2 != url2.path() ? tmp2 : QString::null );
+  *p << diffProg << tmp1 << tmp2;
+  if (!p->start(KProcess::DontCare))
     KMessageBox::error(0,i18n("Error executing ")+diffProg+" !");
-  else
-    p.detach();
-  sleep(2);
-
-	if( tmp1 != url1.path() ) KIO::NetAccess::removeTempFile( tmp1 );
-	if( tmp2 != url2.path() ) KIO::NetAccess::removeTempFile( tmp2 );
 }
 
 void KRslots::rightclickMenu() {
