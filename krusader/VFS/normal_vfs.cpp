@@ -42,6 +42,7 @@
 #include <kio/jobclasses.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
+#include <kdebug.h>
 // Krusader includes
 #include "normal_vfs.h"
 #include "../Dialogs/krdialogs.h"
@@ -58,23 +59,27 @@ normal_vfs::normal_vfs(QString,QWidget* panel):vfs(panel){
 	vfs_type="normal";
 	
 	// connect the watcher to vfs_refresh
-  connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_refresh()));
+  //connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_refresh()));
+  connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty()));
 }
 
 bool normal_vfs::vfs_refresh(QString origin){
-  krConfig->setGroup("Advanced");
-  if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(origin);
-	
-	watcher.stopScan(); //stop watching the old dir
-  if( origin != vfs_getOrigin() ){
-		watcher.removeDir(vfs_getOrigin()); // and remove it from the list
-		watcher.addDir(origin); //start watching the new dir
-	}
-	//watcher.clearList();
-	
+  kdDebug() << "vfs_refresh: " << origin << endl;
+
 	// check that the new origin exists
 	if ( !QDir(origin).exists() ) return false;
-	
+    
+  krConfig->setGroup("Advanced");
+  if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(origin);
+   	
+	watcher.stopScan(); //stop watching the old dir
+  if( origin != vfs_getOrigin() ){
+    kdDebug() << "vfs_refresh2: " << origin << endl;
+		watcher.removeDir(vfs_getOrigin()); // and remove it from the list
+		watcher.addDir(origin/*,true*/); //start watching the new dir
+	}
+	//watcher.clearList();
+
 	// set the writable attribute
 	if( getgid()==0 ) isWritable = true;
 	else isWritable = KRpermHandler::fileWriteable(origin);

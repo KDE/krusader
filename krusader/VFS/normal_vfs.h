@@ -69,6 +69,7 @@ public:
 public slots:
 	// actually reads files and stats
 	bool vfs_refresh(QString origin);
+  void vfs_slotDirty(){ QTimer::singleShot(100,this,SLOT(vfs_refresh())); }
 
 protected:
 	QList<vfile>  vfs_files;    // list of pointers to vfile	
