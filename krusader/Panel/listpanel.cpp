@@ -274,8 +274,6 @@ ListPanel::~ListPanel() {
 
 void ListPanel::togglePanelPopup() {
 	if (popup->isHidden()) {
-		popup->show();
-		
 		if (popupSizes.count() > 0) {
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(popupSizes);
 		} else { // on the first time, resize to 50%
@@ -283,6 +281,8 @@ void ListPanel::togglePanelPopup() {
 			lst << height()/2 << height()/2;
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
 		}
+		
+		popup->show();
 		popupBtn->setPixmap(krLoader->loadIcon("down", KIcon::Toolbar, 16));
 		QToolTip::add(  popupBtn, i18n( "Close the popup panel" ) );
 	} else {

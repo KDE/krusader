@@ -211,8 +211,6 @@ DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidget
       
   Filelight::Config::read();  
   propertyMap.setAutoDelete( true );
-  
-  setFocusPolicy( StrongFocus );
 }
 
 DiskUsage::~DiskUsage()
@@ -728,7 +726,7 @@ void DiskUsage::executeAction( int action, File * fileItem )
     setView( ( activeView + 2 ) % 3 );
     break;
   }  
-  setFocus();
+  visibleWidget()->setFocus();
 }
 
 void DiskUsage::keyPressEvent( QKeyEvent *e )
@@ -928,7 +926,7 @@ void DiskUsage::setView( int view )
     break;    
   }
   
-  setFocus();  
+  visibleWidget()->setFocus();  
   emit viewChanged( activeView = view );
 }
 
