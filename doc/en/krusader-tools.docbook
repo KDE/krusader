@@ -28,7 +28,7 @@
 	<screeninfo>RemoteMan</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="remoteman.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="remoteman.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="remoteman.png" format="EPS"/></imageobject>
 	<textobject><phrase>RemoteMan</phrase></textobject>
 	<caption><para>RemoteMan.</para></caption>
 	</mediaobject>
@@ -79,7 +79,7 @@
 	<screeninfo>MountMan</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="mountman.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="mountman.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="mountman.png" format="EPS"/></imageobject>
 	<textobject><phrase>MountMan</phrase></textobject>
 	<caption><para>MountMan.</para></caption>
 	</mediaobject>
@@ -133,7 +133,7 @@
 	<screeninfo>BookMan: the Bookmark menu</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="bookmanadd.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="bookmanadd.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="bookmanadd.png" format="EPS"/></imageobject>
 	<textobject><phrase>BookMan: the Bookmark menu</phrase></textobject>
 	<caption><para>BookMan: the Bookmark menu.</para></caption>
 	</mediaobject>
@@ -150,7 +150,9 @@
       <literal>&amp;sourceforge, &amp;home, down&amp;loads</literal> &etc;,
       so you can quickly call the bookmark name with <keycombo action="simul">&Alt;<keycap>foo</keycap></keycombo>.
       If you add the bookmark without entering a name, the bookmarks name will be the same as its target.
-      <guilabel>"&URL;"</guilabel> is where the bookmark points to.
+      <guilabel>"URL"</guilabel> 
+      <!-- jade does not like an acronym element for "URL" here -->
+      is where the bookmark points to.
       <guilabel>"Create in"</guilabel> allows to make bookmark folders for organizing your bookmarks</para>
 
 <note><para>You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark to quickly connect
@@ -190,7 +192,7 @@
 	<screeninfo>&keditbookmarks; your Bookmark Manager</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="bookmanedit.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="bookmanedit.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="bookmanedit.png" format="EPS"/></imageobject>
 	<textobject><phrase>&keditbookmarks; edit and organize your Bookmarks</phrase></textobject>
 	<caption><para>&keditbookmarks;: your Bookmark Manager.</para></caption>
 	</mediaobject>
@@ -223,7 +225,7 @@
 	<screeninfo>Krusearcher General</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="search_general.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="search_general.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="search_general.png" format="EPS"/></imageobject>
 	<textobject><phrase>Krusearcher General</phrase></textobject>
 	<caption><para>Krusearcher General.</para></caption>
 	</mediaobject>
@@ -322,7 +324,7 @@
 	<screeninfo>Krusearcher Advanced</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="search_advanced.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="search_advanced.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="search_advanced.png" format="EPS"/></imageobject>
 	<textobject><phrase>Krusearcher Advanced</phrase></textobject>
 	<caption><para>Krusearcher Advanced.</para></caption>
 	</mediaobject>
@@ -476,13 +478,13 @@
 
 <note><para>The embedded viewer is not written by us, it is supplied via &kde; (libs) and &kioslave_url;
        We cannot and don't want to change it, usings these libraries reduces the amount of written code.
-       So we don't have to reinvent the weel ;-)</para></note>
+       So we don't have to reinvent the wheel ;-)</para></note>
 </sect2>
 
 <sect2 id="kredit">
 <title>Editor</title>
 
-<para>&krusader;'s internal editor has almost everything what you can expect of an editor.
+<para>&krusader;'s internal editor has almost everything that you can expect of an editor.
       Editing is similar to viewing but with the <keycap>F4</keycap> key.
       The default editor is &krusader;'s internal editor. You can change the used
       editor in the &konfiggereral_lnk;, if you prefer to use an external editor.</para>
@@ -1091,7 +1093,7 @@
 	<screeninfo>KruSyncDir: Synchronize Directories</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="syncdir.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="syncdir.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="syncdir.png" format="EPS"/></imageobject>
 	<textobject><phrase>KruSyncDir: Synchronize Directories</phrase></textobject>
 	<caption><para>KruSyncDir: Synchronize Directories.</para></caption>
 	</mediaobject>
@@ -1426,8 +1428,10 @@
 
 </sect1>
 
+
 <sect1  id="useractions">
 <title>Useractions</title>
+<!-- Thanks to Jonas Bar -->
 
 <para>       
   With the useraction-system the user can make its own actions on files in the

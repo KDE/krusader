@@ -34,7 +34,7 @@ into pages, each containing items related to that page. For some changes to the 
 	<screeninfo>Konfigurator startup page</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="kgstartup.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="kgstartup.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="kgstartup.png" format="EPS"/></imageobject>
 	<textobject><phrase>Konfigurator startup page</phrase></textobject>
 	<caption><para>Konfigurator startup page.</para></caption>
 	</mediaobject>
@@ -54,19 +54,7 @@ into pages, each containing items related to that page. For some changes to the 
 	<para><guilabel>"Start with the following settings"</guilabel>: allows you to define a startup status
 		for each of the panel in the following manner:</para>
 
-	<itemizedlist><!-- This feature is not available at this moment
-	                    (Tree & ListView ara deactivated for the moment)
-	                <listitem><para><guilabel>"Panel types"</guilabel>: select one of the available
-	                                  combinations.
-				<itemizedlist>
-					<listitem><para>List, List</para></listitem>
-					<listitem><para>List, Tree</para></listitem>
-					<listitem><para>List, Quickview</para></listitem>
-					<listitem><para>Tree, List</para></listitem>
-					<listitem><para>Quickview, List</para></listitem>
-				</itemizedlist>
-			</para></listitem> -->
-
+	<itemizedlist>
 	<listitem><para><guilabel>"Left/Right Panel starts at"</guilabel>: the following options are available
 		<itemizedlist>
 		<listitem><para><remark>homepage:</remark> This panel will start at a
@@ -127,7 +115,7 @@ into pages, each containing items related to that page. For some changes to the 
 	<screeninfo>Konfigurator Look &amp; Feel page</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="kglookfeel.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="kglookfeel.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="kglookfeel.png" format="EPS"/></imageobject>
 	<textobject><phrase>Konfigurator Look &amp; Feel page</phrase></textobject>
 	<caption><para>Konfigurator Look &amp; Feel page.</para></caption>
 	</mediaobject>
@@ -178,7 +166,9 @@ HTML_PARSING-->
                         with a single click on a file it will be selected and focused,
 			with a double click it opens the file or steps into the directory.
 	                </para></listitem>             
-        <listitem><para><guilabel>"Obeys &kde;'s global policy"</guilabel>: if checked,
+        <listitem><para><guilabel>"Obeys KDE's 
+                                 <!-- jade does not like an acronym element for "KDE" here -->
+                                global policy"</guilabel>: if checked,
 	                it uses &kde;'s <command>kcontrol</command> setting.
 			<emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
                         <guimenuitem>Peripherials</guimenuitem><guimenuitem>Mouse</guimenuitem></menuchoice></emphasis>  
@@ -306,7 +296,7 @@ HTML_PARSING-->
 	<screeninfo>Konfigurator color page</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="kgcolor.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="kgcolor.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="kgcolor.png" format="EPS"/></imageobject>
 	<textobject><phrase>Konfigurator color page</phrase></textobject>
 	<caption><para>Konfigurator color page.</para></caption>
 	</mediaobject>
@@ -370,7 +360,7 @@ HTML_PARSING-->
 	<screeninfo>Konfigurator General page</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="kggeneral.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="kggeneral.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="kggeneral.png" format="EPS"/></imageobject>
 	<textobject><phrase>Konfigurator General page</phrase></textobject>
 	<caption><para>Konfigurator General page.</para></caption>
 	</mediaobject>
@@ -414,7 +404,7 @@ HTML_PARSING-->
 	<screeninfo>Konfigurator Advanced page</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="kgadvanced.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="kgadvanced.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="kgadvanced.png" format="EPS"/></imageobject>
 	<textobject><phrase>Konfigurator Advanced page</phrase></textobject>
 	<caption><para>Konfigurator Advanced page.</para></caption>
 	</mediaobject>
@@ -484,7 +474,7 @@ needs the <command>unzip</command> and <command>zip</command> executables).</par
 	<screeninfo>Konfigurator Archives page</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="kgarchives.png" format="PNG"/></imageobject>
-	<imageobject><imagedata fileref="kgarchives.eps" format="EPS"/></imageobject>
+	<imageobject><imagedata fileref="kgarchives.png" format="EPS"/></imageobject>
 	<textobject><phrase>Screenshot</phrase></textobject>
 	<caption><para>Konfigurator Archives page.</para></caption>
 	</mediaobject>

@@ -125,7 +125,7 @@
 	  <listitem><para>Finding and replacing parts of the filename</para></listitem>
 	  <listitem><para>Rename MP3/OGG Vorbis files based on their ID3 tags</para></listitem>
 	  <listitem><para>Setting access and modification dates</para></listitem>
-	  <listitem><para>Permissions and file ownership</para></listitem>
+	  <listitem><para>Changing permissions and file ownership</para></listitem>
 	  <listitem><para>A plug-in API which allows you to extend Krename's features</para></listitem>
 	  <listitem><para>Rename directories recursively</para></listitem>
 	  <listitem><para>Support for KFilePlugins</para></listitem>
@@ -263,7 +263,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></shortcut> -->
 	<guimenu>Mark</guimenu>
 	<guimenuitem>Compare Directories</guimenuitem>
 	</menuchoice></term>
@@ -374,7 +373,9 @@
 	<listitem><para>
 	Open the <link linkend="remote-man">&FTP; connection manager</link>.</para>
 	<para><keycap>Important: RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1.
-                                   The new manager handles local files and remote &URL;'s the same way.
+                                   The new manager handles local files and remote URL's 
+                                   <!-- jade does not like an acronym element for "URL" here -->
+                                   the same way.
                                    RemoteMan is being left around to allow an easier transition and
                                    give you a chance to move your bookmarks. IT WILL BE REMOVED SOON!</keycap></para>
 
@@ -528,7 +529,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>View</guimenu>
 	<guimenuitem>Show Toolbar</guimenuitem>
 	</menuchoice></term>
@@ -538,7 +538,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>View</guimenu>
 	<guimenuitem>Show Statusbar</guimenuitem>
 	</menuchoice></term>
@@ -548,7 +547,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>View</guimenu>
 	<guimenuitem>Show FN Keys bar</guimenuitem>
 	</menuchoice></term>
@@ -558,7 +556,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>View</guimenu>
 	<guimenuitem>Show Command Line</guimenuitem>
 	</menuchoice></term>
@@ -568,7 +565,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>View</guimenu>
 	<guimenuitem>Show Terminal Emulator</guimenuitem>
 	</menuchoice></term>
@@ -585,7 +581,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>Settings</guimenu>
 	<guimenuitem>Configure &krusader;</guimenuitem>
 	</menuchoice></term>
@@ -595,7 +590,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>Settings</guimenu>
 	<guimenuitem>Configure Toolbars</guimenuitem>
 	</menuchoice></term>
@@ -606,7 +600,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>Settings</guimenu>
 	<guimenuitem>Configure Shortcuts</guimenuitem>
 	</menuchoice></term>
@@ -617,7 +610,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>Settings</guimenu>
 	<guimenuitem>Save Position</guimenuitem>
 	</menuchoice></term>
@@ -653,7 +645,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Alt;<keycap>/</keycap></keycombo></shortcut> -->
 	<guimenu>Help</guimenu>
 	<guimenuitem>Krusader Handbook</guimenuitem>
 	</menuchoice></term>
@@ -677,7 +668,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Alt;<keycap>/</keycap></keycombo></shortcut> -->
 	<guimenu>Help</guimenu>
 	<guimenuitem>Report Bug</guimenuitem>
 	</menuchoice></term>
@@ -695,7 +685,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Shift;<keycap>F1</keycap></keycombo></shortcut> -->
 	<guimenu>Help</guimenu>
 	<guimenuitem>About Krusader</guimenuitem>
 	</menuchoice></term>
@@ -705,7 +694,6 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<!-- <shortcut><keycombo action="simul">&Shift;<keycap>F1</keycap></keycombo></shortcut> -->
 	<guimenu>Help</guimenu>
 	<guimenuitem>About KDE</guimenuitem>
 	</menuchoice></term>
