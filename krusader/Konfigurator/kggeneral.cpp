@@ -53,8 +53,8 @@ KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
   //            name            value    tooltip
-    {{ i18n( "Delete files" ),  "false", "" },
-     { i18n( "Move to trash" ), "true",  "" }};
+    {{ i18n( "Delete files" ),  "false", "Files will be permanently deleted." },
+     { i18n( "Move to trash" ), "true",  "Files will be moved to Trash when deleted." }};
 
   KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
       "true", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );
