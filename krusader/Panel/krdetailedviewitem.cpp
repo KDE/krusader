@@ -39,6 +39,7 @@
 #include <grp.h>
 #include <stdlib.h>
 #include <kdebug.h>
+#include <kmimetype.h>
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
   QObject(parent), KListViewItem(parent, after), KrViewItem(), _vf(vf), _view(parent) {
