@@ -78,6 +78,9 @@ QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "T
                                          i18n( "Size" ), i18n( "Modified" ), i18n( "Perms" ), i18n( "rwx" ),
                                          i18n( "Owner" ), i18n( "Group" ) };
 
+QString KrDetailedView::LastSelectedItem = "";
+void * KrDetailedView::LastSelectingView = 0;
+
 KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
     KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
 _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
@@ -92,6 +95,8 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
   for ( int i = 0; i < MAX_COLUMNS; i++ )
     _columns[ i ] = Unused;
 
+  LastSelectedItem = ""; LastSelectingView = 0;
+  
   /////////////////////////////// listview ////////////////////////////////////
   { // use the {} so that KConfigGroupSaver will work correctly!
     KConfigGroupSaver grpSvr( _config, "Look&Feel" );
@@ -368,12 +373,23 @@ void KrDetailedView::setSortMode( SortSpec mode ) {
 }
 
 void KrDetailedView::slotClicked( QListViewItem *item ) {
+  if ( !item )
+    return ;
+
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
+  QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
+
   if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
-    if ( !item )
-      return ;
-    QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
     emit executed( tmp );
+  } else {
+    if( tmp == LastSelectedItem && (void *)this == LastSelectingView ) {
+      LastSelectedItem = ""; LastSelectingView = 0;
+      emit renameCurrentItem();
+    }
+    else {
+      LastSelectedItem = tmp;
+      LastSelectingView = (void *)this;
+    }
   }
 }
 
@@ -702,5 +718,6 @@ void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
 }
 
 void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
+  LastSelectedItem = ""; LastSelectingView = 0;
   KrView::setNameToMakeCurrent( dynamic_cast<KrViewItem*>( it ) ->name() );
 }

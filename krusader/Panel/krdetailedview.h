@@ -115,6 +115,8 @@ class KrDetailedView : public KListView, public KrView {
   private:
     ColumnType _columns[ MAX_COLUMNS ];
     static QString ColumnName[ MAX_COLUMNS ];
+    static QString LastSelectedItem;
+    static void *  LastSelectingView;
     bool _withIcons, _focused;
     KrViewItem *_currDragItem;
     QString _nameInKConfig;
