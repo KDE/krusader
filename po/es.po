@@ -1,15 +1,15 @@
 # Translation of krusader.pot to Spanish
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004, Krusader Krew
+# Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # Rafael Munoz Rodriguez <rafaluco@netscape.net>, 2003, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.60-cvs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-22 14:18+0100\n"
+"Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
+"POT-Creation-Date: 2005-02-09 21:06+0100\n"
 "PO-Revision-Date: 2004-08-01 21:44+0200\n"
 "Last-Translator: Rafael Munoz Rodriguez <rafaluco@netscape.net>\n"
 "Language-Team: Spanish\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3\n"
 
-#: GUI/dirhistorybutton.cpp:36
+#: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
 msgstr "Abre el historial de directorios"
 
@@ -37,7 +37,7 @@ msgstr "Directorio remoto:"
 msgid "Overwrite entry"
 msgstr "&Sobreescribir"
 
-#: GUI/profilemanager.cpp:86 UserMenu/usermenu.cpp:63
+#: GUI/profilemanager.cpp:86
 #, fuzzy
 msgid "Add new entry"
 msgstr "Añadir una nueva entrada"
@@ -55,7 +55,7 @@ msgstr "Introduzca el nombre de archivo a editar:"
 #: GUI/syncbrowsebutton.cpp:45
 msgid ""
 "This button toggles the sync-browse mode.\n"
-"If active, each directory change is performed in the\n"
+"When active, each directory change is performed in the\n"
 "active and inactive panel - if possible."
 msgstr ""
 
@@ -72,16 +72,18 @@ msgid "Edit protocol"
 msgstr ""
 
 #: GUI/actionproperty.cpp:209
-msgid "Set an other protocol:"
-msgstr ""
+#, fuzzy
+msgid "Set another protocol:"
+msgstr "Usar iconos en los nombres de archivo"
 
 #: GUI/actionproperty.cpp:239
 msgid "Edit path"
 msgstr ""
 
 #: GUI/actionproperty.cpp:240
-msgid "Set an other path:"
-msgstr ""
+#, fuzzy
+msgid "Set another path:"
+msgstr "Usar iconos en los nombres de archivo"
 
 #: GUI/actionproperty.cpp:259
 #, fuzzy
@@ -98,8 +100,9 @@ msgid "Edit mime-type"
 msgstr ""
 
 #: GUI/actionproperty.cpp:276
-msgid "Set an other mime-type:"
-msgstr ""
+#, fuzzy
+msgid "Set another mime-type:"
+msgstr "Columna Mimetype"
 
 #: GUI/actionproperty.cpp:295
 msgid "New filename"
@@ -116,7 +119,7 @@ msgstr "&Edita un archivo nuevo"
 
 #: GUI/actionproperty.cpp:312
 #, fuzzy
-msgid "Set an other filename:"
+msgid "Set another filename:"
 msgstr "Usar iconos en los nombres de archivo"
 
 #: GUI/actionproperty.cpp:331
@@ -240,8 +243,8 @@ msgid "Category"
 msgstr ""
 
 #: GUI/actionpropertybase.cpp:410 GUI/actionpropertybase.cpp:433
-#: GUI/actionpropertybase.cpp:438 GUI/addplaceholderpopup.cpp:252
-#: GUI/addplaceholderpopup.cpp:438
+#: GUI/actionpropertybase.cpp:438 GUI/addplaceholderpopup.cpp:255
+#: GUI/addplaceholderpopup.cpp:441
 msgid "add"
 msgstr ""
 
@@ -369,7 +372,7 @@ msgid "Confirm each program call separately"
 msgstr ""
 
 #: GUI/actionpropertybase.cpp:448
-msgid "This allows you to tweak the command line before being executed"
+msgid "This allows you to tweak the command line before executing"
 msgstr ""
 
 #: GUI/actionpropertybase.cpp:449
@@ -386,37 +389,37 @@ msgstr "Ejecutar en un terminal"
 msgid "Advanced Properties"
 msgstr "&Propiedades"
 
-#: GUI/addplaceholderpopup.cpp:54
+#: GUI/addplaceholderpopup.cpp:55
 msgid "Active panel"
 msgstr "Panel activo"
 
-#: GUI/addplaceholderpopup.cpp:55
+#: GUI/addplaceholderpopup.cpp:56
 msgid "Other panel"
 msgstr "Otro panel"
 
-#: GUI/addplaceholderpopup.cpp:56
+#: GUI/addplaceholderpopup.cpp:57
 #, fuzzy
 msgid "Left panel"
 msgstr "Panel izquierdo"
 
-#: GUI/addplaceholderpopup.cpp:57
+#: GUI/addplaceholderpopup.cpp:58
 #, fuzzy
 msgid "Right panel"
 msgstr "Panel derecho"
 
-#: GUI/addplaceholderpopup.cpp:58
+#: GUI/addplaceholderpopup.cpp:59
 msgid "Panel independent"
 msgstr ""
 
-#: GUI/addplaceholderpopup.cpp:59
+#: GUI/addplaceholderpopup.cpp:60
 msgid "Executable"
 msgstr "Ejecutable"
 
-#: GUI/addplaceholderpopup.cpp:130
+#: GUI/addplaceholderpopup.cpp:131
 msgid "User Action Parameter Dialog"
 msgstr ""
 
-#: GUI/addplaceholderpopup.cpp:138
+#: GUI/addplaceholderpopup.cpp:139
 msgid "This placeholder allows some parameter:"
 msgstr ""
 
@@ -427,19 +430,19 @@ msgstr "Nombre del directorio donde los comandos serán procesados."
 #: GUI/kcmdline.cpp:91
 #, fuzzy
 msgid ""
-"<qt>Well, it's quite simple actually: You write your command in here, and "
-"Krusader obeys.<p><Tip:>Move in command-line history with &lt;Up&gt; and &lt;"
-"Down&gt; arrows.</qt>"
+"<qt>Well, it's actually quite simple: You type your command here and "
+"Krusader obeys.<p><Tip:>Move within command line history with &lt;Up&gt; and "
+"&lt;Down&gt; arrows.</qt>"
 msgstr ""
 "<qt>Bien, esto es simple actualmente: Tu escribes la línea de comandos aquí "
 "y Krusader obedece.<p><Tip:>Puedes moverte en el historial con las flechas  "
 "&lt;Arriba&gt; y &lt;Abajo&gt;.</qt>"
 
-#: GUI/kcmdline.cpp:100
+#: GUI/kcmdline.cpp:97
 msgid "If pressed, Krusader executes command line in a terminal."
 msgstr "Al pulsar, Krusader ejecuta la línea de comandos en un terminal."
 
-#: GUI/kcmdline.cpp:106
+#: GUI/kcmdline.cpp:103
 msgid ""
 "The 'run in terminal' button allows Krusader to run console (or otherwise "
 "non-graphical) programs in a terminal of your choice. If it's pressed, "
@@ -449,7 +452,7 @@ msgstr ""
 "consola (no gráficos) en un terminal de su elección. Si se pulsa, se activa "
 "el modo terminal."
 
-#: GUI/kcmdline.cpp:183
+#: GUI/kcmdline.cpp:180
 msgid "This terminal will close in 1 hour.."
 msgstr "El terminal se cerrará en 1 hora.."
 
@@ -578,7 +581,7 @@ msgstr "Renombrar"
 msgid " Quit"
 msgstr "Sesiones"
 
-#: VFS/ftp_vfs.cpp:138
+#: VFS/ftp_vfs.cpp:142
 msgid ""
 "Malformed URL:\n"
 "%1"
@@ -586,7 +589,7 @@ msgstr ""
 "URL malformada:\n"
 "%1"
 
-#: VFS/ftp_vfs.cpp:140
+#: VFS/ftp_vfs.cpp:144
 msgid ""
 "Protocol not supported by Krusader:\n"
 "%1"
@@ -614,22 +617,62 @@ msgstr "Descomprimiendo archivos"
 msgid "Repacking..."
 msgstr "Recomprimiendo..."
 
-#: VFS/normal_vfs.cpp:80
+#: VFS/normal_vfs.cpp:82
 msgid "Directory %1 does not exist!"
 msgstr ""
 
-#: VFS/normal_vfs.cpp:93
+#: VFS/normal_vfs.cpp:95
 #, fuzzy
 msgid "Can't open the %1 directory!"
 msgstr "¡No se puede dividir un directorio!"
 
-#: VFS/normal_vfs.cpp:99
+#: VFS/normal_vfs.cpp:101
 msgid "Access denied to"
 msgstr ""
 
-#: VFS/normal_vfs.cpp:194
-msgid "Can't create a directory check your permissions."
+#: VFS/normal_vfs.cpp:196
+#, fuzzy
+msgid "Can't create a directory. Check your permissions."
 msgstr "No se puede crear el directorio compruebe sus permisos."
+
+#: VFS/virt_vfs.cpp:88
+msgid ""
+"You can't copy files directly to the 'virt:/' directory.\n"
+"You can create a sub directory and copy your files into it."
+msgstr ""
+
+#: VFS/virt_vfs.cpp:153
+msgid "Creating new directories is allowed only in the 'virt:/' directory."
+msgstr ""
+
+#: VFS/krquery.cpp:81 Dialogs/generalfilter.cpp:84
+#: Konfigurator/konfigurator.cpp:105
+msgid "Archives"
+msgstr "Archivos"
+
+#: VFS/krquery.cpp:82 Dialogs/generalfilter.cpp:85
+msgid "Directories"
+msgstr "Directorios"
+
+#: VFS/krquery.cpp:83 Dialogs/generalfilter.cpp:86
+msgid "Image Files"
+msgstr "Archivos de imagen"
+
+#: VFS/krquery.cpp:84 Dialogs/generalfilter.cpp:87
+msgid "Text Files"
+msgstr "Archivos de texto"
+
+#: VFS/krquery.cpp:85 Dialogs/generalfilter.cpp:88
+msgid "Video Files"
+msgstr "Archivos de vídeo"
+
+#: VFS/krquery.cpp:86 Dialogs/generalfilter.cpp:89
+msgid "Audio Files"
+msgstr "Archivos de audio"
+
+#: VFS/krquery.cpp:87
+msgid "Custom"
+msgstr "Personalizado"
 
 #: VFS/krarchandler.cpp:160
 msgid "Counting files in archive"
@@ -664,99 +707,101 @@ msgstr "Contraseña:"
 msgid "This archive is encrypted, please supply the password:"
 msgstr ""
 
-#: UserAction/expander.cpp:59
+#: UserAction/expander.cpp:62
 msgid "panel's path"
 msgstr "ruta del panel"
 
-#: UserAction/expander.cpp:62 UserAction/expander.cpp:124
-#: UserAction/expander.cpp:170
+#: UserAction/expander.cpp:65 UserAction/expander.cpp:127
+#: UserAction/expander.cpp:161 UserAction/expander.cpp:450
 msgid "Automatic escape spaces"
 msgstr ""
 
-#: UserAction/expander.cpp:82
+#: UserAction/expander.cpp:85
 msgid "number of ..."
 msgstr ""
 
-#: UserAction/expander.cpp:85
+#: UserAction/expander.cpp:88
 msgid "count all:"
 msgstr ""
 
-#: UserAction/expander.cpp:109
-msgid "filter mask (*.h, *.cpp ...)"
+#: UserAction/expander.cpp:112
+#, fuzzy
+msgid "filter mask: *.h, *.cpp, etc."
 msgstr "máscara de archivo (*.h, *.cpp ...)"
 
-#: UserAction/expander.cpp:120
+#: UserAction/expander.cpp:123
 msgid "current file (!= selected file)"
 msgstr "archivo actual (!= archivo seleccionado)"
 
-#: UserAction/expander.cpp:123 UserAction/expander.cpp:168
+#: UserAction/expander.cpp:126 UserAction/expander.cpp:159
+#: UserAction/expander.cpp:448
 #, fuzzy
 msgid "Omit the current path (optional)"
 msgstr "Introducir selección:"
 
-#: UserAction/expander.cpp:163
+#: UserAction/expander.cpp:154
 msgid "Item list of ..."
 msgstr ""
 
-#: UserAction/expander.cpp:166
+#: UserAction/expander.cpp:157 UserAction/expander.cpp:447
 #, fuzzy
 msgid "Which items"
 msgstr "Blanco"
 
-#: UserAction/expander.cpp:167
+#: UserAction/expander.cpp:158
 msgid "Separator between the items (optional)"
 msgstr ""
 
-#: UserAction/expander.cpp:169
+#: UserAction/expander.cpp:160 UserAction/expander.cpp:449
 msgid "Mask (optional, all but 'Selected')"
 msgstr ""
 
-#: UserAction/expander.cpp:232
+#: UserAction/expander.cpp:223
 #, fuzzy
 msgid "Manipulate the selection"
 msgstr "Introducir selección:"
 
-#: UserAction/expander.cpp:235
+#: UserAction/expander.cpp:226
 #, fuzzy
 msgid "Selection mask"
 msgstr "Seleccionar elementos"
 
-#: UserAction/expander.cpp:236
+#: UserAction/expander.cpp:227
 msgid "Manipulate in which way"
 msgstr ""
 
-#: UserAction/expander.cpp:261
+#: UserAction/expander.cpp:252
 #, fuzzy
 msgid "Jump to a location"
 msgstr "Abrir sus marcadores"
 
-#: UserAction/expander.cpp:264
+#: UserAction/expander.cpp:255
 msgid "please choose a path"
 msgstr ""
 
-#: UserAction/expander.cpp:265
+#: UserAction/expander.cpp:256
 #, fuzzy
 msgid "open the location in a new tab"
 msgstr "Abrir en una pestaña nueva"
 
-#: UserAction/expander.cpp:299
-msgid "Question the user for a parameter"
+#: UserAction/expander.cpp:290
+msgid "Ask the user for a parameter"
 msgstr ""
 
-#: UserAction/expander.cpp:302
+#: UserAction/expander.cpp:293
 #, fuzzy
 msgid "Question"
 msgstr "Sesiones"
 
-#: UserAction/expander.cpp:303
+#: UserAction/expander.cpp:294
 msgid "Preset (optional)"
 msgstr ""
 
-#: UserAction/expander.cpp:304
+#: UserAction/expander.cpp:295
 msgid "Caption (optional)"
 msgstr ""
 
-#: UserAction/expander.cpp:309
+#: UserAction/expander.cpp:301
 #, fuzzy
 msgid "User Action"
 msgstr "Definido por el usuario"
@@ -784,23 +829,74 @@ msgstr ""
 
 #: UserAction/expander.cpp:366
 #, fuzzy
+msgid "Move/Rename a file/folder"
+msgstr "Copiar %d archivos a:"
+
+#: UserAction/expander.cpp:369
+msgid "What moved/renamed"
+msgstr ""
+
+#: UserAction/expander.cpp:370
+msgid "New target/name"
+msgstr ""
+
+#: UserAction/expander.cpp:390
+#, fuzzy
 msgid "Open a synchronizer-profile"
 msgstr "Sincronizar directorios"
 
-#: UserAction/expander.cpp:369 UserAction/expander.cpp:387
-#: UserAction/expander.cpp:405
+#: UserAction/expander.cpp:393 UserAction/expander.cpp:411
+#: UserAction/expander.cpp:429
 #, fuzzy
 msgid "Choose a profile"
 msgstr "Elegir archivos"
 
-#: UserAction/expander.cpp:384
+#: UserAction/expander.cpp:408
 msgid "Open a searchmodule-profile"
 msgstr ""
 
-#: UserAction/expander.cpp:402
+#: UserAction/expander.cpp:426
 #, fuzzy
 msgid "Load a panel-profile"
 msgstr "Elegir archivos"
+
+#: UserAction/expander.cpp:444
+#, fuzzy
+msgid "Separate programm call for each..."
+msgstr "Buscar en archivos"
+
+#: UserAction/expander.cpp:504
+msgid "Set the sorting for this panel"
+msgstr ""
+
+#: UserAction/expander.cpp:507
+#, fuzzy
+msgid "Choose a column"
+msgstr "Elegir archivos"
+
+#: UserAction/expander.cpp:508
+msgid "Choose the sort sequence"
+msgstr ""
+
+#: UserAction/expander.cpp:598
+msgid "Set the relation between the two panels"
+msgstr ""
+
+#: UserAction/expander.cpp:601
+msgid "Set the new size in percent"
+msgstr ""
+
+#: UserAction/expander.cpp:637
+msgid "Executes a JavaScript-extension"
+msgstr ""
+
+#: UserAction/expander.cpp:640
+msgid "Location of the script"
+msgstr ""
+
+#: UserAction/expander.cpp:641
+msgid "Read the JS-variable 'cmd' for execution"
+msgstr ""
 
 #: UserAction/kraction.cpp:43
 msgid "Kill"
@@ -822,29 +918,29 @@ msgstr "Error Estándar (stderr)"
 msgid "Output"
 msgstr "Salida"
 
-#: UserAction/kraction.cpp:215
+#: UserAction/kraction.cpp:219
 #, fuzzy
 msgid "Confirm execution"
 msgstr "Confirmaciones"
 
-#: UserAction/kraction.cpp:216
+#: UserAction/kraction.cpp:220
 #, fuzzy
 msgid "Command being executed:"
 msgstr "Línea de comandos"
 
-#: Panel/krdetailedviewitem.cpp:364
+#: Panel/krdetailedviewitem.cpp:371
 msgid "Climb up the directory tree"
 msgstr "Sube al árbol de directorios"
 
-#: Panel/krdetailedviewitem.cpp:376
+#: Panel/krdetailedviewitem.cpp:383
 msgid "Symbolic Link"
 msgstr "Enlace simbólico"
 
-#: Panel/krdetailedviewitem.cpp:377
+#: Panel/krdetailedviewitem.cpp:384
 msgid "(broken link !)"
 msgstr "(¡enlace roto!)"
 
-#: Panel/krdetailedviewitem.cpp:378
+#: Panel/krdetailedviewitem.cpp:385
 msgid "%1 (Link)"
 msgstr "%1 (Enlace)"
 
@@ -852,17 +948,17 @@ msgstr "%1 (Enlace)"
 msgid "Preview not available"
 msgstr "Vista previa no disponible"
 
-#: Panel/listpanel.cpp:124
+#: Panel/listpanel.cpp:127
 #, fuzzy
 msgid ""
-"The status bar displays information about the FILESYSTEM which holds your "
+"The statusbar displays information about the FILESYSTEM which holds your "
 "current directory: Total size, free space, type of filesystem, etc."
 msgstr ""
 "La barra de estado muestra información sobre el SISTEMA DE ARCHIVOS que "
 "mantiene subdirectorio actual: Tamaño total, espacio libre, tipo de sistema "
 "de archivos, etc."
 
-#: Panel/listpanel.cpp:140
+#: Panel/listpanel.cpp:143
 msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
@@ -870,7 +966,7 @@ msgstr ""
 "Abrir menú con marcadores. También puede añadir la ruta actual a la lista, "
 "editar marcadores o añadir subcarpetas a la lista."
 
-#: Panel/listpanel.cpp:154
+#: Panel/listpanel.cpp:157
 #, fuzzy
 msgid ""
 "The totals bar shows how many files exist, how many selected and the bytes "
@@ -879,16 +975,16 @@ msgstr ""
 "La barra de totales muestra cuántos archivos hay, cuántos hay seleccionados "
 "y su tamaño en bytes"
 
-#: Panel/listpanel.cpp:164 Panel/listpanel.cpp:293
+#: Panel/listpanel.cpp:171 Panel/listpanel.cpp:301
 #, fuzzy
 msgid "Open the popup panel"
 msgstr "Otro panel"
 
-#: Panel/listpanel.cpp:180
+#: Panel/listpanel.cpp:188
 msgid "Use superb KDE file dialog to choose location. "
 msgstr "Usar el magnífico selector de archivos de KDE para elegir la ruta. "
 
-#: Panel/listpanel.cpp:184
+#: Panel/listpanel.cpp:192
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
@@ -896,322 +992,371 @@ msgstr ""
 "Nombre del directorio donde se encuentra. También puede introducir el nombre "
 "de laruta deseada para ir allí. Puede usar protocolos de red como ftp o fish."
 
-#: Panel/listpanel.cpp:193
+#: Panel/listpanel.cpp:201
 msgid "="
 msgstr "="
 
-#: Panel/listpanel.cpp:194
+#: Panel/listpanel.cpp:202
 msgid "Equal"
 msgstr ""
 
-#: Panel/listpanel.cpp:199
+#: Panel/listpanel.cpp:207
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:200
+#: Panel/listpanel.cpp:208
 msgid "Up"
 msgstr "Arriba"
 
-#: Panel/listpanel.cpp:205
+#: Panel/listpanel.cpp:213
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:206 Panel/panelpopup.cpp:87 Panel/panelpopup.cpp:88
-#: Panel/panelpopup.cpp:89 Panel/panelpopup.cpp:100
+#: Panel/listpanel.cpp:214 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
+#: Panel/panelpopup.cpp:106 Panel/panelpopup.cpp:117
 #, fuzzy
 msgid "Home"
 msgstr "Homepage:"
 
-#: Panel/listpanel.cpp:211
+#: Panel/listpanel.cpp:219
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:212 Panel/panelpopup.cpp:91 Panel/panelpopup.cpp:92
-#: Panel/panelpopup.cpp:94 Panel/panelpopup.cpp:95 Panel/panelpopup.cpp:99
-#: krusader.cpp:525
+#: Panel/listpanel.cpp:220 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
+#: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
+#: krusader.cpp:541
 msgid "Root"
 msgstr "Root"
 
-#: Panel/listpanel.cpp:287
+#: Panel/listpanel.cpp:295
 #, fuzzy
 msgid "Close the popup panel"
 msgstr "Otro panel"
 
-#: Panel/listpanel.cpp:378 Panel/listpanel.cpp:1029
+#: Panel/listpanel.cpp:397 Panel/listpanel.cpp:1048
 msgid " Select Files "
 msgstr " Seleccionar archivos "
 
-#: Panel/listpanel.cpp:378
+#: Panel/listpanel.cpp:397
 msgid " Unselect Files "
 msgstr " Deseleccionar archivos "
 
-#: Panel/listpanel.cpp:492 Panel/listpanel.cpp:500
-#: Konfigurator/kgstartup.cpp:58 Konfigurator/kgstartup.cpp:64
-#: Konfigurator/kgstartup.cpp:75 Konfigurator/kgstartup.cpp:115
-#: Konfigurator/kgstartup.cpp:116
+#: Panel/listpanel.cpp:512 Panel/listpanel.cpp:520
+#: Konfigurator/kgstartup.cpp:59 Konfigurator/kgstartup.cpp:65
+#: Konfigurator/kgstartup.cpp:76 Konfigurator/kgstartup.cpp:117
+#: Konfigurator/kgstartup.cpp:118
 msgid "homepage"
 msgstr "homepage"
 
-#: Panel/listpanel.cpp:494 Panel/listpanel.cpp:502 krusader.cpp:250
-#: krusader.cpp:255 krusader.cpp:679 krusader.cpp:682
-#: Konfigurator/kgstartup.cpp:60
+#: Panel/listpanel.cpp:514 Panel/listpanel.cpp:522 krusader.cpp:261
+#: krusader.cpp:266 krusader.cpp:714 krusader.cpp:717
+#: Konfigurator/kgstartup.cpp:61
 msgid "the last place it was"
 msgstr "último lugar visitado"
 
-#: Panel/listpanel.cpp:563
+#: Panel/listpanel.cpp:584
 msgid "No space information on non-local filesystems"
 msgstr "No hay información sobre el espacio en un sistema de archivos no local"
 
-#: Panel/listpanel.cpp:569
+#: Panel/listpanel.cpp:591
 #, fuzzy
 msgid "No space information on [dev]"
 msgstr "No hay información sobre el espacio en [proc]"
 
-#: Panel/listpanel.cpp:574
+#: Panel/listpanel.cpp:596
 #, fuzzy
 msgid "No space information on [procfs]"
 msgstr "No hay información sobre el espacio en [procfs]"
 
-#: Panel/listpanel.cpp:579
+#: Panel/listpanel.cpp:601
 #, fuzzy
 msgid "No space information on [proc]"
 msgstr "No hay información sobre el espacio en [proc]"
 
-#: Panel/listpanel.cpp:584
+#: Panel/listpanel.cpp:606
 msgid "Mt.Man: working ..."
 msgstr "Mt.Man: trabajando ..."
 
-#: Panel/listpanel.cpp:598
+#: Panel/listpanel.cpp:620
 msgid "unknown"
 msgstr ""
 
-#: Panel/listpanel.cpp:606
+#: Panel/listpanel.cpp:628
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr "%1 libre de %2 (%3%) en %4 [ (%5) ]"
 
-#: Panel/listpanel.cpp:670
+#: Panel/listpanel.cpp:689
 msgid "Can't drop here, no write permissions."
 msgstr "No se puede arrastrar aquí, no hay permisos de escritura."
 
-#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:235
+#: Panel/listpanel.cpp:705 Panel/panelpopup.cpp:310
 msgid "Copy Here"
 msgstr "Copiar aquí"
 
-#: Panel/listpanel.cpp:688 Panel/panelpopup.cpp:236
+#: Panel/listpanel.cpp:707 Panel/panelpopup.cpp:311
 msgid "Move Here"
 msgstr "Mover aquí"
 
-#: Panel/listpanel.cpp:691 Panel/panelpopup.cpp:237
+#: Panel/listpanel.cpp:710 Panel/panelpopup.cpp:312
 msgid "Link Here"
 msgstr "Enlazar aquí"
 
-#: Panel/listpanel.cpp:780
+#: Panel/listpanel.cpp:799
 msgid "Run"
 msgstr "Ejecutar"
 
-#: Panel/listpanel.cpp:783 Panel/listpanel.cpp:784
+#: Panel/listpanel.cpp:802 Panel/listpanel.cpp:803
 msgid "Open in a new tab"
 msgstr "Abrir en una pestaña nueva"
 
-#: Panel/listpanel.cpp:796 Konfigurator/kgcolors.cpp:152
+#: Panel/listpanel.cpp:815 Konfigurator/kgcolors.cpp:155
 msgid "Preview"
 msgstr "Vista previa"
 
-#: Panel/listpanel.cpp:822
+#: Panel/listpanel.cpp:841
 msgid "Terminal"
 msgstr "Terminal"
 
-#: Panel/listpanel.cpp:823
+#: Panel/listpanel.cpp:842
 msgid "Other..."
 msgstr "Otro..."
 
-#: Panel/listpanel.cpp:825
+#: Panel/listpanel.cpp:844
 msgid "Open with"
 msgstr "Abrir con"
 
-#: Panel/listpanel.cpp:829
-#, fuzzy
-msgid "Useractions"
-msgstr "Definido por el usuario"
+#: Panel/listpanel.cpp:848 Konfigurator/konfigurator.cpp:111
+msgid "User Actions"
+msgstr ""
 
-#: Panel/listpanel.cpp:845
+#: Panel/listpanel.cpp:864
 msgid "Konqueror menu"
 msgstr ""
 
-#: Panel/listpanel.cpp:856 Panel/krdetailedview.cpp:1050
+#: Panel/listpanel.cpp:875 Panel/krdetailedview.cpp:1111
 msgid "Rename"
 msgstr "Renombrar"
 
-#: Panel/listpanel.cpp:862
+#: Panel/listpanel.cpp:881
 msgid "Shred"
 msgstr "Triturar"
 
-#: Panel/listpanel.cpp:867
+#: Panel/listpanel.cpp:886
 msgid "new symlink"
 msgstr "nuevo enlace simbólico"
 
-#: Panel/listpanel.cpp:868
+#: Panel/listpanel.cpp:887
 msgid "new hardlink"
 msgstr "nuevo enlace duro"
 
-#: Panel/listpanel.cpp:870
+#: Panel/listpanel.cpp:889
 msgid "redirect link"
 msgstr "redireccionar enlace"
 
-#: Panel/listpanel.cpp:872
+#: Panel/listpanel.cpp:891
 msgid "Link handling"
 msgstr "Manejo de enlaces"
 
-#: Panel/listpanel.cpp:879 MountMan/kmountman.cpp:286
+#: Panel/listpanel.cpp:898 MountMan/kmountman.cpp:286
 #: MountMan/kmountmangui.cpp:333
 msgid "Unmount"
 msgstr "Desmontar"
 
-#: Panel/listpanel.cpp:881 MountMan/kmountman.cpp:286
+#: Panel/listpanel.cpp:900 MountMan/kmountman.cpp:286
 #: MountMan/kmountmangui.cpp:329
 msgid "Mount"
 msgstr "Montar"
 
-#: Panel/listpanel.cpp:883 MountMan/kmountmangui.cpp:339
+#: Panel/listpanel.cpp:902 MountMan/kmountmangui.cpp:339
 msgid "Eject"
 msgstr "Expulsar"
 
-#: Panel/listpanel.cpp:887
+#: Panel/listpanel.cpp:906
 msgid "Send by email"
 msgstr "Enviar por email"
 
-#: Panel/listpanel.cpp:891
+#: Panel/listpanel.cpp:910
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:894
+#: Panel/listpanel.cpp:913
 msgid "Cut to Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:895 Panel/listpanel.cpp:1011
+#: Panel/listpanel.cpp:914 Panel/listpanel.cpp:1030
 msgid "Paste from Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:937
+#: Panel/listpanel.cpp:956
 msgid "Are you sure you want to shred "
 msgstr "Está seguro de que desea triturar "
 
-#: Panel/listpanel.cpp:938
+#: Panel/listpanel.cpp:957
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr ""
 
-#: Panel/listpanel.cpp:994 Panel/panelfunc.cpp:313 KViewer/krviewer.cpp:212
-#: krslots.cpp:413
+#: Panel/listpanel.cpp:1013 Panel/panelfunc.cpp:313 KViewer/krviewer.cpp:244
+#: krslots.cpp:430
 msgid "Can't open "
 msgstr "No se puede abrir "
 
-#: Panel/krdetailedview.cpp:90 Search/krsearchdialog.cpp:139
+#: Panel/listpanel.cpp:1192
+#, fuzzy
+msgid ">> Reading..."
+msgstr "Recomprimiendo..."
+
+#: Panel/listpanel.cpp:1204
+#, fuzzy
+msgid "Reading"
+msgstr " (Leyendo)"
+
+#: Panel/listpanel.cpp:1209
+#, fuzzy
+msgid "Reading: "
+msgstr " (Leyendo)"
+
+#: Panel/krdetailedview.cpp:97 Search/krsearchdialog.cpp:148
 #: MountMan/kmountmangui.cpp:124 Synchronizer/synchronizergui.cpp:1236
-#: Synchronizer/synchronizergui.cpp:1242 DiskUsage/dulines.cpp:134
-#: DiskUsage/dulistview.cpp:54
+#: Synchronizer/synchronizergui.cpp:1242 DiskUsage/dulines.cpp:238
+#: DiskUsage/dulistview.cpp:56
 msgid "Name"
 msgstr "Nombre"
 
-#: Panel/krdetailedview.cpp:91
+#: Panel/krdetailedview.cpp:98 Panel/krdetailedview.cpp:1301
 msgid "Ext"
 msgstr "Ext"
 
-#: Panel/krdetailedview.cpp:92 MountMan/kmountmangui.cpp:125
-#: DiskUsage/dulistview.cpp:62
+#: Panel/krdetailedview.cpp:99 Panel/krdetailedview.cpp:1304
+#: MountMan/kmountmangui.cpp:125 DiskUsage/dulistview.cpp:68
 msgid "Type"
 msgstr "Tipo"
 
-#: Panel/krdetailedview.cpp:93 Search/krsearchdialog.cpp:141
-#: Search/advancedfilter.cpp:94 Synchronizer/synchronizergui.cpp:1237
-#: Synchronizer/synchronizergui.cpp:1241 Konfigurator/kglookfeel.cpp:142
+#: Panel/krdetailedview.cpp:100 Panel/krdetailedview.cpp:1307
+#: Search/krsearchdialog.cpp:150 Dialogs/advancedfilter.cpp:94
+#: Synchronizer/synchronizergui.cpp:1237 Synchronizer/synchronizergui.cpp:1241
+#: Konfigurator/kglookfeel.cpp:145
 msgid "Size"
 msgstr "Tamaño"
 
-#: Panel/krdetailedview.cpp:94
+#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1310
 msgid "Modified"
 msgstr "Modificado"
 
-#: Panel/krdetailedview.cpp:95
+#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1313
 msgid "Perms"
 msgstr "Permisos"
 
-#: Panel/krdetailedview.cpp:96
+#: Panel/krdetailedview.cpp:103 Panel/krdetailedview.cpp:1316
 msgid "rwx"
 msgstr "rwx"
 
-#: Panel/krdetailedview.cpp:97 DiskUsage/dulistview.cpp:68
-#: Konfigurator/kglookfeel.cpp:146
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1319
+#: DiskUsage/dulistview.cpp:77 Konfigurator/kglookfeel.cpp:149
 msgid "Owner"
 msgstr "Propietario"
 
-#: Panel/krdetailedview.cpp:98 DiskUsage/dulistview.cpp:70
-#: Konfigurator/kglookfeel.cpp:147
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1322
+#: DiskUsage/dulistview.cpp:80 Konfigurator/kglookfeel.cpp:150
 msgid "Group"
 msgstr "Grupo"
 
-#: Panel/krdetailedview.cpp:1050
+#: Panel/krdetailedview.cpp:1111
 msgid "Rename "
 msgstr "Renombrar "
 
-#: Panel/krdetailedview.cpp:1050
+#: Panel/krdetailedview.cpp:1111
 msgid " to:"
 msgstr " a:"
 
-#: Panel/krview.cpp:123
+#: Panel/krdetailedview.cpp:1288
+#, fuzzy
+msgid "Columns"
+msgstr "Columna de grupo"
+
+#: Panel/krview.cpp:125
 #, fuzzy
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 de %2 seleccionado, %3 de %4"
 
-#: Panel/panelpopup.cpp:50
+#: Panel/panelpopup.cpp:51
 #, fuzzy
 msgid "Tree Panel: a tree view of the local file system"
 msgstr "Slo puede crear enlaces en sistemas de archivos locales"
 
-#: Panel/panelpopup.cpp:58
+#: Panel/panelpopup.cpp:59
 msgid "Preview Panel: display a preview of the current file"
 msgstr ""
 
-#: Panel/panelpopup.cpp:65
+#: Panel/panelpopup.cpp:66
 msgid "Quick Panel: quick way to perform actions"
 msgstr ""
 
-#: Panel/panelpopup.cpp:111
+#: Panel/panelpopup.cpp:73
+msgid "View Panel: view the current file"
+msgstr ""
+
+#: Panel/panelpopup.cpp:80
+#, fuzzy
+msgid "Disk Usage Panel: view the usage of a directory"
+msgstr "Dividir el archivo %1 al directorio:"
+
+#: Panel/panelpopup.cpp:132 Panel/panelpopup.cpp:269
+#, fuzzy
+msgid "Disk Usage: "
+msgstr "Krusader::Localizar"
+
+#: Panel/panelpopup.cpp:141
 msgid "Quick Select"
 msgstr ""
 
-#: Panel/panelpopup.cpp:128
+#: Panel/panelpopup.cpp:158
 #, fuzzy
 msgid "apply the selection"
 msgstr "Introducir selección:"
 
-#: Panel/panelpopup.cpp:134
+#: Panel/panelpopup.cpp:164
 #, fuzzy
 msgid "store the current selection"
 msgstr "Introducir selección:"
 
-#: Panel/panelpopup.cpp:140
+#: Panel/panelpopup.cpp:170
 #, fuzzy
 msgid "select group dialog"
 msgstr "&Deseleccionar grupo"
 
-#: Panel/panelpopup.cpp:173
+#: Panel/panelpopup.cpp:227
 #, fuzzy
 msgid "Tree:"
 msgstr "Libre: "
 
-#: Panel/panelpopup.cpp:176
+#: Panel/panelpopup.cpp:230
 #, fuzzy
 msgid "Preview:"
 msgstr "Vista previa"
 
-#: Panel/panelpopup.cpp:179
+#: Panel/panelpopup.cpp:234
 msgid "Quick Select:"
 msgstr ""
 
-#: Panel/panelpopup.cpp:194
+#: Panel/panelpopup.cpp:237
+#, fuzzy
+msgid "View:"
+msgstr "F3 Ver"
+
+#: Panel/panelpopup.cpp:241
+#, fuzzy
+msgid "Disk Usage:"
+msgstr "Krusader::Localizar"
+
+#: Panel/panelpopup.cpp:258
 #, fuzzy
 msgid "Preview: "
 msgstr "Vista previa"
+
+#: Panel/panelpopup.cpp:262
+#, fuzzy
+msgid "View: "
+msgstr "F3 Ver"
 
 #: Panel/krcalcspacedialog.cpp:95
 #, fuzzy
@@ -1239,7 +1384,8 @@ msgid "You can edit links only on local file systems"
 msgstr "Puede editar enlaces slo en sistemas de archivos locales"
 
 #: Panel/panelfunc.cpp:214
-msgid "The current file is not a link, so i can't redirect it."
+#, fuzzy
+msgid "The current file is not a link, so I can't redirect it."
 msgstr "El archivo actual no es un enlace, no se puede redireccionar."
 
 #: Panel/panelfunc.cpp:221
@@ -1272,7 +1418,7 @@ msgstr "nuevo enlace simbólico"
 msgid "Create a new link to: "
 msgstr "Crear un nuevo enlace a: "
 
-#: Panel/panelfunc.cpp:258 Panel/panelfunc.cpp:440
+#: Panel/panelfunc.cpp:258 Panel/panelfunc.cpp:426
 msgid "A directory or a file with this name already exists."
 msgstr "Un directorio o un archivo con éste nombre ya existe."
 
@@ -1296,578 +1442,637 @@ msgstr "No puede editar un directorio"
 msgid "No permissions to edit this file."
 msgstr "No hay permisos para editar éste archivo."
 
-#: Panel/panelfunc.cpp:350
+#: Panel/panelfunc.cpp:346
 msgid "Moving into archive is disabled"
 msgstr "No es posible mover dentro de archivos"
 
-#: Panel/panelfunc.cpp:359
+#: Panel/panelfunc.cpp:354
 msgid "Move "
 msgstr "Mover "
 
-#: Panel/panelfunc.cpp:359 Panel/panelfunc.cpp:471 Panel/panelfunc.cpp:776
-#: Panel/panelfunc.cpp:778
+#: Panel/panelfunc.cpp:354 Panel/panelfunc.cpp:457 Panel/panelfunc.cpp:772
+#: Panel/panelfunc.cpp:774
 msgid "to"
 msgstr "a"
 
-#: Panel/panelfunc.cpp:361
+#: Panel/panelfunc.cpp:356
 #, c-format
 msgid "Move %d files to:"
 msgstr "Mover %d archivos a:"
 
-#: Panel/panelfunc.cpp:401
+#: Panel/panelfunc.cpp:387
 msgid "You can't move files to this file system"
 msgstr "No puede mover archivos a este sistema de archivos"
 
-#: Panel/panelfunc.cpp:427
+#: Panel/panelfunc.cpp:413
 #, fuzzy
 msgid "New directory"
 msgstr "%n directorio"
 
-#: Panel/panelfunc.cpp:427
+#: Panel/panelfunc.cpp:413
 msgid "Directory's name:"
 msgstr "Nombre del directorio:"
 
-#: Panel/panelfunc.cpp:471
+#: Panel/panelfunc.cpp:457
 msgid "Copy "
 msgstr "Copiar "
 
-#: Panel/panelfunc.cpp:473
+#: Panel/panelfunc.cpp:459
 #, c-format
 msgid "Copy %d files to:"
 msgstr "Copiar %d archivos a:"
 
-#: Panel/panelfunc.cpp:505
+#: Panel/panelfunc.cpp:480
 msgid "You can't copy files to this file system"
 msgstr "No puede copiar archivos a este sistema de archivos"
 
-#: Panel/panelfunc.cpp:516
+#: Panel/panelfunc.cpp:491
 msgid "You do not have write permission to this directory"
 msgstr "No tiene permisos de escritura para este directorio"
 
-#: Panel/panelfunc.cpp:531
+#: Panel/panelfunc.cpp:508
 #, fuzzy
-msgid " this item ?"
+msgid " this item?"
 msgstr "Blanco"
 
-#: Panel/panelfunc.cpp:533
+#: Panel/panelfunc.cpp:510
 #, fuzzy, c-format
-msgid " these %d items ?"
+msgid " these %d items?"
 msgstr " %d archivos ?"
 
-#: Panel/panelfunc.cpp:537
+#: Panel/panelfunc.cpp:513
 msgid "trash"
 msgstr "papelera"
 
-#: Panel/panelfunc.cpp:538
+#: Panel/panelfunc.cpp:514
 msgid "&Trash"
 msgstr "&Papelera"
 
-#: Panel/panelfunc.cpp:540
+#: Panel/panelfunc.cpp:516
 msgid "delete"
 msgstr "eliminar"
 
-#: Panel/panelfunc.cpp:545
+#: Panel/panelfunc.cpp:521
 msgid "Are you sure you want to "
 msgstr "Está seguro de que quiere "
 
-#: Panel/panelfunc.cpp:564
+#: Panel/panelfunc.cpp:540
 msgid "Directory "
 msgstr "Directorio "
 
-#: Panel/panelfunc.cpp:564
+#: Panel/panelfunc.cpp:540
+#, fuzzy
 msgid ""
-" is not empty !\n"
-"Skip this one or Delete All ?"
+" is not empty!\n"
+"Skip this one or Delete All?"
 msgstr ""
 " no está vacío\n"
 "Saltar o eliminar todo?"
 
-#: Panel/panelfunc.cpp:565
+#: Panel/panelfunc.cpp:541
 msgid "&Skip"
 msgstr "&Saltar"
 
-#: Panel/panelfunc.cpp:565
+#: Panel/panelfunc.cpp:541
 msgid "&Delete All"
 msgstr "&Eliminar todos"
 
-#: Panel/panelfunc.cpp:675
+#: Panel/panelfunc.cpp:666
 msgid "The Archive "
 msgstr "El archivo "
 
-#: Panel/panelfunc.cpp:676
-msgid " already exists, Do you want to overwrite the archive "
+#: Panel/panelfunc.cpp:667
+#, fuzzy
+msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " ya existe, desea sobreescribir el archivo "
 
-#: Panel/panelfunc.cpp:677
-msgid "(all data in previous archive will be lost)"
-msgstr "(toda la información de los archivos anteriores se perderá)"
+#: Panel/panelfunc.cpp:669
+msgid ""
+"(ZIP will replace identically named entries in the zip archive or add "
+"entries for new names)"
+msgstr ""
 
-#: Panel/panelfunc.cpp:677
-msgid "&Overwite"
+#: Panel/panelfunc.cpp:673
+#, fuzzy
+msgid "&Overwrite"
 msgstr "&Sobreescribir"
 
-#: Panel/panelfunc.cpp:682
+#: Panel/panelfunc.cpp:678
 msgid "Counting files to pack"
 msgstr "Contando archivos a comprimir"
 
-#: Panel/panelfunc.cpp:744 Panel/panelfunc.cpp:805 krslots.cpp:185
-#: krslots.cpp:191
+#: Panel/panelfunc.cpp:740 Panel/panelfunc.cpp:809 krslots.cpp:190
+#: krslots.cpp:196
 msgid "Krusader is unable to download: "
 msgstr "Krusader no puede descargar: "
 
-#: Panel/panelfunc.cpp:752
+#: Panel/panelfunc.cpp:748
 msgid "%1, unknown archive type."
 msgstr "%1, tipo de archivo desconocido."
 
-#: Panel/panelfunc.cpp:758
+#: Panel/panelfunc.cpp:754
 msgid "%1, test passed."
 msgstr "%1, test pasado."
 
-#: Panel/panelfunc.cpp:760
-msgid "%1, test failed !"
+#: Panel/panelfunc.cpp:756
+#, fuzzy
+msgid "%1, test failed!"
 msgstr "%1, test fallido!"
 
-#: Panel/panelfunc.cpp:776 Panel/panelfunc.cpp:778
+#: Panel/panelfunc.cpp:772 Panel/panelfunc.cpp:774
 msgid "Unpack "
 msgstr "Descomprimir "
 
-#: Panel/panelfunc.cpp:778
+#: Panel/panelfunc.cpp:774
 msgid "%1 files"
 msgstr "%1 archivos"
 
-#: Panel/panelfunc.cpp:833
+#: Panel/panelfunc.cpp:835
 msgid "%1, unknown archive type"
 msgstr "%1, tipo de archivo desconocido"
 
-#: Locate/locate.cpp:64
+#: Locate/locate.cpp:66
 msgid "Update DB"
 msgstr "Actualizar DB"
 
-#: Locate/locate.cpp:64 Locate/locate.cpp:302
+#: Locate/locate.cpp:66 Locate/locate.cpp:317
 msgid "Locate"
 msgstr "Localizar"
 
-#: Locate/locate.cpp:71
+#: Locate/locate.cpp:73
 msgid "Krusader::Locate"
 msgstr "Krusader::Localizar"
 
-#: Locate/locate.cpp:74
+#: Locate/locate.cpp:76
 msgid "Search for:"
 msgstr "Buscar:"
 
-#: Locate/locate.cpp:89
+#: Locate/locate.cpp:91
 #, fuzzy
 msgid "Don't search in path"
 msgstr "&No buscar en"
 
-#: Locate/locate.cpp:91
+#: Locate/locate.cpp:93
 msgid "Show only the existing files"
 msgstr "Mostrar sólo los archivos existentes"
 
-#: Locate/locate.cpp:93
+#: Locate/locate.cpp:95
 msgid "Case Sensitive"
 msgstr "Sensible a mayúsculas"
 
-#: Locate/locate.cpp:112 Konfigurator/kggeneral.cpp:132
-#: Konfigurator/kgarchives.cpp:148
+#: Locate/locate.cpp:114 Konfigurator/kggeneral.cpp:135
+#: Konfigurator/kgarchives.cpp:149
 msgid "Results"
 msgstr "Resultados"
 
-#: Locate/locate.cpp:192
+#: Locate/locate.cpp:197
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "¡No se puede iniciar locate! Compruebe la sección Dependencias de "
 "konfigurator."
 
-#: Locate/locate.cpp:227
+#: Locate/locate.cpp:234
 msgid ""
 "Locate produced the following error message:\n"
 "\n"
 msgstr ""
 
-#: Locate/locate.cpp:230
+#: Locate/locate.cpp:237
 #, fuzzy
 msgid "Error during the start of 'locate' process!"
 msgstr "¡Error durante el comienzo del proceso de localización!"
 
-#: Locate/locate.cpp:304
+#: Locate/locate.cpp:319
 msgid "View (F3)"
 msgstr "Ver (F3)"
 
-#: Locate/locate.cpp:305
+#: Locate/locate.cpp:320
 msgid "Edit (F4)"
 msgstr "Editar (F4)"
 
-#: Locate/locate.cpp:309
+#: Locate/locate.cpp:324
 msgid "Find (Ctrl+F)"
 msgstr "Buscar (Ctrl+F)"
 
-#: Locate/locate.cpp:310
+#: Locate/locate.cpp:325
 msgid "Find next (Ctrl+N)"
 msgstr "Buscar siguiente (Ctrl+N)"
 
-#: Locate/locate.cpp:311
+#: Locate/locate.cpp:326
 msgid "Find previous (Ctrl+P)"
 msgstr "Buscar anterior (Ctrl+P)"
 
-#: Locate/locate.cpp:407 Locate/locate.cpp:424
+#: Locate/locate.cpp:422 Locate/locate.cpp:439
 msgid "Search string not found!"
 msgstr "¡Cadena no encontrada!"
 
-#: krusader.cpp:274
-msgid ""
-"Status bar will show  basic informations about file below mouse pointer."
+#: Locate/locate.cpp:492
+#, fuzzy
+msgid "Locate results"
+msgstr "Localizar"
+
+#: krusader.cpp:285
+#, fuzzy
+msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
 "La barra de estado mostrará información básica sobre el fichero seleccionado."
 
-#: krusader.cpp:327
+#: krusader.cpp:343
+#, fuzzy
 msgid ""
-"A configuration older then v0.90 was detected Krusader has to reset your "
-"configuration to default values. Krusader will now run Konfigurator."
+"A configuration of 1.51 or older was detected. Krusader has to reset your "
+"configuration to default values.\n"
+"Note: Your bookmarks and keybindings will remain intact.\n"
+" Krusader will now run Konfigurator."
 msgstr ""
 "Se ha encontrado una configuración anterior a v0.90 Krusader reseteará su "
 "configuración a valores estándar. Krusader ejecutará ahora Konfigurator."
 
-#: krusader.cpp:329
+#: krusader.cpp:353
+#, fuzzy
 msgid ""
-"Unable to remove your krusaderrc file! Please remove it manually and rerun "
-"Krusader."
-msgstr ""
-"No se puede eliminar el archivo krusaderrc. Por favor bórrelo manualmente y "
-"vuelva a arrancar Krusader."
-
-#: krusader.cpp:337
-msgid ""
-"Welcome to Krusader, as this is your first run, Krusader will now run "
+"Welcome to Krusader! As this is your first run, Krusader will now run "
 "Konfigurator."
 msgstr ""
 "Bienvenido a Krusader, como es su primera ejecución, Krusader lanzará "
 "Konfigurator."
 
-#: krusader.cpp:388
+#: krusader.cpp:404
 msgid "F3 View Dialog"
 msgstr "F3 Ver Diálogo"
 
-#: krusader.cpp:391
+#: krusader.cpp:407
 msgid "Tab: switch panel"
 msgstr "Tab: cambia de panel"
 
-#: krusader.cpp:426
+#: krusader.cpp:430
+#, fuzzy
+msgid "Show Actions Toolbar"
+msgstr "Mostrar opciones"
+
+#: krusader.cpp:442
 msgid "Show &FN Keys Bar"
 msgstr "Mostrar barra de teclas &FN"
 
-#: krusader.cpp:429
+#: krusader.cpp:445
 msgid "Show &Command Line"
 msgstr "Mostrar línea de &comandos"
 
-#: krusader.cpp:432
+#: krusader.cpp:448
 msgid "Show Terminal &Emulator"
 msgstr "Mostrar &emulador de terminal"
 
-#: krusader.cpp:435
+#: krusader.cpp:451
 msgid "Show &Hidden Files"
 msgstr "Mostrar arc&hivos ocultos"
 
-#: krusader.cpp:437
+#: krusader.cpp:453
 msgid "S&wap Panels"
 msgstr "C&ambiar paneles"
 
-#: krusader.cpp:443
+#: krusader.cpp:459
 msgid "popup cmdline"
 msgstr "línea de comandos emergente"
 
-#: krusader.cpp:446
+#: krusader.cpp:462 DiskUsage/diskusage.cpp:668
 #, fuzzy
 msgid "Up one directory"
 msgstr "En el directorio"
 
-#: krusader.cpp:447
-msgid "&Edit new file"
+#: krusader.cpp:463
+#, fuzzy
+msgid "&Edit New File"
 msgstr "&Edita un archivo nuevo"
 
-#: krusader.cpp:448
+#: krusader.cpp:464
 msgid "Start &Root Mode Krusader"
 msgstr "Arrancar Krusader Modo &Root"
 
-#: krusader.cpp:450
+#: krusader.cpp:466
 #, fuzzy
 msgid "T&est Archive(s)"
 msgstr "&Probar archivo(s)"
 
-#: krusader.cpp:452
-msgid "&Net Connections"
-msgstr "Co&nexiones de red"
-
-#: krusader.cpp:454
+#: krusader.cpp:470
 msgid "New Net &Connection"
 msgstr "Nueva &conexión de Red"
 
-#: krusader.cpp:456
+#: krusader.cpp:472
 #, fuzzy
 msgid "Pro&files"
 msgstr "&Propiedades"
 
-#: krusader.cpp:458
+#: krusader.cpp:474
 msgid "Calculate &Occupied Space"
 msgstr "Calcular espacio &ocupado"
 
-#: krusader.cpp:460
+#: krusader.cpp:476
 msgid "&Properties"
 msgstr "&Propiedades"
 
-#: krusader.cpp:462
+#: krusader.cpp:478
 msgid "Pac&k"
 msgstr "Com&primir"
 
-#: krusader.cpp:464
+#: krusader.cpp:480
 msgid "&Unpack"
 msgstr "&Descomprimir"
 
-#: krusader.cpp:466
-msgid "Sp&lit file"
+#: krusader.cpp:482
+#, fuzzy
+msgid "Sp&lit File"
 msgstr "D&ividir archivos"
 
-#: krusader.cpp:468
-msgid "Com&bine files"
+#: krusader.cpp:484
+#, fuzzy
+msgid "Com&bine Files"
 msgstr "Com&binar archivos"
 
-#: krusader.cpp:470
+#: krusader.cpp:486
 msgid "Select &Group"
 msgstr "Seleccionar &grupo"
 
-#: krusader.cpp:472
+#: krusader.cpp:488
 msgid "&Select All"
 msgstr "&Seleccionar todo"
 
-#: krusader.cpp:474
+#: krusader.cpp:490
 msgid "U&nselect All"
 msgstr "D&eseleccionar todo"
 
-#: krusader.cpp:476
+#: krusader.cpp:492
 #, fuzzy
 msgid "&Compare Directories"
 msgstr "Automarcar directorios"
 
-#: krusader.cpp:478
-msgid "&Mark Newer And Single"
+#: krusader.cpp:494
+msgid "&Select Newer And Single"
 msgstr ""
 
-#: krusader.cpp:480
-msgid "Mark &Newer"
-msgstr ""
-
-#: krusader.cpp:482
+#: krusader.cpp:496
 #, fuzzy
-msgid "Mark &Single"
-msgstr "Individuales"
+msgid "Select &Newer"
+msgstr "Seleccionar &grupo"
 
-#: krusader.cpp:484
-msgid "Mark Different &And Single"
+#: krusader.cpp:498
+#, fuzzy
+msgid "Select S&ingle"
+msgstr " Seleccionar archivos "
+
+#: krusader.cpp:500
+msgid "Select Different &And Single"
 msgstr ""
 
-#: krusader.cpp:486
-msgid "Mark &Different"
-msgstr ""
+#: krusader.cpp:502
+#, fuzzy
+msgid "Select &Different"
+msgstr "Seleccionar elementos"
 
-#: krusader.cpp:495
+#: krusader.cpp:511
 msgid "&Terminal"
 msgstr "&Terminal"
 
-#: krusader.cpp:497
+#: krusader.cpp:513
 msgid "Disconnect &From Net"
 msgstr "Desconectar &de la red"
 
-#: krusader.cpp:500 krusader.cpp:505
+#: krusader.cpp:516 krusader.cpp:521
 msgid "&MountMan"
 msgstr "&MountMan"
 
-#: krusader.cpp:509
+#: krusader.cpp:525
 msgid "&Search"
 msgstr "Bu&scar"
 
-#: krusader.cpp:511
+#: krusader.cpp:527
 msgid "&Locate"
 msgstr "&Localizar"
 
-#: krusader.cpp:513
+#: krusader.cpp:529
 msgid "Synchronize &Directories"
 msgstr "Sincronizar &directorios"
 
-#: krusader.cpp:517
+#: krusader.cpp:531
+#, fuzzy
+msgid "D&isk Usage"
+msgstr "Krusader::Localizar"
+
+#: krusader.cpp:533
 msgid "&Invert Selection"
 msgstr "&Invertir selección"
 
-#: krusader.cpp:519
+#: krusader.cpp:535
 msgid "&Unselect Group"
 msgstr "&Deseleccionar grupo"
 
-#: krusader.cpp:521
+#: krusader.cpp:537
 #, fuzzy
 msgid "Configure &Krusader"
 msgstr "Co&nfigurar modo de comparación"
 
-#: krusader.cpp:527
+#: krusader.cpp:543
 msgid "Save &Position"
 msgstr "Guardar &Posición"
 
-#: krusader.cpp:529
+#: krusader.cpp:545
 msgid "&All Files"
 msgstr "&Todos los archivos"
 
-#: krusader.cpp:533
+#: krusader.cpp:549
 msgid "&Custom"
 msgstr "&Personalizar"
 
-#: krusader.cpp:535
-msgid "Compare b&y content"
+#: krusader.cpp:551
+#, fuzzy
+msgid "Compare b&y Content"
 msgstr "Comparar por &contenido"
 
-#: krusader.cpp:537
+#: krusader.cpp:553
 msgid "Multi &Rename"
 msgstr "&Renombrado masivo"
 
-#: krusader.cpp:539
+#: krusader.cpp:555
 msgid "Right-click menu"
 msgstr "Clic en el menú con el botón derecho"
 
-#: krusader.cpp:541
+#: krusader.cpp:557
 msgid "Right bookmarks"
 msgstr "Marcadores de la derecha"
 
-#: krusader.cpp:543
+#: krusader.cpp:559
 msgid "Left bookmarks"
 msgstr "Marcadores de la izquierda"
 
-#: krusader.cpp:547
+#: krusader.cpp:563
 #, fuzzy
 msgid "Sync Panels"
 msgstr "Paneles"
 
-#: krusader.cpp:549
+#: krusader.cpp:565
 #, fuzzy
 msgid "Left history"
 msgstr "Directorio de la izquierda:"
 
-#: krusader.cpp:551
+#: krusader.cpp:567
 #, fuzzy
 msgid "Right history"
 msgstr "Directorio de la derecha:"
 
-#: krusader.cpp:553
+#: krusader.cpp:569
 #, fuzzy
 msgid "Toggle Popup Panel"
 msgstr "Otro panel"
 
-#: krusader.cpp:555
+#: krusader.cpp:571
 msgid "Vertical Mode"
 msgstr ""
 
-#: krusader.cpp:557
+#: krusader.cpp:573
 msgid "New tab"
 msgstr "Nueva pestaña"
 
-#: krusader.cpp:559
+#: krusader.cpp:575
 msgid "Duplicate tab"
 msgstr "Duplicar pestaña"
 
-#: krusader.cpp:561
+#: krusader.cpp:577
 msgid "Close tab"
 msgstr "Cerrar pestaña"
 
-#: krusader.cpp:563
+#: krusader.cpp:579
 #, fuzzy
 msgid "Next tab"
 msgstr "Nueva pestaña"
 
-#: krusader.cpp:565
+#: krusader.cpp:581
 msgid "Previous tab"
 msgstr ""
 
-#: krusader.cpp:567 UserMenu/usermenu.cpp:56
+#: krusader.cpp:583 UserMenu/usermenu.cpp:52
 msgid "User Menu"
 msgstr "Menú de usuario"
 
-#: krusader.cpp:571
+#: krusader.cpp:585 UserMenu/usermenu.cpp:59
+#, fuzzy
+msgid "Manage user actions"
+msgstr "Definido por el usuario"
+
+#: krusader.cpp:589
 #, fuzzy
 msgid "F2 - Open a terminal"
 msgstr "F2 Terminal"
 
-#: krusader.cpp:573
+#: krusader.cpp:591
 #, fuzzy
 msgid "F3 - View a file"
 msgstr "F3 Ver  "
 
-#: krusader.cpp:575
+#: krusader.cpp:593
 #, fuzzy
 msgid "F4 - Edit a file"
 msgstr "F4 Editar  "
 
-#: krusader.cpp:577
+#: krusader.cpp:595
 #, fuzzy
 msgid "F5 - Copy"
 msgstr "F5 Copiar"
 
-#: krusader.cpp:579
+#: krusader.cpp:597
 #, fuzzy
 msgid "F6 - Move"
 msgstr "F6 Mover"
 
-#: krusader.cpp:581
+#: krusader.cpp:599
 #, fuzzy
 msgid "F7 - Mkdir"
 msgstr "F7 CrearDir"
 
-#: krusader.cpp:583
+#: krusader.cpp:601
 #, fuzzy
 msgid "F8 - Delete"
 msgstr "F8 Eliminar"
 
-#: krusader.cpp:585
+#: krusader.cpp:603
 #, fuzzy
 msgid "F9 - Rename"
 msgstr "F9 Renombrar"
 
-#: krusader.cpp:587
+#: krusader.cpp:605
 #, fuzzy
 msgid "F10 - Quit"
 msgstr "F10 Salir"
 
-#: krusader.cpp:591
-msgid "Highlight files by using a filter"
+#: krusader.cpp:607 BookMan/krbookmarkhandler.cpp:254
+msgid "Popular URLs"
+msgstr ""
+
+#: krusader.cpp:611
+#, fuzzy
+msgid "Select files using a filter"
 msgstr "Resaltar archivos usando un filtro"
 
-#: krusader.cpp:592
-msgid "Highlight all the files in the current directory"
+#: krusader.cpp:612
+#, fuzzy
+msgid "Select all files in the current directory"
 msgstr "Resaltar todos los archivos en el directorio actual"
 
-#: krusader.cpp:593
-msgid "Remove selection from all highlight files"
-msgstr "Eliminar selección de todos los archivos resaltados"
+#: krusader.cpp:613
+#, fuzzy
+msgid "Un-select all selected files"
+msgstr "¡Seleccione sólo un archivo dividido!"
 
-#: krusader.cpp:594
+#: krusader.cpp:614
 msgid "Setup Krusader the way you like it"
 msgstr "Configura Krusader a tu gusto"
 
-#: krusader.cpp:595
+#: krusader.cpp:615
 msgid "Back to the place you came from"
 msgstr "Volver al lugar de que viene"
 
-#: krusader.cpp:596
+#: krusader.cpp:616
 msgid "ROOT (/)"
 msgstr "ROOT (/)"
 
-#: krusader.cpp:597
+#: krusader.cpp:617
 msgid "Search for files"
 msgstr "Buscar en archivos"
 
-#: krusader.cpp:678 krusader.cpp:681
+#: krusader.cpp:627
+msgid "JavaScript console"
+msgstr ""
+
+#: krusader.cpp:657 Konfigurator/kgcolors.cpp:451
+#, fuzzy
+msgid "File "
+msgstr "Campos:"
+
+#: krusader.cpp:657 Konfigurator/kgcolors.cpp:451
+#, fuzzy
+msgid " already exists. Are you sure you want to overwrite it?"
+msgstr " ya existe, desea sobreescribir el archivo "
+
+#: krusader.cpp:658 Konfigurator/kgcolors.cpp:452
+#, fuzzy
+msgid "Overwrite"
+msgstr "&Sobreescribir"
+
+#: krusader.cpp:660 Konfigurator/kgcolors.cpp:454
+#, fuzzy
+msgid "Error: unable to write to file"
+msgstr "No se puede obtener información"
+
+#: krusader.cpp:713 krusader.cpp:716
 msgid "List"
 msgstr "Lista"
 
-#: krusader.cpp:724
+#: krusader.cpp:763
 #, fuzzy
-msgid "Ok to shutdown Krusader?"
-msgstr "¿Desea cerrar Krusader?"
+msgid "Are you sure you want to quit?"
+msgstr "Está seguro de que quiere "
+
+#: KViewer/panelviewer.cpp:22
+msgid "No file selected or selected file can't be displayed."
+msgstr ""
 
 #: KViewer/krviewer.cpp:70
 msgid "&Generic viewer"
@@ -1885,74 +2090,66 @@ msgstr "Visor &hexadecimal"
 msgid "Text &editor"
 msgstr "&Editor de texto"
 
-#: KViewer/krviewer.cpp:83
-#, fuzzy
-msgid "The editor is about to close. Do you want to save your changes?"
-msgstr "La sección actual ha sufrido cambios. ¿Desea aplicarlos?"
-
-#: KViewer/krviewer.cpp:167
+#: KViewer/krviewer.cpp:199
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: KViewer/krviewer.cpp:256
+#: KViewer/krviewer.cpp:288
 msgid "Sorry, can't find internal editor"
 msgstr "Lo siento, no encuentro el editor interno"
 
-#: KViewer/krviewer.cpp:319
+#: KViewer/krviewer.cpp:351
 msgid "KrViewer is unable to download: "
 msgstr "KrViewer es incapaz de descargar: "
 
-#: KViewer/krviewer.cpp:380
-#, fuzzy
-msgid ""
-"The Document has been changed. Do you want to quit, losing the modifications?"
-msgstr ""
-"El documento ha sufrido cambios. ¿Desea salir y perder las modificaciones?"
-
-#: Search/krsearchdialog.cpp:66
+#: Search/krsearchdialog.cpp:70
 msgid "Krusader::Search"
 msgstr "Krusader::Buscar"
 
-#: Search/krsearchdialog.cpp:85
+#: Search/krsearchdialog.cpp:89
+msgid "Feed to listbox"
+msgstr ""
+
+#: Search/krsearchdialog.cpp:94
 msgid "Search"
 msgstr "Buscar"
 
-#: Search/krsearchdialog.cpp:105
+#: Search/krsearchdialog.cpp:114
 msgid "&General"
 msgstr "&General"
 
-#: Search/krsearchdialog.cpp:108
+#: Search/krsearchdialog.cpp:117
 msgid "&Advanced"
 msgstr "&Avanzado"
 
-#: Search/krsearchdialog.cpp:125 Search/krsearchdialog.cpp:338
+#: Search/krsearchdialog.cpp:134 Search/krsearchdialog.cpp:351
 msgid "Found 0 matches."
 msgstr "Encontrados 0 resultados."
 
-#: Search/krsearchdialog.cpp:140
+#: Search/krsearchdialog.cpp:149
 msgid "Location"
 msgstr "Localización"
 
-#: Search/krsearchdialog.cpp:142 Search/advancedfilter.cpp:148
+#: Search/krsearchdialog.cpp:151 Dialogs/advancedfilter.cpp:148
 #: Synchronizer/synchronizergui.cpp:1238 Synchronizer/synchronizergui.cpp:1240
-#: DiskUsage/dulistview.cpp:64
+#: DiskUsage/dulistview.cpp:71
 msgid "Date"
 msgstr "Fecha"
 
-#: Search/krsearchdialog.cpp:143 DiskUsage/dulistview.cpp:66
+#: Search/krsearchdialog.cpp:152 DiskUsage/dulistview.cpp:74
 msgid "Permissions"
 msgstr "Permisos"
 
-#: Search/krsearchdialog.cpp:171
+#: Search/krsearchdialog.cpp:180
 msgid "&Results"
 msgstr "&Resultados"
 
-#: Search/krsearchdialog.cpp:294
+#: Search/krsearchdialog.cpp:305
 #, fuzzy
 msgid "Found %1 matches."
 msgstr "Encontrados 0 resultados."
 
-#: Search/krsearchdialog.cpp:322
+#: Search/krsearchdialog.cpp:333
 #, fuzzy
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
@@ -1965,289 +2162,37 @@ msgstr ""
 "2. No puede buscar texto (grep) mientras realiza una búsqueda que incluye "
 "archivos."
 
-#: Search/krsearchdialog.cpp:373
+#: Search/krsearchdialog.cpp:388
 msgid "Finished searching."
 msgstr "Búsqueda finalizada."
 
-#: Search/krsearchdialog.cpp:456
+#: Search/krsearchdialog.cpp:471
 msgid "Krusader Search"
 msgstr "Krusader Buscar"
 
-#: Search/krsearchdialog.cpp:458
+#: Search/krsearchdialog.cpp:473
 msgid "View File (F3)"
 msgstr "Ver archivo (F3)"
 
-#: Search/krsearchdialog.cpp:459
+#: Search/krsearchdialog.cpp:474
 msgid "Edit File (F4)"
 msgstr "Editar archivo (F4)"
 
-#: Search/generalfilter.cpp:51
+#: Search/krsearchdialog.cpp:495
 #, fuzzy
-msgid "File name:"
-msgstr "Renombrar"
+msgid "Search results"
+msgstr ""
+"Resultado de la búsqueda:\n"
+"\n"
 
-#: Search/generalfilter.cpp:61
+#: Search/krsearchdialog.cpp:501
 #, fuzzy
-msgid "&Case sensitive"
-msgstr "&Sensible a mayúsculas"
+msgid "Query name"
+msgstr "Nombre de usuario:"
 
-#: Search/generalfilter.cpp:66
-msgid "Search &for:"
-msgstr "&Buscar por:"
-
-#: Search/generalfilter.cpp:76
-msgid "&Of type:"
-msgstr "Del tip&o:"
-
-#: Search/generalfilter.cpp:83 Search/generalfilter.cpp:365
-msgid "All Files"
-msgstr "Todos los archivos"
-
-#: Search/generalfilter.cpp:84 Search/krquery.cpp:70
-#: Konfigurator/konfigurator.cpp:109
-msgid "Archives"
-msgstr "Archivos"
-
-#: Search/generalfilter.cpp:85 Search/krquery.cpp:71
-msgid "Directories"
-msgstr "Directorios"
-
-#: Search/generalfilter.cpp:86 Search/krquery.cpp:72
-msgid "Image Files"
-msgstr "Archivos de imagen"
-
-#: Search/generalfilter.cpp:87 Search/krquery.cpp:73
-msgid "Text Files"
-msgstr "Archivos de texto"
-
-#: Search/generalfilter.cpp:88 Search/krquery.cpp:74
-msgid "Video Files"
-msgstr "Archivos de vídeo"
-
-#: Search/generalfilter.cpp:89 Search/krquery.cpp:75
-msgid "Audio Files"
-msgstr "Archivos de audio"
-
-#: Search/generalfilter.cpp:103
-msgid "&Search in"
-msgstr "Bu&scar en"
-
-#: Search/generalfilter.cpp:134
-msgid "&Don't search in"
-msgstr "&No buscar en"
-
-#: Search/generalfilter.cpp:172
-msgid "Containing text"
-msgstr "Texto contenido"
-
-#: Search/generalfilter.cpp:187
-msgid "&Text:"
-msgstr "&Texto:"
-
-#: Search/generalfilter.cpp:205
-msgid "&Match whole word only"
-msgstr "Coincidir sólo la palabra co&mpleta"
-
-#: Search/generalfilter.cpp:211
-#, fuzzy
-msgid "Cas&e sensitive"
-msgstr "&Sensible a mayúsculas"
-
-#: Search/generalfilter.cpp:231
-msgid "Search in s&ubdirectories"
-msgstr "Buscar en s&ubdirectorios"
-
-#: Search/generalfilter.cpp:236
-msgid "Search in arch&ives"
-msgstr "Buscar en arch&ivos"
-
-#: Search/generalfilter.cpp:240
-msgid "Follow &links"
-msgstr "Seguir en&laces"
-
-#: Search/generalfilter.cpp:352
-msgid "No search criteria entered !"
-msgstr "¡No se han introducido criterios de búsqueda!"
-
-#: Search/generalfilter.cpp:401
-msgid "Please specify a location to search in."
-msgstr "Por favor especifica una localización para buscar."
-
-#: Search/krquery.cpp:76
-msgid "Custom"
-msgstr "Personalizado"
-
-#: Search/advancedfilter.cpp:104
-msgid "&Bigger than"
-msgstr "&Más que"
-
-#: Search/advancedfilter.cpp:113 Search/advancedfilter.cpp:129
-msgid "Bytes"
-msgstr "Bytes"
-
-#: Search/advancedfilter.cpp:114 Search/advancedfilter.cpp:130
-msgid "KB"
-msgstr "KB"
-
-#: Search/advancedfilter.cpp:115 Search/advancedfilter.cpp:131
-msgid "MB"
-msgstr "MB"
-
-#: Search/advancedfilter.cpp:120
-msgid "&Smaller than"
-msgstr "Meno&s de"
-
-#: Search/advancedfilter.cpp:159
-msgid "&Modified between"
-msgstr "&Modificado entre"
-
-#: Search/advancedfilter.cpp:176
-msgid "an&d"
-msgstr "y"
-
-#: Search/advancedfilter.cpp:192
-msgid "&Not modified after"
-msgstr "&No modificado después de"
-
-#: Search/advancedfilter.cpp:208
-msgid "Mod&ified in the last"
-msgstr "Mod&ificado en los últimos"
-
-#: Search/advancedfilter.cpp:218 Search/advancedfilter.cpp:236
-msgid "days"
-msgstr "días"
-
-#: Search/advancedfilter.cpp:219 Search/advancedfilter.cpp:237
-msgid "weeks"
-msgstr "semanas"
-
-#: Search/advancedfilter.cpp:220 Search/advancedfilter.cpp:238
-msgid "months"
-msgstr "meses"
-
-#: Search/advancedfilter.cpp:221 Search/advancedfilter.cpp:239
-msgid "years"
-msgstr "años"
-
-#: Search/advancedfilter.cpp:231
-msgid "No&t modified in the last"
-msgstr "N&o modificado en los últimos"
-
-#: Search/advancedfilter.cpp:248
-msgid "Ownership"
-msgstr "Propiedad"
-
-#: Search/advancedfilter.cpp:262
-msgid "Belongs to &user"
-msgstr "Pertenece al &usuario"
-
-#: Search/advancedfilter.cpp:271
-msgid "Belongs to gr&oup"
-msgstr "Pertenece al grup&o"
-
-#: Search/advancedfilter.cpp:282
-msgid "P&ermissions"
-msgstr "P&ermisos"
-
-#: Search/advancedfilter.cpp:286
-msgid "O&wner"
-msgstr "Propietario"
-
-#: Search/advancedfilter.cpp:290 Search/advancedfilter.cpp:297
-#: Search/advancedfilter.cpp:304 Search/advancedfilter.cpp:316
-#: Search/advancedfilter.cpp:323 Search/advancedfilter.cpp:330
-#: Search/advancedfilter.cpp:342 Search/advancedfilter.cpp:349
-#: Search/advancedfilter.cpp:356
-msgid "?"
-msgstr "?"
-
-#: Search/advancedfilter.cpp:291 Search/advancedfilter.cpp:317
-#: Search/advancedfilter.cpp:343
-msgid "r"
-msgstr "r"
-
-#: Search/advancedfilter.cpp:292 Search/advancedfilter.cpp:299
-#: Search/advancedfilter.cpp:306 Search/advancedfilter.cpp:318
-#: Search/advancedfilter.cpp:325 Search/advancedfilter.cpp:332
-#: Search/advancedfilter.cpp:344 Search/advancedfilter.cpp:351
-#: Search/advancedfilter.cpp:358
-msgid "-"
-msgstr "-"
-
-#: Search/advancedfilter.cpp:298 Search/advancedfilter.cpp:324
-#: Search/advancedfilter.cpp:350
-msgid "w"
-msgstr "w"
-
-#: Search/advancedfilter.cpp:305 Search/advancedfilter.cpp:331
-#: Search/advancedfilter.cpp:357
-msgid "x"
-msgstr "x"
-
-#: Search/advancedfilter.cpp:313
-msgid "Grou&p"
-msgstr "Gru&po"
-
-#: Search/advancedfilter.cpp:339
-msgid "A&ll"
-msgstr "&Todo"
-
-#: Search/advancedfilter.cpp:369
-msgid "Note: a '?' is a wildcard"
-msgstr "Nota: un '?' es un comodín"
-
-#: Search/advancedfilter.cpp:508
-msgid "Invalid date entered."
-msgstr "Fecha inválida."
-
-#: Search/advancedfilter.cpp:509
-msgid "The date '"
-msgstr "La fecha '"
-
-#: Search/advancedfilter.cpp:509
-msgid ""
-"' is not valid according to your locale.\n"
-"Please re-enter a valid date (use the date button of easy access)."
+#: Search/krsearchdialog.cpp:502
+msgid "Here you can name the file collection"
 msgstr ""
-"' no es válido respecto a tu local.\n"
-"Introduzca una fecha correcta (usa el botón de fecha para un fácil acceso)."
-
-#: Search/advancedfilter.cpp:539
-msgid "Specified sizes are inconsistent !"
-msgstr "Los tamaños especificados son inconsistentes!"
-
-#: Search/advancedfilter.cpp:540
-msgid ""
-"Please re-enter the values, so that the leftmost size will\n"
-"be smaller (or equal) to the right size."
-msgstr ""
-"Por favor reintroduzca los valores, de forma que el tamaño de la izquierda\n"
-"sea más pequeño o igual que el de la derecha."
-
-#: Search/advancedfilter.cpp:558 Search/advancedfilter.cpp:608
-msgid "Dates are inconsistent !"
-msgstr "¡Las fechas son inconsistentes!"
-
-#: Search/advancedfilter.cpp:559
-msgid ""
-"The date on the left side is later than the date on the right.\n"
-"Please re-enter the dates, so that the leftmost date will be\n"
-"earlier than the right one."
-msgstr ""
-"La fecha en la parte izquierda es mayor que la fecha en la derecha.\n"
-"Por favor reintroduzca las fechas, de forma que la fecha de la izquierda "
-"sea\n"
-"anterior a la de la derecha."
-
-#: Search/advancedfilter.cpp:609
-msgid ""
-"The date on the top is later than the date on the bottom.\n"
-"Please re-enter the dates, so that the top date will be\n"
-"earlier than the bottom one."
-msgstr ""
-"La fecha superior es posterior a la fecha inferior.\n"
-"Por favor reintroduzca las fechas, de forma que la fecha superior sea\n"
-"anterior a la inferior."
 
 #: panelmanager.cpp:26
 msgid "Open a new tab in home"
@@ -2261,42 +2206,47 @@ msgstr "Cerrar pestaña actual"
 msgid "BookMan II"
 msgstr ""
 
-#: BookMan/krbookmarkhandler.cpp:126
+#: BookMan/krbookmarkhandler.cpp:130
 #, fuzzy
 msgid "Unable to write to "
 msgstr "No se puede obtener información"
 
-#: BookMan/krbookmarkhandler.cpp:134
+#: BookMan/krbookmarkhandler.cpp:138
 msgid " instead of "
 msgstr ""
 
-#: BookMan/krbookmarkhandler.cpp:139 BookMan/krbookmarkhandler.cpp:145
-#: BookMan/krbookmarkhandler.cpp:172
+#: BookMan/krbookmarkhandler.cpp:143 BookMan/krbookmarkhandler.cpp:149
+#: BookMan/krbookmarkhandler.cpp:178
 msgid "missing tag "
 msgstr ""
 
-#: BookMan/krbookmarkhandler.cpp:211
+#: BookMan/krbookmarkhandler.cpp:217
 msgid " doesn't seem to be a valid Bookmarks file"
 msgstr ""
 
-#: BookMan/krbookmarkhandler.cpp:218
+#: BookMan/krbookmarkhandler.cpp:224
 #, fuzzy
 msgid "Error reading bookmarks file: "
 msgstr "¡Error leyendo el archivo %1!"
 
-#: BookMan/krbookmarkhandler.cpp:267
+#: BookMan/krbookmarkhandler.cpp:301
 #, fuzzy
 msgid "Bookmark Current"
 msgstr "Nombre del marcador:"
 
-#: BookMan/krbookmarkhandler.cpp:269
+#: BookMan/krbookmarkhandler.cpp:303
 #, fuzzy
 msgid "Manage Bookmarks"
 msgstr "Marcadores de la izquierda"
 
-#: BookMan/krbookmark.cpp:37
+#: BookMan/krbookmark.cpp:10
 msgid "Devices"
 msgstr ""
+
+#: BookMan/krbookmark.cpp:11
+#, fuzzy
+msgid "Virtual Filesystem"
+msgstr "Sistemas de archivos"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 #, fuzzy
@@ -2308,7 +2258,7 @@ msgstr "Añadir marcador"
 msgid "New Folder"
 msgstr "num. de carpetas"
 
-#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:519
+#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:926
 #, fuzzy
 msgid "Name:"
 msgstr "Nombre: "
@@ -2328,7 +2278,8 @@ msgid "Folder name:"
 msgstr "Nombre de usuario:"
 
 #: MountMan/kmountman.cpp:196
-msgid "Error ejecting device ! You need to have 'eject' in your path."
+#, fuzzy
+msgid "Error ejecting device! You need to have 'eject' in your path."
 msgstr "¡ Error expulsando unidad ! Necesita tener 'eject' en su path."
 
 #: MountMan/kmountman.cpp:223
@@ -2527,13 +2478,15 @@ msgid "Predefined Selections"
 msgstr "Selecciones predefinidas"
 
 #: Dialogs/krmaskchoice.cpp:97
+#, fuzzy
 msgid ""
-"A predefined selection is a file-mask which you use often, good\n"
-"examples might be *.c, *.h, *.c *.o etc. You can Add these masks to\n"
-"the list by writing them down and pressing the Add button.\n"
-"Delete removes a predefined selection and Clear removes all of them. Notice "
-"that the line in which you edit the mask has it's own history, you can roll "
-"it down if needed."
+"A predefined selection is a file-mask which you use often.\n"
+"Some examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\n"
+"You can add these masks to the list by typing them and pressing the Add "
+"button.\n"
+"Delete removes a predefined selection and Clear removes all of them.\n"
+"Notice that the line in which you edit the mask has it's own history, you "
+"can scroll it, if needed."
 msgstr ""
 "Una selección predefinida es una máscara que usa habitualmente, buenos\n"
 "ejemplos son *.c, *.h, *.c*.0 etc. Puede añadir esas máscaras a\n"
@@ -2553,11 +2506,6 @@ msgstr "Eliminar la selección marcada de la lista"
 #: Dialogs/krmaskchoice.cpp:116
 msgid "Clears the entire list of selections"
 msgstr "Limpia la lista de selecciones"
-
-#: Dialogs/krmaskchoice.cpp:131 Dialogs/packguibase.cpp:487
-#: UserMenu/usermenuadd.cpp:41 Konfigurator/kguseractions.cpp:70
-msgid "Ok"
-msgstr "Ok"
 
 #: Dialogs/newftpgui.cpp:694
 msgid "New FTP Connection"
@@ -2607,6 +2555,19 @@ msgstr "Contraseña:"
 msgid "&Connect"
 msgstr "&Conectar"
 
+#: Dialogs/popularurls.cpp:58
+msgid "Saved 'Popular Urls' are invalid. List will be cleared"
+msgstr ""
+
+#: Dialogs/popularurls.cpp:215
+msgid "Popular Urls"
+msgstr ""
+
+#: Dialogs/popularurls.cpp:230
+#, fuzzy
+msgid " &Search: "
+msgstr "Bu&scar"
+
 #: Dialogs/krspecialwidgets.cpp:103
 msgid "Capacity: "
 msgstr "Capacidad: "
@@ -2622,6 +2583,74 @@ msgstr "Libre: "
 #: Dialogs/krspecialwidgets.cpp:141
 msgid "Not mounted."
 msgstr "No montado."
+
+#: Dialogs/generalfilter.cpp:51
+#, fuzzy
+msgid "File name:"
+msgstr "Renombrar"
+
+#: Dialogs/generalfilter.cpp:61
+#, fuzzy
+msgid "&Case sensitive"
+msgstr "&Sensible a mayúsculas"
+
+#: Dialogs/generalfilter.cpp:66
+msgid "Search &for:"
+msgstr "&Buscar por:"
+
+#: Dialogs/generalfilter.cpp:76
+msgid "&Of type:"
+msgstr "Del tip&o:"
+
+#: Dialogs/generalfilter.cpp:83 Dialogs/generalfilter.cpp:288
+msgid "All Files"
+msgstr "Todos los archivos"
+
+#: Dialogs/generalfilter.cpp:103
+msgid "&Search in"
+msgstr "Bu&scar en"
+
+#: Dialogs/generalfilter.cpp:120
+msgid "&Don't search in"
+msgstr "&No buscar en"
+
+#: Dialogs/generalfilter.cpp:138
+msgid "Containing text"
+msgstr "Texto contenido"
+
+#: Dialogs/generalfilter.cpp:153
+msgid "&Text:"
+msgstr "&Texto:"
+
+#: Dialogs/generalfilter.cpp:171
+msgid "&Match whole word only"
+msgstr "Coincidir sólo la palabra co&mpleta"
+
+#: Dialogs/generalfilter.cpp:177
+#, fuzzy
+msgid "Cas&e sensitive"
+msgstr "&Sensible a mayúsculas"
+
+#: Dialogs/generalfilter.cpp:197
+msgid "Search in s&ubdirectories"
+msgstr "Buscar en s&ubdirectorios"
+
+#: Dialogs/generalfilter.cpp:202
+msgid "Search in arch&ives"
+msgstr "Buscar en arch&ivos"
+
+#: Dialogs/generalfilter.cpp:206
+msgid "Follow &links"
+msgstr "Seguir en&laces"
+
+#: Dialogs/generalfilter.cpp:275
+#, fuzzy
+msgid "No search criteria entered!"
+msgstr "¡No se han introducido criterios de búsqueda!"
+
+#: Dialogs/generalfilter.cpp:306
+msgid "Please specify a location to search in."
+msgstr "Por favor especifica una localización para buscar."
 
 #: Dialogs/packguibase.cpp:422 Dialogs/packguibase.cpp:475
 msgid "Pack"
@@ -2639,6 +2668,10 @@ msgstr "tar.bz2"
 msgid "In directory"
 msgstr "En el directorio"
 
+#: Dialogs/packguibase.cpp:487 Konfigurator/kguseractions.cpp:70
+msgid "Ok"
+msgstr "Ok"
+
 #: Dialogs/krspwidgets.cpp:132
 msgid "Enter a selection:"
 msgstr "Introducir selección:"
@@ -2646,6 +2679,184 @@ msgstr "Introducir selección:"
 #: Dialogs/krspwidgets.cpp:168 Dialogs/krspwidgets.cpp:195
 msgid "compare mode"
 msgstr "Modo de comparación"
+
+#: Dialogs/advancedfilter.cpp:104
+msgid "&Bigger than"
+msgstr "&Más que"
+
+#: Dialogs/advancedfilter.cpp:113 Dialogs/advancedfilter.cpp:129
+msgid "Bytes"
+msgstr "Bytes"
+
+#: Dialogs/advancedfilter.cpp:114 Dialogs/advancedfilter.cpp:130
+msgid "KB"
+msgstr "KB"
+
+#: Dialogs/advancedfilter.cpp:115 Dialogs/advancedfilter.cpp:131
+msgid "MB"
+msgstr "MB"
+
+#: Dialogs/advancedfilter.cpp:120
+msgid "&Smaller than"
+msgstr "Meno&s de"
+
+#: Dialogs/advancedfilter.cpp:159
+msgid "&Modified between"
+msgstr "&Modificado entre"
+
+#: Dialogs/advancedfilter.cpp:176
+msgid "an&d"
+msgstr "y"
+
+#: Dialogs/advancedfilter.cpp:192
+msgid "&Not modified after"
+msgstr "&No modificado después de"
+
+#: Dialogs/advancedfilter.cpp:208
+msgid "Mod&ified in the last"
+msgstr "Mod&ificado en los últimos"
+
+#: Dialogs/advancedfilter.cpp:218 Dialogs/advancedfilter.cpp:236
+msgid "days"
+msgstr "días"
+
+#: Dialogs/advancedfilter.cpp:219 Dialogs/advancedfilter.cpp:237
+msgid "weeks"
+msgstr "semanas"
+
+#: Dialogs/advancedfilter.cpp:220 Dialogs/advancedfilter.cpp:238
+msgid "months"
+msgstr "meses"
+
+#: Dialogs/advancedfilter.cpp:221 Dialogs/advancedfilter.cpp:239
+msgid "years"
+msgstr "años"
+
+#: Dialogs/advancedfilter.cpp:231
+msgid "No&t modified in the last"
+msgstr "N&o modificado en los últimos"
+
+#: Dialogs/advancedfilter.cpp:248
+msgid "Ownership"
+msgstr "Propiedad"
+
+#: Dialogs/advancedfilter.cpp:262
+msgid "Belongs to &user"
+msgstr "Pertenece al &usuario"
+
+#: Dialogs/advancedfilter.cpp:271
+msgid "Belongs to gr&oup"
+msgstr "Pertenece al grup&o"
+
+#: Dialogs/advancedfilter.cpp:282
+msgid "P&ermissions"
+msgstr "P&ermisos"
+
+#: Dialogs/advancedfilter.cpp:286
+msgid "O&wner"
+msgstr "Propietario"
+
+#: Dialogs/advancedfilter.cpp:290 Dialogs/advancedfilter.cpp:297
+#: Dialogs/advancedfilter.cpp:304 Dialogs/advancedfilter.cpp:316
+#: Dialogs/advancedfilter.cpp:323 Dialogs/advancedfilter.cpp:330
+#: Dialogs/advancedfilter.cpp:342 Dialogs/advancedfilter.cpp:349
+#: Dialogs/advancedfilter.cpp:356
+msgid "?"
+msgstr "?"
+
+#: Dialogs/advancedfilter.cpp:291 Dialogs/advancedfilter.cpp:317
+#: Dialogs/advancedfilter.cpp:343
+msgid "r"
+msgstr "r"
+
+#: Dialogs/advancedfilter.cpp:292 Dialogs/advancedfilter.cpp:299
+#: Dialogs/advancedfilter.cpp:306 Dialogs/advancedfilter.cpp:318
+#: Dialogs/advancedfilter.cpp:325 Dialogs/advancedfilter.cpp:332
+#: Dialogs/advancedfilter.cpp:344 Dialogs/advancedfilter.cpp:351
+#: Dialogs/advancedfilter.cpp:358
+msgid "-"
+msgstr "-"
+
+#: Dialogs/advancedfilter.cpp:298 Dialogs/advancedfilter.cpp:324
+#: Dialogs/advancedfilter.cpp:350
+msgid "w"
+msgstr "w"
+
+#: Dialogs/advancedfilter.cpp:305 Dialogs/advancedfilter.cpp:331
+#: Dialogs/advancedfilter.cpp:357
+msgid "x"
+msgstr "x"
+
+#: Dialogs/advancedfilter.cpp:313
+msgid "Grou&p"
+msgstr "Gru&po"
+
+#: Dialogs/advancedfilter.cpp:339
+msgid "A&ll"
+msgstr "&Todo"
+
+#: Dialogs/advancedfilter.cpp:369
+msgid "Note: a '?' is a wildcard"
+msgstr "Nota: un '?' es un comodín"
+
+#: Dialogs/advancedfilter.cpp:508
+msgid "Invalid date entered."
+msgstr "Fecha inválida."
+
+#: Dialogs/advancedfilter.cpp:509
+msgid "The date '"
+msgstr "La fecha '"
+
+#: Dialogs/advancedfilter.cpp:509
+#, fuzzy
+msgid ""
+"' is not valid according to your locale.\n"
+"Please re-enter a valid date (use the date button for easy access)."
+msgstr ""
+"' no es válido respecto a tu local.\n"
+"Introduzca una fecha correcta (usa el botón de fecha para un fácil acceso)."
+
+#: Dialogs/advancedfilter.cpp:539
+#, fuzzy
+msgid "Specified sizes are inconsistent!"
+msgstr "Los tamaños especificados son inconsistentes!"
+
+#: Dialogs/advancedfilter.cpp:540
+#, fuzzy
+msgid ""
+"Please re-enter the values, so that the left-side size\n"
+"will be smaller than (or equal to) the right-side size."
+msgstr ""
+"Por favor reintroduzca los valores, de forma que el tamaño de la izquierda\n"
+"sea más pequeño o igual que el de la derecha."
+
+#: Dialogs/advancedfilter.cpp:558 Dialogs/advancedfilter.cpp:608
+#, fuzzy
+msgid "Dates are inconsistent!"
+msgstr "¡Las fechas son inconsistentes!"
+
+#: Dialogs/advancedfilter.cpp:559
+#, fuzzy
+msgid ""
+"The date on the left is later than the date on the right.\n"
+"Please re-enter the dates, so that the left-side date will be\n"
+"earlier than the right-side date."
+msgstr ""
+"La fecha en la parte izquierda es mayor que la fecha en la derecha.\n"
+"Por favor reintroduzca las fechas, de forma que la fecha de la izquierda "
+"sea\n"
+"anterior a la de la derecha."
+
+#: Dialogs/advancedfilter.cpp:609
+#, fuzzy
+msgid ""
+"The date on top is later than the date on the bottom.\n"
+"Please re-enter the dates, so that the top date will be\n"
+"earlier than the bottom date."
+msgstr ""
+"La fecha superior es posterior a la fecha inferior.\n"
+"Por favor reintroduzca las fechas, de forma que la fecha superior sea\n"
+"anterior a la inferior."
 
 #: RemoteMan/remoteman.cpp:84 RemoteMan/remoteman.cpp:87
 msgid "New group"
@@ -2715,11 +2926,6 @@ msgstr "Puerto:   "
 msgid "* Warning: Storing your password is not secure !!!"
 msgstr "* Advertencia: Guardar las contraseñas no es seguro"
 
-#: UserMenu/usermenuadd.cpp:29
-#, fuzzy
-msgid "Add a useraction"
-msgstr "Definido por el usuario"
-
 #: Synchronizer/synchronizergui.cpp:1020
 msgid "Krusader::Synchronize Directories"
 msgstr "Krusader::Sincronizar Directorios"
@@ -2766,7 +2972,8 @@ msgid "Compare by content"
 msgstr "Comparar por contenido"
 
 #: Synchronizer/synchronizergui.cpp:1114
-msgid "Compares the duplicate files with the same size by their content"
+#, fuzzy
+msgid "Compares duplicated files with same size, by their content"
 msgstr "Compara los archivos duplicados con el mismo tamaño por su contenido"
 
 #: Synchronizer/synchronizergui.cpp:1115
@@ -2788,9 +2995,9 @@ msgstr "Asimétrico"
 #: Synchronizer/synchronizergui.cpp:1120
 #, fuzzy
 msgid ""
-"Asymmetric mode. The left side is the destination, the right is the source "
+"Asymmetric mode: the left side is the destination, the right is the source "
 "directory.\n"
-"The files existing only in the left directory will be deleted, the other "
+"Files existing only in the left directory will be deleted, the other "
 "differing ones\n"
 "will be copied from right to left (useful at updating a directory from a "
 "file server)."
@@ -2875,12 +3082,12 @@ msgstr "C&ambiar paneles"
 msgid "Compare"
 msgstr "Comparar"
 
-#: Synchronizer/synchronizergui.cpp:1301 Synchronizer/synchronizergui.cpp:2004
+#: Synchronizer/synchronizergui.cpp:1301 Synchronizer/synchronizergui.cpp:2007
 #, fuzzy
 msgid "Quiet"
 msgstr "Sesiones"
 
-#: Synchronizer/synchronizergui.cpp:1303 Synchronizer/synchronizergui.cpp:2006
+#: Synchronizer/synchronizergui.cpp:1303 Synchronizer/synchronizergui.cpp:2009
 #, fuzzy
 msgid "Scroll Results"
 msgstr "Resultados"
@@ -2911,7 +3118,7 @@ msgstr "Directorio de la derecha:"
 msgid "Synchronize Directories"
 msgstr "Sincronizar directorios"
 
-#: Synchronizer/synchronizergui.cpp:1438 DiskUsage/diskusage.cpp:442
+#: Synchronizer/synchronizergui.cpp:1438 DiskUsage/diskusage.cpp:663
 msgid "Exclude"
 msgstr "Excluir"
 
@@ -2964,12 +3171,12 @@ msgstr "Invertir selección"
 msgid "Synchronize with KGet"
 msgstr "Sincronizar"
 
-#: Synchronizer/synchronizergui.cpp:1688 Synchronizer/synchronizergui.cpp:1695
-#: Synchronizer/synchronizergui.cpp:1744 Synchronizer/synchronizergui.cpp:1751
+#: Synchronizer/synchronizergui.cpp:1691 Synchronizer/synchronizergui.cpp:1698
+#: Synchronizer/synchronizergui.cpp:1747 Synchronizer/synchronizergui.cpp:1754
 msgid "<DIR>"
 msgstr "<DIR>"
 
-#: Synchronizer/synchronizergui.cpp:1838
+#: Synchronizer/synchronizergui.cpp:1841
 msgid "Synchronizer has nothing to do!"
 msgstr "¡No hay nada que sincronizar!"
 
@@ -3006,60 +3213,61 @@ msgid "Start"
 msgstr "Comenzar"
 
 #: Synchronizer/synchronizedialog.cpp:113
-#: Synchronizer/synchronizedialog.cpp:185
+#: Synchronizer/synchronizedialog.cpp:185 Synchronizer/synchronizer.cpp:1200
+#: Synchronizer/synchronizer.cpp:1210
 msgid "Pause"
 msgstr "Pausa"
 
-#: Synchronizer/synchronizedialog.cpp:193
+#: Synchronizer/synchronizedialog.cpp:193 Synchronizer/synchronizer.cpp:1212
 msgid "Resume"
 msgstr "Continuar"
 
-#: Synchronizer/synchronizer.cpp:103 Synchronizer/synchronizer.cpp:485
+#: Synchronizer/synchronizer.cpp:111 Synchronizer/synchronizer.cpp:493
 msgid "File number:%1"
 msgstr "Número de archivo:%1"
 
-#: Synchronizer/synchronizer.cpp:237
+#: Synchronizer/synchronizer.cpp:245
 msgid "Error at opening URL:%1!"
 msgstr "¡Error abriendo la URL:%1!"
 
-#: Synchronizer/synchronizer.cpp:242 Synchronizer/synchronizer.cpp:1020
+#: Synchronizer/synchronizer.cpp:250 Synchronizer/synchronizer.cpp:1058
 msgid "Scanned directories:%1"
 msgstr "Directorios explorados:%1"
 
-#: Synchronizer/synchronizer.cpp:826 Synchronizer/synchronizer.cpp:834
+#: Synchronizer/synchronizer.cpp:864 Synchronizer/synchronizer.cpp:872
 msgid "File Already Exists"
 msgstr "El archivo ya existe"
 
-#: Synchronizer/synchronizer.cpp:874 Synchronizer/synchronizer.cpp:879
+#: Synchronizer/synchronizer.cpp:912 Synchronizer/synchronizer.cpp:917
 msgid "Error at copying file %1 to %2!"
 msgstr "¡Error copiando el archivo %1 a %2!"
 
-#: Synchronizer/synchronizer.cpp:884
+#: Synchronizer/synchronizer.cpp:922
 msgid "Error at deleting file %1!"
 msgstr "¡Error eliminando el archivo %1!"
 
-#: Synchronizer/synchronizer.cpp:1092
+#: Synchronizer/synchronizer.cpp:1130
 msgid "IO error at comparing file %1 with %2!"
 msgstr "¡Error de ES comparando el archivo %1 con %2!"
 
-#: Synchronizer/synchronizer.cpp:1121 Synchronizer/synchronizer.cpp:1132
+#: Synchronizer/synchronizer.cpp:1159 Synchronizer/synchronizer.cpp:1170
 msgid "Comparing file %1..."
 msgstr "Comparando archivos %1..."
 
-#: Synchronizer/synchronizer.cpp:1165
-msgid "Feeding the URL-s to kget"
-msgstr ""
-
-#: Synchronizer/synchronizer.cpp:1167
+#: Synchronizer/synchronizer.cpp:1252
 #, fuzzy
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Sincronizar"
 
-#: Synchronizer/synchronizer.cpp:1216 krslots.cpp:107 krslots.cpp:202
+#: Synchronizer/synchronizer.cpp:1253
+msgid "Feeding the URLs to Kget"
+msgstr ""
+
+#: Synchronizer/synchronizer.cpp:1302 krslots.cpp:112 krslots.cpp:207
 msgid "Error executing "
 msgstr "Error ejecutando "
 
-#: paneltabbar.cpp:33 Konfigurator/kglookfeel.cpp:106
+#: paneltabbar.cpp:35 Konfigurator/kglookfeel.cpp:109
 msgid "Panel"
 msgstr "Panel"
 
@@ -3094,100 +3302,236 @@ msgstr ""
 msgid "%1 files: ~ %2"
 msgstr "%1 archivos"
 
-#: DiskUsage/radialMap/segmentTip.cpp:106
+#: DiskUsage/radialMap/segmentTip.cpp:103
 #, fuzzy
 msgid "Files: %1"
 msgstr "Campos:"
 
-#: DiskUsage/dulines.cpp:130
+#: DiskUsage/dulines.cpp:232
 #, fuzzy
 msgid "Line View"
 msgstr "F3 Ver"
 
-#: DiskUsage/dulines.cpp:132 DiskUsage/dulistview.cpp:56
+#: DiskUsage/dulines.cpp:235 DiskUsage/dulistview.cpp:59
 msgid "Percent"
 msgstr ""
 
-#: DiskUsage/diskusagegui.cpp:44
+#: DiskUsage/dulines.cpp:458
+#, fuzzy
+msgid "Show file sizes"
+msgstr "Mostrar antiguos"
+
+#: DiskUsage/dulines.cpp:461 DiskUsage/diskusage.cpp:688
+#, fuzzy
+msgid "Lines"
+msgstr "Lista"
+
+#: DiskUsage/dufilelight.cpp:115
+msgid "Zoom In"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:116
+msgid "Zoom Out"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:119
+msgid "Rainbow"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:120
+msgid "High Contrast"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:121
+msgid "KDE"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:124
+msgid "Scheme"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:126
+msgid "Increase contrast"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:127
+msgid "Decrease contrast"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:129
+msgid "Use anti-aliasing"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:132
+#, fuzzy
+msgid "Show small files"
+msgstr "Mostrar antiguos"
+
+#: DiskUsage/dufilelight.cpp:135
+msgid "Vary label font sizes"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:138 DiskUsage/dufilelight.cpp:207
+msgid "Minimum font size"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:140 DiskUsage/diskusage.cpp:692
+msgid "Filelight"
+msgstr ""
+
+#: DiskUsage/dufilelight.cpp:206
+#, fuzzy
+msgid "Krusader::Filelight"
+msgstr "Krusader::Dividir"
+
+#: DiskUsage/diskusagegui.cpp:45
 #, fuzzy
 msgid "Krusader::Disk Usage"
 msgstr "Krusader::Localizar"
 
-#: DiskUsage/diskusagegui.cpp:188
+#: DiskUsage/diskusagegui.cpp:60
+msgid "Start new disk usage search"
+msgstr ""
+
+#: DiskUsage/diskusagegui.cpp:64 DiskUsage/diskusage.cpp:672
+msgid "Refresh"
+msgstr ""
+
+#: DiskUsage/diskusagegui.cpp:68
+#, fuzzy
+msgid "Parent directory"
+msgstr "Directorio de la izquierda:"
+
+#: DiskUsage/diskusagegui.cpp:76
+#, fuzzy
+msgid "Line view"
+msgstr "F3 Ver"
+
+#: DiskUsage/diskusagegui.cpp:81
+#, fuzzy
+msgid "Detailed view"
+msgstr "KrDetailedView"
+
+#: DiskUsage/diskusagegui.cpp:86
+#, fuzzy
+msgid "Filelight view"
+msgstr "Ver archivo de la derecha"
+
+#: DiskUsage/diskusagegui.cpp:226
 #, fuzzy
 msgid "Viewing the usage of directory:"
 msgstr "Dividir el archivo %1 al directorio:"
 
-#: DiskUsage/dulistview.cpp:58
+#: DiskUsage/dulistview.cpp:62
 #, fuzzy
 msgid "Total size"
 msgstr "Tamaño total"
 
-#: DiskUsage/dulistview.cpp:60
+#: DiskUsage/dulistview.cpp:65
 #, fuzzy
 msgid "Own size"
 msgstr "Propietario"
 
-#: DiskUsage/diskusage.cpp:56
-msgid "Krusader::Loading Usage Information"
+#: DiskUsage/diskusage.cpp:99
+msgid "Loading Usage Information"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:62
+#: DiskUsage/diskusage.cpp:103
 #, fuzzy
 msgid "Files:"
 msgstr "Campos:"
 
-#: DiskUsage/diskusage.cpp:67
+#: DiskUsage/diskusage.cpp:108
 #, fuzzy
 msgid "Directories:"
 msgstr "Directorios"
 
-#: DiskUsage/diskusage.cpp:72
+#: DiskUsage/diskusage.cpp:113
 #, fuzzy
 msgid "Total Size:"
 msgstr "Tamaño total"
 
-#: DiskUsage/diskusage.cpp:159
+#: DiskUsage/diskusage.cpp:234
 msgid "Loading the disk usage information..."
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:415
+#: DiskUsage/diskusage.cpp:379
+msgid ""
+"Stepping into the parent directory requires loading the content of the \"%1"
+"\" URL. Do you wish to continue?"
+msgstr ""
+
+#: DiskUsage/diskusage.cpp:383
+#, fuzzy
+msgid "Krusader::DiskUsage"
+msgstr "Krusader::Localizar"
+
+#: DiskUsage/diskusage.cpp:532
+#, fuzzy
+msgid "Are you sure you want to delete "
+msgstr "Está seguro de que quiere "
+
+#: DiskUsage/diskusage.cpp:631
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:440
+#: DiskUsage/diskusage.cpp:657
 msgid "Disk Usage"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:443
-msgid "Include All"
+#: DiskUsage/diskusage.cpp:670
+#, fuzzy
+msgid "New search"
+msgstr "Nuevo estilo de búsqueda rápida"
+
+#: DiskUsage/diskusage.cpp:674
+msgid "Include all"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:520
+#: DiskUsage/diskusage.cpp:676
+msgid "Step into"
+msgstr ""
+
+#: DiskUsage/diskusage.cpp:690
+#, fuzzy
+msgid "Detailed"
+msgstr "KrDetailedView"
+
+#: DiskUsage/diskusage.cpp:695
+#, fuzzy
+msgid "Next"
+msgstr "Nueva pestaña"
+
+#: DiskUsage/diskusage.cpp:697
+#, fuzzy
+msgid "Previous"
+msgstr "Vista previa"
+
+#: DiskUsage/diskusage.cpp:927
 #, fuzzy
 msgid "Type:"
 msgstr "Tipo"
 
-#: DiskUsage/diskusage.cpp:521
+#: DiskUsage/diskusage.cpp:928
 #, fuzzy
 msgid "Size:"
 msgstr "Tamaño"
 
-#: DiskUsage/diskusage.cpp:524
+#: DiskUsage/diskusage.cpp:931
 msgid "Own size:"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:526
+#: DiskUsage/diskusage.cpp:933
 #, fuzzy
 msgid "Last modified:"
 msgstr "Modificado"
 
-#: DiskUsage/diskusage.cpp:527
+#: DiskUsage/diskusage.cpp:934
 #, fuzzy
 msgid "Permissions:"
 msgstr "Permisos"
 
-#: DiskUsage/diskusage.cpp:528
+#: DiskUsage/diskusage.cpp:935
 #, fuzzy
 msgid "Owner:"
 msgstr "Propietario"
@@ -3207,9 +3551,14 @@ msgstr "Comparar archivos"
 msgid "&Commands"
 msgstr "&Comandos"
 
+#: rc.cpp:16
+#, fuzzy, no-c-format
+msgid "&Useractions"
+msgstr "Definido por el usuario"
+
 #: Konfigurator/kgdependencies.cpp:50 Konfigurator/kggeneral.cpp:51
-#: Konfigurator/konfigurator.cpp:102 Konfigurator/kgadvanced.cpp:47
-#: Konfigurator/kgcolors.cpp:49 Konfigurator/kgarchives.cpp:53
+#: Konfigurator/konfigurator.cpp:98 Konfigurator/kgadvanced.cpp:47
+#: Konfigurator/kgcolors.cpp:52 Konfigurator/kgarchives.cpp:50
 msgid "General"
 msgstr "General"
 
@@ -3225,29 +3574,37 @@ msgstr "La %1 ruta es incorrecta, no se ha encontrado una ruta correcta."
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "La %1 ruta es incorrecta, %2 usada en su lugar."
 
-#: Konfigurator/kggeneral.cpp:55
+#: Konfigurator/kggeneral.cpp:56
 msgid "Delete files"
 msgstr "Eliminar archivos"
 
 #: Konfigurator/kggeneral.cpp:56
+msgid "Files will be permanently deleted."
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:57
 msgid "Move to trash"
 msgstr "Mover a la papelera"
 
-#: Konfigurator/kggeneral.cpp:63
+#: Konfigurator/kggeneral.cpp:57
+msgid "Files will be moved to Trash when deleted."
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:64
 msgid "Use mimetype magic"
 msgstr "Usar mimetype magic"
 
-#: Konfigurator/kggeneral.cpp:64
+#: Konfigurator/kggeneral.cpp:65
 msgid "Mimetype magic allows better distinction of file types, but is slower"
 msgstr ""
 "Mimetype magic permite una mejor distinción de los tipos de archivo, pero es "
 "más lento"
 
-#: Konfigurator/kggeneral.cpp:70
+#: Konfigurator/kggeneral.cpp:71
 msgid "Editor:"
 msgstr "Editor:"
 
-#: Konfigurator/kggeneral.cpp:76
+#: Konfigurator/kggeneral.cpp:77
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
@@ -3255,19 +3612,20 @@ msgstr ""
 "Consejo: use 'editor interno' si desea utilizar el rápido editor empotrado "
 "de Krusader"
 
-#: Konfigurator/kggeneral.cpp:79
+#: Konfigurator/kggeneral.cpp:80
 msgid "Terminal:"
 msgstr "Terminal:"
 
-#: Konfigurator/kggeneral.cpp:89
+#: Konfigurator/kggeneral.cpp:90
 msgid "Temp Directory:"
 msgstr "Directorio temporal:"
 
-#: Konfigurator/kggeneral.cpp:97
-msgid "Note: you must have full permissions for the temporary directory !"
+#: Konfigurator/kggeneral.cpp:98
+#, fuzzy
+msgid "NOTE: You must have full permissions for the temporary directory!"
 msgstr "Nota: ¡Debes tener permiso total para el directorio temporal!"
 
-#: Konfigurator/kggeneral.cpp:119
+#: Konfigurator/kggeneral.cpp:120
 msgid ""
 "Searching for tools...\n"
 "Search results:\n"
@@ -3277,19 +3635,20 @@ msgstr ""
 "Resultado de la búsqueda:\n"
 "\n"
 
-#: Konfigurator/kggeneral.cpp:120
+#: Konfigurator/kggeneral.cpp:121
 msgid "diff: found "
 msgstr "diff: encontrado "
 
-#: Konfigurator/kggeneral.cpp:120
+#: Konfigurator/kggeneral.cpp:121
 #, fuzzy
 msgid ", compare by content available.\n"
 msgstr ", comparar por contenido disponible.\n"
 
-#: Konfigurator/kggeneral.cpp:121
+#: Konfigurator/kggeneral.cpp:122
+#, fuzzy
 msgid ""
 "diff: no diff frontends found. Compare by content disabled.\n"
-"hint: Krusader supports kdiff and xxdiff\n"
+"hint: Krusader supports Kompare, Kdiff3 and Xxdiff\n"
 "\n"
 msgstr ""
 "diff: no se han encontrado diff frontends. Comparación por contenido "
@@ -3297,19 +3656,20 @@ msgstr ""
 "Truco: Krusader soporta kdiff y xxdiff\n"
 "\n"
 
-#: Konfigurator/kggeneral.cpp:123
+#: Konfigurator/kggeneral.cpp:124
 msgid "mail: found "
 msgstr "mail: encontrado "
 
-#: Konfigurator/kggeneral.cpp:123
+#: Konfigurator/kggeneral.cpp:124
 msgid ", sending files by email enabled.\n"
 msgstr ", envío de archivos por email activado.\n"
 
-#: Konfigurator/kggeneral.cpp:124
+#: Konfigurator/kggeneral.cpp:125
+#, fuzzy
 msgid ""
 "mail: no compatible mail-programs found. Sending files by email is "
 "disabled.\n"
-"hint: Krusader supports kmail\n"
+"hint: Krusader supports Kmail\n"
 "\n"
 msgstr ""
 "mail: no se han encontrado programas de email compatibles. Envío de "
@@ -3317,20 +3677,20 @@ msgstr ""
 "Truco: Krusader soporta kmail\n"
 "\n"
 
-#: Konfigurator/kggeneral.cpp:126
+#: Konfigurator/kggeneral.cpp:127
 msgid "rename: found "
 msgstr "rename: found "
 
-#: Konfigurator/kggeneral.cpp:126
+#: Konfigurator/kggeneral.cpp:127
 #, fuzzy
 msgid ", multiple rename enabled.\n"
 msgstr ", renombrado masivo activado.\n"
 
-#: Konfigurator/kggeneral.cpp:127
+#: Konfigurator/kggeneral.cpp:128
 #, fuzzy
 msgid ""
-"rename: no compatible renamer-programs found. multiple rename is disabled.\n"
-"hint: Krusader supports krename\n"
+"rename: no compatible rename-programs found. Multiple rename is disabled.\n"
+"hint: Krusader supports Krename\n"
 "\n"
 msgstr ""
 "renombrar: no se ha encontrado un programa compatible. renombrado masivo "
@@ -3338,7 +3698,7 @@ msgstr ""
 "consejo: Krusader soporta krename\n"
 "\n"
 
-#: Konfigurator/kggeneral.cpp:130
+#: Konfigurator/kggeneral.cpp:131
 msgid ""
 "\n"
 "If you install new tools, please install them"
@@ -3346,13 +3706,26 @@ msgstr ""
 "\n"
 "Si instala nuevas herramientas, por favor configúrelas"
 
-#: Konfigurator/kggeneral.cpp:131 Konfigurator/kgarchives.cpp:146
+#: Konfigurator/kggeneral.cpp:132
+#, fuzzy
 msgid ""
 "\n"
-"to your path. (ie: /usr/bin, /usr/local/bin etc.)"
+"to your path, e.g. /usr/bin, /usr/local/bin, etc."
 msgstr ""
 "\n"
 "a la ruta. (p.ej: /usr/bin, /usr/local/bin etc.)"
+
+#: Konfigurator/kggeneral.cpp:133
+msgid ""
+"\n"
+"and-or (re)configure the Tools path in"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:134
+msgid ""
+"\n"
+"Konfigurator->Dependencies if needed."
+msgstr ""
 
 #: Konfigurator/konfigurator.cpp:62
 msgid "Defaults"
@@ -3362,267 +3735,427 @@ msgstr "Por defecto"
 msgid "Konfigurator - Creating Your Own Krusader"
 msgstr "Konfigurator - Creando tu propio Krusader"
 
-#: Konfigurator/konfigurator.cpp:92
+#: Konfigurator/konfigurator.cpp:88
 msgid "Startup"
 msgstr "Inicio"
 
-#: Konfigurator/konfigurator.cpp:93
-msgid "Krusader's setting upon startup"
+#: Konfigurator/konfigurator.cpp:89
+#, fuzzy
+msgid "Krusader's settings upon startup"
 msgstr "Configuración de Krusader al inicio"
 
-#: Konfigurator/konfigurator.cpp:96 Konfigurator/konfigurator.cpp:97
+#: Konfigurator/konfigurator.cpp:92 Konfigurator/konfigurator.cpp:93
 msgid "Look & Feel"
 msgstr "Apariencia"
 
-#: Konfigurator/konfigurator.cpp:99 Konfigurator/konfigurator.cpp:100
-#: Konfigurator/kgcolors.cpp:75 Konfigurator/kgcolors.cpp:161
+#: Konfigurator/konfigurator.cpp:95 Konfigurator/konfigurator.cpp:96
+#: Konfigurator/kgcolors.cpp:78 Konfigurator/kgcolors.cpp:164
 msgid "Colors"
 msgstr "Colores"
 
-#: Konfigurator/konfigurator.cpp:103
+#: Konfigurator/konfigurator.cpp:99
 msgid "Basic Operations"
 msgstr "Operaciones básicas"
 
-#: Konfigurator/konfigurator.cpp:105
+#: Konfigurator/konfigurator.cpp:101
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: Konfigurator/konfigurator.cpp:106
-msgid "Be sure you know what you're doing"
+#: Konfigurator/konfigurator.cpp:102
+#, fuzzy
+msgid "Be sure you know what you're doing!"
 msgstr "Asegúrese de saber lo que está haciendo"
 
-#: Konfigurator/konfigurator.cpp:109
+#: Konfigurator/konfigurator.cpp:105
 #, fuzzy
 msgid "Customize the way Krusader deals with archives"
 msgstr "Personaliza la forma en que Krusader maneja los archivos"
 
-#: Konfigurator/konfigurator.cpp:112
+#: Konfigurator/konfigurator.cpp:108
 msgid "Dependencies"
 msgstr "Dependencias"
 
-#: Konfigurator/konfigurator.cpp:112
+#: Konfigurator/konfigurator.cpp:108
 msgid "Set the full path of the external applications"
 msgstr "Indique la ruta completa de las aplicaciones externas"
 
-#: Konfigurator/konfigurator.cpp:115
-msgid "User Actions"
-msgstr ""
-
-#: Konfigurator/konfigurator.cpp:115
+#: Konfigurator/konfigurator.cpp:111
 msgid "Configure your personal actions"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:118 Konfigurator/kgprotocols.cpp:102
+#: Konfigurator/konfigurator.cpp:114 Konfigurator/kgprotocols.cpp:102
 msgid "Protocols"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:119
+#: Konfigurator/konfigurator.cpp:115
 msgid "Link mimes to protocols"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:187
+#: Konfigurator/konfigurator.cpp:183
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr "La sección actual ha sufrido cambios. ¿Desea aplicarlos?"
 
-#: Konfigurator/kglookfeel.cpp:53
+#: Konfigurator/kglookfeel.cpp:54
 msgid "Operation"
 msgstr "Operación"
 
-#: Konfigurator/kglookfeel.cpp:58
+#: Konfigurator/kglookfeel.cpp:59
 msgid "Look && Feel"
 msgstr "Apariencia"
 
-#: Konfigurator/kglookfeel.cpp:63
+#: Konfigurator/kglookfeel.cpp:64
 msgid "Warn on exit"
 msgstr "Preguntar al salir"
 
 #: Konfigurator/kglookfeel.cpp:64
+msgid "Display a warning when you try to exit Krusader."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:65
 msgid "Minimize to tray"
 msgstr "Minimizar en bandeja"
 
 #: Konfigurator/kglookfeel.cpp:65
+msgid ""
+"When minimizing Krusader, its icon will appear in the system tray instead of "
+"the taskbar."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:66
 msgid "Show hidden files"
 msgstr "Mostrar archivos ocultos"
 
 #: Konfigurator/kglookfeel.cpp:66
+#, fuzzy
+msgid "Display the dot files"
+msgstr "Listar los archivos excluidos"
+
+#: Konfigurator/kglookfeel.cpp:67
 msgid "Automark directories"
 msgstr "Automarcar directorios"
 
 #: Konfigurator/kglookfeel.cpp:67
+msgid "When matching the select criteria, directories will also be marked"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:68
 msgid "Case sensitive sorting"
 msgstr "Orden sensible a mayúsculas"
 
-#: Konfigurator/kglookfeel.cpp:68
-msgid "Use fullpath tab names"
+#: Konfigurator/kglookfeel.cpp:68 Konfigurator/kglookfeel.cpp:72
+msgid ""
+"All files beginning with capital letters appear before files beginning with "
+"non-capital letters (UNIX default)."
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:70
+#: Konfigurator/kglookfeel.cpp:69
+msgid "Use full path tab names"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:69
+msgid ""
+"Display the full path in the Folder Tabs; otherwise, only the last part of "
+"the path will be displayed."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:71
 msgid "New style quicksearch"
 msgstr "Nuevo estilo de búsqueda rápida"
 
 #: Konfigurator/kglookfeel.cpp:71
+msgid "Opens a quick search dialog box."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:72
 msgid "Case sensitive quicksearch"
 msgstr "Búsqueda rápida sensible a mayúsculas"
 
-#: Konfigurator/kglookfeel.cpp:80
+#: Konfigurator/kglookfeel.cpp:81
 msgid "Single click / Double click Selection:"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:84
+#: Konfigurator/kglookfeel.cpp:86
 msgid "Double-click selects (classic)"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:85
+#: Konfigurator/kglookfeel.cpp:86
+msgid ""
+"A single click on a file will select and focus, a double click opens the "
+"file or steps into the directory."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:87
 msgid "Obey KDE's global selection policy"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:92
+#: Konfigurator/kglookfeel.cpp:87
+msgid "Use the KDE Kcontrol setting: KDE Control Center->Peripherals->Mouse"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:94
 msgid "Mouse Selection Mode:"
 msgstr "Modo de selección del ratón:"
 
-#: Konfigurator/kglookfeel.cpp:95
-msgid "Classic Mode"
+#: Konfigurator/kglookfeel.cpp:98
+#, fuzzy
+msgid "Krusader Mode"
+msgstr "Krusader"
+
+#: Konfigurator/kglookfeel.cpp:98
+msgid ""
+"Both keys allow selecting files. To select more than one file, hold the Ctrl "
+"key and click the left mouse button.\n"
+"Right-click menu is invoked using a short click on the right mouse button."
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:99
 msgid "Konqueror Mode"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:99
+msgid ""
+"Pressing the left mouse button selects files - you can click and select "
+"multiple files.\n"
+"Right-click menu is invoked using a short click on the right mouse button."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:100
 #, fuzzy
 msgid "Total-Commander Mode"
 msgstr "Modo de com&paración"
 
-#: Konfigurator/kglookfeel.cpp:111
+#: Konfigurator/kglookfeel.cpp:100
+msgid ""
+"The left mouse button does not select, but sets the current file without "
+"affecting the current selection.\n"
+"The right mouse button selects multiple files and the right-click menu is "
+"invoked by pressing\n"
+"and holding the right mouse button."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:114
 msgid "Panel settings"
 msgstr "Opciones del panel"
 
-#: Konfigurator/kglookfeel.cpp:115
+#: Konfigurator/kglookfeel.cpp:118
 msgid "Panel font:"
 msgstr "Fuente del panel:"
 
-#: Konfigurator/kglookfeel.cpp:121
+#: Konfigurator/kglookfeel.cpp:124
 msgid "Filelist icon size:"
 msgstr "Tamaño del icono de la lista de archivos:"
 
-#: Konfigurator/kglookfeel.cpp:124
+#: Konfigurator/kglookfeel.cpp:127
 msgid "16"
 msgstr "16"
 
-#: Konfigurator/kglookfeel.cpp:125
+#: Konfigurator/kglookfeel.cpp:128
 msgid "22"
 msgstr "22"
 
-#: Konfigurator/kglookfeel.cpp:126
+#: Konfigurator/kglookfeel.cpp:129
 msgid "32"
 msgstr "32"
 
-#: Konfigurator/kglookfeel.cpp:127
+#: Konfigurator/kglookfeel.cpp:130
 msgid "48"
 msgstr "48"
 
-#: Konfigurator/kglookfeel.cpp:135
+#: Konfigurator/kglookfeel.cpp:138
 #, fuzzy
-msgid "Visible Columns:"
-msgstr "Columna de tamaño"
+msgid "Show Columns:"
+msgstr "Mostrar opciones"
 
-#: Konfigurator/kglookfeel.cpp:140
+#: Konfigurator/kglookfeel.cpp:143
 #, fuzzy
 msgid "Extension"
 msgstr "Columna de extensión"
 
-#: Konfigurator/kglookfeel.cpp:141
+#: Konfigurator/kglookfeel.cpp:143
+msgid ""
+"Show the last part of the filename (part after the last dot) in the "
+"Extension Column and\n"
+"not as a complete filename in the Name Column like e.g. Konqueror does."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:144
 #, fuzzy
 msgid "Mimetype"
 msgstr "Columna Mimetype"
 
-#: Konfigurator/kglookfeel.cpp:143
+#: Konfigurator/kglookfeel.cpp:144
+#, fuzzy
+msgid "Show the Mimetype Column"
+msgstr "Columna Mimetype"
+
+#: Konfigurator/kglookfeel.cpp:145
+msgid "Show the Size Column"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:146
 #, fuzzy
 msgid "Date and Time"
 msgstr "Columna de hora y fecha"
 
-#: Konfigurator/kglookfeel.cpp:144
+#: Konfigurator/kglookfeel.cpp:146
+#, fuzzy
+msgid "Show the Date and Time Column"
+msgstr "Columna de hora y fecha"
+
+#: Konfigurator/kglookfeel.cpp:147
 #, fuzzy
 msgid "Permission"
 msgstr "Permisos"
 
-#: Konfigurator/kglookfeel.cpp:145
+#: Konfigurator/kglookfeel.cpp:147
+msgid "Show the Full Permissions Column, e.g. '-rw-r--r--'"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:148
 #, fuzzy
 msgid "Krusader Permission"
 msgstr "Columna de permisos de Krusader"
 
-#: Konfigurator/kglookfeel.cpp:158
+#: Konfigurator/kglookfeel.cpp:148
+msgid "Show only the rights of the current user, e.g. '-rw'"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:149
+#, fuzzy
+msgid "Show the Owner Column"
+msgstr "Columna de propietario"
+
+#: Konfigurator/kglookfeel.cpp:150
+#, fuzzy
+msgid "Show the Group Column"
+msgstr "Columna de grupo"
+
+#: Konfigurator/kglookfeel.cpp:161
 msgid "Use icons in the filenames"
 msgstr "Usar iconos en los nombres de archivo"
 
-#: Konfigurator/kglookfeel.cpp:159
+#: Konfigurator/kglookfeel.cpp:161
+#, fuzzy
+msgid "Show the icons for filenames and folders."
+msgstr "num. de archivos y carpetas"
+
+#: Konfigurator/kglookfeel.cpp:162
 msgid "Use human-readable file size"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:169
+#: Konfigurator/kglookfeel.cpp:162
+msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:172
 msgid "Toolbar"
 msgstr "Barra de herramientas"
 
-#: Konfigurator/kglookfeel.cpp:179
+#: Konfigurator/kglookfeel.cpp:182
 msgid "Key-bindings"
 msgstr "Asociaciones de teclas"
 
-#: Konfigurator/kglookfeel.cpp:188
+#: Konfigurator/kglookfeel.cpp:191
 #, fuzzy
 msgid "Import shortcuts"
 msgstr "Invertir selección"
 
-#: Konfigurator/kglookfeel.cpp:190
+#: Konfigurator/kglookfeel.cpp:193
+msgid "Load a Key-binding profile, e.g., total_commander.keymap"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:194
 #, fuzzy
 msgid "Export shortcuts"
 msgstr "Por defecto"
 
-#: Konfigurator/kglookfeel.cpp:198
+#: Konfigurator/kglookfeel.cpp:196
+msgid "Save current Key-bindings in a keymap file."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:203
 msgid "Panel Toolbar"
 msgstr "Panel Barra de herramientas"
 
-#: Konfigurator/kglookfeel.cpp:206
-msgid "Panel Toolbar visible"
+#: Konfigurator/kglookfeel.cpp:211
+#, fuzzy
+msgid "Show Panel Toolbar"
 msgstr "Panel Barra de herramientas"
 
-#: Konfigurator/kglookfeel.cpp:212
+#: Konfigurator/kglookfeel.cpp:211
+msgid "Krusader will display the Panel Toolbar."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:217
 #, fuzzy
 msgid "Visible Panel Toolbar buttons"
 msgstr "Panel Barra de herramientas"
 
-#: Konfigurator/kglookfeel.cpp:218
+#: Konfigurator/kglookfeel.cpp:223
 #, fuzzy
 msgid "Open button"
 msgstr "Botón de abrir visible"
 
-#: Konfigurator/kglookfeel.cpp:219
+#: Konfigurator/kglookfeel.cpp:223
+#, fuzzy
+msgid "Opens the directory browser."
+msgstr "Abre el historial de directorios"
+
+#: Konfigurator/kglookfeel.cpp:224
 #, fuzzy
 msgid "Equal button (=)"
 msgstr "Botón de igual (=) visible"
 
-#: Konfigurator/kglookfeel.cpp:220
+#: Konfigurator/kglookfeel.cpp:224
+msgid "Changes the panel directory to the other panel directory."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:225
 #, fuzzy
 msgid "Up button (..)"
 msgstr "Botón de arriba (..) visible"
 
-#: Konfigurator/kglookfeel.cpp:221
+#: Konfigurator/kglookfeel.cpp:225
+msgid "Changes the panel directory to the parent directory."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:226
 #, fuzzy
 msgid "Home button (~)"
 msgstr "Botón de Home (~) visible"
 
-#: Konfigurator/kglookfeel.cpp:222
+#: Konfigurator/kglookfeel.cpp:226
+msgid "Changes the panel directory to the home directory."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:227
 #, fuzzy
 msgid "Root button (/)"
 msgstr "Botón de Root (/) visible"
 
-#: Konfigurator/kglookfeel.cpp:223
+#: Konfigurator/kglookfeel.cpp:227
+msgid "Changes the panel directory to the root directory."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:228
 msgid "Toggle-button for sync-browsing"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:284 Konfigurator/kglookfeel.cpp:292
+#: Konfigurator/kglookfeel.cpp:228
+msgid ""
+"Each directory-change in the panel is also performed in the other panel."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:291 Konfigurator/kglookfeel.cpp:309
 #, fuzzy
 msgid "Select a shortcuts file"
 msgstr "¡Seleccione sólo un archivo dividido!"
+
+#: Konfigurator/kglookfeel.cpp:298
+msgid ""
+"The following information was attached to the keymap.\n"
+"Are you sure you want to import this keymap ?"
+msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "Automount filesystems"
@@ -3645,38 +4178,58 @@ msgid "Krusader will request user confirmation for the following operations:"
 msgstr "Krusader pedirá confirmación para las siguientes operaciones:"
 
 #: Konfigurator/kgadvanced.cpp:79
-msgid "Deleting non-empty directorie(s)"
+#, fuzzy
+msgid "Deleting non-empty directories"
 msgstr "Eliminando directorio(s) no vacío(s)"
 
 #: Konfigurator/kgadvanced.cpp:80
-msgid "Deleting file(s)"
+#, fuzzy
+msgid "Deleting files"
 msgstr "Eliminando archivo(s)"
 
 #: Konfigurator/kgadvanced.cpp:81
-msgid "Copying file(s)"
+#, fuzzy
+msgid "Copying files"
 msgstr "Copiando archivo(s)"
 
 #: Konfigurator/kgadvanced.cpp:82
-msgid "Moving file(s)"
+#, fuzzy
+msgid "Moving files"
 msgstr "Moviendo archivo(s)"
 
-#: Konfigurator/kgadvanced.cpp:93 Konfigurator/kgarchives.cpp:88
+#: Konfigurator/kgadvanced.cpp:83
+msgid "Search: Feed to Listbox"
+msgstr ""
+
+#: Konfigurator/kgadvanced.cpp:83
+msgid ""
+"if checked, Krusader will ask for a result-name; else \"Search result n\" "
+"will be used"
+msgstr ""
+
+#: Konfigurator/kgadvanced.cpp:84
+#, fuzzy
+msgid "Removing Useractions"
+msgstr "Definido por el usuario"
+
+#: Konfigurator/kgadvanced.cpp:95 Konfigurator/kgarchives.cpp:85
 msgid "Fine-Tuning"
 msgstr "Ajuste fino"
 
-#: Konfigurator/kgadvanced.cpp:97
+#: Konfigurator/kgadvanced.cpp:99
 msgid "Icon cache size (KB):"
 msgstr "Caché de iconos (KB):"
 
-#: Konfigurator/kgadvanced.cpp:98 Konfigurator/kgadvanced.cpp:102
+#: Konfigurator/kgadvanced.cpp:100 Konfigurator/kgadvanced.cpp:104
+#, fuzzy
 msgid ""
-"Cache size determines how fast Krusader can display the contents of a panel. "
-"However too big a cache might consume your memory."
+"Cache size determines how fast Krusader can display the contents of a panel; "
+"however, too large a cache might consume your memory."
 msgstr ""
 "El tamaño de la caché determina la rapidez con que Krusader puede mostrar el "
 "contenido de este panel. Una caché muy grande puede consumir mucha memoria."
 
-#: Konfigurator/kgadvanced.cpp:106
+#: Konfigurator/kgadvanced.cpp:108
 msgid "Arguments of updatedb:"
 msgstr "Argumentos de updatedb:"
 
@@ -3782,250 +4335,345 @@ msgstr "Gris oscuro"
 msgid "Black"
 msgstr "Negro"
 
-#: Konfigurator/kgcolors.cpp:57
+#: Konfigurator/kgcolors.cpp:60
 msgid "Use the default KDE colors"
 msgstr "Usar los colores por defecto de KDE"
 
-#: Konfigurator/kgcolors.cpp:58
+#: Konfigurator/kgcolors.cpp:60
+msgid "Krusader default color configuration."
+msgstr ""
+
+#: Konfigurator/kgcolors.cpp:61
 #, fuzzy
 msgid "Use alternate background color"
 msgstr "Usar color alternativo de fondo"
 
-#: Konfigurator/kgcolors.cpp:59
+#: Konfigurator/kgcolors.cpp:61
+msgid ""
+"The Background color and the Alternate Background color alternates line by "
+"line.\n"
+"When you don't use the KDE default colors, you can configure the alternate "
+"colors in the Colors box."
+msgstr ""
+
+#: Konfigurator/kgcolors.cpp:62
 msgid "Show current item even if not focused"
 msgstr "Mostrar elemento actual aunque esté enfocado"
 
-#: Konfigurator/kgcolors.cpp:85
+#: Konfigurator/kgcolors.cpp:62
+msgid ""
+"Shows the last cursor position in the non active list panel.\n"
+"This option is only available when you don't use the KDE default colors."
+msgstr ""
+
+#: Konfigurator/kgcolors.cpp:88
 msgid "Active"
 msgstr "Activo"
 
-#: Konfigurator/kgcolors.cpp:91
+#: Konfigurator/kgcolors.cpp:94
 msgid "Transparent"
 msgstr "Transparente"
 
-#: Konfigurator/kgcolors.cpp:93 Konfigurator/kgcolors.cpp:124
+#: Konfigurator/kgcolors.cpp:96 Konfigurator/kgcolors.cpp:127
 msgid "Foreground:"
 msgstr "Primer plano:"
 
-#: Konfigurator/kgcolors.cpp:94 Konfigurator/kgcolors.cpp:126
+#: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:129
 msgid "Directory foreground:"
 msgstr "Directorios en primer plano:"
 
-#: Konfigurator/kgcolors.cpp:94 Konfigurator/kgcolors.cpp:95
-#: Konfigurator/kgcolors.cpp:96 Konfigurator/kgcolors.cpp:97
-#: Konfigurator/kgcolors.cpp:125
+#: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:98
+#: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:100
+#: Konfigurator/kgcolors.cpp:128
 msgid "Same as foreground"
 msgstr "Igual que en primer plano"
 
-#: Konfigurator/kgcolors.cpp:95 Konfigurator/kgcolors.cpp:127
+#: Konfigurator/kgcolors.cpp:98 Konfigurator/kgcolors.cpp:130
 msgid "Executable foreground:"
 msgstr "Ejecutable en primer plano:"
 
-#: Konfigurator/kgcolors.cpp:96 Konfigurator/kgcolors.cpp:128
+#: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:131
 msgid "Symbolic link foreground:"
 msgstr "Enlace simbólico en primer plano:"
 
-#: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:129
+#: Konfigurator/kgcolors.cpp:100 Konfigurator/kgcolors.cpp:132
 msgid "Invalid symlink foreground:"
 msgstr "Enlace simbólico incorrecto en primer plano:"
 
-#: Konfigurator/kgcolors.cpp:98 Konfigurator/kgcolors.cpp:130
+#: Konfigurator/kgcolors.cpp:101 Konfigurator/kgcolors.cpp:133
 msgid "Background:"
 msgstr "Fondo:"
 
-#: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:131
+#: Konfigurator/kgcolors.cpp:102 Konfigurator/kgcolors.cpp:134
 msgid "Same as background"
 msgstr "Igual que el fondo"
 
-#: Konfigurator/kgcolors.cpp:100 Konfigurator/kgcolors.cpp:132
+#: Konfigurator/kgcolors.cpp:103 Konfigurator/kgcolors.cpp:135
 msgid "Alternate background:"
 msgstr "Fondo alternativo:"
 
-#: Konfigurator/kgcolors.cpp:101 Konfigurator/kgcolors.cpp:133
+#: Konfigurator/kgcolors.cpp:104 Konfigurator/kgcolors.cpp:136
 msgid "Marked foreground:"
 msgstr "Primer plano resaltado:"
 
-#: Konfigurator/kgcolors.cpp:102 Konfigurator/kgcolors.cpp:134
+#: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:137
 msgid "Marked background:"
 msgstr "Fondo resaltado:"
 
-#: Konfigurator/kgcolors.cpp:103 Konfigurator/kgcolors.cpp:135
+#: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:138
 msgid "Same as alt. background"
 msgstr "Igual que el fondo alternativo"
 
-#: Konfigurator/kgcolors.cpp:104 Konfigurator/kgcolors.cpp:137
+#: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:140
 msgid "Alternate marked background:"
 msgstr "Fondo resaltado alternativo:"
 
-#: Konfigurator/kgcolors.cpp:104 Konfigurator/kgcolors.cpp:136
+#: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:139
 msgid "Same as marked background"
 msgstr "Igual que el fondo resaltado"
 
-#: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:138
+#: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:141
 msgid "Current foreground:"
 msgstr "Primer plano actual:"
 
-#: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:107
-#: Konfigurator/kgcolors.cpp:108
+#: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:110
+#: Konfigurator/kgcolors.cpp:111
 msgid "Not used"
 msgstr "No usado"
 
-#: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:139
+#: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:142
 #, fuzzy
 msgid "Same as marked foreground"
 msgstr "Igual que el fondo resaltado"
 
-#: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:140
+#: Konfigurator/kgcolors.cpp:110 Konfigurator/kgcolors.cpp:143
 #, fuzzy
 msgid "Marked current foreground:"
 msgstr "Primer plano resaltado:"
 
-#: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:141
+#: Konfigurator/kgcolors.cpp:111 Konfigurator/kgcolors.cpp:144
 msgid "Current background:"
 msgstr "Fondo actual:"
 
-#: Konfigurator/kgcolors.cpp:116
+#: Konfigurator/kgcolors.cpp:119
 msgid "Inactive"
 msgstr "Inactivo"
 
-#: Konfigurator/kgcolors.cpp:124 Konfigurator/kgcolors.cpp:126
-#: Konfigurator/kgcolors.cpp:127 Konfigurator/kgcolors.cpp:128
-#: Konfigurator/kgcolors.cpp:129 Konfigurator/kgcolors.cpp:130
+#: Konfigurator/kgcolors.cpp:127 Konfigurator/kgcolors.cpp:129
+#: Konfigurator/kgcolors.cpp:130 Konfigurator/kgcolors.cpp:131
 #: Konfigurator/kgcolors.cpp:132 Konfigurator/kgcolors.cpp:133
-#: Konfigurator/kgcolors.cpp:134 Konfigurator/kgcolors.cpp:137
-#: Konfigurator/kgcolors.cpp:138 Konfigurator/kgcolors.cpp:140
-#: Konfigurator/kgcolors.cpp:141
+#: Konfigurator/kgcolors.cpp:135 Konfigurator/kgcolors.cpp:136
+#: Konfigurator/kgcolors.cpp:137 Konfigurator/kgcolors.cpp:140
+#: Konfigurator/kgcolors.cpp:141 Konfigurator/kgcolors.cpp:143
+#: Konfigurator/kgcolors.cpp:144
 msgid "Same as active"
 msgstr "Igual que el activo"
 
-#: Konfigurator/kgcolors.cpp:164
+#: Konfigurator/kgcolors.cpp:167
 msgid "Marked 2"
 msgstr "Seleccionado 2"
 
-#: Konfigurator/kgcolors.cpp:165
+#: Konfigurator/kgcolors.cpp:168
 msgid "Marked 1"
 msgstr "Seleccionado 1"
 
-#: Konfigurator/kgcolors.cpp:166
+#: Konfigurator/kgcolors.cpp:169
 msgid "Current"
 msgstr "Actual"
 
-#: Konfigurator/kgcolors.cpp:167
+#: Konfigurator/kgcolors.cpp:170
 msgid "Invalid symlink"
 msgstr "Enlace simbólico inválido"
 
-#: Konfigurator/kgcolors.cpp:168
+#: Konfigurator/kgcolors.cpp:171
 msgid "Symbolic link"
 msgstr "Enlace simbólico"
 
-#: Konfigurator/kgcolors.cpp:169
+#: Konfigurator/kgcolors.cpp:172
 msgid "Application"
 msgstr "Aplicación"
 
-#: Konfigurator/kgcolors.cpp:171
+#: Konfigurator/kgcolors.cpp:174
 msgid "Directory"
 msgstr "Directorio"
+
+#: Konfigurator/kgcolors.cpp:180
+msgid "Import color-scheme"
+msgstr ""
+
+#: Konfigurator/kgcolors.cpp:182
+msgid "Export color-scheme"
+msgstr ""
+
+#: Konfigurator/kgcolors.cpp:433
+#, fuzzy
+msgid "Select a color-scheme file"
+msgstr "¡Seleccione sólo un archivo dividido!"
+
+#: Konfigurator/kgcolors.cpp:437
+#, fuzzy
+msgid "Error: unable to read from file"
+msgstr "¡Error leyendo el archivo %1!"
+
+#: Konfigurator/kgcolors.cpp:447
+#, fuzzy
+msgid "Select a color scheme file"
+msgstr "¡Seleccione sólo un archivo dividido!"
 
 #: Konfigurator/kgstartup.cpp:45
 msgid "Panels"
 msgstr "Paneles"
 
-#: Konfigurator/kgstartup.cpp:49 Konfigurator/kgstartup.cpp:93
+#: Konfigurator/kgstartup.cpp:50 Konfigurator/kgstartup.cpp:94
 msgid "Save settings on exit"
 msgstr "Guardar config. al salir"
 
-#: Konfigurator/kgstartup.cpp:50 Konfigurator/kgstartup.cpp:55
-#: Konfigurator/kgstartup.cpp:113
+#: Konfigurator/kgstartup.cpp:50
+msgid ""
+"When Krusader launches, the panels current directories will be the same as "
+"they were when Krusader was last shutdown."
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:51 Konfigurator/kgstartup.cpp:56
+#: Konfigurator/kgstartup.cpp:115
 msgid "Start with the following settings:"
 msgstr "Arrancar con ésta configuración:"
 
-#: Konfigurator/kgstartup.cpp:59
+#: Konfigurator/kgstartup.cpp:51
+msgid "Defines a startup status for each panel."
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:60
 msgid "work dir"
 msgstr "directorio de trabajo"
 
-#: Konfigurator/kgstartup.cpp:62
+#: Konfigurator/kgstartup.cpp:63
 msgid "Left panel starts at"
 msgstr "El panel izquierdo comienza en"
 
-#: Konfigurator/kgstartup.cpp:68 Konfigurator/kgstartup.cpp:79
+#: Konfigurator/kgstartup.cpp:69 Konfigurator/kgstartup.cpp:80
 msgid "Homepage:"
 msgstr "Homepage:"
 
-#: Konfigurator/kgstartup.cpp:73
+#: Konfigurator/kgstartup.cpp:74
 msgid "Right panel starts at"
 msgstr "El panel derecho comienza en"
 
-#: Konfigurator/kgstartup.cpp:88
+#: Konfigurator/kgstartup.cpp:89
 msgid "User Interface"
 msgstr "Interfaz de usuario"
 
 #: Konfigurator/kgstartup.cpp:94
-msgid "Toolbar visible"
-msgstr "Barra de herramientas visible"
+msgid ""
+"Krusader checks the state of the user interface components,\n"
+"and restores them to their condition when last shutdown."
+msgstr ""
 
 #: Konfigurator/kgstartup.cpp:95
-msgid "Statusbar visible"
-msgstr "Barra de estado visible"
+#, fuzzy
+msgid "Show toolbar"
+msgstr "Barra de herramientas"
+
+#: Konfigurator/kgstartup.cpp:95
+msgid "Toolbar will be visible after startup."
+msgstr ""
 
 #: Konfigurator/kgstartup.cpp:96
-msgid "Function keys visible"
-msgstr "Funciones de teclado visibles"
+msgid "Show statusbar"
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:96
+msgid "Statusbar will be visible after startup."
+msgstr ""
 
 #: Konfigurator/kgstartup.cpp:97
-msgid "Command-line visible"
-msgstr "Línea de comandos visible"
+#, fuzzy
+msgid "Show function keys"
+msgstr "Mostrar opciones"
+
+#: Konfigurator/kgstartup.cpp:97
+#, fuzzy
+msgid "Function keys will be visible after startup."
+msgstr "Funciones de teclado visibles"
 
 #: Konfigurator/kgstartup.cpp:98
-msgid "Terminal Emulator visible"
-msgstr "Emulador de terminal visible"
+#, fuzzy
+msgid "Show command line"
+msgstr "Mostrar línea de &comandos"
+
+#: Konfigurator/kgstartup.cpp:98
+#, fuzzy
+msgid "Command line will be visible after startup."
+msgstr "Línea de comandos visible"
 
 #: Konfigurator/kgstartup.cpp:99
-msgid "Restore last position and size"
+#, fuzzy
+msgid "Show terminal emulator"
+msgstr "Mostrar &emulador de terminal"
+
+#: Konfigurator/kgstartup.cpp:99
+#, fuzzy
+msgid "Terminal emulator will be visible after startup."
+msgstr "Emulador de terminal visible"
+
+#: Konfigurator/kgstartup.cpp:100
+#, fuzzy
+msgid "Save last position and size"
 msgstr "Restaurar última posición y tamaño"
 
-#: Konfigurator/kgarchives.cpp:56
+#: Konfigurator/kgstartup.cpp:100
+msgid ""
+"When launched, Krusader will resize itself to the size it was when last "
+"shutdown.\n"
+"Krusader will also appear in the same location on the screen.\n"
+"If this option is disabled, you can use the menu 'Settings-Save Position'\n"
+"option to manually set Krusader's size and position at startup"
+msgstr ""
+
+#: Konfigurator/kgarchives.cpp:53
 msgid "Krusader transparently handles the following types of archives:"
 msgstr "Krusader maneja transparentemente los siguientes tipos de archivos:"
 
-#: Konfigurator/kgarchives.cpp:61
+#: Konfigurator/kgarchives.cpp:58
 msgid "Tar"
 msgstr "Tar"
 
-#: Konfigurator/kgarchives.cpp:62
+#: Konfigurator/kgarchives.cpp:59
 msgid "GZip"
 msgstr "GZip"
 
-#: Konfigurator/kgarchives.cpp:63
+#: Konfigurator/kgarchives.cpp:60
 msgid "BZip2"
 msgstr "BZip2"
 
-#: Konfigurator/kgarchives.cpp:64
+#: Konfigurator/kgarchives.cpp:61
 msgid "Zip"
 msgstr "Zip"
 
-#: Konfigurator/kgarchives.cpp:65
+#: Konfigurator/kgarchives.cpp:62
 msgid "Rar"
 msgstr "Rar"
 
-#: Konfigurator/kgarchives.cpp:66
+#: Konfigurator/kgarchives.cpp:63
 msgid "Arj"
 msgstr "Arj"
 
-#: Konfigurator/kgarchives.cpp:67
+#: Konfigurator/kgarchives.cpp:64
 msgid "Rpm"
 msgstr "Rpm"
 
-#: Konfigurator/kgarchives.cpp:68
+#: Konfigurator/kgarchives.cpp:65
 msgid "Ace"
 msgstr "Ace"
 
-#: Konfigurator/kgarchives.cpp:69
+#: Konfigurator/kgarchives.cpp:66
 msgid "Lha"
 msgstr ""
 
-#: Konfigurator/kgarchives.cpp:74
+#: Konfigurator/kgarchives.cpp:71
+#, fuzzy
 msgid ""
-"The archives that are \"greyed-out\" were unavaible on your\n"
+"The archives that are \"greyed-out\" were unavailable on your\n"
 "system last time Krusader checked. If you wish Krusader to\n"
 "search again, click the 'Auto Configure' button."
 msgstr ""
@@ -4033,33 +4681,35 @@ msgstr ""
 "sistema la última vez que Krusader lo comprobó. Si desea que Krusader\n"
 "busque de nuevo, pulse el botón 'Configuración automática'."
 
-#: Konfigurator/kgarchives.cpp:79
+#: Konfigurator/kgarchives.cpp:76
 msgid "Auto Configure"
 msgstr "Configuración automática"
 
-#: Konfigurator/kgarchives.cpp:94
+#: Konfigurator/kgarchives.cpp:91
 msgid "Test archive when finished packing"
 msgstr "Comprobar archivos al terminar de comprimir"
 
-#: Konfigurator/kgarchives.cpp:94
+#: Konfigurator/kgarchives.cpp:91
+#, fuzzy
 msgid ""
-"If checked, Krusader will test the archive's intergrity after packing it."
+"If checked, Krusader will test the archive's integrity after packing it."
 msgstr ""
 "Si está marcado, Krusader comprobará la integridad de los archivos antes de "
 "comprimirlos."
 
-#: Konfigurator/kgarchives.cpp:95
+#: Konfigurator/kgarchives.cpp:92
 msgid "Test archive before unpacking"
 msgstr "Comprobar archivos después de descomprimir"
 
-#: Konfigurator/kgarchives.cpp:95
+#: Konfigurator/kgarchives.cpp:92
+#, fuzzy
 msgid ""
-"Some corrupted archives might cause a crash, therefore testing is suggested"
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Algunos archivos corruptos pueden provocar cuelgues, por ello testearlos es "
 "recomendable"
 
-#: Konfigurator/kgarchives.cpp:112
+#: Konfigurator/kgarchives.cpp:113
 msgid ""
 "Search results:\n"
 "\n"
@@ -4067,11 +4717,11 @@ msgstr ""
 "Resultado de la búsqueda:\n"
 "\n"
 
-#: Konfigurator/kgarchives.cpp:113
+#: Konfigurator/kgarchives.cpp:114
 msgid "tar: found, packing and unpacking enabled.\n"
 msgstr "tar: encontrado, compresión y descompresión activadas.\n"
 
-#: Konfigurator/kgarchives.cpp:114
+#: Konfigurator/kgarchives.cpp:115
 msgid ""
 "tar: NOT found, packing and unpacking DISABLED.\n"
 "==> tar can be obtained at www.gnu.org\n"
@@ -4079,11 +4729,11 @@ msgstr ""
 "tar: NO encontrado, compresión y descompresión DESACTIVADA.\n"
 "==> tar puede obtenerse en www.gnu.org\n"
 
-#: Konfigurator/kgarchives.cpp:115
+#: Konfigurator/kgarchives.cpp:116
 msgid "gzip: found, packing and unpacking enabled.\n"
 msgstr "gzip: encontrado, compresión y descompresión activada.\n"
 
-#: Konfigurator/kgarchives.cpp:116
+#: Konfigurator/kgarchives.cpp:117
 msgid ""
 "gzip: NOT found, packing and unpacking DISABLED.\n"
 "==> gzip can be obtained at www.gnu.org\n"
@@ -4091,11 +4741,11 @@ msgstr ""
 "gzip: NO encontrado, compresión y descompresión DESACTIVADA.\n"
 "==> gzip puede obtenerse en www.gnu.org\n"
 
-#: Konfigurator/kgarchives.cpp:117
+#: Konfigurator/kgarchives.cpp:118
 msgid "bzip2: found, packing and unpacking enabled.\n"
 msgstr "bzip2: encontrado, compresión y descompresión activada.\n"
 
-#: Konfigurator/kgarchives.cpp:118
+#: Konfigurator/kgarchives.cpp:119
 msgid ""
 "bzip2: NOT found, packing and unpacking DISABLED.\n"
 "==> bzip2 can be obtained at www.gnu.org\n"
@@ -4103,11 +4753,11 @@ msgstr ""
 "bzip2: NO encontrado, compresión y descompresión DESACTIVADA.\n"
 "==> bzip2 puede obtenerse en www.gnu.org\n"
 
-#: Konfigurator/kgarchives.cpp:119
+#: Konfigurator/kgarchives.cpp:120
 msgid "unzip: found, unpacking enabled.\n"
 msgstr "unzip: encontrado, descompresión activada.\n"
 
-#: Konfigurator/kgarchives.cpp:120
+#: Konfigurator/kgarchives.cpp:121
 msgid ""
 "unzip: NOT found, unpacking DISABLED.\n"
 "==> unzip can be obtained at www.info-zip.org\n"
@@ -4115,11 +4765,11 @@ msgstr ""
 "unzip: NO encontrado, descompresión DESACTIVADA.\n"
 "==> unzip puede obtenerse en www.info-zip.org\n"
 
-#: Konfigurator/kgarchives.cpp:121
+#: Konfigurator/kgarchives.cpp:122
 msgid "zip: found, packing enabled.\n"
 msgstr "zip: encontrado, compresión activada.\n"
 
-#: Konfigurator/kgarchives.cpp:122
+#: Konfigurator/kgarchives.cpp:123
 msgid ""
 "zip: NOT found, packing DISABLED.\n"
 "==> zip can be obtained at www.info-zip.org\n"
@@ -4127,12 +4777,12 @@ msgstr ""
 "zip: NO encontrado, compresión DESACTIVADA.\n"
 "==> zip puede obtenerse en www.info-zip.org\n"
 
-#: Konfigurator/kgarchives.cpp:123
+#: Konfigurator/kgarchives.cpp:124
 #, fuzzy
 msgid "lha: found, packing and unpacking enabled.\n"
 msgstr "tar: encontrado, compresión y descompresión activadas.\n"
 
-#: Konfigurator/kgarchives.cpp:124
+#: Konfigurator/kgarchives.cpp:125
 #, fuzzy
 msgid ""
 "lha: NOT found, packing and unpacking DISABLED.\n"
@@ -4141,11 +4791,11 @@ msgstr ""
 "tar: NO encontrado, compresión y descompresión DESACTIVADA.\n"
 "==> tar puede obtenerse en www.gnu.org\n"
 
-#: Konfigurator/kgarchives.cpp:125
+#: Konfigurator/kgarchives.cpp:126
 msgid "rpm: found, unpacking enabled.\n"
 msgstr "rpm: encontrado, descompresión activada.\n"
 
-#: Konfigurator/kgarchives.cpp:126
+#: Konfigurator/kgarchives.cpp:127
 msgid ""
 "rpm found but cpio NOT found: unpacking DISABLED.\n"
 "==>cpio can be obtained at www.gnu.org\n"
@@ -4153,7 +4803,7 @@ msgstr ""
 "rpm encontrado pero cpio NO encontrado: descompresión DESACTIVADA.\n"
 "==>cpio puede obtenerse en www.gnu.org\n"
 
-#: Konfigurator/kgarchives.cpp:127
+#: Konfigurator/kgarchives.cpp:128
 msgid ""
 "rpm: NOT found, unpacking is DISABLED.\n"
 "==> rpm can be obtained at www.gnu.org\n"
@@ -4161,15 +4811,15 @@ msgstr ""
 "rpm: NO encontrado, descompresión DESACTIVADA.\n"
 "==> rpm puede obtenerse en www.gnu.org\n"
 
-#: Konfigurator/kgarchives.cpp:128
+#: Konfigurator/kgarchives.cpp:129
 msgid "unrar: found, unpacking is enabled.\n"
 msgstr "unrar: encontrado, descompresión activada.\n"
 
-#: Konfigurator/kgarchives.cpp:130
+#: Konfigurator/kgarchives.cpp:131
 msgid "unrar: NOT found.\n"
 msgstr ""
 
-#: Konfigurator/kgarchives.cpp:131
+#: Konfigurator/kgarchives.cpp:132
 msgid ""
 "unrar: NOT found, unpacking is DISABLED.\n"
 "==> unrar can be obtained at www.rarsoft.com\n"
@@ -4177,12 +4827,12 @@ msgstr ""
 "unrar: NO encontrado, descompresión DESACTIVADA.\n"
 "==> unrar puede obtenerse en www.rarsoft.com\n"
 
-#: Konfigurator/kgarchives.cpp:133
+#: Konfigurator/kgarchives.cpp:134
 #, fuzzy
 msgid "rar: found, packing and unpacking is enabled.\n"
 msgstr "tar: encontrado, compresión y descompresión activadas.\n"
 
-#: Konfigurator/kgarchives.cpp:134
+#: Konfigurator/kgarchives.cpp:135
 msgid ""
 "rar: NOT found, packing is DISABLED.\n"
 "==> rar can be obtained at www.rarsoft.com\n"
@@ -4190,15 +4840,15 @@ msgstr ""
 "rar: NO encontrado, compresión DESACTIVADA.\n"
 "==> rar puede obtenerse en www.rarsoft.com\n"
 
-#: Konfigurator/kgarchives.cpp:135
+#: Konfigurator/kgarchives.cpp:136
 msgid "unarj: found, unpacking is enabled.\n"
 msgstr "unarj: encontrado, descompresión activada.\n"
 
-#: Konfigurator/kgarchives.cpp:137
+#: Konfigurator/kgarchives.cpp:138
 msgid "unarj: NOT found.\n"
 msgstr ""
 
-#: Konfigurator/kgarchives.cpp:138
+#: Konfigurator/kgarchives.cpp:139
 msgid ""
 "unarj: NOT found, unpacking is DISABLED.\n"
 "==> unarj can be obtained at www.arjsoft.com\n"
@@ -4206,12 +4856,12 @@ msgstr ""
 "unarj: NO encontrado, descompresión DESACTIVADA.\n"
 "==> unarj puede obtenerse en www.arjsoft.com\n"
 
-#: Konfigurator/kgarchives.cpp:140
+#: Konfigurator/kgarchives.cpp:141
 #, fuzzy
 msgid "arj: found, packing and unpacking is enabled.\n"
 msgstr "tar: encontrado, compresión y descompresión activadas.\n"
 
-#: Konfigurator/kgarchives.cpp:141
+#: Konfigurator/kgarchives.cpp:142
 #, fuzzy
 msgid ""
 "arj: NOT found, packing is DISABLED.\n"
@@ -4220,11 +4870,11 @@ msgstr ""
 "unarj: NO encontrado, descompresión DESACTIVADA.\n"
 "==> unarj puede obtenerse en www.arjsoft.com\n"
 
-#: Konfigurator/kgarchives.cpp:142
+#: Konfigurator/kgarchives.cpp:143
 msgid "unace: found, unpacking is enabled.\n"
 msgstr "unace: encontrado, descompresión activada.\n"
 
-#: Konfigurator/kgarchives.cpp:143
+#: Konfigurator/kgarchives.cpp:144
 msgid ""
 "unace: NOT found, unpacking is DISABLED.\n"
 "==> unace can be obtained at www.winace.com\n"
@@ -4232,7 +4882,7 @@ msgstr ""
 "unace: NO encontrado, descompresión DESACTIVADA.\n"
 "==> unace puede obtenerse en www.winace.com\n"
 
-#: Konfigurator/kgarchives.cpp:145
+#: Konfigurator/kgarchives.cpp:146
 msgid ""
 "\n"
 "If you install new packers, please install them"
@@ -4241,6 +4891,15 @@ msgstr ""
 "Si instala nuevos compresores, por favor configúrelos"
 
 #: Konfigurator/kgarchives.cpp:147
+#, fuzzy
+msgid ""
+"\n"
+"to your path, e.g., /usr/bin, /usr/local/bin, etc."
+msgstr ""
+"\n"
+"a la ruta. (p.ej: /usr/bin, /usr/local/bin etc.)"
+
+#: Konfigurator/kgarchives.cpp:148
 msgid ""
 "\n"
 "Thanks for flying Krusader :-)"
@@ -4303,56 +4962,48 @@ msgstr "No hay permisos para editar éste archivo."
 
 #: Konfigurator/kguseractions.cpp:290
 msgid ""
-"Couldn't import all actions because of name-conflicts. Check the action-list "
+"Couldn't import all actions because of name conflicts. Check the action-list "
 "on the left to fix them.\n"
 "Please note that these actions won't be imported if you close the "
 "Konfigurator now!"
 msgstr ""
 
-#: krslots.cpp:94
+#: krslots.cpp:99
+#, fuzzy
 msgid ""
-"Krusader can't find any of the supported mail clients. Please install one to "
-"your path. Hint: Krusader supports kmail."
+"Krusader can't find a supported mail client. Please install one to your "
+"path. Hint: Krusader supports Kmail."
 msgstr ""
 "Krusader no encuentra ningún cliente de correo soportado. Instale alguno en "
 "su path. Consejo: Krusader soporta kmail."
 
-#: krslots.cpp:101
+#: krslots.cpp:106
 msgid "Sending file: "
 msgstr "Enviando archivo: "
 
-#: krslots.cpp:137
+#: krslots.cpp:142
 msgid "Don't know which files to compare."
 msgstr "No se sabe que archivos hay que comparar"
 
-#: krslots.cpp:138
+#: krslots.cpp:143
 msgid ""
 "To compare 2 files by content, you can either\n"
-"- select (mark) one file in the left panel, and one in the right panel\n"
+"- select one file in the left panel, and one in the right panel\n"
 "- select exactly two files in the active panel\n"
 "- make sure there is a file in the other panel, with the same name as the "
 "current file in the active panel"
 msgstr ""
 
-#: krslots.cpp:177
+#: krslots.cpp:182
 #, fuzzy
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
-"to your path. Hint: Krusader supports kompare, kdiff3, kdiff and xxdiff."
+"to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."
 msgstr ""
 "Krusader no encuentra ningún diff-frontend soportado. Instale alguno en su "
 "path. Consejo: Krusader soporta kdiff y xxdiff."
 
-#: krslots.cpp:217
-msgid ""
-"In order to save the time needed to enter an archive, Krusader will not "
-"allow bookmarks which point into an archive, as it is usually a mistake to "
-"do so!"
-msgstr ""
-"Para ahorrar tiempo a la hora de abrir un archivo, Krusader no permite "
-"marcadores que apunten a un archivo, ¡es un error normalmente hacer eso!"
-
-#: krslots.cpp:359
+#: krslots.cpp:376
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
@@ -4360,7 +5011,7 @@ msgstr ""
 "No se puede encontrar el comando locate. Por favor instale el paquete "
 "findutils-locate de GNU, o indique las dependencias en Konfigurator"
 
-#: krslots.cpp:371
+#: krslots.cpp:388
 #, fuzzy
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager. The new "
@@ -4379,25 +5030,26 @@ msgstr ""
 "vez hecho, pulse el botón de marcadores, seleccione “Añadir marcador” y ya "
 "está."
 
-#: krslots.cpp:390
+#: krslots.cpp:407
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "¡No se puede iniciar 'mount'! Comprueba la página de 'Dependencias' en "
 "konfigurator."
 
-#: krslots.cpp:422
+#: krslots.cpp:439
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr "No se encuentra \"KsysCtrl\". Por favor instale KDE admin package"
 
-#: krslots.cpp:430
+#: krslots.cpp:447
+#, fuzzy
 msgid ""
-"Can't find a batch renamer tool.\n"
+"Can't find a batch rename tool.\n"
 "You can get Krename at http://www.krename.net"
 msgstr ""
 "No se ha encontrado ninguna utilidad de renombrado.\n"
 "Puede obtener Krename en http://www.krename.net"
 
-#: krslots.cpp:460
+#: krslots.cpp:477
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
@@ -4405,39 +5057,45 @@ msgstr ""
 "No se puede ejecutar krusader en modo root, porque krusader o kdesu no se "
 "encuentran en el path. ¡Por favor configure las dependencias en Konfigurator!"
 
-#: krslots.cpp:515
+#: krslots.cpp:532 krslots.cpp:538
 msgid "Enter a URL to view:"
 msgstr "Introduzca una URL para abrir:"
 
-#: krslots.cpp:532
+#: krslots.cpp:555 krslots.cpp:561
 msgid "Enter the filename to edit:"
 msgstr "Introduzca el nombre de archivo a editar:"
 
-#: krslots.cpp:586
+#: krslots.cpp:620
 msgid "Don't know which file to split."
 msgstr "No se ha especificado ningún archivo para dividir."
 
-#: krslots.cpp:595
+#: krslots.cpp:629
 msgid "You can't split a directory!"
 msgstr "¡No puede dividir un directorio!"
 
-#: krslots.cpp:627
+#: krslots.cpp:660
 msgid "Don't know which files to combine."
 msgstr "No se han especificado archivos para combinar."
 
-#: krslots.cpp:639
+#: krslots.cpp:672
 msgid "You can't combine a directory!"
 msgstr "¡No se puede combinar un directorio!"
 
-#: krslots.cpp:655 krslots.cpp:718
+#: krslots.cpp:691
+#, fuzzy
+msgid "Not a split file %1!"
+msgstr "¡No es un archivo dividido %1!"
+
+#: krslots.cpp:706
+#, fuzzy
+msgid "Select only one split file!"
+msgstr "¡Seleccione sólo un archivo dividido!"
+
+#: krslots.cpp:754
 msgid "Not a splitted file %1!"
 msgstr "¡No es un archivo dividido %1!"
 
-#: krslots.cpp:671
-msgid "Select only one splitted file!"
-msgstr "¡Seleccione sólo un archivo dividido!"
-
-#: krslots.cpp:725
+#: krslots.cpp:761
 msgid "Combining %1.* to directory:"
 msgstr "Combinando %1.* al directorio:"
 
@@ -4465,55 +5123,65 @@ msgstr "100 MB (ZIP)"
 msgid "250 MB (ZIP)"
 msgstr "250 MB (ZIP)"
 
-#: Splitter/splittergui.cpp:58
+#: Splitter/splittergui.cpp:45
+#, fuzzy
+msgid "650 MB (CD-R)"
+msgstr "250 MB (ZIP)"
+
+#: Splitter/splittergui.cpp:46
+#, fuzzy
+msgid "700 MB (CD-R)"
+msgstr "100 MB (ZIP)"
+
+#: Splitter/splittergui.cpp:61
 msgid "Split the file %1 to directory:"
 msgstr "Dividir el archivo %1 al directorio:"
 
-#: Splitter/splittergui.cpp:72
+#: Splitter/splittergui.cpp:75
 msgid "User Defined"
 msgstr "Definido por el usuario"
 
-#: Splitter/splittergui.cpp:79
+#: Splitter/splittergui.cpp:82
 msgid "Max file size:"
 msgstr "Tamaño máximo:"
 
-#: Splitter/splittergui.cpp:86
+#: Splitter/splittergui.cpp:89
 msgid "Byte"
 msgstr "Byte"
 
-#: Splitter/splittergui.cpp:87
+#: Splitter/splittergui.cpp:90
 msgid "kByte"
 msgstr "kByte"
 
-#: Splitter/splittergui.cpp:88
+#: Splitter/splittergui.cpp:91
 msgid "MByte"
 msgstr "MByte"
 
-#: Splitter/splittergui.cpp:89
+#: Splitter/splittergui.cpp:92
 msgid "GByte"
 msgstr "GByte"
 
-#: Splitter/splittergui.cpp:107
+#: Splitter/splittergui.cpp:110
 msgid "&Split"
 msgstr "&Dividir"
 
-#: Splitter/splittergui.cpp:116
+#: Splitter/splittergui.cpp:119
 msgid "Krusader::Splitter"
 msgstr "Krusader::Dividir"
 
-#: Splitter/splittergui.cpp:191
+#: Splitter/splittergui.cpp:194
 msgid "The directory path URL is malformed!"
 msgstr "¡La URL del directorio no es correcta!"
 
-#: Splitter/combiner.cpp:67
+#: Splitter/combiner.cpp:61
 msgid "Krusader::Combining..."
 msgstr "Krusader::Combinando..."
 
-#: Splitter/combiner.cpp:68
+#: Splitter/combiner.cpp:62
 msgid "Combining the file %1..."
 msgstr "Combinando el archivo %1..."
 
-#: Splitter/combiner.cpp:77
+#: Splitter/combiner.cpp:72
 msgid ""
 "The CRC information file (%1) is missing!\n"
 "Validity checking is impossible without it. Continue combining?"
@@ -4521,36 +5189,37 @@ msgstr ""
 "¡No se encuentra la información CRC del archivo (%1)!\n"
 "La comprobación de validez es imposible sin ella. ¿Continuar la combinación?"
 
-#: Splitter/combiner.cpp:115
+#: Splitter/combiner.cpp:110
 msgid "Error at reading the CRC file (%1)!"
 msgstr "¡Error leyendo el archivo CRC (%1)!"
 
-#: Splitter/combiner.cpp:123
+#: Splitter/combiner.cpp:118
 msgid "Not a valid CRC file!"
 msgstr "¡Archivo CRC no válido!"
 
-#: Splitter/combiner.cpp:138
+#: Splitter/combiner.cpp:133
 msgid ""
 "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "La comprobación de validez es imposible sin un archivo CRC bueno. ¿Continuar "
 "la combinación?"
 
-#: Splitter/combiner.cpp:239
-msgid "Can't open the first splitted file of %1!"
+#: Splitter/combiner.cpp:237
+#, fuzzy
+msgid "Can't open the first split file of %1!"
 msgstr "¡No se puede abrir el primer archivo dividido de %1!"
 
-#: Splitter/combiner.cpp:251
+#: Splitter/combiner.cpp:249
 msgid "Incorrect filesize! The file might have been corrupted!"
 msgstr "¡Tamaño incorrecto! ¡El archivo puede estar corrupto!"
 
-#: Splitter/combiner.cpp:253
+#: Splitter/combiner.cpp:251
 msgid "Incorrect CRC checksum! The file might have been corrupted!"
 msgstr "¡Checksum CRC incorrecto! ¡El archivo puede estar corrupto!"
 
-#: Splitter/combiner.cpp:279 Splitter/splitter.cpp:201
-#: Splitter/splitter.cpp:243
-msgid "Error at writing file %1!"
+#: Splitter/combiner.cpp:277 Splitter/splitter.cpp:201
+#, fuzzy
+msgid "Error writing file %1!"
 msgstr "¡Error escribiendo el archivo %1!"
 
 #: Splitter/splitter.cpp:71
@@ -4566,362 +5235,10 @@ msgid "Can't split a directory!"
 msgstr "¡No se puede dividir un directorio!"
 
 #: Splitter/splitter.cpp:127
-msgid "Error at reading file %1!"
+#, fuzzy
+msgid "Error reading file %1!"
 msgstr "¡Error leyendo el archivo %1!"
 
-#~ msgid "Classic (both keys combined)"
-#~ msgstr "Clásico (ambas teclas combinadas)"
-
-#~ msgid "Left mouse button selects"
-#~ msgstr "Selección del botón izquierdo"
-
-#~ msgid "Right button selects (Windows Commander style)"
-#~ msgstr "Selección del botón derecho (al estilo de Windows Commander)"
-
-#~ msgid "DirHistoryButton"
-#~ msgstr "DirHistoryButton"
-
-#~ msgid "DirHistoryQueue"
-#~ msgstr "DirHistoryQueue"
-
-#, fuzzy
-#~ msgid "KrActionProcDlg"
-#~ msgstr "UserMenuProcDlg"
-
-#, fuzzy
-#~ msgid "KrAction"
-#~ msgstr "Aplicación"
-
-#~ msgid "KrColorCache"
-#~ msgstr "KrColorCache"
-
-#~ msgid "KrDetailedView"
-#~ msgstr "KrDetailedView"
-
-#~ msgid "KrCalcSpaceDialog"
-#~ msgstr "KrCalcSpaceDialog"
-
-#~ msgid "ListPanel"
-#~ msgstr "ListPanel"
-
-#, fuzzy
-#~ msgid "PanelPopup"
-#~ msgstr "Panel"
-
-#~ msgid "PanelManager"
-#~ msgstr "PanelManager"
-
-#~ msgid "KrViewer"
-#~ msgstr "KrViewer"
-
-#~ msgid "BookmarksButton"
-#~ msgstr "BookmarksButton"
-
-#, fuzzy
-#~ msgid "KrBookmarkHandler"
-#~ msgstr "KBookmarkManager"
-
-#~ msgid "Open your bookmarks"
-#~ msgstr "Abrir sus marcadores"
-
-#, fuzzy
-#~ msgid "KrBookmarkButton"
-#~ msgstr "BookmarksButton"
-
-#, fuzzy
-#~ msgid "KrAddBookmarkDlg"
-#~ msgstr "Añadir marcador"
-
-#~ msgid "Bookmark name:"
-#~ msgstr "Nombre del marcador:"
-
-#, fuzzy
-#~ msgid "KrBookmark"
-#~ msgstr "KBookmarkManager"
-
-#~ msgid "Add bookmark"
-#~ msgstr "Añadir marcador"
-
-#~ msgid "Add a bookmark for the current document"
-#~ msgstr "Añadir marcador para el documento actual"
-
-#~ msgid "Edit your bookmark collection in a separate window"
-#~ msgstr "Editar su colección de marcadores en una ventana aparte"
-
-#~ msgid "&New Bookmark Folder..."
-#~ msgstr "&Nueva carpeta de marcadores..."
-
-#~ msgid "Create a new bookmark folder in this menu"
-#~ msgstr "Crea una nueva carpeta de marcadores en éste menú"
-
-#~ msgid "Can't add bookmark with empty URL"
-#~ msgstr "No se puede añadir un marcador con un URL vacía"
-
-#~ msgid "KBookmarkManager"
-#~ msgstr "KBookmarkManager"
-
-#, fuzzy
-#~ msgid "KMountMan"
-#~ msgstr "MountMan"
-
-#~ msgid "UserMenuGui"
-#~ msgstr "UserMenuGui"
-
-#~ msgid "Synchronizer"
-#~ msgstr "Sincronizador"
-
-#~ msgid "SynchronizerGUI"
-#~ msgstr "SynchronizerGUI"
-
-#~ msgid "SynchronizeDialog"
-#~ msgstr "SynchronizeDialog"
-
-#~ msgid "KgDependencies"
-#~ msgstr "KgDependencies"
-
-#~ msgid "Splitter"
-#~ msgstr "Dividir"
-
-#~ msgid "SplitterGUI"
-#~ msgstr "SplitterGUI"
-
-#~ msgid "Combiner"
-#~ msgstr "Combinar"
-
-#, fuzzy
-#~ msgid "No preview available"
-#~ msgstr "Vista previa no disponible"
-
-#~ msgid "Stalled"
-#~ msgstr "Bloqueado"
-
-#~ msgid "Automatic Scrolling"
-#~ msgstr "Desplazamiento automático"
-
-#~ msgid "Scrolls the results of comparing (slow)"
-#~ msgstr "Desplaza los resultados al comparar (lento)"
-
-#~ msgid "Mimetype Column"
-#~ msgstr "Columna Mimetype"
-
-#~ msgid "Permission Column"
-#~ msgstr "Columna de permisos"
-
-#~ msgid "Owner Column"
-#~ msgstr "Columna de propietario"
-
-#~ msgid "Group Column"
-#~ msgstr "Columna de grupo"
-
-#, fuzzy
-#~ msgid "On multiple selection"
-#~ msgstr "Introducir selección:"
-
-#, fuzzy
-#~ msgid "Separate call for each file"
-#~ msgstr "Buscar en archivos"
-
-#~ msgid "&Konfigurator"
-#~ msgstr "&Konfigurator"
-
-#~ msgid "&Case sensetive"
-#~ msgstr "Sensible a mayús&culas"
-
-#~ msgid ""
-#~ "To compare 2 files by content, select (mark) a file in the left panel, "
-#~ "and select another one in the right panel."
-#~ msgstr ""
-#~ "Para comparar 2 archivos por contenido, marque un archivo en el panel "
-#~ "izquierdo y marque otro en el panel derecho."
-
-#~ msgid "Failed to pack"
-#~ msgstr "Error al comprimir"
-
-#~ msgid "KrDetailedViewItem"
-#~ msgstr "KrDetailedViewItem"
-
-#~ msgid "History"
-#~ msgstr "Historial"
-
-#~ msgid ""
-#~ "Unable to execute 'mount' !!!\n"
-#~ "check that /bin/mount or /sbin/mount are availble"
-#~ msgstr ""
-#~ " No se puede ejecutar 'mount' !!!\n"
-#~ "comprueba que /bin/mount o /sbin/mount están disponibles"
-
-#~ msgid "Unable to complete the mount."
-#~ msgstr "No se ha podido completar el montaje."
-
-#~ msgid ""
-#~ "The error reported was:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "El error reportado es:\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "Warning: you're trying to mount a 'supermount' filesystem. Supermount "
-#~ "filesystems are (un)mounted automatically by linux upon insert/eject. "
-#~ "This is usually a Linux-Mandrake feature.Krusader will not allow this, as "
-#~ "it creates unpredictable behaviour."
-#~ msgstr ""
-#~ "Advertencia: está intentando montar un sistema 'supermount'. Los sistemas "
-#~ "Supermount se (des)montan automáticamente al insertar/expulsar. Ésta es "
-#~ "una caracterísitca de Linux Mandrake. Krusader no permite ésto, así que "
-#~ "crea un comportamiento impredecible."
-
-#~ msgid ""
-#~ "Unable to execute 'mount' !!! check that /bin/mount or /sbin/mount are "
-#~ "availble"
-#~ msgstr ""
-#~ "No se puede ejecutar 'mount' !!! compruebe que /bin/mount or /sbin/mount "
-#~ "está disponible"
-
-#~ msgid "Can't start 'umount'! Check the 'Dependencies' page in konfigurator."
-#~ msgstr ""
-#~ "¡No se puede iniciar 'umount'! Compruebe la página 'Dependencias' en "
-#~ "konfigurator."
-
-#~ msgid ""
-#~ "Warning: you're trying to unmount a 'supermount' filesystem. Supermount "
-#~ "filesystems are (un)mounted automatically by linux upon insert/eject. "
-#~ "This is usually a Linux-Mandrake feature. Krusader will not allow this, "
-#~ "as it creates unpredictable behaviour."
-#~ msgstr ""
-#~ "Advertencia: está intentando desmontar un sistema 'supermount'. Los "
-#~ "sistemas Supermount se (des)montan automáticamente al insertar/expulsar. "
-#~ "Ésta es una caracterísitca de Linux Mandrake. Krusader no permite ésto, "
-#~ "así que crea un comportamiento impredecible."
-
-#~ msgid "Unmounting device, please wait ..."
-#~ msgstr "Desmontando dispositivo, por favor espere..."
-
-#~ msgid ""
-#~ "Unable to execute 'umount' !!! check that /bin/umount or /sbin/umount are "
-#~ "availble"
-#~ msgstr ""
-#~ "No se puede ejecutar 'umount' !!! compruebe que /bin/umount or /sbin/"
-#~ "umount está disponible"
-
-#~ msgid "Unable to complete the un-mount."
-#~ msgstr "No se ha podido completar el desmontaje."
-
-#, fuzzy
-#~ msgid "MountMan::KMountMan"
-#~ msgstr "MountMan - Su gestor de montaje"
-
-#~ msgid "Select Compare Mode"
-#~ msgstr "Selecciona el modo de comparación"
-
-#~ msgid "Left Panel"
-#~ msgstr "Panel izquierdo"
-
-#~ msgid "Show identical files"
-#~ msgstr "Mostrar idénticos"
-
-#~ msgid "Show older files"
-#~ msgstr "Mostrar antiguos"
-
-#~ msgid "Show newer files"
-#~ msgstr "Mostrar nuevos"
-
-#~ msgid "Show exclusive files"
-#~ msgstr "Mostrar exclusivos"
-
-#~ msgid "Right Panel"
-#~ msgstr "Panel derecho"
-
-#~ msgid ""
-#~ "* Exclusive files don't exist in the other panel.\n"
-#~ "* Color masks do not apply to directories"
-#~ msgstr ""
-#~ "* Archivos exclusivos no existen en el otro panel.\n"
-#~ "* La máscara de color no se aplica a los directorios"
-
-#~ msgid "Supermount device."
-#~ msgstr "Dispositivo supermontado."
-
-#~ msgid "on a supermounted device."
-#~ msgstr "en un dispositivo supermontado."
-
-#~ msgid "For details, please read"
-#~ msgstr "Para detalles, por favor lea"
-
-#~ msgid "the Krusader FAQ."
-#~ msgstr "el FAQ de Krusader."
-
-#~ msgid "Newer files (compare mode)"
-#~ msgstr "Nuevos (modo de comparación)"
-
-#~ msgid "Older files (compare mode)"
-#~ msgstr "Antiguos (modo de comparación)"
-
-#~ msgid "Identical files (compare mode)"
-#~ msgstr "Idénticos (modo de comparación)"
-
-#~ msgid "Exclusive files (compare mode)"
-#~ msgstr "Exclusivos (modo de comparación)"
-
-#~ msgid "rar: found, packing is enabled.\n"
-#~ msgstr "rar: encontrado, compresión activada.\n"
-
-#~ msgid "Compare mode is temporarily disabled. sorry"
-#~ msgstr "El modo de comparación está desactivado temporalmente."
-
-#~ msgid "Failed to run 'df', MountMan cannot be started."
-#~ msgstr "Error al ejecutar 'df', MountMan no puede iniciarse."
-
-#~ msgid "Close this window"
-#~ msgstr "Cerrar ésta ventana"
-
-#~ msgid "Close the Mount.Man window."
-#~ msgstr "Cierra la ventana de Mount Man."
-
-#~ msgid "No space information inside archives"
-#~ msgstr "No hay información sobre el espacio dentro de los archivos"
-
-#~ msgid "no. of files"
-#~ msgstr "num. de archivos"
-
-#~ msgid "no. of files and folders"
-#~ msgstr "num. de archivos y carpetas"
-
-#~ msgid "selected files and folders"
-#~ msgstr "archivos y carpetas seleccionados"
-
-#~ msgid "all files and folders"
-#~ msgstr "todos los archivos y carpetas"
-
-#~ msgid "all files (not folders)"
-#~ msgstr "todos los archivos (no carpetas)"
-
-#~ msgid "all folders (not files)"
-#~ msgstr "todas las carpetas (no archivos)"
-
-#~ msgid "UserMenuAddImpl"
-#~ msgstr "UserMenuAddImpl"
-
-#~ msgid "UserMenuProc"
-#~ msgstr "UserMenuProc"
-
-#~ msgid "UserMenu"
-#~ msgstr "UserMenu"
-
-#~ msgid "Entry"
-#~ msgstr "Entrada"
-
-#~ msgid "Show this entry"
-#~ msgstr "Mostrar ésta entrada"
-
-#~ msgid "everywhere"
-#~ msgstr "en cualquier lugar"
-
-#~ msgid "only in"
-#~ msgstr "sólo en"
-
-#~ msgid "No output collection"
-#~ msgstr "No reunir salida"
-
-#~ msgid "Single click executes"
-#~ msgstr "Un sólo clic ejecuta"
+#: Splitter/splitter.cpp:243
+msgid "Error at writing file %1!"
+msgstr "¡Error escribiendo el archivo %1!"
