@@ -8,6 +8,7 @@
     ADDED: rar support to krArc KIO slave.
     ADDED: open with in the right click menu for multiple files with the same mimetype.
     ADDED: Patch by Heiner <h.eichmann@gmx.de>  which adds a cancel button to the calculate space action.
+    FIXED: whenever the folder gets refreshed, the current file would be lost
     FIXED: problematic behavior when trying to SPACE a folder without permissions
     FIXED: Ctrl-A didn't work properly
     FIXED: crash when unmounting a busy mountpoint
