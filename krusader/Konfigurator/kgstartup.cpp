@@ -47,8 +47,8 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_NAME_VALUE_TIP savePanels[] =
   //          name                                    value   tooltip
-    {{ i18n( "Save settings on exit" )             ,  "true",  "When Krusader launches, the panels current directory will be the same as it was when Krusader was shutdown." },
-     { i18n( "Start with the following settings:" ),  "false", "Defines a startup status for each panel." } };
+    {{ i18n( "Save settings on exit" )             ,  "true",  i18n( "When Krusader launches, the panels current directory will be the same as it was when Krusader was shutdown." ) },
+     { i18n( "Start with the following settings:" ),  "false", i18n( "Defines a startup status for each panel." ) } };
 
   saveRadio = createRadioButtonGroup( "Startup", "Panels Save Settings",
       "false", 1, 0, savePanels, 2, panelsGrp, "mySaveRadio", false );
@@ -91,13 +91,13 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] =
   //   cfg_class  cfg_name                default               text                                      restart ToolTip
-    {{"Startup","UI Save Settings",      _UiSave,               i18n( "Save settings on exit" ),          false,  "Krusader checks the state of the user interface components,\nand restores them to the condition they were during shutdown."},
-     {"Startup","Show tool bar",         _ShowToolBar,          i18n( "Toolbar visible" ),                false,  "Toolbar will be visible after startup."},
-     {"Startup","Show status bar",       _ShowStatusBar,        i18n( "Statusbar visible" ),              false,  "Statusbar will be visible after startup."},
-     {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Function keys visible" ),          false,  "Function keys will be visible after startup."},
-     {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Command-line visible" ),           false,  "Command-line will be visible after startup."},
-     {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Terminal Emulator visible" ),      false,  "Terminal Emulator will be visible after startup."},
-     {"Startup","Remember Position",     _RememberPos,          i18n( "Restore last position and size" ), false,  "When launched, Krusader will resize itself to the last size it was when last shutdown.\nKrusader will also appear in the same location on the screen."
+    {{"Startup","UI Save Settings",      _UiSave,               i18n( "Save settings on exit" ),          false,  i18n( "Krusader checks the state of the user interface components,\nand restores them to the condition they were during shutdown." ) },
+     {"Startup","Show tool bar",         _ShowToolBar,          i18n( "Toolbar visible" ),                false,  i18n( "Toolbar will be visible after startup." ) },
+     {"Startup","Show status bar",       _ShowStatusBar,        i18n( "Statusbar visible" ),              false,  i18n( "Statusbar will be visible after startup." ) },
+     {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Function keys visible" ),          false,  i18n( "Function keys will be visible after startup." ) },
+     {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Command-line visible" ),           false,  i18n( "Command-line will be visible after startup." ) },
+     {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Terminal Emulator visible" ),      false,  i18n( "Terminal Emulator will be visible after startup." ) },
+     {"Startup","Remember Position",     _RememberPos,          i18n( "Restore last position and size" ), false,  i18n( "When launched, Krusader will resize itself to the last size it was when last shutdown.\nKrusader will also appear in the same location on the screen." )
 }};
 
   uiCbGroup = createCheckBoxGroup( 1, 0, uiCheckBoxes, 7, uiGrp );
