@@ -49,7 +49,7 @@ GeneralFilter::GeneralFilter( int properties, QWidget *parent, const char *name 
   // Options for name filtering
   
   QGroupBox *nameGroup = new QGroupBox( this, "nameGroup" );
-  nameGroup->setTitle( i18n( "File name:" ) );
+  nameGroup->setTitle( i18n( "File name" ) );
   nameGroup->setColumnLayout(0, Qt::Vertical );
   nameGroup->layout()->setSpacing( 0 );
   nameGroup->layout()->setMargin( 0 );
