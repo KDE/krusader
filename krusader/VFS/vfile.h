@@ -49,6 +49,8 @@ protected:
 	mode_t				vfile_mode;			// the vfile mode
 	uid_t					vfile_ownerId;	// owner id
 	gid_t					vfile_groupId;	// group id
+  QString       vfile_owner;    // owner name
+  QString       vfile_group;    // group name
 	QString     	vfile_perm;			// permissions
 	QString			  vfile_dateTime;	// modification date&time
 	bool					vfile_symLink;  // true==yes
@@ -93,6 +95,8 @@ public:
 	inline mode_t						vfile_getMode()			{ return vfile_mode;			}
 	inline uid_t						vfile_getUid()			{ return vfile_ownerId;		}
   inline gid_t						vfile_getGid()			{ return vfile_groupId;		}
+	QString						      vfile_getOwner();
+  QString						      vfile_getGroup();
 	virtual char			      vfile_isReadable();
 	virtual char 			      vfile_isWriteable();
   virtual char			      vfile_isExecutable();

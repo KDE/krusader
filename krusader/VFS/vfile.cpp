@@ -32,6 +32,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 // Qt includes
 #include <qdatetime.h>
 // Krusader includes
@@ -76,9 +77,10 @@ vfile::vfile(QString name,	                  // useful construtor
 						mode_t mode){
 		vfile_name=name;
 		vfile_size=size;
-		if (owner == QString::null) vfile_ownerId = geteuid() ;
-		else vfile_ownerId= KRpermHandler::user2uid(owner) ;
-		vfile_groupId=			KRpermHandler::group2gid(group);
+    vfile_owner=owner;
+    vfile_group=group;
+		vfile_ownerId=KRpermHandler::user2uid(owner) ;
+		vfile_groupId=KRpermHandler::group2gid(group);
 		vfile_perm=perm;
 		vfile_dateTime=dateTime;
 		vfile_symLink=symLink;
@@ -86,7 +88,7 @@ vfile::vfile(QString name,	                  // useful construtor
 		vfile_symDest=symDest;
 		vfile_mode=mode;
     if (vfile_isDir())
-  		vfile_size = 0;
+    vfile_size = 0;
 }
 
 char vfile::vfile_isReadable(){
@@ -99,6 +101,18 @@ char vfile::vfile_isWriteable(){
 
 char vfile::vfile_isExecutable(){
 	return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
+}
+
+QString vfile::vfile_getOwner(){
+  if( vfile_owner.isEmpty() )
+    vfile_owner=KRpermHandler::uid2user(vfile_getUid());
+  return vfile_owner;
+}
+
+QString vfile::vfile_getGroup(){
+  if( vfile_group.isEmpty() )
+    vfile_group=KRpermHandler::uid2user(vfile_getGid());
+  return vfile_group;
 }
 
 KIO::UDSEntry vfile::vfile_getEntry(){
@@ -117,18 +131,14 @@ KIO::UDSEntry vfile::vfile_getEntry(){
 	atom.m_long = KRpermHandler::QString2time( vfile_getDateTime() );
 	entry.append(atom);
 
-  struct passwd *pass = getpwuid(vfile_getUid());
-	if( pass ){
-		atom.m_uds = KIO::UDS_USER;
-		atom.m_str = pass->pw_name;
-		entry.append(atom);
-  }
-  struct group* gr = getgrgid(vfile_getGid());
-	if( gr ){
-		atom.m_uds = KIO::UDS_GROUP;
-		atom.m_str = gr->gr_name; 
-		entry.append(atom);
-  }
+	atom.m_uds = KIO::UDS_USER;
+	atom.m_str = vfile_getOwner();
+	entry.append(atom);
+
+	atom.m_uds = KIO::UDS_GROUP;
+	atom.m_str = vfile_getOwner(); 
+	entry.append(atom);
+
  	atom.m_uds = KIO::UDS_MIME_TYPE;
 	atom.m_str = vfile_getMime();
 	entry.append(atom);
