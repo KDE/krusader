@@ -265,21 +265,23 @@ ListPanel::~ListPanel() {
 void ListPanel::togglePanelPopup() {
 	if (popup->isHidden()) {
 		popup->show();
-		// ugly hack. resize the splitter since it won't do so itself
+		
 		if (popupSizes.count() > 0) {
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(popupSizes);
-		} else {
+		} else { // on the first time, resize to 50%
 			QValueList<int> lst;
 			lst << height()/2 << height()/2;
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
 		}
 		popupBtn->setPixmap(krLoader->loadIcon("down", KIcon::Toolbar, 16));
+		QToolTip::add(  popupBtn, i18n( "Close the popup panel" ) );
 	} else {
 		popupSizes.clear();
 		popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
 		popup->hide();
 		popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Toolbar, 16));
-		// ugly hack. resize the splitter since it won't do so itself
+		QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
+		
 		QValueList<int> lst;
 		lst << height() << 0;
 		dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
