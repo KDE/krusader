@@ -17,6 +17,7 @@
 #ifndef PANELTABBAR_H
 #define PANELTABBAR_H
 
+#include <kurl.h>
 #include <qtabbar.h>
 #include <qvaluelist.h>
 
@@ -75,7 +76,7 @@ signals:
   /**
    * emitted when the user right-clicks and selects an action that creates a new tab
    */
-  void newTab(QString path);
+  void newTab(const KURL& path);
 
 protected:
   void mousePressEvent( QMouseEvent* );

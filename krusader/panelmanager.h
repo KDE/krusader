@@ -50,7 +50,6 @@ class PanelManager: public QWidget {
      * action, from the context-menu.
      */
     void slotNewTab(const KURL& url, bool setCurrent = true );
-	 void slotNewTab(QString path, bool setCurrent = true );
     void slotNewTab();
     void slotNextTab();
     void slotPreviousTab();	 

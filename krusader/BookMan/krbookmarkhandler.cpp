@@ -270,6 +270,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 		}
 		newMenu->insertSeparator();
 		krPopularUrls->plug(newMenu);
+		newMenu->installEventFilter(this);
 		
 		// finished with popular links
 		menu->insertSeparator();

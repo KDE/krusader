@@ -41,7 +41,7 @@ QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ), _self( self ), _
    _tabbar = new PanelTabBar( this );
    connect( _tabbar, SIGNAL( changePanel( ListPanel* ) ), this, SLOT( slotChangePanel( ListPanel * ) ) );
    connect( _tabbar, SIGNAL( closeCurrentTab() ), this, SLOT( slotCloseTab() ) );
-   connect( _tabbar, SIGNAL( newTab( QString ) ), this, SLOT( slotNewTab( QString ) ) );
+   connect( _tabbar, SIGNAL( newTab( const KURL& ) ), this, SLOT( slotNewTab( const KURL& ) ) );
 
    _layout->addMultiCellWidget( _stack, 0, 0, 0, 2 );
    _layout->addWidget( _newTab, 1, 0 );
@@ -129,7 +129,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
      slotCloseTab( --totalTabs );
       
    for(; i < (int)l.count(); i++ )
-     slotNewTab( l[i], false );
+     slotNewTab( vfs::fromPathOrURL(l[i]), false );
 }
 
 void PanelManager::slotNewTab(const KURL& url, bool setCurrent) {
@@ -146,10 +146,6 @@ void PanelManager::slotNewTab(const KURL& url, bool setCurrent) {
 
 void PanelManager::slotNewTab() {
    slotNewTab( QDir::home().absPath() );
-}
-
-void PanelManager::slotNewTab( QString path, bool setCurrent ) {
-	slotNewTab(vfs::fromPathOrURL(path), setCurrent);
 }
 
 void PanelManager::slotCloseTab() {

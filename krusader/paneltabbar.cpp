@@ -129,7 +129,7 @@ void PanelTabBar::updateTab(ListPanel *panel) {
 
 void PanelTabBar::duplicateTab() {
   int id = currentTab();
-  emit newTab(dynamic_cast<PanelTab*>(tab(id))->panel->virtualPath);
+  emit newTab(vfs::fromPathOrURL(dynamic_cast<PanelTab*>(tab(id))->panel->virtualPath));
 }
 
 void PanelTabBar::closeTab() {
