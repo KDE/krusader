@@ -98,7 +98,8 @@ void KrView::getSelectedItems( QStringList *names ) {
       if ( it->isSelected() && ( it->name() != ".." ) ) names->append( it->name() );
 
    // if all else fails, take the current item
-   if ( names->empty() && ( getCurrentItem() != ".." ) ) names->append( getCurrentItem() );
+	QString item = getCurrentItem();
+   if ( names->empty() && item!=QString::null && item!=".." ) names->append( item );
 }
 
 void KrView::getSelectedKrViewItems( KrViewItemList *items ) {
@@ -106,7 +107,8 @@ void KrView::getSelectedKrViewItems( KrViewItemList *items ) {
       if ( it->isSelected() && ( it->name() != ".." ) ) items->append( it );
 
    // if all else fails, take the current item
-   if ( items->empty() && ( getCurrentItem() != ".." ) ) items->append( getCurrentKrViewItem() );
+	QString item = getCurrentItem();
+   if ( items->empty() && item!=QString::null && item!=".." ) items->append( getCurrentKrViewItem() );
 }
 
 QString KrView::statistics() {
