@@ -166,9 +166,13 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
   setAllColumnsShowFocus( true );
   setShowSortIndicator( true );
   header() ->setStretchEnabled( true, column( Name ) );
+
+  //---- don't enable these lines, as it causes an ugly bug with inplace renaming
+  //-->  setItemsRenameable( true );
+  //-->  setRenameable( column( Name ), true );
+  //-------------------------------------------------------------------------------
+
   // allow in-place renaming
-  setItemsRenameable( true );
-  setRenameable( column( Name ), true );
   connect( renameLineEdit(), SIGNAL( done( QListViewItem *, int ) ),
            this, SLOT( inplaceRenameFinished( QListViewItem*, int ) ) );
   connect( this, SIGNAL( renameItem( const QString &, const QString & ) ),
@@ -608,7 +612,6 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
 
 // overridden to make sure EXTENTION won't be lost during rename
 void KrDetailedView::rename(QListViewItem *item, int c) {
-   kdWarning() << "!!" << endl;
    // do we have an EXT column? if so, handle differently:
    // copy the contents of the EXT column over to the name
    if ( column( Extention ) != -1 ) {
