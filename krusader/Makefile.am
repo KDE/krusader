@@ -3,6 +3,10 @@ bin_PROGRAMS = krusader
 
 ## INCLUDES were found outside kdevelop specific part
 
+if include_libkonq
+LIB_KONQ = -lkonq
+endif
+
 krusader_SOURCES = paneltabbar.cpp panelmanager.cpp krservices.cpp main.cpp krusaderview.cpp krusader.cpp krslots.cpp kicons.cpp 
 krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./GUI/libGUI.a ./Konfigurator/libKonfigurator.a ./KViewer/libKViewer.a ./MountMan/libMountMan.a ./Panel/libPanel.a ./RemoteMan/libRemoteMan.a ./VFS/libVFS.a ./Search/libSearch.a ./Splitter/libSplitter.a ./Synchronizer/libSynchronizer.a ./UserMenu/libUserMenu.a ./Locate/libLocate.a UserAction/libUserAction.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a GUI/libGUI.a $(LIB_KONQ) $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) $(LIBSOCKET)
 

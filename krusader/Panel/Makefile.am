@@ -1,3 +1,8 @@
+if include_libkonq
+AM_CPPFLAGS = -D__LIBKONQ__
+endif
+
+
 ####### kdevelop will overwrite this part!!! (begin)##########
 noinst_LIBRARIES = libPanel.a
 
