@@ -93,6 +93,9 @@ void kgStartupImpl::slotSetup() {
   if (tmp)
     slotPanelsSave();
   else slotPanelsDontSave();
+
+  // disable panel types -  until we get a new konfigurator
+  panelsTypes->setEnabled(false);
 }
 
 void kgStartupImpl::slotApplyChanges() {
@@ -141,7 +144,7 @@ void kgStartupImpl::slotPanelsSave() {
 void kgStartupImpl::slotPanelsDontSave() {
   // reactivate all other objects in the 'panels' group
   TextLabel1->setEnabled(true);
-  panelsTypes->setEnabled(true);
+  //panelsTypes->setEnabled(true);
   panelsLeftLabel1->setEnabled(true);
   panelsLeftLabel2->setEnabled(true);
   panelsLeftType->setEnabled(true);
