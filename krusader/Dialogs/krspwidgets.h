@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 #include <qstrlist.h>
+#include <kurl.h>
 #include "krmaskchoice.h"
 #include "newftpgui.h"
 #include "../VFS/krquery.h"
@@ -47,7 +48,7 @@ public:
 	KRSpWidgets();
 
   static KRQuery getMask( QString caption, bool nameOnly=false ); // get file-mask for (un)selecting files
-  static QString newFTP();
+  static KURL newFTP();
 
 private:
   static QStrList maskList;  // used by KRMaskChoiceSub 

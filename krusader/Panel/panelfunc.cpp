@@ -903,8 +903,7 @@ void ListPanelFunc::FTPDisconnect() {
 }
 
 void ListPanelFunc::newFTPconnection() {
-	QString url;
-	url = KRSpWidgets::newFTP();
+	KURL url = KRSpWidgets::newFTP();
 	// if the user canceled - quit
 	if ( url.isEmpty() )
 		return ;

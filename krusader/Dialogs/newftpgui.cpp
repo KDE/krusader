@@ -26,6 +26,7 @@
 #include <kiconloader.h>
 #include "../krusader.h"
 
+
 /* 
  *  Constructs a newFTPGUI which is a child of 'parent', with the 
  *  name 'name' and widget flags set to 'f' 
@@ -45,7 +46,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     if ( !name )
     setName( "newFTPGUI" );
     resize( 342, 261 );
-    setCaption( i18n( "New FTP Connection"  ) );
+    setCaption( i18n( "New Network Connection"  ) );
 //     setSizeGripEnabled( TRUE );
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, sizePolicy().hasHeightForWidth() ) );
     setMinimumSize( QSize( 342, 261 ) );
@@ -122,14 +123,16 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     hbox->setSpacing( 6 );
     hbox->setMargin( 0 );
 
+	 hbox->addItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
+	 
     connectBtn = new QPushButton( i18n( "&Connect"  ), Layout6, "connectBtn" );
     connectBtn->setAutoDefault( TRUE );
     connectBtn->setDefault( TRUE );
     hbox->addWidget( connectBtn );
 
-    saveBtn = new QPushButton( i18n( "&Save"  ), Layout6, "saveBtn" );
-    saveBtn->setAutoDefault( TRUE );
-    hbox->addWidget( saveBtn );
+    //saveBtn = new QPushButton( i18n( "&Save"  ), Layout6, "saveBtn" );
+    //saveBtn->setAutoDefault( TRUE );
+    //hbox->addWidget( saveBtn );
 
     cancelBtn = new QPushButton( i18n( "&Cancel"  ), Layout6, "cancelBtn" );
     cancelBtn->setAutoDefault( TRUE );

@@ -62,46 +62,24 @@ KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly ) {
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////
-QString KRSpWidgets::newFTP() {
-  newFTPSub *p=new newFTPSub();
-  p->exec();
-  if (p->url->currentText()=="") return QString::null;
-  QString URL=p->prefix->currentText();
-
-  QString url      = p->url->currentText();
-  QString username = p->username->text();
-  QString password = p->password->text();
-  int pswStartPos, pswEndPos;
-
-  if(( pswEndPos = url.findRev( "@" ) ) != -1 )
-  {
-    pswStartPos = url.findRev( ":", pswEndPos );
-    
-    if( pswStartPos != -1 )
-    {
-      password = ( password.isEmpty() ? QString( "" ) : password+"@" ) + url.mid( pswStartPos+1, pswEndPos-pswStartPos-1 );
-      url.remove( pswStartPos, pswEndPos-pswStartPos );
-    }
-
-    pswEndPos = url.findRev( "@" );
-    username = ( username.isEmpty() ? QString( "" ) : username+"@" ) + url.left( pswEndPos );
-    url.remove( 0, pswEndPos+1 );
-  }
+KURL KRSpWidgets::newFTP() {
+	newFTPSub *p=new newFTPSub();
+	p->exec();
+	if (p->url->currentText()=="") return KURL(); // empty url
+	KURL url;
+	
+	QString protocol = p->prefix->currentText();
+	protocol.truncate(protocol.length() - 3); // remove the trailing ://
+	url.setProtocol(protocol);
+		url.setHost(p->url->currentText());
+	if (url.protocol().startsWith("ftp"))
+		url.setPort(p->port->cleanText().toShort());
+	if (!p->username->text().simplifyWhiteSpace().isEmpty())
+		url.setUser(p->username->text().simplifyWhiteSpace());
+	if (!p->password->text().simplifyWhiteSpace().isEmpty())
+		url.setPass(p->password->text().simplifyWhiteSpace());
   
-  if( !username.isEmpty() ){
-    URL = URL + username;
-    if ( !password.isEmpty() )
-         URL = URL + ":" + password;
-    URL = URL + "@";
-  }
-  URL = URL + url;
-  if( p->prefix->currentText().startsWith("ftp") ){
-    int i = URL.find("/",p->prefix->currentText().length());
-		if ( i==-1 ) URL = URL + ":" + p->port->cleanText();
-		else URL=URL.left(i)+":" + p->port->cleanText()+URL.mid(i);
-	}
-
-  return URL;
+  return url;
 }
 
 newFTPSub::newFTPSub() : newFTPGUI(0,0,true) {
