@@ -1120,9 +1120,9 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QToolTip::add( cbAsymmetric, i18n( "Asymmetric mode. The left side is the destination, the right is the source directory.\n"
                                      "The files existing only in the left directory will be deleted, the other differing ones\n"
                                      "will be copied from right to left (useful at updating a directory from a file server)." ) );
-  cbAutoScroll      = new QCheckBox( i18n( "Automatic Scrolling" ), optionGrid, "cbAutoScroll" );
-  cbAutoScroll->setChecked( krConfig->readBoolEntry( "Automatic Scrolling", _AutoScroll ) );
-  QToolTip::add( cbAutoScroll, i18n( "Scrolls the results of comparing (slow)" ) );
+  cbIgnoreCase      = new QCheckBox( i18n( "Ignore Case" ), optionGrid, "cbIgnoreCase" );
+  cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", _IgnoreCase ) );
+  QToolTip::add( cbIgnoreCase, i18n( "Case insensitive filename compare. Use at synchronizing on Windows filesystems." ) );
 
   /* =========================== Show options groupbox ============================= */
   
@@ -1413,10 +1413,11 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
 
   bool    isDuplicate = item->existsInLeft() && item->existsInRight();
   bool    isDir       = item->isDir();
-  QString dirName     = item->directory().isEmpty() ? "" : item->directory() + "/";
+  QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
+  QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
 
-  KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + dirName + item->name() );
-  KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + dirName + item->name() );
+  KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
+  KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
   
   // create the menu
   KPopupMenu popup;
@@ -1537,7 +1538,8 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
           if( !viewItem || !viewItem->isVisible() )
             continue;
 
-          if( QRegExp(mask,true,true).exactMatch( currentItem->name() ) )
+          if( QRegExp(mask,true,true).exactMatch( currentItem->leftName() ) ||
+              QRegExp(mask,true,true).exactMatch( currentItem->rightName() ) )
             syncList->setSelected( viewItem, result == SELECT_ITEMS_ID );
         }
       }
@@ -1575,7 +1577,7 @@ void SynchronizerGUI::closeDialog()
   krConfig->writeEntry("Compare By Content", cbByContent->isChecked() );
   krConfig->writeEntry("Ignore Date", cbIgnoreDate->isChecked() );
   krConfig->writeEntry("Asymmetric", cbAsymmetric->isChecked() );
-  krConfig->writeEntry("Automatic Scrolling", cbAutoScroll->isChecked() );
+  krConfig->writeEntry("Ignore Case", cbIgnoreCase->isChecked() );
   krConfig->writeEntry("LeftToRight Button", btnLeftToRight->isOn() );
   krConfig->writeEntry("Equals Button", btnEquals->isOn() );
   krConfig->writeEntry("Differents Button", btnDifferents->isOn() );
@@ -1615,8 +1617,6 @@ void SynchronizerGUI::compare()
   query.setFilter( fileFilter->currentText() );
   synchronizerTabs->setCurrentPage(0);
   
-  bool autoScrolling = cbAutoScroll->isChecked();
-  
   syncList->clear();
   lastItem = 0;
   
@@ -1636,7 +1636,7 @@ void SynchronizerGUI::compare()
   int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
                        &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
-                       autoScrolling );
+                       cbIgnoreCase->isChecked(), false );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnCompareDirs->setEnabled( true );
@@ -1647,9 +1647,6 @@ void SynchronizerGUI::compare()
 
   if( wasClosed )
     closeDialog();
-
-  if( !autoScrolling )
-    refresh();
 }
 
 void SynchronizerGUI::stop()
@@ -1669,14 +1666,14 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
 
   if( item->existsInLeft() )
   {
-    leftName = item->name();
+    leftName = item->leftName();
     leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
     leftDate = SynchronizerGUI::convertTime( item->leftDate() );
   }
   
   if( item->existsInRight() )
   {
-    rightName = item->name();
+    rightName = item->rightName();
     rightSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->rightSize() );
     rightDate = SynchronizerGUI::convertTime( item->rightDate() );
   }
@@ -1724,14 +1721,14 @@ void SynchronizerGUI::markChanged( SynchronizerFileItem *item )
 
     if( item->existsInLeft() )
     {
-      leftName = item->name();
+      leftName = item->leftName();
       leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
       leftDate = SynchronizerGUI::convertTime( item->leftDate() );
     }
   
     if( item->existsInRight() )
     {
-      rightName = item->name();
+      rightName = item->rightName();
       rightSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->rightSize() );
       rightDate = SynchronizerGUI::convertTime( item->rightDate() );
     }
@@ -1885,20 +1882,21 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
         break;
 
       SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
-      QString dirName    = item->directory().isEmpty() ? "" : item->directory() + "/";
+      QString leftDirName    = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
+      QString rightDirName    = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
 
       if( item->isDir() )
         return;
     
       if ( e->state() == ShiftButton && item->existsInRight() )
       {
-        KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + dirName + item->name() );
+        KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
         KrViewer::view( rightURL ); // view the file
         return;
       }
       else if ( e->state() == 0 && item->existsInLeft() )
       {
-        KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + dirName + item->name() );
+        KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
         KrViewer::view( leftURL ); // view the file
         return;
       }
@@ -1932,7 +1930,7 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   cbByContent-> setChecked( krConfig->readBoolEntry( "Compare By Content", false ) );
   cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", false ) );
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", false ) );
-  cbAutoScroll->setChecked( krConfig->readBoolEntry( "Auto Scrolling", false ) );
+  cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", false ) );
   
   btnLeftToRight->setOn( krConfig->readBoolEntry( "Show Left To Right", true ) );
   btnEquals     ->setOn( krConfig->readBoolEntry( "Show Equals", true ) );
@@ -1958,7 +1956,7 @@ void SynchronizerGUI::saveToProfile( QString profile )
   krConfig->writeEntry( "Compare By Content", cbByContent->isChecked() );
   krConfig->writeEntry( "Ignore Date", cbIgnoreDate->isChecked() );
   krConfig->writeEntry( "Asymmetric", cbAsymmetric->isChecked() );
-  krConfig->writeEntry( "Auto Scrolling", cbAutoScroll->isChecked() );
+  krConfig->writeEntry( "Ignore Case", cbIgnoreCase->isChecked() );
   
   krConfig->writeEntry( "Show Left To Right", btnLeftToRight->isOn() );
   krConfig->writeEntry( "Show Equals", btnEquals->isOn() );

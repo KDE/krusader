@@ -141,7 +141,7 @@ protected:
   QCheckBox     *cbByContent;
   QCheckBox     *cbIgnoreDate;
   QCheckBox     *cbAsymmetric;
-  QCheckBox     *cbAutoScroll;
+  QCheckBox     *cbIgnoreCase;
   
   QPushButton   *btnSwapSides;
   QPushButton   *btnCompareDirs;
