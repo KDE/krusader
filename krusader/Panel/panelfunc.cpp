@@ -650,6 +650,11 @@ void ListPanelFunc::pack() {
 	if ( PackGUI::type == QString::null )
 		return ; // the user canceled
 
+	// check for partial URLs	
+	if( !PackGUI::destination.contains(":/") && !PackGUI::destination.startsWith("/")  ){
+		PackGUI::destination = panel->virtualPath+"/"+PackGUI::destination;
+	}
+	
 	bool packToOtherPanel = ( PackGUI::destination == panel->otherPanel->virtualPath );
 
 	// on remote URL-s first pack into a temp file then copy to its right place
@@ -779,6 +784,10 @@ void ListPanelFunc::unpack() {
 	if ( dest == QString::null )
 		return ; // the usr canceled
 
+	// check for partial URLs	
+	if( !dest.contains(":/") && !dest.startsWith("/")  ){
+		dest = panel->virtualPath+"/"+dest;
+	}
 	bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath );
 
 	for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
