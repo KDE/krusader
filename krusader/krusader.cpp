@@ -328,10 +328,13 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 Krusader::~Krusader() {}
 
 bool Krusader::versionControl() {
+#define FIRST_RUN	"First Time"
    bool retval = false;
    // create config file
    config = kapp->config();
-   
+   bool firstRun = config->readBoolEntry(FIRST_RUN, true);
+
+#if 0      
 	QString oldVerText = config->readEntry( "Version", "10.0" );
    oldVerText.truncate( oldVerText.findRev( "." ) ); // remove the third dot
    float oldVer = oldVerText.toFloat();
@@ -345,12 +348,15 @@ bool Krusader::versionControl() {
       retval = true;
       config->reparseConfiguration();
    }
+#endif
+
    // first installation of krusader
-   if ( oldVer == 10.0 ) {
+   if ( firstRun ) {
       KMessageBox::information( krApp, i18n( "Welcome to Krusader! As this is your first run, Krusader will now run Konfigurator." ) );
       retval = true;
    }
    config->writeEntry( "Version", VERSION );
+   config->writeEntry( FIRST_RUN, false);
    config->sync();
    return retval;
 }
