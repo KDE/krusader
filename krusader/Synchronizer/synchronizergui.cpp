@@ -43,21 +43,6 @@
 #include <time.h>
 #include <kmessagebox.h>
 
-/* TODO TODO TODO TODO TODO */
-#define  _RecurseSubdirs    true
-#define  _FollowSymlinks    false
-#define  _CompareByContent  false
-#define  _IgnoreDate        false
-#define  _Asymmetric        false
-#define  _BtnLeftToRight    true
-#define  _BtnEquals         true
-#define  _BtnDifferents     true
-#define  _BtnRightToLeft    true
-#define  _BtnDeletable      true
-#define  _BtnDuplicates     true
-#define  _BtnSingles        true
-/* TODO TODO TODO TODO TODO */
-
 static const char * const right_arrow_button_data[] = {
 "18 18 97 2",
 "  	c None",

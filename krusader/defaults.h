@@ -176,3 +176,33 @@
 // lastHomeRight      - Save the last place the right list panel was showing
 // lastHomeLeft       - Save the last place the left list panel was showing
 // lastUsedPacker     - used by packGUI to remember the last used packer
+
+
+/////////////////////// [Synchronize directories]
+// Don't overwrite automatically /////////////
+#define  _ConfirmOverWrites   false
+// Recursive search in the subdirectories /////////////
+#define  _RecurseSubdirs    true
+// The searcher follows symlinks /////////////
+#define  _FollowSymlinks    false
+// Files with similar size are compared by content /////////////
+#define  _CompareByContent  false
+// The date information is ignored at synchronization /////////////
+#define  _IgnoreDate        false
+// Asymmetric Client-File Server compare mode /////////////
+#define  _Asymmetric        false
+// The right arrow button is turned on /////////////
+#define  _BtnLeftToRight    true
+// The equals button is turned on /////////////
+#define  _BtnEquals         true
+// The not equals button is turned on /////////////
+#define  _BtnDifferents     true
+// The left arrow button is turned on /////////////
+#define  _BtnRightToLeft    true
+// The trash button is turned on /////////////
+#define  _BtnDeletable      true
+// The duplicates button is turned on /////////////
+#define  _BtnDuplicates     true
+// The singles button is turned on /////////////
+#define  _BtnSingles        true
+

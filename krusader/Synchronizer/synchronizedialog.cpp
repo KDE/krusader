@@ -36,10 +36,6 @@
 #include <qhbox.h>
 #include <klocale.h>
 
-/* TODO TODO TODO TODO TODO */
-#define  _ConfirmOverWrites   false
-/* TODO TODO TODO TODO TODO */
-
 SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool modal, WFlags fl,
                                       Synchronizer *sync, int pleftCopyNr, KIO::filesize_t pleftCopySize,
                                       int prightCopyNr, KIO::filesize_t prightCopySize, int pdeleteNr,
