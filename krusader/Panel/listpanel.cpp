@@ -1198,6 +1198,7 @@ void ListPanel::inlineRefreshInfoMessage( KIO::Job*, const QString &msg ) {
 }
 
 void ListPanel::inlineRefreshListResult(KIO::Job*) {
+	inlineRefreshJob = 0;
 	// reenable everything
 	//static_cast<KrDetailedView*>(view)->setEnabled(true);
 	status->setEnabled(true);
