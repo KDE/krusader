@@ -26,9 +26,14 @@ public:
      enum ExecType { Terminal, CollectOutput, Normal };
      
     /**
-     * This initiate every propertywith it's default
+     * This initiate every property with it's default
      */
     UserActionProperties(); 
+    
+    /**
+     * This initiate every property from prop
+     */
+    UserActionProperties( UserActionProperties* prop ); 
     
     /**
      * Use this to dublicate properties.

@@ -22,6 +22,9 @@ UserActionProperties::UserActionProperties() {
   _confirmExecution = false;
 }
 
+UserActionProperties::UserActionProperties( UserActionProperties* prop ) {
+  copyFrom( prop );
+}
 
 void UserActionProperties::copyFrom( UserActionProperties* from ) {
   _name = *from->name();

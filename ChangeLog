@@ -1,7 +1,7 @@
 ======================
     ADDED: Human-readable file sizes is implemented (located in look&feel->panel)
     ADDED: inactive tabs are set to quiet, as not to cause unneeded refreshes
-	 ADDED: useraction: available via rightclick-menu
+    ADDED: useraction: available via rightclick-menu
     ADDED: importing the right click menu of konqueror
     ADDED: cut(CTRL+X), copy(CTRL+C), paste(CTRL+V)
     ADDED: useraction: new Placeholder %_Profile("panel-profile")%
@@ -57,6 +57,7 @@
     
     REACTIVATED: usermenu (now using the new useraction-system)
 
+    FIXED: crash when deleting an useraction created in the same session
     FIXED: locale aware ABC sorting (for non-english languages)
     FIXED: useraction: startpath is now working
     FIXED: useraction: i18n is now working in the add-placeholder-menu

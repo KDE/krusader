@@ -157,7 +157,7 @@ void KgUserActions::slotUpdateAction() {
     if ( actionProperties->leDistinctName->isEnabled() ) {
       // := new entry
       krUserAction->xml()->addActionToDom( actionProperties->properties() );
-      krUserAction->addKrAction( actionProperties->properties() );
+      krUserAction->addKrAction( new UserActionProperties( actionProperties->properties() ) );
       actionList->insertItem( *actionProperties->properties()->name() );
     }
     else // := edit an existing
