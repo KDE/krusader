@@ -216,16 +216,8 @@ bool DiskUsageGUI::newSearch()
 { 
   // ask the user for the copy dest
   
-/* REVIEW 
-	KChooseDir *chooser = new KChooseDir( 0, i18n( "Viewing the usage of directory:" ),
-                                        baseDirectory.prettyURL(1,KURL::StripFileProtocol) );
-  QString dest = chooser->dest;
-  if ( dest == QString::null )
-    return false; // the usr canceled    */
-
   KURL tmp = KChooseDir::getDir(i18n( "Viewing the usage of directory:" ), baseDirectory, baseDirectory);
   if (tmp.isEmpty()) return false;
-  /* baseDirectory = vfs::fromPathOrURL( dest ); */
   baseDirectory = tmp;
   
   QTimer::singleShot( 0, this, SLOT( loadUsageInfo() ) );
