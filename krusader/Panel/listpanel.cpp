@@ -706,10 +706,10 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
   switch ( e->key() ) {
       case Key_Enter :
       case Key_Return :
-      if ( e->state() & ControlButton )
+      if ( e->state() & ControlButton ) {
         SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
-      else
-        e->ignore();
+        krApp->mainView->cmdLine->setFocus();
+      } else e->ignore();
       break;
       case Key_Right :
       case Key_Left :
