@@ -297,7 +297,7 @@ void ftp_vfs::vfs_rename(QString fileName,QString newName){
   fileUrls.append(url);
 
 	KURL dest = vfs_url;
-	dest.setPath(newName);
+	dest.addPath(newName);
 	dest.setUser(loginName);
   dest.setPass(password);
 	if ( port ) dest.setPort(port);
