@@ -36,10 +36,13 @@ public:
 	void setUrls(const KURL::List* urls);
 public slots:
 	void addPreview(const KFileItem* file,const QPixmap& preview);
+	void view(int id);
 
 protected:
 	KFileItemList files;
 	int id;
+	bool noPreview;
+	KURL::List availablePreviews;
 };
 
 #endif
