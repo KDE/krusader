@@ -162,8 +162,13 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   // create a status bar
   status = new KrusaderStatus( this );
 
-  // This enables Krusader to minimize to tray if needed
+  // This enables Krusader to show a tray icon
   config->setGroup( "Look&Feel" );
+  if ( krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
+    sysTray = new KSystemTray( this );
+    sysTray->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
+    sysTray->show();
+  }
 
   setCentralWidget( mainView );
   config->setGroup( "Look&Feel" );
@@ -223,22 +228,16 @@ void Krusader::statusBarUpdate( QString& mess ) {
 }
 
 void Krusader::showEvent ( QShowEvent * ) {
-  if ( krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
-    if ( sysTray != 0 )
-      sysTray->hide();
-    show();
-  }
+  //if ( krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
+    //if ( sysTray != 0 )
+    //  sysTray->hide();
+    //show();
+  //}
 }
 
 void Krusader::hideEvent ( QHideEvent * ) {
-  if ( krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
-    if ( sysTray == 0 ) {
-      sysTray = new KSystemTray( this );
-      sysTray->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
-    }
-    sysTray->show();
-    hide();
-  }
+  hide(); // needed to make sure krusader is removed from
+          // the taskbar when minimizing (system tray issue)
 }
 
 void Krusader::setupAccels() {
