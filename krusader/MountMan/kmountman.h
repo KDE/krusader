@@ -57,8 +57,8 @@ public:
    } // check this 1st
    
 	void mainWindow();                        // opens up the GUI
-   void mount( QString mntPoint );           // this is probably what you need for mount
-   void unmount( QString mntPoint );         // this is probably what you need for unmount
+   void mount( QString mntPoint, bool blocking=true ); // this is probably what you need for mount
+   void unmount( QString mntPoint, bool blocking=true ); // this is probably what you need for unmount
    mntStatus getStatus( QString mntPoint );  // return the status of a mntPoint (if any)
    void autoMount( QString path );           // just call it before refreshing into a dir
    static void eject( QString mntPoint );

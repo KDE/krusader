@@ -51,6 +51,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define FSTAB "/etc/fstab"
 #endif
 
+static QString __mntPoint; // ugly way to pass the deadlock situation described below
+
 KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountManGui( 0 ) {
    _actions = 0L;
 
@@ -117,24 +119,26 @@ void KMountMan::jobResult(KIO::Job *job) {
 		job->showErrorDialog( 0 );
 }
 
-void KMountMan::mount( QString mntPoint ) {
+void KMountMan::mount( QString mntPoint, bool blocking ) {
 	KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
 	KMountPoint *m = findInListByMntPoint(possible, mntPoint);
 	if (!m) return;
-	waiting = true; // prepare to block
+	if (blocking)
+	   waiting = true; // prepare to block
 	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint());
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
-	while (waiting) {
+	while (blocking && waiting) {
 		qApp->processEvents();
 		usleep( 1000 );
 	}
 }
 
-void KMountMan::unmount( QString mntPoint ) {
-	waiting = true; // prepare to block
+void KMountMan::unmount( QString mntPoint, bool blocking ) {
+	if (blocking)
+	   waiting = true; // prepare to block
 	KIO::SimpleJob *job = KIO::unmount(mntPoint);
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
-	while (waiting) {
+	while (blocking && waiting) {
 		qApp->processEvents();
 		usleep( 1000 );
 	}
@@ -296,9 +300,9 @@ void KMountMan::performAction( int idx ) {
    bool domount = _actions[ idx ].left( 3 ) == "_M_";
    QString mountPoint = _actions[ idx ].mid( 3 );
    if ( !domount ) { // umount
-      unmount( mountPoint );
+      unmount( mountPoint, false );
    } else { // mount
-      mount( mountPoint );
+      mount( mountPoint, false );
    }
 
    // free memory
