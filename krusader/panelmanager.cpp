@@ -120,6 +120,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
       {
          t->panel->otherPanel = _other;
          _other->otherPanel = t->panel;
+         t->panel->func->files()->vfs_enableRefresh( true );
          t->panel->func->immediateOpenUrl( vfs::fromPathOrURL( l[ i ] ) );
       }
       ++i;
