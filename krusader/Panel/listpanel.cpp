@@ -937,3 +937,15 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          //e->ignore();
    }
 }
+
+void ListPanel::slotItemAdded(vfile *vf) {
+	view->addItem(vf);
+}
+
+void ListPanel::slotItemDeleted(const QString& name) {
+	view->delItem(name);
+}
+
+void ListPanel::slotItemUpdated(vfile *vf) {
+	view->updateItem(vf);
+}
