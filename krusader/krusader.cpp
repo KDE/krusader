@@ -140,6 +140,7 @@ KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
 KAction *Krusader::actManageUseractions = 0;
 KAction *Krusader::actSyncDirs = 0;
+KAction *Krusader::actSyncBrowse = 0;
 KAction *Krusader::actF2 = 0;
 KAction *Krusader::actF3 = 0;
 KAction *Krusader::actF4 = 0;
@@ -530,6 +531,8 @@ void Krusader::setupActions() {
                             SLOTS, SLOT( locate() ), actionCollection(), "locate" );
    actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_Y,
                               SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
+   actSyncBrowse = new KAction( i18n( "S&ynchron directory changes" ), "kr_syncbrowse_off", ALT + Key_Y,
+                              SLOTS, SLOT( slotSyncBrowse() ), actionCollection(), "sync browse" );
    actDiskUsage = new KAction( i18n( "D&isk Usage" ), "kchart", ALT + Key_D,
                               SLOTS, SLOT( slotDiskUsage() ), actionCollection(), "disk usage" );
    actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,

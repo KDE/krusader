@@ -68,6 +68,7 @@
 #include "resources.h"
 #include "GUI/kfnkeys.h"
 #include "GUI/kcmdline.h"
+#include "GUI/syncbrowsebutton.h"
 #include "VFS/krquery.h"
 #include "Search/krsearchmod.h"
 #include "Search/krsearchdialog.h"
@@ -765,6 +766,10 @@ void KRslots::slotSynchronizeDirs() {
 
   if( refresh )
     REFRESH_BOTH_PANELS;
+}
+
+void KRslots::slotSyncBrowse() {
+   ACTIVE_PANEL->syncBrowseButton->toggle();
 }
 
 void KRslots::updatePopupPanel(QListViewItem *it) {
