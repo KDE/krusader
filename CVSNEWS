@@ -2,6 +2,9 @@ This file is only intended for the CVS.
 It should contain a brief description of new features;
 in some way an extension to the changelog.
 ------------------------------------------------------
+TC like searching: if you type 'text' -> results the same as '*text*'
+You can exclude files from the search with '|' (ex. '*.cpp *.h | *.moc.cpp' )
+           
 Search is possible on remote file systems as well.
 
 If you have filesystems that you don't want to accidently unmount (or mount), just
