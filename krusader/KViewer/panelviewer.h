@@ -8,7 +8,7 @@
 #include <qdict.h>
 #include <qlabel.h>
 
-class PanelViewer: protected QWidgetStack {
+class PanelViewer: public QWidgetStack {
   Q_OBJECT
   public slots:
     bool openURL(const KURL &url);
