@@ -61,8 +61,8 @@ QString KRSpWidgets::getMask(QString caption) {
 }
 
 void KRSpWidgets::selectCompareColorMask(int *left, int *right) {
-  int l = krApp->mainView->left->colorMask;
-  int r = krApp->mainView->right->colorMask;
+//  int l = krApp->mainView->left->colorMask;
+//  int r = krApp->mainView->right->colorMask;
 
   // create the dialog, and fill in the data according to current color mask
   colorMaskDialog *dlg = new colorMaskDialog();
