@@ -116,7 +116,7 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
   QString tmpDir = arcTempDir + arcDir.mid(1) + url.path().mid(url.path().findRev("/")+1);
   if( tmpDir.right(1) != "/" ) tmpDir = tmpDir+"/";
     
-  if( permissions == -1 ) permissions = 0666; //set default permissions
+  if( permissions == -1 ) permissions = 0777; //set default permissions
   for( unsigned int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
     ::mkdir(tmpDir.left(i).latin1(),permissions);
   }
