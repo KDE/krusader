@@ -491,50 +491,36 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
   // set dir to the parent dir
   dir = addNewDir(path.left(path.findRev("/",-2)+1));
 
-  // do we have an entry for the parent dir ?
+  // add a new entry in the parent dir
   QString name = path.mid(path.findRev("/",-2)+1);
   name = name.left(name.length()-1);
-  UDSEntryList::iterator entry;
-  bool dirEntryExists = false;
-	for ( entry = dir->begin(); entry != dir->end() && !dirEntryExists; ++entry ){
-    UDSEntry::iterator atom;
-    for( atom = (*entry).begin(); atom != (*entry).end(); ++atom ){
-      if( (*atom).m_uds == UDS_NAME ){
-				if((*atom).m_str == name){
-          dirEntryExists = true;
-				}
-				else break;
-			}
-		}
-	}
-  // add a new entry in the parent dir
-  if( !dirEntryExists ){
-	  UDSEntry entry;
-	  UDSAtom atom;
-	  atom.m_uds = UDS_NAME;
-	  atom.m_str = name;
-	  entry.append(atom);
+
+  UDSEntry entry;
+  UDSAtom atom;
+  atom.m_uds = UDS_NAME;
+  atom.m_str = name;
+  entry.append(atom);
     
-    mode_t mode = parsePermString("drwxr-xr-x");
+  mode_t mode = parsePermString("drwxr-xr-x");
 
-    atom.m_uds = UDS_FILE_TYPE;
-	  atom.m_long = mode & S_IFMT; // keep file type only
-	  entry.append( atom );
+  atom.m_uds = UDS_FILE_TYPE;
+  atom.m_long = mode & S_IFMT; // keep file type only
+  entry.append( atom );
 
-    atom.m_uds = UDS_ACCESS;
-	  atom.m_long = mode & 07777; // keep permissions only
-	  entry.append( atom );
+  atom.m_uds = UDS_ACCESS;
+  atom.m_long = mode & 07777; // keep permissions only
+  entry.append( atom );
 
-    atom.m_uds = UDS_SIZE;
-    atom.m_long = 0;
-    entry.append( atom );
+  atom.m_uds = UDS_SIZE;
+  atom.m_long = 0;
+  entry.append( atom );
 
-    atom.m_uds = UDS_MODIFICATION_TIME;
-    atom.m_long = arcFile->time(UDS_MODIFICATION_TIME);
-	  entry.append( atom );
+  atom.m_uds = UDS_MODIFICATION_TIME;
+  atom.m_long = arcFile->time(UDS_MODIFICATION_TIME);
+  entry.append( atom );
    
-    dir->append(entry);
-  } 
+  dir->append(entry);
+
   // create a new directory entry and add it..
   dir = new UDSEntryList();
   dirDict.insert(path,dir);
@@ -547,45 +533,62 @@ void kio_krarcProtocol::parseLine(int, QString line, QFile*){
 	UDSEntry entry;
 	UDSAtom atom;
 
-	// permissions
-	QString perm = nextWord(line);
-	if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
-  mode_t mode = parsePermString(perm);
-	atom.m_uds = UDS_FILE_TYPE;
-	atom.m_long = mode & S_IFMT; // keep file type only
-	entry.append( atom );
-	atom.m_uds = UDS_ACCESS;
-	atom.m_long = mode & 07777; // keep permissions only
-	entry.append( atom );
-  // ignore the next 2 fields
-	nextWord(line); nextWord(line);
-  // size
-	long size = nextWord(line).toLong();
-	atom.m_uds = UDS_SIZE;
-  atom.m_long = size;
-  entry.append( atom );
- 	// ignore the next 2 fields
-	nextWord(line);nextWord(line);
-	// date & time
-	QString d = nextWord(line);
-	QDate date(d.mid(0,4).toInt(),d.mid(4,2).toInt(),d.mid(6,2).toInt());
-  QTime time(d.mid(9,2).toInt(),d.mid(11,2).toInt(),d.mid(13,2).toInt());
-	atom.m_uds = UDS_MODIFICATION_TIME;
-	atom.m_long = QDateTime(date,time).toTime_t();
-	entry.append( atom );
-	// name
-	QString fullName = nextWord(line,'\n');
-	if( fullName.right(1) == "/" ) fullName = fullName.left(fullName.length()-1);
-	if( !fullName.startsWith("/") ) fullName = "/"+fullName;
-	QString path = fullName.left(fullName.findRev("/")+1);
-	// set/create the directory UDSEntryList
+  QString perm;
+  mode_t mode = 0666;
+  size_t size = 0;
+  time_t time = ::time(0);
+  QString fullName;
+  
+  
+  if(arcType == "zip"){  
+    // permissions
+    perm = nextWord(line);
+    if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
+    mode = parsePermString(perm);
+    // ignore the next 2 fields
+    nextWord(line); nextWord(line);
+    // size
+    size = nextWord(line).toLong();
+    // ignore the next 2 fields
+    nextWord(line);nextWord(line);
+    // date & time
+    QString d = nextWord(line);
+    QDate qdate(d.mid(0,4).toInt(),d.mid(4,2).toInt(),d.mid(6,2).toInt());
+    QTime qtime(d.mid(9,2).toInt(),d.mid(11,2).toInt(),d.mid(13,2).toInt());
+    time = QDateTime(qdate,qtime).toTime_t();
+    // full name
+    fullName = nextWord(line,'\n');
+  }
+
+  if( fullName.right(1) == "/" ) fullName = fullName.left(fullName.length()-1);
+  if( !fullName.startsWith("/") ) fullName = "/"+fullName;
+  QString path = fullName.left(fullName.findRev("/")+1);
+  // set/create the directory UDSEntryList
   dir = dirDict.find(path);
   if(dir == 0) dir = addNewDir(path);
-	QString name = fullName.mid(fullName.findRev("/")+1);
-	atom.m_uds = UDS_NAME;
-	atom.m_str = name;
-	entry.append(atom);
-	dir->append(entry);
+  QString name = fullName.mid(fullName.findRev("/")+1);
+  // file name
+  atom.m_uds = UDS_NAME;
+  atom.m_str = name;
+  entry.append(atom);
+  // file type
+  atom.m_uds = UDS_FILE_TYPE;
+  atom.m_long = mode & S_IFMT; // keep file type only
+  entry.append( atom );
+  // file permissions
+  atom.m_uds = UDS_ACCESS;
+  atom.m_long = mode & 07777; // keep permissions only
+  entry.append( atom );
+  // file size
+  atom.m_uds = UDS_SIZE;
+  atom.m_long = size;
+  entry.append( atom );
+  // modification time
+  atom.m_uds = UDS_MODIFICATION_TIME;
+  atom.m_long = time;
+  entry.append( atom );
+
+  dir->append(entry);
   if(perm[0] == 'd'){
     fullName=fullName+"/";
     if(dirDict.find(fullName) == 0){
@@ -610,9 +613,9 @@ bool kio_krarcProtocol::initArcParameters(){
   }
 
   if( KStandardDirs::findExe(cmd).isEmpty() ){
-    error(ERR_UNSUPPORTED_ACTION,
-    i18n("%1 archives are not supported").arg(arcType) );
-    return false;
+    error(ERR_SLAVE_DEFINED,QString("I Love you !\n") );//ERR_UNSUPPORTED_PROTOCOL,
+      //i18n("%1 archives are not supported").arg(arcType) );
+     return false;
   }
   return true;
 }
