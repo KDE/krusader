@@ -140,10 +140,8 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	krConfig->setGroup("Startup");
 	if (left) {
 		id = krConfig->readNumEntry("Left Panel Popup", _LeftPanelPopup);
-		kdWarning() << "left " << id << endl;
 	} else {
 		id = krConfig->readNumEntry("Right Panel Popup", _RightPanelPopup);	
-		kdWarning() << "right " << id << endl;
 	}
 	btns->setButton(id);
 	tabSelected(id);
