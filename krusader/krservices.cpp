@@ -18,7 +18,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 // QT includes
-#include <qstringlist.h>
 #include <qdir.h>
 // KDE includes
 #include <kdebug.h>
@@ -84,4 +83,33 @@ QString KrServices::fullPathName( QString name, QString confName )
   krConfig->writeEntry( confName, supposedName );
   krConfig->setGroup( lastGroup );
   return supposedName;
+}
+
+QStringList KrServices::separateArgs( QString args )
+{
+  QStringList argList;
+  int   pointer = 0, tokenStart, len = args.length();
+  bool  quoted = false;
+
+  do{
+      while( pointer < len && args[ pointer ].isSpace() )
+        pointer++;
+
+      if( pointer >= len )
+        break;
+
+      tokenStart = pointer;
+      
+      while( pointer < len && ( quoted || !args[ pointer ].isSpace()) )
+      {
+        if( args[pointer] == '"' )
+          quoted = !quoted;
+        pointer++;
+      }
+
+      argList.append( args.mid( tokenStart, pointer-tokenStart ) );
+      
+    }while( pointer < len );
+    
+  return argList;
 }

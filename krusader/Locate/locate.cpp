@@ -154,9 +154,12 @@ void LocateDlg::slotUser2()   /* The Update DB button */
 {
   if( !updateProcess )
   {
+    krConfig->setGroup("Locate");
+
     updateProcess = new KProcess();
     *updateProcess << KrServices::fullPathName( "updatedb" );
-    /* TODO TODO TODO TODO */
+    *updateProcess << KrServices::separateArgs( krConfig->readEntry( "UpdateDB Arguments", "" ) );
+    
     connect( updateProcess, SIGNAL(processExited(KProcess *)), this, SLOT(updateFinished()));
     updateProcess->start(KProcess::NotifyOnExit);
     enableButton( KDialogBase::User2, false );

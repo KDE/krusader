@@ -19,6 +19,7 @@
 #define KRSERVICES_H
 
 #include <qstring.h>
+#include <qstringlist.h>
 
 /**
   *@author Shie Erlich & Rafi Yanai
@@ -29,9 +30,10 @@ public:
 	KrServices(){}
 	~KrServices(){}
 
-	static bool     cmdExist(QString cmdName);
-  static QString  detectFullPathName( QString name );
-  static QString  fullPathName( QString name, QString confName = QString::null );
+	static bool         cmdExist(QString cmdName);
+  static QString      detectFullPathName( QString name );
+  static QString      fullPathName( QString name, QString confName = QString::null );
+  static QStringList  separateArgs( QString args );
 };
 
 #endif

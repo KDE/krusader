@@ -85,16 +85,21 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   QGroupBox *fineTuneGrp = createFrame( i18n( "Fine-Tuning" ), parent, "kgFineTuneGrp" );
   QGridLayout *fineTuneGrid = createGridLayout( fineTuneGrp->layout() );
-
-  QHBox *hbox = new QHBox( fineTuneGrp, "fineTuneHBox" );
-  QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), hbox, "iconCacheLabel" );
-  QToolTip::add( label, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
-  KonfiguratorSpinBox *spinBox = createSpinBox( "Advanced", "Icon Cache Size", _IconCacheSize,
-                                                1, 8192, hbox, false );
-  QToolTip::add( spinBox, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
-  createSpacer( hbox, "fineTuneSpacer" );
+  fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
-  fineTuneGrid->addWidget( hbox, 0, 0 );
+  QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp, "iconCacheLabel" );
+  QToolTip::add( label, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
+  fineTuneGrid->addWidget( label, 0, 0 );
+  KonfiguratorSpinBox *spinBox = createSpinBox( "Advanced", "Icon Cache Size", _IconCacheSize,
+                                                1, 8192, fineTuneGrp, false );
+  QToolTip::add( spinBox, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
+  spinBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
+  fineTuneGrid->addWidget( spinBox, 0, 1 );
+
+  addLabel( fineTuneGrid, 1, 0, i18n( "Arguments of updatedb:" ),
+            fineTuneGrp, "KgAdvLabel1" );
+  KonfiguratorEditBox *updatedbArgs = createEditBox( "Locate", "UpdateDB Arguments", "", fineTuneGrp, false );
+  fineTuneGrid->addWidget( updatedbArgs, 1, 1 );
     
   kgAdvancedLayout->addWidget( fineTuneGrp, 2 ,0 );
 }
