@@ -28,71 +28,109 @@
  *                                                                         *
  ***************************************************************************/
 
-#define USERSFILE  QString("/etc/passwd")
-#define GROUPSFILE QString("/etc/group")
-
-
 #include "../krusader.h"
 #include "../VFS/vfs.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
-#include "../resources.h"
-#include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 #include "../VFS/krpermhandler.h"
 #include "../KViewer/krviewer.h"
 #include "krsearchmod.h"
 #include "krsearchdialog.h"
+
 #include <time.h>
-#include <pwd.h>
-#include <sys/types.h>
 #include <kglobal.h>
-#include <qtabwidget.h>
-#include <qstring.h>
-#include <qradiobutton.h>
-#include <qstringlist.h>
 #include <qregexp.h>
-#include <qmultilineedit.h>
-#include <qdatetime.h>
-#include <qcheckbox.h>
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qlistview.h>
 #include <qfontmetrics.h>
-#include <klineedit.h>
 #include <kmessagebox.h>
-#include <kcombobox.h>
-#include <kfiledialog.h>
-#include <kdatetbl.h>
 #include <klocale.h>
-#include <kdeversion.h>
 #include <kpopupmenu.h>
 #include <qcursor.h>
 #include <qclipboard.h>
 
 // class starts here /////////////////////////////////////////
-KrSearchDialog::KrSearchDialog(QWidget *parent, const char *name ) :
-                KrSearchBase(parent,name), query(0), searcher(0) {
-  prepareGUI();
-  show();
-  // disable the search action ... no 2 searchers !
-  krFind->setEnabled(false);
-  generalFilter->searchFor->setFocus();
-	resultsList->setColumnAlignment(2, AlignRight);
+KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, WFlags fl )
+                : QDialog( parent, name, modal, fl ), query(0), searcher(0) 
+{
+  setCaption( i18n( "Krusader::Search" ) );
+  
+  QGridLayout* searchBaseLayout = new QGridLayout( this );
+  searchBaseLayout->setSpacing( 6 );
+  searchBaseLayout->setMargin( 11 );
 
-  isSearching = closed = false;
-}
+  // creating the dialog buttons ( Search, Stop, Close )
+  
+  QHBoxLayout* buttonsLayout = new QHBoxLayout();
+  buttonsLayout->setSpacing( 6 );
+  buttonsLayout->setMargin( 0 );
 
-KrSearchDialog::~KrSearchDialog(){
-}
+  QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
+  buttonsLayout->addItem( spacer );
 
-void KrSearchDialog::prepareGUI() {
-  //=======> to be moved ...
+  mainSearchBtn = new QPushButton( this, "mainSearchBtn" );
+  mainSearchBtn->setText( i18n( "Search" ) );
+  mainSearchBtn->setDefault(true);
+  buttonsLayout->addWidget( mainSearchBtn );
+
+  mainStopBtn = new QPushButton( this, "mainStopBtn" );
+  mainStopBtn->setEnabled( false );
+  mainStopBtn->setText( i18n( "Stop" ) );
+  buttonsLayout->addWidget( mainStopBtn );
+
+  mainCloseBtn = new QPushButton( this, "mainCloseBtn" );
+  mainCloseBtn->setText( i18n( "Close" ) );
+  buttonsLayout->addWidget( mainCloseBtn );
+
+  searchBaseLayout->addLayout( buttonsLayout, 1, 0 );
+
+  // creating the searcher tabs
+  
+  searcherTabs = new QTabWidget( this, "searcherTabs" );
+
+  generalFilter = new GeneralFilter( searcherTabs, "generalFilter" );
+  searcherTabs->insertTab( generalFilter, i18n( "&General" ) );
+
+  advancedFilter = new AdvancedFilter( searcherTabs, "advancedFilter" );
+  searcherTabs->insertTab( advancedFilter, i18n( "&Advanced" ) );
+    
+  resultTab = new QWidget( searcherTabs, "resultTab" );
+  resultLayout = new QGridLayout( resultTab );
+  resultLayout->setSpacing( 6 );
+  resultLayout->setMargin( 11 );
+
+  // creating the result tab
+    
+  QHBoxLayout* resultLabelLayout = new QHBoxLayout();
+  resultLabelLayout->setSpacing( 6 );
+  resultLabelLayout->setMargin( 0 );
+
+  foundLabel = new QLabel( resultTab, "foundLabel" );
+  foundLabel->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)1, foundLabel->sizePolicy().hasHeightForWidth() ) );
+  foundLabel->setFrameShape( QLabel::StyledPanel );
+  foundLabel->setFrameShadow( QLabel::Sunken );
+  foundLabel->setText( i18n( "Found 0 matches." ) );
+  resultLabelLayout->addWidget( foundLabel );
+
+  searchingLabel = new KSqueezedTextLabel( resultTab, "searchingLabel" );
+  searchingLabel->setFrameShape( QLabel::StyledPanel );
+  searchingLabel->setFrameShadow( QLabel::Sunken );
+  searchingLabel->setText( "" );
+  resultLabelLayout->addWidget( searchingLabel );
+
+  resultLayout->addLayout( resultLabelLayout, 1, 0 );
+
+  // creating the result list view
+
+  resultsList = new QListView( resultTab, "resultsList" );
+  resultsList->addColumn( i18n( "Name" ) );
+  resultsList->addColumn( i18n( "Location" ) );
+  resultsList->addColumn( i18n( "Size" ) );
+  resultsList->addColumn( i18n( "Date" ) );
+  resultsList->addColumn( i18n( "Permissions" ) );
+
   resultsList->setSorting(1); // sort by location
-  // ========================================
-
-
+  
   // fix the results list
   // => make the results font smaller
   QFont resultsFont(  resultsList->font() );
@@ -102,27 +140,53 @@ void KrSearchDialog::prepareGUI() {
   resultsList->setAllColumnsShowFocus(true);
   for (int i=0; i<5; ++i) // don't let it resize automatically
     resultsList->setColumnWidthMode(i, QListView::Manual);
+    
   int i=QFontMetrics(resultsList->font()).width("W");
-	int j=QFontMetrics(resultsList->font()).width("0");
-	j=(i>j ? i : j);
-	resultsList->setColumnWidth(0, j*14);
-	resultsList->setColumnWidth(1, j*25);
-	resultsList->setColumnWidth(2, j*6);
-	resultsList->setColumnWidth(3, j*7);
+  int j=QFontMetrics(resultsList->font()).width("0");
+  j=(i>j ? i : j);
+  resultsList->setColumnWidth(0, j*14);
+  resultsList->setColumnWidth(1, j*25);
+  resultsList->setColumnWidth(2, j*6);
+  resultsList->setColumnWidth(3, j*7);
   resultsList->setColumnWidth(4, j*7);
+  resultsList->setColumnAlignment( 2, AlignRight );
+  
+  resultLayout->addWidget( resultsList, 0, 0 );
+  searcherTabs->insertTab( resultTab, i18n( "&Results" ) );
 
+  searchBaseLayout->addWidget( searcherTabs, 0, 0 );
+
+  // signals and slots connections
+  
+  connect( mainSearchBtn, SIGNAL( clicked() ), this, SLOT( startSearch() ) );
+  connect( mainStopBtn, SIGNAL( clicked() ), this, SLOT( stopSearch() ) );
+  connect( resultsList, SIGNAL( returnPressed(QListViewItem*) ), this, SLOT( resultClicked(QListViewItem*) ) );
+  connect( resultsList, SIGNAL( doubleClicked(QListViewItem*) ), this, SLOT( resultClicked(QListViewItem*) ) );
+  connect( resultsList, SIGNAL( rightButtonClicked(QListViewItem*,const QPoint&,int) ), this, SLOT( rightClickMenu(QListViewItem*, const QPoint&, int) ) );
+  connect( mainCloseBtn, SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
+
+  // tab order
+  
+  setTabOrder( mainSearchBtn, mainCloseBtn );
+  setTabOrder( mainCloseBtn, mainStopBtn );
+  setTabOrder( mainStopBtn, searcherTabs );
+  setTabOrder( searcherTabs, resultsList );
+  
   // the path in the active panel should be the default search location
   QString path = krApp->mainView->activePanel->getPath();
   generalFilter->searchInEdit->setText(path);
+  
+  show();
+  
+  // disable the search action ... no 2 searchers !
+  krFind->setEnabled(false);
+  generalFilter->searchFor->setFocus();
 
-  // fill the saved searches list
-  refreshSavedSearches();
+  isSearching = closed = false;
 }
 
-void KrSearchDialog::refreshSavedSearches() {
-}
-
-void KrSearchDialog::closeDialog() {
+void KrSearchDialog::closeDialog() 
+{
   // stop the search if it's on-going
   if (searcher!=0) {
     delete searcher;
@@ -136,7 +200,7 @@ void KrSearchDialog::closeDialog() {
 
 void KrSearchDialog::reject() {
   closeDialog();
-  KrSearchBase::reject();
+  QDialog::reject();
 }
 
 void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm){
@@ -157,13 +221,13 @@ bool KrSearchDialog::gui2query() {
 
   if( !generalFilter->fillQuery( query ) )
   {
-    TabWidget2->setCurrentPage(0); // set page to general
+    searcherTabs->setCurrentPage(0); // set page to general
     return false;
   }
   
   if( !advancedFilter->fillQuery( query ) )
   {
-    TabWidget2->setCurrentPage(1); // set page to general
+    searcherTabs->setCurrentPage(1); // set page to general
     return false;
   }
   
@@ -190,7 +254,7 @@ void KrSearchDialog::startSearch() {
   mainStopBtn->setEnabled(true);
   resultsList->clear(); searchingLabel->setText("");
   foundLabel->setText(i18n("Found 0 matches."));
-  TabWidget2->setCurrentPage(2); // show the results page
+  searcherTabs->setCurrentPage(2); // show the results page
   qApp->processEvents();
 
   // start the search.
@@ -230,15 +294,6 @@ void KrSearchDialog::stopSearch() {
 void KrSearchDialog::resultClicked(QListViewItem* i) {
   krApp->mainView->activePanel->func->openUrl(vfs::fromPathOrURL(i->text(1)),i->text(0));
   showMinimized();
-}
-
-void KrSearchDialog::saveSearch() {
-}
-
-void KrSearchDialog::loadSearch() {
-}
-
-void KrSearchDialog::loadSearch(QListViewItem *) {
 }
 
 void KrSearchDialog::closeEvent(QCloseEvent *e)

@@ -33,27 +33,29 @@
 #ifndef KRSEARCHDIALOG_H
 #define KRSEARCHDIALOG_H
 
-#include <qwidget.h>
-#include <qstringlist.h>
-#include "krsearchdialogbase.h"
+#include "generalfilter.h"
+#include "advancedfilter.h"
 #include "krquery.h"
 #include "krsearchmod.h"
+
+#include <qwidget.h>
+#include <ksqueezedtextlabel.h>
+#include <qstringlist.h>
 #include <sys/types.h>
 #include <time.h>
+#include <qstring.h>
+#include <qtabwidget.h>
+#include <qlistview.h>
+#include <qstringlist.h>
 
-
-class KrSearchDialog : public KrSearchBase  {
+class KrSearchDialog : public QDialog  {
    Q_OBJECT
 public: 
-	KrSearchDialog(QWidget *parent=0, const char *name=0);
-	~KrSearchDialog();
-	
-	void prepareGUI();
-	
+  KrSearchDialog(QWidget* parent = 0, const char* name = 0, bool modal = false, WFlags fl = 0 );
+
+  void prepareGUI();
+    
 public slots:
-  void saveSearch();
-  void loadSearch();
-  void loadSearch(QListViewItem *);
   void startSearch();
   void stopSearch();
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
@@ -68,12 +70,27 @@ protected slots:
   void reject();
 
 private:
-  void refreshSavedSearches();
   bool gui2query();
   void editCurrent();
   void viewCurrent();
 
 private:
+  GeneralFilter  *generalFilter;
+  AdvancedFilter *advancedFilter;
+    
+  QPushButton* mainHelpBtn;
+  QPushButton* mainSearchBtn;
+  QPushButton* mainStopBtn;
+  QPushButton* mainCloseBtn;
+  
+  QTabWidget* searcherTabs;  
+  QWidget* resultTab;
+  QGridLayout* resultLayout;
+  QLabel* foundLabel;
+  KSqueezedTextLabel* searchingLabel;
+  
+  QListView* resultsList;
+
   KRQuery *query;
   KRSearchMod *searcher;
   QStringList savedSearches;
