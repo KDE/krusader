@@ -32,6 +32,7 @@
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../VFS/krpermhandler.h"
+#include "../KViewer/krviewer.h"
 #include "synchronizedialog.h"
 #include <qlayout.h>
 #include <kurlrequester.h>
@@ -41,6 +42,9 @@
 #include <qcursor.h>
 #include <time.h>
 #include <kmessagebox.h>
+#include <kio/netaccess.h>
+#include <qeventloop.h>
+#include <qtooltip.h>
 
 static const char * const right_arrow_button_data[] = {
 "18 18 97 2",
@@ -744,7 +748,7 @@ static const char * const folder_data[] = {
 "                                "};
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory ) :
-    QDialog( parent, "Krusader::SynchronizerGUI", true, 0 ), isComparing( false ), wasClosed( false ),
+    QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ), isComparing( false ), wasClosed( false ),
     wasSync( false )
 {
   setCaption( i18n("Krusader::Synchronize Directories") );
@@ -795,6 +799,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   leftUrlReq->setURL( leftDirectory );
   leftUrlReq->setMode( KFile::Directory );
   grid->addWidget( leftUrlReq, 1 ,0 );
+  QToolTip::add( leftLocation, i18n( "The left base directory" ) );
 
   fileFilter = new KHistoryCombo(false, compareDirs, "SynchronizerFilter");
   fileFilter->setMinimumWidth( 100 );
@@ -803,6 +808,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   fileFilter->setHistoryItems(list);
   fileFilter->setEditText("*");
   grid->addWidget( fileFilter, 1 ,1 );
+  QToolTip::add( fileFilter, i18n( "Filtering by the filename" ) );
 
   rightLocation = new KHistoryCombo(compareDirs, "SynchronizerHistoryRight");
   rightLocation->setEditable( true );
@@ -813,22 +819,31 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   rightUrlReq->setURL( rightDirectory );
   rightUrlReq->setMode( KFile::Directory );
   grid->addWidget( rightUrlReq, 1 ,2 );
+  QToolTip::add( rightLocation, i18n( "The right base directory" ) );
 
   QHBox *optionBox  = new QHBox( compareDirs );
   QGrid *optionGrid = new QGrid( 3, optionBox );
   cbSubdirs         = new QCheckBox( i18n( "Recurse subdirectories" ), optionGrid, "cbSubdirs" );
   cbSubdirs->setChecked( krConfig->readBoolEntry( "Recurse Subdirectories", _RecurseSubdirs  ) );
+  QToolTip::add( cbSubdirs, i18n( "Compares not only the base directories but their subdirectories as well" ) );
   cbSymlinks        = new QCheckBox( i18n( "Follow symlinks" ), optionGrid, "cbSymlinks" );
   cbSymlinks->setChecked( krConfig->readBoolEntry( "Follow Symlinks", _FollowSymlinks  ) );
   cbSymlinks->setEnabled( cbSubdirs->isChecked() );
+  QToolTip::add( cbSymlinks, i18n( "Follows the symbolic links also at comparing" ) );
   cbByContent       = new QCheckBox( i18n( "Compare by content" ), optionGrid, "cbByContent" );
   cbByContent->setChecked( krConfig->readBoolEntry( "Compare By Content", _CompareByContent  ) );
+  QToolTip::add( cbByContent, i18n( "Compares the duplicate files with the same size by their content" ) );
   cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGrid, "cbIgnoreDate" );
   cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", _IgnoreDate  ) );
+  QToolTip::add( cbIgnoreDate, i18n( "Ignores the date information at comparing (good if the files\nwere fetched from ftp, smb, archive, ... file systems)" ) );
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", _Asymmetric  ) );
+  QToolTip::add( cbAsymmetric, i18n( "Asymmetric mode. The left side is the destination, the right is the source directory.\n"
+                                     "The files existed only in the left directory will be deleted, the other differing ones\n"
+                                     "will be copied from right to left (useful at updating a directory from a file server)." ) );
   cbAutoScroll      = new QCheckBox( i18n( "Automatic Scrolling" ), optionGrid, "cbAutoScroll" );
   cbAutoScroll->setChecked( krConfig->readBoolEntry( "Automatic Scrolling", _AutoScroll ) );
+  QToolTip::add( cbAutoScroll, i18n( "Scrolls the results of comparing (slow)" ) );
 
   /* =========================== Show options groupbox ============================= */
   
@@ -853,6 +868,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnLeftToRight->setPixmap( showLeftToRight );
   btnLeftToRight->setToggleButton( true );
   btnLeftToRight->setOn( krConfig->readBoolEntry( "LeftToRight Button", _BtnLeftToRight ) );
+  QToolTip::add( btnLeftToRight, i18n( "Lists the files marked to copy from left to right" ) );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
   
   btnEquals = new QPushButton( showOptions, "btnEquals" );
@@ -860,6 +876,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnEquals->setPixmap( showEquals );
   btnEquals->setToggleButton( true );
   btnEquals->setOn( krConfig->readBoolEntry( "Equals Button", _BtnEquals ) );
+  QToolTip::add( btnEquals, i18n( "Lists the files considered to be identical" ) );
   showOptionsLayout->addWidget( btnEquals, 0, 1);
 
   btnDifferents = new QPushButton( showOptions, "btnDifferents" );
@@ -867,6 +884,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnDifferents->setPixmap( showDifferents );
   btnDifferents->setToggleButton( true );
   btnDifferents->setOn( krConfig->readBoolEntry( "Differents Button", _BtnDifferents ) );
+  QToolTip::add( btnDifferents, i18n( "Lists the excluded files" ) );
   showOptionsLayout->addWidget( btnDifferents, 0, 2);
 
   btnRightToLeft = new QPushButton( showOptions, "btnRightToLeft" );
@@ -874,6 +892,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnRightToLeft->setPixmap( showRightToLeft );
   btnRightToLeft->setToggleButton( true );
   btnRightToLeft->setOn( krConfig->readBoolEntry( "RightToLeft Button", _BtnRightToLeft ) );
+  QToolTip::add( btnRightToLeft, i18n( "Lists the files marked to copy from right to left" ) );
   showOptionsLayout->addWidget( btnRightToLeft, 0, 3);
 
   btnDeletable = new QPushButton( showOptions, "btnDeletable" );
@@ -881,6 +900,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnDeletable->setPixmap( showDeletable );
   btnDeletable->setToggleButton( true );
   btnDeletable->setOn( krConfig->readBoolEntry( "Deletable Button", _BtnDeletable ) );
+  QToolTip::add( btnDeletable, i18n( "Lists the files marked to delete" ) );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
 
   btnDuplicates = new QPushButton( showOptions, "btnDuplicates" );
@@ -888,6 +908,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnDuplicates->setMinimumHeight( btnLeftToRight->height() );
   btnDuplicates->setToggleButton( true );
   btnDuplicates->setOn( krConfig->readBoolEntry( "Duplicates Button", _BtnDuplicates ) );
+  QToolTip::add( btnDuplicates, i18n( "Lists those files that exist in both side" ) );
   showOptionsLayout->addWidget( btnDuplicates, 0, 5);
 
   btnSingles = new QPushButton( showOptions, "btnSingles" );
@@ -895,6 +916,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnSingles->setMinimumHeight( btnLeftToRight->height() );
   btnSingles->setToggleButton( true );
   btnSingles->setOn( krConfig->readBoolEntry( "Singles Button", _BtnSingles ) );
+  QToolTip::add( btnSingles, i18n( "Lists those files that exist only in either side" ) );
   showOptionsLayout->addWidget( btnSingles, 0, 6);
 
   grid->addMultiCellWidget( optionBox, 2, 2, 0, 2 );
@@ -1005,7 +1027,13 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnDeletable,      SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnDuplicates,     SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnSingles,        SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
-  exec();
+  show();
+
+  while( isShown() )
+  {
+    qApp->processEvents();
+    qApp->eventLoop()->processEvents( QEventLoop::AllEvents|QEventLoop::WaitForMore);
+  }
 }
 
 SynchronizerGUI::~SynchronizerGUI()
@@ -1016,28 +1044,116 @@ SynchronizerGUI::~SynchronizerGUI()
 void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
 {  
   // these are the values that will exist in the menu
-  #define TODO_ID        90
+  #define EXCLUDE_ID          90
+  #define RESTORE_ID          91
+  #define COPY_TO_LEFT_ID     92
+  #define COPY_TO_RIGHT_ID    93
+  #define REVERSE_DIR_ID      94
+  #define DELETE_ID           95
+  #define VIEW_LEFT_FILE_ID   96
+  #define VIEW_RIGHT_FILE_ID  97
+  #define COMPARE_FILES_ID    98
   //////////////////////////////////////////////////////////
   if (!itemIn)
     return;
 
-//  SyncViewItem *item = (SyncViewItem *)itemIn;
+  SyncViewItem *syncItem = (SyncViewItem *)itemIn;  
+  if( syncItem == 0 )
+    return;
 
+  SynchronizerFileItem *item = syncItem->synchronizerItemRef();
+
+  bool    isDuplicate = item->existsInLeft() && item->existsInRight();
+  bool    isDir       = item->isDir();
+  QString dirName     = item->directory().isEmpty() ? "" : item->directory() + "/";
+
+  KURL leftURL  = synchronizer.fromPathOrURL( synchronizer.leftBaseDirectory()  + dirName + item->name() );
+  KURL rightURL = synchronizer.fromPathOrURL( synchronizer.rightBaseDirectory() + dirName + item->name() );
+  
   // create the menu
   KPopupMenu popup;
   popup.insertTitle(i18n("Synchronize Directories"));
 
-  popup.insertItem(i18n("TODO"),TODO_ID);
-  popup.setItemEnabled(TODO_ID,false);
+  popup.insertItem(i18n("Exclude"),EXCLUDE_ID);
+  popup.setItemEnabled(EXCLUDE_ID, true );
+  popup.insertItem(i18n("Restore original operation"),RESTORE_ID);
+  popup.setItemEnabled(RESTORE_ID, true );
+  popup.insertItem(i18n("Reverse direction"),REVERSE_DIR_ID);
+  popup.setItemEnabled(REVERSE_DIR_ID, true );
+  popup.insertItem(i18n("Copy from right to left"),COPY_TO_LEFT_ID);
+  popup.setItemEnabled(COPY_TO_LEFT_ID, true );
+  popup.insertItem(i18n("Copy from left to right"),COPY_TO_RIGHT_ID);
+  popup.setItemEnabled(COPY_TO_RIGHT_ID, true );
+  popup.insertItem(i18n("Delete (left single)"),DELETE_ID);
+  popup.setItemEnabled(DELETE_ID, true );
+
+  popup.insertSeparator();
+
+  popup.insertItem(i18n("View left file"),VIEW_LEFT_FILE_ID);
+  popup.setItemEnabled(VIEW_LEFT_FILE_ID, !isDir && item->existsInLeft() );
+  popup.insertItem(i18n("View right file"),VIEW_RIGHT_FILE_ID);
+  popup.setItemEnabled(VIEW_RIGHT_FILE_ID, !isDir && item->existsInRight() );
+  popup.insertItem(i18n("Compare Files"),COMPARE_FILES_ID);  
+  popup.setItemEnabled(COMPARE_FILES_ID, !isDir && isDuplicate );
 
   int result=popup.exec(QCursor::pos());
 
   // check out the user's option
   switch (result)
   {
-    case -1 : return;     // the user clicked outside of the menu
-    case TODO_ID   :
+    case EXCLUDE_ID:
+    case RESTORE_ID:
+    case COPY_TO_LEFT_ID:
+    case COPY_TO_RIGHT_ID:
+    case REVERSE_DIR_ID:
+    case DELETE_ID:
+      {
+        unsigned              ndx = 0;
+        SynchronizerFileItem  *currentItem;
+
+        while( ( currentItem = synchronizer.getItemAt( ndx++ ) ) != 0 )
+        {
+          SyncViewItem *viewItem = (SyncViewItem *)currentItem->userData();
+
+          if( !viewItem || !viewItem->isSelected() || !viewItem->isVisible() )
+            continue;
+
+          switch( result )
+          {
+          case EXCLUDE_ID:
+            synchronizer.exclude( viewItem->synchronizerItemRef() );
+            break;
+          case RESTORE_ID:
+            synchronizer.restore( viewItem->synchronizerItemRef() );
+            break;
+          case REVERSE_DIR_ID:
+            synchronizer.reverseDirection( viewItem->synchronizerItemRef() );
+            break;
+          case COPY_TO_LEFT_ID:
+            synchronizer.copyToLeft( viewItem->synchronizerItemRef() );
+            break;
+          case COPY_TO_RIGHT_ID:
+            synchronizer.copyToRight( viewItem->synchronizerItemRef() );
+            break;
+          case DELETE_ID:
+            synchronizer.deleteLeft( viewItem->synchronizerItemRef() );
+            break;
+          }
+        }
+
+        refresh();
+      }
       break;
+    case VIEW_LEFT_FILE_ID:
+      KrViewer::view( leftURL ); // view the file  
+      break;
+    case VIEW_RIGHT_FILE_ID:
+      KrViewer::view( rightURL ); // view the file
+      break;
+    case COMPARE_FILES_ID:
+      rightMenuCompareFiles( leftURL, rightURL );
+      break;
+    case -1 : return;     // the user clicked outside of the menu
   }  
 }
 
@@ -1175,7 +1291,10 @@ void SynchronizerGUI::markChanged( SynchronizerFileItem *item )
 {
   SyncViewItem *listItem = (SyncViewItem *)item->userData();
   if( listItem )
+  {
     listItem->setVisible( item->isMarked() );
+    listItem->setText( 3, Synchronizer::getTaskTypeName( item->task() ) );
+  }
 }
 
 void SynchronizerGUI::subdirsChecked( bool isOn )
@@ -1225,6 +1344,7 @@ void SynchronizerGUI::refresh()
 {
   if( !isComparing )
   {
+    syncList->clearSelection();
     setMarkFlags();
     btnCompareDirs->setEnabled( false );
     btnSynchronize->setEnabled( false );
@@ -1245,7 +1365,7 @@ void SynchronizerGUI::synchronize()
   if( !synchronizer.totalSizes( &copyToLeftNr, &copyToLeftSize, &copyToRightNr, &copyToRightSize,
                                 &deleteNr, &deleteSize ) )
   {
-    KMessageBox::sorry(0, i18n("The directories are identical!"));
+    KMessageBox::sorry(0, i18n("Synchronizer has nothing to do!"));
     return;
   }
   
@@ -1264,4 +1384,43 @@ void SynchronizerGUI::statusInfo( QString info )
 {
   statusLabel->setText( info );
   qApp->processEvents();
+}
+
+void SynchronizerGUI::rightMenuCompareFiles( KURL url1, KURL url2 )
+{
+  QString diffProg;
+  QStringList lst = Krusader::supportedTools();
+  if (lst.contains("DIFF")) diffProg=lst[lst.findIndex("DIFF") + 1];
+  else {
+    KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports kdiff and xxdiff."));
+    return;
+  }
+
+  // else implied: all ok, let's call kdiff
+  // but if one of the files isn't local, download them first
+
+  QString tmp1 = QString::null, tmp2 = QString::null;
+  if (!url1.isLocalFile()) {
+    if( !KIO::NetAccess::download( url1, tmp1 ) ){
+      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url1.path());
+      return;
+    }
+  } else tmp1 = url1.path();
+  if (!url2.isLocalFile()) {
+    if( !KIO::NetAccess::download( url2, tmp2 ) ){
+      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url2.path());
+      return;
+    }
+  } else tmp2 = url2.path();
+
+  KProcess p;
+  p << diffProg << tmp1 << tmp2;
+  if (!p.start(KProcess::DontCare))
+    KMessageBox::error(0,i18n("Error executing ")+diffProg+" !");
+  else
+    p.detach();
+  sleep(3);
+
+  if( tmp1 != url1.path() ) KIO::NetAccess::removeTempFile( tmp1 );
+  if( tmp2 != url2.path() ) KIO::NetAccess::removeTempFile( tmp2 );
 }

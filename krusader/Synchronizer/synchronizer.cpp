@@ -44,6 +44,7 @@
 #include <kio/renamedlg.h>
 #include <kio/skipdlg.h>
 #include <unistd.h>
+#include <qeventloop.h>
 
 #define  DISPLAY_UPDATE_PERIOD        2
 
@@ -215,7 +216,7 @@ vfs * Synchronizer::getDirectory( QString url )
     while( ((ftp_vfs *)v)->isBusy() )
     {
       qApp->processEvents();
-      usleep( 10000 );
+      qApp->eventLoop()->processEvents( QEventLoop::AllEvents|QEventLoop::WaitForMore);      
     }
   }
 
@@ -467,6 +468,150 @@ int Synchronizer::refresh(bool nostatus)
     emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
 
   return fileCount;
+}
+
+void Synchronizer::operate( SynchronizerFileItem *item,
+                            void (*executeOperation)(SynchronizerFileItem *) )
+{
+  executeOperation( item );
+
+  if( item->isDir() )
+  {
+    QString dirName = ( item->directory() == "" ) ?
+                        item->name() : item->directory() + "/" + item->name() ;
+
+    item = resultList.first();
+    while( item )
+    {
+      if( item->directory() == dirName || item->directory().startsWith( dirName + "/" ) )
+        executeOperation( item );
+      
+      item = resultList.next();
+    }    
+  }
+}
+
+void Synchronizer::excludeOperation( SynchronizerFileItem *item )
+{
+  item->setTask( TT_DIFFERS );
+}
+
+void Synchronizer::exclude( SynchronizerFileItem *item )
+{
+  if( !item->parent() || item->parent()->task() != TT_DELETE )
+    operate( item, excludeOperation );  /* exclude only if the parent task is not DEL */
+}
+
+void Synchronizer::restoreOperation( SynchronizerFileItem *item )
+{
+  item->restoreOriginalTask();
+}
+
+void Synchronizer::restore( SynchronizerFileItem *item )
+{
+  operate( item, restoreOperation );
+
+  while( ( item = item->parent() ) != 0 ) /* in case of restore, the parent directories */
+  {                                          /* must be changed for being consistent */
+    if( item->task() != TT_DIFFERS )  
+      break;
+
+    if( item->originalTask() == TT_DELETE ) /* if the parent original task is delete */
+      break;                                    /* don't touch it */
+      
+    item->restoreOriginalTask();          /* restore */
+  }     
+}
+
+void Synchronizer::reverseDirectionOperation( SynchronizerFileItem *item )
+{
+  if( item->existsInRight() && item->existsInLeft() )
+  {
+    if( item->task() == TT_COPY_TO_LEFT )
+      item->setTask( TT_COPY_TO_RIGHT );
+    else if( item->task() == TT_COPY_TO_RIGHT )
+      item->setTask( TT_COPY_TO_LEFT );
+  }  
+}
+
+void Synchronizer::reverseDirection( SynchronizerFileItem *item )
+{
+  operate( item, reverseDirectionOperation );
+}
+
+void Synchronizer::deleteLeftOperation( SynchronizerFileItem *item )
+{
+  if( !item->existsInRight() && item->existsInLeft() )
+    item->setTask( TT_DELETE );
+}
+
+void Synchronizer::deleteLeft( SynchronizerFileItem *item )
+{
+  operate( item, deleteLeftOperation );
+}
+
+void Synchronizer::copyToLeftOperation( SynchronizerFileItem *item )
+{
+  if( item->existsInRight() )
+  {
+    if( !item->isDir() )
+      item->setTask( TT_COPY_TO_LEFT );
+    else
+    {
+      if( item->existsInLeft() && item->existsInRight() )
+        item->setTask( TT_EQUALS );
+      else if( !item->existsInLeft() && item->existsInRight() )
+        item->setTask( TT_COPY_TO_LEFT );
+    }
+  }
+}
+
+void Synchronizer::copyToLeft( SynchronizerFileItem *item )
+{
+  operate( item, copyToLeftOperation );
+
+  while( ( item = item->parent() ) != 0 ) 
+  {                                       
+    if( item->task() != TT_DIFFERS )
+      break;
+
+    if( item->existsInLeft() && item->existsInRight() )
+      item->setTask( TT_EQUALS );
+    else if( !item->existsInLeft() && item->existsInRight() )
+      item->setTask( TT_COPY_TO_LEFT );
+  }
+}
+
+void Synchronizer::copyToRightOperation( SynchronizerFileItem *item )
+{
+  if( item->existsInLeft() )
+  {
+    if( !item->isDir() )
+      item->setTask( TT_COPY_TO_RIGHT );
+    else
+    {
+      if( item->existsInLeft() && item->existsInRight() )
+        item->setTask( TT_EQUALS );
+      else if( item->existsInLeft() && !item->existsInRight() )
+        item->setTask( TT_COPY_TO_RIGHT );
+    }
+  }
+}
+
+void Synchronizer::copyToRight( SynchronizerFileItem *item )
+{
+  operate( item, copyToRightOperation );
+
+  while( ( item = item->parent() ) != 0 )
+  {
+    if( item->task() != TT_DIFFERS && item->task() != TT_DELETE )
+      break;
+
+    if( item->existsInLeft() && item->existsInRight() )
+      item->setTask( TT_EQUALS );
+    else if( item->existsInLeft() && !item->existsInRight() )
+      item->setTask( TT_COPY_TO_RIGHT );
+  }
 }
 
 bool Synchronizer::totalSizes( int * leftCopyNr, KIO::filesize_t *leftCopySize, int * rightCopyNr,
@@ -759,6 +904,16 @@ void Synchronizer::resume()
 {
   paused = false;
   executeTask();
+}
+
+QString Synchronizer::leftBaseDirectory()
+{
+  return leftBaseDir;
+}
+
+QString Synchronizer::rightBaseDirectory()
+{
+  return rightBaseDir;
 }
 
 KURL Synchronizer::fromPathOrURL( QString origin )

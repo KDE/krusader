@@ -108,7 +108,9 @@ private:
   void    setMarkFlags();
   void    disableMarkButtons();
   void    enableMarkButtons();
-  
+
+  void    rightMenuCompareFiles( KURL url1, KURL url2 );
+
 protected:
   KHistoryCombo *leftLocation;
   KHistoryCombo *rightLocation;

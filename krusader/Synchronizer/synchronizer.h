@@ -64,6 +64,7 @@ class SynchronizerFileItem
     bool                  m_overWrite;    // overwrite flag
     QString               m_destination;  // the destination URL at rename
     bool                  m_temporary;    // flag indicates temporary directory
+    TaskType              m_originalTask; // the original task type
     
   public:
     SynchronizerFileItem(QString nam, QString dir, bool mark, bool exL,
@@ -75,7 +76,8 @@ class SynchronizerFileItem
                        m_rightSize( rightSize ), m_leftDate( leftDate ),
                        m_rightDate( rightDate ),m_task( tsk ), m_isDir( isDir ),
                        m_parent(parent), m_userData( 0 ), m_overWrite( false ),
-                       m_destination( QString::null ), m_temporary( tmp ) {}
+                       m_destination( QString::null ), m_temporary( tmp ),
+                       m_originalTask( tsk ) {}
 
     inline bool                   isMarked()              {return m_marked;}
     inline void                   setMarked( bool flag )  {m_marked = flag;}
@@ -98,6 +100,9 @@ class SynchronizerFileItem
     inline void                   setDestination(QString d) {m_destination = d;}
     inline bool                   isTemporary()           {return m_temporary;}
     inline void                   setPermanent()          {m_temporary = false;}
+    inline TaskType               originalTask()          {return m_originalTask;}
+    inline void                   restoreOriginalTask()   {m_task = m_originalTask;}
+    inline void                   setTask( TaskType t )   {m_task = t;}
 };
 
 class Synchronizer : public QObject
@@ -119,7 +124,19 @@ class Synchronizer : public QObject
     void    pause();
     void    resume();
 
+    void    exclude( SynchronizerFileItem * );
+    void    restore( SynchronizerFileItem * );
+    void    reverseDirection( SynchronizerFileItem * );
+    void    copyToLeft( SynchronizerFileItem * );
+    void    copyToRight( SynchronizerFileItem * );
+    void    deleteLeft( SynchronizerFileItem * );
+    
+    KURL    fromPathOrURL( QString url );
+    QString leftBaseDirectory();
+    QString rightBaseDirectory();
     static QString getTaskTypeName( TaskType taskType );
+
+    SynchronizerFileItem *getItemAt( unsigned ndx ) {return resultList.at(ndx);}
 
   signals:
     void    comparedFileData( SynchronizerFileItem * );
@@ -158,10 +175,17 @@ class Synchronizer : public QObject
     bool    isMarked( TaskType task, bool dupl );
     bool    markParentDirectories( SynchronizerFileItem * );
     void    executeTask();
-    KURL    fromPathOrURL( QString url );
     bool    compareByContent( QString, QString );
     void    abortContentComparing();
     void    setPermanent( SynchronizerFileItem * );
+    void    operate( SynchronizerFileItem *item, void (*)(SynchronizerFileItem *) );
+
+    static void excludeOperation( SynchronizerFileItem *item );
+    static void restoreOperation( SynchronizerFileItem *item );
+    static void reverseDirectionOperation( SynchronizerFileItem *item );
+    static void copyToLeftOperation( SynchronizerFileItem *item );
+    static void copyToRightOperation( SynchronizerFileItem *item );
+    static void deleteLeftOperation( SynchronizerFileItem *item );
     
   protected:
     bool                              recurseSubDirs; // walk through subdirectories also
