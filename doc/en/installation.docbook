@@ -111,6 +111,25 @@
 
 </sect2>
 
+<sect2 id="version_scheme">
+<title>Version scheme</title>
+<para>
+We use a new version scheme since &krusader;-1.60.0
+<itemizedlist>
+      <listitem><para>First digit - the major version
+                </para></listitem>
+      <listitem><para>Second digit(s) - percentage of features completed for this major version
+                </para></listitem>
+      <listitem><para>third digit(s) - bugfixes.
+                </para></listitem>
+</itemizedlist>
+So in essence, releasing &krusader;-1.60.0, means that we believe that &krusader; is about 60%
+done with all the features we'd schedule for thr 1.x.x series.
+Only 40% left to go until version 2.0.0 ;-)
+We hope it'd be easy to understand.
+</para>
+</sect2>
+
 <sect2 id="krusader_stable">
 <title>Stable version</title>
 <para><filename>krusader-x.xx.tar.gz</filename></para>
