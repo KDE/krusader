@@ -771,6 +771,8 @@ void KrDetailedView::handleContextMenu( QListViewItem * it, const QPoint & pos, 
 
 void KrDetailedView::showContextMenu()
 {
+	if (lastSwushPosition)
+		lastSwushPosition->setSelected(true);
    emit contextMenu( contextMenuPoint );
 }
 
