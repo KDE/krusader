@@ -54,8 +54,6 @@
 #define FSTAB "/etc/fstab"
 #endif
 
-#define MTAB "/etc/mtab"
-
 using namespace MountMan;
 
 KMountMan::KMountMan() : QObject(), Ready(false), Operational(false),
@@ -314,56 +312,62 @@ fsData* KMountMan::location(QString name) {
   return it;
 }
 
-QString KMountMan::devFromMtab(QString mntPoint) {
-  QFile mtab(MTAB);
-	if (!mtab.open(IO_ReadOnly)) {
-    kdWarning() << "Mt.Man: Unable to read /etc/mtab !!! Shutting down. (sorry)" << endl;
-    // since mtab can't be read safely, mountman stops operating.
-    Operational=Ready=false;
-    return QString::null;
+QString KMountMan::getMtab()
+{
+  KShellProcess proc;
+  proc << "mount";
+
+  // connect all outputs to collectOutput
+  connect(&proc,SIGNAL(receivedStdout(KProcess*, char*, int)),
+          this,SLOT(collectOutput(KProcess*, char*,int)));
+  // launch
+  clearOutput();
+  if (!proc.start(KProcess::Block,KProcess::Stdout)) {
+    kdDebug() << "Unable to execute 'mount' !!!" << endl;
+    return "";
   }
 
+  return getOutput();
+}
+
+QString KMountMan::devFromMtab(QString mntPoint) {
+  QString mtab = getMtab();
+
   // and read it into the temporary array
-	QTextStream t(&mtab);
-  while (!mtab.atEnd()) {
+	QTextStream t(&mtab, IO_ReadOnly );
+  while (!t.atEnd()) {
     QString dev,point;
     QString s = t.readLine().simplifyWhiteSpace();
-    dev = nextWord(s,' '); point = nextWord(s,' ');
+    dev = nextWord(s,' ');   /* device */
+    nextWord(s,' ');         /* on */
+    point = nextWord(s,' '); /* mountpoint */
     if (point==mntPoint) {
-      mtab.close();
       return dev;
     }
   }
-  mtab.close();
   return QString::null;
 }
 
 QString KMountMan::pointFromMtab(QString device) {
-  QFile mtab(MTAB);
-	if (!mtab.open(IO_ReadOnly)) {
-    kdWarning() << "Mt.Man: Unable to read /etc/mtab !!! Shutting down. (sorry)" << endl;
-    // since mtab can't be read safely, mountman stops operating.
-    Operational=Ready=false;
-    return QString::null;
-  }
+  QString mtab = getMtab();
 
   // and read it into the temporary array
-	QTextStream t(&mtab);
-  while (!mtab.atEnd()) {
+	QTextStream t(&mtab, IO_ReadOnly);
+  while (!t.atEnd()) {
     QString dev,mntPoint;
     QString s = t.readLine().simplifyWhiteSpace();
-    dev = nextWord(s,' '); mntPoint = nextWord(s,' ');
+    dev = nextWord(s,' ');   /* device */
+    nextWord(s,' ');         /* on */
+    mntPoint = nextWord(s,' '); /* mountpoint */
     if (dev==device) {
-      mtab.close();
       return mntPoint;
     }
   }
-  mtab.close();
   return QString::null;
 }
 
 KMountMan::mntStatus KMountMan::getStatus(QString mntPoint) {
-  // parse /etc/mtab and search for mntPoint
+  // parse the mount table and search for mntPoint
   bool mounted=(devFromMtab(mntPoint) != QString::null);
   if (mounted) return KMountMan::MOUNTED;
   if (mountPoints.findIndex(mntPoint)==-1)  // no such mountPoint is /etc/fstab

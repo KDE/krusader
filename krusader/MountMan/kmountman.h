@@ -96,7 +96,6 @@ namespace MountMan {
       void updateFilesystems();           // actually mounted systems using DF -T -P
       QString getDevice( QString mntPoint ); // mntPoint ==> device
       fsData* location( QString name );     // device   ==> mntPoint
-      // using /etc/mtab
       QString pointFromMtab( QString device ); // returns mountPoint for a device
       QString devFromMtab( QString mntPoint ); // returns device for a mountPoint
 
@@ -108,6 +107,7 @@ namespace MountMan {
       }
 
     private:
+      QString getMtab();        // reads the mount table
       QStringList mountPoints;  // all mountPoints excluding SUPERMOUNTED ones
       QList<fsData> filesystems;
       int noOfFilesystems;
