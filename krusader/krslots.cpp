@@ -280,7 +280,7 @@ void KRslots::customFilter()		{	ACTIVE_PANEL->setFilter(KrViewProperties::Custom
 void KRslots::markAll()         { ACTIVE_PANEL->select(true,true);           }
 void KRslots::unmarkAll()       { ACTIVE_PANEL->select(false,true);          }
 void KRslots::markGroup()       { ACTIVE_PANEL->select(true,false);          }
-void KRslots::markGroup(const QString& mask, bool select) { ACTIVE_PANEL->select(mask, select); }
+void KRslots::markGroup(const QString& mask, bool select) { ACTIVE_PANEL->select( KRQuery( mask ), select); }
 void KRslots::unmarkGroup()     { ACTIVE_PANEL->select(false,false);         }
 void KRslots::invert()          { ACTIVE_PANEL->invertSelection();           }
 

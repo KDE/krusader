@@ -379,7 +379,7 @@ void ListPanel::slotFocusAndCDRoot() {
 }
 
 void ListPanel::select( KRQuery query, bool select) {
-   if (query.isNull() != 0) {
+   if ( !query.isNull() ) {
       if ( select )
          view->select( query );
       else
