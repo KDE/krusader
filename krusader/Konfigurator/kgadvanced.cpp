@@ -7,7 +7,7 @@
 ** WARNING! All changes made in this file will be lost!
 ****************************************************************************/
 #include "kgadvanced.h"
-
+#include <sys/param.h>
 #include <qcheckbox.h>
 #include <qgroupbox.h>
 #include <qlabel.h>
@@ -108,7 +108,9 @@ kgAdvanced::kgAdvanced( QWidget* parent,  const char* name )
     kgAutomount = new QCheckBox( privateLayoutWidget_3, "kgAutomount" );
     kgAutomount->setText( i18n( "Automount filesystems             " ) );
     QToolTip::add(  kgAutomount, i18n( "If checked, Krusader will mount FSTAB mount-points when needed." ) );
-
+#ifdef BSD
+    kgAutomount->hide();
+#endif
     Layout3->addWidget( kgAutomount, 0, 1 );
 
     kgAdvancedLayout->addWidget( GroupBox2, 0, 0 );
