@@ -66,7 +66,7 @@ public:
   bool isSelected() const { return KListViewItem::isSelected(); }
   void setSelected(bool s) { KListViewItem::setSelected(s); }
 	/*void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int alignment){}*/
-  QPixmap& icon();
+  QPixmap icon();
   int compare(QListViewItem *i,int col,bool ascending ) const;
   void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
   void repaintItem();

@@ -279,7 +279,8 @@ const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor &
    return color1;
 }
 
-QPixmap& KrDetailedViewItem::icon() {
+QPixmap KrDetailedViewItem::icon() {
+#if 0  
   QPixmap *p;
 
   // This is bad - very bad. the function must return a valid reference,
@@ -289,6 +290,10 @@ QPixmap& KrDetailedViewItem::icon() {
     p = new QPixmap(*(pixmap(_view->column(KrDetailedView::Name))));
   else p = new QPixmap(KrView::getIcon(_vf));
   return *p;
+#endif
+	if (!_vf || !_view->_withIcons)
+		return QPixmap();
+	else return KrView::getIcon(_vf);
 }
 
 int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const {
