@@ -43,7 +43,7 @@
 #include <qfile.h>
 
 // set the defaults
-KRQuery::KRQuery(): matches(""),matchesCaseSensitive(true),
+KRQuery::KRQuery(): matchesCaseSensitive(true),
                     contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false),
                     inArchive(false),recurse(true),followLinks(true),

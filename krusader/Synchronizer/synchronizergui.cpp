@@ -34,6 +34,7 @@
 #include "../VFS/krpermhandler.h"
 #include "../KViewer/krviewer.h"
 #include "../Dialogs/krspwidgets.h"
+#include "../Search/krquery.h"
 #include "../krservices.h"
 #include "../krslots.h"
 #include "synchronizedialog.h"
@@ -1591,8 +1592,12 @@ void SynchronizerGUI::compare()
   btnStopComparing->setEnabled( isComparing = true );
   btnSynchronize->setEnabled( false );
   disableMarkButtons();
+  
+  KRQuery query;
+  query.setFilter( fileFilter->currentText() );
+  
   int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
-                       fileFilter->currentText(), cbSubdirs->isChecked(), cbSymlinks->isChecked(),
+                       &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
                        autoScrolling );
   enableMarkButtons();

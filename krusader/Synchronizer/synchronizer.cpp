@@ -71,12 +71,10 @@ void Synchronizer::reset()
   leftCopySize = rightCopySize = deleteSize = 0;
   scannedDirs = fileCount = 0;
   leftBaseDir = rightBaseDir = QString::null;
-  inclusionFilter.clear();
-  exclusionFilter.clear();
   resultList.clear();
 }
 
-int Synchronizer::compare( QString leftURL, QString rightURL, QString filter, bool subDirs,
+int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs,
                             bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool autoSc )
 {
   resultList.clear();
@@ -89,20 +87,7 @@ int Synchronizer::compare( QString leftURL, QString rightURL, QString filter, bo
   autoScroll     = autoSc;
   stopped = false;
 
-  int exclusionIndex = filter.find('|');
-  if( exclusionIndex > -1 )
-  {
-    QString inclusionExp = filter.left( exclusionIndex );
-    QString exclusionExp = filter.mid( exclusionIndex+1 );
-    
-    inclusionFilter = QStringList::split(" ",inclusionExp);
-    exclusionFilter = QStringList::split(" ",exclusionExp);
-    
-    if( inclusionFilter.count() == 0 )
-      inclusionFilter.push_back( QString("*") );
-  }
-  else
-    inclusionFilter = QStringList::split(" ",filter);
+  this->query = query;
   
   if( !leftURL.endsWith("/" ))  leftURL+="/";
   if( !rightURL.endsWith("/" )) rightURL+="/";
@@ -117,7 +102,8 @@ int Synchronizer::compare( QString leftURL, QString rightURL, QString filter, bo
 
 void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftURL,
                                      QString rightURL, QString dir, QString addName,
-                                     QString addDir, time_t addLTime, time_t addRTime )
+                                     QString addDir, time_t addLTime, time_t addRTime,
+                                     bool isTemp )
 {
   vfs   * left_directory  = getDirectory( leftURL );
   vfs   * right_directory = getDirectory( rightURL );
@@ -135,7 +121,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
   }
 
   if( !dir.isEmpty() )
-    parent = addDuplicateItem( parent, addName, addDir, 0, 0, addLTime, addRTime, true, !checkName( addName ) );
+    parent = addDuplicateItem( parent, addName, addDir, 0, 0, addLTime, addRTime, true, isTemp );
 
   /* walking through in the left directory */  
   for( left_file=left_directory->vfs_getFirstFile(); left_file != 0 && !stopped ;
@@ -146,7 +132,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
 
     file_name =  left_file->vfile_getName();
 
-    if( !checkName( file_name ) )
+    if( !query->match( left_file ) )
       continue;
 
     if( (right_file = right_directory->vfs_search( file_name )) == 0 )
@@ -170,7 +156,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
 
     file_name =  right_file->vfile_getName();
 
-    if( !checkName( file_name ) )
+    if( !query->match( right_file ) )
       continue;
     
     if( left_directory->vfs_search( file_name ) == 0 )
@@ -188,11 +174,12 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
         file_name =  left_file->vfile_getName();
         
         if( (right_file = right_directory->vfs_search( file_name )) == 0 )
-          addSingleDirectory( parent, file_name, dir, left_file->vfile_getTime_t(), true );
+          addSingleDirectory( parent, file_name, dir, left_file->vfile_getTime_t(), true, !query->match( left_file ) );
         else
           compareDirectory( parent, leftURL+file_name+"/", rightURL+file_name+"/",
                             dir.isEmpty() ? file_name : dir+"/"+file_name, file_name,
-                            dir, left_file->vfile_getTime_t(), right_file->vfile_getTime_t() );
+                            dir, left_file->vfile_getTime_t(), right_file->vfile_getTime_t(), 
+                            !query->match( left_file ) );
       }
     }
 
@@ -205,7 +192,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
         file_name =  right_file->vfile_getName();
 
         if( left_directory->vfs_search( file_name ) == 0 )
-          addSingleDirectory( parent, file_name, dir, right_file->vfile_getTime_t(), false );
+          addSingleDirectory( parent, file_name, dir, right_file->vfile_getTime_t(), false, !query->match( right_file ) );
       }
     }
   }
@@ -360,7 +347,7 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
 }
 
 void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString name,
-                                       QString dir , time_t date, bool isLeft )
+                                       QString dir , time_t date, bool isLeft, bool isTemp )
 {
   QString baseDir = (isLeft ? leftBaseDir : rightBaseDir );
   QString dirName = dir.isEmpty() ? name : dir+"/"+name;
@@ -373,9 +360,9 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
     return;
 
   if( isLeft )
-    parent = addLeftOnlyItem( parent, name, dir, 0, date, true, !checkName( name ) );
+    parent = addLeftOnlyItem( parent, name, dir, 0, date, true, isTemp );
   else
-    parent = addRightOnlyItem( parent, name, dir, 0, date, true, !checkName( name ) );
+    parent = addRightOnlyItem( parent, name, dir, 0, date, true, isTemp );
 
   /* walking through the directory files */
   for( file=directory->vfs_getFirstFile(); file != 0 && !stopped; file = directory->vfs_getNextFile() )
@@ -385,7 +372,7 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
 
     file_name =  file->vfile_getName();
 
-    if( !checkName( file_name ) )
+    if( !query->match( file ) )
       continue;
 
     if( isLeft )
@@ -400,7 +387,7 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
     if ( file->vfile_isDir() && (followSymLinks || !file->vfile_isSymLink())  )
     {
         file_name =  file->vfile_getName();
-        addSingleDirectory( parent, file_name, dirName, file->vfile_getTime_t(), isLeft );
+        addSingleDirectory( parent, file_name, dirName, file->vfile_getTime_t(), isLeft, !query->match( file ) );
     }
   }
 
@@ -408,20 +395,6 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
     delete parent;
   
   delete directory;
-}
-
-bool Synchronizer::checkName( QString name )
-{  
-  for ( QStringList::Iterator it = inclusionFilter.begin(); it != inclusionFilter.end(); ++it )
-    if( QRegExp(*it,true,true).exactMatch( name ) )
-    {
-      for ( QStringList::Iterator it2 = exclusionFilter.begin(); it2 != exclusionFilter.end(); ++it2 )
-        if( QRegExp(*it2,true,true).exactMatch( name ) )
-          return false;
-      
-      return true;
-    }
-  return false;
 }
 
 void Synchronizer::setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing,

@@ -32,6 +32,7 @@
 #define __SYNCHRONIZER_H__
 
 #include "../VFS/vfs.h"
+#include "../Search/krquery.h"
 #include <qobject.h>
 #include <qptrvector.h>
 #include <qprogressdialog.h>
@@ -135,7 +136,7 @@ class Synchronizer : public QObject
   
   public:
     Synchronizer();
-    int     compare( QString leftURL, QString rightURL, QString filter, bool subDirs, bool symLinks,
+    int     compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs, bool symLinks,
                      bool igDate, bool asymm, bool cmpByCnt, bool autoSc );
     void    stop() {stopped = true;}
     void    setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing, bool del );
@@ -182,8 +183,9 @@ class Synchronizer : public QObject
     
     void    compareDirectory( SynchronizerFileItem *,QString leftURL, QString rightURL,
                               QString dir, QString addName=QString::null,
-                              QString addDir=QString::null, time_t addLTime=0, time_t addRTime=0 );
-    void    addSingleDirectory( SynchronizerFileItem *, QString, QString, time_t, bool );
+                              QString addDir=QString::null, time_t addLTime=0, time_t addRTime=0,
+                              bool isTemp = false );
+    void    addSingleDirectory( SynchronizerFileItem *, QString, QString, time_t, bool, bool );
     SynchronizerFileItem * addItem( SynchronizerFileItem *, QString, QString,
                                     bool, bool, KIO::filesize_t, KIO::filesize_t,
                                     time_t, time_t, TaskType, bool, bool);
@@ -194,7 +196,6 @@ class Synchronizer : public QObject
     SynchronizerFileItem * addDuplicateItem( SynchronizerFileItem *, QString, QString,
                                              KIO::filesize_t, KIO::filesize_t, time_t,
                                              time_t, bool isDir = false, bool isTemp = false  );
-    bool    checkName( QString name );
     bool    isMarked( TaskType task, bool dupl );
     bool    markParentDirectories( SynchronizerFileItem * );
     void    executeTask();
@@ -220,8 +221,7 @@ class Synchronizer : public QObject
     QPtrList<SynchronizerFileItem>    resultList;     // the found files
     QString                           leftBaseDir;    // the left-side base directory
     QString                           rightBaseDir;   // the right-side base directory
-    QStringList                       inclusionFilter;// the file selection filter for inclusion
-    QStringList                       exclusionFilter;// the file selection filter for inclusion
+    KRQuery                           *query;         // the filter used for the query
     bool                              stopped;        // 'Stop' button was pressed
 
     bool                              markEquals;     // show the equal files
