@@ -1016,8 +1016,7 @@ void ListPanelFunc::refreshActions() {
 ListPanelFunc::~ListPanelFunc() {
   // clear the view - to avoid a repaint crash
   panel->view->clear();
-  while ( vfsStack.remove() )
-    ; // delete all vfs objects
+  while ( vfsStack.remove() ); // delete all vfs objects
 }
 
 vfs* ListPanelFunc::files() {

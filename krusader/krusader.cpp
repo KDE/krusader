@@ -502,8 +502,8 @@ bool Krusader::queryClose() {
   }
   if (quit) {
     // close all open VFS
-    delete krApp->mainView->left->func;
-    delete krApp->mainView->right->func;
+    //delete krApp->mainView->left->func;
+    //delete krApp->mainView->right->func;
     saveSettings();
     delete krApp->mainView;
     return true;

@@ -173,6 +173,10 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   filter = ALL;
 }
 
+ListPanel::~ListPanel(){
+  delete func;
+}
+
 void ListPanel::slotUpdateTotals() {
   totals->setText( view->statistics() );
 }
