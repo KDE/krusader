@@ -76,9 +76,6 @@
 #include "Synchronizer/synchronizergui.h"
 #include "krservices.h"
 
-#define ACTIVE_PANEL        (krApp->mainView->activePanel)
-#define ACTIVE_FUNC         (krApp->mainView->activePanel->func)
-#define MAIN_VIEW           (krApp->mainView)
 #define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
                               MAIN_VIEW->left->func->refresh(); \
 	                            MAIN_VIEW->right->func->refresh();\
