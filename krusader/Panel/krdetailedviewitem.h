@@ -45,54 +45,48 @@ class KrDetailedViewItem : public KListViewItem, public KrViewItem {
 friend class KrDetailedView;
 friend class KrCalcSpaceDialog;
 public:
-  KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
-  QString name() const;
-  QString description() const; // for status bar
-  bool isDir() const { return (_vf ? _vf->vfile_isDir() : true); }
-  bool isExecutable() const { return (_vf ? _vf->vfile_isExecutable() : false); }
-  KIO::filesize_t size() const { return (_vf ? _vf->vfile_getSize() : 0); }
-  QString dateTime() const;
-  time_t getTime_t() const { return _vf->vfile_getTime_t(); }
-  QString mime() const { return (_vf ? _vf->vfile_getMime() : QString::null); }
-  QString symlinkDest() const {
-   //return (_vf ? : _vf->vfile_getSymDest() : QString::null);
-   if (_vf) return _vf->vfile_getSymDest();
-   else return QString::null;
-  }
-  bool isSymLink() const { return (_vf ? _vf->vfile_isSymLink() : false); }
-  // isSelected doesn't check of _vf on purpose! not needed here
-  bool isSelected() const { return KListViewItem::isSelected(); }
-  void setSelected(bool s) { KListViewItem::setSelected(s); }
-	/*void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int alignment){}*/
-  QPixmap icon();
-  int compare(QListViewItem *i,int col,bool ascending ) const;
-  void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
-  void repaintItem();
+	KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
+	inline QString name() const { return _vf->vfile_getName(); }
+	QString description() const; // for status bar
+	inline bool isDir() const { return _vf->vfile_isDir(); }
+	inline bool isExecutable() const { return _vf->vfile_isExecutable(); }
+	inline KIO::filesize_t size() const { return _vf->vfile_getSize(); }
+	QString dateTime() const;
+	inline time_t getTime_t() const { return _vf->vfile_getTime_t(); }
+	inline QString mime() const { return _vf->vfile_getMime(); }
+	inline QString symlinkDest() const { return _vf->vfile_getSymDest(); }
+	inline bool isSymLink() const { return _vf->vfile_isSymLink(); }
+	inline bool isSelected() const { return KListViewItem::isSelected(); }
+	inline void setSelected(bool s) { KListViewItem::setSelected(s); }
+	QPixmap icon();
+	int compare(QListViewItem *i,int col,bool ascending ) const;
+	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
+	void repaintItem();
 
 protected:
-  // text() was made protected in order to catch every place where text(x) is used
-  // to gain unlawful information on the object
-  virtual QString text(int column) const { return KListViewItem::text(column); }
+	// text() was made protected in order to catch every place where text(x) is used
+	// to gain unlawful information on the object
+	virtual inline QString text(int column) const { return KListViewItem::text(column); }
 
 private:
-  // used INTERNALLY when calculation of dir size changes the displayed size of the item
-  inline void setSize(KIO::filesize_t size) { _vf->vfile_setSize(size); }
-  static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
-
-  QGuardedPtr<vfile> _vf;
-  KrDetailedView *_view;
-  bool caseSensitiveSort;
+	// used INTERNALLY when calculation of dir size changes the displayed size of the item
+	inline void setSize(KIO::filesize_t size) { _vf->vfile_setSize(size); }
+	static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
+	
+	KrDetailedView *_view; // <==
   
-  int nameColumn;         // the important columns are stored for faster comparation
-  int sizeColumn;
-  int dateTimeColumn;
-  int mimeColumn;
-  int krPermColumn;
-  int permColumn;
-  int ownerColumn;
-  int groupColumn;
-  int extColumn;
-  bool humanReadableSize;
+	// values are cached for faster comparisions
+	bool caseSensitiveSort;
+	int nameColumn;
+	int sizeColumn;
+	int dateTimeColumn;
+	int mimeColumn;
+	int krPermColumn;
+	int permColumn;
+	int ownerColumn;
+	int groupColumn;
+	int extColumn;
+	bool humanReadableSize;
 };
 
 #endif

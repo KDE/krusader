@@ -48,29 +48,42 @@
 #include <kmimetype.h>
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
-  KListViewItem(parent, after), KrViewItem(),_vf(vf), _view(parent) {
+	KListViewItem(parent, after), KrViewItem(vf), _view(parent) {
   
-  caseSensitiveSort = !(_view->sortMode() & KrView::IgnoreCase);
-    
-  nameColumn        = _view->column(KrDetailedView::Name);        // the columns are stored for faster comparation
-  sizeColumn        = _view->column(KrDetailedView::Size);
-  dateTimeColumn    = _view->column(KrDetailedView::DateTime);
-  mimeColumn        = _view->column(KrDetailedView::Mime);
-  krPermColumn      = _view->column(KrDetailedView::KrPermissions);
-  permColumn        = _view->column(KrDetailedView::Permissions);
-  ownerColumn       = _view->column(KrDetailedView::Owner);
-  groupColumn       = _view->column(KrDetailedView::Group);
-  extColumn         = _view->column(KrDetailedView::Extention);
-
+	// cache memory accesses for better performance
+	caseSensitiveSort = !(_view->sortMode() & KrView::IgnoreCase);
+	nameColumn        = _view->column(KrDetailedView::Name);        // the columns are stored for faster comparation
+	sizeColumn        = _view->column(KrDetailedView::Size);
+	dateTimeColumn    = _view->column(KrDetailedView::DateTime);
+	mimeColumn        = _view->column(KrDetailedView::Mime);
+	krPermColumn      = _view->column(KrDetailedView::KrPermissions);
+	permColumn        = _view->column(KrDetailedView::Permissions);
+	ownerColumn       = _view->column(KrDetailedView::Owner);
+	groupColumn       = _view->column(KrDetailedView::Group);
+	extColumn         = _view->column(KrDetailedView::Extention);
 	{
 	KConfigGroupSaver saver(krConfig, "Look&Feel");
 	humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
-  	}
-  repaintItem();
+	}
+  	
+	// there's a special case, where if _vf is null, then we've got the ".." (updir) item
+	// in that case, create a special vfile for that item, and delete it, if needed
+	if (!_vf) {
+		dummyVfile = true;
+		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString::null, QString::null, 0);
+		
+		setText(nameColumn, "..");
+		setText(sizeColumn, "<DIR>" );
+      if ( _view->_withIcons )
+         setPixmap( nameColumn, FL_LOADICON( "up" ) );
+      setSelectable( false );
+	}
+	
+	repaintItem();
 }
 
 void KrDetailedViewItem::repaintItem() {
-    if ( !_vf ) return;
+    if ( dummyVfile ) return;
     // set text in columns, according to what columns are available
     int id = KrDetailedView::Unused;
     if ((id = mimeColumn) != -1) {
@@ -133,11 +146,6 @@ QString num2qstring(KIO::filesize_t num){
   char buf[25];
   sprintf(buf,"%025llu",num);
   return QString(buf);
-}
-
-QString KrDetailedViewItem::name() const {
-  if (_vf) return _vf->vfile_getName();
-  else return text(nameColumn);
 }
 
 void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align) {
@@ -283,14 +291,18 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
     }
   }
 
-  // center the <DIR> thing if needed
-  if(column != _view->column(KrDetailedView::Size))
-   QListViewItem::paintCell(p, _cg, column, width, align);
-  else if (_vf) {
-    if (_vf->vfile_isDir() && _vf->vfile_getSize()<=0)
-      QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
-    else QListViewItem::paintCell(p, _cg, column, width, align); // size
-  } else QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
+	// center the <DIR> thing if needed
+	if(column != _view->column(KrDetailedView::Size))
+		QListViewItem::paintCell(p, _cg, column, width, align);
+	else {
+  		if (dummyVfile) {
+			QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
+  		} else {
+    		if (_vf->vfile_isDir() && _vf->vfile_getSize()<=0)
+      		QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
+    		else QListViewItem::paintCell(p, _cg, column, width, align); // size
+  		}
+	}
 }
 
 const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
@@ -311,12 +323,11 @@ QPixmap KrDetailedViewItem::icon() {
   // This is bad - very bad. the function must return a valid reference,
   // This is an interface flow - shie please fix it with a function that return QPixmap*
   // this way we can return 0 - and do our error checking...
-  if ( !_vf || _view->_withIcons)
-    p = new QPixmap(*(pixmap(_view->column(KrDetailedView::Name))));
-  else p = new QPixmap(KrView::getIcon(_vf));
-  return *p;
+  
+  // shie answers: why? what's the difference? if we return an empty pixmap, others can use it as it
+  // is, without worrying or needing to do error checking. empty pixmap displays nothing
 #endif
-	if (!_vf || !_view->_withIcons)
+	if (dummyVfile || !_view->_withIcons)
 		return QPixmap();
 	else return KrView::getIcon(_vf);
 }
@@ -362,42 +373,39 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 }
 
 QString KrDetailedViewItem::description() const {
- 	if (name()=="..") return i18n("Climb up the directory tree");
-	else if(_vf){
-    QString text = _vf->vfile_getName();
-		QString comment = KMimeType::mimeType(_vf->vfile_getMime())->comment(text, false);
- 		QString myLinkDest = _vf->vfile_getSymDest();
-		KIO::filesize_t mySize = _vf->vfile_getSize();
-
-    QString text2 = text.copy();
-		mode_t m_fileMode = _vf->vfile_getMode();
-
- 		if (_vf->vfile_isSymLink() ){
-      QString tmp;
-			if ( comment.isEmpty() )	tmp = i18n ( "Symbolic Link" ) ;
-			else if( _vf->vfile_getMime() == "Broken Link !" ) tmp = i18n("(broken link !)");
- 		  else tmp = i18n("%1 (Link)").arg(comment);
-
-			text += "->";
-     	text += myLinkDest;
-     	text += "  ";
-     	text += tmp;
- 		} else if ( S_ISREG( m_fileMode ) ){
-     	text = QString("%1 (%2)").arg(text2).arg( humanReadableSize ?
-			KRpermHandler::parseSize(_vf->vfile_getSize()) : KIO::convertSize( mySize ) );
-     	text += "  ";
-     	text += comment;
- 		} else if ( S_ISDIR ( m_fileMode ) ){
-     	text += "/  ";
-   		text += comment;
-   	} else {
-     	text += "  ";
-     	text += comment;
-   	}
-    return text;
-  }
-
-  return "";
+ 	if (dummyVfile) return i18n("Climb up the directory tree");
+	// else is implied
+	QString text = _vf->vfile_getName();
+	QString comment = KMimeType::mimeType(_vf->vfile_getMime())->comment(text, false);
+	QString myLinkDest = _vf->vfile_getSymDest();
+	KIO::filesize_t mySize = _vf->vfile_getSize();
+	
+	QString text2 = text.copy();
+	mode_t m_fileMode = _vf->vfile_getMode();
+	
+	if (_vf->vfile_isSymLink() ){
+	QString tmp;
+		if ( comment.isEmpty() )	tmp = i18n ( "Symbolic Link" ) ;
+		else if( _vf->vfile_getMime() == "Broken Link !" ) tmp = i18n("(broken link !)");
+		else tmp = i18n("%1 (Link)").arg(comment);
+	
+		text += "->";
+	text += myLinkDest;
+	text += "  ";
+	text += tmp;
+	} else if ( S_ISREG( m_fileMode ) ){
+	text = QString("%1 (%2)").arg(text2).arg( humanReadableSize ?
+		KRpermHandler::parseSize(_vf->vfile_getSize()) : KIO::convertSize( mySize ) );
+	text += "  ";
+	text += comment;
+	} else if ( S_ISDIR ( m_fileMode ) ){
+	text += "/  ";
+		text += comment;
+	} else {
+	text += "  ";
+	text += comment;
+	}
+	return text;
 }
 
 QString KrDetailedViewItem::dateTime() const {

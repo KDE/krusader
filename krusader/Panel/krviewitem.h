@@ -32,14 +32,13 @@
 
 #include <sys/types.h>
 #include <kio/global.h>
+#include "../VFS/vfile.h"
 
 class QString;
 class QPixmap;
 
 class KrViewItem {
 public:
-   KrViewItem() {}
-   virtual ~KrViewItem() {}
    virtual QString name() const = 0;
    virtual bool isDir() const = 0;
    virtual bool isExecutable() const = 0;
@@ -53,6 +52,13 @@ public:
    virtual bool isSelected() const = 0;
    virtual void setSelected( bool s ) = 0;
    virtual QPixmap icon() = 0;
+   
+	KrViewItem(vfile *vf): _vf(vf), dummyVfile(false) {}
+   virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
+		
+protected:
+	vfile* _vf;			// each view item holds a pointer to a corrosponding vfile for fast access	
+	bool dummyVfile;	// used in case our item represents the ".." (updir) item
 };
 
 #endif

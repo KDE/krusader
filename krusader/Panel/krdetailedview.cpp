@@ -330,11 +330,6 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
    // add the up-dir arrow if needed
    if ( addUpDir ) {
       KListViewItem * item = new KrDetailedViewItem( this, ( QListViewItem* ) 0L, ( vfile* ) 0L );
-      item->setText( column( Name ), ".." );
-      item->setText( column( Size ), "<DIR>" );
-      if ( _withIcons )
-         item->setPixmap( column( Name ), FL_LOADICON( "up" ) );
-      item->setSelectable( false );
    }
 
    // add a progress bar to the totals statusbar
