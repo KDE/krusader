@@ -785,4 +785,8 @@ void KRslots::compareSetup()
     }
 }
 
+void KRslots::togglePopupPanel() {
+	ACTIVE_PANEL->togglePanelPopup();
+}
+
 #include "krslots.moc"

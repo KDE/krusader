@@ -109,6 +109,7 @@ public slots:
    void slotFocusAndCDHome();
    void slotFocusAndCDup();
    void slotFocusAndCDOther();
+	void togglePanelPopup();
 	// for signals from vfs' dirwatch
 	void slotItemAdded(vfile *vf);
 	void slotItemDeleted(const QString& name);
@@ -131,7 +132,6 @@ protected slots:
    void handleDropOnTotals( QDropEvent * );                   // handles drops on the totals line
    void handleDropOnStatus( QDropEvent * );                   // handles drops on the status line
    void startDragging( QStringList, QPixmap );
-   void togglePanelPopup();
 
 signals:
    void signalStatus( QString msg );       // emmited when we need to update the status bar
