@@ -50,8 +50,8 @@ class KrActionProc: public QObject {
 
       KrActionProc( UserActionProperties* prop );
       ~KrActionProc();
-      bool start( QString cmdLine );
-      bool start( QStringList cmdLineList );
+      void start( QString cmdLine );
+      void start( QStringList cmdLineList );
 
    protected slots:
       void kill() { _proc->kill( SIGINT ); }

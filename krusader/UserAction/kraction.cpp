@@ -83,12 +83,12 @@ KrActionProc::~KrActionProc() {
    delete _proc;
 }
 
-bool KrActionProc::start( QString cmdLine ) {
+void KrActionProc::start( QString cmdLine ) {
    QStringList list = cmdLine;
    start( list );
 }
 
-bool KrActionProc::start( QStringList cmdLineList ) {
+void KrActionProc::start( QStringList cmdLineList ) {
    _proc->clearArguments();
    bool result = true;
    
@@ -123,8 +123,7 @@ bool KrActionProc::start( QStringList cmdLineList ) {
 //          while ( _proc->isRunning() );   // FIXME: replace this with a nice proc-queue
       } //for
    }
-   
-   return result;
+
 }
 
 void KrActionProc::processExited( KProcess * ) {
