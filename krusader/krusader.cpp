@@ -349,8 +349,8 @@ void Krusader::setupActions() {
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
   actTest = new KAction( i18n( "&Test Archive(s)" ), "kr_arc_test", ALT + Key_T,
                          SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
-  actFTPConnect = new KAction( i18n( "&Net Connections" ), "socket", CTRL + Key_C,
-                               SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
+//  actFTPConnect = new KAction( i18n( "&Net Connections" ), "socket", CTRL + Key_C,
+//                               SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
   actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "ftp", CTRL + Key_N,
                                   SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
   actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kr_calc", 0,
