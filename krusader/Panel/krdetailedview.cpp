@@ -478,7 +478,6 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         if ( e->state() == AltButton ) { // user pressed Alt+Right
           ListPanel * p = krApp->mainView->activePanel;
           krApp->mainView->right->popBookmarks();
-          p->slotFocusOnMe();
           return ;
         } else { // just a normal click - do a lynx-like moving thing
           KrViewItem *i = getCurrentKrViewItem();
@@ -505,7 +504,6 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         if ( e->state() == AltButton ) { // user pressed Alt+Right
           ListPanel * p = krApp->mainView->activePanel;
           krApp->mainView->left->popBookmarks();
-          p->slotFocusOnMe();
           return ;
         } else {          // a normal click - do a lynx-like moving thing
           SLOTS->dirUp(); // ask krusader to move up a directory
