@@ -149,8 +149,8 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
-   popupBtn->setFixedSize( 20, totals ->height() );
-	popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Panel));
+   popupBtn->setFixedSize( 20, 20 );
+	popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Toolbar, 16));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
