@@ -1,4 +1,6 @@
 ======================
+    ADDED: searcher: TC like search ( 'text' == '*text*' )
+           excluding files with '|' (ex. '*.cpp *.h | *.moc.cpp' )
     ADDED: search on remote file systems
     ADDED: konfigurator|advanced has a new entry: just enter mountpoints 
            there, and mountman won't try to mount/unmount them.

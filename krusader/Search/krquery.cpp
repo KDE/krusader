@@ -43,73 +43,9 @@ KRQuery::KRQuery(): matches(""),matchesCaseSensitive(true),
                     owner(QString::null),group(QString::null),
                     perm(QString::null),type(QString::null){}
 
-KRQuery::KRQuery(QString name){
-  KRQuery(); // fill in the default values
-  load(name);
-}
-
 void KRQuery::normalize(){
   // remove the trailing "/" from the directories lists
   for( KURL::List::Iterator it = whereNotToSearch.begin(); it != whereNotToSearch.end(); ++it )
     (*it).setPath( (*it).path( -1 ));
-}
-
-KRQuery::~KRQuery(){}
-
-void KRQuery::save(QString name){
-  krConfig->setGroup("KRquery-"+name);
-
-  krConfig->writeEntry("matches",matches);
-  krConfig->writeEntry("matchesCaseSensitive",matchesCaseSensitive);
-  krConfig->writeEntry("contain",contain);
-  krConfig->writeEntry("containCaseSensetive",containCaseSensetive);
-  krConfig->writeEntry("containWholeWord",containWholeWord);
-  krConfig->writeEntry("inArchive",inArchive);
-  krConfig->writeEntry("recurse",recurse);
-  krConfig->writeEntry("followLinks",followLinks);
-  krConfig->writeEntry("whereToSearch",whereToSearch.toStringList());
-  krConfig->writeEntry("whereNotToSearch",whereNotToSearch.toStringList());
-  // size
-  krConfig->writeEntry("minSize",minSize);
-  krConfig->writeEntry("maxSize",maxSize);
-  //date
-  krConfig->writeEntry("newerThen",newerThen);
-  krConfig->writeEntry("olderThen",olderThen);
-  //permissions
-  krConfig->writeEntry("owner",owner);
-  krConfig->writeEntry("group",group);
-  krConfig->writeEntry("perm", perm);
-  //type
-  krConfig->writeEntry("type", type);
-  krConfig->sync();
-}
-
-void KRQuery::load(QString name){
-  krConfig->setGroup("KRquery-"+name);
-
-  matches              = krConfig->readListEntry("matches");
-  //matches(amatches);
-  exit(0);
-/*  matchesCaseSensitive = krConfig->readBoolEntry("matchesCaseSensitive",true);
-  contain              = krConfig->readEntry("contain");
-  containCaseSensetive = krConfig->readBoolEntry("containCaseSensetive",true);
-  containWholeWord     = krConfig->readBoolEntry("containWholeWord",false);
-  inArchive            = krConfig->readBoolEntry("inArchive",false);
-  recurse              = krConfig->readBoolEntry("recurse",true);
-  followLinks          = krConfig->readBoolEntry("followLinks",false);
-  whereToSearch        = krConfig->readListEntry("whereToSearch");
-  whereNotToSearch     = krConfig->readListEntry("whereNotToSearch");
-  // size
-  minSize = krConfig->readUnsignedLongNumEntry("minSize",0);
-  maxSize = krConfig->readUnsignedLongNumEntry("maxSize",0);
-  //date
-  newerThen = krConfig->readUnsignedLongNumEntry("newerThen",0);
-  olderThen = krConfig->readUnsignedLongNumEntry("olderThen",0);
-  //permissions
-  owner = krConfig->readEntry("owner");
-  group = krConfig->readEntry("group");
-  perm  = krConfig->readEntry("perm");
-  //type
-  type  = krConfig->readEntry("type");*/
 }
 

@@ -80,7 +80,6 @@ private:
   void invalidDateMessage(QLineEdit *p);
   void fillList(QComboBox *list, QString filename);
   bool gui2query();
-  void query2gui();
   void deleteSelectedItems( QListBox * );
   void editCurrent();
   void viewCurrent();

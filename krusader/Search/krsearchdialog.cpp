@@ -281,22 +281,30 @@ void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, ti
   foundLabel->setText(totals);
 }
 
-void KrSearchDialog::query2gui() {
-  QString tmp;
-  // matches
-
-  for ( QStringList::Iterator it = query->matches.begin();
-        it != query->matches.end(); ++it )
-    tmp += ((tmp == QString::null ? QString::null : QChar(' ')) + (*it));
-  searchFor->insertItem(tmp,0);
-}
-
 bool KrSearchDialog::gui2query() {
   // prepare the query ...
   /////////////////// names, locations and greps
   if (query!=0) { delete query; query = 0; }
+  
+  QString matchText = searchFor->currentText().stripWhiteSpace();
+  QString excludeText;
+  
+  if( !matchText.contains( "*" ) && !matchText.contains( "?" ) && !matchText.contains( " " ) && !matchText.contains( "|" ) )
+    matchText = "*" + matchText + "*";
+    
+  int excludeNdx = matchText.find( '|' );
+  if( excludeNdx > -1 )
+  {
+    excludeText = matchText.mid( excludeNdx + 1 ).stripWhiteSpace();
+    matchText.truncate( excludeNdx );
+    matchText = matchText.stripWhiteSpace();
+    if( matchText.isEmpty() )
+      matchText = "*";
+  }
+  
   query = new KRQuery();
-  query->matches = QStringList::split(QChar(' '),searchFor->currentText());
+  query->matches  = QStringList::split(QChar(' '), matchText );
+  query->excludes = QStringList::split(QChar(' '), excludeText );
   query->matchesCaseSensitive = searchForCase->isChecked();
   if (containsText->isEnabled())
     query->contain = containsText->currentText();

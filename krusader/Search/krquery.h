@@ -37,13 +37,10 @@
 class KRQuery {
 public: 
   KRQuery();
-  KRQuery(QString name);         // create a new KRquery from th kconfig file
-  ~KRQuery();
-
-  void save(QString name);       // save a query to the kconfig file
-  void load(QString name);       // load query from the kconfig file
+  ~KRQuery() {};
 
   QStringList matches;           // what to search
+  QStringList excludes;          // what to exclude
   bool matchesCaseSensitive;
   QString contain;               // file must contain this string
   bool containCaseSensetive;

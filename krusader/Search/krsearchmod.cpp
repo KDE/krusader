@@ -109,6 +109,11 @@ bool KRSearchMod::checkType( QString mime )
 bool KRSearchMod::fileMatch( const QString name )
 {
   unsigned int len;
+  for ( unsigned int i = 0; i < query->excludes.count(); ++i )
+    {
+    QRegExp( *query->excludes.at( i ), query->matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
+    if ( len == name.length() ) return false;
+    }
   for ( unsigned int i = 0; i < query->matches.count(); ++i )
     {
     QRegExp( *query->matches.at( i ), query->matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
