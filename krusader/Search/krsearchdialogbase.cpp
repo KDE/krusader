@@ -11,6 +11,7 @@
 #include <klocale.h>
 #include <kcombobox.h>
 #include <klineedit.h>
+#include <ksqueezedtextlabel.h>
 #include <qbuttongroup.h>
 #include <qcheckbox.h>
 #include <qcombobox.h>
@@ -191,8 +192,8 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     QPixmap image2( ( const char** ) image2_data );
     if ( !name )
 	setName( "KrSearchBase" );
-    resize( 596, 476 );
-		setMaximumHeight(476); setMaximumWidth(596);
+//    resize( 596, 476 );
+//    setMaximumHeight(476); setMaximumWidth(596);
     setCaption( i18n( "Krusader::Search" ) );
     KrSearchBaseLayout = new QGridLayout( this );
     KrSearchBaseLayout->setSpacing( 6 );
@@ -715,8 +716,8 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     foundLabel->setText( i18n( "Found 0 matches." ) );
     Layout11->addWidget( foundLabel );
 
-    searchingLabel = new QLabel( tab_3, "searchingLabel" );
-    searchingLabel->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)3, (QSizePolicy::SizeType)1, searchingLabel->sizePolicy().hasHeightForWidth() ) );
+    searchingLabel = new KSqueezedTextLabel( tab_3, "searchingLabel" );
+//    searchingLabel->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)3, (QSizePolicy::SizeType)1, searchingLabel->sizePolicy().hasHeightForWidth() ) );
     searchingLabel->setFrameShape( QLabel::StyledPanel );
     searchingLabel->setFrameShadow( QLabel::Sunken );
     searchingLabel->setText( "" );

@@ -18,6 +18,7 @@ class QGridLayout;
 class KHistoryCombo;
 class KComboBox;
 class KLineEdit;
+class KSqueezedTextLabel;
 class QButtonGroup;
 class QCheckBox;
 class QComboBox;
@@ -118,7 +119,7 @@ public:
     QLabel* TextLabel4;
     QWidget* tab_3;
     QLabel* foundLabel;
-    QLabel* searchingLabel;
+    KSqueezedTextLabel* searchingLabel;
     QListView* resultsList;
 
 public slots:
