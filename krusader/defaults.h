@@ -215,6 +215,9 @@
 /////////////////////// [Search]
 // Saved Searches /////
 // holds an index of saved searches
+// Confirm Feed to Listbox ///// (costum-name on feed ti listbox)
+#define _ConfirmFeedToListbox   true
+
 
 /////////// here are additional variables used internally by Krusader ////////////
 // BookmarkArchives   - The infobox about not allowing bookmarks inside archives

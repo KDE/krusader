@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 #include "../krusader.h"
+#include "../defaults.h"
 #include "../panelmanager.h"
 #include "../VFS/vfs.h"
 #include "../krusaderview.h"
@@ -491,14 +492,19 @@ void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
 void KrSearchDialog::feedToListBox()
 {
   static int listBoxNum = 1;
-  bool ok;
-  QString queryName = KInputDialog::getText(
+  QString queryName = i18n("Search results")+QString( " %1" ).arg( listBoxNum++ );
+  
+  krConfig->setGroup( "Search" );
+  if ( krConfig->readBoolEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
+    bool ok;
+    queryName = KInputDialog::getText(
                 i18n("Query name"),		// Caption
                 i18n("Here you can name the file collection"),	// Questiontext
-                i18n("Search results")+QString( " %1" ).arg( listBoxNum++ ),	// Default
+                queryName,	// Default
                 &ok );
-   if ( ! ok)
-     return;
+     if ( ! ok)
+       return;
+  }
   
   KURL::List urlList;
   QListViewItem * item = resultsList->firstChild();
