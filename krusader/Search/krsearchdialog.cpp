@@ -467,7 +467,7 @@ void KrSearchDialog::startSearch() {
   TabWidget2->setCurrentPage(2); // show the results page
   qApp->processEvents();
 
-  // start the search
+  // start the search.
   if (searcher != 0) {
     delete searcher;
     searcher = 0;
@@ -475,8 +475,8 @@ void KrSearchDialog::startSearch() {
   searcher  = new KRSearchMod(query);
   connect(searcher, SIGNAL(searching(const QString&)),
           searchingLabel, SLOT(setText(const QString&)));
-  connect(searcher, SIGNAL(found(QString,QString,long,QString,QString)),
-                this, SLOT(found(QString,QString,long,QString,QString)));
+  connect(searcher, SIGNAL(found(QString,QString,long,time_t,QString)),
+                this, SLOT(found(QString,QString,long,time_t,QString)));
   connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
 
   searcher->start();
