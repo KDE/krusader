@@ -26,12 +26,14 @@
 #define ACTION_DOCTYPE		"KrusaderUserActions"
 // in well formed XML the root-element has to have the same name then the doctype:
 #define ACTION_ROOT	ACTION_DOCTYPE
-// #define ACTION_ROOT	"actions"
 
 
 UserActionXML::UserActionXML() {
-  _filename = locateLocal( "data", ACTION_XML );
+  // this return the local version of the file if this exists. else the global one is returnd
+  _filename = locate( "data", ACTION_XML );
   getActionDom();
+  // for further writing use only the local version!
+  _filename = locateLocal( "data", ACTION_XML );
 //   kdDebug() << "UserActionXML: _dom = " << _doc << endl;
 }
 
