@@ -46,7 +46,7 @@ public slots:
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString::null);
    void delayedOpenUrl( const KURL& path);
    void doOpenUrl();
-	void refresh(){ refresh(panel->virtualPath); } // re-read the files
+	void refresh(){ openUrl(panel->virtualPath); } // re-read the files
 	void rename(const QString &oldname, const QString &newname);
 
 public:
@@ -83,8 +83,6 @@ public:
 	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
 protected:
-	void refresh(const KURL& url);
-
 	ListPanel*           panel;     // our ListPanel
 	QValueStack<KURL>    urlStack;  // Path stack for the "back" button
 	bool                 inRefresh; // true when we are in refresh()

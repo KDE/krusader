@@ -31,6 +31,7 @@ A
 // Qt Includes
 #include <qdir.h>
 #include <qtextstream.h>
+#include <qeventloop.h>
 // KDE Includes
 #include <klocale.h>
 #include <kprocess.h>
@@ -72,14 +73,12 @@ A
 ListPanelFunc::ListPanelFunc( ListPanel *parent ) :
 panel( parent ), inRefresh( false ), vfsP(0){
   urlStack.push( "file:/" );
-
   connect( &delayTimer, SIGNAL(timeout()), this, SLOT(doOpenUrl()));
 }
 
 void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent) {
   openUrl( vfs::fromPathOrURL(url),nameToMakeCurrent);
 }
-
 
 void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
   //kdDebug() << "openUrl: " << url.url() << endl;
@@ -104,6 +103,7 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 
   // clear the view - to avoid a repaint crash
   panel->view->clear();
+
   if( !nameToMakeCurrent.isEmpty() ){
 		panel->view->setNameToMakeCurrent( nameToMakeCurrent );
   }
@@ -139,11 +139,6 @@ void ListPanelFunc::delayedOpenUrl( const KURL& url ) {
 void ListPanelFunc::doOpenUrl() {
    openUrl( delayURL );
 }
-
-void ListPanelFunc::refresh( const KURL& url ) {
-	openUrl(url);
-}
-
 
 void ListPanelFunc::goBack() {
   if ( urlStack.isEmpty() ) return ;
@@ -539,7 +534,7 @@ void ListPanelFunc::execute( QString& name ) {
   if ( vf->vfile_isDir() ) {
     origin.addPath(name);
     panel->view->setNameToMakeCurrent( QString::null );
-    refresh( origin );
+    openUrl( origin );
   } else if ( KRarcHandler::arcHandled( type ) && origin.isLocalFile() ) {
     KURL path = files()->vfs_getFile(vf->vfile_getName());
     if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
