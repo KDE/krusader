@@ -99,13 +99,34 @@ QString KRSpWidgets::newFTP() {
   p->exec();
   if (p->url->currentText()=="") return QString::null;
   QString URL=p->prefix->currentText();
-  if( !p->username->text().isEmpty() ){
-    URL = URL + p->username->text();
-    if ( !p->password->text().isEmpty() )
-         URL = URL + ":" + p->password->text();
+
+  QString url      = p->url->currentText();
+  QString username = p->username->text();
+  QString password = p->password->text();
+  int pswStartPos, pswEndPos;
+
+  if(( pswEndPos = url.findRev( "@" ) ) != -1 )
+  {
+    pswStartPos = url.findRev( ":", pswEndPos );
+    
+    if( pswStartPos != -1 )
+    {
+      password = ( password.isEmpty() ? QString( "" ) : password+"@" ) + url.mid( pswStartPos+1, pswEndPos-pswStartPos-1 );
+      url.remove( pswStartPos, pswEndPos-pswStartPos );
+    }
+
+    pswEndPos = url.findRev( "@" );
+    username = ( username.isEmpty() ? QString( "" ) : username+"@" ) + url.left( pswEndPos );
+    url.remove( 0, pswEndPos+1 );
+  }
+  
+  if( !username.isEmpty() ){
+    URL = URL + username;
+    if ( !password.isEmpty() )
+         URL = URL + ":" + password;
     URL = URL + "@";
   }
-  URL = URL + p->url->currentText();
+  URL = URL + url;
   if( p->prefix->currentText().startsWith("ftp") ){
     int i = URL.find("/",p->prefix->currentText().length());
 		if ( i==-1 ) URL = URL + ":" + p->port->cleanText();
