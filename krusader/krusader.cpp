@@ -309,7 +309,9 @@ void Krusader::setupActions() {
   // second, the KDE standard action
   //KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
   KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" )->setShortcut(Key_QuoteLeft);
-  KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" )->setText("Reload");
+  KAction *actRedisplay = KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
+  actRedisplay->setText( "Reload" );
+  actRedisplay->setShortcut( CTRL + Key_R );
   actShowToolBar = KStdAction::showToolbar( SLOTS, SLOT( toggleToolbar() ), actionCollection(), "std_toolbar" );
   actShowStatusBar = KStdAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
   KStdAction::quit( this, SLOT( quitKrusader() ), actionCollection(), "std_quit" );
