@@ -57,6 +57,7 @@
 #define LINES_VIEW_ID       93
 #define DETAILED_VIEW_ID    94
 #define FILELIGHT_VIEW_ID   95
+#define ADDITIONAL_POPUP_ID 96
 
 DiskUsageDialog::DiskUsageDialog( QWidget *parent, const char *name ) : QDialog( parent, name, true ),
   cancelled( false )
@@ -459,7 +460,7 @@ Directory* DiskUsage::getCurrentDir()
   return currentDirectory;
 }
 
-void DiskUsage::rightClickMenu( File *fileItem )
+void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString addPopupName )
 {
   KPopupMenu popup;
   
@@ -472,6 +473,12 @@ void DiskUsage::rightClickMenu( File *fileItem )
     popup.insertSeparator();
   }
 
+  if( addPopup != 0 )
+  {
+    popup.insertItem( QPixmap(), addPopup, ADDITIONAL_POPUP_ID );
+    popup.changeItem( ADDITIONAL_POPUP_ID, addPopupName );
+  }  
+  
   KPopupMenu viewPopup;
   viewPopup.insertItem(i18n("Lines"),      LINES_VIEW_ID);
   viewPopup.insertItem(i18n("Detailed"),   DETAILED_VIEW_ID);

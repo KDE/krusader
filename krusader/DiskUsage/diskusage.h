@@ -52,6 +52,7 @@ typedef QDict<void> Properties;
 class DUListView;
 class DULines;
 class DUFilelight;
+class KPopupMenu;
 
 class DiskUsage : public QWidgetStack
 {
@@ -78,7 +79,7 @@ public:
   
   QString    getToolTip( File * );
   
-  void       rightClickMenu( File * );
+  void       rightClickMenu( File *, KPopupMenu * = 0, QString = QString::null );
   
   void       changeDirectory( Directory *dir );
   Directory* getCurrentDir();

@@ -33,6 +33,7 @@
 
 #include "diskusage.h"
 #include "radialMap/widget.h"
+#include "filelightParts/Config.h"
 
 class DUFilelight : public RadialMap::Widget
 {
@@ -50,8 +51,21 @@ public slots:
 protected slots:  
   void slotActivated( const KURL& );
   
+  void schemeRainbow()        { setScheme( Filelight::Rainbow ); }
+  void schemeHighContrast()   { setScheme( Filelight::HighContrast ); }
+  void schemeKDE()            { setScheme( Filelight::KDE ); }
+  
+  void increaseContrast();
+  void decreaseContrast();
+  void changeAntiAlias();
+  void showSmallFiles();
+  void varyLabelFontSizes();
+  void minFontSize();
+  
 protected:
   virtual void mousePressEvent( QMouseEvent* );
+  
+  void setScheme( Filelight::MapScheme );
 
   DiskUsage *diskUsage;  
   Directory *currentDir;

@@ -30,6 +30,11 @@
 
 #include "dufilelight.h"
 #include "radialMap/radialMap.h"
+#include <kpopupmenu.h>
+#include <klocale.h>
+#include <kinputdialog.h>
+
+#define SCHEME_POPUP_ID    6730
 
 DUFilelight::DUFilelight( DiskUsage *usage, const char *name )
   : RadialMap::Widget( usage, name ), diskUsage( usage ), currentDir( 0 )
@@ -89,13 +94,101 @@ void DUFilelight::mousePressEvent( QMouseEvent *event )
      
      if( focus && !focus->isFake() && focus->file() != currentDir )
        file = (File *)focus->file();
-         
-     diskUsage->rightClickMenu( file );
+
+     KPopupMenu filelightPopup;
+     filelightPopup.insertItem( i18n("Zoom In"),  this, SLOT( zoomIn() ) );
+     filelightPopup.insertItem( i18n("Zoom Out"), this, SLOT( zoomOut() ) );
+     
+     KPopupMenu schemePopup;           
+     schemePopup.insertItem( i18n("Rainbow"),       this, SLOT( schemeRainbow() ) );
+     schemePopup.insertItem( i18n("High Contrast"), this, SLOT( schemeHighContrast() ) );
+     schemePopup.insertItem( i18n("KDE"),           this, SLOT( schemeKDE() ) );
+
+     filelightPopup.insertItem( QPixmap(), &schemePopup, SCHEME_POPUP_ID );
+     filelightPopup.changeItem( SCHEME_POPUP_ID, i18n( "Scheme" ) );     
+
+     filelightPopup.insertItem( i18n("Increase contrast"), this, SLOT( increaseContrast() ) );
+     filelightPopup.insertItem( i18n("Decrease contrast"), this, SLOT( decreaseContrast() ) );
+          
+     int aid = filelightPopup.insertItem( i18n("Use antialiasing" ), this, SLOT( changeAntiAlias() ) );
+     filelightPopup.setItemChecked( aid, Filelight::Config::antiAliasFactor > 1 );
+     
+     int sid = filelightPopup.insertItem( i18n("Show small files" ), this, SLOT( showSmallFiles() ) );
+     filelightPopup.setItemChecked( sid, Filelight::Config::showSmallFiles );
+     
+     int vid = filelightPopup.insertItem( i18n("Vary label font sizes" ), this, SLOT( varyLabelFontSizes() ) );
+     filelightPopup.setItemChecked( vid, Filelight::Config::varyLabelFontSizes );
+
+     filelightPopup.insertItem( i18n("Minimum font size"), this, SLOT( minFontSize() ) );     
+          
+     diskUsage->rightClickMenu( file, &filelightPopup, i18n( "Filelight" ) );
      return;     
    }
    RadialMap::Widget::mousePressEvent( event );
 }
   
+void DUFilelight::setScheme( Filelight::MapScheme scheme )
+{
+  Filelight::Config::scheme = scheme;
+  Filelight::Config::write();    
+  slotRefresh();
+}
+
+void DUFilelight::increaseContrast()
+{
+  if( ( Filelight::Config::contrast += 10 ) > 100 )
+    Filelight::Config::contrast = 100;
+  
+  Filelight::Config::write();    
+  slotRefresh();
+}
+
+void DUFilelight::decreaseContrast()
+{
+  if( ( Filelight::Config::contrast -= 10 ) > 100 )
+    Filelight::Config::contrast = 0;
+  
+  Filelight::Config::write();
+  slotRefresh();
+}
+
+void DUFilelight::changeAntiAlias()
+{
+  Filelight::Config::antiAliasFactor = 1 + ( Filelight::Config::antiAliasFactor == 1 );
+  Filelight::Config::write();    
+  slotRefresh();
+}
+
+void DUFilelight::showSmallFiles()
+{
+  Filelight::Config::showSmallFiles = !Filelight::Config::showSmallFiles;
+  Filelight::Config::write();    
+  slotRefresh();
+}
+
+void DUFilelight::varyLabelFontSizes()
+{
+  Filelight::Config::varyLabelFontSizes = !Filelight::Config::varyLabelFontSizes;
+  Filelight::Config::write();    
+  slotRefresh();
+}
+
+void DUFilelight::minFontSize()
+{
+  bool ok = false;
+  
+  int result = KInputDialog::getInteger( i18n( "Krusader::Filelight" ),
+    i18n( "Minimum font size" ), (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok );
+
+  if ( ok )
+  {
+    Filelight::Config::minFontPitch = (uint)result;
+    
+    Filelight::Config::write();    
+    slotRefresh();
+  }
+}
+
 void DUFilelight::slotRefresh() 
 { 
   refreshNeeded = false;
