@@ -52,7 +52,6 @@
 #include <qstringlist.h>
 #include <qsizepolicy.h>
 
-
 KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name ) {
   QGridLayout * layout = new QGridLayout( this, 1, 3 );
   path = new QLabel( this );
@@ -62,7 +61,9 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   path->setFrameStyle( QFrame::Box | QFrame::Sunken );
   path->setLineWidth( 1 );
   path->setFont( KGlobalSettings::generalFont() );
-  path->setMaximumHeight( QFontMetrics( path->font() ).height() + 4 );
+  int height = QFontMetrics( KGlobalSettings::generalFont() ).height();
+  height =  height + 5*(height > 14) + 6;
+  path->setMaximumHeight( height );
   path->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred));
   layout->addWidget( path, 0, 0 );
 
@@ -71,7 +72,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   cmdLine = new KrHistoryCombo( this );
   cmdLine->setMaxCount(100);  // remember 100 commands
   cmdLine->setFont( KGlobalSettings::generalFont() );
-  cmdLine->setMaximumHeight( QFontMetrics( cmdLine->font() ).height() + 4 );
+  cmdLine->setMaximumHeight( height );
   cmdLine->setCompletionObject( &completion );
   cmdLine->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred));
   // load the history

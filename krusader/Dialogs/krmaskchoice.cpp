@@ -59,7 +59,9 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5 ) );
 
     selection = new QComboBox( FALSE, this, "selection" );
-    selection->setGeometry( QRect( 12, 48, 377, selection->font().pointSize()*2 + 4) );
+    int height = QFontMetrics( selection->font() ).height();
+    height =  height + 5*(height > 14) + 6;
+    selection->setGeometry( QRect( 12, 48, 377, height) );
     selection->setEditable( TRUE );
     selection->setInsertionPolicy( QComboBox::AtTop );
     selection->setAutoCompletion( TRUE );
