@@ -285,6 +285,18 @@ void ListPanelFunc::moveFiles() {
 
   QString dest = panel->otherPanel->getPath();
                  /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
+
+  krConfig->setGroup( "Archives" );
+  if ( !krConfig->readBoolEntry( "Allow Move Into Archive", _MoveIntoArchive ) )
+  {  
+    QString destProtocol = panel->otherPanel->func->files()->vfs_getOrigin().protocol();
+    if( destProtocol == "krarc" || destProtocol == "tar" || destProtocol == "zip" )
+    {
+      KMessageBox::sorry( krApp, i18n( "Moving into archive is disabled in Konfigurator!" ) );
+      return ;
+    }
+  }
+                 
   krConfig->setGroup( "Advanced" );
   if ( krConfig->readBoolEntry( "Confirm Move", _ConfirmMove ) ) {
     QString s;
