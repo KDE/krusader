@@ -28,6 +28,7 @@
 #include <klibloader.h>
 #include <ktrader.h>
 #include <kio/netaccess.h>
+#include <kstatusbar.h>
 // Krusader includes
 #include "krviewer.h"
 
@@ -51,6 +52,8 @@ KrViewer::KrViewer(QWidget *parent, const char *name ) :
   viewerMenu->insertItem( i18n("Text &editor"),    this, SLOT(editText()), CTRL+Key_E,4 );
   viewerMenu->insertSeparator();
   viewerMenu->insertItem( i18n("&Close"), this, SLOT( close() ), CTRL+Key_Q );
+
+  statusBar()->show();
 }
 
 KrViewer::~KrViewer(){}
