@@ -11,10 +11,11 @@ class KrBookmark: public KAction {
 public:
 	KrBookmark(QString name, KURL url, KActionCollection *parent);
 	// use text() and setText() to change the name of the bookmark
-	// use setIconSet() for changing icons
+	// use icon() and setIcon() to change icons (by name)
 	const KURL& url() const;	
+	
 	void setURL(const KURL& url);
-
+	
 	// special bookmarks
 	static KrBookmark* devices(KActionCollection *collection);
 
@@ -26,6 +27,7 @@ protected slots:
 	
 private:
 	KURL _url;
+	QString _icon;
 };
 
 #endif // KRBOOKMARK_H

@@ -9,6 +9,7 @@
 #include <qdom.h>
 
 class KActionCollection;
+class KDirWatch;
 
 class KrBookmarkHandler: public QObject {
 	Q_OBJECT
@@ -19,12 +20,13 @@ public:
 
 protected:
 	void bookmarkCurrent(KURL url);
-	void addBookmark(KrBookmark *bm);
+	void addBookmark(KrBookmark *bm, bool saveData = true);
 	void deleteBookmark(KrBookmark *bm);
 	void importFromFile();
 	bool importFromFileBookmark(QDomElement &e, QString *errorMsg);
 	void exportToFile();
 	void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
+	void clearBookmarks();
 	
 signals:
 	void openUrl(const KURL& url);
@@ -32,11 +34,14 @@ signals:
 protected slots:
 	void bookmarkActivated(KrBookmark *bm);
 	void menuOperation(int id);
+	void bookmarksUpdated(const QString &);
 	
 private:
 	KPopupMenu *_menu;
 	KActionCollection *_collection;
 	QPtrList<KrBookmark> _bookmarks;
+	KDirWatch *_dirwatch;
+	QString _filename;
 };
 
 #endif // KRBOOKMARK_HANDLER_H

@@ -9,7 +9,7 @@
 #include <kdebug.h>
 #include <kstandarddirs.h>
 #include <qfile.h>
-
+#include <kdirwatch.h>
 
 #define SPECIAL_BOOKMARKS	true
 
@@ -18,8 +18,12 @@
 #define BOTTOM_OF_MENU	_menu->indexOf(Border)
 #define CONNECT_BM(X)	connect(X, SIGNAL(activated(KrBookmark *)),					\
 											this, SLOT(bookmarkActivated(KrBookmark *)));
-
+#define STOPWATCH		_dirwatch->stopDirScan(_filename)
+#define STARTWATCH	_dirwatch->restartDirScan(_filename)
+											
 KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject(parent), _menu(menu) {
+	_filename = locateLocal( "data", BOOKMARKS_FILE );
+	
 	// create our own action collection and make the shortcuts apply only to parent
 	_collection = new KActionCollection(0, parent);
 
@@ -49,6 +53,10 @@ KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject
 		i18n("Bookmark Current"), BookmarkCurrent);
 	_menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
 		i18n("Manage Bookmarks"), ManageBookmarks);
+
+	_dirwatch = new KDirWatch(this);
+	_dirwatch->addFile(locateLocal("data", BOOKMARKS_FILE));
+	connect(_dirwatch, SIGNAL(dirty(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
 }
 
 void KrBookmarkHandler::bookmarkActivated(KrBookmark *bm) {
@@ -74,7 +82,7 @@ void KrBookmarkHandler::bookmarkCurrent(KURL url) {
 	}
 }
 
-void KrBookmarkHandler::addBookmark(KrBookmark *bm) {
+void KrBookmarkHandler::addBookmark(KrBookmark *bm, bool saveData) {
 	// add to the list (bottom)
 	_bookmarks.append(bm);
 
@@ -82,8 +90,8 @@ void KrBookmarkHandler::addBookmark(KrBookmark *bm) {
 	bm->plug(_menu, BOTTOM_OF_MENU); // add on top
 	CONNECT_BM(bm);
 
-	// save
-	exportToFile();
+	if (saveData) // save
+		exportToFile();
 }
 
 void KrBookmarkHandler::deleteBookmark(KrBookmark *bm) {
@@ -92,11 +100,12 @@ void KrBookmarkHandler::deleteBookmark(KrBookmark *bm) {
 void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm) {
 	QDomElement bookmark = doc.createElement("bookmark");
 	bookmark.setAttribute("href", bm->url().url());
-	where.appendChild(bookmark);
 	// title
 	QDomElement title = doc.createElement("title");
 	title.appendChild(doc.createTextNode(bm->text()));
 	bookmark.appendChild(title);
+
+	where.appendChild(bookmark);
 }
 
 // export to file using the xbel standard
@@ -115,8 +124,8 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
 //    </folder>
 //  </xbel>
 void KrBookmarkHandler::exportToFile() {
-	// use the local file
-	QString filename = locateLocal( "data", BOOKMARKS_FILE );
+	// disable the dirwatch while saving the file
+	STOPWATCH;
 
 	QDomDocument doc( "xbel" );
    QDomElement root = doc.createElement( "xbel" );
@@ -128,14 +137,17 @@ void KrBookmarkHandler::exportToFile() {
 		exportToFileBookmark(doc, root, bm);
 	}
 
-	QFile file(filename);
+	QFile file(_filename);
 	if ( file.open( IO_WriteOnly ) ) {
 		QTextStream stream( &file );
 		stream << doc.toString();
 		file.close();
 	} else {
-		KMessageBox::error(krApp, i18n("Error"), i18n("Unable to write to ") + filename);
+		KMessageBox::error(krApp, i18n("Error"), i18n("Unable to write to ") + _filename);
 	}
+
+	// re-enable the dirwatch
+	STARTWATCH;
 }
 
 bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, QString *errorMsg) {
@@ -151,27 +163,23 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, QString *errorMsg
 		return false;
 	} else url = e.attribute("href");
 	// verify title
-	if (e.firstChild().toElement().tagName() != "title") {
+	QDomElement te = e.firstChild().toElement();
+	if (te.tagName() != "title") {
 		*errorMsg = i18n("missing tag ")+"title";
 		return false;
-	} else name = e.firstChild().toElement().toText().nodeValue();
-	if (e.firstChild().toElement().isText()) {
-		kdWarning() <<"text" << endl;
-		QDomText d = e.firstChild().toElement().toText();
-		kdWarning() << d.nodeName() << ":" << d.nodeValue() << endl;
-	} else kdWarning() << "not text" << endl; 
+	} else name = te.text();
 
-	
-	kdWarning() << name << ";" << url << endl;
-
-
+	// ok: got name and url, let's add a bookmark
+	addBookmark(new KrBookmark(name, url, _collection), false);
 
 	return true;
 }
 
 void KrBookmarkHandler::importFromFile() {
-	QString filename = locateLocal( "data", BOOKMARKS_FILE );
-	QFile file( filename );
+	clearBookmarks();
+	STOPWATCH;
+	
+	QFile file( _filename );
 	if ( !file.open(IO_ReadOnly))
 		return; // no bookmarks file
 
@@ -182,10 +190,11 @@ void KrBookmarkHandler::importFromFile() {
 	if ( !doc.setContent( &file, &errorMsg ) ) {
 		goto ERROR;
 	}
+
 	// iterate through the document: first child should be "xbel"
 	n = doc.firstChild();
 	if (n.isNull() || n.toElement().tagName()!="xbel") {
-		errorMsg = filename+i18n(" doesn't seem to be a valid Bookmarks file");
+		errorMsg = _filename+i18n(" doesn't seem to be a valid Bookmarks file");
 		goto ERROR;
 	} else n = n.firstChild(); // skip the 'xbel' root
 	
@@ -195,7 +204,6 @@ void KrBookmarkHandler::importFromFile() {
 			goto ERROR;
 		n = n.nextSibling();
 	}
-
 	
 	goto SUCCESS;
 	
@@ -203,16 +211,19 @@ ERROR:
 	KMessageBox::error(krApp, "Error", i18n("Error reading bookmarks file: ")+errorMsg);
 SUCCESS:
 	file.close();
+
+	STARTWATCH;
 }
 
+void KrBookmarkHandler::bookmarksUpdated(const QString &) {
+	importFromFile();
+}
 
-#if 0
- QDomNode n = docElem.firstChild();
-    while( !n.isNull() ) {
-        QDomElement e = n.toElement(); // try to convert the node to an element.
-        if( !e.isNull() ) {
-            cout << e.tagName() << endl; // the node really is an element.
-        }
-        n = n.nextSibling();
-    }
-#endif
+void KrBookmarkHandler::clearBookmarks() {
+	KrBookmark *tmp, *bm = _bookmarks.first();
+	while (bm) {
+		tmp = bm;
+		delete tmp;
+		bm = _bookmarks.next();
+	}
+}
