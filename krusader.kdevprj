@@ -26,7 +26,7 @@ ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.
 ldflags=\s                               \s
 
 [General]
-AMChanged=false
+AMChanged=true
 author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
@@ -84,6 +84,7 @@ install_location=
 type=DATA
 
 [doc/Makefile.am]
+files=doc/krusader.1
 sub_dirs=en,pics
 type=normal
 
@@ -144,6 +145,12 @@ type=DATA
 dist=true
 install=false
 install_location=
+type=DATA
+
+[doc/krusader.1]
+dist=true
+install=true
+install_location=/usr/share/man/man1/krusader.1
 type=DATA
 
 [doc/pics/Makefile.am]

@@ -1,0 +1,155 @@
+.TH krusader 1 "25 September 2003" Linux "Krusader Manpage"
+.SH "NAME"
+krusader \- twin-panel file manager and ftp client for KDE 3.x
+.SH "USAGE"
+.B krusader [Qt-options] [KDE-options] [options]
+.SH "DESCRIPTION"
+Krusader is a new "old-school" file manager and ftp/smb/fish client.
+It's twin-panel look follows in the footsteps of the great file managers
+of old: GNU's Midnight Commander and the DOS all time favorite Norton Commander.
+
+Krusader features:
+
+intuitive GUI, complete drag n' drop support, transparent handling of archives
+and ftp volumes, bookmarks (with a bookmark manager), pack and unpack,
+command line with history and "run in terminal" option, internal viewer-editor,
+built-in mount manager with an auto-mount option and much more.
+
+.SH "OPTIONS"
+.TP
+.B --left <\fIpath\fR>
+start left panel at <path>
+.TP
+.B --right <\fIpath\fR>
+start right panel at <path>
+.TP
+.B --help
+show the general options
+.TP
+.B --help-all
+show the all the options
+.TP
+.B --author
+show the authors
+.TP
+.B -v, --version
+show the version
+.TP
+.B --license
+show the license
+.SH "[Qt-options]"
+"$ krusader --help-qt"  shows the all the Qt-options
+.SH "[KDE-options]"
+"$ krusader --help-kde" shows the all the KDE-options
+.SH "EXAMPLE"
+.B $ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net
+.SH "FILES"
+The configuration file "krusaderrc" can be stored at 2 locations:
+
+.I $KDEDIR/share/config/krusaderrc
+
+or
+
+.I ~/.kde/share/config/krusaderrc
+.SH "PLATFORMS"
+Linux, FreeBSD
+
+.I KDE 2.x
+
+krusader v1.01   stable but there are no planned changes.
+
+.I KDE 3.x
+
+The latest version of Krusader can be found at the Krusader website.
+
+Note: all versions >=1.02 are KDE3.x only
+.SH "FEATURES"
+
+Configurable toolbar and key-bindings.
+
+Full Ace, Arj, Bzip2, Gzip, Tar, Rpm, Rar, Zip support.
+
+Advanced search module that can search in archives.
+
+Directory comparison and filtering.
+
+Ftp/Samba/Fish connections.
+
+Opens a terminal to the browsed path.
+
+Optional embedded console.
+
+Bookmark module that takes local files and remote ones.
+
+Shows the effective permissions for the current user.
+
+Calculates occupied space by marked files and folders.
+
+Internal viewer and configurable Editor.
+
+Offers a command line capable of running something in a terminal with a single click of a button.
+
+Packs (or unpacks) files into a single archive of your choice, without typing a single command.
+
+Tests the integrity of archives.
+
+Compare files by content (via external diff program such as KDiff)
+
+Fully mimetype-aware (with or without magic!).
+
+Mountmanager
+.SH "LICENSE"
+Krusader is distributed under the terms of the GNU General Public
+
+License version 2 as published by the Free Software Foundation. See the built-in
+
+help for details on the License and the lack of warranty.
+
+The copyright for the project and its name are still held by Shie Erlich and Rafi Yanai.
+.SH "i18n"
+Krusader supports the at this moment following languages:
+
+.I English, Czech, Danish, Dutch, French, German, Hungarian, Italian,
+
+.I Japanese, Polish, Russian, Slovak, Spanish, Swedish.
+
+Read the Krusader translation howto if you want translate Krusader in your native language.
+.SH "FAQ'S"
+The latest version of the KRUSADER FAQ'S can be found at the Krusader website.
+.SH "SEE ALSO"
+The Krusader USERS MANUAL, at the krusader help menu.
+
+The Krusader homepage on the World Wide Web:
+
+http://krusader.sourceforge.net
+.fi
+.SH "AUTHORS"
+
+Krusader is developed by a dedicated team of individuals, known as the Krusader Krew.
+
+Shie Erlich, author <manson@users.sourceforge.net>
+
+Rafi Yanai, author <yanai@users.sourceforge.net>
+
+Dirk Eschler, Webmaster and i18n coordinator <deschler@users.sourceforge.net>
+
+Jan Halasa, Developer <janhalasa@users.sourceforge.net>
+
+Csaba Karai, Developer <csaba.karai@nokia.com>
+
+The project is written using KDevelop and QT Designer.
+
+Author of the Krusader Manpage <frank_schoolmeesters@yahoo.com>
+.SH "BUGS"
+See the file TODO in the distribution for information on what remains to be done.
+
+.B Notice: if you've got bugs to report, please use the krusader website, and
+
+.B not KDE's bugzilla (bugs.kde.org).
+
+For fixes, patches and comments use the krusader forum or mail to
+
+<krusader@users.sourceforge.net>.
+
+Krusader Krew
+
