@@ -274,6 +274,7 @@ vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 	// create a new virtual file object
 	vfile* temp=new vfile(name,size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
                           stat_p.st_gid,mime,symDest,stat_p.st_mode);
+	temp->vfile_setUrl( mimeUrl );
 	return temp;
 }
 
