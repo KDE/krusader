@@ -40,7 +40,7 @@ private:
 
 // an expander is a function that receives a QString input, expands
 // it and returns a new QString output containing the expanded expression
-typedef QString (EXPANDER)(const QString&);
+typedef QString (*EXPANDER)(const QString&);
 
 // a UMCmd is an entry containing the expression and its expanding function
 typedef struct UserMenuCmd {
@@ -58,8 +58,8 @@ public:
 	~UserMenu();
 
 protected:
-  QString expand(QString str);
-  QString expPath(const QString& str);
+  static QString expand(QString str);
+  static QString expPath(const QString& str);
 
 private:
   UserMenuGui _popup;
