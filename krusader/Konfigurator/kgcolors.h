@@ -50,6 +50,7 @@ public slots:
   void slotForegroundChanged();
   void slotActiveChanged();
   void slotMarkedBackgroundChanged();
+  void slotDisableCurrent();
   void generatePreview();
 
 private:
