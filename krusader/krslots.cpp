@@ -150,9 +150,11 @@ void KRslots::compareContent() {
   QStringList lst1, lst2;
   QString name1, name2;
 
-  ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&lst1);
-  ((ListPanel*)ACTIVE_PANEL->otherPanel)->getSelectedNames(&lst2);
 
+  //((ListPanel*)MAIN_VIEW->left->getSelectedNames(&lst1);
+  MAIN_VIEW->left->getSelectedNames(&lst1);
+  MAIN_VIEW->right->getSelectedNames(&lst2);
+  
   // first, see if we've got exactly 1 selected file, if not, try the current one
   if (lst1.count() == 1) name1 = lst1[0];
   if (lst2.count() == 1) name2 = lst2[0];
@@ -166,8 +168,8 @@ void KRslots::compareContent() {
 
   // else implied: all ok, let's call kdiff
 	// but if one of the files isn't local, download them first
-	KURL url1 = ACTIVE_FUNC->files()->vfs_getFile(name1);
-	KURL url2 = ACTIVE_PANEL->otherPanel->func->files()->vfs_getFile(name2);
+	KURL url1 = MAIN_VIEW->left->func->files()->vfs_getFile(name1);
+	KURL url2 = MAIN_VIEW->right->func->files()->vfs_getFile(name2);
 
 	QString tmp1 = QString::null, tmp2 = QString::null;
   if (!url1.isLocalFile()) {
