@@ -73,7 +73,7 @@ void KrDetailedViewItem::repaintItem() {
     }
     if ((id = _view->column(KrDetailedView::Size)) != -1) {
       if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, "<DIR>");
-	    else setText(id, humanReadableSize ? KIO::convertSize(_vf->vfile_getSize()) :
+	    else setText(id, humanReadableSize ? KIO::convertSize(_vf->vfile_getSize())+"  " :
 		 						KRpermHandler::parseSize(_vf->vfile_getSize()));
     }
 
