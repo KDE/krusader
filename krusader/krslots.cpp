@@ -91,6 +91,8 @@ void KRslots::selectCompareMask() {
 }
 
 void KRslots::compareDirectories() {
+  KMessageBox::sorry(0, i18n("Compare mode is temporarily disabled. sorry"));
+
   if (!krCompareDirs->isChecked()) {
     ACTIVE_PANEL->compareMode = false;
     ACTIVE_PANEL->otherPanel->compareMode = false;
