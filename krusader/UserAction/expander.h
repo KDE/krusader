@@ -106,7 +106,7 @@ public:
    */
   static QStringList expand( const QString& stringToExpand, bool useUrl, bool callEach );
   
-  static const int numOfPlaceholder = 11; ///< How many Placeholder are realy defined
+  static const int numOfPlaceholder = 12; ///< How many Placeholder are realy defined
   /**
    * A List of all Placeholder and thier Parameter. This is used to generate the AddPlaceholderPopup as well as by the expand function
    */
@@ -149,7 +149,12 @@ protected:
    * This changes the panel'spath to the value given with the first Parameter.
    */
   static QString exp_Bookmark( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
-  
+  /**
+   * This is equal to 'cp <first Parameter> <second Parameter>'.
+   */
+  static QString exp_Copy( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
+
+    
   /**
    * This expands a whole commandline by calling for each Placeholder the correspondend expander
    * 

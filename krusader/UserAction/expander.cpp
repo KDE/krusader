@@ -24,8 +24,7 @@
 #include <qclipboard.h>
 
 #define ACTIVE    krApp->mainView->activePanel
-#define OTHER     krApp->mainView->activePanel->otherPanel
-// #define GETPANEL  (str.lower()[1]=='a' ? ACTIVE : OTHER)
+
 ListPanel* Expander::getPanel( const char& panelIndicator ) {
    switch ( panelIndicator ) {
    case 'a':
@@ -88,6 +87,10 @@ Expander::Placeholder Expander::placeholder[ Expander::numOfPlaceholder ] = {
          {"Clipboard", i18n("Copy to clipboard"), exp_Clipboard, {
                         {i18n("What should be copied"), "__placeholder", true},
                         {i18n("Append to the current clipboard-content with this seperator (optional)"), "", false}
+                    }, 2, false},
+         {"Copy", i18n("Copy a file/folder"), exp_Copy, {
+                        {i18n("What should be copied"), "__placeholder", true},
+                        {i18n("Where it should be copied"), "__placeholder", true},
                     }, 2, false},
          {"Run", i18n("Execute a script"), 0, {
                         {i18n("Script"), "__file", true},
@@ -300,6 +303,16 @@ QString Expander::exp_Bookmark( const ListPanel* panel, const QStringList& param
    else
       panel->func->openUrl( parameter[0], "" );
    
+   return QString::null;  // this doesn't return everything, that's normal!
+}
+
+QString Expander::exp_Copy( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+
+   KURL src = parameter[0];
+   KURL dest = parameter[1];
+
+   new KIO::CopyJob( src, dest, KIO::CopyJob::Copy, false, true );
+
    return QString::null;  // this doesn't return everything, that's normal!
 }
 
