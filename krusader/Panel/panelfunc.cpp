@@ -571,7 +571,7 @@ void ListPanelFunc::execute( QString& name ) {
 	if ( vf == 0 ) return ;
 	KURL origin = files() ->vfs_getOrigin();
 
-	QString protocol = KrServices::registerdProtocol(vf->vfile_getMime());        
+	QString protocol = origin.isLocalFile() ? KrServices::registerdProtocol(vf->vfile_getMime()) : "";        
  
 	if( protocol == "tar" || protocol == "krarc" )
 	{
