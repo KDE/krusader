@@ -21,6 +21,7 @@
 // for ParameterDialog
 #include "../krusader.h" // for konfig-access
 #include "../BookMan/krbookmarkbutton.h"
+#include "profilemanager.h"
 
 #include <qlayout.h>
 #include <qhbox.h>
@@ -465,12 +466,7 @@ ParameterSyncprofile::ParameterSyncprofile( exp_parameter* parameter, QWidget* p
    new QLabel( parameter->description(), this );
    _combobox = new KComboBox( this );
    
-   krConfig->setGroup("Synchronize");
-  
-   int profileNum = krConfig->readNumEntry( "Profile Number", 0 );
-   int i;
-   for( i = 0; i != profileNum; i++ )
-      _combobox->insertItem( (krConfig->readListEntry(QString("Profile%1").arg(i+1)))[0] );
+   _combobox->insertStringList( ProfileManager::availableProfiles("SynchronizerProfile") );
 }
 
 QString ParameterSyncprofile::text() {

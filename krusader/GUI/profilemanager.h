@@ -43,6 +43,8 @@ public:
   
   bool loadByName( QString name );
   
+  static QStringList availableProfiles( QString profileType );
+  
 public slots:
   void profilePopup();
   

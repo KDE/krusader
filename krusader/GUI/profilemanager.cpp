@@ -142,4 +142,17 @@ bool ProfileManager::loadByName( QString name )
   return false;    
 }
 
+QStringList ProfileManager::availableProfiles( QString profileType ) {
+  krConfig->setGroup("Private");
+  QStringList profiles = krConfig->readListEntry( profileType );
+  QStringList profileNames;
+
+  for( unsigned i=0; i != profiles.count() ; i++ ) {
+    krConfig->setGroup( profileType + " - " + profiles[ i ] ); 
+    profileNames.append( krConfig->readEntry("Name") );
+  }
+
+  return profileNames;
+}
+
 #include "profilemanager.moc"
