@@ -1,4 +1,4 @@
-# translation of krusader.pot to hungarian
+# translation of hu.po to Hungarian
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Marcel Hilzinger <hili@suselinux.hu>, 2003.
@@ -1268,6 +1268,67 @@ msgstr "Távoli kapcsolatok kezelője"
 msgid "Are you sure you want to delete this item ???"
 msgstr "Tényleg törölni szeretné ezt az elemet?"
 
+#: UserMenu/usermenuadd.cpp:198
+msgid "Add a new entry"
+msgstr "Új bejegyzés felvétele"
+
+#: UserMenu/usermenuadd.cpp:199
+msgid "Entry"
+msgstr "Bejegyzés"
+
+#: UserMenu/usermenuadd.cpp:200
+msgid "Show this entry"
+msgstr "Bejegyzés megjelenítése"
+
+#: UserMenu/usermenuadd.cpp:201
+msgid "everywhere"
+msgstr "bárhol"
+
+#: UserMenu/usermenuadd.cpp:202
+msgid "only in"
+msgstr "csak itt"
+
+#: UserMenu/usermenuadd.cpp:204
+msgid "Command accepts"
+msgstr "A parancs elfogadja"
+
+#: UserMenu/usermenuadd.cpp:205
+msgid "URLs (local and remote)"
+msgstr "az URL-eket (helyi és távoli)"
+
+#: UserMenu/usermenuadd.cpp:206
+msgid "Local files (no URLs)"
+msgstr "a helyi fájlokat (nem URL-eket)"
+
+#: UserMenu/usermenuadd.cpp:207
+msgid "Execution mode"
+msgstr "Futtatási mód"
+
+#: UserMenu/usermenuadd.cpp:208
+msgid "Collect output"
+msgstr "Kimenet gyűjtése"
+
+#: UserMenu/usermenuadd.cpp:209
+msgid "Run in terminal"
+msgstr "Futtatás terminálban"
+
+#: UserMenu/usermenuadd.cpp:210
+msgid "No output collection"
+msgstr "Kimenet nincs gyűjtve"
+
+#: UserMenu/usermenuadd.cpp:211
+msgid "Separate standard error"
+msgstr "Szabványos hibák elkülönítése"
+
+#: UserMenu/usermenuadd.cpp:213
+msgid "Command line"
+msgstr "Paracssor"
+
+#: UserMenu/usermenuadd.cpp:215 Dialogs/packguibase.cpp:487
+#: Dialogs/krmaskchoice.cpp:131
+msgid "Ok"
+msgstr "OK"
+
 #: UserMenu/usermenuaddimpl.cpp:38
 msgid "Active panel"
 msgstr "Aktív panel"
@@ -1282,7 +1343,7 @@ msgstr "Futtatható"
 
 #: UserMenu/usermenuaddimpl.cpp:53
 msgid "Please set a name for the menu entry"
-msgstr "Kérem adjon egy nevet a menü elemnek"
+msgstr "Kérem adjon egy nevet a menü bejegyzésnek"
 
 #: UserMenu/usermenuaddimpl.cpp:56
 msgid "Command line is empty"
@@ -1941,10 +2002,6 @@ msgstr "tar.bz2"
 #: Dialogs/packguibase.cpp:450
 msgid "In directory"
 msgstr "könyvtárban"
-
-#: Dialogs/packguibase.cpp:487 Dialogs/krmaskchoice.cpp:131
-msgid "Ok"
-msgstr "Ok"
 
 #: Dialogs/krmaskchoice.cpp:58
 msgid "Choose Files"
@@ -3442,7 +3499,7 @@ msgid ""
 "Twin-panel File Manager for KDE"
 msgstr ""
 "Krusader\n"
-"Két paneles Fájl Kezelő KDE-hez"
+"Kétpaneles Fájlkezelő KDE-hez"
 
 #: main.cpp:47
 msgid "Start left panel at <path>"
