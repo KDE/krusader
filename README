@@ -1,28 +1,33 @@
-Krusader 1.40
-=============
-The team is pleased to announce 1.40 stable.
-Many things changed since 1.30, so here's some hightlights:
+Krusader 1.50-beta1
+===================
+The team is pleased to announce the first beta in the 1.50 series.
+As usual lately, many many things have changed, so here's some highlights:
 
-* Configuring custom color for the panel (much requested feature)
-* Quick-mode for mountman (just press and HOLD the mountman icon)
-* Panel is now configurable (which columns to show, show icons or not ...)
-* Support for single-click selection mode
-* New toolbar for the panel
-* a Locate frontend
-* A new konfigurator (thanks to csaba)
-* New quick-search mode for the panel (thanks to heiner)
-* Ability to edit/view files from the search results window
-* A folder-history button, a-la-total commander. thanks to Hans Loffler
-* Synchronizer (thanks csaba)
-* File splitter
+
+* New user-action system, which allows you to define your own personal krusader-actions.
+  Please take a look at the tutorial that comes in the doc\ section
+* Profiles: you can now save a profile that contains the entire tabs on both panels, and
+  restore the state at will. See the new profiles icon.
+* 3rd Panel: new popup-panel that can display quick view, tree etc. Just click the little arrow
+  button on the bottom of each panel.
+* A new compare directories menu. TC-Style
+* Support for selecting certain protcols for certain mimetypes
+* ISO protocol now allows you to step into .iso files
+* Cut, Copy and Paste: ctrl-v, ctrl-c and ctrl-x is working
+* Konqourer's right-click actions are shown in krusader
+* Human-readable size in the file list (optional)
+* ALT-O now synchronizes the panels (other becomes as current)
+* CTRL-D opens the bookmark in the active panel - TotalCommander style
+* Search now includes support for profiles
+* Search now searches on remote filesystems
+* Search: TC like search ( 'text' == '*text*' ), excluding files with '|' (ex. '*.cpp *.h | *.moc.cpp' )
+* Packing/Unpacking to/from remote URL is supported.
+* Arj, Lha, and ace are now fully supported
+* Two single-click rename (total commander-like)
+* New refresh method, should make krusader take less cpu time
 
 and that's without mentioning other features and COUNTLESS bug fixes.
 Please check the changelog for information, as many high-profile bugs were fixed.
-
-I would especially like to thank the rest of the team (Csaba, Heiner, Jonas,
-Frank and Dirk) that really "made their bones" by supporting the project in a
-time where nor Rafi nor myself were able to. This version is largely their work.
-
 
 Notice: if you've got bugs to report, please do it using krusader's website,
         and not using KDE's bugzilla (bugs.kde.org).
