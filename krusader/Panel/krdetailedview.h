@@ -89,7 +89,7 @@ public:
 	virtual void delItem(const QString &name);
 	virtual void updateItem(vfile *vf);
  	virtual QString getCurrentItem() const;
-   virtual void makeItemVisible( const KrViewItem *item ) { ensureItemVisible( dynamic_cast<const QListViewItem*>( item ) ); }
+   virtual void makeItemVisible( const KrViewItem *item );	
    virtual void setCurrentItem( const QString& name );
    virtual void updateView() { triggerUpdate(); emit selectionChanged(); }
    virtual void clear();

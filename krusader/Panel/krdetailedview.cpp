@@ -1094,7 +1094,7 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
       if ( item == startItem )
          return ;
       if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) ) {
-         setCurrentItem( item->name() );
+			setCurrentItem( item->name() );
 			makeItemVisible( item );
          return ;
       }
@@ -1156,6 +1156,11 @@ bool KrDetailedView::event( QEvent *e ) {
          CANCEL_TWO_CLICK_RENAME;
    }
    return KListView::event( e );
+}
+
+void KrDetailedView::makeItemVisible( const KrViewItem *item ) {
+	qApp->processEvents();
+	ensureItemVisible( dynamic_cast<const QListViewItem*>( item ) ); 
 }
 
 void KrDetailedView::initProperties() {
