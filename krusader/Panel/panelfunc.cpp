@@ -777,20 +777,6 @@ void ListPanelFunc::unpack() {
 	KURL dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
 
-	
-/* REVIEW 
-	KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->virtualPath().prettyURL(), panel->virtualPath().prettyURL() );
-	if ( chooser->dest == QString::null )
-		return ; // the usr canceled
-	KURL dest = KURL::fromPathOrURL(chooser->dest);
-		
-	// check for partial URLs	
-	if( !chooser->dest.contains(":/") && !chooser->dest.startsWith("/")  ){
-		dest = panel->virtualPath();
-		dest.addPath(chooser->dest);
-	}
-*/
-
 	bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath() );
 
 	for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
