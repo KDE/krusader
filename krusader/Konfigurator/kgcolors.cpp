@@ -88,7 +88,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 2 );
 
-  ADDITIONAL_COLOR transparent = { i18n("Transparent"), Qt::white, "transparent" };
+  ADDITIONAL_COLOR transparent  = { i18n("Transparent"),       Qt::white, "transparent" };
 
   addColorSelector( "Foreground",                 i18n( "Foreground:" ),                  KGlobalSettings::textColor()                                                );
   addColorSelector( "Directory Foreground",       i18n( "Directory foreground:" ),        getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
@@ -96,14 +96,18 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Symlink Foreground",         i18n( "Symbolic link foreground:" ),    getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
   addColorSelector( "Invalid Symlink Foreground", i18n( "Invalid symlink foreground:" ),  getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
   addColorSelector( "Background",                 i18n( "Background:" ),                  KGlobalSettings::baseColor()                                                );
-  addColorSelector( "Alternate Background",       i18n( "Alternate background:" ),        KGlobalSettings::alternateBackgroundColor()                                 );
+  ADDITIONAL_COLOR sameAsBckgnd = { i18n("Same as backgound"), getColorSelector( "Background" )->getColor(), "Background" };
+  addColorSelector( "Alternate Background",       i18n( "Alternate background:" ),        KGlobalSettings::alternateBackgroundColor(),"", &sameAsBckgnd, 1            );
   addColorSelector( "Marked Foreground",          i18n( "Marked foreground:" ),           KGlobalSettings::highlightedTextColor(), "", &transparent, 1                );
-  addColorSelector( "Marked Background",          i18n( "Marked background:" ),           KGlobalSettings::highlightColor()                                           );
-  addColorSelector( "Alternate Marked Background",i18n( "Alternate marked background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as marked background" )  );
+  addColorSelector( "Marked Background",          i18n( "Marked background:" ),           KGlobalSettings::highlightColor(), "", &sameAsBckgnd, 1                     );
+  ADDITIONAL_COLOR sameAsAltern = { i18n("Same as alt. backgound"), getColorSelector( "Alternate Background" )->getColor(), "Alternate Background" };
+  addColorSelector( "Alternate Marked Background",i18n( "Alternate marked background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as marked background" ), &sameAsAltern, 1 );
   addColorSelector( "Current Foreground",         i18n( "Current foreground:" ),          Qt::white,                                    i18n( "Not used" )            );
-  addColorSelector( "Current Background",         i18n( "Current background:" ),          Qt::white,                                    i18n( "Not used" )            );
+  addColorSelector( "Current Background",         i18n( "Current background:" ),          Qt::white, i18n( "Not used" ), &sameAsBckgnd, 1                             );
 
   connect( getColorSelector( "Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotForegroundChanged() ) );
+  connect( getColorSelector( "Background" ), SIGNAL( colorChanged() ), this, SLOT( slotBackgroundChanged() ) );
+  connect( getColorSelector( "Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotAltBackgroundChanged() ) );
   connect( getColorSelector( "Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotMarkedBackgroundChanged() ) );
 
   colorsGrp = new QWidget( colorTabWidget, "colorTab" );
@@ -116,18 +120,27 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   offset = itemList.count();
   
   addColorSelector( "Inactive Foreground",                  i18n( "Foreground:" ),                  getColorSelector( "Foreground" )->getColor(), i18n( "Same as active" ) );
-  addColorSelector( "Inactive Directory Foreground",        i18n( "Directory foreground:" ),        getColorSelector( "Directory Foreground" )->getColor(), i18n( "Same as active" ) );
-  addColorSelector( "Inactive Executable Foreground",       i18n( "Executable foreground:" ),       getColorSelector( "Executable Foreground" )->getColor(), i18n( "Same as active" ) );
-  addColorSelector( "Inactive Symlink Foreground",          i18n( "Symbolic link foreground:" ),    getColorSelector( "Symlink Foreground" )->getColor(), i18n( "Same as active" ) );
-  addColorSelector( "Inactive Invalid Symlink Foreground",  i18n( "Invalid symlink foreground:" ),  getColorSelector( "Invalid Symlink Foreground" )->getColor(), i18n( "Same as active" ) );
+  ADDITIONAL_COLOR sameAsInactForegnd = { i18n("Same as foregound"), getColorSelector( "Inactive Foreground" )->getColor(), "Inactive Foreground" };
+  addColorSelector( "Inactive Directory Foreground",        i18n( "Directory foreground:" ),        getColorSelector( "Directory Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactForegnd, 1 );
+  addColorSelector( "Inactive Executable Foreground",       i18n( "Executable foreground:" ),       getColorSelector( "Executable Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactForegnd, 1 );
+  addColorSelector( "Inactive Symlink Foreground",          i18n( "Symbolic link foreground:" ),    getColorSelector( "Symlink Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactForegnd, 1 );
+  addColorSelector( "Inactive Invalid Symlink Foreground",  i18n( "Invalid symlink foreground:" ),  getColorSelector( "Invalid Symlink Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactForegnd, 1 );
   addColorSelector( "Inactive Background",                  i18n( "Background:" ),                  getColorSelector( "Background" )->getColor(), i18n( "Same as active" ) );
-  addColorSelector( "Inactive Alternate Background",        i18n( "Alternate background:" ),        getColorSelector( "Alternate Background" )->getColor(), i18n( "Same as active" ) );
+  ADDITIONAL_COLOR sameAsInactBckgnd = { i18n("Same as backgound"), getColorSelector( "Inactive Background" )->getColor(), "Inactive Background" };
+  addColorSelector( "Inactive Alternate Background",        i18n( "Alternate background:" ),        getColorSelector( "Alternate Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
   addColorSelector( "Inactive Marked Foreground",           i18n( "Marked foreground:" ),           getColorSelector( "Marked Foreground" )->getColor(), i18n( "Same as active" ), &transparent, 1 );
-  addColorSelector( "Inactive Marked Background",           i18n( "Marked background:" ),           getColorSelector( "Marked Background" )->getColor(), i18n( "Same as active" ) );
-  addColorSelector( "Inactive Alternate Marked Background", i18n( "Alternate marked background:" ), getColorSelector( "Alternate Marked Background" )->getColor(), i18n( "Same as active" )  );
+  addColorSelector( "Inactive Marked Background",           i18n( "Marked background:" ),           getColorSelector( "Marked Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
+  ADDITIONAL_COLOR sameAsInactAltern[] = {{ i18n("Same as alt. backgound"), getColorSelector( "Inactive Alternate Background" )->getColor(), "Inactive Alternate Background" },
+                                          { i18n("Same as marked backgound"), getColorSelector( "Inactive Marked Background" )->getColor(), "Inactive Marked Background" } };
+  addColorSelector( "Inactive Alternate Marked Background", i18n( "Alternate marked background:" ), getColorSelector( "Alternate Marked Background" )->getColor(), i18n( "Same as active" ), sameAsInactAltern, 2 );
   addColorSelector( "Inactive Current Foreground",          i18n( "Current foreground:" ),          getColorSelector( "Current Foreground" )->getColor(), i18n( "Same as active" ) );
-  addColorSelector( "Inactive Current Background",          i18n( "Current background:" ),          getColorSelector( "Current Background" )->getColor(), i18n( "Same as active" ) );
+  addColorSelector( "Inactive Current Background",          i18n( "Current background:" ),          getColorSelector( "Current Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
 
+  connect( getColorSelector( "Inactive Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveForegroundChanged() ) );
+  connect( getColorSelector( "Inactive Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveBackgroundChanged() ) );
+  connect( getColorSelector( "Inactive Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveAltBackgroundChanged() ) );
+  connect( getColorSelector( "Inactive Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveMarkedBackgroundChanged() ) );
+  
   colorsFrameGrid->addWidget( colorTabWidget, 0, 0 );
   
   //  -------------------------- PREVIEW GROUPBOX ----------------------------------
@@ -249,11 +262,56 @@ void KgColors::slotForegroundChanged()
   getColorSelector( "Invalid Symlink Foreground" )->setDefaultColor( color );
 }
 
+void KgColors::slotBackgroundChanged()
+{
+  QColor color = getColorSelector( "Background" )->getColor();
+
+  getColorSelector( "Alternate Background" )->changeAdditionalColor( 0, color );
+  getColorSelector( "Marked Background" )->changeAdditionalColor( 0, color );
+  getColorSelector( "Current Background" )->changeAdditionalColor( 0, color );
+}
+
+void KgColors::slotAltBackgroundChanged()
+{
+  QColor color = getColorSelector( "Alternate Background" )->getColor();
+  getColorSelector( "Alternate Marked Background" )->changeAdditionalColor( 0, color );
+}
+
 void KgColors::slotMarkedBackgroundChanged()
 {
   QColor color = getColorSelector( "Marked Background" )->getColor();
-
   getColorSelector( "Alternate Marked Background" )->setDefaultColor( color );
+}
+
+void KgColors::slotInactiveForegroundChanged()
+{
+  QColor color = getColorSelector( "Inactive Foreground" )->getColor();
+
+  getColorSelector( "Inactive Directory Foreground" )->changeAdditionalColor( 0, color );
+  getColorSelector( "Inactive Executable Foreground" )->changeAdditionalColor( 0, color );
+  getColorSelector( "Inactive Symlink Foreground" )->changeAdditionalColor( 0, color );
+  getColorSelector( "Inactive Invalid Symlink Foreground" )->changeAdditionalColor( 0, color );
+}
+
+void KgColors::slotInactiveBackgroundChanged()
+{
+  QColor color = getColorSelector( "Inactive Background" )->getColor();
+
+  getColorSelector( "Inactive Alternate Background" )->changeAdditionalColor( 0, color );
+  getColorSelector( "Inactive Marked Background" )->changeAdditionalColor( 0, color );
+  getColorSelector( "Inactive Current Background" )->changeAdditionalColor( 0, color );
+}
+
+void KgColors::slotInactiveAltBackgroundChanged()
+{
+  QColor color = getColorSelector( "Inactive Alternate Background" )->getColor();
+  getColorSelector( "Inactive Alternate Marked Background" )->changeAdditionalColor( 0, color );
+}
+
+void KgColors::slotInactiveMarkedBackgroundChanged()
+{
+  QColor color = getColorSelector( "Inactive Marked Background" )->getColor();
+  getColorSelector( "Inactive Alternate Marked Background" )->changeAdditionalColor( 1, color );
 }
 
 void KgColors::generatePreview()

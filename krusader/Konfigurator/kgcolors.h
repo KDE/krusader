@@ -48,8 +48,14 @@ public:
 public slots:
   void slotDisable();
   void slotForegroundChanged();
+  void slotBackgroundChanged();
+  void slotAltBackgroundChanged();
   void slotActiveChanged();
   void slotMarkedBackgroundChanged();
+  void slotInactiveForegroundChanged();
+  void slotInactiveBackgroundChanged();
+  void slotInactiveAltBackgroundChanged();
+  void slotInactiveMarkedBackgroundChanged();
   void slotDisableCurrent();
   void generatePreview();
 
