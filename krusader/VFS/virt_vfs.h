@@ -25,6 +25,7 @@
   */
 
 class virt_vfs : public vfs  {
+Q_OBJECT
 public: 
 	virt_vfs(QObject* panel, bool quiet=false);
 	~virt_vfs();
@@ -47,12 +48,16 @@ public:
 	/// Return the VFS working dir
 	QString vfs_workingDir(){ return QString::null; }
 
+public slots:
+	void slotListResult(KIO::Job *job);
+
 protected:
 	/// This function should not be called for this VFS !
 	bool populateVfsList(const KURL& origin, bool showHidden);
 	
 	QDict<vfile>  vfs_files;    //< List of pointers to vfile.
 	QDict<vfile>  vfs_files_copy;
+	bool busy;
 };
 
 #endif
