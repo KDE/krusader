@@ -49,7 +49,7 @@ public slots:
 
 protected:
 	virtual bool initDirDict(const KURL& url,bool forced = false);
-	virtual void initArcParameters();
+	virtual bool initArcParameters();
 	virtual void parseLine(int lineNo, QString line, QFile* temp);
 	virtual bool setArcFile(const QString& path);
 
@@ -61,21 +61,22 @@ protected:
 	QString putCmd;  ///< add file commnad.
 
 private:
-	/** service function for parseLine */
+	/** service function for parseLine. */
 	QString nextWord(QString &s,char d=' ');
-	/** translate permittion string to mode_t */
+	/** translate permittion string to mode_t. */
 	mode_t parsePermString(QString perm);
-  /** return the name of the directory inside the archive */
+  /** return the name of the directory inside the archive. */
 	QString findArcDirectory(const KURL& url);
-	/** find the UDSEntry of a file in a directory */
+	/** find the UDSEntry of a file in a directory. */
 	KIO::UDSEntry* findFileEntry(const KURL& url);
-  /** add a new directory (file list container) */
+  /** add a new directory (file list container). */
   KIO::UDSEntryList* addNewDir(QString path);
 
-	QDict<KIO::UDSEntryList> dirDict;
-  bool archiveChanged;
-	KFileItem* arcFile;
-	QString arcTempDir;
+	QDict<KIO::UDSEntryList> dirDict; //< the directoris data structure.
+  bool archiveChanged;              //< true if the archive was changed.
+	KFileItem* arcFile;               //< the archive file item.
+	QString arcTempDir;               //< the currently used temp directory.
+  QString arcType;                  //< the archive type.
 };
 
 
