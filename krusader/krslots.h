@@ -74,6 +74,7 @@ class KRslots : public QObject {
     void markAll();
     void unmarkAll();
     void markGroup();
+	 void markGroup(const QString &, bool select);
     void unmarkGroup();
     void invert();
     void refresh();
