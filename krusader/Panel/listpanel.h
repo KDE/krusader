@@ -92,8 +92,9 @@ public:
 public slots:
    void gotStats( const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail); // displays filesystem status
    void popRightClickMenu( const QPoint& );
+   void popEmptyRightClickMenu( QListViewItem *, const QPoint &, int );
    void select(QString mask, bool select);
-	void select( bool, bool );      // see doc in ListPanel
+   void select( bool, bool );      // see doc in ListPanel
    void invertSelection();       // see doc in ListPanel
    void compareDirs();
    void slotFocusOnMe(); // give this VFS the focus (the path bar)

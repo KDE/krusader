@@ -64,6 +64,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kurlrequester.h>
 #include <kurl.h> 
 #include <kmountpoint.h>
+#include <konq_popupmenu.h>
+#include <konqbookmarkmanager.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../krslots.h"
@@ -219,6 +221,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( selectionChanged() ), this, SLOT( slotUpdateTotals() ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( itemDescription( QString& ) ), krApp, SLOT( statusBarUpdate( QString& ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( contextMenu( const QPoint & ) ), this, SLOT( popRightClickMenu( const QPoint & ) ) );
+   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( rightButtonPressed( QListViewItem *, const QPoint &, int ) ), this, SLOT( popEmptyRightClickMenu( QListViewItem *, const QPoint &, int ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( letsDrag( QStringList, QPixmap ) ), this, SLOT( startDragging( QStringList, QPixmap ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( gotDrop( QDropEvent * ) ), this, SLOT( handleDropOnView( QDropEvent * ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked( QListViewItem * ) ), SLOTS, SLOT( newTab( QListViewItem * ) ) );
@@ -728,25 +731,26 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
 #define OPEN_WITH_ID  91
 #define OPEN_KONQ_ID  92
 #define OPEN_TERM_ID  93
-#define CHOOSE_ID     94
-#define DELETE_ID     95
-#define COPY_ID       96
-#define MOVE_ID       97
-#define RENAME_ID     98
-#define PROPERTIES_ID 99
-#define MOUNT_ID      100
-#define UNMOUNT_ID    101
-#define SHRED_ID      102
-#define NEW_LINK      103
-#define NEW_SYMLINK   104
-#define REDIRECT_LINK 105
-#define SEND_BY_EMAIL 106
-#define LINK_HANDLING 107
-#define EJECT_ID      108
-#define PREVIEW_ID    109
-#define COPY_CLIP_ID  110
-#define MOVE_CLIP_ID  111
-#define PASTE_CLIP_ID 112
+#define KONQ_MENU_ID  94
+#define CHOOSE_ID     95
+#define DELETE_ID     96
+#define COPY_ID       97
+#define MOVE_ID       98
+#define RENAME_ID     99
+#define PROPERTIES_ID 100
+#define MOUNT_ID      101
+#define UNMOUNT_ID    102
+#define SHRED_ID      103
+#define NEW_LINK      104
+#define NEW_SYMLINK   105
+#define REDIRECT_LINK 106
+#define SEND_BY_EMAIL 107
+#define LINK_HANDLING 108
+#define EJECT_ID      109
+#define PREVIEW_ID    110
+#define COPY_CLIP_ID  111
+#define MOVE_CLIP_ID  112
+#define PASTE_CLIP_ID 113
 
    // those will sometimes appear
 #define SERVICE_LIST_ID  200
@@ -814,6 +818,22 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       popup.changeItem( OPEN_WITH_ID, i18n( "Open with" ) );
       popup.insertSeparator();
    }
+   
+   KFileItemList _items;
+   _items.setAutoDelete( true );
+   for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) 
+   {
+     vfile *file = func->files() ->vfs_search( ( *it )->name() );
+     KURL url = func->files() ->vfs_getFile( ( *it )->name() );
+     _items.append( new KFileItem( url,  file->vfile_getMime(), file->vfile_getMode() ) );
+   }   
+   KActionCollection actions(this);
+   KonqPopupMenu konqMenu( KonqBookmarkManager::self(), _items, func->files()->vfs_getOrigin(), actions, 0, this, 
+                           KonqPopupMenu::ShowProperties, KParts::BrowserExtension::DefaultPopupItems );
+   popup.insertItem( QPixmap(), &konqMenu, KONQ_MENU_ID );
+   popup.changeItem( KONQ_MENU_ID, i18n( "Konqueror menu" ) );
+   popup.insertSeparator();
+   
    // COPY
    popup.insertItem( i18n( "Copy" ), COPY_ID );
    if ( func->files() ->vfs_isWritable() ) {
@@ -968,6 +988,23 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       getSelectedNames( &names );
       KRun::run( *( offers[ result - SERVICE_LIST_ID ].service() ),
                  *( func->files() ->vfs_getFiles( &names ) ) );
+   }
+}
+
+void ListPanel::popEmptyRightClickMenu( QListViewItem *item, const QPoint &loc, int ) {
+   if( item == 0 )
+   {
+      KPopupMenu popup;
+   
+      popup.insertItem( i18n( "Paste from Clipboard" ), PASTE_CLIP_ID );
+   
+      int result = popup.exec( loc );
+      switch ( result ) 
+      {
+         case PASTE_CLIP_ID :
+         func->pasteFromClipboard();
+         break;
+      }
    }
 }
 
