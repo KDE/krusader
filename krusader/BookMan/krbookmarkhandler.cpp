@@ -348,9 +348,7 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 // KAction and KActionCollection.
 void KrBookmarkHandler::slotActivated(const KURL& url) {
 	if (_middleClick)
-		SLOTS->newTab();
-	
-	SLOTS->refresh(url);
+		SLOTS->newTab(url);
 }
 
 

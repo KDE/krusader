@@ -567,8 +567,11 @@ void KRslots::duplicateTab() {
   ACTIVE_PANEL_MANAGER->slotNewTab(ACTIVE_PANEL->virtualPath);
 }
 
-void KRslots::newTab() {
-  ACTIVE_PANEL_MANAGER->slotNewTab();
+// ugly: do this right before release!
+void KRslots::newTab(const KURL& url) {
+  if (url.isValid())
+     ACTIVE_PANEL_MANAGER->slotNewTab(url);
+  else ACTIVE_PANEL_MANAGER->slotNewTab();
 }
 
 void KRslots::nextTab() {

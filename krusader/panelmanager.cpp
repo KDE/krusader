@@ -132,11 +132,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
      slotNewTab( l[i], false );
 }
 
-void PanelManager::slotNewTab() {
-   slotNewTab( QDir::home().absPath() );
-}
-
-void PanelManager::slotNewTab( QString path, bool setCurrent ) {
+void PanelManager::slotNewTab(const KURL& url, bool setCurrent) {
    ListPanel *p = createPanel( setCurrent );   
    // update left/right pointers
    p->otherPanel = _other;
@@ -145,7 +141,15 @@ void PanelManager::slotNewTab( QString path, bool setCurrent ) {
      _self = p;
      _other->otherPanel = _self;
    }
-   startPanel( p, path );
+   startPanel( p, url.url() );
+}
+
+void PanelManager::slotNewTab() {
+   slotNewTab( QDir::home().absPath() );
+}
+
+void PanelManager::slotNewTab( QString path, bool setCurrent ) {
+	slotNewTab(vfs::fromPathOrURL(path), setCurrent);
 }
 
 void PanelManager::slotCloseTab() {
