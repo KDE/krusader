@@ -63,6 +63,7 @@
 #include "GUI/kfnkeys.h"
 #include "GUI/kcmdline.h"
 #include "krslots.h"
+#include "krservices.h"
 
 // define the static members
 Krusader *Krusader::App=0;
@@ -548,55 +549,24 @@ void Krusader::updateGUI(bool enforce) {
 //            if (i!=-1) pathToDiff=lst[i+1];
 QStringList Krusader::supportedTools() {
   QStringList tools;
-  bool skip;
-
-  KShellProcess proc;
 
   // first, a diff program: kdiff
-  skip = false;
-  if (!skip) {
-    proc << "which kdiff >/dev/null 2>&1";
-    if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 ) {
-      tools.append("DIFF"); tools.append("kdiff");
-      skip = true;
-    }
+  if ( KrServices::cmdExist("kdiff") ){
+		tools.append("DIFF"); tools.append("kdiff");
   }
-  if (!skip) {
-    proc.clearArguments();
-    proc << "which kompare >/dev/null 2>&1";
-    if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 ) {
-      tools.append("DIFF"); tools.append("kompare");
-      skip = true;
-    }
-  }
-  if (!skip) {
-    proc.clearArguments();
-    proc << "which xxdiff >/dev/null 2>&1";
-    if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 ) {
-      tools.append("DIFF"); tools.append("xxdiff");
-      skip = true;
-    }
-  }
-
+	else if ( KrServices::cmdExist("kompare") ) {
+		tools.append("DIFF"); tools.append("kompare");
+	}
+  else if ( KrServices::cmdExist("xxdiff") ) {
+		tools.append("DIFF"); tools.append("xxdiff");
+	}
   // a mailer: kmail
-  skip = false;
-  if (!skip) {
-    proc.clearArguments();
-    proc << "which kmail >/dev/null 2>&1";
-    if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 ) {
-      tools.append("MAIL"); tools.append("kmail");
-      skip = true;
-    }
-  }
+  if ( KrServices::cmdExist("kmail") ) {
+    tools.append("MAIL"); tools.append("kmail");
+	}
 	// rename tool: krename
-  skip = false;
-  if (!skip) {
-    proc.clearArguments();
-  	proc << "which krename >/dev/null 2>&1";
-  	if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 ) {
-  		tools.append("RENAME"); tools.append("krename");
-      skip = true;
-		}
+  if ( KrServices::cmdExist("krename") ) {
+  	tools.append("RENAME"); tools.append("krename");
 	}
 
   return tools;

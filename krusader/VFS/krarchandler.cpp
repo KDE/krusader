@@ -39,70 +39,28 @@
 #include "krarchandler.h"
 #include "../krusader.h"
 #include "../defaults.h"
+#include "../krservices.h"
 
 QStringList KRarcHandler::supportedPackers(){
   QStringList packers;
 
   // we will simply try to find the packers here..
-  KShellProcess proc;
-  proc << "which tar >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("tar");
+  if( KrServices::cmdExist("tar")   ) packers.append("tar");
+  if( KrServices::cmdExist("gzip")  ) packers.append("gzip");
+  if( KrServices::cmdExist("bzip2") ) packers.append("bzip2");
+  if( KrServices::cmdExist("unzip") ) packers.append("unzip");
+  if( KrServices::cmdExist("zip")   ) packers.append("zip");
+  if( KrServices::cmdExist("rpm")   ) packers.append("rpm");
+  if( KrServices::cmdExist("cpio")  ) packers.append("cpio");
+  if( KrServices::cmdExist("unrar") ) packers.append("unrar");
+  if( KrServices::cmdExist("rar")   ) packers.append("rar");
+  if( KrServices::cmdExist("unarj") ) packers.append("unarj");
+  if( KrServices::cmdExist("unace") ) packers.append("unace");
 
-  proc.clearArguments();
-  proc << "which gzip >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("gzip");
-
-  proc.clearArguments();
-  proc << "which bzip2 >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("bzip2");
-
-  proc.clearArguments();
-  proc << "which unzip >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("unzip");
-
-  proc.clearArguments();
-  proc << "which zip >/dev/null 2>&1" ;
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("zip");
-
-  proc.clearArguments();
-  proc << "which rpm >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("rpm");
-
-  proc.clearArguments();
-  proc << "which cpio >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("cpio");
-
-  proc.clearArguments();
-  proc << "which unrar >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("unrar");
-
-  proc.clearArguments();
-  proc << "which rar >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("rar");
-
-  proc.clearArguments();
-  proc << "which unarj >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("unarj");
-
-  proc.clearArguments();
-  proc << "which unace >/dev/null 2>&1";
-  if( proc.start(KProcess::Block) && proc.normalExit() && proc.exitStatus()==0 )
-    packers.append("unace");
-
-  // kdWarning() << "Supported Packers:" << endl;
+  // kdDebug() << "Supported Packers:" << endl;
   //QStringList::Iterator it;
   //for( it = packers.begin(); it != packers.end(); ++it )
-  // kdWarning() << *it << endl;
+  // kdDebug() << *it << endl;
 
   return packers;
 }

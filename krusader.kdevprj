@@ -703,7 +703,7 @@ install_location=
 type=HEADER
 
 [krusader/Makefile.am]
-files=krusader/krusader.desktop,krusader/lo32-app-krusader.png,krusader/lo16-app-krusader.png,krusader/defaults.h,krusader/kicons.cpp,krusader/kicons.h,krusader/krslots.cpp,krusader/krslots.h,krusader/krusader.cpp,krusader/krusader.h,krusader/krusaderui.rc,krusader/krusaderview.cpp,krusader/krusaderview.h,krusader/lo32-app-krusader2.png,krusader/main.cpp,krusader/resources.h,krusader/x-ace.desktop
+files=krusader/krusader.desktop,krusader/lo32-app-krusader.png,krusader/lo16-app-krusader.png,krusader/defaults.h,krusader/kicons.cpp,krusader/kicons.h,krusader/krslots.cpp,krusader/krslots.h,krusader/krusader.cpp,krusader/krusader.h,krusader/krusaderui.rc,krusader/krusaderview.cpp,krusader/krusaderview.h,krusader/lo32-app-krusader2.png,krusader/main.cpp,krusader/resources.h,krusader/x-ace.desktop,krusader/krservices.cpp,krusader/krservices.h
 sub_dirs=BookMan,Dialogs,GUI,Konfigurator,KViewer,MountMan,Panel,RemoteMan,VFS,Search
 type=prog_main
 
@@ -1037,6 +1037,18 @@ install_location=
 type=SOURCE
 
 [krusader/kicons.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/krservices.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/krservices.h]
 dist=true
 install=false
 install_location=
