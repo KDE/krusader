@@ -107,6 +107,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    status->setFrameStyle( QFrame::Box | QFrame::Raised );
    status->setLineWidth( 1 );		// a nice 3D touch :-)
    status->setText( "" );        // needed for initialization code!
+   status->enableDrops( true );
    int sheight = QFontMetrics( status->font() ).height() + 4;
    status->setMaximumHeight( sheight );
    QWhatsThis::add
@@ -114,6 +115,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
                       "which hold your current directory: Total size, free space, "
                       "type of filesystem etc." ) );
    connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
+   connect( status, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnStatus(QDropEvent *) ) );  
 
    // ... create the history button
    dirHistoryQueue = new DirHistoryQueue( this );
@@ -138,10 +140,12 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    totals->setBackgroundMode( PaletteBackground );
    totals->setLineWidth( 1 );		// a nice 3D touch :-)
    totals->setMaximumHeight( sheight );
+   totals->enableDrops( true );
    QWhatsThis::add
       ( totals, i18n( "The totals bar shows how much files exist, "
                       "how many did you select and the bytes math" ) );
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
+   connect( totals, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnTotals(QDropEvent *) ) );  
    
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
@@ -522,8 +526,15 @@ void ListPanel::gotStats( const QString &mountPoint, unsigned long kBSize,
 	status->setText( stats );
 }
 
+void ListPanel::handleDropOnTotals( QDropEvent *e ) {
+  handleDropOnView( e, totals );
+}
 
-void ListPanel::handleDropOnView( QDropEvent *e ) {
+void ListPanel::handleDropOnStatus( QDropEvent *e ) {
+  handleDropOnView( e, status );
+}
+
+void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
    // if copyToPanel is true, then we call a simple vfs_addfiles
    bool copyToDirInPanel = false;
    bool dragFromOtherPanel = false;
@@ -532,7 +543,12 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
 
    vfs* tempFiles = func->files();
    vfile *file;
-   KrViewItem *i = view->getKrViewItemAt( e->pos() );
+   KrViewItem *i = 0;
+   if( widget == 0 )
+   {
+      i = view->getKrViewItemAt( e->pos() );
+      widget = this;
+   }
 
    if ( e->source() == otherPanel )
       dragFromOtherPanel = true;
@@ -590,7 +606,7 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
          otherPanel->func->files() ->vfs_getType() == vfs::NORMAL )
       popup.insertItem( i18n( "Link Here" ), 3 );
    popup.insertItem( i18n( "Cancel" ), 4 );
-   QPoint tmp = mapToGlobal( e->pos() );
+   QPoint tmp = widget->mapToGlobal( e->pos() );
    int result = popup.exec( tmp );
    switch ( result ) {
          case 1 :

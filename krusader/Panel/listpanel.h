@@ -118,9 +118,11 @@ protected:
    virtual void keyPressEvent( QKeyEvent *e );
 
 protected slots:
-   void handleDropOnView( QDropEvent * );     // handles drops on the view only
+   void handleDropOnView(QDropEvent *, QWidget *destWidget=0); // handles drops on the view only
+   void handleDropOnTotals( QDropEvent * );                   // handles drops on the totals line
+   void handleDropOnStatus( QDropEvent * );                   // handles drops on the status line
    void startDragging( QStringList, QPixmap );
-	void togglePanelPopup();
+   void togglePanelPopup();
 
 signals:
    void signalStatus( QString msg );       // emmited when we need to update the status bar
