@@ -70,13 +70,22 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
   notConnected = true;
 		
 	// breakdown the url;
+	/* FIXME: untill KDE fixes the bug we have to check for
+     passwords with @ in them... */
+	bool bugfix = origin.find("@") != origin.findRev("@");
+	if(bugfix) origin[origin.find("@")] = '^';
 	KURL url = origin;
 	port = url.port();
 	loginName = url.user();
 	password = url.pass();
+	if(bugfix){
+		password[password.find('^')] = '@';
+		url.setPass(password);
+	}
+	
 
 	vfs_type = "ftp";
-  vfs_origin = url.prettyURL(-1);
+  vfs_origin = origin;//url.prettyURL(-1);
 
   vfs_refresh();	
 }
@@ -159,6 +168,8 @@ void ftp_vfs::slotListResult(KIO::Job *job){
 bool ftp_vfs::vfs_refresh(QString origin) {
 	error = false;
 	KURL url = origin;
+
+	kdDebug() << "Origin = " << origin << endl;
 
   if( !loginName.isEmpty()) url.setUser(loginName);
 	if( !password.isEmpty() ) url.setPass(password);
