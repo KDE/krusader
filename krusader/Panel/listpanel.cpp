@@ -77,7 +77,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "panelfunc.h"
 #include "../MountMan/kmountman.h"
 #include "../Dialogs/krdialogs.h"
-#include "../BookMan/bookmarksbutton.h"
+#include "../BookMan/krbookmarkbutton.h"
 #include "../Dialogs/krspwidgets.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../GUI/kcmdline.h"
@@ -90,12 +90,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "panelpopup.h" 
 
 typedef QValueList<KServiceOffer> OfferList;
-
-
-#define BOOKMAN2
-#ifdef BOOKMAN2
-#include "../BookMan/krbookmarkbutton.h"
-#endif // BOOKMAN2
 
 /////////////////////////////////////////////////////
 // 					The list panel constructor             //
@@ -130,25 +124,14 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    historyButton = new DirHistoryButton( dirHistoryQueue, this, "historyButton" );
    connect( historyButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
    connect( historyButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
-#ifndef BOOKMAN2
-   // ... create the bookmark list
-   bookmarksButton = new BookmarksButton( this );
-   connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
+
+	bookmarksButton = new KrBookmarkButton(this);
+	connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
    connect( bookmarksButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
-   QWhatsThis::add
+	QWhatsThis::add
       ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
                                "current location to the list, edit bookmarks "
                                "or add subfolder to the list." ) );
-#endif
-#ifdef BOOKMAN2
-	bmb = new KrBookmarkButton(this);
-	connect( bmb, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-   connect( bmb, SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
-	QWhatsThis::add
-      ( bmb, i18n( "Open menu with bookmarks. You can also add "
-                               "current location to the list, edit bookmarks "
-                               "or add subfolder to the list." ) );
-#endif // BOOKMAN2
 										 
    QHBoxLayout *totalsLayout = new QHBoxLayout(this);
 	totals = new KrSqueezedTextLabel( this );
@@ -252,16 +235,6 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	popup->hide();
 	
    // finish the layout
-#ifdef BOOKMAN2
-	layout->addMultiCellWidget( hbox, 0, 0, 0, 2 );
-   layout->addWidget( status, 1, 0 );
-   layout->addWidget( historyButton, 1, 1 );
-	layout->addWidget( bmb, 1, 2 );
-	layout->addMultiCellWidget( splt, 2, 2, 0, 2 );
-   layout->addMultiCellWidget( quickSearch, 3, 3, 0, 2 );
-   quickSearch->hide();
-   layout->addMultiCellLayout( totalsLayout, 4, 4, 0, 2 );
-#else   
 	layout->addMultiCellWidget( hbox, 0, 0, 0, 2 );
    layout->addWidget( status, 1, 0 );
    layout->addWidget( historyButton, 1, 1 );
@@ -270,7 +243,6 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    layout->addMultiCellWidget( quickSearch, 3, 3, 0, 2 );
    quickSearch->hide();
    layout->addMultiCellLayout( totalsLayout, 4, 4, 0, 2 );
-#endif // BOOKMAN2	
    //filter = ALL;
 }
 
@@ -278,9 +250,7 @@ ListPanel::~ListPanel() {
    delete func;
    delete view;
    delete status;
-#ifndef BOOKMAN2
    delete bookmarksButton;
-#endif
    delete totals;
    delete quickSearch;
    delete origin;

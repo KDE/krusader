@@ -20,7 +20,7 @@
 
 // for ParameterDialog
 #include "../krusader.h" // for konfig-access
-#include "../BookMan/bookmarksbutton.h"
+#include "../BookMan/krbookmarkbutton.h"
 
 #include <qlayout.h>
 #include <qhbox.h>
@@ -429,7 +429,7 @@ ParameterBookmark::ParameterBookmark( exp_parameter* parameter, QWidget* parent 
    KIconLoader *iconLoader = new KIconLoader();
   _dirButton->setPixmap( iconLoader->loadIcon( "fileopen", KIcon::Toolbar, 16 ) );
    connect( _dirButton, SIGNAL(clicked()), this, SLOT(setDir()) );
-   _bookmarkButton = new BookmarksButton( hbox );
+   _bookmarkButton = new KrBookmarkButton( hbox );
    connect( _bookmarkButton, SIGNAL(openUrl(const KURL &)), this, SLOT(setBookmark(const KURL &)) );
 }
 

@@ -38,7 +38,7 @@
 #include "krusader.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
-#include "BookMan/bookmarksbutton.h"
+#include "BookMan/krbookmarkbutton.h"
 #include "GUI/kcmdline.h"
 #include "GUI/dirhistorybutton.h"
 
@@ -107,10 +107,11 @@ class KRslots : public QObject {
     void changeTrashIcon();
     void showAboutApplication();
     void multiRename();
-    void openRightBookmarks() { krApp->mainView->right->bookmarksButton->openPopup(); }
-    void openLeftBookmarks() { krApp->mainView->left->bookmarksButton->openPopup(); }
-    void openLeftHistory() { krApp->mainView->left->historyButton->openPopup(); }
-    void openRightHistory() { krApp->mainView->right->historyButton->openPopup(); }
+    void openRightBookmarks() { RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->openPopup(); }
+    void openLeftBookmarks() { LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->openPopup(); }
+	 void openBookmarks() { ACTIVE_PANEL->bookmarksButton->openPopup(); }	
+    void openLeftHistory() { LEFT_PANEL->historyButton->openPopup(); }
+    void openRightHistory() { RIGHT_PANEL->historyButton->openPopup(); }
     void cmdlinePopup() { krApp->mainView->cmdLine->popup(); }
     void duplicateTab();
     void newTab();

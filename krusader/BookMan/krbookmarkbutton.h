@@ -8,6 +8,7 @@ class KrBookmarkButton: public QToolButton {
 	Q_OBJECT
 public:
 	KrBookmarkButton(QWidget *parent);
+	void openPopup();
 
 signals:
 	void openUrl(const KURL &url);

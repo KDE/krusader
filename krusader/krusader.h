@@ -151,6 +151,8 @@ class Krusader : public KParts::MainWindow {
 #define krLoader     Krusader::App->iconLoader
 #define ACTIVE_PANEL (krApp->mainView->activePanel)
 #define ACTIVE_FUNC  (krApp->mainView->activePanel->func)
+#define LEFT_PANEL	(krApp->mainView->left)
+#define RIGHT_PANEL  (krApp->mainView->right)
 #define MAIN_VIEW    (krApp->mainView)
 
 // krusader's actions - things krusader can do!

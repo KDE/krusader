@@ -511,7 +511,7 @@ void Krusader::setupActions() {
                           SLOTS, SLOT( search() ), actionCollection(), "find" );
    actLocate = new KAction( i18n( "&Locate" ), "find", CTRL + Key_L,
                             SLOTS, SLOT( locate() ), actionCollection(), "locate" );
-   actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_D,
+   actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_Y,
                               SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
    actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                             SLOTS, SLOT( invert() ), actionCollection(), "invert" );
@@ -541,6 +541,8 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openRightBookmarks() ), actionCollection(), "right bookmarks" );
    new KAction( i18n( "Left bookmarks" ), ALT + Key_Left,
                 SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
+	new KAction( i18n( "Bookmarks" ), CTRL + Key_D,
+                SLOTS, SLOT( openBookmarks() ), actionCollection(), "bookmarks" );
    new KAction( i18n( "Left history" ), ALT + CTRL + Key_Left,
                 SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
    new KAction( i18n( "Right history" ), ALT + CTRL + Key_Right,

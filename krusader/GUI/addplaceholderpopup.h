@@ -22,7 +22,7 @@ class KLineEdit;
 class QToolButton;
 class QCheckBox;
 class KComboBox;
-class BookmarksButton;
+class KrBookmarkButton;
 class KURL;
 
 
@@ -219,7 +219,7 @@ public:
 private:
    KLineEdit * _lineEdit;
    QToolButton* _dirButton;
-   BookmarksButton* _bookmarkButton;
+   KrBookmarkButton* _bookmarkButton;
 private slots:
    void setDir();
    void setBookmark( const KURL & );

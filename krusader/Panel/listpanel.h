@@ -158,8 +158,7 @@ public:
    QToolButton *cdOtherButton;
 	QToolButton *popupBtn;
 	PanelPopup *popup;
-   BookmarksButton *bookmarksButton;
-	KrBookmarkButton *bmb;
+   KrBookmarkButton *bookmarksButton;
    DirHistoryQueue* dirHistoryQueue;
    DirHistoryButton* historyButton;
    SyncBrowseButton *syncBrowseButton;

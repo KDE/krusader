@@ -28,3 +28,11 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 void KrBookmarkButton::populate() {
 	krBookMan->populate(static_cast<KPopupMenu*>(popup()));
 }
+
+void KrBookmarkButton::openPopup() {
+	populate();
+	popup()->exec(mapToGlobal(QPoint(0, height())));
+  kdWarning() << "here" << endl;
+  //emit pressed();
+ 
+}
