@@ -98,7 +98,7 @@ friend class ListPanel;
 	Q_OBJECT
 public slots:
 	void execute(QString&);
-	void openUrl(const QString& path);
+	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString::null);
 	void refresh(){ refresh(panel->virtualPath); } // re-read the files
 	void rename(const QString &oldname, const QString &newname);
 
@@ -132,8 +132,7 @@ public:
 	// otherwise (Cancel was pressed).
 	bool calcSpace(QStringList & names,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs);
 	void FTPDisconnect();
-	void newFTPconnection(QString host=QString::null);
-	void changeVFS(QString type, QString origin);
+	void newFTPconnection();
 	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
 protected:

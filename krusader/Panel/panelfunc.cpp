@@ -53,7 +53,6 @@ A
 #include "../defaults.h"
 #include "../VFS/normal_vfs.h"
 #include "../VFS/ftp_vfs.h"
-#include "../VFS/arc_vfs.h"
 #include "../VFS/temp_vfs.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krarchandler.h"
@@ -200,46 +199,34 @@ panel( parent ), inRefresh( false ) {
   files() ->vfs_refresh();
 }
 
-void ListPanelFunc::openUrl( const QString& path) {
+void ListPanelFunc::openUrl( const QString& path,const QString& nameToMakeCurrent) {
   panel->slotFocusOnMe();
 
   QString mypath = path;
 
   // clear the view - to avoid a repaint crash
-  panel->view->clear();  
-
+  panel->view->clear();
+  if( !nameToMakeCurrent.isEmpty() ){
+		panel->view->setNameToMakeCurrent( nameToMakeCurrent );
+  }
   // make sure local urls are handles ok
   if ( mypath.lower().startsWith( "file:" ) )
     mypath = mypath.mid( 5 );
 
-  // check for archive:
-  if ( mypath.contains( '\\' ) ) {
-    // do we need to change VFS ?
-    QString archive = mypath.left( mypath.find( '\\' ) );
-    QString directory = mypath.mid( mypath.findRev( '\\' ) + 1 );
-    // find the archive type
-    QString type;
-    QString mime = KMimeType::findByURL( archive ) ->name();
-    type = mime.right( 4 );
-    if ( type == "-rpm" ) type = "+rpm"; // open the rpm as normal archive
-    if ( mime.contains( "-rar" ) ) type = "-rar";
-    changeVFS( type, archive );
-    // add warning to the backStack
-    if ( backStack.last() != "//WARNING//" )
-      backStack.append( "//WARNING//" );
-
-    if ( !directory.isEmpty() ) {
-      panel->view->setNameToMakeCurrent( directory.mid( directory.findRev( '/' ) + 1 ) );
-      directory = directory.left( directory.findRev( '/' ) );
-      refresh( archive + "\\" + directory );
-    }
-  }
   // remote file systems
-  else if ( mypath.contains( ":/" ) ) {
+  if ( mypath.contains( ":/" ) ) {
     // first close all open archives / remote connections
-    while ( files() ->vfs_getType() != "normal" )
-      vfsStack.remove();
-    changeVFS( "ftp", mypath );
+    while ( files() ->vfs_getType() != "normal" ) vfsStack.remove();
+    vfs* v = new ftp_vfs(mypath,panel);
+    if ( v->vfs_error() ) {
+      kdWarning() << "Failed to create vfs: " << mypath.local8Bit() << endl;
+      delete v;
+      refresh();
+      return ;
+    }
+    // save the current vfs
+    files() ->blockSignals( true );
+    vfsStack.push( v );
   } else { // local directories
     // first close all open archives / remote connections
     while ( files() ->vfs_getType() != "normal" )
@@ -695,13 +682,11 @@ void ListPanelFunc::execute( QString& name ) {
     refresh( origin );
   } else if ( KRarcHandler::arcHandled( type ) && !origin.contains(":/")) {
     QString path = files()->vfs_getFile(vf->vfile_getName());
-		if( type == "-zip" || type.contains("rar") || type == "-rpm" ){
-			path = "krarc:"+path;
-		} else if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
-    	path = "tar:"+path;
+    if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
+			path = "tar:"+path;
 		} else {
-    	path = path+"\\";
-		}
+			path = "krarc:"+path;
+    }
     openUrl( path );
 	} else {
     KURL url;
@@ -718,11 +703,6 @@ void ListPanelFunc::dirUp() {
 
   // Do we need to change vfs ?
   bool changeVFS = files()->vfs_error();
-	if ( origin.right( 1 ) == "\\" && dynamic_cast<arc_vfs *>(files()) ) { // leaving arc_vfs
-		changeVFS = true;
-    // make the current archive the current item on the new list
-    panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1,origin.length()-origin.findRev('/')-2) );
-  }
 
 	if( origin.contains(":/") ){ // ftp_vfs
     if( QFileInfo(origin.mid(origin.find(":/")+1)).exists() ){
@@ -756,40 +736,6 @@ void ListPanelFunc::dirUp() {
   refresh( newOrigin );
 }
 
-void ListPanelFunc::changeVFS( QString type, QString origin ) {
-  panel->view->setNameToMakeCurrent( QString::null );
-  vfs* v;
-  if ( type == "ftp" )
-    v = new ftp_vfs( origin, panel );
-  else if ( type == "-ace" || type == "-arj" || type == "-rpm" )
-    v = new temp_vfs( origin, type, panel, files() ->vfs_isWritable() );
-  else
-    v = new arc_vfs( origin, type, panel, files() ->vfs_isWritable() );
-
-  if ( v->vfs_error() ) {
-    kdWarning() << "Failed to create vfs: " << origin.local8Bit() << endl;
-    delete v;
-    refresh();
-    return ;
-  }
- 
-  // save the current vfs
-  files() ->blockSignals( true );
-  vfsStack.push( v );
-
-  while ( origin.right( 1 ) == "/" )
-    origin.truncate( origin.length() - 1 );
-
-  if ( type != "ftp" ) {
-    // refresh our newly created vfs
-    QString path = panel->virtualPath;
-    while ( path.right( 1 ) == "/" )
-      path.truncate( path.length() - 1 );
-    QString name = origin.mid( origin.findRev( '/' ) );
-    files() ->vfs_refresh( path + name + "\\" );
-  }
-}
-
 void ListPanelFunc::pack() {
   QStringList fileNames;
   panel->getSelectedNames( &fileNames );
@@ -801,7 +747,7 @@ void ListPanelFunc::pack() {
 
   // choose the default name
   QString defaultName = panel->virtualPath.right( panel->virtualPath.length() - panel->virtualPath.findRev( '/' ) - 1 );
-  if ( defaultName == "" || defaultName.right( 1 ) == "\\" )
+  if ( defaultName == "" )
     defaultName = "pack";
   if ( fileNames.count() == 1 )
     defaultName = fileNames.first();
@@ -811,13 +757,6 @@ void ListPanelFunc::pack() {
     return ; // the user canceled
 
   bool packToOtherPanel = ( PackGUI::destination == panel->otherPanel->virtualPath );
-
-  if ( PackGUI::destination.contains( '\\' ) )    // packing into archive
-    if ( !packToOtherPanel ) {
-      KMessageBox::sorry( krApp, i18n( "When Packing into archive - you must use the active directory" ) );
-      return ;
-    } else
-      PackGUI::destination = otherFunc() ->files() ->vfs_workingDir();
 
   QString arcFile = PackGUI::destination + "/" + PackGUI::filename + "." + PackGUI::type;
 
@@ -894,13 +833,6 @@ void ListPanelFunc::unpack() {
 
   bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath );
 
-  if ( dest.contains( '\\' ) )    // unpacking into archive
-    if ( !packToOtherPanel ) {
-      KMessageBox::sorry( krApp, i18n( "When unpacking into archive - you must use the active directory" ) );
-      return ;
-    } else
-      dest = otherFunc() ->files() ->vfs_workingDir();
-
   for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
     QString arcName = fileNames[ i ];
     if ( arcName.isNull() )
@@ -959,15 +891,13 @@ void ListPanelFunc::FTPDisconnect() {
   }
 }
 
-void ListPanelFunc::newFTPconnection( QString host ) {
-  if ( host == QString::null ) {
-    host = KRSpWidgets::newFTP();
-    // if the user canceled - quit
-    if ( host == QString::null )
-      return ;
-  }
+void ListPanelFunc::newFTPconnection() {
+  QString url;
+  url = KRSpWidgets::newFTP();
+  // if the user canceled - quit
+  if ( url.isEmpty() ) return ;
   krFTPDiss->setEnabled( true );
-  changeVFS( "ftp", host );
+  openUrl(url );
 }
 
 void ListPanelFunc::properties() {
