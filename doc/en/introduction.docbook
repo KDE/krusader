@@ -12,7 +12,7 @@
 ***************************************************************************
 * Permission is granted to copy, distribute and/or modify this            *
 * document under the terms of the GNU Free Documentation License,         *
-* Version 1.1 or any later version published by the Free Software	  *
+* Version 1.1 or any later version published by the Free Software         *
 * Foundation; with no Invariant Sections, no Front-Cover Texts and        *
 * no Back-Cover Texts.  A copy of the license is available on the         *
 * GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
@@ -21,12 +21,12 @@
 *********************************************************************** -->
 <title>Introduction</title>
 <screenshot>
-	<screeninfo>Here's a screenshot of &krusader;</screeninfo>
-	<mediaobject>
-		<imageobject><imagedata fileref="krusader_title.png" format="PNG"/></imageobject>
-		<imageobject><imagedata fileref="krusader_title.png" format="EPS"/></imageobject>
-	  <textobject><phrase>Krusader Logo</phrase></textobject>
-	</mediaobject>
+  <screeninfo>Here's a screenshot of &krusader;</screeninfo>
+  <mediaobject>
+    <imageobject><imagedata fileref="krusader_title.png" format="PNG"/></imageobject>
+    <imageobject><imagedata fileref="krusader_title.png" format="EPS"/></imageobject>
+    <textobject><phrase>Krusader Logo</phrase></textobject>
+  </mediaobject>
 </screenshot>
 
 <para>&krusader; is an advanced twin-panel (commander-style)
@@ -36,86 +36,86 @@
 <para>It provides all the file management features you could possibly want.
       Plus: extensive archive handling, mounted filesystem support, &FTP;,
       advanced search module, viewer/editor, directory synchronisation,
-      file content comparisons, powerful batch renaming and much much more.
-      It supports the following archive formats: tar, zip, bzip2, gzip, rar,ace, arj and rpm 
-      and can handle other KIOSlaves such as smb:// or fish://
-      It is (almost) completely customizable, very user friendly,
-      fast and looks great on your desktop! :-)
+      file content comparisons, powerful batch renaming and much, much more.
+      It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace, arj, iso and rpm.
+      It can handle other &kioslaves1_url; such as smb:// or fish://.
+      It is (almost) completely customizable, very user friendly, fast
+      and looks great on your desktop! :-)
       You should give it a try.</para>
-	
+
 <para>Thank you for using &krusader;.</para>
-	
+
 <para>
 <itemizedlist>
 <title>Features</title>
-	<listitem>
-	   <para>Configurable &toolbar_lnk; and
-	   <link linkend="key_bindings">key-bindings</link>.</para>
-	</listitem>
-	<listitem><para>Full Ace, Arj, Bzip2, Gzip, Tar, Rpm, Rar, Zip support
-	<link linkend="archives">support</link>.</para></listitem>
-	<listitem>
-	    <para><link linkend="krusearcher">Advanced search module</link> that can search in archives.</para>
-	</listitem>
+  <listitem>
+     <para>Configurable &toolbar_lnk; and
+     <link linkend="key_bindings">key-bindings</link>.</para>
+  </listitem>
+  <listitem><para>Full Ace, Arj, Bzip2, Gzip, Tar, Rpm, Rar, Zip support
+  <link linkend="archives">support</link>.</para></listitem>
+  <listitem>
+      <para><link linkend="krusearcher">Advanced search module</link> that can search in archives.</para>
+  </listitem>
         <listitem><para><link linkend="compare-dir">Directory comparison</link> and
                   <link linkend="view-menu">filtering</link>.</para></listitem>
- 	<listitem>
+   <listitem>
             <para><link linkend="panels">Quick view and Tree panels</link>.</para>
-	</listitem>
+  </listitem>
         <listitem><para>&FTP;/SAMBA client with a <link linkend="remote-man">connection manager</link>
                    with SFTP/SCP support.</para>
         </listitem>
-	<listitem><para>Opens a <link linkend="commands-menu">terminal</link> to the browsed
-	 path.</para></listitem>
-	<listitem>
-	   <para>Optional embedded &termemu_lnk;.</para>
-	</listitem>
-	<listitem>
-	    <para>Configurable <link linkend="bookman">bookmark</link> list (using BookMan, the bookmark
-	    manager).</para>
-	</listitem>
-	<listitem><para>Easy editing of <link linkend="file-menu">file permissions</link>.</para></listitem>
-	<listitem><para>Shows the <link linkend="panels">effective permissions for the current
-	 user.</link>.</para></listitem>
-	<listitem>
-	     <para><link linkend="calculate">Calculates occupied space</link> by marked files and
-	      folders.</para>
-	 </listitem>
-	<listitem>
-	      <para>Internal <link linkend="krviewer">viewer and configurable editor.</link></para>
-	</listitem>
-	<listitem>
-	       <para>Offers a &cmdline_lnk; capable of running something in a
-	       terminal with a single click of a button.</para>
-	 </listitem>
-	<listitem>
-	     <para>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, from
-	     &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!</para>
-	</listitem>
-	<listitem>
-	     <para><link linkend="unpacking-archives">Packs (or unpacks) files</link> into a single archive
-	     of your choice without typing a single command.</para>
-	</listitem>
-	<listitem>
-	     <para><link linkend="test-archive">Tests the integrity of archives.</link>.</para>
-	</listitem>
-	<listitem>
-	     <para><link linkend="compare-files">Compare files by content</link> (via external diff program
-	      such as &kompare; or &xxdiff;).</para>
-	 </listitem>
+  <listitem><para>Opens a <link linkend="commands-menu">terminal</link> to the browsed
+   path.</para></listitem>
+  <listitem>
+     <para>Optional embedded &termemu_lnk;.</para>
+  </listitem>
+  <listitem>
+      <para>Configurable <link linkend="bookman">bookmark</link> list (using BookMan, the bookmark
+      manager).</para>
+  </listitem>
+  <listitem><para>Easy editing of <link linkend="file-menu">file permissions</link>.</para></listitem>
+  <listitem><para>Shows the <link linkend="panels">effective permissions for the current
+   user.</link>.</para></listitem>
+  <listitem>
+       <para><link linkend="calculate">Calculates occupied space</link> by marked files and
+        folders.</para>
+   </listitem>
+  <listitem>
+        <para>Internal <link linkend="krviewer">viewer and configurable editor.</link></para>
+  </listitem>
+  <listitem>
+         <para>Offers a &cmdline_lnk; capable of running something in a
+         terminal with a single click of a button.</para>
+   </listitem>
+  <listitem>
+       <para>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, from
+       &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!</para>
+  </listitem>
+  <listitem>
+       <para><link linkend="unpacking-archives">Packs (or unpacks) files</link> into a single archive
+       of your choice without typing a single command.</para>
+  </listitem>
+  <listitem>
+       <para><link linkend="test-archive">Tests the integrity of archives.</link>.</para>
+  </listitem>
+  <listitem>
+       <para><link linkend="compare-files">Compare files by content</link> (via external diff program
+        such as &kompare; or &xxdiff;).</para>
+   </listitem>
         <listitem>
-	    <para>Fully <link linkend="konfig-general">mimetype-aware</link> (with or without magic!).</para>
-	</listitem>
+      <para>Fully <link linkend="konfig-general">mimetype-aware</link> (with or without magic!).</para>
+  </listitem>
         <listitem>
-	    <para>Built-in Mount-Manager &mountman_lnk;.</para>
-	</listitem>
+      <para>Built-in Mount-Manager &mountman_lnk;.</para>
+  </listitem>
         <listitem>
-	    <para><link linkend="multi_rename">Krename</link> support, a very powerful
-	                              external batch renamer for &kde; 3.x.</para>
-	</listitem>
-	<listitem>
-	   <para>&foldertabs_lnk;.</para>
-	</listitem>
+      <para><link linkend="multi_rename">Krename</link> support, a very powerful
+                                external batch renamer for &kde; 3.x.</para>
+  </listitem>
+  <listitem>
+     <para>&foldertabs_lnk;.</para>
+  </listitem>
 </itemizedlist>
 </para>
 
@@ -123,31 +123,31 @@
 <itemizedlist>
   <title>New features in version 1.40</title>
         <listitem>
-	    <para>&rootmode_lnk;.</para>
-	</listitem>
-	<listitem>
-	    <para><link linkend="split">File splitter</link> &amp; &combinefiles_lnk;.</para>
-	</listitem>
-	<listitem>
-	    <para>&syncdirs_lnk;.</para>
-	</listitem>
+      <para>&rootmode_lnk;.</para>
+  </listitem>
+  <listitem>
+      <para><link linkend="split">File splitter</link> &amp; &combinefiles_lnk;.</para>
+  </listitem>
+  <listitem>
+      <para>&syncdirs_lnk;.</para>
+  </listitem>
         <listitem>
-	    <para>New &quick_search_lnk;.</para>
-	</listitem>
-	<listitem>
-	    <para>New <link linkend="konfig-startup">Konfigurator</link>.</para>
+      <para>New &quick_search_lnk;.</para>
+  </listitem>
+  <listitem>
+      <para>New <link linkend="konfig-startup">Konfigurator</link>.</para>
         </listitem>
-	<listitem>
-	    <para>&locate_lnk;.</para>
+  <listitem>
+      <para>&locate_lnk;.</para>
         </listitem>
-	<listitem>
-	    <para><link linkend="folderhistory">Folder History</link>.</para>
+  <listitem>
+      <para><link linkend="folderhistory">Folder History</link>.</para>
         </listitem>
-	<listitem>
-	    <para><link linkend="konfig-color">Color support</link>.</para>
-        </listitem>		
-	<listitem>
-	    <para><link linkend="mount-man">Quickmode for MountMan</link>.</para>
+  <listitem>
+      <para><link linkend="konfig-color">Color support</link>.</para>
+        </listitem>
+  <listitem>
+      <para><link linkend="mount-man">Quickmode for MountMan</link>.</para>
         </listitem>
 </itemizedlist>
 </para>
@@ -156,33 +156,33 @@
 <para>
 <itemizedlist>
   <title>New features in version 1.50</title>
-	<listitem>
-	    <para>&useractions_lnk;.</para>
-	</listitem>
+  <listitem>
+      <para>&useractions_lnk;.</para>
+  </listitem>
         <listitem>
         <para>&sync_browsing_lnk;.</para>
-	</listitem>
+  </listitem>
         <listitem>
-	    <para>&popup_panel_lnk;.</para>
-	</listitem>
+      <para>&popup_panel_lnk;.</para>
+  </listitem>
         <listitem>
         <para>&panel_profiles_lnk;.</para>
-	</listitem>
+  </listitem>
 </itemizedlist>
-It would make this list to long if we want to display all new features and improvements, 
+It would make this list to long if we want to display all new features and improvements,
 to find out more new features please read the &changelog_url; file.
 &dev_cvs_note;
 </para>
 
 
 <screenshot>
-	<screeninfo>&krusader; screenshot</screeninfo>
-	<mediaobject id="krusader_screenshot">
-		<imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
-	        <imageobject><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
-	  <textobject><phrase>&krusader; screenshot</phrase></textobject>
-	  <caption><para>&krusader; 1.50 with two PopUp panels.</para></caption>
-	</mediaobject>
+  <screeninfo>&krusader; screenshot</screeninfo>
+  <mediaobject id="krusader_screenshot">
+    <imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
+          <imageobject><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
+    <textobject><phrase>&krusader; screenshot</phrase></textobject>
+    <caption><para>&krusader; 1.50 with two PopUp panels.</para></caption>
+  </mediaobject>
 </screenshot>
 </chapter>
 
