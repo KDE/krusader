@@ -68,22 +68,31 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 		
 	// breakdown the url;
 	/* FIXME: untill KDE fixes the bug we have to check for
-     passwords with @ in them... */
+     passwords and users with @ in them... */
   bool bugfix = origin.find("@") != origin.findRev("@");
 	if(bugfix){
-    int passStart = origin.find( ":",origin.find(":")+1 )+1;
-    int passLen = origin.findRev("@")-passStart;
-    password = origin.mid(passStart,passLen);
-    origin = origin.remove(passStart-1,passLen+1);
+    if(origin.find(":") != origin.findRev(":")){
+      int passStart = origin.find( ":",origin.find(":")+1 )+1;
+      int passLen = origin.findRev("@")-passStart;
+      password = origin.mid(passStart,passLen);
+      origin = origin.remove(passStart-1,passLen+1);
+    }
+    if(origin.find("@") != origin.findRev("@")){
+      int usrStart = origin.find( "/" )+1;
+      if(origin.at(usrStart) == '/') ++usrStart;
+      int usrLen = origin.findRev("@")-usrStart;
+      loginName = origin.mid(usrStart,usrLen);
+      origin = origin.remove(usrStart,usrLen+1);
+    }
   }
   KURL url = origin;
 	port = url.port();
-	loginName = url.user();
-	if(password.isEmpty()) password = url.pass();
+	if(loginName.isEmpty()) loginName = url.user();
+	if(password.isEmpty())  password  = url.pass();
 	if(bugfix){
-		url.setPass(password);
+		url.setPass(password);  
+    url.setUser(loginName);
 	}
-
 
 	vfs_type = "ftp";
   vfs_origin = url.prettyURL(-1);
@@ -171,15 +180,11 @@ bool ftp_vfs::vfs_refresh(QString origin) {
 	error = false;
 	KURL url = origin;
 
-  if( !loginName.isEmpty()) url.setUser(loginName);
-	if( !password.isEmpty() ) url.setPass(password);
-	//if( port ) url.setPort(port);
-
 	QString errorMsg = QString::null;	
 	if ( url.isMalformed() )
     errorMsg = i18n("Malformed URL:\n%1").arg(url.url());
   if( !KProtocolInfo::supportsListing(url) )
-		errorMsg = i18n("Protocol not supported by Krusader:\n").arg(url.url());
+		errorMsg = i18n("Protocol not supported by Krusader:\n%1").arg(url.url());
 
 	if( !errorMsg.isEmpty() ){
     if (!quietMode) KMessageBox::sorry(krApp, errorMsg);
@@ -187,6 +192,9 @@ bool ftp_vfs::vfs_refresh(QString origin) {
     return false;
 	}
 
+  if( !loginName.isEmpty()) url.setUser(loginName);
+  if( !password.isEmpty() ) url.setPass(password);
+  
   // clear the the list and back up out current situation
 	vfs_filesP2->clear();
   kr_swap(vfs_filesP2,vfs_filesP);
