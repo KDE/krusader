@@ -180,10 +180,13 @@
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
   (note: updates from within the modules directory do not need the -d parameter)</para>
 
-<para>To checkout a specific version of &krusader; from CVS (&eg; &krusader;-1.50) :
-  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login</option></userinput></screen>
+<para>I you want to checkout a specific version of &krusader; from CVS (&eg; &krusader;-1.50) :
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_50 krusader_kde3</option></userinput></screen>
-  (note: updates from within the modules directory do not need the -d parameter)</para>
+</para>
+
+<para>I you want to checkout a specific date of &krusader; from CVS (&eg; &krusader;-2004-10-23) :
+  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co -D2004-10-23 krusader_kde3</option></userinput></screen>
+</para>
 
 <para>Mostly being &gentoo_url; users ourselves, we provide a &gentoo_life_ebuild_url; for all those who want
       to stay on the bleeding edge of filemanagement and don't want to miss the advantages of portage.
