@@ -101,6 +101,7 @@ class KRslots : public QObject {
     void addBookmark();
     void runMountMan();
     void runRemoteMan();
+    void profiles();
     void toggleFnkeys();
     void toggleCmdline();
     void changeTrashIcon();
@@ -146,6 +147,9 @@ class KRslots : public QObject {
     // ugly stubs, remove later ?
     void slotCurrentChanged( QString p ) { krApp->mainView->slotCurrentChanged( p ); }
     void slotSetActivePanel( ListPanel *p ) { krApp->mainView->slotSetActivePanel( p ); }
+    
+    void loadPanelProfiles( QString group );
+    void savePanelProfiles( QString group );
 };
 
 #endif

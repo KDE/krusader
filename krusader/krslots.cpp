@@ -75,6 +75,7 @@
 #include "Panel/panelpopup.h"
 #include "Synchronizer/synchronizergui.h"
 #include "krservices.h"
+#include "GUI/profilemanager.h"
 
 #define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
                               MAIN_VIEW->left->func->refresh(); \
@@ -767,6 +768,43 @@ void KRslots::compareSetup()
       krConfig->writeEntry( "Compare Mode", i );
       break;
     }
+}
+
+void KRslots::profiles()
+{
+  ProfileManager profileManager( "Panel" );
+  profileManager.hide();
+  connect( &profileManager, SIGNAL( saveToProfile( QString ) ), this, SLOT( savePanelProfiles( QString ) ) );
+  connect( &profileManager, SIGNAL( loadFromProfile( QString ) ), this, SLOT( loadPanelProfiles( QString ) ) );
+  profileManager.profilePopup();
+}
+
+void KRslots::loadPanelProfiles( QString group )
+{
+  krConfig->setGroup( group );
+  MAIN_VIEW->leftMng->loadSettings( krConfig, "Left Tabs" );
+  krConfig->setGroup( group );
+  MAIN_VIEW->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
+  krConfig->setGroup( group );
+  MAIN_VIEW->rightMng->loadSettings( krConfig, "Right Tabs" );
+  krConfig->setGroup( group );
+  MAIN_VIEW->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
+  krConfig->setGroup( group );  
+  if( krConfig->readBoolEntry( "Left Side Is Active", true ) )
+    MAIN_VIEW->left->slotFocusOnMe();
+  else
+    MAIN_VIEW->right->slotFocusOnMe();
+}
+
+void KRslots::savePanelProfiles( QString group )
+{
+  krConfig->setGroup( group );
+  
+  MAIN_VIEW->leftMng->saveSettings( krConfig, "Left Tabs" );
+  krConfig->writeEntry( "Left Active Tab", MAIN_VIEW->leftMng->activeTab() );
+  MAIN_VIEW->rightMng->saveSettings( krConfig, "Right Tabs" );
+  krConfig->writeEntry( "Right Active Tab", MAIN_VIEW->rightMng->activeTab() );
+  krConfig->writeEntry( "Left Side Is Active", MAIN_VIEW->activePanel->isLeft() );
 }
 
 #include "krslots.moc"

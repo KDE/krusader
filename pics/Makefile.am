@@ -170,6 +170,12 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/kr_syncbrowse_off16x16.png $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_syncbrowse_off.png
 	$(mkinstalldirs) $(kde_datadir)/krusader/icons/hicolor/16x16/actions/
 	$(INSTALL_DATA) $(srcdir)/kr_syncbrowse_on16x16.png $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_syncbrowse_on.png
+	$(mkinstalldirs) $(kde_datadir)/krusader/icons/hicolor/16x16/actions/
+	$(INSTALL_DATA) $(srcdir)/kr_profile16x16.png $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_profile.png
+	$(mkinstalldirs) $(kde_datadir)/krusader/icons/hicolor/22x22/actions/
+	$(INSTALL_DATA) $(srcdir)/kr_profile22x22.png $(kde_datadir)/krusader/icons/hicolor/22x22/actions/kr_profile.png
+	$(mkinstalldirs) $(kde_datadir)/krusader/icons/hicolor/32x32/actions/
+	$(INSTALL_DATA) $(srcdir)/kr_profile32x32.png $(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_profile.png
 
 uninstall-local:
 	-rm -f $(kde_datadir)/krusader/about.png
@@ -255,5 +261,8 @@ uninstall-local:
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_syncdirs.png
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_syncbrowse_off.png
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_syncbrowse_on.png
+	-rm -f $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_profile.png
+	-rm -f $(kde_datadir)/krusader/icons/hicolor/22x22/actions/kr_profile.png
+	-rm -f $(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_profile.png
 
 ####### kdevelop will overwrite this part!!! (end)############

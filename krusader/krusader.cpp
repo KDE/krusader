@@ -107,6 +107,7 @@ KAction *Krusader::actHomeTerminal = 0;
 KAction *Krusader::actFTPConnect = 0;
 KAction *Krusader::actFTPNewConnect = 0;
 KAction *Krusader::actFTPDisconnect = 0;
+KAction *Krusader::actProfiles = 0;
 KAction *Krusader::actMultiRename = 0;
 KAction *Krusader::actAllFilter = 0;
 KAction *Krusader::actExecFilter = 0;
@@ -453,6 +454,8 @@ void Krusader::setupActions() {
                                 SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
    actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "connect_creating", CTRL + Key_N,
                                    SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
+   actProfiles = new KAction( i18n( "Pro&files" ), "kr_profile", ALT + Key_L,
+                                   SLOTS, SLOT( profiles() ), actionCollection(), "profile" );
    actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kcalc", 0,
                                SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
    actProperties = new KAction( i18n( "&Properties" ), "help", 0,

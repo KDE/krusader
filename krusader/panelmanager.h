@@ -43,6 +43,7 @@ class PanelManager: public QWidget {
     void swapPanels()             {_left = !_left;}
     
     void saveSettings(KConfig *config, const QString& key);
+    void loadSettings(KConfig *config, const QString& key);
     int  activeTab();
     void setActiveTab( int );
 

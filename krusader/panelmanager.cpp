@@ -88,17 +88,48 @@ void PanelManager::startPanel( ListPanel *panel, QString path ) {
 void PanelManager::saveSettings( KConfig *config, const QString& key ) {
    QStringList l;
    int i=0, cnt=0;
-	while (cnt < _tabbar->count()) {
-		PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
-		if (t && t->panel) {
-			l << t->panel->realPath;
-			++cnt;
-		}
-		++i;
-	}
+   while (cnt < _tabbar->count()) {
+      PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
+      if (t && t->panel) {
+         l << t->panel->realPath;
+         ++cnt;
+      }
+      ++i;
+   }
    config->writePathEntry( key, l );
 }
 
+void PanelManager::loadSettings( KConfig *config, const QString& key ) {
+   QStringList l = config->readPathListEntry( key );
+   if( l.count() < 1 )
+     return;
+     
+   int i=0, totalTabs = _tabbar->count();
+   
+   while (i < totalTabs && i < (int)l.count() ) 
+   {
+      PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
+      if (t && t->panel) 
+         t->panel->start( l[ i ] );                    
+      ++i;
+   }
+   
+   /*while( i <  totalTabs )  ---- CURRENTLY CRASHES ----
+   {
+      PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt( --totalTabs ));
+      if (t && t->panel) 
+      {
+        _tabbar->setCurrentTab( _tabbar->tabAt( totalTabs ) );
+        slotChangePanel( t->panel );
+        slotCloseTab();
+      }
+   }*/
+   
+   for(; i < (int)l.count(); i++ )
+   {
+     slotNewTab( l[i] );
+   }
+}
 
 void PanelManager::slotNewTab() {
    slotNewTab( QDir::home().absPath() );

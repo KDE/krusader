@@ -87,6 +87,7 @@ public:
       view->getSelectedItems( fileNames );
    }
    void setPanelToolbar();
+   bool isLeft() {return _left;}
 
 public slots:
    void gotStats( const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail); // displays filesystem status
