@@ -5,9 +5,9 @@ INCLUDES = $(all_includes)
 
 libBookMan_a_METASOURCES = AUTO
 
-libBookMan_a_SOURCES = bookmangui.cpp bookmanguibase.cpp bookmanedit.cpp bookmaneditbase.cpp bookman.cpp 
+libBookMan_a_SOURCES = kbookmarkmenu.cpp kbookmarkhandler.cpp bookmarksbutton.cpp addbookmarkform.ui addbookmarkdlg.cpp 
 
 
-EXTRA_DIST = bookman.cpp bookmaneditbase.cpp bookmaneditbase.h bookmanedit.cpp bookmanedit.h bookmanguibase.cpp bookmanguibase.h bookmangui.cpp bookmangui.h bookman.h 
+EXTRA_DIST = addbookmarkdlg.cpp addbookmarkdlg.h addbookmarkform.ui bookmarksbutton.cpp bookmarksbutton.h kbookmarkhandler.cpp kbookmarkhandler.h kbookmarkmanager.h kbookmarkmenu.cpp kbookmarkmenu.h 
 
 ####### kdevelop will overwrite this part!!! (end)############
