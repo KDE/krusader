@@ -110,11 +110,15 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
    {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) 
-         t->panel->start( l[ i ] );                    
+      {
+         _tabbar->setCurrentTab( t );
+         slotChangePanel( t->panel );
+         t->panel->start( l[ i ] );
+      }
       ++i;
    }
    
-   /*while( i <  totalTabs )  ---- CURRENTLY CRASHES ----
+   while( i <  totalTabs )
    {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt( --totalTabs ));
       if (t && t->panel) 
@@ -123,7 +127,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
         slotChangePanel( t->panel );
         slotCloseTab();
       }
-   }*/
+   }
    
    for(; i < (int)l.count(); i++ )
    {
