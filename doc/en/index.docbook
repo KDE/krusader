@@ -43,18 +43,18 @@ Previous used Docbook
 <!ENTITY kruforumsearch_url '<ulink url="http://krusader.sourceforge.net/phpBB/search.php">Search</ulink>'>
 <!ENTITY krugenforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=1">General Discussion Forum</ulink>'>
 <!ENTITY bugforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=3">Bug Discussions Forum</ulink>'>
-<!ENTITY kru2forum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=6">Krusader2 Discussion Forum</ulink>'>
-<!ENTITY krucutedge_url '<ulink url="http://krusader.sourceforge.net/index.php?nav=cvs.php">&krusader;&apos;s Cutting Edge page</ulink>'>
+<!ENTITY featureforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=6">New Features Discussions/Requests Forum</ulink>'>
+<!ENTITY krucutedge_url '<ulink url="http://krusader.sourceforge.net/cvs.php">&krusader;&apos;s Cutting Edge page</ulink>'>
 <!ENTITY viewcvs_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader">ViewCVS</ulink>'>
 <!ENTITY sfmirrors_url '<ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>'>
-<!ENTITY online_changelog_url
-'<ulink url="http://krusader.sourceforge.net/index.php?nav=text.php&amp;note=cvs.changelog&amp;path=dev">online <filename>ChangeLog</filename></ulink>'>
+<!ENTITY online_changelog_url 
+'<ulink url="http://krusader.sourceforge.net/text.php?note=cvs.changelog&amp;path=dev">online <filename>ChangeLog</filename></ulink>'>
 <!ENTITY online_docchangelog_url '<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/doc">online documentation <filename>ChangeLog</filename></ulink>'>
 <!ENTITY i18howto_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389">Krusader translation howto</ulink>'>
-<!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/index.php?nav=down.php">&krusader;  downloadpage</ulink>'>
+<!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/down.php">&krusader;  downloadpage</ulink>'>
 <!ENTITY krunews_url '<ulink url="http://lists.sourceforge.net/lists/listinfo/krusader-news">&krusader;-news</ulink>'>
 <!ENTITY krunewsarch_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum=krusader-news">&krusader;-news Archives</ulink>'>
-<!ENTITY krulatestnews_url '<ulink url="http://krusader.sourceforge.net/index.php?nav=news.php">latest news</ulink>'>
+<!ENTITY krulatestnews_url '<ulink url="http://krusader.sourceforge.net/news.php">latest news</ulink>'>
 <!ENTITY krucommits_url '<ulink url="http://lists.sourceforge.net/lists/listinfo/krusader-commits">commits mailing list</ulink>'>
 <!ENTITY krucommitsarch_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum=krusader-commits">&krusader; commits Archives</ulink>'>
 <!ENTITY online_todolist_url '<ulink url="http://sourceforge.net/tracker/?atid=560746&amp;group_id=6488&amp;func=browse">online todo list</ulink>'>
@@ -68,7 +68,7 @@ Previous used Docbook
 <!ENTITY xxdiff_url '<ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>'>
 <!ENTITY krename_url '<ulink url="http://www.krename.net"><application>Krename</application></ulink>'>
 <!ENTITY xbel_url '<ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>'>
-<!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org">KDE-APPS.org</ulink>.'>
+<!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org">KDE-APPS.org</ulink>'>
 
 <!-- documentation links -->
 <!ENTITY konfigstartpg_lnk '<link linkend="konfigurator">Konfigurator Startup page</link>'>
@@ -112,7 +112,7 @@ Previous used Docbook
 <!ENTITY rwfeaturenote '<note><para>This module is rewritten, some descriptions can be obsolete when
                          functionality can change during the development. &hesbugreport_lnk;
 			 <link linkend="faqq_wish_patch">User feedback</link> is always welcome!</para></note>'>
-<!ENTITY krusaderui_rc_text '<para>When you install a &krusader; cvs or beta version and if &krusader; was previously
+<!ENTITY krusaderui_rc_text '<para>When you install a &krusader; CVS or beta version and if &krusader; was previously
          installed on your computer, there is a possibility that you will have to update the
          <filename>krusaderui.rc</filename> file, click <link linkend="krusaderui_rc">here</link> for more info.</para>'>
 
@@ -165,7 +165,7 @@ Previous used Docbook
         <firstname>Heiner</firstname><surname>Eichmann</surname>
         <contrib>Developer</contrib>
         <affiliation><address><email>h.eichmann@gmx.de</email></address></affiliation>
-        </othercredit>        
+        </othercredit>
 	<author>
         <firstname>Frank</firstname>
 	<surname>Schoolmeesters</surname>
@@ -200,8 +200,8 @@ Previous used Docbook
 	</copyright>
 
 	<legalnotice>&FDLNotice;</legalnotice>
-	<date>29/03/2004</date>
-	<releaseinfo>1.40.00-beta1</releaseinfo>
+	<date>22/04/2004</date>
+	<releaseinfo>1.40.00</releaseinfo>
 
    <abstract>
 	<para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x.</para>
@@ -230,18 +230,18 @@ Previous used Docbook
   <title>Foreword</title>
 
 	<note><para>
-	Krusader is under continuous development, so it is possible that some latest new features are not
+	Krusader is under continuous development, so it is possible that the latest new features are not
 	yet in the The Krusader Handbook.
 	Please read the &online_changelog_url;
         file or the <filename>ChangeLog</filename> file in the Krusader sources to find out
 	the latest new features.
 	Please read also the <link linkend="editors_note">Note from the Editors</link>,
-	if you have ideas on how to improve the content or like to contribute at the Krusader Handbook.
+	if you have ideas on how to improve the content or would like to contribute at the Krusader Handbook.
 	</para></note>
 
 	<para>
 	Our aim is to give you a tool that does the two most important things:
-	manage your files the way you want it, and look great doing it !
+	manage your files the way you want it, and look great doing it!
 	To do just that, Krusader wears a great looking GUI,
 	supports drag n' drop and mimetypes (with or without magic!) -
 	all you need to feel right at home using it.
@@ -249,7 +249,7 @@ Previous used Docbook
 	basically, all you'd come to expect from tools like &mc;.
 	Krusader is open-source, free and is released under the
 	<link linkend="credits">GNU Public License (GPL)</link>,
-	although we (the developers) still retain the copyright for the project and it's name.
+	although we (the developers) still retain the copyright for the project and its name.
 	</para>
 
 	<para>
@@ -271,7 +271,7 @@ Previous used Docbook
 	thereby enhancing Krusader greatly. (&eg;: samba browser).
 	</para>
 
-	<para>We hope you'll enjoy it, we do !</para>
+	<para>We hope you'll enjoy it, we do!</para>
 
 </preface>
 

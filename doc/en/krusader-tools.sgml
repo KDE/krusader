@@ -42,13 +42,13 @@
                        <guimenuitem>"Add bookmark"</guimenuitem> and that's it!
       </para>
       <para>
-	RemoteMan is a central place for all your &FTP;/SMB needs. It is a tree-like list of remote locations,
+	RemoteMan is a central place for all your &FTP;/SMB needs. It is a tree-like list of remote locations
 	each with its own username and password. You can create new "folders" (or groups) in the tree and place
-	remote sessions inside the groups. Each session includes a name (something that best describes the &URL;)
+	remote sessions inside these groups. Each session includes a name (something that best describes the &URL;)
 	and a host. A hostname is a &URL; which can begin with 'ftp://' or 'smb://'. Additional information that
 	can be filled is the username and password. Not filling these values will trigger an anonymous login. You
 	can also click the 'anonymous' checkbox, which will force an anonymous login. One can also decide on a
-	different port - or keep the default 21. If you choose a 'smb://' host, you cannot change the port.
+	different port - or keep the default (port 21). If you choose a 'smb://' host, you cannot change the port.
 	Optional are the description (a freetext area) and remote directory. If you enter a remote directory,
 	&krusader; will try, upon connection, to cd into that directory.</para>
 	<itemizedlist>
@@ -74,16 +74,16 @@
 	a list of every mounted filesystem. For each filesystem, MountMan displays its name (which is the
 	actual device name - &ie; /dev/fd0 for a floppy), its type (vfat, ext2 ...) and its mount-point
 	(the directory on which the filesystem is mounted). MountMan also displays usage information using
-	total size, free size and free percentage. If those numbers say "N/A", it usually means that the filesystem
-	isn't mounted. Left clicking on a filesystem displays a pie chart on the left of the window, which
+	total size, free size and percentage free. If those numbers say "N/A", it usually means that the filesystem
+	isn't mounted. Left clicking on a filesystem displays a pie chart on the left of the window, this
 	graphically displays the usage information for the filesystem. Clicking on a non-mounted filesystem will
 	display "not mounted" instead of the graph.</para>
 	<itemizedlist>
 		<listitem><para><keycap>Double clicking</keycap> on a filesystem will close MountMan and open
 		that filesystem inside &krusader;'s active panel.</para></listitem>
 		<listitem><para><keycap>Right clicking</keycap> on a filesystem will open a small menu which
-		displays what actions can be performed on that filesystem. For now, you can only mount, unmount and
-		eject (if clicked on a removable filesystem - a cdrom).</para></listitem>
+		displays what actions can be performed on that filesystem. For now you can only mount, unmount and
+		eject (if clicking on a removable filesystem - e.g. a cdrom).</para></listitem>
 	</itemizedlist>
 	<note><para>We plan to expand MountMan in the next evolution of &krusader;. It will be able to format floppies,
 	edit <filename class="directory">/etc/fstab</filename>, create new filesystems and more...
@@ -91,8 +91,7 @@
 
 <para><emphasis role="bold">Quickmode for MountMan</emphasis></para>
 
-<note><para>This new feature will be the future MountMan, but for now it is still under development and not
-            finished yet. &hesbugreport_lnk;
+<note><para>This new feature will be the future MountMan, but for now it is still under development therefore unfinished. &hesbugreport_lnk;
             If you have a good idea, don&apos;t hesitate to send us
             <link linkend="faqq_wish_patch">User feedback</link>.</para></note>
 
@@ -103,8 +102,8 @@
 <para>General idea: display a list of all possible mountpoints.
       Each time the menu is displayed, it determines if a mountpoint is mounted or not and associated the correct
       action (mount or umount). This offers a quick interface to MountMan. 
-      It is working, and currently uses KMountMan::mount and unmount, we think that it can make the "old"
-      MountMan extinct. It uses the new &kde; services for fstab-reading and this will enable us to remove A LOT of code
+      It is working, and currently uses KMountMan::mount and unmount, we think that it can replace the "old"
+      MountMan. It uses the new &kde; services for fstab-reading and this will enable us to remove A LOT of code
       from the "old" MountMan.</para>
 
 </sect1>
@@ -127,7 +126,7 @@
 	<para>Usually, you click on the <guibutton>"Bookmark"</guibutton> button when you're in the target folder. For example, to bookmark
 	 '/usr/tmp', navigate &krusader; there and click the <guibutton>"Bookmark"</guibutton> button and select
 	 <guimenuitem>"Add bookmarks"</guimenuitem>. When the <guilabel>"Add bookmarks"</guilabel> dialog box appears, the &URL; line will say '/usr/tmp'. The upper
-	 line (Bookmark name) is what you like to call the bookmark (for example: temporary folder). If you add the
+	 line (Bookmark name) is for the name you would like to call the bookmark (for example: temporary folder). If you add the
 	 bookmark without entering a name, the bookmarks name will be the same as its target. With the
 	 <guimenuitem>"New Bookmark Folder..."</guimenuitem> item you can create a new bookmark folder.</para>
 	<note><para>You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark to quickly connect
@@ -264,7 +263,7 @@
 		<listitem><para><guilabel>"Not modified after"</guilabel>: choosing this option makes &krusader; search
 		for files that were NOT modified after a given date, which is the same as searching for files older
 		than that date.</para></listitem>
-		<listitem><para><guilabel>"Modified in the last / not modified in the last"</guilabel>: in these input
+		<listitem><para><guilabel>"Modified in the last/not modified in the last"</guilabel>: in these input
 		boxes, you enter not a date, but a number. This number represents days/weeks/months (as chosen in the
 		near dropbox). Entering the number 5 in the upper input box, makes &krusader; search for files that were
 		modified in the 5 days. Entering the number 2 in the lower input box makes &krusader; search for files
@@ -273,7 +272,7 @@
 	</itemizedlist></para>
 	<para><guilabel>"Ownership"</guilabel></para>
 	<itemizedlist>
-		<listitem><para><guilabel>"Belongs to user / group"</guilabel>: by checking each of the corresponding
+		<listitem><para><guilabel>"Belongs to user/group"</guilabel>: by checking each of the corresponding
 		checkboxes, you can search for files which belong to a certain user and/or group. The dropbox lists
 		all the user names and group names in the system, just choose one and go ahead.</para></listitem>
 		<listitem><para><guilabel>"Permissions"</guilabel>: divided into owner, group and all - it allows you
@@ -358,7 +357,7 @@
 	start &krusader;'s internal editor (which is basically the same application).
   </para>
   
-  <para>btw. the embedded viewer is not written by us, it is supplied via &kde; (libs) and we 
+  <para>btw. The embedded viewer is not written by us, it is supplied via &kde; (libs) and we 
         cannot change it (read: we don't want to change it because it works fine).</para>
 </sect2>
 
@@ -372,7 +371,7 @@
 
    <tip><para>When you use &krusader;'s internal editor for the first time,
                It is recommended to look at each section of the
-               <link linkend="kredit_settings_menu">Settings</link> menu, and configure it the way you like.
+               <link linkend="kredit_settings_menu">Settings</link> menu, and configure it the way you want it.
 	       </para></tip>
 
 </sect2>
@@ -521,7 +520,7 @@
    <guimenu>Edit</guimenu>
    <guimenuitem>Toggle Block Selection</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Toggle Block Selection, this will activate/deactivate the selection possibility.</para>
+   <para>Toggle Block Selection, this will activate/deactivate the block selection possibility.</para>
    </listitem>
   </varlistentry>
 
@@ -685,9 +684,9 @@
    <menuchoice>
    <shortcut><keycombo action="simul">&Alt;<keycap>PageUp</keycap></keycombo></shortcut>
    <guimenu>Bookmark</guimenu>
-   <guimenuitem>Prevous Bookmark</guimenuitem></menuchoice></term>
+   <guimenuitem>Previous Bookmark</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Go to the prevous Bookmark.</para>
+   <para>Go to the previous Bookmark.</para>
    </listitem>
   </varlistentry>
 </variablelist>
@@ -799,7 +798,7 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Colors</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Color configuration for the: background, selected text, current line and bracklet highlichting.</para>
+   <para>Color configuration for the: background, selected text, current line and bracket highlighting.</para>
    </listitem>
   </varlistentry>
 
@@ -819,9 +818,9 @@
    <menuchoice>
    <guimenu>Settings</guimenu>
    <guimenuitem>Configure Editor</guimenuitem>
-   <guimenuitem>Idendation</guimenuitem></menuchoice></term>
+   <guimenuitem>Identation</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Idendation configuration: automaticly indent, use spaces to indent, tab keys indent,
+   <para>Identation configuration: automaticly indent, use spaces to indent, tab keys indent,
           backspace keys indent, keep indent profile, keep extra spaces.</para>
    </listitem>
   </varlistentry>
@@ -891,7 +890,7 @@
    <guimenuitem>Plugins</guimenuitem></menuchoice></term>
    <listitem>
    <para>Plugins configuration: &eg; kTexteditor incremental search plugin,
-          kTexteditor insert file plugin, kTexteditor kdatatoolplugin, ... .</para>
+          kTexteditor insert file plugin, kTexteditor kdatatoolplugin...</para>
    </listitem>
   </varlistentry>
 </variablelist>
@@ -904,7 +903,7 @@
    <guimenu>KrViewer</guimenu>
    <guimenuitem>Generic viewer</guimenuitem></menuchoice></term>
    <listitem>
-   <para>&krusader;'s internal viewer is actually a Konqueror part, which can basically view every file type
+   <para>&krusader;'s internal viewer is actually part of Konqueror, which can basically view every file type
          viewable by &konqueror; (&eg; display pictures, play music, show the content of an archive).</para>
    </listitem>
   </varlistentry>
@@ -961,8 +960,6 @@
 <sect1 id="krusyncdir">
 <title>KruSyncDir: Synchronize Directories</title>
 
-&betafeaturenote;
-
 <para>This function compares the left and the right panel directories and shows the difference between them.
       After selecting some options and the "compare" function you can synchronize the files and directories.
       One panel could be a &FTP; server. Don't forget the <guilabel>"compare by content"</guilabel> option
@@ -1000,7 +997,7 @@
               </listitem>
     <listitem><para>By using the <link linkend="synccomp_show_options">Show options</link>, you can
                       include/exclude particular filetypes.
-                      Those files, that are not in the list, will be untouched at synchronization.</para>
+                      Those files, that are not in the list, will be untouched by synchronization.</para>
               </listitem>
     <listitem><para>If needed you can change the <guilabel>"Task"</guilabel> operations
 	              determined by the Comparator with the
@@ -1042,7 +1039,7 @@
   <listitem>
    <itemizedlist>
      <listitem><para><guilabel>"Recurse subdirectories"</guilabel>:
-	             the Synchronizer walks through on subdirectories at comparing.</para>
+	             the Synchronizer walks through on subdirectories when comparing.</para>
 	       </listitem>
      <listitem><para><guilabel>"Follow symlinks"</guilabel>:
 	             the Synchronizer follows the symbolic links to directories (not the files!).</para>
@@ -1089,7 +1086,7 @@
 
 </variablelist>
 
-<para>If all the above things are done, click on the <guibutton>"Compare"</guibutton> button to compare the
+<para>When all the above things are done, click on the <guibutton>"Compare"</guibutton> button to compare the
        directories, the results are displayed in the "File List".</para>
 
 <variablelist><varlistentry><term>"File List"</term>
@@ -1177,14 +1174,14 @@
 	   determined by the Comparator. Select one or multiple files.
            The change will be applied on the selection and not only on the right clicked item.
 	   If the selected item is a directory, the change will be applied on its
-	   files / subdirectories as well.</para>
+	   files/subdirectories as well.</para>
     <itemizedlist>
     	<listitem><para><guibutton>"Synchronise Directories"</guibutton>:
 	           starts synchronization.</para></listitem>
     	<listitem><para><guibutton>"Exclude"</guibutton>:
 	           excludes a file/dir from synchronization ( task change to != ).</para></listitem>
 	<listitem><para><guibutton>"Restore original operation"</guibutton>:
-	           task change to the orig result of comparator.</para></listitem>
+	           task change to the original result of comparator.</para></listitem>
 	<listitem><para><guibutton>"Reverse direction"</guibutton>:
 	           task change ( -> to &lt;-, and &lt;- to -> ).</para></listitem>
         <listitem><para><guibutton>"Copy from right to left"</guibutton>:
@@ -1206,7 +1203,7 @@
 		   This is the <guimenuitem>Unselect Group</guimenuitem> dialog  from the
 		   &markmenu_lnk;.</para></listitem>
         <listitem><para><guibutton>"Invert selection"</guibutton>:
-	           Invert the selection status of all the items.</para></listitem>
+	           Invert the selection status of all items.</para></listitem>
     </itemizedlist>
 
     <para>3. others  Note: the following operations work on the right-clicked file and not on the selection.</para>
@@ -1242,7 +1239,7 @@
 	           delete X3 files ( Y3 bytes )
                    enable / disable the left side deleting.</para></listitem>
 	<listitem><para><guilabel>"Confirm overwrites"</guilabel>:
-	           By switching this option on, Krusader will show the well know
+	           By switching this option on, Krusader will show the
                    <guibutton>"rename, skip, overwrite, skip all, overwrite all"</guibutton> dialog box,
                    before overwriting the file.</para></listitem>  
     </itemizedlist></listitem>
@@ -1266,9 +1263,9 @@
     	<listitem><para><guibutton>"Start"</guibutton>:
 	           starts synchronization.</para></listitem>
     	<listitem><para><guibutton>"Pause / Resume"</guibutton>:
-	           pauses / resumes the synchronization process.</para></listitem>
+	           pauses/resumes the synchronization process.</para></listitem>
 	<listitem><para><guibutton>"Close"</guibutton>:
-	           closes the synchronization dialog (with stopping synchronization).</para></listitem>
+	           closes the synchronization dialog (and stops synchronization).</para></listitem>
     </itemizedlist></listitem>
     </varlistentry>
 

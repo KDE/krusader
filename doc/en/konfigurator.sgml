@@ -24,7 +24,7 @@
 <para>Konfigurator is &krusader;'s configuration center. Here you can modify the way &krusader; does
 things and customize it to your own needs. At all times, pressing the <guibutton>"Apply"</guibutton> button
 will apply the changes, pressing <guibutton>"Close"</guibutton> will close Konfigurator, and pressing
-<guibutton>"Defaults"</guibutton> will reapply &krusader;'s "factory" settings. Konfigurator is divided
+<guibutton>"Defaults"</guibutton> will re-apply &krusader;'s "factory" settings. Konfigurator is divided
 into pages, each containing items related to that page. For some changes to the &GUI;, you will have to close
 &krusader; and restart &krusader;.</para>
 
@@ -148,7 +148,7 @@ into pages, each containing items related to that page. For some changes to the 
 		   using Select Group or by using Select All), &krusader; will check this option. If it is checked,
 		   than directories matching the select criteria will also be marked. Otherwise, only files will be
 		   marked.</para></listitem>
-	<listitem><para><guilabel>"Case sensitive sorting"</guilabel>: if checked (the Unix default), than all
+	<listitem><para><guilabel>"Case sensitive sorting"</guilabel>: if checked (the Unix default), all
 		   files beginning with capital letters appear before files beginning with non-capital letters,
 		   otherwise, all files beginning with a specified letter (capital or otherwise) will appear
 		   together.</para></listitem>
@@ -157,7 +157,7 @@ into pages, each containing items related to that page. For some changes to the 
 	<listitem><para><guilabel>"New style quicksearch"</guilabel>: The new
 	           <link linkend="quicksearch">Quicksearch</link> feature is used.</para></listitem>
 	<listitem><para><guilabel>"Case sensitive quicksearch"</guilabel>: When using the
-	           <link linkend="quicksearch">Quicksearch</link> feature: if checked (the Unix default), than all
+	           <link linkend="quicksearch">Quicksearch</link> feature: if checked (the Unix default), all
 		   files beginning with capital letters appear before files beginning with non-capital letters,
 		   otherwise, all files beginning with a specified letter (capital or otherwise) will appear
 		   together.</para></listitem>
@@ -229,7 +229,7 @@ into pages, each containing items related to that page. For some changes to the 
 <sect2 id="konfig-looknfeel-toolbar">
 <title>Toolbar</title>
 <para>Here you can configure the &toolbar_lnk; the way you want.
-       Add the action buttons of your favorite functions to the Toolbar.</para>
+       Add the action buttons of your favourite functions to the Toolbar.</para>
 
 </sect2>
 
@@ -245,17 +245,17 @@ into pages, each containing items related to that page. For some changes to the 
 <title>Panel Toolbar</title>
 <para><guilabel>"Panel Toolbar visible"</guilabel>: if checked, &krusader; will display the Panel Toolbar.</para>
 
-<para>Panel Toolbar buttons can be made visible/unvisible
+<para>Panel Toolbar buttons can be made visible/hidden
 <itemizedlist>
-	<listitem><para><guilabel>"Open"</guilabel> button (un)visible</para>
+	<listitem><para><guilabel>"Open"</guilabel> button (in)visible</para>
 	           </listitem>
-	<listitem><para><guilabel>"Equal (=)"</guilabel> button (un)visible</para>
+	<listitem><para><guilabel>"Equal (=)"</guilabel> button (in)visible</para>
 	           </listitem>
-	<listitem><para><guilabel>"Up (..)"</guilabel> button (un)visible</para>
+	<listitem><para><guilabel>"Up (..)"</guilabel> button (in)visible</para>
 	           </listitem>
-	<listitem><para><guilabel>"Home (~)"</guilabel> button (un)visible</para>
+	<listitem><para><guilabel>"Home (~)"</guilabel> button (in)visible</para>
 	           </listitem>
-	<listitem><para><guilabel>"Root (/)"</guilabel> button (un)visible</para>
+	<listitem><para><guilabel>"Root (/)"</guilabel> button (in)visible</para>
 	           </listitem>
 </itemizedlist>
 </para>
@@ -267,8 +267,6 @@ into pages, each containing items related to that page. For some changes to the 
 
 <sect1 id="konfig-color">
 <title>Colors page</title>
-
-&newfeaturenote;
 
 <para>This page configures the <link linkend="krusader_screenshot">colors</link> in the list panel.</para>
 
@@ -284,7 +282,7 @@ into pages, each containing items related to that page. For some changes to the 
 	                   <guilabel>"Alternate background"</guilabel> color alternates line by line.
 			   </para>
 		    </listitem>
-	<listitem><para><guilabel>"Show current item even if not focussed"</guilabel>:
+	<listitem><para><guilabel>"Show current item even if not focused"</guilabel>:
 	                  If checked, show the latest cursor position in the non active list panel.</para>
 		    </listitem>
   </itemizedlist>
@@ -361,8 +359,8 @@ into pages, each containing items related to that page. For some changes to the 
 		   'Temp directory', so that each user running &krusader; will have his/her own temporary
 		   subdirectories under the chosen directory.
 
-	<note><para>You must choose a temporary directory such that all the users who are running &krusader;
-	 	      will have full permissions to it!</para></note></para></listitem>
+	<note><para>You must choose a temporary directory such that all users running &krusader;
+	 	      have full permissions to!</para></note></para></listitem>
 </itemizedlist></para>
 
 </sect1>
@@ -401,8 +399,8 @@ into pages, each containing items related to that page. For some changes to the 
 
 <varlistentry><term><guilabel>Confirmations</guilabel></term>
 	<listitem><para>By checking the options in this section, you'll make &krusader; ask for confirmation
-	  	   before doing the specific action. Otherwise, the actions will be done without warning.</para>
-		   <para>These operations are: deleting non empty directorie(s), deleting file(s), copying file(s)
+	  	   before doing a specific action. Otherwise, the actions will be done without warning.</para>
+		   <para>These operations are: deleting non empty directorie(s), deleting file(s), copying file(s) and
 		   moving file(s).</para>
 	</listitem></varlistentry>
 
@@ -441,7 +439,7 @@ type of archive. If a certain archive is grayed-out, it means that &krusader; co
 executables in the <envar>PATH</envar> (to handle ZIP archives, &krusader; needs 'unzip' and 'zip' executables).</para>
 
 <para>If you've installed a certain archive application (let's say 'arj') and want &krusader; to know about
-it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; will search for all supported executables, and print a report regarding what archives can be handled. If all went well, the new archive will be availble and checked.
+it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; will search for all supported executables and print a report listing the archive formats that can be handled. If all went well the new archive should be available and checked.
 
 <note><para>Please install new archives to your <envar>PATH</envar> (&ie;: <filename>/usr/bin</filename> or
              <filename>/usr/local/bin</filename> &etc;)</para></note></para>
@@ -469,7 +467,7 @@ it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; wi
 
 
 <para><emphasis role="bold">General tab</emphasis></para>
-<para>Here you can configure the full path of the next external applications:
+<para>Here you can configure the full path of the following external applications:
 <informaltable>
 <tgroup cols="2">
 <tbody>
@@ -528,7 +526,7 @@ it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; wi
 </para>
 
 <para><emphasis role="bold">Packers tab</emphasis></para>
-<para>Here you can configure the full path of the next external packers:
+<para>Here you can configure the full path of the following external packers:
 <informaltable>
 <tgroup cols="2">
 <tbody>
