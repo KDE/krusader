@@ -80,6 +80,7 @@ int main(int argc, char *argv[]) {
   aboutData.addCredit("Erik Johanssen","Swedish translation","erre@telia.com",0);
   aboutData.addCredit("Anders Linden","Updated Swedish translation","connyosis@gmx.net",0);
   aboutData.addCredit("Mitek","Czech translation","mitek@email.cz",0);
+  aboutData.addCredit("Martin Sixta","Updated Czech translation","lukumo84@seznam.cz",0);
   aboutData.addCredit("Christoph Thielecke","German translation","crissi99@gmx.de",0);
   aboutData.addCredit("Dirk Eschler", "Updated German translation", "deschler@users.sourceforge.net", 0);
   aboutData.addCredit("René-Pierre Lehmann","French translation","ripi@lepi.org",0);
