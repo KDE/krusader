@@ -100,6 +100,7 @@ Previous used Docbook
 <!ENTITY cmdline_lnk ' <link linkend="cmdline">Command Line</link>'>
 <!ENTITY termemu_lnk ' <link linkend="cmdline">Terminal emulator</link>'>
 <!ENTITY missing_libs_lnk '<link linkend="faqq_missing_libs">&FAQ; missing libs or headers</link>'>
+<!ENTITY install_proc_lnk '<link linkend="installation">installation procedure</link>'>
 <!ENTITY disablenote '<note><para>This feature is temporarily disabled and will be rewritten, sorry.</para></note>'>
 <!ENTITY faqbugreports_lnk '<link linkend="faqq_bug_report">bug reports</link>'>
 <!ENTITY hesbugreport_lnk 'Don&apos;t hesitate to send <link linkend="faqq_bug_report">Bug reports</link>.'>
@@ -111,7 +112,9 @@ Previous used Docbook
 <!ENTITY rwfeaturenote '<note><para>This module is rewritten, some descriptions can be obsolete when
                          functionality can change during the development. &hesbugreport_lnk;
 			 <link linkend="faqq_wish_patch">User feedback</link> is always welcome!</para></note>'>
-<!ENTITY krusaderrc_ui_text '<para>When you install a &krusader; cvs version and if &krusader; was previously installed on your computer, there is a possibility that you have to update the <filename>krusaderrc.ui</filename> file, click <link linkend="krusaderrc_ui">here</link> for more info.</para>'>
+<!ENTITY krusaderui_rc_text '<para>When you install a &krusader; cvs or beta version and if &krusader; was previously
+         installed on your computer, there is a possibility that you will have to update the
+         <filename>krusaderui.rc</filename> file, click <link linkend="krusaderui_rc">here</link> for more info.</para>'>
 
 <!-- other ENTITIES -->
 <!ENTITY keditbookmarks '<application>KeditBookmarks</application>'>
@@ -158,6 +161,11 @@ Previous used Docbook
         <contrib>Developer</contrib>
         <affiliation><address><email>ckarai@users.sourceforge.net</email></address></affiliation>
         </othercredit>
+	<othercredit role="developer">
+        <firstname>Heiner</firstname><surname>Eichmann</surname>
+        <contrib>Developer</contrib>
+        <affiliation><address><email>h.eichmann@gmx.de</email></address></affiliation>
+        </othercredit>        
 	<author>
         <firstname>Frank</firstname>
 	<surname>Schoolmeesters</surname>
@@ -192,8 +200,8 @@ Previous used Docbook
 	</copyright>
 
 	<legalnotice>&FDLNotice;</legalnotice>
-	<date>22/02/2004</date>
-	<releaseinfo>1.31.01</releaseinfo>
+	<date>29/03/2004</date>
+	<releaseinfo>1.40.00-beta1</releaseinfo>
 
    <abstract>
 	<para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x.</para>
@@ -286,7 +294,7 @@ Previous used Docbook
         You can contact us even if you find typos!</para>
 
    <para>The Handbook "releaseinfo" matches the &krusader; version number.
-         &eg; "&krusader; Handbook revision 1.31.xx" describes "&krusader; version 1.31"</para>
+         &eg; "&krusader; Handbook revision 1.40.xx" describes "&krusader; version 1.40"</para>
 
    <para>Please read the the &online_docchangelog_url; file or the <filename>krusader_kde3/doc/ChangeLog</filename> 
          file in the &krusader; sources, to find out the latest changes in the &krusader; Handbook.</para>

@@ -86,7 +86,27 @@
 		eject (if clicked on a removable filesystem - a cdrom).</para></listitem>
 	</itemizedlist>
 	<note><para>We plan to expand MountMan in the next evolution of &krusader;. It will be able to format floppies,
-	edit <filename class="directory">/etc/fstab</filename>, create new filesystems and more...</para></note>
+	edit <filename class="directory">/etc/fstab</filename>, create new filesystems and more...
+	btw. we have started working on it, see "Quickmode for MountMan"</para></note>
+
+<para><emphasis role="bold">Quickmode for MountMan</emphasis></para>
+
+<note><para>This new feature will be the future MountMan, but for now it is still under development and not
+            finished yet. &hesbugreport_lnk;
+            If you have a good idea, don&apos;t hesitate to send us
+            <link linkend="faqq_wish_patch">User feedback</link>.</para></note>
+
+<para>Quickmode for MountMan is only available on &kde; 3.2 - earlier versions will see no difference.</para>
+
+<para>To activate Quickmode for MountMan, click AND HOLD the MountMan button on the &toolbar_lnk;</para>
+
+<para>General idea: display a list of all possible mountpoints.
+      Each time the menu is displayed, it determines if a mountpoint is mounted or not and associated the correct
+      action (mount or umount). This offers a quick interface to MountMan. 
+      It is working, and currently uses KMountMan::mount and unmount, we think that it can make the "old"
+      MountMan extinct. It uses the new &kde; services for fstab-reading and this will enable us to remove A LOT of code
+      from the "old" MountMan.</para>
+
 </sect1>
 
 <sect1 id = "bookman">
@@ -337,6 +357,9 @@
 	With <keycombo action="simul">&Ctrl;<keycap>E</keycap></keycombo> the viewer will
 	start &krusader;'s internal editor (which is basically the same application).
   </para>
+  
+  <para>btw. the embedded viewer is not written by us, it is supplied via &kde; (libs) and we 
+        cannot change it (read: we don't want to change it because it works fine).</para>
 </sect2>
 
 <sect2 id="kredit">
@@ -1218,10 +1241,14 @@
 	<listitem><para><guilabel>"Left"</guilabel>:
 	           delete X3 files ( Y3 bytes )
                    enable / disable the left side deleting.</para></listitem>
+	<listitem><para><guilabel>"Confirm overwrites"</guilabel>:
+	           By switching this option on, Krusader will show the well know
+                   <guibutton>"rename, skip, overwrite, skip all, overwrite all"</guibutton> dialog box,
+                   before overwriting the file.</para></listitem>  
     </itemizedlist></listitem>
     </varlistentry>
 
-    <varlistentry><term>Below the checkboxes, there are three status labels</term>
+    <varlistentry><term>Status labels</term>
     <listitem>
     <itemizedlist>
     	<listitem><para><guilabel>"Ready"</guilabel>:
@@ -1230,10 +1257,6 @@
                    with A1 files from A2 ( B1 bytes from B2 ).</para></listitem>
     	<listitem><para><guilabel>"Progress bar"</guilabel>:
 	           Shows the progress on the synchronization (based on bytes).</para></listitem>
-	<listitem><para><guilabel>"Confirm overwrites"</guilabel>:
-	           By switching this option on, Krusader will show the well know
-                   <guibutton>"rename, skip, overwrite, skip all, overwrite all"</guibutton> dialog box,
-                   before overwriting the file.</para></listitem>
     </itemizedlist></listitem>
     </varlistentry>
 

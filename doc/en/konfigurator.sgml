@@ -21,8 +21,6 @@
 *********************************************************************** -->
 <title>Konfigurator: &krusader;'s configuration center</title>
 
-&rwfeaturenote;
-
 <para>Konfigurator is &krusader;'s configuration center. Here you can modify the way &krusader; does
 things and customize it to your own needs. At all times, pressing the <guibutton>"Apply"</guibutton> button
 will apply the changes, pressing <guibutton>"Close"</guibutton> will close Konfigurator, and pressing
@@ -42,8 +40,6 @@ into pages, each containing items related to that page. For some changes to the 
 	</mediaobject>
 </screenshot>
 
-<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
-       so they will contain some obsolete settings.</para>
 
 <para>The startup page determines the way that &krusader; looks (and works) when it is launched.
        It is divided into two main parts:</para>
@@ -128,8 +124,6 @@ into pages, each containing items related to that page. For some changes to the 
 	</mediaobject>
 </screenshot>
 
-<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
-       so they will contain some obsolete settings.</para>
 
 <para>Here you can determine the look &amp; feel of things - which basically means fine-tuning the
        application to your needs. The page is divided into three tabs: <guilabel>General</guilabel>,
@@ -235,7 +229,7 @@ into pages, each containing items related to that page. For some changes to the 
 <sect2 id="konfig-looknfeel-toolbar">
 <title>Toolbar</title>
 <para>Here you can configure the &toolbar_lnk; the way you want.
-       Add the icons of your favorite functions to the Toolbar.</para>
+       Add the action buttons of your favorite functions to the Toolbar.</para>
 
 </sect2>
 
@@ -245,6 +239,92 @@ into pages, each containing items related to that page. For some changes to the 
 <para>Here you can configure the Key-bindings. Configure the Key-bindings
 	        of your favourite functions the way you want.</para>
 </sect2>
+
+
+<sect2 id="konfig-looknfeel-ptoolbar">
+<title>Panel Toolbar</title>
+<para><guilabel>"Panel Toolbar visible"</guilabel>: if checked, &krusader; will display the Panel Toolbar.</para>
+
+<para>Panel Toolbar buttons can be made visible/unvisible
+<itemizedlist>
+	<listitem><para><guilabel>"Open"</guilabel> button (un)visible</para>
+	           </listitem>
+	<listitem><para><guilabel>"Equal (=)"</guilabel> button (un)visible</para>
+	           </listitem>
+	<listitem><para><guilabel>"Up (..)"</guilabel> button (un)visible</para>
+	           </listitem>
+	<listitem><para><guilabel>"Home (~)"</guilabel> button (un)visible</para>
+	           </listitem>
+	<listitem><para><guilabel>"Root (/)"</guilabel> button (un)visible</para>
+	           </listitem>
+</itemizedlist>
+</para>
+
+</sect2>
+
+</sect1>
+
+
+<sect1 id="konfig-color">
+<title>Colors page</title>
+
+&newfeaturenote;
+
+<para>This page configures the <link linkend="krusader_screenshot">colors</link> in the list panel.</para>
+
+<variablelist>
+ <varlistentry><term><guilabel>General</guilabel></term>
+  <listitem>
+  <itemizedlist>
+	<listitem><para><guilabel>"Use the KDE default colors"</guilabel>:
+	                   this is the default color configuration of &krusader;.</para>
+		    </listitem>
+	<listitem><para><guilabel>"Use alternate background color"</guilabel>:
+	                   If checked, the <guilabel>"Background"</guilabel> color and the
+	                   <guilabel>"Alternate background"</guilabel> color alternates line by line.
+			   </para>
+		    </listitem>
+	<listitem><para><guilabel>"Show current item even if not focussed"</guilabel>:
+	                  If checked, show the latest cursor position in the non active list panel.</para>
+		    </listitem>
+  </itemizedlist>
+  </listitem>
+ </varlistentry>
+
+ <varlistentry><term><guilabel>Colors</guilabel></term>
+  <listitem><para>Configures the colors the way you like,
+	     if <guilabel>"Use the KDE default colors"</guilabel> is unchecked.</para>
+  <itemizedlist>
+         <listitem><para><guilabel>"Active"</guilabel> tab: color settings for the active panel
+	                              (the panel who has the focus).</para></listitem>
+         <listitem><para><guilabel>"Inactive"</guilabel> tab: color settings for the inactive panel
+	                              (the panel who does not have the focus).</para></listitem>
+	<listitem><para><guilabel>"Foreground"</guilabel>: general foreground color.</para></listitem>
+	<listitem><para><guilabel>"Directory foreground"</guilabel>: directory color.</para></listitem>
+	<listitem><para><guilabel>"Executable foreground"</guilabel>: executable color.</para></listitem>
+	<listitem><para><guilabel>"Symbolic link foreground"</guilabel>: symbolic link color.</para></listitem>
+	<listitem><para><guilabel>"Invalid symlink foreground"</guilabel>:
+	                              invalid symlink color.</para></listitem>
+	<listitem><para><guilabel>"Background"</guilabel>: general background color.</para></listitem>
+	<listitem><para><guilabel>"Alternate background"</guilabel>:
+	                              general alternate background color.</para></listitem>
+	<listitem><para><guilabel>"Marked foreground"</guilabel>: marked color.</para></listitem>
+	<listitem><para><guilabel>"Marked background"</guilabel>: marked background color.</para></listitem>
+	<listitem><para><guilabel>"Alternate marked background"</guilabel>:
+	                              alternate marked background color.</para></listitem>
+	<listitem><para><guilabel>"Current foreground"</guilabel>:
+	                              cursor position foreground color in the active list panel.</para></listitem>
+	<listitem><para><guilabel>"Current background"</guilabel>:
+	                              cursor position background color in the active list panel.</para></listitem>
+  </itemizedlist>
+  </listitem>
+ </varlistentry>
+
+ <varlistentry><term><guilabel>Preview</guilabel></term>
+	<listitem><para>Here you see a preview of the configured colors.</para>
+	</listitem></varlistentry>
+ </variablelist>
+
 
 </sect1>
 
@@ -259,9 +339,6 @@ into pages, each containing items related to that page. For some changes to the 
 	<caption><para>Konfigurator General page.</para></caption>
 	</mediaobject>
 </screenshot>
-
-<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
-       so they will contain some obsolete settings.</para>
 
 <para>The following options determine basic aspects of operation:
 
@@ -302,9 +379,6 @@ into pages, each containing items related to that page. For some changes to the 
 	</mediaobject>
 </screenshot>
 
-<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
-       so they will contain some obsolete settings.</para>
-
 <para>This page handles more advanced issues, so you should double-check what you do here, since modifying
        things around here <remark>makes &krusader; a more powerful AND dangerous tool.</remark></para>
 <para>The page is divided into three parts:</para>
@@ -338,6 +412,9 @@ into pages, each containing items related to that page. For some changes to the 
 		  reload icons that were already used before. Of course, as the cache grows bigger, it can store more
 		  icons and further speed operations, but the memory footprint of &krusader; will be
 		  bigger.</para></listitem>
+	<listitem><para><guilabel>"Arguments of updatedb"</guilabel>: sets additional arguments for
+	                  <command>updatedb</command>, please read
+			  <command>man updatedb</command>.</para></listitem>
 	</itemizedlist>
 	</listitem></varlistentry>
 
@@ -355,9 +432,6 @@ into pages, each containing items related to that page. For some changes to the 
 	<caption><para>Konfigurator Archives page.</para></caption>
 	</mediaobject>
 </screenshot>
-
-<para><emphasis role="bold">NOTE:</emphasis> at this moment the Konfigurator screenshots are not yet updated,
-       so they will contain some obsolete settings.</para>
 
 <para>This page handles the way &krusader; works with archives. In the <guilabel>General</guilabel> section
 you'll see a list of archive formats. Some are checked and some are grayed-out. The ones that are available
@@ -390,10 +464,8 @@ it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; wi
 <sect1 id="konfig-dependencies">
 <title>Dependencies page</title>
 
-&newfeaturenote;
-
-<para>Here you can configure the full path of the external applications. It is even possible to configure
-      the full path of &krusader;!</para>
+<para>This page configures the full path of the external applications.
+       It is even possible to configure the full path of &krusader;!</para>
 
 
 <para><emphasis role="bold">General tab</emphasis></para>

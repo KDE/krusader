@@ -140,8 +140,8 @@
                  column header text, this will show the sort direction (Up arrow = a to z sorting,
 		 Down arrow = z to a sorting).
 		 The width <guilabel>Column Headers</guilabel> can be changed with the mouse.
-		 Several more <guilabel>Column Headers</guilabel> are
-		 <link linkend="konfig-looknfeel-panel">available</link></para></listitem>
+		 Several more optional <guilabel>Column Headers</guilabel> are
+		 <link linkend="konfig-looknfeel-panel">available</link>.</para></listitem>
       <listitem><para><emphasis><guilabel>File List</guilabel></emphasis> : displays the files and directories
                  in the browsed directory. The &quick_search_lnk; allows to search for
                  files by typing their names.
@@ -182,9 +182,30 @@
 </sect3>
 
 
+<sect3 id="paneltoolbar">
+<title>Panel toolbar</title>
+
+<para>Both panels have a <link linkend="konfig-looknfeel-ptoolbar">configurable</link> Panel Toolbar.
+       The complete Panel Toolbar can be visible/unvisible, or some buttons of it can be made visible/unvisible.
+<itemizedlist>
+	<listitem><para><guibutton>"OpenDir Button"</guibutton>: opens the directory browser.</para>
+		   </listitem>
+	<listitem><para><guibutton>"Equal Button (=)"</guibutton>: changes the panel directory to the
+	                  other panel directory.</para>
+	           </listitem>
+	<listitem><para><guibutton>"Up Button (..)"</guibutton>: the panel steps into the parent directory.
+	                  </para></listitem>
+	<listitem><para><guibutton>"Home Button (~)"</guibutton>: the panel steps into the home directory</para>
+	            </listitem>
+	<listitem><para><guibutton>"Root Button (/)"</guibutton>: the panel steps into the root directory.</para>
+		    </listitem>
+</itemizedlist>
+</para>
+</sect3>
+
 <sect3 id="folderhistory">
 <title>Folder history</title>
-&newfeaturenote;
+
 <para>Both panels rembers the last visited folders and stores them in the Folder history menu.
       Click on the <guibutton>"Folder history"</guibutton> button ("watch" symbol) to open this menu.
       With this menu you can quickly change to a previous visited directories.
@@ -217,31 +238,8 @@
       To the left of the input line you can find the local path that the active panel is currently is pointing to,
       this path is where your command will be executed. Typing
       <userinput><command>cd </command><replaceable>&lt;directory&gt;</replaceable></userinput>
-      in the command line will also cause that the active panel points to this directory.</para>
-
-<para>Command line &keybindigs_lnk; overview:
-<itemizedlist>
-    <listitem><para><keycap>Up arrow</keycap> and <keycap>Down arrow</keycap>
-              to scroll through previously typed commands.</para>
-              </listitem>
-    <listitem><para><keycombo action="simul">&Ctrl;<keycap>/</keycap></keycombo> or press and hold the
-              <guibutton>"History"</guibutton> button opens the command line history list.</para>
-              </listitem>
-    <listitem><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo>
-               will take you back to the active panel.</para>
-               </listitem>
-    <listitem><para><keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo>
-              will take you from the panel to the command line.</para>
-              </listitem>
-    <listitem><para><keycombo action="simul">&Ctrl;<keycap>Enter</keycap></keycombo>
-              will insert current file / directory name without path to current command line position.</para>
-              </listitem>
-    <listitem><para><keycombo action="simul">&Ctrl;&Shift;<keycap>Enter</keycap></keycombo>
-              insert current file / directory with full path name to current command line position.</para>
-              </listitem>
-</itemizedlist>
-</para>
-<!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
+      in the command line will also cause that the active panel points to this directory.
+      Cick <link linkend="cmdline_keybindings">here</link> to view the command line keybindings.</para>
 
 <screenshot><screeninfo>Terminal emulator</screeninfo><mediaobject>
       <imageobject><imagedata fileref="terminalEmu.png" format="PNG"/></imageobject>
@@ -256,7 +254,7 @@
       The terminal emulator will follow the active panel directory.
       When you drag a file from the <interface>"List Panel"</interface>, you will get to choose between:
       "Paste", <command>cd</command>, <command>mv</command> and <command>ln</command>.
-      If you drag multiple files - then will cd not be available..
+      If you drag multiple files - then will cd not be available.
       You can close the emulator by typing <userinput><command>exit</command></userinput>.</para>
       <para>You can choose your mode of operation (command line, emulator, both or none)
       either for &krusader;'s startup with the &konfigstartpg_lnk;, or for the current
@@ -466,7 +464,6 @@
 <sect2 id="quicksearch">
 <title>Quick search</title>
 <!-- Thanks to Heiner Eichmann -->
-&newfeaturenote;
 
 <para>This feature will do a quick search for the file name in the active list panel.</para>
 
@@ -509,6 +506,7 @@
 	                    Search results file list (F3 View, F4 Edit)</para></listitem>
 	  <listitem><para>&mountman_lnk; (unmount, format, ...)</para></listitem>
 	  <listitem><para>&syncdirs_lnk; File List</para></listitem>
+	  <listitem><para>...</para></listitem>
 </itemizedlist>
 </para>
 </sect2>
@@ -696,7 +694,7 @@
 <sect2 id="calculate">
 <title>Calculate occupied space</title>
 <!-- Thanks to Heiner Eichmann -->
-&rwfeaturenote;
+
 <para>There are two ways to calculate the occupied space of files/directories.
   <itemizedlist>
     <listitem>
@@ -784,8 +782,6 @@
 <sect2 id="split">
 <title>Split file</title>
 
-&betafeaturenote;
-
 <para>
     Choose
     <emphasis role="bold"><menuchoice><guimenu>File</guimenu><guimenuitem>split</guimenuitem></menuchoice>
@@ -826,8 +822,6 @@
 <sect2 id="combine">
 <title>Combine files</title>
 
-&betafeaturenote;
-
 <para>This function combines multiple files to one file after the &splitfile_lnk;
       function was used. Select a partial file <filename>foo.xxx</filename> and choose
       <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
@@ -847,8 +841,71 @@
 </sect2>
 
 
+<sect2 id="locate">
+<title>Locate &GUI; frontend</title>
+
+<para>&krusader; has a &GUI; frontend for the <command>locate</command> command (findutils).
+      Locate is used for fast file searching. It does not search from a directory, but from a database.
+      The package contains two files <command>locate</command> and <command>updatedb</command>.
+      Updatedb walks through on the local filesystem and stores the file entries in the database.
+      Often <command>cron</command> will call <command>updatedb</command> every night.
+      Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+      <guimenuitem>Locate</guimenuitem></menuchoice></emphasis>
+      or
+      <keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo> to start this feature.
+      <link linkend="konfig-advanced">Konfigurator</link> can set additional arguments for
+      <command>updatedb</command>.
+      </para>
+
+<para>Checkbox options
+<itemizedlist>
+     <listitem><para><guilabel>"Show only the existing files"</guilabel>:
+	             if the database contains entries which do not exist any more (deleted, moved since the
+	             last <command>updatedb</command>), <command>locate</command> will not list them.
+	             It checks the existence of each file before listing in the results window (slow).</para>
+	       </listitem>
+     <listitem><para><guilabel>"Case sensitive"</guilabel>:
+	             unchecking it will allow lower and upper case search.</para>
+	       </listitem>
+</itemizedlist></para>
+
+<para>Action buttons
+<itemizedlist>
+    	<listitem><para><guibutton>"Locate"</guibutton>:
+	           executes <command>locate <replaceable>foo foo</replaceable></command>
+		   and places its output into the results window.</para></listitem>
+	<listitem><para><guibutton>"Stop"</guibutton>:
+	           stops the locate process.</para></listitem>
+    	<listitem><para><guibutton>"UpdateDB"</guibutton>:
+	           starts <command>updatedb</command> for updating the locate database after
+		   entering the root password.</para></listitem>
+	<listitem><para><guibutton>"Close"</guibutton>:
+	           closes the locate window.</para></listitem>
+</itemizedlist>
+</para>
+
+<para>Results window
+<itemizedlist>
+    	<listitem><para>double click on an item: steps to its directory, makes the item
+                          visible and closes the locate dialog.</para></listitem>
+    	<listitem><para><keycap>F3</keycap>: views the current item.</para></listitem>
+	<listitem><para><keycap>F4</keycap>: edit the current item.</para></listitem>
+	<listitem><para>right click: edit/view/find menu.</para></listitem>
+</itemizedlist>
+
+</para>
+
+</sect2>
+
+
 <sect2  id="user_menu">
 <title>User Menu</title>
+
+<note><para>The User Menu will NOT supported officially in &krusader; 1.40 stable, but is there, hidden.
+            It is work in progress and is unfinished, it would delay the the release of 1.40 much to long
+            if we want to complete it.
+            If you have some nice ideas for the User Menu, please let us know.
+            It will be an official feature in &krusader; 1.50</para></note>
 
 &newfeaturenote;
 
@@ -857,7 +914,7 @@
     <guimenuitem>User Menu</guimenuitem></menuchoice>
     </emphasis>
     or
-    <keycombo action="simul">&Ctrl;<keycap>foo</keycap></keycombo>
+    <keycombo action="simul">&Ctrl;<keycap>`</keycap></keycombo>
     opens the <guimenuitem>User Menu</guimenuitem>, here you can create and use your own often used commands.
     It can run things via terminal, via an output-collection window or just run it.
     It allows you to use normal strings or URL's, and select where to pop the certain entry (in what directory).
@@ -933,48 +990,10 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 </itemizedlist>
 </para>
 
+<para>Deleting and editing an entry is not yet written.</para>
+
 <para>The user menu configuration is stored in
       <filename>~/.kde/share/apps/krusader/krusermenu.dat</filename></para>
-
-</sect2>
-
-
-<sect2 id="locate">
-<title>Locate &GUI; frontend</title>
-
-&newfeaturenote;
-
-<para>&krusader; has a &GUI; frontend for the <command>locate</command> command (findutils).
-      This allows you to do a fast file searching on your system via the indexed
-      <command>locate</command> database.
-      Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-      <guimenuitem>Locate</guimenuitem></menuchoice></emphasis>
-      or
-      <keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo> to start this feature.
-      </para>
-
-<para>Checkbox options
-<itemizedlist>
-     <listitem><para><guilabel>"Show only the existing files"</guilabel>:
-	             ?????.</para>
-	       </listitem>
-     <listitem><para><guilabel>"Case sensitive"</guilabel>:
-	             unchecking it will allow lower and upper case search.</para>
-	       </listitem>
-</itemizedlist></para>
-
-<para>Action buttons
-<itemizedlist>
-    	<listitem><para><guibutton>"Locate"</guibutton>:
-	           executes `locate xy` and places its output into the results window.</para></listitem>
-    	<listitem><para><guibutton>"UpdateDB"</guibutton>:
-	           starts <command>updatedb</command> for locate db update.</para></listitem>
-	<listitem><para><guibutton>"Stop"</guibutton>:
-	           cancel the updatedb process.</para></listitem>
-	<listitem><para><guibutton>"Close"</guibutton>:
-	           closes the locate window.</para></listitem>
-</itemizedlist>
-</para>
 
 </sect2>
 
@@ -1094,6 +1113,9 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <entry><para><keycombo action="simul">&Alt;<keycap>/</keycap></keycombo></para></entry>
 <entry><para><link linkend="mount-man">MountMan</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Alt;<keycap>`</keycap></keycombo></para></entry>
+<entry><para>&usermenu_lnk;</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Alt;<keycap>Left Arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Left bookmarks</link></para></entry></row>
 <row>
@@ -1126,9 +1148,6 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <informaltable>
 <tgroup cols="2">
 <tbody>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>foo</keycap></keycombo></para></entry>
-<entry><para>&usermenu_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></para></entry>
 <entry><para><link linkend="mark-menu">Select Group</link></para></entry></row>
@@ -1260,10 +1279,44 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 </informaltable>
 
 
-<para><emphasis role="bold">Other Key-bindings:</emphasis></para>
-<para><link linkend="krviewer">KrViewer</link>,
-      <link linkend="cmdline">command line / terminal emulator</link>
-      and &kde; Control center -> Accessibility -> Keyboard Shortcuts.</para>
+<para id="cmdline_keybindings"><emphasis role="bold">&cmdline_lnk;</emphasis></para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry><para><keycap>Up arrow</keycap> and <keycap>Down arrow</keycap></para></entry>
+<entry><para>scroll through previously typed commands.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>/</keycap></keycombo></para></entry>
+<entry><para>opens the command line history list.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
+<entry><para>jumps from the command line to the active panel.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo></para></entry>
+<entry><para>jumps from the active panel to the command line.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Enter</keycap></keycombo></para></entry>
+<entry><para>inserts current file / directory name without path to current command line position.</para>
+</entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>Enter</keycap></keycombo></para></entry>
+<entry><para>inserts current file / directory with full path name to current command line position.</para></entry></row>
+<!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
+</tbody>
+</tgroup>
+</informaltable>
+
+
+<itemizedlist>
+<title>Other Key-bindings</title>
+	<listitem>
+	   <para><link linkend="krviewer">KrViewer</link>.</para>
+	</listitem>
+	<listitem>
+	   <para>&kde; Control center -> Accessibility -> Keyboard Shortcuts.</para>
+	</listitem>
+</itemizedlist>
 
 </sect1>
 

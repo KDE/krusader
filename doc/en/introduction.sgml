@@ -132,9 +132,6 @@
 	    <para>&syncdirs_lnk;.</para>
 	</listitem>
         <listitem>
-	    <para>&usermenu_lnk;.</para>
-	</listitem>
-	        <listitem>
 	    <para>New &quick_search_lnk;.</para>
 	</listitem>
 	<listitem>
@@ -143,16 +140,28 @@
 	<listitem>
 	    <para>&locate_lnk;.</para>
         </listitem>
+	<listitem>
+	    <para><link linkend="konfig-color">Color support</link>.</para>
+        </listitem>
+	<listitem>
+	    <para><link linkend="mount-man">Quickmode for MountMan</link>.</para>
+        </listitem>
+	<listitem>
+	    <para>&usermenu_lnk;  NOTE: the User Menu will NOT supported officially in &krusader; 1.40 stable,
+	           but is there, hidden.</para>
+	</listitem>
 </itemizedlist>
 </para>
 
 <screenshot>
 	<screeninfo>&krusader; screenshot</screeninfo>
-	<mediaobject>
+	<mediaobject id="krusader_screenshot">
 		<imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
 	        <imageobject><imagedata fileref="krusader1.eps" format="EPS"/></imageobject>
 	  <textobject><phrase>&krusader; screenshot</phrase></textobject>
-	  <caption><para>Here's a screenshot of &krusader;.</para></caption>
+	  <caption><para>Here's a screenshot of &krusader; with the panel toolbar buttons '=','..','~','/'
+	                  and <link linkend="konfig-color">colors</link>.</para></caption>
 	</mediaobject>
 </screenshot>
 </chapter>
+

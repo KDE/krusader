@@ -23,15 +23,16 @@
 <!--	&reporting.bugs;
 	&updating.documentation; -->
 
-<para>If you have problems with &krusader; please check the
-       <link linkend="installation">installation procedure</link>,
+<para>If you have problems with &krusader; please check the &install_proc_lnk;,
        maybe your problem is caused by a bad installation.</para>
 
 <para>The &FAQ;'s are devided in three sections:
   <itemizedlist>
-     <listitem><para><link linkend="faq_installation">installation &FAQ;'s</link> (this page)</para></listitem>
-     <listitem><para><link linkend="faq_usage">&krusader; usage &FAQ;'s</link></para></listitem>
-     <listitem><para><link linkend="faq_general">General &FAQ;'s</link></para></listitem>
+     <listitem><para><link linkend="faq_installation">Installation &FAQ;'s</link> (this page)</para></listitem>
+     <listitem><para><link linkend="faq_usage">Usage &FAQ;'s</link>
+                      (issues when running/using &krusader;)</para></listitem>
+     <listitem><para><link linkend="faq_general">General &FAQ;'s</link> 
+                     (bug reports, forum, mailing list, ...)</para></listitem>
   </itemizedlist>
   If you have the feeling that a &FAQ; question is missing or if something is not clear to you,
   please <link linkend="editors_note">let us know</link>.
@@ -72,6 +73,7 @@
 		 'missing lib or header' in the search line.
 		 Or use <command>apt-cache search <replaceable>foo</replaceable></command> to find the
 		 corresponding package for Debian based distributions.</para></tip></para>
+      <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
 
@@ -95,6 +97,7 @@
           <filename class="directory">/etc/profile</filename> file (or any other file your shell sources at startup).
          <screen><prompt>$</prompt> <userinput><command>export</command>  PATH=$PATH:<replaceable>/usr/local/bin</replaceable></userinput></screen></para></listitem>
     </itemizedlist></para>
+    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
 
@@ -110,38 +113,44 @@
             <filename class="directory">/usr/src/RPM/RPMS/i386</filename> (replace i386 with your arch) Install as usual, for example.
             <screen><prompt>$</prompt> <userinput><command>su -c 'rpm</command> <option>-ivh</option>  <replaceable>&lt;/path/to/filename&gt;</replaceable>'</userinput></screen>You will be asked to enter your root password.</para></listitem>
     </itemizedlist></para>
+    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
 
    <qandaentry>
    <question id="binary">
-   <para>I'm trying to install binary foo, but it fails. What's wrong?</para>
+   <para>I'm trying to install binary foo (RPM or DEB package), but it fails. What's wrong?</para>
    </question>
    <answer>
-   <para><itemizedlist>
-          <listitem><para>Since we only provide (and use) the source, we don't know.
-                          Feel free to post a &help_request_lnk;.
-          </para></listitem>
-   </itemizedlist></para>
+   <para>Since we only provide (and use) the source, we don't know.
+   Try to find an other binary at &Linux; software archives such as &freshmeat_url; or &kde_apps_url;.
+   If you can't find a RPM package for your &Linux; distribution, we recommend searching for it with
+   &rpmfind_url; or &rpmpbone_url;.
+   Or better, please try to compile the &krusader; sourcecode.
+   We provide a verry detailled &install_proc_lnk; if you have never done a compilation before.
+   Feel free to post a &help_request_lnk; if you encounter problems.
+   </para>
+   <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
 
    <qandaentry>
-   <question id="krusaderrc_ui">
+   <question id="krusaderui_rc">
    <para>I've installed &krusader;, but when I start it, only the <guimenu>"Help"</guimenu>
 	 menu appears. Why?</para></question>
    <answer>
    <para>In this case only the <guimenu>"Help"</guimenu> menu is visible and all the other menu items
    like &eg; <guimenu>"File"</guimenu> and <guimenu>"Mark"</guimenu> are gone.
-   This is because some distributions put the <filename>krusaderrc.ui</filename> file in a wrong directory.
-   To solve the problem, just copy the <filename>krusaderrc.ui</filename> file
-   from the package <filename>krusader_kde3/krusader/krusaderrc.ui</filename> to
-   <filename>$KDEDIR/share/apps/krusader/krusaderrc.ui</filename>
-   and <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> and re-run &krusader;.
+   This is because some distributions put the <filename>krusaderui.rc</filename> file in a wrong directory.
+   To solve the problem, just copy the <filename>krusaderui.rc</filename> file
+   from the package <filename>krusader_kde3/krusader/krusaderui.rc</filename> to
+   <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename>
+   and <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> and re-run &krusader;.
    If you have compiled &krusader; from sources this is often caused when the
-   &kdeqtdir_lnk; enviroment variables are not right set, the result is that the 
-   <filename>krusaderrc.ui</filename> file is installed in a wrong directory.
+   &kdeqtdir_lnk; enviroment variables are not right set, the result is that the
+   <filename>krusaderui.rc</filename> file is installed in a wrong directory.
    Please read also the next question.</para>
+   <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
 
@@ -150,26 +159,29 @@
   <para>Some new menu items are missing after updating &krusader;, what is wrong?</para>
   </question>
   <answer>
-  <para>The <filename>krusaderrc.ui</filename> file is stored in
-       <filename>$KDEDIR/share/apps/krusader/krusaderrc.ui</filename>.
+  <para>The <filename>krusaderui.rc</filename> file is stored in
+       <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename>.
        When you change the <guilabel>"Toolbar"</guilabel>, &kde; makes a copy of that file in the home directory at
-       <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename>.
-       When updating to a newer &krusader; version the
-       <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> file must be updated to, this was not always the
-       case in the past (see the Note) and it is recommended to check this mannualy if you install a
-       <link linkend="krusader_cvs">CVS build</link> of &krusader;.
-       If the <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> file is too old,
-       then the new menu elements will not be shown.
-       Read the previous question to know howto update the <filename>krusaderrc.ui</filename> file.
+       <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename>.
+       If Krusader was previously installed on your computer, and you install a newer &krusader; version the
+       <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> file must be replaced with the newer version.
+       </para>
 
-     <note><para>if &krusader; is correctly installed, then the <filename>krusaderrc.ui</filename> file will be
-           automaticly updated in <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> when starting
-	   &krusader;, in the past this was not the case due to a bug,
-	   this bug was resolved since "krusader-cvs-2004-02-24".</para></note>
+  <para>The first line of <filename>krusaderui.rc</filename> contains the version number.
+        After installing a newer &krusader; stable version, &kde; will replace automatiqly the old
+        <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> with the newer version when starting the
+        new &krusader; stable for the first time (&kde; will detect the newer version number in the first line).
+        In the past this was not the case due to a bug, this bug was resolved since "krusader-cvs-2004-02-24".
+        When you install a Krusader cvs or beta version you will have to replace the
+        <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> manually.</para>
 
-       If <filename>krusaderrc.ui</filename> is missing or in a wrong directory,
-       only the <guimenu>"Help"</guimenu> menu appears, please read the previous question.
+  <para>If the <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> file is too old,
+        then the new menu elements will not be shown.
+        Read the previous question to know howto update the <filename>krusaderui.rc</filename> file.
+        If <filename>krusaderui.rc</filename> is missing or in a wrong directory,
+        only the <guimenu>"Help"</guimenu> menu appears, please read the previous question.
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
@@ -180,12 +192,13 @@
   <answer>
   <para>The <command>./configure</command> script does not check for the presence of
 	<filename>libfam.la</filename>, and <command>make</command> needs <filename>libfam.la</filename>
-	to compile &krusader;. If you know how this can be solved, please let us know. 
+	to compile &krusader;. If you know how this can be solved, please let us know.
 	Install <filename>libfam0-devel-foo.rpm</filename>.
 	Note: when you install <application>Mandrake 9.1</application> with the default settings, this
 	package is not installed.
 	If you need more information take a look at &missing_libs_lnk;.
    </para>
+   <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
 
@@ -219,15 +232,16 @@
       </orderedlist>
       </para>
       <para>Thanks for your cooperation!</para>
+      <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
 </qandaset>
-</sect1> 
+</sect1>
 
 
 <sect1 id="faq_usage">
-<title>&krusader; Usage &FAQ;'s</title>
+<title>Usage &FAQ;'s</title>
 <qandaset>
 
    <qandaentry>
@@ -235,15 +249,12 @@
    <para>Why can't I change the colors in &krusader;?</para>
    </question>
    <answer>
-   <para>In versions prior to 0.75, we supported changing some of the colors
-          in &krusader;. After some debates in the &kde; mailing-list regarding the matter, we decided
-          that &krusader;'s colors will match &kde;'s current color-scheme. This makes &krusader; more
-          compatible and coherent. As a result, we don't support changing colors inside the program.
-          Sorry.
-          Note: We are planning to write code to use "Colorize files by type" (request id. 735649).
-	  btw. the &krusader; Krew is experimenting at this moment to (re)introduce color support,
-	  so there is hope ;-)
+   <para>In versions prior to 0.75, we supported changing some of the colors in &krusader;.
+          After some debates in the &kde; mailing-list regarding the matter, we decided
+          that &krusader;'s colors will match &kde;'s current color-scheme.
+          Since krusader-cvs-2004-03-24 (&krusader; 1.40 stable) we reintroduced color support. 
    </para>
+   <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
 
@@ -253,9 +264,9 @@
              something about supermount, what's this about? </para>
   </question>
   <answer>
-  <para>Supermount is a daemon which handles mounting/unmounting of removable filesystems for you. 
-       Just insert a floppy, and do 
-       <userinput><command>cd</command> <option><replaceable>/mnt/floppy</replaceable></option></userinput> 
+  <para>Supermount is a daemon which handles mounting/unmounting of removable filesystems for you.
+       Just insert a floppy, and do
+       <userinput><command>cd</command> <option><replaceable>/mnt/floppy</replaceable></option></userinput>
        supermount will do the mount for you automatically and transparently. All this is great, however,
        supermount manipulates the system into thinking that the <hardware>floppy/cdrom</hardware> is mounted
        at all times! This creates a few problems for &krusader;, as it can't really know what's going on -
@@ -263,6 +274,7 @@
        Of course, this can be solved, but as for now, we don't consider it a priority.
        Feel free to write a patch for it ;-).
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
@@ -278,6 +290,7 @@
       <guimenuitem>Show FN Keys Bar</guimenuitem></menuchoice></emphasis>
       and you'll be able to resize &krusader; to your liking.
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
@@ -287,24 +300,25 @@
        &krusader; with fam installed, but updates to the panel are now shown.</para>
    </question>
    <answer>
-   <para>The bad news is that we're not sure why, but seems that <command>fam</command> 
-      (file alteration monitor)doesn't always 
+   <para>The bad news is that we're not sure why, but seems that <command>fam</command>
+      (file alteration monitor)doesn't always
       seem to work for us. Feel free to write a patch for it ;-).
       We've tried the same source code on two different Gentoo installation: one worked,
-      the other did not. The good news is that if you disable <application>fam</application>, &krusader; will 
-      automatically revert to its internal mechanism (which is less efficient, but works) without needing to 
+      the other did not. The good news is that if you disable <application>fam</application>, &krusader; will
+      automatically revert to its internal mechanism (which is less efficient, but works) without needing to
       recompile.
       You can disable <application>fam</application> with:
       <screen><prompt>$</prompt> <userinput><command>su -c 'fam -l'</command></userinput></screen>
       Look at the manpages for more information about <application>fam</application>.
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
   <!-- Thanks to Karai Csaba -->
   <qandaentry>
   <question id="samba_codepage">
-  <para><application>Samba</application> ISO 8859-x codepage / What to do if &krusader; does not read shared 
+  <para><application>Samba</application> ISO 8859-x codepage / What to do if &krusader; does not read shared
         directories containing national characters?</para>
   </question>
   <answer>
@@ -320,6 +334,7 @@
      Unfortunately <application>kcontrol</application> (&kde; 3.1.1) fails to configure it properly, so
      this step must be done with a text editor.
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
@@ -336,6 +351,7 @@
 	<filename class="directory">$KDEDIR/share/services</filename></para>
         <para>or the directory where the KIO slaves are placed in your &Linux; distribution.
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
@@ -352,8 +368,25 @@
       <guimenuitem>Network</guimenuitem><guimenuitem>Preferences</guimenuitem></menuchoice></emphasis> ,
       <guilabel>Enable Passive Mode (PASV)</guilabel> has to be checked.
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
+
+  <!-- Thanks to Karai Csaba -->
+  <qandaentry>
+  <question id="ftp_http_proxy">
+  <para>I get <errorcode>"FTP protocol not supported by &krusader;"</errorcode> error at trying to open
+        a remote &FTP; directory.</para>
+  </question>
+  <answer>
+  <para>The reason of this error is that '&FTP; via &HTTP; proxy' feature is not yet supported by &krusader;.
+        This error can occur at misconfiguring the proxy settings in &kde; (Control Center).
+        Modify the proxy setting to not use &HTTP; proxy and &FTP; will work.
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
 
 </qandaset>
 </sect1>
@@ -376,6 +409,7 @@
       Krew will add your request to the online todo list. You can reach us by &mail_url;
       or drop us a note in our <link linkend="faqq_kru_forum">&krusader; Forum</link>.
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
@@ -403,6 +437,7 @@
     <para>Thanks for your cooperation!</para>
     <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla http://bugs.kde.org/,
     &kde;'s Bug Tracking System.</remark></para></note>
+    <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
@@ -421,6 +456,7 @@
       Want to keep track? Waiting for a certain feature/bugfix? Feel free to (un)subscribe.
       To see the collection of prior CVS commits visit the &krucommitsarch_url;.
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
@@ -458,6 +494,7 @@
   </itemizedlist>
   </para>
   <para>Thanks for your cooperation!</para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
 
