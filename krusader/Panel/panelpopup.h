@@ -38,7 +38,7 @@ protected slots:
 	void failedToView(const KFileItem* kfi);
 	void tabSelected(int id);
 	void treeSelection(QListViewItem*);
-	void slotDroppedOnTree(KURL::List &lst, KURL &url);
+	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &lst, KURL &);
 	
 	void quickSelect();
 	void quickSelect(const QString &);
@@ -53,7 +53,7 @@ protected:
 	QToolButton *treeBtn, *previewBtn, *quickBtn;
 	QButtonGroup *btns;
 	KLineEdit *quickFilter;
-        KComboBox *quickSelectCombo;
+	KComboBox *quickSelectCombo;
 };
 
 #endif // _PANELPOPUP_H
