@@ -79,8 +79,9 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   QStringList list = krConfig->readListEntry( "cmdline history" );
   cmdLine->setHistoryItems( list );
 
-  connect( cmdLine, SIGNAL( activated( const QString& ) ), this, SLOT( slotRun( const QString& ) ) );
-  connect( cmdLine, SIGNAL( activated(const QString &) ), cmdLine, SLOT( clearEdit() ) );
+  connect( cmdLine, SIGNAL( activated( const QString& ) ), this, SLOT( setEditText( const QString& ) ) );
+  connect( cmdLine, SIGNAL( returnPressed(const QString& ) ), this, SLOT( slotRun( const QString& ) ) );
+  connect( cmdLine, SIGNAL( returnPressed(const QString &) ), cmdLine, SLOT( clearEdit() ) );
   connect( cmdLine, SIGNAL( returnToPanel() ), this, SLOT( slotReturnFocus() ));
 
   QWhatsThis::add
@@ -167,7 +168,7 @@ void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {
             return;
          }
       default:
-      QWidget::keyPressEvent(e);
+      KHistoryCombo::keyPressEvent(e);
    }
 }
 

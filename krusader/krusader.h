@@ -92,7 +92,7 @@ class Krusader : public KParts::MainWindow {
     KConfig *config;    // allow everyone to access the config
     KIconLoader *iconLoader; // the app's icon loader
     // Actions
-    static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare;
+    static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
     static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll;
     static KAction *actUnselectAll, *actInvert, *actSync, *actSavePosition;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
@@ -101,7 +101,7 @@ class Krusader : public KParts::MainWindow {
     static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
     static KToggleAction *actToggleTerminal;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
-    *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actToggleSortByExt;
+                  *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actToggleSortByExt;
 
     // return a path to a temp dir or file we can use.
     QString getTempDir();
@@ -164,5 +164,6 @@ class Krusader : public KParts::MainWindow {
 #define krOpenLeftBm      Krusader::App->actOpenLeftBm     // open left bookmarks
 #define krOpenRightBm     Krusader::App->actOpenRightBm    // open left bookmarks
 #define krDirUp           Krusader::App->actDirUp
+#define krCmdlinePopup    Krusader::App->actCmdlinePopup
 
 #endif

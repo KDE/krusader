@@ -69,6 +69,7 @@ class KCMDLine : public QWidget {
     void slotReturnFocus(); // returns keyboard focus to panel
     void slotRun(const QString &command1);
     void addText( QString text ) { cmdLine->setCurrentText( cmdLine->currentText() + text ); }
+    void popup() { cmdLine->popup(); }
 
 
   private:

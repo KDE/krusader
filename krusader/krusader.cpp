@@ -103,6 +103,7 @@ KAction *Krusader::actSelectColorMask = 0;
 KAction *Krusader::actOpenLeftBm = 0;
 KAction *Krusader::actOpenRightBm = 0;
 KAction *Krusader::actDirUp = 0;
+KAction *Krusader::actCmdlinePopup = 0;
 
 KToggleAction *Krusader::actToggleTerminal = 0;
 
@@ -305,7 +306,7 @@ void Krusader::setupActions() {
   // second, the KDE standard action
   //KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
   KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" )->setShortcut(Key_QuoteLeft);
-  KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
+  KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" )->setText("Reload");
   actShowToolBar = KStdAction::showToolbar( SLOTS, SLOT( toggleToolbar() ), actionCollection(), "std_toolbar" );
   actShowStatusBar = KStdAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
   KStdAction::quit( this, SLOT( quitKrusader() ), actionCollection(), "std_quit" );
@@ -334,6 +335,8 @@ void Krusader::setupActions() {
   actToggleSortByExt->setChecked( krConfig->readBoolEntry( "Sort By Extention", _SortByExt ) );
 
   // and then the DONE actions
+  actCmdlinePopup = new KAction( i18n("popup cmdline"), 0, CTRL + Key_Slash, SLOTS,
+                     SLOT(cmdlinePopup()), actionCollection(), "cmdline popup");
   actDirUp = new KAction( i18n("Up"), "up", Key_Backspace, SLOTS, SLOT(dirUp()), actionCollection(), "dirUp");
 
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
