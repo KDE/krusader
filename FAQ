@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.51-00
-- Documentation date:  28/11/2004
-- Parsing date: Sun Nov 28 22:10:19 CET 2004
+- Documentation date:  06/12/2004
+- Parsing date: Mon Dec  6 22:12:20 CET 2004
 --------------------------------------------
  
 
@@ -68,9 +68,8 @@ Chapter 6. Frequently Asked Questions (FAQ)
    6.1.3. I have followed all steps but configure complains about
           missing libs or headers. What do I need to do?
 
-   6.1.4. I have successfully installed Krusader from source.
-          Everything went fine but I can't start it. What's going
-          wrong here?
+   6.1.4. How do i compile Krusader when i'm using a 64 bit
+          processor ?
 
    6.1.5. I have downloaded the Source RPM
           krusader-x.xx.dist.src.rpm What now?
@@ -88,11 +87,11 @@ Chapter 6. Frequently Asked Questions (FAQ)
           Krusader, what's wrong?
 
    6.1.10. When I run make it complains about libfam.la
-   6.1.11. Debian® complains about Qt(TM) when running
+   6.1.11. Debian complains about Qt(TM) when running
           ./configure
 
    6.1.12. I have a libGLcore.so.1 compile error after using the
-          NVIDIA® installer
+          NVIDIA installer
 
    6.1.13. I am having trouble compiling and installing Krusader,
           how do I send a help request?
@@ -167,7 +166,7 @@ Chapter 6. Frequently Asked Questions (FAQ)
    Most  RPM-based  distributions  separate  the headers from the
    libs.  The  headers  are  needed to compile Krusader. Look for
    packages     in     the     form     foo-devel-*.rpm     (e.g.
-   kdelibs-devel-3.1-58mdk.i586.rpm) or foo-dev-*.deb for Debian®
+   kdelibs-devel-3.1-58mdk.i586.rpm) or foo-dev-*.deb for Debian
    based   distributions.   They   most  likely  come  with  your
    distribution.
 
@@ -176,24 +175,14 @@ Chapter 6. Frequently Asked Questions (FAQ)
        If you can't find the needed package, use the rpmfind.net and
        click 'missing lib or header' in the search line. Or use
        apt-cache search foo to find the corresponding package for
-       Debian® based distributions.
+       Debian based distributions.
 
-   6.1.4.  I  have  successfully  installed Krusader from source.
-   Everything  went fine but I can't start it. What's going wrong
-   here?
+   6.1.4.  How  do  i  compile  Krusader  when i'm using a 64 bit
+   processor ?
 
-     * The Krusader binary is obviously not in your PATH.
-     * Use the find command to locate the binary.
-$  find /usr /opt -name  krusader -type f -perm +111
-/usr/local/bin/krusader
-       Here,  the  binary somehow made it into /usr/local/bin. It
-       is  most  likely,  that  your  KDEDIR  enviroment variable
-       wasn't set properly, look at KDEDIR - QTDIR for more info.
-     * If   you  don't  want  to  recompile  Krusader,  just  add
-       /usr/local/bin  to  your  PATH.  To do this for all users,
-       append  the  following  line in your /etc/profile file (or
-       any other file your shell sources at startup).
-$ export  PATH=$PATH:/usr/local/bin
+   We  don't  have  much  experiance  and  feedback  with  64 bit
+   processors  yet but our Krusader Forum is a good start. Please
+   look here.
 
    6.1.5. I have downloaded the Source RPM
    krusader-x.xx.dist.src.rpm What now?
@@ -234,9 +223,9 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    If  the prompt returns without any message, than everything is
    OK.
 
-   If  it  is  not  OK,  try  to  find  another package at Linux®
+   If  it  is  not  OK,  try  to  find  another package at Linux
    software  archives  such  as freshmeat.net or KDE-APPS.org. If
-   you  still  can't find a package for your Linux® distribution,
+   you  still  can't find a package for your Linux distribution,
    we   recommend   searching   for   it   with   rpmfind.net  or
    rpmpbone.net.
 
@@ -320,11 +309,11 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    libfam.la,  and  make  needs libfam.la to compile Krusader. If
    you  know  how this can be solved, please let us know. Install
    libfam0-devel-foo.rpm.      Note:     when     you     install
-   Mandrake(TM)-Linux®   9.2  with  the  default  settings,  this
+   Mandrake(TM)-Linux   9.2  with  the  default  settings,  this
    package  is not installed. If you need more information take a
    look at FAQ missing libs or headers.
 
-   6.1.11.   Debian®   complains   about   Qt(TM)   when  running
+   6.1.11.   Debian   complains   about   Qt(TM)   when  running
    ./configure
 
    This  problem  occurs  when you use gcc 2.95, you will need to
@@ -337,22 +326,22 @@ $ export CPP=/usr/bin/cpp-3.2
 
    For  more  information  please take a look in our forum and at
    the  instructions on how to build a Qt(TM)/KDE3 application on
-   Debian®.
+   Debian.
 
    6.1.12.  I have a libGLcore.so.1 compile error after using the
-   NVIDIA® installer
+   NVIDIA installer
 
-   This problem occurs when you use the NVIDIA® installer and not
-   the  official  NVIDIA® packages of your distribution. Krusader
+   This problem occurs when you use the NVIDIA installer and not
+   the  official  NVIDIA packages of your distribution. Krusader
    is  based  on  Qt(TM) which can be linked against the X OpenGL
    libraries.  As  a result Krusader may look for OpenGL as well.
-   The  problem  is that the NVIDIA® installer doesn't do its job
+   The  problem  is that the NVIDIA installer doesn't do its job
    properly,  it  replaces  the  OpenGL  header  files (which get
    included  into  Krusader)  but  doesn't  set  the  libGL links
-   correctly.  The  best  solution is to use the NVIDIA® packages
+   correctly.  The  best  solution is to use the NVIDIA packages
    provided  by  your distributor. The second solution is a (bad?
    :)  hack,  and  also  the  exact  commands depends on the used
-   distribution  and  the  version of the NVIDIA® driver (6111 in
+   distribution  and  the  version of the NVIDIA driver (6111 in
    this example), but it should be something like this:
 $ ln -s libGLcore.so.1.0.6111  libGLcore.so.0
 $ ln -s libGLcore.so.1.0.6111  libGLcore.so
@@ -379,7 +368,7 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
     2. If  you  can't  find a solution, please make a note of the
        following issues:
           + the Krusader version used
-          + the Linux® distribution + version used
+          + the Linux distribution + version used
           + a good description of the problem
        Without  this  information, it is very difficult for us to
        help you.
@@ -483,7 +472,11 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    See  the F1, F2 (etc.) buttons? They are not allowing Krusader
    to  downsize  as  they  have a minimum size. Just disable them
    View->Show  FN  Keys Bar and you'll be able to resize Krusader
-   to your liking.
+   to your liking. Since version 1.51 we have improved this a lot
+   better:  when downsizing the buttons will look like 'F5 ..py',
+   a  tooltip  will give the complete text. The minimum is 45 for
+   pixels  each button, that should give a minimum width of about
+   500 pixels and seems reasonable to us.
 
    6.2.3. When I do some file operation, Krusader's panel doesn't
    refresh  /  I'm using Krusader with fam installed, but updates
@@ -527,7 +520,7 @@ $ su -c 'fam -l'
    Copy the krarc.protocol file into $KDEDIR/share/services
 
    or  the  directory  where  the  KIO  slaves are placed in your
-   Linux® distribution.
+   Linux distribution.
 
    6.2.6.  When  I  try  to establish an FTP connection, I get an
    error  message after 'Connect OK' saying 'Could not connect to
@@ -601,7 +594,7 @@ $ su -c 'fam -l'
     3. If  you  can't  find  this bug mentioned, please submit it
        into  the  bug tracker by clicking the "Submit New" button
        in  the  bug-tracker  window.  Please submit the following
-       issues: the Krusader version used, the Linux® distribution
+       issues: the Krusader version used, the Linux distribution
        + version used, and a good description of the problem.
 
    Thanks for your cooperation!
@@ -674,7 +667,7 @@ $ su -c 'fam -l'
    have  the  made  the FAQ ;-) This also allows us also to spend
    more time in developing Krusader.
 
-   The Krusader Forum is split into five sections:
+   The Krusader Forum is split into six sections:
 
      * News and Announcements Forum all the latest news.
      * Bug  Discussion  Forum:  discussions about bugs, please DO
@@ -692,6 +685,9 @@ $ su -c 'fam -l'
        ToDo  ranking  system  contains  the  results based on the
        votes. Adding ToDo items or removing ToDo items which have
        been implemented will be done by the Krusader Krew.
+     * UserActions  Forum  discussions about UserActions. Posting
+       your  own  UserActions  is greatly appreciated. We plan to
+       include the best ones in the next Krusader releases.
      * General  Discussion  Forum:  everything  that  is Krusader
        related and doesn't belong in the other forums.
 
