@@ -1,0 +1,72 @@
+<chapter id="introduction">
+<title>Introduzione</title>
+
+	<para>
+	Krusader è un file-manager per Linux con un doppio pannello,
+	per l'ambiente desktop KDE 2.x.
+	</para>
+	<para>
+	<itemizedlist>
+  <title>Funzioni di Krusader</title>
+  <listitem><para>Barra degli strumenti e scorciatoie configurabili.</para></listitem>
+	<listitem><para>Pieno supporto ad Ace, Arj, Bzip2, Gzip, Tar, Rpm, Rar e Zip.</para></listitem>
+	<listitem><para>Modulo di ricerca avanzata capace di cercare negli archivi.</para></listitem>
+  <listitem><para>Confronto e filtro di directory.</para></listitem>
+  <listitem><para>Pannelli di vista rapida ed ad albero.</para></listitem>
+  <listitem><para>Client Ftp/Samba con un gestore delle connessioni.</para></listitem>
+	<listitem><para>Apertura di un terminale nel percorso selezionato.</para></listitem>
+  <listitem><para>Console opzionale integrata.</para></listitem>
+	<listitem><para>Lista di segnalibri configurabile (usando Book.Man, il gestore di segnalibri).</para></listitem>
+	<listitem><para>Semplice modifica dei permessi dei file.</para></listitem>
+	<listitem><para>Visualizzazione degli effettivi permessi dell'utente.</para></listitem>
+	<listitem><para>Calcolo dello spazio occupato dai file e dalle directory selezionate.</para></listitem>
+	<listitem><para>Visualizzatore interno ed editor configurabile.</para></listitem>
+	<listitem><para>Riga di comando capace di eseguire qualcosa in un terminale con un singolo clic.</para></listitem>
+	<listitem><para>Supporto completo del trascinamento e rilascio: si può trascinare direttamente un file da Konqueror ad un archivio .tar.gz, dal pannello di Krusader nel cestino, sul desktop o in Konqueror!</para></listitem>
+	<listitem><para>Compressione (o estrazione) di file in un archivio senza digitare nessun comando.</para></listitem>
+	<listitem><para>Prova dell'integrità degli archivi.</para></listitem>
+	<listitem><para>Confronto dei file per contenuto (per mezzo di un programma diff esterno come KDiff)</para></listitem>
+  <listitem><para>Supporto completo ai tipi MIME (con o senza magic!).</para></listitem>
+	</itemizedlist>
+	</para>
+
+	<para>
+	Il nostro scopo è fornire uno strumento che faccia le due cose più importanti:
+	gestire i file nel modo che volete e sembrare fantastico facendolo!
+	Per fare ciò, Krusader è dotato di una fantastica interfaccia grafica,
+	supporta il drag'n'drop ed i tipi MIME (con o senza magic!) -
+	tutto quello di cui avete bisogno per sentirvi a vostro agio usandolo.
+	Krusader ha delle funzioni eccezionali, è veloce e gestisce gli archivi trasparentemente,
+	fondamentalmente, tutto ciò che ci si potrebbe aspettare da strumenti come Midnight Commander.
+	Krusader è open source, libero ed è rilasciato sotto i termini della Licenza Pubblica GNU (GPL),
+	sebbene noi (gli sviluppatori) deteniamo il copyright del progetto ed il suo nome.
+	</para>
+	<para>
+	L'obiettivo del progetto è quello di creare un file manager tutto-in-uno, che farà tutto
+	quello che l'utente si aspetta da esso, e qualcosa in più... ;-)
+	Dato che il principio dietro Krusader è basato sui file manager di "lungo corso"
+	(Midnight Commander, Norton Commander), i filesystem virtuali sono stati al centro dell'attenzione.
+	I filesystem virtuali (VFS) sono uno strato astratto sopra tutti i tipi di informazioni
+	archiviate (file ZIP, server FTP, filesystem NFS, condivisioni SAMBA),
+	che consente all'utente di accedere a tutte le informazioni in modo trasparente -
+	proprio come entrare in una sott-directory.
+	Krusader attualmente supporta VFS per gli archivi (Zip, Tar, GZip, BZip2, Ace, Rar e Arj),
+	pacchetti (RPM) e filesystem (FTP, NFS e Samba).
+	Krusader include anche MountMan, che consente di (s)montare
+	filesystem con un singolo clic del mouse e fornisce informazioni sull'uso.
+	Sono inoltre inclusi un gestore di segnalibri, un gestore di connessioni remote ed un modulo di ricerca avanzata.
+	Stiamo pianificando lo sviluppo di altri moduli nel prossimo futuro,
+	migliorando Krusader in modo grandioso. (es.: browser samba).
+	</para>
+
+	<para>Speriamo che vi divertiate con Krusader, noi lo facciamo!</para>
+  <screenshot>
+	<screeninfo>Qui è riportata una schermata di Krusader</screeninfo>
+	<mediaobject>
+		<imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
+	  <imageobject><imagedata fileref="krusader1.eps" format="EPS"/></imageobject>
+	  <textobject><phrase>Screenshot</phrase></textobject>
+	</mediaobject>
+	</screenshot>
+
+</chapter>

@@ -1,0 +1,92 @@
+<appendix id = "installation">
+<title>Installazione</title>
+
+  <sect1 id = "getting-Krusader">
+  <title>Come ottenere Krusader</title>
+
+  <para>
+  La versione più aggiornata può essere trovata sul
+  <ulink url="http://krusader.sourceforge.net">sito di Krusader</ulink>.
+  ma è possibile anche trovare delle copie negli archivi di software per Linux come
+  <ulink url="http://www.freshmeat.net">freshmeat</ulink> o
+  <ulink url="http://apps.kde.com">apps.kde.com</ulink>.
+  </para>
+  <para>
+  <ulink url="http://krusader.sourceforge.net">La homepage di Krusader</ulink>
+  contiene gli archivi tar dei sorgenti ed i pacchetti RPM per qualsiasi distro si utilizzi
+  attualmente. Nel sito potrebbe esserci qualche altro pacchetto, ma questo dipende
+  dai contributi degli altri utenti. Se non si riesce a trovare un pacchetto RPM per la propria distribuzione Linux,
+  si raccomanda di cercarlo nel
+  <ulink url="http://www.rpmfind.net">Motore di ricerca RPM</ulink>(un sito utilissimo).
+  </para>
+
+  </sect1>
+
+  <sect1 id="requirements">
+  <title>Requisiti</title>
+
+  <para>
+  Per usare con successo Krusader, è necessario KDE 2.x.x.
+  Krusader usa circa 10 MByte di memoria per funzionare, ma questo può variare in funzione
+  della vostra piattaforma e configurazione.
+  Per gestire gli archivi gli strumenti di compressione devono essere installati nel proprio PATH.
+  </para>
+
+  <para>
+  Un pacchetto di compattatori/estrattori molto comuni, oltre che Krusader stesso, può essere trovato nel
+  <ulink url="http://krusader.sourceforge.net">sito di Krusader</ulink>.
+  </para>
+
+  <para>
+  Una lista delle modifiche può essere trovato nel
+  <ulink url="http://krusader.sourceforge.net/changelog">Krusader Changelog</ulink>.
+  </para>
+  </sect1>
+
+  <sect1 id="compilation">
+  <title>Compilazione ed installazione</title>
+
+  <para>
+  Per compilare ed installare Krusader bisogna essere sicuri che la variabile  d'ambiente $KDEDIR sia
+  definita nel proprio sistema e che punti alla propria directory KDE.
+  Questo si può testare digitando:
+  <screen width="40">
+  <prompt>%</prompt> <userinput>echo $KDEDIR</userinput>
+  </screen>
+  al prompt della shell; la risposta dovrebbe essere la propria directory KDE.
+  Se $KDEDIR non è definita o non punta alla directory corretta,
+  si può rimediare con il seguente comando:
+  <screen width="40">
+  <prompt>%</prompt> <userinput>export KDEDIR="inserire la propria directory KDE"</userinput>
+  </screen>
+  </para>
+
+  <para>
+  Dopo che $KDEDIR è impostata, digitare quello che segue nella directory
+  di base della distribuzione di Krusader:
+  <screen width="40">
+  <prompt>%</prompt> <userinput>./configure</userinput>
+  <prompt>%</prompt> <userinput>make</userinput>
+  <prompt>%</prompt> <userinput>make install</userinput>
+  </screen>
+  Il comando "make install" deve essere eseguito come root.
+  </para>
+
+  <para>Siccome Krusader usa autoconf e automake non si dovrebbero avere problemi nella compilazione.
+  Nel caso si verificassero dei problemi, per favore si segnalino per email o usando il nostro forum web.
+  </para>
+
+</sect1>
+
+  <sect1 id="configuration">
+  <title>Configurazione</title>
+
+  <para>
+  Quando si esegue Krusader per la prima volta il modulo di configurazione di Krusader -
+  <link linkend="konfigurator">Konfigurator</link> - sarà avviato e permetterà
+  di configurare Krusader oltre che rilevare i compattatori e gli strumenti installati. Konfigurator può
+  essere eseguito successivamente dal <link linkend="settings-menu">menu Impostazioni</link>.
+  </para>
+  </sect1>
+
+</appendix>
