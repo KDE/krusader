@@ -102,7 +102,9 @@ void ListPanelFunc::openUrl( const KURL& urlIn,const QString& nameToMakeCurrent)
 	//QString relative_path = KURL::relativeURL( panel->getPath()+"/", url.url() );
 	//kdDebug() << "Sync: from: " << panel->getPath()+"/" << " to: " << url.url() << " -> relativeURL: " << relative_path << endl;
 	//OTHER_FUNC->openUrl( relative_path );
+	OTHER_FUNC->files()->vfs_setQuiet( true );
 	OTHER_FUNC->openUrl( KURL::relativeURL( panel->getPath()+"/", url.url() ) );	// the trailing slash is nessesary because krusader provides Dir's without it
+	OTHER_FUNC->files()->vfs_setQuiet( false );
 	bMaster = true;
   }
 
@@ -147,7 +149,10 @@ void ListPanelFunc::openUrl( const KURL& urlIn,const QString& nameToMakeCurrent)
 			vfsP = v; // v != 0 so this is safe
 		}
     if( vfsP->vfs_refresh(u) ) break; // we have a valid refreshed URL now
+    vfsP->vfs_setQuiet( true );
   }
+  vfsP->vfs_setQuiet( false );
+  
 	// update the urls stack
 	if( !files()->vfs_getOrigin().equals(urlStack.top()) ){
 		urlStack.push( files()->vfs_getOrigin() );

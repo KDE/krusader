@@ -38,7 +38,7 @@
 #include "../krusader.h"
 #include "../defaults.h"
 
-vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),vfileIterator(0){
+vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableSignals(false),vfileIterator(0){
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
 	 		connect(this,SIGNAL(incrementalRefreshFinished( QString )),panel,SLOT(slotGetStats( QString )));
@@ -178,7 +178,7 @@ bool vfs::vfs_refresh(const KURL& origin){
 	// and re-populate it
 	if (!populateVfsList(origin,showHidden) ) return false;
 	
-	if (!quietMode) emit startUpdate();
+	if (!disableSignals) emit startUpdate();
 	return true;
 }
 
