@@ -69,6 +69,7 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Jonas Baehr", "Developer", "jonas.baehr@web.de", 0);
   aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "deschler@users.sourceforge.net", 0);
   aboutData.addAuthor("Frank Schoolmeesters", "Documentation coordinator", "frank_schoolmeesters@yahoo.com", 0);
+  aboutData.addCredit("ONExige Design Studio", "Great icon for krusader", "mailbox@onexige.com", 0);
   aboutData.addCredit("Gábor Lehel", "Viewer module for 3rd Hand", "illissius@gmail.com", 0);
   aboutData.addCredit("Mark Eatough", "Handbook Proof-Reader", "markeatough@yahoo.com", 0);
   aboutData.addCredit("Jan Halasa", "The old Bookmark Module", "xhalasa@fi.muni.cz", 0);
