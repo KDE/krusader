@@ -44,6 +44,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krservices.h"
 #include "kmountmangui.h"
 #include <unistd.h>
+#include "../Dialogs/krprogress.h"
 
 #ifdef _OS_SOLARIS_
 #define FSTAB "/etc/vfstab"
@@ -125,7 +126,8 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 	if (!m) return;
 	if (blocking)
 	   waiting = true; // prepare to block
-	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint());
+	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint(), false);
+	new KrProgress(job);
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
@@ -136,7 +138,8 @@ void KMountMan::mount( QString mntPoint, bool blocking ) {
 void KMountMan::unmount( QString mntPoint, bool blocking ) {
 	if (blocking)
 	   waiting = true; // prepare to block
-	KIO::SimpleJob *job = KIO::unmount(mntPoint);
+	KIO::SimpleJob *job = KIO::unmount(mntPoint, false);
+	new KrProgress(job);
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
 	while (blocking && waiting) {
 		qApp->processEvents();
