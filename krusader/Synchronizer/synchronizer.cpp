@@ -376,7 +376,12 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
 
 bool Synchronizer::checkName( QString name )
 {
-  return QRegExp(fileFilter,true,true).exactMatch( name );
+  QStringList fileNames = QStringList::split(" ",fileFilter);
+  
+  for ( QStringList::Iterator it = fileNames.begin(); it != fileNames.end(); ++it )
+    if( QRegExp(*it,true,true).exactMatch( name ) )
+      return true;
+  return false;
 }
 
 void Synchronizer::setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing,
