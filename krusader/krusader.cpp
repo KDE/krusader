@@ -783,9 +783,8 @@ bool Krusader::queryClose() {
 }
 
 void Krusader::quitKrusader() {
-   if ( queryClose() ) {
-      kapp->quit();
-   }
+   connect( kapp, SIGNAL( lastWindowClosed() ), kapp, SLOT( quit() ) );
+   kapp->closeAllWindows();
 }
 
 // the please wait dialog functions
