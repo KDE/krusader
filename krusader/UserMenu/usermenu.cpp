@@ -39,31 +39,44 @@ Command: %xYYY%
 In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute as needed.
 
 %_p%    - panel path
+%_anf%  - number of files
+%_and%  - number of folders
+%_an%   - number of files and folders
+
 %_c%    - current file (or folder). Note: current != selected
 %_s%    - selected files and folders
 %_cs%   - selected files including current file (if it's not already selected)
 %_afd%  - all files and folders
 %_af%   - all files (not including folders)
 %_ad%   - all folders (not including files)
-%_an%   - number of files and folders
-%_anf%  - number of files
-%_and%  - number of folders
 %_fm%   - filter mask (for example: *, *.cpp, *.h etc.)
 
 */
 UMCmd UserMenu::expressions[ UserMenu::numOfExps ] = {
-         {"%_p%", "panel's path", expPath}
+         {"%_p%", "panel's path", exp_p},
+         {"%_anf%", "no. of files", exp_anf},
+         {"%_and%", "no. of folders", exp_and},
+         {"%_an%", "no. of files and folders", exp_an}
       };
 
-#define ACTIVE  krApp->mainView->activePanel
-#define OTHER   krApp->mainView->activePanel->otherPanel
+#define ACTIVE    krApp->mainView->activePanel
+#define OTHER     krApp->mainView->activePanel->otherPanel
+#define GETPANEL  (str.lower()[1]=='a' ? ACTIVE : OTHER)
 
-QString UserMenu::expPath( const QString& str ) {
-   if ( str.lower() == "%ap%" ) {
-      return ACTIVE->virtualPath;
-   } else if ( str.lower() == "%op%" ) {
-      return OTHER->virtualPath;
-   } else return QString::null;
+QString UserMenu::exp_p( const QString& str ) {
+   return GETPANEL->virtualPath;
+}
+
+QString UserMenu::exp_anf( const QString& str ) {
+   return QString("%1").arg(GETPANEL->view->numFiles());
+}
+
+QString UserMenu::exp_and( const QString& str ) {
+   return QString("%1").arg(GETPANEL->view->numDirs());
+}
+
+QString UserMenu::exp_an( const QString& str ) {
+   return QString("%1").arg(GETPANEL->view->numDirs()+GETPANEL->view->numFiles());
 }
 
 void UserMenu::exec() {
@@ -142,11 +155,11 @@ UserMenuEntry::UserMenuEntry(QString data) {
    // execType
    sidx = eidx+1;
    eidx = data.find(',', sidx);
-   execType = data.mid(sidx, eidx-sidx).toInt();
+   execType = (UserMenuProc::ExecType)data.mid(sidx, eidx-sidx).toInt();
    // separateStderr
    sidx = eidx+1;
    eidx = data.find(',', sidx);
-   execType = data.mid(sidx, eidx-sidx).toInt();
+   separateStderr = data.mid(sidx, eidx-sidx).toInt();
    // acceptUrls
    sidx = eidx+1;
    eidx = data.find(',', sidx);
@@ -170,6 +183,16 @@ UserMenuEntry::UserMenuEntry(QString data) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 UserMenuGui::UserMenuGui( UserMenu *menu, QWidget * parent ) : KPopupMenu( parent ) {
+   createMenu();
+
+   // create the 'add entry' gui
+   _addgui = new UserMenuAddImpl(menu, this);
+   connect(_addgui, SIGNAL(newEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )),
+               this, SLOT(addEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )));
+}
+
+void UserMenuGui::createMenu() {
+   clear();
    insertTitle( "User Menu" );
 
    // read entries from config file.
@@ -178,12 +201,6 @@ UserMenuGui::UserMenuGui( UserMenu *menu, QWidget * parent ) : KPopupMenu( paren
    // add the "add new entry" command
    insertSeparator();
    insertItem( "Add new entry", 0 );
-
-   // create the 'add entry' gui
-   _addgui = new UserMenuAddImpl(menu, this);
-   connect(_addgui, SIGNAL(newEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )),
-               this, SLOT(addEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )));
-
 }
 
 void UserMenuGui::readEntries() {
@@ -242,6 +259,8 @@ void UserMenuGui::addEntry(QString name, QString cmdline, UserMenuProc::ExecType
       stream << line << endl;
       file.close();
    }
+   // update the menu, by re-reading the entries
+   createMenu();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

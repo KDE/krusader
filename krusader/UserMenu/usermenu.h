@@ -82,6 +82,7 @@ class UserMenuGui: public KPopupMenu {
    protected slots:
       void addEntry( QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
                      bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0 );
+      void createMenu();
 
    private:
       QValueList<UserMenuEntry> _entries;
@@ -134,11 +135,14 @@ class UserMenu : public QWidget {
       UserMenu( QWidget *parent = 0, const char *name = 0 );
 
 
-      static const int numOfExps = 1;
+      static const int numOfExps = 4;
       static UMCmd expressions[ numOfExps ];
 
    protected:
-      static QString expPath( const QString& str );
+      static QString exp_p( const QString& str );
+      static QString exp_anf( const QString& str );
+      static QString exp_and( const QString& str );
+      static QString exp_an( const QString& str );
 
    private:
       UserMenuGui* _popup;
