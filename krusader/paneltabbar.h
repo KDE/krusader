@@ -82,6 +82,7 @@ signals:
 protected:
   void mousePressEvent( QMouseEvent* );
   void insertAction( KAction* );
+  QString squeeze(QString text);
 
 protected slots:
   void closeTab();

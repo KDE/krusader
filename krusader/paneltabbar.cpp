@@ -25,7 +25,7 @@
 #include <qevent.h>
 #include <qwidgetstack.h>
 #include <qfontmetrics.h>
-#include <kdebug.h>
+#include <qtooltip.h>
 
 PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent) {
   _panelActionMenu = new KActionMenu( i18n("Panel"), this );
@@ -127,6 +127,59 @@ void PanelTabBar::duplicateTab() {
 void PanelTabBar::closeTab() {
   emit closeCurrentTab();
 }
+
+QString PanelTabBar::squeeze(QString text) {
+  QFontMetrics fm(fontMetrics());
+  int labelWidth = (tabAt(0) ? tab(0)->rect().width() : fm.width("WWWWW"));
+  int textWidth = fm.width(text);
+  if (textWidth > labelWidth) {
+    // start with the dots only
+    QString squeezedText = "...";
+    int squeezedWidth = fm.width(squeezedText);
+
+    // estimate how many letters we can add to the dots on both sides
+    int letters = text.length() * (labelWidth - squeezedWidth) / textWidth / 2;
+    if (labelWidth < squeezedWidth) letters=1;
+    squeezedText = text.left(letters) + "..." + text.right(letters);
+    squeezedWidth = fm.width(squeezedText);
+
+    if (squeezedWidth < labelWidth) {
+        // we estimated too short
+        // add letters while text < label
+        do {
+                letters++;
+                squeezedText = text.left(letters) + "..." + text.right(letters);
+                squeezedWidth = fm.width(squeezedText);
+        } while (squeezedWidth < labelWidth);
+        letters--;
+        squeezedText = text.left(letters) + "..." + text.right(letters);
+    } else if (squeezedWidth > labelWidth) {
+        // we estimated too long
+        // remove letters while text > label
+        do {
+            letters--;
+            squeezedText = text.left(letters) + "..." + text.right(letters);
+            squeezedWidth = fm.width(squeezedText);
+        } while (letters && squeezedWidth > labelWidth);
+    }
+
+    if (letters < 5) {
+    	// too few letters added -> we give up squeezing
+    	return text;
+    } else {
+	    return squeezedText;
+    }
+
+    QToolTip::add( this, text );
+
+  } else {
+    return text;
+
+    QToolTip::remove( this );
+    QToolTip::hide();
+  };
+}
+
 
 // -----------------------------> PanelTab <----------------------------
 
