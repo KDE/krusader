@@ -452,7 +452,7 @@ void Krusader::setupActions() {
                                   SLOT( cmdlinePopup() ), actionCollection(), "cmdline popup" );
    /* Shortcut disabled because of the Terminal Emulator bug. */
    actDirUp = new KAction( i18n( "Up one directory" ), "up", CTRL+Key_PageUp /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
-   new KAction( i18n( "&Edit new file" ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
+   new KAction( i18n( "&Edit New File" ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
    new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_red", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
    actTest = new KAction( i18n( "T&est Archive(s)" ), "ark", ALT + Key_E,
@@ -471,9 +471,9 @@ void Krusader::setupActions() {
                           SLOTS, SLOT( slotPack() ), actionCollection(), "pack" );
    actUnpack = new KAction( i18n( "&Unpack" ), "kr_arc_unpack", ALT + Key_U,
                             SLOTS, SLOT( slotUnpack() ), actionCollection() , "unpack" );
-   actSplit = new KAction( i18n( "Sp&lit file" ), "kr_split", CTRL + Key_P,
+   actSplit = new KAction( i18n( "Sp&lit File" ), "kr_split", CTRL + Key_P,
                            SLOTS, SLOT( slotSplit() ), actionCollection(), "split" );
-   actCombine = new KAction( i18n( "Com&bine files" ), "kr_combine", CTRL + Key_B,
+   actCombine = new KAction( i18n( "Com&bine Files" ), "kr_combine", CTRL + Key_B,
                              SLOTS, SLOT( slotCombine() ), actionCollection() , "combine" );
    actSelect = new KAction( i18n( "Select &Group" ), "kr_select", CTRL + Key_Plus,
                             SLOTS, SLOT( markGroup() ), actionCollection(), "select group" );
@@ -540,7 +540,7 @@ void Krusader::setupActions() {
    //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
    actCustomFilter = new KAction( i18n( "&Custom" ), SHIFT + Key_F12,
                                   SLOTS, SLOT( customFilter() ), actionCollection(), "custom files" );
-   actCompare = new KAction( i18n( "Compare b&y content" ), "kmultiple", 0,
+   actCompare = new KAction( i18n( "Compare b&y Content" ), "kmultiple", 0,
                              SLOTS, SLOT( compareContent() ), actionCollection(), "compare" );
    actMultiRename = new KAction( i18n( "Multi &Rename" ), "krename", SHIFT + Key_F9,
                                  SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
@@ -750,7 +750,7 @@ bool Krusader::queryClose() {
    krConfig->setGroup( "Look&Feel" );
    if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {
       switch ( KMessageBox::warningYesNo( this,
-                                          i18n( "Ok to shutdown Krusader?" ) ) ) {
+                                          i18n( "Are you sure you want to quit?" ) ) ) {
             case KMessageBox::Yes :
             quit = true;
             break;

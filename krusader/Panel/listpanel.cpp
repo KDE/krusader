@@ -124,7 +124,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    int sheight = QFontMetrics( status->font() ).height() + 4;
    status->setMaximumHeight( sheight );
    QWhatsThis::add
-      ( status, i18n( "The status bar displays information about the FILESYSTEM "
+      ( status, i18n( "The statusbar displays information about the FILESYSTEM "
                       "which holds your current directory: Total size, free space, "
                       "type of filesystem, etc." ) );
    connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );

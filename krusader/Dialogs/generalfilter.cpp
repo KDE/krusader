@@ -272,7 +272,7 @@ bool GeneralFilter::fillQuery( KRQuery *query )
 {
   // check that we have (at least) what to search, and where to search in
   if (searchFor->currentText().simplifyWhiteSpace().isEmpty()) {
-    KMessageBox::error(0,i18n("No search criteria entered !"));
+    KMessageBox::error(0,i18n("No search criteria entered!"));
     searchFor->setFocus();
     return false;
   }

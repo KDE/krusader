@@ -92,11 +92,11 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] =
   //   cfg_class  cfg_name                default               text                                      restart ToolTip
     {{"Startup","UI Save Settings",      _UiSave,               i18n( "Save settings on exit" ),          false,  i18n( "Krusader checks the state of the user interface components,\nand restores them to their condition when last shutdown." ) },
-     {"Startup","Show tool bar",         _ShowToolBar,          i18n( "Toolbar visible" ),                false,  i18n( "Toolbar will be visible after startup." ) },
-     {"Startup","Show status bar",       _ShowStatusBar,        i18n( "Statusbar visible" ),              false,  i18n( "Statusbar will be visible after startup." ) },
-     {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Function keys visible" ),          false,  i18n( "Function keys will be visible after startup." ) },
-     {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Command-line visible" ),           false,  i18n( "Command-line will be visible after startup." ) },
-     {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Terminal Emulator visible" ),      false,  i18n( "Terminal Emulator will be visible after startup." ) },
+     {"Startup","Show tool bar",         _ShowToolBar,          i18n( "Show toolbar" ),                false,  i18n( "Toolbar will be visible after startup." ) },
+     {"Startup","Show status bar",       _ShowStatusBar,        i18n( "Show statusbar" ),              false,  i18n( "Statusbar will be visible after startup." ) },
+     {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Show function keys" ),          false,  i18n( "Function keys will be visible after startup." ) },
+     {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Show command line" ),           false,  i18n( "Command line will be visible after startup." ) },
+     {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Show terminal emulator" ),      false,  i18n( "Terminal emulator will be visible after startup." ) },
      {"Startup","Remember Position",     _RememberPos,          i18n( "Save last position and size" ), false,  i18n( "When launched, Krusader will resize itself to the size it was when last shutdown.\nKrusader will also appear in the same location on the screen.\nIf this option is disabled, you can use the menu 'Settings-Save Position'\noption to manually set Krusader's size and position at startup" )
 }};
 

@@ -76,10 +76,10 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
             
   KONFIGURATOR_CHECKBOX_PARAM confirmations[] =
   //   cfg_class  cfg_name                default             text                                          restart ToolTip
-    {{"Advanced","Confirm Unempty Dir",   _ConfirmUnemptyDir, i18n( "Deleting non-empty directorie(s)" ),   false,  ""},
-     {"Advanced","Confirm Delete",        _ConfirmDelete,     i18n( "Deleting file(s)" ),                   false,  ""},
-     {"Advanced","Confirm Copy",          _ConfirmCopy,       i18n( "Copying file(s)" ),                    false,  ""},
-     {"Advanced","Confirm Move",          _ConfirmMove,       i18n( "Moving file(s)" ),                     false,  ""}};
+    {{"Advanced","Confirm Unempty Dir",   _ConfirmUnemptyDir, i18n( "Deleting non-empty directories" ),   false,  ""},
+     {"Advanced","Confirm Delete",        _ConfirmDelete,     i18n( "Deleting files" ),                   false,  ""},
+     {"Advanced","Confirm Copy",          _ConfirmCopy,       i18n( "Copying files" ),                    false,  ""},
+     {"Advanced","Confirm Move",          _ConfirmMove,       i18n( "Moving files" ),                     false,  ""}};
 
   KonfiguratorCheckBoxGroup *confWnd = createCheckBoxGroup( 1, 0, confirmations, 4, confirmGrp );
 

@@ -63,10 +63,10 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   //   cfg_class  cfg_name                default             text                              restart tooltip
     {{"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  i18n( "Display a warning when you try to exit Krusader." ) },
      {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  i18n( "When minimizing Krusader, its icon will appear in the system tray instead of the taskbar." ) },
-     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display the dot-files" ) },
+     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display the dot files" ) },
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  i18n( "When matching the select criteria, directories will also be marked" ) },
      {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
-     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the Folder Tabs, otherwise only the last part of the path will be displayed." ) },
+     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the Folder Tabs; otherwise, only the last part of the path will be displayed." ) },
      //{"Look&Feel","Single Click Selects", false,              i18n( "Single click executes" ),   false,  i18n( "" ) },
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  i18n( "Opens a quick search dialog box." ) },
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
@@ -135,7 +135,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   panelGrid->addWidget( createLine( panelGrp, "lookSep2" ), 2, 0 );
 
-  addLabel( panelGrid, 3, 0, i18n( "Visible Columns:" ),
+  addLabel( panelGrid, 3, 0, i18n( "Show Columns:" ),
             panelGrp, "panelLabel" );
 
   KONFIGURATOR_CHECKBOX_PARAM fields[] =
@@ -190,7 +190,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   // import and export shortcuts
   KPushButton *importBtn = new KPushButton(i18n("Import shortcuts"),tab_3);
   keyBindingsLayout->addWidget(importBtn,1,0);
-  QToolTip::add(  importBtn, i18n( "Load a Key-binding profile, e.g. total_commander.keymap" ) );
+  QToolTip::add(  importBtn, i18n( "Load a Key-binding profile, e.g., total_commander.keymap" ) );
   KPushButton *exportBtn = new KPushButton(i18n("Export shortcuts"),tab_3);
   keyBindingsLayout->addWidget(exportBtn,1,1);
   QToolTip::add(  exportBtn, i18n( "Save current Key-bindings in a keymap file." ) );
@@ -208,7 +208,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] = 
   //   cfg_class    cfg_name                default        text                             restart tooltip
-    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Panel Toolbar visible" ), false,  i18n( "Krusader will display the Panel Toolbar." ) }
+    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Show Panel Toolbar" ), false,  i18n( "Krusader will display the Panel Toolbar." ) }
   };
 
   panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive");

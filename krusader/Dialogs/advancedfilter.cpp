@@ -507,7 +507,7 @@ void AdvancedFilter::invalidDateMessage(QLineEdit *p)
 {
   KMessageBox::detailedError(0, i18n("Invalid date entered."),
                              i18n("The date '") + p->text() + i18n("' is not valid according to your locale.\n"
-                             "Please re-enter a valid date (use the date button of easy access)."));
+                             "Please re-enter a valid date (use the date button for easy access)."));
   p->setFocus();
 }
 
@@ -536,9 +536,9 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
   }
   // check that minSize is smaller than maxSize
   if ((query->minSize > 0) && (query->maxSize > 0) && (query->maxSize < query->minSize)) {
-    KMessageBox::detailedError(0, i18n("Specified sizes are inconsistent !"),
-      i18n("Please re-enter the values, so that the leftmost size will\n"
-           "be smaller (or equal) to the right size."));
+    KMessageBox::detailedError(0, i18n("Specified sizes are inconsistent!"),
+      i18n("Please re-enter the values, so that the left-side size\n"
+           "will be smaller than (or equal to) the right-side size."));
     biggerThanAmount->setFocus();
     return false;
   }
@@ -555,10 +555,10 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
       if (!d2.isValid()) { invalidDateMessage(modifiedBetweenData2); return false; }
 
       if (d1 > d2) {
-        KMessageBox::detailedError(0, i18n("Dates are inconsistent !"),
-          i18n("The date on the left side is later than the date on the right.\n"
-               "Please re-enter the dates, so that the leftmost date will be\n"
-               "earlier than the right one."));
+        KMessageBox::detailedError(0, i18n("Dates are inconsistent!"),
+          i18n("The date on the left is later than the date on the right.\n"
+               "Please re-enter the dates, so that the left-side date will be\n"
+               "earlier than the right-side date."));
         modifiedBetweenData1->setFocus();
         return false;
       }
@@ -605,10 +605,10 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
       if ( !modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() &&
            !notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() ) {
         if (d1 > d2) {
-          KMessageBox::detailedError(0, i18n("Dates are inconsistent !"),
-            i18n("The date on the top is later than the date on the bottom.\n"
+          KMessageBox::detailedError(0, i18n("Dates are inconsistent!"),
+            i18n("The date on top is later than the date on the bottom.\n"
                  "Please re-enter the dates, so that the top date will be\n"
-                 "earlier than the bottom one."));
+                 "earlier than the bottom date."));
           modifiedInTheLastData->setFocus();
           return false;
         }
