@@ -38,7 +38,7 @@
 #include <iostream>
 #include "krzip.h"
 
-#if 1
+#if 0
 #define KRDEBUG(X...) do{   \
 	QFile f("/tmp/debug");    \
 	f.open(IO_WriteOnly | IO_Append);     \
