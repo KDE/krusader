@@ -60,6 +60,7 @@ public:
 	void terminal();
 	void editFile();
 	void view();
+  void rename();
 	void mkdir();
 	void moveFiles();
   void pack();
