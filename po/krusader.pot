@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2003-05-29 23:09+0300\n"
+"POT-Creation-Date: 2003-06-06 16:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,8 +148,8 @@ msgstr ""
 msgid "%1 (Link)"
 msgstr ""
 
-#: Panel/krpreviewpopup.cpp:31
-msgid "Configure preview"
+#: Panel/krpreviewpopup.cpp:32
+msgid "Preview not available"
 msgstr ""
 
 #: Panel/kfilelist.cpp:71 Dialogs/krspwidgets.cpp:180
@@ -308,7 +308,7 @@ msgid "Are you sure you want to shred "
 msgstr ""
 
 #: Panel/listpanel.cpp:625 Panel/panelfunc.cpp:296 Panel/panelfunc.cpp:324
-#: krslots.cpp:302
+#: krslots.cpp:304
 msgid "Can't open "
 msgstr ""
 
@@ -2076,13 +2076,13 @@ msgstr ""
 
 #: Konfigurator/kgarchives.cpp:133
 msgid ""
-"This action can be tricky, since system failure during the process might "
-"result in misplaced files. If this happens, the files are stored in a temp "
-"directory inside /tmp."
+"This action can be tricky, since system failure during the process\n"
+"might result in misplaced files. If this happens,\n"
+"the files are stored in a temp directory inside /tmp."
 msgstr ""
 
 #: Konfigurator/kgarchives.cpp:137
-msgid "Test archive when finished packing"
+msgid "Test archive when finished packingsdfsfsdfsdfsdfsdf!"
 msgstr ""
 
 #: Konfigurator/kgarchives.cpp:138
@@ -2291,52 +2291,56 @@ msgid ""
 "If you install new tools, please install them"
 msgstr ""
 
-#: krslots.cpp:111
+#: krslots.cpp:94
+msgid "Compare mode is temporarily disabled. sorry"
+msgstr ""
+
+#: krslots.cpp:113
 msgid ""
 "Krusader can't find any of the supported mail clients. Please install one to "
 "your path. Hint: Krusader supports kmail."
 msgstr ""
 
-#: krslots.cpp:118
+#: krslots.cpp:120
 msgid "Sending file: "
 msgstr ""
 
-#: krslots.cpp:124 krslots.cpp:177
+#: krslots.cpp:126 krslots.cpp:179
 msgid "Error executing "
 msgstr ""
 
-#: krslots.cpp:133
+#: krslots.cpp:135
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports kdiff and xxdiff."
 msgstr ""
 
-#: krslots.cpp:149
+#: krslots.cpp:151
 msgid "Don't know which files to compare."
 msgstr ""
 
-#: krslots.cpp:150
+#: krslots.cpp:152
 msgid ""
 "To compare 2 files by content, select (mark) a file in the left panel, and "
 "select another one in the right panel."
 msgstr ""
 
-#: krslots.cpp:162 krslots.cpp:168
+#: krslots.cpp:164 krslots.cpp:170
 msgid "Krusader is unable to download: "
 msgstr ""
 
-#: krslots.cpp:193
+#: krslots.cpp:195
 msgid ""
 "In order to save the time needed to enter an archive, Krusader will not "
 "allow bookmarks which point into an archive, as it is usually a mistake to "
 "do so!"
 msgstr ""
 
-#: krslots.cpp:311
+#: krslots.cpp:313
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr ""
 
-#: krslots.cpp:319
+#: krslots.cpp:321
 msgid ""
 "Can't find a batch renamer tool.\n"
 "You can get Krename at http://krename.sf.net"
