@@ -54,27 +54,15 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   pathsGrid->setMargin( 11 );
   pathsGrid->setAlignment( Qt::AlignTop );
   
-  addLabel( pathsGrid, 0, 0, "df", general_tab, "dfName" );
-  KonfiguratorURLRequester *dfPath = createURLRequester( "Dependencies", "df", "", general_tab, false );
-  pathsGrid->addWidget( dfPath, 0, 1 );
-
-  addLabel( pathsGrid, 1, 0, "eject", general_tab, "ejectName" );
-  KonfiguratorURLRequester *ejectPath = createURLRequester( "Dependencies", "eject", "", general_tab, false );
-  pathsGrid->addWidget( ejectPath, 1, 1 );
-
+  addApplication( "df",       pathsGrid, 0, general_tab );
+  addApplication( "eject",    pathsGrid, 1, general_tab );
   addApplication( "kdesu",    pathsGrid, 2, general_tab );
   addApplication( "kmail",    pathsGrid, 3, general_tab );
   addApplication( "kompare",  pathsGrid, 4, general_tab );
   addApplication( "krename",  pathsGrid, 5, general_tab );
   addApplication( "krusader", pathsGrid, 6, general_tab );
-
-  addLabel( pathsGrid, 7, 0, "mount", general_tab, "mountName" );
-  KonfiguratorURLRequester *mountPath = createURLRequester( "Dependencies", "mount", "", general_tab, false );
-  pathsGrid->addWidget( mountPath, 7, 1 );
-
-  addLabel( pathsGrid, 8, 0, "umount", general_tab, "umountName" );
-  KonfiguratorURLRequester *umountPath = createURLRequester( "Dependencies", "umount", "", general_tab, false );
-  pathsGrid->addWidget( umountPath, 8, 1 );
+  addApplication( "mount",    pathsGrid, 7, general_tab );
+  addApplication( "umount",   pathsGrid, 8, general_tab );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );

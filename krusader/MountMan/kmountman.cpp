@@ -28,6 +28,7 @@
 
 
 #include <sys/param.h>
+#include <time.h>
 #include "kmountman.h"
 // QT incldues
 #include <qcstring.h>
@@ -39,12 +40,14 @@
 // KDE includes
 #include <kmessagebox.h>
 #include <kprocess.h>
+#include <kprocctrl.h>
 #include <kio/job.h>
 #include <klocale.h>
 // Krusader includes
 #include "../resources.h"
 #include "../krusader.h"
 #include "../Dialogs/krdialogs.h"
+#include "../krservices.h"
 #include "kmountmangui.h"
 #include <unistd.h>
 
@@ -53,6 +56,8 @@
 #else
 #define FSTAB "/etc/fstab"
 #endif
+
+bool  dfStartFailed = false;
 
 using namespace MountMan;
 
@@ -219,7 +224,7 @@ bool KMountMan::createFilesystems() {
   // Workaround: execute mount -p and merge result.
 
   KShellProcess proc;
-  proc << "mount -p";
+  proc << KrServices::fullPathName( "mount" ) + " -p";
 
   // connect all outputs to collectOutput, to be displayed later
   connect(&proc,SIGNAL(receivedStdout(KProcess*, char*, int)),
@@ -267,10 +272,17 @@ bool KMountMan::createFilesystems() {
 void KMountMan::updateFilesystems() {
   getMtab();  // here we get the current state of mtab for watching it later
   // create the "df -P -T" process
+
+  if( dfStartFailed )
+  {
+    Operational=Ready=false; // stop mountman
+    return;
+  }
+
   tempFile = new KTempFile();
   tempFile->setAutoDelete(true);
   dfProc.clearArguments();
-  dfProc.setExecutable("df");
+  dfProc.setExecutable( KrServices::fullPathName( "df" ) );
 #ifdef BSD
   dfProc << ">" << tempFile->name(); // FreeBSD: df instead of df -T -P
 #else
@@ -289,6 +301,7 @@ void KMountMan::killMountMan() {
   if (Operational && !Ready) {
     dfProc.kill(SIGKILL);    // kill the process
     Operational=Ready=false; // stop mountman
+    dfStartFailed = true;   // problems at starting df
   }
 }
 
@@ -323,7 +336,7 @@ void KMountMan::collectMtab(KProcess*, char *buffer,int buflen) {
 QString KMountMan::getMtab()
 {
   KShellProcess proc;
-  proc << "mount";
+  proc << KrServices::fullPathName( "mount" );
 
   // connect all outputs by collectMtab ( collectOutput can not be used because of the watcher )
   connect(&proc,SIGNAL(receivedStdout(KProcess*, char*, int)),
@@ -404,7 +417,7 @@ QString KMountMan::getDevice(QString mntPoint) {
 void KMountMan::parseDfData(QString filename) {
   QString temp;
   QFile f(filename);
-  if (!f.open(IO_ReadOnly)) { // error reading temp file
+  if (!f.open(IO_ReadOnly) || dfStartFailed ) { // error reading temp file
     Operational=false;
     Ready=false;
     return;                   // make mt.man non-operational
@@ -504,8 +517,16 @@ void KMountMan::clearOutput() {
 // mount it the usual way - via /etc/fstab
 void KMountMan::mount(QString mntPoint) {
   if (mountPoints.findIndex(mntPoint)==-1) return; // safety measure
+
+  if( !KrServices::cmdExist( "mount" ) )
+  {
+    KMessageBox::error(0,
+      i18n("Can't start 'mount'! Check the 'Dependencies' page in konfigurator."));
+    return;
+  }
+
   KProcess mountProc;
-  mountProc << "mount" << mntPoint.latin1();
+  mountProc << KrServices::fullPathName( "mount" ) << mntPoint.latin1();
   // connect all outputs to collectOutput, to be displayed later
   connect(&mountProc,SIGNAL(receivedStderr(KProcess*, char*, int)),
           this,SLOT(collectOutput(KProcess*, char*,int)));
@@ -532,9 +553,17 @@ void KMountMan::mount(fsData *p) {
 	  mount(p->mntPoint()); // call the alternative method
 	  return;
 	}
-	bool ro=(p->type()=="iso9660");
+
+  if( !KrServices::cmdExist( "mount" ) )
+  {
+    KMessageBox::error(0,
+      i18n("Can't start 'mount'! Check the 'Dependencies' page in konfigurator."));
+    return;
+  }
+
+bool ro=(p->type()=="iso9660");
   KProcess mountProc;
-  mountProc << "mount";
+  mountProc << KrServices::fullPathName( "mount" );
   if (ro) mountProc << "-r";                // read only
   mountProc << "-t" << p->type().latin1();  // latin1 == normal ascii
   if (!p->options.isEmpty()) mountProc << "-o" << p->options; // -o options
@@ -575,8 +604,15 @@ void KMountMan::unmount(QString mntPoint) {
 // this version is used strictly by the GUI or by the unmount(QString) version
 // you've got no need to call it explicitly
 void KMountMan::unmount(fsData *p) {
+  if( !KrServices::cmdExist( "umount" ) )
+  {
+    KMessageBox::error(0,
+      i18n("Can't start 'umount'! Check the 'Dependencies' page in konfigurator."));
+    return;
+  }
+  
   KProcess umountProc;
-  umountProc << "umount";
+  umountProc << KrServices::fullPathName( "umount" );
   umountProc << p->mntPoint().latin1();
 
   // don't allow unmounting 'supermount' filesystems
@@ -617,7 +653,7 @@ void KMountMan::autoMount(QString path) {
 
 void KMountMan::eject(QString mntPoint) {
   KShellProcess proc;
-  proc << "eject" << "\"" + mntPoint + "\"";
+  proc << KrServices::fullPathName( "eject" ) << "\"" + mntPoint + "\"";
   proc.start(KProcess::Block);
   if (!proc.normalExit() || proc.exitStatus()!=0) // if we failed with eject
     KMessageBox::information(0,i18n("Error ejecting device ! You need to have 'eject' in your path."),i18n("Error"),"CantExecuteEjectWarning");
@@ -631,7 +667,7 @@ bool KMountMan::ejectable(QString path) {
   for (it=filesystems.first() ; (it!=0) ; it=filesystems.next())
     if (it->mntPoint()==path &&
         (it->type()=="iso9660" || followLink(it->name()).left(2)=="cd"))
-      return true;
+      return KrServices::cmdExist( "eject" );
 #endif
   return false;
 }
@@ -696,15 +732,38 @@ void statsCollector::parseDf(QString filename, fsData *data) {
 // return the information about where does PATH resides
 ///////////////////////////////////////////////////////
 void statsCollector::getData(QString path, fsData *data) {
+  if( dfStartFailed )
+  {
+    data->setMounted(false);
+    return;
+  }
+
   KShellProcess dfProc;
   QString tmpFile = krApp->getTempFile();
 
 #ifdef BSD
-  dfProc << "df" << "\""+path+"\"" << ">" << tmpFile; // FreeBSD: df instead of df -T -P
+  dfProc << KrServices::fullPathName ( "df" ) << "\""+path+"\"" << ">" << tmpFile; // FreeBSD: df instead of df -T -P
 #else
-  dfProc << "df" << "-T" << "-P" << "\""+path+"\"" << ">" << tmpFile;
+  dfProc << KrServices::fullPathName ( "df" ) << "-T" << "-P" << "\""+path+"\"" << ">" << tmpFile;
 #endif
-  dfProc.start(KProcess::Block);
+  dfProc.start(KProcess::DontCare);
+
+  time_t startTime = ::time(0);
+
+  while( dfProc.isRunning() )
+  {
+    KProcessController::theKProcessController->waitForProcessExit(1);
+
+    if( ::time(0) - startTime > 5 )
+    {
+      dfProc.kill(SIGKILL);    // kill the process
+      QDir().remove(tmpFile);
+      data->setMounted(false);
+      dfStartFailed = true;
+      return;
+    }
+  }
+  
   parseDf(tmpFile, data);
   QDir().remove(tmpFile);
 }

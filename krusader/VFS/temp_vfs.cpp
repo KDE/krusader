@@ -38,6 +38,7 @@
 #include "../defaults.h"
 #include "../VFS/krarchandler.h"
 #include "../resources.h"
+#include "../krservices.h"
 
 temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
           normal_vfs(panel){
@@ -127,6 +128,6 @@ void temp_vfs::handleRpm(QString origin){
 void temp_vfs::handleIso(QString origin){
 	// mount the ISO image
 	KShellProcess mount;
-	mount << "mount" << "-o loop" << origin << tmpDir;
+	mount << KrServices::fullPathName( "mount" ) << "-o loop" << origin << tmpDir;
 	mount.start(KProcess::Block);
 }

@@ -323,9 +323,22 @@ void KRslots::runRemoteMan() {
 }
 
 void KRslots::runMountMan() {
+  if( !KrServices::cmdExist( "df" ) || !KrServices::cmdExist( "mount" ) )
+  {
+    KMessageBox::error(0,
+      i18n("Can't start 'mount'! Check the 'Dependencies' page in konfigurator."));
+    return;
+  }
+  
   if (krApp->mountMan->operational()) {
-    while (!krApp->mountMan->ready());
+    while (!krApp->mountMan->ready())
+      usleep( 200000 );
     krApp->mountMan->mainWindow();
+  }
+  else
+  {
+    KMessageBox::error(0, i18n( "Failed to run 'df', MountMan cannot be started." ) );
+    return;
   }
 }
 
