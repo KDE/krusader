@@ -1,28 +1,30 @@
 # krusader.spec      use rpmbuild to build a Krusader RPM package
-# this spec file works on Mandrake 10.0 for krusader 1.50 beta1
+# this spec file works on Mandrake 10.0 for krusader 1.50
 # other distributions may need todo some modifications
 # If you have comments or suggestions about this spec file please send it to
 # [frank_schoolmeesters {*} fastmail {.} fm] Krusader Krew.
 # Thanks for your cooperation!
+# NOTE: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
 
-%define beta beta1
+%define version 1.50
+%define release mdk100
+#%define beta beta1
 
 # Package information
-Summary: 	 advanced twin-panel file-manager for KDE 3.x
+Summary: 	 Advanced twin-panel file-manager for KDE 3.2
 Name: 		 krusader
 Version: 	 1.50
-Release: 	 %{beta}.mdk100
-#Release: 	 mdk10.0
+Release: 	 %{release}
 Distribution:	 Mandrake Linux 10.0
-Source0:         %{name}-%{version}-%{beta}.tar.gz
-#Source0: 	 %{name}-%{version}.tar.gz
+Source0: 	 %{name}-%{version}.tar.gz
+#Source0:         %{name}-%{version}-beta1.tar.gz
 License: 	 GPL
 Group: 		 File tools
 
 # requirements for building the software package, these are not the binary PRM requirements
 # e.g. for installing the binary RPM you don't need a C-compiler
 BuildRequires: automake autoconf diffutils file m4 texinfo gettext zlib1
-BuildRequires: kdelibs kdelibs-devel >= 3 libqt3 >= 3 libqt-devel
+BuildRequires: kdelibs >= 3.2.0 kdelibs-devel >= 3.2.0 libqt3 >= 3 libqt-devel >= 3.1.0 arts-devel >= 1.1.0
 BuildRequires: libjpeg62 libjpeg-devel libpng3 libmng1
 BuildRequires: libfam-devel arts libart_lgpl2 libstdc++5 libpcre0
 BuildRequires: libxfree86 libfreetype6 libfontconfig1 libnas2 libexpat0
@@ -31,6 +33,7 @@ BuildRequires: rpm-build gcc-cpp gcc-c++ glibc libgcc1
 # BuildRoot: dir who acts as a staging area that looks like the final install dir
 # tipicaly (for Mandrake): /var/tmp/krusader-buildroot
 # this will become the %%RPM_BUILD_ROOT enviroment variable
+#BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRoot:       %{_tmppath}/%{name}-buildroot
 URL: 		 http://krusader.sourceforge.net
 Vendor:          Krusader Krew [krusader {*} users {.} sourceforge {.}net]
@@ -42,10 +45,10 @@ Packager:        Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
 Prefix:          /usr
 
 # dependencies requirements for the binary RPM package
-Requires: 	kdelibs
+Requires: 	kdelibs >= 3.2.0
 
 %description
-Krusader is an advanced twin-panel (commander-style) file-manager for KDE 3.x
+Krusader is an advanced twin-panel (commander-style) file-manager for KDE 3.2
 (similar to Midnight or Total Commander) but with many extras.
 It provides all the file-management features you could possibly want.
 Plus: extensive archive handling, mounted filesystem support, FTP,
@@ -60,12 +63,13 @@ You should give it a try.
 # preparing for the build by unpacking the sources and applying any patches
 # in /usr/src/RPM/BUILD/krusader-%version on Mandrake
 %prep
-# changes to the build dir /usr/src/RPM/BUILD/krusader-%version  on Mandrake
+rm -rf $RPM_BUILD_ROOT
+# changes to the build dir /usr/src/RPM/BUILD/krusader-%version-%release  on Mandrake
 # -q: run quitely
-%setup -q -n %{name}-%{version}-%{beta}
-#%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}
+#%setup -q -n %{name}-%{version}-%{beta}
 
-# commands to build the software in /usr/src/RPM/BUILD/krusader-%version on Mandrake
+# commands to build the software in /usr/src/RPM/BUILD/krusader-%version%release on Mandrake
 %build
 # set enviroment variables
 export QTDIR=%{_libdir}/qt3
@@ -84,6 +88,7 @@ export CXXFLAGS=$RPM_OPT_FLAGS
 ./configure --prefix=%{_prefix} \
 	    --bindir=%{_bindir} \
 	    --datadir=%{_datadir} \
+	    --libdir=%{_libdir} \
             --disable-rpath \
 	    --disable-debug
 
@@ -97,33 +102,42 @@ export CXXFLAGS=$RPM_OPT_FLAGS
 rm -rf $RPM_BUILD_ROOT
 %makeinstall KDEDIR=$RPM_BUILD_ROOT%{_prefix} kde_minidir=$RPM_BUILD_ROOT%{_miconsdir}
 # menu
-#mkdir -p $RPM_BUILD_ROOT%{_menudir}
+mkdir -p $RPM_BUILD_ROOT%{_menudir}
+
 # adds krusader in the KDE menu with the file /usr/lib/menu/krusader on Mandrake
 # Kmenu -> "System/File tools" -> krusader
 # /usr/bin/kdedesktop2mdkmenu.pl is a Mandrake Perl script to generate the Kmenu entry
-#kdedesktop2mdkmenu.pl krusader "System/File tools"    %{buildroot}/%{_datadir}/applnk/Applications/krusader.desktop                             %{buildroot}/%{_menudir}/krusader
+kdedesktop2mdkmenu.pl krusader "System/File tools"    %{buildroot}/%{_datadir}/applnk/Applications/krusader.desktop                             %{buildroot}/%{_menudir}/krusader
 
 # menu
 # creates the file /usr/lib/menu/krusader on Mandrake, this adds krusader in the KDE menu
 # in the "System/File tools" section
-mkdir -p %{buildroot}/%{_menudir}
-cat > %{buildroot}/%{_menudir}/%name << EOF
-?package(%name): \
-needs="x11" \
-kde_filename="%name" \
-section="System/File tools" \
-title="%name" \
-icon="%name.png" \
-command="%{_bindir}/%name" \
-kde_command="%name -caption \"%c\" %i %m  " \
-longtitle="%summary" \
-kde_opt="\\\nMiniIcon=%name.png\\\nDocPath=%name/index.html\\\nTerminal=0"
-EOF
+#mkdir -p %{buildroot}/%{_menudir}
+#cat > %{buildroot}/%{_menudir}/%name << EOF
+#?package(%name): \
+#needs="x11" \
+#kde_filename="%name" \
+#section="System/File tools" \
+#title="%name" \
+#icon="%name.png" \
+#command="%{_bindir}/%name" \
+#kde_command="%name -caption \"%c\" %i %m  " \
+#longtitle="%summary" \
+#kde_opt="\\\nMiniIcon=%name.png\\\nDocPath=%name/index.html\\\nTerminal=0"
+#EOF
 
 # obsolete since 1.40 stable
 # removes /usr/share/mimelnk/application/x-ace.desktop on Mandrake
 # because x-ace.desktop is now provided by KDE
 # rm -rf $RPM_BUILD_ROOT/%{_datadir}/mimelnk/application/*.desktop
+
+
+#icons for rpmlint
+mkdir -p %buildroot/{%_liconsdir,%_miconsdir,%_iconsdir}
+ln -s %_datadir/icons/hicolor/48x48/apps/%{name}.png %buildroot/%_liconsdir
+ln -s %_datadir/icons/hicolor/32x32/apps/%{name}.png %buildroot/%_iconsdir
+ln -s %_datadir/icons/hicolor/16x16/apps/%{name}.png %buildroot/%_miconsdir
+
 
 # find the installed languages e.g. French (fr), Dutch (nl), ...
 %find_lang %{name}
@@ -151,7 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 # all the files that the RPM package should install, this list must be exhausitive
 # i18n   /usr/share/locale/foo/LC_MESSAGES/krusader.mo on mandrake
 # installs language file(s) if the language(s) is(are) installed on the target computer
-%files -f %name.lang
+%files -f %{name}.lang
 
 # default attributes for all files in the package (-, user, group)
 # - = leave the permissions like the are in the source tarball e.g. 644
@@ -166,6 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # libdir = /usr/lib, usr/lib/kde3, usr/lib/menu on Mandrake
 %{_libdir}/*
+%{_libdir}/kde3/*
 
 # datadir = /usr/share on Mandrake
 %{_datadir}/applnk/Applications/krusader.desktop
@@ -230,7 +245,21 @@ rm -rf $RPM_BUILD_ROOT
 # /usr/share/mimelnk/application/x-ace.desktop on Mandrake
 #%{_datadir}/mimelnk/application/*.desktop
 
+# usr/lib/menu on Mandrake
+%{_menudir}/*
+
+%{_miconsdir}/%{name}.png
+%{_iconsdir}/%{name}.png
+%{_liconsdir}/%{name}.png
+
+
 %changelog
+* Mon Nov  1 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
+- 1.50-mdk100
+  fix: icons for rpmlint
+  re-used kdedesktop2mdkmenu.pl
+  Note: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
+  
 * Wed Oct 13 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
 - 1.50-mdk100-beta1
   new file added in RPM package:
