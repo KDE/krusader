@@ -1236,26 +1236,12 @@ bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
   {
     if( e->type() == QEvent::Hide )
     {
+      /* checking if the currentlyRenamedItem pointer is valid (vfs_refresh can delete this item) */
       for( QListViewItem *it = firstChild(); it; it = it->nextSibling() )
         if( it == currentlyRenamedItem )
         {
-          if ( it->text( COLUMN( Name ) ) == static_cast<KrDetailedViewItem*>( it ) ->name()  && COLUMN( Extention ) != -1 ) 
-          {
-            int i;
-            QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
-            if ( !static_cast<KrDetailedViewItem*>( it ) ->isDir() )
-              if ( ( i = name.findRev( '.' ) ) > 0 ) {
-                ext = name.mid( i + 1 );
-                name = name.mid( 0, i );
-              }
-                
-            it->setText( COLUMN( Name ), name );
-            it->setText( COLUMN( Extention ), ext );
-            repaintItem( it );
-            
-            currentlyRenamedItem = 0;
-            setFocus();
-          }
+          if ( it->text( COLUMN( Name ) ) == dynamic_cast<KrDetailedViewItem*>( it ) ->name()  && COLUMN( Extention ) != -1 ) 
+            inplaceRenameFinished( it, COLUMN( Name ) );
           break;
         }
     }
