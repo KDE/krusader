@@ -43,6 +43,10 @@ public:
   
   bool loadByName( QString name );
   
+  /**
+   * @param profileType Type of the profile (sync, search, ...)
+   * @return A list of all available profile-names
+   */
   static QStringList availableProfiles( QString profileType );
   
 public slots:
