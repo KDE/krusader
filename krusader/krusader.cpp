@@ -129,16 +129,22 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   QString leftPath, rightPath;
 
   // get command-line arguments
-  if ( args->isSet( "left" ) ) leftPath = args->getOption( "left" );
+  if ( args->isSet( "left" ) )
+  {
+    leftPath = args->getOption( "left" );
+    // make sure left or right are not relative paths
+    if (!leftPath.startsWith("/") && leftPath.find(":/")<0) // make sure we don't touch things like ftp://
+      leftPath = QDir::currentDirPath() + "/" + leftPath;
+  }
   else leftPath = QString::null;
-  if ( args->isSet( "right" ) ) rightPath = args->getOption( "right" );
-  else rightPath = QString::null;
-  // make sure left or right are not relative paths
-  if (!leftPath.startsWith("/") && leftPath.find(":/")<0) // make sure we don't touch things like ftp://
-  	leftPath = QDir::currentDirPath() + "/" + leftPath;
-  if (!rightPath.startsWith("/") && rightPath.find(":/")<0) // make sure we don't touch things like ftp://
-  	rightPath = QDir::currentDirPath() + "/" + rightPath;	
-  
+  if ( args->isSet( "right" ) )
+  {
+    rightPath = args->getOption( "right" );
+    // make sure left or right are not relative paths
+    if (!rightPath.startsWith("/") && rightPath.find(":/")<0) // make sure we don't touch things like ftp://
+      rightPath = QDir::currentDirPath() + "/" + rightPath;
+  }
+  else rightPath = QString::null;  
 
   // create the "krusader"
   App = this;
