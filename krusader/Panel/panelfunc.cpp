@@ -144,21 +144,12 @@ void ListPanelFunc::delayedOpenUrl( const KURL& urlIn ) {
 		KURL u = urlStack.pop();
 		//u.adjustPath(-1); // remove trailing "/"
 		u.cleanPath(); // Resolves "." and ".." components in path.
-		if( u.protocol() == "virt" && virtualFiles.count() != 0 ) {
+		v = KrVfsHandler::getVfs( u, panel, files() );
+		if ( !v )
+			continue; //this should not happen !
+		if ( v != vfsP ) {
 			vfsP->deleteLater();
-			vfsP = new virt_vfs( panel );
-			vfsP->vfs_refresh( u );
-			
-			vfsP->vfs_addFiles( &virtualFiles, KIO::CopyJob::Copy, 0 );
-			virtualFiles.clear();                                                                        
-		} else {                
-			v = KrVfsHandler::getVfs( u, panel, files() );
-			if ( !v )
-				continue; //this should not happen !
-			if ( v != vfsP ) {
-				vfsP->deleteLater();
-				vfsP = v; // v != 0 so this is safe
-			}
+			vfsP = v; // v != 0 so this is safe
 		}
 		connect( files(), SIGNAL(startJob(KIO::Job* )),
 				panel, SLOT(slotJobStarted(KIO::Job* )));
@@ -1032,12 +1023,5 @@ void ListPanelFunc::pasteFromClipboard() {
 		connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
 	}
 }
-
-void ListPanelFunc::createVirtualFolder( QString name, KURL::List &fileList )
-{
-	virtualFiles = fileList;
-	openUrl( KURL( "virt:/" + name ) );
-}
-
 
 #include "panelfunc.moc"
