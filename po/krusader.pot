@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.50-cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-25 19:50+0200\n"
+"POT-Creation-Date: 2004-09-09 00:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -453,7 +453,7 @@ msgstr ""
 msgid "Copy file from one panel to the other."
 msgstr ""
 
-#: GUI/kfnkeys.cpp:66 krusader.cpp:355
+#: GUI/kfnkeys.cpp:66 krusader.cpp:367
 msgid "F6 Move"
 msgstr ""
 
@@ -469,7 +469,7 @@ msgstr ""
 msgid "Create directory in current panel."
 msgstr ""
 
-#: GUI/kfnkeys.cpp:74 krusader.cpp:361
+#: GUI/kfnkeys.cpp:74 krusader.cpp:373
 msgid "F8 Delete"
 msgstr ""
 
@@ -477,7 +477,7 @@ msgstr ""
 msgid "Delete file, directory, etc."
 msgstr ""
 
-#: GUI/kfnkeys.cpp:78 krusader.cpp:364
+#: GUI/kfnkeys.cpp:78 krusader.cpp:376
 msgid "F9 Rename"
 msgstr ""
 
@@ -509,13 +509,13 @@ msgstr ""
 msgid "ParameterDialog"
 msgstr ""
 
-#: VFS/ftp_vfs.cpp:161
+#: VFS/ftp_vfs.cpp:133
 msgid ""
 "Malformed URL:\n"
 "%1"
 msgstr ""
 
-#: VFS/ftp_vfs.cpp:163
+#: VFS/ftp_vfs.cpp:135
 msgid ""
 "Protocol not supported by Krusader:\n"
 "%1"
@@ -541,43 +541,51 @@ msgstr ""
 msgid "Repacking..."
 msgstr ""
 
-#: VFS/normal_vfs.cpp:98
+#: VFS/normal_vfs.cpp:83
+msgid "Directory %1 does not exist!"
+msgstr ""
+
+#: VFS/normal_vfs.cpp:96
+msgid "Can't open the %1 directory!"
+msgstr ""
+
+#: VFS/normal_vfs.cpp:102
 msgid "Access denied to"
 msgstr ""
 
-#: VFS/normal_vfs.cpp:194
+#: VFS/normal_vfs.cpp:196
 msgid "Can't create a directory check your permissions."
 msgstr ""
 
-#: VFS/krarchandler.cpp:150
+#: VFS/krarchandler.cpp:151
 msgid "Counting files in archive"
 msgstr ""
 
-#: VFS/krarchandler.cpp:173 VFS/krarchandler.cpp:232
+#: VFS/krarchandler.cpp:176 VFS/krarchandler.cpp:237
 msgid "Failed to unpack"
 msgstr ""
 
-#: VFS/krarchandler.cpp:215
+#: VFS/krarchandler.cpp:220
 msgid "Unpacking File(s)"
 msgstr ""
 
-#: VFS/krarchandler.cpp:266
+#: VFS/krarchandler.cpp:274
 msgid "Testing Archive"
 msgstr ""
 
-#: VFS/krarchandler.cpp:307
+#: VFS/krarchandler.cpp:315
 msgid "Packing File(s)"
 msgstr ""
 
-#: VFS/krarchandler.cpp:323 VFS/krarchandler.cpp:330
+#: VFS/krarchandler.cpp:331 VFS/krarchandler.cpp:338
 msgid "Failed to pack: "
 msgstr ""
 
-#: VFS/krarchandler.cpp:377
+#: VFS/krarchandler.cpp:385
 msgid "Password Needed"
 msgstr ""
 
-#: VFS/krarchandler.cpp:378
+#: VFS/krarchandler.cpp:386
 msgid "This archive is encrypted, please supply the password:"
 msgstr ""
 
@@ -726,11 +734,11 @@ msgstr ""
 msgid "Output"
 msgstr ""
 
-#: UserAction/kraction.cpp:190
+#: UserAction/kraction.cpp:197
 msgid "Confirm execution"
 msgstr ""
 
-#: UserAction/kraction.cpp:191
+#: UserAction/kraction.cpp:198
 msgid "Command beeing executed:"
 msgstr ""
 
@@ -814,7 +822,7 @@ msgstr ""
 msgid ".."
 msgstr ""
 
-#: Panel/listpanel.cpp:191 krusader.cpp:421
+#: Panel/listpanel.cpp:191 krusader.cpp:436
 msgid "Up"
 msgstr ""
 
@@ -830,11 +838,11 @@ msgstr ""
 msgid "/"
 msgstr ""
 
-#: Panel/listpanel.cpp:203 krusader.cpp:479
+#: Panel/listpanel.cpp:203 krusader.cpp:513
 msgid "Root"
 msgstr ""
 
-#: Panel/listpanel.cpp:361 Panel/listpanel.cpp:899
+#: Panel/listpanel.cpp:361 Panel/listpanel.cpp:953
 msgid " Select Files "
 msgstr ""
 
@@ -842,145 +850,145 @@ msgstr ""
 msgid " Unselect Files "
 msgstr ""
 
-#: Panel/listpanel.cpp:421 Panel/listpanel.cpp:429
+#: Panel/listpanel.cpp:475 Panel/listpanel.cpp:483
 #: Konfigurator/kgstartup.cpp:58 Konfigurator/kgstartup.cpp:64
 #: Konfigurator/kgstartup.cpp:75 Konfigurator/kgstartup.cpp:115
 #: Konfigurator/kgstartup.cpp:116
 msgid "homepage"
 msgstr ""
 
-#: Panel/listpanel.cpp:423 Panel/listpanel.cpp:431 krusader.cpp:249
-#: krusader.cpp:254 krusader.cpp:557 krusader.cpp:560
+#: Panel/listpanel.cpp:477 Panel/listpanel.cpp:485 krusader.cpp:220
+#: krusader.cpp:225 krusader.cpp:595 krusader.cpp:598
 #: Konfigurator/kgstartup.cpp:60
 msgid "the last place it was"
 msgstr ""
 
-#: Panel/listpanel.cpp:492
+#: Panel/listpanel.cpp:546
 msgid "No space information on non-local filesystems"
 msgstr ""
 
-#: Panel/listpanel.cpp:498
+#: Panel/listpanel.cpp:552
 msgid "No space information on [dev]"
 msgstr ""
 
-#: Panel/listpanel.cpp:503
+#: Panel/listpanel.cpp:557
 msgid "No space information on [procfs]"
 msgstr ""
 
-#: Panel/listpanel.cpp:508
+#: Panel/listpanel.cpp:562
 msgid "No space information on [proc]"
 msgstr ""
 
-#: Panel/listpanel.cpp:513
+#: Panel/listpanel.cpp:567
 msgid "Mt.Man: working ..."
 msgstr ""
 
-#: Panel/listpanel.cpp:527
+#: Panel/listpanel.cpp:581
 msgid "unknown"
 msgstr ""
 
-#: Panel/listpanel.cpp:535
+#: Panel/listpanel.cpp:589
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr ""
 
-#: Panel/listpanel.cpp:599
+#: Panel/listpanel.cpp:653
 msgid "Can't drop here, no write permissions."
 msgstr ""
 
-#: Panel/listpanel.cpp:615
+#: Panel/listpanel.cpp:669
 msgid "Copy Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:617
+#: Panel/listpanel.cpp:671
 msgid "Move Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:620
+#: Panel/listpanel.cpp:674
 msgid "Link Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:704
+#: Panel/listpanel.cpp:758
 msgid "Run"
 msgstr ""
 
-#: Panel/listpanel.cpp:707 Panel/listpanel.cpp:708
+#: Panel/listpanel.cpp:761 Panel/listpanel.cpp:762
 msgid "Open in a new tab"
 msgstr ""
 
-#: Panel/listpanel.cpp:720 Konfigurator/kgcolors.cpp:148
+#: Panel/listpanel.cpp:774 Konfigurator/kgcolors.cpp:148
 msgid "Preview"
 msgstr ""
 
-#: Panel/listpanel.cpp:746
+#: Panel/listpanel.cpp:800
 msgid "Terminal"
 msgstr ""
 
-#: Panel/listpanel.cpp:747
+#: Panel/listpanel.cpp:801
 msgid "Other..."
 msgstr ""
 
-#: Panel/listpanel.cpp:749
+#: Panel/listpanel.cpp:803
 msgid "Open with"
 msgstr ""
 
-#: Panel/listpanel.cpp:759 Panel/krdetailedview.cpp:980
+#: Panel/listpanel.cpp:813 Panel/krdetailedview.cpp:991
 msgid "Rename"
 msgstr ""
 
-#: Panel/listpanel.cpp:765
+#: Panel/listpanel.cpp:819
 msgid "Shred"
 msgstr ""
 
-#: Panel/listpanel.cpp:770
+#: Panel/listpanel.cpp:824
 msgid "new symlink"
 msgstr ""
 
-#: Panel/listpanel.cpp:771
+#: Panel/listpanel.cpp:825
 msgid "new hardlink"
 msgstr ""
 
-#: Panel/listpanel.cpp:773
+#: Panel/listpanel.cpp:827
 msgid "redirect link"
 msgstr ""
 
-#: Panel/listpanel.cpp:775
+#: Panel/listpanel.cpp:829
 msgid "Link handling"
 msgstr ""
 
-#: Panel/listpanel.cpp:782 MountMan/kmountman.cpp:826
+#: Panel/listpanel.cpp:836 MountMan/kmountman.cpp:826
 #: MountMan/kmountmangui.cpp:227
 msgid "Unmount"
 msgstr ""
 
-#: Panel/listpanel.cpp:784 MountMan/kmountman.cpp:826
+#: Panel/listpanel.cpp:838 MountMan/kmountman.cpp:826
 #: MountMan/kmountmangui.cpp:226
 msgid "Mount"
 msgstr ""
 
-#: Panel/listpanel.cpp:786 MountMan/kmountmangui.cpp:230
+#: Panel/listpanel.cpp:840 MountMan/kmountmangui.cpp:230
 msgid "Eject"
 msgstr ""
 
-#: Panel/listpanel.cpp:790
+#: Panel/listpanel.cpp:844
 msgid "Send by email"
 msgstr ""
 
-#: Panel/listpanel.cpp:833
+#: Panel/listpanel.cpp:887
 msgid "Are you sure you want to shred "
 msgstr ""
 
-#: Panel/listpanel.cpp:834
+#: Panel/listpanel.cpp:888
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr ""
 
-#: Panel/listpanel.cpp:881 Panel/panelfunc.cpp:296 KViewer/krviewer.cpp:212
-#: krslots.cpp:412
+#: Panel/listpanel.cpp:935 Panel/panelfunc.cpp:301 KViewer/krviewer.cpp:212
+#: krslots.cpp:434
 msgid "Can't open "
 msgstr ""
 
 #: Panel/krdetailedview.cpp:88 Search/krsearchdialogbase.cpp:729
-#: MountMan/kmountmangui.cpp:117 Synchronizer/synchronizergui.cpp:1361
-#: Synchronizer/synchronizergui.cpp:1367
+#: MountMan/kmountmangui.cpp:117 Synchronizer/synchronizergui.cpp:1362
+#: Synchronizer/synchronizergui.cpp:1368
 msgid "Name"
 msgstr ""
 
@@ -993,8 +1001,8 @@ msgid "Type"
 msgstr ""
 
 #: Panel/krdetailedview.cpp:91 Search/krsearchdialogbase.cpp:420
-#: Search/krsearchdialogbase.cpp:731 Synchronizer/synchronizergui.cpp:1362
-#: Synchronizer/synchronizergui.cpp:1366
+#: Search/krsearchdialogbase.cpp:731 Synchronizer/synchronizergui.cpp:1363
+#: Synchronizer/synchronizergui.cpp:1367
 msgid "Size"
 msgstr ""
 
@@ -1018,11 +1026,11 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#: Panel/krdetailedview.cpp:980
+#: Panel/krdetailedview.cpp:991
 msgid "Rename "
 msgstr ""
 
-#: Panel/krdetailedview.cpp:980
+#: Panel/krdetailedview.cpp:991
 msgid " to:"
 msgstr ""
 
@@ -1034,36 +1042,36 @@ msgstr ""
 msgid "KrColorCache"
 msgstr ""
 
-#: Panel/panelpopup.cpp:76 Panel/panelpopup.cpp:77 Panel/panelpopup.cpp:78
-#: Panel/panelpopup.cpp:80 Panel/panelpopup.cpp:84
+#: Panel/panelpopup.cpp:79 Panel/panelpopup.cpp:80 Panel/panelpopup.cpp:82
+#: Panel/panelpopup.cpp:84 Panel/panelpopup.cpp:88
 msgid "Root Folder"
 msgstr ""
 
-#: Panel/panelpopup.cpp:87 Panel/panelpopup.cpp:178 Panel/panelpopup.cpp:210
+#: Panel/panelpopup.cpp:91 Panel/panelpopup.cpp:182 Panel/panelpopup.cpp:214
 msgid "No preview available"
 msgstr ""
 
-#: Panel/panelpopup.cpp:95
+#: Panel/panelpopup.cpp:99
 msgid "Quick Select"
 msgstr ""
 
-#: Panel/panelpopup.cpp:112
+#: Panel/panelpopup.cpp:116
 msgid "apply the selection"
 msgstr ""
 
-#: Panel/panelpopup.cpp:118
+#: Panel/panelpopup.cpp:122
 msgid "store the current selection"
 msgstr ""
 
-#: Panel/panelpopup.cpp:124
+#: Panel/panelpopup.cpp:128
 msgid "select group dialog"
 msgstr ""
 
-#: Panel/panelpopup.cpp:186
+#: Panel/panelpopup.cpp:190
 msgid "Please wait..."
 msgstr ""
 
-#: Panel/panelpopup.cpp:203
+#: Panel/panelpopup.cpp:207
 msgid "Preview: "
 msgstr ""
 
@@ -1097,197 +1105,197 @@ msgid ""
 "in %1 directories and %2 files"
 msgstr ""
 
-#: Panel/panelfunc.cpp:186
+#: Panel/panelfunc.cpp:191
 msgid "You can edit links only on local file systems"
 msgstr ""
 
-#: Panel/panelfunc.cpp:197
+#: Panel/panelfunc.cpp:202
 msgid "The current file is not a link, so i can't redirect it."
 msgstr ""
 
-#: Panel/panelfunc.cpp:204
+#: Panel/panelfunc.cpp:209
 msgid "Link Redirection"
 msgstr ""
 
-#: Panel/panelfunc.cpp:205
+#: Panel/panelfunc.cpp:210
 msgid "Please enter the new link destination:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:212
+#: Panel/panelfunc.cpp:217
 msgid "Can't remove old link: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:217 Panel/panelfunc.cpp:257
+#: Panel/panelfunc.cpp:222 Panel/panelfunc.cpp:262
 msgid "Failed to create a new link: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:224
+#: Panel/panelfunc.cpp:229
 msgid "You can create links only on local file systems"
 msgstr ""
 
-#: Panel/panelfunc.cpp:233
+#: Panel/panelfunc.cpp:238
 msgid "New link"
 msgstr ""
 
-#: Panel/panelfunc.cpp:233
+#: Panel/panelfunc.cpp:238
 msgid "Create a new link to: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:241 Panel/panelfunc.cpp:418
+#: Panel/panelfunc.cpp:246 Panel/panelfunc.cpp:423
 msgid "A directory or a file with this name already exists."
 msgstr ""
 
-#: Panel/panelfunc.cpp:253
+#: Panel/panelfunc.cpp:258
 msgid "Failed to create a new symlink: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:254 Panel/panelfunc.cpp:258
+#: Panel/panelfunc.cpp:259 Panel/panelfunc.cpp:263
 msgid " To: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:272
+#: Panel/panelfunc.cpp:277
 msgid "No permissions to view this file."
 msgstr ""
 
-#: Panel/panelfunc.cpp:307
+#: Panel/panelfunc.cpp:312
 msgid "You can't edit a directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:312
+#: Panel/panelfunc.cpp:317
 msgid "No permissions to edit this file."
 msgstr ""
 
-#: Panel/panelfunc.cpp:334
+#: Panel/panelfunc.cpp:339
 msgid "Moving into archive is disabled"
 msgstr ""
 
-#: Panel/panelfunc.cpp:343
+#: Panel/panelfunc.cpp:348
 msgid "Move "
 msgstr ""
 
-#: Panel/panelfunc.cpp:343 Panel/panelfunc.cpp:440 Panel/panelfunc.cpp:684
-#: Panel/panelfunc.cpp:686
+#: Panel/panelfunc.cpp:348 Panel/panelfunc.cpp:445 Panel/panelfunc.cpp:690
+#: Panel/panelfunc.cpp:692
 msgid "to"
 msgstr ""
 
-#: Panel/panelfunc.cpp:345
+#: Panel/panelfunc.cpp:350
 #, c-format
 msgid "Move %d files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:385
+#: Panel/panelfunc.cpp:390
 msgid "You can't move files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:410
+#: Panel/panelfunc.cpp:415
 msgid "New directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:410
+#: Panel/panelfunc.cpp:415
 msgid "Directory's name:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:440
+#: Panel/panelfunc.cpp:445
 msgid "Copy "
 msgstr ""
 
-#: Panel/panelfunc.cpp:442
+#: Panel/panelfunc.cpp:447
 #, c-format
 msgid "Copy %d files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:474
+#: Panel/panelfunc.cpp:479
 msgid "You can't copy files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:485
+#: Panel/panelfunc.cpp:490
 msgid "You do not have write permission to this directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:500
+#: Panel/panelfunc.cpp:505
 msgid " this item ?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:502
+#: Panel/panelfunc.cpp:507
 #, c-format
 msgid " these %d items ?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:506
+#: Panel/panelfunc.cpp:511
 msgid "trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:507
+#: Panel/panelfunc.cpp:512
 msgid "&Trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:509
+#: Panel/panelfunc.cpp:514
 msgid "delete"
 msgstr ""
 
-#: Panel/panelfunc.cpp:514
+#: Panel/panelfunc.cpp:519
 msgid "Are you sure you want to "
 msgstr ""
 
-#: Panel/panelfunc.cpp:533
+#: Panel/panelfunc.cpp:538
 msgid "Directory "
 msgstr ""
 
-#: Panel/panelfunc.cpp:533
+#: Panel/panelfunc.cpp:538
 msgid ""
 " is not empty !\n"
 "Skip this one or Delete All ?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:534
+#: Panel/panelfunc.cpp:539
 msgid "&Skip"
 msgstr ""
 
-#: Panel/panelfunc.cpp:534
+#: Panel/panelfunc.cpp:539
 msgid "&Delete All"
 msgstr ""
 
-#: Panel/panelfunc.cpp:625
+#: Panel/panelfunc.cpp:631
 msgid "The Archive "
 msgstr ""
 
-#: Panel/panelfunc.cpp:626
+#: Panel/panelfunc.cpp:632
 msgid " already exists, Do you want to overwrite the archive "
 msgstr ""
 
-#: Panel/panelfunc.cpp:627
+#: Panel/panelfunc.cpp:633
 msgid "(all data in previous archive will be lost)"
 msgstr ""
 
-#: Panel/panelfunc.cpp:627
+#: Panel/panelfunc.cpp:633
 msgid "&Overwite"
 msgstr ""
 
-#: Panel/panelfunc.cpp:632
+#: Panel/panelfunc.cpp:638
 msgid "Counting files to pack"
 msgstr ""
 
-#: Panel/panelfunc.cpp:664
+#: Panel/panelfunc.cpp:670
 msgid "%1, unknown archive type."
 msgstr ""
 
-#: Panel/panelfunc.cpp:670
+#: Panel/panelfunc.cpp:676
 msgid "%1, test passed."
 msgstr ""
 
-#: Panel/panelfunc.cpp:672
+#: Panel/panelfunc.cpp:678
 msgid "%1, test failed !"
 msgstr ""
 
-#: Panel/panelfunc.cpp:684 Panel/panelfunc.cpp:686
+#: Panel/panelfunc.cpp:690 Panel/panelfunc.cpp:692
 msgid "Unpack "
 msgstr ""
 
-#: Panel/panelfunc.cpp:686
+#: Panel/panelfunc.cpp:692
 msgid "%1 files"
 msgstr ""
 
-#: Panel/panelfunc.cpp:710
+#: Panel/panelfunc.cpp:716
 msgid "%1, unknown archive type"
 msgstr ""
 
@@ -1303,7 +1311,7 @@ msgstr ""
 msgid "Update DB"
 msgstr ""
 
-#: Locate/locate.cpp:64 Locate/locate.cpp:266
+#: Locate/locate.cpp:64 Locate/locate.cpp:285
 msgid "Locate"
 msgstr ""
 
@@ -1315,319 +1323,357 @@ msgstr ""
 msgid "Search for:"
 msgstr ""
 
-#: Locate/locate.cpp:88
+#: Locate/locate.cpp:89
 msgid "Show only the existing files"
 msgstr ""
 
-#: Locate/locate.cpp:90
+#: Locate/locate.cpp:91
 msgid "Case Sensitive"
 msgstr ""
 
-#: Locate/locate.cpp:109 Konfigurator/kggeneral.cpp:132
+#: Locate/locate.cpp:110 Konfigurator/kggeneral.cpp:132
 #: Konfigurator/kgarchives.cpp:148
 msgid "Results"
 msgstr ""
 
-#: Locate/locate.cpp:190
+#: Locate/locate.cpp:191
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 
-#: Locate/locate.cpp:215
+#: Locate/locate.cpp:221
+msgid ""
+"Locate produced the following error message:\n"
+"\n"
+msgstr ""
+
+#: Locate/locate.cpp:224
 msgid "Error during the start of `locate` process!"
 msgstr ""
 
-#: Locate/locate.cpp:268
+#: Locate/locate.cpp:287
 msgid "View (F3)"
 msgstr ""
 
-#: Locate/locate.cpp:269
+#: Locate/locate.cpp:288
 msgid "Edit (F4)"
 msgstr ""
 
-#: Locate/locate.cpp:273
+#: Locate/locate.cpp:292
 msgid "Find (Ctrl+F)"
 msgstr ""
 
-#: Locate/locate.cpp:274
+#: Locate/locate.cpp:293
 msgid "Find next (Ctrl+N)"
 msgstr ""
 
-#: Locate/locate.cpp:275
+#: Locate/locate.cpp:294
 msgid "Find previous (Ctrl+P)"
 msgstr ""
 
-#: Locate/locate.cpp:371 Locate/locate.cpp:388
+#: Locate/locate.cpp:390 Locate/locate.cpp:407
 msgid "Search string not found!"
 msgstr ""
 
-#: krusader.cpp:208
+#: krusader.cpp:244
 msgid ""
 "Status bar will show  basic informations about file below mouse pointer."
 msgstr ""
 
-#: krusader.cpp:279
+#: krusader.cpp:291
 msgid ""
 "A configuration older then v0.90 was detected Krusader has to reset your "
 "configuration to default values. Krusader will now run Konfigurator."
 msgstr ""
 
-#: krusader.cpp:281
+#: krusader.cpp:293
 msgid ""
 "Unable to remove your krusaderrc file! Please remove it manually and rerun "
 "Krusader."
 msgstr ""
 
-#: krusader.cpp:289
+#: krusader.cpp:301
 msgid ""
 "Welcome to Krusader, as this is your first run, Krusader will now run "
 "Konfigurator."
 msgstr ""
 
-#: krusader.cpp:340
+#: krusader.cpp:352
 msgid "F2 Terminal"
 msgstr ""
 
-#: krusader.cpp:343
+#: krusader.cpp:355
 msgid "F3 View"
 msgstr ""
 
-#: krusader.cpp:346
+#: krusader.cpp:358
 msgid "F3 View Dialog"
 msgstr ""
 
-#: krusader.cpp:349
+#: krusader.cpp:361
 msgid "F4 Edit"
 msgstr ""
 
-#: krusader.cpp:352
+#: krusader.cpp:364
 msgid "F5 Copy"
 msgstr ""
 
-#: krusader.cpp:358
+#: krusader.cpp:370
 msgid "F7 Mkdir"
 msgstr ""
 
-#: krusader.cpp:367
+#: krusader.cpp:379
 msgid "F10 Quit"
 msgstr ""
 
-#: krusader.cpp:370
+#: krusader.cpp:382
 msgid "Tab: switch panel"
 msgstr ""
 
-#: krusader.cpp:398
+#: krusader.cpp:413
 msgid "Com&pare Mode"
 msgstr ""
 
-#: krusader.cpp:401
+#: krusader.cpp:416
 msgid "Show &FN Keys Bar"
 msgstr ""
 
-#: krusader.cpp:404
+#: krusader.cpp:419
 msgid "Show &Command Line"
 msgstr ""
 
-#: krusader.cpp:407
+#: krusader.cpp:422
 msgid "Show Terminal &Emulator"
 msgstr ""
 
-#: krusader.cpp:410
+#: krusader.cpp:425
 msgid "Show &Hidden Files"
 msgstr ""
 
-#: krusader.cpp:412
+#: krusader.cpp:427
 msgid "S&wap Panels"
 msgstr ""
 
-#: krusader.cpp:418
+#: krusader.cpp:433
 msgid "popup cmdline"
 msgstr ""
 
-#: krusader.cpp:422
+#: krusader.cpp:437
 msgid "&Edit new file"
 msgstr ""
 
-#: krusader.cpp:423
+#: krusader.cpp:438
 msgid "Start &Root Mode Krusader"
 msgstr ""
 
-#: krusader.cpp:425
+#: krusader.cpp:440
 msgid "Co&nfigure compare-mode"
 msgstr ""
 
-#: krusader.cpp:427
+#: krusader.cpp:442
 msgid "T&est Archive(s)"
 msgstr ""
 
-#: krusader.cpp:429
+#: krusader.cpp:444
 msgid "&Net Connections"
 msgstr ""
 
-#: krusader.cpp:431
+#: krusader.cpp:446
 msgid "New Net &Connection"
 msgstr ""
 
-#: krusader.cpp:433
+#: krusader.cpp:448
 msgid "Calculate &Occupied Space"
 msgstr ""
 
-#: krusader.cpp:435
+#: krusader.cpp:450
 msgid "&Properties"
 msgstr ""
 
-#: krusader.cpp:437
+#: krusader.cpp:452
 msgid "Pac&k"
 msgstr ""
 
-#: krusader.cpp:439
+#: krusader.cpp:454
 msgid "&Unpack"
 msgstr ""
 
-#: krusader.cpp:441
+#: krusader.cpp:456
 msgid "Sp&lit file"
 msgstr ""
 
-#: krusader.cpp:443
+#: krusader.cpp:458
 msgid "Com&bine files"
 msgstr ""
 
-#: krusader.cpp:445
+#: krusader.cpp:460
 msgid "Select &Group"
 msgstr ""
 
-#: krusader.cpp:447
+#: krusader.cpp:462
 msgid "&Select All"
 msgstr ""
 
-#: krusader.cpp:449
+#: krusader.cpp:464
 msgid "U&nselect All"
 msgstr ""
 
-#: krusader.cpp:451
+#: krusader.cpp:466
+msgid "&Compare Directories"
+msgstr ""
+
+#: krusader.cpp:468
+msgid "&Mark Newer And Single"
+msgstr ""
+
+#: krusader.cpp:470
+msgid "Mark &Newer"
+msgstr ""
+
+#: krusader.cpp:472
+msgid "Mark &Single"
+msgstr ""
+
+#: krusader.cpp:474
+msgid "Mark Different &And Single"
+msgstr ""
+
+#: krusader.cpp:476
+msgid "Mark &Different"
+msgstr ""
+
+#: krusader.cpp:485
 msgid "&Terminal"
 msgstr ""
 
-#: krusader.cpp:453
+#: krusader.cpp:487
 msgid "Disconnect &From Net"
 msgstr ""
 
-#: krusader.cpp:456 krusader.cpp:461
+#: krusader.cpp:490 krusader.cpp:495
 msgid "&MountMan"
 msgstr ""
 
-#: krusader.cpp:465
+#: krusader.cpp:499
 msgid "&Search"
 msgstr ""
 
-#: krusader.cpp:467
+#: krusader.cpp:501
 msgid "&Locate"
 msgstr ""
 
-#: krusader.cpp:469
+#: krusader.cpp:503
 msgid "Synchronize &Directories"
 msgstr ""
 
-#: krusader.cpp:471
+#: krusader.cpp:505
 msgid "&Invert Selection"
 msgstr ""
 
-#: krusader.cpp:473
+#: krusader.cpp:507
 msgid "&Unselect Group"
 msgstr ""
 
-#: krusader.cpp:475
+#: krusader.cpp:509
 msgid "&Konfigurator"
 msgstr ""
 
-#: krusader.cpp:481
+#: krusader.cpp:515
 msgid "Save &Position"
 msgstr ""
 
-#: krusader.cpp:483
+#: krusader.cpp:517
 msgid "&All Files"
 msgstr ""
 
-#: krusader.cpp:487
+#: krusader.cpp:521
 msgid "&Custom"
 msgstr ""
 
-#: krusader.cpp:489
+#: krusader.cpp:523
 msgid "Compare b&y content"
 msgstr ""
 
-#: krusader.cpp:491
+#: krusader.cpp:525
 msgid "Multi &Rename"
 msgstr ""
 
-#: krusader.cpp:493
+#: krusader.cpp:527
 msgid "Right-click menu"
 msgstr ""
 
-#: krusader.cpp:495
+#: krusader.cpp:529
 msgid "Right bookmarks"
 msgstr ""
 
-#: krusader.cpp:497
+#: krusader.cpp:531
 msgid "Left bookmarks"
 msgstr ""
 
-#: krusader.cpp:499
+#: krusader.cpp:533
 msgid "Left history"
 msgstr ""
 
-#: krusader.cpp:501
+#: krusader.cpp:535
 msgid "Right history"
 msgstr ""
 
-#: krusader.cpp:503
+#: krusader.cpp:537
 msgid "New tab"
 msgstr ""
 
-#: krusader.cpp:505
+#: krusader.cpp:539
 msgid "Duplicate tab"
 msgstr ""
 
-#: krusader.cpp:507
+#: krusader.cpp:541
 msgid "Close tab"
 msgstr ""
 
-#: krusader.cpp:509 UserMenu/usermenu.cpp:56
+#: krusader.cpp:543
+msgid "Next tab"
+msgstr ""
+
+#: krusader.cpp:545
+msgid "Previous tab"
+msgstr ""
+
+#: krusader.cpp:547 UserMenu/usermenu.cpp:56
 msgid "User Menu"
 msgstr ""
 
-#: krusader.cpp:513
+#: krusader.cpp:551
 msgid "Highlight files by using a filter"
 msgstr ""
 
-#: krusader.cpp:514
+#: krusader.cpp:552
 msgid "Highlight all the files in the current directory"
 msgstr ""
 
-#: krusader.cpp:515
+#: krusader.cpp:553
 msgid "Remove selection from all highlight files"
 msgstr ""
 
-#: krusader.cpp:516
+#: krusader.cpp:554
 msgid "Setup Krusader the way you like it"
 msgstr ""
 
-#: krusader.cpp:517
+#: krusader.cpp:555
 msgid "Back to the place you came from"
 msgstr ""
 
-#: krusader.cpp:518
+#: krusader.cpp:556
 msgid "ROOT (/)"
 msgstr ""
 
-#: krusader.cpp:519
+#: krusader.cpp:557
 msgid "Search for files"
 msgstr ""
 
-#: krusader.cpp:556 krusader.cpp:559
+#: krusader.cpp:594 krusader.cpp:597
 msgid "List"
 msgstr ""
 
-#: krusader.cpp:599
+#: krusader.cpp:640
 msgid "Ok to shutdown Krusader ?"
 msgstr ""
 
@@ -1691,7 +1737,7 @@ msgid "All Files"
 msgstr ""
 
 #: Search/krsearchdialog.cpp:140 Search/krsearchmod.cpp:91
-#: Konfigurator/konfigurator.cpp:106
+#: Konfigurator/konfigurator.cpp:107
 msgid "Archives"
 msgstr ""
 
@@ -1869,7 +1915,7 @@ msgid "&Bigger than"
 msgstr ""
 
 #: Search/krsearchdialogbase.cpp:457 Search/krsearchdialogbase.cpp:732
-#: Synchronizer/synchronizergui.cpp:1363 Synchronizer/synchronizergui.cpp:1365
+#: Synchronizer/synchronizergui.cpp:1364 Synchronizer/synchronizergui.cpp:1366
 msgid "Date"
 msgstr ""
 
@@ -2040,7 +2086,7 @@ msgstr ""
 msgid "KBookmarkManager"
 msgstr ""
 
-#: MountMan/kmountman.cpp:596 MountMan/kmountman.cpp:632 krslots.cpp:380
+#: MountMan/kmountman.cpp:596 MountMan/kmountman.cpp:632 krslots.cpp:402
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 
@@ -2531,7 +2577,7 @@ msgstr ""
 msgid "* Warning: Storing your password is not secure !!!"
 msgstr ""
 
-#: UserMenu/usermenu.cpp:63 Synchronizer/synchronizergui.cpp:2172
+#: UserMenu/usermenu.cpp:63 Synchronizer/synchronizergui.cpp:2134
 msgid "Add new entry"
 msgstr ""
 
@@ -2543,69 +2589,69 @@ msgstr ""
 msgid "Add an useraction"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1152
+#: Synchronizer/synchronizergui.cpp:1153
 msgid "Krusader::Synchronize Directories"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1164
+#: Synchronizer/synchronizergui.cpp:1165
 msgid "Directory Comparation"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1178
+#: Synchronizer/synchronizergui.cpp:1179
 msgid "File Filter:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1200
+#: Synchronizer/synchronizergui.cpp:1201
 msgid "The left base directory"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1212
+#: Synchronizer/synchronizergui.cpp:1213
 msgid "Filtering by the filename"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1226
+#: Synchronizer/synchronizergui.cpp:1227
 msgid "The right base directory"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1230
+#: Synchronizer/synchronizergui.cpp:1231
 msgid "Recurse subdirectories"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1232
+#: Synchronizer/synchronizergui.cpp:1233
 msgid "Compares not only the base directories but their subdirectories as well"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1233
+#: Synchronizer/synchronizergui.cpp:1234
 msgid "Follow symlinks"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1236
+#: Synchronizer/synchronizergui.cpp:1237
 msgid "Follows the symbolic links also at comparing"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1237
+#: Synchronizer/synchronizergui.cpp:1238
 msgid "Compare by content"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1239
+#: Synchronizer/synchronizergui.cpp:1240
 msgid "Compares the duplicate files with the same size by their content"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1240
+#: Synchronizer/synchronizergui.cpp:1241
 msgid "Ignore Date"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1242
+#: Synchronizer/synchronizergui.cpp:1243
 msgid ""
 "Ignores the date information at comparing (good if the files\n"
 "were fetched from ftp, smb, archive, ... file systems)"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1243
+#: Synchronizer/synchronizergui.cpp:1244
 msgid "Asymmetric"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1245
+#: Synchronizer/synchronizergui.cpp:1246
 msgid ""
 "Asymmetric mode. The left side is the destination, the right is the source "
 "directory.\n"
@@ -2615,188 +2661,172 @@ msgid ""
 "file server)."
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1248
+#: Synchronizer/synchronizergui.cpp:1249
 msgid "Automatic Scrolling"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1250
+#: Synchronizer/synchronizergui.cpp:1251
 msgid "Scrolls the results of comparing (slow)"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1255
+#: Synchronizer/synchronizergui.cpp:1256
 msgid "Show options"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1275
+#: Synchronizer/synchronizergui.cpp:1276
 msgid "Lists the files marked to copy from left to right"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1283
+#: Synchronizer/synchronizergui.cpp:1284
 msgid "Lists the files considered to be identical"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1291
+#: Synchronizer/synchronizergui.cpp:1292
 msgid "Lists the excluded files"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1299
+#: Synchronizer/synchronizergui.cpp:1300
 msgid "Lists the files marked to copy from right to left"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1307
+#: Synchronizer/synchronizergui.cpp:1308
 msgid "Lists the files marked to delete"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1311
+#: Synchronizer/synchronizergui.cpp:1312
 msgid "Duplicates"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1315
+#: Synchronizer/synchronizergui.cpp:1316
 msgid "Lists those files that exist in both side"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1319
+#: Synchronizer/synchronizergui.cpp:1320
 msgid "Singles"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1323
+#: Synchronizer/synchronizergui.cpp:1324
 msgid "Lists those files that exist only in either side"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1364
+#: Synchronizer/synchronizergui.cpp:1365
 msgid "<=>"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1392
+#: Synchronizer/synchronizergui.cpp:1393
 msgid "Profiles"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1398
+#: Synchronizer/synchronizergui.cpp:1399
 msgid "Swap sides"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1408
+#: Synchronizer/synchronizergui.cpp:1409
 msgid "Compare"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1418
+#: Synchronizer/synchronizergui.cpp:1419
 msgid "Synchronize"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1497
+#: Synchronizer/synchronizergui.cpp:1498
 msgid "Target directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1498
+#: Synchronizer/synchronizergui.cpp:1499
 msgid "Source directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1502
+#: Synchronizer/synchronizergui.cpp:1503
 msgid "Left directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1503
+#: Synchronizer/synchronizergui.cpp:1504
 msgid "Right directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1542
+#: Synchronizer/synchronizergui.cpp:1543
 msgid "Synchronize Directories"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1544
+#: Synchronizer/synchronizergui.cpp:1545
 msgid "Exclude"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1546
+#: Synchronizer/synchronizergui.cpp:1547
 msgid "Restore original operation"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1548
+#: Synchronizer/synchronizergui.cpp:1549
 msgid "Reverse direction"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1550
+#: Synchronizer/synchronizergui.cpp:1551
 msgid "Copy from right to left"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1552
+#: Synchronizer/synchronizergui.cpp:1553
 msgid "Copy from left to right"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1554
+#: Synchronizer/synchronizergui.cpp:1555
 msgid "Delete (left single)"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1559
+#: Synchronizer/synchronizergui.cpp:1560
 msgid "View left file"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1561
+#: Synchronizer/synchronizergui.cpp:1562
 msgid "View right file"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1563
+#: Synchronizer/synchronizergui.cpp:1564
 msgid "Compare Files"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1568 Synchronizer/synchronizergui.cpp:1647
+#: Synchronizer/synchronizergui.cpp:1569 Synchronizer/synchronizergui.cpp:1648
 msgid "Select items"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1570 Synchronizer/synchronizergui.cpp:1648
+#: Synchronizer/synchronizergui.cpp:1571 Synchronizer/synchronizergui.cpp:1649
 msgid "Deselect items"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1572
+#: Synchronizer/synchronizergui.cpp:1573
 msgid "Invert selection"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1583
+#: Synchronizer/synchronizergui.cpp:1584
 msgid "Synchronize with KGet"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1777 Synchronizer/synchronizergui.cpp:1784
-#: Synchronizer/synchronizergui.cpp:1832 Synchronizer/synchronizergui.cpp:1839
+#: Synchronizer/synchronizergui.cpp:1778 Synchronizer/synchronizergui.cpp:1785
+#: Synchronizer/synchronizergui.cpp:1833 Synchronizer/synchronizergui.cpp:1840
 msgid "<DIR>"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1926
+#: Synchronizer/synchronizergui.cpp:1927
 msgid "Synchronizer has nothing to do!"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1975 krslots.cpp:147
-msgid ""
-"Krusader can't find any of the supported diff-frontends. Please install one "
-"to your path. Hint: Krusader supports kdiff and xxdiff."
-msgstr ""
-
-#: Synchronizer/synchronizergui.cpp:1985 Synchronizer/synchronizergui.cpp:1991
-#: krslots.cpp:178 krslots.cpp:184
-msgid "Krusader is unable to download: "
-msgstr ""
-
-#: Synchronizer/synchronizergui.cpp:1999 Synchronizer/synchronizer.cpp:1210
-#: krslots.cpp:138 krslots.cpp:192
-msgid "Error executing "
-msgstr ""
-
-#: Synchronizer/synchronizergui.cpp:2154
+#: Synchronizer/synchronizergui.cpp:2116
 msgid "Synchronizer Profiles"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:2168
+#: Synchronizer/synchronizergui.cpp:2130
 msgid "Remove entry"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:2169
+#: Synchronizer/synchronizergui.cpp:2131
 msgid "Overwrite entry"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:2179 Synchronizer/synchronizer.cpp:1164
+#: Synchronizer/synchronizergui.cpp:2141 Synchronizer/synchronizer.cpp:1164
 msgid "Krusader::Synchronizer"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:2179
+#: Synchronizer/synchronizergui.cpp:2141
 msgid "Enter the profile name:"
 msgstr ""
 
@@ -2886,12 +2916,16 @@ msgstr ""
 msgid "Feeding the URL-s to kget"
 msgstr ""
 
+#: Synchronizer/synchronizer.cpp:1210 krslots.cpp:138 krslots.cpp:220
+msgid "Error executing "
+msgstr ""
+
 #: Synchronizer/synchronizedialog.moc.cpp:34
 #: Synchronizer/synchronizedialog.moc.cpp:42
 msgid "SynchronizeDialog"
 msgstr ""
 
-#: paneltabbar.cpp:32 Konfigurator/kglookfeel.cpp:104
+#: paneltabbar.cpp:33 Konfigurator/kglookfeel.cpp:105
 msgid "Panel"
 msgstr ""
 
@@ -2902,11 +2936,16 @@ msgstr ""
 
 #: rc.cpp:6
 #, no-c-format
+msgid "Compare Se&tup"
+msgstr ""
+
+#: rc.cpp:8
+#, no-c-format
 msgid "&Commands"
 msgstr ""
 
 #: Konfigurator/kgdependencies.cpp:50 Konfigurator/kggeneral.cpp:51
-#: Konfigurator/konfigurator.cpp:99 Konfigurator/kgadvanced.cpp:46
+#: Konfigurator/konfigurator.cpp:100 Konfigurator/kgadvanced.cpp:46
 #: Konfigurator/kgcolors.cpp:49 Konfigurator/kgarchives.cpp:53
 msgid "General"
 msgstr ""
@@ -3026,64 +3065,72 @@ msgid ""
 "to your path. (ie: /usr/bin, /usr/local/bin etc.)"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:59
+#: Konfigurator/konfigurator.cpp:60
 msgid "Defaults"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:62
+#: Konfigurator/konfigurator.cpp:63
 msgid "Konfigurator - Creating Your Own Krusader"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:89
+#: Konfigurator/konfigurator.cpp:90
 msgid "Startup"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:90
+#: Konfigurator/konfigurator.cpp:91
 msgid "Krusader's setting upon startup"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:93 Konfigurator/konfigurator.cpp:94
+#: Konfigurator/konfigurator.cpp:94 Konfigurator/konfigurator.cpp:95
 msgid "Look & Feel"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:96 Konfigurator/konfigurator.cpp:97
+#: Konfigurator/konfigurator.cpp:97 Konfigurator/konfigurator.cpp:98
 #: Konfigurator/kgcolors.cpp:75 Konfigurator/kgcolors.cpp:157
 msgid "Colors"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:100
+#: Konfigurator/konfigurator.cpp:101
 msgid "Basic Operations"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:102
+#: Konfigurator/konfigurator.cpp:103
 msgid "Advanced"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:103
+#: Konfigurator/konfigurator.cpp:104
 msgid "Be sure you know what you're doing"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:106
+#: Konfigurator/konfigurator.cpp:107
 msgid "Costumize the way Krusader deals with archives"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:109
+#: Konfigurator/konfigurator.cpp:110
 msgid "Dependencies"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:109
+#: Konfigurator/konfigurator.cpp:110
 msgid "Set the full path of the external applications"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:112
+#: Konfigurator/konfigurator.cpp:113
 msgid "User Actions"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:112
+#: Konfigurator/konfigurator.cpp:113
 msgid "Configure you personal actions"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:178
+#: Konfigurator/konfigurator.cpp:116 Konfigurator/kgprotocols.cpp:102
+msgid "Protocols"
+msgstr ""
+
+#: Konfigurator/konfigurator.cpp:117
+msgid "Link mimes to protocols"
+msgstr ""
+
+#: Konfigurator/konfigurator.cpp:182
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr ""
 
@@ -3115,151 +3162,155 @@ msgstr ""
 msgid "Case sensitive sorting"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:66
-msgid "New style quicksearch"
+#: Konfigurator/kglookfeel.cpp:65
+msgid "Use fullpath tab names"
 msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:67
+msgid "New style quicksearch"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:68
 msgid "Case sensitive quicksearch"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:76
+#: Konfigurator/kglookfeel.cpp:77
 msgid "Single click / Double click Selection:"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:80
+#: Konfigurator/kglookfeel.cpp:81
 msgid "Double-click selects (classic)"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:81
+#: Konfigurator/kglookfeel.cpp:82
 msgid "Obey KDE's global selection policy"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:88
+#: Konfigurator/kglookfeel.cpp:89
 msgid "Mouse Selection Mode:"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:91
+#: Konfigurator/kglookfeel.cpp:92
 msgid "Classic (both keys combined)"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:92
+#: Konfigurator/kglookfeel.cpp:93
 msgid "Left mouse button selects"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:93
+#: Konfigurator/kglookfeel.cpp:94
 msgid "Right button selects (Windows Commander style)"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:109
+#: Konfigurator/kglookfeel.cpp:110
 msgid "Panel settings"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:113
+#: Konfigurator/kglookfeel.cpp:114
 msgid "Panel font:"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:119
+#: Konfigurator/kglookfeel.cpp:120
 msgid "Filelist icon size:"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:122
+#: Konfigurator/kglookfeel.cpp:123
 msgid "16"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:123
+#: Konfigurator/kglookfeel.cpp:124
 msgid "22"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:124
+#: Konfigurator/kglookfeel.cpp:125
 msgid "32"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:125
+#: Konfigurator/kglookfeel.cpp:126
 msgid "48"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:133
+#: Konfigurator/kglookfeel.cpp:134
 msgid "Fields:"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:138
+#: Konfigurator/kglookfeel.cpp:139
 msgid "Extension Column"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:139
+#: Konfigurator/kglookfeel.cpp:140
 msgid "Mimetype Column"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:140
+#: Konfigurator/kglookfeel.cpp:141
 msgid "Size Column"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:141
+#: Konfigurator/kglookfeel.cpp:142
 msgid "Date and Time Column"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:142
+#: Konfigurator/kglookfeel.cpp:143
 msgid "Permission Column"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:143
+#: Konfigurator/kglookfeel.cpp:144
 msgid "Krusader Permission Column"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:144
+#: Konfigurator/kglookfeel.cpp:145
 msgid "Owner Column"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:145
+#: Konfigurator/kglookfeel.cpp:146
 msgid "Group Column"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:155
+#: Konfigurator/kglookfeel.cpp:156
 msgid "Use icons in the filenames"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:165
+#: Konfigurator/kglookfeel.cpp:166
 msgid "Toolbar"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:175
+#: Konfigurator/kglookfeel.cpp:176
 msgid "Key-bindings"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:186
 msgid "Panel Toolbar"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:193
+#: Konfigurator/kglookfeel.cpp:194
 msgid "Panel Toolbar visible"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:199
+#: Konfigurator/kglookfeel.cpp:200
 msgid "Panel Toolbar buttons"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:205
+#: Konfigurator/kglookfeel.cpp:206
 msgid "Open button visible"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:206
+#: Konfigurator/kglookfeel.cpp:207
 msgid "Equal button (=) visible"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:207
+#: Konfigurator/kglookfeel.cpp:208
 msgid "Up button (..) visible"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:208
+#: Konfigurator/kglookfeel.cpp:209
 msgid "Home button (~) visible"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:209
+#: Konfigurator/kglookfeel.cpp:210
 msgid "Root button (/) visible"
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:210
+#: Konfigurator/kglookfeel.cpp:211
 msgid "Toggle-button for synchron-browsing visible"
 msgstr ""
 
@@ -3311,6 +3362,34 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:99
 msgid "Arguments of updatedb:"
+msgstr ""
+
+#: Konfigurator/kgprotocols.cpp:61
+msgid "Links"
+msgstr ""
+
+#: Konfigurator/kgprotocols.cpp:65
+msgid "Defined Links"
+msgstr ""
+
+#: Konfigurator/kgprotocols.cpp:79
+msgid "Add protocol to the link list"
+msgstr ""
+
+#: Konfigurator/kgprotocols.cpp:82
+msgid "Remove protocol from the link list"
+msgstr ""
+
+#: Konfigurator/kgprotocols.cpp:92
+msgid "Add mime to the selected protocol on the link list"
+msgstr ""
+
+#: Konfigurator/kgprotocols.cpp:95
+msgid "Remove mime from the link list"
+msgstr ""
+
+#: Konfigurator/kgprotocols.cpp:113
+msgid "Mimes"
 msgstr ""
 
 #: Konfigurator/konfiguratoritems.cpp:609
@@ -3867,30 +3946,40 @@ msgstr ""
 msgid "Sending file: "
 msgstr ""
 
-#: krslots.cpp:165
+#: krslots.cpp:157
 msgid "Don't know which files to compare."
 msgstr ""
 
-#: krslots.cpp:166
+#: krslots.cpp:158
 msgid ""
 "To compare 2 files by content, select (mark) a file in the left panel, and "
 "select another one in the right panel."
 msgstr ""
 
-#: krslots.cpp:213
+#: krslots.cpp:195
+msgid ""
+"Krusader can't find any of the supported diff-frontends. Please install one "
+"to your path. Hint: Krusader supports kdiff and xxdiff."
+msgstr ""
+
+#: krslots.cpp:203 krslots.cpp:209
+msgid "Krusader is unable to download: "
+msgstr ""
+
+#: krslots.cpp:235
 msgid ""
 "In order to save the time needed to enter an archive, Krusader will not "
 "allow bookmarks which point into an archive, as it is usually a mistake to "
 "do so!"
 msgstr ""
 
-#: krslots.cpp:350
+#: krslots.cpp:372
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
 msgstr ""
 
-#: krslots.cpp:362
+#: krslots.cpp:384
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager.The new "
 "manager handles local files and remote url the same way.RemoteMan is being "
@@ -3900,59 +3989,59 @@ msgid ""
 "the bookmark button, select 'Add bookmark' and that's it!"
 msgstr ""
 
-#: krslots.cpp:391
+#: krslots.cpp:413
 msgid "Failed to run 'df', MountMan cannot be started."
 msgstr ""
 
-#: krslots.cpp:421
+#: krslots.cpp:443
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr ""
 
-#: krslots.cpp:429
+#: krslots.cpp:451
 msgid ""
 "Can't find a batch renamer tool.\n"
 "You can get Krename at http://www.krename.net"
 msgstr ""
 
-#: krslots.cpp:459
+#: krslots.cpp:481
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
 msgstr ""
 
-#: krslots.cpp:514
+#: krslots.cpp:536
 msgid "Enter a URL to view:"
 msgstr ""
 
-#: krslots.cpp:531
+#: krslots.cpp:553
 msgid "Enter the filename to edit:"
 msgstr ""
 
-#: krslots.cpp:578
+#: krslots.cpp:608
 msgid "Don't know which file to split."
 msgstr ""
 
-#: krslots.cpp:587
+#: krslots.cpp:617
 msgid "You can't split a directory!"
 msgstr ""
 
-#: krslots.cpp:619
+#: krslots.cpp:649
 msgid "Don't know which files to combine."
 msgstr ""
 
-#: krslots.cpp:631
+#: krslots.cpp:661
 msgid "You can't combine a directory!"
 msgstr ""
 
-#: krslots.cpp:647 krslots.cpp:710
+#: krslots.cpp:677 krslots.cpp:740
 msgid "Not a splitted file %1!"
 msgstr ""
 
-#: krslots.cpp:663
+#: krslots.cpp:693
 msgid "Select only one splitted file!"
 msgstr ""
 
-#: krslots.cpp:717
+#: krslots.cpp:747
 msgid "Combining %1.* to directory:"
 msgstr ""
 
