@@ -213,7 +213,7 @@ KURL::List* normal_vfs::vfs_getFiles(QStringList* names){
 void normal_vfs::vfs_mkdir(QString name){
 	if (!QDir(vfs_workingDir()).mkdir(name))
 	  if (!quietMode) KMessageBox::sorry(krApp,i18n("Can't create a directory check your permissions."));
-	else vfs_refresh(vfs_origin);
+  vfs_refresh(vfs_origin);
 }
 
 
