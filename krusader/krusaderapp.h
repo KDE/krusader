@@ -19,9 +19,9 @@ public:
 				break;
 			
 		}
-		return false; // event should be processed normally
+		//return false; // event should be processed normally
+		return KApplication::x11EventFilter(e);
 	}
-
 signals:
 	void windowActive();
 	void windowInactive();
