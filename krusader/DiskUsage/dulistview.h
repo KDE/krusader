@@ -117,7 +117,7 @@ class DUListView : public QListView
   Q_OBJECT
   
 public:
-  DUListView( DiskUsage *usage, QWidget *parent, const char *name );
+  DUListView( DiskUsage *usage, const char *name );
     
 public slots:
   void slotDirChanged( Directory * );

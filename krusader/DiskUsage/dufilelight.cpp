@@ -31,8 +31,8 @@
 #include "dufilelight.h"
 #include "radialMap/radialMap.h"
 
-DUFilelight::DUFilelight( DiskUsage *usage, QWidget *parent, const char *name )
-  : RadialMap::Widget( parent, name ), diskUsage( usage ), currentDir( 0 )
+DUFilelight::DUFilelight( DiskUsage *usage, const char *name )
+  : RadialMap::Widget( usage, name ), diskUsage( usage ), currentDir( 0 )
 {
    connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
    connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );

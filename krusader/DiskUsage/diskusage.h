@@ -41,45 +41,30 @@
 #include <qptrdict.h>
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
+#include <qwidgetstack.h>
+
+#define VIEW_LINES      0
+#define VIEW_DETAILED   1
+#define VIEW_FILELIGHT  2
 
 typedef QDict<void> Properties;
 
-class DiskUsageDialog : public QDialog
-{
-  Q_OBJECT
-  
-public:
-  DiskUsageDialog( QWidget *parent = 0, const char *name = 0 );
-  
-  void   setCurrentURL( KURL url );
-  void   setValues( int fileNum, int dirNum, KIO::filesize_t total );
-  
-  bool   wasCancelled()  { return cancelled; }
-  
-public slots:
-  void    slotCancelled();
-  virtual void reject();
-  
-protected:
-  QLabel *totalSize;
-  QLabel *files;
-  QLabel *directories;
-  
-  KSqueezedTextLabel *searchedDirectory;
-  
-  bool   cancelled;
-};
+class DUListView;
+class DULines;
+class DUFilelight;
 
-class DiskUsage : public QObject
+class DiskUsage : public QWidgetStack
 {
   Q_OBJECT
   
 public:
-  DiskUsage();
+  DiskUsage( QWidget *parent = 0, char *name = 0);
   ~DiskUsage();
   
   bool       load( KURL dirName, QWidget *parent );
   void       clear();
+  
+  void       setView( int view );
 
   Directory* getDirectory( QString path );
   File *     getFile( QString path );
@@ -106,6 +91,7 @@ signals:
   void       clearing();
   void       changed( File * );
   void       status( QString );
+  void       viewChanged( int );
   
 protected:
   QDict< Directory > contentMap;
@@ -120,8 +106,40 @@ protected:
   void       createStatus();
   
   KURL       baseURL;             //< the base URL of loading
+
+  DUListView                *listView;
+  DULines                   *lineView;
+  DUFilelight               *filelightView;
   
   Directory *root;
+  
+  int        activeView;
+};
+
+class DiskUsageDialog : public QDialog
+{
+  Q_OBJECT
+  
+public:
+  DiskUsageDialog( QWidget *parent = 0, const char *name = 0 );
+  
+  void   setCurrentURL( KURL url );
+  void   setValues( int fileNum, int dirNum, KIO::filesize_t total );
+  
+  bool   wasCancelled()  { return cancelled; }
+  
+public slots:
+  void    slotCancelled();
+  virtual void reject();
+  
+protected:
+  QLabel *totalSize;
+  QLabel *files;
+  QLabel *directories;
+  
+  KSqueezedTextLabel *searchedDirectory;
+  
+  bool   cancelled;
 };
 
 #endif /* __DISK_USAGE_GUI_H__ */

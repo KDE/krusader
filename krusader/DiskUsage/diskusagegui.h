@@ -33,15 +33,11 @@
 
 #include <qdialog.h>
 #include <qlayout.h>
-#include <qwidgetstack.h>
 #include <qtoolbutton.h>
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
 
 #include "diskusage.h"
-#include "dulistview.h"
-#include "dulines.h"
-#include "dufilelight.h"
 
 class DiskUsageGUI : public QDialog
 {
@@ -51,34 +47,29 @@ public:
   DiskUsageGUI( QString openDir, QWidget* parent=0, char *name = 0 );
   ~DiskUsageGUI();
   
-  void                       selectView( int viewNum );
 
 public slots:
   void                       loadUsageInfo();
   bool                       newSearch();
   void                       setStatus( QString );
   
-  void                       selectLinesView()     { selectView( 0 ); }
-  void                       selectListView()      { selectView( 1 ); }
-  void                       selectFilelightView() { selectView( 2 ); }
+  void                       selectLinesView()     { diskUsage->setView( VIEW_LINES ); }
+  void                       selectListView()      { diskUsage->setView( VIEW_DETAILED ); }
+  void                       selectFilelightView() { diskUsage->setView( VIEW_FILELIGHT ); }
   
 protected slots:
   virtual void               reject();
+  void                       slotViewChanged( int view );
   
 protected:
   virtual void               resizeEvent( QResizeEvent *e );
   
   
-  DiskUsage                  diskUsage;
+  DiskUsage                 *diskUsage;
   KURL                       baseDirectory;
   
-  QWidgetStack              *viewStack;
   KSqueezedTextLabel        *status;
   
-  DUListView                *listView;
-  DULines                   *lineView;
-  DUFilelight               *filelightView;
-
   QToolButton               *btnLines;
   QToolButton               *btnDetailed;
   QToolButton               *btnFilelight;

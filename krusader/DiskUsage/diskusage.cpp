@@ -46,6 +46,10 @@
 #include "../kicons.h"
 #include "filelightParts/Config.h"
 
+#include "dulines.h"
+#include "dulistview.h"
+#include "dufilelight.h"
+
 // these are the values that will exist in the menu
 #define EXCLUDE_ID          90
 #define INCLUDE_ALL_ID      91
@@ -136,8 +140,18 @@ void DiskUsageDialog::reject()
   QDialog::reject();
 }
 
-DiskUsage::DiskUsage() : root( 0 )
+DiskUsage::DiskUsage( QWidget *parent, char *name ) : QWidgetStack( parent, name ), root( 0 )
 {
+  listView = new DUListView( this, "DU ListView" );
+  lineView = new DULines( this, "DU LineView" );
+  filelightView = new DUFilelight( this, "Filelight canvas" );
+  
+  addWidget( listView );
+  addWidget( lineView );
+  addWidget( filelightView );
+    
+  setView( VIEW_LINES );
+      
   Filelight::Config::read();  
   propertyMap.setAutoDelete( true );
 }
@@ -146,6 +160,13 @@ DiskUsage::~DiskUsage()
 {
   if( root )
     delete root;
+    
+  if( listView )         // don't remove these lines. The module will crash at exit if removed
+    delete listView;
+  if( lineView )
+    delete lineView;
+  if( filelightView )
+    delete filelightView;
 }
 
 bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
@@ -529,6 +550,24 @@ QString DiskUsage::getToolTip( File *item )
                 "</table></h5></qt>";
   str.replace( " ", "&nbsp;" );
   return str;
+}
+
+void DiskUsage::setView( int view )
+{
+  switch( view )
+  {
+  case VIEW_LINES:
+    raiseWidget( lineView );
+    break;
+  case VIEW_DETAILED:
+    raiseWidget( listView );
+    break;
+  case VIEW_FILELIGHT:
+    raiseWidget( filelightView );
+    break;
+  }
+  
+  emit viewChanged( activeView = view );
 }
 
 #include "diskusage.moc"

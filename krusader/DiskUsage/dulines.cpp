@@ -116,8 +116,8 @@ void DULinesToolTip::maybeTip( const QPoint &pos )
   }
 }
 
-DULines::DULines( DiskUsage *usage, QWidget *parent, const char *name )
-  : QListView( parent, name ), diskUsage( usage ), refreshNeeded( false )
+DULines::DULines( DiskUsage *usage, const char *name )
+  : QListView( usage, name ), diskUsage( usage ), refreshNeeded( false )
 {
   setAllColumnsShowFocus(true);
   setVScrollBarMode(QScrollView::Auto);

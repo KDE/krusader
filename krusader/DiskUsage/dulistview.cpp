@@ -39,8 +39,8 @@
 #include <qheader.h>
 #include <time.h>
 
-DUListView::DUListView( DiskUsage *usage, QWidget *parent, const char *name ) 
-    : QListView( parent, name ), diskUsage( usage )
+DUListView::DUListView( DiskUsage *usage, const char *name ) 
+    : QListView( usage, name ), diskUsage( usage )
 {  
   setAllColumnsShowFocus(true);
   setVScrollBarMode(QScrollView::Auto);

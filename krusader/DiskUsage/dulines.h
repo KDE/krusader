@@ -42,7 +42,7 @@ class DULines : public QListView
   Q_OBJECT
   
 public:
-  DULines( DiskUsage *usage, QWidget *parent, const char *name );
+  DULines( DiskUsage *usage, const char *name );
   ~DULines();
 
 public slots:

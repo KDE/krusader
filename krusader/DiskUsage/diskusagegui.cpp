@@ -39,7 +39,7 @@
 #include <klocale.h>
 
 DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name ) 
-  : QDialog( parent, name, false, 0 ), viewStack( 0 )
+  : QDialog( parent, name, false, 0 )
 {
   setCaption( i18n("Krusader::Disk Usage") );
   
@@ -82,33 +82,26 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   
   duGrid->addWidget( duTools, 0, 0 );
   
-  viewStack = new QWidgetStack( this );  
-  
-  listView = new DUListView( &diskUsage, viewStack, "DU ListView" );
-  lineView = new DULines( &diskUsage, viewStack, "DU LineView" );
-  filelightView = new DUFilelight( &diskUsage, viewStack, "Filelight canvas" );
-  
-  viewStack->addWidget( listView );
-  viewStack->addWidget( lineView );
-  viewStack->addWidget( filelightView );
-
-  selectView( 0 );
-      
-  duGrid->addWidget( viewStack, 1, 0 );
+  diskUsage = new DiskUsage( this );
+  duGrid->addWidget( diskUsage, 1, 0 );
   
   status = new KSqueezedTextLabel( this );
   status->setFrameShape( QLabel::StyledPanel );
   status->setFrameShadow( QLabel::Sunken );  
   duGrid->addWidget( status, 2, 0 );
   
-  connect( &diskUsage, SIGNAL( status( QString ) ), this, SLOT( setStatus( QString ) ) );
+  connect( diskUsage, SIGNAL( status( QString ) ), this, SLOT( setStatus( QString ) ) );
+  connect( diskUsage, SIGNAL( viewChanged( int ) ), this, SLOT( slotViewChanged( int ) ) );
   connect( btnNewSearch, SIGNAL( clicked() ), this, SLOT( newSearch() ) );
   connect( btnRefresh, SIGNAL( clicked() ), this, SLOT( loadUsageInfo() ) );
   connect( btnLines, SIGNAL( clicked() ), this, SLOT( selectLinesView() ) );
   connect( btnDetailed, SIGNAL( clicked() ), this, SLOT( selectListView() ) );
-  connect( btnFilelight, SIGNAL( clicked() ), this, SLOT( selectFilelightView() ) );
+  connect( btnFilelight, SIGNAL( clicked() ), this, SLOT( selectFilelightView() ) );  
   
   krConfig->setGroup( "DiskUsage" ); 
+  
+  diskUsage->setView( VIEW_LINES );
+  
   sizeX = krConfig->readNumEntry( "Window Width",  QFontMetrics(font()).width("W") * 70 );
   sizeY = krConfig->readNumEntry( "Window Height", QFontMetrics(font()).height() * 25 );    
   resize( sizeX, sizeY );
@@ -123,8 +116,6 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
 
 DiskUsageGUI::~DiskUsageGUI()
 {
-  if( viewStack )
-    delete viewStack;  // don't remove, DiskUsage will crash if removed
 }
 
 void DiskUsageGUI::resizeEvent( QResizeEvent *e )
@@ -149,7 +140,7 @@ void DiskUsageGUI::reject()
 
 void DiskUsageGUI::loadUsageInfo()
 {
-  if( !diskUsage.load( baseDirectory, this ) )
+  if( !diskUsage->load( baseDirectory, this ) )
     reject();
 }
 
@@ -158,25 +149,22 @@ void DiskUsageGUI::setStatus( QString stat )
   status->setText( stat );
 }
 
-void DiskUsageGUI::selectView( int viewNum )
+void DiskUsageGUI::slotViewChanged( int view )
 {
   btnLines->setOn( false );
   btnDetailed->setOn( false );
   btnFilelight->setOn( false );
   
-  switch( viewNum )
+  switch( view )
   {
-  case 0:
+  case VIEW_LINES:
     btnLines->setOn( true );
-    viewStack->raiseWidget( lineView );
     break;
-  case 1:
+  case VIEW_DETAILED:
     btnDetailed->setOn( true );
-    viewStack->raiseWidget( listView );
     break;
-  case 2:
+  case VIEW_FILELIGHT:
     btnFilelight->setOn( true );
-    viewStack->raiseWidget( filelightView );
     break;
   }
 }

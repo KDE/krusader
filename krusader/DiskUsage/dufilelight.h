@@ -39,7 +39,7 @@ class DUFilelight : public RadialMap::Widget
   Q_OBJECT
   
 public:
-  DUFilelight( DiskUsage *usage, QWidget *parent, const char *name );
+  DUFilelight( DiskUsage *usage, const char *name );
 
 public slots:
   void slotDirChanged( Directory * );
