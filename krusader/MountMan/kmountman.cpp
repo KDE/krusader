@@ -1,6 +1,6 @@
 /***************************************************************************
-                           kmountman.cpp
-                        -------------------
+                         kmountman.cpp
+                      -------------------
 copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
 e-mail               : krusader@users.sourceforge.net
 web site             : http://krusader.sourceforge.net
@@ -15,7 +15,7 @@ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
 YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                S o u r c e    F i l e
+                                              S o u r c e    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -67,6 +67,9 @@ using namespace MountMan;
 
 KMountMan::KMountMan() : QObject(), Ready( false ), Operational( false ),
 outputBuffer( 0 ), tempFile( 0 ), mountManGui( 0 ), mtab( "" ) {
+#if KDE_IS_VERSION(3,2,0)
+  _actions = 0L;
+#endif /* KDE 3.2 */
   filesystems.setAutoDelete( true );
   localDf = new fsData();				 // will be used to move around information
   forceUpdate();
@@ -188,7 +191,7 @@ bool KMountMan::createFilesystems() {
   for ( j = 0; j <= i; ++j ) {
     if ( temp[ 0 ][ j ] == "" || temp[ 0 ][ j ] == "tmpfs" || temp[ 0 ][ j ] == "none" || temp[ 0 ][ j ] == "proc" ||
 #ifdef BSD
-         temp[ 0 ][ j ] == "swap" || temp[ 1 ][ j ] == "procfs" || temp[ 1 ][ j ] == "/dev/pts" ||      // FreeBSD: procfs instead of proc
+         temp[ 0 ][ j ] == "swap" || temp[ 1 ][ j ] == "procfs" || temp[ 1 ][ j ] == "/dev/pts" ||        // FreeBSD: procfs instead of proc
 #else
          temp[ 0 ][ j ] == "swap" || temp[ 1 ][ j ] == "proc" || temp[ 1 ][ j ] == "/dev/pts" ||
 #endif
@@ -208,7 +211,7 @@ bool KMountMan::createFilesystems() {
       system->setType( temp[ 1 ][ j ] );
       system->setMntPoint( temp[ 2 ][ j ] );
       // remove trailing spaces (since mtab removes them)
-      if ( system->mntPoint() [ system->mntPoint().length() - 1 ] == '/' && system->mntPoint() != "/" )      // also skip root!
+      if ( system->mntPoint() [ system->mntPoint().length() - 1 ] == '/' && system->mntPoint() != "/" )        // also skip root!
         system->setMntPoint( system->mntPoint().left( system->mntPoint().length() - 1 ) );
       system->supermount = ( temp[ 4 ][ j ] == "supermount" ? true : false );
       system->options = temp[ 3 ][ j ];
@@ -398,7 +401,7 @@ KMountMan::mntStatus KMountMan::getStatus( QString mntPoint ) {
   // parse the mount table and search for mntPoint
   bool mounted = ( devFromMtab( mntPoint ) != QString::null );
   if ( mounted ) return KMountMan::MOUNTED;
-  if ( mountPoints.findIndex( mntPoint ) == -1 )       // no such mountPoint is /etc/fstab
+  if ( mountPoints.findIndex( mntPoint ) == -1 )         // no such mountPoint is /etc/fstab
     return KMountMan::DOESNT_EXIST;
   else return KMountMan::NOT_MOUNTED;
   }
@@ -444,9 +447,9 @@ void KMountMan::parseDfData( QString filename ) {
       loc = new fsData();
       loc->supermount = false;
       filesystems.append( loc );
-      if ( temp.contains( "//" ) > 0 ||         // if it contains '//', it's a smb share
-           temp.contains( ":" ) > 0 ||         // if it contains ':' , it's an nfs share
-           temp.startsWith( "/" ) )           // if it is a fullpath device name
+      if ( temp.contains( "//" ) > 0 ||           // if it contains '//', it's a smb share
+           temp.contains( ":" ) > 0 ||           // if it contains ':' , it's an nfs share
+           temp.startsWith( "/" ) )             // if it is a fullpath device name
         loc->setName( temp );      // <patch> thanks to Cristi Dumitrescu
       else loc->setName( "/dev/" + temp );
       newFS = true;
@@ -625,7 +628,7 @@ void KMountMan::unmount( fsData *p ) {
   krApp->startWaiting( i18n( "Unmounting device, please wait ..." ), 0, false );
 
   clearOutput();
-  if ( !umountProc.start( KProcess::NotifyOnExit, KProcess::Stderr ) ) {
+  if ( !umountProc.start( KProcess::Block, KProcess::Stderr ) ) {
     KMessageBox::error( 0,
                         i18n( "Unable to execute 'umount' !!! check that /bin/umount or /sbin/umount are availble" ) );
     return ;
@@ -653,7 +656,7 @@ void KMountMan::eject( QString mntPoint ) {
   KShellProcess proc;
   proc << KrServices::fullPathName( "eject" ) << "\"" + mntPoint + "\"";
   proc.start( KProcess::Block );
-  if ( !proc.normalExit() || proc.exitStatus() != 0 )      // if we failed with eject
+  if ( !proc.normalExit() || proc.exitStatus() != 0 )        // if we failed with eject
     KMessageBox::information( 0, i18n( "Error ejecting device ! You need to have 'eject' in your path." ), i18n( "Error" ), "CantExecuteEjectWarning" );
   }
 
@@ -772,7 +775,7 @@ QString KMountMan::convertSize( KIO::filesize_t size ) {
   // Tera-byte
   if ( size >= 1073741824 ) {
     fsize = ( float ) size / ( float ) 1073741824;
-    if ( fsize > 1024 )      // no name for something bigger than tera byte
+    if ( fsize > 1024 )        // no name for something bigger than tera byte
       // let's call it Zega-Byte, who'll ever find out? :-)
       s = i18n( "%1 ZB" ).arg( KGlobal::locale() ->formatNumber( fsize / ( float ) 1024, 1 ) );
     else
@@ -796,15 +799,22 @@ QString KMountMan::convertSize( KIO::filesize_t size ) {
   return s;
   }
 
+#if KDE_IS_VERSION(3,2,0)
+
+// populate the pop-up menu of the mountman tool-button with actions
 void KMountMan::quickList() {
+  // clear the popup menu
+  ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu() ->clear();
+
   // create lists of current and possible mount points
   KMountPoint::List current = KMountPoint::currentMountPoints();
   KMountPoint::List possible = KMountPoint::possibleMountPoints();
 
   // create a popupmenu, displaying mountpoints with possible actions
   // also, populate a small array with the actions
-  bool *actions = new bool[ possible.size() ];
-  KPopupMenu *menu = new KPopupMenu( i18n( "MountMan::Quick List" ), 0, 0 );
+  if ( _actions ) delete[] _actions;
+  _actions = new QString[ possible.size() ];
+
   KMountPoint::List::iterator it;
   KMountPoint *m;
   int idx;
@@ -821,22 +831,36 @@ void KMountMan::quickList() {
         }
       }
     // add the item to the menu
-    actions[ idx ] = needUmount;
-    menu->insertItem( QString( ( needUmount ? i18n( "Unmount" ) : i18n( "Mount" ) ) ) + " " + m->mountPoint() +
-                      " (" + m->mountedFrom() + ")", idx );
+    _actions[ idx ] = QString( needUmount ? "_U_" : "_M_" ) + m->mountPoint();
+    QString text = QString( ( needUmount ? i18n( "Unmount" ) : i18n( "Mount" ) ) ) + " " + m->mountPoint() +
+                   " (" + m->mountedFrom() + ")";
+
+
+    ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu() ->insertItem( text, idx );
+    }
+  connect( ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu(), SIGNAL( activated( int ) ),
+           this, SLOT( performAction( int ) ) );
+
+  }
+
+void KMountMan::performAction( int idx ) {
+	while (qApp->hasPendingEvents()) qApp->processEvents();
+	
+  if ( idx < 0 ) return ;
+  bool domount = _actions[ idx ].left( 3 ) == "_M_";
+  QString mountPoint = _actions[ idx ].mid( 3 );
+  if ( !domount ) { // umount
+    unmount( mountPoint );
+    } else { // mount
+    mount( mountPoint );
     }
 
-  // execute menu, and perform the action
-  idx = menu->exec();
-  if ( idx != -1 ) { // if user selected something
-    if ( actions[ idx ] ) { // umount
-      unmount( possible[ idx ] ->mountPoint() );
-      } else { // mount
-      mount( possible[ idx ] ->mountPoint() );
-      }
-    }
   // free memory
-  delete[] actions;
+  delete[] _actions;
+  _actions = 0L;
+  disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu(), SIGNAL( activated( int ) ), 0, 0 );
   }
+
+#endif /* KDE 3.2 */
 
 #include "kmountman.moc"
