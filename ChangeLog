@@ -1,14 +1,8 @@
+1.29-beta
 ======================
     ADDED: KrSearch Match whole word only feature
-    FIXED: KrSearch does not find texts at the last row
-    FIXED: Strange KrSearch GUI (SearchIn and DontSearchIn adding)
-    FIXED: KrSearch crash at pressing Escape or Closing the window during search
     ADDED: Tab-browsing shortens tabs when more tabs are created
-    FIXED:
-    FIXED: cmdline would start-up focused on the wrong panel
-    FIXED: when pressing ctrl-enter (or ctrl-shift-enter), focus goes to command line
     ADDED: Starting Krusader with root privileges by pressing Alt+K
-    FIXED: Terminal Emulator bug at ` and Backspace keys
     ADDED: Open-in-a-new-tab available in right-click menu
     ADDED: Creating new files with SHIFT+F4
     ADDED: Russian translation (thanks to Dmitry Chernyak)
@@ -17,7 +11,6 @@
     ADDED: ctrl-left/right arrow checks if we're on a folder, if so it refreshes the other panel with the contents
            of the folder, otherwise to the same path as current one (Wincmd style)
     ADDED: tabbed-browsing beta ---> memory leak? listpanel doesn't seem to be deleted (using top to check)
-    FIXED: internal editor / viewer crash at invalid symlinks
     ADDED: SHIFT-F3 view dialog.
     ADDED: The internal viewer follow links on HTML pages.
     ADDED: panel swapping by Ctrl+U
@@ -30,6 +23,13 @@
     ADDED: rar support to krArc KIO slave.
     ADDED: open with in the right click menu for multiple files with the same mimetype.
     ADDED: Patch by Heiner <h.eichmann_at_gmx.de>  which adds a cancel button to the calculate space action.
+    FIXED: KrSearch does not find texts at the last row
+    FIXED: Strange KrSearch GUI (SearchIn and DontSearchIn adding)
+    FIXED: KrSearch crash at pressing Escape or Closing the window during search
+    FIXED: cmdline would start-up focused on the wrong panel
+    FIXED: when pressing ctrl-enter (or ctrl-shift-enter), focus goes to command line
+    FIXED: Terminal Emulator bug at ` and Backspace keys
+    FIXED: internal editor / viewer crash at invalid symlinks
     FIXED: run-in-terminal would cause the terminal to close prematuraly and results would be lost.
     FIXED: free disk capacity miscalculation for Ext2 and Ext3 file systems.
     FIXED: crash when editing a file with # in the filename
