@@ -577,6 +577,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       if ( e->state() == ControlButton ) {
         KListView::keyPressEvent( e );
         updateView();
+        break;
       }
       default:
       // if the key is A..Z or 1..0 do quick search otherwise...
