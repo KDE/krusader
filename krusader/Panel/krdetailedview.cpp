@@ -595,6 +595,8 @@ void KrDetailedView::renameCurrentItem() {
   KrViewItem *it = getCurrentKrViewItem();
   if ( it ) fileName = it->name();
   else return ; // quit if no current item available
+  // don't allow anyone to rename ..
+  if (fileName == "..") return;
 
   // determine which column is inplace renameable
   for ( c = 0; c < columns(); c++ )
