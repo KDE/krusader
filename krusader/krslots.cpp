@@ -351,7 +351,6 @@ void KRslots::multiRename(){
 	delete urls;
 }
 
-
 // settings slots
 void KRslots::configToolbar(){
   KEditToolbar dlg(krApp->factory());//actionCollection());

@@ -29,12 +29,15 @@
 #include <ktrader.h>
 #include <kio/netaccess.h>
 #include <kstatusbar.h>
+#include <kdebug.h>
 // Krusader includes
 #include "krviewer.h"
+#include "../krusader.h"
 
 
 KrViewer::KrViewer(QWidget *parent, const char *name ) :
   KParts::MainWindow(parent,name), manager(this,this){
+  //setWFlags(WType_TopLevel | WDestructiveClose);
   setXMLFile("krviewerui.rc");
   setHelpMenuEnabled(false);
   setAutoSaveSettings("KrViewerWindow",true);
@@ -56,7 +59,9 @@ KrViewer::KrViewer(QWidget *parent, const char *name ) :
   statusBar()->show();
 }
 
-KrViewer::~KrViewer(){}
+KrViewer::~KrViewer(){
+	//kdDebug() << "KrViewer killed" << endl;
+}
 
 KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly){
   KParts::Part *part = 0L;
@@ -95,7 +100,9 @@ void KrViewer::createGUI(KParts::Part* part){
   if(editor_part)  editor_part->widget()->hide();
 
   // and show the new part widget
-  KParts::MainWindow::createGUI(part);
+ 	connect(part,SIGNAL(setStatusBarText(const QString&)),
+          this,SLOT(slotSetStatusBarText(const QString&)));
+	KParts::MainWindow::createGUI(part);
   setCentralWidget(part->widget());
   part->widget()->show();
 
@@ -103,7 +110,6 @@ void KrViewer::createGUI(KParts::Part* part){
   menuBar()->removeItem(70);
   menuBar()->insertItem( i18n("&KrViewer"), viewerMenu,70 );
   menuBar()->show();
-
 }
 
 void KrViewer::keyPressEvent(QKeyEvent *e) {
@@ -117,20 +123,20 @@ void KrViewer::keyPressEvent(QKeyEvent *e) {
 
 void KrViewer::view(KURL url){
   QString mimetype = KMimeType::findByURL( url )->name();
-  KrViewer* viewer = new KrViewer();
+  KrViewer* viewer = new KrViewer(krApp);
 
   viewer->url = url;
   viewer->setCaption("KrViewer: "+url.url());
   viewer->show();
 
   if( !viewer->viewGeneric() ){
-    viewer->viewHex();
+    viewer->viewText();
     viewer->viewerMenu->setItemEnabled(1,false);
   }
 }
 
 void KrViewer::edit(KURL url){
-  KrViewer* viewer = new KrViewer();
+  KrViewer* viewer = new KrViewer(krApp);
 
   viewer->url = url;
   viewer->setCaption("KrEdit: "+url.url());

@@ -28,7 +28,6 @@
   */
 
 class QPopupMenu;
-//class KPart::Part;
 
 class KrViewer : public KParts::MainWindow  {
    Q_OBJECT

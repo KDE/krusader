@@ -48,6 +48,7 @@ public slots:
 protected:
 	void handleAceArj(QString origin, QString type);
 	void handleRpm(QString origin);
+	void handleIso(QString origin);
   QString tmpDir;
 
 };

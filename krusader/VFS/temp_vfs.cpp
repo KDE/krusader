@@ -61,6 +61,8 @@ temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool writeable
   	handleAceArj(origin,type);
   else if( type == "-rpm" )
   	handleRpm(origin);
+	else if( type == "-iso" )
+		handleIso(origin);
 	else{
     if (!quietMode) KMessageBox::error(krApp,"Unknown temp_vfs type.");
     error = true;
@@ -69,10 +71,16 @@ temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool writeable
 }
 
 temp_vfs::~temp_vfs(){
-  // delete the temp dir
-  KShellProcess proc;
-  proc << "rm -rf" << tmpDir;
-  proc.start(KProcess::DontCare);
+	if( vfs_type == "-iso" ){
+		// unmount the ISO image
+    KShellProcess umount;
+		umount << "umount -f" << tmpDir;
+    umount.start(KProcess::Block);
+	}
+ 	// delete the temp dir
+ 	KShellProcess proc;
+ 	proc << "rm -rf" << tmpDir;
+ 	proc.start(KProcess::DontCare);
 }
 
 // return the working dir
@@ -123,4 +131,11 @@ void temp_vfs::handleRpm(QString origin){
 	rpm.clearArguments();
 	rpm << "rpm -lpq"<<"\""+origin+"\""+" > "+tmpDir+"/filelist.txt";
 	rpm.start(KProcess::Block);
+}
+
+void temp_vfs::handleIso(QString origin){
+	// mount the ISO image
+	KShellProcess mount;
+	mount << "mount" << "-o loop" << origin << tmpDir;
+	mount.start(KProcess::Block);
 }

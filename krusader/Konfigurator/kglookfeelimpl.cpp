@@ -129,6 +129,7 @@ void kgLookFeelImpl::slotApplyChanges() {
   else i=0;
   krConfig->writeEntry("Mouse Selection",i);
   editToolbar->save();  // save toolbar settings
+	editKeys->save();     // save keyboard shortcuts
   krConfig->sync();
 
   // return the toolbar to its previous state (thankx to Tin)
