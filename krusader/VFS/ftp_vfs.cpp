@@ -120,7 +120,7 @@ void ftp_vfs::slotRedirection(KIO::Job *, const KURL &url){
 void ftp_vfs::slotListResult(KIO::Job *job){
   if( job && job->error()){
     // we failed to refresh
-    listError = false;
+    listError = true;
     // display error message
     if ( !quietMode ) job->showErrorDialog(krApp);
   }
@@ -174,7 +174,7 @@ bool ftp_vfs::vfs_refresh(const KURL& origin) {
   vfs_origin = origin;
 
   //QTimer::singleShot( 0,this,SLOT(startLister()) );
-	listError = false;
+  listError = false;
   startLister();
 
   while( busy ){
