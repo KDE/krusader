@@ -34,6 +34,7 @@
 #include <qpainter.h>
 #include <qpen.h>
 #include <qcolordialog.h>
+#include <kiconloader.h>
   
 KonfiguratorExtension::KonfiguratorExtension( QObject *obj, QString cfgClass, QString cfgName, bool rst) :
       QObject(), objectPtr( obj ), applyConnected( false ), setDefaultsConnected( false ),
@@ -343,78 +344,6 @@ void KonfiguratorEditBox::slotSetDefaults(QObject *)
 // KonfiguratorURLRequester class
 ///////////////////////////////
 
-static const char* const image0_data[] = {
-"16 16 53 1",
-". c None",
-"# c #000000",
-"R c #080808",
-"Q c #101010",
-"Y c #181c18",
-"K c #202020",
-"w c #313031",
-"X c #313431",
-"W c #414041",
-"V c #414441",
-"g c #4a3018",
-"E c #4a484a",
-"U c #4a4c4a",
-"l c #524c4a",
-"h c #52504a",
-"j c #525052",
-"i c #5a5952",
-"J c #6a6962",
-"P c #6a6d6a",
-"T c #8b8d8b",
-"D c #949594",
-"S c #9c999c",
-"O c #9c9d9c",
-"C c #a4a19c",
-"M c #a4a1a4",
-"N c #a4a5a4",
-"I c #acaaac",
-"B c #acaeac",
-"F c #b47d41",
-"v c #b4b2b4",
-"u c #b4b6b4",
-"A c #bdbabd",
-"t c #bdbebd",
-"k c #c5854a",
-"H c #c5c2c5",
-"s c #c5c6c5",
-"r c #cdcacd",
-"L c #cdcecd",
-"z c #d5d2d5",
-"q c #d5d6d5",
-"x c #dedade",
-"p c #dedede",
-"a c #e6a562",
-"G c #e6e2e6",
-"o c #e6e6e6",
-"y c #eeeae6",
-"n c #eeeeee",
-"m c #f6f6f6",
-"e c #ffae62",
-"d c #ffc283",
-"c c #ffc683",
-"f c #ffca8b",
-"b c #ffd29c",
-"......####......",
-".....##.####.#..",
-"....#.....####..",
-"...........###..",
-"..........####..",
-".####...........",
-"#abca#######....",
-"#bcdeeeeeeee#...",
-"#fdghhhihhjjh###",
-"#dklmmnopqrstuvw",
-"#dgxpyopzsABCDE.",
-"#FhxxGpqrHuICJK.",
-"#gLrqqzLHABMDE..",
-"#jLtssHtuBNOPQ..",
-"RtNIBBINMSDTE...",
-"KEEUUUEEVWWXY..."};
-
 KonfiguratorURLRequester::KonfiguratorURLRequester( QString cls, QString name, QString dflt,
     QWidget *parent, const char *widgetName, bool rst ) : KURLRequester( parent, widgetName ),
     defaultValue( dflt )
@@ -426,9 +355,7 @@ KonfiguratorURLRequester::KonfiguratorURLRequester( QString cls, QString name, Q
 
   connect( this, SIGNAL( textChanged(const QString &) ), ext, SLOT( setChanged() ) );
 
-  QPixmap pixMap( (const char **)image0_data );
-  button()->setIconSet( QIconSet() );
-  button()->setPixmap( pixMap );
+  button()->setIconSet( SmallIcon( "fileopen" ) );
   loadInitialValue();
 }
 
@@ -473,10 +400,8 @@ KonfiguratorFontChooser::KonfiguratorFontChooser( QString cls, QString name, QFo
   pToolButton = new QToolButton( this );
   
   connect( pToolButton, SIGNAL( clicked() ), this, SLOT( slotBrowseFont() ) );
-
-  QPixmap pixMap( (const char **)image0_data );
-  pToolButton->setText( "" );
-  pToolButton->setPixmap( pixMap );
+  
+  pToolButton->setIconSet( SmallIcon( "fileopen" ) );
   
   loadInitialValue();
 }

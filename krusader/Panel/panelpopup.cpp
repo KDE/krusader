@@ -78,7 +78,7 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 		
 	duBtn = new QToolButton(this);
 	QToolTip::add(duBtn, i18n("Disk Usage Panel: view the usage of a directory"));
-	duBtn->setPixmap(krLoader->loadIcon( "contents", KIcon::Toolbar, 16 ));
+	duBtn->setPixmap(krLoader->loadIcon( "kchart", KIcon::Toolbar, 16 ));
 	duBtn->setFixedSize(20, 20);
 	duBtn->setToggleButton(true);
 	btns->insert(duBtn, DskUsage);	

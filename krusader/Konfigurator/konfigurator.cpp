@@ -86,7 +86,7 @@ void Konfigurator::createLayout( int startPage )
 {
   // startup
   newContent(new KgStartup(firstTime, widget->addPage(i18n("Startup"),
-    i18n("Krusader's settings upon startup"),QPixmap(krLoader->loadIcon("gear",
+    i18n("Krusader's settings upon startup"),QPixmap(krLoader->loadIcon("kfm_home",
       KIcon::Desktop,32)))));
   // look n' feel
   newContent(new KgLookFeel(firstTime, widget->addPage(i18n("Look & Feel"),

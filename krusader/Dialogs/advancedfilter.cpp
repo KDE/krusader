@@ -41,45 +41,11 @@
 #include <kdebug.h>
 #include <kmessagebox.h>
 #include <time.h>
+#include <kiconloader.h>
 
 #define USERSFILE  QString("/etc/passwd")
 #define GROUPSFILE QString("/etc/group")
 
-static const char* const image1_data[] = { 
-"16 16 17 1",
-". c None",
-"# c #000000",
-"d c #830000",
-"o c #838100",
-"e c #838183",
-"g c #a4a1a4",
-"n c #c50000",
-"c c #c55900",
-"j c #c5c200",
-"h c #c5c2c5",
-"k c #ff0000",
-"b c #ffaa5a",
-"m c #ffc2c5",
-"a c #ffdeac",
-"i c #ffff00",
-"l c #ffffc5",
-"f c #ffffff",
-".......########.",
-"......#abccccdd#",
-"......#cceffecc#",
-".......#cffffc#.",
-".#######cffffc#.",
-"#ggggggechffhc#.",
-"#ggggggec#ij#c#.",
-"#ffffffhc#ij#c#.",
-"#fkkkkfhc#lh#c#.",
-"#fkfmkfhc#lh#c#.",
-"#ffmkkfhchijhn#.",
-"#fkfmkfhciijoc#.",
-"#fkkkkfhbiijod#.",
-"#ffffffhceijecc#",
-"#hhhhhhebbcccdd#",
-".##############."};
 
 AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( parent, name )
 {
@@ -142,7 +108,7 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
 
   // Options for date
     
-  QPixmap image1( ( const char** ) image1_data );
+  QPixmap iconDate = krLoader->loadIcon( "date", KIcon::Toolbar, 16 );
   
   QButtonGroup *dateGroup = new QButtonGroup( this, "dateGroup" );
   dateGroup->setTitle( i18n( "Date" ) );
@@ -169,7 +135,7 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   modifiedBetweenBtn1 = new QToolButton( dateGroup, "modifiedBetweenBtn1" );
   modifiedBetweenBtn1->setEnabled( false );
   modifiedBetweenBtn1->setText( "" );
-  modifiedBetweenBtn1->setPixmap( image1 );
+  modifiedBetweenBtn1->setPixmap( iconDate );
   dateLayout->addWidget( modifiedBetweenBtn1, 0, 4 );
 
   QLabel *andLabel = new QLabel( dateGroup, "andLabel" );
@@ -185,7 +151,7 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   modifiedBetweenBtn2 = new QToolButton( dateGroup, "modifiedBetweenBtn2" );
   modifiedBetweenBtn2->setEnabled( false );
   modifiedBetweenBtn2->setText( "" );
-  modifiedBetweenBtn2->setPixmap( image1 );
+  modifiedBetweenBtn2->setPixmap( iconDate );
   dateLayout->addWidget( modifiedBetweenBtn2, 0, 7 );
 
   notModifiedAfterEnabled = new QRadioButton( dateGroup, "notModifiedAfterEnabled" );
@@ -201,7 +167,7 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   notModifiedAfterBtn = new QToolButton( dateGroup, "notModifiedAfterBtn" );
   notModifiedAfterBtn->setEnabled( false );
   notModifiedAfterBtn->setText( "" );
-  notModifiedAfterBtn->setPixmap( image1 );
+  notModifiedAfterBtn->setPixmap( iconDate );
   dateLayout->addWidget( notModifiedAfterBtn, 1, 4 );
   
   modifiedInTheLastEnabled = new QRadioButton( dateGroup, "modifiedInTheLastEnabled" );

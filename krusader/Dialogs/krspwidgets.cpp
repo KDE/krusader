@@ -41,6 +41,7 @@
 #include <qspinbox.h>
 #include <klocale.h>
 #include <kcombobox.h>
+#include <kiconloader.h>
 
 #include "../resources.h"
 
@@ -128,7 +129,7 @@ void newFTPSub::reject() {
 
 /////////////////////////// KRMaskChoiceSub ///////////////////////////////
 KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0,0,true) {
-  PixmapLabel1->setPixmap(LOADICON("kr_select"));
+  PixmapLabel1->setPixmap(krLoader->loadIcon("kr_select", KIcon::Desktop, 32));
   label->setText(i18n("Enter a selection:"));
   // the predefined selections list
   krConfig->setGroup("Private");
