@@ -1,21 +1,21 @@
 # krusader.spec  --  use rpmbuild to build a Krusader RPM package
-# this spec file works on Mandrake 10.0 for Krusader-1.50
+# this spec file works on Mandrake 10.0 for Krusader-1.51
 # other distributions may need to make some modifications
 # If you have comments or suggestions about this spec file,
-# please send to: [frank_schoolmeesters {*} fastmail {.} fm]
-# 		Thanks for your cooperation!
-# 					Krusader Krew.
+# please send to: [frank_schoolmeesters {*} yahool {.} com]
+# Thanks for your cooperation!
+# Krusader Krew.
 
 # NOTE: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
 
-%define version 1.50
+%define version 1.51
 %define release mdk100
 #%define beta beta1
 
 # Package information
 Summary: 	 Advanced, twin-panel file-manager for KDE 3.2.x
 Name: 		 krusader
-Version: 	 1.50
+Version: 	 %{version}
 Release: 	 %{release}
 Distribution:	 Mandrake Linux 10.0
 Source0: 	 %{name}-%{version}.tar.gz
@@ -38,11 +38,11 @@ BuildRequires: rpm-build gcc-cpp gcc-c++ glibc libgcc1
 BuildRoot:       %{_tmppath}/%{name}-buildroot
 URL: 		 http://krusader.sourceforge.net
 Vendor:          Krusader Krew [krusader {*} users {.} sourceforge {.}net]
-Packager:        Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
+Packager:        Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 
 # makes binary rpm relocatable e.g.
-# rpm -Uvh --relocate /usr=/opt krusader-1.50.mdk100.i586.rpm
-# rpm -Uvh --relocate /usr=/usr/local krusader-1.50.mdk100.i586.rpm
+# rpm -Uvh --relocate /usr=/opt krusader-1.51.mdk100.i586.rpm
+# rpm -Uvh --relocate /usr=/usr/local krusader-1.51.mdk100.i586.rpm
 Prefix:          /usr
 
 # dependencies requirements for the binary RPM package
@@ -173,7 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 # - = leave the permissions like they are in the source tarball, e.g., 644
 %defattr(-,root,root)
 # documentation files (docdir name does not need to be included)
-%doc README AUTHORS ChangeLog TODO COPYING krusader.lsm INSTALL krusader.spec
+%doc README AUTHORS ChangeLog TODO COPYING krusader.lsm INSTALL FAQ CVSNEWS krusader.spec
 # Docbook documentation
 %doc %{_datadir}/doc/HTML/en/*
 
@@ -181,7 +181,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/*
 
 # libdir = /usr/lib, usr/lib/kde3, usr/lib/menu on Mandrake
-%{_libdir}/*
 %{_libdir}/kde3/*
 
 # datadir = /usr/share on Mandrake
@@ -213,14 +212,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/apps/krusader/icons/hicolor/32x32/actions/
 %{_datadir}/apps/krusader/icons/hicolor/32x32/actions/*.png
 
-# /usr/share/apps/konqueror/servicemenus/isoservice.desktop on Mandrake
-%dir %{_datadir}/apps/konqueror/servicemenus/
-%{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
-
-# /usr/share/config/kio_isorc on Mandrake
-%dir %{_datadir}/config/
-%{_datadir}/config/kio_isorc
-
 # /usr/share/icons/hicolor/16x16/apps/ on Mandrake
 %dir %{_datadir}/icons/hicolor/16x16/apps/
 %{_datadir}/icons/hicolor/16x16/apps/*.png
@@ -237,38 +228,46 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/icons/hicolor/64x64/apps/
 %{_datadir}/icons/hicolor/64x64/apps/*.png
 
-
-# manpage usr/share/man/man1/krusader.1.bz2 on mandrake
-%{_mandir}/man1/*
-
 # /usr/share/services/krarc.protocol on Mandrake
 %{_datadir}/services/*
 
-# /usr/share/mimelnk/application/x-ace.desktop on Mandrake
-#%{_datadir}/mimelnk/application/*.desktop
-
 # usr/lib/menu on Mandrake
 %{_menudir}/*
+
+# /usr/share/apps/konqueror/servicemenus/isoservice.desktop on Mandrake
+%{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
+
+# /usr/share/config/kio_isorc on Mandrake
+%{_datadir}/config/kio_isorc
+
+# /usr/share/mimelnk/application/x-ace.desktop on Mandrake
+#%{_datadir}/mimelnk/application/*.desktop
 
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 
+# manpage usr/share/man/man1/krusader.1.bz2 on mandrake
+%{_mandir}/man1/*
+
 
 %changelog
-* Mon Nov  1 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
+* Fri Dec 10 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
+- 1.51-mdk100
+  removed some minor unnecessary lines in the spec file
+* Mon Nov 1 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.50-mdk100
   fix: icons for rpmlint
   re-used kdedesktop2mdkmenu.pl
   Note: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
   
-* Wed Oct 13 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
+* Wed Oct 13 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 -  1.50-beta1.mdk100
-  new file added in RPM package:
+  new files added in RPM package:
   /usr/share/apps/konqueror/servicemenus/isoservice.desktop
   /usr/share/config/kio_isorc  
 
-* Thu Jul 26 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
+* Thu Jul 26 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.40.mdk100
   Mandrake 10.0 has changed the KDE-menu entries
   Former KDE menu entry "Applications/File tools" in Mdk 9.2 is now "System/File tools/"
@@ -276,7 +275,7 @@ rm -rf $RPM_BUILD_ROOT
   not the Mandrake Perl script kdedesktop2mdkmenu.pl
   This adds Krusader in the KDE menu in the "System/File tools" section.
       
-* Fri Jun 25 2004 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
+* Fri Jun 25 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.40-beta2.mdk92
 - x-ace.desktop is removed in krusader-1.40-beta2/krusader/Makefile.am
   x-ace.desktop is now supplied by KDE
@@ -284,7 +283,7 @@ rm -rf $RPM_BUILD_ROOT
   you can relocate it to, e.g., /usr/local or /opt
   then run $ rpm -Uvh --relocate /usr=/opt krusader-1.40.mdk92.i586.rpm
 
-* Wed May 12 2003 Frank Schoolmeesters [frank_schoolmeesters {*} fastmail {.} fm]
+* Wed May 12 2003 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.40-beta1.mdk92
 - Initial specfile derived from spec file by Laurent MONTEL [lmontel {*} mandrakesoft {.} com]
 
