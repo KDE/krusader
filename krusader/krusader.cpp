@@ -388,6 +388,8 @@ void Krusader::setupActions() {
                              SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
   actFind = new KAction( i18n( "&Search" ), "filefind", CTRL + Key_S,
                          SLOTS, SLOT( search() ), actionCollection(), "find" );
+  actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), 0, CTRL + Key_D,
+                         SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
   actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                            SLOTS, SLOT( invert() ), actionCollection(), "invert" );
   actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,

@@ -114,6 +114,7 @@ class KRslots : public QObject {
     void slotSplit();
     void slotCombine();
     void userMenu();
+    void slotSynchronizeDirs();
     
     // F2
     void terminal();

@@ -70,6 +70,7 @@
 #include "Splitter/splitter.h"
 #include "Splitter/combiner.h"
 #include "UserMenu/usermenu.h"
+#include "Synchronizer/synchronizergui.h"
 
 #define ACTIVE_PANEL        (krApp->mainView->activePanel)
 #define ACTIVE_FUNC         (krApp->mainView->activePanel->func)
@@ -599,6 +600,14 @@ void KRslots::slotCombine()
 void KRslots::userMenu() {
   UserMenu um;
   QString cmd = um.exec();
+}
+
+void KRslots::slotSynchronizeDirs() {
+  SynchronizerGUI *sync = new SynchronizerGUI( MAIN_VIEW,
+                ACTIVE_PANEL->func->files()->vfs_getOrigin().path(),
+                ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().path() );
+  delete sync;
+  REFRESH_BOTH_PANELS;
 }
 
 #include "krslots.moc"

@@ -102,7 +102,7 @@ class Krusader : public KParts::MainWindow {
     static KAction *actNewTab, *actDupTab, *actCloseTab, *actSplit, *actCombine, *actUserMenu;
     static KToggleAction *actToggleTerminal;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar, *actToggleSwapPanels,
-                  *actShowStatusBar, *actToggleHidden, *actCompareDirs;
+                  *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actSyncDirs;
 
     // return a path to a temp dir or file we can use.
     QString getTempDir();
