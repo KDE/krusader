@@ -47,6 +47,7 @@
 #include <qeventloop.h>
 #include <qtooltip.h>
 #include <qregexp.h>
+#include <qheader.h>
 
 static const char * const right_arrow_button_data[] = {
 "18 18 97 2",
@@ -794,17 +795,19 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   
   leftLocation = new KHistoryCombo(false, compareDirs, "SynchronizerHistoryLeft");
   leftLocation->setEditable( true );
-  leftLocation->setMinimumWidth( 250 );  
+  leftLocation->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Fixed);
   QStringList list = krConfig->readListEntry("Left Directory History");
   leftLocation->setHistoryItems(list);
   KURLRequester *leftUrlReq = new KURLRequester( leftLocation, compareDirs, "LeftDirectory" );
   leftUrlReq->setURL( leftDirectory );
   leftUrlReq->setMode( KFile::Directory );
+  leftUrlReq->setMinimumWidth( 250 );
   grid->addWidget( leftUrlReq, 1 ,0 );
   QToolTip::add( leftLocation, i18n( "The left base directory" ) );
 
   fileFilter = new KHistoryCombo(false, compareDirs, "SynchronizerFilter");
   fileFilter->setMinimumWidth( 100 );
+  fileFilter->setMaximumWidth( 100 );
   fileFilter->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
   list = krConfig->readListEntry("File Filter");
   fileFilter->setHistoryItems(list);
@@ -814,12 +817,13 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   rightLocation = new KHistoryCombo(compareDirs, "SynchronizerHistoryRight");
   rightLocation->setEditable( true );
-  rightLocation->setMinimumWidth( 250 );  
+  rightLocation->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Fixed);
   list = krConfig->readListEntry("Right Directory History");
   rightLocation->setHistoryItems(list);
   KURLRequester *rightUrlReq = new KURLRequester( rightLocation, compareDirs, "RightDirectory" );
   rightUrlReq->setURL( rightDirectory );
   rightUrlReq->setMode( KFile::Directory );
+  rightUrlReq->setMinimumWidth( 250 );
   grid->addWidget( rightUrlReq, 1 ,2 );
   QToolTip::add( rightLocation, i18n( "The right base directory" ) );
 
@@ -950,7 +954,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   int rightNameWidth = 4*typeWidth;
   int sizeWidth = 2*typeWidth;
   int dateWidth = 3*typeWidth;
-  
+
   syncList->addColumn(i18n("Name"),leftNameWidth);
   syncList->addColumn(i18n("Size"),sizeWidth);
   syncList->addColumn(i18n("Date"),dateWidth);
@@ -969,8 +973,10 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   syncList->setColumnAlignment(3, Qt::AlignHCenter );
   syncList->setColumnAlignment(5, Qt::AlignRight );
 
+  syncList->header()->setStretchEnabled( true, 0 );
+
   synchGrid->addWidget(syncList,1,0);
-  
+    
   /* ================================== Buttons =================================== */
 
   QHBoxLayout *buttons = new QHBoxLayout;
