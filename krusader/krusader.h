@@ -9,9 +9,9 @@
  ---------------------------------------------------------------------------
  The main application ! what's more to say ?
  ***************************************************************************
- 
+
   A
- 
+
      db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
      88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
      88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
@@ -54,6 +54,7 @@ class KProcess;
 class KRslots;
 class KIconLoader;
 class KSystemTray;
+class UserMenu;
 
 class Krusader : public KParts::MainWindow {
     Q_OBJECT
@@ -99,10 +100,10 @@ class Krusader : public KParts::MainWindow {
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool;
     static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp;
     static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
-    static KAction *actNewTab, *actDupTab, *actCloseTab, *actSplit, *actCombine, *actUserMenu;
+    static KAction *actNewTab, *actDupTab, *actCloseTab, *actSplit, *actCombine, *actUserMenu, *actSyncDirs;
     static KToggleAction *actToggleTerminal;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar, *actToggleSwapPanels,
-                  *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actSyncDirs;
+                  *actShowStatusBar, *actToggleHidden, *actCompareDirs;
 
     // return a path to a temp dir or file we can use.
     QString getTempDir();
@@ -116,6 +117,7 @@ class Krusader : public KParts::MainWindow {
     KrusaderStatus *status;
     KRslots *slot;
     KAccel *accels; // global accelerators
+    static UserMenu *userMenu;
 
   signals:
     void changeMessage( QString );

@@ -661,8 +661,9 @@ void KRslots::slotCombine()
 }
 
 void KRslots::userMenu() {
-  UserMenu um;
-  um.exec();
+  //UserMenu um;
+  //um.exec();
+  krApp->userMenu->exec();
 }
 
 void KRslots::slotSynchronizeDirs() {
