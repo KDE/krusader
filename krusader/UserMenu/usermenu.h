@@ -1,9 +1,9 @@
 /***************************************************************************
-                        usermenu.h  -  description
-                           -------------------
-  begin                : Sat Dec 6 2003
-  copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
-  email                :
+                      usermenu.h  -  description
+                         -------------------
+begin                : Sat Dec 6 2003
+copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
+email                :
 ***************************************************************************/
 
 /***************************************************************************
@@ -22,6 +22,46 @@
 #include <kpopupmenu.h>
 #include <qstringlist.h>
 #include <kaction.h>
+#include <kprocess.h>
+#include <kdialogbase.h>
+#include <qtextedit.h>
+
+class KDialogBase;
+
+class UserMenuProcDlg: public KDialogBase {
+      Q_OBJECT
+   public:
+      UserMenuProcDlg( QString caption, bool enableStderr = false, QWidget *parent = 0 );
+
+   protected slots:
+      void addStderr( KProcess *proc, char *buffer, int buflen );
+      void addStdout( KProcess *proc, char *buffer, int buflen );
+
+   private:
+      QTextEdit *_stdout, *_stderr;
+};
+
+class UserMenuProc: public QObject {
+      Q_OBJECT
+   public:
+      UserMenuProc(bool terminal = true, bool enableStderr = false);
+      ~UserMenuProc();
+      bool start( QString cmdLine );
+      bool kill() { return _proc->kill( SIGINT ); }
+
+   protected slots:
+      void processExited( KProcess *proc );
+
+   private:
+      bool _terminal;
+      bool _enableStderr;
+      KProcess *_proc;
+      QString _stdout;
+      QString _stderr;
+      UserMenuProcDlg *_output;
+};
+
+///////////////////////////////////////////////////////////////////////////////
 
 class UserMenuGui: public KPopupMenu {
       Q_OBJECT
