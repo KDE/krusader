@@ -44,6 +44,19 @@
 #include <kshellcompletion.h>
 #include <kcombobox.h>
 
+class KrHistoryCombo: public KHistoryCombo {
+  Q_OBJECT
+
+  public:
+    KrHistoryCombo(QWidget *parent): KHistoryCombo(parent) {}
+
+  protected:
+    void keyPressEvent( QKeyEvent *e );
+
+  signals:
+    void returnToPanel();
+};
+
 class KCMDLine : public QWidget {
     Q_OBJECT
   public:
@@ -57,9 +70,10 @@ class KCMDLine : public QWidget {
     void slotRun(const QString &command1);
     void addText( QString text ) { cmdLine->setCurrentText( cmdLine->currentText() + text ); }
 
+
   private:
     QLabel *path;
-    KHistoryCombo *cmdLine;
+    KrHistoryCombo *cmdLine;
     QToolButton *terminal;
     KShellCompletion completion;
 };

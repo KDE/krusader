@@ -68,7 +68,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
 
   // and editable command line
   completion.setMode( KURLCompletion::FileCompletion );
-  cmdLine = new KHistoryCombo( true, this );
+  cmdLine = new KrHistoryCombo( this );
   cmdLine->setMaxCount(100);  // remember 100 commands
   cmdLine->setFont( KGlobalSettings::generalFont() );
   cmdLine->setMaximumHeight( QFontMetrics( cmdLine->font() ).height() + 4 );
@@ -81,6 +81,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
 
   connect( cmdLine, SIGNAL( activated( const QString& ) ), this, SLOT( slotRun( const QString& ) ) );
   connect( cmdLine, SIGNAL( activated(const QString &) ), cmdLine, SLOT( clearEdit() ) );
+  connect( cmdLine, SIGNAL( returnToPanel() ), this, SLOT( slotReturnFocus() ));
 
   QWhatsThis::add
     ( cmdLine, i18n( "<qt>Well, it's quite simple actually: You write "
@@ -158,6 +159,18 @@ void KCMDLine::slotRun(const QString &command1) {
 
 void KCMDLine::slotReturnFocus() {
   Krusader::App->mainView->cmdLineUnFocus();
+}
+
+void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {
+   switch (e->key()) {
+      case Key_Up:
+         if (e->state() == ControlButton) {
+            emit returnToPanel();
+            return;
+         }
+      default:
+      QWidget::keyPressEvent(e);
+   }
 }
 
 #include "kcmdline.moc"
