@@ -149,7 +149,7 @@ private:
    QTime clickTime;
    QListViewItem *clickedItem;
    QTimer renameTimer;
-	QDict<QListViewItem> dict;
+	QDict<KrDetailedViewItem> dict;
 };
 
 #endif /* KRDETAILEDVIEW_H */
