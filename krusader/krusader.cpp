@@ -210,6 +210,28 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    mainView = new KrusaderView( this );
    mainView->start( leftPath, rightPath );
 
+   // restore TabBar
+   {
+      KConfigGroupSaver grp( krConfig, "Startup" );
+      QStringList l1( krConfig->readPathListEntry( "Left Tab Bar" ) );
+      QStringList l2( krConfig->readPathListEntry( "Right Tab Bar" ) );
+      QStringList::const_iterator it;
+      
+      if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
+         for ( it = ++(l1.begin()); it != l1.end(); ++it )
+           mainView->leftMng->slotNewTab( *it );
+
+      krConfig->setGroup( "Startup" );             
+      if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
+         for ( it = ++(l2.begin()); it != l2.end(); ++it )
+           mainView->rightMng->slotNewTab( *it );
+      
+      krConfig->setGroup( "Startup" );             
+      mainView->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
+      krConfig->setGroup( "Startup" );             
+      mainView->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
+   }
+   
    // create the user menu
    userMenu = new UserMenu( this );
    userMenu->hide();
@@ -249,31 +271,6 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    if ( runKonfig )
       slot->runKonfigurator( true );
 
-   // refresh the right and left panels
-   mainView->right->func->refresh();
-   mainView->left->func->refresh();
-
-   // restore TabBar
-   {
-      KConfigGroupSaver grp( krConfig, "Startup" );
-      QStringList l1( krConfig->readPathListEntry( "Left Tab Bar" ) );
-      QStringList l2( krConfig->readPathListEntry( "Right Tab Bar" ) );
-      QStringList::const_iterator it;
-      
-      if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
-         for ( it = ++(l1.begin()); it != l1.end(); ++it )
-           mainView->leftMng->slotNewTab( *it );
-
-      krConfig->setGroup( "Startup" );             
-      if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
-         for ( it = ++(l2.begin()); it != l2.end(); ++it )
-           mainView->rightMng->slotNewTab( *it );
-      
-      krConfig->setGroup( "Startup" );             
-      mainView->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
-      krConfig->setGroup( "Startup" );             
-      mainView->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
-   }
    isStarting = false;
 }
 

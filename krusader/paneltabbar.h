@@ -83,6 +83,7 @@ protected:
   QString squeeze(QString text, int index=-1);
   virtual void dragEnterEvent(QDragEnterEvent *);
   virtual void dragMoveEvent(QDragMoveEvent *);
+  virtual void resizeEvent ( QResizeEvent *e );
 
 protected slots:
   void closeTab();

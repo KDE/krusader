@@ -42,19 +42,10 @@ QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), 
    connect( _tabbar, SIGNAL( closeCurrentTab() ), this, SLOT( slotCloseTab() ) );
    connect( _tabbar, SIGNAL( newTab( QString ) ), this, SLOT( slotNewTab( QString ) ) );
 
-#if QT_VERSION >= 0x030300 
-   //#if 0
-   _layout->addMultiCellWidget( _stack, 0, 0, 0, 3 );  // KDE 3.2 bug the tab widget
-   _layout->addWidget( _newTab, 1, 0 );                // is left justified. A spacer is
-   _layout->addWidget( _tabbar, 1, 1 );                // inserted to solve the problem.
-   _layout->addItem( new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum ), 1, 2 );
-   _layout->addWidget( _closeTab, 1, 3 );
-#else
-   _layout->addMultiCellWidget( _stack, 0, 0, 0, 2 );  // KDE 3.1.1 bug the spacer cannot be
-   _layout->addWidget( _newTab, 1, 0 );                // inserted because it shrinks the tab
-   _layout->addWidget( _tabbar, 1, 1 );                // widget into half size, which is ugly.
-   _layout->addWidget( _closeTab, 1, 2 );              // Does anybody know a universal solution?
-#endif
+   _layout->addMultiCellWidget( _stack, 0, 0, 0, 2 );
+   _layout->addWidget( _newTab, 1, 0 );
+   _layout->addWidget( _tabbar, 1, 1 );
+   _layout->addWidget( _closeTab, 1, 2 );
 
    if ( HIDE_ON_SINGLE_TAB ) HIDE
       else SHOW
