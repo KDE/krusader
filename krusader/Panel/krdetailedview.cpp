@@ -53,25 +53,23 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // Group name: KrDetailedView
 //
 // Ext Column
-#define _ExtColumn          true 
+#define _ExtColumn          true
 // Mime Column
-#define _MimeColumn         false 
+#define _MimeColumn         false
 // Size Column
-#define _SizeColumn         true 
+#define _SizeColumn         true
 // DateTime Column
-#define _DateTimeColumn     true 
+#define _DateTimeColumn     true
 // Perm Column
-#define _PermColumn         false 
+#define _PermColumn         false
 // KrPerm Column
-#define _KrPermColumn       true 
+#define _KrPermColumn       true
 // Owner Column
-#define _OwnerColumn        false 
+#define _OwnerColumn        false
 // Group Column
-#define _GroupColumn        false 
+#define _GroupColumn        false
 // Do Quicksearch
-#define _DoQuicksearch      true 
-// Classic Quicksearch
-#define _ClassicQuicksearch false 
+#define _DoQuicksearch      true
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
@@ -412,8 +410,8 @@ void KrDetailedView::prepareForActive() {
   }
 
 void KrDetailedView::prepareForPassive() {
-  KConfigGroupSaver grpSvr( _config, nameInKConfig() );
-  if ( !_config->readBoolEntry( "Classic Quicksearch", _ClassicQuicksearch ) ) {
+  KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+  if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
     if ( krApp->mainView ) {
       if ( krApp->mainView->activePanel ) {
         if ( krApp->mainView->activePanel->quickSearch ) {
@@ -631,11 +629,12 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                        ( e->key() >= Key_0 && e->key() <= Key_9 ) ||
                        ( e->key() == Key_Backspace ) ||
                        ( e->key() == Key_Down ) ||
-                       ( e->key() == Key_Period ) ) */{ 
+                       ( e->key() == Key_Period ) ) */{
         // are we doing quicksearch? if not, send keys to panel
         if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
           // are we using krusader's classic quicksearch, or wincmd style?
-          if ( _config->readBoolEntry( "Classic Quicksearch", _ClassicQuicksearch ) )
+          KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+          if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
             KListView::keyPressEvent( e );
           else {
             // first, show the quicksearch if its hidden
@@ -744,10 +743,11 @@ void KrDetailedView::delayedQuickSearchEventHandling() {
   }
 
 void KrDetailedView::quickSearch( const QString & str, int direction ) {
-  bool caseSensitive = true; // make it configurable!!!!
   KrViewItem * item = getCurrentKrViewItem();
+  KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+  bool caseSensitive = _config->readBoolEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
   if ( !direction ) {
-    if ( item->name().startsWith( str/*, caseSensitive*/ ) )
+    if ( caseSensitive?item->name().startsWith( str ):item->name().lower().startsWith( str.lower() ) )
       return ;
     direction = 1;
     }
@@ -758,7 +758,7 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
       item = ( direction > 0 ) ? getFirst() : getLast();
     if ( item == startItem )
       return ;
-    if ( item->name().startsWith( str, caseSensitive ) ) {
+    if ( caseSensitive?item->name().startsWith( str ):item->name().lower().startsWith( str.lower() ) ) {
       makeItemVisible( item );
       setCurrentItem( item->name() );
       return ;

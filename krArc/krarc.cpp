@@ -18,7 +18,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <time.h>
-
+#include <stdlib.h>
 
 #include <qdir.h>
 #include <qfile.h>

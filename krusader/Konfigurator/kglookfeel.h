@@ -55,12 +55,13 @@ protected:
 protected slots:
   void slotReload( KonfiguratorEditToolbarWidget * oldEditToolbar );
   void slotReload( KonfiguratorKeyChooser * oldChooser );
+  void slotDisable();
 };
 
 class KonfiguratorEditToolbarWidget : public KonfiguratorExtension
 {
   Q_OBJECT
-  
+
 public:
   KonfiguratorEditToolbarWidget( KXMLGUIFactory *factory, QWidget *parent, bool restart=false ) :
     KonfiguratorExtension( this, QString(), QString(), restart )

@@ -232,7 +232,6 @@ void KrQuickSearch::myKeyPressEvent(QKeyEvent *e) {
          break;
 
       default:
-         kdWarning()<<"got " << e->ascii() << ":" << e->text() << endl;
          keyPressEvent(e);
    }
 }

@@ -92,6 +92,10 @@
 #define _Editor        "internal editor"
 // Temp Directory /////
 #define _TempDirectory "/tmp/krusader.tmp"
+// Classic Quicksearch
+#define _NewStyleQuicksearch true
+// Case Sensitive quick search, if _NewStyleQuicksearch is true
+#define _CaseSensitiveQuicksearch false
 
 /////////////////////// [Advanced]
 // Permission Check ///

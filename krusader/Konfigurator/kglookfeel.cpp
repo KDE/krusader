@@ -61,10 +61,13 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       true ,  ""},
      {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  ""},
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  ""},
-     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), false,  ""}};
+     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), false,  ""},
+     {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  ""},
+     {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""}};
 
-  QWidget *cbs = createCheckBoxGroup( 2, 0, settings, 5, settingCbs,  lookFeelGrp );
+  QWidget *cbs = createCheckBoxGroup( 2, 0, settings, 7, settingCbs,  lookFeelGrp );
   lookFeelGrid->addWidget( cbs, 0, 0 );
+  connect( settingCbs.at( 5 ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
   lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep1" ), 1, 0 );
 
@@ -73,7 +76,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hbox, true );
   createSpacer ( hbox );
   lookFeelGrid->addWidget( hbox, 2, 0 );
-  
+
   QHBox *hbox2 = new QHBox( lookFeelGrp, "lookAndFeelHBox2" );
   QLabel *lbl1 = new QLabel( i18n( "Filelist icon size:" ), hbox2, "lookAndFeelLabel2" );
   lbl1->setMinimumWidth( 230 );
@@ -123,7 +126,9 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   connect( keyBindings, SIGNAL( reload( KonfiguratorKeyChooser * ) ), this, SLOT( slotReload( KonfiguratorKeyChooser *) ) );
   keyBindingsLayout->addWidget(keyBindings->keyChooserWidget(),0,0);
   registerObject( keyBindings );
-  
+
+  slotDisable();
+
   kgLookAndFeelLayout->addWidget( tabWidget, 0, 0 );
 }
 
@@ -149,6 +154,12 @@ void KgLookFeel::slotReload( KonfiguratorEditToolbarWidget * oldEditToolbar )
   toolBarLayout->addWidget(editToolbar->editToolbarWidget(),0,0);
   registerObject( editToolbar );
   editToolbar->editToolbarWidget()->show();
+}
+
+void KgLookFeel::slotDisable()
+{
+  bool isNewStyleQuickSearch = settingCbs.at( 5 )->isChecked();
+  settingCbs.at( 6 )->setEnabled( isNewStyleQuickSearch );
 }
 
 #include "kglookfeel.moc"
