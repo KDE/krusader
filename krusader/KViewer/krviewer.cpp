@@ -89,24 +89,38 @@ KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool 
     // we now know that our offer can handle mimetype and is a part.
     // since it is a part, it must also have a library... let's try to
     // load that now
-    factory = KLibLoader::self()->factory( ptr->library().latin1() );
-    if (factory) {
-      part = static_cast<KParts::Part *>(factory->create(this,
-                           ptr->name().latin1(), type.latin1() ));
-      if( part )
-      {      
-        if( !create )
+
+    QStringList args;
+    QVariant argsProp = ptr->property( "X-KDE-BrowserView-Args" );
+    if ( argsProp.isValid() )
+    {
+      QString argStr = argsProp.toString();
+      args = QStringList::split( " ", argStr );
+    }
+    
+    QVariant prop = ptr->property( "X-KDE-BrowserView-AllowAsDefault" );
+
+    if ( !prop.isValid() || prop.toBool() ) // defaults to true
+    {
+      factory = KLibLoader::self()->factory( ptr->library().latin1() );
+      if (factory) {
+        part = static_cast<KParts::Part *>(factory->create(this,
+                             ptr->name().latin1(), type.latin1(), args ));
+        if( part )
         {
-          if( ((KParts::ReadOnlyPart*)part)->openURL( url ) ) break;
-          else {
-            delete part;
-            part = 0L;
+          if( !create )
+          {
+            if( ((KParts::ReadOnlyPart*)part)->openURL( url ) ) break;
+            else {
+              delete part;
+              part = 0L;
+            }
           }
-        }
-        else
-        {
-          ((KParts::ReadWritePart*)part)->saveAs( url );
-	  break;
+          else
+          {
+            ((KParts::ReadWritePart*)part)->saveAs( url );
+            break;
+          }
         }
       }
     }
