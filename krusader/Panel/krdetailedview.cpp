@@ -725,7 +725,7 @@ void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
   KrView::setNameToMakeCurrent( dynamic_cast<KrViewItem*>( it ) ->name() );
 }
 
-void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const QPoint & pos, int c ) {
+void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const QPoint&,int) {
   if (button == Qt::MidButton)
     emit middleButtonClicked(item);
 }
