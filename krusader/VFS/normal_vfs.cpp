@@ -73,7 +73,10 @@ bool normal_vfs::vfs_refresh(QString origin){
   if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(origin);
 	
 	watcher.stopScan(); //stop watching the old dir
-  watcher.removeDir(vfs_getOrigin()); // and remove it from the list
+  if( origin != vfs_getOrigin() ){
+		watcher.removeDir(vfs_getOrigin()); // and remove it from the list
+		watcher.addDir(origin); //start watching the new dir
+	}
 	//watcher.clearList();
 	
 	// check that the new origin exists
@@ -145,8 +148,7 @@ bool normal_vfs::vfs_refresh(QString origin){
 	closedir(dir);
 	
 	if (!quietMode) emit endUpdate();
-  watcher.addDir(origin); //start watching the new dir
-  watcher.startScan(true);
+  watcher.startScan();
 
   return true;
 }
