@@ -95,7 +95,6 @@ void ListPanelFunc::openUrl( const QString& url, const QString& nameToMakeCurren
 
 void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	KURL url = urlIn;
-	krOut << urlIn << endl;
 	url.cleanPath();
 	
 	// check for special cases first - don't refresh here !

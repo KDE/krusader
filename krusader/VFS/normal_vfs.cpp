@@ -63,8 +63,6 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
 bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 	QString path = origin.path(-1);
 	
-	krOut << "normal: " << origin << endl;
-		
 	// set the writable attribute to true, if that's not the case - the KIO job
 	// will give the warnings and errors
 	isWritable = true;
@@ -74,8 +72,9 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 
 	// set the origin...
 	vfs_origin = origin;
+	vfs_origin.adjustPath(-1);
 	vfs_origin.setProtocol("file"); // do not remove !
-	vfs_origin.cleanPath();
+	vfs_origin.cleanPath(-1);
 	
 	// check that the new origin exists
 	if ( !QDir(path).exists() )

@@ -81,11 +81,13 @@ QString temp_vfs::vfs_workingDir(){
 bool temp_vfs::vfs_refresh(const KURL& origin){
   KURL backup = vfs_origin;
   vfs_origin = origin;
+  vfs_origin.adjustPath(-1);
   // get the directory...
   QString path = origin.path(-1).mid(origin.path(-1).findRev('\\')+1);
   if(path.left(1) =="/") path.remove(0,1);
   if ( !normal_vfs::vfs_refresh(tmpDir+"/"+path) ){
     vfs_origin = backup;
+    vfs_origin.adjustPath(-1);
     return false;
   }
   return true;

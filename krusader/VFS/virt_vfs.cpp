@@ -54,6 +54,7 @@ virt_vfs::~virt_vfs() {}
 
 bool virt_vfs::populateVfsList( const KURL& origin, bool /*showHidden*/ ) {
 	vfs_origin = origin;
+	vfs_origin.adjustPath(-1);
 	path = origin.path( -1 ).mid( 1 );
 	if ( path.isEmpty() ) path = "/";
 

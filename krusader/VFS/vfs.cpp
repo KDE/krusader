@@ -204,7 +204,6 @@ void vfs::vfs_calcSpace( QString /*name*/ , KIO::filesize_t* /*totalSize*/, unsi
 	if ( stop && *stop ) return ;
 	busy = true;
 	KDirSize* kds = KDirSize::dirSizeJob( vfs_getFile( name ) );
-	krOut << "vfs_calcSpace: " << vfs_getFile( name ) << endl;
 	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotListResult( KIO::Job* ) ) );
 
 	//while (busy && (!stop || !(*stop))) qApp->processEvents();

@@ -117,11 +117,13 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 
 void ftp_vfs::slotPermanentRedirection( KIO::Job*, const KURL&, const KURL& newUrl ) {
 	vfs_origin = newUrl;
+	vfs_origin.adjustPath(-1);
 }
 
 void ftp_vfs::slotRedirection( KIO::Job *, const KURL &url ) {
 	// update the origin
 	vfs_origin = url;
+	vfs_origin.adjustPath(-1);
 }
 
 void ftp_vfs::slotListResult( KIO::Job *job ) {
@@ -149,6 +151,7 @@ bool ftp_vfs::populateVfsList( const KURL& origin, bool showHidden ) {
 	busy = true;
 
 	vfs_origin = origin;
+	vfs_origin.adjustPath(-1);
 
 	//QTimer::singleShot( 0,this,SLOT(startLister()) );
 	listError = false;
