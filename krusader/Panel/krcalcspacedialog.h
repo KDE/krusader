@@ -41,6 +41,8 @@
 #include <qthread.h>
 // Krusader Includes
 #include "../VFS/vfs.h"
+#include "krdetailedviewitem.h"
+#include "krview.h"
 
 
 /* Dialog calculating showing the number of files and directories and its total size
@@ -57,7 +59,7 @@ class KrCalcSpaceDialog : public KDialogBase{
 		KIO::filesize_t m_totalSize;
 		unsigned long m_totalFiles;
 		unsigned long m_totalDirs;
-		const QStringList m_names;
+		const KrViewItemList m_items;
 		vfs * m_files;
 		KrCalcSpaceDialog * m_parent;
 		QMutex m_synchronizeUsageAccess;
@@ -68,8 +70,8 @@ class KrCalcSpaceDialog : public KDialogBase{
 		KIO::filesize_t getTotalSize() const {return m_totalSize;} // the result
 		unsigned long getTotalFiles() const {return m_totalFiles;} // the result
 		unsigned long getTotalDirs() const {return m_totalDirs;} // the result
-		const QStringList & getNames() const {return m_names;} // list of directories to calculate
-		CalcThread(KrCalcSpaceDialog * parent, vfs * files, const QStringList & names);
+		const KrViewItemList & getItems() const {return m_items;} // list of directories to calculate
+		CalcThread(KrCalcSpaceDialog * parent, vfs * files, const KrViewItemList & items);
 		void deleteInstance(); // thread is no longer needed.
 		void run(); // start calculation
 		void stop(); // stop it. Thread continues until vfs_calcSpace returns
@@ -82,12 +84,13 @@ class KrCalcSpaceDialog : public KDialogBase{
 	int m_timerCounter; // internal counter. The timer runs faster as the rehresh (see comment there)
 	void calculationFinished(); // called if the calulation is done
 	void showResult(); // show the current result in teh dialog
+	static void setDirSize(KrDetailedViewItem * viewItem, KIO::filesize_t size) {viewItem->setSize(size);}
 protected slots:
 	void timer(); // poll timer was fired
 	void slotCancel(); // cancel was pressed
 public:
 	// autoclose: wait 3 sec. before showing the dialog. Close it, when done
-	KrCalcSpaceDialog(QWidget *parent, vfs * files, const QStringList & names, bool autoclose);
+	KrCalcSpaceDialog(QWidget *parent, vfs * files, const KrViewItemList & items, bool autoclose);
 	~KrCalcSpaceDialog();
 	KIO::filesize_t getTotalSize() const {return m_thread->getTotalSize();} // the result
 	unsigned long getTotalFiles() const {return m_thread->getTotalFiles();} // the result

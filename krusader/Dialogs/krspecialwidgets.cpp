@@ -221,6 +221,7 @@ void KrQuickSearch::myKeyPressEvent(QKeyEvent *e) {
       case Key_Return:
       case Key_Enter:
       case Key_Tab:
+      case Key_Insert:
          emit stop(e);
          break;
       case Key_Down:

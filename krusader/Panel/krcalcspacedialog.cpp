@@ -41,8 +41,8 @@ A
 #include "../krusader.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, vfs * files, const QStringList & names)
-	: m_totalSize(0), m_totalFiles(0), m_totalDirs(0), m_names(names), m_files(files), m_parent(parent)
+KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, vfs * files, const KrViewItemList & items)
+	: m_totalSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_files(files), m_parent(parent)
         , m_threadInUse(true), m_stop(false) {}
 
 void KrCalcSpaceDialog::CalcThread::cleanUp(){
@@ -63,9 +63,20 @@ void KrCalcSpaceDialog::CalcThread::deleteInstance(){
 }
 
 void KrCalcSpaceDialog::CalcThread::run(){
-	if ( !m_names.isEmpty() ) // if something to do: do the calculation
-	for ( QStringList::ConstIterator name = m_names.begin(); name != m_names.end(); ++name )
-		m_files->vfs_calcSpace( *name, &m_totalSize, &m_totalFiles, &m_totalDirs , & m_stop);
+	if ( !m_items.isEmpty() ) // if something to do: do the calculation
+	for ( KrViewItemList::ConstIterator it = m_items.begin(); it != m_items.end(); ++it )
+        {
+                KIO::filesize_t totalSize = 0;
+		m_files->vfs_calcSpace( (*it)->name(), &totalSize, &m_totalFiles, &m_totalDirs , & m_stop);
+                if (m_stop)
+                    break;
+                m_totalSize += totalSize;
+                KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( *it );
+                if (viewItem){
+                     KrCalcSpaceDialog::setDirSize(viewItem, totalSize);
+                     //viewItem->repaintItem(); // crash in KrDetailedViewItem::repaintItem(): setPixmap(_view->column(KrDetailedView::Name),KrView::getIcon(_vf))
+                }
+        }
 	// synchronize to avoid race condition.
 	m_synchronizeUsageAccess.lock();
 	cleanUp(); // this does not need the instance any more
@@ -76,12 +87,12 @@ void KrCalcSpaceDialog::CalcThread::stop(){
 	m_stop = true;
 }
 
-KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, vfs * files, const QStringList & names, bool autoclose) :
+KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, vfs * files, const KrViewItemList & items, bool autoclose) :
 	KDialogBase(parent, "KrCalcSpaceDialog", true, "Calculate Occupied Space", Ok|Cancel),
 	m_autoClose(autoclose), m_canceled(false), m_timerCounter(0){
 	// the dialog: The Ok button is hidden until it is needed
 	showButtonOK(false);
-	m_thread = new CalcThread(this, files, names);
+	m_thread = new CalcThread(this, files, items);
 	m_pollTimer = new QTimer(this);
 	QWidget * mainWidget = new QWidget( this );
 	setMainWidget(mainWidget);
@@ -128,7 +139,7 @@ void KrCalcSpaceDialog::timer(){
 void KrCalcSpaceDialog::showResult(){
 	if (!m_thread) return;
 	QString msg;
-	QString fileName = ( ( m_thread->getNames().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getNames().first() + "\n" ) : QString( "" ) );
+	QString fileName = ( ( m_thread->getItems().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getItems().first()->name() + "\n" ) : QString( "" ) );
 	msg = fileName + i18n( "Total occupied space: %1\nin %2 directories and %3 files" ).
 		arg( KIO::convertSize( m_thread->getTotalSize() ) ).arg( m_thread->getTotalDirs() ).arg( m_thread->getTotalFiles() );
 	m_label->setText(msg);

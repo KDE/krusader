@@ -45,6 +45,7 @@ class KrDetailedViewItem : public QObject, public KListViewItem, public KrViewIt
   Q_OBJECT
 
 friend class KrDetailedView;
+friend class KrCalcSpaceDialog;
 public:
   KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
   QString name() const;

@@ -675,16 +675,22 @@ void ListPanelFunc::unpack() {
 }
 
 void ListPanelFunc::calcSpace() {
-	QStringList names;
-	panel->getSelectedNames( &names );
-	if ( names.isEmpty() ) return ; // nothing to do
+	KrViewItemList items;
+	panel->view->getSelectedKrViewItems(&items);
+	if ( items.isEmpty() ) return ; // nothing to do
 
-	KrCalcSpaceDialog calc(krApp, files(), names, false);
+	KrCalcSpaceDialog calc(krApp, files(), items, false);
 	calc.exec();
+	for ( KrViewItemList::ConstIterator it = items.begin(); it != items.end(); ++it )
+        {
+                KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( *it );
+                if (viewItem)
+                     viewItem->repaintItem();
+        }
 }
 
-bool ListPanelFunc::calcSpace(QStringList & names,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs) {
-	KrCalcSpaceDialog calc(krApp, files(), names, true);
+bool ListPanelFunc::calcSpace(const KrViewItemList & items,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs) {
+	KrCalcSpaceDialog calc(krApp, files(), items, true);
 	calc.exec();
 	totalSize = calc.getTotalSize();
 	totalFiles = calc.getTotalFiles();

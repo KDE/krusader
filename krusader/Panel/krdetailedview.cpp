@@ -78,7 +78,7 @@ QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
       KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
-_nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
+_nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ), delayedQuickSearchEvent( 0 ) {
 
    if ( ColumnName[ 0 ].isEmpty() ) {
       ColumnName[ 0 ] = i18n( "Name" );
@@ -413,12 +413,15 @@ void KrDetailedView::prepareForActive() {
 
 void KrDetailedView::prepareForPassive() {
    if ( !_ClassicQuicksearch ) {
-      if ( krApp )
-         if ( krApp->mainView )
-            if ( krApp->mainView->activePanel )
-               if ( krApp->mainView->activePanel->quickSearch )
-                  if ( krApp->mainView->activePanel->quickSearch->isShown() )
+     if ( krApp ){
+       kdWarning() << "test1" << endl; if( krApp->mainView ){
+         kdWarning() << "test2" << endl; if( krApp->mainView->activePanel ){
+           kdWarning() << "test3" << endl; if( krApp->mainView->activePanel->quickSearch ){
+             kdWarning() << "test4" << endl; if( krApp->mainView->activePanel->quickSearch->isShown() ){
+               kdWarning() << "test5" << endl; stopQuickSearch(0); kdWarning() << "test6" << endl;
+       }}}}}
                      stopQuickSearch( 0 );
+       kdWarning() << "test7" << endl;
    }
    _focused = false;
 }
@@ -596,9 +599,9 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
             //
             KIO::filesize_t totalSize = 0;
             unsigned long totalFiles = 0, totalDirs = 0;
-            QStringList names;
-            names.push_back( viewItem->name() );
-            if ( krApp->mainView->activePanel->func->calcSpace( names, totalSize, totalFiles, totalDirs ) ) {
+            KrViewItemList items;
+            items.push_back( viewItem );
+            if ( krApp->mainView->activePanel->func->calcSpace( items, totalSize, totalFiles, totalDirs ) ) {
                // did we succeed to calcSpace? we'll fail if we don't have permissions
                if ( totalSize == 0 ) { // just mark it, and bail out
                   KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
@@ -618,12 +621,16 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
             break;
          }
          default:
+         if (e->key() == Key_Escape){
+               QListView::keyPressEvent( e );return; // otherwise the selection gets lost??!??
+         }
          // if the key is A..Z or 1..0 do quick search otherwise...
-         if ( ( e->key() >= Key_A && e->key() <= Key_Z ) ||
+         if (e->text().length() > 0 && e->text()[ 0 ].isPrint()) // better choice. Otherwise non-ascii characters like Ö can not be the first character of a filename
+/*         if ( ( e->key() >= Key_A && e->key() <= Key_Z ) ||
                ( e->key() >= Key_0 && e->key() <= Key_9 ) ||
                ( e->key() == Key_Backspace ) ||
                ( e->key() == Key_Down ) ||
-               ( e->key() == Key_Period ) ) {
+               ( e->key() == Key_Period ) ) */{
             // are we doing quicksearch? if not, send keys to panel
             if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
                // are we using krusader's classic quicksearch, or wincmd style?
@@ -637,7 +644,9 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
                      krDirUp->setEnabled( false );
                   }
                   // now, send the key to the quicksearch
-                  krApp->mainView->activePanel->quickSearch->myKeyPressEvent( e );
+                  //krApp->mainView->activePanel->quickSearch->myKeyPressEvent( e );
+                  delayedQuickSearchEvent = new QKeyEvent(*e);
+                  QTimer::singleShot ( 0, this, SLOT(delayedQuickSearchEventHandling()) );
                }
             } else
                e->ignore(); // send to panel
@@ -725,10 +734,23 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
    setFocus();
 }
 
-void KrDetailedView::quickSearch( const QString & str, int direction ) {
+void KrDetailedView::delayedQuickSearchEventHandling()
+{
+  if (delayedQuickSearchEvent)
+  {
+    krApp->mainView->activePanel->quickSearch->myKeyPressEvent( delayedQuickSearchEvent );
+    delete delayedQuickSearchEvent;
+    delayedQuickSearchEvent = 0;
+  }
+}
+
+void KrDetailedView::quickSearch( const QString & str, int direction )
+{
+   bool caseSensitive = true; // make it configurable!!!!
    KrViewItem * item = getCurrentKrViewItem();
-   if ( !direction ) {
-      if ( item->name().startsWith( str ) )
+   if (!direction)
+   {
+      if (item->name().startsWith(str, caseSensitive))
          return ;
       direction = 1;
    }
@@ -739,7 +761,7 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
          item = ( direction > 0 ) ? getFirst() : getLast();
       if ( item == startItem )
          return ;
-      if ( item->name().startsWith( str ) ) {
+      if ( item->name().startsWith( str, caseSensitive ) ) {
          makeItemVisible( item );
          setCurrentItem( item->name() );
          return ;
@@ -748,11 +770,11 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
 }
 
 void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
-   //krApp->mainView->activePanel->quickSearch->hide();
-   //krApp->mainView->activePanel->quickSearch->clear();
-   //krDirUp->setEnabled( true );
-   //if ( e )
-   //   keyPressEvent( e );
+   krApp->mainView->activePanel->quickSearch->hide();
+   krApp->mainView->activePanel->quickSearch->clear();
+   krDirUp->setEnabled( true );
+   if ( e )
+      keyPressEvent( e );
 }
 
 //void KrDetailedView::focusOutEvent( QFocusEvent * e )
