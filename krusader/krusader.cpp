@@ -273,9 +273,6 @@ void Krusader::setupAccels() {
   // F4
   accels->insert( "F4_Edit", i18n( "F4 Edit" ), QString::null,
                   Key_F4, SLOTS, SLOT( edit() ) );
-  // SHIFT+F4
-  accels->insert( "F4_EditDlg", i18n( "F4 Edit Dialog" ), QString::null,
-                  SHIFT+Key_F4, SLOTS, SLOT( editDlg() ) );
   // F5
   accels->insert( "F5_Copy", i18n( "F5 Copy" ), QString::null,
                   Key_F5, SLOTS, SLOT( copyFiles() ) );
@@ -312,7 +309,6 @@ void Krusader::setupActions() {
   // second, the KDE standard action
   //KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
   KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" )->setShortcut(Key_QuoteLeft);
-  KStdAction::openNew( SLOTS, SLOT( editDlg() ), actionCollection(), "std_open_new" );
   KAction *actRedisplay = KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
   actRedisplay->setText( "Reload" );
   actRedisplay->setShortcut( CTRL + Key_R );
@@ -350,6 +346,7 @@ void Krusader::setupActions() {
   actCmdlinePopup = new KAction( i18n("popup cmdline"), 0, CTRL + Key_Slash, SLOTS,
                      SLOT(cmdlinePopup()), actionCollection(), "cmdline popup");
   actDirUp = new KAction( i18n("Up"), "up", Key_Backspace, SLOTS, SLOT(dirUp()), actionCollection(), "dirUp");
+  new KAction( i18n("Edit new file"), "filenew", SHIFT + Key_F4, SLOTS, SLOT(editDlg()), actionCollection(), "edit_new_file");
 
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
