@@ -51,6 +51,7 @@
 #include "kgadvanced.h"
 #include "kgarchives.h"
 #include "kgdependencies.h"
+#include "kgcolors.h"
 
 Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
       KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
@@ -90,6 +91,9 @@ void Konfigurator::createLayout()
   // look n' feel
   newContent(new KgLookFeel(firstTime, widget->addPage(i18n("Look & Feel"),
     i18n("Look & Feel"),QPixmap(krLoader->loadIcon("appearance",KIcon::Desktop,32)))));
+  // colors
+  newContent(new KgColors(firstTime, widget->addPage(i18n("Colors"),
+    i18n("Colors"),QPixmap(krLoader->loadIcon("colors",KIcon::Desktop,32)))));
   // general
   newContent(new KgGeneral(firstTime, widget->addPage(i18n("General"),
     i18n("Basic Operations"),QPixmap(krLoader->loadIcon("configure",KIcon::Desktop,32)))));

@@ -601,7 +601,7 @@ install_location=
 type=HEADER
 
 [krusader/Konfigurator/Makefile.am]
-files=krusader/Konfigurator/kgadvanced.cpp,krusader/Konfigurator/kgadvanced.h,krusader/Konfigurator/kgarchives.cpp,krusader/Konfigurator/kgarchives.h,krusader/Konfigurator/kggeneral.cpp,krusader/Konfigurator/kggeneral.h,krusader/Konfigurator/kglookfeel.cpp,krusader/Konfigurator/kglookfeel.h,krusader/Konfigurator/kgstartup.cpp,krusader/Konfigurator/kgstartup.h,krusader/Konfigurator/kgwelcome.cpp,krusader/Konfigurator/kgwelcome.h,krusader/Konfigurator/konfigurator.cpp,krusader/Konfigurator/konfigurator.h,krusader/Konfigurator/konfiguratoritems.cpp,krusader/Konfigurator/konfiguratoritems.h,krusader/Konfigurator/konfiguratorpage.cpp,krusader/Konfigurator/konfiguratorpage.h,krusader/Konfigurator/kgdependencies.h,krusader/Konfigurator/kgdependencies.cpp
+files=krusader/Konfigurator/kgadvanced.cpp,krusader/Konfigurator/kgadvanced.h,krusader/Konfigurator/kgarchives.cpp,krusader/Konfigurator/kgarchives.h,krusader/Konfigurator/kggeneral.cpp,krusader/Konfigurator/kggeneral.h,krusader/Konfigurator/kglookfeel.cpp,krusader/Konfigurator/kglookfeel.h,krusader/Konfigurator/kgstartup.cpp,krusader/Konfigurator/kgstartup.h,krusader/Konfigurator/kgwelcome.cpp,krusader/Konfigurator/kgwelcome.h,krusader/Konfigurator/konfigurator.cpp,krusader/Konfigurator/konfigurator.h,krusader/Konfigurator/konfiguratoritems.cpp,krusader/Konfigurator/konfiguratoritems.h,krusader/Konfigurator/konfiguratorpage.cpp,krusader/Konfigurator/konfiguratorpage.h,krusader/Konfigurator/kgdependencies.h,krusader/Konfigurator/kgdependencies.cpp,krusader/Konfigurator/kgcolors.cpp,krusader/Konfigurator/kgcolors.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=Konfigurator
 sub_dirs=
@@ -626,6 +626,18 @@ install_location=
 type=SOURCE
 
 [krusader/Konfigurator/kgarchives.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Konfigurator/kgcolors.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Konfigurator/kgcolors.h]
 dist=true
 install=false
 install_location=

@@ -606,7 +606,7 @@ KonfiguratorColorChooser::KonfiguratorColorChooser( QString cls, QString name, Q
   connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
 
   addColor( i18n("Custom color" ),  QColor( 255, 255, 255 ) );
-  addColor( i18n("KDE default" ),   defaultValue );
+  addColor( i18n("Default" ),       defaultValue );
   addColor( i18n("Red" ),           Qt::red );
   addColor( i18n("Green" ),         Qt::green );
   addColor( i18n("Blue" ),          Qt::blue );
@@ -625,7 +625,6 @@ KonfiguratorColorChooser::KonfiguratorColorChooser( QString cls, QString name, Q
   addColor( i18n("Dark Gray" ),     Qt::darkGray );
   addColor( i18n("Black" ),         Qt::black );
 
-  connect( this, SIGNAL( highlighted(int) ), ext,  SLOT( setChanged() ) );
   connect( this, SIGNAL( activated(int) ),   this, SLOT( slotCurrentChanged( int ) ) );
 
   loadInitialValue();
@@ -702,6 +701,11 @@ void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
   changeItem( createPixmap( defaultValue ), text( 1 ), 1 );
 }
 
+void KonfiguratorColorChooser::setDefaultText( QString text )
+{
+  changeItem( createPixmap( defaultValue ), text, 1 );
+}
+
 void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
 {
   krConfig->setGroup( cls );
@@ -733,6 +737,11 @@ void KonfiguratorColorChooser::slotCurrentChanged( int number )
       disableColorChooser = false;
     }
   }
+}
+
+QColor KonfiguratorColorChooser::getColor()
+{
+  return palette[ currentItem() ];
 }
 
 #include "konfiguratoritems.moc"

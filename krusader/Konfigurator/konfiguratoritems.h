@@ -328,6 +328,8 @@ public:
   inline KonfiguratorExtension *extension()   {return ext;}
 
   void          setDefaultColor( QColor dflt );
+  void          setDefaultText( QString text );
+  QColor        getColor();
 
 public slots:
   virtual void  loadInitialValue();
