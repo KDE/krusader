@@ -363,12 +363,12 @@ void KRslots::locate()
 
 void KRslots::runRemoteMan() {
   // display outage information
-  KMessageBox::information(krApp, i18n( "Important: RemoteMan has been replaced by our new bookmark manager."
-                                        "The new manager handles local files and remote URLs the same way."
-                                        "RemoteMan is being left around to allow an easier transition and"
+  KMessageBox::information(krApp, i18n( "Important: RemoteMan has been replaced by our new bookmark manager. "
+                                        "The new manager handles local files and remote URLs the same way. "
+                                        "RemoteMan is being left around to allow an easier transition and "
                                         "give you a chance to move your bookmarks. IT WILL BE REMOVED SOON!"
                                         "\n"
-                                        "Try the new bookmark-manager: open a new remote connection, once"
+                                        "Try the new bookmark-manager: open a new remote connection, once "
                                         "done, press the bookmark button, select 'Add bookmark' and that's it!"));
 
   QString host=remoteMan::getHost();
