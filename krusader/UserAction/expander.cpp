@@ -339,6 +339,9 @@ QString Expander::exp_Copy( const ListPanel*, const QStringList& parameter, cons
 
    KURL src = parameter[0];
    KURL dest = parameter[1];
+   
+   if ( !dest.isValid() || !src.isValid() )
+      return QString::null; // do nothing with invalid url's
 
    new KIO::CopyJob( src, dest, KIO::CopyJob::Copy, false, true );
 
