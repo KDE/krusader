@@ -54,9 +54,9 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //  cfg_class  cfg_name                     default               text                                      restart tooltip
-    {{"Colors","KDE Default",                 _KDEDefaultColors,    i18n( "Use the default KDE colors" ),     false,  "" },
-     {"Colors","Enable Alternate Background", _AlternateBackground, i18n( "Use alternate background color" ),  false,  "" },
-     {"Colors","Show Current Item Always", _ShowCurrentItemAlways, i18n( "Show current item even if not focused" ),  false,  "" }};
+    {{"Colors","KDE Default",                 _KDEDefaultColors,    i18n( "Use the default KDE colors" ),     false,  "Krusader default color configuration." },
+     {"Colors","Enable Alternate Background", _AlternateBackground, i18n( "Use alternate background color" ),  false,  "The Background color and the Alternate Background color alternates line by line.\nWhen you don't use the KDE default colors, you can configure the alternate colors in the Colors box." },
+     {"Colors","Show Current Item Always", _ShowCurrentItemAlways, i18n( "Show current item even if not focused" ),  false,  "Shows the last cursor position in the non active list panel.\nThis option is only available when you don't use the KDE default colors." }};
 
   generals = createCheckBoxGroup( 0, 2, generalSettings, sizeof(generalSettings)/sizeof(generalSettings[0]), generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
