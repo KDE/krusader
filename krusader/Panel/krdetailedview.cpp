@@ -128,7 +128,9 @@ KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const 
   {
     newColumn( DateTime );
     setColumnWidthMode( column( DateTime ), QListView::Manual );
-    setColumnWidth( column( DateTime ), QFontMetrics( font() ).width( "99/99/99  99:99" ) );
+    //setColumnWidth( column( DateTime ), QFontMetrics( font() ).width( "99/99/99  99:99" ) );
+    setColumnWidth( column( DateTime ), QFontMetrics( font() ).width( KGlobal::locale()->formatDateTime(
+                    QDateTime (QDate(2099, 12, 29), QTime(23, 59))) ) + 3 );
   }
   if ( _config->readBoolEntry( "Perm Column", _PermColumn ) )
   {
