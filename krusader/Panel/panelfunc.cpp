@@ -71,8 +71,6 @@ A
 #include "../GUI/syncbrowsebutton.h"
 #include "krdrag.h"
 
-#define OTHER_FUNC      (panel->otherPanel->func)
-
 
 //////////////////////////////////////////////////////////
 //////          ----------      List Panel -------------                ////////
