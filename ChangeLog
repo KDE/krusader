@@ -1,5 +1,8 @@
 ======================
     ADDED: Chinese Simplified translation
+    FIXED: extension is separated from the dirname after renaming directories containing '.'
+    FIXED: locate does not call kdesu any more
+    FIXED: [ 950052 ] synchronizer: the left and right side depends of the active panel
     FIXED: [ 770676 ] krarc does not handle password zips
     FIXED: [ 928746 ] symlinks pointing to directories using fish protocol fail
     FIXED: [ 939214 ] synchronizer, wrong behaviour of compare by content

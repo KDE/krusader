@@ -733,8 +733,8 @@ void KRslots::userMenu() {
 
 void KRslots::slotSynchronizeDirs() {
   SynchronizerGUI *sync = new SynchronizerGUI( MAIN_VIEW,
-                ACTIVE_PANEL->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol),
-                ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol) );
+                MAIN_VIEW->left->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol),
+                MAIN_VIEW->right->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol) );
 
   bool refresh = sync->wasSynchronization();
   delete sync;

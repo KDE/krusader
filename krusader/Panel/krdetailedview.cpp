@@ -890,10 +890,11 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
 	if ( column( Extention ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
     int i;
     QString ext, name = dynamic_cast<KrDetailedViewItem*>( it ) ->name();
-    if ( ( i = name.findRev( '.' ) ) > 0 ) {
-      ext = name.mid( i + 1 );
-      name = name.mid( 0, i );
-      }
+    if( !dynamic_cast<KrDetailedViewItem*>( it ) ->isDir() )
+      if ( ( i = name.findRev( '.' ) ) > 0 ) {
+        ext = name.mid( i + 1 );
+        name = name.mid( 0, i );
+    }
     it->setText( column( Name ), name );
     it->setText( column( Extention ), ext );
     repaintItem( it );
