@@ -45,6 +45,7 @@ vfile::vfile(QString name,	                  // useful construtor
 						unsigned long size,	
 						QString perm,
 						QString	dateTime,
+            time_t mtime,
 						bool symLink,
 						uid_t	owner,
 						gid_t group,
@@ -57,6 +58,7 @@ vfile::vfile(QString name,	                  // useful construtor
 	vfile_groupId=group;
 	vfile_perm=perm;
 	vfile_dateTime=dateTime;
+  vfile_time_t=mtime;
 	vfile_symLink=symLink;
 	vfile_mimeType=mime;
 	vfile_symDest=symDest;
@@ -69,6 +71,7 @@ vfile::vfile(QString name,	                  // useful construtor
 						unsigned long size,	
 						QString perm,
 						QString	dateTime,
+            time_t mtime,
 						bool symLink,
 						QString	owner,
 						QString group,
@@ -83,6 +86,7 @@ vfile::vfile(QString name,	                  // useful construtor
 		vfile_groupId=KRpermHandler::group2gid(group);
 		vfile_perm=perm;
 		vfile_dateTime=dateTime;
+    vfile_time_t=mtime;
 		vfile_symLink=symLink;
 		vfile_mimeType=mime;
 		vfile_symDest=symDest;

@@ -53,6 +53,7 @@ protected:
   QString       vfile_group;    // group name
 	QString     	vfile_perm;			// permissions
 	QString			  vfile_dateTime;	// modification date&time
+  time_t        vfile_time_t;   // modification in time_t format
 	bool					vfile_symLink;  // true==yes
 	QString				vfile_mimeType; // file mimetype
 	QString				vfile_symDest;  // if it's a sym link - its detination
@@ -65,6 +66,7 @@ public:
 				unsigned long size,	
 			  QString perm,
 				QString	dateTime,
+        time_t mtime,
 				bool symLink,
 				uid_t	owner,
 				gid_t group,
@@ -76,6 +78,7 @@ public:
 				unsigned long size,	
 			  QString perm,
 				QString	dateTime,
+        time_t mtime,
 				bool symLink,
 				QString	owner,
 				QString group,
@@ -95,11 +98,12 @@ public:
 	inline mode_t						vfile_getMode()			{ return vfile_mode;			}
 	inline uid_t						vfile_getUid()			{ return vfile_ownerId;		}
   inline gid_t						vfile_getGid()			{ return vfile_groupId;		}
+  inline time_t           vfile_getTime_t()   { return vfile_time_t;    }
 	QString						      vfile_getOwner();
   QString						      vfile_getGroup();
-	virtual char			      vfile_isReadable();
-	virtual char 			      vfile_isWriteable();
-  virtual char			      vfile_isExecutable();
+  char			              vfile_isReadable();
+  char 			              vfile_isWriteable();
+  char			              vfile_isExecutable();
 	KIO::UDSEntry           vfile_getEntry(); // return the UDSEntry from the vfile
   // used ONLY when calculating a directory's space, needs to change the
   // displayed size of the viewitem and thus the vfile. For INTERNAL USE !
@@ -108,6 +112,7 @@ public:
   virtual ~vfile(){}
 };
 
+#if 0
 class ftp_vfile : public vfile {
 protected:
   char canRead;
@@ -136,10 +141,8 @@ public:
 	virtual char vfile_isReadable()  { return canRead; }
 	virtual char vfile_isWriteable() { return canWrite;}
   virtual char vfile_isExecutable(){ return canExec; }
-			
-
-
-
 };
+#endif
+
 
 #endif

@@ -133,7 +133,7 @@ bool normal_vfs::vfs_refresh(QString origin){
 	  }
 	  	
 	  // create a new virtual file object
-    vfile* temp=new vfile(name,size,perm,dateTime,symLink,stat_p.st_uid,
+    vfile* temp=new vfile(name,size,perm,dateTime,stat_p.st_mtime,symLink,stat_p.st_uid,
                           stat_p.st_gid,mime,symDest,stat_p.st_mode);
     vfs_addToList(temp);
   }

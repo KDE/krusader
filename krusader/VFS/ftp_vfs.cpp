@@ -28,7 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
-
+// Sys includes
+#include <time.h>
 // QT includes
 #include <qdir.h>
 #include <qregexp.h>
@@ -119,19 +120,22 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
 		if (name.isEmpty() || name=="." || name == ".." ) continue;
 	
 		unsigned long size = kfi.size();
-		QString	dateTime = KRpermHandler::time2QString(kfi.time(256 | 4 | 2));
+    time_t mtime = kfi.time(KIO::UDS_MODIFICATION_TIME);
+		QString	dateTime = KRpermHandler::time2QString(mtime);
 		bool symLink = kfi.isLink();
 		mode_t mode = kfi.mode() | kfi.permissions();
   	QString perm = KRpermHandler::mode2QString(mode);
     // set the mimetype
     QString mime = kfi.mimetype(); 
     QString symDest = "";
-		if(symLink)symDest= kfi.linkDest();
+		if(symLink)symDest = kfi.linkDest();
 		// create a new virtual file object
     if( kfi.user().isEmpty() )
-      temp=new /*ftp_*/vfile(name,size,perm,dateTime,symLink,getuid(),getgid(),mime,symDest,mode);
+      temp=new /*ftp_*/vfile(name,size,perm,dateTime,mtime,
+                             symLink,getuid(),getgid(),mime,symDest,mode);
     else
-      temp=new /*ftp_*/vfile(name,size,perm,dateTime,symLink,kfi.user(),kfi.group(),mime,symDest,mode);
+      temp=new /*ftp_*/vfile(name,size,perm,dateTime,mtime,
+                             symLink,kfi.user(),kfi.group(),mime,symDest,mode);
   	// set the ftp file permissions
   	//temp->setWrite(KRpermHandler::ftpWriteable (kfi.user(),loginName,perm));
   	//temp->setRead (KRpermHandler::ftpReadable  (kfi.user(),loginName,perm));

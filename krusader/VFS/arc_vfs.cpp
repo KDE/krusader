@@ -31,6 +31,7 @@
 #include <sys/param.h>
 #include <sys/types.h>
 #include <dirent.h>
+#include <time.h>
 // QT includes
 #include <qregexp.h>
 #include <qdir.h>
@@ -659,7 +660,8 @@ QString arc_vfs::changeDir(QString name){
    if(Pname.isEmpty()) return name;
    QString tempName = arcFile;
    QFileInfo qfi(tempName.replace(QRegExp("\\"),""));
-   vfile* vf=new vfile(Pname,0,"drwxr-xr-x",dateTime2QString(qfi.lastModified()),false,
+   vfile* vf=new vfile(Pname,0,"drwxr-xr-x",dateTime2QString(qfi.lastModified()),
+                       qfi.lastModified().toTime_t(),false,
                  qfi.owner(),qfi.group(),"inode/directory","",0 );
    // add  dirs if needed
    changeDir(path);
@@ -738,6 +740,8 @@ void arc_vfs::parseLine(QString line, QFile* temp){
   QString name;
   long size = 0;
   QString perm;
+  QFileInfo qfi(arcFile);
+  time_t mtime = qfi.lastModified().toTime_t();
   QString dateTime;
   bool link = false;
   uid_t owner = getuid();
@@ -748,7 +752,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
 
   // parse gziped files
   if(vfs_type == "gzip"){
-    QFileInfo qfi(arcFile);
     struct stat stat_p;
     stat(arcFile.local8Bit(),&stat_p);
 
@@ -766,7 +769,6 @@ void arc_vfs::parseLine(QString line, QFile* temp){
 
   // parse bzip2ed files
   if( vfs_type == "zip2" ){
-    QFileInfo qfi(arcFile);
     struct stat stat_p;
     stat(arcFile.local8Bit(),&stat_p);
 
@@ -868,7 +870,7 @@ void arc_vfs::parseLine(QString line, QFile* temp){
 
 
   QString mime = KMimeType::findByURL( "/"+name,0,true,true)->name();
-  vfile* vf=new vfile(name,size,perm,dateTime,link,owner,group,mime,dest,mode);
+  vfile* vf=new vfile(name,size,perm,dateTime,mtime,link,owner,group,mime,dest,mode);
   vfile* vf2 = vfs_search(name);
   if(vf2 != 0) vfs_removeFromList(vf2);
   vfs_addToList(vf);
