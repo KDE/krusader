@@ -47,7 +47,7 @@
 	
 <para>
 <itemizedlist>
-<title>&krusader; Features</title>
+<title>Features</title>
 	<listitem>
 	   <para>Configurable &toolbar_lnk; and
 	   <link linkend="key_bindings">key-bindings</link>.</para>
@@ -135,7 +135,7 @@
 	    <para>New &quick_search_lnk;.</para>
 	</listitem>
 	<listitem>
-	    <para><link linkend="konfig-startup">Konfigurator</link>.</para>
+	    <para>New <link linkend="konfig-startup">Konfigurator</link>.</para>
         </listitem>
 	<listitem>
 	    <para>&locate_lnk;.</para>
@@ -155,17 +155,22 @@
 
 <para>
 <itemizedlist>
-  <title>New features in version 1.50 CVS (UNSTABLE)</title>
+  <title>New features in version 1.50</title>
 	<listitem>
-	    <para>&useractions_lnk;</para>
+	    <para>&useractions_lnk;.</para>
 	</listitem>
         <listitem>
-        <para><link linkend="paneltoolbar">Sync-browsing mode</link>.</para>
+        <para>&sync_browsing_lnk;.</para>
 	</listitem>
         <listitem>
-	    <para>&thirt_hand_lnk;.</para>
-	</listitem>	
+	    <para>&popup_panel_lnk;.</para>
+	</listitem>
+        <listitem>
+        <para>&panel_profiles_lnk;.</para>
+	</listitem>
 </itemizedlist>
+It would make this list to long if we want to display all new features and improvements, 
+to find out more new features please read the &changelog_url; file.
 &dev_cvs_note;
 </para>
 
@@ -176,8 +181,7 @@
 		<imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
 	        <imageobject><imagedata fileref="krusader1.eps" format="EPS"/></imageobject>
 	  <textobject><phrase>&krusader; screenshot</phrase></textobject>
-	  <caption><para>Here's a screenshot of &krusader; with the panel toolbar buttons
-	                  and <link linkend="konfig-color">colors</link>.</para></caption>
+	  <caption><para>&krusader; 1.50 with two PopUp panels.</para></caption>
 	</mediaobject>
 </screenshot>
 </chapter>

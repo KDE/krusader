@@ -173,11 +173,11 @@
    </question>
    <answer>
    <para>
-   Dit you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and noting found?
+   Dit you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and nothing found?
    Then you will have to compile &krusader; from source :)
-   Even when you think that you have no skills, you will probably succeed in compiling &krusader;!
-   We provide a verry detailled &install_proc_lnk;. This howto allows that even newcomers will be able
-   to compile &krusader; from source, even when you dit never before a compilation from source.
+   Even if you think that you have no skills, you will probably succeed in compiling  &krusader;!
+   We provide a very detailed installation procedure. This howto allows that even newcomers will be 
+   able to compile &krusader; from source, even if they have never done a compilation from source before. 
    Feel free to post a &help_request_lnk; if you encounter problems.
    </para>
    <para> </para> <!-- Empty line to make it more readable -->
@@ -218,12 +218,17 @@
        </para>
 
   <para>The first line of <filename>krusaderui.rc</filename> contains the version number.
-        After installing a newer &krusader; stable version, &kde; will replace automatiqly the old
+        After installing a newer &krusader; stable version, &kde; will automatically replace the old
         <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> with the newer version when starting the
         new &krusader; stable for the first time (&kde; will detect the newer version number in the first line).
         In the past this was not the case due to a bug, this bug was resolved since "krusader-cvs-2004-02-24".
-        When you install a Krusader CVS or beta version you will have to replace the
-        <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> manually.</para>
+	</para>
+
+  <para>If you install a CVS or beta version and if &krusader; was previously
+         installed on your computer then you should delete the <filename>krusaderui.rc</filename> file 
+         in your home directory to activate the new menu entries 
+	 <prompt>$</prompt> <userinput><command>rm</command> <option>~/.kde/share/apps/krusader/krusaderui.rc</option></userinput>
+         </para>
 
   <para>If the <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> file is too old,
         then the new menu elements will not be shown.
@@ -266,6 +271,33 @@
 </screen>        
    For more information please take a look &debian_qt_a_url; and at the &debian_qt_b_url; 
    on howto build a &Qt;/&kde;3 application on &debian;.
+   </para>
+   <para> </para> <!-- Empty line to make it more readable -->
+   </answer>
+   </qandaentry>
+
+  <qandaentry>
+  <question id="faqi_nvdia">
+  <para>I have a <filename>libGLcore.so.1</filename> compile error after using the &nvdia; installer</para>
+  </question>
+  <answer>
+  <para>This problem occurs when you dit use the &nvdia; installer and not the official &nvdia; packages
+        of your distribution. &krusader; is based on &Qt; which can be linked against the X openGL libraries. 
+        As a result &krusader; may look for OpenGL as well. The problem is that the &nvdia; installer  
+        doesn't do his job good enough, it replaces the OpenGL header files (which get included into &krusader;) but 
+        don't set the libGL links right. 
+        The solution depends on from the used distribution, but it should be something like this: 
+<screen><prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so.0</replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so</replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so.1.0.0</replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so.0.0.0</replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGL.so </replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGL.so.0</replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGL.so.0.0.0</replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGL.so.1</replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGL.so.1.0.0</replaceable></userinput>
+<prompt>$</prompt> <userinput><command>ln</command> -s <replaceable> /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la</replaceable></userinput>
+</screen>        
    </para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -579,18 +611,20 @@
   <para>Yes, we have 3 mailing lists.
         No spam, no bother, just &krusader;. Feel free to &mailing_subscribe_url;.</para>
               
-  <para>Tip. with the &URL;'s below you can view the mailing lists archive with a browser.
+  <para>Tip. our mailing list are archived and with the &URL;'s below you can view them with a browser, 
+        so that you don't even have to subscribe to see the mailing lists.
      <itemizedlist>
      <listitem><para>&krunews_url; is used to notify &krusader; users about new releases, major bugfixes &etc; .
-                     The news can also been read online at &krulatestnews_url; and &newsforum_url; 
+                     The news can also been read online at &krulatestnews_url; and in the &newsforum_url; 
                      who are basically the same but displayed in an other format.
                      </para></listitem>
-     <listitem><para>&krucommits_url; is used to follow the &krusader; development ... live!
-                     This means that everything the &krusader; Krew puts into CVS is reported in this mailing list.
+     <listitem><para>&krucommits_url; when the &krusader; Krew commits code into CVS, it will be reported into this mailing list. 
+                     This allows you to follow the &krusader; development ... live! 
                      Want to keep track? Waiting for a certain feature/bugfix?
                      </para></listitem>
-     <listitem><para>&krudevel_url; is the developers mailing list of the &krusader; Krew.
-                     Posting to this list is only allowed to &krusader; Krew members. 
+     <listitem><para>&krudevel_url; is the developer mailing list of the &krusader; Krew.
+                     If you are considering to join the &krusader; Krew or if you want to follow the
+                     development on the bleeding edge, this is the place to be!
                      </para></listitem>
   </itemizedlist>
   </para>
@@ -659,6 +693,11 @@
   </itemizedlist>
   </para>
   <para>Thanks for your cooperation!</para>
+  
+  <para>We are providing RSS feeds for our forums.
+        You don't have to check for new posts all the time, instead the news will come to you! 
+        To make use of them, simply point your RSS aggregator to &rss_url;.</para>
+  
   <para> </para> <!-- Empty line to make it more readable -->
 </answer>
 </qandaentry>

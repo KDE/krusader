@@ -24,8 +24,8 @@
 <sect1 id = "getting-krusader">
 <title>How to obtain &krusader;</title>
 
-<para>The latest information about &krusader; can be found on the &kruwebsite_url;.
-      The &krusader; project page at Sourceforge can be found &kruproject_url;.</para>
+<para>The latest information about &krusader; can be found on the &kruwebsite_url; 
+      and &krusader; project page at Sourceforge can be found &kruproject_url;.</para>
 
 <sect2 id="krusader_download">
 <title>Download &krusader;</title>
@@ -33,30 +33,39 @@
 <para>
   The latest version can be found on the &krudownload_url; and on the &sfmirrors_url;.
   It contains the source tarballs and RPM packages to whatever distro we are currently using.
-  The &Mandrake; RPM is currently provided by the &krusader; Krew,
-  often &feodora; and &SuSE; RPM's are available, sended in by &krusader; users.
-  There might be some other packages on the site, but that depends on other users contributions.</para>
+  
+<itemizedlist>
+	<listitem>
+	   <para>Often &Mandrake;, &feodora; and &SuSE; RPM's are available, sended in by &krusader; users.
+                 There might be some other packages our website, but that depends on other users contributions.</para>
+	</listitem>
+	<listitem>
+	   <para>&debian_download_url; DEB packages and a &deb_packages_overview_url; are available.</para>
+	</listitem>
+	<listitem>
+	   <para>There is a &krufreebsd_port_url; thanks to <link linkend="credits">Heiner Eichmann</link> .</para>
+	</listitem>
+        <listitem>
+	   <para>There is a &mac_download_url; port with the kdelibs (3.1.4) and &fink_prj_url; 
+                 thanks to <link linkend="credits">Jonas Ba&euml;hr</link> .</para>
+	</listitem>
+        <listitem>
+	   <para>&gentoo_url; Ebuild is available.</para>
+	</listitem>		
+        <listitem>
+	   <para>You may also find packages on &Linux; software archives such as &freshmeat_url; or &kde_apps_url;.</para>
+	</listitem>		
+        <listitem>
+	   <para>If you can't find a RPM package for your &Linux; distribution,
+                 we recommend searching for it with &rpmfind_url; or &rpmpbone_url;.</para>
+	</listitem>
+</itemizedlist>
+</para>
 
-<para>You may also find copies on &Linux; software archives such as
-   &freshmeat_url; or &kde_apps_url;.
-   If you can't find a RPM package for your &Linux; distribution,
-   we recommend searching for it with &rpmfind_url; or &rpmpbone_url;.</para>
-
-<para>&debian; DEB packages can be found &deb_download_url;
-      and overview can be found &deb_overviewdownload_url; .</para>   
-   
-<para>A &krufreebsd_port_url; of &krusader; is maintained. 
-      Many thanks to <link linkend="credits">Heiner Eichmann</link> !</para>
-
-<para>A &mac_download_url; port with the kdelibs (3.1.4) from &fink_prj_url; of is maintained.
-      Many thanks to <link linkend="credits">Jonas Ba&euml;hr</link> !</para>
-
-<para>For &gentoo; click &gentoo_ebuild_url; .</para>
-
-<para>If you can't find a RPM or DEB package, don't wurry.
+<para>If you still can't find a RPM or DEB package, please don't wurry.
       We provide a verry detailled installation procedure. This howto allows that even newcomers will be able
       to compile &krusader; from source, even when you dit never before a compilation from source.
-      Please continue to read this chapter :)</para>
+      Please continue to read this chapter ;)</para>
 
 </sect2>
 
@@ -145,6 +154,10 @@
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login</option></userinput></screen>
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
   (note: updates from within the modules directory do not need the -d parameter)</para>
+
+<para>Mostly being &gentoo_url; users ourselves, we provide a &gentoo_life_ebuild_url; for all those who want 
+      to stay on the bleeding edge of filemanagement and don't want to miss the advantages of portage. 
+      Please take a look at our &krucutedge_url; for more installation details.</para>
 
 <para>We provide also &viewcvs_url; to browse the CVS repository.</para>
 
@@ -609,21 +622,23 @@ foo</screen>
     <listitem><para>Archives</para></listitem>
     <listitem><para>Dependencies</para></listitem>
     <listitem><para>General</para></listitem>
+    <listitem><para>HTML Settings</para></listitem>
     <listitem><para>KFileDialog</para></listitem>
     <listitem><para>KFileDialog Speedbar</para></listitem>
     <listitem><para>KrDetailedViewLeft</para></listitem>
     <listitem><para>KrDetailedViewRight</para></listitem>
     <listitem><para>KrViewerWindow</para></listitem>
-    <listitem><para>KrViewerWindow Toolbar edit_toolbar</para></listitem>
-    <listitem><para>KrViewerWindow Toolbar extraToolBar</para></listitem>
     <listitem><para>KrViewerWindow Toolbar mainToolBar</para></listitem>
+    <listitem><para>Locate</para></listitem>
     <listitem><para>Look&amp;Feel</para></listitem>
-    <listitem><para>Open-with</para></listitem>
+    <listitem><para>Open-with settings</para></listitem>
     <listitem><para>Private</para></listitem>
+    <listitem><para>Protocols</para></listitem>
     <listitem><para>RemoteMan</para></listitem>
     <listitem><para>Search</para></listitem>
     <listitem><para>Startup</para></listitem>
     <listitem><para>Synchronize</para></listitem>
+    <listitem><para>SynchronizerProfile - 1</para></listitem>
 </itemizedlist>
 
 
@@ -633,8 +648,202 @@ foo</screen>
 
 
 <para><emphasis role="bold">useractions.xml</emphasis></para>
-<para>This file stores the &useractions_lnk; configuration.</para>
+<para>This file stores the &useractions_lnk; configuration. 
+      The file-structure is documentated in doxygen-headers of UserActionXML.</para>
 <para>Location: <filename>~/.kde/share/apps/krusader/useractions.xml</filename></para>
 
+</appendix>
 
+<appendix id="useraction_xml">
+<title>useraction.xml</title>
+<para>This appendix gives several examples of <filename>useraction.xml</filename> files.
+      By this way you can start do discover the power of the useractions and start learning using them.
+      If you have made a great useraction <link linkend="faqg_wish_patch">please send it in</link>, 
+      we are planning to collect useractions on our website and are planning to ship &krusader; with several 
+      great &useractions_lnk; in the near future.
+      Once you understand howto write useractions you will make from &krusader; a verry powerfull customizable tool.
+      </para>
+
+<itemizedlist>
+    <listitem><para>Runs <command>uptime</command>
+    <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="uptime" >
+  &lt;title>uptime&lt;/title>
+  &lt;tooltip>tells how long the computer is already running&lt;/tooltip>
+  &lt;icon>clock&lt;/icon>
+  &lt;category>information&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" >uptime&lt;/command>
+  &lt;defaultshortcut>Alt+Ctrl+U&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+    </para></listitem>
+        
+    <listitem><para>Runs <command>ls -l</command>
+    <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="ls -l" >
+  &lt;title>ls -l in curremt dir&lt;/title>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" >ls -l %aPath% %oPath%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+    </para></listitem>
+
+    <listitem><para>Echo Placeholder
+    <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="test_placeholder" >
+  &lt;title>Echo Placeholder&lt;/title>
+  &lt;tooltip>Echo's the placeholder values&lt;/tooltip>
+  &lt;category>Testing&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" onmultiplefiles="call_each" >echo -e &quot;aPath %aPath()%  \naCurrent: %aCurrent()%&quot;&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+    </para></listitem>
+
+      <listitem><para>This useraction copies current path and filename to clipboard:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="clipboard current" >
+  &lt;title>Copy to clipboard&lt;/title>
+  &lt;tooltip>Copy to clipboard&lt;/tooltip>
+  &lt;icon>klipper&lt;/icon>
+  &lt;category>System&lt;/category>
+  &lt;description>Copy current path and filename to clipboard&lt;/description>
+  &lt;command>%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command>
+  &lt;defaultshortcut>Win+C&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+    
+      <listitem><para>Selects <literal role="extension">.diff</literal> and <literal role="extension">*.h</literal> in the active panel:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="test_select" >
+  &lt;title>Add selection *.diff and *.h&lt;/title>
+  &lt;category>Selection&lt;/category>
+  &lt;command>%aSelect(&quot;*.diff&quot;, &quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+
+      <listitem><para>Active panel changes to <filename>mnt/floppy</filename> (bookmark):
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;action name="mnt/floppy bookmark" >
+  &lt;title>jumps to /mnt/floppy&lt;/title>
+  &lt;category>Bookmarks&lt;/category>
+  &lt;command>%aGoto(&quot;/mnt/floppy&quot;, &quot;yes&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+      
+      <listitem><para>Selects every filename that is selected in the active panel also in the non-active panel:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+ &lt;action name="asdfasdf" >
+  &lt;title>select in other panel&lt;/title>
+  &lt;category>Selection&lt;/category>
+  &lt;description>Selects every filename that is selected in the active panel also in the non-active panel&lt;/description>
+  &lt;command>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions</programlisting>
+      </para></listitem>
+
+      <listitem><para>Makes a backup of the current file/folder to <filename>foo.bak</filename> into the current directory:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="backup current" >
+  &lt;title>Backup in current directory&lt;/title>
+  &lt;tooltip>Backup in current directory&lt;/tooltip>
+  &lt;icon>filesaveas&lt;/icon>
+  &lt;category>System&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;new name&quot;, &quot;%aCurrent%.bak&quot;)&quot;)%&lt;/command>
+  &lt;defaultshortcut>Shift+F5&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+
+      <listitem><para>Opens <link linkend="krusearcher">KruSearcher</link>:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="search" >
+  &lt;title>search testlt;/title>
+  &lt;command>%_NewSearch(&quot;Search 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+
+      <listitem><para>Sets the selected picture as wallpaper:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="set wallpaper" >
+  &lt;title>Set as wallpaper&lt;/title>
+  &lt;tooltip>Set as wallpaper&lt;/tooltip>
+  &lt;icon>image&lt;/icon>
+  &lt;category>Service Menu&lt;/category>
+  &lt;description>Set as wallpaper (scaled)&lt;/description>
+  &lt;command>dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/command>
+  &lt;defaultshortcut>Win+W&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+
+      <listitem><para>This useraction edits a file with root permissions using <command>kdesu</command>:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="edit as root" >
+  &lt;title>Edit as root&lt;/title>
+  &lt;tooltip>Edit as root&lt;/tooltip>
+  &lt;icon>kwrite&lt;/icon>
+  &lt;category>System&lt;/category>
+  &lt;description>Edit a file with root permissions using kdesu&lt;/description>
+  &lt;command>kdesu kedit %aCurrent%&lt;/command>
+  &lt;defaultshortcut>Win+F4&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+
+      <listitem><para>This useraction Add item(s) to Amarok playlist:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="amarok enqueue" >
+  &lt;title>Enqueue in Amarok&lt;/title>
+  &lt;tooltip>Add item(s) to Amarok playlist&lt;/tooltip>
+  &lt;icon>amarok&lt;/icon>
+  &lt;category>Multimedia&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command onmultiplefiles="call_each" >dcop amarok player addMedia %aCurrent%&lt;/command>
+  &lt;defaultshortcut>Win+A&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+                  
+      <listitem><para>Opens <link linkend="krusyncdir">KruSyncDir</link>:
+      <programlisting>
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="synchronizer" >
+  &lt;title>synchronizer&lt;/title>
+  &lt;command>%_Sync(&quot;Sync 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions></programlisting>
+      </para></listitem>
+                                  
+</itemizedlist>      
+      
 </appendix>

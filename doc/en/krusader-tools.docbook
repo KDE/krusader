@@ -109,12 +109,6 @@
 
 <para><emphasis role="bold">Quickmode for MountMan</emphasis></para>
 
-<note><para>This new feature will be the future MountMan, but for now it is still under development
-            and therefore unfinished.
-	    &hesbugreport_lnk;
-	    If you have a good idea, don&apos;t hesitate to send us
-            <link linkend="faqg_wish_patch">User feedback</link>.</para></note>
-
 <para>"Quickmode for MountMan" is only available on &kde; 3.2 - earlier versions will see no difference.</para>
 
 <para>To activate Quickmode for MountMan, click AND HOLD the MountMan button on the &toolbar_lnk;</para>
@@ -122,8 +116,8 @@
 <para>General idea: display a list of all possible mountpoints.
       Each time the menu is displayed, it determines if a mountpoint is mounted or not and associated the correct
       action (mount or umount). This offers a quick interface to MountMan.
-      It is working, and currently uses KMountMan::mount and unmount, we think that it can replace the "old"
-      MountMan. It uses the new &kde; services for fstab-reading and this will enable us to remove A LOT of code
+      It is working, and currently uses KMountMan::mount and unmount. 
+      It uses the new &kde; services for fstab-reading and this will enable us to remove A LOT of code
       from the "old" MountMan.</para>
 
 </sect1>
@@ -148,21 +142,28 @@
 <para>Usually, you click on the <guibutton>"Bookmark"</guibutton> button when you're in the target folder.
       For example, to bookmark <filename class="directory">/usr/tmp</filename>, navigate &krusader;
       there and click the <guibutton>"Bookmark"</guibutton> button and select
-      <guimenuitem>"Add bookmarks"</guimenuitem>.
-      When the <guilabel>"Add bookmarks"</guilabel> dialog box appears, the &URL; line will say
+      <guimenuitem>"Bookmark Current"</guimenuitem>.
+      When the <guilabel>"Bookmark Current"</guilabel> dialog box appears, the &URL; line will say
       <filename class="directory">/usr/tmp</filename>.
-      The upper line (Bookmark name) is for the name you would like to call the bookmark (for example: temporary
-      folder).
+      <guilabel>"Name"</guilabel> is for the name you would like to give to the bookmark (for example: temporary
+      folder). Hotkeys are supported by adding <literal>&amp;</literal> to the bookmarkname &eg; 
+      <literal>&amp;sourceforge, &amp;home, down&amp;loads</literal> &etc;,
+      so you can quickly call the bookmark name with <keycombo action="simul">&Alt;<keycap>foo</keycap></keycombo>.
       If you add the bookmark without entering a name, the bookmarks name will be the same as its target.
-      With the <guimenuitem>"New Bookmark Folder..."</guimenuitem> item you can create a new bookmark folder.</para>
+      <guilabel>"&URL;"</guilabel> is where the bookmark points to.
+      <guilabel>"Create in"</guilabel> allows to make bookmark folders for organizing your bookmarks</para>
 
 <note><para>You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark to quickly connect
             to the remote machine. You CANNOT bookmark inside an archive.</para></note>
 
 <para>To use your bookmarks, click the <guibutton>"Bookmark"</guibutton> button and choose one - as shown in
-      the picture above. You may also use the keyboard shortcut
+      the picture above. You may also use the keyboard shortcuts
       <keycombo action="simul">&Alt;<keycap>right/left arrow</keycap></keycombo> to
-      <keycap>open right/left panel bookmarks list</keycap></para>
+      <keycap>open right/left panel bookmarks list</keycap> or 
+      <keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo> to 
+      open the bookmarks of the active panel.
+      A &MMB; click on bookmarks opens them in a new <link linkend="folder_tabs">Folder tab</link>.
+      </para>
 
 <para>Navigation in bookmarks:
       <orderedlist>
@@ -181,18 +182,22 @@
       </orderedlist>
 </para>
 
+<para>Bookman supports "special / permanent bookmarks" which means that they are added by the &krusader;-Krew to the top 
+      bookmark menu without the need of being saved to the file, right now the only one is <filename>"devices:/"</filename> 
+      You are able to turn them off.</para>
+
 <screenshot>
-	<screeninfo>&keditbookmarks; edit and organize your Bookmarks</screeninfo>
+	<screeninfo>&keditbookmarks; your Bookmark Manager</screeninfo>
 	<mediaobject>
 	<imageobject><imagedata fileref="bookmanedit.png" format="PNG"/></imageobject>
 	<imageobject><imagedata fileref="bookmanedit.eps" format="EPS"/></imageobject>
 	<textobject><phrase>&keditbookmarks; edit and organize your Bookmarks</phrase></textobject>
-	<caption><para>&keditbookmarks;: edit and organize your Bookmarks.</para></caption>
+	<caption><para>&keditbookmarks;: your Bookmark Manager.</para></caption>
 	</mediaobject>
 </screenshot>
 
 <para>To edit and organize your bookmarks, click the <guibutton>"Bookmark"</guibutton> button and select
-      <guimenuitem>"Edit bookmarks"</guimenuitem>, &keditbookmarks; will be displayed.
+      <guimenuitem>"Manage Bookmarks"</guimenuitem>, &keditbookmarks; will be displayed.
       This is where you can edit/remove and re-arrange the bookmarks.
       &keditbookmarks; (part of the kdebase package) is a bookmark editor for &konqueror;, &krusader; and other
       applications, which use the &xbel_url; standard for the bookmark format. The bookmarks are stored in
@@ -210,7 +215,7 @@
 <para>Welcome to &krusader;'s powerful search module - nicknamed Krusearcher.
       It is the most able tool (that we know of) for &Linux;, since it allows so many different ways to
       quickly find the file you're looking for.
-      The search function is also possible on remote file systems as well.
+      The search function is also available on remote file systems.
       It is divided into two levels, the general and the advanced.
       Let's take a look at the general page ...</para>
 
@@ -429,8 +434,6 @@
                 </para></listitem>
       <listitem><para>
                 <userinput><command>man:/</command><replaceable>krusader</replaceable></userinput> views a manpage.
-                 &eg; <ulink url="http://krusader.sourceforge.net/handbook/kru_manpage.html">&krusader;'s manpage</ulink>
-                 "saved as" html page with the viewer.
                  </para></listitem>
                  <listitem><para>
       <userinput><command>info:/</command></userinput> views the infopages.
@@ -1082,7 +1085,7 @@
       Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
       <guimenuitem>Synchronize Directories</guimenuitem></menuchoice></emphasis>
       or
-      <keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo> to start this feature.</para>
+      <keycombo action="simul">&Ctrl;<keycap>Y</keycap></keycombo> to start this feature.</para>
 
 
 <!--HTML_PARSING
@@ -1424,6 +1427,169 @@ HTML_PARSING-->
     </varlistentry>
 
     </variablelist>
+
+</sect1>
+
+<sect1  id="useractions">
+<title>Useractions</title>
+
+<para>       
+  With the useraction-system the user can make its own actions on files in the
+  panel or to access krusader-internal functions with parameter directly using
+  placeholder.
+  The actions integrate seamless into &kde;'s action-system, so the standard
+  edit-toolbar/shortcut-dialogs can will show/manipulate the useractions too.
+  The useractions are stored in <filename>~/.kde/share/apps/krusader/useraction.xml</filename>
+  (the file-structure is documentated in doxygen-headers of UserActionXML).
+  Several examples of <filename>useraction.xml</filename> files can be found <link linkend="useraction_xml">here</link>.
+  Useractions can be edit/add/im-/export using a new Konfigurator-module,
+  although we plan to move all action-related to a new ActionMan.
+  Once you understand howto write useractions you will make from &krusader; a verry powerfull customizable tool.
+  <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+  <guimenuitem>User Menu</guimenuitem></menuchoice>
+    </emphasis>
+    or
+    <keycombo action="simul">&Ctrl;<keycap>`</keycap></keycombo>
+    opens the <guimenuitem>User Menu</guimenuitem>.
+  The <guimenuitem>User Menu</guimenuitem> is only one place from where you can access Useractions.  
+  Useractions can appear nearly everywhere, not only in the <guimenuitem>User Menu</guimenuitem>.
+  A menu entry <guimenuitem>Add new entry</guimenuitem> is available to add a new Useraction.
+  </para>
+
+
+<para><emphasis role="bold">Managing Useractions</emphasis></para>
+<para>Open Konfigurator and choose "Useractions", here you can add/edit/remove/inport/export Useractions.
+  <itemizedlist>
+      <listitem><para><guimenuitem>"Add Action"</guimenuitem>: 
+               If you add an new action, you get an empty input-mask where you can 
+               enter all the properties. The action will be added as soon as you press <guimenuitem>"Ok"</guimenuitem>. 
+               Now the name is shown in the list on the left.
+                      </para></listitem>
+     <listitem><para>To edit an Useraction: 
+               select the Useraction on the left and click the edit button.
+               Now you can choose it if you want to edit the properties, the changes will only take effect when you press 
+	       <guimenuitem>"Ok"</guimenuitem>.
+                      </para></listitem>	     
+     <listitem><para><guimenuitem>"Remove Action"</guimenuitem>: 
+               Select the Useraction on the left and click the remove button.
+                      </para></listitem>
+     <listitem><para><guimenuitem>"Inport Action"</guimenuitem>: 
+               If you import some actions they will be added automaticly to your list. 
+               If there are name-conflicts (the names have to be unique because these are the ID for &kde;'s action-system) 
+	       you're asked to resolf them. For this the list on the left will only show the actions where conflicts exists. 
+	       You now can give them new names or remove them.
+                     </para></listitem>	     
+     <listitem><para><guimenuitem>"Export Action"</guimenuitem>: 
+                If you export an useraction you have to give a file where to store it. 
+                If it does not exists it will be created. If it contains already some useractions, 
+                the action you're exporting will be added to that file.
+                    </para></listitem>
+   </itemizedlist>
+   All actions you've defined are now shown in the usermenu and in &kde;'s dialogs 
+   for changing shortcuts and managing the toolbar. In addition all actions 
+   which are available for the current item will also show up in the rightclick menu.
+</para>  
+  
+
+<para><emphasis role="bold"><guimenuitem>Basic Properties</guimenuitem></emphasis></para>
+<para><guimenuitem>"Distict Name", "Title" and "Command line"</guimenuitem> are always required, all the other properties are optional.
+    <itemizedlist>
+    <listitem><para><guimenuitem>"Distict Name"</guimenuitem>: a unique name of the Useraction, used to identiy it for &kde;'s action-system.
+                    </para></listitem>
+    <listitem><para><guimenuitem>"Check"</guimenuitem>: checks that the <guimenuitem>"Distict Name"</guimenuitem> is unique.
+                    </para></listitem>
+    <listitem><para><guimenuitem>"Icon button"</guimenuitem>: the icon for you Useraction.
+                    </para></listitem>
+    <listitem><para><guimenuitem>"Category"</guimenuitem>: adds an category for an better overview.
+                    </para></listitem>
+    <listitem><para><guimenuitem>"Title"</guimenuitem>: the title displayed in the menus/dialogs.
+                    </para></listitem>
+    <listitem><para><guimenuitem>"Tooltip"</guimenuitem>: a tooltip for your useraction, &eg; displayed in the toolbar on mouseover.
+                    </para></listitem>
+    <listitem><para><guimenuitem>"Description"</guimenuitem>: a description of what the Useraction is doing.
+                    This is also displayed as <guimenuitem>"What's This"</guimenuitem> if you 
+		    <keycombo action="simul">&Shift;<keycap>F1</keycap></keycombo> click on your Useraction.
+                    </para></listitem>
+    <listitem><para><guimenuitem>"Use Tooltip checkbox"</guimenuitem>: uses the tooltip as description.
+                    </para></listitem>		        
+    <listitem><para><guimenuitem>"Command line"</guimenuitem>: is the command which is finaly executed. 
+                     You can add placeholder using a GUI with the <guibutton>"add"</guibutton> button.
+                     </para></listitem>
+    <listitem><para><guimenuitem>"Startpath"</guimenuitem>: the startpath of the command that will be executed.
+                     </para></listitem>
+		     
+      <listitem><para><guimenuitem>"Execution mode"</guimenuitem>:</para>
+        <itemizedlist>
+         <listitem><para><guimenuitem>"Normal"</guimenuitem>: normal execution mode.
+	           </para></listitem>         
+	 <listitem><para><guimenuitem>"Run in terminal"</guimenuitem>: runs the command in the terminal.
+	           </para></listitem>
+         <listitem><para><guimenuitem>"Collect output"</guimenuitem>:
+	           collects the output off te executed programm in a &GUI; window.
+	           </para></listitem>
+	 <listitem><para><guimenuitem>"Separate standard error"</guimenuitem>
+	           when "Collect output" is used the stdout and stderr are separately collected
+	           </para></listitem>
+	 <listitem><para><guimenuitem>"No output collection"</guimenuitem>:
+	                   just runs the command "invisibly"</para></listitem>
+        </itemizedlist>
+      </listitem>
+      
+      <listitem><para><guimenuitem>"Command accepts"</guimenuitem>:</para>
+        <itemizedlist>
+	 <listitem><para><guimenuitem>"Local files (no URL's)"</guimenuitem>: 
+	           tells the placeholder it should return local addesses.
+	           </para></listitem>
+         <listitem><para><guimenuitem>"URL's (local and remote)"</guimenuitem>: 
+	           tells the placeholder it should return &URL;'s.
+	           </para></listitem>
+       </itemizedlist>
+       </listitem>
+      
+      <listitem><para><guimenuitem>"On multiple selection"</guimenuitem>:  </para>
+        <itemizedlist>
+	 <listitem><para><guimenuitem>"separate call for each file"</guimenuitem>: executes the command for each selected file.
+	           </para></listitem>
+         </itemizedlist>
+      </listitem>
+    </itemizedlist>
+</para>
+
+<para>Currently, these placeholder are implemented (for details see 
+      UserAction/expander.cpp or doxygen):
+<itemizedlist>
+     <listitem><para><userinput>Path</userinput> - replaced by the panels path</para></listitem>
+     <listitem><para><userinput>Count</userinput> - replaced by the number of &lt;first parameter&gt;</para></listitem>
+     <listitem><para><userinput>Filter</userinput> - replaced by the panels filter-mask</para></listitem>
+     <listitem><para><userinput>Current</userinput> - replaced by the current item</para></listitem>
+     <listitem><para><userinput>List</userinput> replaced by a list of all &lt;first parameter&gt;</para></listitem>
+     <listitem><para><userinput>Select</userinput> - manipulates the selection in a panel</para></listitem>
+     <listitem><para><userinput>Goto</userinput> - changes the panels's path to &lt;first parameter&gt;</para></listitem>
+     <listitem><para><userinput>Ask</userinput> - asks the user for a some text and is replaced by the answer</para></listitem>
+     <listitem><para><userinput>Clipboard</userinput> - manipulates the clipboard</para></listitem>
+     <listitem><para><userinput>Copy</userinput> - copies a file, useful for quick, local, backups</para></listitem>
+     <listitem><para><userinput>Sync</userinput> - opens the Synchronizer with a given profile</para></listitem>
+     <listitem><para><userinput>NewSearch</userinput> - opens the search-windows with a given profile</para></listitem>
+     <listitem><para><userinput>Profile</userinput> - loads a given panel-profile </para></listitem>
+</itemizedlist>
+A GUI-based helper for placeholder-adding is provided.
+Spaces In Path, Current and List are per default automaticly escaped. 
+There is one more important thing to know: All placeholders who interact with &krusader;-internal functions are called 
+at expand-time (meaning directly when the placeholders are replaced). External programms are called at 
+execution-time (meaning after all placeholders are replaced).
+</para>
+
+<para><emphasis role="bold"><guimenuitem>Advanced Properties</guimenuitem></emphasis></para>
+<para>Here you can configure where your command should be visible (for the rightclick-menu)
+In addition it's possibe to change the command executed and confim it separatly.
+You can also set a user under which the command should be executed.
+<itemizedlist>
+  <listitem><para>Configures if the action is valid for a Protocol, Path, Mime-type or Filename.</para></listitem>
+  <listitem><para>Configures a shortcut for the useraction.</para></listitem>
+  <listitem><para>Tweaking the commandline before beeing executed.</para></listitem>
+</itemizedlist>
+</para>
+
 
 </sect1>
 

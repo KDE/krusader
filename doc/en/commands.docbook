@@ -264,7 +264,7 @@
   <varlistentry>
 	<term><menuchoice>
 	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></shortcut> -->
-	<guimenu>View</guimenu>
+	<guimenu>Mark</guimenu>
 	<guimenuitem>Compare Directories</guimenuitem>
 	</menuchoice></term>
 	<listitem><para>Toggles &krusader; &comparedir_lnk; function.</para>
@@ -273,7 +273,7 @@
 
   <varlistentry>
 	<term><menuchoice>
-	<guimenu>View</guimenu>
+	<guimenu>Mark</guimenu>
 	<guimenuitem>Compare setup</guimenuitem>
 	</menuchoice></term>
 	<listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>
@@ -402,23 +402,41 @@
 	<shortcut><keycombo action="simul">&Shift;&Ctrl;<keycap>N</keycap></keycombo></shortcut>
 	<guimenu>Commands</guimenu>
 	<guimenuitem>Disconnect From Net</guimenuitem></menuchoice></term>
-	<listitem><para>
+	<listitem><para>	
 	End the active &FTP;/SMB connection in the active panel. This action is disabled if the active panel
         is not in &FTP;/SMB mode.
 	</para></listitem>
   </varlistentry>
 
+  <varlistentry id="panel_profiles">
+        <term>
+	<menuchoice>
+	<shortcut><keycombo action="simul">&Alt;<keycap>L</keycap></keycombo></shortcut>
+	<guimenu>Commands</guimenu>
+	<guimenuitem>Profiles</guimenuitem></menuchoice></term>
+	<listitem><para>
+	Panel profiles can be saved and restored, you could have several profiles 
+	&eg; file-managment, ftp-managment, home, work, ...
+	A panel profile contains: 
+	<itemizedlist>
+          <listitem><para>all the tabs path (left / right)</para></listitem>
+	  <listitem><para>the current tab (left / right)</para></listitem>
+	  <listitem><para>and the selected side (left or right)</para></listitem>
+        </itemizedlist>
+	</para></listitem>
+  </varlistentry>
+  
+  
  <varlistentry>
 	<term><menuchoice>
 	<shortcut><keycombo action="simul">&Ctrl;<keycap>`</keycap></keycombo></shortcut>
 	<guimenu>Commands</guimenu>
 	<guimenuitem>User Menu</guimenuitem>
 	</menuchoice></term>
-	<listitem><para>
-	&newfeaturenote;
-	</para>
+	<listitem>
 	<para>
-	In the &useractions_lnk; you can create and use your own often used commands.
+	Gives access to the &useractions_lnk;, this is not the only place from where you can access Useractions  
+        they can appear nearly everywhere &eg; Toolbar, right-click menu.
 	</para>
 	</listitem>
   </varlistentry>
@@ -569,9 +587,9 @@
 	<term><menuchoice>
 	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>Settings</guimenu>
-	<guimenuitem>Konfigurator</guimenuitem>
+	<guimenuitem>Configure &krusader;</guimenuitem>
 	</menuchoice></term>
-	<listitem><para>Opens the &krusader; <link linkend="konfigurator">configuration</link> center.</para>
+	<listitem><para>Opens the &krusader; configuration center: <link linkend="konfigurator">Konfigurator</link>.</para>
 	</listitem>
   </varlistentry>
 
@@ -590,7 +608,7 @@
 	<term><menuchoice>
 	<!-- <shortcut><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></shortcut> -->
 	<guimenu>Settings</guimenu>
-	<guimenuitem>Configure Key Bindings</guimenuitem>
+	<guimenuitem>Configure Shortcuts</guimenuitem>
 	</menuchoice></term>
 	<listitem><para>Opens a dialog which allows you to configure the &krusader; key bindings.
                         The same dialog can be reached from the &konfiglookandfeel_lnk;.</para>

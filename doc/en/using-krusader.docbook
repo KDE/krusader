@@ -77,7 +77,7 @@
       <itemizedlist>
       <listitem><para>&list_panel_lnk;: shows the files and directories.
                  </para></listitem>
-      <listitem><para>&thirt_hand_lnk;: shows the directory tree or a preview of the file that has the focus.
+      <listitem><para>&popup_panel_lnk;: shows the directory tree or a preview of the file that has the focus.
                  </para></listitem>
       </itemizedlist>
       &krusader; is a twin-panel file manager so there are two panels, the left panel and
@@ -103,7 +103,11 @@
 <para>
     This is the default panel and the one you'll probably use most of the time. This panel shows the contents of one
     directory which can be local (part of your mounted file systems), remote (accessed via &FTP; or Samba)
-    or inside an archive.</para>
+    or inside an archive.
+    File copy/paste/cut via Clipboard between &konqueror; and &krusader; 
+    <keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>, 
+    <keycombo action="simul">&Ctrl;<keycap>X</keycap></keycombo>, 
+    <keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo> is supported.</para>
 
 <para>The following items are available:
    <itemizedlist>
@@ -199,11 +203,12 @@
 </sect3>
 
 
-<sect3 id="thirt_hand_panel">
-<title>3rd Hand Panel</title>
+<sect3 id="popup_panel">
+<title>PopUp Panel</title>
 
-<para>Click on the arrow up button on the left of the <guilabel>Totals Label</guilabel> to open the
-      <guilabel>3rd Hand Panel</guilabel>.
+<para>This is our <link linkend="krusader_screenshot">3rd Panel</link>, click on the arrow up button on the left of the <guilabel>Totals Label</guilabel> or 
+      <keycombo action="simul">&Alt;<keycap>Down Arrow</keycap></keycombo> to open the
+      <guilabel>PopUp Panel</guilabel>.
       This panel has several display modes who can be activated by clicking on the apropriate button
 <itemizedlist>
    <listitem><para><emphasis><guilabel>Preview</guilabel></emphasis> : 
@@ -220,6 +225,7 @@
 	   The "floppy" button stores the current selection. The "select group dialog" is also available. 
               </para></listitem>
 </itemizedlist>
+      If needed you can resize the window &eg; to display better a picture or read the text.
       Click on the arrow down button to close the <guilabel>3rd Hand Panel</guilabel>.
 </para>
       
@@ -571,6 +577,8 @@ TODO
 	                    Search results file list (F3 View, F4 Edit)</para></listitem>
 	  <listitem><para>&mountman_lnk; (unmount, format, ...)</para></listitem>
 	  <listitem><para>&syncdirs_lnk; File List</para></listitem>
+	  <listitem><para>&useractions_lnk;</para></listitem>
+	  <listitem><para>&konqueror; right-click actions are shown in &krusader;</para></listitem>
 	  <listitem><para>...</para></listitem>
 </itemizedlist>
 </para>
@@ -723,8 +731,8 @@ TODO
 <para>To find the difference between two files mark one in each panel and select
       <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Compare by content</guimenuitem></menuchoice></emphasis>.
-      Right now &krusader; does not include a built-in graphical difference tool but supports two external
-      applications: &kompare; (part of the kdebase package) and &xxdiff_url;.
+      Right now &krusader; does not include a built-in graphical difference tool but supports several diff utilities: 
+      &kompare; (part of the kdebase package), &kdiff3_url; and &xxdiff_url;.
       If you have one of those installed the selected files will be compared, otherwise you'll get
       an error message.</para>
 </sect2>
@@ -732,31 +740,37 @@ TODO
 
 <sect2 id="compare-dir">
 <title>Compare Directories</title>
-&betafeaturenote;
+
 <para>&krusader; offers a graphical directory compare mode. To activate it select
-      <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
-      <guimenuitem>Compare Mode</guimenuitem></menuchoice></emphasis> or
-      <keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo>.
-      The differences are encoded as colored squares on the files/directories icons:
-<itemizedlist>
-    <listitem><para>Green square: the file exists in both directories and this file is newer then the other.</para>
-              </listitem>
-    <listitem><para>Red square: the file exists in both directories and this file is older then the other.</para>
-              </listitem>
-    <listitem><para>Yellow square: the file exists in both directories and they are the same.</para>
-              </listitem>
-    <listitem><para>Blue square: the file exists in this directory but not in the other.</para>
-              </listitem>
-</itemizedlist>
+      <emphasis role="bold"><menuchoice><guimenu>Mark</guimenu>
+      <guimenuitem>Compare Directories</guimenuitem></menuchoice></emphasis> 
 
 <note><para>The files are not compared by content but by their names and dates only.</para></note>
 </para>
 
-<para>If you want to display only new and old files or any other combination, select
-      <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
-      <guimenuitem>Configure compare-mode</guimenuitem></menuchoice></emphasis>.
-      You can select the color(s) that appear in each panel but please note that all directories will be displayed
-      regardless of what you choose so you'll be able to continue and browse your file system.</para>
+<variablelist>
+<varlistentry>
+	<term><menuchoice>
+	<guimenu>Mark</guimenu>
+	<guimenuitem>Compare setup</guimenuitem>
+	</menuchoice></term>
+	<listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>
+	 <itemizedlist>
+            <listitem><para><guimenuitem>Mark Newer and Single</guimenuitem> (default)
+                      </para></listitem>
+            <listitem><para><guimenuitem>Mark Single</guimenuitem>
+	              </para></listitem>
+            <listitem><para><guimenuitem>Mark Newer</guimenuitem>
+	              </para></listitem>
+            <listitem><para><guimenuitem>Mark Different and Single</guimenuitem>
+	              </para></listitem>
+            <listitem><para><guimenuitem>Mark Different</guimenuitem>
+	              </para></listitem>
+         </itemizedlist>
+	</listitem>
+  </varlistentry>
+</variablelist>
+
 </sect2>
 
 
@@ -966,136 +980,6 @@ TODO
 </para>
 
 </sect2>
-
-
-<sect2  id="useractions">
-<title>User Menu - Useractions</title>
-
-&newfeaturenote;
-
-<para>
-    <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-    <guimenuitem>User Menu</guimenuitem></menuchoice>
-    </emphasis>
-    or
-    <keycombo action="simul">&Ctrl;<keycap>`</keycap></keycombo>
-    opens the <guimenuitem>User Menu</guimenuitem>, here you can create and use your own often used commands and actions.
-    It can run things via terminal, via an output-collection window or just run it.
-    It allows you to use normal strings or &URL;'s, and select where to pop the certain entry (in what directory).
-    Useractions can appear nearly everywhere, not only in the usermenu.
-    The <guimenuitem>User Menu</guimenuitem> is only one place from where you can access useractions.
-    Currently only local (per user) useractions are read.
-</para>
-
-<para><guimenuitem>"Add new entry"</guimenuitem> will open the dialog box to add a new useraction into the <guimenuitem>User Menu</guimenuitem>.
-    <itemizedlist>
-    <title><guimenuitem>Basic Properties</guimenuitem></title>
-    <listitem><para><guimenuitem>"Distict Name"</guimenuitem>: an unique name for the useraction.
-                    </para></listitem>
-    <listitem><para><guimenuitem>"Check"</guimenuitem>: checks that the <guimenuitem>"Distict Name"</guimenuitem> is unique.
-                    </para></listitem>
-    <listitem><para><guimenuitem>"Icon button"</guimenuitem>: adds an icon for the <guimenuitem>User Menu</guimenuitem>.
-                    </para></listitem>
-    <listitem><para><guimenuitem>"Category"</guimenuitem>: adds an category for an better overview.
-                    </para></listitem>
-    <listitem><para><guimenuitem>"Title"</guimenuitem>: the title displayed in the <guimenuitem>User Menu</guimenuitem>.
-                    </para></listitem>
-    <listitem><para><guimenuitem>"Tooltip"</guimenuitem>: tooltip displayed in the <guimenuitem>User Menu</guimenuitem>.
-                    </para></listitem>
-    <listitem><para><guimenuitem>"Description"</guimenuitem>: description for the useraction, only visible the
-                    <guimenuitem>Add an useraction</guimenuitem> window.
-                    </para></listitem>
-    <listitem><para><guimenuitem>"Use Tooltip checkbox"</guimenuitem>: uses the tooltip as description.
-                    </para></listitem>		        
-    <listitem><para><guimenuitem>"Command line"</guimenuitem>: the command that will be executed.
-                     </para></listitem>
-    <listitem><para><guimenuitem>"Startpath"</guimenuitem>: the startpath of the command that will be executed.
-                     </para></listitem>
-		     
-      <listitem><para><guimenuitem>"Execution mode"</guimenuitem>:</para>
-        <itemizedlist>
-         <listitem><para><guimenuitem>"Normal"</guimenuitem>: normal execution mode.
-	           </para></listitem>         
-	 <listitem><para><guimenuitem>"Run in terminal"</guimenuitem>: runs the command in the terminal.
-	           </para></listitem>
-         <listitem><para><guimenuitem>"Collect output"</guimenuitem>:
-	           collects the output off te executed programm in a &GUI; window.
-	           </para></listitem>
-	 <listitem><para><guimenuitem>"Separate standard error"</guimenuitem>
-	           when "Collect output" is used the stdout and stderr are separately collected
-	           </para></listitem>
-	 <listitem><para><guimenuitem>"No output collection"</guimenuitem>:
-	                   just runs the command "invisibly"</para></listitem>
-        </itemizedlist>
-      </listitem>
-      
-      <listitem><para><guimenuitem>"Command accepts"</guimenuitem>:</para>
-        <itemizedlist>
-	 <listitem><para><guimenuitem>"Local files (no URL's)"</guimenuitem>: substitute the placeholders with local filenames.
-	           </para></listitem>
-         <listitem><para><guimenuitem>"URL's (local and remote)"</guimenuitem>: substitute the placeholders with valid &URL;'s.
-	           </para></listitem>
-       </itemizedlist>
-       </listitem>
-      
-      <listitem><para><guimenuitem>"On multiple selection"</guimenuitem>:  </para>
-        <itemizedlist>
-	 <listitem><para><guimenuitem>"separate call for each file"</guimenuitem>: executes the command for each selected file.
-	           </para></listitem>
-         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-</para>
-
-<para>The <guimenuitem>"Command line"</guimenuitem> will execute a user defined command.
-       It accepts the following syntax
-       <userinput>%<command>"panel"<replaceable>"option""usercommand"</replaceable></command>%</userinput>
-<itemizedlist>
-          <listitem><para>"panel": <userinput>a</userinput> is for the
-                     active panel, <userinput>b</userinput> is for the other panel.</para></listitem>
-          <listitem><para>"option": see the next list for all the options.</para></listitem>
-	  <listitem><para>"usercommand": the command that you want to be executed
-	                    (script, binary, ...).</para></listitem>
-</itemizedlist>
-&eg; <userinput>%<command>a<replaceable>p</replaceable><replaceable>ls</replaceable></command>%</userinput> :
-will run the <command>ls</command> in the panel path <replaceable>p</replaceable> of the active panel
-<replaceable>a</replaceable>.</para>
-
-<para>The <guibutton>"Add"</guibutton> button will generate the next option syntax automatically for for you:
-<itemizedlist>
-     <listitem><para><userinput>%_p_%</userinput> - panel path</para></listitem>
-     <listitem><para><userinput>%_anf_%</userinput> - number of files</para></listitem>
-     <listitem><para><userinput>%_and_%</userinput> - number of folders</para></listitem>
-     <listitem><para><userinput>%_an_%</userinput> - number of files and folders</para></listitem>
-     <listitem><para><userinput>%_fm_%</userinput> - filter mask (for example:
-                                                      <literal role="extension">*</literal>,
-                                                      <literal role="extension">*.cpp</literal>,
-	                             <literal role="extension">*.h</literal> &etc;)</para></listitem>
-     <listitem><para><userinput>%_c_%</userinput> - current file (or folder).
-	               Note: current != selected</para></listitem>
-     <listitem><para><userinput>%_s_%</userinput> - selected files and folders</para></listitem>
-     <listitem><para><userinput>%_afd_%</userinput> - all files and folders</para></listitem>
-     <listitem><para><userinput>%_af_%</userinput> - all files (not including folders)</para></listitem>
-     <listitem><para><userinput>%_ad_%</userinput> - all folders (not including files)</para></listitem>
-</itemizedlist>
-</para>
-
-
-<itemizedlist>
-  <title><guimenuitem>Advanced Properties</guimenuitem></title>
-  <listitem><para>Configures if the action is valid for a Protocol, Path, Mime-type or Filename.</para></listitem>
-  <listitem><para>Configures a shortcut for the useraction.</para></listitem>
-  <listitem><para>Tweaking the commandline before beeing executed.</para></listitem>
-</itemizedlist>
-
-<para>Afterwards you can edit, create, delete, import or export user actions with <link linkend="konfig-useractions">Konfigurator</link>.</para>
-
-<para>The  <guimenuitem>User Menu</guimenuitem> configuration is stored in
-      <filename>~/.kde/share/apps/krusader/useractions.xml</filename></para>
-
-</sect2>
-
-
 </sect1>
 
 
@@ -1196,6 +1080,9 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <entry><para><keycombo action="simul">&Alt;<keycap>k</keycap></keycombo></para></entry>
 <entry><para>Start &rootmode_lnk; &krusader;</para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Alt;<keycap>L</keycap></keycombo></para></entry>
+<entry><para>&panel_profiles_lnk;</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Alt;<keycap>p</keycap></keycombo></para></entry>
 <entry><para><link linkend="pack-archive">Pack files</link></para></entry></row>
 <row>
@@ -1225,6 +1112,9 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>Right Arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Right bookmarks</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Alt;<keycap>Down Arrow</keycap></keycombo></para></entry>
+<entry><para>&popup_panel_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>c</keycap></keycombo></para></entry>
 <entry><para><link linkend="folder_tabs">Close tab</link></para></entry></row>
@@ -1297,7 +1187,7 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <entry><para><link linkend="remote-man">Net Connections</link> (RemoteMan)</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo></para></entry>
-<entry><para>&syncdirs_lnk;</para></entry></row>
+<entry><para><link linkend="bookman">Open Bookmarks</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>l</keycap></keycombo></para></entry>
 <entry><para>&locate_lnk;</para></entry></row>
@@ -1319,6 +1209,9 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>q</keycap></keycombo></para></entry>
 <entry><para>Quit &krusader;</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>y</keycap></keycombo></para></entry>
+<entry><para>&syncdirs_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Backspace;</keycombo></para></entry>
 <entry><para>Jumps to the Root directory</para></entry></row>
@@ -1435,6 +1328,9 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 	</listitem>
 	<listitem>
 	   <para>&kcontrolcenter; -> Accessibility -> Keyboard Shortcuts</para>
+	</listitem>
+	<listitem>
+	   <para>&useractions_lnk; configurable key-bindings</para>
 	</listitem>
 </itemizedlist>
 

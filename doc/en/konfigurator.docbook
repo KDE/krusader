@@ -240,6 +240,8 @@ into pages, each containing items related to that page. For some changes to the 
 	                  show the group field.</para></listitem>
 	<listitem><para><guilabel>"Use icons in filenames"</guilabel>: if checked,
 	                  show the icons in filenames and folders.</para></listitem>
+	<listitem><para><guilabel>"Human readable file size"</guilabel>: if checked,
+	                  the file size will be displayed in kB, Mb &etc; and not in bytes (default).</para></listitem>
 </itemizedlist>
 
 <tip><para>Uncheck the not used columns, this allows to have more space for the used columns.
@@ -279,6 +281,8 @@ into pages, each containing items related to that page. For some changes to the 
 	           </listitem>
 	<listitem><para><guilabel>"Root (/)"</guilabel> button</para>
 	           </listitem>
+	<listitem><para><guilabel>"Toggle-button for sync-browsing"</guilabel>: if checked,
+	                   show the &sync_browsing_lnk; button.</para></listitem>
 </itemizedlist>
 </para>
 
@@ -290,7 +294,7 @@ into pages, each containing items related to that page. For some changes to the 
 <sect1 id="konfig-color">
 <title>Colors page</title>
 
-<para>This page configures the <link linkend="krusader_screenshot">colors</link> in the list panel.
+<para>This page configures the <link linkend="mainwindow">colors</link> in the list panel.
       The <guilabel>"KDE default colors"</guilabel> is the default color configuration,
       <guilabel>"Use alternate background color"</guilabel> checkbox will enable/disable the alternate &kde; colors.
       </para>
@@ -335,12 +339,13 @@ HTML_PARSING-->
 	<listitem><para><guilabel>Executable foreground</guilabel></para></listitem>
 	<listitem><para><guilabel>Symbolic link foreground</guilabel></para></listitem>
 	<listitem><para><guilabel>Invalid symlink foreground</guilabel></para></listitem>
-	<listitem><para><guilabel>Background"</guilabel></para></listitem>
+	<listitem><para><guilabel>Background</guilabel></para></listitem>
 	<listitem><para><guilabel>Alternate background</guilabel></para></listitem>
 	<listitem><para><guilabel>Marked foreground</guilabel></para></listitem>
 	<listitem><para><guilabel>Marked background</guilabel></para></listitem>
 	<listitem><para><guilabel>Alternate marked background</guilabel></para></listitem>
 	<listitem><para><guilabel>Current foreground</guilabel></para></listitem>
+	<listitem><para><guilabel>Marked current foreground</guilabel></para></listitem>
 	<listitem><para><guilabel>Current background</guilabel></para></listitem>
   </itemizedlist>
   </listitem>
@@ -543,7 +548,7 @@ new archive should be available and checked.</para>
 <entry><para><filename class="directory"><replaceable>/usr/bin/kompare</replaceable></filename></para></entry>
 </row>
 <row>
-<entry><para><command>krename</command></para></entry>
+<entry><para>diff utility</para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/krename</replaceable></filename></para></entry>
 </row>
 <row>
