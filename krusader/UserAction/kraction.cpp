@@ -101,8 +101,8 @@ void KrActionProc::start( QStringList cmdLineList ) {
       _proc->setWorkingDirectory( *_properties->startpath() );
    
    if ( _properties->execType() == UserActionProperties::Terminal && cmdLineList.count() > 1)
-      KMessageBox::sorry( 0, "Support for more then one command don't work in a terminal. Only the first is executed in the terminal" );
-   
+      KMessageBox::sorry( 0, "Support for more then one command doesn't work in a terminal. Only the first is executed in the terminal" );
+
    if ( _properties->execType() != UserActionProperties::CollectOutput ) {
       //TODO option to run them in paralell (not available for: collect output)
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
@@ -212,10 +212,10 @@ void KrAction::exec() {
       for ( QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it ) {
          bool exec = true;
          *it = KInputDialog::getText(
-			i18n( "Confirm execution" ),
-			i18n( "Command beeing executed:" ),
-			*it,
-			&exec, 0 );
+      i18n( "Confirm execution" ),
+      i18n( "Command being executed:" ),
+      *it,
+      &exec, 0 );
          if ( exec ) {
             proc = new KrActionProc( _properties );
             proc->start( *it );

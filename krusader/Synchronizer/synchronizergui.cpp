@@ -1118,7 +1118,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", _Asymmetric  ) );
   QToolTip::add( cbAsymmetric, i18n( "Asymmetric mode. The left side is the destination, the right is the source directory.\n"
-                                     "The files existed only in the left directory will be deleted, the other differing ones\n"
+                                     "The files existing only in the left directory will be deleted, the other differing ones\n"
                                      "will be copied from right to left (useful at updating a directory from a file server)." ) );
   cbAutoScroll      = new QCheckBox( i18n( "Automatic Scrolling" ), optionGrid, "cbAutoScroll" );
   cbAutoScroll->setChecked( krConfig->readBoolEntry( "Automatic Scrolling", _AutoScroll ) );

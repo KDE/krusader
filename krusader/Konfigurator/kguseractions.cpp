@@ -251,7 +251,7 @@ void KgUserActions::slotImport() {
   _importXML = new UserActionXML( filename );
   //kdDebug() << "ActionImport: " << filename << " read to DOM" << endl;
   if ( _importXML == 0 ) {
-    KMessageBox::error( this, i18n("The file you've choosen don't seem to be a valid action-file.") );
+    KMessageBox::error( this, i18n("The file you've chosen doesn't seem to be a valid action-file.") );
     return;
   }
   //kdDebug() << "ActionImport: DOM valid, continueing" << endl;
@@ -287,7 +287,7 @@ void KgUserActions::slotImport() {
   }
   else {
     //kdDebug() << "KgUserActions::slotImport: Not all actions importet due to name-conflicts" << endl;
-    KMessageBox::sorry( this, i18n("Cound't import all actions because of name-conflicts. Check the action-list on the left to fix them.\nPlease note that these actions won't be imported if you close the Konfigurator now!") );
+    KMessageBox::sorry( this, i18n("Couldn't import all actions because of name-conflicts. Check the action-list on the left to fix them.\nPlease note that these actions won't be imported if you close the Konfigurator now!") );
     actionList->clear();
     actionList->insertStringList( actionNames );
     

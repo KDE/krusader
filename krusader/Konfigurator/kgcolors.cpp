@@ -55,14 +55,14 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //  cfg_class  cfg_name                     default               text                                      restart tooltip
     {{"Colors","KDE Default",                 _KDEDefaultColors,    i18n( "Use the default KDE colors" ),     false,  "" },
-     {"Colors","Enable Alternate Background", _AlternateBackground, i18n( "Use alternate backround color" ),  false,  "" },
+     {"Colors","Enable Alternate Background", _AlternateBackground, i18n( "Use alternate background color" ),  false,  "" },
      {"Colors","Show Current Item Always", _ShowCurrentItemAlways, i18n( "Show current item even if not focused" ),  false,  "" }};
 
   generals = createCheckBoxGroup( 0, 2, generalSettings, sizeof(generalSettings)/sizeof(generalSettings[0]), generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
 
   generals->layout()->setSpacing( 5 );
-  
+
   connect( generals->find( "KDE Default" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
   connect( generals->find( "Enable Alternate Background" ), SIGNAL( stateChanged( int ) ), this, SLOT( generatePreview() ) );
   connect( generals->find( "Show Current Item Always" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
@@ -71,7 +71,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   QHBox *hbox = new QHBox( parent );
 
   //  -------------------------- COLORS GROUPBOX ----------------------------------
-  
+
   QGroupBox *colorsFrameGrp = createFrame( i18n( "Colors" ), hbox, "kgColorsColorsGrp" );
   QGridLayout *colorsFrameGrid = createGridLayout( colorsFrameGrp->layout() );
   colorsFrameGrid->setSpacing( 0 );
@@ -80,7 +80,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   colorTabWidget = new QTabWidget( colorsFrameGrp, "colorTabWidget" );
 
   connect( colorTabWidget, SIGNAL( currentChanged ( QWidget * ) ), this, SLOT( generatePreview() ) );
-  
+
   colorsGrp = new QWidget( colorTabWidget, "colorTab" );
   colorTabWidget->insertTab( colorsGrp, i18n( "Active" ) );
 
@@ -120,7 +120,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   colorsGrid->setMargin( 2 );
 
   offset = itemList.count();
-  
+
   addColorSelector( "Inactive Foreground",                  i18n( "Foreground:" ),                  getColorSelector( "Foreground" )->getColor(), i18n( "Same as active" ) );
   ADDITIONAL_COLOR sameAsInactForegnd = { i18n("Same as foreground"), getColorSelector( "Inactive Foreground" )->getColor(), "Inactive Foreground" };
   addColorSelector( "Inactive Directory Foreground",        i18n( "Directory foreground:" ),        getColorSelector( "Directory Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactForegnd, 1 );
@@ -144,16 +144,16 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   connect( getColorSelector( "Inactive Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveBackgroundChanged() ) );
   connect( getColorSelector( "Inactive Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveAltBackgroundChanged() ) );
   connect( getColorSelector( "Inactive Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveMarkedBackgroundChanged() ) );
-  
+
   colorsFrameGrid->addWidget( colorTabWidget, 0, 0 );
-  
+
   //  -------------------------- PREVIEW GROUPBOX ----------------------------------
 
   previewGrp = createFrame( i18n( "Preview" ), hbox, "kgColorsPreviewGrp" );
   previewGrid = createGridLayout( previewGrp->layout() );
 
   preview = new QListView( previewGrp, "colorPreView" );
-  
+
   preview->setShowSortIndicator(false);
   preview->setSorting(-1);
   preview->setEnabled( false );
@@ -169,13 +169,13 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   pwApp     = new PreviewItem( preview, i18n( "Application" ) );
   pwFile    = new PreviewItem( preview, i18n( "File" ) );
   pwDir     = new PreviewItem( preview, i18n( "Directory" ) );
-  
+
   previewGrid->addWidget( preview, 0 ,0 );
-  
+
   kgColorsLayout->addWidget( hbox, 1 ,0 );
 
   slotDisable();
-} 
+}
 
 int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName,
                                 ADDITIONAL_COLOR *addColor, int addColNum )
@@ -192,8 +192,8 @@ int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QStr
   if( !offset )
     connect( chooser, SIGNAL( colorChanged() ), this, SLOT( slotActiveChanged() ) );
 
-  chooser->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );   
-  
+  chooser->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
+
   itemList.append( chooser );
   itemNames.append( cfgName );
 
@@ -204,7 +204,7 @@ KonfiguratorColorChooser *KgColors::getColorSelector( QString name )
 {
   QValueList<QString>::iterator it;
   int position = 0;
-  
+
   for( it = itemNames.begin(); it != itemNames.end(); it++, position++ )
     if( *it == name )
       return itemList.at( position );
@@ -227,7 +227,7 @@ QLabel *KgColors::getSelectorLabel( QString name )
 void KgColors::slotDisable()
 {
   bool enabled = generals->find( "KDE Default" )->isChecked();
-  
+
   for( int i = 0; labelList.at( i ); i++ )
     labelList.at( i )->setEnabled( !enabled );
 
@@ -339,7 +339,7 @@ void KgColors::generatePreview()
 
     if( isInactive )
       prefix = "Inactive ";
-    
+
     QColor  bck   = getColorSelector( prefix + "Background" )->getColor();
     QColor altBck = getColorSelector( prefix + "Alternate Background" )->getColor();
 
@@ -373,14 +373,14 @@ void KgColors::generatePreview()
       }
     }
     else
-    {    
+    {
       if( getColorSelector( "Current Background" )->currentItem() != 1 )
         currentBck = getColorSelector( "Current Background" )->getColor();
       if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
         currentFore = getColorSelector( "Current Foreground" )->getColor();
       else currentFore = setColorIfContrastIsSufficient(currentBck, getColorSelector( prefix + "Foreground" )->getColor(), bck);
     }
-      
+
     pwCurrent->setColor( currentFore, currentBck );
 
     QColor markFore = getColorSelector( prefix + "Marked Foreground" )->getColor();
@@ -388,7 +388,7 @@ void KgColors::generatePreview()
     if( !isInactive || getColorSelector( "Inactive Marked Foreground" )->currentItem() == 1 )
       if( getColorSelector( "Marked Foreground" )->currentItem() == 2 )
         markFore = currentFore;
-    
+
     pwMark1->setColor( markFore, getColorSelector( prefix + "Marked Background" )->getColor() );
     pwMark2->setColor( markFore, getColorSelector( prefix + "Alternate Marked Background" )->getColor() );
   }

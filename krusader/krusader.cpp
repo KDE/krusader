@@ -185,7 +185,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
          message = "Krusader's configuration file can't be found. Default values will be used.";
          break;
          case KConfigBase::ReadOnly :
-         message = "Krusader's configuration file is in READ ONLY mode (why is that !?) Changed values will not be saved";
+         message = "Krusader's configuration file is in READ ONLY mode (why is that!?) Changed values will not be saved";
          break;
          case KConfigBase::ReadWrite :
          message = "";
@@ -659,7 +659,7 @@ bool Krusader::queryClose() {
    krConfig->setGroup( "Look&Feel" );
    if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {
       switch ( KMessageBox::warningYesNo( this,
-                                          i18n( "Ok to shutdown Krusader ?" ) ) ) {
+                                          i18n( "Ok to shutdown Krusader?" ) ) ) {
             case KMessageBox::Yes :
             quit = true;
             break;

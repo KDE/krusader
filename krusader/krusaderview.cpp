@@ -77,7 +77,7 @@ void KrusaderView::start( QString leftPath, QString rightPath ) {
   fnKeys = new KFnKeys( this );
   fnKeys->hide();
   QWhatsThis::add
-    ( fnKeys, i18n( "Function keys allow to perform fast "
+    ( fnKeys, i18n( "Function keys allow performing fast "
                     "operations on files." ) );
 
   // and insert the whole thing into the main layout... at last

@@ -101,8 +101,8 @@ exp_Current::exp_Current() {
    _expression = "Current";
    _description = i18n("current file (!= selected file)");
    _needPanel = true;
-   
-   addParameter( new exp_parameter( i18n("Ommit the current path (optional)"), "__no", false ) );
+
+   addParameter( new exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
    addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
 }
 QString exp_Current::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& /*currentItem*/ ) {
@@ -147,7 +147,7 @@ exp_List::exp_List() {
 
    addParameter( new exp_parameter( i18n("Which items"), "__choose:All;Files;Dirs;Selected", false ) );
    addParameter( new exp_parameter( i18n("Separator between the items (optional)"), " ", false ) );
-   addParameter( new exp_parameter( i18n("Ommit the current path (optional)"), "__no", false ) );
+   addParameter( new exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
    addParameter( new exp_parameter( i18n("Mask (optional, all but 'Selected')"), "__select", false ) );
    addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
 }
@@ -214,7 +214,7 @@ exp_Select::exp_Select() {
    _description = i18n("Manipulate the selection");
    _needPanel = true;
 
-   addParameter( new exp_parameter( i18n("Selectionmask"), "__select", true ) );
+   addParameter( new exp_parameter( i18n("Selection mask"), "__select", true ) );
    addParameter( new exp_parameter( i18n("Manipulate in which way"), "__choose:Set;Add;Remove", false ) );
 }
 QString exp_Select::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
@@ -307,7 +307,7 @@ exp_Clipboard::exp_Clipboard() {
    _needPanel = false;
 
    addParameter( new exp_parameter( i18n("What should be copied"), "__placeholder", true ) );
-   addParameter( new exp_parameter( i18n("Append to the current clipboard-content with this seperator (optional)"), "", false ) );
+   addParameter( new exp_parameter( i18n("Append to the current clipboard-content with this separator (optional)"), "", false ) );
 }
 QString exp_Clipboard::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
 //    kdDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;

@@ -26,10 +26,10 @@ UserMenuAdd::UserMenuAdd( QWidget* parent, const char* name, bool modal, WFlags 
     if ( !name )
         setName( "UserMenuAdd" );
 
-    setCaption( i18n( "Add an useraction" ) );
-    
-    QGridLayout *UserMenuAddLayout = new QGridLayout( this, 1, 1, 11, 6, "UserMenuAddLayout"); 
-    
+    setCaption( i18n( "Add a useraction" ) );
+
+    QGridLayout *UserMenuAddLayout = new QGridLayout( this, 1, 1, 11, 6, "UserMenuAddLayout");
+
     actionProperties = new ActionProperty(this);
     UserMenuAddLayout->addWidget( actionProperties, 0, 0 );
     

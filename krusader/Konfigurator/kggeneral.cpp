@@ -54,7 +54,7 @@ KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_NAME_VALUE_PAIR deleteMode[] =
     {{ i18n( "Delete files" ),  "false" },
      { i18n( "Move to trash" ), "true" }};
-  
+
   KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
       "true", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );
   generalGrid->addMultiCellWidget( trashRadio, 0, 0, 0, 1 );
@@ -75,7 +75,7 @@ KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
 
   QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp, "EditorLabel" );
   generalGrid->addMultiCellWidget( label2, 4, 4, 0, 1 );
-    
+
   QLabel *label3 = new QLabel( i18n( "Terminal:" ), generalGrp, "TerminalLabel" );
   generalGrid->addWidget( label3, 5, 0 );
   KonfiguratorURLRequester *urlReq2 = createURLRequester( "General", "Terminal", "konsole",
@@ -93,11 +93,11 @@ KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
   connect( urlReq3->extension(), SIGNAL( applyManually(QObject *,QString, QString) ),
            this, SLOT( applyTempDir(QObject *,QString, QString) ) );
   generalGrid->addMultiCellWidget( hbox, 7, 7, 0, 1 );
-  
+
   QLabel *label4 = new QLabel( i18n( "Note: you must have full permissions for the temporary directory !" ),
                                generalGrp, "NoteLabel"  );
   generalGrid->addMultiCellWidget( label4, 8, 8, 0, 1 );
-  
+
   kgGeneralLayout->addWidget( generalGrp, 0 ,0 );
 }
 
@@ -105,7 +105,7 @@ void KgGeneral::applyTempDir(QObject *obj,QString cls, QString name)
 {
   KonfiguratorURLRequester *urlReq = (KonfiguratorURLRequester *)obj;
   QString value = QDir(urlReq->url()).path();
-  
+
   krConfig->setGroup( cls );
   krConfig->writeEntry( name, value );
 }
@@ -123,8 +123,8 @@ void KgGeneral::slotFindTools()
   if (PS("MAIL")) info+=i18n("mail: found ")+lst[lst.findIndex("MAIL") + 1]+i18n(", sending files by email enabled.\n");
   else info+=i18n("mail: no compatible mail-programs found. Sending files by email is disabled.\nhint: Krusader supports kmail\n\n");
 
-  if (PS("RENAME")) info+=i18n("rename: found ")+lst[lst.findIndex("RENAME") + 1]+i18n(", multipule rename enabled.\n");
-  else info+=i18n("rename: no compatible renamer-programs found. multipule rename is disabled.\nhint: Krusader supports krename\n\n");
+  if (PS("RENAME")) info+=i18n("rename: found ")+lst[lst.findIndex("RENAME") + 1]+i18n(", multiple rename enabled.\n");
+  else info+=i18n("rename: no compatible renamer-programs found. multiple rename is disabled.\nhint: Krusader supports krename\n\n");
 
 
   info+=i18n("\nIf you install new tools, please install them");

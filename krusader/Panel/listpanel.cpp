@@ -122,10 +122,10 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    status->setMaximumHeight( sheight );
    QWhatsThis::add
       ( status, i18n( "The status bar displays information about the FILESYSTEM "
-                      "which hold your current directory: Total size, free space, "
-                      "type of filesystem etc." ) );
+                      "which holds your current directory: Total size, free space, "
+                      "type of filesystem, etc." ) );
    connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
-   connect( status, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnStatus(QDropEvent *) ) );  
+   connect( status, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnStatus(QDropEvent *) ) );
 
    // ... create the history button
    dirHistoryQueue = new DirHistoryQueue( this );
@@ -151,8 +151,8 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    totals->setMaximumHeight( sheight );
    totals->enableDrops( true );
    QWhatsThis::add
-      ( totals, i18n( "The totals bar shows how much files exist, "
-                      "how many did you select and the bytes math" ) );
+      ( totals, i18n( "The totals bar shows how many files exist, "
+                      "how many selected and the bytes math" ) );
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
    connect( totals, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnTotals(QDropEvent *) ) );  
    

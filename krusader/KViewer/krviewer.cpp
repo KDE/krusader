@@ -376,8 +376,8 @@ bool KrViewer::queryClose()
   normalExit = true;
   if( !editor_part || !editor_part->isModified() )
     return true;
-  
-  switch ( KMessageBox::warningYesNo( this, i18n("The Document has been changed. Do you want to quit loosing the modifications?")) )
+
+  switch ( KMessageBox::warningYesNo( this, i18n("The Document has been changed. Do you want to quit, losing the modifications?")) )
   {
   case KMessageBox::Yes :
     return true;

@@ -133,9 +133,9 @@ void KRslots::compareContent() {
     // if we got here, then we can't be sure what file to diff
     KMessageBox::detailedError(0,i18n("Don't know which files to compare."),
       i18n("To compare 2 files by content, you can either\n"
-		"- select (mark) one file in the left panel, and one in the right panel\n"
-		"- select exactly two files in the active panel\n"
-		"- make sure in the other panel is a file with the same name then the current in the active panel"));
+    "- select (mark) one file in the left panel, and one in the right panel\n"
+    "- select exactly two files in the active panel\n"
+    "- make sure there is a file in the other panel, with the same name as the current file in the active panel"));
     return;
   }
 
@@ -364,11 +364,11 @@ void KRslots::locate()
 void KRslots::runRemoteMan() {
   // display outage information
   KMessageBox::information(krApp, i18n( "Important: RemoteMan has been replaced by our new bookmark manager."
-                                        "The new manager handles local files and remote url the same way."
+                                        "The new manager handles local files and remote URLs the same way."
                                         "RemoteMan is being left around to allow an easier transition and"
                                         "give you a chance to move your bookmarks. IT WILL BE REMOVED SOON!"
                                         "\n"
-                                        "Try the new bookmark-manager: open a new remote connection. once"
+                                        "Try the new bookmark-manager: open a new remote connection, once"
                                         "done, press the bookmark button, select 'Add bookmark' and that's it!"));
 
   QString host=remoteMan::getHost();

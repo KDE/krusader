@@ -110,7 +110,7 @@ void Konfigurator::createLayout()
   newContent(new KgDependencies(firstTime, widget->addPage(i18n("Dependencies"),i18n("Set the full path of the external applications"),
     QPixmap(krLoader->loadIcon("kr_dependencies",KIcon::Desktop,32)))));
   // useractions
-  newContent(new KgUserActions(firstTime, widget->addPage(i18n("User Actions"),i18n("Configure you personal actions"),
+  newContent(new KgUserActions(firstTime, widget->addPage(i18n("User Actions"),i18n("Configure your personal actions"),
     QPixmap(krLoader->loadIcon("kr_useractions",KIcon::Desktop,32)))));
   // protocols
   newContent(new KgProtocols(firstTime, widget->addPage(i18n("Protocols"),
