@@ -33,6 +33,8 @@
 
 #include "synchronizer.h"
 #include "../GUI/profilemanager.h"
+#include "../Search/advancedfilter.h"
+#include "../Search/generalfilter.h"
 #include <qdialog.h>
 #include <qlistview.h>
 #include <kcombobox.h>
@@ -40,6 +42,7 @@
 #include <qcheckbox.h>
 #include <qmap.h>
 #include <qlabel.h>
+#include <qtabwidget.h>
 
 class SynchronizerGUI : QDialog
 {
@@ -108,6 +111,7 @@ protected slots:
   void statusInfo( QString );
   void subdirsChecked( bool );
   void setPanelLabels();
+  void connectFilters( const QString & );  
 
 private:
   QString convertTime(time_t time) const;
@@ -120,6 +124,10 @@ protected:
   virtual void resizeEvent( QResizeEvent *e );
   
   ProfileManager *profileManager;
+  AdvancedFilter *advancedFilter;
+  GeneralFilter  *generalFilter;
+  
+  QTabWidget    *synchronizerTabs;  
   
   KHistoryCombo *leftLocation;
   KHistoryCombo *rightLocation;

@@ -91,7 +91,7 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   
   searcherTabs = new QTabWidget( this, "searcherTabs" );
 
-  generalFilter = new GeneralFilter( searcherTabs, "generalFilter" );
+  generalFilter = new GeneralFilter( true, searcherTabs, "generalFilter" );
   searcherTabs->insertTab( generalFilter, i18n( "&General" ) );
 
   advancedFilter = new AdvancedFilter( searcherTabs, "advancedFilter" );

@@ -49,7 +49,7 @@ class GeneralFilter : public QWidget
   Q_OBJECT
   
 public:
-  GeneralFilter( QWidget *parent = 0, const char *name = 0 );
+  GeneralFilter( bool hasDirOptions, QWidget *parent = 0, const char *name = 0 );
   ~GeneralFilter();
   
   bool fillQuery( KRQuery *query );
@@ -92,6 +92,8 @@ public:
   QToolButton* dontSearchInBtnAdd;
 
   KShellCompletion completion;
+  
+  bool hasDirOptions;
 };
 
 #endif /* GENERALFILTER_H */

@@ -1024,10 +1024,17 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   folderIcon =   QPixmap( ( const char** ) folder_data );
   fileIcon   =   QPixmap( ( const char** ) file_data );
+  
+  synchronizerTabs = new QTabWidget( this, "synchronizerTabs" );
 
   /* ============================== Compare groupbox ============================== */
   
-  QGroupBox *compareDirs = new QGroupBox( this, "SyncCompareDirectories" );
+  QWidget *synchronizerTab = new QWidget( this, "syncronizerTab" );
+  QGridLayout *synchronizerGrid = new QGridLayout( synchronizerTab );
+  synchronizerGrid->setSpacing( 6 );
+  synchronizerGrid->setMargin( 11 );
+  
+  QGroupBox *compareDirs = new QGroupBox( synchronizerTab, "SyncCompareDirectories" );
   compareDirs->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed);
   compareDirs->setTitle( i18n( "Directory Comparation" ) );
   compareDirs->setColumnLayout(0, Qt::Vertical );
@@ -1193,11 +1200,11 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   grid->addMultiCellWidget( optionBox, 2, 2, 0, 2 );
   
-  synchGrid->addWidget( compareDirs, 0, 0 );
+  synchronizerGrid->addWidget( compareDirs, 0, 0 );
 
   /* ========================= Synchronization list view ========================== */
 
-  syncList=new QListView( this );  // create the main container
+  syncList=new QListView( synchronizerTab );  // create the main container
   
   krConfig->setGroup("Look&Feel");
   syncList->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
@@ -1246,8 +1253,19 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   syncList->header()->setStretchEnabled( true, 0 );
 
-  synchGrid->addWidget(syncList,1,0);
-    
+  synchronizerGrid->addWidget(syncList,1,0);
+  
+  synchronizerTabs->insertTab( synchronizerTab, i18n( "&Synchronizer" ) );
+  synchGrid->addWidget( synchronizerTabs, 0, 0 );
+  
+  generalFilter = new GeneralFilter( false, synchronizerTabs, "generalFilter" );
+  generalFilter->searchFor->setEditText( fileFilter->currentText() );
+  generalFilter->searchForCase->setChecked( true );
+  synchronizerTabs->insertTab( generalFilter, i18n( "&General Filters" ) );  
+   
+  advancedFilter = new AdvancedFilter( synchronizerTabs, "advancedFilter" );
+  synchronizerTabs->insertTab( advancedFilter, i18n( "&Advanced Filters" ) );  
+   
   /* ================================== Buttons =================================== */
 
   QHBoxLayout *buttons = new QHBoxLayout;
@@ -1288,7 +1306,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnCloseSync->setText( i18n( "Close" ) );
   buttons->addWidget( btnCloseSync );
   
-  synchGrid->addLayout( buttons, 2, 0 );
+  synchGrid->addLayout( buttons, 1, 0 );
 
   /* =============================== Connect table ================================ */
 
@@ -1320,6 +1338,14 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnDeletable,      SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnDuplicates,     SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnSingles,        SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
+  
+  connect( fileFilter,        SIGNAL( textChanged( const QString & ) ), this, SLOT( connectFilters( const QString & ) ) );
+  connect( generalFilter->searchFor, SIGNAL( textChanged( const QString & ) ), this, SLOT( connectFilters( const QString & ) ) );
+  
+  connect( profileManager, SIGNAL( loadFromProfile( QString ) ), generalFilter, SLOT( loadFromProfile( QString ) ) );
+  connect( profileManager, SIGNAL( saveToProfile( QString ) ), generalFilter, SLOT( saveToProfile( QString ) ) );
+  connect( profileManager, SIGNAL( loadFromProfile( QString ) ), advancedFilter, SLOT( loadFromProfile( QString ) ) );
+  connect( profileManager, SIGNAL( saveToProfile( QString ) ), advancedFilter, SLOT( saveToProfile( QString ) ) );
   
   setPanelLabels();  
   
@@ -1575,6 +1601,19 @@ void SynchronizerGUI::closeDialog()
 
 void SynchronizerGUI::compare()
 {
+  KRQuery query;
+  if( !generalFilter->fillQuery( &query ) )
+  {
+    synchronizerTabs->setCurrentPage(1); // set page to advanced
+    return;
+  }
+  if( !advancedFilter->fillQuery( &query ) )
+  {
+    synchronizerTabs->setCurrentPage(2); // set page to advanced
+    return;
+  }  
+  query.setFilter( fileFilter->currentText() );
+  
   bool autoScrolling = cbAutoScroll->isChecked();
   
   syncList->clear();
@@ -1592,10 +1631,7 @@ void SynchronizerGUI::compare()
   btnStopComparing->setEnabled( isComparing = true );
   btnSynchronize->setEnabled( false );
   disableMarkButtons();
-  
-  KRQuery query;
-  query.setFilter( fileFilter->currentText() );
-  
+    
   int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
                        &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
@@ -1887,7 +1923,7 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   krConfig->setGroup( profile );
   
   leftLocation->setCurrentText( krConfig->readEntry( "Left Location" ) );
-  fileFilter->setCurrentText( krConfig->readEntry( "File Filter" ) );
+  fileFilter->setCurrentText( krConfig->readEntry( "Search For" ) );
   rightLocation->setCurrentText( krConfig->readEntry( "Right Location" ) );
   
   cbSubdirs->   setChecked( krConfig->readBoolEntry( "Recurse Subdirectories", true ) );
@@ -1913,7 +1949,7 @@ void SynchronizerGUI::saveToProfile( QString profile )
   krConfig->setGroup( profile );
   
   krConfig->writeEntry( "Left Location", leftLocation->currentText() );
-  krConfig->writeEntry( "File Filter", fileFilter->currentText() );
+  krConfig->writeEntry( "Search For", fileFilter->currentText() );
   krConfig->writeEntry( "Right Location", rightLocation->currentText() );
   
   krConfig->writeEntry( "Recurse Subdirectories", cbSubdirs->isChecked() );
@@ -1930,4 +1966,12 @@ void SynchronizerGUI::saveToProfile( QString profile )
   krConfig->writeEntry( "Show Deletable", btnDeletable->isOn() );
   krConfig->writeEntry( "Show Duplicates", btnDuplicates->isOn() );
   krConfig->writeEntry( "Show Singles", btnSingles->isOn() );
+}
+
+void SynchronizerGUI::connectFilters( const QString &newString )
+{
+  if( synchronizerTabs->currentPageIndex() )
+    fileFilter->setEditText( newString );
+  else
+    generalFilter->searchFor->setEditText( newString );
 }
