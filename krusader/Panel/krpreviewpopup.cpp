@@ -19,14 +19,17 @@
 #include "krpreviewpopup.h"
 #include <kdebug.h>
 #include <klocale.h>
+#include <keditcl.h>
 #include "../KViewer/krviewer.h"
+#include "../krusader.h"
 
 KrPreviewPopup::KrPreviewPopup(): id(1),noPreview(true){
 	connect(this,SIGNAL(activated(int)),this,SLOT(view(int)));
 }
 
 void KrPreviewPopup::setUrls(const KURL::List* urls){
-	insertItem(i18n("Preview not available"),0);
+	insertItem(i18n("Configure preview"),0);
+	//insertItem(i18n("Preview not available"),0);
 
 	KIO::PreviewJob* pjob;
 	QStringList plugins = KIO::PreviewJob::availablePlugins();
@@ -48,17 +51,23 @@ void KrPreviewPopup::addPreview(const KFileItem* file,const QPixmap& preview){
 		removeItem(0);
 		noPreview = false;
 	}
-  insertItem(file->text(),id);
-	insertItem(preview,id++);
+	insertItem(preview,id);
+  insertItem(file->text(),id++);
 	insertSeparator();
 	availablePreviews.append(file->url());
 }
 
 void KrPreviewPopup::view(int id){
-	if( id==0 ) return;
-	KURL url = *(availablePreviews.at(id-1));
-	kdDebug() << id << ") " << url.prettyURL() << endl;
-	KrViewer::view(url);
+	kdDebug() << "id = " << id << endl;
+	//if( id==0 ) return;
+	if( id==0 ){
+		KEdGotoLine *dlg = new KEdGotoLine(krApp);
+		dlg->show();
+	}
+	else {
+		KURL url = *(availablePreviews.at(id-1));
+		KrViewer::view(url);
+	}
 }
 
 #include "krpreviewpopup.moc"

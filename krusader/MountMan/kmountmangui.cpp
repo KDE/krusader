@@ -70,7 +70,7 @@ KMountManGUI::KMountManGUI() : KDialogBase(krApp, 0,true,"Mount.Man"),
   // connections
   connect(mountList,SIGNAL(doubleClicked(QListViewItem *)),this,
           SLOT(doubleClicked(QListViewItem*)));
-  connect(mountList,SIGNAL(rightButtonClicked(QListViewItem *, const QPoint &, int)),
+  connect(mountList,SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
           this, SLOT(clicked(QListViewItem*)));
   connect(mountList,SIGNAL(clicked(QListViewItem *)), this,
           SLOT(changeActive(QListViewItem *)));
