@@ -48,7 +48,11 @@
 #include <unistd.h>
 #include <qeventloop.h>
 #include <qprogressdialog.h>
+#include <qpushbutton.h>
 #include <kprocess.h>
+#include <kdialogbase.h>
+#include <kprogress.h>
+#include <qlayout.h>
 
 #define  DISPLAY_UPDATE_PERIOD        2
 
@@ -1141,8 +1145,57 @@ void Synchronizer::comparePercent(KIO::Job *, unsigned long percent)
 
 void Synchronizer::synchronizeWithKGet()
 {
+  class KgetProgressDialog : public KDialogBase
+  {
+  public:
+    KgetProgressDialog( QWidget *parent=0, const char *name=0, const QString &caption=QString::null, 
+                      const QString &text=QString::null, bool modal=false) : KDialogBase( KDialogBase::Plain, 
+                      caption, KDialogBase::User1 | KDialogBase::Cancel, KDialogBase::Cancel, parent, name, modal )
+    {
+      showButton(KDialogBase::Close, false);
+      
+      QFrame* mainWidget = plainPage();
+      QVBoxLayout* layout = new QVBoxLayout(mainWidget, 10);
+
+      QLabel *mLabel = new QLabel(text, mainWidget);
+      layout->addWidget(mLabel);
+
+      mProgressBar = new KProgress(mainWidget);
+      layout->addWidget(mProgressBar);
+      
+      setButtonText( KDialogBase::User1, i18n( "Pause" ) );
+      
+      mCancelled = mPaused = false;
+    }
+    
+    KProgress *progressBar() { return mProgressBar; }
+ 
+    void slotUser1()
+    {
+      if( ( mPaused = !mPaused ) == false )
+        setButtonText( KDialogBase::User1, i18n( "Pause" ) );
+      else
+        setButtonText( KDialogBase::User1, i18n( "Resume" ) );          
+    }
+    
+    void slotCancel()
+    {
+      mCancelled = true;
+
+      KDialogBase::slotCancel();
+    }
+    
+    bool wasCancelled()      { return mCancelled; }
+    bool isPaused()          { return mPaused; }
+    
+  private:
+    KProgress *mProgressBar;
+    bool       mCancelled;
+    bool       mPaused;
+  };  
+
   bool isLeftLocal = vfs::fromPathOrURL( leftBaseDirectory() ).isLocalFile();
-  QProgressDialog *progDlg = 0;
+  KgetProgressDialog *progDlg = 0;
   int  processedCount = 0, totalCount = 0;
   
   SynchronizerFileItem *item = resultList.first();  
@@ -1162,10 +1215,9 @@ void Synchronizer::synchronizeWithKGet()
       
       if( progDlg == 0 )
       {
-        progDlg = new QProgressDialog( i18n( "Feeding the URL-s to kget" ), i18n("Cancel"), 
-                     totalCount, krApp, "Synchronizer Progress Dlg", true );
-        progDlg->setCaption( i18n( "Krusader::Synchronizer" ) );
-        progDlg->setAutoClose( false );
+        progDlg = new KgetProgressDialog( krApp, "Synchronizer Progress Dlg", i18n("Krusader::Synchronizer"), 
+                                          i18n( "Feeding the URL-s to kget" ), true );
+        progDlg->progressBar()->setTotalSteps( totalCount );
         progDlg->show();
         qApp->processEvents();
       }
@@ -1218,12 +1270,23 @@ void Synchronizer::synchronizeWithKGet()
           p.detach();
       }
       
-      progDlg->setProgress( ++processedCount );
-      qApp->processEvents();
+      progDlg->progressBar()->setProgress( ++processedCount );
       
-      if( progDlg->wasCanceled() )
+      do
+      {      
+        qApp->processEvents();
+      
+        if( progDlg->wasCancelled() )
+          break;
+          
+        if( progDlg->isPaused() )
+          usleep( 100000 );
+          
+      }while( progDlg->isPaused() );
+    
+      if( progDlg->wasCancelled() )
         break;
-    }
+    }      
     item = resultList.next();
   }
   
