@@ -231,7 +231,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   fileUrls.append(url);
 	dest.setPath(vfs_workingDir()+"/"+newName);
 
-  KIO::Job *job = new KIO::CopyJob(fileUrls,dest,KIO::CopyJob::Move,false,false );
+  KIO::Job *job = new KIO::CopyJob(fileUrls,dest,KIO::CopyJob::Move,true,false );
 	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 

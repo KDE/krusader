@@ -252,7 +252,7 @@ void ftp_vfs::vfs_rename(const QString& fileName,const QString& newName){
   KURL newUrl = vfs_origin;
   newUrl.addPath(newName);
 
-  KIO::Job *job = new KIO::CopyJob(fileUrls,newUrl,KIO::CopyJob::Move,false,true );
+  KIO::Job *job = new KIO::CopyJob(fileUrls,newUrl,KIO::CopyJob::Move,true,true );
 	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
