@@ -31,6 +31,7 @@
 PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
   _panelActionMenu = new KActionMenu( i18n("Panel"), this );
 
+  setAcceptDrops(true);  
   insertAction(krNewTab);
   insertAction(krDupTab);
   insertAction(krCloseTab);
@@ -189,6 +190,23 @@ QString PanelTabBar::squeeze(QString text) {
   };
 }
 
+void PanelTabBar::dragEnterEvent(QDragEnterEvent *e) {
+	QTab *t = selectTab(e->pos());
+	if (!t) return;
+	if (tab(currentTab()) != t) {
+		setCurrentTab(t);
+		emit changePanel(dynamic_cast<PanelTab*>(t)->panel);
+	}
+}
+
+void PanelTabBar::dragMoveEvent(QDragMoveEvent *e) {
+	QTab *t = selectTab(e->pos());
+	if (!t) return;
+	if (tab(currentTab()) != t) {
+		setCurrentTab(t);
+		emit changePanel(dynamic_cast<PanelTab*>(t)->panel);
+	}
+}
 
 // -----------------------------> PanelTab <----------------------------
 

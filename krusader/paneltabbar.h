@@ -81,6 +81,8 @@ protected:
   void mousePressEvent( QMouseEvent* );
   void insertAction( KAction* );
   QString squeeze(QString text);
+  virtual void dragEnterEvent(QDragEnterEvent *);
+  virtual void dragMoveEvent(QDragMoveEvent *);
 
 protected slots:
   void closeTab();
