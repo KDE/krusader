@@ -32,7 +32,4 @@ void KrBookmarkButton::populate() {
 void KrBookmarkButton::openPopup() {
 	populate();
 	popup()->exec(mapToGlobal(QPoint(0, height())));
-  kdWarning() << "here" << endl;
-  //emit pressed();
- 
 }
