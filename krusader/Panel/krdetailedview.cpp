@@ -77,13 +77,15 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 //////////////////////////////////////////////////////////////////////////
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
+#define COLUMN(X)	static_cast<KrDetailedViewProperties*>(_properties)->column[ KrDetailedViewProperties::X ]
+#define PROPS	static_cast<KrDetailedViewProperties*>(_properties)	
 
-QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
+QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
 
 KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg, const char *name ) :
       KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
 _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
-	initProperties();
+	initProperties(); // don't forget this!
 
    if ( ColumnName[ 0 ].isEmpty() ) {
       ColumnName[ 0 ] = i18n( "Name" );
@@ -97,21 +99,9 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
       ColumnName[ 8 ] = i18n( "Group" );
    }
 
-   // setup the default sort and filter
-   _properties.filter = KrViewProperties::All;
-   _properties.filterMask = "*";
-
-   // first, clear the columns list. it will be updated by newColumn()
-   for ( int i = 0; i < MAX_COLUMNS; i++ )
-      _columns[ i ] = Unused;
-
    /////////////////////////////// listview ////////////////////////////////////
    { // use the {} so that KConfigGroupSaver will work correctly!
       KConfigGroupSaver grpSvr( _config, "Look&Feel" );
-	   _properties.sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name | KrViewProperties::Descending | KrViewProperties::DirsFirst );
-   	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-      	_properties.sortMode = static_cast<KrViewProperties::SortSpec>( _properties.sortMode | KrViewProperties::IgnoreCase );
-		
       setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
       // decide on single click/double click selection
       if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
@@ -136,62 +126,62 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
    // add whatever columns are needed to the listview
    krConfig->setGroup( "Look&Feel" );
    
-	newColumn( Name );  // we always have a name
-   setColumnWidthMode( column( Name ), QListView::Manual );
+	newColumn( KrDetailedViewProperties::Name );  // we always have a name
+   setColumnWidthMode( COLUMN(Name), QListView::Manual );
    if ( _config->readBoolEntry( "Ext Column", _ExtColumn ) ) {
-      newColumn( Extention );
-      setColumnWidthMode( column( Extention ), QListView::Manual );
-      setColumnWidth( column( Extention ), QFontMetrics( font() ).width( "tar.bz2" ) );
+      newColumn( KrDetailedViewProperties::Extention );
+      setColumnWidthMode( COLUMN(Extention), QListView::Manual );
+      setColumnWidth( COLUMN(Extention), QFontMetrics( font() ).width( "tar.bz2" ) );
    }
    if ( _config->readBoolEntry( "Mime Column", _MimeColumn ) ) {
-      newColumn( Mime );
-      setColumnWidthMode( column( Mime ), QListView::Manual );
-      setColumnWidth( column( Mime ), QFontMetrics( font() ).width( 'X' ) * 6 );
+      newColumn( KrDetailedViewProperties::Mime );
+      setColumnWidthMode( COLUMN(Mime), QListView::Manual );
+      setColumnWidth( COLUMN(Mime), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
    if ( _config->readBoolEntry( "Size Column", _SizeColumn ) ) {
-      newColumn( Size );
-      setColumnWidthMode( column( Size ), QListView::Manual );
-      setColumnWidth( column( Size ), QFontMetrics( font() ).width( "9" ) * 10 );
-      setColumnAlignment( column( Size ), Qt::AlignRight ); // right-align numbers
+      newColumn( KrDetailedViewProperties::Size );
+      setColumnWidthMode( COLUMN(Size), QListView::Manual );
+      setColumnWidth( COLUMN(Size), QFontMetrics( font() ).width( "9" ) * 10 );
+      setColumnAlignment( COLUMN(Size), Qt::AlignRight ); // right-align numbers
    }
    if ( _config->readBoolEntry( "DateTime Column", _DateTimeColumn ) ) {
-      newColumn( DateTime );
-      setColumnWidthMode( column( DateTime ), QListView::Manual );
+      newColumn( KrDetailedViewProperties::DateTime );
+      setColumnWidthMode( COLUMN(DateTime), QListView::Manual );
       //setColumnWidth( column( DateTime ), QFontMetrics( font() ).width( "99/99/99  99:99" ) );
-      setColumnWidth( column( DateTime ), QFontMetrics( font() ).width( KGlobal::locale() ->formatDateTime(
+      setColumnWidth( COLUMN(DateTime), QFontMetrics( font() ).width( KGlobal::locale() ->formatDateTime(
                          QDateTime ( QDate( 2099, 12, 29 ), QTime( 23, 59 ) ) ) ) + 3 );
    }
    if ( _config->readBoolEntry( "Perm Column", _PermColumn ) ) {
-      newColumn( Permissions );
-      setColumnWidthMode( column( Permissions ), QListView::Manual );
-      setColumnWidth( column( Permissions ), QFontMetrics( font() ).width( "drwxrwxrwx" ) );
+      newColumn( KrDetailedViewProperties::Permissions );
+      setColumnWidthMode( COLUMN(Permissions), QListView::Manual );
+      setColumnWidth( COLUMN(Permissions), QFontMetrics( font() ).width( "drwxrwxrwx" ) );
    }
    if ( _config->readBoolEntry( "KrPerm Column", _KrPermColumn ) ) {
-      newColumn( KrPermissions );
-      setColumnWidthMode( column( KrPermissions ), QListView::Manual );
-      setColumnWidth( column( KrPermissions ), QFontMetrics( font() ).width( "RWX" ) );
+      newColumn( KrDetailedViewProperties::KrPermissions );
+      setColumnWidthMode( COLUMN(KrPermissions), QListView::Manual );
+      setColumnWidth( COLUMN(KrPermissions), QFontMetrics( font() ).width( "RWX" ) );
    }
    if ( _config->readBoolEntry( "Owner Column", _OwnerColumn ) ) {
-      newColumn( Owner );
-      setColumnWidthMode( column( Owner ), QListView::Manual );
-      setColumnWidth( column( Owner ), QFontMetrics( font() ).width( 'X' ) * 6 );
+      newColumn( KrDetailedViewProperties::Owner );
+      setColumnWidthMode( COLUMN(Owner), QListView::Manual );
+      setColumnWidth( COLUMN(Owner), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
    if ( _config->readBoolEntry( "Group Column", _GroupColumn ) ) {
-      newColumn( Group );
-      setColumnWidthMode( column( Group ), QListView::Manual );
-      setColumnWidth( column( Group ), QFontMetrics( font() ).width( 'X' ) * 6 );
+      newColumn( KrDetailedViewProperties::Group );
+      setColumnWidthMode( COLUMN(Group), QListView::Manual );
+      setColumnWidth( COLUMN(Group), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
    
    // determine basic settings for the listview
    setAcceptDrops( true );
    setDragEnabled( true );
-   setTooltipColumn( column( Name ) );
+   setTooltipColumn( COLUMN(Name) );
    //setDropVisualizer(false);
    //setDropHighlighter(false);
    setSelectionModeExt( KListView::FileManager );
    setAllColumnsShowFocus( true );
    setShowSortIndicator( true );
-   header() ->setStretchEnabled( true, column( Name ) );
+   header() ->setStretchEnabled( true, COLUMN(Name) );
 
    //---- don't enable these lines, as it causes an ugly bug with inplace renaming
    //-->  setItemsRenameable( true );
@@ -224,17 +214,17 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
 
 KrDetailedView::~KrDetailedView() {}
 
-void KrDetailedView::newColumn( ColumnType type ) {
+void KrDetailedView::newColumn( KrDetailedViewProperties::ColumnType type ) {
 	// get the next available column
-	int max = Unused;
-	for (int i=0; i<MAX_COLUMNS; ++i) {
-		if (_columns[i]>=max)
-			max = _columns[i]+1;
+	int max = KrDetailedViewProperties::Unused;
+	for (int i=0; i<KrDetailedViewProperties::MAX_COLUMNS; ++i) {
+		if (PROPS->column[i]>=max)
+			max = PROPS->column[i]+1;
 	}
-	if ( max >= MAX_COLUMNS )
+	if ( max >= KrDetailedViewProperties::MAX_COLUMNS )
       perror( "KrDetailedView::newColumn() - too many columns" );
 	
-	_columns[type] = max;
+	PROPS->column[type] = max;
 	addColumn( ColumnName[type], -1 );
 }
 
@@ -242,20 +232,20 @@ void KrDetailedView::newColumn( ColumnType type ) {
  * returns the number of column which holds values of type 'type'.
  * if such values are not presented in the view, -1 is returned.
  */
-int KrDetailedView::column( ColumnType type ) {
-	return _columns[type];
+int KrDetailedView::column( KrDetailedViewProperties::ColumnType type ) {
+	return PROPS->column[type];
 }
 
 void KrDetailedView::addItem( vfile *vf ) {
    QString size = KRpermHandler::parseSize( vf->vfile_getSize() );
    QString name = vf->vfile_getName();
    bool isDir = vf->vfile_isDir();
-   if ( !isDir || ( isDir && ( _properties.filter & KrViewProperties::ApplyToDirs ) ) ) {
-      switch ( _properties.filter ) {
+   if ( !isDir || ( isDir && ( _properties->filter & KrViewProperties::ApplyToDirs ) ) ) {
+      switch ( _properties->filter ) {
             case KrViewProperties::All :
                break;
             case KrViewProperties::Custom :
-            if ( !QDir::match( _properties.filterMask, name ) ) return ;
+            if ( !QDir::match( _properties->filterMask, name ) ) return ;
             break;
             case KrViewProperties::Dirs:
             if ( !vf->vfile_isDir() ) return ;
@@ -346,12 +336,12 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       size = KRpermHandler::parseSize( vf->vfile_getSize() );
       name = vf->vfile_getName();
       bool isDir = vf->vfile_isDir();
-      if ( !isDir || ( isDir && ( _properties.filter & KrViewProperties::ApplyToDirs ) ) ) {
-         switch ( _properties.filter ) {
+      if ( !isDir || ( isDir && ( _properties->filter & KrViewProperties::ApplyToDirs ) ) ) {
+         switch ( _properties->filter ) {
                case KrViewProperties::All :
                break;
                case KrViewProperties::Custom :
-               if ( !QDir::match( _properties.filterMask, name ) )
+               if ( !QDir::match( _properties->filterMask, name ) )
                   continue;
                break;
                case KrViewProperties::Dirs:
@@ -437,28 +427,28 @@ void KrDetailedView::setSortMode( KrViewProperties::SortSpec mode ) {
    bool ascending = !( mode & KrViewProperties::Descending );
    int cl = -1;
    if ( mode & KrViewProperties::Name )
-      cl = column( Name );
+      cl = COLUMN( Name );
    else
       if ( mode & KrViewProperties::Size )
-         cl = column( Extention );
+         cl = COLUMN( Extention );
       else
          if ( mode & KrViewProperties::Type )
-            cl = column( Mime );
+            cl = COLUMN( Mime );
          else
             if ( mode & KrViewProperties::Modified )
-               cl = column( DateTime );
+               cl = COLUMN( DateTime );
             else
                if ( mode & KrViewProperties::Permissions )
-                  cl = column( Permissions );
+                  cl = COLUMN( Permissions );
                else
                   if ( mode & KrViewProperties::KrPermissions )
-                     cl = column( KrPermissions );
+                     cl = COLUMN( KrPermissions );
                   else
                      if ( mode & KrViewProperties::Owner )
-                        cl = column( Owner );
+                        cl = COLUMN( Owner );
                      else
                         if ( mode & KrViewProperties::Group )
-                           cl = column( Group );
+                           cl = COLUMN( Group );
    setSorting( cl, ascending );
    KListView::sort();
 }
@@ -937,9 +927,9 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
 void KrDetailedView::rename( QListViewItem * item, int c ) {
    // do we have an EXT column? if so, handle differently:
    // copy the contents of the EXT column over to the name
-   if ( column( Extention ) != -1 ) {
-      item->setText( column( Name ), dynamic_cast<KrViewItem*>( item ) ->name() );
-      item->setText( column( Extention ), QString::null );
+   if ( COLUMN( Extention ) != -1 ) {
+      item->setText( COLUMN( Name ), dynamic_cast<KrViewItem*>( item ) ->name() );
+      item->setText( COLUMN( Extention ), QString::null );
       repaintItem( item );
    }
 
@@ -993,11 +983,11 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
    }
    // check if the item was indeed renamed
    bool restoreView = false;
-   if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() ) { // was renamed
-      emit renameItem( dynamic_cast<KrDetailedViewItem*>( it ) ->name(), it->text( column( Name ) ) );
+   if ( it->text( COLUMN( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() ) { // was renamed
+      emit renameItem( dynamic_cast<KrDetailedViewItem*>( it ) ->name(), it->text( COLUMN( Name ) ) );
    } else restoreView = true;
 
-   if ( column( Extention ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
+   if ( COLUMN( Extention ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
       int i;
       QString ext, name = dynamic_cast<KrDetailedViewItem*>( it ) ->name();
       if ( !dynamic_cast<KrDetailedViewItem*>( it ) ->isDir() )
@@ -1005,8 +995,8 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
             ext = name.mid( i + 1 );
             name = name.mid( 0, i );
          }
-      it->setText( column( Name ), name );
-      it->setText( column( Extention ), ext );
+      it->setText( COLUMN( Name ), name );
+      it->setText( COLUMN( Extention ), ext );
       repaintItem( it );
    }
    setFocus();
@@ -1094,7 +1084,17 @@ bool KrDetailedView::event( QEvent *e ) {
 }
 
 void KrDetailedView::initProperties() {
-	_properties.displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
+	_properties = new KrDetailedViewProperties;
+	PROPS->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
+	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
+		KrViewProperties::Descending | KrViewProperties::DirsFirst );
+	{
+	KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
+      	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
+				 KrViewProperties::IgnoreCase );
+	PROPS->humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
+	}
 }
 
 #include "krdetailedview.moc"

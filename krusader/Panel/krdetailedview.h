@@ -40,6 +40,24 @@ A
 #include "krview.h"
 #include "krviewitem.h"
 
+// extends KrViewProperties to add detailedview-only properties
+class KrDetailedViewProperties: public KrViewProperties {
+public:
+	enum ColumnType { Unused = -1, Name = 0x0, Extention = 0x1, Mime = 0x2, Size = 0x3, DateTime = 0x4,
+                     Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8 };
+	static const int MAX_COLUMNS = 9;
+   int column[ MAX_COLUMNS ];	// column[ColumnType] contains the number of the requested column.
+										// This is used by column() and whenever item uses text() or setText()
+	bool humanReadableSize;		// display size as KB, MB or just as a long number
+
+	KrDetailedViewProperties() {
+		for ( int i = 0; i < MAX_COLUMNS; i++ ) column[i] = Unused;
+		filter = KrViewProperties::All;
+		filterMask = "*";
+	}
+};
+
+
 class QDragMoveEvent;
 class KrRenameTimerObject;
 class ListPanel;
@@ -53,16 +71,12 @@ class ListPanel;
  */
 class KrDetailedView : public KListView, public KrView {
    Q_OBJECT
-#define MAX_COLUMNS 9
    friend class KrDetailedViewItem;
 
 public:
-   enum ColumnType { Unused = -1, Name = 0x0, Extention = 0x1, Mime = 0x2, Size = 0x3, DateTime = 0x4,
-                     Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8 };
-
    KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
    virtual ~KrDetailedView();
-   virtual int column( ColumnType type );
+   virtual int column( KrDetailedViewProperties::ColumnType type );
    virtual KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
    virtual KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastChild() ); }
    virtual KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemBelow() ); }
@@ -98,7 +112,7 @@ signals:
    void middleButtonClicked( QListViewItem *item );
 
 protected:
-   void newColumn( ColumnType type );
+   void newColumn( KrDetailedViewProperties::ColumnType type );
    virtual void keyPressEvent( QKeyEvent *e );
    virtual void contentsMousePressEvent( QMouseEvent *e );
    virtual void contentsMouseMoveEvent ( QMouseEvent * e );
@@ -138,14 +152,12 @@ public slots:
    void refreshColors();
 
 private:
-   int _columns[ MAX_COLUMNS ];
-   static QString ColumnName[ MAX_COLUMNS ];
+   static QString ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
    bool _focused;
    bool caseSensitiveSort;
    KrViewItem *_currDragItem;
    QString _nameInKConfig;
    bool &_left;
-
    bool singleClicked;
    bool modifierPressed;
    QTime clickTime;

@@ -54,13 +54,13 @@ public:
    virtual void setSelected( bool s ) = 0;
    virtual QPixmap icon() = 0;
    
-	KrViewItem(vfile *vf, const KrViewProperties& properties): _vf(vf), dummyVfile(false), _viewProperties(properties) {}
+	KrViewItem(vfile *vf, const KrViewProperties* properties): _vf(vf), dummyVfile(false), _viewProperties(properties) {}
    virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
 		
 protected:
 	vfile* _vf;			// each view item holds a pointer to a corrosponding vfile for fast access	
 	bool dummyVfile;	// used in case our item represents the ".." (updir) item
-	const KrViewProperties& _viewProperties;
+	const KrViewProperties* _viewProperties;
 };
 
 #endif

@@ -140,18 +140,18 @@ public:
   virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
   virtual QString firstUnmarkedBelowCurrent();
   virtual QString statistics();
-  const KrViewProperties& properties() const { return _properties; }
+  const KrViewProperties* properties() const { return _properties; }
 
   /////////////////////////////////////////////////////////////
   // the following functions have a default and minimalistic //
   // implementation, and may be re-implemented if needed     //
   /////////////////////////////////////////////////////////////
-  virtual void setSortMode(KrViewProperties::SortSpec mode) { _properties.sortMode = mode; }
-  virtual KrViewProperties::SortSpec sortMode() const { return _properties.sortMode; }
-  virtual void setFilter(KrViewProperties::FilterSpec filter) { _properties.filter = filter; }
-  virtual KrViewProperties::FilterSpec filter() const { return _properties.filter; }
-  virtual void setFilterMask(QString mask) { _properties.filterMask = mask; }
-  virtual QString filterMask() const { return _properties.filterMask; }
+  virtual void setSortMode(KrViewProperties::SortSpec mode) { _properties->sortMode = mode; }
+  virtual KrViewProperties::SortSpec sortMode() const { return _properties->sortMode; }
+  virtual void setFilter(KrViewProperties::FilterSpec filter) { _properties->filter = filter; }
+  virtual KrViewProperties::FilterSpec filter() const { return _properties->filter; }
+  virtual void setFilterMask(QString mask) { _properties->filterMask = mask; }
+  virtual QString filterMask() const { return _properties->filterMask; }
   inline QWidget *widget() { return _widget; }
   inline void setWidget(QWidget *w) { _widget = w; }
 
@@ -170,7 +170,7 @@ protected:
   uint _numSelected, _count, _numDirs;
   KIO::filesize_t _countSize, _selectedSize;
   bool _left;
-  KrViewProperties _properties;
+  KrViewProperties *_properties;
 };
 
 #endif /* KRVIEW_H */

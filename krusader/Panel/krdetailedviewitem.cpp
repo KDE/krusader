@@ -47,35 +47,23 @@
 #include <kdebug.h>
 #include <kmimetype.h>
 
+#define COLUMN(X)	static_cast<const KrDetailedViewProperties*>(_viewProperties)->	\
+	column[ KrDetailedViewProperties::X ]
+#define PROPS	static_cast<const KrDetailedViewProperties*>(_viewProperties)
+
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
-	KListViewItem(parent, after), KrViewItem(vf, parent->properties()), _view(parent) {
-  
-	// cache memory accesses for better performance
-	caseSensitiveSort = !(_viewProperties.sortMode & KrViewProperties::IgnoreCase);
-	nameColumn        = _view->column(KrDetailedView::Name);        // the columns are stored for faster comparation
-	sizeColumn        = _view->column(KrDetailedView::Size);
-	dateTimeColumn    = _view->column(KrDetailedView::DateTime);
-	mimeColumn        = _view->column(KrDetailedView::Mime);
-	krPermColumn      = _view->column(KrDetailedView::KrPermissions);
-	permColumn        = _view->column(KrDetailedView::Permissions);
-	ownerColumn       = _view->column(KrDetailedView::Owner);
-	groupColumn       = _view->column(KrDetailedView::Group);
-	extColumn         = _view->column(KrDetailedView::Extention);
-	{
-	KConfigGroupSaver saver(krConfig, "Look&Feel");
-	humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
-	}
-  	
+	KListViewItem(parent, after), KrViewItem(vf, parent->properties()) {
+	
 	// there's a special case, where if _vf is null, then we've got the ".." (updir) item
 	// in that case, create a special vfile for that item, and delete it, if needed
 	if (!_vf) {
 		dummyVfile = true;
 		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString::null, QString::null, 0);
 		
-		setText(nameColumn, "..");
-		setText(sizeColumn, "<DIR>" );
-      if ( _viewProperties.displayIcons )
-         setPixmap( nameColumn, FL_LOADICON( "up" ) );
+		setText(COLUMN(Name), "..");
+		setText(COLUMN(Size), "<DIR>" );
+      if ( PROPS->displayIcons )
+         setPixmap( COLUMN(Name), FL_LOADICON( "up" ) );
       setSelectable( false );
 	}
 	
@@ -85,20 +73,20 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
 void KrDetailedViewItem::repaintItem() {
     if ( dummyVfile ) return;
     // set text in columns, according to what columns are available
-    int id = KrDetailedView::Unused;
-    if ((id = mimeColumn) != -1) {
+    int id = KrDetailedViewProperties::Unused;
+    if ((id = COLUMN(Mime)) != -1) {
       QString tmp = KMimeType::mimeType(_vf->vfile_getMime())->comment();
       setText( id, tmp );
     }
-    if ((id = sizeColumn) != -1) {
+    if ((id = COLUMN(Size)) != -1) {
       if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, "<DIR>");
-	    else setText(id, humanReadableSize ? KIO::convertSize(_vf->vfile_getSize())+"  " :
+	    else setText(id, PROPS->humanReadableSize ? KIO::convertSize(_vf->vfile_getSize())+"  " :
 		 						KRpermHandler::parseSize(_vf->vfile_getSize())+" ");
     }
 
-    if ((id = dateTimeColumn) != -1)
+    if ((id = COLUMN(DateTime)) != -1)
       setText(id, dateTime());
-    if ((id = krPermColumn) != -1) {
+    if ((id = COLUMN(KrPermissions)) != -1) {
       // first, build the krusader permissions
       QString tmp;
       switch (_vf->vfile_isReadable()){
@@ -118,17 +106,17 @@ void KrDetailedViewItem::repaintItem() {
       }
       setText(id, tmp);
     }
-    if ((id = permColumn ) != -1)
+    if ((id = COLUMN(Permissions) ) != -1)
       setText(id, _vf->vfile_getPerm());
-    if ((id = ownerColumn) != -1) {
+    if ((id = COLUMN(Owner)) != -1) {
       setText(id, _vf->vfile_getOwner());
     }
-    if ((id = groupColumn) != -1) {
+    if ((id = COLUMN(Group)) != -1) {
       setText(id, _vf->vfile_getGroup());
     }
     // if we've got an extention column, clip the name accordingly
     QString name = _vf->vfile_getName(), ext = "";
-    if ((id = extColumn) != -1 && !_vf->vfile_isDir()) {
+    if ((id = COLUMN(Extention)) != -1 && !_vf->vfile_isDir()) {
       int i;
       if ((i = name.findRev('.')) > 0) {
         ext = name.mid(i+1);
@@ -136,10 +124,10 @@ void KrDetailedViewItem::repaintItem() {
       }
       setText(id, ext);
     }
-    setText(nameColumn, name);
+    setText(COLUMN(Name), name);
     // display an icon if needed
-    if (_viewProperties.displayIcons)
-      setPixmap(nameColumn,KrView::getIcon(_vf));
+    if (PROPS->displayIcons)
+      setPixmap(COLUMN(Name),KrView::getIcon(_vf));
 }
 
 QString num2qstring(KIO::filesize_t num){
@@ -292,7 +280,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   }
 
 	// center the <DIR> thing if needed
-	if(column != _view->column(KrDetailedView::Size))
+	if(column != COLUMN(Size))
 		QListViewItem::paintCell(p, _cg, column, width, align);
 	else {
   		if (dummyVfile) {
@@ -327,7 +315,7 @@ QPixmap KrDetailedViewItem::icon() {
   // shie answers: why? what's the difference? if we return an empty pixmap, others can use it as it
   // is, without worrying or needing to do error checking. empty pixmap displays nothing
 #endif
-	if (dummyVfile || !_viewProperties.displayIcons)
+	if (dummyVfile || !PROPS->displayIcons)
 		return QPixmap();
 	else return KrView::getIcon(_vf);
 }
@@ -347,7 +335,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   QString itext0 = other->name();
   if (itext0 == "..") return -1*asc;
 
-  if( !caseSensitiveSort )
+  if( (PROPS->sortMode & KrViewProperties::IgnoreCase) )
   {
     text0  = text0.lower();
     itext0 = itext0.lower();
@@ -355,19 +343,21 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 
   //kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
 
-  if (col == nameColumn ) {
+  if (col == COLUMN(Name) ) {
       // localeAwareCompare doesn't handle names that start with a dot
 		if (text0.startsWith(".")) {
 			if (!itext0.startsWith(".")) return 1*asc;
 		} else if (itext0.startsWith(".")) return -1*asc;
 		return QString::localeAwareCompare(text0,itext0);
-  } else if (col == sizeColumn ) {
+  } else if (col == COLUMN(Size) ) {
       return QString::compare(num2qstring(size()),num2qstring(other->size()));
-  } else if (col == dateTimeColumn ) {
+  } else if (col == COLUMN(DateTime) ) {
       return (getTime_t() > other->getTime_t() ? 1 : -1);
   } else {
-      QString e1 = (caseSensitiveSort ? text(col) : text(col).lower());
-      QString e2 = (caseSensitiveSort ? i->text(col) : i->text(col).lower());
+      QString e1 = (!(PROPS->sortMode & KrViewProperties::IgnoreCase) ?
+			text(col) : text(col).lower());
+      QString e2 = (!(PROPS->sortMode & KrViewProperties::IgnoreCase) ?
+			i->text(col) : i->text(col).lower());
       return QString::localeAwareCompare(e1, e2);
   }
 }
@@ -394,7 +384,7 @@ QString KrDetailedViewItem::description() const {
 	text += "  ";
 	text += tmp;
 	} else if ( S_ISREG( m_fileMode ) ){
-	text = QString("%1 (%2)").arg(text2).arg( humanReadableSize ?
+	text = QString("%1 (%2)").arg(text2).arg( PROPS->humanReadableSize ?
 		KRpermHandler::parseSize(_vf->vfile_getSize()) : KIO::convertSize( mySize ) );
 	text += "  ";
 	text += comment;
