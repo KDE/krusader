@@ -96,7 +96,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
      {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Function keys visible" ),          false,  ""},
      {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Command-line visible" ),           false,  ""},
      {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Terminal Emulator visible" ),      false,  ""},
-     {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Restore last position and size" ), false,  ""}};
+     {"Startup","Remember Position",     _RememberPos,          i18n( "Restore last position and size" ), false,  ""}};
 
   uiCbGroup = createCheckBoxGroup( 1, 0, uiCheckBoxes, 7, uiGrp );
   connect( uiCbGroup->find( "UI Save Settings" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
