@@ -277,7 +277,7 @@ void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, ti
   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
   new QListViewItem(resultsList, what, where.replace(QRegExp("\\\\"),"#"),
                     KRpermHandler::parseSize(size), KGlobal::locale()->formatDateTime(tmp), perm);
-  QString totals = QString("Found %1 matches.").arg(resultsList->childCount());
+  QString totals = QString(i18n("Found %1 matches.")).arg(resultsList->childCount());
   foundLabel->setText(totals);
 }
 

@@ -818,7 +818,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
          case SHRED_ID :
          if ( KMessageBox::warningContinueCancel( krApp,
                i18n( "Are you sure you want to shred " ) + "\"" + item->name() + "\"" +
-               " ? Once shred, the file is gone forever !!!",
+               i18n(" ? Once shred, the file is gone forever !!!"),
                QString::null, KStdGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
             KShred::shred( func->files() ->vfs_getFile( item->name() ).path( -1 ) );
          break;
