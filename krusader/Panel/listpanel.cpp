@@ -98,12 +98,18 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   status->setText( "" );        // needed for initialization code!
   int sheight = QFontMetrics( status->font() ).height() + 4;
   status->setMaximumHeight( sheight );
-  QWhatsThis::add( status, i18n( "The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of filesystem etc." ) );  connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
+  QWhatsThis::add( status, i18n( "The status bar displays information about "
+			  					 "the FILESYSTEM which hold your current directory: "
+								 "Total size, free space, type of filesystem etc." ) );
+  connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
 
   // ... create the bookmark list
   bookmarksButton = new BookmarksButton( this );
   connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
   connect( bookmarksButton, SIGNAL( openUrl( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
+  QWhatsThis::add( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
+			  							  "current location to the list, edit bookmarks "
+										  "or add subfolder to the list." ) );
 
   totals = new KrSqueezedTextLabel( this );
   krConfig->setGroup( "Look&Feel" );
@@ -112,7 +118,8 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   totals->setBackgroundMode( PaletteBackground );
   totals->setLineWidth( 1 );		// a nice 3D touch :-)
   totals->setMaximumHeight( sheight );
-  QWhatsThis::add( totals, i18n( "The totals bar shows how much files exist, how many did you select and the bytes math" ) );
+  QWhatsThis::add( totals, i18n( "The totals bar shows how much files exist, "
+			  					 "how many did you select and the bytes math" ) );
   connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
 
   quickSearch = new KrQuickSearch( this );
@@ -123,8 +130,12 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   quickSearch->setMaximumHeight( sheight );
 
   origin = new KURLRequester( this );
+  QWhatsThis::add( origin, i18n( "Use superb KDE file dialog to choose location. " ) );
   origin->setShowLocalProtocol( false );
   origin->lineEdit() ->setURLDropsEnabled( true );
+  QWhatsThis::add( origin->lineEdit(), i18n( "Name of directory where you are. You can also "
+			  					 "enter name of desired location to move there. "
+								 "Use of Net protocols like ftp or fish is possible." ) );
   origin->setMode( KFile::Directory | KFile::ExistingOnly );
   connect( origin, SIGNAL( returnPressed( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
   connect( origin, SIGNAL( urlSelected( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
