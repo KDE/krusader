@@ -86,6 +86,8 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   QHBox *hbox2 = new QHBox( widget, "locateHBox" );
   QSpacerItem* spacer = new QSpacerItem( 40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   hbox2->layout()->addItem( spacer );
+  dontSearchInPath = new QCheckBox( i18n( "Don't search in path" ), hbox2, "dontSearchInPath" );
+  dontSearchInPath->setChecked( krConfig->readBoolEntry("Dont Search In Path") );
   existingFiles = new QCheckBox( i18n( "Show only the existing files" ), hbox2, "existingFiles" );
   existingFiles->setChecked( krConfig->readBoolEntry("Existing Files") );
   caseSensitive = new QCheckBox( i18n( "Case Sensitive" ), hbox2, "caseSensitive" );
@@ -176,12 +178,11 @@ void LocateDlg::updateFinished()
 
 void LocateDlg::slotUser3()   /* The locate button */
 {
-  bool isCs;
-  
   locateSearchFor->addToHistory(locateSearchFor->currentText());
   QStringList list = locateSearchFor->historyItems();
   krConfig->setGroup("Locate");
   krConfig->writeEntry("Search For", list);
+  krConfig->writeEntry("Dont Search In Path", dontSearchPath = dontSearchInPath->isChecked() );
   krConfig->writeEntry("Existing Files", onlyExist = existingFiles->isChecked() );
   krConfig->writeEntry("Case Sensitive", isCs = caseSensitive->isChecked() );
 
@@ -212,7 +213,12 @@ void LocateDlg::slotUser3()   /* The locate button */
   locateProc << KrServices::fullPathName( "locate" );
   if( !isCs )
     locateProc << "-i";
-  locateProc << locateSearchFor->currentText();
+  locateProc << (pattern = locateSearchFor->currentText());
+  
+  if( !pattern.startsWith( "*" ) )
+    pattern = "*" + pattern;
+  if( !pattern.endsWith( "*" ) )
+    pattern = pattern + "*";
   
   collectedErr = "";
   bool result = !locateProc.start( KProcess::Block, KProcess::AllOutput );
@@ -245,6 +251,17 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
       remaining = *it;
     else
     {
+      if( dontSearchPath )
+      {
+        QRegExp regExp( pattern, isCs, true );
+        QString fileName = (*it).stripWhiteSpace();
+        if( fileName.endsWith( "/" ) && fileName != "/" )
+          fileName.truncate( fileName.length() -1 );
+        fileName = fileName.mid( fileName.findRev( '/' ) + 1 );
+        
+        if( !regExp.exactMatch( fileName ) )
+          continue;        
+      }
       if( onlyExist )
       {
         KFileItem file(KFileItem::Unknown, KFileItem::Unknown, (*it).stripWhiteSpace() );
@@ -265,7 +282,7 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
   qApp->processEvents();
 }
 
-void LocateDlg::processStderr(KProcess *proc, char *buffer, int length)
+void LocateDlg::processStderr(KProcess *, char *buffer, int length)
 {
   char *buf = new char[ length+1 ];
   memcpy( buf, buffer, length );

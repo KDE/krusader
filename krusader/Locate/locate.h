@@ -65,8 +65,13 @@ private:
   void              nextLine();
 
   bool              stopping;
+  
+  bool              dontSearchPath;
   bool              onlyExist;
+  bool              isCs;
 
+  QString           pattern;
+  
   KHistoryCombo    *locateSearchFor;
   KListView        *resultList;
   QString           remaining;
@@ -78,6 +83,7 @@ private:
   QString           findPattern;
   KListViewItem    *findCurrentItem;
 
+  QCheckBox        *dontSearchInPath;
   QCheckBox        *existingFiles;
   QCheckBox        *caseSensitive;
 
