@@ -79,7 +79,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Alternate Background",       i18n( "Alternate background:" ),        KGlobalSettings::alternateBackgroundColor()                                 );
   addColorSelector( "Marked Foreground",          i18n( "Marked foreground:" ),           KGlobalSettings::highlightedTextColor()                                     );
   addColorSelector( "Marked Background",          i18n( "Marked background:" ),           KGlobalSettings::highlightColor()                                           );
-  addColorSelector( "Alternate Marked Background",i18n( "Alternate marked background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as alternate background" )  );
+  addColorSelector( "Alternate Marked Background",i18n( "Alternate marked background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as marked background" )  );
   addColorSelector( "Current Foreground",         i18n( "Current foreground:" ),          Qt::white,                                    i18n( "Not used" )            );
   addColorSelector( "Current Background",         i18n( "Current background:" ),          Qt::white,                                    i18n( "Not used" )            );
 
@@ -201,8 +201,8 @@ void KgColors::generatePreview()
       altBck = bck;
     QColor fore   = KGlobalSettings::textColor();
 
-    pwFile->setColor( fore, bck );    
-    pwDir->setColor( fore, altBck );
+    pwFile->setColor( fore, altBck );
+    pwDir->setColor( fore, bck );
     pwApp->setColor( fore, bck );
     pwSymLink->setColor( fore, altBck );
     pwInvLink->setColor( fore, bck );
@@ -218,8 +218,8 @@ void KgColors::generatePreview()
     QColor currentFore;
     QColor currentBck = altBck;
 
-    pwFile->setColor( currentFore = getColorSelector( "Foreground" )->getColor(), bck );
-    pwDir->setColor( getColorSelector( "Directory Foreground" )->getColor(), altBck );
+    pwFile->setColor( currentFore = getColorSelector( "Foreground" )->getColor(), altBck );
+    pwDir->setColor( getColorSelector( "Directory Foreground" )->getColor(), bck );
     pwApp->setColor( getColorSelector( "Executable Foreground" )->getColor(), bck );
     pwSymLink->setColor( getColorSelector( "Symlink Foreground" )->getColor(), altBck );
     pwInvLink->setColor( getColorSelector( "Invalid Symlink Foreground" )->getColor(), bck );
