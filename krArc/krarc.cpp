@@ -725,7 +725,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
     if( year < 1930 ) year+=100;
     QDate qdate( year, d.mid(3,2).toInt(), d.mid(0,2).toInt() );
     QString t = nextWord(line);
-    QTime qtime(t.mid(0,2).toInt(),t.mid(4,2).toInt(),0);
+    QTime qtime(t.mid(0,2).toInt(),t.mid(3,2).toInt(),0);
     time = QDateTime(qdate,qtime).toTime_t();    
     // permissions
     perm = nextWord(line);
