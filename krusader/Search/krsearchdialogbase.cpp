@@ -172,6 +172,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     mainSearchBtn = new QPushButton( this, "mainSearchBtn" );
     mainSearchBtn->setText( i18n( "Search" ) );
+    mainSearchBtn->setDefault(true);
     Layout9->addWidget( mainSearchBtn );
 
     mainStopBtn = new QPushButton( this, "mainStopBtn" );
