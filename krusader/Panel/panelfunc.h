@@ -41,7 +41,7 @@ friend class ListPanel;
 	Q_OBJECT
 public slots:
 	void execute(QString&);
-  void openUrl(const QString& path,const QString& type=QString::null );
+  void openUrl(const QString& path);
 	void refresh(){ refresh(panel->virtualPath); } // re-read the files
 	void rename(const QString &oldname, const QString &newname);
 

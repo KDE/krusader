@@ -76,10 +76,10 @@ panel( parent ), inRefresh( false ) {
   files() ->vfs_refresh();
 }
 
-void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
+void ListPanelFunc::openUrl( const QString& path) {
   panel->slotFocusOnMe();
 
-  QString mytype = type, mypath = path;
+  QString mypath = path;
 
   // make sure local urls are handles ok
   if ( mypath.lower().startsWith( "file:" ) )
@@ -90,15 +90,13 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
     // do we need to change VFS ?
     QString archive = mypath.left( mypath.find( '\\' ) );
     QString directory = mypath.mid( mypath.findRev( '\\' ) + 1 );
-    if ( mytype.isEmpty() ) {
-      QString mime = KMimeType::findByURL( archive ) ->name();
-      mytype = mime.right( 4 );
-      if ( mytype == "-rpm" )
-        mytype = "+rpm"; // open the rpm as normal archive
-      if ( mime.contains( "-rar" ) )
-        mytype = "-rar";
-    }
-    changeVFS( mytype, archive );
+    // find the archive type
+    QString type;
+    QString mime = KMimeType::findByURL( archive ) ->name();
+    type = mime.right( 4 );
+    if ( type == "-rpm" ) type = "+rpm"; // open the rpm as normal archive
+    if ( mime.contains( "-rar" ) ) type = "-rar";
+    changeVFS( type, archive );
     // add warning to the backStack
     if ( backStack.last() != "//WARNING//" )
       backStack.append( "//WARNING//" );
@@ -577,7 +575,7 @@ void ListPanelFunc::execute( QString& name ) {
 		} else {
     	path = path+"\\";
 		}
-    openUrl( path, type );
+    openUrl( path );
 	} else {
     KURL url;
     url.setPath( files() ->vfs_getFile( name ) );
@@ -642,8 +640,7 @@ void ListPanelFunc::changeVFS( QString type, QString origin ) {
     refresh();
     return ;
   }
-
-
+ 
   // save the current vfs
   files() ->blockSignals( true );
   vfsStack.push( v );
