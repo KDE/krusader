@@ -154,7 +154,7 @@ void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,Q
   KIO::Job* job = new KIO::CopyJob(*fileUrls,dest,mode,false,true );
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()) );
   if(mode == KIO::CopyJob::Move) // notify the other panel
-    connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(refresh(KIO::Job*)) );
+    connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(refresh()) );
 }
 
 // remove a file from the vfs (physical)
