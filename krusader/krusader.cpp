@@ -262,15 +262,27 @@ void Krusader::statusBarUpdate( QString& mess ) {
 
 void Krusader::showEvent ( QShowEvent *e ) {
   if (showTrayIcon)
+  {
+    sysTray->hide();
     show(); // needed to make sure krusader is removed from
             // the taskbar when minimizing (system tray issue)
+  }
   else KParts::MainWindow::showEvent(e);
 }
 
 void Krusader::hideEvent ( QHideEvent *e ) {
-  if (showTrayIcon)
+  bool isModalTopWidget = false;
+
+  QWidget *actWnd = qApp->activeWindow();
+  if( actWnd )
+    isModalTopWidget = actWnd->isModal();
+  
+  if (showTrayIcon && !isModalTopWidget && isMinimized() )
+  {
+    sysTray->show();
     hide(); // needed to make sure krusader is removed from
             // the taskbar when minimizing (system tray issue)
+  }
   else KParts::MainWindow::hideEvent(e);
 }
 
