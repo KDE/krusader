@@ -78,7 +78,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
 
-KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg, const char *name ) :
+KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg, const char *name ) :
     KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
 _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
 
@@ -201,15 +201,15 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
   connect( renameLineEdit(), SIGNAL( done( QListViewItem *, int ) ),
            this, SLOT( inplaceRenameFinished( QListViewItem*, int ) ) );
   connect( this, SIGNAL( renameItem( const QString &, const QString & ) ),
-           dynamic_cast<ListPanel*>( parent ) ->func, SLOT( rename( const QString &, const QString & ) ) );
+           panel->func, SLOT( rename( const QString &, const QString & ) ) );
   // connect quicksearch
-  connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( textChanged( const QString& ) ),
+  connect( panel->quickSearch, SIGNAL( textChanged( const QString& ) ),
            this, SLOT( quickSearch( const QString& ) ) );
-  connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( otherMatching( const QString&, int ) ),
+  connect( panel->quickSearch, SIGNAL( otherMatching( const QString&, int ) ),
            this, SLOT( quickSearch( const QString& , int ) ) );
-  connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( stop( QKeyEvent* ) ),
+  connect( panel->quickSearch, SIGNAL( stop( QKeyEvent* ) ),
            this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
-  connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( process( QKeyEvent* ) ),
+  connect( panel->quickSearch, SIGNAL( process( QKeyEvent* ) ),
            this, SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
 
 

@@ -65,6 +65,7 @@ class BookmarksButton;
 class KrQuickSearch;
 class DirHistoryButton;
 class DirHistoryQueue;
+class PanelPopup;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;
@@ -113,6 +114,7 @@ protected:
 protected slots:
    void handleDropOnView( QDropEvent * );     // handles drops on the view only
    void startDragging( QStringList, QPixmap );
+	void togglePanelPopup();
 
 signals:
    void signalStatus( QString msg );       // emmited when we need to update the status bar
@@ -142,7 +144,8 @@ public:
    QToolButton *cdHomeButton;
    QToolButton *cdUpButton;
    QToolButton *cdOtherButton;
-
+	QToolButton *popupBtn;
+	PanelPopup *popup;
    BookmarksButton *bookmarksButton;
    DirHistoryQueue* dirHistoryQueue;
    DirHistoryButton* historyButton;

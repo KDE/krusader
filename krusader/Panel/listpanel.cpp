@@ -37,6 +37,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qheader.h>
 #include <qtimer.h>
 #include <qregexp.h> 
+#include <qsplitter.h>
 // KDE includes
 #include <kpopupmenu.h>
 #include <kmessagebox.h>
@@ -84,6 +85,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/dirhistoryqueue.h"
 #include "../krservices.h"
+#include "panelpopup.h" 
 
 typedef QValueList<KServiceOffer> OfferList;
 
@@ -92,7 +94,7 @@ typedef QValueList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
       QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), _left( left ), quickSearch( 0 ),
-cdRootButton( 0 ), cdUpButton( 0 ) {
+cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
 
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
@@ -128,7 +130,8 @@ cdRootButton( 0 ), cdUpButton( 0 ) {
                                "current location to the list, edit bookmarks "
                                "or add subfolder to the list." ) );
 
-   totals = new KrSqueezedTextLabel( this );
+   QHBoxLayout *totalsLayout = new QHBoxLayout(this);
+	totals = new KrSqueezedTextLabel( this );
    krConfig->setGroup( "Look&Feel" );
    totals->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
    totals->setFrameStyle( QFrame::Box | QFrame::Raised );
@@ -139,7 +142,16 @@ cdRootButton( 0 ), cdUpButton( 0 ) {
       ( totals, i18n( "The totals bar shows how much files exist, "
                       "how many did you select and the bytes math" ) );
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
-
+	totalsLayout->addWidget(totals);
+	
+	// a quick button to open the popup panel
+	popupBtn = new QToolButton( this, "popupbtn" );
+   popupBtn->setFixedSize( 20, totals ->height() );
+	popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Panel));
+	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
+	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
+	totalsLayout->addWidget(popupBtn);
+	
    quickSearch = new KrQuickSearch( this );
    krConfig->setGroup( "Look&Feel" );
    quickSearch->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
@@ -189,7 +201,11 @@ cdRootButton( 0 ), cdUpButton( 0 ) {
 
    setPanelToolbar();
 
-   view = new KrDetailedView( this, _left, krConfig );
+	// create a splitter to hold the view and the popup
+	QSplitter *splt = new QSplitter(this);
+	splt->setOrientation(QObject::Vertical);
+	
+   view = new KrDetailedView( splt, this, _left, krConfig );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( executed( QString& ) ), func, SLOT( execute( QString& ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( needFocus() ), this, SLOT( slotFocusOnMe() ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( selectionChanged() ), this, SLOT( slotUpdateTotals() ) );
@@ -198,21 +214,28 @@ cdRootButton( 0 ), cdUpButton( 0 ) {
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( letsDrag( QStringList, QPixmap ) ), this, SLOT( startDragging( QStringList, QPixmap ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( gotDrop( QDropEvent * ) ), this, SLOT( handleDropOnView( QDropEvent * ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked( QListViewItem * ) ), SLOTS, SLOT( newTab( QListViewItem * ) ) );
-   ////////////////////////////// to do connections ///////////////////////////////////////////////
+	connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( currentChanged( QListViewItem* ) ), 
+		SLOTS, SLOT( updatePopupPanel( QListViewItem* ) ) );
    // make sure that a focus/path change reflects in the command line and activePanel
    connect( this, SIGNAL( cmdLineUpdate( QString ) ), SLOTS, SLOT( slotCurrentChanged( QString ) ) );
    connect( this, SIGNAL( activePanelChanged( ListPanel * ) ), SLOTS, SLOT( slotSetActivePanel( ListPanel * ) ) );
 
+	// add a popup
+	popup = new PanelPopup(splt);
+	connect(popup, SIGNAL(selection(const KURL&)), SLOTS, SLOT(refresh(const KURL&)));
+	connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
+	popup->hide();
+	
    // finish the layout
    layout->addMultiCellWidget( hbox, 0, 0, 0, 2 );
    layout->addWidget( status, 1, 0 );
    layout->addWidget( historyButton, 1, 1 );
    layout->addWidget( bookmarksButton, 1, 2 );
-   layout->addMultiCellWidget( dynamic_cast<KrDetailedView*>( view ) ->widget(), 2, 2, 0, 2 );
+	layout->addMultiCellWidget( splt, 2, 2, 0, 2 );
    layout->addMultiCellWidget( quickSearch, 3, 3, 0, 2 );
    quickSearch->hide();
-   layout->addMultiCellWidget( totals, 4, 4, 0, 2 );
-
+   layout->addMultiCellLayout( totalsLayout, 4, 4, 0, 2 );
+	
    //filter = ALL;
 }
 
@@ -229,6 +252,16 @@ ListPanel::~ListPanel() {
    delete cdUpButton;
    delete cdOtherButton;
    delete layout;
+}
+
+void ListPanel::togglePanelPopup() {
+	if (popup->isHidden()) {
+		popup->show();
+		popupBtn->setPixmap(krLoader->loadIcon("down", KIcon::Panel));
+	} else {
+		popup->hide();
+		popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Panel));
+	}
 }
 
 void ListPanel::setPanelToolbar() {
