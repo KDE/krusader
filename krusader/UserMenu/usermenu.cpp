@@ -51,8 +51,8 @@ In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute a
 %_fm%   - filter mask (for example: *, *.cpp, *.h etc.)
 
 */
-UMCmd UserMenu::_expressions[ NUM_EXPS ] = {
-         {"%_p%", expPath}
+UMCmd UserMenu::expressions[ UserMenu::numOfExps ] = {
+         {"%_p%", "panel's path", expPath}
       };
 
 #define ACTIVE  krApp->mainView->activePanel
@@ -68,7 +68,7 @@ QString UserMenu::expPath( const QString& str ) {
 
 void UserMenu::exec() {
    // execute menu and wait for selection
-   QString cmd = _popup.run();
+   QString cmd = _popup->run();
 
    // replace %% and prepare string
    cmd = expand( cmd );
@@ -103,12 +103,12 @@ QString UserMenu::expand( QString str ) {
       // get the expression, and expand it using the correct expander function
       // ... replace first char with _ to ease the checking
       exp = str.mid( beg, end - beg + 1 );
-      for ( i = 0; i < NUM_EXPS; ++i )
-         if ( str.mid( beg, end - beg + 1 ).replace( 1, 1, '_' ) == _expressions[ i ].expression ) {
-            result += ( _expressions[ i ].expFunc ) ( exp );
+      for ( i = 0; i < numOfExps; ++i )
+         if ( str.mid( beg, end - beg + 1 ).replace( 1, 1, '_' ) == expressions[ i ].expression ) {
+            result += ( expressions[ i ].expFunc ) ( exp );
             break;
          }
-      if ( i == NUM_EXPS ) { // didn't find an expander
+      if ( i == numOfExps ) { // didn't find an expander
          kdWarning() << "Error: unrecognized " << exp << " in UserMenu::expand" << endl;
          return QString::null;
       }
@@ -120,13 +120,15 @@ QString UserMenu::expand( QString str ) {
    return result;
 }
 
-UserMenu::UserMenu( QWidget * parent, const char * name ) : QWidget( parent, name ) {}
+UserMenu::UserMenu( QWidget * parent, const char * name ) : QWidget( parent, name ) {
+   _popup = new UserMenuGui(this);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UserMenuGui::UserMenuGui( QWidget * parent ) : KPopupMenu( parent ) {
+UserMenuGui::UserMenuGui( UserMenu *menu, QWidget * parent ) : KPopupMenu( parent ) {
    insertTitle( "User Menu" );
 
    // read entries from config file.
@@ -145,6 +147,12 @@ UserMenuGui::UserMenuGui( QWidget * parent ) : KPopupMenu( parent ) {
    // add the "add new entry" command
    insertSeparator();
    insertItem( "Add new entry", 0 );
+
+   // create the 'add entry' gui
+   _addgui = new UserMenuAddImpl(menu, this);
+   connect(_addgui, SIGNAL(newEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )),
+               this, SLOT(addEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )));
+
 }
 
 void UserMenuGui::readEntries() {
@@ -174,11 +182,7 @@ QString UserMenuGui::run() {
    int idx = exec();
    if ( idx == -1 ) return QString::null; // nothing was selected
    if ( idx == 0 ) {
-      UserMenuAddImpl *addgui = new UserMenuAddImpl(this);
-      connect(addgui, SIGNAL(newEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )),
-               this, SLOT(addEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )));
-      addgui->exec();
-      delete addgui;
+      _addgui->exec();
       return QString::null;
    }
 

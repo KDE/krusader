@@ -1,6 +1,6 @@
 /***************************************************************************
-                      usermenu.h  -  description
-                         -------------------
+                     usermenu.h  -  description
+                        -------------------
 begin                : Sat Dec 6 2003
 copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
 email                :
@@ -27,6 +27,8 @@ email                :
 #include <qtextedit.h>
 
 class KDialogBase;
+class UserMenuAddImpl;
+class UserMenu;
 
 class UserMenuProcDlg: public KDialogBase {
       Q_OBJECT
@@ -47,7 +49,7 @@ class UserMenuProc: public QObject {
 
       enum ExecType { Terminal, OutputOnly, None };
 
-      UserMenuProc(ExecType execType = Terminal, bool enableStderr = false);
+      UserMenuProc( ExecType execType = Terminal, bool enableStderr = false );
       ~UserMenuProc();
       bool start( QString cmdLine );
 
@@ -69,18 +71,19 @@ class UserMenuProc: public QObject {
 class UserMenuGui: public KPopupMenu {
       Q_OBJECT
    public:
-      UserMenuGui( QWidget *parent = 0 );
+      UserMenuGui( UserMenu* menu, QWidget *parent = 0 );
       QString run();
 
    protected:
       void readEntries();
 
    protected slots:
-      void addEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
-                  bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0);
+      void addEntry( QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
+                     bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0 );
 
    private:
       QStringList _entries;
+      UserMenuAddImpl *_addgui;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -92,13 +95,12 @@ typedef QString ( *EXPANDER ) ( const QString& );
 // a UMCmd is an entry containing the expression and its expanding function
 typedef struct UserMenuCmd {
    QString expression;
+   QString description;
    EXPANDER expFunc;
 }
 UMCmd;
 
 class UserMenu : public QWidget {
-#define NUM_EXPS  1
-
       Q_OBJECT
    public:
       /**
@@ -115,12 +117,15 @@ class UserMenu : public QWidget {
 
       UserMenu( QWidget *parent = 0, const char *name = 0 );
 
+
+      static const int numOfExps = 1;
+      static UMCmd expressions[ numOfExps ];
+
    protected:
       static QString expPath( const QString& str );
 
    private:
-      UserMenuGui _popup;
-      static UMCmd _expressions[ NUM_EXPS ];
+      UserMenuGui* _popup;
 };
 
 #endif

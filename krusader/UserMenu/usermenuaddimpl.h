@@ -28,13 +28,14 @@ class KPopupMenu;
 class UserMenuAddImpl : public UserMenuAdd  {
    Q_OBJECT
 public:
-	UserMenuAddImpl(QWidget *parent=0, const char *name=0);
+	UserMenuAddImpl(UserMenu *menu, QWidget *parent=0, const char *name=0);
 	~UserMenuAddImpl();
 
 
 public slots:
    void accept();
    void popupAddMenu();
+   void addShowInFolder();
 
 signals:
    void newEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
