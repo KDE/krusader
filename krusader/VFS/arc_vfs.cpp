@@ -309,7 +309,8 @@ void arc_vfs::vfs_delFiles(QStringList *fileNames){
     chdir(tmpDir.local8Bit());
 
     QStringList files;
-    unsigned long totalSizeVal = 0 , totalFilesVal =  0;
+    KIO::filesize_t totalSizeVal = 0;
+    unsigned long totalFilesVal =  0;
     	
 	  // names -> urls
     for(QStringList::Iterator name = fileNames->begin(); name != fileNames->end(); ++name )
@@ -371,7 +372,8 @@ KURL::List* arc_vfs::vfs_getFiles(QStringList* names){
 	chdir(tmpDir.local8Bit());
 	// names -> urls
   QStringList files;
-  unsigned long totalSize = 0,totalFiles = 0;
+  KIO::filesize_t totalSize = 0;
+  unsigned long totalFiles = 0;
   for(QStringList::Iterator name = names->begin(); name != names->end(); ++name ){
     processName(*name,&files,&totalSize,&totalFiles);
     url.setPath(tmpDir+"/"+path+(*name));
@@ -676,7 +678,7 @@ QString arc_vfs::changeDir(QString name){
 }
 
 // calculate space
-void arc_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs,bool* stop){
+void arc_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs,bool* stop){
   if (stop && *stop) return;
   vfile* vf = vfs_search(name);
 
@@ -708,7 +710,7 @@ void arc_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles,
   }
 }
 
-void arc_vfs::processName(const QString& name, QStringList *urls,unsigned long *totalSize,unsigned long *totalFiles ){
+void arc_vfs::processName(const QString& name, QStringList *urls,KIO::filesize_t *totalSize,unsigned long *totalFiles ){
   vfile* vf = vfs_search(name);
 	if ( vf == 0 ) return;
 
@@ -739,7 +741,7 @@ void arc_vfs::processName(const QString& name, QStringList *urls,unsigned long *
 
 void arc_vfs::parseLine(QString line, QFile* temp){
   QString name;
-  long size = 0;
+  KIO::filesize_t size = 0;
   QString perm;
   QFileInfo qfi(arcFile);
   time_t mtime = qfi.lastModified().toTime_t();
@@ -747,7 +749,7 @@ void arc_vfs::parseLine(QString line, QFile* temp){
   uid_t owner = getuid();
   gid_t group = getgid();
   QString dest = "";
-  long mode = 0;
+  mode_t mode = 0;
 
 
   // parse gziped files

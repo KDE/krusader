@@ -45,7 +45,7 @@
 #include <kmimetype.h>
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
-  QObject(parent), KListViewItem(parent, after), KrViewItem(), _view(parent), _vf(vf) {
+  QObject(parent), KListViewItem(parent, after), KrViewItem(),_vf(vf), _view(parent) {
   repaintItem();
 }
 
@@ -116,10 +116,10 @@ void KrDetailedViewItem::repaintItem() {
       setPixmap(_view->column(KrDetailedView::Name),KrView::getIcon(_vf));
 }
 
-QString num2qstring(unsigned long num){
-  QString temp;
-  temp.sprintf("%015ld",num);
-  return temp;
+QString num2qstring(KIO::filesize_t num){
+  char buf[25];
+  sprintf(buf,"%025llu",num);
+  return QString(buf);
 }
 
 QString KrDetailedViewItem::name() const {
@@ -246,7 +246,7 @@ QString KrDetailedViewItem::description() const {
     QString text = _vf->vfile_getName();
 		QString comment = KMimeType::mimeType(_vf->vfile_getMime())->comment(text, false);
  		QString myLinkDest = _vf->vfile_getSymDest();
-		long long mySize = _vf->vfile_getSize();
+		KIO::filesize_t mySize = _vf->vfile_getSize();
 
     QString text2 = text.copy();
 		mode_t m_fileMode = _vf->vfile_getMode();

@@ -108,11 +108,11 @@ public:
   // and normally - should NOT be re-implemented.     //
   //////////////////////////////////////////////////////
   virtual uint numSelected() const { return _numSelected; }
-  virtual long long selectedSize() const { return _selectedSize; }
+  virtual KIO::filesize_t selectedSize() const { return _selectedSize; }
   virtual uint numFiles() const { return _count-_numDirs; }
   virtual uint numDirs() const { return _numDirs; }
   virtual uint count() const { return _count; }
-  virtual long long countSize() const { return _countSize; }
+  virtual KIO::filesize_t countSize() const { return _countSize; }
   virtual void getSelectedItems(QStringList* names);
   virtual void getSelectedKrViewItems(KrViewItemList *items);
   virtual void select(const QString& filter = "*") { changeSelection(filter, true); }
@@ -154,7 +154,7 @@ protected:
   QWidget *_widget;
   QString _nameToMakeCurrent;
   uint _numSelected, _count, _numDirs;
-  long long _countSize, _selectedSize;
+  KIO::filesize_t _countSize, _selectedSize;
   bool _left;
 };
 

@@ -43,26 +43,26 @@
 
 class vfile{
 protected:
-	// the file information list
-	QString 	    vfile_name;		  // name
-	unsigned long vfile_size;     // size
-	mode_t				vfile_mode;			// the vfile mode
-	uid_t					vfile_ownerId;	// owner id
-	gid_t					vfile_groupId;	// group id
-  QString       vfile_owner;    // owner name
-  QString       vfile_group;    // group name
-	QString     	vfile_perm;			// permissions
-  time_t        vfile_time_t;   // modification in time_t format
-	bool					vfile_symLink;  // true==yes
-	QString				vfile_mimeType; // file mimetype
-	QString				vfile_symDest;  // if it's a sym link - its detination
+  // the file information list
+  QString 	       vfile_name;		  // name
+  KIO::filesize_t  vfile_size;     // size
+  mode_t           vfile_mode;			// the vfile mode
+	uid_t            vfile_ownerId;	// owner id
+	gid_t            vfile_groupId;	// group id
+  QString          vfile_owner;    // owner name
+  QString          vfile_group;    // group name
+	QString          vfile_perm;			// permissions
+  time_t           vfile_time_t;   // modification in time_t format
+	bool             vfile_symLink;  // true==yes
+	QString          vfile_mimeType; // file mimetype
+	QString          vfile_symDest;  // if it's a sym link - its detination
 	
 public:
   // the constractor needs:
 	// (file name, file size, file permissions,is the file a link,
 	// owner uid, group uid)
 	vfile(QString name,	
-				unsigned long size,	
+				KIO::filesize_t size,
 			  QString perm,
 				time_t mtime,
 				bool symLink,
@@ -73,7 +73,7 @@ public:
 				mode_t  mode);
 	
 	vfile(QString name,	
-				unsigned long size,	
+				KIO::filesize_t size,	
 			  QString perm,
 				time_t mtime,
 				bool symLink,
@@ -85,7 +85,7 @@ public:
 	
 	// following functions give-out file details
 	inline QString  			 	vfile_getName() 	 	{ return vfile_name;  		}
-	inline unsigned long		vfile_getSize() 	 	{ return vfile_size;  		}
+	inline KIO::filesize_t  		vfile_getSize() 	 	{ return vfile_size;  		}
 	inline QString					vfile_getPerm()			{ return vfile_perm;			}
 	inline bool							vfile_isDir()				{ return (vfile_perm[0]=='d');}
 	inline bool							vfile_isSymLink()		{ return vfile_symLink;   }
@@ -103,42 +103,9 @@ public:
 	KIO::UDSEntry           vfile_getEntry(); // return the UDSEntry from the vfile
   // used ONLY when calculating a directory's space, needs to change the
   // displayed size of the viewitem and thus the vfile. For INTERNAL USE !
-  inline void             vfile_setSize(unsigned long size) {vfile_size = size;}
+  inline void             vfile_setSize(KIO::filesize_t size) {vfile_size = size;}
 
   virtual ~vfile(){}
 };
-
-#if 0
-class ftp_vfile : public vfile {
-protected:
-  char canRead;
-  char canWrite;
-  char canExec;
-
-public:
-  ftp_vfile(QString name,	
-				unsigned long size,	
-			  QString perm,
-				QString	dateTime,
-				bool symLink,
-				uid_t	owner,
-				gid_t group,
-				QString mime,
-				QString symDest,
-				mode_t  mode) :
-				vfile(name,size,perm,dateTime,symLink,owner,group,mime,symDest,mode){}
-				
-  virtual ~ftp_vfile(){}
-				
-	inline void setRead (char b){  canRead=b; }
-	inline void setWrite(char b){ canWrite=b; }
-	inline void setExec (char b){  canExec=b; }
-	
-	virtual char vfile_isReadable()  { return canRead; }
-	virtual char vfile_isWriteable() { return canWrite;}
-  virtual char vfile_isExecutable(){ return canExec; }
-};
-#endif
-
 
 #endif

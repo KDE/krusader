@@ -114,7 +114,7 @@ bool normal_vfs::vfs_refresh(QString origin){
 		if (name=="." || name == "..") continue;
 	  	
 	  lstat(vfs_workingDir().local8Bit()+"/"+name.local8Bit(),&stat_p);
-	  unsigned long size = stat_p.st_size;
+	  KIO::filesize_t size = stat_p.st_size;
     QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
 	  bool symLink= S_ISLNK(stat_p.st_mode);
 	  if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
@@ -228,7 +228,7 @@ void normal_vfs::vfs_rename(QString fileName,QString newName){
 	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
-void normal_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs, bool* stop){
+void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool* stop){
   if (stop && *stop) return;
   if (!name.contains("/")) name = vfs_workingDir()+"/"+name;
   if (name == "/proc") return;

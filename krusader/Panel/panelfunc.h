@@ -49,9 +49,9 @@ class KrCalcSpaceDialog : public KDialogBase{
 	   needed. Creator must call finished(), if the thread is no longer needed.
 	*/
 	class CalcThread : public QThread{
-		long long m_totalSize;
-		long m_totalFiles;
-		long m_totalDirs;
+		KIO::filesize_t m_totalSize;
+		unsigned long m_totalFiles;
+		unsigned long m_totalDirs;
 		const QStringList m_names;
 		vfs * m_files;
 		KrCalcSpaceDialog * m_parent;
@@ -60,9 +60,9 @@ class KrCalcSpaceDialog : public KDialogBase{
 		bool m_stop;
 		void cleanUp(); // Deletes this, if possible
 	public:
-		long long getTotalSize() const {return m_totalSize;} // the result
-		long getTotalFiles() const {return m_totalFiles;} // the result
-		long getTotalDirs() const {return m_totalDirs;} // the result
+		KIO::filesize_t getTotalSize() const {return m_totalSize;} // the result
+		unsigned long getTotalFiles() const {return m_totalFiles;} // the result
+		unsigned long getTotalDirs() const {return m_totalDirs;} // the result
 		const QStringList & getNames() const {return m_names;} // list of directories to calculate
 		CalcThread(KrCalcSpaceDialog * parent, vfs * files, const QStringList & names);
 		void deleteInstance(); // thread is no longer needed.
@@ -84,9 +84,9 @@ public:
 	// autoclose: wait 3 sec. before showing the dialog. Close it, when done
 	KrCalcSpaceDialog(QWidget *parent, vfs * files, const QStringList & names, bool autoclose);
 	~KrCalcSpaceDialog();
-	long long getTotalSize() const {return m_thread->getTotalSize();} // the result
-	long getTotalFiles() const {return m_thread->getTotalFiles();} // the result
-	long getTotalDirs() const {return m_thread->getTotalDirs();} // the result
+	KIO::filesize_t getTotalSize() const {return m_thread->getTotalSize();} // the result
+	unsigned long getTotalFiles() const {return m_thread->getTotalFiles();} // the result
+	unsigned long getTotalDirs() const {return m_thread->getTotalDirs();} // the result
 	bool wasCanceled() const {return m_canceled;} // cancel was pressed; result is probably wrong
 public slots:
 	void exec(); // start calculation
@@ -130,7 +130,7 @@ public:
 	// calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
 	// and disappears, if the calculation is done. Returns true, if the result is ok and false
 	// otherwise (Cancel was pressed).
-	bool calcSpace(QStringList & names, long long & totalSize, long & totalFiles, long & totalDirs);
+	bool calcSpace(QStringList & names,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs);
 	void FTPDisconnect();
 	void newFTPconnection(QString host=QString::null);
 	void changeVFS(QString type, QString origin);

@@ -552,8 +552,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         // there's a folder we can't enter (permissions). in that case, the returned
         // size will not be correct.
         //
-        long long totalSize = 0;
-        long totalFiles = 0, totalDirs = 0;
+        KIO::filesize_t totalSize = 0;
+        unsigned long totalFiles = 0, totalDirs = 0;
         QStringList names;
         names.push_back( viewItem->name() );
         if ( krApp->mainView->activePanel->func->calcSpace( names, totalSize, totalFiles, totalDirs ) ) {

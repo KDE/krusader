@@ -42,7 +42,7 @@
 #include <kdebug.h>
 
 vfile::vfile(QString name,	                  // useful construtor
-						unsigned long size,	
+						KIO::filesize_t size,
 						QString perm,
 						time_t mtime,
 						bool symLink,
@@ -66,7 +66,7 @@ vfile::vfile(QString name,	                  // useful construtor
 }
 
 vfile::vfile(QString name,	                  // useful construtor
-						unsigned long size,	
+						KIO::filesize_t size,	
 						QString perm,
 						time_t mtime,
 						bool symLink,

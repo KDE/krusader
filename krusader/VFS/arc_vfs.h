@@ -58,7 +58,7 @@ public:
 	// rename file
 	void vfs_rename(QString fileName,QString newName);
 	// calculate space
-	void vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs, bool* stop = 0);
+	void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool* stop = 0);
 	// return the working dir
 	QString vfs_workingDir();
 	
@@ -74,7 +74,7 @@ protected:
   QList<arc_dir> dirList;
   QValueList<extFile> extFiles; // the name, time & size of files unpacked from this archive
 
-  void processName(const QString& name,QStringList *urls,unsigned long *totalSize,unsigned long *totalFiles );
+  void processName(const QString& name,QStringList *urls,KIO::filesize_t *totalSize,unsigned long *totalFiles );
   bool getDirs();   // fill the dir list
   QList<vfile>* findDir(QString name);
   arc_dir* findArcDir(QString name);

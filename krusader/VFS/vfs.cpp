@@ -44,8 +44,8 @@ vfs::vfs(QObject* panel, bool quiet): error(false),quietMode(quiet){
 		else quietMode = true;
 }
 
-long vfs::vfs_totalSize(){
-	long temp=0;
+KIO::filesize_t vfs::vfs_totalSize(){
+	KIO::filesize_t temp=0;
 	class vfile* vf=vfs_getFirstFile();
 		
 	while (vf!=0){

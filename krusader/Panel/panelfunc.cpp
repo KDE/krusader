@@ -205,6 +205,9 @@ void ListPanelFunc::openUrl( const QString& path) {
 
   QString mypath = path;
 
+  // clear the view - to avoid a repaint crash
+  panel->view->clear();  
+
   // make sure local urls are handles ok
   if ( mypath.lower().startsWith( "file:" ) )
     mypath = mypath.mid( 5 );
@@ -727,6 +730,9 @@ void ListPanelFunc::dirUp() {
     panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1) );
 	}
 
+  // clear the view - to avoid a repaint crash
+  panel->view->clear();
+  
 	if( changeVFS ){
     vfsStack.remove();
     files()->blockSignals( false );
@@ -827,8 +833,8 @@ void ListPanelFunc::pack() {
   // get the files to be packed:
   files() ->vfs_getFiles( &fileNames );
 
-  long long totalSize = 0;
-  long totalDirs = 0, totalFiles = 0;
+  KIO::filesize_t totalSize = 0;
+  unsigned long totalDirs = 0, totalFiles = 0;
   for ( QStringList::Iterator file = fileNames.begin(); file != fileNames.end(); ++file ) {
     files() ->vfs_calcSpace( ( *file ), &totalSize, &totalFiles, &totalDirs );
   }
@@ -926,7 +932,7 @@ void ListPanelFunc::calcSpace() {
 	calc.exec();
 }
 
-bool ListPanelFunc::calcSpace(QStringList & names, long long & totalSize, long & totalFiles, long & totalDirs) {
+bool ListPanelFunc::calcSpace(QStringList & names,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs) {
 	KrCalcSpaceDialog calc(krApp, files(), names, true);
 	calc.exec();
 	totalSize = calc.getTotalSize();
@@ -936,6 +942,9 @@ bool ListPanelFunc::calcSpace(QStringList & names, long long & totalSize, long &
 }
 
 void ListPanelFunc::FTPDisconnect() {
+  // clear the view - to avoid a repaint crash
+  panel->view->clear();
+
   // you can disconnect only if connected !
   if ( files() ->vfs_getType() == "ftp" ) {
     vfsStack.remove();
@@ -1005,6 +1014,8 @@ void ListPanelFunc::refreshActions() {
 }
 
 ListPanelFunc::~ListPanelFunc() {
+  // clear the view - to avoid a repaint crash
+  panel->view->clear();
   while ( vfsStack.remove() )
     ; // delete all vfs objects
 }

@@ -37,6 +37,7 @@
 #include <sys/types.h>
 #include <qdict.h>
 #include <qintdict.h>
+#include <kio/global.h>
 
 #define NO_PERM      0
 #define UNKNOWN_PERM 1
@@ -72,7 +73,7 @@ public:
   static bool fileExist(QString Path, QString name);
 
 	static QString mode2QString(mode_t m);
-  static QString parseSize(unsigned long val);
+  static QString parseSize(KIO::filesize_t val);
 	static QString date2qstring(QString date);
 	static time_t  QString2time(QString date);
 

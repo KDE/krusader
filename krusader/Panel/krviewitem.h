@@ -31,6 +31,7 @@
 #define KRVIEWITEM_H
 
 #include <sys/types.h>
+#include <kio/global.h>
 
 class QString;
 class QPixmap;
@@ -42,7 +43,7 @@ public:
   virtual QString name() const = 0;
   virtual bool isDir() const = 0;
   virtual bool isExecutable() const = 0;
-  virtual unsigned long size() const = 0;
+  virtual KIO::filesize_t size() const = 0;
   virtual QString dateTime() const = 0;
   virtual time_t getTime_t() const = 0;
   virtual QString mime() const = 0;

@@ -260,13 +260,14 @@ static QString round(int i) {
    return t;
 }
 
-QString KRpermHandler::parseSize(unsigned long val){
-  QString temp,size;
-  temp.sprintf("%lu",val);
+QString KRpermHandler::parseSize(KIO::filesize_t val){
+  char buf[25];
+  sprintf(buf,"%llu",val);
+  QString temp(buf); 
   if(temp.length() <=3 ) return temp+"  ";
   unsigned int i = temp.length()%3;
   if (i==0) i=3;
-  size = temp.left(i)+",";
+  QString size = temp.left(i)+",";
   while(i+3 < temp.length()){
     size = size + temp.mid(i,3)+",";
     i+=3;

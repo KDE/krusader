@@ -58,20 +58,20 @@ template <class X> void kr_swap(X &a, X &b){
 }
 
 ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
-	// set the writable attribute
-	isWritable = true;
-	
+  // set the writable attribute
+  isWritable = true;
+
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
   vfs_filesP2 = &vfs_files2;
   vfs_files2.setAutoDelete(true);
   notConnected = true;
-		
-	// breakdown the url;
-	/* FIXME: untill KDE fixes the bug we have to check for
+
+  // breakdown the url;
+  /* FIXME: untill KDE fixes the bug we have to check for
      passwords and users with @ in them... */
   bool bugfix = origin.find("@") != origin.findRev("@");
-	if(bugfix){
+  if(bugfix){
     if(origin.find(":") != origin.findRev(":")){
       int passStart = origin.find( ":",origin.find(":")+1 )+1;
       int passLen = origin.findRev("@")-passStart;
@@ -87,24 +87,24 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
     }
   }
   KURL url = origin;
-	port = url.port();
-	if(loginName.isEmpty()) loginName = url.user();
-	if(password.isEmpty())  password  = url.pass();
-	if(bugfix){
-		url.setPass(password);  
+  port = url.port();
+  if(loginName.isEmpty()) loginName = url.user();
+  if(password.isEmpty())  password  = url.pass();
+  if(bugfix){
+   url.setPass(password);  
     url.setUser(loginName);
-	}
+  }
 
-	vfs_type = "ftp";
+  vfs_type = "ftp";
   vfs_origin = url.prettyURL(-1);
 
-  QTimer::singleShot(500,this,SLOT(vfs_refresh()));
-  //vfs_refresh(vfs_origin);	
+  //QTimer::singleShot(500,this,SLOT(vfs_refresh()));
+  vfs_refresh(vfs_origin);
 }
 
 void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
-	
-	if(vfs_origin.right(1) == "/" ) vfs_origin = vfs_origin.left(vfs_origin.length()-1);
+
+  if(vfs_origin.right(1) == "/" ) vfs_origin = vfs_origin.left(vfs_origin.length()-1);
 
   KIO::UDSEntryListConstIterator it = entries.begin();
   KIO::UDSEntryListConstIterator end = entries.end();
@@ -112,18 +112,18 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
   // as long as u can find files - add them to the vfs
   for ( ; it != end; ++it ){
     KFileItem kfi(*it,vfs_url,false,true);
-  	/*ftp_*/vfile *temp;
-		
+    vfile *temp;
+
     // get file statistics
-		QString name=kfi.text();
+    QString name=kfi.text();
     // ignore un-needed entries
-		if (name.isEmpty() || name=="." || name == ".." ) continue;
-	
-		unsigned long size = kfi.size();
+    if (name.isEmpty() || name=="." || name == ".." ) continue;
+
+    KIO::filesize_t size = kfi.size();
     time_t mtime = kfi.time(KIO::UDS_MODIFICATION_TIME);
-		bool symLink = kfi.isLink();
-		mode_t mode = kfi.mode() | kfi.permissions();
-  	QString perm = KRpermHandler::mode2QString(mode);
+    bool symLink = kfi.isLink();
+    mode_t mode = kfi.mode() | kfi.permissions();
+    QString perm = KRpermHandler::mode2QString(mode);
     // set the mimetype
     QString mime = kfi.mimetype(); 
     QString symDest = "";
@@ -199,14 +199,8 @@ bool ftp_vfs::vfs_refresh(QString origin) {
   vfs_url_backup = vfs_url;
   vfs_url = url;
 
-  // The following is needed because the new bookmark system
-  // is using KIO which in some mysterious way is causing a crash...
-  while( qApp->hasPendingEvents() ) qApp->processEvents();
-  while( qApp->hasPendingEvents() ) qApp->processEvents();
-  while( qApp->hasPendingEvents() ) qApp->processEvents();
-		
-	// Open the directory	marked by origin
-	krConfig->setGroup("Look&Feel");
+  // Open the directory	marked by origin
+  krConfig->setGroup("Look&Feel");
   KIO::Job *job = new KIO::ListJob(url,false,false,QString::null,
                       krConfig->readBoolEntry("Show Hidden",_ShowHidden));
   connect(job,SIGNAL(entries(KIO::Job*,const KIO::UDSEntryList&)),

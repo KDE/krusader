@@ -70,14 +70,14 @@ public:
 	// rename file
 	virtual void vfs_rename(QString fileName,QString newName)=0;
 	// calculate space
-	virtual void vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs, bool * stop = 0)=0;
+	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0)=0;
 	// return the working dir
 	virtual QString vfs_workingDir()=0;
 	virtual void blockSignals(bool block){ QObject::blockSignals(block); }	
 	// check the write permission
   virtual bool vfs_isWritable() { return isWritable; }
 
-	long vfs_totalSize();             // the total size of FILES in the vfs,
+	KIO::filesize_t vfs_totalSize();             // the total size of FILES in the vfs,
 	vfile* vfs_search(QString name);  // return vfile* or 0 if not found
 	
 	inline   int  vfs_noOfFiles() 	 	{ return vfs_filesP->count(); 	}

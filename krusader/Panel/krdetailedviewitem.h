@@ -50,7 +50,7 @@ public:
   QString description() const; // for status bar
   bool isDir() const { return (_vf ? _vf->vfile_isDir() : false); }
   bool isExecutable() const { return (_vf ? _vf->vfile_isExecutable() : false); }
-  unsigned long size() const { return (_vf ? _vf->vfile_getSize() : 0); }
+  KIO::filesize_t size() const { return (_vf ? _vf->vfile_getSize() : 0); }
   QString dateTime() const;
   time_t getTime_t() const { return _vf->vfile_getTime_t(); }
   QString mime() const { return (_vf ? _vf->vfile_getMime() : QString::null); }
@@ -78,7 +78,7 @@ protected:
 
 private:
   // used INTERNALLY when calculation of dir size changes the displayed size of the item
-  inline void setSize(unsigned long size) { _vf->vfile_setSize(size); }
+  inline void setSize(KIO::filesize_t size) { _vf->vfile_setSize(size); }
 
   vfile *_vf;
   KrDetailedView *_view;
