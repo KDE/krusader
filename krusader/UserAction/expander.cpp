@@ -119,7 +119,7 @@ exp_Filter::exp_Filter() {
 QString exp_Filter::expFunc( const ListPanel* panel, const QStringList&, const bool& ) {
    NEED_PANEL
    
-   return panel->view->filterMask();
+   return panel->view->filterMask().filter();
 }
 
 exp_Current::exp_Current() {
@@ -233,18 +233,18 @@ exp_Select::exp_Select() {
 QString exp_Select::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& ) {
    NEED_PANEL
    
-   QString mask;
+   KRQuery mask;
     if ( parameter.count() <= 0 || parameter[0].isEmpty() )
-       mask = "*";
+       mask = KRQuery( "*" );
     else
-       mask = parameter[0];
+       mask = KRQuery( parameter[0] );
 
     if ( parameter[1].lower() == "add")
        panel->view->select( mask );
     else if ( parameter[1].lower() == "remove")
        panel->view->unselect( mask );
     else { // parameter[1].lower() == "set" or isEmpty() or whatever
-       panel->view->unselect( "*" );
+       panel->view->unselect( KRQuery( "*" ) );
        panel->view->select( mask );
     }
 

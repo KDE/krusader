@@ -34,6 +34,7 @@
 #include "../krusader.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
+#include "../VFS/krquery.h"
 
 #include <kdebug.h>
 
@@ -55,7 +56,7 @@ public:
 	bool displayIcons;	// true if icons should be displayed in this view
 	SortSpec sortMode;	// sort specifications
 	FilterSpec filter;	// what items to show (all, custom, exec)
-  	QString filterMask;	// what items to show (*.cpp, *.h etc)
+	KRQuery filterMask;	// what items to show (*.cpp, *.h etc)
 	bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
 };
 
@@ -135,9 +136,9 @@ public:
   virtual void getSelectedItems(QStringList* names);
   virtual void getItemsByMask(QString mask, QStringList* names, bool dirs = true, bool files = true);
   virtual void getSelectedKrViewItems(KrViewItemList *items);
-  virtual void selectAllIncludingDirs() { changeSelection("*", true, true); }
-  virtual void select(const QString& filter = "*") { changeSelection(filter, true); }
-  virtual void unselect(const QString& filter = "*") { changeSelection(filter, false); }
+  virtual void selectAllIncludingDirs() { changeSelection( KRQuery( "*" ), true, true); }
+  virtual void select( const KRQuery& filter = KRQuery( "*" ) ) { changeSelection(filter, true); }
+  virtual void unselect(const KRQuery& filter = KRQuery( "*" ) ) { changeSelection(filter, false); }
   virtual void invertSelection();
   virtual QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
   virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
@@ -153,8 +154,8 @@ public:
   virtual KrViewProperties::SortSpec sortMode() const { return _properties->sortMode; }
   virtual void setFilter(KrViewProperties::FilterSpec filter) { _properties->filter = filter; }
   virtual KrViewProperties::FilterSpec filter() const { return _properties->filter; }
-  virtual void setFilterMask(QString mask) { _properties->filterMask = mask; }
-  virtual QString filterMask() const { return _properties->filterMask; }
+  virtual void setFilterMask( KRQuery mask ) { _properties->filterMask = mask; }
+  virtual KRQuery filterMask() const { return _properties->filterMask; }
   inline QWidget *widget() { return _widget; }
   inline void setWidget(QWidget *w) { _widget = w; }
 
@@ -163,7 +164,7 @@ public:
 protected:
   KrView(KConfig *cfg = krConfig);
   static QPixmap getIcon(vfile *vf);
-  void changeSelection(const QString& filter, bool select, bool includeDirs = false);
+  void changeSelection(const KRQuery& filter, bool select, bool includeDirs = false);
 
 
 protected:

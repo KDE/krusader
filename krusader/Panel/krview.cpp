@@ -127,7 +127,7 @@ QString KrView::statistics() {
    return tmp;
 }
 
-void KrView::changeSelection( const QString& filter, bool select, bool includeDirs ) {
+void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDirs ) {
    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
    bool markDirs = _config->readBoolEntry( "Mark Dirs", _MarkDirs ) || includeDirs;
 
@@ -135,7 +135,11 @@ void KrView::changeSelection( const QString& filter, bool select, bool includeDi
    for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ) {
       if ( it->name() == ".." ) continue;
       if ( it->isDir() && !markDirs ) continue;
-      if ( QDir::match( filter, it->name() ) ) {
+      
+      vfile * file = it->getVfile();
+      if( file == 0 ) continue;
+      
+      if( filter.match( file ) ) {
          // we're increasing/decreasing the number of selected files
          if ( select ) {
             if ( !it->isSelected() ) {

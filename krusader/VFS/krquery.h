@@ -35,14 +35,20 @@
 #include <kurl.h>
 #include "vfile.h"
 
+
+
 class KRQuery {
 public: 
   KRQuery();
+  KRQuery( QString name );
   ~KRQuery() {};
 
-  bool match( vfile *file );     // checks if the given vfile object matches the conditions
-  void normalize();              // make sure KRSearchMod can use the data
+  bool match( vfile *file ) const;// checks if the given vfile object matches the conditions
+  bool match( QString name ) const;// matching the filename only
+  void normalize();               // make sure KRSearchMod can use the data
   void setFilter( QString text ); // sets the text for filtering
+  QString filter() { return origFilter; } // returns the current filter mask
+  bool isNull() {return bNull;};          
 
   QStringList matches;           // what to search
   QStringList excludes;          // what to exclude
@@ -53,6 +59,7 @@ public:
   bool inArchive;                // if true- search in archive.
   bool recurse;                  // if true recurse ob sub-dirs...
   bool followLinks;
+  bool bNull;                   // flag if the query is null
   
   KURL::List whereToSearch;     // directorys to search
   KURL::List whereNotToSearch;  // directorys NOT to search
@@ -76,10 +83,11 @@ public:
   QStringList customType;
 
 private:
-  bool checkPerm(QString perm);
-  bool checkType(QString mime);
-  bool fileMatch(QString name);
-  bool containsContent( QString file );
+  bool checkPerm(QString perm) const;
+  bool checkType(QString mime) const;
+  bool containsContent( QString file ) const;
+  
+  QString origFilter;
 };
 
 #endif

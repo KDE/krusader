@@ -1538,8 +1538,11 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
     case SELECT_ITEMS_ID:
     case DESELECT_ITEMS_ID:
       {
-        QString mask = KRSpWidgets::getMask( result == SELECT_ITEMS_ID ? i18n("Select items") :
-                                             i18n( "Deselect items" ) );
+        KRQuery query = KRSpWidgets::getMask( ( result == SELECT_ITEMS_ID ? i18n("Select items") :
+                                             i18n( "Deselect items" ) ), true );
+        if( query.isNull() )
+          break;
+          
         unsigned              ndx = 0;
         SynchronizerFileItem  *currentItem;
 
@@ -1550,8 +1553,8 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
           if( !viewItem || !viewItem->isVisible() )
             continue;
 
-          if( QRegExp(mask,true,true).exactMatch( currentItem->leftName() ) ||
-              QRegExp(mask,true,true).exactMatch( currentItem->rightName() ) )
+          if( query.match( currentItem->leftName() ) ||
+              query.match( currentItem->rightName() ) )
             syncList->setSelected( viewItem, result == SELECT_ITEMS_ID );
         }
       }

@@ -364,30 +364,32 @@ void ListPanel::slotFocusAndCDRoot() {
    func->openUrl( QString( "/" ), QString::null );
 }
 
-void ListPanel::select(QString mask, bool select) {
-	if (mask != QString::null) {
-		if ( select )
-         view->select( mask );
+void ListPanel::select( KRQuery query, bool select) {
+   if (query.isNull() != 0) {
+      if ( select )
+         view->select( query );
       else
-         view->unselect( mask );
-	}
+         view->unselect( query );
+   }
 }
 
 void ListPanel::select( bool select, bool all ) {
    if ( all )
+   {
       if ( select )
-         view->select( QString( "*" ) );
+         view->select( KRQuery( "*" ) );
       else
-         view->unselect( QString( "*" ) );
+         view->unselect( KRQuery( "*" ) );
+   }
    else {
-      QString answer = KRSpWidgets::getMask( ( select ? i18n( " Select Files " ) : i18n( " Unselect Files " ) ) );
+      KRQuery query = KRSpWidgets::getMask( ( select ? i18n( " Select Files " ) : i18n( " Unselect Files " ) ) );
       // if the user canceled - quit
-      if ( answer == QString::null )
+      if ( query.isNull() )
          return ;
       if ( select )
-         view->select( answer );
+         view->select( query );
       else
-         view->unselect( answer );
+         view->unselect( query );
    }
 }
 
@@ -1035,8 +1037,8 @@ void ListPanel::setFilter( KrViewProperties::FilterSpec f ) {
          case KrViewProperties::Custom :
          filterMask = KRSpWidgets::getMask( i18n( " Select Files " ) );
          // if the user canceled - quit
-         if ( filterMask == QString::null )
-            return ;
+         if ( filterMask.isNull() )
+            return;
          view->setFilterMask( filterMask );
          break;
          default:

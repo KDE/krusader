@@ -46,10 +46,21 @@
 KRQuery::KRQuery(): matchesCaseSensitive(true),
                     contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false),
-                    inArchive(false),recurse(true),followLinks(true),
+                    inArchive(false),recurse(true),followLinks(true),bNull( true ),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString::null),group(QString::null),
                     perm(QString::null),type(QString::null){}
+
+// set the defaults
+KRQuery::KRQuery( QString name ): matchesCaseSensitive(true),
+                    contain(QString::null),containCaseSensetive(true),
+                    containWholeWord(false),
+                    inArchive(false),recurse(true),followLinks(true),bNull( true ),
+                    minSize(0),maxSize(0),newerThen(0),olderThen(0),
+                    owner(QString::null),group(QString::null),
+                    perm(QString::null),type(QString::null) {
+  setFilter( name );
+}
 
 void KRQuery::normalize(){
   // remove the trailing "/" from the directories lists
@@ -57,14 +68,14 @@ void KRQuery::normalize(){
     (*it).setPath( (*it).path( -1 ));
 }
 
-bool KRQuery::checkPerm( QString filePerm )
+bool KRQuery::checkPerm( QString filePerm ) const
 {
   for ( int i = 0; i < 9; ++i )
     if ( perm[ i ] != '?' && perm[ i ] != filePerm[ i + 1 ] ) return false;
   return true;
 }
 
-bool KRQuery::checkType( QString mime )
+bool KRQuery::checkType( QString mime ) const
 {
   if ( type == mime ) return true;
   if ( type == i18n( "Archives" ) ) return KRarcHandler::arcSupported( mime.right( 4 ) );
@@ -77,7 +88,7 @@ bool KRQuery::checkType( QString mime )
   return false;
 }
 
-bool KRQuery::fileMatch( const QString name )
+bool KRQuery::match( const QString name ) const
 {
   unsigned int len;
   for ( unsigned int i = 0; i < excludes.count(); ++i )
@@ -93,10 +104,10 @@ bool KRQuery::fileMatch( const QString name )
   return false;
 }
 
-bool KRQuery::match( vfile *vf )
+bool KRQuery::match( vfile *vf ) const
 {
   // see if the name matches
-  if ( !fileMatch( vf->vfile_getName() ) ) return false;
+  if ( !match( vf->vfile_getName() ) ) return false;
   // checking the mime
   if( !type.isEmpty() && !checkType( vf->vfile_getMime() ) ) return false;
   // check that the size fit
@@ -129,7 +140,7 @@ bool KRQuery::match( vfile *vf )
   return true;
 }
 
-bool KRQuery::containsContent( QString file )
+bool KRQuery::containsContent( QString file ) const
 {
   QFile qf( file );
 
@@ -166,6 +177,9 @@ bool KRQuery::containsContent( QString file )
 
 void KRQuery::setFilter( QString text )
 {
+  bNull = false;
+  origFilter = text;
+  
   QString matchText = text;
   QString excludeText;
   

@@ -257,7 +257,7 @@ void KrDetailedView::addItem( vfile *vf ) {
             case KrViewProperties::All :
                break;
             case KrViewProperties::Custom :
-            if ( !QDir::match( _properties->filterMask, name ) ) return ;
+            if ( !_properties->filterMask.match( vf ) ) return ;
             break;
             case KrViewProperties::Dirs:
             if ( !vf->vfile_isDir() ) return ;
@@ -351,7 +351,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
                case KrViewProperties::All :
                break;
                case KrViewProperties::Custom :
-               if ( !QDir::match( _properties->filterMask, name ) )
+               if ( _properties->filterMask.match( vf ) )
                   continue;
                break;
                case KrViewProperties::Dirs:

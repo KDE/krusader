@@ -53,7 +53,7 @@ public:
 	KrDetailedViewProperties() {
 		for ( int i = 0; i < MAX_COLUMNS; i++ ) column[i] = Unused;
 		filter = KrViewProperties::All;
-		filterMask = "*";
+		filterMask = KRQuery( "*" );
 	}
 };
 

@@ -56,6 +56,7 @@ public:
    
 	KrViewItem(vfile *vf, const KrViewProperties* properties): _vf(vf), dummyVfile(false), _viewProperties(properties) {}
    virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
+   virtual vfile* getVfile() { return _vf; }
 		
 protected:
 	vfile* _vf;			// each view item holds a pointer to a corrosponding vfile for fast access	

@@ -52,12 +52,12 @@ QStrList KRSpWidgets::maskList;
 KRSpWidgets::KRSpWidgets(){
 }
 
-QString KRSpWidgets::getMask(QString caption) {
+KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly ) {
   KRMaskChoiceSub *p=new KRMaskChoiceSub();
   p->setCaption(caption);
   p->exec();
-  if (p->selection->currentText()=="") return QString::null;
-    else return p->selection->currentText();
+  if (p->selection->currentText()=="") return KRQuery();
+  else return KRQuery( p->selection->currentText() );
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////

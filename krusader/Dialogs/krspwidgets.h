@@ -31,6 +31,7 @@
 #include <qstrlist.h>
 #include "krmaskchoice.h"
 #include "newftpgui.h"
+#include "../VFS/krquery.h"
 
 #ifndef KRSPWIDGETS_H
 #define KRSPWIDGETS_H
@@ -45,7 +46,7 @@ class KRSpWidgets {
 public: 
 	KRSpWidgets();
 
-  static QString getMask(QString caption); // get file-mask for (un)selecting files
+  static KRQuery getMask( QString caption, bool nameOnly=false ); // get file-mask for (un)selecting files
   static QString newFTP();
 
 private:
