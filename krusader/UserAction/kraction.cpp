@@ -90,23 +90,27 @@ void KrActionProc::start( QString cmdLine ) {
 
 void KrActionProc::start( QStringList cmdLineList ) {
    _proc->clearArguments();
-   bool result = true;
+   QString cmd;
    
-   if ( cmdLineList.count() > 1 )
-      KMessageBox::sorry( 0, "Support for more then one command is currently broken! I'll try to execute these commands anyway:\n" + cmdLineList.join("\n") );
-
+   if ( _properties->execType() == UserActionProperties::Terminal && cmdLineList.count() > 1)
+      KMessageBox::sorry( 0, "Support for more then one command don't work in a terminal. Only the first is executed in the terminal" );
+   
    if ( _properties->execType() != UserActionProperties::CollectOutput ) {
+      //TODO option to run them in paralell (not available for: collect output)
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
-         _proc->clearArguments();
-         // run in terminal
-         if ( _properties->execType() == UserActionProperties::Terminal ) {
-            ( *_proc ) << "konsole" << "--noclose" << "-e" << *it;	// FIXME read terminal-setting from config
-         } else { // no terminal, no output collection
-            ( *_proc ) << *it;
-         }
-         result = ( result && _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) ) );
-//          while ( _proc->isRunning() );   // FIXME: replace this with a nice proc-queue
-      } //for
+         if ( ! cmd.isEmpty() )
+            cmd += " ; ";	//TODO make this separator configurable (users may want && or || for spec. actions)
+         cmd += *it;
+      }
+      // run in terminal
+      if ( _properties->execType() == UserActionProperties::Terminal ) {
+         // TODO read terminal-setting from config
+//          ( *_proc ) << "konsole" << "--noclose" << "-e" << "\""+cmd+"\"";
+         ( *_proc ) << "konsole" << "--noclose" << "-e" << cmd;
+      } else { // no terminal, no output collection
+         ( *_proc ) << cmd;
+      }
+     _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
    else { // collect output
       _output = new KrActionProcDlg( *_properties->title(), _properties->separateStderr() );
@@ -116,12 +120,15 @@ void KrActionProc::start( QStringList cmdLineList ) {
       connect( _output, SIGNAL( cancelClicked() ), this, SLOT( kill() ) );
       _output->show();
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
-         //TODO: read header fom config and place it on top of each command
-         _proc->clearArguments();
-         ( *_proc ) << *it;
-         result = ( result && _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) ) );
-//          while ( _proc->isRunning() );   // FIXME: replace this with a nice proc-queue
-      } //for
+         if ( ! cmd.isEmpty() )
+            cmd += " ; ";	//TODO make this separator configurable (users may want && or ||)
+         //TODO: read header fom config or action-properties and place it on top of each command
+         if ( cmdLineList.count() > 1 )
+            cmd += "echo --------------------------------------- ; ";
+         cmd += *it;
+      }
+      ( *_proc ) << cmd;
+      _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
 
 }
