@@ -255,6 +255,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 	}
 
 	if (!inSecondaryMenu) {
+		menu->insertSeparator();
 		menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
 			i18n("Bookmark Current"), BookmarkCurrent);
 		menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
@@ -263,7 +264,6 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 		// make sure the menu is connected to us
 		disconnect(menu, SIGNAL(activated(int)), 0, 0);
 		connect(menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
-		menu->insertSeparator();
 	}
 }
 
