@@ -197,6 +197,9 @@ bool KMountMan::createFilesystems() {
 	    system->setName(temp[0][j]);
   	  system->setType(temp[1][j]);
    	  system->setMntPoint(temp[2][j]);
+      // remove trailing spaces (since mtab removes them)
+      if (system->mntPoint()[system->mntPoint().length()-1] == '/' && system->mntPoint() != "/") // also skip root!
+        system->setMntPoint(system->mntPoint().left(system->mntPoint().length()-1));
   	  system->supermount=(temp[4][j]=="supermount" ? true : false);
   	  system->options=temp[3][j];
   	  filesystems.append(system);
@@ -207,7 +210,7 @@ bool KMountMan::createFilesystems() {
   	  if (!system->supermount) mountPoints+=system->mntPoint();
     }
   }
-	kdDebug() << "Mt.Man: found the followning:\n" << forDebugOnly << "Trying DF..." << endl;
+	kdDebug() << "Mt.Man: found the following:\n" << forDebugOnly << "Trying DF..." << endl;
 
 #ifdef BSD
   // FreeBSD problem: df does not retrive fs type.
