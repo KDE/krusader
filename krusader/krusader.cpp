@@ -463,7 +463,7 @@ void Krusader::refreshView() {
 }
 
 bool Krusader::queryClose() {
-  bool quit;
+  bool quit = true;
   krConfig->setGroup( "Look&Feel" );
   if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {
     switch ( KMessageBox::warningYesNo( this,
