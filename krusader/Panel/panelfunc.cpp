@@ -121,15 +121,19 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
       vfsStack.remove();
     // now we have a normal vfs- refresh it.
     files() ->blockSignals( false );
-    while ( !KRpermHandler::dirExist( QDir( mypath
-                                          ).canonicalPath() ) ) {
-      panel->view->setNameToMakeCurrent( mypath.mid(
-                                           mypath.findRev( '/' )+1 ) );
+
+    if( mypath == "~" ) mypath = QDir::homeDirPath();
+    if( !mypath.startsWith("/") ) mypath = files()->vfs_getOrigin()+"/"+mypath;
+
+    mypath = QDir::cleanDirPath(mypath);
+
+    while ( !KRpermHandler::dirExist(mypath) ) {
+      panel->view->setNameToMakeCurrent( mypath.mid(mypath.findRev('/')+1 ) );
       mypath = mypath.left( mypath.findRev( '/' ) );
       if ( mypath.isEmpty() )
         mypath = "/";
     }
-    mypath = QDir( mypath ).canonicalPath();
+
     chdir( mypath.latin1() );
     refresh( mypath );
   }
