@@ -53,10 +53,6 @@ public:
 	
 protected slots:
    /**
-    * this generates a name for an action or checks if the current name is valid (==unique)
-    */
-   void proposeName();
-   /**
     * executes the AddPlaceholderPopup
     */
    void addPlaceholder();

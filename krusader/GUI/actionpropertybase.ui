@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>405</width>
-            <height>418</height>
+            <height>414</height>
         </rect>
     </property>
     <property name="caption">
@@ -150,42 +150,13 @@
                                     <property name="name">
                                         <cstring>unnamed</cstring>
                                     </property>
-                                    <widget class="QLayoutWidget">
+                                    <widget class="KLineEdit">
                                         <property name="name">
-                                            <cstring>layout1</cstring>
+                                            <cstring>leDistinctName</cstring>
                                         </property>
-                                        <hbox>
-                                            <property name="name">
-                                                <cstring>unnamed</cstring>
-                                            </property>
-                                            <widget class="KLineEdit">
-                                                <property name="name">
-                                                    <cstring>leDistinctName</cstring>
-                                                </property>
-                                                <property name="toolTip" stdset="0">
-                                                    <string>An unique name for the action</string>
-                                                </property>
-                                            </widget>
-                                            <widget class="QPushButton">
-                                                <property name="name">
-                                                    <cstring>ButtonProposeName</cstring>
-                                                </property>
-                                                <property name="sizePolicy">
-                                                    <sizepolicy>
-                                                        <hsizetype>1</hsizetype>
-                                                        <vsizetype>0</vsizetype>
-                                                        <horstretch>0</horstretch>
-                                                        <verstretch>0</verstretch>
-                                                    </sizepolicy>
-                                                </property>
-                                                <property name="text">
-                                                    <string>propose</string>
-                                                </property>
-                                                <property name="toolTip" stdset="0">
-                                                    <string>Propose a unique name</string>
-                                                </property>
-                                            </widget>
-                                        </hbox>
+                                        <property name="toolTip" stdset="0">
+                                            <string>An unique name for the action</string>
+                                        </property>
                                     </widget>
                                     <widget class="KComboBox">
                                         <property name="name">

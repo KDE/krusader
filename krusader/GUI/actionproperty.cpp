@@ -62,7 +62,6 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, UserActionPro
    connect( ButtonNewFile, SIGNAL( clicked() ), this, SLOT( newFile() ) );
    connect( ButtonEditFile, SIGNAL( clicked() ), this, SLOT( editFile() ) );
    connect( ButtonRemoveFile, SIGNAL( clicked() ), this, SLOT( removeFile() ) );
-   connect( ButtonProposeName, SIGNAL( clicked() ), this, SLOT( proposeName() ) );
    
    //these are used to keep the properties-structure up to date
    connect( leDistinctName, SIGNAL( textChanged(const QString&) ), this, SLOT( changedName() ) );
@@ -171,22 +170,6 @@ bool ActionProperty::checkName( const QString& name ) {
     return false;
   else
     return true;
-}
-
-void ActionProperty::proposeName() {
-  if ( ! leDistinctName->text().simplifyWhiteSpace().isEmpty() ) {
-    //check if given name is unique
-    if ( ! checkName( leDistinctName->text() ) ) {
-      KMessageBox::error( this, i18n("There already is an action with this name") );
-      leDistinctName->setFocus();
-      return;
-    } else {
-      KMessageBox::information( this, i18n("The name is unique") );
-      return;
-    }
-  }
-  //TODO: propose unique name
-  KMessageBox::sorry( this, "BOFH Excuse #93:\nFeature not yet implemented" );
 }
 
 
@@ -372,12 +355,6 @@ bool ActionProperty::checkProperties() {
 
 void ActionProperty::changedName() {
   _properties->setName( leDistinctName->text().stripWhiteSpace() );
-  if ( leDistinctName->text() != "" ) {
-    ButtonProposeName->setText( i18n("Check") );
-  }
-  else {
-    ButtonProposeName->setText( i18n("Propose") );
-  }
 }
 void ActionProperty::changedCategory() {
   _properties->setCategory( cbCategory->currentText().stripWhiteSpace() );
