@@ -265,7 +265,7 @@ void KRslots::unmarkGroup()     { ACTIVE_PANEL->select(false,false);         }
 void KRslots::invert()          { ACTIVE_PANEL->invertSelection();           }
 
 void KRslots::root()            { ACTIVE_FUNC->openUrl(vfs::fromPathOrURL("/"));}
-void KRslots::refresh(const KURL& u){ ACTIVE_FUNC->openUrl(u);               }
+void KRslots::refresh(const KURL& u){ ACTIVE_FUNC->delayedOpenUrl(u);        }
 void KRslots::home()            { ACTIVE_FUNC->openUrl(QDir::homeDirPath()); }
 void KRslots::refresh()         { ACTIVE_FUNC->refresh();                    }
 void KRslots::properties()      { ACTIVE_FUNC->properties();                 }
