@@ -26,22 +26,29 @@ Virtual VFS.
   but more a container for URL's from different file system.
   just perfect for displaying search results and so on...
   Action you perform on the files in this VFS are performed on the 'real' files.
-  you don't just delete files from the VFS - you delete them from your hard drive.
+  you don't just delete files from the VFS - you delete them from your hard
+  drive.
   limitations:: you can't create directories inside a virtual VFS.
 
-Primitive scripting support. condition: KJSEmbed is installed (package: KDEbindings)
+Primitive scripting support.
+condition: KJSEmbed is installed (package: KDEbindings)
   Ctrl+Alt+J opens the JavaScript-console. There you can play around:
-  try 'Krusader.setCaption("Hey Ho, Let's go!");', "Krusader.children();", "Krusader.child("help").slots();"
+  try 'Krusader.setCaption("Hey Ho, Let's go!");', "Krusader.children();",
+  "Krusader.child("help").slots();"
   and "Krusader.child("help").show();"....
-  In addition a new placeholder for the useraction, %_Script(path/to/script.js)% executes an external file.
+  In addition a new placeholder for the useraction,
+  %_Script(path/to/script.js)% executes an external file.
   If the path is relative the file will be read from <KDE-app-data>/krusader/js/
-  If a UserAction should execute the return of a script, set the second parameter of %_Script()% to "yes".
+  If a UserAction should execute the return of a script, set the second
+  parameter of %_Script()% to "yes".
   In this case the Variable 'cmd' will be read.
   Warning: very alpha!!
 
 krusader has now a new toolbar: actions toolbar. you can show/hide it using
-the view menu --> show actions toolbar. useful to put actions (and later bookmarks),
-put in as a side toolbar with small icons. __you'll have to overwrite krusaderui.rc__
+the view menu --> show actions toolbar. useful to put actions (and later
+bookmarks),
+put in as a side toolbar with small icons. __you'll have to overwrite
+krusaderui.rc__
 
 color scheme can now be imported/exported. reacable in the colors page
 in konfigurator
@@ -57,19 +64,23 @@ in any other panel or tab.
 
 useraction:new placeholder %_PanelSize%
   This placeholder can change the ration between the two panels.
-  %aPanelSize("80")% makes the active panel use 80% of krusader's width (heigh in vertical-mode)
+  %aPanelSize("80")% makes the active panel use 80% of krusader's width
+  (height in vertical-mode)
   ommiting the parameter means 50%
 
 useraction: new placeholder: %_Each%
-  This placeholder splitts the commandline into a list where %_Each(...)% is replaced by one
-  list-item (all, all files, all dirs, all selected). These commands are executed one after another.
+  This placeholder splitts the commandline into a list where %_Each(...)% is
+  replaced by one
+  list-item (all, all files, all dirs, all selected). These commands are
+  executed one after another.
 
 Full viewer in the 3rd hand (thanks to illissius)
 
-Shift-DEL will delete a file and not move it to the trash as DEL does. (total commander like)
+Shift-DEL will delete a file and not move it to the trash as DEL does.
+(total commander like)
 
-Import/Export keyboard shortcuts from/to a file. want krusader to become total commander in a 
-single click? no problem!
+Import/Export keyboard shortcuts from/to a file. want krusader to become total
+commander in a single click? no problem!
 
 Mouse selection modes is back! check out the Look'N'Feel section
 
@@ -77,7 +88,8 @@ Mouse selection modes is back! check out the Look'N'Feel section
 
 The long awaited feature: Fn keys can be changed to different shortcuts
 
-Total-commander refresh: when krusader isn't focused, it is not refreshed at all.
+Total-commander refresh: when krusader isn't focused, it is not refreshed at
+all.
 
 Pressing ctrl-up arrow from the panel, jumps to the origin bar
 

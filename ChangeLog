@@ -4,23 +4,25 @@
     ADDED: PopularUrls was rewritten for a nice-like algorithm
     ADDED: Useractions in the menubar (need an update of krusaderui.rc)
     --architecture-- KChooseDir was rewritten. plz have a look at the code/email 
-    --architecture-- move listpanel from qstring to kurl. plz read email before continuing! --
+    --architecture-- move listpanel from qstring to kurl. plz read email before
+                     continuing! --
     ADDED: searcher: ask for a collection-name on feed to listbox
     ADDED: popular urls is now persistent
     ADDED: popular-urls - krusader's answer to google-ranking ;-)
-    ADDED: better completion in the origin box: constructs such as ~/src and $QTDIR/bin 
-           should work now.
+    ADDED: better completion in the origin box: constructs such as ~/src and
+           $QTDIR/bin should work now.
     ADDED: Slovenian translation (thanks Matej Urbancic)
     ADDED: bookmarks can now be placed into toolbars
     ADDED: searcher, feed to listbox (with virtual folders)
     ADDED: Primitive scripting support; Warning: very alpha!!
-    ADDED: new toolbar for actions. use view->show actions toolbar. you'll need to 
-           remove ~/.kde/share/apps/krusaderui.rc to see it
+    ADDED: new toolbar for actions. use view->show actions toolbar. you'll need
+           to remove ~/.kde/share/apps/krusaderui.rc to see it
     ADDED: refresh-in-the-background for remote urls and for archives
     ADDED: changing the coloumns by right clicking on the panel's header
     ADDED: color scheme export/import
     ADDED: an other .desktop-file with the red icon that starts krusader as root
-    ADDED: useraction: now every placeholder can cancel the execution. (-> %_ask(..)%)
+    ADDED: useraction: now every placeholder can cancel the execution.
+           (-> %_ask(..)%)
     ADDED: useraction: new placeholder: %_PanelSize(percent)%
     ADDED: Synchronizer, pause/resume button for synchronize with kget
     ADDED: disk usage (tools menu + 3rd panel)
@@ -30,7 +32,8 @@
     ADDED: shift-del deletes and doesn't move to trash
     ADDED: splitter: pre-defined 650MB and 700MB CD-R
     ADDED: more Konfigurator Tooltips    
-    ADDED: usermenu: entry to open konfigurator with the useraction-page directly
+    ADDED: usermenu: entry to open konfigurator with the useraction-page
+           directly
     ADDED: import/export of keyboard shortcuts
     ADDED: mouse selection modes are back! thanks to heiner for doing the work
     ADDED: virtual VFS (try virt:/somthing/)
@@ -39,7 +42,8 @@
     FIXED: [ 1120827 ] dir copy / move with F5 / F6 doesn't work 
     FIXED: [ 1064578 ] remote URL-s are saved in panel profiles
     FIXED: Creatring dir-trees on the fly (mkdir /foo/bar/test) is working again
-    FIXED: Syncbrowse is working again and is deactivated automaticly if no longer possible
+    FIXED: Syncbrowse is working again and is deactivated automaticly if no
+           longer possible
     FIXED: [ 1107141 ] view throws error at editing new files on remote fs
     FIXED: [ 1110507 ] cannot open rpm package if path contains space
     FIXED: command line alters its height at opening/closing the popup panel
@@ -47,11 +51,13 @@
     FIXED: [ 1076865 ] the default search text is '*'
     FIXED: [ 976598 ] krusader occasionally crashes at closing the viewer
     FIXED: [ 1033319 ] Relative paths dont get auto-completed
-    FIXED: [ 971831 ] space calculation failure if the file is bigger than 4 GByte
+    FIXED: [ 971831 ] space calculation failure if the file is bigger than
+           4 GByte
     FIXED: [ 1089450 ] synchronizer copies the date information for local files
     FIXED: [ 1109249 ] drag and drop doesn't work with international characters
     FIXED: viewer cannot open 600 files, when the owner column is enabled
-    FIXED: ftp_vfs overloads the CPU at stepping into a slow server on the network
+    FIXED: ftp_vfs overloads the CPU at stepping into a slow server on the
+           network
     FIXED: krusader's detection of old or incompatible versions
     FIXED: dirk's patch for better looking icons
     FIXED: cannot open FTP proxy bookmarks
@@ -67,6 +73,7 @@
     FIXED: All openUrl() calls are now delayed to avoid deadlocks...
 
   UPDATED: remoteman was disabled. from now on, bookmark manager only
+  UPDATED: Swedish translation (thanks Peter Landgren)
   UPDATED: Russian translation
   UPDATED: German translation
 
