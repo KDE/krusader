@@ -206,9 +206,11 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   QString itext0 = other->name();
 
   krConfig->setGroup("Look&Feel");
+	bool caseSensativeSort = false;
   if(!krConfig->readBoolEntry("Case Sensative Sort",_CaseSensativeSort)) {
     text0  = text0.lower();
     itext0 = itext0.lower();
+		caseSensativeSort = true;
   }
 
 	//kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
@@ -220,24 +222,13 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   } else if (col == _view->column(KrDetailedView::Size)) {
     	result = QString::compare(num2qstring(size()),num2qstring(other->size()));
   } else if (col == _view->column(KrDetailedView::DateTime)) {
-      /*QString dt = dateTime();
-      QString dti = other->dateTime();
-			QString  d = ((dt[6] < '7')? "20" : "19") +
-      		dt[6] + dt[7] + // year
-					dt[3] + dt[4] + // month
-					dt[0] + dt[1] + // day
-          dt[9] + dt[10]+ //	hour
-					dt[12]+ dt[13]; // minute
-			QString  id = ((dti[6] < '7')? "20" : "19")  +
-      		dti[6] + dti[7] + // year
-					dti[3] + dti[4] + // month
-					dti[0] + dti[1] + // day
-          dti[9] + dti[10]+ //	hour
-					dti[12]+ dti[13]; // minute
-    	result = QString::compare(d,id);*/
       result = (getTime_t() > other->getTime_t() ? 1 : -1);
-  } else {
-    // Joker for extention and permissions (so far)
+	} else if (col == _view->column(KrDetailedView::Extention)) {
+			QString e1 = (!caseSensativeSort ? text(col) : text(col).lower());
+			QString e2 = (!caseSensativeSort ? i->text(col) : i->text(col).lower());
+			result = QString::compare(e1, e2);
+	} else {
+    // Joker
     result = QString::compare(text(col), i->text(col));
   }
 
