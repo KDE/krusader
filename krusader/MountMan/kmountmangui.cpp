@@ -46,10 +46,15 @@ A
 #include <qgroupbox.h>
 #include <kprocess.h>
 #include <qcursor.h>
+#include <kdebug.h>
 #include <kguiitem.h>
-#include <kdiskfreesp.h>
 #include <qfileinfo.h>
 #include <sys/param.h>
+
+// use of version of it until kde fixes theirs
+#include "kdiskfreesp.h"
+
+
 
 #define MTAB	"/etc/mtab"
 
@@ -151,6 +156,11 @@ void KMountManGUI::getSpaceData() {
 
    numOfMountPoints = mounted.size();
    for ( KMountPoint::List::iterator it = mounted.begin(); it != mounted.end(); ++it ) {
+   	  // don't bother with invalid file systems
+      if (krMtMan.invalidFilesystem((*it)->mountType())) {
+			--numOfMountPoints;
+			continue;
+		}
       KDiskFreeSp *sp = KDiskFreeSp::findUsageInfo( ( *it ) ->mountPoint() );
       connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
                this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
@@ -181,7 +191,6 @@ void KMountManGUI::gettingSpaceData( const QString &mountPoint, unsigned long kB
    data.setFreeBlks( kBAvail );
    data.setName( m->mountedFrom() );
    data.setType( m->mountType() );
-
    fileSystems.append( data );
 }
 
@@ -214,7 +223,9 @@ void KMountManGUI::updateList() {
    mountList->clear();
    // this handles the mounted ones
 	for ( QValueList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it ) {
-		if (krMtMan.invalidFilesystem((*it).type())) continue;
+		if (krMtMan.invalidFilesystem((*it).type())) {
+			continue;
+		}
       addItemToMountList( mountList, *it );
    }
 	

@@ -62,7 +62,7 @@ KMountMan::KMountMan() : QObject(), Operational( false ), mountManGui( 0 ) {
 	}
 
 	// list of FS that we don't manage at all
-	invalid_fs << "swap" << "/dev/pts" << "tmpfs";
+	invalid_fs << "swap" << "/dev/pts" << "tmpfs" << "devpts" << "sysfs" << "rpc_pipefs" << "usbfs" << "binfmt_misc";
 #if defined(BSD)
 	invalid_fs << "procfs";
 #else
@@ -70,7 +70,7 @@ KMountMan::KMountMan() : QObject(), Operational( false ), mountManGui( 0 ) {
 #endif
 
 	// list of FS that we don't allow to mount/unmount
-	nonmount_fs << "supermount";
+	nonmount_fs << "supermount" << "auto";
 	{
 		KConfigGroupSaver saver(krConfig, "Advanced");
 		QStringList nonmount = QStringList::split(",", krConfig->readEntry("Nonmount Points", _NonMountPoints));

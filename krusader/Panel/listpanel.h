@@ -51,9 +51,11 @@
 #include <keditcl.h>
 #include <klineedit.h>
 #include <qguardedptr.h>
-#include <kdiskfreesp.h>
 #include "krview.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
+
+// use our version of it, until kde fixes theirs
+#include "../MountMan/kdiskfreesp.h"
 
 class vfs;
 class vfile;

@@ -5,9 +5,10 @@ INCLUDES = $(all_includes)
 
 libMountMan_a_METASOURCES = AUTO
 
-libMountMan_a_SOURCES = kmountmangui.cpp kmountman.cpp 
+libMountMan_a_SOURCES = kmountmangui.cpp kmountman.cpp kdiskfreesp.cpp
 
 
 EXTRA_DIST = kmountman.cpp kmountmangui.cpp kmountmangui.h kmountman.h 
 
 ####### kdevelop will overwrite this part!!! (end)############
+noinst_HEADERS = kdiskfreesp.h
