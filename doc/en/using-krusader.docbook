@@ -58,15 +58,15 @@
 </screenshot>
 
 <para>There isn't a lot to say about the &krusader; Main Toolbar, it's a standard &kde; toolbar
-      that can be dragged around the application or configured via a <keycap>right-click</keycap> menu.
+      that can be dragged around the application or configured via a <keycap>Right-Click</keycap> menu.
       You can decide if you want to display it (or not) every time you start &krusader;
       in the &konfigstartpg_lnk;, and you can toggle
       its use in the current session in the &viewmenu_lnk;.
       The Main Toolbar contents can be configured from the <guimenuitem>"Configure Toolbars"</guimenuitem>
 			in the &settingsmenu_lnk; or the <guilabel>"toolbar"</guilabel> tab in the &konfiglookandfeel_lnk;.
-      Since the various commands and options in &krusader; are not always available
-      (&ie;: you can't disconnect from a &FTP; session if you're not connected), the icon of an
-      inactive or unavailable action will be grayed-out and you won't be able to click it.</para>
+      Since the various commands and options in &krusader; are context dependent, some commands are not always available
+      (&ie;: you can't disconnect from an &FTP; session if you're not connected), the icon of an
+      inappropriate or inactive action will be deactivated (grayed-out) and you won't be able to click it.</para>
 
 </sect2>
 
@@ -82,13 +82,13 @@
                  </para></listitem>
       </itemizedlist>
       &krusader; is a twin-panel file manager so there are two panels, the left panel and
-      the right one, or a more important distinction, the active panel and the inactive panel.
-      The active panel is the one that will accept your mouse and keyboard input and if you choose a command
-      from the <guilabel>menu-bar</guilabel> or <guilabel>toolbar</guilabel> then usually the command will
-      act on the selected files/directories in the active panel and redirect the result to the inactive one.
+      the right panel. Or a more important logical distinction, the *active* panel and the *inactive* panel. This is the key to making the best use of Krusader!
+      The active panel is the one that will accept your mouse and keyboard input. It is the panel *acted upon*. If you choose a command
+      from the <guilabel>menu-bar</guilabel> or <guilabel>toolbar</guilabel> the command will
+      act upon the selected files/directories in the active panel and direct the result to the inactive one.  The few exceptions to this mode of operation will be detailed as necessary in the applicable sections of the documentation. 
       You can switch between panels using the &Tab; key or by clicking on the
-      <guilabel>Information or Totals labels</guilabel>.
-      As always: startup settings can be modified with the &konfigstartpg_lnk;,
+      <guilabel>Information or Totals labels</guilabel>, or by selecting any file in a panel with the mouse.
+      As always: default startup settings can be modified with the &konfigstartpg_lnk;,
       and you control the current session with the &viewmenu_lnk;.
       </para>
 
@@ -103,8 +103,8 @@
 <title>List Panel</title>
 <para>
     This is the default panel and the one you'll probably use most of the time. This panel shows the
-		contents of one directory which can be local (part of your mounted file systems), remote (accessed
-		via &FTP; or Samba) or inside an archive.
+		contents of one directory which can be local (part of your mounted file systems, either a native file or the files inside an archive) or remote files (accessed
+		via &FTP; or Samba).
     File copy/paste/cut via Clipboard between &konqueror; and &krusader;
     <keycombo action="simul">&Ctrl;<keycap>c</keycap></keycombo>,
     <keycombo action="simul">&Ctrl;<keycap>v</keycap></keycombo>,
@@ -115,11 +115,11 @@
 
 <para>The following items are available:
    <itemizedlist>
-       <listitem><para><emphasis><guibutton>Location Toolbar</guibutton></emphasis> : shows the path where the
-			 panel is currently pointing to. If the path where the panel is pointing to is too long, it will be
-			 shortened and a ".." will replace the middle part. Also when entering archives the path will
-			 consist of the "archive name:/directory/archive_filename/the directory inside the archive".
-      With a mouse click you can enter the desired path &eg;
+       <listitem><para><emphasis><guibutton>Location Toolbar</guibutton></emphasis> : shows the path the
+			 panel is currently pointing to. If the selected path is too long, it will be automatically 
+			 shortened and an ellipsis "..." will replace the omitted part of the pathname. When entering archives the path will
+			 consist of the "archive name:/directory/archive_filename/the directory inside the archive". This format makes the paths uniform and easy to read.
+      With a single mouse click you can enter the desired path &eg;
      <itemizedlist>
                  <listitem><para><userinput><replaceable>/mnt/cdrom/</replaceable></userinput></para>
                </listitem>
@@ -139,38 +139,38 @@
          </listitem>
     </itemizedlist>
      You can copy-paste an &URL; in the <guibutton>Location Toolbar</guibutton>.
-     With the right-click menu you can configure the autocomplete function.
+     With the Right-Click menu you can configure the autocomplete function.
      </para></listitem>
        <listitem><para><link linkend="panel_toolbar"><emphasis><guibutton>Panel toolbar</guibutton></emphasis></link> :
                        can have up to five <link linkend="konfig-looknfeel-ptoolbar">configurable</link> buttons.
       </para></listitem>
        <listitem><para><emphasis><guilabel>Information Label</guilabel></emphasis> : shows how much free space
-                 is physically available on the file system, the file system capacity and where it is mounted.
+                 is physically available on the file system, the file system capacity and where the path is mounted.
      If the information is not available (most often in the case of remote file system) a message will be
-     displayed with the reason instead of the information.</para></listitem>
+     displayed with the reason for unavailablity instead of the information.</para></listitem>
       <listitem><para><emphasis><guilabel>Column Headers</guilabel></emphasis> :
-                 here you can change the sort order of the files and directories.
-                 The default sort order is by <guilabel>name</guilabel>. The sort order can be changed
+                 here you can change the sort order of the files and directories as desired.
+                 The default sort order is by <guilabel>name</guilabel>. The sort order can be instantly changed
 								 by clicking on one of the <guilabel>Column Headers</guilabel>.
-                 To reverse the sort order, click a second time on the header. An arrow will apear on the right of the
-                 column header text, this will show the sort direction (Up arrow = a to z sorting,
+                 To reverse the sort order, click a second time on the Column Header. An arrow will apear on the right of the
+                 Column Header text, showing the sort direction (Up arrow = a to z sorting,
      Down arrow = z to a sorting).
-     The default <guilabel>Column Headers</guilabel> are: <guilabel>name, extension, size, and date</guilabel>.
+     The default <guilabel>Column Headers</guilabel> are: <guilabel>Name, Extension, Size, and Date</guilabel>.
      More <link linkend="konfig-looknfeel-panel">optional <guilabel>Column Headers</guilabel></link> are
-     available with the &RMB;.
-     The width <guilabel>Column Headers</guilabel> can be changed with the mouse.
+     available with the &RMB;, allowing you to customize the columns as needed.
+     The width <guilabel>Column Headers</guilabel> can be changed with the mouse by single clicking and moving the divider line to the desired width (keep the mouse button pressed).
      Both <guilabel>List Panels</guilabel> remember the sort order and column width.
      </para></listitem>
       <listitem><para><emphasis><guilabel>File List</guilabel></emphasis> : displays the files and directories
                  in the browsed directory. The &quick_search_lnk; allows you to search for
-                 files by typing their names.
+                 files by typing their names, or the first few characters of a filename.
                  Pressing &Enter; or double clicking on a file will open/execute that file.
                  You can mark/unmark files using the mouse with the <keycap>Insert</keycap> key or the
                  &markmenu_lnk;.</para></listitem>
       <listitem><para><emphasis><guilabel>Totals Label</guilabel></emphasis> :
                  marking or unmarking files will change the
                  <emphasis><guilabel>Totals Label</guilabel></emphasis> at the bottom
-                 of the panel, which displays how many files you've selected (and how much disk space they use)
+                 of the panel, which displays how many files you've selected (and how much total disk space they use)
                  as well as the total file and disk usage of the current directory (as opposed to the information label
                  that displays information for the whole file system).
      If a directory contains a lot of subdirectories, it may not possible to drop the &URL; onto the panel
@@ -180,7 +180,7 @@
     When using the "&kde; default <link linkend="konfig-color">colors</link>",
     then the marked files are shown in blue and the current file is surrounded by a fine-lined rectangle.
     By default an icon is shown according to the file type.
-    Use &konfiglookandfeel_lnk; to change the default configuration.
+    Use &konfiglookandfeel_lnk; to change the default configuration to better meet your individual needs.
 </para>
 
 <para>Some useful <guilabel>List panel</guilabel> &keybindigs_lnk;:
@@ -213,19 +213,19 @@
 <para>This is our <link linkend="krusader_screenshot">3rd Panel</link>, click on the arrow up button on the left of the <guilabel>Totals Label</guilabel> or
       <keycombo action="simul">&Alt;<keycap>Down Arrow</keycap></keycombo> to open the
       <guilabel>PopUp Panel</guilabel>.
-      This panel has several display modes who can be activated by clicking on the apropriate button
+      This panel has several display modes which can be activated by clicking on the apropriate button
 <itemizedlist>
    <listitem><para><emphasis><guilabel>Preview Panel</guilabel></emphasis> :
-             gives a preview of the file that has the focus.
+             gives a preview of the file that has the focus (currently selected file).
              </para></listitem>
 <listitem><para><emphasis><guilabel>Tree Panel</guilabel></emphasis> :
-          is used to quickly browse the local directory tree. The panel behaves like the
+          is used to quickly browse the local directory tree. This panel behaves like the
           list panel but only one directory may be selected at a time and double clicking or pressing
           &Enter; on a directory will open that directory in the active panel.
-    It supports drag and drop (copy,move,link).
+    The panels fully support drag and drop (copy,move,link) mouse actions.
           </para></listitem>
 <listitem><para><emphasis><guilabel>Quickselect Panel</guilabel></emphasis>:
-           select quickely files, &eg; <literal role="extension">*.png</literal> and click on the <guibutton>"Go"</guibutton> button.
+           quickly select files, &eg; <literal role="extension">*.png</literal> and click on the <guibutton>"Go"</guibutton> button.
      The "floppy" button stores the current selection. The "select group dialog" is also available.
               </para></listitem>
 <listitem><para><emphasis><guilabel>Viewer Panel</guilabel></emphasis> :
@@ -235,7 +235,7 @@
              views the &diskusage_lnk; of a directory.
              </para></listitem>
 </itemizedlist>
-      If needed you can resize the window &eg; to display better a picture or read the text.
+      If needed you can resize the window &eg; to better display a picture or view a file's contents.
       Click on the arrow down button to close the <guilabel>3rd Hand Panel</guilabel>.
 </para>
 
@@ -246,7 +246,7 @@
 <title>Panel Toolbar</title>
 
 <para>Both panels have a <link linkend="konfig-looknfeel-ptoolbar">configurable</link> Panel Toolbar.
-       The complete Panel Toolbar or some buttons can be made visible or hidden.
+       The complete Panel Toolbar or specific buttons can be made visible or be hidden.
 <itemizedlist>
   <listitem><para><guibutton>"OpenDir Button"</guibutton>: opens the directory browser.</para>
        </listitem>
@@ -269,7 +269,7 @@
 <sect3 id="folderhistory">
 <title>Folder History</title>
 
-<para>Both panels remember the recently visited folders.
+<para>Both panels remember recently visited folders.
       Click on the <guibutton>"Folder history"</guibutton> button ("watch" symbol) to open the Folder history list.
       Here you can quickly change to previously visited folders, the currently focused folder is checked.
       On every new start of Krusader, the history list is empty.
@@ -343,7 +343,7 @@
       session with the &viewmenu_lnk;.</para>
 
 <note><para>The actions performed by the function keys are configurable since version 1.51 and can be changed,
-       they will remain active with or without the <guilabel>FN keys bar</guilabel>.</para></note>
+       they will remain active with or without the <guilabel>FN keys bar</guilabel> displayed.</para></note>
 </sect2>
 
 <sect2 id="folder_tabs">
@@ -367,12 +367,12 @@
     <keycombo action="simul">&Alt;&Ctrl;<keycap>n</keycap></keycombo>.
     </para></listitem>
 
-    <listitem><para>To <keycap>duplicate a tab</keycap>: <keycap>right-click</keycap> on the tab and select
+    <listitem><para>To <keycap>duplicate a tab</keycap>: <keycap>Right-Click</keycap> on the tab and select
     <keycap>duplicate tab</keycap>, or use
     <keycombo action="simul">&Alt;&Ctrl;&Shift;<keycap>n</keycap></keycombo>.
     </para></listitem>
 
-    <listitem><para>To <keycap>close a tab</keycap> (except the left tab): <keycap>right-click</keycap> on the
+    <listitem><para>To <keycap>close a tab</keycap> (except the left tab): <keycap>Right-Click</keycap> on the
     tab and select <keycap>close tab</keycap>, or use the &MMB;,
     or use the Folder tabs <guibutton>"red cross"</guibutton> button, or use
     <keycombo action="simul">&Alt;&Ctrl;<keycap>c</keycap></keycombo>.
@@ -414,51 +414,50 @@
 			 just too many of them and 2) most of &krusader;'s actions are configurable in the &konfiglookandfeel_lnk;.
        We will only mention the most important keyboard shortcuts with the default configuration but keep
 			 in mind that most of the key-bindings are configurable. If you find that you use a certain command
-			 a lot and want to know what is the shortcut for this command, or you want to change this command
+			 a lot and want to know the shortcut for this command, or you want to change this command
 			 shortcut, then check out the "key-bindings" tab at the &konfiglookandfeel_lnk;.</para>
 </sect2>
 
 <sect2 id="moving-around">
-<title>Moving around</title>
-<para>By moving around we mean the transfer of the keyboard and mouse focus between the different parts
+<title>Moving Around</title>
+<para>By Moving Around we mean the transfer of the keyboard and mouse focus between the different parts
       of the &krusader; <link linkend="mainwindow">main window</link>. The focus can be in one of five places:
-      the left or right panel, the menu bar, the command line or the terminal emulator.
-      The panel that has the focus is called the active panel, an active panel will remain active
-      until the other panel receives the focus (&ie;: if the left panel was active and you clicked on
-      the command line - then the left panel remains the active panel).</para>
+      the Left or Right Panel, the Menu Bar, the Command Line or the Terminal Emulator.
+      The panel that has the focus is called the Active Panel. An Active Panel will remain active
+      until the other panel receives the focus (&ie;: if the Left Panel was active and you clicked on
+      the Command Line - then the Left Panel remains the Active Panel). You must deliberately change which panel is active.</para>
 
-<para>The most common way to transfer the focus to a specific part is to use the mouse to click on that part.
+<para>The most common way to transfer the focus to a specific panel is to use the mouse to click on that panel.
        But you should be aware of the following:
      <itemizedlist>
-       <listitem><para>Clicking on the toolbar, the FN keys bar or the status bar does not change the
+       <listitem><para>Clicking on the Toolbar, the FN keys bar or the Status Bar does *not* change the
                   focus.</para></listitem>
-       <listitem><para>The display part of the quick view panel does not accept clicks so you should click on the
+       <listitem><para>The display part of the Quick View Panel does not accept clicks so you should click on the
                   Location Toolbar of this panel if you want it to have focus.</para></listitem>
-       <listitem><para>Pushing the <guibutton>"history"</guibutton> or the
-                 <guibutton>"run in terminal"</guibutton> buttons in the command line will not transfer the focus so
-           you have click inside the input line.</para></listitem>
-       <listitem><para>The menu bar can get the focus by choosing a menu but it keeps the focus until you choose a
-                 command and then the focus returns to the previous owner.</para></listitem>
+       <listitem><para>Pushing the <guibutton>"History"</guibutton> or the
+                 <guibutton>"Run in Terminal"</guibutton> buttons in the Command Line will not transfer the focus so
+           you have click inside the Input Line.</para></listitem>
+       <listitem><para>The Menu Bar can get the focus by choosing a menu but it keeps the focus until you choose a
+                 command, and then the focus returns to the previous owner.</para></listitem>
     </itemizedlist>
 </para>
 
-<para>There are of course ways to use the keyboard to change the focus
+<para>There are, of course, ways to use the keyboard to change the focus
 <itemizedlist>
-    <listitem><para>The &Tab; key will switch panels if one of the panel has the focus, or
-                    rotate between all the commands in a menu if the menu bar is active.</para>
+    <listitem><para>The &Tab; Key will switch panels if one of the panel has the focus, or
+                    rotate between all the commands in a menu if the Menu Bar is active.</para>
         </listitem>
-    <listitem><para>The <keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo> will
-                    take you from the active panel to the command line or terminal emulator, and the
-                    <keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo> will take you
-                    back from the command line to the active panel.</para>
+    <listitem><para>The <keycombo action="simul">&Ctrl;<keycap>Down Arrow</keycap></keycombo> will
+                    take you from the Active Panel to the Command Line or Terminal Emulator, and the
+                    <keycombo action="simul">&Ctrl;<keycap>Up Arrow</keycap></keycombo> will take you
+                    back from the Command Line to the Active Panel.</para>
         </listitem>
-    <listitem><para>The &Esc; key will make the menu bar loose the focus if it has it.</para>
+    <listitem><para>The &Esc; Key will make the Menu Bar return the focus, if it has it, to the previous Active Panel.</para>
         </listitem>
-    <listitem><para>If you happen to be inside the terminal emulator, the mouse is your only way out. Well,
-    you can always type "exit" and ENTER to leave, but that closes the terminal emulator.</para>
+    <listitem><para>If you happen to be inside the Terminal Emulator, you can use the &Tab; Key, or the mouse, to navigate to an Active Panel.</para>
         </listitem>
-    <listitem><para>Pressing <keycombo action="simul">&Alt;<keycap>"underlined letter"</keycap></keycombo>
-      from the menu bar will open that menu (unless this key combination is already taken by one of
+    <listitem><para>Pressing <keycombo action="simul">&Alt;<keycap>"Underlined Letter"</keycap></keycombo>
+      from the Menu Bar will open that menu (unless this key combination is a "Reserved Key", used by one of
         &krusader;'s actions).</para>
         </listitem>
 </itemizedlist>
@@ -467,43 +466,43 @@
 
 
 <sect2 id="marking-files">
-<title>Marking Files</title>
+<title>Marking (Selecting) Files</title>
 <para>Marking is a skill you need to master in order to get the most out of &krusader;. Since you can't
-      mark files in the quick view panel, and the tree panel only lets you mark one directory at a time,
-      this paragraph mainly explains how to mark files in the list panel filelist.</para>
+      mark files in the Quick View Panel, and the Tree Panel only lets you mark one directory at a time,
+      this paragraph mainly explains how to mark files in the List Panel filelist.</para>
 
-<para>Moving the cursor is easy, and you don't need this manual to tell you that left-clicking on
-      a file will mark it, but here are some useful pointers:
-      (assuming you're using &krusader;'s mouse selection mode)
+<para>Moving the cursor is easy. Left-clicking on
+      a file or directory (referred to herein as "elements" meaning, files AND directories) will mark it. Here are some useful pointers that will make Krusader even easier to use:
+      (assuming you're using &krusader;'s Mouse Selection Mode)
 <itemizedlist>
     <listitem><para>The <keycap>SPACE</keycap> key will toggle the marking of the file under the cursor without
                       affecting the marking of other files/directories.</para>
           </listitem>
-    <listitem><para>Pressing the <keycap>SPACE</keycap> on a directory under the cursor will
+    <listitem><para>Pressing the <keycap>SPACE</keycap> on a Directory under the cursor will
                       <link linkend="calculate">calculate occupied space</link> without
                       affecting the marking of other files/directories.</para>
           </listitem>
     <listitem><para>The <keycap>Insert</keycap> key will do the same as the <keycap>SPACE</keycap> key but it
                       will go one position down to toggle the next file.</para>
           </listitem>
-    <listitem><para><keycap>Left clicking</keycap> on a file will mark and unmark all previously marked
+    <listitem><para><keycap>Left Clicking</keycap> on a file will mark, or unmark, all previously marked
                       files.</para>
           </listitem>
-    <listitem><para><keycombo action="simul">&Ctrl;<keycap>left clicking</keycap></keycombo> has
+    <listitem><para><keycombo action="simul">&Ctrl;<keycap>Left Clicking</keycap></keycombo> has
                       the same effect as the <keycap>SPACE</keycap> key.</para>
           </listitem>
-    <listitem><para><keycombo action="simul">&Shift;<keycap>left clicking</keycap></keycombo> will
-                      mark all the files between the previous cursor location and the new one.</para>
+    <listitem><para><keycombo action="simul">&Shift;<keycap>Left Clicking</keycap></keycombo> will
+                      mark all the elements between the previous cursor location and the new one.</para>
           </listitem>
     <listitem><para><keycombo action="simul">&Shift;<keycap>Home</keycap></keycombo> will
-                      clear the actual marking and marks the cusor and all elements above the cursor.</para>
+                      clear existing marks and also marks the cursor and all elements above the cursor.</para>
           </listitem>
     <listitem><para><keycombo action="simul">&Shift;<keycap>End</keycap></keycombo> will
-                      clear the actual marking and marks the cusor and all elements below the cursor.</para>
+                      clear existing marks and marks the cusor and all elements below the cursor.</para>
           </listitem>
-    <listitem><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo>
-                      or  <keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo>
-                      will toggle the mark state of the files under the cursor.</para>
+    <listitem><para><keycombo action="simul">&Ctrl;<keycap>Up Arrow</keycap></keycombo>
+                      or  <keycombo action="simul">&Ctrl;<keycap>Down Arrow</keycap></keycombo>
+                      will "toggle" the mark state of the files under the cursor to the reverse of their current state.</para>
           </listitem>
 <!--
 TODO
@@ -531,58 +530,58 @@ TODO
       <link linkend="konfig-looknfeel">3 mouse selection modes</link> , the default one should be
        familiar from other file managers and include the use of the &Shift; key or the
        &Ctrl; key to select multiple files.
-       However, notice that left clicking will mark the file under the cursor but will unmark all other files.
+       However, notice that Left-Clicking will mark the file under the cursor but will unmark all other files.
        Holding the &RMB; while dragging will mark all the files the mouse passes over (and unmarks the rest).
-       Holding down the mouse button without moving it will pop up the right-click menu.
+       Holding down the mouse button without moving it will pop up the Right-Click menu.
        </para>
 </sect2>
 
 
 <sect2 id="executing_commands">
 <title>Executing Commands</title>
-<para>There isn't a lot to say here, all you need to do is mark some files (if you don't &krusader; will treat
-       the file or directory that has the focus), choose a <link linkend="commands">command</link>
-       from the menu bar or use a keyboard shortcut (or the right click menu) and you're done.
-       See also <link linkend="executing_files">Executing files</link>.
+<para>There isn't a lot to say here, all you need to do is mark some files (if you don't &krusader; will operate on
+       the file(s) or directory(s) that have the focus), choose a <link linkend="commands">Command</link>
+       from the Menu Bar or use a Keyboard Shortcut (or the Right Click Menu) and the selected Command executes.
+       See also <link linkend="executing_files">Executing Files</link>.
       </para>
 </sect2>
 
 
 <sect2 id="quicksearch">
-<title>Quick Search</title>
+<title>Quicksearch</title>
 <!-- Thanks to Heiner Eichmann -->
 
-<para>This feature will do a quick search for the file name in the active list panel.</para>
+<para>This feature will do a quick search for the file name in the Active List Panel.</para>
 
 <para>There are two quick search methods:
  <itemizedlist>
    <listitem><para>"Old Quicksearch": type <keycap>foo</keycap> (one character) to do
-                   a quick search in the active list panel for a file beginning with "foo".</para>
+                   a quick search in the Active List Panel for a file beginning with "foo".</para>
               </listitem>
    <listitem><para>"New Quicksearch": type <keycap>foo</keycap> to open
-                   the small quick search dialog box below the active list panel.
-       Type the first characters of the wanted filename (more than one character allowed),
-       the cursor will jump to that filename (if exists), &eg; type "ab" to search for a file
+                   the small quick search dialog box below the Active List Panel.
+       Type the first few characters of the desired filename (more than one character allowed),
+       the cursor will jump to that filename (if it exists), &eg; type "ab" to search for a file
        which begins with "ab".
-                   The <keycap>Up/Down arrow</keycap> will jump to the next or previous match.
+                   The <keycap>Up/Down Arrow</keycap> will jump to the next or previous match.
                    &Esc; will close the quicksearch line.
-                   The cursor will stay on the last found quick search file.
+                   The cursor will stay on the last Quicksearch file found.
    </para></listitem>
   </itemizedlist>
 </para>
 
 <note><para>If you press <keycombo action="simul">&Alt;<keycap>foo</keycap></keycombo>,
-             the key binding will be executed. If there is no configured key binding,
+             the key binding shortcut will be executed. If there is no configured key binding,
        the remaining letter <keycap>foo</keycap> will used for the quick search.</para></note>
 
-<para>Use &konfiglookandfeel_lnk; to change the default configuration.</para>
+<para>Use &konfiglookandfeel_lnk; to change from the default configuration.</para>
 </sect2>
 
-<sect2 id="right-click">
-<title>Right click menu's</title>
+<sect2 id="Right-Click">
+<title>Right Click Menu's</title>
 
-<para>&krusader; has many right-click menus that allow you to do fast operations with the mouse.
-      This list gives an overview of the most important right-click menus, use them
+<para>&krusader; has many Right-Click Menus that allow you to do fast operations with the mouse.
+      This list gives an overview of the most important Right-Click menus, use them
       to discover the available commands.
 <itemizedlist>
     <listitem><para>&main_toolbar_lnk; (orientation, text position , icon size)</para></listitem>
@@ -595,7 +594,7 @@ TODO
     <listitem><para>&mountman_lnk; (unmount, format, ...)</para></listitem>
     <listitem><para>&syncdirs_lnk; File List</para></listitem>
     <listitem><para>&useractions_lnk;</para></listitem>
-    <listitem><para>&konqueror; right-click actions are shown in &krusader;</para></listitem>
+    <listitem><para>&konqueror; Right-Click actions are shown in &krusader;</para></listitem>
     <listitem><para>Show/hide <link linkend="list_panel">Column Headers</link></para></listitem>
     <listitem><para>...</para></listitem>
 </itemizedlist>
@@ -609,12 +608,12 @@ TODO
 
 <sect2 id="executing_files">
 <title>Executing Files</title>
-<para>You can only execute files in the active list panel.
+<para>You can only execute files in the Active List Panel.
        To <keycap>execute</keycap> a file just <keycap>double-click on it or press Enter</keycap>
        when it is under the list cursor. &krusader; will open it in the default application
        for this file type (picture, textfile, ...) or the file will be executed (script, binary, ...).
        If you want to use <keycap>another application</keycap> to open the file, then
-       <keycap>right-click</keycap> on the file and go to the "open with" sub-menu which will offer
+       <keycap>Right-Click</keycap> on the file and go to the "open with" sub-menu which will offer
        more options. &krusader; is compatible with &kde; default file-manager for all file types
        except archives that are opened inside the &krusader; panel and not in an external application.
        See <link linkend="konfig-archives">the archives page in Konfigurator</link> for details.</para>
@@ -633,8 +632,8 @@ TODO
        By <link linkend="konfig-general">default</link> it will be moved to Trash,
        <keycombo action="simul">&Shift;<keycap>Delete</keycap></keycombo> will delete the file permanently.
        A dialog will ask for your confirmation and will warn you when deleting non-empty directories.
-       Of course only operations that you are permitted to do will be performed - you will be notified otherwise.
-       If you don't wish to see the confirmation dialogs then you can disable them in the
+       Of course only operations that you are permitted to do by the Operating System will be performed - you will be notified otherwise.
+       If you don't wish to see the confirmation dialogs, you can disable them in the
        <link linkend="konfig-advanced">Konfigurator advanced tab</link>.</para>
 </sect2>
 
@@ -650,10 +649,10 @@ TODO
 <para><keycap>Rename</keycap> the file under the cursor with the <keycap>F9</keycap> key
       or with two single mouseclicks.
       <keycap>Create a new directory</keycap> with the <keycap>F7</keycap> key.
-      <keycap>Right-clicking on a regular file</keycap> will give you the <keycap>option "new symlink"</keycap>.
+      <keycap>Right-clicking on a regular file</keycap> will give you the <keycap>option "New Symlink"</keycap>.
       Clicking it will open a dialog which will prompt you to enter a symlink name.
-      That name will point to the file/directory you right-clicked on.
-      If the file you right-clicked on is a symlink you will also be presented with the
+      That name will point to the file/directory you Right-Clicked on.
+      If the file you Right-Clicked on is a symlink you will also be presented with the
       "redirect link" option that will allow you change the link's target.</para>
 </sect2>
 
@@ -686,7 +685,7 @@ TODO
                     must be extracted. The archive will be repacked when you leave it or when &krusader;
                     detects that extracted files have changed.</para>
     </listitem>
-    <listitem><para>Packing and un-packing are blocking operations that display a progress dialog.</para>
+    <listitem><para>Packing and un-packing are "blocking operations" that display a Progress Dialog.</para>
                 </listitem>
 </itemizedlist>
 </para>
@@ -717,27 +716,27 @@ TODO
 
 <sect2 id="pack-archive">
 <title>Packing Files</title>
-<para>If you want to create a new archive, then mark the files and directories you want to
+<para>If you want to create a new archive, begin by marking the elements you want to
       pack in the active panel and select <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Pack</guimenuitem></menuchoice></emphasis> or
       <keycombo action="simul">&Alt;<keycap>P</keycap></keycombo>.
-      A dialog will pop-up prompting you to select the archive name and location, you select the packer by
-      selecting one of the <link linkend="konfig-archives">supported extensions</link>.</para>
+      A dialog will pop-up, prompting you to select the archive name and location, you select the packer by
+      selecting one of the <link linkend="konfig-archives">supported filename extensions</link>.</para>
 
-<para>To add files to an existing archives, open the archive and copy the files into the archive
-      in the same way you copy files into a "normal" directory.</para>
+<para>To add files to an existing archives, open the archive in one panel and the files to be copied in the other panel, then simply copy the files into the archive
+      in exactly the same way you copy files into a "normal" directory.</para>
 </sect2>
 
 
 <sect2 id="test-archive">
 <title>Testing Archives</title>
 <para>Krusader will not handle corrupted archives since it may result in data loss.
-      If you got an error message when handling an archive or if you suspect that there something
-      wrong with the archive you should test it. To test an archive browse to the archive location,
-      mark the archive and select <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
+      If you receive an error message when opening an archive, or if you suspect that there something
+      wrong with the archive you should test it before use. To test an archive, browse (navigate) to the archive location,
+      mark the archive. Next select <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Test Archive</guimenuitem></menuchoice></emphasis> or
       <keycombo action="simul">&Alt;<keycap>E</keycap></keycombo>.
-      &krusader; will inform you if the archive passed or failed the test.</para>
+      &krusader; will test the archive file and inform you if the archive passed or failed the file integrity test.</para>
 </sect2>
 
 </sect1>
@@ -751,9 +750,9 @@ TODO
 <para>To find the difference between two files mark one in each panel and select
       <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Compare by content</guimenuitem></menuchoice></emphasis>.
-      Right now &krusader; does not include a built-in graphical difference tool but supports several
-			diff utilities: &kompare; (part of the kdebase package), &kdiff3_url; and &xxdiff_url;.
-      If you have one of those installed the selected files will be compared, otherwise you'll get
+      Right now &krusader; does not include a built-in graphical difference tool but supports two
+			excellent "diff" utilities: &kompare; (part of the kdebase package), &kdiff3_url; and &xxdiff_url;.
+      If you have one of these installed the selected files will be compared, otherwise you will receive
       an error message.</para>
 </sect2>
 
@@ -772,7 +771,7 @@ TODO
 <varlistentry>
   <term><menuchoice>
   <guimenu>Mark</guimenu>
-  <guimenuitem>Compare setup</guimenuitem>
+  <guimenuitem>Compare Setup</guimenuitem>
   </menuchoice></term>
   <listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>
    <itemizedlist>
@@ -802,24 +801,24 @@ TODO
   <itemizedlist>
     <listitem>
               <para>Pressing the <keycap>SPACE</keycap> on a directory under the cursor
-                     calculates the occupied size. Pressing <keycap>SPACE</keycap> a second time
-         will toggle the marking of the directory without affecting the selection of other
+                     instantly calculates the occupied size. Pressing <keycap>SPACE</keycap> a second time
+         will toggle the marking of the directory without affecting the selection status of other
          files/directories.</para></listitem>
     <listitem>
               <para>To calculate how much disk space is occupied by the marked files and directories
                     in the active panel select
                     <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
                     <guimenuitem>Calculate Occupied Space</guimenuitem></menuchoice></emphasis>.
-                    After a (hopefully) small delay a dialog box will be displayed with total occupied space and
+                    After a (hopefully) small delay, a dialog box will be displayed with total occupied space and
                     the number of files and directories you selected.
                     The space occupied by every selected directory will be shown as if the user just pressed
                     <keycap>SPACE</keycap> on that directories.
-                    If the active panel is browsing an archive, the numbers will apply to the unpacked
-                    size of the selected files and directories.
+                    If the active panel is browsing an archive, the numbers will apply to the *unpacked*
+                    size of the selected files and directories, not their compressed size.
                     After the calculation the marking state will toggle and the cusor will move one position down.</para>
 
               <note><para>Performing this operation on a very large filesystem (thousands of files) may
-							be time consuming. You can always cancel the calculation process by clicking the
+							be time consuming. You can always cancel the calculation process at any time by clicking on the
               <guibutton>"Cancel"</guibutton> button.</para></note></listitem>
   </itemizedlist>
 </para>
@@ -830,8 +829,8 @@ TODO
 <title>Browse Remote &FTP;/SMB Servers</title>
 <para>There are three ways to browse a remote &FTP;/SMB server:
 <itemizedlist>
-      <listitem><para>Using the built-in <link linkend="remote-man">remote-connection manger</link>.
-                Important: RemoteMan has been replaced by a new bookmark manager since &krusader; 1.25-beta1.</para>
+      <listitem><para>Using the built-in <link linkend="remote-man">Remote-Connection Manger</link>.
+                Important: RemoteMan has been replaced by a new Bookmark Manager since &krusader; 1.25-beta1.</para>
                </listitem>
       <listitem><para>Selecting <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
                 <guimenuitem>FTP New Connection</guimenuitem></menuchoice></emphasis> which will pop-up a
@@ -839,35 +838,35 @@ TODO
                 try to log you in as annonymous.</para>
                 </listitem>
       <listitem><para>You can bookmark a directory on a remote host and return to this
-                directory from the bookmark button on the top corner of your panel.</para>
+                directory from the bookmark button on the top corner of your panel just like in a web browser.</para>
                 </listitem>
 </itemizedlist>
 </para>
 
-<para>After you log to the remote server you can browse it just like your local hard drive
+<para>After you logon to a remote server you can browse it just like your local hard drive
       with the following exceptions:
       <itemizedlist>
-      <listitem><para>You can't execute files on remote servers.</para>
+      <listitem><para>You cannot execute files on remote servers.</para>
                 </listitem>
-      <listitem><para>Permissions can't always be calculated on remote servers so you might
+      <listitem><para>Permissions cannot always be calculated on remote servers (depends on server and access method) so you might
                 get a "?" on the permissions columns for some files. </para>
                 </listitem>
-  <listitem><para>Disk usage information is not availble for remote filesystems.</para>
+  <listitem><para>Disk usage information is not availble for most remote filesystems.</para>
             </listitem>
     </itemizedlist>
 </para>
 
-<para>To end the current active connection select <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+<para>To end the current Active Connection select <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
       <guimenuitem>FTP Disconnect</guimenuitem></menuchoice></emphasis>.</para>
 </sect2>
 
 
 <sect2 id="send-email">
 <title>Send Files by e-mail</title>
-<para>Select a file and use <emphasis role="bold"><menuchoice><guimenu>right-click menu</guimenu>
-      <guimenuitem>Send by email</guimenuitem></menuchoice></emphasis>.
+<para>Select a file and use <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
+      <guimenuitem>Send by Email</guimenuitem></menuchoice></emphasis>.
       Selecting this option will open a new &kmail; window with the file already
-      attached. Just fill in the subject and recipient(s) and send it.
+      attached. Just fill in the subject and recipient(s) and send it.  Of course, &kmail; must be properly configured!
 </para>
 </sect2>
 
@@ -876,8 +875,8 @@ TODO
 <title>Shred Files</title>
 <para>When you delete files in your local system they are not completely erased and the
       information stored in them can be recovered using special software and hardware tools. If
-      you want to erase a file without traces, select the file and use
-      <emphasis role="bold"><menuchoice><guimenu>right-click menu</guimenu>
+      you want to erase a file without recoverable traces, select the file and use
+      <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
       <guimenuitem>Shred</guimenuitem></menuchoice></emphasis>.
     </para>
     </sect2>
@@ -888,7 +887,7 @@ TODO
 
 <para>
     Choose
-    <emphasis role="bold"><menuchoice><guimenu>File</guimenu><guimenuitem>split</guimenuitem></menuchoice>
+    <emphasis role="bold"><menuchoice><guimenu>File</guimenu><guimenuitem>Split</guimenuitem></menuchoice>
     </emphasis>
     or
     <keycombo action="simul">&Ctrl;<keycap>P</keycap></keycombo>
@@ -902,8 +901,8 @@ TODO
       button.</para>
 
 <para>If the name of the original file is <filename>foo</filename>, then the name of the smaller files
-      will be <filename>foo.000 foo.001 foo.002</filename> &etc; There is no limit in the number of smaller files,
-      but it is recommended to limit them to a max of 1000 files. &krusader; creates a <filename>foo.crc</filename> file.
+      will be <filename>foo.000 foo.001 foo.002</filename> &etc; There is no theoretical limit in the number of smaller files,
+      but it is recommended to limit the number to a max of 1023 files. &krusader; creates a <filename>foo.crc</filename> file.
       This file contains the name, size and the crc checksum of the original file.
       It is possible to combine the file without the <filename>foo.crc</filename> file but in this
       case &krusader; can't test if the the original file was recreated correctly.</para>
@@ -953,7 +952,7 @@ TODO
       Locate is used for fast file searching. It does not search from a directory, but from a database.
       The package contains two files <command>locate</command> and <command>updatedb</command>.
       Updatedb walks through on the local filesystem and stores the file entries in the database.
-      Often <command>cron</command> will call <command>updatedb</command> every night.
+      Often <command>cron</command> will call <command>updatedb</command> every night (set with Kcron).
       Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
       <guimenuitem>Locate</guimenuitem></menuchoice></emphasis>
       or
@@ -962,14 +961,14 @@ TODO
       <command>updatedb</command>.
       </para>
 
-<para>Checkbox options
+<para>Checkbox Options
 <itemizedlist>
      <listitem><para><guilabel>"Show only the existing files"</guilabel>:
                if the database contains entries which do not exist any more (deleted, moved since the
                last <command>updatedb</command>), <command>locate</command> will not list them.
                It checks the existence of each file before listing in the results window (slow).</para>
          </listitem>
-     <listitem><para><guilabel>"Case sensitive"</guilabel>:
+     <listitem><para><guilabel>"Case Sensitive"</guilabel>:
                unchecking it will allow lower and upper case search.</para>
          </listitem>
 </itemizedlist></para>
