@@ -540,6 +540,9 @@ void KRslots::editDlg(){
 	if ( dest.isEmpty() ) return ; // the user canceled
 
     KrViewer::edit( dest, true );
+    
+    if( dest.upURL().equals( ACTIVE_PANEL->virtualPath(), true ) )
+      refresh();
 }
 
 void KRslots::duplicateTab() {
