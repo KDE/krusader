@@ -46,7 +46,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kdebug.h>
 #include <kprogress.h>
 #include <kstatusbar.h>
-#include <klineeditdlg.h>
+#include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
@@ -999,7 +999,8 @@ void KrDetailedView::renameCurrentItem() {
     } else { // do this in case inplace renaming is disabled
     // good old dialog box
     bool ok = false;
-    newName = KLineEditDlg::getText( i18n( "Rename " ) + fileName + i18n( " to:" ), fileName, &ok, krApp );
+	 newName = KInputDialog::getText(i18n("Rename"), i18n( "Rename " ) + fileName + i18n( " to:" ), 
+	 	fileName, &ok, krApp );
     // if the user canceled - quit
     if ( !ok || newName == fileName )
       return ;

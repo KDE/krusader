@@ -429,4 +429,6 @@ int Expander::findEnd( const QString& str, int start ) {
          return ++idx;
       idx++;
    }
+	// failsafe
+	return end;
 }

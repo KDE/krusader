@@ -474,7 +474,7 @@ void KRslots::configToolbar(){
 }
 
 void KRslots::configKeys(){
-  KKeyDialog::configureKeys(krApp->actionCollection(),"krusaderui.rc");
+  KKeyDialog::configure(krApp->actionCollection(), 0, true);
 }
 
 // misc
@@ -748,7 +748,7 @@ void KRslots::slotSynchronizeDirs() {
 
 void KRslots::updatePopupPanel(QListViewItem *it) {
 	// which panel to display on?
-	ListPanel *lp;
+	ListPanel *lp = 0;
 	if (ACTIVE_PANEL->popup->isHidden() &&
 		 ACTIVE_PANEL->otherPanel->popup->isHidden()) return;
 	if (ACTIVE_PANEL->popup->isShown())

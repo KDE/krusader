@@ -63,7 +63,7 @@ Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
   kgFrames.setAutoDelete(true);
   widget=new KJanusWidget(this,0,KJanusWidget::IconList);
 
-  setButtonCancelText( i18n( "Close" ) );
+  setButtonCancel(i18n("Close"));
   
   connect( widget, SIGNAL( aboutToShowPage(QWidget *) ), this, SLOT( slotPageSwitch() ) );
   connect( &restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));

@@ -34,7 +34,7 @@
 #include <ktempfile.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <klineeditdlg.h> 
+#include <kinputdialog.h> 
 // Krusader includes
 #include "krarchandler.h"
 #include "../krusader.h"
@@ -357,8 +357,8 @@ void KRarcHandler::setPassword( KProcess * proc, char *buffer, int ) {
 
   if ( password.lower().contains( "password" ) ) {
     bool ok;
-    password = KLineEditDlg::getText(
-                 "This archive is encrypted, please supply the password:",
+	 password = KInputDialog::getText(i18n("Password Needed"),
+                 i18n("This archive is encrypted, please supply the password:"),
                  "", &ok, krApp );
     if ( !ok ) password = "123"; // no way someone will use this pass
     } else password = QString::null;

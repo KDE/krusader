@@ -94,12 +94,12 @@ void PanelPopup::update( KURL url ) {
 }
 
 // called when the preview job got something for us
-void PanelPopup::view( const KFileItem* kfi, const QPixmap& pix ) {
+void PanelPopup::view( const KFileItem*, const QPixmap& pix ) {
    dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setPixmap( pix );
 }
 
 // preview job failed here...
-void PanelPopup::failedToView( const KFileItem* kfi ) {
+void PanelPopup::failedToView( const KFileItem* ) {
    dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setText( i18n( "No preview available" ) );
 }
 

@@ -726,7 +726,7 @@ void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
     emit colorChanged();
 }
 
-void KonfiguratorColorChooser::changeAdditionalColor( unsigned num, QColor color )
+void KonfiguratorColorChooser::changeAdditionalColor( unsigned int num, QColor color )
 {
   if( num < additionalColors.size() )
   {
@@ -734,7 +734,7 @@ void KonfiguratorColorChooser::changeAdditionalColor( unsigned num, QColor color
     additionalColors[num].color = color;
     changeItem( createPixmap( color ), text( 2+num ), 2+num );
 
-    if( currentItem() == 2+num )
+    if( (unsigned int)currentItem() == 2+num )
       emit colorChanged();
   }
 }

@@ -263,12 +263,15 @@ bool KRpermHandler::fileExist(QString path, QString name){
   return false;
 }
 
+#if 0
+// ===> Defined in the code but never used. commented our to drop compiler warnings
 static QString round(int i) {
    QString t;
    t.sprintf("%d",i);
    if (i<10) t=("0"+t);
    return t;
 }
+#endif
 
 QString KRpermHandler::parseSize(KIO::filesize_t val){
   char buf[25];

@@ -338,7 +338,7 @@ public:
   void          setDefaultColor( QColor dflt );
   void          setDefaultText( QString text );
   QColor        getColor();
-  void          changeAdditionalColor( unsigned num, QColor color );
+  void          changeAdditionalColor( unsigned int num, QColor color );
 
 public slots:
   virtual void  loadInitialValue();

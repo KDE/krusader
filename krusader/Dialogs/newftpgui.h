@@ -30,6 +30,7 @@ public:
     QLabel* TextLabel1;
     KComboBox* prefix;
     QLabel* TextLabel1_2_2;
+	 QLabel* TextLabel1_22;
     QLabel* TextLabel1_2;
     QLabel* TextLabel1_3;
     QSpinBox* port;

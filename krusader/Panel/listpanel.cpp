@@ -93,8 +93,8 @@ typedef QValueList<KServiceOffer> OfferList;
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
-      QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), _left( left ), quickSearch( 0 ),
-cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
+      QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), 
+		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0), _left( left ) {
 
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
@@ -500,14 +500,13 @@ void ListPanel::slotGetStats( QString path ) {
 }
 
 void ListPanel::gotStats( const QString &mountPoint, unsigned long kBSize,
-                          unsigned long kBUsed, unsigned long kBAvail ) {
+                          unsigned long,  unsigned long kBAvail ) {
 	int perc = 0;
 	if (kBSize != 0) { // make sure that if totalsize==0, then perc=0
-		perc = ((float)kBAvail / (float)kBSize)*100.0;
+		perc = (int)(((float)kBAvail / (float)kBSize)*100.0);
 	}
 	// mount point information - find it in the list first
 	KMountPoint::List lst = KMountPoint::currentMountPoints();
-   KMountPoint *m;
 	QString fstype = i18n("unknown");
    for (KMountPoint::List::iterator it = lst.begin(); it != lst.end(); ++it) {
 		if ((*it)->mountPoint() == mountPoint) {
@@ -624,7 +623,7 @@ void ListPanel::startDragging( QStringList names, QPixmap px ) {
       return ;
    }
 
-   QUriDrag *d = KURLDrag::newDrag( *urls, this );
+	KURLDrag *d = new KURLDrag(*urls, this);
    d->setPixmap( px, QPoint( -7, 0 ) );
    d->dragCopy();
 

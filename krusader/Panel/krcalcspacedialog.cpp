@@ -46,7 +46,7 @@ A
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, ListPanel * panel, const QStringList & items)
 	: m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_files(panel->func->files()),
-	  m_parent(parent), m_view(panel->view) , m_threadInUse(true), m_stop(false) {}
+	  m_view(panel->view), m_parent(parent), m_threadInUse(true), m_stop(false) {}
 
 void KrCalcSpaceDialog::CalcThread::cleanUp(){
 	if (m_threadInUse || !finished())

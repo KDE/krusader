@@ -19,9 +19,8 @@
 #include <qlabel.h>
 #include <kaction.h>
 #include <kurl.h>
-
+#include <kmessagebox.h>
 #include "kraction.h"
-
 #include "expander.h"
 #include "useractionproperties.h"
 
@@ -33,10 +32,10 @@
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
 KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ) {
 
-   setButtonOKText( "Close", i18n( "Close this window" ) );
+   setButtonOK( i18n( "Close" ) );
    enableButtonOK( false ); // disable the close button, until the process finishes
 
-   setButtonCancelText( "Kill", i18n( "Kill the running process" ) );
+   setButtonCancel( KGuiItem(i18n("Kill"), i18n( "Kill the running process" )) );
 
    QVBox *page = makeVBoxMainWidget();
    // do we need to separate stderr and stdout?
@@ -60,11 +59,11 @@ KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, K
    }
 }
 
-void KrActionProcDlg::addStderr( KProcess *proc, char *buffer, int buflen ) {
+void KrActionProcDlg::addStderr( KProcess *, char *buffer, int buflen ) {
    _stderr->append( QString::fromLatin1( buffer, buflen ) );
 }
 
-void KrActionProcDlg::addStdout( KProcess *proc, char *buffer, int buflen ) {
+void KrActionProcDlg::addStdout( KProcess *, char *buffer, int buflen ) {
    _stdout->append( QString::fromLatin1( buffer, buflen ) );
 }
 
@@ -89,7 +88,6 @@ bool KrActionProc::start( QString cmdLine ) {
    start( list );
 }
 
-#include <kmessagebox.h>
 bool KrActionProc::start( QStringList cmdLineList ) {
    _proc->clearArguments();
    bool result = true;
@@ -129,7 +127,7 @@ bool KrActionProc::start( QStringList cmdLineList ) {
    return result;
 }
 
-void KrActionProc::processExited( KProcess *proc ) {
+void KrActionProc::processExited( KProcess * ) {
    // enable the 'close' button on the dialog (if active), disable 'kill' button
    if ( _output ) {
       _output->enableButtonOK( true );

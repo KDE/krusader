@@ -328,7 +328,7 @@ void KMountMan::updateFilesystems() {
    tempFile = new KTempFile();
    tempFile->setAutoDelete( true );
    dfProc.clearArguments();
-   dfProc.setExecutable( KrServices::fullPathName( "df" ) );
+   dfProc << KrServices::fullPathName( "df" );
 #if defined(BSD)
 
    dfProc << ">" << tempFile->name(); // FreeBSD: df instead of df -T -P

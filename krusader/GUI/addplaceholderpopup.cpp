@@ -118,6 +118,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
          panel = "_";
       return "%" + panel + currentPlaceholder->expression + parameter + "% "; // with extra space
    }
+	return QString::null;
 }
 
 

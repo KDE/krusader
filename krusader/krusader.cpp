@@ -279,7 +279,7 @@ void Krusader::statusBarUpdate( QString& mess ) {
   statusBar() ->message( mess, 5000 );
   }
 
-void Krusader::showEvent ( QShowEvent *e ) {
+void Krusader::showEvent ( QShowEvent * ) {
   sysTray->hide();
   show(); // needed to make sure krusader is removed from
     // the taskbar when minimizing (system tray issue)
