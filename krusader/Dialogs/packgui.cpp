@@ -94,7 +94,7 @@ void PackGUI::accept() {
   filename=nameData->text();
   destination=dirData->text();
   type=typeData->currentText();
-  moveIntoArchive=moveCheckbox->isChecked();
+  moveIntoArchive=false;//moveCheckbox->isChecked();
   // write down the packer chosen, to be lastUsedPacker
   krConfig->setGroup("Archives");
   krConfig->writeEntry("lastUsedPacker",type);
