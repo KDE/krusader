@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
   KAboutData aboutData( "krusader", ( geteuid() ? I18N_NOOP("Krusader") :
                         I18N_NOOP("Krusader - ROOT PRIVILEGES")),
     VERSION, description, KAboutData::License_GPL,
-    "(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004, Krusader Krew",
+    "(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2005, Krusader Krew",
     0,
     "http://krusader.sourceforge.net",
     "krusader@users.sourceforge.net");
