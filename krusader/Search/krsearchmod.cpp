@@ -235,25 +235,17 @@ void KRSearchMod::scanArchive( QString archive, QString type ){
 		url = "krarc:"+archive;
   }
 
-	ftp_vfs *v = new ftp_vfs(url,0);
+	ftp_vfs *v = new ftp_vfs(0);
 
-	if ( v->vfs_error() ){
-			kdWarning() << "Failed to open vfs: " << archive.local8Bit() << endl;
-			delete v;
-			return;
-	}
   emit searching(archive);
-  while(v->isBusy()) qApp->processEvents();
 
-  unScanedUrls.push(v->vfs_getOrigin());
+  unScanedUrls.push(url);
   while( !unScanedUrls.isEmpty() ) scanURL(v,unScanedUrls.pop());
 	delete v;
 }
 
 void KRSearchMod::scanURL( ftp_vfs* v, KURL url){
 	if( !v->vfs_refresh(url) ) return;
-
-	while(v->isBusy()) qApp->processEvents();
 
 	if( scanedDirs.contains(v->vfs_getOrigin().url() ) ) return; // don't re-scan urls..
   scanedDirs.append(v->vfs_getOrigin().url() );

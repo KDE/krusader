@@ -187,40 +187,19 @@ vfs * Synchronizer::getDirectory( QString url )
     return 0;
     
   vfs *v;
-  bool isNormalVFS;
   
   if( url.startsWith( "/" ) || url.startsWith( "file:/" ))   /* is it normal vfs? */
   {
-    v = new normal_vfs(url,0);
-    isNormalVFS = true;
+    v = new normal_vfs(0);
   }
   else                          /* ftp vfs */
   {
-    v = new ftp_vfs(url,0);
-    isNormalVFS = false;
+    v = new ftp_vfs(0);
   }
 
-  if ( v->vfs_error() )
-  {
-    KMessageBox::error(0, i18n("Error at opening URL:%1!").arg( url ));
-    delete v;
-    return 0;
-  }
+  bool result = v->vfs_refresh( url );
 
-  bool result = true;
-  
-  if( isNormalVFS )
-    result = v->vfs_refresh( url );
-  else
-  {
-    while( ((ftp_vfs *)v)->isBusy() )
-    {
-      qApp->processEvents();
-      qApp->eventLoop()->processEvents( QEventLoop::AllEvents|QEventLoop::WaitForMore);      
-    }
-  }
-
-  if ( !result || v->vfs_error() )
+  if ( !result )
   {
     KMessageBox::error(0, i18n("Error at opening URL:%1!").arg( url ));
     delete v;
