@@ -104,6 +104,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
     connect( this, SIGNAL( onItem( QListViewItem* ) ), this, SLOT( slotItemDescription( QListViewItem* ) ) );
     connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
              this, SLOT( handleContextMenu( QListViewItem*, const QPoint&, int ) ) );
+    connect( this, SIGNAL( currentChanged( QListViewItem* )), this, SLOT( setNameToMakeCurrent( QListViewItem* )));
   }
 
   setWidget( this );
@@ -676,4 +677,8 @@ void KrDetailedView::stopQuickSearch(QKeyEvent *e) {
    krApp->mainView->activePanel->quickSearch->clear();
    krDirUp->setEnabled(true);
    keyPressEvent(e);
+}
+
+void KrDetailedView::setNameToMakeCurrent(QListViewItem *it) {
+   KrView::setNameToMakeCurrent(dynamic_cast<KrViewItem*>(it)->name());
 }

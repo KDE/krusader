@@ -109,6 +109,7 @@ class KrDetailedView : public KListView, public KrView {
     void inplaceRenameFinished( QListViewItem *it, int col );
     void quickSearch(const QString &);
     void stopQuickSearch(QKeyEvent*);
+    void setNameToMakeCurrent(QListViewItem *it);
 
   private:
     ColumnType _columns[ MAX_COLUMNS ];
