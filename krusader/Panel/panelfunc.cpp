@@ -128,6 +128,11 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 	if( !files()->vfs_getOrigin().equals(urlStack.top()) ){
 		urlStack.push( files()->vfs_getOrigin() );
 	}
+	// disconnect older signals
+	disconnect(files(), SIGNAL(addedVfile(const vfile* )), 0, 0); 
+	disconnect(files(), SIGNAL(updatedVfile(const vfile* )), 0, 0);
+	disconnect(files(), SIGNAL(deletedVfile(const QString& )), 0, 0);
+		
 	// connect to the vfs's dirwatch signals
 	connect(files(), SIGNAL(addedVfile(const vfile* )), 
 		dynamic_cast<KrDetailedView*>(panel->view), SLOT(addedVfile(const vfile* )));

@@ -75,7 +75,7 @@ public:
 				mode_t  mode);
 	
 	// following functions give-out file details
-	inline QString  			 	vfile_getName() 	 	{ return vfile_name;  		}
+	inline QString  			 	vfile_getName() const { return vfile_name;  		}
 	inline KIO::filesize_t  vfile_getSize() 	 	{ return vfile_size;  		}
 	inline QString					vfile_getPerm()			{ return vfile_perm;			}
 	inline bool							vfile_isDir()				{ return (vfile_perm[0]=='d');}

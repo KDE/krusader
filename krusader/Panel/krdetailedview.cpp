@@ -1053,11 +1053,11 @@ bool KrDetailedView::event( QEvent *e )
 }
 
 void KrDetailedView::addedVfile( const vfile *vf ) {
-	kdWarning() << "added: " << vf->name() << endl;
+	kdWarning() << "added: " << vf->vfile_getName() << endl;
 }
 
 void KrDetailedView::updatedVfile( const vfile *vf ) {
-	kdWarning() << "updated: " << vf->name() << endl;
+	kdWarning() << "updated: " << vf->vfile_getName() << endl;
 }
 
 void KrDetailedView::deletedVfile( const QString &name ) {
