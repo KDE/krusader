@@ -367,14 +367,6 @@ void ListPanelFunc::rename() {
 // called by signal itemRenamed() from the view to complete the renaming process
 void ListPanelFunc::rename(const QString &oldname, const QString &newname) {
   if (oldname == newname) return; // do nothing
-  // if we have a folder called dir and we try to rename a file to 'dir',
-  // the file gets moved to dir/, because we call CopyJob::move(). as a
-  // small workaround, let's check here if a file exists
-  if (panel->view->findItemByName(newname)) {
-     KMessageBox::error(krApp,i18n("A file with that name already exists"),i18n("Error"));
-     return;
-  }
-    
   panel->view->setNameToMakeCurrent( newname );
   // as always - the vfs do the job
   files() ->vfs_rename( oldname, newname );  
