@@ -226,18 +226,6 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 	int floc=0, bloc=0;
 	
 	if (!inSecondaryMenu) {
-		menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
-			i18n("Bookmark Current"), BookmarkCurrent);
-		menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
-			i18n("Manage Bookmarks"), ManageBookmarks);
-	
-		// make sure the menu is connected to us
-		disconnect(menu, SIGNAL(activated(int)), 0, 0);
-		connect(menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
-		menu->insertSeparator();
-
-		floc = bloc = 3; // 2 items + 1 separator
-
 		// do we need to add special bookmarks?
 		if (SPECIAL_BOOKMARKS) {
 			// note: special bookmarks are not kept inside the _bookmarks list and added ad-hoc
@@ -246,7 +234,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			CONNECT_BM(bm);
 			menu->insertSeparator();
 
-			floc = (bloc+=2); // 1 bookmark + separator
+			floc = bloc =2; // 1 bookmark + separator
 		}		
 	}
 
@@ -264,6 +252,18 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			bm->plug(menu, bloc++);
 			CONNECT_BM(bm);
 		}
+	}
+
+	if (!inSecondaryMenu) {
+		menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
+			i18n("Bookmark Current"), BookmarkCurrent);
+		menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
+			i18n("Manage Bookmarks"), ManageBookmarks);
+	
+		// make sure the menu is connected to us
+		disconnect(menu, SIGNAL(activated(int)), 0, 0);
+		connect(menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
+		menu->insertSeparator();
 	}
 }
 
