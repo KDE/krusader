@@ -1020,6 +1020,7 @@ aix3*)
 
 aix4* | aix5*)
   version_type=linux
+  hardcode_into_libs=yes
   if test "$host_cpu" = ia64; then
     # AIX 5 supports IA64
     library_names_spec='${libname}${release}.so$major ${libname}${release}.so$versuffix $libname.so'
@@ -3087,7 +3088,7 @@ if AC_TRY_EVAL(ac_compile); then
        fi
        ;;
 
-    *.$objext)
+    *.$objext|*.$libext)
        # This assumes that the test object file only shows up
        # once in the compiler output.
        if test "$p" = "conftest.$objext"; then
