@@ -314,7 +314,7 @@ fsData* KMountMan::location(QString name) {
 }
 
 /* we cannot use collectOutput as other processes may connected to it */
-void KMountMan::collectMtab(KProcess *p, char *buffer,int buflen) {
+void KMountMan::collectMtab(KProcess*, char *buffer,int buflen) {
   // add new buffer to mtab
   for (int i=0; i<buflen; ++i)
     mtab += buffer[i];
