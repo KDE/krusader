@@ -73,7 +73,6 @@ void remoteMan::collapseDecos(QListViewItem* i) {
 QString remoteMan::getHost() {
   remoteMan *p=new remoteMan();
   delete p;
-  kdWarning()<<url<<endl;
   return url;
 }
 

@@ -277,7 +277,6 @@ void KrSearchDialog::query2gui() {
         it != query->matches.end(); ++it )
     tmp += ((tmp == QString::null ? QString::null : QChar(' ')) + (*it));
   searchFor->insertItem(tmp,0);
-  kdWarning() << tmp << endl;
 }
 
 bool KrSearchDialog::gui2query() {

@@ -114,6 +114,5 @@ void KRQuery::load(QString name){
   perm  = krConfig->readEntry("perm");
   //type
   type  = krConfig->readEntry("type");*/
-  kdWarning() << "finished" << endl;
 }
 
