@@ -410,7 +410,7 @@ void DiskUsage::clear()
   contentMap.clear();
   if( root )
     delete root;
-  root = 0;
+  root = currentDirectory = 0;
 }
 
 void DiskUsage::calculateSizes( Directory *dirEntry, bool emitSig )
