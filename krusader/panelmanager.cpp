@@ -41,7 +41,8 @@ QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), 
   connect( _tabbar, SIGNAL( closeCurrentTab() ), this, SLOT( slotCloseTab() ) );
   connect( _tabbar, SIGNAL( newTab(QString) ), this, SLOT( slotNewTab(QString) ) );
 
-#if QT_VERSION >= 0x030300
+//#if QT_VERSION >= 0x030300
+#if 0
   _layout->addMultiCellWidget( _stack, 0, 0, 0, 3 );  // KDE 3.2 bug the tab widget 
   _layout->addWidget( _newTab, 1, 0 );                // is left justified. A spacer is 
   _layout->addWidget( _tabbar, 1, 1 );                // inserted to solve the problem.
