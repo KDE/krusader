@@ -76,6 +76,11 @@ void kgLookFeelImpl::slotSetup() {
   kgMouseSelectionLeft->setChecked(i==1);
   kgMouseSelectionRight->setChecked(i==2);
   kgMouseSelectionClassic->setChecked(i==0);
+  /* disable mouse selection modes */
+  kgMouseSelectionLeft->setEnabled(false);
+  kgMouseSelectionRight->setEnabled(false);
+  kgMouseSelectionClassic->setEnabled(false);
+
   // combo box handler
   QString tmp = krConfig->readEntry("Filelist Icon Size",_FilelistIconSize);
   if (tmp=="16") kgIconSize->setCurrentItem(0);

@@ -66,7 +66,7 @@ public slots:
   void invertSelection();
   void markCurrent(bool movedown=true);
   void finishedDragging() { dragState=nothing; }
-  void checkForRightClickMenu();
+  //void checkForRightClickMenu();
   void startScrolling( int y );
   void scrollItem( int y ); // scroll y items down, if y<0 scroll y items up
   void keepScrolling();
@@ -74,9 +74,9 @@ public slots:
 protected:
   void keyPressEvent(QKeyEvent *e);
   void contentsMouseMoveEvent(QMouseEvent *e);
-  void viewportMouseMoveEvent(QMouseEvent *e);
-  void contentsMousePressEvent(QMouseEvent *e);
-  void contentsMouseReleaseEvent(QMouseEvent *e);
+  //void viewportMouseMoveEvent(QMouseEvent *e);
+  //void contentsMousePressEvent(QMouseEvent *e);
+  //void contentsMouseReleaseEvent(QMouseEvent *e);
 
 signals:
   void letsDrag(int);
