@@ -70,9 +70,8 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
   KURL url = separateUserAndPassword( origin );
 
   vfs_type = "ftp";
-  vfs_origin = url.prettyURL(-1);
+  vfs_origin = url.prettyURL();
 
-  //QTimer::singleShot(500,this,SLOT(vfs_refresh()));
   vfs_refresh(vfs_origin);
 }
 
@@ -110,8 +109,11 @@ KURL ftp_vfs::separateUserAndPassword( QString origin )
 }
 
 void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
-
+  // remove trailing "/"
   if(vfs_origin.right(1) == "/" ) vfs_origin = vfs_origin.left(vfs_origin.length()-1);
+  // but don't turn ftp://server/ to ftp://server !
+  if(vfs_origin.find("/",vfs_origin.find(":/")+3) < 0 )
+		vfs_origin = vfs_origin+"/";
 
   KIO::UDSEntryListConstIterator it = entries.begin();
   KIO::UDSEntryListConstIterator end = entries.end();
@@ -147,7 +149,7 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
 void ftp_vfs::slotRedirection(KIO::Job *, const KURL &url){
   // update the origin
   vfs_url    = url;
-	vfs_origin = KURL::decode_string(url.prettyURL(-1));
+	vfs_origin = KURL::decode_string(url.prettyURL());
   password   = url.pass();
   loginName  = url.user();
 	port       = url.port();
@@ -277,10 +279,7 @@ KURL::List* ftp_vfs::vfs_getFiles(QStringList* names){
 QString ftp_vfs::vfs_getFile(QString name){	
 	KURL url = vfs_url;
 	
-	//if (vfs_search(name)->vfile_isDir())
-	//	url.addPath(name+"/");
-	//else
-	  url.addPath(name);
+  url.addPath(name);
 
 	url.setUser(loginName);
   url.setPass(password);

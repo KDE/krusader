@@ -690,7 +690,7 @@ void ListPanelFunc::execute( QString& name ) {
     type = "-rar";
 
   if ( vf->vfile_isDir() ) {
-    origin == "/" ? origin += name : origin += "/" + name;
+    origin.right(1) == "/" ? origin += name : origin += "/" + name;
     panel->view->setNameToMakeCurrent( QString::null );
     refresh( origin );
   } else if ( KRarcHandler::arcHandled( type ) && !origin.contains(":/")) {
@@ -725,9 +725,11 @@ void ListPanelFunc::dirUp() {
   }
 
 	if( origin.contains(":/") ){ // ftp_vfs
-    if( QFileInfo(origin.mid(origin.find(":/")+1)).exists() ) changeVFS = true;
-    // make the current archive the current item on the new list
-    panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1) );
+    if( QFileInfo(origin.mid(origin.find(":/")+1)).exists() ){
+			changeVFS = true;
+			// make the current archive the current item on the new list
+			panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1) );
+	  }
 	}
 
   // clear the view - to avoid a repaint crash
@@ -747,8 +749,8 @@ void ListPanelFunc::dirUp() {
   // check the '/' case
   if ( newOrigin == "" ) newOrigin = "/";
   // and the '/' case for urls
-  //if ( origin.contains( ":/" ) && origin.find( "/", origin.find( ":/" ) + 3 ) == -1 )
-  //  origin = origin + "/";
+  if ( newOrigin.contains( ":/" ) && newOrigin.find( "/", newOrigin.find( ":/" ) + 3 ) == -1 )
+    newOrigin = newOrigin + "/";
 
   // change dir..
   refresh( newOrigin );
