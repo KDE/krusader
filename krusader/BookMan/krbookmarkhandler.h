@@ -12,11 +12,10 @@ class KActionCollection;
 
 class KrBookmarkHandler: public QObject {
 	Q_OBJECT
-
+	friend class KrAddBookmarkDlg;
 	enum Actions { Border, BookmarkCurrent, ManageBookmarks };
 public:
 	KrBookmarkHandler();
-	KrBookmarkHandler(QWidget *parent, KPopupMenu *menu);
 	void populate(KPopupMenu *menu);
 
 protected:
@@ -34,8 +33,7 @@ protected:
 	
 protected slots:
 	void menuOperation(int id);
-	void bookmarksUpdated(const QString &);
-	
+
 private:
 	KActionCollection *_collection;
 	KrBookmark *_root;

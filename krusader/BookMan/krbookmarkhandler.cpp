@@ -15,8 +15,6 @@
 
 // ------------------------ for internal use
 #define BOOKMARKS_FILE	"krusader/bookman2.xml"
-#define TOP_OF_MENU		0
-#define BOTTOM_OF_MENU	_menu->indexOf(Border)
 #define CONNECT_BM(X)	connect(X, SIGNAL(activated(const KURL&)), SLOTS, SLOT(refresh(const KURL&)));
 											
 KrBookmarkHandler::KrBookmarkHandler(): QObject(0) {
@@ -24,53 +22,10 @@ KrBookmarkHandler::KrBookmarkHandler(): QObject(0) {
 	_collection = new KActionCollection(0, this, "bookmark collection");
 
 	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
-	_root = new KrBookmark("root");
+	_root = new KrBookmark(i18n("Bookmarks"));
 
 	// load bookmarks 
 	importFromFile();
-}
-
-KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject(parent) {
-// create our own action collection and make the shortcuts apply only to parent
-	_collection = new KActionCollection(0, parent);
-	
-	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
-	_root = new KrBookmark("root");
-
-	// start watching the bookmarks file for updates
-	//_filename = locateLocal( "data", BOOKMARKS_FILE );
-	//_dirwatch = new KDirWatch(this);
-	//_dirwatch->addFile(locateLocal("data", BOOKMARKS_FILE));
-	//connect(_dirwatch, SIGNAL(dirty(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
-	//connect(_dirwatch, SIGNAL(created(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
-
-	// add quick navigation
-	//_menu->setKeyboardShortcutsEnabled(true);
-	//_menu->setKeyboardShortcutsExecute(true);
-	//connect(_menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
-	
-	// load bookmarks and populate the menu
-	importFromFile();
-
-	
-	// border: a dummy item used to separate normal bookmarks from special ones,
-	// operations etc. we use it later when inserting bookmarks at the bottom
-	//_menu->insertItem("border-dummy", Border);
-	//_menu->setItemVisible(Border, false);
-
-	// do we need to add special bookmarks?
-	if (SPECIAL_BOOKMARKS) {
-		// note: special bookmarks are not kept inside the _bookmarks list and added ad-hoc
-		//_menu->insertSeparator();
-		KrBookmark *bm = KrBookmark::devices(_collection);
-		//bm->plug(_menu);
-		CONNECT_BM(bm);
-	}
-	//_menu->insertSeparator();
-	//_menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
-	//	i18n("Bookmark Current"), BookmarkCurrent);
-	//_menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
-	//	i18n("Manage Bookmarks"), ManageBookmarks);
 }
 
 void KrBookmarkHandler::menuOperation(int id) {
@@ -88,7 +43,7 @@ void KrBookmarkHandler::bookmarkCurrent(KURL url) {
 	KrAddBookmarkDlg dlg(krApp, url);
 	if (dlg.exec() == KDialog::Accepted) {
 		KrBookmark *bm = new KrBookmark(dlg.name(), dlg.url(), _collection);
-		addBookmark(bm);
+		addBookmark(bm, true, dlg.folder());
 	}
 }
 
@@ -98,10 +53,6 @@ void KrBookmarkHandler::addBookmark(KrBookmark *bm, bool saveData, KrBookmark *f
 		
 	// add to the list (bottom)
 	folder->children().append(bm);
-
-	// add to menu
-	//bm->plug(_menu, BOTTOM_OF_MENU);
-	//CONNECT_BM(bm);
 
 	if (saveData) // save
 		exportToFile();
@@ -260,26 +211,53 @@ void KrBookmarkHandler::populate(KPopupMenu *menu) {
 }
 
 void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
+	static int inSecondaryMenu = 0; // used to know if we're on the top menu
+	
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
 		if (bm->isFolder()) {
 			KPopupMenu *newMenu = new KPopupMenu(menu);
 			menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
 									bm->text(), newMenu);
+			++inSecondaryMenu;
 			buildMenu(bm, newMenu);
+			--inSecondaryMenu;
 		} else {
-kdWarning() << "Adding " << bm->text() << endl;
-			bm->plug(menu); // add on top
+			bm->plug(menu);
 			CONNECT_BM(bm);
 		}
 	}
+
+	if (inSecondaryMenu) // don't add special bookmarks/operations on submenus
+		return;
+		
+	// add the bottom half: operations
+	// border: a dummy item used to separate normal bookmarks from special ones,
+	// operations etc. we use it later when inserting bookmarks at the bottom
+	menu->insertItem("border-dummy", Border);
+	menu->setItemVisible(Border, false);
+
+	// do we need to add special bookmarks?
+	if (SPECIAL_BOOKMARKS) {
+		// note: special bookmarks are not kept inside the _bookmarks list and added ad-hoc
+		menu->insertSeparator();
+		KrBookmark *bm = KrBookmark::devices(_collection);
+		bm->plug(menu);
+		CONNECT_BM(bm);
+	}
+	menu->insertSeparator();
+	menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
+		i18n("Bookmark Current"), BookmarkCurrent);
+	menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
+		i18n("Manage Bookmarks"), ManageBookmarks);
+
+	// make sure the menu is connected to us
+	disconnect(menu, SIGNAL(activated(int)), 0, 0);
+	connect(menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
 }
 
-void KrBookmarkHandler::bookmarksUpdated(const QString &) {
-	clearBookmarks(_root);
-	importFromFile();
-}
 
 void KrBookmarkHandler::clearBookmarks(KrBookmark *root) {
+#if 0	
 	KrBookmark *tmp, *bm = root->children().first();
 	while (bm) {
 		if (bm->isFolder())
@@ -291,4 +269,5 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root) {
 		tmp->unplugAll();
 		delete tmp;
 	}
+#endif
 }
