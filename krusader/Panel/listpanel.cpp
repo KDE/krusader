@@ -704,7 +704,7 @@ QString ListPanel::getCurrentName() {
 }
 
 void ListPanel::prepareToDelete() {
-  view->setNameToMakeCurrent( view->firstUnmarkedAboveCurrent() );
+  view->setNameToMakeCurrent( view->firstUnmarkedBelowCurrent() );
 }
 
 void ListPanel::keyPressEvent( QKeyEvent *e ) {

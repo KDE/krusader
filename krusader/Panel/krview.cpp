@@ -168,10 +168,16 @@ void KrView::invertSelection() {
   makeItemVisible(temp);
 }
 
-QString KrView::firstUnmarkedAboveCurrent() {
-  KrViewItem *iterator=getPrev(getCurrentKrViewItem());
+QString KrView::firstUnmarkedBelowCurrent() {
+  KrViewItem *iterator=getNext(getCurrentKrViewItem());
 	while(iterator && iterator->isSelected())
-	  iterator=getPrev(iterator);
-	if (!iterator) return QString::null;
-  else return iterator->name();
+	  iterator=getNext(iterator);
+  if (!iterator)
+  {
+    iterator=getPrev(getCurrentKrViewItem());
+      while(iterator && iterator->isSelected())
+        iterator=getPrev(iterator);
+  }
+  if (!iterator) return QString::null;
+  return iterator->name();
 }

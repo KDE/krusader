@@ -120,7 +120,7 @@ public:
   virtual void invertSelection();
   virtual QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
   virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
-  virtual QString firstUnmarkedAboveCurrent();
+  virtual QString firstUnmarkedBelowCurrent();
   virtual QString statistics();
 
   /////////////////////////////////////////////////////////////
