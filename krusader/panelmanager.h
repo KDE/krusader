@@ -34,10 +34,6 @@ class PanelManager: public QWidget {
      */
     void startPanel(ListPanel *panel, QString path);
     /**
-     * Called by Konfigurator to recreate the panels after changing the configuration
-     */
-    void recreatePanels();
-    /**
      * Swaps the left / right directions of the panel
      */
     void swapPanels()             {_left = !_left;}
@@ -59,6 +55,7 @@ class PanelManager: public QWidget {
     void slotPreviousTab();	 
     void slotCloseTab();
     void slotCloseTab( int index );
+    void slotRecreatePanels();
 
   protected slots:
     void slotChangePanel(ListPanel *p);

@@ -113,6 +113,8 @@ signals:
 
 protected:
    void newColumn( KrDetailedViewProperties::ColumnType type );
+   void selectColumns();
+   
    virtual void keyPressEvent( QKeyEvent *e );
    virtual void contentsMousePressEvent( QMouseEvent *e );
    virtual void contentsMouseReleaseEvent (QMouseEvent *e);

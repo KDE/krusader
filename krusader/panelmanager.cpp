@@ -229,7 +229,7 @@ void PanelManager::setCurrentTab( int panelIndex )
   _stack->raiseWidget( _self );
 }
 
-void PanelManager::recreatePanels() {
+void PanelManager::slotRecreatePanels() {
    int actTab = activeTab();
    
    for( int i = 0; i != _tabbar->count(); i++ )

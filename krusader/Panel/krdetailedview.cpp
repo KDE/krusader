@@ -39,6 +39,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../VFS/krpermhandler.h"
 #include "../GUI/kcmdline.h"
 #include "../Dialogs/krspecialwidgets.h"
+#include "../panelmanager.h"
 #include "listpanel.h"
 #include "panelfunc.h"
 #include <qlayout.h>
@@ -50,6 +51,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
+#include <kpopupmenu.h>
 
 //////////////////////////////////////////////////////////////////////////
 //  The following is KrDetailedView's settings in KConfig:
@@ -78,6 +80,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
 #define COLUMN(X)	static_cast<KrDetailedViewProperties*>(_properties)->column[ KrDetailedViewProperties::X ]
 #define PROPS	static_cast<KrDetailedViewProperties*>(_properties)	
+
+#define COLUMN_POPUP_IDS    91
 
 QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
 
@@ -189,6 +193,7 @@ KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, K
    //-->  setRenameable( column( Name ), true );
    //-------------------------------------------------------------------------------
 
+   header()->installEventFilter( this );
    renameLineEdit()->installEventFilter( this );
    
    // allow in-place renaming
@@ -1232,9 +1237,9 @@ bool KrDetailedView::event( QEvent *e ) {
 
 bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
 {
-  if( currentlyRenamedItem && watched == renameLineEdit() )
+  if( watched == renameLineEdit() )
   {
-    if( e->type() == QEvent::Hide )
+    if( currentlyRenamedItem && e->type() == QEvent::Hide )
     {
       /* checking if the currentlyRenamedItem pointer is valid (vfs_refresh can delete this item) */
       for( QListViewItem *it = firstChild(); it; it = it->nextSibling() )
@@ -1244,6 +1249,15 @@ bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
             inplaceRenameFinished( it, COLUMN( Name ) );
           break;
         }
+    }
+    return FALSE;
+  }
+  else if( watched == header() )
+  {
+    if( e->type() == QEvent::MouseButtonPress && ((QMouseEvent *)e )->button() == Qt::RightButton )
+    {
+      selectColumns();
+      return TRUE;
     }
     return FALSE;
   }
@@ -1268,6 +1282,93 @@ void KrDetailedView::initProperties() {
 	PROPS->humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
 	}
 	PROPS->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
+}
+
+void KrDetailedView::selectColumns()
+{
+  KPopupMenu popup( this );
+  popup.insertTitle( i18n("Columns"));
+  
+  bool refresh = false;
+  
+  bool hasExtention = COLUMN( Extention ) != -1;
+  bool hasMime      = COLUMN( Mime ) != -1;
+  bool hasSize      = COLUMN( Size ) != -1;
+  bool hasDate      = COLUMN( DateTime ) != -1;
+  bool hasPerms     = COLUMN( Permissions ) != -1;
+  bool hasKrPerms   = COLUMN( KrPermissions ) != -1;
+  bool hasOwner     = COLUMN( Owner ) != -1;
+  bool hasGroup     = COLUMN( Group ) != -1;
+  
+  popup.insertItem( i18n( "Ext" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Extention );
+  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Extention, hasExtention );
+
+  popup.insertItem( i18n( "Type" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Mime );
+  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Mime, hasMime );
+
+  popup.insertItem( i18n( "Size" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Size );
+  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Size, hasSize );
+
+  popup.insertItem( i18n( "Modified" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::DateTime );
+  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::DateTime, hasDate );
+
+  popup.insertItem( i18n( "Perms" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Permissions );
+  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Permissions, hasPerms );
+
+  popup.insertItem( i18n( "rwx" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::KrPermissions );
+  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::KrPermissions, hasKrPerms );      
+
+  popup.insertItem( i18n( "Owner" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Owner );
+  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Owner, hasOwner );      
+
+  popup.insertItem( i18n( "Group" ), COLUMN_POPUP_IDS + KrDetailedViewProperties::Group );
+  popup.setItemChecked( COLUMN_POPUP_IDS + KrDetailedViewProperties::Group, hasGroup );        
+  
+  int result=popup.exec(QCursor::pos());
+
+  krConfig->setGroup( "Look&Feel" );
+  
+  switch( result - COLUMN_POPUP_IDS )
+  {
+  case KrDetailedViewProperties::Extention:
+    krConfig->writeEntry( "Ext Column", !hasExtention );
+    refresh = true;
+    break;
+  case KrDetailedViewProperties::Mime:
+    krConfig->writeEntry( "Mime Column", !hasMime );
+    refresh = true;
+    break;
+  case KrDetailedViewProperties::Size:
+    krConfig->writeEntry( "Size Column", !hasSize );
+    refresh = true;
+    break;
+  case KrDetailedViewProperties::DateTime:
+    krConfig->writeEntry( "DateTime Column", !hasDate );
+    refresh = true;
+    break;
+  case KrDetailedViewProperties::Permissions:
+    krConfig->writeEntry( "Perm Column", !hasPerms );
+    refresh = true;
+    break;
+  case KrDetailedViewProperties::KrPermissions:
+    krConfig->writeEntry( "KrPerm Column", !hasKrPerms );
+    refresh = true;
+    break;
+  case KrDetailedViewProperties::Owner:
+    krConfig->writeEntry( "Owner Column", !hasOwner );
+    refresh = true;
+    break;
+  case KrDetailedViewProperties::Group:
+    krConfig->writeEntry( "Group Column", !hasGroup );
+    refresh = true;
+    break;
+  }
+  
+  if( refresh )
+  {
+    QTimer::singleShot( 0, MAIN_VIEW->leftMng, SLOT( slotRecreatePanels() ) );
+    QTimer::singleShot( 0, MAIN_VIEW->rightMng, SLOT( slotRecreatePanels() ) );
+  }
 }
 
 #include "krdetailedview.moc"

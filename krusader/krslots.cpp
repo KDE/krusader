@@ -310,8 +310,8 @@ void KRslots::runKonfigurator(bool firstTime) {
     if((krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt() != size )
       QPixmapCache::clear();
 
-    MAIN_VIEW->leftMng->recreatePanels();
-    MAIN_VIEW->rightMng->recreatePanels();
+    MAIN_VIEW->leftMng->slotRecreatePanels();
+    MAIN_VIEW->rightMng->slotRecreatePanels();
 	  MAIN_VIEW->fnKeys->updateShortcuts();
 		KrSelectionMode::resetSelectionHandler();
   }
