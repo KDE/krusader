@@ -7,9 +7,9 @@
 #include <kdebug.h>
 
 KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon):
-	KAction(name, 0, 0, 0, parent), _url(url), _folder(false), _separator(false) {
+	KAction(name, 0, 0, 0, parent, QString("Bookmark:"+name).latin1()), 
+	_url(url), _folder(false), _separator(false) {
 	connect(this, SIGNAL(activated()), this, SLOT(activatedProxy()));
-	setName(QString("Bookmark:"+name).latin1());
 	// do we have an icon?
 	if (!icon.isEmpty())
 		setIcon(icon);
