@@ -33,22 +33,15 @@ A
 // QT includes
 #include <qobject.h>
 #include <qstring.h>
-#include <qframe.h>
-#include <qptrlist.h> 
+
 // KDE includes
-#include <kdiskfreesp.h>
 #include <kdeversion.h>
-#include <kprocess.h>
-#include <kjanuswidget.h>
-#include <kio/jobclasses.h>
 #include <kio/global.h>
-#include <ktempfile.h> 
+#include <kmountpoint.h>
+
 // krusader includes
 #include <stdlib.h>
 #include <math.h>
-
-// forward definitions
-class fsData;
 
 class KMountMan : public QObject {
    Q_OBJECT
@@ -60,10 +53,8 @@ public:
    inline bool operational() {
       return Operational;
    } // check this 1st
-   inline bool ready() {
-      return Ready;
-   } // poll on this until true
-   void mainWindow();                               // opens up the GUI
+   
+	void mainWindow();                        // opens up the GUI
    void mount( QString mntPoint );           // this is probably what you need for mount
    void unmount( QString mntPoint );         // this is probably what you need for unmount
    mntStatus getStatus( QString mntPoint );  // return the status of a mntPoint (if any)
@@ -72,13 +63,6 @@ public:
    bool ejectable( QString path );
    QString convertSize( KIO::filesize_t size );
 
-   QString getMtab();          // reads the mount table
-   bool checkMtabChanged(); // checks whether mtab was changed
-
-
-   //////////////////////////// service functions /////////////////////////////////
-   static QString nextWord( QString &s );
-   static QString nextWord( QString &s, char c );
    KMountMan();
    ~KMountMan();
 
@@ -86,134 +70,17 @@ public slots:
    void performAction( int idx );
    void quickList();
 
+protected:
+	// used internally
+	static KMountPoint *findInListByMntPoint(KMountPoint::List &lst, QString value); 
+   void toggleMount( QString mntPoint ); 
+		
 private:
    QString *_actions;
 
-protected slots:
-   void parseDfData( QString filename );  // parse a FULL list of filesystems
-   void forceUpdate();
-   void collectOutput( KProcess *p, char *buffer, int buflen );
-   void collectMtab( KProcess *p, char *buffer, int buflen );
-   void finishUpdateFilesystems();
-   void killMountMan();                  // called when df never finished (error)
-
-signals:
-   void updated();
-
-protected:
-   void mount( fsData *p );              // you don't want to call this one !
-   void unmount( fsData *p );            // you don't want to call this one !
-   void toggleMount( QString mntPoint );   // you don't want to call this one !
-   QString followLink( QString source ); // internal to mountman/gui
-   bool createFilesystems();           // potential filesystems from /etc/fstab
-   void updateFilesystems();           // actually mounted systems using DF -T -P
-   QString getDevice( QString mntPoint ); // mntPoint ==> device
-   fsData* location( QString name );     // device   ==> mntPoint
-   QString pointFromMtab( QString device ); // returns mountPoint for a device
-   QString devFromMtab( QString mntPoint ); // returns device for a mountPoint
-
 private:
-   void clearOutput();
-   inline QString getOutput() {
-      return QString( ( !outputBuffer ?
-                        QString::null : *outputBuffer ) );
-   }
-
-private:
-   QStringList mountPoints;  // all mountPoints excluding SUPERMOUNTED ones
-   QList<fsData> filesystems;
-   int noOfFilesystems;
-   bool Ready;         // true if MountMan finished all preprocessing
    bool Operational;   // if false, something went terribly wrong on startup
-   fsData *localDf;    // used for moving around information
-   QString *outputBuffer; // all processes output their data here
-   KTempFile *tempFile;
-   KShellProcess dfProc;
    KMountManGUI *mountManGui;
-
-   QString mtab;       // the mount table
-};
-
-// Data container for a single-filesystem data
-// maximum size supported is 2GB of 1kb blocks == 2048GB, enough.
-/////////////////////////////////////////////////////////////////
-class fsData {
-public:
-   fsData() : Name( 0 ), Type( 0 ), MntPoint( 0 ), TotalBlks( 0 ),
-   FreeBlks( 0 ), Mounted( false ) {}
-
-   // get information
-   inline QString name() {
-      return Name;
-   }
-   inline QString shortName() {
-      return Name.right( Name.length() - Name.find( "/", 1 ) - 1 );
-   }
-   inline QString type() {
-      return Type;
-   }
-   inline QString mntPoint() {
-      return MntPoint;
-   }
-   inline long totalBlks() {
-      return TotalBlks;
-   }
-   inline long freeBlks() {
-      return FreeBlks;
-   }
-   inline KIO::filesize_t totalBytes() {
-      return TotalBlks * 1024;
-   }
-   inline KIO::filesize_t freeBytes() {
-      return FreeBlks * 1024;
-   }
-   //////////////////// insert a good round function here /////////////////
-   int usedPerct() {
-      if ( TotalBlks == 0 )
-         return 0;
-      float res = ( ( float ) ( TotalBlks - FreeBlks ) ) / ( ( float ) TotalBlks ) * 100;
-      if ( ( res - ( int ) res ) > 0.5 )
-         return ( int ) res + 1;
-      else
-         return ( int ) res;
-   }
-   inline bool mounted() {
-      return Mounted;
-   }
-
-   // set information
-   inline void setName( QString n_ ) {
-      Name = n_;
-   }
-   inline void setType( QString t_ ) {
-      Type = t_;
-   }
-   inline void setMntPoint( QString m_ ) {
-      MntPoint = m_;
-   }
-   inline void setTotalBlks( long t_ ) {
-      TotalBlks = t_;
-   }
-   inline void setFreeBlks( long f_ ) {
-      FreeBlks = f_;
-   }
-   inline void setMounted( bool m_ ) {
-      Mounted = m_;
-   }
-
-private:
-   QString Name;       // i.e: /dev/cdrom
-   QString Type;       // i.e: iso9600
-   QString MntPoint;   // i.e: /mnt/cdrom
-   long TotalBlks;  // measured in 1024bytes per block
-   long FreeBlks;
-   bool Mounted;    // true if filesystem is mounted
-
-   // additional attributes of a filesystem, parsed from fstab
-public:
-   bool supermount;    // is the filesystem supermounted ?
-   QString options;    // additional fstab options
-
 };
 
 #endif
