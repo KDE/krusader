@@ -79,7 +79,7 @@ typedef QValueList<KServiceOffer> OfferList;
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, const char *name ) :
-  QWidget(parent, name), colorMask(255), currDragItem(0), compareMode(false),  statsAgent(0) {
+  QWidget(parent, name), colorMask(255), compareMode(false), currDragItem(0), statsAgent(0) {
 
   func = new ListPanelFunc(this);
   setAcceptDrops(true);
@@ -460,7 +460,6 @@ void ListPanel::popRightClickMenu(const QPoint &loc) {
   #define SERVICE_LIST_ID  200
   //////////////////////////////////////////////////////////
   bool multipleSelections=false;
-  QListViewItem *iterator;
   // a quick hack to check if we've got more that one file selected
   KrViewItemList items;
   view->getSelectedKrViewItems(&items);

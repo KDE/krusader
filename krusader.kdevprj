@@ -21,9 +21,9 @@ addcxxflags=-DKDE_NO_COMPAT -DQT_NO_ASCII_CAST
 bin_program=krusader
 cflags=-DKDE_NO_COMPAT
 cppflags=-DKDE_NO_COMPAT
-cxxflags=\s-O0 -g3 -Wall
+cxxflags=\s-O0 -g3 -Wall -Werror
 ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s             \s
+ldflags=\s              \s
 
 [General]
 AMChanged=false

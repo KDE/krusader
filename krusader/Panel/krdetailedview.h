@@ -78,7 +78,7 @@ public:
   QString itemToFilename(QListViewItem *it) { return dynamic_cast<KrViewItem*>(it)->name(); }//remove
   
 ///////////////////////// todo ///////////////////////////////////
-  virtual void setFilter(FilterSpec filter) {}
+//  virtual void setFilter(FilterSpec filter) {}
 
 signals:
   void executed(QString &name);

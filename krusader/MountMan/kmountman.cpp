@@ -102,6 +102,7 @@ QString KMountMan::nextWord(QString &s) {
   }
   QString temp=s.left(j); // find the leftmost word.
   s.remove(0,j);
+
   return temp;
 }
 
@@ -418,7 +419,7 @@ void KMountMan::parseDfData(QString filename) {
     				 "] has a different type from what's stated in /etc/fstab." << endl;
       loc->setType(temp);  // DF knows best
     }
-#endif    
+#endif
     temp=nextWord(s,' ');
     loc->setTotalBlks(temp.toLong());
     temp=nextWord(s,' ');
@@ -595,7 +596,7 @@ bool KMountMan::ejectable(QString path) {
     if (it->mntPoint()==path &&
         (it->type()=="iso9660" || followLink(it->name()).left(2)=="cd"))
       return true;
-#endif      
+#endif
   return false;
 }
 
@@ -645,7 +646,7 @@ void statsCollector::parseDf(QString filename, fsData *data) {
   s = t.readLine();  // this is the important one!
 #ifndef BSD
   data->setName(KMountMan::nextWord(s,' '));
-#endif  
+#endif
   data->setType(KMountMan::nextWord(s,' '));
   data->setTotalBlks( KMountMan::nextWord(s,' ').toLong() );
   data->setUsedBlks( KMountMan::nextWord(s,' ').toLong() );
@@ -710,4 +711,3 @@ QString KMountMan::convertSize( unsigned long size )
 }
 
 #include "kmountman.moc"
-
