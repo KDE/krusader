@@ -489,8 +489,10 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
     popup.changeItem( OPEN_ID, item->icon(),      // and add pixmap
                       i18n( ( item->isExecutable() ) && ( !item->isDir() ) ? "Run" : "Open" ) );
     // open in a new tab (if folder)
-    if (item->isDir())
+    if (item->isDir()) {
       popup.insertItem(i18n("Open in a new tab"), OPEN_TAB_ID);
+      popup.changeItem( OPEN_TAB_ID, krLoader->loadIcon( "favorites", KIcon::Panel ), i18n("Open in a new tab"));
+    }
     popup.insertSeparator();
   }
   // Preview - normal vfs only ?
