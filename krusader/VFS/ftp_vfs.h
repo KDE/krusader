@@ -81,7 +81,10 @@ protected:
   QString loginName;
 	QString password;
 	QString hostName;
-	int port;  		
+	int port;
+
+private:
+  KURL separateUserAndPassword( QString origin );
 };
 
 #endif

@@ -67,6 +67,17 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
   vfs_files2.setAutoDelete(true);
   notConnected = true;
 
+  KURL url = separateUserAndPassword( origin );
+
+  vfs_type = "ftp";
+  vfs_origin = url.prettyURL(-1);
+
+  //QTimer::singleShot(500,this,SLOT(vfs_refresh()));
+  vfs_refresh(vfs_origin);
+}
+
+KURL ftp_vfs::separateUserAndPassword( QString origin )
+{
   // breakdown the url;
   /* FIXME: untill KDE fixes the bug we have to check for
      passwords and users with @ in them... */
@@ -91,15 +102,11 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
   if(loginName.isEmpty()) loginName = url.user();
   if(password.isEmpty())  password  = url.pass();
   if(bugfix){
-   url.setPass(password);  
+   url.setPass(password);
     url.setUser(loginName);
   }
-
-  vfs_type = "ftp";
-  vfs_origin = url.prettyURL(-1);
-
-  //QTimer::singleShot(500,this,SLOT(vfs_refresh()));
-  vfs_refresh(vfs_origin);
+  
+  return url;
 }
 
 void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
@@ -174,7 +181,7 @@ void ftp_vfs::slotListResult(KIO::Job *job){
 
 bool ftp_vfs::vfs_refresh(QString origin) {
 	error = false;
-	KURL url = origin;
+	KURL url = separateUserAndPassword( origin );
 
 	QString errorMsg = QString::null;	
 	if ( url.isMalformed() )
