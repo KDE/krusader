@@ -106,7 +106,7 @@ kgAdvanced::kgAdvanced( QWidget* parent,  const char* name )
     Layout3->addWidget( kgRootSwitch, 0, 0 );
 
     kgAutomount = new QCheckBox( privateLayoutWidget_3, "kgAutomount" );
-    kgAutomount->setText( i18n( "Automount filesystems" ) );
+    kgAutomount->setText( i18n( "Automount filesystems             " ) );
     QToolTip::add(  kgAutomount, i18n( "If checked, Krusader will mount FSTAB mount-points when needed." ) );
 
     Layout3->addWidget( kgAutomount, 0, 1 );
