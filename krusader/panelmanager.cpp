@@ -98,6 +98,9 @@ void PanelManager::slotNewTab(QString path) {
 }
 
 void PanelManager::slotCloseTab() {
+  if ( _tabbar->count() <= 1 ) /* if this is the last tab don't close it */
+    return;
+  
   // setup current one
   ListPanel * oldp;
   _self = _tabbar->removeCurrentPanel( oldp );
