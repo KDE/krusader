@@ -60,17 +60,17 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel){
   vfs_files.setAutoDelete(true);
   
   vfs_type=NORMAL;
-	
+
 	// connect the watcher to vfs_slotDirty
-  connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty()));
+  connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));
   // when FAM is active, these two solve a bug where creation/deletion of files isn't reflected
-	connect(&watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotDirty()));
-  connect(&watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDirty()));	
+	connect(&watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotCreated(const QString&)));
+  connect(&watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDeleted(const QString&)));	
 }
 
 bool normal_vfs::vfs_refresh(const KURL& origin){
   QString path = origin.path(-1);
-
+	
 	// check that the new origin exists
 	if ( !QDir(path).exists() ) return false;
     
@@ -78,11 +78,9 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
   if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
    	
 	watcher.stopScan(); //stop watching the old dir
-  if(  !origin.equals(vfs_getOrigin()) ){
-		// and remove it from the list
-		if( !vfs_getOrigin().isEmpty() ) watcher.removeDir(vfs_getOrigin().path(-1)); 
-		watcher.addDir(origin.path(-1)); //start watching the new dir
-	}
+	// and remove it from the list
+	if( !vfs_getOrigin().isEmpty() ) watcher.removeDir(vfs_getOrigin().path(-1)); 
+	watcher.addDir(origin.path(-1),true); //start watching the new dir
 
 	// set the writable attribute to true, if that's not the case - the KIO job
   // will give the warnings and errors
@@ -153,7 +151,7 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	closedir(dir);
 	
 	if (!quietMode) emit startUpdate();
-  watcher.startScan();
+  watcher.startScan(true);
 
   return true;
 }
@@ -264,6 +262,75 @@ void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned
 	      vfs_calcSpace(name+"/"+qfiP->fileName(),totalSize,totalFiles,totalDirs,stop);
 	  }
   }
+}
+
+vfile* normal_vfs::vfileFromPath(const QString& name){
+	QString path = vfs_workingDir().local8Bit()+"/"+name.local8Bit();
+	
+	KDE_struct_stat stat_p;
+	KDE_lstat(path.local8Bit(),&stat_p);
+	KIO::filesize_t size = stat_p.st_size;
+	QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
+	bool symLink= S_ISLNK(stat_p.st_mode);
+	if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
+	
+	KURL mimeUrl = fromPathOrURL(path);
+	QString mime=KMimeType::findByURL( mimeUrl,stat_p.st_mode,true,false)->name();
+
+	char symDest[256];
+	bzero(symDest,256); 
+	if( S_ISLNK(stat_p.st_mode) ){  // who the link is pointing to ?
+		int endOfName=0;
+		endOfName=readlink(path.local8Bit(),symDest,256);
+		if ( endOfName != -1 ){
+			if ( QDir(symDest).exists() || mime.contains("directory") ) perm[0] = 'd';
+			if ( !QDir(vfs_workingDir()).exists(symDest)  ) mime = "Broken Link !";
+		}
+		else kdWarning() << "Failed to read link: "<< path<<endl;
+	}
+	
+	// create a new virtual file object
+	vfile* temp=new vfile(name,size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
+                          stat_p.st_gid,mime,symDest,stat_p.st_mode);
+	return temp;
+}
+
+void normal_vfs::vfs_slotDirty(const QString& path){ 
+	KURL url = fromPathOrURL(path);
+	if( url.equals(vfs_getOrigin()) ){
+		// the directory itself is dirty - full refresh is needed
+		vfs_refresh(vfs_getOrigin());
+		return;
+	}
+	
+	QString name = url.fileName();
+	
+	// do we have it already ?
+	if( !vfs_search(name ) ) return vfs_slotCreated(path);
+	
+	// we have an updated file..
+	removeFromList(name);
+	vfile* vf = vfileFromPath(name);
+	addToList(vf);
+	emit updatedVfile(vf);		
+}
+
+void normal_vfs::vfs_slotCreated(const QString& path){  
+	KURL url = fromPathOrURL(path);
+	QString name = url.fileName();	
+	vfile* vf = vfileFromPath(name);
+	addToList(vf);
+	emit addedVfile(vf);	
+}
+
+void normal_vfs::vfs_slotDeleted(const QString& path){ 
+	KURL url = fromPathOrURL(path);
+	QString name = url.fileName();
+	
+	if( vfs_search(name) ){
+		emit deletedVfile(name);
+		removeFromList(name);	
+	}	
 }
 
 #include "normal_vfs.moc"

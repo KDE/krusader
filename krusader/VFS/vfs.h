@@ -103,11 +103,13 @@ public slots:
 	/// Used to refresh the VFS when a job finishs. it calls the refresh() slot
   /// or display a error message if the job fails
 	virtual bool vfs_refresh(KIO::Job* job);
-	//virtual bool vfs_refresh(KIO::Job* job);
 	virtual bool vfs_refresh(){ return vfs_refresh(vfs_getOrigin()); }
 
 signals: 	
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
+	void addedVfile(const vfile* vf);
+	void deletedVfile(const QString& name);
+	void updatedVfile(const vfile* vf);
 
 protected:
 	/// Set the vfile list pointer
@@ -117,7 +119,7 @@ protected:
 	/// Add a new vfile to the list.
 	inline void addToList(vfile *data){ vfs_filesP->insert(data->vfile_getName(),data); }
 	/// Deletes a vfile from the list.
-	inline void removeFromList(vfile *data){ vfs_filesP->remove(data->vfile_getName()); }
+	inline void removeFromList(QString name){ vfs_filesP->remove(name); }
 
 	VFS_TYPE      vfs_type;     //< the vfs type.
 	KURL          vfs_origin;   //< the path or file the VFS originates from.

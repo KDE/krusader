@@ -72,12 +72,15 @@ public:
 public slots:
 	/// Re-reads files and stats and fills the vfile list
 	virtual bool vfs_refresh(const KURL& origin);
-  /// used by to refresh the VFS with a short delay.
-  void vfs_slotDirty(){ QTimer::singleShot(100,this,SLOT(vfs_refresh())); }
+
+	void vfs_slotDirty(const QString& path);
+	void vfs_slotCreated(const QString& path);
+	void vfs_slotDeleted(const QString& path);
 
 protected:
 	QDict<vfile>  vfs_files;    //< List of pointers to vfile	
 	KDirWatch watcher;          //< The internal dir watcher - use to detect changes in directories
+	vfile* vfileFromPath(const QString& path);
 };
 
 #endif
