@@ -138,6 +138,7 @@ void ftp_vfs::slotListResult(KIO::Job *job){
 void ftp_vfs::startLister() {
   // Open the directory	marked by origin
   krConfig->setGroup("Look&Feel");
+  vfs_origin.adjustPath(+1);
   KIO::Job *job = KIO::listDir(vfs_origin,false,
                                krConfig->readBoolEntry("Show Hidden",_ShowHidden));
   connect(job,SIGNAL(entries(KIO::Job*,const KIO::UDSEntryList&)),
