@@ -9,18 +9,18 @@
  ---------------------------------------------------------------------------
  The main application ! what's more to say ?
  ***************************************************************************
-
+ 
   A
-
+ 
      db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
      88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
      88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
      88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
      88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
      YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
-
+ 
                                                      H e a d e r    F i l e
-
+ 
  ***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -56,74 +56,77 @@ class KRslots;
 class KIconLoader;
 
 class Krusader : public KParts::MainWindow {
-  Q_OBJECT
-public:
-  Krusader();
-  ~Krusader();
-  void refreshView();				 // re-create the main view
-  static QStringList supportedTools(); // find supported tools
+    Q_OBJECT
+  public:
+    Krusader();
+    ~Krusader();
+    void refreshView();				 // re-create the main view
+    static QStringList supportedTools(); // find supported tools
 
-public slots:
-  // increase the internal progress bar
-	void incProgress(KProcess *,char *buffer,int buflen);
-	void statusBarUpdate(QString& mess);
-  // in use by Krusader only
-  void saveSettings();
-  void savePosition();
-  void quitKrusader();
-  void updateGUI(bool enforce=false);
+  public slots:
+    // increase the internal progress bar
+    void incProgress( KProcess *, char *buffer, int buflen );
+    void statusBarUpdate( QString& mess );
+    // in use by Krusader only
+    void saveSettings();
+    void savePosition();
+    void quitKrusader();
+    void updateGUI( bool enforce = false );
 
-protected:
-  bool queryExit()  { config->sync(); return true; }
-  bool queryClose();
-  void setupActions();
-  void setupAccels();
-  bool versionControl();  // handle version differences in krusaderrc
+  protected:
+    bool queryExit() {
+      config->sync();
+      return true;
+    }
+    bool queryClose();
+    void setupActions();
+    void setupAccels();
+    bool versionControl();  // handle version differences in krusaderrc
 
-public:
-     static Krusader     *App;       // a kApp style pointer
-  MountMan::KMountMan 	 *mountMan;  // krusader's Mount Manager
-            BookMan 		 *bookMan;   // The Bookmark Manager
-            KrusaderView *mainView;  // The GUI
-            KConfig      *config;    // allow everyone to access the config
-            KIconLoader  *iconLoader;// the app's icon loader
-	// Actions
-	static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare;
-	static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll;
-	static KAction *actUnselectAll, *actInvert, *actSysInfo, *actSync, *actSavePosition;
-	static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
-  static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actBookMan, *actNewTool;
-  static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actAddBookmark;
-	static KAction *actSelectColorMask, *actMultiRename, *actAllFilter;
-	static KToggleAction *actToggleTerminal;
-  KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
-                *actShowStatusBar,*actToggleHidden, *actCompareDirs, *actToggleSortByExt;
+  public:
+    static Krusader *App;       // a kApp style pointer
+    MountMan::KMountMan *mountMan;  // krusader's Mount Manager
+    BookMan *bookMan;   // The Bookmark Manager
+    KrusaderView *mainView;  // The GUI
+    KConfig *config;    // allow everyone to access the config
+    KIconLoader *iconLoader; // the app's icon loader
+    // Actions
+    static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare;
+    static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll;
+    static KAction *actUnselectAll, *actInvert, *actSysInfo, *actSync, *actSavePosition;
+    static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
+    static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actBookMan, *actNewTool;
+    static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actAddBookmark;
+    static KAction *actSelectColorMask, *actMultiRename, *actAllFilter;
+    static KToggleAction *actToggleTerminal;
+    KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
+    *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actToggleSortByExt;
 
-	// return a path to a temp dir or file we can use.
-  QString getTempDir();
-  QString getTempFile();
+    // return a path to a temp dir or file we can use.
+    QString getTempDir();
+    QString getTempFile();
 
-  // the internal progress bar variales + functions
-  KRPleaseWaitHandler* plzWait;
-  void startWaiting(QString msg="Please Wait", int count=0 , bool cancel=false);
-  void stopWait();
+    // the internal progress bar variales + functions
+    KRPleaseWaitHandler* plzWait;
+    void startWaiting( QString msg = "Please Wait", int count = 0 , bool cancel = false );
+    void stopWait();
 
-	KrusaderStatus  *status;
-	KRslots *slot;
-  KAccel *accels; // global accelerators
+    KrusaderStatus *status;
+    KRslots *slot;
+    KAccel *accels; // global accelerators
 
-signals:
-  void changeMessage(QString);
+  signals:
+    void changeMessage( QString );
 };
 
- // main modules
+// main modules
 #define krApp        Krusader::App
 #define krConfig     Krusader::App->config
 #define krMtMan      (*(Krusader::App->mountMan))
 #define krBookMan    Krusader::App->bookMan
 #define SLOTS        Krusader::App->slot
 #define krLoader     Krusader::App->iconLoader
-  // krusader's actions - things krusader can do!
+// krusader's actions - things krusader can do!
 #define krProperties      Krusader::App->actProperties     // file properties
 #define krPack            Krusader::App->actPack           // pack files into an archive
 #define krUnpack          Krusader::App->actUnpack         // unpack archive
