@@ -675,44 +675,7 @@ void KonfiguratorColorChooser::loadInitialValue()
   krConfig->setGroup( ext->getCfgClass() );
   QString selected = krConfig->readEntry( ext->getCfgName(), "" );
   setValue( selected );
-  if( selected.isEmpty() )
-  {
-    setCurrentItem( 1 );
-    customValue = defaultValue;
-  }
-  else
-  {
-    bool found = false;
-    
-    for( unsigned j=0; j != additionalColors.size(); j++ )
-      if( additionalColors[j].value == selected )
-      {
-        setCurrentItem( 2 + j );
-        found = true;
-        break;
-      }
-
-    if( ! found )
-    {
-      QColor color = krConfig->readColorEntry( ext->getCfgName(), &defaultValue );
-      customValue = color;
-
-      setCurrentItem( 0 );
-      for( unsigned i= 2+additionalColors.size(); i != palette.size(); i++ )
-        if( palette[i] == color )
-        {
-          setCurrentItem( i );
-          break;
-        }
-    }
-  }
-
-  palette[0] = customValue;
-  changeItem( createPixmap( customValue ), text( 0 ), 0 );
-      
   ext->setChanged( false );
-  emit colorChanged();
-  disableColorChooser = false;
 }
 
 void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
@@ -791,7 +754,7 @@ void KonfiguratorColorChooser::setValue( QString value )
   palette[0] = customValue;
   changeItem( createPixmap( customValue ), text( 0 ), 0 );
       
-  ext->setChanged( false );
+  ext->setChanged();
   emit colorChanged();
   disableColorChooser = false;
 }
