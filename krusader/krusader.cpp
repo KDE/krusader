@@ -260,7 +260,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
       mainView->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
       krConfig->setGroup( "Startup" );             
       mainView->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
-   }
+            }
    
    // create the user menu
    userMenu = new UserMenu( this );
@@ -272,7 +272,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    // create a status bar
    status = new KrusaderStatus( this );
    QWhatsThis::add( status, i18n( "Status bar will show  basic informations "
-                                     "about file below mouse pointer." ) );
+                                          "about file below mouse pointer." ) );
 
    // This enables Krusader to show a tray icon
    sysTray = new KSystemTray( this );
@@ -411,9 +411,7 @@ void Krusader::setupActions() {
    int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
    
    KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" ); /*->setShortcut(Key_QuoteLeft);*/
-   KAction *actRedisplay = KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
-   actRedisplay->setText( "Reload" );
-   actRedisplay->setShortcut( CTRL + Key_R );
+   new KAction(  i18n( "&Reload" ), "reload", CTRL + Key_R, SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
    actShowToolBar = KStdAction::showToolbar( SLOTS, SLOT( toggleToolbar() ), actionCollection(), "std_toolbar" );
    actShowStatusBar = KStdAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
    KStdAction::quit( this, SLOT( quitKrusader() ), actionCollection(), "std_quit" );
@@ -569,12 +567,12 @@ void Krusader::setupActions() {
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );
 
-	// setup the Fn keys
-	actF2 = new KAction( i18n( "F2 - Open a terminal" ), Key_F2,
+        // setup the Fn keys
+        actF2 = new KAction( i18n( "F2 - Open a terminal" ), Key_F2,
                 SLOTS, SLOT( terminal() ) , actionCollection(), "F2_Terminal" );
-	actF3 = new KAction( i18n( "F3 - View a file" ), Key_F3,
+        actF3 = new KAction( i18n( "F3 - View a file" ), Key_F3,
                 SLOTS, SLOT( view() ) , actionCollection(), "F3_View" );
-	actF4 = new KAction( i18n( "F4 - Edit a file" ), Key_F4,
+        actF4 = new KAction( i18n( "F4 - Edit a file" ), Key_F4,
                 SLOTS, SLOT( edit() ) , actionCollection(), "F4_Edit" );
 	actF5 = new KAction( i18n( "F5 - Copy" ), Key_F5,
                 SLOTS, SLOT( copyFiles() ) , actionCollection(), "F5_Copy" );
