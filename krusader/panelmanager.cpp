@@ -120,7 +120,7 @@ void PanelManager::loadSettings( KConfig *config, const QString& key ) {
       {
          t->panel->otherPanel = _other;
          _other->otherPanel = t->panel;
-         t->panel->func->openUrl( vfs::fromPathOrURL( l[ i ] ) );
+         t->panel->func->immediateOpenUrl( vfs::fromPathOrURL( l[ i ] ) );
       }
       ++i;
    }
