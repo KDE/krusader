@@ -183,6 +183,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
   // create the user menu
   userMenu = new UserMenu( this );
+  userMenu->hide();
 
   // setup keyboard accelerators
   setupAccels();
