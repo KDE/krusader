@@ -13,7 +13,7 @@ krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./DiskUsage/lib
 SUBDIRS = BookMan Dialogs DiskUsage GUI Konfigurator KViewer MountMan Panel RemoteMan VFS \
         Search Splitter Synchronizer Locate UserAction UserMenu
 
-EXTRA_DIST = krusader.desktop krusader_root-mode.desktop defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h krusaderui.rc krusaderview.cpp krusaderview.h main.cpp resources.h krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 16-blue-krusader.png 22-blue-krusader.png 32-blue-krusader.png 48-blue-krusader.png 64-blue-krusader.png 16-red-krusader.png 22-red-krusader.png 32-red-krusader.png 48-red-krusader.png 64-red-krusader.png total_commander.keymap total_commander.keymap.info
+EXTRA_DIST = krusader.desktop krusader_root-mode.desktop defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h useractions.xml krusaderui.rc krusaderview.cpp krusaderview.h main.cpp resources.h krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 16-blue-krusader.png 22-blue-krusader.png 32-blue-krusader.png 48-blue-krusader.png 64-blue-krusader.png 16-red-krusader.png 22-red-krusader.png 32-red-krusader.png 48-red-krusader.png 64-red-krusader.png total_commander.keymap total_commander.keymap.info
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Applications/
@@ -22,6 +22,8 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/krusader_root-mode.desktop $(DESTDIR)$(kde_appsdir)/Applications/krusader_root-mode.desktop
 	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/krusader/
 	$(INSTALL_DATA) $(srcdir)/krusaderui.rc $(DESTDIR)$(kde_datadir)/krusader/krusaderui.rc
+	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/krusader/
+	$(INSTALL_DATA) $(srcdir)/useractions.xml $(DESTDIR)$(kde_datadir)/krusader/useractions.xml
 	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/krusader/
 	$(INSTALL_DATA) $(srcdir)/total_commander.keymap $(DESTDIR)$(kde_datadir)/krusader/total_commander.keymap
 	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/krusader/
@@ -51,6 +53,7 @@ uninstall-local:
 	-rm -f $(DESTDIR)$(kde_appsdir)/Applications/krusader.desktop
 	-rm -f $(DESTDIR)$(kde_appsdir)/Applications/krusader_root-mode.desktop
 	-rm -f $(DESTDIR)$(kde_datadir)/krusader/krusaderui.rc
+	-rm -f $(DESTDIR)$(kde_datadir)/krusader/useractions.xml
 	-rm -f $(DESTDIR)$(kde_datadir)/krusader/total_commander.keymap
 	-rm -f $(DESTDIR)$(kde_datadir)/krusader/total_commander.keymap.info
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/krusader.png
