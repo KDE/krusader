@@ -37,6 +37,8 @@
 
 // Krusader includes
 #include "krusader.h"
+#include "krslots.h"
+#include "krusaderapp.h"
 
 static const char *description =
 	I18N_NOOP("Krusader\nTwin-panel File Manager for KDE");
@@ -106,9 +108,12 @@ int main(int argc, char *argv[]) {
   // check for command line arguments
 
   // create the application
-  KApplication app;
+  KrusaderApp app;
   Krusader *krusader = new Krusader();
-
+	// make sure we receive X's focus in/out events
+	QObject::connect(&app, SIGNAL(windowActive()), krusader->slot, SLOT(windowActive()));
+	QObject::connect(&app, SIGNAL(windowInactive()), krusader->slot, SLOT(windowInactive()));
+	
   // and set krusader to be the main widget in it
   app.setMainWidget(krusader);
   krusader->show();

@@ -1124,14 +1124,21 @@ void ListPanel::slotItemUpdated(vfile *vf) {
 	view->updateItem(vf);
 }
 
-void ListPanel::showEvent( QShowEvent * )
-{
-  func->files()->vfs_enableRefresh(true);
+void ListPanel::showEvent( QShowEvent * ) {
+  panelActive();
 }
 
-void ListPanel::hideEvent( QHideEvent * )
-{
-  func->files()->vfs_enableRefresh(false);
+void ListPanel::hideEvent( QHideEvent * ) {
+  panelInactive();
+}
+
+void ListPanel::panelActive() {
+	// don't refresh when not active (ie: hidden, application isn't focussed ...)
+	func->files()->vfs_enableRefresh(true);
+}
+
+void ListPanel::panelInactive() {
+	func->files()->vfs_enableRefresh(false);
 }
 
 #include "listpanel.moc"

@@ -796,4 +796,18 @@ void KRslots::slotDiskUsage()
   DiskUsageGUI du( ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1,KURL::StripFileProtocol), MAIN_VIEW, "DiskUsage" );
 }
 
+// when window becomes focused, enable the refresh in the visible panels
+void KRslots::windowActive() {
+	MAIN_VIEW->left->panelActive();
+	MAIN_VIEW->right->panelActive();
+}
+
+// when another application becomes focused, do a windows-commander style refresh: don't
+// refresh at all until krusader becomes focused again
+void KRslots::windowInactive() {
+	MAIN_VIEW->left->panelInactive();
+	MAIN_VIEW->right->panelInactive();
+}
+
+
 #include "krslots.moc"

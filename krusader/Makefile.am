@@ -104,4 +104,4 @@ messages: rc.cpp
 	 $(XGETTEXT) $$LIST -o $(podir)/krusader.pot; \
 	fi
 
-noinst_HEADERS = panelmanager.h paneltabbar.h
+noinst_HEADERS = panelmanager.h paneltabbar.h krusaderapp.h
