@@ -299,7 +299,7 @@ void Krusader::setupActions() {
   KStdAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
 
   // the toggle actions
-  actCompareDirs = new KToggleAction( i18n( "Compare Mode" ), "kr_comparedirs",
+  actCompareDirs = new KToggleAction( i18n( "Com&pare Mode" ), "kr_comparedirs",
                                       CTRL + Key_Equal, SLOTS, SLOT( compareDirectories() ), actionCollection(), "compare mode" );
   actCompareDirs->setChecked( false );
   actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), 0, SLOTS,
@@ -320,13 +320,13 @@ void Krusader::setupActions() {
   actToggleSortByExt->setChecked( krConfig->readBoolEntry( "Sort By Extention", _SortByExt ) );
 
   // and then the DONE actions
-  actSelectColorMask = new KAction( i18n( "Configure compare-mode" ), 0,
+  actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
-  actTest = new KAction( i18n( "Test Archi&ve(s)" ), "kr_arc_test", CTRL + Key_T,
+  actTest = new KAction( i18n( "&Test Archive(s)" ), "kr_arc_test", CTRL + Key_T,
                          SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
-  actFTPConnect = new KAction( i18n( "&FTP Connect" ), "socket", CTRL + Key_F,
+  actFTPConnect = new KAction( i18n( "&Net Connections" ), "socket", CTRL + Key_F,
                                SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
-  actFTPNewConnect = new KAction( i18n( "FT&P New Connection" ), "ftp", CTRL + Key_N,
+  actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "ftp", CTRL + Key_N,
                                   SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
   actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kr_calc", 0,
                               SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
@@ -354,7 +354,7 @@ void Krusader::setupActions() {
                          SLOTS, SLOT( search() ), actionCollection(), "find" );
   actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                            SLOTS, SLOT( invert() ), actionCollection(), "invert" );
-  actUnselect = new KAction( i18n( "&Unselect &Group" ), "kr_unselect", CTRL + Key_Minus,
+  actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,
                              SLOTS, SLOT( unmarkGroup() ), actionCollection(), "unselect group" );
   actAddBookmark = new KAction( i18n( "Add Bookmark" ), "bookmark_add", CTRL + Key_B,
                                 SLOTS, SLOT( addBookmark() ), actionCollection(), "add bookmark" );
@@ -376,7 +376,7 @@ void Krusader::setupActions() {
                                  SLOTS, SLOT( customFilter() ), actionCollection(), "custom files" );
   actCompare = new KAction( i18n( "Compare b&y content" ), "proxy", 0,
                             SLOTS, SLOT( compareContent() ), actionCollection(), "compare" );
-  actMultiRename = new KAction( i18n( "Multi Rename" ), "krename", SHIFT + Key_F9,
+  actMultiRename = new KAction( i18n( "Multi &Rename" ), "krename", SHIFT + Key_F9,
                                 SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
   new KAction( i18n( "Right-click menu" ), Key_Menu,
                SLOTS, SLOT( rightclickMenu() ), actionCollection(), "rightclick menu" );
