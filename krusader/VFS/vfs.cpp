@@ -96,7 +96,7 @@ KURL vfs::fromPathOrURL( const QString &originIn )
       origin = origin.remove(usrStart,usrLen+1);
     }
   }
-  KURL url = origin;
+  KURL url = KURL::fromPathOrURL( origin );
   if(loginName.isEmpty()) loginName = url.user();
   if(password.isEmpty())  password  = url.pass();
   if(bugfix){
