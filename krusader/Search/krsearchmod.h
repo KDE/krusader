@@ -36,6 +36,7 @@
 #include <qobject.h>
 #include <qstringlist.h>
 #include <time.h>
+#include <kio/global.h>
 
 class KRQuery;
 class vfs;
@@ -55,7 +56,7 @@ public:
 signals:
   void finished();
   void searching(const QString&);
-  void found(QString what, QString where, long size, time_t mtime, QString perm);
+  void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
 
 private:
 	bool stopSearch;

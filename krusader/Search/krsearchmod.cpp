@@ -191,7 +191,7 @@ void KRSearchMod::scanDir( QString dir){
     // if we got here - we got a winner
     results.append(dir+name);
 		//  kdWarning() << "Found: " << (dir+name).local8Bit() << endl;
-    emit found(name, dir, stat_p.st_size, stat_p.st_mtime,KRpermHandler::mode2QString(stat_p.st_mode) );
+    emit found(name, dir, (KIO::filesize_t)stat_p.st_size, stat_p.st_mtime,KRpermHandler::mode2QString(stat_p.st_mode) );
     qApp->processEvents();
   }
 	// clean up
@@ -227,7 +227,7 @@ void KRSearchMod::scanVfsDir( vfs* v, QString dir, QString archive ){
     // see if the name matches
     if( !fileMatch(name) ) continue;
     // check that the size fit
-    unsigned long size = vf->vfile_getSize();
+    KIO::filesize_t size = vf->vfile_getSize();
 		if( query->minSize && size < query->minSize ) continue;
     if( query->maxSize && size > query->maxSize ) continue;
 		// check the time frame

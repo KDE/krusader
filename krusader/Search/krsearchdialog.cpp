@@ -262,7 +262,7 @@ void KrSearchDialog::addToDontSearchInManually() {
   dontSearchInEdit->clear();
 }
 
-void KrSearchDialog::found(QString what, QString where, long size, time_t mtime, QString perm){
+void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm){
   // convert the time_t to struct tm
   struct tm* t=localtime((time_t *)&mtime);
   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
@@ -475,8 +475,8 @@ void KrSearchDialog::startSearch() {
   searcher  = new KRSearchMod(query);
   connect(searcher, SIGNAL(searching(const QString&)),
           searchingLabel, SLOT(setText(const QString&)));
-  connect(searcher, SIGNAL(found(QString,QString,long,time_t,QString)),
-                this, SLOT(found(QString,QString,long,time_t,QString)));
+  connect(searcher, SIGNAL(found(QString,QString,KIO::filesize_t,time_t,QString)),
+                this, SLOT(found(QString,QString,KIO::filesize_t,time_t,QString)));
   connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
 
   searcher->start();

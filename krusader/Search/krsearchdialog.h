@@ -57,7 +57,7 @@ public slots:
   void loadSearch(QListViewItem *);
   void startSearch();
   void stopSearch();
-  void found(QString what, QString where, long size, time_t mtime, QString perm);
+  void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
   void closeDialog();
   void addToSearchIn();
   void addToSearchInManually();
