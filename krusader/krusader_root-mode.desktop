@@ -1,17 +1,19 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Krusader
+Name=Krusader - root-mode
+Name[de]=Krusader - root-Modus
 Exec=krusader -caption "%c" %i %m  
-Icon=krusader.png
-MiniIcon=krusader.png
+Icon=krusader_red.png
+MiniIcon=krusader_red.png
 Terminal=0
 Type=Application
 DocPath=krusader/index.html
 Categories=Qt;KDE;Utility;
 #Categories=Qt;KDE;System;
-Comment=Twin-Panel File Manager
-Comment[hu]=Kétpaneles fájlkezelő
-Comment[de]=Zwei-Fenster Dateimanager
+X-KDE-SubstituteUID=true
+X-KDE-Username=root
+Comment=Twin-Panel File Manager with root-privileges
+Comment[de]=Zwei-Fenster Dateimanager mit root-Privilegien
 GenericName=File Manager
 GenericName[af]=Lêer Bestuurder
 GenericName[ar]=مدير الملفات
