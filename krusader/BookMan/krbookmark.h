@@ -19,8 +19,10 @@ public:
 	inline bool isFolder() const { return _folder; }
 	inline bool isSeparator() const { return _separator; }
 	QPtrList<KrBookmark>& children() { return _children; }
+	
 	// ----- special bookmarks
 	static KrBookmark* devices(KActionCollection *collection);
+	static KrBookmark* virt(KActionCollection *collection);
 	static KrBookmark* separator();
 
 signals:

@@ -238,9 +238,12 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			KrBookmark *bm = KrBookmark::devices(_collection);
 			bm->plug(menu);
 			CONNECT_BM(bm);
+			bm = KrBookmark::virt(_collection);
+			bm->plug(menu);
+			CONNECT_BM(bm);
 			menu->insertSeparator();
 
-			floc = bloc =2; // 1 bookmark + separator
+			floc = bloc = 3; // 2 bookmark + separator
 		}		
 	}
 

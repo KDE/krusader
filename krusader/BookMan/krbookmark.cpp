@@ -39,6 +39,12 @@ KrBookmark* KrBookmark::devices(KActionCollection *collection) {
 	return bm;
 }
 
+KrBookmark* KrBookmark::virt(KActionCollection *collection) {
+	KrBookmark *bm = new KrBookmark(I18N_NOOP("Virtual Filesystem"), "virt:/", collection);
+	bm->setIconSet(krLoader->loadIcon("blockdevice", KIcon::Small));
+	return bm;
+}
+
 KrBookmark* KrBookmark::separator() {
 	KrBookmark *bm = new KrBookmark("");
 	bm->_separator = true;
