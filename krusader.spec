@@ -4,7 +4,7 @@
 %define version 1.30
 %define release 1
 
-Summary: 	 A twin panel file manager for kde
+Summary: 	 advanced twin-panel (commander-style) file-manager for KDE 3.x
 Name: 		 %{name}
 Version: 	 %{version}
 Release: 	 %{release}
@@ -19,16 +19,17 @@ Packager:  Shie Erlich & Rafi Yanai <krusader@users.sourceforge.net>
 Requires: 	kdelibs
 
 %description
-Krusader is a new "old-school" file manager and ftp client.
-It's twin-panel look follows in the footsteps of the great
-file managers of old: GNU's Midnight Commander and
-the DOS all time favorite Norton Commander.
-Krusader features:
-intuative GUI, complete drag n' drop support, transpernt handeling of archives
-and ftp volumes, bookmarks (with bookmark manager ), pack and unpack from the
-main window, command line with history and "run in terminal" option, internal
-viewer, built-in mount manager with auto-mount option and more
-
+Krusader is an advanced twin-panel (commander-style) file-manager for KDE 3.x
+(similar to Midnight or Total Commander) but with many extras.
+It provides all the file-management features you could possibly want.
+Plus: extensive archive handling, mounted filesystem support, FTP,
+advanced search module, viewer/editor, directory synchronisation,
+file content comparisons, powerful batch renaming and much much more.
+It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace,
+arj and rpm and can handle other KIOSlaves such as smb:// or fish://
+It is (almost) completely customizable, very user friendly,
+fast and looks great on your desktop! :-)
+You should give it a try.
 
 %prep
 rm -rf $RPM_BUILD_ROOT

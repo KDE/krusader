@@ -1,25 +1,18 @@
-Krusader 1.30 - Stable
+krusader-cvs-2004-02-11 - Unstable
 ==============
-Stable is finally here. Follows is a list of changes of MAJOR changes from the
-latest stable (which was 1.20 actually):
-* Creating new files with SHIFT+F4
-* Tabbed - browsing! (try to click the middle mouse button on a folder, or right-click on it)
-* a new view dialog, click SHIFT-F3 
-* Panel swapping by Ctrl+U
-* Right click menu, can now "open" multiple files (if they have the same mimetype)
-* Updates to the search module
-* A new command line widget, with many tweaks (try ctrl+enter, ctrl+shift+enter, ctrl+/)
-* Fixed: run-in-terminal would cause the terminal to close prematuraly and results would be lost.
-* A new bookmark system is here! courtasy of Jan Halasa
-* In-place renaming (thanks to Heiner Eichmann)
-* New KIO slaves to handle archives.
-* Support for multi-file properties.
-* Krusader now obeys KDE's date time format
-* FreeBSD compatability in KrARC (thanks to Heiner Eichmann)
-* Fixed many i18n issues - thanks to Frank Schoolmeesters
-* Fixed the panel flicker patch (thanks to Gabor Takacs for the patch)
+A list of new features compared to the latest stable (which was 1.30):
 
-Also, all translations have been updates many times...
+* new konfigurator with many new configuration options - thanks to Csaba
+* new quicksearch (like TC) - thanks to Heiner
+* calculate occupied space prints the directory's size (like TC) - thanks to Heiner
+* KrSearch edit/view file in the result list window with (F3, F4, right click)
+* a folder-history button (like TC) - thanks to Hans Loffler!
+* a working user menu, but a bit rough on the edges - thanks to Shie
+* directory synchronizer - thanks to Csaba
+* file splitter and combiner - thanks to Csaba
+* ...
+
+Read the ChangeLog file to see more changes.
 
 Notice: if you've got bugs to report, please do it using krusader's website, and
         not using KDE's bugzilla (bugs.kde.org).
@@ -30,8 +23,135 @@ Notice: if you've got bugs to report, please do it using krusader's website, and
                       http://krusader.sourceforge.net
 
 
-+-------------------------------------------------------------------------+
-| If you looking for install notes, read the INSTALL file.                |
-| To learn what's new, read the Changelog.                                |
-| For bug reports, fixes, patches and comments mail krusader@users.sf.net |
-+-------------------------------------------------------------------------+
+
++--------------------------------------------------------------------------------+
+| To learn what's new, read the Changelog.                                       |
+| For bug reports, fixes, patches and comments: please read first the            |
+| FAQ section of the Krusader Handbook.                                          |
+| You can reach us by mail krusader@users.sourceforge.net or drop us a note in   |
+| our Krusader forum.                                                            |
++--------------------------------------------------------------------------------+
+
+
+
+Installation
+============
+Check the environment variables KDEDIR - QTDIR.
+
+Unpack the tarball and go to the Krusader source directory.
+If you have done a download from CVS you will have to run the following command to create
+the "./configure" script:
+$ make -f  Makefile.cvs
+
+Installation procedure:
+$ ./configure
+$ make
+$ su -c 'make install'
+
+If Krusader is upgraded then upgrade the krusader_source_dir\krusader\krusaderrc.ui file in
+$KDEDIR/share/apps/krusader and ~/.kde/share/apps/krusader
+
+For general KDE install notes, read the INSTALL file.
+
+Need more help?
+A detailed install procedure is available at:
+http://krusader.sourceforge.net/handbook/compilation.html
+The FAQ's are available at:
+http://krusader.sourceforge.net/handbook/faq.html
+
+
+
+To checkout the Krusader KDE3 version from cvs:
+===============================================
+$ cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login
+$ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3
+(note: updates from within the modules directory do not need the -d parameter)
+
+Or download the nightly tarball from: http://krusader.sourceforge.net/index.php?nav=cvs.php
+
+
+
+Krusader Handbook
+=================
+Documentation, detailed install procedure, FAQ's, ...
+The Krusader Handbook is available in the Help menu of Krusader
+or read it on-line at: http://krusader.sourceforge.net/handbook/index.html
+
+
+
+Help Krusader
+=============
+Here you get a chance to contribute to the Krusader project.
+From time to time we'll post things that need to be done, but can't be done by us.
+If you feel you can help, click the appropriate link on the website.
+All help is welcome.
+Thanks!
+or read it on-line at: http://krusader.sourceforge.net/index.php?nav=help.php
+
+
+- Developers     Are you able to write code with Kdevelop?
+                 Maybe you like to write code or a patch for Krusader.
+                 There are many things need to be done, please read the TODO file.
+                 If you like to write code at a regular base, maybe you like to join the Krusader Krew.
+
+- Translators    Krusader is currently available in 15 languages:
+                 English (done by the Krusader Krew),
+                 Czech, Danish, Dutch, French, German, Hungarian, Italian,
+                 2x Japanese, Polish, Russian, Slovak, Spanish, Swedish.
+                 Some of these translations can use an update, please read the
+                 "Krusader translation howto" for the latest information.
+                 If you have a new or updated translation, please send it to Dirk.
+
+- Documentation  Krusader is in need of documentation.
+                 We've started working on it, but help is always welcome.
+                 Please contact Frank.
+
+- Faq            If you have a question you want to add to the FAQ's, please let us know.
+
+- Krusader2      As we're "closing in" on version 1.x, we're thinking about Krusader II.
+                 This is a good time to hand in your suggestions, thoughts and wishes - hopefully,
+                 they'll make it into the next generation of file management.
+                 Please use our "Krusader 2" forum.
+
+- Packagers      We are always in need of packagers (preferably for Debian and SuSE).
+
+
+
+For Translators
+===============
+To extract a .pot file, go to krusader_kde3/
+and do: make -f admin/Makefile.common package-messages
+
+We have a verry detailed "Krusader translation howto", this allows that even
+beginners or non-programmers can translate Krusader to their native language.
+Look at  http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389
+If you have a new or updated translation, please send it to Dirk.
+
+
+
+The Krusader Krew
+==================
+Krusader is developed by a dedicated team of individuals, known as the Krusader Krew.
+- Shie Erlich,  author <erlich@users.sourceforge.net>
+- Rafi Yanai,   author <yanai@users.sourceforge.net>
+- Dirk Eschler, webmaster and i18n coordinator <deschler@users.sourceforge.net>
+- Csaba Karai,  developer <ckarai@users.sourceforge.net>
+- Frank Schoolmeesters, documentation coordinator <codeknight@users.sourceforge.net>
+- Mark Eatough, Krusader handbook proof reader <markeatough@yahoo.com>
+
+
+
+Package Description:
+====================
+Krusader is an advanced twin-panel (commander-style) file-manager for KDE 3.x
+(similar to Midnight or Total Commander) but with many extras.
+It provides all the file-management features you could possibly want.
+Plus: extensive archive handling, mounted filesystem support, FTP, advanced search module,
+viewer/editor, directory synchronisation, file content comparisons, powerful batch renaming and
+much much more.
+It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace, arj and rpm
+and can handle other KIOSlaves such as smb:// or fish://
+It is (almost) completely customizable, very user friendly,
+fast and looks great on your desktop! :-)
+
+You should give it a try.
