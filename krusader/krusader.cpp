@@ -208,9 +208,12 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    // create MountMan
    mountMan = new KMountMan();
 
-	// create bookman
-	bookman = new KrBookmarkHandler();
+   // create bookman
+   bookman = new KrBookmarkHandler();
 
+   // create the main view
+   mainView = new KrusaderView( this );
+   
    // setup all the krusader's actions
    setupActions();
 
@@ -220,8 +223,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    // init the protocol handler
    KgProtocols::init();
 
-   // create the main view and set it
-   mainView = new KrusaderView( this );
+   // starting the panels
    mainView->start( leftPath, rightPath );
 
    // restore TabBar
@@ -459,7 +461,7 @@ void Krusader::setupActions() {
    actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "connect_creating", CTRL + Key_N,
                                    SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
    actProfiles = new KAction( i18n( "Pro&files" ), "kr_profile", ALT + Key_L,
-                                   SLOTS, SLOT( profiles() ), actionCollection(), "profile" );
+                                   MAIN_VIEW, SLOT( profiles() ), actionCollection(), "profile" );
    actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kcalc", 0,
                                SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
    actProperties = new KAction( i18n( "&Properties" ), "help", 0,

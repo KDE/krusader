@@ -42,6 +42,7 @@
 #include "resources.h"
 #include "panelmanager.h"
 #include <klibloader.h> //<>
+#include "GUI/profilemanager.h"
 
 KrusaderView::KrusaderView( QWidget *parent, const char *name ) : QWidget( parent, name ), activePanel(0), 
 								konsole_part( 0L ) {}
@@ -150,6 +151,47 @@ void KrusaderView::killTerminalEmulator() {
   konsole_part = 0L;
   slotTerminalEmulator( false );  // hide the docking widget
   krToggleTerminal->setChecked( false );
+}
+
+
+void KrusaderView::profiles( QString profileName )
+{
+  ProfileManager profileManager( "Panel" );
+  profileManager.hide();
+  connect( &profileManager, SIGNAL( saveToProfile( QString ) ), this, SLOT( savePanelProfiles( QString ) ) );
+  connect( &profileManager, SIGNAL( loadFromProfile( QString ) ), this, SLOT( loadPanelProfiles( QString ) ) );
+  if( profileName.isEmpty() )
+    profileManager.profilePopup();
+  else
+    profileManager.loadByName( profileName );
+}
+
+void KrusaderView::loadPanelProfiles( QString group )
+{
+  krConfig->setGroup( group );
+  MAIN_VIEW->leftMng->loadSettings( krConfig, "Left Tabs" );
+  krConfig->setGroup( group );
+  MAIN_VIEW->leftMng->setCurrentTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
+  krConfig->setGroup( group );
+  MAIN_VIEW->rightMng->loadSettings( krConfig, "Right Tabs" );
+  krConfig->setGroup( group );
+  MAIN_VIEW->rightMng->setCurrentTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
+  krConfig->setGroup( group );  
+  if( krConfig->readBoolEntry( "Left Side Is Active", true ) )
+    MAIN_VIEW->left->slotFocusOnMe();
+  else
+    MAIN_VIEW->right->slotFocusOnMe();
+}
+
+void KrusaderView::savePanelProfiles( QString group )
+{
+  krConfig->setGroup( group );
+  
+  MAIN_VIEW->leftMng->saveSettings( krConfig, "Left Tabs" );
+  krConfig->writeEntry( "Left Active Tab", MAIN_VIEW->leftMng->activeTab() );
+  MAIN_VIEW->rightMng->saveSettings( krConfig, "Right Tabs" );
+  krConfig->writeEntry( "Right Active Tab", MAIN_VIEW->rightMng->activeTab() );
+  krConfig->writeEntry( "Left Side Is Active", MAIN_VIEW->activePanel->isLeft() );
 }
 
 #include "krusaderview.moc"

@@ -20,7 +20,6 @@
 #include "../Synchronizer/synchronizergui.h"
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
-#include "../krslots.h"
 
 #include <kdebug.h>
 #include <kinputdialog.h>
@@ -393,7 +392,7 @@ QString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, co
       return QString::null;
    }
    
-   SLOTS->profiles( parameter[0] );
+   MAIN_VIEW->profiles( parameter[0] );
 
    return QString::null;  // this doesn't return everything, that's normal!
 }

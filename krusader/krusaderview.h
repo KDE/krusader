@@ -71,6 +71,10 @@ public slots:
 	//////////////////////////////////////////////
   // Tab - switch focus
   void panelSwitch();
+  
+  void profiles( QString profileName = QString::null );  
+  void loadPanelProfiles( QString group );
+  void savePanelProfiles( QString group );
 
 protected slots:
   void killTerminalEmulator();
