@@ -74,9 +74,9 @@ GeneralFilter::GeneralFilter( int properties, QWidget *parent, const char *name 
   nameGroupLayout->addMultiCellWidget( searchFor, 0, 0, 1, 2 );
   
   QToolTip::add( searchFor, i18n( "Here you enter the filename filtering criteria. You can use wildcards\n"
-                                  "(*.o.* *.c?? etc.), and give more items separated by space.\n"
+                                  "(*.o .* *.c?? etc.), and give more items separated by space.\n"
                                   "If you type 'text' that results the same as '*text*'. You can exclude\n"
-                                  "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' ). " ) );
+                                  "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' )." ) );
     
   QLabel *searchType = new QLabel( nameGroup, "searchType" );
   searchType->setText( i18n( "&Of type:" ) );

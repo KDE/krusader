@@ -1085,9 +1085,9 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   fileFilter->setEditText("*");
   grid->addWidget( fileFilter, 1 ,1 );
   QToolTip::add( fileFilter, i18n( "Here you enter the filename filtering criteria. You can use wildcards\n"
-                                  "(*.o.* *.c?? etc.), and give more items separated by space.\n"
+                                  "(*.o .* *.c?? etc.), and give more items separated by space.\n"
                                   "If you type 'text' that results the same as '*text*'. You can exclude\n"
-                                  "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' ). " ) );
+                                  "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' )." ) );
 
   rightLocation = new KHistoryCombo(compareDirs, "SynchronizerHistoryRight");
   rightLocation->setMaxCount(25);  // remember 25 items
@@ -1435,7 +1435,7 @@ void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
     return;
   }
     
-  error = i18n("URL must be the descendent of either the left or the right base URL!");
+  error = i18n("URL must be the descendant of either the left or the right base URL!");
 }
 
 void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
