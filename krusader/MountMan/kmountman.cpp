@@ -687,7 +687,7 @@ void statsCollector::getData(QString path, fsData *data) {
 // a mountMan special version of KIO::convertSize, which deals
 // with large filesystems ==> >4GB, it actually recieve size in
 // a minimum block of 1024 ==> data is KB not bytes
-QString KMountMan::convertSize( unsigned long size )
+QString KMountMan::convertSize( KIO::filesize_t size )
 {
     float fsize;
     QString s;

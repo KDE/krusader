@@ -39,7 +39,8 @@
 #include <kprocess.h>
 #include <kjanuswidget.h>
 #include <kio/jobclasses.h>
-#include <ktempfile.h> 
+#include <kio/global.h>
+#include <ktempfile.h>
 // krusader includes
 #include <stdlib.h>
 #include <math.h>
@@ -69,7 +70,7 @@ namespace MountMan {
       void autoMount( QString path );           // just call it before refreshing into a dir
       static void eject( QString mntPoint );
       bool ejectable( QString path );
-      QString convertSize( unsigned long size );
+      QString convertSize( KIO::filesize_t size );
       //////////////////////////// service functions /////////////////////////////////
       static QString nextWord( QString &s );
       static QString nextWord( QString &s, char c );
@@ -160,10 +161,10 @@ namespace MountMan {
       inline long freeBlks() {
         return FreeBlks;
       }
-      inline long long totalBytes() {
+      inline KIO::filesize_t totalBytes() {
         return TotalBlks * 1024;
       }
-      inline long long freeBytes() {
+      inline KIO::filesize_t freeBytes() {
         return FreeBlks * 1024;
       }
       //////////////////// insert a good round function here /////////////////
