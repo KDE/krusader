@@ -57,7 +57,7 @@ KBookmarkHandler::~KBookmarkHandler()
 
 void KBookmarkHandler::openBookmarkURL(const QString& url)
 {
-  kdDebug() << "Opening url: " << url << endl;
+  //kdDebug() << "Opening url: " << url << endl;
   emit openUrl( url );
 }
 
