@@ -241,7 +241,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    mainView->start( leftPath, rightPath );
 
    // restore TabBar
-   {
+   if (!runKonfig) {
       KConfigGroupSaver grp( krConfig, "Startup" );
       QStringList l1( krConfig->readPathListEntry( "Left Tab Bar" ) );
       QStringList l2( krConfig->readPathListEntry( "Right Tab Bar" ) );
@@ -260,7 +260,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
       mainView->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
       krConfig->setGroup( "Startup" );             
       mainView->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
-            }
+	}
    
    // create the user menu
    userMenu = new UserMenu( this );
@@ -290,26 +290,24 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    if ( ! startProfile.isEmpty() )
        mainView->profiles( startProfile );
    
-   config->setGroup( "Private" );
-   if ( krConfig->readBoolEntry( "Maximized" ) )
-      restoreWindowSize(config);
-   else
-   {
-      // first, resize and move to starting point
-      move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
-      resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
-      show();
-   }
-
+   if (!runKonfig) {
+		config->setGroup( "Private" );
+		if ( krConfig->readBoolEntry( "Maximized" ) )
+			restoreWindowSize(config);
+		else
+		{
+			// first, resize and move to starting point
+			move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
+			resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
+			show();
+		}
+	}
    // let the good times rool :)
    updateGUI( true );
    if ( runKonfig )
       slot->runKonfigurator( true );
 
    isStarting = false;
-	
-	
-//	exportKeyboardShortcuts("/tmp/shie.txt");
 }
 
 Krusader::~Krusader() {}
@@ -318,15 +316,16 @@ bool Krusader::versionControl() {
    bool retval = false;
    // create config file
    config = kapp->config();
-   QString oldVerText = config->readEntry( "Version", "200" );
+   
+	QString oldVerText = config->readEntry( "Version", "10.0" );
    oldVerText.truncate( oldVerText.find( "-" ) );
    float oldVer = oldVerText.toFloat();
 
-   //kdDebug() << QString( "version = %1" ).arg( oldVer ) << endl;
+   krOut << QString( "version = %1" ).arg( oldVer ) << flush << endl;
 
    // older icompatible version
-   if ( oldVer < ( 9 / 10 ) ) {
-      KMessageBox::information( krApp, i18n( "A configuration older then v0.90 was detected Krusader has to reset your configuration to default values. Krusader will now run Konfigurator." ) );
+   if ( oldVer <= 1.51 ) {
+      KMessageBox::information( krApp, i18n( "A configuration of 1.51 or older was detected. Krusader has to reset your configuration to default values. Krusader will now run Konfigurator." ) );
       if ( !QDir::home().remove( ".kde/share/config/krusaderrc" ) ) {
          KMessageBox::error( krApp, i18n( "Unable to remove your krusaderrc file! Please remove it manually and rerun Krusader." ) );
          exit( 1 );
@@ -335,7 +334,7 @@ bool Krusader::versionControl() {
       config->reparseConfiguration();
    }
    // first installation of krusader
-   if ( oldVer == 100 ) {
+   if ( oldVer == 10.0 ) {
       KMessageBox::information( krApp, i18n( "Welcome to Krusader, as this is your first run, Krusader will now run Konfigurator." ) );
       retval = true;
    }
