@@ -41,6 +41,7 @@
 #include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 #include "../VFS/krpermhandler.h"
+#include "../KViewer/krviewer.h"
 #include "krsearchmod.h"
 #include "krsearchdialog.h"
 #include <time.h>
@@ -66,6 +67,8 @@
 #include <kdatetbl.h>
 #include <klocale.h>
 #include <kdeversion.h>
+#include <kpopupmenu.h>
+#include <qcursor.h>
 
 // private functions - used as services /////////////////////
 void changeDate(QLineEdit *p) {
@@ -610,9 +613,87 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
       return;
     }
   }
+  if( resultsList->hasFocus() )
+  {
+    if( e->key() == Key_F4 )
+    {
+      editCurrent();
+      return;
+    }
+    else if( e->key() == Key_F3 )
+    {
+      viewCurrent();
+      return;
+    }
+  }
 
   QDialog::keyPressEvent( e );
 }
 
+void KrSearchDialog::editCurrent()
+{
+  QListViewItem *current = resultsList->currentItem();
+  if( current )
+  {
+    KURL url = vfs::fromPathOrURL(current->text(1));
+    url.setFileName( current->text(0) );
+
+    krConfig->setGroup( "General" );
+    QString edit = krConfig->readEntry( "Editor", _Editor );
+
+    if ( edit == "internal editor" )
+      KrViewer::edit( url, true );
+    else
+    {
+      KProcess proc;
+      proc << edit << url.prettyURL(0,KURL::StripFileProtocol);
+      if ( !proc.start( KProcess::DontCare ) )
+        KMessageBox::sorry( krApp, i18n( "Can't open " ) + url.prettyURL(0,KURL::StripFileProtocol) );
+    }
+  }
+}
+
+void KrSearchDialog::viewCurrent()
+{
+  QListViewItem *current = resultsList->currentItem();
+  if( current )
+  {
+    KURL url = vfs::fromPathOrURL(current->text(1));
+    url.setFileName( current->text(0) );
+    KrViewer::view( url );
+  }
+}
+
+void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
+{
+  // these are the values that will exist in the menu
+  #define EDIT_FILE_ID        110
+  #define VIEW_FILE_ID        111
+  //////////////////////////////////////////////////////////
+  if (!item)
+    return;
+
+  // create the menu
+  KPopupMenu popup;
+  popup.insertTitle(i18n("Krusader Search"));
+
+  popup.insertItem(i18n("View File (F3)"),VIEW_FILE_ID);
+  popup.insertItem(i18n("Edit File (F4)"),EDIT_FILE_ID);
+
+  int result=popup.exec(QCursor::pos());
+
+  // check out the user's option
+  switch (result)
+  {
+    case VIEW_FILE_ID:
+      viewCurrent();
+      break;
+    case EDIT_FILE_ID:
+      editCurrent();
+      break;
+    default:    // the user clicked outside of the menu
+      break;
+  }
+}
 
 #include "krsearchdialog.moc"

@@ -70,6 +70,7 @@ public slots:
 
   virtual void keyPressEvent(QKeyEvent *e);
   virtual void closeEvent(QCloseEvent *e);
+  virtual void rightClickMenu(QListViewItem*, const QPoint&, int);
 
 protected slots:
   void reject();
@@ -81,6 +82,8 @@ private:
   bool gui2query();
   void query2gui();
   void deleteSelectedItems( QListBox * );
+  void editCurrent();
+  void viewCurrent();
 
 private:
   KRQuery *query;
