@@ -195,6 +195,13 @@ void KFileList::keyPressEvent(QKeyEvent *e) {
         SLOTS->dirUp(); // ask krusader to move up a directory
         return; // safety
       }
+    case Key_Up :
+      if (e->state()==ShiftButton) { // Shift+up selects
+        markCurrent(false); // down let markCurrent move down a file.
+      }
+      ne=new QKeyEvent(QEvent::KeyPress,e->key(),e->ascii(),ControlButton);
+      QListView::keyPressEvent(ne);
+      break;
     case Key_Down :
       if (e->state()==ControlButton) { // user pressed CTRL+Down
         // give the keyboard focus to the command line
@@ -203,19 +210,48 @@ void KFileList::keyPressEvent(QKeyEvent *e) {
         else if (krApp->mainView->terminal_dock->isVisible())
           krApp->mainView->terminal_dock->setFocus();
         return;
-      } else QListView::keyPressEvent(e);
+      }
+      if (e->state()==ShiftButton) { // Shift+Down selects as we go along
+        markCurrent(false); // dont allow markCurrent to move down a file.
+      }
+      ne=new QKeyEvent(QEvent::KeyPress,e->key(),e->ascii(),ControlButton);
+      QListView::keyPressEvent(ne);
       break;
+    case Key_Home :
+      ne=new QKeyEvent(QEvent::KeyPress,e->key(),e->ascii(),ControlButton);
+      QListView::keyPressEvent(ne);
+      break;
+    case Key_End :
+      ne=new QKeyEvent(QEvent::KeyPress,e->key(),e->ascii(),ControlButton);
+      QListView::keyPressEvent(ne);
+      break;
+    case Key_PageUp :
+      ne=new QKeyEvent(QEvent::KeyPress,e->key(),e->ascii(),ControlButton);
+      QListView::keyPressEvent(ne);
+      break;
+    case Key_PageDown :
+      ne=new QKeyEvent(QEvent::KeyPress,e->key(),e->ascii(),ControlButton);
+      QListView::keyPressEvent(ne);
+      break;
+    case Key_Space :
+      markCurrent(false);
+      return;
     case Key_Backspace :      // dir up
       if (e->state()==0) SLOTS->dirUp();            // dirUp
       return;
     case Key_QuoteLeft :     // home
       SLOTS->home();
       return;
+    case Key_Insert :         // mark/unmark current
+      markCurrent();
+      return;
     case Key_Delete :         // kill file
       SLOTS->deleteFiles();
       return;
     default:
+      setSelectionModeExt(KListView::NoSelection);
       QListView::keyPressEvent(e);
+      setSelectionModeExt(KListView::FileManager);
       return;
   }
 }
@@ -253,7 +289,7 @@ void KFileList::contentsMouseMoveEvent(QMouseEvent *e) {
   if (e->state() & MidButton) {}  // future use ???
 }
 
-/*void KFileList::viewportMouseMoveEvent(QMouseEvent *e) {
+void KFileList::viewportMouseMoveEvent(QMouseEvent *e) {
   if (e->state()!=0) QListView::viewportMouseMoveEvent(e);  // a button is pressed
   // a simple move with no button pressed
   QListViewItem *i=itemAt(e->pos());  // are we pointing on something ?
@@ -271,7 +307,7 @@ void KFileList::contentsMouseMoveEvent(QMouseEvent *e) {
 // 	  QToolTip::add(this,i->text(0));
 // 	  toolTip=true;
  	}
-} */
+}
 
 /*void KFileList::contentsMousePressEvent(QMouseEvent *e) {
   krConfig->setGroup("Look&Feel");
