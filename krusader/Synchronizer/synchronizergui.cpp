@@ -1613,6 +1613,7 @@ void SynchronizerGUI::compare()
     return;
   }  
   query.setFilter( fileFilter->currentText() );
+  synchronizerTabs->setCurrentPage(0);
   
   bool autoScrolling = cbAutoScroll->isChecked();
   
