@@ -450,7 +450,7 @@ void Krusader::setupActions() {
    actCmdlinePopup = new KAction( i18n( "popup cmdline" ), 0, CTRL + Key_Slash, SLOTS,
                                   SLOT( cmdlinePopup() ), actionCollection(), "cmdline popup" );
    /* Shortcut disabled because of the Terminal Emulator bug. */
-   actDirUp = new KAction( i18n( "Up" ), "up", 0 /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
+   actDirUp = new KAction( i18n( "Up one directory" ), "up", CTRL+Key_PageUp /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
    new KAction( i18n( "&Edit new file" ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
    new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_red", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
