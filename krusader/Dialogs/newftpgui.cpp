@@ -734,7 +734,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     password->setEchoMode( QLineEdit::Password );
 
     QWidget* Layout6 = new QWidget( this, "Layout6" );
-    Layout6->setGeometry( QRect( 10, 210, 320, 34 ) );
+    Layout6->setGeometry( QRect( 10, 210, 420, 34 ) );
     hbox = new QHBoxLayout( Layout6 );
     hbox->setSpacing( 6 );
     hbox->setMargin( 0 );
@@ -761,11 +761,11 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     PixmapLabel1->setScaledContents( TRUE );
 
     TextLabel3 = new QLabel( this, "TextLabel3" );
-    TextLabel3->setGeometry( QRect( 60, 10, 150, 31 ) );
+    TextLabel3->setGeometry( QRect( 60, 10, 300, 31 ) );
     TextLabel3->setText( i18n( "About to connect to..."  ) );
     QFont TextLabel3_font(  TextLabel3->font() );
     TextLabel3_font.setBold( TRUE );
-    TextLabel3->setFont( TextLabel3_font ); 
+    TextLabel3->setFont( TextLabel3_font );
 
     username = new QLineEdit( this, "username" );
     username->setGeometry( QRect( 10, 120, 320, 22 ) );
@@ -794,7 +794,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     setTabOrder( port, saveBtn );
 }
 
-/*  
+/*
  *  Destroys the object and frees any allocated resources
  */
 newFTPGUI::~newFTPGUI(){
