@@ -35,6 +35,9 @@
 #include <klocale.h>
 #include <qtooltip.h>
 #include <qvalidator.h>
+#include <kfiledialog.h>
+#include <kglobal.h>
+#include <kstandarddirs.h>
 
 KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -176,10 +179,19 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   tabWidget->insertTab( tab_3, i18n( "Key-bindings" ) );
 
   keyBindingsLayout = new QGridLayout( tab_3 );
-  KonfiguratorKeyChooser *keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3);
+  keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3);
   connect( keyBindings, SIGNAL( reload( KonfiguratorKeyChooser * ) ), this, SLOT( slotReload( KonfiguratorKeyChooser *) ) );
-  keyBindingsLayout->addWidget(keyBindings->keyChooserWidget(),0,0);
+  keyBindingsLayout->addMultiCellWidget(keyBindings->keyChooserWidget(),0,0,0,2);
   registerObject( keyBindings );
+  
+  // import and export shortcuts
+  QPushButton *importBtn = new QPushButton(i18n("Import shortcuts"),tab_3);
+  keyBindingsLayout->addWidget(importBtn,1,0);
+  QPushButton *exportBtn = new QPushButton(i18n("Export shortcuts"),tab_3);
+  keyBindingsLayout->addWidget(exportBtn,1,1);
+  keyBindingsLayout->addWidget(createSpacer(tab_3, "tab3spacer"), 1,2);
+  connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportShortcuts()));
+  connect(exportBtn, SIGNAL(clicked()), this, SLOT(slotExportShortcuts()));
 
   //  -------------------------- Panel Toolbar TAB ----------------------------------
   QWidget     *tab_4 = new QWidget( tabWidget, "tab_4" );
@@ -232,9 +244,9 @@ void KgLookFeel::slotReload( KonfiguratorKeyChooser * oldChooser )
   removeObject( oldChooser );
   delete oldChooser;
 
-  KonfiguratorKeyChooser *keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3);
+  keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3);
   connect( keyBindings, SIGNAL( reload( KonfiguratorKeyChooser * ) ), this, SLOT( slotReload( KonfiguratorKeyChooser *) ) );
-  keyBindingsLayout->addWidget(keyBindings->keyChooserWidget(),0,0);
+  keyBindingsLayout->addMultiCellWidget(keyBindings->keyChooserWidget(),0,0,0,2);
   registerObject( keyBindings );
   keyBindings->keyChooserWidget()->show();
 }
@@ -265,6 +277,21 @@ void KgLookFeel::slotEnablePanelToolbar()
   pnlcbs->find( "Up Button Visible"       )->setEnabled(enableTB);
   pnlcbs->find( "Equal Button Visible"    )->setEnabled(enableTB);
   pnlcbs->find( "Open Button Visible"     )->setEnabled(enableTB);  
+}
+
+void KgLookFeel::slotImportShortcuts() {
+	QString basedir = KGlobal::dirs()->resourceDirs("data").first();
+	QString file = KFileDialog::getOpenFileName(basedir, "*", 0, i18n("Select a shortcuts file"));
+	if (file == QString::null) return;
+	krApp->importKeyboardShortcuts(file);
+	slotReload(keyBindings);	
+	keyBindings->setChanged();
+}
+
+void KgLookFeel::slotExportShortcuts() {
+	QString file = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a shortcuts file"));
+	if (file == QString::null) return;
+	krApp->exportKeyboardShortcuts(file);
 }
 
 #include "kglookfeel.moc"

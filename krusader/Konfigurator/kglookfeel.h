@@ -62,6 +62,11 @@ protected slots:
   void slotReload( KonfiguratorKeyChooser * oldChooser );
   void slotDisable();
   void slotEnablePanelToolbar();
+  void slotImportShortcuts();
+  void slotExportShortcuts();
+  
+private:
+  KonfiguratorKeyChooser *keyBindings;
 };
 
 class KonfiguratorEditToolbarWidget : public KonfiguratorExtension

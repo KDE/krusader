@@ -607,18 +607,18 @@ void Krusader::importKeyboardShortcuts(QString filename) {
 		krOut << "Error opening " << filename << endl;
 		return;
 	}
-	
+	char *actionName;
 	QDataStream stream(&f);
-	QString name;
 	int key;
 	KAction *action;
 	while (!stream.atEnd()) {
-		stream >> name >> key;
-		action = actionCollection()->action(name.latin1());
+		stream >> actionName >> key;
+		action = actionCollection()->action(actionName);
 		if (action) {
 			action->setShortcut(key);
+//			krOut << "set shortcut for " << actionName <<endl;
 		} else {
-		   krOut << "unknown action " << name << endl;
+		   krOut << "unknown action " << actionName << endl;
 		}
 	}
 	f.close();

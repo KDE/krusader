@@ -35,6 +35,7 @@
 #include <qstring.h>
 #include <qcheckbox.h>
 #include <qspinbox.h>
+#include <qpushbutton.h>
 #include <qradiobutton.h>
 #include <qptrlist.h>
 #include <qvaluevector.h>
