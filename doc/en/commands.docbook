@@ -416,7 +416,7 @@
   <guimenu>Commands</guimenu>
   <guimenuitem>Profiles</guimenuitem></menuchoice></term>
   <listitem><para>
-  Panel profiles can be saved and restored, you could have several profiles
+  Panel profiles can be saved, restored and erased, you could have several profiles
   &eg; file-managment, ftp-managment, home, work, ...
   A panel profile contains:
   <itemizedlist>
@@ -424,6 +424,8 @@
     <listitem><para>the current tab (left / right)</para></listitem>
     <listitem><para>and the selected side (left or right)</para></listitem>
         </itemizedlist>
+  With the <link linkend="starting-krusader">commandline</link> you can load a 
+  <replaceable>&lt;panel-profile&gt;</replaceable> on startup.	
   </para></listitem>
   </varlistentry>
 

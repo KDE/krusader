@@ -556,11 +556,13 @@ foo</screen>
       <replaceable>&lt;path&gt;</replaceable></para>
 
 <para><option>--profile</option>
-      <replaceable>&lt;panel-profile&gt;</replaceable> opens panel-profile
-      <replaceable>&lt;panel-profile&gt;</replaceable></para>
+      <replaceable>&lt;panel-profile&gt;</replaceable> Load <link linkend="panel_profiles">panel-profile</link> 
+      <replaceable>&lt;panel-profile&gt;</replaceable> on startup
+      </para>
 
-<para>Example:
+<para>Examples:
 <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=/mnt/cdrom --right=ftp://downloads@myserver.net</replaceable></userinput></screen>
+<screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile ftp-managment</replaceable></userinput></screen>
 </para>
 
 <para>The standard &Qt; and &kde; command-line options are available, and can be listed by entering
