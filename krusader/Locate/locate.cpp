@@ -227,7 +227,7 @@ void LocateDlg::slotUser3()   /* The locate button */
      KMessageBox::error( krApp, i18n( "Locate produced the following error message:\n\n" ) + collectedErr );
   }else if ( result )
   {
-     KMessageBox::error( krApp, i18n( "Error during the start of `locate` process!" ) );
+     KMessageBox::error( krApp, i18n( "Error during the start of 'locate' process!" ) );
   }
   enableButton( KDialogBase::User3, true );  /* enable the locate button */
   enableButton( KDialogBase::User1, false ); /* disable the stop button */
