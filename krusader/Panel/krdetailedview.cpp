@@ -279,7 +279,7 @@ void KrDetailedView::addItem( vfile *vf ) {
 }
 
 void KrDetailedView::delItem( const QString &name ) {
-   KrDetailedViewItem * it = dict[ name ];
+	 KrDetailedViewItem * it = dict[ name ];
    if ( !it ) {
       kdWarning() << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
 		return;
@@ -287,9 +287,10 @@ void KrDetailedView::delItem( const QString &name ) {
 	if (it->isDir()) {
 		--_numDirs;
 	} else {
-		--_count;
 		_countSize -= it->size();
 	}
+	--_count;
+	
 	delete it;
 	emit selectionChanged();
 }
