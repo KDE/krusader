@@ -661,10 +661,10 @@ foo</screen>
 <appendix id="useraction_xml">
 <title>useraction.xml</title>
 <para>This appendix gives several examples of <filename>useraction.xml</filename> files.
-      In this way you can start to discover the power of the UserActions and start learning how to use them.
-      If you have made a great user action <link linkend="faqg_wish_patch">please send it in</link>,
+      In this way you can start to discover the power of the &useractions_lnk; and start learning how to use them.
+      If you have made a useful user action please post it in the &useractionsforum_url;,
       we are collecting UserActions on our website and are planning to ship &krusader; with several
-      great &useractions_lnk; in the near future.
+      great UserActions in the near future.
       Once you understand how to write UserActions you will find that &krusader; is an even more powerful, customizable tool.
       </para>
 
@@ -823,19 +823,19 @@ foo</screen>
 
       <listitem><para>This useraction Add item(s) to Amarok playlist:
       <programlisting>
-&lt;!DOCTYPE KrusaderUserActions>
-&lt;KrusaderUserActions>
- &lt;action name="amarok enqueue" >
-  &lt;title>Enqueue in Amarok&lt;/title>
-  &lt;tooltip>Add item(s) to Amarok playlist&lt;/tooltip>
-  &lt;icon>amarok&lt;/icon>
-  &lt;category>Multimedia&lt;/category>
-  &lt;description same_as="tooltip" />
-  &lt;command onmultiplefiles="call_each" >dcop amarok player addMedia %aCurrent%&lt;/command>
-  &lt;defaultshortcut>Win+A&lt;/defaultshortcut>
- &lt;/action>
+&lt;!DOCTYPE KrusaderUserActions> 
+&lt;KrusaderUserActions> 
+ &lt;action name="amarok enqueue" > 
+  &lt;title>Enqueue in Amarok&lt;/title> 
+  &lt;tooltip>Append selected item(s) to Amarok playlist&lt;/tooltip> 
+  &lt;icon>amarok&lt;/icon> 
+  &lt;category>Multimedia&lt;/category> 
+  &lt;description same_as="tooltip" /> 
+  &lt;command>amarok --append %aList(&quot;Selected&quot;)%&lt;/command> 
+  &lt;defaultshortcut>Win+A&lt;/defaultshortcut> 
+ &lt;/action> 
 &lt;/KrusaderUserActions></programlisting>
-      </para></listitem>
+      </para></listitem>       
 
       <listitem><para>Opens <link linkend="krusyncdir">KruSyncDir</link>:
       <programlisting>

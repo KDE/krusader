@@ -131,27 +131,14 @@
    </answer>
    </qandaentry>
 
-
    <qandaentry>
-   <question id="faqi_path">
-   <para>I have successfully installed &krusader; from source. Everything went fine but I can't start it.
-   What's going wrong here?</para>
+   <question id="faqi_64bit">
+   <para>How do i compile &krusader; when i'm using a 64 bit processor ?</para>
    </question>
    <answer>
-   <para><itemizedlist>
-          <listitem><para>The &krusader; binary is obviously not in your <envar>PATH</envar>.</para></listitem>
-          <listitem><para>Use the find command to locate the binary.
-<screen><prompt>$</prompt> <userinput><command> find</command> <option>/usr /opt -name</option>  krusader <option>-type f -perm +111</option></userinput>
-<userinput>/usr/local/bin/krusader</userinput></screen>
-          Here, the binary somehow made it into <filename class="directory">/usr/local/bin</filename>.
-          It is most likely, that your
-    <envar>KDEDIR</envar> enviroment variable wasn't set properly, look at &kdeqtdir_lnk; for more info.</para></listitem>
-          <listitem><para>If you don't want to recompile &krusader;, just add
-          <filename class="directory">/usr/local/bin</filename> to your <envar>PATH</envar>.
-          To do this for all users, append the following line in your
-          <filename class="directory">/etc/profile</filename> file (or any other file your shell sources at startup).
-         <screen><prompt>$</prompt> <userinput><command>export</command>  PATH=$PATH:<replaceable>/usr/local/bin</replaceable></userinput></screen></para></listitem>
-    </itemizedlist></para>
+   <para>We don't have much experiance and feedback with 64 bit processors yet but our &kruforum_url; is a good start.
+         Please look <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=951">here</ulink>.
+        </para>
     <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
@@ -727,7 +714,7 @@
          Some issues are asked over and over again, for these issues we have the made the &faq_lnk; ;-)
          This also allows us also to spend more time in developing &krusader;.</para>
 
-<para>The &kruforum_url; is split into five sections:
+<para>The &kruforum_url; is split into six sections:
   <itemizedlist>
      <listitem><para>&newsforum_url; all the latest news.</para></listitem>
      <listitem><para>&bugforum_url;: discussions about bugs, please DO NOT use the forum for &faqbugreports_lnk;
@@ -744,6 +731,9 @@
                <link linkend="faqg_wish_patch">Adding ToDo items</link> or removing ToDo items which
                have been implemented will be done by the &krusader; Krew.
                </para></listitem>
+     <listitem><para>&useractionsforum_url; discussions about &useractions_lnk;.
+                     Posting your own UserActions is greatly appreciated.
+                     We plan to include the best ones in the next &krusader; releases.</para></listitem>                      
      <listitem><para>&krugenforum_url;: everything that is &krusader; related and doesn't belong in the other
                       forums.</para></listitem>
   </itemizedlist>
