@@ -1644,6 +1644,13 @@
          <listitem><para>&useraction_parameter; A destination</para></listitem>
     </orderedlist>
     </listitem>
+    <listitem><para><userinput>PanelSize</userinput> - Change the ration between the two panels.</para>
+          <orderedlist>
+          <listitem><para>&useraction_optional_parameter; A integer value, e.g. 80 makes the active panel use 80% of 
+                         &krusader;'s width (height in vertical-mode), ommiting the parameter means 50%.
+                         </para></listitem>
+    </orderedlist>
+    </listitem>
 </itemizedlist>
 A GUI-based helper for placeholder-adding is provided.
 Spaces In Path, Current and List are per default automatically escaped.
