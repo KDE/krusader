@@ -53,7 +53,7 @@ A
 // Group name: KrDetailedView
 //
 // Ext Column
-#define _ExtColumn          true 
+#define _ExtColumn          true
 // Mime Column
 #define _MimeColumn         false 
 // Size Column
@@ -533,8 +533,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       case Key_Space : {
         KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
         if ( !viewItem || !( viewItem->isDir() && viewItem->size() <= 0 ) ) {
-          KListView::keyPressEvent( e );
-          return ; // wrong type
+          KListView::keyPressEvent( new QKeyEvent(QKeyEvent::KeyPress, Key_Insert, 0, 0) );
+          return ; // wrong type, just mark(unmark it)
         }
         long long totalSize = 0;
         long totalFiles = 0, totalDirs = 0;
@@ -552,7 +552,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       if ( (e->key()>=Key_A && e->key()<=Key_Z) ||
             (e->key()>=Key_0 && e->key()<=Key_9) ||
             (e->key() == Key_Backspace) ||
-            (e->key() == Key_Down) ) {
+            (e->key() == Key_Down) ||
+            (e->key() == Key_Period) ) {
          // are we doing quicksearch? if not, send keys to panel
          if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
          // are we using krusader's classic quicksearch, or wincmd style?

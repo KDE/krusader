@@ -219,8 +219,8 @@ void KrQuickSearch::myKeyPressEvent(QKeyEvent *e) {
    switch (e->key()) {
       case Key_Up:
       case Key_Down:
-      case Key_Home:
-      case Key_End:
+      case Key_Escape:
+      case Key_Enter:
          emit stop(e);
          break;
       default:

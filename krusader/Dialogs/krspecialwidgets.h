@@ -107,7 +107,8 @@ class KrQuickSearch: public KLineEdit {
       void myKeyPressEvent(QKeyEvent *e);
 
    signals:
-      void stop(QKeyEvent *e);      
+      void stop(QKeyEvent *e);
+
 };
 
 #endif
