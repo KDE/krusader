@@ -392,8 +392,8 @@ void Krusader::setupActions() {
                                  krApp, SLOT( savePosition() ), actionCollection(), "save position" );
   actAllFilter = new KAction( i18n( "&All Files" ), SHIFT + Key_F10,
                               SLOTS, SLOT( allFilter() ), actionCollection(), "all files" );
-  actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Key_F11,
-                               SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
+  //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Key_F11,
+  //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
   actCustomFilter = new KAction( i18n( "&Custom" ), SHIFT + Key_F12,
                                  SLOTS, SLOT( customFilter() ), actionCollection(), "custom files" );
   actCompare = new KAction( i18n( "Compare b&y content" ), "proxy", 0,
