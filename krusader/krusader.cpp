@@ -254,6 +254,11 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
       if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
          for ( it = ++(l2.begin()); it != l2.end(); ++it )
            mainView->rightMng->slotNewTab( *it );
+      
+      krConfig->setGroup( "Startup" );             
+      mainView->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
+      krConfig->setGroup( "Startup" );             
+      mainView->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
    }
 }
 
@@ -539,6 +544,8 @@ void Krusader::savePosition() {
 void Krusader::saveSettings() {
    toolBar() ->saveSettings( krConfig, "Private" );
    config->setGroup( "Startup" );
+   config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
+   config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
    mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
    mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
    bool panelsavesettings = config->readBoolEntry( "Panels Save Settings", _PanelsSave );

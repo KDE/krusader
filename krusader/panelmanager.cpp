@@ -149,6 +149,20 @@ void PanelManager::slotRefreshActions() {
    krCloseTab->setEnabled( _tabbar->count() > 1 );
 }
 
+int PanelManager::activeTab()
+{
+  return _tabbar->indexOf( _tabbar->currentTab() );
+}
+
+void PanelManager::setActiveTab( int panelIndex )
+{
+  QTab *current = _tabbar->tabAt( panelIndex );
+  if( current == 0 )
+    return;  
+  _tabbar->setCurrentTab( current );
+  slotChangePanel ( dynamic_cast<PanelTab*>( _tabbar->tabAt( panelIndex ) )->panel );
+}
+
 void PanelManager::recreatePanels() {
    int panelCount = _tabbar->count(), identifier = 0;
    ListPanel *oldCurrent = _self, *newCurrent = 0;

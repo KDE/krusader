@@ -41,7 +41,10 @@ class PanelManager: public QWidget {
      * Swaps the left / right directions of the panel
      */
     void swapPanels()             {_left = !_left;}
-	 void saveSettings(KConfig *config, const QString& key);
+    
+    void saveSettings(KConfig *config, const QString& key);
+    int  activeTab();
+    void setActiveTab( int );
 
   public slots:
     /**
