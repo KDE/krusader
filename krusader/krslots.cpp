@@ -362,6 +362,7 @@ void KRslots::runRemoteMan() {
 }
 
 void KRslots::runMountMan() {
+  // left as a precaution, although we use kde's services now
   if( !KrServices::cmdExist( "df" ) || !KrServices::cmdExist( "mount" ) )
   {
     KMessageBox::error(0,
@@ -369,16 +370,7 @@ void KRslots::runMountMan() {
     return;
   }
   
-  if (krApp->mountMan->operational()) {
-    while (!krApp->mountMan->ready())
-      usleep( 200000 );
-    krApp->mountMan->mainWindow();
-  }
-  else
-  {
-    KMessageBox::error(0, i18n( "Failed to run 'df', MountMan cannot be started." ) );
-    return;
-  }
+  krApp->mountMan->mainWindow();
 }
 
 void KRslots::homeTerminal(){
