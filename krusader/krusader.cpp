@@ -259,14 +259,22 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
       QStringList::const_iterator it;
       
       if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
-         for ( it = ++(l1.begin()); it != l1.end(); ++it )
+      {
+         it = l1.begin();
+         mainView->left->func->openUrl( *it );
+         for ( it++; it != l1.end(); ++it )
            mainView->leftMng->slotNewTab( *it );
+      }
 
       krConfig->setGroup( "Startup" );             
       if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
-         for ( it = ++(l2.begin()); it != l2.end(); ++it )
+      {
+         it = l2.begin();
+         mainView->right->func->openUrl( *it );
+         for ( it++; it != l2.end(); ++it )
            mainView->rightMng->slotNewTab( *it );
-      
+      }
+   
       krConfig->setGroup( "Startup" );             
       mainView->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
       krConfig->setGroup( "Startup" );             
