@@ -5,9 +5,7 @@
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
- ---------------------------------------------------------------------------
-  A vfs class that handels "normal" directory enterys
-	inherits: vfs
+
  ***************************************************************************
 
   A 
@@ -38,42 +36,48 @@
 // KDE includes
 #include <kfileitem.h>
 #include <kdirwatch.h>
+#include <kurl.h>
 // Krusader includes
 #include "vfs.h"
-//#include "krdirwatch.h"
 
+/**
+ * The normal_vfs class is Kruasder implemention for local directories.
+ * As this is the most common case, we try to make it as fast and efficent as possible.
+ */
 class normal_vfs : public vfs{
 	Q_OBJECT
 public:
 	// the constructor simply uses the inherited constructor
 	normal_vfs(QString origin,QWidget* panel);
  ~normal_vfs(){}
-	
-	// copy a file to the vfs (physical)
-	void    vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify=0,QString dir="");	
-	// remove a file from the vfs (physical)
-	void 		vfs_delFiles(QStringList *fileNames);	
-	// return a path to the file
-	QString vfs_getFile(QString name);
-	KURL::List* vfs_getFiles(QStringList* names);
-	// make dir
-	void vfs_mkdir(QString name);
-	// rename file
-	void vfs_rename(QString fileName,QString newName);
-	// calculate space
-	void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0);
-	// return the working dir
-	inline virtual QString vfs_workingDir() { return vfs_origin; }
-	void blockSignals(bool block){ block? watcher.stopScan() : watcher.startScan() ; }
+
+	/// Copy a file to the vfs (physical).
+	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "");
+	/// Remove a file from the vfs (physical)
+	virtual void vfs_delFiles(QStringList *fileNames);
+	/// Return a list of URLs for multiple files
+	virtual KURL::List* vfs_getFiles(QStringList* names);
+	/// Return a URL to a single file
+	virtual KURL vfs_getFile(const QString& name);
+	/// Create a new directory
+	virtual void vfs_mkdir(const QString& name);
+	/// Rename file
+	virtual void vfs_rename(const QString& fileName,const QString& newName);
+	/// Calculate the amount of space occupied by a file or directory (recursive).
+	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0);
+
+	/// return the VFS working dir
+	virtual QString vfs_workingDir() { return vfs_origin.path(-1); }
 
 public slots:
-	// actually reads files and stats
-	bool vfs_refresh(QString origin);
+	/// Re-reads files and stats and fills the vfile list
+	virtual bool vfs_refresh(const KURL& origin);
+  /// used by to refresh the VFS with a short delay.
   void vfs_slotDirty(){ QTimer::singleShot(100,this,SLOT(vfs_refresh())); }
 
 protected:
-	QList<vfile>  vfs_files;    // list of pointers to vfile	
-	KDirWatch watcher;
+	QList<vfile>  vfs_files;    //< List of pointers to vfile	
+	KDirWatch watcher;          //< The internal dir watcher - use to detect changes in directories
 };
 
 #endif

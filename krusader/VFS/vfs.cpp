@@ -49,15 +49,15 @@ KIO::filesize_t vfs::vfs_totalSize(){
 	class vfile* vf=vfs_getFirstFile();
 		
 	while (vf!=0){
-		if ( (vf->vfile_getName() != ".") && ( vf->vfile_getName() != "..")
+		if ( (vf->vfile_getName() != ".") && ( vf->vfile_getName() != "..")  
 		     && !(vf->vfile_isDir()) )
 				temp+=vf->vfile_getSize();
 		vf=vfs_getNextFile();
 	}
-	return temp;
+	return temp;                                                     
 }
 
-vfile* vfs::vfs_search(QString name){	
+vfile* vfs::vfs_search(const QString& name){	
 	vfile* temp = vfs_getFirstFile();
 		
 	while (temp!=0){
@@ -67,6 +67,14 @@ vfile* vfs::vfs_search(QString name){
 	return 0;
 }
 
+bool vfs::vfs_refresh(KIO::Job* job){
+  if(job && job->error()){
+		job->showErrorDialog(krApp);
+	}
+	return vfs_refresh(vfs_origin);
+}
+
+#if 0
 QString vfs::round(int i){
 	QString t;
 	t.sprintf("%d",i);
@@ -102,12 +110,6 @@ QString vfs::dateTime2QString(const QDateTime& datetime){
 		     +" "+round(time.hour())+":"+round(time.minute());
 	return dateTime;
 }
-
-bool vfs::vfs_refresh(KIO::Job* job){
-  if(job && job->error()){
-		job->showErrorDialog(krApp); 		
-	}
-	return vfs_refresh(vfs_origin);
-}
+#endif
 
 #include "vfs.moc"

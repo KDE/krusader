@@ -58,6 +58,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qtabbar.h>
 #include <kdebug.h>
 #include <kurlrequester.h>
+#include <kurl.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../krslots.h"
@@ -109,7 +110,7 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   // ... create the bookmark list
   bookmarksButton = new BookmarksButton( this );
   connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-  connect( bookmarksButton, SIGNAL( openUrl( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
+  connect( bookmarksButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
   QWhatsThis::add
     ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
                              "current location to the list, edit bookmarks "
@@ -265,7 +266,7 @@ void ListPanel::start( QString path ) {
     }
 
   realPath = virtualPath;
-  func->openUrl( virtualPath );
+  func->openUrl( KURL::fromPathOrURL(virtualPath) );
 }
 
 void ListPanel::slotStartUpdate() {
@@ -276,15 +277,16 @@ void ListPanel::slotStartUpdate() {
     return ;
   }
 
-  while ( func->inRefresh )
-    ; // wait until the last refresh finish
+  while ( func->inRefresh ); // wait until the last refresh finish
   func->inRefresh = true;  // make sure the next refresh wait for this one
   krApp->setCursor( KCursor::workingCursor() );
   view->clear();
 
   // set the virtual path
-  virtualPath = func->files() ->vfs_getOrigin();
-  if ( func->files() ->vfs_getType() == "normal" )
+  virtualPath = func->files() ->vfs_getOrigin().prettyURL();
+  if( virtualPath.startsWith("file:") ) virtualPath = virtualPath.mid(5);
+
+  if ( func->files() ->vfs_getType() == vfs::NORMAL )
     realPath = virtualPath;
   this->origin->setURL( virtualPath );
   emit pathChanged( this );
@@ -305,8 +307,8 @@ void ListPanel::slotEndUpdate() {
 
 void ListPanel::slotUpdate() {
   // if we are not at the root add the ".." entery
-  QString origin = func->files() ->vfs_getOrigin();
-  if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == "ftp" ) &&
+  QString origin = func->files() ->vfs_getOrigin().prettyURL();
+  if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) &&
                                       origin.find( '/', origin.find( ":/" ) + 3 ) == -1 ) ) {
     view->addItems( func->files() );
   } else
@@ -411,8 +413,8 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
   popup.insertItem( i18n( "Copy Here" ), 1 );
   if ( func->files() ->vfs_isWritable() )
     popup.insertItem( i18n( "Move Here" ), 2 );
-  if ( func->files() ->vfs_getType() == "normal" &&
-       otherPanel->func->files() ->vfs_getType() == "normal" )
+  if ( func->files() ->vfs_getType() == vfs::NORMAL &&
+       otherPanel->func->files() ->vfs_getType() == vfs::NORMAL )
     popup.insertItem( i18n( "Link Here" ), 3 );
   popup.insertItem( i18n( "Cancel" ), 4 );
   QPoint tmp = mapToGlobal( e->pos() );
@@ -508,7 +510,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   }
   // Preview - normal vfs only ?
   KrPreviewPopup preview;
-  if ( func->files() ->vfs_getType() == "normal" ) {
+  if ( func->files() ->vfs_getType() == vfs::NORMAL ) {
     // create the preview popup
     QStringList names;
     getSelectedNames( &names );
@@ -557,12 +559,12 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
     // DELETE
     popup.insertItem( i18n( "Delete" ), DELETE_ID );
     // SHRED - only one file
-    if ( func->files() ->vfs_getType() == "normal" &&
+    if ( func->files() ->vfs_getType() == vfs::NORMAL &&
          !item->isDir() && !multipleSelections )
       popup.insertItem( i18n( "Shred" ), SHRED_ID );
   }
-  // create new shortcut or redirect links - not on ftp:
-  if ( func->files() ->vfs_getType() != "ftp" ) {
+  // create new shortcut or redirect links - only on local directories:
+  if ( func->files() ->vfs_getType() == vfs::NORMAL ) {
     popup.insertSeparator();
     linkPopup.insertItem( i18n( "new symlink" ), NEW_SYMLINK );
     linkPopup.insertItem( i18n( "new hardlink" ), NEW_LINK );
@@ -572,14 +574,14 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
     popup.changeItem( LINK_HANDLING, i18n( "Link handling" ) );
   }
   popup.insertSeparator();
-  if ( func->files() ->vfs_getType() != "ftp" && ( item->isDir() || multipleSelections ) )
+  if ( func->files() ->vfs_getType() == vfs::NORMAL && ( item->isDir() || multipleSelections ) )
     krCalculate->plug( &popup );
-  if ( func->files() ->vfs_getType() == "normal" && item->isDir() && !multipleSelections ) {
-    if ( krMtMan.getStatus( func->files() ->vfs_getFile( item->name() ) ) == MountMan::KMountMan::MOUNTED )
+  if ( func->files() ->vfs_getType() == vfs::NORMAL && item->isDir() && !multipleSelections ) {
+    if ( krMtMan.getStatus( func->files()->vfs_getFile(item->name()).path(-1) ) == MountMan::KMountMan::MOUNTED )
       popup.insertItem( i18n( "Unmount" ), UNMOUNT_ID );
-    else if ( krMtMan.getStatus( func->files() ->vfs_getFile( item->name() ) ) == MountMan::KMountMan::NOT_MOUNTED )
+    else if ( krMtMan.getStatus( func->files()->vfs_getFile(item->name()).path(-1) ) == MountMan::KMountMan::NOT_MOUNTED )
       popup.insertItem( i18n( "Mount" ), MOUNT_ID );
-    if ( krMtMan.ejectable( func->files() ->vfs_getFile( item->name() ) ) )
+    if ( krMtMan.ejectable( func->files()->vfs_getFile(item->name()).path(-1) ) )
       popup.insertItem( i18n( "Eject" ), EJECT_ID );
   }
   // send by mail (only for KDE version >= 2.2.0)
@@ -602,11 +604,11 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       case OPEN_TAB_ID :             // Open/Run
       // assuming only 1 file is selected (otherwise we won't get here)
       (krApp->mainView->activePanel == krApp->mainView->left ? krApp->mainView->leftMng :
-       krApp->mainView->rightMng)->slotNewTab( func->files() ->vfs_getFile( item->name() ) );
+       krApp->mainView->rightMng)->slotNewTab( func->files()->vfs_getFile(item->name()).url() );
       break;
       case OPEN_ID :             // Open in a new tab
       for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
-        u.setPath( func->files() ->vfs_getFile( ( *it ) ->name() ) );
+        u = func->files()->vfs_getFile((*it)->name());
         KRun::runURL( u, item->mime() );
       }
       break;
@@ -623,25 +625,25 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       func->deleteFiles();
       break;
       case EJECT_ID :
-      MountMan::KMountMan::eject( func->files() ->vfs_getFile( item->name() ) );
+      MountMan::KMountMan::eject( func->files()->vfs_getFile(item->name()).path(-1) );
       break;
       case SHRED_ID :
       if ( KMessageBox::warningContinueCancel( krApp,
                                                i18n( "Are you sure you want to shred " ) + "\"" + item->name() + "\"" +
                                                " ? Once shred, the file is gone forever !!!",
                                                QString::null, KStdGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
-        KShred::shred( func->files() ->vfs_getFile( item->name() ) );
+        KShred::shred( func->files()->vfs_getFile(item->name()).path(-1) );
       break;
       case OPEN_KONQ_ID :        // open in konqueror
-      kapp->startServiceByDesktopName( "konqueror", func->files() ->vfs_getFile( item->name() ) );
+      kapp->startServiceByDesktopName( "konqueror", func->files()->vfs_getFile(item->name()).url() );
       break;
       case CHOOSE_ID :           // Other...
-      u.setPath( func->files() ->vfs_getFile( item->name() ) );
+      u = func->files()->vfs_getFile(item->name());
       lst.append( u );
       KRun::displayOpenWithDialog( lst );
       break;
       case MOUNT_ID :
-      krMtMan.mount( func->files() ->vfs_getFile( item->name() ) );
+      krMtMan.mount( func->files()->vfs_getFile(item->name()).path(-1) );
       break;
       case NEW_LINK :
       func->krlink( false );
@@ -653,14 +655,14 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       func->redirectLink();
       break;
       case UNMOUNT_ID :
-      krMtMan.unmount( func->files() ->vfs_getFile( item->name() ) );
+      krMtMan.unmount( func->files()->vfs_getFile(item->name()).path(-1) );
       break;
       case SEND_BY_EMAIL :
-      SLOTS->sendFileByEmail( func->files() ->vfs_getFile( item->name() ) );
+      SLOTS->sendFileByEmail( func->files()->vfs_getFile(item->name()).url() );
       break;
       case OPEN_TERM_ID :        // open in terminal
       QString save = getcwd( 0, 0 );
-      chdir( func->files() ->vfs_getFile( item->name() ).local8Bit() );
+      chdir( func->files()->vfs_getFile(item->name()).path(-1).local8Bit() );
       KProcess proc;
       krConfig->setGroup( "General" );
       QString term = krConfig->readEntry( "Terminal", _Terminal );
@@ -725,11 +727,11 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
       if ( e->state() == ControlButton ) {
         // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
         // directory otherwise as this one
-        QString newPath;
-        if ( view->getCurrentKrViewItem() ->isDir() ) {
-          newPath = func->files() ->vfs_getFile( view->getCurrentKrViewItem() ->name() );
+        KURL newPath;
+        if ( view->getCurrentKrViewItem()->isDir() ) {
+          newPath = func->files()->vfs_getFile( view->getCurrentKrViewItem()->name() );
         } else {
-          newPath = realPath;
+          newPath = func->files()->vfs_getOrigin();
         }
         otherPanel->func->openUrl( newPath );
 

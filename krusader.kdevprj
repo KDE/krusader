@@ -22,18 +22,18 @@ bin_program=krusader
 cflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cppflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cxxflags=\s-O0 -Wall
-ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a UserMenu/libUserMenu.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                                     \s
+ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
+ldflags=\s                                    \s
 
 [General]
-AMChanged=true
+AMChanged=false
 author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
 kdevprj_version=1.3
-lfv_open_groups=Others,Sources
+lfv_open_groups=
 make_options=\s-j1
-makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am,krusader/Splitter/Makefile.am,krusader/UserMenu/Makefile.am
+makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am,krusader/Splitter/Makefile.am
 modifyMakefiles=true
 project_name=Krusader
 project_type=mini_kde2
@@ -729,7 +729,7 @@ type=HEADER
 
 [krusader/Makefile.am]
 files=krusader/krusader.desktop,krusader/lo32-app-krusader.png,krusader/lo16-app-krusader.png,krusader/defaults.h,krusader/kicons.cpp,krusader/kicons.h,krusader/krslots.cpp,krusader/krslots.h,krusader/krusader.cpp,krusader/krusader.h,krusader/krusaderui.rc,krusader/krusaderview.cpp,krusader/krusaderview.h,krusader/lo32-app-krusader2.png,krusader/main.cpp,krusader/resources.h,krusader/x-ace.desktop,krusader/krservices.cpp,krusader/krservices.h,krusader/panelmanager.cpp,krusader/panelmanager.h,krusader/paneltabbar.cpp,krusader/paneltabbar.h
-sub_dirs=BookMan,Dialogs,GUI,Konfigurator,KViewer,MountMan,Panel,RemoteMan,VFS,Search,Splitter,UserMenu
+sub_dirs=BookMan,Dialogs,GUI,Konfigurator,KViewer,MountMan,Panel,RemoteMan,VFS,Search,Splitter
 type=prog_main
 
 [krusader/MountMan/Makefile.am]
@@ -986,43 +986,12 @@ install=false
 install_location=
 type=HEADER
 
-[krusader/UserMenu/Makefile.am]
-files=krusader/UserMenu/usermenu.cpp,krusader/UserMenu/usermenu.h
-sharedlib_LDFLAGS=-version-info 0:0:0
-sharedlib_rootname=UserMenu
-sub_dirs=
-type=static_library
-
-[krusader/UserMenu/usermenu.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
-[krusader/UserMenu/usermenu.h]
-dist=true
-install=false
-install_location=
-type=HEADER
-
 [krusader/VFS/Makefile.am]
-files=krusader/VFS/arc_vfs.cpp,krusader/VFS/arc_vfs.h,krusader/VFS/ftp_vfs.cpp,krusader/VFS/ftp_vfs.h,krusader/VFS/krarchandler.cpp,krusader/VFS/krarchandler.h,krusader/VFS/krdirwatch.cpp,krusader/VFS/krdirwatch.h,krusader/VFS/krpermhandler.cpp,krusader/VFS/krpermhandler.h,krusader/VFS/normal_vfs.cpp,krusader/VFS/normal_vfs.h,krusader/VFS/temp_vfs.cpp,krusader/VFS/temp_vfs.h,krusader/VFS/vfile.cpp,krusader/VFS/vfile.h,krusader/VFS/vfs.cpp,krusader/VFS/vfs.h
+files=krusader/VFS/ftp_vfs.cpp,krusader/VFS/ftp_vfs.h,krusader/VFS/krarchandler.cpp,krusader/VFS/krarchandler.h,krusader/VFS/krdirwatch.cpp,krusader/VFS/krdirwatch.h,krusader/VFS/krpermhandler.cpp,krusader/VFS/krpermhandler.h,krusader/VFS/normal_vfs.cpp,krusader/VFS/normal_vfs.h,krusader/VFS/temp_vfs.cpp,krusader/VFS/temp_vfs.h,krusader/VFS/vfile.cpp,krusader/VFS/vfile.h,krusader/VFS/vfs.cpp,krusader/VFS/vfs.h,krusader/VFS/virt_vfs.cpp,krusader/VFS/virt_vfs.h,krusader/VFS/krvfshandler.cpp,krusader/VFS/krvfshandler.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=VFS
 sub_dirs=
 type=static_library
-
-[krusader/VFS/arc_vfs.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
-[krusader/VFS/arc_vfs.h]
-dist=true
-install=false
-install_location=
-type=HEADER
 
 [krusader/VFS/ftp_vfs.cpp]
 dist=true
@@ -1072,6 +1041,18 @@ install=false
 install_location=
 type=HEADER
 
+[krusader/VFS/krvfshandler.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/VFS/krvfshandler.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
 [krusader/VFS/normal_vfs.cpp]
 dist=true
 install=false
@@ -1115,6 +1096,18 @@ install_location=
 type=SOURCE
 
 [krusader/VFS/vfs.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/VFS/virt_vfs.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/VFS/virt_vfs.h]
 dist=true
 install=false
 install_location=

@@ -41,42 +41,45 @@ class ftp_vfs : public vfs{
 	Q_OBJECT
 public:
 	// the constructor simply uses the inherited constructor
-	ftp_vfs(QString origin,QWidget* panel);
+	ftp_vfs(const KURL& origin,QWidget* panel);
  ~ftp_vfs(){}
-	
-	// copy a file to the vfs (physical)
-	void    vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "");
-	// remove a file from the vfs (physical)
-	void 		vfs_delFiles(QStringList *fileNames);	
-	// return a path to the file
-	QString vfs_getFile(QString name);
-	KURL::List* vfs_getFiles(QStringList* names);
-	// make dir
-	void vfs_mkdir(QString name);
-	// rename file
-	void vfs_rename(QString fileName,QString newName);
-	QString vfs_workingDir();
-	// not implemented for ftp !
-	void vfs_calcSpace(QString ,KIO::filesize_t *,unsigned long *,unsigned long *,bool*){}
 
+	/// Copy a file to the vfs (physical).
+	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "");
+	/// Remove a file from the vfs (physical)
+	virtual void vfs_delFiles(QStringList *fileNames);
+	/// Return a list of URLs for multiple files
+	virtual KURL::List* vfs_getFiles(QStringList* names);
+	/// Return a URL to a single file
+	virtual KURL vfs_getFile(const QString& name);
+	/// Create a new directory
+	virtual void vfs_mkdir(const QString& name);
+	/// Rename file
+	virtual void vfs_rename(const QString& fileName,const QString& newName);
+	/// Calculate the amount of space occupied by a file or directory (recursive).
+  /// Not implemted (yet) in ftp_vfs
+	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0){};
+
+	/// Return the VFS working dir	
+	QString vfs_workingDir();
+  /// Return true while the VFS is refreshing itself
 	inline bool isBusy(){ return busy; }
 	
 public slots:
-	// recieve KDirLister  job.
+	/// Handles new files from the dir lister
 	void slotAddFiles(KIO::Job * job, const KIO::UDSEntryList& entries);
-  void slotRedirection(KIO::Job *, const KURL &url);
-  void slotListResult(KIO::Job *job);
-	// actually reads files and stats
-	bool vfs_refresh(QString origin);
+	/// Redirection signal handler
+	void slotRedirection(KIO::Job *, const KURL &url);
+	/// Called when the dir listing job is finished (for better or worst)
+	void slotListResult(KIO::Job *job);
+	/// Active the dir listing job
+	bool vfs_refresh(const KURL& origin);
 
 protected:
-	QList<vfile>  vfs_files;    // list of pointers to vfile
-  QList<vfile>  vfs_files2;   // list of pointers to vfile
-  QList<vfile>  *vfs_filesP2;
-  QString origin_backup;
-
-  KURL vfs_url;	
-  KURL vfs_url_backup;
+	QList<vfile>  vfs_files;    //< List of pointers to vfile.
+  QList<vfile>  vfs_files2;   //< The second list of pointers to vfiles.
+  QList<vfile>  *vfs_filesP2; //< pointer to the second list
+  KURL origin_backup;         //< used to backup the old URL when refreshing to a new one,
 
   bool notConnected;
 

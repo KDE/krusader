@@ -71,7 +71,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
 	isWritable = KRpermHandler::fileWriteable(origin);
   isWritable = ( write && isWritable ); 	
 
-  vfs_type = type;
+  vfs_type = vfs::ERROR;
 
 	// create the temp dir..
   tmpDir = krApp->getTempDir();

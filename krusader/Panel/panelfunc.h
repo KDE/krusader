@@ -98,6 +98,7 @@ friend class ListPanel;
 	Q_OBJECT
 public slots:
 	void execute(QString&);
+	void openUrl(const KURL& path, const QString& nameToMakeCurrent = QString::null);
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString::null);
 	void refresh(){ refresh(panel->virtualPath); } // re-read the files
 	void rename(const QString &oldname, const QString &newname);
@@ -136,7 +137,7 @@ public:
 	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
 protected:
-	void refresh(const QString path);
+	void refresh(const KURL& url);
 
 	ListPanel	     *panel;    // our ListPanel
 	QStringList    backStack; // Path stack for the "back" button

@@ -245,7 +245,7 @@ public:
    * This function is called if the user selects a bookmark.  It will
    * open up the bookmark in a default fashion unless you override it.
    */
-  virtual void openBookmarkURL(const QString& _url);
+  virtual void openBookmarkURL(const KURL& _url);
 
   /**
    * This function is called whenever the user wants to add the

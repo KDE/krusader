@@ -37,7 +37,7 @@ BookmarksButton::BookmarksButton(QWidget *parent) : QToolButton(parent)
   acmBookmarks->setDelayed(false);
 
   bookmarkHandler = new KBookmarkHandler(this, acmBookmarks->popupMenu());
-  QObject::connect(bookmarkHandler, SIGNAL(openUrl(const QString&)), this, SIGNAL(openUrl(const QString&)));
+  QObject::connect(bookmarkHandler, SIGNAL(openUrl(const KURL&)), this, SIGNAL(openUrl(const KURL&)));
   setPopup(acmBookmarks->popupMenu());
 }
 

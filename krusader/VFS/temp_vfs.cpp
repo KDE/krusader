@@ -41,7 +41,7 @@
 
 temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
           normal_vfs(origin,panel){
-  vfs_type="temp";
+  vfs_type=TEMP;
   // first we need to create a temp diretory
 	tmpDir = krApp->getTempDir();
 	if( tmpDir.isEmpty() ){
@@ -79,17 +79,18 @@ temp_vfs::~temp_vfs(){
 // return the working dir
 QString temp_vfs::vfs_workingDir(){
   // get the path inside the archive
-  QString path = vfs_origin.right((vfs_origin.length()-vfs_origin.findRev('\\'))-1);
+  QString path = vfs_origin.path(-1);
+  path = path.mid(path.findRev('\\')+1);
   if(path.left(1) != "/") path = "/"+path;
   QDir().mkdir(tmpDir+path);
   return tmpDir+path;
 }
 
-bool temp_vfs::vfs_refresh(QString origin){
-  QString backup = vfs_origin;
+bool temp_vfs::vfs_refresh(const KURL& origin){
+  KURL backup = vfs_origin;
   vfs_origin = origin;
   // get the directory...
-  QString path = origin.right((origin.length()-origin.findRev('\\'))-1);
+  QString path = origin.path(-1).mid(origin.path(-1).findRev('\\')+1);
   if(path.left(1) =="/") path.remove(0,1);
   if ( !normal_vfs::vfs_refresh(tmpDir+"/"+path) ){
     vfs_origin = backup;

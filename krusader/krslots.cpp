@@ -246,11 +246,8 @@ void KRslots::insertFileName(bool full_path)
   if( filename == QString::null )
     return;
   
-  if( full_path )
-  {
-    QString path=ACTIVE_FUNC->files()->vfs_getOrigin();
-    if( !path.endsWith( "/" ))
-      path+="/";
+  if( full_path ){
+    QString path=ACTIVE_FUNC->files()->vfs_getOrigin().path(1);
     filename = path+filename;
   }
 
@@ -261,17 +258,17 @@ void KRslots::insertFileName(bool full_path)
 }
 
 // directory list functions
-void KRslots::allFilter()			  {	ACTIVE_PANEL->setFilter(KrView::All);	 }
-void KRslots::execFilter()			{	ACTIVE_PANEL->setFilter(KrView::All);	 }
-void KRslots::customFilter()		{	ACTIVE_PANEL->setFilter(KrView::Custom);}
+void KRslots::allFilter()			  {	ACTIVE_PANEL->setFilter(KrView::All);	     }
+void KRslots::execFilter()			{	ACTIVE_PANEL->setFilter(KrView::All);	     }
+void KRslots::customFilter()		{	ACTIVE_PANEL->setFilter(KrView::Custom);   }
 void KRslots::markAll()         { ACTIVE_PANEL->select(true,true);           }
 void KRslots::unmarkAll()       { ACTIVE_PANEL->select(false,true);          }
 void KRslots::markGroup()       { ACTIVE_PANEL->select(true,false);          }
 void KRslots::unmarkGroup()     { ACTIVE_PANEL->select(false,false);         }
 void KRslots::invert()          { ACTIVE_PANEL->invertSelection();           }
 
-void KRslots::root()            { ACTIVE_FUNC->openUrl("/");                 }
-void KRslots::refresh(QString p){ ACTIVE_FUNC->openUrl(p);                   }
+void KRslots::root()        { ACTIVE_FUNC->openUrl(KURL::fromPathOrURL("/"));}
+void KRslots::refresh(const KURL& u){ ACTIVE_FUNC->openUrl(u);               }
 void KRslots::home()            { ACTIVE_FUNC->openUrl(QDir::homeDirPath()); }
 void KRslots::refresh()         { ACTIVE_FUNC->refresh();                    }
 void KRslots::properties()      { ACTIVE_FUNC->properties();                 }
@@ -320,7 +317,7 @@ void KRslots::runRemoteMan() {
   QString host=remoteMan::getHost();
 	if (host==QString::null) return;
 	// otherwise, attempt a connection
-	ACTIVE_FUNC->openUrl(host);
+	ACTIVE_FUNC->openUrl(KURL::fromPathOrURL(host));
 }
 
 void KRslots::runMountMan() {
@@ -385,17 +382,16 @@ void KRslots::multiRename(){
 void KRslots::rootKrusader(){
   KShellProcess proc;
   proc << "kdesu" << QString("'") + KCmdLineArgs::appName() +
-       " --left=" +MAIN_VIEW->left->func->files()->vfs_getOrigin() +
-       " --right="+MAIN_VIEW->right->func->files()->vfs_getOrigin() + "'";
+       " --left=" +MAIN_VIEW->left->func->files()->vfs_getOrigin().url() +
+       " --right="+MAIN_VIEW->right->func->files()->vfs_getOrigin().url() + "'";
 
   proc.start(KProcess::DontCare);
 }
 
 // settings slots
 void KRslots::configToolbar(){
-  KEditToolbar dlg(krApp->factory());//actionCollection());
-  if (dlg.exec())
-    krApp->updateGUI();
+  KEditToolbar dlg(krApp->factory());
+  if (dlg.exec()) krApp->updateGUI();
 }
 
 void KRslots::configKeys(){
@@ -442,7 +438,7 @@ void KRslots::viewDlg(){
   {
     /* KURL::fromPathOrURL requires fullpath, so we check whether it is relative  */
     if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
-      dest = ACTIVE_FUNC->files()->vfs_getOrigin() + "/" + dest; /* it's full path now */
+      dest = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1)+dest; /* it's full path now */
     
     KrViewer::view( KURL::fromPathOrURL(dest) ); // view the file
   }
@@ -459,7 +455,7 @@ void KRslots::editDlg(){
   {
     /* KURL::fromPathOrURL requires fullpath, so we check whether it is relative  */
     if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
-      dest = ACTIVE_FUNC->files()->vfs_getOrigin() + "/" + dest; /* it's full path now */
+      dest = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1) + dest; /* it's full path now */
     
     krConfig->setGroup( "General" );
     QString edit = krConfig->readEntry( "Editor", _Editor );
@@ -513,7 +509,7 @@ void KRslots::slotSplit()
     return;
   }
 
-  QString fileName = ACTIVE_FUNC->files()->vfs_getFile(name);
+  QString fileName = ACTIVE_FUNC->files()->vfs_getFile(name).path(-1);
   if( fileName == QString::null )
     return;
 
@@ -522,7 +518,7 @@ void KRslots::slotSplit()
     return ;
   }
 
-  QString destDir  = ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin();
+  QString destDir  = ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().path(-1);
 
   SplitterGUI splitterGUI( MAIN_VIEW, fileName, destDir );
 
@@ -552,7 +548,7 @@ void KRslots::slotCombine()
 
   for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
   {
-    QString name = ACTIVE_FUNC->files()->vfs_getFile(*it);
+    QString name = ACTIVE_FUNC->files()->vfs_getFile(*it).path(-1);
     if( name == QString::null )
       return;
 

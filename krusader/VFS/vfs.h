@@ -5,11 +5,6 @@
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
-  -------------------------------------------------------------------------
-   the vfs class is an extendable class which by itself does (almost)
-   nothing. other VFSs like the normal_vfs inherits from this class and
-   make it possible to use a consistent API for all types of VFSs.
-
  ***************************************************************************
 
    A 
@@ -45,68 +40,86 @@
 // Krusader includes
 #include "vfile.h"
 
+/**
+ * The vfs class is an extendable class which by itself does (almost)
+ * nothing. other VFSs like the normal_vfs inherits from this class and
+ * make it possible to use a consistent API for all types of VFSs.
+ */
 class vfs: public QObject{
 	Q_OBJECT
-public: 	
-	// service functions
-  inline void vfs_addToList(vfile *data){ vfs_filesP->append(data); }
-  inline void vfs_removeFromList(vfile *data){ vfs_filesP->remove(data); }
-	QString 		dateTime2QString(const QDateTime& datetime);
-  QString 		round(int i);
-	QString     month2Qstring(QString month);
-  // create a vfs from origin
+public:
+	enum VFS_TYPE{ERROR=0,NORMAL,FTP,TEMP,VIRT};
+
+	/**
+	 * Creates a vfs.
+	 * @param panel the panel father. the VFS will connect it's signals to this object.
+	 * @param quiet if true, the VFS will not display error messages or emit signals
+	 */
 	vfs(QObject* panel, bool quiet=false);
-
 	virtual			~vfs(){}
-	// copy a file to the vfs (physical)
+
+	/// Copy a file to the vfs (physical).
 	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "")=0;	
-	// remove a file from the vfs (physical)
+	/// Remove a file from the vfs (physical)
 	virtual void vfs_delFiles(QStringList *fileNames)=0;	
-	// return a path to the file
+	/// Return a list of URLs for multiple files	
 	virtual KURL::List* vfs_getFiles(QStringList* names)=0;
-	virtual QString vfs_getFile(QString name)=0;
-	// make dir
-	virtual void vfs_mkdir(QString name)=0;
-	// rename file
-	virtual void vfs_rename(QString fileName,QString newName)=0;
-	// calculate space
+	/// Return a URL to a single file	
+	virtual KURL vfs_getFile(const QString& name)=0;
+	/// Create a new directory
+	virtual void vfs_mkdir(const QString& name)=0;
+	/// Rename file
+	virtual void vfs_rename(const QString& fileName,const QString& newName)=0;
+	/// Calculate the amount of space occupied by a file or directory (recursive).
 	virtual void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0)=0;
-	// return the working dir
+
+	/// Return the VFS working dir
 	virtual QString vfs_workingDir()=0;
-	virtual void blockSignals(bool block){ QObject::blockSignals(block); }	
-	// check the write permission
-  virtual bool vfs_isWritable() { return isWritable; }
+	/// Return true if the VFS url is writable
+	virtual bool vfs_isWritable() { return isWritable; }
+	/// Return vfile* or 0 if not found
+	vfile* vfs_search(const QString& name); 
 
-	KIO::filesize_t vfs_totalSize();             // the total size of FILES in the vfs,
-	vfile* vfs_search(QString name);  // return vfile* or 0 if not found
-	
-	inline   int  vfs_noOfFiles() 	 	{ return vfs_filesP->count(); 	}
-	virtual  inline	 QString vfs_getOrigin() 	{ return vfs_origin;    }	
-	inline 	 QString vfs_getType()	 	{ return vfs_type; 						  }
-  inline   bool vfs_error()         { return error;                 }
-
-	inline   vfile* vfs_getFirstFile(){
-	                    if(vfs_filesP->isEmpty()) return 0;
-	                    else return (vfs_filesP->first());	}
-	inline   vfile* vfs_getNextFile()	{	return (vfs_filesP->next());  }
+	/// The total size of all the files in the VFS,
+	KIO::filesize_t vfs_totalSize();
+	/// The number of files in the VFS
+	inline unsigned long vfs_noOfFiles() { return vfs_filesP->count(); }
+	/// Returns the VFS url.
+	inline KURL vfs_getOrigin()          { return vfs_origin;          }
+	// Return the VFS type.
+	inline VFS_TYPE vfs_getType()        { return vfs_type;            }
+	/// Return true if an internal error occurs.
+	inline bool vfs_error()              { return error;               }
+	/// Return the first file in the VFS and set the internal iterator to the beginning of the list.
+	inline vfile* vfs_getFirstFile(){ return (vfs_filesP->isEmpty()) ? 0 : vfs_filesP->first(); }
+	/// Return the the next file in the list and advance the iterator.
+	inline vfile* vfs_getNextFile() { return (vfs_filesP->next());  }
 
 public slots:
-	// actually reads files and stats
-	virtual bool vfs_refresh(QString origin)=0;
+	/// Re-reads files and stats and fills the vfile list
+	virtual bool vfs_refresh(const KURL& origin)=0;
+	/// Used to refresh the VFS when a job finishs. it calls the refresh() slot
+  /// or display a error message if the job fails
 	virtual bool vfs_refresh(KIO::Job* job);
-  bool vfs_refresh(){ return vfs_refresh(vfs_getOrigin()); }
+	//virtual bool vfs_refresh(KIO::Job* job);
+	virtual bool vfs_refresh(){ return vfs_refresh(vfs_getOrigin()); }
 
 signals: 	
-  void startUpdate();
-  void endUpdate();
+	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
+	void endUpdate();   //< emmitted when the the vfile list is stable.
 
-protected: // allows derived classes to use these fields
-	QString		  	vfs_type;			// the vfs type;
-	QString      vfs_origin;	 	// the path or file the VFS originates from
- 	QList<vfile> *vfs_filesP;
-	bool error;
-	bool quietMode;   // if true the vfs won't display error messages or emit signals
-	bool isWritable;	// true if it's writable
+protected:
+	/// Add a new vfile to the list.
+	inline void addToList(vfile *data){ vfs_filesP->append(data); }
+	/// Deletes a vfile from the list.
+	inline void removeFromList(vfile *data){ vfs_filesP->remove(data); }
+
+	VFS_TYPE      vfs_type;     //< the vfs type.
+	KURL          vfs_origin;   //< the path or file the VFS originates from.
+	QList<vfile>* vfs_filesP;   //< Point to a lists of virtual files (vfile).
+	bool error;                 //< true if the VFS failed to refresh.
+	bool quietMode;             //< if true the vfs won't display error messages or emit signals
+	bool isWritable;            //< true if it's writable
 };
 
 #endif

@@ -57,7 +57,7 @@ template <class X> void kr_swap(X &a, X &b){
   b = t;
 }
 
-ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel),busy(false){
+ftp_vfs::ftp_vfs(const KURL& origin,QWidget* panel):vfs(panel),busy(false){
   // set the writable attribute
   isWritable = true;
 
@@ -67,10 +67,10 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel),busy(false){
   vfs_files2.setAutoDelete(true);
   notConnected = true;
 
-  KURL url = separateUserAndPassword( origin );
+  KURL url = separateUserAndPassword( origin.url() );
 
-  vfs_type = "ftp";
-  vfs_origin = url.prettyURL();
+  vfs_type = FTP;
+  vfs_origin = url;
 
   vfs_refresh(vfs_origin);
 }
@@ -110,17 +110,17 @@ KURL ftp_vfs::separateUserAndPassword( QString origin )
 
 void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
   // remove trailing "/"
-  if(vfs_origin.right(1) == "/" ) vfs_origin = vfs_origin.left(vfs_origin.length()-1);
+  //if(vfs_origin.right(1) == "/" ) vfs_origin = vfs_origin.left(vfs_origin.length()-1);
   // but don't turn ftp://server/ to ftp://server !
-  if(vfs_origin.find("/",vfs_origin.find(":/")+3) < 0 )
-		vfs_origin = vfs_origin+"/";
+  //if(vfs_origin.find("/",vfs_origin.find(":/")+3) < 0 )
+	//	vfs_origin = vfs_origin+"/";
 
   KIO::UDSEntryListConstIterator it = entries.begin();
   KIO::UDSEntryListConstIterator end = entries.end();
 
   // as long as u can find files - add them to the vfs
   for ( ; it != end; ++it ){
-    KFileItem kfi(*it,vfs_url,false,true);
+    KFileItem kfi(*it,vfs_origin,false,true);
     vfile *temp;
 
     // get file statistics
@@ -142,13 +142,13 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
       temp=new vfile(name,size,perm,mtime,symLink,getuid(),getgid(),mime,symDest,mode);
     else
       temp=new vfile(name,size,perm,mtime,symLink,kfi.user(),kfi.group(),mime,symDest,mode);
-    vfs_addToList(temp);
+    addToList(temp);
 	}
 }
 
 void ftp_vfs::slotRedirection(KIO::Job *, const KURL &url){
   // update the origin
-  vfs_url    = url;
+  vfs_origin    = url;
 	vfs_origin = KURL::decode_string(url.prettyURL());
   password   = url.pass();
   loginName  = url.user();
@@ -157,7 +157,7 @@ void ftp_vfs::slotRedirection(KIO::Job *, const KURL &url){
 
 void ftp_vfs::slotListResult(KIO::Job *job){
 	if( job && job->error()){
-    QString msg= KIO::buildErrorString(job->error(),vfs_origin);
+    QString msg= KIO::buildErrorString(job->error(),vfs_origin.prettyURL());
     if ( !msg.isEmpty() && !quietMode )
       KMessageBox::sorry(krApp,msg);
     if( notConnected ){  // no option to revert
@@ -167,7 +167,6 @@ void ftp_vfs::slotListResult(KIO::Job *job){
     else {
       kr_swap(vfs_filesP2,vfs_filesP);
       vfs_origin=origin_backup;
-      vfs_url = vfs_url_backup;
     }
     busy = false;
     return;
@@ -183,9 +182,9 @@ void ftp_vfs::slotListResult(KIO::Job *job){
   }
 }
 
-bool ftp_vfs::vfs_refresh(QString origin) {
+bool ftp_vfs::vfs_refresh(const KURL& origin) {
 	error = false;
-	KURL url = separateUserAndPassword( origin );
+	KURL url = separateUserAndPassword( origin.url() );
 
 	QString errorMsg = QString::null;	
 	if ( url.isMalformed() )
@@ -209,8 +208,7 @@ bool ftp_vfs::vfs_refresh(QString origin) {
   kr_swap(vfs_filesP2,vfs_filesP);
   origin_backup = vfs_origin;
   vfs_origin = origin;
-  vfs_url_backup = vfs_url;
-  vfs_url = url;
+  vfs_origin = url;
 
   // Open the directory	marked by origin
   krConfig->setGroup("Look&Feel");
@@ -231,7 +229,7 @@ bool ftp_vfs::vfs_refresh(QString origin) {
 
 // copy a file to the vfs (physical)	
 void ftp_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir){
-  KURL destUrl = vfs_url;
+  KURL destUrl = vfs_origin;
   if(dir != "") destUrl.addPath(dir);
 
 
@@ -253,7 +251,7 @@ void ftp_vfs::vfs_delFiles(QStringList *fileNames){
  	// names -> urls
 	for(uint i=0 ; i<fileNames->count(); ++i){
 		QString filename = (*fileNames)[i];
-		url = vfs_url;
+		url = vfs_origin;
     url.addPath(filename);
 		url.setUser(loginName);
     url.setPass(password);
@@ -280,8 +278,8 @@ KURL::List* ftp_vfs::vfs_getFiles(QStringList* names){
 
 
 // return a path to the file
-QString ftp_vfs::vfs_getFile(QString name){	
-	KURL url = vfs_url;
+KURL ftp_vfs::vfs_getFile(const QString& name){	
+	KURL url = vfs_origin;
 	
   url.addPath(name);
 
@@ -289,11 +287,11 @@ QString ftp_vfs::vfs_getFile(QString name){
   url.setPass(password);
   if ( port ) url.setPort(port);
 
-  return url.url();
+  return url;
 }
 
-void ftp_vfs::vfs_mkdir(QString name){
-  KURL url =  vfs_url;
+void ftp_vfs::vfs_mkdir(const QString& name){
+  KURL url =  vfs_origin;
 	url.addPath(name);
   url.setUser(loginName);
   url.setPass(password);
@@ -304,16 +302,16 @@ void ftp_vfs::vfs_mkdir(QString name){
 }
 
 
-void ftp_vfs::vfs_rename(QString fileName,QString newName){
+void ftp_vfs::vfs_rename(const QString& fileName,const QString& newName){
   KURL::List fileUrls;
-  KURL url = vfs_url;
+  KURL url = vfs_origin;
   url.addPath(fileName) ;
   url.setUser(loginName);
   url.setPass(password);
 
   fileUrls.append(url);
 
-	KURL dest = vfs_url;
+	KURL dest = vfs_origin;
 	dest.addPath(newName);
 	dest.setUser(loginName);
   dest.setPass(password);
@@ -324,7 +322,7 @@ void ftp_vfs::vfs_rename(QString fileName,QString newName){
 }
 
 QString ftp_vfs::vfs_workingDir(){
-	QString ret = vfs_origin;
+	QString ret = vfs_origin.prettyURL();
 	if ( !password.isEmpty() ) ret.replace(QRegExp("@"),":"+password+"@");
   return ret;
 }

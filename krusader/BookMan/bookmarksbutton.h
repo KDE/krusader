@@ -41,7 +41,7 @@ public:
 private:
   KBookmarkHandler *bookmarkHandler;
 signals:
-  void openUrl(const QString& url);
+  void openUrl(const KURL&);
 };
 
 #endif

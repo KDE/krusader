@@ -55,9 +55,9 @@ KBookmarkHandler::~KBookmarkHandler()
     // delete m_bookmarkMenu; ###
 }
 
-void KBookmarkHandler::openBookmarkURL(const QString& url)
+void KBookmarkHandler::openBookmarkURL(const KURL& url)
 {
-  //kdDebug() << "Opening url: " << url << endl;
+  kdDebug() << "Opening url: " << url.url() << endl;
   emit openUrl( url );
 }
 

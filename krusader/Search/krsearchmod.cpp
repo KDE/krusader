@@ -250,19 +250,21 @@ void KRSearchMod::scanArchive( QString archive, QString type ){
 	delete v;
 }
 
-void KRSearchMod::scanURL( ftp_vfs* v, QString url){
+void KRSearchMod::scanURL( ftp_vfs* v, KURL url){
 	if( !v->vfs_refresh(url) ) return;
 
 	while(v->isBusy()) qApp->processEvents();
 
-	if( scanedDirs.contains(v->vfs_getOrigin()) ) return; // don't re-scan urls..
-  scanedDirs.append(v->vfs_getOrigin());
+	if( scanedDirs.contains(v->vfs_getOrigin().url() ) ) return; // don't re-scan urls..
+  scanedDirs.append(v->vfs_getOrigin().url() );
 
 	for( vfile* vf=v->vfs_getFirstFile(); vf != 0 ; vf=v->vfs_getNextFile() ){
 		QString name =  vf->vfile_getName();
 
 		if ( vf->vfile_isDir() ){
-			unScanedUrls.append(v->vfs_getOrigin()+"/"+name);
+			KURL url = v->vfs_getOrigin();
+			url.addPath(name);
+			unScanedUrls.push(url);
 		}
     // see if the name matches
     if( !fileMatch(name) ) continue;
@@ -284,8 +286,8 @@ void KRSearchMod::scanURL( ftp_vfs* v, QString url){
 		if( !query->perm.isEmpty() && !checkPerm(vf->vfile_getPerm()) ) continue;
 
 		// if we got here - we got a winner
-    results.append(v->vfs_getOrigin()+"/"+name);
-		emit found(name, v->vfs_getOrigin(), size, vf->vfile_getTime_t(),vf->vfile_getPerm());
+    results.append(v->vfs_getOrigin().prettyURL(1)+name);
+		emit found(name, v->vfs_getOrigin().prettyURL(-1), size, vf->vfile_getTime_t(),vf->vfile_getPerm());
     qApp->processEvents();
 	}
 }

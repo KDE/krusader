@@ -79,7 +79,7 @@ class KRslots : public QObject {
     void unmarkGroup();
     void invert();
     void refresh();
-    void refresh( QString p );
+    void refresh( const KURL& u );
     void properties();
     void back();
     void slotPack();

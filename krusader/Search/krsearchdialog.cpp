@@ -175,11 +175,8 @@ void KrSearchDialog::prepareGUI() {
   searchIn->clear(); dontSearchIn->clear();
 
 	// the path in the active panel should be the default search location
-	if (krApp->mainView->activePanel->func->files()->vfs_getType() != "ftp") {
+	if (krApp->mainView->activePanel->func->files()->vfs_getType() == vfs::NORMAL) {
 		QString path = krApp->mainView->activePanel->getPath();
-		// if we're inside an archive, show its directory
-		int i = path.find('\\');
-		if (i>=0) path = path.left(path.findRev('/', i));
 		searchInEdit->setText(path);
 	}
 
@@ -552,7 +549,7 @@ void KrSearchDialog::fillList(QComboBox *list, QString filename) {
 }
 
 void KrSearchDialog::resultClicked(QListViewItem* i) {
-  krApp->mainView->activePanel->func->openUrl((i->text(1)),i->text(0));
+  krApp->mainView->activePanel->func->openUrl(KURL::fromPathOrURL(i->text(1)),i->text(0));
   showMinimized();
 }
 

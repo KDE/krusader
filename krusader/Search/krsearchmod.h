@@ -38,6 +38,7 @@
 #include <qstringlist.h>
 #include <time.h>
 #include <kio/global.h>
+#include <kurl.h>
 
 class KRQuery;
 class ftp_vfs;
@@ -50,7 +51,7 @@ public:
 
 	void scanDir( QString dir);
   void scanArchive( QString archive, QString type );
-  void scanURL( ftp_vfs* v, QString url );
+  void scanURL( ftp_vfs* v, KURL url );
 	void start();
   void stop();
 
@@ -65,7 +66,7 @@ private:
 	bool checkType(QString mime);
 	bool fileMatch(QString name);
 	QStringList scanedDirs;
-	QValueStack<QString> unScanedUrls;
+	QValueStack<KURL> unScanedUrls;
 	KRQuery *query;
 	QStringList results;
 };

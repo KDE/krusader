@@ -31,7 +31,7 @@ public:
   /**
    * This function is called when the user selects a bookmark.
   */
-  virtual void openBookmarkURL( const QString& url );
+  virtual void openBookmarkURL( const KURL& url );
 
   /**
    * This method is called whenever the user wants to add the
@@ -56,7 +56,7 @@ public:
   KPopupMenu *menu() const { return m_menu; }
 
 signals:
-  void openUrl(const QString& url );
+  void openUrl(const KURL& url );
 
 private:
   /**

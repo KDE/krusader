@@ -5,11 +5,6 @@
     copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
- ---------------------------------------------------------------------------
-   the Virtual File class handles all the details of maintaining a single
-   file component within the virtual file system (vfs). a vfile object
-   contains the nessecery details about a file and member functions which
-   allow the object to give out the needed details about the file.
  ***************************************************************************
 
   A
@@ -41,26 +36,18 @@
 // KDE includes
 #include <kio/global.h>
 
+/**
+ * The Virtual File class handles all the details of maintaining a single
+ * file component within the virtual file system (vfs). a vfile object
+ * contains the nessecery details about a file and member functions which
+ *  allow the object to give out the needed details about the file.
+ */
 class vfile{
-protected:
-  // the file information list
-  QString 	       vfile_name;		  // name
-  KIO::filesize_t  vfile_size;     // size
-  mode_t           vfile_mode;			// the vfile mode
-	uid_t            vfile_ownerId;	// owner id
-	gid_t            vfile_groupId;	// group id
-  QString          vfile_owner;    // owner name
-  QString          vfile_group;    // group name
-	QString          vfile_perm;			// permissions
-  time_t           vfile_time_t;   // modification in time_t format
-	bool             vfile_symLink;  // true==yes
-	QString          vfile_mimeType; // file mimetype
-	QString          vfile_symDest;  // if it's a sym link - its detination
-	
 public:
-  // the constractor needs:
-	// (file name, file size, file permissions,is the file a link,
-	// owner uid, group uid)
+  /**
+	 * Use this constructor when you know the following files properties: \n
+	 * file name, file size, file permissions,is the file a link,owner uid & group uid.
+	 */
 	vfile(QString name,	
 				KIO::filesize_t size,
 			  QString perm,
@@ -85,7 +72,7 @@ public:
 	
 	// following functions give-out file details
 	inline QString  			 	vfile_getName() 	 	{ return vfile_name;  		}
-	inline KIO::filesize_t  		vfile_getSize() 	 	{ return vfile_size;  		}
+	inline KIO::filesize_t  vfile_getSize() 	 	{ return vfile_size;  		}
 	inline QString					vfile_getPerm()			{ return vfile_perm;			}
 	inline bool							vfile_isDir()				{ return (vfile_perm[0]=='d');}
 	inline bool							vfile_isSymLink()		{ return vfile_symLink;   }
@@ -100,12 +87,31 @@ public:
   char			              vfile_isReadable();
   char 			              vfile_isWriteable();
   char			              vfile_isExecutable();
-	KIO::UDSEntry           vfile_getEntry(); // return the UDSEntry from the vfile
-  // used ONLY when calculating a directory's space, needs to change the
-  // displayed size of the viewitem and thus the vfile. For INTERNAL USE !
-  inline void             vfile_setSize(KIO::filesize_t size) {vfile_size = size;}
+	KIO::UDSEntry           vfile_getEntry(); //< return the UDSEntry from the vfile
+  /**
+	 * Set the file size.
+	 * used ONLY when calculating a directory's space, needs to change the
+	 * displayed size of the viewitem and thus the vfile. For INTERNAL USE !
+	 */
+	inline void             vfile_setSize(KIO::filesize_t size) {vfile_size = size;}
 
   virtual ~vfile(){}
+
+protected:
+  // the file information list
+  QString 	       vfile_name;     //< file name
+  KIO::filesize_t  vfile_size;     //< file size
+  mode_t           vfile_mode;     //< file mode
+	uid_t            vfile_ownerId;  //< file owner id
+	gid_t            vfile_groupId;  //< file group id
+  QString          vfile_owner;    //< file owner name
+  QString          vfile_group;    //< file group name
+	QString          vfile_perm;     //< file permissions string
+  time_t           vfile_time_t;   //< file modification in time_t format
+	bool             vfile_symLink;  //< true if the file is a symlink
+	QString          vfile_mimeType; //< file mimetype
+	QString          vfile_symDest;  //< if it's a sym link - its detination
+	KURL             vfile_url;      //< file URL - empty by default
 };
 
 #endif

@@ -55,30 +55,32 @@
 #include "../defaults.h"
 #include "../resources.h"
 
-normal_vfs::normal_vfs(QString,QWidget* panel):vfs(panel){
+normal_vfs::normal_vfs(QString url,QWidget* panel):vfs(panel){
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
+  
+  vfs_origin = KURL::fromPathOrURL(url);
+  vfs_type=NORMAL;
 	
-	vfs_type="normal";
-	
-	// connect the watcher to vfs_refresh
-  //connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_refresh()));
+	// connect the watcher to vfs_slotDirty
   connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty()));
 }
 
-bool normal_vfs::vfs_refresh(QString origin){
+bool normal_vfs::vfs_refresh(const KURL& origin){
+  QString path = origin.path(-1);
+
 	// check that the new origin exists
-	if ( !QDir(origin).exists() ) return false;
+	if ( !QDir(path).exists() ) return false;
     
   krConfig->setGroup("Advanced");
-  if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(origin);
+  if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
    	
 	watcher.stopScan(); //stop watching the old dir
-  if( origin != vfs_getOrigin() ){
-		watcher.removeDir(vfs_getOrigin()); // and remove it from the list
-		watcher.addDir(origin/*,true*/); //start watching the new dir
+  if(  !origin.equals(vfs_getOrigin()) ){
+		// and remove it from the list
+		if( !vfs_getOrigin().isEmpty() ) watcher.removeDir(vfs_getOrigin().path(-1)); 
+		watcher.addDir(origin.path(-1)); //start watching the new dir
 	}
-	//watcher.clearList();
 
 	// set the writable attribute to true, if that's not the case - the KIO job
   // will give the warnings and errors
@@ -90,24 +92,26 @@ bool normal_vfs::vfs_refresh(QString origin){
 	bool mtm    = krConfig->readBoolEntry("Mimetype Magic",_MimetypeMagic);
 
 	// set the origin...
-	if( vfs_type == "normal" ) vfs_origin = QDir::cleanDirPath(origin);
+  vfs_origin = origin;
+	vfs_origin.cleanPath();
   // clear the the list
 	vfs_files.clear();
+
 	
-	DIR* dir = opendir(origin.local8Bit());
+	DIR* dir = opendir(path.local8Bit());
   if(!dir) return false;
 
-  // change directory to the new directory
-  chdir(origin.local8Bit());
-  
+  //change directory to the new directory
+  chdir(path.local8Bit());
+
 	if (!quietMode) emit startUpdate();
-	
+
 	struct dirent* dirEnt;
   QString name;
 	KURL mimeUrl;
-	//int i = 0;
   char symDest[256];
   KDE_struct_stat stat_p;
+
 	while( (dirEnt=readdir(dir)) != NULL ){
     name = QString::fromLocal8Bit(dirEnt->d_name);
 
@@ -140,7 +144,7 @@ bool normal_vfs::vfs_refresh(QString origin){
 	  // create a new virtual file object
     vfile* temp=new vfile(name,size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
                           stat_p.st_gid,mime,symDest,stat_p.st_mode);
-    vfs_addToList(temp);
+    addToList(temp);
   }
 	// clean up
 	closedir(dir);
@@ -195,29 +199,29 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 }
 
 // return a path to the file
-QString normal_vfs::vfs_getFile(QString name){	
-	if ( vfs_workingDir() == "/" ) return ("/"+name);
-	else return ( vfs_workingDir()+"/"+name);
+KURL normal_vfs::vfs_getFile(const QString& name){	
+  QString url;
+	if ( vfs_workingDir() == "/" ) url = "/"+name;
+	else url = vfs_workingDir()+"/"+name;
+
+	return KURL::fromPathOrURL(url);
 }
 
 KURL::List* normal_vfs::vfs_getFiles(QStringList* names){
-  KURL url;
   KURL::List* urls = new KURL::List();
   for(QStringList::Iterator name = names->begin(); name != names->end(); ++name){
-    url.setPath( vfs_getFile(*name) );
-    urls->append(url);
+    urls->append( vfs_getFile(*name) );
   }
   return urls;
 }
 
-void normal_vfs::vfs_mkdir(QString name){
+void normal_vfs::vfs_mkdir(const QString& name){
 	if (!QDir(vfs_workingDir()).mkdir(name))
 	  if (!quietMode) KMessageBox::sorry(krApp,i18n("Can't create a directory check your permissions."));
-  vfs_refresh(vfs_origin);
+  vfs::vfs_refresh();
 }
 
-
-void normal_vfs::vfs_rename(QString fileName,QString newName){
+void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   KURL::List fileUrls;
   KURL url , dest;
 

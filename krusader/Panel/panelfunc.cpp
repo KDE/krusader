@@ -196,30 +196,30 @@ ListPanelFunc::ListPanelFunc( ListPanel *parent ) :
 panel( parent ), inRefresh( false ) {
   vfsStack.setAutoDelete( true );
   vfsStack.push( new normal_vfs( "/", panel ) );
-  files() ->vfs_refresh();
+  //files() ->vfs_refresh();
 }
 
-void ListPanelFunc::openUrl( const QString& path,const QString& nameToMakeCurrent) {
-  panel->slotFocusOnMe();
+void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent) {
+  openUrl( KURL::fromPathOrURL(url),nameToMakeCurrent);
+}
 
-  QString mypath = path;
+
+void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
+  panel->slotFocusOnMe();
 
   // clear the view - to avoid a repaint crash
   panel->view->clear();
   if( !nameToMakeCurrent.isEmpty() ){
 		panel->view->setNameToMakeCurrent( nameToMakeCurrent );
   }
-  // make sure local urls are handles ok
-  if ( mypath.lower().startsWith( "file:" ) )
-    mypath = mypath.mid( 5 );
 
   // remote file systems
-  if ( mypath.contains( ":/" ) ) {
+  if ( !url.isLocalFile() ) {
     // first close all open archives / remote connections
-    while ( files() ->vfs_getType() != "normal" ) vfsStack.remove();
-    vfs* v = new ftp_vfs(mypath,panel);
+    while ( files() ->vfs_getType() != vfs::NORMAL ) vfsStack.remove();
+    vfs* v = new ftp_vfs(url,panel);
     if ( v->vfs_error() ) {
-      kdWarning() << "Failed to create vfs: " << mypath.local8Bit() << endl;
+      kdWarning() << "Failed to create vfs: " << url.prettyURL() << endl;
       delete v;
       refresh();
       return ;
@@ -229,13 +229,12 @@ void ListPanelFunc::openUrl( const QString& path,const QString& nameToMakeCurren
     vfsStack.push( v );
   } else { // local directories
     // first close all open archives / remote connections
-    while ( files() ->vfs_getType() != "normal" )
+    while ( files() ->vfs_getType() != vfs::NORMAL )
       vfsStack.remove();
     // now we have a normal vfs- refresh it.
-    files() ->blockSignals( false );
-
+    QString mypath = url.path(-1);
     if( mypath == "~" ) mypath = QDir::homeDirPath();
-    if( !mypath.startsWith("/") ) mypath = files()->vfs_getOrigin()+"/"+mypath;
+    //if( !mypath.startsWith("/") ) mypath = files()->vfs_getOrigin().prettyURL(1)+mypath;
 
     mypath = QDir::cleanDirPath(mypath);
 
@@ -247,16 +246,16 @@ void ListPanelFunc::openUrl( const QString& path,const QString& nameToMakeCurren
     }
 
     chdir( mypath.latin1() );
-    refresh( mypath );
+    refresh( KURL::fromPathOrURL(mypath) );
   }
 }
 
-void ListPanelFunc::refresh( const QString path ) {
+void ListPanelFunc::refresh( const KURL& url ) {
   // change the cursor to busy
   krApp->setCursor( KCursor::waitCursor() );
 
   // if we could not refresh try to dir up
-  QString origin = path;
+  QString origin = url.prettyURL(-1);
   if ( !files() ->vfs_refresh( origin ) ) {
     panel->virtualPath = origin;
     dirUp();
@@ -296,7 +295,7 @@ void ListPanelFunc::goBack() {
 }
 
 void ListPanelFunc::redirectLink() {
-  if ( files() ->vfs_getType() == "ftp" ) {
+  if ( files() ->vfs_getType() != vfs::NORMAL ) {
     KMessageBox::sorry( krApp, i18n( "You can edit links only on local file systems" ) );
     return ;
   }
@@ -305,7 +304,7 @@ void ListPanelFunc::redirectLink() {
   if ( !vf )
     return ;
 
-  QString file = files() ->vfs_getFile( vf->vfile_getName() );
+  QString file = files() ->vfs_getFile( vf->vfile_getName() ).path(-1);
   QString currentLink = vf->vfile_getSymDest();
   if ( currentLink.isEmpty() ) {
     KMessageBox::sorry( krApp, i18n( "The current file is not a link, so i can't redirect it." ) );
@@ -333,7 +332,7 @@ void ListPanelFunc::redirectLink() {
 }
 
 void ListPanelFunc::krlink( bool sym ) {
-  if ( files() ->vfs_getType() == "ftp" ) {
+  if ( files() ->vfs_getType() != vfs::NORMAL ) {
     KMessageBox::sorry( krApp, i18n( "You can create links only on local file systems" ) );
     return ;
   }
@@ -359,7 +358,7 @@ void ListPanelFunc::krlink( bool sym ) {
     linkName = files()->vfs_workingDir() + "/" + linkName;
 
   if ( linkName.contains( "/" ) )
-    name = files()->vfs_getFile( name );
+    name = files()->vfs_getFile( name ).path(-1);
 
   if ( sym ) {
     if ( symlink( name.latin1(), linkName.latin1() ) == -1 )
@@ -385,11 +384,8 @@ void ListPanelFunc::view() {
     KMessageBox::sorry(0,i18n("No permissions to view this file."));
     return;
   }
-
-  // at this point, let's take the full path
-  fileName = files()->vfs_getFile( fileName );
-  // and call KViewer.
-  KrViewer::view( KURL::fromPathOrURL(fileName) );
+  // call KViewer.
+  KrViewer::view( files()->vfs_getFile( fileName ) );
   // nothing more to it!
 }
 
@@ -426,9 +422,9 @@ void ListPanelFunc::editFile() {
   krConfig->setGroup( "General" );
   QString edit = krConfig->readEntry( "Editor", _Editor );
   if ( edit == "internal editor" )
-    KrViewer::edit( KURL::fromPathOrURL(files() ->vfs_getFile( name )) );
+    KrViewer::edit( files() ->vfs_getFile(name) );
   else {
-    proc << edit << files() ->vfs_getFile( name );
+    proc << edit << files()->vfs_getFile(name).url();
     if ( !proc.start( KProcess::DontCare ) )
       KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
   }
@@ -461,6 +457,10 @@ void ListPanelFunc::moveFiles() {
     return ; // nothing to copy
 
   KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
+
+  // after the delete return the cursor to the first unmarked
+  // file above the current item;
+  panel->prepareToDelete();
 
   // if we are not moving to the other panel :
   if ( panel->otherPanel->getPath() != dest ) {
@@ -516,7 +516,7 @@ void ListPanelFunc::mkdir() {
     return ;
 
   // if the name is already taken - quit
-  if ( QDir( files() ->vfs_getOrigin() + "/" + dirName ).exists() ) {
+  if ( files()->vfs_search(dirName) ) {
     KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
     return ;
   }
@@ -605,7 +605,7 @@ void ListPanelFunc::deleteFiles() {
       s.sprintf( i18n( " %d files ?" ).local8Bit(), fileNames.count() );
     krConfig->setGroup( "General" );
     if ( krConfig->readBoolEntry( "Move To Trash", _MoveToTrash ) &&
-         files() ->vfs_getType() == "normal" ) {
+         files() ->vfs_getType() == vfs::NORMAL ) {
       s = i18n( "trash" ) + s;
       b = i18n( "&Trash" );
     } else {
@@ -622,7 +622,7 @@ void ListPanelFunc::deleteFiles() {
   // and files he don't have permission to delete
   krConfig->setGroup( "Advanced" );
   bool emptyDirVerify = krConfig->readBoolEntry( "Confirm Unempty Dir", _ConfirmUnemptyDir );
-  emptyDirVerify = ( ( emptyDirVerify ) && ( files() ->vfs_getType() == "normal" ) );
+  emptyDirVerify = ( ( emptyDirVerify ) && ( files() ->vfs_getType() == vfs::NORMAL ) );
 
   QDir dir;
   for ( QStringList::Iterator name = fileNames.begin(); name != fileNames.end(); ) {
@@ -670,27 +670,26 @@ void ListPanelFunc::execute( QString& name ) {
   vfile *vf = files() ->vfs_search( name );
   if ( vf == 0 )
     return ;
-  QString origin = files() ->vfs_getOrigin();
+  KURL origin = files() ->vfs_getOrigin();
 
   QString type = vf->vfile_getMime().right( 4 );
   if ( vf->vfile_getMime().contains( "-rar" ) )
     type = "-rar";
 
   if ( vf->vfile_isDir() ) {
-    origin.right(1) == "/" ? origin += name : origin += "/" + name;
+    origin.addPath(name);
     panel->view->setNameToMakeCurrent( QString::null );
     refresh( origin );
-  } else if ( KRarcHandler::arcHandled( type ) && !origin.contains(":/")) {
-    QString path = files()->vfs_getFile(vf->vfile_getName());
+  } else if ( KRarcHandler::arcHandled( type ) && origin.isLocalFile() ) {
+    KURL path = files()->vfs_getFile(vf->vfile_getName());
     if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
-			path = "tar:"+path;
+			path.setProtocol("tar");
 		} else {
-			path = "krarc:"+path;
+			path.setProtocol("krarc:");
     }
     openUrl( path );
 	} else {
-    KURL url;
-    url.setPath( files() ->vfs_getFile( name ) );
+    KURL url = files()->vfs_getFile( name );
     KRun::runURL( url, vf->vfile_getMime() );
   }
 }
@@ -806,7 +805,7 @@ void ListPanelFunc::testArchive() {
   }
 
   // test the archive
-  if ( KRarcHandler::test( files() ->vfs_getFile( arcName ), type ) )
+  if ( KRarcHandler::test( files()->vfs_getFile(arcName).path(-1), type ) )
     KMessageBox::information( krApp, i18n( "%1, test passed." ).arg( arcName ) );
   else
     KMessageBox::error( krApp, i18n( "%1, test failed !" ).arg( arcName ) );
@@ -851,7 +850,7 @@ void ListPanelFunc::unpack() {
       continue;
     }
     // unpack the files
-    KRarcHandler::unpack( files() ->vfs_getFile( arcName ), type, dest );
+    KRarcHandler::unpack( files()->vfs_getFile(arcName).path(-1), type, dest );
   }
   if ( packToOtherPanel )
     panel->otherPanel->func->refresh();
@@ -880,10 +879,10 @@ void ListPanelFunc::FTPDisconnect() {
   panel->view->clear();
 
   // you can disconnect only if connected !
-  if ( files() ->vfs_getType() == "ftp" ) {
+  if ( files() ->vfs_getType() == vfs::FTP ) {
     vfsStack.remove();
     files() ->blockSignals( false );
-    if ( files() ->vfs_getType() != "ftp" )
+    if ( files() ->vfs_getType() != vfs::FTP )
       krFTPDiss->setEnabled( false );
     krFTPNew->setEnabled( true );
     panel->view->setNameToMakeCurrent( QString::null );
@@ -922,11 +921,11 @@ void ListPanelFunc::properties() {
 }
 
 void ListPanelFunc::refreshActions() {
-  QString vfsType = files() ->vfs_getType();
+  vfs::VFS_TYPE vfsType = files() ->vfs_getType();
   //  set up actions
-  krMultiRename->setEnabled( vfsType == "normal" );  // batch rename
-  krProperties ->setEnabled( vfsType == "normal" || vfsType == "ftp" ); // file properties
-  krFTPDiss ->setEnabled( vfsType == "ftp" );     // disconnect an FTP session
+  krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
+  krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
+  krFTPDiss    ->setEnabled( vfsType == vfs::FTP );     // disconnect an FTP session
   /*
     krUnpack->setEnabled(true);                            // unpack archive
     krTest->setEnabled(true);                              // test archive
