@@ -57,7 +57,7 @@ template <class X> void kr_swap(X &a, X &b){
   b = t;
 }
 
-ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
+ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel),busy(false){
   // set the writable attribute
   isWritable = true;
 
@@ -169,15 +169,17 @@ void ftp_vfs::slotListResult(KIO::Job *job){
       vfs_origin=origin_backup;
       vfs_url = vfs_url_backup;
     }
+    busy = false;
     return;
   }
   // if we got so far - so good
   notConnected = false;
+  busy = false;
 
   // tell the panel to get ready
   if (!quietMode) {
     emit startUpdate();
-    endUpdate();
+    emit endUpdate();
   }
 }
 
@@ -196,6 +198,8 @@ bool ftp_vfs::vfs_refresh(QString origin) {
 		error = true;
     return false;
 	}
+
+	busy = true;
 
   if( !loginName.isEmpty()) url.setUser(loginName);
   if( !password.isEmpty() ) url.setPass(password);
