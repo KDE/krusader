@@ -1,9 +1,9 @@
 /***************************************************************************
-                        usermenu.cpp  -  description
-                           -------------------
-  begin                : Sat Dec 6 2003
-  copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
-  email                :
+                       _expressionsu.cpp  -  description
+                          -------------------
+ begin                : Sat Dec 6 2003
+ copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
+ email                :
 ***************************************************************************/
 
 /***************************************************************************
@@ -22,6 +22,8 @@
 #include "../Panel/listpanel.h"
 #include <kdebug.h>
 #include <kstandarddirs.h>
+#include <klocale.h>
+#include <qvbox.h>
 
 /**
  
@@ -46,7 +48,7 @@ In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute a
 %_anf%  - number of files
 %_and%  - number of folders
 %_fm%   - filter mask (for example: *, *.cpp, *.h etc.)
- 
+
 */
 UMCmd UserMenu::_expressions[ NUM_EXPS ] = {
          {"%_p%", expPath}
@@ -73,14 +75,15 @@ void UserMenu::exec() {
 
    // ............... run the cmd from the shell .............
    QString save = getcwd( 0, 0 );
-   KShellProcess proc;
    //===> chdir( panelPath.local8Bit() ); // run the command in the panel's path
 
    // run in  terminal
-   proc.setUseShell(true);
-   proc << "konsole" << "--noclose" << "-e" << cmd;
+   //proc.setUseShell(true);
+   //proc << "konsole" << "--noclose" << "-e" << cmd;
+   //proc.start( KProcess::DontCare );
 
-   proc.start( KProcess::DontCare );
+   UserMenuProc *proc = new UserMenuProc(false, true);
+   proc->start( cmd );
    //===> chdir( save.local8Bit() ); // chdir back
 }
 
@@ -177,3 +180,87 @@ QString UserMenuGui::run() {
    return _entries[ ( idx -1 ) * 2 + 1 ];
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+UserMenuProcDlg::UserMenuProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
+KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ) {
+
+   setButtonOKText( "Close", i18n( "Close this window" ) );
+   setButtonCancelText( "Kill", i18n( "Kill the running process" ) );
+
+   QVBox *page = makeVBoxMainWidget();
+   // do we need to separate stderr and stdout?
+   if ( enableStderr ) {
+      // create stdout
+      QLabel * label1 = new QLabel( i18n( "Standard Output (stdout)" ), page );
+      _stdout = new QTextEdit( page );
+      _stdout->setReadOnly(true);
+      _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
+      // create stderr
+      QLabel *label2 = new QLabel( i18n( "Standard Error (stderr)" ), page );
+      _stderr = new QTextEdit( page );
+      _stderr->setReadOnly(true);
+      _stderr->setMinimumWidth( fontMetrics().maxWidth() * 40 );
+   } else {
+      // create stdout
+      QLabel *label = new QLabel( i18n( "Output" ), page );
+      _stdout = new QTextEdit( page );
+      _stdout->setReadOnly(true);
+      _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
+   }
+}
+
+void UserMenuProcDlg::addStderr( KProcess *proc, char *buffer, int buflen ) {
+   _stderr->append(QString::fromLatin1( buffer, buflen ));
+}
+
+void UserMenuProcDlg::addStdout( KProcess *proc, char *buffer, int buflen ) {
+   _stdout->append(QString::fromLatin1( buffer, buflen ));
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+UserMenuProc::UserMenuProc( bool terminal, bool enableStderr ) : QObject(), _terminal( terminal ),
+_enableStderr( enableStderr ), _proc( new KProcess() ) {
+   _proc->setUseShell( true );
+
+   connect( _proc, SIGNAL( processExited( KProcess* ) ),
+            this, SLOT( processExited( KProcess* ) ) ) ;
+}
+
+
+UserMenuProc::~UserMenuProc() {
+   delete _proc;
+}
+
+bool UserMenuProc::start( QString cmdLine ) {
+   _proc->clearArguments();
+   ( *_proc ) << cmdLine;
+
+   // run in terminal or in custom-window
+   if (_terminal) {
+   } else {
+      _output = new UserMenuProcDlg( cmdLine, _enableStderr);
+      // connect the output to the dialog
+      connect( _proc, SIGNAL( receivedStderr( KProcess*, char*, int ) ),
+               _output, SLOT( addStderr( KProcess*, char *, int ) ) );
+      connect( _proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
+               _output, SLOT( addStdout( KProcess*, char *, int ) ) );
+
+      _output->show();
+   }
+   return _proc->start( KProcess::NotifyOnExit, (KProcess::Communication)(KProcess::Stdout | KProcess::Stderr) );
+}
+
+void UserMenuProc::processExited( KProcess *proc ) {
+   kdWarning() << ">>>>>>>>> process done <<<<<<<<<<<" << endl;
+   kdWarning() << "stdout:" << endl << _stdout << endl;
+   kdWarning() << "stderr:" << endl << _stderr << endl;
+
+   delete this;
+}
