@@ -1232,6 +1232,7 @@ void KrDetailedView::initProperties() {
 				 KrViewProperties::IgnoreCase );
 	PROPS->humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
 	}
+	PROPS->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
 }
 
 #include "krdetailedview.moc"

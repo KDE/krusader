@@ -321,6 +321,7 @@ QPixmap KrDetailedViewItem::icon() {
 }
 
 int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const {
+  bool ignoreCase = (PROPS->sortMode & KrViewProperties::IgnoreCase);
   int asc = ( ascending ? -1 : 1 );
   KrViewItem *other = dynamic_cast<KrViewItem*>(i);
 
@@ -335,7 +336,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   QString itext0 = other->name();
   if (itext0 == "..") return -1*asc;
 
-  if( (PROPS->sortMode & KrViewProperties::IgnoreCase) )
+  if( ignoreCase )
   {
     text0  = text0.lower();
     itext0 = itext0.lower();
@@ -346,17 +347,23 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 		if (text0.startsWith(".")) {
 			if (!itext0.startsWith(".")) return 1*asc;
 		} else if (itext0.startsWith(".")) return -1*asc;
-		return QString::localeAwareCompare(text0,itext0);
+		if (!ignoreCase && !PROPS->localeAwareCompareIsCaseSensitive) {
+			// sometimes, localeAwareCompare is not case sensative. in that case,
+			// we need to fallback to a simple string compare (KDE bug #40131)
+			return QString::compare(text0, itext0);
+		} else return QString::localeAwareCompare(text0,itext0);
   } else if (col == COLUMN(Size) ) {
       return QString::compare(num2qstring(size()),num2qstring(other->size()));
   } else if (col == COLUMN(DateTime) ) {
       return (getTime_t() > other->getTime_t() ? 1 : -1);
   } else {
-      QString e1 = (!(PROPS->sortMode & KrViewProperties::IgnoreCase) ?
-			text(col) : text(col).lower());
-      QString e2 = (!(PROPS->sortMode & KrViewProperties::IgnoreCase) ?
-			i->text(col) : i->text(col).lower());
-      return QString::localeAwareCompare(e1, e2);
+      QString e1 = (!ignoreCase ? text(col) : text(col).lower());
+      QString e2 = (!ignoreCase ? i->text(col) : i->text(col).lower());
+		if (!ignoreCase && !PROPS->localeAwareCompareIsCaseSensitive) {
+			// sometimes, localeAwareCompare is not case sensative. in that case,
+			// we need to fallback to a simple string compare (KDE bug #40131)
+			return QString::compare(text0, itext0);
+		} else return QString::localeAwareCompare(e1, e2);
   }
 }
 

@@ -56,6 +56,7 @@ public:
 	SortSpec sortMode;	// sort specifications
 	FilterSpec filter;	// what items to show (all, custom, exec)
   	QString filterMask;	// what items to show (*.cpp, *.h etc)
+	bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
 };
 
 
