@@ -116,7 +116,7 @@ bool vfs::vfs_refresh(){
 	dirty = false;
 	// point the vfs_filesP to a NEW (empty) dictionary
 	vfs_filesP = new QDict<vfile>();
-	vfs_filesP->setAutoDelete(true);
+	//vfs_filesP->setAutoDelete(true);
 	
 	// and populate it
 	krConfig->setGroup("Look&Feel");
