@@ -28,6 +28,10 @@
  *                                                                         *
  ***************************************************************************/
 #include "krdirwatch.h"
+#include <unistd.h>
+#include <sys/types.h>
+#include <kdebug.h>
+#include "krpermhandler.h"
 
 KRdirWatch::KRdirWatch(int msec,bool dirOnly):
   delay(msec),t(this),changed(false){
@@ -54,7 +58,19 @@ void KRdirWatch::addDir(QString path){
   t.stop();
 
   krDirEntry* temp = new krDirEntry;
-  if (!dir.cd(path)) return;  // if it's not a dir or don't exist - don't add
+  if (!dir.cd(path)){ // if it's not a dir or don't exist - don't add it
+    //kdDebug() << "KRDirWatch: can't watch " + path +", (don't exist)" << endl;
+    return;
+  }
+  // if we can't read it - don't bother
+  if (getgid() != 0 && !KRpermHandler::fileReadable(path) ){
+    //kdDebug() << "KRDirWatch: can't watch " + path +", (not readable)" << endl;
+    return;
+  }
+  if (!KRpermHandler::fileWriteable(path) ){ // read-only directorys can't be changed
+    //kdDebug() << "KRDirWatch: not watching " + path +", (read-only directory)" << endl;
+    return;
+  }
   qfi.setFile(path);
 
   temp->path = dir.path();
@@ -85,7 +101,6 @@ void KRdirWatch::checkDirs(){
     count = dir.count();
     // check for changes
     if(it->lastModified!=dt || it->count!=count){
-      //emit dirty();
       changed = true;
       it->lastModified=dt;
       it->count=count;
