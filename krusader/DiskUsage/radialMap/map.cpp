@@ -343,7 +343,10 @@ RadialMap::Map::paint( unsigned int scaleFactor )
 
                if( i == 2 )
                   radius += 5 * scaleFactor;
+#if 0
                sincos( ra, &sinra, &cosra );
+#endif
+					sinra = sin(ra); cosra = cos(ra);
                pos.rx() = cpos.x() + static_cast<int>(cosra * radius);
                pos.ry() = cpos.y() - static_cast<int>(sinra * radius);
                pts.setPoint( i, pos );
@@ -415,7 +418,7 @@ RadialMap::Map::paint( unsigned int scaleFactor )
 
    paint.end();
 }
-
+#if 0
 #if __GLIBC__ < 2 ||  __GLIBC__ == 2 && __GLIBC_MINOR__ < 1
    
    void
@@ -425,4 +428,5 @@ RadialMap::Map::paint( unsigned int scaleFactor )
       *Cos = cos( angleRadians );
    }
 
+#endif
 #endif
