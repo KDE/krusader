@@ -734,7 +734,7 @@ void arc_vfs::processName(const QString& name, QStringList *urls,unsigned long *
 
 void arc_vfs::parseLine(QString line, QFile* temp){
   QString name;
-  long size;
+  long size = 0;
   QString perm;
   QString dateTime;
   bool link = false;

@@ -67,8 +67,10 @@
 #define ACTIVE_PANEL        (krApp->mainView->activePanel)
 #define ACTIVE_FUNC         (krApp->mainView->activePanel->func)
 #define MAIN_VIEW           (krApp->mainView)
-#define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;MAIN_VIEW->left->refresh(); \
-	                            MAIN_VIEW->right->refresh(); p->slotFocusOnMe(); }
+#define REFRESH_BOTH_PANELS { ListPanel *p=ACTIVE_PANEL;        \
+                              MAIN_VIEW->left->func->refresh(); \
+	                            MAIN_VIEW->right->func->refresh();\
+                              p->slotFocusOnMe(); }
 
 
 void KRslots::selectCompareMask() {
@@ -151,8 +153,8 @@ void KRslots::compareContent() {
 
   // else implied: all ok, let's call kdiff
 	// but if one of the files isn't local, download them first
-	KURL url1 = ACTIVE_PANEL->files->vfs_getFile(name1);
-	KURL url2 = ACTIVE_PANEL->otherPanel->files->vfs_getFile(name2);
+	KURL url1 = ACTIVE_FUNC->files()->vfs_getFile(name1);
+	KURL url2 = ACTIVE_PANEL->otherPanel->func->files()->vfs_getFile(name2);
 	
 	QString tmp1 = QString::null, tmp2 = QString::null;
   if (!url1.isLocalFile()) {
@@ -235,11 +237,11 @@ void KRslots::unmarkAll()       { ACTIVE_PANEL->select(false,true);          }
 void KRslots::markGroup()       { ACTIVE_PANEL->select(true,false);          }
 void KRslots::unmarkGroup()     { ACTIVE_PANEL->select(false,false);         }
 void KRslots::invert()          { ACTIVE_PANEL->invertSelection();           }
-void KRslots::root()            { ACTIVE_PANEL->openUrl("/");                }
-void KRslots::refresh()         { ACTIVE_PANEL->refresh();                   }
-void KRslots::refresh(QString p){ ACTIVE_PANEL->openUrl(p);                  }
-void KRslots::home()            { ACTIVE_PANEL->openUrl(QDir::homeDirPath());}
 
+void KRslots::root()            { ACTIVE_FUNC->openUrl("/");                 }
+void KRslots::refresh(QString p){ ACTIVE_FUNC->openUrl(p);                   }
+void KRslots::home()            { ACTIVE_FUNC->openUrl(QDir::homeDirPath()); }
+void KRslots::refresh()         { ACTIVE_FUNC->refresh();                    }
 void KRslots::properties()      { ACTIVE_FUNC->properties();                 }
 void KRslots::dirUp()           { ACTIVE_FUNC->dirUp();                      }
 void KRslots::back()            { ACTIVE_FUNC->goBack();                     }
@@ -321,7 +323,7 @@ void KRslots::multiRename(){
 	
   QStringList names;
   ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&names);
-	KURL::List* urls = ((ListPanel*)ACTIVE_PANEL)->files->vfs_getFiles(&names);
+	KURL::List* urls = ACTIVE_FUNC->files()->vfs_getFiles(&names);
 
 	if( urls->isEmpty() ){
 		delete urls;

@@ -213,42 +213,8 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
 	layout->addMultiCellWidget(fileList,2,2,0,1);
 	layout->addMultiCellWidget(totals,3,3,0,1);
 
-	inRefresh = false;
 	filter = ALL;
-  vfsStack = new QStack<vfs>();
-  vfsStack->setAutoDelete(false);
 }
-
-void ListPanel::refresh(const QString path){
- 	// change the cursor to busy
-	krApp->setCursor(KCursor::waitCursor());
-	// first, make this panel the active one
-	slotFocusOnMe();
-	// second make sure we're in the right vfs..
-	if ((virtualPath.contains('\\') && !path.contains('\\')) ||  // arc -> normal
-	  virtualPath.left(1) != "/" && path.left(1) == "/"){     // ftp -> normal
-	  while(!vfsStack->isEmpty()){
-      delete files;
-      files = vfsStack->pop();
-    }
-		files->blockSignals(false);
-  }
-	// if we could not refresh try to dir up
-	QString origin = path;
-	if (!files->vfs_refresh(origin)) {
-	  virtualPath = origin;
-	  func->dirUp();
-		return; // dirUp() calls refresh again...
-	}
-	// update the backStack
-  if ( func->backStack.last() != realPath ){
-    krBack->setEnabled(true);
-    func->backStack.append(realPath);
-    //the size of the backStack is hard coded - 30
-    if(func->backStack.count() > 30) func->backStack.remove(func->backStack.begin());
-  }
-}
-
 
 void ListPanel::select(bool select, bool all) {
   if (all)
@@ -298,27 +264,7 @@ void ListPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
   bp.setColor( QColorGroup::Foreground,KGlobalSettings::activeTextColor() );
   bp.setColor( QColorGroup::Background,KGlobalSettings::activeTitleColor() );
   bookmarks->setPalette(bp);
-
-  //  set up actions
-  krProperties->setEnabled(files->vfs_getType()=="normal" ); // file properties
-  krUnpack->setEnabled(true);                         // unpack archive
-  krTest->setEnabled(true);                           // test archive
-  krSelect->setEnabled(true);                         // select a group by filter
-  krSelectAll->setEnabled(true);                      // select all files
-  krUnselect->setEnabled(true);                       // unselect by filter
-  krUnselectAll->setEnabled( true);                   // remove all selections
-  krInvert->setEnabled(true);                         // invert the selection
-  krFTPConnect->setEnabled(true);                     // connect to an ftp
-  krFTPNew->setEnabled(true);                         // create a new connection
-  krFTPDiss->setEnabled(files->vfs_getType()=="ftp"); // disconnect an FTP session
-  krAllFiles->setEnabled(true);                       // show all files in list
-  krExecFiles->setEnabled(files->vfs_getType()!="ftp");// show only executables
-  krCustomFiles->setEnabled(true);                    // show a custom set of files
-  krBack->setEnabled(func->canGoBack());              // go back
-  krRoot->setEnabled(true);                           // go all the way up
-  krAddBookmark->setEnabled( files->vfs_getType()=="normal"  // add a bookmark
-                          || files->vfs_getType()=="ftp");
-	krMultiRename->setEnabled(files->vfs_getType()=="normal");
+	func->refreshActions();
 }
 
 // overload this to control the NAME column resize
@@ -331,13 +277,6 @@ void ListPanel::resizeEvent ( QResizeEvent *e ) {
 	if (fileList->columnWidth(0)<(w*8) && delta<0) return;
 	fileList->setColumnWidth(0,fileList->columnWidth(0)+delta);
 	fileList->triggerUpdate();
-}
-
-void ListPanel::cleanUp(){
-  while(!vfsStack->isEmpty()){
-    delete files ;
-    files = vfsStack->pop();
-  }
 }
 
 // this is used to start the panel, AFTER setOther() has been used
@@ -361,39 +300,30 @@ void ListPanel::start(bool left) {
 	  else virtualPath = getcwd(0,0);
 	}
 	
-/*	QFileInfo qfi(virtualPath);
-	if (!qfi.isDir() || !qfi.exists()){
-	  virtualPath = "/";
-	  QString side = (left ? i18n("left") : i18n("right"));
-	  //KMessageBox::error(krApp,i18n("The ")+side+i18n(" panel start path is invalid. Check your Konfigurator"));
-  }	
-	
 	realPath = virtualPath;
-*/	
-	files = new normal_vfs(virtualPath,this);
-  openUrl(virtualPath);
+  func->openUrl(virtualPath);
 }
 
 void ListPanel::slotStartUpdate(){
 	// if the vfs couldn't make it  - go back
-	if( files->vfs_error() ){
-	  inRefresh = false;
+	if( func->files()->vfs_error() ){
+	  func->inRefresh = false;
 	  func->dirUp();
 	  return;
 	}
 	
-	while(inRefresh) ; // wait until the last refresh finish
-	inRefresh = true;  // make sure the next refresh wait for this one
+	while( func->inRefresh ) ; // wait until the last refresh finish
+	func->inRefresh = true;  // make sure the next refresh wait for this one
 	
 	fileList->clear();
 
 	// set the virtual path
-	virtualPath = files->vfs_getOrigin();
-	if(files->vfs_getType() == "normal")
+	virtualPath = func->files()->vfs_getOrigin();
+	if(func->files()->vfs_getType() == "normal")
 	  realPath = virtualPath;
 	// set the origin path
   QString shortPath = virtualPath ,s1,s2;
-	shortPath.replace( QRegExp("\\"),"#");
+	shortPath = shortPath.replace( QRegExp("\\\\"),"#");
 	if ( QFontMetrics(origin->font()).width(shortPath)+40 > origin->width() ){
 		s1 = shortPath.left((shortPath.length()/2));
 		s2 = shortPath.right((shortPath.length()/2));
@@ -403,7 +333,7 @@ void ListPanel::slotStartUpdate(){
   	}
   	shortPath = s1+"..."+s2;
   }
-	this->origin->setText(shortPath);
+	origin->setText(shortPath);
 
 	emit cmdLineUpdate(realPath);	// update the command line
 }
@@ -424,9 +354,10 @@ void ListPanel::slotUpdate(){
 	QListViewItem *currentItem = item;
 	QString size;
 	QString name;
+	vfs* files = func->files();
 	
 	// if we are not at the root add the ".." entery
-	QString origin = files->vfs_getOrigin();
+	QString origin = func->files()->vfs_getOrigin();
 	if( origin.right(1)!="/" && !((files->vfs_getType()=="ftp")&&
       origin.find('/',origin.find(":/")+3)==-1) ) {
 		QListViewItem * item=new KRListItem(fileList,"..","<DIR>");
@@ -441,7 +372,7 @@ void ListPanel::slotUpdate(){
 		bool isDir = vf->vfile_isDir();
 		KRListItem::cmpColor color = KRListItem::none;
 		if( compareMode ){
-		  vfile* ovf = otherPanel->files->vfs_search(vf->vfile_getName());
+		  vfile* ovf = otherPanel->func->files()->vfs_search(vf->vfile_getName());
 		  if (ovf == 0 ) color = KRListItem::exclusive;  // this file doesn't exist on the other panel
 		  else{ // if we found such a file
         QString date1 = KRpermHandler::date2qstring(vf->vfile_getDateTime());
@@ -497,7 +428,7 @@ void ListPanel::slotUpdate(){
   fileList->setCurrentItem(currentItem);
 	fileList->ensureItemVisible(currentItem);
  	
- 	inRefresh = false;
+ 	func->inRefresh = false;
 }
 
 // walk through the list and update the no. of selected files and their size
@@ -579,7 +510,7 @@ QPixmap ListPanel::getIcon(vfile* vf, KRListItem::cmpColor color){
 void ListPanel::slotChangeStatus(QListViewItem *i){
 	if (fileList->getFilename(i)=="..") emit signalStatus(i18n("Climb up the directory tree"));
 	else{
- 	   	vfile* vf = files->vfs_search(fileList->getFilename(i));
+ 	   	vfile* vf = func->files()->vfs_search(fileList->getFilename(i));
 			if(vf == 0) return;
 			
 			QString text = vf->vfile_getName();
@@ -623,7 +554,7 @@ void ListPanel::slotChangeStatus(QListViewItem *i){
 void ListPanel::slotBookmarkChosen(int id) {
  	setNameToMakeCurrent(QString::null);
 	QString origin = krBookMan->getUrlById(id);
- 	openUrl( origin );
+ 	func->openUrl( origin );
 }
 
 void ListPanel::slotRefreshBookmarks() {
@@ -686,7 +617,7 @@ void ListPanel::dragMoveEvent( QDragMoveEvent *ev ) {
   scroll = false;
   QStrList list;
   if (!QUriDrag::canDecode(ev) || !ev->provides("text/uri-list") ||
-      !files->vfs_isWritable() ){
+      !func->files()->vfs_isWritable() ){
     ev->ignore(); // not for us to handle!
     return;
   } // if we got here, let's check the mouse location
@@ -736,9 +667,9 @@ void ListPanel::dropEvent( QDropEvent *ev ) {
 //  bool copyToZip=false;
   bool dragFromOtherPanel=false;
   bool dragFromThisPanel=false;
-  bool isWritable=files->vfs_isWritable();
+  bool isWritable=func->files()->vfs_isWritable();
 
-  vfs* tempFiles = files;
+  vfs* tempFiles = func->files();
   vfile *file;
   QPoint evPos=mapToGlobal(ev->pos());
   QListViewItem *i=itemOn(evPos);
@@ -747,13 +678,12 @@ void ListPanel::dropEvent( QDropEvent *ev ) {
   if (ev->source()==this)       dragFromThisPanel=true;
 
   if (i){
-     file=files->vfs_search(i->text(0));
+     file=func->files()->vfs_search(i->text(0));
 
      if (!file) { // trying to drop on the ".."
        if(virtualPath.right(1)=="\\") // root of archive..
-          tempFiles=vfsStack->top();
+          isWritable = false;
        else copyToDirInPanel=true;
-       isWritable=tempFiles->vfs_isWritable();
      }else{
       if (file->vfile_isDir()){
         copyToDirInPanel=true;
@@ -801,9 +731,10 @@ void ListPanel::dropEvent( QDropEvent *ev ) {
   else {
     QPopupMenu popup;
     popup.insertItem(i18n("Copy Here"),1);
-    if (files->vfs_isWritable()) popup.insertItem(i18n("Move Here"),2);
-    if (files->vfs_getType()=="normal" && otherPanel->files->vfs_getType()=="normal")
-      popup.insertItem(i18n("Link Here"),3);
+    if (func->files()->vfs_isWritable()) popup.insertItem(i18n("Move Here"),2);
+    if (func->files()->vfs_getType()=="normal" &&
+		    otherPanel->func->files()->vfs_getType()=="normal")
+      	popup.insertItem(i18n("Link Here"),3);
     popup.insertItem(i18n("Cancel"),4);
     int result=popup.exec(evPos);
     switch (result) {
@@ -846,7 +777,7 @@ void ListPanel::startDragging(int mode) {
     default: draggingSingle=false;
   }
 	
-	KURL::List* urls = files->vfs_getFiles(&names);
+	KURL::List* urls = func->files()->vfs_getFiles(&names);
 	if( urls->isEmpty() ){ // avoid draging empty urls
 	  emit finishedDragging();
 	  return;
@@ -907,7 +838,7 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   }
 
   if (fileList->getFilename(item)=="..") return;
-  vfile *vf = files->vfs_search(fileList->getFilename(item));
+  vfile *vf = func->files()->vfs_search(fileList->getFilename(item));
   if(vf==0) return;
   // create the menu
   QPopupMenu popup,openWith,linkPopup;
@@ -940,7 +871,7 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   }
   // COPY
   popup.insertItem(i18n("Copy"),COPY_ID);
-  if (files->vfs_isWritable()) {
+  if (func->files()->vfs_isWritable()) {
   // MOVE
   popup.insertItem(i18n("Move"),MOVE_ID);
   // RENAME - only one file
@@ -949,11 +880,12 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   // DELETE
   popup.insertItem(i18n("Delete"),DELETE_ID);
   // SHRED - only one file
-  if (files->vfs_getType()=="normal" && !vf->vfile_isDir() && !multipleSelections)
+  if (func->files()->vfs_getType()=="normal" &&
+      !vf->vfile_isDir() && !multipleSelections)
   	popup.insertItem(i18n("Shred"),SHRED_ID);
   }
 	// create new shortcut or redirect links - not on ftp:
-	if ( files->vfs_getType() != "ftp"){
+	if ( func->files()->vfs_getType() != "ftp"){
 		popup.insertSeparator();
 		linkPopup.insertItem(i18n("new symlink"),NEW_SYMLINK);
     linkPopup.insertItem(i18n("new hardlink"),NEW_LINK);
@@ -965,14 +897,14 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
 
   }
 	popup.insertSeparator();
-  if (files->vfs_getType()!="ftp" && (vf->vfile_isDir() || multipleSelections))
+  if (func->files()->vfs_getType()!="ftp" && (vf->vfile_isDir() || multipleSelections))
     krCalculate->plug(&popup);
-  if (files->vfs_getType()=="normal" && vf->vfile_isDir() && !multipleSelections) {
-    if (krMtMan.getStatus(files->vfs_getFile(fileList->getFilename(item)))==MountMan::KMountMan::MOUNTED)
+  if (func->files()->vfs_getType()=="normal" && vf->vfile_isDir() && !multipleSelections) {
+    if (krMtMan.getStatus(func->files()->vfs_getFile(fileList->getFilename(item)))==MountMan::KMountMan::MOUNTED)
         popup.insertItem(i18n("Unmount"),UNMOUNT_ID);
-    else if (krMtMan.getStatus(files->vfs_getFile(fileList->getFilename(item)))==MountMan::KMountMan::NOT_MOUNTED)
+    else if (krMtMan.getStatus(func->files()->vfs_getFile(fileList->getFilename(item)))==MountMan::KMountMan::NOT_MOUNTED)
         popup.insertItem(i18n("Mount"),MOUNT_ID);
-    if (krMtMan.ejectable(files->vfs_getFile(fileList->getFilename(item))))
+    if (krMtMan.ejectable(func->files()->vfs_getFile(fileList->getFilename(item))))
       popup.insertItem(i18n("Eject"), EJECT_ID);
   }
 
@@ -997,8 +929,8 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
       while (iterator) {
         if (iterator->isSelected()) {
           QString fname = fileList->getFilename(iterator);
-    	    u.setPath(files->vfs_getFile(fname));
-          KRun::runURL(u, (files->vfs_search(fname))->vfile_getMime());
+    	    u.setPath(func->files()->vfs_getFile(fname));
+          KRun::runURL(u, (func->files()->vfs_search(fname))->vfile_getMime());
         }
         iterator=iterator->itemBelow();
       }
@@ -1016,26 +948,26 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
       func->deleteFiles();
       break;
     case EJECT_ID :
-      MountMan::KMountMan::eject(files->vfs_getFile(fileList->getFilename(item)));
+      MountMan::KMountMan::eject(func->files()->vfs_getFile(fileList->getFilename(item)));
       break;
     case SHRED_ID :
       if (KMessageBox::warningContinueCancel(krApp,
           i18n("Are you sure you want to shred ")+"\""+fileList->getFilename(item)+"\""+
           " ? Once shred, the file is gone forever !!!",
           QString::null,KStdGuiItem::cont(),"Shred") == KMessageBox::Continue )
-        KShred::shred(files->vfs_getFile(fileList->getFilename(item)));
+        KShred::shred(func->files()->vfs_getFile(fileList->getFilename(item)));
       break;
     case OPEN_KONQ_ID :   // open in konqueror
-      kapp->startServiceByDesktopName("konqueror",files->vfs_getFile(fileList->getFilename(item)));
+      kapp->startServiceByDesktopName("konqueror",func->files()->vfs_getFile(fileList->getFilename(item)));
       break;
     case CHOOSE_ID :      // Other...
       //new KFileOpenWithHandler();
-      u.setPath(files->vfs_getFile(fileList->getFilename(item)));
+      u.setPath(func->files()->vfs_getFile(fileList->getFilename(item)));
       lst.append(u);
       KRun::displayOpenWithDialog(lst);
       break;
     case MOUNT_ID :
-      krMtMan.mount(files->vfs_getFile(fileList->getFilename(item)));
+      krMtMan.mount(func->files()->vfs_getFile(fileList->getFilename(item)));
       break;
     case NEW_LINK :
 			func->krlink(false);
@@ -1047,14 +979,14 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
 			func->redirectLink();
 			break;
     case UNMOUNT_ID :
-      krMtMan.unmount(files->vfs_getFile(fileList->getFilename(item)));
+      krMtMan.unmount(func->files()->vfs_getFile(fileList->getFilename(item)));
       break;
     case SEND_BY_EMAIL :
-      SLOTS->sendFileByEmail(files->vfs_getFile(fileList->getFilename(item)));
+      SLOTS->sendFileByEmail(func->files()->vfs_getFile(fileList->getFilename(item)));
       break;
     case OPEN_TERM_ID :   // open in terminal
 		  QString save = getcwd(0,0);
-		  chdir( files->vfs_getFile(item->text(0)).local8Bit() );
+		  chdir( func->files()->vfs_getFile(item->text(0)).local8Bit() );
       KProcess proc;
 		  krConfig->setGroup("General");
 		  QString term = krConfig->readEntry("Terminal",_Terminal);
@@ -1066,7 +998,7 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
       break;
 		}
     if( result >= SERVICE_LIST_ID ){
-      u.setPath(files->vfs_getFile(fileList->getFilename(item)));
+      u.setPath(func->files()->vfs_getFile(fileList->getFilename(item)));
       lst.append(u);
       KRun::run(*(offers[result-SERVICE_LIST_ID].service()),lst);
     }
@@ -1090,7 +1022,7 @@ void ListPanel::setFilter(FilterSpec f){
 									break;
 		default:			return;
 	}
-	refresh();
+	func->refresh();
 }
 
 void ListPanel::popBookmarks() {
@@ -1108,38 +1040,6 @@ QString ListPanel::getCurrentName() {
 
 void ListPanel::prepareToDelete() {
 	setNameToMakeCurrent(fileList->getFilename(fileList->firstUnmarkedAboveCurrent()));
-}
-
-void ListPanel::openUrl( QString path, QString file, QString type){
-	// first close all open archives / remote connections
-	while(!vfsStack->isEmpty()){
-  	delete files;
-    files = vfsStack->pop();
-  }
-	
-	// check for archive:
-	if ( path.contains('\\') ) {
-		QString archive = path.left( path.find('\\') );
-		if( type.isEmpty() ){
-    	QString mime = KMimeType::findByURL(archive)->name();
-			type = mime.right(4);
-			if( type == "-rpm" ) type = "+rpm"; // open the rpm as normal archive
-			if( mime.contains("-rar") ) type = "-rar";
-		}
-		func->changeVFS(type,archive);
-		setNameToMakeCurrent(file);
-		refresh(path);
-	}	
-	// remote file systems
-	else if( path.contains(":/") ){
-		
-		func->changeVFS("ftp",path);
-	}
-	else{ // local directories
-		files->blockSignals(false);
-		setNameToMakeCurrent(file);
-		refresh( path );
-	}
 }
 
 // this is called if the rightclick menu is popped from the keyboard

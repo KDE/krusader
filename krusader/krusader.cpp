@@ -56,6 +56,7 @@
 #include "Dialogs/krpleasewait.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
+#include "Panel/panelfunc.h"
 #include "Konfigurator/konfigurator.h"
 #include "MountMan/kmountman.h"
 #include "defaults.h"
@@ -134,10 +135,9 @@ Krusader::Krusader() : KParts::MainWindow() {
 
 	// init the permmision handler class
   KRpermHandler::init();
-
+  kdDebug() << "Creating Krusader GUI..." << endl;
   // create the main view and set it
   mainView=new KrusaderView(this);
-
   // setup keyboard accelerators	
 	setupAccels();
 	
@@ -164,8 +164,9 @@ Krusader::Krusader() : KParts::MainWindow() {
   if (runKonfig) slot->runKonfigurator(true);
 
   // refresh the right and left panels
-	mainView->left->refresh();
-	mainView->right->refresh();
+  kdDebug() << "Opening the startup URLs..." << endl;
+	mainView->left->func->refresh();
+	mainView->right->func->refresh();
 }
 
 Krusader::~Krusader(){}
@@ -407,9 +408,6 @@ void Krusader::saveSettings() {
     config->writeEntry( "Show Terminal Emulator",actToggleTerminal->isChecked());
   }
   config->sync();
-  // delete all vfs records...
-  mainView->left->cleanUp();
-  mainView->right->cleanUp();
 }
 
 void Krusader::refreshView(){
@@ -424,7 +422,11 @@ void Krusader::refreshView(){
 }
 
 bool Krusader::queryClose() {
-  saveSettings();
+  // close all open VFS
+	delete krApp->mainView->left->func;
+	delete krApp->mainView->right->func;
+ 
+	saveSettings();
   krConfig->setGroup("Look&Feel");
 	if (krConfig->readBoolEntry("Warn On Exit",_WarnOnExit)) {
     switch ( KMessageBox::warningYesNo( this,

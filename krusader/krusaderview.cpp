@@ -56,6 +56,7 @@ KrusaderView::KrusaderView(QWidget *parent, const char *name ) : QWidget(parent,
 
   // add 2 pseudo widgets and layouts to allow a smoother movement of the
   // whole screen, and allow the status bars to resize with the panels
+  kdDebug() << "Creating 2 ListPanels..." << endl;
   left=new ListPanel(horiz_splitter,false);
 	right=new ListPanel(horiz_splitter,true);
 
@@ -75,6 +76,7 @@ KrusaderView::KrusaderView(QWidget *parent, const char *name ) : QWidget(parent,
 	krConfig->setGroup("Private");
 	QValueList<int> lst = krConfig->readIntListEntry("Splitter Sizes");
 	if (!lst.isEmpty()) horiz_splitter->setSizes(lst);
+	kdDebug() << "Showing the GUI..." << endl;
 	show();
 
   qApp->processEvents();

@@ -43,6 +43,7 @@
 #include <qheader.h>
 #include "../krusaderview.h"
 #include "listpanel.h"
+#include "panelfunc.h"
 #include "../krslots.h"
 #include "../resources.h"
 #include <kdeversion.h>
@@ -151,7 +152,7 @@ void KFileList::keyPressEvent(QKeyEvent *e) {
       if (e->state()==ControlButton) { // user pressed CTRL+Right
        if (krApp->mainView->activePanel==krApp->mainView->left) {
         // refresh the other panel with our path
-        krApp->mainView->activePanel->otherPanel->openUrl(
+        krApp->mainView->activePanel->otherPanel->func->openUrl(
             krApp->mainView->activePanel->realPath);
         krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
         return;
@@ -172,7 +173,7 @@ void KFileList::keyPressEvent(QKeyEvent *e) {
       if (e->state()==ControlButton) { // user pressed CTRL+Left
       	if (krApp->mainView->activePanel==krApp->mainView->right) {
         	// refresh the other panel with our path
-        	krApp->mainView->activePanel->otherPanel->openUrl(
+        	krApp->mainView->activePanel->otherPanel->func->openUrl(
             krApp->mainView->activePanel->realPath);
         	krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
         	return;

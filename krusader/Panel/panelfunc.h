@@ -34,6 +34,7 @@
 #define PANELFUNC_H
 #include "listpanel.h"
 #include <qobject.h>
+#include <qptrstack.h>
 
 class ListPanelFunc : public QObject{
 friend class ListPanel;
@@ -43,8 +44,14 @@ public slots:
 
 public:
 	ListPanelFunc(class ListPanel *parent);
- ~ListPanelFunc(){}
-	
+ ~ListPanelFunc();
+
+  inline void refresh(){ refresh(panel->virtualPath); } // re-read the files
+	inline vfs* files()  { return vfsStack.top();      } // return the vfs
+  void refresh(const QString path);
+  void openUrl( QString path,QString type=QString::null );
+  void refreshActions();
+
 	void redirectLink();
 	void krlink(bool sym);
 	void goBack();
@@ -65,11 +72,13 @@ public:
   void FTPDisconnect();
   void newFTPconnection(QString host=QString::null);
   void changeVFS(QString type, QString origin);
-  inline  bool canGoBack(){return !backStack.isEmpty();}
+	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
 protected:
-	ListPanel	  *panel;
-	QStringList backStack; // Path stack for the "back" button
+	ListPanel	     *panel;    // our ListPanel
+	QStringList    backStack; // Path stack for the "back" button
+	bool           inRefresh; // true when we are in refresh()
+	QPtrStack<vfs> vfsStack; // the vfs stack.
 };
 
 #endif
