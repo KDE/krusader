@@ -49,6 +49,7 @@
 class vfs: public QObject{
 	Q_OBJECT
 public:
+	typedef QDict<vfile> vfileDict;	
 	enum VFS_TYPE{ERROR=0,NORMAL,FTP,TEMP,VIRT};
 
 	/**
@@ -120,7 +121,7 @@ protected:
 	/// Feel the vfs dictionary with vfiles, must be implemented for each vfs
 	virtual bool populateVfsList(const KURL& origin, bool showHidden) = 0L;
 	/// Set the vfile list pointer
-	void setVfsFilesP(QDict<vfile>* dict);
+	void setVfsFilesP(vfileDict* dict);
 	/// clear and delete all current vfiles
 	inline void clear(){ vfs_filesP->clear(); }
 	/// Add a new vfile to the list.
@@ -137,8 +138,8 @@ protected:
 	bool mimeTypeMagicDisabled; //< true if the mime type magic is disabled
 
 private:
-	QDict<vfile>*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
-	QDict<vfile>*  vfs_searchP;   //< Searches are preformed in this dictionary (usualy points to vfs_files)	
+	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
+	vfileDict*  vfs_searchP;   //< Searches are preformed in this dictionary (usualy points to vfs_files)	
 	QDictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
 };
 

@@ -482,7 +482,7 @@ QString arc_vfs::nextWord(QString &s,char d) {
 
 void arc_vfs::getFilesToPack(QStringList* filesToPack,QString dir_name){
   bool newDir = false;
-  QList<vfile> *vfs_filesP_backup = vfs_filesP; // save vfs_filesP
+  vfileDict *vfs_filesP_backup = vfs_filesP; // save vfs_filesP
 
   // init all the diffrent lists (and list pointers);
   vfs_filesP=findDir(dir_name);
@@ -628,7 +628,7 @@ void arc_vfs::repack(){
   chdir(save.local8Bit());
 }
 
-QList<vfile>* arc_vfs::findDir(QString name){
+vfileDict* arc_vfs::findDir(QString name){
   for(arc_dir* temp = dirList.first();temp != 0 ; temp = dirList.next()){
     if(temp->name == name) return &(temp->entries);
   }
@@ -697,7 +697,7 @@ void arc_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned lo
 
     QString origin_backup = vfs_origin; // backup the vfs origin
     vfs_origin = vfs_origin+"/"+name;
-    QList<vfile>* vfs_filesP_backup = vfs_filesP; // backup the vfs_filesP
+    vfileDict* vfs_filesP_backup = vfs_filesP; // backup the vfs_filesP
     vfs_filesP = findDir(path+name);
 
     // process all the files in the directory.
@@ -728,7 +728,7 @@ void arc_vfs::processName(const QString& name, QStringList *urls,KIO::filesize_t
     urls->append(path+name+"/");
     QString origin_backup = vfs_origin; // backup the vfs origin
     vfs_origin = vfs_origin+"/"+name;
-    QList<vfile>* vfs_filesP_backup = vfs_filesP; // backup the vfs_filesP
+    vfileDict* vfs_filesP_backup = vfs_filesP; // backup the vfs_filesP
     vfs_filesP = findDir(path+name);
 
     // process all the files in the directory.

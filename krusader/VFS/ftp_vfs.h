@@ -75,7 +75,7 @@ public slots:
 	bool populateVfsList(const KURL& origin, bool showHidden);
 
 protected:
-	QDict<vfile>  vfs_files;    //< List of pointers to vfile.
+	vfileDict  vfs_files;    //< List of pointers to vfile.
 	KURL origin_backup;         //< used to backup the old URL when refreshing to a new one,
 	bool busy;
 	bool listError;     

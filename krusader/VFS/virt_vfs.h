@@ -55,9 +55,11 @@ protected:
 	/// This function should not be called for this VFS !
 	bool populateVfsList(const KURL& origin, bool showHidden);
 	
-	QDict<vfile>  vfs_files;    //< List of pointers to vfile.
-	QDict<vfile>  vfs_files_copy;
+	vfileDict  vfs_files;    //< List of pointers to vfile.
+	vfileDict*  vfs_files_copy;
+	static QDict<vfileDict> virtVfsDict;
 	bool busy;
+	QString path;
 };
 
 #endif

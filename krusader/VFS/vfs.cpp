@@ -105,7 +105,7 @@ KURL vfs::fromPathOrURL( const QString &originIn )
   return url;
 }
 
-void vfs::setVfsFilesP(QDict<vfile>* dict){
+void vfs::setVfsFilesP(vfileDict* dict){
 	vfs_filesP=dict;
 	vfs_searchP = dict;
 	if( vfileIterator ) delete vfileIterator;
@@ -115,7 +115,7 @@ void vfs::setVfsFilesP(QDict<vfile>* dict){
 bool vfs::vfs_refresh(){ 
 	dirty = false;
 	// point the vfs_filesP to a NEW (empty) dictionary
-	vfs_filesP = new QDict<vfile>();
+	vfs_filesP = new vfileDict();
 	//vfs_filesP->setAutoDelete(true);
 	
 	// and populate it
@@ -129,7 +129,6 @@ bool vfs::vfs_refresh(){
 		for( vfile* vf = vfs_getFirstFile(); vf ;  ){
 			name = vf->vfile_getName();
 			vfile* newVf = (*vfs_filesP)[name];
-			
 			if( !newVf ){
 				// the file was deleted..
 				emit deletedVfile(name);
@@ -145,12 +144,12 @@ bool vfs::vfs_refresh(){
 				vf=vfs_getNextFile();
 			}
 			removeFromList(name);
-		}
+		} 
 		// everything thats left is a new file
 		QDictIterator<vfile> it(*vfs_filesP);
 		for(vfile* vf=it.toFirst(); vf; vf=(++it)){
 			// sanity checking
-			//if( !vf || (*vfs_searchP)[vf->vfile_getName()] ) continue;
+			if( !vf || (*vfs_searchP)[vf->vfile_getName()] ) continue;
 			
 			vfile* newVf = new vfile();
 			*newVf = *vf;
@@ -161,7 +160,7 @@ bool vfs::vfs_refresh(){
 	
 	// delete the needed temporary vfs_filesP
 	// and make the vfs_searchP the primary list again 
-	QDict<vfile> *temp = vfs_filesP;
+	vfileDict *temp = vfs_filesP;
 	vfs_filesP = vfs_searchP;
 	delete temp;
 	emit incrementalRefreshFinished( vfs_origin.isLocalFile() ? vfs_origin.path() : vfs_origin.prettyURL() );        
@@ -180,9 +179,9 @@ bool vfs::vfs_refresh(const KURL& origin){
 	clear();
 	// and re-populate it
 	if (!populateVfsList(origin,showHidden) ) return false;
-	
 	if (!disableRefresh) emit startUpdate();
-	else dirty = true;        
+	else dirty = true;   
+	     
 	return true;
 }
 

@@ -79,7 +79,7 @@ protected:
 	/// Re-reads files and stats and fills the vfile list
 	virtual bool populateVfsList(const KURL& origin, bool showHidden);
 
-	QDict<vfile>  vfs_files;     //< Dictionary of pointers to vfile	
+	vfileDict  vfs_files;     //< Dictionary of pointers to vfile	
 	QTimer refreshTimer;         //< Timer to exclude sudden refreshes
 	KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories
 	vfile* vfileFromName(const QString& name,bool mimeTypeMagic);

@@ -76,7 +76,7 @@ protected:
 
   void processName(const QString& name,QStringList *urls,KIO::filesize_t *totalSize,unsigned long *totalFiles );
   bool getDirs();   // fill the dir list
-  QList<vfile>* findDir(QString name);
+  vfileDict* findDir(QString name);
   arc_dir* findArcDir(QString name);
   void getFilesToPack  (QStringList* filesToPack,QString dir_name = "");
 	void getFilesToDelete(QStringList* filesToDelete,QString dir_name = "");
@@ -104,7 +104,7 @@ private:
       entries.setAutoDelete(true);
     }
     QString name;         // the name of the dir
-    QList<vfile> entries; // the file and dir in this dir
+    vfileDict entries; // the file and dir in this dir
   };
 
   class extFile{
