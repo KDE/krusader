@@ -699,6 +699,9 @@ void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
   defaultValue = dflt;
   palette[1] = defaultValue;
   changeItem( createPixmap( defaultValue ), text( 1 ), 1 );
+
+  if( currentItem() == 1 )
+    emit colorChanged();
 }
 
 void KonfiguratorColorChooser::setDefaultText( QString text )
@@ -720,6 +723,7 @@ void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
 void KonfiguratorColorChooser::slotSetDefaults(QObject *)
 {
   setCurrentItem( 1 );
+  emit colorChanged();
 }
 
 void KonfiguratorColorChooser::slotCurrentChanged( int number )
@@ -737,6 +741,8 @@ void KonfiguratorColorChooser::slotCurrentChanged( int number )
       disableColorChooser = false;
     }
   }
+
+  emit colorChanged();
 }
 
 QColor KonfiguratorColorChooser::getColor()

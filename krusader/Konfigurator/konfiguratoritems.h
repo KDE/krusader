@@ -337,6 +337,9 @@ public slots:
   void          slotSetDefaults(QObject *);
   void          slotCurrentChanged( int number );
 
+signals:
+  void          colorChanged();
+  
 private:
   void          addColor( QString text, QColor color );
   QPixmap       createPixmap( QColor color );

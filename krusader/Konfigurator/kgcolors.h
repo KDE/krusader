@@ -32,6 +32,8 @@
 #define __KGCOLORS_H__
 
 #include "konfiguratorpage.h"
+#include <qptrlist.h>
+#include <qvaluelist.h>
 
 class KgColors : public KonfiguratorPage
 {
@@ -40,19 +42,28 @@ class KgColors : public KonfiguratorPage
 public:
   KgColors( bool first, QWidget* parent=0,  const char* name=0 );
 
+public slots:
+  void slotDisable();
+  void slotForegroundChanged();
+  void slotMarkedBackgroundChanged();
+
 private:
-  KonfiguratorColorChooser  *foreground;
-  KonfiguratorColorChooser  *directoryForeground;
-  KonfiguratorColorChooser  *executableForeground;
-  KonfiguratorColorChooser  *symlinkForeground;
-  KonfiguratorColorChooser  *invalidSymlinkForeground;
-  KonfiguratorColorChooser  *markedForeground;
-  KonfiguratorColorChooser  *markedBackround;
-  KonfiguratorColorChooser  *alternateMarkedBackround;
-  KonfiguratorColorChooser  *currentForeground;
-  KonfiguratorColorChooser  *currentBackround;
-  KonfiguratorColorChooser  *backround;
-  KonfiguratorColorChooser  *alternateBackround;
+  int                        addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName = QString::null);
+  KonfiguratorColorChooser  *getColorSelector( QString name );
+  QLabel                    *getSelectorLabel( QString name );
+  
+private:
+  QGroupBox                          *colorsGrp;
+  QGridLayout                        *colorsGrid;
+  
+  QGroupBox                          *previewGrp;
+  QGridLayout                        *previewGrid;
+
+  KonfiguratorCheckBoxGroup          *generals;
+  
+  QPtrList<QLabel>                    labelList;
+  QPtrList<KonfiguratorColorChooser>  itemList;
+  QValueList<QString>                 itemNames;
 };
 
 #endif /* __KGCOLORS_H__ */
