@@ -174,6 +174,8 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 			QDomNode nextOne = tmp.nextSibling();
 			if (!importFromFileFolder(nextOne, folder, errorMsg))
 				return false;
+		} else if (e.tagName() == "separator") {
+			parent->children().append(KrBookmark::separator());
 		}
 		n = n.nextSibling();
 	}
@@ -238,7 +240,9 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 	}
 
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
-		if (bm->isFolder()) {
+		if (bm->isSeparator()) { // separator
+			menu->insertSeparator(bloc++);
+		} else if (bm->isFolder()) {
 			KPopupMenu *newMenu = new KPopupMenu(menu);
 			// add folders above bookmarks
 			menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
@@ -247,7 +251,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			++inSecondaryMenu;
 			buildMenu(bm, newMenu);
 			--inSecondaryMenu;
-		} else {
+		} else { // ordinary bookmark
 			bm->plug(menu, bloc++);
 			CONNECT_BM(bm);
 		}
