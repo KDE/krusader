@@ -47,6 +47,7 @@ class PanelManager: public QWidget {
 
   private:
     QGridLayout *_layout;
+    QHBoxLayout *_barLayout;
     bool _left;
     PanelTabBar *_tabbar;
     QWidgetStack *_stack;

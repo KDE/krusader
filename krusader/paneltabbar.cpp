@@ -26,8 +26,9 @@
 #include <qwidgetstack.h>
 #include <qfontmetrics.h>
 #include <qtooltip.h>
+#include <kdebug.h>
 
-PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent) {
+PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
   _panelActionMenu = new KActionMenu( i18n("Panel"), this );
 
   _closeAction = new KAction(i18n("Close tab"), KShortcut::null(), this,
@@ -40,8 +41,6 @@ PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent) {
   _closeAction->setEnabled(false); //can't close a single tab
 
   setShape(QTabBar::TriangularBelow);
-
-  if (HIDE_ON_SINGLE_TAB) hide();
 }
 
 void PanelTabBar::mousePressEvent( QMouseEvent* e ) {
@@ -73,15 +72,17 @@ void PanelTabBar::insertAction( KAction* action ) {
 }
 
 int PanelTabBar::addPanel(ListPanel *panel) {
-  int newId = addTab(new PanelTab(panel->virtualPath, panel));
+  int newId = addTab(new PanelTab(squeeze(panel->virtualPath), panel));
 
+  // make sure all tabs lengths are correct
+  for (int i=0; i<count(); i++)
+    tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath));
   layoutTabs();
   setCurrentTab(newId);
 
   // enable close-tab action
   if (count()>1) {
     _closeAction->setEnabled(true);
-    show(); // todo-do we need this?
   }
 
   connect(dynamic_cast<PanelTab*>(tab(newId))->panel, SIGNAL(pathChanged(ListPanel*)),
@@ -95,6 +96,9 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
   ListPanel *oldp = dynamic_cast<PanelTab*>(tab(id))->panel; // old panel to kill later
   disconnect(dynamic_cast<PanelTab*>(tab(id))->panel);
   removeTab(tab(id));
+
+  for (int i=0; i<count(); i++)
+    tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath));
   layoutTabs();
 
   // setup current one
@@ -113,7 +117,7 @@ void PanelTabBar::updateTab(ListPanel *panel) {
   // find which is the correct tab
   for (int i=0; i<count(); i++) {
     if (dynamic_cast<PanelTab*>(tabAt(i))->panel == panel) {
-      tabAt(i)->setText(panel->virtualPath);
+      tabAt(i)->setText(squeeze(panel->virtualPath));
       break;
     }
   }
@@ -130,7 +134,13 @@ void PanelTabBar::closeTab() {
 
 QString PanelTabBar::squeeze(QString text) {
   QFontMetrics fm(fontMetrics());
-  int labelWidth = (tabAt(0) ? tab(0)->rect().width() : fm.width("WWWWW"));
+
+  // set the real max length
+  _maxTabLength = (static_cast<QWidget*>(parent())->width()-(6*fm.width("W")))/fm.width("W");
+  // each tab gets a fair share of the max tab length
+  int _effectiveTabLength = _maxTabLength / (count() == 0 ? 1 : count());
+
+  int labelWidth = fm.width("W")*_effectiveTabLength;
   int textWidth = fm.width(text);
   if (textWidth > labelWidth) {
     // start with the dots only
@@ -165,7 +175,8 @@ QString PanelTabBar::squeeze(QString text) {
 
     if (letters < 5) {
     	// too few letters added -> we give up squeezing
-    	return text;
+      //return text;
+    	return squeezedText;
     } else {
 	    return squeezedText;
     }

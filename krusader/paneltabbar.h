@@ -36,8 +36,6 @@ public:
   ListPanel *panel;
 };
 
-#define HIDE_ON_SINGLE_TAB false
-
 /**
  * This class extends QTabBar such that right-clicking on a tab pops-up a menu
  * containing relevant actions for the tab. It also emits signals (caught by PanelManager)
@@ -92,6 +90,7 @@ private:
   KActionMenu *_panelActionMenu;
   bool _left;
   KAction *_closeAction, *_newTabSame, *_newTabRoot;
+  int _maxTabLength;
 };
 
 #endif
