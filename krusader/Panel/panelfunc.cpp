@@ -275,7 +275,7 @@ void ListPanelFunc::view() {
   // at this point, let's take the full path
   fileName = files()->vfs_getFile( fileName );
   // and call KViewer.
-  KrViewer::view( fileName );
+  KrViewer::view( KURL::fromPathOrURL(fileName) );
   // nothing more to it!
 }
 
@@ -568,7 +568,7 @@ void ListPanelFunc::execute( QString& name ) {
     refresh( origin );
   } else if ( KRarcHandler::arcHandled( type ) && !origin.contains(":/")) {
     QString path = files()->vfs_getFile(vf->vfile_getName());
-		if(type == "-zip"){
+		if( type == "-zip" || type.contains("rar") ){
 			path = "krarc:"+path;
 		} else if ( type == "-tbz" || type == "-tgz" || type == "tarz" ){
     	path = "tar:"+path;
