@@ -17,6 +17,7 @@ class QToolButton;
 class KrSqueezedTextLabel;
 class KLineEdit;
 class KComboBox;
+class KImageFilePreview;
 
 class PanelPopup: public QWidget {
    Q_OBJECT
@@ -34,8 +35,6 @@ signals:
 	void hideMe();
    
 protected slots:	
-	void view( const KFileItem* kfi, const QPixmap& pix );
-	void failedToView(const KFileItem* kfi);
 	void tabSelected(int id);
 	void treeSelection(QListViewItem*);
 	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &lst, KURL &);
@@ -46,7 +45,7 @@ protected slots:
 
 protected:
    QWidgetStack *stack;
-	QLabel *viewer;
+	KImageFilePreview *viewer;
 	KrSqueezedTextLabel *dataLine;
 	QGuardedPtr<KIO::PreviewJob> pjob;
 	KFileTreeView *tree;

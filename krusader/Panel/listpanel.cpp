@@ -219,6 +219,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 
 	// create a splitter to hold the view and the popup
 	QSplitter *splt = new QSplitter(this);
+	splt->setChildrenCollapsible(false); // TODO: why setting this to true causes image preview issues
 	splt->setOrientation(QObject::Vertical);
 	
    view = new KrDetailedView( splt, this, _left, krConfig );

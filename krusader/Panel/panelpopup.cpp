@@ -18,7 +18,7 @@
 #include <krviewitem.h>
 #include <klineedit.h>
 #include <kio/jobclasses.h>
-
+#include <kimagefilepreview.h>
 #include <kdebug.h>
 
 PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ), 
@@ -100,7 +100,7 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	tree->branch( i18n( "Home" ) ) ->root();
 
    // create the quickview part ------
-   viewer = new QLabel( i18n( "No preview available" ), stack );
+	viewer = new KImageFilePreview(stack);
    stack->addWidget( viewer, Preview );
 
 	// create the quick-panel part ----
@@ -183,47 +183,19 @@ void PanelPopup::tabSelected( int id ) {
 
 // decide which part to update, if at all
 void PanelPopup::update( KURL url ) {
-	if ( isHidden() ) return ; // failsafe
-	
-	KFileItem *kfi;
-	KFileItemList lst;
-	
+   if ( isHidden() ) return ; // failsafe
+
+   KFileItem *kfi;
+   KFileItemList lst;
+
    switch ( stack->id( stack->visibleWidget() ) ) {
-         case Preview:
-         if ( url.isEmpty() ) {
-            dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setText( i18n( "No preview available" ) );
-            return ; // in case of a bad url
-         }
-
-         kfi = new KFileItem( KFileItem::Unknown, KFileItem::Unknown, url );
-         lst.append( kfi );
-         if ( pjob ) // stop running jobs
-            delete pjob;
-			dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setText( i18n( "Please wait..." ) );
-         pjob = new KIO::PreviewJob( lst, stack->width(), stack->height(), stack->width(), 1, true, true, 0 );
-         connect( pjob, SIGNAL( gotPreview( const KFileItem*, const QPixmap& ) ),
-                  this, SLOT( view( const KFileItem*, const QPixmap& ) ) );
-         connect( pjob, SIGNAL( failed( const KFileItem* ) ),
-                  this, SLOT( failedToView( const KFileItem* ) ) );
-         break;
-			
-         case Tree: // nothing to do
+      case Preview:
+			viewer->showPreview(url);
 			break;
+
+      case Tree:  // nothing to do
+         break;
    }
-}
-
-// ------------------ preview
-
-// called when the preview job got something for us
-void PanelPopup::view( const KFileItem *kfi, const QPixmap& pix ) {
-   dataLine->setText(i18n("Preview: ") + kfi->name());
-	dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setPixmap( pix );
-}
-
-// preview job failed here...
-void PanelPopup::failedToView( const KFileItem* ) {
-	dataLine->setText("Preview:");
-   dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setText( i18n( "No preview available" ) );
 }
 
 // ------------------- tree
