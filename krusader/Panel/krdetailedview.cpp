@@ -515,10 +515,10 @@ void KrDetailedView::prepareForPassive() {
       renameLineEdit() ->clearFocus();
    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
    if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
-      if ( krApp->mainView ) {
-         if ( krApp->mainView->activePanel ) {
-            if ( krApp->mainView->activePanel->quickSearch ) {
-               if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
+      if ( MAIN_VIEW ) {
+         if ( ACTIVE_PANEL ) {
+            if ( ACTIVE_PANEL->quickSearch ) {
+               if ( ACTIVE_PANEL->quickSearch->isShown() ) {
                   stopQuickSearch( 0 );
                }
             }
@@ -572,10 +572,10 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    // stop quick search in case a mouse click occured
    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
    if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
-      if ( krApp->mainView ) {
-         if ( krApp->mainView->activePanel ) {
-            if ( krApp->mainView->activePanel->quickSearch ) {
-               if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
+      if ( MAIN_VIEW ) {
+         if ( ACTIVE_PANEL ) {
+            if ( ACTIVE_PANEL->quickSearch ) {
+               if ( ACTIVE_PANEL->quickSearch->isShown() ) {
                   stopQuickSearch( 0 );
                }
             }
@@ -624,14 +624,14 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    //   if (i != 0) // comment in, if click sould NOT select
    //     setSelected(i, FALSE);
 
-   if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
-      krApp->mainView->activePanel->quickSearch->hide();
-      krApp->mainView->activePanel->quickSearch->clear();
+   if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+      ACTIVE_PANEL->quickSearch->hide();
+      ACTIVE_PANEL->quickSearch->clear();
       krDirUp->setEnabled( true );
    }
-   if ( krApp->mainView->activePanel->otherPanel->quickSearch->isShown() ) {
-      krApp->mainView->activePanel->otherPanel->quickSearch->hide();
-      krApp->mainView->activePanel->otherPanel->quickSearch->clear();
+   if ( OTHER_PANEL->quickSearch->isShown() ) {
+      OTHER_PANEL->quickSearch->hide();
+      OTHER_PANEL->quickSearch->clear();
       krDirUp->setEnabled( true );
    }
    return ;
@@ -723,8 +723,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
 
    if ( !e || !firstChild() )
       return ; // subclass bug
-   if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
-      krApp->mainView->activePanel->quickSearch->myKeyPressEvent( e );
+   if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+      ACTIVE_PANEL->quickSearch->myKeyPressEvent( e );
       return ;
    }
    switch ( e->key() ) {
@@ -881,7 +881,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             unsigned long totalFiles = 0, totalDirs = 0;
             QStringList items;
             items.push_back( viewItem->name() );
-            if ( krApp->mainView->activePanel->func->calcSpace( items, totalSize, totalFiles, totalDirs ) ) {
+            if ( ACTIVE_PANEL->func->calcSpace( items, totalSize, totalFiles, totalDirs ) ) {
                // did we succeed to calcSpace? we'll fail if we don't have permissions
                if ( totalSize == 0 ) { // just mark it, and bail out
                   KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
@@ -918,20 +918,20 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                   KListView::keyPressEvent( e );
                else {
                   // first, show the quicksearch if its hidden
-                  if ( krApp->mainView->activePanel->quickSearch->isHidden() ) {
-                     krApp->mainView->activePanel->quickSearch->show();
+                  if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
+                     ACTIVE_PANEL->quickSearch->show();
                      // second, we need to disable the dirup action - hack!
                      krDirUp->setEnabled( false );
                   }
                   // now, send the key to the quicksearch
-                  krApp->mainView->activePanel->quickSearch->myKeyPressEvent( e );
+                  ACTIVE_PANEL->quickSearch->myKeyPressEvent( e );
                }
             } else
                e->ignore(); // send to panel
          } else {
-            if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
-               krApp->mainView->activePanel->quickSearch->hide();
-               krApp->mainView->activePanel->quickSearch->clear();
+            if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+               ACTIVE_PANEL->quickSearch->hide();
+               ACTIVE_PANEL->quickSearch->clear();
                krDirUp->setEnabled( true );
             }
             KListView::keyPressEvent( e );
@@ -1045,8 +1045,8 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
 }
 
 void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
-   krApp->mainView->activePanel->quickSearch->hide();
-   krApp->mainView->activePanel->quickSearch->clear();
+   ACTIVE_PANEL->quickSearch->hide();
+   ACTIVE_PANEL->quickSearch->clear();
    krDirUp->setEnabled( true );
    if ( e )
       keyPressEvent( e );
@@ -1072,8 +1072,8 @@ void KrDetailedView::refreshColors() {
    if ( !KrColorCache::getColorCache().isKDEDefault() ) {
       // KDE deafult is not choosen: set the background color (as this paints the empty areas) and the alternate color
       bool isActive = hasFocus();
-      if ( krApp->mainView && krApp->mainView->activePanel && krApp->mainView->activePanel->view )
-         isActive = ( dynamic_cast<KrView *>( this ) == krApp->mainView->activePanel->view );
+      if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
+         isActive = ( dynamic_cast<KrView *>( this ) == ACTIVE_PANEL->view );
       QColor color = KrColorCache::getColorCache().getBackgroundColor( isActive );
       setPaletteBackgroundColor( color );
       color = KrColorCache::getColorCache().getAlternateBackgroundColor( isActive );

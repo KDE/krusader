@@ -253,7 +253,7 @@ QString exp_Goto::expFunc( const ListPanel* panel, const QStringList& parameter,
       newTab = true;
    
    if ( newTab ) {
-      if ( panel == krApp->mainView->left )
+      if ( panel == LEFT_PANEL)
          krApp->mainView->leftMng->slotNewTab( parameter[0] );
       else
          krApp->mainView->rightMng->slotNewTab( parameter[0] );
@@ -352,7 +352,7 @@ QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const
       return QString::null;
    }
 
-   SynchronizerGUI *sync = new SynchronizerGUI( krApp->mainView, parameter[0] );
+   SynchronizerGUI *sync = new SynchronizerGUI( MAIN_VIEW, parameter[0] );
    // do the sync:
    sync->wasSynchronization();
    delete sync;
@@ -393,13 +393,13 @@ Expander::~Expander() {
 ListPanel* Expander::getPanel( const char& panelIndicator ) {
    switch ( panelIndicator ) {
    case 'a':
-      return krApp->mainView->activePanel;
+      return ACTIVE_PANEL;
    case 'o':
-      return krApp->mainView->activePanel->otherPanel;
+      return OTHER_PANEL;
    case 'l':
-      return krApp->mainView->left;
+      return LEFT_PANEL;
    case 'r':
-      return krApp->mainView->right;
+      return RIGHT_PANEL;
    case '_':
       return 0;
    default:

@@ -517,7 +517,7 @@ void Krusader::setupActions() {
                             SLOTS, SLOT( invert() ), actionCollection(), "invert" );
    actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,
                               SLOTS, SLOT( unmarkGroup() ), actionCollection(), "unselect group" );
-   actKonfigurator = new KAction( i18n( "&Konfigurator" ), "configure", 0,
+   actKonfigurator = new KAction( i18n( "Configure &Krusader" ), "configure", 0,
                                   SLOTS, SLOT( startKonfigurator() ), actionCollection(), "konfigurator" );
    actBack = new KAction( i18n( "Back" ), "back", 0,
                           SLOTS, SLOT( back() ), actionCollection(), "back" );
@@ -543,6 +543,8 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
 	new KAction( i18n( "Bookmarks" ), CTRL + Key_D,
                 SLOTS, SLOT( openBookmarks() ), actionCollection(), "bookmarks" );
+	new KAction( i18n( "Sync Panels" ), ALT + Key_O,
+					 SLOTS, SLOT( syncPanels() ), actionCollection(), "sync panels");
    new KAction( i18n( "Left history" ), ALT + CTRL + Key_Left,
                 SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
    new KAction( i18n( "Right history" ), ALT + CTRL + Key_Right,
@@ -667,7 +669,7 @@ bool Krusader::queryClose() {
       //delete krApp->mainView->left->func;
       //delete krApp->mainView->right->func;
       saveSettings();
-      delete krApp->mainView;
+      delete MAIN_VIEW;
       return true;
    } else return false;
 

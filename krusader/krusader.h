@@ -149,11 +149,16 @@ class Krusader : public KParts::MainWindow {
 #define krBookMan    Krusader::App->bookman
 #define SLOTS        Krusader::App->slot
 #define krLoader     Krusader::App->iconLoader
-#define ACTIVE_PANEL (krApp->mainView->activePanel)
-#define ACTIVE_FUNC  (krApp->mainView->activePanel->func)
-#define LEFT_PANEL	(krApp->mainView->left)
-#define RIGHT_PANEL  (krApp->mainView->right)
+
 #define MAIN_VIEW    (krApp->mainView)
+#define ACTIVE_PANEL (MAIN_VIEW->activePanel)
+#define ACTIVE_FUNC  (ACTIVE_PANEL->func)
+#define OTHER_PANEL	(ACTIVE_PANEL->otherPanel)
+#define OTHER_FUNC	(OTHER_PANEL->func)
+#define LEFT_PANEL	(MAIN_VIEW->left)
+#define LEFT_FUNC		(LEFT_PANEL->func)
+#define RIGHT_PANEL  (MAIN_VIEW->right)
+#define RIGHT_FUNC	(RIGHT_PANEL->func)
 
 // krusader's actions - things krusader can do!
 #define krProperties      Krusader::App->actProperties     // file properties

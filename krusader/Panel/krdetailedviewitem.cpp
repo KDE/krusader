@@ -197,7 +197,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   if (!KrColorCache::getColorCache().isKDEDefault())
   {
     bool markCurrentAlways = KrColorCache::getColorCache().isShowCurrentItemAlways();
-    bool isActive = (dynamic_cast<KrView *>(listView()) == krApp->mainView->activePanel->view);
+    bool isActive = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);
     bool isCurrent = listView()->currentItem() == this;
     
     // First calculate fore- and background.

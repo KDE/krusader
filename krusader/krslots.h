@@ -38,6 +38,7 @@
 #include "krusader.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
+#include "Panel/panelfunc.h"
 #include "BookMan/krbookmarkbutton.h"
 #include "GUI/kcmdline.h"
 #include "GUI/dirhistorybutton.h"
@@ -112,7 +113,12 @@ class KRslots : public QObject {
 	 void openBookmarks() { ACTIVE_PANEL->bookmarksButton->openPopup(); }	
     void openLeftHistory() { LEFT_PANEL->historyButton->openPopup(); }
     void openRightHistory() { RIGHT_PANEL->historyButton->openPopup(); }
-    void cmdlinePopup() { krApp->mainView->cmdLine->popup(); }
+	 void syncPanels() {
+	 	ListPanel *t = ACTIVE_PANEL;
+		OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath);
+		t->slotFocusOnMe();
+	 }
+    void cmdlinePopup() { MAIN_VIEW->cmdLine->popup(); }
     void duplicateTab();
     void newTab();
     void newTab(QListViewItem *item);
@@ -146,8 +152,8 @@ class KRslots : public QObject {
     void rename();
 
     // ugly stubs, remove later ?
-    void slotCurrentChanged( QString p ) { krApp->mainView->slotCurrentChanged( p ); }
-    void slotSetActivePanel( ListPanel *p ) { krApp->mainView->slotSetActivePanel( p ); }
+    void slotCurrentChanged( QString p ) { MAIN_VIEW->slotCurrentChanged( p ); }
+    void slotSetActivePanel( ListPanel *p ) { MAIN_VIEW->slotSetActivePanel( p ); }
     
     void loadPanelProfiles( QString group );
     void savePanelProfiles( QString group );

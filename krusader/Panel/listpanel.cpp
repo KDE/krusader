@@ -863,7 +863,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
          return ;     // the user clicked outside of the menu
          case OPEN_TAB_ID :               // Open/Run
          // assuming only 1 file is selected (otherwise we won't get here)
-         ( krApp->mainView->activePanel == krApp->mainView->left ? krApp->mainView->leftMng :
+         ( ACTIVE_PANEL == LEFT_PANEL ? krApp->mainView->leftMng :
            krApp->mainView->rightMng ) ->slotNewTab( func->files() ->vfs_getFile( item->name() ).url() );
          break;
          case OPEN_ID :               // Open in a new tab
@@ -986,7 +986,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          case Key_Return :
          if ( e->state() & ControlButton ) {
             SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
-            krApp->mainView->cmdLine->setFocus();
+            MAIN_VIEW->cmdLine->setFocus();
          } else
             e->ignore();
          break;
@@ -1016,10 +1016,10 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
 
          case Key_Down :
          if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
-            if ( krApp->mainView->cmdLine->isVisible() )
-               krApp->mainView->cmdLineFocus();
-            else if ( krApp->mainView->terminal_dock->isVisible() )
-               krApp->mainView->terminal_dock->setFocus();
+            if ( MAIN_VIEW->cmdLine->isVisible() )
+               MAIN_VIEW->cmdLineFocus();
+            else if ( MAIN_VIEW->terminal_dock->isVisible() )
+              MAIN_VIEW->terminal_dock->setFocus();
             return ;
          } else
             e->ignore();
@@ -1029,7 +1029,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          // if we got this, it means that the view is not doing
          // the quick search thing, so send the characters to the commandline, if normal key
          if ( e->state() == NoButton )
-            krApp->mainView->cmdLine->addText( e->text() );
+            MAIN_VIEW->cmdLine->addText( e->text() );
 
          //e->ignore();
    }

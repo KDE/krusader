@@ -205,7 +205,7 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   setTabOrder( searcherTabs, resultsList );
   
   // the path in the active panel should be the default search location
-  QString path = krApp->mainView->activePanel->getPath();
+  QString path = ACTIVE_PANEL->getPath();
   generalFilter->searchInEdit->setText(path);
   
   krConfig->setGroup( "Search" );
@@ -370,7 +370,7 @@ void KrSearchDialog::stopSearch() {
 }
 
 void KrSearchDialog::resultClicked(QListViewItem* i) {
-  krApp->mainView->activePanel->func->openUrl(vfs::fromPathOrURL(i->text(1)),i->text(0));
+  ACTIVE_FUNC->openUrl(vfs::fromPathOrURL(i->text(1)),i->text(0));
   showMinimized();
 }
 

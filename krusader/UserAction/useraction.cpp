@@ -72,7 +72,7 @@ void UserAction::removeKrAction( const QString& name ) {
 }
 
 void UserAction::setAvailability() {
-   setAvailability( krApp->mainView->activePanel->func->files()->vfs_getFile( krApp->mainView->activePanel->view->getCurrentItem() ) );
+   setAvailability( ACTIVE_FUNC->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem() ) );
 }
 
 void UserAction::setAvailability( const KURL& currentURL ) {
