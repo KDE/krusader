@@ -39,7 +39,7 @@
 #include <qapplication.h>
 #include <qcursor.h>
 #include <qpixmapcache.h>
-
+#include <time.h> 
 #include "diskusage.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
