@@ -73,6 +73,7 @@ void remoteMan::collapseDecos(QListViewItem* i) {
 QString remoteMan::getHost() {
   remoteMan *p=new remoteMan();
   delete p;
+  kdWarning()<<url<<endl;
   return url;
 }
 
@@ -318,8 +319,8 @@ void remoteMan::connection() {
   }
   // build a url
   if (anonymous->isChecked()) {
-    userName->setText("anonymous");
-    password->setText("billg@microsoft.com");
+    userName->setText(QString::null);
+    password->setText(QString::null);
   } else {
     userName->setText(userName->text().simplifyWhiteSpace());
     password->setText(password->text().simplifyWhiteSpace());
@@ -336,6 +337,7 @@ void remoteMan::connection() {
 		port=":"+portNum->cleanText();
 
 	url=protocol->currentText();
+
 	if( !userName->text().isEmpty() ){
 		url = url+userName->text();
 		if( !password->text().isEmpty() );
