@@ -1,23 +1,22 @@
 Krusader 1.50-beta1
 ===================
 The team is pleased to announce the first beta in the 1.50 series.
-As usual lately, many many things have changed, so here's some highlights:
+As usual, lately, many many things have changed, so here's some highlights:
 
-
-* New user-action system, which allows you to define your own personal
-  krusader-actions.
+* New user-action system, which allows you to define your own
+  personal krusader-actions.
   Please take a look at the tutorial that comes in the doc\ section
 * Profiles: you can now save a profile that contains the entire tabs on both
   panels, and restore the state at will. See the new profiles icon.
 * 3rd Panel: new popup-panel that can display quick view, tree etc. Just click
   the little arrow button on the bottom of each panel.
-* A new compare directories menu. TC-Style
-* Support for selecting certain protcols for certain mimetypes
+* A new, compare directories menu. TC-Style
+* Support for selecting certain protcols for certain mime-types
 * ISO protocol now allows you to step into .iso files
 * Cut, Copy and Paste: ctrl-v, ctrl-c and ctrl-x is working
-* Konqourer's right-click actions are shown in krusader
+* Konqueror's right-click actions are shown in Krusader
 * Human-readable size in the file list (optional)
-* ALT-O now synchronizes the panels (other becomes as current)
+* ALT-O now synchronizes the panels (other panel becomes as current)
 * CTRL-D opens the bookmark in the active panel - TotalCommander style
 * Search now includes support for profiles
 * Search now searches on remote filesystems
@@ -25,13 +24,13 @@ As usual lately, many many things have changed, so here's some highlights:
   excluding files with '|' (ex. '*.cpp *.h | *.moc.cpp' )
 * Packing/Unpacking to/from remote URL is supported.
 * Arj, Lha, and ace are now fully supported
-* Two single-click rename (total commander-like)
-* New refresh method, should make krusader take less cpu time
+* Two single-click Rename (total commander-like)
+* New refresh method, should make Krusader take less cpu time
 
 and that's without mentioning other features and COUNTLESS bug fixes.
 Please check the changelog for information, as many high-profile bugs were fixed.
 
-Notice: if you've got bugs to report, please do it using krusader's website,
+Notice: if you've got bugs to report, please do so using Krusader's website,
         and not using KDE's bugzilla (bugs.kde.org).
 
             as always, enjoy
@@ -133,15 +132,15 @@ Please use our "New Features Discussions/Requests" forum.
 
 Packagers
 ---------
-We are always in need of packagers (preferably for Debian and SuSE).
+We are always in need of packagers.
 Please contact Dirk Eschler.
 
 RPM Questions
 -------------
-Please read the FAQ "How can i build a RPM package for Krusader?" in the INSTALL
+Please read the FAQ "How can I build a RPM package for Krusader?" in the INSTALL
 file. For RPM and krusader.spec feedback, please contact Frank.
 
-			
+
 
 For Translators
 ===============
@@ -150,13 +149,13 @@ Translation procedure
 Before we release a stable version of Krusader, we bring out at least one beta
 version. From that moment on there is a feature freeze and only bugs will be
 fixed. This means that translators can update their translations, for the
-comming stable. Normally all the Krusader translators will receive an e-mail
+coming stable. Normally, all the Krusader translators will receive an e-mail
 from Dirk Eschler, to invite you for translating Krusader. We will update all
 foo.po files against krusader.pot just before the beta will be released, so that
 you will only have to edit the new foo.po file with Kbabel. This way you don't
 have to worry anymore about how foo.po must be updated. In the past some
 translators updated foo.po in a wrong way, so they translated obsolete messages,
-we want to prevent this of cource.
+we want to prevent this, of course.
 
 With VIEWCVS you get a LIVE translation status with your browser at
 http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/

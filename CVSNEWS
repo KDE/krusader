@@ -5,102 +5,105 @@ in some way an extension to the changelog.
 
 Human-readable file sizes is implemented (located in look&feel->panel)
 
-From now konqueror's right click menu is imported to krusader
+From now on, Konqueror's right click menu is imported to Krusader
 
-Cut(CTRL+X), Copy(Ctrl+C), Paste(Ctrl+V)
-  is available. Even works with konqueror. Please test it.
+Cut (ctrl+x), Copy (ctrl+c) and Paste (ctrl+v)
+  are available. They even work with Konqueror.  Please test it.
 
-Compare by content: you can no either
+Compare by content: you can now either:
   - select (mark) one file in the left panel, and one in the right panel
   - select exactly two files in the active panel
-  - make sure in the other panel is a file with the same name then the current
-    in the active panel
+  - make sure there is a file in the other panel with the same name as the
+    current file in the active panel
 
-Panel profiles: from know it is possible to store environment profiles.
-  An environment profile contains the followings:
+Panel profiles: now it is possible to store environment profiles.
+  An environment profile contains the following:
   - all the tabs path (left / right)
-  - the current tab ( left / right )
-  - and the selected side ( left or right )
+  - the current tab   (left / right)
+  - and the selected side (left or right)
   You can save / restore these tabulator profiles. Please test it.
-  Those users who uses CVS version of krusader, should delete the krusaderui.rc
-  from their home directory, for getting the new menu and toolbar item visible.
+
+  Those users who use the CVS version of Krusader, should delete the
+  krusaderui.rc from their home directory, to make the new menu and toolbar
+  items visible.
   (rm ~/.kde/share/apps/krusader/krusaderui.rc)
 
-Synchronizer: from now you can use the search filters in the synchronizer
+Synchronizer:  now you can use the search filters in the synchronizer
 
-Useraction: removed placeholder 'Bookmark'. It is deprecated now since the new
-bookmark-system can be accessed directly like an useraction. If you need it
-anyway use 'Goto' instead.
+Useraction:  removed placeholder 'Bookmark'. It is deprecated now since the new
+bookmark-system can be accessed directly like a user action. If you need it
+anyway, use 'Goto' instead.
 
 TC like searching: if you type 'text' -> results the same as '*text*'
 You can exclude files from the search with '|' (ex. '*.cpp *.h | *.moc.cpp' )
-           
+
 Search is possible on remote file systems as well.
 
-If you have filesystems that you don't want to accidently unmount (or mount),
-just go to Konfigurator->Advanced, and enter a list of mountpoints seperated
-by commas
-(for example: /, /boot, /tmp) and mountman won't try to (un)mount them.
+If you have filesystems that you don't want to accidentally unmount (or mount),
+just go to Konfigurator->Advanced, and enter a list of mountpoints separated
+by commas, for example: /, /boot, /tmp) and mountman won't try to (un)mount
+them.
 
-Mountman got a big nose-job ;-) plz test it well.
+Mountman got a big nose-job ;-) please test it well.
 
-you can now drag'n'drop to the new tree view
+You can now drag'n'drop to the new tree view
 
-shift+left/right changes tabs (thanks to Dmitry Suzdalev)
+Shift+left/right changes tabs (thanks to Dmitry Suzdalev)
 
-New vfs_refresh() function only update changes when you re-read a panel and
-changes the content without the annying full redraw effect.
+New vfs_refresh() function only updates changes when you re-read a panel and
+changes the content without the annoying full redraw effect.
 
-When closing krusader, the tabs are saved and restored
+When closing Krusader, the tabs are saved and restored
 
 Synchronizer profiles:
-  From now krusader handles synchronizer profiles. In synchronizer press
-  the 'profile' button, and you'll be able to add/ load / save / remove
+  Krusader handles synchronizer profiles. In synchronizer press
+  the 'profile' button, and you'll be able to add / load / save / remove
   synchronizer profiles.
 
-Synchronize with kget:
-  If you want to synchronize a local directory with an instable ftp server, 
-  kget is a much better solution than simple file copying. After comparing 
+Synchronize with Kget:
+  If you want to synchronize a local directory with an unstable ftp server,
+  Kget is a much better solution than simple file copying. After comparing
   you may right click on the result list and select 'Synchronize with kget'
-  to execute the synchronization, after that the listed files will be 
-  downloaded with kget instead of krusader.
+  to execute the synchronization, after that the listed files will be
+  downloaded with kget instead of Krusader.
 
-Dropping URL-s onto the status / totals line:
-  If a directory contains a lot of subdirectories, it may not possible to drop
-  the URL onto the panel (on which only directories are visible). From now the
+Dropping URLs onto the status / totals line:
+  If a directory contains a lot of subdirectories, it may not be possible to
+  drop the URL onto the panel (on which only directories are visible). Now the
   URL can be dropped onto the status / totals line instead.
 
 Sync-browsing:
-  With a little toggle-button in the panel-level toolbar the syncbrowse-mode is
-  de-/activated.
-  when active, each directory-change in the specific panel is performed in the
-  other too.
+  With a little toggle-button in the panel-level toolbar the SyncBrowse mode is
+  activated/deactivated.
+  When active, each directory change in the specific panel is performed in the
+  other panel also.
 
-User-actions:
-  With the useraction-system the user can make its own actions on files in the
-  panel or to access krusader-internal functions with parameter directly using
+User-Actions:
+  With the user action system the user can make his own actions on files in the
+  panel or access Krusader internal functions with parameters directly using the
   placeholder.
-  The actions integrate seamless into KDE's action-system, so the std.
-  edit-toolbar/shortcut-dialogs can will show/manipulate the useractions too.
-  The useractions are stored in ~/.kde/share/apps/krusader/useraction.xml (the
-  file-structure is documentated in doxygen-headers of UserActionXML)
-  Useractions can be edit/add/im-/export using a new Konfigurator-module
-  (although I plan to move all action-related to a new ActionMan. for more
-  info see http://www.jonas-baehr.de/forum/Krusader-ideas.txt)
-  Currently these placeholder are implemented (for details see
+  The actions integrate seamless into KDE's action-system, so the standard
+  edit-toolbar/shortcut-dialogs can show/manipulate the user actions, too.
+  The user actions are stored in ~/.kde/share/apps/krusader/useraction.xml (the
+  file-structure is documented in doxygen-headers of UserActionXML)
+  User Actions can be edited/added/im-/exported using a new Konfigurator module
+  (although I plan to move all action-related to a new ActionMan. For more
+  info, see http://www.jonas-baehr.de/forum/Krusader-ideas.txt)
+  Currently, these placeholder are implemented (for details see
   UserAction/expander.cpp or doxygen):
-    Path       replaced by the panels path
+    Path         replaced by the panels path
     Count      replaced by the number of <first parameter>
-    Filter     replaced by the panels filter-mask
+    Filter       replaced by the panels filter-mask
     Current    replaced by the current item
-    List       replaced by a list of all <first paremeter>
+    List         replaced by a list of all <first paremeter>
     Select     manipulates the selection in a panel
     Goto      changes the panels's path to <first parameter>
     Ask        asks the user for a some text and is replaced by the answer
-    Clipboard  manipulates the clipboard
+    Clipboard    manipulates the clipboard
     Copy     copies a file, useful for quick, local, backups
-    Sync     opens the Synchronizer with a given profile
-    NewSearch  opens the search-windows with a given profile
+    Sync      opens the Synchronizer with a given profile
+    NewSearch   opens the search-windows with a given profile
     Profile     loads a given panel-profile
+
   A GUI-based helper for placeholder-adding is provided.
   In Path, Current and List spaces are per default automaticly escaped.

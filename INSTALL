@@ -1,7 +1,7 @@
 Compilation and installation
 ============================
 
-This text is extracted from Krusader Handbook version 1.40.01 (17/05/2004)
+This text is extracted from Krusader Handbook version 1.50.02 (25/10/2004)
 The Krusader Handbook is available in the Help menu of Krusader
 (after installing Krusader).
 
@@ -34,7 +34,7 @@ $ su -c 'make install'
 
 When you install a Krusader cvs or beta version and if Krusader was previously
 installed on your computer, there is a possibility that you will have to update
-the krusaderui.rc file. Please read the FAQ for more info.
+the krusaderui.rc file. Please read the FAQ number 6 and 7 for more info.
 
 Since Krusader uses autoconf and automake you should have no trouble compiling
 it. Should you run into problems please read the detailed installation
@@ -168,7 +168,7 @@ Please read the FAQ if you don't know how to send a help request (FAQ number 9).
 
    $ ./configure
 
-   This will take about 1 minute, if everything goes well it will e.g. end
+   This will take about 1 minute, if everything goes well, it will e.g. end
    with the following messages:
 
    foo
@@ -247,7 +247,7 @@ Please read the FAQ if you don't know how to send a help request (FAQ number 9).
 11. When you install a Krusader cvs or beta version and if Krusader was
     previously installed on your computer, there is a possibility that you
     will have to update the krusaderui.rc file.
-    Please read the FAQ for more info.
+    Please read the FAQ number 6 and 7 for more info.
 
 
 12. Now you can start Krusader.
@@ -416,25 +416,26 @@ Please read also the next question.
 Some new menu items are missing after updating Krusader, what is wrong?
 
 The krusaderui.rc file is stored in $KDEDIR/share/apps/krusader/krusaderui.rc.
-When you change the "Toolbar", KDE makes a copy of that file in the home
-directory at ~/.kde/share/apps/krusader/krusaderui.rc. If Krusader was
-previously installed on your computer, and you install a newer Krusader version
-the ~/.kde/share/apps/krusader/krusaderui.rc file must be replaced with
-the newer version.
+When you change the "Toolbar", KDE makes a copy of that file in the home directory
+at ~/.kde/share/apps/krusader/krusaderui.rc. If Krusader was previously installed
+on your computer, and you install a newer Krusader version the
+~/.kde/share/apps/krusader/krusaderui.rc file must be replaced with the newer version.
 
 The first line of krusaderui.rc contains the version number.
-After installing a newer Krusader stable version, KDE will replace automatiqly
-the old ~/.kde/share/apps/krusader/krusaderui.rc with the newer version when
-starting the new Krusader stable for the first time (KDE will detect the newer
-version number in the first line). In the past this was not the case due to a bug,
-this bug was resolved since "krusader-cvs-2004-02-24".
-When you install a Krusader CVS or beta version you will have to replace the
-~/.kde/share/apps/krusader/krusaderui.rc manually.
+After installing a newer Krusader stable version, KDE will automatically replace the
+old ~/.kde/share/apps/krusader/krusaderui.rc with the newer version when starting the
+new Krusader stable for the first time (KDE will detect the newer version number in
+the first line). In the past this was not the case due to a bug, this bug was
+resolved since "krusader-cvs-2004-02-24".
 
-If the ~/.kde/share/apps/krusader/krusaderui.rc file is too old, then the new
-menu elements will not be shown. Read the previous question for information on
-how to update the krusaderui.rc file. If krusaderui.rc is missing or in a wrong
-directory, only the "Help" menu appears, please read the previous question.
+If you install a CVS or beta version and if Krusader was previously installed on your
+computer then you should delete the krusaderui.rc file in your home directory to
+activate the new menu entries $ rm ~/.kde/share/apps/krusader/krusaderui.rc
+
+If the ~/.kde/share/apps/krusader/krusaderui.rc file is too old, then the new menu elements
+will not be shown. Read the previous question for information on how to update the
+krusaderui.rc file. If krusaderui.rc is missing or in a wrong directory,
+only the "Help" menu appears, please read the previous question.
 
 
 8.
@@ -448,6 +449,45 @@ information take a look at FAQ missing libs or headers.
 
 
 9.
+Debian complains about Qt when running ./configure
+
+This problem occurs when you use gcc 2.95, you will need to install gcc 3.2 (or higher).
+You need also set the enviroment variables "CC, CPP and CXX" before running the ./configure script.
+
+$ export CC=/usr/bin/gcc-3.2
+$ export CXX=/usr/bin/g++-3.2
+$ export CPP=/usr/bin/cpp-3.2
+
+For more information please take a look in our forum at
+http://krusader.sourceforge.net/phpBB/viewtopic.php?t=710
+and the instructions at
+http://opendoorsoftware.com/cgi/http.pl?p=DebianQTChecklist
+on howto build a Qt/KDE3 application on Debian.
+
+
+10.
+I have a libGLcore.so.1 compile error after using the NVIDA installer
+
+This problem occurs when you dit use the NVIDA installer and not the official NVIDA packages
+of your distribution. Krusader is based on Qt which can be linked against the X openGL libraries.
+As a result Krusader may look for OpenGL as well. The problem is that the NVIDA installer
+doesn't do his job good enough, it replaces the OpenGL header files (which get included into Krusader)
+but don't set the libGL links right.
+The solution depends on from the used distribution, but it should be something like this:
+
+$ ln -s libGLcore.so.1.0.6111  libGLcore.so.0
+$ ln -s libGLcore.so.1.0.6111  libGLcore.so
+$ ln -s libGLcore.so.1.0.6111  libGLcore.so.1.0.0
+$ ln -s libGLcore.so.1.0.6111  libGLcore.so.0.0.0
+$ ln -s libGLcore.so.1.0.6111  libGL.so
+$ ln -s libGLcore.so.1.0.6111  libGL.so.0
+$ ln -s libGLcore.so.1.0.6111  libGL.so.0.0.0
+$ ln -s libGLcore.so.1.0.6111  libGL.so.1
+$ ln -s libGLcore.so.1.0.6111  libGL.so.1.0.0
+$ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
+
+
+11.
 I am having trouble compiling and installing Krusader,
 how do I send a help request?
 
@@ -478,7 +518,7 @@ General Discussion Forum.
 Thanks for your cooperation!
 
 
-10.
+12.
 How can i build a RPM package for Krusader?
 
 If you have experiance with compiling from source, you will probably be able to
@@ -512,6 +552,103 @@ If it is not ok you will receive an error message during the rpmbuild process,
 try to fix it and run rpmbuild again.
 
 And final: test (FAQ number 3) the RPM before sending it in .
+
+
+
+
+
+Usage FAQ
+=========
+
+1.
+When I try to mount/unmount my cdrom/floppy, Krusader says something about supermount,
+what's this about?
+
+Supermount is a daemon which handles mounting/unmounting of removable filesystems for you.
+Just insert a floppy, and do cd /mnt/floppy supermount will do the mount for you
+automatically and transparently. All this is great, however, supermount manipulates the
+system into thinking that the floppy/cdrom is mounted at all times! This creates a few problems
+for Krusader, as it can't really know what's going on - is there really a floppy in the drive?
+Of course, this can be solved, but as for now, we don't consider it a priority.
+Feel free to write a patch for it ;-).
+
+
+2.
+When I try to resize Krusader, so that it's smaller, I discover that I can't resize it below
+a certain size. Basically, it doesn't get much smaller. Why?
+
+See the F1, F2 (etc.) buttons?
+They are not allowing Krusader to downsize as they have a minimum size. Just disable them
+View->Show FN Keys Bar and you'll be able to resize Krusader to your liking.
+
+
+3.
+When I do some file operation, Krusader's panel doesn't refresh / i'm using Krusader with
+fam installed, but updates to the panel are now shown.
+
+The bad news is that we're not sure why, but seems that fam (file alteration monitor) sometimes
+refuses to work. Feel free to write a patch for it ;-). We've tried the same source code on two
+different Gentoo installation: one worked, the other did not. The good news is that if you disable
+fam, Krusader will automatically revert to its internal mechanism (which is less efficient,
+but works) without needing to recompile. You can disable fam with:
+
+$ su -c 'fam -l'
+Look at the manpages for more information about fam.
+
+
+4.
+Samba ISO 8859-x codepage / what to do if Krusader does not read shared directories containing
+national characters?
+
+Krusader does not handle (yet) Samba ISO 8859-x codepages, if you use a codepage different than
+8859-1 you will have to do a manual configuration. Create or modify the file: ~/.smb/smb.conf
+
+   [global]
+   workgroup = MyWorkGroup       (ex. WORKGROUP)
+   client code page = MyCodePage (ex. 852)
+   character set = MyCharSet     (ex. ISO8859-2)
+
+Unfortunately kcontrol (KDE 3.1.1) fails to configure it properly,
+so this step must be done with a text editor.
+
+
+5.
+Krusader reports "krarc:... protocol not supported" error at opening an archive file.
+
+Solution: install the krarc slave properly:
+Copy the kio_krarc.so, kio_krarc.la files into $KDEDIR/lib/kde3
+Copy the krarc.protocol file into $KDEDIR/share/services
+or the directory where the KIO slaves are placed in your Linux distribution.
+
+
+6.
+When I try to establish an FTP connection, I get an error message after 'Connect OK'
+saying 'Could not connect to host'.
+
+You are probably behind a firewall/proxy and haven't enabled "Passive Mode".
+Enable "Passive FTP" through KDE's KDE Control Center and try again.
+KDE Control Center->Network->Preferences , "Enable Passive Mode (PASV)" has to be checked.
+
+
+7.
+I get "FTP protocol not supported by Krusader" error at trying to open a remote FTP directory.
+
+The reason of this error is that 'FTP via HTTP proxy' feature is not yet supported by Krusader.
+This error can occur at misconfiguring the proxy settings in KDE Control Center.
+Modify the proxy setting to not use HTTP proxy and FTP will work.
+
+
+8.
+How can i disable the default sounds e.g. when i do a delete action ?
+
+Those are the default KDE System sounds, and not related to Krusader.
+If you want to disable them globally open your KDE KDE Control Center (kcontrol):
+KDE Control Center->Sound & Multimedia->System Notifications ,
+Event Source: "KDE System Notifications" and uncheck sound items you don't like.
+
+
+
+
 
 
 
