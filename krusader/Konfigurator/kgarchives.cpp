@@ -90,9 +90,10 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
   //   cfg_class  cfg_name                  default           text                                          restart ToolTip
     {{"Archives","Allow Move Into Archive", _MoveIntoArchive, i18n( "Allow moving into archives" ),         false,  i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." )},
-     {"Archives","Test Archives",           _TestArchives,    i18n( "Test archive when finished packing" ), false,  i18n( "If checked, Krusader will test the archive's intergrity after packing it." )}};
+     {"Archives","Test Archives",           _TestArchives,    i18n( "Test archive when finished packing" ), false,  i18n( "If checked, Krusader will test the archive's intergrity after packing it." )},
+		 {"Archives","Test Before Unpack",      _TestBeforeUnpack,i18n( "Test archive before unpacking" ), false,  i18n( "Some corrupted archives might cause a crash, therefore testing is suggested" )}};
 
-  KonfiguratorCheckBoxGroup *finetunes = createCheckBoxGroup( 1, 0, finetuners, 2, fineTuneGrp );
+  KonfiguratorCheckBoxGroup *finetunes = createCheckBoxGroup( 1, 0, finetuners, 3, fineTuneGrp );
    
   disableNonExistingPackers();    
   fineTuneGrid->addWidget( finetunes, 1, 0 );

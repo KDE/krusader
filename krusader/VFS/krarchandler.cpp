@@ -160,10 +160,13 @@ long KRarcHandler::arcFileCount(QString archive, QString type){
 }
 
 bool KRarcHandler::unpack(QString archive, QString type, QString dest ) {
-  // test first - or be sorry later...
-  if ( !test(archive,type,0) ){
-		KMessageBox::error(krApp,i18n("Failed to unpack")+" \""+archive+"\" !");
-   	return false;
+	krConfig->setGroup("Archives");
+  if ( krConfig->readBoolEntry( "Test Before Unpack",_TestBeforeUnpack ) ) {
+		// test first - or be sorry later...
+	  if ( !test(archive,type,0) ){
+			KMessageBox::error(krApp,i18n("Failed to unpack")+" \""+archive+"\" !");
+   		return false;
+		}
 	}
 
 	// count the files in the archive
