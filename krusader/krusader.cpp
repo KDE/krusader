@@ -37,6 +37,7 @@ A
 #include <kmenubar.h>
 #include <kapplication.h>
 #include <dcopclient.h>
+#include <kcmdlineargs.h>
 #include <kglobal.h>
 #include <klocale.h>
 #include <kaccelmanager.h>
@@ -110,6 +111,15 @@ bool showTrayIcon = false;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
+  // parse command line arguments
+  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+  QString leftPath, rightPath;
+
+  if (args->isSet("left")) leftPath = args->getOption("left");
+  else leftPath = QString::null;
+  if (args->isSet("right")) rightPath = args->getOption("right");
+  else rightPath = QString::null;
+
   // create the "krusader"
   App = this;
   slot = new KRslots();
@@ -156,7 +166,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
   // create the main view and set it
   mainView = new KrusaderView( this );
-  mainView->start();
+  mainView->start(leftPath, rightPath);
 
   // setup keyboard accelerators
   setupAccels();

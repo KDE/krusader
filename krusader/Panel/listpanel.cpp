@@ -216,11 +216,14 @@ void ListPanel::slotFocusOnMe() {
 
 // this is used to start the panel, AFTER setOther() has been used
 //////////////////////////////////////////////////////////////////
-void ListPanel::start() {
+void ListPanel::start(QString path) {
   bool left = _left;
   krConfig->setGroup( "Startup" );
 
   // set the startup path
+  if (path != QString::null)  {
+    virtualPath = path;
+  } else
   if ( left ) {
     if ( krConfig->readEntry( "Left Panel Origin", _LeftPanelOrigin ) == i18n( "homepage" ) )
       virtualPath = krConfig->readEntry( "Left Panel Homepage", _LeftHomepage );
