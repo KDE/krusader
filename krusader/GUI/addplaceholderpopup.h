@@ -24,6 +24,7 @@ class QCheckBox;
 class KComboBox;
 class KrBookmarkButton;
 class KURL;
+class KIntSpinBox;
 
 
 /**
@@ -267,6 +268,22 @@ public:
    bool valid();
 private:
    KComboBox * _combobox;
+};
+
+/**
+ *  A SpinBox for integer
+ *  used with default = "__int:min;max;step;value"
+ */
+class ParameterInt : public ParameterBase {
+public:
+   ParameterInt( exp_parameter* parameter, QWidget* parent );
+   QString text();
+   QString preset();
+   void reset();
+   bool valid();
+private:
+   KIntSpinBox * _spinbox;
+   int _default;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////

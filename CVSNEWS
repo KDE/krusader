@@ -3,6 +3,11 @@ It should contain a brief description of new features;
 in some way an extension to the changelog.
 ------------------------------------------------------
 
+useraction:new placeholder %_PanelSize%
+  This placeholder can change the ration between the two panels.
+  %aPanelSize("80")% makes the active panel use 80% of krusader's width (heigh in vertical-mode)
+  ommiting the parameter means 50%
+
 useraction: new placeholder: %_Each%
   This placeholder splitts the commandline into a list where %_Each(...)% is replaced by one
   list-item (all, all files, all dirs, all selected). These commands are executed one after another.

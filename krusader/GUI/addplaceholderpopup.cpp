@@ -32,6 +32,7 @@
 #include <kiconloader.h>
 #include <kcombobox.h>
 #include <kurlcompletion.h> 
+#include <knuminput.h>
 
 #include <kdebug.h>
 
@@ -158,6 +159,8 @@ ParameterDialog::ParameterDialog( exp_placeholder* currentPlaceholder, QWidget *
          _parameter.append( new ParameterSearch( currentPlaceholder->parameter( i ), plainPage() ) );
       else if ( currentPlaceholder->parameter( i )->preset() == "__panelprofile" )
          _parameter.append( new ParameterPanelprofile( currentPlaceholder->parameter( i ), plainPage() ) );
+      else if ( currentPlaceholder->parameter( i )->preset().find( "__int" ) != -1 )
+         _parameter.append( new ParameterInt( currentPlaceholder->parameter( i ), plainPage() ) );
       else
          _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), plainPage() ) );
    }
@@ -537,6 +540,37 @@ void ParameterPanelprofile::reset() {
    _combobox->setCurrentItem( 0 );
 } 
 bool ParameterPanelprofile::valid() {
+      return true;
+} 
+
+///////////// ParameterInt
+ParameterInt::ParameterInt( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+   QHBoxLayout* layout = new QHBoxLayout( this );
+   layout->setAutoAdd( true );
+   layout->setSpacing( 6 );
+   
+   new QLabel( parameter->description(), this );
+   _spinbox = new KIntSpinBox( this );
+   QStringList para = QStringList::split( ";", parameter->preset().section(":", 1) );
+   
+   _spinbox->setMinValue( para[0].toInt() );
+   _spinbox->setMaxValue( para[1].toInt() );
+   _spinbox->setLineStep( para[2].toInt() );
+   _spinbox->setValue( para[3].toInt() );
+   
+   _default = _spinbox->value();
+}
+
+QString ParameterInt::text() {
+   return _spinbox->text();
+} 
+QString ParameterInt::preset() {
+   return QString( "%1" ).arg( _default );
+} 
+void ParameterInt::reset() {
+   return _spinbox->setValue( _default );
+} 
+bool ParameterInt::valid() {
       return true;
 } 
 

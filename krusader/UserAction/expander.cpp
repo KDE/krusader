@@ -582,6 +582,45 @@ QString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& paramet
    return QString::null;  // this doesn't return everything, that's normal!
 }
 
+exp_PanelSize::exp_PanelSize() {
+   _expression = "PanelSize";
+   _description = i18n("Set the relation between the two panels");
+   _needPanel = true;
+   
+   addParameter( new exp_parameter( i18n("Set the new size in percent"), "__int:0;100;5;50", true ) );
+}
+QString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& ) {
+   NEED_PANEL
+   int newSize;
+   
+   if ( parameter[0].isEmpty() )
+      newSize = 50;	//default is 50%
+   else
+      newSize = parameter[0].toInt();
+   
+   if ( newSize < 0 || newSize > 100 ) {
+      krOut << "Expander: Value out of range for %_PanelSize(percent)%. The first parameter has to be >0 and <100" << endl;
+      return QString::null;
+   }
+
+    QValueList<int> panelSizes = MAIN_VIEW->horiz_splitter->sizes();
+    int totalSize = panelSizes[0] + panelSizes[1];
+    
+    if ( panel == LEFT_PANEL ) {
+       panelSizes[0] = totalSize * newSize / 100;
+       panelSizes[1] = totalSize * (100 - newSize) / 100;
+    }
+    else { // == RIGHT_PANEL
+       panelSizes[0] = totalSize * (100 - newSize) / 100;
+       panelSizes[1] = totalSize * newSize / 100;
+    }
+    
+    MAIN_VIEW->horiz_splitter->setSizes( panelSizes );
+
+   return QString::null;  // this doesn't return everything, that's normal!
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// end of expander classes ////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -599,6 +638,7 @@ Expander::Expander() {
    addPlaceholder( new exp_Goto() );
    //FIXME: activate this placehodler as soon as KrView::SortMode works
    //addPlaceholder( new exp_ColSort() );
+   addPlaceholder( new exp_PanelSize() );
 //    addPlaceholder( new exp_Search() );
    //Panel-independent:
    addPlaceholder( new exp_Ask() );
