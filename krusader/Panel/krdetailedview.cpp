@@ -497,7 +497,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
     return ; // subclass bug
   switch ( e->key() ) {
       case Key_Enter :
-      case Key_Return : {        
+      case Key_Return : {
         if ( e->state() & ControlButton ) // let the panel handle it
           e->ignore();
         else
@@ -508,6 +508,15 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         }
         break;
       }
+      case Key_QuoteLeft :  // Terminal Emulator bugfix
+        if ( e->state() ) { // let the panel handle it
+          e->ignore();
+          break;
+        } else {          // a normal click - do a lynx-like moving thing
+          SLOTS->home(); // ask krusader to move up a directory
+          return ;         // safety
+        }
+        break;
       case Key_Right :
       if ( e->state() == ControlButton ) { // let the panel handle it
         e->ignore();
@@ -524,6 +533,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         }
         return ; // safety
       }
+      case Key_Backspace :                 // Terminal Emulator bugfix
       case Key_Left :
       if ( e->state() == ControlButton ) { // let the panel handle it
         e->ignore();
