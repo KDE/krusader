@@ -35,44 +35,57 @@
 #include <ctype.h>
 #include <qregexp.h>
 
-QString num2qstring(long num){
+QString num2qstring(QString text){
+  long num = text.replace(QRegExp(","),"").toLong();
+
   QString temp;
   temp.sprintf("%015ld",num);
   return temp;
 }
 
-QString KRListItem::key ( int column, bool ascending ) const {
-    bool ext = krToggleSortByExt->isChecked();
-    char max[10] = {255,255,255,255,255,255,255,255,255,0};
-    char dir [7] = {255,255,255,255,255,255,0};
-    char file[4] = {255,255,255,0};
+int KRListItem::compare(QListViewItem *i,int col,bool ascending ) const {
+  int asc = ( ascending ? -1 : 1 );
 
-    if (text(0)==".."){
-      if (ascending) return "";
-      else return max;
-    }
 
-    QString text0 = text(0);
+  if (text(0)== "..") return 1*asc;
 
-    QString ext0;
-    if (ext && text0.find('.') != -1)
-      ext0 = text0.mid(text0.findRev('.'));
+  if( text(1)== "<DIR>" ){
+    if( i->text(1) != "<DIR>" ) return 1*asc;
+    else return QString::compare(text(0),i->text(0));
+  }
 
-    krConfig->setGroup("Look&Feel");
-	  if(!krConfig->readBoolEntry("Case Sensative Sort",_CaseSensativeSort)) {
-	    text0 = text0.lower();
-      ext0 = ext0.lower();
-    }
+  if( i->text(1) == "<DIR>" ) return -1*asc;
 
-    if ( text(1)=="<DIR>"){
-     if(ascending) return text0;
-     else return dir+text0;
-    }
+  QString text0 = text(0);
+  QString itext0 = i->text(0);
 
-    if (column == 0) return file+ext0+text0;
-    if (column == 1) return file+ext0+num2qstring(text(1).replace(QRegExp(","),"").toLong());
-    if (column == 2) return file+ext0+KRpermHandler::date2qstring(text(2));
-    return "";
+  krConfig->setGroup("Look&Feel");
+  if(!krConfig->readBoolEntry("Case Sensative Sort",_CaseSensativeSort)) {
+    text0  = text0.lower();
+    itext0 = itext0.lower();
+  }
+
+  int result = 0;
+
+
+  if( col == 0 )
+    result = QString::compare(text(col),i->text(col));
+  if( col == 1 )
+    result = QString::compare(num2qstring(text(1)),num2qstring(i->text(1)));
+  if( col == 3 )
+    result = QString::compare(KRpermHandler::date2qstring(text(2)),
+                              KRpermHandler::date2qstring(i->text(2)));
+
+
+  if( krToggleSortByExt->isChecked() ){
+    QString ext;
+    if( text0.find('.',2) != -1) ext = text0.mid(text0.findRev('.'));
+    QString iext;
+    if( itext0.find('.',2) != -1) iext = itext0.mid(itext0.findRev('.'));
+    int extResult = QString::compare(ext,iext);
+    if( extResult != 0 ) return extResult;
+  }
+  return result;
 }
 
 KRListItem::~KRListItem(){

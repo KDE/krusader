@@ -66,7 +66,7 @@ public:
              QListViewItem(parent,name,size){}
 	~KRListItem();
 	
-  QString key ( int column, bool ascending ) const;
+  int compare(QListViewItem *i,int col,bool ascending ) const;
   inline int getCompareModeID() const { return compareModeID; }
   void paintCell(QPainter * p,const QColorGroup & cg,int column,int width,int align);
 
