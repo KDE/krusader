@@ -38,6 +38,8 @@
 #include <math.h>
 #include <kfileitem.h>
 #include <klocale.h>
+#include <klineedit.h>
+#include <kdebug.h>
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////// Pie related widgets /////////////////////////////////
@@ -62,8 +64,8 @@ QColor KRPie::colors[12]={Qt::red,Qt::blue,Qt::green,Qt::cyan,Qt::magenta,Qt::gr
 /////////////// KRFSDisplay - Filesystem / Freespace Display /////////////////
 //////////////////////////////////////////////////////////////////////////////
 // This is the full constructor: use it for a mounted filesystem
-KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName, 
-    long _total, long _free) : QWidget(parent), totalSpace(_total), 
+KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
+    long _total, long _free) : QWidget(parent), totalSpace(_total),
     freeSpace(_free), alias(_alias), realName(_realName), mounted(true),
     empty(false), supermount(false) {
   resize(150,200);
@@ -150,7 +152,7 @@ void KRFSDisplay::paintEvent(QPaintEvent *) {
   } else {  // if the widget is in empty situation...
   
   }
-}    
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 KRPie::KRPie(long _totalSize, QWidget *parent) : QWidget(parent,0), totalSize(_totalSize) {
@@ -188,7 +190,7 @@ void KRPie::paintEvent(QPaintEvent *) {
     sAngle+=angle;
   }  
 
-    
+
   paint.setPen(Qt::black);
   // the pie
 //  paint.drawPie(LEFT,BOTTOM,WIDTH,HEIGHT,STARTANGLE,360*16);
@@ -207,5 +209,25 @@ void KRPie::addSlice(long size,QString label) {
   sizeLeft-=size;
   slices.append(new KRPieSlice(sizeLeft*100/totalSize,Qt::yellow,"DEFAULT"));  
 }
+
+////////////////////////////////////////////////////
+/////////////////// KrQuickSearch  /////////////////
+////////////////////////////////////////////////////
+KrQuickSearch::KrQuickSearch(QWidget *parent, const char * name): KLineEdit(parent,name) {}
+
+void KrQuickSearch::myKeyPressEvent(QKeyEvent *e) {
+   switch (e->key()) {
+      case Key_Up:
+      case Key_Down:
+      case Key_Home:
+      case Key_End:
+         emit stop(e);
+         break;
+      default:
+         kdWarning()<<"got " << e->text() << endl;
+         keyPressEvent(e);
+   }
+}
+
 
 #include "krspecialwidgets.moc"

@@ -100,6 +100,7 @@ KAction *Krusader::actSavePosition = 0;
 KAction *Krusader::actSelectColorMask = 0;
 KAction *Krusader::actOpenLeftBm = 0;
 KAction *Krusader::actOpenRightBm = 0;
+KAction *Krusader::actDirUp = 0;
 
 KToggleAction *Krusader::actToggleTerminal = 0;
 
@@ -286,7 +287,7 @@ void Krusader::setupActions() {
 
 
   // second, the KDE standard action
-  KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
+  //KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
   KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" )->setShortcut(Key_QuoteLeft);
   KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
   actShowToolBar = KStdAction::showToolbar( SLOTS, SLOT( toggleToolbar() ), actionCollection(), "std_toolbar" );
@@ -317,6 +318,8 @@ void Krusader::setupActions() {
   actToggleSortByExt->setChecked( krConfig->readBoolEntry( "Sort By Extention", _SortByExt ) );
 
   // and then the DONE actions
+  actDirUp = new KAction( i18n("Up"), "up", Key_Backspace, SLOTS, SLOT(dirUp()), actionCollection(), "dirUp");
+
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
   actTest = new KAction( i18n( "&Test Archive(s)" ), "kr_arc_test", CTRL + Key_T,

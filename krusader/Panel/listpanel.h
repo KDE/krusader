@@ -62,6 +62,7 @@ class statsCollector;
 class KrView;
 class KURLRequester;
 class BookmarksButton;
+class KrQuickSearch;
 
 class ListPanel : public QWidget {
 friend class ListPanelFunc;
@@ -121,6 +122,7 @@ public:
 	QListViewItem *currDragItem;
 	QGuardedPtr<QObject> statsAgent;
 	KrSqueezedTextLabel *status,*totals;
+   KrQuickSearch *quickSearch;
 	KURLRequester   *origin;
 	QGridLayout   *layout;
   BookmarksButton *bookmarksButton;
