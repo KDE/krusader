@@ -866,7 +866,7 @@ void ListPanelFunc::testArchive() {
 
   // test the archive
   if ( KRarcHandler::test( files() ->vfs_getFile( arcName ), type ) )
-    KMessageBox::sorry( krApp, i18n( "%1, test passed." ).arg( arcName ) );
+    KMessageBox::information( krApp, i18n( "%1, test passed." ).arg( arcName ) );
   else
     KMessageBox::error( krApp, i18n( "%1, test failed !" ).arg( arcName ) );
 }
