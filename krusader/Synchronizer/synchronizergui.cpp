@@ -1402,13 +1402,13 @@ void SynchronizerGUI::rightMenuCompareFiles( KURL url1, KURL url2 )
   QString tmp1 = QString::null, tmp2 = QString::null;
   if (!url1.isLocalFile()) {
     if( !KIO::NetAccess::download( url1, tmp1 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url1.path());
+      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url1.prettyURL(0,KURL::StripFileProtocol));
       return;
     }
   } else tmp1 = url1.path();
   if (!url2.isLocalFile()) {
     if( !KIO::NetAccess::download( url2, tmp2 ) ){
-      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url2.path());
+      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+url2.prettyURL(0,KURL::StripFileProtocol));
       return;
     }
   } else tmp2 = url2.path();

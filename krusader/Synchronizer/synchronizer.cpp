@@ -750,15 +750,17 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
       
         if ( currentTask->task() == TT_COPY_TO_LEFT )
         {
-          result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"), rightURL.path(),
-            leftURL.path(), (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
+          result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"),
+            rightURL.prettyURL(0,KURL::StripFileProtocol), leftURL.prettyURL(0,KURL::StripFileProtocol),
+            (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             currentTask->rightSize(), currentTask->leftSize(), (time_t)-1, (time_t)-1,
             currentTask->rightDate(), currentTask->leftDate());
         }
         else
         {
-          result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"), leftURL.path(),
-            rightURL.path(), (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
+          result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"),
+            leftURL.prettyURL(0,KURL::StripFileProtocol), rightURL.prettyURL(0,KURL::StripFileProtocol),
+            (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             currentTask->leftSize(), currentTask->rightSize(), (time_t)-1, (time_t)-1,
             currentTask->leftDate(), currentTask->rightDate());          
         }
@@ -796,13 +798,17 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
         switch( currentTask->task() )
         {
         case TT_COPY_TO_LEFT:
-          error = i18n("Error at copying file %1 to %2!").arg( rightURL.path() ).arg( leftURL.path() );
+          error = i18n("Error at copying file %1 to %2!")
+                       .arg( rightURL.prettyURL(0,KURL::StripFileProtocol) )
+                       .arg( leftURL .prettyURL(0,KURL::StripFileProtocol) );
           break;
         case TT_COPY_TO_RIGHT:
-          error = i18n("Error at copying file %1 to %2!").arg( leftURL.path() ).arg( rightURL.path() );
+          error = i18n("Error at copying file %1 to %2!")
+                       .arg( leftURL.prettyURL(0,KURL::StripFileProtocol) )
+                       .arg( rightURL .prettyURL(0,KURL::StripFileProtocol) );
           break;
         case TT_DELETE:
-          error = i18n("Error at deleting file %1!").arg( leftURL.url() );
+          error = i18n("Error at deleting file %1!").arg( leftURL.prettyURL(0,KURL::StripFileProtocol) );
           break;
         default:
           break;
@@ -1006,7 +1012,8 @@ void Synchronizer::slotFinished(KIO::Job *job)
     timer->stop();
     errorPrinted = true;
     KMessageBox::error(0, i18n("IO error at comparing file %1 with %2!")
-                       .arg( leftURL.path() ).arg( rightURL.path() ) );
+                       .arg( leftURL. prettyURL(0,KURL::StripFileProtocol) )
+                       .arg( rightURL.prettyURL(0,KURL::StripFileProtocol) ) );
     abortContentComparing();
   }
   

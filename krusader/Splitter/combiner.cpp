@@ -75,7 +75,8 @@ void Combiner::combine()
   if( !file.isReadable() )
   {
     int ret = KMessageBox::questionYesNo(0, i18n("The CRC information file (%1) is missing!\n"
-        "Validity checking is impossible without it. Continue combining?").arg( splURL.path() ) );
+        "Validity checking is impossible without it. Continue combining?")
+        .arg( splURL.prettyURL(0,KURL::StripFileProtocol) ) );
 
     if( ret == KMessageBox::No )
     {
@@ -111,7 +112,7 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
   QString error;
   
   if( job->error() )
-    error = i18n("Error at reading the CRC file (%1)!").arg( splURL.path() );
+    error = i18n("Error at reading the CRC file (%1)!").arg( splURL.prettyURL(0,KURL::StripFileProtocol) );
   else
   {
     QStringList splitFileContent = QStringList::split( '\n', splitFile );
@@ -275,7 +276,7 @@ void Combiner::combineSendFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     combineAbortJobs();
-    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.path() ) );
+    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
     emit reject();
     return;
   }

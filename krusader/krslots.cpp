@@ -248,7 +248,7 @@ void KRslots::insertFileName(bool full_path)
     return;
   
   if( full_path ){
-    QString path=ACTIVE_FUNC->files()->vfs_getOrigin().path(1);
+    QString path=ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1,KURL::StripFileProtocol);
     filename = path+filename;
   }
 
@@ -510,7 +510,7 @@ void KRslots::slotSplit()
     return;
   }
 
-  QString fileName = ACTIVE_FUNC->files()->vfs_getFile(name).path(-1);
+  QString fileName = ACTIVE_FUNC->files()->vfs_getFile(name).prettyURL(-1,KURL::StripFileProtocol);
   if( fileName == QString::null )
     return;
 
@@ -519,7 +519,7 @@ void KRslots::slotSplit()
     return ;
   }
 
-  QString destDir  = ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().path(-1);
+  QString destDir  = ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().prettyURL(-1,KURL::StripFileProtocol);
 
   SplitterGUI splitterGUI( MAIN_VIEW, fileName, destDir );
 
@@ -554,7 +554,7 @@ void KRslots::slotCombine()
   /* checking splitter names */
   for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
   {
-    QString name = ACTIVE_FUNC->files()->vfs_getFile(*it).path(-1);
+    QString name = ACTIVE_FUNC->files()->vfs_getFile(*it).prettyURL(-1,KURL::StripFileProtocol);
     if( name == QString::null )
       return;
 
@@ -625,7 +625,7 @@ void KRslots::slotCombine()
               else
               {
                 commonName = shorter;
-                fileName = ACTIVE_FUNC->files()->vfs_getOrigin().path(1) + testFile;
+                fileName = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1,KURL::StripFileProtocol) + testFile;
               }
             }
 
@@ -668,8 +668,8 @@ void KRslots::userMenu() {
 
 void KRslots::slotSynchronizeDirs() {
   SynchronizerGUI *sync = new SynchronizerGUI( MAIN_VIEW,
-                ACTIVE_PANEL->func->files()->vfs_getOrigin().path(),
-                ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().path() );
+                ACTIVE_PANEL->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol),
+                ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol) );
 
   bool refresh = sync->wasSynchronization();
   delete sync;

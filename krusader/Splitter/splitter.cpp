@@ -69,7 +69,7 @@ void Splitter::split( int splitSizeIn )
   splitSize = splitSizeIn;
 
   setCaption( i18n("Krusader::Splitting...") );
-  setLabelText( i18n("Splitting the file %1...").arg( fileName.path() ));
+  setLabelText( i18n("Splitting the file %1...").arg( fileName.prettyURL(0,KURL::StripFileProtocol) ));
 
   if( file.isDir() )
   {
@@ -124,7 +124,7 @@ void Splitter::splitReceiveFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     splitAbortJobs();
-    KMessageBox::error(0, i18n("Error at reading file %1!").arg( fileName.path() ) );
+    KMessageBox::error(0, i18n("Error at reading file %1!").arg( fileName.prettyURL(0,KURL::StripFileProtocol) ) );
     emit reject();
     return;
   }
@@ -198,7 +198,7 @@ void Splitter::splitSendFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     splitAbortJobs();
-    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.path() ) );
+    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
     emit reject();
     return;
   }
@@ -240,7 +240,7 @@ void Splitter::splitFileFinished(KIO::Job *job)
 
   if( job->error() )    /* any error occurred? */
   {
-    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.path() ) );
+    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
     emit reject();
     return;
   }
