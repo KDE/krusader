@@ -106,8 +106,11 @@ QString KRSpWidgets::newFTP() {
     URL = URL + "@";
   }
   URL = URL + p->url->currentText();
-  if( p->prefix->currentText().startsWith("ftp") )
-    URL = URL + ":" + p->port->cleanText();
+  if( p->prefix->currentText().startsWith("ftp") ){
+    int i = URL.find("/",p->prefix->currentText().length());
+		if ( i==-1 ) URL = URL + ":" + p->port->cleanText();
+		else URL=URL.left(i)+":" + p->port->cleanText()+URL.mid(i);
+	}
 
   return URL;
 }
