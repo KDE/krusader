@@ -372,7 +372,7 @@ void Krusader::setupActions() {
   KStdAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
 
   // the toggle actions
-  actCompareDirs = new KToggleAction( i18n( "Com&pare Mode" ), "kr_comparedirs",
+  actCompareDirs = new KToggleAction( i18n( "Com&pare Mode" ), "view_left_right",
                                       CTRL + Key_Equal, SLOTS, SLOT( compareDirectories() ), actionCollection(), "compare mode" );
   actCompareDirs->setChecked( false );
   actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), 0, SLOTS,
@@ -397,7 +397,7 @@ void Krusader::setupActions() {
   /* Shortcut disabled because of the Terminal Emulator bug. */
   actDirUp = new KAction( i18n( "Up" ), "up", 0 /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
   new KAction( i18n( "&Edit new file" ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
-  new KAction( i18n( "Start &Root Mode Krusader" ), "krusader", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
+  new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_red", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
@@ -463,7 +463,7 @@ void Krusader::setupActions() {
   //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
   actCustomFilter = new KAction( i18n( "&Custom" ), SHIFT + Key_F12,
                                  SLOTS, SLOT( customFilter() ), actionCollection(), "custom files" );
-  actCompare = new KAction( i18n( "Compare b&y content" ), "view_left_right", 0,
+  actCompare = new KAction( i18n( "Compare b&y content" ), "kmultiple", 0,
                             SLOTS, SLOT( compareContent() ), actionCollection(), "compare" );
   actMultiRename = new KAction( i18n( "Multi &Rename" ), "krename", SHIFT + Key_F9,
                                 SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
