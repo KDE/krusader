@@ -33,6 +33,7 @@
 #include <sys/types.h>
 #include <kio/global.h>
 #include "../VFS/vfile.h"
+#include "krview.h"
 
 class QString;
 class QPixmap;
@@ -53,12 +54,13 @@ public:
    virtual void setSelected( bool s ) = 0;
    virtual QPixmap icon() = 0;
    
-	KrViewItem(vfile *vf): _vf(vf), dummyVfile(false) {}
+	KrViewItem(vfile *vf, const KrViewProperties& properties): _vf(vf), dummyVfile(false), _viewProperties(properties) {}
    virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
 		
 protected:
 	vfile* _vf;			// each view item holds a pointer to a corrosponding vfile for fast access	
 	bool dummyVfile;	// used in case our item represents the ".." (updir) item
+	const KrViewProperties& _viewProperties;
 };
 
 #endif

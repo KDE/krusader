@@ -84,6 +84,8 @@ KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, K
       KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
 _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
 
+	initProperties();
+
    if ( ColumnName[ 0 ].isEmpty() ) {
       ColumnName[ 0 ] = i18n( "Name" );
       ColumnName[ 1 ] = i18n( "Ext" );
@@ -134,7 +136,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
 
    // add whatever columns are needed to the listview
    krConfig->setGroup( "Look&Feel" );
-   _withIcons = _config->readBoolEntry( "With Icons", _WithIcons ); // we we display icons ?
+   //=>_withIcons = _config->readBoolEntry( "With Icons", _WithIcons ); // do we display icons ?
    newColumn( Name );  // we always have a name
    setColumnWidthMode( column( Name ), QListView::Manual );
    if ( _config->readBoolEntry( "Ext Column", _ExtColumn ) ) {
@@ -1093,5 +1095,8 @@ bool KrDetailedView::event( QEvent *e ) {
    return KListView::event( e );
 }
 
+void KrDetailedView::initProperties() {
+	_properties.displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
+}
 
 #include "krdetailedview.moc"

@@ -38,6 +38,7 @@ A
 #include <qdatetime.h>
 #include <qdict.h>
 #include "krview.h"
+#include "krviewitem.h"
 
 class QDragMoveEvent;
 class KrRenameTimerObject;
@@ -107,6 +108,7 @@ protected:
    virtual void contentsDragMoveEvent( QDragMoveEvent *e );
    virtual void startDrag();
    virtual bool event( QEvent *e );
+	virtual void initProperties();
    //virtual void focusOutEvent( QFocusEvent * );
 
 protected slots:
@@ -138,7 +140,7 @@ public slots:
 private:
    ColumnType _columns[ MAX_COLUMNS ];
    static QString ColumnName[ MAX_COLUMNS ];
-   bool _withIcons, _focused;
+   bool _focused;
    bool caseSensitiveSort;
    KrViewItem *_currDragItem;
    QString _nameInKConfig;

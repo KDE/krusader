@@ -34,9 +34,20 @@
 #include "../krusader.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
-#include "krviewitem.h"
 
 #include <kdebug.h>
+
+// KrViewProperties
+// This class is an interface class between KrView and KrViewItem
+// In order for KrViewItem to be as independant as possible, KrView holds 
+// an instance of this class, and fills it with the correct data. A reference
+// to this should be given to each KrViewItem, which then queries it for 
+// information regarding how things should be displayed in the current view.
+class KrViewProperties {
+public:
+	bool displayIcons;	// true if icons should be displayed in this view
+};
+
 
 /****************************************************************************
  * READ THIS FIRST: Using the view
@@ -57,17 +68,8 @@
  *       for (KrViewItem *it = view->getFirst(); it!=0; it = view->getNext(it)) { blah; }
  * 5) nameToMakeCurrent(), setNameToMakeCurrent() - work with QString
  */
-
-/////////////////////////////////////////////////////////////////
-// the following settings are available for ALL kinds of views
-//
-// With Icons
-#define _WithIcons          true
-// View Background
-#define _ViewBackground     new QColor("white")
-// Single Click Selects
-#define _SingleClickSelects false
-
+class KrViewItem;
+ 
 typedef QValueList<KrViewItem*> KrViewItemList;
 class KrView {
 public:
@@ -103,6 +105,10 @@ public:
   virtual void prepareForPassive() = 0;
   virtual QString nameInKConfig() = 0;
   virtual void renameCurrentItem() = 0; // Rename current item. returns immediatly
+protected:
+  virtual void initProperties() { qFatal("initProperties not implemented!"); }
+  
+public:  
   // also, the following must be implemented (but must be remarked here)
   //
   // signals:
@@ -131,6 +137,7 @@ public:
   virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
   virtual QString firstUnmarkedBelowCurrent();
   virtual QString statistics();
+  const KrViewProperties& properties() const { return _properties; }
 
   /////////////////////////////////////////////////////////////
   // the following functions have a default and minimalistic //
@@ -163,6 +170,7 @@ protected:
   uint _numSelected, _count, _numDirs;
   KIO::filesize_t _countSize, _selectedSize;
   bool _left;
+  KrViewProperties _properties;
 };
 
 #endif /* KRVIEW_H */

@@ -48,7 +48,7 @@
 #include <kmimetype.h>
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
-	KListViewItem(parent, after), KrViewItem(vf), _view(parent) {
+	KListViewItem(parent, after), KrViewItem(vf, parent->properties()), _view(parent) {
   
 	// cache memory accesses for better performance
 	caseSensitiveSort = !(_view->sortMode() & KrView::IgnoreCase);
@@ -74,7 +74,7 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
 		
 		setText(nameColumn, "..");
 		setText(sizeColumn, "<DIR>" );
-      if ( _view->_withIcons )
+      if ( _viewProperties.displayIcons )
          setPixmap( nameColumn, FL_LOADICON( "up" ) );
       setSelectable( false );
 	}
@@ -138,7 +138,7 @@ void KrDetailedViewItem::repaintItem() {
     }
     setText(nameColumn, name);
     // display an icon if needed
-    if (_view->_withIcons)
+    if (_viewProperties.displayIcons)
       setPixmap(nameColumn,KrView::getIcon(_vf));
 }
 
@@ -327,7 +327,7 @@ QPixmap KrDetailedViewItem::icon() {
   // shie answers: why? what's the difference? if we return an empty pixmap, others can use it as it
   // is, without worrying or needing to do error checking. empty pixmap displays nothing
 #endif
-	if (dummyVfile || !_view->_withIcons)
+	if (dummyVfile || !_viewProperties.displayIcons)
 		return QPixmap();
 	else return KrView::getIcon(_vf);
 }
