@@ -107,29 +107,42 @@ void KRslots::sendFileByEmail(QString filename) {
 }
 
 void KRslots::compareContent() {
-  QStringList lst1, lst2;
-  QString name1, name2;
+  QStringList lstLeft, lstRight;
+  QStringList* lstActive;
+  KURL name1, name2;
 
-
-  //((ListPanel*)MAIN_VIEW->left->getSelectedNames(&lst1);
-  MAIN_VIEW->left->getSelectedNames(&lst1);
-  MAIN_VIEW->right->getSelectedNames(&lst2);
+  MAIN_VIEW->left->getSelectedNames( &lstLeft );
+  MAIN_VIEW->right->getSelectedNames( &lstRight );
+  lstActive = ( ACTIVE_PANEL->isLeft() ? &lstLeft : &lstRight );
   
-  // first, see if we've got exactly 1 selected file, if not, try the current one
-  if (lst1.count() == 1) name1 = lst1[0];
-  if (lst2.count() == 1) name2 = lst2[0];
-
-  if ( name1.isEmpty() || name2.isEmpty() ) {
-    // if we got here, then one of the panel can't be sure what file to diff
-		KMessageBox::detailedError(0,i18n("Don't know which files to compare."),
-      i18n("To compare 2 files by content, select (mark) a file in the left panel, and select another one in the right panel."));
+  if ( lstLeft.count() == 1 && lstRight.count() == 1 ) {
+    // first, see if we've got exactly 1 selected file in each panel:
+    name1 = MAIN_VIEW->left->func->files()->vfs_getFile( lstLeft[0] );
+    name2 = MAIN_VIEW->right->func->files()->vfs_getFile( lstRight[0] );
+  }
+  else if ( lstActive->count() == 2 ) {
+    // next try: are in the current panel exacty 2 files selected?
+    name1 = ACTIVE_PANEL->func->files()->vfs_getFile( (*lstActive)[0] );
+    name2 = ACTIVE_PANEL->func->files()->vfs_getFile( (*lstActive)[1] );
+  }
+  else if ( ACTIVE_PANEL->otherPanel->func->files()->vfs_search( ACTIVE_PANEL->view->getCurrentItem() ) ) {
+    // next try: is in the other panel a file with the same name?
+    name1 = ACTIVE_PANEL->func->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem() );
+    name2 = ACTIVE_PANEL->otherPanel->func->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem() );
+  }
+  else  {
+    // if we got here, then we can't be sure what file to diff
+    KMessageBox::detailedError(0,i18n("Don't know which files to compare."),
+      i18n("To compare 2 files by content, you can either\n"
+		"- select (mark) one file in the left panel, and one in the right panel\n"
+		"- select exactly two files in the active panel\n"
+		"- make sure in the other panel is a file with the same name then the current in the active panel"));
     return;
   }
 
   // else implied: all ok, let's call kdiff
   // but if one of the files isn't local, download them first
-  compareContent( MAIN_VIEW->left->func->files()->vfs_getFile(name1), 
-                  MAIN_VIEW->right->func->files()->vfs_getFile(name2) );
+  compareContent( name1, name2 );
 }
 
 class KrProcess: public KProcess
