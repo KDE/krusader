@@ -46,8 +46,8 @@ private:
   KURL            readURL;
   KURL            writeURL;
 
-  QString         fileName;
-  QString         destinationDir;
+  KURL            baseURL;
+  KURL            destinationURL;
   CRC32          *crcContext;
   QByteArray      transferArray;
 
@@ -68,10 +68,9 @@ private:
   KIO::TransferJob *combineWriteJob;
 
   bool            unixNaming;
-  QString         readFileName;
   
 public:
-  Combiner( QWidget* parent,  QString fileNameIn, QString destinationDirIn, bool unixNamingIn=false );
+  Combiner( QWidget* parent,  KURL baseURLIn, KURL destinationURLIn, bool unixNamingIn=false );
   ~Combiner();
 
   void combine();

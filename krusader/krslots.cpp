@@ -648,7 +648,7 @@ void KRslots::slotSplit()
 
 void KRslots::slotCombine(){
   QStringList   list;
-  QString       fileName;
+  KURL          baseURL;
   bool          unixStyle = false;
   bool          windowsStyle = false;
   QString       commonName = QString::null;
@@ -664,8 +664,8 @@ void KRslots::slotCombine(){
   /* checking splitter names */
   for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
   {
-    QString name = ACTIVE_FUNC->files()->vfs_getFile(*it).prettyURL(-1,KURL::StripFileProtocol);
-    if( name == QString::null )
+    KURL url = ACTIVE_FUNC->files()->vfs_getFile(*it);
+    if( url.isEmpty() )
       return;
 
     if ( ACTIVE_FUNC->files()->vfs_search( *it )->vfile_isDir() ) {
@@ -675,9 +675,12 @@ void KRslots::slotCombine(){
 
     if( !unixStyle )
     {
+      QString name = url.fileName();
       int extPos = name.findRev( '.' );
-
       QString ext = name.mid( extPos + 1 );
+      name.truncate( extPos );
+      url.setFileName( name );
+      
       bool isExtInt;
       ext.toInt( &isExtInt, 10 );
 
@@ -685,21 +688,20 @@ void KRslots::slotCombine(){
       {
         if( windowsStyle )
         {
-          KMessageBox::error(0,i18n("Not a split file %1!").arg( name ));
+          KMessageBox::error(0,i18n("Not a split file %1!").arg( url.prettyURL(0, KURL::StripFileProtocol ) ));
           return;
         }
         unixStyle = true;
       }
       else
       {
-        name.truncate( extPos );
 
         if( ext != "crc" )
           windowsStyle = true;
 
-        if( fileName.isEmpty() )
-           fileName = name;
-        else if( fileName != name )
+        if( baseURL.isEmpty() )
+           baseURL = url;
+        else if( baseURL != url )
         {
           KMessageBox::error(0,i18n("Select only one split file!"));
           return;
@@ -735,7 +737,8 @@ void KRslots::slotCombine(){
               else
               {
                 commonName = shorter;
-                fileName = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1,KURL::StripFileProtocol) + testFile;
+                baseURL = ACTIVE_FUNC->files()->vfs_getOrigin();
+                baseURL.addPath( testFile );
               }
             }
 
@@ -748,29 +751,20 @@ void KRslots::slotCombine(){
 
       if( error )
       {
-        KMessageBox::error(0,i18n("Not a splitted file %1!").arg( name ));
+        KMessageBox::error(0,i18n("Not a splitted file %1!").arg( url.prettyURL(0, KURL::StripFileProtocol ) ));
         return;
       }
     }
   }
 
    // ask the user for the copy dest
-	KURL dest = KChooseDir::getDir(i18n("Combining %1.* to directory:" ).arg( fileName ),
-		 ACTIVE_PANEL->otherPanel->virtualPath(), ACTIVE_PANEL->virtualPath());
-	if ( dest.isEmpty() ) return ; // the user canceled
+  KURL dest = KChooseDir::getDir(i18n("Combining %1.* to directory:" ).arg( baseURL.prettyURL( 0, KURL::StripFileProtocol ) ),
+                                 ACTIVE_PANEL->otherPanel->virtualPath(), ACTIVE_PANEL->virtualPath());
+  if ( dest.isEmpty() ) return ; // the user canceled
 
-#if 0	
-  REVIEW
-    
-  KChooseDir *chooser = new KChooseDir( 0, i18n( "Combining %1.* to directory:" ).arg( fileName ),
-                                        ACTIVE_PANEL->otherPanel->virtualPath().prettyURL() );
-  QString dest = chooser->dest;
-  if ( dest == QString::null )
-    return ; // the usr canceled
-#endif
   bool combineToOtherPanel = ( dest == ACTIVE_PANEL->otherPanel->virtualPath() );
 
-  Combiner combine( MAIN_VIEW, fileName, dest.prettyURL(), unixStyle );
+  Combiner combine( MAIN_VIEW, baseURL, dest, unixStyle );
   combine.combine();
 
   if ( combineToOtherPanel )

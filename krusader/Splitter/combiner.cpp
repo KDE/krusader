@@ -36,17 +36,11 @@
 #include <kio/job.h>
 #include <qfileinfo.h>
 
-Combiner::Combiner( QWidget* parent,  QString fileNameIn, QString destinationDirIn, bool unixNamingIn ) :
-  QProgressDialog( parent, "Krusader::Combiner", true, 0 ), hasValidSplitFile( false ),
-  fileCounter ( 0 ), permissions( -1 ), receivedSize( 0 ),
-  combineReadJob( 0 ), combineWriteJob( 0 ), unixNaming( unixNamingIn ), readFileName( QString::null )
+Combiner::Combiner( QWidget* parent,  KURL baseURLIn, KURL destinationURLIn, bool unixNamingIn ) :
+  QProgressDialog( parent, "Krusader::Combiner", true, 0 ), baseURL( baseURLIn ), destinationURL( destinationURLIn ), 
+  hasValidSplitFile( false ), fileCounter ( 0 ), permissions( -1 ), receivedSize( 0 ),
+  combineReadJob( 0 ), combineWriteJob( 0 ), unixNaming( unixNamingIn )
 {
-  fileName       = fileNameIn;
-
-  destinationDir = destinationDirIn;
-  if( !destinationDir.endsWith("/") )
-    destinationDir += "/";
-
   crcContext = new CRC32();
 
   splitFile = "";
@@ -65,10 +59,11 @@ Combiner::~Combiner()
 void Combiner::combine()
 {
   setCaption( i18n("Krusader::Combining...") );
-  setLabelText( i18n("Combining the file %1...").arg( fileName ));
+  setLabelText( i18n("Combining the file %1...").arg( baseURL.prettyURL(0, KURL::StripFileProtocol ) ));
 
     /* check whether the .crc file exists */
-  splURL = vfs::fromPathOrURL( fileName + ".crc" );
+  splURL = baseURL;
+  splURL.setFileName( baseURL.fileName() + ".crc" );
   KFileItem file(KFileItem::Unknown, KFileItem::Unknown, splURL );
   file.refresh();
 
@@ -150,33 +145,35 @@ void Combiner::openNextFile()
 {  
   if( unixNaming )
   {
-    if( readFileName.isNull() )
-      readFileName = fileName;
+    if( readURL.isEmpty() )
+      readURL = baseURL;
     else
     {
-      int pos = readFileName.length()-1;
+      QString name = readURL.fileName();
+      int pos = name.length()-1;
       QChar ch;
       
       do
       {
-        ch = readFileName.at( pos ).latin1() + 1;
+        ch = name.at( pos ).latin1() + 1;
         if( ch == QChar( 'Z' + 1 ) )
           ch = 'A';
         if( ch == QChar( 'z' + 1 ) )
           ch = 'a';
-        readFileName[ pos ] = ch;
+        name[ pos ] = ch;
         pos--;
       } while( pos >=0 && ch.upper() == QChar( 'A' ) );
+      
+      readURL.setFileName( name );
     }    
   }
   else
   {
     QString index( "%1" );      /* determining the filename */
     index = index.arg(++fileCounter).rightJustify( 3, '0' );
-    readFileName = fileName + "." + index;
+    readURL = baseURL;
+    readURL.setFileName( baseURL.fileName() + "." + index );
   }
-
-  readURL = vfs::fromPathOrURL( readFileName );
 
       /* creating a write job */
   combineReadJob = KIO::get( readURL, false, false );
@@ -203,11 +200,12 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
 
   if( combineWriteJob == 0 )
   {
-    writeURL = vfs::fromPathOrURL(destinationDir + vfs::fromPathOrURL( fileName ).fileName() );
+    writeURL = destinationURL;
+    writeURL.addPath( baseURL.fileName() );
     if( hasValidSplitFile )
       writeURL.setFileName( expectedFileName );
     else if( unixNaming )
-      writeURL.setFileName( vfs::fromPathOrURL( fileName ).fileName() + ".out" );
+      writeURL.setFileName( baseURL.fileName() + ".out" );
     
     combineWriteJob = KIO::put( writeURL, permissions, true, false, false );    
 
@@ -237,7 +235,7 @@ void Combiner::combineReceiveFinished(KIO::Job *job)
     {
       combineAbortJobs();
       KMessageBox::questionYesNo(0, i18n("Can't open the first split file of %1!")
-                                 .arg( fileName ) );
+                                 .arg( baseURL.prettyURL( 0, KURL::StripFileProtocol ) ) );
       emit reject();
       return;
     }    
