@@ -218,11 +218,10 @@ public:
    bool valid();
 private:
    KLineEdit * _lineEdit;
-   QToolButton* _dirButton;
-   KrBookmarkButton* _bookmarkButton;
+   QToolButton* _dirButton, *_placeholderButton;
 private slots:
    void setDir();
-   void setBookmark( const KURL & );
+   void addPlaceholder();
 };
 
 /**

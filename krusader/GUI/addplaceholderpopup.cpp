@@ -150,7 +150,7 @@ ParameterDialog::ParameterDialog( exp_placeholder* currentPlaceholder, QWidget *
          _parameter.append( new ParameterChoose( currentPlaceholder->parameter( i ), plainPage() ) );
       else if ( currentPlaceholder->parameter( i )->preset() == "__select" )
          _parameter.append( new ParameterSelect( currentPlaceholder->parameter( i ), plainPage() ) );
-      else if ( currentPlaceholder->parameter( i )->preset() == "__bookmark" )
+      else if ( currentPlaceholder->parameter( i )->preset() == "__goto" )
          _parameter.append( new ParameterGoto( currentPlaceholder->parameter( i ), plainPage() ) );
       else if ( currentPlaceholder->parameter( i )->preset() == "__syncprofile" )
          _parameter.append( new ParameterSyncprofile( currentPlaceholder->parameter( i ), plainPage() ) );
@@ -270,7 +270,7 @@ bool ParameterPlaceholder::valid() {
 } 
 void ParameterPlaceholder::addPlaceholder() {
    AddPlaceholderPopup* popup = new AddPlaceholderPopup( this );
-   QString exp = popup->getPlaceholder( mapToGlobal( QPoint( _button->pos().x() + _button->width() * 3 / 2, _button->pos().y() + _button->height() / 2 ) ) );
+   QString exp = popup->getPlaceholder( mapToGlobal( QPoint( _button->pos().x() + _button->width() + 6, _button->pos().y() + _button->height() / 2 ) ) );
    _lineEdit->insert( exp );
    delete popup;
 }
@@ -434,8 +434,9 @@ ParameterGoto::ParameterGoto( exp_parameter* parameter, QWidget* parent ) : Para
    KIconLoader *iconLoader = new KIconLoader();
   _dirButton->setPixmap( iconLoader->loadIcon( "fileopen", KIcon::Toolbar, 16 ) );
    connect( _dirButton, SIGNAL(clicked()), this, SLOT(setDir()) );
-   _bookmarkButton = new KrBookmarkButton( hbox );
-   connect( _bookmarkButton, SIGNAL(openUrl(const KURL &)), this, SLOT(setBookmark(const KURL &)) );
+   _placeholderButton = new QToolButton( hbox);
+   _placeholderButton->setText( i18n("add") );
+   connect( _placeholderButton, SIGNAL(clicked()), this, SLOT(addPlaceholder()) );
 }
 
 QString ParameterGoto::text() {
@@ -457,8 +458,11 @@ void ParameterGoto::setDir() {
    QString folder = KFileDialog::getExistingDirectory(QString::null, this);
    _lineEdit->setText( folder );
 }
-void ParameterGoto::setBookmark( const KURL& url ) {
-   _lineEdit->setText( url.url() );
+void ParameterGoto::addPlaceholder() {
+   AddPlaceholderPopup* popup = new AddPlaceholderPopup( this );
+   QString exp = popup->getPlaceholder( mapToGlobal( QPoint( _placeholderButton->pos().x() + _placeholderButton->width() + 6, _placeholderButton->pos().y() + _placeholderButton->height() / 2 ) ) );
+   _lineEdit->insert( exp );
+   delete popup;
 }
 
 ///////////// ParameterSyncprofile
