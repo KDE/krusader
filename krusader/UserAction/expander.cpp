@@ -504,7 +504,7 @@ QString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& paramet
       return QString::null;
    }
    
-   KrViewProperties::SortSpec mode = panel->view->sortMode();
+   int mode = (int) panel->view->sortMode();
    
    /* from Panel/krview.h:
       enum SortSpec { Name=0x1, 
@@ -527,57 +527,57 @@ QString exp_ColSort::expFunc( const ListPanel* panel, const QStringList& paramet
       
    if ( parameter.count() <= 1 || ( parameter[1].lower() != "asc" && parameter[1].lower() != "desc" ) ) {  //default == toggle
       if ( mode & KrViewProperties::Descending )
-         (int)mode &= ~KrViewProperties::Descending; // == asc
+         mode &= ~KrViewProperties::Descending; // == asc
       else
-         (int)mode |= KrViewProperties::Descending; // == desc
+         mode |= KrViewProperties::Descending; // == desc
    } else
    if ( parameter[1].lower() == "asc" ) {
-      (int)mode &= ~KrViewProperties::Descending;
+      mode &= ~KrViewProperties::Descending;
    }
    else { // == desc
-      (int)mode |= KrViewProperties::Descending;
+      mode |= KrViewProperties::Descending;
    }
    
    MODE_OUT
    
    // clear all column-infromation:
-   (int)mode &= ~( KrViewProperties::Name | KrViewProperties::Ext | KrViewProperties::Size | KrViewProperties::Type | KrViewProperties::Modified | KrViewProperties::Permissions | KrViewProperties::KrPermissions | KrViewProperties::Owner | KrViewProperties::Group );
+   mode &= ~( KrViewProperties::Name | KrViewProperties::Ext | KrViewProperties::Size | KrViewProperties::Type | KrViewProperties::Modified | KrViewProperties::Permissions | KrViewProperties::KrPermissions | KrViewProperties::Owner | KrViewProperties::Group );
    
    MODE_OUT
    
    if ( parameter[0].lower() == "name" ) {
-      (int)mode |= KrViewProperties::Name;
+      mode |= KrViewProperties::Name;
    } else
    if ( parameter[0].lower() == "ext" ) {
-      (int)mode |= KrViewProperties::Ext;
+      mode |= KrViewProperties::Ext;
    } else
    if ( parameter[0].lower() == "type" ) {
-      (int)mode |= KrViewProperties::Type;
+      mode |= KrViewProperties::Type;
    } else
    if ( parameter[0].lower() == "size" ) {
-      (int)mode |= KrViewProperties::Size;
+      mode |= KrViewProperties::Size;
    } else
    if ( parameter[0].lower() == "modified" ) {
-      (int)mode |= KrViewProperties::Modified;
+      mode |= KrViewProperties::Modified;
    } else
    if ( parameter[0].lower() == "perms" ) {
-      (int)mode |= KrViewProperties::Permissions;
+      mode |= KrViewProperties::Permissions;
    } else
    if ( parameter[0].lower() == "rwx" ) {
-      (int)mode |= KrViewProperties::KrPermissions;
+      mode |= KrViewProperties::KrPermissions;
    } else
    if ( parameter[0].lower() == "owner" ) {
-      (int)mode |= KrViewProperties::Owner;
+      mode |= KrViewProperties::Owner;
    } else
    if ( parameter[0].lower() == "group" ) {
-      (int)mode |= KrViewProperties::Group;
+      mode |= KrViewProperties::Group;
    } else {
       krOut << "Expander: unknown column specified for %_ColSort(column)%; ignoring..." << endl;
       return QString::null;
    }
    
    MODE_OUT
-   panel->view->setSortMode( mode );
+   panel->view->setSortMode( (KrViewProperties::SortSpec)mode );
    krOut << "end: exp_ColSort::expFunc" << endl;
    return QString::null;  // this doesn't return everything, that's normal!
 }
