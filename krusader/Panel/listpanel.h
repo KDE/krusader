@@ -79,6 +79,7 @@ public:
   inline QString getPath(){return virtualPath;}
   QString getCurrentName();
   void getSelectedNames(QStringList* fileNames) { view->getSelectedItems(fileNames); }
+  void setPanelToolbar();
 
 public slots:
   void gotStats(QString); // displays filesystem status
@@ -91,8 +92,10 @@ public slots:
 	void slotStartUpdate();                   // internal
 	void slotGetStats(QString path);          // get the disk-free stats
 	void setFilter(KrView::FilterSpec f);
+  void slotFocusAndCDRoot();
+  void slotFocusAndCDHome();
   void slotFocusAndCDup();
-  void slotFocusAndRoot();
+  void slotFocusAndCDOther();
 
 ///////////////////////// service functions - called internally ////////////////////////
   inline void setOther(ListPanel *panel) { otherPanel=panel; }
@@ -130,7 +133,10 @@ public:
 	KURLRequester   *origin;
 	QGridLayout   *layout;
 	  QToolButton *cdRootButton;
+	  QToolButton *cdHomeButton;
 	  QToolButton *cdUpButton;
+	  QToolButton *cdOtherButton;
+
    BookmarksButton *bookmarksButton;
    DirHistoryQueue* dirHistoryQueue;
    DirHistoryButton* historyButton;

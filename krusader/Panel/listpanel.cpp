@@ -161,17 +161,27 @@ ListPanel::ListPanel( QWidget *parent, bool left, const char *name ) :
   connect( origin, SIGNAL( returnPressed( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
   connect( origin, SIGNAL( urlSelected( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
 
-  if (krConfig->readBoolEntry("Panel level tool bar",_PanelToolBar))
-  {
-    cdUpButton = new QToolButton( hbox, "cdUpB" );
-    cdRootButton = new QToolButton( hbox, "cdRootB" );
-    cdUpButton->setFixedSize( 21, origin->button()->height() );
-    cdRootButton->setFixedSize( 20, origin->button()->height() );
-    cdUpButton->setText( i18n( ".." ) );
-    cdRootButton->setText( i18n( "/" ) );
-    connect( cdUpButton,   SIGNAL( clicked() ), this, SLOT( slotFocusAndCDup() ) );
-    connect( cdRootButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndRoot() ) );
-  }
+  cdOtherButton = new QToolButton( hbox, "cdOtherButton" );
+  cdOtherButton->setFixedSize( 20, origin->button()->height() );
+  cdOtherButton->setText( i18n( "=" ) );
+  connect( cdOtherButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDOther() ) );
+
+  cdUpButton = new QToolButton( hbox, "cdUpButton" );
+  cdUpButton->setFixedSize( 20, origin->button()->height() );
+  cdUpButton->setText( i18n( ".." ) );
+  connect( cdUpButton,   SIGNAL( clicked() ), this, SLOT( slotFocusAndCDup() ) );
+
+  cdHomeButton = new QToolButton( hbox, "cdHomeButton" );
+  cdHomeButton->setFixedSize( 20, origin->button()->height() );
+  cdHomeButton->setText( i18n( "~" ) );
+  connect( cdHomeButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDHome() ) );
+
+  cdRootButton = new QToolButton( hbox, "cdRootButton" );
+  cdRootButton->setFixedSize( 20, origin->button()->height() );
+  cdRootButton->setText( i18n( "/" ) );
+  connect( cdRootButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDRoot() ) );
+
+  setPanelToolbar();
 
   view = new KrDetailedView( this, _left, krConfig );
   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( executed( QString& ) ), func, SLOT( execute( QString& ) ) );
@@ -209,12 +219,59 @@ ListPanel::~ListPanel() {
   delete quickSearch;
   delete origin;
   delete cdRootButton;
+  delete cdHomeButton;
   delete cdUpButton;
+  delete cdOtherButton;
   delete layout;
+}
+
+void ListPanel::setPanelToolbar()
+{
+  krConfig->setGroup( "Look&Feel" );
+
+  bool panelToolBarVisible = krConfig->readBoolEntry("Panel Toolbar visible", _PanelToolBar);
+
+  if ( panelToolBarVisible && (krConfig->readBoolEntry( "Root Button Visible", _cdRoot ) ) )
+    cdRootButton->show();
+  else
+    cdRootButton->hide();
+
+  if ( panelToolBarVisible && ( krConfig->readBoolEntry( "Home Button Visible", _cdHome ) ) )
+    cdHomeButton->show();
+  else
+    cdHomeButton->hide();
+
+  if ( panelToolBarVisible && ( krConfig->readBoolEntry( "Up Button Visible", _cdUp ) ) )
+    cdUpButton->show();
+  else
+    cdUpButton->hide();
+
+  if ( panelToolBarVisible && ( krConfig->readBoolEntry( "Equal Button Visible", _cdOther ) ) )
+    cdOtherButton->show();
+  else
+    cdOtherButton->hide();
+
+  if ( !panelToolBarVisible || ( krConfig->readBoolEntry( "Open Button Visible", _Open ) ) )
+    origin->button()->show();
+  else
+    origin->button()->hide();
 }
 
 void ListPanel::slotUpdateTotals() {
   totals->setText( view->statistics() );
+}
+
+void ListPanel::slotFocusAndCDOther()
+{
+  slotFocusOnMe();
+  func->openUrl( otherPanel->func->files()->vfs_getOrigin() );
+
+}
+
+void ListPanel::slotFocusAndCDHome()
+{
+  slotFocusOnMe();
+  func->openUrl( QString( "~" ), QString::null );
 }
 
 void ListPanel::slotFocusAndCDup()
@@ -223,10 +280,10 @@ void ListPanel::slotFocusAndCDup()
   func->dirUp();
 }
 
-void ListPanel::slotFocusAndRoot()
+void ListPanel::slotFocusAndCDRoot()
 {
   slotFocusOnMe();
-  func->root();
+  func->openUrl( QString( "/" ), QString::null );
 }
 
 void ListPanel::select( bool select, bool all ) {

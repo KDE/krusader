@@ -47,6 +47,8 @@ public:
 
 protected:
   KonfiguratorCheckBoxGroup *cbs;
+  KonfiguratorCheckBoxGroup *pnlcbs;
+  KonfiguratorCheckBoxGroup *panelToolbarActive;
   
   QWidget     *tab_panel;
   
@@ -59,6 +61,7 @@ protected slots:
   void slotReload( KonfiguratorEditToolbarWidget * oldEditToolbar );
   void slotReload( KonfiguratorKeyChooser * oldChooser );
   void slotDisable();
+  void slotEnablePanelToolbar();
 };
 
 class KonfiguratorEditToolbarWidget : public KonfiguratorExtension

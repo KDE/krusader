@@ -65,10 +65,9 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Single Click Selects", false,              i18n( "Single click executes" ),   false,  ""},
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  ""},
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""},
-     {"Look&Feel","Panel level tool bar", _PanelToolBar,   i18n( "Show panel level tool bar" ), true, ""},
     };
 
-  cbs = createCheckBoxGroup( 2, 0, settings, 9, lookFeelGrp );
+  cbs = createCheckBoxGroup( 2, 0, settings, 8, lookFeelGrp );
   lookFeelGrid->addWidget( cbs, 0, 0 );
   connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
@@ -170,6 +169,46 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   keyBindingsLayout->addWidget(keyBindings->keyChooserWidget(),0,0);
   registerObject( keyBindings );
 
+  //  -------------------------- Panel Toolbar TAB ----------------------------------
+  QWidget     *tab_4 = new QWidget( tabWidget, "tab_4" );
+  tabWidget->insertTab( tab_4, i18n( "Panel Toolbar" ) );
+
+  QBoxLayout * panelToolbarVLayout = new QVBoxLayout( tab_4 );
+  panelToolbarVLayout->setSpacing( 6 );
+  panelToolbarVLayout->setMargin( 11 );
+
+  KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] = 
+  //   cfg_class    cfg_name                default        text                             restart tooltip
+    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Panel Toolbar visible" ), false,  ""}
+  };
+
+  panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive");
+  connect( panelToolbarActive->find( "Panel Toolbar visible" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotEnablePanelToolbar() ) );
+    
+  QGroupBox * panelToolbarGrp = createFrame("Panel Toolbar buttons", tab_4, "panelToolbarGrp");
+  QGridLayout * panelToolbarGrid = createGridLayout( panelToolbarGrp->layout() );
+
+  KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = 
+    {
+  //   cfg_class    cfg_name                default             text                       restart tooltip
+     {"Look&Feel",  "Open Button Visible",  _Open,      i18n( "Open button visible" ),     true ,  ""},
+     {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n( "Equal button (=) visible" ),true ,  ""},
+     {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n( "Up button (..) visible" ),  true ,  ""},
+     {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n( "Home button (~) visible" ), true ,  ""},
+     {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n( "Root button (/) visible" ), true ,  ""},
+    };
+  
+  
+  pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes, 5,
+                                       panelToolbarGrp, "panelToolbarChecks");
+  
+  panelToolbarVLayout->addWidget( panelToolbarActive, 0, 0 );
+  panelToolbarGrid->addWidget( pnlcbs, 0, 0 );
+  panelToolbarVLayout->addWidget( panelToolbarGrp,    1, 0 );
+
+  // Enable panel toolbar checkboxes
+  slotEnablePanelToolbar();
+
   slotDisable();
 
   kgLookAndFeelLayout->addWidget( tabWidget, 0, 0 );
@@ -203,6 +242,16 @@ void KgLookFeel::slotDisable()
 {
   bool isNewStyleQuickSearch = cbs->find( "New Style Quicksearch" )->isChecked();
   cbs->find( "Case Sensitive Quicksearch" )->setEnabled( isNewStyleQuickSearch );
+}
+
+void KgLookFeel::slotEnablePanelToolbar()
+{
+  bool enableTB = panelToolbarActive->find("Panel Toolbar visible")->isChecked();
+  pnlcbs->find( "Root Button Visible"     )->setEnabled(enableTB);
+  pnlcbs->find( "Home Button Visible"     )->setEnabled(enableTB);
+  pnlcbs->find( "Up Button Visible"       )->setEnabled(enableTB);
+  pnlcbs->find( "Equal Button Visible"    )->setEnabled(enableTB);
+  pnlcbs->find( "Open Button Visible"     )->setEnabled(enableTB);  
 }
 
 #include "kglookfeel.moc"

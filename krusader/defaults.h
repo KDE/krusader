@@ -74,14 +74,26 @@
 #define _SortByExt      false
 // Case Sensative Sort /
 #define _CaseSensativeSort false
-// Panel Level ToolBar /
-#define _PanelToolBar   true
 // Html Min Font Size //
 #define _HtmlMinFontSize 12
 // Filelist Icon Size //
 #define _FilelistIconSize QString("22")
 // Mouse Selection /////
 #define _MouseSelection 0 // 0 - normal (shift+click, ctrl+click), 1 - left click, 2 - right click
+
+// Panel Toolbar Checkboxes
+// Panel Toolbar Visible checkbox turned off
+#define _PanelToolBar       true
+// cd / is turned on
+#define _cdRoot             true
+// cd ~ is turned on
+#define _cdHome             false
+// cd .. is turned on
+#define _cdUp               true
+// cd other panel is turned on
+#define _cdOther            false
+// Open directory is turned on
+#define _Open               true
 
 /////////////////////// [General]
 // Mimetype Magic /////
