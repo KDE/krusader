@@ -24,6 +24,7 @@ public:
 	// ----- special bookmarks
 	static KrBookmark* devices(KActionCollection *collection);
 	static KrBookmark* virt(KActionCollection *collection);
+	static KrBookmark* lan(KActionCollection *collection);
 	static KrBookmark* separator();
 
 signals:

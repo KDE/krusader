@@ -243,10 +243,13 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			KrBookmark *bm = KrBookmark::devices(_collection);
 			bm->plug(menu);
 			CONNECT_BM(bm);
+			bm = KrBookmark::lan(_collection);
+			bm->plug(menu);
+			CONNECT_BM(bm);
 			bm = KrBookmark::virt(_collection);
 			bm->plug(menu);
 			CONNECT_BM(bm);
-			floc = bloc = 2; // 2 bookmarks
+			floc = bloc = 3; // 3 bookmarks
 		} 
 		// add the popular links submenu
 		KPopupMenu *newMenu = new KPopupMenu(menu);

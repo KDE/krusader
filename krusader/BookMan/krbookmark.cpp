@@ -7,8 +7,14 @@
 #include <kdebug.h>
 
 #define BM_NAME(X)		(QString("Bookmark:")+X)
+
+#if KDE_IS_VERSION(3,4,0)
+static const char* NAME_DEVICES = I18N_NOOP("Media");
+#else
 static const char* NAME_DEVICES = I18N_NOOP("Devices");
+#endif
 static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
+static const char* NAME_LAN = I18N_NOOP("Local Network");
 
 KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon):
 	KAction(name, 0, 0, 0, parent, BM_NAME(name).latin1()), 
@@ -43,7 +49,11 @@ KrBookmark* KrBookmark::getExistingBookmark(QString name, KActionCollection *col
 KrBookmark* KrBookmark::devices(KActionCollection *collection) {
 	KrBookmark *bm = getExistingBookmark(NAME_DEVICES, collection);	
 	if (!bm) {
+#if KDE_IS_VERSION(3,4,0)
+		bm = new KrBookmark(NAME_DEVICES, "media:/", collection);
+#else
 		bm = new KrBookmark(NAME_DEVICES, "devices:/", collection);
+#endif
 		bm->setIconSet(krLoader->loadIcon("blockdevice", KIcon::Small));
 	}
 	return bm;
@@ -54,6 +64,15 @@ KrBookmark* KrBookmark::virt(KActionCollection *collection) {
 	if (!bm) {
 		bm = new KrBookmark(NAME_VIRTUAL, "virt:/", collection);
 		bm->setIconSet(krLoader->loadIcon("pipe", KIcon::Small));
+	}
+	return bm;
+}
+
+KrBookmark* KrBookmark::lan(KActionCollection *collection) {
+	KrBookmark *bm = getExistingBookmark(NAME_LAN, collection);	
+	if (!bm) {
+		bm = new KrBookmark(NAME_LAN, "lan:/", collection);
+		bm->setIconSet(krLoader->loadIcon("network", KIcon::Small));
 	}
 	return bm;
 }
