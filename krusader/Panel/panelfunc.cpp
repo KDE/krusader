@@ -697,7 +697,7 @@ void ListPanelFunc::execute( QString& name ) {
     QString path = files()->vfs_getFile(vf->vfile_getName());
 		if( type == "-zip" || type.contains("rar") ){
 			path = "krarc:"+path;
-		} else if ( type == "-tbz" || type == "-tgz" || type == "tarz" ){
+		} else if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
     	path = "tar:"+path;
 		} else {
     	path = path+"\\";
