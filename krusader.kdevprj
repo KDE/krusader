@@ -20,10 +20,10 @@ type=DATA
 addcxxflags=-DKDE_NO_COMPAT -DQT_NO_ASCII_CAST
 bin_program=krusader
 cflags=-DKDE_NO_COMPAT\s
-cppflags=-DKDE_NO_COMPAT -D__USE_FILE_OFFSET64 -D_LFS64_LARGEFILE
+cppflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cxxflags=\s-O0 -Wall
 ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                               \s
+ldflags=\s                                 \s
 
 [General]
 AMChanged=false
@@ -39,7 +39,7 @@ project_name=Krusader
 project_type=mini_kde2
 short_info=
 sub_dir=krusader/
-version=1.29-beta
+version=1.29-beta1
 version_control=None
 workspace=1
 
