@@ -153,7 +153,9 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
 	}
 	
 	// ok: got name and url, let's add a bookmark
-	KrBookmark *bm = new KrBookmark(name, vfs::fromPathOrURL( url ), _collection, icon);
+	KrBookmark *bm = KrBookmark::getExistingBookmark(name, _collection);
+	if (!bm) 
+		bm = new KrBookmark(name, vfs::fromPathOrURL( url ), _collection, icon);
 	parent->children().append(bm);
 
 	return true;
@@ -253,7 +255,12 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 		KURL::List list = krApp->popularUrls->getMostPopularUrls(MAX);
 		KURL::List::Iterator it;
 		for (it = list.begin(); it != list.end(); ++it) {
-			KrBookmark *bm = new KrBookmark((*it).prettyURL(), *it, _collection);
+			QString name;
+			if ((*it).isLocalFile()) name = (*it).path();
+			else name = (*it).prettyURL();
+			KrBookmark *bm = KrBookmark::getExistingBookmark(name, _collection);
+			if (!bm)
+				bm = new KrBookmark(name, *it, _collection);
 			bm->plug(newMenu);
 			CONNECT_BM(bm);
 		}

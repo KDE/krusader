@@ -6,8 +6,12 @@
 #include <klocale.h>
 #include <kdebug.h>
 
+#define BM_NAME(X)		(QString("Bookmark:")+X)
+#define NAME_DEVICES		I18N_NOOP("Devices")
+#define NAME_VIRTUAL		I18N_NOOP("Virtual Filesystem")
+
 KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon):
-	KAction(name, 0, 0, 0, parent, QString("Bookmark:"+name).latin1()), 
+	KAction(name, 0, 0, 0, parent, BM_NAME(name).latin1()), 
 	_url(url), _folder(false), _separator(false) {
 	connect(this, SIGNAL(activated()), this, SLOT(activatedProxy()));
 	// do we have an icon?
@@ -32,16 +36,25 @@ KrBookmark::KrBookmark(QString name):
 	setIcon("folder");
 }
 
+KrBookmark* KrBookmark::getExistingBookmark(QString name, KActionCollection *collection) {
+	return static_cast<KrBookmark*>(collection->action(BM_NAME(name).latin1()));
+}
 
 KrBookmark* KrBookmark::devices(KActionCollection *collection) {
-	KrBookmark *bm = new KrBookmark(I18N_NOOP("Devices"), "devices:/", collection);
-	bm->setIconSet(krLoader->loadIcon("blockdevice", KIcon::Small));
+	KrBookmark *bm = getExistingBookmark(NAME_DEVICES, collection);	
+	if (!bm) {
+		bm = new KrBookmark(NAME_DEVICES, "devices:/", collection);
+		bm->setIconSet(krLoader->loadIcon("blockdevice", KIcon::Small));
+	}
 	return bm;
 }
 
 KrBookmark* KrBookmark::virt(KActionCollection *collection) {
-	KrBookmark *bm = new KrBookmark(I18N_NOOP("Virtual Filesystem"), "virt:/", collection);
-	bm->setIconSet(krLoader->loadIcon("pipe", KIcon::Small));
+	KrBookmark *bm = getExistingBookmark(NAME_VIRTUAL, collection);	
+	if (!bm) {
+		bm = new KrBookmark(NAME_VIRTUAL, "virt:/", collection);
+		bm->setIconSet(krLoader->loadIcon("pipe", KIcon::Small));
+	}
 	return bm;
 }
 
