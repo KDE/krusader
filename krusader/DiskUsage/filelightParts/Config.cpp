@@ -4,12 +4,12 @@
 #include <kglobal.h>
 
 
-bool Config::varyLabelFontSizes;
-bool Config::showSmallFiles;
-uint Config::contrast;
-uint Config::antiAliasFactor;
-uint Config::minFontPitch;
-uint Config::defaultRingDepth;
+bool Config::varyLabelFontSizes = true;
+bool Config::showSmallFiles = false;
+uint Config::contrast = 50;
+uint Config::antiAliasFactor = 2;
+uint Config::minFontPitch = 10;
+uint Config::defaultRingDepth = 4;
 Filelight::MapScheme Config::scheme;
 
 

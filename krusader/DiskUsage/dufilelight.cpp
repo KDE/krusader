@@ -81,16 +81,17 @@ void DUFilelight::slotActivated( const KURL& url )
 
 void DUFilelight::mousePressEvent( QMouseEvent *event )
 {
-   if( m_focus && !m_focus->isFake() )
+   if( event->button() == Qt::RightButton )
    {
-      KURL url   = RadialMap::Widget::url( m_focus->file() );
-
-      if( event->button() == Qt::RightButton )
-      {
-         if( m_focus->file() != currentDir )
-           diskUsage->rightClickMenu( (File *)m_focus->file() );
-         return;
-      }
+     File * file = 0;
+     
+     const RadialMap::Segment * focus = focusSegment();
+     
+     if( focus && !focus->isFake() && focus->file() != currentDir )
+       file = (File *)focus->file();
+         
+     diskUsage->rightClickMenu( file );
+     return;     
    }
    RadialMap::Widget::mousePressEvent( event );
 }
@@ -105,7 +106,7 @@ void DUFilelight::slotRefresh()
   }
 }
 
-void DUFilelight::slotChanged( File * item )
+void DUFilelight::slotChanged( File * )
 {
    if( !refreshNeeded )
    {

@@ -5,6 +5,7 @@
 #define WIDGET_H
 
 #include <kurl.h>
+#include <qtimer.h>
 #include "segmentTip.h"
 
 template <class T> class Chain;
@@ -26,7 +27,7 @@ namespace RadialMap
         void make( const Directory *, bool = false );
         bool resize( const QRect& );
 
-        bool isNull() const { return ( m_signature == NULL ); }
+        bool isNull() const { return ( m_signature == 0 ); }
         void invalidate( const bool );
 
         friend class Builder;
@@ -66,9 +67,7 @@ namespace RadialMap
     public slots:
         void zoomIn();
         void zoomOut();
-
         void create( const Directory* );
-        void createFromCache( const Directory* );
         void invalidate( const bool = true );
         void refresh( int );
 
@@ -76,6 +75,7 @@ namespace RadialMap
         void resizeTimeout();
         void sendFakeMouseEvent();
         void deleteJobFinished( KIO::Job* );
+        void createFromCache( const Directory* );
 
     signals:
         void activated( const KURL& );
@@ -90,7 +90,11 @@ namespace RadialMap
         virtual void mousePressEvent( QMouseEvent* );
 
     protected:
-        const Segment *segmentAt( QPoint& ) const;
+        const Segment *segmentAt( QPoint& ) const; //FIXME const reference for a library others can use
+        const Segment *rootSegment() const { return m_rootSegment; } ///never == 0
+        const Segment *focusSegment() const { return m_focus; } ///0 == nothing in focus
+
+    private:
         void paintExplodedLabels( QPainter& ) const;
 
         const Directory *m_tree;

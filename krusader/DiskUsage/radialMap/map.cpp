@@ -170,6 +170,29 @@ RadialMap::Map::colorise()
         {
             switch( Config::scheme )
             {
+            case 2000: //HACK for summary view
+
+               if( (*it)->file()->name() == "Used" ) {
+                  cb = QApplication::palette().active().color( QColorGroup::Highlight );
+                  cb.hsv( &h, &s1, &v1 );
+
+                  if( s1 > 80 )
+                     s1 = 80;
+
+                  v2 = v1 - int(contrast * v1);
+                  s2 = s1 + int(contrast * (255 - s1));
+
+                  cb.setHsv( h, s1, v1 );
+                  cp.setHsv( h, s2, v2 );
+               }
+               else {
+                  cp = Qt::gray;
+                  cb = Qt::white;
+               }
+
+               (*it)->setPalette( cp, cb );
+
+               continue;            
             case Filelight::KDE:
             {
                 //gradient will work by figuring out rgb delta values for 360 degrees
@@ -202,8 +225,8 @@ RadialMap::Map::colorise()
                 v1 = (int)(255.0 / darkness); //****doing this more often than once seems daft!
             }
 
-            v2 = v1 - static_cast<int>(contrast * v1);
-            s2 = s1 + static_cast<int>(contrast * (255 - s1));
+            v2 = v1 - int(contrast * v1);
+            s2 = s1 + int(contrast * (255 - s1));
 
             if( s1 < 80 ) s1 = 80; //can fall too low and makes contrast between the files hard to discern
 

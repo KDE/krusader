@@ -181,7 +181,7 @@ public:
     m_owner( ownerIn ), m_group( groupIn ), m_perm( permIn ), m_time( timeIn ), m_symLink( symLinkIn ), 
     m_mimeType( mimeTypeIn ), m_excluded( false ), m_percent( -1 ) {}
     
-  File( char *nameIn, FileSize sizeIn )
+  File( const char *nameIn, FileSize sizeIn )
   : m_parent( 0 ), m_directory( QString::null ), m_size( sizeIn ), m_ownSize( sizeIn ), m_mode( 0 ), 
     m_owner( QString::null ), m_group( QString::null ), m_perm( QString::null ), m_time( -1 ), 
     m_symLink( false ), m_mimeType( QString::null ), m_excluded( false ), m_percent( -1 ) 

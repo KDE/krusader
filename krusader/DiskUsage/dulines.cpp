@@ -318,13 +318,12 @@ void DULines::keyPressEvent( QKeyEvent *e )
  
 void DULines::slotRightClicked( QListViewItem *item )
 {
-  if ( !item )
-    return;
-    
-  if( item->text( 0 ) == ".." )
-    return;
+  File * file = 0;
+  
+  if ( item && item->text( 0 ) != ".." )
+    file = ((DULinesItem *)item)->getFile();
 
-  diskUsage->rightClickMenu( ((DULinesItem *)item)->getFile() );
+  diskUsage->rightClickMenu( file );
 }
 
 void DULines::slotChanged( File * item )

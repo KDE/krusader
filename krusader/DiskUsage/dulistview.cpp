@@ -157,13 +157,12 @@ void DUListView::slotChanged( File * item )
   
 void DUListView::slotRightClicked( QListViewItem *item )
 {
-  if ( !item )
-    return;
-    
-  if( item->text( 0 ) == ".." )
-    return;
+  File * file = 0;
+  
+  if ( item && item->text( 0 ) != ".." )
+    file = ((DUListViewItem *)item)->getFile();
 
-  diskUsage->rightClickMenu( ((DUListViewItem *)item)->getFile() );
+  diskUsage->rightClickMenu( file );
 }
 
 bool DUListView::doubleClicked( QListViewItem * item )

@@ -53,6 +53,10 @@
 // these are the values that will exist in the menu
 #define EXCLUDE_ID          90
 #define INCLUDE_ALL_ID      91
+#define VIEW_POPUP_ID       92
+#define LINES_VIEW_ID       93
+#define DETAILED_VIEW_ID    94
+#define FILELIGHT_VIEW_ID   95
 
 DiskUsageDialog::DiskUsageDialog( QWidget *parent, const char *name ) : QDialog( parent, name, true ),
   cancelled( false )
@@ -458,11 +462,24 @@ Directory* DiskUsage::getCurrentDir()
 void DiskUsage::rightClickMenu( File *fileItem )
 {
   KPopupMenu popup;
-  popup.insertTitle(i18n("Disk Usage"));
+  
+  if( fileItem != 0 )
+  {
+    popup.insertTitle( i18n("Disk Usage"));
 
-  popup.insertItem(i18n("Exclude"),     EXCLUDE_ID);
-  popup.insertItem(i18n("Include All"), INCLUDE_ALL_ID);
+    popup.insertItem(  i18n("Exclude"),         EXCLUDE_ID);
+    popup.insertItem(  i18n("Include All"),     INCLUDE_ALL_ID);
+    popup.insertSeparator();
+  }
 
+  KPopupMenu viewPopup;
+  viewPopup.insertItem(i18n("Lines"),      LINES_VIEW_ID);
+  viewPopup.insertItem(i18n("Detailed"),   DETAILED_VIEW_ID);
+  viewPopup.insertItem(i18n("Filelight"),  FILELIGHT_VIEW_ID);
+  
+  popup.insertItem( QPixmap(), &viewPopup, VIEW_POPUP_ID );
+  popup.changeItem( VIEW_POPUP_ID, i18n( "View" ) );
+    
   int result=popup.exec(QCursor::pos());
 
   // check out the user's option
@@ -473,6 +490,15 @@ void DiskUsage::rightClickMenu( File *fileItem )
     break;
   case INCLUDE_ALL_ID:
     includeAll();
+    break;
+  case LINES_VIEW_ID:
+    setView( VIEW_LINES );
+    break;
+  case DETAILED_VIEW_ID:
+    setView( VIEW_DETAILED );
+    break;
+  case FILELIGHT_VIEW_ID:
+    setView( VIEW_FILELIGHT );
     break;
   }
 }

@@ -74,7 +74,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
   if( m_focus != NULL && m_focus->file() != m_tree ) //separate behavior for selected vs unselected segments
   {
     //don't bother with files
-    if( !m_focus->file()->isDir() ) return;
+    if( m_focus->file() == 0 || !m_focus->file()->isDir() ) return;
 
     //find the range of levels we will be potentially drawing labels for
     for( const Directory *p = (const Directory *)m_focus->file();
@@ -217,7 +217,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
     for( it.toFirst(); it != 0; ++it )
     {
       //** bear in mind that text is drawn with QPoint param as BOTTOM left corner of text box
-      QString qs;
+      QString qs  = (*it)->segment->file()->name();
       if( varySizes ) font.setPointSize( sizes[(*it)->lvl] );
       QFontMetrics fm( font );
       int fmh  = fm.height(); //used to ensure label texts don't overlap
@@ -264,10 +264,13 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
         prevRightY = ty - fmh - fmhD4; //must be after above's "continue"
 
+        qs = KStringHandler::cPixelSqueeze( qs, fm, width() - x2 );
+
         x3 = width() - fm.width( qs )
              - LABEL_HMARGIN //outer margin
              - LABEL_TEXT_HMARGIN //margin between strut and text
-             - ((*it)->lvl - startLevel) * LABEL_HMARGIN; //indentation
+             //- ((*it)->lvl - startLevel) * LABEL_HMARGIN //indentation
+             ;
         if( x3 < x2 ) x3 = x2;
         tx = x3 + LABEL_TEXT_HMARGIN;
 
@@ -282,15 +285,17 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
         prevLeftY = ty + fmh - fmhD4;
 
+        qs = KStringHandler::cPixelSqueeze( qs, fm, x2 );
+
         //**** needs a little tweaking:
 
-        tx = fm.width( qs ) + LABEL_HMARGIN + ((*it)->lvl - startLevel) * LABEL_HMARGIN;
+        tx = fm.width( qs ) + LABEL_HMARGIN/* + ((*it)->lvl - startLevel) * LABEL_HMARGIN*/;
         if( tx > x2 ) { //text is too long
           tx = LABEL_HMARGIN + x2 - tx; //some text will be lost from sight
           x3 = x2; //no text margin (right side of text here)
         } else {
           x3 = tx + LABEL_TEXT_HMARGIN;
-          tx = LABEL_HMARGIN + ((*it)->lvl - startLevel) * LABEL_HMARGIN;
+          tx = LABEL_HMARGIN /* + ((*it)->lvl - startLevel) * LABEL_HMARGIN*/;
         }
       }
 
@@ -333,5 +338,5 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
       paint.drawText( (*it)->tx, (*it)->ty, (*it)->qs );
     }
 
-   delete sizes;
+   delete [] sizes;
 }

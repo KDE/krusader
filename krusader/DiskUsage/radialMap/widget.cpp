@@ -115,6 +115,9 @@ RadialMap::Widget::sendFakeMouseEvent() //slot
 void
 RadialMap::Widget::resizeTimeout() //slot
 {
+   // the segments are about to erased!
+   // this was a horrid bug, and proves the OO programming should be obeyed always!
+   m_focus = 0;
    if( m_tree )
       m_map.make( m_tree, true );
    update();

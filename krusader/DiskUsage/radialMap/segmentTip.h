@@ -5,7 +5,6 @@
 #define SEGMENTTIP_H
 
 #include <kpixmap.h>
-#include <qtimer.h>
 #include <qwidget.h>
 
 class File;
@@ -28,7 +27,6 @@ namespace RadialMap
         uint    m_cursorHeight;
         KPixmap m_pixmap;
         QString m_text;
-        QTimer  m_timer;
     };
 }
 

@@ -46,13 +46,13 @@ RadialMap::Widget::paintEvent( QPaintEvent* )
     if( m_map.width() < width() )
     {
         paint.eraseRect( 0, 0, m_offset.x(), height() );
-        paint.eraseRect( m_map.width() + m_offset.x(), 0, m_offset.x(), height() );
+        paint.eraseRect( m_map.width() + m_offset.x(), 0, m_offset.x() + 1, height() );
     }
     //horizontal strips
     if( m_map.height() < height() )
     {
         paint.eraseRect( 0, 0, width(), m_offset.y() );
-        paint.eraseRect( 0, m_map.height() + m_offset.y(), width(), m_offset.y() );
+        paint.eraseRect( 0, m_map.height() + m_offset.y(), width(), m_offset.y() + 1 );
     }
 
     //exploded labels
@@ -211,6 +211,8 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
       sectionTwo:
 
          const QRect rect( e->x() - 20, e->y() - 20, 40, 40 );
+         
+         m_tip.hide(); //user expects this
 
          if( !isDir || e->button() == Qt::MidButton )
          {

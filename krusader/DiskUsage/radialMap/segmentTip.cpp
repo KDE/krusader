@@ -21,8 +21,6 @@ SegmentTip::SegmentTip( uint h )
   , m_cursorHeight( -h )
 {
    setBackgroundMode( Qt::NoBackground );
-
-   connect( &m_timer, SIGNAL(timeout()), SLOT(hide()) );
 }
 
 void
@@ -79,7 +77,6 @@ SegmentTip::moveto( QPoint p, const QWidget &canvas, bool placeAbove )
   move( x, y );
   show();
   update();
-  m_timer.start( 8000, true );
 }
 
 void
@@ -150,8 +147,8 @@ SegmentTip::eventFilter( QObject*, QEvent *e )
     switch ( e->type() )
     {
     case QEvent::Leave:
-    case QEvent::MouseButtonPress:
-    case QEvent::MouseButtonRelease:
+//    case QEvent::MouseButtonPress:
+//    case QEvent::MouseButtonRelease:
     case QEvent::KeyPress:
     case QEvent::KeyRelease:
     case QEvent::FocusIn:
