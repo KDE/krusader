@@ -41,5 +41,9 @@ BookmarksButton::BookmarksButton(QWidget *parent) : QToolButton(parent)
   setPopup(acmBookmarks->popupMenu());
 }
 
-BookmarksButton::~BookmarksButton(){
+BookmarksButton::~BookmarksButton() {
+}
+
+void BookmarksButton::openPopup() {
+  popup()->exec(mapToGlobal(QPoint(0, height())));
 }
