@@ -164,7 +164,7 @@ void UserMenu::exec() {
    UserMenuEntry cmd = _popup->run();
 
    // replace %% and prepare string
-   cmd = expand( cmd.cmdline, cmd.acceptURLs );
+   cmd.cmdline = expand( cmd.cmdline, cmd.acceptURLs );
    //kdWarning() << cmd << endl;
 
    // ............... run the cmd from the shell .............
@@ -176,7 +176,7 @@ void UserMenu::exec() {
    //proc << "konsole" << "--noclose" << "-e" << cmd;
    //proc.start( KProcess::DontCare );
 
-   UserMenuProc *proc = new UserMenuProc( UserMenuProc::Terminal, true );
+   UserMenuProc *proc = new UserMenuProc( cmd.execType, cmd.separateStderr);
    proc->start( cmd.cmdline );
    //===> chdir( save.local8Bit() ); // chdir back
 }
@@ -223,7 +223,7 @@ UserMenu::UserMenu( QWidget * parent, const char * name ) : QWidget( parent, nam
 
 UserMenuEntry::UserMenuEntry(QString data) {
    // the data should look like:
-   // {name,cmdline,execType,separateStderr,acceptURLs,acceptRemote,showEverywhere,showIn}
+   // {name,cmdline,execType,separateStderr,acceptURLs,showEverywhere,showIn}
    // name
    int sidx = data.find('{') + 1;
    int eidx = data.find(',', sidx);
@@ -338,7 +338,7 @@ UserMenuEntry UserMenuGui::run() {
 void UserMenuGui::addEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
                   bool acceptURLs, bool showEverywhere, QStringList showIn) {
    // save a new entry in the following form:
-   // {"name","cmdline",execType,separateStderr,acceptURLs,acceptRemote,showEverywhere,showIn}
+   // {"name","cmdline",execType,separateStderr,acceptURLs,showEverywhere,showIn}
    QString filename = locateLocal( "data", "krusader/krusermenu.dat" );
 
    QFile file( filename );
