@@ -40,14 +40,17 @@ Primitive scripting support.
 condition: KJSEmbed is installed (package: KDEbindings)
   Ctrl+Alt+J opens the JavaScript-console. There you can play around:
   try 'Krusader.setCaption("Hey Ho, Let's go!");', "Krusader.children();",
-  "Krusader.child("help").slots();"
+  "Krusader.child("help").slots();", "alert(Krusader.properties())"
   and "Krusader.child("help").show();"....
   In addition a new placeholder for the useraction,
   %_Script(path/to/script.js)% executes an external file.
   If the path is relative the file will be read from <KDE-app-data>/krusader/js/
   If a UserAction should execute the return of a script, set the second
-  parameter of %_Script()% to "yes".
+  parameter of %_Script()% to "return=cmd".
   In this case the Variable 'cmd' will be read.
+  additional the second parameter can be used to pass variables to the script:
+  "return=lala;foo=bar". here the variable foo will have at the beginning of the
+  execution the value 'bar' and the return-variable is called lala instead of cmd.
   Warning: very alpha!!
 
 krusader has now a new toolbar: actions toolbar. you can show/hide it using

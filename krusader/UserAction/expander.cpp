@@ -719,7 +719,7 @@ exp_Script::exp_Script() {
    _needPanel = false;
    
    addParameter( new exp_parameter( i18n("Location of the script"), "", true ) );
-   addParameter( new exp_parameter( i18n("Read the JS-variable 'cmd' for execution"), "__no", false ) );
+   addParameter( new exp_parameter( i18n("Set some variables for the execution (optional).\ni.e. \"return=cmd;foo=bar\", consult the handbook for more information"), "", false ) );
 }
 QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    if ( parameter[0].isEmpty() ) {
@@ -733,17 +733,31 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
       filename = locate( "data", "krusader/js/"+filename );
    }
    
-   krJS->runFile( filename );
-   
-   //TODO: messagebox on JS-errors
+   QString jsReturn = QString::null;
+   if ( parameter[1].lower() == "yes" )	// to stay compatible with the old-style parameter
+      jsReturn = "cmd";
+   else {
+      QStringList jsVariables = QStringList::split( ';', parameter[1] );
+      QString jsVariable, jsValue;
+      for ( QStringList::Iterator it = jsVariables.begin(); it != jsVariables.end(); ++it ) {
+         jsVariable = (*it).section('=', 0, 0).stripWhiteSpace();
+         jsValue = (*it).section('=', 1);
+         if ( jsVariable == "return" )
+            jsReturn = jsValue.stripWhiteSpace();
+         else
+            krJS->putValue( jsVariable, KJSEmbed::convertToValue(krJS->globalExec(), jsValue ) );
+      }
+   }
+      
+   //FIXME: messagebox on JS-errors
    // comming with KDE-3.4: http://webcvs.kde.org/kdebindings/kjsembed/jsobjecteventproxy.cpp?rev=1.16&view=log
-   
-   //kdDebug() << "JS: done" << endl;
-   
-   //kdDebug() << "Return of last script: " << krJS->getValue("test").toString( krJS->globalExec() ).qstring() << endl;
 
-   if ( parameter[1].lower() == "yes" )
-      return krJS->getValue("cmd").toString( krJS->globalExec() ).qstring();
+   krJS->runFile( filename );
+
+   kdDebug() << "JS: done" << endl;
+   
+   if ( ! jsReturn.isEmpty() )
+      return krJS->getValue( jsReturn ).toString( krJS->globalExec() ).qstring();
    else
       return QString::null;
 }
