@@ -1,0 +1,13 @@
+Package: krusader
+Version: 1.50
+Revision: 1
+Source: mirror:sourceforge:%n/%n-%v.tar.gz
+Depends: kdelibs3-ssl (>= 3.2) | kdelibs3 (>= 3.2), qt3-shlibs (>= 3.2)
+BuildDepends: autoconf2.54, automake1.6, cctools (>= 446-1), kdelibs3-ssl-dev (>= 3.2) | kdelibs3-dev (>= 3.2), libtool14, qt3 (>= 3.2)
+Maintainer: Jonas Bähr <jonas.baehr@web.de>
+Homepage: http://krusader.sourceforge.net/
+License: GPL
+Description: Twinpanel (commander-style) filemanager
+Source-MD5: 24f86f89aa8fc10afa64afe9b966ca94
+ConfigureParams: --with-qt-includes=%{p}/include/qt --without-arts --mandir=%{p}/share/man
+DocFiles: AUTHORS COPYING CVSNEWS Changelog README
