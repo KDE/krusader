@@ -63,18 +63,19 @@ class SynchronizerFileItem
     void                 *m_userData;     // user data
     bool                  m_overWrite;    // overwrite flag
     QString               m_destination;  // the destination URL at rename
-
+    bool                  m_temporary;    // flag indicates temporary directory
+    
   public:
     SynchronizerFileItem(QString nam, QString dir, bool mark, bool exL,
                        bool exR, KIO::filesize_t leftSize, KIO::filesize_t rightSize,
                        time_t leftDate, time_t rightDate, TaskType tsk, bool isDir,
-                       SynchronizerFileItem *parent ) :
+                       bool tmp, SynchronizerFileItem *parent ) :
                        m_name( nam ), m_directory( dir ), m_marked( mark ),
                        m_existsLeft( exL ), m_existsRight( exR ), m_leftSize( leftSize ),
                        m_rightSize( rightSize ), m_leftDate( leftDate ),
                        m_rightDate( rightDate ),m_task( tsk ), m_isDir( isDir ),
                        m_parent(parent), m_userData( 0 ), m_overWrite( false ),
-                       m_destination( QString::null ) {}
+                       m_destination( QString::null ), m_temporary( tmp ) {}
 
     inline bool                   isMarked()              {return m_marked;}
     inline void                   setMarked( bool flag )  {m_marked = flag;}
@@ -95,6 +96,8 @@ class SynchronizerFileItem
     inline void                   setOverWrite()          {m_overWrite = true;}
     inline QString                destination()           {return m_destination;}
     inline void                   setDestination(QString d) {m_destination = d;}
+    inline bool                   isTemporary()           {return m_temporary;}
+    inline void                   setPermanent()          {m_temporary = false;}
 };
 
 class Synchronizer : public QObject
@@ -143,14 +146,14 @@ class Synchronizer : public QObject
     void    addSingleDirectory( SynchronizerFileItem *, QString, QString, time_t, bool );
     SynchronizerFileItem * addItem( SynchronizerFileItem *, QString, QString,
                                     bool, bool, KIO::filesize_t, KIO::filesize_t,
-                                    time_t, time_t, TaskType, bool);
+                                    time_t, time_t, TaskType, bool, bool);
     SynchronizerFileItem * addLeftOnlyItem( SynchronizerFileItem *, QString, QString,
-                                            KIO::filesize_t, time_t, bool isDir = false );
+                                            KIO::filesize_t, time_t, bool isDir = false, bool isTemp = false );
     SynchronizerFileItem * addRightOnlyItem( SynchronizerFileItem *, QString, QString,
-                                             KIO::filesize_t, time_t, bool isDir = false );
+                                             KIO::filesize_t, time_t, bool isDir = false, bool isTemp = false  );
     SynchronizerFileItem * addDuplicateItem( SynchronizerFileItem *, QString, QString,
                                              KIO::filesize_t, KIO::filesize_t, time_t,
-                                             time_t, bool isDir = false );
+                                             time_t, bool isDir = false, bool isTemp = false  );
     bool    checkName( QString name );
     bool    isMarked( TaskType task, bool dupl );
     bool    markParentDirectories( SynchronizerFileItem * );
@@ -158,6 +161,7 @@ class Synchronizer : public QObject
     KURL    fromPathOrURL( QString url );
     bool    compareByContent( QString, QString );
     void    abortContentComparing();
+    void    setPermanent( SynchronizerFileItem * );
     
   protected:
     bool                              recurseSubDirs; // walk through subdirectories also
