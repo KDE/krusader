@@ -67,6 +67,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Panel/listpanel.h"
 #include "Panel/panelfunc.h"
 #include "Konfigurator/konfigurator.h"
+#include "Konfigurator/kgprotocols.h"
 #include "MountMan/kmountman.h"
 #include "Panel/panelpopup.h"
 #include "defaults.h"
@@ -191,6 +192,9 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
    // init the permmision handler class
    KRpermHandler::init();
+
+   // init the protocol handler
+   KgProtocols::init();
 
    // create the main view and set it
    mainView = new KrusaderView( this );

@@ -53,6 +53,7 @@
 #include "kgdependencies.h"
 #include "kgcolors.h"
 #include "kguseractions.h"
+#include "kgprotocols.h"
 
 Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
       KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
@@ -111,6 +112,9 @@ void Konfigurator::createLayout()
   // useractions
   newContent(new KgUserActions(firstTime, widget->addPage(i18n("User Actions"),i18n("Configure you personal actions"),
     QPixmap(krLoader->loadIcon("kr_useractions",KIcon::Desktop,32)))));
+  // protocols
+  newContent(new KgProtocols(firstTime, widget->addPage(i18n("Protocols"),
+    i18n("Link mimes to protocols"), QPixmap(krLoader->loadIcon("exec",KIcon::Desktop,32)))));
 
   widget->showPage( widget->pageIndex( firstPage ) );
   slotApplyEnable();
