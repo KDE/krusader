@@ -559,37 +559,41 @@ void ListPanelFunc::deleteFiles() {
 
 // this is done when you double click on a file
 void ListPanelFunc::execute( QString& name ) {
-  if ( name == ".." ) {
-    dirUp();
-    return ;
-  }
+	if ( name == ".." ) {
+		dirUp();
+		return ;
+	}
 
-  vfile *vf = files() ->vfs_search( name );
-  if ( vf == 0 )
-    return ;
-  KURL origin = files() ->vfs_getOrigin();
+	vfile *vf = files() ->vfs_search( name );
+	if ( vf == 0 ) return ;
+	KURL origin = files() ->vfs_getOrigin();
 
-  QString type = vf->vfile_getMime().right( 4 );
-  if ( vf->vfile_getMime().contains( "-rar" ) )
-    type = "-rar";
+//	QString type = vf->vfile_getMime().right( 4 );
+//	if ( vf->vfile_getMime().contains( "-rar" ) ) type = "-rar";
 
-  if ( vf->vfile_isDir() ) {
-    //origin.addPath(name);
-    origin = files()->vfs_getFile( name );
-    panel->view->setNameToMakeCurrent( QString::null );
-    openUrl( origin );
-  } else if ( KRarcHandler::arcHandled( type ) && origin.isLocalFile() ) {
-    KURL path = files()->vfs_getFile(vf->vfile_getName());
-    if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
-			path.setProtocol("tar");
-		} else {
-			path.setProtocol("krarc");
-    }
-    openUrl( path );
+	QString protocol = KrServices::registerdProtocol(vf->vfile_getMime());
+	 
+	if ( vf->vfile_isDir() ) {
+		//origin.addPath(name);
+		origin = files()->vfs_getFile( name );
+		panel->view->setNameToMakeCurrent( QString::null );
+		openUrl( origin );
+	} else if ( !protocol.isEmpty() ){
+		KURL path = files()->vfs_getFile(vf->vfile_getName());
+		path.setProtocol(protocol);
+		openUrl( path );
+//	} else if ( KRarcHandler::arcHandled( type ) && origin.isLocalFile() ) {
+//		KURL path = files()->vfs_getFile(vf->vfile_getName());
+//		if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
+//			path.setProtocol("tar");
+//		} else {
+//			path.setProtocol("krarc");
+//		}
+//		openUrl( path );
 	} else {
-    KURL url = files()->vfs_getFile( name );
-    KRun::runURL( url, vf->vfile_getMime() );
-  }
+		KURL url = files()->vfs_getFile( name );
+		KRun::runURL( url, vf->vfile_getMime() );
+	}
 }
 
 void ListPanelFunc::dirUp() {

@@ -25,6 +25,8 @@
 #include "krservices.h"
 #include "krusader.h"
 
+QMap<QString,QString>* KrServices::slaveMap=0;
+
 bool KrServices::cmdExist(QString cmdName)
 {
   QString lastGroup = krConfig->group();
@@ -134,4 +136,21 @@ QStringList KrServices::separateArgs( QString args )
     }while( pointer < len );
     
   return argList;
+}
+
+QString KrServices::registerdProtocol(QString mimetype){
+	if( slaveMap == 0 ){
+		slaveMap = new QMap<QString,QString>();
+		
+		krConfig->setGroup( "Protocols" );
+		QStringList protList = krConfig->readListEntry( "Handled Protocols" );
+		for( QStringList::Iterator it = protList.begin(); it != protList.end(); it++ ){
+			QStringList mimes = krConfig->readListEntry( QString( "Mimes For %1" ).arg( *it ) );
+			for( QStringList::Iterator it2 = mimes.begin(); it2 != mimes.end(); it2++ )
+				(*slaveMap)[*it2] = *it;
+  		}
+		
+		
+	}
+	return (*slaveMap)[mimetype];
 }

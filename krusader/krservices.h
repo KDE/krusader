@@ -20,6 +20,7 @@
 
 #include <qstring.h>
 #include <qstringlist.h>
+#include <qmap.h>
 
 /**
   *@author Shie Erlich & Rafi Yanai
@@ -31,9 +32,14 @@ public:
 	~KrServices(){}
 
 	static bool         cmdExist(QString cmdName);
-  static QString      detectFullPathName( QString name );
-  static QString      fullPathName( QString name, QString confName = QString::null );
-  static QStringList  separateArgs( QString args );
+	static QString      detectFullPathName( QString name );
+	static QString      fullPathName( QString name, QString confName = QString::null );
+	static QStringList  separateArgs( QString args );
+	static QString      registerdProtocol(QString mimetype);
+
+private:
+	static QMap<QString,QString>* slaveMap;
+
 };
 
 #endif
