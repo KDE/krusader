@@ -140,7 +140,7 @@ UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
+Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
    QString leftPath, rightPath;
@@ -274,6 +274,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
       krConfig->setGroup( "Startup" );             
       mainView->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
    }
+   isStarting = false;
 }
 
 Krusader::~Krusader() {}
@@ -632,6 +633,9 @@ void Krusader::refreshView() {
 }
 
 bool Krusader::queryClose() {
+   if( isStarting )
+     return false;
+
    bool quit = true;
    krConfig->setGroup( "Look&Feel" );
    if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {

@@ -135,6 +135,7 @@ class Krusader : public KParts::MainWindow {
     KSystemTray *sysTray;
     QPoint       oldPos;
     QSize        oldSize;
+    bool         isStarting;
 };
 
 // main modules
