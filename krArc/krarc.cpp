@@ -97,6 +97,7 @@ void kio_krarcProtocol::receivedData(KProcess*,char* buf,int len){
 	QByteArray d(len);
 	d.setRawData(buf,len);
 	data(d);
+	d.resetRawData(buf,len);
 	processedSize(len);	
 }
 
