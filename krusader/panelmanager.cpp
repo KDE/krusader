@@ -94,7 +94,7 @@ void PanelManager::startPanel( ListPanel *panel, QString path ) {
 }
 
 void PanelManager::slotNewTab() {
-  slotNewTab("~");
+  slotNewTab(QDir::home().absPath());
 }
 
 void PanelManager::slotNewTab(QString path) {
