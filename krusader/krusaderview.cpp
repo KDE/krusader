@@ -93,12 +93,14 @@ void KrusaderView::start( QString leftPath, QString rightPath ) {
   {
     lst = horiz_splitter->sizes();
     int avg = (lst[ 0 ] + lst[ 1 ] )/2;
-    lst[ 0 ] = lst[ 1 ] = 0;
+    lst[ 0 ] = lst[ 1 ] = avg;
   }
   horiz_splitter->setSizes( lst );  
+    
   show();
 
   qApp->processEvents();
+  
   // make the left panel focused at program start
   rightMng->startPanel( right, rightPath );
   leftMng->startPanel( left, leftPath );
