@@ -45,6 +45,9 @@ A
 #include <krun.h>
 #include <kinputdialog.h>
 #include <kdebug.h>
+#include <kio/netaccess.h>
+#include <kstandarddirs.h>
+#include <ktempdir.h>
 // Krusader Includes
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
@@ -624,7 +627,19 @@ void ListPanelFunc::pack() {
 
   bool packToOtherPanel = ( PackGUI::destination == panel->otherPanel->virtualPath );
 
-  QString arcFile = PackGUI::destination + "/" + PackGUI::filename + "." + PackGUI::type;
+  // on remote URL-s first pack into a temp file then copy to its right place
+  KURL destURL = vfs::fromPathOrURL( PackGUI::destination + "/" + PackGUI::filename + "." + PackGUI::type );
+  KTempFile *tempDestFile = 0;
+  QString arcFile;
+  if( destURL.isLocalFile() )
+    arcFile = destURL.path();
+  else
+  {
+    tempDestFile = new KTempFile( QString::null, "." + PackGUI::type );
+    tempDestFile->setAutoDelete( true );
+    arcFile = tempDestFile->name();
+    QFile::remove( arcFile );
+  }
 
   if ( PackGUI::type != "zip" && QFileInfo( arcFile ).exists() ) {
     if ( KMessageBox::warningContinueCancel( krApp,
@@ -653,6 +668,13 @@ void ListPanelFunc::pack() {
   KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs );
   chdir( save.local8Bit() );
 
+  // copy from the temp file to it's right place
+  if( tempDestFile )
+  {
+    KIO::NetAccess::file_move( vfs::fromPathOrURL( arcFile ), destURL );
+    delete tempDestFile;
+  }
+  
   if ( packToOtherPanel )
     panel->otherPanel->func->refresh();
 }
@@ -663,19 +685,36 @@ void ListPanelFunc::testArchive() {
     return ;
   if ( arcName == ".." )
     return ; // safety
-  QString type = files() ->vfs_search( arcName ) ->vfile_getMime().right( 4 );
-
+    
+  KURL arcURL = files() ->vfs_getFile( arcName );
+  QString type = files() ->vfs_search( arcName )->vfile_getMime().right( 4 );
+  QString url = QString::null;
+  
+  // download the file if it's on a remote filesystem
+  if( !arcURL.isLocalFile() )
+  {
+    url = locateLocal( "tmp", QString( arcName ) );
+    if( !KIO::NetAccess::download( arcURL, url, 0 ) ){
+      KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+arcURL.fileName());
+      return;
+    }
+  }else url = arcURL.path(-1);
+    
   // check we that archive is supported
   if ( !KRarcHandler::arcSupported( type ) ) {
     KMessageBox::sorry( krApp, i18n( "%1, unknown archive type." ).arg( arcName ) );
     return ;
   }
-
+  
   // test the archive
-  if ( KRarcHandler::test( files()->vfs_getFile(arcName).path(-1), type ) )
+  if ( KRarcHandler::test( url, type ) )
     KMessageBox::information( krApp, i18n( "%1, test passed." ).arg( arcName ) );
   else
     KMessageBox::error( krApp, i18n( "%1, test failed !" ).arg( arcName ) );
+    
+  // remove the downloaded file if necessary
+  if( url != arcURL.path( -1 ) )
+    QFile( url ).remove();
 }
 
 void ListPanelFunc::unpack() {
@@ -706,6 +745,33 @@ void ListPanelFunc::unpack() {
     if ( arcName == ".." )
       return ; // safety
 
+    // download the file if it's on a remote filesystem
+    KURL arcURL = files() ->vfs_getFile( arcName );
+    QString url = QString::null;  
+    if( !arcURL.isLocalFile() )
+    {
+      url = locateLocal( "tmp", QString( arcName ) );
+      if( !KIO::NetAccess::download( arcURL, url, 0 ) ){
+        KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+arcURL.fileName());
+        continue;
+        }
+    }else url = arcURL.path(-1);
+    
+    // if the destination is in remote directory use temporary one instead
+    if( !dest.endsWith( "/" ) ) dest += "/";
+    KURL destURL = vfs::fromPathOrURL( dest );
+    KURL originalDestURL;
+    KTempDir *tempDir = 0;
+    
+    if( !destURL.isLocalFile() )
+    {
+      originalDestURL = destURL;
+      tempDir = new KTempDir();
+      tempDir->setAutoDelete( true );
+      destURL = tempDir->name();
+    }
+  
+    // determining the type  
     QString mime = files() ->vfs_search( arcName ) ->vfile_getMime();
     QString type = mime.right( 4 );
     if ( mime.contains( "-rar" ) )
@@ -717,7 +783,24 @@ void ListPanelFunc::unpack() {
       continue;
     }
     // unpack the files
-    KRarcHandler::unpack( files()->vfs_getFile(arcName).path(-1), type, dest );
+    KRarcHandler::unpack( url, type, destURL.path(-1) );
+  
+    // remove the downloaded file if necessary
+    if( url != arcURL.path( -1 ) )
+      QFile( url ).remove();
+    
+    // copy files to the destination directory at remote files
+    if( tempDir )
+    {
+      QStringList nameList = QDir( destURL.path( -1 ) ).entryList();
+      KURL::List urlList;
+      for( unsigned int i=0; i!= nameList.count(); i++ )
+        if( nameList[ i ] != "." && nameList[ i ] != ".." )
+          urlList.append( vfs::fromPathOrURL( destURL.path( 1 ) + nameList[ i ] ) );
+      if( urlList.count() > 0 )
+        KIO::NetAccess::dircopy( urlList, originalDestURL, 0 );
+      delete tempDir;
+    }
   }
   if ( packToOtherPanel )
     panel->otherPanel->func->refresh();
