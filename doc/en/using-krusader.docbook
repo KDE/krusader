@@ -615,9 +615,11 @@ TODO
        A dialog will appear and allow you to choose the operation destination, the default
        destination is the other-panel browsed directory. If you enter a partial &URL; &krusader; will use
        the current panel directory as the &URL; base. Deleting files is done by marking them and
-       pressing <keycap>F8</keycap> or <keycap>Delete</keycap>. A dialog will ask for your confirmation and
-       will warn you when deleting non-empty directories. Of course only operations that you are permitted to
-       do will be performed - you will be notified otherwise.
+       pressing <keycap>F8</keycap> or <keycap>Delete</keycap>.
+       By <link linkend="konfig-general">default</link> it will be moved to Trash, 
+       <keycombo action="simul">&Shift;<keycap>Delete</keycap></keycombo> will delete the file permanently.  
+       A dialog will ask for your confirmation and will warn you when deleting non-empty directories. 
+       Of course only operations that you are permitted to do will be performed - you will be notified otherwise.
        If you don't wish to see the confirmation dialogs then you can disable them in the
        <link linkend="konfig-advanced">Konfigurator advanced tab</link>.</para>
 </sect2>
@@ -1027,7 +1029,7 @@ TODO
 <entry><para><link linkend="basic">Create a new directory</link></para></entry></row>
 <row>
 <entry><para><keycap>F8</keycap></para></entry>
-<entry><para><link linkend="basic">Delete files</link></para></entry></row>
+<entry><para><link linkend="basic">Delete (or move to Trash) files</link></para></entry></row>
 <row>
 <entry><para><keycap>F9</keycap></para></entry>
 <entry><para><link linkend="basic">Rename files</link></para></entry></row>
@@ -1081,6 +1083,9 @@ TODO
 <informaltable>
 <tgroup cols="2">
 <tbody>
+<row>
+<entry><para><keycombo action="simul">&Alt;<keycap>d</keycap></keycombo></para></entry>
+<entry><para>Disk Usage</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>e</keycap></keycombo></para></entry>
 <entry><para><link linkend="test-archive">Test Archive</link></para></entry></row>
@@ -1280,6 +1285,12 @@ TODO
 <entry><para>&Esc;</para></entry>
 <entry><para><link linkend="moving-around">Will make the menu bar loose the focus if it has it</link></para>
 </entry></row>
+<row>
+<entry><para><keycap>Delete</keycap></para></entry>
+<entry><para><link linkend="basic">Delete (or move to Trash)</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Shift;<keycap>Delete</keycap></keycombo></para></entry>
+<entry><para><link linkend="basic">Delete permanently</link></para></entry></row>
 <row>
 <entry><para><keycap>SPACE</keycap></para></entry>
 <entry><para><link linkend="marking-files">On a file:</link> toggle the marking of the file without affecting
