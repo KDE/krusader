@@ -82,6 +82,7 @@ public:
 	bool calcSpace(const QStringList & items,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs);
 	void FTPDisconnect();
 	void newFTPconnection();
+	void createVirtualFolder( KURL::List & files );
 	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
 protected:
@@ -91,6 +92,7 @@ protected:
 	vfs*                 vfsP;      // pointer to vfs.
 	QTimer               delayTimer;
 	KURL                 delayURL;
+	KURL::List           virtualFiles;                
 	QString              nameToMakeCurrent;
 };
 

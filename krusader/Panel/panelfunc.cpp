@@ -58,6 +58,7 @@ A
 #include "../defaults.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
+#include "../VFS/virt_vfs.h"
 #include "../VFS/krarchandler.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
@@ -143,12 +144,19 @@ void ListPanelFunc::delayedOpenUrl( const KURL& urlIn ) {
 		KURL u = urlStack.pop();
 		//u.adjustPath(-1); // remove trailing "/"
 		u.cleanPath(); // Resolves "." and ".." components in path.
-		v = KrVfsHandler::getVfs( u, panel, files() );
-		if ( !v )
-			continue; //this should not happen !
-		if ( v != vfsP ) {
+		if( u.protocol() == "virt" && virtualFiles.count() != 0 ) {
 			vfsP->deleteLater();
-			vfsP = v; // v != 0 so this is safe
+			vfsP = new virt_vfs( panel );
+			files()->vfs_addFiles( &virtualFiles, KIO::CopyJob::Copy, 0 );
+			virtualFiles.clear();                                                                        
+		} else {                
+			v = KrVfsHandler::getVfs( u, panel, files() );
+			if ( !v )
+				continue; //this should not happen !
+			if ( v != vfsP ) {
+				vfsP->deleteLater();
+				vfsP = v; // v != 0 so this is safe
+			}
 		}
 		connect( files(), SIGNAL(startJob(KIO::Job* )),
 				panel, SLOT(slotJobStarted(KIO::Job* )));
@@ -160,7 +168,8 @@ void ListPanelFunc::delayedOpenUrl( const KURL& urlIn ) {
 	vfsP->vfs_setQuiet( false );
 
 	// update the urls stack
-	if ( !files() ->vfs_getOrigin().equals( urlStack.top() ) ) {
+	if ( files()->vfs_getType() != vfs::VIRT &&
+			!files() ->vfs_getOrigin().equals( urlStack.top() ) ) {
 		urlStack.push( files() ->vfs_getOrigin() );
 	}
 	// disconnect older signals
@@ -195,7 +204,8 @@ void ListPanelFunc::goBack() {
 	if ( urlStack.isEmpty() )
 		return ;
 
-	urlStack.pop();
+	if ( urlStack.top().equals( files() ->vfs_getOrigin() ) )
+		urlStack.pop();
 	openUrl( urlStack.top(), files() ->vfs_getOrigin().fileName() );
 
 	if ( urlStack.isEmpty() )
@@ -1021,5 +1031,12 @@ void ListPanelFunc::pasteFromClipboard() {
 		connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
 	}
 }
+
+void ListPanelFunc::createVirtualFolder( KURL::List &fileList )
+{
+	virtualFiles = fileList;
+	openUrl( KURL("virt:/") );
+}
+
 
 #include "panelfunc.moc"

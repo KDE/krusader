@@ -59,6 +59,7 @@ public:
 public slots:
   void startSearch();
   void stopSearch();
+  void feedToListBox();
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
   void closeDialog( bool isAccept = true );
   void resultClicked(QListViewItem*);
@@ -85,6 +86,7 @@ private:
   QPushButton* mainSearchBtn;
   QPushButton* mainStopBtn;
   QPushButton* mainCloseBtn;
+  QPushButton* mainFeedToListBoxBtn;
   
   QTabWidget* searcherTabs;  
   QWidget* resultTab;

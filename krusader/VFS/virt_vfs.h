@@ -18,7 +18,7 @@
 #ifndef VIRT_VFS_H
 #define VIRT_VFS_H
 
-#include <vfs.h>
+#include "vfs.h"
 
 /**
   *@author Shie Erlich & Rafi Yanai

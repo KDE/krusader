@@ -35,6 +35,7 @@
 #include "../Panel/panelfunc.h"
 #include "../Dialogs/krdialogs.h"
 #include "../VFS/krpermhandler.h"
+#include "../VFS/virt_vfs.h"
 #include "../KViewer/krviewer.h"
 #include "krsearchmod.h"
 #include "krsearchdialog.h"
@@ -81,6 +82,11 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   buttonsLayout->addItem( spacer );
 
+  mainFeedToListBoxBtn = new QPushButton( this, "mainFeedToListBoxBtn" );
+  mainFeedToListBoxBtn->setText( i18n( "Feed to listbox" ) );
+  mainFeedToListBoxBtn->setEnabled(false);
+  buttonsLayout->addWidget( mainFeedToListBoxBtn );
+  
   mainSearchBtn = new QPushButton( this, "mainSearchBtn" );
   mainSearchBtn->setText( i18n( "Search" ) );
   mainSearchBtn->setDefault(true);
@@ -180,6 +186,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   connect( resultsList, SIGNAL( doubleClicked(QListViewItem*) ), this, SLOT( resultClicked(QListViewItem*) ) );
   connect( resultsList, SIGNAL( rightButtonClicked(QListViewItem*,const QPoint&,int) ), this, SLOT( rightClickMenu(QListViewItem*, const QPoint&, int) ) );
   connect( mainCloseBtn, SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
+  connect( mainFeedToListBoxBtn, SIGNAL( clicked() ), this, SLOT( feedToListBox() ) );
   
   connect( profileManager, SIGNAL( loadFromProfile( QString ) ), generalFilter, SLOT( loadFromProfile( QString ) ) );
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), generalFilter, SLOT( saveToProfile( QString ) ) );
@@ -334,7 +341,9 @@ void KrSearchDialog::startSearch() {
   mainSearchBtn->setEnabled(false);
   mainCloseBtn->setEnabled(false);
   mainStopBtn->setEnabled(true);
-  resultsList->clear(); searchingLabel->setText("");
+  mainFeedToListBoxBtn->setEnabled(false);
+  resultsList->clear(); 
+  searchingLabel->setText("");
   foundLabel->setText(i18n("Found 0 matches."));
   searcherTabs->setCurrentPage(2); // show the results page
   qApp->processEvents();
@@ -370,6 +379,8 @@ void KrSearchDialog::stopSearch() {
   mainSearchBtn->setEnabled(true);
   mainCloseBtn->setEnabled(true);
   mainStopBtn->setEnabled(false);
+  if( resultsList->childCount() )
+    mainFeedToListBoxBtn->setEnabled( true );
   searchingLabel->setText(i18n("Finished searching."));
 }
 
@@ -472,6 +483,22 @@ void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
     default:    // the user clicked outside of the menu
       break;
   }
+}
+
+void KrSearchDialog::feedToListBox()
+{
+  KURL::List urlList;
+  QListViewItem * item = resultsList->firstChild();
+  while( item )
+  {
+    QString name = item->text(1);
+    name += (name.endsWith( "/" ) ? item->text(0) : "/" + item->text(0) );
+    urlList.push_back( vfs::fromPathOrURL( name ) );
+    item = item->nextSibling();
+  }
+  ACTIVE_FUNC->createVirtualFolder( urlList );
+  
+  closeDialog();
 }
 
 #include "krsearchdialog.moc"
