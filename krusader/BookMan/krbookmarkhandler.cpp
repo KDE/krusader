@@ -16,11 +16,10 @@
 
 // ------------------------ for internal use
 #define BOOKMARKS_FILE	"krusader/krbookmarks.xml"
-#define CONNECT_BM(X)	connect(X, SIGNAL(activated(const KURL&)), SLOTS, SLOT(refresh(const KURL&)));
+#define CONNECT_BM(X)	{ disconnect(X, SIGNAL(activated(const KURL&)), 0, 0); connect(X, SIGNAL(activated(const KURL&)), this, SLOT(slotActivated(const KURL&))); }
 											
-KrBookmarkHandler::KrBookmarkHandler(): QObject(0) {
+KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false) {
 	// create our own action collection and make the shortcuts apply only to parent
-	//_collection = new KActionCollection(0, this, "bookmark collection");
 	_collection = krApp->actionCollection();
 
 	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
@@ -265,6 +264,8 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 		disconnect(menu, SIGNAL(activated(int)), 0, 0);
 		connect(menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
 	}
+
+	menu->installEventFilter(this);
 }
 
 
@@ -283,3 +284,32 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root) {
 void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&) {
 	importFromFile();
 }
+
+bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
+	if (ev->type() == QEvent::MouseButtonRelease) {
+		switch (static_cast<QMouseEvent*>(ev)->button()) {
+			case LeftButton:
+			case RightButton:
+				_middleClick = false;
+				break;
+			case MidButton:
+				_middleClick = true;
+				break;
+			default:
+				break;
+		}
+	}
+	return QObject::eventFilter(obj, ev);
+}
+
+// used to monitor middle clicks. if mid is found, then the
+// bookmark is opened in a new tab. ugly, but easier than overloading
+// KAction and KActionCollection.
+void KrBookmarkHandler::slotActivated(const KURL& url) {
+	kdWarning() << "onec" << endl;
+	if (_middleClick)
+		SLOTS->newTab();
+	
+	SLOTS->refresh(url);
+}
+

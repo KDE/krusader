@@ -27,6 +27,7 @@ signals:
 protected slots:
 	void activatedProxy();
 	
+	
 private:
 	KURL _url;
 	QString _icon;

@@ -32,16 +32,20 @@ protected:
 	void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
 	void clearBookmarks(KrBookmark *root);
 	void buildMenu(KrBookmark *parent, KPopupMenu *menu);
+
+	bool eventFilter( QObject *obj, QEvent *ev );
 	
 protected slots:
 	void menuOperation(int id);
 	void bookmarksChanged(const QString&, const QString&);
+	void slotActivated(const KURL& url);
 
 private:
 	KActionCollection *_collection;
 	KrBookmark *_root;
 	// the whole KBookmarkManager is an ugly hack. use it until we have our own
 	KBookmarkManager *manager;
+	bool _middleClick; // if true, the user clicked the middle button to open the bookmark
 };
 
 #endif // KRBOOKMARK_HANDLER_H
