@@ -765,6 +765,13 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       proc << KrServices::separateArgs( term );
       if ( !item->isDir() )
         proc << "-e" << item->name();
+  
+      if( term.contains( "konsole" ) )   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
+      {                                  /* Please remove the patch if the bug is corrected */
+        proc << "&";
+        proc.setUseShell( true );
+      }
+
       if ( !proc.start( KProcess::DontCare ) )
         KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + term + "\"" );
       chdir( save.local8Bit() );

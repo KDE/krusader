@@ -254,6 +254,13 @@ void ListPanelFunc::terminal() {
   krConfig->setGroup( "General" );
   QString term = krConfig->readEntry( "Terminal", _Terminal );
   proc << KrServices::separateArgs( term );
+  
+  if( term.contains( "konsole" ) )   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
+  {                                  /* Please remove the patch if the bug is corrected */
+    proc << "&";
+    proc.setUseShell( true );
+  }
+  
   if ( !proc.start( KProcess::DontCare ) )
     KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + term + "\"" );
 
