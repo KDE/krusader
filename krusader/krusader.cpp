@@ -496,9 +496,9 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openRightBookmarks() ), actionCollection(), "right bookmarks" );
    new KAction( i18n( "Left bookmarks" ), ALT + Key_Left,
                 SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
-   new KAction( i18n( "History" ), ALT + CTRL + Key_Left,
+   new KAction( i18n( "Left history" ), ALT + CTRL + Key_Left,
                 SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
-   new KAction( i18n( "History" ), ALT + CTRL + Key_Right,
+   new KAction( i18n( "Right history" ), ALT + CTRL + Key_Right,
                 SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
    actNewTab = new KAction( i18n( "New tab" ), ALT + CTRL + Key_N, SLOTS,
                             SLOT( newTab() ), actionCollection(), "new tab" );
