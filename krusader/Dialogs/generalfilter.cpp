@@ -36,7 +36,7 @@
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <kiconloader.h>
- 
+
 GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *name ) : QWidget( parent, name )
 {
   QGridLayout *filterLayout = new QGridLayout( this );
@@ -109,22 +109,8 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
     searchInLayout->setSpacing( 6 );
     searchInLayout->setMargin( 11 );
     
-    searchInEdit = new KLineEdit( searchInGroup, "searchInEdit" );
-    searchInLayout->addWidget( searchInEdit, 0, 0 );
-      
-    searchIn = new QListBox( searchInGroup, "searchIn" );
-    searchIn->setSelectionMode( QListBox::Extended );
-    searchInLayout->addMultiCellWidget( searchIn, 1, 1, 0, 2 );
-
-    searchInBtnAdd = new QToolButton( searchInGroup, "searchInBtnAdd" );
-    searchInBtnAdd->setText( "" );
-    searchInBtnAdd->setPixmap( imageAdd );
-    searchInLayout->addWidget( searchInBtnAdd, 0, 1 );
-    
-    searchInBtn = new QToolButton( searchInGroup, "searchInBtn" );
-    searchInBtn->setText( "" );
-    searchInBtn->setPixmap( imageFolder );
-    searchInLayout->addWidget( searchInBtn, 0, 2 );
+    searchIn = new KURLListRequester( searchInGroup, "searchIn" );
+    searchInLayout->addWidget( searchIn, 0, 0 );
 
     filterLayout->addWidget( searchInGroup, 1, 0 );
   
@@ -140,30 +126,10 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
     dontSearchInLayout->setSpacing( 6 );
     dontSearchInLayout->setMargin( 11 );
 
-    dontSearchInEdit = new KLineEdit( dontSearchInGroup, "dontSearchInEdit" );
-    dontSearchInLayout->addWidget( dontSearchInEdit, 0, 0 );
+    dontSearchIn = new KURLListRequester( dontSearchInGroup, "dontSearchIn" );
+    dontSearchInLayout->addWidget( dontSearchIn, 0, 0 );
 
-    dontSearchInBtnAdd = new QToolButton( dontSearchInGroup, "dontSearchInBtnAdd" );
-    dontSearchInBtnAdd->setText( "" );
-    dontSearchInBtnAdd->setPixmap( imageAdd );
-    dontSearchInLayout->addWidget( dontSearchInBtnAdd, 0, 1 );
-  
-    dontSearchInBtn = new QToolButton( dontSearchInGroup, "dontSearchInBtn" );
-    dontSearchInBtn->setText( "" );
-    dontSearchInBtn->setPixmap( imageFolder );
-    dontSearchInLayout->addWidget( dontSearchInBtn, 0, 2 );
-
-    dontSearchIn = new QListBox( dontSearchInGroup, "dontSearchIn" );
-    dontSearchIn->setSelectionMode( QListBox::Extended );
-    dontSearchInLayout->addMultiCellWidget( dontSearchIn, 1, 1, 0, 2 );
-      
     filterLayout->addWidget( dontSearchInGroup, 1, 1 );
-  
-    // add shell completion
-  
-    completion.setMode( KURLCompletion::FileCompletion );
-    searchInEdit->setCompletionObject( &completion );
-    dontSearchInEdit->setCompletionObject( &completion );
   }
   
   // Options for containing text
@@ -247,12 +213,6 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
   
   if( hasDirOptions )
   {  
-    connect( searchInBtn, SIGNAL( clicked() ), this, SLOT( addToSearchIn() ) );
-    connect( searchInBtnAdd, SIGNAL( clicked() ), this, SLOT( addToSearchInManually() ) );
-    connect( searchInEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( addToSearchInManually() ) );
-    connect( dontSearchInBtn, SIGNAL( clicked() ), this, SLOT( addToDontSearchIn() ) );
-    connect( dontSearchInBtnAdd, SIGNAL( clicked() ), this, SLOT( addToDontSearchInManually() ) );  
-    connect( dontSearchInEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( addToDontSearchInManually() ) );
     connect( searchInArchives, SIGNAL(toggled(bool)), containsText, SLOT(setDisabled(bool)));
     connect( searchInArchives, SIGNAL(toggled(bool)), containsTextCase, SLOT(setDisabled(bool)));
     connect( searchInArchives, SIGNAL(toggled(bool)), containsWholeWord, SLOT(setDisabled(bool)));
@@ -265,12 +225,9 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
   if( hasDirOptions )
   {
     setTabOrder( searchFor, ofType );
-    setTabOrder( ofType, searchInEdit );
-    setTabOrder( searchInEdit, dontSearchInEdit );
-    setTabOrder( dontSearchInEdit, containsText );
-    setTabOrder( containsText, dontSearchIn );
-    setTabOrder( dontSearchIn, searchIn );
-    setTabOrder( searchIn, containsTextCase );
+    setTabOrder( ofType, searchIn );
+    setTabOrder( searchIn, dontSearchIn );
+    setTabOrder( dontSearchIn, containsTextCase );
     setTabOrder( containsTextCase, searchForCase );
     setTabOrder( searchForCase, searchInDirs );
     setTabOrder( searchInDirs, searchInArchives );
@@ -311,40 +268,6 @@ GeneralFilter::~GeneralFilter()
   krConfig->sync();
 }
 
-void GeneralFilter::addToSearchIn() 
-{
-  KURL url = KFileDialog::getExistingURL();
-  if ( url.isEmpty()) return;
-  searchInEdit->setText( url.prettyURL( 0,KURL::StripFileProtocol ) );
-  searchInEdit->setFocus();
-}
-
-void GeneralFilter::addToSearchInManually() 
-{
-  if( searchInEdit->text().simplifyWhiteSpace().length() )
-  {  
-    searchIn->insertItem(searchInEdit->text());
-    searchInEdit->clear();
-  }
-}
-
-void GeneralFilter::addToDontSearchIn() 
-{
-  KURL url = KFileDialog::getExistingURL();
-  if ( url.isEmpty()) return;
-  dontSearchInEdit->setText( url.prettyURL( 0,KURL::StripFileProtocol ) );
-  dontSearchInEdit->setFocus();
-}
-
-void GeneralFilter::addToDontSearchInManually() 
-{
-  if( dontSearchInEdit->text().simplifyWhiteSpace().length() )
-  {
-    dontSearchIn->insertItem(dontSearchInEdit->text());
-    dontSearchInEdit->clear();
-  }
-}
-  
 bool GeneralFilter::fillQuery( KRQuery *query )
 {
   // check that we have (at least) what to search, and where to search in
@@ -374,32 +297,14 @@ bool GeneralFilter::fillQuery( KRQuery *query )
     
     // create the lists
   
-    query->whereToSearch.clear();
-    QListBoxItem *item = searchIn->firstItem();
-    while ( item )
-    {    
-      query->whereToSearch.append( vfs::fromPathOrURL( item->text().simplifyWhiteSpace() ) );
-      item = item->next();
-    }
-
-    if (!searchInEdit->text().simplifyWhiteSpace().isEmpty())
-      query->whereToSearch.append( vfs::fromPathOrURL( searchInEdit->text().simplifyWhiteSpace() ) );
-
-    query->whereNotToSearch.clear();
-    item = dontSearchIn->firstItem();
-    while ( item )
-    {
-      query->whereNotToSearch.append( vfs::fromPathOrURL( item->text().simplifyWhiteSpace() ) );
-      item = item->next();
-    }
-    if (!dontSearchInEdit->text().simplifyWhiteSpace().isEmpty())
-      query->whereNotToSearch.append( vfs::fromPathOrURL( dontSearchInEdit->text().simplifyWhiteSpace() ) );
+    query->whereToSearch = searchIn->urlList();
+    query->whereNotToSearch = dontSearchIn->urlList();
 
     // checking the lists
       
     if (query->whereToSearch.isEmpty() ) { // we need a place to search in
       KMessageBox::error(0,i18n("Please specify a location to search in."));
-      searchInEdit->setFocus();
+      searchIn->lineEdit()->setFocus();
       return false;
     }
   }
@@ -411,41 +316,6 @@ void GeneralFilter::queryAccepted()
 {
   searchFor->addToHistory(searchFor->currentText());
   containsText->addToHistory(containsText->currentText());
-}
-
-void GeneralFilter::deleteSelectedItems( QListBox *list_box )
-{
-  int i=0;
-  QListBoxItem *item;
-
-  while( (item = list_box->item(i)) )
-  {
-    if( item->isSelected() )
-    {
-      list_box->removeItem( i );
-      continue;
-    }
-    i++;
-  }
-}
-
-void GeneralFilter::keyPressEvent(QKeyEvent *e)
-{
-  if( hasDirOptions && e->key() == Key_Delete )
-  {
-    if( searchIn->hasFocus() )
-    {
-      deleteSelectedItems( searchIn );
-      return;
-    }
-    if( dontSearchIn->hasFocus() )
-    {
-      deleteSelectedItems( dontSearchIn );
-      return;
-    }
-  }
-
-  QWidget::keyPressEvent( e );
 }
 
 void GeneralFilter::loadFromProfile( QString name )
@@ -472,18 +342,18 @@ void GeneralFilter::loadFromProfile( QString name )
     searchInArchives->setChecked( krConfig->readBoolEntry( "Search In Archives", false ) );
     followLinks->setChecked( krConfig->readBoolEntry( "Follow Symlinks", false ) );
 
-    searchInEdit->setText( krConfig->readEntry( "Search In Edit", "" ) );
-    dontSearchInEdit->setText( krConfig->readEntry( "Dont Search In Edit", "" ) );
+    searchIn->lineEdit()->setText( krConfig->readEntry( "Search In Edit", "" ) );
+    dontSearchIn->lineEdit()->setText( krConfig->readEntry( "Dont Search In Edit", "" ) );
 
-    searchIn->clear();
+    searchIn->listBox()->clear();
     QStringList searchInList = krConfig->readListEntry( "Search In List" );
     if( !searchInList.isEmpty() )
-      searchIn->insertStringList( searchInList );
+      searchIn->listBox()->insertStringList( searchInList );
 
-    dontSearchIn->clear();
+    dontSearchIn->listBox()->clear();
     QStringList dontSearchInList = krConfig->readListEntry( "Dont Search In List" );
     if( !dontSearchInList.isEmpty() )
-      dontSearchIn->insertStringList( dontSearchInList );
+      dontSearchIn->listBox()->insertStringList( dontSearchInList );
   }
 }
 
@@ -505,17 +375,17 @@ void GeneralFilter::saveToProfile( QString name )
     krConfig->writeEntry( "Search In Archives", searchInArchives->isChecked() );  
     krConfig->writeEntry( "Follow Symlinks", followLinks->isChecked() );
 
-    krConfig->writeEntry( "Search In Edit", searchInEdit->text() );
-    krConfig->writeEntry( "Dont Search In Edit", dontSearchInEdit->text() );
+    krConfig->writeEntry( "Search In Edit", searchIn->lineEdit()->text() );
+    krConfig->writeEntry( "Dont Search In Edit", dontSearchIn->lineEdit()->text() );
   
     QStringList searchInList;
     QListBoxItem *item;
-    for ( item = searchIn->firstItem(); item != 0; item = item->next() )
+    for ( item = searchIn->listBox()->firstItem(); item != 0; item = item->next() )
       searchInList.append( item->text().simplifyWhiteSpace() );
     krConfig->writeEntry( "Search In List", searchInList );
   
     QStringList dontSearchInList;
-    for ( item = dontSearchIn->firstItem(); item != 0; item = item->next() )
+    for ( item = dontSearchIn->listBox()->firstItem(); item != 0; item = item->next() )
       dontSearchInList.append( item->text().simplifyWhiteSpace() );
     krConfig->writeEntry( "Dont Search In List", dontSearchInList );
   }

@@ -232,7 +232,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
     generalFilter->searchInDirs->setChecked( lastSearchInSubDirs );
     generalFilter->searchInArchives->setChecked( lastSearchInArchives );
     generalFilter->followLinks->setChecked( lastFollowSymLinks );
-    generalFilter->searchInEdit->setText( ACTIVE_PANEL->getPath() ); // the path in the active panel should be the default search location
+    generalFilter->searchIn->lineEdit()->setText( ACTIVE_PANEL->getPath() ); // the path in the active panel should be the default search location
   }
   else
     profileManager->loadByName( profile ); // important: call this _after_ you've connected profileManager ot the loadFromProfile!!

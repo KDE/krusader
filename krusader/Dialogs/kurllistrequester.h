@@ -1,7 +1,7 @@
 /***************************************************************************
-                       generalfilter.h  -  description
+                     kurllistrequester.h  -  description
                              -------------------
-    copyright            : (C) 2003 by Csaba Karai
+    copyright            : (C) 2005 by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -28,54 +28,44 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef GENERALFILTER_H
-#define GENERALFILTER_H
-
-#include "../VFS/krquery.h"
-#include "kurllistrequester.h"
+#ifndef __KURLLISTREQUESTER_H__
+#define __KURLLISTREQUESTER_H__
 
 #include <qwidget.h>
-#include <qlayout.h>
-#include <qgroupbox.h>
-#include <qcheckbox.h>
-#include <qlabel.h>
-#include <kcombobox.h>
+#include <qlistbox.h>
+#include <qtoolbutton.h>
+#include <klineedit.h>
+#include <kurl.h>
 #include <kshellcompletion.h>
 
-class GeneralFilter : public QWidget
+class KURLListRequester : public QWidget
 {
   Q_OBJECT
   
 public:
-  GeneralFilter( bool hasDirOptions, QWidget *parent = 0, const char *name = 0 );
-  ~GeneralFilter();
+  KURLListRequester( QWidget *parent = 0, const char * name = 0 );  
   
-  bool fillQuery( KRQuery *query );
-  void queryAccepted();
+  KURL::List   urlList();
+  void         setUrlList( KURL::List );
   
-public slots:    
-  void loadFromProfile( QString name );
-  void saveToProfile( QString name );
+  KLineEdit   *lineEdit()    {return urlLineEdit;}
+  QListBox    *listBox()     {return urlListBox;}
+
+protected slots:
+  void         slotAdd();
+  void         slotBrowse();
+  void         slotRightClicked( QListBoxItem * );
   
-public:  
-  QCheckBox* searchForCase;  
-  QCheckBox* containsTextCase;
-  QCheckBox* containsWholeWord;
-  QCheckBox* searchInDirs;
-  QCheckBox* searchInArchives;
-  QCheckBox* followLinks;
-    
-  KURLListRequester *searchIn;
-  KURLListRequester *dontSearchIn;
+protected:
+  virtual void keyPressEvent(QKeyEvent *e);
+  void         deleteSelectedItems();
   
-  KHistoryCombo* searchFor;
-  KHistoryCombo* containsText;
-    
-  KComboBox* ofType;
-    
+  KLineEdit    *urlLineEdit;
+  QListBox     *urlListBox;
+  QToolButton  *urlAddBtn;
+  QToolButton  *urlBrowseBtn;
+  
   KShellCompletion completion;
-  
-  bool hasDirOptions;
 };
 
-#endif /* GENERALFILTER_H */
+#endif /* __KURLLISTREQUESTER_H__ */
