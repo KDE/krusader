@@ -204,7 +204,7 @@ QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter,
             result += ( (useUrl ? (*it).url() : (*it).path()) ).replace(" ", "\\ ");
       }
    }
-kdDebug() << "result: '" << result << "'" << endl;
+
    return result;
 }
 
@@ -366,7 +366,6 @@ QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 Expander::Expander() {
-kdDebug() << "new Expander" << endl;
    //Penel-dependent:
    addPlaceholder( new exp_Path() );
    addPlaceholder( new exp_Count() );
@@ -384,6 +383,11 @@ kdDebug() << "new Expander" << endl;
    addPlaceholder( new exp_Sync() );
 //    addPlaceholder( new exp_Run() );
 //    addPlaceholder( new exp_SearchExt() );
+}
+
+Expander::~Expander() {
+   for ( int i = 0; i < placeholderCount(); ++i )
+      delete placeholder( i );
 }
 
 ListPanel* Expander::getPanel( const char& panelIndicator ) {

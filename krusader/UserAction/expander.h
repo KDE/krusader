@@ -49,6 +49,8 @@ private:
   */
 class exp_placeholder {
 public:
+   virtual inline ~exp_placeholder()
+      { for ( int i = 0; i < parameterCount(); ++i ) delete parameter( i ); }
    inline QString expression()  ///< The placeholder (without '%' or panel-prefix)
       { return _expression; }
    inline QString description() ///< A description of the placeholder
@@ -59,7 +61,7 @@ public:
       { _parameter.append(parameter); }
    inline int parameterCount() ///< returns the number of placeholders
       { return _parameter.count(); }
-   inline exp_parameter* parameter( int id )
+   inline exp_parameter* parameter( int id ) ///< returns a specific parameter
       { return _parameter[ id ]; }
 
    virtual EXP_FUNC = 0;
@@ -74,7 +76,7 @@ class exp_separator  : public exp_placeholder {
 public:
    inline exp_separator( bool needPanel )
       { _needPanel = needPanel; }
-   inline EXP_FUNC {}
+   inline EXP_FUNC { return QString::null; }
 };
 
 /**
@@ -229,6 +231,7 @@ public:
 class Expander {
 public:
   Expander();
+  ~Expander();
   
    inline void addPlaceholder( exp_placeholder* placeholder ) ///< adds placeholder to the expander.
       { _placeholder.append(placeholder); }
