@@ -71,6 +71,12 @@ using namespace MountMan;
 
 KMountMan::KMountMan() : QObject(), Ready( false ), Operational( false ),
 outputBuffer( 0 ), tempFile( 0 ), mountManGui( 0 ), mtab( "" ) {
+//#ifdef _OS_SOLARIS_
+  // disable mountman on solaris because of df issues.
+  // at least until we find a solaris box to test on
+  Operational = Ready = false;
+  return;
+//#endif
 #if KDE_IS_VERSION(3,2,0)
   _actions = 0L;
 #endif /* KDE 3.2 */
@@ -682,6 +688,13 @@ bool KMountMan::ejectable( QString path ) {
 statsCollector::statsCollector( QString path, QObject *caller ) : QObject() {
   QString stats;
   connect( this, SIGNAL( gotStats( QString ) ), caller, SLOT( gotStats( QString ) ) );
+  
+  // is mountman even alive?
+  if (!krMtMan.operational()) {
+    stats = i18n("MountMan is not operational. Sorry");
+	emit gotStats(stats);
+	return;
+  }
 #ifdef BSD
   if ( path.left( 5 ) == "/procfs" ) { // /procfs is a special case - no volume information
     stats = i18n( "No space information on a [procfs]" );
@@ -805,6 +818,10 @@ QString KMountMan::convertSize( KIO::filesize_t size ) {
 
 // populate the pop-up menu of the mountman tool-button with actions
 void KMountMan::quickList() {
+  if (!Operational) {
+    KMessageBox::error(0, i18n("MountMan is not operational. Sorry"));
+    return;
+  }
 
 #if KDE_IS_VERSION(3,2,0)
 
