@@ -77,8 +77,8 @@ into pages, each containing items related to that page. For some changes to the 
   <listitem><para><guilabel>"Save settings on exit"</guilabel>: when shutdown, &krusader; checks the
          state of the user interface components, and restores them to the condition they were during
          shutdown.</para></listitem>
-  <listitem><para><guilabel>"Toolbar visible"</guilabel>: if checked, the
-         &toolbar_lnk; will be visible after startup.</para></listitem>
+  <listitem><para><guilabel>"Main Toolbar visible"</guilabel>: if checked, the
+         &main_toolbar_lnk; will be visible after startup.</para></listitem>
   <listitem><para><guilabel>"Statusbar visible"</guilabel>: if checked, the statusbar will be
          visible during startup.</para></listitem>
   <listitem><para><guilabel>"Function keys visible"</guilabel>: if checked, the
@@ -239,7 +239,7 @@ HTML_PARSING-->
 
 <sect2 id="konfig-looknfeel-toolbar">
 <title>Toolbar</title>
-<para>Here you can configure the &toolbar_lnk; the way you want.
+<para>Here you can configure the &main_toolbar_lnk; the way you want.
        Add the action buttons of your favourite functions to the Toolbar.</para>
 
 </sect2>
@@ -357,7 +357,16 @@ HTML_PARSING-->
  <varlistentry><term><guilabel>Preview</guilabel></term>
   <listitem><para>Here you see a preview of the configured colors.</para>
   </listitem></varlistentry>
- </variablelist>
+
+ <varlistentry><term><guilabel>Color schemes</guilabel></term>
+  <listitem><para>With the <guibutton>"Inport Color Scheme"</guibutton> <guibutton>"Export Color Scheme"</guibutton> 
+      buttons you can load and save a Color Scheme profile. 
+      This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom colors.
+      The Color Schemes are stored in <filename>$KDEDIR/share/apps/krusader</filename>, 
+      the <filename>foo.color</filename> is a binary file that holds the Color Scheme.</para>
+  </listitem></varlistentry>
+
+</variablelist>
 
 
 </sect1>

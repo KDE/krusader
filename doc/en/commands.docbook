@@ -542,9 +542,18 @@
   <varlistentry>
   <term><menuchoice>
   <guimenu>View</guimenu>
-  <guimenuitem>Show Toolbar</guimenuitem>
+  <guimenuitem>Show Main Toolbar</guimenuitem>
   </menuchoice></term>
-  <listitem><para>Shows the &toolbar_lnk; if checked.</para>
+  <listitem><para>Shows the &main_toolbar_lnk; if checked.</para>
+  </listitem>
+  </varlistentry>
+
+  <varlistentry>
+  <term><menuchoice>
+  <guimenu>View</guimenu>
+  <guimenuitem>Show Actions Toolbar</guimenuitem>
+  </menuchoice></term>
+  <listitem><para>Shows the &actions_toolbar_lnk; if checked.</para>
   </listitem>
   </varlistentry>
 
@@ -605,8 +614,8 @@
   <guimenu>Settings</guimenu>
   <guimenuitem>Configure Toolbars</guimenuitem>
   </menuchoice></term>
-  <listitem><para>Opens a dialog which allows you to configure the &krusader; toolbar.
-                        The same dialog can be reached from the &konfiglookandfeel_lnk;.</para>
+  <listitem><para>Opens a dialog which allows you to configure the &main_toolbar_lnk; or the &actions_toolbar_lnk;.
+                  The same dialog can be reached from the &konfiglookandfeel_lnk;.</para>
   </listitem>
   </varlistentry>
 

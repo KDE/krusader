@@ -36,8 +36,9 @@
 
 <para><emphasis role="bold">Important: RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1.
       The new manager handles local files and remote &URL;'s the same way.
-      RemoteMan is being left around to allow an easier transition and
-      give you a chance to move your bookmarks. IT WILL BE REMOVED SOON!</emphasis></para>
+      RemoteMan is being left around until &krusader;-1.51 to allow an easier transition and
+      give you a chance to move your bookmarks.
+      REMOTEMAN IS DISABLED SINCE KRUSADER-1.60</emphasis></para>
 
 <para>Try the new bookmark-manager: open a new remote connection. once
       done, press the <guibutton>"Bookmark"</guibutton> button, select
@@ -111,7 +112,7 @@
 
 <para>"Quickmode for MountMan" is only available on &kde; 3.2 - earlier versions will see no difference.</para>
 
-<para>To activate Quickmode for MountMan, click AND HOLD the MountMan button on the &toolbar_lnk;</para>
+<para>To activate Quickmode for MountMan, click AND HOLD the MountMan button on the &main_toolbar_lnk;</para>
 
 <para>General idea: display a list of all possible mountpoints.
       Each time the menu is displayed, it determines if a mountpoint is mounted or not and associated the correct
@@ -391,6 +392,8 @@
             user in group 'ftp', are readable, writable but not executable to any user in the group, are readable but
             not writable or executable to the rest of the world and have unknown permissions to its owner.</para></note>
 
+<para><emphasis role="bold">Results</emphasis></para>
+
 <para>Clicking on the <guibutton>"Search"</guibutton> button to start the search and open the Results window.
        Here you can see the progress and the the results of the search action. If you want you can stop the current
        search action with the <guibutton>"Stop"</guibutton> button.
@@ -399,6 +402,14 @@
        When you click on a found item, the directory of the active panel will change if the selected item is not in
        the current panel directory. When you close the Krusearcher window, the selected item is selected in the
        active panel.</para>
+
+<para>When you click the <guibutton>"feed to listbox"</guibutton> button after the results are displayed, 
+      then &krusader; opens a new results-tab with the resulting files/folders. 
+      You can do whatever you want on the files in the new tab.</para>
+
+<warning><para>The files in the results-tab are actually the original files. 
+               if you delete a file - it is removed!</para></warning>
+       
 </sect1>
 
 <sect1 id = "krviewer">
@@ -1648,6 +1659,12 @@
           <orderedlist>
           <listitem><para>&useraction_optional_parameter; A integer value, e.g. 80 makes the active panel use 80% of 
                          &krusader;'s width (height in vertical-mode), ommiting the parameter means 50%.
+                         </para></listitem>
+    </orderedlist>
+    </listitem>
+    <listitem><para><userinput>Ask</userinput> - Cancel the execution.</para>
+          <orderedlist>
+          <listitem><para>&useraction_optional_parameter; A string with for the cancel question.
                          </para></listitem>
     </orderedlist>
     </listitem>

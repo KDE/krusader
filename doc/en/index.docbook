@@ -52,7 +52,6 @@ Previous used Docbook
 <!ENTITY useractionsforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=11">UserActions Forum</ulink>'>
 <!ENTITY rss_url '<ulink url="http://krusader.sf.net/phpBB/rss.php">here</ulink>'>
 <!ENTITY krucutedge_url '<ulink url="http://krusader.sourceforge.net/cvs.php">&krusader;&apos;s Cutting Edge page</ulink>'>
-
 <!ENTITY _64bit_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=951">64 bit</ulink>'>
 
 
@@ -116,7 +115,8 @@ Previous used Docbook
 <!ENTITY markmenu_lnk '<link linkend="mark-menu">Mark menu</link>'>
 <!ENTITY comparedir_lnk '<link linkend="compare-dir">Compare Directories</link>'>
 <!ENTITY fnkeybar_lnk '<link linkend="fnkeys">FN Keys Bar</link>'>
-<!ENTITY toolbar_lnk '<link linkend="toolbar">Toolbar</link>'>
+<!ENTITY main_toolbar_lnk '<link linkend="main_toolbar">Main Toolbar</link>'>
+<!ENTITY actions_toolbar_lnk '<link linkend="actions_toolbar">Actions Toolbar</link>'>
 <!ENTITY rootmode_lnk '<link linkend="root-mode">Root mode</link>'>
 <!ENTITY settingsmenu_lnk '<link linkend="settings-menu">Settings menu</link>'>
 <!ENTITY keybindigs_lnk '<link linkend="key_bindings">Key-Bindings</link>'>
@@ -138,8 +138,9 @@ Previous used Docbook
 <!ENTITY termemu_lnk '<link linkend="cmdline">Terminal emulator</link>'>
 <!ENTITY missing_libs_lnk '<link linkend="faqi_missing_libs">&FAQ; missing libs or headers</link>'>
 <!ENTITY panel_profiles_lnk '<link linkend="panel_profiles">Panel profiles</link>'>
-<!ENTITY sync_browsing_lnk '<link linkend="paneltoolbar">Sync-browsing</link>'>
+<!ENTITY sync_browsing_lnk '<link linkend="panel_toolbar">Sync-browsing</link>'>
 <!ENTITY diskusage_lnk '<link linkend="diskusage">Disk Usage</link>'>
+<!ENTITY bookmarks_lnk '<link linkend="bookman">Bookmarks</link>'>
 
 <!ENTITY install_proc_lnk '<link linkend="installation">Installation procedure</link>'>
 <!ENTITY disablenote '<note><para>This feature is temporarily disabled and will be rewritten, sorry.</para></note>'>
@@ -181,12 +182,14 @@ Previous used Docbook
 <!ENTITY xxdiff '<application>xxdiff</application>'>
 <!ENTITY krename '<application>Krename</application>'>
 <!ENTITY kget '<application>kget</application>'>
+<!ENTITY filelight '<application>Filelight</application>'>
+
 <!ENTITY fedora '<trademark class="registered">Fedora</trademark>'>
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
 <!ENTITY debian '<trademark class="registered">Debian</trademark>'>
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
 <!ENTITY tcmd '<trademark class="registered">Total commander</trademark>'>
-<!ENTITY filelight '<trademark class="registered">Filelight</trademark>'>
+
 
 <!ENTITY useraction_parameter 'Parameter:'>
 <!ENTITY useraction_optional_parameter 'Parameter (optional):'>
@@ -274,7 +277,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>18/01/2005</date>
+  <date>24/01/2005</date>
   <releaseinfo>1.60-00 CVS</releaseinfo>
 
    <abstract>
@@ -322,7 +325,7 @@ Previous used Docbook
   information (ZIP files, &FTP; servers, NFS filesystems, SAMBA shares, ISO cd/dvd images),
   which allows the user to access all the information transparently -
   just like entering a sub-directory.
-  Krusader currently supports VFSs for archives (Zip, Tar, GZip, BZip2, Ace, Rar, Arj),
+  Krusader currently supports VFSs for archives (Zip, Tar, GZip, BZip2, Ace, Rar, Arj, Lha),
   packages (RPM) and filesystems (&FTP;, NFS, Samba, ISO).
   Krusader also includes a built-in Mount-Manager, which enables you to
   (un)mount filesystems with a single mouse click, and get usage information.
@@ -354,7 +357,7 @@ Previous used Docbook
         You can contact us even if you find typos!</para>
 
    <para>The Handbook "revision" matches the &krusader; version number.
-         &eg; "&krusader; Handbook revision 1.51.xx" describes "&krusader; 1.51"</para>
+         &eg; "&krusader; Handbook revision 1.60.xx" describes "&krusader; 1.60"</para>
 
    <para>Please read the &docchangelog_url; file online or in the Krusader sources to find
          out the latest changes in the &krusader; Handbook.</para>

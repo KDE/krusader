@@ -46,21 +46,21 @@
 </itemizedlist>
 </sect2>
 
-<sect2 id="toolbar">
-<title>Toolbar</title>
-<screenshot><screeninfo>The Toolbar</screeninfo><mediaobject>
+<sect2 id="main_toolbar">
+<title>Main Toolbar</title>
+<screenshot><screeninfo>The Main Toolbar</screeninfo><mediaobject>
       <imageobject><imagedata fileref="toolbar.png" format="PNG"/></imageobject>
       <imageobject><imagedata fileref="toolbar.png" format="EPS"/></imageobject>
-      <textobject><phrase>The Toolbar</phrase></textobject>
+      <textobject><phrase>The Main Toolbar</phrase></textobject>
     </mediaobject>
 </screenshot>
 
-<para>There isn't a lot to say about the &krusader; toolbar, it's a standard &kde; toolbar
+<para>There isn't a lot to say about the &krusader; Main Toolbar, it's a standard &kde; toolbar
       that can be dragged around the application or configured via a <keycap>right-click</keycap> menu.
       You can decide if you want to display it (or not) every time you start &krusader;
       in the &konfigstartpg_lnk;, and you can toggle
       its use in the current session in the &viewmenu_lnk;.
-      The toolbar contents can be configured from the <guimenuitem>"configure toolbars"</guimenuitem> in the
+      The Main Toolbar contents can be configured from the <guimenuitem>"Configure Toolbars"</guimenuitem> in the
       &settingsmenu_lnk; or the <guilabel>"toolbar"</guilabel> tab in
       the &konfiglookandfeel_lnk;.
       Since the various commands and options in &krusader; are not always available
@@ -126,9 +126,9 @@
                </listitem>
      <listitem><para><userinput><command>sftp://</command><replaceable>sftp.foo.org/</replaceable></userinput></para>
                </listitem>
-     <listitem><para><userinput><command>fish://</command><replaceable>fish.foo.org/</replaceable></userinput></para>
+     <listitem><para><userinput><command>fish://</command><replaceable>username@hostname/</replaceable></userinput></para>
                </listitem>
-     <listitem><para><userinput><command>smb://</command><replaceable>smb.foo/</replaceable></userinput></para>
+     <listitem><para><userinput><command>smb://</command><replaceable>user:password@server/share</replaceable></userinput></para>
                </listitem>
      <listitem><para><userinput><command>settings:/</command></userinput> will browse and open entries of the
                <application>KDE control center</application></para>
@@ -140,7 +140,7 @@
      You can copy-paste an &URL; in the <guibutton>Location Toolbar</guibutton>.
      With the right-click menu you can configure the autocomplete function.
      </para></listitem>
-       <listitem><para><link linkend="paneltoolbar"><emphasis><guibutton>Panel toolbar</guibutton></emphasis></link> :
+       <listitem><para><link linkend="panel_toolbar"><emphasis><guibutton>Panel toolbar</guibutton></emphasis></link> :
                        can have up to five <link linkend="konfig-looknfeel-ptoolbar">configurable</link> buttons.
       </para></listitem>
        <listitem><para><emphasis><guilabel>Information Label</guilabel></emphasis> : shows how much free space
@@ -241,7 +241,7 @@
 </sect3>
 
 
-<sect3 id="paneltoolbar">
+<sect3 id="panel_toolbar">
 <title>Panel toolbar</title>
 
 <para>Both panels have a <link linkend="konfig-looknfeel-ptoolbar">configurable</link> Panel Toolbar.
@@ -389,8 +389,19 @@
 </para>
 </sect2>
 
+<sect2 id="actions_toolbar">
+<title>Actions Toolbar</title>
+<para>&useractions_lnk; and &bookmarks_lnk; can be plugged in the <guilabel>Actions Toolbar</guilabel>.
+      To show it use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
+      <guimenuitem>Show Actions Toolbar</guimenuitem></menuchoice></emphasis>.
+      To add useractions use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
+      <guimenuitem>Configure Toolbars</guimenuitem></menuchoice></emphasis> and select Actions Toolbar.
+      You could &eg; drag the Actions Toolbar to the right side.       
+</para>
+</sect2>
 
 </sect1>
+
 
 <sect1 id="controls">
 <title>Controls</title>
@@ -578,7 +589,7 @@ TODO
       This list gives an overview of the most important right-click menus, use them
       to discover the available commands.
 <itemizedlist>
-          <listitem><para>&toolbar_lnk; (orientation, text position , icon size)</para></listitem>
+    <listitem><para>&main_toolbar_lnk; (orientation, text position , icon size)</para></listitem>
     <listitem><para>&list_panel_lnk; on a file or directory</para></listitem>
     <listitem><para>&cmdline_lnk; (undo, paste, text completion, ...)</para></listitem>
     <listitem><para>&termemu_lnk; (send signal, font, history, ...)</para></listitem>
@@ -589,6 +600,7 @@ TODO
     <listitem><para>&syncdirs_lnk; File List</para></listitem>
     <listitem><para>&useractions_lnk;</para></listitem>
     <listitem><para>&konqueror; right-click actions are shown in &krusader;</para></listitem>
+    <listitem><para>Show/hide <link linkend="list_panel">Column Headers</link></para></listitem>
     <listitem><para>...</para></listitem>
 </itemizedlist>
 </para>
