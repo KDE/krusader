@@ -1,81 +1,130 @@
-# translation of krusader-0529-ja.po to 
 # translation of krusader-ja.po to Japanese
-# UTUMI Hirosi <utuhiro@mx12.freecom.ne.jp>, 2003
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2003, 2004
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-ja\n"
-"POT-Creation-Date: 2003-05-28 01:53+0300\n"
-"PO-Revision-Date: 2003-05-29 14:28+0900\n"
-"Last-Translator: UTUMI Hirosi <utuhiro@mx12.freecom.ne.jp>\n"
+"POT-Creation-Date: 2003-10-18 13:19+0200\n"
+"PO-Revision-Date: 2004-01-09 14:28+0900\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.1\n"
 
-#: GUI/kcmdline.cpp:69
-msgid ""
-"Well, it's quite simple actually: You write you command in here, and "
-"Krusader obays."
-msgstr ""
-"Well, it's quite simple actually: You write you command in here, and "
-"Krusader obays."
+#: GUI/kcmdline.cpp:60
+msgid "Name of directory where command will be processed."
+msgstr "コマンドを実行するディレクトリの名前"
 
-#: GUI/kcmdline.cpp:83
+#: GUI/kcmdline.cpp:87
 msgid ""
-"The history button pops up a menu with the last 20 commands you wrote to the "
-"command line. Choose your path..."
+"<qt>Well, it's quite simple actually: You write you command in here, and "
+"Krusader obeys.<p><Tip:>Move in command-line history with &lt;Up&gt; and &lt;"
+"Down&gt; arrows.</qt>"
 msgstr ""
-"The history button pops up a menu with the last 20 commands you wrote to the "
-"command line. Choose your path..."
+"<qt>入力したコマンドを実行します。<p><Tip:>Move in command-line history with &lt;Up&gt; and &lt;"
+"Down&gt; arrows.</qt>"
 
-#: GUI/kcmdline.cpp:93
+#: GUI/kcmdline.cpp:96
+msgid "If pressed, Krusader executes command line in a terminal."
+msgstr "これを押すとターミナルでコマンドラインを実行します。"
+
+#: GUI/kcmdline.cpp:102
+#, fuzzy
 msgid ""
 "The 'run in terminal' button allows Krusader to run console (or otherwise "
 "non-graphical) programs in a terminal of your choice. If it's pressed, "
-"termial mode is active."
+"terminal mode is active."
 msgstr ""
 "The 'run in terminal' button allows Krusader to run console (or otherwise "
 "non-graphical) programs in a terminal of your choice. If it's pressed, "
 "termial mode is active."
 
-#: GUI/kfnkeys.cpp:45
+#: GUI/kcmdline.cpp:164
+msgid "This terminal will close in 1 hour.."
+msgstr "このターミナルは１時間以内に終了します"
+
+#: GUI/kfnkeys.cpp:46
 msgid "F2 Term  "
 msgstr "F2 端末  "
 
-#: GUI/kfnkeys.cpp:48
+#: GUI/kfnkeys.cpp:47
+msgid ""
+"<qt>Open terminal in current directory.<p>You can define terminal in "
+"Konfigurator, default is konsole.</qt>"
+msgstr ""
+"<qt>現在のDirでターミナルを開く。<p>Konfiguratorでターミナルの種類を"
+"設定できます。デフォルトはkonsoleです</qt>"
+
+#: GUI/kfnkeys.cpp:52
 msgid "F3 View  "
 msgstr "F3 閲覧  "
 
-#: GUI/kfnkeys.cpp:51
+#: GUI/kfnkeys.cpp:53
+msgid "Open file in viewer."
+msgstr "ファイルをビューアで開く"
+
+#: GUI/kfnkeys.cpp:56
 msgid "F4 Edit  "
 msgstr "F4 編集  "
 
-#: GUI/kfnkeys.cpp:54
+#: GUI/kfnkeys.cpp:57
+msgid ""
+"<qt>Edit file.<p>Editor is configurable in Konfigurator, default is "
+"'internal editor'.</qt>"
+msgstr ""
+"<qt>ファイルを編集する。<p>Konfiguratorでエディタの種類を"
+"設定できます。デフォルトは'内部エディタ'です</qt>"
+
+#: GUI/kfnkeys.cpp:62
 msgid "F5 Copy  "
 msgstr "F5 コピー"
 
-#: GUI/kfnkeys.cpp:57 krusader.cpp:262
+#: GUI/kfnkeys.cpp:63
+msgid "Copy file from one panel to the other."
+msgstr "ファイルを片方のパネルから隣りのパネルにコピーする"
+
+#: GUI/kfnkeys.cpp:66 krusader.cpp:280
 msgid "F6 Move"
 msgstr "F6 移動"
 
-#: GUI/kfnkeys.cpp:60
+#: GUI/kfnkeys.cpp:67
+msgid "Move file from one panel to the other."
+msgstr "ファイルを片方のパネルから隣りのパネルに移動する"
+
+#: GUI/kfnkeys.cpp:70
 msgid "F7 Mkdir "
 msgstr "F7 Dir作成"
 
-#: GUI/kfnkeys.cpp:63 krusader.cpp:268
+#: GUI/kfnkeys.cpp:71
+msgid "Create directory in current panel."
+msgstr "現在のパネルにディレクトリを作成"
+
+#: GUI/kfnkeys.cpp:74 krusader.cpp:286
 msgid "F8 Delete"
 msgstr "F8 削除"
 
-#: GUI/kfnkeys.cpp:66 krusader.cpp:271
+#: GUI/kfnkeys.cpp:75
+msgid "Delete file, directory, etc."
+msgstr "ファイル/ディレクトリを削除"
+
+#: GUI/kfnkeys.cpp:78 krusader.cpp:289
 msgid "F9 Rename"
 msgstr "F9リネーム"
 
-#: GUI/kfnkeys.cpp:69
+#: GUI/kfnkeys.cpp:79
+msgid "Rename file, directory, etc."
+msgstr "ファイル/ディレクトリをリネーム"
+
+#: GUI/kfnkeys.cpp:82
 msgid "F10 Quit "
 msgstr "F10 終了 "
 
-#: VFS/ftp_vfs.cpp:177
+#: GUI/kfnkeys.cpp:83
+msgid "Quit Krusader."
+msgstr "Krusaderを終了"
+
+#: VFS/ftp_vfs.cpp:188
 msgid ""
 "Malformed URL:\n"
 "%1"
@@ -83,31 +132,35 @@ msgstr ""
 "不正なURL:\n"
 "%1"
 
-#: VFS/ftp_vfs.cpp:179
-msgid "Protocol not supported by Krusader:\n"
-msgstr "Krusaderでサポートしていないプロトコルです:\n"
+#: VFS/ftp_vfs.cpp:190
+msgid ""
+"Protocol not supported by Krusader:\n"
+"%1"
+msgstr ""
+"Krusaderでサポートしていないプロトコルです:\n"
+"%1"
 
-#: VFS/arc_vfs.cpp:214
+#: VFS/arc_vfs.cpp:216
 msgid "Can't Read "
 msgstr "読めません"
 
-#: VFS/arc_vfs.cpp:216
+#: VFS/arc_vfs.cpp:218
 msgid " Archive might be corrupted !"
 msgstr " 書庫が競合しています"
 
-#: VFS/arc_vfs.cpp:319 VFS/arc_vfs.cpp:576
+#: VFS/arc_vfs.cpp:322 VFS/arc_vfs.cpp:580
 msgid "Deleting Files..."
 msgstr "ファイルを削除.."
 
-#: VFS/arc_vfs.cpp:392
+#: VFS/arc_vfs.cpp:396
 msgid "Unpacking Files"
 msgstr "ファイルを解凍"
 
-#: VFS/arc_vfs.cpp:600
+#: VFS/arc_vfs.cpp:604
 msgid "Repacking..."
 msgstr "再圧縮.."
 
-#: VFS/normal_vfs.cpp:208
+#: VFS/normal_vfs.cpp:215
 msgid "Can't create a directory check your permissions."
 msgstr "ディレクトリを作れません。権限を確認してください"
 
@@ -139,48 +192,31 @@ msgstr "圧縮に失敗: "
 msgid "Failed to pack"
 msgstr "圧縮に失敗"
 
-#: Panel/krdetailedviewitem.cpp:197
+#: Panel/krdetailedviewitem.cpp:244
 msgid "Climb up the directory tree"
 msgstr "Climb up the directory tree"
 
-#: Panel/krdetailedviewitem.cpp:209
+#: Panel/krdetailedviewitem.cpp:256
 msgid "Symbolic Link"
 msgstr "シンボリックリンク"
 
-#: Panel/krdetailedviewitem.cpp:210
+#: Panel/krdetailedviewitem.cpp:257
 msgid "(broken link !)"
 msgstr "(リンクが壊れています)"
 
-#: Panel/krdetailedviewitem.cpp:211
+#: Panel/krdetailedviewitem.cpp:258
 msgid "%1 (Link)"
 msgstr "%1 (リンク)"
 
-#: Panel/krpreviewpopup.cpp:31
-msgid "Configure preview"
-msgstr "プレビューを設定"
+#: Panel/krpreviewpopup.cpp:32
+msgid "Preview not available"
+msgstr "プレビューできません"
 
-#: Panel/kfilelist.cpp:71 Dialogs/krspwidgets.cpp:180
-#: Dialogs/krspwidgets.cpp:207
-msgid "compare mode"
-msgstr "比較モード"
+#: Panel/krdetailedviewitem.moc.cpp:34 Panel/krdetailedviewitem.moc.cpp:42
+msgid "KrDetailedViewItem"
+msgstr "KrDetailedViewItem"
 
-#: Panel/kfilelist.cpp:83
-msgid "Newer files"
-msgstr "新しいファイル"
-
-#: Panel/kfilelist.cpp:84
-msgid "Older files"
-msgstr "古いファイル"
-
-#: Panel/kfilelist.cpp:85
-msgid "Identical files"
-msgstr "同じファイル"
-
-#: Panel/kfilelist.cpp:86
-msgid "Exclusive files"
-msgstr "排他ファイル"
-
-#: Panel/listpanel.cpp:99
+#: Panel/listpanel.cpp:104
 msgid ""
 "The status bar displays information about the FILESYSTEM which hold your "
 "current directory: Total size, free space, type of filesystem etc."
@@ -188,19 +224,13 @@ msgstr ""
 "The status bar displays information about the FILESYSTEM which hold your "
 "current directory: Total size, free space, type of filesystem etc."
 
-#: Panel/listpanel.cpp:106
-msgid "Open your bookmarks"
-msgstr "ブックマークを開く"
-
-#: Panel/listpanel.cpp:120
+#: Panel/listpanel.cpp:114
 msgid ""
-"Pressing this button will pop a menu with your bookmarks. Select a bookmark "
-"to go where it's pointing. Simple ehh?"
+"Open menu with bookmarks. You can also add current location to the list, "
+"edit bookmarks or add subfolder to the list."
 msgstr ""
-"Pressing this button will pop a menu with your bookmarks. Select a bookmark "
-"to go where it's pointing. Simple ehh?"
 
-#: Panel/listpanel.cpp:131
+#: Panel/listpanel.cpp:126
 msgid ""
 "The totals bar shows how much files exist, how many did you select and the "
 "bytes math"
@@ -208,156 +238,182 @@ msgstr ""
 "The totals bar shows how much files exist, how many did you select and the "
 "bytes math"
 
-#: Panel/listpanel.cpp:176 Panel/listpanel.cpp:642
+#: Panel/listpanel.cpp:139
+msgid "Use superb KDE file dialog to choose location. "
+msgstr "場所を選ぶのにsuperb KDE file dialogを使う"
+
+#: Panel/listpanel.cpp:143
+msgid ""
+"Name of directory where you are. You can also enter name of desired location "
+"to move there. Use of Net protocols like ftp or fish is possible."
+msgstr ""
+
+#: Panel/listpanel.cpp:198 Panel/listpanel.cpp:689
 msgid " Select Files "
 msgstr " ファイルを選択 "
 
-#: Panel/listpanel.cpp:176
+#: Panel/listpanel.cpp:198
 msgid " Unselect Files "
 msgstr " ファイルの選択を解除 "
 
-#: Panel/listpanel.cpp:230 Panel/listpanel.cpp:237
-#: Konfigurator/kgstartupimpl.cpp:191 Konfigurator/kgstartupimpl.cpp:198
+#: Panel/listpanel.cpp:252 Panel/listpanel.cpp:259
+#: Konfigurator/kgstartupimpl.cpp:194 Konfigurator/kgstartupimpl.cpp:201
 #: Konfigurator/kgstartup.cpp:155 Konfigurator/kgstartup.cpp:177
 msgid "homepage"
 msgstr "homepage"
 
-#: Panel/listpanel.cpp:232 Panel/listpanel.cpp:239 krusader.cpp:428
-#: krusader.cpp:431 Konfigurator/kgstartup.cpp:157
+#: Panel/listpanel.cpp:254 Panel/listpanel.cpp:261 krusader.cpp:448
+#: krusader.cpp:451 Konfigurator/kgstartup.cpp:157
 #: Konfigurator/kgstartup.cpp:179
 msgid "the last place it was"
 msgstr "the last place it was"
 
-#: Panel/listpanel.cpp:307
+#: Panel/listpanel.cpp:323
 msgid "No space information inside archives"
 msgstr "書庫なので空き情報はありません"
 
-#: Panel/listpanel.cpp:312
+#: Panel/listpanel.cpp:328
 msgid "No space information on non-local filesystems"
 msgstr "ローカル以外のファイルシステムについては容量を取得できません"
 
-#: Panel/listpanel.cpp:319
+#: Panel/listpanel.cpp:335
 msgid "Mt.Man: working ..."
 msgstr "Mt.Man: 実行中.."
 
-#: Panel/listpanel.cpp:368
+#: Panel/listpanel.cpp:389
 msgid "Can't drop here, no write permissions."
 msgstr "ドロップできません。書き込み権限がありません"
 
-#: Panel/listpanel.cpp:390
+#: Panel/listpanel.cpp:411
 msgid "Copy Here"
 msgstr "ここにコピー"
 
-#: Panel/listpanel.cpp:391
+#: Panel/listpanel.cpp:413
 msgid "Move Here"
 msgstr "ここに移動"
 
-#: Panel/listpanel.cpp:394
+#: Panel/listpanel.cpp:416
 msgid "Link Here"
 msgstr "ここにリンクする"
 
-#: Panel/listpanel.cpp:476
+#: Panel/listpanel.cpp:501
 msgid "Run"
 msgstr "実行"
 
-#: Panel/listpanel.cpp:487
+#: Panel/listpanel.cpp:504 Panel/listpanel.cpp:505
+msgid "Open in a new tab"
+msgstr "新しいタブで開く"
+
+#: Panel/listpanel.cpp:517
 msgid "Preview"
 msgstr "プレビュー"
 
-#: Panel/listpanel.cpp:504
+#: Panel/listpanel.cpp:543
 msgid "Terminal"
 msgstr "ターミナル"
 
-#: Panel/listpanel.cpp:505
+#: Panel/listpanel.cpp:544
 msgid "Other..."
 msgstr "その他.."
 
-#: Panel/listpanel.cpp:517
+#: Panel/listpanel.cpp:546
+msgid "Open with"
+msgstr "以下で開く: "
+
+#: Panel/listpanel.cpp:556
 msgid "Rename"
 msgstr "リネーム"
 
-#: Panel/listpanel.cpp:523
+#: Panel/listpanel.cpp:562
 msgid "Shred"
 msgstr "シュレッダ"
 
-#: Panel/listpanel.cpp:528
+#: Panel/listpanel.cpp:567
 msgid "new symlink"
 msgstr "新しいシンボリックリンク"
 
-#: Panel/listpanel.cpp:529
+#: Panel/listpanel.cpp:568
 msgid "new hardlink"
 msgstr "新しいハードリンク"
 
-#: Panel/listpanel.cpp:531
+#: Panel/listpanel.cpp:570
 msgid "redirect link"
 msgstr "redirect link"
 
-#: Panel/listpanel.cpp:533
+#: Panel/listpanel.cpp:572
 msgid "Link handling"
 msgstr "リンクの操作"
 
-#: Panel/listpanel.cpp:540 MountMan/kmountmangui.cpp:221
+#: Panel/listpanel.cpp:579 MountMan/kmountmangui.cpp:227
 msgid "Unmount"
 msgstr "アンマウント"
 
-#: Panel/listpanel.cpp:542 MountMan/kmountmangui.cpp:220
+#: Panel/listpanel.cpp:581 MountMan/kmountmangui.cpp:226
 msgid "Mount"
 msgstr "マウント"
 
-#: Panel/listpanel.cpp:544 MountMan/kmountmangui.cpp:224
+#: Panel/listpanel.cpp:583 MountMan/kmountmangui.cpp:230
 msgid "Eject"
 msgstr "イジェクト"
 
-#: Panel/listpanel.cpp:548
+#: Panel/listpanel.cpp:587
 msgid "Send by email"
 msgstr "Emailで送る"
 
-#: Panel/listpanel.cpp:585
+#: Panel/listpanel.cpp:630
 msgid "Are you sure you want to shred "
 msgstr "Are you sure you want to shred "
 
-#: Panel/listpanel.cpp:625 Panel/panelfunc.cpp:296 Panel/panelfunc.cpp:324
-#: krslots.cpp:302
+#: Panel/listpanel.cpp:671 Panel/panelfunc.cpp:418 Panel/panelfunc.cpp:446
+#: krslots.cpp:337 krslots.cpp:468
 msgid "Can't open "
 msgstr "開けません"
 
-#: Panel/krdetailedview.cpp:71 Search/krsearchdialogbase.cpp:668
-#: BookMan/bookmanguibase.cpp:557 MountMan/kmountmangui.cpp:110
+#: Panel/krdetailedview.cpp:77 Search/krsearchdialogbase.cpp:723
+#: MountMan/kmountmangui.cpp:115
 msgid "Name"
 msgstr "名前"
 
-#: Panel/krdetailedview.cpp:71
+#: Panel/krdetailedview.cpp:77
 msgid "Ext"
 msgstr "Ext"
 
-#: Panel/krdetailedview.cpp:71 MountMan/kmountmangui.cpp:111
+#: Panel/krdetailedview.cpp:77 MountMan/kmountmangui.cpp:116
 msgid "Type"
 msgstr "種類"
 
-#: Panel/krdetailedview.cpp:72 Search/krsearchdialogbase.cpp:360
-#: Search/krsearchdialogbase.cpp:670
+#: Panel/krdetailedview.cpp:78 Search/krsearchdialogbase.cpp:415
+#: Search/krsearchdialogbase.cpp:725
 msgid "Size"
 msgstr "サイズ"
 
-#: Panel/krdetailedview.cpp:72
+#: Panel/krdetailedview.cpp:78
 msgid "Modified"
 msgstr "Modified"
 
-#: Panel/krdetailedview.cpp:72
+#: Panel/krdetailedview.cpp:78
 msgid "Perms"
 msgstr "権限"
 
-#: Panel/krdetailedview.cpp:72
+#: Panel/krdetailedview.cpp:78
 msgid "rwx"
 msgstr "rwx"
 
-#: Panel/krdetailedview.cpp:73 Search/krsearchdialogbase.cpp:546
+#: Panel/krdetailedview.cpp:79 Search/krsearchdialogbase.cpp:601
 msgid "Owner"
 msgstr "所有者"
 
-#: Panel/krdetailedview.cpp:73 Search/krsearchdialogbase.cpp:577
+#: Panel/krdetailedview.cpp:79 Search/krsearchdialogbase.cpp:632
 msgid "Group"
 msgstr "グループ"
+
+#: Panel/krdetailedview.cpp:670
+msgid "Rename "
+msgstr "Rename "
+
+#: Panel/krdetailedview.cpp:670
+msgid " to:"
+msgstr " to:"
 
 #: Panel/krview.cpp:116
 msgid "out of"
@@ -375,207 +431,11 @@ msgstr "KrDetailedView"
 msgid "ListPanel"
 msgstr "リストパネル"
 
-#: Panel/panelfunc.cpp:171
-msgid "Can't re-enter archive. Going to the nearest path"
-msgstr "書庫を再閲覧できません。最も近いパスに移動します"
-
-#: Panel/panelfunc.cpp:191
-msgid "You can edit links only on local file systems"
-msgstr "編集できるのはローカルファイルのリンクだけです"
-
-#: Panel/panelfunc.cpp:202
-msgid "The current file is not a link, so i can't redirect it."
-msgstr "The current file is not a link, so i can't redirect it."
-
-#: Panel/panelfunc.cpp:209
-msgid "Please enter the new link destination:"
-msgstr "Please enter the new link destination:"
-
-#: Panel/panelfunc.cpp:216
-msgid "Can't remove old link: "
-msgstr "古いリンクを削除できません: "
-
-#: Panel/panelfunc.cpp:221 Panel/panelfunc.cpp:261
-msgid "Failed to create a new link: "
-msgstr "新しいリンクの作成に失敗: "
-
-#: Panel/panelfunc.cpp:228
-msgid "You can create links only on local file systems"
-msgstr "作成できるのはローカルファイルのリンクだけです"
-
-#: Panel/panelfunc.cpp:237
-msgid "Create a new link to: "
-msgstr "以下へのリンクを作成:"
-
-#: Panel/panelfunc.cpp:245 Panel/panelfunc.cpp:415
-msgid "A directory or a file with this file already exists."
-msgstr "このファイルのディレクトリ/ファイルは既に存在しています"
-
-#: Panel/panelfunc.cpp:257
-msgid "Failed to create a new symlink: "
-msgstr "新しいシンボリックリンクの作成に失敗: "
-
-#: Panel/panelfunc.cpp:258 Panel/panelfunc.cpp:262
-msgid " To: "
-msgstr " To: "
-
-#: Panel/panelfunc.cpp:276
-msgid "No permissions to view this file."
-msgstr "このファイルを閲覧する権限がありません"
-
-#: Panel/panelfunc.cpp:307
-msgid "You can't edit a directory"
-msgstr "ディレクトリを編集できません"
-
-#: Panel/panelfunc.cpp:312
-msgid "No permissions to edit this file."
-msgstr "このファイルを編集する権限がありません"
-
-#: Panel/panelfunc.cpp:340
-msgid "Move "
-msgstr "Move "
-
-#: Panel/panelfunc.cpp:340 Panel/panelfunc.cpp:438 Panel/panelfunc.cpp:751
-#: Panel/panelfunc.cpp:753
-msgid "to"
-msgstr "to"
-
-#: Panel/panelfunc.cpp:342
-#, c-format
-msgid "Move %d files to:"
-msgstr "Move %d files to:"
-
-#: Panel/panelfunc.cpp:377
-msgid "You can't move files to this file system"
-msgstr "このファイルシステムにファイルを移動することはできません"
-
-#: Panel/panelfunc.cpp:392
-msgid "Rename "
-msgstr "Rename "
-
-#: Panel/panelfunc.cpp:392
-msgid " to:"
-msgstr " to:"
-
-#: Panel/panelfunc.cpp:407
-msgid "Directory's name:"
-msgstr "ディレクトリ名:"
-
-#: Panel/panelfunc.cpp:438
-msgid "Copy "
-msgstr "Copy "
-
-#: Panel/panelfunc.cpp:440
-#, c-format
-msgid "Copy %d files to:"
-msgstr "Copy %d files to:"
-
-#: Panel/panelfunc.cpp:472
-msgid "You can't copy files to this file system"
-msgstr "コピーできるのはこのファイルシステムのファイルだけです"
-
-#: Panel/panelfunc.cpp:483
-msgid "You do not have write permission to this directory"
-msgstr "このディレクトリを読み込む権限がありません"
-
-#: Panel/panelfunc.cpp:500
-#, c-format
-msgid " %d files ?"
-msgstr " %d files ?"
-
-#: Panel/panelfunc.cpp:504
-msgid "trash"
-msgstr "trash"
-
-#: Panel/panelfunc.cpp:505
-msgid "&Trash"
-msgstr "ゴミ箱(&T)"
-
-#: Panel/panelfunc.cpp:507
-msgid "delete"
-msgstr "delete"
-
-#: Panel/panelfunc.cpp:511
-msgid "Are you sure you want to "
-msgstr "以下を実行しますか"
-
-#: Panel/panelfunc.cpp:531
-msgid "Directory "
-msgstr "ディレクトリ"
-
-#: Panel/panelfunc.cpp:531
-msgid ""
-" is not empty !\n"
-"Skip this one or Delete All ?"
-msgstr ""
-" は空ではありません。\n"
-"スキップ/削除しますか？"
-
-#: Panel/panelfunc.cpp:532
-msgid "&Skip"
-msgstr "スキップ(&S)"
-
-#: Panel/panelfunc.cpp:532
-msgid "&Delete All"
-msgstr "全て削除(&D)"
-
-#: Panel/panelfunc.cpp:683
-msgid "When Packing into archive - you must use the active directory"
-msgstr "When Packing into archive - you must use the active directory"
-
-#: Panel/panelfunc.cpp:692
-msgid "The Archive "
-msgstr "The Archive "
-
-#: Panel/panelfunc.cpp:693
-msgid " already exists, Do you want to overwrite the archive "
-msgstr " は既に存在しています。以下の書庫を上書きしますか "
-
-#: Panel/panelfunc.cpp:694
-msgid "(all data in previous archive will be lost)"
-msgstr "(書庫内の全データが失われます)"
-
-#: Panel/panelfunc.cpp:694
-msgid "&Overwite"
-msgstr "上書き(&O)"
-
-#: Panel/panelfunc.cpp:699
-msgid "Counting files to pack"
-msgstr "圧縮するためファイルを数える"
-
-#: Panel/panelfunc.cpp:731
-msgid "%1, unknown archive type."
-msgstr "%1, 書庫の種類が不明"
-
-#: Panel/panelfunc.cpp:737
-msgid "%1, test passed."
-msgstr "%1, テスト成功"
-
-#: Panel/panelfunc.cpp:739
-msgid "%1, test failed !"
-msgstr "%1, テスト失敗"
-
-#: Panel/panelfunc.cpp:751 Panel/panelfunc.cpp:753
-msgid "Unpack "
-msgstr "解凍 "
-
-#: Panel/panelfunc.cpp:753
-msgid "%1 files"
-msgstr "%1 files"
-
-#: Panel/panelfunc.cpp:765
-msgid "When unpacking into archive - you must use the active directory"
-msgstr "When unpacking into archive - you must use the active directory"
-
-#: Panel/panelfunc.cpp:784
-msgid "%1, unknown archive type"
-msgstr "%1, 書庫の種類が不明"
-
-#: Panel/panelfunc.cpp:813
+#: Panel/panelfunc.cpp:157
 msgid "Name: "
 msgstr "Name: "
 
-#: Panel/panelfunc.cpp:814
+#: Panel/panelfunc.cpp:158
 msgid ""
 "Total occupied space: %1\n"
 "in %2 directories and %3 files"
@@ -583,15 +443,211 @@ msgstr ""
 "Total Size: %1\n"
 "%2 directories/%3 files"
 
-#: krusader.cpp:210
+#: Panel/panelfunc.cpp:293
+msgid "Can't re-enter archive. Going to the nearest path"
+msgstr "書庫を再閲覧できません。最も近いパスに移動します"
+
+#: Panel/panelfunc.cpp:313
+msgid "You can edit links only on local file systems"
+msgstr "編集できるのはローカルファイルのリンクだけです"
+
+#: Panel/panelfunc.cpp:324
+msgid "The current file is not a link, so i can't redirect it."
+msgstr "The current file is not a link, so i can't redirect it."
+
+#: Panel/panelfunc.cpp:331
+msgid "Please enter the new link destination:"
+msgstr "Please enter the new link destination:"
+
+#: Panel/panelfunc.cpp:338
+msgid "Can't remove old link: "
+msgstr "古いリンクを削除できません: "
+
+#: Panel/panelfunc.cpp:343 Panel/panelfunc.cpp:383
+msgid "Failed to create a new link: "
+msgstr "新しいリンクの作成に失敗: "
+
+#: Panel/panelfunc.cpp:350
+msgid "You can create links only on local file systems"
+msgstr "作成できるのはローカルファイルのリンクだけです"
+
+#: Panel/panelfunc.cpp:359
+msgid "Create a new link to: "
+msgstr "以下へのリンクを作成:"
+
+#: Panel/panelfunc.cpp:367 Panel/panelfunc.cpp:533
+msgid "A directory or a file with this name already exists."
+msgstr "この名前のディレクトリ/ファイルは既に存在しています"
+
+#: Panel/panelfunc.cpp:379
+msgid "Failed to create a new symlink: "
+msgstr "新しいシンボリックリンクの作成に失敗: "
+
+#: Panel/panelfunc.cpp:380 Panel/panelfunc.cpp:384
+msgid " To: "
+msgstr " To: "
+
+#: Panel/panelfunc.cpp:398
+msgid "No permissions to view this file."
+msgstr "このファイルを閲覧する権限がありません"
+
+#: Panel/panelfunc.cpp:429
+msgid "You can't edit a directory"
+msgstr "ディレクトリを編集できません"
+
+#: Panel/panelfunc.cpp:434
+msgid "No permissions to edit this file."
+msgstr "このファイルを編集する権限がありません"
+
+#: Panel/panelfunc.cpp:462
+msgid "Move "
+msgstr "Move "
+
+#: Panel/panelfunc.cpp:462 Panel/panelfunc.cpp:556 Panel/panelfunc.cpp:883
+#: Panel/panelfunc.cpp:885
+msgid "to"
+msgstr "to"
+
+#: Panel/panelfunc.cpp:464
+#, c-format
+msgid "Move %d files to:"
+msgstr "Move %d files to:"
+
+#: Panel/panelfunc.cpp:500
+msgid "You can't move files to this file system"
+msgstr "このファイルシステムにファイルを移動することはできません"
+
+#: Panel/panelfunc.cpp:525
+msgid "Directory's name:"
+msgstr "ディレクトリ名:"
+
+#: Panel/panelfunc.cpp:556
+msgid "Copy "
+msgstr "Copy "
+
+#: Panel/panelfunc.cpp:558
+#, c-format
+msgid "Copy %d files to:"
+msgstr "Copy %d files to:"
+
+#: Panel/panelfunc.cpp:590
+msgid "You can't copy files to this file system"
+msgstr "コピーできるのはこのファイルシステムのファイルだけです"
+
+#: Panel/panelfunc.cpp:601
+msgid "You do not have write permission to this directory"
+msgstr "このディレクトリを読み込む権限がありません"
+
+#: Panel/panelfunc.cpp:618
+#, c-format
+msgid " %d files ?"
+msgstr " %d files ?"
+
+#: Panel/panelfunc.cpp:622
+msgid "trash"
+msgstr "trash"
+
+#: Panel/panelfunc.cpp:623
+msgid "&Trash"
+msgstr "ゴミ箱(&T)"
+
+#: Panel/panelfunc.cpp:625
+msgid "delete"
+msgstr "delete"
+
+#: Panel/panelfunc.cpp:629
+msgid "Are you sure you want to "
+msgstr "以下を実行しますか: "
+
+#: Panel/panelfunc.cpp:649
+msgid "Directory "
+msgstr "ディレクトリ"
+
+#: Panel/panelfunc.cpp:649
+msgid ""
+" is not empty !\n"
+"Skip this one or Delete All ?"
+msgstr ""
+" は空ではありません。\n"
+"スキップ/削除しますか？"
+
+#: Panel/panelfunc.cpp:650
+msgid "&Skip"
+msgstr "スキップ(&S)"
+
+#: Panel/panelfunc.cpp:650
+msgid "&Delete All"
+msgstr "全て削除(&D)"
+
+#: Panel/panelfunc.cpp:815
+msgid "When Packing into archive - you must use the active directory"
+msgstr "When Packing into archive - you must use the active directory"
+
+#: Panel/panelfunc.cpp:824
+msgid "The Archive "
+msgstr "The Archive "
+
+#: Panel/panelfunc.cpp:825
+msgid " already exists, Do you want to overwrite the archive "
+msgstr " は既に存在しています。以下の書庫を上書きしますか "
+
+#: Panel/panelfunc.cpp:826
+msgid "(all data in previous archive will be lost)"
+msgstr "(書庫内の全データが失われます)"
+
+#: Panel/panelfunc.cpp:826
+msgid "&Overwite"
+msgstr "上書き(&O)"
+
+#: Panel/panelfunc.cpp:831
+msgid "Counting files to pack"
+msgstr "圧縮するためファイルを数える"
+
+#: Panel/panelfunc.cpp:863
+msgid "%1, unknown archive type."
+msgstr "%1, 書庫の種類が不明"
+
+#: Panel/panelfunc.cpp:869
+msgid "%1, test passed."
+msgstr "%1, テスト成功"
+
+#: Panel/panelfunc.cpp:871
+msgid "%1, test failed !"
+msgstr "%1, テスト失敗"
+
+#: Panel/panelfunc.cpp:883 Panel/panelfunc.cpp:885
+msgid "Unpack "
+msgstr "解凍 "
+
+#: Panel/panelfunc.cpp:885
+msgid "%1 files"
+msgstr "%1 files"
+
+#: Panel/panelfunc.cpp:897
+msgid "When unpacking into archive - you must use the active directory"
+msgstr "When unpacking into archive - you must use the active directory"
+
+#: Panel/panelfunc.cpp:916
+msgid "%1, unknown archive type"
+msgstr "%1, 書庫の種類が不明"
+
+#: panelmanager.moc.cpp:34 panelmanager.moc.cpp:42
+msgid "PanelManager"
+msgstr "パネルマネージャ"
+
+#: krusader.cpp:176
+msgid "Status bar will show  basic informations about file below mouse pointer."
+msgstr "ステータスバーにはマウス下のファイルについての簡単な情報を表示します"
+
+#: krusader.cpp:225
 msgid ""
 "A configuration older then v0.90 was detected Krusader has to reset your "
 "configuration to default values. Krusader will now run Konfigurator."
 msgstr ""
-"A configuration older then v0.90 was detected Krusader has to reset your "
-"configuration to default values. Krusader will now run Konfigurator."
+"v0.90より古い設定ファイルを検出しました。設定をデフォルトに戻します。"
+"Konfigurator(設定ツール)を起動します"
 
-#: krusader.cpp:212
+#: krusader.cpp:227
 msgid ""
 "Unable to remove your krusaderrc file! Please remove it manually and rerun "
 "Krusader."
@@ -599,222 +655,230 @@ msgstr ""
 "krusaderrcファイルを削除できません。手動で削除してKrusaderを再実行してくださ"
 "い"
 
-#: krusader.cpp:220
+#: krusader.cpp:235
 msgid ""
 "Welcome to Krusader, as this is your first run, Krusader will now run "
 "Konfigurator."
 msgstr "Krusaderへようこそ。初めての起動ですのでKonfiguratorを実行します"
 
-#: krusader.cpp:250
+#: krusader.cpp:265
 msgid "F2 Terminal"
 msgstr "F2 端末"
 
-#: krusader.cpp:253
+#: krusader.cpp:268
 msgid "F3 View"
 msgstr "F3 閲覧"
 
-#: krusader.cpp:256
+#: krusader.cpp:271
+msgid "F3 View Dialog"
+msgstr "F3 閲覧  "
+
+#: krusader.cpp:274
 msgid "F4 Edit"
 msgstr "F4 編集"
 
-#: krusader.cpp:259
+#: krusader.cpp:277
 msgid "F5 Copy"
 msgstr "F5 コピー"
 
-#: krusader.cpp:265
+#: krusader.cpp:283
 msgid "F7 Mkdir"
 msgstr "F7 Dir作成"
 
-#: krusader.cpp:274
+#: krusader.cpp:292
 msgid "F10 Quit"
 msgstr "F10 終了"
 
-#: krusader.cpp:277
+#: krusader.cpp:295
 msgid "Tab: switch panel"
 msgstr "タブ: パネル切替"
 
-#: krusader.cpp:302
-msgid "Compare Mode"
-msgstr "比較モード"
+#: krusader.cpp:323
+msgid "Com&pare Mode"
+msgstr "比較モード(&p)"
 
-#: krusader.cpp:305
+#: krusader.cpp:326
 msgid "Show &FN Keys Bar"
 msgstr "ファンクションバーを表示(&F)"
 
-#: krusader.cpp:308
+#: krusader.cpp:329
 msgid "Show &Command Line"
 msgstr "コマンドラインを表示(&C)"
 
-#: krusader.cpp:311
+#: krusader.cpp:332
 msgid "Show &Terminal Emulator"
 msgstr "ターミナルを表示(&T)"
 
-#: krusader.cpp:314
-msgid "Show H&idden Files"
-msgstr "隠しファイルを表示(&i)"
+#: krusader.cpp:335
+msgid "Show &Hidden Files"
+msgstr "隠しファイルを表示(&H)"
 
-#: krusader.cpp:316
-msgid "Sort By E&xtention"
-msgstr "拡張子順(&x)"
+#: krusader.cpp:337
+msgid "S&wap Panels"
+msgstr "パネルの左右を入れ替え(&w)"
 
-#: krusader.cpp:323
-msgid "Configure compare-mode"
-msgstr "比較モードを設定"
+#: krusader.cpp:344
+msgid "popup cmdline"
+msgstr "コマンドラインをポップアップ"
 
-#: krusader.cpp:325
-msgid "Test Archi&ve(s)"
-msgstr "書庫をテスト(&v)"
+#: krusader.cpp:347
+msgid "Up"
+msgstr "上"
 
-#: krusader.cpp:327
-msgid "&FTP Connect"
-msgstr "&FTPに接続"
+#: krusader.cpp:348
+msgid "&Edit new file"
+msgstr "新しいファイルを編集(&E)"
 
-#: krusader.cpp:329
-msgid "FT&P New Connection"
-msgstr "新しいFT&P接続"
+#: krusader.cpp:349
+msgid "Start &Root Mode Krusader"
+msgstr "RootモードKrusaderを起動(&R)"
 
-#: krusader.cpp:331
+#: krusader.cpp:351
+msgid "Co&nfigure compare-mode"
+msgstr "比較モードを設定(&n)"
+
+#: krusader.cpp:353
+msgid "&Test Archive(s)"
+msgstr "書庫をテスト(&T)"
+
+#: krusader.cpp:355
+msgid "&Net Connections"
+msgstr "ネット接続(&N)"
+
+#: krusader.cpp:357
+msgid "New Net &Connection"
+msgstr "新しいネット接続(&C)"
+
+#: krusader.cpp:359
 msgid "Calculate &Occupied Space"
 msgstr "容量を計算(&O)"
 
-#: krusader.cpp:333
+#: krusader.cpp:361
 msgid "&Properties"
 msgstr "プロパティ(&P)"
 
-#: krusader.cpp:335
+#: krusader.cpp:363
 msgid "Pac&k"
 msgstr "圧縮(&k)"
 
-#: krusader.cpp:337
+#: krusader.cpp:365
 msgid "&Unpack"
 msgstr "解凍(&U)"
 
-#: krusader.cpp:339
+#: krusader.cpp:367
 msgid "Select &Group"
 msgstr "グループを選択(&G)"
 
-#: krusader.cpp:341
+#: krusader.cpp:369
 msgid "&Select All"
 msgstr "全て選択(&S)"
 
-#: krusader.cpp:343
+#: krusader.cpp:371
 msgid "U&nselect All"
 msgstr "全ての選択を解除(&n)"
 
-#: krusader.cpp:345
+#: krusader.cpp:373
 msgid "&Terminal"
 msgstr "ターミナル(&T)"
 
-#: krusader.cpp:347
-msgid "FTP Disc&onnect"
-msgstr "FTPを切断(&T)"
+#: krusader.cpp:375
+msgid "Disconnect &From Net"
+msgstr "ネット接続を切る(&F)"
 
-#: krusader.cpp:349
+#: krusader.cpp:377
 msgid "&MountMan"
 msgstr "&MountMan"
 
-#: krusader.cpp:351
-msgid "&BookMan"
-msgstr "&BookMan"
-
-#: krusader.cpp:353
+#: krusader.cpp:379
 msgid "&Search"
 msgstr "検索(&S)"
 
-#: krusader.cpp:355
+#: krusader.cpp:381
 msgid "&Invert Selection"
 msgstr "選択を反転(&I)"
 
-#: krusader.cpp:357
-msgid "&Unselect &Group"
-msgstr "グループ(&G)の選択を解除(&U)"
+#: krusader.cpp:383
+msgid "&Unselect Group"
+msgstr "グループ選択を解除(&U)"
 
-#: krusader.cpp:359 BookMan/bookmanguibase.cpp:527
-msgid "Add Bookmark"
-msgstr "ブックマークを追加"
-
-#: krusader.cpp:361
+#: krusader.cpp:385
 msgid "&Konfigurator"
 msgstr "&Konfigurator"
 
-#: krusader.cpp:365
+#: krusader.cpp:389
 msgid "Root"
 msgstr "root"
 
-#: krusader.cpp:367
-msgid "&Device Manager"
-msgstr "デバイスマネージャ(&D)"
-
-#: krusader.cpp:369
+#: krusader.cpp:391
 msgid "Save &Position"
 msgstr "位置を保存(&p)"
 
-#: krusader.cpp:371
+#: krusader.cpp:393
 msgid "&All Files"
 msgstr "全てのファイル(&A)"
 
-#: krusader.cpp:373
-msgid "&Executables"
-msgstr "実行ファイル(&E)"
-
-#: krusader.cpp:375
+#: krusader.cpp:397
 msgid "&Custom"
 msgstr "カスタム(&C)"
 
-#: krusader.cpp:377
+#: krusader.cpp:399
 msgid "Compare b&y content"
 msgstr "内容を比較(&y)"
 
-#: krusader.cpp:379
-msgid "Multi Rename"
-msgstr "マルチリネーム"
+#: krusader.cpp:401
+msgid "Multi &Rename"
+msgstr "マルチリネーム(&R)"
 
-#: krusader.cpp:381
+#: krusader.cpp:403
 msgid "Right-click menu"
 msgstr "右クリックメニュー"
 
-#: krusader.cpp:385
+#: krusader.cpp:405
+msgid "Right bookmarks"
+msgstr "右のブックマーク"
+
+#: krusader.cpp:407
+msgid "Left bookmarks"
+msgstr "左のブックマーク"
+
+#: krusader.cpp:411
 msgid "Highlight files by using a filter"
 msgstr "フィルタを使ってファイルをハイライト"
 
-#: krusader.cpp:386
+#: krusader.cpp:412
 msgid "Highlight all the files in the current directory"
 msgstr "現在のディレクトリの全ファイルをハイライト"
 
-#: krusader.cpp:387
+#: krusader.cpp:413
 msgid "Remove selection from all highlight files"
 msgstr "Remove selection from all highlight files"
 
-#: krusader.cpp:388
+#: krusader.cpp:414
 msgid "Mount.Man: Krusader's mount-manager. Try it!"
 msgstr "Mount.Man: Krusaderのマウントマネージャ"
 
-#: krusader.cpp:389
+#: krusader.cpp:415
 msgid "Setup Krusader the way you like it"
 msgstr "好きな方法でKrusaderをセットアップ"
 
-#: krusader.cpp:390
+#: krusader.cpp:416
 msgid "Back to the place you came from"
 msgstr "元の場所に戻る"
 
-#: krusader.cpp:391
+#: krusader.cpp:417
 msgid "ROOT (/)"
 msgstr "root(/)"
 
-#: krusader.cpp:392
+#: krusader.cpp:418
 msgid "Search for files"
 msgstr "ファイルを検索"
 
-#: krusader.cpp:393
-msgid "Add the current path to your bookmarks"
-msgstr "現在のパスをブックマークに追加"
-
-#: krusader.cpp:427 krusader.cpp:430 Konfigurator/kgstartupimpl.cpp:167
-#: Konfigurator/kgstartupimpl.cpp:178
+#: krusader.cpp:447 krusader.cpp:450 Konfigurator/kgstartupimpl.cpp:170
+#: Konfigurator/kgstartupimpl.cpp:181
 msgid "List"
 msgstr "List"
 
-#: krusader.cpp:473
+#: krusader.cpp:489
 msgid "Ok to shutdown Krusader ?"
 msgstr "Krusaderを終了しますか？"
 
@@ -822,43 +886,43 @@ msgstr "Krusaderを終了しますか？"
 msgid "KrViewer"
 msgstr "KrViewer"
 
-#: KViewer/krviewer.cpp:51
+#: KViewer/krviewer.cpp:53
 msgid "&Generic viewer"
 msgstr "一般ビューア(&G)"
 
-#: KViewer/krviewer.cpp:52
+#: KViewer/krviewer.cpp:54
 msgid "&Text viewer"
 msgstr "テキストビューア(&T)"
 
-#: KViewer/krviewer.cpp:53
+#: KViewer/krviewer.cpp:55
 msgid "&Hex viewer"
 msgstr "Hexビューア(&H)"
 
-#: KViewer/krviewer.cpp:55
+#: KViewer/krviewer.cpp:57
 msgid "Text &editor"
 msgstr "テキストエディタ(&e)"
 
-#: KViewer/krviewer.cpp:111
+#: KViewer/krviewer.cpp:113
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: KViewer/krviewer.cpp:178
+#: KViewer/krviewer.cpp:187
 msgid "Sorry, can't find internal editor"
 msgstr "内部エディタがありません"
 
-#: KViewer/krviewer.cpp:225
+#: KViewer/krviewer.cpp:248
 msgid "KrViewer is unable to download: "
 msgstr "KrViewerは以下をダウンロードできません: "
 
-#: Search/krsearchdialog.cpp:116
+#: Search/krsearchdialog.cpp:118
 msgid "Invalid date entered."
 msgstr "日付が不正です"
 
-#: Search/krsearchdialog.cpp:117
+#: Search/krsearchdialog.cpp:119
 msgid "The date '"
 msgstr "日付'"
 
-#: Search/krsearchdialog.cpp:117
+#: Search/krsearchdialog.cpp:119
 msgid ""
 "' is not valid according to your locale.\n"
 "Please re-enter a valid date (use the date button of easy access)."
@@ -866,48 +930,48 @@ msgstr ""
 "' is not valid according to your locale.\n"
 "Please re-enter a valid date (use the date button of easy access)."
 
-#: Search/krsearchdialog.cpp:132 Search/krsearchdialog.cpp:296
+#: Search/krsearchdialog.cpp:134 Search/krsearchdialog.cpp:307
 msgid "All Files"
 msgstr "全てのファイル"
 
-#: Search/krsearchdialog.cpp:133 Search/krsearchmod.cpp:84
+#: Search/krsearchdialog.cpp:135 Search/krsearchmod.cpp:85
 #: Konfigurator/konfigurator.cpp:96 Konfigurator/kgarchives.cpp:31
 msgid "Archives"
 msgstr "書庫"
 
-#: Search/krsearchdialog.cpp:134 Search/krsearchmod.cpp:86
+#: Search/krsearchdialog.cpp:136 Search/krsearchmod.cpp:87
 msgid "Directories"
 msgstr "ディレクトリ"
 
-#: Search/krsearchdialog.cpp:135 Search/krsearchmod.cpp:87
+#: Search/krsearchdialog.cpp:137 Search/krsearchmod.cpp:88
 msgid "Image Files"
 msgstr "画像ファイル"
 
-#: Search/krsearchdialog.cpp:136 Search/krsearchmod.cpp:88
+#: Search/krsearchdialog.cpp:138 Search/krsearchmod.cpp:89
 msgid "Text Files"
 msgstr "テキストファイル"
 
-#: Search/krsearchdialog.cpp:137 Search/krsearchmod.cpp:89
+#: Search/krsearchdialog.cpp:139 Search/krsearchmod.cpp:90
 msgid "Video Files"
 msgstr "動画ファイル"
 
-#: Search/krsearchdialog.cpp:138 Search/krsearchmod.cpp:90
+#: Search/krsearchdialog.cpp:140 Search/krsearchmod.cpp:91
 msgid "Audio Files"
 msgstr "オーディオファイル"
 
-#: Search/krsearchdialog.cpp:309
+#: Search/krsearchdialog.cpp:334
 msgid "No search criteria entered !"
 msgstr "No search criteria entered !"
 
-#: Search/krsearchdialog.cpp:315
+#: Search/krsearchdialog.cpp:340
 msgid "Please specify a location to search in."
 msgstr "検索する場所を指定してください"
 
-#: Search/krsearchdialog.cpp:344
+#: Search/krsearchdialog.cpp:369
 msgid "Specified sizes are inconsistent !"
 msgstr "Specified sizes are inconsistent !"
 
-#: Search/krsearchdialog.cpp:345
+#: Search/krsearchdialog.cpp:370
 msgid ""
 "Please re-enter the values, so that the leftmost size will\n"
 "be smaller (or equal) to the right size."
@@ -915,11 +979,11 @@ msgstr ""
 "Please re-enter the values, so that the leftmost size will\n"
 "be smaller (or equal) to the right size."
 
-#: Search/krsearchdialog.cpp:364 Search/krsearchdialog.cpp:415
+#: Search/krsearchdialog.cpp:389 Search/krsearchdialog.cpp:440
 msgid "Dates are inconsistent !"
 msgstr "日付が不正です"
 
-#: Search/krsearchdialog.cpp:365
+#: Search/krsearchdialog.cpp:390
 msgid ""
 "The date on the left side is later than the date on the right.\n"
 "Please re-enter the dates, so that the leftmost date will be\n"
@@ -929,7 +993,7 @@ msgstr ""
 "Please re-enter the dates, so that the leftmost date will be\n"
 "earlier than the right one."
 
-#: Search/krsearchdialog.cpp:416
+#: Search/krsearchdialog.cpp:441
 msgid ""
 "The date on the top is later than the date on the bottom.\n"
 "Please re-enter the dates, so that the top date will be\n"
@@ -939,7 +1003,7 @@ msgstr ""
 "Please re-enter the dates, so that the top date will be\n"
 "earlier than the bottom one."
 
-#: Search/krsearchdialog.cpp:445
+#: Search/krsearchdialog.cpp:470
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
 "1. Krusader will search in all of the supported archives, NOT INCLUDING arj, "
@@ -953,317 +1017,263 @@ msgstr ""
 "2. You cannot search for text (grep) while doing a search that includes "
 "archives."
 
-#: Search/krsearchdialog.cpp:464 Search/krsearchdialogbase.cpp:655
+#: Search/krsearchdialog.cpp:489 Search/krsearchdialogbase.cpp:710
 msgid "Found 0 matches."
 msgstr "一致するものがありません"
 
-#: Search/krsearchdialog.cpp:495
+#: Search/krsearchdialog.cpp:524
 msgid "Finished searching."
 msgstr "検索終了"
 
-#: Search/krsearchmod.cpp:91
+#: Search/krsearchmod.cpp:92
 msgid "Custom"
 msgstr "カスタム"
 
-#: Search/krsearchdialogbase.cpp:158
+#: Search/krsearchdialogbase.cpp:195
 msgid "Krusader::Search"
 msgstr "Krusader:検索"
 
-#: Search/krsearchdialogbase.cpp:174
+#: Search/krsearchdialogbase.cpp:211
 msgid "Search"
 msgstr "検索"
 
-#: Search/krsearchdialogbase.cpp:196
+#: Search/krsearchdialogbase.cpp:234
 msgid "Don't search in"
 msgstr "この中は検索しない"
 
-#: Search/krsearchdialogbase.cpp:223
+#: Search/krsearchdialogbase.cpp:266
 msgid "Search in"
 msgstr "この中を検索する"
 
-#: Search/krsearchdialogbase.cpp:250
+#: Search/krsearchdialogbase.cpp:299
 msgid "Containing text"
 msgstr "含む語句"
 
-#: Search/krsearchdialogbase.cpp:267 Search/krsearchdialogbase.cpp:301
+#: Search/krsearchdialogbase.cpp:316
+msgid "Match whole word only"
+msgstr "単語全体が一致する場合のみ"
+
+#: Search/krsearchdialogbase.cpp:322 Search/krsearchdialogbase.cpp:356
 msgid "Case sensetive"
 msgstr "大文字小文字を区別する"
 
-#: Search/krsearchdialogbase.cpp:279
+#: Search/krsearchdialogbase.cpp:334
 msgid "Text:"
 msgstr "語句:"
 
-#: Search/krsearchdialogbase.cpp:307
+#: Search/krsearchdialogbase.cpp:362
 msgid "Search for:"
 msgstr "検索する語句:"
 
-#: Search/krsearchdialogbase.cpp:312
+#: Search/krsearchdialogbase.cpp:367
 msgid "Of type:"
 msgstr "種類:"
 
-#: Search/krsearchdialogbase.cpp:337
+#: Search/krsearchdialogbase.cpp:392
 msgid "Search in subdirectories"
 msgstr "サブディレクトリを検索"
 
-#: Search/krsearchdialogbase.cpp:343
+#: Search/krsearchdialogbase.cpp:398
 msgid "Search in archives"
 msgstr "書庫内を検索"
 
-#: Search/krsearchdialogbase.cpp:347
+#: Search/krsearchdialogbase.cpp:402
 msgid "Follow links"
 msgstr "リンクを追跡"
 
-#: Search/krsearchdialogbase.cpp:351 Konfigurator/kggeneral.cpp:112
+#: Search/krsearchdialogbase.cpp:406 Konfigurator/kggeneral.cpp:112
 #: Konfigurator/kggeneral.cpp:120 Konfigurator/konfigurator.cpp:89
 #: Konfigurator/kglookfeel.cpp:266 Konfigurator/kgadvanced.cpp:94
 #: Konfigurator/kgarchives.cpp:42
 msgid "General"
 msgstr "一般"
 
-#: Search/krsearchdialogbase.cpp:364
+#: Search/krsearchdialogbase.cpp:419
 msgid "Smaller than"
 msgstr "以下より小さい"
 
-#: Search/krsearchdialogbase.cpp:372 Search/krsearchdialogbase.cpp:383
+#: Search/krsearchdialogbase.cpp:427 Search/krsearchdialogbase.cpp:438
 msgid "Bytes"
 msgstr "Bytes"
 
-#: Search/krsearchdialogbase.cpp:373 Search/krsearchdialogbase.cpp:384
+#: Search/krsearchdialogbase.cpp:428 Search/krsearchdialogbase.cpp:439
 msgid "KB"
 msgstr "KB"
 
-#: Search/krsearchdialogbase.cpp:374 Search/krsearchdialogbase.cpp:385
+#: Search/krsearchdialogbase.cpp:429 Search/krsearchdialogbase.cpp:440
 msgid "MB"
 msgstr "MB"
 
-#: Search/krsearchdialogbase.cpp:380
+#: Search/krsearchdialogbase.cpp:435
 msgid "Bigger than"
 msgstr "以下より大きい"
 
-#: Search/krsearchdialogbase.cpp:397 Search/krsearchdialogbase.cpp:671
+#: Search/krsearchdialogbase.cpp:452 Search/krsearchdialogbase.cpp:726
 msgid "Date"
 msgstr "日付"
 
-#: Search/krsearchdialogbase.cpp:421
+#: Search/krsearchdialogbase.cpp:476
 msgid "and"
 msgstr "and"
 
-#: Search/krsearchdialogbase.cpp:464 Search/krsearchdialogbase.cpp:473
+#: Search/krsearchdialogbase.cpp:519 Search/krsearchdialogbase.cpp:528
 msgid "days"
 msgstr "日"
 
-#: Search/krsearchdialogbase.cpp:465 Search/krsearchdialogbase.cpp:474
+#: Search/krsearchdialogbase.cpp:520 Search/krsearchdialogbase.cpp:529
 msgid "weeks"
 msgstr "週"
 
-#: Search/krsearchdialogbase.cpp:466 Search/krsearchdialogbase.cpp:475
+#: Search/krsearchdialogbase.cpp:521 Search/krsearchdialogbase.cpp:530
 msgid "months"
 msgstr "月"
 
-#: Search/krsearchdialogbase.cpp:467 Search/krsearchdialogbase.cpp:476
+#: Search/krsearchdialogbase.cpp:522 Search/krsearchdialogbase.cpp:531
 msgid "years"
 msgstr "年"
 
-#: Search/krsearchdialogbase.cpp:488
+#: Search/krsearchdialogbase.cpp:543
 msgid "Not modified in the last"
 msgstr "この期間内は変更なし"
 
-#: Search/krsearchdialogbase.cpp:493
+#: Search/krsearchdialogbase.cpp:548
 msgid "Not modified after"
 msgstr "この日以降は変更なし"
 
-#: Search/krsearchdialogbase.cpp:499
+#: Search/krsearchdialogbase.cpp:554
 msgid "Modified in the last"
 msgstr "この期間内に変更あり"
 
-#: Search/krsearchdialogbase.cpp:504
+#: Search/krsearchdialogbase.cpp:559
 msgid "Modified between"
 msgstr "この日以内に変更あり"
 
-#: Search/krsearchdialogbase.cpp:512
+#: Search/krsearchdialogbase.cpp:567
 msgid "Ownership"
 msgstr "所有権"
 
-#: Search/krsearchdialogbase.cpp:526
+#: Search/krsearchdialogbase.cpp:581
 msgid "Belongs to user"
 msgstr "所有ユーザ"
 
-#: Search/krsearchdialogbase.cpp:535
+#: Search/krsearchdialogbase.cpp:590
 msgid "Belongs to group"
 msgstr "所有グループ"
 
-#: Search/krsearchdialogbase.cpp:549 Search/krsearchdialogbase.cpp:556
-#: Search/krsearchdialogbase.cpp:563 Search/krsearchdialogbase.cpp:580
-#: Search/krsearchdialogbase.cpp:587 Search/krsearchdialogbase.cpp:594
-#: Search/krsearchdialogbase.cpp:606 Search/krsearchdialogbase.cpp:613
-#: Search/krsearchdialogbase.cpp:620
+#: Search/krsearchdialogbase.cpp:604 Search/krsearchdialogbase.cpp:611
+#: Search/krsearchdialogbase.cpp:618 Search/krsearchdialogbase.cpp:635
+#: Search/krsearchdialogbase.cpp:642 Search/krsearchdialogbase.cpp:649
+#: Search/krsearchdialogbase.cpp:661 Search/krsearchdialogbase.cpp:668
+#: Search/krsearchdialogbase.cpp:675
 msgid "?"
 msgstr "?"
 
-#: Search/krsearchdialogbase.cpp:550 Search/krsearchdialogbase.cpp:581
-#: Search/krsearchdialogbase.cpp:607
+#: Search/krsearchdialogbase.cpp:605 Search/krsearchdialogbase.cpp:636
+#: Search/krsearchdialogbase.cpp:662
 msgid "w"
 msgstr "w"
 
-#: Search/krsearchdialogbase.cpp:551 Search/krsearchdialogbase.cpp:558
-#: Search/krsearchdialogbase.cpp:565 Search/krsearchdialogbase.cpp:582
-#: Search/krsearchdialogbase.cpp:589 Search/krsearchdialogbase.cpp:596
-#: Search/krsearchdialogbase.cpp:608 Search/krsearchdialogbase.cpp:615
-#: Search/krsearchdialogbase.cpp:622
+#: Search/krsearchdialogbase.cpp:606 Search/krsearchdialogbase.cpp:613
+#: Search/krsearchdialogbase.cpp:620 Search/krsearchdialogbase.cpp:637
+#: Search/krsearchdialogbase.cpp:644 Search/krsearchdialogbase.cpp:651
+#: Search/krsearchdialogbase.cpp:663 Search/krsearchdialogbase.cpp:670
+#: Search/krsearchdialogbase.cpp:677
 msgid "-"
 msgstr "-"
 
-#: Search/krsearchdialogbase.cpp:557 Search/krsearchdialogbase.cpp:588
-#: Search/krsearchdialogbase.cpp:621
+#: Search/krsearchdialogbase.cpp:612 Search/krsearchdialogbase.cpp:643
+#: Search/krsearchdialogbase.cpp:676
 msgid "r"
 msgstr "r"
 
-#: Search/krsearchdialogbase.cpp:564 Search/krsearchdialogbase.cpp:595
-#: Search/krsearchdialogbase.cpp:614
+#: Search/krsearchdialogbase.cpp:619 Search/krsearchdialogbase.cpp:650
+#: Search/krsearchdialogbase.cpp:669
 msgid "x"
 msgstr "x"
 
-#: Search/krsearchdialogbase.cpp:572 Search/krsearchdialogbase.cpp:672
+#: Search/krsearchdialogbase.cpp:627 Search/krsearchdialogbase.cpp:727
 msgid "Permissions"
 msgstr "権限"
 
-#: Search/krsearchdialogbase.cpp:603
+#: Search/krsearchdialogbase.cpp:658
 msgid "All"
 msgstr "全て"
 
-#: Search/krsearchdialogbase.cpp:633
+#: Search/krsearchdialogbase.cpp:688
 msgid "Note: a '?' is a wildcard"
 msgstr "注意: '?'はワイルドカードです"
 
-#: Search/krsearchdialogbase.cpp:640 Konfigurator/konfigurator.cpp:92
+#: Search/krsearchdialogbase.cpp:695 Konfigurator/konfigurator.cpp:92
 #: Konfigurator/kgadvanced.cpp:32
 msgid "Advanced"
 msgstr "詳細"
 
-#: Search/krsearchdialogbase.cpp:669
+#: Search/krsearchdialogbase.cpp:724
 msgid "Location"
 msgstr "場所"
 
-#: Search/krsearchdialogbase.cpp:675 Konfigurator/kgarchivesimpl.cpp:143
+#: Search/krsearchdialogbase.cpp:730 Konfigurator/kgarchivesimpl.cpp:143
 #: Konfigurator/kggeneralimpl.cpp:128
 msgid "Results"
 msgstr "結果"
 
-#: BookMan/bookmangui.cpp:101
-msgid ""
-"A bookmark with the same name already exist. If you create another one with "
-"the same name, how will you know which is which ? :-)"
-msgstr ""
-"同じ名前のブックマークがあります。同じ名前のものを複数つくると、どちらがどち"
-"らか分からなくなりますよ :-)"
+#: panelmanager.cpp:24
+msgid "Open a new tab in home"
+msgstr "homeに新しいタブを開く"
 
-#: BookMan/bookmangui.cpp:126
-msgid "You have made changes to the bookmarks. All changes will be lost!"
-msgstr "You have made changes to the bookmarks. All changes will be lost!"
+#: panelmanager.cpp:32
+msgid "Close current tab"
+msgstr "現在のタブを閉じる"
 
-#: BookMan/bookmangui.cpp:126 BookMan/bookmaneditbase.cpp:301
-#: Dialogs/krmaskchoice.cpp:128 Dialogs/packguibase.cpp:487
-msgid "Ok"
-msgstr "OK"
+#: BookMan/bookmarksbutton.moc.cpp:34 BookMan/bookmarksbutton.moc.cpp:42
+msgid "BookmarksButton"
+msgstr "ブックマークボタン"
 
-#: BookMan/bookmangui.cpp:133 BookMan/bookmanedit.cpp:48
-#: Dialogs/packgui.cpp:88
-msgid "Please select a directory"
-msgstr "ディレクトリを選んでください"
+#: BookMan/bookmarksbutton.cpp:32
+msgid "Open your bookmarks"
+msgstr "ブックマークを開く"
 
-#: BookMan/bookmaneditbase.cpp:289
-msgid "Edit Bookmark"
-msgstr "ブックマークを編集"
+#: BookMan/bookmarksbutton.cpp:36
+msgid "Bookmarks"
+msgstr "ブックマーク"
 
-#: BookMan/bookmaneditbase.cpp:315 BookMan/bookmanguibase.cpp:465
-msgid "Name:"
-msgstr "名前:"
+#: BookMan/addbookmarkdlg.cpp:29 BookMan/addbookmarkform.cpp:86
+msgid "Bookmark name:"
+msgstr "ブックマーク名:"
 
-#: BookMan/bookmaneditbase.cpp:323
-msgid "Clear the Name field"
-msgstr "名前の項目をクリア"
-
-#: BookMan/bookmaneditbase.cpp:335
-msgid "Url:"
-msgstr "URL:"
-
-#: BookMan/bookmaneditbase.cpp:343
-msgid "Browse for a new path"
-msgstr "新しいパスを見る"
-
-#: BookMan/bookmanguibase.moc.cpp:34 BookMan/bookmanguibase.moc.cpp:42
-msgid "BookManGUIBase"
-msgstr "BookManGUIBase"
-
-#: BookMan/bookmanguibase.cpp:394
-msgid "Book.Man: Your Bookmark Manager"
-msgstr "Book.Man: ブックマークマネージャ"
-
-#: BookMan/bookmanguibase.cpp:406
-msgid "Sorted bookmarks"
-msgstr "ブックマークをソート"
-
-#: BookMan/bookmanguibase.cpp:407
-msgid "If checked, bookmarks will be sorted, otherwise, custom ordering is enabled"
-msgstr "If checked, bookmarks will be sorted, otherwise, custom ordering is enabled"
-
-#: BookMan/bookmanguibase.cpp:408
-msgid ""
-"BookMan allows displaying bookmarks in 2 ways:\n"
-"1) The bookmarks are sorted by their NAME.\n"
-"2) Unsorted: this allows custom ordering by using the UP and DOWN\n"
-"   arrows on the \"Edit Bookmarks\" tab."
-msgstr ""
-"BookMan allows displaying bookmarks in 2 ways:\n"
-"1) The bookmarks are sorted by their NAME.\n"
-"2) Unsorted: this allows custom ordering by using the UP and DOWN\n"
-"   arrows on the \"Edit Bookmarks\" tab."
-
-#: BookMan/bookmanguibase.cpp:418
-msgid "  O&k  "
-msgstr "  O&K  "
-
-#: BookMan/bookmanguibase.cpp:454
-msgid "(example: Drive C:)"
-msgstr "(例: Drive C:)"
-
-#: BookMan/bookmanguibase.cpp:482
-msgid "Adding A New Bookmark"
-msgstr "新しいブックマークを追加"
-
-#: BookMan/bookmanguibase.cpp:500
+#: BookMan/addbookmarkdlg.cpp:30 BookMan/addbookmarkform.cpp:87
 msgid "URL:"
 msgstr "URL:"
 
-#: BookMan/bookmanguibase.cpp:514
-msgid "(example: /mnt/drivec)"
-msgstr "(例: /mnt/drivec)"
+#: BookMan/addbookmarkform.cpp:85
+msgid "Add bookmark"
+msgstr "ブックマークを追加"
 
-#: BookMan/bookmanguibase.cpp:545
-msgid "Bookmark Editor"
-msgstr "ブックマークエディタ"
+#: BookMan/kbookmarkmenu.cpp:182
+msgid "Add a bookmark for the current document"
+msgstr "現在の文書へのブックマークを追加"
 
-#: BookMan/bookmanguibase.cpp:559
-msgid "Url"
-msgstr "URL"
+#: BookMan/kbookmarkmenu.cpp:196
+msgid "Edit your bookmark collection in a separate window"
+msgstr "ブックマークを個別のウィンドウで編集"
 
-#: BookMan/bookmanguibase.cpp:579
-msgid "Press this to move the selected bookmark UP one place in the list"
-msgstr "選択したブックマークを上に移動"
+#: BookMan/kbookmarkmenu.cpp:205
+msgid "&New Bookmark Folder..."
+msgstr "新しいブックマークフォルダ(&N)"
 
-#: BookMan/bookmanguibase.cpp:585
-msgid "Press this to move the selected bookmark DOWN one place in the list"
-msgstr "選択したブックマークを下に移動"
+#: BookMan/kbookmarkmenu.cpp:217
+msgid "Create a new bookmark folder in this menu"
+msgstr "このメニューに新しいブックマークフォルダを作成"
 
-#: BookMan/bookmanguibase.cpp:605
-msgid "Edit Bookmarks"
-msgstr "ブックマークを編集"
+#: BookMan/kbookmarkmenu.cpp:329
+msgid "Can't add bookmark with empty URL"
+msgstr "空のURLのブックマークは作れません"
 
-#: BookMan/bookman.cpp:105
-msgid "Root (/)"
-msgstr "root(/)"
+#: BookMan/kbookmarkmanager.moc.cpp:34 BookMan/kbookmarkmanager.moc.cpp:42
+msgid "KBookmarkManager"
+msgstr "KBookmarkManager"
 
-#: MountMan/kmountman.cpp:488
+#: MountMan/kmountman.cpp:502
 msgid ""
 "Unable to execute 'mount' !!!\n"
 "check that /bin/mount or /sbin/mount are availble"
@@ -1271,12 +1281,12 @@ msgstr ""
 "'mount'を実行できません。\n"
 "/bin/mount か /sbin/mount があるか確認してください"
 
-#: MountMan/kmountman.cpp:494 MountMan/kmountman.cpp:533
+#: MountMan/kmountman.cpp:508 MountMan/kmountman.cpp:547
 msgid "Unable to complete the mount."
 msgstr "マウントを完了できません"
 
-#: MountMan/kmountman.cpp:495 MountMan/kmountman.cpp:534
-#: MountMan/kmountman.cpp:576
+#: MountMan/kmountman.cpp:509 MountMan/kmountman.cpp:548
+#: MountMan/kmountman.cpp:590
 msgid ""
 "The error reported was:\n"
 "\n"
@@ -1284,7 +1294,7 @@ msgstr ""
 "エラーの内容:\n"
 "\n"
 
-#: MountMan/kmountman.cpp:517
+#: MountMan/kmountman.cpp:531
 msgid ""
 "Warning: you're trying to mount a 'supermount' filesystem. Supermount "
 "filesystems are (un)mounted automatically by linux upon insert/eject. This "
@@ -1296,13 +1306,13 @@ msgstr ""
 "is usually a Linux-Mandrake feature.Krusader will not allow this, as it "
 "creates unpredictable behaviour."
 
-#: MountMan/kmountman.cpp:527
+#: MountMan/kmountman.cpp:541
 msgid ""
 "Unable to execute 'mount' !!! check that /bin/mount or /sbin/mount are "
 "availble"
 msgstr "'mount'を実行できません。/bin/mount か /sbin/mount があるか確認してください"
 
-#: MountMan/kmountman.cpp:556
+#: MountMan/kmountman.cpp:570
 msgid ""
 "Warning: you're trying to unmount a 'supermount' filesystem. Supermount "
 "filesystems are (un)mounted automatically by linux upon insert/eject. This "
@@ -1314,11 +1324,11 @@ msgstr ""
 "is usually a Linux-Mandrake feature. Krusader will not allow this, as it "
 "creates unpredictable behaviour."
 
-#: MountMan/kmountman.cpp:563
+#: MountMan/kmountman.cpp:577
 msgid "Unmounting device, please wait ..."
 msgstr "デバイスをアンマウント中。お待ちください.."
 
-#: MountMan/kmountman.cpp:568
+#: MountMan/kmountman.cpp:582
 msgid ""
 "Unable to execute 'umount' !!! check that /bin/umount or /sbin/umount are "
 "availble"
@@ -1326,51 +1336,51 @@ msgstr ""
 "'umount'を実行できません。/bin/umount か /sbin/umount があるか確認してくださ"
 "い"
 
-#: MountMan/kmountman.cpp:575
+#: MountMan/kmountman.cpp:589
 msgid "Unable to complete the un-mount."
 msgstr "アンマウントを完了できません"
 
-#: MountMan/kmountman.cpp:595
+#: MountMan/kmountman.cpp:609
 msgid "Error ejecting device ! You need to have 'eject' in your path."
 msgstr "デバイスのイジェクト中にエラーが発生。パスに'eject'が必要です"
 
-#: MountMan/kmountman.cpp:618
+#: MountMan/kmountman.cpp:632
 msgid "No space information on a [procfs]"
 msgstr "[procfs]には容量の情報はありません"
 
-#: MountMan/kmountman.cpp:621
+#: MountMan/kmountman.cpp:635
 msgid "No space information on a [proc]"
 msgstr "No space information on a [proc]"
 
-#: MountMan/kmountman.cpp:629
+#: MountMan/kmountman.cpp:643
 msgid "MtMan: internal error, sorry."
 msgstr "MtMan: 内部エラーが発生"
 
-#: MountMan/kmountman.cpp:635
+#: MountMan/kmountman.cpp:649
 msgid " free out of "
 msgstr " 空き(全体: "
 
-#: MountMan/kmountman.cpp:638
+#: MountMan/kmountman.cpp:652
 msgid "%) on [ "
 msgstr "%) on [ "
 
-#: MountMan/kmountman.cpp:696
+#: MountMan/kmountman.cpp:711
 msgid "%1 ZB"
 msgstr "%1 ZB"
 
-#: MountMan/kmountman.cpp:698
+#: MountMan/kmountman.cpp:713
 msgid "%1 TB"
 msgstr "%1 TB"
 
-#: MountMan/kmountman.cpp:704
+#: MountMan/kmountman.cpp:719
 msgid "%1 GB"
 msgstr "%1 GB"
 
-#: MountMan/kmountman.cpp:710
+#: MountMan/kmountman.cpp:725
 msgid "%1 MB"
 msgstr "%1 MB"
 
-#: MountMan/kmountman.cpp:716
+#: MountMan/kmountman.cpp:731
 msgid "%1 KB"
 msgstr "%1 KB"
 
@@ -1382,35 +1392,35 @@ msgstr "Close the Mount.Man window."
 msgid "MountMan - Your Mount-Manager"
 msgstr "MountMan - マウントマネージャ"
 
-#: MountMan/kmountmangui.cpp:84
+#: MountMan/kmountmangui.cpp:89
 msgid "Filesystems"
 msgstr "ファイルシステム"
 
-#: MountMan/kmountmangui.cpp:112
+#: MountMan/kmountmangui.cpp:117
 msgid "Mnt.Point"
 msgstr "マウントポイント"
 
-#: MountMan/kmountmangui.cpp:113
+#: MountMan/kmountmangui.cpp:118
 msgid "Total Size"
 msgstr "全体のサイズ"
 
-#: MountMan/kmountmangui.cpp:114
+#: MountMan/kmountmangui.cpp:119
 msgid "Free Size"
 msgstr "空き容量"
 
-#: MountMan/kmountmangui.cpp:115
+#: MountMan/kmountmangui.cpp:120
 msgid "Free %"
 msgstr "空き %"
 
-#: MountMan/kmountmangui.cpp:213
+#: MountMan/kmountmangui.cpp:219
 msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "MountManが内部エラーを起こしました。開発者に連絡してください"
 
-#: MountMan/kmountmangui.cpp:218
+#: MountMan/kmountmangui.cpp:224
 msgid "MountMan"
 msgstr "MountMan"
 
-#: MountMan/kmountmangui.cpp:226
+#: MountMan/kmountmangui.cpp:232
 msgid "Format"
 msgstr "形式"
 
@@ -1428,11 +1438,27 @@ msgstr "UTUMI Hirosi"
 msgid ""
 "_: EMAIL OF TRANSLATORS\n"
 "Your emails"
-msgstr "*"
+msgstr "utuhiro78@yahoo.co.jp"
 
-#: main.cpp:41 main.cpp:52
+#: main.cpp:42 main.cpp:55
 msgid "Krusader"
 msgstr "Krusader"
+
+#: main.cpp:47
+msgid "Start left panel at <path>"
+msgstr "左パネルの開始場所: <path>"
+
+#: main.cpp:48
+msgid "Start right panel at <path>"
+msgstr "右パネルの開始場所: <path>"
+
+#: main.cpp:56
+msgid "Krusader - ROOT PRIVILEGES"
+msgstr "Krusader - root権限"
+
+#: krusaderview.cpp:79
+msgid "Function keys allow to perform fast operations on files."
+msgstr "ファンクションキーを使うとファイル操作を素早くできます"
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -1484,19 +1510,23 @@ msgstr "Stalled"
 msgid "%1/s ( %2 remaining )"
 msgstr "%1/s(残り %2)"
 
-#: Dialogs/krmaskchoice.cpp:57
+#: Dialogs/packgui.cpp:88
+msgid "Please select a directory"
+msgstr "ディレクトリを選んでください"
+
+#: Dialogs/krmaskchoice.cpp:58
 msgid "Choose Files"
 msgstr "ファイルを選択"
 
-#: Dialogs/krmaskchoice.cpp:79
+#: Dialogs/krmaskchoice.cpp:80
 msgid "Select the following files:"
 msgstr "以下のファイルを選択:"
 
-#: Dialogs/krmaskchoice.cpp:84
+#: Dialogs/krmaskchoice.cpp:85
 msgid "Predefined Selections"
 msgstr "定義済みの選択"
 
-#: Dialogs/krmaskchoice.cpp:94
+#: Dialogs/krmaskchoice.cpp:95
 msgid ""
 "A predefined selection is a file-mask which you use often, good\n"
 "examples might be *.c, *.h, *.c *.o etc. You can Add these masks to\n"
@@ -1512,17 +1542,21 @@ msgstr ""
 "that the line in which you edit the mask has it's own history, you can roll "
 "it down if needed."
 
-#: Dialogs/krmaskchoice.cpp:103
+#: Dialogs/krmaskchoice.cpp:104
 msgid "Adds the selection in the line-edit to the list"
 msgstr "Adds the selection in the line-edit to the list"
 
-#: Dialogs/krmaskchoice.cpp:108
+#: Dialogs/krmaskchoice.cpp:109
 msgid "Delete the marked selection from the list"
 msgstr "選択したものをリストから削除"
 
-#: Dialogs/krmaskchoice.cpp:113
+#: Dialogs/krmaskchoice.cpp:114
 msgid "Clears the entire list of selections"
 msgstr "選択したリストをクリア"
+
+#: Dialogs/krmaskchoice.cpp:129 Dialogs/packguibase.cpp:487
+msgid "Ok"
+msgstr "OK"
 
 #: Dialogs/newftpgui.cpp:686
 msgid "New FTP Connection"
@@ -1556,7 +1590,7 @@ msgstr "パスワード:"
 msgid "Username:"
 msgstr "ユーザ名:"
 
-#: Dialogs/newftpgui.cpp:722 RemoteMan/remotemanbase.cpp:225
+#: Dialogs/newftpgui.cpp:722
 msgid "Port:"
 msgstr "ポート:"
 
@@ -1604,39 +1638,39 @@ msgstr ""
 "* 排他ファイルは他のパネルに存在しない\n"
 "* 色分けはディレクトリには適用されない"
 
-#: Dialogs/krspecialwidgets.cpp:101
+#: Dialogs/krspecialwidgets.cpp:103
 msgid "Supermount device."
 msgstr "スーパーマウントデバイス"
 
-#: Dialogs/krspecialwidgets.cpp:103
+#: Dialogs/krspecialwidgets.cpp:105
 msgid "Unable to get information"
 msgstr "情報を取得できません"
 
-#: Dialogs/krspecialwidgets.cpp:104
+#: Dialogs/krspecialwidgets.cpp:106
 msgid "on a supermounted device."
 msgstr "on a supermounted device."
 
-#: Dialogs/krspecialwidgets.cpp:105
+#: Dialogs/krspecialwidgets.cpp:107
 msgid "For details, please read"
 msgstr "詳細については以下をお読みください"
 
-#: Dialogs/krspecialwidgets.cpp:106
+#: Dialogs/krspecialwidgets.cpp:108
 msgid "the Krusader FAQ."
 msgstr "the Krusader FAQ."
 
-#: Dialogs/krspecialwidgets.cpp:110
+#: Dialogs/krspecialwidgets.cpp:112
 msgid "Capacity: "
 msgstr "Capacity: "
 
-#: Dialogs/krspecialwidgets.cpp:120
+#: Dialogs/krspecialwidgets.cpp:122
 msgid "Used: "
 msgstr "Used: "
 
-#: Dialogs/krspecialwidgets.cpp:121
+#: Dialogs/krspecialwidgets.cpp:123
 msgid "Free: "
 msgstr "空き: "
 
-#: Dialogs/krspecialwidgets.cpp:148
+#: Dialogs/krspecialwidgets.cpp:150
 msgid "Not mounted."
 msgstr "マウントされませんでした"
 
@@ -1655,10 +1689,6 @@ msgstr "tar.bz2"
 #: Dialogs/packguibase.cpp:450
 msgid "In directory"
 msgstr "ディレクトリ"
-
-#: Dialogs/packguibase.cpp:501
-msgid "Move into archive"
-msgstr "書庫内に移動"
 
 #: Dialogs/krspwidgets.cpp:143
 msgid "Enter a selection:"
@@ -1680,23 +1710,27 @@ msgstr "同じファイル(比較モード)"
 msgid "Exclusive files (compare mode)"
 msgstr "排他ファイル(比較モード)"
 
-#: RemoteMan/remoteman.cpp:85 RemoteMan/remoteman.cpp:88
+#: Dialogs/krspwidgets.cpp:189 Dialogs/krspwidgets.cpp:216
+msgid "compare mode"
+msgstr "比較モード"
+
+#: RemoteMan/remoteman.cpp:84 RemoteMan/remoteman.cpp:87
 msgid "New group"
 msgstr "新しいグループ"
 
-#: RemoteMan/remoteman.cpp:104
+#: RemoteMan/remoteman.cpp:103
 msgid "New session"
 msgstr "新しいセッション"
 
-#: RemoteMan/remoteman.cpp:252 RemoteMan/remotemanbase.cpp:81
+#: RemoteMan/remoteman.cpp:251 RemoteMan/remotemanbase.cpp:81
 msgid "Sessions"
 msgstr "セッション"
 
-#: RemoteMan/remoteman.cpp:360
+#: RemoteMan/remoteman.cpp:359
 msgid "RemoteMan"
 msgstr "RemoteMan"
 
-#: RemoteMan/remoteman.cpp:361
+#: RemoteMan/remoteman.cpp:360
 msgid "Are you sure you want to delete this item ???"
 msgstr "このアイテムを削除しますか？"
 
@@ -1740,9 +1774,25 @@ msgstr "新しいグループ(&G)"
 msgid "New Connec&tion"
 msgstr "新しい接続(&t)"
 
+#: RemoteMan/remotemanbase.cpp:225
+msgid "Port:   "
+msgstr "ポート:   "
+
 #: RemoteMan/remotemanbase.cpp:235
 msgid "* Warning: Storing your password is not secure !!!"
 msgstr "* 警告: パスワードを保存すると危険です"
+
+#: paneltabbar.cpp:32
+msgid "Panel"
+msgstr "パネル"
+
+#: paneltabbar.cpp:34
+msgid "Close tab"
+msgstr "タブを閉じる"
+
+#: paneltabbar.cpp:36
+msgid "Duplicate tab"
+msgstr "タブを複製"
 
 #: rc.cpp:2
 msgid "&Mark"
@@ -1752,11 +1802,11 @@ msgstr "選択(&M)"
 msgid "&Commands"
 msgstr "コマンド(&C)"
 
-#: Konfigurator/kgstartupimpl.cpp:206
+#: Konfigurator/kgstartupimpl.cpp:209
 msgid "Left panel homepage"
 msgstr "左パネルのホーム"
 
-#: Konfigurator/kgstartupimpl.cpp:211
+#: Konfigurator/kgstartupimpl.cpp:214
 msgid "Right panel homepage"
 msgstr "右パネルのホーム"
 
@@ -1994,16 +2044,16 @@ msgstr ""
 "to perform actions WITHOUT checking permissions !!!"
 
 #: Konfigurator/kgadvanced.cpp:109
-msgid "Automount filesystems"
-msgstr "自動的にマウント"
+msgid "Automount filesystems             "
+msgstr "ファイルシステムを自動マウント      "
 
 #: Konfigurator/kgadvanced.cpp:110
 msgid "If checked, Krusader will mount FSTAB mount-points when needed."
-msgstr "If checked, Krusader will mount FSTAB mount-points when needed."
+msgstr "必要なときにFSTABマウントポイントをマウントする"
 
 #: Konfigurator/kglookfeelimpl.cpp:51
-msgid "Show a tray icon"
-msgstr "トレイアイコンを表示"
+msgid "Show a tray icon                    "
+msgstr "トレイアイコンを表示                "
 
 #: Konfigurator/kgstartup.cpp:112
 msgid "Krusader's startup state"
@@ -2143,18 +2193,19 @@ msgid "Allow moving into archives"
 msgstr "書庫内への移動を許可"
 
 #: Konfigurator/kgarchives.cpp:133
+#, fuzzy
 msgid ""
-"This action can be tricky, since system failure during the process might "
-"result in misplaced files. If this happens, the files are stored in a temp "
-"directory inside /tmp."
+"This action can be tricky, since system failure during the process\n"
+"might result in misplaced files. If this happens,\n"
+"the files are stored in a temp directory inside /tmp."
 msgstr ""
 "This action can be tricky, since system failure during the process might "
 "result in misplaced files. If this happens, the files are stored in a temp "
 "directory inside /tmp."
 
 #: Konfigurator/kgarchives.cpp:137
-msgid "Test archive when finished packing"
-msgstr "圧縮完了時に書庫をテスト"
+msgid "Test archive when finished packing                    "
+msgstr "圧縮完了時に書庫をテスト                                        "
 
 #: Konfigurator/kgarchives.cpp:138
 msgid "If checked, Krusader will test the archive's intergrity after packing it."
@@ -2406,7 +2457,11 @@ msgstr ""
 "\n"
 "If you install new tools, please install them"
 
-#: krslots.cpp:111
+#: krslots.cpp:95
+msgid "Compare mode is temporarily disabled. sorry"
+msgstr "比較モードは一時的に無効にしています。"
+
+#: krslots.cpp:114
 msgid ""
 "Krusader can't find any of the supported mail clients. Please install one to "
 "your path. Hint: Krusader supports kmail."
@@ -2414,15 +2469,15 @@ msgstr ""
 "サポートしているメールクライアントがありません。パスに何かをインストールして"
 "ください。ヒント: Krusaderはkmailをサポートしています。"
 
-#: krslots.cpp:118
+#: krslots.cpp:121
 msgid "Sending file: "
 msgstr "以下のファイルを送る:"
 
-#: krslots.cpp:124 krslots.cpp:177
+#: krslots.cpp:127 krslots.cpp:179
 msgid "Error executing "
 msgstr "実行中にエラー"
 
-#: krslots.cpp:133
+#: krslots.cpp:136
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports kdiff and xxdiff."
@@ -2430,11 +2485,11 @@ msgstr ""
 "サポートしているdiffフロントエンドがありません。パスに何かをインストールして"
 "ください。ヒント: Krusaderはkdiffとxxdiffをサポートしています。"
 
-#: krslots.cpp:149
+#: krslots.cpp:152
 msgid "Don't know which files to compare."
 msgstr "比較するファイルを指定してください"
 
-#: krslots.cpp:150
+#: krslots.cpp:153
 msgid ""
 "To compare 2 files by content, select (mark) a file in the left panel, and "
 "select another one in the right panel."
@@ -2442,11 +2497,11 @@ msgstr ""
 "To compare 2 files by content, select (mark) a file in the left panel, and "
 "select another one in the right panel."
 
-#: krslots.cpp:162 krslots.cpp:168
+#: krslots.cpp:165 krslots.cpp:171
 msgid "Krusader is unable to download: "
 msgstr "Krusaderは以下をダウンロードできません: "
 
-#: krslots.cpp:193
+#: krslots.cpp:200
 msgid ""
 "In order to save the time needed to enter an archive, Krusader will not "
 "allow bookmarks which point into an archive, as it is usually a mistake to "
@@ -2456,17 +2511,164 @@ msgstr ""
 "allow bookmarks which point into an archive, as it is usually a mistake to "
 "do so!"
 
-#: krslots.cpp:311
+#: krslots.cpp:307
+msgid ""
+"Important: RemoteMan has been replaced by our new bookmark manager.The new "
+"manager handles local files and remote url the same way.RemoteMan is being "
+"left around to allow an easier transition andgive you a chance to move your "
+"bookmarks. IT WILL BE REMOVED SOON!\n"
+"Try the new bookmark-manager: open a new remote connection. oncedone, press "
+"the bookmark button, select 'Add bookmark' and that's it!"
+msgstr ""
+
+#: krslots.cpp:346
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr "KsysCtrlがありません。KDEの管理用パッケージをインストールしてください"
 
-#: krslots.cpp:319
+#: krslots.cpp:354
 msgid ""
 "Can't find a batch renamer tool.\n"
 "You can get Krename at http://krename.sf.net"
 msgstr ""
 "batchリネームツールがありません。Krenameをhttp://krename.sf.netで取得してくだ"
 "さい"
+
+#: krslots.cpp:433
+msgid "Enter a URL to view:"
+msgstr "閲覧するURLを入力:"
+
+#: krslots.cpp:450
+msgid "Enter the filename to edit:"
+msgstr "編集するファイル名を入力:"
+
+#~ msgid ""
+#~ "The history button pops up a menu with the last 20 commands you wrote to "
+#~ "the command line. Choose your path..."
+#~ msgstr ""
+#~ "The history button pops up a menu with the last 20 commands you wrote to "
+#~ "the command line. Choose your path..."
+
+#~ msgid "Configure preview"
+#~ msgstr "プレビューを設定"
+
+#~ msgid "Newer files"
+#~ msgstr "新しいファイル"
+
+#~ msgid "Older files"
+#~ msgstr "古いファイル"
+
+#~ msgid "Identical files"
+#~ msgstr "同じファイル"
+
+#~ msgid "Exclusive files"
+#~ msgstr "排他ファイル"
+
+#~ msgid ""
+#~ "Pressing this button will pop a menu with your bookmarks. Select a "
+#~ "bookmark to go where it's pointing. Simple ehh?"
+#~ msgstr ""
+#~ "Pressing this button will pop a menu with your bookmarks. Select a "
+#~ "bookmark to go where it's pointing. Simple ehh?"
+
+#~ msgid "A directory or a file with this file already exists."
+#~ msgstr "このファイルのディレクトリ/ファイルは既に存在しています"
+
+#~ msgid "Sort By E&xtention"
+#~ msgstr "拡張子順(&x)"
+
+#~ msgid "&FTP Connect"
+#~ msgstr "&FTPに接続"
+
+#~ msgid "FT&P New Connection"
+#~ msgstr "新しいFT&P接続"
+
+#~ msgid "FTP Disc&onnect"
+#~ msgstr "FTPを切断(&T)"
+
+#~ msgid "&BookMan"
+#~ msgstr "&BookMan"
+
+#~ msgid "&Device Manager"
+#~ msgstr "デバイスマネージャ(&D)"
+
+#~ msgid "&Executables"
+#~ msgstr "実行ファイル(&E)"
+
+#~ msgid "Add the current path to your bookmarks"
+#~ msgstr "現在のパスをブックマークに追加"
+
+#~ msgid ""
+#~ "A bookmark with the same name already exist. If you create another one "
+#~ "with the same name, how will you know which is which ? :-)"
+#~ msgstr ""
+#~ "同じ名前のブックマークがあります。同じ名前のものを複数つくると、どちらがど"
+#~ "ちらか分からなくなりますよ :-)"
+
+#~ msgid "You have made changes to the bookmarks. All changes will be lost!"
+#~ msgstr "You have made changes to the bookmarks. All changes will be lost!"
+
+#~ msgid "Edit Bookmark"
+#~ msgstr "ブックマークを編集"
+
+#~ msgid "Name:"
+#~ msgstr "名前:"
+
+#~ msgid "Clear the Name field"
+#~ msgstr "名前の項目をクリア"
+
+#~ msgid "Url:"
+#~ msgstr "URL:"
+
+#~ msgid "Browse for a new path"
+#~ msgstr "新しいパスを見る"
+
+#~ msgid "BookManGUIBase"
+#~ msgstr "BookManGUIBase"
+
+#~ msgid ""
+#~ "If checked, bookmarks will be sorted, otherwise, custom ordering is "
+#~ "enabled"
+#~ msgstr ""
+#~ "If checked, bookmarks will be sorted, otherwise, custom ordering is "
+#~ "enabled"
+
+#~ msgid ""
+#~ "BookMan allows displaying bookmarks in 2 ways:\n"
+#~ "1) The bookmarks are sorted by their NAME.\n"
+#~ "2) Unsorted: this allows custom ordering by using the UP and DOWN\n"
+#~ "   arrows on the \"Edit Bookmarks\" tab."
+#~ msgstr ""
+#~ "BookMan allows displaying bookmarks in 2 ways:\n"
+#~ "1) The bookmarks are sorted by their NAME.\n"
+#~ "2) Unsorted: this allows custom ordering by using the UP and DOWN\n"
+#~ "   arrows on the \"Edit Bookmarks\" tab."
+
+#~ msgid "  O&k  "
+#~ msgstr "  O&K  "
+
+#~ msgid "(example: Drive C:)"
+#~ msgstr "(例: Drive C:)"
+
+#~ msgid "Adding A New Bookmark"
+#~ msgstr "新しいブックマークを追加"
+
+#~ msgid "(example: /mnt/drivec)"
+#~ msgstr "(例: /mnt/drivec)"
+
+#~ msgid "Url"
+#~ msgstr "URL"
+
+#~ msgid "Press this to move the selected bookmark UP one place in the list"
+#~ msgstr "選択したブックマークを上に移動"
+
+#~ msgid "Press this to move the selected bookmark DOWN one place in the list"
+#~ msgstr "選択したブックマークを下に移動"
+
+#~ msgid "Root (/)"
+#~ msgstr "root(/)"
+
+#~ msgid "Move into archive"
+#~ msgstr "書庫内に移動"
 
 #~ msgid ""
 #~ " is not empty !\n"
@@ -2496,13 +2698,6 @@ msgstr ""
 
 #~ msgid "&Tree Panel"
 #~ msgstr "ツリーパネル(&T)"
-
-#~ msgid ""
-#~ "A directory or a file with this name\n"
-#~ "already exists."
-#~ msgstr ""
-#~ "この名前のディレクトリ/ファイルは\n"
-#~ "既に存在しています"
 
 #~ msgid ""
 #~ "A directory with this name\n"
