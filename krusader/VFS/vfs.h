@@ -37,7 +37,7 @@
 
 // QT includes
 #include <qstring.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qobject.h>
 // KDE includes
 #include <kurl.h>

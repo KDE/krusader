@@ -35,7 +35,7 @@ A
 #include <qwidget.h>
 #include <qpainter.h>
 #include <qcolor.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <klineedit.h>
 #include <qevent.h>
 #include <kio/global.h>

@@ -31,7 +31,7 @@
 #include "krpleasewait.h"
 #include <qtimer.h>
 #include <qdatetime.h>
-#include <qapp.h>
+#include <qapplication.h>
 #include <qpushbutton.h>
 #include <unistd.h>
 #include "../krusader.h"

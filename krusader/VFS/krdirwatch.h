@@ -35,7 +35,7 @@
 
 #include <qobject.h>
 #include <qstring.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qtimer.h>
 #include <qdatetime.h>
 #include <qdir.h>

@@ -34,7 +34,7 @@
 #include <qobject.h>
 #include <qstring.h>
 #include <qframe.h>
-#include <qlist.h> 
+#include <qptrlist.h> 
 // KDE includes
 #include <kprocess.h>
 #include <kjanuswidget.h>

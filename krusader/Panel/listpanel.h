@@ -46,7 +46,7 @@
 #include <qdir.h>
 #include <qpixmapcache.h>
 #include <qiconset.h>
-#include <qstack.h>
+#include <qptrstack.h>
 #include <qtextbrowser.h>
 #include <keditcl.h>
 #include <klineedit.h>
