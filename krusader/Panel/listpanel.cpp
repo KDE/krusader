@@ -674,8 +674,10 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
 
       default:
       // if we got this, it means that the view is not doing
-      // the quick search thing, so send the characters to the commandline
-      krApp->mainView->cmdLine->addText( e->text() );
+      // the quick search thing, so send the characters to the commandline, if normal key
+      if (e->state() == NoButton)
+         krApp->mainView->cmdLine->addText( e->text() );
+
       //e->ignore();
   }
 }
