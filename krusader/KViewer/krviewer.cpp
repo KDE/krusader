@@ -241,11 +241,13 @@ void KrViewer::viewHex(){
 		unsigned int* pBuff = (unsigned int*)buf;
 
     while( address<fileSize ){
-      in.readRawBytes(buf,16);
+			memset(buf,0,16);
+			int bufSize = ((fileSize-address) > 16)? 16 : (fileSize-address);
+      in.readRawBytes(buf,bufSize);
       fprintf(out,"0x%8.8lx: %8.8x %8.8x %8.8x %8.8x | ",address,pBuff[0],pBuff[1],pBuff[2],pBuff[3]);
             /**(unsigned int*)&(buf[0]),*(unsigned int*)&(buf[4]),
             *(unsigned int*)&(buf[8]),*(unsigned int*)&(buf[12]) );*/
-      for(int i=0; i<16; ++i){
+      for(int i=0; i<bufSize; ++i){
         if(buf[i]>' ' && buf[i]<'~' )
           fputc(buf[i],out);
         else
@@ -257,6 +259,7 @@ void KrViewer::viewHex(){
     }
     // clean up
     f_in.close();
+		fclose(out);
     if( !url.isLocalFile() )
       KIO::NetAccess::removeTempFile( file );
 
