@@ -233,6 +233,26 @@ void KRslots::showAboutApplication() {
   q->exec();
 }
 
+void KRslots::insertFileName(bool full_path)
+{
+  QString filename = ACTIVE_PANEL->view->getCurrentItem();
+  if( filename == QString::null )
+    return;
+  
+  if( full_path )
+  {
+    QString path=ACTIVE_FUNC->files()->vfs_getOrigin();
+    if( !path.endsWith( "/" ))
+      path+="/";
+    filename = path+filename;
+  }
+
+  QString current = MAIN_VIEW->cmdLine->text();
+  if( current.length() != 0 && !current.endsWith( " " ) )
+    current += " ";
+  MAIN_VIEW->cmdLine->setText( current + filename );
+}
+
 // directory list functions
 void KRslots::allFilter()			  {	ACTIVE_PANEL->setFilter(ListPanel::ALL);	 }
 void KRslots::execFilter()			{	ACTIVE_PANEL->setFilter(ListPanel::EXEC);	 }

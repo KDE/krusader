@@ -61,6 +61,7 @@ class KRslots : public QObject {
     void sendFileByEmail( QString filename );
     void compareContent();
     void rightclickMenu();
+    void insertFileName(bool full_path);
     void toggleHidden();
     void toggleSwapPanels();
     void toggleSortByExt();

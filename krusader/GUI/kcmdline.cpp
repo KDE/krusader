@@ -162,6 +162,14 @@ void KCMDLine::slotReturnFocus() {
 
 void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {
    switch (e->key()) {
+      case Key_Enter:
+      case Key_Return:
+         if (e->state() & ControlButton) {
+           SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
+           break;
+         }
+         KHistoryCombo::keyPressEvent(e);
+         break;
       case Key_Up:
          if (e->state() == ControlButton) {
             emit returnToPanel();

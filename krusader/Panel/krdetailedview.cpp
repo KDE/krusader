@@ -497,10 +497,15 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
     return ; // subclass bug
   switch ( e->key() ) {
       case Key_Enter :
-      case Key_Return : {
-        KrViewItem * i = getCurrentKrViewItem();
-        QString tmp = i->name();
-        emit executed( tmp );
+      case Key_Return : {        
+        if( e->state() & ControlButton )
+          SLOTS->insertFileName( (e->state() & ShiftButton) != 0 );
+        else
+        {
+          KrViewItem * i = getCurrentKrViewItem();
+          QString tmp = i->name();
+          emit executed( tmp );
+        }
         break;
       }
       case Key_Right :
