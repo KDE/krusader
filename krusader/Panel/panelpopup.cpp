@@ -14,6 +14,7 @@
 #include <krview.h>
 #include <krviewitem.h>
 #include <klineedit.h>
+#include <kio/jobclasses.h>
 
 #include <kdebug.h>
 
@@ -70,11 +71,14 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
    stack = new QWidgetStack( this );
 
    // create the tree part ----------
-   tree = new KFileTreeView( stack );
+	tree = new KFileTreeView( stack );
+	tree->setAcceptDrops(true);
+	connect(tree, SIGNAL(dropped (KURL::List &, KURL &)), this, SLOT(slotDroppedOnTree(KURL::List&, KURL& )));
    stack->addWidget( tree, Tree );
    tree->addColumn( "" );
    tree->addBranch( "/", i18n( "Root Folder" ) );
    tree->setDirOnlyMode( tree->branch( i18n( "Root Folder" ) ), true );
+	tree->setShowFolderOpenPixmap(true);
 	tree->branch( i18n( "Root Folder" ) ) ->setChildRecurse(false);
 	
    tree->branch( i18n( "Root Folder" ) ) ->setOpen( true );
@@ -233,4 +237,13 @@ void PanelPopup::quickSelectStore() {
         if ( lst.find(quickSelectCombo->currentText()) == lst.end() )
            lst.append( quickSelectCombo->currentText() );
         krConfig->writeEntry( "Predefined Selections", lst );
+}
+
+void PanelPopup::slotDroppedOnTree(KURL::List &lst, KURL &url) {
+	kdWarning() << "dest: " << url.url() << endl;
+	for (KURL::List::Iterator it = lst.begin(); it!=lst.end(); ++it) {
+		kdWarning() << (*it).url() << endl;
+	}
+	
+	KIO::CopyJob *job = KIO::copy(lst, url, true);
 }

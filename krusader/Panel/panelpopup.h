@@ -7,7 +7,7 @@
 #include <kfileitem.h>
 #include <qguardedptr.h>
 #include <kio/previewjob.h>
-
+#include <kurl.h>
 
 class QButtonGroup;
 class QLabel;
@@ -38,6 +38,7 @@ protected slots:
 	void failedToView(const KFileItem* kfi);
 	void tabSelected(int id);
 	void treeSelection(QListViewItem*);
+	void slotDroppedOnTree(KURL::List &lst, KURL &url);
 	
 	void quickSelect();
 	void quickSelect(const QString &);
