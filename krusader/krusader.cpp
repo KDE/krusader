@@ -348,7 +348,8 @@ void Krusader::setupActions() {
                      SLOT(cmdlinePopup()), actionCollection(), "cmdline popup");
   /* Shortcut disabled because of the Terminal Emulator bug. */
   actDirUp = new KAction( i18n("Up"), "up", 0 /*Key_Backspace*/, SLOTS, SLOT(dirUp()), actionCollection(), "dirUp");
-  new KAction( i18n("Edit new file"), "filenew", SHIFT + Key_F4, SLOTS, SLOT(editDlg()), actionCollection(), "edit_new_file");
+  new KAction( i18n("&Edit new file"), "filenew", SHIFT + Key_F4, SLOTS, SLOT(editDlg()), actionCollection(), "edit_new_file");
+  new KAction( i18n("Start &Root Mode Krusader"), "krusader", ALT + Key_K, SLOTS, SLOT(rootKrusader()), actionCollection(), "root krusader");
 
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );

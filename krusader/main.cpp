@@ -33,6 +33,7 @@
 #include <kaboutdata.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <unistd.h>
 
 // Krusader includes
 #include "krusader.h"
@@ -51,7 +52,8 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char *argv[]) {
   // ABOUT data information
-  KAboutData aboutData( "krusader", I18N_NOOP("Krusader"),
+  KAboutData aboutData( "krusader", ( geteuid() ? I18N_NOOP("Krusader") :
+                        I18N_NOOP("Krusader - ROOT PRIVILEGES")),
     VERSION, description, KAboutData::License_GPL,
     "(c) 2000-2003, Shie Erlich and Rafi Yanai",
     0,

@@ -43,6 +43,7 @@
 #include <kio/netaccess.h>
 #include <kedittoolbar.h>
 #include <kdeversion.h>
+#include <kcmdlineargs.h>
 #include <KViewer/krviewer.h>
 // Krusader includes
 #include "krslots.h"
@@ -373,6 +374,15 @@ void KRslots::multiRename(){
 
 	proc.start(KProcess::DontCare);
 	delete urls;
+}
+
+void KRslots::rootKrusader(){
+  KShellProcess proc;
+  proc << "kdesu" << QString("'") + KCmdLineArgs::appName() +
+       " --left=" +MAIN_VIEW->left->func->files()->vfs_getOrigin() +
+       " --right="+MAIN_VIEW->right->func->files()->vfs_getOrigin() + "'";
+
+  proc.start(KProcess::DontCare);
 }
 
 // settings slots
