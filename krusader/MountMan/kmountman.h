@@ -87,6 +87,7 @@ private:
 
 private:
    bool Operational;   // if false, something went terribly wrong on startup
+	bool waiting; // used to block krusader while waiting for (un)mount operation
    KMountManGUI *mountManGui;
 	// the following is the FS type
 	QStringList invalid_fs;

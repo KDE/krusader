@@ -51,7 +51,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define FSTAB "/etc/fstab"
 #endif
 
-KMountMan::KMountMan() : QObject(), Operational( false ), mountManGui( 0 ) {
+KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountManGui( 0 ) {
    _actions = 0L;
 
 	// added as a precaution, although we use kde services now
@@ -112,6 +112,7 @@ KMountPoint *KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString val
 }
 
 void KMountMan::jobResult(KIO::Job *job) {
+	waiting = false;
 	if ( job->error() )
 		job->showErrorDialog( 0 );
 }
@@ -120,13 +121,23 @@ void KMountMan::mount( QString mntPoint ) {
 	KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
 	KMountPoint *m = findInListByMntPoint(possible, mntPoint);
 	if (!m) return;
+	waiting = true; // prepare to block
 	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint());
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
+	while (waiting) {
+		qApp->processEvents();
+		usleep( 1000 );
+	}
 }
 
 void KMountMan::unmount( QString mntPoint ) {
+	waiting = true; // prepare to block
 	KIO::SimpleJob *job = KIO::unmount(mntPoint);
 	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
+	while (waiting) {
+		qApp->processEvents();
+		usleep( 1000 );
+	}
 }
 
 KMountMan::mntStatus KMountMan::getStatus( QString mntPoint ) {	
