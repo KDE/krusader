@@ -87,7 +87,7 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
     if(symLink)
     {
       symDest = kfi.linkDest();
-      if ( kfi.isDir() || mime.contains("directory") )
+      if ( kfi.isDir() || mime.contains("directory") );
          perm[0] = 'd';
     }
 
@@ -103,8 +103,14 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
         currentUser = KRpermHandler::uid2user(getuid());
       temp=new vfile(name,size,perm,mtime,symLink,kfi.user(),kfi.group(),currentUser,mime,symDest,mode);
     }
+    
+    temp->vfile_setUrl(kfi.url());
     addToList(temp);
-	}
+  }
+}
+
+void ftp_vfs::slotPermanentRedirection(KIO::Job*,const KURL&,const KURL& newUrl){
+  vfs_origin    = newUrl;
 }
 
 void ftp_vfs::slotRedirection(KIO::Job *, const KURL &url){
@@ -113,11 +119,10 @@ void ftp_vfs::slotRedirection(KIO::Job *, const KURL &url){
 }
 
 void ftp_vfs::slotListResult(KIO::Job *job){
- if( job && job->error()){
+  if( job && job->error()){
     // we failed to refresh
-    QString msg= KIO::buildErrorString(job->error(),vfs_origin.prettyURL());
     // display error message
-    if ( !msg.isEmpty() && !quietMode ) KMessageBox::sorry(krApp,msg);
+    if ( !quietMode ) job->showErrorDialog(krApp);
     error = true;
   }
   else {
@@ -134,34 +139,39 @@ void ftp_vfs::slotListResult(KIO::Job *job){
 void ftp_vfs::startLister() {
   // Open the directory	marked by origin
   krConfig->setGroup("Look&Feel");
-  KIO::Job *job = new KIO::ListJob(vfs_origin,false,false,QString::null,
-                      krConfig->readBoolEntry("Show Hidden",_ShowHidden));
+  KIO::Job *job = KIO::listDir(vfs_origin,false,
+                               krConfig->readBoolEntry("Show Hidden",_ShowHidden));
   connect(job,SIGNAL(entries(KIO::Job*,const KIO::UDSEntryList&)),
          this,SLOT(slotAddFiles(KIO::Job*,const KIO::UDSEntryList&)));
   connect(job,SIGNAL(redirection(KIO::Job*,const KURL&)),
          this,SLOT(slotRedirection(KIO::Job*,const KURL&)));
+  connect(job,SIGNAL(permanentRedirection(KIO::Job*,const KURL&,const KURL&)),
+         this,SLOT(slotPermanentRedirection(KIO::Job*,const KURL&,const KURL&)));
+  
   connect(job,SIGNAL(result(KIO::Job*)),
          this,SLOT(slotListResult(KIO::Job*)));
 
+  job->setWindow(krApp);
+ 
   if( !quietMode ) new KrProgress(job);
 }
 
 bool ftp_vfs::vfs_refresh(const KURL& origin) {
-	error = false;
+  error = false;
 
-	QString errorMsg = QString::null;	
-	if ( origin.isMalformed() )
+  QString errorMsg = QString::null;	
+  if ( !origin.isValid() )
     errorMsg = i18n("Malformed URL:\n%1").arg(origin.url());
   if( !KProtocolInfo::supportsListing(origin) )
-		errorMsg = i18n("Protocol not supported by Krusader:\n%1").arg(origin.url());
+    errorMsg = i18n("Protocol not supported by Krusader:\n%1").arg(origin.url());
 
-	if( !errorMsg.isEmpty() ){
+  if( !errorMsg.isEmpty() ){
     if (!quietMode) KMessageBox::sorry(krApp, errorMsg);
-		error = true;
+    error = true;
     return false;
-	}
+  }
 
-	busy = true;
+  busy = true;
   
   // clear the the list and back up out current situation
   vfs_files.clear();
@@ -177,7 +187,7 @@ bool ftp_vfs::vfs_refresh(const KURL& origin) {
 
   if( error ) return false;
 
-	return true;
+  return true;
 }
 
 
@@ -233,11 +243,10 @@ KURL::List* ftp_vfs::vfs_getFiles(QStringList* names){
 
 // return a path to the file
 KURL ftp_vfs::vfs_getFile(const QString& name){	
-  KURL url = vfs_origin;
-
-  url.addPath(name);
-
-  return url;
+  vfile* vf=vfs_search(name);
+  if( !vf ) return KURL(); // empty 
+ 
+  return vf->vfile_getUrl();
 }
 
 void ftp_vfs::vfs_mkdir(const QString& name){

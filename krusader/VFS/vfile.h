@@ -86,6 +86,8 @@ public:
 	inline uid_t						vfile_getUid()			{ return vfile_ownerId;		}
   inline gid_t						vfile_getGid()			{ return vfile_groupId;		}
   inline time_t           vfile_getTime_t()   { return vfile_time_t;    }
+  inline KURL             vfile_getUrl()      { return vfile_url;       }
+  
 	QString						      vfile_getOwner();
   QString						      vfile_getGroup();
   char			              vfile_isReadable();
@@ -98,7 +100,7 @@ public:
 	 * displayed size of the viewitem and thus the vfile. For INTERNAL USE !
 	 */
 	inline void             vfile_setSize(KIO::filesize_t size) {vfile_size = size;}
-
+	inline void             vfile_setUrl(const KURL& url){ vfile_url = url; }
   virtual ~vfile(){}
 
 protected:

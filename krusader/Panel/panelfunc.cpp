@@ -543,7 +543,8 @@ void ListPanelFunc::execute( QString& name ) {
     type = "-rar";
 
   if ( vf->vfile_isDir() ) {
-    origin.addPath(name);
+    //origin.addPath(name);
+    origin = files()->vfs_getFile( name );
     panel->view->setNameToMakeCurrent( QString::null );
     openUrl( origin );
   } else if ( KRarcHandler::arcHandled( type ) && origin.isLocalFile() ) {
