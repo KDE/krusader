@@ -47,6 +47,9 @@
 
 kgLookFeelImpl::kgLookFeelImpl(bool f, QWidget *parent, const char *name ) :
   kgLookFeel(parent,name), firstTime(f) {
+  // fixes
+  kgMinimizeToTray->setText( i18n( "Show a tray icon" ) );
+
   slotSetup();
 }
 
