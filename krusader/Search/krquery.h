@@ -32,17 +32,18 @@
 
 #include <qstringlist.h>
 #include <time.h>
+#include <kurl.h>
 
 class KRQuery {
 public: 
-	KRQuery();
+  KRQuery();
   KRQuery(QString name);         // create a new KRquery from th kconfig file
-	~KRQuery();
+  ~KRQuery();
 
   void save(QString name);       // save a query to the kconfig file
-  void load(QString name);       // load query from the konfig file	
+  void load(QString name);       // load query from the kconfig file
 
-	QStringList matches;           // what to search
+  QStringList matches;           // what to search
   bool matchesCaseSensitive;
   QString contain;               // file must contain this string
   bool containCaseSensetive;
@@ -50,10 +51,11 @@ public:
   bool inArchive;                // if true- search in archive.
   bool recurse;                  // if true recurse ob sub-dirs...
   bool followLinks;
-	QStringList whereToSearch;     // directorys to search
-  QStringList whereNotToSearch;  // directorys NOT to search
-	// size
-	unsigned long minSize;
+  
+  KURL::List whereToSearch;     // directorys to search
+  KURL::List whereNotToSearch;  // directorys NOT to search
+  // size
+  unsigned long minSize;
   unsigned long maxSize;
   //date
   time_t newerThen;
@@ -62,15 +64,15 @@ public:
   QString owner;
   QString group;
   QString perm;
-	// type, must be one of the following:
-	// 1. a valid mime type name
-	// 2. one of: i18n("Archives"),   i18n("Directories"), i18n("Image Files")
+  // type, must be one of the following:
+  // 1. a valid mime type name
+  // 2. one of: i18n("Archives"),   i18n("Directories"), i18n("Image Files")
   //            i18n("Text Files"), i18n("Video Files"), i18n("Audio Files")
-	// 3. i18n("Custom") in which case you must supply a list of valid mime-types
+  // 3. i18n("Custom") in which case you must supply a list of valid mime-types
   //    in the member QStringList customType
   QString type;
   QStringList customType;
-	void normalize();            // make sure KRSearchMod can use the data
+  void normalize();            // make sure KRSearchMod can use the data
 };
 
 #endif

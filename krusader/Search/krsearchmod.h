@@ -39,6 +39,8 @@
 #include <time.h>
 #include <kio/global.h>
 #include <kurl.h>
+#include "../VFS/ftp_vfs.h"
+
 
 class KRQuery;
 class ftp_vfs;
@@ -46,14 +48,16 @@ class ftp_vfs;
 class KRSearchMod : public QObject  {
   Q_OBJECT
 public: 
-	KRSearchMod(const KRQuery *q);
-	~KRSearchMod();
+  KRSearchMod(const KRQuery *q);
+  ~KRSearchMod();
 
-	void scanDir( QString dir);
-  void scanArchive( QString archive, QString type );
-  void scanURL( ftp_vfs* v, KURL url );
-	void start();
+  void scanURL( KURL url );
+  void start();
   void stop();
+  
+private:
+  void scanLocalDir( KURL url );
+  void scanRemoteDir( KURL url );
 
 signals:
   void finished();
@@ -61,14 +65,16 @@ signals:
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
 
 private:
-	bool stopSearch;
-	bool checkPerm(QString perm);
-	bool checkType(QString mime);
-	bool fileMatch(QString name);
-	QStringList scanedDirs;
-	QValueStack<KURL> unScanedUrls;
-	KRQuery *query;
-	QStringList results;
+  bool stopSearch;
+  bool checkPerm(QString perm);
+  bool checkType(QString mime);
+  bool fileMatch(QString name);
+  QValueStack<KURL> scannedUrls;
+  QValueStack<KURL> unScannedUrls;
+  KRQuery *query;
+  QStringList results;
+  
+  ftp_vfs *remote_vfs;
 };
 
 #endif

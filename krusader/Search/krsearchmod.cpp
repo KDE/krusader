@@ -3,7 +3,7 @@
                             -------------------
    copyright            : (C) 2001 by Shie Erlich & Rafi Yanai
    email                : krusader@users.sourceforge.net
-   web site		 : http://krusader.sourceforge.net
+   web site             : http://krusader.sourceforge.net
 ---------------------------------------------------------------------------
  Description
 ***************************************************************************
@@ -32,7 +32,6 @@
 #include "krquery.h"
 #include "../krusader.h"
 #include "../resources.h"
-#include "../VFS/ftp_vfs.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krarchandler.h"
@@ -47,45 +46,50 @@
 #include <qtextstream.h>
 #include <qregexp.h>
 #include <klargefile.h>
+#include <kurlrequesterdlg.h> 
 
 #include <kmimetype.h>
 
 KRSearchMod::KRSearchMod( const KRQuery* q )
-  {
+{
   stopSearch = false; /// ===> added
   query = new KRQuery( *q );
   query->normalize();
-  }
+   
+  remote_vfs = 0;
+}
 
 KRSearchMod::~KRSearchMod()
-  {
+{
   delete query;
-  }
+  if( remote_vfs )
+    delete remote_vfs;
+}
 
 void KRSearchMod::start()
-  {
+{
   // search every dir that needs to be searched
   for ( unsigned int i = 0; i < query->whereToSearch.count(); ++i )
-    scanDir( *( query->whereToSearch.at( i ) ) );
-
+      scanURL( query->whereToSearch [ i ] );
+  
   emit finished();
-  }
+}
 
 void KRSearchMod::stop()
-  {
+{
   stopSearch = true;
-  }
+}
 
 bool KRSearchMod::checkPerm( QString perm )
-  {
+{
   QString q_perm = query->perm;
   for ( int i = 0; i < 9; ++i )
     if ( q_perm[ i ] != '?' && q_perm[ i ] != perm[ i + 1 ] ) return false;
   return true;
-  }
+}
 
 bool KRSearchMod::checkType( QString mime )
-  {
+{
   QString type = query->type;
   if ( type == mime ) return true;
   if ( type == i18n( "Archives" ) )
@@ -97,10 +101,10 @@ bool KRSearchMod::checkType( QString mime )
   if ( type == i18n( "Audio Files" ) ) return mime.contains( "audio/" );
   if ( type == i18n( "Custom" ) ) return query->customType.contains( mime );
   return false;
-  }
+}
 
 bool KRSearchMod::fileMatch( const QString name )
-  {
+{
   unsigned int len;
   for ( unsigned int i = 0; i < query->matches.count(); ++i )
     {
@@ -108,21 +112,41 @@ bool KRSearchMod::fileMatch( const QString name )
     if ( len == name.length() ) return true;
     }
   return false;
-  }
+}
 
-void KRSearchMod::scanDir( QString dir )
+void KRSearchMod::scanURL( KURL url )
+{
+  if( stopSearch ) return;
+  
+  unScannedUrls.push( url );    
+  while ( !unScannedUrls.isEmpty() )
   {
+    KURL urlToCheck = unScannedUrls.pop();
+    
+    if ( query->whereNotToSearch.contains( urlToCheck ) )
+      continue;
+    
+    if( scannedUrls.contains( urlToCheck ) )
+      continue;    
+    scannedUrls.push( urlToCheck );
+    
+    emit searching( urlToCheck.prettyURL(0,KURL::StripFileProtocol) );
+    
+    if ( urlToCheck.isLocalFile() )
+      scanLocalDir( urlToCheck );
+    else
+      scanRemoteDir( urlToCheck );
+  
+    qApp->processEvents(); // do a last one, in case passes%50 != 0
+  }
+}
+  
+void KRSearchMod::scanLocalDir( KURL urlToScan )
+{
   int passes = 0;
   const int NO_OF_PASSES = 50;
-
-  if ( stopSearch ) return ;
-  if ( dir.right( 1 ) != "/" && !dir.isEmpty() ) dir = dir + "/";
-  if ( query->whereNotToSearch.contains( dir ) ) return ;
-  if ( scanedDirs.contains( dir ) ) return ; // don't scan dirs twice
-  scanedDirs.append( dir );
-  // let the gui know where we are
-  emit searching( dir );
-  if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
+    
+  QString dir = urlToScan.path( 1 );
 
   DIR* d = opendir( dir.local8Bit() );
   if ( !d ) return ;
@@ -134,34 +158,42 @@ void KRSearchMod::scanDir( QString dir )
   KURL url;
 
   while ( ( dirEnt = readdir( d ) ) != NULL )
-    {
+  {
+    name = QString::fromLocal8Bit( dirEnt->d_name );
+    url = vfs::fromPathOrURL( dir + name );
+    
     QString mime = QString::null;
-    name = dirEnt->d_name;
+    
     // we dont scan the ".",".." enteries
     if ( name == "." || name == ".." ) continue;
 
-    url.setPath( dir + name );
     KDE_struct_stat stat_p;
-    KDE_lstat( dir.local8Bit() + name.local8Bit(), &stat_p );
+    KDE_lstat( ( dir + name ).local8Bit(), &stat_p );
     if ( query->recurse )
-      {
+    {
       if ( S_ISLNK( stat_p.st_mode ) && query->followLinks )
-        {
-        scanDir( QDir( dir + "/" + name ).canonicalPath() );
-        }
-      else if ( S_ISDIR( stat_p.st_mode ) ) scanDir( dir + name );
-      }
+        unScannedUrls.push( vfs::fromPathOrURL( QDir( dir + name ).canonicalPath() ) );
+      else if ( S_ISDIR( stat_p.st_mode ) )
+        unScannedUrls.push( url );
+    }
     if ( query->inArchive )
-      {
+    {
       mime = KMimeType::findByURL( url, stat_p.st_mode, true, false ) ->name();
       QString type = mime.right( 4 );
       if ( mime.contains( "-rar" ) ) type = "-rar";
 
       if ( KRarcHandler::arcSupported( type ) )
-        {
-        scanArchive( dir + name, type );
-        }
+      {
+        KURL archiveURL = url;
+        
+        if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" )
+          archiveURL.setProtocol( "tar" );
+        else
+          archiveURL.setProtocol( "krarc" );
+          
+        unScannedUrls.push( archiveURL );
       }
+    }
     // see if the name matches
     if ( !fileMatch( name ) ) continue;
     // check that the size fit
@@ -174,11 +206,11 @@ void KRSearchMod::scanDir( QString dir )
     if ( query->newerThen && mtime < query->newerThen ) continue;
     // check the type
     if ( !query->type.isEmpty() )
-      {
+    {
       if ( mime.isEmpty() )
         mime = KMimeType::findByURL( url, stat_p.st_mode, true, false ) ->name();
       if ( !checkType( mime ) ) continue;
-      }
+    }
     // check owner name
     if ( !query->owner.isEmpty() &&
          stat_p.st_uid != KRpermHandler::user2uid( query->owner ) ) continue;
@@ -191,7 +223,7 @@ void KRSearchMod::scanDir( QString dir )
     // check if it contains the text (avoid the /dev diretory).
     // grep code from KFind ( the copyright goes with our thanx to the unknown author )
     if ( !query->contain.isEmpty() && !dir.startsWith( "/dev" ) )
-      {
+    {
       QFile qf( dir + name );
 
       qf.open( IO_ReadOnly );
@@ -204,91 +236,65 @@ void KRSearchMod::scanDir( QString dir )
         line = text.readLine();
         if ( line.isNull() ) break;
         if ( query->containWholeWord )
-          {
+        {
           int ndx = 0;
 
           while ( ( ndx = line.find( query->contain, ndx, query->containCaseSensetive ) ) != -1 )
-            {
+          {
             QChar before = line.at( ndx - 1 );
             QChar after = line.at( ndx + query->contain.length() );
 
             if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
                  after != '_' && before != '_' )
-              {
+            {
               found = true;
               break;
-              }
-            //qApp->processEvents(); // is that needed ?
-            ndx++;
             }
+            ndx++;
           }
+        }
         else if ( line.find( query->contain, 0, query->containCaseSensetive ) != -1 )
           found = true;
 
         if ( found )
           break;
-        //qApp->processEvents(); // is that needed ?
         }
       if ( !found ) continue;
-      }
+    }
 
     // if we got here - we got a winner
     results.append( dir + name );
     //  kdWarning() << "Found: " << (dir+name).local8Bit() << endl;
     emit found( name, dir, ( KIO::filesize_t ) stat_p.st_size, stat_p.st_mtime, KRpermHandler::mode2QString( stat_p.st_mode ) );
     if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
-    }
+  }
   // clean up
   closedir( d );
-  qApp->processEvents(); // do a last one, in case passes%50 != 0
-  }
+}
 
-void KRSearchMod::scanArchive( QString archive, QString type )
-  {
-  if ( stopSearch ) return ;
-  // ace and rar archives are currently not suported
-  if ( type == "-arj" || type == "-ace" ) return ;
-
-  QString url;
-
-  if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" )
-    {
-    url = "tar:" + archive;
-    }
-  else
-    {
-    url = "krarc:" + archive;
-    }
-
-  ftp_vfs *v = new ftp_vfs( 0 );
-
-  emit searching( archive );
-
-  unScanedUrls.push( url );
-  while ( !unScanedUrls.isEmpty() ) scanURL( v, unScanedUrls.pop() );
-  delete v;
-  }
-
-void KRSearchMod::scanURL( ftp_vfs* v, KURL url )
-  {
+void KRSearchMod::scanRemoteDir( KURL url )
+{
   int passes = 0;
   const int NO_OF_PASSES = 50;
 
-  if ( !v->vfs_refresh( url ) ) return ;
+  if( remote_vfs == 0 )
+    remote_vfs = new ftp_vfs( 0 );
+    
+  if ( !remote_vfs->vfs_refresh( url ) ) return ;
 
-  if ( scanedDirs.contains( v->vfs_getOrigin().url() ) ) return ; // don't re-scan urls..
-  scanedDirs.append( v->vfs_getOrigin().url() );
-
-  for ( vfile * vf = v->vfs_getFirstFile(); vf != 0 ; vf = v->vfs_getNextFile() )
-    {
+  for ( vfile * vf = remote_vfs->vfs_getFirstFile(); vf != 0 ; vf = remote_vfs->vfs_getNextFile() )
+  {
     QString name = vf->vfile_getName();
 
-    if ( vf->vfile_isDir() )
+    if ( query->recurse )
+    {      
+      if( ( vf->vfile_isSymLink() && query->followLinks ) || vf->vfile_isDir() )
       {
-      KURL url = v->vfs_getOrigin();
-      url.addPath( name );
-      unScanedUrls.push( url );
+        KURL recurseURL = remote_vfs->vfs_getOrigin();
+        recurseURL.addPath( name );
+        unScannedUrls.push( recurseURL );
       }
+    }
     // see if the name matches
     if ( !fileMatch( name ) ) continue;
     // check that the size fit
@@ -301,19 +307,23 @@ void KRSearchMod::scanURL( ftp_vfs* v, KURL url )
     if ( query->newerThen && mtime < query->newerThen ) continue;
     // check owner name
     if ( !query->owner.isEmpty() &&
-         vf->vfile_getUid() != KRpermHandler::user2uid( query->owner ) ) continue;
+         vf->vfile_getOwner() != query->owner ) continue;
     // check group name
     if ( !query->group.isEmpty() &&
-         vf->vfile_getGid() != KRpermHandler::group2gid( query->group ) ) continue;
+         vf->vfile_getGroup() != query->group ) continue;
     //check permission
     if ( !query->perm.isEmpty() && !checkPerm( vf->vfile_getPerm() ) ) continue;
 
-    // if we got here - we got a winner
-    results.append( v->vfs_getOrigin().prettyURL( 1 ) + name );
-    emit found( name, v->vfs_getOrigin().prettyURL( -1 ), size, vf->vfile_getTime_t(), vf->vfile_getPerm() );
-    if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
+    if ( !query->contain.isEmpty() )
+    {
+      /* TODO: search in remote vfs is not yet implemented */
     }
-  qApp->processEvents(); // do a last one, in case passes%50 != 0
+    
+    // if we got here - we got a winner
+    results.append( remote_vfs->vfs_getOrigin().prettyURL( 1 ) + name );
+    emit found( name, remote_vfs->vfs_getOrigin().prettyURL( -1 ), size, vf->vfile_getTime_t(), vf->vfile_getPerm() );
+    if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
   }
+}
 
 #include "krsearchmod.moc"

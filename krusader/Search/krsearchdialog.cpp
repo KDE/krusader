@@ -180,11 +180,9 @@ void KrSearchDialog::prepareGUI() {
   // clear the searchin lists
   searchIn->clear(); dontSearchIn->clear();
 
-	// the path in the active panel should be the default search location
-	if (krApp->mainView->activePanel->func->files()->vfs_getType() == vfs::NORMAL) {
-		QString path = krApp->mainView->activePanel->getPath();
-		searchInEdit->setText(path);
-	}
+  // the path in the active panel should be the default search location
+  QString path = krApp->mainView->activePanel->getPath();
+  searchInEdit->setText(path);
 
   // load the completion and history lists
   // ==> search for
@@ -244,9 +242,9 @@ void KrSearchDialog::reject() {
 }
 
 void KrSearchDialog::addToSearchIn() {
-  QString dir = KFileDialog::getExistingDirectory();
-  if (dir==QString::null) return;
-  searchInEdit->setText(dir);
+  KURL url = KFileDialog::getExistingURL();
+  if ( url.isEmpty()) return;
+  searchInEdit->setText( url.prettyURL( 0,KURL::StripFileProtocol ) );
   searchInEdit->setFocus();
 }
 
@@ -259,9 +257,9 @@ void KrSearchDialog::addToSearchInManually() {
 }
 
 void KrSearchDialog::addToDontSearchIn() {
-  QString dir = KFileDialog::getExistingDirectory();
-  if (dir==QString::null) return;
-  dontSearchInEdit->setText(dir);
+  KURL url = KFileDialog::getExistingURL();
+  if ( url.isEmpty()) return;
+  dontSearchInEdit->setText( url.prettyURL( 0,KURL::StripFileProtocol ) );
   dontSearchInEdit->setFocus();
 }
 
@@ -315,22 +313,22 @@ bool KrSearchDialog::gui2query() {
   QListBoxItem *item = searchIn->firstItem();
   while ( item )
   {    
-    query->whereToSearch.append( item->text().simplifyWhiteSpace() );
+    query->whereToSearch.append( vfs::fromPathOrURL( item->text().simplifyWhiteSpace() ) );
     item = item->next();
   }
 
   if (!searchInEdit->text().simplifyWhiteSpace().isEmpty())
-    query->whereToSearch.append(searchInEdit->text().simplifyWhiteSpace());
+    query->whereToSearch.append( vfs::fromPathOrURL( searchInEdit->text().simplifyWhiteSpace() ) );
 
   query->whereNotToSearch.clear();
   item = dontSearchIn->firstItem();
   while ( item )
   {
-    query->whereNotToSearch.append( item->text().simplifyWhiteSpace() );
+    query->whereNotToSearch.append( vfs::fromPathOrURL( item->text().simplifyWhiteSpace() ) );
     item = item->next();
   }
   if (!dontSearchInEdit->text().simplifyWhiteSpace().isEmpty())
-    query->whereNotToSearch.append(dontSearchInEdit->text().simplifyWhiteSpace());
+    query->whereNotToSearch.append( vfs::fromPathOrURL( dontSearchInEdit->text().simplifyWhiteSpace() ) );
 
   // check that we have (at least) what to search, and where to search in
   if (searchFor->currentText().simplifyWhiteSpace().isEmpty()) {
@@ -339,7 +337,7 @@ bool KrSearchDialog::gui2query() {
     searchFor->setFocus();
     return false;
   }
-  if (query->whereToSearch.isEmpty()) { // we need a place to search in
+  if (query->whereToSearch.isEmpty() ) { // we need a place to search in
     KMessageBox::error(0,i18n("Please specify a location to search in."));
     TabWidget2->setCurrentPage(0); // set page to general
     searchInEdit->setFocus();
@@ -472,10 +470,8 @@ void KrSearchDialog::startSearch() {
   if (searchInArchives->isChecked()) {
     KMessageBox::information(0, i18n("Since you chose to also search in archives, "
                                      "note the following limitations:\n"
-                                     "1. Krusader will search in all of the supported"
-                                       " archives, NOT INCLUDING arj, and ace.\n"
-                                     "2. You cannot search for text (grep) while doing"
-                                       " a search that includes archives."), 0, "searchInArchives");
+                                     "You cannot search for text (grep) while doing"
+                                     " a search that includes archives."), 0, "searchInArchives");
   }
 
   // prepare the query /////////////////////////////////////////////

@@ -3,7 +3,7 @@
                              -------------------
     copyright            : (C) 2001 by Shie Erlich & Rafi Yanai
     email                : krusader@users.sourceforge.net
-    web site		 : http://krusader.sourceforge.net
+    web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
   Description
  ***************************************************************************
@@ -48,19 +48,13 @@ KRQuery::KRQuery(QString name){
   load(name);
 }
 
+void KRQuery::normalize(){
+  // remove the trailing "/" from the directories lists
+  for( KURL::List::Iterator it = whereNotToSearch.begin(); it != whereNotToSearch.end(); ++it )
+    (*it).setPath( (*it).path( -1 ));
+}
 
 KRQuery::~KRQuery(){}
-
-void KRQuery::normalize(){
-	// remove the trailing "/" from the directories lists
-	for( QStringList::Iterator it = whereNotToSearch.begin();
-    it != whereNotToSearch.end(); ++it ){
-
-		if( (*it).right(1) != "/" && !((*it).isEmpty()) ){
-  		(*it) = (*it)+"/";
-		}
-	}
-}
 
 void KRQuery::save(QString name){
   krConfig->setGroup("KRquery-"+name);
@@ -73,10 +67,10 @@ void KRQuery::save(QString name){
   krConfig->writeEntry("inArchive",inArchive);
   krConfig->writeEntry("recurse",recurse);
   krConfig->writeEntry("followLinks",followLinks);
-	krConfig->writeEntry("whereToSearch",whereToSearch);
-  krConfig->writeEntry("whereNotToSearch",whereNotToSearch);
-	// size
-	krConfig->writeEntry("minSize",minSize);
+  krConfig->writeEntry("whereToSearch",whereToSearch.toStringList());
+  krConfig->writeEntry("whereNotToSearch",whereNotToSearch.toStringList());
+  // size
+  krConfig->writeEntry("minSize",minSize);
   krConfig->writeEntry("maxSize",maxSize);
   //date
   krConfig->writeEntry("newerThen",newerThen);
@@ -103,10 +97,10 @@ void KRQuery::load(QString name){
   inArchive            = krConfig->readBoolEntry("inArchive",false);
   recurse              = krConfig->readBoolEntry("recurse",true);
   followLinks          = krConfig->readBoolEntry("followLinks",false);
-	whereToSearch        = krConfig->readListEntry("whereToSearch");
+  whereToSearch        = krConfig->readListEntry("whereToSearch");
   whereNotToSearch     = krConfig->readListEntry("whereNotToSearch");
-	// size
-	minSize = krConfig->readUnsignedLongNumEntry("minSize",0);
+  // size
+  minSize = krConfig->readUnsignedLongNumEntry("minSize",0);
   maxSize = krConfig->readUnsignedLongNumEntry("maxSize",0);
   //date
   newerThen = krConfig->readUnsignedLongNumEntry("newerThen",0);
