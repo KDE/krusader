@@ -128,7 +128,7 @@ void KrBookmarkHandler::exportToFile() {
 }
 
 bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg) {
-	QString url, name;
+	QString url, name, icon;
 	// verify tag
 	if (e.tagName() != "bookmark") {
 		*errorMsg = e.tagName() + i18n(" instead of ")+"bookmark";
@@ -145,9 +145,13 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
 		*errorMsg = i18n("missing tag ")+"title";
 		return false;
 	} else name = te.text();
-
+	// do we have an icon?
+	if (e.hasAttribute("icon")) {
+		icon=e.attribute("icon");
+	}
+	
 	// ok: got name and url, let's add a bookmark
-	KrBookmark *bm = new KrBookmark(name, url, _collection);
+	KrBookmark *bm = new KrBookmark(name, url, _collection, icon);
 	parent->children().append(bm);
 
 	return true;
