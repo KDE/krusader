@@ -939,6 +939,8 @@ QString kio_krarcProtocol::getPassword() {
 QString kio_krarcProtocol::fullPathName( QString name )
 {
   QString supposedName = krConfig->readEntry( name, name );
+  if( supposedName.isEmpty() )
+    supposedName = name;
   supposedName.replace( "\\", "\\\\" );
   supposedName.replace( " ", "\\ " );  
   return supposedName;
