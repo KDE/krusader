@@ -262,7 +262,7 @@ bool arc_vfs::getDirs(){
 
 
 // copy a file to the vfs (physical)
-void arc_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QWidget* toNotify,QString dir){
+void arc_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir){
   if ( addCmd.isEmpty() ) return;
 
   // get the path inside the archive
@@ -284,7 +284,7 @@ void arc_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QWid
   KIO::Job* job = new KIO::CopyJob(*fileUrls,dest,mode,false,true);
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)) );
   if(mode == KIO::CopyJob::Move) // notify the other panel
-   connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(refresh()) );
+   connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(vfs_refresh(KIO::Job*)) );
 }
 	
 

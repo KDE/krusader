@@ -166,8 +166,6 @@ bool ftp_vfs::vfs_refresh(QString origin) {
 	error = false;
 	KURL url = origin;
 
-	kdDebug() << "Origin = " << origin << endl;
-
   if( !loginName.isEmpty()) url.setUser(loginName);
 	if( !password.isEmpty() ) url.setPass(password);
 	//if( port ) url.setPort(port);
@@ -210,7 +208,7 @@ bool ftp_vfs::vfs_refresh(QString origin) {
 
 
 // copy a file to the vfs (physical)	
-void ftp_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QWidget* toNotify,QString dir){
+void ftp_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir){
   KURL destUrl = vfs_url;
   if(dir != "") destUrl.addPath(dir);
 
@@ -222,7 +220,7 @@ void ftp_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QWid
   KIO::Job* job = new KIO::CopyJob(*fileUrls,destUrl,mode,false,true );
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)) );
   if(mode == KIO::CopyJob::Move) // notify the other panel
-    connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(refresh()) );
+    connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(vfs_refresh(KIO::Job*)) );
 }
 
 // remove a file from the vfs (physical)

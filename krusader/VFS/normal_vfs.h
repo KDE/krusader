@@ -50,7 +50,7 @@ public:
  ~normal_vfs(){}
 	
 	// copy a file to the vfs (physical)
-	void    vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QWidget* toNotify=0,QString dir="");	
+	void    vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify=0,QString dir="");	
 	// remove a file from the vfs (physical)
 	void 		vfs_delFiles(QStringList *fileNames);	
 	// return a path to the file

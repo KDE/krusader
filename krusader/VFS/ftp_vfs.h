@@ -45,7 +45,7 @@ public:
  ~ftp_vfs(){}
 	
 	// copy a file to the vfs (physical)
-	void    vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QWidget* toNotify,QString dir = "");
+	void    vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "");
 	// remove a file from the vfs (physical)
 	void 		vfs_delFiles(QStringList *fileNames);	
 	// return a path to the file

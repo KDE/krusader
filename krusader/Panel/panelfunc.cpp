@@ -80,7 +80,7 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
   panel->slotFocusOnMe();
 
   QString mytype = type, mypath = path;
-
+  
   // make sure local urls are handles ok
   if ( mypath.lower().startsWith( "file:" ) )
     mypath = mypath.mid( 5 );
@@ -565,12 +565,6 @@ void ListPanelFunc::execute( QString& name ) {
   QString origin = files() ->vfs_getOrigin();
 
   QString type = vf->vfile_getMime().right( 4 );
-  /*
-	if ( type == "-tbz" )
-    type = "zip2";
-  if ( type == "-tgz" || type == "tarz" )
-    type = "gzip";
-	*/
   if ( vf->vfile_getMime().contains( "-rar" ) )
     type = "-rar";
 
