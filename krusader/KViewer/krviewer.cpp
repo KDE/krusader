@@ -188,7 +188,6 @@ void KrViewer::edit(KURL url, bool create){
 	 if (url.isLocalFile())
 	 	proc << edit << url.path();
 	 else proc << edit << url.prettyURL();
-	 kdWarning() << url.path();
 	 if ( !proc.start( KProcess::DontCare ) )
       KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
     return;
