@@ -1,6 +1,7 @@
 ======================
     ADDED: Chinese Simplified translation
-    FIXED: [ 953874 ] allowing editors which are not url-aware to be used as default editor
+    FIXED: setting "xterm -e vim" as editor didn't work...
+	 FIXED: [ 953874 ] allowing editors which are not url-aware to be used as default editor
 	 FIXED: [ 948315 ] security hole, krusader changes its temp directory's rights to 0777
     FIXED: the UI settings are not saved at exit
     FIXED: [ 951274 ] shift+home and shift+end does not work
