@@ -9,3 +9,6 @@ dnl CXXFLAGS="$CXXFLAGS $USE_EXCEPTIONS" dnl __kdevelop[exc]__
 dnl KDE_NEED_FLEX dnl __kdevelop__
 dnl AC_PROG_YACC dnl __kdevelop__
 
+
+CPPFLAGS="$CPPFLAGS -D_LARGEFILE64_SOURCE -DKDE_NO_COMPAT -DQT_NO_ASCII_CAST"
+
