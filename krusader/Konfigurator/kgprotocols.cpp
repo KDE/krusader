@@ -41,10 +41,11 @@
 
 QString KgProtocols::defaultProtocols  = "krarc,iso,tar";
 QString KgProtocols::defaultIsoMimes   = "application/x-iso";
-QString KgProtocols::defaultKrarcMimes = "application/x-arj,application/x-bzip2,"
-                                         "application/x-cpio,application/x-gzip,"
-                                         "application/x-lha,application/x-rar,"
-                                         "application/x-rpm,application/x-zip";
+QString KgProtocols::defaultKrarcMimes = "application/x-ace,application/x-arj,"
+                                         "application/x-bzip2,application/x-cpio,"
+                                         "application/x-gzip,application/x-lha,"
+                                         "application/x-rar,application/x-rpm,"
+                                         "application/x-zip";
 QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
                                          "application/x-tbz,application/x-tgz";
 

@@ -239,8 +239,10 @@ void kio_krarcProtocol::get(const KURL& url ){
 	KShellProcess proc;
   if( cpioReady ){
     proc << getCmd << arcTempDir+"contents.cpio " << "\"*"+file+"\"";
-  } else if(  arcType == "arj" ) {
+  } else if(  arcType == "arj" || arcType == "ace" ) {
     proc << getCmd << "\""+arcFile->url().path()+"\" " << "\""+file+"\"";
+    if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
+      proc << "<" << "/dev/ptmx"; 
     file = url.fileName();
     isArjGet = true;
   } else {
@@ -514,6 +516,8 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	temp.setAutoDelete(true);
 	if( arcType != "bzip2" ){
 		proc << listCmd << "\""+arcFile->url().path(-1)+"\"" <<" > " << temp.name();
+		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
+			proc << "<" << "/dev/ptmx";
 		proc.start(KProcess::Block);
 		if( !proc.normalExit() || !proc.exitStatus() == 0 )	return false;
   }
@@ -567,6 +571,10 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
          temp.file()->readLine(buf,1000);
          line = line+QString::fromLocal8Bit(buf);
        }
+    }
+    if( arcType == "ace" ) {
+       // the ace list begins with a number.
+       if( !line[0].isDigit() ) continue;
     }
     if( arcType == "arj" ) {
        // the arj list is ended with a ------ line.
@@ -862,6 +870,24 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
     // full name
     fullName = nextWord(line,'\n');
   }
+  if(arcType == "ace"){
+    // date & time
+    QString d = nextWord(line);
+    int year = 1900 + d.mid(6,2).toInt();
+    if( year < 1930 ) year+=100;
+    QDate qdate( year, d.mid(3,2).toInt(), d.mid(0,2).toInt() );
+    QString t = nextWord(line);
+    QTime qtime(t.mid(0,2).toInt(),t.mid(3,2).toInt(),0);
+    time = QDateTime(qdate,qtime).toTime_t();    
+    // ignore the next field
+    nextWord(line);
+    // size
+    size = nextWord(line).toLong();
+    // ignore the next field
+    nextWord(line);
+    // full name
+    fullName = nextWord(line,'\n');
+  }
   if( fullName.right(1) == "/" ) fullName = fullName.left(fullName.length()-1);
   if( !fullName.startsWith("/") ) fullName = "/"+fullName;
   QString path = fullName.left(fullName.findRev("/")+1);
@@ -999,6 +1025,12 @@ bool kio_krarcProtocol::initArcParameters(){
     getCmd  = fullPathName( "lha" ) + " pq ";
     delCmd  = fullPathName( "lha" ) + " d ";
     putCmd  = fullPathName( "lha" ) + " a ";
+  } else if(arcType == "ace"){
+    cmd     = fullPathName( "unace" );
+    listCmd = fullPathName( "unace" ) + " v";
+    getCmd  = fullPathName( "unace" ) + " e";
+    delCmd  = QString::null;
+    putCmd  = QString::null;
   } else {
     cmd     = QString::null;
     listCmd = QString::null;

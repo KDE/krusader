@@ -35,6 +35,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kinputdialog.h> 
+#include <qfile.h>
 // Krusader includes
 #include "krarchandler.h"
 #include "../krusader.h"
@@ -154,6 +155,8 @@ long KRarcHandler::arcFileCount( QString archive, QString type ) {
   KTempFile tmpFile( "tmp", "krusader-unpack" );
   KShellProcess list;
   list << lister << + "\"" + archive + "\"" << ">" << tmpFile.name() ;
+  if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
+    list<< "<" << "/dev/ptmx";
   list.start( KProcess::Block );
   QTextStream *stream = tmpFile.textStream();
   while ( stream->readLine() != QString::null ) ++count;
@@ -207,6 +210,8 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
     if( arcname.contains(".") ) arcname = arcname.left(arcname.findRev("."));
     proc << ">" << "\""+dest+"/"+arcname+"\"";
   }
+  if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
+    proc << "<" << "/dev/ptmx";
   
   QString save = getcwd( 0, 0 );
   chdir( dest.local8Bit() );
@@ -262,6 +267,9 @@ bool KRarcHandler::test( QString archive, QString type, long count, QString pass
   KShellProcess proc;
   proc << packer << + "\"" + archive + "\"";
 
+  if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
+    proc << "<" << "/dev/ptmx";
+  
   // tell the user to wait
   krApp->startWaiting( i18n( "Testing Archive" ), count );
   if ( count != 0 ) connect( &proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
