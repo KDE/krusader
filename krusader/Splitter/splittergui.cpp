@@ -186,7 +186,7 @@ void SplitterGUI::predefinedComboActivated( int item )
 
 void SplitterGUI::splitPressed()
 {
-  if( vfs::fromPathOrURL( urlReq->url() ).isMalformed() )
+  if( !vfs::fromPathOrURL( urlReq->url() ).isValid() )
   {
     KMessageBox::error( this, i18n("The directory path URL is malformed!") );
     return;
