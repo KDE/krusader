@@ -492,8 +492,16 @@ void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
 
 void KrSearchDialog::feedToListBox()
 {
-  static int listBoxNum = 1;
-  QString queryName = i18n("Search results")+QString( " %1" ).arg( listBoxNum++ );
+  virt_vfs v(0,true);
+  v.vfs_refresh( KURL( "/" ) );
+  
+  krConfig->setGroup( "Search" );  
+  int listBoxNum = krConfig->readNumEntry( "Feed To Listbox Counter", 1 );  
+  QString queryName;
+  do {
+    queryName = i18n("Search results")+QString( " %1" ).arg( listBoxNum++ );
+  }while( v.vfs_search( queryName ) != 0 );
+  krConfig->writeEntry( "Feed To Listbox Counter", listBoxNum );  
   
   krConfig->setGroup( "Advanced" );
   if ( krConfig->readBoolEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
@@ -517,7 +525,6 @@ void KrSearchDialog::feedToListBox()
     item = item->nextSibling();
   }
   KURL url = KURL::fromPathOrURL( QString("virt:/") + queryName );
-  virt_vfs v(0,true);
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
   //ACTIVE_FUNC->openUrl(url);  
