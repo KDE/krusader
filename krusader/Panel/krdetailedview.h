@@ -80,9 +80,6 @@ class KrDetailedView : public KListView, public KrView {
     virtual QString itemToFilename( QListViewItem *it ) { return dynamic_cast<KrViewItem*>( it ) ->name(); } //remove
     virtual void renameCurrentItem();
 
-    ///////////////////////// todo ///////////////////////////////////
-    //  virtual void setFilter(FilterSpec filter) {}
-
   signals:
     void executed( QString &name );
     void itemDescription( QString &desc );
