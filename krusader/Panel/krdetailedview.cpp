@@ -78,8 +78,9 @@ QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "T
                                          i18n( "Size" ), i18n( "Modified" ), i18n( "Perms" ), i18n( "rwx" ),
                                          i18n( "Owner" ), i18n( "Group" ) };
 
-QString KrDetailedView::LastSelectedItem = "";
-void * KrDetailedView::LastSelectingView = 0;
+QString               KrDetailedView::LastSelectedItem = "";
+void *                KrDetailedView::LastSelectingView;
+KrRenameTimerObject * KrDetailedView::WaitedTimer = 0;
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
     KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
@@ -95,7 +96,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
   for ( int i = 0; i < MAX_COLUMNS; i++ )
     _columns[ i ] = Unused;
 
-  LastSelectedItem = ""; LastSelectingView = 0;
+  LastSelectedItem = ""; LastSelectingView = 0; WaitedTimer = 0;
   
   /////////////////////////////// listview ////////////////////////////////////
   { // use the {} so that KConfigGroupSaver will work correctly!
@@ -372,6 +373,19 @@ void KrDetailedView::setSortMode( SortSpec mode ) {
   KListView::sort();
 }
 
+void KrDetailedView::renameTimerExpired( KrRenameTimerObject *object, QRect rect )
+{
+  delete object;
+  if( WaitedTimer == object )
+  {
+    if( rect.contains( QCursor::pos() ) )
+    {
+      LastSelectedItem = ""; LastSelectingView = 0; WaitedTimer = 0;
+      emit renameCurrentItem();
+    }
+  }
+}
+
 void KrDetailedView::slotClicked( QListViewItem *item ) {
   if ( !item )
     return ;
@@ -383,17 +397,24 @@ void KrDetailedView::slotClicked( QListViewItem *item ) {
     emit executed( tmp );
   } else {
     if( tmp == LastSelectedItem && (void *)this == LastSelectingView ) {
-      LastSelectedItem = ""; LastSelectingView = 0;
-      emit renameCurrentItem();
+      QRect  itemRect = item->listView()->itemRect(item);
+      QPoint topLeft  = item->listView()->viewport()->mapToGlobal( QPoint( 0, 0) );
+
+      itemRect.moveBy( topLeft.x(), topLeft.y() );
+     
+      WaitedTimer = new KrRenameTimerObject( this, itemRect );
+      WaitedTimer->start( 500 );
     }
     else {
       LastSelectedItem = tmp;
       LastSelectingView = (void *)this;
+      WaitedTimer = 0;
     }
   }
 }
 
 void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
+  LastSelectedItem = ""; LastSelectingView = 0; WaitedTimer = 0;
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   if ( !_config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
     if ( !item )
@@ -642,6 +663,9 @@ void KrDetailedView::rename(QListViewItem *item, int c) {
 void KrDetailedView::renameCurrentItem() {
   int c;
   QString newName, fileName;
+
+  LastSelectedItem = ""; LastSelectingView = 0; WaitedTimer = 0;
+
   KrViewItem *it = getCurrentKrViewItem();
   if ( it )
     fileName = it->name();
@@ -718,6 +742,6 @@ void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
 }
 
 void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
-  LastSelectedItem = ""; LastSelectingView = 0;
+  LastSelectedItem = ""; LastSelectingView = 0; WaitedTimer = 0;
   KrView::setNameToMakeCurrent( dynamic_cast<KrViewItem*>( it ) ->name() );
 }
