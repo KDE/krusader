@@ -24,8 +24,13 @@
 
 #include <kdebug.h>
 #include <kinputdialog.h>
+#include <kstandarddirs.h>
 #include <qstringlist.h>
 #include <qclipboard.h>
+
+#ifdef __KJSEMBED__
+#include <kjs/completion.h>
+#endif
 
 #define UA_CANCEL		return "@CANCEL@";
 #define NEED_PANEL		if ( panel == 0 ) { \
@@ -637,6 +642,7 @@ exp_Script::exp_Script() {
    _needPanel = false;
    
    addParameter( new exp_parameter( i18n("Location of the script"), "", true ) );
+   addParameter( new exp_parameter( i18n("Read the JS-variable 'cmd' for execution"), "__no", false ) );
 }
 QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    if ( parameter[0].isEmpty() ) {
@@ -644,11 +650,24 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
       UA_CANCEL
    }
    
-   //TODO: If the script is only a filename (without path) or has a relative path, load it from $KDEDIR/share/apps/krusader/js
+   QString filename = parameter[0];
+   if ( KURL::isRelativeURL(filename) ) {
+      // this return the local version of the file if this exists. else the global one is returnd
+      filename = locate( "data", "krusader/js/"+filename );
+   }
 
-   krJS->runFile( parameter[0] );
+   krJS->runFile( filename );
+   
+   //TODO: messagebox on JS-errors
+   
+   //kdDebug() << "JS: done" << endl;
+   
+   //kdDebug() << "Return of last script: " << krJS->getValue("test").toString( krJS->globalExec() ).qstring() << endl;
 
-   return QString::null;  // TODO: return the output of the js
+   if ( parameter[1].lower() == "yes" )
+      return krJS->getValue("cmd").toString( krJS->globalExec() ).qstring();
+   else
+      return QString::null;
 }
 #endif
 
