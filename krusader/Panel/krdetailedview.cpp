@@ -1,23 +1,23 @@
 /***************************************************************************
-                            krdetailedview.cpp
-                           -------------------
-  copyright            : (C) 2000-2002 by Shie Erlich & Rafi Yanai
-  e-mail               : krusader@users.sourceforge.net
-  web site             : http://krusader.sourceforge.net
+                          krdetailedview.cpp
+                         -------------------
+copyright            : (C) 2000-2002 by Shie Erlich & Rafi Yanai
+e-mail               : krusader@users.sourceforge.net
+web site             : http://krusader.sourceforge.net
 ---------------------------------------------------------------------------
 Description
 ***************************************************************************
 
 A
 
-   db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
-   88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
-   88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
-   88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
-   88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
-   YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+ 88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+ 88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+ 88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+ 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                   S o u r c e    F i l e
+                                                 S o u r c e    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -53,7 +53,7 @@ A
 // Group name: KrDetailedView
 //
 // Ext Column
-#define _ExtColumn          true
+#define _ExtColumn          true 
 // Mime Column
 #define _MimeColumn         false 
 // Size Column
@@ -61,7 +61,7 @@ A
 // DateTime Column
 #define _DateTimeColumn     true 
 // Perm Column
-#define _PermColumn         false
+#define _PermColumn         false 
 // KrPerm Column
 #define _KrPermColumn       true 
 // Owner Column
@@ -69,9 +69,9 @@ A
 // Group Column
 #define _GroupColumn        false 
 // Do Quicksearch
-#define _DoQuicksearch      true
+#define _DoQuicksearch      true 
 // Classic Quicksearch
-#define _ClassicQuicksearch true
+#define _ClassicQuicksearch true 
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "Type" ),
@@ -104,7 +104,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
     connect( this, SIGNAL( onItem( QListViewItem* ) ), this, SLOT( slotItemDescription( QListViewItem* ) ) );
     connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
              this, SLOT( handleContextMenu( QListViewItem*, const QPoint&, int ) ) );
-    connect( this, SIGNAL( currentChanged( QListViewItem* )), this, SLOT( setNameToMakeCurrent( QListViewItem* )));
+    connect( this, SIGNAL( currentChanged( QListViewItem* ) ), this, SLOT( setNameToMakeCurrent( QListViewItem* ) ) );
   }
 
   setWidget( this );
@@ -174,13 +174,13 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
   connect( this, SIGNAL( renameItem( const QString &, const QString & ) ),
            dynamic_cast<ListPanel*>( parent ) ->func, SLOT( rename( const QString &, const QString & ) ) );
   // connect quicksearch
-  connect( dynamic_cast<ListPanel*>(parent)->quickSearch, SIGNAL(textChanged(const QString&)),
-           this, SLOT(quickSearch(const QString&)));
-  connect( dynamic_cast<ListPanel*>(parent)->quickSearch, SIGNAL(stop(QKeyEvent*)),
-           this, SLOT(stopQuickSearch(QKeyEvent*)));
+  connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( textChanged( const QString& ) ),
+           this, SLOT( quickSearch( const QString& ) ) );
+  connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( stop( QKeyEvent* ) ),
+           this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
 
 
-   setFocusPolicy(StrongFocus);
+  setFocusPolicy( StrongFocus );
   restoreSettings();
 }
 
@@ -499,7 +499,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       }
       case Key_Right :
       if ( e->state() == ControlButton ) { // let the panel handle it
-        e->ignore(); break;
+        e->ignore();
+        break;
       } else { // just a normal click - do a lynx-like moving thing
         KrViewItem *i = getCurrentKrViewItem();
         if ( i->name() == ".." ) { // if clicking on the ".." entry
@@ -514,7 +515,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       }
       case Key_Left :
       if ( e->state() == ControlButton ) { // let the panel handle it
-        e->ignore(); break;
+        e->ignore();
+        break;
       } else {          // a normal click - do a lynx-like moving thing
         SLOTS->dirUp(); // ask krusader to move up a directory
         return ;         // safety
@@ -524,23 +526,25 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       //break;
       case Key_Down :
       if ( e->state() == ControlButton ) { // let the panel handle it
-        e->ignore(); break;
+        e->ignore();
+        break;
       } else
         KListView::keyPressEvent( e );
       break;
-      case Key_Delete :           // kill file
+      case Key_Delete :             // kill file
       SLOTS->deleteFiles();
       return ;
-      case Key_A :       // mark all
-      if (e->state() == ControlButton) {
-         KListView::keyPressEvent(e);
-         updateView();
-      } else e->ignore();
+      case Key_A :         // mark all
+      if ( e->state() == ControlButton ) {
+        KListView::keyPressEvent( e );
+        updateView();
+      } else
+        e->ignore();
       break;
       case Key_Space : {
         KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
         if ( !viewItem || !( viewItem->isDir() && viewItem->size() <= 0 ) ) {
-          KListView::keyPressEvent( new QKeyEvent(QKeyEvent::KeyPress, Key_Insert, 0, 0) );
+          KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
           return ; // wrong type, just mark(unmark it)
         }
         //
@@ -552,48 +556,50 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         long totalFiles = 0, totalDirs = 0;
         QStringList names;
         names.push_back( viewItem->name() );
-        krApp->mainView->activePanel->func->calcSpace( names, totalSize, totalFiles, totalDirs );
-        // did we succeed to calcSpace? we'll fail if we don't have permissions
-        if (totalSize == 0) { // just mark it, and bail out
-            KListView::keyPressEvent( new QKeyEvent(QKeyEvent::KeyPress, Key_Insert, 0, 0) );
+        if ( krApp->mainView->activePanel->func->calcSpace( names, totalSize, totalFiles, totalDirs ) ) {
+          // did we succeed to calcSpace? we'll fail if we don't have permissions
+          if ( totalSize == 0 ) { // just mark it, and bail out
+            KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
             return ;
+          }
+          viewItem->setSize( totalSize );
+          _countSize += totalSize;
+          viewItem->repaintItem();
         }
-        viewItem->setSize( totalSize );
-        _countSize += totalSize;
-        viewItem->repaintItem();
         //KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
       }
       break;
       default:
       // if the key is A..Z or 1..0 do quick search otherwise...
-      if ( (e->key()>=Key_A && e->key()<=Key_Z) ||
-            (e->key()>=Key_0 && e->key()<=Key_9) ||
-            (e->key() == Key_Backspace) ||
-            (e->key() == Key_Down) ||
-            (e->key() == Key_Period) ) {
-         // are we doing quicksearch? if not, send keys to panel
-         if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
-         // are we using krusader's classic quicksearch, or wincmd style?
-            if ( _config->readBoolEntry( "Classic Quicksearch", _ClassicQuicksearch ) )
-               KListView::keyPressEvent( e );
-            else {
-               // first, show the quicksearch if its hidden
-               if ( krApp->mainView->activePanel->quickSearch->isHidden() ) {
-                  krApp->mainView->activePanel->quickSearch->show();
-                  // second, we need to disable the dirup action - hack!
-                  krDirUp->setEnabled(false);
-               }
-               // now, send the key to the quicksearch
-               krApp->mainView->activePanel->quickSearch->myKeyPressEvent(e);
+      if ( ( e->key() >= Key_A && e->key() <= Key_Z ) ||
+           ( e->key() >= Key_0 && e->key() <= Key_9 ) ||
+           ( e->key() == Key_Backspace ) ||
+           ( e->key() == Key_Down ) ||
+           ( e->key() == Key_Period ) ) {
+        // are we doing quicksearch? if not, send keys to panel
+        if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
+          // are we using krusader's classic quicksearch, or wincmd style?
+          if ( _config->readBoolEntry( "Classic Quicksearch", _ClassicQuicksearch ) )
+            KListView::keyPressEvent( e );
+          else {
+            // first, show the quicksearch if its hidden
+            if ( krApp->mainView->activePanel->quickSearch->isHidden() ) {
+              krApp->mainView->activePanel->quickSearch->show();
+              // second, we need to disable the dirup action - hack!
+              krDirUp->setEnabled( false );
             }
-         } else e->ignore(); // send to panel
+            // now, send the key to the quicksearch
+            krApp->mainView->activePanel->quickSearch->myKeyPressEvent( e );
+          }
+        } else
+          e->ignore(); // send to panel
       } else {
-         if (krApp->mainView->activePanel->quickSearch->isShown()) {
-            krApp->mainView->activePanel->quickSearch->hide();
-            krApp->mainView->activePanel->quickSearch->clear();
-            krDirUp->setEnabled(true);
-         }
-         KListView::keyPressEvent(e);
+        if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
+          krApp->mainView->activePanel->quickSearch->hide();
+          krApp->mainView->activePanel->quickSearch->clear();
+          krDirUp->setEnabled( true );
+        }
+        KListView::keyPressEvent( e );
       }
 
       return ;
@@ -604,15 +610,20 @@ void KrDetailedView::renameCurrentItem() {
   int c;
   QString newName, fileName;
   KrViewItem *it = getCurrentKrViewItem();
-  if ( it ) fileName = it->name();
-  else return ; // quit if no current item available
+  if ( it )
+    fileName = it->name();
+  else
+    return ; // quit if no current item available
   // don't allow anyone to rename ..
-  if (fileName == "..") return;
+  if ( fileName == ".." )
+    return ;
 
   // determine which column is inplace renameable
   for ( c = 0; c < columns(); c++ )
-    if ( isRenameable( c ) ) break; // one MUST be renamable
-  if ( !isRenameable( c ) ) c = -1; // failsafe
+    if ( isRenameable( c ) )
+      break; // one MUST be renamable
+  if ( !isRenameable( c ) )
+    c = -1; // failsafe
 
   if ( c >= 0 ) {
     // do we have an EXT column? if so, handle differently:
@@ -636,13 +647,13 @@ void KrDetailedView::renameCurrentItem() {
   }
 }
 
-void KrDetailedView::inplaceRenameFinished( QListViewItem *it, int ) {
+void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
   if ( !it ) { // major failure - call developers
     kdWarning() << "Major failure at inplaceRenameFinished(): item is null" << endl;
     exit( 0 );
   }
   // check if the item was indeed renamed
-  if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() )  // was renamed
+  if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() )    // was renamed
     emit renameItem( dynamic_cast<KrDetailedViewItem*>( it ) ->name(), it->text( column( Name ) ) );
   else if ( column( Extention ) != -1 ) { // nothing happened, restore the view (if needed)
     int i;
@@ -658,27 +669,28 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem *it, int ) {
   setFocus();
 }
 
-void KrDetailedView::quickSearch(const QString &str) {
-   QString target = str;
-   QListViewItem *it;
+void KrDetailedView::quickSearch( const QString & str ) {
+  QString target = str;
+  QListViewItem *it;
 
-   while ( (it = findItem(target, column(Name), Qt::BeginsWith)) == 0 ) {
-      if (target == QString::null) break;
-      target = target.mid(0, target.length()-1);
-   }
-   if (it) {
-      setCurrentItem(dynamic_cast<KrViewItem*>(it)->name());
-      ensureItemVisible(it);
-   }
+  while ( ( it = findItem( target, column( Name ), Qt::BeginsWith ) ) == 0 ) {
+    if ( target == QString::null )
+      break;
+    target = target.mid( 0, target.length() - 1 );
+  }
+  if ( it ) {
+    setCurrentItem( dynamic_cast<KrViewItem*>( it ) ->name() );
+    ensureItemVisible( it );
+  }
 }
 
-void KrDetailedView::stopQuickSearch(QKeyEvent *e) {
-   krApp->mainView->activePanel->quickSearch->hide();
-   krApp->mainView->activePanel->quickSearch->clear();
-   krDirUp->setEnabled(true);
-   keyPressEvent(e);
+void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
+  krApp->mainView->activePanel->quickSearch->hide();
+  krApp->mainView->activePanel->quickSearch->clear();
+  krDirUp->setEnabled( true );
+  keyPressEvent( e );
 }
 
-void KrDetailedView::setNameToMakeCurrent(QListViewItem *it) {
-   KrView::setNameToMakeCurrent(dynamic_cast<KrViewItem*>(it)->name());
+void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
+  KrView::setNameToMakeCurrent( dynamic_cast<KrViewItem*>( it ) ->name() );
 }
