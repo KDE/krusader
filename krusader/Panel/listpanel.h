@@ -69,7 +69,7 @@ public:
 	enum FilterSpec{ALL,EXEC,CUSTOM};
  	
   // constructor create the panel, but DOESN'T fill it with data, use start()
-  ListPanel(QWidget *parent, const bool mirrored, const char *name=0);
+  ListPanel(QWidget *parent, const char *name=0);
  ~ListPanel(){}
   void start(bool left);
   inline QString getPath(){return virtualPath;}
@@ -99,9 +99,6 @@ public slots:
 protected slots:
   void handleDropOnView(QDropEvent *);     // handles drops on the view only
   void startDragging(QStringList, QPixmap);
-
-protected:
-  void dragMoveEvent   (QDragMoveEvent *); // handles all BUT the view
 
 signals:
 	void signalStatus(QString msg);       // emmited when we need to update the status bar

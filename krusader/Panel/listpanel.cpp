@@ -27,7 +27,6 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#define _GNU_SOURCE
 
 // QT includes
 #include <qbitmap.h>
@@ -79,7 +78,7 @@ typedef QValueList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
+ListPanel::ListPanel(QWidget *parent, const char *name ) :
   QWidget(parent, name), colorMask(255), currDragItem(0), compareMode(false),  statsAgent(0) {
 
   func = new ListPanelFunc(this);
@@ -121,6 +120,7 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
           SLOT(slotBookmarkChosen(int)));
 
   totals = new KSqueezedTextLabel(this);
+  krConfig->setGroup("Look&Feel");
   totals->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
   totals->setFrameStyle( QFrame::Box | QFrame::Raised);
   totals->setBackgroundMode(PaletteBackground);
@@ -136,6 +136,7 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
   connect(origin,SIGNAL(returnPressed(const QString&)),func,SLOT(openUrl(const QString&)));
   connect(origin,SIGNAL(urlSelected(const QString&)),this,SLOT(slotFocusOnMe()));
   connect(origin,SIGNAL(urlSelected(const QString&)),func,SLOT(openUrl(const QString&)));
+  connect(origin,SIGNAL(textChanged(const QString&)),this,SLOT(slotFocusOnMe()));
 
   view = new KrDetailedView(this, krConfig);
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(executed(QString&)), func, SLOT(execute(QString&)));
@@ -156,14 +157,8 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
 
   // finish the layout
 	layout->addMultiCellWidget(origin,0,0,0,1);
-	if (mirrored) {
-		layout->addWidget(status,1,0);
-		layout->addWidget(bookmarkList,1,1);
-
-	} else {
-		layout->addWidget(status,1,1);
-		layout->addWidget(bookmarkList,1,0);
-	}
+	layout->addWidget(status,1,0);
+	layout->addWidget(bookmarkList,1,1);
   layout->addMultiCellWidget(dynamic_cast<KrDetailedView*>(view)->widget(), 2,2,0,1);
   layout->addMultiCellWidget(totals,3,3,0,1);
 
@@ -329,30 +324,6 @@ void ListPanel::slotGetStats(QString path) {
 void ListPanel::gotStats(QString data) {
   status->setText(data);
   if (statsAgent) delete statsAgent;
-}
-
-/**
- * this function handles all the drag inside the panel which is NOT view-related.
- * the view takes care of its own, and when the view get's a drop, it emits
- * a gotDrop() signal, which is connected to handleDropOnView()
- * this function wouldn't be needed, accept for making sure no one drags on the
- * status or totals
- */
-void ListPanel::dragMoveEvent( QDragMoveEvent *ev ) {
-  QStrList list;
-  if (!QUriDrag::canDecode(ev) || !ev->provides("text/uri-list") ||
-      !func->files()->vfs_isWritable() ){
-    ev->ignore(); // not for us to handle!
-    return;
-  }
-  // if we got here, let's check the mouse location
-  if (status->geometry().contains(ev->pos()) ||
-      totals->geometry().contains(ev->pos()) ||
-      bookmarkList->geometry().contains(ev->pos())) {
-    ev->ignore();
-    return;
-  }
-  ev->acceptAction();
 }
 
 void ListPanel::handleDropOnView(QDropEvent *e) {

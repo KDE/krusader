@@ -85,6 +85,7 @@ KrDetailedView::KrDetailedView(QWidget *parent, KConfig *cfg, const char *name )
   for (int i=0; i<MAX_COLUMNS; i++) _columns[i] = Unused;
 
   /////////////////////////////// listview ////////////////////////////////////
+  krConfig->setGroup("Look&Feel");
   setFont(_config->readFontEntry("Filelist Font",_FilelistFont));
 	// a change in the selection needs to update totals
   connect(this, SIGNAL(clicked(QListViewItem*)), this, SLOT(slotClicked(QListViewItem*)));
