@@ -46,10 +46,13 @@ class ListPanel;
 class KRslots : public QObject {
     Q_OBJECT
 
+  private:
+    bool panel_swap;
+    
   public:
     enum compareMode { full } ;
 
-    KRslots() {}
+    KRslots() {panel_swap = false;}
     ~KRslots() {}
 
   public slots:
@@ -59,6 +62,7 @@ class KRslots : public QObject {
     void compareContent();
     void rightclickMenu();
     void toggleHidden();
+    void toggleSwapPanels();
     void toggleSortByExt();
     void configToolbar();
     void configKeys();

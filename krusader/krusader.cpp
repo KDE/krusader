@@ -328,10 +328,13 @@ void Krusader::setupActions() {
   actToggleTerminal->setChecked( false );
   actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), CTRL + Key_Period, SLOTS,
                                        SLOT( toggleHidden() ), actionCollection(), "toggle hidden files" );
+  actToggleSwapPanels = new KToggleAction( i18n( "S&wap Panels" ), CTRL + Key_U, SLOTS,
+                                       SLOT( toggleSwapPanels() ), actionCollection(), "toggle swap panels" );
   actToggleSortByExt = new KToggleAction( i18n( "Sort By E&xtention" ), 0, SLOTS,
                                           SLOT( toggleSortByExt() ), actionCollection(), "toggle sort by extention" );
   krConfig->setGroup( "Look&Feel" );
   actToggleHidden->setChecked( krConfig->readBoolEntry( "Show Hidden", _ShowHidden ) );
+  actToggleSwapPanels->setChecked( false );
   actToggleSortByExt->setChecked( krConfig->readBoolEntry( "Sort By Extention", _SortByExt ) );
 
   // and then the DONE actions
@@ -341,7 +344,7 @@ void Krusader::setupActions() {
 
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
-  actTest = new KAction( i18n( "&Test Archive(s)" ), "kr_arc_test", CTRL + Key_T,
+  actTest = new KAction( i18n( "&Test Archive(s)" ), "kr_arc_test", ALT + Key_T,
                          SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
   actFTPConnect = new KAction( i18n( "&Net Connections" ), "socket", CTRL + Key_C,
                                SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
@@ -351,9 +354,9 @@ void Krusader::setupActions() {
                               SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
   actProperties = new KAction( i18n( "&Properties" ), "kr_properties", 0,
                                SLOTS, SLOT( properties() ), actionCollection(), "properties" );
-  actPack = new KAction( i18n( "Pac&k" ), "kr_arc_pack", CTRL + Key_P,
+  actPack = new KAction( i18n( "Pac&k" ), "kr_arc_pack", ALT + Key_P,
                          SLOTS, SLOT( slotPack() ), actionCollection(), "pack" );
-  actUnpack = new KAction( i18n( "&Unpack" ), "kr_arc_unpack", CTRL + Key_U,
+  actUnpack = new KAction( i18n( "&Unpack" ), "kr_arc_unpack", ALT + Key_U,
                            SLOTS, SLOT( slotUnpack() ), actionCollection() , "unpack" );
   actSelect = new KAction( i18n( "Select &Group" ), "kr_select", CTRL + Key_Plus,
                            SLOTS, SLOT( markGroup() ), actionCollection(), "select group" );

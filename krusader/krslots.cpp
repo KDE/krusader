@@ -275,6 +275,13 @@ void KRslots::toggleHidden(){
 	REFRESH_BOTH_PANELS;
 }
 
+void KRslots::toggleSwapPanels(){
+  ListPanel *currentFirst = panel_swap ? krApp->mainView->right : krApp->mainView->left;
+  krApp->mainView->horiz_splitter->moveToLast( currentFirst );
+	krApp->actToggleSwapPanels->setChecked( panel_swap = !panel_swap );
+	REFRESH_BOTH_PANELS;
+}
+
 void KRslots::search() {
   new KrSearchDialog();
 }

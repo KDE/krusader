@@ -100,7 +100,7 @@ class Krusader : public KParts::MainWindow {
     static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp;
     static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
     static KToggleAction *actToggleTerminal;
-    KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
+    KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar, *actToggleSwapPanels,
                   *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actToggleSortByExt;
 
     // return a path to a temp dir or file we can use.
