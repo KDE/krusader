@@ -191,7 +191,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 
    // create the "krusader"
    App = this;
-   slot = new KRslots();
+   slot = new KRslots(this);
    setXMLFile( "krusaderui.rc" ); // kpart-related xml file
 
    plzWait = new KRPleaseWaitHandler();
