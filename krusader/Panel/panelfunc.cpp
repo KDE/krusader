@@ -674,6 +674,7 @@ void ListPanelFunc::pack() {
     arcDir = tempDir->name();
     KURL::List *urlList = files() ->vfs_getFiles( &fileNames );
     KIO::NetAccess::dircopy( *urlList, vfs::fromPathOrURL( arcDir ), 0 );
+    delete urlList;
   }
   
   // pack the files
