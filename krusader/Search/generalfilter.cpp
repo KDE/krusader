@@ -35,114 +35,7 @@
 #include <klocale.h>
 #include <kfiledialog.h>
 #include <kmessagebox.h>
-
-static const char* const image1_data[] = {
-"16 16 52 1",
-". c None",
-"# c #000000",
-"Q c #101010",
-"X c #181c18",
-"K c #202020",
-"w c #313031",
-"W c #313431",
-"V c #414041",
-"U c #414441",
-"a c #4a3018",
-"E c #4a484a",
-"T c #4a4c4a",
-"l c #524c4a",
-"h c #52504a",
-"j c #525052",
-"i c #5a5952",
-"J c #6a6962",
-"P c #6a6d6a",
-"S c #8b8d8b",
-"D c #949594",
-"R c #9c999c",
-"O c #9c9d9c",
-"C c #a4a19c",
-"M c #a4a1a4",
-"N c #a4a5a4",
-"I c #acaaac",
-"B c #acaeac",
-"F c #b47d41",
-"v c #b4b2b4",
-"u c #b4b6b4",
-"A c #bdbabd",
-"t c #bdbebd",
-"k c #c5854a",
-"H c #c5c2c5",
-"s c #c5c6c5",
-"r c #cdcacd",
-"L c #cdcecd",
-"z c #d5d2d5",
-"q c #d5d6d5",
-"x c #dedade",
-"p c #dedede",
-"b c #e6a562",
-"G c #e6e2e6",
-"o c #e6e6e6",
-"y c #eeeae6",
-"n c #eeeeee",
-"m c #f6f6f6",
-"f c #ffae62",
-"e c #ffc283",
-"d c #ffc683",
-"g c #ffca8b",
-"c c #ffd29c",
-"......####......",
-".....##.####.#..",
-"....#.....####..",
-"...........###..",
-"..........####..",
-".aaaa...........",
-"abcdbaaaaaaa....",
-"acdeffffffff#...",
-"ageahhhihhjjh###",
-"aeklmmnopqrstuvw",
-"aeaxpyopzsABCDE.",
-"aFhxxGpqrHuICJK.",
-"aaLrqqzLHABMDE..",
-"ajLtssHtuBNOPQ..",
-"atNIBBINMRDSE...",
-"KEETTTEEUVVWX..."};
-
-static const char * const image2_data[] = {
-"16 16 17 1",
-" 	c None",
-".	c #704A13",
-"+	c #8A6E3C",
-"@	c #997E52",
-"#	c #2C1D06",
-"$	c #EAD9B9",
-"%	c #E0CBA7",
-"&	c #C8A15E",
-"*	c #DAB579",
-"=	c #F8F5F0",
-"-	c #BF9346",
-";	c #AB6503",
-">	c #C1892B",
-",	c #B6710C",
-"'	c #965702",
-")	c #5A3202",
-"!	c #0D0702",
-"                ",
-"     .+@@@+#    ",
-"    +$$$%$$&#   ",
-"   .$%**%**$&#  ",
-"  .$*&*$=***%&# ",
-" .%*&**==**&&%-#",
-" .-&&&*$=%&&&-+#",
-" #;>$$$==$$$*,.#",
-" #;>========$,.#",
-" #;,-&*$=*&-,,.#",
-" #.;,,-%=&>,,')#",
-" !)';,,%=>,,')# ",
-"  !).;,&%>;;)#  ",
-"   !).;;;;;)#   ",
-"    !#).)))#    ",
-"     ######     "};
-
+#include <kiconloader.h>
  
 GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *name ) : QWidget( parent, name )
 {
@@ -200,6 +93,10 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
 
   if( hasDirOptions )
   {
+    KIconLoader *iconLoader = new KIconLoader();
+    QPixmap imageAdd = iconLoader->loadIcon( "1downarrow", KIcon::Panel, 16 );
+    QPixmap imageFolder = iconLoader->loadIcon( "folder", KIcon::Panel, 16 );
+    
     // Options for search in
 
     QGroupBox *searchInGroup = new QGroupBox( this, "searchInGroup" );
@@ -221,12 +118,12 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
 
     searchInBtnAdd = new QToolButton( searchInGroup, "searchInBtnAdd" );
     searchInBtnAdd->setText( "" );
-    searchInBtnAdd->setPixmap( QPixmap( ( const char** ) image2_data ) );
+    searchInBtnAdd->setPixmap( imageAdd );
     searchInLayout->addWidget( searchInBtnAdd, 0, 1 );
     
     searchInBtn = new QToolButton( searchInGroup, "searchInBtn" );
     searchInBtn->setText( "" );
-    searchInBtn->setPixmap( QPixmap( ( const char** ) image1_data ) );
+    searchInBtn->setPixmap( imageFolder );
     searchInLayout->addWidget( searchInBtn, 0, 2 );
 
     filterLayout->addWidget( searchInGroup, 1, 0 );
@@ -248,12 +145,12 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
 
     dontSearchInBtnAdd = new QToolButton( dontSearchInGroup, "dontSearchInBtnAdd" );
     dontSearchInBtnAdd->setText( "" );
-    dontSearchInBtnAdd->setPixmap( QPixmap( ( const char** ) image2_data ) );
+    dontSearchInBtnAdd->setPixmap( imageAdd );
     dontSearchInLayout->addWidget( dontSearchInBtnAdd, 0, 1 );
   
     dontSearchInBtn = new QToolButton( dontSearchInGroup, "dontSearchInBtn" );
     dontSearchInBtn->setText( "" );
-    dontSearchInBtn->setPixmap( QPixmap( ( const char** ) image1_data ) );
+    dontSearchInBtn->setPixmap( imageFolder );
     dontSearchInLayout->addWidget( dontSearchInBtn, 0, 2 );
 
     dontSearchIn = new QListBox( dontSearchInGroup, "dontSearchIn" );
