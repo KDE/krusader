@@ -65,7 +65,7 @@ KrViewer::~KrViewer(){
 	//kdDebug() << "KrViewer killed" << endl;
 }
 
-KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly){
+KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool create){
   KParts::Part *part = 0L;
   KLibFactory  *factory = 0;
   KTrader::OfferList offers = KTrader::self()->query(mimetype);
@@ -84,7 +84,7 @@ KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly){
       part = static_cast<KParts::Part *>(factory->create(this,
                            ptr->name().latin1(), type.latin1() ));
       if( part )
-        if( ((KParts::ReadOnlyPart*)part)->openURL(url) ) break;
+        if( ((KParts::ReadOnlyPart*)part)->openURL( url ) || create ) break;
         else {
           delete part;
           part = 0L;
@@ -143,14 +143,14 @@ void KrViewer::view(KURL url){
   }
 }
 
-void KrViewer::edit(KURL url){
+void KrViewer::edit(KURL url, bool create){
   KrViewer* viewer = new KrViewer(krApp);
 
   viewer->url = url;
   viewer->setCaption("KrEdit: "+url.url());
   viewer->show();
 
-  if( !viewer->editText() )
+  if( !viewer->editText( create ) )
   {
       viewer->destroy();
       return;
@@ -194,9 +194,9 @@ bool KrViewer::editGeneric(QString mimetype, KURL _url){
   return true;
 }
 
-bool KrViewer::editText(){
+bool KrViewer::editText( bool create ){
   if( !editor_part ){
-    editor_part = static_cast<KParts::ReadWritePart*>(getPart(url,"text/plain",false));
+    editor_part = static_cast<KParts::ReadWritePart*>(getPart(url,"text/plain",false,create));
     if( !editor_part ) return false;
     manager.addPart(editor_part,this);
   }

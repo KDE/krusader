@@ -35,7 +35,7 @@ class KrViewer : public KParts::MainWindow  {
 public: 
   ~KrViewer();
   static void view(KURL url);
-  static void edit(KURL url);
+  static void edit(KURL url, bool create = false );
 
 
 public slots:
@@ -44,7 +44,7 @@ public slots:
   bool viewText();
 
   bool editGeneric(QString mimetype, KURL _url);
-  bool editText();
+  bool editText( bool create = false );
 
   void keyPressEvent(QKeyEvent *e);
   void createGUI(KParts::Part*);
@@ -52,7 +52,7 @@ public slots:
   void handleOpenURLRequest( const KURL &url, const KParts::URLArgs & );
 private:
   KrViewer(QWidget *parent=0, const char *name=0);
-  KParts::Part* getPart(KURL url, QString m ,bool readOnly);
+  KParts::Part* getPart(KURL url, QString m ,bool readOnly, bool create=false);
   QPopupMenu* viewerMenu;
 
   KURL url;

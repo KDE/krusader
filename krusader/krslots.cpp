@@ -422,7 +422,41 @@ void KRslots::viewDlg(){
   KChooseDir *chooser = new KChooseDir( 0,i18n("Enter a URL to view:"), QString::null);
   QString dest = chooser->dest;
   if ( dest == QString::null ) return ; // the usr canceled
-  else KrViewer::view( KURL::fromPathOrURL(dest) ); // view the file
+  else
+  {
+    /* KURL::fromPathOrURL requires fullpath, so we check whether it is relative  */
+    if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
+      dest = ACTIVE_FUNC->files()->vfs_getOrigin() + "/" + dest; /* it's full path now */
+    
+    KrViewer::view( KURL::fromPathOrURL(dest) ); // view the file
+  }
+  // nothing more to it!
+}
+
+// Shift F4
+void KRslots::editDlg(){
+  // ask the user for the filename to edit
+  KChooseDir *chooser = new KChooseDir( 0,i18n("Enter the filename to edit:"), QString::null);
+  QString dest = chooser->dest;
+  if ( dest == QString::null ) return ; // the usr canceled
+  else
+  {
+    /* KURL::fromPathOrURL requires fullpath, so we check whether it is relative  */
+    if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
+      dest = ACTIVE_FUNC->files()->vfs_getOrigin() + "/" + dest; /* it's full path now */
+    
+    krConfig->setGroup( "General" );
+    QString edit = krConfig->readEntry( "Editor", _Editor );
+
+    if ( edit == "internal editor" )
+      KrViewer::edit( KURL::fromPathOrURL( dest ), true );
+    else {
+      KProcess proc;
+      proc << edit << dest;
+      if ( !proc.start( KProcess::DontCare ) )
+        KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
+    }
+  }
   // nothing more to it!
 }
 
