@@ -14,7 +14,7 @@
    <Action name="std_quit" />
   </Menu>
   <Action name="rightclick menu" />
-  <Menu name="mark" >
+  <Menu name="mark">
    <text>&amp;Mark</text>
    <Action name="select group" />
    <Action name="unselect group" />
@@ -35,9 +35,6 @@
   </Menu>
   <Menu name="myview" >
    <text>&amp;View</text>
-   <Action name="full panel" />
-   <Action name="tree panel" />
-   <Action name="quickview panel" />
    <Separator/>
    <Action name="compare mode" />
    <Action name="select colormask" />
@@ -100,3 +97,7 @@
   <Action accel="" name="sysinfo" />
  </ActionProperties>
 </kpartgui>
+
+#   <Action name="full panel" />
+#   <Action name="tree panel" />
+#   <Action name="quickview panel" />
