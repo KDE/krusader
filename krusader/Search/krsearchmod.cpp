@@ -93,9 +93,9 @@ bool KRSearchMod::checkType(QString mime){
 }
 
 bool KRSearchMod::fileMatch(const QString name){
-	int len;
+	unsigned int len;
 	for(unsigned int i=0; i<query->matches.count(); ++i){
-	  QRegExp(*query->matches.at(i),query->matchesCaseSensitive,true).match(name,0,&len);
+	  QRegExp(*query->matches.at(i),query->matchesCaseSensitive,true).match(name,0,(int*)&len);
     if( len==name.length()) return true;
 	}
   return false;
@@ -228,7 +228,7 @@ void KRSearchMod::scanVfsDir( vfs* v, QString dir, QString archive ){
     // see if the name matches
     if( !fileMatch(name) ) continue;
     // check that the size fit
-    long size = vf->vfile_getSize();
+    unsigned long size = vf->vfile_getSize();
 		if( query->minSize && size < query->minSize ) continue;
     if( query->maxSize && size > query->maxSize ) continue;
 		// check the time frame

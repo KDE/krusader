@@ -44,7 +44,7 @@ public:
 
 public slots:
 	virtual void redirectLink   (){}
-	virtual void krlink         (bool sym){}
+	virtual void krlink         (bool){}
 	virtual void goBack         (){}
   virtual void properties     (){}
 	virtual void dirUp          (){}
@@ -61,12 +61,12 @@ public slots:
 	virtual void calcSpace    	(){}
 	virtual void testArchive  	(){}
   virtual void FTPDisconnect	(){}
-  virtual void execute(QListViewItem *i){}
-	virtual void changeVFS(QString type, QString origin){}
+  virtual void execute(QListViewItem *){}
+	virtual void changeVFS(QString ,QString){}
   //	inline  void refresh(const QString path){ panel->refresh(path) }
   virtual void getSelectedNames(QStringList*){}
   inline  bool canGoBack(){return !backStack.isEmpty();}
-	virtual void newFTPconnection(QString host=QString::null){}
+	virtual void newFTPconnection(QString){}
 
 public:
   QStringList backStack; // Path stack for the "back" button

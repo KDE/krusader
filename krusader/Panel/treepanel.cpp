@@ -345,7 +345,7 @@ void TreePanel::gotStats(QString data) {
 }
 
 // pops a right-click menu for items
-void TreePanel::popRightClickMenu(KListView *kl, QListViewItem* item,const QPoint &loc) {
+void TreePanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint &loc) {
   // these are the values that will always exist in the menu
   #define OPEN_ID       90
   #define OPEN_WITH_ID  91

@@ -99,7 +99,7 @@ void qdate2time_t(time_t *dest, QDate d, bool start) {
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog(QWidget *parent, const char *name ) :
-                KrSearchBase(parent,name), searcher(0), query(0) {
+                KrSearchBase(parent,name), query(0), searcher(0) {
   prepareGUI();
   show();
   // disable the search action ... no 2 searchers !
@@ -535,7 +535,7 @@ void KrSearchDialog::saveSearch() {
 void KrSearchDialog::loadSearch() {
 }
 
-void KrSearchDialog::loadSearch(QListViewItem *i) {
+void KrSearchDialog::loadSearch(QListViewItem *) {
 }
 
 #include "krsearchdialog.moc"

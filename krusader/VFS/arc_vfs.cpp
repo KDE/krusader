@@ -548,7 +548,7 @@ void arc_vfs::getFilesToPack(QStringList* filesToPack,QString dir_name){
   vfs_filesP = vfs_filesP_backup; // restore  vfs_filesP
 }
 
-void arc_vfs::getFilesToDelete(QStringList* filesToDelete,QString dir_name){
+void arc_vfs::getFilesToDelete(QStringList* filesToDelete,QString){
 	// sync the extFiles - and find out which files were deleted
 	QString file;
 	for(unsigned int i=0 ; i<extFiles.count(); ){

@@ -90,7 +90,7 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
   vfs_refresh();	
 }
 
-void ftp_vfs::slotAddFiles(KIO::Job * job, const KIO::UDSEntryList& entries){
+void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
 	
 	if(vfs_origin.right(1) == "/" ) vfs_origin = vfs_origin.left(vfs_origin.length()-1);
 

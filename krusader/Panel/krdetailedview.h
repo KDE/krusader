@@ -54,21 +54,21 @@ public:
   virtual inline void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
   virtual void ensureItemVisible(const QListViewItem *item) { _listview->ensureItemVisible(item); }
 /////////////////////////////////////////////////////////////////////
-  virtual void getSelectedItems(QStringList* names){}
-  virtual QString getCurrentItem() const {}
-  virtual void setCurrentItem(const QString& name) {}
-  virtual void select(const QString& filter = "*") {}
-  virtual void unselect(const QString& filter = "*") {}
+  virtual void getSelectedItems(QStringList*){}
+  virtual QString getCurrentItem() const { return QString::null;}
+  virtual void setCurrentItem(const QString&) {}
+  virtual void select(const QString& = "*") {}
+  virtual void unselect(const QString& = "*") {}
   virtual void invertSelection() {}
   virtual void clear() {}
-  virtual void setSortMode(SortSpec mode) {}
+  virtual void setSortMode(SortSpec) {}
   virtual SortSpec sortMode() const { return _sortMode; }
   virtual void sort() {}
-  virtual void setFilter(FilterSpec filter) {}
+  virtual void setFilter(FilterSpec) {}
   virtual FilterSpec filter() const { return _filter; }
-  virtual uint count() const {}
-  virtual uint numFiles() const {}
-  virtual uint numDirs() const {}
+  virtual uint count() const {return 0;}
+  virtual uint numFiles() const {return 0;}
+  virtual uint numDirs() const {return 0;}
   virtual void saveSettings() {}
 
 protected:

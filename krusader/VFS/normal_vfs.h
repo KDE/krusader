@@ -37,9 +37,10 @@
 #include <qstring.h>
 // KDE includes
 #include <kfileitem.h>
+#include <kdirwatch.h>
 // Krusader includes
 #include "vfs.h"
-#include "krdirwatch.h"
+//#include "krdirwatch.h"
 
 class normal_vfs : public vfs{
 	Q_OBJECT
@@ -72,7 +73,7 @@ public slots:
 
 protected:
 	QList<vfile>  vfs_files;    // list of pointers to vfile	
-	KRdirWatch watcher;
+	KDirWatch watcher;
   bool writeableBase;
 };
 

@@ -59,7 +59,7 @@ KRDialog::KRDialog(QWidget *parent, QString text,bool modal, bool roomForIcon) :
 
 QString KChooseDir::dest;
 
-KChooseDir::KChooseDir(QWidget *parent, QString text,QString url) :
+KChooseDir::KChooseDir(QWidget *, QString text,QString url) :
 	KURLRequesterDlg(url,text,krApp,""){
 
 	dest = QString::null;

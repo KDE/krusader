@@ -27,8 +27,6 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#define _GNU_SOURCE
-
 // QT includes
 #include <qbitmap.h>
 #include <qwhatsthis.h>
@@ -527,6 +525,7 @@ QPixmap ListPanel::getIcon(vfile* vf, KRListItem::cmpColor color){
                                    break;
       case KRListItem::identical : block = QPixmap(yellow_xpm);
                                    break;
+			case KRListItem::none      : break; /* keep the compiler happy */
     }
 		
 		bitBlt (&icon,icon.width()-11,0,&block,0,21,10,11,CopyROP,false);
@@ -829,7 +828,7 @@ void ListPanel::startDragging(int mode) {
 }
 
 // pops a right-click menu for items
-void ListPanel::popRightClickMenu(KListView *kl, QListViewItem* item,const QPoint &loc2) {
+void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint &loc2) {
   QPoint loc = loc2;
   // these are the values that will always exist in the menu
   #define OPEN_ID       90

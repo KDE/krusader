@@ -81,9 +81,9 @@ public:
   virtual QString getCurrentName()=0;   // returns the current file in the panel
 
 public slots:
-	virtual void openUrl( QString path, QString file=QString::null ){ refresh(path); }
+	virtual void openUrl( QString path, QString = QString::null){ refresh(path); }
 	virtual void refresh(){ refresh(virtualPath); } // re-read the files
-  virtual void refresh(const QString path){} // re-read path
+  virtual void refresh(const QString){} // re-read path
 	virtual void setFilter(FilterSpec){}  // determinte which file types to show
   virtual void slotFocusOnMe();		      // give this VFS the focus (the path bar)
 	virtual void select(bool, bool){}     // select/unselect files

@@ -65,7 +65,7 @@ normal_vfs::normal_vfs(QString,QWidget* panel):vfs(panel){
 	vfs_type="normal";
 	
 	// connect the watcher to vfs_refresh
-  connect(&watcher,SIGNAL(dirty()),this,SLOT(vfs_refresh()));
+  connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_refresh()));
 }
 
 bool normal_vfs::vfs_refresh(QString origin){
@@ -73,7 +73,8 @@ bool normal_vfs::vfs_refresh(QString origin){
   if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(origin);
 	
 	watcher.stopScan(); //stop watching the old dir
-	watcher.clearList();
+  watcher.removeDir(vfs_getOrigin()); // and remove it from the list
+	//watcher.clearList();
 	
 	// check that the new origin exists
 	if ( !QDir(origin).exists() ) return false;
@@ -145,7 +146,7 @@ bool normal_vfs::vfs_refresh(QString origin){
 	
 	if (!quietMode) emit endUpdate();
   watcher.addDir(origin); //start watching the new dir
-  watcher.startScan();
+  watcher.startScan(true);
 
   return true;
 }

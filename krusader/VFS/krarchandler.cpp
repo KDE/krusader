@@ -317,7 +317,7 @@ QString KRarcHandler::getPassword(QString archive, QString type){
 	return handler.password;
 }
 
-void KRarcHandler::setPassword(KProcess * proc,char *buffer,int buflen){
+void KRarcHandler::setPassword(KProcess * proc,char *buffer,int){
 	//while ( inSet != 1 );
   if ( inSet == 2 ) return;
 	inSet = 1;

@@ -39,7 +39,7 @@
 #include "../VFS/krarchandler.h"
 #include "../resources.h"
 
-temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool writeable ):
+temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
           normal_vfs(origin,panel){
 
   vfs_type="temp";
