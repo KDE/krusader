@@ -33,6 +33,7 @@
 #include <klargefile.h>
 #include <khtml_part.h>
 #include <kprocess.h>
+#include <kfileitem.h>
 // Krusader includes
 #include "krviewer.h"
 #include "../krusader.h"
@@ -71,6 +72,13 @@ KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool 
   KLibFactory  *factory = 0;
   KTrader::OfferList offers = KTrader::self()->query(mimetype);
   QString type = (readOnly ? "KParts::ReadOnlyPart" : "KParts::ReadWritePart");
+  
+  if( create )
+  {
+    KFileItem file( KFileItem::Unknown, KFileItem::Unknown, url );
+    if( file.isReadable() )
+      create = false;
+  }
 
   // in theory, we only care about the first one.. but let's try all
   // offers just in case the first can't be loaded for some reason
@@ -85,11 +93,21 @@ KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool 
       part = static_cast<KParts::Part *>(factory->create(this,
                            ptr->name().latin1(), type.latin1() ));
       if( part )
-        if( ((KParts::ReadOnlyPart*)part)->openURL( url ) || create ) break;
-        else {
-          delete part;
-          part = 0L;
+      {      
+        if( !create )
+        {
+          if( ((KParts::ReadOnlyPart*)part)->openURL( url ) ) break;
+          else {
+            delete part;
+            part = 0L;
+          }
         }
+        else
+        {
+          ((KParts::ReadWritePart*)part)->saveAs( url );
+	  break;
+        }
+      }
     }
   }
   return part;
