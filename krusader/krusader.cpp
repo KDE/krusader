@@ -485,6 +485,7 @@ void Krusader::setupActions() {
                              SLOT( closeTab() ), actionCollection(), "close tab" );
   actUserMenu = new KAction( i18n( "User Menu" ), ALT + Key_QuoteLeft, SLOTS,
                              SLOT( userMenu() ), actionCollection(), "user menu" );
+		actUserMenu->setEnabled(false);
   // and at last we can set the tool-tips
   actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );
   actSelectAll->setToolTip( i18n( "Highlight all the files in the current directory" ) );
