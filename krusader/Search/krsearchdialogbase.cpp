@@ -311,12 +311,18 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     QSpacerItem* spacer_2 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     Layout7->addItem( spacer_2 );
 
+    containsWholeWord = new QCheckBox( GroupBox14, "containsWholeWord" );
+    containsWholeWord->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, containsWholeWord->sizePolicy().hasHeightForWidth() ) );
+    containsWholeWord->setText( i18n( "Match whole word only" ) );
+    containsWholeWord->setChecked( FALSE );
+    Layout7->addWidget( containsWholeWord );
+    
     containsTextCase = new QCheckBox( GroupBox14, "containsTextCase" );
     containsTextCase->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, containsTextCase->sizePolicy().hasHeightForWidth() ) );
     containsTextCase->setText( i18n( "Case sensetive" ) );
     containsTextCase->setChecked( TRUE );
     Layout7->addWidget( containsTextCase );
-
+    
     GroupBox14Layout->addLayout( Layout7, 1, 0 );
 
     Layout8 = new QHBoxLayout;

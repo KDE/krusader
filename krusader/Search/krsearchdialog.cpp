@@ -300,6 +300,7 @@ bool KrSearchDialog::gui2query() {
   if (containsText->isEnabled())
     query->contain = containsText->currentText();
   query->containCaseSensetive = containsTextCase->isChecked();
+  query->containWholeWord     = containsWholeWord->isChecked();
   query->inArchive = searchInArchives->isChecked();
   query->recurse = searchInDirs->isChecked();
   query->followLinks = followLinks->isChecked();

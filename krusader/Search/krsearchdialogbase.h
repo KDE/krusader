@@ -60,6 +60,7 @@ public:
     QToolButton* searchInBtnAdd;
     QGroupBox* GroupBox14;
     QCheckBox* containsTextCase;
+    QCheckBox* containsWholeWord;
     QLabel* TextLabel2;
     KHistoryCombo* containsText;
     QGroupBox* GroupBox140;

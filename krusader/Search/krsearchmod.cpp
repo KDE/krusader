@@ -179,14 +179,37 @@ void KRSearchMod::scanDir( QString dir){
 			QTextStream text(&qf);
       text.setEncoding(QTextStream::Locale);
       QString line;
+      bool found = false;
 			while(!stopSearch && !text.atEnd() ){
         line = text.readLine();
         if (line.isNull() ) break;
-        if (line.find(query->contain, 0, query->containCaseSensetive) != -1)
-         	  break;
+        if ( query->containWholeWord )
+        {
+          int ndx = 0;
+
+          while( ( ndx = line.find(query->contain, ndx, query->containCaseSensetive) ) != -1)
+          {
+            QChar before = line.at( ndx-1 );
+            QChar after  = line.at( ndx + query->contain.length() );
+
+            if( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
+              after!='_' && before!='_')
+              {
+                found = true;
+                break;
+              }
+            //qApp->processEvents(); // is that needed ?
+            ndx++;
+          }
+        }
+        else if (line.find(query->contain, 0, query->containCaseSensetive) != -1)
+          found = true;
+        
+        if( found )
+          break;
          	//qApp->processEvents(); // is that needed ?
       }
-      if (line.isNull() || text.atEnd() ) continue;
+      if ( !found ) continue;
     }
 
     // if we got here - we got a winner

@@ -37,6 +37,7 @@
 // set the defaults
 KRQuery::KRQuery(): matches(""),matchesCaseSensitive(true),
                     contain(QString::null),containCaseSensetive(true),
+                    containWholeWord(false),
                     inArchive(false),recurse(true),followLinks(true),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString::null),group(QString::null),
@@ -68,6 +69,7 @@ void KRQuery::save(QString name){
   krConfig->writeEntry("matchesCaseSensitive",matchesCaseSensitive);
   krConfig->writeEntry("contain",contain);
   krConfig->writeEntry("containCaseSensetive",containCaseSensetive);
+  krConfig->writeEntry("containWholeWord",containWholeWord);
   krConfig->writeEntry("inArchive",inArchive);
   krConfig->writeEntry("recurse",recurse);
   krConfig->writeEntry("followLinks",followLinks);
@@ -97,6 +99,7 @@ void KRQuery::load(QString name){
 /*  matchesCaseSensitive = krConfig->readBoolEntry("matchesCaseSensitive",true);
   contain              = krConfig->readEntry("contain");
   containCaseSensetive = krConfig->readBoolEntry("containCaseSensetive",true);
+  containWholeWord     = krConfig->readBoolEntry("containWholeWord",false);
   inArchive            = krConfig->readBoolEntry("inArchive",false);
   recurse              = krConfig->readBoolEntry("recurse",true);
   followLinks          = krConfig->readBoolEntry("followLinks",false);

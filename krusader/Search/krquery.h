@@ -46,6 +46,7 @@ public:
   bool matchesCaseSensitive;
   QString contain;               // file must contain this string
   bool containCaseSensetive;
+  bool containWholeWord;
   bool inArchive;                // if true- search in archive.
   bool recurse;                  // if true recurse ob sub-dirs...
   bool followLinks;
