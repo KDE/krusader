@@ -76,24 +76,28 @@ bool vfs::vfs_refresh(KIO::Job* job){
 KURL vfs::fromPathOrURL( const QString &originIn )
 {
   QString password, loginName, origin = originIn;
-
-  // breakdown the url;
-  /* FIXME: untill KDE fixes the bug we have to check for
-     passwords and users with @ in them... */
-  bool bugfix = origin.find("@") != origin.findRev("@");
-  if(bugfix){
-    if(origin.find(":") != origin.findRev(":", origin.findRev("@") )){
-      int passStart = origin.find( ":",origin.find(":")+1 )+1;
-      int passLen = origin.findRev("@")-passStart;
-      password = origin.mid(passStart,passLen);
-      origin = origin.remove(passStart-1,passLen+1);
-    }
-    if(origin.find("@") != origin.findRev("@")){
-      int usrStart = origin.find( "/" )+1;
-      if(origin.at(usrStart) == '/') ++usrStart;
-      int usrLen = origin.findRev("@")-usrStart;
-      loginName = origin.mid(usrStart,usrLen);
-      origin = origin.remove(usrStart,usrLen+1);
+  bool bugfix;
+  
+  if ( originIn.contains( ":/" ) && !originIn.startsWith( "/" ) )
+  {
+    // breakdown the url;
+    /* FIXME: untill KDE fixes the bug we have to check for
+       passwords and users with @ in them... */
+    bugfix = origin.find("@") != origin.findRev("@");
+    if(bugfix){
+      if(origin.find(":") != origin.findRev(":", origin.findRev("@") )){
+        int passStart = origin.find( ":",origin.find(":")+1 )+1;
+        int passLen = origin.findRev("@")-passStart;
+        password = origin.mid(passStart,passLen);
+        origin = origin.remove(passStart-1,passLen+1);
+      }
+      if(origin.find("@") != origin.findRev("@")){
+        int usrStart = origin.find( "/" )+1;
+        if(origin.at(usrStart) == '/') ++usrStart;
+        int usrLen = origin.findRev("@")-usrStart;
+        loginName = origin.mid(usrStart,usrLen);
+        origin = origin.remove(usrStart,usrLen+1);
+      }
     }
   }
   KURL url = KURL::fromPathOrURL( origin );
