@@ -712,8 +712,8 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     
     QGrid* grid_host = new QGrid( 3, this, "grid_host" );
     
-    TextLabel1 = new QLabel( i18n( "Host:"  ), grid_host, "TextLabel1" );
-    QLabel* dummylabel = new QLabel( grid_host );		//FIXME: after 1.40 i18n-freeze: put "host" here and replace the host above with "protocol"
+    TextLabel1 = new QLabel( i18n( "Protocol:"  ), grid_host, "TextLabel1" );
+    TextLabel1_22 = new QLabel( i18n( "Host:"), grid_host, "TextLabel_2" );
     TextLabel1_3 = new QLabel( i18n( "Port:"  ), grid_host, "TextLabel1_3" );
 
     QStringList protocols = KProtocolInfo::protocols();
