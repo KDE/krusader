@@ -95,23 +95,7 @@ bool KMountMan::invalidFilesystem(QString type) {
 
 // this is an ugly hack, but type can actually be a mountpoint. oh well...
 bool KMountMan::nonmountFilesystem(QString type, QString mntPoint) {
-	if ((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0))
-		return true;
-	if( getuid() == 0 ) // we are root ?
-		return false;
-	   // create lists of current and possible mount points
-	KMountPoint * myPoint;
-	
-	KMountPoint::List current = KMountPoint::currentMountPoints( KMountPoint::NeedMountOptions );
-	if( ( myPoint = findInListByMntPoint( current, mntPoint ) ) != 0 ) {
-		QString userName = KRpermHandler::uid2user( getuid() );
-		return !myPoint->mountOptions().contains( "user" ) && 
-			!myPoint->mountOptions().contains( "user=" + userName );
-	}
-	KMountPoint::List possible = KMountPoint::possibleMountPoints( KMountPoint::NeedMountOptions );
-	if( ( myPoint = findInListByMntPoint( possible, mntPoint ) ) != 0 )
-		return !myPoint->mountOptions().contains( "user" );
-	return true;
+	return((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0));
 }
 
 void KMountMan::mainWindow() {
