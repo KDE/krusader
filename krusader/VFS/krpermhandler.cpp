@@ -31,6 +31,7 @@
 
 // System includes
 #include <unistd.h>
+#include <math.h>
 #include <pwd.h>
 #include <grp.h>
 #include <sys/types.h>
@@ -247,17 +248,27 @@ bool KRpermHandler::fileExist(QString path, QString name){
 	return false;
 }
 
+static QString round(int i) {
+   QString t;
+   t.sprintf("%d",i);
+   if (i<10) t=("0"+t);
+   return t;
+}
+
 // create a easy to read date-time format
 QString KRpermHandler::time2QString(long time){
-  QString dateTime;
+
 	// convert the time_t to struct tm
 	struct tm* t=localtime((time_t *)&time);
-  QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
+
+  //QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
 
   // construct the string
-  dateTime = KGlobal::locale()->formatDateTime(tmp);
+  //dateTime = KGlobal::locale()->formatDateTime(tmp);
+  QString dateTime = round(t->tm_mday)+"/"+round(t->tm_mon+1)+"/"+round(t->tm_year%100)+
+                      +" "+round(t->tm_hour)+":"+round(t->tm_min);
 
-	return dateTime;
+   return dateTime;
 }
 
 QString KRpermHandler::parseSize(unsigned long val){
