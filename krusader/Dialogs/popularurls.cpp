@@ -75,11 +75,14 @@ void PopularUrls::relocateIfNeeded(UrlNodeP node) {
 	}
 }
 
+// note: this will be buggy in case the list becomes empty (which should never happen)
 void PopularUrls::removeNode(UrlNodeP node) {
 	if (node->prev) {
+		if (tail == node) tail = node->prev;
 		node->prev->next = node->next;
 	}
 	if (node->next) {
+		if (head == node) head = node->next;
 		node->next->prev = node->prev;
 	}
 }
@@ -91,6 +94,7 @@ void PopularUrls::insertNode(UrlNodeP node, UrlNodeP after) {
 		head->prev = node;
 		head = node;
 	} else {
+		if (tail == after) tail = node;
 		node->prev = after;
 		node->next = after->next;
 		after->next->prev = node;
