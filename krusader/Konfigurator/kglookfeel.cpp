@@ -65,9 +65,9 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  ""},
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""}};
 
-  QWidget *cbs = createCheckBoxGroup( 2, 0, settings, 7, settingCbs,  lookFeelGrp );
+  cbs = createCheckBoxGroup( 2, 0, settings, 7, lookFeelGrp );
   lookFeelGrid->addWidget( cbs, 0, 0 );
-  connect( settingCbs.at( 5 ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
+  connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
   lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep1" ), 1, 0 );
 
@@ -101,9 +101,9 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      { i18n( "Right button selects (Windows Commander style)" ), "2" }};
   KonfiguratorRadioButtons *mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
       "0", 1, 0, mouseSelection, 3, lookFeelGrp, "myLook&FeelRadio", false );
-  lookFeelGrid->addWidget( mouseRadio->getGroupWidget(), 7, 0 );
+  lookFeelGrid->addWidget( mouseRadio, 7, 0 );
   for( int i=0; i!=3; i++ )
-    mouseRadio->radioButtons.at(i)->setEnabled( false ); /* disable all buttons */
+    mouseRadio->find(i)->setEnabled( false ); /* disable all buttons */
 
   lookAndFeelLayout->addWidget( lookFeelGrp, 0, 0 );
   
@@ -158,8 +158,8 @@ void KgLookFeel::slotReload( KonfiguratorEditToolbarWidget * oldEditToolbar )
 
 void KgLookFeel::slotDisable()
 {
-  bool isNewStyleQuickSearch = settingCbs.at( 5 )->isChecked();
-  settingCbs.at( 6 )->setEnabled( isNewStyleQuickSearch );
+  bool isNewStyleQuickSearch = cbs->find( "New Style Quicksearch" )->isChecked();
+  cbs->find( "Case Sensitive Quicksearch" )->setEnabled( isNewStyleQuickSearch );
 }
 
 #include "kglookfeel.moc"

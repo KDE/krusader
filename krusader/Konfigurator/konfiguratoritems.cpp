@@ -163,14 +163,50 @@ void KonfiguratorSpinBox::slotSetDefaults(QObject *)
     setValue( defaultValue );
 }
 
+// KonfiguratorCheckBoxGroup class
+///////////////////////////////
+
+void KonfiguratorCheckBoxGroup::add( KonfiguratorCheckBox *checkBox )
+{
+  checkBoxList.append( checkBox );
+}
+
+KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find( int index )
+{
+  return checkBoxList.at( index );
+}
+
+KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find( QString name )
+{
+  KonfiguratorCheckBox *checkBox = checkBoxList.first();
+
+  while( checkBox )
+  {
+    if( checkBox->extension()->getCfgName() == name )
+      return checkBox;
+    checkBox = checkBoxList.next();
+  }
+  
+  return 0;
+}
+
+
 // KonfiguratorRadioButtons class
 ///////////////////////////////
 
-KonfiguratorRadioButtons::KonfiguratorRadioButtons( QString cls, QString name, QString dflt,
-    QButtonGroup *grp, bool rst ) : KonfiguratorExtension( this, cls, name, rst ),
-    buttonGroup( grp )
+KonfiguratorRadioButtons::KonfiguratorRadioButtons( QString cls, QString name,
+    QString dflt, QWidget *parent, const char *widgetName, bool rst ) :
+    QButtonGroup( parent, widgetName ), defaultValue( dflt )
 {
-  defaultValue = dflt;
+  ext = new KonfiguratorExtension( this, cls, name, rst );
+  connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
+  connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
+  connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
+}
+
+KonfiguratorRadioButtons::~KonfiguratorRadioButtons()
+{
+  delete ext;
 }
 
 void KonfiguratorRadioButtons::addRadioButton( QRadioButton *radioWidget, QString value )
@@ -178,7 +214,26 @@ void KonfiguratorRadioButtons::addRadioButton( QRadioButton *radioWidget, QStrin
   radioButtons.append( radioWidget );
   radioValues.push_back( value );
 
-  connect( radioWidget, SIGNAL( stateChanged(int) ), this, SLOT( setChanged() ) );
+  connect( radioWidget, SIGNAL( stateChanged(int) ), ext, SLOT( setChanged() ) );
+}                                                       
+
+QRadioButton * KonfiguratorRadioButtons::find( int index )
+{
+  return radioButtons.at( index );
+}
+
+QRadioButton * KonfiguratorRadioButtons::find( QString name )
+{
+  QRadioButton *radioButton = radioButtons.first();
+
+  while( radioButton )
+  {
+    if( radioButton->text() == name )
+      return radioButton;
+    radioButton = radioButtons.next();
+  }
+
+  return 0;
 }
 
 void KonfiguratorRadioButtons::selectButton( QString value )
@@ -204,24 +259,15 @@ void KonfiguratorRadioButtons::selectButton( QString value )
 
 void KonfiguratorRadioButtons::loadInitialValue()
 {
-  krConfig->setGroup( configClass );
-  QString initValue = krConfig->readEntry( configName, defaultValue );
+  krConfig->setGroup( ext->getCfgClass() );
+  QString initValue = krConfig->readEntry( ext->getCfgName(), defaultValue );
 
   selectButton( initValue );
-  setChanged( false );
+  ext->setChanged( false );
 }
 
-bool KonfiguratorRadioButtons::apply()
+void KonfiguratorRadioButtons::slotApply(QObject *,QString cls, QString name)
 {
-  if( !changed )
-    return false;
-
-  if( applyConnected )
-  {
-    emit applyManually( objectPtr, configClass, configName );
-    return restartNeeded;
-  }
-  
   QRadioButton *btn  = radioButtons.first();
   int cnt = 0;
 
@@ -229,27 +275,18 @@ bool KonfiguratorRadioButtons::apply()
   {
     if( btn->isChecked() )
     {
-      krConfig->setGroup( configClass );
-      krConfig->writeEntry( configName, radioValues[ cnt ] );
+      krConfig->setGroup( cls );
+      krConfig->writeEntry( name, radioValues[ cnt ] );
       break;
     }
 
     btn = radioButtons.next();
     cnt++;
   }
-  setChanged( false );
-  
-  return restartNeeded;
 }
 
-void KonfiguratorRadioButtons::setDefaults()
+void KonfiguratorRadioButtons::slotSetDefaults(QObject *)
 {
-  if( setDefaultsConnected )
-  {
-    emit setDefaultsManually( objectPtr );
-    return;
-  }
-  
   selectButton( defaultValue );
 }
 

@@ -325,35 +325,31 @@ public:
     * on the GUI. The placing of the elements can be horizontal or vertical in the group.
     * At horizontal placing the sizex integer defines the maximum element number in
     * one row, sizey is 0. At vertical placing sizex is 0, and sizey defines the
-    * maximum row number in one column. The references of the checkboxes are placed
-    * into a pointer list, given by the user.<br>
+    * maximum row number in one column. <br>
     *
-    * One specific element can be reached by the reference list. The first element is
-    * cbList.at(0), the second is cbList.at(1), ...
+    * One specific element can be reached by its name or index with the find methods.
+    * The first element is checkBoxGroup->find( 0 ), "myCb" element is checkBoxGroup->find( "myCb" ) ...
     *
     * Sample:<br><br>
     * KONFIGURATOR_CHECKBOX_PARAM myCBArray[] =<br>
     * &nbsp;{{"CbClass","CbName1", false, i18n( "name1" ), false, "tooltip1"},<br>
     * &nbsp;&nbsp;{"CbClass","CbName2", true, i18n( "name2" ), false, "tooltip2"},<br>
     * &nbsp;&nbsp;{"CbClass","CbName3", true, i18n( "name3" ), false, "tooltip3"}};<br><br>
-    * QPtrList&lt;KonfiguratorCheckBox&gt; myCheckboxes;<br>
-    * QFrame *myCheckBoxGroup = createCheckBoxGroup( 1, 0, myCBArray, 3, myCheckboxes, myParent, "myCheckboxGroup" );<br>
-    * myCheckboxes.at( 0 )->setEnabled( false );<br><br>
+    * KonfiguratorCheckBoxGroup *myCheckBoxGroup = createCheckBoxGroup( 1, 0, myCBArray, 3, myParent, "myCheckboxGroup" );<br>
+    * myCheckBoxGroup->find( 0 )->setEnabled( false );<br><br>
     * myLayout->addWidget( myCheckBoxGroup, 0, 0 );<br>
     *
     * @param  sizex       the maximum column number at horizontal placing
     * @param  sizey       the maximum row number at vertical placing
     * @param  params      pointer to the checkbox array
     * @param  paramNum    number of the checkbox elements
-    * @param  cbList      reference to the pointerlist where the checkboxes will be placed
     * @param  parent      Reference to the parent widget
     * @param  widgetName  The name of the newly created checkbox group widget
     *
     * @return             reference to the newly created checkbox group widget
     */
-  QWidget                 *createCheckBoxGroup( int sizex, int sizey,
+  KonfiguratorCheckBoxGroup *createCheckBoxGroup( int sizex, int sizey,
                                            KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum,
-                                           QPtrList<KonfiguratorCheckBox> &cbList,
                                            QWidget *parent=0, const char *widgetName=0 );
   /**
     * Creates a radio button group. A radio button group contains a lot of radio buttons.
@@ -363,9 +359,8 @@ public:
     * one row, sizey is 0. At vertical placing sizex is 0, and sizey defines the
     * maximum row number in one column.<br>
     *
-    * The references of the buttons can be accessed by the radioButtons fields of the
-    * KonfiguratorRadioButtons object. The first element is myRadioGrp->radioButtons.at(0),
-    * the second is myRadioGrp->radioButtons.at(1), ...
+    * The references of the buttons can be accessed by the find methods of KonfiguratorRadioButtons.
+    * The first element is myRadioGrp->find( 0 ), "myRadio" element is myRadioGrp->find( "myRadio" ) ...
     *
     * Sample:<br><br>
     * KONFIGURATOR_NAME_VALUE_PAIR radioInfo[] =<br>
@@ -373,8 +368,8 @@ public:
     * &nbsp;&nbsp;{ i18n( "radio text2" ), "value2" },<br>
     * &nbsp;&nbsp;{ i18n( "radio text3" ), "value3" }};<br><br>
     * KonfiguratorRadioButtons *myRadioGroup = createRadioButtonGroup( "class", "name", "value1", 1, 0, radioInfo, 3, myParent, "myRadioGroup" );<br>
-    * myRadioGroup->radioButtons.at( 0 )->setEnabled( false );<br>
-    * myLayout->addWidget( myRadioGroup->getGroupWidget(), 0, 0 );<br>
+    * myRadioGroup->find( i18n( "radio text1" ) )->setEnabled( false );<br>
+    * myLayout->addWidget( myRadioGroup, 0, 0 );<br>
     *
     * @param  cls         The class name used in KConfig (ex. "Archives")
     * @param  name        The item name used in KConfig (ex. "Do Tar")

@@ -67,7 +67,7 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
      {"Archives","Do RPM",   _DoRPM,   i18n( "Rpm" ),   false,  ""},
      {"Archives","Do UnAce", _DoUnAce, i18n( "Ace" ),   false,  ""}};
 
-  QWidget *cbs = createCheckBoxGroup( 3, 0, packers, 8, packerCbs,  generalGrp );
+  cbs = createCheckBoxGroup( 3, 0, packers, 8, generalGrp );
   generalGrid->addWidget( cbs, 1, 0 );
   
   addLabel( generalGrid, 2, 0, i18n( "The archives that are \"greyed-out\" were unavaible on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ),
@@ -92,7 +92,7 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
     {{"Archives","Allow Move Into Archive", _MoveIntoArchive, i18n( "Allow moving into archives" ),         false,  i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." )},
      {"Archives","Test Archives",           _TestArchives,    i18n( "Test archive when finished packing" ), false,  i18n( "If checked, Krusader will test the archive's intergrity after packing it." )}};
 
-  QWidget *finetunes = createCheckBoxGroup( 1, 0, finetuners, 2, tunerCbs, fineTuneGrp );
+  KonfiguratorCheckBoxGroup *finetunes = createCheckBoxGroup( 1, 0, finetuners, 2, fineTuneGrp );
    
   disableNonExistingPackers();    
   fineTuneGrid->addWidget( finetunes, 1, 0 );
@@ -142,14 +142,14 @@ void KgArchives::disableNonExistingPackers()
   #define PS(x) lst.contains(x)>0
 
   QStringList lst=KRarcHandler::supportedPackers(); // get list of availble packers
-  packerCbs.at( PK_Tar )->setEnabled(PS("tar"));
-  packerCbs.at( PK_GZip )->setEnabled(PS("gzip"));
-  packerCbs.at( PK_BZip2 )->setEnabled(PS("bzip2"));
-  packerCbs.at( PK_UnZip )->setEnabled(PS("unzip"));
-  packerCbs.at( PK_RPM )->setEnabled(PS("rpm") || PS("cpio"));
-  packerCbs.at( PK_UnRar )->setEnabled(PS("unrar"));
-  packerCbs.at( PK_UnAce )->setEnabled(PS("unace"));
-  packerCbs.at( PK_UnArj )->setEnabled(PS("unarj"));
+  cbs->find( "Do Tar" )->setEnabled(PS("tar"));
+  cbs->find( "Do GZip" )->setEnabled(PS("gzip"));
+  cbs->find( "Do BZip2" )->setEnabled(PS("bzip2"));
+  cbs->find( "Do UnZip" )->setEnabled(PS("unzip"));
+  cbs->find( "Do RPM" )->setEnabled(PS("rpm") || PS("cpio"));
+  cbs->find( "Do UnRar" )->setEnabled(PS("unrar"));
+  cbs->find( "Do UnAce" )->setEnabled(PS("unace"));
+  cbs->find( "Do Unarj" )->setEnabled(PS("unarj"));
 }
 
 bool KgArchives::apply()

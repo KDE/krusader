@@ -50,11 +50,11 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   //   cfg_class  cfg_name           default     text                                      restart tooltip
     {{"Advanced","AutoMount",        _AutoMount, i18n( "Automount filesystems" ),          false,  i18n( "If checked, Krusader will mount FSTAB mount-points when needed." )}};
 
-  QWidget *generals = createCheckBoxGroup( 2, 0, generalSettings, 1, generalCbs, generalGrp );
+  KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 2, 0, generalSettings, 1, generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
 
 #ifdef BSD
-  generalCbs.at(0)->setEnabled( false ); /* disable AutoMount on BSD */
+  generals->find( "AutoMount" )->setEnabled( false ); /* disable AutoMount on BSD */
 #endif
     
   kgAdvancedLayout->addWidget( generalGrp, 0 ,0 );
@@ -74,7 +74,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
      {"Advanced","Confirm Copy",          _ConfirmCopy,       i18n( "Copying file(s)" ),                    false,  ""},
      {"Advanced","Confirm Move",          _ConfirmMove,       i18n( "Moving file(s)" ),                     false,  ""}};
 
-  QWidget *confWnd = createCheckBoxGroup( 1, 0, confirmations, 4, confCbs, confirmGrp );
+  KonfiguratorCheckBoxGroup *confWnd = createCheckBoxGroup( 1, 0, confirmations, 4, confirmGrp );
 
   confirmGrid->addWidget( confWnd, 1, 0 );
 

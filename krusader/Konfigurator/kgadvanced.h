@@ -39,10 +39,6 @@ class KgAdvanced : public KonfiguratorPage
 
 public:
   KgAdvanced( bool first, QWidget* parent=0,  const char* name=0 );
-
-protected:
-  QPtrList<KonfiguratorCheckBox>  generalCbs;
-  QPtrList<KonfiguratorCheckBox>  confCbs;
 };
 
 #endif /* __KGADVANCED_H__ */

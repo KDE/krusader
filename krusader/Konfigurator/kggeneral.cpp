@@ -57,7 +57,7 @@ KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
   
   KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
       "true", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );
-  generalGrid->addMultiCellWidget( trashRadio->getGroupWidget(), 0, 0, 0, 1 );
+  generalGrid->addMultiCellWidget( trashRadio, 0, 0, 0, 1 );
 
   KonfiguratorCheckBox *checkBox = createCheckBox( "General", "Mimetype Magic", _MimetypeMagic,
                      i18n( "Use mimetype magic" ), generalGrp, false,

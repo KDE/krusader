@@ -46,7 +46,8 @@ public:
   KgLookFeel( bool first, QWidget* parent=0,  const char* name=0 );
 
 protected:
-  QPtrList<KonfiguratorCheckBox>  settingCbs;
+  KonfiguratorCheckBoxGroup *cbs;
+  
   QGridLayout *toolBarLayout;
   QWidget     *tab_2;
   QGridLayout *keyBindingsLayout;

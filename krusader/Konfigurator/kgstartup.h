@@ -44,9 +44,8 @@ public slots:
   void slotDisable();
   
 protected:
-  QPtrList<KonfiguratorCheckBox>  uiCbs;
-
   KonfiguratorRadioButtons  *saveRadio;
+  KonfiguratorCheckBoxGroup *uiCbGroup;
   
   QLabel                    *leftPanelLbl;
   KonfiguratorComboBox      *leftOrigin;

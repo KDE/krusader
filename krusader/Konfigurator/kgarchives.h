@@ -46,22 +46,9 @@ public slots:
   void slotAutoConfigure();
   
 protected:
-  QPtrList<KonfiguratorCheckBox>  packerCbs;
-  QPtrList<KonfiguratorCheckBox>  tunerCbs;
+  KonfiguratorCheckBoxGroup *cbs;
 
   void disableNonExistingPackers();
 };
-
-typedef enum
-{
-  PK_Tar             = 0,
-  PK_GZip            = 1,
-  PK_BZip2           = 2,
-  PK_UnZip           = 3,
-  PK_UnRar           = 4,
-  PK_UnArj           = 5,
-  PK_RPM             = 6,
-  PK_UnAce           = 7
-} PACKERS;
 
 #endif /* __KGARCHIVES_H__ */

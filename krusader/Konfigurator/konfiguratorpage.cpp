@@ -175,17 +175,15 @@ QWidget* KonfiguratorPage::createSpacer( QWidget *parent, const char *widgetName
   return widget;
 }
 
-QWidget* KonfiguratorPage::createCheckBoxGroup( int sizex, int sizey,
-    KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QPtrList<KonfiguratorCheckBox> &cbList,
-    QWidget *parent, const char *widgetName )
+KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int sizey,
+    KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QWidget *parent,
+    const char *widgetName )
 {
-  QWidget *groupWidget = new QWidget( parent, widgetName );
+  KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup( parent, widgetName );
   QGridLayout *layout = new QGridLayout( groupWidget );
   layout->setSpacing( 11 );
   layout->setMargin( 0 );
   
-  cbList.clear();
-
   int x = 0, y = 0;
   
   for( int i=0; i != paramNum; i++ )
@@ -194,7 +192,7 @@ QWidget* KonfiguratorPage::createCheckBoxGroup( int sizex, int sizey,
       params[i].configName, params[i].defaultValue, params[i].text, groupWidget,
       params[i].restart, params[i].toolTip );
 
-    cbList.append( checkBox );
+    groupWidget->add( checkBox );
     layout->addWidget( checkBox, y, x );
 
     if( sizex )
@@ -216,26 +214,24 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
     QString name, QString dflt, int sizex, int sizey, KONFIGURATOR_NAME_VALUE_PAIR *params,
     int paramNum, QWidget *parent, const char *widgetName, bool rst )
 {
-  QButtonGroup *groupWidget = new QButtonGroup( parent, widgetName );
-  groupWidget->setFrameShape( QButtonGroup::NoFrame );
-  groupWidget->setFrameShadow( QButtonGroup::Sunken );
-  groupWidget->setTitle( "" );
-  groupWidget->setExclusive( true );
-  groupWidget->setRadioButtonExclusive( true );
-  groupWidget->setColumnLayout(0, Qt::Vertical );
+  KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, parent, widgetName, rst );
+  radioWidget->setFrameShape( QButtonGroup::NoFrame );
+  radioWidget->setFrameShadow( QButtonGroup::Sunken );
+  radioWidget->setTitle( "" );
+  radioWidget->setExclusive( true );
+  radioWidget->setRadioButtonExclusive( true );
+  radioWidget->setColumnLayout(0, Qt::Vertical );
 
-  QGridLayout *layout = new QGridLayout( groupWidget->layout() );
+  QGridLayout *layout = new QGridLayout( radioWidget->layout() );
   layout->setAlignment( Qt::AlignTop );
   layout->setSpacing( 11 );
   layout->setMargin( 0 );
 
   int x = 0, y = 0;
 
-  KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, groupWidget, rst );
-  
   for( int i=0; i != paramNum; i++ )
   {
-    QRadioButton *radBtn = new QRadioButton( params[i].text, groupWidget,
+    QRadioButton *radBtn = new QRadioButton( params[i].text, radioWidget,
                         QString( cls + "/" + name + "/" + params[i].value ).ascii() );
 
     layout->addWidget( radBtn, y, x );
@@ -255,7 +251,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
   }
 
   radioWidget->loadInitialValue();
-  registerObject( radioWidget );  
+  registerObject( radioWidget->extension() );  
   return radioWidget;
 }
 

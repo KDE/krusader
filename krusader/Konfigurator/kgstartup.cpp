@@ -51,8 +51,8 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   saveRadio = createRadioButtonGroup( "Startup", "Panels Save Settings",
       "false", 1, 0, savePanels, 2, panelsGrp, "mySaveRadio", false );
-  panelsGrid->addMultiCellWidget( saveRadio->getGroupWidget(), 0, 0, 0, 3 );
-  connect( saveRadio->radioButtons.at( 1 ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
+  panelsGrid->addMultiCellWidget( saveRadio, 0, 0, 0, 3 );
+  connect( saveRadio->find( i18n( "Start with the following settings:" ) ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
   
   KONFIGURATOR_NAME_VALUE_PAIR opCombo[] =
     {{ i18n( "homepage" ),              i18n( "homepage" )              },
@@ -81,8 +81,6 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   rightHomePage = createURLRequester( "Startup", "Right Panel Homepage", _RightHomepage, panelsGrp, false );
   panelsGrid->addWidget( rightHomePage, 2, 3 );
 
-  slotDisable();
-
   kgStartupLayout->addWidget( panelsGrp, 0, 0 );
 
   //  ------------------------ USERINTERFACE GROUPBOX ------------------------------
@@ -100,16 +98,18 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
      {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Terminal Emulator visible" ),      true ,  ""},
      {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Restore last position and size" ), false,  ""}};
 
-  QWidget *uiCbWnd = createCheckBoxGroup( 1, 0, uiCheckBoxes, 7, uiCbs, uiGrp );
+  uiCbGroup = createCheckBoxGroup( 1, 0, uiCheckBoxes, 7, uiGrp );
 
-  uiGrid->addWidget( uiCbWnd, 1, 0 );
+  uiGrid->addWidget( uiCbGroup, 1, 0 );
+
+  slotDisable();
 
   kgStartupLayout->addWidget( uiGrp, 1, 0 );
 }
 
 void KgStartup::slotDisable()
 {
-  bool isDontSave = saveRadio->radioButtons.at( 1 )->isChecked();
+  bool isDontSave = saveRadio->find( i18n( "Start with the following settings:" ) )->isChecked();
   bool isLeftHp   = leftOrigin->currentText() ==i18n("homepage");
   bool isRightHp  = rightOrigin->currentText()==i18n("homepage");
 
@@ -125,12 +125,9 @@ void KgStartup::slotDisable()
   rightHomePage->lineEdit()->setEnabled( isDontSave && isRightHp );
   rightHomePage->button()->setEnabled( isDontSave && isRightHp );
 
-  KonfiguratorCheckBox *cbs = uiCbs.first();
-  while( cbs )
-  {
-    cbs->setEnabled( isDontSave );
-    cbs = uiCbs.next();
-  }
+  int i=0;
+  while( uiCbGroup->find( i ) )
+    uiCbGroup->find( i++ )->setEnabled( isDontSave );
 }
 
 #include "kgstartup.moc"

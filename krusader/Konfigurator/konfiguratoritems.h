@@ -140,32 +140,57 @@ protected:
   KonfiguratorExtension *ext;
 };
 
+// KonfiguratorCheckBoxGroup class
+///////////////////////////////
+
+class KonfiguratorCheckBoxGroup : public QWidget
+{
+public:
+  KonfiguratorCheckBoxGroup( QWidget * parent = 0, const char * name = 0 ) :
+    QWidget( parent, name ) {};
+
+  void                    add( KonfiguratorCheckBox * );
+  KonfiguratorCheckBox *  find( int index );
+  KonfiguratorCheckBox *  find( QString name );
+
+private:
+  QPtrList<KonfiguratorCheckBox>  checkBoxList;
+};
+  
 // KonfiguratorRadioButtons class
 ///////////////////////////////
 
-class KonfiguratorRadioButtons : public KonfiguratorExtension
+class KonfiguratorRadioButtons : public QButtonGroup
 {
   Q_OBJECT
 
 public:
-  KonfiguratorRadioButtons( QString cls, QString name, QString dflt, QButtonGroup *grp, bool rst=false );
+  KonfiguratorRadioButtons( QString cls, QString name, QString dflt, QWidget *parent=0,
+                            const char *widgetName=0, bool rst=false );
+  ~KonfiguratorRadioButtons();
+
+  inline KonfiguratorExtension *extension()   {return ext;}
 
   void  addRadioButton( QRadioButton *radioWidget, QString value );
 
-  virtual void    loadInitialValue();
-  virtual bool    apply();
-  virtual void    setDefaults();
+  void            selectButton( QString value );
 
-  QButtonGroup*   getGroupWidget() { return buttonGroup; }
-
-  void            selectButton( QString value );  
+  QRadioButton*   find( int index );
+  QRadioButton*   find( QString name );
   
-  QPtrList<QRadioButton>  radioButtons;
-  QValueVector<QString>   radioValues;  
+public slots:
+  virtual void loadInitialValue();
+  void slotApply(QObject *,QString, QString);
+  void slotSetDefaults(QObject *);
 
 protected:
+  QPtrList<QRadioButton>  radioButtons;
+  QValueVector<QString>   radioValues;
+
   QString         defaultValue;
   QButtonGroup    *buttonGroup;
+
+  KonfiguratorExtension *ext;
 };
 
 // KonfiguratorEditBox class
@@ -193,7 +218,7 @@ protected:
 };
 
 
-// KonfiguratorEditBox class
+// KonfiguratorURLRequester class
 ///////////////////////////////
 
 class KonfiguratorURLRequester : public KURLRequester
@@ -247,6 +272,9 @@ protected:
 
   void            setFont();
 };
+
+// KONFIGURATOR_NAME_VALUE_PAIR structure
+///////////////////////////////
 
 struct KONFIGURATOR_NAME_VALUE_PAIR
 {
