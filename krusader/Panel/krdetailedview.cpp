@@ -1034,8 +1034,8 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
       if ( item == startItem )
          return ;
       if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) ) {
-         makeItemVisible( item );
          setCurrentItem( item->name() );
+			makeItemVisible( item );
          return ;
       }
    }
