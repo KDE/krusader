@@ -1,5 +1,5 @@
     ADDED: Heiner's patch for 'logical selection mode' is applied and used as default. TEST IT
-    ADDED: application dependency setting in konfigurator (now only for root mode krusader)
+    ADDED: application dependency setting in konfigurator (packers are missing)
     ADDED: Csaba's new konfigurator is here, boys and girls!
     ADDED: heiner's quicksearch patch
     ADDED: calculate occupied space prints the directory's size (wincmd-style) - thanks heiner!
@@ -12,6 +12,7 @@
     ADDED: directory synchronizer
     ADDED: file splitter
     ADDED: a missing credit for Frank in the about box
+    FIXED: krusader freezes if the `df` process does not terminate (at network errors, IO wait)
     FIXED: krusaderui.rc bug, new menuitems does not appear after a krusader update
     FIXED: sort by EXT did not obey the 'case sensative sort' flag
     FIXED: 2 items on the view menu had the same shortcuts
