@@ -823,7 +823,6 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   cbSymlinks->setEnabled( cbSubdirs->isChecked() );
   cbByContent       = new QCheckBox( i18n( "Compare by content" ), optionGrid, "cbByContent" );
   cbByContent->setChecked( krConfig->readBoolEntry( "Compare By Content", _CompareByContent  ) );
-  cbByContent->setEnabled( false ); /* TODO TODO TODO TODO TODO */
   cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGrid, "cbIgnoreDate" );
   cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", _IgnoreDate  ) );
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
@@ -1088,7 +1087,7 @@ void SynchronizerGUI::compare()
   disableMarkButtons();
   synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(), fileFilter->currentText(),
                        cbSubdirs->isChecked(), cbSymlinks->isChecked(), cbIgnoreDate->isChecked(),
-                       cbAsymmetric->isChecked() );
+                       cbAsymmetric->isChecked(), cbByContent->isChecked() );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnCompareDirs->setEnabled( true );

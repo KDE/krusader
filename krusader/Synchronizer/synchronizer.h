@@ -34,6 +34,7 @@
 #include "../VFS/vfs.h"
 #include <qobject.h>
 #include <qptrvector.h>
+#include <qprogressdialog.h>
 
 typedef enum 
 {
@@ -106,7 +107,7 @@ class Synchronizer : public QObject
   public:
     Synchronizer();
     void    compare( QString leftURL, QString rightURL, QString filter, bool subDirs, bool symLinks,
-                     bool igDate, bool asymm );
+                     bool igDate, bool asymm, bool cmpByCnt );
     void    stop() {stopped = true;}
     void    setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing, bool del );
     void    refresh();
@@ -127,6 +128,10 @@ class Synchronizer : public QObject
   public slots:
     void    slotTaskFinished(KIO::Job*);
     void    slotProcessedSize( KIO::Job * , KIO::filesize_t );
+    void    slotDataReceived(KIO::Job *job, const QByteArray &data);
+    void    slotFinished(KIO::Job *job);
+    void    putWaitWindow();
+    void    comparePercent(KIO::Job *, unsigned long);
     
   private:
     vfs *   getDirectory( QString urlIn );
@@ -150,12 +155,15 @@ class Synchronizer : public QObject
     void    markParentDirectories( SynchronizerFileItem * );
     void    executeTask();
     KURL    fromPathOrURL( QString url );
-
+    bool    compareByContent( QString, QString );
+    void    abortContentComparing();
+    
   protected:
     bool                              recurseSubDirs; // walk through subdirectories also
     bool                              followSymLinks; // follow the symbolic links
     bool                              ignoreDate;     // don't use date info at comparing
     bool                              asymmetric;     // asymmetric directory update
+    bool                              cmpByContent;   // compare the files by content
     QPtrList<SynchronizerFileItem>    resultList;     // the found files
     QString                           leftBaseDir;    // the left-side base directory
     QString                           rightBaseDir;   // the right-side base directory
@@ -192,6 +200,14 @@ class Synchronizer : public QObject
   private:
     KURL                              leftURL;        // the currently processed URL (left)
     KURL                              rightURL;       // the currently processed URL (right)
+
+    bool                              compareFinished;// flag indicates, that comparation is finished
+    bool                              compareResult;  // the result of the comparation
+    bool                              errorPrinted;   // flag indicates error
+    QProgressDialog                  *waitWindow;     // the wait window
+    KIO::TransferJob                 *leftReadJob;    // compare left read job
+    KIO::TransferJob                 *rightReadJob;   // compare right read job
+    QByteArray                        compareArray;   // the array for comparing
 };
 
 #endif /* __SYNCHRONIZER_H__ */

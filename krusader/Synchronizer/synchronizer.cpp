@@ -32,6 +32,7 @@
 #include "../VFS/ftp_vfs.h"
 #include "../VFS/normal_vfs.h"
 #include "../VFS/vfile.h"
+#include "../krusader.h"
 #include <kurl.h>
 #include <kmessagebox.h>
 #include <klocale.h>
@@ -53,7 +54,7 @@ Synchronizer::Synchronizer() : displayUpdateCount( 0 ), markEquals( true ), mark
 }
 
 void Synchronizer::compare( QString leftURL, QString rightURL, QString filter, bool subDirs,
-                            bool symLinks, bool igDate, bool asymm )
+                            bool symLinks, bool igDate, bool asymm, bool cmpByCnt )
 {
   resultList.clear();
 
@@ -61,6 +62,7 @@ void Synchronizer::compare( QString leftURL, QString rightURL, QString filter, b
   followSymLinks = symLinks;
   ignoreDate     = igDate;
   asymmetric     = asymm;
+  cmpByContent   = cmpByCnt;
   fileFilter     = filter;
   stopped = false;
 
@@ -207,7 +209,7 @@ vfs * Synchronizer::getDirectory( QString url )
     while( ((ftp_vfs *)v)->isBusy() )
     {
       qApp->processEvents();
-      usleep( 100 );
+      usleep( 10000 );
     }
   }
 
@@ -274,10 +276,17 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
 {
   TaskType        task;
 
-  if( isDir || ( leftSize == rightSize && (ignoreDate || leftDate == rightDate) ) )
-    task = TT_EQUALS;
-  else
+  do
   {
+    if( isDir || leftSize == rightSize && (ignoreDate || leftDate == rightDate) )
+    {
+      if( isDir || !cmpByContent || compareByContent(file_name, dir) )
+        task = TT_EQUALS;
+      else
+        task = asymmetric ? TT_COPY_TO_LEFT : TT_DIFFERS;
+      break;
+    }
+
     if( asymmetric )
       task = TT_COPY_TO_LEFT;
     else if( ignoreDate )
@@ -287,9 +296,10 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
     else if( leftDate < rightDate )
       task = TT_COPY_TO_LEFT;
     else
-      task = TT_DIFFERS;  /* TODO TODO TODO TODO */
-  }
+      task = TT_DIFFERS;
 
+  }while( false );
+  
   return addItem( parent, file_name, dir, true, true, leftSize, rightSize, leftDate, rightDate, task, isDir );
 }
 
@@ -742,4 +752,151 @@ KURL Synchronizer::fromPathOrURL( QString origin )
   }
 
   return url;
+}
+
+bool Synchronizer::compareByContent( QString file_name, QString dir )
+{
+  if( !dir.isEmpty() )
+    dir += "/";
+
+  leftURL   = fromPathOrURL( leftBaseDir + dir + file_name );
+  rightURL  = fromPathOrURL( rightBaseDir + dir + file_name );
+
+  leftReadJob = KIO::get( leftURL, false, false );
+  rightReadJob = KIO::get( rightURL, false, false );
+
+  connect(leftReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
+            this, SLOT(slotDataReceived(KIO::Job *, const QByteArray &)));
+  connect(rightReadJob, SIGNAL(data(KIO::Job *, const QByteArray &)),
+            this, SLOT(slotDataReceived(KIO::Job *, const QByteArray &)));
+  connect(leftReadJob, SIGNAL(result(KIO::Job*)),
+            this, SLOT(slotFinished(KIO::Job *)));
+  connect(rightReadJob, SIGNAL(result(KIO::Job*)),
+            this, SLOT(slotFinished(KIO::Job *)));
+
+  compareArray = QByteArray();
+  compareFinished = errorPrinted = false;
+  compareResult = true;
+  waitWindow = 0;
+
+  rightReadJob->suspend();
+
+  QTimer *timer = new QTimer( this );
+  connect( timer, SIGNAL(timeout()), SLOT(putWaitWindow()) );
+  timer->start( 1500, true );
+   
+  while( !compareFinished )
+    qApp->processEvents();
+
+  timer->stop();
+  delete timer;
+
+  if( waitWindow )
+    delete waitWindow;
+                                                    
+  return compareResult;
+}
+
+void Synchronizer::slotDataReceived(KIO::Job *job, const QByteArray &data)
+{
+  int bufferLen = compareArray.size();
+  int dataLen   = data.size();
+
+  do
+  {
+    if( bufferLen == 0 )
+    {
+      compareArray.duplicate( data.data(), dataLen );
+      break;
+    }
+
+    int minSize   = ( dataLen < bufferLen ) ? dataLen : bufferLen;
+
+    for( int i = 0; i != minSize; i++ )
+      if( data[i] != compareArray[i] )
+      {
+        abortContentComparing();
+        return;
+      }
+
+    if( minSize == bufferLen )
+    {
+      compareArray.duplicate( data.data() + bufferLen, dataLen - bufferLen );
+      if( dataLen == bufferLen )
+        return;
+      break;
+    }
+    else
+    {
+      compareArray.duplicate( compareArray.data() + dataLen, bufferLen - dataLen );
+      return;
+    }
+
+  }while ( false );
+
+  KIO::TransferJob *otherJob = ( job == leftReadJob ) ? rightReadJob : leftReadJob;
+  
+  if( otherJob == 0 )
+    abortContentComparing();
+  else
+  {    
+    ((KIO::TransferJob *)job)->suspend();
+    otherJob->resume();
+  }
+}
+
+void Synchronizer::slotFinished(KIO::Job *job)
+{
+  KIO::TransferJob *otherJob = ( job == leftReadJob ) ? rightReadJob : leftReadJob;
+  
+  if( job == leftReadJob )
+    leftReadJob = 0;
+  else
+    rightReadJob = 0;
+
+  if( otherJob )
+    otherJob->resume();
+
+  if( job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted )
+  {
+    errorPrinted = true;
+    KMessageBox::error(0, i18n("IO error at comparing file %1 with %2!")
+                       .arg( leftURL.path() ).arg( rightURL.path() ) );
+    abortContentComparing();
+  }
+  
+  if( leftReadJob == 0 && rightReadJob == 0 )
+  {
+    if( compareArray.size() )
+      compareResult = false;
+    compareFinished = true;
+  }
+}
+
+void Synchronizer::abortContentComparing()
+{
+  if( leftReadJob )
+    leftReadJob->kill( false );
+  if( rightReadJob )
+    rightReadJob->kill( false );
+
+  compareResult = false;
+}
+
+void Synchronizer::putWaitWindow()
+{
+  waitWindow = new QProgressDialog( 0, "SynchronizerWait", true );
+  waitWindow->setLabelText( i18n( "Comparing file %1..." ).arg( leftURL.fileName() ) );
+  waitWindow->setTotalSteps( 100 );
+  waitWindow->setAutoClose( false );
+  waitWindow->show();
+
+  if( leftReadJob )
+    connect(leftReadJob, SIGNAL(percent (KIO::Job *, unsigned long)),
+            this, SLOT(comparePercent(KIO::Job *, unsigned long)));  
+}
+
+void Synchronizer::comparePercent(KIO::Job *, unsigned long percent)
+{
+  waitWindow->setProgress( percent );
 }
