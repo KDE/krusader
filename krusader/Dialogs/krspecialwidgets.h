@@ -38,21 +38,22 @@ A
 #include <qlist.h>
 #include <klineedit.h>
 #include <qevent.h>
+#include <kio/global.h>
 
 class KRPieSlice;
 
 class KRPie : public QWidget {
     Q_OBJECT
   public:
-    KRPie( long _totalSize, QWidget *parent = 0 );
-    void addSlice( long size, QString label );
+    KRPie( KIO::filesize_t _totalSize, QWidget *parent = 0 );
+    void addSlice( KIO::filesize_t size, QString label );
 
   protected:
     void paintEvent( QPaintEvent * );
 
   private:
     QList<KRPieSlice> slices;
-    long totalSize, sizeLeft;
+    KIO::filesize_t totalSize, sizeLeft;
     static QColor colors[ 12 ];
 };
 
@@ -61,13 +62,13 @@ class KRFSDisplay : public QWidget {
   public:
     // this constructor is used for a mounted filesystem
     KRFSDisplay( QWidget *parent, QString _alias, QString _realName,
-                 long _total, long _free );
+                 KIO::filesize_t _total, KIO::filesize_t _free );
     // this one is for an unmounted/supermount file system
     KRFSDisplay( QWidget *parent, QString _alias, QString _realName, bool sm = false );
     // the last one is used inside MountMan(R), when no filesystem is selected
     KRFSDisplay( QWidget *parent );
-    inline void setTotalSpace( long t ) { totalSpace = t; }
-    inline void setFreeSpace( long t ) { freeSpace = t; }
+    inline void setTotalSpace( KIO::filesize_t t ) { totalSpace = t; }
+    inline void setFreeSpace( KIO::filesize_t t ) { freeSpace = t; }
     inline void setAlias( QString a ) { alias = a; }
     inline void setRealName( QString r ) { realName = r; }
     inline void setMounted( bool m ) { mounted = m; }
@@ -78,7 +79,7 @@ class KRFSDisplay : public QWidget {
     void paintEvent( QPaintEvent * );
 
   private:
-    long totalSpace, freeSpace;
+    KIO::filesize_t totalSpace, freeSpace;
     QString alias, realName;
     bool mounted, empty, supermount;
 };
