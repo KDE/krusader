@@ -161,6 +161,7 @@ public:
 
 private:
    bool &_left;
+	QValueList<int> popupSizes;
 };
 
 #endif

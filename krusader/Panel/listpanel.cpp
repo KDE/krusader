@@ -226,16 +226,9 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    // make sure that a focus/path change reflects in the command line and activePanel
    connect( this, SIGNAL( cmdLineUpdate( QString ) ), SLOTS, SLOT( slotCurrentChanged( QString ) ) );
    connect( this, SIGNAL( activePanelChanged( ListPanel * ) ), SLOTS, SLOT( slotSetActivePanel( ListPanel * ) ) );
-
+	
 	// add a popup
 	popup = new PanelPopup(splt);
-#if 0	
-	// set initial size to be 1/3 of the panel's height
-	QValueList<int> sizes;
-	sizes.append(height()/2); sizes.append(height()/2);
-	kdWarning()<<sizes[0]<<"--"<<sizes[1]<<"--"<<this->height()<<endl;
-	splt->setSizes(sizes); 
-#endif	
 	connect(popup, SIGNAL(selection(const KURL&)), SLOTS, SLOT(refresh(const KURL&)));
 	connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
 	popup->hide();
@@ -271,11 +264,20 @@ ListPanel::~ListPanel() {
 
 void ListPanel::togglePanelPopup() {
 	if (popup->isHidden()) {
+		// ugly hack. resize the splitter since it won't do so itself
+		if (popupSizes.count() > 0)
+			dynamic_cast<QSplitter*>(popup->parent())->setSizes(popupSizes);
 		popup->show();
 		popupBtn->setPixmap(krLoader->loadIcon("down", KIcon::Panel));
 	} else {
+		popupSizes.clear();
+		popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
 		popup->hide();
 		popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Panel));
+		// ugly hack. resize the splitter since it won't do so itself
+		QValueList<int> lst;
+		lst << height() << 0;
+		dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
 	}
 }
 
