@@ -1,3 +1,5 @@
+#ifndef KR_SELECTION_MODE_H
+#define KR_SELECTION_MODE_H
 
 /**
 	Every selection mode inherits this class, and has to implement init().
@@ -76,3 +78,5 @@ public:
 		_showContextMenu = 500;
 	}
 };
+
+#endif // KR_SELECTION_MODE_H
