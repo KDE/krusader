@@ -49,6 +49,7 @@ A
 #include <kio/netaccess.h>
 #include <kstandarddirs.h>
 #include <ktempdir.h>
+#include <konq_drag.h>
 // Krusader Includes
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
@@ -69,7 +70,6 @@ A
 #include "../resources.h"
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
-#include "krdrag.h"
 
 
 //////////////////////////////////////////////////////////
@@ -965,7 +965,7 @@ void ListPanelFunc::copyToClipboard( bool move )
   KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
   if (fileUrls)
   {
-    KRDrag *urlData = KRDrag::newDrag( *fileUrls, move, krApp->mainView, "krusader");
+    KonqDrag *urlData = KonqDrag::newDrag( *fileUrls, move, krApp->mainView, "krusader");
     QApplication::clipboard()->setData( urlData );
     delete fileUrls;
   }
@@ -979,7 +979,7 @@ void ListPanelFunc::pasteFromClipboard()
    if (QUriDrag::canDecode(data))
    {
       QUriDrag::decodeToUnicodeUris(data, fileNames);
-      bool cutSelection = KRDrag::decodeIsCutSelection(data);
+      bool cutSelection = KonqDrag::decodeIsCutSelection(data);
    
       KURL::List* fileUrls = new KURL::List();
       for(QStringList::Iterator name = fileNames.begin(); name != fileNames.end(); ++name){
