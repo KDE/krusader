@@ -126,7 +126,7 @@ void KrViewer::keyPressEvent(QKeyEvent *e) {
 }
 
 void KrViewer::view(KURL url){
-  QString mimetype = KMimeType::findByURL( url )->name();
+  //QString mimetype = KMimeType::findByURL( url )->name();
   KrViewer* viewer = new KrViewer(krApp);
 
   viewer->url = url;
@@ -245,13 +245,12 @@ void KrViewer::viewHex(){
 			memset(buf,0,16);
 			int bufSize = ((fileSize-address) > 16)? 16 : (fileSize-address);
       in.readRawBytes(buf,bufSize);
-			fprintf(out,"0x%8.8lx: ",address);
+			fprintf(out,"0x%8.8llx: ",address);
 			for(int i=0; i<4; ++i){
 				if(i<(bufSize/4)) fprintf(out,"%8.8x ",pBuff[i]);
 				else fprintf(out,"         ");
 			}
 			fprintf(out,"| ");
-      /*fprintf(out,"0x%8.8lx: %8.8x %8.8x %8.8x %8.8x | ",address,pBuff[0],pBuff[1],pBuff[2],pBuff[3]); */
 
       for(int i=0; i<bufSize; ++i){
         if(buf[i]>' ' && buf[i]<'~' ) fputc(buf[i],out);
