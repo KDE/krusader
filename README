@@ -1,13 +1,26 @@
-Krusader 1.25-beta1
-===================
+Krusader 1.29-beta
+==================
+We're glad to release 1.29-beta. Hopefully, the last beta before
+releasing stable 1.30. This release introduces a lot of bugfixes,
+but some new (and may we say exciting ?) features:
 
-Welcome.
-The focus of this release in the new bookmark manager (thanks to Jan Halasa).
-The new system offers support for local AND remote bookmarks, so bookman and
-remoteman are now obsolete. Please test it, and let us know.
+* Tabbed-Browsing: first filemananger to implement tabbed-browsing in twin-panel model.
+  Check out right-click --> open in a new tab ;-)
+* ROOT-mode: press ALT-K (or Commands->Root-mode krusader) to start krusader in root-mode at the same location
+* Shift-F4 edits a new file (total-commander style)
+* Shift-F3 views a url on demand - try man:/printf
+* CTRL-Enter / CTRL-shift-Enter sends files to command line (again, TC-style)
+* Highly request panel swapping (ctrl-u)
+* Improved command line (check ChangeLog for details)
+* Multiple files sharing a mimetype can be "open"ed together via right-click menu
+* Calculate-occupied-space can now be cancelled
+* Pressing SPACE over folders calculates their size (TC-style)
+* Last but certainly not least, improvements to archive handling, including KIO-rar support
+* Many bugfixes... read ChangeLog
 
-Also, as usual some bugfixes, a new Hungarian translation and two updated ones.
-For more information, please check the changelog.
+This version effects a feature-freeze until the stable, only bugs will be fixed. This means
+that translators can use the time to update their translations, for the comming stable.
+
 
 Notice: if you've got bugs to report, please do it using krusader's website, and
         not using KDE's bugzilla (bugs.kde.org).
