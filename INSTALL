@@ -163,7 +163,7 @@ Please read the FAQ if you don't know how to send a help request (FAQ number 9).
    http://krusader.sourceforge.net/cvs.php
 
 
-7. Now you are ready to run the ./configure script.
+8. Now you are ready to run the ./configure script.
 
    $ ./configure
 
@@ -248,12 +248,12 @@ Please read the FAQ if you don't know how to send a help request (FAQ number 9).
     will have to update the krusaderui.rc file.
     Please read the FAQ for more info.
 
-12.
-Now you can start Krusader.
-Type "krusader" at a command prompt.
-$ krusader
-You can create shortcut on your desktop or create an entry in the KDE menu.
-Read the FAQ if Krusader doesn't start.
+
+12. Now you can start Krusader.
+    Type "krusader" at a command prompt.
+    $ krusader
+    You can create shortcut on your desktop or create an entry in the KDE menu.
+    Read the FAQ if Krusader doesn't start.
 
 
 13. Optional step: if you want you can clean up to save some diskspace.
@@ -262,15 +262,17 @@ Read the FAQ if Krusader doesn't start.
 
     $ make clean
 
+
 14. If you ever want to uninstall Krusader, just use
 
     $ su -c 'make uninstall'
 
     You will be asked to enter your root password.
 
-    If you encounter problems with installing Krusader please read first the
-    FAQ. If this installation procedure and the FAQ does not solve the
-    problem, feel free to ask for help with an help request (FAQ number 9).
+
+If you encounter problems with installing Krusader please read first the FAQ.
+If this installation procedure and the FAQ does not solve the problem,
+feel free to ask for help with an help request (FAQ number 9).
 
 
 
@@ -302,7 +304,7 @@ or foo-dev-*.deb for Debian based distributions. They most likely come with
 your distribution.
 
 Tip
-If you can't find the needed package, use the rpmfind.net and click
+If you can't find the needed package, use the www.rpmfind.net and click
 'missing lib or header' in the search line. Or use apt-cache search foo to
 find the corresponding package for Debian based distributions.
 
@@ -333,7 +335,7 @@ $ export  PATH=$PATH:/usr/local/bin
 I have downloaded the Source RPM krusader-x.xx.dist.src.rpm  What now?
 
 
-Set the right permissions to /usr/src/RPM/ and all recursive directories
+Change the ownership and the permissions on /usr/src/RPM/ and all recursive directories
 so that your normal user can read-write-execute in these directories.
 
 To produce the binary RPM for your computer, do this:
@@ -358,18 +360,28 @@ TIP For more information about RPM, take a look at the Maximum RPM Book
     are obsolete/changed/improved now.
 
 4.
-I'm trying to install binary foo (RPM or DEB package), but it fails.
-What's wrong?
+I'm trying to install binary foo (RPM or DEB package), but it fails. What's wrong?
 
 Since we only provide (and use) the source, we don't know.
-Try to find another binary at Linux software archives such as freshmeat.net or
-KDE-APPS.org. If you can't find a RPM package for your Linux distribution,
-we recommend searching for it with rpmfind.net or rpmpbone.net
-Or better, please read next question.
+Please test the binary RPM before installing:
+$ rpm -i --test </path/to/rpmfile> krusader-x.xx.dist.rpm
+If the prompt returns without any message, than everything is ok.</para>
 
+If it is not ok, try to find another package at Linux software archives such as
+www.freshmeat.net or www.kde-apps.org. If you still can't find a package for your
+Linux distribution, we recommend searching for it with www.rpmfind.net or rpm.pbone.net.
+
+In general, a package for an older version of your distrubution or even for an
+other distribution might work on your computer, but it is always the best that
+it matches your distribution.
+If you can't find a package that matches your distribution version, architecture or
+distribution, than use a source RPM. Because when you use a source RPM, the Krusader
+sources will be build on your computer, it will build a suitable binary RPM for your
+distribution and architecture. Please read the previous question, it explains howto
+install a source RPM. The best solution is explained in the next question.
 
 5.
-I can't find a RPM package for Krusader, What now?
+I can't find a RPM or DEB package for Krusader, What now?
 
 Compile Krusader from source :)
 Even when you think that you have no skills, you will probably succeed in
@@ -465,9 +477,12 @@ How can i build a RPM package for Krusader?
 If you have experiance with compiling from source, you will probably be able to
 build a Krusader RPM too. Follow the next steps to build a RPM.
 
+WARNING Never, ever build RPMs when logged in as root. Mistakes in buildings packages
+        (e.g. a bad krusader.specfile) can serious damage your system when logged in as root.
+
 Compile Krusader from source to check that the compilation works fine.
 
-Set the right permissions to /usr/src/RPM/ and all recursive directories
+Change the ownership and the permissions on /usr/src/RPM/ and all recursive directories
 so that your normal user can read-write-execute in these directories.
 
 copy kusader1.xx.tar.gz to /usr/scr/RPM/SOURCE copy kusader.spec to
@@ -478,8 +493,8 @@ Edit kusader.spec and add your name, your e-mail adress, the rpm name, ...
 (please read the comments in kusader.spec.
 Maybe other changes are needed if rpmbuild fails.
 
-Build the binary an source RPM:
-/usr/scr/RPM/SPECS$ rpmbuild -ba krusader.spec
+Build the binary and the source RPM with:
+$ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
 If everything went ok you will have a binaryRPM in /usr/src/RPM/RPMS/i586
 (depending on your architecture) and a sourceRPM in /usr/src/RPM/SRPMS/
 e.g. krusader-1.40-beta1.suse90.i586.rpm and krusader-1.40-beta1.suse90.src.rpm

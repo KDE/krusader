@@ -34,7 +34,7 @@
      <listitem><para><link linkend="faq_general">General &FAQ;</link>
                      (bug reports, forum, mailing list, ...)</para></listitem>
   </itemizedlist>
-  If you have the feeling that a &FAQ; question is missing or if something is not clear to you,
+  If you have the feeling that a &FAQ; is missing or if something is not clear to you,
   please <link linkend="editors_note">let us know</link>.
 </para>
 
@@ -109,9 +109,9 @@
   </question>
   <answer>
    <para><orderedlist>
-         <listitem><para>Set the right permissions to
-                    <filename class="directory">/usr/src/RPM/</filename> and all recursive directories
-                    so that your normal user can read-write-execute in these directories.
+         <listitem><para>Check the ownership and the permissions on
+                    <filename class="directory">/usr/src/RPM/</filename> and all recursive directories,
+                    that your normal user can read-write-execute in these directories.
          </para></listitem>
          <listitem><para>To produce the binary RPM for your computer, do this:
             <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>--rebuild</option> <replaceable>&lt;/path/to/rpmfile/&gt; krusader-x.xx.dist.src.rpm</replaceable></userinput></screen>
@@ -122,7 +122,7 @@
          </para></listitem>
          <listitem><para>Test the binary RPM before installing:
             <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>-i --test</option>  <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></userinput></screen>
-            If the prompt returns without a message, than everything is ok.
+            If the prompt returns without any message, than everything is ok.
          </para></listitem>
 	 <listitem><para>Install the binary RPM as usual, for example:
             <screen><prompt>$</prompt> <userinput><command>su -c 'rpm</command> <option>-Uvh</option>  <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable>'</userinput></screen>
@@ -131,6 +131,7 @@
          <listitem><para>Now you can <link linkend="starting-krusader">start</link> &krusader;.
          </para></listitem>
     </orderedlist></para>
+    <para> </para> <!-- Empty line to make it more readable -->
         <tip><para>For more information about RPM, take a look at the &maxrpm_url;.
                    This book is verry good but it dates from the year 2000, so some issues are
 		   obsolete/changed/improved now. If you now a better (or updated) RPM book on the internet please
@@ -146,9 +147,21 @@
    </question>
    <answer>
    <para>Since we only provide (and use) the source, we don't know.
-   Try to find another binary at &Linux; software archives such as &freshmeat_url; or &kde_apps_url;.
-   If you can't find a RPM package for your &Linux; distribution, we recommend searching for it with
-   &rpmfind_url; or &rpmpbone_url;. Or better, please read next question.
+   Please test the binary RPM before installing:
+   <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>-i --test</option>  <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></userinput></screen>
+   If the prompt returns without any message, than everything is ok.</para>
+   <para>If it is not ok, try to find another package at &Linux; software archives such as &freshmeat_url;
+   or &kde_apps_url;. If you still can't find a package for your &Linux; distribution, we recommend searching for it with
+   &rpmfind_url; or &rpmpbone_url;.</para>
+   <para>In general, a package for an older version of your distrubution or even for an
+   other distribution might work on your computer, but it is always the best that
+   it matches your distribution.
+   If you can't find a package that matches your distribution version, architecture or distribution,
+   than use a source RPM.
+   Because when you use a source RPM, the Krusader sources will be build on your computer,
+   it will build a suitable binary RPM for your distribution and architecture.
+   Please read the previous question, it explains howto install a source RPM.
+   The best solution is explained in the next question.
    </para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -156,7 +169,7 @@
 
 <qandaentry>
    <question id="rpm_notfound">
-   <para>I can't find a RPM package for &krusader;, What now?</para>
+   <para>I can't find a RPM or DEB package for &krusader;, What now?</para>
    </question>
    <answer>
    <para>Compile &krusader; from source :)
@@ -279,17 +292,19 @@
    <para>If you have experiance with compiling from source, you will probably be able to build a &krusader; RPM too.
    Follow the next steps to build an RPM.
    </para>
+   <warning><para>Never, ever build RPMs when logged in as root. Mistakes in buildings packages (&eg; a bad
+   <filename>krusader.spec</filename> file) can serious damage your system when logged in as root.</para></warning>
    <para><orderedlist>
          <listitem><para>Compile &krusader; from source to check that the compilation works fine.
          </para></listitem>
-	 <listitem><para>Set the right permissions to
-                    <filename class="directory">/usr/src/RPM/</filename> and all recursive directories
-                    so that your normal user can read-write-execute in these directories.
+	 <listitem><para>Check the ownership and the permissions on
+                    <filename class="directory">/usr/src/RPM/</filename> and all recursive directories,
+                    that your normal user can read-write-execute in these directories.
          </para></listitem>
-         <listitem><para>copy <filename>kusader1.xx.tar.gz</filename> to
+         <listitem><para>Copy <filename>kusader1.xx.tar.gz</filename> to
 	 <filename class="directory">/usr/scr/RPM/SOURCE</filename>
          </para></listitem>
-         <listitem><para>copy <filename>kusader.spec</filename> to
+         <listitem><para>Copy <filename>kusader.spec</filename> to
 	 <filename class="directory">/usr/scr/RPM/SPECS</filename>
 	 Tip: the latest <filename>kusader.spec</filename> can be found in CVS.
          </para></listitem>
@@ -297,8 +312,8 @@
          the rpm name, ... (please read the comments in <filename>kusader.spec</filename>).
          Maybe other changes are needed if <command>rpmbuild</command> fails.
          </para></listitem>
-	 <listitem><para>Build the binary an source RPM:
-            <screen><prompt>/usr/scr/RPM/SPECS $</prompt> <userinput><command>rpmbuild</command> <option>-ba</option>  <replaceable>krusader.spec</replaceable></userinput></screen>
+	 <listitem><para>Build the binary and the source RPM with:
+            <screen><prompt>$</prompt> <userinput><command>rpmbuild</command> <option>-ba</option>  <replaceable>/usr/scr/RPM/SPECS/krusader.spec</replaceable></userinput></screen>
 	  If everything went ok you will have a binaryRPM in
           <filename class="directory">/usr/src/RPM/RPMS/i586</filename>  (depending on your architecture)
           and a sourceRPM in <filename class="directory">/usr/src/RPM/SRPMS/</filename>
@@ -534,7 +549,7 @@
   </answer>
   </qandaentry>
 
-  <qandaentry>
+<qandaentry>
   <question id="faqq_kru_forum">
   <para>How does the &krusader; forum work?</para>
   </question>
@@ -557,7 +572,7 @@
          Some issues are asked over and over again, for this issues whe have the made the &faq_lnk;. ;-)
          This also allows us also to spend more time in developing &krusader;.</para>
 
-  <para>The &kruforum_url; is split up in three major sections:
+<para>The &kruforum_url; is split up in three major sections:
   <itemizedlist>
      <listitem><para>&bugforum_url;: discussions about bugs, please DO NOT use the forum for &faqbugreports_lnk;
                          (except if you are unsure if you have found a bug).</para></listitem>
@@ -569,8 +584,21 @@
   </para>
   <para>Thanks for your cooperation!</para>
   <para> </para> <!-- Empty line to make it more readable -->
+</answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqq_i18n">
+  <para>How can i translate &krusader; to my native language?</para>
+  </question>
+  <answer>
+  <para>Please read the &i18nhowto_url;. It's not difficult to translate! Everyone can do it, it just takes some time.
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
   </answer>
-  </qandaentry>
+</qandaentry>
+
+
 
 </qandaset>
 </sect1>

@@ -1181,10 +1181,17 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <entry><para>Jumps to the Home directory</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>Left</keycap></keycombo> or <keycombo><keycap>Right arrow</keycap></keycombo></para></entry>
-<entry><para>On a file: the unactive panel gets the same path as the active
-	<link linkend="panels">panel</link></para>
-        <para>On a directory: refreshes the unactive panel with the contents of the directory</para></entry>
-	</row>
+<entry><para>Focus a file or directory on the left panel, press <keycombo action="simul">&Ctrl;<keycap>Left arrow</keycap></keycombo>
+       and the right <link linkend="panels">panel</link> changes:
+      <itemizedlist>
+      <listitem><para>on a file: the right panel gets the same path as the left
+	              <link linkend="panels">panel</link></para></listitem>
+      <listitem><para>on a directory: refreshes the right panel with the contents of the
+                      directory</para></listitem>
+      </itemizedlist>
+      For the right panel: press <keycombo action="simul">&Ctrl;<keycap>Right arrow</keycap></keycombo> and
+      the left panel will change.</para>
+</entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>b</keycap></keycombo></para></entry>
 <entry><para><link linkend="combine">Combine files</link></para></entry></row>

@@ -59,27 +59,28 @@
 <title>Development version (beta release)</title>
 <para><filename>krusader-x.xx-betax.tar.gz</filename></para>
 <para>
-  The most updated development version can be found on the &krudownload_url;.
+  The latest development version can be found on the &krudownload_url;.
   It contains the source tarballs and sometimes even RPM packages to whatever distro we are currently
-  using.</para>
+  using. Before every stable release we release at least one development version, so that we can hunt down
+  the bugs.</para>
 
 <warning><para>This releases are beta releases and will probably contain some bugs.</para></warning>
 
-<para>This version has 2 goals:
+<para>This version has 3 goals:
   <itemizedlist>
 	<listitem>
-	   <para>Provide the latest new features to &krusader; users, but these new features might lead to
-	   some unfortunate bugs.</para>
+	   <para>Apply a feature-freeze until the stable is released, only bugs will be fixed.
+	         New features have to wait until the stable is released.</para>
 	</listitem>
 	<listitem>
 	   <para>Have feedback from &krusader; users so that we can fix the bugs.</para>
 	</listitem>
+	<listitem>
+	   <para>Give translators the time to update the translations, for the comming stable.
+	         Please read the &i18nhowto_url;</para>
+	</listitem>
   </itemizedlist>
 </para>
-
-<para>Before every stable release we release at least one development version, so that we can hunt down
-  the bugs. This is the ideal moment for updating the translations, so that the stable version is 100%
-  translated.</para>
 
 </sect2>
 
@@ -92,7 +93,7 @@
                They may contain bugfixes, new features or new bugs!</para></warning>
 
 <para>
-  We provide daily (sometimes weekly) builds of &krusader;'s CVS version.
+  We provide daily builds of &krusader;'s CVS version.
   For those who are interested. The <emphasis role="bold">nightly tarball</emphasis> can be found on the
   &krucutedge_url;.
   Depending on the development progress this version will either be stable or unstable. Just before a stable release, the CVS version
@@ -103,11 +104,11 @@
 <para>&krusader; provides 2 nightly builds (snapshots):
   <orderedlist numeration="arabic">
 	<listitem>
-	   <para><command>make -f Makefile.cvs</command> must be run before the <command>./configure</command>
+	   <para><filename>krusader-cvs-yyyy-mm-dd.tar.gz</filename>: <command>make -f Makefile.cvs</command> must be run before the <command>./configure</command>
 	    script is available</para>
 	</listitem>
 	<listitem>
-	   <para>for users who have problems with the <command>make -f Makefile.cvs</command> command,
+	   <para><filename>krusader-cvs2-yyyy-mm-dd.tar.gz</filename>: for users who have problems with the <command>make -f Makefile.cvs</command> command,
 	   we have already done this for you and the <command>./configure</command> script is included
 	   in the tarball (This tarball is a bit bigger then the first one).
            </para>
@@ -116,17 +117,17 @@
 </para>
 
 <para><emphasis role="bold">Checkout from CVS</emphasis>.
-  This projects SourceForge CVS repository can be checked out through anonymous (pserver) CVS with
-  the following instruction set. The module you wish to check out must be specified as the modulename.
+  &krusader; can be checked out through anonymous (pserver) CVS with the following instruction set.
+  The module you wish to check out must be specified as the modulename.
   When prompted for a password for anonymous, simply press the Enter key.</para>
   <para>Currently there are two module options:
   <itemizedlist>
   <listitem><para>krusader_kde2: the KDE2 branch, stable but it's basically v1.01 and there are no
                   planned changes</para></listitem>
-  <listitem><para>krusader_kde3: the KDE3 branch</para></listitem>
+  <listitem><para>krusader_kde3: the KDE3 branch, that we currently use</para></listitem>
   </itemizedlist></para>
 
-<para>To checkout the &krusader; KDE3 version from CVS:
+<para>To checkout &krusader; from CVS:
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login</option></userinput></screen>
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
   (note: updates from within the modules directory do not need the -d parameter)</para>
@@ -151,13 +152,14 @@
 
 <para><remark>For &kde; 2.x.x there is &krusader; v1.01, stable but there are no planned changes.</remark></para>
 
-<para>Note: all versions >=1.02 are &kde; 3.x.x only.</para>
+<para>Note: all &krusader; versions >=1.02 are &kde; 3.x.x only.</para>
 
 <para>A FreeBSD port of &krusader; is available.</para>
 
-<para>&krusader; uses about 16 megs of memory to run, but this may vary depending
-      on your platform and configuration.
-      In order to handle archives the archivers must be installed to your <envar>PATH</envar>.</para>
+<para>&krusader; uses about 3-4 MByte of memory to run 
+      (and about 15 Mbyte shared memory which is also used by more processes), 
+      but this may vary depending on your platform and configuration.
+      In order to handle archives the archivers must be configured <link linkend="konfig-dependencies">here</link>.</para>
 
 <para>A package of popular (un)packers, &krusader; itself and addons can be found on the &krudownload_url;.</para>
 
@@ -435,8 +437,7 @@ make[1]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD'
 <listitem>
  <para>If nothing went wrong, you can now install &krusader;.
 
-   <screen>
-    <prompt>$</prompt> <userinput><command>su -c 'make</command> <option>install'</option></userinput>
+   <screen><prompt>$</prompt> <userinput><command>su -c 'make</command> <option>install'</option></userinput>
    </screen> You will be asked to enter your root password.</para>
 
   <para> </para> <!-- Empty line to make it more readable -->
@@ -469,8 +470,7 @@ make[1]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD'
 
 <listitem>
   <para>If you ever want to uninstall &krusader;, just use
-  <screen>
-    <prompt>$</prompt> <userinput><command>su -c 'make</command> <option>uninstall'</option></userinput>
+  <screen><prompt>$</prompt> <userinput><command>su -c 'make</command> <option>uninstall'</option></userinput>
   </screen>
   You will be asked to enter your root password.</para>
 
@@ -511,6 +511,11 @@ foo</screen>
 
 <note><para>Don't worry about the messages you get in the &konsole;. These messages are log messages,
       they can be used for debugging &krusader;.</para></note>
+
+<para>If &krusader; is installed by an RPM (and if the packager dit use the <filename>krusader.spec</filename> file that
+      we provide), than &krusader; can be started at <emphasis role="bold"><menuchoice><guimenu>KDE menu</guimenu>
+      <guimenuitem>Applications</guimenuitem><guimenuitem>File tools</guimenuitem>
+      <guimenuitem>&krusader;</guimenuitem></menuchoice></emphasis>.</para>
 
 <para><option>--left</option>
      <replaceable>&lt;path&gt;</replaceable> start left panel at
@@ -561,10 +566,10 @@ foo</screen>
 <sect1 id="configuration">
 <title>Configurate &krusader;</title>
 
-<para> When your run &krusader; for the first time the &krusader; configuration module
-       <link linkend="konfigurator">Konfigurator</link> will show up and allow you to
-       configure &krusader; as well as detect installed packers and tools. You can always run
-       Konfigurator again from the &settingsmenu_lnk;.</para>
+<para>When your run &krusader; for the first time the &krusader; configuration module
+      <link linkend="konfigurator">Konfigurator</link> will show up and allow you to
+      configure &krusader; as well as detect installed packers and tools. You can always run
+      Konfigurator again from the &settingsmenu_lnk;.</para>
   
 </sect1>
 

@@ -329,10 +329,16 @@
   <para><keycombo action="simul">&Shift;<keycap>F3</keycap></keycombo> views a &URL; on demand, &eg;:
       <itemizedlist>
 	<listitem><para>
+	<userinput><command>man:/</command></userinput> views the manpages.
+        </para></listitem>
+	<listitem><para>
 	<userinput><command>man:/</command><replaceable>krusader</replaceable></userinput> views a manpage.
 	&eg; <ulink url="http://krusader.sourceforge.net/handbook/kru_manpage.html">&krusader;'s manpage</ulink>
 	"saved as" html page with the viewer.
 	            </para></listitem>
+	<listitem><para>
+	<userinput><command>info:/</command></userinput> views the infopages.
+        </para></listitem>
 	<listitem><para>
 	<userinput><command>http://</command><replaceable>krusader.sourceforce.net/</replaceable></userinput>
 	             views a webpage.
@@ -341,6 +347,18 @@
 	<userinput><command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</replaceable></userinput>
 	             views a ftp-server.
 	          </para></listitem>
+	<listitem><para>
+	<userinput><command>sftp://</command><replaceable>sftp.foo/</replaceable></userinput>
+	             views a secure ftp-server.
+	          </para></listitem>
+	<listitem><para>
+	<userinput><command>file:/</command><replaceable>home/frank</replaceable></userinput>
+	             views the homedirectory of Frank.
+	</para></listitem>
+	<listitem><para>
+	<userinput><replaceable>/home/frank/archive.tar.gz</replaceable></userinput>
+	             views a tar.gz archive.
+	</para></listitem>
       </itemizedlist>
   </para>
 
@@ -356,9 +374,10 @@
 	With <keycombo action="simul">&Ctrl;<keycap>E</keycap></keycombo> the viewer will
 	start &krusader;'s internal editor (which is basically the same application).
   </para>
-  
-  <para>btw. The embedded viewer is not written by us, it is supplied via &kde; (libs) and we 
-        cannot change it (read: we don't want to change it because it works fine).</para>
+
+  <note><para>The embedded viewer is not written by us, it is supplied via &kde; (libs) and &kioslave_url;
+        We cannot and don't want to change it, usings these libraries reduces the amount of written code.
+	So we don't have to reinvent the weel ;-)</para></note>
 </sect2>
 
 <sect2 id="kredit">
