@@ -74,13 +74,18 @@ panel( parent ), inRefresh( false ) {
   vfsStack.setAutoDelete( true );
   vfsStack.push( new normal_vfs( "/", panel ) );
   files() ->vfs_refresh();
+
+  // allow in-place renaming
+  connect(dynamic_cast<KListView*>(panel->view), SIGNAL(itemRenamed(QListViewItem *,const QString &,int)),
+          this, SLOT(rename(QListViewItem*, const QString &)));
+
 }
 
 void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
   panel->slotFocusOnMe();
 
   QString mytype = type, mypath = path;
-  
+
   // make sure local urls are handles ok
   if ( mypath.lower().startsWith( "file:" ) )
     mypath = mypath.mid( 5 );
@@ -379,22 +384,11 @@ void ListPanelFunc::moveFiles() {
   }
 }
 
-void ListPanelFunc::rename() {
-  QString fileName = panel->getCurrentName();
-  if ( fileName.isNull() )
-    return ;
-
-  bool ok = false;
-  QString newName =
-    KLineEditDlg::getText( i18n( "Rename " ) + fileName + i18n( " to:" ), fileName, &ok, krApp );
-
-  // if the user canceled - quit
-  if ( !ok || newName == fileName )
-    return ;
-
-  panel->view->setNameToMakeCurrent( newName );
+void ListPanelFunc::rename(QListViewItem *item, const QString &str) {
+  if (dynamic_cast<KrViewItem*>(item)->name() == str) return; // do nothing
+  panel->view->setNameToMakeCurrent( str );
   // as always - the vfs do the job
-  files() ->vfs_rename( fileName, newName );
+  files() ->vfs_rename( dynamic_cast<KrViewItem*>(item)->name(), str );
 }
 
 void ListPanelFunc::mkdir() {

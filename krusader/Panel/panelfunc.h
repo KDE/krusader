@@ -43,6 +43,7 @@ public slots:
 	void execute(QString&);
   void openUrl(const QString& path,const QString& type=QString::null );
 	void refresh(){ refresh(panel->virtualPath); } // re-read the files
+	void rename(QListViewItem *item, const QString &str);
 
 public:
 	ListPanelFunc(class ListPanel *parent);
@@ -61,7 +62,6 @@ public:
 	void view();
 	void mkdir();
 	void moveFiles();
-	void rename();
   void pack();
   void unpack();
   void testArchive();
