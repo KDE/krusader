@@ -177,9 +177,9 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 
   kgColorsLayout->addMultiCellWidget( hbox, 1 ,1, 0, 2 );
   
-  KPushButton *importBtn = new KPushButton(i18n("Import color-scheme"),parent);
+  importBtn = new KPushButton(i18n("Import color-scheme"),parent);
   kgColorsLayout->addWidget(importBtn,2,0);
-  KPushButton *exportBtn = new KPushButton(i18n("Export color-scheme"),parent);
+  exportBtn = new KPushButton(i18n("Export color-scheme"),parent);
   kgColorsLayout->addWidget(exportBtn,2,1);
   kgColorsLayout->addWidget(createSpacer(parent, ""), 2,2);
   connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportColors()));
@@ -239,6 +239,9 @@ void KgColors::slotDisable()
 {
   bool enabled = generals->find( "KDE Default" )->isChecked();
 
+  importBtn->setEnabled(!enabled);
+  exportBtn->setEnabled(!enabled);
+  
   for( int i = 0; labelList.at( i ); i++ )
     labelList.at( i )->setEnabled( !enabled );
 

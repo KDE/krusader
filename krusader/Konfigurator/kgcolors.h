@@ -85,6 +85,7 @@ private:
   QValueList<QString>                 itemNames;
 
   QListView                          *preview;
+  KPushButton *importBtn, *exportBtn;
 
   class PreviewItem : public QListViewItem
   {
