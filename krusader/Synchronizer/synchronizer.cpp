@@ -670,6 +670,25 @@ bool Synchronizer::totalSizes( int * leftCopyNr, KIO::filesize_t *leftCopySize, 
   return hasAnythingToDo;
 }
 
+void Synchronizer::swapSides()
+{
+  QString leftTmp = leftBaseDir;
+  leftBaseDir = rightBaseDir;
+  rightBaseDir = leftTmp;
+
+  KURL leftTmpURL = leftURL;
+  leftURL = rightURL;
+  rightURL = leftTmpURL;
+  
+  SynchronizerFileItem *item = resultList.first();
+
+  while( item )
+  {
+    item->swap( asymmetric );    
+    item = resultList.next();
+  }
+}
+
 void Synchronizer::synchronize( bool leftCopyEnabled, bool rightCopyEnabled, bool deleteEnabled,
                                 bool overWrite )
 {

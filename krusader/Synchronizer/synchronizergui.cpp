@@ -751,6 +751,254 @@ static const char * const folder_data[] = {
 "            0.a.                ",
 "                                "};
 
+static const char * const swap_sides_data[] = {
+"31 16 228 2",
+"  	c None",
+". 	c #03090E",
+"+ 	c #0C3652",
+"@ 	c #000000",
+"# 	c #030D03",
+"$ 	c #0F2731",
+"% 	c #163E50",
+"& 	c #0E3E5C",
+"* 	c #184F16",
+"= 	c #0C222B",
+"- 	c #2B5A6D",
+"; 	c #5A98B4",
+"> 	c #164867",
+", 	c #5DB45A",
+"' 	c #2E6C2A",
+") 	c #03161D",
+"! 	c #2F5F73",
+"~ 	c #9AC3D5",
+"{ 	c #8EBED3",
+"] 	c #1A4A68",
+"^ 	c #90D28D",
+"/ 	c #9CD59A",
+"( 	c #32732E",
+"_ 	c #0D2B38",
+": 	c #426D80",
+"< 	c #C3DAE5",
+"[ 	c #BCDCEA",
+"} 	c #90BDD0",
+"| 	c #144361",
+"1 	c #002745",
+"2 	c #00213F",
+"3 	c #001F3E",
+"4 	c #00203F",
+"5 	c #002643",
+"6 	c #92CF8F",
+"7 	c #BDE9BB",
+"8 	c #C4E5C3",
+"9 	c #447F41",
+"0 	c #091A21",
+"a 	c #457589",
+"b 	c #C2D8E2",
+"c 	c #D4ECF2",
+"d 	c #80CCDF",
+"e 	c #8ABFD3",
+"f 	c #0C7497",
+"g 	c #086E90",
+"h 	c #086C8E",
+"i 	c #086B8E",
+"j 	c #086D90",
+"k 	c #108F08",
+"l 	c #0F8E08",
+"m 	c #108E08",
+"n 	c #14970B",
+"o 	c #8DD289",
+"p 	c #87DF7F",
+"q 	c #D6F1D3",
+"r 	c #C3E1C1",
+"s 	c #488844",
+"t 	c #143341",
+"u 	c #56859A",
+"v 	c #DCEAF0",
+"w 	c #CCEAF2",
+"x 	c #5EC2D9",
+"y 	c #1BA7C8",
+"z 	c #66C4DA",
+"A 	c #B1DBEB",
+"B 	c #DBEEF6",
+"C 	c #EFF6FC",
+"D 	c #F7FAFE",
+"E 	c #F3F8FC",
+"F 	c #D0EAF4",
+"G 	c #6CBCD5",
+"H 	c #73D56C",
+"I 	c #D1F4D0",
+"J 	c #F3FCF3",
+"K 	c #F7FEF7",
+"L 	c #EFFCEF",
+"M 	c #DCF6DB",
+"N 	c #B4EAB0",
+"O 	c #70D965",
+"P 	c #2AC71B",
+"Q 	c #68D85D",
+"R 	c #CFF1CB",
+"S 	c #DCEFDB",
+"T 	c #589955",
+"U 	c #0A212C",
+"V 	c #467B92",
+"W 	c #B6D9E8",
+"X 	c #B6E2ED",
+"Y 	c #69C7DC",
+"Z 	c #19A2C5",
+"` 	c #0796BC",
+" .	c #13A5C5",
+"..	c #59BBD7",
+"+.	c #6BC5DD",
+"@.	c #98D8E8",
+"#.	c #B4E2EE",
+"$.	c #A6DCE9",
+"%.	c #98CFDF",
+"&.	c #6DBCD4",
+"*.	c #74D46D",
+"=.	c #9DDF98",
+"-.	c #ABE8A5",
+";.	c #B8EEB4",
+">.	c #9EE797",
+",.	c #74DD6A",
+"'.	c #62D758",
+").	c #23C512",
+"!.	c #15BC07",
+"~.	c #27C519",
+"{.	c #73DC69",
+"].	c #BAEDB6",
+"^.	c #B8E7B6",
+"/.	c #499145",
+"(.	c #061D28",
+"_.	c #125F7C",
+":.	c #29A6C3",
+"<.	c #4BD4E3",
+"[.	c #4BC5DA",
+"}.	c #129FC4",
+"|.	c #0D95BC",
+"1.	c #0F90B7",
+"2.	c #16A2C5",
+"3.	c #0FA3C4",
+"4.	c #26A8C5",
+"5.	c #37A8C4",
+"6.	c #2DA9C7",
+"7.	c #75C1D9",
+"8.	c #71BED6",
+"9.	c #77D671",
+"0.	c #7BD874",
+"a.	c #3AC72C",
+"b.	c #42C437",
+"c.	c #34C526",
+"d.	c #1FC40F",
+"e.	c #24C516",
+"f.	c #1AB70E",
+"g.	c #1ABC0D",
+"h.	c #20C411",
+"i.	c #5AD94B",
+"j.	c #5DE24A",
+"k.	c #36C229",
+"l.	c #177B11",
+"m.	c #052837",
+"n.	c #0D617F",
+"o.	c #25ABC7",
+"p.	c #3BD0E1",
+"q.	c #1DC0D9",
+"r.	c #14A8CC",
+"s.	c #11A3C5",
+"t.	c #11ABCC",
+"u.	c #17AAC8",
+"v.	c #23ACC6",
+"w.	c #1FA8C0",
+"x.	c #1AAAC5",
+"y.	c #7CCDE1",
+"z.	c #76C4DB",
+"A.	c #7DDA75",
+"B.	c #84E07B",
+"C.	c #2BC519",
+"D.	c #2FBF1F",
+"E.	c #33C623",
+"F.	c #28C716",
+"G.	c #22CC11",
+"H.	c #20C511",
+"I.	c #23CC13",
+"J.	c #31D81C",
+"K.	c #4FE03B",
+"L.	c #34C725",
+"M.	c #137F0D",
+"N.	c #04151E",
+"O.	c #0D5672",
+"P.	c #1E99B8",
+"Q.	c #39CEDF",
+"R.	c #22C5DC",
+"S.	c #10A1C4",
+"T.	c #0E799B",
+"U.	c #0E5976",
+"V.	c #0D516D",
+"W.	c #0F4E6B",
+"X.	c #0F4D6A",
+"Y.	c #0F607D",
+"Z.	c #157C0E",
+"`.	c #126B0F",
+" +	c #126A0E",
+".+	c #116C0C",
+"++	c #13760E",
+"@+	c #179A0E",
+"#+	c #37DC22",
+"$+	c #4DDF38",
+"%+	c #2AB71D",
+"&+	c #12720D",
+"*+	c #062332",
+"=+	c #0D506B",
+"-+	c #209FBD",
+";+	c #33CBDF",
+">+	c #16ACC8",
+",+	c #0C4968",
+"'+	c #061F2D",
+")+	c #031721",
+"!+	c #041621",
+"~+	c #051721",
+"{+	c #021621",
+"]+	c #031B27",
+"^+	c #010C00",
+"/+	c #28C715",
+"(+	c #47DF32",
+"_+	c #2DBD1F",
+":+	c #116B0D",
+"<+	c #04121A",
+"[+	c #0C4A62",
+"}+	c #198AAD",
+"|+	c #2291B2",
+"1+	c #104564",
+"2+	c #2CB122",
+"3+	c #23AD18",
+"4+	c #10620C",
+"5+	c #051C26",
+"6+	c #0F455C",
+"7+	c #237191",
+"8+	c #104363",
+"9+	c #289023",
+"0+	c #125B0E",
+"a+	c #041F2B",
+"b+	c #073347",
+"c+	c #0D3C5A",
+"d+	c #094706",
+"e+	c #0D3A57",
+"              . +                           @ #               ",
+"            $ % &                           @ * @             ",
+"          = - ; >                           @ , ' @           ",
+"        ) ! ~ { ]                           @ ^ / ( @         ",
+"      _ : < [ } | 1 2 3 3 4 5 @ @ @ @ @ @ @ @ 6 7 8 9 @       ",
+"    0 a b c d e f g h i i i j @ k l l l m k n o p q r s @     ",
+"  t u v w x y z A B C D E F G @ H I J K L M N O P Q R S T @   ",
+"U V W X Y Z `  ...+.@.#.$.%.&.@ *.=.-.;.>.,.'.).!.~.{.].^./.@ ",
+"(._.:.<.[.}.|.1.2.3.4.5.6.7.8.@ 9.0.a.b.c.d.e.f.g.h.i.j.k.l.@ ",
+"  m.n.o.p.q.r.s.t.u.v.w.x.y.z.@ A.B.C.D.E.F.G.H.I.J.K.L.M.@   ",
+"    N.O.P.Q.R.S.T.U.V.W.X.W.Y.@ Z.`. +`..+++@+d.#+$+%+&+@     ",
+"      *+=+-+;+>+,+'+)+!+~+{+]+^+@ @ @ @ @ @ @ /+(+_+:+@       ",
+"        <+[+}+|+1+                          @ 2+3+4+@         ",
+"          5+6+7+8+                          @ 9+0+@           ",
+"            a+b+c+                          @ d+@             ",
+"              . e+                          @ @               "};
+
+
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory ) :
     QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ), isComparing( false ), wasClosed( false ),
     wasSync( false ), firstResize( true ), sizeX( -1 ), sizeY( -1 )
@@ -992,6 +1240,12 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QHBoxLayout *buttons = new QHBoxLayout;
   buttons->setSpacing( 6 );
   buttons->setMargin( 0 );
+  
+  QPixmap swapSides( ( const char** ) swap_sides_data );
+  btnSwapSides = new QPushButton( this, "btnSwapSides" );
+  btnSwapSides->setPixmap( swapSides );
+  QToolTip::add( btnSwapSides, i18n( "Swap sides" ) );
+  buttons->addWidget( btnSwapSides );
 
   statusLabel = new QLabel( this, "statusLabel" );
   buttons->addWidget( statusLabel );
@@ -1025,6 +1279,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( syncList,SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
            this, SLOT(rightMouseClicked(QListViewItem *)));
 
+  connect( btnSwapSides,      SIGNAL( clicked() ), this, SLOT( swapSides() ) );
   connect( btnCompareDirs,    SIGNAL( clicked() ), this, SLOT( compare() ) );
   connect( btnStopComparing,  SIGNAL( clicked() ), this, SLOT( stop() ) );
   connect( btnSynchronize,    SIGNAL( clicked() ), this, SLOT( synchronize() ) );
@@ -1314,6 +1569,7 @@ void SynchronizerGUI::compare()
   setMarkFlags();
   
   btnCompareDirs->setEnabled( false );
+  btnSwapSides->setEnabled( false );
   btnStopComparing->setEnabled( isComparing = true );
   btnSynchronize->setEnabled( false );
   disableMarkButtons();
@@ -1324,6 +1580,7 @@ void SynchronizerGUI::compare()
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnCompareDirs->setEnabled( true );
+  btnSwapSides->setEnabled( true );
   if( fileCount )
     btnSynchronize->setEnabled( true );
 
@@ -1401,8 +1658,31 @@ void SynchronizerGUI::markChanged( SynchronizerFileItem *item )
   SyncViewItem *listItem = (SyncViewItem *)item->userData();
   if( listItem )
   {
+    QString leftName="", rightName="", leftDate="", rightDate="", leftSize="", rightSize="";
+    bool    isDir = item->isDir();
+
+    if( item->existsInLeft() )
+    {
+      leftName = item->name();
+      leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
+      leftDate = SynchronizerGUI::convertTime( item->leftDate() );
+    }
+  
+    if( item->existsInRight() )
+    {
+      rightName = item->name();
+      rightSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->rightSize() );
+      rightDate = SynchronizerGUI::convertTime( item->rightDate() );
+    }
+    
     listItem->setVisible( item->isMarked() );
+    listItem->setText( 0, leftName );
+    listItem->setText( 1, leftSize );
+    listItem->setText( 2, leftDate );
     listItem->setText( 3, Synchronizer::getTaskTypeName( item->task() ) );
+    listItem->setText( 4, rightDate );
+    listItem->setText( 5, rightSize );
+    listItem->setText( 6, rightName );
   }
 }
 
@@ -1456,11 +1736,13 @@ void SynchronizerGUI::refresh()
     syncList->clearSelection();
     setMarkFlags();
     btnCompareDirs->setEnabled( false );
+    btnSwapSides->setEnabled( false );
     btnSynchronize->setEnabled( false );
     disableMarkButtons();
     int fileCount = synchronizer.refresh();
     enableMarkButtons();
     btnCompareDirs->setEnabled( true );
+    btnSwapSides->setEnabled( true );
     if( fileCount )
       btnSynchronize->setEnabled( true );    
   }
@@ -1556,34 +1838,53 @@ void SynchronizerGUI::rightMenuCompareFiles( KURL url1, KURL url2 )
   if( tmp2 != url2.path() ) KIO::NetAccess::removeTempFile( tmp2 );
 }
 
+void SynchronizerGUI::swapSides()
+{
+  if( btnCompareDirs->isEnabled() )
+  {
+    QString leftCurrent = leftLocation->currentText();
+    leftLocation->setCurrentText( rightLocation->currentText() );
+    rightLocation->setCurrentText( leftCurrent );
+    synchronizer.swapSides();
+    refresh();
+  }
+}
+
 void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
 {
   switch ( e->key() )
   {
   case Key_F3 :
-    QListViewItem *listItem =  syncList->currentItem();
-    if( listItem == 0 )
-      break;
+    {
+      QListViewItem *listItem =  syncList->currentItem();
+      if( listItem == 0 )
+        break;
 
-    SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
-    QString dirName    = item->directory().isEmpty() ? "" : item->directory() + "/";
+      SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
+      QString dirName    = item->directory().isEmpty() ? "" : item->directory() + "/";
 
-    if( item->isDir() )
-      return;
+      if( item->isDir() )
+        return;
     
-    if ( e->state() == ShiftButton && item->existsInRight() )
-    {
-      KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + dirName + item->name() );
-      KrViewer::view( rightURL ); // view the file
-      return;
-    }
-    else if ( e->state() == 0 && item->existsInLeft() )
-    {
-      KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + dirName + item->name() );
-      KrViewer::view( leftURL ); // view the file
-      return;
+      if ( e->state() == ShiftButton && item->existsInRight() )
+      {
+        KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + dirName + item->name() );
+        KrViewer::view( rightURL ); // view the file
+        return;
+      }
+      else if ( e->state() == 0 && item->existsInLeft() )
+      {
+        KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + dirName + item->name() );
+        KrViewer::view( leftURL ); // view the file
+        return;
+      }
     }
     break;
+  case Key_U :
+    if( e->state() != ControlButton )
+      break;
+    swapSides();
+    return;
   }  
 
   QDialog::keyPressEvent( e );

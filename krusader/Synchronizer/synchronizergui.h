@@ -95,6 +95,7 @@ public slots:
   void stop();
   void closeDialog();
   void refresh();
+  void swapSides();
   
 protected slots:
   void reject();
@@ -130,6 +131,7 @@ protected:
   QCheckBox     *cbAsymmetric;
   QCheckBox     *cbAutoScroll;
   
+  QPushButton   *btnSwapSides;
   QPushButton   *btnCompareDirs;
   QPushButton   *btnStopComparing;
   QPushButton   *btnSynchronize;

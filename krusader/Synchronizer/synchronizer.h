@@ -45,6 +45,22 @@ typedef enum
   TT_DELETE        = 4    // the left file is single  -> delete it
 } TaskType;
 
+#define SWAP( A, B, TYPE )      {TYPE TMP = A; A = B; B = TMP;}
+#define REVERSE_TASK( A, asym ) {switch( A )                                           \
+                                 {                                                     \
+                                 case TT_COPY_TO_LEFT:                                 \
+                                   if( asym )                                          \
+                                     A = !m_existsRight ? TT_DELETE : TT_COPY_TO_LEFT; \
+                                   else                                                \
+                                     A = TT_COPY_TO_RIGHT;                             \
+                                   break;                                              \
+                                 case TT_COPY_TO_RIGHT:                                \
+                                 case TT_DELETE:                                       \
+                                   A = TT_COPY_TO_LEFT;                                \
+                                 default:                                              \
+                                   break;                                              \
+                                 }};
+
 class SynchronizerFileItem
 {
   private:
@@ -103,6 +119,11 @@ class SynchronizerFileItem
     inline TaskType               originalTask()          {return m_originalTask;}
     inline void                   restoreOriginalTask()   {m_task = m_originalTask;}
     inline void                   setTask( TaskType t )   {m_task = t;}
+    inline void                   swap( bool asym=false ) {SWAP( m_existsLeft, m_existsRight, bool );
+                                                           SWAP( m_leftSize, m_rightSize, KIO::filesize_t );
+                                                           SWAP( m_leftDate, m_rightDate, time_t );
+                                                           REVERSE_TASK( m_originalTask, asym );
+                                                           REVERSE_TASK( m_task, asym );}
 };
 
 class Synchronizer : public QObject
@@ -124,6 +145,7 @@ class Synchronizer : public QObject
     void    synchronizeWithKGet();
     void    pause();
     void    resume();
+    void    swapSides();
 
     void    exclude( SynchronizerFileItem * );
     void    restore( SynchronizerFileItem * );
