@@ -530,6 +530,12 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       case Key_Delete :           // kill file
       SLOTS->deleteFiles();
       return ;
+      case Key_A :       // mark all
+      if (e->state() == ControlButton) {
+         KListView::keyPressEvent(e);
+         updateView();
+      } else e->ignore();
+      break;
       case Key_Space : {
         KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
         if ( !viewItem || !( viewItem->isDir() && viewItem->size() <= 0 ) ) {
