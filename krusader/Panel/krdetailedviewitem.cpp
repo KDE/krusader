@@ -145,12 +145,12 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   if (name()== "..") return 1*asc;
   if (other->name()== "..") return -1*asc;
 
+	// handle directory sorting
   if (isDir()){
     if (!other->isDir()) return 1*asc;
-    else return QString::compare(name(),other->name());
   }
+	else if(other->isDir()) return -1*asc;
 
-  if(other->isDir()) return -1*asc;
 
   QString text0 = name();
   QString itext0 = other->name();
@@ -160,6 +160,8 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
     text0  = text0.lower();
     itext0 = itext0.lower();
   }
+
+	kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
 
   int result = 0;
 
