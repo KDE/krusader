@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
   // ABOUT data information
   KAboutData aboutData( "krusader", I18N_NOOP("Krusader"),
     VERSION, description, KAboutData::License_GPL,
-    "(c) 2000-2002, Shie Erlich & Rafi Yanai",
+    "(c) 2000-2003, Shie Erlich and Rafi Yanai",
     0,
     "http://krusader.sourceforge.net",
     "krusader@users.sourceforge.net");
