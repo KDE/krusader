@@ -61,7 +61,7 @@
 
 ////////////////////////[Look&Feel]
 // Filelist Font ///////
-#define _FilelistFont   new QFont("helvetica",12)
+#define _FilelistFont   new QFont("helvetica",11)
 // Warn On Exit ////////
 #define _WarnOnExit     false
 // Minimize To Tray ////
