@@ -68,10 +68,10 @@ QString UserMenu::expPath( const QString& str ) {
 
 void UserMenu::exec() {
    // execute menu and wait for selection
-   QString cmd = _popup->run();
+   UserMenuEntry cmd = _popup->run();
 
    // replace %% and prepare string
-   cmd = expand( cmd );
+   cmd = expand( cmd.cmdline );
    //kdWarning() << cmd << endl;
 
    // ............... run the cmd from the shell .............
@@ -84,7 +84,7 @@ void UserMenu::exec() {
    //proc.start( KProcess::DontCare );
 
    UserMenuProc *proc = new UserMenuProc( UserMenuProc::Terminal, true );
-   proc->start( cmd );
+   proc->start( cmd.cmdline );
    //===> chdir( save.local8Bit() ); // chdir back
 }
 
@@ -128,21 +128,52 @@ UserMenu::UserMenu( QWidget * parent, const char * name ) : QWidget( parent, nam
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+UserMenuEntry::UserMenuEntry(QString data) {
+   // the data should look like:
+   // {name,cmdline,execType,separateStderr,acceptURLs,acceptRemote,showEverywhere,showIn}
+   // name
+   int sidx = data.find('{') + 1;
+   int eidx = data.find(',', sidx);
+   name = data.mid(sidx, eidx-sidx);
+   // cmdline
+   sidx = eidx+1;
+   eidx = data.find(',', sidx);
+   cmdline = data.mid(sidx, eidx-sidx);
+   // execType
+   sidx = eidx+1;
+   eidx = data.find(',', sidx);
+   execType = data.mid(sidx, eidx-sidx).toInt();
+   // separateStderr
+   sidx = eidx+1;
+   eidx = data.find(',', sidx);
+   execType = data.mid(sidx, eidx-sidx).toInt();
+   // acceptUrls
+   sidx = eidx+1;
+   eidx = data.find(',', sidx);
+   acceptURLs = data.mid(sidx, eidx-sidx).toInt();
+   // acceptRemote
+   sidx = eidx+1;
+   eidx = data.find(',', sidx);
+   acceptRemote = data.mid(sidx, eidx-sidx).toInt();
+   // showEverywhere
+   sidx = eidx+1;
+   eidx = data.find(',', sidx);
+   showEverywhere = data.mid(sidx, eidx-sidx).toInt();
+   // showIn
+   sidx = eidx+1;
+   eidx = data.find('}', sidx);
+   showIn = QStringList::split(";", data.mid(sidx, eidx-sidx));
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 UserMenuGui::UserMenuGui( UserMenu *menu, QWidget * parent ) : KPopupMenu( parent ) {
    insertTitle( "User Menu" );
 
    // read entries from config file.
    readEntries();
-
-
-   // fill popup menu. Note: this code assumes that the _entries list contains pairs
-   // of {descripion, command}. If this is not the case, the code will fail.
-   // However, it should have been checked above (read entries from file)
-   int idx = 1;
-   for ( QStringList::Iterator it = _entries.begin(); it != _entries.end(); ++it ) {
-      insertItem( *it, idx++ );
-      ++it;
-   }
 
    // add the "add new entry" command
    insertSeparator();
@@ -159,7 +190,8 @@ void UserMenuGui::readEntries() {
    // Note: entries are marked 1..n, so that entry 0 is always
    // available. It is used by the "add new entry" command.
    QString filename = locateLocal( "data", "krusader/krusermenu.dat" );
-   int i = 0;
+   _entries.clear();
+   int idx = 1;
 
    QFile file( filename );
    if ( file.open( IO_ReadOnly ) ) {
@@ -168,17 +200,15 @@ void UserMenuGui::readEntries() {
 
       while ( !stream.atEnd() ) {
          line = stream.readLine();
-         _entries += line;
-         ++i;
+         if (!line.simplifyWhiteSpace().isEmpty())
+            _entries.append(UserMenuEntry(line));
+            insertItem( _entries.last().name, idx++ );
       }
       file.close();
    }
-   // do we need to remove last entry?
-   if ( i > 0 && i % 2 != 0 ) _entries.pop_back();
-
 }
 
-QString UserMenuGui::run() {
+UserMenuEntry UserMenuGui::run() {
    int idx = exec();
    if ( idx == -1 ) return QString::null; // nothing was selected
    if ( idx == 0 ) {
@@ -189,12 +219,29 @@ QString UserMenuGui::run() {
    // idx is {1..n} while _entries is {0..n-1}X2
    // so, normalize idx to _entries, and add 1 since we want
    // the command part of the {description,command} pair
-   return _entries[ ( idx -1 ) * 2 + 1 ];
+   return _entries[idx-1];
 }
 
 void UserMenuGui::addEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
-                  bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0) {
-   kdWarning() << "UserMenuGui::addEntry" << endl;
+                  bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn) {
+   // save a new entry in the following form:
+   // {"name","cmdline",execType,separateStderr,acceptURLs,acceptRemote,showEverywhere,showIn}
+   QString filename = locateLocal( "data", "krusader/krusermenu.dat" );
+
+   QFile file( filename );
+   if ( file.open( IO_WriteOnly | IO_Append ) ) {
+      QTextStream stream( &file );
+      QString line = QString("{%1,%2,%3,%4,%5,%6,%7,%8}").arg(name)
+                                                      .arg(cmdline)
+                                                      .arg(execType)
+                                                      .arg(separateStderr)
+                                                      .arg(acceptURLs)
+                                                      .arg(acceptRemote)
+                                                      .arg(showEverywhere)
+                                                      .arg(showIn.join(";"));
+      stream << line << endl;
+      file.close();
+   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

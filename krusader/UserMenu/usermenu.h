@@ -25,10 +25,12 @@ email                :
 #include <kprocess.h>
 #include <kdialogbase.h>
 #include <qtextedit.h>
+#include <qvaluelist.h>
 
 class KDialogBase;
 class UserMenuAddImpl;
 class UserMenu;
+class UserMenuEntry;
 
 class UserMenuProcDlg: public KDialogBase {
       Q_OBJECT
@@ -72,7 +74,7 @@ class UserMenuGui: public KPopupMenu {
       Q_OBJECT
    public:
       UserMenuGui( UserMenu* menu, QWidget *parent = 0 );
-      QString run();
+      UserMenuEntry run();
 
    protected:
       void readEntries();
@@ -82,7 +84,7 @@ class UserMenuGui: public KPopupMenu {
                      bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0 );
 
    private:
-      QStringList _entries;
+      QValueList<UserMenuEntry> _entries;
       UserMenuAddImpl *_addgui;
 };
 
@@ -97,8 +99,22 @@ typedef struct UserMenuCmd {
    QString expression;
    QString description;
    EXPANDER expFunc;
-}
-UMCmd;
+} UMCmd;
+
+class UserMenuEntry {
+public:
+   QString name;
+   QString cmdline;
+   UserMenuProc::ExecType execType;
+   bool separateStderr;
+   bool acceptURLs;
+   bool acceptRemote;
+   bool showEverywhere;
+   QStringList showIn;
+
+   UserMenuEntry(QString data);
+   UserMenuEntry(): name(0), cmdline(0) {}
+};
 
 class UserMenu : public QWidget {
       Q_OBJECT

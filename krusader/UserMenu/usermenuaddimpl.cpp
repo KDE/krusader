@@ -23,6 +23,7 @@
 #include <kmessagebox.h>
 #include <qcheckbox.h>
 #include <qradiobutton.h>
+#include <kdebug.h>
 
 #define ACTIVE_MASK     0x1000
 #define OTHER_MASK      0x2000
@@ -63,7 +64,7 @@ void UserMenuAddImpl::accept() {
       emit newEntry( cmdName->text().simplifyWhiteSpace(), cmdLine->text().simplifyWhiteSpace(),
                      type, separateStderr->isChecked(), acceptLocalURLs->isChecked() || acceptRemote->isChecked(),
                      acceptRemote->isChecked(), showEverywhere->isChecked(),
-                     QStringList::split(';', showOnlyIn->text().simplifyWhiteSpace()));
+                     QStringList::split(';', showIn->text().simplifyWhiteSpace()));
    }
    UserMenuAdd::accept();
 }
