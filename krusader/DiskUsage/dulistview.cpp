@@ -76,9 +76,9 @@ DUListView::DUListView( DiskUsage *usage, QWidget *parent, const char *name )
   
   setSorting( 2 );
   
-  connect( diskUsage, SIGNAL( directoryChanged( QString ) ), this, SLOT( slotDirChanged( QString ) ) );
+  connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
   connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
-  connect( diskUsage, SIGNAL( changed( DiskUsageItem * ) ), this, SLOT( slotChanged( DiskUsageItem * ) ) );
+  connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
 
   connect( this, SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
            this, SLOT( slotRightClicked(QListViewItem *) ) );
@@ -86,25 +86,21 @@ DUListView::DUListView( DiskUsage *usage, QWidget *parent, const char *name )
            this, SLOT( slotExpanded( QListViewItem * ) ) ); 
 }
 
-void DUListView::addDirectory( QString dirName, QListViewItem *parent )
+void DUListView::addDirectory( Directory *dirEntry, QListViewItem *parent )
 {
-  QPtrList<DiskUsageItem> * currentDir = diskUsage->getDirectory( dirName );
-  
-  if( currentDir == 0 )
-    return;
-
   QListViewItem * lastItem = 0;
     
-  if( parent == 0 && !dirName.isEmpty() )
+  if( parent == 0 && ! ( dirEntry->parent() == 0 ) )
   {
     lastItem = new QListViewItem( this, ".." );
     lastItem->setPixmap( 0, FL_LOADICON( "up" ) );
     lastItem->setSelectable( false );
   }
           
-  DiskUsageItem *item = currentDir->first();
-  while( item )
+  for( Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it )
   {
+    File *item = *it;
+    
     KMimeType::Ptr mimePtr = KMimeType::mimeType( item->mime() );
     QString mime = mimePtr->comment();
        
@@ -118,16 +114,16 @@ void DUListView::addDirectory( QString dirName, QListViewItem *parent )
     QString percent = item->percent();
     
     if( lastItem == 0 && parent == 0 )
-      lastItem = new DUListViewItem( diskUsage, item, this, item->name(), percent, totalSize, ownSize, 
+      lastItem = new DUListViewItem( diskUsage, item, this, item->fileName(), percent, totalSize, ownSize, 
                                      mime, date, item->perm(), item->owner(), item->group() );
     else if ( lastItem == 0 )
-      lastItem = new DUListViewItem( diskUsage, item, parent, item->name(), percent, totalSize, ownSize, 
+      lastItem = new DUListViewItem( diskUsage, item, parent, item->fileName(), percent, totalSize, ownSize, 
                                      mime, date, item->perm(), item->owner(), item->group() );
     else if ( parent == 0 )
-      lastItem = new DUListViewItem( diskUsage, item, this, lastItem, item->name(), percent, totalSize,
+      lastItem = new DUListViewItem( diskUsage, item, this, lastItem, item->fileName(), percent, totalSize,
                                      ownSize, mime, date, item->perm(), item->owner(), item->group() );
     else
-      lastItem = new DUListViewItem( diskUsage, item, parent, lastItem, item->name(), percent, totalSize, 
+      lastItem = new DUListViewItem( diskUsage, item, parent, lastItem, item->fileName(), percent, totalSize, 
                                      ownSize, mime, date, item->perm(), item->owner(), item->group() );
    
     if( item->isExcluded() )
@@ -137,18 +133,16 @@ void DUListView::addDirectory( QString dirName, QListViewItem *parent )
     
     if( item->isDir() && !item->isSymLink() )
       lastItem->setExpandable( true );
-    
-    item = currentDir->next();
   }
 }
 
-void DUListView::slotDirChanged( QString dirName )
+void DUListView::slotDirChanged( Directory *dirEntry )
 {
   clear();  
-  addDirectory( dirName, 0 );
+  addDirectory( dirEntry, 0 );
 }
 
-void DUListView::slotChanged( DiskUsageItem * item )
+void DUListView::slotChanged( File * item )
 {
   void * itemPtr = diskUsage->getProperty( item, "ListView-Ref" );
   if( itemPtr == 0 )
@@ -169,7 +163,7 @@ void DUListView::slotRightClicked( QListViewItem *item )
   if( item->text( 0 ) == ".." )
     return;
 
-  diskUsage->rightClickMenu( ((DUListViewItem *)item)->getDiskUsageItem() );
+  diskUsage->rightClickMenu( ((DUListViewItem *)item)->getFile() );
 }
 
 bool DUListView::doubleClicked( QListViewItem * item )
@@ -178,21 +172,17 @@ bool DUListView::doubleClicked( QListViewItem * item )
   {
     if( item->text( 0 ) != ".." )
     {
-      DiskUsageItem *duItem = ((DUListViewItem *)item)->getDiskUsageItem();
-      if( duItem->isDir() && !duItem->isSymLink() )
-        diskUsage->changeDirectory( ( duItem->directory().isEmpty() ? "" : duItem->directory() + "/" ) +
-                                    duItem->name() );
+      File *fileItem = ((DUListViewItem *)item)->getFile();
+      if( fileItem->isDir() )
+        diskUsage->changeDirectory( dynamic_cast<Directory *> ( fileItem ) );
       return true;
     }
     else
     {
-      QString dir = diskUsage->getCurrentDir();
-      int ndx = dir.findRev( "/" );
-      if( ndx != -1 )
-        dir.truncate( ndx );
-      else
-        dir = "";
-      diskUsage->changeDirectory( dir );
+      Directory *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
+    
+      if( upDir )
+        diskUsage->changeDirectory( upDir );
       return true;
     }
   }
@@ -233,9 +223,9 @@ void DUListView::slotExpanded( QListViewItem *item )
  
   if( item->childCount() == 0 )
   {
-    DiskUsageItem *duItem = ((DUListViewItem *)item)->getDiskUsageItem();
-    addDirectory( ( duItem->directory().isEmpty() ? "" : duItem->directory() + "/" ) +
-                  duItem->name(), item );   
+    File *fileItem = ((DUListViewItem *)item)->getFile();
+    if( fileItem->isDir() )
+      addDirectory( dynamic_cast<Directory *>( fileItem ), item );   
   }
 }
 

@@ -41,12 +41,12 @@
 class DULinesItem : public QListViewItem
 {
 public:
-  DULinesItem( DiskUsage *diskUsageIn, DiskUsageItem *duItem, QListView * parent, QString label1, 
+  DULinesItem( DiskUsage *diskUsageIn, File *fileItem, QListView * parent, QString label1, 
                QString label2, QString label3 ) : QListViewItem( parent, label1, label2, label3 ), 
-               diskUsage( diskUsageIn ), diskUsageItem( duItem ) {}
-  DULinesItem( DiskUsage *diskUsageIn, DiskUsageItem *duItem, QListView * parent, QListViewItem * after, 
+               diskUsage( diskUsageIn ), file( fileItem ) {}
+  DULinesItem( DiskUsage *diskUsageIn, File *fileItem, QListView * parent, QListViewItem * after, 
                QString label1, QString label2, QString label3 ) : QListViewItem( parent, after, label1, 
-               label2, label3 ), diskUsage( diskUsageIn ), diskUsageItem( duItem ) {}
+               label2, label3 ), diskUsage( diskUsageIn ), file( fileItem ) {}
   
   virtual int compare ( QListViewItem * i, int col, bool ascending ) const 
   {
@@ -61,19 +61,19 @@ public:
     {
     case 0:    
     case 1:
-      sprintf(buf1,"%025llu",diskUsageItem->size());
-      sprintf(buf2,"%025llu",compWith->diskUsageItem->size());
+      sprintf(buf1,"%025llu",file->size());
+      sprintf(buf2,"%025llu",compWith->file->size());
       return -QString::compare( QString( buf1 ), QString( buf2 ) );
     default:    
       return QListViewItem::compare( i, col, ascending );
     }
   }
   
-  inline DiskUsageItem * getDiskUsageItem() { return diskUsageItem; }
+  inline File * getFile() { return file; }
   
 private:
   DiskUsage *diskUsage;
-  DiskUsageItem *diskUsageItem;                  
+  File *file;                  
 };
 
 class DULinesToolTip : public QToolTip
@@ -111,8 +111,8 @@ void DULinesToolTip::maybeTip( const QPoint &pos )
     tip( r, item->text( col ) );
   else if( col == 1 )
   {
-    DiskUsageItem *duItem = ((DULinesItem *)item)->getDiskUsageItem();
-    tip( r, diskUsage->getToolTip( duItem ) );
+    File *fileItem = ((DULinesItem *)item)->getFile();
+    tip( r, diskUsage->getToolTip( fileItem ) );
   }
 }
 
@@ -142,14 +142,14 @@ DULines::DULines( DiskUsage *usage, QWidget *parent, const char *name )
   
   toolTip = new DULinesToolTip( diskUsage, viewport(), this );
 
-  connect( diskUsage, SIGNAL( directoryChanged( QString ) ), this, SLOT( slotDirChanged( QString ) ) );
+  connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
   connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
   
   connect( header(), SIGNAL( sizeChange( int, int, int ) ), this, SLOT( sectionResized( int ) ) );
 
   connect( this, SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
            this, SLOT( slotRightClicked(QListViewItem *) ) );
-  connect( diskUsage, SIGNAL( changed( DiskUsageItem * ) ), this, SLOT( slotChanged( DiskUsageItem * ) ) );
+  connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
 }
 
 DULines::~DULines()
@@ -157,48 +157,41 @@ DULines::~DULines()
   delete toolTip;
 }
 
-void DULines::slotDirChanged( QString dirName )
+void DULines::slotDirChanged( Directory *dirEntry )
 {
   clear();  
   
-  QPtrList<DiskUsageItem> * currentDir = diskUsage->getDirectory( dirName );  
-  if( currentDir == 0 )
-    return;
-
   QListViewItem * lastItem = 0;
     
-  if( !dirName.isEmpty() )
+  if( ! ( dirEntry->parent() == 0 ) )
   {
     lastItem = new QListViewItem( this, ".." );
     lastItem->setPixmap( 0, FL_LOADICON( "up" ) );
     lastItem->setSelectable( false );
   }
           
-  DiskUsageItem *item = currentDir->first();
-  
   int maxPercent = -1;
-  while( item )
+  for( Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it )
   {
+    File *item = *it;
     if( !item->isExcluded() && item->intPercent() > maxPercent )
       maxPercent = item->intPercent();
-    item = currentDir->next();
   }
   
-  item = currentDir->first();
-  while( item )
+  for( Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it )
   { 
+    File *item = *it;
+    
     if( lastItem == 0 )
-      lastItem = new DULinesItem( diskUsage, item, this, "", item->percent() + "  ", item->name() );
+      lastItem = new DULinesItem( diskUsage, item, this, "", item->percent() + "  ", item->fileName() );
     else
-      lastItem = new DULinesItem( diskUsage, item, this, lastItem, "", item->percent() + "  ", item->name() );
+      lastItem = new DULinesItem( diskUsage, item, this, lastItem, "", item->percent() + "  ", item->fileName() );
    
     if( item->isExcluded() )
       lastItem->setVisible( false );
                                     
     lastItem->setPixmap( 2, diskUsage->getIcon( item->mime() ) );
     lastItem->setPixmap( 0, createPixmap( item->intPercent(), maxPercent, columnWidth( 0 ) ) );
-    
-    item = currentDir->next();
   }
   
   setCurrentItem( firstChild() );
@@ -250,24 +243,23 @@ void DULines::sectionResized( int column )
   if( childCount() == 0 || column != 0 )
     return;
     
-  QPtrList<DiskUsageItem> * currentDir = diskUsage->getDirectory( diskUsage->getCurrentDir() );  
+  Directory * currentDir = diskUsage->getCurrentDir();  
   if( currentDir == 0 )
     return;
 
-  int maxPercent = -1;
-  DiskUsageItem *item = currentDir->first();
-  
-  while( item )
+  int maxPercent = -1;  
+  for( Iterator<File> it = currentDir->iterator(); it != currentDir->end(); ++it )
   {
+    File *item = *it;  
+    
     if( !item->isExcluded() && item->intPercent() > maxPercent )
       maxPercent = item->intPercent();
-    item = currentDir->next();
   }
   
   DULinesItem *duItem = (DULinesItem *)firstChild();
   while( duItem )
   {
-    duItem->setPixmap( 0, createPixmap( duItem->getDiskUsageItem()->intPercent(), maxPercent, columnWidth( 0 ) ) );
+    duItem->setPixmap( 0, createPixmap( duItem->getFile()->intPercent(), maxPercent, columnWidth( 0 ) ) );
     duItem = (DULinesItem *)duItem->nextSibling();
   }
 }
@@ -278,21 +270,17 @@ bool DULines::doubleClicked( QListViewItem * item )
   {
     if( item->text( 0 ) != ".." )
     {
-      DiskUsageItem *duItem = ((DULinesItem *)item)->getDiskUsageItem();
-      if( duItem->isDir() && !duItem->isSymLink() )
-        diskUsage->changeDirectory( ( duItem->directory().isEmpty() ? "" : duItem->directory() + "/" ) +
-                                    duItem->name() );
+      File *fileItem = ((DULinesItem *)item)->getFile();
+      if( fileItem->isDir() )
+        diskUsage->changeDirectory( dynamic_cast<Directory *> ( fileItem ) );
       return true;
     }
     else
     {
-      QString dir = diskUsage->getCurrentDir();
-      int ndx = dir.findRev( "/" );
-      if( ndx != -1 )
-        dir.truncate( ndx );
-      else
-        dir = "";
-      diskUsage->changeDirectory( dir );
+      Directory *upDir = (Directory *)diskUsage->getCurrentDir()->parent();
+    
+      if( upDir )
+        diskUsage->changeDirectory( upDir );
       return true;
     }
   }
@@ -335,15 +323,15 @@ void DULines::slotRightClicked( QListViewItem *item )
   if( item->text( 0 ) == ".." )
     return;
 
-  diskUsage->rightClickMenu( ((DULinesItem *)item)->getDiskUsageItem() );
+  diskUsage->rightClickMenu( ((DULinesItem *)item)->getFile() );
 }
 
-void DULines::slotChanged( DiskUsageItem * item )
+void DULines::slotChanged( File * item )
 {
   DULinesItem *duItem = (DULinesItem *)firstChild();
   while( duItem )
   {
-    if( duItem->getDiskUsageItem() == item )
+    if( duItem->getFile() == item )
     {
       duItem->setVisible( !item->isExcluded() );
       duItem->setText( 1, item->percent() );

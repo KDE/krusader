@@ -37,45 +37,45 @@
 class DUListViewItem : public QListViewItem
 {
 public:
-  DUListViewItem( DiskUsage *diskUsageIn, DiskUsageItem *duItem, QListView * parent, QString label1, 
+  DUListViewItem( DiskUsage *diskUsageIn, File *fileIn, QListView * parent, QString label1, 
                   QString label2, QString label3, QString label4, QString label5, QString label6, 
                   QString label7, QString label8, QString label9 ) 
                   : QListViewItem( parent, label1, label2, label3, label4, label5, label6, label7, label8), 
-                  diskUsage( diskUsageIn ), diskUsageItem( duItem ) 
+                  diskUsage( diskUsageIn ), file( fileIn ) 
                   {
                     setText( 8, label9 );
-                    diskUsage->addProperty( diskUsageItem, "ListView-Ref", this );
+                    diskUsage->addProperty( file, "ListView-Ref", this );
                   }
-  DUListViewItem( DiskUsage *diskUsageIn, DiskUsageItem *duItem, QListViewItem * parent, QString label1, 
+  DUListViewItem( DiskUsage *diskUsageIn, File *fileIn, QListViewItem * parent, QString label1, 
                   QString label2, QString label3, QString label4, QString label5, QString label6, 
                   QString label7, QString label8, QString label9 ) 
                   : QListViewItem( parent, label1, label2, label3, label4, label5, label6, label7, label8), 
-                  diskUsage( diskUsageIn ), diskUsageItem( duItem ) 
+                  diskUsage( diskUsageIn ), file( fileIn ) 
                   {
                     setText( 8, label9 );
-                    diskUsage->addProperty( diskUsageItem, "ListView-Ref", this );
+                    diskUsage->addProperty( file, "ListView-Ref", this );
                   }
-  DUListViewItem( DiskUsage *diskUsageIn, DiskUsageItem *duItem, QListView * parent, QListViewItem * after, 
+  DUListViewItem( DiskUsage *diskUsageIn, File *fileIn, QListView * parent, QListViewItem * after, 
                   QString label1, QString label2, QString label3, QString label4, QString label5, 
                   QString label6, QString label7, QString label8, QString label9 )   
                   : QListViewItem( parent, after, label1, label2, label3, label4, label5, label6, label7, label8), 
-                  diskUsage( diskUsageIn ), diskUsageItem( duItem ) 
+                  diskUsage( diskUsageIn ), file( fileIn ) 
                   {
                     setText( 8, label9 );
-                    diskUsage->addProperty( diskUsageItem, "ListView-Ref", this );
+                    diskUsage->addProperty( file, "ListView-Ref", this );
                   }
-  DUListViewItem( DiskUsage *diskUsageIn, DiskUsageItem *duItem, QListViewItem * parent, QListViewItem * after, 
+  DUListViewItem( DiskUsage *diskUsageIn, File *fileIn, QListViewItem * parent, QListViewItem * after, 
                   QString label1, QString label2, QString label3, QString label4, QString label5, 
                   QString label6, QString label7, QString label8, QString label9 )   
                   : QListViewItem( parent, after, label1, label2, label3, label4, label5, label6, label7, label8), 
-                  diskUsage( diskUsageIn ), diskUsageItem( duItem ) 
+                  diskUsage( diskUsageIn ), file( fileIn ) 
                   {
                     setText( 8, label9 );
-                    diskUsage->addProperty( diskUsageItem, "ListView-Ref", this );
+                    diskUsage->addProperty( file, "ListView-Ref", this );
                   }
   ~DUListViewItem()
                   {
-                    diskUsage->removeProperty( diskUsageItem, "ListView-Ref" );
+                    diskUsage->removeProperty( file, "ListView-Ref" );
                   }
   
   virtual int compare ( QListViewItem * i, int col, bool ascending ) const 
@@ -91,12 +91,12 @@ public:
     {
     case 1:    
     case 2:
-      sprintf(buf1,"%025llu",diskUsageItem->size());
-      sprintf(buf2,"%025llu",compWith->diskUsageItem->size());
+      sprintf(buf1,"%025llu",file->size());
+      sprintf(buf2,"%025llu",compWith->file->size());
       return -QString::compare( QString( buf1 ), QString( buf2 ) );
     case 3:
-      sprintf(buf1,"%025llu",diskUsageItem->ownSize());
-      sprintf(buf2,"%025llu",compWith->diskUsageItem->ownSize());
+      sprintf(buf1,"%025llu",file->ownSize());
+      sprintf(buf2,"%025llu",compWith->file->ownSize());
       return -QString::compare( QString( buf1 ), QString( buf2 ) );
     case 5:
       return QListViewItem::compare( i, col, !ascending );
@@ -105,11 +105,11 @@ public:
     }
   }
   
-  inline DiskUsageItem * getDiskUsageItem() { return diskUsageItem; }
+  inline File * getFile() { return file; }
   
 private:
   DiskUsage *diskUsage;
-  DiskUsageItem *diskUsageItem;                  
+  File *file;                  
 };
 
 class DUListView : public QListView
@@ -120,8 +120,8 @@ public:
   DUListView( DiskUsage *usage, QWidget *parent, const char *name );
     
 public slots:
-  void slotDirChanged( QString );
-  void slotChanged( DiskUsageItem * );
+  void slotDirChanged( Directory * );
+  void slotChanged( File * );
   void slotRightClicked(QListViewItem *);
   void slotExpanded( QListViewItem * );
     
@@ -132,7 +132,7 @@ protected:
   virtual void keyPressEvent( QKeyEvent *e );
     
 private:
-  void addDirectory( QString dirName, QListViewItem *parent );
+  void addDirectory( Directory *dirEntry, QListViewItem *parent );
   bool doubleClicked( QListViewItem * item );
 };
 

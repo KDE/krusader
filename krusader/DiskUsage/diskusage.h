@@ -32,6 +32,7 @@
 #define __DISK_USAGE_H__
 
 #include "../VFS/vfs.h"
+#include "filelightParts/fileTree.h"
 
 #include <qdialog.h>
 #include <qlabel.h>
@@ -69,111 +70,56 @@ protected:
   bool   cancelled;
 };
 
-class DiskUsageItem
-{
-private:
-  QString         m_name;     //< file name
-  QString         m_directory;//< the directory of the file
-  KIO::filesize_t m_size;     //< size with subdirectories
-  KIO::filesize_t m_ownSize;  //< size without subdirectories
-  mode_t          m_mode;     //< file mode
-  QString         m_owner;    //< file owner name
-  QString         m_group;    //< file group name
-  QString         m_perm;     //< file permissions string
-  time_t          m_time;     //< file modification in time_t format
-  bool            m_symLink;  //< true if the file is a symlink
-  QString         m_mimeType; //< file mimetype
-  bool            m_excluded; //< flag if the file is excluded from du
-  int             m_percent;  //< percent flag
-  
-public:
-  DiskUsageItem( QString nameIn, QString dir, KIO::filesize_t sizeIn, mode_t modeIn,  QString ownerIn,
-                 QString groupIn, QString permIn, time_t timeIn, bool symLinkIn, QString mimeTypeIn )
-  : m_name( nameIn ), m_directory( dir ), m_size( sizeIn ), m_ownSize( sizeIn ), m_mode( modeIn ), 
-    m_owner( ownerIn ), m_group( groupIn ), m_perm( permIn ), m_time( timeIn ), m_symLink( symLinkIn ), 
-    m_mimeType( mimeTypeIn ), m_excluded( false ), m_percent( -1 ) {}
-      
-  inline QString          name()                {return m_name;}
-  inline QString          directory()           {return m_directory;}
-  inline KIO::filesize_t  size()                {return m_size;}
-  inline KIO::filesize_t  ownSize()             {return m_ownSize;}
-  inline mode_t           mode()                {return m_mode;}
-  inline QString          owner()               {return m_owner;}
-  inline QString          group()               {return m_group;}
-  inline QString          perm()                {return m_perm;}
-  inline time_t           time()                {return m_time;}
-  inline QString          mime()                {return m_mimeType;}
-  inline bool             isSymLink()           {return m_symLink;}
-  inline bool             isDir()               {return m_perm[0]=='d';}
-  inline bool             isExcluded()          {return m_excluded;}
-  inline void             exclude( bool flag )  {m_excluded = flag;}
-  inline int              intPercent()          {return m_percent;}
-  inline QString          percent()             {if( m_percent < 0 )
-                                                   return "INV";
-                                                 char buf[ 25 ];  
-                                                 sprintf( buf, "%d.%02d%%", m_percent / 100, m_percent % 100 );
-                                                 return QString( buf );}
-  inline void             setPercent( int p )   {m_percent = p;}  
-  
-  inline void setSizes( KIO::filesize_t totalSize, KIO::filesize_t ownSize )
-  {
-    m_ownSize = ownSize;
-    m_size = totalSize;
-  }
-
-};
-
 class DiskUsage : public QObject
 {
   Q_OBJECT
   
 public:
   DiskUsage();
+  ~DiskUsage();
   
-  bool     load( KURL dirName, QWidget *parent );
-  void     clear();
-  QPtrList<DiskUsageItem> *getDirectory( QString dir );
-  DiskUsageItem           *getItem( QString path );
+  bool       load( KURL dirName, QWidget *parent );
+  void       clear();
+
+  Directory* getDirectory( QString path );
+  File *     getFile( QString path );
   
-  void *   getProperty( DiskUsageItem *, QString );
-  void     addProperty( DiskUsageItem *, QString, void * );
-  void     removeProperty( DiskUsageItem *, QString );
+  void *     getProperty( File *, QString );
+  void       addProperty( File *, QString, void * );
+  void       removeProperty( File *, QString );
   
-  void     exclude( QString dir, QString name );
-  void     includeAll();
+  void       exclude( File *file, bool calcPercents = true );
+  void       includeAll();
   
-  QString  getToolTip( DiskUsageItem * );
+  QString    getToolTip( File * );
   
-  void     rightClickMenu( DiskUsageItem * );
+  void       rightClickMenu( File * );
   
-  void     changeDirectory( QString dir );
-  QString  getCurrentDir();
-  QPixmap  getIcon( QString mime );
+  void       changeDirectory( Directory *dir );
+  Directory* getCurrentDir();
+  QPixmap    getIcon( QString mime );
   
 signals:
-  void     directoryChanged( QString );
-  void     clearing();
-  void     changed( DiskUsageItem * );
-  void     status( QString );
+  void       enteringDirectory( Directory * );
+  void       clearing();
+  void       changed( File * );
+  void       status( QString );
   
 protected:
-  QDict< QPtrList<DiskUsageItem> > contentMap;
+  QDict< Directory > contentMap;
   QPtrDict<Properties> propertyMap;
+    
+  Directory* currentDirectory;
+  KIO::filesize_t currentSize;
   
-  QString  currentDirectory;
+  void       calculateSizes( Directory *dir = 0, bool emitSig = false );
+  void       calculatePercents( bool emitSig = false, Directory *dir = 0  );
+  void       include( Directory *dir );
+  void       createStatus();
   
-  void     calculateSizes();
-  void     calculatePercents( bool emitSig = false );
-  void     calculatePercentsDir( QString dir, KIO::filesize_t currentSize, bool emitSig );
-  void     calculateDirSize( QString dir, KIO::filesize_t &total, KIO::filesize_t &own, bool emitSig = false );
-  void     excludeDir( QString dir );
-  void     includeDir( QString dir );
-  void     createStatus();
+  KURL       baseURL;             //< the base URL of loading
   
-  KIO::filesize_t totalSize;     //< size with subdirectories
-  KIO::filesize_t ownSize;       //< size without subdirectories
-
-  KURL      baseURL;             //< the base URL of loading
+  Directory *root;
 };
 
 #endif /* __DISK_USAGE_GUI_H__ */

@@ -35,6 +35,7 @@
 #include <qpushbutton.h>
 #include <qhbox.h>
 #include <qvaluestack.h>
+#include <qptrstack.h>
 #include <qapplication.h>
 #include <qcursor.h>
 #include <qpixmapcache.h>
@@ -134,27 +135,36 @@ void DiskUsageDialog::reject()
   QDialog::reject();
 }
 
-DiskUsage::DiskUsage()
+DiskUsage::DiskUsage() : root( 0 )
 {
-  contentMap.setAutoDelete( true );
   propertyMap.setAutoDelete( true );
 }
 
-bool DiskUsage::load( KURL baseDir, QWidget *parent )
+DiskUsage::~DiskUsage()
+{
+  if( root )
+    delete root;
+}
+
+bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
 {
   int fileNum = 0, dirNum = 0;
-  KIO::filesize_t totalSize = 0;
   bool result = true;
   baseURL = baseDir;
-  
+  KIO::filesize_t totalSize = 0;
+  Directory *parent = 0;
+      
   emit status( i18n( "Loading the disk usage information..." ) );
   
   clear();
+  root = new Directory();
     
-  DiskUsageDialog *duDlg = new DiskUsageDialog( parent, "DuProgressDialog" );
+  DiskUsageDialog *duDlg = new DiskUsageDialog( parentWidget, "DuProgressDialog" );
   
   QValueStack<QString> directoryStack;
+  QPtrStack<Directory> parentStack;
   directoryStack.push( "" );
+  parentStack.push( root );
   
   vfs *searchVfs = KrVfsHandler::getVfs( baseDir );
   if( searchVfs == 0 )
@@ -169,11 +179,15 @@ bool DiskUsage::load( KURL baseDir, QWidget *parent )
   while( !directoryStack.isEmpty() )
   {
     QString dirToCheck = directoryStack.pop();
+    parent = parentStack.pop();
+    
+    contentMap.insert( dirToCheck, parent );
+    
     KURL url = baseDir;
     
     if( !dirToCheck.isEmpty() )
       url.addPath( dirToCheck );
-
+    
 #if defined(BSD)
     if ( url.isLocalFile() && url.path().left( 7 ) == "/procfs" )
       continue;
@@ -189,29 +203,34 @@ bool DiskUsage::load( KURL baseDir, QWidget *parent )
 
     dirNum++;
 
-    QPtrList< DiskUsageItem > *dirContent = new QPtrList< DiskUsageItem >();
-    dirContent->setAutoDelete( true );
-          
     vfile * file = searchVfs->vfs_getFirstFile();
     while( file )
     {      
       fileNum++;
-      DiskUsageItem *newItem = new DiskUsageItem( file->vfile_getName(), dirToCheck, file->vfile_getSize(), 
-                               file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(), 
-                               file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
-                               file->vfile_getMime() );
-      dirContent->append( newItem );
+      File *newItem = 0;
       
       if( file->vfile_isDir() && !file->vfile_isSymLink() )
+      {
+        newItem = new Directory( parent, file->vfile_getName(), dirToCheck, file->vfile_getSize(), 
+                                 file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(), 
+                                 file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
+                                 file->vfile_getMime() );
         directoryStack.push( (dirToCheck.isEmpty() ? "" : dirToCheck + "/" )+ file->vfile_getName() );
+        parentStack.push( dynamic_cast<Directory *>( newItem ) );
+      }
       else
+      {
+        newItem = new File( parent, file->vfile_getName(), dirToCheck, file->vfile_getSize(), 
+                            file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(), 
+                            file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
+                            file->vfile_getMime() );
         totalSize += file->vfile_getSize();
-    
+      }      
+      parent->append( newItem );
+          
       duDlg->setValues( fileNum, dirNum, totalSize );       
       file = searchVfs->vfs_getNextFile();
     }
-    
-    contentMap.insert( dirToCheck, dirContent );
     
     duDlg->setValues( fileNum, dirNum, totalSize );    
     qApp->processEvents();
@@ -226,17 +245,16 @@ bool DiskUsage::load( KURL baseDir, QWidget *parent )
   delete duDlg;
   
   calculateSizes();
-  
-  changeDirectory( "" );  
+  changeDirectory( root );  
   return result;
 }
 
-QPtrList<DiskUsageItem> * DiskUsage::getDirectory( QString dir )
+Directory * DiskUsage::getDirectory( QString dir )
 {
   return contentMap.find( dir );
 }
 
-DiskUsageItem * DiskUsage::getItem( QString path )
+File * DiskUsage::getFile( QString path )
 {
   if( path == "" )
     return 0;
@@ -251,18 +269,14 @@ DiskUsageItem * DiskUsage::getItem( QString path )
   else
     dir.truncate( ndx );
     
-  QPtrList<DiskUsageItem> * itemList = getDirectory( dir );    
-  if( itemList == 0 )
+  Directory *dirEntry = getDirectory( dir );    
+  if( dirEntry == 0 )
     return 0;
-
-  DiskUsageItem *item = itemList->first();
-  while( item )
-  {
-    if( item->name() == file )
-      return item;
-      
-    item = itemList->next();
-  }
+    
+  for( Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it )
+    if( (*it)->fileName() == file )
+      return *it;
+  
   return 0;  
 }
 
@@ -271,133 +285,92 @@ void DiskUsage::clear()
   emit clearing();
   propertyMap.clear();
   contentMap.clear();
+  if( root )
+    delete root;
+  root = 0;
 }
 
-void DiskUsage::calculateSizes()
+void DiskUsage::calculateSizes( Directory *dirEntry, bool emitSig )
 {
-  calculateDirSize( "", totalSize, ownSize );
-}
+  if( dirEntry == 0 )
+    dirEntry = root;
 
-void DiskUsage::calculateDirSize( QString dir, KIO::filesize_t &total, KIO::filesize_t &own, bool emitSig )
-{
-  own = total = 0;
-  
-  QPtrList<DiskUsageItem> *dirPtr = getDirectory( dir );
-  
-  if( dirPtr == 0 )
-    return;
-    
-  DiskUsageItem *item = dirPtr->first();
-  while( item )
+  KIO::filesize_t own = 0, total = 0;
+
+  for( Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it )
   {
+    File * item = *it;
+  
     if( !item->isExcluded() )
     {  
-      if( item->isDir() && !item->isSymLink() )
-      {
-        KIO::filesize_t childOwn = 0, childTotal = 0;
-        KIO::filesize_t oldOwn = item->ownSize(), oldTotal = item->size();
-        
-        calculateDirSize( ( dir.isEmpty() ? "" : dir + "/" ) + item->name(), childTotal, childOwn, emitSig );
-        
-        item->setSizes( childTotal, childOwn );
-        if( emitSig && ( childOwn != oldOwn || childTotal != oldTotal ) )
-          emit changed( item );
-      
-        total += childTotal;
-      }
+      if( item->isDir() )
+        calculateSizes( dynamic_cast<Directory *>( item ), emitSig );
       else
-      {
         own += item->size();
-        total += item->size();
-      }
-    }
-    
-    item = dirPtr->next();
-  }
-}
-
-void DiskUsage::excludeDir( QString dir )
-{
-  QPtrList<DiskUsageItem> *dirPtr = getDirectory( dir );
-  if( dirPtr == 0 )
-    return;
-    
-  DiskUsageItem *item = dirPtr->first();
-  while( item )
-  {
-    if( !item->isExcluded() )
-    {
-      item->exclude( true );
-      emit changed( item );
-    }
-  
-    if( item->isDir() && !item->isSymLink() )
-      excludeDir( ( dir.isEmpty() ? "" : dir + "/" ) + item->name() );
-    
-    item = dirPtr->next();
-  }
-}
-
-void DiskUsage::exclude( QString dir, QString name )
-{
-  QPtrList<DiskUsageItem> *dirPtr = getDirectory( dir );
-  if( dirPtr == 0 )
-    return;
-    
-  DiskUsageItem *item = dirPtr->first();
-  while( item )
-  {
-    if( item->name() == name )
-    {
-      if( !item->isExcluded() )
-      {
-        item->exclude( true );
-        emit changed( item );
-      }
         
-      if( item->isDir() && !item->isSymLink() )
-        excludeDir( ( dir.isEmpty() ? "" : dir + "/" ) + item->name() );
-    
-      break;
+      total += item->size();
     }
-    item = dirPtr->next();
   }
-  calculateDirSize( "", totalSize, ownSize, true );
-  calculatePercents( true );
-  createStatus();
+
+  KIO::filesize_t oldOwn = dirEntry->ownSize(), oldTotal = dirEntry->size();
+  dirEntry->setSizes( total, own );
+  
+  if( emitSig && ( own != oldOwn || total != oldTotal ) )
+    emit changed( dirEntry );
 }
 
-void DiskUsage::includeDir( QString dir )
+void DiskUsage::exclude( File *file, bool calcPercents )
 {
-  QPtrList<DiskUsageItem> *dirPtr = getDirectory( dir );
-  if( dirPtr == 0 )
-    return;
-    
-  DiskUsageItem *item = dirPtr->first();
-  while( item )
+  if( !file->isExcluded() )
   {
+    file->exclude( true );
+    emit changed( file );
+  
+    if( file->isDir() )
+    {      
+      Directory *dir = dynamic_cast<Directory *>( file );
+      for( Iterator<File> it = dir->iterator(); it != dir->end(); ++it )
+        exclude( *it, false );
+    }
+  }
+  
+  if( calcPercents )
+  {  
+    calculateSizes( root, true );
+    calculatePercents( true );
+    createStatus();
+  }
+}
+
+void DiskUsage::include( Directory *dir )
+{
+  if( dir == 0 ) 
+    return;
+      
+  for( Iterator<File> it = dir->iterator(); it != dir->end(); ++it )
+  {
+    File *item = *it;
+    
+    if( item->isDir() )
+      include( dynamic_cast<Directory *>( item ) );
+  
     if( item->isExcluded() )
     {
       item->exclude( false );
       emit changed( item );
-    }
-  
-    if( item->isDir() && !item->isSymLink() )
-      includeDir( ( dir.isEmpty() ? "" : dir + "/" ) + item->name() );
-    
-    item = dirPtr->next();
+    }  
   }
 }
 
 void DiskUsage::includeAll()
 {
-  includeDir( "" );
-  calculateDirSize( "", totalSize, ownSize, true );
+  include( root );
+  calculateSizes( root, true );
   calculatePercents( true );
   createStatus();
 }
 
-void * DiskUsage::getProperty( DiskUsageItem *item, QString key )
+void * DiskUsage::getProperty( File *item, QString key )
 {
   Properties * props = propertyMap.find( item );
   if( props == 0 )
@@ -405,7 +378,7 @@ void * DiskUsage::getProperty( DiskUsageItem *item, QString key )
   return props->find( key );
 }
 
-void DiskUsage::addProperty( DiskUsageItem *item, QString key, void * prop )
+void DiskUsage::addProperty( File *item, QString key, void * prop )
 {
   Properties * props = propertyMap.find( item );
   if( props == 0 )
@@ -416,7 +389,7 @@ void DiskUsage::addProperty( DiskUsageItem *item, QString key, void * prop )
   props->insert( key, prop );
 }
 
-void DiskUsage::removeProperty( DiskUsageItem *item, QString key )
+void DiskUsage::removeProperty( File *item, QString key )
 {
   Properties * props = propertyMap.find( item );
   if( props == 0 )
@@ -428,46 +401,38 @@ void DiskUsage::removeProperty( DiskUsageItem *item, QString key )
 
 void DiskUsage::createStatus()
 {
-  QString dir = currentDirectory;
+  Directory *dirEntry = currentDirectory;
 
-  KIO::filesize_t totalDirSize = totalSize;
-  KIO::filesize_t ownDirSize = ownSize;
-  
-  if( !dir.isEmpty() )
-  {
-    DiskUsageItem *item = getItem( dir );
-    if( item )
-    {
-      totalDirSize = item->size();
-      ownDirSize = item->ownSize();
-    }
-  }   
+  if( dirEntry == 0 )
+    return;
   
   KURL url = baseURL;  
-  if( !dir.isEmpty() )
-      url.addPath( dir );
+  if( !dirEntry->directory().isEmpty() )
+      url.addPath( dirEntry->directory() );
   
   emit status( i18n( "Current directory:%1,  Total size:%2,  Own size:%3" )
                .arg( url.prettyURL(-1,KURL::StripFileProtocol) )
-               .arg( " "+KRpermHandler::parseSize( totalDirSize ) )
-               .arg( " "+KRpermHandler::parseSize( ownDirSize ) ) );
+               .arg( " "+KRpermHandler::parseSize( dirEntry->size() ) )
+               .arg( " "+KRpermHandler::parseSize( dirEntry->ownSize() ) ) );
 }  
 
-void DiskUsage::changeDirectory( QString dir )
+void DiskUsage::changeDirectory( Directory *dir )
 {
   currentDirectory = dir;
-  calculatePercents();  
-  createStatus();
   
-  emit directoryChanged( dir );
+  currentSize = dir->size();  
+  calculatePercents( true, dir );
+  
+  createStatus();  
+  emit enteringDirectory( dir );
 }
 
-QString DiskUsage::getCurrentDir()
+Directory* DiskUsage::getCurrentDir()
 {
   return currentDirectory;
 }
 
-void DiskUsage::rightClickMenu( DiskUsageItem *duItem )
+void DiskUsage::rightClickMenu( File *fileItem )
 {
   KPopupMenu popup;
   popup.insertTitle(i18n("Disk Usage"));
@@ -481,7 +446,7 @@ void DiskUsage::rightClickMenu( DiskUsageItem *duItem )
   switch (result)
   {
   case EXCLUDE_ID:
-    exclude( duItem->directory(), duItem->name() );
+    exclude( fileItem );
     break;
   case INCLUDE_ALL_ID:
     includeAll();
@@ -507,38 +472,22 @@ QPixmap DiskUsage::getIcon( QString mime )
   return icon;
 }
 
-void DiskUsage::calculatePercents( bool emitSig )
+void DiskUsage::calculatePercents( bool emitSig, Directory *dirEntry )
 {
-  KIO::filesize_t currentSize = totalSize;
-  
-  if( !currentDirectory.isEmpty() )
-  {
-    DiskUsageItem *dirItem = getItem( currentDirectory );
-    if( dirItem == 0 )
-      currentSize = 0;
-    else
-      currentSize = dirItem->size();
-  }
-  
-  calculatePercentsDir( currentDirectory, currentSize, emitSig );
-}  
-
-void DiskUsage::calculatePercentsDir( QString dir, KIO::filesize_t currentSize, bool emitSig )
-{
-  QPtrList<DiskUsageItem> *dirPtr = getDirectory( dir );
-  if( dirPtr == 0 )
-    return;
+  if( dirEntry == 0 )
+    dirEntry = root;
     
-  DiskUsageItem *item = dirPtr->first();
-  while( item )
-  {
+  for( Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it )
+  {    
+    File *item = *it;
+  
     if( !item->isExcluded() )
     {
       int newPerc;
       
-      if( currentSize == 0 && item->size() == 0 )
+      if( dirEntry->size() == 0 && item->size() == 0 )
         newPerc = 0;
-      else if( currentSize == 0 )
+      else if( dirEntry->size() == 0 )
         newPerc = -1;
       else
         newPerc = (int)((double)item->size() / (double)currentSize * 10000. + 0.5);
@@ -550,14 +499,12 @@ void DiskUsage::calculatePercentsDir( QString dir, KIO::filesize_t currentSize, 
         emit changed( item );
     }
   
-    if( item->isDir() && !item->isSymLink() )
-      calculatePercentsDir( ( dir.isEmpty() ? "" : dir + "/" ) + item->name(), currentSize, emitSig );
-    
-    item = dirPtr->next();
+    if( item->isDir() )
+      calculatePercents( emitSig, dynamic_cast<Directory *>( item ) );
   }
 }
 
-QString DiskUsage::getToolTip( DiskUsageItem *item )
+QString DiskUsage::getToolTip( File *item )
 {
   KMimeType::Ptr mimePtr = KMimeType::mimeType( item->mime() );
   QString mime = mimePtr->comment();
@@ -567,11 +514,11 @@ QString DiskUsage::getToolTip( DiskUsageItem *item )
   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
   QString date = KGlobal::locale()->formatDateTime(tmp);    
   
-  QString str = "<qt><h5><table><tr><td>" + i18n( "Name:" ) +  "</td><td>" + item->name() + "</td></tr>"+
+  QString str = "<qt><h5><table><tr><td>" + i18n( "Name:" ) +  "</td><td>" + item->fileName() + "</td></tr>"+
                 "<tr><td>" + i18n( "Type:" ) +  "</td><td>" + mime + "</td></tr>"+
                 "<tr><td>" + i18n( "Size:" ) +  "</td><td>" + KRpermHandler::parseSize( item->size() ) + "</td></tr>";
 
-  if( item->isDir() && !item->isSymLink() )
+  if( item->isDir() )
     str +=      "<tr><td>" + i18n( "Own size:" ) +  "</td><td>" + KRpermHandler::parseSize( item->ownSize() ) + "</td></tr>";
                                 
   str +=        "<tr><td>" + i18n( "Last modified:" ) +  "</td><td>" + date + "</td></tr>"+

@@ -1,5 +1,5 @@
 /***************************************************************************
-                           dulines.h  -  description
+                       dufilelight.cpp  -  description
                              -------------------
     copyright            : (C) 2004 by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
@@ -17,7 +17,7 @@
      88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
      YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                     H e a d e r    F i l e
+                                                     S o u r c e    F i l e
 
  ***************************************************************************
  *                                                                         *
@@ -28,44 +28,18 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __DU_LINES_H__
-#define __DU_LINES_H__
+#include "dufilelight.h"
 
-#include <qlistview.h>
-#include <qpixmap.h>
-#include "diskusage.h"
-
-class DULinesToolTip;
-
-class DULines : public QListView
+DUFilelight::DUFilelight( DiskUsage *usage, QWidget *parent, const char *name )
+  : RadialMap::Widget( parent, name ), diskUsage( usage )
 {
-  Q_OBJECT
-  
-public:
-  DULines( DiskUsage *usage, QWidget *parent, const char *name );
-  ~DULines();
+  connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
+}
 
-public slots:
-  void slotDirChanged( Directory *dirEntry );
-  void sectionResized( int );
-  void slotRightClicked(QListViewItem *);
-  void slotChanged( File * );
-  void slotRefresh() { refreshNeeded = false; sectionResized( 0 ); }
-  
-protected:
-  DiskUsage *diskUsage;  
-  
-  virtual void contentsMouseDoubleClickEvent ( QMouseEvent * e );
-  virtual void keyPressEvent( QKeyEvent *e );
-  
-private:
-  QPixmap createPixmap( int percent, int maxPercent, int maxWidth );
-  bool doubleClicked( QListViewItem * item );
-  
-  bool refreshNeeded;
-  
-  DULinesToolTip *toolTip;
-};
+void DUFilelight::slotDirChanged( Directory *dir )
+{
+  create( dir );
+}
 
-#endif /* __DU_LINES_H__ */
 
+#include "dufilelight.moc"

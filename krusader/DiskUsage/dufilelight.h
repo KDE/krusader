@@ -1,5 +1,5 @@
 /***************************************************************************
-                        diskusagegui.h  -  description
+                         dufilelight.h  -  description
                              -------------------
     copyright            : (C) 2004 by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
@@ -28,64 +28,25 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __DISK_USAGE_GUI_H__
-#define __DISK_USAGE_GUI_H__
-
-#include <qdialog.h>
-#include <qlayout.h>
-#include <qwidgetstack.h>
-#include <qtoolbutton.h>
-#include <kurl.h>
-#include <ksqueezedtextlabel.h>
+#ifndef __DU_FILELIGHT_H__
+#define __DU_FILELIGHT_H__
 
 #include "diskusage.h"
-#include "dulistview.h"
-#include "dulines.h"
-#include "dufilelight.h"
+#include "radialMap/widget.h"
 
-class DiskUsageGUI : public QDialog
+class DUFilelight : public RadialMap::Widget
 {
   Q_OBJECT
   
 public:
-  DiskUsageGUI( QString openDir, QWidget* parent=0, char *name = 0 );
-  ~DiskUsageGUI();
-  
-  void                       selectView( int viewNum );
+  DUFilelight( DiskUsage *usage, QWidget *parent, const char *name );
 
 public slots:
-  void                       loadUsageInfo();
-  bool                       newSearch();
-  void                       setStatus( QString );
-  
-  void                       selectLinesView()     { selectView( 0 ); }
-  void                       selectListView()      { selectView( 1 ); }
-  void                       selectFilelightView() { selectView( 2 ); }
-  
-protected slots:
-  virtual void               reject();
+  void slotDirChanged( Directory * );
   
 protected:
-  virtual void               resizeEvent( QResizeEvent *e );
-  
-  
-  DiskUsage                  diskUsage;
-  KURL                       baseDirectory;
-  
-  QWidgetStack              *viewStack;
-  KSqueezedTextLabel        *status;
-  
-  DUListView                *listView;
-  DULines                   *lineView;
-  DUFilelight               *filelightView;
-
-  QToolButton               *btnLines;
-  QToolButton               *btnDetailed;
-  QToolButton               *btnFilelight;
-  
-  int                        sizeX;
-  int                        sizeY;
+  DiskUsage *diskUsage;  
 };
 
-#endif /* __DISK_USAGE_GUI_H__ */
+#endif /* __DU_FILELIGHT_H__ */
 

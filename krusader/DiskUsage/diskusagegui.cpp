@@ -70,7 +70,11 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   btnDetailed = new QToolButton( duTools, "btnDetailed" );
   btnDetailed->setIconSet( QIconSet(krLoader->loadIcon("view_detailed",KIcon::Desktop)) );
   btnDetailed->setToggleButton( true );
-  
+
+  btnFilelight = new QToolButton( duTools, "btnFilelight" );
+  btnFilelight->setIconSet( QIconSet(krLoader->loadIcon("none",KIcon::Desktop)) );
+  btnFilelight->setToggleButton( true );
+    
   QWidget *spacerWidget = new QWidget( duTools, "spacerWidget" );
   QHBoxLayout *hboxlayout = new QHBoxLayout( spacerWidget );
   QSpacerItem* spacer = new QSpacerItem( 0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed );
@@ -82,9 +86,11 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   
   listView = new DUListView( &diskUsage, viewStack, "DU ListView" );
   lineView = new DULines( &diskUsage, viewStack, "DU LineView" );
+  filelightView = new DUFilelight( &diskUsage, viewStack, "Filelight canvas" );
   
   viewStack->addWidget( listView );
   viewStack->addWidget( lineView );
+  viewStack->addWidget( filelightView );
 
   selectView( 0 );
       
@@ -100,7 +106,8 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   connect( btnRefresh, SIGNAL( clicked() ), this, SLOT( loadUsageInfo() ) );
   connect( btnLines, SIGNAL( clicked() ), this, SLOT( selectLinesView() ) );
   connect( btnDetailed, SIGNAL( clicked() ), this, SLOT( selectListView() ) );
-
+  connect( btnFilelight, SIGNAL( clicked() ), this, SLOT( selectFilelightView() ) );
+  
   krConfig->setGroup( "DiskUsage" ); 
   sizeX = krConfig->readNumEntry( "Window Width",  QFontMetrics(font()).width("W") * 70 );
   sizeY = krConfig->readNumEntry( "Window Height", QFontMetrics(font()).height() * 25 );    
@@ -155,6 +162,7 @@ void DiskUsageGUI::selectView( int viewNum )
 {
   btnLines->setOn( false );
   btnDetailed->setOn( false );
+  btnFilelight->setOn( false );
   
   switch( viewNum )
   {
@@ -165,6 +173,10 @@ void DiskUsageGUI::selectView( int viewNum )
   case 1:
     btnDetailed->setOn( true );
     viewStack->raiseWidget( listView );
+    break;
+  case 2:
+    btnFilelight->setOn( true );
+    viewStack->raiseWidget( filelightView );
     break;
   }
 }

@@ -4,9 +4,11 @@ noinst_LIBRARIES = libDiskUsage.a
 INCLUDES = $(all_includes)
 
 libDiskUsage_a_METASOURCES = AUTO
-libDiskUsage_a_SOURCES = diskusagegui.cpp diskusage.cpp dulistview.cpp dulines.cpp
+libDiskUsage_a_SOURCES = diskusagegui.cpp diskusage.cpp dulistview.cpp dulines.cpp dufilelight.cpp
+
+SUBDIRS = radialMap filelightParts
 
 EXTRA_DIST = diskusagegui.h
 
 ####### kdevelop will overwrite this part!!! (end)############
-noinst_HEADERS = diskusage.h dulistview.h dulines.h
+noinst_HEADERS = diskusage.h dulistview.h dulines.h dufilelight.h
