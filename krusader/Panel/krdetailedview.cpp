@@ -76,7 +76,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
 
-KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
+KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg, const char *name ) :
     KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
 _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ), delayedQuickSearchEvent( 0 ) {
 

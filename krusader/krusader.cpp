@@ -101,6 +101,7 @@ KAction *Krusader::actMountMan = 0;
 KAction *Krusader::actNewTool = 0;
 KAction *Krusader::actKonfigurator = 0;
 KAction *Krusader::actToolsSetup = 0;
+KAction *Krusader::actSwapPanels = 0;
 KAction *Krusader::actBack = 0;
 KAction *Krusader::actRoot = 0;
 KAction *Krusader::actFind = 0;
@@ -385,11 +386,10 @@ void Krusader::setupActions() {
   actToggleTerminal->setChecked( false );
   actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), CTRL + Key_Period, SLOTS,
                                        SLOT( toggleHidden() ), actionCollection(), "toggle hidden files" );
-  actToggleSwapPanels = new KToggleAction( i18n( "S&wap Panels" ), CTRL + Key_U, SLOTS,
+  actSwapPanels = new KAction( i18n( "S&wap Panels" ), CTRL + Key_U, SLOTS,
                         SLOT( toggleSwapPanels() ), actionCollection(), "toggle swap panels" );
   krConfig->setGroup( "Look&Feel" );
   actToggleHidden->setChecked( krConfig->readBoolEntry( "Show Hidden", _ShowHidden ) );
-  actToggleSwapPanels->setChecked( false );
 
   // and then the DONE actions
   actCmdlinePopup = new KAction( i18n( "popup cmdline" ), 0, CTRL + Key_Slash, SLOTS,

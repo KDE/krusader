@@ -47,13 +47,10 @@ class ListPanel;
 class KRslots : public QObject {
     Q_OBJECT
 
-  private:
-    bool panel_swap;
-    
   public:
     enum compareMode { full } ;
 
-    KRslots() {panel_swap = false;}
+    KRslots() {}
     ~KRslots() {}
 
   public slots:

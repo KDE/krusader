@@ -315,9 +315,22 @@ void KRslots::toggleHidden(){
 }
 
 void KRslots::toggleSwapPanels(){
-  PanelManager *currentFirst = panel_swap ? MAIN_VIEW->rightMng : MAIN_VIEW->leftMng;
-	krApp->actToggleSwapPanels->setChecked( panel_swap = !panel_swap );
-  MAIN_VIEW->horiz_splitter->moveToLast( currentFirst );
+  MAIN_VIEW->horiz_splitter->moveToLast( MAIN_VIEW->leftMng );
+
+  ListPanel     *tmpPanel;     // temporary variables for swapping
+  PanelManager  *tmpMng;
+
+  tmpMng = MAIN_VIEW->leftMng;
+  MAIN_VIEW->leftMng = MAIN_VIEW->rightMng;
+  MAIN_VIEW->rightMng = tmpMng;
+    
+  tmpPanel = MAIN_VIEW->left;
+  MAIN_VIEW->left = MAIN_VIEW->right;
+  MAIN_VIEW->right = tmpPanel;
+  
+  MAIN_VIEW->leftMng->swapPanels();
+  MAIN_VIEW->rightMng->swapPanels();
+  
   MAIN_VIEW->left->updateGeometry();
   MAIN_VIEW->right->updateGeometry();
 }

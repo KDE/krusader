@@ -88,7 +88,7 @@ typedef QValueList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel( QWidget *parent, bool left, const char *name ) :
+ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
   QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), _left( left ), quickSearch(0),
   cdRootButton( 0 ),cdUpButton( 0 )
 {

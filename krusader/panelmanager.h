@@ -32,7 +32,14 @@ class PanelManager: public QWidget {
      * Only starts the VFS inside the panel, you must first use createPanel() !
      */
     void startPanel(ListPanel *panel, QString path);
+    /**
+     * Called by Konfigurator to recreate the panels after changing the configuration
+     */
     void recreatePanels();
+    /**
+     * Swaps the left / right directions of the panel
+     */
+    void swapPanels()             {_left = !_left;}
 
   public slots:
     /**
