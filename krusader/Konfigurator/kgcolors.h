@@ -56,7 +56,6 @@ public slots:
   void slotInactiveBackgroundChanged();
   void slotInactiveAltBackgroundChanged();
   void slotInactiveMarkedBackgroundChanged();
-  void slotDisableCurrent();
   void generatePreview();
 
 private:

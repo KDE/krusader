@@ -46,7 +46,6 @@
 #include <qpalette.h>
 #include <kdebug.h>
 #include <kmimetype.h>
-#include <kglobalsettings.h> 
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
   QObject(parent), KListViewItem(parent, after), KrViewItem(),_vf(vf), _view(parent) {
@@ -193,72 +192,49 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 
   
   // begin of custom color calculation
-  bool markCurrentAlways = KrColorCache::getColorCache().isShowCurrentItemAlways();
   
   // if KDE deafault: do not touch color group!
   if (!KrColorCache::getColorCache().isKDEDefault())
   {
+    bool markCurrentAlways = KrColorCache::getColorCache().isShowCurrentItemAlways();
     bool isActive = (dynamic_cast<KrView *>(listView()) == krApp->mainView->activePanel->view);
     bool isCurrent = listView()->currentItem() == this;
     
-    // As i deal with pointers here, the KDE default colors have to be stored here so that I can make
-    // a pointer out of it
-    QColor defaultForeground = KGlobalSettings::textColor(), defaultBackground = KGlobalSettings::alternateBackgroundColor(),
-           defaultMarkedForeground = KGlobalSettings::highlightedTextColor(), defaultMarkedBackground = KGlobalSettings::highlightColor();
-    
-    // These two pointers will take the fore and background color. Color is a temp variable
-    const QColor * foreground = & defaultForeground, * background = & defaultBackground, * color;
-    
-    if (isAlternate() || !defaultBackground.isValid())
-      defaultBackground = KGlobalSettings::baseColor();
-
-    // Macro: set target = col, if col is not zero
-    #define SETCOLOR(target, col) { color = col; if (color) target = color; }
-    
-    // First calculate fore and background. Th eKDe deafult is not taken into account here
-    SETCOLOR(background, isAlternate()?KrColorCache::getColorCache().getAlternateBackgroundColor(isActive):KrColorCache::getColorCache().getBackgroundColor(isActive))
-    SETCOLOR(foreground, KrColorCache::getColorCache().getForegroundColor(isActive))
+    // First calculate fore- and background.
+    QColor background = isAlternate()?KrColorCache::getColorCache().getAlternateBackgroundColor(isActive):KrColorCache::getColorCache().getBackgroundColor(isActive);
+    QColor foreground;
     if (isSymLink())
     {
        if (_vf->vfile_getMime() == "Broken Link !" )
-          SETCOLOR(foreground, KrColorCache::getColorCache().getInvalidSymlinkForegroundColor(isActive))
+          foreground = KrColorCache::getColorCache().getInvalidSymlinkForegroundColor(isActive);
        else
-          SETCOLOR(foreground, KrColorCache::getColorCache().getSymlinkForegroundColor(isActive))
+          foreground = KrColorCache::getColorCache().getSymlinkForegroundColor(isActive);
     }
     else if (isDir())
-       SETCOLOR(foreground, KrColorCache::getColorCache().getDirectoryForegroundColor(isActive))
+       foreground = KrColorCache::getColorCache().getDirectoryForegroundColor(isActive);
     else if (isExecutable())
-       SETCOLOR(foreground, KrColorCache::getColorCache().getExecutableForegroundColor(isActive))
+       foreground = KrColorCache::getColorCache().getExecutableForegroundColor(isActive);
+    else
+       foreground = KrColorCache::getColorCache().getForegroundColor(isActive);
        
     // set the background color
-    _cg.setColor(QColorGroup::Base, *background);
-    _cg.setColor(QColorGroup::Background, *background);
+    _cg.setColor(QColorGroup::Base, background);
+    _cg.setColor(QColorGroup::Background, background);
       
     // set the foreground color
-    _cg.setColor(QColorGroup::Text, *foreground);
+    _cg.setColor(QColorGroup::Text, foreground);
 
     // now the color of a marked item
-    const QColor * markedForeground = &defaultMarkedForeground, * markedBackground = &defaultMarkedBackground;
-
-    // Seek the correct background color. Set it as marked background, if it is defined.
-    SETCOLOR(markedBackground, KrColorCache::getColorCache().getMarkedBackgroundColor(isActive))
-       
-    if (isAlternate())
-    {
-       // Now set it as alternate marked background, if it is defined. As the result the alternate marked background
-       // has a higher priority than the marked background, which has a higher priority than the KDe default.
-       SETCOLOR(markedBackground, KrColorCache::getColorCache().getAlternateMarkedBackgroundColor(isActive))
-    }
-    // set it in the color group (different group color than normal background!)
-    _cg.setColor(QColorGroup::Highlight, *markedBackground);
-
-    if (KrColorCache::getColorCache().getTextValue("Marked Foreground") == "transparent")
+    QColor markedBackground = isAlternate()?KrColorCache::getColorCache().getAlternateMarkedBackgroundColor(isActive):KrColorCache::getColorCache().getMarkedBackgroundColor(isActive);
+    QColor markedForeground = KrColorCache::getColorCache().getMarkedForegroundColor(isActive);
+    if (!markedForeground.isValid()) // transparent
+       // choose fore- or background, depending on its contrast compared to markedBackground
        markedForeground = setColorIfContrastIsSufficient(markedBackground, foreground, background);
-    else
-       SETCOLOR(markedForeground, KrColorCache::getColorCache().getMarkedForegroundColor(isActive))
+
       // set it in the color group (different group color than normal foreground!)
-    _cg.setColor(QColorGroup::HighlightedText, *markedForeground);
-    
+    _cg.setColor(QColorGroup::HighlightedText, markedForeground);
+    _cg.setColor(QColorGroup::Highlight, markedBackground);
+
     // In case the current item is a selected one, set the fore- and background colors for the contrast calculation below
     if (isSelected())
     {
@@ -268,33 +244,26 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 
     // finally the current item
     if (isCurrent && (markCurrentAlways || isActive))
+    // if this is the current item AND the panels has tho focus OR the current should be marked always
     {
-       // if this is the current item AND the panels has tho focus OR the current should be marked always
-       const QColor * currentBackground = background;
-       SETCOLOR(currentBackground, KrColorCache::getColorCache().getCurrentBackgroundColor(isActive))
-       // set the background, if defined
-       _cg.setColor(QColorGroup::Highlight, *currentBackground);
-       _cg.setColor(QColorGroup::Base, *currentBackground);
-       _cg.setColor(QColorGroup::Background, *currentBackground);
+       QColor currentBackground = KrColorCache::getColorCache().getCurrentBackgroundColor(isActive);
+       if (!currentBackground.isValid()) // transparent
+          currentBackground = background;
+       
+       // set the background
+       _cg.setColor(QColorGroup::Highlight, currentBackground);
+       _cg.setColor(QColorGroup::Base, currentBackground);
+       _cg.setColor(QColorGroup::Background, currentBackground);
 
-       color = KrColorCache::getColorCache().getCurrentForegroundColor(isActive);
-       if (color)
-       {
-         // set the foreground, if defined
-         _cg.setColor(QColorGroup::Text, *color);
-         _cg.setColor(QColorGroup::HighlightedText, *color);
-       }
-       else
-       {
-         // if no foreground color is set, the foreground color calculated above is used. This might give an
-         // 'invisible' color, if the foreground color calulated above and the background color of the current
-         // item are very similar. Calulate the contrast to identify such a problem.
-         color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
-         _cg.setColor(QColorGroup::Text, *color);
-         _cg.setColor(QColorGroup::HighlightedText, *color);
-       }
+       QColor color = KrColorCache::getColorCache().getCurrentForegroundColor(isActive);
+       if (!color.isValid()) // transparent
+         // choose fore- or background, depending on its contrast compared to markedBackground
+          color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
+       
+       // set the foreground
+       _cg.setColor(QColorGroup::Text, color);
+       _cg.setColor(QColorGroup::HighlightedText, color);
     }
-
   }
 
   // center the <DIR> thing if needed
@@ -307,18 +276,16 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   } else QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
 }
 
-const QColor * KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor * background, const QColor * color1, const QColor * color2)
+const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
    #define sqr(x) ((x)*(x))
-   int contrast = sqr(color1->red() - background->red()) + sqr(color1->green() - background->green()) + sqr(color1->blue() - background->blue());
+   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
 
-   // if the contrst is too small, take the background of the not current item as its foreground in the hope, 
-   // that this increases teh contrast.
+   // if the contrast between background and color1 is too small, take color2 instead.
    if (contrast < 1000)
       return color2;
    return color1;
 }
-
 
 QPixmap& KrDetailedViewItem::icon() {
   QPixmap *p;

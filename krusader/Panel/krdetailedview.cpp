@@ -39,7 +39,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/krspecialwidgets.h"
 #include "listpanel.h"
 #include "panelfunc.h"
-#include <kconfigbase.h>
 #include <qlayout.h>
 #include <qdir.h>
 #include <qwhatsthis.h>
@@ -958,10 +957,10 @@ void KrDetailedView::refreshColors()
     bool isActive = hasFocus();
     if (krApp->mainView && krApp->mainView->activePanel && krApp->mainView->activePanel->view)
        isActive = (dynamic_cast<KrView *>(this) == krApp->mainView->activePanel->view);
-    const QColor * color = KrColorCache::getColorCache().getBackgroundColor(isActive);
-    setPaletteBackgroundColor(color?*color:KGlobalSettings::baseColor());
+    QColor color = KrColorCache::getColorCache().getBackgroundColor(isActive);
+    setPaletteBackgroundColor(color);
     color = KrColorCache::getColorCache().getAlternateBackgroundColor(isActive);
-    setAlternateBackground(color?*color:KGlobalSettings::alternateBackgroundColor());
+    setAlternateBackground(color);
   }
   else
   {

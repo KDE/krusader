@@ -81,7 +81,7 @@ protected:
 private:
   // used INTERNALLY when calculation of dir size changes the displayed size of the item
   inline void setSize(KIO::filesize_t size) { _vf->vfile_setSize(size); }
-  static const QColor * setColorIfContrastIsSufficient(const QColor * background, const QColor * color1, const QColor * color2);
+  static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
 
   QGuardedPtr<vfile> _vf;
   KrDetailedView *_view;

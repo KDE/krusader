@@ -759,6 +759,7 @@ void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
 
 void KonfiguratorColorChooser::slotSetDefaults(QObject *)
 {
+  ext->setChanged();
   setCurrentItem( 1 );
   emit colorChanged();
 }
