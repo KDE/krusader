@@ -5,10 +5,9 @@
 #define BUILDER_H
 
 #include "radialMap.h"   //Segment, defines
+#include "fileTree.h"
 
 template <class T> class Chain;
-class Directory;
-
 
 namespace RadialMap
 {
@@ -28,10 +27,10 @@ namespace RadialMap
 
         Map             *m_map;
         const Directory* const m_root;
-        const uint       m_minSize;
+        const FileSize   m_minSize;
         uint            *m_depth;
         Chain<Segment>  *m_signature;
-        uint            *m_limits;
+        FileSize        *m_limits;
     };
 }
 

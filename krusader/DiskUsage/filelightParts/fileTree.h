@@ -222,7 +222,7 @@ public:
   enum UnitPrefix { kilo, mega, giga, tera };
 
   static const FileSize DENOMINATOR[4];
-  static const char PREFIX[4][3];
+  static const char PREFIX[5][3];
 
   QString fullPath( const Directory* = 0 ) const;
   QString humanReadableSize( UnitPrefix key = mega ) const;
@@ -230,10 +230,6 @@ public:
   static QString humanReadableSize( FileSize size, UnitPrefix Key = mega );
   
   friend class Directory;
-
-private:
-//     File( const File& ) {}
-//     void operator=( const File& ) {}
 };
 
 
@@ -257,6 +253,14 @@ public:
   void append( File *p )
   {
      ++m_fileCount;
+     
+     Directory *parent = m_parent;
+     while( parent )
+     {
+       parent->m_fileCount++;
+       parent = parent->m_parent;
+     }
+     
      Chain<File>::append( p );
      p->m_parent = this;
   }

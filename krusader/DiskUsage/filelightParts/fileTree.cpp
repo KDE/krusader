@@ -9,7 +9,7 @@
 
 //static definitions
 const FileSize File::DENOMINATOR[4] = { 1ull<<0, 1ull<<10, 1ull<<20, 1ull<<30 };
-const char File::PREFIX[4][3]   = { "Ki", "Mi", "Gi", "Ti" };
+const char File::PREFIX[5][3]   = { "", "Ki", "Mi", "Gi", "Ti" };
 
 
 QString
@@ -50,7 +50,7 @@ File::humanReadableSize( FileSize size, UnitPrefix key /*= mega*/ ) //static
         else                        s = locale.formatNumber( prettySize, 0 );
 
         s += ' ';
-        s += PREFIX[key-1];
+        s += PREFIX[key];
         s += 'B';
     }
 
@@ -59,7 +59,7 @@ File::humanReadableSize( FileSize size, UnitPrefix key /*= mega*/ ) //static
         s += " (";
         s += locale.formatNumber( size / DENOMINATOR[key - 1], 0 );
         s += ' ';
-        s += PREFIX[key - 1];
+        s += PREFIX[key];
         s += "B)";
     }
 

@@ -21,9 +21,6 @@ namespace Filelight
 
         //keep everything positive, avoid using DON'T, NOT or NO
 
-        static bool scanAcrossMounts;
-        static bool scanRemoteMounts;
-        static bool scanRemovableMedia;
         static bool varyLabelFontSizes;
         static bool showSmallFiles;
         static uint contrast;
@@ -32,7 +29,6 @@ namespace Filelight
         static uint defaultRingDepth;
 
         static MapScheme scheme;
-        static QStringList skipList;
     };
 }
 

@@ -44,6 +44,7 @@
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
 #include "../kicons.h"
+#include "filelightParts/Config.h"
 
 // these are the values that will exist in the menu
 #define EXCLUDE_ID          90
@@ -137,6 +138,7 @@ void DiskUsageDialog::reject()
 
 DiskUsage::DiskUsage() : root( 0 )
 {
+  Filelight::Config::read();  
   propertyMap.setAutoDelete( true );
 }
 

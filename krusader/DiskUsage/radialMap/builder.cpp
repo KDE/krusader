@@ -16,7 +16,7 @@
 RadialMap::Builder::Builder( RadialMap::Map *m, const Directory* const d, bool fast )
   : m_map( m )
   , m_root( d )
-  , m_minSize( static_cast<unsigned int>((d->size() * 3) / (PI * m->height() - m->MAP_2MARGIN )) )
+  , m_minSize( static_cast<FileSize>((d->size() * 3) / (PI * m->height() - m->MAP_2MARGIN )) )
   , m_depth( &m->m_visibleDepth )
 {
     m_signature = new Chain<Segment> [*m_depth + 1];
@@ -71,10 +71,10 @@ RadialMap::Builder::setLimits( const uint &b ) //b = breadth?
     double size3 = m_root->size() * 3;
     double pi2B   = PI * 2 * b;
 
-    m_limits = new uint [*m_depth + 1]; //FIXME delete!
+    m_limits = new FileSize [*m_depth + 1]; //FIXME delete!
 
     for( unsigned int d = 0; d <= *m_depth; ++d )
-        m_limits[d] = (uint)(size3 / (double)(pi2B * (d + 1))); //min is angle that gives 3px outer diameter for that depth
+        m_limits[d] = (FileSize)(size3 / (double)(pi2B * (d + 1))); //min is angle that gives 3px outer diameter for that depth
 }
 
 
@@ -87,7 +87,8 @@ RadialMap::Builder::build( const Directory* const dir, const unsigned int depth,
     if( dir->fileCount() == 0 ) //we do fileCount rather than size to avoid chance of divide by zero later
         return false;
 
-    uint hiddenSize = 0, hiddenFileCount = 0;
+    FileSize hiddenSize = 0;
+    uint hiddenFileCount = 0;
 
     for( ConstIterator<File> it = dir->constIterator(); it != dir->end(); ++it )
     {
