@@ -617,7 +617,7 @@ void KrDetailedView::renameCurrentItem() {
   }
 }
 
-void KrDetailedView::inplaceRenameFinished( QListViewItem *it, int col ) {
+void KrDetailedView::inplaceRenameFinished( QListViewItem *it, int ) {
   if ( !it ) { // major failure - call developers
     kdWarning() << "Major failure at inplaceRenameFinished(): item is null" << endl;
     exit( 0 );
