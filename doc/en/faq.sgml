@@ -11,8 +11,8 @@
       for information on what remains to be done or look at the website.
       You can reach us by <ulink url="mailto:krusader@users.sourceforge.net">mail</ulink> or drop us a note
       in the <ulink url="http://krusader.sourceforce.net/phpBB/">krusader forum</ulink></para>
-      <para><remark>If you've got bugs to report, please use the krusader website, and
-      not KDE's bugzilla (bugs.kde.org).</remark></para></answer>
+      <para><remark><keycap>If you've got bugs to report, please use the krusader website, and
+      not KDE's bugzilla (bugs.kde.org).</keycap></remark></para></answer>
   </qandaentry>
 
    <qandaentry>
@@ -49,7 +49,7 @@
 
   <qandaentry>
     <question><para>When i try to resize Krusader, so that it'd be smaller, i discover i can't
-      resize it below a certain size. Basically, it doesn't get much smaller. why? </para></question>
+      resize it below a certain size. Basically, it doesn't get much smaller. why?</para></question>
     <answer><para>See the F1, F2 (etc.) buttons ? they are not allowing krusader to downsize as
       they have a minimum size. just disable them (view->Show FN Keys Bar) and you'll be able to
       resize krusader to your liking.</para></answer>
@@ -64,6 +64,22 @@
       to its internal mechanism (which is less efficient, but works) without needing to recompile.</para></answer>
   </qandaentry>
 
+  <!-- Thanks to Karai Csaba -->
+  <qandaentry>
+    <question><para>Samba ISO 8859-x codepage / What to do if Krusader does not read shared directories
+    containing national characters?</para></question>
+    <answer><para>Krusader does not handle (yet) samba ISO 8859-x codepages, if you use a codepage different
+      than 8859-1 you wil have todo a manual configuration.
+      Create or modify the file: ~/.smb/smb.conf
+      <screen>
+	[global]
+ 	workgroup = MyWorkGroup       (ex. WORKGROUP)
+ 	client code page = MyCodePage (ex. 852)
+ 	character set = MyCharSet     (ex. ISO8859-2)</screen>
+
+     Unfortunately kcontrol (KDE 3.1.1) fails to configure it properly, so
+     this step must be done with a text editor.</para></answer>
+  </qandaentry>
 
 <!--
   <qandaentry>

@@ -12,11 +12,15 @@
       <textobject><phrase>Krusader main window with all the different parts marked up</phrase></textobject>
     </mediaobject></screenshot>
 
-    <para> This is Krusader's main window with all the different parts marked up.
+    <para>This is Krusader's main window with all the different parts marked up.
     in the following sections we'll cover the basic functions of each part with the
-    exception of the menu-bar that has a <link linkend="commands">chapter of its own</link>
-    and the status-bar,which the only thing worth mentioning about it is that it
-    shows the properties of the file currently under the mouse cursor. </para>
+    exception of:</para>
+    <itemizedlist>
+    <listitem><para><link linkend="commands">the menu-bar</link> that has a chapter of its own
+    </para></listitem>
+    <listitem><para><keycap>the status-bar</keycap> which the only thing worth mentioning about it is that it
+    shows the properties of the file currently under the mouse cursor.</para></listitem>
+    </itemizedlist>
     </sect2>
 
     <sect2 id="toolbar">
@@ -51,8 +55,9 @@
     You can switch between panels using the <keycap>Tab</keycap> key or by clicking on the origin button.
     As not all combinations of panels are allowed, you can only choose from the following combinations:
     (list,list),(list,tree),(tree,list),(list,quickview),(quickview,list).
-    As always startup settings can be modified with the <link linkend="konfig-startup">Konfigurator Startup page</link>,
-    and you control the current session with the <link linkend="view-menu">view menu</link>.</para>
+    As always startup settings can be modified with the <link linkend="konfig-startup">Konfigurator Startup
+    page</link>, and you control the current session with the <link linkend="view-menu">view menu</link>.
+    <keycap>CTRL+R</keycap> will refresh the panel.</para>
     <screenshot><screeninfo>List Panel</screeninfo><mediaobject>
       <imageobject><imagedata fileref="listpanel.png" format="PNG"/></imageobject>
       <imageobject><imagedata fileref="listpanel.eps" format="EPS"/></imageobject>
@@ -88,13 +93,17 @@
     moving it (<keycap>right-click</keycap>) will pop up the right-click menu.
     </para></note>
 
-    <abstract><title>The Tree Panel</title>
+    <abstract><title>The Tree Panel</title> <!-- updated  by Frank 1.00.2 -->
+    <para>Note: is temporarily disabled since Krusader 1.12-beta1 and wil be rewritten, sorry.
+    </para>
     <para>This panel is used to quickly browse the local directory tree. The panel behaves like the
     list panel but only one directory may be selected at a time and double clicking or pressing
     <keycap>Enter</keycap> on a directory will open that directory in the other panel.</para>
     </abstract>
 
-    <abstract><title>The Quick View Panel</title>
+    <abstract><title>The Quick View Panel</title> <!-- updated  by Frank 1.00.2 -->
+    <para>Note: is temporarily disabled since Krusader 1.12-beta1 and wil be rewritten, sorry.
+    </para>
     <para>This panel displays the contents of the file under the cursor in the other panel, in case of an unreadable
     file, a default image is displayed. To save time the panel will show only the first 500 lines in each text file
     and no more then 200 characters per line.</para></abstract>
@@ -131,7 +140,11 @@
     The <keycombo><keycap>Ctrl</keycap><keycap>Up arrow</keycap></keycombo>
     will take you back to the active panel and the
     <keycombo><keycap>Ctrl</keycap><keycap>Down arrow</keycap></keycombo>
-    will take you from the panel to the command line.</para>
+    will take you from the panel to the command line.
+    <keycombo><keycap>Ctrl</keycap><keycap>Enter</keycap></keycombo> will send the selected file
+    to the command line.
+    <keycombo><keycap>Ctrl</keycap><keycap>shift</keycap><keycap>Enter</keycap></keycombo>
+    will send the directory + selected file to the command line.</para>
 
     <screenshot><screeninfo>The terminal emulator</screeninfo><mediaobject>
       <imageobject><imagedata fileref="terminalEmu.png" format="PNG"/></imageobject>
@@ -173,6 +186,27 @@
     </para>
     </sect2>
 
+    <sect2 id="tabbrowsing">
+    <title>Tabbed Browsing Bar</title>
+    <screenshot><screeninfo>Tabbed browsing</screeninfo><mediaobject>
+      <imageobject><imagedata fileref="tabbed_browsing.png" format="PNG"/></imageobject>
+      <imageobject><imagedata fileref="tabbed_browsing.png" format="EPS"/></imageobject>
+      <textobject><phrase>Tabbed browsing</phrase></textobject>
+    </mediaobject>
+    </screenshot>
+
+    <para>This is a new feature since Krusader 1.29-beta. With the tabbed browsing bar you can change fast to an other
+    directory by clicking on the tab. To <keycap>create</keycap> a tab: <keycap>Right-click</keycap> on a
+    directory, <keycap>open in a new tab</keycap> or use
+    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>n</keycap></keycombo>.
+    To <keycap>duplicate</keycap> a tab: <keycap>right-click</keycap> on the tab or use
+    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>c</keycap></keycombo>.
+    To <keycap>close</keycap> a tab (except the left tab): <keycap>right-click</keycap> on the tab or use
+    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>n</keycap></keycombo>
+    or use the red cross button.
+    When you click on the bookmark button it will create a "home" tab.
+    </para>
+    </sect2>
   </sect1>
 
   <sect1 id="controls">
@@ -206,7 +240,8 @@
     <listitem><para>Clicking on the toolbar, the FN keys bar or the status bar does not change the focus.</para></listitem>
     <listitem><para>The display part of the quick view panel does not accept clicks so you better click on
                     the origin button of this panel if you want to give him the focus.</para></listitem>
-    <listitem><para>The information and totals labels of the tree and list panels don't accept clicks as well.</para></listitem>
+    <listitem><para>The information and total label of the tree panel don't accept clicks as well.</para></listitem>
+    <!-- The information and totals labels of the tree and list panels don't accept clicks as well. -->
     <listitem><para>Pushing the "history" or "run in terminal" buttons in the command line will not transfer
                     the focus so you have click inside the input line.</para></listitem>
     <listitem><para>The menu bar get the focus by choosing a menu but it keeps the focus until you choose a
@@ -238,8 +273,10 @@
     a file will mark it, but here are some usefull pointers: (assuming you're using the classic mouse
     selection mode)
     <itemizedlist>
-    <listitem><para>The <keycap>Insert</keycap> key will toggle the marking of the file under the cursor without
-                    effecting the other files .</para></listitem>
+    <listitem><para>The <keycap>SPACE</keycap> key will toggle the marking of the file under the cursor without
+    effecting the other files.</para></listitem>
+    <listitem><para>The <keycap>Insert</keycap> key will do the same as te SPACE key but it will go one position
+    down to toggle te next file.</para></listitem>
     <listitem><para>Left clicking on a file will mark a file but will not unmark it and will unmark
                     all previously marked files.</para></listitem>
     <listitem><para>The <keycombo><keycap>Ctrl</keycap><keycap>left clicking</keycap></keycombo> have
@@ -275,9 +312,9 @@
     <sect2 id="browsing">
     <title>Executing files</title>
     <para>You can execute files only in active list panels.
-    To execute a file just double-click on it or press <keycap>Enter</keycap>
+    To <keycap>execute</keycap> a file just <keycap>double-click on it or press Enter</keycap>
     when it's under the list cursor, Krusader will open it in the default application
-    for this file type. if you want to use another application to open the file, then
+    for this file type. if you want to use <keycap>another application</keycap> to open the file, then
     <keycap>right-click</keycap> on the file and go to the "open with" sub-menu that will offer
     more options. Krusader is compatible with KDE default file-manager for all file types
     except archives that will be opened inside the krusader panel and not in external application.
@@ -287,7 +324,8 @@
     <sect2 id="copying">
     <title>Deleting, copying and moving files</title>
     <para>To copy or move files just mark the files/directories you want to copy/move
-    and press <keycap>F5</keycap> to copy files or <keycap>F6</keycap> to move them.
+    and press <keycap>F5</keycap> to <keycap>copy</keycap> files or <keycap>F6</keycap> to
+    <keycap>move</keycap> them.
     A dialog will appear and allow you to choose the operation destination, the default
     destination is the other-panel browsed directory. If you enter a partial URL Krusader will use
     the current panel directory as the URL base. Deleting files is done by marking them and
@@ -300,19 +338,24 @@
 
     <sect2 id="viewing">
     <title>Viewing and editing files</title>
-		<para>To view files just put them under the cursor and press <keycap>F3</keycap>.
+		<para>To <keycap>view</keycap> files just put them under the cursor and press <keycap>F3</keycap>.
     Krusader's internal viewer is actually a Konqueror part, which can basically view every file type
-    viewable by Konqueror. If the file type cannot be determined, the file will be treated as a text file.
-    Editing is similar to viewing but with the <keycap>F4</keycap> key. All files are edited with the same editor,
-    which you can choose in the <link linkend="konfig-general">Konfigurator general tab</link>.</para>
+    viewable by Konqueror (ex. display pictures, play music, show the content of an archive), this is the
+    'Generic viewer'.
+    If the file type cannot be determined or when a file (ex. a binary) don't has a associated action,
+    the file will be treated as a text file, this is the 'Text viewer'. In the 'KrViewer' menu you can change
+    between 'Generic viewer', 'Text viewer' and 'Hex viewer'.</para>
+    <para><keycap>Editing</keycap> is similar to viewing but with the <keycap>F4</keycap> key. All files are
+    edited with the same editor, which you can choose in the <link linkend="konfig-general">Konfigurator general
+    tab</link>.</para>
     </sect2>
 
     <sect2 id="renaming">
     <title>Renaming files, creating directories and link handling</title>
-    <para>You can rename the file under the cursor with the <keycap>F9</keycap> key and
-    create a new directory with the <keycap>F7</keycap> key. Right-clicking on a regular file
-    will give you the option "new symlink". Clicking it will open a dialog which will prompt you to enter
-    a symlink name. That name will point to the file/directory you right-clicked on.
+    <para>You can <keycap>rename</keycap> the file under the cursor with the <keycap>F9</keycap> key and
+    <keycap>create a new directory</keycap> with the <keycap>F7</keycap> key. <keycap>Right-clicking on a regular
+    file</keycap> will give you the <keycap>option "new symlink"</keycap>. Clicking it will open a dialog which will
+    prompt you to enter a symlink name. That name will point to the file/directory you right-clicked on.
     If the file you right-clicked on is a symlink you will also be presented with the "redirect link"
     option that will allow you change the link's target.</para>
     </sect2>
@@ -388,7 +431,7 @@
     <para>To find the difference between two files mark one in each panel and select
     <guimenu>File->Compare by content</guimenu>. Right now Krusader does not include a built-in
     graphical diff tool but supports two external applications:
-    <ulink url="http://members.home.nl/bruggie/kdiff2">kdiff2</ulink> and 
+    <ulink url="http://members.home.nl/bruggie/kdiff2">kdiff2</ulink> and
     <ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>.
     If you have one of those installed the selected files will be compared, else you'll get
     an error message.</para>
@@ -396,6 +439,7 @@
 
     <sect2 id="compare-dir">
     <title>Comparing directories</title>
+    <para>Note: is temporarily disabled since Krusader 1.12-beta1 and wil be rewritten, sorry.</para>
     <para>Krusader offer a graphical directories compare mode. To activate it select
     <guimenu>View->Compare Mode</guimenu>. The differences are encoded as colored squares
     on the files/directories icons:
@@ -432,7 +476,8 @@
     <para>There are three ways to browse a remote FTP/SMB server:
     <itemizedlist>
     	<listitem><para>Using the built-in
-      <link linkend="remote-man">remote-connection manger</link>.</para></listitem>
+      <link linkend="remote-man">remote-connection manger</link>. Important: RemoteMan has been replaced
+      by our new bookmark manager since Krusader 1.25-beta1.</para></listitem>
       <listitem><para>Selecting <guimenu>Commands->FTP New Connection</guimenu> which
       will pop-up a dialog that will ask for the remote site details. Leaving the password
       and user name fields empty will try to log you in as annonymous.</para></listitem>
@@ -453,7 +498,7 @@
 
     <sect2 id="send-email">
     <title>Send files by e-mail</title>
-    <para>If you have KDE 2.2 or higher (and you should..) then the right-click menu
+    <para>The right-click menu
     will offer you to <guilabel>Send by email</guilabel> the file under the mouse cursor.
     Selecting this option will open a new KMail mail window with the file already attached.
     Just fill in the subject and recipient(s) and send it.

@@ -1,6 +1,6 @@
 <chapter id="commands">
 <title>Command Reference</title>
-
+	<!-- updated by Frank 1.29 -->
 	<sect1 id="file-menu">
 	<title>The <guimenu>file</guimenu> menu</title>
 	<variablelist>
@@ -12,21 +12,21 @@
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Pack</guimenu>
+    	<guimenu>Pack (Alt+P)</guimenu>
 			</menuchoice></term>
-      <listitem><para>Pop up a dialog which allows you to <link linkend="pack-archive">pack</link> 
+      <listitem><para>Pop up a dialog which allows you to <link linkend="pack-archive">pack</link>
       all the selected file in the active panel.
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Unpack</guimenu>
+    	<guimenu>Unpack (Alt+U)</guimenu>
 			</menuchoice></term>
-      <listitem><para>This action tries to <link linkend="unpacking-archives">unpack</link> 
+      <listitem><para>This action tries to <link linkend="unpacking-archives">unpack</link>
       all the selected files in the active panel.
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Test Archive</guimenu>
+    	<guimenu>Test Archive (Alt+T)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			This menu option <link linkend="test-archive">tests the selected archive for corruption</link>.
@@ -37,9 +37,40 @@
 			</menuchoice></term>
       <listitem><para>
 			This action compare the two current files - one from each panel via an external graphical diff utility.
-      Right now there are two supported applications: 
-      <ulink url="http://members.home.nl/bruggie/kdiff2">kdiff2</ulink> and 
+      Right now there are two supported applications:
+      <ulink url="http://members.home.nl/bruggie/kdiff2">kdiff2</ulink> and
       <ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Edit new file (Shift+F4)</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			This menu option opens a new file to edit.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Multi Rename (Shift+F9)</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+		This menu option starts <ulink url="http://www.krename.net/">Krename</ulink> a very powerfull
+		external batch renamer for KDE 3.x.
+      <itemizedlist>
+         <title>Krename Features</title>
+         <listitem><para>Renaming a list of files based on a set of expressions</para></listitem>
+	 <listitem><para>Copying/moving a list of files to another directory</para></listitem>
+	 <listitem><para>Convert filenames to upper/lower case</para></listitem>
+	 <listitem><para>adding numbers to filenames</para></listitem>
+	 <listitem><para>finding and replacing parts of the filename</para></listitem>
+	 <listitem><para>rename Mp3/Ogg Vorbis files based on their ID3 tags</para></listitem>
+	 <listitem><para>setting access and modification dates</para></listitem>
+	 <listitem><para>permissions and file ownership</para></listitem>
+	 <listitem><para>a plug-in API which allows you to extend krename's features</para></listitem>
+	 <listitem><para>rename directories recursively</para></listitem>
+	 <listitem><para>support for KFilePlugins</para></listitem>
+	 <listitem><para>create undo file</para></listitem>
+	 <listitem><para>and many more...</para></listitem>
+      </itemizedlist>
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
@@ -51,7 +82,7 @@
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Quit</guimenu>
+    	<guimenu>Quit (Ctrl+Q)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Close Kruasder and clean up the temporary directory, the same as pressing <keycap>F10</keycap> key.
@@ -67,7 +98,7 @@
   <link linkend="konfig-lookNfeel">Konfigurator look and feel page</link>.</para>
   <variablelist>
     <varlistentry><term><menuchoice>
-    	<guimenu>Select Group</guimenu>
+    	<guimenu>Select Group (Ctrl++)</guimenu>
 			</menuchoice></term>
       <listitem><para>
       Open a dialog which allows you to select files in the active panel.
@@ -78,7 +109,7 @@
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Unselect Group</guimenu>
+    	<guimenu>Unselect Group Ctrl+-)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			The same as <guimenu>Select Group</guimenu> only that the files that match the pattern
@@ -86,21 +117,21 @@
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Select All</guimenu>
+    	<guimenu>Select All Alt++)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Selects all the files in the active panel.
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Unselect All</guimenu>
+    	<guimenu>Unselect All Alt+-)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Unselects all the files in the active panel.
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Invert Selection</guimenu>
+    	<guimenu>Invert Selection (Alt+*)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Invert the selection status of all the files in the active panel
@@ -114,19 +145,20 @@
 	<title>The <guimenu>commands</guimenu> menu</title>
 	<variablelist>
     <varlistentry><term><menuchoice>
-    	<guimenu>Search</guimenu>
+    	<guimenu>Search (Ctrl+S)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Open the <link linkend="krusearcher">Krusader search module</link>.
       </para></listitem>
     </varlistentry>
-    <varlistentry><term><menuchoice>
-    	<guimenu>Device Manager</guimenu>
+<!-- removed  by Frank 1.00.2 -->
+<!--    <varlistentry><term><menuchoice>
+	<guimenu>Device Manager</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Open the KDE device information module.
       </para></listitem>
-    </varlistentry>
+    </varlistentry> -->
     <varlistentry><term><menuchoice>
     	<guimenu>Terminal</guimenu>
 			</menuchoice></term>
@@ -137,14 +169,28 @@
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>FTP Connect</guimenu>
+	<guimenu>Start Root Mode Krusader (Alt+K)</guimenu>
 			</menuchoice></term>
       <listitem><para>
-			Open the <link linkend="remote-man">FTP connection manager</link>.
+			Starts Krusader in root-mode at the same location.
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>FTP New Connection</guimenu>
+    	<guimenu>Net Connections (Ctrl+C)</guimenu>  <!-- FTP Connect -->
+			</menuchoice></term>
+      <listitem><para>
+			Open the <link linkend="remote-man">FTP connection manager</link>.</para>
+	<para><keycap>Important: RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1.
+                                   The new manager handles local files and remote url the same way.
+                                   RemoteMan is being left around to allow an easier transition and
+                                   give you a chance to move your bookmarks. IT WILL BE REMOVED SOON!</keycap></para>
+
+                 <para>Try the new bookmark-manager: open a new remote connection. once
+                        done, press the bookmark button, select 'Add bookmark' and that's it!
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>FTP New Connection (Ctrl+N)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Open the FTP connection dialog which allows you to open a FTP connection to a remote host.
@@ -169,28 +215,7 @@
   Konfigurator startup page</link>.</para>
 	<variablelist>
     <varlistentry><term><menuchoice>
-    	<guimenu>Full Panel</guimenu>
-			</menuchoice></term>
-      <listitem><para>
-			Change the active panel to <link linkend="panels">"list panel"</link>.
-      </para></listitem>
-    </varlistentry>
-    <varlistentry><term><menuchoice>
-    	<guimenu>Tree Panel</guimenu>
-			</menuchoice></term>
-      <listitem><para>
-			Change the active panel to <link linkend="panels">"tree panel"</link>.
-      </para></listitem>
-    </varlistentry>
-    <varlistentry><term><menuchoice>
-    	<guimenu>Quickview Panel</guimenu>
-			</menuchoice></term>
-      <listitem><para>
-			Change the active panel to <link linkend="panels">"quickview panel"</link>.
-      </para></listitem>
-    </varlistentry>
-    <varlistentry><term><menuchoice>
-    	<guimenu>Compare Mode</guimenu>
+    	<guimenu>Compare Mode (Ctrl+=)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Toggles Krusader's <link linkend="compare-dir">compare mode</link>.
@@ -204,7 +229,7 @@
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Show Hidden Files</guimenu>
+    	<guimenu>Show Hidden Files (Ctrl+.)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Toggles the option to display (or not) hidden files in the Krusader panels.
@@ -214,16 +239,9 @@
     	<guimenu>Sort By Extention</guimenu>
 			</menuchoice></term>
       <listitem><para>
-			When this action is turned on, the main sorting key in the Krusader panels becomes the 
+			When this action is turned on, the main sorting key in the Krusader panels becomes the
       file extention (the part of the file name after the last '.'). this is useful to group
       files of the same type closer together.
-      </para></listitem>
-    </varlistentry>
-    <varlistentry><term><menuchoice>
-    	<guimenu>ALL Files</guimenu>
-			</menuchoice></term>
-      <listitem><para>
-			Turn off all filters and display all the files.
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
@@ -234,11 +252,81 @@
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-    	<guimenu>Custom</guimenu>
+    	<guimenu>Swap Panels (Ctrl+U)</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Swaps the panels. The left panel wil become the right panel and vice versa.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>All Files (Shift+F10)</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Turn off all filters and display all the files.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Custom (Shift+F12)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Allows you to install a custom filter on the Krusader panel. Only files that match the
       filter pattern(s) and directories will be displayed.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Full Panel</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Change the active panel to <link linkend="panels">list panel</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Tree Panel</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Change the active panel to <link linkend="panels">tree panel</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Quickview Panel</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Change the active panel to <link linkend="panels">quickview panel</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Show Toolbar</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			If checked, show the <link linkend="toolbar">Toolbar</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Show Statusbar</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			If checked, show <link linkend="mainwindow">Statusbar</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Show FN Keys bar</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			If checked, show <link linkend="fnkeys">FN Keys bar</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Show Command Line</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			If checked, show <link linkend="cmdline">Command Line</link>.
+      </para></listitem>
+    </varlistentry>
+    <varlistentry><term><menuchoice>
+    	<guimenu>Show Terminal Emulator</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			If checked, show <link linkend="cmdline">Terminal Emulator</link>.
       </para></listitem>
     </varlistentry>
   </variablelist>
@@ -285,5 +373,72 @@
 
  	</variablelist>
 	</sect1>
+
+	<sect1 id="tools-menu">
+	<title>The <guimenu>Tools</guimenu> menu</title>
+	<variablelist>
+
+    <varlistentry><term><menuchoice>
+    	<guimenu>MountMan (Alt+/)</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Opens <link linkend="mount-man">MountMan</link> - Your Mount-Manager.
+      </para></listitem>
+    </varlistentry>
+    </variablelist>
+    </sect1>
+
+	<sect1 id="help-menu">
+	<title>The <guimenu>Help</guimenu> menu</title>
+	<variablelist>
+
+    <varlistentry><term><menuchoice>
+    	<guimenu>Krusader Handbook</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+			Invokes the KDE Help system starting at the Krusader help pages (this document).
+      </para></listitem>
+    </varlistentry>
+
+    <varlistentry><term><menuchoice>
+    	<guimenu>What's This? (Shift+F1)</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+		Changes the mouse cursor to a combination arrow and question mark. Clicking on items within
+		Krusader will open a help window (if one exists for the particular item) explaining the item's
+		function.
+      </para></listitem>
+    </varlistentry>
+
+    <varlistentry><term><menuchoice>
+    	<guimenu>Report Bug</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+		Opens the KDE's bugzilla report dialog where you can report a bug or request a "whislist" feature.</para>
+		<para><keycap>NOTICE: Please do not use KDE's bugzilla (bugs.kde.org) for Krusader.
+		If you've got bugs to report, please use the krusader website.</keycap></para>
+		<para>For fixes, patches and comments use the krusader forum or mail to
+                <email>krusader@users.sourceforge.net</email>.
+      </para></listitem>
+    </varlistentry>
+
+
+   <varlistentry><term><menuchoice>
+    	<guimenu>About Krusader</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+		This will display version and author information.
+      </para></listitem>
+    </varlistentry>
+   <varlistentry><term><menuchoice>
+    	<guimenu>About KDE</guimenu>
+			</menuchoice></term>
+      <listitem><para>
+		This displays the KDE version and basic information.
+      </para></listitem>
+    </varlistentry>
+    </variablelist>
+    </sect1>
+
 
 </chapter>

@@ -9,8 +9,17 @@
 		<imageobject><imagedata fileref="remoteman.eps" format="EPS"/></imageobject>
 		<textobject><phrase>Screenshot</phrase></textobject>
 		</mediaobject>
-	</screenshot>
-	<para>RemoteMan is a central place for all your FTP/SMB needs. It is a tree-like list of remote locations,
+	</screenshot> <!-- updated by Frank 1.29 -->
+        <para><keycap>Important: RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1.
+                          The new manager handles local files and remote url the same way.
+                          RemoteMan is being left around to allow an easier transition and
+                          give you a chance to move your bookmarks. IT WILL BE REMOVED SOON!</keycap></para>
+
+                 <para>Try the new bookmark-manager: open a new remote connection. once
+                        done, press the bookmark button, select 'Add bookmark' and that's it!
+      </para>
+      <para>
+	RemoteMan is a central place for all your FTP/SMB needs. It is a tree-like list of remote locations,
 	each with its own username and password. You can create new "folders" (or groups) in the tree and place
 	remote sessions inside the groups. Each session includes a name (something that best describes the url)
 	and a host. A hostname is a url which can begin with 'ftp://' or 'smb://'. Additional information that
@@ -57,9 +66,10 @@
 
 <sect1 id = "bookman">
 <title>Book Man: Organize your bookmarks</title>
-	<para>BookMan is a tool which allows your to bookmark folders using Krusader, and later return to them
-	in a click of a button. All you need to do is click on the "add bookmark" icon (or press CTRL+B).
-	The following screen will appear:</para>
+	<para>Note: since Krusader 1.25-beta1 we have a new bookmark system. The old bookmark manager doesn't
+	exist anymore and is be replaced by KeditBookmarks.</para>
+	<para>BookMan is a tool which allows you to bookmark folders and URL's using Krusader, and later return to
+	them in a click of a button. All you need to do is click on the "bookmark" button.</para>
 	<screenshot>
 		<screeninfo>Bookman adding a bookmark</screeninfo>
 		<mediaobject>
@@ -68,26 +78,17 @@
 		<textobject><phrase>Screenshot</phrase></textobject>
 		</mediaobject>
 	</screenshot>
-	<para>The lower line (URL) indicates where will the bookmark point to. Usually, you click the "add bookmark"
-	button when you're in the target folder. For example, to bookmark '/usr/tmp', navigate Krusader there and
-	click the add bookmark button. When the "add bookmark" window appear, the URL line will say '/usr/tmp'.
-	The upper line (name) is what you'd like to call the bookmark (for example: temporary folder). If you add
-	the bookmark without entering a name, the bookmark's name will be the same as its target.</para>
+	<para>Usually, you click on the "bookmark" button when you're in the target folder. For example, to bookmark
+	 '/usr/tmp', navigate Krusader there and click the <keycap>bookmarks button</keycap> and the <keycap>add
+	 bookmark</keycap> button. When the "add bookmark" window appears, the URL line will say '/usr/tmp'. The upper
+	 line (Bookmark name) is what you like to call the bookmark (for example: temporary folder). If you add the
+	 bookmark without entering a name, the bookmark's name will be the same as its target. With the "New Bookmark
+	 folder" button you can create a new bookmark folder.</para>
 	<note><para>You can bookmark inside a remote filesystem (FTP or SAMBA) and later use the bookmark to quickly connect
 	to the remote machine. You CANNOT bookmark inside an archive.</para></note>
-	<para>To use your new bookmarks, click the bookmarks button and choose one - as shown in the picture below.
-  You may also use the keyboard shortcut <keycap>Alt+right/left arrow</keycap> to open right/left
-  panel bookmarks list</para>
-	<screenshot>
-		<screeninfo>Bookman using bookmarks</screeninfo>
-		<mediaobject>
-		<imageobject><imagedata fileref="bookmanuse.png" format="PNG"/></imageobject>
-		<imageobject><imagedata fileref="bookmanuse.eps" format="EPS"/></imageobject>
-		<textobject><phrase>Screenshot</phrase></textobject>
-		</mediaobject>
-	</screenshot>
-	<para>BookMan is also used to edit and organize your bookmarks. Once you click the "edit bookmarks" tab,
-	the following screen will be displayed. This is where you can edit/remove and re-arrange the bookmarks.</para>
+	<para>To use your new bookmarks, click the "bookmark" button and choose one - as shown in the picture above.
+        You may also use the keyboard shortcut <keycap>Alt+right/left arrow</keycap> to <keycap>open right/left
+        panel bookmarks list</keycap></para>
 	<screenshot>
 		<screeninfo>Bookman editing bookmarks</screeninfo>
 		<mediaobject>
@@ -96,19 +97,14 @@
 		<textobject><phrase>Screenshot</phrase></textobject>
 		</mediaobject>
 	</screenshot>
-	<itemizedlist>
-		<listitem><para>Clicking the edit button allows you to modify the bookmark's
-		name and destination.</para></listitem>
-		<listitem><para>Clicking remove will delete the bookmark.</para></listitem>
-		<listitem><para>Both edit and remove are not final. They must be applied - by clicking the apply button.
-		Clicking apply activates your changes.</para></listitem>
-		<listitem><para>If you click 'close' before applying, BookMan will respond and ask if you wish
-		to abandon the changes.</para></listitem>
-		<listitem><para>Clicking OK is just like clicking apply and then close.</para></listitem>
-		<listitem><para>The up/down arrows allow you to order the bookmarks the way you want. Notice, however,
-		that if the 'sorted bookmarks' checkbox is checked, than the bookmarks are sorted, and your
-		changes aren't shown.</para></listitem>
-	</itemizedlist>
+	<para>To edit and organize your bookmarks, click the <keycap>edit bookmarks</keycap> button,
+        KeditBookmarks will be displayed. This is where you can edit/remove and re-arrange the bookmarks.
+        KEditBookmarks (part of the kdebase package) is a bookmark editor for Konqueror and Krusader,
+        which use the <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink> for the bookmark
+        format. The bookmarks are stored in ~/.kde/share/apps/krusader/krbookmarks.xml.</para>
+	<para>You can inport bookmarks from IE, Opera, Galeon, KDE, Mozilla, Netscape.
+        KeditBookmarks is easy to use, please read the KeditBookmarks or the Konqueror handbook if you need more
+	info.</para>
 </sect1>
 
 <sect1 id = "krusearcher">
