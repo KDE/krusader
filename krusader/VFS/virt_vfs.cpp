@@ -16,6 +16,7 @@
  ***************************************************************************/
 
 #include <unistd.h>
+#include <time.h>
  
 #include <kfileitem.h>
 #include <kglobalsettings.h>
