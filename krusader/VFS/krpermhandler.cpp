@@ -55,6 +55,9 @@ QIntDict<QString> *KRpermHandler::uidCache = 0L;
 QIntDict<QString> *KRpermHandler::gidCache = 0L;
 
 char KRpermHandler::writeable(QString perm, gid_t gid, uid_t uid){
+	// root override
+	if (getuid()==0) 
+		return ALLOWED_PERM;  
   // first check other permissions.
 	if ( perm[8]!='-' ) return ALLOWED_PERM;
 	// now check group permission
@@ -68,6 +71,9 @@ char KRpermHandler::writeable(QString perm, gid_t gid, uid_t uid){
 }
 
 char KRpermHandler::readable(QString perm, gid_t gid, uid_t uid){
+	// root override
+	if (getuid()==0) 
+		return ALLOWED_PERM;
 	// first check other permissions.
 	if ( perm[7]!='-' ) return ALLOWED_PERM;
 	// now check group permission
