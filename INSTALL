@@ -1,3 +1,279 @@
+Compilation and installation
+============================
+
+This text is extracted from Krusader Handbook version 1.40.00 (29/03/2004)
+The Krusader Handbook is available in the Help menu of Krusader
+(after installing Krusader).
+
+For the HTML version look at
+http://krusader.sourceforge.net/handbook/installation.html 
+
+The FAQ's can be found at:
+http://krusader.sourceforge.net/handbook/faq.html
+
+After the Krusader installation instructions you will find generic
+installation instructions for KDE applications.
+
+
+I have downloaded the Sources for Krusader. What now?
+=====================================================
+
+Check the environment variables KDEDIR - QTDIR.
+
+Unpack the tarball and go to the Krusader source directory.
+If you have done a download from CVS you will have to run the following
+command to create the "./configure" script:
+$ make -f  Makefile.cvs
+
+In order to compile and install Krusader on your system, type the following
+in the base directory of the Krusader package:
+
+$ ./configure
+$ make
+$ su -c 'make install'
+
+When you install a Krusader cvs or beta version and if Krusader was previously
+installed on your computer, there is a possibility that you will have to update
+the krusaderui.rc file. Please read the faq's for more info.
+
+Since Krusader uses autoconf and automake you should have no trouble compiling it.
+Should you run into problems please read the detailed installation instructions below.
+
+
+Detailed installation instructions
+==================================
+
+The next procedure will explain step by step in detail how to install Krusader.
+This question has been asked many times and especially users new to Linux often
+have problems compiling software from source. Therefore we are trying to keep
+the explanations as detailed as possible even if they are mostly not Krusader
+specific. Experienced users may easily skip most of the steps.
+
+
+If you encounter problems with installing Krusader, please read first this
+installation procedure and the FAQ's, if this does not solve the problem then
+feel free to ask for help with an help request.
+Please read the FAQ's if you don't know how to send a help request.
+
+
+1. Open your favourite terminal emulator (e.g. konsole).
+
+2. We recommend to create a separate directory to keep all the sources you
+   compile in. This will give you a better overview of installed programs and
+   makes it easier to uninstall them later.
+
+   $ mkdir ~/source
+   The chosen directory is just an example, any other will work.
+
+3. Copy the sources to the ~/source directory and unpack them.
+
+   $ cp /"your_dir"/krusader-x.xx.tar.gz ~/source
+   $ cd ~/source
+   $ tar -xzvf krusader-x.xx.tar.gz
+
+
+4. Optional step: the tarball is no longer needed at this point, you can
+   delete it if you want.
+
+   $ rm  krusader-x.xx.tar.gz
+
+
+5. Change to the directory containing the sources.
+
+   $ cd  krusader-x.xx
+
+
+6. Check the environment variables QTDIR and KDEDIR.
+   Krusader's ./configure script needs to know where the Qt and
+   KDE directories are.
+
+   QTDIR : <path to your Qt installation> e.g. /usr/lib/qt3 or /usr/qt3
+   KDEDIR : <path to your KDE installation> e.g. /usr or /opt/kde3
+
+  Normally your distribution will set them for you, but experience has shown
+  that some don't. You can easily check the values with the echo command.
+
+  $ echo $QTDIR
+  /usr/lib/qt3
+  $ echo $KDEDIR
+  /usr
+  $
+  If both commands give an output, the enviroment variables are set (the above
+  example are the settings of Mandrake). In case you just receive empty lines,
+  the variables are not set and you have to set them it manually. To check the
+  values of the variables use the find command or ask your distributor.
+
+  $ find /usr /opt -name qtconfig -type f -perm +111
+  /usr/lib/qt3/bin/qtconfig
+  $ find  /usr /opt -name startkde -type f -perm +111
+  /usr/bin/startkde
+  $
+
+  In this case /usr/lib/qt3 is your QTDIR and /usr is your KDEDIR. The
+  installed binaries will go to /usr/bin. Now we will set the enviroment
+  variables with the export command.
+
+  $ export QTDIR=<replace with your QTDIR>
+  $ export KDEDIR=<replace with your KDEDIR>
+
+  Note
+  These enviroment variables are only set for the lifetime of your current
+  shell. if you close your terminal and open a new one they will be gone.
+  Assuming Krusader is not the only Qt/KDE program you want to compile,
+  we recommend to make these settings permanent (e.g. append both export
+  commands to your /etc/profile) file.
+
+
+7. If you have download a stable version "krusader-x.xx.tar.gz"" or a beta
+   version "krusader-x.xx-betax.tar.gz", you can skip this step, in this case
+   the ./configure script is provided.
+
+   If you have download a CVS build or nightly tarball
+   "krusader-cvs-yyyy-mm-dd.tar.gz", you will have to run the following
+   command to create the ./configure script:
+
+   $ make -f  Makefile.cvs
+
+   If everything is ok you will see the following output on your screen:
+
+   $ make -f  Makefile.cvs
+   This Makefile is only for the CVS repository
+   This will be deleted before making the distribution
+   *** Creating acinclude.m4
+   *** Creating list of subdirectories
+   *** Creating configure.in
+   *** Creating aclocal.m4
+   *** Creating configure
+   *** Creating config.h template
+   *** Creating Makefile templates
+   *** Postprocessing Makefile templates
+   *** Creating date/time stamp
+   *** Finished
+   Don't forget to run ./configure
+   If you haven't done so in a while, run ./configure --help
+   $
+
+   Note
+   You will need to have: autoconf 2.52, 2.53 or 2.54 and automake 1.6
+   (or higher) to run the make -f Makefile.cvs command
+
+   Tip
+   If you encounter problems with this command, Krusader provides 2 nightly
+   builds (snapshots) one with a ./configure script and one without. Look at:
+   http://krusader.sourceforge.net/index.php?nav=cvs.php
+
+
+7. Now you are ready to run the ./configure script.
+
+   $ ./configure
+
+   This will take about 1 minute, if everything goes well it will e.g. end
+   with the following messages:
+
+   foo
+   Krusader Project:
+   -----------------
+   Source code location: .
+   C Compiler:           gcc
+   C Compiler flags:     -ansi -W -Wall -pedantic -Wchar-subscripts -Wshadow
+   -Wpointer-arith -Wmissing-prototypes -Wwrite-strings -D_XOPEN_SOURCE=500
+   -D_BSD_SOURCE -O2 -Wformat-security -Wmissing-format-attribute
+   C++ Compiler:         g++
+   prefix:               /usr
+   kde_libraries:        /usr/include
+   kde_includes:         /usr/lib
+   kde_locale:           /usr/share/locale
+   qt_libraries:         /usr/lib/qt3/lib
+   qt_includes:          /usr/lib/qt3/include
+   KDEDIR:               /usr
+   QTDIR:                /usr/lib/qt3
+   Install path:         /usr/bin
+   krusader version:     1.30
+   krusader binary:      /usr/bin/krusader     (after 'make install')
+   Thank you for using Krusader
+
+   Good - your configure finished. Start make now
+   $
+
+   This is the output for Mandrake 9.1, other distributions may give a
+   different output.
+
+   Tip
+   At the end of the ./configure script you will find a summary of the most
+   important settings, e.g. where the Krusader binary will be installed
+   (after the 'make install' command).
+
+   Usually the Krusader binary will be installed in the KDEDIR/bin directory.
+   If you prefer to install Krusader in an other directory, you can do this
+   with te following command: ./configure --prefix=/usr/local. In this case
+   the Krusader binary will be installed in the /usr/local/bin directory.
+
+   This part will also display a warning if the environment variables
+   KDEDIR - QTDIR are empty.
+
+   Use ./configure --help to see more options or read the INSTALL file in the
+   Krusader sources.
+
+   If ./configure fails, take a look at FAQ "missing libs or headers".
+
+
+9.  Start the compilation process with the make command.
+
+    $ make
+    This will take about 5 minutes, if everything goes well it will e.g. end
+    with the following messages:
+
+    foo
+    make[2]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD/krArc'
+    make[2]: Entering directory `/foo/krusader-cvs-YYYY-MM-DD'
+    make[2]: Nothing to be done for `all-am'.
+    make[2]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD'
+    make[1]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD'
+    $
+
+   If ./configure was successful and make failed for some reason, continue to
+   read this page. If you can't find any solution for your problem then feel
+   free to post a help request at our Krusader Forum.
+
+
+10. If nothing went wrong, you can now install Krusader.
+
+    $ su -c 'make install'
+
+    You will be asked to enter your root password.
+
+
+11. When you install a Krusader cvs or beta version and if Krusader was
+    previously installed on your computer, there is a possibility that you
+    will have to update the krusaderui.rc file.
+    Please read the faq's for more info.
+
+
+12. Optional step: if you want you can clean up to save some diskspace.
+    Note: in this case all the compiled files created with the make command
+    will be deleted.
+
+    $ make clean
+
+13. If you ever want to uninstall Krusader, just use
+
+    $ su -c 'make uninstall'
+
+    You will be asked to enter your root password.
+
+    If you encounter problems with installing Krusader please read first the
+    FAQ's. If this installation procedure and the FAQ's does not solve the
+    problem, feel free to ask for help with an help request.
+
+
+----------------------------------------------------------------------------
+
+
+The following text are generic installation instructions for KDE applications 
+(normally you will not need it). The following text is not written by us,
+but is automaticly generated by Kdevelop.
+
+
 Basic Installation
 ==================
 
@@ -40,7 +316,7 @@ The simplest way to compile this package is:
      documentation.
 
   4. You can remove the program binaries and object files from the
-     source code directory by typing `make clean'.  
+     source code directory by typing `make clean'.
 
 Compilers and Options
 =====================
