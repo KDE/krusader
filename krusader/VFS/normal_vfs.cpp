@@ -62,6 +62,8 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
 
 bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 	QString path = origin.path(-1);
+	
+	krOut << "normal: " << origin << endl;
 		
 	// set the writable attribute to true, if that's not the case - the KIO job
 	// will give the warnings and errors

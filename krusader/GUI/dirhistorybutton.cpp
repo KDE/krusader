@@ -1,10 +1,10 @@
 /***************************************************************************
-                          dirhistorybutton.cpp  -  description
-                             -------------------
-    begin                : Sun Jan 4 2004
-    copyright            : (C) 2004 by Shie Erlich & Rafi Yanai
-    email                : 
- ***************************************************************************/
+                         dirhistorybutton.cpp  -  description
+                            -------------------
+   begin                : Sun Jan 4 2004
+   copyright            : (C) 2004 by Shie Erlich & Rafi Yanai
+   email                : 
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -26,68 +26,57 @@
 
 #include <kdebug.h>
 
-DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent, const char *name) : QToolButton(parent,name)
-{
-  KIconLoader *iconLoader = new KIconLoader();
-  QPixmap icon = iconLoader->loadIcon("history", KIcon::Toolbar, 16);
+DirHistoryButton::DirHistoryButton( DirHistoryQueue* hQ, QWidget *parent, const char *name ) : QToolButton( parent, name ) {
+	KIconLoader * iconLoader = new KIconLoader();
+	QPixmap icon = iconLoader->loadIcon( "history", KIcon::Toolbar, 16 );
 
-  setFixedSize(icon.width() + 4, icon.height() + 4);
-  setPixmap(icon);
-  setTextLabel(i18n("Open the directory history list"), true);
-  setPopupDelay(10); // 0.01 seconds press
-  setAcceptDrops(false);
+	setFixedSize( icon.width() + 4, icon.height() + 4 );
+	setPixmap( icon );
+	setTextLabel( i18n( "Open the directory history list" ), true );
+	setPopupDelay( 10 ); // 0.01 seconds press
+	setAcceptDrops( false );
 
-  popupMenu = new QPopupMenu(this);
-  Q_CHECK_PTR(popupMenu);
-  
-  setPopup(popupMenu);
-  popupMenu->setCheckable(true);
+	popupMenu = new QPopupMenu( this );
+	Q_CHECK_PTR( popupMenu );
 
-  historyQueue = hQ;
+	setPopup( popupMenu );
+	popupMenu->setCheckable( true );
 
-  connect(popupMenu, SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
-  connect(popupMenu, SIGNAL(activated(int)), this, SLOT(slotPopupActivated(int)));
+	historyQueue = hQ;
+
+	connect( popupMenu, SIGNAL( aboutToShow() ), this, SLOT( slotAboutToShow() ) );
+	connect( popupMenu, SIGNAL( activated( int ) ), this, SLOT( slotPopupActivated( int ) ) );
 }
 
-DirHistoryButton::~DirHistoryButton(){
-}
+DirHistoryButton::~DirHistoryButton() {}
 
-void DirHistoryButton::openPopup()
-{
-  QPopupMenu* pP = popup();
-  if (pP)
-  {
-    popup()->exec(mapToGlobal(QPoint(0, height())));
-  }
+void DirHistoryButton::openPopup() {
+	QPopupMenu * pP = popup();
+	if ( pP ) {
+		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
+	}
 }
 /** No descriptions */
-void DirHistoryButton::slotPopup(){
-//  kdDebug() << "History slot" << endl;
+void DirHistoryButton::slotPopup() {
+	//  kdDebug() << "History slot" << endl;
 }
 /** No descriptions */
-void DirHistoryButton::slotAboutToShow(){
-//  kdDebug() << "about to show" << endl;
-  popupMenu->clear();
-  QStringList::iterator it;
+void DirHistoryButton::slotAboutToShow() {
+	//  kdDebug() << "about to show" << endl;
+	popupMenu->clear();
+	KURL::List::iterator it;
 
-  int id = 0;
-  for (it=historyQueue->pathQueue.begin(); it!=historyQueue->pathQueue.end(); ++it)
-  {
-    popupMenu->insertItem(*it, id++);
-  }
-  if (id > 0)
-  {
-    popupMenu->setItemChecked(0, true);
-  }
-}  
+	int id = 0;
+	for ( it = historyQueue->urlQueue.begin(); it != historyQueue->urlQueue.end(); ++it ) {
+		popupMenu->insertItem( (*it).prettyURL(), id++ );
+	}
+	if ( id > 0 ) {
+		popupMenu->setItemChecked( 0, true );
+	}
+}
 /** No descriptions */
-void DirHistoryButton::slotPopupActivated(int id){
-//  kdDebug() << "popup activated" << endl;
-  KURL url(historyQueue->pathQueue[id]);
-  if (historyQueue->checkPath(historyQueue->pathQueue[id]))
-  {
-    emit openUrl( vfs::fromPathOrURL( url.prettyURL() ) );
-  }
+void DirHistoryButton::slotPopupActivated( int id ) {
+	emit openUrl( historyQueue->urlQueue[ id ] );
 }
 
 #include "dirhistorybutton.moc"

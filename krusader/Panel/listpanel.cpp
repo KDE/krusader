@@ -98,9 +98,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <konqbookmarkmanager.h>
 #endif
 
-#define URL(X)	vfs::fromPathOrURL(X)
-
 typedef QValueList<KServiceOffer> OfferList;
+
+#define URL(X) KURL::fromPathOrURL(X)
 
 /////////////////////////////////////////////////////
 // 					The list panel constructor             //
@@ -306,8 +306,8 @@ void ListPanel::togglePanelPopup() {
 	}
 }
 
-QString ListPanel::virtualPath() const {
-	return func->files()->vfs_getOrigin().url(); 
+KURL ListPanel::virtualPath() const {
+	return func->files()->vfs_getOrigin(); 
 }
 
 QString ListPanel::realPath() const { 
@@ -499,14 +499,14 @@ void ListPanel::slotFocusOnMe() {
 
 // this is used to start the panel, AFTER setOther() has been used
 //////////////////////////////////////////////////////////////////
-void ListPanel::start( QString path, bool immediate ) {
+void ListPanel::start( KURL url, bool immediate ) {
    bool left = _left;
    KURL virt;
 	krConfig->setGroup( "Startup" );
 
    // set the startup path
-   if ( path != QString::null ) {
-      virt = URL(path);
+   if ( url != KURL() ) {
+      virt = url;
    } else
       if ( left ) {
          if ( krConfig->readEntry( "Left Panel Origin", _LeftPanelOrigin ) == i18n( "homepage" ) )
@@ -546,12 +546,12 @@ void ListPanel::slotStartUpdate() {
    view->clear();
 
    if ( func->files() ->vfs_getType() == vfs::NORMAL )
-      _realPath = URL(virtualPath());
-   this->origin->setURL( URL(virtualPath()).prettyURL() );
+      _realPath = virtualPath();
+   this->origin->setURL( virtualPath().prettyURL() );
    emit pathChanged( this );
    emit cmdLineUpdate( realPath() );	// update the command line
 
-   slotGetStats( URL(virtualPath()) );
+   slotGetStats( virtualPath() );
    slotUpdate();
    if ( compareMode ) {
       otherPanel->view->clear();
@@ -568,7 +568,7 @@ void ListPanel::slotUpdate() {
    QString protocol = func->files() ->vfs_getOrigin().protocol();
    bool isFtp = ( protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish" );
 
-   QString origin = URL(virtualPath()).prettyURL(-1);
+   QString origin = virtualPath().prettyURL(-1);
    if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) && isFtp &&
                                        origin.find( '/', origin.find( ":/" ) + 3 ) == -1 ) ) {
       view->addItems( func->files() );
@@ -665,9 +665,6 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
       file = func->files() ->vfs_search( i->name() );
 
       if ( !file ) { // trying to drop on the ".."
-         if ( virtualPath().right( 1 ) == "\\" )        // root of archive..
-            isWritable = false;
-         else
             copyToDirInPanel = true;
       } else {
          if ( file->vfile_isDir() ) {

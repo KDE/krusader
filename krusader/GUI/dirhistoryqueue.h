@@ -19,7 +19,7 @@
 #define DIRHISTORYQUEUE_H
 
 #include <qobject.h>
-#include <qstringlist.h>
+#include <kurl.h>
 
 class ListPanel;
 
@@ -32,19 +32,16 @@ class DirHistoryQueue : public QObject  {
 public: 
 	DirHistoryQueue(ListPanel* p);
 	~DirHistoryQueue();
-  QStringList pathQueue;
-  bool checkPath(const QString& path);
-  void RemovePath(const QString& path);
+	KURL::List urlQueue;
+//  bool checkPath(const QString& path);
+//  void RemovePath(const QString& path);
 
-private:
-  void AddPath(const QString& path);
-  void DumpQueue();
-
-  ListPanel* panel;
-  
 public slots: // Public slots
   /** No descriptions */
   void slotPathChanged(ListPanel* p);
+private:
+//	void addUrl(const KURL& url);
+	ListPanel* panel;
 };
 
 #endif

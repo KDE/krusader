@@ -81,8 +81,8 @@ public:
    // constructor create the panel, but DOESN'T fill it with data, use start()
    ListPanel( QWidget *parent, bool &left, const char *name = 0 );
    ~ListPanel();
-   void start( QString path = QString::null, bool immediate = false );
-   QString virtualPath() const;
+   void start( KURL url = KURL(), bool immediate = false );
+   KURL virtualPath() const;
 	QString realPath() const;
    QString getCurrentName();
    void getSelectedNames( QStringList* fileNames ) {

@@ -218,10 +218,6 @@ void KRslots::rightclickMenu() {
 
 void KRslots::addBookmark(){
 	// TODO: this no longer works!
-  QString path=ACTIVE_PANEL->virtualPath();
-  if (path.contains('\\')>0)
-    KMessageBox::information(0, i18n("In order to save the time needed to enter an archive, Krusader will not allow bookmarks which point into an archive, as it is usually a mistake to do so!"),
-                             QString::null, "BookmarkArchives");
 }
 
 // GUI toggle slots
@@ -587,7 +583,9 @@ void KRslots::newTab(QListViewItem *item) {
   if (!item) return;
   KrViewItem *it = dynamic_cast<KrViewItem*>(item);
   if (it->isDir()) {
-    ACTIVE_PANEL_MANAGER->slotNewTab(ACTIVE_PANEL->virtualPath() + "/" + it->name());
+    KURL url = ACTIVE_PANEL->virtualPath();
+    url.addPath( it->name() );
+    ACTIVE_PANEL_MANAGER->slotNewTab( url );
   }
 }
 
@@ -626,7 +624,7 @@ void KRslots::slotSplit()
 
   if( splitterGUI.result() == QDialog::Accepted )
   {
-    bool splitToOtherPanel = ( splitterGUI.getDestinationDir() == ACTIVE_PANEL->otherPanel->virtualPath() );
+    bool splitToOtherPanel = ( splitterGUI.getDestinationDir() == ACTIVE_PANEL->otherPanel->virtualPath().prettyURL() );
 
     Splitter split( MAIN_VIEW, fileName, splitterGUI.getDestinationDir() );
     split.split( splitterGUI.getSplitSize() );
@@ -636,8 +634,7 @@ void KRslots::slotSplit()
   }
 }
 
-void KRslots::slotCombine()
-{
+void KRslots::slotCombine(){
   QStringList   list;
   QString       fileName;
   bool          unixStyle = false;
@@ -747,12 +744,12 @@ void KRslots::slotCombine()
 
   // ask the user for the copy dest
   KChooseDir *chooser = new KChooseDir( 0, i18n( "Combining %1.* to directory:" ).arg( fileName ),
-                                        ACTIVE_PANEL->otherPanel->virtualPath() );
+                                        ACTIVE_PANEL->otherPanel->virtualPath().prettyURL() );
   QString dest = chooser->dest;
   if ( dest == QString::null )
     return ; // the usr canceled
 
-  bool combineToOtherPanel = ( dest == ACTIVE_PANEL->otherPanel->virtualPath() );
+  bool combineToOtherPanel = ( dest == ACTIVE_PANEL->otherPanel->virtualPath().prettyURL() );
 
   Combiner combine( MAIN_VIEW, fileName, dest, unixStyle );
   combine.combine();
