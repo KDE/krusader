@@ -49,6 +49,7 @@
 #include <qtooltip.h>
 #include <qregexp.h>
 #include <qheader.h>
+#include <kinputdialog.h>
 
 static const char * const right_arrow_button_data[] = {
 "18 18 97 2",
@@ -752,7 +753,7 @@ static const char * const folder_data[] = {
 "                                "};
 
 static const char * const swap_sides_data[] = {
-"31 16 228 2",
+"27 20 228 2",
 "  	c None",
 ". 	c #03090E",
 "+ 	c #0C3652",
@@ -981,28 +982,173 @@ static const char * const swap_sides_data[] = {
 "c+	c #0D3C5A",
 "d+	c #094706",
 "e+	c #0D3A57",
-"              . +                           @ #               ",
-"            $ % &                           @ * @             ",
-"          = - ; >                           @ , ' @           ",
-"        ) ! ~ { ]                           @ ^ / ( @         ",
-"      _ : < [ } | 1 2 3 3 4 5 @ @ @ @ @ @ @ @ 6 7 8 9 @       ",
-"    0 a b c d e f g h i i i j @ k l l l m k n o p q r s @     ",
-"  t u v w x y z A B C D E F G @ H I J K L M N O P Q R S T @   ",
-"U V W X Y Z `  ...+.@.#.$.%.&.@ *.=.-.;.>.,.'.).!.~.{.].^./.@ ",
-"(._.:.<.[.}.|.1.2.3.4.5.6.7.8.@ 9.0.a.b.c.d.e.f.g.h.i.j.k.l.@ ",
-"  m.n.o.p.q.r.s.t.u.v.w.x.y.z.@ A.B.C.D.E.F.G.H.I.J.K.L.M.@   ",
-"    N.O.P.Q.R.S.T.U.V.W.X.W.Y.@ Z.`. +`..+++@+d.#+$+%+&+@     ",
-"      *+=+-+;+>+,+'+)+!+~+{+]+^+@ @ @ @ @ @ @ /+(+_+:+@       ",
-"        <+[+}+|+1+                          @ 2+3+4+@         ",
-"          5+6+7+8+                          @ 9+0+@           ",
-"            a+b+c+                          @ d+@             ",
-"              . e+                          @ @               "};
+"                                                      ",
+"                                                      ",
+"              . +                   @ #               ",
+"            $ % &                   @ * @             ",
+"          = - ; >                   @ , ' @           ",
+"        ) ! ~ { ]                   @ ^ / ( @         ",
+"      _ : < [ } | 1 3 4 5 @ @ @ @ @ @ 6 7 8 9 @       ",
+"    0 a b c d e f g i i j @ k l l k n o p q r s @     ",
+"  t u v w x y z A B E F G @ H I K M N O P Q R S T @   ",
+"U V W X Y Z `  ...+.$.%.&.@ *.=.;.,.'.).!.~.{.].^./.@ ",
+"(._.:.<.[.}.|.1.2.3.6.7.8.@ 9.0.b.d.e.f.g.h.i.j.k.l.@ ",
+"  m.n.o.p.q.r.s.t.u.x.y.z.@ A.B.D.F.G.H.I.J.K.L.M.@   ",
+"    N.O.P.Q.R.S.T.U.X.W.Y.@ Z.`.`.++@+d.#+$+%+&+@     ",
+"      *+=+-+;+>+,+'+~+{+]+^+@ @ @ @ @ /+(+_+:+@       ",
+"        <+[+}+|+1+                  @ 2+3+4+@         ",
+"          5+6+7+8+                  @ 9+0+@           ",
+"            a+b+c+                  @ d+@             ",
+"              . e+                  @ @               ",
+"                                                      ",
+"                                                      "};
 
+static const char * const profiles_data[] = {
+"20 20 111 2",
+"  	g None",
+". 	g #B9B9B9",
+"+ 	g #BEBEBE",
+"@ 	g #C7C7C7",
+"# 	g #C4C4C4",
+"$ 	g #CECECE",
+"% 	g #B7B7B7",
+"& 	g #A1A1A1",
+"* 	g #C1C1C1",
+"= 	g #ADADAD",
+"- 	g #A5A5A5",
+"; 	g #AAAAAA",
+"> 	g #CACACA",
+", 	g #B0B0B0",
+"' 	g #ACACAC",
+") 	g #CCCCCC",
+"! 	g #ABABAB",
+"~ 	g #B3B3B3",
+"{ 	g #AFAFAF",
+"] 	g #CDCDCD",
+"^ 	g #B6B6B6",
+"/ 	g #A9A9A9",
+"( 	g #B4B4B4",
+"_ 	g #888888",
+": 	g #7A7A7A",
+"< 	g #858585",
+"[ 	g #9B9B9B",
+"} 	g #898989",
+"| 	g #9C9C9C",
+"1 	g #A8A8A8",
+"2 	g #B1B1B1",
+"3 	g #989898",
+"4 	g #959595",
+"5 	g #8B8B8B",
+"6 	g #8E8E8E",
+"7 	g #9D9D9D",
+"8 	g #8C8C8C",
+"9 	g #808080",
+"0 	g #7F7F7F",
+"a 	g #B5B5B5",
+"b 	g #848484",
+"c 	g #5C5C5C",
+"d 	g #565656",
+"e 	g #656565",
+"f 	g #999999",
+"g 	g #9E9E9E",
+"h 	g #8A8A8A",
+"i 	g #B8B8B8",
+"j 	g #C8C8C8",
+"k 	g #A4A4A4",
+"l 	g #868686",
+"m 	g #B2B2B2",
+"n 	g #111111",
+"o 	g #000000",
+"p 	g #020202",
+"q 	g #353535",
+"r 	g #9F9F9F",
+"s 	g #969696",
+"t 	g #8D8D8D",
+"u 	g #919191",
+"v 	g #9A9A9A",
+"w 	g #090909",
+"x 	g #212121",
+"y 	g #A6A6A6",
+"z 	g #646464",
+"A 	g #929292",
+"B 	g #4F4F4F",
+"C 	g #181818",
+"D 	g #C5C5C5",
+"E 	g #7C7C7C",
+"F 	g #191919",
+"G 	g #0F0F0F",
+"H 	g #BDBDBD",
+"I 	g #909090",
+"J 	g #C0C0C0",
+"K 	g #BABABA",
+"L 	g #333333",
+"M 	g #1A1A1A",
+"N 	g #AEAEAE",
+"O 	g #D1D1D1",
+"P 	g #555555",
+"Q 	g #585858",
+"R 	g #A7A7A7",
+"S 	g #626262",
+"T 	g #242424",
+"U 	g #C3C3C3",
+"V 	g #A2A2A2",
+"W 	g #7E7E7E",
+"X 	g #151515",
+"Y 	g #CBCBCB",
+"Z 	g #7D7D7D",
+"` 	g #040404",
+" .	g #010101",
+"..	g #CFCFCF",
+"+.	g #A3A3A3",
+"@.	g #979797",
+"#.	g #030303",
+"$.	g #939393",
+"%.	g #8F8F8F",
+"&.	g #C9C9C9",
+"*.	g #7B7B7B",
+"=.	g #878787",
+"-.	g #414141",
+";.	g #3E3E3E",
+">.	g #3F3F3F",
+",.	g #949494",
+"'.	g #838383",
+").	g #C6C6C6",
+"!.	g #D4D4D4",
+"~.	g #D2D2D2",
+"{.	g #BCBCBC",
+"        .       +       @       #       ",
+"$ % & * = - ; > , ' ; ) ! ~ { ] ^ / '   ",
+"  ( _ : < [ } | 1 % / 2 3 & _ [ 4 5 6 ) ",
+"  7 8 9 0 5 1 a b c d e f + g h } 6 i   ",
+"j k l h } m h n o o o o p q ( r l < s # ",
+"  [ t u v 1 w o o o o o o o x ^ 7 : y   ",
+"  ; 5 b ; z o o o o o o o o o d , 9 A j ",
+"  y < l ^ B o o o o o o o o o C a t a   ",
+"D y E & . F o o o o o o o o o G H I | J ",
+"  A h K L o o o o o o o o o o M J I N   ",
+"O ( 4 K P o o o o o o o o o o Q ^ 6 - j ",
+"  R t 2 S o o o o o o o o o T H 7 5 K   ",
+"U V W y W o o o o o o o o X , R l s u Y ",
+"  | I N Z `  .o o o o o o < ; < h I g   ",
+"..+.Z @.i ( t X o o o o #.; $.b _ %.@.&.",
+"  3 *.9 %.u { Z o o o o o =.V u 6 t ~   ",
+"* f _ 0 9 %.f 2 -.;.>.;.;.: ~ ,.t A V &.",
+"  $.l ,.'.< ,.J % a ( U K i ' f : < +.  ",
+"..{ 8 + - | 9 + V 3 u ).{ k %.H +.g 1   ",
+"    + ..#   U !.)   D ~.]   {.] ..      "};
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory ) :
     QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ), isComparing( false ), wasClosed( false ),
     wasSync( false ), firstResize( true ), sizeX( -1 ), sizeY( -1 )
 {
+  QString profileName = QString::null;
+  
+  if( rightDirectory.isNull() ) // if rightDirectory is null, leftDirectory is actually the profile name to load
+  {
+    profileName = leftDirectory;
+    leftDirectory = rightDirectory = "/";
+  }
+  
   setCaption( i18n("Krusader::Synchronize Directories") );
   QGridLayout *synchGrid = new QGridLayout( this );
   synchGrid->setSpacing( 6 );
@@ -1023,7 +1169,6 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QGridLayout *grid = new QGridLayout( compareDirs->layout() );
   grid->setSpacing( 6 );
   grid->setMargin( 11 );
-
    
   leftDirLabel = new QLabel( compareDirs, "leftDirLabel" );
   leftDirLabel->setAlignment( Qt::AlignHCenter );
@@ -1241,6 +1386,12 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   buttons->setSpacing( 6 );
   buttons->setMargin( 0 );
   
+  QPixmap profiles( ( const char** ) profiles_data );
+  btnProfiles = new QPushButton( this, "btnProfiles" );
+  btnProfiles->setPixmap( profiles );
+  QToolTip::add( btnProfiles, i18n( "Profiles" ) );
+  buttons->addWidget( btnProfiles );
+
   QPixmap swapSides( ( const char** ) swap_sides_data );
   btnSwapSides = new QPushButton( this, "btnSwapSides" );
   btnSwapSides->setPixmap( swapSides );
@@ -1279,6 +1430,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( syncList,SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
            this, SLOT(rightMouseClicked(QListViewItem *)));
 
+  connect( btnProfiles,       SIGNAL( clicked() ), this, SLOT( profiles() ) );
   connect( btnSwapSides,      SIGNAL( clicked() ), this, SLOT( swapSides() ) );
   connect( btnCompareDirs,    SIGNAL( clicked() ), this, SLOT( compare() ) );
   connect( btnStopComparing,  SIGNAL( clicked() ), this, SLOT( stop() ) );
@@ -1315,6 +1467,21 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   else  
       show();
 
+  if( !profileName.isNull() )
+  {
+    krConfig->setGroup("Synchronize");
+    int profileNum = krConfig->readNumEntry( "Profile Number", 0 );
+    for( int i = 0; i != profileNum; i++ )
+    {
+      QString profileData = krConfig->readEntry( QString( "Profile%1" ).arg( i + 1 ) );
+      if( decodeName(profileData.left( profileData.find( ',' ) )) == profileName )
+      {
+        loadProfile( profileData );
+        break;
+      }
+    }
+  }
+      
   while( isShown() )
   {
     qApp->processEvents();
@@ -1569,6 +1736,7 @@ void SynchronizerGUI::compare()
   setMarkFlags();
   
   btnCompareDirs->setEnabled( false );
+  btnProfiles->setEnabled( false );
   btnSwapSides->setEnabled( false );
   btnStopComparing->setEnabled( isComparing = true );
   btnSynchronize->setEnabled( false );
@@ -1580,6 +1748,7 @@ void SynchronizerGUI::compare()
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnCompareDirs->setEnabled( true );
+  btnProfiles->setEnabled( true );
   btnSwapSides->setEnabled( true );
   if( fileCount )
     btnSynchronize->setEnabled( true );
@@ -1736,12 +1905,14 @@ void SynchronizerGUI::refresh()
     syncList->clearSelection();
     setMarkFlags();
     btnCompareDirs->setEnabled( false );
+    btnProfiles->setEnabled( false );
     btnSwapSides->setEnabled( false );
     btnSynchronize->setEnabled( false );
     disableMarkButtons();
     int fileCount = synchronizer.refresh();
     enableMarkButtons();
     btnCompareDirs->setEnabled( true );
+    btnProfiles->setEnabled( true );
     btnSwapSides->setEnabled( true );
     if( fileCount )
       btnSynchronize->setEnabled( true );    
@@ -1888,4 +2059,147 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
   }  
 
   QDialog::keyPressEvent( e );
+}
+
+QString SynchronizerGUI::encodeName( QString name )
+{
+  name.replace( "\\", "\\\\" );
+  name.replace( ",","\\_" );
+  return name;
+}
+
+QString SynchronizerGUI::decodeName( QString name )
+{
+  name.replace( "\\_","," );
+  name.replace( "\\\\", "\\" );
+  return name;
+}
+
+void SynchronizerGUI::loadProfile( QString profileData )
+{
+  synchronizer.reset();
+  syncList->clear();
+  isComparing = wasClosed = false;
+  btnSynchronize->setEnabled( false );
+  
+  QStringList datas = QStringList::split( ",", profileData );
+
+  leftLocation->setCurrentText( decodeName( datas[1] ) );
+  fileFilter->setCurrentText( decodeName( datas[2] ) );
+  rightLocation->setCurrentText( decodeName( datas[3] ) );
+  
+  int checkboxes = datas[4].toInt();
+  int showoptions = datas[5].toInt();
+  
+  cbSubdirs->   setChecked( !!(checkboxes & 32) );
+  cbSymlinks->  setChecked( !!(checkboxes & 16) );
+  cbByContent-> setChecked( !!(checkboxes &  8) );
+  cbIgnoreDate->setChecked( !!(checkboxes &  4) );
+  cbAsymmetric->setChecked( !!(checkboxes &  2) );
+  cbAutoScroll->setChecked( !!(checkboxes &  1) );
+  
+  btnLeftToRight->setOn( !!(showoptions & 64) );
+  btnEquals     ->setOn( !!(showoptions & 32) );
+  btnDifferents ->setOn( !!(showoptions & 16) );
+  btnRightToLeft->setOn( !!(showoptions &  8) );
+  btnDeletable  ->setOn( !!(showoptions &  4) );
+  btnDuplicates ->setOn( !!(showoptions &  2) );
+  btnSingles    ->setOn( !!(showoptions &  1) );
+  
+  refresh();  
+}
+
+void SynchronizerGUI::saveProfile( QString name, int profileNum )
+{
+  krConfig->setGroup("Synchronize");
+  
+  int checkboxes =   ( cbSubdirs->isChecked()    ? 32 : 0 ) | 
+                     ( cbSymlinks->isChecked()   ? 16 : 0 ) |
+                     ( cbByContent->isChecked()  ?  8 : 0 ) |
+                     ( cbIgnoreDate->isChecked() ?  4 : 0 ) |
+                     ( cbAsymmetric->isChecked() ?  2 : 0 ) |
+                     ( cbAutoScroll->isChecked() ?  1 : 0 );
+  int showoptions =  ( btnLeftToRight->isOn()    ? 64 : 0 ) |
+                     ( btnEquals->isOn()         ? 32 : 0 ) |
+                     ( btnDifferents->isOn()     ? 16 : 0 ) |
+                     ( btnRightToLeft->isOn()    ?  8 : 0 ) |
+                     ( btnDeletable->isOn()      ?  4 : 0 ) |
+                     ( btnDuplicates->isOn()     ?  2 : 0 ) |
+                     ( btnSingles->isOn()        ?  1 : 0 );
+                                              
+  krConfig->writeEntry( QString( "Profile%1" ).arg( profileNum ),
+                       encodeName( name ) + "," + 
+                       encodeName( leftLocation->currentText() ) + "," +
+                       encodeName( fileFilter->currentText() ) + "," +
+                       encodeName( rightLocation->currentText() ) + "," +
+                       QString( "%1,%1" ).arg( checkboxes ).arg( showoptions ) );
+  krConfig->sync();
+}
+
+void SynchronizerGUI::profiles()
+{
+  krConfig->setGroup("Synchronize");
+  
+  int profileNum = krConfig->readNumEntry( "Profile Number", 0 );
+  int i;
+  QStringList profileList;
+  
+  for( i = 0; i != profileNum; i++ )
+    profileList.push_back( krConfig->readEntry( QString( "Profile%1" ).arg( i + 1 ) ) );
+  
+  // profile menu identifiers
+  #define ADD_NEW_ENTRY_ID    1000
+  #define LOAD_ENTRY_ID       2000
+  #define REMOVE_ENTRY_ID     3000
+  #define OVERWRITE_ENTRY_ID  4000
+  
+  // create the menu
+  KPopupMenu popup, removePopup, overwritePopup;
+  popup.insertTitle(i18n("Synchronizer Profiles"));
+  
+  for( i=0; i != profileNum ; i++ )
+  {
+    QString name = decodeName(profileList[i].left( profileList[i].find( ',' ) ));
+    popup.insertItem( name, LOAD_ENTRY_ID + i );
+    removePopup.insertItem( name, REMOVE_ENTRY_ID + i );
+    overwritePopup.insertItem( name, OVERWRITE_ENTRY_ID + i );
+  }
+
+  popup.insertSeparator();
+  
+  if( profileNum )
+  {
+    popup.insertItem( i18n("Remove entry"), &removePopup );
+    popup.insertItem( i18n("Overwrite entry"), &overwritePopup );
+  }
+  
+  popup.insertItem(i18n("Add new entry"),ADD_NEW_ENTRY_ID);
+
+  int result=popup.exec(QCursor::pos());
+
+  // check out the user's selection
+  if( result == ADD_NEW_ENTRY_ID )
+  {
+    QString profile = KInputDialog::getText( i18n( "Krusader::Synchronizer" ), i18n( "Enter the profile name:" ) );  
+    if( !profile.isEmpty() )
+    {
+      krConfig->writeEntry( "Profile Number", ++profileNum );
+      saveProfile( profile, profileNum );
+    }
+  }else if( result >= LOAD_ENTRY_ID && result < LOAD_ENTRY_ID + profileNum )
+  {
+    loadProfile( profileList[ result - LOAD_ENTRY_ID ] );
+  }else if( result >= REMOVE_ENTRY_ID && result < REMOVE_ENTRY_ID + profileNum )
+  {        
+    krConfig->writeEntry( "Profile Number", --profileNum );    
+    for( i = result - REMOVE_ENTRY_ID; i != profileNum; i++ )
+      krConfig->writeEntry( QString( "Profile%1" ).arg( i+1 ), profileList[ i + 1 ] );
+    krConfig->deleteEntry( QString( "Profile%1" ).arg( profileNum + 1 ) );
+    krConfig->sync();
+  }else if( result >= OVERWRITE_ENTRY_ID && result < OVERWRITE_ENTRY_ID + profileNum )
+  {
+    i = result - OVERWRITE_ENTRY_ID;
+    QString name = decodeName(profileList[i].left( profileList[i].find( ',' ) ));
+    saveProfile( name, i + 1);    
+  }
 }

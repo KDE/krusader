@@ -57,6 +57,24 @@ Synchronizer::Synchronizer() : displayUpdateCount( 0 ), markEquals( true ), mark
   resultList.setAutoDelete( true );
 }
 
+void Synchronizer::reset()
+{
+  displayUpdateCount = 0;
+  markEquals = markDiffers = markCopyToLeft = markCopyToRight = markDeletable = true;
+  leftURL = rightURL = KURL();
+  compareFinished = compareResult = statusLineChanged = errorPrinted = stopped = false;
+  recurseSubDirs = followSymLinks = ignoreDate = asymmetric = cmpByContent = autoScroll = false;
+  markEquals = markDiffers = markCopyToLeft = markCopyToRight = markDeletable = markDuplicates = markSingles = false;
+  leftCopyEnabled = rightCopyEnabled = deleteEnabled = overWrite = autoSkip = paused = false;
+  leftCopyNr = rightCopyNr = deleteNr = 0;
+  leftCopySize = rightCopySize = deleteSize = 0;
+  scannedDirs = fileCount = 0;
+  leftBaseDir = rightBaseDir = QString::null;
+  inclusionFilter.clear();
+  exclusionFilter.clear();
+  resultList.clear();
+}
+
 int Synchronizer::compare( QString leftURL, QString rightURL, QString filter, bool subDirs,
                             bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool autoSc )
 {

@@ -83,7 +83,8 @@ public:
   };
    
 public:
-  SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory );
+  // if rightDirectory is null, leftDirectory is actually the profile name to load
+  SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory = QString::null );
   ~SynchronizerGUI();
 
   inline bool wasSynchronization()    {return wasSync;}
@@ -96,6 +97,7 @@ public slots:
   void closeDialog();
   void refresh();
   void swapSides();
+  void profiles();
   
 protected slots:
   void reject();
@@ -110,7 +112,11 @@ private:
   void    setMarkFlags();
   void    disableMarkButtons();
   void    enableMarkButtons();
-
+  QString encodeName( QString );
+  QString decodeName( QString );
+  void    loadProfile( QString );
+  void    saveProfile( QString, int );
+  
   void    rightMenuCompareFiles( KURL url1, KURL url2 );
 
 protected:
@@ -131,6 +137,7 @@ protected:
   QCheckBox     *cbAsymmetric;
   QCheckBox     *cbAutoScroll;
   
+  QPushButton   *btnProfiles;
   QPushButton   *btnSwapSides;
   QPushButton   *btnCompareDirs;
   QPushButton   *btnStopComparing;

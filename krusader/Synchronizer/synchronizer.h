@@ -146,6 +146,7 @@ class Synchronizer : public QObject
     void    pause();
     void    resume();
     void    swapSides();
+    void    reset();
 
     void    exclude( SynchronizerFileItem * );
     void    restore( SynchronizerFileItem * );
