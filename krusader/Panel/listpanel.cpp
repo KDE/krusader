@@ -1150,7 +1150,7 @@ void ListPanel::panelInactive() {
 
 void ListPanel::slotJobStarted(KIO::Job* job) {
 	// disable the parts of the panel we don't want touched
-	static_cast<KrDetailedView*>(view)->setEnabled(false);
+	//static_cast<KrDetailedView*>(view)->setEnabled(false);
 	status->setEnabled(false);
 	origin->setEnabled(false);
 	cdRootButton->setEnabled(false);
@@ -1197,7 +1197,7 @@ void ListPanel::inlineRefreshInfoMessage( KIO::Job*, const QString &msg ) {
 
 void ListPanel::inlineRefreshListResult(KIO::Job*) {
 	// reenable everything
-	static_cast<KrDetailedView*>(view)->setEnabled(true);
+	//static_cast<KrDetailedView*>(view)->setEnabled(true);
 	status->setEnabled(true);
 	origin->setEnabled(true);
 	cdRootButton->setEnabled(true);
