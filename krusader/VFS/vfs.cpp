@@ -76,7 +76,7 @@ bool vfs::vfs_refresh(KIO::Job* job){
 KURL vfs::fromPathOrURL( const QString &originIn )
 {
   QString password, loginName, origin = originIn;
-  bool bugfix;
+  bool bugfix = false;
   
   if ( originIn.contains( ":/" ) && !originIn.startsWith( "/" ) )
   {
