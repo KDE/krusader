@@ -168,6 +168,15 @@ public:
    exp_Copy();
    EXP_FUNC;
 };
+
+/**
+  * This is equal to 'mv <first Parameter> <second Parameter>'.
+  */
+class exp_Move : public exp_placeholder {
+public:
+   exp_Move();
+   EXP_FUNC;
+};
   
 /**
   * This opens the synchronizer with a given profile

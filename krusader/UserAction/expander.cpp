@@ -349,6 +349,30 @@ QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const
    return QString::null;  // this doesn't return everything, that's normal!
 }
 
+exp_Move::exp_Move() {
+   _expression = "Move";
+   _description = i18n("Move/Rename a file/folder");
+   _needPanel = false;
+
+   addParameter( new exp_parameter( i18n("What moved/renamed"), "__placeholder", true ) );
+   addParameter( new exp_parameter( i18n("New target/name"), "__placeholder", true ) );
+}                    
+QString exp_Move::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
+
+   // basicly the parameter can already be used as URL, but since KURL has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is nessesary:
+   KURL src = vfs::fromPathOrURL( parameter[0] );
+   KURL dest = vfs::fromPathOrURL( parameter[1] );
+   
+   if ( !dest.isValid() || !src.isValid() ) {
+      krOut << "Expander: invalid URL's in %_Move(\"src\", \"dest\")%" << endl;
+      return QString::null; // do nothing with invalid url's
+   }
+
+   new KIO::CopyJob( src, dest, KIO::CopyJob::Move, false, true );
+
+   return QString::null;  // this doesn't return everything, that's normal!
+}
+
 exp_Sync::exp_Sync() {
    _expression = "Sync";
    _description = i18n("Open a synchronizer-profile");
@@ -484,6 +508,7 @@ Expander::Expander() {
    addPlaceholder( new exp_Ask() );
    addPlaceholder( new exp_Clipboard() );
    addPlaceholder( new exp_Copy() );
+   addPlaceholder( new exp_Move() );
    addPlaceholder( new exp_Sync() );
    addPlaceholder( new exp_NewSearch() );
    addPlaceholder( new exp_Profile() );
