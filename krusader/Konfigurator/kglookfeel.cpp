@@ -280,9 +280,13 @@ void KgLookFeel::slotEnablePanelToolbar()
 }
 
 void KgLookFeel::slotImportShortcuts() {
-	QString basedir = KGlobal::dirs()->resourceDirs("data").first();
-	QString file = KFileDialog::getOpenFileName(basedir, "*", 0, i18n("Select a shortcuts file"));
+	// find $KDEDIR/share/apps/krusader
+	QString basedir = KGlobal::dirs()->findResource("data", "total_commander.keymap");
+	printf("===%s===\n", basedir.latin1());
+	// let the user select a file to load
+	QString file = KFileDialog::getOpenFileName(basedir, "*.keymap", 0, i18n("Select a shortcuts file"));
 	if (file == QString::null) return;
+	
 	krApp->importKeyboardShortcuts(file);
 	slotReload(keyBindings);	
 	keyBindings->setChanged();
