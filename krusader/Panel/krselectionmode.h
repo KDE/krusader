@@ -74,7 +74,7 @@ class TCSelectionMode : public KrSelectionMode {
 public:
 	void init() {
 		_useQTSelection = false;
-		_spaceMovesDown = false;
+		_spaceMovesDown = true;
 		_insertMovesDown = true;
 		_spaceCalculatesDiskSpace = true;
 		_rightButtonSelects = true;
