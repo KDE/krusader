@@ -30,6 +30,7 @@
 #include <kio/netaccess.h>
 #include <kstatusbar.h>
 #include <kdebug.h>
+#include <klargefile.h>
 // Krusader includes
 #include "krviewer.h"
 #include "../krusader.h"
@@ -233,10 +234,10 @@ void KrViewer::viewHex(){
     f_in.open( IO_ReadOnly );
     QDataStream in( &f_in );
 
-    FILE *out = fopen(tmpFile.name().mid(tmpFile.name().find("/")).latin1(),"w");
+    FILE *out = KDE_fopen(tmpFile.name().mid(tmpFile.name().find("/")).latin1(),"w");
 
     KIO::filesize_t fileSize = f_in.size();
-    long address = 0;
+    KIO::filesize_t address = 0;
     char buf[16];
 		unsigned int* pBuff = (unsigned int*)buf;
 

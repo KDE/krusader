@@ -257,8 +257,8 @@ void kio_krarcProtocol::stat( const KURL & url ){
 	}
 	// we might be stating a real file
 	if( QFileInfo(path).exists() ){
-		struct stat buff;
-    ::stat( path.latin1(), &buff );
+		KDE_struct_stat buff;
+    KDE_stat( path.latin1(), &buff );
 		QString mime = KMimeType::findByPath(path,buff.st_mode)->name();
 		statEntry(KFileItem(path,mime,buff.st_mode).entry());
     finished();

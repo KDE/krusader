@@ -46,6 +46,7 @@
 #include <sys/stat.h>
 #include <qtextstream.h>
 #include <qregexp.h>
+#include <klargefile.h>
 
 #include <kmimetype.h>
 
@@ -127,8 +128,8 @@ void KRSearchMod::scanDir( QString dir){
 		if (name=="." || name == "..") continue;
 		
     url.setPath(dir+name);
-		struct stat stat_p;
-	  lstat(dir.local8Bit()+name.local8Bit(),&stat_p);
+		KDE_struct_stat stat_p;
+	  KDE_lstat(dir.local8Bit()+name.local8Bit(),&stat_p);
  	  if( query->recurse ){
 				if( S_ISLNK(stat_p.st_mode) && query->followLinks ){
             scanDir( QDir(dir+"/"+name).canonicalPath() );

@@ -40,6 +40,7 @@
 #include <time.h>
 #include <klocale.h>
 #include <kglobal.h>
+#include <klargefile.h>
 // Qt includes
 #include <qdatetime.h>
 #include <qdir.h>
@@ -93,24 +94,24 @@ char KRpermHandler::executable(QString perm, gid_t gid, uid_t uid){
 }
 	
 bool KRpermHandler::fileWriteable(QString localFile){
-	struct stat stat_p;
-  if ( stat(localFile.local8Bit(),&stat_p) == -1 ) return false;
+	KDE_struct_stat stat_p;
+  if ( KDE_stat(localFile.local8Bit(),&stat_p) == -1 ) return false;
   mode_t m = stat_p.st_mode;
   QString perm = mode2QString(m);
 	return writeable(perm,stat_p.st_gid,stat_p.st_uid);
 }
 
 bool KRpermHandler::fileReadable(QString localFile){
-	struct stat stat_p;
-  if ( stat(localFile.local8Bit(),&stat_p) == -1 ) return false;
+	KDE_struct_stat stat_p;
+  if ( KDE_stat(localFile.local8Bit(),&stat_p) == -1 ) return false;
   mode_t m = stat_p.st_mode;
   QString perm = mode2QString(m);
 	return readable(perm,stat_p.st_gid,stat_p.st_uid);
 }
 
 bool KRpermHandler::fileExecutable(QString localFile){
-	struct stat stat_p;
-  if ( stat(localFile.local8Bit(),&stat_p) == -1 ) return false;
+	KDE_struct_stat stat_p;
+  if ( KDE_stat(localFile.local8Bit(),&stat_p) == -1 ) return false;
   mode_t m = stat_p.st_mode;
   QString perm = mode2QString(m);
 	return executable(perm,stat_p.st_gid,stat_p.st_uid);

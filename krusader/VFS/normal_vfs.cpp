@@ -31,7 +31,9 @@
 #include <strings.h>
 #endif
 
+#include <sys/stat.h>
 #include <sys/types.h>
+#include <unistd.h>
 #include <dirent.h>
 // QT includes
 #include <qdir.h>
@@ -43,6 +45,7 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <kdebug.h>
+#include <klargefile.h>
 // Krusader includes
 #include "normal_vfs.h"
 #include "../Dialogs/krdialogs.h"
@@ -104,7 +107,7 @@ bool normal_vfs::vfs_refresh(QString origin){
 	KURL mimeUrl;
 	//int i = 0;
   char symDest[256];
-  struct stat stat_p;
+  KDE_struct_stat stat_p;
 	while( (dirEnt=readdir(dir)) != NULL ){
     name = QString::fromLocal8Bit(dirEnt->d_name);
 
@@ -113,7 +116,7 @@ bool normal_vfs::vfs_refresh(QString origin){
 		// we dont need the ".",".." enteries
 		if (name=="." || name == "..") continue;
 	  	
-	  lstat(vfs_workingDir().local8Bit()+"/"+name.local8Bit(),&stat_p);
+	  KDE_lstat(vfs_workingDir().local8Bit()+"/"+name.local8Bit(),&stat_p);
 	  KIO::filesize_t size = stat_p.st_size;
     QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
 	  bool symLink= S_ISLNK(stat_p.st_mode);

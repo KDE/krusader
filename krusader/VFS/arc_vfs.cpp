@@ -46,6 +46,7 @@
 #include <kglobalsettings.h>
 #include <kmimetype.h>
 #include <kcursor.h>
+#include <klargefile.h>
 // krusader includes
 #include "arc_vfs.h"
 #include "krpermhandler.h"
@@ -493,11 +494,11 @@ void arc_vfs::getFilesToPack(QStringList* filesToPack,QString dir_name){
 
 	register struct dirent* dirEnt;
   QString name;
-	struct stat stat_p;
+	KDE_struct_stat stat_p;
 	while( (dirEnt=readdir(dir)) != NULL ){
     name = dirEnt->d_name;
 		if ( name == ".." || name == "." ) continue;
-	  if( lstat(tmpDir.local8Bit()+"/"+dir_name.local8Bit()+name.local8Bit(),&stat_p) ) continue;
+	  if( KDE_lstat(tmpDir.local8Bit()+"/"+dir_name.local8Bit()+name.local8Bit(),&stat_p) ) continue;
 	  extFile temp(dir_name+name,stat_p.st_mtime,stat_p.st_size);
 		// add to the list file that are diffrent than the ones packed
     if( S_ISDIR(stat_p.st_mode) ){ // recurse on all sub dirs
@@ -548,11 +549,11 @@ void arc_vfs::getExtFiles(QString dir_name){
 	
 	register struct dirent* dirEnt;
   QString name;
-	struct stat stat_p;
+	KDE_struct_stat stat_p;
 	while( (dirEnt=readdir(dir)) != NULL ){
     name = dirEnt->d_name;
 		if ( name == ".." || name == "." ) continue;
-	  if( lstat(tmpDir.local8Bit()+"/"+dir_name.local8Bit()+name.local8Bit(),&stat_p) ) continue;
+	  if( KDE_lstat(tmpDir.local8Bit()+"/"+dir_name.local8Bit()+name.local8Bit(),&stat_p) ) continue;
 	  extFile temp(dir_name+name,stat_p.st_mtime,stat_p.st_size);
 		// recurse on all sub dirs
     if( S_ISDIR(stat_p.st_mode) ){
@@ -754,8 +755,8 @@ void arc_vfs::parseLine(QString line, QFile* temp){
 
   // parse gziped files
   if(vfs_type == "gzip"){
-    struct stat stat_p;
-    stat(arcFile.local8Bit(),&stat_p);
+    KDE_struct_stat stat_p;
+    KDE_stat(arcFile.local8Bit(),&stat_p);
 
     nextWord(line);
     size = nextWord(line).toLong();
@@ -770,8 +771,8 @@ void arc_vfs::parseLine(QString line, QFile* temp){
 
   // parse bzip2ed files
   if( vfs_type == "zip2" ){
-    struct stat stat_p;
-    stat(arcFile.local8Bit(),&stat_p);
+    KDE_struct_stat stat_p;
+    KDE_stat(arcFile.local8Bit(),&stat_p);
 
     name = qfi.fileName();
     name = name.left(name.findRev('.'));
