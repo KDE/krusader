@@ -73,6 +73,8 @@ bool KRarcHandler::arcSupported( QString type ) {
   krConfig->setGroup( "Archives" );
   QStringList lst = krConfig->readListEntry( "Supported Packers" );
 
+  removeAliases( type );
+  
   if ( type == "-zip" && lst.contains( "unzip" ) )
     return true;
   else if ( type == "-tar" && lst.contains( "tar" ) )
@@ -106,6 +108,9 @@ bool KRarcHandler::arcSupported( QString type ) {
 bool KRarcHandler::arcHandled( QString type ) {
   // first check if supported
   if ( !arcSupported( type ) ) return false;
+
+  removeAliases( type );
+  
   krConfig->setGroup( "Archives" );
   if ( ( type == "-tgz" && krConfig->readBoolEntry( "Do GZip" , _DoGZip ) ) ||
        ( type == "tarz" && krConfig->readBoolEntry( "Do GZip" , _DoGZip ) ) ||
@@ -136,6 +141,8 @@ long KRarcHandler::arcFileCount( QString archive, QString type ) {
   // set the right lister to do the job
   QString lister;
 
+  removeAliases( type );
+  
   if ( type == "-zip" ) lister = KrServices::fullPathName( "unzip" ) + " -ZTs";
   else if ( type == "-tar" ) lister = KrServices::fullPathName( "tar" ) + " -tvf";
   else if ( type == "-tgz" ) lister = KrServices::fullPathName( "tar" ) + " -tvzf";
@@ -152,14 +159,14 @@ long KRarcHandler::arcFileCount( QString archive, QString type ) {
 
   // count the number of files in the archive
   long count = 1;
-  KTempFile tmpFile( "tmp", "krusader-unpack" );
+  KTempFile tmpFile( /*"tmp"*/ QString::null, "krusader-unpack" ); // commented out as it created files in the current dir!
   KShellProcess list;
   list << lister << + "\"" + archive + "\"" << ">" << tmpFile.name() ;
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
     list<< "<" << "/dev/ptmx";
   list.start( KProcess::Block );
   QTextStream *stream = tmpFile.textStream();
-  while ( stream->readLine() != QString::null ) ++count;
+  while ( stream && stream->readLine() != QString::null ) ++count;
   tmpFile.unlink();
 
   //make sure you call stopWait after this function return...
@@ -168,6 +175,12 @@ long KRarcHandler::arcFileCount( QString archive, QString type ) {
   return count;
   }
 
+void KRarcHandler::removeAliases( QString &type ) {
+  // jar files are handled as zips
+  if( type == "-jar" )
+    type = "-zip";
+  }
+  
 bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
   krConfig->setGroup( "Archives" );
   if ( krConfig->readBoolEntry( "Test Before Unpack", _TestBeforeUnpack ) ) {
@@ -186,6 +199,8 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
   // choose the right packer for the job
   QString packer;
 
+  removeAliases( type );
+  
   // set the right packer to do the job
   if ( type == "-zip" ) packer = KrServices::fullPathName( "unzip" ) + " -o" ;
   else if ( type == "-tar" ) packer = KrServices::fullPathName( "tar" ) + " -xvf";
@@ -244,6 +259,8 @@ bool KRarcHandler::test( QString archive, QString type, long count, QString pass
   // choose the right packer for the job
   QString packer;
 
+  removeAliases( type );
+
   // set the right packer to do the job
   if ( type == "-zip" ) packer = KrServices::fullPathName( "unzip" ) + " -t";
   else if ( type == "-tar" ) packer = KrServices::fullPathName( "tar" ) + " -tvf";
@@ -294,6 +311,8 @@ bool KRarcHandler::test( QString archive, QString type, long count, QString pass
 bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long count ) {
   // set the right packer to do the job
   QString packer;
+  removeAliases( type );
+  
   if ( type == "zip" ) { packer = KrServices::fullPathName( "zip" ) + " -ry"; type = "-zip"; } 
   else if ( type == "tar" ) { packer = KrServices::fullPathName( "tar" ) + " -cvf"; type = "-tar"; } 
   else if ( type == "tar.gz" ) { packer = KrServices::fullPathName( "tar" ) + " -cvzf"; type = "-tgz"; } 
@@ -342,6 +361,8 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   }
 
 QString KRarcHandler::getPassword( QString archive, QString type ) {
+  removeAliases( type );
+  
   if ( type != "-zip" ) return QString::null;
 
   KRarcHandler handler;
@@ -382,7 +403,7 @@ void KRarcHandler::setPassword( KProcess * proc, char *buffer, int ) {
 
   if ( password.lower().contains( "password" ) ) {
     bool ok;
-	 password = KInputDialog::getText(i18n("Password Needed"),
+    password = KInputDialog::getText(i18n("Password Needed"),
                  i18n("This archive is encrypted, please supply the password:"),
                  "", &ok, krApp );
     if ( !ok ) password = "123"; // no way someone will use this pass

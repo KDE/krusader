@@ -43,6 +43,7 @@ public:
 	virtual void mkdir(const KURL& url,int permissions);
 	virtual void listDir(const KURL& url);
 	virtual void del(KURL const & url, bool isFile);
+	virtual void copy (const KURL &src, const KURL &dest, int permissions, bool overwrite);
 
 public slots:
 	void receivedData(KProcess* proc,char* buf,int len);
@@ -59,7 +60,8 @@ protected:
 	QString listCmd; ///< list files. 
 	QString getCmd;  ///< unpack files command.
 	QString delCmd;  ///< delete files command.
-	QString putCmd;  ///< add file commnad.
+	QString putCmd;  ///< add file command.
+	QString copyCmd; ///< copy to file command.
 
 private:
 	/** service function for parseLine. */

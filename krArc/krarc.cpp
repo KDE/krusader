@@ -24,6 +24,7 @@
 #include <qfile.h>
 #include <qfileinfo.h>
 #include <qregexp.h>
+#include <qdir.h>
 
 #include <kfileitem.h>
 #include <kdebug.h>
@@ -404,6 +405,46 @@ void kio_krarcProtocol::stat( const KURL & url ){
 	else error(KIO::ERR_DOES_NOT_EXIST,path);
 }
 
+void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool) {
+  KRDEBUG(url.path());
+  
+  if( dest.isLocalFile() )
+    do
+    {
+      setArcFile(url.path());
+      UDSEntry* entry = findFileEntry(url);
+      if( copyCmd.isEmpty() || !entry )
+        break;
+
+      QString file = url.path().mid(arcFile->url().path().length()+1);
+      
+      QString destDir = dest.path( -1 );
+      if( !QDir( destDir ).exists() )
+      {
+        int ndx = destDir.findRev( '/' );
+         if( ndx != -1 )
+          destDir.truncate( ndx+1 );
+      }
+      
+      QDir::setCurrent( destDir.local8Bit() );
+
+      KShellProcess proc;
+      proc << copyCmd << "\""+arcFile->url().path()+"\" " << "\""+file+"\"";
+      if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
+        proc << "<" << "/dev/ptmx"; 
+
+      infoMessage(i18n("Unpacking %1 ...").arg( url.fileName() ) );
+      proc.start(KProcess::Block);
+      
+      processedSize( KFileItem(*entry,url).size() );
+      finished();
+      QDir::setCurrent( "/" ); /* for being able to umount devices after copying*/
+      return;
+    }while( 0 );
+
+  error(  ERR_UNSUPPORTED_ACTION, unsupportedActionErrorString(mProtocol, CMD_COPY));
+}
+
 void kio_krarcProtocol::listDir(const KURL& url){
   KRDEBUG(url.path());
   if( !setArcFile(url.path()) ) return;
@@ -497,6 +538,10 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
   
   arcType = arcFile->mimetype();
   arcType = arcType.mid(arcType.findRev("-")+1);
+  
+  if( arcType == "jar" )
+    arcType = "zip";
+  
   arcPath = "\""+arcFile->url().path(-1)+"\"";
   arcPath.replace(QRegExp(" "),"\\ ");
   return initArcParameters();
@@ -741,8 +786,6 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
   if(arcType == "zip"){
     // permissions
     perm = nextWord(line);
-    if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
-    mode = parsePermString(perm);
     // ignore the next 2 fields
     nextWord(line); nextWord(line);
     // size
@@ -756,6 +799,10 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
     time = QDateTime(qdate,qtime).toTime_t();
     // full name
     fullName = nextWord(line,'\n');
+    
+    if(perm.length() != 10) 
+      perm = (perm.at(0)=='d' || fullName.endsWith( "/" )) ? "drwxr-xr-x" : "-rw-r--r--" ;
+    mode = parsePermString(perm);
   }
   if(arcType == "rar"){
     // full name
@@ -976,6 +1023,7 @@ bool kio_krarcProtocol::initArcParameters(){
     cmd     = fullPathName( "unzip" );
     listCmd = fullPathName( "unzip" ) + " -ZTs-z-t-h ";
     getCmd  = fullPathName( "unzip" ) + " -p ";
+    copyCmd = fullPathName( "unzip" ) + " -j ";
     
     if( KStandardDirs::findExe( "zip" ).isEmpty() ) {
       delCmd  = QString::null;
@@ -988,6 +1036,7 @@ bool kio_krarcProtocol::initArcParameters(){
     if( !getPassword().isEmpty() )
     {
       getCmd += "-P '"+password+"' ";
+      copyCmd += "-P '"+password+"' ";
       putCmd += "-P '"+password+"' ";
     }
   } else if (arcType == "rar"){
@@ -996,6 +1045,7 @@ bool kio_krarcProtocol::initArcParameters(){
       cmd     = fullPathName( "unrar" );
       listCmd = fullPathName( "unrar" ) + " -c- v ";
       getCmd  = fullPathName( "unrar" ) + " p -ierr -idp -c- -y ";
+      copyCmd = fullPathName( "unrar" ) + " e ";
       delCmd  = QString::null;
       putCmd  = QString::null;
     }
@@ -1004,6 +1054,7 @@ bool kio_krarcProtocol::initArcParameters(){
       cmd     = fullPathName( "rar" );
       listCmd = fullPathName( "rar" ) + " -c- v ";
       getCmd  = fullPathName( "rar" ) + " p -ierr -idp -c- -y ";
+      copyCmd = fullPathName( "rar" ) + " e ";
       delCmd  = fullPathName( "rar" ) + " d ";
       putCmd  = fullPathName( "rar" ) + " -r a ";
     }
@@ -1013,40 +1064,47 @@ bool kio_krarcProtocol::initArcParameters(){
     getCmd  = fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -ivdF";
     delCmd  = QString::null;
     putCmd  = QString::null;
+    copyCmd = QString::null;
   } else if(arcType == "gzip"){
     cmd     = fullPathName( "gzip" );
     listCmd = fullPathName( "gzip" ) + " -l";
     getCmd  = fullPathName( "gzip" ) + " -dc";
+    copyCmd = QString::null;
     delCmd  = QString::null;
     putCmd  = QString::null;
   } else if(arcType == "bzip2"){
     cmd     = fullPathName( "bzip2" );
     listCmd = fullPathName( "bzip2" );
     getCmd  = fullPathName( "bzip2" ) + " -dc";
+    copyCmd = QString::null;
     delCmd  = QString::null;
     putCmd  = QString::null;
   } else if(arcType == "arj"){
     cmd     = fullPathName( "arj" );
     listCmd = fullPathName( "arj" ) + " v ";
     getCmd  = fullPathName( "arj" ) + " -jyo e ";
+    copyCmd = fullPathName( "arj" ) + " -jyo e ";
     delCmd  = fullPathName( "arj" ) + " d ";
     putCmd  = fullPathName( "arj" ) + " -r a ";
   } else if(arcType == "lha"){
     cmd     = fullPathName( "lha" );
     listCmd = fullPathName( "lha" ) + " l ";
     getCmd  = fullPathName( "lha" ) + " pq ";
+    copyCmd = fullPathName( "lha" ) + " ei ";
     delCmd  = fullPathName( "lha" ) + " d ";
     putCmd  = fullPathName( "lha" ) + " a ";
   } else if(arcType == "ace"){
     cmd     = fullPathName( "unace" );
     listCmd = fullPathName( "unace" ) + " v";
     getCmd  = fullPathName( "unace" ) + " e";
+    copyCmd = fullPathName( "unace" ) + " e";
     delCmd  = QString::null;
     putCmd  = QString::null;
   } else {
     cmd     = QString::null;
     listCmd = QString::null;
     getCmd  = QString::null;
+    copyCmd = QString::null;
     delCmd  = QString::null;
     putCmd  = QString::null;
   }

@@ -51,12 +51,14 @@ public:
   static bool arcHandled(QString type);
   // return the a list of supported packers
   static QStringList supportedPackers();
-	// used to store the current archive password
-	QString password;
-	int inSet;
-	static QString getPassword(QString archive, QString type);
+  // removes the alias names for a packer
+  static void removeAliases( QString &type );
+  // used to store the current archive password
+  QString password;
+  int inSet;
+  static QString getPassword(QString archive, QString type);
 public slots:
-	void setPassword(KProcess *,char *buffer,int buflen);
+  void setPassword(KProcess *,char *buffer,int buflen);
 };
 
 #endif
