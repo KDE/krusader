@@ -76,8 +76,8 @@ void Konfigurator::newContent(KonfiguratorPage *page)
 void Konfigurator::createLayout()
 {
   // welcome
-  newContent(new KgWelcome(firstTime, widget->addPage(i18n("Welcome"),i18n("Welcome to Konfigurator"),
-    QPixmap(krLoader->loadIcon("krusader",KIcon::Desktop,32)))));
+//  newContent(new KgWelcome(firstTime, widget->addPage(i18n("Welcome"),i18n("Welcome to Konfigurator"),
+//    QPixmap(krLoader->loadIcon("krusader",KIcon::Desktop,32)))));
   // startup
   newContent(new KgStartup(firstTime, widget->addPage(i18n("Startup"),
     i18n("Krusader's setting upon startup"),QPixmap(krLoader->loadIcon("gear",
