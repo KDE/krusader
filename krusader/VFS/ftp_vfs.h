@@ -42,7 +42,7 @@ class ftp_vfs : public vfs{
 public:
 	// the constructor simply uses the inherited constructor
 	ftp_vfs(QObject* panel);
-	~ftp_vfs(){}
+	~ftp_vfs();
 
 	/// Copy a file to the vfs (physical).
 	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "");
@@ -78,8 +78,7 @@ protected:
 	QDict<vfile>  vfs_files;    //< List of pointers to vfile.
 	KURL origin_backup;         //< used to backup the old URL when refreshing to a new one,
 	bool busy;
-	bool listError;
-	int in_loop;        
+	bool listError;     
 };
 
 #endif
