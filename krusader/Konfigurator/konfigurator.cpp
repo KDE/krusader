@@ -80,8 +80,9 @@ void Konfigurator::createLayout()
   // welcome
 //  newContent(new KgWelcome(firstTime, widget->addPage(i18n("Welcome"),i18n("Welcome to Konfigurator"),
 //    QPixmap(krLoader->loadIcon("krusader",KIcon::Desktop,32)))));
+  QFrame *firstPage;
   // startup
-  newContent(new KgStartup(firstTime, widget->addPage(i18n("Startup"),
+  newContent(new KgStartup(firstTime, firstPage = widget->addPage(i18n("Startup"),
     i18n("Krusader's setting upon startup"),QPixmap(krLoader->loadIcon("gear",
       KIcon::Desktop,32)))));
   // look n' feel
@@ -98,7 +99,7 @@ void Konfigurator::createLayout()
   newContent(new KgArchives(firstTime, widget->addPage(i18n("Archives"),i18n("Costumize the way Krusader deals with archives"),
     QPixmap(krLoader->loadIcon("tgz",KIcon::Desktop,32)))));
 
-  widget->showPage(0);
+  widget->showPage( widget->pageIndex( firstPage ) );
   slotApplyEnable();
 }
 
