@@ -172,9 +172,10 @@ int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QStr
   colorsGrid->addWidget( chooser, index, 1 );
 
   connect( chooser, SIGNAL( colorChanged() ), this, SLOT( generatePreview() ) );
-
   if( !offset )
     connect( chooser, SIGNAL( colorChanged() ), this, SLOT( slotActiveChanged() ) );
+
+  chooser->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );   
   
   itemList.append( chooser );
   itemNames.append( cfgName );
