@@ -103,8 +103,11 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	DIR* dir = opendir(path.local8Bit());
   if(!dir) return false;
 
-  //change directory to the new directory
-  chdir(path.local8Bit());
+  // change directory to the new directory
+  if (chdir(path.local8Bit()) != 0) {
+  		KMessageBox::error(krApp, i18n("Access denied to")+path, i18n("Error"));
+		return false;
+  }
 
 	struct dirent* dirEnt;
   QString name;
