@@ -256,8 +256,8 @@ vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 		int endOfName=0;
 		endOfName=readlink(path.local8Bit(),symDest,256);
 		if ( endOfName != -1 ){
-			if ( QDir(symDest).exists() || mime.contains("directory") ) perm[0] = 'd';
-			if ( !QDir(vfs_workingDir()).exists(symDest)  ) mime = "Broken Link !";
+			if ( QDir(QString::fromLocal8Bit( symDest ) ).exists() || mime.contains("directory") ) perm[0] = 'd';
+			if ( !QDir(vfs_workingDir()).exists( QString::fromLocal8Bit ( symDest ) ) ) mime = "Broken Link !";
 		}
 		else kdWarning() << "Failed to read link: "<< path<<endl;
 	}
