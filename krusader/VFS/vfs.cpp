@@ -33,8 +33,10 @@
 
 #include "vfs.h"
 #include <kapplication.h>
+#include <kdebug.h>
 #include <time.h>
 #include "../krusader.h"
+#include "../defaults.h"
 
 vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),vfileIterator(0){
 		if ( panel ){
@@ -103,8 +105,69 @@ KURL vfs::fromPathOrURL( const QString &originIn )
 
 void vfs::setVfsFilesP(QDict<vfile>* dict){
 	vfs_filesP=dict;
+	vfs_searchP = dict;
 	if( vfileIterator ) delete vfileIterator;
 	vfileIterator = new QDictIterator<vfile>(*dict);
+}
+
+bool vfs::vfs_refresh(){ 
+	// point the vfs_filesP to a NEW (empty) dictionary
+	vfs_filesP = new QDict<vfile>();
+	vfs_filesP->setAutoDelete(true);
+	
+	// and populate it
+	krConfig->setGroup("Look&Feel");
+	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
+	bool res = populateVfsList(vfs_getOrigin(),showHidden);
+
+	if( res ){
+		// compare the two list emiting signals when needed;;
+		for( vfile* vf = vfs_getFirstFile(); vf ; vf=vfs_getNextFile() ){
+			QString name = vf->vfile_getName();
+			vfile* newVf = (*vfs_filesP)[name];
+			if( !newVf ){
+				// the file was deleted..
+				emit deletedVfile(name);
+				vfs_searchP->remove(name);
+			} else if( *vf != *newVf ){
+				// the file was changed..
+				*vf = *newVf;
+				emit updatedVfile(vf);
+			}
+			removeFromList(name);
+		}
+		// everything thats left is a new file
+		QDictIterator<vfile> it(*vfs_filesP);
+		for(vfile* vf=it.toFirst(); vf; vf=(++it)){
+			vfile* newVf = new vfile();
+			*newVf = *vf;
+			vfs_searchP->insert(newVf->vfile_getName(),newVf);
+			emit addedVfile(newVf);
+		}
+	}
+	
+	// delete the needed temporary vfs_filesP
+	// and make the vfs_searchP the primary list again 
+	QDict<vfile> *temp = vfs_filesP;
+	vfs_filesP = vfs_searchP;
+	delete temp;
+	
+	return res; 
+}
+
+bool vfs::vfs_refresh(const KURL& origin){
+	if( origin.equals(vfs_getOrigin(),true) ) return vfs_refresh();
+	
+	krConfig->setGroup("Look&Feel");
+	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
+
+	// clear the the list
+	clear();
+	// and re-populate it
+	if (!populateVfsList(origin,showHidden) ) return false;
+	
+	if (!quietMode) emit startUpdate();
+	return true;
 }
 
 #include "vfs.moc"

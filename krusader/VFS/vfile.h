@@ -47,6 +47,8 @@ class vfile : public QObject{
   Q_OBJECT
   
 public:
+	vfile(){}
+
   /**
 	 * Use this constructor when you know the following files properties: \n
 	 * file name, file size, file permissions,is the file a link,owner uid & group uid.
@@ -73,6 +75,10 @@ public:
 	      const QString& mime,
 	      const QString& symDest,
 	      const mode_t  mode);
+	
+	bool        operator==(const vfile& vf) const;
+	vfile&      operator= (const vfile& vf); 
+	inline bool operator!=(const vfile& vf){ return !((*this)==vf); }
 	
 	// following functions give-out file details
 	inline const QString&   vfile_getName()    const { return vfile_name;           }

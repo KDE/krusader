@@ -79,7 +79,7 @@ public:
 	/// Return true if the VFS url is writable
 	virtual bool vfs_isWritable() { return isWritable; }
 	/// Return vfile* or 0 if not found
-	inline vfile* vfs_search(const QString& name){ return (*vfs_filesP)[name]; } 
+	inline vfile* vfs_search(const QString& name){ return (*vfs_searchP)[name]; } 
 
 	/// The total size of all the files in the VFS,
 	KIO::filesize_t vfs_totalSize();
@@ -99,11 +99,11 @@ public:
 
 public slots:
 	/// Re-reads files and stats and fills the vfile list
-	virtual bool vfs_refresh(const KURL& origin)=0;
+	virtual bool vfs_refresh(const KURL& origin);
 	/// Used to refresh the VFS when a job finishs. it calls the refresh() slot
   /// or display a error message if the job fails
 	virtual bool vfs_refresh(KIO::Job* job);
-	virtual bool vfs_refresh(){ return vfs_refresh(vfs_getOrigin()); }
+	virtual bool vfs_refresh();
 	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
 
 signals: 	
@@ -113,6 +113,8 @@ signals:
 	void updatedVfile(vfile* vf);
 
 protected:
+	/// Feel the vfs dictionary with vfiles, must be implemented for each vfs
+	virtual bool populateVfsList(const KURL& origin, bool showHidden) = 0L;
 	/// Set the vfile list pointer
 	void setVfsFilesP(QDict<vfile>* dict);
 	/// clear and delete all current vfiles
@@ -129,6 +131,7 @@ protected:
 
 private:
 	QDict<vfile>*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
+	QDict<vfile>*  vfs_searchP;   //< Searches are preformed in this dictionary (usualy points to vfs_files)	
 	QDictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
 };
 

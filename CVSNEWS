@@ -2,6 +2,9 @@ This file is only intended for the CVS.
 It should contain a brief description of new features;
 in some way an extension to the changelog.
 ------------------------------------------------------
+New vfs_refresh() function only update changes when you re-read a panel and changes
+the content without the annying full redraw effect. 
+
 When closing krusader, the tabs are saved and restored
 
 Synchronizer profiles:

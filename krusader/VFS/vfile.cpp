@@ -177,4 +177,36 @@ const KIO::UDSEntry vfile::vfile_getEntry() {
 	return entry;
 }
 
+bool vfile::operator==(const vfile& vf) const{
+	bool equal;
+	
+	equal = (vfile_name     == vf.vfile_getName()   ) &&
+	        (vfile_size     == vf.vfile_getSize()   ) &&
+	        (vfile_perm     == vf.vfile_getPerm()   ) &&
+	        (vfile_time_t   == vf.vfile_getTime_t() ) &&
+	        (vfile_ownerId  == vf.vfile_getUid()    ) &&
+	        (vfile_groupId  == vf.vfile_getGid()    ) ;
+	
+	return equal;
+}
+
+vfile& vfile::operator= (const vfile& vf){
+	vfile_name     = vf.vfile_name     ;
+	vfile_size     = vf.vfile_size     ;
+	vfile_mode     = vf.vfile_mode     ;
+	vfile_ownerId  = vf.vfile_ownerId  ;
+	vfile_groupId  = vf.vfile_groupId  ;
+	vfile_owner    = vf.vfile_owner    ;
+	vfile_group    = vf.vfile_group    ;
+	vfile_userName = vf.vfile_userName ;
+	vfile_perm     = vf.vfile_perm     ;
+	vfile_time_t   = vf.vfile_time_t   ;
+	vfile_symLink  = vf.vfile_symLink  ;
+	vfile_mimeType = vf.vfile_mimeType ;
+	vfile_symDest  = vf.vfile_symDest  ;
+	vfile_url      = vf.vfile_url      ;
+	
+	return (*this);
+} 
+
 #include "vfile.moc"

@@ -70,18 +70,18 @@ public:
 	virtual QString vfs_workingDir() { return vfs_origin.path(-1); }
 
 public slots:
-	/// Re-reads files and stats and fills the vfile list
-	virtual bool vfs_refresh(const KURL& origin);
-
 	void vfs_slotDirty(const QString& path);
 	void vfs_slotCreated(const QString& path);
 	void vfs_slotDeleted(const QString& path);
 	void vfs_setQuiet(bool beQuiet);
 
 protected:
-	QDict<vfile>  vfs_files;    //< List of pointers to vfile	
-	KDirWatch *watcher;         //< The internal dir watcher - use to detect changes in directories
-	bool dirty;                 //< true if a watcher signal arrived while in quiet mode.
+	/// Re-reads files and stats and fills the vfile list
+	virtual bool populateVfsList(const KURL& origin, bool showHidden);
+
+	QDict<vfile>  vfs_files;     //< Dictionary of pointers to vfile	
+	KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories
+	bool dirty;                  //< true if a watcher signal arrived while in quiet mode.
 	vfile* vfileFromName(const QString& name,bool mimeTypeMagic);
 };
 

@@ -124,38 +124,10 @@ void ftp_vfs::slotListResult(KIO::Job *job){
     // display error message
     if ( !quietMode ) job->showErrorDialog(krApp);
   }
-  else {
-    // if we got so far - so good
-    // tell the panel to refresh
-    if (!quietMode) {
-      emit startUpdate();
-    }
-  }
   busy = false;
 }
 
-void ftp_vfs::startLister() {
-  // Open the directory	marked by origin
-  krConfig->setGroup("Look&Feel");
-  //vfs_origin.adjustPath(+1);
-  KIO::Job *job = KIO::listDir(vfs_origin,false,
-                               krConfig->readBoolEntry("Show Hidden",_ShowHidden));
-  connect(job,SIGNAL(entries(KIO::Job*,const KIO::UDSEntryList&)),
-         this,SLOT(slotAddFiles(KIO::Job*,const KIO::UDSEntryList&)));
-  connect(job,SIGNAL(redirection(KIO::Job*,const KURL&)),
-         this,SLOT(slotRedirection(KIO::Job*,const KURL&)));
-  connect(job,SIGNAL(permanentRedirection(KIO::Job*,const KURL&,const KURL&)),
-         this,SLOT(slotPermanentRedirection(KIO::Job*,const KURL&,const KURL&)));
-  
-  connect(job,SIGNAL(result(KIO::Job*)),
-         this,SLOT(slotListResult(KIO::Job*)));
-
-  job->setWindow(krApp);
- 
-  if( !quietMode ) new KrProgress(job);
-}
-
-bool ftp_vfs::vfs_refresh(const KURL& origin) {
+bool ftp_vfs::populateVfsList(const KURL& origin,bool showHidden) {
   QString errorMsg = QString::null;	
   if ( !origin.isValid() )
     errorMsg = i18n("Malformed URL:\n%1").arg(origin.url());
@@ -169,13 +141,27 @@ bool ftp_vfs::vfs_refresh(const KURL& origin) {
 
   busy = true;
   
-  // clear the the list and back up out current situation
-  clear();
   vfs_origin = origin;
 
   //QTimer::singleShot( 0,this,SLOT(startLister()) );
   listError = false;
-  startLister();
+  // Open the directory	marked by origin
+  krConfig->setGroup("Look&Feel");
+  //vfs_origin.adjustPath(+1);
+  KIO::Job *job = KIO::listDir(vfs_origin,false,showHidden);
+  connect(job,SIGNAL(entries(KIO::Job*,const KIO::UDSEntryList&)),
+         this,SLOT(slotAddFiles(KIO::Job*,const KIO::UDSEntryList&)));
+  connect(job,SIGNAL(redirection(KIO::Job*,const KURL&)),
+         this,SLOT(slotRedirection(KIO::Job*,const KURL&)));
+  connect(job,SIGNAL(permanentRedirection(KIO::Job*,const KURL&,const KURL&)),
+         this,SLOT(slotPermanentRedirection(KIO::Job*,const KURL&,const KURL&)));
+  
+  connect(job,SIGNAL(result(KIO::Job*)),
+         this,SLOT(slotListResult(KIO::Job*)));
+
+  job->setWindow(krApp);
+ 
+  if( !quietMode ) new KrProgress(job);
 
   while( busy ){
     qApp->processEvents();

@@ -115,13 +115,16 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 		else panel->slotStartUpdate();  // refresh the panel
 		return;
   }
-	// change the cursor to busy
-  krApp->setCursor( KCursor::waitCursor() );
-
-  panel->slotFocusOnMe();
-
-  // clear the view - to avoid a repaint crash
-  panel->view->clear();
+  
+	panel->slotFocusOnMe();
+	
+	// if we are not refreshing to current URL
+	if( !files()->vfs_getOrigin().equals(url,true) ){
+		// change the cursor to busy
+		krApp->setCursor( KCursor::waitCursor() );
+		// clear the view - to avoid a repaint crash
+		panel->view->clear();	
+	}
 
   if( !nameToMakeCurrent.isEmpty() ){
 		panel->view->setNameToMakeCurrent( nameToMakeCurrent );

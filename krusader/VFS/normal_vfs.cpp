@@ -62,7 +62,7 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
   vfs_type=NORMAL;
 }
 
-bool normal_vfs::vfs_refresh(const KURL& origin){
+bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 	QString path = origin.path(-1);
 	
 	// check that the new origin exists
@@ -78,8 +78,6 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
   // will give the warnings and errors
 	isWritable = true;
 	
-	krConfig->setGroup("Look&Feel");
-	bool hidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
 	krConfig->setGroup("General");
 	bool mtm    = krConfig->readBoolEntry("Mimetype Magic",_MimetypeMagic);
 
@@ -87,8 +85,6 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
   vfs_origin = origin;
 	vfs_origin.setProtocol("file"); // do not remove !
 	vfs_origin.cleanPath();
-  // clear the the list
-	clear();
 	
 	DIR* dir = opendir(path.local8Bit());
 	if(!dir) return false;
@@ -106,7 +102,7 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
     name = QString::fromLocal8Bit(dirEnt->d_name);
 
 		// show hidden files ?
-		if ( !hidden && name.left(1) == "." ) continue ;
+		if ( !showHidden && name.left(1) == "." ) continue ;
 		// we dont need the ".",".." enteries
 		if (name=="." || name == "..") continue;
 	  
@@ -116,8 +112,6 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	// clean up
 	closedir(dir);
 	
-	if (!quietMode) emit startUpdate();
-
 	watcher = new KDirWatch();
 	// connect the watcher
   connect(watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));

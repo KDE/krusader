@@ -72,9 +72,7 @@ public slots:
 	/// Called when the dir listing job is finished (for better or worst)
 	void slotListResult(KIO::Job *job);
 	/// Active the dir listing job
-	bool vfs_refresh(const KURL& origin);
-
-	void startLister();
+	bool populateVfsList(const KURL& origin, bool showHidden);
 
 protected:
 	QDict<vfile>  vfs_files;    //< List of pointers to vfile.
