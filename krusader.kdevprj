@@ -21,9 +21,9 @@ addcxxflags=-DKDE_NO_COMPAT -DQT_NO_ASCII_CAST
 bin_program=krusader
 cflags=-DKDE_NO_COMPAT
 cppflags=-DKDE_NO_COMPAT
-cxxflags=\s-O0 -g3 -Wall
+cxxflags=\s-O0 -Wall
 ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                    \s
+ldflags=\s                        \s
 
 [General]
 AMChanged=false
@@ -31,7 +31,7 @@ author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
 kdevprj_version=1.3
-lfv_open_groups=GNU
+lfv_open_groups=Sources
 make_options=\s-j1
 makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am
 modifyMakefiles=true
@@ -39,7 +39,7 @@ project_name=Krusader
 project_type=mini_kde2
 short_info=
 sub_dir=krusader/
-version=1.20
+version=1.21-beta1
 version_control=None
 workspace=1
 
@@ -62,7 +62,7 @@ groups=Docs,Pics,Headers,Sources,User Interface,Translations,GNU,Others
 
 [Makefile.am]
 files=krusader.kdevprj,admin,AUTHORS,COPYING,ChangeLog,INSTALL,README,TODO,krusader.lsm,krusader.spec
-sub_dirs=krusader,po,pics,doc
+sub_dirs=krusader,po,pics,doc,krArc
 type=normal
 
 [README]
