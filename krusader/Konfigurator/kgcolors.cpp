@@ -38,7 +38,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 {
   QGridLayout *kgColorsLayout = new QGridLayout( parent );
   kgColorsLayout->setSpacing( 6 );
-  kgColorsLayout->setMargin( 11 );
+  kgColorsLayout->setMargin( 5 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 
@@ -60,7 +60,8 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   QGroupBox *colorsGrp = createFrame( i18n( "Colors" ), parent, "kgColorsColorsGrp" );
   QGridLayout *colorsGrid = createGridLayout( colorsGrp->layout() );
 
-  colorsGrid->setSpacing( 1 );
+  colorsGrid->setSpacing( 0 );
+  colorsGrid->setMargin( 5 );
 
   addLabel( colorsGrid, 0, 0, i18n( "Foreground:" ), colorsGrp, "ColorsLabel1" );
   foreground = createColorChooser( "Colors", "Foreground", KGlobalSettings::textColor(), colorsGrp, true );
@@ -68,18 +69,22 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 
   addLabel( colorsGrid, 1, 0, i18n( "Directory foreground:" ), colorsGrp, "ColorsLabel2" );
   directoryForeground = createColorChooser( "Colors", "Directory Foreground", foreground->getColor(), colorsGrp, true );
+  directoryForeground->setDefaultText( i18n( "Same as foreground" ) );
   colorsGrid->addWidget( directoryForeground, 1, 1 );
 
   addLabel( colorsGrid, 2, 0, i18n( "Executable foreground:" ), colorsGrp, "ColorsLabel3" );
   executableForeground = createColorChooser( "Colors", "Executable Foreground", foreground->getColor(), colorsGrp, true );
+  executableForeground->setDefaultText( i18n( "Same as foreground" ) );
   colorsGrid->addWidget( executableForeground, 2, 1 );
 
   addLabel( colorsGrid, 3, 0, i18n( "Symbolic link foreground:" ), colorsGrp, "ColorsLabel4" );
   symlinkForeground = createColorChooser( "Colors", "Symlink Foreground", foreground->getColor(), colorsGrp, true );
+  symlinkForeground->setDefaultText( i18n( "Same as foreground" ) );
   colorsGrid->addWidget( symlinkForeground, 3, 1 );
 
   addLabel( colorsGrid, 4, 0, i18n( "Invalid Symlink foreground:" ), colorsGrp, "ColorsLabel5" );
   invalidSymlinkForeground = createColorChooser( "Colors", "Invalid Symlink Foreground", foreground->getColor(), colorsGrp, true );
+  invalidSymlinkForeground->setDefaultText( i18n( "Same as foreground" ) );
   colorsGrid->addWidget( invalidSymlinkForeground, 4, 1 );
 
   addLabel( colorsGrid, 5, 0, i18n( "Marked foreground:" ), colorsGrp, "ColorsLabel6" );
@@ -90,23 +95,28 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   markedBackround = createColorChooser( "Colors", "Marked Background", KGlobalSettings::highlightColor(), colorsGrp, true );
   colorsGrid->addWidget( markedBackround, 6, 1 );
 
-  addLabel( colorsGrid, 7, 0, i18n( "Current foreground:" ), colorsGrp, "ColorsLabel8" );
+  addLabel( colorsGrid, 7, 0, i18n( "Alternate marked background:" ), colorsGrp, "ColorsLabel7" );
+  alternateMarkedBackround = createColorChooser( "Colors", "Alternate Marked Background", markedBackround->getColor(), colorsGrp, true );
+  alternateMarkedBackround->setDefaultText( i18n( "Same as marked background" ) );
+  colorsGrid->addWidget( alternateMarkedBackround, 7, 1 );
+
+  addLabel( colorsGrid, 8, 0, i18n( "Current foreground:" ), colorsGrp, "ColorsLabel8" );
   currentForeground = createColorChooser( "Colors", "Current Foreground", Qt::white, colorsGrp, true );
   currentForeground->setDefaultText( i18n( "Not used" ) );
-  colorsGrid->addWidget( currentForeground, 7, 1 );
+  colorsGrid->addWidget( currentForeground, 8, 1 );
 
-  addLabel( colorsGrid, 8, 0, i18n( "Current background:" ), colorsGrp, "ColorsLabel9" );
+  addLabel( colorsGrid, 9, 0, i18n( "Current background:" ), colorsGrp, "ColorsLabel9" );
   currentBackround = createColorChooser( "Colors", "Current Background", Qt::white, colorsGrp, true );
   currentBackround->setDefaultText( i18n( "Not used" ) );
-  colorsGrid->addWidget( currentBackround, 8, 1 );
+  colorsGrid->addWidget( currentBackround, 9, 1 );
 
-  addLabel( colorsGrid, 9, 0, i18n( "Background:" ), colorsGrp, "ColorsLabel10" );
+  addLabel( colorsGrid, 10, 0, i18n( "Background:" ), colorsGrp, "ColorsLabel10" );
   backround = createColorChooser( "Colors", "Background", KGlobalSettings::baseColor(), colorsGrp, true );
-  colorsGrid->addWidget( backround, 9, 1 );
+  colorsGrid->addWidget( backround, 10, 1 );
 
-  addLabel( colorsGrid, 10, 0, i18n( "Alternate background:" ), colorsGrp, "ColorsLabel11" );
+  addLabel( colorsGrid, 11, 0, i18n( "Alternate background:" ), colorsGrp, "ColorsLabel11" );
   alternateBackround = createColorChooser( "Colors", "Alternate Background", KGlobalSettings::alternateBackgroundColor(), colorsGrp, true );
-  colorsGrid->addWidget( alternateBackround, 10, 1 );
+  colorsGrid->addWidget( alternateBackround, 11, 1 );
 
   kgColorsLayout->addWidget( colorsGrp, 1 ,0 );
 

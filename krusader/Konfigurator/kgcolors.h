@@ -48,6 +48,7 @@ private:
   KonfiguratorColorChooser  *invalidSymlinkForeground;
   KonfiguratorColorChooser  *markedForeground;
   KonfiguratorColorChooser  *markedBackround;
+  KonfiguratorColorChooser  *alternateMarkedBackround;
   KonfiguratorColorChooser  *currentForeground;
   KonfiguratorColorChooser  *currentBackround;
   KonfiguratorColorChooser  *backround;
