@@ -84,6 +84,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   // setup the default sort and filter
   _filter = KrView::All;
+  _filterMask = "*";
   _sortMode = static_cast<SortSpec>( KrView::Name | KrView::Descending | KrView::DirsFirst );
   if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
     _sortMode = static_cast<SortSpec>( _sortMode | KrView::IgnoreCase );
