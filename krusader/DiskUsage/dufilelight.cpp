@@ -139,7 +139,17 @@ void DUFilelight::mousePressEvent( QMouseEvent *event )
           
      diskUsage->rightClickMenu( file, &filelightPopup, i18n( "Filelight" ) );
      return;     
+   }else if( event->button() == Qt::LeftButton )
+   {
+     const RadialMap::Segment * focus = focusSegment();
+     
+     if( focus && !focus->isFake() && focus->file() == currentDir )
+     {
+       diskUsage->dirUp();
+       return;
+     }
    }
+   
    RadialMap::Widget::mousePressEvent( event );
 }
   

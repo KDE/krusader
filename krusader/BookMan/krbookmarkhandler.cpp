@@ -2,6 +2,7 @@
 #include "kraddbookmarkdlg.h"
 #include "../krusader.h"
 #include "../krslots.h"
+#include "../VFS/vfs.h"
 #include <kiconloader.h>
 #include <kmessagebox.h>
 #include <qptrlist.h>
@@ -151,7 +152,7 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
 	}
 	
 	// ok: got name and url, let's add a bookmark
-	KrBookmark *bm = new KrBookmark(name, url, _collection, icon);
+	KrBookmark *bm = new KrBookmark(name, vfs::fromPathOrURL( url ), _collection, icon);
 	parent->children().append(bm);
 
 	return true;
