@@ -149,8 +149,8 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
 	popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Panel));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
-	totalsLayout->addWidget(popupBtn);
 	totalsLayout->addWidget(totals);
+	totalsLayout->addWidget(popupBtn);
 	
    quickSearch = new KrQuickSearch( this );
    krConfig->setGroup( "Look&Feel" );
