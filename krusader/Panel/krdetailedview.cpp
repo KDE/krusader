@@ -1051,3 +1051,15 @@ bool KrDetailedView::event( QEvent *e )
   }
   KListView::event( e );
 }
+
+void KrDetailedView::addedVfile( const vfile *vf ) {
+	kdWarning() << "added: " << vf->name() << endl;
+}
+
+void KrDetailedView::updatedVfile( const vfile *vf ) {
+	kdWarning() << "updated: " << vf->name() << endl;
+}
+
+void KrDetailedView::deletedVfile( const QString &name ) {
+	kdWarning() << "deleted: " << name << endl;
+}

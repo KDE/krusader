@@ -99,6 +99,12 @@ public:
   virtual QString nameInKConfig() = 0;
   virtual void renameCurrentItem() = 0; // Rename current item. returns immediatly
   // also, the following must be implemented (but must be remarked here)
+  //
+  // public slots:
+  //   void addedVfile(const vfile *);
+  //   void updatedVfile(const vfile *);
+  //   void deleteVfile(const QString &);
+  //
   // signals:
   //   void letsDrag(QStringList items, QPixmap icon);
   //   void gotDrop(QDropEvent *);

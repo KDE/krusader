@@ -128,6 +128,14 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 	if( !files()->vfs_getOrigin().equals(urlStack.top()) ){
 		urlStack.push( files()->vfs_getOrigin() );
 	}
+	// connect to the vfs's dirwatch signals
+	connect(files(), SIGNAL(addedVfile(const vfile* )), 
+		dynamic_cast<KrDetailedView*>(panel->view), SLOT(addedVfile(const vfile* )));
+	connect(files(), SIGNAL(updatedVfile(const vfile* )), 
+		dynamic_cast<KrDetailedView*>(panel->view), SLOT(updatedVfile(const vfile* )));
+	connect(files(), SIGNAL(deletedVfile(const QString& )), 
+		dynamic_cast<KrDetailedView*>(panel->view), SLOT(deletedVfile(const QString&)));
+	
 	// on local file system change the working directory
 	if( files()->vfs_getType() == vfs::NORMAL )
 		chdir( files()->vfs_getOrigin().path().latin1() );
