@@ -96,6 +96,9 @@ public slots:
   void popBookmarks();                      // see doc in ListPanel
  	void prepareToDelete();                   // internal use only
 
+protected:
+  virtual void keyPressEvent( QKeyEvent *e );
+
 protected slots:
   void handleDropOnView(QDropEvent *);     // handles drops on the view only
   void startDragging(QStringList, QPixmap);
