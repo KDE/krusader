@@ -33,7 +33,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qwhatsthis.h>
 #include <qstringlist.h>
 #include <qstrlist.h>
-#include <qdragobject.h>
+#include <kurldrag.h>
 #include <qheader.h>
 #include <qtimer.h>
 #include <qregexp.h>
@@ -490,15 +490,9 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
   //////////////////////////////////////////////////////////////////////////////
   // decode the data
   KURL::List URLs;
-  QStrList list;
-  if ( !QUriDrag::decode( e, list ) ) {
+  if ( !KURLDrag::decode( e, URLs ) ) {
     e->ignore(); // not for us to handle!
     return ;
-  } // now, the list of URLs is stored in 'list', we'll create a KURL::List
-  QStrListIterator it( list );
-  while ( it ) {
-    URLs.append( *it );
-    ++it;
   }
 
   KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy;
