@@ -225,10 +225,12 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 		error(KIO::ERR_DOES_NOT_EXIST,url.path());
 		return;
 	}
-	
+
 	QString file = url.path().mid(arcFile->url().path().length()+1);
-	if( !isFile && file.right(1) != "/" ) file = file + "/";
-	KShellProcess proc;
+ if( !isFile && file.right(1) != "/" ) {
+    if(arcType == "zip") file = file + "/";
+  }
+  KShellProcess proc;
 	proc << delCmd << "\""+arcFile->url().path()+"\" " << "\""+file+"\"";
 	infoMessage(i18n("Deleting %1 ...").arg( url.fileName() ) );
 	proc.start(KProcess::Block);
@@ -394,9 +396,24 @@ bool kio_krarcProtocol::initDirDict(const KURL&, bool forced){
 	QString line;
 
 	int lineNo = 0;
+  // the rar list is started with a ------ line.
+  if(arcType == "rar"){
+    while(temp.file()->readLine(buf,1000) != -1){
+      line = QString::fromLocal8Bit(buf);
+      if( line.startsWith("-----------") ) break;
+    }
+  } 
 	while(temp.file()->readLine(buf,1000) != -1){
 		line = QString::fromLocal8Bit(buf);
-		parseLine(lineNo++,line.stripWhiteSpace(),temp.file());
+    if( arcType == "rar" ) {
+       // the rar list is ended with a ------ line.
+       if( line.startsWith("-----------") ) break;
+       else{
+         temp.file()->readLine(buf,1000);
+         line = line+QString::fromLocal8Bit(buf);
+       }
+    }
+    parseLine(lineNo++,line.stripWhiteSpace(),temp.file());
 	}
   // close and delete our file
 	temp.file()->close();
@@ -540,7 +557,7 @@ void kio_krarcProtocol::parseLine(int, QString line, QFile*){
   QString fullName;
   
   
-  if(arcType == "zip"){  
+  if(arcType == "zip"){
     // permissions
     perm = nextWord(line);
     if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
@@ -558,6 +575,25 @@ void kio_krarcProtocol::parseLine(int, QString line, QFile*){
     time = QDateTime(qdate,qtime).toTime_t();
     // full name
     fullName = nextWord(line,'\n');
+  }
+  if(arcType == "rar"){
+    // full name
+    fullName = nextWord(line,'\n');
+    // size
+    size = nextWord(line).toLong();
+    // ignore the next 2 fields
+    nextWord(line); nextWord(line);
+    // date & time
+    QString d = nextWord(line);
+    QDate qdate(d.mid(6,2).toInt(),d.mid(3,2).toInt(),d.mid(0,2).toInt());
+    if( qdate.year() < 1930 ) qdate.addYears(100);
+    QString t = nextWord(line);
+    QTime qtime(t.mid(0,2).toInt(),t.mid(4,2).toInt(),0);
+    time = QDateTime(qdate,qtime).toTime_t();    
+    // permissions
+    perm = nextWord(line);
+    if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
+    mode = parsePermString(perm);
   }
 
   if( fullName.right(1) == "/" ) fullName = fullName.left(fullName.length()-1);
@@ -588,13 +624,15 @@ void kio_krarcProtocol::parseLine(int, QString line, QFile*){
   atom.m_long = time;
   entry.append( atom );
 
-  dir->append(entry);
   if(perm[0] == 'd'){
     fullName=fullName+"/";
-    if(dirDict.find(fullName) == 0){
+    if(dirDict.find(fullName) == 0)
       dirDict.insert(fullName,new UDSEntryList());
-    }
+    else
+      return; // there is alreay an entry for this directory
   }
+  
+  dir->append(entry);
 }
 
 bool kio_krarcProtocol::initArcParameters(){
@@ -604,6 +642,12 @@ bool kio_krarcProtocol::initArcParameters(){
     getCmd  = "unzip -p ";
     delCmd  = "zip -d ";
     putCmd  = "zip -ry ";
+  } else if (arcType == "rar"){
+    cmd = "unrar" ;
+    listCmd = "unrar -c- v ";
+    getCmd  = "unrar x -y ";
+    delCmd  = "rar d ";
+    putCmd  = "rar -r a ";
   } else {
     cmd     = QString::null;
     listCmd = QString::null;
@@ -613,9 +657,10 @@ bool kio_krarcProtocol::initArcParameters(){
   }
 
   if( KStandardDirs::findExe(cmd).isEmpty() ){
-    error(ERR_SLAVE_DEFINED,QString("I Love you !\n") );//ERR_UNSUPPORTED_PROTOCOL,
-      //i18n("%1 archives are not supported").arg(arcType) );
-     return false;
+    error( KIO::ERR_CANNOT_LAUNCH_PROCESS,
+    cmd+
+    i18n("\nMake sure that the %1 binary are installed properly on your system.").arg(cmd));
+    return false;
   }
   return true;
 }
