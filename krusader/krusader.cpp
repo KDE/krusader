@@ -702,10 +702,15 @@ QString Krusader::getTempDir() {
   // try to make krusader temp dir
   krConfig->setGroup( "General" );
   QString tmpDir = krConfig->readEntry( "Temp Directory", _TempDirectory );
-  for ( int i = 1 ; i != -1 ; i = tmpDir.find( '/', i + 1 ) )
-    QDir().mkdir( tmpDir.left( i ) );
-  QDir().mkdir( tmpDir );
-  chmod( tmpDir.local8Bit(), 0777 );
+
+  if( ! QDir( tmpDir ).exists() )
+  {  
+    for ( int i = 1 ; i != -1 ; i = tmpDir.find( '/', i + 1 ) )
+      QDir().mkdir( tmpDir.left( i ) );
+    QDir().mkdir( tmpDir );
+    chmod( tmpDir.local8Bit(), 0777 );
+  }
+  
   // add a secure sub dir under the user UID
   QString uid;
   uid.sprintf( "%d", getuid() );
@@ -728,10 +733,15 @@ QString Krusader::getTempFile() {
   // try to make krusader temp dir
   krConfig->setGroup( "General" );
   QString tmpDir = krConfig->readEntry( "Temp Directory", _TempDirectory );
-  for ( int i = 1 ; i != -1 ; i = tmpDir.find( '/', i + 1 ) )
-    QDir().mkdir( tmpDir.left( i ) );
-  QDir().mkdir( tmpDir );
-  chmod( tmpDir.local8Bit(), 0777 );
+
+  if( ! QDir( tmpDir ).exists() )
+  {
+    for ( int i = 1 ; i != -1 ; i = tmpDir.find( '/', i + 1 ) )
+      QDir().mkdir( tmpDir.left( i ) );
+    QDir().mkdir( tmpDir );
+    chmod( tmpDir.local8Bit(), 0777 );
+  }
+  
   // add a secure sub dir under the user UID
   QString uid;
   uid.sprintf( "%d", getuid() );
