@@ -57,7 +57,7 @@
 #include "../defaults.h"
 #include "../resources.h"
 
-ftp_vfs::ftp_vfs(QObject* panel):vfs(panel),busy(false){
+ftp_vfs::ftp_vfs(QObject* panel):vfs(panel),busy(false), in_loop(0){
   // set the writable attribute
   isWritable = true;
 
@@ -130,6 +130,11 @@ void ftp_vfs::slotListResult(KIO::Job *job){
     if ( !quietMode ) job->showErrorDialog(krApp);
   }
   busy = false;
+  if( in_loop )
+  {
+    in_loop--;
+    qApp->exit_loop();
+  }
 }
 
 bool ftp_vfs::populateVfsList(const KURL& origin,bool showHidden) {
@@ -172,7 +177,8 @@ bool ftp_vfs::populateVfsList(const KURL& origin,bool showHidden) {
   }
 
   while( busy ){
-    qApp->processEvents();
+    in_loop++;
+    qApp->enter_loop();
   }
 
   if( listError ) return false;
