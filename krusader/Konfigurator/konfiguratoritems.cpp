@@ -39,11 +39,15 @@ KonfiguratorExtension::KonfiguratorExtension( QObject *obj, QString cfgClass, QS
 
 void KonfiguratorExtension::connectNotify( const char *signal )
 {
-  if( strcmp( signal, SIGNAL( applyManually(QObject *,QString, QString) ) ) == 0 )
+  QString signalString    = QString( signal ).replace( " ", "" );
+  QString applyString     = QString( SIGNAL( applyManually(QObject *,QString, QString) ) ).replace( " ", "" );
+  QString defaultsString  = QString( SIGNAL( setDefaultsManually(QObject *) ) ).replace( " ", "" );
+  
+  if( signalString == applyString )
     applyConnected = true;
-  else if ( strcmp( signal, SIGNAL( setDefaultsManually(QObject *) ) ) == 0 )
+  else if ( signalString == defaultsString )
     setDefaultsConnected = true;
-
+    
   QObject::connectNotify( signal );
 }
 

@@ -39,6 +39,12 @@ class KgDependencies : public KonfiguratorPage
 
 public:
   KgDependencies( bool first, QWidget* parent=0,  const char* name=0 );
+
+private:
+  void addApplication( QString name, QGridLayout *grid, int row, QWidget *parent  );
+  
+public slots:
+  void slotApply( QObject *obj, QString cls, QString name );
 };
 
 #endif /* __KGDEPENDENCIES_H__ */

@@ -30,9 +30,11 @@
 
 #include "kgdependencies.h"
 #include "../krservices.h"
+#include "../krusader.h"
 #include <qtabwidget.h>
 #include <klocale.h>
 #include <qhbox.h>
+#include <kmessagebox.h>
 
 KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -60,10 +62,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   KonfiguratorURLRequester *ejectPath = createURLRequester( "Dependencies", "eject", "", general_tab, false );
   pathsGrid->addWidget( ejectPath, 1, 1 );
 
-  KrServices::fullPathName( "kdesu" ); /* try to autodetect the full path name */
-  addLabel( pathsGrid, 2, 0, "kdesu", general_tab, "kdesuName" );
-  KonfiguratorURLRequester *kdesuPath = createURLRequester( "Dependencies", "kdesu", "", general_tab, false );
-  pathsGrid->addWidget( kdesuPath, 2, 1 );
+  addApplication( "kdesu", pathsGrid, 2, general_tab );
 
   addLabel( pathsGrid, 3, 0, "kmail", general_tab, "kmailName" );
   KonfiguratorURLRequester *kmailPath = createURLRequester( "Dependencies", "kmail", "", general_tab, false );
@@ -77,10 +76,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   KonfiguratorURLRequester *krenamePath = createURLRequester( "Dependencies", "krename", "", general_tab, false );
   pathsGrid->addWidget( krenamePath, 5, 1 );
 
-  KrServices::fullPathName( "krusader" ); /* try to autodetect the full path name */
-  addLabel( pathsGrid, 6, 0, "krusader", general_tab, "krusaderName" );
-  KonfiguratorURLRequester *krusaderPath = createURLRequester( "Dependencies", "krusader", "", general_tab, false );
-  pathsGrid->addWidget( krusaderPath, 6, 1 );
+  addApplication( "krusader", pathsGrid, 6, general_tab );
 
   addLabel( pathsGrid, 7, 0, "mount", general_tab, "mountName" );
   KonfiguratorURLRequester *mountPath = createURLRequester( "Dependencies", "mount", "", general_tab, false );
@@ -140,4 +136,37 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   archGrid->addWidget( zipPath, 9, 1 );
 
   kgDependenciesLayout->addWidget( tabWidget, 0, 0 );
+}
+
+void KgDependencies::addApplication( QString name, QGridLayout *grid, int row, QWidget *parent  )
+{
+  KrServices::fullPathName( name ); /* try to autodetect the full path name */
+  addLabel( grid, row, 0, name, parent, (QString( "label:" )+name).ascii() );
+
+  KonfiguratorURLRequester *fullPath = createURLRequester( "Dependencies", name, "", parent, false );
+  connect( fullPath->extension(), SIGNAL( applyManually( QObject *, QString, QString ) ),
+           this, SLOT( slotApply( QObject *, QString, QString ) ) );
+  grid->addWidget( fullPath, row, 1 );
+}
+
+void KgDependencies::slotApply( QObject *obj, QString cls, QString name )
+{
+  KonfiguratorURLRequester *urlRequester = (KonfiguratorURLRequester *) obj;
+
+  krConfig->setGroup( cls );
+  krConfig->writeEntry( name, urlRequester->url() );
+
+  QString usedPath = KrServices::fullPathName( name );
+
+  if( urlRequester->url() != usedPath )
+  {
+    krConfig->writeEntry( name, usedPath );
+    if( usedPath.isEmpty() )
+      KMessageBox::error( this, i18n( "The %1 path is incorrect, no valid path found." )
+                          .arg( urlRequester->url() ) );
+    else
+      KMessageBox::error( this, i18n( "The %1 path is incorrect, %2 used instead." )
+                          .arg( urlRequester->url() ).arg( usedPath ) );
+    urlRequester->setURL( usedPath );
+  }
 }
