@@ -23,6 +23,7 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 
 	setPopup(acmBookmarks->popupMenu());
 	connect(this, SIGNAL(pressed()), this, SLOT(populate()));
+	populate();
 }
 
 void KrBookmarkButton::populate() {
