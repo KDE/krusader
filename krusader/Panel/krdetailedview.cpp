@@ -154,6 +154,10 @@ _nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left
   setAllColumnsShowFocus( true );
   setShowSortIndicator( true );
   header() ->setStretchEnabled( true, column( Name ) );
+  // allow in-place renaming
+  setItemsRenameable(true);
+  setRenameable(column(Name), true);
+
   restoreSettings();
 }
 

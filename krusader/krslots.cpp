@@ -37,6 +37,7 @@
 #include <klocale.h>
 #include <kprocess.h>
 #include <kmessagebox.h>
+#include <klineeditdlg.h>
 #include <kkeydialog.h>
 #include <kdirnotify_stub.h>
 #include <kio/netaccess.h>
@@ -383,6 +384,30 @@ void KRslots::mkdir()          { ACTIVE_FUNC->mkdir();      }
 // F8
 void KRslots::deleteFiles()    { ACTIVE_FUNC->deleteFiles();}     	
 // F9
-void KRslots::rename()         { ACTIVE_FUNC->rename();     }
+void KRslots::rename()         {
+  int c;
+  QString newName;
+  QString fileName = ACTIVE_PANEL->getCurrentName();
+  if ( fileName.isNull() ) return ;
+  KrViewItem *it = ACTIVE_PANEL->view->getCurrentKrViewItem();
+
+  // determine which column is inplace renameable
+  // if none, open the good-old dialog box
+  for (c=0; c<dynamic_cast<QListView*>(ACTIVE_PANEL->view)->columns(); c++)
+    if (dynamic_cast<KListView*>(ACTIVE_PANEL->view)->isRenameable(c)) break;
+
+  if (dynamic_cast<KListView*>(ACTIVE_PANEL->view)->isRenameable(c)) {
+    (dynamic_cast<KListView*>(ACTIVE_PANEL->view))->rename(dynamic_cast<QListViewItem*>(it), c);
+    // wait for the signal to be emited
+  } else {
+    // good old dialog box
+    bool ok = false;
+    newName = KLineEditDlg::getText( i18n( "Rename " ) + fileName + i18n( " to:" ), fileName, &ok, krApp );
+    // if the user canceled - quit
+    if ( !ok || newName == fileName )
+      return ;
+    ACTIVE_FUNC->rename(dynamic_cast<QListViewItem*>(it), newName);
+  }
+}
 
 #include "krslots.moc"
