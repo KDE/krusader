@@ -1,5 +1,10 @@
 <?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+
+<!--
+Previous used Docbook
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+-->
 
 <!-- **********************************************************************
                               index.docbook
@@ -89,6 +94,11 @@
 <!ENTITY bugreport_lnk 'Don&apos;t hesitate to send <link linkend="bug_report">Bug reports</link>.'>
 <!ENTITY newfeaturenote '<note><para>This is a new feature under development, some descriptions can be obsolete when
                          functionality can change during the development. &bugreport_lnk;</para></note>'>
+<!ENTITY krusaderrc_ui_text '<para>If &krusader; is upgraded then upgrade the
+                            <filename>krusader_source_dir\krusader\krusaderrc.ui</filename> file in
+	                    <userinput>$KDEDIR/share/apps/krusader</userinput> and
+	                    <userinput>~/.kde/share/apps/krusader</userinput>
+	                    , click here for more <link linkend="krusaderrc_ui">info</link>.</para>'>
 
   <!-- each chapter is in a seperate sgml file -->
 	<!ENTITY introduction SYSTEM "introduction.sgml">
@@ -105,27 +115,39 @@
 <title>The Krusader Handbook</title>
 
 	<authorgroup>
+	<othercredit role="developer">
+        <firstname>Shie</firstname><surname>Erlich</surname>
+        <contrib>Author and initial Handbook author</contrib>
+        <affiliation><address><email>erlich@users.sourceforge.net</email></address></affiliation>
+        </othercredit>
+	<othercredit role="developer">
+        <firstname>Rafi</firstname><surname>Yanai</surname>
+        <contrib>Author and initial Handbook author</contrib>
+        <affiliation><address><email>yanai@users.sourceforge.net</email></address></affiliation>
+        </othercredit>
+	<othercredit role="developer">
+        <firstname>Dirk</firstname><surname>Eschler</surname>
+        <contrib>Webmaster and i18n coordinator</contrib>
+        <affiliation><address><email>deschler@users.sourceforge.net</email></address></affiliation>
+        </othercredit>
+	<othercredit role="developer">
+        <firstname>Csaba</firstname><surname>Karai</surname>
+        <contrib>Developer</contrib>
+        <affiliation><address><email>csaba.karai@nokia.com</email></address></affiliation>
+        </othercredit>
 	<author>
-	<firstname>Shie</firstname>
-	<surname>Erlich</surname>
-	<affiliation>
-	<address><email>manson@users.sourceforge.net</email></address>
-	</affiliation>
-	</author>
-	<author>
-	<firstname>Rafi</firstname>
-	<surname>Yanai</surname>
-	<affiliation>
-	<address><email>yanai@users.sourceforge.net</email></address>
-	</affiliation>
-	</author>
-        <author>
         <firstname>Frank</firstname>
 	<surname>Schoolmeesters</surname>
+	<contrib>Documentation coordinator</contrib>
 	<affiliation>
 	<address><email>codeknight@users.sourceforge.net</email></address>
 	</affiliation>
 	</author>
+	<othercredit role="reviewer">
+        <firstname>Mark</firstname><surname>Eatough</surname>
+        <contrib>Handbook proof reader</contrib>
+        <affiliation><address><email>markeatough@yahoo.com</email></address></affiliation>
+        </othercredit>
 	</authorgroup>
 	<copyright>
 	<year>2000</year>
@@ -136,8 +158,8 @@
   <holder>Shie Erlich</holder>
 	</copyright>
 	<legalnotice>&FDLNotice;</legalnotice>
-	<date>21/12/2003</date>
-	<releaseinfo>1.00.05</releaseinfo>
+	<date>30/12/2003</date>
+	<releaseinfo>1.00.05 a</releaseinfo>
 
    <abstract>
 	<para>

@@ -636,47 +636,74 @@
 
     &newfeaturenote;
 
-    <para>NOTE: This discription is not yet complete.</para>
-
-    <para>This function allows you to compare the left and the right panel and show the difference between them
+    <para>This function compares the left and the right panel and shows the difference between them
     after choosing <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
     <guimenuitem>Synchronize Directories</guimenuitem></menuchoice></emphasis>
     or
     <keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo>.
-    The left and the right directory can by changed and a filter can be set.
-    After the compare function, you can move files/directories so that the directories can be synchronized.
+    After the compare function, you can synchronize the files and directories.
     </para>
 
-    <para>Options:
+    <para>Procedure: set the left and the right directory, configure the optional file filter and
+    set the checkbox options. Then click on the <guibutton>Compare</guibutton> button, the results
+    are listed below. The listed results can be filtered with the <guilabel>Show options</guilabel> to
+    increase the readability (by default everything is viewed). When you agree with the
+    <guibutton>Compare</guibutton> results click on the <guibutton>Synchronize</guibutton> button
+    to synchronize the files and directories.
+    </para>
+
+    <para>Checkbox options:
     <itemizedlist>
-    	<listitem><para>Recurce subdirectories</para></listitem>
-    	<listitem><para>Ignore Date</para></listitem>
-	<listitem><para>Asymmetric</para></listitem>
-	<listitem><para>Compare by content (not yet available)</para></listitem>
-	<listitem><para>Follow symlinks</para></listitem>
+    	<listitem><para><guilabel>Recurse subdirectories</guilabel>:
+	           compares not only the base directories but their subdirectories as well.</para></listitem>
+    	<listitem><para><guilabel>Ignore Date</guilabel>:
+	           ignores the date information at comparing (good if the files were fetched from ftp, smb,
+		   archive, ... file systems).</para></listitem>
+	<listitem><para><guilabel>Asymmetric</guilabel>:
+	           The left side is the destination, the right is the source directory.
+		   The files existed only in the left directory will be deleted, the other differing ones
+		   will be copied from right to left (useful at updating a directory from a file
+		   server).</para></listitem>
+	<listitem><para><guilabel>Compare by content</guilabel>:
+	           compares the duplicate files with the same size by their content.</para></listitem>
+	<listitem><para><guilabel>Follow symlinks</guilabel>:
+	           follows the symbolic links also at comparing.</para></listitem>
+	<listitem><para><guilabel>Automatic Scrolling</guilabel>:
+	           scrolls the results of comparing (slow).</para></listitem>
     </itemizedlist>
     </para>
 
     <para>
-    Show options:
+    Show options (in the compare results list):
     <itemizedlist>
-    	<listitem><para>->: left is newer then right</para></listitem>
-    	<listitem><para>=: equal</para></listitem>
-	<listitem><para>not = : not equal</para></listitem>
-	<listitem><para>&lt;-: right is newer than left</para></listitem>
-	<listitem><para>trash</para></listitem>
-	<listitem><para>duplicates</para></listitem>
-	<listitem><para>singles</para></listitem>
+    	<listitem><para><guibutton>-></guibutton>:
+	           lists the files marked to copy from left to right.</para></listitem>
+    	<listitem><para><guibutton>=</guibutton>:
+	           lists the files considered to be identical.</para></listitem>
+	<listitem><para><guibutton>not =</guibutton>:
+	           lists the excluded files.</para></listitem>
+	<listitem><para><guibutton>&lt;-</guibutton>:
+	           lists the files marked to copy from right to left.</para></listitem>
+	<listitem><para><guibutton>trash</guibutton>:
+	           lists the files marked to delete.</para></listitem>
+	<listitem><para><guibutton>Duplicates</guibutton>:
+	           lists those files that exist in both sides.</para></listitem>
+	<listitem><para><guibutton>Singles</guibutton>:
+	           lists those files that exist only in either side.</para></listitem>
     </itemizedlist>
     </para>
 
     <para>
-    Buttons:
+    Action buttons:
     <itemizedlist>
-    	<listitem><para>Compare: compares the left and right directories</para></listitem>
-    	<listitem><para>Stop: stop the compare or synchronize process</para></listitem>
-	<listitem><para>Synchronize: synchronizes the directories</para></listitem>
-	<listitem><para>Close: close the Synchronize Directories window</para></listitem>
+    	<listitem><para><guibutton>Compare</guibutton>:
+	           compares the left and right directories, the results are displayed below.</para></listitem>
+    	<listitem><para><guibutton>Stop</guibutton>:
+	           stops the compare or synchronize process.</para></listitem>
+	<listitem><para><guibutton>Synchronize</guibutton>:
+	           synchronizes the files and directories.</para></listitem>
+	<listitem><para><guibutton>Close</guibutton>:
+	           closes the Synchronizer window.</para></listitem>
     </itemizedlist>
     </para>
 

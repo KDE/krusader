@@ -116,8 +116,10 @@
     <question><para>When I try to resize &krusader;, so that it'd be smaller, I discover that I can't
       resize it below a certain size. Basically, it doesn't get much smaller. Why?</para></question>
     <answer><para>See the F1, F2 (etc.) buttons ? They are not allowing &krusader; to downsize as
-      they have a minimum size. Just disable them (view->Show FN Keys Bar) and you'll be able to
-      resize &krusader; to your liking.</para></answer>
+      they have a minimum size. Just disable them
+      <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
+      <guimenuitem>Show FN Keys Bar</guimenuitem></menuchoice></emphasis>
+      and you'll be able to resize &krusader; to your liking.</para></answer>
   </qandaentry>
 
   <qandaentry>
@@ -135,8 +137,10 @@
   <qandaentry>
 	  <question><para>When i run <command>make</command> it complains about
 	                   <filename>libfam.la</filename></para></question>
-	  <answer><para>The './configure' script does not check for the presence of 'libfam.la', and
-	  make needs 'libfam.la' to compile &krusader;. Install 'libfam0-devel-foo.rpm'.
+	  <answer><para>The <command>./configure</command> script does not check for the presence of
+	  <filename>libfam.la</filename>, and <command>make</command> needs <filename>libfam.la</filename>
+	  to compile &krusader;.
+	  Install <filename>libfam0-devel-foo.rpm</filename>.
 	  Note: when you install Mandrake 9.1 with the default settings, this package is not installed.
 	  If you need more information click
 	  <link linkend="missing_libs">here</link>.</para></answer>
@@ -155,7 +159,7 @@
     containing national characters?</para></question>
     <answer><para>&krusader; does not handle (yet) Samba ISO 8859-x codepages, if you use a codepage different
       than 8859-1 you will have to do a manual configuration.
-      Create or modify the file: ~/.smb/smb.conf
+      Create or modify the file: <filename>~/.smb/smb.conf</filename>
       <programlisting>
  	[global]
  	workgroup = MyWorkGroup       (ex. WORKGROUP)
@@ -182,7 +186,9 @@
        saying 'Could not connect to host'.</para></question>
       <answer><para>You are probably behind a firewall/proxy and haven't enabled Passive Mode.
       Enable Passive FTP through &kde;'s Control Center and try again.
-      Network -> Preferences -> 'Use Passive Mode' has to be checked.
+      <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
+      <guimenuitem>Network</guimenuitem><guimenuitem>Preferences</guimenuitem></menuchoice></emphasis> ,
+      <guilabel>Enable Passive Mode (PASV)</guilabel> has to be checked.
   </para></answer>
   </qandaentry>
 
