@@ -426,6 +426,11 @@ void ListPanel::slotGetStats( QString path ) {
       return ;
    }
 
+	// check for special filesystems;
+	if ( path.left(4) == "/dev") {
+		status->setText(i18n( "No space information on [dev]" ));
+		return;
+	}
 #if defined(BSD)
 	if ( path.left( 5 ) == "/procfs" ) { // /procfs is a special case - no volume information
 		status->setText(i18n( "No space information on [procfs]" ));
