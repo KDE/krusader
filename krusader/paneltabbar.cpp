@@ -19,6 +19,7 @@
 #include "Panel/listpanel.h"
 #include "krusaderview.h"
 #include "krslots.h"
+#include "defaults.h"
 #include <kaction.h>
 #include <klocale.h>
 #include <kshortcut.h>
@@ -134,6 +135,36 @@ void PanelTabBar::closeTab() {
 }
 
 QString PanelTabBar::squeeze(QString text, int index) {
+  QString originalText = text;
+  
+  QString lastGroup = krConfig->group();  
+  krConfig->setGroup( "Look&Feel" );
+  bool longNames = krConfig->readBoolEntry( "Fullpath Tab Names", _FullPathTabNames );
+  krConfig->setGroup( lastGroup );
+  
+  if( !longNames )
+  {
+    while( text.endsWith( "/" ) )
+      text.truncate( text.length() -1 );      
+    if( text.isEmpty() || text.endsWith(":") )
+      text += "/";
+    else
+    {
+      QString shortName;
+                    
+      if( text.contains( ":/" ) )
+        shortName = text.left( text.find( ":/" ) ) + ":";
+    
+      shortName += text.mid( text.findRev( "/" ) + 1 );      
+      text = shortName;
+    }
+    
+    if( index >= 0 )
+      setToolTip( index, originalText );
+    
+    index = -1;
+  }
+  
   QFontMetrics fm(fontMetrics());
 
   // set the real max length
@@ -175,7 +206,7 @@ QString PanelTabBar::squeeze(QString text, int index) {
     }
 
     if( index >= 0 )
-      setToolTip( tabAt(index)->identifier(), text );
+      setToolTip( index, originalText );
 
     if (letters < 5) {
     	// too few letters added -> we give up squeezing
@@ -186,7 +217,7 @@ QString PanelTabBar::squeeze(QString text, int index) {
     }
   } else {
     if( index >= 0 )
-      removeToolTip( tabAt(index)->identifier() );
+      removeToolTip( index );
       
     return text;
   };

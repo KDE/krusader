@@ -87,6 +87,8 @@
 #define _FilelistIconSize QString("22") 
 // Mouse Selection /////
 #define _MouseSelection 0 // 0 - normal (shift+click, ctrl+click), 1 - left click, 2 - right click
+// Use fullpath tab names /////
+#define _FullPathTabNames false
 
 // Panel Toolbar Checkboxes
 // Panel Toolbar Visible checkbox turned off

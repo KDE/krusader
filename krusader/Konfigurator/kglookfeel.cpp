@@ -62,12 +62,13 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  ""},
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  ""},
      {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), false,  ""},
+     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use fullpath tab names" ), true ,  ""},
      //{"Look&Feel","Single Click Selects", false,              i18n( "Single click executes" ),   false,  ""},
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  ""},
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""},
     };
 
-  cbs = createCheckBoxGroup( 2, 0, settings, 7/*8*/, lookFeelGrp );
+  cbs = createCheckBoxGroup( 2, 0, settings, 8/*9*/, lookFeelGrp );
   lookFeelGrid->addWidget( cbs, 0, 0 );
   connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
