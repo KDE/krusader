@@ -405,7 +405,7 @@ void ListPanelFunc::mkdir() {
 
   // if the name is already taken - quit
   if ( QDir( files() ->vfs_getOrigin() + "/" + dirName ).exists() ) {
-    KMessageBox::sorry( krApp, i18n( "A directory or a file with this file already exists." ) );
+    KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
     return ;
   }
 
