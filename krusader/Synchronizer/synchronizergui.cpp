@@ -1084,7 +1084,10 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   fileFilter->setHistoryItems(list);
   fileFilter->setEditText("*");
   grid->addWidget( fileFilter, 1 ,1 );
-  QToolTip::add( fileFilter, i18n( "Filtering by the filename" ) );
+  QToolTip::add( fileFilter, i18n( "Here you enter the filename filtering criteria. You can use wildcards\n"
+                                  "(*.o.* *.c?? etc.), and give more items separated by space.\n"
+                                  "If you type 'text' that results the same as '*text*'. You can exclude\n"
+                                  "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' ). " ) );
 
   rightLocation = new KHistoryCombo(compareDirs, "SynchronizerHistoryRight");
   rightLocation->setMaxCount(25);  // remember 25 items
