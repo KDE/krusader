@@ -1,5 +1,6 @@
-
+1.21-beta1
 ======================
+    ADDED: Opening left/right bookmarks (alt+left/right arrow) is now an action, and can be remapped.
     ADDED: In-place renaming (thanks to Heiner Eichmann)
     ADDED: New KIO slaves to handle archives.
     ADDED: multi-file properties.
@@ -22,8 +23,12 @@
     FIXED: Panel flicker patch (thanks to Gabor Takacs for the patch)
     FIXED: Krusader failed to report permission errors while deleting files
     FIXED: issue with Japanesse translation
+    FIXED: ctrl+arrows is caught by panel and not the view
     UPDATED: Dutch translation
     UPDATED: German translation
+
+      BUG: krArc slow when unpacking large files
+      BUG: krArc can't unpack a directory
 
 
 1.20 - KDE 3
