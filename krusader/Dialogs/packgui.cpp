@@ -64,6 +64,8 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   if (PS("tar") && PS("bzip2")) typeData->insertItem("tar.bz2");
   if (PS("zip")) typeData->insertItem("zip");
   if (PS("rar")) typeData->insertItem("rar");
+  if (PS("lha")) typeData->insertItem("lha");
+  if (PS("arj")) typeData->insertItem("arj");
   // set the last used packer as the top one
   QString tmp=krConfig->readEntry("lastUsedPacker",QString::null);
   if (tmp!=QString::null) {

@@ -115,6 +115,17 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
     return;
   }
 
+  if( arcType == "arj" || arcType == "lha" )
+  {
+    QString arcDir = url.path().mid(arcFile->url().path().length());
+    if( arcDir.right(1) != "/") arcDir = arcDir+"/";
+    
+    if( dirDict.find( arcDir ) == 0 )
+        addNewDir( arcDir );
+    finished();
+    return;
+  }
+  
   //QString tmpDir = arcTempDir+url.path();
   QString arcDir  = findArcDirectory(url);
   QString tmpDir = arcTempDir + arcDir.mid(1) + url.path().mid(url.path().findRev("/")+1);
@@ -199,6 +210,7 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 }
 
 void kio_krarcProtocol::get(const KURL& url ){
+  bool isArjGet = false;
   KRDEBUG(url.path());
   if( !setArcFile(url.path()) ) return;
   if( getCmd.isEmpty() ){
@@ -227,6 +239,10 @@ void kio_krarcProtocol::get(const KURL& url ){
 	KShellProcess proc;
   if( cpioReady ){
     proc << getCmd << arcTempDir+"contents.cpio " << "\"*"+file+"\"";
+  } else if(  arcType == "arj" ) {
+    proc << getCmd << "\""+arcFile->url().path()+"\" " << "\""+file+"\"";
+    file = url.fileName();
+    isArjGet = true;
   } else {
     // Determine the mimetype of the file to be retrieved, and emit it.
     // This is mandatory in all slaves (for KRun/BrowserRun to work).
@@ -240,7 +256,7 @@ void kio_krarcProtocol::get(const KURL& url ){
   // change the working directory to our arcTempDir
   QDir::setCurrent(arcTempDir);
   proc.start(KProcess::Block,KProcess::AllOutput);
-  if( cpioReady ){
+  if( cpioReady || isArjGet ){
     // the follwing block is ripped from KDE file KIO::Slave
     // $Id$
     QCString _path( QFile::encodeName(arcTempDir+file) );
@@ -315,6 +331,9 @@ void kio_krarcProtocol::get(const KURL& url ){
     close( fd );
     processedSize( buff.st_size );
     finished();
+    
+    if( isArjGet )
+      QFile(arcTempDir+file).remove();
     return;
   }
   // send empty buffer to mark EOF
@@ -331,8 +350,10 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
     return;
   }
 	if( !findFileEntry(url) ){
-		error(KIO::ERR_DOES_NOT_EXIST,url.path());
-		return;
+        if( ( arcType != "arj" && arcType != "lha" ) || isFile ) {
+			error(KIO::ERR_DOES_NOT_EXIST,url.path());
+			return;
+		}
 	}
 
 	QString file = url.path().mid(arcFile->url().path().length()+1);
@@ -531,21 +552,37 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 
 	int lineNo = 0;
   // the rar list is started with a ------ line.
-  if(arcType == "rar"){
+  if(arcType == "rar" || arcType == "arj" || arcType == "lha" ){
     while(temp.file()->readLine(buf,1000) != -1){
       line = QString::fromLocal8Bit(buf);
-      if( line.startsWith("-----------") ) break;
+      if( line.startsWith("----------") ) break;
     }
   } 
 	while(temp.file()->readLine(buf,1000) != -1){
 		line = QString::fromLocal8Bit(buf);
     if( arcType == "rar" ) {
        // the rar list is ended with a ------ line.
-       if( line.startsWith("-----------") ) break;
+       if( line.startsWith("----------") ) break;
        else{
          temp.file()->readLine(buf,1000);
          line = line+QString::fromLocal8Bit(buf);
        }
+    }
+    if( arcType == "arj" ) {
+       // the arj list is ended with a ------ line.
+       if( line.startsWith("----------") ) break;
+       else{
+         temp.file()->readLine(buf,1000);
+         line = line+QString::fromLocal8Bit(buf);
+         temp.file()->readLine(buf,1000);
+         line = line+QString::fromLocal8Bit(buf);
+         temp.file()->readLine(buf,1000);
+         line = line+QString::fromLocal8Bit(buf);
+       }
+    }
+    if( arcType == "lha" ) {
+       // the arj list is ended with a ------ line.
+       if( line.startsWith("----------") ) break;
     }
     parseLine(lineNo++,line.stripWhiteSpace(),temp.file());
 	}
@@ -732,6 +769,29 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
     if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
     mode = parsePermString(perm);
   }
+  if(arcType == "arj"){
+    nextWord(line);
+    // full name
+    fullName = nextWord(line,'\n');
+    // ignore the next 2 fields
+    nextWord(line); nextWord(line);
+    // size
+    size = nextWord(line).toLong();
+    // ignore the next 2 fields
+    nextWord(line); nextWord(line);
+    // date & time
+    QString d = nextWord(line);
+    int year = 1900 + d.mid(0,2).toInt();
+    if( year < 1930 ) year+=100;
+    QDate qdate( year, d.mid(3,2).toInt(), d.mid(6,2).toInt() );
+    QString t = nextWord(line);
+    QTime qtime(t.mid(0,2).toInt(),t.mid(3,2).toInt(),0);
+    time = QDateTime(qdate,qtime).toTime_t();    
+    // permissions
+    perm = nextWord(line);
+    if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
+    mode = parsePermString(perm);
+  }
   if(arcType == "rpm"){
     // full name
     fullName = nextWord(line);
@@ -772,6 +832,35 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
     if( fullName.endsWith("bz2") ) fullName.truncate(fullName.length()-4);
     mode = arcFile->mode();
     size = arcFile->size();
+  }
+  if(arcType == "lha"){
+    // permissions
+    perm = nextWord(line);
+    if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
+    mode = parsePermString(perm);
+    // ignore the next field
+    nextWord(line);
+    // size
+    size = nextWord(line).toLong();
+    // ignore the next field
+    nextWord(line);
+    // date & time
+    int month = (QStringList::split(',', "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec")).findIndex( nextWord(line) ) + 1;
+    int day = nextWord(line).toInt();
+    int year = QDate::currentDate().year();
+    QString third = nextWord(line);
+    QTime qtime;
+    
+    if( third.contains(":" ) )
+      qtime = QTime::fromString( third );
+    else
+      year = third.toInt();
+    
+    QDate qdate(year, month, day );
+    
+    time = QDateTime(qdate, qtime).toTime_t();    
+    // full name
+    fullName = nextWord(line,'\n');
   }
   if( fullName.right(1) == "/" ) fullName = fullName.left(fullName.length()-1);
   if( !fullName.startsWith("/") ) fullName = "/"+fullName;
@@ -849,8 +938,14 @@ bool kio_krarcProtocol::initArcParameters(){
     cmd     = fullPathName( "unzip" );
     listCmd = fullPathName( "unzip" ) + " -ZTs-z-t-h ";
     getCmd  = fullPathName( "unzip" ) + " -p ";
-    delCmd  = fullPathName( "zip" ) + " -d ";
-    putCmd  = fullPathName( "zip" ) + " -ry ";
+    
+    if( KStandardDirs::findExe( "zip" ).isEmpty() ) {
+      delCmd  = QString::null;
+      putCmd  = QString::null;
+    } else {
+      delCmd  = fullPathName( "zip" ) + " -d ";
+      putCmd  = fullPathName( "zip" ) + " -ry ";
+    }
 
     if( !getPassword().isEmpty() )
     {
@@ -858,11 +953,22 @@ bool kio_krarcProtocol::initArcParameters(){
       putCmd += "-P '"+password+"' ";
     }
   } else if (arcType == "rar"){
-    cmd     = fullPathName( "unrar" );
-    listCmd = fullPathName( "unrar" ) + " -c- v ";
-    getCmd  = fullPathName( "unrar" ) + " p -ierr -idp -c- -y ";
-    delCmd  = fullPathName( "rar" ) + " d ";
-    putCmd  = fullPathName( "rar" ) + " -r a ";
+    if( KStandardDirs::findExe( "rar" ).isEmpty() )
+    {
+      cmd     = fullPathName( "unrar" );
+      listCmd = fullPathName( "unrar" ) + " -c- v ";
+      getCmd  = fullPathName( "unrar" ) + " p -ierr -idp -c- -y ";
+      delCmd  = QString::null;
+      putCmd  = QString::null;
+    }
+    else
+    {
+      cmd     = fullPathName( "rar" );
+      listCmd = fullPathName( "rar" ) + " -c- v ";
+      getCmd  = fullPathName( "rar" ) + " p -ierr -idp -c- -y ";
+      delCmd  = fullPathName( "rar" ) + " d ";
+      putCmd  = fullPathName( "rar" ) + " -r a ";
+    }
   } else if(arcType == "rpm"){
     cmd     = fullPathName( "rpm" );
     listCmd = fullPathName( "rpm" ) + " --dump -lpq ";
@@ -881,6 +987,18 @@ bool kio_krarcProtocol::initArcParameters(){
     getCmd  = fullPathName( "bzip2" ) + " -dc";
     delCmd  = QString::null;
     putCmd  = QString::null;
+  } else if(arcType == "arj"){
+    cmd     = fullPathName( "arj" );
+    listCmd = fullPathName( "arj" ) + " v ";
+    getCmd  = fullPathName( "arj" ) + " -jyo e ";
+    delCmd  = fullPathName( "arj" ) + " d ";
+    putCmd  = fullPathName( "arj" ) + " -r a ";
+  } else if(arcType == "lha"){
+    cmd     = fullPathName( "lha" );
+    listCmd = fullPathName( "lha" ) + " l ";
+    getCmd  = fullPathName( "lha" ) + " pq ";
+    delCmd  = fullPathName( "lha" ) + " d ";
+    putCmd  = fullPathName( "lha" ) + " a ";
   } else {
     cmd     = QString::null;
     listCmd = QString::null;

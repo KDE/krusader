@@ -76,16 +76,18 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   archGrid->setMargin( 11 );
   archGrid->setAlignment( Qt::AlignTop );
 
-  addApplication( "bzip2", archGrid, 0, packers_tab );
-  addApplication( "cpio",  archGrid, 1, packers_tab );
-  addApplication( "gzip",  archGrid, 2, packers_tab );
-  addApplication( "rar",   archGrid, 3, packers_tab );
-  addApplication( "tar",   archGrid, 4, packers_tab );
-  addApplication( "unace", archGrid, 5, packers_tab );
-  addApplication( "unarj", archGrid, 6, packers_tab );
-  addApplication( "unrar", archGrid, 7, packers_tab );
-  addApplication( "unzip", archGrid, 8, packers_tab );
-  addApplication( "zip",   archGrid, 9, packers_tab );
+  addApplication( "arj",   archGrid, 0, packers_tab );
+  addApplication( "bzip2", archGrid, 1, packers_tab );
+  addApplication( "cpio",  archGrid, 2, packers_tab );
+  addApplication( "gzip",  archGrid, 3, packers_tab );
+  addApplication( "lha",   archGrid, 4, packers_tab );
+  addApplication( "rar",   archGrid, 5, packers_tab );
+  addApplication( "tar",   archGrid, 6, packers_tab );
+  addApplication( "unace", archGrid, 7, packers_tab );
+  addApplication( "unarj", archGrid, 8, packers_tab );
+  addApplication( "unrar", archGrid, 9, packers_tab );
+  addApplication( "unzip", archGrid,10, packers_tab );
+  addApplication( "zip",   archGrid,11, packers_tab );
 
   kgDependenciesLayout->addWidget( tabWidget, 0, 0 );
 }

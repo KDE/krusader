@@ -165,6 +165,8 @@
 #define _DoUnarj       true 
 // Do RPM /////////////          ====> new
 #define _DoRPM         true 
+// Do Lha /////////////          ====> new
+#define _DoLha         true 
 // Allow Move Into Archive //
 #define _MoveIntoArchive false 
 // Test Archives //////

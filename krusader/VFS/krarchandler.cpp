@@ -51,9 +51,11 @@ QStringList KRarcHandler::supportedPackers() {
   if ( KrServices::cmdExist( "unzip" ) ) packers.append( "unzip" );
   if ( KrServices::cmdExist( "zip" ) ) packers.append( "zip" );
   if ( KrServices::cmdExist( "rpm" ) ) packers.append( "rpm" );
+  if ( KrServices::cmdExist( "lha" ) ) packers.append( "lha" );
   if ( KrServices::cmdExist( "cpio" ) ) packers.append( "cpio" );
   if ( KrServices::cmdExist( "unrar" ) ) packers.append( "unrar" );
   if ( KrServices::cmdExist( "rar" ) ) packers.append( "rar" );
+  if ( KrServices::cmdExist( "arj" ) ) packers.append( "arj" );
   if ( KrServices::cmdExist( "unarj" ) ) packers.append( "unarj" );
   if ( KrServices::cmdExist( "unace" ) ) packers.append( "unace" );
 
@@ -84,11 +86,13 @@ bool KRarcHandler::arcSupported( QString type ) {
     return true;
   else if ( type == "zip2" && lst.contains( "bzip2" ) )
     return true;
-  else if ( type == "-rar" && lst.contains( "unrar" ) )
+  else if ( type == "-lha" && lst.contains( "lha" ) )
+    return true;
+  else if ( type == "-rar" && ( lst.contains( "unrar" ) || lst.contains( "rar" ) ) )
     return true;
   else if ( type == "-ace" && lst.contains( "unace" ) )
     return true;
-  else if ( type == "-arj" && lst.contains( "unarj" ) )
+  else if ( type == "-arj" && ( lst.contains( "unarj" ) || lst.contains( "arj" ) ) )
     return true;
   else if ( type == "-rpm" && lst.contains( "cpio" ) )
     return true;
@@ -109,6 +113,7 @@ bool KRarcHandler::arcHandled( QString type ) {
        ( type == "gzip" && krConfig->readBoolEntry( "Do GZip" , _DoGZip ) ) ||
        ( type == "zip2" && krConfig->readBoolEntry( "Do BZip2", _DoBZip2 ) ) ||
        ( type == "-zip" && krConfig->readBoolEntry( "Do UnZip", _DoUnZip ) ) ||
+       ( type == "-lha" && krConfig->readBoolEntry( "Do Lha", _DoUnZip ) ) ||
        ( type == "-rar" && krConfig->readBoolEntry( "Do UnRar", _DoUnRar ) ) ||
        ( type == "-arj" && krConfig->readBoolEntry( "Do UnArj", _DoUnarj ) ) ||
        ( type == "-ace" && krConfig->readBoolEntry( "Do UnAce", _DoUnAce ) ) ||
@@ -135,9 +140,10 @@ long KRarcHandler::arcFileCount( QString archive, QString type ) {
   else if ( type == "-tgz" ) lister = KrServices::fullPathName( "tar" ) + " -tvzf";
   else if ( type == "tarz" ) lister = KrServices::fullPathName( "tar" ) + " -tvzf";
   else if ( type == "-tbz" ) lister = KrServices::fullPathName( "tar" ) + " -tjvf";
-  else if ( type == "-rar" ) lister = KrServices::fullPathName( "unrar" ) + " l";
+  else if ( type == "-lha" ) lister = KrServices::fullPathName( "lha" ) + " l";
+  else if ( type == "-rar" ) lister = KrServices::fullPathName( KrServices::cmdExist( "rar" ) ? "rar" : "unrar" ) + " l";
   else if ( type == "-ace" ) lister = KrServices::fullPathName( "unace" ) + " l";
-  else if ( type == "-arj" ) lister = KrServices::fullPathName( "unarj" ) + " l";
+  else if ( type == "-arj" ) lister = KrServices::fullPathName( KrServices::cmdExist( "arj" ) ? "arj" : "unarj" ) + " l";
   else return 0L;
 
   // tell the user to wait
@@ -185,9 +191,12 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
   else if ( type == "-tbz" ) packer = KrServices::fullPathName( "tar" ) + " -xjvf";
   else if ( type == "gzip" ) packer = KrServices::fullPathName( "gzip" ) + " -cd";
   else if ( type == "zip2" ) packer = KrServices::fullPathName( "bzip2" ) + " -cdk";
-  else if ( type == "-rar" ) packer = KrServices::fullPathName( "unrar" ) + " x";
+  else if ( type == "-lha" ) packer = KrServices::fullPathName( "lha" ) + " xf";
+  else if ( type == "-rar" ) packer = KrServices::fullPathName( KrServices::cmdExist( "rar" ) ? "rar" : "unrar" ) + " -y x";
   else if ( type == "-ace" ) packer = KrServices::fullPathName( "unace" ) + " x";
-  else if ( type == "-arj" ) packer = KrServices::fullPathName( "unarj" ) + " x";
+  else if ( type == "-arj" ) packer = KrServices::cmdExist( "arj" ) ?
+                                      KrServices::fullPathName( "arj" ) + " -y x" :
+                                      KrServices::fullPathName( "unarj" ) + " x";
   else return false;
 
   // unpack the files
@@ -238,9 +247,10 @@ bool KRarcHandler::test( QString archive, QString type, long count, QString pass
   else if ( type == "-tbz" ) packer = KrServices::fullPathName( "tar" ) + " -tjvf";
   else if ( type == "gzip" ) packer = KrServices::fullPathName( "gzip" ) + " -tv";
   else if ( type == "zip2" ) packer = KrServices::fullPathName( "bzip2" ) + " -tv";
-  else if ( type == "-rar" ) packer = KrServices::fullPathName( "unrar" ) + " t";
+  else if ( type == "-rar" ) packer = KrServices::fullPathName( KrServices::cmdExist( "rar" ) ? "rar" : "unrar" ) + " t";
   else if ( type == "-ace" ) packer = KrServices::fullPathName( "unace" ) + " t";
-  else if ( type == "-arj" ) packer = KrServices::fullPathName( "unarj" ) + " t";
+  else if ( type == "-lha" ) packer = KrServices::fullPathName( "lha" ) + " t";
+  else if ( type == "-arj" ) packer = KrServices::fullPathName( KrServices::cmdExist( "arj" ) ? "arj" : "unarj" ) + " t";
   else if ( type == "cpio" ) packer = KrServices::fullPathName( "cpio" ) + " --only-verify-crc -tvF" ;
   else return false;
 
@@ -276,7 +286,14 @@ bool KRarcHandler::test( QString archive, QString type, long count, QString pass
 bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long count ) {
   // set the right packer to do the job
   QString packer;
-  if ( type == "zip" ) { packer = KrServices::fullPathName( "zip" ) + " -ry"; type = "-zip"; } else if ( type == "tar" ) { packer = KrServices::fullPathName( "tar" ) + " -cvf"; type = "-tar"; } else if ( type == "tar.gz" ) { packer = KrServices::fullPathName( "tar" ) + " -cvzf"; type = "-tgz"; } else if ( type == "tar.bz2" ) { packer = KrServices::fullPathName( "tar" ) + " -cvjf"; type = "-tbz"; } else if ( type == "rar" ) { packer = KrServices::fullPathName( "rar" ) + " -r a"; type = "-rar"; } else return false;
+  if ( type == "zip" ) { packer = KrServices::fullPathName( "zip" ) + " -ry"; type = "-zip"; } 
+  else if ( type == "tar" ) { packer = KrServices::fullPathName( "tar" ) + " -cvf"; type = "-tar"; } 
+  else if ( type == "tar.gz" ) { packer = KrServices::fullPathName( "tar" ) + " -cvzf"; type = "-tgz"; } 
+  else if ( type == "tar.bz2" ) { packer = KrServices::fullPathName( "tar" ) + " -cvjf"; type = "-tbz"; } 
+  else if ( type == "rar" ) { packer = KrServices::fullPathName( "rar" ) + " -r a"; type = "-rar"; } 
+  else if ( type == "lha" ) { packer = KrServices::fullPathName( "lha" ) + " a"; type = "-lha"; } 
+  else if ( type == "arj" ) { packer = KrServices::fullPathName( "arj" ) + " -r a"; type = "-arj"; } 
+  else return false;
 
   // prepare to pack
   KShellProcess proc;

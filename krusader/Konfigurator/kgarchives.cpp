@@ -65,9 +65,10 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
      {"Archives","Do UnRar", _DoUnRar, i18n( "Rar" ),   false,  ""},
      {"Archives","Do Unarj", _DoArj,   i18n( "Arj" ),   false,  ""},
      {"Archives","Do RPM",   _DoRPM,   i18n( "Rpm" ),   false,  ""},
-     {"Archives","Do UnAce", _DoUnAce, i18n( "Ace" ),   false,  ""}};
+     {"Archives","Do UnAce", _DoUnAce, i18n( "Ace" ),   false,  ""},
+     {"Archives","Do Lha",   _DoLha,   i18n( "Lha" ),   false,  ""}};
 
-  cbs = createCheckBoxGroup( 3, 0, packers, 8, generalGrp );
+  cbs = createCheckBoxGroup( 3, 0, packers, 9, generalGrp );
   generalGrid->addWidget( cbs, 1, 0 );
   
   addLabel( generalGrid, 2, 0, i18n( "The archives that are \"greyed-out\" were unavaible on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ),
@@ -119,15 +120,25 @@ void KgArchives::slotAutoConfigure()
   else info+=i18n("unzip: NOT found, unpacking DISABLED.\n==> unzip can be obtained at www.info-zip.org\n");
   if (PS("zip")) info+=i18n("zip: found, packing enabled.\n");
   else info+=i18n("zip: NOT found, packing DISABLED.\n==> zip can be obtained at www.info-zip.org\n");
+  if (PS("lha")) info+=i18n("lha: found, packing and unpacking enabled.\n");
+  else info+=i18n("lha: NOT found, packing and unpacking DISABLED.\n==> lha can be obtained at www.gnu.org\n");
   if (PS("rpm") && PS("cpio")) info+=i18n("rpm: found, unpacking enabled.\n");
   else if (PS("rpm") && !PS("cpio")) info+=i18n("rpm found but cpio NOT found: unpacking DISABLED.\n==>cpio can be obtained at www.gnu.org\n");
   else info+=i18n("rpm: NOT found, unpacking is DISABLED.\n==> rpm can be obtained at www.gnu.org\n");
   if (PS("unrar")) info+=i18n("unrar: found, unpacking is enabled.\n");
-  else info+=i18n("unrar: NOT found, unpacking is DISABLED.\n==> unrar can be obtained at www.rarsoft.com\n");
-  if (PS("rar")) info+=i18n("rar: found, packing is enabled.\n");
+  else {
+    if( PS("rar")) info+=i18n("unrar: NOT found.\n");
+    else           info+=i18n("unrar: NOT found, unpacking is DISABLED.\n==> unrar can be obtained at www.rarsoft.com\n");
+  }
+  if (PS("rar")) info+=i18n("rar: found, packing and unpacking is enabled.\n");
   else info+=i18n("rar: NOT found, packing is DISABLED.\n==> rar can be obtained at www.rarsoft.com\n");
   if (PS("unarj")) info+=i18n("unarj: found, unpacking is enabled.\n");
-  else info+=i18n("unarj: NOT found, unpacking is DISABLED.\n==> unarj can be obtained at www.arjsoft.com\n");
+  else {
+    if( PS("arj")) info+=i18n("unarj: NOT found.\n");
+    else           info+=i18n("unarj: NOT found, unpacking is DISABLED.\n==> unarj can be obtained at www.arjsoft.com\n");
+  }
+  if (PS("arj")) info+=i18n("arj: found, packing and unpacking is enabled.\n");
+  else info+=i18n("arj: NOT found, packing is DISABLED.\n==> arj can be obtained at www.arjsoft.com\n");
   if (PS("unace")) info+=i18n("unace: found, unpacking is enabled.\n");
   else info+=i18n("unace: NOT found, unpacking is DISABLED.\n==> unace can be obtained at www.winace.com\n");
 
@@ -147,10 +158,11 @@ void KgArchives::disableNonExistingPackers()
   cbs->find( "Do GZip" )->setEnabled(PS("gzip"));
   cbs->find( "Do BZip2" )->setEnabled(PS("bzip2"));
   cbs->find( "Do UnZip" )->setEnabled(PS("unzip"));
+  cbs->find( "Do Lha" )->setEnabled(PS("lha"));
   cbs->find( "Do RPM" )->setEnabled(PS("rpm") || PS("cpio"));
-  cbs->find( "Do UnRar" )->setEnabled(PS("unrar"));
+  cbs->find( "Do UnRar" )->setEnabled(PS("unrar") || PS("rar") );
   cbs->find( "Do UnAce" )->setEnabled(PS("unace"));
-  cbs->find( "Do Unarj" )->setEnabled(PS("unarj"));
+  cbs->find( "Do Unarj" )->setEnabled(PS("unarj") || PS("arj") );
 
   krConfig->setGroup( "Archives" );
   krConfig->writeEntry( "Supported Packers", lst );
