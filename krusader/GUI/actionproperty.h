@@ -164,6 +164,11 @@ private slots:
     */
    void changedStartpath();
    /**
+    * keeps the startpath in the internal _properties up to date.
+    * !! don't forget to call them also at the end of updateGUI !!
+    */
+   void changedUser();
+   /**
     * keeps the execution-type in the internal _properties up to date.
     * !! don't forget to call them also at the end of updateGUI !!
     */

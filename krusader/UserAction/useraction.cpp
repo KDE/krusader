@@ -29,11 +29,13 @@
 
 UserAction::UserAction() {
   kdDebug() << "Initialisising useractions..." << endl;
-  _xml = new UserActionXML;
-  QStringList actionNames = _xml->getActionNames();
-  for ( QStringList::Iterator it = actionNames.begin(); it != actionNames.end(); ++it )
-    addKrAction( _xml->readAction(*it) );
-  kdDebug() << _actions.count() << " useractions read." << endl;
+  _xml = new UserActionXML();
+   if ( _xml != 0 ) {
+     QStringList actionNames = _xml->getActionNames();
+     for ( QStringList::Iterator it = actionNames.begin(); it != actionNames.end(); ++it )
+        addKrAction( _xml->readAction(*it) );
+     kdDebug() << _actions.count() << " useractions read." << endl;
+   }
 }
 
 void UserAction::addKrAction( UserActionProperties* prop ) {

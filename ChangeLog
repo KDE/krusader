@@ -1,7 +1,8 @@
 ======================
+    ADDED: useraction: run as different user
     ADDED: alt-O now sync the panels (like ctrl-left/right arrows)
     ADDED: new shortcut (ctrl-d) to open bookmarks on current panel
-	 ADDED: panel costum colors: new Current Marked Foreground
+    ADDED: panel costum colors: new Current Marked Foreground
     ADDED: compare by content: the action is now smarter in finding the right files
     ADDED: profiles for the panels
     ADDED: mkdir (F7) can now create whole trees on the fly ("foo/bar/test")
@@ -49,6 +50,7 @@
     
     REACTIVATED: usermenu (now using the new useraction-system)
 
+    FIXED: useraction: startpath is now working
     FIXED: useraction: i18n is now working in the add-placeholder-menu
     FIXED: searcher corrupts international characters
     FIXED: searcher cannot open remote URL-s for editing/viewing (archives)

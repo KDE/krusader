@@ -170,6 +170,11 @@ QDomElement UserActionXML::makeActionElement( UserActionProperties *prop ) {
     attribute.setValue( "true" );
     property.setAttributeNode( attribute );
   }
+  if ( ! prop->user()->isEmpty() ) {
+    attribute = _doc->createAttribute( "run_as" );
+    attribute.setValue( *prop->user() );
+    property.setAttributeNode( attribute );
+  }
   property.appendChild( _doc->createTextNode( *prop->command() ) );
   action.appendChild( property );
   // </command>
@@ -408,6 +413,8 @@ UserActionProperties* UserActionXML::readAction( QDomElement *action ) {
         prop->setConfirmExecution( false );
       else
         prop->setConfirmExecution( true );
+
+     prop->setUser( e.attribute( "run_as", QString::null ) );
     } // </command>
     else
     

@@ -33,6 +33,7 @@ void UserActionProperties::copyFrom( UserActionProperties* from ) {
   _description = *from->description();
   _command = *from->command();
   _startpath = *from->startpath();
+  _user = *from->user();
   _showonlyProtocol = *from->showonlyProtocol();
   _showonlyPath = *from->showonlyPath();
   _showonlyMime = *from->showonlyMime();
@@ -72,6 +73,9 @@ void UserActionProperties::setCommand(const QString& command) { _command = comma
 
 QString* UserActionProperties::startpath() { return &_startpath; }
 void UserActionProperties::setStartpath(const QString& startpath) { _startpath = startpath;}
+
+QString* UserActionProperties::user() { return &_user; }
+void UserActionProperties::setUser(const QString& user) { _user = user; }
 
 QStringList* UserActionProperties::showonlyProtocol() { return &_showonlyProtocol; }
 void UserActionProperties::setShowonlyProtocol(const QStringList& showonlyProtocol) { _showonlyProtocol = showonlyProtocol;}

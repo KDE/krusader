@@ -65,7 +65,7 @@ class QStringList;
 class UserActionXML {
 public:
   /**
-   * This constructor reads the action-file in KDE's local data
+   * This constructor reads the action-file in KDE's local or global data
    */
   UserActionXML();
   /**

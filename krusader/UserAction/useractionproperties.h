@@ -85,6 +85,12 @@ public:
     QString* startpath();
     void setStartpath(const QString& startpath);
     /**
+     * Run the command as different user
+     * @return The user under which the command should be executed
+     */
+    QString* user();
+    void setUser(const QString& user);
+    /**
      * A list of protocols for which the action should be available
      * @return The protocol-list
      */
@@ -155,6 +161,7 @@ private:
     QString _description;
     QString _command;
     QString _startpath;
+    QString _user;
     QStringList _showonlyProtocol;
     QStringList _showonlyPath;
     QStringList _showonlyMime;

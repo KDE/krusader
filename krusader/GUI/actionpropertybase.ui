@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ActionPropertyBase</class>
 <widget class="QWidget">
     <property name="name">
@@ -525,7 +525,7 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QGroupBox" row="0" column="0">
+                    <widget class="QGroupBox" row="0" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>gbShowonly</cstring>
                         </property>
@@ -1045,7 +1045,7 @@
                             </widget>
                         </grid>
                     </widget>
-                    <widget class="QLayoutWidget" row="1" column="0">
+                    <widget class="QLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>layout4</cstring>
                         </property>
@@ -1091,7 +1091,34 @@
                             </widget>
                         </hbox>
                     </widget>
-                    <spacer row="3" column="0">
+                    <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>chkConfirmExecution</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Confirm each programmcall separately</string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>This allows you to tweak the commandline before beeing executed</string>
+                        </property>
+                    </widget>
+                    <widget class="QCheckBox" row="3" column="0">
+                        <property name="name">
+                            <cstring>chkDifferentUser</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Run as different user</string>
+                        </property>
+                    </widget>
+                    <widget class="KLineEdit" row="3" column="1">
+                        <property name="name">
+                            <cstring>leDifferentUser</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                    </widget>
+                    <spacer row="4" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>spacer3</cstring>
                         </property>
@@ -1104,21 +1131,10 @@
                         <property name="sizeHint">
                             <size>
                                 <width>161</width>
-                                <height>90</height>
+                                <height>84</height>
                             </size>
                         </property>
                     </spacer>
-                    <widget class="QCheckBox" row="2" column="0">
-                        <property name="name">
-                            <cstring>chkConfirmExecution</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Confirm each programmcall separately</string>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>This allows you to tweak the commandline before beeing executed</string>
-                        </property>
-                    </widget>
                 </grid>
             </widget>
         </widget>
@@ -1137,6 +1153,12 @@
         <receiver>textDescription</receiver>
         <slot>setDisabled(bool)</slot>
     </connection>
+    <connection>
+        <sender>chkDifferentUser</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>leDifferentUser</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
 </connections>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
@@ -1154,5 +1176,6 @@
     <includehint>klistbox.h</includehint>
     <includehint>klistbox.h</includehint>
     <includehint>kkeybutton.h</includehint>
+    <includehint>klineedit.h</includehint>
 </includehints>
 </UI>

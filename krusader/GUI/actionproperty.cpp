@@ -79,6 +79,8 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, UserActionPro
    connect( bgMultiselect, SIGNAL( clicked(int) ), this, SLOT( changedCallEach() ) );
    connect( chkConfirmExecution, SIGNAL( toggled(bool) ), this, SLOT( changedConfirmExecution() ) );
    connect( KeyButtonShortcut, SIGNAL( capturedShortcut(const KShortcut&) ), this, SLOT( changedShortcut(const KShortcut&) ) );
+   connect( leDifferentUser, SIGNAL( textChanged(const QString&) ), this, SLOT( changedUser() ) );
+   connect( chkDifferentUser, SIGNAL( toggled(bool) ), this, SLOT( changedUser() ) );
 }
 
 ActionProperty::~ActionProperty() {
@@ -137,6 +139,11 @@ void ActionProperty::updateGUI( UserActionProperties *properties ) {
     else
         ButtonIcon->resetIcon();
 
+    leDifferentUser->setText( *properties->user() );
+    if ( properties->user()->isEmpty() )
+        chkDifferentUser->setChecked(false);
+    else
+        chkDifferentUser->setChecked(true);
 
    // these functions are updating the internal _properties
    changedName();
@@ -148,6 +155,7 @@ void ActionProperty::updateGUI( UserActionProperties *properties ) {
    changedChkUseTooltip();
    changedCommand();
    changedStartpath();
+   changedUser();
    changedExecType();
    changedAccept();
    changedCallEach();
@@ -393,6 +401,12 @@ void ActionProperty::changedCommand() {
 }
 void ActionProperty::changedStartpath() {
   _properties->setStartpath( leStartpath->text().stripWhiteSpace() );
+}
+void ActionProperty::changedUser() {
+  if ( chkDifferentUser->isChecked() )
+    _properties->setUser( leDifferentUser->text().stripWhiteSpace() );
+  else
+    _properties->setUser( QString::null );
 }
 void ActionProperty::changedExecType() {
   _properties->setSeparateStderr( chkSeparateStdError->isChecked() );

@@ -92,10 +92,10 @@ void KrActionProc::start( QString cmdLine ) {
 void KrActionProc::start( QStringList cmdLineList ) {
    _proc->clearArguments();
    QString cmd;
-
-	if (!_properties->startpath()->isEmpty())
-		_proc->setWorkingDirectory(*_properties->startpath());
-	   
+   
+   if ( ! _properties->startpath()->isEmpty() )
+      _proc->setWorkingDirectory( *_properties->startpath() );
+   
    if ( _properties->execType() == UserActionProperties::Terminal && cmdLineList.count() > 1)
       KMessageBox::sorry( 0, "Support for more then one command don't work in a terminal. Only the first is executed in the terminal" );
    
@@ -109,10 +109,16 @@ void KrActionProc::start( QStringList cmdLineList ) {
       // run in terminal
       if ( _properties->execType() == UserActionProperties::Terminal ) {
          // TODO read terminal-setting from config
-//          ( *_proc ) << "konsole" << "--noclose" << "-e" << "\""+cmd+"\"";
-         ( *_proc ) << "konsole" << "--noclose" << "-e" << cmd;
+         if ( _properties->user()->isEmpty() )
+            ( *_proc ) << "konsole" << "--noclose" << "-e" << cmd;
+         else
+//             ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote("konsole --noclose -e " + KProcess::quote(cmd) );
+            ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote("konsole --noclose -e " + cmd );
       } else { // no terminal, no output collection
-         ( *_proc ) << cmd;
+         if ( _properties->user()->isEmpty() )
+            ( *_proc ) << cmd;
+         else
+            ( *_proc ) << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote(cmd);
       }
      _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
@@ -131,7 +137,11 @@ void KrActionProc::start( QStringList cmdLineList ) {
             cmd += "echo --------------------------------------- ; ";
          cmd += *it;
       }
-      ( *_proc ) << cmd;
+      if ( _properties->user()->isEmpty() )
+         ( *_proc ) << cmd;
+      else
+         // "-t" is nessesary that kdesu displays the terminal-output of the command
+         ( *_proc ) << "kdesu" << "-t" << "-u" << *_properties->user() << "-c" << KProcess::quote(cmd);
       _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
 
