@@ -104,6 +104,9 @@ KAction *Krusader::actOpenLeftBm = 0;
 KAction *Krusader::actOpenRightBm = 0;
 KAction *Krusader::actDirUp = 0;
 KAction *Krusader::actCmdlinePopup = 0;
+KAction *Krusader::actNewTab = 0;
+KAction *Krusader::actDupTab = 0;
+KAction *Krusader::actCloseTab = 0;
 
 KToggleAction *Krusader::actToggleTerminal = 0;
 
@@ -406,7 +409,12 @@ void Krusader::setupActions() {
                SLOTS, SLOT( openRightBookmarks() ), actionCollection(), "right bookmarks" );
   new KAction( i18n( "Left bookmarks" ), ALT+Key_Left,
                SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
-
+  actNewTab = new KAction(i18n("New tab"), ALT+CTRL+Key_N, SLOTS,
+                          SLOT(newTab()), actionCollection(), "new tab");
+  actDupTab = new KAction(i18n("Duplicate tab"), ALT+CTRL+SHIFT+Key_N, SLOTS,
+                          SLOT(duplicateTab()), actionCollection(), "duplicate tab");
+  actCloseTab = new KAction(i18n("Close tab"), ALT+CTRL+Key_C, SLOTS,
+                          SLOT(closeTab()), actionCollection(), "close tab");
   // and at last we can set the tool-tips
   actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );
   actSelectAll->setToolTip( i18n( "Highlight all the files in the current directory" ) );

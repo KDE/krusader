@@ -89,7 +89,6 @@ protected slots:
 private:
   KActionMenu *_panelActionMenu;
   bool _left;
-  KAction *_closeAction, *_newTabSame, *_newTabRoot;
   int _maxTabLength;
 };
 

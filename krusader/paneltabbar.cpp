@@ -31,14 +31,10 @@
 PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
   _panelActionMenu = new KActionMenu( i18n("Panel"), this );
 
-  _closeAction = new KAction(i18n("Close tab"), KShortcut::null(), this,
-                      SLOT(closeTab()), krApp->actionCollection(), "close_tab");
-  _newTabSame = new KAction(i18n("Duplicate tab"), KShortcut::null(), this,
-                      SLOT(duplicateTab()), krApp->actionCollection(), "dup_tab");
-
-  insertAction(_newTabSame);
-  insertAction(_closeAction);
-  _closeAction->setEnabled(false); //can't close a single tab
+  insertAction(krNewTab);
+  insertAction(krDupTab);
+  insertAction(krCloseTab);
+  krCloseTab->setEnabled(false); //can't close a single tab
 
   setShape(QTabBar::TriangularBelow);
 }
@@ -82,7 +78,7 @@ int PanelTabBar::addPanel(ListPanel *panel) {
 
   // enable close-tab action
   if (count()>1) {
-    _closeAction->setEnabled(true);
+    krCloseTab->setEnabled(true);
   }
 
   connect(dynamic_cast<PanelTab*>(tab(newId))->panel, SIGNAL(pathChanged(ListPanel*)),
@@ -106,7 +102,7 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
   ListPanel *p = dynamic_cast<PanelTab*>(tab(id))->panel;
   // disable close action?
   if (count()==1) {
-    _closeAction->setEnabled(false);
+    krCloseTab->setEnabled(false);
   }
 
   panelToDelete = oldp;

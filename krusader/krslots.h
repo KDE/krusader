@@ -108,6 +108,10 @@ class KRslots : public QObject {
     void openRightBookmarks() { krApp->mainView->right->bookmarksButton->openPopup(); }
     void openLeftBookmarks() { krApp->mainView->left->bookmarksButton->openPopup(); }
     void cmdlinePopup() { krApp->mainView->cmdLine->popup(); }
+    void duplicateTab();
+    void newTab();
+    void closeTab();
+    
     // F2
     void terminal();
     // F3

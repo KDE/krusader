@@ -75,6 +75,8 @@ ListPanel* PanelManager::createPanel() {
   }
   _stack->raiseWidget( p );
 
+  // connect the activePanelChanged signal to enable/disable actions
+  connect(p, SIGNAL(activePanelChanged(ListPanel* )), this, SLOT(slotRefreshActions()));
   return p;
 }
 
@@ -115,4 +117,6 @@ void PanelManager::slotCloseTab() {
   }
 }
 
-
+void PanelManager::slotRefreshActions() {
+  krCloseTab->setEnabled(_tabbar->count() > 1);
+}

@@ -471,4 +471,28 @@ void KRslots::editDlg(){
   // nothing more to it!
 }
 
+void KRslots::duplicateTab() {
+  if (ACTIVE_PANEL == krApp->mainView->left) {
+    krApp->mainView->leftMng->slotNewTab(ACTIVE_PANEL->virtualPath);
+  } else {
+    krApp->mainView->rightMng->slotNewTab(ACTIVE_PANEL->virtualPath);
+  }
+}
+
+void KRslots::newTab() {
+  if (ACTIVE_PANEL == krApp->mainView->left) {
+    krApp->mainView->leftMng->slotNewTab();
+  } else {
+    krApp->mainView->rightMng->slotNewTab();
+  }
+}
+
+void KRslots::closeTab() {
+if (ACTIVE_PANEL == krApp->mainView->left) {
+    krApp->mainView->leftMng->slotCloseTab();
+  } else {
+    krApp->mainView->rightMng->slotCloseTab();
+  }
+}
+
 #include "krslots.moc"
