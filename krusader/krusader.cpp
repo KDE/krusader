@@ -370,37 +370,8 @@ void Krusader::resizeEvent ( QResizeEvent *e ) {
 }
 
 void Krusader::setupAccels() {
-   accels = new KAccel( this );
-   // F2
-   accels->insert( "F2_Terminal", i18n( "F2 Terminal" ), QString::null,
-                   Key_F2, SLOTS, SLOT( terminal() ) );
-   // F3
-   accels->insert( "F3_View", i18n( "F3 View" ), QString::null,
-                   Key_F3, SLOTS, SLOT( view() ) );
-   // SHIFT+F3
-   accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString::null,
-                   SHIFT + Key_F3, SLOTS, SLOT( viewDlg() ) );
-   // F4
-   accels->insert( "F4_Edit", i18n( "F4 Edit" ), QString::null,
-                   Key_F4, SLOTS, SLOT( edit() ) );
-   // F5
-   accels->insert( "F5_Copy", i18n( "F5 Copy" ), QString::null,
-                   Key_F5, SLOTS, SLOT( copyFiles() ) );
-   // F6
-   accels->insert( "F6_Move", i18n( "F6 Move" ), QString::null,
-                   Key_F6, SLOTS, SLOT( moveFiles() ) );
-   // F7
-   accels->insert( "F7_Mkdir", i18n( "F7 Mkdir" ), QString::null,
-                   Key_F7, SLOTS, SLOT( mkdir() ) );
-   // F8
-   accels->insert( "F8_Delete", i18n( "F8 Delete" ), QString::null,
-                   Key_F8, SLOTS, SLOT( deleteFiles() ) );
-   // F9
-   accels->insert( "F9_Rename", i18n( "F9 Rename" ), QString::null,
-                   Key_F9, SLOTS, SLOT( rename() ) );
-   // F10
-   accels->insert( "F10_Quit", i18n( "F10 Quit" ), QString::null,
-                   Key_F10, this, SLOT( quitKrusader() ) );
+	 accels = new KAccel( this );
+
    // Tab
    accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString::null,
                    Key_Tab, mainView, SLOT( panelSwitch() ) );
