@@ -30,7 +30,7 @@
 
 #ifndef __KONFIGURATOR_ITEMS_H__
 #define __KONFIGURATOR_ITEMS_H__
- 
+
 #include <qobject.h>
 #include <qstring.h>
 #include <qcheckbox.h>
@@ -38,6 +38,7 @@
 #include <qpushbutton.h>
 #include <qradiobutton.h>
 #include <qptrlist.h>
+#include <qvaluelist.h>
 #include <qvaluevector.h>
 #include <qbuttongroup.h>
 #include <qlineedit.h>
@@ -48,14 +49,14 @@
 #include <qfont.h>
 #include <qtoolbutton.h>
 #include <qcombobox.h>
-    
+
 class KonfiguratorExtension : public QObject
 {
   Q_OBJECT
-   
+
 public:
   KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst = false );
-    
+
   virtual void    loadInitialValue();
   virtual bool    apply();
   virtual void    setDefaults();
@@ -69,7 +70,7 @@ public:
 public slots:
   void    setChanged()            {emit sigChanged( changed = true);}
   void    setChanged( bool chg )  {emit sigChanged( changed = chg);}
-   
+
 signals:
   void    applyManually(QObject *,QString, QString);
   void    applyAuto(QObject *,QString, QString);
@@ -80,7 +81,7 @@ signals:
 
 protected:
   QObject *objectPtr;
-  
+
   bool    applyConnected;
   bool    setDefaultsConnected;
   bool    changed;
@@ -88,7 +89,7 @@ protected:
 
   QString configClass;
   QString configName;
-    
+
   virtual void connectNotify( const char *signal );
 };
 
@@ -104,14 +105,14 @@ public:
   KonfiguratorCheckBox( QString cls, QString name, bool dflt, QString text,
                         QWidget *parent=0, const char *widgetName=0, bool rst=false );
   ~KonfiguratorCheckBox();
-  
+
   inline KonfiguratorExtension *extension()   {return ext;}
 
 public slots:
   virtual void loadInitialValue();
   void slotApply(QObject *,QString, QString);
   void slotSetDefaults(QObject *);
-  
+
 protected:
   bool  defaultValue;
   KonfiguratorExtension *ext;
@@ -157,7 +158,7 @@ public:
 private:
   QPtrList<KonfiguratorCheckBox>  checkBoxList;
 };
-  
+
 // KonfiguratorRadioButtons class
 ///////////////////////////////
 
@@ -172,13 +173,13 @@ public:
 
   inline KonfiguratorExtension *extension()   {return ext;}
 
-  void  addRadioButton( QRadioButton *radioWidget, QString value );
+  void  addRadioButton( QRadioButton *radioWidget, QString name, QString value );
 
   void            selectButton( QString value );
 
   QRadioButton*   find( int index );
   QRadioButton*   find( QString name );
-  
+
 public slots:
   virtual void loadInitialValue();
   void slotApply(QObject *,QString, QString);
@@ -186,7 +187,8 @@ public slots:
 
 protected:
   QPtrList<QRadioButton>  radioButtons;
-  QValueVector<QString>   radioValues;
+  QValueList<QString>   radioValues;
+  QValueList<QString>   radioNames;
 
   QString         defaultValue;
   QButtonGroup    *buttonGroup;
@@ -361,11 +363,11 @@ public slots:
 
 signals:
   void          colorChanged();
-  
+
 private:
   void          addColor( QString text, QColor color );
   QPixmap       createPixmap( QColor color );
-  
+
 protected:
   QColor                          defaultValue;
   QColor                          customValue;

@@ -233,13 +233,13 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
   {
     QRadioButton *radBtn = new QRadioButton( params[i].text, radioWidget,
                         QString( cls + "/" + name + "/" + params[i].value ).ascii() );
-    
+
     if( !params[i].tooltip.isEmpty() )
       QToolTip::add( radBtn, params[i].tooltip );
 
     layout->addWidget( radBtn, y, x );
 
-    radioWidget->addRadioButton( radBtn, params[i].value );
+    radioWidget->addRadioButton( radBtn, params[i].text, params[i].value );
 
     if( sizex )
     {

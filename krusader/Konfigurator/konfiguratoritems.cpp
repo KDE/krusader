@@ -35,7 +35,7 @@
 #include <qpen.h>
 #include <qcolordialog.h>
 #include <kiconloader.h>
-  
+
 KonfiguratorExtension::KonfiguratorExtension( QObject *obj, QString cfgClass, QString cfgName, bool rst) :
       QObject(), objectPtr( obj ), applyConnected( false ), setDefaultsConnected( false ),
       changed( false ), restartNeeded( rst ), configClass( cfgClass ), configName( cfgName )
@@ -47,12 +47,12 @@ void KonfiguratorExtension::connectNotify( const char *signal )
   QString signalString    = QString( signal ).replace( " ", "" );
   QString applyString     = QString( SIGNAL( applyManually(QObject *,QString, QString) ) ).replace( " ", "" );
   QString defaultsString  = QString( SIGNAL( setDefaultsManually(QObject *) ) ).replace( " ", "" );
-  
+
   if( signalString == applyString )
     applyConnected = true;
   else if ( signalString == defaultsString )
     setDefaultsConnected = true;
-    
+
   QObject::connectNotify( signal );
 }
 
@@ -60,7 +60,7 @@ bool KonfiguratorExtension::apply()
 {
   if( !changed )
     return false;
-    
+
   if( applyConnected )
     emit applyManually( objectPtr, configClass, configName );
   else
@@ -96,10 +96,10 @@ KonfiguratorCheckBox::KonfiguratorCheckBox( QString cls, QString name, bool dflt
     defaultValue( dflt )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst );
-  connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );  
+  connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
   connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
   connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
- 
+
   connect( this, SIGNAL( stateChanged( int ) ), ext, SLOT( setChanged() ) );
   loadInitialValue();
 }
@@ -144,7 +144,7 @@ KonfiguratorSpinBox::KonfiguratorSpinBox( QString cls, QString name, int dflt, i
 
   setMinValue( min );
   setMaxValue( max );
-  
+
   loadInitialValue();
 }
 
@@ -195,7 +195,7 @@ KonfiguratorCheckBox * KonfiguratorCheckBoxGroup::find( QString name )
       return checkBox;
     checkBox = checkBoxList.next();
   }
-  
+
   return 0;
 }
 
@@ -218,13 +218,14 @@ KonfiguratorRadioButtons::~KonfiguratorRadioButtons()
   delete ext;
 }
 
-void KonfiguratorRadioButtons::addRadioButton( QRadioButton *radioWidget, QString value )
+void KonfiguratorRadioButtons::addRadioButton( QRadioButton *radioWidget, QString name, QString value )
 {
   radioButtons.append( radioWidget );
+  radioNames.push_back( name );
   radioValues.push_back( value );
 
   connect( radioWidget, SIGNAL( stateChanged(int) ), ext, SLOT( setChanged() ) );
-}                                                       
+}
 
 QRadioButton * KonfiguratorRadioButtons::find( int index )
 {
@@ -233,16 +234,11 @@ QRadioButton * KonfiguratorRadioButtons::find( int index )
 
 QRadioButton * KonfiguratorRadioButtons::find( QString name )
 {
-  QRadioButton *radioButton = radioButtons.first();
+  int index = radioNames.findIndex( name );
+  if( index == -1 )
+    return 0;
 
-  while( radioButton )
-  {
-    if( radioButton->text() == name )
-      return radioButton;
-    radioButton = radioButtons.next();
-  }
-
-  return 0;
+  return radioButtons.at( index );
 }
 
 void KonfiguratorRadioButtons::selectButton( QString value )
@@ -398,11 +394,11 @@ KonfiguratorFontChooser::KonfiguratorFontChooser( QString cls, QString name, QFo
   pLabel = new QLabel( this );
   pLabel->setMinimumWidth( 150 );
   pToolButton = new QToolButton( this );
-  
+
   connect( pToolButton, SIGNAL( clicked() ), this, SLOT( slotBrowseFont() ) );
-  
+
   pToolButton->setIconSet( SmallIcon( "fileopen" ) );
-  
+
   loadInitialValue();
 }
 
@@ -455,13 +451,13 @@ KonfiguratorComboBox::KonfiguratorComboBox( QString cls, QString name, QString d
     defaultValue( dflt ), listLen( listInLen )
 {
   list = new KONFIGURATOR_NAME_VALUE_PAIR[ listInLen ];
-  
+
   for( int i=0; i != listLen; i++ )
   {
     list[i] = listIn[i];
     insertItem( list[i].text );
   }
-    
+
   ext = new KonfiguratorExtension( this, cls, name, rst );
   connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
   connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
@@ -526,7 +522,7 @@ KonfiguratorColorChooser::KonfiguratorColorChooser( QString cls, QString name, Q
     defaultValue( dflt ), disableColorChooser( true )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst );
-  
+
   connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
   connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
   connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
@@ -539,7 +535,7 @@ KonfiguratorColorChooser::KonfiguratorColorChooser( QString cls, QString name, Q
     additionalColors.push_back( addColPtr[i] );
     addColor( addColPtr[i].name, addColPtr[i].color );
   }
-  
+
   addColor( i18n("Red" ),           Qt::red );
   addColor( i18n("Green" ),         Qt::green );
   addColor( i18n("Blue" ),          Qt::blue );
@@ -577,7 +573,7 @@ QPixmap KonfiguratorColorChooser::createPixmap( QColor color )
   QPixmap pixmap( rect.width(), rect.height() );
 
   pen.setColor( Qt::black );
-  
+
   painter.begin( &pixmap );
   QBrush brush( color );
   painter.fillRect( rect, brush );
@@ -596,7 +592,7 @@ void KonfiguratorColorChooser::addColor( QString text, QColor color )
 }
 
 void KonfiguratorColorChooser::loadInitialValue()
-{  
+{
   krConfig->setGroup( ext->getCfgClass() );
   QString selected = krConfig->readEntry( ext->getCfgName(), "" );
   setValue( selected );
@@ -640,7 +636,7 @@ void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
 void KonfiguratorColorChooser::setValue( QString value )
 {
   disableColorChooser = true;
-  
+
   if( value.isEmpty() )
   {
     setCurrentItem( 1 );
@@ -649,7 +645,7 @@ void KonfiguratorColorChooser::setValue( QString value )
   else
   {
     bool found = false;
-    
+
     for( unsigned j=0; j != additionalColors.size(); j++ )
       if( additionalColors[j].value == value )
       {
@@ -678,7 +674,7 @@ void KonfiguratorColorChooser::setValue( QString value )
 
   palette[0] = customValue;
   changeItem( createPixmap( customValue ), text( 0 ), 0 );
-      
+
   ext->setChanged();
   emit colorChanged();
   disableColorChooser = false;
