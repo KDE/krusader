@@ -462,28 +462,34 @@ void Krusader::refreshView() {
 }
 
 bool Krusader::queryClose() {
+  bool quit;
   krConfig->setGroup( "Look&Feel" );
   if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {
     switch ( KMessageBox::warningYesNo( this,
                                         i18n( "Ok to shutdown Krusader ?" ) ) ) {
         case KMessageBox::Yes :
-        return true;
+        quit = true;
+        break;
         case KMessageBox::No :
-        return false;
+        quit = false;
+        break;
         default:
-        return false;
+        quit = false;
     }
-  } else
-    return true;
-}
-
-void Krusader::quitKrusader() {
-  if ( queryClose() ) {
+  }
+  if (quit) {
     // close all open VFS
     delete krApp->mainView->left->func;
     delete krApp->mainView->right->func;
     saveSettings();
     delete krApp->mainView;
+    return true;
+  } else return false;
+
+}
+
+void Krusader::quitKrusader() {
+  if ( queryClose() ) {
     kapp->quit();
   }
 }
