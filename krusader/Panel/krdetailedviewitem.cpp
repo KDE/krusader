@@ -120,14 +120,13 @@ QString KrDetailedViewItem::name() const {
 }
 
 void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align) {
-/*  // center the <DIR> thing if needed
+  // center the <DIR> thing if needed
   if(column != _view->column(KrDetailedView::Size))
     KListViewItem::paintCell(p, cg, column, width, align);
   else if (_vf) {
     if (_vf->vfile_isDir()) KListViewItem::paintCell(p, cg, column, width, Qt::AlignHCenter);
-    else KListViewItem::paintCell(p, cg, column, width, Qt::AlignRight); // size
-  } else KListViewItem::paintCell(p, cg, column, width, Qt::AlignHCenter); // updir*/
-  KListViewItem::paintCell(p, cg, column, width, align);
+    else KListViewItem::paintCell(p, cg, column, width, align); // size
+  } else KListViewItem::paintCell(p, cg, column, width, Qt::AlignHCenter); // updir
 }
 
 
