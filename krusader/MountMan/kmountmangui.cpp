@@ -36,6 +36,7 @@
 #include "../Dialogs/krspecialwidgets.h"
 #include "../kicons.h"
 #include "../defaults.h"
+#include "../VFS/vfs.h"
 #include <klocale.h>
 #include <qpixmap.h>
 #include <kpopupmenu.h>
@@ -182,10 +183,10 @@ void KMountManGUI::doubleClicked(QListViewItem *i) {
   if (!i) return;
   // change the active panel to this mountpoint
   fsData *system=krMtMan.location(i->text(0));
-  connect((QObject*)this,SIGNAL(refreshPanel(QString)), (QObject*)SLOTS,
-          SLOT(refresh(QString)));
-  emit refreshPanel(system->mntPoint());
-  disconnect(this,SIGNAL(refreshPanel(QString)),0,0);
+  connect((QObject*)this,SIGNAL(refreshPanel(const KURL &)), (QObject*)SLOTS,
+          SLOT(refresh(const KURL &)));
+  emit refreshPanel( vfs::fromPathOrURL( system->mntPoint() ) );
+  disconnect(this,SIGNAL(refreshPanel(const KURL &)),0,0);
   slotClose();
 }
 

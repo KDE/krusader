@@ -40,6 +40,7 @@
 #include <qcheckbox.h>
 #include <kjanuswidget.h>
 #include <qtimer.h>
+#include <kurl.h>
 
 #define  WATCHER_DELAY    500
 
@@ -69,7 +70,7 @@ public slots:
   void checkMountChange(); // check whether the mount table was changed
 
 signals:
-  void refreshPanel(QString);
+  void refreshPanel(const KURL &);
 
 private:
   KRFSDisplay *info;
