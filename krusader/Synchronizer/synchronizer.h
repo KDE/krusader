@@ -131,7 +131,6 @@ class Synchronizer : public QObject
     void    copyToRight( SynchronizerFileItem * );
     void    deleteLeft( SynchronizerFileItem * );
     
-    KURL    fromPathOrURL( QString url );
     QString leftBaseDirectory();
     QString rightBaseDirectory();
     static QString getTaskTypeName( TaskType taskType );

@@ -266,7 +266,7 @@ void ListPanel::start( QString path ) {
     }
 
   realPath = virtualPath;
-  func->openUrl( KURL::fromPathOrURL(virtualPath) );
+  func->openUrl( vfs::fromPathOrURL(virtualPath) );
 }
 
 void ListPanel::slotStartUpdate() {

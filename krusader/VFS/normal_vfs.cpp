@@ -201,7 +201,7 @@ KURL normal_vfs::vfs_getFile(const QString& name){
 	if ( vfs_workingDir() == "/" ) url = "/"+name;
 	else url = vfs_workingDir()+"/"+name;
 
-	return KURL::fromPathOrURL(url);
+	return vfs::fromPathOrURL(url);
 }
 
 KURL::List* normal_vfs::vfs_getFiles(QStringList* names){

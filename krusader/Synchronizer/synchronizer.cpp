@@ -197,7 +197,7 @@ vfs * Synchronizer::getDirectory( QString url )
     v = new ftp_vfs(0);
   }
 
-  bool result = v->vfs_refresh( url );
+  bool result = v->vfs_refresh( vfs::fromPathOrURL( url ) );
 
   if ( !result )
   {
@@ -681,8 +681,8 @@ void Synchronizer::executeTask()
   if( !dirName.isEmpty() )
     dirName += "/";
   
-  leftURL  = fromPathOrURL( leftBaseDir + dirName + currentTask->name() );
-  rightURL = fromPathOrURL( rightBaseDir + dirName + currentTask->name() );
+  leftURL  = vfs::fromPathOrURL( leftBaseDir + dirName + currentTask->name() );
+  rightURL = vfs::fromPathOrURL( rightBaseDir + dirName + currentTask->name() );
   
   switch( task )
   {
@@ -696,7 +696,7 @@ void Synchronizer::executeTask()
     {
       KURL destURL( leftURL );
       if( !currentTask->destination().isNull() )
-        destURL = fromPathOrURL( currentTask->destination() );
+        destURL = vfs::fromPathOrURL( currentTask->destination() );
       
       KIO::FileCopyJob *job = KIO::file_copy(rightURL, destURL, -1,
                                 overWrite || currentTask->overWrite(), false, false );
@@ -715,7 +715,7 @@ void Synchronizer::executeTask()
     {
       KURL destURL( rightURL );
       if( !currentTask->destination().isNull() )
-        destURL = fromPathOrURL( currentTask->destination() );
+        destURL = vfs::fromPathOrURL( currentTask->destination() );
 
       KIO::FileCopyJob *job = KIO::file_copy(leftURL, destURL, -1,
                                 overWrite || currentTask->overWrite(), false, false );
@@ -895,47 +895,13 @@ QString Synchronizer::rightBaseDirectory()
   return rightBaseDir;
 }
 
-KURL Synchronizer::fromPathOrURL( QString origin )
-{
-  QString password, loginName;
-  
-  // breakdown the url;
-  /* FIXME: untill KDE fixes the bug we have to check for
-     passwords and users with @ in them... */
-  bool bugfix = origin.find("@") != origin.findRev("@");
-  if(bugfix){
-    if(origin.find(":") != origin.findRev(":")){
-      int passStart = origin.find( ":",origin.find(":")+1 )+1;
-      int passLen = origin.findRev("@")-passStart;
-      password = origin.mid(passStart,passLen);
-      origin = origin.remove(passStart-1,passLen+1);
-    }
-    if(origin.find("@") != origin.findRev("@")){
-      int usrStart = origin.find( "/" )+1;
-      if(origin.at(usrStart) == '/') ++usrStart;
-      int usrLen = origin.findRev("@")-usrStart;
-      loginName = origin.mid(usrStart,usrLen);
-      origin = origin.remove(usrStart,usrLen+1);
-    }
-  }
-  KURL url = origin;
-  if(loginName.isEmpty()) loginName = url.user();
-  if(password.isEmpty())  password  = url.pass();
-  if(bugfix){
-   url.setPass(password);
-    url.setUser(loginName);
-  }
-
-  return url;
-}
-
 bool Synchronizer::compareByContent( QString file_name, QString dir )
 {
   if( !dir.isEmpty() )
     dir += "/";
 
-  leftURL   = fromPathOrURL( leftBaseDir + dir + file_name );
-  rightURL  = fromPathOrURL( rightBaseDir + dir + file_name );
+  leftURL   = vfs::fromPathOrURL( leftBaseDir + dir + file_name );
+  rightURL  = vfs::fromPathOrURL( rightBaseDir + dir + file_name );
 
   leftReadJob = KIO::get( leftURL, false, false );
   rightReadJob = KIO::get( rightURL, false, false );

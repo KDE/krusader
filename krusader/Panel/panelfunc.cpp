@@ -199,7 +199,7 @@ panel( parent ), inRefresh( false ), vfsP(0){
 }
 
 void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent) {
-  openUrl( KURL::fromPathOrURL(url),nameToMakeCurrent);
+  openUrl( vfs::fromPathOrURL(url),nameToMakeCurrent);
 }
 
 

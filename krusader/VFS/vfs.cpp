@@ -73,6 +73,40 @@ bool vfs::vfs_refresh(KIO::Job* job){
 	return vfs_refresh(vfs_origin);
 }
 
+KURL vfs::fromPathOrURL( const QString &originIn )
+{
+  QString password, loginName, origin = originIn;
+
+  // breakdown the url;
+  /* FIXME: untill KDE fixes the bug we have to check for
+     passwords and users with @ in them... */
+  bool bugfix = origin.find("@") != origin.findRev("@");
+  if(bugfix){
+    if(origin.find(":") != origin.findRev(":")){
+      int passStart = origin.find( ":",origin.find(":")+1 )+1;
+      int passLen = origin.findRev("@")-passStart;
+      password = origin.mid(passStart,passLen);
+      origin = origin.remove(passStart-1,passLen+1);
+    }
+    if(origin.find("@") != origin.findRev("@")){
+      int usrStart = origin.find( "/" )+1;
+      if(origin.at(usrStart) == '/') ++usrStart;
+      int usrLen = origin.findRev("@")-usrStart;
+      loginName = origin.mid(usrStart,usrLen);
+      origin = origin.remove(usrStart,usrLen+1);
+    }
+  }
+  KURL url = origin;
+  if(loginName.isEmpty()) loginName = url.user();
+  if(password.isEmpty())  password  = url.pass();
+  if(bugfix){
+    url.setPass(password);
+    url.setUser(loginName);
+  }
+
+  return url;
+}
+
 #if 0
 QString vfs::round(int i){
 	QString t;
@@ -102,13 +136,14 @@ QString vfs::dateTime2QString(const QDateTime& datetime){
 	QString dateTime;
 	QDate date = datetime.date();
 	QTime time = datetime.time();
-	
+
 	// construct the string
 	dateTime=round(date.day())+"/"+round(date.month())+
 	        "/"+round(date.year()%100)+
 		     +" "+round(time.hour())+":"+round(time.minute());
 	return dateTime;
 }
+
 #endif
 
 #include "vfs.moc"

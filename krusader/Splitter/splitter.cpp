@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 #include "splitter.h"
+#include "../VFS/vfs.h"
 #include <qlayout.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -39,7 +40,7 @@
 Splitter::Splitter( QWidget* parent,  QString fileNameIn, QString destinationDirIn ) :
   QProgressDialog( parent, "Krusader::Splitter", true, 0 ), splitSize( 0 )
 {
-  fileName       = KURL::fromPathOrURL( fileNameIn );
+  fileName       = vfs::fromPathOrURL( fileNameIn );
 
   destinationDir = destinationDirIn;
   if( !destinationDir.endsWith("/") )
@@ -146,7 +147,7 @@ void Splitter::splitCreateWriteJob()
   QString index( "%1" );                   /* making the splitted filename */
   index = index.arg(++fileNumber).rightJustify( 3, '0' );
   QString outFileName = fileName.fileName() + "." + index;
-  writeURL = KURL::fromPathOrURL( destinationDir + outFileName );
+  writeURL = vfs::fromPathOrURL( destinationDir + outFileName );
 
       /* creating a write job */
   splitWriteJob = KIO::put( writeURL, permissions, true, false, false );
@@ -207,7 +208,7 @@ void Splitter::splitSendFinished(KIO::Job *job)
   else
   {
       /* writing the split information file out */
-    writeURL      = KURL::fromPathOrURL( destinationDir + fileName.fileName() + ".crc" );
+    writeURL      = vfs::fromPathOrURL( destinationDir + fileName.fileName() + ".crc" );
     splitWriteJob = KIO::put( writeURL, permissions, true, false, false );
     connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                            this, SLOT(splitFileSend(KIO::Job *, QByteArray &)));

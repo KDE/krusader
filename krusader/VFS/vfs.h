@@ -94,6 +94,9 @@ public:
 	inline vfile* vfs_getFirstFile(){ return (vfs_filesP->isEmpty()) ? 0 : vfs_filesP->first(); }
 	/// Return the the next file in the list and advance the iterator.
 	inline vfile* vfs_getNextFile() { return (vfs_filesP->next());  }
+    // KDE FTP proxy bug correction
+    static KURL fromPathOrURL( const QString &originIn );
+
 
 public slots:
 	/// Re-reads files and stats and fills the vfile list

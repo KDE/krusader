@@ -31,7 +31,7 @@ KrVfsHandler::~KrVfsHandler(){
 }
 
 vfs::VFS_TYPE KrVfsHandler::getVfsType(const KURL& url){
-	if( url.isLocalFile() || QDir(url.path(-1)).exists() ){
+	if( url.isLocalFile() /*|| QDir(url.path(-1)).exists()*/ ){  // commented out because of FTP->NormalVFS problem!!!
 		return vfs::NORMAL;
 	}
   else{

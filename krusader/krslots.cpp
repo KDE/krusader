@@ -268,7 +268,7 @@ void KRslots::markGroup()       { ACTIVE_PANEL->select(true,false);          }
 void KRslots::unmarkGroup()     { ACTIVE_PANEL->select(false,false);         }
 void KRslots::invert()          { ACTIVE_PANEL->invertSelection();           }
 
-void KRslots::root()        { ACTIVE_FUNC->openUrl(KURL::fromPathOrURL("/"));}
+void KRslots::root()            { ACTIVE_FUNC->openUrl(vfs::fromPathOrURL("/"));}
 void KRslots::refresh(const KURL& u){ ACTIVE_FUNC->openUrl(u);               }
 void KRslots::home()            { ACTIVE_FUNC->openUrl(QDir::homeDirPath()); }
 void KRslots::refresh()         { ACTIVE_FUNC->refresh();                    }
@@ -318,7 +318,7 @@ void KRslots::runRemoteMan() {
   QString host=remoteMan::getHost();
 	if (host==QString::null) return;
 	// otherwise, attempt a connection
-	ACTIVE_FUNC->openUrl(KURL::fromPathOrURL(host));
+	ACTIVE_FUNC->openUrl(vfs::fromPathOrURL(host));
 }
 
 void KRslots::runMountMan() {
@@ -437,11 +437,11 @@ void KRslots::viewDlg(){
   if ( dest == QString::null ) return ; // the usr canceled
   else
   {
-    /* KURL::fromPathOrURL requires fullpath, so we check whether it is relative  */
+    /* vfs::fromPathOrURL requires fullpath, so we check whether it is relative  */
     if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
       dest = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1)+dest; /* it's full path now */
     
-    KrViewer::view( KURL::fromPathOrURL(dest) ); // view the file
+    KrViewer::view( vfs::fromPathOrURL(dest) ); // view the file
   }
   // nothing more to it!
 }
@@ -454,7 +454,7 @@ void KRslots::editDlg(){
   if ( dest == QString::null ) return ; // the usr canceled
   else
   {
-    /* KURL::fromPathOrURL requires fullpath, so we check whether it is relative  */
+    /* vfs::fromPathOrURL requires fullpath, so we check whether it is relative  */
     if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
       dest = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1) + dest; /* it's full path now */
     
@@ -462,7 +462,7 @@ void KRslots::editDlg(){
     QString edit = krConfig->readEntry( "Editor", _Editor );
 
     if ( edit == "internal editor" )
-      KrViewer::edit( KURL::fromPathOrURL( dest ), true );
+      KrViewer::edit( vfs::fromPathOrURL( dest ), true );
     else {
       KProcess proc;
       proc << edit << dest;

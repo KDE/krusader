@@ -1067,8 +1067,8 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   bool    isDir       = item->isDir();
   QString dirName     = item->directory().isEmpty() ? "" : item->directory() + "/";
 
-  KURL leftURL  = synchronizer.fromPathOrURL( synchronizer.leftBaseDirectory()  + dirName + item->name() );
-  KURL rightURL = synchronizer.fromPathOrURL( synchronizer.rightBaseDirectory() + dirName + item->name() );
+  KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + dirName + item->name() );
+  KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + dirName + item->name() );
   
   // create the menu
   KPopupMenu popup;

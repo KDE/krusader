@@ -157,7 +157,7 @@ bool ftp_vfs::vfs_refresh(const KURL& origin) {
   //QTimer::singleShot( 0,this,SLOT(startLister()) );
   startLister();
 
-  while( 0 && busy ){
+  while( busy ){
     qApp->processEvents();
     qApp->eventLoop()->processEvents( QEventLoop::AllEvents|QEventLoop::WaitForMore); 
   }

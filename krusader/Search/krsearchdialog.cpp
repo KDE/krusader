@@ -549,7 +549,7 @@ void KrSearchDialog::fillList(QComboBox *list, QString filename) {
 }
 
 void KrSearchDialog::resultClicked(QListViewItem* i) {
-  krApp->mainView->activePanel->func->openUrl(KURL::fromPathOrURL(i->text(1)),i->text(0));
+  krApp->mainView->activePanel->func->openUrl(vfs::fromPathOrURL(i->text(1)),i->text(0));
   showMinimized();
 }
 

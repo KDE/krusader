@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 #include "combiner.h"
+#include "../VFS/vfs.h"
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kfileitem.h>
@@ -67,7 +68,7 @@ void Combiner::combine()
   setLabelText( i18n("Combining the file %1...").arg( fileName ));
 
     /* check whether the .crc file exists */
-  splURL = KURL::fromPathOrURL( fileName + ".crc" );
+  splURL = vfs::fromPathOrURL( fileName + ".crc" );
   KFileItem file(KFileItem::Unknown, KFileItem::Unknown, splURL );
   file.refresh();
 
@@ -174,7 +175,7 @@ void Combiner::openNextFile()
     readFileName = fileName + "." + index;
   }
 
-  readURL = KURL::fromPathOrURL( readFileName );
+  readURL = vfs::fromPathOrURL( readFileName );
 
       /* creating a write job */
   combineReadJob = KIO::get( readURL, false, false );
@@ -201,11 +202,11 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
 
   if( combineWriteJob == 0 )
   {
-    writeURL = KURL::fromPathOrURL(destinationDir + KURL::fromPathOrURL( fileName ).fileName() );
+    writeURL = vfs::fromPathOrURL(destinationDir + vfs::fromPathOrURL( fileName ).fileName() );
     if( hasValidSplitFile )
       writeURL.setFileName( expectedFileName );
     else if( unixNaming )
-      writeURL.setFileName( KURL::fromPathOrURL( fileName ).fileName() + ".out" );
+      writeURL.setFileName( vfs::fromPathOrURL( fileName ).fileName() + ".out" );
     
     combineWriteJob = KIO::put( writeURL, permissions, true, false, false );    
 

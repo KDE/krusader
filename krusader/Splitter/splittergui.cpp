@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 #include "splittergui.h"
+#include "../VFS/vfs.h"
 #include <klocale.h>
 #include <qlayout.h>
 #include <qlabel.h>
@@ -185,7 +186,7 @@ void SplitterGUI::predefinedComboActivated( int item )
 
 void SplitterGUI::splitPressed()
 {
-  if( KURL::fromPathOrURL( urlReq->url() ).isMalformed() )
+  if( vfs::fromPathOrURL( urlReq->url() ).isMalformed() )
   {
     KMessageBox::error( this, i18n("The directory path URL is malformed!") );
     return;
