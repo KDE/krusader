@@ -53,6 +53,7 @@ public slots:
   void slotRightClicked(QListViewItem *);
   void slotChanged( File * );
   void slotDeleted( File * );
+  void slotShowFileSizes();
   void slotRefresh() { refreshNeeded = false; sectionResized( 0 ); }
   
 protected:
@@ -63,9 +64,12 @@ protected:
   
 private:
   QPixmap createPixmap( int percent, int maxPercent, int maxWidth );
+  
   bool doubleClicked( QListViewItem * item );
   
   bool refreshNeeded;
+  
+  bool showFileSize;
   
   DULinesToolTip *toolTip;
 };

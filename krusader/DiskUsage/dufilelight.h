@@ -52,7 +52,8 @@ public slots:
 
 protected slots:  
   void slotActivated( const KURL& );
-  
+  void slotAboutToShow( QWidget *widget );
+    
   void schemeRainbow()        { setScheme( Filelight::Rainbow ); }
   void schemeHighContrast()   { setScheme( Filelight::HighContrast ); }
   void schemeKDE()            { setScheme( Filelight::KDE ); }

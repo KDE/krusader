@@ -31,6 +31,7 @@
 #include "dulines.h"
 #include "../kicons.h"
 #include "../krusader.h"
+#include "../VFS/krpermhandler.h"
 #include <qheader.h>
 #include <klocale.h>
 #include <qpen.h>
@@ -38,6 +39,7 @@
 #include <qfontmetrics.h>
 #include <qtimer.h>
 #include <qtooltip.h>
+#include <kpopupmenu.h>
 
 class DULinesItem : public QListViewItem
 {
@@ -130,6 +132,8 @@ DULines::DULines( DiskUsage *usage, const char *name )
   
   krConfig->setGroup( diskUsage->getConfigGroup() ); 
 
+  showFileSize = krConfig->readBoolEntry( "L Show File Size", true );
+  
   int lineWidth  = krConfig->readNumEntry("L Line Width",  defaultSize * 20 );    
   addColumn( i18n("Line View"), lineWidth );
   setColumnWidthMode(0,QListView::Manual);
@@ -162,9 +166,10 @@ DULines::DULines( DiskUsage *usage, const char *name )
 DULines::~DULines()
 {
   krConfig->setGroup( diskUsage->getConfigGroup() ); 
-  krConfig->writeEntry("L Line Width",    columnWidth( 0 ) );
-  krConfig->writeEntry("L Percent Width", columnWidth( 1 ) );
-  krConfig->writeEntry("L Name Width",    columnWidth( 2 ) );
+  krConfig->writeEntry("L Line Width",      columnWidth( 0 ) );
+  krConfig->writeEntry("L Percent Width",   columnWidth( 1 ) );
+  krConfig->writeEntry("L Name Width",      columnWidth( 2 ) );
+  krConfig->writeEntry("L Show File Size",  showFileSize );
   
   delete toolTip;
 }
@@ -194,10 +199,14 @@ void DULines::slotDirChanged( Directory *dirEntry )
   { 
     File *item = *it;
     
+    QString fileName = item->fileName();
+    if( showFileSize )
+      fileName += "  [" + KIO::convertSize( item->size() ) + "]";
+    
     if( lastItem == 0 )
-      lastItem = new DULinesItem( diskUsage, item, this, "", item->percent() + "  ", item->fileName() );
+      lastItem = new DULinesItem( diskUsage, item, this, "", item->percent() + "  ", fileName );
     else
-      lastItem = new DULinesItem( diskUsage, item, this, lastItem, "", item->percent() + "  ", item->fileName() );
+      lastItem = new DULinesItem( diskUsage, item, this, lastItem, "", item->percent() + "  ", fileName );
    
     if( item->isExcluded() )
       lastItem->setVisible( false );
@@ -348,7 +357,17 @@ void DULines::slotRightClicked( QListViewItem *item )
   if ( item && item->text( 0 ) != ".." )
     file = ((DULinesItem *)item)->getFile();
 
-  diskUsage->rightClickMenu( file );
+  KPopupMenu linesPopup;    
+  int lid = linesPopup.insertItem( i18n("Show file sizes"), this, SLOT( slotShowFileSizes() ) );
+  linesPopup.setItemChecked( lid, showFileSize );
+    
+  diskUsage->rightClickMenu( file, &linesPopup, i18n( "Lines" ) );
+}
+
+void DULines::slotShowFileSizes()
+{
+  showFileSize = !showFileSize;
+  slotDirChanged( diskUsage->getCurrentDir() );
 }
 
 File * DULines::getCurrentFile()

@@ -129,6 +129,7 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	// create the disk usage view
 	
 	diskusage = new DiskUsageViewer( stack );
+	diskusage->setStatusLabel( dataLine, i18n("Disk Usage: ") );
 	stack->addWidget( diskusage, DskUsage );
 	connect(diskusage, SIGNAL(openURLRequest(const KURL &)), this, SLOT(handleOpenURLRequest(const KURL &)));
 	
@@ -264,8 +265,8 @@ void PanelPopup::update( KURL url ) {
 				url.setFileName( "" );
 			if (KMimeType::findByURL(url.url())->name() != "inode/directory")
 				url = url.upURL();
-			diskusage->openURL(url);
 			dataLine->setText( i18n("Disk Usage: ")+url.fileName() );
+			diskusage->openURL(url);
          break;
       case Tree:  // nothing to do      
          break;

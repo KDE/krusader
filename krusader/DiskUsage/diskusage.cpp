@@ -250,7 +250,7 @@ bool DiskUsage::load( KURL baseDir )
   baseURL = baseDir;
   baseURL.setPath( baseDir.path( -1 ) );
 
-  root = new Directory( baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
+  root = new Directory( baseURL.fileName().ascii(), baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
 
   QValueStack<QString> directoryStack;
   QPtrStack<Directory> parentStack;

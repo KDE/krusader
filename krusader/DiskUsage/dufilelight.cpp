@@ -45,11 +45,15 @@ DUFilelight::DUFilelight( DiskUsage *usage, const char *name )
    connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
    connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
    connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotChanged( File * ) ) );
+   connect( diskUsage, SIGNAL( aboutToShow( QWidget * ) ), this, SLOT( slotAboutToShow( QWidget * ) ) );
    connect( this, SIGNAL( activated( const KURL& ) ), this, SLOT( slotActivated( const KURL& ) ) );
 }
 
 void DUFilelight::slotDirChanged( Directory *dir )
 {
+  if( diskUsage->visibleWidget() != this )
+    return;
+    
   if( currentDir != dir )
   {
     currentDir = dir;
@@ -201,8 +205,24 @@ void DUFilelight::minFontSize()
   }
 }
 
+void DUFilelight::slotAboutToShow( QWidget *widget )
+{ 
+  if( widget == this && ( diskUsage->getCurrentDir() != currentDir || refreshNeeded ) )
+  {
+    refreshNeeded = false;
+    if( ( currentDir = diskUsage->getCurrentDir() ) != 0 )
+    {
+      invalidate( false );
+      create( currentDir );
+    }
+  }
+}
+
 void DUFilelight::slotRefresh() 
 { 
+  if( diskUsage->visibleWidget() != this )
+    return;
+
   refreshNeeded = false;
   if( currentDir )
   {

@@ -245,7 +245,7 @@ public:
     m_fileCount( 0 ) 
   {}
  
-  Directory( QString url ) : File( (char *)"Root", 0 ), m_fileCount( 0 )
+  Directory( const char *rootName, QString url ) : File( rootName, 0 ), m_fileCount( 0 )
   {
     m_directory = url;
   }

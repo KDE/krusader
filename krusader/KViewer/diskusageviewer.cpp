@@ -32,45 +32,82 @@
 #include "diskusageviewer.h"
 
 DiskUsageViewer::DiskUsageViewer( QWidget *parent, char *name ) 
-  : DiskUsage( "DiskUsageViewer", parent, name )
+  : QWidget( parent, name ), diskUsage( 0 ), statusLabel( 0 )
 {
-  krConfig->setGroup( getConfigGroup() );  
-  int view = krConfig->readNumEntry( "View",  VIEW_FILELIGHT );
-  if( view < VIEW_LINES || view > VIEW_FILELIGHT )
-    view = VIEW_LINES;    
-  setView( view );
+  layout = new QGridLayout( this, 1, 1 );
+}
+
+DiskUsageViewer::~ DiskUsageViewer()
+{
+  if( diskUsage )
+  {
+    krConfig->setGroup( "DiskUsageViewer" );  
+    krConfig->writeEntry( "View", diskUsage->getActiveView() );
+  }
 }
 
 void DiskUsageViewer::openURL( KURL url )
 {
+  if( diskUsage == 0 )
+  {
+    diskUsage = new DiskUsage( "DiskUsageViewer", this );
+    
+    connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
+    
+    layout->addWidget( diskUsage, 0, 0 );
+    this->show();
+    diskUsage->show();
+    
+    krConfig->setGroup( "DiskUsageViewer" );  
+    int view = krConfig->readNumEntry( "View",  VIEW_FILELIGHT );
+    if( view < VIEW_LINES || view > VIEW_FILELIGHT )
+      view = VIEW_FILELIGHT;    
+    diskUsage->setView( view );   
+  }
+
   url.setPath( url.path( -1 ) );
   
-  if( !isLoading() && !baseURL.isEmpty() )
+  KURL baseURL = diskUsage->getBaseURL();
+  if( !diskUsage->isLoading() && !baseURL.isEmpty() )
   {
     if( url.protocol() == baseURL.protocol() && ( !url.hasHost() || url.host() == baseURL.host() ) )
     {
       QString baseStr = baseURL.path( 1 ), urlStr = url.path( 1 );
-      
+    
       if( urlStr.startsWith( baseStr ) )
       {
         QString relURL = urlStr.mid( baseStr.length() );
         if( relURL.endsWith( "/" ) )
           relURL.truncate( relURL.length() -1 );
       
-        Directory *dir = getDirectory( relURL );      
+        Directory *dir = diskUsage->getDirectory( relURL );      
         if( dir )
         {
-          changeDirectory( dir );
+          diskUsage->changeDirectory( dir );
           return;
         }
       }
     }
   }  
-  load( url );
+  diskUsage->load( url );
 }
 
 void DiskUsageViewer::closeURL()
 {
+}
+
+void DiskUsageViewer::setStatusLabel( QLabel *statLabel, QString pref )
+{
+  statusLabel = statLabel;
+  prefix = pref;
+}
+
+void DiskUsageViewer::slotDirChanged( Directory * dir )
+{
+  if( statusLabel )
+  {
+    statusLabel->setText( prefix + dir->fileName() + "  [" + KIO::convertSize( dir->size() ) + "]" );
+  }  
 }
 
 #include "diskusageviewer.moc"

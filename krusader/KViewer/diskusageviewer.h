@@ -33,19 +33,33 @@
 
 #include "../DiskUsage/diskusage.h"
 #include <kurl.h>
+#include <qlayout.h>
+#include <qlabel.h>
 
-class DiskUsageViewer : public DiskUsage
+class DiskUsageViewer : public QWidget
 {
   Q_OBJECT
   
 public:
   DiskUsageViewer( QWidget *parent = 0, char *name = 0 );
+  ~DiskUsageViewer();
   
   void openURL( KURL url );
   void closeURL();
+  void setStatusLabel( QLabel *statLabel, QString pref );
   
 signals:
   void openURLRequest(const KURL &);
+  
+protected slots:
+  void slotDirChanged( Directory * );
+
+protected:  
+  DiskUsage *diskUsage;
+  QGridLayout *layout;
+  
+  QLabel *statusLabel;
+  QString prefix;
 };
 
 #endif /* DISKUSAGEVIEWER_H */
