@@ -38,7 +38,7 @@
 Combiner::Combiner( QWidget* parent,  QString fileNameIn, QString destinationDirIn ) :
   QProgressDialog( parent, "Krusader::Combiner", true, 0 ), hasValidSplitFile( false ),
   fileCounter ( 0 ), permissions( -1 ), receivedSize( 0 ),
-  combineWriteJob( 0 )
+  combineReadJob( 0 ), combineWriteJob( 0 )
 {
   fileName       = fileNameIn;
 
