@@ -1,23 +1,23 @@
 /***************************************************************************
-                               krusader.cpp
-                            -------------------
-   copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
-   e-mail               : krusader@users.sourceforge.net
-   web site             : http://krusader.sourceforge.net
+                              krusader.cpp
+                           -------------------
+  copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://krusader.sourceforge.net
 ---------------------------------------------------------------------------
- Description 
+Description 
 ***************************************************************************
 
- A 
+A 
 
-    db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
-    88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
-    88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
-    88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
-    88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
-    YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+   db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+   88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+   88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+   88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+   88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+   YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                    S o u r c e    F i l e
+                                                   S o u r c e    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -103,9 +103,8 @@ KAction *Krusader::actSelectColorMask = 0;
 
 KToggleAction *Krusader::actToggleTerminal = 0;
 
-
 // construct the views, statusbar and menu bars and prepare Krusader to start
-Krusader::Krusader() : KParts::MainWindow() {
+Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   // create the "krusader"
   App = this;
   slot = new KRslots();
@@ -164,15 +163,11 @@ Krusader::Krusader() : KParts::MainWindow() {
   status = new KrusaderStatus( this );
 
   // This enables Krusader to minimize to tray if needed
-  KSystemTray *st = new KSystemTray( this );
-  st->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
+  config->setGroup( "Look&Feel" );
 
   setCentralWidget( mainView );
   config->setGroup( "Look&Feel" );
-  if ( krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) )
-    st->show();
-  else
-    show();
+  show();
 
   setCursor( KCursor::arrowCursor() );
   // first, resize and move to starting point
@@ -225,6 +220,25 @@ bool Krusader::versionControl() {
 void Krusader::statusBarUpdate( QString& mess ) {
   // change the message on the statusbar for 2 seconds
   statusBar() ->message( mess, 5000 );
+}
+
+void Krusader::showEvent ( QShowEvent * ) {
+  if ( krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
+    if ( sysTray != 0 )
+      sysTray->hide();
+    show();
+  }
+}
+
+void Krusader::hideEvent ( QHideEvent * ) {
+  if ( krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
+    if ( sysTray == 0 ) {
+      sysTray = new KSystemTray( this );
+      sysTray->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
+    }
+    sysTray->show();
+    hide();
+  }
 }
 
 void Krusader::setupAccels() {
@@ -402,9 +416,9 @@ void Krusader::savePosition() {
 void Krusader::saveSettings() {
   toolBar() ->saveSettings( krConfig, "Private" );
   config->setGroup( "Startup" );
-  bool panelsavesettings = config->readBoolEntry("Panels Save Settings",_PanelsSave);
-  bool rememberpos = config->readBoolEntry("Remember Position",_RememberPos);
-  bool uisavesettings = config->readBoolEntry("UI Save Settings",_UiSave);
+  bool panelsavesettings = config->readBoolEntry( "Panels Save Settings", _PanelsSave );
+  bool rememberpos = config->readBoolEntry( "Remember Position", _RememberPos );
+  bool uisavesettings = config->readBoolEntry( "UI Save Settings", _UiSave );
   if ( panelsavesettings ) {
     // left panel
     config->writeEntry( "Left Panel Type", i18n( "List" ) );

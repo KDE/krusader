@@ -54,6 +54,7 @@ class KrusaderView;
 class KProcess;
 class KRslots;
 class KIconLoader;
+class KSystemTray;
 
 class Krusader : public KParts::MainWindow {
     Q_OBJECT
@@ -82,6 +83,8 @@ class Krusader : public KParts::MainWindow {
     void setupActions();
     void setupAccels();
     bool versionControl();  // handle version differences in krusaderrc
+    void showEvent ( QShowEvent * );
+    void hideEvent ( QHideEvent * );
 
   public:
     static Krusader *App;       // a kApp style pointer
@@ -117,6 +120,9 @@ class Krusader : public KParts::MainWindow {
 
   signals:
     void changeMessage( QString );
+
+  private:
+    KSystemTray *sysTray;
 };
 
 // main modules
