@@ -53,7 +53,9 @@ vfile::vfile(QString name,	                  // useful construtor
 						mode_t mode){
 	vfile_name=name;
 	vfile_size=size;
-	vfile_ownerId=owner;
+  vfile_owner=QString::null;
+	vfile_ownerId=owner;  
+  vfile_group=QString::null;
 	vfile_groupId=group;
 	vfile_perm=perm;
 	vfile_time_t=mtime;
@@ -72,6 +74,7 @@ vfile::vfile(QString name,	                  // useful construtor
 						bool symLink,
 						QString	owner,
 						QString group,
+            QString userName,
 						QString mime,
 						QString symDest,
 						mode_t mode){
@@ -79,6 +82,7 @@ vfile::vfile(QString name,	                  // useful construtor
 		vfile_size=size;
     vfile_owner=owner;
     vfile_group=group;
+    vfile_userName=userName;
 		vfile_ownerId=KRpermHandler::user2uid(owner) ;
 		vfile_groupId=KRpermHandler::group2gid(group);
 		vfile_perm=perm;
@@ -92,15 +96,24 @@ vfile::vfile(QString name,	                  // useful construtor
 }
 
 char vfile::vfile_isReadable(){
-	return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId);
+  if( vfile_owner.isEmpty() )
+  	return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId);
+  else
+  	return KRpermHandler::ftpReadable(vfile_userName, vfile_owner, vfile_perm);
 }
 
 char vfile::vfile_isWriteable(){
-	return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId);
+  if( vfile_owner.isEmpty() )
+  	return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId);
+  else
+  	return KRpermHandler::ftpWriteable(vfile_userName, vfile_owner, vfile_perm);
 }
 
 char vfile::vfile_isExecutable(){
-	return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
+  if( vfile_owner.isEmpty() )
+  	return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
+  else
+  	return KRpermHandler::ftpExecutable(vfile_userName, vfile_owner, vfile_perm);
 }
 
 QString vfile::vfile_getOwner(){

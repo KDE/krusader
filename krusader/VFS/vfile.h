@@ -69,6 +69,7 @@ public:
 				bool symLink,
 				QString	owner,
 				QString group,
+				QString userName,
 				QString mime,
 				QString symDest,
 				mode_t  mode);
@@ -109,6 +110,7 @@ protected:
 	gid_t            vfile_groupId;  //< file group id
   QString          vfile_owner;    //< file owner name
   QString          vfile_group;    //< file group name
+  QString          vfile_userName; //< the current username
 	QString          vfile_perm;     //< file permissions string
   time_t           vfile_time_t;   //< file modification in time_t format
 	bool             vfile_symLink;  //< true if the file is a symlink
