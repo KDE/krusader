@@ -63,6 +63,7 @@ private:
                                                ADDITIONAL_COLOR *addColor = 0, int addColNum = 0);
   KonfiguratorColorChooser  *getColorSelector( QString name );
   QLabel                    *getSelectorLabel( QString name );
+  const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
   
 private:
   QWidget                            *colorsGrp;

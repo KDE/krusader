@@ -103,6 +103,8 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   ADDITIONAL_COLOR sameAsAltern = { i18n("Same as alt. background"), getColorSelector( "Alternate Background" )->getColor(), "Alternate Background" };
   addColorSelector( "Alternate Marked Background",i18n( "Alternate marked background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as marked background" ), &sameAsAltern, 1 );
   addColorSelector( "Current Foreground",         i18n( "Current foreground:" ),          Qt::white,                                    i18n( "Not used" )            );
+  ADDITIONAL_COLOR sameAsMarkedForegnd = { i18n("Same as marked foreground"), getColorSelector( "Marked Foreground" )->getColor(), "Marked Foreground" };
+  addColorSelector( "Marked Current Foreground",         i18n( "Marked current foreground:" ),          Qt::white,                                    i18n( "Not used" ), &sameAsMarkedForegnd, 1);
   addColorSelector( "Current Background",         i18n( "Current background:" ),          Qt::white, i18n( "Not used" ), &sameAsBckgnd, 1                             );
 
   connect( getColorSelector( "Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotForegroundChanged() ) );
@@ -134,6 +136,8 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
                                           { i18n("Same as marked background"), getColorSelector( "Inactive Marked Background" )->getColor(), "Inactive Marked Background" } };
   addColorSelector( "Inactive Alternate Marked Background", i18n( "Alternate marked background:" ), getColorSelector( "Alternate Marked Background" )->getColor(), i18n( "Same as active" ), sameAsInactAltern, 2 );
   addColorSelector( "Inactive Current Foreground",          i18n( "Current foreground:" ),          getColorSelector( "Current Foreground" )->getColor(), i18n( "Same as active" ) );
+  ADDITIONAL_COLOR sameAsInactMarkedForegnd = { i18n("Same as marked foreground"), getColorSelector( "Inactive Marked Foreground" )->getColor(), "Inactive Marked Foreground" };
+  addColorSelector( "Inactive Marked Current Foreground",          i18n( "Marked current foreground:" ),          getColorSelector( "Marked Current Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactMarkedForegnd, 1 );
   addColorSelector( "Inactive Current Background",          i18n( "Current background:" ),          getColorSelector( "Current Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
 
   connect( getColorSelector( "Inactive Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveForegroundChanged() ) );
@@ -370,10 +374,11 @@ void KgColors::generatePreview()
     }
     else
     {    
-      if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
-        currentFore = getColorSelector( "Current Foreground" )->getColor();
       if( getColorSelector( "Current Background" )->currentItem() != 1 )
         currentBck = getColorSelector( "Current Background" )->getColor();
+      if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
+        currentFore = getColorSelector( "Current Foreground" )->getColor();
+      else currentFore = setColorIfContrastIsSufficient(currentBck, getColorSelector( prefix + "Foreground" )->getColor(), bck);
     }
       
     pwCurrent->setColor( currentFore, currentBck );
@@ -387,6 +392,17 @@ void KgColors::generatePreview()
     pwMark1->setColor( markFore, getColorSelector( prefix + "Marked Background" )->getColor() );
     pwMark2->setColor( markFore, getColorSelector( prefix + "Alternate Marked Background" )->getColor() );
   }
+}
+
+const QColor & KgColors::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
+{
+   #define sqr(x) ((x)*(x))
+   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
+
+   // if the contrast between background and color1 is too small, take color2 instead.
+   if (contrast < 1000)
+      return color2;
+   return color1;
 }
 
 bool KgColors::apply()

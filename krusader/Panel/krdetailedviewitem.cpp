@@ -191,6 +191,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 
   
   // begin of custom color calculation
+  krConfig->setGroup("Colors");
   
   // if KDE deafault: do not touch color group!
   if (!KrColorCache::getColorCache().isKDEDefault())
@@ -254,10 +255,16 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
        _cg.setColor(QColorGroup::Base, currentBackground);
        _cg.setColor(QColorGroup::Background, currentBackground);
 
-       QColor color = KrColorCache::getColorCache().getCurrentForegroundColor(isActive);
-       if (!color.isValid()) // transparent
-         // choose fore- or background, depending on its contrast compared to markedBackground
-          color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
+       QColor color;
+       if (isSelected()) 
+          color = KrColorCache::getColorCache().getCurrentMarkedForegroundColor(isActive);
+       if (!color.isValid()) // not used
+       {
+          color = KrColorCache::getColorCache().getCurrentForegroundColor(isActive);
+          if (!color.isValid()) // transparent
+            // choose fore- or background, depending on its contrast compared to markedBackground
+            color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
+       }
        
        // set the foreground
        _cg.setColor(QColorGroup::Text, color);

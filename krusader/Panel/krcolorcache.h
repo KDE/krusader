@@ -25,6 +25,7 @@ public:
   QColor getMarkedBackgroundColor(bool isActive) const;
   QColor getCurrentForegroundColor(bool isActive) const;
   QColor getCurrentBackgroundColor(bool isActive) const;
+  QColor getCurrentMarkedForegroundColor(bool isActive) const;
   QColor getBackgroundColor(bool isActive) const;
   QColor getAlternateBackgroundColor(bool isActive) const;
   QColor getAlternateMarkedBackgroundColor(bool isActive) const;

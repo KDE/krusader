@@ -181,6 +181,14 @@ QColor KrColorCache::getCurrentBackgroundColor(bool isActive) const
    return isActive?getColor("Current Background"):getColor("Inactive Current Background");
 }
 
+QColor KrColorCache::getCurrentMarkedForegroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Marked Current Foreground":"Inactive Marked Current Foreground";
+   if (getTextValue(colorName) == "")
+       return QColor();
+   return getColor(colorName);
+}
+
 QColor KrColorCache::getBackgroundColor(bool isActive) const
 {
    QColor color = KGlobalSettings::baseColor();
