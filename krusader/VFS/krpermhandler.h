@@ -35,7 +35,6 @@
 #include <qstring.h>
 #include <qfileinfo.h>
 #include <sys/types.h>
-#include <kfileitem.h>
 #include <qdict.h>
 #include <qintdict.h>
 
@@ -50,8 +49,11 @@ public:
 	
 	static void init();
 	
-	static inline gid_t group2gid(QString group){ return *(groupCache->find(group))	;}
-	static inline uid_t user2uid (QString user) { return *(passwdCache->find(user)) ;}
+	static gid_t group2gid(QString group);
+	static uid_t user2uid (QString user);
+
+	static QString gid2group(gid_t groupId);
+	static QString uid2user (uid_t userId);
 
 	static char writeable (QString perm, gid_t gid, uid_t uid);
 	static char readable  (QString perm, gid_t gid, uid_t uid);
@@ -70,7 +72,6 @@ public:
   static bool fileExist(QString Path, QString name);
 
 	static QString mode2QString(mode_t m);
-  static QString perm2QString(KFileItem* kfi);
   static QString time2QString(long time);
   static QString parseSize(unsigned long val);
 	static QString date2qstring(QString date);
@@ -78,9 +79,11 @@ public:
 
 private:
 	// cache for passwd and group entries
-	static QDict<uid_t> 	*passwdCache;
-  static QDict<gid_t> 	*groupCache;
-	static QIntDict<char> *currentGroups;		
+	static QDict<uid_t> 	    *passwdCache;
+  static QDict<gid_t> 	    *groupCache;
+	static QIntDict<char>     *currentGroups;
+  static QIntDict<QString>  *uidCache;
+  static QIntDict<QString>  *gidCache;
 };
 
 #endif

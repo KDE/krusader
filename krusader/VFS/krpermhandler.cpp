@@ -34,6 +34,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <dirent.h>
 #include <time.h>
 #include <klocale.h>
@@ -45,9 +46,11 @@
 #include "krpermhandler.h"
 #include "../resources.h"
 
-QDict<uid_t>   * KRpermHandler::passwdCache   = 0L;
-QDict<gid_t> 	 * KRpermHandler::groupCache  	= 0L;
-QIntDict<char> * KRpermHandler::currentGroups = 0L;
+QDict<uid_t>      *KRpermHandler::passwdCache   = 0L;
+QDict<gid_t> 	    *KRpermHandler::groupCache  	= 0L;
+QIntDict<char>    *KRpermHandler::currentGroups = 0L;
+QIntDict<QString> *KRpermHandler::uidCache = 0L;
+QIntDict<QString> *KRpermHandler::gidCache = 0L;
 
 char KRpermHandler::writeable(QString perm, gid_t gid, uid_t uid){
   // first check other permissions.
@@ -134,45 +137,27 @@ QString KRpermHandler::mode2QString(mode_t m){
 	return perm;
 }
 
-QString KRpermHandler::perm2QString(KFileItem* kfi){
-	QString perm ="----------";
-	
-	if( kfi->isDir()  ) perm[0]='d';  // check for directory
-	
-	mode_t m = kfi->permissions();
-	
-	//ReadUser = 0400, WriteUser = 0200, ExeUser = 0100
-	if(m&0400) perm[1]='r';
-	if(m&0200) perm[2]='w';
-	if(m&0100) perm[3]='x';
-	//ReadGroup = 0040, WriteGroup = 0020, ExeGroup = 0010
-	if(m&0040) perm[4]='r';
-	if(m&0020) perm[5]='w';
-	if(m&0010) perm[6]='x';	
-	//ReadOther = 0004, WriteOther = 0002, ExeOther = 0001
-	if(m&0004) perm[7]='r';
-	if(m&0002) perm[8]='w';
-	if(m&0001) perm[9]='x';
-
-	return perm;
-}
-
 void KRpermHandler::init(){
   // set the umask to 022
-  umask(18);
+  umask(022);
 
 	// 50 groups should be enough
 	gid_t groupList[50];
 	int groupNo = getgroups(50,groupList);
 
 	// init the groups and user caches
-	passwdCache	= 	new QDict<uid_t>(317);
-	groupCache	=		new QDict<gid_t>(317);
+	passwdCache	  = new QDict<uid_t>(317);
+	groupCache	  = new QDict<gid_t>(317);
 	currentGroups = new QIntDict<char>(317);
-					
+	uidCache      = new QIntDict<QString>(317);
+  gidCache      = new QIntDict<QString>(317);
+
+  
 	passwdCache->setAutoDelete(true);
 	groupCache->setAutoDelete(true);
-	currentGroups->setAutoDelete(true);	
+	currentGroups->setAutoDelete(true);
+  uidCache->setAutoDelete(true);
+  gidCache->setAutoDelete(true);
 
 	// fill the UID cache
 	struct passwd *pass;
@@ -180,6 +165,7 @@ void KRpermHandler::init(){
 	while ( (pass = getpwent()) != 0L ) {
 	  uid_temp = new uid_t(pass->pw_uid);
 		passwdCache->insert(qstrdup(pass->pw_name), uid_temp);
+    uidCache->insert(pass->pw_uid,new QString(pass->pw_name));
   }
   delete pass;
   endpwent();
@@ -190,6 +176,7 @@ void KRpermHandler::init(){
   while( (gr = getgrent()) != 0L ) {
 	  gid_temp = new gid_t( gr->gr_gid );
 		groupCache->insert(qstrdup(gr->gr_name), gid_temp );
+    gidCache->insert(gr->gr_gid,new QString(gr->gr_name));
   }
 	delete gr;
   endgrent();
@@ -260,13 +247,6 @@ bool KRpermHandler::fileExist(QString path, QString name){
 	return false;
 }
 
-static QString round(int i){
-	QString t;
-	t.sprintf("%d",i);
-	if(i<10) t=("0"+t);
-	return t;
-}
-
 // create a easy to read date-time format
 QString KRpermHandler::time2QString(long time){
   QString dateTime;
@@ -321,3 +301,27 @@ time_t  KRpermHandler::QString2time(QString date){
 
 	return mktime( &t );
 }
+
+gid_t KRpermHandler::group2gid(QString group){
+   gid_t* gid = groupCache->find(group);
+   if(gid) return *gid;
+   return getgid();
+}
+uid_t KRpermHandler::user2uid (QString user) {
+   uid_t* uid = passwdCache->find(user);
+   if(uid) return *uid;
+   return getuid();
+}
+
+QString KRpermHandler::gid2group(gid_t groupId){
+  QString* group = gidCache->find(groupId);
+  if(group) return *group;
+  return QString("???");
+}
+
+QString KRpermHandler::uid2user (uid_t userId){
+  QString* user = uidCache->find(userId);
+  if(user) return *user;
+  return QString("???");
+}
+
