@@ -276,13 +276,23 @@ void KrDetailedView::addItem( vfile *vf ) {
    else _countSize += dynamic_cast<KrViewItem*>( item ) ->size();
    ++_count;
    ensureItemVisible( currentItem() );
+	emit selectionChanged();
 }
 
 void KrDetailedView::delItem( const QString &name ) {
    KrDetailedViewItem * it = dict[ name ];
-   if ( !it )
+   if ( !it ) {
       kdWarning() << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
-   else delete it;
+		return;
+	} 
+	if (it->isDir()) {
+		--_numDirs;
+	} else {
+		--_count;
+		_countSize -= it->size();
+	}
+	delete it;
+	emit selectionChanged();
 }
 
 void KrDetailedView::updateItem( vfile *vf ) {
@@ -301,6 +311,7 @@ void KrDetailedView::updateItem( vfile *vf ) {
       if ( current )
          setCurrentItem( vf->vfile_getName() );
    }
+	emit selectionChanged();
 }
 
 
