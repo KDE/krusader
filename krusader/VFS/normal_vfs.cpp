@@ -225,7 +225,8 @@ void normal_vfs::vfs_rename(QString fileName,QString newName){
 	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
-void normal_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs){
+void normal_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs, bool* stop){
+  if (stop && *stop) return;
   if (!name.contains("/")) name = vfs_workingDir()+"/"+name;
   if (name == "/proc") return;
 
@@ -245,8 +246,9 @@ void normal_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFil
 	  // recurse on all the files in the directory
 	  QFileInfoList* fileList = const_cast<QFileInfoList*>(dir.entryInfoList());
 	  for (QFileInfo* qfiP = fileList->first(); qfiP != 0; qfiP = fileList->next()){
-	    if (qfiP->fileName() != "." && qfiP->fileName() != "..")
-	      vfs_calcSpace(name+"/"+qfiP->fileName(),totalSize,totalFiles,totalDirs);
+      if (stop && *stop) return;
+      if (qfiP->fileName() != "." && qfiP->fileName() != "..")
+	      vfs_calcSpace(name+"/"+qfiP->fileName(),totalSize,totalFiles,totalDirs,stop);
 	  }
   }
 }

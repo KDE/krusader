@@ -30,6 +30,7 @@ A
 #include <unistd.h>
 // Qt Includes
 #include <qdir.h>
+#include <qtimer.h>
 #include <qtextstream.h>
 // KDE Includes
 #include <klocale.h>
@@ -64,6 +65,129 @@ A
 #include "../KViewer/krviewer.h"
 #include "../MountMan/kmountman.h"
 #include "../resources.h"
+
+/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
+KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, vfs * files, const QStringList & names)
+	: m_totalSize(0), m_totalFiles(0), m_totalDirs(0), m_names(names), m_files(files), m_parent(parent)
+        , m_threadInUse(true), m_stop(false) {}
+
+void KrCalcSpaceDialog::CalcThread::cleanUp(){
+	if (m_threadInUse || !finished())
+		m_synchronizeUsageAccess.unlock();
+	else{
+		m_synchronizeUsageAccess.unlock(); // prevents a resource leak
+		// otherwise: no one needs this instance any more: delete it
+		delete this;
+	}
+}
+
+void KrCalcSpaceDialog::CalcThread::deleteInstance(){
+	// synchronize to avoid race condition.
+	m_synchronizeUsageAccess.lock();
+	m_threadInUse = false;
+	cleanUp();
+}
+
+void KrCalcSpaceDialog::CalcThread::run(){
+	if ( !m_names.isEmpty() ) // if something to do: do the calculation
+	for ( QStringList::ConstIterator name = m_names.begin(); name != m_names.end(); ++name )
+		m_files->vfs_calcSpace( *name, &m_totalSize, &m_totalFiles, &m_totalDirs , & m_stop);
+	// synchronize to avoid race condition.
+	m_synchronizeUsageAccess.lock();
+	cleanUp(); // this does not need the instance any more
+}
+
+void KrCalcSpaceDialog::CalcThread::stop(){
+	// cancel was pressed
+	m_stop = true;
+}
+
+KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, vfs * files, const QStringList & names, bool autoclose) :
+	KDialogBase(parent, "KrCalcSpaceDialog", true, "Calculate Occupied Space", Ok|Cancel),
+	m_autoClose(autoclose), m_canceled(false), m_timerCounter(0){
+	// the dialog: The Ok button is hidden until it is needed
+	showButtonOK(false);
+	m_thread = new CalcThread(this, files, names);
+	m_pollTimer = new QTimer(this);
+	QWidget * mainWidget = new QWidget( this );
+	setMainWidget(mainWidget);
+	QVBoxLayout *topLayout = new QVBoxLayout( mainWidget, 0, spacingHint() );
+
+	m_label = new QLabel( "", mainWidget, "caption" );
+	showResult(); // fill m_label with something usefull
+	topLayout->addWidget( m_label );
+	topLayout->addStretch(10);
+}
+
+void KrCalcSpaceDialog::calculationFinished(){
+	// close dialog if auto close is true
+	if (m_autoClose){
+		done(0);
+		return;
+	}
+	// otherwise hide cancel and show ok button
+	showButtonCancel(false);
+	showButtonOK(true);
+	showResult(); // and show final result
+}
+
+/* This timer has two jobs: it polls the thread if it is finished. Polling is
+  better here as it might finish while the dialog builds up. Secondly it refreshes
+  the displayed result.
+ */
+void KrCalcSpaceDialog::timer(){
+	// thread finished?
+	if (m_thread->finished()){
+		// close dialog or switch buttons
+		calculationFinished();
+		m_pollTimer->stop(); // stop the polling. No longer needed
+		return;
+	}
+
+	// Every 10 pollings (1 second) refresh the displayed result
+	if (++m_timerCounter > 10){
+		m_timerCounter = 0;
+		showResult();
+	}
+}
+
+void KrCalcSpaceDialog::showResult(){
+	if (!m_thread) return;
+	QString msg;
+	QString fileName = ( ( m_thread->getNames().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getNames().first() + "\n" ) : QString( "" ) );
+	msg = fileName + i18n( "Total occupied space: %1\nin %2 directories and %3 files" ).
+		arg( KIO::convertSize( m_thread->getTotalSize() ) ).arg( m_thread->getTotalDirs() ).arg( m_thread->getTotalFiles() );
+	m_label->setText(msg);
+}
+
+void KrCalcSpaceDialog::slotCancel(){
+	m_thread->stop(); // notify teh thread to stop
+	m_canceled = true; // set the cancel flag
+	KDialogBase::slotCancel(); // close the dialog
+}
+
+KrCalcSpaceDialog::~KrCalcSpaceDialog(){
+	CalcThread * tmp = m_thread;
+	m_thread = 0; // do not access the thread anymore or core dump if smoe piece of code wrongly does
+	tmp->deleteInstance(); // Notify the thread, that the dialog does not need anymore.
+}
+
+void KrCalcSpaceDialog::exec(){
+	m_thread->start(); // start the thread
+	if (m_autoClose){ // autoclose
+		// set the cursor to busy mode and wait 3 seconds or until the thread finishes
+		krApp->setCursor( KCursor::waitCursor() );
+		bool result = m_thread->wait(3000);
+		krApp->setCursor( KCursor::arrowCursor() );  // return the cursor to normal mode
+		if (result) return;// thread finished: do not show the dialog
+		showResult(); // fill the invisible dialog with usefull data
+	}
+	// prepare and start the poll timer
+	connect(m_pollTimer, SIGNAL(timeout()), this, SLOT(timer()));
+	m_pollTimer->start(100);
+	KDialogBase::exec(); // show the dialog
+}
+/* --=={ End of patch by Heiner <h.eichmann@gmx.de> }==-- */
 
 //////////////////////////////////////////////////////////
 //////		----------	List Panel -------------		////////
@@ -213,7 +337,7 @@ void ListPanelFunc::redirectLink() {
   }
   // try to create a new symlink
   if ( symlink( newLink.local8Bit(), file.local8Bit() ) == -1 ) {
-    KMessageBox::sorry( krApp, i18n( "Failed to create a new link: " ) + file.latin1() );
+    KMessageBox::/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */sorry( krApp, i18n( "Failed to create a new link: " ) + file.latin1() );
     return ;
   }
 }
@@ -327,7 +451,7 @@ void ListPanelFunc::moveFiles() {
     return ;  // safety
 
   QString dest = panel->otherPanel->getPath();
-
+                 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
   krConfig->setGroup( "Advanced" );
   if ( krConfig->readBoolEntry( "Confirm Move", _ConfirmMove ) ) {
     QString s;
@@ -630,7 +754,7 @@ void ListPanelFunc::changeVFS( QString type, QString origin ) {
   if ( type == "ftp" )
     v = new ftp_vfs( origin, panel );
   else if ( type == "-ace" || type == "-arj" || type == "-rpm" )
-    v = new temp_vfs( origin, type, panel, files() ->vfs_isWritable() );
+    v = new temp_v/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */fs( origin, type, panel, files() ->vfs_isWritable() );
   else
     v = new arc_vfs( origin, type, panel, files() ->vfs_isWritable() );
 
@@ -794,33 +918,21 @@ void ListPanelFunc::unpack() {
 }
 
 void ListPanelFunc::calcSpace() {
-  long long totalSize = 0;
-  long totalFiles = 0;
-  long totalDirs = 0;
-  QStringList names;
-  panel->getSelectedNames( &names );
-  if ( names.isEmpty() )
-    return ; // nothing to do
+	QStringList names;
+	panel->getSelectedNames( &names );
+	if ( names.isEmpty() ) return ; // nothing to do
 
-  calcSpace(names, totalSize, totalFiles, totalDirs);
-
-  // show the results to the user...
-  QString msg;
-  QString fileName = ( ( names.count() == 1 ) ? ( i18n( "Name: " ) + names.first() + "\n" ) : QString( "" ) );
-  msg = fileName + i18n( "Total occupied space: %1\nin %2 directories and %3 files" ).
-        arg( KIO::convertSize( totalSize ) ).arg( totalDirs ).arg( totalFiles );
-  KMessageBox::information( krApp, msg.latin1() );
+	KrCalcSpaceDialog calc(krApp, files(), names, false);
+	calc.exec();
 }
 
-void ListPanelFunc::calcSpace(QStringList & names, long long & totalSize, long & totalFiles, long & totalDirs) {
-  // set the cursor to busy mode
-  krApp->setCursor( KCursor::waitCursor() );
-
-  // ask the vfs to calculate the space for each name
-  for ( QStringList::Iterator name = names.begin(); name != names.end(); ++name )
-    files() ->vfs_calcSpace( *name, &totalSize, &totalFiles, &totalDirs );
-
-  krApp->setCursor( KCursor::arrowCursor() );  // return the cursor to normal mode
+bool ListPanelFunc::calcSpace(QStringList & names, long long & totalSize, long & totalFiles, long & totalDirs) {
+	KrCalcSpaceDialog calc(krApp, files(), names, true);
+	calc.exec();
+	totalSize = calc.getTotalSize();
+	totalFiles = calc.getTotalFiles();
+	totalDirs = calc.getTotalDirs();
+	return !calc.wasCanceled();
 }
 
 void ListPanelFunc::FTPDisconnect() {

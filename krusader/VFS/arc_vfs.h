@@ -58,7 +58,7 @@ public:
 	// rename file
 	void vfs_rename(QString fileName,QString newName);
 	// calculate space
-	void vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs);
+	void vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs, bool* stop = 0);
 	// return the working dir
 	QString vfs_workingDir();
 	

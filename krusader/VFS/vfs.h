@@ -70,7 +70,7 @@ public:
 	// rename file
 	virtual void vfs_rename(QString fileName,QString newName)=0;
 	// calculate space
-	virtual void vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs)=0;
+	virtual void vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs, bool * stop = 0)=0;
 	// return the working dir
 	virtual QString vfs_workingDir()=0;
 	virtual void blockSignals(bool block){ QObject::blockSignals(block); }	

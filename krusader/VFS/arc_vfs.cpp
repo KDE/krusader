@@ -177,7 +177,6 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     isWritable    = (doRar && isWritable );
   }
 
-
 	getDirs();
 	// set the cursor to normal mode
   if (!quietMode) krApp->setCursor(KCursor::arrowCursor());
@@ -677,7 +676,8 @@ QString arc_vfs::changeDir(QString name){
 }
 
 // calculate space
-void arc_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs){
+void arc_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles, long *totalDirs,bool* stop){
+  if (stop && *stop) return;
   vfile* vf = vfs_search(name);
 
   // get the path inside the archive
@@ -698,9 +698,11 @@ void arc_vfs::vfs_calcSpace(QString name ,long long *totalSize,long *totalFiles,
     vfs_filesP = findDir(path+name);
 
     // process all the files in the directory.
-    for( vf = vfs_getFirstFile(); vf != 0; vf = vfs_getNextFile() )
-      vfs_calcSpace(vf->vfile_getName(),totalSize,totalFiles,totalDirs);
-
+    for( vf = vfs_getFirstFile(); vf != 0; vf = vfs_getNextFile() ){
+      if (stop && *stop) return;
+      vfs_calcSpace(vf->vfile_getName(),totalSize,totalFiles,totalDirs,stop);
+    }
+    
     vfs_origin = origin_backup;     // restore origin
     vfs_filesP = vfs_filesP_backup; // restore vfs_filesP
   }

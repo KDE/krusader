@@ -57,7 +57,7 @@ public:
 	void vfs_rename(QString fileName,QString newName);
 	QString vfs_workingDir();
 	// not implemented for ftp !
-	void vfs_calcSpace(QString ,long long *,long *, long *){}
+	void vfs_calcSpace(QString ,long long *,long *, long *,bool*){}
 	
 public slots:
 	// recieve KDirLister  job.
