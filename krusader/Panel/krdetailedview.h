@@ -36,6 +36,7 @@ A
 #include <qwidget.h>
 #include <qtimer.h>
 #include <qdatetime.h>
+#include <qdict.h>
 #include "krview.h"
 
 class QDragMoveEvent;
@@ -69,7 +70,10 @@ public:
    virtual KrViewItem *getKrViewItemAt( const QPoint &vp );
    virtual KrViewItem *findItemByName( const QString &name ) { return dynamic_cast<KrViewItem*>( findItem( name, 0 ) ); }
    virtual void addItems( vfs *v, bool addUpDir = true );
-   virtual QString getCurrentItem() const;
+	virtual void addItem(vfile *vf);
+	virtual void delItem(const QString &name);
+	virtual void updateItem(vfile *vf);
+ 	virtual QString getCurrentItem() const;
    virtual void makeItemVisible( const KrViewItem *item ) { ensureItemVisible( dynamic_cast<const QListViewItem*>( item ) ); }
    virtual void setCurrentItem( const QString& name );
    virtual void updateView() { triggerUpdate(); emit selectionChanged(); }
@@ -130,10 +134,6 @@ protected slots:
    }
 
 public slots:
-   void addedVfile( const vfile *vf );
-   void updatedVfile( const vfile *vf );
-   void deletedVfile( const QString &name );
-
    void refreshColors();
 
 private:
@@ -149,6 +149,7 @@ private:
    QTime clickTime;
    QListViewItem *clickedItem;
    QTimer renameTimer;
+	QDict<QListViewItem> dict;
 };
 
 #endif /* KRDETAILEDVIEW_H */
