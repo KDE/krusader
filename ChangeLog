@@ -1,10 +1,8 @@
 ======================
+    ADDED: SHIFT-F3 view dialog.
+    ADDED: The internal viewer follow links on HTML pages.
     ADDED: Total Commander like file renaming (two subsequent single clicks on an item)
-    FIXED: crash when editing a file with # in the filename
-    FIXED: inplace renaming bug with extention when pressing ctrl+click
     ADDED: panel swapping by Ctrl+U
-    FIXED: run-in-terminal would cause the terminal to close prematuraly and results would be lost.
-    FIXED: free disk capacity miscalculation for Ext2 and Ext3 file systems.
     ADDED: command line improvments: ctrl+/ opens history list, up&down keys work again, and general usability
     ADDED: krusader can now be started from commandline with new options:
            try: krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net !
@@ -15,6 +13,10 @@
     ADDED: rar support to krArc KIO slave.
     ADDED: open with in the right click menu for multiple files with the same mimetype.
     ADDED: Patch by Heiner <h.eichmann_at_gmx.de>  which adds a cancel button to the calculate space action.
+    FIXED: run-in-terminal would cause the terminal to close prematuraly and results would be lost.
+    FIXED: free disk capacity miscalculation for Ext2 and Ext3 file systems.
+    FIXED: crash when editing a file with # in the filename
+    FIXED: inplace renaming bug with extention when pressing ctrl+click
     FIXED: whenever the folder gets refreshed, the current file would be lost
     FIXED: problematic behavior when trying to SPACE a folder without permissions
     FIXED: Ctrl-A didn't work properly
@@ -27,6 +29,8 @@
     FIXED: bug when using space to calculate space of directory
     FIXED: crash when viewing files with # in their name.
     FIXED: compilation problem with GCC >= 3.3 (thanks to Adios)
+    FIXED: Force refresh when creating a new directory.
+    FIXED: a crash when trying to repaint when the VFS was deleted.
     REMOVED: Device Manager action
     UPDATED: many usability issues (thanks to Mikolaj)
     UPDATED: German translation
