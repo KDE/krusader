@@ -48,6 +48,7 @@ public:
 public slots:
   void slotDisable();
   void slotForegroundChanged();
+  void slotActiveChanged();
   void slotMarkedBackgroundChanged();
   void generatePreview();
 
@@ -58,11 +59,13 @@ private:
   QLabel                    *getSelectorLabel( QString name );
   
 private:
-  QGroupBox                          *colorsGrp;
+  QWidget                            *colorsGrp;
   QGridLayout                        *colorsGrid;
+  int                                 offset;
   
   QGroupBox                          *previewGrp;
   QGridLayout                        *previewGrid;
+  QTabWidget                         *colorTabWidget;
 
   KonfiguratorCheckBoxGroup          *generals;
   
