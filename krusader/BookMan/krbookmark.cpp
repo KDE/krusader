@@ -37,3 +37,5 @@ KrBookmark* KrBookmark::devices(KActionCollection *collection) {
 void KrBookmark::activatedProxy() {
 	emit activated(url());
 }
+
+#include "krbookmark.moc"

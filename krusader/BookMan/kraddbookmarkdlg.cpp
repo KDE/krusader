@@ -113,3 +113,5 @@ void KrAddBookmarkDlg::newFolder() {
 	_createIn->setCurrentItem(item);
 	item->setSelected(true);
 }
+
+#include "kraddbookmarkdlg.moc"

@@ -33,3 +33,5 @@ void KrBookmarkButton::openPopup() {
 	populate();
 	popup()->exec(mapToGlobal(QPoint(0, height())));
 }
+
+#include "krbookmarkbutton.moc"
