@@ -498,8 +498,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
   switch ( e->key() ) {
       case Key_Enter :
       case Key_Return : {        
-        if( e->state() & ControlButton )
-          SLOTS->insertFileName( (e->state() & ShiftButton) != 0 );
+        if ( e->state() & ControlButton ) // let the panel handle it
+          e->ignore();
         else
         {
           KrViewItem * i = getCurrentKrViewItem();

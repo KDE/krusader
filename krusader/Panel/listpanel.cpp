@@ -691,6 +691,13 @@ void ListPanel::prepareToDelete() {
 
 void ListPanel::keyPressEvent( QKeyEvent *e ) {
   switch ( e->key() ) {
+      case Key_Enter :
+      case Key_Return :
+        if( e->state() & ControlButton )
+          SLOTS->insertFileName( (e->state() & ShiftButton) != 0 );
+        else
+          e->ignore();
+        break;
       case Key_Right :
       case Key_Left :
       if ( e->state() == ControlButton ) {
@@ -708,6 +715,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
         return ;
       } else
         e->ignore();
+      break;
 
       case Key_Down :
       if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
@@ -718,6 +726,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
         return ;
       } else
         e->ignore();
+      break;
 
       default:
       // if we got this, it means that the view is not doing
