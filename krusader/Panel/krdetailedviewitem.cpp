@@ -45,9 +45,7 @@
 #include <kmimetype.h>
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
-  QObject(parent), KListViewItem(parent, after), KrViewItem(), _view(parent) {
-  if (vf) _vf = new vfile(*vf);
-  else _vf = 0L;
+  QObject(parent), KListViewItem(parent, after), KrViewItem(), _view(parent), _vf(vf) {
   repaintItem();
 }
 
