@@ -83,9 +83,6 @@ typedef QValueList<KServiceOffer> OfferList;
 ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
   QWidget(parent, name), colorMask(255), compareMode(false), currDragItem(0), statsAgent(0), _left(left) {
 
-  // the view must be created before ListPanelFunc !!!
-  view = new KrDetailedView(this, _left, krConfig);
-
   func = new ListPanelFunc(this);
   setAcceptDrops(true);
 	layout=new QGridLayout(this,3,2);
@@ -142,6 +139,7 @@ ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
   connect(origin,SIGNAL(returnPressed(const QString&)),func,SLOT(openUrl(const QString&)));
   connect(origin,SIGNAL(urlSelected(const QString&)),func,SLOT(openUrl(const QString&)));
 
+  view = new KrDetailedView(this, _left, krConfig);
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(executed(QString&)), func, SLOT(execute(QString&)));
 	connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(needFocus()), this, SLOT(slotFocusOnMe()));
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(selectionChanged()), this, SLOT(slotUpdateTotals()));

@@ -45,6 +45,7 @@
 #include <kdebug.h>
 #include <kprogress.h>
 #include <kstatusbar.h>
+#include <klineeditdlg.h>
 
 //////////////////////////////////////////////////////////////////////////
 //  The following is KrDetailedView's settings in KConfig:
@@ -69,12 +70,13 @@
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "Type" ),
-                                         i18n( "Size" ), i18n( "Modified" ), i18n( "Perms" ), i18n( "rwx" ),
-                                         i18n( "Owner" ), i18n( "Group" ) };
+                                       i18n( "Size" ), i18n( "Modified" ), i18n( "Perms" ), i18n( "rwx" ),
+                                       i18n( "Owner" ), i18n( "Group" ) };
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
     KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
-_nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left(left) {
+    _nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left(left)
+{
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   // setup the default sort and filter
   _filter = KrView::All;
@@ -103,43 +105,51 @@ _nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left
   _withIcons = _config->readBoolEntry( "With Icons", _WithIcons ); // we we display icons ?
   newColumn( Name );  // we always have a name
   setColumnWidthMode( column( Name ), QListView::Manual );
-  if ( _config->readBoolEntry( "Ext Column", _ExtColumn ) ) {
+  if ( _config->readBoolEntry( "Ext Column", _ExtColumn ) )
+  {
     newColumn( Extention );
     setColumnWidthMode( column( Extention ), QListView::Manual );
     setColumnWidth( column( Extention ), QFontMetrics( font() ).width( "tar.bz2" ) );
   }
-  if ( _config->readBoolEntry( "Mime Column", _MimeColumn ) ) {
+  if ( _config->readBoolEntry( "Mime Column", _MimeColumn ) )
+  {
     newColumn( Mime );
     setColumnWidthMode( column( Mime ), QListView::Manual );
     setColumnWidth( column( Mime ), QFontMetrics( font() ).width( 'X' ) * 6 );
   }
-  if ( _config->readBoolEntry( "Size Column", _SizeColumn ) ) {
+  if ( _config->readBoolEntry( "Size Column", _SizeColumn ) )
+  {
     newColumn( Size );
     setColumnWidthMode( column( Size ), QListView::Manual );
     setColumnWidth( column( Size ), QFontMetrics( font() ).width( "9" ) * 10 );
     setColumnAlignment( column( Size ), Qt::AlignRight ); // right-align numbers
   }
-  if ( _config->readBoolEntry( "DateTime Column", _DateTimeColumn ) ) {
+  if ( _config->readBoolEntry( "DateTime Column", _DateTimeColumn ) )
+  {
     newColumn( DateTime );
     setColumnWidthMode( column( DateTime ), QListView::Manual );
     setColumnWidth( column( DateTime ), QFontMetrics( font() ).width( "99/99/99  99:99" ) );
   }
-  if ( _config->readBoolEntry( "Perm Column", _PermColumn ) ) {
+  if ( _config->readBoolEntry( "Perm Column", _PermColumn ) )
+  {
     newColumn( Permissions );
     setColumnWidthMode( column( Permissions ), QListView::Manual );
     setColumnWidth( column( Permissions ), QFontMetrics( font() ).width( "drwxrwxrwx" ) );
   }
-  if ( _config->readBoolEntry( "KrPerm Column", _KrPermColumn ) ) {
+  if ( _config->readBoolEntry( "KrPerm Column", _KrPermColumn ) )
+  {
     newColumn( KrPermissions );
     setColumnWidthMode( column( KrPermissions ), QListView::Manual );
     setColumnWidth( column( KrPermissions ), QFontMetrics( font() ).width( "RWX" ) );
   }
-  if ( _config->readBoolEntry( "Owner Column", _OwnerColumn ) ) {
+  if ( _config->readBoolEntry( "Owner Column", _OwnerColumn ) )
+  {
     newColumn( Owner );
     setColumnWidthMode( column( Owner ), QListView::Manual );
     setColumnWidth( column( Owner ), QFontMetrics( font() ).width( 'X' ) * 6 );
   }
-  if ( _config->readBoolEntry( "Group Column", _GroupColumn ) ) {
+  if ( _config->readBoolEntry( "Group Column", _GroupColumn ) )
+  {
     newColumn( Group );
     setColumnWidthMode( column( Group ), QListView::Manual );
     setColumnWidth( column( Group ), QFontMetrics( font() ).width( 'X' ) * 6 );
@@ -157,15 +167,20 @@ _nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left
   // allow in-place renaming
   setItemsRenameable(true);
   setRenameable(column(Name), true);
-
+  connect(renameLineEdit(), SIGNAL(done(QListViewItem *, int)),
+          this, SLOT(inplaceRenameFinished(QListViewItem*, int)));
+  connect(this, SIGNAL(renameItem(const QString &, const QString &)),
+          dynamic_cast<ListPanel*>(parent)->func, SLOT(rename(const QString &, const QString &)));
   restoreSettings();
 }
 
-KrDetailedView::~KrDetailedView() {
+KrDetailedView::~KrDetailedView()
+{
   saveSettings();
 }
 
-void KrDetailedView::newColumn( ColumnType type ) {
+void KrDetailedView::newColumn( ColumnType type )
+{
   int i;
   for ( i = 0; i < MAX_COLUMNS; i++ )
     if ( _columns[ i ] == Unused )
@@ -181,20 +196,23 @@ void KrDetailedView::newColumn( ColumnType type ) {
  * returns the number of column which holds values of type 'type'.
  * if such values are not presented in the view, -1 is returned.
  */
-int KrDetailedView::column( ColumnType type ) {
+int KrDetailedView::column( ColumnType type )
+{
   for ( int i = 0; i < MAX_COLUMNS; i++ )
     if ( _columns[ i ] == type )
       return i;
   return -1;
 }
 
-void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
+void KrDetailedView::addItems( vfs *v, bool addUpDir )
+{
   QListViewItem * item = firstChild();
   QListViewItem *currentItem = item;
   QString size, name;
 
   // add the up-dir arrow if needed
-  if ( addUpDir ) {
+  if ( addUpDir )
+  {
     KListViewItem * item = new KrDetailedViewItem( this, ( QListViewItem* ) 0L, ( vfile* ) 0L );
     item->setText( column( Name ), ".." );
     item->setText( column( Size ), "<DIR>" );
@@ -212,7 +230,8 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
   bool as = ascendingSort();
   setSorting( -1 ); // disable sorting
 
-  for ( vfile * vf = v->vfs_getFirstFile(); vf != 0 ; vf = v->vfs_getNextFile() ) {
+  for ( vfile * vf = v->vfs_getFirstFile(); vf != 0 ; vf = v->vfs_getNextFile() )
+  {
     size = KRpermHandler::parseSize( vf->vfile_getSize() );
     name = vf->vfile_getName();
     bool isDir = vf->vfile_isDir();
@@ -231,8 +250,10 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       }
     }*/
 
-    if ( !isDir || ( isDir && ( _filter & ApplyToDirs ) ) ) {
-      switch ( _filter ) {
+    if ( !isDir || ( isDir && ( _filter & ApplyToDirs ) ) )
+    {
+      switch ( _filter )
+      {
           case KrView::All :
             break;
           case KrView::Custom :
@@ -287,7 +308,8 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
   ensureItemVisible( currentItem );
 }
 
-QString KrDetailedView::getCurrentItem() const {
+QString KrDetailedView::getCurrentItem() const
+{
   QListViewItem * it = currentItem();
   if ( !it )
     return QString::null;
@@ -295,21 +317,25 @@ QString KrDetailedView::getCurrentItem() const {
     return dynamic_cast<KrViewItem*>( it ) ->name();
 }
 
-void KrDetailedView::setCurrentItem( const QString& name ) {
+void KrDetailedView::setCurrentItem( const QString& name )
+{
   for ( QListViewItem * it = firstChild(); it != 0; it = it->itemBelow() )
     if ( dynamic_cast<KrViewItem*>( it ) ->
-         name() == name ) {
+         name() == name )
+    {
       KListView::setCurrentItem( it );
       break;
     }
 }
 
-void KrDetailedView::clear() {
+void KrDetailedView::clear()
+{
   KListView::clear();
   _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
 }
 
-void KrDetailedView::setSortMode( SortSpec mode ) {
+void KrDetailedView::setSortMode( SortSpec mode )
+{
   _sortMode = mode; // the KrViewItems will check it by themselves
   bool ascending = !( mode & KrView::Descending );
   int cl = -1;
@@ -340,9 +366,11 @@ void KrDetailedView::setSortMode( SortSpec mode ) {
   KListView::sort();
 }
 
-void KrDetailedView::slotClicked( QListViewItem *item ) {
+void KrDetailedView::slotClicked( QListViewItem *item )
+{
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
-  if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
+  if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) )
+  {
     if ( !item )
       return ;
     QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
@@ -350,9 +378,11 @@ void KrDetailedView::slotClicked( QListViewItem *item ) {
   }
 }
 
-void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
+void KrDetailedView::slotDoubleClicked( QListViewItem *item )
+{
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
-  if ( !_config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
+  if ( !_config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) )
+  {
     if ( !item )
       return ;
     QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
@@ -360,16 +390,19 @@ void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
   }
 }
 
-void KrDetailedView::prepareForActive() {
+void KrDetailedView::prepareForActive()
+{
   setFocus();
   _focused = true;
 }
 
-void KrDetailedView::prepareForPassive() {
+void KrDetailedView::prepareForPassive()
+{
   _focused = false;
 }
 
-void KrDetailedView::slotItemDescription( QListViewItem *item ) {
+void KrDetailedView::slotItemDescription( QListViewItem *item )
+{
   KrViewItem * it = dynamic_cast<KrViewItem*>( item );
   if ( !it )
     return ;
@@ -377,25 +410,29 @@ void KrDetailedView::slotItemDescription( QListViewItem *item ) {
   emit itemDescription( desc );
 }
 
-void KrDetailedView::slotCurrentChanged( QListViewItem *item ) {
+void KrDetailedView::slotCurrentChanged( QListViewItem *item )
+{
   if ( !item )
     return ;
   _nameToMakeCurrent = dynamic_cast<KrViewItem*>( item ) ->name();
 }
 
-void KrDetailedView::contentsMousePressEvent( QMouseEvent *e ) {
+void KrDetailedView::contentsMousePressEvent( QMouseEvent *e )
+{
   if ( !_focused )
     emit needFocus();
   KListView::contentsMousePressEvent( e );
 }
 
-void KrDetailedView::contentsWheelEvent( QWheelEvent *e ) {
+void KrDetailedView::contentsWheelEvent( QWheelEvent *e )
+{
   if ( !_focused )
     emit needFocus();
   KListView::contentsWheelEvent( e );
 }
 
-void KrDetailedView::handleContextMenu( QListViewItem* it, const QPoint& pos, int ) {
+void KrDetailedView::handleContextMenu( QListViewItem* it, const QPoint& pos, int )
+{
   if ( !_focused )
     emit needFocus();
   if ( !it )
@@ -406,7 +443,8 @@ void KrDetailedView::handleContextMenu( QListViewItem* it, const QPoint& pos, in
   emit contextMenu( QPoint( pos.x(), pos.y() - header() ->height() ) );
 }
 
-void KrDetailedView::startDrag() {
+void KrDetailedView::startDrag()
+{
   QStringList items;
   getSelectedItems( &items );
   if ( items.empty() )
@@ -419,15 +457,18 @@ void KrDetailedView::startDrag() {
   emit letsDrag( items, px );
 }
 
-KrViewItem *KrDetailedView::getKrViewItemAt( const QPoint &vp ) {
+KrViewItem *KrDetailedView::getKrViewItemAt( const QPoint &vp )
+{
   return dynamic_cast<KrViewItem*>( KListView::itemAt( vp ) );
 }
 
-bool KrDetailedView::acceptDrag( QDropEvent* ) const {
+bool KrDetailedView::acceptDrag( QDropEvent* ) const
+{
   return true;
 }
 
-void KrDetailedView::contentsDropEvent( QDropEvent *e ) {
+void KrDetailedView::contentsDropEvent( QDropEvent *e )
+{
   /*  if (_currDragItem)
       dynamic_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));*/
   e->setPoint( contentsToViewport( e->pos() ) );
@@ -435,7 +476,8 @@ void KrDetailedView::contentsDropEvent( QDropEvent *e ) {
   e->ignore();
 }
 
-void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent *e ) {
+void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent *e )
+{
   /*  KrViewItem *i=getKrViewItemAt(contentsToViewport(e->pos()));
     // reset the last used icon
     if (_currDragItem != i && _currDragItem)
@@ -461,58 +503,75 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent *e ) {
   KListView::contentsDragMoveEvent( e );
 }
 
-void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
+void KrDetailedView::keyPressEvent( QKeyEvent *e )
+{
   if ( !e || !firstChild() )
     return ; // subclass bug
-  switch ( e->key() ) {
+  switch ( e->key() )
+  {
       case Key_Enter :
-      case Key_Return : {
+      case Key_Return :
+      {
         KrViewItem * i = getCurrentKrViewItem();
         QString tmp = i->name();
         emit executed( tmp );
         break;
       }
       case Key_Right :
-      if ( e->state() == ControlButton ) { // user pressed CTRL+Right
-        if ( krApp->mainView->activePanel == krApp->mainView->left ) {
+      if ( e->state() == ControlButton )
+      { // user pressed CTRL+Right
+        if ( krApp->mainView->activePanel == krApp->mainView->left )
+        {
           // refresh the other panel (if possible) with our path
           krApp->mainView->activePanel->otherPanel->func->openUrl(
             krApp->mainView->activePanel->realPath );
           krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
           return ;
         }
-      } else
-        if ( e->state() == AltButton ) { // user pressed Alt+Right
+      }
+      else
+        if ( e->state() == AltButton )
+        { // user pressed Alt+Right
           //ListPanel * p = krApp->mainView->activePanel;
           krApp->mainView->right->popBookmarks();
           return ;
-        } else { // just a normal click - do a lynx-like moving thing
+        }
+        else
+        { // just a normal click - do a lynx-like moving thing
           KrViewItem *i = getCurrentKrViewItem();
-          if ( i->name() == ".." ) { // if clicking on the ".." entry
+          if ( i->name() == ".." )
+          { // if clicking on the ".." entry
             SLOTS->dirUp(); // ask krusader to move up a directory
             return ;
           }
-          if ( i->isDir() ) {             // we create a return-pressed event,
+          if ( i->isDir() )
+          {             // we create a return-pressed event,
             QString tmp = i->name();
             emit executed( tmp );  // thereby emulating a chdir
           }
           return ; // safety
         }
       case Key_Left :
-      if ( e->state() == ControlButton ) { // user pressed CTRL+Left
-        if ( krApp->mainView->activePanel == krApp->mainView->right ) {
+      if ( e->state() == ControlButton )
+      { // user pressed CTRL+Left
+        if ( krApp->mainView->activePanel == krApp->mainView->right )
+        {
           // refresh the other panel (if possible) with our path
           krApp->mainView->activePanel->otherPanel->func->openUrl(
             krApp->mainView->activePanel->realPath );
           krApp->mainView->activePanel->otherPanel->slotFocusOnMe();
           return ;
         }
-      } else
-        if ( e->state() == AltButton ) { // user pressed Alt+Right
+      }
+      else
+        if ( e->state() == AltButton )
+        { // user pressed Alt+Right
           //ListPanel * p = krApp->mainView->activePanel;
           krApp->mainView->left->popBookmarks();
           return ;
-        } else {          // a normal click - do a lynx-like moving thing
+        }
+        else
+        {          // a normal click - do a lynx-like moving thing
           SLOTS->dirUp(); // ask krusader to move up a directory
           return ;         // safety
         }
@@ -520,14 +579,16 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       KListView::keyPressEvent( e );
       break;
       case Key_Down :
-      if ( e->state() == ControlButton ) { // user pressed CTRL+Down
+      if ( e->state() == ControlButton )
+      { // user pressed CTRL+Down
         // give the keyboard focus to the command line
         if ( krApp->mainView->cmdLine->isVisible() )
           krApp->mainView->cmdLineFocus();
         else if ( krApp->mainView->terminal_dock->isVisible() )
           krApp->mainView->terminal_dock->setFocus();
         return ;
-      } else
+      }
+      else
         KListView::keyPressEvent( e );
       break;
       case Key_Backspace :       // dir up
@@ -541,9 +602,10 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       SLOTS->deleteFiles();
       return ;
       case Key_Space :
-      if (e->state()==ControlButton) {
+      {
         KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> (getCurrentKrViewItem());
-        if (!viewItem || !(viewItem->isDir() && viewItem->size()<=0)) {
+        if (!viewItem || !(viewItem->isDir() && viewItem->size()<=0))
+        {
           KListView::keyPressEvent(e);
           return; // wrong type
         }
@@ -556,9 +618,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         _countSize+=totalSize;
         viewItem->repaintItem();
         KListView::keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Key_Insert, 0, 0));
-      } else
-        KListView::keyPressEvent(e);
-      return;
+      }
+      break;
       default:
       KListView::keyPressEvent( e );
       updateView();
@@ -566,3 +627,67 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
   }
 }
 
+void KrDetailedView::renameCurrentItem()
+{
+  int c;
+  QString newName, fileName;
+  KrViewItem *it = getCurrentKrViewItem();
+  if (it) fileName = it->name();
+  else return; // quit if no current item available
+
+  // determine which column is inplace renameable
+  for (c=0; c<columns(); c++)
+    if (isRenameable(c)) break; // one MUST be renamable
+  if (!isRenameable(c)) c = -1; // failsafe
+
+  if (c >= 0)
+  {
+    // do we have an EXT column? if so, handle differently:
+    // copy the contents of the EXT column over to the name
+    if (column(Extention) != -1)
+    {
+      dynamic_cast<QListViewItem*>(it)->setText(column(Name), fileName);
+      dynamic_cast<QListViewItem*>(it)->setText(column(Extention), QString::null);
+      repaintItem(dynamic_cast<QListViewItem*>(it));
+    }
+    rename(dynamic_cast<QListViewItem*>(it), c);
+    // signal will be emited when renaming is done, and finalization
+    // will occur in inplaceRenameFinished()
+  }
+  else
+  { // do this in case inplace renaming is disabled
+    // good old dialog box
+    bool ok = false;
+    newName = KLineEditDlg::getText( i18n( "Rename " ) + fileName + i18n( " to:" ), fileName, &ok, krApp );
+    // if the user canceled - quit
+    if ( !ok || newName == fileName )
+      return ;
+    emit renameItem(it->name(), newName);
+  }
+}
+
+void KrDetailedView::inplaceRenameFinished(QListViewItem *it, int col)
+{
+  if (!it)
+  { // major failure - call developers
+    kdWarning() << "Major failure at inplaceRenameFinished(): item is null" << endl;
+    exit(0);
+  }
+  // check if the item was indeed renamed
+  if (it->text(column(Name)) != dynamic_cast<KrDetailedViewItem*>(it)->name()) // was renamed
+    emit renameItem(dynamic_cast<KrDetailedViewItem*>(it)->name(), it->text(column(Name)));
+  else if (column(Extention) != -1)
+  { // nothing happened, restore the view (if needed)
+    int i;
+    QString ext, name = dynamic_cast<KrDetailedViewItem*>(it)->name();
+    if ((i = name.findRev('.')) > 0)
+    {
+      ext = name.mid(i+1);
+      name = name.mid(0, i);
+    }
+    it->setText(column(Name), name);
+    it->setText(column(Extention), ext);
+    repaintItem(it);
+  }
+  setFocus();
+}

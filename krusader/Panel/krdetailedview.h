@@ -76,6 +76,7 @@ public:
   virtual void restoreSettings() { KListView::restoreLayout(_config, nameInKConfig()); }
   virtual QString nameInKConfig() { return _nameInKConfig; }
   QString itemToFilename(QListViewItem *it) { return dynamic_cast<KrViewItem*>(it)->name(); }//remove
+  virtual void renameCurrentItem();
 
 ///////////////////////// todo ///////////////////////////////////
 //  virtual void setFilter(FilterSpec filter) {}
@@ -87,6 +88,7 @@ signals:
   void contextMenu(const QPoint &point);
   void letsDrag(QStringList items, QPixmap icon);
   void gotDrop(QDropEvent *e);
+  void renameItem(const QString &oldName, const QString &newName);
 
 protected:
   void newColumn(ColumnType type);
@@ -104,6 +106,7 @@ protected slots:
   void slotItemDescription(QListViewItem *item);
   void slotCurrentChanged(QListViewItem *item);
   void handleContextMenu(QListViewItem*, const QPoint&, int);
+  void inplaceRenameFinished(QListViewItem *it, int col);
 
 private:
   ColumnType _columns[MAX_COLUMNS];

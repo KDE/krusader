@@ -381,15 +381,15 @@ void ListPanelFunc::moveFiles() {
 
 // called from SLOTS to begin the renaming process
 void ListPanelFunc::rename() {
-  panel->view->renameCurrent();
+  panel->view->renameCurrentItem();
 }
 
 // called by signal itemRenamed() from the view to complete the renaming process
-void ListPanelFunc::rename(QListViewItem *item, const QString &str) {
-  if (dynamic_cast<KrViewItem*>(item)->name() == str) return; // do nothing
-  panel->view->setNameToMakeCurrent( str );
+void ListPanelFunc::rename(const QString &oldname, const QString &newname) {
+  if (oldname == newname) return; // do nothing
+  panel->view->setNameToMakeCurrent( newname );
   // as always - the vfs do the job
-  files() ->vfs_rename( dynamic_cast<KrViewItem*>(item)->name(), str );
+  files() ->vfs_rename( oldname, newname );  
 }
 
 void ListPanelFunc::mkdir() {

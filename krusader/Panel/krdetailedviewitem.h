@@ -34,13 +34,15 @@
 #include "krviewitem.h"
 #include "../VFS/vfile.h"
 #include <klistview.h>
+#include <qobject.h>
 
 class QPixmap;
 class KrDetailedView;
 
-class KrDetailedViewItem : public KListViewItem, public KrViewItem {
-friend class KrDetailedView;
+class KrDetailedViewItem : public QObject, public KListViewItem, public KrViewItem {
+  Q_OBJECT
 
+friend class KrDetailedView;
 public:
   KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
   QString name() const;
@@ -60,6 +62,9 @@ public:
   void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
   bool isAlternate() { return false; }
   void repaintItem();
+
+signals:
+  void renameCancelled(KrDetailedViewItem *);
 
 protected:
   // text() was made protected in order to catch every place where text(x) is used

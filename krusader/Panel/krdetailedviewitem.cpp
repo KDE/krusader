@@ -41,7 +41,7 @@
 #include <kdebug.h>
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
-  KListViewItem(parent, after), KrViewItem(), _vf(vf), _view(parent) {
+  QObject(parent), KListViewItem(parent, after), KrViewItem(), _vf(vf), _view(parent) {
   repaintItem();
 }
 
@@ -233,4 +233,3 @@ QString KrDetailedViewItem::description() const {
     return text;
   }
 }
-

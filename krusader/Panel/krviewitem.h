@@ -31,6 +31,7 @@
 #define KRVIEWITEM_H
 
 class QString;
+class QPixmap;
 
 class KrViewItem {
 public:

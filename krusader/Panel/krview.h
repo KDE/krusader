@@ -96,6 +96,7 @@ public:
   virtual void prepareForActive() = 0;
   virtual void prepareForPassive() = 0;
   virtual QString nameInKConfig() = 0;
+  virtual void renameCurrentItem() = 0; // Rename current item. returns immediatly
   // also, the following must be implemented (but must be remarked here)
   // signals:
   //   void letsDrag(QStringList items, QPixmap icon);
