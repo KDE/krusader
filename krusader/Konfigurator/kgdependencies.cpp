@@ -59,7 +59,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   addApplication( "kdesu",    pathsGrid, 2, general_tab );
   addApplication( "kget",     pathsGrid, 3, general_tab );
   addApplication( "kmail",    pathsGrid, 4, general_tab );
-  addApplication( "kompare",  pathsGrid, 5, general_tab );
+  addApplication( "diff utility",  pathsGrid, 5, general_tab );
   addApplication( "krename",  pathsGrid, 6, general_tab );
   addApplication( "krusader", pathsGrid, 7, general_tab );
   addApplication( "locate",   pathsGrid, 8, general_tab );
