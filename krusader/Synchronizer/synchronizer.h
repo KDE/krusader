@@ -63,8 +63,7 @@ class SynchronizerFileItem
     void                 *m_userData;     // user data
     bool                  m_overWrite;    // overwrite flag
     QString               m_destination;  // the destination URL at rename
-    bool                  m_lastMark;     // the previous mark flag
-    
+
   public:
     SynchronizerFileItem(QString nam, QString dir, bool mark, bool exL,
                        bool exR, KIO::filesize_t leftSize, KIO::filesize_t rightSize,
@@ -75,7 +74,7 @@ class SynchronizerFileItem
                        m_rightSize( rightSize ), m_leftDate( leftDate ),
                        m_rightDate( rightDate ),m_task( tsk ), m_isDir( isDir ),
                        m_parent(parent), m_userData( 0 ), m_overWrite( false ),
-                       m_destination( QString::null ), m_lastMark( false ) {}
+                       m_destination( QString::null ) {}
 
     inline bool                   isMarked()              {return m_marked;}
     inline void                   setMarked( bool flag )  {m_marked = flag;}
@@ -96,8 +95,6 @@ class SynchronizerFileItem
     inline void                   setOverWrite()          {m_overWrite = true;}
     inline QString                destination()           {return m_destination;}
     inline void                   setDestination(QString d) {m_destination = d;}
-    inline void                   noteMark()              {m_lastMark = m_marked;}
-    inline bool                   isMarkChanged()         {return m_lastMark != m_marked;}
 };
 
 class Synchronizer : public QObject
@@ -113,7 +110,7 @@ class Synchronizer : public QObject
                      bool igDate, bool asymm, bool cmpByCnt, bool autoSc );
     void    stop() {stopped = true;}
     void    setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing, bool del );
-    int     refresh();
+    int     refresh( bool nostatus=false );
     bool    totalSizes( int *, KIO::filesize_t *, int *, KIO::filesize_t *, int *, KIO::filesize_t * );
     void    synchronize( bool leftCopyEnabled, bool rightCopyEnabled, bool deleteEnabled, bool overWrite );
     void    pause();
@@ -156,7 +153,7 @@ class Synchronizer : public QObject
                                              time_t, bool isDir = false );
     bool    checkName( QString name );
     bool    isMarked( TaskType task, bool dupl );
-    void    markParentDirectories( SynchronizerFileItem * );
+    bool    markParentDirectories( SynchronizerFileItem * );
     void    executeTask();
     KURL    fromPathOrURL( QString url );
     bool    compareByContent( QString, QString );

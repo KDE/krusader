@@ -248,7 +248,12 @@ SynchronizerFileItem * Synchronizer::addItem( SynchronizerFileItem *parent, QStr
 
   if( marked )
   {
-    markParentDirectories( item );
+    if( markParentDirectories( item ) )
+    {
+      int oldFileCount = fileCount;
+      refresh( true );
+      fileCount = oldFileCount;
+    }
     fileCount++;
   }
 
@@ -393,19 +398,21 @@ bool Synchronizer::isMarked( TaskType task, bool isDuplicate )
   return false;
 }
 
-void Synchronizer::markParentDirectories( SynchronizerFileItem *item )
+bool Synchronizer::markParentDirectories( SynchronizerFileItem *item )
 {
   if( item->parent() == 0 || item->parent()->isMarked() ) 
-    return;
+    return false;
 
   markParentDirectories( item->parent() );
 
   item->parent()->setMarked( true );
+
   fileCount++;
   emit markChanged( item->parent() );
+  return true;
 }
 
-int Synchronizer::refresh()
+int Synchronizer::refresh(bool nostatus)
 {
   fileCount = 0;
   
@@ -413,8 +420,6 @@ int Synchronizer::refresh()
 
   while( item )
   {
-    item->noteMark();
-    
     bool marked = isMarked( item->task(), item->existsInLeft() && item->existsInRight() );
     item->setMarked( marked );
 
@@ -430,13 +435,13 @@ int Synchronizer::refresh()
   item = resultList.first();
   while( item )
   {
-    if( item->isMarkChanged() )
-      emit markChanged( item );
-
+    emit markChanged( item );
     item = resultList.next();
   }
   
-  emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
+  if( !nostatus )
+    emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
+
   return fileCount;
 }
 
