@@ -33,9 +33,15 @@ class PanelManager: public QWidget {
      */
     void startPanel(ListPanel *panel, QString path);
 
+  public slots:
+    /**
+     * Called externally to start a new tab. Example of usage would be the "open in a new tab"
+     * action, from the context-menu.
+     */
+    void slotNewTab(QString path);
+
   protected slots:
     void slotNewTab();
-    void slotNewTab(QString path);
     void slotCloseTab();
     void slotChangePanel(ListPanel *p);
 

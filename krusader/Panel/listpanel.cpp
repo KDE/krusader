@@ -1,6 +1,6 @@
 /***************************************************************************
-                            listpanel.cpp
-                         -------------------
+                           listpanel.cpp
+                        -------------------
 copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
 e-mail               : krusader@users.sourceforge.net
 web site             : http://krusader.sourceforge.net
@@ -10,14 +10,14 @@ Description
 
 A 
 
- db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
- 88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
- 88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
- 88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
- 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
- YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                 S o u r c e    F i l e
+                                                S o u r c e    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -37,7 +37,7 @@ A
 #include <qpopupmenu.h>
 #include <qheader.h>
 #include <qtimer.h>
-#include <qregexp.h> 
+#include <qregexp.h>
 // KDE includes
 #include <kmessagebox.h>
 #include <klocale.h>
@@ -57,7 +57,7 @@ A
 #include <qimage.h>
 #include <qtabbar.h>
 #include <kdebug.h>
-#include <kurlrequester.h> 
+#include <kurlrequester.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../krslots.h"
@@ -65,6 +65,8 @@ A
 #include "../VFS/normal_vfs.h"
 #include "../VFS/krpermhandler.h"
 #include "listpanel.h"
+#include "../krusaderview.h"
+#include "../panelmanager.h"
 #include "../defaults.h"
 #include "../resources.h"
 #include "panelfunc.h"
@@ -349,7 +351,7 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
     file = func->files() ->vfs_search( i->name() );
 
     if ( !file ) { // trying to drop on the ".."
-      if ( virtualPath.right( 1 ) == "\\" )     // root of archive..
+      if ( virtualPath.right( 1 ) == "\\" )      // root of archive..
         isWritable = false;
       else
         copyToDirInPanel = true;
@@ -414,7 +416,7 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
       case 3 :
       mode = KIO::CopyJob::Link;
       break;
-      case - 1 :      // user pressed outside the menu
+      case - 1 :       // user pressed outside the menu
       case 4:
       return ; // cancel was pressed;
   }
@@ -446,26 +448,27 @@ void ListPanel::startDragging( QStringList names, QPixmap px ) {
 // pops a right-click menu for items
 void ListPanel::popRightClickMenu( const QPoint &loc ) {
   // these are the values that will always exist in the menu
+#define OPEN_TAB_ID   89
 #define OPEN_ID       90
- #define OPEN_WITH_ID  91
- #define OPEN_KONQ_ID  92
- #define OPEN_TERM_ID  93
- #define CHOOSE_ID     94
- #define DELETE_ID     95
- #define COPY_ID       96
- #define MOVE_ID       97
- #define RENAME_ID     98
- #define PROPERTIES_ID 99
- #define MOUNT_ID      100
- #define UNMOUNT_ID    101
- #define SHRED_ID      102
- #define NEW_LINK      103
- #define NEW_SYMLINK   104
- #define REDIRECT_LINK 105
- #define SEND_BY_EMAIL 106
- #define LINK_HANDLING 107
- #define EJECT_ID      108
-	#define PREVIEW_ID    109
+#define OPEN_WITH_ID  91
+#define OPEN_KONQ_ID  92
+#define OPEN_TERM_ID  93
+#define CHOOSE_ID     94
+#define DELETE_ID     95
+#define COPY_ID       96
+#define MOVE_ID       97
+#define RENAME_ID     98
+#define PROPERTIES_ID 99
+#define MOUNT_ID      100
+#define UNMOUNT_ID    101
+#define SHRED_ID      102
+#define NEW_LINK      103
+#define NEW_SYMLINK   104
+#define REDIRECT_LINK 105
+#define SEND_BY_EMAIL 106
+#define LINK_HANDLING 107
+#define EJECT_ID      108
+#define PREVIEW_ID    109
   // those will sometimes appear
 #define SERVICE_LIST_ID  200
   //////////////////////////////////////////////////////////
@@ -483,8 +486,11 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   // the OPEN option - open preferd service
   popup.insertItem( "Open/Run", OPEN_ID );      // create the open option
   if ( !multipleSelections ) { // meaningful only if one file is selected
-    popup.changeItem( OPEN_ID, item->icon(),     // and add pixmap
+    popup.changeItem( OPEN_ID, item->icon(),      // and add pixmap
                       i18n( ( item->isExecutable() ) && ( !item->isDir() ) ? "Run" : "Open" ) );
+    // open in a new tab (if folder)
+    if (item->isDir())
+      popup.insertItem(i18n("Open in a new tab"), OPEN_TAB_ID);
     popup.insertSeparator();
   }
   // Preview - normal vfs only ?
@@ -580,7 +586,12 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   switch ( result ) {
       case - 1 :
       return ;     // the user clicked outside of the menu
-      case OPEN_ID :            // Open/Run
+      case OPEN_TAB_ID :             // Open/Run
+      // assuming only 1 file is selected (otherwise we won't get here)
+      (krApp->mainView->activePanel == krApp->mainView->left ? krApp->mainView->leftMng :
+       krApp->mainView->rightMng)->slotNewTab( func->files() ->vfs_getFile( item->name() ) );
+      break;
+      case OPEN_ID :             // Open in a new tab
       for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
         u.setPath( func->files() ->vfs_getFile( ( *it ) ->name() ) );
         KRun::runURL( u, item->mime() );
@@ -608,10 +619,10 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
                                                QString::null, KStdGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
         KShred::shred( func->files() ->vfs_getFile( item->name() ) );
       break;
-      case OPEN_KONQ_ID :       // open in konqueror
+      case OPEN_KONQ_ID :        // open in konqueror
       kapp->startServiceByDesktopName( "konqueror", func->files() ->vfs_getFile( item->name() ) );
       break;
-      case CHOOSE_ID :          // Other...
+      case CHOOSE_ID :           // Other...
       u.setPath( func->files() ->vfs_getFile( item->name() ) );
       lst.append( u );
       KRun::displayOpenWithDialog( lst );
@@ -634,7 +645,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       case SEND_BY_EMAIL :
       SLOTS->sendFileByEmail( func->files() ->vfs_getFile( item->name() ) );
       break;
-      case OPEN_TERM_ID :       // open in terminal
+      case OPEN_TERM_ID :        // open in terminal
       QString save = getcwd( 0, 0 );
       chdir( func->files() ->vfs_getFile( item->name() ).local8Bit() );
       KProcess proc;
@@ -693,11 +704,11 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
   switch ( e->key() ) {
       case Key_Enter :
       case Key_Return :
-        if( e->state() & ControlButton )
-          SLOTS->insertFileName( (e->state() & ShiftButton) != 0 );
-        else
-          e->ignore();
-        break;
+      if ( e->state() & ControlButton )
+        SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
+      else
+        e->ignore();
+      break;
       case Key_Right :
       case Key_Left :
       if ( e->state() == ControlButton ) {
