@@ -50,6 +50,15 @@
 #include <qclipboard.h>
 #include <qheader.h>
 
+QString KrSearchDialog::lastSearchText = "";
+int KrSearchDialog::lastSearchType = 0;
+bool KrSearchDialog::lastSearchForCase = false;
+bool KrSearchDialog::lastContainsWholeWord = false;
+bool KrSearchDialog::lastContainsWithCase = true;
+bool KrSearchDialog::lastSearchInSubDirs = true;
+bool KrSearchDialog::lastSearchInArchives = false;
+bool KrSearchDialog::lastFollowSymLinks = false;
+
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, WFlags fl )
                 : QDialog( parent, name, modal, fl ), query(0), searcher(0) 
@@ -97,7 +106,18 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
 
   advancedFilter = new AdvancedFilter( searcherTabs, "advancedFilter" );
   searcherTabs->insertTab( advancedFilter, i18n( "&Advanced" ) );
-    
+
+  // load the last used values
+  generalFilter->searchFor->setEditText( lastSearchText );
+  generalFilter->searchFor->lineEdit()->selectAll();
+  generalFilter->ofType->setCurrentItem( lastSearchType );
+  generalFilter->searchForCase->setChecked( lastSearchForCase );
+  generalFilter->containsWholeWord->setChecked( lastContainsWholeWord );
+  generalFilter->containsTextCase->setChecked( lastContainsWithCase );
+  generalFilter->searchInDirs->setChecked( lastSearchInSubDirs );
+  generalFilter->searchInArchives->setChecked( lastSearchInArchives );
+  generalFilter->followLinks->setChecked( lastFollowSymLinks );
+      
   resultTab = new QWidget( searcherTabs, "resultTab" );
   resultLayout = new QGridLayout( resultTab );
   resultLayout->setSpacing( 6 );
@@ -207,13 +227,15 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   isSearching = closed = false;
 }
 
-void KrSearchDialog::closeDialog() 
+void KrSearchDialog::closeDialog( bool isAccept ) 
 {
   // stop the search if it's on-going
   if (searcher!=0) {
     delete searcher;
     searcher = 0;
   }
+  
+  // saving the searcher state
   
   krConfig->setGroup( "Search" );
   
@@ -227,15 +249,27 @@ void KrSearchDialog::closeDialog()
   krConfig->writeEntry("Date Width",  resultsList->columnWidth( 3 ) );
   krConfig->writeEntry("Perm Width",  resultsList->columnWidth( 4 ) );
   
+  lastSearchText = generalFilter->searchFor->currentText();
+  lastSearchType = generalFilter->ofType->currentItem();
+  lastSearchForCase = generalFilter->searchForCase->isChecked();
+  lastContainsWholeWord = generalFilter->containsWholeWord->isChecked();
+  lastContainsWithCase = generalFilter->containsTextCase->isChecked();
+  lastSearchInSubDirs = generalFilter->searchInDirs->isChecked();
+  lastSearchInArchives = generalFilter->searchInArchives->isChecked();
+  lastFollowSymLinks = generalFilter->followLinks->isChecked();
   hide();  
   // re-enable the search action
   krFind->setEnabled(true);
-  accept();
+  if( isAccept )
+    accept();
+  else
+    reject();
+  
+  delete this;
 }
 
 void KrSearchDialog::reject() {
-  closeDialog();
-  QDialog::reject();
+  closeDialog( false );
 }
 
 void KrSearchDialog::resizeEvent( QResizeEvent *e )

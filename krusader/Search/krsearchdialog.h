@@ -60,7 +60,7 @@ public slots:
   void startSearch();
   void stopSearch();
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
-  void closeDialog();
+  void closeDialog( bool isAccept = true );
   void resultClicked(QListViewItem*);
 
   virtual void keyPressEvent(QKeyEvent *e);
@@ -99,6 +99,15 @@ private:
   QStringList savedSearches;
   bool isSearching;
   bool closed;
+  
+  static QString lastSearchText;
+  static int     lastSearchType;
+  static bool    lastSearchForCase;
+  static bool    lastContainsWholeWord;
+  static bool    lastContainsWithCase;
+  static bool    lastSearchInSubDirs;
+  static bool    lastSearchInArchives;
+  static bool    lastFollowSymLinks;
   
   int            sizeX;
   int            sizeY;
