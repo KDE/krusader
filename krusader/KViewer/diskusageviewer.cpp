@@ -111,8 +111,7 @@ void DiskUsageViewer::slotUpdateStatus()
   Directory * dir = diskUsage->getCurrentDir();
   if( dir && statusLabel )
   {
-    statusLabel->setText( prefix + QString( "%1" ).arg( dir->name() ) 
-                        + "  [" + KIO::convertSize( dir->size() ) + "]" );
+    statusLabel->setText( prefix + dir->fileName() + "  [" + KIO::convertSize( dir->size() ) + "]" );
   }  
 }
 
