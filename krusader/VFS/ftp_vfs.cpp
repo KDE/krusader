@@ -58,6 +58,7 @@ template <class X> void kr_swap(X &a, X &b){
 ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	// set the writable attribute
 	isWritable = true;
+	int bugFixLoc = origin.find("@");
 
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
@@ -69,16 +70,16 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	/* FIXME: untill KDE fixes the bug we have to check for
      passwords with @ in them... */
 	bool bugfix = origin.find("@") != origin.findRev("@");
-	if(bugfix) origin[origin.find("@")] = '^';
+	if(bugfix) origin = origin.remove(bugFixLoc,1);
 	KURL url = origin;
 	port = url.port();
 	loginName = url.user();
 	password = url.pass();
 	if(bugfix){
-		password[password.find('^')] = '@';
+		origin.insert(bugFixLoc,"@");
 		url.setPass(password);
 	}
-	
+
 
 	vfs_type = "ftp";
   vfs_origin = url.prettyURL(-1);
