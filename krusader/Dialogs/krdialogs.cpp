@@ -45,19 +45,12 @@
 #include <kurlrequester.h>
 #include <kstandarddirs.h>
 #include <kdeversion.h>
+#include <qcheckbox.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../resources.h"
 #include "../VFS/vfs.h"
-
-KRDialog::KRDialog(QWidget *parent, QString text,bool modal, bool roomForIcon) :
-					KDialog(parent,0,modal,WStyle_DialogBorder) {
-	layout=new QGridLayout(this,1,1,5); 	// 1,1 makes the grid auto-resize when needed
-	message=new QLabel(text,this);
-	layout->addMultiCellWidget(message,0,0,0+(int)roomForIcon,10); // why 10 ?? check KQuestion::KQuestion
-	layout->activate();
-	setMaximumSize(minimumSize());
-}	
+#include "../defaults.h"
 
 KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 	KURLRequesterDlg *dlg = new KURLRequesterDlg(url.prettyURL(1),text,krApp,"");
@@ -73,16 +66,6 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 	}
 	delete dlg;
 	return u;
-}
-
-KRAbout::KRAbout() : KRDialog(0,0,true,false) {
-  QLabel *pic=new QLabel(this);
-  QString about = KGlobal::dirs()->findResource("appdata","about.png");
-  pic->setPixmap(about);
-  layout->addMultiCellWidget(pic,0,0,0,10);
-  layout->activate();
-  setCaption(i18n("Information"));
-  setGeometry(krApp->x()+krApp->width()/2-width()/2,krApp->y()+krApp->height()/2-height()/2,width(),height());
 }
 
 KRGetDate::KRGetDate(QDate date, QWidget *parent, const char *name) : KDialog(parent, name,true,WStyle_DialogBorder) {
@@ -107,6 +90,79 @@ QDate KRGetDate::getDate() {
 void KRGetDate::setDate(QDate date) {
   chosenDate = date;
   accept();
+}
+
+int UserSelectionModeDlg::createCustomMode(QWidget *parent) {
+	UserSelectionModeDlg dlg(parent);
+	int result = dlg.exec();
+	if (result == QDialog::Accepted) {
+		{
+			#define WRITE(KEY, CB)	krConfig->writeEntry(KEY, dlg.CB->isChecked())
+			//KConfigGroupSaver(krConfig, "Custom Selection Mode");
+			krConfig->setGroup("Custom Selection Mode");
+			WRITE("QT Selection", qtSelection);
+			WRITE("Left Selects", leftButtonSelects);
+			WRITE("Left Preserves", leftButtonPreserves);
+			WRITE("ShiftCtrl Left Selects", shiftCtrlLeftSelects);
+			WRITE("Right Selects", rightButtonSelects);
+			WRITE("Right Preserves", rightButtonPreserves);
+			WRITE("ShiftCtrl Right Selects", shiftCtrlRightSelects);
+			WRITE("Space Moves Down", spaceMovesDown);
+			WRITE("Space Calc Space", spaceCalcSpace);
+			WRITE("Insert Moves Down", insertMovesDown);
+			WRITE("Immediate Context Menu", contextMenuImmediate);
+			#undef WRITE
+		}
+	}
+	
+	return result;
+}
+
+UserSelectionModeDlg::UserSelectionModeDlg(QWidget *parent):
+	KDialogBase(Plain, i18n("Custom Selection Mode"), Ok | Cancel, KDialogBase::Ok, parent) {
+	QGridLayout *layout = new QGridLayout( plainPage(), 0, KDialog::spacingHint() );
+	
+	qtSelection = new QCheckBox(i18n("Based on QT selection mode"), plainPage());
+	leftButtonSelects = new QCheckBox(i18n("Left mouse button selects"), plainPage());
+	leftButtonPreserves = new QCheckBox(i18n("Left mouse button preserves selection"), plainPage());
+	shiftCtrlLeftSelects = new QCheckBox(i18n("Shift/Ctrl-Left mouse button selects"), plainPage());
+	rightButtonSelects = new QCheckBox(i18n("Right mouse button selects"), plainPage());
+	rightButtonPreserves = new QCheckBox(i18n("Right mouse button preserves selection"), plainPage());
+   shiftCtrlRightSelects = new QCheckBox(i18n("Shift/Ctrl-Right mouse button selects"), plainPage());	
+	spaceMovesDown = new QCheckBox(i18n("Spacebar moves down"), plainPage());
+	spaceCalcSpace = new QCheckBox(i18n("Spacebar calculates disk space"), plainPage());
+	insertMovesDown = new QCheckBox(i18n("Insert moves down"), plainPage());
+	contextMenuImmediate = new QCheckBox(i18n("Right clicking pops context menu immediately"), plainPage());
+
+	layout->addMultiCellWidget(qtSelection, 0,0,0,0);
+	layout->addMultiCellWidget(leftButtonSelects, 1,1,0,0);
+	layout->addMultiCellWidget(leftButtonPreserves, 2,2,0,0);
+	layout->addMultiCellWidget(shiftCtrlLeftSelects, 3,3,0,0);
+	layout->addMultiCellWidget(rightButtonSelects, 4,4,0,0);
+	layout->addMultiCellWidget(rightButtonPreserves, 5,5,0,0);
+	layout->addMultiCellWidget(shiftCtrlRightSelects, 6,6,0,0);
+	layout->addMultiCellWidget(spaceMovesDown, 7,7,0,0);
+	layout->addMultiCellWidget(spaceCalcSpace, 8,8,0,0);
+	layout->addMultiCellWidget(insertMovesDown, 9,9,0,0);
+	layout->addMultiCellWidget(contextMenuImmediate, 10, 10, 0, 0);
+	
+	{
+		krConfig->setGroup("Custom Selection Mode");
+		qtSelection->setChecked(krConfig->readBoolEntry("QT Selection", _QtSelection));
+		leftButtonSelects->setChecked(krConfig->readBoolEntry("Left Selects", _LeftSelects));
+		leftButtonPreserves->setChecked(krConfig->readBoolEntry("Left Preserves", _LeftPreserves));
+		shiftCtrlLeftSelects->setChecked(krConfig->readBoolEntry("ShiftCtrl Left Selects", _ShiftCtrlLeft));
+		rightButtonSelects->setChecked(krConfig->readBoolEntry("Right Selects", _RightSelects));
+		rightButtonPreserves->setChecked(krConfig->readBoolEntry("Right Preserves", _RightPreserves));
+		shiftCtrlRightSelects->setChecked(krConfig->readBoolEntry("ShiftCtrl Right Selects", _ShiftCtrlRight));
+		spaceMovesDown->setChecked(krConfig->readBoolEntry("Space Moves Down", _SpaceMovesDown));
+		spaceCalcSpace->setChecked(krConfig->readBoolEntry("Space Calc Space", _SpaceCalcSpace));
+		insertMovesDown->setChecked(krConfig->readBoolEntry("Insert Moves Down", _InsertMovesDown));
+		contextMenuImmediate->setChecked(krConfig->readBoolEntry("Immediate Context Menu", _ImmediateContextMenu));
+	}
+}
+
+UserSelectionModeDlg::~UserSelectionModeDlg() {
 }
 
 #include "krdialogs.moc"

@@ -256,11 +256,6 @@ void KRslots::toggleTerminal() {
   else MAIN_VIEW->slotTerminalEmulator(true);
 }
 
-void KRslots::showAboutApplication() {
-  KRAbout *q=new KRAbout();
-  q->exec();
-}
-
 void KRslots::insertFileName(bool full_path)
 {
   QString filename = ACTIVE_PANEL->view->getCurrentItem();

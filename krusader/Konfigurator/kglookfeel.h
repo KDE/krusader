@@ -49,6 +49,7 @@ protected:
   KonfiguratorCheckBoxGroup *cbs;
   KonfiguratorCheckBoxGroup *pnlcbs;
   KonfiguratorCheckBoxGroup *panelToolbarActive;
+  KonfiguratorRadioButtons *mouseRadio;
   
   QWidget     *tab_panel;
   
@@ -64,6 +65,7 @@ protected slots:
   void slotEnablePanelToolbar();
   void slotImportShortcuts();
   void slotExportShortcuts();
+  void slotSelectionModeChanged(int mode);
   
 private:
   KonfiguratorKeyChooser *keyBindings;

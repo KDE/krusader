@@ -66,7 +66,7 @@ class PopularUrlsDlg: public KDialogBase {
 public:
 	PopularUrlsDlg();
 	~PopularUrlsDlg();
-	void run(KURL::List list);
+	void run(KURL::List list); // use this to open the dialog
 	inline int result() const { return selection; } // returns index 0 - topmost, or -1
 	
 

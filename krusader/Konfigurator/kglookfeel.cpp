@@ -31,6 +31,7 @@
 #include "kglookfeel.h"
 #include "../krusader.h"
 #include "../defaults.h"
+#include "../Dialogs/krdialogs.h"
 #include <qtabwidget.h>
 #include <klocale.h>
 #include <qtooltip.h>
@@ -39,6 +40,7 @@
 #include <kfiledialog.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
+#include "../Panel/krselectionmode.h"
 
 KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -97,11 +99,13 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   //            name                 value  tooltip
     {{ i18n( "Krusader Mode" ),        "0", i18n( "Both keys allow selecting files. To select more than one file, hold the Ctrl key and click the left mouse button.\nRight-click menu is invoked using a short click on the right mouse button." ) },
      { i18n( "Konqueror Mode" ),       "1", i18n( "Pressing the left mouse button selects files - you can click and select multiple files.\nRight-click menu is invoked using a short click on the right mouse button." ) },    
-     { i18n( "Total-Commander Mode" ), "2", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection.\nThe right mouse button selects multiple files and the right-click menu is invoked by pressing\nand holding the right mouse button." ) }};
-  KonfiguratorRadioButtons *mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
-      "0", 1, 0, mouseSelection, 3, lookFeelGrp, "myLook&FeelRadio", true );
+     { i18n( "Total-Commander Mode" ), "2", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection.\nThe right mouse button selects multiple files and the right-click menu is invoked by pressing\nand holding the right mouse button." ) },
+	  { i18n( "Custom Selection Mode" ),       "3", i18n( "Design your own selection mode!" ) }};
+ mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
+      "0", 1, 0, mouseSelection, 4, lookFeelGrp, "myLook&FeelRadio", true );
   lookFeelGrid->addWidget( mouseRadio, 11, 0 );
-  
+  connect(mouseRadio, SIGNAL(clicked(int)), this, SLOT(slotSelectionModeChanged(int)));
+	
   lookAndFeelLayout->addWidget( lookFeelGrp, 0, 0 );
   
   //  ---------------------------- PANEL TAB -------------------------------------
@@ -309,6 +313,14 @@ void KgLookFeel::slotExportShortcuts() {
 	QString file = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a shortcuts file"));
 	if (file == QString::null) return;
 	krApp->exportKeyboardShortcuts(file);
+}
+
+void KgLookFeel::slotSelectionModeChanged(int mode) {
+	// mode 3 == user defined mode (ugly, but no #defines yet)
+	if (mode == 3) {
+		if (UserSelectionModeDlg::createCustomMode(this) == QDialog::Accepted)
+			mouseRadio->extension()->setChanged();
+	}
 }
 
 #include "kglookfeel.moc"

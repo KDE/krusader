@@ -110,7 +110,6 @@ class KRslots : public QObject {
     void toggleFnkeys();
     void toggleCmdline();
     void changeTrashIcon();
-    void showAboutApplication();
     void multiRename();
     void openRightBookmarks() { RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->openPopup(); }
     void openLeftBookmarks() { LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->openPopup(); }

@@ -187,12 +187,6 @@
 #define _TestBeforeUnpack	true 
 // Supported Packers // ====> a QStringList of SYSTEM supported archives ( also new )
 
-/////////////////////// [Bookmarks]
-// Links //////////////
-// the basic link (/) is defined internally
-// Sorted /////////////
-#define _Sorted        true
-
 /////////////////////// [Private]
 // Start Position /////
 #define _StartPosition new QPoint(QApplication::desktop()->width()/2 - mainView->sizeHint().width()/2,QApplication::desktop()->height()/2 - 250) 
@@ -265,3 +259,26 @@
 // The singles button is turned on /////////////
 #define  _BtnSingles        true
 
+/////////////////////// [Custom Selection Mode]
+// QT Selection
+#define _QtSelection			false
+// Left Selects
+#define _LeftSelects			true
+// Left Preserves
+#define _LeftPreserves		false
+// ShiftCtrl Left Selects
+#define _ShiftCtrlLeft		false
+// Right Selects
+#define _RightSelects		true
+// Right Preserves
+#define _RightPreserves		false
+// ShiftCtrl Right Selects
+#define _ShiftCtrlRight		false
+// Space Moves Down
+#define _SpaceMovesDown		true
+// Space Calc Space
+#define _SpaceCalcSpace		true
+// Insert Moves Down
+#define _InsertMovesDown	true
+// Immediate Context Menu
+#define _ImmediateContextMenu	true

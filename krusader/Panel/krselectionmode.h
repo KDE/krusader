@@ -87,4 +87,9 @@ public:
 	}
 };
 
+class UserSelectionMode: public KrSelectionMode {
+public:	
+	void init();
+};
+
 #endif // KR_SELECTION_MODE_H

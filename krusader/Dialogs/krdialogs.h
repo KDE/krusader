@@ -36,6 +36,7 @@
 #include <kanimwidget.h>
 #include <kurlrequesterdlg.h>
 #include <kdatepicker.h>
+#include <kdialogbase.h>
 // QT includes
 #include <qlineedit.h>
 #include <qlayout.h>
@@ -46,17 +47,6 @@
 #include <qprogressdialog.h>
 #include <qsemimodal.h>
 #include <qcheckbox.h>
-
-// the most basic dialog in krusader.
-class KRDialog : public KDialog {
-	Q_OBJECT
-public:
-	KRDialog(QWidget *parent = 0, QString text = 0,bool modal=true, bool roomForIcon=false);
-
-protected:
-	QGridLayout *layout;		
-	QLabel 			*message;
-};
 
 /** \class KChooseDir
  * Used for asking the user for a folder.
@@ -81,12 +71,6 @@ public:
 	static KURL getDir(QString text,const KURL& url, const KURL& cwd);
 };
 
-class KRAbout : public KRDialog {
-  Q_OBJECT
-public:
-  KRAbout();
-};
-
 class KRGetDate : public KDialog {
   Q_OBJECT
 public:
@@ -100,5 +84,21 @@ private:
   KDatePicker *dateWidget;
   QDate chosenDate, originalDate;
 };
+
+class QCheckbox;
+
+class UserSelectionModeDlg: public KDialogBase {
+  Q_OBJECT
+public:
+	static int createCustomMode(QWidget *parent);
+	~UserSelectionModeDlg();
+	
+protected:
+	UserSelectionModeDlg(QWidget *parent);
+	QCheckBox *qtSelection, *leftButtonSelects, *leftButtonPreserves, *shiftCtrlLeftSelects;
+	QCheckBox *rightButtonSelects, *rightButtonPreserves, *shiftCtrlRightSelects, *spaceMovesDown;
+	QCheckBox *insertMovesDown, *spaceCalcSpace, *contextMenuImmediate;
+};
+
 
 #endif
