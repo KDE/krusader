@@ -41,6 +41,7 @@
 vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),vfileIterator(0){
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
+	 		connect(this,SIGNAL(incrementalRefreshFinished( QString )),panel,SLOT(slotGetStats( QString )));
 		}
 		else quietMode = true;
 }
@@ -161,6 +162,7 @@ bool vfs::vfs_refresh(){
 	QDict<vfile> *temp = vfs_filesP;
 	vfs_filesP = vfs_searchP;
 	delete temp;
+	emit incrementalRefreshFinished( vfs_origin.isLocalFile() ? vfs_origin.path() : vfs_origin.prettyURL() );        
 	
 	return res; 
 }
