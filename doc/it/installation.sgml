@@ -5,9 +5,9 @@
   <title>Come ottenere Krusader</title>
 
   <para>
-  La versione pi˘ aggiornata puÚ essere trovata sul
+  La versione pi√π aggiornata pu√≤ essere trovata sul
   <ulink url="http://krusader.sourceforge.net">sito di Krusader</ulink>.
-  ma Ë possibile anche trovare delle copie negli archivi di software per Linux come
+  ma √® possibile anche trovare delle copie negli archivi di software per Linux come
   <ulink url="http://www.freshmeat.net">freshmeat</ulink> o
   <ulink url="http://apps.kde.com">apps.kde.com</ulink>.
   </para>
@@ -26,19 +26,19 @@
   <title>Requisiti</title>
 
   <para>
-  Per usare con successo Krusader, Ë necessario KDE 2.x.x.
-  Krusader usa circa 10 MByte di memoria per funzionare, ma questo puÚ variare in funzione
+  Per usare con successo Krusader, √® necessario KDE 2.x.x.
+  Krusader usa circa 10 MByte di memoria per funzionare, ma questo pu√≤ variare in funzione
   della vostra piattaforma e configurazione.
   Per gestire gli archivi gli strumenti di compressione devono essere installati nel proprio PATH.
   </para>
 
   <para>
-  Un pacchetto di compattatori/estrattori molto comuni, oltre che Krusader stesso, puÚ essere trovato nel
+  Un pacchetto di compattatori/estrattori molto comuni, oltre che Krusader stesso, pu√≤ essere trovato nel
   <ulink url="http://krusader.sourceforge.net">sito di Krusader</ulink>.
   </para>
 
   <para>
-  Una lista delle modifiche puÚ essere trovato nel
+  Una lista delle modifiche pu√≤ essere trovato nel
   <ulink url="http://krusader.sourceforge.net/changelog">Krusader Changelog</ulink>.
   </para>
   </sect1>
@@ -49,20 +49,20 @@
   <para>
   Per compilare ed installare Krusader bisogna essere sicuri che la variabile  d'ambiente $KDEDIR sia
   definita nel proprio sistema e che punti alla propria directory KDE.
-  Questo si puÚ testare digitando:
+  Questo si pu√≤ testare digitando:
   <screen width="40">
   <prompt>%</prompt> <userinput>echo $KDEDIR</userinput>
   </screen>
   al prompt della shell; la risposta dovrebbe essere la propria directory KDE.
-  Se $KDEDIR non Ë definita o non punta alla directory corretta,
-  si puÚ rimediare con il seguente comando:
+  Se $KDEDIR non √® definita o non punta alla directory corretta,
+  si pu√≤ rimediare con il seguente comando:
   <screen width="40">
   <prompt>%</prompt> <userinput>export KDEDIR="inserire la propria directory KDE"</userinput>
   </screen>
   </para>
 
   <para>
-  Dopo che $KDEDIR Ë impostata, digitare quello che segue nella directory
+  Dopo che $KDEDIR √® impostata, digitare quello che segue nella directory
   di base della distribuzione di Krusader:
   <screen width="40">
   <prompt>%</prompt> <userinput>./configure</userinput>
@@ -83,8 +83,8 @@
 
   <para>
   Quando si esegue Krusader per la prima volta il modulo di configurazione di Krusader -
-  <link linkend="konfigurator">Konfigurator</link> - sar‡ avviato e permetter‡
-  di configurare Krusader oltre che rilevare i compattatori e gli strumenti installati. Konfigurator puÚ
+  <link linkend="konfigurator">Konfigurator</link> - sar√† avviato e permetter√†
+  di configurare Krusader oltre che rilevare i compattatori e gli strumenti installati. Konfigurator pu√≤
   essere eseguito successivamente dal <link linkend="settings-menu">menu Impostazioni</link>.
   </para>
   </sect1>

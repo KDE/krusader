@@ -10,17 +10,17 @@
 		<textobject><phrase>Screenshot</phrase></textobject>
 		</mediaobject>
 	</screenshot>
-	<para>RemoteMan Ë un punto centrale per tutte le necessit‡ relative a FTP/SMB. Esso Ë una lista ad albero di host remoti
-	abbinato al relativo nome utente e password. » possibile creare nuove "cartelle" (o gruppi) nell'albero e piazzare
+	<para>RemoteMan √® un punto centrale per tutte le necessit√† relative a FTP/SMB. Esso √® una lista ad albero di host remoti
+	abbinato al relativo nome utente e password. √à possibile creare nuove "cartelle" (o gruppi) nell'albero e piazzare
 	sessioni remote all'interno di questi gruppi. Ogni sessione include un nome (qualcosa che descriva meglio l'URL)
-	e un host. L'hostname Ë un URL che puÚ iniziare con 'ftp://' o 'smb://'. Informazioni aggiuntive che
-	possono essere compilate sono il nome utente e la password. Non compilando questi valori sar‡ effettuato un accesso anonimo.
-	Selezionando la casella 'Anonimo' si forzer‡ ad effettuare un accesso anonimo. Si puÚ anche decidere
-	di usare una porta diversa oppure lasciare il valore predefinito 21. Se si sceglie un host 'smb://', non si puÚ cambiare la porta.
+	e un host. L'hostname √® un URL che pu√≤ iniziare con 'ftp://' o 'smb://'. Informazioni aggiuntive che
+	possono essere compilate sono il nome utente e la password. Non compilando questi valori sar√† effettuato un accesso anonimo.
+	Selezionando la casella 'Anonimo' si forzer√† ad effettuare un accesso anonimo. Si pu√≤ anche decidere
+	di usare una porta diversa oppure lasciare il valore predefinito 21. Se si sceglie un host 'smb://', non si pu√≤ cambiare la porta.
 	La descrizione (un'area di testo libero) e la directory remota sono opzionali. Se si immette una directory remota,
-	Krusader prover‡, appena connesso, a spostarsi in quella directory.</para>
+	Krusader prover√†, appena connesso, a spostarsi in quella directory.</para>
 	<itemizedlist>
-		<listitem><para>Quando si esegue un doppio clic su una sessione, Krusader si connette all'host. Per questo scopo, si puÚ anche usare
+		<listitem><para>Quando si esegue un doppio clic su una sessione, Krusader si connette all'host. Per questo scopo, si pu√≤ anche usare
 		il bottone 'Connetti'.</para></listitem>
 		<listitem><para>Il bottone 'Altro' per il momento non fa nulla. Ci riserviamo qualche trucco per Krusader 2.</para></listitem>
 	</itemizedlist>
@@ -36,30 +36,30 @@
 		<textobject><phrase>Screenshot</phrase></textobject>
 		</mediaobject>
 	</screenshot>
-	<para>MountMan Ë uno strumento che aiuta a gestire i filesystem montati. Una volta invocato, questo visualizza
-	una lista di tutti i filesystem montati. Per ogni filesystem, MountMan visualizza il suo nome (che Ë il
+	<para>MountMan √® uno strumento che aiuta a gestire i filesystem montati. Una volta invocato, questo visualizza
+	una lista di tutti i filesystem montati. Per ogni filesystem, MountMan visualizza il suo nome (che √® il
 	nome reale del dispositivo - es.: /dev/fd0 per il floppy), il suo tipo (vfat, ext2, ecc.) ed il suo punto di montaggio
-	(la directory nella quale Ë montato il filesystem). MountMan visualizza anche le informazioni sull'uso:
+	(la directory nella quale √® montato il filesystem). MountMan visualizza anche le informazioni sull'uso:
 	spazio totale e spazio libero (dimensione e percentuale). Se questi valori sono "N/A", solitamente significa che il filesystem
-	non Ë montato. Un clic sinistro su un filesystem, fa visualizzare un grafico a torta sulla sinistra della finestra; il grafico
+	non √® montato. Un clic sinistro su un filesystem, fa visualizzare un grafico a torta sulla sinistra della finestra; il grafico
 	mostra le informazioni sull'uso del filesystem. Se si clicca su un filesystem non montato, al posto del grafico
-	comparir‡ la scritta "Non montato".</para>
+	comparir√† la scritta "Non montato".</para>
 	<itemizedlist>
 		<listitem><para>Un doppio clic su un filesystem chiude MountMan ed apre quel filesystem
 		all'interno del pannello attivo di Krusader.</para></listitem>
 		<listitem><para>Un clic con il tasto destro su un filesystem apre un piccolo menu che mostra quali azioni possono
-		essere eseguite su quel filesystem. Per ora, si puÚ solo montare, smontare ed espellere (quest'ultima azione
+		essere eseguite su quel filesystem. Per ora, si pu√≤ solo montare, smontare ed espellere (quest'ultima azione
 		solo sui filesystem rimovibili com ad es. un cdrom).</para></listitem>
 	</itemizedlist>
-	<note><para>Noi abbiamo programmato di espandere MountMan nella prossima evoluzione di Krusader. Sar‡ possibile formattare i floppy,
+	<note><para>Noi abbiamo programmato di espandere MountMan nella prossima evoluzione di Krusader. Sar√† possibile formattare i floppy,
 	editare /etc/fstab, creare nuovi filesystem ed altro...</para></note>
 </sect1>
 
 <sect1 id = "bookman">
 <title>BookMan: organizzare i propri segnalibri</title>
-	<para>BookMan Ë uno strumento che consente di aggiungere un segnalibro alle directory usando Krusader ed in seguito ritornare in queste
-	con un solo clic. L'unica cosa che Ë necessaria fare Ë cliccare sull'icona "Aggiungi segnalibro" (o premere CTRL+B).
-	La seguente schermata apparir‡:</para>
+	<para>BookMan √® uno strumento che consente di aggiungere un segnalibro alle directory usando Krusader ed in seguito ritornare in queste
+	con un solo clic. L'unica cosa che √® necessaria fare √® cliccare sull'icona "Aggiungi segnalibro" (o premere CTRL+B).
+	La seguente schermata apparir√†:</para>
 	<screenshot>
 		<screeninfo>BookMan: aggiunta di un segnalibro</screeninfo>
 		<mediaobject>
@@ -69,14 +69,14 @@
 		</mediaobject>
 	</screenshot>
 	<para>La riga in basso (URL) indica la destinazione del segnalibro. Solitamente si clicca il bottone "Aggiungi segnalibro"
-	quando si Ë nella directory di destinazione. Ad esempio, per aggiungere un segnalibro a '/usr/tmp', ci si sposta nella cartella con Krusader e
-	quindi si clicca il bottone "Aggiungi segnalibro". Quando appare la finestra "Aggiungere un nuovo segnalibro", la riga URL conterr‡ '/usr/tmp'.
+	quando si √® nella directory di destinazione. Ad esempio, per aggiungere un segnalibro a '/usr/tmp', ci si sposta nella cartella con Krusader e
+	quindi si clicca il bottone "Aggiungi segnalibro". Quando appare la finestra "Aggiungere un nuovo segnalibro", la riga URL conterr√† '/usr/tmp'.
 	La riga in alto (Nome) serve a specificare come si vuole chiamare il segnalibro (ad esempio: directory temporanea). Se si aggiunge
-	il segnalibro senza immettere il nome, il nome adottato sar‡ lo stesso della directory di destinazione.</para>
-	<note><para>» possibile aggiungere un segnalibro che punta ad un filesystem remoto (FTP o SAMBA) ed usare in seguito il segnalibro per collegarsi rapidamente
-	alla macchina remota. NON » POSSIBILE aggiungere segnalibri all'interno degli archivi.</para></note>
+	il segnalibro senza immettere il nome, il nome adottato sar√† lo stesso della directory di destinazione.</para>
+	<note><para>√à possibile aggiungere un segnalibro che punta ad un filesystem remoto (FTP o SAMBA) ed usare in seguito il segnalibro per collegarsi rapidamente
+	alla macchina remota. NON √à POSSIBILE aggiungere segnalibri all'interno degli archivi.</para></note>
 	<para>Per usare i nuovi segnalibri si clicca sul bottone segnalibri e se ne sceglie uno come mostrato nella figura seguente.
-  Si puÚ anche usare la scorciatoia <keycap>Alt + freccia destra/sinistra</keycap> per aprire la lista dei segnalibri
+  Si pu√≤ anche usare la scorciatoia <keycap>Alt + freccia destra/sinistra</keycap> per aprire la lista dei segnalibri
   nel pannello destro/sinistro</para>
 	<screenshot>
 		<screeninfo>BookMan: uso dei segnalibri</screeninfo>
@@ -87,7 +87,7 @@
 		</mediaobject>
 	</screenshot>
 	<para>BookMan viene usato anche per modificare ed organizzare i segnalibri. Quando si clicca sull linguetta "Modifica segnalibri",
-	viene visualizzata la schermata seguente. Qui Ë possibile modificare, eliminare e riordinare i segnalibri.</para>
+	viene visualizzata la schermata seguente. Qui √® possibile modificare, eliminare e riordinare i segnalibri.</para>
 	<screenshot>
 		<screeninfo>BookMan: modifica dei segnalibri</screeninfo>
 		<mediaobject>
@@ -99,23 +99,23 @@
 	<itemizedlist>
 		<listitem><para>Cliccando sul bottone Modifica si possono cambiare il nome e la destinazione
 		del segnalibro.</para></listitem>
-		<listitem><para>Cliccando su Rimuovi, il segnalibro sar‡ cancellato.</para></listitem>
+		<listitem><para>Cliccando su Rimuovi, il segnalibro sar√† cancellato.</para></listitem>
 		<listitem><para>Le azioni Modifica e Rimuovi non sono definitive: debbono essere confermate cliccando il bottone Applica.
 		Cliccando su Applica si attivano le modifiche.</para></listitem>
-		<listitem><para>Se si clicca su 'Chiudi' prima di applicare le modifiche, BookMan chieder‡ se si vuole
+		<listitem><para>Se si clicca su 'Chiudi' prima di applicare le modifiche, BookMan chieder√† se si vuole
 		perdere le modifiche.</para></listitem>
-		<listitem><para>Cliccare su OK Ë del tutto equivalente a cliccare su Applica e quindi chiudere.</para></listitem>
+		<listitem><para>Cliccare su OK √® del tutto equivalente a cliccare su Applica e quindi chiudere.</para></listitem>
 		<listitem><para>Le frecce alto/basso consentono di ordinare i segnalibri nel modo che si preferisce. Fare comunque attenzione
-		che se la casella 'Segnalibri ordinati' Ë selezionata, i segnalibri sono ordinati e
+		che se la casella 'Segnalibri ordinati' √® selezionata, i segnalibri sono ordinati e
 		le modifiche non sono visualizzate.</para></listitem>
 	</itemizedlist>
 </sect1>
 
 <sect1 id = "krusearcher">
 <title>KruSearcher: trovare quello che si sta cercando</title>
-	<para>Benvenuti nel nuovo e potente modulo di ricerca di Krusader - soprannominato KruSearcher. Questo Ë il pi˘ capace
-	strumento (di quelli che conosciamo) per Linux, in quanto permette cosÏ tanti modi diversi per trovare rapidamente il file
-	cercato. Esso Ë diviso in due livelli, quello generale e quello avanzato. Di seguito Ë mostrata la pagina
+	<para>Benvenuti nel nuovo e potente modulo di ricerca di Krusader - soprannominato KruSearcher. Questo √® il pi√π capace
+	strumento (di quelli che conosciamo) per Linux, in quanto permette cos√¨ tanti modi diversi per trovare rapidamente il file
+	cercato. Esso √® diviso in due livelli, quello generale e quello avanzato. Di seguito √® mostrata la pagina
 	generale.</para>
 	<screenshot>
 		<screeninfo>KruSearcher: generale</screeninfo>
@@ -125,46 +125,46 @@
 		<textobject><phrase>Screenshot</phrase></textobject>
 		</mediaobject>
 	</screenshot>
-	<para>La pagina Ë divisa in quattro parti: la parte superiore (Cerca), La parte inferiore - intitolata 'Contiene il testo',
-	la parte sinistra - intitolata 'Ricerca in' e la parte destra che Ë chiamata 'non cercare in'. Ovviamente ogni parte
+	<para>La pagina √® divisa in quattro parti: la parte superiore (Cerca), La parte inferiore - intitolata 'Contiene il testo',
+	la parte sinistra - intitolata 'Ricerca in' e la parte destra che √® chiamata 'non cercare in'. Ovviamente ogni parte
 	gestisce diversi aspetti della ricerca. Vediamoli in dettaglio.</para>
 	<itemizedlist>
-		<listitem><para>Cerca: qui si immette il criterio di ricerca principale. Si puÚ immettere un nome di file, un carattere jolly
+		<listitem><para>Cerca: qui si immette il criterio di ricerca principale. Si pu√≤ immettere un nome di file, un carattere jolly
 		(*.o.*, *.c, ecc.) o entrambe, separati da uno spazio. Fare attenzione alla casella "Maiuscolo/minuscolo" sotto a questa riga.
 		Deselezionandola saranno ignorate le differenze tra maiuscole e minuscole nelle ricerche (es.: *.c rappresenta sia *.c sia *.C).</para></listitem>
 		<listitem><para>Di tipo: Questo riquadro permette di cercare un file non solo in base al suo nome ma anche in base al suo
-		tipo MIME. Ad esempio, Ë possibile cercare tutti i file audio il cui nome inizi per B. Solitamente questa
-		opzione ha come valore predefinito 'Tutti i file' ma Ë possibile scegliere di cercare archivi, directory, immagini, file di
+		tipo MIME. Ad esempio, √® possibile cercare tutti i file audio il cui nome inizi per B. Solitamente questa
+		opzione ha come valore predefinito 'Tutti i file' ma √® possibile scegliere di cercare archivi, directory, immagini, file di
 		testo, file video ed audio.</para></listitem>
-		<listitem><para>Cerca in (anche: Non cercare in): usando queste due parti, si puÚ specificare una ricerca esattamente
+		<listitem><para>Cerca in (anche: Non cercare in): usando queste due parti, si pu√≤ specificare una ricerca esattamente
 		nel modo voluto. Ad esempio, supponiamo di voler cercare un file nell'intero filesystem (iniziando
-		da /), ma senza cercare dentro /mnt. Tutto quello che si deve fare Ë scrivere '/' nel riquadro 'Cerca in'
-		e '/mnt' nel riquadro 'Non cercare in'. Se si vuole immettere pi˘ di una directory in uno dei
-		riquadri, basta scrivere il primo nome e premere <keycap>Invio</keycap>. Il nome della directory sar‡ copiato
-		nel riquadro pi˘ grande ed Ë possibile immettere un altro nome.
-			<note><para>La casella di immissione ha la funzionalit‡ di auto-completamento conformememte alle impostazioni globali di KDE.
-			Se si vuole, Ë possibile cliccare sul bottone con l'icona della cartella e scorrere le directory fino a raggiungere quella che si desidera aggiungere.</para></note>
+		da /), ma senza cercare dentro /mnt. Tutto quello che si deve fare √® scrivere '/' nel riquadro 'Cerca in'
+		e '/mnt' nel riquadro 'Non cercare in'. Se si vuole immettere pi√π di una directory in uno dei
+		riquadri, basta scrivere il primo nome e premere <keycap>Invio</keycap>. Il nome della directory sar√† copiato
+		nel riquadro pi√π grande ed √® possibile immettere un altro nome.
+			<note><para>La casella di immissione ha la funzionalit√† di auto-completamento conformememte alle impostazioni globali di KDE.
+			Se si vuole, √® possibile cliccare sul bottone con l'icona della cartella e scorrere le directory fino a raggiungere quella che si desidera aggiungere.</para></note>
 		</para></listitem>
-		<listitem><para>Testo: immettendo un testo qui, Krusader lo cercher‡ all'interno dei file (grep).
-		In questo modo si puÚ cercare tutti i file header (*.h) che includono la parola 'krusader' al loro interno.
+		<listitem><para>Testo: immettendo un testo qui, Krusader lo cercher√† all'interno dei file (grep).
+		In questo modo si pu√≤ cercare tutti i file header (*.h) che includono la parola 'krusader' al loro interno.
 		Attenzione alla casella 'Maiuscolo/minuscolo'. Questa indica se si vuole cercare il testo ignorando le differenze tra maiuscole e minuscole
 		oppure si vuole cercare la frase esattamente come immessa.</para></listitem>
 		<listitem><para>Cerca nelle sotto-directory: si esegue una ricerca ricorsiva entrando in ogni directory
 		che si incontra.</para></listitem>
-		<listitem><para>Ricerca negli archivi: Krusader cercher‡ i file all'interno di ogni archivio supportato.
-		Con questa opzione, la ricerca richiede pi˘ tempo per essere eseguita.<note><para>Se si seleziona questa casella, si puÚ notare che
-		la ricerca all'interno dei file ('grep') sar‡ disabilitata. Questo comportamento Ë dovuto al fatto che la ricerca all'interno dei file archiviati obbliga Krusader
+		<listitem><para>Ricerca negli archivi: Krusader cercher√† i file all'interno di ogni archivio supportato.
+		Con questa opzione, la ricerca richiede pi√π tempo per essere eseguita.<note><para>Se si seleziona questa casella, si pu√≤ notare che
+		la ricerca all'interno dei file ('grep') sar√† disabilitata. Questo comportamento √® dovuto al fatto che la ricerca all'interno dei file archiviati obbliga Krusader
 		ad estrarli; questo comporterebbe un tempo di ricerca estremamente lungo.</para></note></para></listitem>
-		<listitem><para>Segui collegamenti: se selezionato,  Krusader seguir‡ i collegamenti simbolici nelle ricerche.</para></listitem>
+		<listitem><para>Segui collegamenti: se selezionato,  Krusader seguir√† i collegamenti simbolici nelle ricerche.</para></listitem>
 		<listitem><para>La schermata mostra un ricerca di tutti i file che terminano con c, cpp o h ed includono la stringa
-	'testing 123'. Krusader cercher‡ in /root, /opt, /bin e /usr ma non in /usr/lib e /usr/share.</para></listitem>
+	'testing 123'. Krusader cercher√† in /root, /opt, /bin e /usr ma non in /usr/lib e /usr/share.</para></listitem>
 	</itemizedlist>
 	<para>Cliccando sul bottone Ricerca, inizia la ricerca e viene mostrata la pagina dei risultati. Durante la ricerca,
-	si puÚ premere il bottone Interrompi che termina la ricerca. Il bottone Chiudi non Ë operativo durante la ricerca, cosÏ
-	si Ë obbligati ad interrompere la ricerca prima di chiudere la finestra. Quando viene trovato un risultato, un doppio clic su questo
-	far‡ sÏ che il pannello attivo di Krusader punti al file trovato, ma non chiuder‡ la finestra di ricerca; in questo modo sar‡
+	si pu√≤ premere il bottone Interrompi che termina la ricerca. Il bottone Chiudi non √® operativo durante la ricerca, cos√¨
+	si √® obbligati ad interrompere la ricerca prima di chiudere la finestra. Quando viene trovato un risultato, un doppio clic su questo
+	far√† s√¨ che il pannello attivo di Krusader punti al file trovato, ma non chiuder√† la finestra di ricerca; in questo modo sar√†
 	ancora possibile cliccare su un altro risultato.</para>
-	<para>A volte Ë necessario restringere ulteriormente la ricerca. KruSearcher consente una ricerca ancora pi˘ fine e,
+	<para>A volte √® necessario restringere ulteriormente la ricerca. KruSearcher consente una ricerca ancora pi√π fine e,
 	per questo, vediamo la pagina Avanzate...</para>
 	<screenshot>
 		<screeninfo>KruSearcher: avanzate</screeninfo>
@@ -177,38 +177,38 @@
 	<para>Questa schermata mostra una ricerca dei file la cui dimensione sia compresa tra 10 KByte e 150 KByte, che siano stati modificati
 	tra il 10 Ottobre ed il primo Novembre, che appartengano a qualsiasi utente del gruppo 'ftp' e che siano leggibili e
 	scrivibili da chiunque del gruppo 'ftp' ma solo leggibile per tutti gli altri.</para>
-	<para>La pagina Avanzate Ë divisa in tre parti: Dimensione, Data e Propriet‡.</para>
+	<para>La pagina Avanzate √® divisa in tre parti: Dimensione, Data e Propriet√†.</para>
 	<para>Dimensione</para>
-	<para>Consente di scegliere l'intervallo di dimensioni dei file da cercare. Selezionando le caselle, si puÚ
-	cercare un file che sia pi˘ grande di XXX byte (o KByte, MByte), pi˘ piccolo di XXX bytes o, selezionando entrambe,
+	<para>Consente di scegliere l'intervallo di dimensioni dei file da cercare. Selezionando le caselle, si pu√≤
+	cercare un file che sia pi√π grande di XXX byte (o KByte, MByte), pi√π piccolo di XXX bytes o, selezionando entrambe,
 	cercare i file le cui dimensioni siano maggiori di XXX ma minori di YYY.</para>
 	<para>Data</para>
 	<para>Questa parte offre tre differenti modi di definire un criterio di data:
 	<itemizedlist>
-		<listitem><para>Modificato tra: permette di immettere due date. Krusader cercher‡ i file con
+		<listitem><para>Modificato tra: permette di immettere due date. Krusader cercher√† i file con
 		una data di modifica compresa tra la prima data e la seconda. Se si immette una data solo nella casella di
-		sinistra, saranno cercati i file pi˘ vecchi rispetto quella data. Se si immette una data solo nella casella di destra,
-		saranno cercati i file pi˘ recenti rispetto quella data.<note><para>Si puÚ cliccare sul bottone con l'icona della data (vicino alle
+		sinistra, saranno cercati i file pi√π vecchi rispetto quella data. Se si immette una data solo nella casella di destra,
+		saranno cercati i file pi√π recenti rispetto quella data.<note><para>Si pu√≤ cliccare sul bottone con l'icona della data (vicino alle
 		caselle di immissione) per aprire una finestra standard per le date - che consente si scorrere semplicemente attraverso un calendario
-		e cercare la data desiderata. Cliccando su una data si chiuder‡ la finestra e la data apparir‡ nella
+		e cercare la data desiderata. Cliccando su una data si chiuder√† la finestra e la data apparir√† nella
 		casella di immissione.</para></note></para></listitem>
 		<listitem><para>Non modificato dopo il: scegliendo questa opzione si cercheranno i file che NON sono stati
-		modificati dopo una certa data (equivale alla ricerca di file pi˘ vecchi di una certa data).</para></listitem>
+		modificati dopo una certa data (equivale alla ricerca di file pi√π vecchi di una certa data).</para></listitem>
 		<listitem><para>Modificato negli ultimi / non modificato negli ultimi: in queste caselle si immettono non una data
 		ma un numero. Questo numero rappresenta giorni/settimane/mesi (in base a quanto scelto nella lista a discesa vicina). Immettendo
-		il numero 5 nella casella superiore, Krusader cercher‡ i file che sono stati modificati negli ultimi 5 giorni.
-		Immettendo il numero 2 nella casella inferiore, Krusader cercher‡ i file che NON sono cambiati negli
+		il numero 5 nella casella superiore, Krusader cercher√† i file che sono stati modificati negli ultimi 5 giorni.
+		Immettendo il numero 2 nella casella inferiore, Krusader cercher√† i file che NON sono cambiati negli
 		ultimi 2 giorni. La combinazione di entrambi portano alla ricerca dei file che sono cambiati negli ultimi 5 giorni
 		ma NON negli ultimi 2 giorni.</para></listitem>
 	</itemizedlist></para>
-	<para>Propriet‡</para>
+	<para>Propriet√†</para>
 	<itemizedlist>
 		<listitem><para>Appartiene all'utente / gruppo: selezionando le caselle corrispondenti, si possono
 		cercare i file che appartengono ad un certo utente e/o gruppo. Le liste a discesa elencano tutti i nomi degli utenti e
 		dei gruppi del sistema: basta sceglierne uno ed andare avanti.</para></listitem>
 		<listitem><para>Permessi: divisi in Proprietario, Gruppo e Tutti, questa opzione permette di scegliere determinati
-		permessi per i file. Si puÚ scegliere di specificare i permessi per il proprietario, il gruppo, tutti o qualsiasi
-		combinazione. Il punto interrogativo (?) Ë un carattere jolly; questo significa che qualsiasi permesso Ë valido.
+		permessi per i file. Si pu√≤ scegliere di specificare i permessi per il proprietario, il gruppo, tutti o qualsiasi
+		combinazione. Il punto interrogativo (?) √® un carattere jolly; questo significa che qualsiasi permesso √® valido.
 		<note><para>Per chiarire, la schermata riprodotta sopra (nella parte relativa ai permessi) descrive una ricerca dei file
 		che appartengono a qualsiasi utente del gruppo 'ftp', sia leggibile e scrivibile ma non eseguibile da qualsiasi utente del
 		gruppo, sia leggibile ma non scrivibile o eseguibile da tutti gli altri ed abbiano qualsiasi
