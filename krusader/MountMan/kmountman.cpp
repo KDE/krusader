@@ -71,12 +71,12 @@ using namespace MountMan;
 
 KMountMan::KMountMan() : QObject(), Ready( false ), Operational( false ),
 outputBuffer( 0 ), tempFile( 0 ), mountManGui( 0 ), mtab( "" ) {
-//#ifdef _OS_SOLARIS_
+#ifdef _OS_SOLARIS_
   // disable mountman on solaris because of df issues.
   // at least until we find a solaris box to test on
   Operational = Ready = false;
   return;
-//#endif
+#endif
 #if KDE_IS_VERSION(3,2,0)
   _actions = 0L;
 #endif /* KDE 3.2 */
