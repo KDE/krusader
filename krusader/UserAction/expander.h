@@ -123,6 +123,15 @@ public:
    exp_List();
    EXP_FUNC;
 };
+
+/**
+  * expands %_ListFile% ('_' is replaced by 'a', 'o', 'r' or 'l' to indicate the active, other, right or left panel) with the name of a temporary file, containing a list of items, which type is specified by the first Parameter
+  */
+class exp_ListFile : public exp_placeholder {
+public:
+   exp_ListFile();
+   EXP_FUNC;
+};
   
 /**
   * expands %_Ask% ('_' is nessesary because there is no panel needed) with the return of an input-dialog

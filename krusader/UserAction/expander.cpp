@@ -25,6 +25,7 @@
 #include <kdebug.h>
 #include <kinputdialog.h>
 #include <kstandarddirs.h>
+#include <ktempfile.h>
 #include <qstringlist.h>
 #include <qclipboard.h>
 
@@ -216,6 +217,86 @@ QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter,
    }
 
    return result;
+}
+
+exp_ListFile::exp_ListFile() {
+   _expression = "ListFile";
+   _description = i18n("Filename of an itemlist ...");
+   _needPanel = true;
+
+   addParameter( new exp_parameter( i18n("Which items"), "__choose:All;Files;Dirs;Selected", false ) );
+   addParameter( new exp_parameter( i18n("Separator between the items (optional)"), "\n", false ) );
+   addParameter( new exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
+   addParameter( new exp_parameter( i18n("Mask (optional, all but 'Selected')"), "__select", false ) );
+   addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__no", false ) );
+}
+QString exp_ListFile::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl ) {
+   NEED_PANEL
+
+   // get selected items from view
+   QStringList items;
+   QString mask;
+   
+   if ( parameter.count() <= 3 || parameter[3].isEmpty() )
+      mask = "*";
+   else
+      mask = parameter[3];
+   
+   if ( parameter[ 0 ].isEmpty() || parameter[ 0 ].lower() == "all" )
+      panel->view->getItemsByMask( mask, &items );
+   else if ( parameter[ 0 ].lower() == "files" )
+      panel->view->getItemsByMask( mask, &items, false, true );
+   else if ( parameter[ 0 ].lower() == "dirs" )
+      panel->view->getItemsByMask( mask, &items, true, false );
+   else if ( parameter[ 0 ].lower() == "selected" )
+      panel->view->getSelectedItems( &items );
+   else {
+      krOut << "Expander: no Items specified for %_ListFile%; abort..." << endl;
+      UA_CANCEL
+   }
+
+   QString separator;
+   if ( parameter.count() <= 1 || parameter[1].isEmpty() )
+      separator = "\n";
+   else
+      separator = parameter[1];
+   QString result;      
+   if ( parameter[2].lower() == "yes" ) {  // ommit the current path
+      for (QStringList::Iterator it = items.begin(); it != items.end(); ++it) {
+         if ( ! result.isEmpty() )
+            result += separator;
+         if ( parameter[4].lower() == "yes" )  // escape spaces
+            result += bashquote(*it);
+         else
+            result += *it;
+      }
+   }
+   else {
+      // translate to urls using vfs
+      KURL::List* list = panel->func->files()->vfs_getFiles(&items);
+      // parse everything to a single qstring
+      for (KURL::List::Iterator it = list->begin(); it != list->end(); ++it) {
+         if ( ! result.isEmpty() )
+            result += separator;
+         if ( parameter[4].lower() == "yes" )  // escape spaces
+            result += bashquote( (useUrl ? (*it).url() : (*it).path()) );
+         else
+            result += (useUrl ? (*it).url() : (*it).path());
+      }
+   }
+   
+   KTempFile tmpFile( locateLocal("tmp", "krusader"), ".itemlist" );
+   
+    if ( tmpFile.status() != 0 ) {
+      krOut << "Expander: tempfile couldn't be opend (" << strerror( tmpFile.status() ) << "); abort..." << endl;
+      UA_CANCEL
+    }
+    
+    QTextStream stream( tmpFile.file() );
+    stream << result << "\n";
+    tmpFile.close();
+
+   return tmpFile.name();
 }
 
 exp_Select::exp_Select() {
@@ -679,6 +760,7 @@ Expander::Expander() {
    addPlaceholder( new exp_Filter() );
    addPlaceholder( new exp_Current() );
    addPlaceholder( new exp_List() );
+   addPlaceholder( new exp_ListFile() );
    addPlaceholder( new exp_Each() );
    addPlaceholder( new exp_separator( true ) );
    addPlaceholder( new exp_Select() );
