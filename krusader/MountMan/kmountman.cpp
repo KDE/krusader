@@ -194,7 +194,7 @@ bool KMountMan::createFilesystems() {
   --i; fstab.close();  // finished with it
   for ( j = 0; j <= i; ++j ) {
     if ( temp[ 0 ][ j ] == "" || temp[ 0 ][ j ] == "tmpfs" || temp[ 0 ][ j ] == "none" || temp[ 0 ][ j ] == "proc" ||
-#if defined(BSD) || defined(_OS_SOLARIS_)
+#ifdef BSD
          temp[ 0 ][ j ] == "swap" || temp[ 1 ][ j ] == "procfs" || temp[ 1 ][ j ] == "/dev/pts" ||        // FreeBSD: procfs instead of proc
 #else
          temp[ 0 ][ j ] == "swap" || temp[ 1 ][ j ] == "proc" || temp[ 1 ][ j ] == "/dev/pts" ||
@@ -229,7 +229,7 @@ bool KMountMan::createFilesystems() {
     }
   kdDebug() << "Mt.Man: found the following:\n" << forDebugOnly << "Trying DF..." << endl;
 
-#if defined(BSD) || defined(_OS_SOLARIS_)
+#ifdef BSD
   // FreeBSD problem: df does not retrive fs type.
   // Workaround: execute mount -p and merge result.
 
@@ -292,7 +292,7 @@ void KMountMan::updateFilesystems() {
   tempFile->setAutoDelete( true );
   dfProc.clearArguments();
   dfProc.setExecutable( KrServices::fullPathName( "df" ) );
-#if defined(BSD) || defined(_OS_SOLARIS_)
+#ifdef BSD
   dfProc << ">" << tempFile->name(); // FreeBSD: df instead of df -T -P
 #else
   dfProc << "-T" << "-P" << ">" << tempFile->name();
@@ -328,7 +328,7 @@ fsData* KMountMan::location( QString name ) {
   fsData * it;
   for ( it = filesystems.first() ; ( it != 0 ) ; it = filesystems.next() ) {
     if ( followLink( it->name() ) == followLink( name ) ) break;
-#if defined(BSD) || defined(_OS_SOLARIS_)
+#ifdef BSD
     if ( name.left( 2 ) == "//" && !strcasecmp( followLink( it->name() ).latin1(), followLink( name ).latin1() ) ) break; // FreeBSD: ignore case due to smbfs mounts
 #endif
 
@@ -441,7 +441,7 @@ void KMountMan::parseDfData( QString filename ) {
     temp = nextWord( s, ' ' );
     // avoid adding unwanted filesystems to the list
     if ( temp == "tmpfs" ) continue;
-#if defined (BSD) || defined(_OS_SOLARIS_)
+#ifdef BSD
     if ( temp == "procfs" ) continue; // FreeBSD: ignore procfs too
 #endif
     temp = followLink( temp );  // make sure DF gives us the true device and not a link
@@ -458,7 +458,7 @@ void KMountMan::parseDfData( QString filename ) {
       else loc->setName( "/dev/" + temp );
       newFS = true;
       }
-#if !defined(BSD) && !defined(_OS_SOLARIS_)
+#ifndef BSD
     temp = nextWord( s, ' ' );   // catch the TYPE
     // is it supermounted ?
     if ( temp == "supermount" ) loc->supermount = true;
@@ -667,7 +667,7 @@ void KMountMan::eject( QString mntPoint ) {
 
 // returns true if the path is an ejectable mount point (at the moment CDROM)
 bool KMountMan::ejectable( QString path ) {
-#if !defined(BSD) && !defined(_OS_SOLARIS_)
+#ifndef BSD
   fsData * it;
   for ( it = filesystems.first() ; ( it != 0 ) ; it = filesystems.next() )
     if ( it->mntPoint() == path &&
@@ -682,7 +682,7 @@ bool KMountMan::ejectable( QString path ) {
 statsCollector::statsCollector( QString path, QObject *caller ) : QObject() {
   QString stats;
   connect( this, SIGNAL( gotStats( QString ) ), caller, SLOT( gotStats( QString ) ) );
-#if defined(BSD) || defined(_OS_SOLARIS_)
+#ifdef BSD
   if ( path.left( 5 ) == "/procfs" ) { // /procfs is a special case - no volume information
     stats = i18n( "No space information on a [procfs]" );
 #else
@@ -721,7 +721,7 @@ void statsCollector::parseDf( QString filename, fsData * data ) {
   QString s;
   s = t.readLine();  // read the 1st line - it's trash for us
   s = t.readLine();  // this is the important one!
-#if !defined(BSD) && !defined(_OS_SOLARIS_)
+#ifndef BSD
   data->setName( KMountMan::nextWord( s, ' ' ) );
 #endif
   data->setType( KMountMan::nextWord( s, ' ' ) );
@@ -745,7 +745,7 @@ void statsCollector::getData( QString path, fsData * data ) {
   KShellProcess dfProc;
   QString tmpFile = krApp->getTempFile();
 
-#if defined(BSD) || defined(_OS_SOLARIS_)
+#ifdef BSD
   dfProc << KrServices::fullPathName ( "df" ) << "\"" + path + "\"" << ">" << tmpFile; // FreeBSD: df instead of df -T -P
 #else
   dfProc << KrServices::fullPathName ( "df" ) << "-T" << "-P" << "\"" + path + "\"" << ">" << tmpFile;
