@@ -2,6 +2,7 @@
 #include "kraddbookmarkdlg.h"
 #include "../krusader.h"
 #include "../krslots.h"
+#include "../Dialogs/popularurls.h"
 #include "../VFS/vfs.h"
 #include <kiconloader.h>
 #include <kmessagebox.h>
@@ -241,10 +242,24 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			bm = KrBookmark::virt(_collection);
 			bm->plug(menu);
 			CONNECT_BM(bm);
-			menu->insertSeparator();
-
-			floc = bloc = 3; // 2 bookmark + separator
-		}		
+			floc = bloc = 2; // 2 bookmarks
+		} 
+		// add the popular links submenu
+		KPopupMenu *newMenu = new KPopupMenu(menu);
+		menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
+									i18n("Popular URLs"), newMenu, -1 /* dummy id */, floc);
+		// add the top 15 urls
+		#define MAX 15
+		KURL::List list = krApp->popularUrls->getMostPopularUrls(MAX);
+		KURL::List::Iterator it;
+		for (it = list.begin(); it != list.end(); ++it) {
+			KrBookmark *bm = new KrBookmark((*it).prettyURL(), *it, _collection);
+			bm->plug(newMenu);
+			CONNECT_BM(bm);
+		}
+		menu->insertSeparator();
+		
+		floc += 2; bloc +=2; // 1 group + separator
 	}
 
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {

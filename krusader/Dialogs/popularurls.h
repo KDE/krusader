@@ -24,6 +24,7 @@ public:
 	~PopularUrls();
 	
 	void addUrl(const KURL& url);
+	KURL::List getMostPopularUrls(int max);
 
 protected:
 	void appendNode(UrlNodeP node);

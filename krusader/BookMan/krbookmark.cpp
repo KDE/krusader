@@ -41,7 +41,7 @@ KrBookmark* KrBookmark::devices(KActionCollection *collection) {
 
 KrBookmark* KrBookmark::virt(KActionCollection *collection) {
 	KrBookmark *bm = new KrBookmark(I18N_NOOP("Virtual Filesystem"), "virt:/", collection);
-	bm->setIconSet(krLoader->loadIcon("blockdevice", KIcon::Small));
+	bm->setIconSet(krLoader->loadIcon("pipe", KIcon::Small));
 	return bm;
 }
 

@@ -5,6 +5,30 @@ PopularUrls::PopularUrls(QObject *parent, const char *name) : QObject(parent, na
 }
 
 PopularUrls::~PopularUrls() {
+	if (head) {
+		UrlNodeP p=head, tmp;
+		while (p) {
+			tmp = p;
+			p=p->next;
+			delete tmp;
+		}
+	}
+	ranks.clear();
+}
+
+KURL::List PopularUrls::getMostPopularUrls(int max) {
+	// get at most 'max' urls
+	KURL::List list;
+	UrlNodeP p = head;
+	int count = 0;
+	while (p && count < max) {
+		//printf("sending %d : %s\n", p->rank, p->url.url().latin1());
+		list << p->url;
+		p = p->next;
+		++count;
+	}
+	
+	return list;
 }
 
 void PopularUrls::addUrl(const KURL& url) {
@@ -32,6 +56,7 @@ void PopularUrls::addUrl(const KURL& url) {
 			relocateIfNeeded(pnode);
 		}
 	}
+	//dumpList();
 }
 
 void PopularUrls::relocateIfNeeded(UrlNodeP node) {
