@@ -212,7 +212,10 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
    CANCEL_TWO_CLICK_RENAME;
 }
 
-KrDetailedView::~KrDetailedView() {}
+KrDetailedView::~KrDetailedView() {
+	delete _properties;
+	_properties = 0;
+}
 
 void KrDetailedView::newColumn( KrDetailedViewProperties::ColumnType type ) {
 	// get the next available column

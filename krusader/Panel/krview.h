@@ -158,7 +158,7 @@ public:
   inline void setWidget(QWidget *w) { _widget = w; }
 
   // todo: what about selection modes ???
-  virtual ~KrView() {}
+  virtual ~KrView();
 protected:
   KrView(KConfig *cfg = krConfig);
   static QPixmap getIcon(vfile *vf);

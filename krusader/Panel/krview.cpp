@@ -39,7 +39,12 @@
 #include <klocale.h>
 
 KrView::KrView( KConfig *cfg ) : _config( cfg ), _nameToMakeCurrent( QString::null ),
-_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ) {}
+_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0) {}
+
+KrView::~KrView() {
+	if (_properties)
+		qFatal("A class inheriting KrView didn't delete _properties!");
+}
 
 QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ ) {
    //krConfig->setGroup("Advanced");
