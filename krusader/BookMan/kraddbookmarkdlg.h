@@ -2,6 +2,7 @@
 #define KRADDBOOKMARKDLG_H
 
 #include "krbookmark.h"
+#include "../VFS/vfs.h"
 #include <kdialogbase.h>
 #include <kurl.h>
 #include <klineedit.h>
@@ -13,7 +14,7 @@ class KrAddBookmarkDlg: public KDialogBase {
 	Q_OBJECT
 public:
 	KrAddBookmarkDlg(QWidget *parent, KURL url = 0);
-	QString url() const { return _url->text(); }
+	KURL url() const { return vfs::fromPathOrURL(_url->text()); }
 	QString name() const { return _name->text(); }
 	KrBookmark *folder() const { return _xr[static_cast<KListViewItem*>(_createIn->selectedItem())]; }
 
