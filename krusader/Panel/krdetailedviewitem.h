@@ -50,7 +50,7 @@ public:
   KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
   QString name() const;
   QString description() const; // for status bar
-  bool isDir() const { return (_vf ? _vf->vfile_isDir() : false); }
+  bool isDir() const { return (_vf ? _vf->vfile_isDir() : true); }
   bool isExecutable() const { return (_vf ? _vf->vfile_isExecutable() : false); }
   KIO::filesize_t size() const { return (_vf ? _vf->vfile_getSize() : 0); }
   QString dateTime() const;
