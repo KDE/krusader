@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
     "http://krusader.sourceforge.net",
     "krusader@users.sourceforge.net");
   aboutData.addAuthor("Rafi Yanai","Author", "yanai@users.sourceforge.net");
-  aboutData.addAuthor("Shie Erlich","Author", "manson@users.sourceforge.net");
+  aboutData.addAuthor("Shie Erlich","Author", "erlich@users.sourceforge.net");
   aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "homebass@gmx.net", 0);
   aboutData.addAuthor("Karai Csaba", "Developer", "ckarai@users.sourceforge.net", 0);
   aboutData.addAuthor("Frank Schoolmeesters", "Documentation Manager", "frank_schoolmeesters@fastmail.fm", 0);
