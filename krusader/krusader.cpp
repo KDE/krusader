@@ -401,15 +401,15 @@ void Krusader::setupActions() {
 
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
-  actTest = new KAction( i18n( "&Test Archive(s)" ), "kr_arc_test", ALT + Key_T,
+  actTest = new KAction( i18n( "&Test Archive(s)" ), "ark", ALT + Key_T,
                          SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
-  actFTPConnect = new KAction( i18n( "&Net Connections" ), "socket", CTRL + Key_C,
+  actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", CTRL + Key_C,
                                SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
-  actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "ftp", CTRL + Key_N,
+  actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "connect_creating", CTRL + Key_N,
                                   SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
-  actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kr_calc", 0,
+  actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kcalc", 0,
                               SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
-  actProperties = new KAction( i18n( "&Properties" ), "kr_properties", 0,
+  actProperties = new KAction( i18n( "&Properties" ), "help", 0,
                                SLOTS, SLOT( properties() ), actionCollection(), "properties" );
   actPack = new KAction( i18n( "Pac&k" ), "kr_arc_pack", ALT + Key_P,
                          SLOTS, SLOT( slotPack() ), actionCollection(), "pack" );
@@ -425,7 +425,7 @@ void Krusader::setupActions() {
                               SLOTS, SLOT( markAll() ), actionCollection(), "select all" );
   actUnselectAll = new KAction( i18n( "U&nselect All" ), "kr_unselectall", ALT + Key_Minus,
                                 SLOTS, SLOT( unmarkAll() ), actionCollection(), "unselect all" );
-  actHomeTerminal = new KAction( i18n( "&Terminal" ), "kr_terminal", 0,
+  actHomeTerminal = new KAction( i18n( "&Terminal" ), "konsole", 0,
                                  SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
   actFTPDisconnect = new KAction( i18n( "Disconnect &From Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
                                   SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
@@ -463,7 +463,7 @@ void Krusader::setupActions() {
   //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
   actCustomFilter = new KAction( i18n( "&Custom" ), SHIFT + Key_F12,
                                  SLOTS, SLOT( customFilter() ), actionCollection(), "custom files" );
-  actCompare = new KAction( i18n( "Compare b&y content" ), "proxy", 0,
+  actCompare = new KAction( i18n( "Compare b&y content" ), "view_left_right", 0,
                             SLOTS, SLOT( compareContent() ), actionCollection(), "compare" );
   actMultiRename = new KAction( i18n( "Multi &Rename" ), "krename", SHIFT + Key_F9,
                                 SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
