@@ -194,9 +194,9 @@ void KrusaderView::savePanelProfiles( QString group )
 {
   krConfig->setGroup( group );
   
-  MAIN_VIEW->leftMng->saveSettings( krConfig, "Left Tabs" );
+  MAIN_VIEW->leftMng->saveSettings( krConfig, "Left Tabs", false );
   krConfig->writeEntry( "Left Active Tab", MAIN_VIEW->leftMng->activeTab() );
-  MAIN_VIEW->rightMng->saveSettings( krConfig, "Right Tabs" );
+  MAIN_VIEW->rightMng->saveSettings( krConfig, "Right Tabs", false );
   krConfig->writeEntry( "Right Active Tab", MAIN_VIEW->rightMng->activeTab() );
   krConfig->writeEntry( "Left Side Is Active", MAIN_VIEW->activePanel->isLeft() );
 }

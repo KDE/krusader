@@ -92,13 +92,13 @@ void PanelManager::startPanel( ListPanel *panel, const KURL& path ) {
    panel->start( path );
 }
 
-void PanelManager::saveSettings( KConfig *config, const QString& key ) {
+void PanelManager::saveSettings( KConfig *config, const QString& key, bool localOnly ) {
    QStringList l;
    int i=0, cnt=0;
    while (cnt < _tabbar->count()) {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) {
-         l << t->panel->realPath();
+         l << ( localOnly ? t->panel->realPath() : t->panel->virtualPath().prettyURL(0, KURL::StripFileProtocol ) );
          ++cnt;
       }
       ++i;
