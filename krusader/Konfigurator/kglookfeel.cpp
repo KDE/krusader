@@ -68,7 +68,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Panel level tool bar", _PanelToolBar,   i18n( "Show panel level tool bar" ), true, ""},
     };
 
-  cbs = createCheckBoxGroup( 2, 0, settings, 8, lookFeelGrp );
+  cbs = createCheckBoxGroup( 2, 0, settings, 9, lookFeelGrp );
   lookFeelGrid->addWidget( cbs, 0, 0 );
   connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
