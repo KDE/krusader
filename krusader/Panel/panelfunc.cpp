@@ -127,17 +127,17 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 		urlStack.push( files()->vfs_getOrigin() );
 	}
 	// disconnect older signals
-	disconnect(files(), SIGNAL(addedVfile(const vfile* )), 0, 0); 
-	disconnect(files(), SIGNAL(updatedVfile(const vfile* )), 0, 0);
+	disconnect(files(), SIGNAL(addedVfile(vfile* )), 0, 0); 
+	disconnect(files(), SIGNAL(updatedVfile(vfile* )), 0, 0);
 	disconnect(files(), SIGNAL(deletedVfile(const QString& )), 0, 0);
 		
 	// connect to the vfs's dirwatch signals
-	connect(files(), SIGNAL(addedVfile(const vfile* )), 
-		dynamic_cast<KrDetailedView*>(panel->view), SLOT(addedVfile(const vfile* )));
-	connect(files(), SIGNAL(updatedVfile(const vfile* )), 
-		dynamic_cast<KrDetailedView*>(panel->view), SLOT(updatedVfile(const vfile* )));
+	connect(files(), SIGNAL(addedVfile(vfile* )), 
+		panel, SLOT(slotItemAdded(vfile* )));
+	connect(files(), SIGNAL(updatedVfile(vfile* )), 
+		panel, SLOT(slotItemUpdated(vfile* )));
 	connect(files(), SIGNAL(deletedVfile(const QString& )), 
-		dynamic_cast<KrDetailedView*>(panel->view), SLOT(deletedVfile(const QString&)));
+		panel, SLOT(slotItemDeleted(const QString&)));
 	
 	// on local file system change the working directory
 	if( files()->vfs_getType() == vfs::NORMAL )
