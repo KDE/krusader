@@ -54,7 +54,7 @@ KrViewer::KrViewer(QWidget *parent, const char *name ) :
   viewerMenu->insertSeparator();
   viewerMenu->insertItem( i18n("Text &editor"),    this, SLOT(editText()), CTRL+Key_E,4 );
   viewerMenu->insertSeparator();
-  viewerMenu->insertItem( i18n("&Close"), this, SLOT( close() ), CTRL+Key_Q );
+  viewerMenu->insertItem( i18n("&Close"), this, SLOT( close() ), Key_Escape );
 
   statusBar()->show();
 }
@@ -118,6 +118,9 @@ void KrViewer::keyPressEvent(QKeyEvent *e) {
     case Key_Escape:
       close();
       break;
+		default:
+			e->ignore();
+			break;
   }
 }
 
@@ -235,12 +238,13 @@ void KrViewer::viewHex(){
     long fileSize = f_in.size();
     long address = 0;
     char buf[16];
+		unsigned int* pBuff = (unsigned int*)buf;
 
     while( address<fileSize ){
       in.readRawBytes(buf,16);
-      fprintf(out,"0x%8.8lx: %8.8x %8.8x %8.8x %8.8x | ",address,
-            (unsigned int)buf[0],(unsigned int)buf[4],
-            (unsigned int)buf[8],(unsigned int)buf[12]);
+      fprintf(out,"0x%8.8lx: %8.8x %8.8x %8.8x %8.8x | ",address,pBuff[0],pBuff[1],pBuff[2],pBuff[3]);
+            /**(unsigned int*)&(buf[0]),*(unsigned int*)&(buf[4]),
+            *(unsigned int*)&(buf[8]),*(unsigned int*)&(buf[12]) );*/
       for(int i=0; i<16; ++i){
         if(buf[i]>' ' && buf[i]<'~' )
           fputc(buf[i],out);
