@@ -33,6 +33,7 @@
 #include <klocale.h>
 #include <qhbox.h>
 #include <qtooltip.h>
+#include <sys/param.h>
 
 KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )

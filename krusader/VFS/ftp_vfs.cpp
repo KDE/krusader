@@ -30,6 +30,11 @@
 
 // Sys includes
 #include <time.h>
+#include <sys/param.h>
+#ifdef BSD
+#include <unistd.h>
+#include <sys/types.h>
+#endif
 // QT includes
 #include <qdir.h>
 #include <qregexp.h>

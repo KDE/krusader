@@ -49,6 +49,7 @@ A
 #include <kguiitem.h>
 #include <kdiskfreesp.h>
 #include <qfileinfo.h>
+#include <sys/param.h>
 
 #define MTAB	"/etc/mtab"
 
