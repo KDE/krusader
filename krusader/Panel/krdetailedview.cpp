@@ -1194,6 +1194,7 @@ void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
 //}
 
 void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
+	if (!it) return;
    KrView::setNameToMakeCurrent( static_cast<KrDetailedViewItem*>( it ) ->name() );
 }
 
