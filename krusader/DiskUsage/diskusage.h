@@ -63,10 +63,9 @@ public:
   ~DiskUsage();
   
   bool       load( KURL dirName, QWidget *parent );
-  void       clear();
   
   void       setView( int view );
-
+  
   Directory* getDirectory( QString path );
   File *     getFile( QString path );
   
@@ -86,6 +85,10 @@ public:
   QPixmap    getIcon( QString mime );
   
   KURL       getBaseURL() { return baseURL; }
+  
+public slots:  
+  void       dirUp();
+  void       clear();
   
 signals:
   void       enteringDirectory( Directory * );

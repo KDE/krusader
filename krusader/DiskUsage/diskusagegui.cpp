@@ -60,6 +60,9 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   QToolButton * btnRefresh = new QToolButton( duTools, "btnRefresh" );
   btnRefresh->setIconSet( QIconSet(krLoader->loadIcon("reload",KIcon::Desktop)) );
 
+  QToolButton * btnDirUp = new QToolButton( duTools, "btnDirUp" );
+  btnDirUp->setIconSet( QIconSet(krLoader->loadIcon("up",KIcon::Desktop)) );
+  
   QWidget * separatorWidget = new QWidget( duTools, "separatorWidget" );
   separatorWidget->setMinimumWidth( 10 );
   
@@ -94,6 +97,7 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   connect( diskUsage, SIGNAL( viewChanged( int ) ), this, SLOT( slotViewChanged( int ) ) );
   connect( btnNewSearch, SIGNAL( clicked() ), this, SLOT( newSearch() ) );
   connect( btnRefresh, SIGNAL( clicked() ), this, SLOT( loadUsageInfo() ) );
+  connect( btnDirUp, SIGNAL( clicked() ), diskUsage, SLOT( dirUp() ) );
   connect( btnLines, SIGNAL( clicked() ), this, SLOT( selectLinesView() ) );
   connect( btnDetailed, SIGNAL( clicked() ), this, SLOT( selectListView() ) );
   connect( btnFilelight, SIGNAL( clicked() ), this, SLOT( selectFilelightView() ) );  

@@ -53,11 +53,12 @@
 // these are the values that will exist in the menu
 #define EXCLUDE_ID          90
 #define INCLUDE_ALL_ID      91
-#define VIEW_POPUP_ID       92
-#define LINES_VIEW_ID       93
-#define DETAILED_VIEW_ID    94
-#define FILELIGHT_VIEW_ID   95
-#define ADDITIONAL_POPUP_ID 96
+#define PARENT_DIR_ID       92
+#define VIEW_POPUP_ID       93
+#define LINES_VIEW_ID       94
+#define DETAILED_VIEW_ID    95
+#define FILELIGHT_VIEW_ID   96
+#define ADDITIONAL_POPUP_ID 97
 
 DiskUsageDialog::DiskUsageDialog( QWidget *parent, const char *name ) : QDialog( parent, name, true ),
   cancelled( false )
@@ -277,6 +278,12 @@ bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
   return result;
 }
 
+void DiskUsage::dirUp()
+{
+  if( currentDirectory != 0 && currentDirectory->parent() != 0 )
+    changeDirectory( (Directory *)(currentDirectory->parent()) );
+}
+
 Directory * DiskUsage::getDirectory( QString dir )
 {
   return contentMap.find( dir );
@@ -464,15 +471,17 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
 {
   KPopupMenu popup;
   
+  popup.insertTitle( i18n("Disk Usage"));
+  
   if( fileItem != 0 )
   {
-    popup.insertTitle( i18n("Disk Usage"));
-
     popup.insertItem(  i18n("Exclude"),         EXCLUDE_ID);
-    popup.insertItem(  i18n("Include All"),     INCLUDE_ALL_ID);
     popup.insertSeparator();
   }
-
+  
+  popup.insertItem(  i18n("Include all"),       INCLUDE_ALL_ID);
+  popup.insertItem(  i18n("Up one directory"),  PARENT_DIR_ID);
+  
   if( addPopup != 0 )
   {
     popup.insertItem( QPixmap(), addPopup, ADDITIONAL_POPUP_ID );
@@ -497,6 +506,9 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
     break;
   case INCLUDE_ALL_ID:
     includeAll();
+    break;
+  case PARENT_DIR_ID:
+    dirUp();
     break;
   case LINES_VIEW_ID:
     setView( VIEW_LINES );

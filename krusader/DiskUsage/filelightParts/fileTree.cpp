@@ -8,7 +8,7 @@
 #include <qstring.h>
 
 //static definitions
-const FileSize File::DENOMINATOR[4] = { 0, 1ull<<10, 1ull<<20, 1ull<<30 };
+const FileSize File::DENOMINATOR[4] = { 1ull, 1ull<<10, 1ull<<20, 1ull<<30 };
 const char File::PREFIX[5][2]   = { "", "K", "M", "G", "T" };
 
 KURL baseURL;
@@ -67,7 +67,7 @@ File::humanReadableSize( FileSize size, UnitPrefix key /*= mega*/ ) //static
     if( prettySize < 0.1 )
     {
         s += " (";
-        s += locale.formatNumber( size / DENOMINATOR[key - 1], 0 );
+        s += locale.formatNumber( size / DENOMINATOR[ key ? key - 1 : 0 ], 0 );
         s += ' ';
         s += PREFIX[key];
         s += "B)";
