@@ -205,15 +205,26 @@ void LocateDlg::slotUser3()   /* The locate button */
   KProcess locateProc;
   connect( &locateProc, SIGNAL( receivedStdout(KProcess *, char *, int) ),
             this, SLOT( processStdout(KProcess *, char *, int) ) );
+  connect( &locateProc, SIGNAL( receivedStderr(KProcess *, char *, int) ),
+            this, SLOT( processStderr(KProcess *, char *, int) ) );
 
   locateProc << KrServices::fullPathName( "locate" );
   if( !isCs )
     locateProc << "-i";
   locateProc << locateSearchFor->currentText();
   
-  if ( !locateProc.start( KProcess::Block, KProcess::Stdout ) )
+  collectedErr = "";
+  bool result = !locateProc.start( KProcess::Block, KProcess::AllOutput );
+  if( !collectedErr.isEmpty() )
+  {
+     KMessageBox::error( krApp, i18n( "Locate produced the following error message:\n\n" ) + collectedErr );
+  }else if ( result )
+  {
      KMessageBox::error( krApp, i18n( "Error during the start of `locate` process!" ) );
-
+  }else if ( !locateProc.normalExit() || locateProc.exitStatus() )
+  {
+     KMessageBox::error( krApp, i18n( "Error occured during the execution of `locate` process!" ) );
+  }
   enableButton( KDialogBase::User3, true );  /* enable the locate button */
   enableButton( KDialogBase::User1, false ); /* disable the stop button */
 }
@@ -224,7 +235,7 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
   memcpy( buf, buffer, length );
   buf[ length ] = 0;
 
-  remaining += QString( buf );
+  remaining += QString::fromLocal8Bit( buf );
   delete []buf;
 
   QStringList list = QStringList::split("\n", remaining );
@@ -254,6 +265,16 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
     proc->kill( SIGKILL );
   
   qApp->processEvents();
+}
+
+void LocateDlg::processStderr(KProcess *proc, char *buffer, int length)
+{
+  char *buf = new char[ length+1 ];
+  memcpy( buf, buffer, length );
+  buf[ length ] = 0;
+
+  collectedErr += QString::fromLocal8Bit( buf );
+  delete []buf;  
 }
 
 void LocateDlg::slotRightClick(QListViewItem *item)

@@ -50,6 +50,7 @@ public:
 
 public slots:
   void              processStdout(KProcess *, char *, int);
+  void              processStderr(KProcess *proc, char *buffer, int length);
   void              slotRightClick(QListViewItem *);
   void              slotDoubleClick(QListViewItem *);
   void              updateFinished();
@@ -71,6 +72,8 @@ private:
   QString           remaining;
   KListViewItem    *lastItem;
 
+  QString           collectedErr;
+  
   long              findOptions;
   QString           findPattern;
   KListViewItem    *findCurrentItem;
