@@ -1,23 +1,23 @@
 /***************************************************************************
-                               kmountman.h
-                            -------------------
-   begin                : Thu May 4 2000
-   copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
-   e-mail               : krusader@users.sourceforge.net
-   web site             : http://krusader.sourceforge.net
+                              kmountman.h
+                           -------------------
+  begin                : Thu May 4 2000
+  copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://krusader.sourceforge.net
 ---------------------------------------------------------------------------
 ***************************************************************************
 
- A
+A
 
-    db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
-    88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
-    88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
-    88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
-    88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
-    YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+   db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+   88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+   88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+   88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+   88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+   YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                    H e a d e r    F i l e
+                                                   H e a d e r    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -36,33 +36,34 @@
 #include <qframe.h>
 #include <qptrlist.h> 
 // KDE includes
+#include <kdiskfreesp.h>
 #include <kdeversion.h>
 #include <kprocess.h>
 #include <kjanuswidget.h>
 #include <kio/jobclasses.h>
 #include <kio/global.h>
-#include <ktempfile.h>
+#include <ktempfile.h> 
 // krusader includes
 #include <stdlib.h>
 #include <math.h>
 
 namespace MountMan {
 
-  // forward definitions
-  class fsData;
+   // forward definitions
+   class fsData;
 
-  class KMountMan : public QObject {
+   class KMountMan : public QObject {
       Q_OBJECT
       friend class KMountManGUI;
 
-    public:
+   public:
       enum mntStatus {DOESNT_EXIST, NOT_MOUNTED, MOUNTED};
 
       inline bool operational() {
-        return Operational;
+         return Operational;
       } // check this 1st
       inline bool ready() {
-        return Ready;
+         return Ready;
       } // poll on this until true
       void mainWindow();                               // opens up the GUI
       void mount( QString mntPoint );           // this is probably what you need for mount
@@ -72,36 +73,36 @@ namespace MountMan {
       static void eject( QString mntPoint );
       bool ejectable( QString path );
       QString convertSize( KIO::filesize_t size );
-      
+
       QString getMtab();          // reads the mount table
-      bool    checkMtabChanged(); // checks whether mtab was changed
-      
-			
+      bool checkMtabChanged(); // checks whether mtab was changed
+
+
       //////////////////////////// service functions /////////////////////////////////
       static QString nextWord( QString &s );
       static QString nextWord( QString &s, char c );
       KMountMan();
       ~KMountMan();
 
-		public slots:
-			void performAction(int idx);	
-			void quickList();
-			
-		private:
-			QString *_actions;
-    
-		protected slots:
+   public slots:
+      void performAction( int idx );
+      void quickList();
+
+   private:
+      QString *_actions;
+
+   protected slots:
       void parseDfData( QString filename );  // parse a FULL list of filesystems
       void forceUpdate();
       void collectOutput( KProcess *p, char *buffer, int buflen );
-      void collectMtab(KProcess *p, char *buffer,int buflen);
+      void collectMtab( KProcess *p, char *buffer, int buflen );
       void finishUpdateFilesystems();
       void killMountMan();                  // called when df never finished (error)
 
-    signals:
+   signals:
       void updated();
 
-    protected:
+   protected:
       void mount( fsData *p );              // you don't want to call this one !
       void unmount( fsData *p );            // you don't want to call this one !
       void toggleMount( QString device );   // you don't want to call this one !
@@ -113,14 +114,14 @@ namespace MountMan {
       QString pointFromMtab( QString device ); // returns mountPoint for a device
       QString devFromMtab( QString mntPoint ); // returns device for a mountPoint
 
-    private:
+   private:
       void clearOutput();
       inline QString getOutput() {
-        return QString( ( !outputBuffer ?
-                          QString::null : *outputBuffer ) );
+         return QString( ( !outputBuffer ?
+                           QString::null : *outputBuffer ) );
       }
 
-    private:
+   private:
       QStringList mountPoints;  // all mountPoints excluding SUPERMOUNTED ones
       QList<fsData> filesystems;
       int noOfFilesystems;
@@ -133,90 +134,76 @@ namespace MountMan {
       KMountManGUI *mountManGui;
 
       QString mtab;       // the mount table
-  };
+   };
 
-  // collects statistics about a path, create a label with the results and emit a singal
-  class statsCollector : public QObject {
-      Q_OBJECT
-    public:
-      statsCollector( QString, QObject * ); // this is what you'll need to use
-
-    protected:
-      void getData( QString path, fsData * );     // returns info about the whereabouts of path
-      void parseDf( QString filename, fsData * ); // parse a single call for DF
-
-    signals:
-      void gotStats( QString ); // emitted when we have the stats for a path
-  };
-
-  // Data container for a single-filesystem data
-  // maximum size supported is 2GB of 1kb blocks == 2048GB, enough.
-  /////////////////////////////////////////////////////////////////
-  class fsData {
-    public:
+   // Data container for a single-filesystem data
+   // maximum size supported is 2GB of 1kb blocks == 2048GB, enough.
+   /////////////////////////////////////////////////////////////////
+   class fsData {
+   public:
       fsData() : Name( 0 ), Type( 0 ), MntPoint( 0 ), TotalBlks( 0 ),
       FreeBlks( 0 ), Mounted( false ) {}
 
       // get information
       inline QString name() {
-        return Name;
+         return Name;
       }
       inline QString shortName() {
-        return Name.right( Name.length() - Name.find( "/", 1 ) - 1 );
+         return Name.right( Name.length() - Name.find( "/", 1 ) - 1 );
       }
       inline QString type() {
-        return Type;
+         return Type;
       }
       inline QString mntPoint() {
-        return MntPoint;
+         return MntPoint;
       }
       inline long totalBlks() {
-        return TotalBlks;
+         return TotalBlks;
       }
       inline long freeBlks() {
-        return FreeBlks;
+         return FreeBlks;
       }
       inline KIO::filesize_t totalBytes() {
-        return TotalBlks * 1024;
+         return TotalBlks * 1024;
       }
       inline KIO::filesize_t freeBytes() {
-        return FreeBlks * 1024;
+         return FreeBlks * 1024;
       }
       //////////////////// insert a good round function here /////////////////
       int usedPerct() {
-        if ( TotalBlks == 0 )
-          return 0;
-        float res = ( ( float ) (TotalBlks-FreeBlks) ) / ( ( float ) TotalBlks ) * 100;
-        if ( ( res - ( int ) res ) > 0.5 )
-          return ( int ) res + 1;
-        else
-          return ( int ) res;
+         if ( TotalBlks == 0 )
+            return 0;
+         float res = ( ( float ) ( TotalBlks - FreeBlks ) ) / ( ( float ) TotalBlks ) * 100;
+         if ( ( res - ( int ) res ) > 0.5 )
+            return ( int ) res + 1;
+         else
+            return ( int ) res;
       }
       inline bool mounted() {
-        return Mounted;
+         return Mounted;
       }
 
       // set information
       inline void setName( QString n_ ) {
-        Name = n_;
+         Name = n_;
       }
       inline void setType( QString t_ ) {
-        Type = t_;
+         Type = t_;
       }
       inline void setMntPoint( QString m_ ) {
-        MntPoint = m_;
+         MntPoint = m_;
       }
       inline void setTotalBlks( long t_ ) {
-        TotalBlks = t_;
+         TotalBlks = t_;
       }
       inline void setFreeBlks( long f_ ) {
-        FreeBlks = f_;
+         FreeBlks = f_;
       }
       inline void setMounted( bool m_ ) {
-        Mounted = m_;
+         Mounted = m_;
       }
 
-    private:
+   private:
       QString Name;       // i.e: /dev/cdrom
       QString Type;       // i.e: iso9600
       QString MntPoint;   // i.e: /mnt/cdrom
@@ -225,11 +212,11 @@ namespace MountMan {
       bool Mounted;    // true if filesystem is mounted
 
       // additional attributes of a filesystem, parsed from fstab
-    public:
+   public:
       bool supermount;    // is the filesystem supermounted ?
       QString options;    // additional fstab options
 
-  };
+   };
 
 };
 
