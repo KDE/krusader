@@ -23,7 +23,7 @@ cflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cppflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cxxflags=\s-O0 -Wall
 ldadd=UserMenu/libUserMenu.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a GUI/libGUI.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                                       \s
+ldflags=\s                                        \s
 
 [General]
 AMChanged=true
@@ -39,7 +39,7 @@ project_name=Krusader
 project_type=mini_kde2
 short_info=
 sub_dir=krusader/
-version=1.30
+version=1.40-beta1
 version_control=None
 workspace=1
 
