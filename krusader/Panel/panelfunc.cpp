@@ -436,7 +436,7 @@ void ListPanelFunc::editFile() {
   krConfig->setGroup( "General" );
   QString edit = krConfig->readEntry( "Editor", _Editor );
   if ( edit == "internal editor" )
-    KrViewer::edit( files() ->vfs_getFile( name ) );
+    KrViewer::edit( KURL::fromPathOrURL(files() ->vfs_getFile( name )) );
   else {
     proc << edit << files() ->vfs_getFile( name );
     if ( !proc.start( KProcess::DontCare ) )
