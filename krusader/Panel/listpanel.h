@@ -68,7 +68,7 @@ class ListPanel : public QWidget {
 friend class ListPanelFunc;
 	Q_OBJECT
 public:
-	enum FilterSpec{ALL,EXEC,CUSTOM};
+	//enum FilterSpec{ALL,EXEC,CUSTOM};
 
   // constructor create the panel, but DOESN'T fill it with data, use start()
   ListPanel(QWidget *parent, bool left, const char *name=0);
@@ -89,7 +89,7 @@ public slots:
 	void slotStartUpdate();                   // internal
 	void slotEndUpdate();                     // internal
 	void slotGetStats(QString path);          // get the disk-free stats
-	void setFilter(FilterSpec f);
+	void setFilter(KrView::FilterSpec f);
 
 ///////////////////////// service functions - called internally ////////////////////////
   inline void setOther(ListPanel *panel) { otherPanel=panel; }
@@ -117,7 +117,7 @@ public:
 	QString      realPath;
 	int          colorMask;
 	bool         compareMode;
-  FilterSpec	   filter;
+  //FilterSpec	   filter;
 	QString			   filterMask;
 	QPixmap        currDragPix;
 	QListViewItem *currDragItem;

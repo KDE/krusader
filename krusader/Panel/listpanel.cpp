@@ -170,7 +170,7 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   quickSearch->hide();
   layout->addMultiCellWidget( totals, 4, 4, 0, 1 );
 
-  filter = ALL;
+  //filter = ALL;
 }
 
 ListPanel::~ListPanel() {
@@ -680,24 +680,22 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   }
 }
 
-void ListPanel::setFilter( FilterSpec f ) {
+void ListPanel::setFilter( KrView::FilterSpec f ) {
   switch ( f ) {
-      case ALL :
-      filter = ALL;
+      case KrView::All :
+      //case KrView::EXEC:
       break;
-      case EXEC:
-      filter = EXEC;
-      break;
-      case CUSTOM :
+      case KrView::Custom :
       filterMask = KRSpWidgets::getMask( i18n( " Select Files " ) );
       // if the user canceled - quit
       if ( filterMask == QString::null )
         return ;
-      filter = CUSTOM;
+      view->setFilterMask(filterMask);
       break;
       default:
       return ;
   }
+  view->setFilter(f); // do that in any case
   func->refresh();
 }
 
