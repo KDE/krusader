@@ -129,6 +129,7 @@ QString KrDetailedViewItem::name() const {
 
 void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align) {
   QColorGroup _cg(cg);
+/**************** removed new selection mode for now *************************
   // kdelibs' paintCell //////////////////////////////////////////
   const QPixmap *pm = listView()->viewport()->backgroundPixmap();
   if (pm && !pm->isNull())
@@ -163,7 +164,7 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   } else { // not selected
 
   }
-
+*****************************************************************************/
   // center the <DIR> thing if needed
   if(column != _view->column(KrDetailedView::Size))
    QListViewItem::paintCell(p, _cg, column, width, align);

@@ -544,7 +544,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       case Key_Space : {
         KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
         if ( !viewItem || !( viewItem->isDir() && viewItem->size() <= 0 ) ) {
-          KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
+          KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
           return ; // wrong type, just mark(unmark it)
         }
         //
@@ -559,7 +559,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         if ( krApp->mainView->activePanel->func->calcSpace( names, totalSize, totalFiles, totalDirs ) ) {
           // did we succeed to calcSpace? we'll fail if we don't have permissions
           if ( totalSize == 0 ) { // just mark it, and bail out
-            KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
+            KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
             return ;
           }
           viewItem->setSize( totalSize );
