@@ -54,7 +54,6 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
 
 void KrDetailedViewItem::remove(){  
   _vf = 0;
-  _view->takeItem( this );
 }
 
 void KrDetailedViewItem::repaintItem() {
@@ -186,6 +185,10 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 
 QPixmap& KrDetailedViewItem::icon() {
   QPixmap *p;
+
+  if( _vf == 0 )
+    return *p;
+  
   if (_view->_withIcons)
     p = new QPixmap(*(pixmap(_view->column(KrDetailedView::Name))));
   else p = new QPixmap(KrView::getIcon(_vf));
@@ -250,7 +253,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 
 QString KrDetailedViewItem::description() const {
  	if (name()=="..") return i18n("Climb up the directory tree");
-	else{
+	else if(_vf){
     QString text = _vf->vfile_getName();
 		QString comment = KMimeType::mimeType(_vf->vfile_getMime())->comment(text, false);
  		QString myLinkDest = _vf->vfile_getSymDest();
@@ -282,6 +285,8 @@ QString KrDetailedViewItem::description() const {
    	}
     return text;
   }
+
+  return "";
 }
 
 QString KrDetailedViewItem::dateTime() const {
