@@ -52,7 +52,6 @@ void DUFilelight::slotDirChanged( Directory *dir )
   {
     currentDir = dir;
     
-    File::setBaseURL( diskUsage->getBaseURL() );
     invalidate( false );
     create( dir );
     refreshNeeded = false;

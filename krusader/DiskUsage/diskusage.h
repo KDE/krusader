@@ -59,15 +59,18 @@ class DiskUsage : public QWidgetStack
   Q_OBJECT
   
 public:
-  DiskUsage( QWidget *parent = 0, char *name = 0);
+  DiskUsage( QString confGroup, QWidget *parent = 0, char *name = 0);
   ~DiskUsage();
   
   bool       load( KURL dirName, QWidget *parent );
   
   void       setView( int view );
+  int        getActiveView() { return activeView; }
   
   Directory* getDirectory( QString path );
   File *     getFile( QString path );
+  
+  QString    getConfigGroup() { return configGroup; }
   
   void *     getProperty( File *, QString );
   void       addProperty( File *, QString, void * );
@@ -121,6 +124,8 @@ protected:
   Directory *root;
   
   int        activeView;
+  
+  QString    configGroup;
 };
 
 class DiskUsageDialog : public QDialog
@@ -145,7 +150,7 @@ protected:
   QLabel *directories;
   
   KSqueezedTextLabel *searchedDirectory;
-  
+    
   bool   cancelled;
 };
 

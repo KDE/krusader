@@ -230,7 +230,6 @@ public:
   QString humanReadableSize( UnitPrefix key = mega ) const;
 
   static QString humanReadableSize( FileSize size, UnitPrefix Key = mega );
-  static void    setBaseURL( KURL url );
   
   friend class Directory;
 };
@@ -246,8 +245,9 @@ public:
     m_fileCount( 0 ) 
   {}
  
-  Directory() : File( (char *)"Root", 0 ), m_fileCount( 0 )
+  Directory( QString url ) : File( (char *)"Root", 0 ), m_fileCount( 0 )
   {
+    m_directory = url;
   }
   
   virtual ~Directory() {}  

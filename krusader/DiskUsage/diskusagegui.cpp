@@ -85,7 +85,7 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   
   duGrid->addWidget( duTools, 0, 0 );
   
-  diskUsage = new DiskUsage( this );
+  diskUsage = new DiskUsage( "DiskUsage", this );
   duGrid->addWidget( diskUsage, 1, 0 );
   
   status = new KSqueezedTextLabel( this );
@@ -104,7 +104,7 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   
   krConfig->setGroup( "DiskUsage" ); 
   
-  diskUsage->setView( VIEW_LINES );
+  diskUsage->setView( krConfig->readNumEntry( "View",  VIEW_LINES ) );
   
   sizeX = krConfig->readNumEntry( "Window Width",  QFontMetrics(font()).width("W") * 70 );
   sizeY = krConfig->readNumEntry( "Window Height", QFontMetrics(font()).height() * 25 );    
@@ -138,6 +138,7 @@ void DiskUsageGUI::reject()
   krConfig->writeEntry("Window Width", sizeX );
   krConfig->writeEntry("Window Height", sizeY );
   krConfig->writeEntry("Window Maximized", isMaximized() );
+  krConfig->writeEntry("View", diskUsage->getActiveView() );
   
   QDialog::reject();
 }

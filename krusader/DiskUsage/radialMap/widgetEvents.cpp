@@ -223,7 +223,8 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
          {
             KIconEffect::visualActivate( this, rect );
             emit activated( url ); //activate first, this will cause UI to prepare itself
-            createFromCache( (Directory *)m_focus->file() );
+            if( m_focus )
+              createFromCache( (Directory *)m_focus->file() );
          }
       }
    }

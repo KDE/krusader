@@ -151,7 +151,8 @@ void DiskUsageDialog::reject()
   QDialog::reject();
 }
 
-DiskUsage::DiskUsage( QWidget *parent, char *name ) : QWidgetStack( parent, name ), root( 0 )
+DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidgetStack( parent, name ), 
+                      root( 0 ), configGroup( confGroup )
 {
   listView = new DUListView( this, "DU ListView" );
   lineView = new DULines( this, "DU LineView" );
@@ -191,7 +192,7 @@ bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
   emit status( i18n( "Loading the disk usage information..." ) );
   
   clear();
-  root = new Directory();
+  root = new Directory( baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
     
   DiskUsageDialog *duDlg = new DiskUsageDialog( parentWidget, "DuProgressDialog" );
   

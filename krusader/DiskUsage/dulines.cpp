@@ -30,6 +30,7 @@
 
 #include "dulines.h"
 #include "../kicons.h"
+#include "../krusader.h"
 #include <qheader.h>
 #include <klocale.h>
 #include <qpen.h>
@@ -127,11 +128,16 @@ DULines::DULines( DiskUsage *usage, const char *name )
 
   int defaultSize = QFontMetrics(font()).width("W");
   
-  addColumn( i18n("Line View"), defaultSize * 20 );
+  krConfig->setGroup( diskUsage->getConfigGroup() ); 
+
+  int lineWidth  = krConfig->readNumEntry("L Line Width",  defaultSize * 20 );    
+  addColumn( i18n("Line View"), lineWidth );
   setColumnWidthMode(0,QListView::Manual);
-  addColumn( i18n("Percent"), defaultSize * 6 );
+  int precentWidth  = krConfig->readNumEntry("L Percent Width",  defaultSize * 6 );    
+  addColumn( i18n("Percent"), precentWidth );
   setColumnWidthMode(1,QListView::Manual);
-  addColumn( i18n("Name"), defaultSize * 20 );
+  int nameWidth  = krConfig->readNumEntry("L Name Width",  defaultSize * 20 );
+  addColumn( i18n("Name"), nameWidth );
   setColumnWidthMode(2,QListView::Manual);
   
   setColumnAlignment( 1, Qt::AlignRight );
@@ -155,6 +161,11 @@ DULines::DULines( DiskUsage *usage, const char *name )
 
 DULines::~DULines()
 {
+  krConfig->setGroup( diskUsage->getConfigGroup() ); 
+  krConfig->writeEntry("L Line Width",    columnWidth( 0 ) );
+  krConfig->writeEntry("L Percent Width", columnWidth( 1 ) );
+  krConfig->writeEntry("L Name Width",    columnWidth( 2 ) );
+  
   delete toolTip;
 }
 

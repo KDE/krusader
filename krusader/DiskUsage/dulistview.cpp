@@ -51,23 +51,33 @@ DUListView::DUListView( DiskUsage *usage, const char *name )
 
   int defaultSize = QFontMetrics(font()).width("W");
   
-  addColumn( i18n("Name"), defaultSize * 20 );
+  krConfig->setGroup( diskUsage->getConfigGroup() ); 
+  int nameWidth  = krConfig->readNumEntry("D Name Width",  defaultSize * 20 );    
+  addColumn( i18n("Name"), nameWidth );
   setColumnWidthMode(0,QListView::Manual);
-  addColumn( i18n("Percent"), defaultSize * 5 );
+  int percentWidth  = krConfig->readNumEntry("D Percent Width",  defaultSize * 5 );    
+  addColumn( i18n("Percent"), percentWidth );
   setColumnWidthMode(1,QListView::Manual);
-  addColumn( i18n("Total size"), defaultSize * 10 );
+  int totalSizeWidth  = krConfig->readNumEntry("D Total Size Width",  defaultSize * 10 );    
+  addColumn( i18n("Total size"), totalSizeWidth );
   setColumnWidthMode(1,QListView::Manual);
-  addColumn( i18n("Own size"), defaultSize * 10 );
+  int ownSizeWidth  = krConfig->readNumEntry("D Own Size Width",  defaultSize * 10 );    
+  addColumn( i18n("Own size"), ownSizeWidth );
   setColumnWidthMode(2,QListView::Manual);
-  addColumn( i18n("Type"), defaultSize * 10 );
+  int typeWidth  = krConfig->readNumEntry("D Type Width",  defaultSize * 10 );
+  addColumn( i18n("Type"), typeWidth );
   setColumnWidthMode(3,QListView::Manual);
-  addColumn( i18n("Date"), defaultSize * 10 );
+  int dateWidth  = krConfig->readNumEntry("D Date Width",  defaultSize * 10 );
+  addColumn( i18n("Date"), dateWidth );
   setColumnWidthMode(4,QListView::Manual);
-  addColumn( i18n("Permissions"), defaultSize * 6 );
+  int permissionsWidth  = krConfig->readNumEntry("D Permissions Width",  defaultSize * 6 );
+  addColumn( i18n("Permissions"), permissionsWidth );
   setColumnWidthMode(5,QListView::Manual);
-  addColumn( i18n("Owner"), defaultSize * 5 );
+  int ownerWidth  = krConfig->readNumEntry("D Owner Width",  defaultSize * 5 );    
+  addColumn( i18n("Owner"), ownerWidth );
   setColumnWidthMode(6,QListView::Manual);
-  addColumn( i18n("Group"), defaultSize * 5 );
+  int groupWidth  = krConfig->readNumEntry("D Group Width",  defaultSize * 5 );    
+  addColumn( i18n("Group"), groupWidth );
   setColumnWidthMode(7,QListView::Manual);
   
   setColumnAlignment( 1, Qt::AlignRight );
@@ -85,6 +95,20 @@ DUListView::DUListView( DiskUsage *usage, const char *name )
            this, SLOT( slotRightClicked(QListViewItem *) ) );
   connect( this, SIGNAL( expanded ( QListViewItem * ) ), 
            this, SLOT( slotExpanded( QListViewItem * ) ) ); 
+}
+
+DUListView::~ DUListView()
+{
+  krConfig->setGroup( diskUsage->getConfigGroup() ); 
+  krConfig->writeEntry("D Name Width",        columnWidth( 0 ) );
+  krConfig->writeEntry("D Percent Width",     columnWidth( 1 ) );
+  krConfig->writeEntry("D Total Size Width",  columnWidth( 2 ) );
+  krConfig->writeEntry("D Own Size Width",    columnWidth( 3 ) );
+  krConfig->writeEntry("D Type Width",        columnWidth( 4 ) );
+  krConfig->writeEntry("D Date Width",        columnWidth( 5 ) );
+  krConfig->writeEntry("D Permissions Width", columnWidth( 6 ) );
+  krConfig->writeEntry("D Owner Width",       columnWidth( 7 ) );
+  krConfig->writeEntry("D Group Width",       columnWidth( 8 ) );
 }
 
 void DUListView::addDirectory( Directory *dirEntry, QListViewItem *parent )
