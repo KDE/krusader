@@ -1055,6 +1055,7 @@ void ListPanel::setFilter( KrViewProperties::FilterSpec f ) {
          return ;
    }
    view->setFilter( f ); // do that in any case
+   func->files()->vfs_invalidate();
    func->refresh();
 }
 

@@ -38,7 +38,7 @@
 #include "../krusader.h"
 #include "../defaults.h"
 
-vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),vfileIterator(0), 
+vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),invalidated(true), vfileIterator(0), 
                                       mimeTypeMagicDisabled( false ) {
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
@@ -169,7 +169,7 @@ bool vfs::vfs_refresh(){
 }
 
 bool vfs::vfs_refresh(const KURL& origin){
-	if( origin.equals(vfs_getOrigin(),true) ) return vfs_refresh();
+	if( !invalidated && origin.equals(vfs_getOrigin(),true) ) return vfs_refresh();
 	
 	dirty = false;        
 	krConfig->setGroup("Look&Feel");
@@ -181,7 +181,8 @@ bool vfs::vfs_refresh(const KURL& origin){
 	if (!populateVfsList(origin,showHidden) ) return false;
 	if (!disableRefresh) emit startUpdate();
 	else dirty = true;   
-	     
+	
+	invalidated = false;
 	return true;
 }
 

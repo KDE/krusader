@@ -353,7 +353,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
                case KrViewProperties::All :
                break;
                case KrViewProperties::Custom :
-               if ( _properties->filterMask.match( vf ) )
+               if ( !_properties->filterMask.match( vf ) )
                   continue;
                break;
                case KrViewProperties::Dirs:
