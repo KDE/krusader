@@ -24,16 +24,16 @@ QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), 
    _newTab = new QToolButton( this );
    _newTab->setFixedSize( 22, 22 );
    _newTab->setTextLabel( i18n( "Open a new tab in home" ) );
-   QImage im = krLoader->loadIcon( "tab_new", KIcon::Panel ).convertToImage();
-   _newTab->setPixmap( im.scale( _newTab->height() - 5, _newTab->height() - 5 ) );
+   _newTab->setIconSet( SmallIcon( "tab_new" ) );
+   _newTab->adjustSize();	
    connect( _newTab, SIGNAL( clicked() ), this, SLOT( slotNewTab() ) );
 
    // close tab button
    _closeTab = new QToolButton( this );
    _closeTab->setFixedSize( 22, 22 );
    _closeTab->setTextLabel( i18n( "Close current tab" ) );
-   im = krLoader->loadIcon( "tab_remove", KIcon::Panel ).convertToImage();
-   _closeTab->setPixmap( im.scale( _closeTab->height() - 5, _closeTab->height() - 5 ) );
+   _closeTab->setIconSet( SmallIcon( "tab_remove" ) );
+   _closeTab->adjustSize();   
    connect( _closeTab, SIGNAL( clicked() ), this, SLOT( slotCloseTab() ) );
    _closeTab->setEnabled( false ); // disabled when there's only 1 tab
 

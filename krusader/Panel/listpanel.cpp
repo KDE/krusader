@@ -162,8 +162,8 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
-   popupBtn->setFixedSize( 20, 20 );
-	popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Toolbar, 16));
+   popupBtn->setFixedSize( 22, 20 );
+	popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIcon::Toolbar, 16));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
@@ -288,13 +288,13 @@ void ListPanel::togglePanelPopup() {
 		}
 		
 		popup->show();
-		popupBtn->setPixmap(krLoader->loadIcon("down", KIcon::Toolbar, 16));
+		popupBtn->setPixmap(krLoader->loadIcon("1downarrow", KIcon::Toolbar, 16));
 		QToolTip::add(  popupBtn, i18n( "Close the popup panel" ) );
 	} else {
 		popupSizes.clear();
 		popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
 		popup->hide();
-		popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Toolbar, 16));
+		popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIcon::Toolbar, 16));
 		QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 		
 		QValueList<int> lst;

@@ -96,12 +96,12 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
 
   // a run in terminal button
   terminal = new QToolButton( this );
-  terminal->setFixedSize( cmdLine->maximumHeight(), cmdLine->maximumHeight() );
+  terminal->setFixedSize( 22, 20 );
   terminal->setTextLabel( i18n( "If pressed, Krusader executes command line in a terminal." ) );
   terminal->setToggleButton( true );
   terminal->setOn( false );
-  QImage im = krLoader->loadIcon( "konsole", KIcon::Panel ).convertToImage();
-  terminal->setPixmap( im.scale( terminal->height(), terminal->height() ) );
+  terminal->setIconSet( SmallIcon( "konsole" ) );
+  terminal->adjustSize();  
   QWhatsThis::add
     ( terminal, i18n( "The 'run in terminal' button allows Krusader "
                       "to run console (or otherwise non-graphical) "
