@@ -39,7 +39,7 @@
 KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
 {
-  if( first )
+if( first )  
     slotFindTools();
 
   QGridLayout *kgGeneralLayout = new QGridLayout( parent );
@@ -129,7 +129,9 @@ void KgGeneral::slotFindTools()
 
 
   info+=i18n("\nIf you install new tools, please install them");
-  info+=i18n("\nto your path. (ie: /usr/bin, /usr/local/bin etc.)");
+  info+=i18n("\nto your path (ie: /usr/bin, /usr/local/bin etc.)");
+  info+=i18n("\nand-or (re)configure the Tools path in");
+  info+=i18n("\nKonfigurator->Dependencies if needed.");
   KMessageBox::information(0,info,i18n("Results"));
 }
 
