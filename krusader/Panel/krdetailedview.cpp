@@ -106,7 +106,7 @@ _nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left
   if ( _config->readBoolEntry( "Ext Column", _ExtColumn ) ) {
     newColumn( Extention );
     setColumnWidthMode( column( Extention ), QListView::Manual );
-    setColumnWidth( column( Extention ), QFontMetrics( font() ).width( "tar.gz" ) );
+    setColumnWidth( column( Extention ), QFontMetrics( font() ).width( "tar.bz2" ) );
   }
   if ( _config->readBoolEntry( "Mime Column", _MimeColumn ) ) {
     newColumn( Mime );
