@@ -174,12 +174,12 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 *****************************************************************************/
   // center the <DIR> thing if needed
   if(column != _view->column(KrDetailedView::Size))
-   QListViewItem::paintCell(p, _cg, column, width, align);
+   KListViewItem::paintCell(p, _cg, column, width, align);
   else if (_vf) {
     if (_vf->vfile_isDir() && _vf->vfile_getSize()<=0)
-      QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
-    else QListViewItem::paintCell(p, _cg, column, width, align); // size
-  } else QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
+      KListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
+    else KListViewItem::paintCell(p, _cg, column, width, align); // size
+  } else KListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
 }
 
 
