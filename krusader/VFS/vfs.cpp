@@ -31,15 +31,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "vfs.h"
-#include <kapplication.h>
-#include <kdebug.h>
+#include <unistd.h>
 #include <time.h>
+#include <qeventloop.h>
+#include <kapplication.h>
+#include "vfs.h"
 #include "../krusader.h"
 #include "../defaults.h"
 
-vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),invalidated(true), vfileIterator(0), 
-                                      mimeTypeMagicDisabled( false ) {
+vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),mimeTypeMagicDisabled( false ),
+                                      invalidated(true),vfileIterator(0) {
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
 	 		connect(this,SIGNAL(incrementalRefreshFinished( const KURL& )),panel,SLOT(slotGetStats( const KURL& )));
@@ -194,27 +195,35 @@ void vfs::vfs_enableRefresh(bool enable){
 	dirty = false;
 }
 
-void vfs::slotKdsResult(KIO::Job *job){
-
-
-}
-
 /// to be implemented
-void vfs::vfs_calcSpace( QString /*name*/ , KIO::filesize_t* /*totalSize*/, unsigned long* /*totalFiles*/, unsigned long* /*totalDirs*/, bool* /*stop*/ ) {
-#if 0
-	if ( stop && *stop ) return ;
-	busy = true;
-	KDirSize* kds = KDirSize::dirSizeJob( vfs_getFile( name ) );
-	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotListResult( KIO::Job* ) ) );
-
-	//while (busy && (!stop || !(*stop))) qApp->processEvents();
-
-	*totalSize += kds->totalSize();
-	*totalFiles += kds->totalFiles();
-	*totalDirs += kds->totalSubdirs();
-
-	kds->kill( true );
-#endif
+#if KDE_IS_VERSION(3,3,0) && 0
+#include <kdirsize.h>
+void vfs::slotKdsResult( KIO::Job* job){
+	if( job && !job->error() ){
+		KDirSize* kds = static_cast<KDirSize*>(job);
+		*kds_totalSize += kds->totalSize();
+		*kds_totalFiles += kds->totalFiles();
+		*kds_totalDirs += kds->totalSubdirs();
+	}
+	*kds_busy = true;
 }
+
+void vfs::vfs_calcSpace( QString name , KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop ) {
+	if ( stop && *stop ) return ;
+	kds_busy = stop;
+	kds_totalSize  = totalSize ;
+	kds_totalFiles = totalFiles;
+	kds_totalDirs  = totalDirs;
+	KDirSize* kds  = KDirSize::dirSizeJob( vfs_getFile( name ) );
+	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotKdsResult( KIO::Job* ) ) );
+	while ( !(*stop) ){ 
+		// we are in a sepetate thread - so sleeping is OK
+		usleep(1000);
+	}
+}
+#else
+void vfs::slotKdsResult(KIO::Job *job){/* empty */}
+void vfs::vfs_calcSpace( QString /*name*/ , KIO::filesize_t* /*totalSize*/, unsigned long* /*totalFiles*/, unsigned long* /*totalDirs*/, bool* /*stop*/ ) {/* empty*/}
+#endif
 
 #include "vfs.moc"
