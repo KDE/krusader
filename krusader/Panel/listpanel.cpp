@@ -342,6 +342,15 @@ void ListPanel::slotFocusAndCDRoot() {
    func->openUrl( QString( "/" ), QString::null );
 }
 
+void ListPanel::select(QString mask, bool select) {
+	if (mask != QString::null) {
+		if ( select )
+         view->select( mask );
+      else
+         view->unselect( mask );
+	}
+}
+
 void ListPanel::select( bool select, bool all ) {
    if ( all )
       if ( select )
