@@ -79,16 +79,16 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 		this, SLOT(slotDroppedOnTree(QWidget *, QDropEvent *, KURL::List&, KURL& )));
    stack->addWidget( tree, Tree );
    tree->addColumn( "" );
-   tree->addBranch( "/", i18n( "Root Folder" ) );
-   tree->setDirOnlyMode( tree->branch( i18n( "Root Folder" ) ), true );
+   tree->addBranch( "/", i18n( "/" ) );
+   tree->setDirOnlyMode( tree->branch( i18n( "/" ) ), true );
 	tree->setShowFolderOpenPixmap(true);
-	tree->branch( i18n( "Root Folder" ) ) ->setChildRecurse(false);
+	tree->branch( i18n( "/" ) ) ->setChildRecurse(false);
 	
-   tree->branch( i18n( "Root Folder" ) ) ->setOpen( true );
+   tree->branch( i18n( "/" ) ) ->setOpen( true );
    tree->header() ->setHidden( true );
 	connect(tree, SIGNAL(executed(QListViewItem*)), this, SLOT(treeSelection(QListViewItem*)));
    // start listing the tree
-   tree->branch( i18n( "Root Folder" ) ) ->root();
+   tree->branch( i18n( "/" ) ) ->root();
 
    // create the quickview part ------
    viewer = new QLabel( i18n( "No preview available" ), stack );
