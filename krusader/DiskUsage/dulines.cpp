@@ -259,7 +259,8 @@ void DULines::sectionResized( int column )
   DULinesItem *duItem = (DULinesItem *)firstChild();
   while( duItem )
   {
-    duItem->setPixmap( 0, createPixmap( duItem->getFile()->intPercent(), maxPercent, columnWidth( 0 ) ) );
+    if( duItem->text( 0 ) != ".." )
+      duItem->setPixmap( 0, createPixmap( duItem->getFile()->intPercent(), maxPercent, columnWidth( 0 ) ) );
     duItem = (DULinesItem *)duItem->nextSibling();
   }
 }

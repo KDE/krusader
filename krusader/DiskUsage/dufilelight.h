@@ -44,9 +44,13 @@ public:
 public slots:
   void slotDirChanged( Directory * );
   void clear();
+
+protected slots:  
+  void slotActivated( const KURL& );
   
 protected:
   DiskUsage *diskUsage;  
+  Directory *currentDir;
 };
 
 #endif /* __DU_FILELIGHT_H__ */

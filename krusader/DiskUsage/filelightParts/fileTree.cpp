@@ -29,9 +29,9 @@ File::fullPath( const Directory *root /*= 0*/ ) const
     for( const Directory *d = (Directory*)this; d != root && d && d->parent() != 0; d = d->parent() )
     {
       if( !path.isEmpty() )
-        path += "/";
+        path = "/" + path;
         
-      path += d->fileName();
+      path = d->fileName() + path;
     }
     
     KURL url = baseURL;

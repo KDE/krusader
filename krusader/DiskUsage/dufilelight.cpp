@@ -31,21 +31,48 @@
 #include "dufilelight.h"
 
 DUFilelight::DUFilelight( DiskUsage *usage, QWidget *parent, const char *name )
-  : RadialMap::Widget( parent, name ), diskUsage( usage )
+  : RadialMap::Widget( parent, name ), diskUsage( usage ), currentDir( 0 )
 {
-  connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
-  connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
+   connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
+   connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
+   connect( this, SIGNAL( activated( const KURL& ) ), this, SLOT( slotActivated( const KURL& ) ) );
 }
 
 void DUFilelight::slotDirChanged( Directory *dir )
 {
-  File::setBaseURL( diskUsage->getBaseURL() );
-  create( dir );
+  if( currentDir != dir )
+  {
+    currentDir = dir;
+    
+    File::setBaseURL( diskUsage->getBaseURL() );
+    create( dir );
+  }
 }
 
 void DUFilelight::clear()
 {
   invalidate( false );
+  currentDir = 0;
+}
+
+void DUFilelight::slotActivated( const KURL& url )
+{
+  KURL baseURL = diskUsage->getBaseURL();
+  
+  if( !baseURL.path().endsWith("/") )
+    baseURL.setPath( baseURL.path() + "/" );
+    
+  QString relURL = KURL::relativeURL( baseURL, url );
+  
+  if( relURL.endsWith( "/" ) )
+    relURL.truncate( relURL.length() - 1 );
+  
+  Directory * dir = diskUsage->getDirectory( relURL );
+  if( dir != 0 && dir != currentDir )
+  {
+    currentDir = dir;
+    diskUsage->changeDirectory( dir );  
+  }
 }
 
 #include "dufilelight.moc"
