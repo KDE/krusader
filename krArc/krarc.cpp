@@ -95,15 +95,19 @@ void kio_krarcProtocol::receivedData(KProcess*,char* buf,int len){
 }
 
 void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
-  if( !setArcFile(url.path()) ) return;
+  KRDEBUG("mkdir: "<<url.path());
+  setArcFile(url.path());
   if( putCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Creating directories is not supported with %1 archives").arg(arcType) );
     return;
-  } 
-  QString arcDir  = findArcDirectory(url);
-  QString tmpDir = arcTempDir + arcDir.mid(1) + url.path().mid(url.path().findRev("/")+1)+"/";
+  }
 
+  //QString tmpDir = arcTempDir+url.path();
+  QString arcDir  = findArcDirectory(url);
+  QString tmpDir = arcTempDir + arcDir.mid(1) + url.path().mid(url.path().findRev("/")+1);
+  if( tmpDir.right(1) != "/" ) tmpDir = tmpDir+"/";
+    
   if( permissions == -1 ) permissions = 0666; //set default permissions
   for( unsigned int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
     ::mkdir(tmpDir.left(i).latin1(),permissions);
@@ -111,20 +115,21 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
 
 	// pack the directory
 	KShellProcess proc;
-	proc << putCmd << "\""+arcFile->url().path()+"\" " << "\""+tmpDir.mid(arcTempDir.length())+"/\"";
+	proc << putCmd << "\""+arcFile->url().path()+"\" " << "\""+tmpDir.mid(arcTempDir.length())+"\"";
   infoMessage(i18n("Creating %1 ...").arg( url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
 	proc.start(KProcess::Block);
 
-  // directory will be deleted in the destructor...
-
+  // delete the temp directory
+  QDir().rmdir(arcTempDir);
 	//  force a refresh of archive information
   initDirDict(url,true);
 	finished();
 }
 
 void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool resume){
-  if( !setArcFile(url.path()) ) return;
+  KRDEBUG("put: "<<url.path());
+  setArcFile(url.path());
   if( putCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Writing to %1 archives is not supported").arg(arcType) );
@@ -142,7 +147,6 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
   for( unsigned int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
 		QDir("/").mkdir(tmpDir.left(i));
 	}
-
 	int fd;
 	if ( resume ) {
 		fd = KDE_open( tmpFile.latin1(), O_RDWR );  // append if resuming
@@ -158,7 +162,6 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 
 		fd = KDE_open(tmpFile.latin1(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
 	}
-
   QByteArray buffer;
 	int readResult;
 	do{
@@ -167,17 +170,14 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 		write(fd,buffer.data(),buffer.size());
  	} while( readResult > 0 );
 	close(fd);
-
 	// pack the file
 	KShellProcess proc;
 	proc << putCmd << "\""+arcFile->url().path()+"\" " << "\""+tmpFile.mid(arcTempDir.length())+"\"";
-	infoMessage(i18n("Packing %1 ...").arg( url.fileName() ) );
-	QDir::setCurrent(arcTempDir);
-	proc.start(KProcess::Block);
-
+  infoMessage(i18n("Packing %1 ...").arg( url.fileName() ) );
+  QDir::setCurrent(arcTempDir);
+  proc.start(KProcess::Block);
   // remove the file
-	KIO::del(tmpFile,false,false);
-	
+	QFile::remove(tmpFile);
 	//  force a refresh of archive information
   initDirDict(url,true);
 	finished();
@@ -214,7 +214,8 @@ void kio_krarcProtocol::get(const KURL& url ){
 }
 
 void kio_krarcProtocol::del(KURL const & url, bool isFile){
-  if( !setArcFile(url.path()) ) return;
+  KRDEBUG("del: "<<url.path());
+  setArcFile(url.path());
   if( delCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Deleting files from %1 archives is not supported").arg(arcType) );
@@ -226,7 +227,7 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 	}
 	
 	QString file = url.path().mid(arcFile->url().path().length()+1);
-	if( !isFile ) file = file + "/";
+	if( !isFile && file.right(1) != "/" ) file = file + "/";
 	KShellProcess proc;
 	proc << delCmd << "\""+arcFile->url().path()+"\" " << "\""+file+"\"";
 	infoMessage(i18n("Deleting %1 ...").arg( url.fileName() ) );
@@ -244,7 +245,6 @@ void kio_krarcProtocol::stat( const KURL & url ){
     i18n("Accessing files is not supported with the %1 archives").arg(arcType) );
     return;
   }
-
   QString path = url.path();
 	KURL newUrl = url;
 	
@@ -253,14 +253,13 @@ void kio_krarcProtocol::stat( const KURL & url ){
     newUrl.setPath(path+"/");
 		path = newUrl.path();
 	}
-
 	// we might be stating a real file
 	if( QFileInfo(path).exists() ){
 		struct stat buff;
     ::stat( path.latin1(), &buff );
 		QString mime = KMimeType::findByPath(path,buff.st_mode)->name();
 		statEntry(KFileItem(path,mime,buff.st_mode).entry());
-		finished();
+    finished();
 		return;
 	}
   UDSEntry* entry = findFileEntry(newUrl);
@@ -515,7 +514,7 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
 	  atom.m_uds = UDS_NAME;
 	  atom.m_str = name;
 	  entry.append(atom);
-
+    
     mode_t mode = parsePermString("drwxr-xr-x");
 
     atom.m_uds = UDS_FILE_TYPE;
@@ -527,19 +526,18 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
 	  entry.append( atom );
 
     atom.m_uds = UDS_SIZE;
-    atom.m_long = 2048;
+    atom.m_long = 0;
     entry.append( atom );
 
     atom.m_uds = UDS_MODIFICATION_TIME;
     atom.m_long = arcFile->time(UDS_MODIFICATION_TIME);
 	  entry.append( atom );
-    
+   
     dir->append(entry);
   } 
   // create a new directory entry and add it..
   dir = new UDSEntryList();
   dirDict.insert(path,dir);
-  KRDEBUG("insert1: "<<path);
 
   return dir;
 }
