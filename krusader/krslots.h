@@ -119,7 +119,7 @@ class KRslots : public QObject {
     void openRightHistory() { RIGHT_PANEL->historyButton->openPopup(); }
 	 void syncPanels() {
 	 	ListPanel *t = ACTIVE_PANEL;
-		OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath);
+		OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
 		t->slotFocusOnMe();
 	 }
     void cmdlinePopup() { MAIN_VIEW->cmdLine->popup(); }

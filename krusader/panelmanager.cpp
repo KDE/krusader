@@ -98,7 +98,7 @@ void PanelManager::saveSettings( KConfig *config, const QString& key ) {
    while (cnt < _tabbar->count()) {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) {
-         l << t->panel->realPath;
+         l << t->panel->realPath();
          ++cnt;
       }
       ++i;
@@ -254,7 +254,7 @@ void PanelManager::slotRecreatePanels() {
      if( _other->otherPanel == oldPanel )
        _other->otherPanel = newPanel;         
      updatedPanel->panel = newPanel;
-     newPanel->start( oldPanel->virtualPath, true );          
+     newPanel->start( oldPanel->virtualPath(), true );          
      delete oldPanel;
    
      _tabbar->updateTab( newPanel );

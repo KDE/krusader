@@ -122,7 +122,7 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 			//do sync-browse stuff....
 			OTHER_FUNC->files() ->vfs_setQuiet( true );
 			// the trailing slash is nessesary because krusader provides Dir's without it
-			OTHER_FUNC->openUrl( KURL::relativeURL( panel->getPath() + "/", url.url() ) );
+			OTHER_FUNC->openUrl( KURL::relativeURL( panel->virtualPath() + "/", url.url() ) );
 			OTHER_FUNC->files() ->vfs_setQuiet( false );
 		
 			inSync = false;
@@ -192,6 +192,10 @@ void ListPanelFunc::openUrl( const KURL& url, const QString& nameToMakeCurrent )
 	this->nameToMakeCurrent = nameToMakeCurrent;
 	delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
 	delayTimer.start( 0, true );  /* to avoid qApp->processEvents() deadlock situaltion */
+}
+
+void ListPanelFunc::refresh() {
+	openUrl(panel->virtualPath()); // re-read the files
 }
 
 void ListPanelFunc::doOpenUrl() {
@@ -308,7 +312,7 @@ void ListPanelFunc::view() {
 
 void ListPanelFunc::terminal() {
 	QString save = getcwd( 0, 0 );
-	chdir( panel->realPath.local8Bit() );
+	chdir( panel->realPath().local8Bit() );
 
 	KProcess proc;
 	krConfig->setGroup( "General" );
@@ -351,7 +355,7 @@ void ListPanelFunc::moveFiles() {
 	if ( fileNames.isEmpty() )
 		return ;  // safety
 
-	QString dest = panel->otherPanel->getPath();
+	QString dest = panel->otherPanel->virtualPath();
 	/* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 
 	//krConfig->setGroup( "Archives" );
@@ -373,7 +377,7 @@ void ListPanelFunc::moveFiles() {
 			s.sprintf( i18n( "Move %d files to:" ).local8Bit(), fileNames.count() );
 
 		// ask the user for the copy dest
-		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath(), panel->getPath() );
+		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->virtualPath(), panel->virtualPath() );
 		dest = chooser->dest;
 		if ( dest == QString::null )
 			return ; // the usr canceled
@@ -389,7 +393,7 @@ void ListPanelFunc::moveFiles() {
 	panel->prepareToDelete();
 
 	// if we are not moving to the other panel :
-	if ( panel->otherPanel->getPath() != dest ) {
+	if ( panel->otherPanel->virtualPath() != dest ) {
 		if ( dest.left( 1 ) != "/" ) {
 			dest = files() ->vfs_workingDir() + "/" + dest;
 		}
@@ -404,7 +408,7 @@ void ListPanelFunc::moveFiles() {
 		// refresh our panel when done
 		connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
 		// and if needed the other panel as well
-		if ( dest.startsWith( panel->otherPanel->getPath() ) )
+		if ( dest.startsWith( panel->otherPanel->virtualPath() ) )
 			connect( job, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 
 	} else { // let the other panel do the dirty job
@@ -473,7 +477,7 @@ void ListPanelFunc::copyFiles() {
 	if ( fileNames.isEmpty() )
 		return ;  // safety
 
-	QString dest = panel->otherPanel->getPath();
+	QString dest = panel->otherPanel->virtualPath();
 
 	// confirm copy
 	krConfig->setGroup( "Advanced" );
@@ -484,7 +488,7 @@ void ListPanelFunc::copyFiles() {
 		else
 			s.sprintf( i18n( "Copy %d files to:" ).local8Bit(), fileNames.count() );
 		// ask the user for the copy dest
-		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath(), panel->getPath() );
+		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->virtualPath(), panel->virtualPath() );
 		dest = chooser->dest;
 		if ( dest == QString::null )
 			return ; // the usr canceled
@@ -493,7 +497,7 @@ void ListPanelFunc::copyFiles() {
 	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 
 	// if we are  not copying to the other panel :
-	if ( panel->otherPanel->getPath() != dest ) {
+	if ( panel->otherPanel->virtualPath() != dest ) {
 		bool refresh = false;
 		if ( dest.left( 1 ) != "/" ) {
 			dest = files() ->vfs_workingDir() + "/" + dest;
@@ -571,7 +575,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 
 		// verify non-empty dirs delete... (only for norml vfs)
 		if ( emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink() ) {
-			dir.setPath( panel->getPath() + "/" + ( *name ) );
+			dir.setPath( panel->virtualPath() + "/" + ( *name ) );
 			if ( dir.count() > 2 ) {
 				switch ( KMessageBox::warningYesNoCancel( krApp,
 				                                          i18n( "Directory " ) + ( *name ) + i18n( " is not empty !\nSkip this one or Delete All ?" ),
@@ -661,22 +665,22 @@ void ListPanelFunc::pack() {
 		return ; // nothing to pack
 
 	// choose the default name
-	QString defaultName = panel->virtualPath.right( panel->virtualPath.length() - panel->virtualPath.findRev( '/' ) - 1 );
+	QString defaultName = panel->virtualPath().right( panel->virtualPath().length() - panel->virtualPath().findRev( '/' ) - 1 );
 	if ( defaultName == "" )
 		defaultName = "pack";
 	if ( fileNames.count() == 1 )
 		defaultName = fileNames.first();
 	// ask the user for archive name and packer
-	new PackGUI( defaultName, panel->otherPanel->virtualPath, fileNames.count(), fileNames.first() );
+	new PackGUI( defaultName, panel->otherPanel->virtualPath(), fileNames.count(), fileNames.first() );
 	if ( PackGUI::type == QString::null )
 		return ; // the user canceled
 
 	// check for partial URLs	
 	if( !PackGUI::destination.contains(":/") && !PackGUI::destination.startsWith("/")  ){
-		PackGUI::destination = panel->virtualPath+"/"+PackGUI::destination;
+		PackGUI::destination = panel->virtualPath()+"/"+PackGUI::destination;
 	}
 	
-	bool packToOtherPanel = ( PackGUI::destination == panel->otherPanel->virtualPath );
+	bool packToOtherPanel = ( PackGUI::destination == panel->otherPanel->virtualPath() );
 
 	// on remote URL-s first pack into a temp file then copy to its right place
 	KURL destURL = vfs::fromPathOrURL( PackGUI::destination + "/" + PackGUI::filename + "." + PackGUI::type );
@@ -804,16 +808,16 @@ void ListPanelFunc::unpack() {
 		s = i18n( "Unpack " ) + i18n( "%1 files" ).arg( fileNames.count() ) + i18n( "to" ) + ":";
 
 	// ask the user for the copy dest
-	KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath(), panel->getPath() );
+	KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->virtualPath(), panel->virtualPath() );
 	QString dest = chooser->dest;
 	if ( dest == QString::null )
 		return ; // the usr canceled
 
 	// check for partial URLs	
 	if( !dest.contains(":/") && !dest.startsWith("/")  ){
-		dest = panel->virtualPath+"/"+dest;
+		dest = panel->virtualPath()+"/"+dest;
 	}
-	bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath );
+	bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath() );
 
 	for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
 		QString arcName = fileNames[ i ];
@@ -919,7 +923,7 @@ void ListPanelFunc::FTPDisconnect() {
 	if ( files() ->vfs_getType() == vfs::FTP ) {
 		krFTPDiss->setEnabled( false );
 		panel->view->setNameToMakeCurrent( QString::null );
-		openUrl( panel->realPath ); // open the last local URL
+		openUrl( panel->realPath() ); // open the last local URL
 	}
 }
 
@@ -1018,7 +1022,7 @@ void ListPanelFunc::pasteFromClipboard() {
 		KURLDrag::decode( data, urls );
 		bool cutSelection = KRDrag::decodeIsCutSelection( data );
 
-		KURL destUrl = vfs::fromPathOrURL( panel->getPath() );
+		KURL destUrl = vfs::fromPathOrURL( panel->virtualPath() );
 
 		KIO::Job* job = new KIO::CopyJob( urls, destUrl, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, false, true );
 		connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );

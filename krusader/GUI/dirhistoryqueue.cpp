@@ -31,7 +31,7 @@ DirHistoryQueue::~DirHistoryQueue(){
 /** No descriptions */
 void DirHistoryQueue::slotPathChanged(ListPanel* p){
 //  int dummy = 1;
-  AddPath(p->getPath());
+  AddPath(p->virtualPath());
 }
 
 void DirHistoryQueue::AddPath(const QString& path)

@@ -69,6 +69,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // Krusader includes
 #include "../krusader.h"
 #include "../krslots.h"
+#include "panelfunc.h"
 #include "../kicons.h"
 #include "../VFS/krpermhandler.h"
 #include "listpanel.h"
@@ -76,7 +77,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../panelmanager.h"
 #include "../defaults.h"
 #include "../resources.h"
-#include "panelfunc.h"
 #include "../MountMan/kmountman.h"
 #include "../Dialogs/krdialogs.h"
 #include "../BookMan/krbookmarkbutton.h"
@@ -97,6 +97,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <konq_popupmenu.h>
 #include <konqbookmarkmanager.h>
 #endif
+
+#define URL(X)	vfs::fromPathOrURL(X)
 
 typedef QValueList<KServiceOffer> OfferList;
 
@@ -304,6 +306,15 @@ void ListPanel::togglePanelPopup() {
 	}
 }
 
+QString ListPanel::virtualPath() const {
+	return func->files()->vfs_getOrigin().url(); 
+}
+
+QString ListPanel::realPath() const { 
+	return _realPath.path(); 
+}
+
+
 void ListPanel::setPanelToolbar() {
    krConfig->setGroup( "Look&Feel" );
 
@@ -474,7 +485,7 @@ void ListPanel::slotFocusOnMe() {
    totals->setPalette( p );
 
    view->prepareForActive();
-   emit cmdLineUpdate( realPath );
+   emit cmdLineUpdate( realPath() );
    emit activePanelChanged( this );
 
    func->refreshActions();
@@ -490,38 +501,39 @@ void ListPanel::slotFocusOnMe() {
 //////////////////////////////////////////////////////////////////
 void ListPanel::start( QString path, bool immediate ) {
    bool left = _left;
-   krConfig->setGroup( "Startup" );
+   KURL virt;
+	krConfig->setGroup( "Startup" );
 
    // set the startup path
    if ( path != QString::null ) {
-      virtualPath = path;
+      virt = URL(path);
    } else
       if ( left ) {
          if ( krConfig->readEntry( "Left Panel Origin", _LeftPanelOrigin ) == i18n( "homepage" ) )
-            virtualPath = krConfig->readEntry( "Left Panel Homepage", _LeftHomepage );
+            virt = URL(krConfig->readEntry( "Left Panel Homepage", _LeftHomepage ));
          else if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
             // read the first of the tabbar. lastHomeLeft is obsolete!
-            virtualPath = (krConfig->readPathListEntry( "Left Tab Bar" ))[0];
+            virt = URL((krConfig->readPathListEntry( "Left Tab Bar" ))[0]);
          else
-            virtualPath = getcwd( 0, 0 ); //get_current_dir_name();
+            virt = URL(getcwd( 0, 0 )); //get_current_dir_name();
       } else { // right
          if ( krConfig->readEntry( "Right Panel Origin", _RightPanelOrigin ) == i18n( "homepage" ) )
-            virtualPath = krConfig->readEntry( "Right Panel Homepage", _RightHomepage );
+            virt = URL(krConfig->readEntry( "Right Panel Homepage", _RightHomepage ));
          else if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
             // read the first of the tabbar. lastHomeLeft is obsolete!
-            virtualPath = (krConfig->readPathListEntry( "Right Tab Bar" ))[0];
+            virt = URL((krConfig->readPathListEntry( "Right Tab Bar" ))[0]);
          else
-            virtualPath = getcwd( 0, 0 );
+            virt = URL(getcwd( 0, 0 ));
       }
 
-   realPath = virtualPath;
-   KURL url = vfs::fromPathOrURL( virtualPath );
-   if ( !url.isValid() )
-      url = "/";
-   if( immediate )
-     func->immediateOpenUrl( url );
+   
+   if ( !virt.isValid() )
+      virt = URL("/");
+   _realPath = virt;
+	if( immediate )
+     func->immediateOpenUrl( virt );
    else
-     func->openUrl( url );
+     func->openUrl( virt );
 }
 
 void ListPanel::slotStartUpdate() {
@@ -533,18 +545,13 @@ void ListPanel::slotStartUpdate() {
    setCursor( KCursor::workingCursor() );
    view->clear();
 
-   // set the virtual path
-   virtualPath = func->files() ->vfs_getOrigin().prettyURL();
-   if ( virtualPath.startsWith( "file:" ) )
-      virtualPath = virtualPath.mid( 5 );
-
    if ( func->files() ->vfs_getType() == vfs::NORMAL )
-      realPath = virtualPath;
-   this->origin->setURL( virtualPath );
+      _realPath = URL(virtualPath());
+   this->origin->setURL( URL(virtualPath()).prettyURL() );
    emit pathChanged( this );
-   emit cmdLineUpdate( realPath );	// update the command line
+   emit cmdLineUpdate( realPath() );	// update the command line
 
-   slotGetStats( virtualPath );
+   slotGetStats( URL(virtualPath()) );
    slotUpdate();
    if ( compareMode ) {
       otherPanel->view->clear();
@@ -553,7 +560,7 @@ void ListPanel::slotStartUpdate() {
    // return cursor to normal arrow
    setCursor( KCursor::arrowCursor() );
    slotUpdateTotals();
-	krApp->popularUrls->addUrl(virtualPath);
+	krApp->popularUrls->addUrl(virtualPath());
 }
 
 void ListPanel::slotUpdate() {
@@ -561,7 +568,7 @@ void ListPanel::slotUpdate() {
    QString protocol = func->files() ->vfs_getOrigin().protocol();
    bool isFtp = ( protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish" );
 
-   QString origin = func->files() ->vfs_getOrigin().prettyURL( -1 );
+   QString origin = URL(virtualPath()).prettyURL(-1);
    if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) && isFtp &&
                                        origin.find( '/', origin.find( ":/" ) + 3 ) == -1 ) ) {
       view->addItems( func->files() );
@@ -572,13 +579,14 @@ void ListPanel::slotUpdate() {
 }
 
 
-void ListPanel::slotGetStats( QString path ) {
-   if ( path.contains( ":/" ) ) {
+void ListPanel::slotGetStats( const KURL& url ) {
+   if ( !url.isLocalFile() ) {
       status->setText( i18n( "No space information on non-local filesystems" ) );
       return ;
    }
 
 	// check for special filesystems;
+	QString path = url.path(); // must be local url
 	if ( path.left(4) == "/dev") {
 		status->setText(i18n( "No space information on [dev]" ));
 		return;
@@ -657,7 +665,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
       file = func->files() ->vfs_search( i->name() );
 
       if ( !file ) { // trying to drop on the ".."
-         if ( virtualPath.right( 1 ) == "\\" )        // root of archive..
+         if ( virtualPath().right( 1 ) == "\\" )        // root of archive..
             isWritable = false;
          else
             copyToDirInPanel = true;

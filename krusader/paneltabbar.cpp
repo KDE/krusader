@@ -29,6 +29,9 @@
 #include <qtooltip.h>
 #include <kdebug.h>
 
+#define URL(X)			vfs::fromPathOrURL(X)
+#define DISPLAY(X)	(X.isLocalFile() ? X.path() : X.prettyURL())
+
 PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
   _panelActionMenu = new KActionMenu( i18n("Panel"), this );
 
@@ -74,11 +77,11 @@ void PanelTabBar::insertAction( KAction* action ) {
 }
 
 int PanelTabBar::addPanel(ListPanel *panel, bool setCurrent ) {
-  int newId = addTab(new PanelTab(squeeze(panel->virtualPath), panel));
+  int newId = addTab(new PanelTab(squeeze(DISPLAY(URL(panel->virtualPath()))), panel));
 
   // make sure all tabs lengths are correct
   for (int i=0; i<count(); i++)
-    tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath, i));
+    tabAt(i)->setText(squeeze(DISPLAY(URL(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath())), i));
   layoutTabs();
   
   if( setCurrent )
@@ -102,7 +105,7 @@ ListPanel* PanelTabBar::removeCurrentPanel(ListPanel* &panelToDelete) {
   removeTab(tab(id));
 
   for (int i=0; i<count(); i++)
-    tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath, i));
+    tabAt(i)->setText(squeeze(DISPLAY(URL(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath())), i));
   layoutTabs();
 
   // setup current one
@@ -121,7 +124,7 @@ void PanelTabBar::updateTab(ListPanel *panel) {
   // find which is the correct tab
   for (int i=0; i<count(); i++) {
     if (dynamic_cast<PanelTab*>(tabAt(i))->panel == panel) {
-      tabAt(i)->setText(squeeze(panel->virtualPath,i));
+      tabAt(i)->setText(squeeze(DISPLAY(URL(panel->virtualPath())),i));
       break;
     }
   }
@@ -129,7 +132,7 @@ void PanelTabBar::updateTab(ListPanel *panel) {
 
 void PanelTabBar::duplicateTab() {
   int id = currentTab();
-  emit newTab(vfs::fromPathOrURL(dynamic_cast<PanelTab*>(tab(id))->panel->virtualPath));
+  emit newTab(vfs::fromPathOrURL(dynamic_cast<PanelTab*>(tab(id))->panel->virtualPath()));
 }
 
 void PanelTabBar::closeTab() {
@@ -229,7 +232,7 @@ void PanelTabBar::resizeEvent ( QResizeEvent *e ) {
     QTabBar::resizeEvent( e );
      
     for (int i=0; i<count(); i++)
-      tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath, i));
+      tabAt(i)->setText(squeeze(DISPLAY(URL(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath())), i));
     layoutTabs();
 }
 

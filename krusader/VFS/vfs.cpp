@@ -42,7 +42,7 @@ vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),vfi
                                       mimeTypeMagicDisabled( false ) {
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
-	 		connect(this,SIGNAL(incrementalRefreshFinished( QString )),panel,SLOT(slotGetStats( QString )));
+	 		connect(this,SIGNAL(incrementalRefreshFinished( const KURL& )),panel,SLOT(slotGetStats( const KURL& )));
 		}
 		else quietMode = true;
 }
@@ -163,7 +163,7 @@ bool vfs::vfs_refresh(){
 	vfileDict *temp = vfs_filesP;
 	vfs_filesP = vfs_searchP;
 	delete temp;
-	emit incrementalRefreshFinished( vfs_origin.isLocalFile() ? vfs_origin.path() : vfs_origin.prettyURL() );        
+	emit incrementalRefreshFinished( vfs_origin );        
 	
 	return res; 
 }

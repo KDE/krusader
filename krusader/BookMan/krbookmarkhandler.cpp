@@ -44,7 +44,7 @@ KrBookmarkHandler::~KrBookmarkHandler() {
 void KrBookmarkHandler::menuOperation(int id) {
 	switch (id) {
 		case BookmarkCurrent:
-			bookmarkCurrent(ACTIVE_PANEL->virtualPath);
+			bookmarkCurrent(ACTIVE_PANEL->virtualPath());
 			break;
 		case ManageBookmarks:
 			manager->slotEditBookmarks();
