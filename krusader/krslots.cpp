@@ -63,6 +63,7 @@
 #include "Search/krsearchmod.h"
 #include "Search/krsearchdialog.h"
 #include "VFS/vfs.h"
+#include "panelmanager.h"
 
 #define ACTIVE_PANEL        (krApp->mainView->activePanel)
 #define ACTIVE_FUNC         (krApp->mainView->activePanel->func)
@@ -276,10 +277,11 @@ void KRslots::toggleHidden(){
 }
 
 void KRslots::toggleSwapPanels(){
-  ListPanel *currentFirst = panel_swap ? krApp->mainView->right : krApp->mainView->left;
-  krApp->mainView->horiz_splitter->moveToLast( currentFirst );
+  PanelManager *currentFirst = panel_swap ? MAIN_VIEW->rightMng : MAIN_VIEW->leftMng;
 	krApp->actToggleSwapPanels->setChecked( panel_swap = !panel_swap );
-	REFRESH_BOTH_PANELS;
+  MAIN_VIEW->horiz_splitter->moveToLast( currentFirst );
+  MAIN_VIEW->left->updateGeometry();
+  MAIN_VIEW->right->updateGeometry();
 }
 
 void KRslots::search() {

@@ -46,6 +46,7 @@
 #include <qpushbutton.h>
 #include <qhbox.h>
 
+class PanelManager;
 class ListPanel;
 
 // forward declaration
@@ -77,6 +78,7 @@ protected slots:
 public:
   ListPanel  *activePanel;
   ListPanel  *left,*right;								// the actual panels
+  PanelManager *leftMng, *rightMng;       // saving them for panel swaps
   KFnKeys			*fnKeys;										// function keys
   KCMDLine    *cmdLine;                   // command line widget
   QHBox       *terminal_dock;             // docking widget for terminal emulator
