@@ -98,8 +98,7 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   status->setText( "" );        // needed for initialization code!
   int sheight = QFontMetrics( status->font() ).height() + 4;
   status->setMaximumHeight( sheight );
-  QWhatsThis::add( status, i18n( "The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, 
-type of filesystem etc." ) );  connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
+  QWhatsThis::add( status, i18n( "The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of filesystem etc." ) );  connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
 
   // ... create the bookmark list
   bookmarksButton = new BookmarksButton( this );
@@ -463,12 +462,21 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
   // Open with
   // try to find-out which apps can open the file
   OfferList offers;
-  // this too, is meaningful only if one file is selected
-  if ( !multipleSelections ) {
-    offers = KServiceTypeProfile::offers( item->mime() );
+  // this too, is meaningful only if one file is selected or if all the files
+  // have the same mimetype !
+  QString mime = item->mime();
+  // check if all the list have the same mimetype
+  for(unsigned int i=1; i<items.size(); ++i){
+    if( (*items.at(i))->mime() != mime ){
+      mime = QString::null;
+      break;
+    }
+  }
+  if ( !mime.isEmpty() ) {
+    offers = KServiceTypeProfile::offers( mime );
     for ( unsigned int i = 0; i < offers.count(); ++i ) {
       KService::Ptr service = offers[ i ].service();
-      if ( service->isValid() && service->type() == "Application" ) {
+      if ( service->isValid() && service->type()=="Application" ) {
         openWith.insertItem( service->name(), SERVICE_LIST_ID + i );
         openWith.changeItem( SERVICE_LIST_ID + i, service->pixmap( KIcon::Small ), service->name() );
       }
@@ -601,9 +609,10 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       break;
   }
   if ( result >= SERVICE_LIST_ID ) {
-    u.setPath( func->files() ->vfs_getFile( item->name() ) );
-    lst.append( u );
-    KRun::run( *( offers[ result - SERVICE_LIST_ID ].service() ), lst );
+    QStringList names;
+    getSelectedNames( &names );
+    KRun::run( *(offers[result-SERVICE_LIST_ID].service()),
+                *(func->files()->vfs_getFiles(&names)) );
   }
 }
 
