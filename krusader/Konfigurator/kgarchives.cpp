@@ -41,9 +41,6 @@
 KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
 {
-  if( first )
-    slotAutoConfigure();
-
   QGridLayout *kgArchivesLayout = new QGridLayout( parent );
   kgArchivesLayout->setSpacing( 6 );
   kgArchivesLayout->setMargin( 11 );
@@ -100,6 +97,10 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
   fineTuneGrid->addWidget( finetunes, 1, 0 );
 
   kgArchivesLayout->addWidget( fineTuneGrp, 1 ,0 );
+  
+  if( first )
+    slotAutoConfigure();
+
 }
 
 void KgArchives::slotAutoConfigure()
