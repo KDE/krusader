@@ -98,7 +98,7 @@ class Krusader : public KParts::MainWindow {
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
     static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate;
-    static KAction *actUnselectAll, *actInvert, *actSync, *actSavePosition;
+    static KAction *actUnselectAll, *actInvert, *actSync, *actSavePosition, *actCompDirs;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool, *actSwapPanels;
     static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actDirUp;
@@ -106,8 +106,12 @@ class Krusader : public KParts::MainWindow {
     static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actSplit; 
 	 static KAction *actCombine, *actUserMenu, *actSyncDirs;
     static KToggleAction *actToggleTerminal;
+    static KRadioAction *actMarkNewerAndSingle, *actMarkNewer, *actMarkSingle, 
+                        *actMarkDifferentAndSingle, *actMarkDifferent;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
                   *actShowStatusBar, *actToggleHidden, *actCompareDirs;
+
+    static KRadioAction **compareArray[];
 
     // return a path to a temp dir or file we can use.
     QString getTempDir();

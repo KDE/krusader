@@ -772,4 +772,21 @@ void KRslots::updatePopupPanel(QListViewItem *it) {
 	lp->popup->update(url);
 }
 
+void KRslots::compareDirs()          
+{
+  ACTIVE_PANEL->compareDirs();
+  ACTIVE_PANEL->otherPanel->compareDirs();
+}
+
+void KRslots::compareSetup()
+{
+  for( int i=0; Krusader::compareArray[i] != 0; i++ )
+    if( (*Krusader::compareArray[i])->isChecked() )
+    {
+      krConfig->setGroup( "Private" );
+      krConfig->writeEntry( "Compare Mode", i );
+      break;
+    }
+}
+
 #include "krslots.moc"

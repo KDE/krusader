@@ -93,6 +93,7 @@ KAction *Krusader::actSelectAll = 0;
 KAction *Krusader::actUnselect = 0;
 KAction *Krusader::actUnselectAll = 0;
 KAction *Krusader::actInvert = 0;
+KAction *Krusader::actCompDirs = 0;
 KAction *Krusader::actSync = 0;
 KAction *Krusader::actHomeTerminal = 0;
 KAction *Krusader::actFTPConnect = 0;
@@ -128,6 +129,13 @@ KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
 KAction *Krusader::actSyncDirs = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
+KRadioAction  *Krusader::actMarkNewerAndSingle = 0;
+KRadioAction  *Krusader::actMarkSingle = 0;
+KRadioAction  *Krusader::actMarkNewer = 0;
+KRadioAction  *Krusader::actMarkDifferentAndSingle = 0;
+KRadioAction  *Krusader::actMarkDifferent = 0;
+KRadioAction  **Krusader::compareArray[] = {&actMarkNewerAndSingle, &actMarkNewer, &actMarkSingle, 
+                                            &actMarkDifferentAndSingle, &actMarkDifferent, 0};
 UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
 
@@ -390,6 +398,9 @@ void Krusader::setupActions() {
    // second, the KDE standard action
    //KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
    /* Shortcut disabled because of the Terminal Emulator bug. */
+   krConfig->setGroup( "Private" );
+   int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
+   
    KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" ); /*->setShortcut(Key_QuoteLeft);*/
    KAction *actRedisplay = KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
    actRedisplay->setText( "Reload" );
@@ -454,6 +465,25 @@ void Krusader::setupActions() {
                                SLOTS, SLOT( markAll() ), actionCollection(), "select all" );
    actUnselectAll = new KAction( i18n( "U&nselect All" ), "kr_unselectall", ALT + Key_Minus,
                                  SLOTS, SLOT( unmarkAll() ), actionCollection(), "unselect all" );
+   actCompDirs = new KAction( i18n( "&Compare Directories" ), "view_left_right", 0,
+                                 SLOTS, SLOT( compareDirs() ), actionCollection(), "compare dirs" );
+   actMarkNewerAndSingle = new KRadioAction( i18n( "&Mark Newer And Single" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_newer_and_single" );
+   actMarkNewer = new KRadioAction( i18n( "Mark &Newer" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_newer" );
+   actMarkSingle = new KRadioAction( i18n( "Mark &Single" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_single" );
+   actMarkDifferentAndSingle = new KRadioAction( i18n( "Mark Different &And Single" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_different_and_single" );
+   actMarkDifferent = new KRadioAction( i18n( "Mark &Different" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_different" );
+   actMarkNewerAndSingle->setExclusiveGroup( "mark group" );
+   actMarkNewer->setExclusiveGroup( "mark group" );
+   actMarkSingle->setExclusiveGroup( "mark group" );
+   actMarkDifferentAndSingle->setExclusiveGroup( "mark group" );
+   actMarkDifferent->setExclusiveGroup( "mark group" );
+   if( compareMode < (int)( sizeof( compareArray ) / sizeof( KRadioAction ** ) ) -1 )
+     (*compareArray[ compareMode ])->setChecked( true );
    actHomeTerminal = new KAction( i18n( "&Terminal" ), "konsole", 0,
                                   SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
    actFTPDisconnect = new KAction( i18n( "Disconnect &From Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,

@@ -93,6 +93,7 @@ public slots:
    void select(QString mask, bool select);
 	void select( bool, bool );      // see doc in ListPanel
    void invertSelection();       // see doc in ListPanel
+   void compareDirs();
    void slotFocusOnMe(); // give this VFS the focus (the path bar)
    void slotUpdate();			                  // when the vfs finish to update...
    void slotUpdateTotals();

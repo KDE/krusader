@@ -373,6 +373,60 @@ void ListPanel::invertSelection() {
    view->invertSelection();
 }
 
+void ListPanel::compareDirs() {
+   krConfig->setGroup( "Private" );
+   int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
+   krConfig->setGroup( "Look&Feel" );
+   bool selectDirs = krConfig->readBoolEntry( "Mark Dirs", false );
+  
+   KrViewItem *item, *otherItem;
+  
+   for( item = view->getFirst(); item != 0; item = view->getNext( item ) )
+   {
+      if( item->name() == ".." )
+         continue;
+      
+      for( otherItem = otherPanel->view->getFirst(); otherItem != 0 && otherItem->name() != item->name() ;
+         otherItem = otherPanel->view->getNext( otherItem ) );
+           
+      bool isSingle = ( otherItem == 0 ), isDifferent = false, isNewer = false;
+   
+      if( item->isDir() && !selectDirs )
+      {
+         item->setSelected( false );
+         continue;
+      }
+      
+      if( otherItem )
+      {
+         if( !item->isDir() )
+            isDifferent = otherItem->size() != item->size();
+         isNewer = item->getTime_t() > otherItem->getTime_t();
+      }
+
+      switch( compareMode )
+      {
+      case 0:
+         item->setSelected( isNewer || isSingle );
+         break;
+      case 1:
+         item->setSelected( isNewer );
+         break;
+      case 2:
+         item->setSelected( isSingle );
+         break;
+      case 3:
+         item->setSelected( isDifferent || isSingle );
+         break;
+      case 4:
+         item->setSelected( isDifferent );
+         break;
+      }
+   }
+   
+   view->updateView();
+}
+
 void ListPanel::slotFocusOnMe() {
    // give this VFS the focus (the path bar)
    // we start by calling the KVFS function

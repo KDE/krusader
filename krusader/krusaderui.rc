@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="2" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="3" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -26,6 +26,16 @@
    <Action name="select all" />
    <Action name="unselect all" />
    <Action name="invert" />
+   <Separator/>
+   <Action name="compare dirs" />
+   <Menu name="compare setup">
+     <text>Compare Se&amp;tup</text>
+     <Action name="mark_newer_and_single" />
+     <Action name="mark_single" />
+     <Action name="mark_newer" />
+     <Action name="mark_different_and_single" />
+     <Action name="mark_different" />
+   </Menu>
   </Menu>
   <Menu name="commands" >
    <text>&amp;Commands</text>

@@ -215,15 +215,12 @@ void LocateDlg::slotUser3()   /* The locate button */
   
   collectedErr = "";
   bool result = !locateProc.start( KProcess::Block, KProcess::AllOutput );
-  if( !collectedErr.isEmpty() )
+  if( !collectedErr.isEmpty() && ( !locateProc.normalExit() || locateProc.exitStatus() ) )
   {
      KMessageBox::error( krApp, i18n( "Locate produced the following error message:\n\n" ) + collectedErr );
   }else if ( result )
   {
      KMessageBox::error( krApp, i18n( "Error during the start of `locate` process!" ) );
-  }else if ( !locateProc.normalExit() || locateProc.exitStatus() )
-  {
-     KMessageBox::error( krApp, i18n( "Error occured during the execution of `locate` process!" ) );
   }
   enableButton( KDialogBase::User3, true );  /* enable the locate button */
   enableButton( KDialogBase::User1, false ); /* disable the stop button */
