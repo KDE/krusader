@@ -420,10 +420,10 @@ void KrDetailedView::prepareForPassive() {
             }
           }
         }
-      }
-    _focused = false;
-    }
+      }    
   }
+  _focused = false;
+}
 
 void KrDetailedView::slotItemDescription( QListViewItem * item ) {
   KrViewItem * it = dynamic_cast<KrViewItem*>( item );
