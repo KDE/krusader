@@ -136,17 +136,12 @@ public:
     bool acceptURLs();
     void setAcceptURLs(const bool& acceptURLs);
     /**
-     * @return true if the command should be executed for each selected file (%_Current% will be used)
-     */
-    bool callEach();
-    void setCallEach(const bool& callEach);
-    /**
      * @return true if true the user has to confirm the execution. Here he also can edit the already expanded command
      */
     bool confirmExecution();
     void setConfirmExecution(const bool& confirmExecution);
     /**
-     *  ///< Default shortcut for the action.
+     * Default shortcut for the action.
      * @return The shortcut
      */
     KShortcut* defaultShortcut();

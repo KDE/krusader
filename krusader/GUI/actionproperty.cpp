@@ -76,7 +76,6 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, UserActionPro
    connect( leStartpath, SIGNAL( textChanged(const QString&) ), this, SLOT( changedStartpath() ) );
    connect( bgExecType, SIGNAL( clicked(int) ), this, SLOT( changedExecType() ) );
    connect( bgAccept, SIGNAL( clicked(int) ), this, SLOT( changedAccept() ) );
-   connect( bgMultiselect, SIGNAL( clicked(int) ), this, SLOT( changedCallEach() ) );
    connect( chkConfirmExecution, SIGNAL( toggled(bool) ), this, SLOT( changedConfirmExecution() ) );
    connect( KeyButtonShortcut, SIGNAL( capturedShortcut(const KShortcut&) ), this, SLOT( changedShortcut(const KShortcut&) ) );
    connect( leDifferentUser, SIGNAL( textChanged(const QString&) ), this, SLOT( changedUser() ) );
@@ -131,7 +130,6 @@ void ActionProperty::updateGUI( UserActionProperties *properties ) {
     else
         radioLocal->setChecked(true);
     
-    chkSeparateCall->setChecked( properties->callEach() );
     chkConfirmExecution->setChecked( properties->confirmExecution() );
     
     if ( ! properties->icon()->isEmpty() )
@@ -158,7 +156,6 @@ void ActionProperty::updateGUI( UserActionProperties *properties ) {
    changedUser();
    changedExecType();
    changedAccept();
-   changedCallEach();
    changedConfirmExecution();
    changedShowonlyProtocol();
    changedShowonlyPath();
@@ -430,9 +427,6 @@ void ActionProperty::changedAccept() {
     _properties->setAcceptURLs( true );
   else
     _properties->setAcceptURLs( false );
-}
-void ActionProperty::changedCallEach() {
-  _properties->setCallEach( chkSeparateCall->isChecked() );
 }
 void ActionProperty::changedConfirmExecution() {
   _properties->setConfirmExecution( chkConfirmExecution->isChecked() );

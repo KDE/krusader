@@ -164,7 +164,7 @@ private slots:
     */
    void changedStartpath();
    /**
-    * keeps the startpath in the internal _properties up to date.
+    * keeps the user in the internal _properties up to date.
     * !! don't forget to call them also at the end of updateGUI !!
     */
    void changedUser();
@@ -178,11 +178,6 @@ private slots:
     * !! don't forget to call them also at the end of updateGUI !!
     */
    void changedAccept();
-   /**
-    * keeps callEach in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedCallEach();
    /**
     * keeps confirmExecution in the internal _properties up to date.
     * !! don't forget to call them also at the end of updateGUI !!

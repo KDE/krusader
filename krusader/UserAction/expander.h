@@ -266,7 +266,7 @@ public:
      * @param callEach true if %_Current% should be expanded once for every selected item
      * @return a list of all commands (one if callEach is false or one for every selectet item if true)
      */
-   QStringList expand( const QString& stringToExpand, bool useUrl, bool callEach );
+   QStringList expand( const QString& stringToExpand, bool useUrl );
 
 protected:
   /**

@@ -160,11 +160,6 @@ QDomElement UserActionXML::makeActionElement( UserActionProperties *prop ) {
     attribute.setValue( "url" );
     property.setAttributeNode( attribute );
   }
-  if ( prop->callEach() ) {
-    attribute = _doc->createAttribute( "onmultiplefiles" );
-    attribute.setValue( "call_each" );
-    property.setAttributeNode( attribute );
-  }
   if ( prop->confirmExecution() ) {
     attribute = _doc->createAttribute( "confirmexecution" );
     attribute.setValue( "true" );
@@ -399,14 +394,6 @@ UserActionProperties* UserActionXML::readAction( QDomElement *action ) {
         prop->setAcceptURLs( true );
       else
         kdWarning() << "unrecognized attribute value in "ACTION_XML" found <action name=\"" << prop->name() << "\"><command accept=\"" << attr << "\""<< endl;
-
-      attr = e.attribute( "onmultiplefiles", "call_once" ); // default: "call_once"
-      if ( attr == "call_once" )
-        prop->setCallEach( false );
-      else if ( attr == "call_each")
-        prop->setCallEach( true );
-      else
-        kdWarning() << "unrecognized attribute value in "ACTION_XML" found <action name=\"" << prop->name() << "\"><command onmultiplefiles=\"" << attr << "\""<< endl;
 
       attr = e.attribute( "confirmexecution", "false" ); // default: "false"
       if ( attr == "false" )

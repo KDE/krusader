@@ -19,7 +19,6 @@ UserActionProperties::UserActionProperties() {
   _descriptionUseTooltip = false;
   _separateStderr = false;
   _acceptURLs = false;
-  _callEach = false;
   _confirmExecution = false;
 }
 
@@ -42,7 +41,6 @@ void UserActionProperties::copyFrom( UserActionProperties* from ) {
   _descriptionUseTooltip = from->descriptionUseTooltip();
   _separateStderr = from->separateStderr();
   _acceptURLs = from->acceptURLs();
-  _callEach = from->callEach();
   _confirmExecution = from->confirmExecution();
   _defaultShortcut = *from->defaultShortcut();
 }
@@ -100,9 +98,6 @@ void UserActionProperties::setSeparateStderr(const bool& separateStderr) { _sepa
 
 bool UserActionProperties::acceptURLs() { return _acceptURLs; }
 void UserActionProperties::setAcceptURLs(const bool& acceptURLs) { _acceptURLs = acceptURLs;}
-
-bool UserActionProperties::callEach() { return _callEach; }
-void UserActionProperties::setCallEach(const bool& callEach) { _callEach = callEach;}
 
 bool UserActionProperties::confirmExecution() { return _confirmExecution; }
 void UserActionProperties::setConfirmExecution(const bool& confirmExecution) { _confirmExecution = confirmExecution;}

@@ -105,22 +105,22 @@ exp_Current::exp_Current() {
    addParameter( new exp_parameter( i18n("Ommit the current path (optional)"), "__no", false ) );
    addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
 }
-QString exp_Current::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem ) {
+QString exp_Current::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& /*currentItem*/ ) {
    NEED_PANEL
    
    QString item;
-   if ( currentItem >= 0) {  // in a callEach-cycle
-      if ( panel == ACTIVE_PANEL ) {  // callEach works only in the active panel
-         QStringList items;
-         panel->view->getSelectedItems( &items );
-         item = items[currentItem];
-      }
-      else
-         item = panel->view->getCurrentItem();
-   }
-   else {
+//    if ( currentItem >= 0) {  // in a callEach-cycle
+//       if ( panel == ACTIVE_PANEL ) {  // callEach works only in the active panel
+//          QStringList items;
+//          panel->view->getSelectedItems( &items );
+//          item = items[currentItem];
+//       }
+//       else
+//          item = panel->view->getCurrentItem();
+//    }
+//    else {
       item = panel->view->getCurrentItem();
-   }
+//    }
    
    QString result;
    
@@ -446,15 +446,15 @@ ListPanel* Expander::getPanel( const char& panelIndicator ) {
    }
 }
 
-QStringList Expander::expand( const QString& stringToExpand, bool useUrl, bool callEach ) {
+QStringList Expander::expand( const QString& stringToExpand, bool useUrl ) {
    QStringList result;
-   if ( callEach ) {
-      QStringList items;
-      ACTIVE_PANEL->view->getSelectedItems( &items );
-      for ( unsigned int currentItem = 0; currentItem < items.count(); ++currentItem )
-         result.append( expandCurrent( stringToExpand, useUrl, currentItem ) );
-   }
-   else
+//    if ( callEach ) {
+//       QStringList items;
+//       ACTIVE_PANEL->view->getSelectedItems( &items );
+//       for ( unsigned int currentItem = 0; currentItem < items.count(); ++currentItem )
+//          result.append( expandCurrent( stringToExpand, useUrl, currentItem ) );
+//    }
+//    else
       result.append( expandCurrent( stringToExpand, useUrl, -1 ) );
 
    return result;
