@@ -35,10 +35,10 @@
 #include <kio/job.h>
 #include <qfileinfo.h>
 
-Combiner::Combiner( QWidget* parent,  QString fileNameIn, QString destinationDirIn ) :
+Combiner::Combiner( QWidget* parent,  QString fileNameIn, QString destinationDirIn, bool unixNamingIn ) :
   QProgressDialog( parent, "Krusader::Combiner", true, 0 ), hasValidSplitFile( false ),
   fileCounter ( 0 ), permissions( -1 ), receivedSize( 0 ),
-  combineReadJob( 0 ), combineWriteJob( 0 )
+  combineReadJob( 0 ), combineWriteJob( 0 ), unixNaming( unixNamingIn ), readFileName( QString::null )
 {
   fileName       = fileNameIn;
 
@@ -46,8 +46,7 @@ Combiner::Combiner( QWidget* parent,  QString fileNameIn, QString destinationDir
   if( !destinationDir.endsWith("/") )
     destinationDir += "/";
 
-  md5Context = new KMD5( "" );
-  md5Context->reset();
+  crcContext = new CRC32();
 
   splitFile = "";
   
@@ -59,7 +58,7 @@ Combiner::Combiner( QWidget* parent,  QString fileNameIn, QString destinationDir
 Combiner::~Combiner()
 {
   combineAbortJobs();
-  delete md5Context;
+  delete crcContext;
 }
 
 void Combiner::combine()
@@ -67,14 +66,14 @@ void Combiner::combine()
   setCaption( i18n("Krusader::Combining...") );
   setLabelText( i18n("Combining the file %1...").arg( fileName ));
 
-    /* check whether the .spl file exists */
-  splURL = KURL::fromPathOrURL( fileName + ".spl" );
+    /* check whether the .crc file exists */
+  splURL = KURL::fromPathOrURL( fileName + ".crc" );
   KFileItem file(KFileItem::Unknown, KFileItem::Unknown, splURL );
   file.refresh();
 
   if( !file.isReadable() )
   {
-    int ret = KMessageBox::questionYesNo(0, i18n("The SPL information file (%1) is missing!\n"
+    int ret = KMessageBox::questionYesNo(0, i18n("The CRC information file (%1) is missing!\n"
         "Validity checking is impossible without it. Continue combining?").arg( splURL.path() ) );
 
     if( ret == KMessageBox::No )
@@ -109,23 +108,24 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
 {
   combineReadJob = 0;
   QString error;
-
+  
   if( job->error() )
-    error = i18n("Error at reading the split file (%1)!").arg( splURL.path() );
+    error = i18n("Error at reading the CRC file (%1)!").arg( splURL.path() );
   else
   {
     QStringList splitFileContent = QStringList::split( '\n', splitFile );
     
-    if( splitFileContent.count() != 4 || splitFileContent[0] != "[Krusader splitfile]" ||
-        !splitFileContent[1].startsWith("filename=") || !splitFileContent[2].startsWith("size=") ||
-        !splitFileContent[3].startsWith("md5sum=") )
-      error = i18n("Not a valid Krusader splitfile!");
+    if( splitFileContent.count() != 3 || !splitFileContent[0].startsWith("filename=") ||
+        !splitFileContent[1].startsWith("size=") ||
+        !splitFileContent[2].startsWith("crc32=") )
+      error = i18n("Not a valid CRC file!");
     else
     {
       hasValidSplitFile = true;
-      expectedFileName = splitFileContent[1].mid( 9 );
-      expectedMd5Sum   = splitFileContent[3].mid( 7 );
-      QString size = splitFileContent[2].mid( 5 );
+      expectedFileName = splitFileContent[0].mid( 9 );
+      expectedCrcSum   = splitFileContent[2].mid( 6 ).rightJustify( 8, '0' );
+      
+      QString size = splitFileContent[1].mid( 5 );
       sscanf( size.ascii(), "%llu", &expectedSize );
     }
   }
@@ -133,7 +133,7 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
   if( !error.isEmpty() )
   {
     int ret = KMessageBox::questionYesNo( 0, error+ "\n" +
-      i18n("Validity checking is impossible without a good spl file. Continue combining?")  );
+      i18n("Validity checking is impossible without a good CRC file. Continue combining?")  );
     if( ret == KMessageBox::No )
     {
        emit reject();
@@ -145,10 +145,34 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
 }
 
 void Combiner::openNextFile()
-{
-  QString index( "%1" );      /* determining the filename */
-  index = index.arg(++fileCounter).rightJustify( 3, '0' );
-  QString readFileName = fileName + "." + index;
+{  
+  if( unixNaming )
+  {
+    if( readFileName.isNull() )
+      readFileName = fileName;
+    else
+    {
+      int pos = readFileName.length()-1;
+      QChar ch;
+      
+      do
+      {
+        ch = readFileName.at( pos ).latin1() + 1;
+        if( ch == QChar( 'Z' + 1 ) )
+          ch = 'A';
+        if( ch == QChar( 'z' + 1 ) )
+          ch = 'a';
+        readFileName[ pos ] = ch;
+        pos--;
+      } while( pos >=0 && ch.upper() == QChar( 'A' ) );
+    }    
+  }
+  else
+  {
+    QString index( "%1" );      /* determining the filename */
+    index = index.arg(++fileCounter).rightJustify( 3, '0' );
+    readFileName = fileName + "." + index;
+  }
 
   readURL = KURL::fromPathOrURL( readFileName );
 
@@ -169,8 +193,8 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
 {
   if( byteArray.size() == 0 )
     return;
-  
-  md5Context->update( byteArray );
+
+  crcContext->update( (unsigned char *)byteArray.data(), byteArray.size() );
   transferArray = byteArray.copy();
 
   receivedSize += byteArray.size();
@@ -178,6 +202,11 @@ void Combiner::combineDataReceived(KIO::Job *, const QByteArray &byteArray)
   if( combineWriteJob == 0 )
   {
     writeURL = KURL::fromPathOrURL(destinationDir + KURL::fromPathOrURL( fileName ).fileName() );
+    if( hasValidSplitFile )
+      writeURL.setFileName( expectedFileName );
+    else if( unixNaming )
+      writeURL.setFileName( KURL::fromPathOrURL( fileName ).fileName() + ".out" );
+    
     combineWriteJob = KIO::put( writeURL, permissions, true, false, false );    
 
     connect(combineWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
@@ -209,16 +238,17 @@ void Combiner::combineReceiveFinished(KIO::Job *job)
                                  .arg( fileName ) );
       emit reject();
       return;
-    }
-    
+    }    
+
     if( hasValidSplitFile )
     {
+      QString crcResult = QString( "%1" ).arg( crcContext->result(), 0, 16 ).upper().stripWhiteSpace()
+                                         .rightJustify(8, '0');
+      
       if( receivedSize != expectedSize )
         error = i18n("Incorrect filesize! The file might have been corrupted!");
-      else if( KURL::fromPathOrURL( fileName ).fileName() != expectedFileName )
-        error = i18n("Incorrect filename! The file might have been corrupted!");
-      else if ( QString( md5Context->hexDigest() ) != expectedMd5Sum )
-        error = i18n("Incorrect file digest! The file might have been corrupted!");
+      else if ( crcResult != expectedCrcSum.upper().stripWhiteSpace() )
+        error = i18n("Incorrect CRC checksum! The file might have been corrupted!");
     }
     return;
   }  

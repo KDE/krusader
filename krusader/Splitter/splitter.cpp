@@ -45,8 +45,7 @@ Splitter::Splitter( QWidget* parent,  QString fileNameIn, QString destinationDir
   if( !destinationDir.endsWith("/") )
     destinationDir += "/";
 
-  md5Context = new KMD5( "" );
-  md5Context->reset();
+  crcContext = new CRC32();
   
   setTotalSteps( 100 );
   setAutoClose( false );  /* don't close or reset the dialog automatically */
@@ -56,7 +55,7 @@ Splitter::Splitter( QWidget* parent,  QString fileNameIn, QString destinationDir
 Splitter::~Splitter()
 {
   splitAbortJobs();
-  delete md5Context;
+  delete crcContext;
 }
 
 void Splitter::split( int splitSizeIn )
@@ -100,7 +99,7 @@ void Splitter::splitDataReceived(KIO::Job *, const QByteArray &byteArray)
   if( byteArray.size() == 0 )
     return;
 
-  md5Context->update( byteArray );  
+  crcContext->update( (unsigned char *)byteArray.data(), byteArray.size() );  
   fileSize += byteArray.size();
 
   if( noValidWriteJob )
@@ -129,11 +128,12 @@ void Splitter::splitReceiveFinished(KIO::Job *job)
     return;
   }
 
-  char buf[50];           /* creating the content of the split information file */
-  sprintf(buf,"%llu",fileSize);
+  QString crcResult = QString( "%1" ).arg( crcContext->result(), 0, 16 ).upper().stripWhiteSpace()
+                                     .rightJustify(8, '0');
 
-  splitFile = QString( "[Krusader splitfile]\nfilename=" ) + fileName.fileName() +
-              QString( "\nsize=%1" ).arg( buf )+ "\nmd5sum="+ QString( md5Context->hexDigest() )+"\n";
+  splitFile = QString( "filename=%1\n" ).arg( fileName.fileName()     )+
+              QString( "size=%1\n" )    .arg( KIO::number( fileSize ) )+
+              QString( "crc32=%1\n" )   .arg( crcResult );
 }
 
 void Splitter::splitReceivePercent (KIO::Job *, unsigned long percent)
@@ -207,7 +207,7 @@ void Splitter::splitSendFinished(KIO::Job *job)
   else
   {
       /* writing the split information file out */
-    writeURL      = KURL::fromPathOrURL( destinationDir + fileName.fileName() + ".spl" );
+    writeURL      = KURL::fromPathOrURL( destinationDir + fileName.fileName() + ".crc" );
     splitWriteJob = KIO::put( writeURL, permissions, true, false, false );
     connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                            this, SLOT(splitFileSend(KIO::Job *, QByteArray &)));

@@ -31,11 +31,11 @@
 #ifndef __COMBINER_H__
 #define __COMBINER_H__
 
+#include "crc32.h"
 #include <qstring.h>
 #include <qprogressdialog.h>
 #include <kurl.h>
 #include <kio/jobclasses.h>
-#include <kmdcodec.h>
 
 class Combiner : public QProgressDialog
 {
@@ -48,7 +48,7 @@ private:
 
   QString         fileName;
   QString         destinationDir;
-  KMD5           *md5Context;
+  CRC32          *crcContext;
   QByteArray      transferArray;
 
   QString         splitFile;
@@ -58,7 +58,7 @@ private:
   bool            hasValidSplitFile;
   QString         expectedFileName;
   KIO::filesize_t expectedSize;
-  QString         expectedMd5Sum;
+  QString         expectedCrcSum;
 
   int             fileCounter;
   int             permissions;
@@ -67,8 +67,11 @@ private:
   KIO::TransferJob *combineReadJob;
   KIO::TransferJob *combineWriteJob;
 
+  bool            unixNaming;
+  QString         readFileName;
+  
 public:
-  Combiner( QWidget* parent,  QString fileNameIn, QString destinationDirIn );
+  Combiner( QWidget* parent,  QString fileNameIn, QString destinationDirIn, bool unixNamingIn=false );
   ~Combiner();
 
   void combine();

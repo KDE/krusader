@@ -947,7 +947,7 @@ install_location=
 type=HEADER
 
 [krusader/Splitter/Makefile.am]
-files=krusader/Splitter/combiner.cpp,krusader/Splitter/combiner.h,krusader/Splitter/splitter.cpp,krusader/Splitter/splitter.h,krusader/Splitter/splittergui.cpp,krusader/Splitter/splittergui.h
+files=krusader/Splitter/combiner.cpp,krusader/Splitter/combiner.h,krusader/Splitter/splitter.cpp,krusader/Splitter/splitter.h,krusader/Splitter/splittergui.cpp,krusader/Splitter/splittergui.h,krusader/Splitter/crc32.cpp,krusader/Splitter/crc32.h
 type=static_library
 
 [krusader/Splitter/combiner.cpp]
@@ -957,6 +957,18 @@ install_location=
 type=SOURCE
 
 [krusader/Splitter/combiner.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Splitter/crc32.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Splitter/crc32.h]
 dist=true
 install=false
 install_location=

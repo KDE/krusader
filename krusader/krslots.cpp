@@ -537,8 +537,12 @@ void KRslots::slotSplit()
 
 void KRslots::slotCombine()
 {
-  QStringList list;
-  QString fileName;
+  QStringList   list;
+  QString       fileName;
+  bool          unixStyle = false;
+  bool          windowsStyle = false;
+  QString       commonName = QString::null;
+  unsigned int  commonLength = 0;
 
   ((ListPanel*)ACTIVE_PANEL)->getSelectedNames(&list);
   if ( list.isEmpty() )
@@ -547,6 +551,7 @@ void KRslots::slotCombine()
     return;
   }
 
+  /* checking splitter names */
   for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
   {
     QString name = ACTIVE_FUNC->files()->vfs_getFile(*it).path(-1);
@@ -558,26 +563,84 @@ void KRslots::slotCombine()
       return ;
     }
 
-    int extPos = name.findRev( '.' );
-
-    QString ext = name.mid( extPos + 1 );
-    bool isExtInt;
-    ext.toInt( &isExtInt, 10 );
-
-    if( extPos < 1 || ext.isEmpty() || ( ext != "spl" && !isExtInt ) )
+    if( !unixStyle )
     {
-      KMessageBox::error(0,i18n("Not a splitted file %1!").arg( name ));
-      return;
+      int extPos = name.findRev( '.' );
+
+      QString ext = name.mid( extPos + 1 );
+      bool isExtInt;
+      ext.toInt( &isExtInt, 10 );
+
+      if( extPos < 1 || ext.isEmpty() || ( ext != "crc" && !isExtInt ) )
+      {
+        if( windowsStyle )
+        {
+          KMessageBox::error(0,i18n("Not a splitted file %1!").arg( name ));
+          return;
+        }
+        unixStyle = true;
+      }
+      else
+      {
+        name.truncate( extPos );
+
+        if( ext != "crc" )
+          windowsStyle = true;
+
+        if( fileName.isEmpty() )
+           fileName = name;
+        else if( fileName != name )
+        {
+          KMessageBox::error(0,i18n("Select only one splitted file!"));
+          return;
+        }
+      }
     }
 
-    name.truncate( extPos );
-
-    if( fileName.isEmpty() )
-       fileName = name;
-    else if( fileName != name )
+    if( unixStyle )
     {
-      KMessageBox::error(0,i18n("Select only one splitted file!"));
-      return;
+      bool error = true;
+
+      do
+      {
+        QString shortName   = *it;
+        QChar   lastChar  = shortName.at( shortName.length()-1 );
+
+        if( lastChar.isLetter() )
+        {
+          char fillLetter = ( lastChar.upper() == lastChar ) ? 'A' : 'a';
+
+          if( commonName.isNull() )
+          {
+            commonLength = shortName.length();
+            commonName = shortName;
+
+            while ( commonName.length() )
+            {
+              QString shorter  = commonName.left( commonName.length() - 1 );
+              QString testFile = shorter.leftJustify( commonLength, fillLetter );
+
+              if( ACTIVE_FUNC->files()->vfs_search( testFile ) == 0 )
+                break;
+              else
+              {
+                commonName = shorter;
+                fileName = ACTIVE_FUNC->files()->vfs_getOrigin().path(1) + testFile;
+              }
+            }
+
+            error = ( commonName == shortName );
+          }
+          else if( commonLength == shortName.length() && shortName.startsWith( commonName ) )
+            error = false;
+        }
+      }while ( false );
+
+      if( error )
+      {
+        KMessageBox::error(0,i18n("Not a splitted file %1!").arg( name ));
+        return;
+      }
     }
   }
 
@@ -590,7 +653,7 @@ void KRslots::slotCombine()
 
   bool combineToOtherPanel = ( dest == ACTIVE_PANEL->otherPanel->virtualPath );
 
-  Combiner combine( MAIN_VIEW, fileName, dest );
+  Combiner combine( MAIN_VIEW, fileName, dest, unixStyle );
   combine.combine();
 
   if ( combineToOtherPanel )

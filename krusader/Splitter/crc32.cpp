@@ -1,5 +1,5 @@
 /***************************************************************************
-                          splitter.h  -  description
+                          crc32.cpp  -  description
                              -------------------
     copyright            : (C) 2003 by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
@@ -17,7 +17,7 @@
      88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
      YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                     H e a d e r    F i l e
+                                                     S o u r c e    F i l e
 
  ***************************************************************************
  *                                                                         *
@@ -28,56 +28,42 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SPLITTER_H__
-#define __SPLITTER_H__
-
 #include "crc32.h"
-#include <qstring.h>
-#include <qprogressdialog.h>
-#include <kurl.h>
-#include <kio/jobclasses.h>
- 
-class Splitter : public QProgressDialog
+
+#define MASK1       0x00FFFFFF
+#define MASK2       0xFFFFFFFF
+#define POLYNOMIAL  0xEDB88320
+
+bool            CRC32::crc_initialized = false;
+unsigned long   CRC32::crc_table[ 256 ];
+
+CRC32::CRC32( unsigned long initialValue )
 {
-  Q_OBJECT
-  
-private:
-  KURL            fileName;
-  QString         destinationDir;
-  KIO::filesize_t splitSize;
+    crc_accum = initialValue;
 
-  KIO::filesize_t fileSize;
-  int             permissions;
-  QString         splitFile;
+    if( !crc_initialized )
+    {
+        for( int byte = 0; byte != 256; byte++ )
+        {
+            unsigned long data = byte;
 
-  KURL            writeURL;
-  int             fileNumber;
-  KIO::filesize_t outputFileSize;
-  bool            noValidWriteJob;
-  CRC32          *crcContext;
-  QByteArray      transferArray;    
-  
-  KIO::TransferJob *splitReadJob;
-  KIO::TransferJob *splitWriteJob;
-    
-public:
-  Splitter( QWidget* parent,  QString fileNameIn, QString destinationDirIn );
-  ~Splitter();
-  
-  void split( int splitSizeIn );
+            for( int i = 8; i > 0 ; --i )
+                data = data & 1 ? ( data >> 1 ) ^ POLYNOMIAL : data >> 1;
 
-private:
-  void splitCreateWriteJob();
-  void splitAbortJobs();
-  
-public slots:
-  void splitDataReceived(KIO::Job *, const QByteArray &);
-  void splitDataSend(KIO::Job *, QByteArray &);
-  void splitSendFinished(KIO::Job *);
-  void splitReceiveFinished(KIO::Job *);
-  void splitReceivePercent (KIO::Job *, unsigned long);
-  void splitFileSend(KIO::Job *, QByteArray &);
-  void splitFileFinished(KIO::Job *);
-};
+            crc_table[ byte ] = data;
+        }
 
-#endif /* __SPLITTER_H__ */
+        crc_initialized = true;
+    }
+}
+
+void CRC32::update( unsigned char *buffer, int bufferLen )
+{
+    while( bufferLen-- > 0 )
+       crc_accum = ( (crc_accum >> 8) & MASK1 ) ^ crc_table[ (crc_accum & 0xff) ^ *buffer++ ];
+}
+
+unsigned long CRC32::result()
+{
+    return ( ~crc_accum ) & MASK2;
+}

@@ -1,5 +1,5 @@
 /***************************************************************************
-                          splitter.h  -  description
+                           crc32.h  -  description
                              -------------------
     copyright            : (C) 2003 by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
@@ -28,56 +28,21 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef __SPLITTER_H__
-#define __SPLITTER_H__
+#ifndef __CRC32_H__
+#define __CRC32_H__
 
-#include "crc32.h"
-#include <qstring.h>
-#include <qprogressdialog.h>
-#include <kurl.h>
-#include <kio/jobclasses.h>
- 
-class Splitter : public QProgressDialog
+class CRC32
 {
-  Q_OBJECT
-  
 private:
-  KURL            fileName;
-  QString         destinationDir;
-  KIO::filesize_t splitSize;
+    unsigned long           crc_accum;
+    static unsigned long    crc_table[ 256 ];
+    static bool             crc_initialized;
 
-  KIO::filesize_t fileSize;
-  int             permissions;
-  QString         splitFile;
-
-  KURL            writeURL;
-  int             fileNumber;
-  KIO::filesize_t outputFileSize;
-  bool            noValidWriteJob;
-  CRC32          *crcContext;
-  QByteArray      transferArray;    
-  
-  KIO::TransferJob *splitReadJob;
-  KIO::TransferJob *splitWriteJob;
-    
 public:
-  Splitter( QWidget* parent,  QString fileNameIn, QString destinationDirIn );
-  ~Splitter();
-  
-  void split( int splitSizeIn );
+    CRC32( unsigned long initialValue = (unsigned long)-1 );
 
-private:
-  void splitCreateWriteJob();
-  void splitAbortJobs();
-  
-public slots:
-  void splitDataReceived(KIO::Job *, const QByteArray &);
-  void splitDataSend(KIO::Job *, QByteArray &);
-  void splitSendFinished(KIO::Job *);
-  void splitReceiveFinished(KIO::Job *);
-  void splitReceivePercent (KIO::Job *, unsigned long);
-  void splitFileSend(KIO::Job *, QByteArray &);
-  void splitFileFinished(KIO::Job *);
+    void            update( unsigned char *buffer, int bufferLen );
+    unsigned long   result();
 };
 
-#endif /* __SPLITTER_H__ */
+#endif /* __CRC32_H__ */
