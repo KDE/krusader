@@ -62,6 +62,7 @@ int main(int argc, char *argv[]) {
   aboutData.addCredit("Heiner Eichmann","FreeBSD port and general help", "h.eichmann@gmx.de", 0);
   aboutData.addCredit("Aurelien Gateau","patch for KViewer","aurelien.gateau@free.fr",0);
   aboutData.addCredit("Giuseppe Bordoni", "Italian translation", "giuseppebordoni@tiscalinet.it", 0);
+  aboutData.addCredit("UTUMI Hirosi", "Japanese translation", "utuhiro@mx12.freecom.ne.jp", 0);
   aboutData.addCredit("Anders Bruun Olsen", "Danish translation", "anders@bruun-olsen.net", 0);
   aboutData.addCredit("Erik Johanssen","Swedish translation","erre@telia.com",0);
 	aboutData.addCredit("Anders Linden","Updated Swedish translation","connyosis@gmx.net",0);
