@@ -100,6 +100,8 @@ KAction *Krusader::actFind = 0;
 KAction *Krusader::actAddBookmark = 0;
 KAction *Krusader::actSavePosition = 0;
 KAction *Krusader::actSelectColorMask = 0;
+KAction *Krusader::actOpenLeftBm = 0;
+KAction *Krusader::actOpenRightBm = 0;
 
 KToggleAction *Krusader::actToggleTerminal = 0;
 
@@ -380,6 +382,10 @@ void Krusader::setupActions() {
                                 SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
   new KAction( i18n( "Right-click menu" ), Key_Menu,
                SLOTS, SLOT( rightclickMenu() ), actionCollection(), "rightclick menu" );
+  new KAction( i18n( "Right bookmarks" ), ALT+Key_Right,
+               SLOTS, SLOT( openRightBookmarks() ), actionCollection(), "right bookmarks" );
+  new KAction( i18n( "Left bookmarks" ), ALT+Key_Left,
+               SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
 
   // and at last we can set the tool-tips
   actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );

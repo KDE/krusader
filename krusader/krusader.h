@@ -100,7 +100,7 @@ class Krusader : public KParts::MainWindow {
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actBookMan, *actNewTool;
     static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actAddBookmark;
-    static KAction *actSelectColorMask, *actMultiRename, *actAllFilter;
+    static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
     static KToggleAction *actToggleTerminal;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
     *actShowStatusBar, *actToggleHidden, *actCompareDirs, *actToggleSortByExt;
@@ -167,5 +167,7 @@ class Krusader : public KParts::MainWindow {
 #define krSelectColorMask Krusader::App->actSelectColorMask// select compare-mask
 #define krToggleTerminal  Krusader::App->actToggleTerminal
 #define krToggleSortByExt Krusader::App->actToggleSortByExt// Sort by extention
+#define krOpenLeftBm      Krusader::App->actOpenLeftBm     // open left bookmarks
+#define krOpenRightBm     Krusader::App->actOpenRightBm    // open left bookmarks
 
 #endif

@@ -37,6 +37,7 @@
 // the 2 following #includes should go away with the ugly stubs on the bottom
 #include "krusader.h"
 #include "krusaderview.h"
+#include "Panel/listpanel.h"
 
 class ListPanel;
 
@@ -67,8 +68,8 @@ public slots:
   void dirUp();
   void markAll();
 	void unmarkAll();
-  void markGroup();	
-  void unmarkGroup();	
+  void markGroup();
+  void unmarkGroup();
 	void invert();
 	void refresh();
   void refresh(QString p);
@@ -86,7 +87,7 @@ public slots:
   void newFTPconnection(QString host);
   void runKonfigurator(bool firstTime=false);
   void startKonfigurator() { runKonfigurator(false); }
-  void search();						 				// call the search module	
+  void search();						 				// call the search module
   void homeTerminal();
   void sysInfo();
   void addBookmark();
@@ -97,6 +98,8 @@ public slots:
 	void changeTrashIcon();
   void showAboutApplication();
 	void multiRename();
+  void openRightBookmarks() { krApp->mainView->right->popBookmarks(); }
+  void openLeftBookmarks() { krApp->mainView->left->popBookmarks(); }
 	// F2
 	void terminal();
 	// F3
@@ -106,11 +109,11 @@ public slots:
 	// F5
 	void copyFiles();
 	// F6
-	void moveFiles();	
+	void moveFiles();
 	// F7
 	void mkdir();
 	// F8
-	void deleteFiles();     	
+	void deleteFiles();
 	// F9
 	void rename();
 
