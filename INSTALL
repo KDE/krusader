@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.60-00
-- Documentation date:  2005-02-11
-- Parsing date: Fri Feb 18 22:18:01 CET 2005
+- Documentation version:  1.60.0
+- Documentation date:  2005-02-28
+- Parsing date: Mon Feb 28 20:07:40 UTC 2005
 --------------------------------------------
  
 
@@ -57,23 +57,21 @@ Appendix A. Installation
 A.1. Requirements
 
    In order to successfully use the most recent Krusader, you
-   need KDElibs >= 3.2.x.
+   need KDElibs >= 3.3.x.
 
    Note
 
-   Krusader v1.01 needs KDElibs 2.x.x
+     * Krusader v1.01 needs KDElibs 2.x.x
+     * Krusader v1.02 - 1.40 needs KDElibs 3.x.x
+     * Krusader 1.40 prefers >= 3.2.x (otherwise not all features
+       will be available)
+     * Krusader v1.50 - 1.60 needs >= 3.3.x
 
-   Krusader v1.02 - 1.40 needs KDElibs 3.x.x
+   Platforms:
 
-   Krusader 1.40 prefers >= 3.2.x (otherwise not all features
-   will be available)
-
-   Krusader v1.50 - 1.60 needs KDElibs >= 3.2.x but prefers
-   KDElibs >= 3.3.x for stability
-
-   Platforms: All POSIX (Linux®/BSD/UNIX-like OSes), Solaris(TM)
-   and All BSD Platforms (FreeBSD/NetBSD/OpenBSD/Mac® OS 10.3
-   "Panther").
+     * All POSIX (Linux®/BSD/UNIX-like OSes), Solaris(TM)
+     * All BSD Platforms (FreeBSD/NetBSD/OpenBSD/Mac® OS 10.3
+       "Panther").
 
    Krusader uses about 3-4 MByte of memory to run (and about 15
    Mbyte shared memory which is also used by other processes),
@@ -102,19 +100,18 @@ A.2.1. Download Krusader
    tarballs and RPM packages to whatever distro we are currently
    using.
 
-     * Often Mandrake(TM), Fedora® and SuSE® RPM's are available,
-       sent in by Krusader users. There might be some other
-       packages on our website, but that depends on other users
-       contributions.
-     * Debian® DEB packages and a DEB packages overview are
-       available.
-     * There is a FreeBSD® port thanks to Heiner Eichmann .
+     * Often Mandrake(TM), Fedora® and SuSE® RPM's and Debian®
+       DEB's are available on our website, sended in by Krusader
+       users. There might be some other packages, but that
+       depends on users contributions.
+     * Debian® DEB packages are available.
+     * A FreeBSD® port is maintained by Heiner Eichmann .
      * There is a Mac® OS-x 10.3 (Panther) port with the kdelibs
        (3.1.4) and fink.sourceforge.net thanks to Jonas Baëhr .
      * Gentoo® Ebuild is available.
      * You may also find packages on Linux® software archives
        such as freshmeat.net or KDE-APPS.org.
-     * If you can't find a RPM package for your Linux®
+     * If you can't find an RPM package for your Linux®
        distribution, we recommend searching for it with
        rpmfind.net or rpmpbone.net.
 
@@ -128,7 +125,22 @@ A.2.1. Download Krusader
    from source. Please continue to read this chapter ;)
      _________________________________________________________
 
-A.2.2. Stable version
+A.2.2. Version scheme
+
+   We use a new version scheme since Krusader-1.60.0
+
+     * First digit - the major version
+     * Second digit(s) - percentage of features completed for
+       this major version
+     * third digit(s) - bugfixes.
+
+   So in essence, releasing Krusader-1.60.0, means that we
+   believe that Krusader is about 60% done with all the features
+   we'd schedule for thr 1.x.x series. Only 40% left to go until
+   version 2.0.0 ;-) We hope it'd be easy to understand.
+     _________________________________________________________
+
+A.2.3. Stable version
 
    krusader-x.xx.tar.gz
 
@@ -140,7 +152,7 @@ A.2.2. Stable version
    release.
      _________________________________________________________
 
-A.2.3. Development version (beta release)
+A.2.4. Development version (beta release)
 
    krusader-x.xx-betax.tar.gz
 
@@ -162,7 +174,7 @@ A.2.3. Development version (beta release)
    the Krusader sources. User feedback and Bug reports are always
    welcome!
 
-   This version has 3 goals:
+   The beta release has 3 goals:
 
      * Apply a feature-freeze until the stable is released, only
        bugs will be fixed. New features have to wait until the
@@ -174,9 +186,9 @@ A.2.3. Development version (beta release)
        HowTo
      _________________________________________________________
 
-A.2.4. CVS builds
+A.2.5. CVS builds
 
-   krusader-cvs-yyyy-mm-dd.tar.gz
+   krusader-cvs-yyyymmdd.tar.gz
 
    Warning
 
@@ -196,13 +208,13 @@ A.2.4. CVS builds
 
    Krusader provides 2 nightly snapshots:
 
-    1. krusader-cvs-yyyy-mm-dd.tar.gz: make -f Makefile.cvs must
-       be run before the ./configure script is available
-    2. krusader-cvs2-yyyy-mm-dd.tar.gz: for users who have
-       problems with the make -f Makefile.cvs command, we have
-       already done this for you and the ./configure script is
-       included in the tarball (This tarball is a bit bigger then
-       the first one).
+    1. krusader-cvs-yyyymmdd.tar.gz: make -f Makefile.cvs must be
+       run before the ./configure script is available
+    2. krusader-cvs2-yyyymmdd.tar.gz: for users who have problems
+       with the make -f Makefile.cvs command, we have already
+       done this for you and the ./configure script is included
+       in the tarball (This tarball is a bit bigger then the
+       first one).
 
    Checkout from CVS. Krusader can be checked out through
    anonymous (pserver) CVS with the following instruction set.
@@ -243,7 +255,7 @@ $ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
    We also provide ViewCVS to browse the CVS repository.
      _________________________________________________________
 
-A.2.5. Older releases
+A.2.6. Older releases
 
    Looking for older releases? Try the Sourceforge mirrors
    available from our project page.
@@ -290,7 +302,7 @@ A.3.2. Detailed Installation Instructions
 
    Tip
 
-   If you install Kdevelop than (almost) everything that you need
+   If you install Kdevelop then (almost) everything that you need
    to compile Krusader will be installed on your computer, BUT
    please don't use Kdevelop to compile Krusader if you are not a
    developer (possible automake hell), just follow the next
@@ -616,7 +628,7 @@ Appendix B. Configuration files
    useractions.xml
 
    This file stores the UserActions configuration. The
-   file-structure is documentated in doxygen-headers of
+   file-structure is documented in doxygen-headers of
    UserActionXML.
 
    Location: ~/.kde/share/apps/krusader/useractions.xml

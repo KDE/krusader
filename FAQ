@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.60-00
-- Documentation date:  2005-02-11
-- Parsing date: Fri Feb 18 22:18:01 CET 2005
+- Documentation version:  1.60.0
+- Documentation date:  2005-02-28
+- Parsing date: Mon Feb 28 20:07:40 UTC 2005
 --------------------------------------------
  
 
@@ -107,7 +107,7 @@ Chapter 7. Frequently Asked Questions (FAQ)
    libraries. Only some shared libraries are needed e.g. KDE
    libraries, Qt(TM) libraries, etc. This means that Krusader
    runs on GNOME, AfterStep and other window managers if the
-   aproriate packages are installed on your computer.
+   approriate packages are installed on your computer.
 
    You don't need to switch to KDE; you can still use GNOME or
    another window manager. btw, you can configure the menu font
@@ -116,8 +116,8 @@ Chapter 7. Frequently Asked Questions (FAQ)
    But a lot depends on what you would like to do with Krusader.
    You should know that Krusader uses the KDE KIOSlaves to access
    remote file systems, and only a limited number of slaves (bad
-   choice of words slaves) are shipped with KDElibs, most of the
-   KIOSlaves are bundled with KDEbase (including fish,sftp and
+   choice of words: slaves) are shipped with KDElibs, most of the
+   KIOSlaves are bundled with KDEbase (including fish, sftp and
    tar). But ... if the property-dialog should show EXIF-data for
    .jpeg's, you need KDEgraphics if you want ID3-infos, you need
    KDEmultimedia, and so on....
@@ -151,7 +151,7 @@ Chapter 7. Frequently Asked Questions (FAQ)
    Please install them. ;-)
 
    Here is a (possibly incomplete) list of the required packages
-   when you compile Krusader from source:
+   to compile Krusader from source:
 
      * gcc-cpp gcc-c++ glibc libgcc1 (other compilers may work
        but haven't been tested)
@@ -163,7 +163,8 @@ Chapter 7. Frequently Asked Questions (FAQ)
      * fam libfam-devel (e.g. fam-2.x.x-xmdk.rpm and
        libfam0-devel-2.x.x-5mdk.i586.rpm)
      * zlib1 arts libart_lgpl2 libstdc++5 libpcre0
-     * kjsembed, if you use the JavaScript console
+     * libkjsembed, if you use the JavaScript console, often
+       found in a package called KDEbindings(-devel)
 
    Most RPM-based distributions separate the headers from the
    libs. The headers are needed to compile Krusader. Look for
