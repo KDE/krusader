@@ -28,10 +28,6 @@
 #include <qstringlist.h>
 #include <qclipboard.h>
 
-#ifdef __KJSEMBED__
-#include <kjs/completion.h>
-#endif
-
 #define UA_CANCEL		return "@CANCEL@";
 #define NEED_PANEL		if ( panel == 0 ) { \
 					   krOut << "Expander: no panel specified for %_" << _expression << "%; ignoring..." << endl; \
@@ -651,11 +647,11 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
    }
    
    QString filename = parameter[0];
-   if ( KURL::isRelativeURL(filename) ) {
+   if ( filename.find('/') && KURL::isRelativeURL(filename) ) {
       // this return the local version of the file if this exists. else the global one is returnd
       filename = locate( "data", "krusader/js/"+filename );
    }
-
+   
    krJS->runFile( filename );
    
    //TODO: messagebox on JS-errors
