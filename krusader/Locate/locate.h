@@ -64,6 +64,7 @@ private:
   void              nextLine();
 
   bool              stopping;
+  bool              onlyExist;
 
   KHistoryCombo    *locateSearchFor;
   KListView        *resultList;

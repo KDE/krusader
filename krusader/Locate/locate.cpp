@@ -175,7 +175,7 @@ void LocateDlg::updateFinished()
 
 void LocateDlg::slotUser3()   /* The locate button */
 {
-  bool isCs, onlyExist;
+  bool isCs;
   
   locateSearchFor->addToHistory(locateSearchFor->currentText());
   QStringList list = locateSearchFor->historyItems();
@@ -198,6 +198,8 @@ void LocateDlg::slotUser3()   /* The locate button */
   enableButton( KDialogBase::User3, false );  /* disable the locate button */
   enableButton( KDialogBase::User1, true );   /* enable the stop button */
 
+  qApp->processEvents();
+
   stopping = false;
   
   KProcess locateProc;
@@ -207,8 +209,6 @@ void LocateDlg::slotUser3()   /* The locate button */
   locateProc << KrServices::fullPathName( "locate" );
   if( !isCs )
     locateProc << "-i";
-  if( onlyExist )
-    locateProc << "-e";
   locateProc << locateSearchFor->currentText();
   
   if ( !locateProc.start( KProcess::Block, KProcess::Stdout ) )
@@ -234,10 +234,20 @@ void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
   {
     if( --items == 0 && buffer[length-1] != '\n' )
       remaining = *it;
-    else if( lastItem )    
-      lastItem = new KListViewItem( resultList, lastItem, *it );
     else
-      lastItem = new KListViewItem( resultList, *it );
+    {
+      if( onlyExist )
+      {
+        KFileItem file(KFileItem::Unknown, KFileItem::Unknown, (*it).stripWhiteSpace() );
+        if( !file.isReadable() )
+          continue;
+      }
+      
+      if( lastItem )    
+        lastItem = new KListViewItem( resultList, lastItem, *it );
+      else
+        lastItem = new KListViewItem( resultList, *it );
+    }
   }
 
   if( stopping )
