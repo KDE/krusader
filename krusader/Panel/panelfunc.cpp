@@ -806,6 +806,17 @@ void ListPanelFunc::calcSpace() {
   if ( names.isEmpty() )
     return ; // nothing to do
 
+  calcSpace(names, totalSize, totalFiles, totalDirs);
+
+  // show the results to the user...
+  QString msg;
+  QString fileName = ( ( names.count() == 1 ) ? ( i18n( "Name: " ) + names.first() + "\n" ) : QString( "" ) );
+  msg = fileName + i18n( "Total occupied space: %1\nin %2 directories and %3 files" ).
+        arg( KIO::convertSize( totalSize ) ).arg( totalDirs ).arg( totalFiles );
+  KMessageBox::information( krApp, msg.latin1() );
+}
+
+void ListPanelFunc::calcSpace(QStringList & names, long long & totalSize, long & totalFiles, long & totalDirs) {
   // set the cursor to busy mode
   krApp->setCursor( KCursor::waitCursor() );
 
@@ -813,13 +824,7 @@ void ListPanelFunc::calcSpace() {
   for ( QStringList::Iterator name = names.begin(); name != names.end(); ++name )
     files() ->vfs_calcSpace( *name, &totalSize, &totalFiles, &totalDirs );
 
-  // show the results to the user...
   krApp->setCursor( KCursor::arrowCursor() );  // return the cursor to normal mode
-  QString msg;
-  QString fileName = ( ( names.count() == 1 ) ? ( i18n( "Name: " ) + names.first() + "\n" ) : QString( "" ) );
-  msg = fileName + i18n( "Total occupied space: %1\nin %2 directories and %3 files" ).
-        arg( KIO::convertSize( totalSize ) ).arg( totalDirs ).arg( totalFiles );
-  KMessageBox::information( krApp, msg.latin1() );
 }
 
 void ListPanelFunc::FTPDisconnect() {
