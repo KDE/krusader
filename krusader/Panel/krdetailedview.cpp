@@ -278,8 +278,14 @@ void KrDetailedView::addItem( vfile *vf ) {
       ++_numDirs;
    else _countSize += dynamic_cast<KrViewItem*>( item ) ->size();
    ++_count;
+   
+   //kdWarning() << "===> " << nameToMakeCurrent() << endl;
+   
+   if (item->name() == nameToMakeCurrent() )
+      setCurrentItem(item->name()); // dictionary based - quick
+
    ensureItemVisible( currentItem() );
-	emit selectionChanged();
+   emit selectionChanged();
 }
 
 void KrDetailedView::delItem( const QString &name ) {
@@ -307,6 +313,7 @@ void KrDetailedView::updateItem( vfile *vf ) {
    } else {
 		bool selected = it->isSelected();
       bool current = ( getCurrentKrViewItem() == it );
+	  kdWarning() << "updated" << endl;
       delItem( vf->vfile_getName() );
       addItem( vf );
       // restore settings
@@ -944,6 +951,9 @@ void KrDetailedView::rename( QListViewItem * item, int c ) {
       repaintItem( item );
    }
 
+   renameLineEdit()->setBackgroundMode(Qt::FixedColor);
+   renameLineEdit()->setPaletteBackgroundColor(Qt::white);
+   renameLineEdit()->setPaletteForegroundColor(Qt::black);
    KListView::rename( item, c );
    renameLineEdit() ->selectAll();
 }
