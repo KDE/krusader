@@ -36,8 +36,6 @@
 #include <kglobalsettings.h>
 #include <qpushbutton.h>
 #include <qhbox.h>
-#include <qvaluestack.h>
-#include <qptrstack.h>
 #include <qapplication.h>
 #include <qcursor.h>
 #include <qpixmapcache.h>
@@ -195,7 +193,8 @@ void LoaderWidget::slotCancelled()
 }
 
 DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidgetStack( parent, name ), 
-                      currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ), abortLoading( false )
+                      currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ), 
+                      abortLoading( false ), searchVfs( 0 )
 {
   listView = new DUListView( this, "DU ListView" );
   lineView = new DULines( this, "DU LineView" );
@@ -226,20 +225,10 @@ DiskUsage::~DiskUsage()
     delete filelightView;
 }
 
-bool DiskUsage::load( KURL baseDir )
+void DiskUsage::load( KURL baseDir )
 {
-  if( loading )
-  {
-    stopLoad();
-    urlToLoad = baseDir;
-    QTimer::singleShot( 0, this, SLOT( loadAfterStop() ) );
-    return false;
-  }
-  
-  int fileNum = 0, dirNum = 0;
-  bool result = true;
-  KIO::filesize_t totalSize = 0;
-  Directory *parent = 0;
+  fileNum = dirNum = 0;
+  currentSize = 0;
       
   emit status( i18n( "Loading the disk usage information..." ) );
   
@@ -250,106 +239,124 @@ bool DiskUsage::load( KURL baseDir )
 
   root = new Directory( baseURL.fileName().ascii(), baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
 
-  QValueStack<QString> directoryStack;
-  QPtrStack<Directory> parentStack;
+  directoryStack.clear();
+  parentStack.clear();
+  
   directoryStack.push( "" );
   parentStack.push( root );
   
-  vfs *searchVfs = KrVfsHandler::getVfs( baseDir );
+  if( searchVfs )
+  {
+    delete searchVfs;
+    searchVfs = 0;
+  }
+  searchVfs = KrVfsHandler::getVfs( baseDir );
   if( searchVfs == 0 )
-    return false;
+  {
+    loading = abortLoading = false;  
+    emit loadFinished( false );  
+    return;    
+  }
   
   searchVfs->vfs_setQuiet( true );
   searchVfs->vfs_enableRefresh( false );
   
-  int lastView = activeView;
-  setView( VIEW_LOADER );
+  if( !loading )
+  {
+    viewBeforeLoad = activeView;
+    setView( VIEW_LOADER );
+  }
   
   loading = true;
   
   loaderView->init();  
+  loaderView->setCurrentURL( baseURL );
+  loaderView->setValues( fileNum, dirNum, currentSize );
   
-  while( !directoryStack.isEmpty() )
-  {      
-    QString dirToCheck = directoryStack.pop();
-    parent = parentStack.pop();
+  qApp->processEvents();
+  
+  QTimer::singleShot( 0, this, SLOT( slotLoadDirectory() ) );
+}
+  
+void DiskUsage::slotLoadDirectory()
+{
+  if( directoryStack.isEmpty() || loaderView->wasCancelled() || abortLoading )
+  {
+    if( searchVfs )
+      delete searchVfs;
+    searchVfs = 0;
+  
+    setView( viewBeforeLoad );
+  
+    calculateSizes();
+    changeDirectory( root );
+  
+    loading = abortLoading = false;
+  
+    emit loadFinished( !( loaderView->wasCancelled() || abortLoading ) );  
+  } 
+  else if( loading )
+  {  
+    do 
+    {
+      QString dirToCheck = directoryStack.pop();
+      Directory *parent = parentStack.pop();
     
-    contentMap.insert( dirToCheck, parent );
+      contentMap.insert( dirToCheck, parent );
     
-    KURL url = baseDir;
+      KURL url = baseURL;
     
-    if( !dirToCheck.isEmpty() )
-      url.addPath( dirToCheck );
+      if( !dirToCheck.isEmpty() )
+        url.addPath( dirToCheck );
     
 #if defined(BSD)
-    if ( url.isLocalFile() && url.path().left( 7 ) == "/procfs" )
-      continue;
+      if ( url.isLocalFile() && url.path().left( 7 ) == "/procfs" )
+        break;
 #else
-    if ( url.isLocalFile() && url.path().left( 5 ) == "/proc" )
-      continue;
+      if ( url.isLocalFile() && url.path().left( 5 ) == "/proc" )
+        break;
 #endif
     
-    loaderView->setCurrentURL( url );
+      loaderView->setCurrentURL( url );
     
-    if( !searchVfs->vfs_refresh( url ) )
-      continue;
+      if( !searchVfs->vfs_refresh( url ) )
+        break;
 
-    dirNum++;
+      dirNum++;
 
-    vfile * file = searchVfs->vfs_getFirstFile();
-    while( file )
-    {      
-      fileNum++;
-      File *newItem = 0;
+      vfile * file = searchVfs->vfs_getFirstFile();
+      while( file )
+      {      
+        fileNum++;
+        File *newItem = 0;
       
-      if( file->vfile_isDir() && !file->vfile_isSymLink() )
-      {
-        newItem = new Directory( parent, file->vfile_getName(), dirToCheck, file->vfile_getSize(), 
-                                 file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(), 
-                                 file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
-                                 file->vfile_getMime() );
-        directoryStack.push( (dirToCheck.isEmpty() ? "" : dirToCheck + "/" )+ file->vfile_getName() );
-        parentStack.push( dynamic_cast<Directory *>( newItem ) );
+        if( file->vfile_isDir() && !file->vfile_isSymLink() )
+        {
+          newItem = new Directory( parent, file->vfile_getName(), dirToCheck, file->vfile_getSize(), 
+                                   file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(), 
+                                   file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
+                                   file->vfile_getMime() );
+          directoryStack.push( (dirToCheck.isEmpty() ? "" : dirToCheck + "/" )+ file->vfile_getName() );
+          parentStack.push( dynamic_cast<Directory *>( newItem ) );
+        }
+        else
+        {
+          newItem = new File( parent, file->vfile_getName(), dirToCheck, file->vfile_getSize(), 
+                              file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(), 
+                              file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
+                              file->vfile_getMime() );
+          currentSize += file->vfile_getSize();
+        }      
+        parent->append( newItem );
+        
+        file = searchVfs->vfs_getNextFile();
       }
-      else
-      {
-        newItem = new File( parent, file->vfile_getName(), dirToCheck, file->vfile_getSize(), 
-                            file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(), 
-                            file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
-                            file->vfile_getMime() );
-        totalSize += file->vfile_getSize();
-      }      
-      parent->append( newItem );
-          
-      loaderView->setValues( fileNum, dirNum, totalSize );       
-      file = searchVfs->vfs_getNextFile();
-    }
     
-    loaderView->setValues( fileNum, dirNum, totalSize );    
-    qApp->processEvents();
-    
-    if( loaderView->wasCancelled() || abortLoading )
-    {
-      result = false;
-      break;
-    }
+      loaderView->setValues( fileNum, dirNum, currentSize );
+    }while( 0 );
+  
+    QTimer::singleShot( 0, this, SLOT( slotLoadDirectory() ) );
   }
-  delete searchVfs;
-  
-  setView( lastView );
-  
-  calculateSizes();
-  changeDirectory( root );
-  
-  loading = abortLoading = false;
-  
-  emit loadFinished( result );  
-  return result;
-}
-
-void DiskUsage::loadAfterStop()
-{
-  load( urlToLoad );
 }
 
 void DiskUsage::stopLoad()

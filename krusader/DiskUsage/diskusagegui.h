@@ -61,6 +61,7 @@ protected slots:
   virtual void               reject();
   void                       slotViewChanged( int view );
   void                       enableButtons( bool );
+  void                       slotLoadFinished( bool );
   
 protected:
   virtual void               resizeEvent( QResizeEvent *e );
@@ -80,6 +81,8 @@ protected:
   
   int                        sizeX;
   int                        sizeY;
+  
+  bool                       exitAtFailure;
 };
 
 #endif /* __DISK_USAGE_GUI_H__ */

@@ -40,7 +40,7 @@
 #include <qtooltip.h>
 
 DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name ) 
-  : QDialog( parent, name, false, 0 )
+  : QDialog( parent, name, false, 0 ), exitAtFailure( true )
 {  
   setCaption( i18n("Krusader::Disk Usage") );
   
@@ -103,6 +103,7 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   connect( diskUsage, SIGNAL( status( QString ) ), this, SLOT( setStatus( QString ) ) );
   connect( diskUsage, SIGNAL( viewChanged( int ) ), this, SLOT( slotViewChanged( int ) ) );
   connect( diskUsage, SIGNAL( newSearch() ), this,  SLOT( newSearch() ) );
+  connect( diskUsage, SIGNAL( loadFinished( bool ) ), this,  SLOT( slotLoadFinished( bool ) ) );
   connect( btnNewSearch, SIGNAL( clicked() ), this, SLOT( newSearch() ) );
   connect( btnRefresh, SIGNAL( clicked() ), this, SLOT( loadUsageInfo() ) );
   connect( btnDirUp, SIGNAL( clicked() ), diskUsage, SLOT( dirUp() ) );
@@ -131,6 +132,14 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
 
 DiskUsageGUI::~DiskUsageGUI()
 {
+}
+
+void DiskUsageGUI::slotLoadFinished( bool result )
+{
+  if( exitAtFailure && !result )
+    reject();
+  else
+    exitAtFailure = false;
 }
 
 void DiskUsageGUI::enableButtons( bool isOn )
@@ -166,8 +175,7 @@ void DiskUsageGUI::reject()
 
 void DiskUsageGUI::loadUsageInfo()
 {
-  if( !diskUsage->load( baseDirectory ) )
-    reject();
+  diskUsage->load( baseDirectory );
 }
 
 void DiskUsageGUI::setStatus( QString stat )

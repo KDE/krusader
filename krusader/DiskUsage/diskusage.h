@@ -39,6 +39,8 @@
 #include <qdict.h>
 #include <qptrlist.h>
 #include <qptrdict.h>
+#include <qvaluestack.h>
+#include <qptrstack.h>
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
 #include <qwidgetstack.h>
@@ -65,7 +67,7 @@ public:
   DiskUsage( QString confGroup, QWidget *parent = 0, char *name = 0);
   ~DiskUsage();
   
-  bool       load( KURL dirName );
+  void       load( KURL dirName );
   void       stopLoad();
   bool       isLoading()     { return loading; }
   
@@ -114,7 +116,7 @@ signals:
   void       newSearch();
 
 protected slots:
-  void       loadAfterStop();
+  void       slotLoadDirectory();
 
 protected:
   QDict< Directory > contentMap;
@@ -147,8 +149,15 @@ protected:
   
   bool       loading;
   bool       abortLoading;
+
+  QValueStack<QString> directoryStack;
+  QPtrStack<Directory> parentStack;
+
+  vfs * searchVfs;
   
-  KURL       urlToLoad;
+  int   fileNum; 
+  int   dirNum;
+  int   viewBeforeLoad;
 };
 
 
