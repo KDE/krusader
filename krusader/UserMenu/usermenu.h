@@ -3,7 +3,7 @@
                              -------------------
     begin                : Sat Dec 6 2003
     copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
-    email                : 
+    email                :
  ***************************************************************************/
 
 /***************************************************************************
@@ -18,39 +18,37 @@
 #ifndef USERMENU_H
 #define USERMENU_H
 
-/**
-
-Command: %xYYY%
-         x - can be either 'a' for active panel, or 'o' for other panel
-         YYY - the specific command
-
-         For example:
-           %ap% - active panel path
-           %op% - other panel path
-
-In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute as needed.
-
-%_p% - panel path
-%_c% - current file (or folder). Note: current != selected
-%_s% - selected files and folders
-%_cs% - selected files including current file (if it's not already selected)
-%_afd% - all files and folders
-%_af% - all files (not including folders)
-%_ad% - all folders (not including files)
-%_an% - number of files and folders
-%_anf% - number of files
-%_and% - number of folders
-%_fm% - filter mask (for example: *, *.cpp, *.h etc.)
-
-*/
-
 #include <qwidget.h>
+#include <kpopupmenu.h>
+#include <qstringlist.h>
+
+// an expander is a function that receives a QString input, expands
+// it and returns a new QString output containing the expanded expression
+typedef QString (EXPANDER)(const QString&);
+
+// a UMCmd is an entry containing the expression and its expanding function
+typedef struct UserMenuCmd {
+  QString lc_expression;
+  EXPANDER expFunc;
+} UMCmd;
 
 class UserMenu : public QWidget  {
+#define NUM_EXPS  1
+
    Q_OBJECT
 public:
-	UserMenu(QWidget *parent=0, const char *name=0);
+  QString exec();
+  UserMenu(QWidget *parent=0, const char *name=0);
 	~UserMenu();
+
+protected:
+  QString expand(QString str);
+  QString expPath(const QString& str);
+
+private:
+  KPopupMenu _popup;
+  QStringList _entries;
+  static UMCmd _expressions[NUM_EXPS];
 };
 
 #endif
