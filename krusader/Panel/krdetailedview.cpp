@@ -111,10 +111,17 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
     KConfigGroupSaver grpSvr( _config, "Look&Feel" );
     krConfig->setGroup( "Look&Feel" );
     setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
-    // a change in the selection needs to update totals
+	 // decide on single click/double click selection
+	 if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
+      connect( this, SIGNAL(executed(QListViewItem*)), this, SLOT(slotExecuted(QListViewItem*)));
+	 } else {
+	 	connect( this, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( slotDoubleClicked( QListViewItem* ) ) );
+	 }
+#if 0    
     connect( this, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( slotClicked( QListViewItem* ) ) );
-    connect( this, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( slotDoubleClicked( QListViewItem* ) ) );
-    connect( this, SIGNAL( returnPressed( QListViewItem* ) ), this, SIGNAL( executed( QListViewItem* ) ) );
+    
+#endif
+    // a change in the selection needs to update totals
     connect( this, SIGNAL( onItem( QListViewItem* ) ), this, SLOT( slotItemDescription( QListViewItem* ) ) );
     connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
              this, SLOT( handleContextMenu( QListViewItem*, const QPoint&, int ) ) );
@@ -392,27 +399,11 @@ void KrDetailedView::setSortMode( SortSpec mode ) {
   KListView::sort();
   }
 
-void KrDetailedView::slotClicked( QListViewItem *item ) {
-  if ( !item ) return ;
-
-  KConfigGroupSaver grpSvr( _config, nameInKConfig() );
-  QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
-
-  krConfig->setGroup( "Look&Feel" );
-  if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
-    emit executed( tmp );
-    }
-  }
-
 void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
-  KConfigGroupSaver grpSvr( _config, nameInKConfig() );
-  krConfig->setGroup( "Look&Feel" );
-  if ( !_config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
     if ( !item )
       return ;
     QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
     emit executed( tmp );
-    }
   }
 
 void KrDetailedView::prepareForActive() {
@@ -715,7 +706,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
       case Key_Return : {
         if ( e->state() & ControlButton )        // let the panel handle it
           e->ignore();
-        else {
+		  else {
           KrViewItem * i = getCurrentKrViewItem();
           QString tmp = i->name();
           emit executed( tmp );
@@ -732,7 +723,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         }
       break;
       case Key_Right :
-      if ( e->state() == ControlButton ) { // let the panel handle it
+      if ( e->state() == ControlButton || e->state() == ShiftButton ) { // let the panel handle it
         e->ignore();
         break;
         } else { // just a normal click - do a lynx-like moving thing
@@ -749,7 +740,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         }
       case Key_Backspace :                        // Terminal Emulator bugfix
       case Key_Left :
-      if ( e->state() == ControlButton ) { // let the panel handle it
+      if ( e->state() == ControlButton  || e->state() == ShiftButton) { // let the panel handle it
         e->ignore();
         break;
         } else {          // a normal click - do a lynx-like moving thing
@@ -971,7 +962,7 @@ void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
 void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const QPoint&, int ) {
   if ( button == Qt::MidButton )
     emit middleButtonClicked( item );
-  }
+}
 
 void KrDetailedView::refreshColors()
 {

@@ -838,8 +838,9 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
 
         slotFocusOnMe(); // return focus to us!
         return ;
-      } else
-        e->ignore();
+      //} else if (e->state() == ShiftButton) {
+		//	krApp->mainView->leftMng->changePanel(e->key() == Key_Left);
+		} else e->ignore();
       break;
 
       case Key_Down :

@@ -105,7 +105,6 @@ class KrDetailedView : public KListView, public KrView {
 
   protected slots:
     void rename(QListViewItem *item, int c);
-    void slotClicked( QListViewItem *item );
     void slotDoubleClicked( QListViewItem *item );
     void slotItemDescription( QListViewItem *item );
     void slotCurrentChanged( QListViewItem *item );
@@ -115,11 +114,16 @@ class KrDetailedView : public KListView, public KrView {
     void stopQuickSearch(QKeyEvent*);
     void handleQuickSearchEvent(QKeyEvent*);
     void setNameToMakeCurrent(QListViewItem *it);
+	 
     /**
      * used internally to produce the signal middleButtonClicked()
      */
     void slotMouseClicked( int button, QListViewItem * item, const QPoint & pos, int c );
-  
+    inline void slotExecuted(QListViewItem* i) { 
+	 	QString tmp = dynamic_cast<KrViewItem*>( i ) ->name();
+		emit executed(tmp);
+	 }
+	 
   public slots:
     void refreshColors();
 
