@@ -1,5 +1,5 @@
 # krusader.spec  --  use rpmbuild to build a Krusader RPM package
-# this spec file works on Mandrake 10.0 for Krusader-1.51
+# this spec file works on Mandrake 10.0/10.1 for Krusader-1.51
 # other distributions may need to make some modifications
 # If you have comments or suggestions about this spec file,
 # please send to: [frank_schoolmeesters {*} yahool {.} com]
@@ -8,25 +8,26 @@
 
 # NOTE: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
 
-%define version 1.51
-%define release mdk100
+%define version 1.51.05
+%define release mdk101
 #%define beta beta1
 
 # Package information
-Summary: 	 Advanced, twin-panel file-manager for KDE 3.2.x
-Name: 		 krusader
-Version: 	 %{version}
-Release: 	 %{release}
-Distribution:	 Mandrake Linux 10.0
-Source0: 	 %{name}-%{version}.tar.gz
-#Source0:         %{name}-%{version}-beta1.tar.gz
-License: 	 GPL
-Group: 		 File tools
+Summary: 	 Advanced twin-panel file-manager for KDE 3.2.x
+Name: 		 			krusader
+Version: 	 		%{version}
+Release: 	 		%{release}
+Distribution:	 Mandrake Linux 10.1
+Source0: 	 		%{name}-%{version}.tar.gz
+#Source0:    %{name}-%{version}-beta1.tar.gz
+License: 	 		GPL
+Group: 				File tools
 
 # requirements for building the software package, these are not the binary PRM requirements
 # e.g. for installing the binary RPM you don't need a C-compiler
 BuildRequires: automake autoconf diffutils file m4 texinfo gettext zlib1
-BuildRequires: kdelibs >= 3.2.0 kdelibs-devel >= 3.2.0 libqt3 >= 3 libqt-devel >= 3.1.0 arts-devel >= 1.1.0
+BuildRequires: kdelibs >= 3.2.0 kdelibs-devel >= 3.2.0
+BuildRequires: libqt3 >= 3 libqt-devel >= 3.1.0 arts-devel >= 1.1.0
 BuildRequires: libjpeg62 libjpeg-devel libpng3 libmng1
 BuildRequires: libfam-devel arts libart_lgpl2 libstdc++5 libpcre0
 BuildRequires: libxfree86 libfreetype6 libfontconfig1 libnas2 libexpat0
@@ -36,7 +37,7 @@ BuildRequires: rpm-build gcc-cpp gcc-c++ glibc libgcc1
 # typically (for Mandrake): /var/tmp/krusader-buildroot
 # this will become the %%RPM_BUILD_ROOT enviroment variable
 BuildRoot:       %{_tmppath}/%{name}-buildroot
-URL: 		 http://krusader.sourceforge.net
+URL: 		 						http://krusader.sourceforge.net
 Vendor:          Krusader Krew [krusader {*} users {.} sourceforge {.}net]
 Packager:        Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 
@@ -49,15 +50,15 @@ Prefix:          /usr
 Requires: 	kdelibs >= 3.2.0
 
 %description
-Krusader is an advanced, twin-panel (commander-style) file-manager for 
+Krusader is an advanced, twin-panel (commander-style) file-manager for
 KDE 3.2.x (similar to Midnight or Total Commander) but with many extras.
-It provides all the File-Management features you could possibly want; plus: 
-extensive Archive Handling, Mounted Filesystem Support, FTP, Advanced Search 
-module, Viewer/Editor, Directory Synchronisation, File Content Comparisons, 
-powerful Batch Renaming, and much, much more.
-It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace, 
+It provides all the File-Management features you could possibly want; plus:
+extensive Archive Handling, mounted Filesystem support, FTP, advanced Search
+module, Viewer/editor, directory Synchronisation, file content Comparisons,
+powerful batch Renaming, and much, much more.
+It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace,
 arj and rpm; and can handle other KIOSlaves, such as, smb:// or fish://.
-It is (almost) completely customizable, very user friendly, fast and looks 
+It is (almost) completely customizable, very user friendly, fast and looks
 great on your desktop! :-)
 You should give it a try.
 
@@ -67,7 +68,7 @@ You should give it a try.
 %prep
 rm -rf $RPM_BUILD_ROOT
 # changes to the build dir /usr/src/RPM/BUILD/krusader-%version-%release  on Mandrake
-# -q: run quitely
+# -q: run quietly
 %setup -q -n %{name}-%{version}
 #%setup -q -n %{name}-%{version}-%{beta}
 
@@ -109,7 +110,7 @@ mkdir -p $RPM_BUILD_ROOT%{_menudir}
 # adds krusader in the KDE menu with the file /usr/lib/menu/krusader on Mandrake
 # Kmenu -> "System/File tools" -> krusader
 # /usr/bin/kdedesktop2mdkmenu.pl is a Mandrake Perl script to generate the Kmenu entry
-kdedesktop2mdkmenu.pl krusader "System/File tools"    %{buildroot}/%{_datadir}/applnk/Applications/krusader.desktop                             %{buildroot}/%{_menudir}/krusader
+kdedesktop2mdkmenu.pl krusader "System/File tools"    %{buildroot}/%{_datadir}/applnk/Applications/krusader.desktop   %{buildroot}/%{_menudir}/krusader
 
 # menu
 # creates the file /usr/lib/menu/krusader on Mandrake, this adds krusader in the KDE menu
@@ -192,6 +193,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/krusader/*.rc
 %{_datadir}/apps/krusader/*.png
 %{_datadir}/apps/krusader/*.jpg
+%{_datadir}/apps/krusader/total_commander.*
 
 # /usr/share/apps/krusader/icons/ on Mandrake
 %dir %{_datadir}/apps/krusader/icons/
@@ -252,20 +254,65 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Jan 10 2005 Richard Holt [ hempscreek {*} yahool {.} com ]
+- 1.51.05-mdk101
+    ADDED: useraction: new placeholder: %_Move(src, dest)%
+    ADDED: useraction: new placeholder: %_Each%
+    ADDED: full viewer in the 3rd hand
+    ADDED: shift-del deletes and doesn't move to trash
+    ADDED: splitter: pre-defined 650MB and 700MB CD-R
+    ADDED: more Konfigurator Tooltips
+    ADDED: usermenu: entry to open konfigurator with the useraction-page directly
+    ADDED: import/export of keyboard shortcuts
+    ADDED: mouse selection modes are back! thanks to heiner for doing the work
+
+    FIXED: couldn't sort case sensative on some systems (see KDE bug #40131)
+    FIXED: resizing of the main window produces strange effencts
+    FIXED: double dragging in Krusader and Konqueror selection modes
+    FIXED: right click menu and user action ID turmoil
+    FIXED: [ 1074393 ] Crashes sometimes on startup (thanks Heiner)
+    FIXED: custom icons in bookmarks weren't shown
+
+  UPDATED: German translation
+
 * Fri Dec 10 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.51-mdk100
   removed some minor unnecessary lines in the spec file
+    ADDED: Portuguese translation (thanks Bruno Queiros)
+    ADDED: Fn keys can have custom shortcuts
+    ADDED: krusader can be resized to a small size even with Fn keys showing
+    ADDED: Total-commander style refresh (at last)
+    ADDED: ctrl-up arrow (from the panel) goes up to the origin bar
+    ADDED: New commandline option: --profile <panel-profile>
+    ADDED: Heiner's selection mode patch. Still alpha.
+    ADDED: Ukrainian translation (thanks Ivan Petrouchtchak)
+    ADDED: disk usage tool (alpha version)
+    ADDED: vertical krusader: hit alt+ctrl+v to test
+    ADDED: extra information in the totals bar
+    FIXED: separators were not displayed in the bookmarks list
+    FIXED: deleting a folder didn't update the bottom stats correctly
+    FIXED: useraction: parse the default-value "__goto" again
+    FIXED: useraction: Crash when filename  contained brackets '(...)'
+    FIXED: world-class-annoying-bug when sometimes while using quicksearch,
+           the file that was selected by quicksearch got hidden beneath the bar
+    FIXED: mime types are shown only in english
+    FIXED: when using quicksearch, current item wasn't visible
+    FIXED: a crash when packing/unpacking to partial URL
+  UPDATED: Dutch translation (thanks Frank Schoolmeesters)
+  UPDATED: Hungarian translation (thanks Arpad Biro)
+  UPDATED: German translation
+
 * Mon Nov 1 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.50-mdk100
   fix: icons for rpmlint
   re-used kdedesktop2mdkmenu.pl
   Note: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
-  
+
 * Wed Oct 13 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 -  1.50-beta1.mdk100
   new files added in RPM package:
   /usr/share/apps/konqueror/servicemenus/isoservice.desktop
-  /usr/share/config/kio_isorc  
+  /usr/share/config/kio_isorc
 
 * Thu Jul 26 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.40.mdk100
@@ -274,7 +321,7 @@ rm -rf $RPM_BUILD_ROOT
   Now using distro independent script to create "/usr/lib/menu/krusader" and
   not the Mandrake Perl script kdedesktop2mdkmenu.pl
   This adds Krusader in the KDE menu in the "System/File tools" section.
-      
+
 * Fri Jun 25 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.40-beta2.mdk92
 - x-ace.desktop is removed in krusader-1.40-beta2/krusader/Makefile.am
@@ -286,4 +333,5 @@ rm -rf $RPM_BUILD_ROOT
 * Wed May 12 2003 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.40-beta1.mdk92
 - Initial specfile derived from spec file by Laurent MONTEL [lmontel {*} mandrakesoft {.} com]
+
 
