@@ -196,7 +196,8 @@ class Synchronizer : public QObject
     QPtrList<SynchronizerFileItem>    resultList;     // the found files
     QString                           leftBaseDir;    // the left-side base directory
     QString                           rightBaseDir;   // the right-side base directory
-    QString                           fileFilter;     // the file selection filter
+    QStringList                       inclusionFilter;// the file selection filter for inclusion
+    QStringList                       exclusionFilter;// the file selection filter for inclusion
     bool                              stopped;        // 'Stop' button was pressed
 
     bool                              markEquals;     // show the equal files

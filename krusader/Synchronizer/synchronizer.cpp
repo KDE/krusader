@@ -65,9 +65,23 @@ int Synchronizer::compare( QString leftURL, QString rightURL, QString filter, bo
   asymmetric     = asymm;
   cmpByContent   = cmpByCnt;
   autoScroll     = autoSc;
-  fileFilter     = filter;
   stopped = false;
 
+  int exclusionIndex = filter.find('|');
+  if( exclusionIndex > -1 )
+  {
+    QString inclusionExp = filter.left( exclusionIndex );
+    QString exclusionExp = filter.mid( exclusionIndex+1 );
+    
+    inclusionFilter = QStringList::split(" ",inclusionExp);
+    exclusionFilter = QStringList::split(" ",exclusionExp);
+    
+    if( inclusionFilter.count() == 0 )
+      inclusionFilter.push_back( QString("*") );
+  }
+  else
+    inclusionFilter = QStringList::split(" ",filter);
+  
   if( !leftURL.endsWith("/" ))  leftURL+="/";
   if( !rightURL.endsWith("/" )) rightURL+="/";
 
@@ -375,12 +389,16 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
 }
 
 bool Synchronizer::checkName( QString name )
-{
-  QStringList fileNames = QStringList::split(" ",fileFilter);
-  
-  for ( QStringList::Iterator it = fileNames.begin(); it != fileNames.end(); ++it )
+{  
+  for ( QStringList::Iterator it = inclusionFilter.begin(); it != inclusionFilter.end(); ++it )
     if( QRegExp(*it,true,true).exactMatch( name ) )
+    {
+      for ( QStringList::Iterator it2 = exclusionFilter.begin(); it2 != exclusionFilter.end(); ++it2 )
+        if( QRegExp(*it2,true,true).exactMatch( name ) )
+          return false;
+      
       return true;
+    }
   return false;
 }
 
