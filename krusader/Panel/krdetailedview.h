@@ -113,6 +113,7 @@ class KrDetailedView : public KListView, public KrView {
     void delayedQuickSearchEventHandling();
     void quickSearch(const QString &, int = 0);
     void stopQuickSearch(QKeyEvent*);
+    void handleQuickSearchEvent(QKeyEvent*);
     void setNameToMakeCurrent(QListViewItem *it);
     /**
      * used internally to produce the signal middleButtonClicked()
