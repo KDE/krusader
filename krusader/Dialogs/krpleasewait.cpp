@@ -59,10 +59,18 @@ KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
 	QPushButton* btn = new QPushButton(i18n("&Cancel"),this);
   setCancelButton(btn);
 
-	btn->setEnabled(cancel);
+	btn->setEnabled(canClose = cancel);
   setLabelText(msg);
 
 	show();
+}
+
+void KRPleaseWait::closeEvent ( QCloseEvent * e )
+{
+  if( canClose )
+    e->accept();
+  else              /* if cancel is not allowed, we disable */
+    e->ignore();         /* the window closing [x] also */
 }
 
 void KRPleaseWait::incProgress(int howMuch){

@@ -66,6 +66,8 @@ public slots:
 protected:
 	bool inc;
   QTimer* timer;
+  virtual void closeEvent ( QCloseEvent * e );
+  bool canClose;
 };
 
 #endif
