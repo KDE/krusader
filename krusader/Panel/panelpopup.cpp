@@ -93,17 +93,42 @@ PanelPopup::PanelPopup( QWidget *parent ) : QWidget( parent ), stack( 0 ), viewe
 	QGridLayout *qlayout = new QGridLayout(quickPanel);	
 	// --- quick select
 	QLabel *selectLabel = new QLabel(i18n("Quick Select"), quickPanel);
-	quickSelectEdit = new KLineEdit(quickPanel);
-	connect(quickSelectEdit, SIGNAL(returnPressed(const QString& )),
+        quickSelectCombo = new KComboBox( quickPanel );
+        quickSelectCombo->setEditable( true );
+        krConfig->setGroup( "Private" );
+        QStrList lst;
+        int i = krConfig->readListEntry( "Predefined Selections", lst );
+        if ( i > 0 )
+           quickSelectCombo->insertStrList( lst );
+        quickSelectCombo->setCurrentText( "*" );
+        quickSelectCombo->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred ) );
+
+	connect(quickSelectCombo, SIGNAL(returnPressed(const QString& )),
 		this, SLOT(quickSelect(const QString& )));
 	
 	QToolButton *qselectBtn = new QToolButton(quickPanel);
-	qselectBtn->setText("Go");
+        qselectBtn->setPixmap(krLoader->loadIcon( "kr_selectall", KIcon::Toolbar, 16 ));
+        qselectBtn->setFixedSize(20, 20);
+        QToolTip::add( qselectBtn, i18n("apply the selection") );
 	connect(qselectBtn, SIGNAL(clicked()), this, SLOT(quickSelect()));
 
+        QToolButton *qstoreBtn = new QToolButton(quickPanel);
+        qstoreBtn->setPixmap(krLoader->loadIcon( "filesave", KIcon::Toolbar, 16 ));
+        qstoreBtn->setFixedSize(20, 20);
+        QToolTip::add( qstoreBtn, i18n("store the current selection") );
+        connect(qstoreBtn, SIGNAL(clicked()), this, SLOT(quickSelectStore()));
+        
+        QToolButton *qsettingsBtn = new QToolButton(quickPanel);
+        qsettingsBtn->setPixmap(krLoader->loadIcon( "configure", KIcon::Toolbar, 16 ));
+        qsettingsBtn->setFixedSize(20, 20);
+        QToolTip::add( qsettingsBtn, i18n("select group dialog") );
+        connect(qsettingsBtn, SIGNAL(clicked()), krSelect, SLOT(activate()));
+
 	qlayout->addWidget(selectLabel,0,0);
-	qlayout->addWidget(quickSelectEdit,0,1);
+	qlayout->addWidget(quickSelectCombo,0,1);
 	qlayout->addWidget(qselectBtn,0,2);
+	qlayout->addWidget(qstoreBtn,0,3);
+	qlayout->addWidget(qsettingsBtn,0,4);
 	stack->addWidget(quickPanel, QuickPanel);
 	
 	// -------- finish the layout (General one)
@@ -187,9 +212,17 @@ void PanelPopup::treeSelection(QListViewItem*) {
 // ------------------- quick panel
 
 void PanelPopup::quickSelect() {
-	SLOTS->markGroup(quickSelectEdit->text(), true);
+	SLOTS->markGroup(quickSelectCombo->currentText(), true);
 }
 
 void PanelPopup::quickSelect(const QString &mask) {
 	SLOTS->markGroup(mask, true);
+}
+
+void PanelPopup::quickSelectStore() {
+        krConfig->setGroup( "Private" );
+        QStringList lst = krConfig->readListEntry( "Predefined Selections" );
+        if ( lst.find(quickSelectCombo->currentText()) == lst.end() )
+           lst.append( quickSelectCombo->currentText() );
+        krConfig->writeEntry( "Predefined Selections", lst );
 }

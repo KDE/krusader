@@ -16,6 +16,7 @@ class KFileTreeView;
 class QToolButton;
 class KrSqueezedTextLabel;
 class KLineEdit;
+class KComboBox;
 
 class PanelPopup: public QWidget {
    Q_OBJECT
@@ -39,6 +40,7 @@ protected slots:
 	
 	void quickSelect();
 	void quickSelect(const QString &);
+        void quickSelectStore();
 
 protected:
    QWidgetStack *stack;
@@ -48,7 +50,8 @@ protected:
 	KFileTreeView *tree;
 	QToolButton *treeBtn, *previewBtn, *quickBtn;
 	QButtonGroup *btns;
-	KLineEdit *quickSelectEdit, *quickFilter;
+	KLineEdit *quickFilter;
+        KComboBox *quickSelectCombo;
 };
 
 #endif // _PANELPOPUP_H
