@@ -66,6 +66,10 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 	if (dlg->exec() == QDialog::Accepted) {
 		u = vfs::fromPathOrURL(dlg->urlRequester()->completionObject()->replacedPath(
 			dlg->urlRequester()->lineEdit()->text()));
+		if (u.isRelativeURL(u.url())) {
+			u = cwd;
+			u.addPath(u.url());
+		}
 	}
 	delete dlg;
 	return u;

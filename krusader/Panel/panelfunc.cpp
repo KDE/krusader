@@ -358,9 +358,6 @@ void ListPanelFunc::moveFiles() {
 		// ask the user for the copy dest
 		dest = KChooseDir::getDir(s, dest, panel->virtualPath());
 		if ( dest.isEmpty() ) return ; // the user canceled
-		if ( dest.isRelativeURL(dest.url()) )  {
-			dest = KURL::fromPathOrURL(files()->vfs_workingDir()+"/"+dest.url());
-		}
 	}
 
 	if ( fileNames.isEmpty() )
@@ -463,9 +460,6 @@ void ListPanelFunc::copyFiles() {
 		// ask the user for the copy dest
 		dest = KChooseDir::getDir(s, dest, panel->virtualPath());
 		if ( dest.isEmpty() ) return ; // the user canceled
-		if ( dest.isRelativeURL(dest.url()) )  {
-			dest = KURL::fromPathOrURL(files()->vfs_workingDir()+"/"+dest.url());
-		}
 	}
 
 	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
@@ -782,12 +776,9 @@ void ListPanelFunc::unpack() {
 	// ask the user for the copy dest
 	KURL dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
-	if ( dest.isRelativeURL(dest.url()) )  {
-		dest = KURL::fromPathOrURL(files()->vfs_workingDir()+"/"+dest.url());
-	}
+
 	
-	
-/* REVIEW - rafi, can the "check for partial urls" below be replaced by isRelativeURL above ?	
+/* REVIEW 
 	KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->virtualPath().prettyURL(), panel->virtualPath().prettyURL() );
 	if ( chooser->dest == QString::null )
 		return ; // the usr canceled

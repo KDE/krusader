@@ -223,7 +223,7 @@ bool DiskUsageGUI::newSearch()
   if ( dest == QString::null )
     return false; // the usr canceled    */
 
-  KURL tmp = KChooseDir::getDir(i18n( "Viewing the usage of directory:" ), baseDirectory);
+  KURL tmp = KChooseDir::getDir(i18n( "Viewing the usage of directory:" ), baseDirectory, baseDirectory);
   if (tmp.isEmpty()) return false;
   /* baseDirectory = vfs::fromPathOrURL( dest ); */
   baseDirectory = tmp;

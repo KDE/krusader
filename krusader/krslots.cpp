@@ -531,9 +531,7 @@ void KRslots::viewDlg(){
   // ask the user for a url to view
 	KURL dest = KChooseDir::getDir(i18n("Enter a URL to view:"), ACTIVE_PANEL->virtualPath(), ACTIVE_PANEL->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
-	if ( dest.isRelativeURL(dest.url()) )  {
-		dest = KURL::fromPathOrURL(ACTIVE_FUNC->files()->vfs_workingDir()+"/"+dest.url());
-	}
+
 #if 0  
   REVIEW
   
@@ -556,9 +554,7 @@ void KRslots::editDlg(){
   // ask the user for the filename to edit
 	KURL dest = KChooseDir::getDir(i18n("Enter the filename to edit:"), ACTIVE_PANEL->virtualPath(), ACTIVE_PANEL->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
-	if ( dest.isRelativeURL(dest.url()) )  {
-		dest = KURL::fromPathOrURL(ACTIVE_FUNC->files()->vfs_workingDir()+"/"+dest.url());
-	}
+
 #if 0
   REVIEW
     
@@ -760,11 +756,9 @@ void KRslots::slotCombine(){
 
    // ask the user for the copy dest
 	KURL dest = KChooseDir::getDir(i18n("Combining %1.* to directory:" ).arg( fileName ),
-		 ACTIVE_PANEL->otherPanel->virtualPath());
+		 ACTIVE_PANEL->otherPanel->virtualPath(), ACTIVE_PANEL->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
-	if ( dest.isRelativeURL(dest.url()) )  {
-		dest = KURL::fromPathOrURL(ACTIVE_FUNC->files()->vfs_workingDir()+"/"+dest.url());
-	}
+
 #if 0	
   REVIEW
     

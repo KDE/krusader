@@ -58,11 +58,27 @@ protected:
 	QLabel 			*message;
 };
 
-// to use this class: call the static getDir() method. it returns a url.
-// if the user canceled, the url returned will be empty, so use url.isEmpty() to check
+/** \class KChooseDir
+ * Used for asking the user for a folder.
+ * example:
+ * \code
+ * KURL u = KChooseDir::getDir("target folder", "/suggested/path", ACTIVE_PANEL->virtualPath());
+ * if (u.isEmpty()) { 
+ *   // user canceled (either by pressing cancel, or esc
+ * } else {
+ *   // do you thing here: you've got a safe url to use
+ * }
+ * \endcode
+ */
 class KChooseDir {
 public:
-	static KURL getDir(QString text,const KURL& url, const KURL& cwd=KURL());
+	/**
+	 * \param text - description of the info requested from the user
+	 * \param url - a suggested url to appear in the box as a default choice
+	 * \param cwd - a path which is the current working directory (usually ACTIVE_PANEL->virtualPath()).
+	 *              this is used for completion of partial urls
+	 */
+	static KURL getDir(QString text,const KURL& url, const KURL& cwd);
 };
 
 class KRAbout : public KRDialog {
