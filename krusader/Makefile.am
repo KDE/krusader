@@ -8,29 +8,50 @@ krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./GUI/libGUI.a 
 
 SUBDIRS = BookMan Dialogs GUI Konfigurator KViewer MountMan Panel RemoteMan VFS Search Splitter Synchronizer UserMenu Locate 
 
-EXTRA_DIST = krusader.desktop lo32-app-krusader.png lo16-app-krusader.png defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h krusaderui.rc krusaderview.cpp krusaderview.h lo32-app-krusader2.png main.cpp resources.h x-ace.desktop krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 
+EXTRA_DIST = krusader.desktop defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h krusaderui.rc krusaderview.cpp krusaderview.h main.cpp resources.h x-ace.desktop krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 16-blue-krusader.png 22-blue-krusader.png 32-blue-krusader.png 48-blue-krusader.png 64-blue-krusader.png 16-red-krusader.png 22-red-krusader.png 32-red-krusader.png 48-red-krusader.png 64-red-krusader.png 
 
 install-data-local:
 	$(mkinstalldirs) $(kde_appsdir)/Applications/
 	$(INSTALL_DATA) $(srcdir)/krusader.desktop $(kde_appsdir)/Applications/krusader.desktop
-	$(mkinstalldirs) $(kde_icondir)/hicolor/32x32/apps/
-	$(INSTALL_DATA) $(srcdir)/lo32-app-krusader.png $(kde_icondir)/hicolor/32x32/apps/krusader.png
-	$(mkinstalldirs) $(kde_icondir)/locolor/16x16/apps/
-	$(INSTALL_DATA) $(srcdir)/lo16-app-krusader.png $(kde_icondir)/locolor/16x16/apps/krusader.png
 	$(mkinstalldirs) $(kde_datadir)/krusader/
 	$(INSTALL_DATA) $(srcdir)/krusaderui.rc $(kde_datadir)/krusader/krusaderui.rc
-	$(mkinstalldirs) $(kde_icondir)/hicolor/32x32/apps/
-	$(INSTALL_DATA) $(srcdir)/lo32-app-krusader2.png $(kde_icondir)/hicolor/32x32/apps/krusader2.png
 	$(mkinstalldirs) $(kde_mimedir)/application/
 	$(INSTALL_DATA) $(srcdir)/x-ace.desktop $(kde_mimedir)/application/x-ace.desktop
+	$(mkinstalldirs) $(kde_icondir)/hicolor/16x16/apps/
+	$(INSTALL_DATA) $(srcdir)/16-blue-krusader.png $(kde_icondir)/hicolor/16x16/apps/krusader.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/22x22/apps/
+	$(INSTALL_DATA) $(srcdir)/22-blue-krusader.png $(kde_icondir)/hicolor/22x22/apps/krusader.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/32x32/apps/
+	$(INSTALL_DATA) $(srcdir)/32-blue-krusader.png $(kde_icondir)/hicolor/32x32/apps/krusader.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/48x48/apps/
+	$(INSTALL_DATA) $(srcdir)/48-blue-krusader.png $(kde_icondir)/hicolor/48x48/apps/krusader.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/64x64/apps/
+	$(INSTALL_DATA) $(srcdir)/64-blue-krusader.png $(kde_icondir)/hicolor/64x64/apps/krusader.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/16x16/apps/
+	$(INSTALL_DATA) $(srcdir)/16-red-krusader.png $(kde_icondir)/hicolor/16x16/apps/krusader_red.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/22x22/apps/
+	$(INSTALL_DATA) $(srcdir)/22-red-krusader.png $(kde_icondir)/hicolor/22x22/apps/krusader_red.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/32x32/apps/
+	$(INSTALL_DATA) $(srcdir)/32-red-krusader.png $(kde_icondir)/hicolor/32x32/apps/krusader_red.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/48x48/apps/
+	$(INSTALL_DATA) $(srcdir)/48-red-krusader.png $(kde_icondir)/hicolor/48x48/apps/krusader_red.png
+	$(mkinstalldirs) $(kde_icondir)/hicolor/64x64/apps/
+	$(INSTALL_DATA) $(srcdir)/64-red-krusader.png $(kde_icondir)/hicolor/64x64/apps/krusader_red.png
 
 uninstall-local:
 	-rm -f $(kde_appsdir)/Applications/krusader.desktop
-	-rm -f $(kde_icondir)/hicolor/32x32/apps/krusader.png
-	-rm -f $(kde_icondir)/locolor/16x16/apps/krusader.png
 	-rm -f $(kde_datadir)/krusader/krusaderui.rc
-	-rm -f $(kde_icondir)/hicolor/32x32/apps/krusader2.png
 	-rm -f $(kde_mimedir)/application/x-ace.desktop
+	-rm -f $(kde_icondir)/hicolor/16x16/apps/krusader.png
+	-rm -f $(kde_icondir)/hicolor/22x22/apps/krusader.png
+	-rm -f $(kde_icondir)/hicolor/32x32/apps/krusader.png
+	-rm -f $(kde_icondir)/hicolor/48x48/apps/krusader.png
+	-rm -f $(kde_icondir)/hicolor/64x64/apps/krusader.png
+	-rm -f $(kde_icondir)/hicolor/16x16/apps/krusader_red.png
+	-rm -f $(kde_icondir)/hicolor/22x22/apps/krusader_red.png
+	-rm -f $(kde_icondir)/hicolor/32x32/apps/krusader_red.png
+	-rm -f $(kde_icondir)/hicolor/48x48/apps/krusader_red.png
+	-rm -f $(kde_icondir)/hicolor/64x64/apps/krusader_red.png
 
 ####### kdevelop will overwrite this part!!! (end)############
 # These paths are KDE specific. Use them:
