@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-14 15:50+0100\n"
+"Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
+"POT-Creation-Date: 2005-02-20 02:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -564,7 +564,7 @@ msgstr ""
 msgid "Access denied to"
 msgstr ""
 
-#: VFS/normal_vfs.cpp:196
+#: VFS/normal_vfs.cpp:198
 msgid "Can't create a directory. Check your permissions."
 msgstr ""
 
@@ -818,7 +818,9 @@ msgid "Location of the script"
 msgstr ""
 
 #: UserAction/expander.cpp:722
-msgid "Read the JS-variable 'cmd' for execution"
+msgid ""
+"Set some variables for the execution (optional).\n"
+"i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
 msgstr ""
 
 #: UserAction/kraction.cpp:43
@@ -865,6 +867,10 @@ msgstr ""
 msgid "%1 (Link)"
 msgstr ""
 
+#: Panel/diff_panelpopup.cpp:6 Panel/panelpopup.cpp:80
+msgid "Disk Usage Panel: view the usage of a directory"
+msgstr ""
+
 #: Panel/krpreviewpopup.cpp:32
 msgid "Preview not available"
 msgstr ""
@@ -887,232 +893,232 @@ msgid ""
 "math"
 msgstr ""
 
-#: Panel/listpanel.cpp:171 Panel/listpanel.cpp:301
+#: Panel/listpanel.cpp:173 Panel/listpanel.cpp:303
 msgid "Open the popup panel"
 msgstr ""
 
-#: Panel/listpanel.cpp:188
+#: Panel/listpanel.cpp:190
 msgid "Use superb KDE file dialog to choose location. "
 msgstr ""
 
-#: Panel/listpanel.cpp:192
+#: Panel/listpanel.cpp:194
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
 
-#: Panel/listpanel.cpp:201
+#: Panel/listpanel.cpp:203
 msgid "="
 msgstr ""
 
-#: Panel/listpanel.cpp:202
+#: Panel/listpanel.cpp:204
 msgid "Equal"
 msgstr ""
 
-#: Panel/listpanel.cpp:207
+#: Panel/listpanel.cpp:209
 msgid ".."
 msgstr ""
 
-#: Panel/listpanel.cpp:208
+#: Panel/listpanel.cpp:210
 msgid "Up"
 msgstr ""
 
-#: Panel/listpanel.cpp:213
+#: Panel/listpanel.cpp:215
 msgid "~"
 msgstr ""
 
-#: Panel/listpanel.cpp:214 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
+#: Panel/listpanel.cpp:216 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
 #: Panel/panelpopup.cpp:106 Panel/panelpopup.cpp:117
 msgid "Home"
 msgstr ""
 
-#: Panel/listpanel.cpp:219
+#: Panel/listpanel.cpp:221
 msgid "/"
 msgstr ""
 
-#: Panel/listpanel.cpp:220 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
+#: Panel/listpanel.cpp:222 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
 #: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
 #: krusader.cpp:541
 msgid "Root"
 msgstr ""
 
-#: Panel/listpanel.cpp:295
+#: Panel/listpanel.cpp:297
 msgid "Close the popup panel"
 msgstr ""
 
-#: Panel/listpanel.cpp:397 Panel/listpanel.cpp:1048
+#: Panel/listpanel.cpp:399 Panel/listpanel.cpp:1050
 msgid " Select Files "
 msgstr ""
 
-#: Panel/listpanel.cpp:397
+#: Panel/listpanel.cpp:399
 msgid " Unselect Files "
 msgstr ""
 
-#: Panel/listpanel.cpp:512 Panel/listpanel.cpp:520
+#: Panel/listpanel.cpp:514 Panel/listpanel.cpp:522
 #: Konfigurator/kgstartup.cpp:59 Konfigurator/kgstartup.cpp:65
 #: Konfigurator/kgstartup.cpp:76 Konfigurator/kgstartup.cpp:117
 #: Konfigurator/kgstartup.cpp:118
 msgid "homepage"
 msgstr ""
 
-#: Panel/listpanel.cpp:514 Panel/listpanel.cpp:522 krusader.cpp:264
+#: Panel/listpanel.cpp:516 Panel/listpanel.cpp:524 krusader.cpp:264
 #: krusader.cpp:269 krusader.cpp:714 krusader.cpp:717
 #: Konfigurator/kgstartup.cpp:61
 msgid "the last place it was"
 msgstr ""
 
-#: Panel/listpanel.cpp:584
+#: Panel/listpanel.cpp:586
 msgid "No space information on non-local filesystems"
 msgstr ""
 
-#: Panel/listpanel.cpp:591
+#: Panel/listpanel.cpp:593
 msgid "No space information on [dev]"
 msgstr ""
 
-#: Panel/listpanel.cpp:596
+#: Panel/listpanel.cpp:598
 msgid "No space information on [procfs]"
 msgstr ""
 
-#: Panel/listpanel.cpp:601
+#: Panel/listpanel.cpp:603
 msgid "No space information on [proc]"
 msgstr ""
 
-#: Panel/listpanel.cpp:606
+#: Panel/listpanel.cpp:608
 msgid "Mt.Man: working ..."
 msgstr ""
 
-#: Panel/listpanel.cpp:620
+#: Panel/listpanel.cpp:622
 msgid "unknown"
 msgstr ""
 
-#: Panel/listpanel.cpp:628
+#: Panel/listpanel.cpp:630
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr ""
 
-#: Panel/listpanel.cpp:689
+#: Panel/listpanel.cpp:691
 msgid "Can't drop here, no write permissions."
 msgstr ""
 
-#: Panel/listpanel.cpp:705 Panel/panelpopup.cpp:310
+#: Panel/listpanel.cpp:707 Panel/panelpopup.cpp:310
 msgid "Copy Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:707 Panel/panelpopup.cpp:311
+#: Panel/listpanel.cpp:709 Panel/panelpopup.cpp:311
 msgid "Move Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:710 Panel/panelpopup.cpp:312
+#: Panel/listpanel.cpp:712 Panel/panelpopup.cpp:312
 msgid "Link Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:799
+#: Panel/listpanel.cpp:801
 msgid "Run"
 msgstr ""
 
-#: Panel/listpanel.cpp:802 Panel/listpanel.cpp:803
+#: Panel/listpanel.cpp:804 Panel/listpanel.cpp:805
 msgid "Open in a new tab"
 msgstr ""
 
-#: Panel/listpanel.cpp:815 Konfigurator/kgcolors.cpp:155
+#: Panel/listpanel.cpp:817 Konfigurator/kgcolors.cpp:155
 msgid "Preview"
 msgstr ""
 
-#: Panel/listpanel.cpp:841
+#: Panel/listpanel.cpp:843
 msgid "Terminal"
 msgstr ""
 
-#: Panel/listpanel.cpp:842
+#: Panel/listpanel.cpp:844
 msgid "Other..."
 msgstr ""
 
-#: Panel/listpanel.cpp:844
+#: Panel/listpanel.cpp:846
 msgid "Open with"
 msgstr ""
 
-#: Panel/listpanel.cpp:848 Konfigurator/konfigurator.cpp:111
+#: Panel/listpanel.cpp:850 Konfigurator/konfigurator.cpp:111
 msgid "User Actions"
 msgstr ""
 
-#: Panel/listpanel.cpp:864
+#: Panel/listpanel.cpp:866
 msgid "Konqueror menu"
 msgstr ""
 
-#: Panel/listpanel.cpp:875 Panel/krdetailedview.cpp:1111
+#: Panel/listpanel.cpp:877 Panel/krdetailedview.cpp:1111
 msgid "Rename"
 msgstr ""
 
-#: Panel/listpanel.cpp:881
+#: Panel/listpanel.cpp:883
 msgid "Shred"
 msgstr ""
 
-#: Panel/listpanel.cpp:886
+#: Panel/listpanel.cpp:888
 msgid "new symlink"
 msgstr ""
 
-#: Panel/listpanel.cpp:887
+#: Panel/listpanel.cpp:889
 msgid "new hardlink"
 msgstr ""
 
-#: Panel/listpanel.cpp:889
+#: Panel/listpanel.cpp:891
 msgid "redirect link"
 msgstr ""
 
-#: Panel/listpanel.cpp:891
+#: Panel/listpanel.cpp:893
 msgid "Link handling"
 msgstr ""
 
-#: Panel/listpanel.cpp:898 MountMan/kmountman.cpp:286
+#: Panel/listpanel.cpp:900 MountMan/kmountman.cpp:287
 #: MountMan/kmountmangui.cpp:333
 msgid "Unmount"
 msgstr ""
 
-#: Panel/listpanel.cpp:900 MountMan/kmountman.cpp:286
+#: Panel/listpanel.cpp:902 MountMan/kmountman.cpp:287
 #: MountMan/kmountmangui.cpp:329
 msgid "Mount"
 msgstr ""
 
-#: Panel/listpanel.cpp:902 MountMan/kmountmangui.cpp:339
+#: Panel/listpanel.cpp:904 MountMan/kmountmangui.cpp:339
 msgid "Eject"
 msgstr ""
 
-#: Panel/listpanel.cpp:906
+#: Panel/listpanel.cpp:908
 msgid "Send by email"
 msgstr ""
 
-#: Panel/listpanel.cpp:910
+#: Panel/listpanel.cpp:912
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:913
+#: Panel/listpanel.cpp:915
 msgid "Cut to Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:914 Panel/listpanel.cpp:1030
+#: Panel/listpanel.cpp:916 Panel/listpanel.cpp:1032
 msgid "Paste from Clipboard"
 msgstr ""
 
-#: Panel/listpanel.cpp:956
+#: Panel/listpanel.cpp:958
 msgid "Are you sure you want to shred "
 msgstr ""
 
-#: Panel/listpanel.cpp:957
+#: Panel/listpanel.cpp:959
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr ""
 
-#: Panel/listpanel.cpp:1013 Panel/panelfunc.cpp:334 KViewer/krviewer.cpp:259
+#: Panel/listpanel.cpp:1015 Panel/panelfunc.cpp:334 KViewer/krviewer.cpp:259
 #: krslots.cpp:426
 msgid "Can't open "
 msgstr ""
 
-#: Panel/listpanel.cpp:1192
+#: Panel/listpanel.cpp:1195
 msgid ">> Reading..."
 msgstr ""
 
-#: Panel/listpanel.cpp:1204
+#: Panel/listpanel.cpp:1207
 msgid "Reading"
 msgstr ""
 
-#: Panel/listpanel.cpp:1209
+#: Panel/listpanel.cpp:1212
 msgid "Reading: "
 msgstr ""
 
@@ -1133,7 +1139,7 @@ msgid "Type"
 msgstr ""
 
 #: Panel/krdetailedview.cpp:100 Panel/krdetailedview.cpp:1307
-#: Search/krsearchdialog.cpp:151 Dialogs/advancedfilter.cpp:94
+#: Search/krsearchdialog.cpp:151 Dialogs/advancedfilter.cpp:60
 #: Synchronizer/synchronizergui.cpp:1240 Synchronizer/synchronizergui.cpp:1244
 #: Konfigurator/kglookfeel.cpp:149
 msgid "Size"
@@ -1191,10 +1197,6 @@ msgstr ""
 
 #: Panel/panelpopup.cpp:73
 msgid "View Panel: view the current file"
-msgstr ""
-
-#: Panel/panelpopup.cpp:80
-msgid "Disk Usage Panel: view the usage of a directory"
 msgstr ""
 
 #: Panel/panelpopup.cpp:132 Panel/panelpopup.cpp:269
@@ -1299,7 +1301,7 @@ msgstr ""
 msgid "Create a new link to: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:279 Panel/panelfunc.cpp:447
+#: Panel/panelfunc.cpp:279 Panel/panelfunc.cpp:448
 msgid "A directory or a file with this name already exists."
 msgstr ""
 
@@ -1331,8 +1333,8 @@ msgstr ""
 msgid "Move "
 msgstr ""
 
-#: Panel/panelfunc.cpp:375 Panel/panelfunc.cpp:478 Panel/panelfunc.cpp:787
-#: Panel/panelfunc.cpp:789
+#: Panel/panelfunc.cpp:375 Panel/panelfunc.cpp:479 Panel/panelfunc.cpp:789
+#: Panel/panelfunc.cpp:791
 msgid "to"
 msgstr ""
 
@@ -1341,126 +1343,126 @@ msgstr ""
 msgid "Move %d files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:408
+#: Panel/panelfunc.cpp:409
 msgid "You can't move files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:434
+#: Panel/panelfunc.cpp:435
 msgid "New directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:434
+#: Panel/panelfunc.cpp:435
 msgid "Directory's name:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:478
+#: Panel/panelfunc.cpp:479
 msgid "Copy "
 msgstr ""
 
-#: Panel/panelfunc.cpp:480
+#: Panel/panelfunc.cpp:481
 #, c-format
 msgid "Copy %d files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:502
+#: Panel/panelfunc.cpp:504
 msgid "You can't copy files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:513
+#: Panel/panelfunc.cpp:515
 msgid "You do not have write permission to this directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:530
+#: Panel/panelfunc.cpp:532
 msgid " this item?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:532
+#: Panel/panelfunc.cpp:534
 #, c-format
 msgid " these %d items?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:535
+#: Panel/panelfunc.cpp:537
 msgid "trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:536
+#: Panel/panelfunc.cpp:538
 msgid "&Trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:538
+#: Panel/panelfunc.cpp:540
 msgid "delete"
 msgstr ""
 
-#: Panel/panelfunc.cpp:543
+#: Panel/panelfunc.cpp:545
 msgid "Are you sure you want to "
 msgstr ""
 
-#: Panel/panelfunc.cpp:562
+#: Panel/panelfunc.cpp:564
 msgid "Directory "
 msgstr ""
 
-#: Panel/panelfunc.cpp:562
+#: Panel/panelfunc.cpp:564
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:563
+#: Panel/panelfunc.cpp:565
 msgid "&Skip"
 msgstr ""
 
-#: Panel/panelfunc.cpp:563
+#: Panel/panelfunc.cpp:565
 msgid "&Delete All"
 msgstr ""
 
-#: Panel/panelfunc.cpp:681
+#: Panel/panelfunc.cpp:683
 msgid "The Archive "
 msgstr ""
 
-#: Panel/panelfunc.cpp:682
+#: Panel/panelfunc.cpp:684
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr ""
 
-#: Panel/panelfunc.cpp:684
+#: Panel/panelfunc.cpp:686
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
 msgstr ""
 
-#: Panel/panelfunc.cpp:688
+#: Panel/panelfunc.cpp:690
 msgid "&Overwrite"
 msgstr ""
 
-#: Panel/panelfunc.cpp:693
+#: Panel/panelfunc.cpp:695
 msgid "Counting files to pack"
 msgstr ""
 
-#: Panel/panelfunc.cpp:755 Panel/panelfunc.cpp:810 krslots.cpp:191
+#: Panel/panelfunc.cpp:757 Panel/panelfunc.cpp:812 krslots.cpp:191
 #: krslots.cpp:197
 msgid "Krusader is unable to download: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:763
+#: Panel/panelfunc.cpp:765
 msgid "%1, unknown archive type."
 msgstr ""
 
-#: Panel/panelfunc.cpp:769
+#: Panel/panelfunc.cpp:771
 msgid "%1, test passed."
 msgstr ""
 
-#: Panel/panelfunc.cpp:771
+#: Panel/panelfunc.cpp:773
 msgid "%1, test failed!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:787 Panel/panelfunc.cpp:789
+#: Panel/panelfunc.cpp:789 Panel/panelfunc.cpp:791
 msgid "Unpack "
 msgstr ""
 
-#: Panel/panelfunc.cpp:789
+#: Panel/panelfunc.cpp:791
 msgid "%1 files"
 msgstr ""
 
-#: Panel/panelfunc.cpp:836
+#: Panel/panelfunc.cpp:838
 msgid "%1, unknown archive type"
 msgstr ""
 
@@ -1965,9 +1967,9 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: Search/krsearchdialog.cpp:152 Dialogs/advancedfilter.cpp:148
-#: Synchronizer/synchronizergui.cpp:1241 Synchronizer/synchronizergui.cpp:1243
-#: DiskUsage/dulistview.cpp:71
+#: Search/krsearchdialog.cpp:152 Dialogs/diff_advancedfilter.cpp:58
+#: Dialogs/advancedfilter.cpp:114 Synchronizer/synchronizergui.cpp:1241
+#: Synchronizer/synchronizergui.cpp:1243 DiskUsage/dulistview.cpp:71
 msgid "Date"
 msgstr ""
 
@@ -2083,31 +2085,31 @@ msgstr ""
 msgid "Folder name:"
 msgstr ""
 
-#: MountMan/kmountman.cpp:196
+#: MountMan/kmountman.cpp:197
 msgid "Error ejecting device! You need to have 'eject' in your path."
 msgstr ""
 
-#: MountMan/kmountman.cpp:223
+#: MountMan/kmountman.cpp:224
 msgid "%1 ZB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:225
+#: MountMan/kmountman.cpp:226
 msgid "%1 TB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:230
+#: MountMan/kmountman.cpp:231
 msgid "%1 GB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:235
+#: MountMan/kmountman.cpp:236
 msgid "%1 MB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:240
+#: MountMan/kmountman.cpp:241
 msgid "%1 KB"
 msgstr ""
 
-#: MountMan/kmountman.cpp:249
+#: MountMan/kmountman.cpp:250
 msgid "MountMan is not operational. Sorry"
 msgstr ""
 
@@ -2210,52 +2212,114 @@ msgstr ""
 msgid "Function keys allow performing fast operations on files."
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:123 Konfigurator/kglookfeel.cpp:103
+#: Dialogs/krdialogs.cpp:124 Konfigurator/kglookfeel.cpp:103
 msgid "Custom Selection Mode"
 msgstr ""
 
-#: Dialogs/krdialogs.cpp:126
-msgid "Based on QT selection mode"
-msgstr ""
-
 #: Dialogs/krdialogs.cpp:127
-msgid "Left mouse button selects"
+msgid "Based on KDE's selection mode"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:128
-msgid "Left mouse button preserves selection"
+msgid "Left mouse button selects"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:129
-msgid "Shift/Ctrl-Left mouse button selects"
+msgid "Left mouse button preserves selection"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:130
-msgid "Right mouse button selects"
+msgid "Shift/Ctrl-Left mouse button selects"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:131
-msgid "Right mouse button preserves selection"
+msgid "Right mouse button selects"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:132
-msgid "Shift/Ctrl-Right mouse button selects"
+msgid "Right mouse button preserves selection"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:133
-msgid "Spacebar moves down"
+msgid "Shift/Ctrl-Right mouse button selects"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:134
-msgid "Spacebar calculates disk space"
+msgid "Spacebar moves down"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:135
-msgid "Insert moves down"
+msgid "Spacebar calculates disk space"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:136
+msgid "Insert moves down"
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:137
 msgid "Right clicking pops context menu immediately"
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:139
+msgid "Checking this will create a mode based on KDE's style."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:140
+msgid "If checked, left clicking an item will select it."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:141
+msgid ""
+"If checked, left clicking an item will select it, but will not unselect "
+"other, already selected items."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:143
+msgid ""
+"If checked, shift/ctrl left clicking will select items. Note: This is "
+"meaningless if 'Left Button Selects' is checked."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:145
+msgid "If checked, right clicking an item will select it."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:146
+msgid ""
+"If checked, right clicking an item will select it, but will not unselect "
+"other, already selected items."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:148
+msgid ""
+"If checked, shift/ctrl right clicking will select items. Note: This is "
+"meaningless if 'Right Button Selects' is checked."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:150
+msgid ""
+"If checked, pressing the spacebar will select the current item and move "
+"down. Otherwise, current item is selected, but remains the current item."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:152
+msgid ""
+"If checked, pressing the spacebar while the current item is a folder, will "
+"(except from selecting the folder) calculate space occupied by the folder "
+"(recursively)."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:154
+msgid ""
+"If checked, pressing INSERT will select the current item, and move down to "
+"the next item. Otherwise, current item is not changed."
+msgstr ""
+
+#: Dialogs/krdialogs.cpp:156
+msgid ""
+"If checked, right clicking will result in an immediate showing of the "
+"context menu. Otherwise, user needs to click and hold the right mouse button "
+"for 500ms."
 msgstr ""
 
 #: Dialogs/krprogress.cpp:59
@@ -2347,51 +2411,51 @@ msgstr ""
 msgid "Clears the entire list of selections"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:694
-msgid "New FTP Connection"
+#: Dialogs/newftpgui.cpp:49
+msgid "New Network Connection"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:707
+#: Dialogs/newftpgui.cpp:62
 msgid "About to connect to..."
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:715
+#: Dialogs/newftpgui.cpp:70
 msgid "Protocol:"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:716 RemoteMan/remotemanbase.cpp:193
+#: Dialogs/newftpgui.cpp:71 RemoteMan/remotemanbase.cpp:193
 msgid "Host:"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:717
+#: Dialogs/newftpgui.cpp:72
 msgid "Port:"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:723 RemoteMan/remotemanbase.cpp:201
+#: Dialogs/newftpgui.cpp:78 RemoteMan/remotemanbase.cpp:201
 msgid "ftp://"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:725 RemoteMan/remotemanbase.cpp:203
+#: Dialogs/newftpgui.cpp:80 RemoteMan/remotemanbase.cpp:203
 msgid "smb://"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:727 RemoteMan/remotemanbase.cpp:205
+#: Dialogs/newftpgui.cpp:82 RemoteMan/remotemanbase.cpp:205
 msgid "fish://"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:729 RemoteMan/remotemanbase.cpp:207
+#: Dialogs/newftpgui.cpp:84 RemoteMan/remotemanbase.cpp:207
 msgid "sftp://"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:759
+#: Dialogs/newftpgui.cpp:114
 msgid "Username:"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:761 RemoteMan/remotemanbase.cpp:100
+#: Dialogs/newftpgui.cpp:116 RemoteMan/remotemanbase.cpp:100
 msgid "Password:"
 msgstr ""
 
-#: Dialogs/newftpgui.cpp:771
+#: Dialogs/newftpgui.cpp:128
 msgid "&Connect"
 msgstr ""
 
@@ -2424,7 +2488,7 @@ msgid "Not mounted."
 msgstr ""
 
 #: Dialogs/generalfilter.cpp:52
-msgid "File name:"
+msgid "File name"
 msgstr ""
 
 #: Dialogs/generalfilter.cpp:62
@@ -2495,189 +2559,189 @@ msgstr ""
 msgid "Please specify a location to search in."
 msgstr ""
 
-#: Dialogs/packguibase.cpp:422 Dialogs/packguibase.cpp:475
+#: Dialogs/packguibase.cpp:60 Dialogs/packguibase.cpp:113
 msgid "Pack"
 msgstr ""
 
-#: Dialogs/packguibase.cpp:432
+#: Dialogs/packguibase.cpp:70
 msgid "To archive"
 msgstr ""
 
-#: Dialogs/packguibase.cpp:439
+#: Dialogs/packguibase.cpp:77
 msgid "tar.bz2"
 msgstr ""
 
-#: Dialogs/packguibase.cpp:450
+#: Dialogs/packguibase.cpp:88
 msgid "In directory"
 msgstr ""
 
-#: Dialogs/packguibase.cpp:487 Konfigurator/kguseractions.cpp:70
+#: Dialogs/packguibase.cpp:125 Konfigurator/kguseractions.cpp:70
 msgid "Ok"
 msgstr ""
 
-#: Dialogs/krspwidgets.cpp:132
+#: Dialogs/krspwidgets.cpp:111 Dialogs/diff_krspwidgets.cpp:17
 msgid "Enter a selection:"
 msgstr ""
 
-#: Dialogs/krspwidgets.cpp:168 Dialogs/krspwidgets.cpp:195
+#: Dialogs/krspwidgets.cpp:147 Dialogs/krspwidgets.cpp:174
 msgid "compare mode"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:104
+#: Dialogs/advancedfilter.cpp:70
 msgid "&Bigger than"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:113 Dialogs/advancedfilter.cpp:129
+#: Dialogs/advancedfilter.cpp:79 Dialogs/advancedfilter.cpp:95
 msgid "Bytes"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:114 Dialogs/advancedfilter.cpp:130
+#: Dialogs/advancedfilter.cpp:80 Dialogs/advancedfilter.cpp:96
 msgid "KB"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:115 Dialogs/advancedfilter.cpp:131
+#: Dialogs/advancedfilter.cpp:81 Dialogs/advancedfilter.cpp:97
 msgid "MB"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:120
+#: Dialogs/advancedfilter.cpp:86
 msgid "&Smaller than"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:159
+#: Dialogs/advancedfilter.cpp:125
 msgid "&Modified between"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:176
+#: Dialogs/advancedfilter.cpp:142
 msgid "an&d"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:192
+#: Dialogs/advancedfilter.cpp:158
 msgid "&Not modified after"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:208
+#: Dialogs/advancedfilter.cpp:174
 msgid "Mod&ified in the last"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:218 Dialogs/advancedfilter.cpp:236
+#: Dialogs/advancedfilter.cpp:184 Dialogs/advancedfilter.cpp:202
 msgid "days"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:219 Dialogs/advancedfilter.cpp:237
+#: Dialogs/advancedfilter.cpp:185 Dialogs/advancedfilter.cpp:203
 msgid "weeks"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:220 Dialogs/advancedfilter.cpp:238
+#: Dialogs/advancedfilter.cpp:186 Dialogs/advancedfilter.cpp:204
 msgid "months"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:221 Dialogs/advancedfilter.cpp:239
+#: Dialogs/advancedfilter.cpp:187 Dialogs/advancedfilter.cpp:205
 msgid "years"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:231
+#: Dialogs/advancedfilter.cpp:197
 msgid "No&t modified in the last"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:248
+#: Dialogs/advancedfilter.cpp:214
 msgid "Ownership"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:262
+#: Dialogs/advancedfilter.cpp:228
 msgid "Belongs to &user"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:271
+#: Dialogs/advancedfilter.cpp:237
 msgid "Belongs to gr&oup"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:282
+#: Dialogs/advancedfilter.cpp:248
 msgid "P&ermissions"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:286
+#: Dialogs/advancedfilter.cpp:252
 msgid "O&wner"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:290 Dialogs/advancedfilter.cpp:297
-#: Dialogs/advancedfilter.cpp:304 Dialogs/advancedfilter.cpp:316
-#: Dialogs/advancedfilter.cpp:323 Dialogs/advancedfilter.cpp:330
-#: Dialogs/advancedfilter.cpp:342 Dialogs/advancedfilter.cpp:349
-#: Dialogs/advancedfilter.cpp:356
+#: Dialogs/advancedfilter.cpp:256 Dialogs/advancedfilter.cpp:263
+#: Dialogs/advancedfilter.cpp:270 Dialogs/advancedfilter.cpp:282
+#: Dialogs/advancedfilter.cpp:289 Dialogs/advancedfilter.cpp:296
+#: Dialogs/advancedfilter.cpp:308 Dialogs/advancedfilter.cpp:315
+#: Dialogs/advancedfilter.cpp:322
 msgid "?"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:291 Dialogs/advancedfilter.cpp:317
-#: Dialogs/advancedfilter.cpp:343
+#: Dialogs/advancedfilter.cpp:257 Dialogs/advancedfilter.cpp:283
+#: Dialogs/advancedfilter.cpp:309
 msgid "r"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:292 Dialogs/advancedfilter.cpp:299
-#: Dialogs/advancedfilter.cpp:306 Dialogs/advancedfilter.cpp:318
-#: Dialogs/advancedfilter.cpp:325 Dialogs/advancedfilter.cpp:332
-#: Dialogs/advancedfilter.cpp:344 Dialogs/advancedfilter.cpp:351
-#: Dialogs/advancedfilter.cpp:358
+#: Dialogs/advancedfilter.cpp:258 Dialogs/advancedfilter.cpp:265
+#: Dialogs/advancedfilter.cpp:272 Dialogs/advancedfilter.cpp:284
+#: Dialogs/advancedfilter.cpp:291 Dialogs/advancedfilter.cpp:298
+#: Dialogs/advancedfilter.cpp:310 Dialogs/advancedfilter.cpp:317
+#: Dialogs/advancedfilter.cpp:324
 msgid "-"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:298 Dialogs/advancedfilter.cpp:324
-#: Dialogs/advancedfilter.cpp:350
+#: Dialogs/advancedfilter.cpp:264 Dialogs/advancedfilter.cpp:290
+#: Dialogs/advancedfilter.cpp:316
 msgid "w"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:305 Dialogs/advancedfilter.cpp:331
-#: Dialogs/advancedfilter.cpp:357
+#: Dialogs/advancedfilter.cpp:271 Dialogs/advancedfilter.cpp:297
+#: Dialogs/advancedfilter.cpp:323
 msgid "x"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:313
+#: Dialogs/advancedfilter.cpp:279
 msgid "Grou&p"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:339
+#: Dialogs/advancedfilter.cpp:305
 msgid "A&ll"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:369
+#: Dialogs/advancedfilter.cpp:335
 msgid "Note: a '?' is a wildcard"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:508
+#: Dialogs/advancedfilter.cpp:474
 msgid "Invalid date entered."
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:509
+#: Dialogs/advancedfilter.cpp:475
 msgid "The date '"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:509
+#: Dialogs/advancedfilter.cpp:475
 msgid ""
 "' is not valid according to your locale.\n"
 "Please re-enter a valid date (use the date button for easy access)."
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:539
+#: Dialogs/advancedfilter.cpp:505
 msgid "Specified sizes are inconsistent!"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:540
+#: Dialogs/advancedfilter.cpp:506
 msgid ""
 "Please re-enter the values, so that the left-side size\n"
 "will be smaller than (or equal to) the right-side size."
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:558 Dialogs/advancedfilter.cpp:608
+#: Dialogs/advancedfilter.cpp:524 Dialogs/advancedfilter.cpp:574
 msgid "Dates are inconsistent!"
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:559
+#: Dialogs/advancedfilter.cpp:525
 msgid ""
 "The date on the left is later than the date on the right.\n"
 "Please re-enter the dates, so that the left-side date will be\n"
 "earlier than the right-side date."
 msgstr ""
 
-#: Dialogs/advancedfilter.cpp:609
+#: Dialogs/advancedfilter.cpp:575
 msgid ""
 "The date on top is later than the date on the bottom.\n"
 "Please re-enter the dates, so that the top date will be\n"
@@ -3486,15 +3550,17 @@ msgstr ""
 msgid "Konfigurator - Creating Your Own Krusader"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:88
+#: Konfigurator/konfigurator.cpp:88 Konfigurator/diff_konfigurator.cpp:6
 msgid "Startup"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:89
+#: Konfigurator/konfigurator.cpp:89 Konfigurator/diff_konfigurator.cpp:7
+#: Konfigurator/diff_konfigurator.cpp:8
 msgid "Krusader's settings upon startup"
 msgstr ""
 
 #: Konfigurator/konfigurator.cpp:92 Konfigurator/konfigurator.cpp:93
+#: Konfigurator/diff_konfigurator.cpp:11
 msgid "Look & Feel"
 msgstr ""
 
@@ -3980,75 +4046,75 @@ msgstr ""
 msgid "Mimes"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:609
+#: Konfigurator/konfiguratoritems.cpp:534
 msgid "Custom color"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:618
+#: Konfigurator/konfiguratoritems.cpp:543
 msgid "Red"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:619
+#: Konfigurator/konfiguratoritems.cpp:544
 msgid "Green"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:620
+#: Konfigurator/konfiguratoritems.cpp:545
 msgid "Blue"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:621
+#: Konfigurator/konfiguratoritems.cpp:546
 msgid "Cyan"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:622
+#: Konfigurator/konfiguratoritems.cpp:547
 msgid "Magenta"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:623
+#: Konfigurator/konfiguratoritems.cpp:548
 msgid "Yellow"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:624
+#: Konfigurator/konfiguratoritems.cpp:549
 msgid "Dark Red"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:625
+#: Konfigurator/konfiguratoritems.cpp:550
 msgid "Dark Green"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:626
+#: Konfigurator/konfiguratoritems.cpp:551
 msgid "Dark Blue"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:627
+#: Konfigurator/konfiguratoritems.cpp:552
 msgid "Dark Cyan"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:628
+#: Konfigurator/konfiguratoritems.cpp:553
 msgid "Dark Magenta"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:629
+#: Konfigurator/konfiguratoritems.cpp:554
 msgid "Dark Yellow"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:630
+#: Konfigurator/konfiguratoritems.cpp:555
 msgid "White"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:631
+#: Konfigurator/konfiguratoritems.cpp:556
 msgid "Light Gray"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:632
+#: Konfigurator/konfiguratoritems.cpp:557
 msgid "Gray"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:633
+#: Konfigurator/konfiguratoritems.cpp:558
 msgid "Dark Gray"
 msgstr ""
 
-#: Konfigurator/konfiguratoritems.cpp:634
+#: Konfigurator/konfiguratoritems.cpp:559
 msgid "Black"
 msgstr ""
 
@@ -4688,35 +4754,35 @@ msgstr ""
 msgid "Enter the filename to edit:"
 msgstr ""
 
-#: krslots.cpp:590
+#: krslots.cpp:593
 msgid "Don't know which file to split."
 msgstr ""
 
-#: krslots.cpp:599
+#: krslots.cpp:602
 msgid "You can't split a directory!"
 msgstr ""
 
-#: krslots.cpp:630
+#: krslots.cpp:633
 msgid "Don't know which files to combine."
 msgstr ""
 
-#: krslots.cpp:642
+#: krslots.cpp:645
 msgid "You can't combine a directory!"
 msgstr ""
 
-#: krslots.cpp:661
+#: krslots.cpp:664
 msgid "Not a split file %1!"
 msgstr ""
 
-#: krslots.cpp:676
+#: krslots.cpp:679
 msgid "Select only one split file!"
 msgstr ""
 
-#: krslots.cpp:724
+#: krslots.cpp:727
 msgid "Not a splitted file %1!"
 msgstr ""
 
-#: krslots.cpp:731
+#: krslots.cpp:734
 msgid "Combining %1.* to directory:"
 msgstr ""
 
