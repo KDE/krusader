@@ -92,7 +92,7 @@ void KrCalcSpaceDialog::CalcThread::stop(){
 }
 
 KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const QStringList & items, bool autoclose) :
-	KDialogBase(parent, "KrCalcSpaceDialog", true, "Calculate Occupied Space", Ok|Cancel),
+	KDialogBase(parent, "KrCalcSpaceDialog", true, i18n("Calculate Occupied Space"), Ok|Cancel),
 	m_autoClose(autoclose), m_canceled(false), m_timerCounter(0){
 	// the dialog: The Ok button is hidden until it is needed
 	showButtonOK(false);

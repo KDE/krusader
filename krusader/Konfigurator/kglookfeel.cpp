@@ -196,7 +196,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive");
   connect( panelToolbarActive->find( "Panel Toolbar visible" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotEnablePanelToolbar() ) );
     
-  QGroupBox * panelToolbarGrp = createFrame("Panel Toolbar buttons", tab_4, "panelToolbarGrp");
+  QGroupBox * panelToolbarGrp = createFrame( i18n( "Panel Toolbar buttons" ), tab_4, "panelToolbarGrp");
   QGridLayout * panelToolbarGrid = createGridLayout( panelToolbarGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = 
