@@ -66,8 +66,12 @@ void Synchronizer::compare( QString leftURL, QString rightURL, QString filter, b
 
   if( !leftURL.endsWith("/" ))  leftURL+="/";
   if( !rightURL.endsWith("/" )) rightURL+="/";
-  
+
+  scannedDirs = fileCount = 0;
+    
   compareDirectory( 0, leftBaseDir = leftURL, rightBaseDir = rightURL, "" );
+
+  emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
 }
 
 void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftURL,
@@ -194,7 +198,7 @@ vfs * Synchronizer::getDirectory( QString url )
     return 0;
   }
 
-  bool result;
+  bool result = true;
   
   if( isNormalVFS )
     result = v->vfs_refresh( url );
@@ -214,6 +218,8 @@ vfs * Synchronizer::getDirectory( QString url )
     return 0;
   }
 
+  emit statusInfo( i18n( "Scanned directories:%1" ).arg( scannedDirs++ ) );
+  
   return v;
 }
 
@@ -238,6 +244,7 @@ SynchronizerFileItem * Synchronizer::addItem( SynchronizerFileItem *parent, QStr
   if( marked )
   {
     markParentDirectories( item );
+    fileCount++;
     emit comparedFileData( item );
   }
 
@@ -379,12 +386,14 @@ void Synchronizer::markParentDirectories( SynchronizerFileItem *item )
 
   markParentDirectories( item->parent() );
   item->parent()->setMarked( true );
+  fileCount++;
   emit comparedFileData( item->parent() );
 }
 
 void Synchronizer::refresh()
 {
   int step = 0;
+  fileCount = 0;
   
   SynchronizerFileItem *item = resultList.first();
 
@@ -396,6 +405,7 @@ void Synchronizer::refresh()
     if( marked )
     {
       markParentDirectories( item );
+      fileCount++;
       emit comparedFileData( item );
     }
 
@@ -404,6 +414,8 @@ void Synchronizer::refresh()
     
     item = resultList.next();
   }
+
+  emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
 }
 
 bool Synchronizer::totalSizes( int * leftCopyNr, KIO::filesize_t *leftCopySize, int * rightCopyNr,

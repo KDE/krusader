@@ -35,7 +35,6 @@
 #include "synchronizedialog.h"
 #include <qlayout.h>
 #include <kurlrequester.h>
-#include <qlabel.h>
 #include <klocale.h>
 #include <qgrid.h>
 #include <kpopupmenu.h>
@@ -745,7 +744,8 @@ static const char * const folder_data[] = {
 "                                "};
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory ) :
-    QDialog( parent, "Krusader::SynchronizerGUI", true, 0 ), isComparing( false ), wasClosed( false )
+    QDialog( parent, "Krusader::SynchronizerGUI", true, 0 ), isComparing( false ), wasClosed( false ),
+    wasSync( false )
 {
   setCaption( i18n("Krusader::Synchronize Directories") );
   QGridLayout *synchGrid = new QGridLayout( this );
@@ -952,6 +952,9 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   buttons->setSpacing( 6 );
   buttons->setMargin( 0 );
 
+  statusLabel = new QLabel( this, "statusLabel" );
+  buttons->addWidget( statusLabel );
+  
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   buttons->addItem( spacer );
 
@@ -990,6 +993,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   
   connect( &synchronizer,     SIGNAL( comparedFileData( SynchronizerFileItem * ) ), this,
                               SLOT( addFile( SynchronizerFileItem * ) ) );
+  connect( &synchronizer,     SIGNAL( statusInfo( QString ) ), this, SLOT( statusInfo( QString ) ) );
 
   connect( btnLeftToRight,    SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnEquals,         SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
@@ -1231,10 +1235,14 @@ void SynchronizerGUI::synchronize()
                                                  copyToLeftNr, copyToLeftSize, copyToRightNr,
                                                  copyToRightSize, deleteNr, deleteSize );
 
-  bool syncStarted = sd->wasSyncronizationStarted();
+  wasSync = sd->wasSyncronizationStarted();
   delete sd;
 
-  if( syncStarted )
+  if( wasSync )
     closeDialog();
 }
 
+void SynchronizerGUI::statusInfo( QString info )
+{
+  statusLabel->setText( info );
+}

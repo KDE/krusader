@@ -38,6 +38,7 @@
 #include <qpixmap.h>
 #include <qcheckbox.h>
 #include <qmap.h>
+#include <qlabel.h>
 
 class SynchronizerGUI : QDialog
 {
@@ -85,6 +86,8 @@ public:
   SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory );
   ~SynchronizerGUI();
 
+  inline bool wasSynchronization()    {return wasSync;}
+
 public slots:
   void rightMouseClicked(QListViewItem *);
   void compare();
@@ -93,6 +96,7 @@ public slots:
   void closeDialog();
   void refresh();
   void subdirsChecked( bool );
+  void statusInfo( QString );
 
 protected slots:
   void reject();
@@ -129,12 +133,15 @@ protected:
   QPushButton   *btnDeletable;
   QPushButton   *btnDuplicates;
   QPushButton   *btnSingles;
+
+  QLabel        *statusLabel;
   
 private:
   QPixmap        fileIcon;
   QPixmap        folderIcon;
   bool           isComparing;
   bool           wasClosed;
+  bool           wasSync;
   SyncViewItem  *lastItem;
 };
 

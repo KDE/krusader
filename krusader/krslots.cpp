@@ -280,7 +280,7 @@ void KRslots::slotUnpack()      { ACTIVE_FUNC->unpack();                     }
 void KRslots::testArchive()     { ACTIVE_FUNC->testArchive();                }
 void KRslots::calcSpace()       { ACTIVE_FUNC->calcSpace();                  }
 void KRslots::FTPDisconnect()   { ACTIVE_FUNC->FTPDisconnect();              }
-void KRslots::newFTPconnection(){ newFTPconnection();                        }
+void KRslots::newFTPconnection(){ ACTIVE_FUNC->newFTPconnection();           }
 
 // run external modules / programs
 void KRslots::runKonfigurator(bool firstTime) { delete new Konfigurator(firstTime); }
@@ -606,8 +606,12 @@ void KRslots::slotSynchronizeDirs() {
   SynchronizerGUI *sync = new SynchronizerGUI( MAIN_VIEW,
                 ACTIVE_PANEL->func->files()->vfs_getOrigin().path(),
                 ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().path() );
+
+  bool refresh = sync->wasSynchronization();
   delete sync;
-  REFRESH_BOTH_PANELS;
+
+  if( refresh )
+    REFRESH_BOTH_PANELS;
 }
 
 #include "krslots.moc"

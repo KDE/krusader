@@ -122,6 +122,7 @@ class Synchronizer : public QObject
     void    synchronizationFinished();
     void    processedSizes( int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t );
     void    pauseAccepted();
+    void    statusInfo( QString );
 
   public slots:
     void    slotTaskFinished(KIO::Job*);
@@ -183,6 +184,9 @@ class Synchronizer : public QObject
     KIO::filesize_t                   rightCopySize;  // the total size copied to right
     KIO::filesize_t                   deleteSize;     // the size of the deleted files
 
+    int                               scannedDirs;    // the number of scanned directories
+    int                               fileCount;      // the number of counted files
+    
     SynchronizerFileItem *            currentTask;    // the current task to process
 
   private:
