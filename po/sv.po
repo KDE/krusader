@@ -12,9 +12,9 @@ msgstr ""
 "Project-Id-Version: krusader-1.60.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-02-20 02:36+0100\n"
-"PO-Revision-Date: 2005-02-14 12:58+0100\n"
+"PO-Revision-Date: 2005-02-21 13:50+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
-"Language-Team: Svenska\n"
+"Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,7 +57,7 @@ msgid ""
 msgstr ""
 "Denna knapp växlar sykroniseringsläsningsläge\n"
 "Om aktiverad, utförs varje mappförändring i den \n"
-"aktiva och inaktiva panelen - om möjligt. "
+"aktiva och inaktiva panelen - om möjligt."
 
 #: GUI/actionproperty.cpp:192
 msgid "New protocol"
@@ -402,8 +402,7 @@ msgid ""
 "&lt;Down&gt; arrows.</qt>"
 msgstr ""
 "<qt>Det är egentligen ganska enkelt: Du skriver ditt kommando här och "
-"Krusader lyder.<p><Tips:>Flytta i kommandoradshistoriken med &lt;Upp&gt; and "
-"&lt;Ner&gt; pilar.</qt>"
+"Krusader utför det.<p><Tips:>Flytta inom kommandoradshistoriken med &lt;Upp&gt; and &lt;Ner&gt;-pilar.</qt>"
 
 #: GUI/kcmdline.cpp:97
 msgid "If pressed, Krusader executes command line in a terminal."
@@ -715,7 +714,7 @@ msgstr "Mask (valfritt, alla utom 'Vald')"
 
 #: UserAction/expander.cpp:224
 msgid "Filename of an itemlist ..."
-msgstr ""
+msgstr "Filnamn eller en lista ..."
 
 #: UserAction/expander.cpp:304
 msgid "Manipulate the selection"
@@ -771,8 +770,7 @@ msgstr "Vad skall kopieras"
 
 #: UserAction/expander.cpp:409
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Lägg till till aktuellt urklippsinehåll med detta skiljetecken (valfritt)"
+msgstr "Lägg till till aktuellt urklippsinehåll med detta skiljetecken (valfritt)"
 
 #: UserAction/expander.cpp:423
 msgid "Copy a file/folder"
@@ -848,6 +846,8 @@ msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
 msgstr ""
+"Sätt några variabler för exekvering (alternativ).\n"
+"t. ex. \"retur=CMD; foo=bar\", titta i handboken för ytterligare information"
 
 #: UserAction/kraction.cpp:43
 msgid "Kill"
@@ -2214,8 +2214,7 @@ msgstr ""
 "Ring till utvecklarna"
 
 #: MountMan/kmountmangui.cpp:322
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Det har uppståt ett internt fel i MountMan.Var vänlig och rapportera detta "
 "till utvecklarna.Tack."
@@ -2285,9 +2284,8 @@ msgid "Custom Selection Mode"
 msgstr "Användarurvalsläge"
 
 #: Dialogs/krdialogs.cpp:127
-#, fuzzy
 msgid "Based on KDE's selection mode"
-msgstr "Grundat på QT-urvalsläge"
+msgstr "Grundat på KDE's urvalsläge"
 
 #: Dialogs/krdialogs.cpp:128
 msgid "Left mouse button selects"
@@ -2331,65 +2329,65 @@ msgstr "Med högerklick hoppar innehållsmeny upp direkt"
 
 #: Dialogs/krdialogs.cpp:139
 msgid "Checking this will create a mode based on KDE's style."
-msgstr ""
+msgstr "Genom att markera detta så skapas ett läge grundat på KDE's stil."
 
 #: Dialogs/krdialogs.cpp:140
 msgid "If checked, left clicking an item will select it."
-msgstr ""
+msgstr "Om markerad, kommer vänsterklick att välja det"
 
 #: Dialogs/krdialogs.cpp:141
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
-msgstr ""
+msgstr "Om markerad, kommer vänsterklick att välja det, men kommer inte att välja bort andra redan markerade."
 
 #: Dialogs/krdialogs.cpp:143
 msgid ""
 "If checked, shift/ctrl left clicking will select items. Note: This is "
 "meaningless if 'Left Button Selects' is checked."
-msgstr ""
+msgstr "Om markerad, kommer shift/ctrl-vänsterklick att välja det. Märk att detta är meningslöst om 'Vänster Knapp Väljer', är bockad."
 
 #: Dialogs/krdialogs.cpp:145
 msgid "If checked, right clicking an item will select it."
-msgstr ""
+msgstr "Om markerad, kommer högerklick att välja det"
 
 #: Dialogs/krdialogs.cpp:146
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
-msgstr ""
+msgstr "Om markerad, kommer högerklick att välja det, men kommer inte att välja bort andra redan markerade."
 
 #: Dialogs/krdialogs.cpp:148
 msgid ""
 "If checked, shift/ctrl right clicking will select items. Note: This is "
 "meaningless if 'Right Button Selects' is checked."
-msgstr ""
+msgstr "Om markerad, kommer shift/ctrl-högererklick att välja det. Märk att detta är meningslöst om 'Höger Knapp Väljer', är bockad."
 
 #: Dialogs/krdialogs.cpp:150
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. Otherwise, current item is selected, but remains the current item."
-msgstr ""
+msgstr "Om markerad, kommer mellanslag att välja aktuellt och flyttas nedåt. Annars väljs aktuellt, men stannar på detta."
 
 #: Dialogs/krdialogs.cpp:152
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) calculate space occupied by the folder "
 "(recursively)."
-msgstr ""
+msgstr "Om markerad, kommer mellanslag, om utpekad är en mapp, att (utom att mappen väljs) beräkna upptaget utrymme hos mappen (rekursivt)."
 
 #: Dialogs/krdialogs.cpp:154
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. Otherwise, current item is not changed."
-msgstr ""
+msgstr "Om markerad, kommer INSERT att välja aktuellt och flytta ned till nästa. Annars ändras inte aktuellt."
 
 #: Dialogs/krdialogs.cpp:156
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
 "context menu. Otherwise, user needs to click and hold the right mouse button "
 "for 500ms."
-msgstr ""
+msgstr "Om markerad, kommer högreklick att åstadkomma i en omedelbar visning av innehållsmeny,. Annars måste användaren klicka och hålla höger musknapp nere minst 500 ms."
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -2488,9 +2486,8 @@ msgid "Clears the entire list of selections"
 msgstr "Tar bort alla filtren från listan"
 
 #: Dialogs/newftpgui.cpp:49
-#, fuzzy
 msgid "New Network Connection"
-msgstr "Ny nätanslu&tning"
+msgstr "Ny nätanslutning"
 
 #: Dialogs/newftpgui.cpp:62
 msgid "About to connect to..."
@@ -2565,9 +2562,8 @@ msgid "Not mounted."
 msgstr "Inte monterad."
 
 #: Dialogs/generalfilter.cpp:52
-#, fuzzy
 msgid "File name"
-msgstr "Filnamn:"
+msgstr "Filnamn"
 
 #: Dialogs/generalfilter.cpp:62
 msgid "&Case sensitive"
@@ -2578,7 +2574,6 @@ msgid "Search &for:"
 msgstr "Sök e&fter:"
 
 #: Dialogs/generalfilter.cpp:76 Synchronizer/synchronizergui.cpp:1087
-#, fuzzy
 msgid ""
 "Here you enter the filename filtering criteria. You can use wildcards\n"
 "(*.o .* *.c?? etc.), and give more items separated by space.\n"
@@ -2589,7 +2584,7 @@ msgstr ""
 "(*.o.* *.c?? m. m.) och ange flera delar åtskilda av mellanslag.\n"
 "Om du skriver 'text' som resulterar i samma sak som '*text*'. Du kan "
 "utesluta\n"
-"mönster från sökningen med '|' (e.g. '*.cpp *.h | *.moc.cpp' ). "
+"mönster från sökningen med '|' (e.g. '*.cpp *.h | *.moc.cpp' )."
 
 #: Dialogs/generalfilter.cpp:82
 msgid "&Of type:"
@@ -3090,10 +3085,9 @@ msgid "Right directory:"
 msgstr "Höger mapp:"
 
 #: Synchronizer/synchronizergui.cpp:1438
-#, fuzzy
 msgid "URL must be the descendant of either the left or the right base URL!"
 msgstr ""
-"URL måste vara härstammande från antingen den vänstra eller den högra grund."
+"URL måste härstamma från antingen den vänstra eller den högra grund."
 "URL:en!"
 
 #: Synchronizer/synchronizergui.cpp:1477
@@ -3849,8 +3843,7 @@ msgstr "Följ KDE's övergripande urvals politik"
 
 #: Konfigurator/kglookfeel.cpp:89
 msgid "Use the KDE Kcontrol setting: KDE Control Center->Peripherals->Mouse"
-msgstr ""
-"Använd KDE's kcontrol inställning: KDE Controll Center->Kringutrustning->Mus"
+msgstr "Använd KDE's kcontrol inställning: KDE Controll Center->Kringutrustning->Mus"
 
 #: Konfigurator/kglookfeel.cpp:96
 msgid "Mouse Selection Mode:"
@@ -4101,8 +4094,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Växlarknapp för synkroniseringsläsning"
 
 #: Konfigurator/kglookfeel.cpp:232
-msgid ""
-"Each directory-change in the panel is also performed in the other panel."
+msgid "Each directory-change in the panel is also performed in the other panel."
 msgstr "Varje mappändring i panelen utförs också i den andra panelen."
 
 #: Konfigurator/kglookfeel.cpp:295 Konfigurator/kglookfeel.cpp:313
@@ -4652,10 +4644,9 @@ msgid "Test archive when finished packing"
 msgstr "Testa arkivfil efter avslutad packning"
 
 #: Konfigurator/kgarchives.cpp:91
-msgid ""
-"If checked, Krusader will test the archive's integrity after packing it."
+msgid "If checked, Krusader will test the archive's integrity after packing it."
 msgstr ""
-"Om markerad, så kommer Krusader att test arkivfilens integritet efter "
+"Om markerad, så kommer Krusader att testa arkivfilens integritet efter "
 "packning."
 
 #: Konfigurator/kgarchives.cpp:92
@@ -4663,10 +4654,8 @@ msgid "Test archive before unpacking"
 msgstr "Testa arkivfil före uppackning"
 
 #: Konfigurator/kgarchives.cpp:92
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Vissa trasiga arkivfiler kan åstadkomma krascher, därför föreslås testning."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Vissa trasiga arkivfiler kan åstadkomma krascher, därför föreslås testning."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid ""
@@ -5145,10 +5134,8 @@ msgid "Not a valid CRC file!"
 msgstr "Inte en giltig CRC-fil!"
 
 #: Splitter/combiner.cpp:133
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
-msgstr ""
-"Giltighetskontroll är omöjlig utan en giltig CRC-fil. Fortsätta att slå ihop?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgstr "Giltighetskontroll är omöjlig utan en giltig CRC-fil. Fortsätta att slå ihop?"
 
 #: Splitter/combiner.cpp:237
 msgid "Can't open the first split file of %1!"
@@ -5186,8 +5173,3 @@ msgstr "Fel vid läsning av fil %1!"
 msgid "Error at writing file %1!"
 msgstr "Fel vid skrivning av fil %1!"
 
-#~ msgid "Read the JS-variable 'cmd' for execution"
-#~ msgstr "Läs JS-variabel 'cmd' för exekvering"
-
-#~ msgid "New FTP Connection"
-#~ msgstr "Ny FTP-Anslutning"
