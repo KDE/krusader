@@ -794,6 +794,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   krConfig->setGroup("Synchronize");
   
   leftLocation = new KHistoryCombo(false, compareDirs, "SynchronizerHistoryLeft");
+  leftLocation->setMaxCount(25);  // remember 25 items
+  leftLocation->setDuplicatesEnabled( false );
   leftLocation->setEditable( true );
   leftLocation->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Fixed);
   QStringList list = krConfig->readListEntry("Left Directory History");
@@ -806,6 +808,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QToolTip::add( leftLocation, i18n( "The left base directory" ) );
 
   fileFilter = new KHistoryCombo(false, compareDirs, "SynchronizerFilter");
+  fileFilter->setMaxCount(25);  // remember 25 items
+  fileFilter->setDuplicatesEnabled( false );
   fileFilter->setMinimumWidth( 100 );
   fileFilter->setMaximumWidth( 100 );
   fileFilter->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
@@ -816,6 +820,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QToolTip::add( fileFilter, i18n( "Filtering by the filename" ) );
 
   rightLocation = new KHistoryCombo(compareDirs, "SynchronizerHistoryRight");
+  rightLocation->setMaxCount(25);  // remember 25 items
+  rightLocation->setDuplicatesEnabled( false );
   rightLocation->setEditable( true );
   rightLocation->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Fixed);
   list = krConfig->readListEntry("Right Directory History");

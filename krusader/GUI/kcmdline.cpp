@@ -72,6 +72,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   completion.setMode( KURLCompletion::FileCompletion );
   cmdLine = new KrHistoryCombo( this );
   cmdLine->setMaxCount(100);  // remember 100 commands
+  cmdLine->setDuplicatesEnabled( false );
   cmdLine->setFont( KGlobalSettings::generalFont() );
   cmdLine->setMaximumHeight( height );
   cmdLine->setCompletionObject( &completion );
