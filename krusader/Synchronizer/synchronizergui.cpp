@@ -170,7 +170,7 @@ static const char * const right_arrow_button_data[] = {
 "                . #..               ",
 "                . .                 ",
 "                                    "};
- 
+
 static const char * const equals_button_data[] = {
 "18 18 5 1",
 " 	c None",
@@ -1010,13 +1010,13 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
     wasSync( false ), firstResize( true ), sizeX( -1 ), sizeY( -1 )
 {
   QString profileName = QString::null;
-  
+
   if( rightDirectory.isNull() ) // if rightDirectory is null, leftDirectory is actually the profile name to load
   {
     profileName = leftDirectory;
     leftDirectory = rightDirectory = "/";
   }
-  
+
   setCaption( i18n("Krusader::Synchronize Directories") );
   QGridLayout *synchGrid = new QGridLayout( this );
   synchGrid->setSpacing( 6 );
@@ -1024,27 +1024,27 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   folderIcon =   QPixmap( ( const char** ) folder_data );
   fileIcon   =   QPixmap( ( const char** ) file_data );
-  
+
   synchronizerTabs = new QTabWidget( this, "synchronizerTabs" );
 
   /* ============================== Compare groupbox ============================== */
-  
+
   QWidget *synchronizerTab = new QWidget( this, "syncronizerTab" );
   QGridLayout *synchronizerGrid = new QGridLayout( synchronizerTab );
   synchronizerGrid->setSpacing( 6 );
   synchronizerGrid->setMargin( 11 );
-  
+
   QGroupBox *compareDirs = new QGroupBox( synchronizerTab, "SyncCompareDirectories" );
   compareDirs->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed);
   compareDirs->setTitle( i18n( "Directory Comparison" ) );
   compareDirs->setColumnLayout(0, Qt::Vertical );
   compareDirs->layout()->setSpacing( 0 );
   compareDirs->layout()->setMargin( 0 );
-  
+
   QGridLayout *grid = new QGridLayout( compareDirs->layout() );
   grid->setSpacing( 6 );
   grid->setMargin( 11 );
-   
+
   leftDirLabel = new QLabel( compareDirs, "leftDirLabel" );
   leftDirLabel->setAlignment( Qt::AlignHCenter );
   grid->addWidget( leftDirLabel, 0 ,0 );
@@ -1059,7 +1059,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   grid->addWidget( rightDirLabel, 0 ,2 );
 
   krConfig->setGroup("Synchronize");
-  
+
   leftLocation = new KHistoryCombo(false, compareDirs, "SynchronizerHistoryLeft");
   leftLocation->setMaxCount(25);  // remember 25 items
   leftLocation->setDuplicatesEnabled( false );
@@ -1128,7 +1128,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QToolTip::add( cbIgnoreCase, i18n( "Case insensitive filename compare. Use at synchronizing on Windows filesystems." ) );
 
   /* =========================== Show options groupbox ============================= */
-  
+
   QGroupBox *showOptions  = new QGroupBox( optionBox, "SyncOptionBox" );
   showOptions->setTitle( i18n( "Show options" ) );
   showOptions->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -1152,7 +1152,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnLeftToRight->setOn( krConfig->readBoolEntry( "LeftToRight Button", _BtnLeftToRight ) );
   QToolTip::add( btnLeftToRight, i18n( "Lists the files marked to copy from left to right" ) );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
-  
+
   btnEquals = new QPushButton( showOptions, "btnEquals" );
   btnEquals->setText( "" );
   btnEquals->setPixmap( showEquals );
@@ -1202,13 +1202,13 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   showOptionsLayout->addWidget( btnSingles, 0, 6);
 
   grid->addMultiCellWidget( optionBox, 2, 2, 0, 2 );
-  
+
   synchronizerGrid->addWidget( compareDirs, 0, 0 );
 
   /* ========================= Synchronization list view ========================== */
 
   syncList=new QListView( synchronizerTab );  // create the main container
-  
+
   krConfig->setGroup("Look&Feel");
   syncList->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
 
@@ -1227,7 +1227,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   int typeWidth = j*7/2;
 
   krConfig->setGroup("Synchronize");
-  
+
   int leftNameWidth  = krConfig->readNumEntry("Left Name Width",  9*typeWidth/2 );
   int leftSizeWidth  = krConfig->readNumEntry("Left Size Width",  2*typeWidth );
   int leftDateWidth  = krConfig->readNumEntry("Left Date Width",  3*typeWidth );
@@ -1257,27 +1257,27 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   syncList->header()->setStretchEnabled( true, 0 );
 
   synchronizerGrid->addWidget(syncList,1,0);
-  
+
   synchronizerTabs->insertTab( synchronizerTab, i18n( "&Synchronizer" ) );
   synchGrid->addWidget( synchronizerTabs, 0, 0 );
-  
+
   generalFilter = new GeneralFilter( HAS_DONT_SEARCH_IN, synchronizerTabs, "generalFilter" );
   generalFilter->searchFor->setEditText( fileFilter->currentText() );
   generalFilter->searchForCase->setChecked( true );
-  synchronizerTabs->insertTab( generalFilter, i18n( "&General Filters" ) );  
-   
+  synchronizerTabs->insertTab( generalFilter, i18n( "&General Filters" ) );
+
   advancedFilter = new AdvancedFilter( synchronizerTabs, "advancedFilter" );
-  synchronizerTabs->insertTab( advancedFilter, i18n( "&Advanced Filters" ) );  
-   
+  synchronizerTabs->insertTab( advancedFilter, i18n( "&Advanced Filters" ) );
+
   /* ================================== Buttons =================================== */
 
   QHBoxLayout *buttons = new QHBoxLayout;
   buttons->setSpacing( 6 );
   buttons->setMargin( 0 );
 
-  profileManager = new ProfileManager( "SynchronizerProfile", this, "profileManager" );  
+  profileManager = new ProfileManager( "SynchronizerProfile", this, "profileManager" );
   buttons->addWidget( profileManager );
-  
+
   QPixmap swapSides( ( const char** ) swap_sides_data );
   btnSwapSides = new QPushButton( this, "btnSwapSides" );
   btnSwapSides->setPixmap( swapSides );
@@ -1286,7 +1286,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   statusLabel = new QLabel( this, "statusLabel" );
   buttons->addWidget( statusLabel );
-  
+
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   buttons->addItem( spacer );
 
@@ -1303,9 +1303,9 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   if( btnScrollResults->isOn() )
     btnScrollResults->setText( i18n( "Quiet" ) );
   else
-    btnScrollResults->setText( i18n( "Scroll Results" ) );    
+    btnScrollResults->setText( i18n( "Scroll Results" ) );
   buttons->addWidget( btnScrollResults );
-  
+
   btnStopComparing = new QPushButton( this, "btnStopComparing" );
   btnStopComparing->setText( i18n( "Stop" ) );
   btnStopComparing->setEnabled(false);
@@ -1319,7 +1319,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QPushButton *btnCloseSync = new QPushButton( this, "btnCloseSync" );
   btnCloseSync->setText( i18n( "Close" ) );
   buttons->addWidget( btnCloseSync );
-  
+
   synchGrid->addLayout( buttons, 1, 0 );
 
   /* =============================== Connect table ================================ */
@@ -1339,7 +1339,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   connect( cbSubdirs,         SIGNAL( toggled(bool) ), this, SLOT( subdirsChecked( bool ) ) );
   connect( cbAsymmetric,      SIGNAL( toggled(bool) ), this, SLOT( setPanelLabels() ) );
-  
+
   connect( &synchronizer,     SIGNAL( comparedFileData( SynchronizerFileItem * ) ), this,
                               SLOT( addFile( SynchronizerFileItem * ) ) );
   connect( &synchronizer,     SIGNAL( markChanged( SynchronizerFileItem * ) ), this,
@@ -1353,35 +1353,35 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnDeletable,      SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnDuplicates,     SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnSingles,        SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
-  
+
   connect( fileFilter,        SIGNAL( textChanged( const QString & ) ), this, SLOT( connectFilters( const QString & ) ) );
-  connect( rightLocation,     SIGNAL( textChanged( const QString & ) ), this, SLOT( connectFilters( const QString & ) ) );
+  connect( generalFilter->searchFor, SIGNAL( textChanged( const QString & ) ), this, SLOT( connectFilters( const QString & ) ) );
   connect( generalFilter->searchFor, SIGNAL( textChanged( const QString & ) ), this, SLOT( setCompletion() ) );
-  connect( generalFilter->dontSearchIn, SIGNAL( checkValidity( QString &, QString & ) ), 
+  connect( generalFilter->dontSearchIn, SIGNAL( checkValidity( QString &, QString & ) ),
            this, SLOT( checkExcludeURLValidity( QString &, QString & ) ) );
-  
+
   connect( profileManager, SIGNAL( loadFromProfile( QString ) ), generalFilter, SLOT( loadFromProfile( QString ) ) );
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), generalFilter, SLOT( saveToProfile( QString ) ) );
   connect( profileManager, SIGNAL( loadFromProfile( QString ) ), advancedFilter, SLOT( loadFromProfile( QString ) ) );
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), advancedFilter, SLOT( saveToProfile( QString ) ) );
-  
-  setPanelLabels();  
+
+  setPanelLabels();
   setCompletion();
-  
+
   int sx = krConfig->readNumEntry( "Window Width",  -1 );
   int sy = krConfig->readNumEntry( "Window Height",  -1 );
-  
+
   if( sx != -1 && sy != -1 )
     resize( sx, sy );
-  
+
   if( krConfig->readBoolEntry( "Window Maximized",  false ) )
       showMaximized();
-  else  
+  else
       show();
 
   if( !profileName.isNull() )
     profileManager->loadByName( profileName );
-  
+
   exec();
 }
 
@@ -1414,32 +1414,32 @@ void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
   KURL url = vfs::fromPathOrURL( text );
   if( KURL::isRelativeURL( url.url() ) )
     return;
-  
+
   QString leftBase = leftLocation->currentText();
   if( !leftBase.endsWith( "/" ) )
     leftBase += "/";
-  KURL leftBaseURL = vfs::fromPathOrURL( leftBase );  
+  KURL leftBaseURL = vfs::fromPathOrURL( leftBase );
   if( leftBaseURL.isParentOf( url ) && !url.isParentOf( leftBaseURL) )
   {
     text = KURL::relativeURL( leftBaseURL, url );
     return;
   }
-  
+
   QString rightBase = rightLocation->currentText();
   if( !rightBase.endsWith( "/" ) )
     rightBase += "/";
-  KURL rightBaseURL = vfs::fromPathOrURL( rightBase );  
+  KURL rightBaseURL = vfs::fromPathOrURL( rightBase );
   if( rightBaseURL.isParentOf( url ) && !url.isParentOf( rightBaseURL ) )
   {
     text = KURL::relativeURL( rightBaseURL, url );
     return;
   }
-    
+
   error = i18n("URL must be the descendant of either the left or the right base URL!");
 }
 
 void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
-{  
+{
   // these are the values that will exist in the menu
   #define EXCLUDE_ID          90
   #define RESTORE_ID          91
@@ -1458,7 +1458,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   if (!itemIn)
     return;
 
-  SyncViewItem *syncItem = (SyncViewItem *)itemIn;  
+  SyncViewItem *syncItem = (SyncViewItem *)itemIn;
   if( syncItem == 0 )
     return;
 
@@ -1471,7 +1471,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
 
   KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
   KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
-  
+
   // create the menu
   KPopupMenu popup;
   popup.insertTitle(i18n("Synchronize Directories"));
@@ -1495,7 +1495,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   popup.setItemEnabled(VIEW_LEFT_FILE_ID, !isDir && item->existsInLeft() );
   popup.insertItem(i18n("View right file"),VIEW_RIGHT_FILE_ID);
   popup.setItemEnabled(VIEW_RIGHT_FILE_ID, !isDir && item->existsInRight() );
-  popup.insertItem(i18n("Compare Files"),COMPARE_FILES_ID);  
+  popup.insertItem(i18n("Compare Files"),COMPARE_FILES_ID);
   popup.setItemEnabled(COMPARE_FILES_ID, !isDir && isDuplicate );
 
   popup.insertSeparator();
@@ -1510,7 +1510,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   KURL leftBDir = vfs::fromPathOrURL( synchronizer.leftBaseDirectory() );
   KURL rightBDir = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() );
 
-  if( KrServices::cmdExist( "kget" ) &&  
+  if( KrServices::cmdExist( "kget" ) &&
     ( ( !leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isOn() ) ||
       ( leftBDir.isLocalFile() && !rightBDir.isLocalFile() && btnRightToLeft->isOn() ) ) )
   {
@@ -1518,7 +1518,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
     popup.insertItem(i18n("Synchronize with KGet"),SYNCH_WITH_KGET_ID);
     popup.setItemEnabled(SYNCH_WITH_KGET_ID, true );
   }
-  
+
   int result=popup.exec(QCursor::pos());
 
   // check out the user's option
@@ -1568,7 +1568,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
       }
       break;
     case VIEW_LEFT_FILE_ID:
-      KrViewer::view( leftURL ); // view the file  
+      KrViewer::view( leftURL ); // view the file
       break;
     case VIEW_RIGHT_FILE_ID:
       KrViewer::view( rightURL ); // view the file
@@ -1583,7 +1583,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
                                              i18n( "Deselect items" ) ), true );
         if( query.isNull() )
           break;
-          
+
         unsigned              ndx = 0;
         SynchronizerFileItem  *currentItem;
 
@@ -1608,7 +1608,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
       closeDialog();
       break;
     case -1 : return;     // the user clicked outside of the menu
-  }  
+  }
 }
 
 void SynchronizerGUI::closeDialog()
@@ -1619,7 +1619,7 @@ void SynchronizerGUI::closeDialog()
     wasClosed = true;
     return;
   }
-  
+
   QStringList list = leftLocation->historyItems();
   krConfig->setGroup("Synchronize");
   krConfig->writeEntry("Left Directory History", list);
@@ -1641,9 +1641,9 @@ void SynchronizerGUI::closeDialog()
   krConfig->writeEntry("Deletable Button", btnDeletable->isOn() );
   krConfig->writeEntry("Duplicates Button", btnDuplicates->isOn() );
   krConfig->writeEntry("Singles Button", btnSingles->isOn() );
-  
+
   krConfig->writeEntry("Scroll Results", btnScrollResults->isOn() );
-  
+
   krConfig->writeEntry("Window Width", sizeX );
   krConfig->writeEntry("Window Height", sizeY );
   krConfig->writeEntry("Window Maximized", isMaximized() );
@@ -1655,7 +1655,7 @@ void SynchronizerGUI::closeDialog()
   krConfig->writeEntry("Right Date Width", syncList->columnWidth( 4 ) );
   krConfig->writeEntry("Right Size Width", syncList->columnWidth( 5 ) );
   krConfig->writeEntry("Right Name Width", syncList->columnWidth( 6 ) );
-   
+
   QDialog::reject();
 }
 
@@ -1671,19 +1671,19 @@ void SynchronizerGUI::compare()
   {
     synchronizerTabs->setCurrentPage(2); // set page to advanced
     return;
-  }  
+  }
   query.setFilter( fileFilter->currentText() );
   synchronizerTabs->setCurrentPage(0);
-  
+
   syncList->clear();
   lastItem = 0;
-  
+
   leftLocation->addToHistory(leftLocation->currentText());
   rightLocation->addToHistory(rightLocation->currentText());
   fileFilter->addToHistory(fileFilter->currentText());
 
   setMarkFlags();
-  
+
   btnCompareDirs->setEnabled( false );
   profileManager->setEnabled( false );
   btnSwapSides->setEnabled( false );
@@ -1692,7 +1692,7 @@ void SynchronizerGUI::compare()
   btnCompareDirs->hide();
   btnScrollResults->show();
   disableMarkButtons();
-    
+
   int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
                        &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
@@ -1732,7 +1732,7 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
     leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
     leftDate = SynchronizerGUI::convertTime( item->leftDate() );
   }
-  
+
   if( item->existsInRight() )
   {
     rightName = item->rightName();
@@ -1742,7 +1742,7 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
 
   SyncViewItem *listItem = 0;
   SyncViewItem *dirItem;
-  
+
   if( item->parent() == 0 )
   {
     listItem = new SyncViewItem(item, syncList, lastItem, leftName, leftSize, leftDate,
@@ -1759,7 +1759,7 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
       listItem = new SyncViewItem(item, dirItem, dirItem->lastItem(), leftName, leftSize,
                                   leftDate, Synchronizer::getTaskTypeName( item->task() ),
                                   rightDate, rightSize, rightName );
-                                  
+
       dirItem->setLastItem( listItem );
     }
   }
@@ -1788,14 +1788,14 @@ void SynchronizerGUI::markChanged( SynchronizerFileItem *item )
       leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
       leftDate = SynchronizerGUI::convertTime( item->leftDate() );
     }
-  
+
     if( item->existsInRight() )
     {
       rightName = item->rightName();
       rightSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->rightSize() );
       rightDate = SynchronizerGUI::convertTime( item->rightDate() );
     }
-    
+
     listItem->setVisible( item->isMarked() );
     listItem->setText( 0, leftName );
     listItem->setText( 1, leftSize );
@@ -1867,7 +1867,7 @@ void SynchronizerGUI::refresh()
     profileManager->setEnabled( true );
     btnSwapSides->setEnabled( true );
     if( fileCount )
-      btnSynchronize->setEnabled( true );    
+      btnSynchronize->setEnabled( true );
   }
 }
 
@@ -1882,7 +1882,7 @@ void SynchronizerGUI::synchronize()
     KMessageBox::sorry(0, i18n("Synchronizer has nothing to do!"));
     return;
   }
-  
+
   SynchronizeDialog *sd = new SynchronizeDialog( this, "SychDialog", true, 0, &synchronizer,
                                                  copyToLeftNr, copyToLeftSize, copyToRightNr,
                                                  copyToRightSize, deleteNr, deleteSize );
@@ -1895,7 +1895,7 @@ void SynchronizerGUI::synchronize()
 }
 
 void SynchronizerGUI::resizeEvent( QResizeEvent *e )
-{   
+{
   if( !isMaximized() )
   {
     sizeX = e->size().width();
@@ -1910,7 +1910,7 @@ void SynchronizerGUI::resizeEvent( QResizeEvent *e )
     if( newSize > 20 )
       syncList->header()->resizeSection( 6, newSize );
 
-    syncList->header()->adjustHeaderSize();  
+    syncList->header()->adjustHeaderSize();
   }
   firstResize = false;
   QDialog::resizeEvent( e );
@@ -1950,7 +1950,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
 
       if( item->isDir() )
         return;
-    
+
       if ( e->state() == ShiftButton && item->existsInRight() )
       {
         KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
@@ -1970,7 +1970,7 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
       break;
     swapSides();
     return;
-  }  
+  }
 
   QDialog::keyPressEvent( e );
 }
@@ -1981,22 +1981,22 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   syncList->clear();
   isComparing = wasClosed = false;
   btnSynchronize->setEnabled( false );
-  
+
   krConfig->setGroup( profile );
-  
+
   leftLocation->setCurrentText( krConfig->readEntry( "Left Location" ) );
   fileFilter->setCurrentText( krConfig->readEntry( "Search For" ) );
   rightLocation->setCurrentText( krConfig->readEntry( "Right Location" ) );
-  
+
   cbSubdirs->   setChecked( krConfig->readBoolEntry( "Recurse Subdirectories", true ) );
   cbSymlinks->  setChecked( krConfig->readBoolEntry( "Follow Symlinks", false ) );
   cbByContent-> setChecked( krConfig->readBoolEntry( "Compare By Content", false ) );
   cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", false ) );
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", false ) );
   cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", false ) );
-  
+
   btnScrollResults->setOn( krConfig->readBoolEntry( "Scroll Results", false ) );
-  
+
   btnLeftToRight->setOn( krConfig->readBoolEntry( "Show Left To Right", true ) );
   btnEquals     ->setOn( krConfig->readBoolEntry( "Show Equals", true ) );
   btnDifferents ->setOn( krConfig->readBoolEntry( "Show Differents", true ) );
@@ -2004,27 +2004,27 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   btnDeletable  ->setOn( krConfig->readBoolEntry( "Show Deletable", true ) );
   btnDuplicates ->setOn( krConfig->readBoolEntry( "Show Duplicates", true ) );
   btnSingles    ->setOn( krConfig->readBoolEntry( "Show Singles", true ) );
-  
-  refresh();  
+
+  refresh();
 }
 
 void SynchronizerGUI::saveToProfile( QString profile )
 {
   krConfig->setGroup( profile );
-  
+
   krConfig->writeEntry( "Left Location", leftLocation->currentText() );
   krConfig->writeEntry( "Search For", fileFilter->currentText() );
   krConfig->writeEntry( "Right Location", rightLocation->currentText() );
-  
+
   krConfig->writeEntry( "Recurse Subdirectories", cbSubdirs->isChecked() );
   krConfig->writeEntry( "Follow Symlinks", cbSymlinks->isChecked() );
   krConfig->writeEntry( "Compare By Content", cbByContent->isChecked() );
   krConfig->writeEntry( "Ignore Date", cbIgnoreDate->isChecked() );
   krConfig->writeEntry( "Asymmetric", cbAsymmetric->isChecked() );
   krConfig->writeEntry( "Ignore Case", cbIgnoreCase->isChecked() );
-  
+
   krConfig->writeEntry( "Scroll Results", btnScrollResults->isOn() );
-  
+
   krConfig->writeEntry( "Show Left To Right", btnLeftToRight->isOn() );
   krConfig->writeEntry( "Show Equals", btnEquals->isOn() );
   krConfig->writeEntry( "Show Differents", btnDifferents->isOn() );
@@ -2048,7 +2048,7 @@ void SynchronizerGUI::setScrolling( bool isOn )
     btnScrollResults->setText( i18n( "Quiet" ) );
   else
     btnScrollResults->setText( i18n( "Scroll Results" ) );
-    
+
   synchronizer.setScrolling( isOn );
 }
 
