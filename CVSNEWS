@@ -34,7 +34,7 @@ Primitive scripting support. condition: KJSEmbed is installed (package: KDEbindi
   In addition a new placeholder for the useraction, %_Script(path/to/script.js)% executes an external file.
   If the path is relative the file will be read from <KDE-app-data>/krusader/js/
   If a UserAction should execute the return of a script, set the second parameter of %_Script()% to "yes".
-  In this case the Variable 'cms' will be read.
+  In this case the Variable 'cmd' will be read.
   Warning: very alpha!!
 
 krusader has now a new toolbar: actions toolbar. you can show/hide it using
