@@ -5,9 +5,9 @@ INCLUDES = $(all_includes)
 
 libUserMenu_a_METASOURCES = AUTO
 
-libUserMenu_a_SOURCES = usermenuaddimpl.cpp usermenuadd.ui usermenu.cpp 
+libUserMenu_a_SOURCES = usermenuadd.cpp usermenu.cpp 
 
 
-EXTRA_DIST = usermenu.cpp usermenu.h usermenuadd.ui usermenuaddimpl.cpp usermenuaddimpl.h 
+#EXTRA_DIST = usermenu.cpp usermenu.h 
 
 ####### kdevelop will overwrite this part!!! (end)############

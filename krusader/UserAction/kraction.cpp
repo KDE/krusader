@@ -1,0 +1,248 @@
+//
+// C++ Implementation: kraction
+//
+// Description: 
+//
+//
+// Author: Shie Erlich and Rafi Yanai <>, (C) 2004
+//
+// Copyright: See COPYING file that comes with this distribution
+//
+//
+
+#include <kdialogbase.h>
+#include <kdebug.h>
+#include <klocale.h>
+#include <kinputdialog.h>
+#include <qtextedit.h>
+#include <qvbox.h>
+#include <qlabel.h>
+#include <kaction.h>
+#include <kurl.h>
+
+#include "kraction.h"
+
+#include "expander.h"
+#include "useractionproperties.h"
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////  KrActionProcDlg  /////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
+KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ) {
+
+   setButtonOKText( "Close", i18n( "Close this window" ) );
+   enableButtonOK( false ); // disable the close button, until the process finishes
+
+   setButtonCancelText( "Kill", i18n( "Kill the running process" ) );
+
+   QVBox *page = makeVBoxMainWidget();
+   // do we need to separate stderr and stdout?
+   if ( enableStderr ) {
+      // create stdout
+      new QLabel( i18n( "Standard Output (stdout)" ), page );
+      _stdout = new QTextEdit( page );
+      _stdout->setReadOnly( true );
+      _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
+      // create stderr
+      new QLabel( i18n( "Standard Error (stderr)" ), page );
+      _stderr = new QTextEdit( page );
+      _stderr->setReadOnly( true );
+      _stderr->setMinimumWidth( fontMetrics().maxWidth() * 40 );
+   } else {
+      // create stdout
+      new QLabel( i18n( "Output" ), page );
+      _stdout = new QTextEdit( page );
+      _stdout->setReadOnly( true );
+      _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
+   }
+}
+
+void KrActionProcDlg::addStderr( KProcess *proc, char *buffer, int buflen ) {
+   _stderr->append( QString::fromLatin1( buffer, buflen ) );
+}
+
+void KrActionProcDlg::addStdout( KProcess *proc, char *buffer, int buflen ) {
+   _stdout->append( QString::fromLatin1( buffer, buflen ) );
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////  KrActionProc  ////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+KrActionProc::KrActionProc( UserActionProperties* prop ) : QObject(), _properties( prop ), _proc( new KProcess() ), _output( 0 ) {
+   _proc->setUseShell( true );
+
+   connect( _proc, SIGNAL( processExited( KProcess* ) ),
+            this, SLOT( processExited( KProcess* ) ) ) ;
+}
+
+KrActionProc::~KrActionProc() {
+   delete _proc;
+}
+
+bool KrActionProc::start( QString cmdLine ) {
+   QStringList list = cmdLine;
+   start( list );
+}
+
+#include <kmessagebox.h>
+bool KrActionProc::start( QStringList cmdLineList ) {
+   _proc->clearArguments();
+   bool result = true;
+   
+   if ( cmdLineList.count() > 1 )
+      KMessageBox::sorry( 0, "Support for more then one command is currently broken! I'll try to execute these commands anyway:\n" + cmdLineList.join("\n") );
+
+   if ( _properties->execType() != UserActionProperties::CollectOutput ) {
+      for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
+         _proc->clearArguments();
+         // run in terminal
+         if ( _properties->execType() == UserActionProperties::Terminal ) {
+            ( *_proc ) << "konsole" << "--noclose" << "-e" << *it;	// FIXME read terminal-setting from config
+         } else { // no terminal, no output collection
+            ( *_proc ) << *it;
+         }
+         result = ( result && _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) ) );
+//          while ( _proc->isRunning() );   // FIXME: replace this with a nice proc-queue
+      } //for
+   }
+   else { // collect output
+      _output = new KrActionProcDlg( *_properties->title(), _properties->separateStderr() );
+      // connect the output to the dialog
+      connect( _proc, SIGNAL( receivedStderr( KProcess*, char*, int ) ), _output, SLOT( addStderr( KProcess*, char *, int ) ) );
+      connect( _proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ), _output, SLOT( addStdout( KProcess*, char *, int ) ) );
+      connect( _output, SIGNAL( cancelClicked() ), this, SLOT( kill() ) );
+      _output->show();
+      for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
+         //TODO: read header fom config and place it on top of each command
+         _proc->clearArguments();
+         ( *_proc ) << *it;
+         result = ( result && _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) ) );
+//          while ( _proc->isRunning() );   // FIXME: replace this with a nice proc-queue
+      } //for
+   }
+   
+   return result;
+}
+
+void KrActionProc::processExited( KProcess *proc ) {
+   // enable the 'close' button on the dialog (if active), disable 'kill' button
+   if ( _output ) {
+      _output->enableButtonOK( true );
+      _output->enableButtonCancel( false);
+   }
+   delete this; // banzai!!
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////  KrAction  ///////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//KrAction::KrAction( UserActionProperties* prop, KActionCollection *parent ) : KAction( Title, Shortcut, QObject, SLOT(), parent, name ) {
+KrAction::KrAction( UserActionProperties* prop, KActionCollection *parent ) : KAction( *prop->title(), 0, 0, 0, parent, prop->name()->latin1() ) {
+   _properties = 0;
+   setProperties( prop );
+   connect(this, SIGNAL(activated()), this, SLOT(exec()) );
+}
+
+KrAction::~KrAction() {
+   unplugAll();
+   delete _properties;
+}
+
+void KrAction::setProperties( UserActionProperties* prop ) {
+   if ( ! prop->icon()->isEmpty() )
+      setIcon( *prop->icon() );
+   if ( ! prop->tooltip()->isEmpty() ) {
+      setToolTip( *prop->tooltip() );
+      if ( prop->descriptionUseTooltip() )
+         setWhatsThis( *prop->tooltip() );
+   }
+   if ( ! prop->description()->isEmpty() && whatsThis().isEmpty() )
+      setWhatsThis( *prop->description() );
+   if ( ! prop->defaultShortcut()->isNull() )
+      setShortcut( *prop->defaultShortcut() );
+        
+   //setGroup( prop->category() ); //FIXME: what is KAction.setGroup(QString) for ???
+   
+   if ( _properties == 0 )
+      _properties = prop;
+   else
+      _properties->copyFrom( prop );	//copy the values, not the pointer
+}
+
+UserActionProperties* KrAction::properties() {
+   return _properties;
+}
+
+void KrAction::exec() {
+   KrActionProc *proc;
+   
+   // replace %% and prepare string
+   QStringList commandList = Expander::expand( *_properties->command(), _properties->acceptURLs(), _properties->callEach() );
+   
+   if ( _properties->confirmExecution() ) {
+      for ( QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it ) {
+         bool exec = true;
+         *it = KInputDialog::getText(
+			i18n( "Confirm execution" ),
+			i18n( "Command beeing executed:" ),
+			*it,
+			&exec, 0 );
+         if ( exec ) {
+            proc = new KrActionProc( _properties );
+            proc->start( *it );
+         }
+      } //for
+   } // if ( _properties->confirmExecution() )
+   else {
+      proc = new KrActionProc( _properties );
+      proc->start( commandList );
+   }
+
+}
+
+bool KrAction::isAvailable( const KURL& currentURL ) {
+   bool available = true; //show per default (FIXME: make the default an attribute of <availability>)
+   
+   //check protocol
+   if ( ! _properties->showonlyProtocol()->empty() ) {
+      available = false;
+      for ( QStringList::Iterator it = _properties->showonlyProtocol()->begin(); it != _properties->showonlyProtocol()->end(); ++it ) {
+         //kdDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.protocol() << " =?= " << *it << endl;
+         if ( currentURL.protocol() == *it ) {  // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+            available = true;
+            break;
+         }
+      }
+   } //check protocol: done
+      
+   //check the Path-list:
+   if ( ! _properties->showonlyPath()->empty() ) {
+      available = false;
+      for ( QStringList::Iterator it = _properties->showonlyPath()->begin(); it != _properties->showonlyPath()->end(); ++it ) {
+         if ( (*it).right(1) == "*" ){
+             if ( currentURL.path().find( (*it).left( (*it).length() - 1 ) ) == 0 ) {
+               available = true;
+               break;
+            }
+         } else
+         if ( currentURL.directory() == *it ) {  // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
+            available = true;
+            break;
+         }
+      }
+   } //check the Path-list: done
+   
+   //TODO: check mime-type
+   
+   //TODO: check filename
+      
+   return available;
+}
+

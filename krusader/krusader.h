@@ -55,6 +55,7 @@ class KRslots;
 class KIconLoader;
 class KSystemTray;
 class UserMenu;
+class UserAction;
 
 class Krusader : public KParts::MainWindow {
     Q_OBJECT
@@ -120,6 +121,7 @@ class Krusader : public KParts::MainWindow {
     KRslots *slot;
     KAccel *accels; // global accelerators
     static UserMenu *userMenu;
+    static UserAction *userAction;
 
   signals:
     void changeMessage( QString );
@@ -178,5 +180,6 @@ class Krusader : public KParts::MainWindow {
 #define krSplit           Krusader::App->actSplit
 #define krCombine         Krusader::App->actCombine
 #define krUserMenu        Krusader::App->actUserMenu
+#define krUserAction           Krusader::App->userAction
 
 #endif

@@ -1,0 +1,1171 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ActionPropertyBase</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>ActionPropertyBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>405</width>
+            <height>424</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Action Property</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <property name="spacing">
+            <number>0</number>
+        </property>
+        <widget class="QTabWidget" row="0" column="0">
+            <property name="name">
+                <cstring>tabWidget3</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Basic Properties</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QToolButton" row="8" column="3">
+                        <property name="name">
+                            <cstring>ButtonAddStartpath</cstring>
+                        </property>
+                        <property name="text">
+                            <string>...</string>
+                        </property>
+                    </widget>
+                    <widget class="QButtonGroup" row="10" column="2" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>bgMultiselect</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>5</hsizetype>
+                                <vsizetype>1</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="title">
+                            <string>On multiple selection</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QCheckBox" row="0" column="0">
+                                <property name="name">
+                                    <cstring>chkSeparateCall</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Separate call for each file</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>You may want the command be executed for every selected file</string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <widget class="QLabel" row="4" column="0">
+                        <property name="name">
+                            <cstring>LabelDescription</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>1</hsizetype>
+                                <vsizetype>1</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Description</string>
+                        </property>
+                    </widget>
+                    <widget class="QButtonGroup" row="9" column="2" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>bgAccept</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>5</hsizetype>
+                                <vsizetype>1</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="title">
+                            <string>Command accepts</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QRadioButton" row="0" column="0">
+                                <property name="name">
+                                    <cstring>radioLocal</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Local files only (no URL's)</string>
+                                </property>
+                                <property name="checked">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Substitute the placeholders with local filenames</string>
+                                </property>
+                            </widget>
+                            <widget class="QRadioButton" row="1" column="0">
+                                <property name="name">
+                                    <cstring>radioUrl</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>URL's (remote and local)</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Substitute the placeholders with valid URL's</string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <widget class="KLineEdit" row="2" column="1" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>leTitle</cstring>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>The title displayed in the menu</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="2" column="0">
+                        <property name="name">
+                            <cstring>LabelTitle</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>1</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Title</string>
+                        </property>
+                    </widget>
+                    <widget class="QLayoutWidget" row="0" column="1" rowspan="2" colspan="3">
+                        <property name="name">
+                            <cstring>layout3</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLayoutWidget">
+                                <property name="name">
+                                    <cstring>layout2</cstring>
+                                </property>
+                                <vbox>
+                                    <property name="name">
+                                        <cstring>unnamed</cstring>
+                                    </property>
+                                    <widget class="QLayoutWidget">
+                                        <property name="name">
+                                            <cstring>layout1</cstring>
+                                        </property>
+                                        <hbox>
+                                            <property name="name">
+                                                <cstring>unnamed</cstring>
+                                            </property>
+                                            <widget class="KLineEdit">
+                                                <property name="name">
+                                                    <cstring>leDistinctName</cstring>
+                                                </property>
+                                                <property name="toolTip" stdset="0">
+                                                    <string>An unique name for the action</string>
+                                                </property>
+                                            </widget>
+                                            <widget class="QPushButton">
+                                                <property name="name">
+                                                    <cstring>ButtonProposeName</cstring>
+                                                </property>
+                                                <property name="sizePolicy">
+                                                    <sizepolicy>
+                                                        <hsizetype>1</hsizetype>
+                                                        <vsizetype>0</vsizetype>
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>propose</string>
+                                                </property>
+                                                <property name="toolTip" stdset="0">
+                                                    <string>Propose a unique name</string>
+                                                </property>
+                                            </widget>
+                                        </hbox>
+                                    </widget>
+                                    <widget class="KComboBox">
+                                        <property name="name">
+                                            <cstring>cbCategory</cstring>
+                                        </property>
+                                        <property name="editable">
+                                            <bool>true</bool>
+                                        </property>
+                                        <property name="toolTip" stdset="0">
+                                            <string>Choose a category for a better overview</string>
+                                        </property>
+                                    </widget>
+                                </vbox>
+                            </widget>
+                            <widget class="KIconButton">
+                                <property name="name">
+                                    <cstring>ButtonIcon</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>50</width>
+                                        <height>50</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>50</width>
+                                        <height>50</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string>icon</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Choose an icon for the action</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QButtonGroup" row="9" column="0" rowspan="2" colspan="2">
+                        <property name="name">
+                            <cstring>bgExecType</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>5</hsizetype>
+                                <vsizetype>1</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="title">
+                            <string>Execution mode</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QRadioButton" row="2" column="0">
+                                <property name="name">
+                                    <cstring>radioCollectOutput</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Collect output</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Collect the output of the executed programm</string>
+                                </property>
+                            </widget>
+                            <widget class="QCheckBox" row="3" column="0">
+                                <property name="name">
+                                    <cstring>chkSeparateStdError</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="text">
+                                    <string>Separate standard error</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Separate standard out and standard error</string>
+                                </property>
+                            </widget>
+                            <widget class="QRadioButton" row="0" column="0">
+                                <property name="name">
+                                    <cstring>radioNormal</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Normal</string>
+                                </property>
+                                <property name="checked">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                            <widget class="QRadioButton" row="1" column="0">
+                                <property name="name">
+                                    <cstring>radioTerminal</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Run in terminal</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Run the command in a terminal</string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <widget class="QCheckBox" row="5" column="0">
+                        <property name="name">
+                            <cstring>chkUseTooltip</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>1</hsizetype>
+                                <vsizetype>1</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>use tooltip</string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>You may use the tooltip as description</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="0" column="0">
+                        <property name="name">
+                            <cstring>LabelDistinctName</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>1</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Distinct name</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="7" column="0">
+                        <property name="name">
+                            <cstring>LabelCommandline</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Commandline</string>
+                        </property>
+                    </widget>
+                    <widget class="KLineEdit" row="3" column="1" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>leTooltip</cstring>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>A tooltip for the action</string>
+                        </property>
+                    </widget>
+                    <widget class="KLineEdit" row="8" column="1" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>leStartpath</cstring>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>You may want to set a working directory</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="3" column="0">
+                        <property name="name">
+                            <cstring>LabelTooltip</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>1</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Tooltip</string>
+                        </property>
+                    </widget>
+                    <widget class="KLineEdit" row="7" column="1" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>leCommandline</cstring>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>This commandline is executed</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="1" column="0">
+                        <property name="name">
+                            <cstring>LabelCategory</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>1</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Category</string>
+                        </property>
+                    </widget>
+                    <widget class="QToolButton" row="7" column="3">
+                        <property name="name">
+                            <cstring>ButtonAddPlaceholder</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>0</width>
+                                <height>0</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string>add</string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Add placeholders for the selected files in the panel</string>
+                        </property>
+                    </widget>
+                    <widget class="KTextEdit" row="4" column="1" rowspan="3" colspan="3">
+                        <property name="name">
+                            <cstring>textDescription</cstring>
+                        </property>
+                        <property name="wordWrap">
+                            <enum>WidgetWidth</enum>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>The description is only displayed in the Konfigurator and via Shift-F1</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="8" column="0">
+                        <property name="name">
+                            <cstring>LabelStartpath</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Startpath</string>
+                        </property>
+                    </widget>
+                    <spacer row="6" column="0">
+                        <property name="name">
+                            <cstring>spacer</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>80</width>
+                                <height>19</height>
+                            </size>
+                        </property>
+                    </spacer>
+                </grid>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Advanced Properties</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QGroupBox" row="0" column="0">
+                        <property name="name">
+                            <cstring>gbShowonly</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>7</hsizetype>
+                                <vsizetype>7</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="title">
+                            <string>This Action is only available for the following</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QTabWidget" row="0" column="0">
+                                <property name="name">
+                                    <cstring>tabShowonly</cstring>
+                                </property>
+                                <property name="tabPosition">
+                                    <enum>Top</enum>
+                                </property>
+                                <property name="tabShape">
+                                    <enum>Triangular</enum>
+                                </property>
+                                <widget class="QWidget">
+                                    <property name="name">
+                                        <cstring>TabPage</cstring>
+                                    </property>
+                                    <attribute name="title">
+                                        <string>Protocol</string>
+                                    </attribute>
+                                    <grid>
+                                        <property name="name">
+                                            <cstring>unnamed</cstring>
+                                        </property>
+                                        <widget class="QToolButton" row="0" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonNewProtocol</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>new</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="1" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonEditProtocol</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>edit</string>
+                                            </property>
+                                        </widget>
+                                        <spacer row="3" column="1">
+                                            <property name="name">
+                                                <cstring>spacer6_3</cstring>
+                                            </property>
+                                            <property name="orientation">
+                                                <enum>Vertical</enum>
+                                            </property>
+                                            <property name="sizeType">
+                                                <enum>Expanding</enum>
+                                            </property>
+                                            <property name="sizeHint">
+                                                <size>
+                                                    <width>21</width>
+                                                    <height>58</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                        <widget class="QToolButton" row="2" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonRemoveProtocol</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>remove</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="KListBox" row="0" column="0" rowspan="4" colspan="1">
+                                            <property name="name">
+                                                <cstring>lbShowonlyProtocol</cstring>
+                                            </property>
+                                            <property name="toolTip" stdset="0">
+                                                <string>Show the action only for these protocols</string>
+                                            </property>
+                                        </widget>
+                                    </grid>
+                                </widget>
+                                <widget class="QWidget">
+                                    <property name="name">
+                                        <cstring>tab</cstring>
+                                    </property>
+                                    <attribute name="title">
+                                        <string>Path</string>
+                                    </attribute>
+                                    <grid>
+                                        <property name="name">
+                                            <cstring>unnamed</cstring>
+                                        </property>
+                                        <widget class="KListBox" row="0" column="0" rowspan="4" colspan="1">
+                                            <property name="name">
+                                                <cstring>lbShowonlyPath</cstring>
+                                            </property>
+                                            <property name="toolTip" stdset="0">
+                                                <string>Show the action only in these paths</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="0" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonAddPath</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>add</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="1" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonEditPath</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>edit</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="2" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonRemovePath</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>remove</string>
+                                            </property>
+                                        </widget>
+                                        <spacer row="3" column="1">
+                                            <property name="name">
+                                                <cstring>spacer4</cstring>
+                                            </property>
+                                            <property name="orientation">
+                                                <enum>Vertical</enum>
+                                            </property>
+                                            <property name="sizeType">
+                                                <enum>Expanding</enum>
+                                            </property>
+                                            <property name="sizeHint">
+                                                <size>
+                                                    <width>21</width>
+                                                    <height>61</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </grid>
+                                </widget>
+                                <widget class="QWidget">
+                                    <property name="name">
+                                        <cstring>tab</cstring>
+                                    </property>
+                                    <attribute name="title">
+                                        <string>Mime-type</string>
+                                    </attribute>
+                                    <grid>
+                                        <property name="name">
+                                            <cstring>unnamed</cstring>
+                                        </property>
+                                        <widget class="KListBox" row="0" column="0" rowspan="4" colspan="1">
+                                            <property name="name">
+                                                <cstring>lbShowonlyMime</cstring>
+                                            </property>
+                                            <property name="toolTip" stdset="0">
+                                                <string>Show the action only for these file-types</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="0" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonAddMime</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>add</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="1" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonEditMime</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>edit</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="2" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonRemoveMime</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>remove</string>
+                                            </property>
+                                        </widget>
+                                        <spacer row="3" column="1">
+                                            <property name="name">
+                                                <cstring>spacer5</cstring>
+                                            </property>
+                                            <property name="orientation">
+                                                <enum>Vertical</enum>
+                                            </property>
+                                            <property name="sizeType">
+                                                <enum>Expanding</enum>
+                                            </property>
+                                            <property name="sizeHint">
+                                                <size>
+                                                    <width>21</width>
+                                                    <height>41</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </grid>
+                                </widget>
+                                <widget class="QWidget">
+                                    <property name="name">
+                                        <cstring>TabPage</cstring>
+                                    </property>
+                                    <attribute name="title">
+                                        <string>Filename</string>
+                                    </attribute>
+                                    <grid>
+                                        <property name="name">
+                                            <cstring>unnamed</cstring>
+                                        </property>
+                                        <widget class="KListBox" row="0" column="0" rowspan="4" colspan="1">
+                                            <property name="name">
+                                                <cstring>lbShowonlyFile</cstring>
+                                            </property>
+                                            <property name="toolTip" stdset="0">
+                                                <string>Show the action only for these filenames (you may use '?' and '*')</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="0" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonNewFile</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>new</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="1" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonEditFile</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>edit</string>
+                                            </property>
+                                        </widget>
+                                        <widget class="QToolButton" row="2" column="1">
+                                            <property name="name">
+                                                <cstring>ButtonRemoveFile</cstring>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy>
+                                                    <hsizetype>1</hsizetype>
+                                                    <vsizetype>0</vsizetype>
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>32767</width>
+                                                    <height>32767</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string>remove</string>
+                                            </property>
+                                        </widget>
+                                        <spacer row="3" column="1">
+                                            <property name="name">
+                                                <cstring>spacer6</cstring>
+                                            </property>
+                                            <property name="orientation">
+                                                <enum>Vertical</enum>
+                                            </property>
+                                            <property name="sizeType">
+                                                <enum>Expanding</enum>
+                                            </property>
+                                            <property name="sizeHint">
+                                                <size>
+                                                    <width>21</width>
+                                                    <height>41</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </grid>
+                                </widget>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <widget class="QLayoutWidget" row="1" column="0">
+                        <property name="name">
+                            <cstring>layout4</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>LabelShortcut</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Default shortcut:</string>
+                                </property>
+                            </widget>
+                            <spacer>
+                                <property name="name">
+                                    <cstring>spacer6_2</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>161</width>
+                                        <height>21</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <widget class="KKeyButton">
+                                <property name="name">
+                                    <cstring>KeyButtonShortcut</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>None</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>set a default keyboad shortcut</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <spacer row="3" column="0">
+                        <property name="name">
+                            <cstring>spacer3</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>161</width>
+                                <height>90</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QCheckBox" row="2" column="0">
+                        <property name="name">
+                            <cstring>chkConfirmExecution</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Confirm each programmcall separately</string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>This allows you to tweak the commandline before beeing executed</string>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>radioCollectOutput</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>chkSeparateStdError</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>chkUseTooltip</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>textDescription</receiver>
+        <slot>setDisabled(bool)</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="global" impldecl="in declaration">qpushbutton.h</include>
+    <include location="global" impldecl="in declaration">qtoolbutton.h</include>
+    <include location="global" impldecl="in declaration">qradiobutton.h</include>
+    <include location="global" impldecl="in declaration">qcheckbox.h</include>
+    <include location="global" impldecl="in declaration">qbuttongroup.h</include>
+    <include location="global" impldecl="in declaration">ktextedit.h</include>
+    <include location="global" impldecl="in declaration">kcombobox.h</include>
+    <include location="global" impldecl="in declaration">kicondialog.h</include>
+    <include location="global" impldecl="in declaration">klineedit.h</include>
+    <include location="global" impldecl="in declaration">klistbox.h</include>
+    <include location="global" impldecl="in declaration">kkeybutton.h</include>
+</includes>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>klineedit.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>kcombobox.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>kicondialog.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>ktextedit.h</includehint>
+    <includehint>klistbox.h</includehint>
+    <includehint>klistbox.h</includehint>
+    <includehint>klistbox.h</includehint>
+    <includehint>klistbox.h</includehint>
+    <includehint>kkeybutton.h</includehint>
+</includehints>
+</UI>

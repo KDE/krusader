@@ -74,6 +74,7 @@ A
 #include "GUI/kcmdline.h"
 #include "krslots.h"
 #include "krservices.h"
+#include "UserAction/useraction.h"
 #include "UserMenu/usermenu.h"
 
 // define the static members
@@ -122,6 +123,7 @@ KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
 KAction *Krusader::actSyncDirs = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
+UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
@@ -495,7 +497,10 @@ void Krusader::setupActions() {
   actBack->setToolTip( i18n( "Back to the place you came from" ) );
   actRoot->setToolTip( i18n( "ROOT (/)" ) );
   actFind->setToolTip( i18n( "Search for files" ) );
-  }
+  
+  // setup all UserActions
+  userAction = new UserAction();
+}
 
 ///////////////////////////////////////////////////////////////////////////
 //////////////////// implementation of slots //////////////////////////////
