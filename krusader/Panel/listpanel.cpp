@@ -91,6 +91,12 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 typedef QValueList<KServiceOffer> OfferList;
 
+
+//#define BOOKMAN2
+#ifdef BOOKMAN2
+#include "../BookMan/krbookmarkbutton.h"
+#endif // BOOKMAN2
+
 /////////////////////////////////////////////////////
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
@@ -133,7 +139,10 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
       ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
                                "current location to the list, edit bookmarks "
                                "or add subfolder to the list." ) );
-
+#ifdef BOOKMAN2
+	KrBookmarkButton *bmb = new KrBookmarkButton(this);
+#endif // BOOKMAN2
+										 
    QHBoxLayout *totalsLayout = new QHBoxLayout(this);
 	totals = new KrSqueezedTextLabel( this );
    krConfig->setGroup( "Look&Feel" );
@@ -236,7 +245,18 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	popup->hide();
 	
    // finish the layout
-   layout->addMultiCellWidget( hbox, 0, 0, 0, 2 );
+#ifdef BOOKMAN2
+	layout->addMultiCellWidget( hbox, 0, 0, 0, 3 );
+   layout->addWidget( status, 1, 0 );
+   layout->addWidget( historyButton, 1, 1 );
+   layout->addWidget( bookmarksButton, 1, 2 );
+	layout->addWidget( bmb, 1, 3 );
+	layout->addMultiCellWidget( splt, 2, 2, 0, 3 );
+   layout->addMultiCellWidget( quickSearch, 3, 3, 0, 3 );
+   quickSearch->hide();
+   layout->addMultiCellLayout( totalsLayout, 4, 4, 0, 3 );
+#else   
+	layout->addMultiCellWidget( hbox, 0, 0, 0, 2 );
    layout->addWidget( status, 1, 0 );
    layout->addWidget( historyButton, 1, 1 );
    layout->addWidget( bookmarksButton, 1, 2 );
@@ -244,7 +264,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    layout->addMultiCellWidget( quickSearch, 3, 3, 0, 2 );
    quickSearch->hide();
    layout->addMultiCellLayout( totalsLayout, 4, 4, 0, 2 );
-	
+#endif // BOOKMAN2	
    //filter = ALL;
 }
 
