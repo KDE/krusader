@@ -439,8 +439,8 @@ void KgColors::slotImportColors() {
 	}
 	QDataStream stream(&f);
 	// ok, import away
-	KrColorCache::getColorCache().deserialize(stream);
-	// TODO: how to make the preview update?
+	deserialize(stream);
+	generatePreview();
 }
 
 void KgColors::slotExportColors() {
@@ -455,9 +455,84 @@ void KgColors::slotExportColors() {
 		return;
 	}
 	QDataStream stream(&f);
-	KrColorCache::getColorCache().serialize(stream);
+	serialize(stream);
 }
 
+void KgColors::serialize(QDataStream & stream)
+{
+   serializeItem(stream, "Alternate Background");
+   serializeItem(stream, "Alternate Marked Background");
+   serializeItem(stream, "Background");
+   serializeItem(stream, "Current Background");
+   serializeItem(stream, "Current Foreground");
+   serializeItem(stream, "Enable Alternate Background");
+   serializeItem(stream, "Foreground");
+   serializeItem(stream, "Directory Foreground");
+   serializeItem(stream, "Executable Foreground");
+   serializeItem(stream, "Symlink Foreground");
+   serializeItem(stream, "Invalid Symlink Foreground");
+   serializeItem(stream, "Inactive Alternate Background");
+   serializeItem(stream, "Inactive Alternate Marked Background");
+   serializeItem(stream, "Inactive Background");
+   serializeItem(stream, "Inactive Current Foreground");
+   serializeItem(stream, "Inactive Current Background");
+   serializeItem(stream, "Inactive Marked Background");
+   serializeItem(stream, "Inactive Marked Current Foreground");
+   serializeItem(stream, "Inactive Marked Foreground");
+   serializeItem(stream, "Inactive Foreground");
+   serializeItem(stream, "Inactive Directory Foreground");
+   serializeItem(stream, "Inactive Executable Foreground");
+   serializeItem(stream, "Inactive Symlink Foreground");
+   serializeItem(stream, "Inactive Invalid Symlink Foreground");
+   serializeItem(stream, "KDE Default");
+   serializeItem(stream, "Marked Background");
+   serializeItem(stream, "Marked Current Foreground");
+   serializeItem(stream, "Marked Foreground");
+   serializeItem(stream, "Show Current Item Always");
+   stream << QString("") << QString("");
+}
+
+void KgColors::deserialize(QDataStream & stream)
+{
+   for (;;)
+   {
+      QString name, value;
+      stream >> name >> value;
+      if (name == "")
+         break;
+         
+      fprintf( stderr, "%s\n", name.ascii() );
+         
+      if (name == "KDE Default" || name == "Enable Alternate Background" || name == "Show Current Item Always" )
+      {
+        bool bValue = false;
+        value = value.lower();
+        if( value == "true" || value == "yes" || value == "on" || value == "1" )
+          bValue = true;
+        
+        generals->find( name )->setChecked( bValue );
+        continue;
+      }   
+      KonfiguratorColorChooser *selector = getColorSelector( name );
+      if( selector == 0 )
+        break;
+      selector->setValue( value );   
+   }
+}
+
+void KgColors::serializeItem(class QDataStream & stream, const char * name)
+{
+   stream << QString(name);
+   if( name == "KDE Default" || name == "Enable Alternate Background" || name == "Show Current Item Always" )
+   {
+     bool bValue = generals->find( name )->isChecked();
+     stream << QString( bValue ? "true" : "false" );
+   }
+   else
+   {
+     KonfiguratorColorChooser *selector = getColorSelector( name );
+     stream << selector->getValue();
+   }
+}
 
 #include "kgcolors.moc"
-

@@ -671,11 +671,10 @@ void KonfiguratorColorChooser::addColor( QString text, QColor color )
 }
 
 void KonfiguratorColorChooser::loadInitialValue()
-{
-  disableColorChooser = true;
-  
+{  
   krConfig->setGroup( ext->getCfgClass() );
   QString selected = krConfig->readEntry( ext->getCfgName(), "" );
+  setValue( selected );
   if( selected.isEmpty() )
   {
     setCurrentItem( 1 );
@@ -747,14 +746,65 @@ void KonfiguratorColorChooser::setDefaultText( QString text )
 void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
 {
   krConfig->setGroup( cls );
+  krConfig->writeEntry( name, getValue() );
+}
+
+void KonfiguratorColorChooser::setValue( QString value )
+{
+  disableColorChooser = true;
   
+  if( value.isEmpty() )
+  {
+    setCurrentItem( 1 );
+    customValue = defaultValue;
+  }
+  else
+  {
+    bool found = false;
+    
+    for( unsigned j=0; j != additionalColors.size(); j++ )
+      if( additionalColors[j].value == value )
+      {
+        setCurrentItem( 2 + j );
+        found = true;
+        break;
+      }
+
+    if( ! found )
+    {
+      krConfig->setGroup( ext->getCfgClass() );
+      krConfig->writeEntry( "TmpColor", value );
+      QColor color = krConfig->readColorEntry( "TmpColor", &defaultValue );
+      customValue = color;
+      krConfig->deleteEntry( "TmpColor" );
+
+      setCurrentItem( 0 );
+      for( unsigned i= 2+additionalColors.size(); i != palette.size(); i++ )
+        if( palette[i] == color )
+        {
+          setCurrentItem( i );
+          break;
+        }
+    }
+  }
+
+  palette[0] = customValue;
+  changeItem( createPixmap( customValue ), text( 0 ), 0 );
+      
+  ext->setChanged( false );
+  emit colorChanged();
+  disableColorChooser = false;
+}
+
+QString KonfiguratorColorChooser::getValue()
+{
   QColor color = palette[ currentItem() ];
   if( currentItem() == 1 )    /* it's the default value? */
-    krConfig->writeEntry( name, "" );   /* set nothing */
+    return "";
   else if( currentItem() >= 2 && (unsigned)currentItem() < 2 + additionalColors.size() )
-    krConfig->writeEntry( name, additionalColors[ currentItem() - 2 ].value );
+    return additionalColors[ currentItem() - 2 ].value;
   else
-    krConfig->writeEntry( name, color );
+    return QString( "%1,%2,%3" ).arg( color.red() ).arg( color.green() ).arg( color.blue() );
 }
 
 void KonfiguratorColorChooser::slotSetDefaults(QObject *)

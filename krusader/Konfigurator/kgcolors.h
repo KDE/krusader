@@ -68,6 +68,9 @@ private:
   KonfiguratorColorChooser  *getColorSelector( QString name );
   QLabel                    *getSelectorLabel( QString name );
   const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
+  void                       serialize(class QDataStream &);
+  void                       deserialize(class QDataStream &);
+  void                       serializeItem(class QDataStream &, const char * name);
   
 private:
   QWidget                            *colorsGrp;

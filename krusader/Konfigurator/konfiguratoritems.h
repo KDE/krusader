@@ -350,6 +350,8 @@ public:
   void          setDefaultText( QString text );
   QColor        getColor();
   void          changeAdditionalColor( unsigned int num, QColor color );
+  QString       getValue();
+  void          setValue( QString value );
 
 public slots:
   virtual void  loadInitialValue();
