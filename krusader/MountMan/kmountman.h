@@ -110,6 +110,7 @@ private:
   QString *outputBuffer; // all processes output their data here
   KTempFile *tempFile;
   KShellProcess dfProc;
+  KMountManGUI *mountManGui;
 };
 
 // collects statistics about a path, create a label with the results and emit a singal

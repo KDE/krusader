@@ -50,7 +50,7 @@
 
 using namespace MountMan;
 
-KMountManGUI::KMountManGUI() : KDialogBase(0,0,true,"Mount.Man"),
+KMountManGUI::KMountManGUI() : KDialogBase(krApp, 0,true,"Mount.Man"),
       info(0), mountList(0) {
   watcher = new KRdirWatch();
 

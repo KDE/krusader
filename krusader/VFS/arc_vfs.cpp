@@ -28,6 +28,7 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <sys/param.h>
 #include <sys/types.h>
 #include <dirent.h>
 // QT includes
@@ -786,9 +787,17 @@ void arc_vfs::parseLine(QString line, QFile* temp){
     group = temp.mid(temp.find('/')+1,temp.length()).toInt();
     size = nextWord(line).toLong();
     temp = nextWord(line);
+#ifdef BSD
+    dateTime = nextWord(line) + "/" + month2Qstring(temp) + "/";
+    temp = nextWord(line);
+    dateTime += nextWord(line) + " " + temp;
+#else
     dateTime = temp.mid(8,2)+"/"+temp.mid(5,2)+"/"+temp.mid(2,2)+
                        " "+nextWord(line).left(5);
+#endif
     name = nextWord(line,'\n');
+    if (name.startsWith("/"))  // fix full-paths problem in tar (thanks to Heiner!)
+      name.remove(0, 1);
     if( name.contains(" -> ") ){
       link = true;
 			dest = name.mid(name.find(" -> ")+4);
