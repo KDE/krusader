@@ -28,6 +28,31 @@ class virt_vfs : public vfs  {
 public: 
 	virt_vfs(QObject* panel, bool quiet=false);
 	~virt_vfs();
+	
+	/// Copy a file to the vfs (physical).
+	void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "");	
+	/// Remove a file from the vfs (physical)
+	void vfs_delFiles(QStringList *fileNames);	
+	/// Return a list of URLs for multiple files	
+	KURL::List* vfs_getFiles(QStringList* names);
+	/// Return a URL to a single file	
+	KURL vfs_getFile(const QString& name);
+	/// Create a new directory
+	void vfs_mkdir(const QString& name);
+	/// Rename file
+	void vfs_rename(const QString& fileName,const QString& newName);
+	/// Calculate the amount of space occupied by a file or directory (recursive).
+	void vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop = 0);
+	
+	/// Return the VFS working dir
+	QString vfs_workingDir(){ return QString::null; }
+
+protected:
+	/// This function should not be called for this VFS !
+	bool populateVfsList(const KURL& origin, bool showHidden);
+	
+	QDict<vfile>  vfs_files;    //< List of pointers to vfile.
+	QDict<vfile>  vfs_files_copy;
 };
 
 #endif
