@@ -1,3 +1,6 @@
+    ADDED: when searching in files (grep), push the string we're searching for into
+           the clipboard when pressing F3 or F4. this saves an extra copy when searching
+	   inside the file
     ADDED: Catalan translation
     FIXED: username and group information are wrong for ftp_vfs
     FIXED: UMR (uninitialized memory read) in vfs::fromPathOrURL
