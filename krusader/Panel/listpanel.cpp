@@ -141,6 +141,8 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
                                "or add subfolder to the list." ) );
 #ifdef BOOKMAN2
 	KrBookmarkButton *bmb = new KrBookmarkButton(this);
+	connect( bmb, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
+   connect( bmb->handler(), SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
 #endif // BOOKMAN2
 										 
    QHBoxLayout *totalsLayout = new QHBoxLayout(this);
