@@ -63,8 +63,9 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Shie Erlich","Author", "erlich@users.sourceforge.net");
   aboutData.addAuthor("Karai Csaba", "Developer", "ckarai@users.sourceforge.net", 0);
   aboutData.addAuthor("Heiner Eichmann","Developer", "h.eichmann@gmx.de", 0);  
+  aboutData.addAuthor("Jonas Baehr", "Developer", "jonas.baehr@web.de", 0);
   aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "deschler@users.sourceforge.net", 0);
-	aboutData.addAuthor("Frank Schoolmeesters", "Documentation Manager", "frank_schoolmeesters@fastmail.fm", 0);
+  aboutData.addAuthor("Frank Schoolmeesters", "Documentation Manager", "frank_schoolmeesters@fastmail.fm", 0);
   aboutData.addCredit("Jan Halasa", "Bookmark Module", "xhalasa@fi.muni.cz", 0);
   aboutData.addCredit("Hans Loeffler", "Dir history button", 0, 0);
   aboutData.addCredit("Jan Willem", "Icons for Krusader", 0, 0);
