@@ -36,6 +36,8 @@ class BookmarksButton : public QToolButton {
 public:
   BookmarksButton(QWidget *parent);
   ~BookmarksButton();
+
+  void openPopup();
 private:
   KBookmarkHandler *bookmarkHandler;
 signals:
