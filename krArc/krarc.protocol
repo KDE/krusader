@@ -1,6 +1,7 @@
 [Protocol]
 exec=kio_krarc
 protocol=krarc
+mimetype=application/x-archive
 input=filesystem
 output=filesystem
 listing=Name,Type,Size,Date,Access,Owner,Group,Link
@@ -8,8 +9,8 @@ reading=true
 writing=true
 makedir=true
 deleting=true
+source=true
 linking=false
 moving=false
 Icon=ark
 Description=Mutiple archive handler that currently supports: zip.
-

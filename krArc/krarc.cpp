@@ -99,6 +99,7 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
   if( putCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Creating directories is not supported with %1 archives").arg(arcType) );
+    return;
   } 
   QString arcDir  = findArcDirectory(url);
   QString tmpDir = arcTempDir + arcDir.mid(1) + url.path().mid(url.path().findRev("/")+1)+"/";
@@ -127,6 +128,7 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
   if( putCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Writing to %1 archives is not supported").arg(arcType) );
+    return;
   } 
 	if( !overwrite && findFileEntry(url) ){
 		error( ERR_FILE_ALREADY_EXIST,url.path() );
@@ -182,10 +184,12 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 }
 
 void kio_krarcProtocol::get(const KURL& url ){
+  KRDEBUG("get: "<<url.path());
   if( !setArcFile(url.path()) ) return;
   if( getCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Retrieving data from %1 archives is not supported").arg(arcType) );
+    return;
   } 
 
 	UDSEntry* entry = findFileEntry(url);
@@ -214,6 +218,7 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
   if( delCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Deleting files from %1 archives is not supported").arg(arcType) );
+    return;
   }
 	if( !findFileEntry(url) ){
 		error(KIO::ERR_DOES_NOT_EXIST,url.path());
@@ -232,10 +237,12 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 }
 
 void kio_krarcProtocol::stat( const KURL & url ){
+  KRDEBUG("stat: "<<url.path());
   if( !setArcFile(url.path()) ) return;
   if( listCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Accessing files is not supported with the %1 archives").arg(arcType) );
+    return;
   }
 
   QString path = url.path();
@@ -256,16 +263,16 @@ void kio_krarcProtocol::stat( const KURL & url ){
 		finished();
 		return;
 	}
-
- 	UDSEntry* entry = findFileEntry(newUrl);
+  UDSEntry* entry = findFileEntry(newUrl);
 	if( entry ){
-		statEntry( *entry );
+    statEntry( *entry );
 		finished();
 	}
 	else error(KIO::ERR_DOES_NOT_EXIST,path);
 }
 
 void kio_krarcProtocol::listDir(const KURL& url){
+  KRDEBUG("listDir: "<<url.path());
   if( !setArcFile(url.path()) ) return;
   if( listCmd.isEmpty() ){
     error(ERR_UNSUPPORTED_ACTION,
@@ -372,9 +379,14 @@ bool kio_krarcProtocol::initDirDict(const KURL&, bool forced){
 	atom.m_uds = UDS_NAME;
 	atom.m_str = ".";
 	entry.append(atom);
-	atom.m_uds = UDS_FILE_TYPE;
-	atom.m_long = S_IFDIR;
-	entry.append(atom);
+  mode_t mode = parsePermString("drwxr-xr-x");
+  atom.m_uds = UDS_FILE_TYPE;
+  atom.m_long = mode & S_IFMT; // keep file type only
+  entry.append( atom );
+  atom.m_uds = UDS_ACCESS;
+  atom.m_long = mode & 07777; // keep permissions only
+  entry.append( atom );
+
 	root->append(entry);
 
 	// parse the temp file
@@ -503,17 +515,31 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
 	  atom.m_uds = UDS_NAME;
 	  atom.m_str = name;
 	  entry.append(atom);
-	  atom.m_uds = UDS_FILE_TYPE;
-	  atom.m_long = S_IFDIR;
-	  entry.append(atom);
+
+    mode_t mode = parsePermString("drwxr-xr-x");
+
+    atom.m_uds = UDS_FILE_TYPE;
+	  atom.m_long = mode & S_IFMT; // keep file type only
+	  entry.append( atom );
+
+    atom.m_uds = UDS_ACCESS;
+	  atom.m_long = mode & 07777; // keep permissions only
+	  entry.append( atom );
+
+    atom.m_uds = UDS_SIZE;
+    atom.m_long = 2048;
+    entry.append( atom );
+
     atom.m_uds = UDS_MODIFICATION_TIME;
     atom.m_long = arcFile->time(UDS_MODIFICATION_TIME);
 	  entry.append( atom );
+    
     dir->append(entry);
   } 
   // create a new directory entry and add it..
   dir = new UDSEntryList();
   dirDict.insert(path,dir);
+  KRDEBUG("insert1: "<<path);
 
   return dir;
 }
@@ -533,7 +559,7 @@ void kio_krarcProtocol::parseLine(int, QString line, QFile*){
 	atom.m_uds = UDS_ACCESS;
 	atom.m_long = mode & 07777; // keep permissions only
 	entry.append( atom );
- 	// ignore the next 2 fields
+  // ignore the next 2 fields
 	nextWord(line); nextWord(line);
   // size
 	long size = nextWord(line).toLong();
@@ -562,6 +588,12 @@ void kio_krarcProtocol::parseLine(int, QString line, QFile*){
 	atom.m_str = name;
 	entry.append(atom);
 	dir->append(entry);
+  if(perm[0] == 'd'){
+    fullName=fullName+"/";
+    if(dirDict.find(fullName) == 0){
+      dirDict.insert(fullName,new UDSEntryList());
+    }
+  }
 }
 
 bool kio_krarcProtocol::initArcParameters(){
