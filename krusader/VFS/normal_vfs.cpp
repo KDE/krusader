@@ -79,7 +79,6 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	watcher.stopScan(); //stop watching the old dir
 	// and remove it from the list
 	if( !vfs_getOrigin().isEmpty() ) watcher.removeDir(vfs_getOrigin().path(-1)); 
-	watcher.addDir(origin.path(-1),true); //start watching the new dir
 
 	// set the writable attribute to true, if that's not the case - the KIO job
   // will give the warnings and errors
@@ -124,6 +123,7 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	closedir(dir);
 	
 	if (!quietMode) emit startUpdate();
+	watcher.addDir(vfs_getOrigin().path(-1),true); //start watching the new dir
   watcher.startScan(true);
 
   return true;
