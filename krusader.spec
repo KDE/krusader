@@ -1,7 +1,7 @@
 # derived from spec file by Laurent MONTEL <lmontel@mandrakesoft.com>
 
 %define name krusader
-%define version 1.10
+%define version 1.30
 %define release 1
 
 Summary: 	 A twin panel file manager for kde
@@ -54,7 +54,7 @@ rm -rf $RPM_BUILD_ROOT
 #menu
 mkdir -p $RPM_BUILD_ROOT%{_menudir}
 
-# remove when building Mandrake RPM
+# uncomment when building Mandrake RPM
 # kdedesktop2mdkmenu.pl krusader "Applications/File tools"    %buildroot/%_datadir/applnk/Applications/krusader.desktop                             %buildroot/%_menudir/krusader
 
 %find_lang %{name}
@@ -63,12 +63,14 @@ mkdir -p $RPM_BUILD_ROOT%{_menudir}
 rm -rf $RPM_BUILD_ROOT
 
 %post
-# remove when building Mandrake RPM
-#	%{update_menus}
+
+# uncomment when building Mandrake RPM
+# %{update_menus}
 
 %postun
-# remove when building Mandrake RPM
-#  %{clean_menus}
+
+# uncomment when building Mandrake RPM
+# %{clean_menus}
 
 %files -f %name.lang
 %defattr(-,root,root)
@@ -84,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %_datadir/apps/krusader/icons/
 %dir %_datadir/apps/krusader/icons/hicolor/
+
 %dir %_datadir/apps/krusader/icons/hicolor/16x16/
 %dir %_datadir/apps/krusader/icons/hicolor/16x16/actions/
 %_datadir/apps/krusader/icons/hicolor/16x16/actions/*.png
@@ -96,15 +99,22 @@ rm -rf $RPM_BUILD_ROOT
 %dir %_datadir/apps/krusader/icons/hicolor/32x32/actions/
 %_datadir/apps/krusader/icons/hicolor/32x32/actions/*.png
 
-
-
-
-
-# remove when building Mandrake RPM
+# uncomment when building Mandrake RPM
 # %_menudir/*
 
-%_datadir/icons/hicolor/16x16/apps/krusader.png
-%_datadir/icons/hicolor/32x32/apps/krusader.png
+%dir %_datadir/icons
+%dir %_datadir/icons/hicolor
+%dir %_datadir/icons/hicolor/32x32/
+%dir %_datadir/icons/hicolor/32x32/apps/
+%_datadir/icons/hicolor/32x32/apps/*.png
+%dir %_datadir/icons/locolor
+%dir %_datadir/icons/locolor/16x16/
+%dir %_datadir/icons/locolor/16x16/apps/
+%_datadir/icons/locolor/16x16/apps/krusader.png
 
+%_datadir/man/man1/krusader.1.bz2
 %_datadir/mimelnk/application/x-ace.desktop
+%_datadir/services/krarc.protocol
 
+%dir %_libdir/kde3/
+%_libdir/kde3/kio_krarc.*
