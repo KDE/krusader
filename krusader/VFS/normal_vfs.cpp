@@ -259,7 +259,7 @@ vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 			if ( QDir(QString::fromLocal8Bit( symDest ) ).exists() || mime.contains("directory") ) perm[0] = 'd';
 			if ( !QDir(vfs_workingDir()).exists( QString::fromLocal8Bit ( symDest ) ) ) mime = "Broken Link !";
 		}
-		else kdWarning() << "Failed to read link: "<< path<<endl;
+		else krOut << "Failed to read link: "<< path<<endl;
 	}
 	
 	// create a new virtual file object

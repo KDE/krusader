@@ -159,10 +159,11 @@ UserAction *Krusader::userAction = 0;
 Expander *Krusader::expander = 0;
 UserMenu *Krusader::userMenu = 0;
 KrBookmarkHandler *Krusader::bookman = 0;
+//QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
-   // parse command line arguments
+	// parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
    QString leftPath, rightPath, startProfile;
 
@@ -304,6 +305,9 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
       slot->runKonfigurator( true );
 
    isStarting = false;
+	
+	
+//	exportKeyboardShortcuts("/tmp/shie.txt");
 }
 
 Krusader::~Krusader() {}
@@ -383,38 +387,6 @@ void Krusader::setupAccels() {
 	 // SHIFT+F3
    accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString::null,
                    SHIFT + Key_F3, SLOTS, SLOT( viewDlg() ) );
-#if 0	
-	// F2
-   accels->insert( "F2_Terminal", i18n( "F2 Terminal" ), QString::null,
-                   Key_F2, SLOTS, SLOT( terminal() ) );
-   // F3
-   accels->insert( "F3_View", i18n( "F3 View" ), QString::null,
-                   Key_F3, SLOTS, SLOT( view() ) );
-   // SHIFT+F3
-   accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString::null,
-                   SHIFT + Key_F3, SLOTS, SLOT( viewDlg() ) );
-   // F4
-   accels->insert( "F4_Edit", i18n( "F4 Edit" ), QString::null,
-                   Key_F4, SLOTS, SLOT( edit() ) );
-   // F5
-   accels->insert( "F5_Copy", i18n( "F5 Copy" ), QString::null,
-                   Key_F5, SLOTS, SLOT( copyFiles() ) );
-   // F6
-   accels->insert( "F6_Move", i18n( "F6 Move" ), QString::null,
-                   Key_F6, SLOTS, SLOT( moveFiles() ) );
-   // F7
-   accels->insert( "F7_Mkdir", i18n( "F7 Mkdir" ), QString::null,
-                   Key_F7, SLOTS, SLOT( mkdir() ) );
-   // F8
-   accels->insert( "F8_Delete", i18n( "F8 Delete" ), QString::null,
-                   Key_F8, SLOTS, SLOT( deleteFiles() ) );
-   // F9
-   accels->insert( "F9_Rename", i18n( "F9 Rename" ), QString::null,
-                   Key_F9, SLOTS, SLOT( rename() ) );
-   // F10
-   accels->insert( "F10_Quit", i18n( "F10 Quit" ), QString::null,
-                   Key_F10, this, SLOT( quitKrusader() ) );
-#endif
    // Tab
    accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString::null,
                    Key_Tab, mainView, SLOT( panelSwitch() ) );
@@ -627,6 +599,49 @@ void Krusader::setupActions() {
    // setup all UserActions
    expander = new Expander();
    userAction = new UserAction();
+}
+
+void Krusader::importKeyboardShortcuts(QString filename) {
+	QFile f(filename);
+	if (!f.open(IO_ReadOnly)) {
+		krOut << "Error opening " << filename << endl;
+		return;
+	}
+	
+	QDataStream stream(&f);
+	QString name;
+	int key;
+	KAction *action;
+	while (!stream.atEnd()) {
+		stream >> name >> key;
+		action = actionCollection()->action(name.latin1());
+		if (action) {
+			action->setShortcut(key);
+		} else {
+		   krOut << "unknown action " << name << endl;
+		}
+	}
+	f.close();
+}
+
+void Krusader::exportKeyboardShortcuts(QString filename) {
+	QFile f(filename);
+	if (!f.open(IO_WriteOnly)) {
+		krOut << "Error opening " << filename << endl;
+		return;
+	}
+	QDataStream stream(&f);
+	
+	KAction *action;
+	for (int i=0; i<actionCollection()->count(); ++i) {
+		action = actionCollection()->action(i);
+		int key = action->shortcut().keyCodeQt();
+		if (key) { // if a valid shortcut exists
+			stream << action->name() << key;
+		}
+	}
+	
+	f.close();
 }
 
 ///////////////////////////////////////////////////////////////////////////

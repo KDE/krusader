@@ -27,7 +27,7 @@
 #include <qclipboard.h>
 
 #define NEED_PANEL		if ( panel == 0 ) { \
-					   kdWarning() << "Expander: no panel specified for %_" << _expression << "%; ignoring..." << endl; \
+					   krOut << "Expander: no panel specified for %_" << _expression << "%; ignoring..." << endl; \
 					   return QString::null; \
 					}
 
@@ -97,7 +97,7 @@ QString exp_Count::expFunc( const ListPanel* panel, const QStringList& parameter
    else if ( parameter[ 0 ].lower() == "selected" )
       n = panel->view->numSelected();
    else {
-      kdWarning() << "Expander: no Items specified for %_Count%; ignoring..." << endl;
+      krOut << "Expander: no Items specified for %_Count%; ignoring..." << endl;
       return QString::null;
    }
 
@@ -190,7 +190,7 @@ QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter,
    else if ( parameter[ 0 ].lower() == "selected" )
       panel->view->getSelectedItems( &items );
    else {
-      kdWarning() << "Expander: no Items specified for %_List%; ignoring..." << endl;
+      krOut << "Expander: no Items specified for %_List%; ignoring..." << endl;
       return QString::null;
    }
 
@@ -352,7 +352,7 @@ QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const
    KURL dest = vfs::fromPathOrURL( parameter[1] );
    
    if ( !dest.isValid() || !src.isValid() ) {
-      kdWarning() << "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%" << endl;
+      krOut << "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%" << endl;
       return QString::null; // do nothing with invalid url's
    }
 
@@ -370,7 +370,7 @@ exp_Sync::exp_Sync() {
 }
 QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
    if ( parameter[0].isEmpty() ) {
-      kdWarning() << "Expander: no profile specified for %_Sync(profile)%; ignoring..." << endl;
+      krOut << "Expander: no profile specified for %_Sync(profile)%; ignoring..." << endl;
       return QString::null;
    }
 
@@ -388,7 +388,7 @@ exp_NewSearch::exp_NewSearch() {
 }
 QString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
    if ( parameter[0].isEmpty() ) {
-      kdWarning() << "Expander: no profile specified for %_NewSearch(profile)%; ignoring..." << endl;
+      krOut << "Expander: no profile specified for %_NewSearch(profile)%; ignoring..." << endl;
       return QString::null;
    }
 
@@ -406,7 +406,7 @@ exp_Profile::exp_Profile() {
 }
 QString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
    if ( parameter[0].isEmpty() ) {
-      kdWarning() << "Expander: no profile specified for %_Profile(profile)%; ignoring..." << endl;
+      krOut << "Expander: no profile specified for %_Profile(profile)%; ignoring..." << endl;
       return QString::null;
    }
    
@@ -459,7 +459,7 @@ ListPanel* Expander::getPanel( const char& panelIndicator ) {
    case '_':
       return 0;
    default:
-      kdWarning() << "Expander: unknown Panel " << panelIndicator << endl;
+      krOut << "Expander: unknown Panel " << panelIndicator << endl;
       return 0;
    }
 }
@@ -487,7 +487,7 @@ QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl, int
    while ( idx < stringToExpand.length() ) {
       if ( ( begin = stringToExpand.find( '%', idx ) ) == -1 ) break;
       if ( ( end = findEnd( stringToExpand, begin ) ) == -1 ) {
-         kdWarning() << "Error: unterminated % in Expander::expandCurrent" << endl;
+         krOut << "Error: unterminated % in Expander::expandCurrent" << endl;
          return QString::null;
       }
 
@@ -510,7 +510,7 @@ QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl, int
               break;
            }
         if ( i == placeholderCount() ) { // didn't find an expander
-           kdWarning() << "Error: unrecognized %" << panelIndicator << exp << "% in Expander::expand" << endl;
+           krOut << "Error: unrecognized %" << panelIndicator << exp << "% in Expander::expand" << endl;
            return QString::null;
         }
       } //else
@@ -528,7 +528,7 @@ QStringList Expander::separateParameter( QString* exp, bool useUrl ) {
    int begin, end;
    if ( ( begin = exp->find( '(' ) ) != -1 ) {
       if ( ( end = exp->findRev( ')' ) ) == -1 ) {
-         kdWarning() << "Error: missing ')' in Expander::separateParameter" << endl;
+         krOut << "Error: missing ')' in Expander::separateParameter" << endl;
          return QString::null;
       }
       result = exp->mid( begin + 1, end - begin - 1 );
@@ -548,7 +548,7 @@ QStringList Expander::separateParameter( QString* exp, bool useUrl ) {
          if ( result[ idx ].latin1() == ',' && !inQuotes ) {
             parameter.append( result.mid( begin, idx - begin) );
             begin = idx + 1;
-//             kdWarning() << " ---- parameter: " << parameter.join(";") << endl;
+//             krOut << " ---- parameter: " << parameter.join(";") << endl;
          }
          idx++;
       }
@@ -562,7 +562,7 @@ QStringList Expander::separateParameter( QString* exp, bool useUrl ) {
       }
    }
       
-//    kdWarning() << "------- exp: " << *exp << " ---- parameter: " << parameter.join(";") << endl;
+//    krOut << "------- exp: " << *exp << " ---- parameter: " << parameter.join(";") << endl;
    return parameter;
 }
 

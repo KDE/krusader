@@ -4,14 +4,14 @@
 // Description: This handles the useraction.xml
 //
 //
-// Author: Jonas Bähr (C) 2004
+// Author: Jonas Bï¿½r (C) 2004
 //
 // Copyright: See COPYING file that comes with this distribution
 //
 //
 
 #include <kstandarddirs.h>
-#include <kdebug.h>
+#include "../krusader.h"
 #include <klocale.h>
 
 #include <qfile.h>
@@ -62,7 +62,7 @@ void UserActionXML::getActionDom() {
       QDomElement root = _doc->documentElement();
       // check if the file got the right root-element (ACTION_ROOT) - this finds out if the xml-file read to the DOM is realy an krusader useraction-file
       if( root.tagName() != ACTION_ROOT ) {
-        kdWarning() << "UserActions: the actionfile's root-element isn't called "ACTION_ROOT", using " << _filename << endl;
+        krOut << "UserActions: the actionfile's root-element isn't called "ACTION_ROOT", using " << _filename << endl;
         delete _doc; _doc = 0;
       }
     }
@@ -365,7 +365,7 @@ UserActionProperties* UserActionXML::readAction( QDomElement *action ) {
         prop->setDescriptionUseTooltip( true );
       }
       else
-        kdWarning() << "unrecognized attribute value in "ACTION_XML" found <action name=\"" << prop->name() << "\"><command accept=\"" << attr << "\""<< endl;
+        krOut << "unrecognized attribute value in "ACTION_XML" found <action name=\"" << prop->name() << "\"><command accept=\"" << attr << "\""<< endl;
       
     } // </description>
     else
@@ -388,7 +388,7 @@ UserActionProperties* UserActionXML::readAction( QDomElement *action ) {
         prop->setSeparateStderr( true );
       }
       else
-        kdWarning() << "unrecognized attribute value in "ACTION_XML" <action name=\"" << prop->name() << "\"><command executionmode=\"" << attr << "\""<< endl;
+        krOut << "unrecognized attribute value in "ACTION_XML" <action name=\"" << prop->name() << "\"><command executionmode=\"" << attr << "\""<< endl;
 
       attr = e.attribute( "accept", "local" ); // default: "local"
       if ( attr == "local" )
@@ -396,7 +396,7 @@ UserActionProperties* UserActionXML::readAction( QDomElement *action ) {
       else if ( attr == "url")
         prop->setAcceptURLs( true );
       else
-        kdWarning() << "unrecognized attribute value in "ACTION_XML" found <action name=\"" << prop->name() << "\"><command accept=\"" << attr << "\""<< endl;
+        krOut << "unrecognized attribute value in "ACTION_XML" found <action name=\"" << prop->name() << "\"><command accept=\"" << attr << "\""<< endl;
 
       attr = e.attribute( "confirmexecution", "false" ); // default: "false"
       if ( attr == "false" )
@@ -483,7 +483,7 @@ UserActionProperties* UserActionXML::readAction( QDomElement *action ) {
 
     // unknown but not empty (comments, <!-- -->, are empty)
     if (e.tagName() != "") {
-      kdWarning() << "unrecognized tag in "ACTION_XML" found: <action name=\"" << prop->name() << "\"><" << e.tagName() << ">" << endl;
+      krOut << "unrecognized tag in "ACTION_XML" found: <action name=\"" << prop->name() << "\"><" << e.tagName() << ">" << endl;
     }
   } // for ( QDomNode node = action->firstChild(); !node.isNull(); node = node.nextSibling() )
   

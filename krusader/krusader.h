@@ -45,6 +45,7 @@
 #include <kconfig.h>
 #include <kaccel.h>
 #include <qstringlist.h>
+#include <qtextstream.h>
 
 class KrusaderStatus;
 class KRPleaseWaitHandler;
@@ -59,6 +60,8 @@ class Expander;
 class KMountMan;
 class KrBookmarkHandler;
 
+static QTextOStream krOut(::stdout);
+
 class Krusader : public KParts::MainWindow {
     Q_OBJECT
   public:
@@ -66,7 +69,9 @@ class Krusader : public KParts::MainWindow {
     ~Krusader();
     void refreshView();				 // re-create the main view
     static QStringList supportedTools(); // find supported tools
-
+	 void importKeyboardShortcuts(QString filename);
+	 void exportKeyboardShortcuts(QString filename);
+		
   public slots:
     // increase the internal progress bar
     void incProgress( KProcess *, char *buffer, int buflen );

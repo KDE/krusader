@@ -175,7 +175,6 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
     {
       // if we got here - we got a winner
       results.append( dir + name );
-      //  kdWarning() << "Found: " << (dir+name).local8Bit() << endl;
       emit found( name, dir, ( KIO::filesize_t ) stat_p.st_size, stat_p.st_mtime, KRpermHandler::mode2QString( stat_p.st_mode ) );
       if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
     }

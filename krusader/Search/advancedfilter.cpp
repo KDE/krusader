@@ -490,7 +490,7 @@ void AdvancedFilter::fillList(QComboBox *list, QString filename) {
   QFile data(filename);
   if (!data.open(IO_ReadOnly)) 
   {
-    kdWarning() << "Search: Unable to read " << filename << " !!!" << endl;
+    krOut << "Search: Unable to read " << filename << " !!!" << endl;
     return;
   }
   // and read it into the temporary array

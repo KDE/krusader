@@ -31,6 +31,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krdetailedviewitem.h"
 #include "krcolorcache.h"
 #include "krselectionmode.h"
+#include "../krusader.h"
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
@@ -44,7 +45,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qdir.h>
 #include <qwhatsthis.h>
 #include <qheader.h>
-#include <kdebug.h>
 #include <kprogress.h>
 #include <kstatusbar.h>
 #include <kinputdialog.h>
@@ -269,8 +269,6 @@ void KrDetailedView::addItem( vfile *vf ) {
    else _countSize += dynamic_cast<KrViewItem*>( item ) ->size();
    ++_count;
    
-   //kdWarning() << "===> " << nameToMakeCurrent() << endl;
-   
    if (item->name() == nameToMakeCurrent() )
       setCurrentItem(item->name()); // dictionary based - quick
 
@@ -281,7 +279,7 @@ void KrDetailedView::addItem( vfile *vf ) {
 void KrDetailedView::delItem( const QString &name ) {
 	 KrDetailedViewItem * it = dict[ name ];
    if ( !it ) {
-      kdWarning() << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
+      krOut << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
 		return;
 	} 
 	if (it->isDir()) {
@@ -300,11 +298,10 @@ void KrDetailedView::updateItem( vfile *vf ) {
    // it's properties first and repair it later
    KrDetailedViewItem * it = dict[ vf->vfile_getName() ];
    if ( !it ) {
-      kdWarning() << "got signal updatedVfile(" << vf->vfile_getName() << ") but can't find KrViewItem" << endl;
+      krOut << "got signal updatedVfile(" << vf->vfile_getName() << ") but can't find KrViewItem" << endl;
    } else {
 		bool selected = it->isSelected();
       bool current = ( getCurrentKrViewItem() == it );
-//    kdWarning() << "updated" << endl;
       delItem( vf->vfile_getName() );
       addItem( vf );
       // restore settings
@@ -1061,7 +1058,7 @@ void KrDetailedView::renameCurrentItem() {
 
 void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
    if ( !it ) { // major failure - call developers
-      kdWarning() << "Major failure at inplaceRenameFinished(): item is null" << endl;
+      krOut << "Major failure at inplaceRenameFinished(): item is null" << endl;
       return;
    }
    // check if the item was indeed renamed

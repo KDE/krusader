@@ -564,7 +564,6 @@ void KRslots::newTab(QListViewItem *item) {
   KrViewItem *it = dynamic_cast<KrViewItem*>(item);
   if (it->isDir()) {
     ACTIVE_PANEL_MANAGER->slotNewTab(ACTIVE_PANEL->virtualPath + "/" + it->name());
-    //kdWarning() << ACTIVE_PANEL->virtualPath << it->name()<<endl;
   }
 }
 
