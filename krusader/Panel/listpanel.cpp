@@ -298,14 +298,11 @@ void ListPanel::slotStartUpdate() {
 
 void ListPanel::slotUpdate() {
   // if we are not at the root add the ".." entery
-
-  /* remove the last slash from archives, but take care of ftp://server/ URL-s */
   QString protocol = func->files() ->vfs_getOrigin().protocol();
-  int removeLastSlash = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" ||
-                         protocol == "fish" ) ? 0 : -1;
+  bool isFtp = (protocol == "ftp" || protocol == "smb" || protocol == "sftp" || protocol == "fish" );
   
-  QString origin = func->files() ->vfs_getOrigin().prettyURL( removeLastSlash );
-  if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) &&
+  QString origin = func->files() ->vfs_getOrigin().prettyURL( -1 );
+  if ( origin.right( 1 ) != "/" && !( ( func->files() ->vfs_getType() == vfs::FTP ) && isFtp &&
                                       origin.find( '/', origin.find( ":/" ) + 3 ) == -1 ) ) {
     view->addItems( func->files() );
   } else
