@@ -13,7 +13,8 @@ Cut(CTRL+X), Copy(Ctrl+C), Paste(Ctrl+V)
 Compare by content: you can no either
   - select (mark) one file in the left panel, and one in the right panel
   - select exactly two files in the active panel
-  - make sure in the other panel is a file with the same name then the current in the active panel
+  - make sure in the other panel is a file with the same name then the current
+    in the active panel
 
 Panel profiles: from know it is possible to store environment profiles.
   An environment profile contains the followings:
@@ -21,23 +22,24 @@ Panel profiles: from know it is possible to store environment profiles.
   - the current tab ( left / right )
   - and the selected side ( left or right )
   You can save / restore these tabulator profiles. Please test it.
-  Those users who uses CVS version of krusader, should delete the krusaderui.rc 
+  Those users who uses CVS version of krusader, should delete the krusaderui.rc
   from their home directory, for getting the new menu and toolbar item visible.
   (rm ~/.kde/share/apps/krusader/krusaderui.rc)
 
 Synchronizer: from now you can use the search filters in the synchronizer
 
 Useraction: removed placeholder 'Bookmark'. It is deprecated now since the new
-bookmark-system can be accessed directly like an useraction. If you need it anyway
-use 'Goto' instead.
+bookmark-system can be accessed directly like an useraction. If you need it
+anyway use 'Goto' instead.
 
 TC like searching: if you type 'text' -> results the same as '*text*'
 You can exclude files from the search with '|' (ex. '*.cpp *.h | *.moc.cpp' )
            
 Search is possible on remote file systems as well.
 
-If you have filesystems that you don't want to accidently unmount (or mount), just
-go to Konfigurator->Advanced, and enter a list of mountpoints seperated by commas
+If you have filesystems that you don't want to accidently unmount (or mount),
+just go to Konfigurator->Advanced, and enter a list of mountpoints seperated
+by commas
 (for example: /, /boot, /tmp) and mountman won't try to (un)mount them.
 
 Mountman got a big nose-job ;-) plz test it well.
@@ -46,8 +48,8 @@ you can now drag'n'drop to the new tree view
 
 shift+left/right changes tabs (thanks to Dmitry Suzdalev)
 
-New vfs_refresh() function only update changes when you re-read a panel and changes
-the content without the annying full redraw effect. 
+New vfs_refresh() function only update changes when you re-read a panel and
+changes the content without the annying full redraw effect.
 
 When closing krusader, the tabs are saved and restored
 

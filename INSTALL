@@ -36,8 +36,9 @@ When you install a Krusader cvs or beta version and if Krusader was previously
 installed on your computer, there is a possibility that you will have to update
 the krusaderui.rc file. Please read the FAQ for more info.
 
-Since Krusader uses autoconf and automake you should have no trouble compiling it.
-Should you run into problems please read the detailed installation instructions below.
+Since Krusader uses autoconf and automake you should have no trouble compiling
+it. Should you run into problems please read the detailed installation
+instructions below.
 
 
 Detailed installation instructions
@@ -50,9 +51,9 @@ the explanations as detailed as possible even if they are mostly not Krusader
 specific. Experienced users may easily skip most of the steps.
 
 
-If you encounter problems with installing Krusader, please read  this installation
-procedure first and then the FAQ, if this does not solve the problem then
-feel free to ask for help with an help request.
+If you encounter problems with installing Krusader, please read  this
+installation procedure first and then the FAQ, if this does not solve the
+problem then feel free to ask for help with an help request.
 Please read the FAQ if you don't know how to send a help request (FAQ number 9).
 
 
@@ -204,9 +205,9 @@ Please read the FAQ if you don't know how to send a help request (FAQ number 9).
    (after the 'make install' command).
 
    Usually the Krusader binary will be installed in the KDEDIR/bin directory.
-   If you would prefer to install Krusader in a different directory, you can do this
-   with the following command: ./configure --prefix=/usr/local. In this case
-   the Krusader binary will be installed in the /usr/local/bin directory.
+   If you would prefer to install Krusader in a different directory, you can
+   do this with the following command: ./configure --prefix=/usr/local. In this
+   case the Krusader binary will be installed in the /usr/local/bin directory.
 
    This part will also display a warning if the environment variables
    KDEDIR - QTDIR are empty.
@@ -299,7 +300,8 @@ Here is a (possibly incomplete) list of Krusader's dependencies:
 
 Most RPM-based distributions separate the headers from the libs.
 The headers are needed to compile Krusader.
-Look for packages in the form foo-devel-*.rpm (e.g. kdelibs-devel-3.1-58mdk.i586.rpm)
+Look for packages in the form foo-devel-*.rpm
+(e.g. kdelibs-devel-3.1-58mdk.i586.rpm)
 or foo-dev-*.deb for Debian based distributions. They most likely come with
 your distribution.
 
@@ -335,14 +337,15 @@ $ export  PATH=$PATH:/usr/local/bin
 I have downloaded the Source RPM krusader-x.xx.dist.src.rpm  What now?
 
 
-Change the ownership and the permissions on /usr/src/RPM/ and all recursive directories
-so that your normal user can read-write-execute in these directories.
+Change the ownership and the permissions on /usr/src/RPM/ and all recursive
+directories so that your normal user can read-write-execute in these
+directories.
 
 To produce the binary RPM for your computer, do this:
 $ rpm --rebuild </path/to/rpmfile/> krusader-x.xx.dist.src.rpm
 
-If all dependencies are ok, a binary RPM krusader-x.xx.dist.rpm will be created at
-/usr/src/RPM/RPMS/i586 (replace i586 with your architecture).
+If all dependencies are ok, a binary RPM krusader-x.xx.dist.rpm will be created
+at /usr/src/RPM/RPMS/i586 (replace i586 with your architecture).
 
 Test the binary RPM before installing:
 $ rpm -i --test </path/to/rpmfile> krusader-x.xx.dist.rpm
@@ -360,7 +363,8 @@ TIP For more information about RPM, take a look at the Maximum RPM Book
     are obsolete/changed/improved now.
 
 4.
-I'm trying to install binary foo (RPM or DEB package), but it fails. What's wrong?
+I'm trying to install binary foo (RPM or DEB package), but it fails.
+What's wrong?
 
 Since we only provide (and use) the source, we don't know.
 Please test the binary RPM before installing:
@@ -368,17 +372,19 @@ $ rpm -i --test </path/to/rpmfile> krusader-x.xx.dist.rpm
 If the prompt returns without any message, than everything is ok.</para>
 
 If it is not ok, try to find another package at Linux software archives such as
-www.freshmeat.net or www.kde-apps.org. If you still can't find a package for your
-Linux distribution, we recommend searching for it with www.rpmfind.net or rpm.pbone.net.
+www.freshmeat.net or www.kde-apps.org. If you still can't find a package for
+your Linux distribution, we recommend searching for it with www.rpmfind.net or
+rpm.pbone.net.
 
 In general, a package for an older version of your distrubution or even for an
 other distribution might work on your computer, but it is always the best that
 it matches your distribution.
-If you can't find a package that matches your distribution version, architecture or
-distribution, than use a source RPM. Because when you use a source RPM, the Krusader
-sources will be build on your computer, it will build a suitable binary RPM for your
-distribution and architecture. Please read the previous question, it explains howto
-install a source RPM. The best solution is explained in the next question.
+If you can't find a package that matches your distribution version, architecture
+or distribution, than use a source RPM. Because when you use a source RPM, the
+Krusader sources will be build on your computer, it will build a suitable binary
+RPM for your distribution and architecture. Please read the previous question,
+it explains howto install a source RPM. The best solution is explained in the
+next question.
 
 5.
 I can't find a RPM or DEB package for Krusader, What now?
@@ -398,10 +404,11 @@ In this case only the "Help" menu is visible and all the other menu items like
 e.g. "File" and "Mark" are gone. This is because some distributions put the
 krusaderui.rc file in a wrong directory. To solve the problem, just copy the
 krusaderui.rc file from the package krusader_kde3/krusader/krusaderui.rc to
-$KDEDIR/share/apps/krusader/krusaderui.rc and ~/.kde/share/apps/krusader/krusaderui.rc
-and re-run Krusader. If you have compiled Krusader from sources this is often caused
-when the KDEDIR - QTDIR enviroment variables are not right set, the result is that
-the krusaderui.rc file is installed in a wrong directory.
+$KDEDIR/share/apps/krusader/krusaderui.rc and
+~/.kde/share/apps/krusader/krusaderui.rc and re-run Krusader. If you have
+compiled Krusader from sources this is often caused when the KDEDIR - QTDIR
+enviroment variables are not right set, the result is that the krusaderui.rc
+file is installed in a wrong directory.
 Please read also the next question.
 
 
@@ -424,10 +431,10 @@ this bug was resolved since "krusader-cvs-2004-02-24".
 When you install a Krusader CVS or beta version you will have to replace the
 ~/.kde/share/apps/krusader/krusaderui.rc manually.
 
-If the ~/.kde/share/apps/krusader/krusaderui.rc file is too old, then the new menu
-elements will not be shown. Read the previous question for information on how to
-update the krusaderui.rc file. If krusaderui.rc is missing or in a wrong directory,
-only the "Help" menu appears, please read the previous question.
+If the ~/.kde/share/apps/krusader/krusaderui.rc file is too old, then the new
+menu elements will not be shown. Read the previous question for information on
+how to update the krusaderui.rc file. If krusaderui.rc is missing or in a wrong
+directory, only the "Help" menu appears, please read the previous question.
 
 
 8.
@@ -446,8 +453,8 @@ how do I send a help request?
 
 Please read our detailed installation procedure and the FAQ. If you can't find
 a solution to your problem then feel free to post a help request at our Krusader
-forum. But before posting a help request at our Krusader forum, please regard the
-following:
+forum. But before posting a help request at our Krusader forum, please regard
+the following:
 
 Use the Search function of the Krusader Forum, your problem might be solved or
 discussed already.
@@ -477,13 +484,15 @@ How can i build a RPM package for Krusader?
 If you have experiance with compiling from source, you will probably be able to
 build a Krusader RPM too. Follow the next steps to build a RPM.
 
-WARNING Never, ever build RPMs when logged in as root. Mistakes in buildings packages
-        (e.g. a bad krusader.specfile) can serious damage your system when logged in as root.
+WARNING Never, ever build RPMs when logged in as root. Mistakes in buildings
+packages (e.g. a bad krusader.specfile) can serious damage your system when
+logged in as root.
 
 Compile Krusader from source to check that the compilation works fine.
 
-Change the ownership and the permissions on /usr/src/RPM/ and all recursive directories
-so that your normal user can read-write-execute in these directories.
+Change the ownership and the permissions on /usr/src/RPM/ and all recursive
+directories so that your normal user can read-write-execute in these
+directories.
 
 copy kusader1.xx.tar.gz to /usr/scr/RPM/SOURCE copy kusader.spec to
 /usr/scr/RPM/SPECS
@@ -686,4 +695,3 @@ operates.
      script, and exit.
 
 `configure' also accepts some other, not widely useful, options.
-
