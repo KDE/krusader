@@ -443,7 +443,7 @@ void Krusader::setupActions() {
                           SLOT(duplicateTab()), actionCollection(), "duplicate tab");
   actCloseTab = new KAction(i18n("Close tab"), ALT+CTRL+Key_C, SLOTS,
                           SLOT(closeTab()), actionCollection(), "close tab");
-  actUserMenu = new KAction(i18n("User Menu"), ALT+CTRL+Key_U, SLOTS,
+  actUserMenu = new KAction(i18n("User Menu"), ALT+Key_QuoteLeft, SLOTS,
                           SLOT(userMenu()), actionCollection(), "user menu");
   // and at last we can set the tool-tips
   actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );
