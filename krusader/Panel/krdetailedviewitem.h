@@ -39,6 +39,8 @@ class QPixmap;
 class KrDetailedView;
 
 class KrDetailedViewItem : public KListViewItem, public KrViewItem {
+friend class KrDetailedView;
+
 public:
   KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
   QString name() const;
@@ -57,6 +59,7 @@ public:
   int compare(QListViewItem *i,int col,bool ascending ) const;
   void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
   bool isAlternate() { return false; }
+  void repaintItem();
 
 protected:
   // text() was made protected in order to catch every place where text(x) is used
@@ -64,6 +67,9 @@ protected:
   virtual QString text(int column) const { return KListViewItem::text(column); }
 
 private:
+  // used INTERNALLY when calculation of dir size changes the displayed size of the item
+  inline void setSize(unsigned long size) { _vf->vfile_setSize(size); }
+
   vfile *_vf;
   KrDetailedView *_view;
 };
