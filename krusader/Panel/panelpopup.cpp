@@ -18,7 +18,7 @@
 #include <krviewitem.h>
 #include <klineedit.h>
 #include <kio/jobclasses.h>
-#include <kimagefilepreview.h>
+#include "../KViewer/kimagefilepreview.h"
 #include <kdebug.h>
 
 PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ), 
@@ -191,6 +191,7 @@ void PanelPopup::update( KURL url ) {
    switch ( stack->id( stack->visibleWidget() ) ) {
       case Preview:
 			viewer->showPreview(url);
+			dataLine->setText( i18n("Preview: ")+url.fileName() );
 			break;
 
       case Tree:  // nothing to do
