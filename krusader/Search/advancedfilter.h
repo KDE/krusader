@@ -1,7 +1,7 @@
 /***************************************************************************
-                       generalfilter.h  -  description
+                      advancedfilter.cpp  -  description
                              -------------------
-    copyright            : (C) 2003 by Csaba Karai
+    copyright            : (C) 2003 by Shie Erlich & Rafi Yanai & Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -28,67 +28,80 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef GENERALFILTER_H
-#define GENERALFILTER_H
+#ifndef ADVANCEDFILTER_H
+#define ADVANCEDFILTER_H
 
 #include "krquery.h"
 
 #include <qwidget.h>
-#include <qlayout.h>
-#include <qgroupbox.h>
 #include <qcheckbox.h>
-#include <qlabel.h>
 #include <kcombobox.h>
 #include <klineedit.h>
-#include <qlistbox.h>
+#include <qradiobutton.h>
 #include <qtoolbutton.h>
-#include <kshellcompletion.h>
 
-class GeneralFilter : public QWidget
+class AdvancedFilter : public QWidget
 {
   Q_OBJECT
   
 public:
-  GeneralFilter( QWidget *parent = 0, const char *name = 0 );
-  ~GeneralFilter();
+  AdvancedFilter( QWidget *parent = 0, const char *name = 0 );
   
   bool fillQuery( KRQuery *query );
-  void queryAccepted();
+    
+public slots:
+  void modifiedBetweenSetDate1();
+  void modifiedBetweenSetDate2();
+  void notModifiedAfterSetDate();
   
-public slots:  
-  void addToDontSearchIn();
-  void addToDontSearchInManually();
-  void addToSearchIn();
-  void addToSearchInManually();
-  void deleteSelectedItems( QListBox * );
+public:
+  QCheckBox* smallerThanEnabled;
+  QLineEdit* smallerThanAmount;
+  KComboBox* smallerThanType;
   
-  virtual void keyPressEvent(QKeyEvent *e);
+  QCheckBox* biggerThanEnabled;
+  KComboBox* biggerThanType;
+  QLineEdit* biggerThanAmount;
+  
+  QRadioButton* modifiedBetweenEnabled;
+  QRadioButton* notModifiedAfterEnabled;
+  QRadioButton* modifiedInTheLastEnabled;
+  
+  QLineEdit* modifiedBetweenData1;
+  QLineEdit* modifiedBetweenData2;
+  
+  QToolButton* modifiedBetweenBtn1;
+  QToolButton* modifiedBetweenBtn2;
+  QToolButton* notModifiedAfterBtn;
+  
+  QLineEdit* notModifiedAfterData;
+  QLineEdit* modifiedInTheLastData;
+  QLineEdit* notModifiedInTheLastData;
+  QComboBox* modifiedInTheLastType;
+  QComboBox* notModifiedInTheLastType;
+    
+  QCheckBox* belongsToUserEnabled;
+  QComboBox* belongsToUserData;
+  QCheckBox* belongsToGroupEnabled;
+  QComboBox* belongsToGroupData;
 
-public:  
-  QCheckBox* searchForCase;  
-  QCheckBox* containsTextCase;
-  QCheckBox* containsWholeWord;
-  QCheckBox* searchInDirs;
-  QCheckBox* searchInArchives;
-  QCheckBox* followLinks;
-    
-  KHistoryCombo* searchFor;
-  KHistoryCombo* containsText;
-    
-  KComboBox* ofType;
+  QCheckBox* permissionsEnabled;
   
-  KLineEdit* searchInEdit;
-  KLineEdit* dontSearchInEdit;
-    
-  QListBox* searchIn;
-  QListBox* dontSearchIn;
-    
-  QToolButton* searchInBtn;
-  QToolButton* searchInBtnAdd;
-  QToolButton* dontSearchInBtn;
-  QToolButton* dontSearchInBtnAdd;
+  QComboBox* ownerW;
+  QComboBox* ownerR;
+  QComboBox* ownerX;
+  QComboBox* groupW;
+  QComboBox* groupR;
+  QComboBox* groupX;
+  QComboBox* allW;
+  QComboBox* allX;
+  QComboBox* allR;
 
-  KShellCompletion completion;
+private:
+  void changeDate(QLineEdit *p);
+  void fillList(QComboBox *list, QString filename);  
+  void qdate2time_t(time_t *dest, QDate d, bool start);
+  void invalidDateMessage(QLineEdit *p);
 };
 
-#endif /* GENERALFILTER_H */
+#endif /* ADVANCEDFILTER_H */

@@ -58,9 +58,6 @@ public slots:
   void stopSearch();
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
   void closeDialog();
-  void modifiedBetweenSetDate1();
-  void modifiedBetweenSetDate2();
-  void notModifiedAfterSetDate();
   void resultClicked(QListViewItem*);
 
   virtual void keyPressEvent(QKeyEvent *e);
@@ -72,8 +69,6 @@ protected slots:
 
 private:
   void refreshSavedSearches();
-  void invalidDateMessage(QLineEdit *p);
-  void fillList(QComboBox *list, QString filename);
   bool gui2query();
   void editCurrent();
   void viewCurrent();

@@ -71,37 +71,6 @@
 #include <qcursor.h>
 #include <qclipboard.h>
 
-// private functions - used as services /////////////////////
-void changeDate(QLineEdit *p) {
-  // check if the current date is valid
-  QDate d = KGlobal::locale()->readDate(p->text());
-  if (!d.isValid()) d = QDate::currentDate();
-
-  KRGetDate *gd = new KRGetDate(d);
-  d = gd->getDate();
-  // if a user pressed ESC or closed the dialog, we'll return an invalid date
-  if (d.isValid())
-    p->setText(KGlobal::locale()->formatDate(d, true));
-  delete gd;
-}
-
-// bool start: set it to true if this date is the beginning of the search,
-// if it's the end, set it to false
-void qdate2time_t(time_t *dest, QDate d, bool start) {
-  struct tm t;
-  t.tm_sec   = (start ? 0 : 59);
-  t.tm_min   = (start ? 0 : 59);
-  t.tm_hour  = (start ? 0 : 23);
-  t.tm_mday  = d.day();
-  t.tm_mon   = d.month() - 1;
-  t.tm_year  = d.year() - 1900;
-  t.tm_wday  = d.dayOfWeek() - 1; // actually ignored by mktime
-  t.tm_yday  = d.dayOfYear() - 1; // actually ignored by mktime
-  t.tm_isdst = -1; // daylight saving time information isn't availble
-
-  (*dest) = mktime( &t );
-}
-
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog(QWidget *parent, const char *name ) :
                 KrSearchBase(parent,name), query(0), searcher(0) {
@@ -118,19 +87,9 @@ KrSearchDialog::KrSearchDialog(QWidget *parent, const char *name ) :
 KrSearchDialog::~KrSearchDialog(){
 }
 
-void KrSearchDialog::invalidDateMessage(QLineEdit *p) {
-	KMessageBox::detailedError(0, i18n("Invalid date entered."),
-                             i18n("The date '") + p->text() + i18n("' is not valid according to your locale.\n"
-                             "Please re-enter a valid date (use the date button of easy access)."));
-
-	TabWidget2->setCurrentPage(1); // set page to advanced
-  p->setFocus();
-}
-
 void KrSearchDialog::prepareGUI() {
   //=======> to be moved ...
   resultsList->setSorting(1); // sort by location
-  belongsToUserData->setEditable(false); belongsToGroupData->setEditable(false);
   // ========================================
 
 
@@ -155,10 +114,6 @@ void KrSearchDialog::prepareGUI() {
   // the path in the active panel should be the default search location
   QString path = krApp->mainView->activePanel->getPath();
   generalFilter->searchInEdit->setText(path);
-
-  // fill the users and groups list
-  fillList(belongsToUserData, USERSFILE);
-  fillList(belongsToGroupData, GROUPSFILE);
 
   // fill the saved searches list
   refreshSavedSearches();
@@ -206,124 +161,12 @@ bool KrSearchDialog::gui2query() {
     return false;
   }
   
-  // size calculations ////////////////////////////////////////////////
-  if ( biggerThanEnabled->isChecked() &&
-      !(biggerThanAmount->text().simplifyWhiteSpace()).isEmpty() ) {
-    query->minSize = biggerThanAmount->text().toULong();
-    switch (biggerThanType->currentItem()) {
-      case 1 : query->minSize *= 1024;
-               break;
-      case 2 : query->minSize *= (1024*1024);
-               break;
-    }
-  }
-  if ( smallerThanEnabled->isChecked() &&
-      !(smallerThanAmount->text().simplifyWhiteSpace()).isEmpty()) {
-    query->maxSize = smallerThanAmount->text().toULong();
-    switch (smallerThanType->currentItem()) {
-      case 1 : query->maxSize *= 1024;
-               break;
-      case 2 : query->maxSize *= (1024*1024);
-               break;
-    }
-  }
-  // check that minSize is smaller than maxSize
-  if ((query->minSize > 0) && (query->maxSize > 0) && (query->maxSize < query->minSize)) {
-		KMessageBox::detailedError(0, i18n("Specified sizes are inconsistent !"),
-      i18n("Please re-enter the values, so that the leftmost size will\n"
-           "be smaller (or equal) to the right size."));
-		TabWidget2->setCurrentPage(1); // set page to advanced
-    biggerThanAmount->setFocus();
+  if( !advancedFilter->fillQuery( query ) )
+  {
+    TabWidget2->setCurrentPage(1); // set page to general
     return false;
   }
-
-  // date calculations ////////////////////////////////////////////////////
-  if (modifiedBetweenEnabled->isChecked()) {
-    // first, if both dates are empty, than don't use them
-    if ( !(modifiedBetweenData1->text().simplifyWhiteSpace().isEmpty() &&
-          modifiedBetweenData2->text().simplifyWhiteSpace().isEmpty()) ) {
-      // check if date is valid
-      QDate d1 = KGlobal::locale()->readDate(modifiedBetweenData1->text());
-      if (!d1.isValid()) { invalidDateMessage(modifiedBetweenData1); return false; }
-      QDate d2 = KGlobal::locale()->readDate(modifiedBetweenData2->text());
-      if (!d2.isValid()) { invalidDateMessage(modifiedBetweenData2); return false; }
-
-      if (d1 > d2) {
-        KMessageBox::detailedError(0, i18n("Dates are inconsistent !"),
-          i18n("The date on the left side is later than the date on the right.\n"
-               "Please re-enter the dates, so that the leftmost date will be\n"
-               "earlier than the right one."));
-        TabWidget2->setCurrentPage(1); // set page to advanced
-        modifiedBetweenData1->setFocus();
-        return false;
-      }
-      // all seems to be ok, create time_t
-      qdate2time_t(&(query->newerThen), d1, true);
-      qdate2time_t(&(query->olderThen), d2, false);
-    }
-  } else if (notModifiedAfterEnabled->isChecked()) {
-    if ( !notModifiedAfterData->text().simplifyWhiteSpace().isEmpty() ) {
-      QDate d = KGlobal::locale()->readDate(notModifiedAfterData->text());
-      if (!d.isValid()) { invalidDateMessage(notModifiedAfterData); return false; }
-      qdate2time_t(&(query->olderThen), d, false);
-    }
-  } else if (modifiedInTheLastEnabled->isChecked()) {
-    if ( !(modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() &&
-          notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty()) ) {
-      QDate d1 = QDate::currentDate(); QDate d2 = QDate::currentDate();
-      if (!modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty()) {
-        int tmp1 = modifiedInTheLastData->text().simplifyWhiteSpace().toInt();
-        switch (modifiedInTheLastType->currentItem()) {
-          case 1 : tmp1 *= 7;
-                   break;
-          case 2 : tmp1 *= 30;
-                   break;
-          case 3 : tmp1 *= 365;
-                   break;
-        }
-        d1 = d1.addDays((-1) * tmp1);
-        qdate2time_t(&(query->newerThen), d1, true);
-      }
-      if (!notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty()) {
-        int tmp2 = notModifiedInTheLastData->text().simplifyWhiteSpace().toInt();
-        switch (notModifiedInTheLastType->currentItem()) {
-          case 1 : tmp2 *= 7;
-                   break;
-          case 2 : tmp2 *= 30;
-                   break;
-          case 3 : tmp2 *= 365;
-                   break;
-        }
-        d2 = d2.addDays((-1) * tmp2);
-        qdate2time_t(&(query->olderThen), d2, true);
-      }
-      if ( !modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() &&
-           !notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() ) {
-        if (d1 > d2) {
-          KMessageBox::detailedError(0, i18n("Dates are inconsistent !"),
-            i18n("The date on the top is later than the date on the bottom.\n"
-                 "Please re-enter the dates, so that the top date will be\n"
-                 "earlier than the bottom one."));
-          TabWidget2->setCurrentPage(1); // set page to advanced
-          modifiedInTheLastData->setFocus();
-          return false;
-        }
-      }
-    }
-  }
-
-  // permissions and ownership /////////////////////////////////////
-  if (permissionsEnabled->isChecked()) {
-    QString perm = ownerR->currentText() + ownerW->currentText() + ownerX->currentText() +
-                   groupR->currentText() + groupW->currentText() + groupX->currentText() +
-                   allR->currentText()   + allW->currentText()   + allX->currentText();
-    query->perm = perm;
-  }
-  if (belongsToUserEnabled->isChecked())
-    query->owner = belongsToUserData->currentText();
-  if (belongsToGroupEnabled->isChecked())
-    query->group = belongsToGroupData->currentText();
-
+  
   return true;
 }
 
@@ -382,33 +225,6 @@ void KrSearchDialog::stopSearch() {
   mainCloseBtn->setEnabled(true);
   mainStopBtn->setEnabled(false);
   searchingLabel->setText(i18n("Finished searching."));
-}
-
-void KrSearchDialog::modifiedBetweenSetDate1() {
-  changeDate(modifiedBetweenData1);
-}
-
-void KrSearchDialog::modifiedBetweenSetDate2() {
-  changeDate(modifiedBetweenData2);
-}
-
-void KrSearchDialog::notModifiedAfterSetDate() {
-  changeDate(notModifiedAfterData);
-}
-
-void KrSearchDialog::fillList(QComboBox *list, QString filename) {
-  QFile data(filename);
-	if (!data.open(IO_ReadOnly)) {
-    kdWarning() << "Search: Unable to read " << filename << " !!!" << endl;
-    return;
-  }
-  // and read it into the temporary array
-	QTextStream t(&data);
-  while (!data.atEnd()) {
-    QString s = t.readLine();
-    QString name = s.left(s.find(':'));
-    list->insertItem(name);
-  }
 }
 
 void KrSearchDialog::resultClicked(QListViewItem* i) {

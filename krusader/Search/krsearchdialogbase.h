@@ -10,6 +10,7 @@
 #define KRSEARCHBASE_H
 
 #include "generalfilter.h"
+#include "advancedfilter.h"
 
 #include <qvariant.h>
 #include <qdialog.h>
@@ -45,56 +46,14 @@ public:
     KrSearchBase( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, WFlags fl = 0 );
     ~KrSearchBase();
 
-    GeneralFilter *generalFilter;
+    GeneralFilter  *generalFilter;
+    AdvancedFilter *advancedFilter;
+    
     QPushButton* mainHelpBtn;
     QPushButton* mainSearchBtn;
     QPushButton* mainStopBtn;
     QPushButton* mainCloseBtn;
     QTabWidget* TabWidget2;
-    QWidget* tab_2;
-    QGroupBox* GroupBox29;
-    QCheckBox* smallerThanEnabled;
-    QLineEdit* smallerThanAmount;
-    KComboBox* smallerThanType;
-    QCheckBox* biggerThanEnabled;
-    KComboBox* biggerThanType;
-    QLineEdit* biggerThanAmount;
-    QButtonGroup* ButtonGroup2;
-    QLineEdit* modifiedBetweenData1;
-    QToolButton* modifiedBetweenBtn1;
-    QLabel* TextLabel2_2;
-    QLineEdit* modifiedBetweenData2;
-    QToolButton* modifiedBetweenBtn2;
-    QToolButton* notModifiedAfterBtn;
-    QLineEdit* notModifiedAfterData;
-    QRadioButton* modifiedInTheLastEnabled;
-    QLineEdit* modifiedInTheLastData;
-    QComboBox* modifiedInTheLastType;
-    QComboBox* notModifiedInTheLastType;
-    QLineEdit* notModifiedInTheLastData;
-    QLabel* TextLabel3_2;
-    QRadioButton* notModifiedAfterEnabled;
-    QLabel* modifiedInTheLast;
-    QRadioButton* modifiedBetweenEnabled;
-    QGroupBox* GroupBox181;
-    QCheckBox* belongsToUserEnabled;
-    QComboBox* belongsToUserData;
-    QCheckBox* belongsToGroupEnabled;
-    QComboBox* belongsToGroupData;
-    QGroupBox* GroupBox206;
-    QComboBox* ownerW;
-    QComboBox* ownerR;
-    QComboBox* ownerX;
-    QCheckBox* permissionsEnabled;
-    QGroupBox* GroupBox206_2;
-    QComboBox* groupW;
-    QComboBox* groupR;
-    QComboBox* groupX;
-    QGroupBox* GroupBox206_3;
-    QComboBox* allW;
-    QComboBox* allX;
-    QComboBox* allR;
-    QLabel* TextLabel4;
     QWidget* tab_3;
     QLabel* foundLabel;
     KSqueezedTextLabel* searchingLabel;
@@ -102,9 +61,6 @@ public:
 
 public slots:
     virtual void closeDialog();
-    virtual void modifiedBetweenSetDate1();
-    virtual void modifiedBetweenSetDate2();
-    virtual void notModifiedAfterSetDate();
     virtual void resultClicked(QListViewItem*);
     virtual void rightClickMenu(QListViewItem*, const QPoint&, int);
     virtual void startSearch();
@@ -113,9 +69,6 @@ public slots:
 protected:
     QGridLayout* KrSearchBaseLayout;
     QHBoxLayout* Layout9;
-    QGridLayout* tabLayout_2;
-    QGridLayout* ButtonGroup2Layout;
-    QGridLayout* GroupBox181Layout;
     QHBoxLayout* Layout10;
     QGridLayout* tabLayout_3;
     QHBoxLayout* Layout11;
