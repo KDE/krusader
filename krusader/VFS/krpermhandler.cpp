@@ -227,6 +227,7 @@ char KRpermHandler::ftpExecutable( QString fileOwner, QString userName, QString 
 bool KRpermHandler::dirExist(QString path){
 	DIR* dir = opendir(path.local8Bit());
   if(!dir) return false;
+  closedir(dir); // bug fix Karai Csaba (ckarai)
 	return true;
 }
 
@@ -238,14 +239,18 @@ bool KRpermHandler::fileExist(QString fullPath){
 }
 
 bool KRpermHandler::fileExist(QString path, QString name){
-	DIR* dir = opendir(path.local8Bit());
+  if( QDir(path).exists(name) ) return true;
+  DIR* dir = opendir(path.local8Bit());
   if(!dir) return false;
-	struct dirent* dirEnt;
+  struct dirent* dirEnt;
   while( (dirEnt=readdir(dir)) ){
-    if ( dirEnt->d_name == name ) return true;
-	}
-	if( QDir(path).exists(name) ) return true;
-	return false;
+    if ( dirEnt->d_name == name ){
+      closedir(dir);
+      return true;
+    }
+  }
+  closedir(dir);
+  return false;
 }
 
 static QString round(int i) {
