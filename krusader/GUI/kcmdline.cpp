@@ -147,7 +147,7 @@ void KCMDLine::slotRun(const QString &command1) {
     // run in a terminal ???
     if ( terminal->isOn() )
       proc << krConfig->readEntry( "Terminal", _Terminal )
-      << "-e";
+      << "--noclose -e";
     proc << command1;
     proc.start( KProcess::DontCare );
 
