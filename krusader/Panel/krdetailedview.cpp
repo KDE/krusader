@@ -53,23 +53,23 @@ A
 // Group name: KrDetailedView
 //
 // Ext Column
-#define _ExtColumn          true 
+#define _ExtColumn          true
 // Mime Column
-#define _MimeColumn         false 
+#define _MimeColumn         false
 // Size Column
-#define _SizeColumn         true 
+#define _SizeColumn         true
 // DateTime Column
-#define _DateTimeColumn     true 
+#define _DateTimeColumn     true
 // Perm Column
-#define _PermColumn         false 
+#define _PermColumn         false
 // KrPerm Column
-#define _KrPermColumn       true 
+#define _KrPermColumn       true
 // Owner Column
-#define _OwnerColumn        false 
+#define _OwnerColumn        false
 // Group Column
-#define _GroupColumn        false 
+#define _GroupColumn        false
 // Do Quicksearch
-#define _DoQuicksearch      true 
+#define _DoQuicksearch      true
 // Classic Quicksearch
 #define _ClassicQuicksearch true 
 //////////////////////////////////////////////////////////////////////////

@@ -57,17 +57,17 @@ class KrDetailedView : public KListView, public KrView {
                       Permissions = 0x5, KrPermissions = 0x6, Owner = 0x7, Group = 0x8, Unused = 0x9 };
 
     KrDetailedView( QWidget *parent, bool left, KConfig *cfg = krConfig, const char *name = 0 );
-    ~KrDetailedView();
+    virtual ~KrDetailedView();
     virtual int column( ColumnType type );
-    KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
-    KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemBelow() ); }
-    KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemAbove() ); }
-    KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
+    virtual KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
+    virtual KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemBelow() ); }
+    virtual KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemAbove() ); }
+    virtual KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
     virtual KrViewItem *getKrViewItemAt( const QPoint &vp );
     virtual void addItems( vfs *v, bool addUpDir = true );
-    QString getCurrentItem() const;
-    void makeItemVisible( const KrViewItem *item ) { ensureItemVisible( dynamic_cast<const QListViewItem*>( item ) ); }
-    void setCurrentItem( const QString& name );
+    virtual QString getCurrentItem() const;
+    virtual void makeItemVisible( const KrViewItem *item ) { ensureItemVisible( dynamic_cast<const QListViewItem*>( item ) ); }
+    virtual void setCurrentItem( const QString& name );
     virtual void updateView() { triggerUpdate(); emit selectionChanged(); }
     virtual void clear();
     virtual void sort() { KListView::sort(); }
@@ -77,7 +77,7 @@ class KrDetailedView : public KListView, public KrView {
     virtual void saveSettings() { KListView::saveLayout( _config, nameInKConfig() ); }
     virtual void restoreSettings() { KListView::restoreLayout( _config, nameInKConfig() ); }
     virtual QString nameInKConfig() { return _nameInKConfig; }
-    QString itemToFilename( QListViewItem *it ) { return dynamic_cast<KrViewItem*>( it ) ->name(); } //remove
+    virtual QString itemToFilename( QListViewItem *it ) { return dynamic_cast<KrViewItem*>( it ) ->name(); } //remove
     virtual void renameCurrentItem();
 
     ///////////////////////// todo ///////////////////////////////////

@@ -173,8 +173,15 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   filter = ALL;
 }
 
-ListPanel::~ListPanel(){
+ListPanel::~ListPanel() {
   delete func;
+  delete view;
+  delete status;
+  delete bookmarksButton;
+  delete totals;
+  delete quickSearch;
+  delete origin;
+  delete layout;
 }
 
 void ListPanel::slotUpdateTotals() {

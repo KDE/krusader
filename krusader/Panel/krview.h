@@ -139,9 +139,9 @@ public:
 
 
   // todo: what about selection modes ???
+  virtual ~KrView() {}
 protected:
   KrView(KConfig *cfg = krConfig);
-  virtual ~KrView() {}
   static QPixmap getIcon(vfile *vf);
   void changeSelection(const QString& filter, bool select);
 
