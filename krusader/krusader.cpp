@@ -764,13 +764,13 @@ QStringList Krusader::supportedTools() {
    // first, a diff program: kdiff
    if ( KrServices::cmdExist( "kdiff" ) ) {
       tools.append( "DIFF" );
-      tools.append( KrServices::fullPathName( "kdiff", "kompare" ) );
+      tools.append( KrServices::fullPathName( "kdiff", "diff utility" ) );
    } else if ( KrServices::cmdExist( "kompare" ) ) {
       tools.append( "DIFF" );
-      tools.append( KrServices::fullPathName( "kompare" ) );
+      tools.append( KrServices::fullPathName( "kompare", "diff utility" ) );
    } else if ( KrServices::cmdExist( "xxdiff" ) ) {
       tools.append( "DIFF" );
-      tools.append( KrServices::fullPathName( "xxdiff", "kompare" ) );
+      tools.append( KrServices::fullPathName( "xxdiff", "diff utility" ) );
    }
    // a mailer: kmail
    if ( KrServices::cmdExist( "kmail" ) ) {
