@@ -309,9 +309,9 @@ void KMountMan::performAction( int idx ) {
    bool domount = _actions[ idx ].left( 3 ) == "_M_";
    QString mountPoint = _actions[ idx ].mid( 3 );
    if ( !domount ) { // umount
-      unmount( mountPoint, false );
+      unmount( mountPoint);
    } else { // mount
-      mount( mountPoint, false );
+      mount( mountPoint);
    }
 
    // free memory
