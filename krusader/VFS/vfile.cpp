@@ -149,7 +149,7 @@ const KIO::UDSEntry vfile::vfile_getEntry() {
 	entry.append(atom);
 
 	atom.m_uds = KIO::UDS_GROUP;
-	atom.m_str = vfile_getOwner(); 
+	atom.m_str = vfile_getGroup(); 
 	entry.append(atom);
 
 	atom.m_uds = KIO::UDS_MIME_TYPE;
