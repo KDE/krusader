@@ -67,8 +67,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 bool dfStartFailed = false;
 
-using namespace MountMan;
-
 KMountMan::KMountMan() : QObject(), Ready( false ), Operational( false ),
 outputBuffer( 0 ), tempFile( 0 ), mountManGui( 0 ), mtab( "" ) {
 #if KDE_IS_VERSION(3,2,0)
@@ -456,7 +454,7 @@ KMountMan::mntStatus KMountMan::getStatus( QString mntPoint ) {
 	for ( it = current.begin(); it != current.end(); ++it ) {
       m = *it;
       if (m->mountPoint() == mntPoint)
-			return KMountMan::MOUNTED;
+			return MOUNTED;
 	}
 	
 	// 2: is it a mount point but not mounted?
@@ -464,12 +462,12 @@ KMountMan::mntStatus KMountMan::getStatus( QString mntPoint ) {
 	for ( it = possible.begin(); it != possible.end(); ++it ) {
       m = *it;
       if (m->mountPoint() == mntPoint) {
-			return KMountMan::NOT_MOUNTED;
+			return NOT_MOUNTED;
 		}
 	}
 	
 	// 3: unknown
-	return KMountMan::DOESNT_EXIST;
+	return DOESNT_EXIST;
 }
 
 QString KMountMan::getDevice( QString mntPoint ) {
@@ -731,12 +729,29 @@ void KMountMan::unmount( fsData *p ) {
                        i18n( "The error reported was:\n\n" ) + getOutput() );
 }
 
-void KMountMan::toggleMount( QString device ) {
-   fsData * p = location( device );
+void KMountMan::toggleMount( QString mntPoint ) {
+#if 0   
+	fsData * p = location( device );
    // request mountMan to (un)mount something, if he does his job (and he does)
    // we will be notified by signal
    ( p->mounted() ? unmount( p ) : mount( p ) );
+#endif
+	mntStatus status = getStatus(mntPoint);
+	switch (status) {
+		case MOUNTED:
+			unmount(mntPoint);
+			break;
+		case NOT_MOUNTED:
+			mount(mntPoint);
+			break;
+	}
 }
+
+
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
 void KMountMan::autoMount( QString path ) {
    if ( getStatus( path ) == NOT_MOUNTED )
@@ -750,7 +765,6 @@ void KMountMan::eject( QString mntPoint ) {
    if ( !proc.normalExit() || proc.exitStatus() != 0 )         // if we failed with eject
       KMessageBox::information( 0, i18n( "Error ejecting device ! You need to have 'eject' in your path." ), i18n( "Error" ), "CantExecuteEjectWarning" );
 }
-
 
 // returns true if the path is an ejectable mount point (at the moment CDROM)
 bool KMountMan::ejectable( QString path ) {
@@ -767,6 +781,7 @@ bool KMountMan::ejectable( QString path ) {
 
    return false;
 }
+
 
 // a mountMan special version of KIO::convertSize, which deals
 // with large filesystems ==> >4GB, it actually recieve size in
@@ -800,6 +815,7 @@ QString KMountMan::convertSize( KIO::filesize_t size ) {
    }
    return s;
 }
+
 
 // populate the pop-up menu of the mountman tool-button with actions
 void KMountMan::quickList() {
@@ -878,4 +894,5 @@ void KMountMan::performAction( int idx ) {
 #endif /* KDE 3.2 */
 
 }
+
 
