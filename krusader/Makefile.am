@@ -3,12 +3,12 @@ bin_PROGRAMS = krusader
 
 ## INCLUDES were found outside kdevelop specific part
 
-krusader_SOURCES = krservices.cpp main.cpp krusaderview.cpp krusader.cpp krslots.cpp kicons.cpp 
+krusader_SOURCES = krservices.cpp main.cpp krusaderview.cpp krusader.cpp krslots.cpp kicons.cpp
 krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./GUI/libGUI.a ./Konfigurator/libKonfigurator.a ./KViewer/libKViewer.a ./MountMan/libMountMan.a ./Panel/libPanel.a ./RemoteMan/libRemoteMan.a ./VFS/libVFS.a ./Search/libSearch.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) $(LIBSOCKET)
 
-SUBDIRS = BookMan Dialogs GUI Konfigurator KViewer MountMan Panel RemoteMan VFS Search 
+SUBDIRS = BookMan Dialogs GUI Konfigurator KViewer MountMan Panel RemoteMan VFS Search
 
-EXTRA_DIST = krusader.desktop lo32-app-krusader.png lo16-app-krusader.png defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h krusaderui.rc krusaderview.cpp krusaderview.h lo32-app-krusader2.png main.cpp resources.h x-ace.desktop krservices.cpp krservices.h 
+EXTRA_DIST = krusader.desktop lo32-app-krusader.png lo16-app-krusader.png defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h krusaderui.rc krusaderview.cpp krusaderview.h lo32-app-krusader2.png main.cpp resources.h x-ace.desktop krservices.cpp krservices.h
 
 install-data-local:
 	$(mkinstalldirs) $(kde_appsdir)/Applications/
@@ -59,23 +59,23 @@ INCLUDES= $(all_includes)
 
 METASOURCES = AUTO
 
-# the library search path. 
+# the library search path.
 krusader_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 # Uncomment the following two lines if you add a ui.rc file for your application to make use of
 # KDE´s XML GUI builing
-#rcdir = $(kde_datadir)/krusader
-#rc_DATA = krusaderui.rc
+rcdir = $(kde_datadir)/krusader
+rc_DATA = krusaderui.rc
 
 #WARNING: if you use a ui.rc file above, use:
 
 # messages: rc.cpp
 
-# instead of 
+# instead of
 
 # messages:
 
-messages: 
+messages: rc.cpp
 	LIST=`find . -name \*.h -o -name \*.hh -o -name \*.H -o -name \*.hxx -o -name \*.hpp -o -name \*.cpp -o -name \*.cc -o -name \*.cxx -o -name \*.ecpp -o -name \*.C`; \
 	if test -n "$$LIST"; then \
 	 $(XGETTEXT) $$LIST -o $(podir)/krusader.pot; \
