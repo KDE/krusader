@@ -68,6 +68,7 @@ public:
   void copyFiles();
 	void deleteFiles();
   void calcSpace();
+  void calcSpace(QStringList & names, long long & totalSize, long & totalFiles, long & totalDirs);
   void FTPDisconnect();
   void newFTPconnection(QString host=QString::null);
   void changeVFS(QString type, QString origin);
