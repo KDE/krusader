@@ -57,6 +57,7 @@ vfile::vfile(const QString& name,	                  // useful construtor
 	vfile_ownerId=owner;  
 	vfile_group=QString::null;
 	vfile_groupId=group;
+	vfile_userName=QString::null;
 	vfile_perm=perm;
 	vfile_time_t=mtime;
 	vfile_symLink=symLink;
@@ -96,21 +97,21 @@ vfile::vfile(const QString& name,	                  // useful construtor
 }
 
 char vfile::vfile_isReadable() const {
-	if( vfile_owner.isEmpty() )
+	if( vfile_userName.isEmpty() )
 		return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId);
 	else
 		return KRpermHandler::ftpReadable(vfile_userName, vfile_owner, vfile_perm);
 }
 
 char vfile::vfile_isWriteable() const {
-	if( vfile_owner.isEmpty() )
+	if( vfile_userName.isEmpty() )
 		return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId);
 	else
 		return KRpermHandler::ftpWriteable(vfile_userName, vfile_owner, vfile_perm);
 }
 
 char vfile::vfile_isExecutable() const {
-	if( vfile_owner.isEmpty() )
+	if( vfile_userName.isEmpty() )
 		return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
 	else
 		return KRpermHandler::ftpExecutable(vfile_userName, vfile_owner, vfile_perm);
