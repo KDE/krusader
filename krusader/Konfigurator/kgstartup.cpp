@@ -63,6 +63,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   panelsGrid->addWidget( leftPanelLbl, 1, 0 );
   leftOrigin = createComboBox( "Startup", "Left Panel Origin", i18n( "homepage" ), opCombo, 3, panelsGrp, false );
   connect( leftOrigin, SIGNAL( highlighted( int ) ), this, SLOT( slotDisable() ) );
+  connect( leftOrigin, SIGNAL( activated( int ) ), this, SLOT( slotDisable() ) );
   panelsGrid->addWidget( leftOrigin, 1, 1 ); 
   leftPanelLbl2 = new QLabel( i18n( "Homepage:" ), panelsGrp, "leftPanelLbl2" );
   panelsGrid->addWidget( leftPanelLbl2, 1, 2 );
@@ -73,6 +74,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   panelsGrid->addWidget( rightPanelLbl, 2, 0 );
   rightOrigin = createComboBox( "Startup", "Right Panel Origin", i18n( "homepage" ), opCombo, 3, panelsGrp, false );
   connect( rightOrigin, SIGNAL( highlighted( int ) ), this, SLOT( slotDisable() ) );
+  connect( rightOrigin, SIGNAL( activated( int ) ), this, SLOT( slotDisable() ) );
   panelsGrid->addWidget( rightOrigin, 2, 1 );
   rightPanelLbl2 = new QLabel( i18n( "Homepage:" ), panelsGrp, "rightPanelLbl2" );
   panelsGrid->addWidget( rightPanelLbl2, 2, 2 );
