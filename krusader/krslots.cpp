@@ -72,6 +72,7 @@
 #include "Splitter/splitter.h"
 #include "Splitter/combiner.h"
 #include "UserMenu/usermenu.h"
+#include "Panel/panelpopup.h"
 #include "Synchronizer/synchronizergui.h"
 #include "krservices.h"
 
@@ -743,6 +744,23 @@ void KRslots::slotSynchronizeDirs() {
 
   if( refresh )
     REFRESH_BOTH_PANELS;
+}
+
+void KRslots::updatePopupPanel(QListViewItem *it) {
+	// which panel to display on?
+	ListPanel *lp;
+	if (ACTIVE_PANEL->popup->isHidden() &&
+		 ACTIVE_PANEL->otherPanel->popup->isHidden()) return;
+	if (ACTIVE_PANEL->popup->isShown())
+		lp = ACTIVE_PANEL;
+	else if (ACTIVE_PANEL->otherPanel->popup->isShown())
+		lp = ACTIVE_PANEL->otherPanel;
+
+	KrViewItem *item = dynamic_cast<KrViewItem*>(it);
+	KURL url;
+	if (item->name()!="..") // updir
+		url = ACTIVE_FUNC->files()->vfs_getFile(item->name());
+	lp->popup->update(url);
 }
 
 #include "krslots.moc"
