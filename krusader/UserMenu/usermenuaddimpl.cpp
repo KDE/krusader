@@ -62,8 +62,8 @@ void UserMenuAddImpl::accept() {
       else if (collectOutput->isChecked()) type = UserMenuProc::OutputOnly;
 
       emit newEntry( cmdName->text().simplifyWhiteSpace(), cmdLine->text().simplifyWhiteSpace(),
-                     type, separateStderr->isChecked(), acceptLocalURLs->isChecked() || acceptRemote->isChecked(),
-                     acceptRemote->isChecked(), showEverywhere->isChecked(),
+                     type, separateStderr->isChecked(), acceptURLs->isChecked(),
+                     showEverywhere->isChecked(),
                      QStringList::split(';', showIn->text().simplifyWhiteSpace()));
    }
    UserMenuAdd::accept();

@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>572</width>
-            <height>520</height>
+            <height>492</height>
         </rect>
     </property>
     <property name="caption">
@@ -36,7 +36,7 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QButtonGroup" row="6" column="0" rowspan="1" colspan="3">
+                <widget class="QButtonGroup" row="6" column="0" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>buttonGroup1</cstring>
                     </property>
@@ -95,7 +95,7 @@
                         </widget>
                     </grid>
                 </widget>
-                <widget class="QButtonGroup" row="5" column="0" rowspan="1" colspan="3">
+                <widget class="QButtonGroup" row="5" column="0" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>buttonGroup1_2</cstring>
                     </property>
@@ -108,10 +108,10 @@
                         </property>
                         <widget class="QRadioButton" row="1" column="0" rowspan="1" colspan="2">
                             <property name="name">
-                                <cstring>acceptLocalURLs</cstring>
+                                <cstring>acceptURLs</cstring>
                             </property>
                             <property name="text">
-                                <string>Local files (URLs)</string>
+                                <string>URLs (local and remote)</string>
                             </property>
                         </widget>
                         <widget class="QRadioButton" row="0" column="0">
@@ -125,17 +125,9 @@
                                 <bool>true</bool>
                             </property>
                         </widget>
-                        <widget class="QRadioButton" row="2" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>acceptRemote</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Local and remote files (URLs)</string>
-                            </property>
-                        </widget>
                     </grid>
                 </widget>
-                <widget class="QButtonGroup" row="4" column="0" rowspan="1" colspan="3">
+                <widget class="QButtonGroup" row="4" column="0" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>buttonGroup1_3</cstring>
                     </property>
@@ -186,7 +178,7 @@
                         </widget>
                     </grid>
                 </widget>
-                <widget class="QToolButton" row="3" column="2">
+                <widget class="QToolButton" row="3" column="1">
                     <property name="name">
                         <cstring>addButton</cstring>
                     </property>
@@ -202,7 +194,7 @@
                         <string>Add</string>
                     </property>
                 </widget>
-                <widget class="QLabel" row="2" column="0" rowspan="1" colspan="2">
+                <widget class="QLabel" row="2" column="0">
                     <property name="name">
                         <cstring>textLabel1</cstring>
                     </property>
@@ -218,7 +210,7 @@
                         <string>Name</string>
                     </property>
                 </widget>
-                <widget class="KLineEdit" row="3" column="0" rowspan="1" colspan="2">
+                <widget class="KLineEdit" row="3" column="0">
                     <property name="name">
                         <cstring>cmdLine</cstring>
                     </property>

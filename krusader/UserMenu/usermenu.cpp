@@ -65,19 +65,20 @@ UMCmd UserMenu::expressions[ UserMenu::numOfExps ] = {
 #define OTHER     krApp->mainView->activePanel->otherPanel
 #define GETPANEL  (str.lower()[1]=='a' ? ACTIVE : OTHER)
 
-QString UserMenu::exp_p( const QString& str ) {
-   return GETPANEL->func->files()->vfs_getOrigin().path();
+QString UserMenu::exp_p( const QString& str, const bool& useUrl ) {
+   if (useUrl) return GETPANEL->func->files()->vfs_getOrigin().url();
+   else return GETPANEL->func->files()->vfs_getOrigin().path();
 }
 
-QString UserMenu::exp_anf( const QString& str ) {
+QString UserMenu::exp_anf( const QString& str, const bool& useUrl ) {
    return QString("%1").arg(GETPANEL->view->numFiles());
 }
 
-QString UserMenu::exp_and( const QString& str ) {
+QString UserMenu::exp_and( const QString& str, const bool& useUrl ) {
    return QString("%1").arg(GETPANEL->view->numDirs());
 }
 
-QString UserMenu::exp_an( const QString& str ) {
+QString UserMenu::exp_an( const QString& str, const bool& useUrl ) {
    return QString("%1").arg(GETPANEL->view->numDirs()+GETPANEL->view->numFiles());
 }
 
@@ -86,7 +87,7 @@ void UserMenu::exec() {
    UserMenuEntry cmd = _popup->run();
 
    // replace %% and prepare string
-   cmd = expand( cmd.cmdline );
+   cmd = expand( cmd.cmdline, cmd.acceptURLs );
    //kdWarning() << cmd << endl;
 
    // ............... run the cmd from the shell .............
@@ -103,7 +104,7 @@ void UserMenu::exec() {
    //===> chdir( save.local8Bit() ); // chdir back
 }
 
-QString UserMenu::expand( QString str ) {
+QString UserMenu::expand( QString str, bool useUrl ) {
    QString result = QString::null, exp = QString::null;
    int beg, end, i;
    unsigned int idx = 0;
@@ -120,7 +121,7 @@ QString UserMenu::expand( QString str ) {
       exp = str.mid( beg, end - beg + 1 );
       for ( i = 0; i < numOfExps; ++i )
          if ( str.mid( beg, end - beg + 1 ).replace( 1, 1, '_' ) == expressions[ i ].expression ) {
-            result += ( expressions[ i ].expFunc ) ( exp );
+            result += ( expressions[ i ].expFunc ) ( exp, useUrl );
             break;
          }
       if ( i == numOfExps ) { // didn't find an expander
@@ -166,10 +167,6 @@ UserMenuEntry::UserMenuEntry(QString data) {
    sidx = eidx+1;
    eidx = data.find(',', sidx);
    acceptURLs = data.mid(sidx, eidx-sidx).toInt();
-   // acceptRemote
-   sidx = eidx+1;
-   eidx = data.find(',', sidx);
-   acceptRemote = data.mid(sidx, eidx-sidx).toInt();
    // showEverywhere
    sidx = eidx+1;
    eidx = data.find(',', sidx);
@@ -189,8 +186,8 @@ UserMenuGui::UserMenuGui( UserMenu *menu, QWidget * parent ) : KPopupMenu( paren
 
    // create the 'add entry' gui
    _addgui = new UserMenuAddImpl(menu, this);
-   connect(_addgui, SIGNAL(newEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )),
-               this, SLOT(addEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )));
+   connect(_addgui, SIGNAL(newEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, QStringList )),
+               this, SLOT(addEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, QStringList )));
 }
 
 void UserMenuGui::createMenu() {
@@ -262,7 +259,7 @@ UserMenuEntry UserMenuGui::run() {
 }
 
 void UserMenuGui::addEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
-                  bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn) {
+                  bool acceptURLs, bool showEverywhere, QStringList showIn) {
    // save a new entry in the following form:
    // {"name","cmdline",execType,separateStderr,acceptURLs,acceptRemote,showEverywhere,showIn}
    QString filename = locateLocal( "data", "krusader/krusermenu.dat" );
@@ -270,12 +267,11 @@ void UserMenuGui::addEntry(QString name, QString cmdline, UserMenuProc::ExecType
    QFile file( filename );
    if ( file.open( IO_WriteOnly | IO_Append ) ) {
       QTextStream stream( &file );
-      QString line = QString("{%1,%2,%3,%4,%5,%6,%7,%8}").arg(name)
+      QString line = QString("{%1,%2,%3,%4,%5,%6,%7}").arg(name)
                                                       .arg(cmdline)
                                                       .arg(execType)
                                                       .arg(separateStderr)
                                                       .arg(acceptURLs)
-                                                      .arg(acceptRemote)
                                                       .arg(showEverywhere)
                                                       .arg(showIn.join(";"));
       stream << line << endl;

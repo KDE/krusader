@@ -39,7 +39,7 @@ public slots:
 
 signals:
    void newEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
-                  bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0);
+                  bool acceptURLs, bool showEverywhere, QStringList showIn = 0);
 
 private:
    KPopupMenu *_popup, *_activeSub, *_otherSub;

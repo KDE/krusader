@@ -81,7 +81,7 @@ class UserMenuGui: public KPopupMenu {
 
    protected slots:
       void addEntry( QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
-                     bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0 );
+                     bool acceptURLs, bool showEverywhere, QStringList showIn = 0 );
       void createMenu();
 
    private:
@@ -93,7 +93,7 @@ class UserMenuGui: public KPopupMenu {
 
 // an expander is a function that receives a QString input, expands
 // it and returns a new QString output containing the expanded expression
-typedef QString ( *EXPANDER ) ( const QString& );
+typedef QString ( *EXPANDER ) ( const QString&, const bool& );
 
 // a UMCmd is an entry containing the expression and its expanding function
 typedef struct UserMenuCmd {
@@ -109,7 +109,6 @@ public:
    UserMenuProc::ExecType execType;
    bool separateStderr;
    bool acceptURLs;
-   bool acceptRemote;
    bool showEverywhere;
    QStringList showIn;
 
@@ -130,7 +129,7 @@ class UserMenu : public QWidget {
       * cycle through the input line, replacing every %% expression with valid
       * data from krusader. return the expanded string
       */
-      static QString expand( QString str );
+      static QString expand( QString str, bool useUrl );
 
       UserMenu( QWidget *parent = 0, const char *name = 0 );
 
@@ -139,10 +138,10 @@ class UserMenu : public QWidget {
       static UMCmd expressions[ numOfExps ];
 
    protected:
-      static QString exp_p( const QString& str );
-      static QString exp_anf( const QString& str );
-      static QString exp_and( const QString& str );
-      static QString exp_an( const QString& str );
+      static QString exp_p( const QString& str, const bool& useUrl );
+      static QString exp_anf( const QString& str, const bool& useUrl );
+      static QString exp_and( const QString& str, const bool& useUrl );
+      static QString exp_an( const QString& str, const bool& useUrl );
 
    private:
       UserMenuGui* _popup;
