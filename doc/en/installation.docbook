@@ -2,7 +2,7 @@
 <!-- **********************************************************************
                                installation.docbook
                             ++++++++++++++++++++++++++
-  copyright            : (C) 2000, 2001, 2002, 2003, 2004
+  copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005
                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
                           & the Krusader Krew
   e-mail               : krusader@users.sourceforge.net
@@ -60,7 +60,7 @@
 
 <itemizedlist>
   <listitem>
-     <para>Often &Mandrake;, &feodora; and &SuSE; RPM's are available, sent in by &krusader; users.
+     <para>Often &Mandrake;, &fedora; and &SuSE; RPM's are available, sent in by &krusader; users.
                  There might be some other packages on our website, but that depends on other users contributions.</para>
   </listitem>
   <listitem>
@@ -403,7 +403,7 @@ qt_includes:          /usr/lib/qt3/include
 KDEDIR:               /usr
 QTDIR:                /usr/lib/qt3
 Install path:         /usr/bin
-krusader version:     1.50
+krusader version:     1.51
 krusader binary:      /usr/bin/krusader     (after 'make install')
 Thank you for using Krusader
 
@@ -412,7 +412,7 @@ Good - your configure finished. Start make now
 </screen>
 </para>
 
-<para>This is the output for &Mandrake;-&Linux; 9.2, other distributions may give a different output.</para>
+<para>This is the output for &Mandrake;-&Linux; 10, other distributions may give a different output.</para>
 
 <tip><para>At the end of the <command>./configure</command> script you will find a summary of the most
            important settings, &eg; where the &krusader; binary will be installed (after the
@@ -424,6 +424,8 @@ Good - your configure finished. Start make now
            <option> --prefix=<replaceable>/usr/local</replaceable></option></userinput>.
            In this case the &krusader; binary will be installed in the
            <filename>/usr/local/bin</filename> directory.</para>
+     <para>&SuSE; needs: <userinput><command>./configure</command>
+           <option> --prefix=<replaceable>/opt/kde3</replaceable></option></userinput>.</para>      
      <para>This part will also display a warning if the environment variables &kdeqtdir_lnk; are empty.</para>
 </tip>
 

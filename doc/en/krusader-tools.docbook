@@ -2,7 +2,7 @@
 <!-- **********************************************************************
                             krusader-tools.docbook
                           ++++++++++++++++++++++++++
-  copyright            : (C) 2000, 2001, 2002, 2003, 2004
+  copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005
                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
                           & the Krusader Krew
   e-mail               : krusader@users.sourceforge.net
@@ -1627,9 +1627,21 @@
          <listitem><para>&useraction_parameter; A profile for the search-module</para></listitem>
     </orderedlist>
     </listitem>
-     <listitem><para><userinput>Profile</userinput> - loads a given panel-profile </para>
+     <listitem><para><userinput>Profile</userinput> - loads a given panel-profile</para>
           <orderedlist>
          <listitem><para>&useraction_parameter; A panel-profile</para></listitem>
+    </orderedlist>
+    </listitem>         
+     <listitem><para><userinput>Each</userinput> - splits the commandline into a list. 
+           These commands are executed one after another.</para>
+          <orderedlist>
+         <listitem><para>&useraction_parameter; A list-item (all, all files, all dirs, all selected).</para></listitem>
+    </orderedlist>
+    </listitem>         
+     <listitem><para><userinput>Move</userinput> - Move from source to destination.</para>
+          <orderedlist>
+         <listitem><para>&useraction_parameter; A source</para></listitem>
+         <listitem><para>&useraction_parameter; A destination</para></listitem>
     </orderedlist>
     </listitem>
 </itemizedlist>

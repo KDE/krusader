@@ -1,6 +1,8 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
+  ADDED: Useraction placeholders %_Each% and %_Move(src, dest)%
+  ADDED: PopUp Panel has now a Full Viewer
   ADDED: Shift-DEL will delete a file permanently
   ADDED: inport/export keybindings (konfigurator, look & feel)
   ADDED: kio_krarc.* "Protocol not supported by Krusader" (FAQ)
@@ -25,33 +27,33 @@ Date: 28/11/2004
 
 Richard Holt is now an official memmber of the documentation team.
 Welcome aboard Richard!
-FIXED: many typos fixed - Thanks to Richard Hold
+  FIXED: many typos fixed - Thanks to Richard Hold
 
 1.50.04
 ======================
 Date: 19/11/2004
 
-FIXED: Proof read and fixed spelling etc. - Thanks to Richard Hold
-FIXED: uncommented <?xml version="1.0" ?> in index.docbook
-FIXED: removed some acronym elements, the jade parser does not like them
-FIXED: <imagedata fileref="foo.eps" ...> -> foo.png 
+  FIXED: Proof read and fixed spelling etc. - Thanks to Richard Hold
+  FIXED: uncommented <?xml version="1.0" ?> in index.docbook
+  FIXED: removed some acronym elements, the jade parser does not like them
+  FIXED: <imagedata fileref="foo.eps" ...> -> foo.png 
 REMOVED: bookmanuse.png not used anymore since hanbook 1.00.02
          it was forgotten to delete it in cvs
-ADDED: useraction: Parameter-description for the placeholder
+  ADDED: useraction: Parameter-description for the placeholder
 
 1.50.03
 ======================
 Date: 04/11/2004
 
-FIXED: doc/pics/Makefile.am dit not remove krusader_title.png & 
-       tabbed_browsing.png when running 'make uninstall'
-ADDED: syncdir.png
+  FIXED: doc/pics/Makefile.am dit not remove krusader_title.png & 
+         tabbed_browsing.png when running 'make uninstall'
+  ADDED: syncdir.png
 REMOVED: kglookfeel.png kggeneral.png kgadvanced.png kgarchives.png
          in cvs but not in the html documentation
-ADDED: FAQ does Krusader needs KDE?
+  ADDED: FAQ does Krusader needs KDE?
 UPDATED: required KDElib versions
 UPDATED: Useractions, thanks for the feedback Jonas
-FIXED: Proof read and fixed spelling etc. - Thanks to Mark Eatough
+  FIXED: Proof read and fixed spelling etc. - Thanks to Mark Eatough
 UPDATED-FIXED: many small issues
 
 1.50.02
@@ -66,12 +68,12 @@ UPDATED-FIXED: many small issues
 ======================
 Date: 08/10/2004
 
-ADDED: MacOS-X port, Thanks Jonas
-ADDED: Compare Directories, Thanks Csaba
-ADDED: Konfigurator: arj, lha, kget
-ADDED: Konfigurator: protocols, Thanks Csaba
-ADDED: Faster navigation in bookmarks, Thanks Shie
-ADDED: FAQ How can i disable the default sounds, Thanks thepieman
+  ADDED: MacOS-X port, Thanks Jonas
+  ADDED: Compare Directories, Thanks Csaba
+  ADDED: Konfigurator: arj, lha, kget
+  ADDED: Konfigurator: protocols, Thanks Csaba
+  ADDED: Faster navigation in bookmarks, Thanks Shie
+  ADDED: FAQ How can i disable the default sounds, Thanks thepieman
 UPDATED: Synchronizer, Thanks Csaba
 UPDATED: Usermenu - Useractions, Thanks Jonas
 UPDATED: New TODO forum and NEWS forum
@@ -81,13 +83,13 @@ UPDATED-FIXED: many small issues
 ======================
 Date: 15/08/2004
 
-ADDED: Synchronizer: multiple include/exclude filter example
-ADDED: Dropping URL's onto the status bar / totals line, Thanks Csaba
-ADDED: FAQ IRC channel
-ADDED: FAQ Debian Qt issue, Thanks Eugen Albiker
-ADDED: Sync-browse mode, Thanks Jonas
-ADDED: Usermenu, Thanks Jonas
-ADDED:   3rd hand of krusader, Thanks Shie
+  ADDED: Synchronizer: multiple include/exclude filter example
+  ADDED: Dropping URL's onto the status bar / totals line, Thanks Csaba
+  ADDED: FAQ IRC channel
+  ADDED: FAQ Debian Qt issue, Thanks Eugen Albiker
+  ADDED: Sync-browse mode, Thanks Jonas
+  ADDED: Usermenu, Thanks Jonas
+  ADDED:   3rd hand of krusader, Thanks Shie
 REMOVED: Tree Panel, Quick View Panel  -> is now "3rd hand of krusader"
 REMOVED: <informalexample> docbook entity in installation.sgml
          (gives a double console rectangle in cobination with <screen> under KDE3.2)
@@ -98,7 +100,7 @@ UPDATED-FIXED: many small issues
 Date: 21/07/2004
 Final handbook revision for "Krusader 1.40 stable"
 
-ADDED:   Krusader Handbook logo for the HTML version
+  ADDED: Krusader Handbook logo for the HTML version
 UPDATED: Konfigurator
 UPDATED: Credits
 UPDATED: KIOSlave
@@ -114,7 +116,7 @@ UPDATED-FIXED: many small issues
 1.40.01
 Date: 17/05/2004
 UPDATED: RPM FAQ
-ADDED: FAQ How can i translate Krusader to my native language?
+  ADDED: FAQ How can i translate Krusader to my native language?
 UPDATED-FIXED: many small issues
 
 1.40.00
@@ -123,13 +125,13 @@ Date: 22/04/2004
 FIXED: Proof read and fixed spelling etc. - Thanks to Mark Eatough
 
 1.40.00-beta1  Date: 29/03/2004
-ADDED:   configuring the colors of the panel - Thanks to Heiner Eichmann
-ADDED:   Quickmode for MountMan - Thanks to Shie Erlich
+  ADDED: configuring the colors of the panel - Thanks to Heiner Eichmann
+  ADDED: Quickmode for MountMan - Thanks to Shie Erlich
 UPDATED: Konfigurator screenschots
 
 1.31.01  Date: 04/03/2004
-ADDED:   locate (using-krusader.sgml) - Thanks to Karai Csaba
-ADDED:   Right click menu (using-krusader.sgml)
+  ADDED: locate (using-krusader.sgml) - Thanks to Karai Csaba
+  ADDED: Right click menu (using-krusader.sgml)
 UPDATED: FAQ's "krusaderui.rc" file issue, - Thanks to Karai Csaba
 UPDATED-FIXED: many small issues
 
@@ -140,9 +142,9 @@ From now on the <releaseinfo> tag always matches the Krusader version number tha
 described in the documentation.
 e.g. "Krusader Handbook version 1.31.xx" describes "Krusader version 1.31"
 
-ADDED:   New Quicksearch (using-krusader.sgml) - Thanks to Heiner Eichmann
-ADDED:   Folder history (using-krusader.sgml) - Thanks to Hans Loffler
-ADDED:   appendix: configuration files (installation.sgml)
+  ADDED: New Quicksearch (using-krusader.sgml) - Thanks to Heiner Eichmann
+  ADDED: Folder history (using-krusader.sgml) - Thanks to Hans Loffler
+  ADDED: appendix: configuration files (installation.sgml)
 UPDATED: New Konfigurator (konfigurator.sgml) - Thanks to Karai Csaba
 UPDATED: I try to follow the guidelines of "The KDE DocBook Authors guide"
          but in some cases i don't do that ;-)
@@ -152,9 +154,9 @@ UPDATED: Krviewer (krusader-tools.sgml)
 UPDATED: new package description - Thanks to Jonas B�r
 UPDATED-FIXED: many small issues
 Date: 01.02.2004
-FIXED: Proof read and fixed spelling etc. - Thanks to Mark Eatough
+  FIXED: Proof read and fixed spelling etc. - Thanks to Mark Eatough
 Date: 06.01.2004
-ADDED:   User Menu (commands.sgml) - Thanks to Shie Erlich
+  ADDED: User Menu (commands.sgml) - Thanks to Shie Erlich
 UPDATED: manpage (krusader.1)
 UPDATED: directory synchronisation (moved to krusader-tools.sgml) - Thanks to Karai Csaba
 UPDATED: From: DocBook XML V4.1-Based Variant V1.0//EN
@@ -163,15 +165,15 @@ UPDATED: From: DocBook XML V4.1-Based Variant V1.0//EN
 1.00.05
 ======================
 Date: 21.12.2003
-FIXED:   added package entity for compilation under KDE3.2-beta2 (index.docbook)
-ADDED:   file splitter (using-krusader.sgml)
-ADDED:   directory synchronisation (using-krusader.sgml)
+  FIXED: added package entity for compilation under KDE3.2-beta2 (index.docbook)
+  ADDED: file splitter (using-krusader.sgml)
+  ADDED: directory synchronisation (using-krusader.sgml)
 UPDATED: Commands Reference (commands.sgml)
 UPDATED: install procedure (installation.sgml)
 UPDATED: Questions and Answers (faq.sgml)
 UPDATED: many small issues
-FIXED:   many small issues
-FIXED:   spelling mistakes/typos corrections
+  FIXED: many small issues
+  FIXED: spelling mistakes/typos corrections
          proof reading, thanks to Mark Eatough
 
 1.00.04
@@ -181,10 +183,10 @@ UPDATED: Konfigurator (konfigurator.sgml)
 UPDATED: KruSearcher (krusader-tools.sgml)
 UPDATED: Questions and Answers (faq.sgml) krarc slave issue
          Thanks to Karai Csaba
-ADDED:   Key Bindings (using-krusader.sgml)
-ADDED:   Starting Krusader (installation.sgml)
-ADDED:   Note from the Editors (installation.sgml)
-FIXED:   spelling mistakes/typos corrections
+  ADDED: Key Bindings (using-krusader.sgml)
+  ADDED: Starting Krusader (installation.sgml)
+  ADDED: Note from the Editors (installation.sgml)
+  FIXED: spelling mistakes/typos corrections
          proof reading, thanks to Mark Eatough
 
 1.00.03
@@ -202,14 +204,14 @@ UPDATED: cmdline.png, fnkeys.png, krusader1.png, listpanel.png
 UPDATED: BookMan, bookmanadd.png, bookmanedit.png (krusader-tools.sgml)
 REMOVED: bookmanuse.png (using-krusader.sgml)
 UPDATED: Note: RemoteMan wil be removed (krusader-tools.sgml)
-ADDED:   tabbed browsing, tabbed_browsing.png (using-krusader.sgml)
+  ADDED: tabbed browsing, tabbed_browsing.png (using-krusader.sgml)
 UPDATED: Tree Panel, Quick View Panel,
          Note: is temporarily disabled since Krusader 1.12-beta1 and wil be rewritten, sorry.
 	 small issues, Compare mode (using-krusader.sgml)
 UPDATED: Chapter 3. Command Reference (commands.sgml)
-ADDED:   Questions and Answers (faq.sgml) Samba codepage issue
+  ADDED: Questions and Answers (faq.sgml) Samba codepage issue
          Thanks to Karai Csaba
-ADDED:   krusader_title.png (introduction.sgml)
+  ADDED: krusader_title.png (introduction.sgml)
 UPDATED: Introduction (introduction.sgml)
          Krename, Bookmark, Tabbed Browsing, Root mode, screenshot krusader1.png
 
@@ -219,7 +221,7 @@ Date: 05.10.2003
 UPDATED: installation (installation.sgml)
 UPDATED: Questions and Answers (faq.sgml)
 UPDATED: Credits and License (credits.sgml)
-ADDED:   NOTE: We are busy with updating the The Krusader Handbook. (index.docbook)
+  ADDED: NOTE: We are busy with updating the The Krusader Handbook. (index.docbook)
 UPDATED: small issues,  ex. KDE2.x -> 3.x (index.docbook)
 The Krusader Handbook is now continued and maintained by Frank Schoolmeesters.
 

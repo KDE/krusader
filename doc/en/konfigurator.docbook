@@ -2,7 +2,7 @@
 <!-- **********************************************************************
                             konfigurator.docbook
                           ++++++++++++++++++++++++
-  copyright            : (C) 2000, 2001, 2002, 2003, 2004
+  copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005
                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
                           & the Krusader Krew
   e-mail               : krusader@users.sourceforge.net
@@ -192,7 +192,7 @@ HTML_PARSING-->
          &LMB; selects files - you can click and select multiple files.
          Right-click menu is invoked using a short click on the &RMB;.
          </para></listitem>
-  <listitem><para><guilabel>"&tcmd;"</guilabel>: this way pressing the
+  <listitem><para><guilabel>"&tcmd; mode"</guilabel>: this way pressing the
          &RMB; selects multiple files and the right-click menu is
          invoked by <guilabel>pressing and holding</guilabel> the &RMB;
          The &LMB; does not select, but sets the current file without affecting the current selection.
@@ -209,7 +209,8 @@ HTML_PARSING-->
   <listitem><para><guilabel>"Filelist icon size"</guilabel>: allows you to change the size of the icons in
        the file lists. The available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
   <listitem><para><guilabel>"Extension Column"</guilabel>: if checked,
-                    show the extension field (part after the last dot of the filename).</para></listitem>
+                    show the last part of the filename (part after the last dot) in the Ext Column and not 
+                    as a complete filename in the Name Column like e.g. &konqueror; does.</para></listitem>
   <listitem><para><guilabel>"Permission Column"</guilabel>: if checked,
                     show the full perissions &eg; "-rw-r--r--".</para></listitem>
   <listitem><para><guilabel>"Mimetype Column"</guilabel>: if checked,
@@ -249,7 +250,7 @@ HTML_PARSING-->
 <para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
           of your favourite functions the way you want.</para>
 
-<para>With the <guibutton>"Inport shortcuts"</guibutton> <guibutton>"Export shortcuts"</guibutton> butons you 
+<para>With the <guibutton>"Inport shortcuts"</guibutton> <guibutton>"Export shortcuts"</guibutton> buttons you 
       can load and save a Key-binding profile. 
       This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom Key-bindings.
       The only limitation at this is moment that the global &kde; key-bindings, &krusader; key-bindings who can't 

@@ -2,7 +2,7 @@
 <!-- **********************************************************************
                             using-krusader.docbook
                           +++++++++++++++++++++++++++
-  copyright            : (C) 2000, 2001, 2002, 2003, 2004
+  copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005
                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
                           & the Krusader Krew
   e-mail               : krusader@users.sourceforge.net
@@ -214,19 +214,22 @@
       <guilabel>PopUp Panel</guilabel>.
       This panel has several display modes who can be activated by clicking on the apropriate button
 <itemizedlist>
-   <listitem><para><emphasis><guilabel>Preview</guilabel></emphasis> :
+   <listitem><para><emphasis><guilabel>Preview Panel</guilabel></emphasis> :
              gives a preview of the file that has the focus.
              </para></listitem>
-<listitem><para><emphasis><guilabel>Treeview</guilabel></emphasis> :
+<listitem><para><emphasis><guilabel>Tree Panel</guilabel></emphasis> :
           is used to quickly browse the local directory tree. The panel behaves like the
           list panel but only one directory may be selected at a time and double clicking or pressing
           &Enter; on a directory will open that directory in the active panel.
     It supports drag and drop (copy,move,link).
           </para></listitem>
-<listitem><para><emphasis><guilabel>Quickselect</guilabel></emphasis>:
+<listitem><para><emphasis><guilabel>Quickselect Panel</guilabel></emphasis>:
            select quickely files, &eg; <literal role="extension">*.png</literal> and click on the <guibutton>"Go"</guibutton> button.
      The "floppy" button stores the current selection. The "select group dialog" is also available.
               </para></listitem>
+<listitem><para><emphasis><guilabel>Viewer Panel</guilabel></emphasis> :
+             views a text file, views an image, &etc;.
+             </para></listitem>              
 </itemizedlist>
       If needed you can resize the window &eg; to display better a picture or read the text.
       Click on the arrow down button to close the <guilabel>3rd Hand Panel</guilabel>.
