@@ -154,7 +154,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
     {
-	 {"Look&Feel","With Icons",           true,   i18n( "Use icons in the filenames" ), true ,  ""},
+	 {"Look&Feel","With Icons",           _WithIcons,   i18n( "Use icons in the filenames" ), true ,  ""},
 	 {"Look&Feel","Human Readable Size",  _HumanReadableSize, i18n( "Use human-readable file size" ), true ,  ""},
     };
 

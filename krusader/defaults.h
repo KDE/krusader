@@ -113,6 +113,10 @@
 #define _ShowCurrentItemAlways false
 // Human Readable Size
 #define _HumanReadableSize		true
+// With Icons
+#define _WithIcons          true
+// Single Click Selects
+#define _SingleClickSelects false
 
 /////////////////////// [General]
 // Mimetype Magic /////
@@ -252,5 +256,4 @@
 #define  _BtnDuplicates     true 
 // The singles button is turned on /////////////
 #define  _BtnSingles        true
-
 
