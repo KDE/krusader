@@ -98,7 +98,7 @@
       the right panel. Or a more important logical distinction, the *active* panel and the *inactive* panel. This is the key to making the best use of Krusader!
       The active panel is the one that will accept your mouse and keyboard input. It is the panel *acted upon*. If you choose a command
       from the <guilabel>menu-bar</guilabel> or <guilabel>toolbar</guilabel> the command will
-      act upon the selected files/directories in the active panel and direct the result to the inactive one.  The few exceptions to this mode of operation will be detailed as necessary in the applicable sections of the documentation. 
+      act upon the selected files/directories in the active panel and direct the result to the inactive one.  The few exceptions to this mode of operation will be detailed as necessary in the applicable sections of the documentation.
       You can switch between panels using the &Tab; key or by clicking on the
       <guilabel>Information or Totals labels</guilabel>, or by selecting any file in a panel with the mouse.
       As always: default startup settings can be modified with the &konfigstartpg_lnk;,
@@ -116,7 +116,7 @@
 <title>List Panel</title>
 <para>
     This is the default panel and the one you'll probably use most of the time. This panel shows the
-    contents of one directory which can be local (part of your mounted file systems, 
+    contents of one directory which can be local (part of your mounted file systems,
     either a native file or the files inside an archive) or remote files (accessed via &FTP; or Samba).
     File copy/paste/cut via Clipboard between &konqueror; and &krusader;
     <keycombo action="simul">&Ctrl;<keycap>c</keycap></keycombo>,
@@ -129,10 +129,10 @@
 <para>The following items are available:
    <itemizedlist>
        <listitem><para><emphasis><guibutton>Location Toolbar</guibutton></emphasis> : shows the path the
-	         panel is currently pointing to. If the selected path is too long, it will be automatically 
- 		 shortened and an ellipsis "..." will replace the omitted part of the pathname. 
- 		 When entering archives the path will consist of the 
- 		 "archive name:/directory/archive_filename/the directory inside the archive". 
+	         panel is currently pointing to. If the selected path is too long, it will be automatically
+ 		 shortened and an ellipsis "..." will replace the omitted part of the pathname.
+ 		 When entering archives the path will consist of the
+ 		 "archive name:/directory/archive_filename/the directory inside the archive".
  		 This format makes the paths uniform and easy to read.
                  With a single mouse click you can enter the desired path &eg;
      <itemizedlist>
@@ -219,9 +219,9 @@
 <sect3 id="popup_panel">
 <title>PopUp Panel</title>
 
-<para>This is "&krusader;'s 3rd Hand" or the 3rd Panel, click on the arrow up button on the left of the 
+<para>This is "&krusader;'s 3rd Hand" or the 3rd Panel, click on the up-arrow button on the left of the
       <guilabel>Totals Label</guilabel> or
-      <keycombo action="simul">&Alt;<keycap>Down Arrow</keycap></keycombo> to open the
+      <keycombo action="simul">&Alt;<keycap>Down-Arrow</keycap></keycombo> to open the
       <guilabel>PopUp Panel</guilabel>.
       This panel has several display modes which can be activated by clicking on the apropriate button
 <itemizedlist>
@@ -269,7 +269,7 @@
              </listitem>
   <listitem><para><guibutton>"Root Button (/)"</guibutton>: changes the panel directory to the root directory.</para>
        </listitem>
-  <listitem><para><guibutton>"Sync-browsing Button"</guibutton>: when active, each directory-change in the 
+  <listitem><para><guibutton>"Sync-browsing Button"</guibutton>: when active, each directory-change in the
              specific panel is performed in the other panel, also.</para>
        </listitem>
 </itemizedlist>
@@ -425,7 +425,7 @@
       the Left or Right Panel, the Menu Bar, the Command Line or the Terminal Emulator.
       The panel that has the focus is called the Active Panel. An Active Panel will remain active
       until the other panel receives the focus (&ie;: if the Left Panel was active and you clicked on
-      the Command Line - then the Left Panel remains the Active Panel). 
+      the Command Line - then the Left Panel remains the Active Panel).
       You must deliberately change which panel is active.</para>
 
 <para>The most common way to transfer the focus to a specific panel is to use the mouse to click on that panel.
@@ -473,7 +473,7 @@
       this paragraph mainly explains how to select files in the List Panel filelist.</para>
 
 <para>Moving the cursor is easy. Left-clicking on
-      a file or directory (referred to herein as "elements" meaning, files AND directories) will select it. 
+      a file or directory (referred to herein as "elements" meaning, files AND directories) will select it.
       Here are some useful pointers that will make Krusader even easier to use:
       (assuming you're using &krusader;'s Mouse Selection Mode)
 <itemizedlist>

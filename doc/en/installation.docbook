@@ -26,7 +26,7 @@
 <sect1 id="requirements">
 <title>Requirements</title>
 
-<para>In order to successfully use the most recent &krusader;, you need &kde;libs &gt;= 3.2.x.</para>
+<para>In order to successfully use the most recent &krusader;, you need &kde;libs &gt;= 3.3.x.</para>
 
 <note><para>&krusader; v1.01 needs &kde;libs 2.x.x</para>
       <para>&krusader; v1.02 - 1.40 needs &kde;libs 3.x.x</para>
@@ -84,7 +84,7 @@
      <para>You may also find packages on &Linux; software archives such as &freshmeat_url; or &kde_apps_url;.</para>
   </listitem>
         <listitem>
-     <para>If you can't find a RPM package for your &Linux; distribution,
+     <para>If you can't find an RPM package for your &Linux; distribution,
                  we recommend searching for it with &rpmfind_url; or &rpmpbone_url;.</para>
   </listitem>
 </itemizedlist>
@@ -118,17 +118,17 @@
 
 &dev_cvs_note;
 
-<para>This version has 3 goals:
+<para>The beta release has 3 goals:
   <itemizedlist>
   <listitem>
-     <para>Apply a feature-freeze until the stable is released, only bugs will be fixed.
+     <para>1. Apply a feature-freeze until the stable is released, only bugs will be fixed.
            New features have to wait until the stable is released.</para>
   </listitem>
   <listitem>
-     <para>Obtain feedback from &krusader; users so that we can fix the bugs.</para>
+     <para>2. Obtain feedback from &krusader; users so that we can fix the bugs.</para>
   </listitem>
   <listitem>
-     <para>Give translators the time to update the translations, for the coming stable.
+     <para>3. Give translators the time to update the translations, for the coming stable.
            Please read the &i18nhowto_url;</para>
   </listitem>
   </itemizedlist>
@@ -244,8 +244,8 @@
       and the &faq_lnk;, if this does not solve your problem then
       feel free to ask for help with an &help_request_lnk;.</para></note>
 
-<tip><para>If you install &kdevelop; than (almost) everything that you need to compile &krusader; 
-           will be installed on your computer, BUT please don't use &kdevelop; to compile &krusader; 
+<tip><para>If you install &kdevelop; then (almost) everything that you need to compile &krusader;
+           will be installed on your computer, BUT please don't use &kdevelop; to compile &krusader;
            if you are not a developer (possible automake hell), just follow the next instructions.</para></tip>
 
 <orderedlist>
@@ -676,7 +676,7 @@ foo</screen>
 
 <para><emphasis role="bold">useractions.xml</emphasis></para>
 <para>This file stores the &useractions_lnk; configuration.
-      The file-structure is documentated in doxygen-headers of UserActionXML.</para>
+      The file-structure is documented in doxygen-headers of UserActionXML.</para>
 <para>Location: <filename>~/.kde/share/apps/krusader/useractions.xml</filename></para>
 
 
