@@ -53,7 +53,9 @@
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
 	KListViewItem(parent, after), KrViewItem(vf, parent->properties()) {
-	
+#ifdef FASTER
+	initiated = false;
+#endif	
 	// there's a special case, where if _vf is null, then we've got the ".." (updir) item
 	// in that case, create a special vfile for that item, and delete it, if needed
 	if (!_vf) {
@@ -65,6 +67,9 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
       if ( PROPS->displayIcons )
          setPixmap( COLUMN(Name), FL_LOADICON( "up" ) );
       setSelectable( false );
+#ifdef FASTER
+		initiated = true;
+#endif
 	}
 	
 	repaintItem();
@@ -125,9 +130,11 @@ void KrDetailedViewItem::repaintItem() {
       setText(id, ext);
     }
     setText(COLUMN(Name), name);
+#ifndef FASTER
     // display an icon if needed
     if (PROPS->displayIcons)
       setPixmap(COLUMN(Name),KrView::getIcon(_vf));
+#endif
 }
 
 QString num2qstring(KIO::filesize_t num){
@@ -137,43 +144,17 @@ QString num2qstring(KIO::filesize_t num){
 }
 
 void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align) {
+#ifdef FASTER
+	if (!initiated && !dummyVfile) {
+		// display an icon if needed
+		if (PROPS->displayIcons)
+			setPixmap(COLUMN(Name),KrView::getIcon(_vf));
+		
+		initiated = true;
+	}
+#endif
+  
   QColorGroup _cg(cg);
-/**************** removed new selection mode for now *************************
-  // kdelibs' paintCell //////////////////////////////////////////
-  const QPixmap *pm = listView()->viewport()->backgroundPixmap();
-  if (pm && !pm->isNull())
-  {
-        _cg.setBrush(QColorGroup::Base, QBrush(backgroundColor(), *pm));
-        p->setBrushOrigin( -listView()->contentsX(), -listView()->contentsY() );
-  }
-  else
-  if (isAlternate())
-       if (listView()->viewport()->backgroundMode()==Qt::FixedColor)
-            _cg.setColor(QColorGroup::Background, static_cast< KListView* >(listView())->alternateBackground());
-       else
-        _cg.setColor(QColorGroup::Base, static_cast< KListView* >(listView())->alternateBackground());
-  // end of kdelibs' paintCell ///////////////////////////////////
-
-#define COLOR _cg.color(QColorGroup::Link)
-  // make selected items colored (wincmd style)
-  if (isSelected()) {
-      if (_view->getCurrentKrViewItem() == this) { // selected and current
-         // for visual comfortability, don't color it red if it's
-         // the only file that's selected
-         if (!_view->automaticSelection())
-            _cg.setColor(QColorGroup::HighlightedText, COLOR);
-         else _cg.setColor(QColorGroup::HighlightedText, _cg.color(QColorGroup::Foreground));
-         _cg.setColor(QColorGroup::Highlight, backgroundColor()); //?
-      } else { // selected but not current
-         _cg.setColor(QColorGroup::HighlightedText, COLOR);
-         _cg.setColor(QColorGroup::Highlight, backgroundColor());
-      }
-  } else if (_view->getCurrentKrViewItem() == this) { // current but not selected
-         _cg.setColor(QColorGroup::Base, backgroundColor());
-  } else { // not selected
-
-  }
-*****************************************************************************/
 
    // This is ugly! I had to dublicate KListViewItem::paintCell() code, as the
    // KListViewItem::paintCell() overwrites my color settings. So KrDetailedViewItem::paintCell
