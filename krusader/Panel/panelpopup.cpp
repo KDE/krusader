@@ -1,10 +1,10 @@
 #include "panelpopup.h"
-#include "listpanel.h"
-
-#include <kdebug.h>
-
-
+#include "../kicons.h"
+#include "../Dialogs/krsqueezedtextlabel.h"
+#include "../defaults.h"
+#include "../krslots.h"
 #include <qbuttongroup.h>
+#include <qtoolbutton.h>
 #include <kfiletreeview.h>
 #include <klocale.h>
 #include <qlayout.h>
@@ -13,10 +13,10 @@
 #include <krview.h>
 #include <krviewitem.h>
 #include <qwidgetstack.h>
-#include <kmultitabbar.h>
-#include "../kicons.h"
-#include "../Dialogs/krsqueezedtextlabel.h"
-#include "../defaults.h"
+#include <klineedit.h>
+
+#include <kdebug.h>
+
 
 PanelPopup::PanelPopup( QWidget *parent ) : QWidget( parent ), stack( 0 ), viewer( 0 ), pjob( 0 ) {
    QGridLayout * layout = new QGridLayout(this, 1, 1);
@@ -55,11 +55,18 @@ PanelPopup::PanelPopup( QWidget *parent ) : QWidget( parent ), stack( 0 ), viewe
 	previewBtn->setToggleButton(true);
 	btns->insert(previewBtn, Preview);
 	
+	quickBtn = new QToolButton(this);
+	quickBtn->setPixmap(krLoader->loadIcon( "kr_select", KIcon::Toolbar, 16 ));
+	quickBtn->setFixedSize(20, 20);
+	quickBtn->setToggleButton(true);
+	btns->insert(quickBtn, QuickPanel);
+	
 	layout->addWidget(dataLine,0,0);
 	layout->addWidget(treeBtn,0,1);
 	layout->addWidget(previewBtn,0,2);
+	layout->addWidget(quickBtn,0,3);
 	
-   // create a widget stack on which to put the parts
+	// create a widget stack on which to put the parts
    stack = new QWidgetStack( this );
 
    // create the tree part ----------
@@ -80,7 +87,27 @@ PanelPopup::PanelPopup( QWidget *parent ) : QWidget( parent ), stack( 0 ), viewe
    viewer = new QLabel( i18n( "No preview available" ), stack );
    stack->addWidget( viewer, Preview );
 
-	layout->addMultiCellWidget(stack,1,1,0,2);
+	// create the quick-panel part ----
+	
+	QWidget *quickPanel = new QWidget(stack);
+	QGridLayout *qlayout = new QGridLayout(quickPanel);	
+	// --- quick select
+	QLabel *selectLabel = new QLabel(i18n("Quick Select"), quickPanel);
+	quickSelectEdit = new KLineEdit(quickPanel);
+	connect(quickSelectEdit, SIGNAL(returnPressed(const QString& )),
+		this, SLOT(quickSelect(const QString& )));
+	
+	QToolButton *qselectBtn = new QToolButton(quickPanel);
+	qselectBtn->setText("Go");
+	connect(qselectBtn, SIGNAL(clicked()), this, SLOT(quickSelect()));
+
+	qlayout->addWidget(selectLabel,0,0);
+	qlayout->addWidget(quickSelectEdit,0,1);
+	qlayout->addWidget(qselectBtn,0,2);
+	stack->addWidget(quickPanel, QuickPanel);
+	
+	// -------- finish the layout (General one)
+	layout->addMultiCellWidget(stack,1,1,0,3);
 	
    // raise the tree part
 	treeBtn->setOn(true);
@@ -95,6 +122,12 @@ void PanelPopup::tabSelected( int id ) {
 	switch (id) {
 		case Tree:
 			dataLine->setText("Tree:");
+			break;
+		case Preview:
+			dataLine->setText("Preview:");
+			break;
+		case QuickPanel:
+			dataLine->setText("Quick Select:");
 			break;
 	}
 }
@@ -130,6 +163,8 @@ void PanelPopup::update( KURL url ) {
    }
 }
 
+// ------------------ preview
+
 // called when the preview job got something for us
 void PanelPopup::view( const KFileItem *kfi, const QPixmap& pix ) {
    dataLine->setText(i18n("Preview: ") + kfi->name());
@@ -138,11 +173,23 @@ void PanelPopup::view( const KFileItem *kfi, const QPixmap& pix ) {
 
 // preview job failed here...
 void PanelPopup::failedToView( const KFileItem* ) {
-	dataLine->setText("");
+	dataLine->setText("Preview:");
    dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setText( i18n( "No preview available" ) );
 }
+
+// ------------------- tree
 
 void PanelPopup::treeSelection(QListViewItem*) {
 	emit selection(tree->currentURL());
 	//emit hideMe();
+}
+
+// ------------------- quick panel
+
+void PanelPopup::quickSelect() {
+	SLOTS->markGroup(quickSelectEdit->text(), true);
+}
+
+void PanelPopup::quickSelect(const QString &mask) {
+	SLOTS->markGroup(mask, true);
 }
