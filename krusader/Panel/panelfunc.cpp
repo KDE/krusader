@@ -850,23 +850,18 @@ void ListPanelFunc::properties() {
   panel->getSelectedNames( &names );
   if ( names.isEmpty() )
     return ;  // no names...
-/*
-	KURL::List* urls = files() ->vfs_getFiles( &names );
-  for ( unsigned int i = 0 ; i < urls->count() ; ++i ) {
-    fi.append( new KFileItem( KFileItem::Unknown, KFileItem::Unknown, *( urls->at( i ) ) ) );
-  }
-*/
   KFileItemList fi;
 	fi.setAutoDelete(true);
-	QStringList::Iterator it;
-	for( it = names.begin(); it != names.end(); ++it ){
-  	vfile* vf = files()->vfs_search(*it);
-		if( !vf ) continue;
-		KURL url = files()->vfs_getFile(*it);
-		fi.append( new KFileItem(vf->vfile_getEntry(),url) );
-	}
 
-  // create a new url and get the file's mode
+	KURL::List* urls = files() ->vfs_getFiles( &names );
+  for ( unsigned int i = 0 ; i < urls->count() ; ++i ) {
+    KURL url = (*urls->at(i));
+    vfile* vf = files()->vfs_search( url.fileName() );
+    if( !vf ) continue;
+    fi.append( new KFileItem(vf->vfile_getEntry(),files()->vfs_getOrigin(),false,true) );
+  }
+
+  // Show the properties dialog
   KPropertiesDialog *dlg = new KPropertiesDialog( fi );
   connect( dlg, SIGNAL( applied() ), SLOTS, SLOT( refresh() ) );
 }
