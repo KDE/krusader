@@ -80,6 +80,7 @@ int main(int argc, char *argv[]) {
   aboutData.addCredit("Rafa Munoz","Spanish translation","muror@iespana.es",0);
   aboutData.addCredit("Lukasz Janyst","Polish translation","ljan@wp.pl",0);
   aboutData.addCredit("Kukk Zoltan","Hungarian translation","kukkzoli@freemail.hu",0);
+  aboutData.addCredit("Dmitry Chernyak","Russian translation","chernyak@mail.ru",0);
   aboutData.addCredit("Milan Brabec","the first patch ever !","mbrabec@volny.cz",0);
 
   // Command line arguments ...
