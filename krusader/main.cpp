@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
     "krusader@users.sourceforge.net");
   aboutData.addAuthor("Rafi Yanai","Author", "yanai@users.sourceforge.net");
   aboutData.addAuthor("Shie Erlich","Author", "erlich@users.sourceforge.net");
-  aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "homebass@gmx.net", 0);
+  aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "deschler@users.sourceforge.net", 0);
   aboutData.addAuthor("Karai Csaba", "Developer", "ckarai@users.sourceforge.net", 0);
   aboutData.addAuthor("Frank Schoolmeesters", "Documentation Manager", "frank_schoolmeesters@fastmail.fm", 0);
   aboutData.addCredit("Heiner Eichmann","The 6th Beatle: FreeBSD port, patches and general help", "h.eichmann@gmx.de", 0);
@@ -85,6 +85,7 @@ int main(int argc, char *argv[]) {
   aboutData.addCredit("Lukasz Janyst","Polish translation","ljan@wp.pl",0);
   aboutData.addCredit("Kukk Zoltan","Hungarian translation","kukkzoli@freemail.hu",0);
   aboutData.addCredit("Dmitry Chernyak","Russian translation","chernyak@mail.ru",0);
+  aboutData.addCredit("Milen Ivanov","Bulgarian translation","milen.ivanov@abv.bg",0);
   aboutData.addCredit("Milan Brabec","the first patch ever !","mbrabec@volny.cz",0);
 
   // Command line arguments ...
