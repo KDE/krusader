@@ -31,7 +31,7 @@ public:
 
 	static bool     cmdExist(QString cmdName);
   static QString  detectFullPathName( QString name );
-  static QString  fullPathName( QString name );
+  static QString  fullPathName( QString name, QString confName = QString::null );
 };
 
 #endif

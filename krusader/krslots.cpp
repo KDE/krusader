@@ -125,7 +125,7 @@ void KRslots::sendFileByEmail(QString filename) {
 
   KShellProcess proc;
 
-  if (mailProg == "kmail") {
+  if ( vfs::fromPathOrURL( mailProg ).fileName() == "kmail") {
     proc << "kmail" << "--subject \""+i18n("Sending file: ")+
             filename.mid(filename.findRev('/')+1)+"\"" << QString::null +
             "--attach "+"\"" + filename + "\"";

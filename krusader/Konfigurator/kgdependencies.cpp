@@ -62,20 +62,10 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   KonfiguratorURLRequester *ejectPath = createURLRequester( "Dependencies", "eject", "", general_tab, false );
   pathsGrid->addWidget( ejectPath, 1, 1 );
 
-  addApplication( "kdesu", pathsGrid, 2, general_tab );
-
-  addLabel( pathsGrid, 3, 0, "kmail", general_tab, "kmailName" );
-  KonfiguratorURLRequester *kmailPath = createURLRequester( "Dependencies", "kmail", "", general_tab, false );
-  pathsGrid->addWidget( kmailPath, 3, 1 );
-
-  addLabel( pathsGrid, 4, 0, "kompare", general_tab, "kompareName" );
-  KonfiguratorURLRequester *komparePath = createURLRequester( "Dependencies", "kompare", "", general_tab, false );
-  pathsGrid->addWidget( komparePath, 4, 1 );
-
-  addLabel( pathsGrid, 5, 0, "krename", general_tab, "krenameName" );
-  KonfiguratorURLRequester *krenamePath = createURLRequester( "Dependencies", "krename", "", general_tab, false );
-  pathsGrid->addWidget( krenamePath, 5, 1 );
-
+  addApplication( "kdesu",    pathsGrid, 2, general_tab );
+  addApplication( "kmail",    pathsGrid, 3, general_tab );
+  addApplication( "kompare",  pathsGrid, 4, general_tab );
+  addApplication( "krename",  pathsGrid, 5, general_tab );
   addApplication( "krusader", pathsGrid, 6, general_tab );
 
   addLabel( pathsGrid, 7, 0, "mount", general_tab, "mountName" );
@@ -140,10 +130,10 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
 
 void KgDependencies::addApplication( QString name, QGridLayout *grid, int row, QWidget *parent  )
 {
-  KrServices::fullPathName( name ); /* try to autodetect the full path name */
+  QString dflt = KrServices::fullPathName( name ); /* try to autodetect the full path name */
   addLabel( grid, row, 0, name, parent, (QString( "label:" )+name).ascii() );
 
-  KonfiguratorURLRequester *fullPath = createURLRequester( "Dependencies", name, "", parent, false );
+  KonfiguratorURLRequester *fullPath = createURLRequester( "Dependencies", name, dflt, parent, false );
   connect( fullPath->extension(), SIGNAL( applyManually( QObject *, QString, QString ) ),
            this, SLOT( slotApply( QObject *, QString, QString ) ) );
   grid->addWidget( fullPath, row, 1 );

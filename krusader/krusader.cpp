@@ -652,23 +652,23 @@ QStringList Krusader::supportedTools() {
   // first, a diff program: kdiff
   if ( KrServices::cmdExist( "kdiff" ) ) {
     tools.append( "DIFF" );
-    tools.append( "kdiff" );
+    tools.append( KrServices::fullPathName( "kdiff", "kompare" ) );
   } else if ( KrServices::cmdExist( "kompare" ) ) {
     tools.append( "DIFF" );
-    tools.append( "kompare" );
+    tools.append( KrServices::fullPathName( "kompare" ) );
   } else if ( KrServices::cmdExist( "xxdiff" ) ) {
     tools.append( "DIFF" );
-    tools.append( "xxdiff" );
+    tools.append( KrServices::fullPathName( "xxdiff", "kompare" ) );
   }
   // a mailer: kmail
   if ( KrServices::cmdExist( "kmail" ) ) {
     tools.append( "MAIL" );
-    tools.append( "kmail" );
+    tools.append( KrServices::fullPathName( "kmail" ) );
   }
   // rename tool: krename
   if ( KrServices::cmdExist( "krename" ) ) {
     tools.append( "RENAME" );
-    tools.append( "krename" );
+    tools.append( KrServices::fullPathName( "krename" ) );
   }
 
   return tools;

@@ -60,13 +60,16 @@ QString KrServices::detectFullPathName(QString name)
   return "";
 }
 
-QString KrServices::fullPathName( QString name )
+QString KrServices::fullPathName( QString name, QString confName )
 {
   QString lastGroup = krConfig->group();
   QString supposedName;
 
+  if( confName.isNull() )
+    confName = name;
+
   krConfig->setGroup( "Dependencies" );
-  if( QFile( supposedName = krConfig->readEntry( name, "" )).exists() )
+  if( QFile( supposedName = krConfig->readEntry( confName, "" )).exists() )
   {
     krConfig->setGroup( lastGroup );
     return supposedName;
@@ -78,7 +81,7 @@ QString KrServices::fullPathName( QString name )
     return "";
   }
 
-  krConfig->writeEntry( name, supposedName );
+  krConfig->writeEntry( confName, supposedName );
   krConfig->setGroup( lastGroup );
   return supposedName;
 }
