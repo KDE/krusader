@@ -134,6 +134,11 @@ protected slots:
    void handleDropOnTotals( QDropEvent * );                   // handles drops on the totals line
    void handleDropOnStatus( QDropEvent * );                   // handles drops on the status line
    void startDragging( QStringList, QPixmap );
+	// those handle the in-panel refresh notifications
+	void slotJobStarted(KIO::Job* job);
+	void inlineRefreshInfoMessage( KIO::Job* job, const QString &msg );
+	void inlineRefreshListResult(KIO::Job* job);
+	void inlineRefreshPercent( KIO::Job*, unsigned long );
 
 signals:
    void signalStatus( QString msg );       // emmited when we need to update the status bar

@@ -150,6 +150,8 @@ void ListPanelFunc::openUrl( const KURL& urlIn, const QString& nameToMakeCurrent
 			delete vfsP;
 			vfsP = v; // v != 0 so this is safe
 		}
+		connect( files(), SIGNAL(startJob(KIO::Job* )),
+				panel, SLOT(slotJobStarted(KIO::Job* )));
 		if ( vfsP->vfs_refresh( u ) )
 			break; // we have a valid refreshed URL now
 		// prevent repeated error messages
@@ -172,7 +174,7 @@ void ListPanelFunc::openUrl( const KURL& urlIn, const QString& nameToMakeCurrent
 	         panel, SLOT( slotItemUpdated( vfile* ) ) );
 	connect( files(), SIGNAL( deletedVfile( const QString& ) ),
 	         panel, SLOT( slotItemDeleted( const QString& ) ) );
-
+	
 	// on local file system change the working directory
 	if ( files() ->vfs_getType() == vfs::NORMAL )
 		chdir( files() ->vfs_getOrigin().path().local8Bit() );

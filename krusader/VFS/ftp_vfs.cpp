@@ -168,7 +168,7 @@ bool ftp_vfs::populateVfsList(const KURL& origin,bool showHidden) {
  
   if( !quietMode ){ 
     emit startJob(job);
-    new KrProgress(job);
+    //new KrProgress(job); ==> disabled because of in-panel refresh
   }
 
   while( busy ){

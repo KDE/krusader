@@ -1143,4 +1143,34 @@ void ListPanel::panelInactive() {
 	func->files()->vfs_enableRefresh(false);
 }
 
+void ListPanel::slotJobStarted(KIO::Job* job) {
+	setEnabled(false);
+	// connect to the job interface to provide in-panel refresh notification
+	connect( job, SIGNAL( infoMessage( KIO::Job*, const QString & ) ),
+		SLOT( inlineRefreshInfoMessage( KIO::Job*, const QString & ) ) );
+	connect( job, SIGNAL( percent( KIO::Job*, unsigned long ) ),
+      SLOT( inlineRefreshPercent( KIO::Job*, unsigned long ) ) );
+		
+	connect(job,SIGNAL(result(KIO::Job*)),
+         this,SLOT(inlineRefreshListResult(KIO::Job*)));
+	
+	totals->setText(i18n(">> Reading..."));
+	status->setText(i18n(">> Reading..."));
+}
+
+void ListPanel::inlineRefreshPercent( KIO::Job*, unsigned long perc) {
+	QString msg = QString(">> %1: %2 % complete...").arg(i18n("Reading")).arg(perc);
+	totals->setText(msg);
+	status->setText(msg);
+}
+
+void ListPanel::inlineRefreshInfoMessage( KIO::Job*, const QString &msg ) {
+	totals->setText(">> " + i18n("Reading: ") + msg);
+	status->setText(">> " + i18n("Reading: ") + msg);
+}
+
+void ListPanel::inlineRefreshListResult(KIO::Job*) {
+	setEnabled(true);
+}
+
 #include "listpanel.moc"
