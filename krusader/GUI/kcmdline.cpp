@@ -77,7 +77,7 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
 	historyMenu=new QPopupMenu(this);
 	historyMenu->setFont(KGlobalSettings::generalFont());
   history->setPopup(historyMenu);	
-  history->setPopupDelay(100);
+  history->setPopupDelay(1);
 	connect(historyMenu,SIGNAL(activated(int)),this,
           SLOT(setCmdLineText(int)));	
 	QWhatsThis::add(history,i18n("The history button pops up a menu with the last 20 commands you wrote to the command line. Choose your path..."));
