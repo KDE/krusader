@@ -1,20 +1,21 @@
 # krusader.spec      use rpmbuild to build a Krusader RPM package
-# this spec file works on Mandrake 9.2 for krusader 1.40
+# this spec file works on Mandrake 10.0 for krusader 1.40
 # other distributions may need todo some modifications
 # If you have comments or suggestions about this spec file please send it to
 # <frank_schoolmeesters@fastmail.fm> Krusader Krew.
 # Thanks for your cooperation!
 
-%define beta beta2
+#%define beta beta2
 
 # Package information
 Summary: 	 advanced twin-panel file-manager for KDE 3.x
 Name: 		 krusader
 Version: 	 1.40
-Release: 	 %{beta}.mdk92
-Distribution:	 Mandrake Linux 9.2
-Source0:         %{name}-%{version}-%{beta}.tar.gz
-#Source0: 	 %{name}-%{version}.tar.gz
+#Release: 	 %{beta}.mdk10.0
+Release: 	 mdk10.0
+Distribution:	 Mandrake Linux 10.0
+#Source0:         %{name}-%{version}-%{beta}.tar.gz
+Source0: 	 %{name}-%{version}.tar.gz
 License: 	 GPL
 Group: 		 File tools
 
@@ -61,8 +62,8 @@ You should give it a try.
 %prep
 # changes to the build dir /usr/src/RPM/BUILD/krusader-%version  on Mandrake
 # -q: run quitely
-%setup -q -n %{name}-%{version}-%{beta}
-
+#%setup -q -n %{name}-%{version}-%{beta}
+%setup -q -n %{name}-%{version}
 
 # commands to build the software in /usr/src/RPM/BUILD/krusader-%version on Mandrake
 %build
@@ -96,14 +97,30 @@ export CXXFLAGS=$RPM_OPT_FLAGS
 rm -rf $RPM_BUILD_ROOT
 %makeinstall KDEDIR=$RPM_BUILD_ROOT%{_prefix} kde_minidir=$RPM_BUILD_ROOT%{_miconsdir}
 # menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
+#mkdir -p $RPM_BUILD_ROOT%{_menudir}
 # adds krusader in the KDE menu with the file /usr/lib/menu/krusader on Mandrake
-# Kmenu -> "Applications/File tools" -> krusader
+# Kmenu -> "System/File tools" -> krusader
 # /usr/bin/kdedesktop2mdkmenu.pl is a Mandrake Perl script to generate the Kmenu entry
-kdedesktop2mdkmenu.pl krusader "Applications/File tools"    %{buildroot}/%{_datadir}/applnk/Applications/krusader.desktop                             %{buildroot}/%{_menudir}/krusader
+#kdedesktop2mdkmenu.pl krusader "System/File tools"    %{buildroot}/%{_datadir}/applnk/Applications/krusader.desktop                             %{buildroot}/%{_menudir}/krusader
 
+# menu
+# creates the file /usr/lib/menu/krusader on Mandrake, this adds krusader in the KDE menu
+# in the "System/File tools" section
+mkdir -p %{buildroot}/%{_menudir}
+cat > %{buildroot}/%{_menudir}/%name << EOF
+?package(%name): \
+needs="x11" \
+kde_filename="%name" \
+section="System/File tools" \
+title="%name" \
+icon="%name.png" \
+command="%{_bindir}/%name" \
+kde_command="%name -caption \"%c\" %i %m  " \
+longtitle="%summary" \
+kde_opt="\\\nMiniIcon=%name.png\\\nDocPath=%name/index.html\\\nTerminal=0"
+EOF
 
-
+# obsolete since 1.40 stable
 # removes /usr/share/mimelnk/application/x-ace.desktop on Mandrake
 # because x-ace.desktop is now provided by KDE
 # rm -rf $RPM_BUILD_ROOT/%{_datadir}/mimelnk/application/*.desktop
@@ -207,6 +224,14 @@ rm -rf $RPM_BUILD_ROOT
 #%{_datadir}/mimelnk/application/*.desktop
 
 %changelog
+* Thu Jul 26 2004 Frank Schoolmeesters <frank_schoolmeesters@fastmail.fm>
+- 1.40-mdk10
+  Mandrake 10.0 has changed the KDE-menu entries
+  Former KDE menu entry "Applications/File tools" in Mdk 9.2 is now "System/File tools/"
+  Using now a distro independent script to create create the file "/usr/lib/menu/krusader"
+  and not the Mandrake Perl script kdedesktop2mdkmenu.pl 
+  This adds krusader in the KDE menu in the "System/File tools" section.
+      
 * Fri Jun 25 2004 Frank Schoolmeesters <frank_schoolmeesters@fastmail.fm>
 - 1.40-beta2.mdk92
 - x-ace.desktop is removed in krusader-1.40-beta2/krusader/Makefile.am
