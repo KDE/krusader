@@ -1,7 +1,8 @@
-krusader-cvs-2004-02-11 - Unstable
-==============
+krusader-cvs-Unstable
+=====================
 A list of new features compared to the latest stable (which was 1.30):
 
+* panel level toolbar ('..', '/', '~', '=' buttons), thanks to David Harel 
 * new konfigurator with many new configuration options - thanks to Csaba
 * new quicksearch (like TC) - thanks to Heiner
 * calculate occupied space prints the directory's size (like TC) - thanks to Heiner
@@ -25,7 +26,7 @@ Notice: if you've got bugs to report, please do it using krusader's website, and
 
 
 +--------------------------------------------------------------------------------+
-| To learn what's new, read the Changelog.                                       |
+| To learn what's new, read the Changelog file.                                  |
 | For bug reports, fixes, patches and comments: please read first the            |
 | FAQ section of the Krusader Handbook.                                          |
 | You can reach us by mail krusader@users.sourceforge.net or drop us a note in   |
@@ -39,8 +40,8 @@ Installation
 Check the environment variables KDEDIR - QTDIR.
 
 Unpack the tarball and go to the Krusader source directory.
-If you have done a download from CVS you will have to run the following command to create
-the "./configure" script:
+If you have done a download from CVS you will have to run the following command to
+create the "./configure" script:
 $ make -f  Makefile.cvs
 
 Installation procedure:
@@ -48,16 +49,15 @@ $ ./configure
 $ make
 $ su -c 'make install'
 
-If Krusader is upgraded then upgrade the krusader_source_dir\krusader\krusaderrc.ui file in
-$KDEDIR/share/apps/krusader and ~/.kde/share/apps/krusader
+When you install a Krusader cvs or beta version and if Krusader was previously
+installed on your computer, there is a possibility that you will have to update
+the krusaderui.rc file. please read the faq's for more info.
 
-For general KDE install notes, read the INSTALL file.
 
 Need more help?
-A detailed install procedure is available at:
-http://krusader.sourceforge.net/handbook/compilation.html
-The FAQ's are available at:
-http://krusader.sourceforge.net/handbook/faq.html
+For detailled installation instructions, please read the INSTALL file. 
+Or read it on-line at: http://krusader.sourceforge.net/handbook/installation.html
+The FAQ's are available at: http://krusader.sourceforge.net/handbook/faq.html
 
 
 
@@ -94,23 +94,22 @@ or read it on-line at: http://krusader.sourceforge.net/index.php?nav=help.php
                  There are many things need to be done, please read the TODO file.
                  If you like to write code at a regular base, maybe you like to join the Krusader Krew.
 
-- Translators    Krusader is currently available in 15 languages:
+- Translators    Krusader is currently available in 16 languages:
                  English (done by the Krusader Krew),
-                 Czech, Danish, Dutch, French, German, Hungarian, Italian,
+                 Bulgarian, Czech, Danish, Dutch, French, German, Hungarian, Italian,
                  2x Japanese, Polish, Russian, Slovak, Spanish, Swedish.
                  Some of these translations can use an update, please read the
                  "Krusader translation howto" for the latest information.
                  If you have a new or updated translation, please send it to Dirk.
+                 Please read "For Translators" further below in this file.
 
 - Documentation  Krusader is in need of documentation.
-                 We've started working on it, but help is always welcome.
+                 Help is always welcome.
                  Please contact Frank.
 
 - Faq            If you have a question you want to add to the FAQ's, please let us know.
 
-- Krusader2      As we're "closing in" on version 1.x, we're thinking about Krusader II.
-                 This is a good time to hand in your suggestions, thoughts and wishes - hopefully,
-                 they'll make it into the next generation of file management.
+- Krusader2      Discussions about new features for future Krusader versions.
                  Please use our "Krusader 2" forum.
 
 - Packagers      We are always in need of packagers (preferably for Debian and SuSE).
@@ -119,14 +118,52 @@ or read it on-line at: http://krusader.sourceforge.net/index.php?nav=help.php
 
 For Translators
 ===============
-To extract a .pot file, go to krusader_kde3/
-and do: make -f admin/Makefile.common package-messages
+1.
+Download the latest available version of Krusader with a checkout from CVS.
+Or if you are not familiar with CVS, download the latest Krusader CVS
+sourcecode snapshot (nightly tarball) from
+http://krusader.sourceforge.net/index.php?nav=cvs.php
 
-We have a verry detailed "Krusader translation howto", this allows that even
-beginners or non-programmers can translate Krusader to their native language.
-Look at  http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389
+2.
+Update krusader.pot (translation template file)
+(extracting all the English text from the sourcecode)
+Please don't forget to do this step, otherwise you will translate obsolete messages.
+$ make -f admin/Makefile.common package-messages
+
+3.
+Update foo.po (in the po directory), for existing translations only
+./po/$ msgmerge foo.po krusader.pot --output-file=foo.po
+
+4.
+translate foo.po with Kbabel (Kbabel is easy to use)
+
+5.
+compile foo.po (in the po directory)
+./po/$ msgfmt foo.po --statistics -c -v --output-file=foo.gmo
+
+6.
 If you have a new or updated translation, please send it to Dirk.
 
+TIP
+We have a verry detailed "Krusader translation howto" if you need more info,
+this allows that even beginners or non-programmers can translate Krusader to
+their native language. Please look at
+http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389
+
+
+
+URL's
+=====
+Homepage       http://krusader.sourceforge.net 
+Installation   http://krusader.sourceforge.net/handbook/installation.html
+FAQ's          http://krusader.sourceforge.net/handbook/faq.html
+Documentation  http://krusader.sourceforge.net/handbook/index.html
+Todolist       http://sourceforge.net/tracker/?atid=560746&group_id=6488&func=browse
+Buglist        http://sourceforge.net/tracker/?atid=106488&group_id=6488&func=browse
+Forum          http://krusader.sourceforge.net/phpBB/index.php
+ChangeLog      http://krusader.sourceforge.net/index.php?nav=text.php&note=cvs.changelog&path=dev
+Downloadpages  http://krusader.sourceforge.net/index.php?nav=down.php
+               http://sourceforge.net/project/showfiles.php?group_id=6488
 
 
 The Krusader Krew
@@ -136,13 +173,14 @@ Krusader is developed by a dedicated team of individuals, known as the Krusader 
 - Rafi Yanai,   author <yanai@users.sourceforge.net>
 - Dirk Eschler, webmaster and i18n coordinator <deschler@users.sourceforge.net>
 - Csaba Karai,  developer <ckarai@users.sourceforge.net>
+- Heiner Eichmann, developer <h.eichmann@gmx.de>
 - Frank Schoolmeesters, documentation coordinator <codeknight@users.sourceforge.net>
 - Mark Eatough, Krusader handbook proof reader <markeatough@yahoo.com>
 
 
 
-Package Description:
-====================
+Package Description
+===================
 Krusader is an advanced twin-panel (commander-style) file-manager for KDE 3.x
 (similar to Midnight or Total Commander) but with many extras.
 It provides all the file-management features you could possibly want.
