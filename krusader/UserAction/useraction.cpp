@@ -40,7 +40,10 @@ UserAction::UserAction() {
 }
 
 void UserAction::addKrAction( UserActionProperties* prop ) {
-  _actions.append( new KrAction( prop, krApp->actionCollection() ) );
+  if (prop)
+    _actions.append( new KrAction( prop, krApp->actionCollection() ) );
+  else
+    krOut << "WARNING: got invalid UserActionProperties. Your useractions.xml is may damaged!" << endl;
 }
 
 UserAction::~UserAction() {

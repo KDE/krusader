@@ -75,6 +75,12 @@ public:
   UserActionXML( QString filename );
 
   /**
+   * Checks if the internal QDomDocument is valid
+   * @return true if _doc != 0, else false
+   */
+  bool validDoc();
+  
+  /**
    * Write the actionfile to the original filename (given in the constructor)
    */
   void writeActionDom();

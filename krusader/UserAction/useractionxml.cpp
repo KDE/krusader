@@ -43,6 +43,12 @@ UserActionXML::UserActionXML( QString filename ) {
   getActionDom();
 }
 
+bool UserActionXML::validDoc() {
+   if (_doc)
+      return true;
+   else
+      return false;
+}
 
 void UserActionXML::getActionDom() {
 
@@ -56,6 +62,9 @@ void UserActionXML::getActionDom() {
       // if the content can't be set, the file exists and is NOT an xml-file.
       file.close();
       delete _doc; _doc = 0;
+      //TODO: replace me with a KMessageBox as soon as i18n-freeze is over!
+      krOut << "There is a file called " << _filename << " which does not contain valid UserActions." << endl
+      		<< "Please rename or delete it in order to get proper UserAction support" << endl;
     }
     file.close();
     
@@ -258,6 +267,9 @@ QDomElement UserActionXML::makeActionElement( UserActionProperties *prop ) {
 }
 
 QDomElement* UserActionXML::findActionByName( QString name ) {
+  if (!_doc)
+     return 0;
+
   QDomElement root = _doc->documentElement();
   
   for (QDomNode node = root.firstChild(); !node.isNull(); node = node.nextSibling() ) {

@@ -86,6 +86,8 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
   
   _importXML = 0;
   _workXML = new UserActionXML();
+  if ( ! _workXML->validDoc() )
+    parent->setEnabled(false);
   _needApply = false;
   
   // fill the ListBox with all actions
