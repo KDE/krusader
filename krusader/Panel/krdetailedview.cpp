@@ -124,6 +124,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
   setWidget( this );
 
   // add whatever columns are needed to the listview
+  krConfig->setGroup( "Look&Feel" );
   _withIcons = _config->readBoolEntry( "With Icons", _WithIcons ); // we we display icons ?
   newColumn( Name );  // we always have a name
   setColumnWidthMode( column( Name ), QListView::Manual );
@@ -243,7 +244,8 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
     KListViewItem * item = new KrDetailedViewItem( this, ( QListViewItem* ) 0L, ( vfile* ) 0L );
     item->setText( column( Name ), ".." );
     item->setText( column( Size ), "<DIR>" );
-    item->setPixmap( column( Name ), FL_LOADICON( "up" ) );
+    if( _withIcons )
+      item->setPixmap( column( Name ), FL_LOADICON( "up" ) );
     item->setSelectable( false );
     }
 
@@ -407,6 +409,7 @@ void KrDetailedView::slotClicked( QListViewItem *item ) {
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
 
+  krConfig->setGroup( "Look&Feel" );
   if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
     emit executed( tmp );
     }
@@ -414,6 +417,7 @@ void KrDetailedView::slotClicked( QListViewItem *item ) {
 
 void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
+  krConfig->setGroup( "Look&Feel" );
   if ( !_config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
     if ( !item )
       return ;

@@ -48,6 +48,8 @@ public:
 protected:
   KonfiguratorCheckBoxGroup *cbs;
   
+  QWidget     *tab_panel;
+  
   QGridLayout *toolBarLayout;
   QWidget     *tab_2;
   QGridLayout *keyBindingsLayout;

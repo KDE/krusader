@@ -47,7 +47,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   QTabWidget *tabWidget = new QTabWidget( parent, "tabWidget" );
 
   QWidget *tab = new QWidget( tabWidget, "tab" );
-  tabWidget->insertTab( tab, i18n( "General" ) );
+  tabWidget->insertTab( tab, i18n( "Operation" ) );
 
   QGridLayout *lookAndFeelLayout = new QGridLayout( tab );
   lookAndFeelLayout->setSpacing( 6 );
@@ -62,6 +62,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  ""},
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  ""},
      {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), false,  ""},
+     {"Look&Feel","Single Click Selects", false,              i18n( "Single click executes" ),   false,  ""},
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  ""},
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""},
      {"Look&Feel","Panel level tool bar", _PanelToolBar,   i18n( "Show panel level tool bar" ), true, ""},
@@ -73,27 +74,6 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep1" ), 1, 0 );
 
-  QHBox *hbox = new QHBox( lookFeelGrp, "lookAndFeelHBox1" );
-  new QLabel( i18n( "Panel font:" ), hbox, "lookAndFeelLabel" );
-  createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hbox, true );
-  createSpacer ( hbox );
-  lookFeelGrid->addWidget( hbox, 2, 0 );
-
-  QHBox *hbox2 = new QHBox( lookFeelGrp, "lookAndFeelHBox2" );
-  QLabel *lbl1 = new QLabel( i18n( "Filelist icon size:" ), hbox2, "lookAndFeelLabel2" );
-  lbl1->setMinimumWidth( 230 );
-  KONFIGURATOR_NAME_VALUE_PAIR iconSizes[] =
-    {{ i18n( "16" ),  "16" },
-     { i18n( "22" ),  "22" },
-     { i18n( "32" ),  "32" },
-     { i18n( "48" ),  "48" }};
-  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hbox2, true, true );
-  iconCombo->lineEdit()->setValidator( new QRegExpValidator( QRegExp( "[1-9]\\d{0,1}" ), iconCombo ) );
-  createSpacer ( hbox2 );
-  lookFeelGrid->addWidget( hbox2, 3, 0 );
-
-  lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep1" ), 5, 0 );
-  
   addLabel( lookFeelGrid, 6, 0, i18n( "Mouse Selection Mode:" ),
             lookFeelGrp, "lookAndFeelLabel4" );
             
@@ -109,6 +89,67 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   lookAndFeelLayout->addWidget( lookFeelGrp, 0, 0 );
   
+  //  ---------------------------- PANEL TAB -------------------------------------
+  tab_panel = new QWidget( tabWidget, "tab_panel" );
+  tabWidget->insertTab( tab_panel, i18n( "Panel" ) );
+
+  QGridLayout *panelLayout = new QGridLayout( tab_panel );
+  panelLayout->setSpacing( 6 );
+  panelLayout->setMargin( 11 );
+  QGroupBox *panelGrp = createFrame( i18n( "Panel settings" ), tab_panel, "kgPanelGrp" );
+  QGridLayout *panelGrid = createGridLayout( panelGrp->layout() );
+
+  QHBox *hbox = new QHBox( panelGrp, "lookAndFeelHBox1" );
+  new QLabel( i18n( "Panel font:" ), hbox, "lookAndFeelLabel" );
+  createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hbox, true );
+  createSpacer ( hbox );
+  panelGrid->addWidget( hbox, 0, 0 );
+
+  QHBox *hbox2 = new QHBox( panelGrp, "lookAndFeelHBox2" );
+  QLabel *lbl1 = new QLabel( i18n( "Filelist icon size:" ), hbox2, "lookAndFeelLabel2" );
+  lbl1->setMinimumWidth( 230 );
+  KONFIGURATOR_NAME_VALUE_PAIR iconSizes[] =
+    {{ i18n( "16" ),  "16" },
+     { i18n( "22" ),  "22" },
+     { i18n( "32" ),  "32" },
+     { i18n( "48" ),  "48" }};
+  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hbox2, true, true );
+  iconCombo->lineEdit()->setValidator( new QRegExpValidator( QRegExp( "[1-9]\\d{0,1}" ), iconCombo ) );
+  createSpacer ( hbox2 );
+  panelGrid->addWidget( hbox2, 1, 0 );
+
+  panelGrid->addWidget( createLine( panelGrp, "lookSep2" ), 2, 0 );
+
+  addLabel( panelGrid, 3, 0, i18n( "Fields:" ),
+            panelGrp, "panelLabel" );
+
+  KONFIGURATOR_CHECKBOX_PARAM fields[] =
+  //   cfg_class  cfg_name                default text                                  restart tooltip
+    {{"Look&Feel","Ext Column",           true,   i18n( "Extension Column" ),           true ,  ""},
+     {"Look&Feel","Mime Column",          false,  i18n( "Mimetype Column" ),            true ,  ""},
+     {"Look&Feel","Size Column",          true,   i18n( "Size Column" ),                true ,  ""},
+     {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time Column" ),       true ,  ""},
+     {"Look&Feel","Perm Column",          false,  i18n( "Permission Column" ),          true ,  ""},
+     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission Column" ), true ,  ""},
+     {"Look&Feel","Owner Column",         false,  i18n( "Owner Column" ),               true ,  ""},
+     {"Look&Feel","Group Column",         false,  i18n( "Group Column" ),               true ,  ""},
+    };
+
+  KonfiguratorCheckBoxGroup *flds = createCheckBoxGroup( 0, 4, fields, 8, panelGrp );
+  panelGrid->addWidget( flds, 4, 0 );
+
+  panelGrid->addWidget( createLine( panelGrp, "lookSep3" ), 5, 0 );
+
+  KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
+  //   cfg_class  cfg_name                default text                                  restart tooltip
+    {{"Look&Feel","With Icons",           true,   i18n( "Use icons in the filenames" ), true ,  ""},
+    };
+
+  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 1, 0, panelSettings, 1, panelGrp );
+  panelGrid->addWidget( panelSett, 6, 0 );
+  
+  panelLayout->addWidget( panelGrp, 0, 0 );
+
   //  ---------------------------- TOOLBAR TAB -------------------------------------
   tab_2 = new QWidget( tabWidget, "tab_2" );
   tabWidget->insertTab( tab_2, i18n( "Toolbar" ) );
