@@ -1,23 +1,23 @@
 /***************************************************************************
-                              krusader.cpp
-                           -------------------
-  copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
-  e-mail               : krusader@users.sourceforge.net
-  web site             : http://krusader.sourceforge.net
+                             krusader.cpp
+                          -------------------
+ copyright            : (C) 2000 by Shie Erlich & Rafi Yanai
+ e-mail               : krusader@users.sourceforge.net
+ web site             : http://krusader.sourceforge.net
 ---------------------------------------------------------------------------
 Description 
 ***************************************************************************
 
 A 
 
-   db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
-   88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
-   88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
-   88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
-   88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
-   YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
+  db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
+  88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
+  88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
+  88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
+  88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
+  YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                   S o u r c e    F i l e
+                                                  S o u r c e    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -41,6 +41,8 @@ A
 #include <kglobal.h>
 #include <klocale.h>
 #include <kaccelmanager.h>
+#include <kactionclasses.h>
+#include <kdeversion.h> 
 // QT includes
 #include <qpixmap.h>
 #include <qstringlist.h>
@@ -48,7 +50,7 @@ A
 #include <qprinter.h>
 #include <qprogressdialog.h>
 #include <qvaluelist.h>
-#include <qwhatsthis.h>
+#include <qwhatsthis.h> 
 // Krusader includes
 #include "krusader.h"
 #include "kicons.h"
@@ -121,12 +123,12 @@ bool showTrayIcon = false;
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   // parse command line arguments
-  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+  KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
   QString leftPath, rightPath;
 
-  if (args->isSet("left")) leftPath = args->getOption("left");
+  if ( args->isSet( "left" ) ) leftPath = args->getOption( "left" );
   else leftPath = QString::null;
-  if (args->isSet("right")) rightPath = args->getOption("right");
+  if ( args->isSet( "right" ) ) rightPath = args->getOption( "right" );
   else rightPath = QString::null;
 
   // create the "krusader"
@@ -140,19 +142,19 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
   QString message;
   switch ( config->getConfigState() ) {
-      case KConfigBase::NoAccess :
+    case KConfigBase::NoAccess :
       message = "Krusader's configuration file can't be found. Default values will be used.";
       break;
-      case KConfigBase::ReadOnly :
+    case KConfigBase::ReadOnly :
       message = "Krusader's configuration file is in READ ONLY mode (why is that !?) Changed values will not be saved";
       break;
-      case KConfigBase::ReadWrite :
+    case KConfigBase::ReadWrite :
       message = "";
       break;
-  }
+    }
   if ( message != "" ) {
     KMessageBox::error( krApp, message );
-  }
+    }
 
 
   // register with the dcop server
@@ -175,10 +177,10 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
   // create the main view and set it
   mainView = new KrusaderView( this );
-  mainView->start(leftPath, rightPath);
+  mainView->start( leftPath, rightPath );
 
   // create the user menu
-  userMenu = new UserMenu(this);
+  userMenu = new UserMenu( this );
 
   // setup keyboard accelerators
   setupAccels();
@@ -186,7 +188,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   // create a status bar
   status = new KrusaderStatus( this );
   QWhatsThis::add( status, i18n( "Status bar will show  basic informations "
-				"about file below mouse pointer." ) );
+                                   "about file below mouse pointer." ) );
 
   // This enables Krusader to show a tray icon
   config->setGroup( "Look&Feel" );
@@ -195,7 +197,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
     sysTray = new KSystemTray( this );
     sysTray->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
     sysTray->hide();
-  }
+    }
 
   setCentralWidget( mainView );
   config->setGroup( "Look&Feel" );
@@ -209,7 +211,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
   resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
 
-  if( krConfig->readBoolEntry( "Maximized" ) )
+  if ( krConfig->readBoolEntry( "Maximized" ) )
     showMaximized();
   else
     show();
@@ -221,8 +223,8 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
   // refresh the right and left panels
   mainView->right->func->refresh();
-  mainView->left->func->refresh(); 
-}
+  mainView->left->func->refresh();
+  }
 
 Krusader::~Krusader() {}
 
@@ -242,60 +244,56 @@ bool Krusader::versionControl() {
     if ( !QDir::home().remove( ".kde/share/config/krusaderrc" ) ) {
       KMessageBox::error( krApp, i18n( "Unable to remove your krusaderrc file! Please remove it manually and rerun Krusader." ) );
       exit( 1 );
-    }
+      }
     retval = true;
     config->reparseConfiguration();
-  }
+    }
   // first installation of krusader
   if ( oldVer == 100 ) {
     KMessageBox::information( krApp, i18n( "Welcome to Krusader, as this is your first run, Krusader will now run Konfigurator." ) );
     retval = true;
-  }
+    }
   config->writeEntry( "Version", VERSION );
   config->sync();
   return retval;
-}
+  }
 
 void Krusader::statusBarUpdate( QString& mess ) {
   // change the message on the statusbar for 2 seconds
   statusBar() ->message( mess, 5000 );
-}
+  }
 
 void Krusader::showEvent ( QShowEvent *e ) {
-  if (showTrayIcon)
-  {
+  if ( showTrayIcon ) {
     sysTray->hide();
     show(); // needed to make sure krusader is removed from
-            // the taskbar when minimizing (system tray issue)
+    // the taskbar when minimizing (system tray issue)
+    } else KParts::MainWindow::showEvent( e );
   }
-  else KParts::MainWindow::showEvent(e);
-}
 
 void Krusader::hideEvent ( QHideEvent *e ) {
   bool isModalTopWidget = false;
 
   QWidget *actWnd = qApp->activeWindow();
-  if( actWnd )
+  if ( actWnd )
     isModalTopWidget = actWnd->isModal();
-  
-  if (showTrayIcon && !isModalTopWidget && isMinimized() )
-  {
+
+  if ( showTrayIcon && !isModalTopWidget && isMinimized() ) {
     sysTray->show();
     hide(); // needed to make sure krusader is removed from
-            // the taskbar when minimizing (system tray issue)
+    // the taskbar when minimizing (system tray issue)
+    } else KParts::MainWindow::hideEvent( e );
   }
-  else KParts::MainWindow::hideEvent(e);
-}
 
 void Krusader::moveEvent ( QMoveEvent *e ) {
   oldPos = e->oldPos();
-  KParts::MainWindow::moveEvent(e);
-}
+  KParts::MainWindow::moveEvent( e );
+  }
 
 void Krusader::resizeEvent ( QResizeEvent *e ) {
   oldSize = e->oldSize();
-  KParts::MainWindow::resizeEvent(e);
-}
+  KParts::MainWindow::resizeEvent( e );
+  }
 
 void Krusader::setupAccels() {
   accels = new KAccel( this );
@@ -307,7 +305,7 @@ void Krusader::setupAccels() {
                   Key_F3, SLOTS, SLOT( view() ) );
   // SHIFT+F3
   accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString::null,
-                  SHIFT+Key_F3, SLOTS, SLOT( viewDlg() ) );  
+                  SHIFT + Key_F3, SLOTS, SLOT( viewDlg() ) );
   // F4
   accels->insert( "F4_Edit", i18n( "F4 Edit" ), QString::null,
                   Key_F4, SLOTS, SLOT( edit() ) );
@@ -333,7 +331,7 @@ void Krusader::setupAccels() {
   accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString::null,
                   Key_Tab, mainView, SLOT( panelSwitch() ) );
 
-}
+  }
 
 // <patch> Moving from Pixmap actions to generic filenames - thanks to Carsten Pfeiffer
 void Krusader::setupActions() {
@@ -373,18 +371,18 @@ void Krusader::setupActions() {
   actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), CTRL + Key_Period, SLOTS,
                                        SLOT( toggleHidden() ), actionCollection(), "toggle hidden files" );
   actToggleSwapPanels = new KToggleAction( i18n( "S&wap Panels" ), CTRL + Key_U, SLOTS,
-                                       SLOT( toggleSwapPanels() ), actionCollection(), "toggle swap panels" );
+                        SLOT( toggleSwapPanels() ), actionCollection(), "toggle swap panels" );
   krConfig->setGroup( "Look&Feel" );
   actToggleHidden->setChecked( krConfig->readBoolEntry( "Show Hidden", _ShowHidden ) );
   actToggleSwapPanels->setChecked( false );
 
   // and then the DONE actions
-  actCmdlinePopup = new KAction( i18n("popup cmdline"), 0, CTRL + Key_Slash, SLOTS,
-                     SLOT(cmdlinePopup()), actionCollection(), "cmdline popup");
+  actCmdlinePopup = new KAction( i18n( "popup cmdline" ), 0, CTRL + Key_Slash, SLOTS,
+                                 SLOT( cmdlinePopup() ), actionCollection(), "cmdline popup" );
   /* Shortcut disabled because of the Terminal Emulator bug. */
-  actDirUp = new KAction( i18n("Up"), "up", 0 /*Key_Backspace*/, SLOTS, SLOT(dirUp()), actionCollection(), "dirUp");
-  new KAction( i18n("&Edit new file"), "filenew", SHIFT + Key_F4, SLOTS, SLOT(editDlg()), actionCollection(), "edit_new_file");
-  new KAction( i18n("Start &Root Mode Krusader"), "krusader", ALT + Key_K, SLOTS, SLOT(rootKrusader()), actionCollection(), "root krusader");
+  actDirUp = new KAction( i18n( "Up" ), "up", 0 /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
+  new KAction( i18n( "&Edit new file" ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
+  new KAction( i18n( "Start &Root Mode Krusader" ), "krusader", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
@@ -403,9 +401,9 @@ void Krusader::setupActions() {
   actUnpack = new KAction( i18n( "&Unpack" ), "kr_arc_unpack", ALT + Key_U,
                            SLOTS, SLOT( slotUnpack() ), actionCollection() , "unpack" );
   actSplit = new KAction( i18n( "Sp&lit file" ), "kr_split", CTRL + Key_P,
-                         SLOTS, SLOT( slotSplit() ), actionCollection(), "split" );
+                          SLOTS, SLOT( slotSplit() ), actionCollection(), "split" );
   actCombine = new KAction( i18n( "Com&bine files" ), "kr_combine", CTRL + Key_B,
-                           SLOTS, SLOT( slotCombine() ), actionCollection() , "combine" );
+                            SLOTS, SLOT( slotCombine() ), actionCollection() , "combine" );
   actSelect = new KAction( i18n( "Select &Group" ), "kr_select", CTRL + Key_Plus,
                            SLOTS, SLOT( markGroup() ), actionCollection(), "select group" );
   actSelectAll = new KAction( i18n( "&Select All" ), "kr_selectall", ALT + Key_Plus,
@@ -416,14 +414,22 @@ void Krusader::setupActions() {
                                  SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
   actFTPDisconnect = new KAction( i18n( "Disconnect &From Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
                                   SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
+#if KDE_IS_VERSION(3,2,0)	/* new mountman feature is available in kde 3.2 only! */
+  actMountMan = new KToolBarPopupAction( i18n( "&MountMan" ), "kcmpartitions", ALT + Key_Slash,
+                                         SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
+  connect( ( ( KToolBarPopupAction* ) actMountMan ) ->popupMenu(), SIGNAL( aboutToShow() ),
+           mountMan, SLOT( quickList() ) );
+#else
   actMountMan = new KAction( i18n( "&MountMan" ), "kcmpartitions", ALT + Key_Slash,
                              SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
+#endif /* KDE 3.2 */
+
   actFind = new KAction( i18n( "&Search" ), "filefind", CTRL + Key_S,
                          SLOTS, SLOT( search() ), actionCollection(), "find" );
   actLocate = new KAction( i18n( "&Locate" ), "find", CTRL + Key_L,
-                         SLOTS, SLOT( locate() ), actionCollection(), "locate" );
+                           SLOTS, SLOT( locate() ), actionCollection(), "locate" );
   actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_D,
-                         SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
+                             SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
   actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                            SLOTS, SLOT( invert() ), actionCollection(), "invert" );
   actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,
@@ -448,32 +454,31 @@ void Krusader::setupActions() {
                                 SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
   new KAction( i18n( "Right-click menu" ), Key_Menu,
                SLOTS, SLOT( rightclickMenu() ), actionCollection(), "rightclick menu" );
-  new KAction( i18n( "Right bookmarks" ), ALT+Key_Right,
+  new KAction( i18n( "Right bookmarks" ), ALT + Key_Right,
                SLOTS, SLOT( openRightBookmarks() ), actionCollection(), "right bookmarks" );
-  new KAction( i18n( "Left bookmarks" ), ALT+Key_Left,
+  new KAction( i18n( "Left bookmarks" ), ALT + Key_Left,
                SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
-  new KAction(i18n("History"), ALT+CTRL+Key_Left,
-              SLOTS, SLOT(openLeftHistory()), actionCollection(), "left history");
-  new KAction(i18n("History"), ALT+CTRL+Key_Right,
-              SLOTS, SLOT(openRightHistory()), actionCollection(), "right history");               
-  actNewTab = new KAction(i18n("New tab"), ALT+CTRL+Key_N, SLOTS,
-                          SLOT(newTab()), actionCollection(), "new tab");
-  actDupTab = new KAction(i18n("Duplicate tab"), ALT+CTRL+SHIFT+Key_N, SLOTS,
-                          SLOT(duplicateTab()), actionCollection(), "duplicate tab");
-  actCloseTab = new KAction(i18n("Close tab"), ALT+CTRL+Key_C, SLOTS,
-                          SLOT(closeTab()), actionCollection(), "close tab");
-  actUserMenu = new KAction(i18n("User Menu"), ALT+Key_QuoteLeft, SLOTS,
-                          SLOT(userMenu()), actionCollection(), "user menu");
+  new KAction( i18n( "History" ), ALT + CTRL + Key_Left,
+               SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
+  new KAction( i18n( "History" ), ALT + CTRL + Key_Right,
+               SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
+  actNewTab = new KAction( i18n( "New tab" ), ALT + CTRL + Key_N, SLOTS,
+                           SLOT( newTab() ), actionCollection(), "new tab" );
+  actDupTab = new KAction( i18n( "Duplicate tab" ), ALT + CTRL + SHIFT + Key_N, SLOTS,
+                           SLOT( duplicateTab() ), actionCollection(), "duplicate tab" );
+  actCloseTab = new KAction( i18n( "Close tab" ), ALT + CTRL + Key_C, SLOTS,
+                             SLOT( closeTab() ), actionCollection(), "close tab" );
+  actUserMenu = new KAction( i18n( "User Menu" ), ALT + Key_QuoteLeft, SLOTS,
+                             SLOT( userMenu() ), actionCollection(), "user menu" );
   // and at last we can set the tool-tips
   actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );
   actSelectAll->setToolTip( i18n( "Highlight all the files in the current directory" ) );
   actUnselectAll->setToolTip( i18n( "Remove selection from all highlight files" ) );
-  actMountMan->setToolTip( i18n( "Mount.Man: Krusader's mount-manager. Try it!" ) );
   actKonfigurator->setToolTip( i18n( "Setup Krusader the way you like it" ) );
   actBack->setToolTip( i18n( "Back to the place you came from" ) );
   actRoot->setToolTip( i18n( "ROOT (/)" ) );
   actFind->setToolTip( i18n( "Search for files" ) );
-}
+  }
 
 ///////////////////////////////////////////////////////////////////////////
 //////////////////// implementation of slots //////////////////////////////
@@ -492,7 +497,7 @@ void Krusader::savePosition() {
   mainView->left->view->saveSettings();
   mainView->right->view->saveSettings();
   config->sync();
-}
+  }
 
 void Krusader::saveSettings() {
   toolBar() ->saveSettings( krConfig, "Private" );
@@ -507,7 +512,7 @@ void Krusader::saveSettings() {
     // right panel
     config->writeEntry( "Right Panel Type", i18n( "List" ) );
     config->writeEntry( "Right Panel Origin", i18n( "the last place it was" ) );
-  }
+    }
 
   config->writeEntry( "lastHomeLeft", mainView->left->realPath );
   config->writeEntry( "lastHomeRight", mainView->right->realPath );
@@ -515,7 +520,7 @@ void Krusader::saveSettings() {
   // save size and position
   if ( rememberpos || uisavesettings ) {
     savePosition();
-  }
+    }
 
   // save the gui
   if ( uisavesettings ) {
@@ -524,9 +529,9 @@ void Krusader::saveSettings() {
     config->writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );
     config->writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
     config->writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
-  }
+    }
   config->sync();
-}
+  }
 
 void Krusader::refreshView() {
   delete mainView;
@@ -537,7 +542,7 @@ void Krusader::refreshView() {
   move( krConfig->readPointEntry( "Start Position", _StartPosition ) );
   mainView->show();
   show();
-}
+  }
 
 bool Krusader::queryClose() {
   bool quit = true;
@@ -545,37 +550,37 @@ bool Krusader::queryClose() {
   if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {
     switch ( KMessageBox::warningYesNo( this,
                                         i18n( "Ok to shutdown Krusader ?" ) ) ) {
-        case KMessageBox::Yes :
+      case KMessageBox::Yes :
         quit = true;
         break;
-        case KMessageBox::No :
+      case KMessageBox::No :
         quit = false;
         break;
-        default:
+      default:
         quit = false;
+      }
     }
-  }
-  if (quit) {
+  if ( quit ) {
     // close all open VFS
     //delete krApp->mainView->left->func;
     //delete krApp->mainView->right->func;
     saveSettings();
     delete krApp->mainView;
     return true;
-  } else return false;
+    } else return false;
 
-}
+  }
 
 void Krusader::quitKrusader() {
   if ( queryClose() ) {
     kapp->quit();
+    }
   }
-}
 
 // the please wait dialog functions
 void Krusader::startWaiting( QString msg, int count , bool cancel ) {
   plzWait->startWaiting( msg , count, cancel );
-}
+  }
 
 void Krusader::incProgress( KProcess *, char *buffer, int buflen ) {
   int howMuch = 0;
@@ -584,11 +589,11 @@ void Krusader::incProgress( KProcess *, char *buffer, int buflen ) {
       ++howMuch;
 
   plzWait->incProgress( howMuch );
-}
+  }
 
 void Krusader::stopWait() {
   plzWait->stopWait();
-}
+  }
 
 void Krusader::updateGUI( bool enforce ) {
   // now, check if we need to create a konsole_part
@@ -602,8 +607,8 @@ void Krusader::updateGUI( bool enforce ) {
       lst.append( config->readNumEntry( "Terminal Size", _TerminalSize ) );
       mainView->vert_splitter->setSizes( lst );
       config->setGroup( "Startup" );
+      }
     }
-  }
 
   // call the XML GUI function to draw the UI
   createGUI( mainView->konsole_part );
@@ -613,33 +618,33 @@ void Krusader::updateGUI( bool enforce ) {
     if ( !krConfig->readBoolEntry( "Show tool bar", _ShowToolBar ) ) {
       toolBar() ->hide();
       actShowToolBar->setChecked( false );
-    } else {
+      } else {
       toolBar() ->show();
       actShowToolBar->setChecked( true );
-    }
+      }
     if ( !krConfig->readBoolEntry( "Show status bar", _ShowStatusBar ) ) {
       statusBar() ->hide();
       actShowStatusBar->setChecked( false );
-    } else {
+      } else {
       statusBar() ->show();
       actShowStatusBar->setChecked( true );
-    }
+      }
     if ( !krConfig->readBoolEntry( "Show Cmd Line", _ShowCmdline ) ) {
       mainView->cmdLine->hide();
       actToggleCmdline->setChecked( false );
-    } else {
+      } else {
       mainView->cmdLine->show();
       actToggleCmdline->setChecked( true );
-    }
+      }
     if ( !krConfig->readBoolEntry( "Show FN Keys", _ShowFNkeys ) ) {
       mainView->fnKeys->hide();
       actToggleFnkeys->setChecked( false );
-    } else {
+      } else {
       mainView->fnKeys->show();
       actToggleFnkeys->setChecked( true );
+      }
     }
   }
-}
 
 // return a list in the format of TOOLS,PATH. for example
 // DIFF,kdiff,TERMINAL,konsole,...
@@ -656,26 +661,26 @@ QStringList Krusader::supportedTools() {
   if ( KrServices::cmdExist( "kdiff" ) ) {
     tools.append( "DIFF" );
     tools.append( KrServices::fullPathName( "kdiff", "kompare" ) );
-  } else if ( KrServices::cmdExist( "kompare" ) ) {
+    } else if ( KrServices::cmdExist( "kompare" ) ) {
     tools.append( "DIFF" );
     tools.append( KrServices::fullPathName( "kompare" ) );
-  } else if ( KrServices::cmdExist( "xxdiff" ) ) {
+    } else if ( KrServices::cmdExist( "xxdiff" ) ) {
     tools.append( "DIFF" );
     tools.append( KrServices::fullPathName( "xxdiff", "kompare" ) );
-  }
+    }
   // a mailer: kmail
   if ( KrServices::cmdExist( "kmail" ) ) {
     tools.append( "MAIL" );
     tools.append( KrServices::fullPathName( "kmail" ) );
-  }
+    }
   // rename tool: krename
   if ( KrServices::cmdExist( "krename" ) ) {
     tools.append( "RENAME" );
     tools.append( KrServices::fullPathName( "krename" ) );
-  }
+    }
 
   return tools;
-}
+  }
 
 QString Krusader::getTempDir() {
   // try to make krusader temp dir
@@ -699,9 +704,9 @@ QString Krusader::getTempDir() {
   if ( !QDir( tmpDir ).isReadable() ) {
     KMessageBox::error( krApp, "Could not create a temporary directory. Handling of Archives will not be possible until this is fixed." );
     return QString::null;
-  }
+    }
   return tmpDir;
-}
+  }
 
 QString Krusader::getTempFile() {
   // try to make krusader temp dir
@@ -721,7 +726,7 @@ QString Krusader::getTempFile() {
   while ( QDir().exists( tmpDir ) )
     tmpDir = tmpDir + kapp->randomString( 8 );
   return tmpDir;
-}
+  }
 
 
 #include "krusader.moc"

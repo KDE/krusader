@@ -36,6 +36,7 @@
 #include <qframe.h>
 #include <qptrlist.h> 
 // KDE includes
+#include <kdeversion.h>
 #include <kprocess.h>
 #include <kjanuswidget.h>
 #include <kio/jobclasses.h>
@@ -75,7 +76,6 @@ namespace MountMan {
       QString getMtab();          // reads the mount table
       bool    checkMtabChanged(); // checks whether mtab was changed
       
-			void quickList();
 			
       //////////////////////////// service functions /////////////////////////////////
       static QString nextWord( QString &s );
@@ -83,7 +83,16 @@ namespace MountMan {
       KMountMan();
       ~KMountMan();
 
-    protected slots:
+		public slots:
+#if KDE_IS_VERSION(3,2,0)
+			void performAction(int idx);	
+			void quickList();
+			
+		private:
+			QString *_actions;
+#endif /* KDE 3.2 */
+    
+		protected slots:
       void parseDfData( QString filename );  // parse a FULL list of filesystems
       void forceUpdate();
       void collectOutput( KProcess *p, char *buffer, int buflen );
