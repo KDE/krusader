@@ -36,7 +36,9 @@
 #include "../defaults.h"
 #include "../krservices.h"
 #include "../VFS/vfs.h"
+#include "../VFS/virt_vfs.h"
 #include "../KViewer/krviewer.h"
+#include "../panelmanager.h"
 #include <klocale.h>
 #include <qhbox.h>
 #include <qlabel.h>
@@ -61,7 +63,7 @@
 KProcess *  LocateDlg::updateProcess = 0;
 
 LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KDialogBase::User2 | KDialogBase::User3 | KDialogBase::Close,
-      KDialogBase::User3, false, i18n("Stop"), i18n("Update DB"), i18n("Locate") )
+      KDialogBase::User3, false, i18n("Stop"), i18n("Update DB"), i18n("Locate") ), isFeedToListBox( false )
 {
   QWidget *widget=new QWidget(this, "locateMainWidget");
   QGridLayout *grid = new QGridLayout( widget );
@@ -148,9 +150,12 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   }
 }
 
-void LocateDlg::slotUser1()   /* The stop button */
+void LocateDlg::slotUser1()   /* The stop / feed to listbox button */
 {
-  stopping = true;
+  if( isFeedToListBox )
+    feedToListBox();
+  else
+    stopping = true;
 }
 
 void LocateDlg::slotUser2()   /* The Update DB button */
@@ -199,7 +204,9 @@ void LocateDlg::slotUser3()   /* The locate button */
 
   enableButton( KDialogBase::User3, false );  /* disable the locate button */
   enableButton( KDialogBase::User1, true );   /* enable the stop button */
-
+  setButtonText( KDialogBase::User1, i18n( "Stop" ) ); /* the button behaves as stop */
+  isFeedToListBox = false;
+  
   qApp->processEvents();
 
   stopping = false;
@@ -230,7 +237,15 @@ void LocateDlg::slotUser3()   /* The locate button */
      KMessageBox::error( krApp, i18n( "Error during the start of 'locate' process!" ) );
   }
   enableButton( KDialogBase::User3, true );  /* enable the locate button */
-  enableButton( KDialogBase::User1, false ); /* disable the stop button */
+  
+  if( resultList->childCount() == 0 )
+  {
+    enableButton( KDialogBase::User1, false ); /* disable the stop button */
+    isFeedToListBox = false;
+  }else{
+    setButtonText( KDialogBase::User1, "Feed to listbox" ); /* feed to listbox */
+    isFeedToListBox = true;
+  }
 }
 
 void LocateDlg::processStdout(KProcess *proc, char *buffer, int length)
@@ -461,6 +476,26 @@ bool LocateDlg::find()
   }
   
   return false;
+}
+
+void LocateDlg::feedToListBox()
+{
+  static int listBoxNum = 1;
+  
+  KURL::List urlList;
+  QListViewItem * item = resultList->firstChild();
+  while( item )
+  {
+    urlList.push_back( vfs::fromPathOrURL( item->text( 0 ) ) );
+    item = item->nextSibling();
+  }
+  KURL url = KURL::fromPathOrURL(QString("virt:/")+ i18n("Locate results")+QString( " %1" ).arg( listBoxNum++ ));
+  virt_vfs v(0,true);
+  v.vfs_refresh( url );
+  v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
+  //ACTIVE_FUNC->openUrl(url);  
+  ACTIVE_MNG->slotNewTab(url.prettyURL());
+  accept();
 }
 
 #include "locate.moc"

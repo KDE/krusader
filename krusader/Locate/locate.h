@@ -47,6 +47,7 @@ public:
   virtual void      slotUser1();
   virtual void      slotUser2();
   virtual void      slotUser3();
+  virtual void      feedToListBox();
 
 public slots:
   void              processStdout(KProcess *, char *, int);
@@ -69,6 +70,8 @@ private:
   bool              dontSearchPath;
   bool              onlyExist;
   bool              isCs;
+  
+  bool              isFeedToListBox;
 
   QString           pattern;
   
