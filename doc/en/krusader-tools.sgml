@@ -1,4 +1,23 @@
 <chapter id="krusader-tools">
+<!-- **********************************************************************
+                            krusader-tools.sgml
+                          +++++++++++++++++++++++
+  copyright            : (C) 2000, 2001, 2002, 2003 Rafi Yanai, Shie Erlich
+                             2003 Frank Schoolmeesters
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://krusader.sourceforge.net
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software	  *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <title>Krusader Tools</title>
 <sect1 id = "remote-man">
 	<title>Remote Man: the FTP/SMB connection manager</title>
@@ -29,9 +48,10 @@
 	Optional are the description (a freetext area) and remote directory. If you enter a remote directory,
 	Krusader will try, upon connection, to cd into that directory.</para>
 	<itemizedlist>
-		<listitem><para>Double clicking on a session makes Krusader connect to that host. You can also use the 'connect'
-		button for that purpose.</para></listitem>
-		<listitem><para>The 'more' button does nothing for now. We keep some tricks for Krusader 2.</para></listitem>
+		<listitem><para><keycap>Double clicking</keycap> on a session makes Krusader connect to that host.
+		   You can also use the 'connect' button for that purpose.</para></listitem>
+		<listitem><para>The 'more' button does nothing for now. We keep some tricks for Krusader
+		   2.</para></listitem>
 	</itemizedlist>
 </sect1>
 
@@ -54,11 +74,11 @@
 	graphically displays the usage information for the filesystem. Clicking on a non-mounted filesystem will
 	display "not mounted" instead of the graph.</para>
 	<itemizedlist>
-		<listitem><para>Double clicking on a filesystem will close MountMan and open that filesystem
-		inside Krusader's active panel.</para></listitem>
-		<listitem><para>Right clicking on a filesystem will open a small menu which displays what actions can
-		be performed on that filesystem. For now, you can only mount, unmount and eject (if clicked on a
-		removable filesystem - a cdrom).</para></listitem>
+		<listitem><para><keycap>Double clicking</keycap> on a filesystem will close MountMan and open
+		that filesystem inside Krusader's active panel.</para></listitem>
+		<listitem><para><keycap>Right clicking</keycap> on a filesystem will open a small menu which
+		displays what actions can be performed on that filesystem. For now, you can only mount, unmount and
+		eject (if clicked on a removable filesystem - a cdrom).</para></listitem>
 	</itemizedlist>
 	<note><para>We plan to expand MountMan in the next evolution of Krusader. It'll be able to format floppies,
 	edit /etc/fstab, create new filesystems and more...</para></note>
@@ -66,8 +86,8 @@
 
 <sect1 id = "bookman">
 <title>Book Man: Organize your bookmarks</title>
-	<para>Note: since Krusader 1.25-beta1 we have a new bookmark system. The old bookmark manager doesn't
-	exist anymore and is be replaced by KeditBookmarks.</para>
+	<note><para>Since Krusader 1.25-beta1 there is a new Book Man and Krusader's bookmark manager to edit and
+	organize your bookmarks is been replaced by KeditBookmarks.</para></note>
 	<para>BookMan is a tool which allows you to bookmark folders and URL's using Krusader, and later return to
 	them in a click of a button. All you need to do is click on the "bookmark" button.</para>
 	<screenshot>
@@ -99,10 +119,11 @@
 	</screenshot>
 	<para>To edit and organize your bookmarks, click the <keycap>edit bookmarks</keycap> button,
         KeditBookmarks will be displayed. This is where you can edit/remove and re-arrange the bookmarks.
-        KEditBookmarks (part of the kdebase package) is a bookmark editor for Konqueror and Krusader,
-        which use the <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink> for the bookmark
-        format. The bookmarks are stored in ~/.kde/share/apps/krusader/krbookmarks.xml.</para>
-	<para>You can inport bookmarks from IE, Opera, Galeon, KDE, Mozilla, Netscape.
+        KEditBookmarks (part of the kdebase package) is a bookmark editor for Konqueror, Krusader and other
+	applications, which use the <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>
+	for the bookmark format. The bookmarks are stored in
+	<userinput>~/.kde/share/apps/krusader/krbookmarks.xml.</userinput></para>
+	<para>You can inport bookmarks from IE, Opera, Galeon, KDE, Mozilla, &Netscape;.
         KeditBookmarks is easy to use, please read the KeditBookmarks or the Konqueror handbook if you need more
 	info.</para>
 </sect1>
@@ -110,7 +131,7 @@
 <sect1 id = "krusearcher">
 <title>KruSearcher: find what you're looking for</title>
 	<para>Welcome to Krusader's powerful search module - nicknamed Krusearcher. It is the most able
-	tool (that we know of) for Linux, since it allows so many different ways to quickly find the file you're
+	tool (that we know of) for &Linux;, since it allows so many different ways to quickly find the file you're
 	looking for. It is divided into two levels, the general and the advanced. Let's take a look at the general
 	page ...</para>
 	<screenshot>
@@ -124,44 +145,62 @@
 	<para>The page is divided into four parts: top (search for) part, bottom part - titled 'containing text',
 	left part - titled 'search in' and right part which is called 'don't search in'. Obviously, each part
 	handles different aspects of the search. Let's look at them closely.</para>
-	<itemizedlist>
-		<listitem><para>Search for: here you enter the main search criteria. You can enter a filename, a wildcard
-		(*.o.*, *.c etc.) or both - seperated by a space. Notice, the "case sensative" button below this line.
-		Unchecking it will allow lower and upper case search (ie: *.c interprets as *.c AND *.C).</para></listitem>
-		<listitem><para>Of type: this box let's you search for a file not only by its name, but also by its
-		mimetype. For example, you can search for all the audio files whose name begins with B. Usually this
-		option defaults to 'all files', but you can choose to search for archives, directories, images, text
-		files, videos and audio files.</para></listitem>
-		<listitem><para>Search in (also Don't search in): Using those two parts, you can specify a search exactly
-		the way you want it. For example, you might want to search for a file in the whole filesystem (beginning
-		with /), but don't want to search inside /mnt. All you need to do is write '/' in the 'search in' box,
-		and write '/mnt' in the 'dont search in' box. If you want to enter more than one directory in one of the
-		boxes, just write the first name and press <keycap>Enter</keycap>. The directory's name will be copied to
-		the bigger box and you'll be able to enter another name.
-			<note><para>The input line has an auto completion feature, corrosponding to KDE's global settings.
-			If you wish, you can click on the folder icon, and browse to the directory you wish to add.</para></note>
+	<itemizedlist><title>Top Part:</title>
+		<listitem><para><keycap>Search for:</keycap> here you enter the main search criteria.
+		You can enter a filename, a wildcard (*.o.*, *.c etc.) or both - seperated by a space.
 		</para></listitem>
-		<listitem><para>Text: entering text here makes Krusader search for it inside the files (grep).
-		That way, you can search for all header files (*.h) which include the word 'krusader' inside them.
-		Notice, the 'case sensative' checkbox. It refers to your text being searched for in upper and lower case
-		or the exact phrase you entered.</para></listitem>
-		<listitem><para>Search in directories: do a recursive search and dive into every directory
-		on the way.</para></listitem>
-		<listitem><para>Search in archives: Krusader will search for your files inside every supported archive.
-		This, however, takes longer to perfrom.<note><para>If you check this checkbox, you'll notice you cannot
-		'grep' inside files anymore. This is done, since looking inside files which are archived, forces Krusader
-		to extract them, which will results in an extremely long search.</para></note></para></listitem>
-		<listitem><para>Follow links: if checked,  Krusader will follow soft-links during the search.</para></listitem>
-		<listitem><para>The screenshot shows a search for all the files which end with c, cpp or h and include the string
-	'testing 123'. Krusader will search in /root, /opt, /bin and /usr, but not in /usr/lib and /usr/share.</para></listitem>
+		<listitem><para><keycap>Case sensitive:</keycap> unchecking it will allow lower and upper case
+		search (ie: *.c interprets as *.c AND *.C).</para></listitem>
+		<listitem><para><keycap>Of type:</keycap> this box let's you search for a file not only by its
+		name, but also by its mimetype. For example, you can search for all the audio files whose name
+		begins with B. Usually this option defaults to 'all files', but you can choose to search for
+		archives, directories, images, text files, videos and audio files.</para></listitem>
 	</itemizedlist>
-	<para>Clicking the search button starts the search and displays the results page. During the search, you
-	may press the stop button to stop the search. The close button is not operational during a search, so you
-	must first stop the search and then close the window. When a result is found, double clicking on it will
-	make Krusader's active panel point to the found files - but will not close the search window, so you'll be
-	able to click on a different result.</para>
+
+	<itemizedlist><title>Left and Right Part:</title>
+		<listitem><para><keycap>"Search in" and "Don't search in":</keycap> Using those two parts,
+		you can specify a search exactly the way you want it. For example, you might want to search for
+		a file in the whole filesystem (beginning with /), but don't want to search inside /mnt. All you
+		need to do is write '/' in the 'search in' box, and write '/mnt' in the 'dont search in' box.
+		If you want to enter more than one directory in one of the boxes, just write the first name and
+		press <keycap>Enter</keycap>. The directory's name will be copied to the bigger box and you'll be
+		 able to enter another name.
+		<note><para>The input line has an auto completion feature, corrosponding to KDE's global settings.
+		If you wish, you can click on the folder icon, and browse to the directory you wish to
+		add.</para></note>
+		</para></listitem>
+	</itemizedlist>
+	<itemizedlist><title>Bottom Part:</title>
+		<listitem><para><keycap>Text:</keycap> entering text here makes Krusader search for it inside the
+		files (grep). That way, you can search for all header files (*.h) which include the word 'krusader'
+		inside them.</para></listitem>
+		<listitem><para><keycap>Match whole word only</keycap></para></listitem>
+		<listitem><para><keycap>Case sensitive:</keycap> refers to your text being searched for in upper
+		and lower case or the exact phrase you entered.</para></listitem>
+		<listitem><para><keycap>Search in subdirectories:</keycap> do a recursive search and dive into
+		every directory on the way.</para></listitem>
+		<listitem><para><keycap>Search in archives:</keycap> Krusader will search for your files inside
+		every supported archive. This, however, takes longer to perfrom.
+		<note><para>If you check this checkbox, you'll notice you cannot 'grep' inside files anymore.
+		This is done, since looking inside files which are archived, forces Krusader
+		to extract them, which will results in an extremely long search.</para></note></para></listitem>
+		<listitem><para><keycap>Follow links:</keycap> if checked,  Krusader will follow soft-links during
+		the search.</para></listitem>
+	</itemizedlist>
+
+	<para>The above screenshot shows a search for all the files which end with c, cpp or h and include the
+	       string 'testing 123'. Krusader will search in /root, /opt, /bin and /usr, but not in /usr/lib and
+	       /usr/share.</para>
+
+	<para>Clicking the <keycap>search</keycap> button starts the search and displays the results page.
+	During the search, you may press the <keycap>stop</keycap> button to stop the search. The close button
+	is not operational during a search, so you must first stop the search and then <keycap>close</keycap> the
+	window. When a result is found, double clicking on it will make Krusader's active panel point to the found
+	files - but will not close the search window, so you'll be able to click on a different result.</para>
+
 	<para>Sometimes, you need to narrow your search even more. Krusearcher allows a much finer search, and
 	for that, let's look at the advanced page...</para>
+
 	<screenshot>
 		<screeninfo>Krusearcher general</screeninfo>
 		<mediaobject>
@@ -174,42 +213,47 @@
 	between October 10th and November 1st. Which belong to any user in the 'ftp' group, and are readable and
 	writeable by anyone in the 'ftp' group but only readable to the rest of the world.</para>
 	<para>The advanced page is divided into three parts: size, date and ownership.</para>
-	<para>Size</para>
+	<para><keycap>Size</keycap></para>
 	<para>Allows you to choose the size range of the file you're looking for. By checking the checkboxes, you can
 	search for a file which is bigger than XXX bytes (or KB, MB), smaller than XXX bytes or, by checking both,
 	search for a file which size is bigger than XXX but smaller than YYY.</para>
-	<para>Date</para>
+	<para><keycap>Date</keycap></para>
 	<para>This part offers three different ways of defining a date criteria:
 	<itemizedlist>
-		<listitem><para>Modified between: allows you to enter two dates. Krusader will search for files with
-		a modification date between the first date and the second one. If you only enter a date in the left
-		box, you'll be searching for files older than that date. If you only enter a date in the right box,
-		you'll be searching for files newer than that date.<note><para>You can click on the date icon (near the
-		input boxes) to open a standard date window - which allows you to easily browse through the calender
-		and search for the desired date. Clicking on a date will close the window and the date will appear in
-		the input box.</para></note></para></listitem>
-		<listitem><para>Not modified after: choosing this option makes Krusader search for files that were NOT
-		modified after a given date, which is the same as searching for files older than that date.</para></listitem>
-		<listitem><para>Modified in the last / not modified in the last: in these input boxes, you enter not a
-		date, but a number. This number represents days/weeks/months (as chosen in the near dropbox). Entering
-		the number 5 in the upper input box, makes Krusader search for files that were modified in the 5 days.
-		Entering the number 2 in the lower input box makes Krusader search for files that did NOT change in the
-		last 2 days. The combination of both results in a search for files that were changed in the last 5 days,
-		but NOT in the last 2 days.</para></listitem>
+		<listitem><para><keycap>Modified between:</keycap> allows you to enter two dates. Krusader will
+		search for files with a modification date between the first date and the second one. If you only
+		enter a date in the left box, you'll be searching for files older than that date. If you only enter
+		a date in the right box, you'll be searching for files newer than that date.
+		<note><para>You can click on the date icon (near the input boxes) to open a standard date window -
+		which allows you to easily browse through the calender and search for the desired date. Clicking on a
+		date will close the window and the date will appear in the input
+		box.</para></note></para></listitem>
+		<listitem><para><keycap>Not modified after:</keycap> choosing this option makes Krusader search
+		for files that were NOT modified after a given date, which is the same as searching for files older
+		than that date.</para></listitem>
+		<listitem><para><keycap>Modified in the last / not modified in the last:</keycap> in these input
+		boxes, you enter not a date, but a number. This number represents days/weeks/months (as chosen in the
+		near dropbox). Entering the number 5 in the upper input box, makes Krusader search for files that were
+		modified in the 5 days. Entering the number 2 in the lower input box makes Krusader search for files
+		that did NOT change in the last 2 days. The combination of both results in a search for files that were
+		changed in the last 5 days, but NOT in the last 2 days.</para></listitem>
 	</itemizedlist></para>
-	<para>Ownership</para>
+	<para><keycap>Ownership</keycap></para>
 	<itemizedlist>
-		<listitem><para>Belongs to user / group: by checking each of the corrosponding checkboxes, you can
-		search for files which belong to a certain user and/or group. The dropbox lists all the user names and
-		group names in the system, just choose one and go ahead.</para></listitem>
-		<listitem><para>Permissions: divided into owner, group and all - it allows you to choose certain
-		permissions for the file. You can choose to specify permissions for the owner, group, all or any
-		combination. The question mark (?) is a wildcard - which means that any permission is valid.
-		<note><para>To clarify, the screenshot above (the permissions part) describes a search for files
+		<listitem><para><keycap>Belongs to user / group:</keycap> by checking each of the corrosponding
+		checkboxes, you can search for files which belong to a certain user and/or group. The dropbox lists
+		all the user names and group names in the system, just choose one and go ahead.</para></listitem>
+		<listitem><para><keycap>Permissions:</keycap> divided into owner, group and all - it allows you
+		to choose certain permissions for the file. You can choose to specify permissions for the owner,
+		group, all or any combination. The question mark (?) is a wildcard - which means that any permission
+		is valid.</para></listitem>
+	</itemizedlist>
+
+	<note><para>To clarify, the screenshot above (the permissions part) describes a search for files
 		that belong to any user in group 'ftp', are readable, writable but not executable to any user in
 		the group, are readable but not writable or executable to the rest of the world and have unknown
-		permissions to its owner.</para></note></para></listitem>
-	</itemizedlist>
+		permissions to its owner.</para></note>
+
 	<para>Clicking on the <keycap>Search</keycap> button to start the search and opens the Results window.
 	Here you can see the progress and the the results of the search action. If you want you can stop the current
 	search action with the <keycap>Stop</keycap> button.
@@ -238,8 +282,10 @@
 
 	<para><keycombo><keycap>Shift</keycap><keycap>F3</keycap></keycombo> views a url on demand,
 	e.g. <screen>man:/krusader, http://krusader.sourceforce.net/, ftp://ftp.foo</screen></para>
-	<para>KrViewer has the following menu's: File, Edit, View, Settings and Krviewer. They will be discussed
-	in the Editor section. With <keycombo><keycap>Ctrl</keycap><keycap>E</keycap></keycombo> the viewer will
+	<para>KrViewer can have the following menu's: File, Edit, View, Settings and Krviewer depending on witch
+	file type is viewed. They will be discussed in the Editor section.
+	The internal viewer can follow links on HTML pages.
+	With <keycombo><keycap>Ctrl</keycap><keycap>E</keycap></keycombo> the viewer will
 	start Krusader's internal editor (which is basicly the same application).</para>
 
 	<para>Pressing <keycap>enter</keycap> on a selected file opens the file with the associated

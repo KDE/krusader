@@ -1,18 +1,83 @@
-<chapter id="faq"> <!-- changed by Frank --> <!-- made it up-to-date with the FAQ on the Krusader website -->
+<chapter id="faq">
+<!-- **********************************************************************
+                               faq.sgml
+                          ++++++++++++++++++
+  copyright            : (C) 2000, 2001, 2002, 2003 Rafi Yanai, Shie Erlich
+                             2003 Frank Schoolmeesters
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://krusader.sourceforge.net
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software	  *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <title>Questions and Answers</title>
 	&reporting.bugs;
 	&updating.documentation;
   <qandaset id="faqlist">
 
   <qandaentry>
-    <question><para>Where can i report bug/wish/patch ?</para></question>
-    <answer><para>An open source project greatest strength is derived from getting user
-      feedback. That why we'd love to hear what you have to say. See the file TODO in the distribution
-      for information on what remains to be done or look at the website.
-      You can reach us by <ulink url="mailto:krusader@users.sourceforge.net">mail</ulink> or drop us a note
-      in the <ulink url="http://krusader.sourceforce.net/phpBB/">krusader forum</ulink></para>
-      <para><remark><keycap>If you've got bugs to report, please use the krusader website, and
-      not KDE's bugzilla (bugs.kde.org).</keycap></remark></para></answer>
+    <question id="wish_patch"><para>Where can I report a wish, a patch or a comment ?</para></question>
+    <answer><para>An open source project greatest strength is derived from getting user feedback.
+      That's why we'd love to hear what you have to say. For information on what remains to be done look at the
+      &kruwebsite; and click on the "TODO List" button.
+      Posting to the TODO list is for developers only, but feel free to post to the
+      <ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=6">Future Krusader Version discussion Forum</ulink>
+      for things that aren't on the list, but should be. If you have a nice feature request, the Krusader Krew
+      will add your request to the todo list. You can reach us by
+      <ulink url="mailto:krusader@users.sourceforge.net">mail</ulink>
+      or drop us a note in our &kruforum;.
+      </para>
+      </answer>
+  </qandaentry>
+
+  <qandaentry>
+    <question id="bug_report"><para>Where can I report a bug ?</para></question>
+    <answer><para>We have a online Bug Tracking System.</para>
+    <para>Using the online bug-tracker helps us have a clear and orderly way to know how many bugs are open,
+    bug priority and follow-ups. It saves us the long time needed to browse the entire Krusader forum,
+    searching for yesterday's bug. Please use this system.</para>
+    <para>Before reporting a bug, please regard the following:
+    <orderedlist>
+    <listitem><para><keycap>Search</keycap> the &kruforum;
+    , your bug might be solved already. Please DO NOT post new bugs to the
+    <ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=3/">bug discussions forum</ulink>. We keep it
+    open to allow discussions.</para></listitem>
+    <listitem><para><keycap>Check</keycap> if the bug is already posted in the online Bug Tracking System,
+    look at the &kruwebsite; and click on the
+    "Report Bugs" button.</para></listitem>
+    <listitem><para>If you can't find this bug mentioned, please <keycap>submit</keycap> it into the bug tracker by
+    clicking the "Submit New" button in the bug-tracker window.</para></listitem>
+    </orderedlist></para>
+    <para>Thanks for your cooperation!</para>
+    <note><para><remark>If you've got bugs to report please do not use KDE's bugzilla http://bugs.kde.org/,
+    KDE's Bug Tracking System.</remark></para></note></answer>
+  </qandaentry>
+
+  <qandaentry>
+    <question><para>Does Krusader have a mailing list ?</para></question>
+    <answer><para>Yes, it is called
+      <ulink url="http://lists.sourceforge.net/lists/listinfo/krusader-news/">Krusader-news</ulink>.
+      This list is used to notify Krusader users about new releases, major bugfixes etc.
+      No spam, no bother, just Krusader. To see the collection of prior postings to the list, visit the
+      <ulink url="http://sourceforge.net/mailarchive/forum.php?forum=krusader-news/">Krusader-news Archives</ulink>.
+      </para><para>See also <ulink url="http://krusader.sourceforge.net/index.php?nav=news.php/">latest news</ulink>
+      for the online announcements.
+      </para><para>If you want to follow the Krusader development ... live ! A mailing list is available for commits.
+      That means that everything the development team puts into CVS is reported in the list. Want to keep track?
+      Waiting for a certain feature/bugfix? Feel free to subscribe, click
+      <ulink url="http://lists.sourceforge.net/lists/listinfo/krusader-commits/">here</ulink>.
+      To see the collection of prior cvs commits visit the
+      <ulink url="http://sourceforge.net/mailarchive/forum.php?forum=krusader-commits/">
+      Krusader cvs commits Archives</ulink>.
+      </para></answer>
   </qandaentry>
 
    <qandaentry>
@@ -25,9 +90,7 @@
    </qandaentry>
 
    <qandaentry>
-      <question><para>Why can't I change the colors in Krusader ?
-          (or: I used to be able to change the colors in prior versions, but not anymore -
-          what's up with that ?)</para></question>
+      <question><para>Why can't I change the colors in Krusader ?</para></question>
       <answer><para>In versions prior to 0.75, we supported changing some of the colors
           in Krusader. After some debates in the KDE mailing-list regarding the matter, we decided
           that Krusader's colors will match KDE's current color-scheme. This makes Krusader more
@@ -48,28 +111,40 @@
   </qandaentry>
 
   <qandaentry>
-    <question><para>When i try to resize Krusader, so that it'd be smaller, i discover i can't
-      resize it below a certain size. Basically, it doesn't get much smaller. why?</para></question>
-    <answer><para>See the F1, F2 (etc.) buttons ? they are not allowing krusader to downsize as
-      they have a minimum size. just disable them (view->Show FN Keys Bar) and you'll be able to
+    <question><para>When I try to resize Krusader, so that it'd be smaller, I discover that I can't
+      resize it below a certain size. Basically, it doesn't get much smaller. Why?</para></question>
+    <answer><para>See the F1, F2 (etc.) buttons ? They are not allowing Krusader to downsize as
+      they have a minimum size. Just disable them (view->Show FN Keys Bar) and you'll be able to
       resize krusader to your liking.</para></answer>
   </qandaentry>
 
   <qandaentry>
-    <question><para>When i do some file operation, Krusader's panel doesn't refresh / I'm using
+    <question><para>When I do some file operation, Krusader's panel doesn't refresh / I'm using
        Krusader with fam installed, but updates to the panel are now shown.</para></question>
     <answer><para>The bad news is that we're not sure why, but seems that fam doesn't always seem to
       work for us. We've tried the same source code on two different Gentoo installation: one worked,
       the other did not. The good news is that if you disable fam, Krusader will automatically revert
-      to its internal mechanism (which is less efficient, but works) without needing to recompile.</para></answer>
+      to its internal mechanism (which is less efficient, but works) without needing to recompile.
+      You can disable fam (file alteration monitor) with:
+      <screen><prompt>$</prompt> <userinput><command>su -c 'fam -l'</command></userinput></screen>
+      Look at te manpages for more information about fam.</para></answer>
   </qandaentry>
+
+  <qandaentry>
+	  <question><para>When i run 'make' it complains about 'libfam.la'</para></question>
+	  <answer><para>The './configure' script does not check for the presence of 'libfam.la', and
+	  make needs 'libfam.la' to compile Krusader. Install 'libfam0-devel-foo.rpm'.
+	  Note: when you install Mandrake 9.1 with the default settings, this package is not installed.
+	  If you need more information click
+	  <link linkend="missing_libs">here</link>.</para></answer>
+   </qandaentry>
 
   <!-- Thanks to Karai Csaba -->
   <qandaentry>
     <question><para>Samba ISO 8859-x codepage / What to do if Krusader does not read shared directories
     containing national characters?</para></question>
     <answer><para>Krusader does not handle (yet) samba ISO 8859-x codepages, if you use a codepage different
-      than 8859-1 you wil have todo a manual configuration.
+      than 8859-1 you will have to do a manual configuration.
       Create or modify the file: ~/.smb/smb.conf
       <screen>
 	[global]
@@ -79,6 +154,16 @@
 
      Unfortunately kcontrol (KDE 3.1.1) fails to configure it properly, so
      this step must be done with a text editor.</para></answer>
+  </qandaentry>
+
+  <qandaentry>
+      <question><para>Krusader reports "krarc:... protocol not supported" error at opening an archive file.
+      </para></question>
+      <answer><para>Solution: install the krarc slave properly:</para>
+        <para>Copy the kio_krarc.so, kio_krarc.la files into <userinput>$KDEDIR/lib/kde3</userinput></para>
+        <para>Copy the krarc.protocol file into <userinput>$KDEDIR/share/services</userinput></para>
+        <para>or the directory where the KIO slaves are placed in your &Linux; distribution.
+      </para></answer>
   </qandaentry>
 
 <!--

@@ -1,4 +1,23 @@
 <chapter id="using-Krusader">
+<!-- **********************************************************************
+                            using-krusader.sgml
+                          +++++++++++++++++++++++
+  copyright            : (C) 2000, 2001, 2002, 2003 Rafi Yanai, Shie Erlich
+                             2003 Frank Schoolmeesters
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://krusader.sourceforge.net
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software	  *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <title>Using Krusader</title>
 
   <sect1 id="UI">
@@ -13,7 +32,7 @@
     </mediaobject></screenshot>
 
     <para>This is Krusader's main window with all the different parts marked up.
-    in the following sections we'll cover the basic functions of each part with the
+    In the following sections we'll cover the basic functions of each part with the
     exception of:</para>
     <itemizedlist>
     <listitem><para><link linkend="commands">the menu-bar</link> that has a chapter of its own
@@ -33,30 +52,30 @@
 
     <para>There isn't a lot to say about the Krusader toolbar, its a standard KDE toolbar
     that can be dragged around the application or configured via a <keycap>right-click</keycap> menu.
-    you can decide if you want to display it (or not) every time you start krusader
-    in the <link linkend="konfig-startup">Konfigurator Startup page</link>, and you can toggle
+    You can decide if you want to display it (or not) every time you start Krusader
+    in the &KonfigStartPg;, and you can toggle
     its use in the current session in the <link linkend="view-menu">view menu</link>.
     The toolbar contents can be configured from the "configure toolbars" in the
-    <link linkend="settings-menu">options menu</link> or the "toolbar" tab in
+    <link linkend="settings-menu">settings menu</link> or the "toolbar" tab in
     the <link linkend="konfig-lookNfeel">Konfigurator look and feel page</link>.
-    since the various commands and option in krusader are not always available
+   Since the various commands and option in Krusader are not always available
     (ie: you can't disconnect from a FTP session if you're not connected), the icon of an
-    un-available action will become grayed-out and you won't be able to click it.</para>
+    unavailable action will become grayed-out and you won't be able to click it.</para>
     </sect2>
 
     <sect2 id="panels">
     <title>The panels</title>
     <para>The Krusader panels are where most of the action takes place. Currently there are three types
     of panels: list panel (shown below), tree panel and quickview panel. Krusader is a twin-panel
-    file manager so there are two panels the left panel and the right one, or a more important distinction,
+    file manager so there are two panels, the left panel and the right one, or a more important distinction,
     the active panel and the inactive panel. The active panel is the one that currently accept your mouse
-    and keyboard input and if you'll choose a command from the menu-bar or toolbar then usually the command
+    and keyboard input and if you choose a command from the menu-bar or toolbar then usually the command
     will act on the selected files/directories in the active panel and redirect the result to the inactive one.
     You can switch between panels using the <keycap>Tab</keycap> key or by clicking on the origin button.
-    As not all combinations of panels are allowed, you can only choose from the following combinations:
+    Not all combinations of panels are allowed, you can only choose from the following combinations:
     (list,list),(list,tree),(tree,list),(list,quickview),(quickview,list).
-    As always startup settings can be modified with the <link linkend="konfig-startup">Konfigurator Startup
-    page</link>, and you control the current session with the <link linkend="view-menu">view menu</link>.
+    As always startup settings can be modified with the &KonfigStartPg;,
+    and you control the current session with the <link linkend="view-menu">view menu</link>.
     <keycap>CTRL+R</keycap> will refresh the panel.</para>
     <screenshot><screeninfo>List Panel</screeninfo><mediaobject>
       <imageobject><imagedata fileref="listpanel.png" format="PNG"/></imageobject>
@@ -68,25 +87,25 @@
     This is the default panel and the one you'll probably use most of the time. This panel shows the contents of one
     directory which can be local (part of your mounted file systems), remote (accessed via FTP or Samba)
     or inside an archive. The origin button will tell where the panel is currently pointing to.
-    If the path the panel is pointing is too long it will be shorten and a ".." will replace
+    If the path the panel is pointing to is too long it will be shortened and a ".." will replace
     the middle part. Also when entering archives the path will consist of the
     "archive path and name"+"#"+"the directory inside the archive".
     Below the origin tab you can see the current usage information of the browsed file system in the information label.
     The label will show how much free space is physically available on the file system,
-    what is the file system capacity and where it is mounted. If the information is not available
+    the file system capacity and where it is mounted. If the information is not available
     (most often in the case of remote file system) a message will be displayed with the reason instead of
     the information. Further down is the file list that display the files and directories in the browsed
     directory. The files are sorted by the column header you choose, and there is a quick search feature
     that allows you to search for files by typing their names. Pressing <keycap>Enter</keycap> or double
     clicking on a file will open/execute that file.
-    You can mark/unmark files using the mouse ,the <keycap>Insert</keycap> key or by using
+    You can mark/unmark files using the mouse with the <keycap>Insert</keycap> key or 
     the <link linkend="mark-menu">mark menu</link>. Marking or unmarking files will change the totals
-    label at the bottom of the panel, which displays how many files you've selected (and much disk space they use)
+    label at the bottom of the panel, which displays how many files you've selected (and how much disk space they use)
     as well as the total file and disk usage of the current directory (as opposed to the information label
     that display information for the whole file system).</para></abstract>
 
     <note><para>There are several methods of using the mouse with Krusader, the default one should be
-    familiar from other file managers and include the use of the <keycap>Shift</keycap> key or <keycap>Ctrl</keycap>
+    familiar from other file managers and include the use of the <keycap>Shift</keycap> key or the <keycap>Ctrl</keycap>
     key to select multiple files. However, notice that left clicking will mark the file under the
     cursor but will unmark all other files. Holding the right mouse button while dragging will mark all
     the files the mouse will pass over (and unmark the rest) and holding down the mouse button without
@@ -94,7 +113,7 @@
     </para></note>
 
     <abstract><title>The Tree Panel</title> <!-- updated  by Frank 1.00.2 -->
-    <para>Note: is temporarily disabled since Krusader 1.12-beta1 and wil be rewritten, sorry.
+    <para>Note: this is temporarily disabled since Krusader 1.12-beta1 and will be rewritten, sorry.
     </para>
     <para>This panel is used to quickly browse the local directory tree. The panel behaves like the
     list panel but only one directory may be selected at a time and double clicking or pressing
@@ -102,7 +121,7 @@
     </abstract>
 
     <abstract><title>The Quick View Panel</title> <!-- updated  by Frank 1.00.2 -->
-    <para>Note: is temporarily disabled since Krusader 1.12-beta1 and wil be rewritten, sorry.
+    <para>Note: this is temporarily disabled since Krusader 1.12-beta1 and will be rewritten, sorry.
     </para>
     <para>This panel displays the contents of the file under the cursor in the other panel, in case of an unreadable
     file, a default image is displayed. To save time the panel will show only the first 500 lines in each text file
@@ -125,26 +144,36 @@
       <textobject><phrase>The Command Line</phrase></textobject>
     </mediaobject></screenshot>
 
-    <para>The traditional command line mode offers a single line of input to enter you command,
-    it also feature a "run in terminal mode" and a "commands history" via the two small buttons
+    <para>The traditional command line mode offers a single line of input to enter your commands,
+    it also features a "run in terminal mode" and a "command history" via the two small buttons
     to the right of the input line. When you start typing your commands the command line auto completion
-    feature will make its offers according to what you choose in the kde control center. if you want to
-    change the way auto complete behave on the current Krusader session then <keycap>right click</keycap>
-    on command line and change it. 
+    feature will make its offers according to what you choose in the KDE control center. If you want to
+    change the way auto complete behaves in the current Krusader session then <keycap>right click</keycap>
+    on command line and change it.
     To the left of the input line you can find the last local path that
     the active panel was pointing to, this path is where your command will be executed. The only way
     to change the execution path (other then changing the last local path of the active panel)
-    is to type <userinput>cd "directory"</userinput> but this will also cause the active panel to
-    point to this directory as well. You can use the <keycap>Up arrow</keycap> and <keycap>Down arrows</keycap>
-    to scroll through previously typed commands or press and hold the "history" button.
-    The <keycombo><keycap>Ctrl</keycap><keycap>Up arrow</keycap></keycombo>
-    will take you back to the active panel and the
-    <keycombo><keycap>Ctrl</keycap><keycap>Down arrow</keycap></keycombo>
-    will take you from the panel to the command line.
-    <keycombo><keycap>Ctrl</keycap><keycap>Enter</keycap></keycombo> will send the selected file
-    to the command line.
-    <keycombo><keycap>Ctrl</keycap><keycap>shift</keycap><keycap>Enter</keycap></keycombo>
-    will send the directory + selected file to the command line.</para>
+    is to type <userinput><command>cd </command><replaceable>&lt;directory&gt;</replaceable></userinput>
+    but this will also cause the active panel to
+    point to this directory as well.</para>
+    <!-- nazien Krusader -->
+    <para>Command line Key-bindings overview:
+    <itemizedlist>
+    <listitem><para><keycap>Up arrow</keycap> and <keycap>Down arrow</keycap>
+    to scroll through previously typed commands.
+    </para></listitem>
+    <listitem><para><keycombo><keycap>Ctrl</keycap><keycap>/</keycap>
+    </keycombo> or press and hold the "history" button opens the command line history list.</para></listitem>
+    <listitem><para><keycombo><keycap>Ctrl</keycap><keycap>Up arrow</keycap></keycombo>
+    will take you back to the active panel.</para></listitem>
+    <listitem><para><keycombo><keycap>Ctrl</keycap><keycap>Down arrow</keycap></keycombo>
+    will take you from the panel to the command line.</para></listitem>
+    <listitem><para><keycombo><keycap>Ctrl</keycap><keycap>Enter</keycap></keycombo> will
+    insert current file / directory name without path to current command line position.</para></listitem>
+    <listitem><para><keycombo><keycap>Ctrl</keycap><keycap>shift</keycap><keycap>Enter
+    </keycap></keycombo> insert current file / directory with full path name to current command
+    line position.</para></listitem>
+    </itemizedlist></para>
 
     <screenshot><screeninfo>The terminal emulator</screeninfo><mediaobject>
       <imageobject><imagedata fileref="terminalEmu.png" format="PNG"/></imageobject>
@@ -152,15 +181,14 @@
       <textobject><phrase>The terminal emulator</phrase></textobject>
     </mediaobject></screenshot>
     <para>The terminal emulator mode is in fact a small konsole and acts just as one.
-    You can change the active directory in the terminal by using the <userinput>cd</userinput> command.
+    You can change the active directory in the terminal by using the
+    <userinput><command>cd</command></userinput> command.
     The terminal emulator does not follow the active panel directory
     but if you'll drag a file from the list view, you'll get to choose between pasting the file
     or changing the diretory. If you'll drag multiple files - they will be pasted automatically.
-    You can close the emulator by typing <userinput>exit</userinput>.</para>
-
+    You can close the emulator by typing <userinput><command>exit</command></userinput>.</para>
     <para>You can choose your mode of operation ( command line, emulator, both or none)
-    either for krusader's startup with the
-    <link linkend="konfig-startup">Konfigurator Startup page</link>, or for the current
+    either for Krusader's startup with the &KonfigStartPg;, or for the current
     session with the <link linkend="view-menu">view menu</link>.</para>
 
     </sect2>
@@ -174,13 +202,13 @@
     </mediaobject>
     </screenshot>
 
-    <para>This bar gets his name from the function (FN) keys it represent. For each button on this
+    <para>This bar gets its name from the function (FN) keys it represents. For each button on this
     bar there is a corresponding function key that performs the same action. This bar is derived from the
     design of the first twin-panel file managers and the FN keys usually act the same with two changes:
     the <keycap>F2</keycap> key will open a terminal at the last local path that the active panel pointed to,
     and the <keycap>F9</keycap>
     key is used to rename files. You can choose to display (or not) the FN keys bar when starting up
-    krusader via the <link linkend="konfig-startup">Konfigurator Startup page</link>, and you can toggle
+    Krusader via the &KonfigStartPg;, and you can toggle
     its use in the current session with the <link linkend="view-menu">view menu</link>. The actions performed
     by the function keys cannot be changed and they will remain active with or without the FN keys bar.
     </para>
@@ -195,7 +223,7 @@
     </mediaobject>
     </screenshot>
 
-    <para>This is a new feature since Krusader 1.29-beta. With the tabbed browsing bar you can change fast to an other
+    <para>This is a new feature since Krusader 1.29-beta. With the tabbed browsing bar you can quickly change to another
     directory by clicking on the tab.
     <itemizedlist>
     <listitem><para>To <keycap>create a tab</keycap>: <keycap>Right-click</keycap> on a
@@ -226,9 +254,9 @@
 
     <sect2 id="control-general">
     <title>General</title>
-    <para>This a rather short but important section that will go into the details of controlling krusader.
+    <para>This a rather short but important section that will go into the details of controlling Krusader.
     This section doesn't try to cover all the various key combinations for two reasons: one, there are just too
-    many of them and two, most of krusader actions are
+    many of them and two, most of Krusader's actions are
     <link linkend="konfig-lookNfeel">configurable</link>. Because of the second reason we will
     not mention keyboard shortcuts that are changeable but we'll cover the fixed ones as they are
     more important. If you find that you use a certain command a lot and want to know what is the
@@ -250,9 +278,9 @@
     But you should be aware to the following:
     <itemizedlist>
     <listitem><para>Clicking on the toolbar, the FN keys bar or the status bar does not change the focus.</para></listitem>
-    <listitem><para>The display part of the quick view panel does not accept clicks so you better click on
-                    the origin button of this panel if you want to give him the focus.</para></listitem>
-    <listitem><para>The information and total label of the tree panel don't accept clicks as well.</para></listitem>
+    <listitem><para>The display part of the quick view panel does not accept clicks so you should click on the origin button of this panel
+     if you want it to have focus.</para></listitem>
+    <listitem><para>The information and total label of the tree panel doesn't accept clicks either.</para></listitem>
     <!-- The information and totals labels of the tree and list panels don't accept clicks as well. -->
     <listitem><para>Pushing the "history" or "run in terminal" buttons in the command line will not transfer
                     the focus so you have click inside the input line.</para></listitem>
@@ -271,27 +299,27 @@
     <listitem><para>The <keycap>Esc</keycap> key will make the menu bar loose the focus if it has it.</para></listitem>
     <listitem><para>If you happen to be inside the terminal emulator, the mouse is your only way out.</para></listitem>
     <listitem><para>Pressing <keycap>Alt</keycap> + one of the underlined letter in the menu bar will open
-                    that menu (unless this key combination is already taken by one of krusader actions).</para></listitem>
+                    that menu (unless this key combination is already taken by one of Krusader's actions).</para></listitem>
     </itemizedlist>
     </para>
     </sect2>
 
     <sect2 id="marking-files">
     <title>Marking files</title>
-    <para>Marking is a skill you need to master in order to make the most out of Krusader. Since you can't
-    mark files in the quick view panel, and the tree panel let you mark only one directory at a time,
+    <para>Marking is a skill you need to master in order to get the most out of Krusader. Since you can't
+    mark files in the quick view panel, and the tree panel only lets you mark one directory at a time,
     this paragraph mainly deals with marking files in the list panel filelist.</para>
     <para>Moving the cursor is easy, and you don't need this manual to tell you that left-clicking on
-    a file will mark it, but here are some usefull pointers: (assuming you're using the classic mouse
+    a file will mark it, but here are some useful pointers: (assuming you're using the classic mouse
     selection mode)
     <itemizedlist>
     <listitem><para>The <keycap>SPACE</keycap> key will toggle the marking of the file under the cursor without
-    effecting the other files.</para></listitem>
+    affecting the other files.</para></listitem>
     <listitem><para>The <keycap>SPACE</keycap> key will toggle the marking of the directory under the cursor,
-    and calculates the size, without effecting the other files or directories.</para></listitem>
-    <listitem><para>The <keycap>Insert</keycap> key will do the same as te SPACE key but it will go one position
-    down to toggle te next file.</para></listitem>
-    <listitem><para>Left clicking on a file will mark a file but will not unmark it and will unmark
+    and calculates the size, without affecting the other files or directories.</para></listitem>
+    <listitem><para>The <keycap>Insert</keycap> key will do the same as the SPACE key but it will go one position
+    down to toggle the next file.</para></listitem>
+    <listitem><para>Left clicking on a file will mark and unmark
                     all previously marked files.</para></listitem>
     <listitem><para>The <keycombo><keycap>Ctrl</keycap><keycap>left clicking</keycap></keycombo> have
                     the same effect as the <keycap>Insert</keycap> key.</para></listitem>
@@ -300,9 +328,9 @@
     <listitem><para>The <keycombo><keycap>Ctrl</keycap><keycap>Up arrow</keycap></keycombo>
                     or  <keycombo><keycap>Ctrl</keycap><keycap>Down arrow</keycap></keycombo>
                     toggle the mark state of the files under the cursor.</para></listitem>
-    <listitem><para>Moving the mouse while holding the right mouse button will mark all the file
-                    the cursor will move over, but will unmark all the rest.</para></listitem>
-    <listitem><para>The ".." entry is un-markable.</para></listitem>
+    <listitem><para>Moving the mouse while holding the right mouse button will mark all the files
+                    the cursor moves over, but will unmark all the rest.</para></listitem>
+    <listitem><para>The ".." entry is unmarkable.</para></listitem>
     <listitem><para>The <link linkend="mark-menu">mark menu</link> can offer more ways to mark your files.</para></listitem>
     <listitem><para><link linkend="konfig-lookNfeel">Konfigurator's look and feel page</link> can offer you
                     other ways of using your mouse to select files.</para></listitem>
@@ -312,10 +340,10 @@
 
     <sect2 id="executing">
     <title>Executing commands</title>
-    <para>There isn't a lot to say here, all you need to do is mark some files (if you don't krusader will treat
+    <para>There isn't a lot to say here, all you need to do is mark some files (if you don't Krusader will treat
     the current file under the cursor as marked), choose a <link linkend="commands">command</link>
     from the menu bar or use a keyboard shortcut (or the right click menu) and you're done.
-    Oh and one more thing, pressing <keycap>Enter</keycap> or double clicking on a file will execute it...</para>
+    Oh and one more thing, pressing <keycap>Enter</keycap> or double clicking on a file will execute it.</para>
     </sect2>
 
   </sect1>
@@ -328,10 +356,10 @@
     <para>You can execute files only in active list panels.
     To <keycap>execute</keycap> a file just <keycap>double-click on it or press Enter</keycap>
     when it's under the list cursor, Krusader will open it in the default application
-    for this file type. if you want to use <keycap>another application</keycap> to open the file, then
+    for this file type. If you want to use <keycap>another application</keycap> to open the file, then
     <keycap>right-click</keycap> on the file and go to the "open with" sub-menu that will offer
     more options. Krusader is compatible with KDE default file-manager for all file types
-    except archives that will be opened inside the krusader panel and not in external application.
+    except archives that are opened inside the Krusader panel and not in an external application.
     See <link linkend="konfig-archives">the archives page in Konfigurator</link> for details.</para>
     </sect2>
 
@@ -343,10 +371,10 @@
     A dialog will appear and allow you to choose the operation destination, the default
     destination is the other-panel browsed directory. If you enter a partial URL Krusader will use
     the current panel directory as the URL base. Deleting files is done by marking them and
-    pressing <keycap>F8</keycap> or <keycap>Delete.</keycap>A dialog will ask your confirmation and
+    pressing <keycap>F8</keycap> or <keycap>Delete.</keycap>A dialog will ask for your confirmation and
     will warn you when deleting non-empty directories. Of course only operations that you are permitted to
     do will be performed - you will be notified otherwise.
-    If you don't want to see the confirmation dialogs then you can disable them in the
+    If you don't wish to see the confirmation dialogs then you can disable them in the
 		<link linkend="konfig-advanced">Konfigurator advanced tab</link>.</para>
     </sect2>
 
@@ -394,13 +422,13 @@
     </sect2>
 
     <sect2 id="unpacking-archives">
-    <title>Unpack files</title>
+    <title>Unpack files (Alt+U)</title>
     <para>There are 2 ways to extract files from archives:</para>
     <para>If you want to unpack a whole archive(s), browse to the archive location, mark the archive(s)
     and select <guimenu>File->Unpack</guimenu>. Krusader will ask you where to put the extracted
     files, the default location is the inactive panel directory. If you don't cancel the operation,
     Krusader will try to unpack all the selected files in the active panel. The archive type is detected
-    using mimetype magic (or in plain English: automaticly) and if an unpacker can't be found an error
+    using mimetype magic (or in plain English: automatically) and if an unpacker can't be found an error
     message will be displayed.</para>
     <para>If you want to extract only part of the archive, then
     <link linkend="browsing-archives">browse</link> the archive and copy the files
@@ -408,7 +436,7 @@
     </sect2>
 
     <sect2 id="pack-archive">
-    <title>Packing files</title>
+    <title>Packing files (Alt+P)</title>
     <para>If you want to create a new archive, then mark the files and directories you want to
     pack in the active panel and select <guimenu>File->Pack</guimenu>. A dialog will pop-up
     prompting you to select the archive name and location, you select the packer by selecting
@@ -418,7 +446,7 @@
     </sect2>
 
     <sect2 id="test-archive">
-    <title>Testing archives</title>
+    <title>Testing archives (Alt+T)</title>
     <para>Krusasder will not handle corrupted archives since it may result in data loss.
     If you got an error message when handling an archive or if you suspect that there something
     wrong with the archive you should test it. To test an archive browse to the archive location,
@@ -432,10 +460,10 @@
   <title>Advanced Options</title>
 
     <sect2 id="compare-files">
-    <title>Comparing files</title>
+    <title>Comparing files (Compare by content)</title>
     <para>To find the difference between two files mark one in each panel and select
     <guimenu>File->Compare by content</guimenu>. Right now Krusader does not include a built-in
-    graphical diff tool but supports two external applications:
+    graphical difference tool but supports two external applications:
     <ulink url="http://members.home.nl/bruggie/kdiff2">kdiff2</ulink> and
     <ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>.
     If you have one of those installed the selected files will be compared, else you'll get
@@ -443,25 +471,25 @@
     </sect2>
 
     <sect2 id="compare-dir">
-    <title>Comparing directories</title>
-    <para>Note: is temporarily disabled since Krusader 1.12-beta1 and wil be rewritten, sorry.</para>
+    <title>Comparing directories (Ctrl+=)</title>
+    <para>Note: this is temporarily disabled since Krusader 1.12-beta1 and will be rewritten, sorry.</para>
     <para>Krusader offer a graphical directories compare mode. To activate it select
     <guimenu>View->Compare Mode</guimenu>. The differences are encoded as colored squares
     on the files/directories icons:
     <itemizedlist>
-    <listitem><para>Green square: the file exist in both directories and this
+    <listitem><para>Green square: the file exists in both directories and this
     file is newer then the other.</para></listitem>
-    <listitem><para>Red square: the file exist in both directories and this
+    <listitem><para>Red square: the file exists in both directories and this
     file is older then the other.</para></listitem>
-    <listitem><para>Yellow square: the file exist in both directories and they are the same.</para></listitem>
-    <listitem><para>Blue square: the file exist in this directory but not in the other.</para></listitem>
+    <listitem><para>Yellow square: the file exists in both directories and they are the same.</para></listitem>
+    <listitem><para>Blue square: the file exists in this directory but not in the other.</para></listitem>
     </itemizedlist>
     <note><para>The files are not compared by content but by their names and dates only.</para></note>
     </para>
     <para>
     If you want to display only new and old files or any other combination, select
-    <guimenu>View->Configure compare-mode</guimenu>. You can select which color(s) will appear
-    in each panel but please note that all directories will be displayed regardless what you choose
+    <guimenu>View->Configure compare-mode</guimenu>. You can select the color(s) that appear
+    in each panel but please note that all directories will be displayed regardless of what you choose
     so you'll be able to continue and browse your file system.</para>
     </sect2>
 
@@ -520,6 +548,252 @@
     </sect2>
 
 	</sect1>
+
+	<sect1 id="key_bindings">
+  <title>Key Bindings</title>
+
+  <para>Many of the key bindings (shortcuts) are configurable in the <link
+  linkend="settings-menu">Settings</link> menu. Some key bindings are not Krusader Key Bindings
+  e.g. KDE Key Bindings. By default Krusader honors the
+  following key bindings:</para>
+
+<para><keycap>Function Keys</keycap></para>
+<para>These are the Key Bindings of the <link linkend="fnkeys">FN Keys Bar</link>, except F1.</para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry><para><keycombo action="simul"><keycap>F1</keycap></keycombo></para></entry>
+<entry><para>Help</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F2</keycap></keycombo></para></entry>
+<entry><para>Termminal</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F3</keycap></keycombo></para></entry>
+<entry><para>View files</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F3</keycap></keycombo></para></entry>
+<entry><para>View files</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F4</keycap></keycombo></para></entry>
+<entry><para>Edit files</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F5</keycap></keycombo></para></entry>
+<entry><para>Copy files</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F6</keycap></keycombo></para></entry>
+<entry><para>Move files</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F7</keycap></keycombo></para></entry>
+<entry><para>Create a new directory</para></entry></row>
+<row><entry><para><keycombo action="simul"><keycap>F8</keycap></keycombo></para></entry>
+<entry><para>Delete files</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F9</keycap></keycombo></para></entry>
+<entry><para>Rename files</para></entry></row>
+<row>
+<entry><para><keycombo action="simul"><keycap>F10</keycap></keycombo></para></entry>
+<entry><para>Quit Krusader</para></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+
+
+
+<!-- <link linkend="view-menu">View all files</link> -->
+
+<para><keycap>SHIFT keys</keycap></para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry><para><keycombo><keycap>Shift</keycap><keycap>F1</keycap></keycombo></para></entry>
+<entry><para><link linkend="help-menu">What's this?</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Shift</keycap><keycap>F3</keycap></keycombo></para></entry>
+<entry><para><link linkend="krviewer">Enter an URL to view</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Shift</keycap><keycap>F4</keycap></keycombo></para></entry>
+<entry><para><link linkend="file-menu">Edit new file</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Shift</keycap><keycap>F9</keycap></keycombo></para></entry>
+<entry><para><link linkend="Multi_Rename">Multi Rename (Krename)</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Shift</keycap><keycap>F10</keycap></keycombo></para></entry>
+<entry><para><link linkend="view-menu">View all files</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Shift</keycap><keycap>F12</keycap></keycombo></para></entry>
+<entry><para><link linkend="view-menu">Custom view files</link></para></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+
+
+<para><keycap>ALT keys</keycap></para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>K</keycap></keycombo></para></entry>
+<entry><para><link linkend="commands-menu">Start Root Mode Krusader</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>p</keycap></keycombo></para></entry>
+<entry><para><link linkend="pack-archive">Pack files</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>u</keycap></keycombo></para></entry>
+<entry><para><link linkend="unpacking-archives">Unpack files</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>t</keycap></keycombo></para></entry>
+<entry><para><link linkend="test-archive">Test Archive</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>+</keycap></keycombo></para></entry>
+<entry><para><link linkend="mark-menu">Select All</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>-</keycap></keycombo></para></entry>
+<entry><para><link linkend="mark-menu">Invert Selection</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>/</keycap></keycombo></para></entry>
+<entry><para><link linkend="mount-man">MountMan</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>Left Arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="bookman">Left bookmarks</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>Right Arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="bookman">Right bookmarks</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>n</keycap></keycombo></para></entry>
+<entry><para><link linkend="tabbrowsing">New tab</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>c</keycap></keycombo></para></entry>
+<entry><para><link linkend="tabbrowsing">Duplicate a tab</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>n</keycap></keycombo></para></entry>
+<entry><para><link linkend="tabbrowsing">Close a tab</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>c</keycap></keycombo></para></entry>
+<entry><para><link linkend="tabbrowsing">Duplicate a tab</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Alt</keycap><keycap>F1..F12</keycap></keycombo></para></entry>
+<entry><para>Standard (KDE) key-bindings</para></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+
+
+<para><keycap>CTRL keys</keycap></para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>+</keycap></keycombo></para></entry>
+<entry><para><link linkend="mark-menu">Select Group</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>-</keycap></keycombo></para></entry>
+<entry><para><link linkend="mark-menu">Unselect Group</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>=</keycap></keycombo></para></entry>
+<entry><para><link linkend="view-menu">Compare directories</link> (Compare Mode)</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>.</keycap></keycombo></para></entry>
+<entry><para><link linkend="view-menu">Show Hidden Files</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>/</keycap></keycombo></para></entry>
+<entry><para><link linkend="cmdline">opens command line history list</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>Down arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="cmdline">Go from the active panel to the command line/terminal emulator</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>Up arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="cmdline">Go from the command line/terminal emulator to the active panel</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>c</keycap></keycombo></para></entry>
+<entry><para><link linkend="remote-man">Net Connections</link> (RemoteMan)</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>n</keycap></keycombo></para></entry>
+<entry><para><link linkend="remote-man">New Net Connection</link> (enter URL or host address)</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>u</keycap></keycombo></para></entry>
+<entry><para><link linkend="view-menu">Swap Panels</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>r</keycap></keycombo></para></entry>
+<entry><para><link linkend="panels">Reload panel (Refresh)</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>s</keycap></keycombo></para></entry>
+<entry><para><link linkend="krusearcher">Search</link></para></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+
+
+<para><keycap>Non Krusader, CTRL keys</keycap></para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>a</keycap></keycombo></para></entry>
+<entry><para>Select all</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>q</keycap></keycombo></para></entry>
+<entry><para>Quit Krusader</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>PageDown</keycap></keycombo></para></entry>
+<entry><para>Select all above the cursor</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>PageUp</keycap></keycombo></para></entry>
+<entry><para>Select all below the cursor</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>Backspace</keycap></keycombo></para></entry>
+<entry><para>Root directory</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>F1..F12</keycap></keycombo></para></entry>
+<entry><para>Standard (KDE) key-bindings</para></entry></row>
+<row>
+<entry><para><keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>F1..F12</keycap></keycombo></para></entry>
+<entry><para>Standard (KDE) key-bindings</para></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+
+
+<para><keycap>Other keys</keycap></para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry><para><keycombo><keycap>TAB</keycap></keycombo></para></entry>
+<entry><para><link linkend="panels">Switch between the panels</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>ENTER</keycap></keycombo></para></entry>
+<entry><para><link linkend="browsing">Open/execute that file</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>ENTER</keycap></keycombo></para></entry>
+<entry><para><link linkend="browsing-archives">On an archive file, browse the archive as if it was a directory</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>ESC</keycap></keycombo></para></entry>
+<entry><para><link linkend="moving-around">Will make the menu bar loose the focus if it has it</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>SPACE</keycap></keycombo></para></entry>
+<entry><para><link linkend="marking-files">Toggle the marking of the file under the cursor without effecting the other files.</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>SPACE</keycap></keycombo></para></entry>
+<entry><para><link linkend="marking-files">Toggle the marking of the directory under the cursor, and calculates the size, without affecting the other files or directories..</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>INSERT</keycap></keycombo></para></entry>
+<entry><para><link linkend="marking-files">Does the same as te SPACE key but it will go one position down to toggle te next file.</link></para></entry></row>
+<row>
+<entry><para><keycombo><keycap>MENU</keycap></keycombo></para></entry>
+<entry><para>Right-click menu</para></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+
+
+<para><keycap>Other Key-bindings:</keycap></para>
+<para><link linkend="krviewer">KrViewer</link>,
+       <link linkend="cmdline">command line / terminal emulator</link>
+        and KDE Control center -> Accessibility -> Keyboard Shortcuts</para>
+
+  </sect1>
 
 </chapter>
 

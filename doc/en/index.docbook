@@ -2,6 +2,10 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
   <!ENTITY krusader '<application>Krusader</application>'>
   <!ENTITY kapp "&krusader;"><!-- replace test here -->
+  <!ENTITY kruforum '<ulink url="http://krusader.sourceforge.net/phpBB/index.php/">Krusader forum</ulink>'>
+  <!ENTITY kruwebsite '<ulink url="http://krusader.sourceforge.net/">Krusader website</ulink>'>
+  <!ENTITY krudownload '<ulink url="http://krusader.sourceforge.net/index.php?nav=down.php">Krusader  downloadpage</ulink>'>
+  <!ENTITY KonfigStartPg '<link linkend="konfig-startup">Konfigurator Startup page</link>'>
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE"><!-- change language only here -->
   <!-- each chapter is in a seperate sgml file -->
@@ -14,6 +18,25 @@
 	<!ENTITY credits SYSTEM "credits.sgml">
 	<!ENTITY installation SYSTEM "installation.sgml">
 ]>
+<!-- **********************************************************************
+                              index.docbook
+                           +++++++++++++++++++
+  copyright            : (C) 2000, 2001, 2002, 2003 Rafi Yanai, Shie Erlich
+                             2003 Frank Schoolmeesters
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://krusader.sourceforge.net
+  description          : a Krusader Documentation File
+  
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software	  *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <book lang="&language;">
 <bookinfo>
 <title>The Krusader Handbook</title>
@@ -52,11 +75,10 @@
 
 	<legalnotice>&FDLNotice;</legalnotice>
 
-	<date>16/10/2003</date>			<!-- changed by Frank -->
-	<releaseinfo>1.00.02</releaseinfo> <!-- changed by Frank -->
+	<date>26/11/2003</date>
+	<releaseinfo>1.00.04</releaseinfo>
 
    <abstract>
-	<!-- changed by Frank -->
 	<para>
 	Krusader is a file-manager for KDE 3.x,
 	patterned after old-school managers like midnight commander and norton commander.
@@ -65,18 +87,13 @@
 	internal viewer, ftp/samba client and much much more.
 	</para>
 
-	<!-- added by Frank -->
 	<para>
 	NOTE: We are busy with updating the The Krusader Handbook.
-	At this moment some nice features are not (yet) documented.
-	Check out the "ChangeLog" file in the Krusader sources
-	to find out the latest features. If you have remarks or suggestions about the Krusader Handbook,
-	please let me know <email>codeknight@users.sourceforge.net</email>.
-        The updates in this Krusader Handbook release are: <link linkend="commands">the menu-bar</link>,
-	<link linkend="bookman">Book Man</link>,
-	<link linkend="credits">Credits and License</link>,
-        <link linkend="faqlist">Questions and Answers</link>,
-        <link linkend="installation">Installation</link>.
+	At this moment some nice features are not (yet) documented. Check out the
+	<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/">online ChangeLog</ulink>
+        file or the ChangeLog file in the Krusader sources to find out the latest features. Please read also the
+	<link linkend="editors_note">Note from the Editors</link>, if you have ideas on how to improve the content
+	or like to contribute at the Krusader Handbook.
 	</para>
 	<para>Thank you for using Krusader.</para>
    </abstract>

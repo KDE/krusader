@@ -1,4 +1,23 @@
 <chapter id="commands">
+<!-- **********************************************************************
+                            commands.sgml
+                          +++++++++++++++++
+  copyright            : (C) 2000, 2001, 2002, 2003 Rafi Yanai, Shie Erlich
+                             2003 Frank Schoolmeesters
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://krusader.sourceforge.net
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software	  *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
 <title>Command Reference</title>
 	<!-- updated by Frank 1.29 -->
 	<sect1 id="file-menu">
@@ -62,7 +81,7 @@
 	 <listitem><para>Convert filenames to upper/lower case</para></listitem>
 	 <listitem><para>adding numbers to filenames</para></listitem>
 	 <listitem><para>finding and replacing parts of the filename</para></listitem>
-	 <listitem><para>rename Mp3/Ogg Vorbis files based on their ID3 tags</para></listitem>
+	 <listitem><para>rename MP3/Ogg Vorbis files based on their ID3 tags</para></listitem>
 	 <listitem><para>setting access and modification dates</para></listitem>
 	 <listitem><para>permissions and file ownership</para></listitem>
 	 <listitem><para>a plug-in API which allows you to extend krename's features</para></listitem>
@@ -160,7 +179,7 @@
       </para></listitem>
     </varlistentry> -->
     <varlistentry><term><menuchoice>
-    	<guimenu>Terminal</guimenu>
+    	<guimenu>Terminal (F2)</guimenu>
 			</menuchoice></term>
       <listitem><para>
 			Open a terminal window in the default directory (usually your home directory).
@@ -169,11 +188,12 @@
       </para></listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
-	<guimenu>Start Root Mode Krusader (Alt+K)</guimenu>
+	<guimenu id="root-mode">Start Root Mode Krusader (Alt+K)</guimenu>
 			</menuchoice></term>
       <listitem><para>
-			Starts Krusader in root-mode at the same location.
-      </para></listitem>
+			Starts Krusader in root-mode at the same location.</para>
+      <caution><para>Be carefull when using Krusader with ROOT PRIVILEGES.</para></caution>
+      </listitem>
     </varlistentry>
     <varlistentry><term><menuchoice>
     	<guimenu>Net Connections (Ctrl+C)</guimenu>  <!-- FTP Connect -->
@@ -210,9 +230,8 @@
 
 	<sect1 id="view-menu">
 	<title>The <guimenu>view</guimenu> menu</title>
-  <para>The action in this sub menu usually effect the current Krusader session,
-  If you want to make permanent changes use <link linkend="konfig-startup">
-  Konfigurator startup page</link>.</para>
+  <para>The action in this sub menu usually effect the current Krusader session.
+  If you want to make permanent changes use &KonfigStartPg;.</para>
 	<variablelist>
     <varlistentry><term><menuchoice>
     	<guimenu>Compare Mode (Ctrl+=)</guimenu>
@@ -240,7 +259,7 @@
 			</menuchoice></term>
       <listitem><para>
 			When this action is turned on, the main sorting key in the Krusader panels becomes the
-      file extention (the part of the file name after the last '.'). this is useful to group
+      file extention (the part of the file name after the last '.'). This is useful to group
       files of the same type closer together.
       </para></listitem>
     </varlistentry>
@@ -366,8 +385,7 @@
 			</menuchoice></term>
       <listitem><para>
 			Saves the current size and position of the Krusader main window. If you selected
-      <guilabel>Restore last position and size</guilabel> in
-      <link linkend="konfig-startup">Konfigurator startup page</link>.
+      <guilabel>Restore last position and size</guilabel> in &KonfigStartPg;.
       </para></listitem>
     </varlistentry>
 
@@ -414,14 +432,14 @@
     	<guimenu>Report Bug</guimenu>
 			</menuchoice></term>
       <listitem><para>
-		Opens the KDE's bugzilla report dialog where you can report a bug or request a "whislist" feature.</para>
-		<para><keycap>NOTICE: Please do not use KDE's bugzilla (bugs.kde.org) for Krusader.
-		If you've got bugs to report, please use the krusader website.</keycap></para>
-		<para>For fixes, patches and comments use the krusader forum or mail to
-                <email>krusader@users.sourceforge.net</email>.
+		Opens the KDE's bugzilla report dialog where you can report a bug or request a "wishlist"
+		feature.</para>
+		<note><para><remark>If you've got bugs to report please do not use KDE's bugzilla
+		http://bugs.kde.org/, KDE's Bug Tracking System.
+		If you've got bugs to report click <link linkend="bug_report">here</link>.</remark></para></note>
+		<para>If you have a wish, a patch or a comment click <link linkend="wish_patch">here</link>.
       </para></listitem>
     </varlistentry>
-
 
    <varlistentry><term><menuchoice>
     	<guimenu>About Krusader</guimenu>
