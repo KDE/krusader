@@ -77,7 +77,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   cmdLine->setFont( KGlobalSettings::generalFont() );
   cmdLine->setMaximumHeight( height );
   cmdLine->setCompletionObject( &completion );
-  cmdLine->setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred));
+  cmdLine->setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed));
   // load the history
   KConfigGroupSaver grpSvr( krConfig, "Private" );
   QStringList list = krConfig->readListEntry( "cmdline history" );
