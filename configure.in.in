@@ -1,4 +1,9 @@
 #MIN_CONFIG(3)
+have_libkonq=yes
+KDE_CHECK_HEADER(konq_popupmenu.h, ,[have_libkonq=no] )
+KDE_CHECK_HEADER(konqbookmarkmanager.h, ,[have_libkonq=no] )
+
+AM_CONDITIONAL(include_libkonq, test "$have_libkonq" = yes)
 
 AM_INIT_AUTOMAKE(krusader,1.40)
 

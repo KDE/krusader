@@ -65,8 +65,12 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kurlrequester.h>
 #include <kurl.h> 
 #include <kmountpoint.h>
+
+#ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
 #include <konqbookmarkmanager.h>
+#endif
+
 // Krusader includes
 #include "../krusader.h"
 #include "../krslots.h"
@@ -830,14 +834,17 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
      vfile *file = func->files() ->vfs_search( ( *it )->name() );
      KURL url = func->files() ->vfs_getFile( ( *it )->name() );
      _items.append( new KFileItem( url,  file->vfile_getMime(), file->vfile_getMode() ) );
-   }   
+   }
+   
+#ifdef __LIBKONQ__
    KActionCollection actions(this);
    KonqPopupMenu konqMenu( KonqBookmarkManager::self(), _items, func->files()->vfs_getOrigin(), actions, 0, this, 
                            KonqPopupMenu::ShowProperties, KParts::BrowserExtension::DefaultPopupItems );
    popup.insertItem( QPixmap(), &konqMenu, KONQ_MENU_ID );
    popup.changeItem( KONQ_MENU_ID, i18n( "Konqueror menu" ) );
    popup.insertSeparator();
-   
+#endif
+      
    // COPY
    popup.insertItem( i18n( "Copy" ), COPY_ID );
    if ( func->files() ->vfs_isWritable() ) {

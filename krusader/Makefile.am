@@ -3,10 +3,12 @@ bin_PROGRAMS = krusader
 
 ## INCLUDES were found outside kdevelop specific part
 
-krusader_SOURCES = paneltabbar.cpp panelmanager.cpp krservices.cpp main.cpp krusaderview.cpp krusader.cpp krslots.cpp kicons.cpp 
-krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./GUI/libGUI.a ./Konfigurator/libKonfigurator.a ./KViewer/libKViewer.a ./MountMan/libMountMan.a ./Panel/libPanel.a ./RemoteMan/libRemoteMan.a ./VFS/libVFS.a ./Search/libSearch.a ./Splitter/libSplitter.a ./Synchronizer/libSynchronizer.a ./UserMenu/libUserMenu.a ./Locate/libLocate.a UserAction/libUserAction.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a GUI/libGUI.a -lkonq $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) $(LIBSOCKET)
+if include_libkonq
+LIB_KONQ = -lkonq
+endif
 
-SUBDIRS = BookMan Dialogs GUI Konfigurator KViewer MountMan Panel RemoteMan VFS \
+krusader_SOURCES = paneltabbar.cpp panelmanager.cpp krservices.cpp main.cpp krusaderview.cpp krusader.cpp krslots.cpp kicons.cpp 
+krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./GUI/libGUI.a ./Konfigurator/libKonfigurator.a ./KViewer/libKViewer.a ./MountMan/libMountMan.a ./Panel/libPanel.a ./RemoteMan/libRemoteMan.a ./VFS/libVFS.a ./Search/libSearch.a ./Splitter/libSplitter.a ./Synchronizer/libSynchronizer.a ./UserMenu/libUserMenu.a ./Locate/libLocate.a UserAction/libUserAction.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a GUI/libGUI.a $(LIB_KONQ) $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) $(LIBSOCKET)
 	Search Splitter Synchronizer Locate UserAction UserMenu
 
 EXTRA_DIST = krusader.desktop defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h krusaderui.rc krusaderview.cpp krusaderview.h main.cpp resources.h krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 16-blue-krusader.png 22-blue-krusader.png 32-blue-krusader.png 48-blue-krusader.png 64-blue-krusader.png 16-red-krusader.png 22-red-krusader.png 32-red-krusader.png 48-red-krusader.png 64-red-krusader.png 
