@@ -96,8 +96,8 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
 
   // as long as u can find files - add them to the vfs
   for ( ; it != end; ++it ){
-    KFileItem kfi(*it,vfs_url,true,true);
-  	ftp_vfile *temp;
+    KFileItem kfi(*it,vfs_url,false,true);
+  	/*ftp_*/vfile *temp;
 		
     // get file statistics
 		QString name=kfi.text();
@@ -105,23 +105,24 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
 		if (name.isEmpty() || name=="." || name == ".." ) continue;
 	
 		unsigned long size = kfi.size();
-  	QString perm = KRpermHandler::perm2QString(&kfi);
 		QString	dateTime = KRpermHandler::time2QString(kfi.time(256 | 4 | 2));
 		bool symLink = kfi.isLink();
-		uid_t owner= 0;
-		gid_t group= 0;
-		mode_t mode = kfi.mode();
-		QString mime; // set the mimetype
-		if( kfi.isDir() ) mime = "inode/directory";
-		else mime = KMimeType::findByURL( kfi.url(),mode,false,true)->name();
-		QString symDest = "";
+		//uid_t owner= 0;
+		//gid_t group= 0;
+		mode_t mode = kfi.mode() | kfi.permissions();
+  	QString perm = KRpermHandler::mode2QString(mode);
+    // set the mimetype
+    QString mime = kfi.mimetype(); 
+		//if( kfi.isDir() ) mime = "inode/directory";
+		//else mime = KMimeType::findByURL( kfi.url(),mode,false,true)->name();
+    QString symDest = "";
 		if(symLink)symDest= kfi.linkDest();
 		// create a new virtual file object
-  	temp=new ftp_vfile(name,size,perm,dateTime,symLink,owner,group,mime,symDest,mode);
+  	temp=new /*ftp_*/vfile(name,size,perm,dateTime,symLink,kfi.user(),kfi.group(),mime,symDest,mode);
   	// set the ftp file permissions
-  	temp->setWrite(KRpermHandler::ftpWriteable (kfi.user(),loginName,perm));
-  	temp->setRead (KRpermHandler::ftpReadable  (kfi.user(),loginName,perm));
-  	temp->setExec (KRpermHandler::ftpExecutable(kfi.user(),loginName,perm));
+  	//temp->setWrite(KRpermHandler::ftpWriteable (kfi.user(),loginName,perm));
+  	//temp->setRead (KRpermHandler::ftpReadable  (kfi.user(),loginName,perm));
+  	//temp->setExec (KRpermHandler::ftpExecutable(kfi.user(),loginName,perm));
   	
   	vfs_addToList(temp);
 	}
@@ -261,9 +262,9 @@ KURL::List* ftp_vfs::vfs_getFiles(QStringList* names){
 QString ftp_vfs::vfs_getFile(QString name){	
 	KURL url = vfs_url;
 	
-	if (vfs_search(name)->vfile_isDir())
-		url.addPath(name+"/");
-	else
+	//if (vfs_search(name)->vfile_isDir())
+	//	url.addPath(name+"/");
+	//else
 	  url.addPath(name);
 
 	url.setUser(loginName);
