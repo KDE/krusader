@@ -93,7 +93,7 @@ void ListPanelFunc::openUrl( const QString& url, const QString& nameToMakeCurren
 		, nameToMakeCurrent );
 }
 
-void ListPanelFunc::delayedOpenUrl( const KURL& urlIn ) {
+void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	KURL url = urlIn;
 	url.cleanPath();
 	
@@ -195,7 +195,7 @@ void ListPanelFunc::openUrl( const KURL& url, const QString& nameToMakeCurrent )
 }
 
 void ListPanelFunc::doOpenUrl() {
-	delayedOpenUrl( delayURL );
+	immediateOpenUrl( delayURL );
 }
 
 void ListPanelFunc::goBack() {

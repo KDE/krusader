@@ -44,7 +44,7 @@ public slots:
 	void execute(QString&);
 	void openUrl(const KURL& path, const QString& nameToMakeCurrent = QString::null);
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString::null);
-   void delayedOpenUrl( const KURL& path);
+   void immediateOpenUrl( const KURL& path);
    void doOpenUrl();
 	void refresh(){ openUrl(panel->virtualPath); } // re-read the files
 	void rename(const QString &oldname, const QString &newname);

@@ -81,7 +81,7 @@ public:
    // constructor create the panel, but DOESN'T fill it with data, use start()
    ListPanel( QWidget *parent, bool &left, const char *name = 0 );
    ~ListPanel();
-   void start( QString path = QString::null );
+   void start( QString path = QString::null, bool immediate = false );
    inline QString getPath() {
       return virtualPath;
    }

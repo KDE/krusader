@@ -487,7 +487,7 @@ void ListPanel::slotFocusOnMe() {
 
 // this is used to start the panel, AFTER setOther() has been used
 //////////////////////////////////////////////////////////////////
-void ListPanel::start( QString path ) {
+void ListPanel::start( QString path, bool immediate ) {
    bool left = _left;
    krConfig->setGroup( "Startup" );
 
@@ -517,7 +517,10 @@ void ListPanel::start( QString path ) {
    KURL url = vfs::fromPathOrURL( virtualPath );
    if ( !url.isValid() )
       url = "/";
-   func->openUrl( url );
+   if( immediate )
+     func->immediateOpenUrl( url );
+   else
+     func->openUrl( url );
 }
 
 void ListPanel::slotStartUpdate() {
