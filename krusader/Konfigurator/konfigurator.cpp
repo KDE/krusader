@@ -90,7 +90,7 @@ void Konfigurator::createLayout()
       KIcon::Desktop,32)))));
   // look n' feel
   newContent(new KgLookFeel(firstTime, widget->addPage(i18n("Look & Feel"),
-    i18n("Look & Feel"),QPixmap(krLoader->loadIcon("appearance",KIcon::Desktop,32)))));
+    i18n("Look & Feel"),QPixmap(krLoader->loadIcon("looknfeel",KIcon::Desktop,32)))));
   // colors
   newContent(new KgColors(firstTime, widget->addPage(i18n("Colors"),
     i18n("Colors"),QPixmap(krLoader->loadIcon("colors",KIcon::Desktop,32)))));
