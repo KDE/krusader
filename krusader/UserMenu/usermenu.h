@@ -44,16 +44,19 @@ class UserMenuProcDlg: public KDialogBase {
 class UserMenuProc: public QObject {
       Q_OBJECT
    public:
-      UserMenuProc(bool terminal = true, bool enableStderr = false);
+
+      enum ExecType { Terminal, OutputOnly, None };
+
+      UserMenuProc(ExecType execType = Terminal, bool enableStderr = false);
       ~UserMenuProc();
       bool start( QString cmdLine );
-      bool kill() { return _proc->kill( SIGINT ); }
 
    protected slots:
+      void kill() { _proc->kill( SIGINT ); }
       void processExited( KProcess *proc );
 
    private:
-      bool _terminal;
+      ExecType _execType;
       bool _enableStderr;
       KProcess *_proc;
       QString _stdout;

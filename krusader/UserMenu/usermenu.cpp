@@ -1,9 +1,9 @@
 /***************************************************************************
-                       _expressionsu.cpp  -  description
-                          -------------------
- begin                : Sat Dec 6 2003
- copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
- email                :
+                      _expressionsu.cpp  -  description
+                         -------------------
+begin                : Sat Dec 6 2003
+copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
+email                :
 ***************************************************************************/
 
 /***************************************************************************
@@ -48,7 +48,7 @@ In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute a
 %_anf%  - number of files
 %_and%  - number of folders
 %_fm%   - filter mask (for example: *, *.cpp, *.h etc.)
-
+ 
 */
 UMCmd UserMenu::_expressions[ NUM_EXPS ] = {
          {"%_p%", expPath}
@@ -82,7 +82,7 @@ void UserMenu::exec() {
    //proc << "konsole" << "--noclose" << "-e" << cmd;
    //proc.start( KProcess::DontCare );
 
-   UserMenuProc *proc = new UserMenuProc(false, true);
+   UserMenuProc *proc = new UserMenuProc( UserMenuProc::Terminal, true );
    proc->start( cmd );
    //===> chdir( save.local8Bit() ); // chdir back
 }
@@ -188,36 +188,38 @@ UserMenuProcDlg::UserMenuProcDlg( QString caption, bool enableStderr, QWidget *p
 KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ) {
 
    setButtonOKText( "Close", i18n( "Close this window" ) );
+   enableButtonOK( false ); // disable the close button, until the process finishes
+
    setButtonCancelText( "Kill", i18n( "Kill the running process" ) );
 
    QVBox *page = makeVBoxMainWidget();
    // do we need to separate stderr and stdout?
    if ( enableStderr ) {
       // create stdout
-      QLabel * label1 = new QLabel( i18n( "Standard Output (stdout)" ), page );
+      new QLabel( i18n( "Standard Output (stdout)" ), page );
       _stdout = new QTextEdit( page );
-      _stdout->setReadOnly(true);
+      _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
       // create stderr
-      QLabel *label2 = new QLabel( i18n( "Standard Error (stderr)" ), page );
+      new QLabel( i18n( "Standard Error (stderr)" ), page );
       _stderr = new QTextEdit( page );
-      _stderr->setReadOnly(true);
+      _stderr->setReadOnly( true );
       _stderr->setMinimumWidth( fontMetrics().maxWidth() * 40 );
    } else {
       // create stdout
-      QLabel *label = new QLabel( i18n( "Output" ), page );
+      new QLabel( i18n( "Output" ), page );
       _stdout = new QTextEdit( page );
-      _stdout->setReadOnly(true);
+      _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
    }
 }
 
 void UserMenuProcDlg::addStderr( KProcess *proc, char *buffer, int buflen ) {
-   _stderr->append(QString::fromLatin1( buffer, buflen ));
+   _stderr->append( QString::fromLatin1( buffer, buflen ) );
 }
 
 void UserMenuProcDlg::addStdout( KProcess *proc, char *buffer, int buflen ) {
-   _stdout->append(QString::fromLatin1( buffer, buflen ));
+   _stdout->append( QString::fromLatin1( buffer, buflen ) );
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -225,8 +227,8 @@ void UserMenuProcDlg::addStdout( KProcess *proc, char *buffer, int buflen ) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-UserMenuProc::UserMenuProc( bool terminal, bool enableStderr ) : QObject(), _terminal( terminal ),
-_enableStderr( enableStderr ), _proc( new KProcess() ) {
+UserMenuProc::UserMenuProc( ExecType execType, bool enableStderr ) : QObject(), _execType( execType ),
+_enableStderr( enableStderr ), _proc( new KProcess() ), _output( 0 ) {
    _proc->setUseShell( true );
 
    connect( _proc, SIGNAL( processExited( KProcess* ) ),
@@ -240,27 +242,31 @@ UserMenuProc::~UserMenuProc() {
 
 bool UserMenuProc::start( QString cmdLine ) {
    _proc->clearArguments();
-   ( *_proc ) << cmdLine;
 
    // run in terminal or in custom-window
-   if (_terminal) {
-   } else {
-      _output = new UserMenuProcDlg( cmdLine, _enableStderr);
+   if ( _execType == Terminal ) {
+      ( *_proc ) << "konsole" << "--noclose" << "-e" << cmdLine;
+   } else if ( _execType == OutputOnly ) { // output only - collect output
+      ( *_proc ) << cmdLine;
+      _output = new UserMenuProcDlg( cmdLine, _enableStderr );
       // connect the output to the dialog
       connect( _proc, SIGNAL( receivedStderr( KProcess*, char*, int ) ),
                _output, SLOT( addStderr( KProcess*, char *, int ) ) );
       connect( _proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
                _output, SLOT( addStdout( KProcess*, char *, int ) ) );
-
+      connect( _output, SIGNAL( cancelClicked() ), this, SLOT( kill() ) );
       _output->show();
+   } else { // no terminal, no output collection
+      ( *_proc ) << cmdLine;
    }
-   return _proc->start( KProcess::NotifyOnExit, (KProcess::Communication)(KProcess::Stdout | KProcess::Stderr) );
+   return _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
 }
 
 void UserMenuProc::processExited( KProcess *proc ) {
-   kdWarning() << ">>>>>>>>> process done <<<<<<<<<<<" << endl;
-   kdWarning() << "stdout:" << endl << _stdout << endl;
-   kdWarning() << "stderr:" << endl << _stderr << endl;
-
-   delete this;
+   // enable the 'close' button on the dialog (if active), disable 'kill' button
+   if ( _output ) {
+      _output->enableButtonOK( true );
+      _output->enableButtonCancel( false);
+   }
+   delete this; // banzai!!
 }
