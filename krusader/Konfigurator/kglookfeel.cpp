@@ -153,10 +153,12 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
-    {{"Look&Feel","With Icons",           true,   i18n( "Use icons in the filenames" ), true ,  ""},
+    {
+	 {"Look&Feel","With Icons",           true,   i18n( "Use icons in the filenames" ), true ,  ""},
+	 {"Look&Feel","Human Readable Size",  _HumanReadableSize, i18n( "Use human-readable file size" ), true ,  ""},
     };
 
-  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 1, 0, panelSettings, 1, panelGrp );
+  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 0, 2, panelSettings, 2, panelGrp );
   panelGrid->addWidget( panelSett, 6, 0 );
   
   panelLayout->addWidget( panelGrp, 0, 0 );

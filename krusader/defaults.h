@@ -111,6 +111,8 @@
 #define _AlternateBackground  true
 // Show current item even if not focussed
 #define _ShowCurrentItemAlways false
+// Human Readable Size
+#define _HumanReadableSize		true
 
 /////////////////////// [General]
 // Mimetype Magic /////

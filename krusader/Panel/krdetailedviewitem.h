@@ -86,6 +86,7 @@ private:
   int nameColumn;         // the important columns are stored for faster comparation
   int sizeColumn;
   int dateTimeColumn;
+  bool humanReadableSize;
 };
 
 #endif
