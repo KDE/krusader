@@ -462,11 +462,6 @@ void Krusader::refreshView() {
 }
 
 bool Krusader::queryClose() {
-  // close all open VFS
-  delete krApp->mainView->left->func;
-  delete krApp->mainView->right->func;
-
-  saveSettings();
   krConfig->setGroup( "Look&Feel" );
   if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {
     switch ( KMessageBox::warningYesNo( this,
@@ -484,6 +479,10 @@ bool Krusader::queryClose() {
 
 void Krusader::quitKrusader() {
   if ( queryClose() ) {
+    // close all open VFS
+    delete krApp->mainView->left->func;
+    delete krApp->mainView->right->func;
+    saveSettings();
     delete krApp->mainView;
     kapp->quit();
   }
