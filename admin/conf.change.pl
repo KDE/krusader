@@ -81,7 +81,7 @@ while (<>) {
 # on autoconf 250, it ends with '# CONFIG_HEADER section'
 #
 # gg: if a post-processing commands section is found first, 
-#    stop there and insert a new loop to honour the case/esac.
+#    stop there and insert a new loop to honor the case/esac.
 # (pattern: /^\s+#\sRun the commands associated with the file./)
 
 	if (/^\s*for\s+ac_file\s+in\s+.*CONFIG_FILES/ ) {

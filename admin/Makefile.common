@@ -6,7 +6,7 @@
 
 SHELL=/bin/sh
 
-cvs dist cvs-clean configure configure.in configure.files subdirs package-messages package-merge Makefile.am acinclude.m4:
+cvs dist cvs-clean configure configure.in configure.files subdirs package-messages package-merge Makefile.am acinclude.m4 extract-messages:
 	@admindir=$(admindir); \
 	if test "x$$admindir" = x; then \
 	  admindir=.; until test -f $$admindir/admin/cvs.sh; do \

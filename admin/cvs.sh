@@ -20,24 +20,25 @@ call_and_fix_autoconf()
 
 strip_makefile()
 {
-  if test -f $makefile_wo; then :; else
-    perl -e '$in=0; while ( <> ) { $in = 1 if ($_=~ m/^if /); print $_ unless ($in); $in = 0 if ($_ =~ m/^endif/); }' < Makefile.am.in > $makefile_wo
+  if test ! -f $makefile_wo; then
+    perl -e '$in=0; while ( <> ) { $in = 1 if ($_ =~ m/^if / ); print $_ unless ($in || $_ =~ m/^include /); $in = 0 if ($_ =~ m/^endif/); }' < $makefile_am > $makefile_wo
   fi
 }
 
 check_autotool_versions()
 {
+required_autoconf_version="2.53 or newer"
 AUTOCONF_VERSION=`$AUTOCONF --version | head -n 1`
 case $AUTOCONF_VERSION in
   Autoconf*2.5* | autoconf*2.5* ) : ;;
   "" )
     echo "*** AUTOCONF NOT FOUND!."
-    echo "*** KDE requires autoconf 2.52, 2.53 or 2.54"
+    echo "*** KDE requires autoconf $required_autoconf_version"
     exit 1
     ;;
   * )
     echo "*** YOU'RE USING $AUTOCONF_VERSION."
-    echo "*** KDE requires autoconf 2.52, 2.53 or 2.54"
+    echo "*** KDE requires autoconf $required_autoconf_version"
     exit 1
     ;;
 esac
@@ -47,53 +48,50 @@ case $AUTOHEADER_VERSION in
   Autoconf*2.5* | autoheader*2.5* ) : ;;
   "" )
     echo "*** AUTOHEADER NOT FOUND!."
-    echo "*** KDE requires autoheader 2.52 or 2.53 (part of autoconf)"
+    echo "*** KDE requires autoheader $required_autoconf_version"
     exit 1
     ;;
   * )
     echo "*** YOU'RE USING $AUTOHEADER_VERSION."
-    echo "*** KDE requires autoheader 2.52 or 2.53 (part of autoconf)"
+    echo "*** KDE requires autoheader $required_autoconf_version"
     exit 1
     ;;
 esac
 
+unset UNSERMAKE || :
+
 AUTOMAKE_STRING=`$AUTOMAKE --version | head -n 1`
+required_automake_version="1.6.1 or newer"
 case $AUTOMAKE_STRING in
   automake*1.5d* | automake*1.5* | automake*1.5-* )
     echo "*** YOU'RE USING $AUTOMAKE_STRING."
-    echo "*** KDE requires automake 1.6.1 or newer"
+    echo "*** KDE requires automake $required_automake_version"
     exit 1
     ;;
-  automake*1.6.* | automake*1.7* | automake*1.8.* ) : ;;
+  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9*) : ;;
   "" )
     echo "*** AUTOMAKE NOT FOUND!."
-    echo "*** KDE requires automake 1.6.1 or newer"
+    echo "*** KDE requires automake $required_automake_version"
     exit 1
     ;;
-  unsermake* ) :
+  *unsermake* ) :
     echo "*** YOU'RE USING UNSERMAKE."
     echo "*** GOOD LUCK!! :)"
+    UNSERMAKE=unsermake
     ;;
   * )
     echo "*** YOU'RE USING $AUTOMAKE_STRING."
-    echo "*** KDE requires automake 1.6"
+    echo "*** KDE requires automake $required_automake_version"
     exit 1
     ;;
 esac
+unset required_automake_version
 }
 
 cvs()
 {
 check_autotool_versions
- 
-### Produce acinclude.m4
-if grep '\$(top_srcdir)/acinclude.m4:' $makefile_am >/dev/null; then
-  echo "*** Creating acinclude.m4"
-  rm -f acinclude.m4 configure.files
-  
-  strip_makefile
-  $MAKE -f $makefile_wo top_srcdir=. ./acinclude.m4
-fi
+acinclude_m4 
 
 ### Make new subdirs and configure.in.
 ### The make calls could be optimized away here,
@@ -112,14 +110,18 @@ if test -r configure.in.in; then
             Makefile_am
         fi
      fi
-     echo "*** Creating configure.in"
      configure_files
-     strip_makefile
-     $MAKE -f $makefile_wo top_srcdir=. ./configure.in || exit 1
+     echo "*** Creating configure.in"
+     if grep '\$(top_srcdir)/configure.in:' $makefile_am >/dev/null; then 
+       strip_makefile
+       $MAKE -f $makefile_wo top_srcdir=. ./configure.in || exit 1
+     else
+       configure_in
+     fi
 fi
 
 echo "*** Creating aclocal.m4"
-$ACLOCAL || exit 1
+$ACLOCAL $ACLOCALFLAGS || exit 1
 echo "*** Creating configure"
 call_and_fix_autoconf
 
@@ -130,6 +132,7 @@ fi
 
 echo "*** Creating Makefile templates"
 $AUTOMAKE || exit 1
+
 if test -z "$UNSERMAKE"; then
   echo "*** Postprocessing Makefile templates"
   perl -w admin/am_edit || exit 1
@@ -155,20 +158,33 @@ check_autotool_versions
 ###
 ### First build all of the files necessary to do just "make"
 ###
-if grep '\$(top_srcdir)/acinclude.m4:' $makefile_am >/dev/null; then
-  strip_makefile
-  $MAKE -f $makefile_wo top_srcdir=. ./acinclude.m4
-fi
+acinclude_m4
 if test -r configure.in.in; then
+  rm -f configure.in
   create_subdirs
-  Makefile_am
+
+  if test -r Makefile.am.in; then
+    if grep '\$(top_srcdir)/Makefile.am:' $makefile_am >/dev/null; then 
+      strip_makefile
+      $MAKE -f $makefile_wo top_srcdir=. ./Makefile.am || exit 1
+    else
+      Makefile_am
+    fi
+  fi
   configure_files
-  strip_makefile
-  $MAKE -f $makefile_wo top_srcdir=. ./configure.in
+  if grep '\$(top_srcdir)/configure.in:' $makefile_am >/dev/null; then 
+    strip_makefile
+    $MAKE -f $makefile_wo top_srcdir=. ./configure.in || exit 1
+  else
+    configure_in
+  fi
 fi
-$ACLOCAL
-$AUTOHEADER
-$AUTOMAKE --foreign --include-deps
+$ACLOCAL $ACLOCALFLAGS
+if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
+  echo "*** Creating config.h template"
+  $AUTOHEADER || exit 1
+fi
+$AUTOMAKE --foreign
 perl -w admin/am_edit
 call_and_fix_autoconf
 touch stamp-h.in
@@ -195,10 +211,10 @@ fi
 
 subdir_dist()
 {
-$ACLOCAL
+$ACLOCAL $ACLOCALFLAGS
 $AUTOHEADER
 $AUTOMAKE
-perl -w ../admin/am_edit
+perl -w ../admin/am_edit --path=../admin
 call_and_fix_autoconf
 touch stamp-h.in
 }
@@ -208,21 +224,30 @@ configure_in()
 rm -f configure.in configure.in.new
 kde_use_qt_param=
 test -f configure.files || { echo "need configure.files for configure.in"; exit 1; }
-cat `fgrep -v "configure.in.bot" < configure.files | fgrep -v "configure.in.mid"` > configure.in.new
+list=`fgrep -v "configure.in.bot" < configure.files | fgrep -v "configure.in.mid"`
+: > configure.in.new
+for file in $list; do 
+  echo "dnl =======================================================" >> configure.in.new
+  echo "dnl FILE: $file" >> configure.in.new
+  echo "dnl =======================================================" >> configure.in.new
+  echo "" >> configure.in.new
+  cat $file >> configure.in.new
+done
 echo "KDE_CREATE_SUBDIRSLIST" >> configure.in.new
 if test -f Makefile.am.in; then
   subdirs=`cat subdirs`
   for dir in $subdirs; do
-    dir=`echo $dir | sed -e "s,[-+.],_,g"`
-    echo "AM_CONDITIONAL($dir""_SUBDIR_included, test \"x\$$dir""_SUBDIR_included\" = xyes)" >> configure.in.new
+    vdir=`echo $dir | sed -e 's,[-+.@],_,g'`
+    echo "AM_CONDITIONAL($vdir""_SUBDIR_included, test \"x\$$vdir""_SUBDIR_included\" = xyes)" >> configure.in.new
+    if test -f "$dir/configure.in"; then
+        echo "if test \"x\$$vdir""_SUBDIR_included\" = xyes; then " >> configure.in.new
+        echo "  AC_CONFIG_SUBDIRS($dir)" >> configure.in.new
+        echo "fi" >> configure.in.new
+    fi
   done
 fi
 
 echo "AC_CONFIG_FILES([ Makefile ])" >> configure.in.new
-if test -n "$UNSERMAKE"; then
-  echo "AC_CONFIG_FILES([ Makefile.rules ])" >> configure.in.new
-  echo "AC_CONFIG_FILES([ Makefile.calls ])" >> configure.in.new
-fi
 
 if test -f inst-apps; then
     topleveldirs=`cat inst-apps`
@@ -243,14 +268,10 @@ for topleveldir in $topleveldirs; do
 	continue
   fi
 
-  mfs=`find $topleveldir -name Makefile.am -print | fgrep -v "/." | \
+  mfs=`find $topleveldir -follow -name Makefile.am -print | fgrep -v "/." | \
        sed -e 's#\./##; s#/Makefile.am$##' | sort | sed -e 's#$#/Makefile#'`
   for i in $mfs; do
      echo "AC_CONFIG_FILES([ $i ])" >> configure.in.new
-     if test -n "$UNSERMAKE"; then
-        echo "AC_CONFIG_FILES([ $i.rules ])" >> configure.in.new
-	echo "AC_CONFIG_FILES([ $i.calls ])" >> configure.in.new
-     fi
   done
 done
 
@@ -259,10 +280,6 @@ list=`egrep '^dnl AC_OUTPUT\(.*\)' $files | sed -e "s#^.*dnl AC_OUTPUT(\(.*\))#\
 for file in $list; do 
     echo "AC_CONFIG_FILES([ $file ])" >>  configure.in.new
 done
-
-if test -n "$UNSERMAKE"; then
-  echo "AC_CONFIG_FILES([ MakeVars ])" >> configure.in.new
-fi
 
 midfiles=`cat configure.files | fgrep "configure.in.mid"`
 test -n "$midfiles" && cat $midfiles >> configure.in.new
@@ -284,7 +301,7 @@ if test -f configure.in.in; then
    fi
 fi
 if test -z "$VERSION" || test "$VERSION" = "@VERSION@"; then
-     VERSION="\"3.1.0\""
+     VERSION="\"3.3.0\""
 fi
 if test -z "$modulename" || test "$modulename" = "@MODULENAME@"; then
    modulename=`pwd`; 
@@ -307,6 +324,7 @@ rm -f configure.in.new
 
 configure_files()
 {
+echo "*** Creating configure.files"
 admindir=NO
 for i in . .. ../.. ../../..; do
   if test -x $i/admin; then admindir=$i/admin; break; fi
@@ -334,6 +352,10 @@ for i in $list; do if test -f $i && test `dirname $i` != "." ; then
 fi; done
 test -f configure.in.mid && echo configure.in.mid >> configure.files
 test -f configure.in.bot && echo configure.in.bot >> configure.files
+if test ! -s configure.files; then
+   echo "There are no files to build a configure. Please check your checkout."
+   exit 1
+fi
 }
 
 create_subdirs()
@@ -429,25 +451,47 @@ if test -f Makefile.am.in; then
     esac
   done
 
-  if test -n "$UNSERMAKE"; then
-    cp Makefile.am.in Makefile.am
-    chmod u+w Makefile.am
-    topsubdirs=
-    for i in $compilefirst $dirs $compilelast; do
-       vari=`echo $i | sed -e "s,[-+],_,g"`
-       echo "if $vari""_SUBDIR_included" >> Makefile.am
-       echo "$vari""_SUBDIR=$i" >> Makefile.am
-       echo "endif" >> Makefile.am
-       topsubdirs="$topsubdirs \$($vari""_SUBDIR)"
+  adds=`fgrep '$(top_srcdir)/acinclude.m4:' Makefile.am.in | sed -e 's,^[^:]*: *,,; s,\$(top_srcdir)/,,g'`
+  if echo "$adds" | fgrep "*" >/dev/null ; then
+    adds=`ls -d -1 $adds 2>/dev/null`
+    fgrep -v  '$(top_srcdir)/acinclude.m4:' Makefile.am.in > Makefile.am.in.adds
+    str='$(top_srcdir)/acinclude.m4:'
+    for add in $adds; do 
+	str="$str \$(top_srcdir)/$add"
     done
-    echo "SUBDIRS=$topsubdirs" >> Makefile.am
+    echo $str >> Makefile.am.in.adds
   else
-    cat Makefile.am.in | \
-        sed -e 's,^\s*\(COMPILE_BEFORE.*\),# \1,' | \
-        sed -e 's,^\s*\(COMPILE_AFTER.*\),# \1,' > Makefile.am
-    echo "SUBDIRS="'$(TOPSUBDIRS)' >> Makefile.am
+    cat Makefile.am.in > Makefile.am.in.adds
   fi
+
+  cat Makefile.am.in.adds | \
+      sed -e 's,^\s*\(COMPILE_BEFORE.*\),# \1,' | \
+      sed -e 's,^\s*\(COMPILE_AFTER.*\),# \1,' > Makefile.am
+    echo "SUBDIRS="'$(TOPSUBDIRS)' >> Makefile.am
+  rm Makefile.am.in.adds
 fi
+}
+
+acinclude_m4()
+{
+  echo "*** Creating acinclude.m4"
+  adds=
+  if grep '\$(top_srcdir)/acinclude.m4:' $makefile_am >/dev/null; then 
+    strip_makefile
+    rm -f acinclude.m4
+    adds=`grep '\$(top_srcdir)/acinclude.m4:' $makefile_wo | sed -e 's,^[^:]*: *,,; s,\$(top_srcdir),.,g'`
+    if echo $adds | fgrep "*" >/dev/null ; then
+      adds=`ls -d -1 $adds 2>/dev/null`
+    else
+      $MAKE -f $makefile_wo top_srcdir=. ./acinclude.m4 || exit 1
+    fi
+  else
+    rm -f acinclude.m4
+  fi
+  # if it wasn't created up to now, then we do it better
+  if test ! -f acinclude.m4; then
+     cat admin/acinclude.m4.in admin/libtool.m4.in $adds > acinclude.m4
+  fi
 }
 
 cvs_clean()
@@ -479,18 +523,8 @@ for cat in $catalogs; do
 done
 }
 
-package_messages()
+extract_messages()
 {
-rm -rf po.backup
-mkdir po.backup
-
-for i in `ls -1 po/*.pot 2>/dev/null | sed -e "s#po/##"`; do
-  egrep -v '^#([^:]|$)' po/$i | egrep '^.*[^ ]+.*$' | grep -v "\"POT-Creation" > po.backup/$i
-  cp po/$i po.backup/backup_$i
-  touch -r po/$i po.backup/backup_$i
-  rm po/$i
-done
-
 podir=${podir:-$PWD/po}
 files=`find . -name Makefile.am | xargs egrep -l '^messages:' `
 dirs=`for i in $files; do echo \`dirname $i\`; done`
@@ -503,22 +537,23 @@ for subdir in $dirs; do
   test -z "$VERBOSE" || echo "Making messages in $subdir"
   (cd $subdir
    if test -n "`grep -e '^messages:.*rc.cpp' Makefile.am`"; then
-	$EXTRACTRC *.rc *.ui > rc.cpp
+	$EXTRACTRC *.rc *.ui *.kcfg > rc.cpp
    else
-	candidates=`ls -1 *.rc *.ui 2>/dev/null`
+	candidates=`ls -1 *.rc *.ui *.kcfg 2>/dev/null`
 	if test -n "$candidates"; then
-	    echo "$subdir has *.rc or *.ui files, but not correct messages line"
+	    echo "$subdir has *.rc, *.ui or *.kcfg files, but not correct messages line"
 	fi
    fi
-   if test -n "`grep -r KAboutData *.c* *.C* 2>/dev/null`"; then
+   if find . -name \*.c\* -o -name \*.h\* | xargs fgrep -s -q KAboutData ; then
 	echo -e 'i18n("_: NAME OF TRANSLATORS\\n"\n"Your names")\ni18n("_: EMAIL OF TRANSLATORS\\n"\n"Your emails")' > _translatorinfo.cpp
    else echo " " > _translatorinfo.cpp
    fi
-   perl -e '$mes=0; while (<STDIN>) { next if (/^(if|else|endif)\s/); if (/^messages:/) { $mes=1; print $_; next; } if ($mes) { if (/$\\(XGETTEXT\)/ && / -o/) { s/ -o \$\(podir\)/ _translatorinfo.cpp -o \$\(podir\)/ } print $_; } else { print $_; } }' < Makefile.am | egrep -v '^include ' > _transMakefile
+   perl -e '$mes=0; while (<STDIN>) { next if (/^(if\s|else\s|endif)/); if (/^messages:/) { $mes=1; print $_; next; } if ($mes) { if (/$\\(XGETTEXT\)/ && / -o/) { s/ -o \$\(podir\)/ _translatorinfo.cpp -o \$\(podir\)/ } print $_; } else { print $_; } }' < Makefile.am | egrep -v '^include ' > _transMakefile
 
-   $MAKE -s -f _transMakefile podir=$podir EXTRACTRC="$EXTRACTRC" PREPARETIPS="$PREPARETIPS" \
-	XGETTEXT="${XGETTEXT:-xgettext} -C -ki18n -ktr2i18n -kI18N_NOOP -ktranslate -kaliasLocale -x ${includedir:-${KDEDIR:-/usr/local/kde}/include}/kde.pot" \
-	messages 
+   kdepotpath=${includedir:-${KDEDIR:-`kde-config --prefix`}/include}/kde.pot
+
+   $MAKE -s -f _transMakefile podir=$podir EXTRACTRC="$EXTRACTRC" PREPARETIPS="$PREPARETIPS" srcdir=. \
+	XGETTEXT="${XGETTEXT:-xgettext} --foreign-user -C -ci18n -ki18n -ktr2i18n -kI18N_NOOP -kI18N_NOOP2 -kaliasLocale -x $kdepotpath" messages
    exit_code=$?
    if test "$exit_code" != 0; then
        echo "make exit code: $exit_code"
@@ -530,16 +565,31 @@ for subdir in $dirs; do
    rm -f $subdir/_transMakefile
 done
 rm -f $tmpname
+}
+
+package_messages()
+{
+rm -rf po.backup
+mkdir po.backup
+
+for i in `ls -1 po/*.pot 2>/dev/null | sed -e "s#po/##"`; do
+  egrep -v '^#([^:]|$)' po/$i | egrep '^.*[^ ]+.*$' | grep -v "\"POT-Creation" > po.backup/$i
+  cat po/$i > po.backup/backup_$i
+  touch -r po/$i po.backup/backup_$i
+  rm po/$i
+done
+
+extract_messages
+
 for i in `ls -1 po.backup/*.pot 2>/dev/null | sed -e "s#po.backup/##" | egrep -v '^backup_'`; do
   test -f po/$i || echo "disappeared: $i"
 done
 for i in `ls -1 po/*.pot 2>/dev/null | sed -e "s#po/##"`; do
-   msgmerge -q -o po/$i po/$i po/$i
+   sed -e 's,^"Content-Type: text/plain; charset=CHARSET\\n"$,"Content-Type: text/plain; charset=UTF-8\\n",' po/$i > po/$i.new && mv po/$i.new po/$i
+   #msgmerge -q -o po/$i po/$i po/$i
    egrep -v '^#([^:]|$)' po/$i | egrep '^.*[^ ]+.*$' | grep -v "\"POT-Creation" > temp.pot
-  if test -f po.backup/$i && test -n "`diff temp.pot po.backup/$i`"; then
+  if test -f po.backup/$i && ! cmp -s temp.pot po.backup/$i; then
 	echo "will update $i"
-	msgmerge -q po.backup/backup_$i po/$i > temp.pot
-	mv temp.pot po/$i
   else
     if test -f po.backup/backup_$i; then
       test -z "$VERBOSE" || echo "I'm restoring $i"
@@ -554,16 +604,22 @@ rm -f temp.pot
 rm -rf po.backup
 }
 
-unset CDPATH
+unset LC_ALL || :
+unset LANG || :
+unset LC_CTYPE || :
+unset LANGUAGE || :
+
+unset CDPATH || :
 admindir=`echo "$0" | sed 's%[\\/][^\\/][^\\/]*$%%'`
 test "x$admindir" = "x$0" && admindir=.
 
 test "x$MAKE" = x && MAKE=make
 makefile_am=Makefile.am
-makefile_wo=Makefile.am
+makefile_wo=Makefile.am.wo
 if test -f Makefile.am.in; then
   makefile_am=Makefile.am.in
   makefile_wo=Makefile.am.in.wo
+  rm -f $makefile_wo
 fi
 
 # Suck in the AUTOCONF detection code
@@ -573,10 +629,10 @@ fi
 ### Main
 ###
 
-arg=`echo $1 | tr '\-.' __`
+arg=`echo $1 | tr .- __`
 case $arg in
   cvs | dist | subdir_dist | configure_in | configure_files | subdirs | \
-  cvs_clean | package_merge | package_messages | Makefile_am ) $arg ;;
+  cvs_clean | package_merge | package_messages | Makefile_am | acinclude_m4 | extract_messages ) $arg ;;
   configure ) call_and_fix_autoconf ;;
   * ) echo "Usage: cvs.sh <target>"
       echo "Target can be one of:"
@@ -588,8 +644,8 @@ case $arg in
       exit 1 ;;
 esac
 
-if test -f Makefile.am.in.wo; then
-  rm Makefile.am.in.wo
+if test -f $makefile_wo; then
+  rm $makefile_wo
 fi
 
 exit 0

@@ -1,3 +1,29 @@
+# Check if KDE_SET_PREFIX was called, and --prefix was passed to configure
+if test -n "$kde_libs_prefix" -a -n "$given_prefix"; then
+  # And if so, warn when they don't match
+  if test "$kde_libs_prefix" != "$given_prefix"; then
+    # And if kde doesn't know about the prefix yet
+    echo ":"`kde-config --path exe`":" | grep ":$given_prefix/bin/:" 2>&1 >/dev/null
+    if test $? -ne 0; then
+      echo ""
+      echo "Warning: you chose to install this package in $given_prefix,"
+      echo "but KDE was found in $kde_libs_prefix."
+      echo "For this to work, you will need to tell KDE about the new prefix, by ensuring"
+      echo "that KDEDIRS contains it, e.g. export KDEDIRS=$given_prefix:$kde_libs_prefix"
+      echo "Then restart KDE."
+      echo ""
+    fi
+  fi
+fi
+
+if test "$all_tests" = "bad"; then
+  if test ! "$cache_file" = "/dev/null"; then
+    echo ""
+    echo "Please remove the file $cache_file after changing your setup"
+    echo "so that configure will find the changes next time."
+    echo ""
+  fi
+else
 # added manualy, it dumps a summary of the most important settings
 # and displays a warning if the KDEDIR or QTDIR is empty
 echo "
@@ -25,18 +51,8 @@ if (test -z "$KDEDIR");
 fi
 if (test -z "$QTDIR");
    then echo "WARNING:  QTDIR enviroment variable is empty!  Please read Krusader FAQ"
-   exit 1
+   exit 1  
 fi
-echo ""
-echo "Thank you for using Krusader"
-if test "$all_tests" = "bad"; then
-  if test ! "$cache_file" = "/dev/null"; then
-    echo ""    
-    echo "Please remove the file $cache_file after changing your setup"
-    echo "so that configure will find the changes next time."
-    echo ""
-  fi
-else
   echo ""
   echo "Good - your configure finished. Start make now"
   echo ""

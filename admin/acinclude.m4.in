@@ -96,7 +96,7 @@ if test "$ac_x_libraries" = NO; then
   # Don't add to $LIBS permanently.
   ac_save_LIBS="$LIBS"
   LIBS="-l$x_direct_test_library $LIBS"
-AC_TRY_LINK(, [${x_direct_test_function}()],
+AC_TRY_LINK([#include <X11/Intrinsic.h>], [${x_direct_test_function}(1)],
 [LIBS="$ac_save_LIBS"
 # We can link X programs with no special library path.
 ac_x_libraries=],
@@ -173,8 +173,14 @@ do
 done
 ])
 
-dnl KDE_FIND_PATH(programm-name, variable-name, list of directories,
-dnl	if-not-found, test-parameter)
+dnl KDE_FIND_PATH(program-name, variable-name, list-of-dirs,
+dnl	if-not-found, test-parameter, prepend-path)
+dnl
+dnl Look for program-name in list-of-dirs+$PATH.
+dnl If prepend-path is set, look in $PATH+list-of-dirs instead.
+dnl If found, $variable-name is set. If not, if-not-found is evaluated.
+dnl test-parameter: if set, the program is executed with this arg,
+dnl                 and only a successful exit code is required.
 AC_DEFUN([KDE_FIND_PATH],
 [
    AC_MSG_CHECKING([for $1])
@@ -186,12 +192,17 @@ AC_DEFUN([KDE_FIND_PATH],
         AC_CACHE_VAL(kde_cv_path_$kde_cache,
         [
         kde_cv_path="NONE"
-	dirs="$3"
 	kde_save_IFS=$IFS
 	IFS=':'
+	dirs=""
 	for dir in $PATH; do
 	  dirs="$dirs $dir"
-        done
+	done
+	if test -z "$6"; then  dnl Append dirs in PATH (default)
+	  dirs="$3 $dirs"
+        else  dnl Prepend dirs in PATH (if 6th arg is set)
+	  dirs="$dirs $3"
+	fi
 	IFS=$kde_save_IFS
 
         for dir in $dirs; do
@@ -533,41 +544,55 @@ Please check whether you installed aRts correctly or use
 ])
 ])
 
+AC_DEFUN([KDE_SET_DEFAULT_BINDIRS],
+[
+    kde_default_bindirs="/usr/bin /usr/local/bin /opt/local/bin /usr/X11R6/bin /opt/kde/bin /opt/kde3/bin /usr/kde/bin /usr/local/kde/bin"
+    test -n "$KDEDIR" && kde_default_bindirs="$KDEDIR/bin $kde_default_bindirs"
+    if test -n "$KDEDIRS"; then
+       kde_save_IFS=$IFS
+       IFS=:
+       for dir in $KDEDIRS; do
+            kde_default_bindirs="$dir/bin $kde_default_bindirs "
+       done
+       IFS=$kde_save_IFS
+    fi
+])
+
 AC_DEFUN([KDE_SUBST_PROGRAMS],
 [
     AC_ARG_WITH(arts,
-        AC_HELP_STRING([--without-arts],[build without aRts [default=yes]]),
+        AC_HELP_STRING([--without-arts],[build without aRts [default=no]]),
         [build_arts=$withval],
         [build_arts=yes]
     )
-    AM_CONDITIONAL(include_ARTS, test "$build_arts" != "no")
+    AM_CONDITIONAL(include_ARTS, test "$build_arts" '!=' "no")
+    if test "$build_arts" = "no"; then
+        AC_DEFINE(WITHOUT_ARTS, 1, [Defined if compiling without arts])
+    fi
 
-        kde_default_bindirs="/usr/bin /usr/local/bin /opt/local/bin /usr/X11R6/bin /opt/kde/bin /opt/kde3/bin /usr/kde/bin /usr/local/kde/bin"
-        test -n "$KDEDIR" && kde_default_bindirs="$KDEDIR/bin $kde_default_bindirs"
-        if test -n "$KDEDIRS"; then
-           kde_save_IFS=$IFS
-           IFS=:
-           for dir in $KDEDIRS; do
-                kde_default_bindirs="$dir/bin $kde_default_bindirs "
-           done
-           IFS=$kde_save_IFS
-        fi
-        kde_default_bindirs="$exec_prefix/bin $prefix/bin $kde_default_bindirs"
+        KDE_SET_DEFAULT_BINDIRS
+        kde_default_bindirs="$exec_prefix/bin $prefix/bin $kde_libs_prefix/bin $kde_default_bindirs"
         KDE_FIND_PATH(dcopidl, DCOPIDL, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(dcopidl)])
         KDE_FIND_PATH(dcopidl2cpp, DCOPIDL2CPP, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(dcopidl2cpp)])
-        if test "$build_arts" != "no"; then
+        if test "$build_arts" '!=' "no"; then
           KDE_FIND_PATH(mcopidl, MCOPIDL, [$kde_default_bindirs], [KDE_MISSING_ARTS_ERROR(mcopidl)])
           KDE_FIND_PATH(artsc-config, ARTSCCONFIG, [$kde_default_bindirs], [KDE_MISSING_ARTS_ERROR(artsc-config)])
         fi
-        KDE_FIND_PATH(kde-config, KDECONFIG, [$kde_default_bindirs])
         KDE_FIND_PATH(meinproc, MEINPROC, [$kde_default_bindirs])
 
         kde32ornewer=1
+        kde33ornewer=1
         if test -n "$kde_qtver" && test "$kde_qtver" -lt 3; then
             kde32ornewer=
+            kde33ornewer=
         else
-            if test "$kde_qtver" = "3" && test "$kde_qtsubver" -le 1; then
+            if test "$kde_qtver" = "3"; then
+              if test "$kde_qtsubver" -le 1; then
                 kde32ornewer=
+              fi
+              if test "$kde_qtsubver" -le 2; then
+                kde33ornewer=
+              fi
             fi
         fi
 
@@ -575,7 +600,11 @@ AC_DEFUN([KDE_SUBST_PROGRAMS],
             KDE_FIND_PATH(kconfig_compiler, KCONFIG_COMPILER, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(kconfig_compiler)])
             KDE_FIND_PATH(dcopidlng, DCOPIDLNG, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(dcopidlng)])
         fi
-        KDE_FIND_PATH(xmllint, XMLLINT, [${prefix}/bin ${exec_prefix}/bin /usr/local/bin /opt/local/bin], [XMLLINT=""])
+        if test -n "$kde33ornewer"; then
+            KDE_FIND_PATH(makekdewidgets, MAKEKDEWIDGETS, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(makekdewidgets)])
+            AC_SUBST(MAKEKDEWIDGETS)
+        fi
+        KDE_FIND_PATH(xmllint, XMLLINT, [${prefix}/bin ${exec_prefix}/bin], [XMLLINT=""])
 
         if test -n "$MEINPROC" && test ! "$MEINPROC" = "compiled"; then  
  	    kde_sharedirs="/usr/share/kde /usr/local/share /usr/share /opt/kde3/share /opt/kde/share $prefix/share"
@@ -601,26 +630,9 @@ AC_DEFUN([KDE_SUBST_PROGRAMS],
         AC_SUBST(DCOP_DEPENDENCIES)
         AC_SUBST(MCOPIDL)
         AC_SUBST(ARTSCCONFIG)
-        AC_SUBST(KDECONFIG)
 	AC_SUBST(MEINPROC)
  	AC_SUBST(KDE_XSL_STYLESHEET)
 	AC_SUBST(XMLLINT)
-
-        if test -x "$KDECONFIG"; then # it can be "compiled"
-          kde_libs_prefix=`$KDECONFIG --prefix`
-          if test -z "$kde_libs_prefix" || test ! -x "$kde_libs_prefix"; then
-               AC_MSG_ERROR([$KDECONFIG --prefix outputed the non existant prefix '$kde_libs_prefix' for kdelibs.
-                          This means it has been moved since you installed it.
-                          This won't work. Please recompile kdelibs for the new prefix.
-                          ])
-           fi
-           kde_libs_htmldir=`$KDECONFIG --install html --expandvars`
-        else
-           kde_libs_prefix='$(prefix)'
-           kde_libs_htmldir='$(kde_htmldir)'
-        fi
-        AC_SUBST(kde_libs_prefix)
-        AC_SUBST(kde_libs_htmldir)
 ])dnl
 
 AC_DEFUN([AC_CREATE_KFSSTND],
@@ -754,6 +766,9 @@ support])
    
    # more headers that need to be explicitly included on darwin
    AC_CHECK_HEADERS(sys/types.h stdint.h)
+
+   # sys/bitypes.h is needed for uint32_t and friends on Tru64
+   AC_CHECK_HEADERS(sys/bitypes.h)
 
    # darwin requires a poll emulation library
    AC_CHECK_LIB(poll, poll, LIB_POLL="-lpoll")
@@ -1126,9 +1141,9 @@ EOF
 AC_DEFUN([KDE_USE_QT],
 [
 if test -z "$1"; then
-  # Current default Qt version: 3.2
+  # Current default Qt version: 3.3
   kde_qtver=3
-  kde_qtsubver=2
+  kde_qtsubver=3
 else
   kde_qtsubver=`echo "$1" | sed -e 's#[0-9][0-9]*\.\([0-9][0-9]*\).*#\1#'`
   # following is the check if subversion isnt found in passed argument
@@ -1152,7 +1167,11 @@ if test -z "$2"; then
   if test "$kde_qtver" = "3"; then
     if test $kde_qtsubver -gt 0; then
 	 if test $kde_qtsubver -gt 1; then
-	    kde_qt_minversion=">= Qt 3.2"
+	    if test $kde_qtsubver -gt 2; then
+		kde_qt_minversion=">= Qt 3.3"
+	    else
+	        kde_qt_minversion=">= Qt 3.2"
+	    fi
 	 else
             kde_qt_minversion=">= Qt 3.1 (20021021)"
          fi
@@ -1542,7 +1561,7 @@ if test "$qt_libraries" = "$x_libraries" || test -z "$qt_libraries"; then
  QT_LDFLAGS=""
 else
  QT_LDFLAGS="-L$qt_libraries"
- all_libraries="$all_libraries $QT_LDFLAGS"
+ all_libraries="$QT_LDFLAGS $all_libraries"
 fi
 test -z "$KDE_MT_LDFLAGS" || all_libraries="$all_libraries $KDE_MT_LDFLAGS"
 
@@ -1738,7 +1757,7 @@ fi
 
 if test -z "$1"; then
 
-kde_incdirs="/usr/lib/kde/include /usr/local/kde/include /usr/local/include /usr/kde/include /usr/include/kde /usr/include /opt/kde3/include /opt/kde/include $x_includes $qt_includes"
+kde_incdirs="$kde_libs_prefix/include /usr/lib/kde/include /usr/local/kde/include /usr/local/include /usr/kde/include /usr/include/kde /usr/include /opt/kde3/include /opt/kde/include $x_includes $qt_includes"
 test -n "$KDEDIR" && kde_incdirs="$KDEDIR/include $KDEDIR/include/kde $KDEDIR $kde_incdirs"
 kde_incdirs="$ac_kde_includes $kde_incdirs"
 AC_FIND_FILE($kde_check_header, $kde_incdirs, kde_incdir)
@@ -1750,7 +1769,7 @@ in the prefix, you've chosen, are no KDE headers installed. This will fail.
 So, check this please and use another prefix!])
 fi
 
-kde_libdirs="/usr/lib/kde/lib${kdelibsuff} /usr/local/kde/lib${kdelibsuff} /usr/kde/lib${kdelibsuff} /usr/lib${kdelibsuff}/kde /usr/lib${kdelibsuff}/kde3 /usr/lib${kdelibsuff} /usr/X11R6/lib${kdelibsuff} /usr/local/lib${kdelibsuff} /opt/kde3/lib${kdelibsuff} /opt/kde/lib${kdelibsuff} /usr/X11R6/kde/lib${kdelibsuff}"
+kde_libdirs="$kde_libs_prefix/lib${kdelibsuff} /usr/lib/kde/lib${kdelibsuff} /usr/local/kde/lib${kdelibsuff} /usr/kde/lib${kdelibsuff} /usr/lib${kdelibsuff}/kde /usr/lib${kdelibsuff}/kde3 /usr/lib${kdelibsuff} /usr/X11R6/lib${kdelibsuff} /usr/local/lib${kdelibsuff} /opt/kde3/lib${kdelibsuff} /opt/kde/lib${kdelibsuff} /usr/X11R6/kde/lib${kdelibsuff}"
 test -n "$KDEDIR" && kde_libdirs="$KDEDIR/lib${kdelibsuff} $KDEDIR $kde_libdirs"
 kde_libdirs="$ac_kde_libraries $libdir $kde_libdirs"
 AC_FIND_FILE($kde_check_lib, $kde_libdirs, kde_libdir)
@@ -1784,7 +1803,7 @@ else
     ac_kde_includes=$ac_kde_includes ac_kde_libraries=$ac_kde_libraries"
 fi
 
-else dnl test -z $1
+else dnl test -z $1, e.g. from kdelibs
 
   ac_cv_have_kde="have_kde=no"
 
@@ -1808,11 +1827,12 @@ if test "$have_kde" != "yes"; then
  fi
 
  kde_libraries="${libdir}"
+ KDE_EXPAND_MAKEVAR(ac_kde_libraries, libdir)
+
  kde_includes="${includedir}"
+ KDE_EXPAND_MAKEVAR(ac_kde_includes, includedir)
 
 else
-  ac_cv_have_kde="have_kde=yes \
-    ac_kde_includes=$ac_kde_includes ac_kde_libraries=$ac_kde_libraries"
   AC_MSG_RESULT([libraries $ac_kde_libraries, headers $ac_kde_includes])
 
   kde_libraries="$ac_kde_libraries"
@@ -1832,7 +1852,7 @@ KDE_DEFAULT_CXXFLAGS="-DQT_CLEAN_NAMESPACE -DQT_NO_ASCII_CAST -DQT_NO_STL -DQT_N
  
 KDE_LDFLAGS="-L$kde_libraries"
 if test ! "$kde_libraries" = "$x_libraries" && test ! "$kde_libraries" = "$qt_libraries" ; then 
- all_libraries="$all_libraries $KDE_LDFLAGS"
+ all_libraries="$KDE_LDFLAGS $all_libraries"
 fi
 
 AC_SUBST(KDE_LDFLAGS)
@@ -1840,7 +1860,7 @@ AC_SUBST(KDE_INCLUDES)
 
 AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
 
-all_libraries="$all_libraries $USER_LDFLAGS"
+all_libraries="$USER_LDFLAGS $all_libraries"
 all_includes="$all_includes $USER_INCLUDES"
 AC_SUBST(all_includes)
 AC_SUBST(all_libraries)
@@ -1848,8 +1868,6 @@ AC_SUBST(all_libraries)
 if test -z "$1"; then
 KDE_CHECK_UIC_PLUGINS
 fi
-
-ac_kde_libraries="$kde_libdir"
 
 AC_SUBST(AUTODIRS)
 
@@ -2020,6 +2038,8 @@ if test $kde_qtver = 3; then
    AC_SUBST(LIB_KDEPRINT, "-lkdeprint")
    AC_SUBST(LIB_KUTILS, "-lkutils")
    AC_SUBST(LIB_KDEPIM, "-lkdepim")
+   AC_SUBST(LIB_KIMPROXY, "-lkimproxy")
+   AC_SUBST(LIB_KNEWSTUFF, "-lknewstuff")
 # these are for backward compatibility
    AC_SUBST(LIB_KSYCOCA, "-lkio")
    AC_SUBST(LIB_KFILE, "-lkio")
@@ -2312,23 +2332,16 @@ AC_DEFUN([AC_CHECK_RES_INIT],
   LIBS=$kde_libs_safe
   AC_SUBST(LIBRESOLV)
 
-  AC_MSG_CHECKING([if res_init is available])
-  AC_TRY_COMPILE(
+  KDE_CHECK_FUNC_EXT(res_init,
     [
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <arpa/nameser.h>
 #include <resolv.h>
     ],
-    [
-      res_init();
-    ],
-    [
-      AC_MSG_RESULT(yes)
-      AC_DEFINE(HAVE_RES_INIT, 1, [Define if you have the res_init function])
-    ],
-    [ AC_MSG_RESULT(no) ]
-  )
+    [res_init()],
+    [int res_init(void)],
+    [RES_INIT])
 ])
 
 AC_DEFUN([AC_CHECK_STRLCPY],
@@ -2355,6 +2368,38 @@ AC_DEFUN([AC_CHECK_STRLCAT],
  	[unsigned long strlcat(char*, const char*, unsigned long)],
 	[STRLCAT])
 ])
+
+AC_DEFUN([AC_CHECK_RES_QUERY],
+[
+	KDE_CHECK_FUNC_EXT(res_query, [
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/nameser.h>
+#include <resolv.h>
+#include <netdb.h>
+],
+[
+res_query(NULL, 0, 0, NULL, 0);
+],
+	[int res_query(const char *, int, int, unsigned char *, int)],
+	[RES_QUERY])
+])
+
+AC_DEFUN([AC_CHECK_DN_SKIPNAME],
+[
+	KDE_CHECK_FUNC_EXT(dn_skipname, [
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/nameser.h>
+#include <resolv.h>
+],
+[
+dn_skipname (NULL, NULL);
+],
+	[int dn_skipname (unsigned char *, unsigned char *)],
+	[DN_SKIPNAME])
+])
+
 
 AC_DEFUN([AC_FIND_GIF],
    [AC_MSG_CHECKING([for giflib])
@@ -2761,6 +2806,32 @@ else
 fi
 ])
 
+AC_DEFUN([KDE_CHECK_C_COMPILER_FLAG],
+[
+AC_MSG_CHECKING([whether $CC supports -$1])
+kde_cache=`echo $1 | sed 'y% .=/+-,%____p__%'`
+AC_CACHE_VAL(kde_cv_prog_cc_$kde_cache,
+[
+  AC_LANG_SAVE
+  AC_LANG_C
+  save_CFLAGS="$CFLAGS"
+  CFLAGS="$CFLAGS -$1"
+  AC_TRY_LINK([],[ return 0; ], [eval "kde_cv_prog_cc_$kde_cache=yes"], [])
+  CFLAGS="$save_CFLAGS"
+  AC_LANG_RESTORE
+])
+if eval "test \"`echo '$kde_cv_prog_cc_'$kde_cache`\" = yes"; then
+ AC_MSG_RESULT(yes)
+ :
+ $2
+else
+ AC_MSG_RESULT(no)
+ :
+ $3
+fi
+])
+
+
 dnl AC_REMOVE_FORBIDDEN removes forbidden arguments from variables
 dnl use: AC_REMOVE_FORBIDDEN(CC, [-forbid -bad-option whatever])
 dnl it's all white-space separated
@@ -2932,14 +3003,15 @@ AC_DEFUN([AC_CHECK_COMPILERS],
 
   if test "$kde_use_warnings" = "yes"; then
       if test "$GCC" = "yes"; then
+        CXXFLAGS="-Wall -W -Wpointer-arith -Wwrite-strings $CXXFLAGS"
         case $host in
           *-*-linux-gnu)	
             CFLAGS="-ansi -W -Wall -Wchar-subscripts -Wshadow -Wpointer-arith -Wmissing-prototypes -Wwrite-strings -D_XOPEN_SOURCE=500 -D_BSD_SOURCE $CFLAGS"
             CXXFLAGS="-ansi -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -Wcast-align -Wconversion -Wchar-subscripts $CXXFLAGS"
-            KDE_CHECK_COMPILER_FLAG(Wmissing-format-attribute, [CXXFLAGS="$CXXFLAGS -Wformat-security -Wmissing-format-attribute"; CFLAGS="$CFLAGS -Wformat-security -Wmissing-format-attribute"])
+            KDE_CHECK_COMPILER_FLAG(Wmissing-format-attribute, [CXXFLAGS="$CXXFLAGS -Wformat-security -Wmissing-format-attribute"])
+            KDE_CHECK_C_COMPILER_FLAG(Wmissing-format-attribute, [CFLAGS="$CFLAGS -Wformat-security -Wmissing-format-attribute"])
           ;;
         esac
-        CXXFLAGS="-Wall -W -Wpointer-arith -Wwrite-strings $CXXFLAGS"
         KDE_CHECK_COMPILER_FLAG(Wundef,[CXXFLAGS="-Wundef $CXXFLAGS"])
         KDE_CHECK_COMPILER_FLAG(Wno-long-long,[CXXFLAGS="-Wno-long-long $CXXFLAGS"])
         KDE_CHECK_COMPILER_FLAG(Wnon-virtual-dtor,[CXXFLAGS="-Wnon-virtual-dtor $CXXFLAGS"])
@@ -2949,12 +3021,42 @@ AC_DEFUN([AC_CHECK_COMPILERS],
   if test "$GXX" = "yes" && test "$kde_use_strict_options" = "yes"; then
     CXXFLAGS="-Wcast-qual -Wshadow -Wcast-align $CXXFLAGS"
   fi
-    
+
+  AC_ARG_ENABLE(pch,
+     AC_HELP_STRING([--enable-pch],
+                    [enables precompiled header support (currently only KCC or gcc >=3.4+unsermake) [default=no]]),
+    [ kde_use_pch=$enableval ],[ kde_use_pch=no ])
+ 
   if test "$GXX" = "yes"; then
     KDE_CHECK_COMPILER_FLAG(fno-exceptions,[CXXFLAGS="$CXXFLAGS -fno-exceptions"])
     KDE_CHECK_COMPILER_FLAG(fno-check-new, [CXXFLAGS="$CXXFLAGS -fno-check-new"])
     KDE_CHECK_COMPILER_FLAG(fno-common, [CXXFLAGS="$CXXFLAGS -fno-common"])
     KDE_CHECK_COMPILER_FLAG(fexceptions, [USE_EXCEPTIONS="-fexceptions"], USE_EXCEPTIONS=	)
+    ENABLE_PERMISSIVE_FLAG="-fpermissive"
+
+    if test "$kde_use_pch" = "yes"; then
+        AC_MSG_CHECKING(whether gcc supports precompiling c header files)
+        echo >conftest.h
+        if $CC -x c-header conftest.h >/dev/null 2>/dev/null; then
+            kde_gcc_supports_pch=yes
+            AC_MSG_RESULT(yes)
+        else
+            kde_gcc_supports_pch=no
+            AC_MSG_RESULT(no)
+        fi
+        if test "$kde_gcc_supports_pch" = "yes"; then
+            AC_MSG_CHECKING(whether gcc supports precompiling c++ header files)
+            if $CXX -x c++-header conftest.h >/dev/null 2>/dev/null; then
+                kde_gcc_supports_pch=yes
+                AC_MSG_RESULT(yes)
+            else
+                kde_gcc_supports_pch=no
+                AC_MSG_RESULT(no)
+            fi
+        fi
+        rm -f conftest.h conftest.h.gch
+    fi
+    AM_CONDITIONAL(unsermake_enable_pch, test "$kde_use_pch" = "yes" && test "$kde_gcc_supports_pch" = "yes")
   fi
   if test "$CXX" = "KCC"; then
     dnl unfortunately we currently cannot disable exception support in KCC
@@ -2962,13 +3064,6 @@ AC_DEFUN([AC_CHECK_COMPILERS],
     dnl KDE_CHECK_COMPILER_FLAG(-no_exceptions,[CXXFLAGS="$CXXFLAGS --no_exceptions"])
     dnl KDE_CHECK_COMPILER_FLAG(-exceptions, [USE_EXCEPTIONS="--exceptions"], USE_EXCEPTIONS=	)
 
-    AC_ARG_ENABLE(pch,
-	AC_HELP_STRING([--enable-pch],
-		       [enables precompiled header support (currently only KCC) [default=no]]),
-    [
-      kde_use_pch=$enableval
-    ],[kde_use_pch=no])
- 
     if test "$kde_use_pch" = "yes"; then
       dnl TODO: support --pch-dir!
       KDE_CHECK_COMPILER_FLAG(-pch,[CXXFLAGS="$CXXFLAGS --pch"])
@@ -3025,6 +3120,7 @@ AC_DEFUN([AC_CHECK_COMPILERS],
 
   AC_SUBST(NOOPT_CXXFLAGS)
   AC_SUBST(NOOPT_CFLAGS)
+  AC_SUBST(ENABLE_PERMISSIVE_FLAG)
 
   KDE_CHECK_FINAL
   KDE_CHECK_CLOSURE
@@ -3084,7 +3180,7 @@ AC_DEFUN([KDE_CHECK_LIB64],
             libdir="$libdir${kdelibsuff}"
             AC_SUBST([libdir], ["$libdir"])  dnl ugly hack for lib64 platforms
         fi
-        AC_DEFINE_UNQUOTED(KDELIBSUFF, ["\"${kdelibsuff}\""], Suffix for lib directories)
+        AC_DEFINE_UNQUOTED(KDELIBSUFF, ["${kdelibsuff}"], Suffix for lib directories)
         AC_MSG_RESULT([using lib directory suffix $kdelibsuff])
     fi
 ])
@@ -3096,6 +3192,7 @@ AC_DEFUN([KDE_CHECK_TYPES],
   AC_CHECK_SIZEOF(char *, 4)dnl
 ])dnl
 
+dnl Not used - kept for compat only?
 AC_DEFUN([KDE_DO_IT_ALL],
 [
 AC_CANONICAL_SYSTEM
@@ -3139,40 +3236,56 @@ AC_MSG_RESULT($USE_RPATH)
 ])
 
 dnl Check for the type of the third argument of getsockname
-AC_DEFUN([AC_CHECK_SOCKLEN_T], [
-  AC_MSG_CHECKING(for socklen_t)
-  AC_CACHE_VAL(ac_cv_socklen_t, [
-    AC_LANG_SAVE
-    AC_LANG_CPLUSPLUS
-    AC_TRY_COMPILE([
-#include <sys/types.h>
-#include <sys/socket.h>
-      ],[
-socklen_t a=0;
-getsockname(0,(struct sockaddr*)0, &a);
-      ],
-      ac_cv_socklen_t=socklen_t,
+AC_DEFUN([AC_CHECK_SOCKLEN_T],
+[
+   AC_MSG_CHECKING(for socklen_t)
+   AC_CACHE_VAL(kde_cv_socklen_t,
+   [
+      AC_LANG_PUSH(C++)
+      kde_cv_socklen_t=no
       AC_TRY_COMPILE([
-#include <sys/types.h>
-#include <sys/socket.h>
-        ],[
-int a=0;
-getsockname(0,(struct sockaddr*)0, &a);
-        ],
-        ac_cv_socklen_t=int,
-        ac_cv_socklen_t=size_t
-      )
-    )
-    AC_LANG_RESTORE
-  ])
-
-  AC_MSG_RESULT($ac_cv_socklen_t)
-  if test "$ac_cv_socklen_t" != "socklen_t"; then
-    AC_DEFINE_UNQUOTED(socklen_t, $ac_cv_socklen_t,
-        [Define the real type of socklen_t])
-  fi
-  AC_DEFINE_UNQUOTED(ksize_t, socklen_t, [Compatibility define])
-
+         #include <sys/types.h>
+         #include <sys/socket.h>
+      ],
+      [
+         socklen_t len;
+         getpeername(0,0,&len);
+      ],
+      [
+         kde_cv_socklen_t=yes
+         kde_cv_socklen_t_equiv=socklen_t
+      ])
+      AC_LANG_POP(C++)
+   ])
+   AC_MSG_RESULT($kde_cv_socklen_t)
+   if test $kde_cv_socklen_t = no; then
+      AC_MSG_CHECKING([for socklen_t equivalent for socket functions])
+      AC_CACHE_VAL(kde_cv_socklen_t_equiv,
+      [
+         kde_cv_socklen_t_equiv=int
+         AC_LANG_PUSH(C++)
+         for t in int size_t unsigned long "unsigned long"; do
+            AC_TRY_COMPILE([
+               #include <sys/types.h>
+               #include <sys/socket.h>
+            ],
+            [
+               $t len;
+               getpeername(0,0,&len);
+            ],
+            [
+               kde_cv_socklen_t_equiv="$t"
+               break
+            ])
+         done
+         AC_LANG_POP(C++)
+      ])
+      AC_MSG_RESULT($kde_cv_socklen_t_equiv)
+   fi
+   AC_DEFINE_UNQUOTED(kde_socklen_t, $kde_cv_socklen_t_equiv,
+                     [type to use in place of socklen_t if not defined])
+   AC_DEFINE_UNQUOTED(ksize_t, $kde_cv_socklen_t_equiv,
+                     [type to use in place of socklen_t if not defined (deprecated, use kde_socklen_t)])
 ])
 
 dnl This is a merge of some macros out of the gettext aclocal.m4
@@ -3904,18 +4017,14 @@ fi
 
 AC_DEFUN([KDE_CHECK_LIBPTHREAD],
 [
-  LIBPTHREAD=""
-
-  if test -n "$PTHREAD_LIBS"; then
-    PTHREAD_LIBS_save="$PTHREAD_LIBS"
-    PTHREAD_LIBS=`echo "$PTHREAD_LIBS_save" | sed -e 's,^-l,,g'`
-    KDE_CHECK_LIB($PTHREAD_LIBS, pthread_create, [LIBPTHREAD="$PTHREAD_LIBS_save"] )
-    PTHREAD_LIBS="$PTHREAD_LIBS_save"
-  fi
-
-  if test -z "$LIBPTHREAD"; then
-    AC_CHECK_LIB(pthread, pthread_create, [LIBPTHREAD="-lpthread"] )
-  fi
+  AC_MSG_CHECKING([for pthread_create in -lpthread])
+  kde_safe_libs=$LIBS
+  LIBS="$LIBS -lpthread"
+  AC_TRY_LINK([#include <pthread.h>],[(void)pthread_create(0,0,0,0);],[
+      AC_MSG_RESULT(yes)
+      LIBPTHREAD="-lpthread"],[
+      AC_MSG_RESULT(no)])
+  LIBS=$kde_safe_libs
 
   AC_SUBST(LIBPTHREAD)
 ])
@@ -4275,10 +4384,10 @@ AC_DEFUN([KDE_CREATE_SUBDIRSLIST],
 [
 
 DO_NOT_COMPILE="$DO_NOT_COMPILE CVS debian bsd-port admin"
+TOPSUBDIRS=""
 
 if test ! -s $srcdir/subdirs; then
   dnl Note: Makefile.common creates subdirs, so this is just a fallback
-  TOPSUBDIRS=""
   files=`cd $srcdir && ls -1`
   dirs=`for i in $files; do if test -d $i; then echo $i; fi; done`
   for i in $dirs; do
@@ -4306,7 +4415,7 @@ for i in $ac_topsubdirs; do
     install_it="no"
   fi
   AC_MSG_RESULT($install_it)
-  vari=`echo $i | sed -e 's,[[-+.]],_,g'`
+  vari=`echo $i | sed -e 's,[[-+.@]],_,g'`
   if test $install_it = "yes"; then
     TOPSUBDIRS="$TOPSUBDIRS $i"
     eval "$vari""_SUBDIR_included=yes"
@@ -4462,7 +4571,10 @@ AC_DEFUN([KDE_CONF_FILES],
   AC_SUBST(CONF_FILES)
 ])dnl
 
-AC_DEFUN([KDE_SET_PREFIX],
+dnl This sets the prefix, for arts and kdelibs
+dnl Do NOT use in any other module.
+dnl It only looks at --prefix, KDEDIR and falls back to /usr/local/kde
+AC_DEFUN([KDE_SET_PREFIX_CORE],
 [
   unset CDPATH
   dnl make $KDEDIR the default for the installation
@@ -4475,6 +4587,63 @@ AC_DEFUN([KDE_SET_PREFIX],
   # And delete superfluous '/' to make compares easier
   prefix=`echo "$prefix" | sed 's,//*,/,g' | sed -e 's,/$,,'`
   exec_prefix=`echo "$exec_prefix" | sed 's,//*,/,g' | sed -e 's,/$,,'`
+
+  kde_libs_prefix='$(prefix)'
+  kde_libs_htmldir='$(kde_htmldir)'
+  AC_SUBST(kde_libs_prefix)
+  AC_SUBST(kde_libs_htmldir)
+  KDE_FAST_CONFIGURE
+  KDE_CONF_FILES
+])
+
+
+AC_DEFUN([KDE_SET_PREFIX],
+[
+  unset CDPATH
+  dnl We can't give real code to that macro, only a value.
+  dnl It only matters for --help, since we set the prefix in this function anyway.
+  AC_PREFIX_DEFAULT(${KDEDIR:-the kde prefix})
+
+  KDE_SET_DEFAULT_BINDIRS
+  if test "x$prefix" = "xNONE"; then
+    dnl no prefix given: look for kde-config in the PATH and deduce the prefix from it
+    KDE_FIND_PATH(kde-config, KDECONFIG, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(kde-config)], [], prepend)
+  else
+    dnl prefix given: look for kde-config, preferrably in prefix, otherwise in PATH
+    kde_save_PATH="$PATH"
+    PATH="$exec_prefix/bin:$prefix/bin:$PATH"
+    KDE_FIND_PATH(kde-config, KDECONFIG, [$kde_default_bindirs], [KDE_MISSING_PROG_ERROR(kde-config)], [], prepend)
+    PATH="$kde_save_PATH"
+  fi
+
+  kde_libs_prefix=`$KDECONFIG --prefix`
+  if test -z "$kde_libs_prefix" || test ! -x "$kde_libs_prefix"; then
+       AC_MSG_ERROR([$KDECONFIG --prefix outputed the non existant prefix '$kde_libs_prefix' for kdelibs.
+                    This means it has been moved since you installed it.
+                    This won't work. Please recompile kdelibs for the new prefix.
+                    ])
+  fi
+  kde_libs_htmldir=`$KDECONFIG --install html --expandvars`
+
+  AC_MSG_CHECKING([where to install])
+  if test "x$prefix" = "xNONE"; then
+    prefix=$kde_libs_prefix
+    AC_MSG_RESULT([$prefix (as returned by kde-config)])
+  else
+    dnl --prefix was given. Compare prefixes and warn (in configure.in.bot.end) if different
+    given_prefix=$prefix
+    AC_MSG_RESULT([$prefix (as requested)])
+  fi
+
+  # And delete superfluous '/' to make compares easier
+  prefix=`echo "$prefix" | sed 's,//*,/,g' | sed -e 's,/$,,'`
+  exec_prefix=`echo "$exec_prefix" | sed 's,//*,/,g' | sed -e 's,/$,,'`
+  given_prefix=`echo "$given_prefix" | sed 's,//*,/,g' | sed -e 's,/$,,'`
+
+  AC_SUBST(KDECONFIG)
+  AC_SUBST(kde_libs_prefix)
+  AC_SUBST(kde_libs_htmldir)
+
   KDE_FAST_CONFIGURE
   KDE_CONF_FILES
 ])
@@ -5350,4 +5519,17 @@ AC_DEFUN([KDE_CHECK_PERL],
 We need perl to generate some code.])
 	])
     AC_SUBST(PERL)
+])
+
+AC_DEFUN([KDE_CHECK_LARGEFILE],
+[
+AC_SYS_LARGEFILE
+if test "$ac_cv_sys_file_offset_bits" != no; then
+  CPPFLAGS="$CPPFLAGS -D_FILE_OFFSET_BITS=$ac_cv_sys_file_offset_bits"
+fi
+
+if test "x$ac_cv_sys_large_files" != "xno"; then
+  CPPFLAGS="$CPPFLAGS -D_LARGE_FILES=1"
+fi
+
 ])
