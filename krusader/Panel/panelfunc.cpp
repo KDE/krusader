@@ -273,16 +273,7 @@ void ListPanelFunc::editFile() {
     return;
   }
 
-  KProcess proc;
-  krConfig->setGroup( "General" );
-  QString edit = krConfig->readEntry( "Editor", _Editor );
-  if ( edit == "internal editor" )
-    KrViewer::edit( files() ->vfs_getFile(name) );
-  else {
-    proc << edit << files()->vfs_getFile(name).url();
-    if ( !proc.start( KProcess::DontCare ) )
-      KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
-  }
+  KrViewer::edit( files() ->vfs_getFile(name) );
 }
 
 void ListPanelFunc::moveFiles() {

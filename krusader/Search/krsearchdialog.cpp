@@ -637,19 +637,7 @@ void KrSearchDialog::editCurrent()
   {
     KURL url = vfs::fromPathOrURL(current->text(1));
     url.setFileName( current->text(0) );
-
-    krConfig->setGroup( "General" );
-    QString edit = krConfig->readEntry( "Editor", _Editor );
-
-    if ( edit == "internal editor" )
-      KrViewer::edit( url, true );
-    else
-    {
-      KProcess proc;
-      proc << edit << url.prettyURL(0,KURL::StripFileProtocol);
-      if ( !proc.start( KProcess::DontCare ) )
-        KMessageBox::sorry( krApp, i18n( "Can't open " ) + url.prettyURL(0,KURL::StripFileProtocol) );
-    }
+    KrViewer::edit( url, true );
   }
 }
 

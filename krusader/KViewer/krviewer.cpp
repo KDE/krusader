@@ -3,7 +3,7 @@
                              -------------------
     begin                : Thu Apr 18 2002
     copyright            : (C) 2002 by Shie Erlich & Rafi Yanai
-    email                : 
+    email                :
  ***************************************************************************/
 
 /***************************************************************************
@@ -32,10 +32,11 @@
 #include <kdebug.h>
 #include <klargefile.h>
 #include <khtml_part.h>
+#include <kprocess.h>
 // Krusader includes
 #include "krviewer.h"
 #include "../krusader.h"
-
+#include "../defaults.h"
 
 KrViewer::KrViewer(QWidget *parent, const char *name ) :
   KParts::MainWindow(parent,name), manager(this,this){
@@ -144,6 +145,17 @@ void KrViewer::view(KURL url){
 }
 
 void KrViewer::edit(KURL url, bool create){
+  krConfig->setGroup( "General" );
+  QString edit = krConfig->readEntry( "Editor", _Editor );
+
+  if ( edit != "internal editor" ) {
+    KProcess proc;
+    proc << edit << url.prettyURL();
+    if ( !proc.start( KProcess::DontCare ) )
+      KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
+    return;
+  }
+
   KrViewer* viewer = new KrViewer(krApp);
 
   viewer->url = url;

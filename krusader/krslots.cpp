@@ -478,18 +478,8 @@ void KRslots::editDlg(){
     /* vfs::fromPathOrURL requires fullpath, so we check whether it is relative  */
     if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
       dest = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1) + dest; /* it's full path now */
-    
-    krConfig->setGroup( "General" );
-    QString edit = krConfig->readEntry( "Editor", _Editor );
 
-    if ( edit == "internal editor" )
-      KrViewer::edit( vfs::fromPathOrURL( dest ), true );
-    else {
-      KProcess proc;
-      proc << edit << dest;
-      if ( !proc.start( KProcess::DontCare ) )
-        KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
-    }
+    KrViewer::edit( vfs::fromPathOrURL( dest ), true );
   }
   // nothing more to it!
 }
