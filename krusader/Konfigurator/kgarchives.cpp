@@ -1,4 +1,4 @@
-/****************************************************************************
+/***************************************************************************
 ** Form implementation generated from reading ui file 'kgarchives.ui'
 **
 ** Created: Tue Apr 17 20:21:46 2001
@@ -20,7 +20,7 @@
 
 /* 
  *  Constructs a kgArchives which is a child of 'parent', with the 
- *  name 'name'.' 
+ *  name 'name'.'
  */
 kgArchives::kgArchives( QWidget* parent,  const char* name )
     : QFrame( parent, name )
@@ -130,7 +130,7 @@ kgArchives::kgArchives( QWidget* parent,  const char* name )
 
     kgMoveIntoArchives = new QCheckBox( privateLayoutWidget, "kgMoveIntoArchives" );
     kgMoveIntoArchives->setText( i18n( "Allow moving into archives" ) );
-    QToolTip::add(  kgMoveIntoArchives, i18n( "This action can be tricky, since system failure during the process might result in misplaced files. If this happens, the files are stored in a temp directory inside /tmp." ) );
+    QToolTip::add(  kgMoveIntoArchives, i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." ) );
     Layout4->addWidget( kgMoveIntoArchives );
 
     kgTestArchives = new QCheckBox( privateLayoutWidget, "kgTestArchives" );
