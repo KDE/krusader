@@ -143,6 +143,7 @@ protected slots:
    void stopQuickSearch( QKeyEvent* );
    void handleQuickSearchEvent( QKeyEvent* );
    void setNameToMakeCurrent( QListViewItem *it );
+	void sortOrderChanged(int);
 
    /**
     * used internally to produce the signal middleButtonClicked()

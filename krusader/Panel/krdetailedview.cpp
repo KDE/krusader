@@ -125,6 +125,7 @@ KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, K
       connect( this, SIGNAL( mouseButtonClicked ( int, QListViewItem *, const QPoint &, int ) ),
                this, SLOT( slotMouseClicked ( int, QListViewItem *, const QPoint &, int ) ) );
       connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
+		connect( header(), SIGNAL(clicked(int)), this, SLOT(sortOrderChanged(int )));
    }
 
    setWidget( this );
@@ -1367,5 +1368,10 @@ void KrDetailedView::selectColumns()
     QTimer::singleShot( 0, MAIN_VIEW->rightMng, SLOT( slotRecreatePanels() ) );
   }
 }
+
+void KrDetailedView::sortOrderChanged(int) {
+	ensureItemVisible(currentItem());
+}
+
 
 #include "krdetailedview.moc"
