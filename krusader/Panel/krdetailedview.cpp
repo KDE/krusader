@@ -421,6 +421,8 @@ void KrDetailedView::prepareForActive() {
   }
 
 void KrDetailedView::prepareForPassive() {
+  if (renameLineEdit()->isVisible())
+    renameLineEdit()->clearFocus();
   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
   if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
     if ( krApp->mainView ) {
