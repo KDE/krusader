@@ -41,7 +41,10 @@ PredefinedDevice SplitterGUI::predefinedDevices[] = {
   {i18n( "720 kB (3.5\")"  ),    730112},
   {i18n( "360 kB (5.25\")" ),    362496},
   {i18n( "100 MB (ZIP)"    ), 100431872},
-  {i18n( "250 MB (ZIP)"    ), 250331136}};
+  {i18n( "250 MB (ZIP)"    ), 250331136},
+  {i18n( "650 MB (CD-R)" ), 650*0x100000},
+  {i18n( "700 MB (CD-R)" ), 700*0x100000}
+  };
 
 SplitterGUI::SplitterGUI( QWidget* parent,  QString fileName, QString defaultDir ) :
     QDialog( parent, "Krusader::SplitterGUI", true, 0 ), splittedFileSize( 0 ),
