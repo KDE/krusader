@@ -74,7 +74,7 @@ public slots:
 protected:
   void keyPressEvent(QKeyEvent *e);
   void contentsMouseMoveEvent(QMouseEvent *e);
-  //void viewportMouseMoveEvent(QMouseEvent *e);
+  void viewportMouseMoveEvent(QMouseEvent *e);
   //void contentsMousePressEvent(QMouseEvent *e);
   //void contentsMouseReleaseEvent(QMouseEvent *e);
 
