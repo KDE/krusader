@@ -63,6 +63,9 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel){
 	
 	// connect the watcher to vfs_slotDirty
   connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty()));
+  // when FAM is active, these two solve a bug where creation/deletion of files isn't reflected
+	connect(&watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotDirty()));
+  connect(&watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDirty()));	
 }
 
 bool normal_vfs::vfs_refresh(const KURL& origin){
