@@ -752,7 +752,7 @@ static const char * const folder_data[] = {
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory ) :
     QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ), isComparing( false ), wasClosed( false ),
-    wasSync( false )
+    wasSync( false ), firstResize( true )
 {
   setCaption( i18n("Krusader::Synchronize Directories") );
   QGridLayout *synchGrid = new QGridLayout( this );
@@ -1421,6 +1421,22 @@ void SynchronizerGUI::synchronize()
 
   if( wasSync )
     closeDialog();
+}
+
+void SynchronizerGUI::resizeEvent( QResizeEvent *e )
+{
+  if( !firstResize )
+  {
+    int delta = e->size().width() - e->oldSize().width() + (e->size().width() & 1 );
+    int newSize = syncList->header()->sectionSize( 6 ) + delta/2;
+
+    if( newSize > 20 )
+      syncList->header()->resizeSection( 6, newSize );
+
+    syncList->header()->adjustHeaderSize();  
+  }
+  firstResize = false;
+  QDialog::resizeEvent( e );
 }
 
 void SynchronizerGUI::statusInfo( QString info )

@@ -113,7 +113,8 @@ private:
 
 protected:
   virtual void keyPressEvent( QKeyEvent * );
-
+  virtual void resizeEvent( QResizeEvent *e );
+  
   KHistoryCombo *leftLocation;
   KHistoryCombo *rightLocation;
   KHistoryCombo *fileFilter;
@@ -148,6 +149,7 @@ private:
   bool           isComparing;
   bool           wasClosed;
   bool           wasSync;
+  bool           firstResize;
   SyncViewItem  *lastItem;
 };
 
