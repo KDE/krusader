@@ -61,7 +61,7 @@ Expander::Placeholder Expander::placeholder[ Expander::numOfPlaceholder ] = {
                         {i18n("Ommit the current path (optional)"), "__no", false},
                         {i18n("Automatic escape spaces"), "__yes", false}
                     }, 2, true},
-         {"List", i18n("Itemlist of ..."), exp_List, {
+         {"List", i18n("Item list of ..."), exp_List, {
                         {i18n("Which items"), "__choose:All;Files;Dirs;Selected", false},
                         {i18n("Separator between the items (optional)"), " ", false},
                         {i18n("Ommit the current path (optional)"), "__no", false},

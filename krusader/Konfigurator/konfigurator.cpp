@@ -104,7 +104,7 @@ void Konfigurator::createLayout()
     i18n("Be sure you know what you're doing"),
     QPixmap(krLoader->loadIcon("messagebox_warning",KIcon::Desktop,32)))));
   // archives
-  newContent(new KgArchives(firstTime, widget->addPage(i18n("Archives"),i18n("Costumize the way Krusader deals with archives"),
+  newContent(new KgArchives(firstTime, widget->addPage(i18n("Archives"),i18n("Customize the way Krusader deals with archives"),
     QPixmap(krLoader->loadIcon("tgz",KIcon::Desktop,32)))));
   // dependencies
   newContent(new KgDependencies(firstTime, widget->addPage(i18n("Dependencies"),i18n("Set the full path of the external applications"),
