@@ -23,110 +23,20 @@
 <!--	&reporting.bugs;
 	&updating.documentation; -->
 
-<para>The &FAQ;'s are devided in three sections: General, Installation and &krusader; Usage.
-      If you have the feeling that a &FAQ; question is missing or if something is not clear to you,
-      please <link linkend="editors_note">let us know</link>.</para>
+<para>If you have problems with &krusader; please check the
+       <link linkend="installation">installation procedure</link>,
+       maybe your problem is caused by a bad installation.</para>
 
-<sect1 id="faq_general">
-<title>General &FAQ;'s</title>
-<qandaset>
-
-  <qandaentry>
-  <question id="faqq_wish_patch">
-  <para>Where can I report a wish, a patch or a comment?</para>
-  </question>
-  <answer>
-  <para>An open source projects greatest strength is derived from getting user feedback.
-      That's why we'd love to hear what you have to say. For information on what remains to be done look at
-      the &online_todolist_url;.
-      Posting to the online todo list is for developers only, but feel free to post to the &kru2forum_url;
-      for things that aren't on the list, but should be. If you have a nice feature request, the &krusader;
-      Krew will add your request to the online todo list. You can reach us by &mail_url;
-      or drop us a note in our &kruforum_url;.
-  </para>
-  </answer>
-  </qandaentry>
-
-  <qandaentry>
-    <question id="faqq_bug_report">
-    <para>Where can I report a bug?</para>
-    </question>
-    <answer>
-    <para>We have a online Bug Tracking System.</para>
-    <para>Using the online bug-tracker helps us have a clear and orderly way to know how many bugs are open,
-    bug priority and follow-ups. It saves us the long time needed to browse the entire &krusader; forum,
-    searching for yesterdays bug. Please use this system.</para>
-    <para>Before reporting a bug, please regard the following:
-    <orderedlist>
-    <listitem><para>Use the <emphasis role="bold">Search</emphasis> function of the &kruforum_url;
-    , your bug might be solved already. Please DO NOT post new bugs to the &bugforum_url;.
-    We keep it open to allow discussions.</para></listitem>
-    <listitem><para><emphasis role="bold">Check</emphasis> if the bug is already posted in the
-    &online_buglist_url; of the Bug Tracking System.</para></listitem>
-    <listitem><para>If you can't find this bug mentioned, please <emphasis role="bold">submit</emphasis> it
-    into the bug tracker by clicking the <guibutton>"Submit New"</guibutton> button in the bug-tracker window.
-    </para></listitem>
-    </orderedlist></para>
-    <para>Thanks for your cooperation!</para>
-    <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla http://bugs.kde.org/,
-    &kde;'s Bug Tracking System.</remark></para></note>
-  </answer>
-  </qandaentry>
-
-  <qandaentry>
-  <question id="faqq_mail_list">
-  <para>Does &krusader; have a mailing list?</para>
-  </question>
-  <answer>
-  <para>Yes, it is called &krunews_url;.
-      This list is used to notify &krusader; users about new releases, major bugfixes &etc;
-      No spam, no bother, just &krusader;. Feel free to (un)subscribe.
-      To see the collection of prior postings to the list, visit the &krunewsarch_url;.
-      </para><para>See also &krulatestnews_url; for online announcements.
-      </para><para>If you want to follow the &krusader; development ... live! A &krucommits_url; is available.
-      That means that everything the development team puts into CVS is reported in the list.
-      Want to keep track? Waiting for a certain feature/bugfix? Feel free to (un)subscribe.
-      To see the collection of prior CVS commits visit the &krucommitsarch_url;.
-  </para>
-  </answer>
-  </qandaentry>
-
-  <qandaentry>
-  <question id="faqq_kru_forum">
-  <para>How does the &krusader; forum works?</para>
-  </question>
-  <answer>
-  <para>In the spirit of freedom of speach, everything what is &krusader; related can be discussed in our forum.
-         But please regard the following, so that we can maintain some order in the chaos. ;-)</para>
-
-  <para>Please use the <emphasis role="bold">Search</emphasis> function of the &kruforum_url;, your issue is maybe
-         discussed already (this allows us to minimze the double/triple/... postings).
-         If your issue was already discussed in the past there is a great chance that you have an instant solution
-	 for your issue/problem.
-         Some issues are asked over and over again, for this issues whe have the made the FAQ's. ;-)
-         This also allows us also to spend more time in developing &krusader;.</para>
-
-  <para>If the forum, documentation and FAQ's can't help you, do not hesitate to drop a posting in our forum.
-         The &krusader; Krew or the &krusader; forum community is always available to help you.
-	 Note: with your feedback we can make &krusader; better and better, otherwise we are maybe not
-	 aware about some issues.</para>
-
-  <para>The &kruforum_url; is split up in three major sections:
+<para>The &FAQ;'s are devided in three sections:
   <itemizedlist>
-     <listitem><para>&bugforum_url;: discussions about bugs, please DO NOT use the forum for &faqbugreports_lnk;
-                         (except if you are not sure that you have found a bug).</para></listitem>
-     <listitem><para>&kru2forum_url;: discussions about new features for future &krusader;
-                       versions.</para></listitem>
-     <listitem><para>&krugenforum_url;: everything that is &krusader; related and not belongs in the
-                       two other forums.</para></listitem>
+     <listitem><para><link linkend="faq_installation">installation &FAQ;'s</link> (this page)</para></listitem>
+     <listitem><para><link linkend="faq_usage">&krusader; usage &FAQ;'s</link></para></listitem>
+     <listitem><para><link linkend="faq_general">General &FAQ;'s</link></para></listitem>
   </itemizedlist>
-  </para>
-  <para>Thanks for your cooperation!</para>
-  </answer>
-  </qandaentry>
+  If you have the feeling that a &FAQ; question is missing or if something is not clear to you,
+  please <link linkend="editors_note">let us know</link>.
+</para>
 
-</qandaset>
-</sect1>
 
 <sect1 id="faq_installation">
 <title>Installation &FAQ;'s</title>
@@ -138,7 +48,7 @@
          What to do?</para>
    </question>
    <answer>
-   <para>Install them. ;-)</para>
+   <para>Please install them. ;-)</para>
    <para>Here is a (obviously incomplete) list of &krusader;'s dependencies:</para>
    <para><itemizedlist>
      <listitem><para><application>gcc</application> (other compilers may work but haven't been tested)
@@ -159,8 +69,9 @@
            <filename>kdelibs-devel-3.1-58mdk.i586.rpm</filename>)
            or foo-dev-*.deb for Debian based distributions. They most likely come with your distribution.
       <tip><para>If you can't find the needed package, use the &rpmfind_url; and click
-		 'missing lib or header' in the search line. Or use "apt-cache search" to find the
-		 corresponding package.</para></tip></para>
+		 'missing lib or header' in the search line.
+		 Or use <command>apt-cache search <replaceable>foo</replaceable></command> to find the
+		 corresponding package for Debian based distributions.</para></tip></para>
    </answer>
    </qandaentry>
 
@@ -173,15 +84,15 @@
    <para><itemizedlist>
           <listitem><para>The &krusader; binary is obviously not in your <envar>PATH</envar>.</para></listitem>
           <listitem><para>Use the find command to locate the binary.
-          <screen><prompt>$</prompt> <userinput><command> find</command> <option>/usr /opt -name</option>  krusader <option>-type f -perm +111</option></userinput></screen>
-          <screen><userinput>/usr/local/bin/krusader</userinput></screen>
+<screen><prompt>$</prompt> <userinput><command> find</command> <option>/usr /opt -name</option>  krusader <option>-type f -perm +111</option></userinput>
+<userinput>/usr/local/bin/krusader</userinput></screen>
           Here, the binary somehow made it into <filename class="directory">/usr/local/bin</filename>.
           It is most likely, that your
 	  <envar>KDEDIR</envar> enviroment variable wasn't set properly, look at &kdeqtdir_lnk; for more info.</para></listitem>
           <listitem><para>If you don't want to recompile &krusader;, just add
           <filename class="directory">/usr/local/bin</filename> to your <envar>PATH</envar>.
           To do this for all users, append the following line to your
-          <filename class="directory">/etc/profile</filename> (or any other file your shell sources at startup).
+          <filename class="directory">/etc/profile</filename> file (or any other file your shell sources at startup).
          <screen><prompt>$</prompt> <userinput><command>export</command>  PATH=$PATH:<replaceable>/usr/local/bin</replaceable></userinput></screen></para></listitem>
     </itemizedlist></para>
    </answer>
@@ -217,36 +128,47 @@
 
    <qandaentry>
    <question id="krusaderrc_ui">
-   <para>I've installed &krusader;, but when I run it, only the <guimenu>"Help"</guimenu>
+   <para>I've installed &krusader;, but when I start it, only the <guimenu>"Help"</guimenu>
 	 menu appears. Why?</para></question>
    <answer>
-   <para>Only the <guimenuitem>Help</guimenuitem> menu is visible and all the other menu's are gone.
-   Some distributions put the <filename>krusaderrc.ui</filename> file in the wrong place.
+   <para>In this case only the <guimenu>"Help"</guimenu> menu is visible and all the other menu items
+   like &eg; <guimenu>"File"</guimenu> and <guimenu>"Mark"</guimenu> are gone.
+   This is because some distributions put the <filename>krusaderrc.ui</filename> file in a wrong directory.
    To solve the problem, just copy the <filename>krusaderrc.ui</filename> file
-   (from the package or the installed <envar>PATH</envar>) to either
+   from the package <filename>krusader_kde3/krusader/krusaderrc.ui</filename> to
    <filename>$KDEDIR/share/apps/krusader/krusaderrc.ui</filename>
-   or <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> and re-run the program.
+   and <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> and re-run &krusader;.
    If you have compiled &krusader; from sources this is often caused when the
-   &kdeqtdir_lnk; enviroment variables are not right set.
-   Note: We are thinking to write code that the &krusader; binary checks at every start the existence and
-   validity of the used <filename>krusaderrc.ui</filename> file, at the moment of writing this feature is not
-   supported yet by &krusader;, but it will ;-).
-   </para>
+   &kdeqtdir_lnk; enviroment variables are not right set, the result is that the 
+   <filename>krusaderrc.ui</filename> file is installed in a wrong directory.
+   Please read also the next question.</para>
    </answer>
    </qandaentry>
 
   <qandaentry>
   <question id="missing_menus">
-  <para>Some menu items are missing, what is wrong?</para>
+  <para>Some new menu items are missing after updating &krusader;, what is wrong?</para>
   </question>
   <answer>
-  <para>When upgrading to a newer &krusader; version the <filename>krusaderrc.ui</filename> file
-        must be updated to. If this file is missing, only the help menu appears.
-        If this file is too old, the new menu elements will not be shown.
-        Unfortunately at changing the toolbar, &kde; makes a copy of that file in the home directory,
-        and if someone updates &krusader;, the new menu elements will be inaccessable because of using the
-        old <filename>krusaderui.rc</filename>.
-        The solution is explained in the previous question.
+  <para>The <filename>krusaderrc.ui</filename> file is stored in
+       <filename>$KDEDIR/share/apps/krusader/krusaderrc.ui</filename>.
+       When you change the <guilabel>"Toolbar"</guilabel>, &kde; makes a copy of that file in the home directory at
+       <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename>.
+       When updating to a newer &krusader; version the
+       <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> file must be updated to, this was not always the
+       case in the past (see the Note) and it is recommended to check this mannualy if you install a
+       <link linkend="krusader_cvs">CVS build</link> of &krusader;.
+       If the <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> file is too old,
+       then the new menu elements will not be shown.
+       Read the previous question to know howto update the <filename>krusaderrc.ui</filename> file.
+
+     <note><para>if &krusader; is correctly installed, then the <filename>krusaderrc.ui</filename> file will be
+           automaticly updated in <filename>~/.kde/share/apps/krusader/krusaderrc.ui</filename> when starting
+	   &krusader;, in the past this was not the case due to a bug,
+	   this bug was resolved since "krusader-cvs-2004-02-24".</para></note>
+
+       If <filename>krusaderrc.ui</filename> is missing or in a wrong directory,
+       only the <guimenu>"Help"</guimenu> menu appears, please read the previous question.
   </para>
   </answer>
   </qandaentry>
@@ -258,7 +180,8 @@
   <answer>
   <para>The <command>./configure</command> script does not check for the presence of
 	<filename>libfam.la</filename>, and <command>make</command> needs <filename>libfam.la</filename>
-	to compile &krusader;. Install <filename>libfam0-devel-foo.rpm</filename>.
+	to compile &krusader;. If you know how this can be solved, please let us know. 
+	Install <filename>libfam0-devel-foo.rpm</filename>.
 	Note: when you install <application>Mandrake 9.1</application> with the default settings, this
 	package is not installed.
 	If you need more information take a look at &missing_libs_lnk;.
@@ -276,7 +199,7 @@
       <emphasis role="bold">help request</emphasis> at our &krusader; forum.
       But before posting a help request at our &krusader; forum, please regard the following:
       <orderedlist>
-      <listitem><para>Use the <emphasis role="bold">Search</emphasis> function of the &kruforum_url;
+      <listitem><para>Use the &kruforumsearch_url; function of the &forum_lnk;
       , your problem might be solved or discussed already.</para></listitem>
       <listitem><para>If you can't find a solution, please take a note of the following issues:
       <itemizedlist>
@@ -302,8 +225,9 @@
 </qandaset>
 </sect1> 
 
+
 <sect1 id="faq_usage">
-<title>&krusader; Usage &FAQ;'s</title>	
+<title>&krusader; Usage &FAQ;'s</title>
 <qandaset>
 
    <qandaentry>
@@ -363,13 +287,14 @@
        &krusader; with fam installed, but updates to the panel are now shown.</para>
    </question>
    <answer>
-   <para>The bad news is that we're not sure why, but seems that <application>fam</application> doesn't always 
+   <para>The bad news is that we're not sure why, but seems that <command>fam</command> 
+      (file alteration monitor)doesn't always 
       seem to work for us. Feel free to write a patch for it ;-).
       We've tried the same source code on two different Gentoo installation: one worked,
       the other did not. The good news is that if you disable <application>fam</application>, &krusader; will 
       automatically revert to its internal mechanism (which is less efficient, but works) without needing to 
       recompile.
-      You can disable <application>fam</application> (file alteration monitor) with:
+      You can disable <application>fam</application> with:
       <screen><prompt>$</prompt> <userinput><command>su -c 'fam -l'</command></userinput></screen>
       Look at the manpages for more information about <application>fam</application>.
   </para>
@@ -383,7 +308,7 @@
         directories containing national characters?</para>
   </question>
   <answer>
-  <para>&krusader; does not handle (yet) <application>Samba</application> ISO 8859-x codepages, if you use a 
+  <para>&krusader; does not handle (yet) <application>Samba</application> ISO 8859-x codepages, if you use a
         codepage different than 8859-1 you will have to do a manual configuration.
         Create or modify the file: <filename>~/.smb/smb.conf</filename>
         <programlisting>
@@ -431,7 +356,113 @@
   </qandaentry>
 
 </qandaset>
-</sect1> 
+</sect1>
+
+<sect1 id="faq_general">
+<title>General &FAQ;'s</title>
+<qandaset>
+
+  <qandaentry>
+  <question id="faqq_wish_patch">
+  <para>Where can I report a wish, a patch or a comment?</para>
+  </question>
+  <answer>
+  <para>An open source projects greatest strength is derived from getting user feedback.
+      That is why we love to hear what you have to say.
+      The most convenient way is to use the &forum_lnk;.
+      For information on what remains to be done look at the &online_todolist_url;.
+      Posting to the online todo list is for developers only, but feel free to post to the &kru2forum_url;
+      for things that aren't on the list, but should be. If you have a nice feature request, the &krusader;
+      Krew will add your request to the online todo list. You can reach us by &mail_url;
+      or drop us a note in our <link linkend="faqq_kru_forum">&krusader; Forum</link>.
+  </para>
+  </answer>
+  </qandaentry>
+
+  <qandaentry>
+    <question id="faqq_bug_report">
+    <para>Where can I report a bug?</para>
+    </question>
+    <answer>
+    <para>We have a online Bug Tracking System.</para>
+    <para>Using the online bug-tracker helps us have a clear and orderly way to know how many bugs are open,
+    bug priority and follow-ups. It saves us the long time needed to browse the entire &krusader; forum,
+    searching for yesterdays bug. Please use this system.</para>
+    <para>Before reporting a bug, please regard the following:
+    <orderedlist>
+    <listitem><para>Use the &kruforumsearch_url; function of the &forum_lnk;
+    , your bug might be solved already. Please DO NOT post new bugs to the &bugforum_url;
+    (except if you are not sure that you have found a bug).
+    We use it for bug discussions.</para></listitem>
+    <listitem><para><emphasis role="bold">Check</emphasis> if the bug is already posted in the
+    &online_buglist_url; of the Bug Tracking System.</para></listitem>
+    <listitem><para>If you can't find this bug mentioned, please <emphasis role="bold">submit</emphasis> it
+    into the bug tracker by clicking the <guibutton>"Submit New"</guibutton> button in the bug-tracker window.
+    </para></listitem>
+    </orderedlist></para>
+    <para>Thanks for your cooperation!</para>
+    <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla http://bugs.kde.org/,
+    &kde;'s Bug Tracking System.</remark></para></note>
+  </answer>
+  </qandaentry>
+
+  <qandaentry>
+  <question id="faqq_mail_list">
+  <para>Does &krusader; have a mailing list?</para>
+  </question>
+  <answer>
+  <para>Yes, it is called &krunews_url;.
+      This list is used to notify &krusader; users about new releases, major bugfixes &etc;
+      No spam, no bother, just &krusader;. Feel free to (un)subscribe.
+      To see the collection of prior postings to the list, visit the &krunewsarch_url;.
+      </para><para>See also &krulatestnews_url; for online announcements.
+      </para><para>If you want to follow the &krusader; development ... live! A &krucommits_url; is available.
+      That means that everything the development team puts into CVS is reported in the list.
+      Want to keep track? Waiting for a certain feature/bugfix? Feel free to (un)subscribe.
+      To see the collection of prior CVS commits visit the &krucommitsarch_url;.
+  </para>
+  </answer>
+  </qandaentry>
+
+  <qandaentry>
+  <question id="faqq_kru_forum">
+  <para>How does the &krusader; forum works?</para>
+  </question>
+  <answer>
+  <para>In the spirit of freedom of speach, everything what is &krusader; related can be discussed in our forum.
+        It does not matter that you are a newcomer or an advanced user, everybody is welcome.
+        An open source projects greatest strength is derived from getting user feedback.
+        That is why we love to hear what you have to say.
+        With your feedback we can make &krusader; better and better, otherwise we are maybe not aware about some issues.
+        But please regard the following, so that we can maintain some order in the chaos. ;-)</para>
+
+  <para>If the <link linkend="index">Documentation</link>, &faq_lnk; and the &kruforum_url; can't help you, do not
+         hesitate to drop a posting in our forum.
+         The &krusader; Krew or the &krusader; forum community is always available to help you.</para>
+
+  <para>Please use the &kruforumsearch_url; function of the &kruforum_url;, your issue is maybe
+         discussed already (this allows us to minimze the double/triple/... postings).
+         If your issue was already discussed in the past there is a great chance that you have an instant solution
+	 for your issue/problem.
+         Some issues are asked over and over again, for this issues whe have the made the &faq_lnk;. ;-)
+         This also allows us also to spend more time in developing &krusader;.</para>
+
+  <para>The &kruforum_url; is split up in three major sections:
+  <itemizedlist>
+     <listitem><para>&bugforum_url;: discussions about bugs, please DO NOT use the forum for &faqbugreports_lnk;
+                         (except if you are not sure that you have found a bug).</para></listitem>
+     <listitem><para>&kru2forum_url;: discussions about new features for future &krusader;
+                       versions.</para></listitem>
+     <listitem><para>&krugenforum_url;: everything that is &krusader; related and not belongs in the
+                       two other forums.</para></listitem>
+  </itemizedlist>
+  </para>
+  <para>Thanks for your cooperation!</para>
+  </answer>
+  </qandaentry>
+
+</qandaset>
+</sect1>
 
 <!--
   <qandaentry>

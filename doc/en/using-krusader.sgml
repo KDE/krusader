@@ -118,30 +118,39 @@
 <para>
     This is the default panel and the one you'll probably use most of the time. This panel shows the contents of one
     directory which can be local (part of your mounted file systems), remote (accessed via &FTP; or Samba)
-    or inside an archive.
+    or inside an archive. The following items are available:
    <itemizedlist>
-       <listitem><para>The <guibutton>"Origin Button"</guibutton> tells where the panel is currently
-                 pointing to. If the path where the panel is pointing to is too long, it will be shortened and a ".."
-		 will replace the middle part. Also when entering archives the path will consist of the
+       <listitem><para><emphasis><guibutton>Origin Button</guibutton></emphasis> : tells where the panel is
+                 currently pointing to. If the path where the panel is pointing to is too long, it will be shortened
+		 and a ".." will replace the middle part. Also when entering archives the path will consist of the
 		 "archive name:/directory/archive_filename/the directory inside the archive".</para></listitem>
-       <listitem><para>The <guilabel>"Information Label"</guilabel> shows how much free space is physically
-                 available on the file system, the file system capacity and where it is mounted. If the information
-		 is not available (most often in the case of remote file system) a message will be displayed with the
-		 reason instead of the information.</para></listitem>
-      <listitem><para>The files are sorted by the <guilabel>"Column Headers"</guilabel> in the
-                <guilabel>"File List"</guilabel> by name, extension, size, and date. The default sorting is by name.
-                 The sort order can be changed by clicking on one of the <guilabel>"Column Headers"</guilabel>.
+       <listitem><para><emphasis><guibutton>Panel level toolbar</guibutton></emphasis> : has three buttons:
+                  <guibutton>".."</guibutton>, <guibutton>"/"</guibutton> and the <guibutton>"Open"</guibutton>
+		  button.</para></listitem>
+       <listitem><para><emphasis><guilabel>Information Label</guilabel></emphasis> : shows how much free space
+                 is physically available on the file system, the file system capacity and where it is mounted.
+		 If the information is not available (most often in the case of remote file system) a message will be
+		 displayed with the reason instead of the information.</para></listitem>
+      <listitem><para><emphasis><guilabel>Column Headers</guilabel></emphasis> :
+                 the files are sorted by the <guilabel>Column Headers</guilabel>
+                 in the <guilabel>"File List"</guilabel> by <guilabel>name, extension, size, and date</guilabel>.
+		 The default sorting is by <guilabel>name</guilabel>. The sort order can be changed by clicking on
+		 one of the <guilabel>Column Headers</guilabel>.
                  To reverse the sort order, click a second time on the header. An arrow will apear on the left of the
                  column header text, this will show the sort direction (Up arrow = a to z sorting,
 		 Down arrow = z to a sorting).
-		 The width <guilabel>"Column Headers"</guilabel> can be changed with the mouse.</para></listitem>
-      <listitem><para>The <guilabel>"File List"</guilabel> displays the files and directories
+		 The width <guilabel>Column Headers</guilabel> can be changed with the mouse.
+		 Several more <guilabel>Column Headers</guilabel> are
+		 <link linkend="konfig-looknfeel-panel">available</link></para></listitem>
+      <listitem><para><emphasis><guilabel>File List</guilabel></emphasis> : displays the files and directories
                  in the browsed directory. The &quick_search_lnk; allows to search for
                  files by typing their names.
                  Pressing <keycap>Enter</keycap> or double clicking on a file will open/execute that file.
                  You can mark/unmark files using the mouse with the <keycap>Insert</keycap> key or the
                  &markmenu_lnk;.</para></listitem>
-      <listitem><para>Marking or unmarking files will change the <guilabel>Totals Label</guilabel> at the bottom
+      <listitem><para><emphasis><guilabel>Totals Label</guilabel></emphasis> :
+                 marking or unmarking files will change the
+                 <emphasis><guilabel>Totals Label</guilabel></emphasis> at the bottom
                  of the panel, which displays how many files you've selected (and how much disk space they use)
                  as well as the total file and disk usage of the current directory (as opposed to the information label
                  that displays information for the whole file system).</para></listitem>
@@ -192,11 +201,11 @@
 <sect2 id="cmdline">
 <title>Command line / terminal emulator</title>
 <para>This part of the &GUI; (graphical user interface) can have two modes: </para>
-<screenshot><screeninfo>The command line</screeninfo><mediaobject>
+<screenshot><screeninfo>Command line</screeninfo><mediaobject>
       <imageobject><imagedata fileref="cmdline.png" format="PNG"/></imageobject>
       <imageobject><imagedata fileref="cmdline.eps" format="EPS"/></imageobject>
-      <textobject><phrase>The Command Line</phrase></textobject>
-      <caption><para>The Command Line.</para></caption>
+      <textobject><phrase>Command Line</phrase></textobject>
+      <caption><para>Command Line</para></caption>
 </mediaobject></screenshot>
 
 <para>The traditional command line mode offers a single line of input to enter commands,
@@ -234,11 +243,11 @@
 </para>
 <!--  "Backspace" key in terminal, /* Shortcut disabled because of the Terminal Emulator bug. */ krusader.cpp -->
 
-<screenshot><screeninfo>The terminal emulator</screeninfo><mediaobject>
+<screenshot><screeninfo>Terminal emulator</screeninfo><mediaobject>
       <imageobject><imagedata fileref="terminalEmu.png" format="PNG"/></imageobject>
       <imageobject><imagedata fileref="terminalEmu.eps" format="EPS"/></imageobject>
-      <textobject><phrase>The terminal emulator</phrase></textobject>
-      <caption><para>The terminal emulator.</para></caption>
+      <textobject><phrase>Terminal emulator</phrase></textobject>
+      <caption><para>Terminal emulator</para></caption>
 </mediaobject></screenshot>
 
 <para>The terminal emulator mode is in fact a small konsole and acts just as one.
@@ -294,13 +303,13 @@
 
     <listitem><para>To <keycap>duplicate a tab</keycap>: <keycap>right-click</keycap> on the tab and select
     <keycap>duplicate tab</keycap>, or use
-    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>c</keycap></keycombo>.
+    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>n</keycap></keycombo>.
     </para></listitem>
 
     <listitem><para>To <keycap>close a tab</keycap> (except the left tab): <keycap>right-click</keycap> on the
     tab and select <keycap>close tab</keycap>, or use the <mousebutton>middle</mousebutton> mouse button,
     or use the Tabbed Browsing <guibutton>"red cross"</guibutton> button, or use
-    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>n</keycap></keycombo>.
+    <keycombo><keycap>Alt</keycap><keycap>Ctrl</keycap><keycap>c</keycap></keycombo>.
     </para></listitem>
 
     <listitem><para>To create a <keycap>"home" tab</keycap>: click on the Tabbed Browsing
@@ -482,6 +491,26 @@
              the key binding will be executed. If there is no configured key binding,
 	     the remaining letter <keycap>foo</keycap> will used for the quick search.</para></note>
 
+</sect2>
+
+<sect2 id="right-click">
+<title>Right click menu</title>
+
+<para>&krusader; has many right-click menu's that allows you to do fast operations with the mouse.
+      This list gives an overview of all the available right-click menu's, play with them
+      to dicscover the available commands.
+<itemizedlist>
+          <listitem><para>&toolbar_lnk; (orientation, text position , icon size)</para></listitem>
+	  <listitem><para>&list_panel_lnk; on a file or directory</para></listitem>
+	  <listitem><para>&cmdline_lnk; (undo, pastz, text completion, ...)</para></listitem>
+	  <listitem><para>&termemu_lnk; (send signal, font, history, ...)</para></listitem>
+	  <listitem><para>&tabbrowse_lnk; (new, duplicate, close)</para></listitem>
+	  <listitem><para><link linkend="krusearcher">KruSearcher</link>
+	                    Search results file list (F3 View, F4 Edit)</para></listitem>
+	  <listitem><para>&mountman_lnk; (unmount, format, ...)</para></listitem>
+	  <listitem><para>&syncdirs_lnk; File List</para></listitem>
+</itemizedlist>
+</para>
 </sect2>
 
 </sect1>
@@ -755,7 +784,7 @@
 <sect2 id="split">
 <title>Split file</title>
 
-&newfeaturenote;
+&betafeaturenote;
 
 <para>
     Choose
@@ -797,7 +826,7 @@
 <sect2 id="combine">
 <title>Combine files</title>
 
-&newfeaturenote;
+&betafeaturenote;
 
 <para>This function combines multiple files to one file after the &splitfile_lnk;
       function was used. Select a partial file <filename>foo.xxx</filename> and choose
@@ -822,8 +851,6 @@
 <title>User Menu</title>
 
 &newfeaturenote;
-
-<para><emphasis role="bold">Note:</emphasis> this description is not yet complete</para>
 
 <para>
     <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
@@ -873,23 +900,80 @@
     </itemizedlist>
 </para>
 
-<para>The <guimenuitem>"Command line"</guimenuitem> accept the following options
-           (the <guibutton>"Add"</guibutton> button will add them for you) the syntax is
-	   "%afoo%" for the active panel and "%bfoo%" for the other panel:
-<!--    <itemizedlist>
-          <listitem><para>%_p% - panel path</para></listitem>
-	  <listitem><para>%_anf% - number of files</para></listitem>
-	  <listitem><para>%_and% - number of folders</para></listitem>
-	  <listitem><para>%_an% - number of files and folders</para></listitem>
-	  <listitem><para>%_fm% - filter mask (for example: <literal role="extension">*</literal>,
-	                                                      <literal role="extension">*.cpp</literal>,
+<para>The <guimenuitem>"Command line"</guimenuitem> will execute a user defined command.
+       It accepts the following syntax
+       <userinput>%<command>"panel"<replaceable>"option""usercommand"</replaceable></command>%</userinput>
+<itemizedlist>
+          <listitem><para>"panel": <userinput>a</userinput> is for the
+                     active panel, <userinput>b</userinput> is for the other panel.</para></listitem>
+          <listitem><para>"option": see the next list for all the options.</para></listitem>
+	  <listitem><para>"usercommand": the command that you want to be executed
+	                    (script, binary, ...).</para></listitem>
+</itemizedlist>
+&eg; <userinput>%<command>a<replaceable>p</replaceable><replaceable>ls</replaceable></command>%</userinput> :
+will run the <command>ls</command> in the panel path <replaceable>p</replaceable> of the active panel
+<replaceable>a</replaceable>.</para>
+
+<para>The <guibutton>"Add"</guibutton> button will generate the next option syntax automaticly for for you:
+<itemizedlist>
+     <listitem><para><userinput>%_p_%</userinput> - panel path</para></listitem>
+     <listitem><para><userinput>%_anf_%</userinput> - number of files</para></listitem>
+     <listitem><para><userinput>%_and_%</userinput> - number of folders</para></listitem>
+     <listitem><para><userinput>%_an_%</userinput> - number of files and folders</para></listitem>
+     <listitem><para><userinput>%_fm_%</userinput> - filter mask (for example:
+                                                      <literal role="extension">*</literal>,
+                                                      <literal role="extension">*.cpp</literal>,
 	                             <literal role="extension">*.h</literal> &etc;)</para></listitem>
-	  <listitem><para>%_c% - current file (or folder). Note: current != selected</para></listitem>
-	  <listitem><para>%_s% - selected files and folders</para></listitem>
-	  <listitem><para>%_afd% - all files and folders</para></listitem>
-	  <listitem><para>%_af% - all files (not including folders)</para></listitem>
-	  <listitem><para>%_ad% - all folders (not including files)</para></listitem>
-    </itemizedlist> -->
+     <listitem><para><userinput>%_c_%</userinput> - current file (or folder).
+	               Note: current != selected</para></listitem>
+     <listitem><para><userinput>%_s_%</userinput> - selected files and folders</para></listitem>
+     <listitem><para><userinput>%_afd_%</userinput> - all files and folders</para></listitem>
+     <listitem><para><userinput>%_af_%</userinput> - all files (not including folders)</para></listitem>
+     <listitem><para><userinput>%_ad_%</userinput> - all folders (not including files)</para></listitem>
+</itemizedlist>
+</para>
+
+<para>The user menu configuration is stored in
+      <filename>~/.kde/share/apps/krusader/krusermenu.dat</filename></para>
+
+</sect2>
+
+
+<sect2 id="locate">
+<title>Locate &GUI; frontend</title>
+
+&newfeaturenote;
+
+<para>&krusader; has a &GUI; frontend for the <command>locate</command> command (findutils).
+      This allows you to do a fast file searching on your system via the indexed
+      <command>locate</command> database.
+      Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+      <guimenuitem>Locate</guimenuitem></menuchoice></emphasis>
+      or
+      <keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo> to start this feature.
+      </para>
+
+<para>Checkbox options
+<itemizedlist>
+     <listitem><para><guilabel>"Show only the existing files"</guilabel>:
+	             ?????.</para>
+	       </listitem>
+     <listitem><para><guilabel>"Case sensitive"</guilabel>:
+	             unchecking it will allow lower and upper case search.</para>
+	       </listitem>
+</itemizedlist></para>
+
+<para>Action buttons
+<itemizedlist>
+    	<listitem><para><guibutton>"Locate"</guibutton>:
+	           executes `locate xy` and places its output into the results window.</para></listitem>
+    	<listitem><para><guibutton>"UpdateDB"</guibutton>:
+	           starts <command>updatedb</command> for locate db update.</para></listitem>
+	<listitem><para><guibutton>"Stop"</guibutton>:
+	           cancel the updatedb process.</para></listitem>
+	<listitem><para><guibutton>"Close"</guibutton>:
+	           closes the locate window.</para></listitem>
+</itemizedlist>
 </para>
 
 </sect2>
@@ -897,12 +981,17 @@
 
 </sect1>
 
+
 <sect1 id="key_bindings">
 <title>Key Bindings</title>
 
-<para>Most of the key bindings (shortcuts) are configurable in the &settingsmenu_lnk;.
+<para>Most of the key bindings (shortcuts) are configurable in the &konfiglookandfeel_lnk;.
       Some key bindings are not &krusader; Key Bindings &eg; &kde; Key Bindings.
       By default &krusader; has the following key bindings:</para>
+
+<tip><para>Look at the &konfiglookandfeel_lnk; to configure the key-bindings the way you like,
+            &eg; if you are used to use other Key Bindings. Here you will find even more
+            actions who can be linked to a Key Binding.</para></tip>
 
 <para><emphasis role="bold">Function (FN) Keys</emphasis></para>
 <para>These are the Key Bindings of the &fnkeybar_lnk;, except F1. These Key Bindings are NOT configurable.</para>
@@ -971,9 +1060,6 @@
 <entry><para><keycombo action="simul">&Shift;<keycap>F11</keycap></keycombo></para></entry>
 <entry><para><link linkend="view-menu">Executables</link></para></entry></row>
 -->
-<row>
-<entry><para><keycombo action="simul">&Shift;&Ctrl;<keycap>f</keycap></keycombo></para></entry>
-<entry><para><link linkend="remote-man">Disconnect From Net</link></para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>
@@ -999,6 +1085,9 @@
 <entry><para><keycombo action="simul">&Alt;<keycap>+</keycap></keycombo></para></entry>
 <entry><para><link linkend="mark-menu">Select All</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Alt;<keycap>-</keycap></keycombo></para></entry>
+<entry><para><link linkend="mark-menu">Unselect All</link></para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Alt;<keycap>*</keycap></keycombo></para></entry>
 <entry><para><link linkend="mark-menu">Invert Selection</link></para></entry></row>
 <row>
@@ -1012,13 +1101,19 @@
 <entry><para><link linkend="bookman">Right bookmarks</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>c</keycap></keycombo></para></entry>
-<entry><para><link linkend="tabbrowsing">Duplicate a tab</link></para></entry></row>
+<entry><para><link linkend="tabbrowsing">Close tab</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="tabbrowsing">New tab</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>Left Arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="folderhistory">Left History list</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>Right Arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="folderhistory">Right History list</link></para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;&Shift;<keycap>n</keycap></keycombo></para></entry>
-<entry><para><link linkend="tabbrowsing">Close a tab</link></para></entry></row>
+<entry><para><link linkend="tabbrowsing">Duplicate a tab</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>F1..F12</keycap></keycombo></para></entry>
 <entry><para>Standard (&kde;) key-bindings</para></entry></row>
@@ -1056,6 +1151,9 @@
 <entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="cmdline">Go from the command line/terminal emulator to the active panel</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Home</keycap></keycombo></para></entry>
+<entry><para>Jumps to the Home directory</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>Left</keycap></keycombo> or <keycombo><keycap>Right arrow</keycap></keycombo></para></entry>
 <entry><para>On a file: the non active panel gets the same path as the active
 	<link linkend="panels">panel</link></para>
@@ -1070,6 +1168,9 @@
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo></para></entry>
 <entry><para>&syncdirs_lnk;</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>l</keycap></keycombo></para></entry>
+<entry><para>&locate_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="remote-man">New Net Connection</link> (enter URL or host address)</para></entry></row>
@@ -1086,8 +1187,14 @@
 <entry><para><keycombo><keycap>Ctrl</keycap><keycap>s</keycap></keycombo></para></entry>
 <entry><para><link linkend="krusearcher">Search</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>q</keycap></keycombo></para></entry>
+<entry><para>Quit &krusader;</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>Backspace</keycap></keycombo></para></entry>
 <entry><para>Jumps to the Root directory</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>f</keycap></keycombo></para></entry>
+<entry><para><link linkend="remote-man">Disconnect From Net</link></para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>
@@ -1100,9 +1207,6 @@
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>a</keycap></keycombo></para></entry>
 <entry><para>Select all</para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>q</keycap></keycombo></para></entry>
-<entry><para>Quit &krusader;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>PageDown</keycap></keycombo></para></entry>
 <entry><para>Select all below the cursor</para></entry></row>

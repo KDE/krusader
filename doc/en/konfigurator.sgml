@@ -138,8 +138,10 @@ into pages, each containing items related to that page. For some changes to the 
        the <guilabel>General</guilabel> section:</para>
 
 
+<sect2 id="konfig-looknfeel-operation">
+<title>Operation</title>
+
 <itemizedlist>
-<title id="konfig-looknfeel-general">General</title>
 	<listitem><para><guilabel>"Warn on exit"</guilabel>: if checked, &krusader; will display an "Are you
 		   sure?" warning when you're trying to shut it down. Otherwise, it will exit without
 		   protest.</para></listitem>
@@ -156,6 +158,8 @@ into pages, each containing items related to that page. For some changes to the 
 		   files beginning with capital letters appear before files beginning with non-capital letters,
 		   otherwise, all files beginning with a specified letter (capital or otherwise) will appear
 		   together.</para></listitem>
+	<listitem><para><guilabel>"Single click executes"</guilabel>: if checked,
+	                   a file is executed with one single mouse click.</para></listitem>
 	<listitem><para><guilabel>"New style quicksearch"</guilabel>: The new
 	           <link linkend="quicksearch">Quicksearch</link> feature is used.</para></listitem>
 	<listitem><para><guilabel>"Case sensitive quicksearch"</guilabel>: When using the
@@ -163,14 +167,16 @@ into pages, each containing items related to that page. For some changes to the 
 		   files beginning with capital letters appear before files beginning with non-capital letters,
 		   otherwise, all files beginning with a specified letter (capital or otherwise) will appear
 		   together.</para></listitem>
-	<listitem><para><guilabel>"Panel font"</guilabel>: allows you to change the font used inside the file
-		   lists.</para></listitem>
-	<listitem><para><guilabel>"Filelist icon size"</guilabel>: allows you to change the size of the icons in
-		   the file lists. available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
+	<listitem><para><guilabel>"Show panel level toolbar"</guilabel>: if checked,
+	                   show the toolbar in the panel with &eg; the <guibutton>"/"</guibutton> and
+			   <guibutton>".."</guibutton> buttons.</para></listitem>
+
+<!--
 	<listitem><para><guilabel>HTML viewers minimal font size</guilabel>: when viewing an HTML file
 		   (usually using <keycap>F3</keycap>), &krusader; invokes &kde;'s built-in HTML parser. This option
 		   sets the minimal font size for the viewer, and aligns other font sizes accordingly.
-		   </para></listitem>
+		   </para></listitem> -->
+
 	<listitem><para><guilabel>"Mouse selection modes"</guilabel>: three modes are available:</para>
 	           <para><keycap>NOTE:</keycap> this feature is disabled for the moment, due to a bug, sorry
 			<itemizedlist>
@@ -192,23 +198,53 @@ into pages, each containing items related to that page. For some changes to the 
 			</itemizedlist>
 		</para></listitem>
 </itemizedlist>
+</sect2>
 
-<variablelist>
-	<varlistentry><term><guilabel id="konfig-looknfeel-toolbar">Toolbar</guilabel></term>
-		<listitem><para>Here you can configure the &toolbar_lnk; the way you want.
-		  Add the icons of your favorite functions to the Toolbar.</para>
-                </listitem>
-	</varlistentry>
-</variablelist>
 
-<variablelist>
-	<varlistentry><term><guilabel id="konfig-looknfeel-keybindings">Key-bindings</guilabel></term>
-		<listitem><para>Here you can configure the Key-bindings. Configure the Key-bindings
+<sect2 id="konfig-looknfeel-panel">
+<title>Panel</title>
+
+<itemizedlist>
+	<listitem><para><guilabel>"Panel font"</guilabel>: allows you to change the font used inside the file
+		   lists.</para></listitem>
+	<listitem><para><guilabel>"Filelist icon size"</guilabel>: allows you to change the size of the icons in
+		   the file lists. available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
+	<listitem><para><guilabel>"Extension Column"</guilabel>: if checked,
+	                  show the extension field (part after the last dot of the filename).</para></listitem>
+	<listitem><para><guilabel>"Permission Column"</guilabel>: if checked,
+	                  show the full perissions field.</para></listitem>
+	<listitem><para><guilabel>"Mimetype Column"</guilabel>: if checked,
+	                  show the mimetype field.</para></listitem>
+	<listitem><para><guilabel>"&krusader; Permission Column"</guilabel>: if checked,
+	                  show the &krusader; permission field
+			  (only the rights of the current user).</para></listitem>
+	<listitem><para><guilabel>"Size Column"</guilabel>: if checked,
+	                  show the size field.</para></listitem>
+	<listitem><para><guilabel>"Owner Column"</guilabel>: if checked,
+	                  show the owner field.</para></listitem>
+	<listitem><para><guilabel>"Date and Time Column"</guilabel>: if checked,
+	                  show the date and time field.</para></listitem>
+	<listitem><para><guilabel>"Group Column"</guilabel>: if checked,
+	                  show the group field.</para></listitem>
+	<listitem><para><guilabel>"Use icons in filenames"</guilabel>: if checked,
+	                  show the icons in filenames.</para></listitem>
+</itemizedlist>
+</sect2>
+
+
+<sect2 id="konfig-looknfeel-toolbar">
+<title>Toolbar</title>
+<para>Here you can configure the &toolbar_lnk; the way you want.
+       Add the icons of your favorite functions to the Toolbar.</para>
+
+</sect2>
+
+
+<sect2 id="konfig-looknfeel-keybindings">
+<title>Key-bindings</title>
+<para>Here you can configure the Key-bindings. Configure the Key-bindings
 	        of your favourite functions the way you want.</para>
-                </listitem>
-	</varlistentry>
-</variablelist>
-
+</sect2>
 
 </sect1>
 
@@ -333,7 +369,8 @@ executables in the <envar>PATH</envar> (to handle ZIP archives, &krusader; needs
 <para>If you've installed a certain archive application (let's say 'arj') and want &krusader; to know about
 it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; will search for all supported executables, and print a report regarding what archives can be handled. If all went well, the new archive will be availble and checked.
 
-<note><para>Please install new archives to your <envar>PATH</envar> (&ie;: /usr/bin; /usr/local/bin &etc;)</para></note></para>
+<note><para>Please install new archives to your <envar>PATH</envar> (&ie;: <filename>/usr/bin</filename> or
+             <filename>/usr/local/bin</filename> &etc;)</para></note></para>
 
 <para><guilabel>Fine-Tuning</guilabel>
 	<itemizedlist>
@@ -397,12 +434,21 @@ it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; wi
 <entry><para><filename class="directory"><replaceable>/usr/bin/krusader</replaceable></filename></para></entry>
 </row>
 <row>
+<entry><para><command>locate</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/locate</replaceable></filename></para></entry>
+</row>
+<row>
 <entry><para><command>mount</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/bin/mount</replaceable></filename></para></entry>
 </row>
 <row>
 <entry><para><command>umount</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/bin/umount</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>updatedb</command></para></entry>
+<entry>
+  <para><filename class="directory"><replaceable>/usr/bin/updatedb</replaceable></filename></para></entry>
 </row>
 </tbody>
 </tgroup>
