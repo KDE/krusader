@@ -85,8 +85,10 @@ void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent
   openUrl( vfs::fromPathOrURL(url),nameToMakeCurrent);
 }
 
-void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
+void ListPanelFunc::openUrl( const KURL& urlIn,const QString& nameToMakeCurrent) {
   //kdDebug() << "openUrl: " << url.url() << endl;
+  KURL url = urlIn;
+  url.cleanPath();
   
   //prevents that the sync-browsing circles itself to death
   static bool bMaster = true;
