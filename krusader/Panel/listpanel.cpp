@@ -110,7 +110,7 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   // ... create the bookmark list
   bookmarksButton = new BookmarksButton( this );
   connect( bookmarksButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-  connect( bookmarksButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
+  connect( bookmarksButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
   QWhatsThis::add
     ( bookmarksButton, i18n( "Open menu with bookmarks. You can also add "
                              "current location to the list, edit bookmarks "

@@ -18,6 +18,7 @@
 #include "../krusader.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
+#include "../VFS/vfs.h"
 #include "kbookmarkhandler.moc"
 
 #include "addbookmarkdlg.h"
@@ -57,7 +58,7 @@ KBookmarkHandler::~KBookmarkHandler()
 
 void KBookmarkHandler::openBookmarkURL(const KURL& url)
 {
-  emit openUrl( url );
+  emit openUrl( vfs::fromPathOrURL( url.prettyURL() ) );
 }
 
 bool KBookmarkHandler::openAddDialog()

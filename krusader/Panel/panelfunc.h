@@ -36,6 +36,7 @@
 #include <qobject.h>
 #include <qvaluestack.h>
 #include <qthread.h>
+#include <qtimer.h>
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 /* Dialog calculating showing the number of files and directories and its total size
@@ -100,6 +101,8 @@ public slots:
 	void execute(QString&);
 	void openUrl(const KURL& path, const QString& nameToMakeCurrent = QString::null);
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString::null);
+	void delayedOpenUrl( const KURL& path);
+	void doOpenUrl(); 
 	void refresh(){ refresh(panel->virtualPath); } // re-read the files
 	void rename(const QString &oldname, const QString &newname);
 
@@ -143,6 +146,9 @@ protected:
 	QValueStack<KURL>    urlStack;  // Path stack for the "back" button
 	bool                 inRefresh; // true when we are in refresh()
 	vfs*                 vfsP;      // pointer to vfs.
+
+  QTimer               delayTimer;
+  KURL                 delayURL;
 };
 
 #endif

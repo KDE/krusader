@@ -196,6 +196,8 @@ void KrCalcSpaceDialog::exec(){
 ListPanelFunc::ListPanelFunc( ListPanel *parent ) :
 panel( parent ), inRefresh( false ), vfsP(0){
   urlStack.push( "file:/" );
+
+  connect( &delayTimer, SIGNAL(timeout()), this, SLOT(doOpenUrl()));  
 }
 
 void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent) {
@@ -253,6 +255,14 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 		chdir( files()->vfs_getOrigin().path().latin1() );
 }
 
+void ListPanelFunc::delayedOpenUrl( const KURL& url ) {
+  delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
+  delayTimer.start( 0, true );  /* to avoid qApp->processEvents() deadlock situaltion */
+}
+
+void ListPanelFunc::doOpenUrl() {
+  openUrl( delayURL );
+}
 
 void ListPanelFunc::refresh( const KURL& url ) {
 	openUrl(url);
