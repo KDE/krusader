@@ -71,7 +71,7 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
   // history button
   history=new QToolButton(this);
   history->setFixedSize(cmdLine->maximumHeight(),cmdLine->maximumHeight());
-  history->setTextLabel("Show the last commands you typed in the command line.");
+  history->setTextLabel(i18n("Show the last commands you typed in the command line."));
   QImage im = krLoader->loadIcon("date",KIcon::Panel).convertToImage();
   history->setPixmap(im.scale(history->height(), history->height()));
 	historyMenu=new QPopupMenu(this);
@@ -85,7 +85,7 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
   // a run in terminal button
   terminal=new QToolButton(this);
   terminal->setFixedSize(cmdLine->maximumHeight(),cmdLine->maximumHeight());
-  terminal->setTextLabel("If pressed, Krusader executes command line in a terminal.");
+  terminal->setTextLabel(i18n("If pressed, Krusader executes command line in a terminal."));
   terminal->setToggleButton(true);
   terminal->setOn(false);
   im = krLoader->loadIcon("konsole",KIcon::Panel).convertToImage();
