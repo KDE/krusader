@@ -7,7 +7,7 @@
 ---------------------------------------------------------------------------
 Description 
 ***************************************************************************
-
+ 
 A 
  
   db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
@@ -122,15 +122,19 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
       vfsStack.remove();
     // now we have a normal vfs- refresh it.
     files() ->blockSignals( false );
-    mypath = QDir( mypath ).canonicalPath();
-    while ( !KRpermHandler::dirExist( mypath ) ) {
-      panel->view->setNameToMakeCurrent( mypath.mid( mypath.findRev( '/' ) ) );
+    while ( !KRpermHandler::dirExist( QDir( mypath
+                                          ).canonicalPath() ) ) {
+      panel->view->setNameToMakeCurrent( mypath.mid(
+                                           mypath.findRev( '/' )+1 ) );
       mypath = mypath.left( mypath.findRev( '/' ) );
       if ( mypath.isEmpty() )
         mypath = "/";
     }
-    chdir( mypath.latin1() );
+    mypath = QDir( mypath ).canonicalPath();
+    chdir( mypath );
     refresh( mypath );
+
+
   }
 }
 
