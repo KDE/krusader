@@ -204,8 +204,8 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
     slot->runKonfigurator( true );
 
   // refresh the right and left panels
-  mainView->left->func->refresh();
   mainView->right->func->refresh();
+  mainView->left->func->refresh(); 
 }
 
 Krusader::~Krusader() {}
