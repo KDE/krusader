@@ -54,13 +54,13 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   QHBox *duTools = new QHBox( this, "duTools" );
   duTools->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     
-  QToolButton * btnNewSearch = new QToolButton( duTools, "btnNewSearch" );
+  btnNewSearch = new QToolButton( duTools, "btnNewSearch" );
   btnNewSearch->setIconSet( QIconSet(krLoader->loadIcon("fileopen",KIcon::Desktop)) );
   
-  QToolButton * btnRefresh = new QToolButton( duTools, "btnRefresh" );
+  btnRefresh = new QToolButton( duTools, "btnRefresh" );
   btnRefresh->setIconSet( QIconSet(krLoader->loadIcon("reload",KIcon::Desktop)) );
 
-  QToolButton * btnDirUp = new QToolButton( duTools, "btnDirUp" );
+  btnDirUp = new QToolButton( duTools, "btnDirUp" );
   btnDirUp->setIconSet( QIconSet(krLoader->loadIcon("up",KIcon::Desktop)) );
   
   QWidget * separatorWidget = new QWidget( duTools, "separatorWidget" );
@@ -122,6 +122,16 @@ DiskUsageGUI::~DiskUsageGUI()
 {
 }
 
+void DiskUsageGUI::enableButtons( bool isOn )
+{
+  btnNewSearch->setEnabled( isOn );
+  btnRefresh->setEnabled( isOn );
+  btnDirUp->setEnabled( isOn );
+  btnLines->setEnabled( isOn );
+  btnDetailed->setEnabled( isOn );
+  btnFilelight->setEnabled( isOn );
+}
+
 void DiskUsageGUI::resizeEvent( QResizeEvent *e )
 {   
   if( !isMaximized() )
@@ -145,7 +155,7 @@ void DiskUsageGUI::reject()
 
 void DiskUsageGUI::loadUsageInfo()
 {
-  if( !diskUsage->load( baseDirectory, this ) )
+  if( !diskUsage->load( baseDirectory ) )
     reject();
 }
 
@@ -156,6 +166,13 @@ void DiskUsageGUI::setStatus( QString stat )
 
 void DiskUsageGUI::slotViewChanged( int view )
 {
+  if( view == VIEW_LOADER )
+  {
+    enableButtons( false );
+    return;
+  }
+  enableButtons( true );
+
   btnLines->setOn( false );
   btnDetailed->setOn( false );
   btnFilelight->setOn( false );
@@ -171,12 +188,13 @@ void DiskUsageGUI::slotViewChanged( int view )
   case VIEW_FILELIGHT:
     btnFilelight->setOn( true );
     break;
+  case VIEW_LOADER:
+    break;
   }
 }
 
 bool DiskUsageGUI::newSearch()
-{
-  
+{ 
   // ask the user for the copy dest
   KChooseDir *chooser = new KChooseDir( 0, i18n( "Viewing the usage of directory:" ),
                                         baseDirectory.prettyURL(1,KURL::StripFileProtocol) );

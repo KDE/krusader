@@ -42,10 +42,12 @@
 #include <kurl.h>
 #include <ksqueezedtextlabel.h>
 #include <qwidgetstack.h>
+#include <qscrollview.h>
 
 #define VIEW_LINES      0
 #define VIEW_DETAILED   1
 #define VIEW_FILELIGHT  2
+#define VIEW_LOADER     3
 
 typedef QDict<void> Properties;
 
@@ -53,6 +55,7 @@ class DUListView;
 class DULines;
 class DUFilelight;
 class KPopupMenu;
+class LoaderWidget;
 
 class DiskUsage : public QWidgetStack
 {
@@ -62,7 +65,7 @@ public:
   DiskUsage( QString confGroup, QWidget *parent = 0, char *name = 0);
   ~DiskUsage();
   
-  bool       load( KURL dirName, QWidget *parent );
+  bool       load( KURL dirName );
   
   void       setView( int view );
   int        getActiveView() { return activeView; }
@@ -120,6 +123,7 @@ protected:
   DUListView                *listView;
   DULines                   *lineView;
   DUFilelight               *filelightView;
+  LoaderWidget              *loaderView;
   
   Directory *root;
   
@@ -128,28 +132,30 @@ protected:
   QString    configGroup;
 };
 
-class DiskUsageDialog : public QDialog
+
+class LoaderWidget : public QScrollView
 {
   Q_OBJECT
   
 public:
-  DiskUsageDialog( QWidget *parent = 0, const char *name = 0 );
+  LoaderWidget( QWidget *parent = 0, const char *name = 0 );
   
-  void   setCurrentURL( KURL url );
-  void   setValues( int fileNum, int dirNum, KIO::filesize_t total );
-  
-  bool   wasCancelled()  { return cancelled; }
+  void setCurrentURL( KURL url );
+  void setValues( int fileNum, int dirNum, KIO::filesize_t total );  
+  bool wasCancelled()  { return cancelled; }
   
 public slots:
-  void    slotCancelled();
-  virtual void reject();
+  void slotCancelled();
   
 protected:
+  virtual void resizeEvent ( QResizeEvent *e );
+  
   QLabel *totalSize;
   QLabel *files;
   QLabel *directories;
   
   KSqueezedTextLabel *searchedDirectory;
+  QWidget *widget;
     
   bool   cancelled;
 };

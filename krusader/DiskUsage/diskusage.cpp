@@ -41,6 +41,7 @@
 #include <qapplication.h>
 #include <qcursor.h>
 #include <qpixmapcache.h>
+#include <qgroupbox.h>
 #include <time.h> 
 #include "diskusage.h"
 #include "../VFS/krpermhandler.h"
@@ -65,90 +66,119 @@
 #define FILELIGHT_VIEW_ID   97
 #define ADDITIONAL_POPUP_ID 98
 
-DiskUsageDialog::DiskUsageDialog( QWidget *parent, const char *name ) : QDialog( parent, name, true ),
-  cancelled( false )
+LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : QScrollView( parent, name ), cancelled( false )
 {
-  setCaption( i18n("Krusader::Loading Usage Information") );
+  viewport()->setEraseColor( Qt::white );
+  widget = new QWidget( parent );
+
+  QGridLayout *loaderLayout = new QGridLayout( widget );
+  loaderLayout->setSpacing( 0 );
+  loaderLayout->setMargin( 0 );  
   
-  QGridLayout *synchGrid = new QGridLayout( this );
+  QGroupBox *loaderBox = new QGroupBox( widget, "loaderGroupBox" );
+  loaderBox->setFrameShape( QGroupBox::Box );
+  loaderBox->setFrameShadow( QGroupBox::Sunken );
+  loaderBox->setColumnLayout(0, Qt::Vertical );
+  loaderBox->layout()->setSpacing( 0 );
+  loaderBox->layout()->setMargin( 0 );
+  loaderBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
+  loaderBox->setFrameStyle( QFrame::Panel + QFrame::Raised );
+  loaderBox->setLineWidth( 2 );
+  
+  QGridLayout *synchGrid = new QGridLayout( loaderBox->layout() );
   synchGrid->setSpacing( 6 );
   synchGrid->setMargin( 11 );
   
-  QLabel *filesLabel = new QLabel( i18n( "Files:" ), this, "filesLabel" );
+  QLabel *titleLabel = new QLabel( i18n( "Loading Usage Information" ), loaderBox, "titleLabel" );
+  titleLabel->setAlignment( Qt::AlignHCenter );
+  synchGrid->addMultiCellWidget( titleLabel, 0, 0, 0, 1 );
+  
+  QLabel *filesLabel = new QLabel( i18n( "Files:" ), loaderBox, "filesLabel" );
   filesLabel->setFrameShape( QLabel::StyledPanel );
   filesLabel->setFrameShadow( QLabel::Sunken );  
-  synchGrid->addWidget( filesLabel, 0, 0 );
+  synchGrid->addWidget( filesLabel, 1, 0 );
   
-  QLabel *directoriesLabel = new QLabel( i18n( "Directories:" ), this, "directoriesLabel" );
+  QLabel *directoriesLabel = new QLabel( i18n( "Directories:" ), loaderBox, "directoriesLabel" );
   directoriesLabel->setFrameShape( QLabel::StyledPanel );
   directoriesLabel->setFrameShadow( QLabel::Sunken );  
-  synchGrid->addWidget( directoriesLabel, 1, 0 );
+  synchGrid->addWidget( directoriesLabel, 2, 0 );
   
-  QLabel *totalSizeLabel = new QLabel( i18n( "Total Size:" ), this, "totalSizeLabel" );
+  QLabel *totalSizeLabel = new QLabel( i18n( "Total Size:" ), loaderBox, "totalSizeLabel" );
   totalSizeLabel->setFrameShape( QLabel::StyledPanel );
   totalSizeLabel->setFrameShadow( QLabel::Sunken );  
-  synchGrid->addWidget( totalSizeLabel, 2, 0 );
+  synchGrid->addWidget( totalSizeLabel, 3, 0 );
 
-  files = new QLabel( this, "files" );
+  files = new QLabel( loaderBox, "files" );
   files->setFrameShape( QLabel::StyledPanel );
   files->setFrameShadow( QLabel::Sunken );  
   files->setAlignment( Qt::AlignRight );
-  synchGrid->addWidget( files, 0, 1 );
+  synchGrid->addWidget( files, 1, 1 );
   
-  directories = new QLabel( this, "directories" );
+  directories = new QLabel( loaderBox, "directories" );
   directories->setFrameShape( QLabel::StyledPanel );
   directories->setFrameShadow( QLabel::Sunken );  
   directories->setAlignment( Qt::AlignRight );
-  synchGrid->addWidget( directories, 1, 1 );
+  synchGrid->addWidget( directories, 2, 1 );
   
-  totalSize = new QLabel( this, "totalSize" );
+  totalSize = new QLabel( loaderBox, "totalSize" );
   totalSize->setFrameShape( QLabel::StyledPanel );
   totalSize->setFrameShadow( QLabel::Sunken );  
   totalSize->setAlignment( Qt::AlignRight );
-  synchGrid->addWidget( totalSize, 2, 1 );
+  synchGrid->addWidget( totalSize, 3, 1 );
 
-  searchedDirectory = new KSqueezedTextLabel( this, "searchedDirectory" );
+  int width;
+  searchedDirectory = new KSqueezedTextLabel( loaderBox, "searchedDirectory" );
   searchedDirectory->setFrameShape( QLabel::StyledPanel );
   searchedDirectory->setFrameShadow( QLabel::Sunken );  
-  searchedDirectory->setMinimumWidth( QFontMetrics(searchedDirectory->font()).width("W") * 40 );
-  synchGrid->addMultiCellWidget( searchedDirectory, 3, 3, 0, 1 );
+  searchedDirectory->setMinimumWidth( width = QFontMetrics(searchedDirectory->font()).width("W") * 30 );
+  searchedDirectory->setMaximumWidth( width );
+  synchGrid->addMultiCellWidget( searchedDirectory, 4, 4, 0, 1 );
   
-  QFrame *line = new QFrame( this, "duLine" );
+  QFrame *line = new QFrame( loaderBox, "duLine" );
   line->setFrameStyle( QFrame::HLine | QFrame::Sunken );
-  synchGrid->addMultiCellWidget( line, 4, 4, 0, 1 );
+  synchGrid->addMultiCellWidget( line, 5, 5, 0, 1 );
 
-  QHBox *hbox = new QHBox( this, "hbox" );
+  QHBox *hbox = new QHBox( loaderBox, "hbox" );
   QSpacerItem* spacer = new QSpacerItem( 0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding );    
   hbox->layout()->addItem( spacer );
   QPushButton *cancelButton = new QPushButton( hbox, "cancelButton" );
   cancelButton->setText( i18n( "Cancel"  ) );
-  synchGrid->addWidget( hbox, 5, 1 );
+  synchGrid->addWidget( hbox, 6, 1 );
+  
+  loaderLayout->addWidget( loaderBox, 0, 0 );
 
+  addChild( widget );
+  
   connect( cancelButton, SIGNAL( clicked() ), this, SLOT( slotCancelled() ) );    
-  show();
 }
 
-void DiskUsageDialog::setCurrentURL( KURL url )
+void LoaderWidget::resizeEvent ( QResizeEvent *e ) 
+{
+  QScrollView::resizeEvent( e );
+
+  int x = ( viewport()->width() - widget->width() ) / 2;
+  int y = ( viewport()->height() - widget->height() ) / 2;
+  if( x < 0 ) x=0;
+  if( y < 0 ) y=0;
+  
+  moveChild( widget, x, y );
+}
+  
+void LoaderWidget::setCurrentURL( KURL url )
 {
   searchedDirectory->setText( url.prettyURL(1,KURL::StripFileProtocol) );
 }
-
-void DiskUsageDialog::setValues( int fileNum, int dirNum, KIO::filesize_t total )
+  
+void LoaderWidget::setValues( int fileNum, int dirNum, KIO::filesize_t total )
 {
   files->setText( QString("%1").arg( fileNum ) );
   directories->setText( QString("%1").arg( dirNum ) );
   totalSize->setText( QString("%1").arg( KRpermHandler::parseSize( total ).stripWhiteSpace() ) );
 }
-
-void DiskUsageDialog::slotCancelled()
+  
+void LoaderWidget::slotCancelled()
 {
   cancelled = true;
-}
-
-void DiskUsageDialog::reject()
-{
-  cancelled = true;
-  QDialog::reject();
 }
 
 DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidgetStack( parent, name ), 
@@ -157,11 +187,13 @@ DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidget
   listView = new DUListView( this, "DU ListView" );
   lineView = new DULines( this, "DU LineView" );
   filelightView = new DUFilelight( this, "Filelight canvas" );
+  loaderView = new LoaderWidget( this, "Loading view" );
   
   addWidget( listView );
   addWidget( lineView );
   addWidget( filelightView );
-    
+  addWidget( loaderView );   
+   
   setView( VIEW_LINES );
       
   Filelight::Config::read();  
@@ -181,7 +213,7 @@ DiskUsage::~DiskUsage()
     delete filelightView;
 }
 
-bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
+bool DiskUsage::load( KURL baseDir )
 {
   int fileNum = 0, dirNum = 0;
   bool result = true;
@@ -193,9 +225,7 @@ bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
   
   clear();
   root = new Directory( baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
-    
-  DiskUsageDialog *duDlg = new DiskUsageDialog( parentWidget, "DuProgressDialog" );
-  
+
   QValueStack<QString> directoryStack;
   QPtrStack<Directory> parentStack;
   directoryStack.push( "" );
@@ -203,14 +233,14 @@ bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
   
   vfs *searchVfs = KrVfsHandler::getVfs( baseDir );
   if( searchVfs == 0 )
-  {    
-    delete duDlg;
     return false;
-  }
   
   searchVfs->vfs_setQuiet( true );
   searchVfs->vfs_enableRefresh( false );
   
+  int lastView = activeView;
+  setView( VIEW_LOADER );
+    
   while( !directoryStack.isEmpty() )
   {
     QString dirToCheck = directoryStack.pop();
@@ -231,7 +261,7 @@ bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
       continue;
 #endif
     
-    duDlg->setCurrentURL( url );
+    loaderView->setCurrentURL( url );
     
     if( !searchVfs->vfs_refresh( url ) )
       continue;
@@ -263,21 +293,22 @@ bool DiskUsage::load( KURL baseDir, QWidget *parentWidget )
       }      
       parent->append( newItem );
           
-      duDlg->setValues( fileNum, dirNum, totalSize );       
+      loaderView->setValues( fileNum, dirNum, totalSize );       
       file = searchVfs->vfs_getNextFile();
     }
     
-    duDlg->setValues( fileNum, dirNum, totalSize );    
+    loaderView->setValues( fileNum, dirNum, totalSize );    
     qApp->processEvents();
     
-    if( duDlg->wasCancelled() )
+    if( loaderView->wasCancelled() )
     {
       result = false;
       break;
     }
   }
   delete searchVfs;
-  delete duDlg;
+  
+  setView( lastView );
   
   calculateSizes();
   changeDirectory( root );  
@@ -687,6 +718,9 @@ void DiskUsage::setView( int view )
   case VIEW_FILELIGHT:
     raiseWidget( filelightView );
     break;
+  case VIEW_LOADER:
+    raiseWidget( loaderView );
+    break;    
   }
   
   emit viewChanged( activeView = view );

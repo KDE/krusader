@@ -60,15 +60,19 @@ public slots:
 protected slots:
   virtual void               reject();
   void                       slotViewChanged( int view );
+  void                       enableButtons( bool );
   
 protected:
   virtual void               resizeEvent( QResizeEvent *e );
-  
   
   DiskUsage                 *diskUsage;
   KURL                       baseDirectory;
   
   KSqueezedTextLabel        *status;
+  
+  QToolButton               *btnNewSearch;
+  QToolButton               *btnRefresh;
+  QToolButton               *btnDirUp;
   
   QToolButton               *btnLines;
   QToolButton               *btnDetailed;
