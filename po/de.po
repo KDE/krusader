@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.50-cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-12 17:58+0200\n"
-"PO-Revision-Date: 2004-10-12 17:59+0200\n"
+"POT-Creation-Date: 2004-10-13 15:19+0200\n"
+"PO-Revision-Date: 2004-10-13 16:36+0200\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -264,8 +264,7 @@ msgstr "Platzhalter für die selektierten Dateien im Dateifenster"
 
 #: GUI/actionpropertybase.cpp:420
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
-msgstr ""
-"Die Beschreibung wird nur im Konfigurator und mittels Shift+F1 angezeigt"
+msgstr "Die Beschreibung wird nur im Konfigurator und mittels Shift+F1 angezeigt"
 
 #: GUI/actionpropertybase.cpp:421
 msgid "Startpath"
@@ -363,8 +362,7 @@ msgstr "MIME-Typ"
 
 #: GUI/actionpropertybase.cpp:450
 msgid "Show the action only for these filenames (you may use '?' and '*')"
-msgstr ""
-"Zeige die Aktion nur für diese Dateinamen (Sie können '?' und '*' benutzen)"
+msgstr "Zeige die Aktion nur für diese Dateinamen (Sie können '?' und '*' benutzen)"
 
 #: GUI/actionpropertybase.cpp:454
 msgid "Filename"
@@ -376,8 +374,7 @@ msgstr "Jeden Programmaufruf separat bestätigen"
 
 #: GUI/actionpropertybase.cpp:456
 msgid "This allows you to tweak the commandline before beeing executed"
-msgstr ""
-"Dies erlaubt Ihnen die Kommandozeile anzupassen bevor sie ausgeführt wird"
+msgstr "Dies erlaubt Ihnen die Kommandozeile anzupassen bevor sie ausgeführt wird"
 
 #: GUI/actionpropertybase.cpp:457
 msgid "Run as different user"
@@ -807,19 +804,19 @@ msgstr "KrActionProc"
 msgid "KrAction"
 msgstr "KrAction"
 
-#: Panel/krdetailedviewitem.cpp:351
+#: Panel/krdetailedviewitem.cpp:356
 msgid "Climb up the directory tree"
 msgstr "Ebene hoch im Verzeichnisbaum"
 
-#: Panel/krdetailedviewitem.cpp:363
+#: Panel/krdetailedviewitem.cpp:368
 msgid "Symbolic Link"
 msgstr "Symbolische Verknüpfung"
 
-#: Panel/krdetailedviewitem.cpp:364
+#: Panel/krdetailedviewitem.cpp:369
 msgid "(broken link !)"
 msgstr "(ungültige Verknüpfung!)"
 
-#: Panel/krdetailedviewitem.cpp:365
+#: Panel/krdetailedviewitem.cpp:370
 msgid "%1 (Link)"
 msgstr "%1 (Verknüpfung)"
 
@@ -827,7 +824,7 @@ msgstr "%1 (Verknüpfung)"
 msgid "Preview not available"
 msgstr "Keine Vorschau verfügbar"
 
-#: Panel/listpanel.cpp:120
+#: Panel/listpanel.cpp:124
 msgid ""
 "The status bar displays information about the FILESYSTEM which hold your "
 "current directory: Total size, free space, type of filesystem etc."
@@ -836,7 +833,7 @@ msgstr ""
 "Verzeichnisses an: Gesamtgröße, Freier Speicherplatz, Typ des Dateisystems, "
 "etc."
 
-#: Panel/listpanel.cpp:136
+#: Panel/listpanel.cpp:140
 msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
@@ -845,7 +842,7 @@ msgstr ""
 "Liste hinzufügen, Lesezeichen editieren oder ein neues Unterverzeichnis zu "
 "der Liste hinzufügen."
 
-#: Panel/listpanel.cpp:150
+#: Panel/listpanel.cpp:154
 msgid ""
 "The totals bar shows how much files exist, how many did you select and the "
 "bytes math"
@@ -853,15 +850,15 @@ msgstr ""
 "Die Übersichtsleiste zeigt wie viele Dateien vorhanden sind, wie viele Sie "
 "ausgewählt haben und wie viele Bytes insgesamt ausgewählt sind"
 
-#: Panel/listpanel.cpp:160 Panel/listpanel.cpp:288
+#: Panel/listpanel.cpp:164 Panel/listpanel.cpp:293
 msgid "Open the popup panel"
 msgstr "Das Popup Dateifenster öffnen"
 
-#: Panel/listpanel.cpp:176
+#: Panel/listpanel.cpp:180
 msgid "Use superb KDE file dialog to choose location. "
 msgstr "Den großartigen KDE-Dateidialog benutzen um eine Adresse auszuwählen. "
 
-#: Panel/listpanel.cpp:180
+#: Panel/listpanel.cpp:184
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
@@ -870,206 +867,205 @@ msgstr ""
 "eine gewünschte Adresse eingeben um dorthin zu gelangen. Die Nutzung von "
 "Netzwerk-Protokollen wie ftp oder fish ist ebenfalls möglich."
 
-#: Panel/listpanel.cpp:189
+#: Panel/listpanel.cpp:193
 msgid "="
 msgstr "="
 
-#: Panel/listpanel.cpp:190
+#: Panel/listpanel.cpp:194
 msgid "Equal"
 msgstr "Gleich"
 
-#: Panel/listpanel.cpp:195
+#: Panel/listpanel.cpp:199
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:196 krusader.cpp:453
+#: Panel/listpanel.cpp:200 krusader.cpp:453
 msgid "Up"
 msgstr "Ebene hoch"
 
-#: Panel/listpanel.cpp:201
+#: Panel/listpanel.cpp:205
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:202 Panel/panelpopup.cpp:87 Panel/panelpopup.cpp:88
+#: Panel/listpanel.cpp:206 Panel/panelpopup.cpp:87 Panel/panelpopup.cpp:88
 #: Panel/panelpopup.cpp:89 Panel/panelpopup.cpp:100
 msgid "Home"
 msgstr "Persönlicher Ordner"
 
-#: Panel/listpanel.cpp:207
+#: Panel/listpanel.cpp:211
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:208 Panel/panelpopup.cpp:91 Panel/panelpopup.cpp:92
+#: Panel/listpanel.cpp:212 Panel/panelpopup.cpp:91 Panel/panelpopup.cpp:92
 #: Panel/panelpopup.cpp:94 Panel/panelpopup.cpp:95 Panel/panelpopup.cpp:99
 #: krusader.cpp:530
 msgid "Root"
 msgstr "Basisordner"
 
-#: Panel/listpanel.cpp:282
+#: Panel/listpanel.cpp:287
 msgid "Close the popup panel"
 msgstr "Das Popup Dateifenster schließen"
 
-#: Panel/listpanel.cpp:373 Panel/listpanel.cpp:1021
+#: Panel/listpanel.cpp:378 Panel/listpanel.cpp:1029
 msgid " Select Files "
 msgstr " Dateien auswählen "
 
-#: Panel/listpanel.cpp:373
+#: Panel/listpanel.cpp:378
 msgid " Unselect Files "
 msgstr " Auswahl aufheben"
 
-#: Panel/listpanel.cpp:487 Panel/listpanel.cpp:495
+#: Panel/listpanel.cpp:492 Panel/listpanel.cpp:500
 #: Konfigurator/kgstartup.cpp:58 Konfigurator/kgstartup.cpp:64
 #: Konfigurator/kgstartup.cpp:75 Konfigurator/kgstartup.cpp:115
 #: Konfigurator/kgstartup.cpp:116
 msgid "homepage"
 msgstr "Startseite"
 
-#: Panel/listpanel.cpp:489 Panel/listpanel.cpp:497 krusader.cpp:236
+#: Panel/listpanel.cpp:494 Panel/listpanel.cpp:502 krusader.cpp:236
 #: krusader.cpp:241 krusader.cpp:617 krusader.cpp:620
 #: Konfigurator/kgstartup.cpp:60
 msgid "the last place it was"
 msgstr "Stelle an dem es zuletzt war"
 
-#: Panel/listpanel.cpp:558
+#: Panel/listpanel.cpp:563
 msgid "No space information on non-local filesystems"
 msgstr "Keine Speicherplatzinformation auf nicht-lokalen Dateisystemen"
 
-#: Panel/listpanel.cpp:564
+#: Panel/listpanel.cpp:569
 msgid "No space information on [dev]"
 msgstr "Keine Speicherplatzinformation auf einem [proc]"
 
-#: Panel/listpanel.cpp:569
+#: Panel/listpanel.cpp:574
 msgid "No space information on [procfs]"
 msgstr "Keine Speicherplatzinformation auf einem [procfs]"
 
-#: Panel/listpanel.cpp:574
+#: Panel/listpanel.cpp:579
 msgid "No space information on [proc]"
 msgstr "Keine Speicherplatzinformation auf einem [proc]"
 
-#: Panel/listpanel.cpp:579
+#: Panel/listpanel.cpp:584
 msgid "Mt.Man: working ..."
 msgstr "MountMan: In Bearbeitung ..."
 
-#: Panel/listpanel.cpp:593
+#: Panel/listpanel.cpp:598
 msgid "unknown"
 msgstr "unbekannt"
 
-#: Panel/listpanel.cpp:601
+#: Panel/listpanel.cpp:606
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr "%1 frei von %2 (%3%) auf %4 [ (%5) ]"
 
-#: Panel/listpanel.cpp:665
+#: Panel/listpanel.cpp:670
 msgid "Can't drop here, no write permissions."
 msgstr "Kann hier nichts ablegen, keine Schreib-Berechtigung."
 
-#: Panel/listpanel.cpp:681 Panel/panelpopup.cpp:262
+#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:234
 msgid "Copy Here"
 msgstr "Hierher kopieren"
 
-#: Panel/listpanel.cpp:683 Panel/panelpopup.cpp:263
+#: Panel/listpanel.cpp:688 Panel/panelpopup.cpp:235
 msgid "Move Here"
 msgstr "Hierher verschieben"
 
-#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:264
+#: Panel/listpanel.cpp:691 Panel/panelpopup.cpp:236
 msgid "Link Here"
 msgstr "Hierher verknüpfen"
 
-#: Panel/listpanel.cpp:775
+#: Panel/listpanel.cpp:780
 msgid "Run"
 msgstr "Ausführen"
 
-#: Panel/listpanel.cpp:778 Panel/listpanel.cpp:779
+#: Panel/listpanel.cpp:783 Panel/listpanel.cpp:784
 msgid "Open in a new tab"
 msgstr "In neuem Unterfenster öffnen"
 
-#: Panel/listpanel.cpp:791 Konfigurator/kgcolors.cpp:152
+#: Panel/listpanel.cpp:796 Konfigurator/kgcolors.cpp:152
 msgid "Preview"
 msgstr "Vorschau"
 
-#: Panel/listpanel.cpp:817
+#: Panel/listpanel.cpp:822
 msgid "Terminal"
 msgstr "Terminal"
 
-#: Panel/listpanel.cpp:818
+#: Panel/listpanel.cpp:823
 msgid "Other..."
 msgstr "Andere..."
 
-#: Panel/listpanel.cpp:820
+#: Panel/listpanel.cpp:825
 msgid "Open with"
 msgstr "Öffnen mit"
 
-#: Panel/listpanel.cpp:824
+#: Panel/listpanel.cpp:829
 msgid "Useractions"
 msgstr "Benutzer Aktionen"
 
-#: Panel/listpanel.cpp:838
+#: Panel/listpanel.cpp:845
 msgid "Konqueror menu"
 msgstr "Konqueror Menü"
 
-#: Panel/listpanel.cpp:848 Panel/krdetailedview.cpp:988
+#: Panel/listpanel.cpp:856 Panel/krdetailedview.cpp:988
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: Panel/listpanel.cpp:854
+#: Panel/listpanel.cpp:862
 msgid "Shred"
 msgstr "In den Reißwolf schieben"
 
-#: Panel/listpanel.cpp:859
+#: Panel/listpanel.cpp:867
 msgid "new symlink"
 msgstr "Neue symbolische Verknüpfung"
 
-#: Panel/listpanel.cpp:860
+#: Panel/listpanel.cpp:868
 msgid "new hardlink"
 msgstr "Neue harte Verknüpfung"
 
-#: Panel/listpanel.cpp:862
+#: Panel/listpanel.cpp:870
 msgid "redirect link"
 msgstr "Verknüpfungsziel ändern"
 
-#: Panel/listpanel.cpp:864
+#: Panel/listpanel.cpp:872
 msgid "Link handling"
 msgstr "Verknüpfungsbehandlung"
 
-#: Panel/listpanel.cpp:871 MountMan/kmountman.cpp:268
+#: Panel/listpanel.cpp:879 MountMan/kmountman.cpp:268
 #: MountMan/kmountmangui.cpp:322
 msgid "Unmount"
 msgstr "Aushängen"
 
-#: Panel/listpanel.cpp:873 MountMan/kmountman.cpp:268
+#: Panel/listpanel.cpp:881 MountMan/kmountman.cpp:268
 #: MountMan/kmountmangui.cpp:318
 msgid "Mount"
 msgstr "Einhängen"
 
-#: Panel/listpanel.cpp:875 MountMan/kmountmangui.cpp:328
+#: Panel/listpanel.cpp:883 MountMan/kmountmangui.cpp:328
 msgid "Eject"
 msgstr "Auswerfen"
 
-#: Panel/listpanel.cpp:879
+#: Panel/listpanel.cpp:887
 msgid "Send by email"
 msgstr "Per E-Mail verschicken"
 
-#: Panel/listpanel.cpp:883
+#: Panel/listpanel.cpp:891
 msgid "Copy to Clipboard"
 msgstr "In die Zwischenablage kopieren"
 
-#: Panel/listpanel.cpp:886
+#: Panel/listpanel.cpp:894
 msgid "Cut to Clipboard"
 msgstr "In die Zwischenablage ausschneiden"
 
-#: Panel/listpanel.cpp:887 Panel/listpanel.cpp:1003
+#: Panel/listpanel.cpp:895 Panel/listpanel.cpp:1011
 msgid "Paste from Clipboard"
 msgstr "Aus der Zwischenablage einfügen"
 
-#: Panel/listpanel.cpp:929
+#: Panel/listpanel.cpp:937
 msgid "Are you sure you want to shred "
 msgstr "Wirklich in den Reißwolf mit "
 
-#: Panel/listpanel.cpp:930
+#: Panel/listpanel.cpp:938
 msgid " ? Once shred, the file is gone forever !!!"
-msgstr ""
-" ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!"
+msgstr " ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!"
 
-#: Panel/listpanel.cpp:986 Panel/panelfunc.cpp:307 KViewer/krviewer.cpp:212
+#: Panel/listpanel.cpp:994 Panel/panelfunc.cpp:307 KViewer/krviewer.cpp:212
 #: krslots.cpp:408
 msgid "Can't open "
 msgstr "Kann nicht geöffnet werden "
@@ -1090,7 +1086,7 @@ msgstr "Typ"
 
 #: Panel/krdetailedview.cpp:91 Search/krsearchdialog.cpp:141
 #: Search/advancedfilter.cpp:94 Synchronizer/synchronizergui.cpp:1237
-#: Synchronizer/synchronizergui.cpp:1241
+#: Synchronizer/synchronizergui.cpp:1241 Konfigurator/kglookfeel.cpp:141
 msgid "Size"
 msgstr "Größe"
 
@@ -1106,11 +1102,11 @@ msgstr "Berechtigungen"
 msgid "rwx"
 msgstr "rwx"
 
-#: Panel/krdetailedview.cpp:95
+#: Panel/krdetailedview.cpp:95 Konfigurator/kglookfeel.cpp:145
 msgid "Owner"
 msgstr "Eigentümer"
 
-#: Panel/krdetailedview.cpp:96
+#: Panel/krdetailedview.cpp:96 Konfigurator/kglookfeel.cpp:146
 msgid "Group"
 msgstr "Gruppe"
 
@@ -1142,10 +1138,6 @@ msgstr "Vorschau Dateifenster: Eine Vorschau der aktuellen Datei anzeigen"
 msgid "Quick Panel: quick way to perform actions"
 msgstr "Quick Panel: Eine schnelle Art Aktionen durchzuführen"
 
-#: Panel/panelpopup.cpp:103 Panel/panelpopup.cpp:194 Panel/panelpopup.cpp:226
-msgid "No preview available"
-msgstr "Keine Vorschau vorhanden"
-
 #: Panel/panelpopup.cpp:111
 msgid "Quick Select"
 msgstr "Schnelle Auswahl"
@@ -1173,14 +1165,6 @@ msgstr "Vorschau:"
 #: Panel/panelpopup.cpp:179
 msgid "Quick Select:"
 msgstr "Schnelle Auswahl:"
-
-#: Panel/panelpopup.cpp:202
-msgid "Please wait..."
-msgstr "Bitte warten..."
-
-#: Panel/panelpopup.cpp:219
-msgid "Preview: "
-msgstr "Vorschau: "
 
 #: Panel/krdetailedview.moc.cpp:34 Panel/krdetailedview.moc.cpp:42
 msgid "KrDetailedView"
@@ -1274,8 +1258,7 @@ msgstr "Sie können kein Verzeichnis editieren"
 
 #: Panel/panelfunc.cpp:323
 msgid "No permissions to edit this file."
-msgstr ""
-"Sie verfügen nicht über die nötigen Rechte um diese Datei zu editieren."
+msgstr "Sie verfügen nicht über die nötigen Rechte um diese Datei zu editieren."
 
 #: Panel/panelfunc.cpp:345
 msgid "Moving into archive is disabled"
@@ -1502,8 +1485,7 @@ msgid "Search string not found!"
 msgstr "Suchbegriff nicht gefunden!"
 
 #: krusader.cpp:260
-msgid ""
-"Status bar will show  basic informations about file below mouse pointer."
+msgid "Status bar will show  basic informations about file below mouse pointer."
 msgstr ""
 "Die Statusleiste zeigt grundlegende Informationen über die Datei über dem "
 "sich der Mauszeiger befindet."
@@ -1850,8 +1832,7 @@ msgid "KrViewer is unable to download: "
 msgstr "KrViewer kann folgendes nicht herunterladen: "
 
 #: KViewer/krviewer.cpp:380
-msgid ""
-"The Document has been changed. Do you want to quit loosing the modifications?"
+msgid "The Document has been changed. Do you want to quit loosing the modifications?"
 msgstr "Das Dokument wurde verändert. Möchten Sie die Änderungen verwerfen?"
 
 #: Search/krsearchdialog.cpp:66
@@ -2389,8 +2370,7 @@ msgstr ""
 "Bitte benachrichtigen Sie die Entwickler"
 
 #: MountMan/kmountmangui.cpp:311
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan hat einen internen Fehler. Bitte benachrichtigen Sie die "
 "Entwickler. Vielen Dank."
@@ -2445,8 +2425,7 @@ msgstr "Krusader - SYSTEMVERWALTUNGS-MODUS"
 
 #: krusaderview.cpp:80
 msgid "Function keys allow to perform fast operations on files."
-msgstr ""
-"Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen"
+msgstr "Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen"
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -2808,8 +2787,7 @@ msgstr "Optionen anzeigen"
 
 #: Synchronizer/synchronizergui.cpp:1150
 msgid "Lists the files marked to copy from left to right"
-msgstr ""
-"Listet Dateien auf die als 'Kopiere von links nach rechts' markiert wurden"
+msgstr "Listet Dateien auf die als 'Kopiere von links nach rechts' markiert wurden"
 
 #: Synchronizer/synchronizergui.cpp:1158
 msgid "Lists the files considered to be identical"
@@ -2821,8 +2799,7 @@ msgstr "Listet ausgeschlossene Dateien auf"
 
 #: Synchronizer/synchronizergui.cpp:1174
 msgid "Lists the files marked to copy from right to left"
-msgstr ""
-"Listet Dateien auf die als 'Kopiere von rechts nach links' markiert wurden"
+msgstr "Listet Dateien auf die als 'Kopiere von rechts nach links' markiert wurden"
 
 #: Synchronizer/synchronizergui.cpp:1182
 msgid "Lists the files marked to delete"
@@ -3282,8 +3259,7 @@ msgstr "MIME-Typen mit Protokollen verknüpfen"
 
 #: Konfigurator/konfigurator.cpp:182
 msgid "The current page has been changed. Do you want to apply changes?"
-msgstr ""
-"Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
+msgstr "Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
 
 #: Konfigurator/kglookfeel.cpp:50
 msgid "Operation"
@@ -3382,88 +3358,80 @@ msgid "48"
 msgstr "48"
 
 #: Konfigurator/kglookfeel.cpp:134
-msgid "Fields:"
-msgstr "Felder:"
+msgid "Visible Columns:"
+msgstr "Sichtbare Spalten:"
 
 #: Konfigurator/kglookfeel.cpp:139
-msgid "Extension Column"
-msgstr "Erweiterung-Spalte"
+msgid "Extension"
+msgstr "Erweiterung"
 
 #: Konfigurator/kglookfeel.cpp:140
-msgid "Mimetype Column"
-msgstr "Dateityp-Spalte"
-
-#: Konfigurator/kglookfeel.cpp:141
-msgid "Size Column"
-msgstr "Größe-Spalte"
+msgid "Mimetype"
+msgstr "MIME-Typ"
 
 #: Konfigurator/kglookfeel.cpp:142
-msgid "Date and Time Column"
-msgstr "Geändert-Spalte"
+msgid "Date and Time"
+msgstr "Datum und Uhrzeit"
 
 #: Konfigurator/kglookfeel.cpp:143
-msgid "Permission Column"
-msgstr "Berechtigungen-Spalte"
+msgid "Permission"
+msgstr "Berechtigungen"
 
 #: Konfigurator/kglookfeel.cpp:144
-msgid "Krusader Permission Column"
-msgstr "Krusader-Berechtigungen-Spalte"
+msgid "Krusader Permission"
+msgstr "Krusader Berechtigungen"
 
-#: Konfigurator/kglookfeel.cpp:145
-msgid "Owner Column"
-msgstr "Eigentümer-Spalte"
-
-#: Konfigurator/kglookfeel.cpp:146
-msgid "Group Column"
-msgstr "Gruppe-Spalte"
-
-#: Konfigurator/kglookfeel.cpp:156
+#: Konfigurator/kglookfeel.cpp:157
 msgid "Use icons in the filenames"
 msgstr "Benutze Symbole in Dateinamen"
 
-#: Konfigurator/kglookfeel.cpp:166
+#: Konfigurator/kglookfeel.cpp:158
+msgid "Use human-readable file size"
+msgstr "Benutze Menschenlesbare Dateigröße"
+
+#: Konfigurator/kglookfeel.cpp:168
 msgid "Toolbar"
 msgstr "Werkzeugleiste"
 
-#: Konfigurator/kglookfeel.cpp:176
+#: Konfigurator/kglookfeel.cpp:178
 msgid "Key-bindings"
 msgstr "Kurzbefehle"
 
-#: Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
 msgstr "Dateifenster Werkzeugleiste"
 
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Panel Toolbar visible"
-msgstr "Dateifenster Werkzeugleiste sichtbar"
+msgstr "Dateifenster-Werkzeugleiste sichtbar"
 
-#: Konfigurator/kglookfeel.cpp:200
-msgid "Panel Toolbar buttons"
-msgstr "Dateifenster Werkzeugleisten Knöpfe"
-
-#: Konfigurator/kglookfeel.cpp:206
-msgid "Open button visible"
-msgstr "Öffnen-Knopf sichtbar"
-
-#: Konfigurator/kglookfeel.cpp:207
-msgid "Equal button (=) visible"
-msgstr "Gleich-Knopf (=) sichtbar"
+#: Konfigurator/kglookfeel.cpp:202
+msgid "Visible Panel Toolbar buttons"
+msgstr "Sichtbare Knöpfe in der Dateifenster-Werkzeugleiste"
 
 #: Konfigurator/kglookfeel.cpp:208
-msgid "Up button (..) visible"
-msgstr "Ebene-Hoch-Knopf (..) sichtbar"
+msgid "Open button"
+msgstr "Öffnen"
 
 #: Konfigurator/kglookfeel.cpp:209
-msgid "Home button (~) visible"
-msgstr "Persönlicher-Ordner-Knopf (~) sichtbar"
+msgid "Equal button (=)"
+msgstr "Gleich (=)"
 
 #: Konfigurator/kglookfeel.cpp:210
-msgid "Root button (/) visible"
-msgstr "Basisordner-Knopf (/) sichtbar"
+msgid "Up button (..)"
+msgstr "Ebene-Hoch (..)"
 
 #: Konfigurator/kglookfeel.cpp:211
-msgid "Toggle-button for synchron-browsing visible"
-msgstr "Umschalt-Knopf für Synchron-Browsing sichtbar"
+msgid "Home button (~)"
+msgstr "Persönlicher Ordner (~)"
+
+#: Konfigurator/kglookfeel.cpp:212
+msgid "Root button (/)"
+msgstr "Basisordner (/)"
+
+#: Konfigurator/kglookfeel.cpp:213
+msgid "Toggle-button for sync-browsing"
+msgstr "Umschalten von Synchron-Browsing"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "Automount filesystems"
@@ -3544,8 +3512,7 @@ msgstr "Protokoll aus der Verknüpfungs-Liste entfernen"
 
 #: Konfigurator/kgprotocols.cpp:92
 msgid "Add mime to the selected protocol on the link list"
-msgstr ""
-"MIME-Typ zum ausgewählten Protokoll in der Verknüpfungs-Liste hinzufügen"
+msgstr "MIME-Typ zum ausgewählten Protokoll in der Verknüpfungs-Liste hinzufügen"
 
 #: Konfigurator/kgprotocols.cpp:95
 msgid "Remove mime from the link list"
@@ -3889,18 +3856,15 @@ msgid "Test archive when finished packing"
 msgstr "Archiv nach dem Packen testen"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"If checked, Krusader will test the archive's intergrity after packing it."
-msgstr ""
-"Falls ausgewählt, wird Krusader die Archivintegrität nach dem Packen testen."
+msgid "If checked, Krusader will test the archive's intergrity after packing it."
+msgstr "Falls ausgewählt, wird Krusader die Archivintegrität nach dem Packen testen."
 
 #: Konfigurator/kgarchives.cpp:95
 msgid "Test archive before unpacking"
 msgstr "Archiv vor dem Entpacken testen"
 
 #: Konfigurator/kgarchives.cpp:95
-msgid ""
-"Some corrupted archives might cause a crash, therefore testing is suggested"
+msgid "Some corrupted archives might cause a crash, therefore testing is suggested"
 msgstr ""
 "Einige korrupte Archive können einen Absturz verursachen, daher ist das "
 "Testen zu empfehlen"
@@ -4389,8 +4353,7 @@ msgid "Not a valid CRC file!"
 msgstr "Keine gültige CRC-Datei!"
 
 #: Splitter/combiner.cpp:138
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Eine Gültigkeitsüberprüfung ist ohne eine gültige CRC-Datei unmöglich. Mit "
 "dem Zusammenfügen fortfahren?"
@@ -4431,3 +4394,4 @@ msgstr "Sie können kein Verzeichnis splitten!"
 #: Splitter/splitter.cpp:127
 msgid "Error at reading file %1!"
 msgstr "Fehler beim Lesen der Datei %1!"
+
