@@ -22,8 +22,8 @@ bin_program=krusader
 cflags=-DKDE_NO_COMPAT\s
 cppflags=-DKDE_NO_COMPAT -D__USE_FILE_OFFSET64 -D_LFS64_LARGEFILE
 cxxflags=\s-O0 -Wall
-ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                             \s
+ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
+ldflags=\s                               \s
 
 [General]
 AMChanged=false
