@@ -531,19 +531,7 @@ void KRslots::viewDlg(){
   // ask the user for a url to view
 	KURL dest = KChooseDir::getDir(i18n("Enter a URL to view:"), ACTIVE_PANEL->virtualPath(), ACTIVE_PANEL->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
-
-#if 0  
-  REVIEW
-  
-  KChooseDir *chooser = new KChooseDir( 0,i18n("Enter a URL to view:"), QString::null);
-  QString dest = chooser->dest;
-  if ( dest == QString::null ) return ; // the usr canceled
-  else
-  {
-    /* vfs::fromPathOrURL requires fullpath, so we check whether it is relative  */
-    if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
-      dest = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1)+dest; /* it's full path now */
-#endif    
+   
     KrViewer::view( dest ); // view the file
 //  }
   // nothing more to it!
@@ -555,21 +543,7 @@ void KRslots::editDlg(){
 	KURL dest = KChooseDir::getDir(i18n("Enter the filename to edit:"), ACTIVE_PANEL->virtualPath(), ACTIVE_PANEL->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
 
-#if 0
-  REVIEW
-    
-  KChooseDir *chooser = new KChooseDir( 0,i18n("Enter the filename to edit:"), QString::null);
-  QString dest = chooser->dest;
-  if ( dest == QString::null ) return ; // the usr canceled
-  else
-  {
-    /* vfs::fromPathOrURL requires fullpath, so we check whether it is relative  */
-    if ( !dest.contains( ":/" ) && !dest.startsWith( "/" ) )
-      dest = ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1) + dest; /* it's full path now */
-#endif
     KrViewer::edit( dest, true );
-//  }
-  // nothing more to it!
 }
 
 void KRslots::duplicateTab() {
