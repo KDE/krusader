@@ -48,7 +48,7 @@ public:
  ~ListPanelFunc();
 
   inline void refresh(){ refresh(panel->virtualPath); } // re-read the files
-	inline vfs* files()  { return vfsStack.top();      } // return the vfs
+	vfs* files();  // return a pointer to the vfs
   void refresh(const QString path);
   void refreshActions();
 

@@ -77,7 +77,7 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent):
 }
 
 void ListPanelFunc::openUrl( const QString& path, const QString& type){
-  QString mytype, mypath = path;
+  QString mytype = type, mypath = path;
   // check for archive:
 	if( path.contains('\\') ) {
     // do we need to change VFS ?
@@ -128,7 +128,7 @@ void ListPanelFunc::refresh(const QString path){
 	// second make sure we're in the right vfs..
 	if ((panel->virtualPath.contains('\\') && !path.contains('\\')) ||  // arc -> normal
 	  panel->virtualPath.left(1) != "/" && path.left(1) == "/"){     // ftp -> normal
-	  while( vfsStack.remove() ); //empty the vfsStack
+	  while( files()->vfs_getType() != "normal" ) vfsStack.remove(); //empty the vfsStack
 		files()->blockSignals(false);
   }
 	// if we could not refresh try to dir up
@@ -802,6 +802,14 @@ void ListPanelFunc::refreshActions(){
 
 ListPanelFunc::~ListPanelFunc(){
 	while( vfsStack.remove() ); // delete all vfs objects
+}
+
+vfs* ListPanelFunc::files(){
+	// make sure we return a valid VFS*
+	if( vfsStack.isEmpty() ){
+		vfsStack.push(new normal_vfs("/",panel));
+	}
+	return vfsStack.top();
 }
 
 #include "panelfunc.moc"
