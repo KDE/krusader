@@ -133,6 +133,8 @@
 //#define _PermCheck     true
 // AutoMount //////////
 #define _AutoMount     false 
+// Nonmount Points ////
+#define _NonMountPoints	"/, "
 // Confirm Unempty Dir //     (for delete)
 #define _ConfirmUnemptyDir true 
 // Confirm Delete /////       (for deleting files)

@@ -54,6 +54,12 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 2, 0, generalSettings, 1, generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
 
+  addLabel( generalGrid, 2, 0, i18n( "MountMan won't (un)mount the following mount-points:" ),
+            generalGrp, "KgAdvLabel2" );
+  KonfiguratorEditBox *nonMountPoints = createEditBox( "Advanced", "Nonmount Points", _NonMountPoints, generalGrp, false );
+  generalGrid->addWidget( nonMountPoints, 2, 1 );
+ 
+  
 #ifdef BSD
   generals->find( "AutoMount" )->setEnabled( false ); /* disable AutoMount on BSD */
 #endif

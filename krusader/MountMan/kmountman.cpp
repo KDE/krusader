@@ -33,12 +33,13 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // KDE includes
 #include <kmessagebox.h>
 #include <kprocess.h>
-//#include <kprocctrl.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
+#include <kdebug.h>
 
 // Krusader includes
 #include "../krusader.h"
+#include "../defaults.h"
 #include "../Dialogs/krdialogs.h"
 #include "../krservices.h"
 #include "kmountmangui.h"
@@ -70,6 +71,16 @@ KMountMan::KMountMan() : QObject(), Operational( false ), mountManGui( 0 ) {
 
 	// list of FS that we don't allow to mount/unmount
 	nonmount_fs << "supermount";
+	{
+		KConfigGroupSaver saver(krConfig, "Advanced");
+		QStringList nonmount = QStringList::split(",", krConfig->readEntry("Nonmount Points", _NonMountPoints));
+		nonmount_fs_mntpoint += nonmount;
+		// simplify the white space
+		for ( QStringList::Iterator it = nonmount_fs_mntpoint.begin(); it != nonmount_fs_mntpoint.end(); ++it ) {
+			*it = (*it).simplifyWhiteSpace();
+		}
+	}
+	
 }
 
 KMountMan::~KMountMan() {}
@@ -78,8 +89,9 @@ bool KMountMan::invalidFilesystem(QString type) {
 	return (invalid_fs.contains(type) > 0);
 }
 
-bool KMountMan::nonmountFilesystem(QString type) {
-	return (nonmount_fs.contains(type) > 0);
+// this is an ugly hack, but type can actually be a mountpoint. oh well...
+bool KMountMan::nonmountFilesystem(QString type, QString mntPoint) {
+	return ((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0));
 }
 
 void KMountMan::mainWindow() {
@@ -239,7 +251,7 @@ void KMountMan::quickList() {
    for ( it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx ) {
       m = *it;
 		// skip nonmountable file systems
-		if (nonmountFilesystem(m->mountType()) || invalidFilesystem(m->mountType()))
+		if (nonmountFilesystem(m->mountType(), m->mountPoint()) || invalidFilesystem(m->mountType()))
 			continue;
       // does the mountpoint exist in current list? if so, it can only
       // be umounted, otherwise, it can be mounted

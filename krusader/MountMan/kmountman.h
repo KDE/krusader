@@ -65,7 +65,7 @@ public:
    bool ejectable( QString path );
    QString convertSize( KIO::filesize_t size );
 	bool invalidFilesystem(QString type);
-	bool nonmountFilesystem(QString type);
+	bool nonmountFilesystem(QString type, QString mntPoint);
 
    KMountMan();
    ~KMountMan();
@@ -88,8 +88,11 @@ private:
 private:
    bool Operational;   // if false, something went terribly wrong on startup
    KMountManGUI *mountManGui;
+	// the following is the FS type
 	QStringList invalid_fs;
 	QStringList nonmount_fs;
+	// the following is the FS name
+	QStringList nonmount_fs_mntpoint;
 };
 
 #endif

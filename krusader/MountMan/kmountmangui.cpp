@@ -316,10 +316,12 @@ void KMountManGUI::clicked( QListViewItem *item ) {
    popup.insertTitle( i18n( "MountMan" ) );
    if ( !system->mounted() ) {
       popup.insertItem( i18n( "Mount" ), MOUNT_ID );
-		popup.setItemEnabled( MOUNT_ID, !krMtMan.nonmountFilesystem(system->type()));
+		bool enable = !(krMtMan.nonmountFilesystem(system->type(), system->mntPoint()));
+		popup.setItemEnabled( MOUNT_ID, enable);
 	} else {
 		popup.insertItem( i18n( "Unmount" ), UNMOUNT_ID );
-		popup.setItemEnabled( UNMOUNT_ID, !krMtMan.nonmountFilesystem(system->type()));
+		bool enable = !(krMtMan.nonmountFilesystem(system->type(), system->mntPoint()));
+		popup.setItemEnabled( UNMOUNT_ID, enable);
 	}
    if ( krMtMan.ejectable( system->mntPoint() ) )
       //  if (system->type()=="iso9660" || krMtMan.followLink(system->name()).left(2)=="cd")
