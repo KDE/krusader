@@ -8,23 +8,23 @@
 
 # NOTE: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
 
-%define version 1.51.05
+%define version 1.51.06
 %define release mdk101
 #%define beta beta1
 
 # Package information
-Summary: 	 Advanced twin-panel file-manager for KDE 3.2.x
-Name: 		 			krusader
+Summary:			Advanced, twin-panel, commander-style file-manager for KDE 3.2.x
+Name:					krusader
 Version: 	 		%{version}
 Release: 	 		%{release}
-Distribution:	 Mandrake Linux 10.1
+Distribution:	Mandrake Linux 10.1
 Source0: 	 		%{name}-%{version}.tar.gz
-#Source0:    %{name}-%{version}-beta1.tar.gz
+#Source0:				%{name}-%{version}-%{beta}.tar.gz
 License: 	 		GPL
 Group: 				File tools
 
-# requirements for building the software package, these are not the binary PRM requirements
-# e.g. for installing the binary RPM you don't need a C-compiler
+# requirements for building the software package, not the binary PRM requirements
+# e.g., for installing the binary RPM you don't need a C-compiler
 BuildRequires: automake autoconf diffutils file m4 texinfo gettext zlib1
 BuildRequires: kdelibs >= 3.2.0 kdelibs-devel >= 3.2.0
 BuildRequires: libqt3 >= 3 libqt-devel >= 3.1.0 arts-devel >= 1.1.0
@@ -36,30 +36,33 @@ BuildRequires: rpm-build gcc-cpp gcc-c++ glibc libgcc1
 # BuildRoot: dir that acts as a staging area, that looks like the final install dir
 # typically (for Mandrake): /var/tmp/krusader-buildroot
 # this will become the %%RPM_BUILD_ROOT enviroment variable
-BuildRoot:       %{_tmppath}/%{name}-buildroot
-URL: 		 						http://krusader.sourceforge.net
-Vendor:          Krusader Krew [krusader {*} users {.} sourceforge {.}net]
-Packager:        Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
+BuildRoot:			%{_tmppath}/%{name}-buildroot
+URL: 		 				http://krusader.sourceforge.net
+Vendor:					Krusader Krew [krusader {*} users {.} sourceforge {.}net]
+Packager:				Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 
 # makes binary rpm relocatable e.g.
 # rpm -Uvh --relocate /usr=/opt krusader-1.51.mdk100.i586.rpm
 # rpm -Uvh --relocate /usr=/usr/local krusader-1.51.mdk100.i586.rpm
-Prefix:          /usr
+Prefix:			/usr
 
 # dependencies requirements for the binary RPM package
 Requires: 	kdelibs >= 3.2.0
 
 %description
-Krusader is an advanced, twin-panel (commander-style) file-manager for
-KDE 3.2.x (similar to Midnight or Total Commander) but with many extras.
-It provides all the File-Management features you could possibly want; plus:
-extensive Archive Handling, mounted Filesystem support, FTP, advanced Search
-module, Viewer/editor, directory Synchronisation, file content Comparisons,
-powerful batch Renaming, and much, much more.
-It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace,
-arj and rpm; and can handle other KIOSlaves, such as, smb:// or fish://.
-It is (almost) completely customizable, very user friendly, fast and looks
-great on your desktop! :-)
+Advanced, twin-panel, commander-style file-manager for KDE 3.2.x
+(similar to Midnight or Total Commander) but with many extras.
+Offers all the file-management features you could possibly want.
+
+Plus: extensive Archive handling, mounted Filesystem support, FTP,
+advanced Search module, viewer/Editor, directory Synchronisation,
+file content Comparisons, powerful batch Renaming, and much, much more.
+Supports archive formats: tar, zip, bzip2, gzip, rar, ace, arj and rpm.
+Handles other KIOSlaves, such as, smb:// or fish://.
+
+Almost completely customizable!
+Very user friendly, fast, and looks great on your desktop! :-)
+
 You should give it a try.
 
 
@@ -186,6 +189,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # datadir = /usr/share on Mandrake
 %{_datadir}/applnk/Applications/krusader.desktop
+%{_datadir}/applnk/Applications/krusader_root-mode.desktop
 
 # /usr/share/apps/krusader/ on Mandrake
 # dir = inlude empty dir but not the files
@@ -194,6 +198,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/krusader/*.png
 %{_datadir}/apps/krusader/*.jpg
 %{_datadir}/apps/krusader/total_commander.*
+%{_datadir}/apps/krusader/useractions.xml
 
 # /usr/share/apps/krusader/icons/ on Mandrake
 %dir %{_datadir}/apps/krusader/icons/
@@ -254,53 +259,15 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Mon Jan 10 2005 Richard Holt [ hempscreek {*} yahool {.} com ]
-- 1.51.05-mdk101
-    ADDED: useraction: new placeholder: %_Move(src, dest)%
-    ADDED: useraction: new placeholder: %_Each%
-    ADDED: full viewer in the 3rd hand
-    ADDED: shift-del deletes and doesn't move to trash
-    ADDED: splitter: pre-defined 650MB and 700MB CD-R
-    ADDED: more Konfigurator Tooltips
-    ADDED: usermenu: entry to open konfigurator with the useraction-page directly
-    ADDED: import/export of keyboard shortcuts
-    ADDED: mouse selection modes are back! thanks to heiner for doing the work
+* Fri Jan 14 2005 Richard Holt [ richard.holt {*} gmail {.} com ]
+- 1.51.06-cvs200501141400-mdk101
 
-    FIXED: couldn't sort case sensative on some systems (see KDE bug #40131)
-    FIXED: resizing of the main window produces strange effencts
-    FIXED: double dragging in Krusader and Konqueror selection modes
-    FIXED: right click menu and user action ID turmoil
-    FIXED: [ 1074393 ] Crashes sometimes on startup (thanks Heiner)
-    FIXED: custom icons in bookmarks weren't shown
-
-  UPDATED: German translation
+* Thu Jan 13 2005 Richard Holt [ richard.holt {*} gmail {.} com ]
+- 1.51.04-cvs20050109-mdk101
 
 * Fri Dec 10 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.51-mdk100
   removed some minor unnecessary lines in the spec file
-    ADDED: Portuguese translation (thanks Bruno Queiros)
-    ADDED: Fn keys can have custom shortcuts
-    ADDED: krusader can be resized to a small size even with Fn keys showing
-    ADDED: Total-commander style refresh (at last)
-    ADDED: ctrl-up arrow (from the panel) goes up to the origin bar
-    ADDED: New commandline option: --profile <panel-profile>
-    ADDED: Heiner's selection mode patch. Still alpha.
-    ADDED: Ukrainian translation (thanks Ivan Petrouchtchak)
-    ADDED: disk usage tool (alpha version)
-    ADDED: vertical krusader: hit alt+ctrl+v to test
-    ADDED: extra information in the totals bar
-    FIXED: separators were not displayed in the bookmarks list
-    FIXED: deleting a folder didn't update the bottom stats correctly
-    FIXED: useraction: parse the default-value "__goto" again
-    FIXED: useraction: Crash when filename  contained brackets '(...)'
-    FIXED: world-class-annoying-bug when sometimes while using quicksearch,
-           the file that was selected by quicksearch got hidden beneath the bar
-    FIXED: mime types are shown only in english
-    FIXED: when using quicksearch, current item wasn't visible
-    FIXED: a crash when packing/unpacking to partial URL
-  UPDATED: Dutch translation (thanks Frank Schoolmeesters)
-  UPDATED: Hungarian translation (thanks Arpad Biro)
-  UPDATED: German translation
 
 * Mon Nov 1 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
 - 1.50-mdk100
