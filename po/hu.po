@@ -12,13 +12,13 @@ msgstr ""
 "Project-Id-Version: krusader-1.50-beta1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-10-15 19:51+0200\n"
-"PO-Revision-Date: 2004-10-02 14:01+0200\n"
+"PO-Revision-Date: 2004-10-16 21:40+0200\n"
 "Last-Translator: Kukk Zoltán <kukkzoli@freemail.hu>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3.1\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: GUI/actionproperty.moc.cpp:34 GUI/actionproperty.moc.cpp:42
 msgid "ActionProperty"
@@ -95,14 +95,12 @@ msgid "Set an other path:"
 msgstr "Más útvonal megadása:"
 
 #: GUI/actionproperty.cpp:259
-#, fuzzy
 msgid "New mime-type"
-msgstr "Mime-típus szerkesztése"
+msgstr "Új mime-típus"
 
 #: GUI/actionproperty.cpp:260
-#, fuzzy
 msgid "Set a mime-type:"
-msgstr "Más mime-típus megadása:"
+msgstr "Mime-típus megadása:"
 
 #: GUI/actionproperty.cpp:275
 msgid "Edit mime-type"
@@ -274,7 +272,6 @@ msgid "Collect output"
 msgstr "Kimenet gyűjtése"
 
 #: GUI/actionpropertybase.cpp:418
-#, fuzzy
 msgid "Collect the output of the executed program"
 msgstr "A futtatott program kimenetének gyűjtése"
 
@@ -355,7 +352,6 @@ msgid "Filename"
 msgstr "Fájlnév"
 
 #: GUI/actionpropertybase.cpp:446
-#, fuzzy
 msgid "Confirm each program call separately"
 msgstr "Minden programhívás külön jóváhagyása"
 
@@ -365,12 +361,11 @@ msgstr "Ez lehetővé teszi, hogy módosítsa a parancssort a futtatása előtt"
 
 #: GUI/actionpropertybase.cpp:448
 msgid "Run as different user"
-msgstr ""
+msgstr "Futtatás más felhasználóként"
 
 #: GUI/actionpropertybase.cpp:449
-#, fuzzy
 msgid "execute the command under an other user-id"
-msgstr "Parancs futtatása egy terminálban"
+msgstr "a parancs futtatása egy másik felhasználó nevében"
 
 #: GUI/actionpropertybase.cpp:450
 msgid "Advanced Properties"
@@ -535,9 +530,8 @@ msgid "ParameterFile"
 msgstr "ParaméterFájl"
 
 #: GUI/addplaceholderpopup.moc.cpp:198 GUI/addplaceholderpopup.moc.cpp:206
-#, fuzzy
 msgid "ParameterGoto"
-msgstr "ParaméterKönyvjelző"
+msgstr "ParaméterUgrás"
 
 #: GUI/addplaceholderpopup.moc.cpp:286 GUI/addplaceholderpopup.moc.cpp:294
 msgid "ParameterDialog"
@@ -653,7 +647,6 @@ msgid "current file (!= selected file)"
 msgstr "aktuális fájl (!= kijelölt fájl)"
 
 #: UserAction/expander.cpp:105 UserAction/expander.cpp:150
-#, fuzzy
 msgid "Omit the current path (optional)"
 msgstr "Az aktuális útvanal elhagyása (opcionális)"
 
@@ -678,7 +671,6 @@ msgid "Manipulate the selection"
 msgstr "Kijelölés manipulálása"
 
 #: UserAction/expander.cpp:217
-#, fuzzy
 msgid "Selection mask"
 msgstr "Kijelölési maszk"
 
@@ -691,14 +683,12 @@ msgid "Jump to a location"
 msgstr "Ugrás egy helyre"
 
 #: UserAction/expander.cpp:246
-#, fuzzy
 msgid "please choose a path"
-msgstr "válassza ki a könyvjelzőt"
+msgstr "kérem válasszon egy útvonalat"
 
 #: UserAction/expander.cpp:247
-#, fuzzy
 msgid "open the location in a new tab"
-msgstr "a könyvjelző megnyitás egy új fülön"
+msgstr "a hely megnyitás egy új fülön"
 
 #: UserAction/expander.cpp:281
 msgid "Question the user for a parameter"
@@ -729,10 +719,8 @@ msgid "What should be copied"
 msgstr "Mi legyen másolva"
 
 #: UserAction/expander.cpp:310
-#, fuzzy
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Az aktuális vágólap tartalomhoz adás ezzel az elválasztóval (opcionális)"
+msgstr "Az aktuális vágólap tartalomhoz adás ezzel az elválasztóval (opcionális)"
 
 #: UserAction/expander.cpp:324
 msgid "Copy a file/folder"
@@ -743,9 +731,8 @@ msgid "Where it should be copied"
 msgstr "Hova legyen másolva"
 
 #: UserAction/expander.cpp:348
-#, fuzzy
 msgid "Open a synchronizer-profile"
-msgstr "Egy szinkronizáló profil megnyitása"
+msgstr "Egy szinkronizáló-profil megnyitása"
 
 #: UserAction/expander.cpp:351 UserAction/expander.cpp:369
 #: UserAction/expander.cpp:387
@@ -753,14 +740,12 @@ msgid "Choose a profile"
 msgstr "Profil kiválasztása"
 
 #: UserAction/expander.cpp:366
-#, fuzzy
 msgid "Open a searchmodule-profile"
-msgstr "Egy szinkronizáló profil megnyitása"
+msgstr "Egy keresőmodul-profil megnyitása"
 
 #: UserAction/expander.cpp:384
-#, fuzzy
 msgid "Load a panel-profile"
-msgstr "Profil kiválasztása"
+msgstr "Egy panel-profil megnyitása"
 
 #: UserAction/kraction.cpp:43
 msgid "Kill"
@@ -787,7 +772,6 @@ msgid "Confirm execution"
 msgstr "Futtatás megerősítése"
 
 #: UserAction/kraction.cpp:216
-#, fuzzy
 msgid "Command being executed:"
 msgstr "Futtatandó parancs:"
 
@@ -824,12 +808,11 @@ msgid "Preview not available"
 msgstr "Nincsen előnézet"
 
 #: Panel/listpanel.cpp:124
-#, fuzzy
 msgid ""
 "The status bar displays information about the FILESYSTEM which holds your "
 "current directory: Total size, free space, type of filesystem, etc."
 msgstr ""
-"Az állapot jelző információt közöl az aktuális fájlrendszerről:\n"
+"Az állapot jelző információt közöl arról a fájlrendszerről, amely az aktuális könyvtárat tartalmazza:\n"
 "teljes méret, szabad hely, fájlrendszer típusa stb."
 
 #: Panel/listpanel.cpp:140
@@ -841,7 +824,6 @@ msgstr ""
 "szerkeszteni tudja a könyvjelzőket vagy új almappát adhat a listához."
 
 #: Panel/listpanel.cpp:154
-#, fuzzy
 msgid ""
 "The totals bar shows how many files exist, how many selected and the bytes "
 "math"
@@ -902,9 +884,8 @@ msgid "Root"
 msgstr "Gyökér könyvtár"
 
 #: Panel/listpanel.cpp:287
-#, fuzzy
 msgid "Close the popup panel"
-msgstr "Felbukkanó panel megnyitása"
+msgstr "Felbukkanó panel bezárása"
 
 #: Panel/listpanel.cpp:378 Panel/listpanel.cpp:1029
 msgid " Select Files "
@@ -996,13 +977,12 @@ msgid "Open with"
 msgstr "Megnyitás ezzel"
 
 #: Panel/listpanel.cpp:829
-#, fuzzy
 msgid "Useractions"
 msgstr "Felhasználói Műveletek"
 
 #: Panel/listpanel.cpp:845
 msgid "Konqueror menu"
-msgstr ""
+msgstr "Konqueror menü"
 
 #: Panel/listpanel.cpp:856 Panel/krdetailedview.cpp:988
 msgid "Rename"
@@ -1047,18 +1027,16 @@ msgid "Send by email"
 msgstr "Küldés emailben"
 
 #: Panel/listpanel.cpp:891
-#, fuzzy
 msgid "Copy to Clipboard"
 msgstr "Másolás a vágólapra"
 
 #: Panel/listpanel.cpp:894
-#, fuzzy
 msgid "Cut to Clipboard"
-msgstr "Másolás a vágólapra"
+msgstr "Kivágás a vágólapra"
 
 #: Panel/listpanel.cpp:895 Panel/listpanel.cpp:1011
 msgid "Paste from Clipboard"
-msgstr ""
+msgstr "Beillesztés a vágólapról"
 
 #: Panel/listpanel.cpp:937
 msgid "Are you sure you want to shred "
@@ -1130,17 +1108,16 @@ msgid "KrColorCache"
 msgstr "KrSzínGyorsítótár"
 
 #: Panel/panelpopup.cpp:50
-#, fuzzy
 msgid "Tree Panel: a tree view of the local file system"
-msgstr "Linkeket csak a helyi fájlrendszeren tud létrehozni."
+msgstr "Fa panel: fa nézete a helyi fájlrenszernek"
 
 #: Panel/panelpopup.cpp:58
 msgid "Preview Panel: display a preview of the current file"
-msgstr ""
+msgstr "Előnézet panel: az aktuális fájl előnézetét mutatja"
 
 #: Panel/panelpopup.cpp:65
 msgid "Quick Panel: quick way to perform actions"
-msgstr ""
+msgstr "Gyorsító panel: műveletek gyors végrehalytása"
 
 #: Panel/panelpopup.cpp:111
 msgid "Quick Select"
@@ -1159,19 +1136,16 @@ msgid "select group dialog"
 msgstr "csoport kijelölés ablak"
 
 #: Panel/panelpopup.cpp:173
-#, fuzzy
 msgid "Tree:"
-msgstr "Szabad: "
+msgstr "Fa: "
 
 #: Panel/panelpopup.cpp:176
-#, fuzzy
 msgid "Preview:"
 msgstr "Előnézet: "
 
 #: Panel/panelpopup.cpp:179
-#, fuzzy
 msgid "Quick Select:"
-msgstr "Gyors Kijelölés"
+msgstr "Gyors Kijelölés:"
 
 #: Panel/krdetailedview.moc.cpp:34 Panel/krdetailedview.moc.cpp:42
 msgid "KrDetailedView"
@@ -1431,9 +1405,8 @@ msgid "Search for:"
 msgstr "Keresett szöveg:"
 
 #: Locate/locate.cpp:89
-#, fuzzy
 msgid "Don't search in path"
-msgstr "&Ne keressen ebben: "
+msgstr "Ne keressen az elérési útvonalban "
 
 #: Locate/locate.cpp:91
 msgid "Show only the existing files"
@@ -1491,10 +1464,8 @@ msgid "Search string not found!"
 msgstr "A keresett szöveg nem található!"
 
 #: krusader.cpp:260
-msgid ""
-"Status bar will show  basic informations about file below mouse pointer."
-msgstr ""
-"Az állapot sáv alapvető információkat mutat az egérmutató alatti fájlról."
+msgid "Status bar will show  basic informations about file below mouse pointer."
+msgstr "Az állapot sáv alapvető információkat mutat az egérmutató alatti fájlról."
 
 #: krusader.cpp:307
 msgid ""
@@ -1598,9 +1569,8 @@ msgid "New Net &Connection"
 msgstr "Új kap&csolat"
 
 #: krusader.cpp:463
-#, fuzzy
 msgid "Pro&files"
-msgstr "Profilok"
+msgstr "Pro&filok"
 
 #: krusader.cpp:465
 msgid "Calculate &Occupied Space"
@@ -1695,9 +1665,8 @@ msgid "&Unselect Group"
 msgstr "Csoport kijelölés &megszüntetése"
 
 #: krusader.cpp:526
-#, fuzzy
 msgid "Configure &Krusader"
-msgstr "Kilépés a Krusader-ből."
+msgstr "&Krusader beállítása"
 
 #: krusader.cpp:532
 msgid "Save &Position"
@@ -1732,9 +1701,8 @@ msgid "Left bookmarks"
 msgstr "Baloldali könyvjelzők"
 
 #: krusader.cpp:552
-#, fuzzy
 msgid "Sync Panels"
-msgstr "Panelek"
+msgstr "Panelek Szinkronizálása"
 
 #: krusader.cpp:554
 msgid "Left history"
@@ -1766,7 +1734,7 @@ msgstr "Előző fül"
 
 #: krusader.cpp:568 UserMenu/usermenu.cpp:56
 msgid "User Menu"
-msgstr "&Felhasználói Menü"
+msgstr "Felhasználói Menü"
 
 #: krusader.cpp:572
 msgid "Highlight files by using a filter"
@@ -1801,7 +1769,6 @@ msgid "List"
 msgstr "Lista"
 
 #: krusader.cpp:662
-#, fuzzy
 msgid "Ok to shutdown Krusader?"
 msgstr "Biztos, hogy kilép a Krusaderből?"
 
@@ -1842,11 +1809,8 @@ msgid "KrViewer is unable to download: "
 msgstr "KrNézegető nem tudja letölteni: "
 
 #: KViewer/krviewer.cpp:380
-#, fuzzy
-msgid ""
-"The Document has been changed. Do you want to quit, losing the modifications?"
-msgstr ""
-"A Dokumentum megváltozott. Ki akar lépni és elveszíteni a módosításokat?"
+msgid "The Document has been changed. Do you want to quit, losing the modifications?"
+msgstr "A Dokumentum megváltozott. Ki akar lépni és elveszíteni a módosításokat?"
 
 #: Search/krsearchdialog.cpp:66
 msgid "Krusader::Search"
@@ -2204,14 +2168,12 @@ msgid "Open your bookmarks"
 msgstr "Könyvjelzői megnyitása"
 
 #: BookMan/krbookmarkbutton.moc.cpp:34 BookMan/krbookmarkbutton.moc.cpp:42
-#, fuzzy
 msgid "KrBookmarkButton"
-msgstr "KönyvjelzőkGomb"
+msgstr "KrKönyvjelzőkGomb"
 
 #: BookMan/kraddbookmarkdlg.moc.cpp:34 BookMan/kraddbookmarkdlg.moc.cpp:42
-#, fuzzy
 msgid "KrAddBookmarkDlg"
-msgstr "Könyvjelző Felvétele"
+msgstr "KrKönyvjelzőFelvételeDlg"
 
 #: BookMan/addbookmarkdlg.cpp:29 BookMan/addbookmarkform.cpp:86
 msgid "Bookmark name:"
@@ -2292,7 +2254,6 @@ msgid "Add Bookmark"
 msgstr "Könyvjelző Felvétele"
 
 #: BookMan/kraddbookmarkdlg.cpp:16 BookMan/kraddbookmarkdlg.cpp:103
-#, fuzzy
 msgid "New Folder"
 msgstr "Új könyvtár"
 
@@ -2301,14 +2262,12 @@ msgid "Name:"
 msgstr "Név: "
 
 #: BookMan/kraddbookmarkdlg.cpp:40
-#, fuzzy
 msgid "Create in:"
 msgstr "Létrehozás ebben"
 
 #: BookMan/kraddbookmarkdlg.cpp:103
-#, fuzzy
 msgid "Folder name:"
-msgstr "Fájl név:"
+msgstr "Könyvtár név:"
 
 #: MountMan/kmountman.cpp:178
 msgid "Error ejecting device ! You need to have 'eject' in your path."
@@ -2389,8 +2348,7 @@ msgstr ""
 "Hívja a fejlesztőket"
 
 #: MountMan/kmountmangui.cpp:311
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Belső hiba történt a csatoláskezelő futásakor.Kérjük, értesítse a "
 "fejlesztőket. Köszönjük!"
@@ -2444,7 +2402,6 @@ msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - ROOT JOGOSULTSÁGOK"
 
 #: krusaderview.cpp:80
-#, fuzzy
 msgid "Function keys allow performing fast operations on files."
 msgstr "A funkciógombok a fájlokon végzett gyors műveleteket teszik lehetővé."
 
@@ -2492,7 +2449,7 @@ msgstr "%1 / %n fájl"
 
 #: Dialogs/krprogress.cpp:225
 msgid "Working"
-msgstr ""
+msgstr "Dolgozom"
 
 #: Dialogs/krprogress.cpp:228
 msgid "%1/s ( %2 remaining )"
@@ -2710,7 +2667,6 @@ msgid "UserMenuGui"
 msgstr "FelhasználóiMenüFelület"
 
 #: UserMenu/usermenuadd.cpp:29
-#, fuzzy
 msgid "Add a useraction"
 msgstr "Felhasználó művelet hozzáadása"
 
@@ -2744,8 +2700,7 @@ msgstr "Keresés alkönyvtárakban"
 
 #: Synchronizer/synchronizergui.cpp:1107
 msgid "Compares not only the base directories but their subdirectories as well"
-msgstr ""
-"Nem csak az alap könyvtárakat hasonlítja össze, hanem az alkönyvtárakat is"
+msgstr "Nem csak az alap könyvtárakat hasonlítja össze, hanem az alkönyvtárakat is"
 
 #: Synchronizer/synchronizergui.cpp:1108
 msgid "Follow symlinks"
@@ -2761,8 +2716,7 @@ msgstr "Összehasonlítás tartalom alapján"
 
 #: Synchronizer/synchronizergui.cpp:1114
 msgid "Compares the duplicate files with the same size by their content"
-msgstr ""
-"Az azonos méretű duplikált fájlokat a tartalmuk alapján hasonlítja össze"
+msgstr "Az azonos méretű duplikált fájlokat a tartalmuk alapján hasonlítja össze"
 
 #: Synchronizer/synchronizergui.cpp:1115
 msgid "Ignore Date"
@@ -2781,7 +2735,6 @@ msgid "Asymmetric"
 msgstr "Asszimmetrikus"
 
 #: Synchronizer/synchronizergui.cpp:1120
-#, fuzzy
 msgid ""
 "Asymmetric mode. The left side is the destination, the right is the source "
 "directory.\n"
@@ -2796,15 +2749,14 @@ msgstr ""
 "történő frissítésekor)"
 
 #: Synchronizer/synchronizergui.cpp:1123
-#, fuzzy
 msgid "Ignore Case"
-msgstr "Dátum Mellőzése"
+msgstr "Nagybetű érzéketlen"
 
 #: Synchronizer/synchronizergui.cpp:1125
 msgid ""
 "Case insensitive filename compare. Use at synchronizing on Windows "
 "filesystems."
-msgstr ""
+msgstr "Nagybetű érzéketlen fájlnév összehasonlítás. Használja, ha Windows fájlrendszeren szinkronizál."
 
 #: Synchronizer/synchronizergui.cpp:1130
 msgid "Show options"
@@ -2871,14 +2823,12 @@ msgid "Compare"
 msgstr "Összehasonlítás"
 
 #: Synchronizer/synchronizergui.cpp:1301 Synchronizer/synchronizergui.cpp:2004
-#, fuzzy
 msgid "Quiet"
-msgstr "Kérdés"
+msgstr "Csendes"
 
 #: Synchronizer/synchronizergui.cpp:1303 Synchronizer/synchronizergui.cpp:2006
-#, fuzzy
 msgid "Scroll Results"
-msgstr "Eredmények"
+msgstr "Eredmények görgetése"
 
 #: Synchronizer/synchronizergui.cpp:1312
 msgid "Synchronize"
@@ -3160,7 +3110,6 @@ msgid "diff: found "
 msgstr "diff: talált "
 
 #: Konfigurator/kggeneral.cpp:120
-#, fuzzy
 msgid ", compare by content available.\n"
 msgstr ", tartalom szerinti összehasonlítás lehetséges.\n"
 
@@ -3200,12 +3149,10 @@ msgid "rename: found "
 msgstr "átnevezés: talált "
 
 #: Konfigurator/kggeneral.cpp:126
-#, fuzzy
 msgid ", multiple rename enabled.\n"
 msgstr ", tömeges átnevezés engedélyezve.\n"
 
 #: Konfigurator/kggeneral.cpp:127
-#, fuzzy
 msgid ""
 "rename: no compatible renamer-programs found. multiple rename is disabled.\n"
 "hint: Krusader supports krename\n"
@@ -3286,7 +3233,6 @@ msgid "User Actions"
 msgstr "Felhasználói Műveletek"
 
 #: Konfigurator/konfigurator.cpp:113
-#, fuzzy
 msgid "Configure your personal actions"
 msgstr "Állítsa be az ön személyes műveleteit"
 
@@ -3399,34 +3345,28 @@ msgid "48"
 msgstr "48"
 
 #: Konfigurator/kglookfeel.cpp:134
-#, fuzzy
 msgid "Visible Columns:"
-msgstr "Méret Oszlop"
+msgstr "Látható Oszlopok:"
 
 #: Konfigurator/kglookfeel.cpp:139
-#, fuzzy
 msgid "Extension"
-msgstr "Kiterjesztés Oszlop"
+msgstr "Kiterjesztés"
 
 #: Konfigurator/kglookfeel.cpp:140
-#, fuzzy
 msgid "Mimetype"
 msgstr "Mime-típus"
 
 #: Konfigurator/kglookfeel.cpp:142
-#, fuzzy
 msgid "Date and Time"
-msgstr "Dátum és Idő Oszlop"
+msgstr "Dátum és Idő"
 
 #: Konfigurator/kglookfeel.cpp:143
-#, fuzzy
 msgid "Permission"
-msgstr "Hozzáférési engedély"
+msgstr "Jogosultság"
 
 #: Konfigurator/kglookfeel.cpp:144
-#, fuzzy
 msgid "Krusader Permission"
-msgstr "Krusader Jogosultság Oszlop"
+msgstr "Krusader Jogosultság"
 
 #: Konfigurator/kglookfeel.cpp:157
 msgid "Use icons in the filenames"
@@ -3434,7 +3374,7 @@ msgstr "Ikonok használata a fájlneveknél"
 
 #: Konfigurator/kglookfeel.cpp:158
 msgid "Use human-readable file size"
-msgstr ""
+msgstr "Beszédes fájlméretek használata"
 
 #: Konfigurator/kglookfeel.cpp:168
 msgid "Toolbar"
@@ -3453,39 +3393,32 @@ msgid "Panel Toolbar visible"
 msgstr "Panel Eszköztár látható"
 
 #: Konfigurator/kglookfeel.cpp:202
-#, fuzzy
 msgid "Visible Panel Toolbar buttons"
-msgstr "Panel Eszköztár gombok"
+msgstr "Látható Panel Eszköztár gombok"
 
 #: Konfigurator/kglookfeel.cpp:208
-#, fuzzy
 msgid "Open button"
-msgstr "Megnyitás gomb látható"
+msgstr "Megnyitás gomb"
 
 #: Konfigurator/kglookfeel.cpp:209
-#, fuzzy
 msgid "Equal button (=)"
-msgstr "Egyenlőség gomb (=) látható"
+msgstr "Egyenlőség gomb (=)"
 
 #: Konfigurator/kglookfeel.cpp:210
-#, fuzzy
 msgid "Up button (..)"
-msgstr "Fel gomb (..) látható"
+msgstr "Fel gomb (..)"
 
 #: Konfigurator/kglookfeel.cpp:211
-#, fuzzy
 msgid "Home button (~)"
-msgstr "Saját könyvtár gomb (~) látható"
+msgstr "Saját könyvtár gomb (~)"
 
 #: Konfigurator/kglookfeel.cpp:212
-#, fuzzy
 msgid "Root button (/)"
-msgstr "Gyökér gomb (/) látható"
+msgstr "Gyökér gomb (/)"
 
 #: Konfigurator/kglookfeel.cpp:213
-#, fuzzy
 msgid "Toggle-button for sync-browsing"
-msgstr "Szinkronizált-böngésző mód gomb látható"
+msgstr "Szinkronizált-böngésző mód gomb"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "Automount filesystems"
@@ -3499,8 +3432,7 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:57
 msgid "MountMan won't (un)mount the following mount-points:"
-msgstr ""
-"A Csatoláskezelő nem fogja (le)csatolni a következő csatolási pontokat:"
+msgstr "A Csatoláskezelő nem fogja (le)csatolni a következő csatolási pontokat:"
 
 #: Konfigurator/kgadvanced.cpp:71
 msgid "Confirmations"
@@ -3653,7 +3585,6 @@ msgid "Use the default KDE colors"
 msgstr "Alapértelmezett KDE színek használata"
 
 #: Konfigurator/kgcolors.cpp:58
-#, fuzzy
 msgid "Use alternate background color"
 msgstr "Változó háttérszín használata"
 
@@ -3737,14 +3668,12 @@ msgid "Not used"
 msgstr "Nem használt"
 
 #: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:139
-#, fuzzy
 msgid "Same as marked foreground"
-msgstr "Megegyezik a kijelölt háttérrel"
+msgstr "Megegyezik a kijelölttel"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:140
-#, fuzzy
 msgid "Marked current foreground:"
-msgstr "Kijelölt:"
+msgstr "Aktuális kijelölt:"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:141
 msgid "Current background:"
@@ -3913,8 +3842,7 @@ msgid "Test archive when finished packing"
 msgstr "Archívum ellenőrzése a csomagolás befejezésekor"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"If checked, Krusader will test the archive's intergrity after packing it."
+msgid "If checked, Krusader will test the archive's intergrity after packing it."
 msgstr ""
 "Ha bejelöli, a Krusader ellenőrizni fogja az archívum integritását a "
 "csomagolás után."
@@ -3924,10 +3852,8 @@ msgid "Test archive before unpacking"
 msgstr "Archívum ellenőrzése kicsomagolás előtt"
 
 #: Konfigurator/kgarchives.cpp:95
-msgid ""
-"Some corrupted archives might cause a crash, therefore testing is suggested"
-msgstr ""
-"Néhány hibás archívum összeomlást okozhat, szóval az ellenőrzés javasolt"
+msgid "Some corrupted archives might cause a crash, therefore testing is suggested"
+msgstr "Néhány hibás archívum összeomlást okozhat, szóval az ellenőrzés javasolt"
 
 #: Konfigurator/kgarchives.cpp:112
 msgid ""
@@ -4154,16 +4080,14 @@ msgid "Remove this action?"
 msgstr "Eltávolítsam ezt a műveletet?"
 
 #: Konfigurator/kguseractions.cpp:254
-#, fuzzy
 msgid "The file you've chosen doesn't seem to be a valid action-file."
-msgstr "A fájl amit kiválasztott nem egy érvényes művelet fájl."
+msgstr "A kiválasztott fájl nem egy érvényes művelet fájl."
 
 #: Konfigurator/kguseractions.cpp:262
 msgid "No actions found in this file."
 msgstr "Nem található művelet ebben a fájlban."
 
 #: Konfigurator/kguseractions.cpp:290
-#, fuzzy
 msgid ""
 "Couldn't import all actions because of name-conflicts. Check the action-list "
 "on the left to fix them.\n"
@@ -4199,16 +4123,19 @@ msgid ""
 "- make sure there is a file in the other panel, with the same name as the "
 "current file in the active panel"
 msgstr ""
+"Két fájl tartalom szerinti összehasonlításához az alábbiakat teheti: "
+"- kijelöl egy fájlt a bal panelen és egyet a jobb panelen "
+"- kijelöl pontossan kettő fájlt az aktív panelen "
+"- győződjön meg, hogy a másik panelen létezik az aktív panel aktuális fájljával megegyező nevű fájl"
 
 #: krslots.cpp:174
-#, fuzzy
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports kompare, kdiff3, kdiff and xxdiff."
 msgstr ""
 "A Krusader nem talál támogatott diff-hez készült\n"
 "grafikus előtétprogramot. Telepítsen egyet! A Krusader az alábbiakat\n"
-"támogatja: kdiff és xxdiff."
+"támogatja: kompare, kdiff3 és xxdiff."
 
 #: krslots.cpp:214
 msgid ""
@@ -4229,7 +4156,6 @@ msgstr ""
 "csomagot, vagy állítsa be a függőségeket a Konfigurátorban"
 
 #: krslots.cpp:366
-#, fuzzy
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager. The new "
 "manager handles local files and remote URLs the same way. RemoteMan is being "
@@ -4409,8 +4335,7 @@ msgid "Not a valid CRC file!"
 msgstr "Nem érvényes CRC fájl!"
 
 #: Splitter/combiner.cpp:138
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "A helyesség ellenőrzése lehetetlen egy jó CRC fájl nélkül. Folytatja az "
 "egyesítést?"
@@ -4452,70 +4377,3 @@ msgstr "Könyvtárat nem tud darabolni!"
 msgid "Error at reading file %1!"
 msgstr "Hiba a(z) %1 fájl olvasásakor!"
 
-#~ msgid "The name is unique"
-#~ msgstr "A név egyedi"
-
-#~ msgid "Check"
-#~ msgstr "Ellenőrzés"
-
-#~ msgid "Propose"
-#~ msgstr "Ajánl"
-
-#~ msgid "propose"
-#~ msgstr "ajánl"
-
-#~ msgid "Propose a unique name"
-#~ msgstr "Ajánl egy egyedi nevet"
-
-#~ msgid "No preview available"
-#~ msgstr "Nincsen előnézet"
-
-#~ msgid "Please wait..."
-#~ msgstr "Kérem várjon..."
-
-#~ msgid "Preview: "
-#~ msgstr "Előnézet: "
-
-#~ msgid "Stalled"
-#~ msgstr "Leállított"
-
-#~ msgid "Automatic Scrolling"
-#~ msgstr "Automatikus Görgetés"
-
-#~ msgid "Scrolls the results of comparing (slow)"
-#~ msgstr "Az összehasonlítás eredményének görgetése (lassú)"
-
-#~ msgid "Fields:"
-#~ msgstr "Mezők:"
-
-#~ msgid "Mimetype Column"
-#~ msgstr "Mime-típus Oszlop"
-
-#~ msgid "Permission Column"
-#~ msgstr "Jogosultság Oszlop"
-
-#~ msgid "Owner Column"
-#~ msgstr "Tulajdonos Oszlop"
-
-#~ msgid "Group Column"
-#~ msgstr "Csoport Oszlop"
-
-#~ msgid "On multiple selection"
-#~ msgstr "Többszörös kijelölésnél"
-
-#~ msgid "Separate call for each file"
-#~ msgstr "Külön hívás minden fájlra"
-
-#~ msgid "You may want the command be executed for every selected file"
-#~ msgstr ""
-#~ "Ha azt akarja, hogy a parancs minden kijelölt fájlra futtatva legyen"
-
-#~ msgid "&Konfigurator"
-#~ msgstr "K&onfigurátor"
-
-#~ msgid ""
-#~ "To compare 2 files by content, select (mark) a file in the left panel, "
-#~ "and select another one in the right panel."
-#~ msgstr ""
-#~ "Két fájl tartalom szerinti összehasonlításához jelöljön ki egyet a bal "
-#~ "oldalon, és egy másikat a jobb oldalon."
