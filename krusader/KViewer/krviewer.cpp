@@ -299,3 +299,17 @@ void KrViewer::handleOpenURLRequest( const KURL &url, const KParts::URLArgs & ){
   if(generic_part) generic_part->openURL(url);
 
 }
+
+bool KrViewer::queryClose()
+{
+  if( !editor_part || !editor_part->isModified() )
+    return true;
+  
+  switch ( KMessageBox::warningYesNo( this, i18n("The Document has been changed. Do you want to quit loosing the modifications?")) )
+  {
+  case KMessageBox::Yes :
+    return true;
+  default:
+    return false;
+  }
+}

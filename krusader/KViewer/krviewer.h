@@ -50,6 +50,10 @@ public slots:
   void createGUI(KParts::Part*);
 
   void handleOpenURLRequest( const KURL &url, const KParts::URLArgs & );
+
+protected:
+  virtual bool queryClose();
+
 private:
   KrViewer(QWidget *parent=0, const char *name=0);
   KParts::Part* getPart(KURL url, QString m ,bool readOnly, bool create=false);
