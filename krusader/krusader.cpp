@@ -319,11 +319,6 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    // let the good times rool :)
    updateGUI( true );
    
-   // this needs to be called AFTER updateGUI() !!!
-   userActionMenu = (KPopupMenu*) guiFactory()->container( "useractionmenu", this );
-   if ( userActionMenu )
-      userAction->populateMenu( userActionMenu );
-
    if ( runKonfig )
       slot->runKonfigurator( true );
 
@@ -828,6 +823,12 @@ void Krusader::updateGUI( bool enforce ) {
 
    // call the XML GUI function to draw the UI
    createGUI( mainView->konsole_part );
+   
+   // this needs to be called AFTER createGUI() !!!
+   userActionMenu = (KPopupMenu*) guiFactory()->container( "useractionmenu", this );
+   if ( userActionMenu )
+      userAction->populateMenu( userActionMenu );
+   
    toolBar() ->applySettings( krConfig, "Private" );
 	
 	toolBar("actionsToolBar") ->applySettings( krConfig, "Actions Toolbar" );
