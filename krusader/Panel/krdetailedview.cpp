@@ -511,6 +511,9 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
           SLOTS->dirUp(); // ask krusader to move up a directory
           return ;         // safety
         }
+      case Key_Up :
+      KListView::keyPressEvent( e );
+      break;
       case Key_Down :
       if ( e->state() == ControlButton ) { // user pressed CTRL+Down
         // give the keyboard focus to the command line
