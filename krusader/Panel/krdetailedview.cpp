@@ -1,6 +1,6 @@
 /***************************************************************************
-                         krdetailedview.cpp
-                        -------------------
+                        krdetailedview.cpp
+                       -------------------
 copyright            : (C) 2000-2002 by Shie Erlich & Rafi Yanai
 e-mail               : krusader@users.sourceforge.net
 web site             : http://krusader.sourceforge.net
@@ -17,7 +17,7 @@ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
 YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                                S o u r c e    F i l e
+                                               S o u r c e    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -71,7 +71,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // Do Quicksearch
 #define _DoQuicksearch      true 
 // Classic Quicksearch
-#define _ClassicQuicksearch false
+#define _ClassicQuicksearch true 
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
@@ -412,9 +412,14 @@ void KrDetailedView::prepareForActive() {
 }
 
 void KrDetailedView::prepareForPassive() {
-   if ( krApp && krApp->mainView && krApp->mainView->activePanel &&
-       krApp->mainView->activePanel->quickSearch && krApp->mainView->activePanel->quickSearch->isShown() )
-     stopQuickSearch(0);
+   if ( !_ClassicQuicksearch ) {
+      if ( krApp )
+         if ( krApp->mainView )
+            if ( krApp->mainView->activePanel )
+               if ( krApp->mainView->activePanel->quickSearch )
+                  if ( krApp->mainView->activePanel->quickSearch->isShown() )
+                     stopQuickSearch( 0 );
+   }
    _focused = false;
 }
 
@@ -522,7 +527,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
    switch ( e->key() ) {
          case Key_Enter :
          case Key_Return : {
-            if ( e->state() & ControlButton )  // let the panel handle it
+            if ( e->state() & ControlButton )   // let the panel handle it
                e->ignore();
             else {
                KrViewItem * i = getCurrentKrViewItem();
@@ -531,7 +536,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
             }
             break;
          }
-         case Key_QuoteLeft :   // Terminal Emulator bugfix
+         case Key_QuoteLeft :    // Terminal Emulator bugfix
          if ( e->state() == ControlButton ) { // let the panel handle it
             e->ignore();
             break;
@@ -556,7 +561,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
             }
             return ; // safety
          }
-         case Key_Backspace :                  // Terminal Emulator bugfix
+         case Key_Backspace :                   // Terminal Emulator bugfix
          case Key_Left :
          if ( e->state() == ControlButton ) { // let the panel handle it
             e->ignore();
@@ -575,7 +580,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
          } else
             KListView::keyPressEvent( e );
          break;
-         case Key_Delete :              // kill file
+         case Key_Delete :               // kill file
          SLOTS->deleteFiles();
          return ;
          case Key_Space : {
@@ -606,7 +611,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
             //KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
          }
          break;
-         case Key_A :          // mark all
+         case Key_A :           // mark all
          if ( e->state() == ControlButton ) {
             KListView::keyPressEvent( e );
             updateView();
@@ -704,7 +709,7 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       exit( 0 );
    }
    // check if the item was indeed renamed
-   if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() )     // was renamed
+   if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() )      // was renamed
       emit renameItem( dynamic_cast<KrDetailedViewItem*>( it ) ->name(), it->text( column( Name ) ) );
    else if ( column( Extention ) != -1 ) { // nothing happened, restore the view (if needed)
       int i;
@@ -743,11 +748,11 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
 }
 
 void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
-   krApp->mainView->activePanel->quickSearch->hide();
-   krApp->mainView->activePanel->quickSearch->clear();
-   krDirUp->setEnabled( true );
-   if ( e )
-      keyPressEvent( e );
+   //krApp->mainView->activePanel->quickSearch->hide();
+   //krApp->mainView->activePanel->quickSearch->clear();
+   //krDirUp->setEnabled( true );
+   //if ( e )
+   //   keyPressEvent( e );
 }
 
 //void KrDetailedView::focusOutEvent( QFocusEvent * e )
