@@ -38,6 +38,7 @@
 #include <qfontmetrics.h>
 // KDE includes
 #include <klocale.h>
+#include <kurlcompletion.h>
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klineedit.h>
@@ -59,16 +60,17 @@ KRDialog::KRDialog(QWidget *parent, QString text,bool modal, bool roomForIcon) :
 
 QString KChooseDir::dest;
 
-KChooseDir::KChooseDir(QWidget *, QString text,QString url) :
-	KURLRequesterDlg(url,text,krApp,""){
-
+KChooseDir::KChooseDir(QWidget *, QString text,QString url, QString cwd):
+	KURLRequesterDlg(url,text,krApp,"") {
+	urlRequester()->completionObject()->setDir(cwd);
 	dest = QString::null;
  	connect(this,SIGNAL( okClicked() ),this,SLOT( result() ));
-  exec();
+  	exec();
 }
 
 void KChooseDir::result(){
-	dest = urlRequester()->lineEdit()->text();//url();
+	dest = urlRequester()->completionObject()->replacedPath(
+		urlRequester()->lineEdit()->text());
 }
 
 KRAbout::KRAbout() : KRDialog(0,0,true,false) {

@@ -61,7 +61,7 @@ protected:
 class KChooseDir : KURLRequesterDlg {
 	Q_OBJECT	
 public:
-	KChooseDir(QWidget *parent, QString text,QString url);
+	KChooseDir(QWidget *parent, QString text,QString url, QString cwd="");
 public slots:
 	void result();
 public:

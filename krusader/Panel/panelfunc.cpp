@@ -373,7 +373,7 @@ void ListPanelFunc::moveFiles() {
 			s.sprintf( i18n( "Move %d files to:" ).local8Bit(), fileNames.count() );
 
 		// ask the user for the copy dest
-		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
+		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath(), panel->getPath() );
 		dest = chooser->dest;
 		if ( dest == QString::null )
 			return ; // the usr canceled
@@ -484,7 +484,7 @@ void ListPanelFunc::copyFiles() {
 		else
 			s.sprintf( i18n( "Copy %d files to:" ).local8Bit(), fileNames.count() );
 		// ask the user for the copy dest
-		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
+		KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath(), panel->getPath() );
 		dest = chooser->dest;
 		if ( dest == QString::null )
 			return ; // the usr canceled
@@ -804,7 +804,7 @@ void ListPanelFunc::unpack() {
 		s = i18n( "Unpack " ) + i18n( "%1 files" ).arg( fileNames.count() ) + i18n( "to" ) + ":";
 
 	// ask the user for the copy dest
-	KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath() );
+	KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->getPath(), panel->getPath() );
 	QString dest = chooser->dest;
 	if ( dest == QString::null )
 		return ; // the usr canceled
