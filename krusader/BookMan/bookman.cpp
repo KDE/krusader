@@ -60,11 +60,12 @@ void BookMan::fillPopupMenu(QPopupMenu *menu) {
   }
   menu->clear();   // just in case
   KRBookmark *it;
-  int i;
-  for ( it=(sorted ? sbookmarks : bookmarks).first(), i=0; it != 0;
-        it=(sorted ? sbookmarks : bookmarks).next(), ++i ) {
+  int i=0;
+  for ( it=(sorted ? sbookmarks : bookmarks).first(); it != 0;
+        it=(sorted ? sbookmarks : bookmarks).next() ) {
     menu->insertItem((*it).getName(), i);
     (*it).setId(i);
+    i++;
   }
 }
 
@@ -99,11 +100,16 @@ void BookMan::loadBookmarks() {
   krConfig->setGroup("Bookmarks");
   ////////////////////////////////
   QStringList list=krConfig->readListEntry("Links");
+  QString name,url;
+
   if (list.count()==0) list << i18n("Root (/)") << "/";
   // create the KRBookmark list
   bookmarks.clear();
-  for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it )
-    bookmarks.append(new KRBookmark(*(it++),*it));
+  for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it ) {
+    name = *(it++);
+    url = *it;
+    bookmarks.append(new KRBookmark(name,url));
+  }
 }
 
 void BookMan::saveBookmarks() {
