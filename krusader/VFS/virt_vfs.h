@@ -48,18 +48,23 @@ public:
 	/// Return the VFS working dir
 	QString vfs_workingDir(){ return QString::null; }
 
-public slots:
-	void slotListResult(KIO::Job *job);
+	/// Save the dictionary to file
+	static bool save();
+	/// Restore the dictionary from file
+	static bool restore();
+	
+protected slots:
+	void slotStatResult(KIO::Job *job);
 
 protected:
-	/// This function should not be called for this VFS !
 	bool populateVfsList(const KURL& origin, bool showHidden);
+	vfile* stat(const KURL& url);
 	
 	vfileDict  vfs_files;    //< List of pointers to vfile.
-	vfileDict*  vfs_files_copy;
-	static QDict<vfileDict> virtVfsDict;
+	static QDict<KURL::List> virtVfsDict;
 	bool busy;
 	QString path;
+	KIO::UDSEntry entry;
 };
 
 #endif

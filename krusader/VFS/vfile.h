@@ -90,9 +90,9 @@ public:
 	inline const QString&   vfile_getSymDest() const { return vfile_symDest;        }
 	inline mode_t           vfile_getMode()    const { return vfile_mode;           }
 	inline uid_t            vfile_getUid()     const { return vfile_ownerId;        }
-  inline gid_t            vfile_getGid()     const { return vfile_groupId;        }
-  inline time_t           vfile_getTime_t()  const { return vfile_time_t;         }
-  inline const KURL&      vfile_getUrl()     const { return vfile_url;            }
+	inline gid_t            vfile_getGid()     const { return vfile_groupId;        }
+	inline time_t           vfile_getTime_t()  const { return vfile_time_t;         }
+	inline const KURL&      vfile_getUrl()     const { return vfile_url;            }
   
 	const QString&          vfile_getOwner();
 	const QString&          vfile_getGroup();
