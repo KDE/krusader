@@ -426,15 +426,29 @@ void ListPanelFunc::mkdir() {
   if ( !ok || dirName.isEmpty() )
     return ;
 
-  // if the name is already taken - quit
-  if ( files()->vfs_search(dirName) ) {
-    KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
-    return ;
-  }
+  QStringList dirTree = QStringList::split( "/", dirName );
+  
+  for ( QStringList::Iterator it = dirTree.begin(); it != dirTree.end(); ++it ) {
+    // check if the name is already taken
+    if ( files()->vfs_search( *it ) ) {
+      // if it is the last dir to be created - quit
+      if ( *it == dirTree.last() ) {
+        KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
+        return;
+      }
+      // else go into this dir
+      else {
+        openUrl( *it );
+        continue;
+      }
+    }
 
-  panel->view->setNameToMakeCurrent( dirName );
-  // as always - the vfs do the job
-  files() ->vfs_mkdir( dirName );
+    panel->view->setNameToMakeCurrent( *it );
+    // as always - the vfs do the job
+    files() ->vfs_mkdir( *it );
+    if ( dirTree.count() > 1)
+      openUrl( *it );
+  } // for
 }
 
 void ListPanelFunc::copyFiles() {
