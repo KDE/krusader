@@ -1,31 +1,16 @@
-Krusader 1.21-beta1
+Krusader 1.25-beta1
 ===================
 
-Welcome to the latest unstable release of krusader.
-This one has a lot of bugfixes and some new features.
-Some of the highlights are:
-* new KIO slave for handling archives. This is a work in progress, which
-  takes krusader's archive handling to new places ;-) The NEW mechanism
-  handles tar,gz,bz2 and zip, and accessing these archives should be much
-  faster. Notice that this feature is really beta. A known issue is that
-  handling really large ZIP files is slow (>500MB).
-* Krusader now uses in-place renaming (thanks to Heiner Eichmann)
-* Support for multi-file properties dialog
-* Total-Commander-like directory selection. Select a directory using SPACE
-  to check out this feature (thanks to Heiner Eichmann)
-* A much requested feature: opening the left/right bookmark list (done using
-  alt+left/right arrow) is now an action. You can change the keyboard shortcuts
-  for it.
-* Fix for panel flicker bug
-* Fix for search module
-* Fix for using KRename with files containing spaces (thanks to Tobias Vogele)
-* Updated translations
-* Many i18n issues (thanks to Frank Schoolmeesters)
-* A lot of usability issues were fixed (thanks to Mikolaj Machowski)
+Welcome.
+The focus of this release in the new bookmark manager (thanks to Jan Halasa).
+The new system offers support for local AND remote bookmarks, so bookman and
+remoteman are now obsolete. Please test it, and let us know.
 
+Also, as usual some bugfixes, a new Hungarian translation and two updated ones.
 For more information, please check the changelog.
+
 Notice: if you've got bugs to report, please do it using krusader's website, and
-        not using KDE's bugzilla (bugs.kde.org). 
+        not using KDE's bugzilla (bugs.kde.org).
 
             as always, enjoy
                  Krusader Krew.
