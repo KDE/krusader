@@ -58,7 +58,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM settings[] =
   //   cfg_class  cfg_name                default             text                              restart tooltip
     {{"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  ""},
-     {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       true ,  ""},
+     {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  ""},
      {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  ""},
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  ""},
      {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), false,  ""},

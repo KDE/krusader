@@ -122,8 +122,6 @@ KAction *Krusader::actSyncDirs = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
 UserMenu *Krusader::userMenu = 0;
 
-bool showTrayIcon = false;
-
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   // parse command line arguments
@@ -195,13 +193,9 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
                                    "about file below mouse pointer." ) );
 
   // This enables Krusader to show a tray icon
-  config->setGroup( "Look&Feel" );
-  if ( krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
-    showTrayIcon = true;
-    sysTray = new KSystemTray( this );
-    sysTray->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
-    sysTray->hide();
-    }
+  sysTray = new KSystemTray( this );
+  sysTray->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
+  sysTray->hide();
 
   setCentralWidget( mainView );
   config->setGroup( "Look&Feel" );
@@ -268,14 +262,17 @@ void Krusader::statusBarUpdate( QString& mess ) {
   }
 
 void Krusader::showEvent ( QShowEvent *e ) {
-  if ( showTrayIcon ) {
-    sysTray->hide();
-    show(); // needed to make sure krusader is removed from
+  sysTray->hide();
+  show(); // needed to make sure krusader is removed from
     // the taskbar when minimizing (system tray issue)
-    } else KParts::MainWindow::showEvent( e );
-  }
+}
 
 void Krusader::hideEvent ( QHideEvent *e ) {
+  QString lastGroup = config->group();
+  config->setGroup( "Look&Feel" );
+  bool showTrayIcon = krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray );
+  config->setGroup ( lastGroup );
+  
   bool isModalTopWidget = false;
 
   QWidget *actWnd = qApp->activeWindow();
