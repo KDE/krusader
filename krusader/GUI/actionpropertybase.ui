@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>ActionPropertyBase</class>
 <widget class="QWidget">
     <property name="name">
@@ -1138,19 +1138,6 @@
         <slot>setDisabled(bool)</slot>
     </connection>
 </connections>
-<includes>
-    <include location="global" impldecl="in declaration">qpushbutton.h</include>
-    <include location="global" impldecl="in declaration">qtoolbutton.h</include>
-    <include location="global" impldecl="in declaration">qradiobutton.h</include>
-    <include location="global" impldecl="in declaration">qcheckbox.h</include>
-    <include location="global" impldecl="in declaration">qbuttongroup.h</include>
-    <include location="global" impldecl="in declaration">ktextedit.h</include>
-    <include location="global" impldecl="in declaration">kcombobox.h</include>
-    <include location="global" impldecl="in declaration">kicondialog.h</include>
-    <include location="global" impldecl="in declaration">klineedit.h</include>
-    <include location="global" impldecl="in declaration">klistbox.h</include>
-    <include location="global" impldecl="in declaration">kkeybutton.h</include>
-</includes>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>klineedit.h</includehint>

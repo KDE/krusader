@@ -18,6 +18,10 @@
 #include "../UserAction/useractionproperties.h"
 #include "../krusader.h"
 
+#include <qtoolbutton.h>
+#include <qcheckbox.h>
+#include <qradiobutton.h>
+#include <qbuttongroup.h>
 #include <klocale.h>
 #include <kfiledialog.h>
 #include <klineedit.h>
@@ -25,6 +29,9 @@
 #include <kmessagebox.h>
 #include <kinputdialog.h>
 #include <kkeybutton.h>
+#include <kcombobox.h>
+#include <kicondialog.h>
+#include <ktextedit.h>
 
 
 ActionProperty::ActionProperty( QWidget *parent, const char *name, UserActionProperties *prop ) : ActionPropertyBase( parent, name ) {

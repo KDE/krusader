@@ -17,6 +17,7 @@
 
 class UserActionProperties;
 class AddPlaceholderPopup;
+class KShortcut;
 
 /**
  * Use this widget where ever you need to manipulate a UserAction
