@@ -203,7 +203,7 @@ bool Krusader::versionControl() {
   oldVerText.truncate( oldVerText.find( "-" ) );
   float oldVer = oldVerText.toFloat();
 
-  kdDebug() << QString( "version = %1" ).arg( oldVer ) << endl;
+  //kdDebug() << QString( "version = %1" ).arg( oldVer ) << endl;
 
   // older icompatible version
   if ( oldVer < ( 9 / 10 ) ) {
@@ -483,8 +483,10 @@ bool Krusader::queryClose() {
 }
 
 void Krusader::quitKrusader() {
-  if ( queryClose() )
+  if ( queryClose() ) {
+    delete krApp->mainView;
     kapp->quit();
+  }
 }
 
 // the please wait dialog functions
