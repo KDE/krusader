@@ -38,13 +38,15 @@ A
 #include <kcursor.h>
 // Krusader Includes
 #include "krcalcspacedialog.h"
+#include "listpanel.h"
+#include "panelfunc.h"
 #include "../krusader.h"
 #include "../VFS/krpermhandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
-KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, vfs * files, const KrViewItemList & items)
-	: m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_files(files), m_parent(parent)
-        , m_threadInUse(true), m_stop(false) {}
+KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, ListPanel * panel, const QStringList & items)
+	: m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_files(panel->func->files()),
+	  m_parent(parent), m_view(panel->view) , m_threadInUse(true), m_stop(false) {}
 
 void KrCalcSpaceDialog::CalcThread::cleanUp(){
 	if (m_threadInUse || !finished())
@@ -65,13 +67,13 @@ void KrCalcSpaceDialog::CalcThread::deleteInstance(){
 
 void KrCalcSpaceDialog::CalcThread::run(){
 	if ( !m_items.isEmpty() ) // if something to do: do the calculation
-	for ( KrViewItemList::ConstIterator it = m_items.begin(); it != m_items.end(); ++it )
+	for ( QStringList::ConstIterator it = m_items.begin(); it != m_items.end(); ++it )
         {
                 m_currentSize = 0;
-                m_files->vfs_calcSpace( (*it)->name(), &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
+                m_files->vfs_calcSpace( *it, &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
                 if (m_stop)
                     break;
-                KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( *it );
+                KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *>(m_view->findItemByName ( *it ) );
                 if (viewItem){
                      KrCalcSpaceDialog::setDirSize(viewItem, m_currentSize);
                      //viewItem->repaintItem(); // crash in KrDetailedViewItem::repaintItem(): setPixmap(_view->column(KrDetailedView::Name),KrView::getIcon(_vf))
@@ -89,7 +91,7 @@ void KrCalcSpaceDialog::CalcThread::stop(){
 	m_stop = true;
 }
 
-KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, vfs * files, const KrViewItemList & items, bool autoclose) :
+KrCalcSpaceDialog::KrCalcSpaceDialog(QWidget *parent, ListPanel * files, const QStringList & items, bool autoclose) :
 	KDialogBase(parent, "KrCalcSpaceDialog", true, "Calculate Occupied Space", Ok|Cancel),
 	m_autoClose(autoclose), m_canceled(false), m_timerCounter(0){
 	// the dialog: The Ok button is hidden until it is needed
@@ -141,7 +143,7 @@ void KrCalcSpaceDialog::timer(){
 void KrCalcSpaceDialog::showResult(){
 	if (!m_thread) return;
 	QString msg;
-	QString fileName = ( ( m_thread->getItems().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getItems().first()->name() + "\n" ) : QString( "" ) );
+	QString fileName = ( ( m_thread->getItems().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getItems().first() + "\n" ) : QString( "" ) );
 	msg = fileName + i18n( "Total occupied space: %1").arg( KIO::convertSize( m_thread->getTotalSize() ) );
 	if (m_thread->getTotalSize() >= 1024)
 	   msg += " (" + KRpermHandler::parseSize( m_thread->getTotalSize() ) + "bytes)";

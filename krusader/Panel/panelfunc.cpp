@@ -48,6 +48,7 @@ A
 // Krusader Includes
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
+#include "krdetailedview.h"
 #include "../krusader.h"
 #include "../krslots.h"
 #include "../defaults.h"
@@ -387,7 +388,6 @@ void ListPanelFunc::mkdir() {
 
 void ListPanelFunc::copyFiles() {
   QStringList fileNames;
-
   panel->getSelectedNames( &fileNames );
   if ( fileNames.isEmpty() )
     return ;  // safety
@@ -679,27 +679,30 @@ void ListPanelFunc::unpack() {
 }
 
 void ListPanelFunc::calcSpace() {
-	KrViewItemList items;
-	panel->view->getSelectedKrViewItems(&items);
+	QStringList items;
+	panel->view->getSelectedItems(&items);
 	if ( items.isEmpty() )
 	{
 	  panel->view->selectAllIncludingDirs();
-	  panel->view->getSelectedKrViewItems(&items);
+	  panel->view->getSelectedItems(&items);
 	  if ( items.isEmpty() ) return ; // nothing to do
 	}
 
-	KrCalcSpaceDialog calc(krApp, files(), items, false);
+	KrCalcSpaceDialog calc(krApp, panel, items, false);
 	calc.exec();
-	for ( KrViewItemList::ConstIterator it = items.begin(); it != items.end(); ++it )
+        KrDetailedView * view = dynamic_cast<KrDetailedView *> ( panel->view );
+        if (!view)
+                return;
+        for ( QStringList::ConstIterator it = items.begin(); it != items.end(); ++it )
         {
-                KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( *it );
+                KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( view->findItemByName(*it) );
                 if (viewItem)
                      viewItem->repaintItem();
         }
 }
 
-bool ListPanelFunc::calcSpace(const KrViewItemList & items,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs) {
-	KrCalcSpaceDialog calc(krApp, files(), items, true);
+bool ListPanelFunc::calcSpace(const QStringList & items,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs) {
+	KrCalcSpaceDialog calc(krApp, panel, items, true);
 	calc.exec();
 	totalSize = calc.getTotalSize();
 	totalFiles = calc.getTotalFiles();

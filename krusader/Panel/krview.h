@@ -84,6 +84,7 @@ public:
   virtual KrViewItem *getPrev(KrViewItem *current) = 0;
   virtual KrViewItem *getCurrentKrViewItem() = 0;
   virtual KrViewItem *getKrViewItemAt(const QPoint &vp) = 0;
+  virtual KrViewItem *findItemByName(const QString &name) = 0;
   virtual void addItems(vfs* v, bool addUpDir = true) = 0;
   virtual QString getCurrentItem() const = 0;
   virtual void setCurrentItem(const QString& name) = 0;

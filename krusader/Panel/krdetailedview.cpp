@@ -726,8 +726,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         //
         KIO::filesize_t totalSize = 0;
         unsigned long totalFiles = 0, totalDirs = 0;
-        KrViewItemList items;
-        items.push_back( viewItem );
+        QStringList items;
+        items.push_back( viewItem->name() );
         if ( krApp->mainView->activePanel->func->calcSpace( items, totalSize, totalFiles, totalDirs ) ) {
           // did we succeed to calcSpace? we'll fail if we don't have permissions
           if ( totalSize == 0 ) { // just mark it, and bail out
