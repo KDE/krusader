@@ -28,8 +28,8 @@ KrPreviewPopup::KrPreviewPopup(): id(1),noPreview(true){
 }
 
 void KrPreviewPopup::setUrls(const KURL::List* urls){
-	insertItem(i18n("Configure preview"),0);
-	//insertItem(i18n("Preview not available"),0);
+	//insertItem(i18n("Configure preview"),0);
+	insertItem(i18n("Preview not available"),0);
 
 	KIO::PreviewJob* pjob;
 	QStringList plugins = KIO::PreviewJob::availablePlugins();
@@ -58,12 +58,7 @@ void KrPreviewPopup::addPreview(const KFileItem* file,const QPixmap& preview){
 }
 
 void KrPreviewPopup::view(int id){
-	kdDebug() << "id = " << id << endl;
-	//if( id==0 ) return;
-	if( id==0 ){
-		KEdGotoLine *dlg = new KEdGotoLine(krApp);
-		dlg->show();
-	}
+	if( id==0 ) return;
 	else {
 		KURL url = *(availablePreviews.at(id-1));
 		KrViewer::view(url);
