@@ -522,6 +522,8 @@ void ListPanel::slotStartUpdate() {
    while ( func->inRefresh )
       ; // wait until the last refresh finish
    func->inRefresh = true;  // make sure the next refresh wait for this one
+	if (inlineRefreshJob)
+		inlineRefreshListResult(0);
    setCursor( KCursor::workingCursor() );
    view->clear();
 
