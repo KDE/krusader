@@ -43,6 +43,7 @@ KrViewer::KrViewer(QWidget *parent, const char *name ) :
   KParts::MainWindow(parent,name), manager(this,this){
 
   //setWFlags(WType_TopLevel | WDestructiveClose);
+  setXMLFile( "krviewer.rc" ); // kpart-related xml file
   setHelpMenuEnabled(false);
   
   // KDE HACK START: Viewer fails to resize at maximized mode
