@@ -181,6 +181,9 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
       setColumnWidthMode( column( Group ), QListView::Manual );
       setColumnWidth( column( Group ), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
+   
+   caseSensitiveSort = krConfig->readBoolEntry("Case Sensative Sort",_CaseSensativeSort); 
+   
    // determine basic settings for the listview
    setAcceptDrops( true );
    setDragEnabled( true );

@@ -61,7 +61,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  ""},
      {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  ""},
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  ""},
-     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), false,  ""},
+     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  ""},
      {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use fullpath tab names" ), true ,  ""},
      //{"Look&Feel","Single Click Selects", false,              i18n( "Single click executes" ),   false,  ""},
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  ""},

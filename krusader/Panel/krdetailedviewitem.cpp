@@ -49,6 +49,13 @@
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
   QObject(parent), KListViewItem(parent, after), KrViewItem(),_vf(vf), _view(parent) {
+  
+  caseSensitiveSort = _view->isCaseSensitiveSort();
+    
+  nameColumn        = _view->column(KrDetailedView::Name);        // the columns are stored for faster comparation
+  sizeColumn        = _view->column(KrDetailedView::Size);
+  dateTimeColumn    = _view->column(KrDetailedView::DateTime);
+  
   repaintItem();
 }
 
@@ -300,47 +307,37 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   int asc = ( ascending ? -1 : 1 );
   KrViewItem *other = dynamic_cast<KrViewItem*>(i);
 
-  if (name()== "..") return 1*asc;
-  if (other->name()== "..") return -1*asc;
-
-	// handle directory sorting
+  // handle directory sorting
   if (isDir()){
     if (!other->isDir()) return 1*asc;
   }
-	else if(other->isDir()) return -1*asc;
-
+  else if(other->isDir()) return -1*asc;
 
   QString text0 = name();
+  if (text0 == "..") return 1*asc;
+  
   QString itext0 = other->name();
+  if (itext0 == "..") return -1*asc;
 
-  krConfig->setGroup("Look&Feel");
-	bool caseSensativeSort = false;
-  if(!krConfig->readBoolEntry("Case Sensative Sort",_CaseSensativeSort)) {
+  if( !caseSensitiveSort )
+  {
     text0  = text0.lower();
     itext0 = itext0.lower();
-		caseSensativeSort = true;
   }
 
-	//kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
+  //kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
 
-  int result = 0;
-
-  if (col == _view->column(KrDetailedView::Name)) {
-    	result = QString::compare(text0,itext0);
-  } else if (col == _view->column(KrDetailedView::Size)) {
-    	result = QString::compare(num2qstring(size()),num2qstring(other->size()));
-  } else if (col == _view->column(KrDetailedView::DateTime)) {
-      result = (getTime_t() > other->getTime_t() ? 1 : -1);
-	} else if (col == _view->column(KrDetailedView::Extention)) {
-			QString e1 = (!caseSensativeSort ? text(col) : text(col).lower());
-			QString e2 = (!caseSensativeSort ? i->text(col) : i->text(col).lower());
-			result = QString::compare(e1, e2);
-	} else {
-    // Joker
-    result = QString::compare(text(col), i->text(col));
+  if (col == nameColumn ) {
+      return QString::compare(text0,itext0);
+  } else if (col == sizeColumn ) {
+      return QString::compare(num2qstring(size()),num2qstring(other->size()));
+  } else if (col == dateTimeColumn ) {
+      return (getTime_t() > other->getTime_t() ? 1 : -1);
+  } else {
+      QString e1 = (!caseSensitiveSort ? text(col) : text(col).lower());
+      QString e2 = (!caseSensitiveSort ? i->text(col) : i->text(col).lower());
+      return QString::compare(e1, e2);
   }
-
-  return result;
 }
 
 QString KrDetailedViewItem::description() const {

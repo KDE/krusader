@@ -86,6 +86,11 @@ private:
 
   QGuardedPtr<vfile> _vf;
   KrDetailedView *_view;
+  bool caseSensitiveSort;
+  
+  int nameColumn;         // the important columns are stored for faster comparation
+  int sizeColumn;
+  int dateTimeColumn;
 };
 
 #endif
