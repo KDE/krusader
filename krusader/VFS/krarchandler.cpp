@@ -130,14 +130,14 @@ long KRarcHandler::arcFileCount(QString archive, QString type){
   // set the right lister to do the job
   QString lister;
 
-       if( type == "-zip" ) lister = "unzip -ZTs";
-  else if( type == "-tar" ) lister = "tar -tvf";
-  else if( type == "-tgz" ) lister = "tar -tvzf";
-  else if( type == "tarz" ) lister = "tar -tvzf";
-  else if( type == "-tbz" ) lister = "tar -tjvf";
-  else if( type == "-rar" ) lister = "unrar l";
-  else if( type == "-ace" ) lister = "unace l";
-  else if( type == "-arj" ) lister = "unarj l";
+       if( type == "-zip" ) lister = KrServices::fullPathName( "unzip" ) + " -ZTs";
+  else if( type == "-tar" ) lister = KrServices::fullPathName( "tar" )   + " -tvf";
+  else if( type == "-tgz" ) lister = KrServices::fullPathName( "tar" )   + " -tvzf";
+  else if( type == "tarz" ) lister = KrServices::fullPathName( "tar" )   + " -tvzf";
+  else if( type == "-tbz" ) lister = KrServices::fullPathName( "tar" )   + " -tjvf";
+  else if( type == "-rar" ) lister = KrServices::fullPathName( "unrar" ) + " l";
+  else if( type == "-ace" ) lister = KrServices::fullPathName( "unace" ) + " l";
+  else if( type == "-arj" ) lister = KrServices::fullPathName( "unarj" ) + " l";
   else return 0L;
 
   // tell the user to wait
@@ -175,16 +175,16 @@ bool KRarcHandler::unpack(QString archive, QString type, QString dest ) {
   QString packer;
 
   // set the right packer to do the job
-       if( type == "-zip" ) packer = "unzip -o";
-  else if( type == "-tar" ) packer = "tar -xvf";
-  else if( type == "-tgz" ) packer = "tar -xvzf";
-  else if( type == "tarz" ) packer = "tar -xvzf";
-  else if( type == "-tbz" ) packer = "tar -xjvf";
-  else if( type == "gzip" ) packer = "gzip -d";
-  else if( type == "zip2" ) packer = "bzip2 -d";
-  else if( type == "-rar" ) packer = "unrar x";
-  else if( type == "-ace" ) packer = "unace x";
-  else if( type == "-arj" ) packer = "unarj x";
+       if( type == "-zip" ) packer = KrServices::fullPathName( "unzip" ) + " -o" ;
+  else if( type == "-tar" ) packer = KrServices::fullPathName( "tar" )   + " -xvf";
+  else if( type == "-tgz" ) packer = KrServices::fullPathName( "tar" )   + " -xvzf";
+  else if( type == "tarz" ) packer = KrServices::fullPathName( "tar" )   + " -xvzf";
+  else if( type == "-tbz" ) packer = KrServices::fullPathName( "tar" )   + " -xjvf";
+  else if( type == "gzip" ) packer = KrServices::fullPathName( "gzip"  ) + " -d";
+  else if( type == "zip2" ) packer = KrServices::fullPathName( "bzip2" ) + " -d";
+  else if( type == "-rar" ) packer = KrServices::fullPathName( "unrar" ) + " x";
+  else if( type == "-ace" ) packer = KrServices::fullPathName( "unace" ) + " x";
+  else if( type == "-arj" ) packer = KrServices::fullPathName( "unarj" ) + " x";
   else return false;
 
   // unpack the files
@@ -218,21 +218,21 @@ bool KRarcHandler::test(QString archive, QString type, long count, QString passw
   QString packer;
 
   // set the right packer to do the job
-       if( type == "-zip" ) packer = "unzip -t";
-  else if( type == "-tar" ) packer = "tar -tvf";
-  else if( type == "-tgz" ) packer = "tar -tvzf";
-  else if( type == "tarz" ) packer = "tar -tvzf";
-  else if( type == "-tbz" ) packer = "tar -tjvf";
-  else if( type == "gzip" ) packer = "gzip -tv";
-  else if( type == "zip2" ) packer = "bzip2 -tv";
-  else if( type == "-rar" ) packer = "unrar t";
-  else if( type == "-ace" ) packer = "unace t";
-  else if( type == "-arj" ) packer = "unarj t";
-  else if( type == "cpio" ) packer = "cpio --only-verify-crc -tvF" ;
+       if( type == "-zip" ) packer = KrServices::fullPathName( "unzip" ) + " -t";
+  else if( type == "-tar" ) packer = KrServices::fullPathName( "tar" )   + " -tvf";
+  else if( type == "-tgz" ) packer = KrServices::fullPathName( "tar" )   + " -tvzf";
+  else if( type == "tarz" ) packer = KrServices::fullPathName( "tar" )   + " -tvzf";
+  else if( type == "-tbz" ) packer = KrServices::fullPathName( "tar" )   + " -tjvf";
+  else if( type == "gzip" ) packer = KrServices::fullPathName( "gzip"  ) + " -tv";
+  else if( type == "zip2" ) packer = KrServices::fullPathName( "bzip2" ) + " -tv";
+  else if( type == "-rar" ) packer = KrServices::fullPathName( "unrar" ) + " t";
+  else if( type == "-ace" ) packer = KrServices::fullPathName( "unace" ) + " t";
+  else if( type == "-arj" ) packer = KrServices::fullPathName( "unarj" ) + " t";
+  else if( type == "cpio" ) packer = KrServices::fullPathName( "cpio" )  + " --only-verify-crc -tvF" ;
   else return false;
 
 	if( !password.isEmpty() ){
-  	if( type == "-zip") packer = "unzip -P "+password+" -t ";
+  	if( type == "-zip") packer = KrServices::fullPathName( "unzip" ) + " -P "+password+" -t ";
 	}
 
   // unpack the files
@@ -259,11 +259,11 @@ bool KRarcHandler::test(QString archive, QString type, long count, QString passw
 bool KRarcHandler::pack(QStringList fileNames, QString type, QString dest, long count ){
   // set the right packer to do the job
   QString packer;
-       if( type ==  "zip"    ) { packer = "zip -ry";   type = "-zip"; }
-  else if( type ==  "tar"    ) { packer = "tar -cvf";  type = "-tar"; }
-  else if( type ==  "tar.gz" ) { packer = "tar -cvzf"; type = "-tgz"; }
-  else if( type ==  "tar.bz2") { packer = "tar -cvjf"; type = "-tbz"; }
-  else if( type ==  "rar"    ) { packer = "rar -r a";  type = "-rar"; }
+       if( type ==  "zip"    ) { packer = KrServices::fullPathName( "zip" ) + " -ry";   type = "-zip"; }
+  else if( type ==  "tar"    ) { packer = KrServices::fullPathName( "tar" ) + " -cvf";  type = "-tar"; }
+  else if( type ==  "tar.gz" ) { packer = KrServices::fullPathName( "tar" ) + " -cvzf"; type = "-tgz"; }
+  else if( type ==  "tar.bz2") { packer = KrServices::fullPathName( "tar" ) + " -cvjf"; type = "-tbz"; }
+  else if( type ==  "rar"    ) { packer = KrServices::fullPathName( "rar" ) + " -r a";  type = "-rar"; }
   else return false;
 
   // prepare to pack
@@ -307,7 +307,7 @@ QString KRarcHandler::getPassword(QString archive, QString type){
 	handler.inSet = 0;
 	
 	KShellProcess proc;
-	proc << "unzip -t" << archive;
+	proc << KrServices::fullPathName( "unzip" ) + " -t" << archive;
   connect(&proc,SIGNAL(receivedStdout(KProcess*,char*,int)),
                 &handler, SLOT(setPassword(KProcess*,char*,int)) );
 	

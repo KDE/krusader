@@ -84,32 +84,32 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
   krConfig->setGroup("Archives");
   // fill the command options
   if( type == "gzip" ){
-    cmd = "gzip";
+    cmd = KrServices::fullPathName ( "gzip" );
     listCmd = "-l";
     delCmd  = "";
-    addCmd  = "gzip -c";
+    addCmd  = KrServices::fullPathName ( "gzip" ) + " -c";
     getCmd  = "-dc";
 		ignoreLines = -1;
 		isWritable = false;
   }
   if(type == "zip2"){
-    cmd = "bzip2" ;
+    cmd = KrServices::fullPathName( "bzip2" );
     listCmd = "";
     delCmd  = "";
-    addCmd  = "bzip2 -c";
+    addCmd  = KrServices::fullPathName( "bzip2" )+ " -c";
     getCmd  = "-dc";
 		ignoreLines = -1;
     isWritable = false;
   }
   if(type == "-tar"){
-    cmd = "tar" ;
+    cmd = KrServices::fullPathName( "tar" );
     listCmd = " -tvf";
     delCmd  = cmd+" --delete -vf";
     addCmd  = cmd+" -uvf";
     getCmd  = " -xvf";
   }
 	if(type == "-tgz"){
-    cmd = "tar" ;
+    cmd = KrServices::fullPathName( "tar" );
     listCmd = " -tzvf";
     delCmd  = "";
     addCmd  = cmd+" -uvzf";
@@ -117,7 +117,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     isWritable = false;
   }
   if(type == "-tbz"){
-    cmd = "tar" ;
+    cmd = KrServices::fullPathName( "tar" );
     listCmd = " -tjvf";
     delCmd  = "";
     addCmd  = cmd+" -uvjf";
@@ -126,9 +126,9 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
   }
 	if(type == "-zip"){
     password = KRarcHandler::getPassword(arcFile,type);
-		cmd = "unzip" ;
+		cmd = KrServices::fullPathName( "unzip" );
     listCmd = "-ZTs ";
-    QString zipcmd = "zip" ;
+    QString zipcmd = KrServices::fullPathName( "zip" );
     delCmd  = zipcmd+" -d";
     addCmd  = zipcmd+" -ry";
     getCmd  = " -o";
@@ -145,7 +145,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     //rpm can't handle files with " " in them so replace " " with "\ "
     arcFile.replace(QRegExp(" "),"\\ ");
 
-    cmd = "rpm";
+    cmd = KrServices::fullPathName( "rpm" );
     listCmd = " --dump -lpq ";
     delCmd  = "";
     addCmd  = "";
@@ -160,7 +160,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
 		arcFile = tmpDir+"/contents.cpio";
 	}
 	if(type == "cpio" || type == "+rpm" ){
-    cmd = "cpio";
+    cmd = KrServices::fullPathName( "cpio" );
     listCmd = "-tvF ";
     delCmd  = "";
     addCmd  = "";
@@ -169,10 +169,10 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
   }
   if(type == "-rar"){
     bool doRar = krConfig->readBoolEntry("Do Rar",_DoRar);
-    cmd = "unrar" ;
+    cmd = KrServices::fullPathName( "unrar" );
     listCmd = " -c- v ";
     delCmd  = "";
-    addCmd  = (doRar ? QString("rar -r a ") : QString("")) ;
+    addCmd  = (doRar ? QString(KrServices::fullPathName( "rar" ) + " -r a ") : QString("")) ;
     getCmd  = " x -y ";
     ignoreLines = 8;
     isWritable    = (doRar && isWritable );

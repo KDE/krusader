@@ -73,45 +73,16 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   archGrid->setMargin( 11 );
   archGrid->setAlignment( Qt::AlignTop );
 
-  addLabel( archGrid, 0, 0, "bzip2", packers_tab, "bzip2Name" );
-  KonfiguratorURLRequester *bzip2Path = createURLRequester( "Dependencies", "bzip2", "", packers_tab, false );
-  archGrid->addWidget( bzip2Path, 0, 1 );
-
-  addLabel( archGrid, 1, 0, "cpio", packers_tab, "cpioName" );
-  KonfiguratorURLRequester *cpioPath = createURLRequester( "Dependencies", "cpio", "", packers_tab, false );
-  archGrid->addWidget( cpioPath, 1, 1 );
-
-  addLabel( archGrid, 2, 0, "gzip", packers_tab, "gzipName" );
-  KonfiguratorURLRequester *gzipPath = createURLRequester( "Dependencies", "gzip", "", packers_tab, false );
-  archGrid->addWidget( gzipPath, 2, 1 );
-
-  addLabel( archGrid, 3, 0, "rar", packers_tab, "rarName" );
-  KonfiguratorURLRequester *rarPath = createURLRequester( "Dependencies", "rar", "", packers_tab, false );
-  archGrid->addWidget( rarPath, 3, 1 );
-
-  addLabel( archGrid, 4, 0, "tar", packers_tab, "tarName" );
-  KonfiguratorURLRequester *tarPath = createURLRequester( "Dependencies", "tar", "", packers_tab, false );
-  archGrid->addWidget( tarPath, 4, 1 );
-
-  addLabel( archGrid, 5, 0, "unace", packers_tab, "unaceName" );
-  KonfiguratorURLRequester *unacePath = createURLRequester( "Dependencies", "unace", "", packers_tab, false );
-  archGrid->addWidget( unacePath, 5, 1 );
-
-  addLabel( archGrid, 6, 0, "unarj", packers_tab, "unarjName" );
-  KonfiguratorURLRequester *unarjPath = createURLRequester( "Dependencies", "unarj", "", packers_tab, false );
-  archGrid->addWidget( unarjPath, 6, 1 );
-
-  addLabel( archGrid, 7, 0, "unrar", packers_tab, "unrarName" );
-  KonfiguratorURLRequester *unrarPath = createURLRequester( "Dependencies", "unrar", "", packers_tab, false );
-  archGrid->addWidget( unrarPath, 7, 1 );
-
-  addLabel( archGrid, 8, 0, "unzip", packers_tab, "unzipName" );
-  KonfiguratorURLRequester *unzipPath = createURLRequester( "Dependencies", "unzip", "", packers_tab, false );
-  archGrid->addWidget( unzipPath, 8, 1 );
-
-  addLabel( archGrid, 9, 0, "zip", packers_tab, "zipName" );
-  KonfiguratorURLRequester *zipPath = createURLRequester( "Dependencies", "zip", "", packers_tab, false );
-  archGrid->addWidget( zipPath, 9, 1 );
+  addApplication( "bzip2", archGrid, 0, packers_tab );
+  addApplication( "cpio",  archGrid, 1, packers_tab );
+  addApplication( "gzip",  archGrid, 2, packers_tab );
+  addApplication( "rar",   archGrid, 3, packers_tab );
+  addApplication( "tar",   archGrid, 4, packers_tab );
+  addApplication( "unace", archGrid, 5, packers_tab );
+  addApplication( "unarj", archGrid, 6, packers_tab );
+  addApplication( "unrar", archGrid, 7, packers_tab );
+  addApplication( "unzip", archGrid, 8, packers_tab );
+  addApplication( "zip",   archGrid, 9, packers_tab );
 
   kgDependenciesLayout->addWidget( tabWidget, 0, 0 );
 }
