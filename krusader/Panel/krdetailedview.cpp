@@ -115,11 +115,12 @@ KrDetailedView::KrDetailedView(QWidget *parent, KConfig *cfg, const char *name )
     newColumn(Size);
     setColumnWidthMode(column(Size), QListView::Manual);
     setColumnWidth(column(Size), QFontMetrics(font()).width("9")*10);
+    setColumnAlignment(column(Size), Qt::AlignRight); // right-align numbers
   }
   if (_config->readBoolEntry("DateTime Column", _DateTimeColumn)) {
     newColumn(DateTime);
     setColumnWidthMode(column(DateTime), QListView::Manual);
-    setColumnWidth(column(DateTime), QFontMetrics(font()).width("XX/XX/XX XX:XX"));    
+    setColumnWidth(column(DateTime), QFontMetrics(font()).width("99/99/99  99:99"));    
   }
   if (_config->readBoolEntry("Perm Column", _PermColumn)) {
     newColumn(Permissions);
@@ -144,7 +145,8 @@ KrDetailedView::KrDetailedView(QWidget *parent, KConfig *cfg, const char *name )
   // determine basic settings for the listview
   setAcceptDrops(true);
   setDragEnabled(true); setTooltipColumn(column(Name));
-  setDropVisualizer(true); setDropHighlighter(true);
+  //setDropVisualizer(true);
+  //setDropHighlighter(true);
   setSelectionModeExt(KListView::FileManager);
   setAllColumnsShowFocus(true); setShowSortIndicator(true);
   header()->setStretchEnabled(true,column(Name));
@@ -222,9 +224,13 @@ void KrDetailedView::addItems(vfs *v, bool addUpDir) {
     		case KrView::All    : break;
 				case KrView::Custom : if (!QDir::match(_filterMask,name)) continue;
 				                      break;
-				/*case KrView::EXEC:  if (!vf->vfile_isExecutable()) continue;
-											        break; */
-			}
+        case KrView::Dirs:    if (!vf->vfile_isDir()) continue;
+                              break;
+        case KrView::Files:   if (vf->vfile_isDir()) continue;
+                              break;
+
+        case KrView::ApplyToDirs : break; // no-op, stop compiler complaints
+      }
 		  /*if ( compareMode && !(color & colorMask) ) continue;*/
 		}
 
@@ -353,6 +359,8 @@ void KrDetailedView::handleContextMenu(QListViewItem* it, const QPoint& pos, int
   if (!it) return;
   if (dynamic_cast<KrViewItem*>(it)->name() == "..") return;
   emit contextMenu(QPoint(pos.x(), pos.y()-header()->height()));
+
+  col++; // no-op, just to stop compiler complains
 }
 
 void KrDetailedView::startDrag() {
@@ -370,18 +378,20 @@ KrViewItem *KrDetailedView::getKrViewItemAt(const QPoint &vp) {
 
 bool KrDetailedView::acceptDrag(QDropEvent* e) const {
   return true;
+
+  e->pos(); // no-op, stop compiler complaints
 }
 
 void KrDetailedView::contentsDropEvent(QDropEvent *e) {
-  if (_currDragItem)
-    dynamic_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));
+/*  if (_currDragItem)
+    dynamic_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));*/
   e->setPoint(contentsToViewport(e->pos()));
   emit gotDrop(e);
   e->ignore();
 }
 
 void KrDetailedView::contentsDragMoveEvent(QDragMoveEvent *e) {
-  KrViewItem *i=getKrViewItemAt(contentsToViewport(e->pos()));
+/*  KrViewItem *i=getKrViewItemAt(contentsToViewport(e->pos()));
   // reset the last used icon
   if (_currDragItem != i && _currDragItem)
     dynamic_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));
@@ -402,12 +412,11 @@ void KrDetailedView::contentsDragMoveEvent(QDragMoveEvent *e) {
     dynamic_cast<KListViewItem*>(i)->setPixmap(column(Name),FL_LOADICON("folder_open"));
     _currDragItem = i;
     KListView::contentsDragMoveEvent(e);
-  }
+  }*/
+  KListView::contentsDragMoveEvent(e);
 }
 
 void KrDetailedView::keyPressEvent(QKeyEvent *e) {
-  QKeyEvent *ne;
-
   if ( !e || !firstChild() )	return; // subclass bug
   switch (e->key()) {
     case Key_Enter  :
