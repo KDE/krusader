@@ -599,7 +599,7 @@ void KRslots::slotCombine()
 
 void KRslots::userMenu() {
   UserMenu um;
-  QString cmd = um.exec();
+  um.exec();
 }
 
 void KRslots::slotSynchronizeDirs() {
