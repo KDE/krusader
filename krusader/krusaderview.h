@@ -62,6 +62,7 @@ public:
   void start(QString leftPath = QString::null, QString rightPath = QString::null);
   void cmdLineFocus();  // command line receive's keyboard focus
   void cmdLineUnFocus();// return focus from command line to active panel
+  inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
   	
 public slots:
   void slotCurrentChanged(QString p);

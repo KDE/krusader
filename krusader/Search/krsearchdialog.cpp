@@ -29,6 +29,7 @@
  ***************************************************************************/
 
 #include "../krusader.h"
+#include "../panelmanager.h"
 #include "../VFS/vfs.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
@@ -498,11 +499,12 @@ void KrSearchDialog::feedToListBox()
     urlList.push_back( vfs::fromPathOrURL( name ) );
     item = item->nextSibling();
   }
-  KURL url = KURL::fromPathOrURL(QString("virt:/")+ i18n("Search result")+QString( " %1" ).arg( listBoxNum++ ));
+  KURL url = KURL::fromPathOrURL(QString("virt:/")+ i18n("Search results")+QString( " %1" ).arg( listBoxNum++ ));
   virt_vfs v(0,true);
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
-  ACTIVE_FUNC->openUrl(url);  
+  //ACTIVE_FUNC->openUrl(url);  
+  ACTIVE_MNG->slotNewTab(url.prettyURL());
   closeDialog();
 }
 
