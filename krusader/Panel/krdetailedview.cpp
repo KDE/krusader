@@ -542,11 +542,21 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
           KListView::keyPressEvent( new QKeyEvent(QKeyEvent::KeyPress, Key_Insert, 0, 0) );
           return ; // wrong type, just mark(unmark it)
         }
+        //
+        // NOTE: this is buggy incase somewhere down in the folder we're calculating,
+        // there's a folder we can't enter (permissions). in that case, the returned
+        // size will not be correct.
+        //
         long long totalSize = 0;
         long totalFiles = 0, totalDirs = 0;
         QStringList names;
         names.push_back( viewItem->name() );
         krApp->mainView->activePanel->func->calcSpace( names, totalSize, totalFiles, totalDirs );
+        // did we succeed to calcSpace? we'll fail if we don't have permissions
+        if (totalSize == 0) { // just mark it, and bail out
+            KListView::keyPressEvent( new QKeyEvent(QKeyEvent::KeyPress, Key_Insert, 0, 0) );
+            return ;
+        }
         viewItem->setSize( totalSize );
         _countSize += totalSize;
         viewItem->repaintItem();
