@@ -23,17 +23,17 @@
 #include <kstandarddirs.h>
 
 /**
- 
+
 Command: %xYYY%
          x - can be either 'a' for active panel, or 'o' for other panel
          YYY - the specific command
- 
+
          For example:
            %ap% - active panel path
            %op% - other panel path
- 
+
 In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute as needed.
- 
+
 %_p%    - panel path
 %_c%    - current file (or folder). Note: current != selected
 %_s%    - selected files and folders
@@ -45,7 +45,7 @@ In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute a
 %_anf%  - number of files
 %_and%  - number of folders
 %_fm%   - filter mask (for example: *, *.cpp, *.h etc.)
- 
+
 */
 UMCmd UserMenu::_expressions[ NUM_EXPS ] = {
          {"%_p%", expPath}
@@ -62,28 +62,20 @@ QString UserMenu::expPath( const QString& str ) {
    } else return QString::null;
 }
 
-/**
- * only interface function. Executes the menu, does the work and returns a QString
- * containing a command to run. Run that command from a shell and that's it.
- */
-QString UserMenu::exec() {
+void UserMenu::exec() {
    // execute menu and wait for selection
    QString cmd = _popup.run();
 
    // replace %% and prepare string
-   //cmd = expand(cmd);
+   cmd = expand(cmd);
    //kdWarning() << "expanded " << cmd << endl;
 
-   return cmd;
+   // run the cmd from the shell
 }
 
-/**
- * cycle through the input line, replacing every %% expression with valid
- * data from krusader. return the expanded string
- */
 QString UserMenu::expand( QString str ) {
-   QString result;
-   int beg, end;
+   QString result=QString::null, exp=QString::null;
+   int beg, end, i;
    unsigned int idx = 0;
    while ( idx < str.length() ) {
       if ( ( beg = str.find( '%', idx ) ) == -1 ) break;
@@ -91,14 +83,29 @@ QString UserMenu::expand( QString str ) {
          kdWarning() << "Error: unterminated % in UserMenu::expand" << endl;
          return QString::null;
       }
-      kdWarning() << str.mid( beg, end - beg + 1 ) << endl;
+      result+=str.mid(idx,beg-idx); // copy until the start of %exp%
+
+      // get the expression, and expand it using the correct expander function
+      // ... replace first char with _ to ease the checking
+      exp = str.mid( beg, end - beg + 1 );
+      for (i=0; i<NUM_EXPS; ++i)
+         if (str.mid(beg,end-beg+1).replace(1,1,'_') == _expressions[i].expression) {
+            result+=(_expressions[i].expFunc)(exp);
+            break;
+         }
+      if (i==NUM_EXPS) { // didn't find an expander
+         kdWarning() << "Error: unrecognized "<<exp<<" in UserMenu::expand" << endl;
+         return QString::null;
+      }
       idx = end + 1;
    }
+   // copy the rest of the string
+   result+=str.mid(idx);
+
+   return result;
 }
 
 UserMenu::UserMenu( QWidget *parent, const char *name ) : QWidget( parent, name ) {}
-
-UserMenu::~UserMenu() {}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,10 +1,10 @@
 /***************************************************************************
-                          usermenu.h  -  description
-                             -------------------
-    begin                : Sat Dec 6 2003
-    copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
-    email                :
- ***************************************************************************/
+                        usermenu.h  -  description
+                           -------------------
+  begin                : Sat Dec 6 2003
+  copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
+  email                :
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -24,46 +24,56 @@
 #include <kaction.h>
 
 class UserMenuGui: public KPopupMenu {
-  Q_OBJECT
-public:
-  UserMenuGui(QWidget *parent=0);
-  QString run();
+      Q_OBJECT
+   public:
+      UserMenuGui( QWidget *parent = 0 );
+      QString run();
 
-protected:
-  void readEntries();
-    
-private:
-  QStringList _entries;
+   protected:
+      void readEntries();
+
+   private:
+      QStringList _entries;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 
 // an expander is a function that receives a QString input, expands
 // it and returns a new QString output containing the expanded expression
-typedef QString (*EXPANDER)(const QString&);
+typedef QString ( *EXPANDER ) ( const QString& );
 
 // a UMCmd is an entry containing the expression and its expanding function
 typedef struct UserMenuCmd {
-  QString lc_expression;
-  EXPANDER expFunc;
-} UMCmd;
+   QString expression;
+   EXPANDER expFunc;
+}
+UMCmd;
 
-class UserMenu : public QWidget  {
+class UserMenu : public QWidget {
 #define NUM_EXPS  1
 
-   Q_OBJECT
-public:
-  QString exec();
-  UserMenu(QWidget *parent=0, const char *name=0);
-	~UserMenu();
+      Q_OBJECT
+   public:
+      /**
+      * Executes the menu, does the work and returns a QString
+      * containing a command to run. Run that command from a shell and that's it.
+      */
+      void exec();
 
-protected:
-  static QString expand(QString str);
-  static QString expPath(const QString& str);
+      /**
+      * cycle through the input line, replacing every %% expression with valid
+      * data from krusader. return the expanded string
+      */
+      static QString expand( QString str );
 
-private:
-  UserMenuGui _popup;
-  static UMCmd _expressions[NUM_EXPS];
+      UserMenu( QWidget *parent = 0, const char *name = 0 );
+
+   protected:
+      static QString expPath( const QString& str );
+
+   private:
+      UserMenuGui _popup;
+      static UMCmd _expressions[ NUM_EXPS ];
 };
 
 #endif
