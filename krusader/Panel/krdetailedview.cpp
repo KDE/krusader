@@ -584,6 +584,7 @@ void KrDetailedView::contentsDropEvent( QDropEvent * e ) {
   e->setPoint( contentsToViewport( e->pos() ) );
   emit gotDrop( e );
   e->ignore();
+  KListView::contentsDropEvent( e );
   }
 
 void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
