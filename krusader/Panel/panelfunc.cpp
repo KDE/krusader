@@ -130,10 +130,8 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
         mypath = "/";
     }
     mypath = QDir( mypath ).canonicalPath();
-    chdir( mypath );
+    chdir( mypath.latin1() );
     refresh( mypath );
-
-
   }
 }
 
