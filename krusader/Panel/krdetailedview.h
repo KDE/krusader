@@ -53,10 +53,10 @@ friend class KrDetailedViewItem;
 public:
   enum ColumnType { Name=0x0, Extention=0x1, Mime=0x2, Size=0x3, DateTime=0x4,
                     Permissions=0x5, KrPermissions=0x6, Owner=0x7, Group=0x8, Unused=0x9 };
-
+                    
 	KrDetailedView(QWidget *parent, bool left, KConfig *cfg = krConfig, const char *name=0);
 	~KrDetailedView();
-  int column(ColumnType type);
+  virtual int column(ColumnType type);
   inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>(firstChild()); }
   inline KrViewItem *getNext(KrViewItem *current) { return dynamic_cast<KrViewItem*>(dynamic_cast<KListViewItem*>(current)->itemBelow()); }
   inline KrViewItem *getPrev(KrViewItem *current) { return dynamic_cast<KrViewItem*>(dynamic_cast<KListViewItem*>(current)->itemAbove()); }
