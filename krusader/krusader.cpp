@@ -540,8 +540,8 @@ void Krusader::setupActions() {
                             SLOTS, SLOT( locate() ), actionCollection(), "locate" );
    actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_Y,
                               SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
-   actDiskUsage = new KAction( i18n( "D&isk Usage" ), "kchart", ALT + Key_D,
-                              SLOTS, SLOT( slotDiskUsage() ), actionCollection(), "disk usage" );
+   //actDiskUsage = new KAction( i18n( "D&isk Usage" ), "kchart", ALT + Key_D,
+   //                           SLOTS, SLOT( slotDiskUsage() ), actionCollection(), "disk usage" );
    actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                             SLOTS, SLOT( invert() ), actionCollection(), "invert" );
    actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,
