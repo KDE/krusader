@@ -119,6 +119,7 @@
      <listitem><para>fam libfam-devel (&eg; <filename>fam-2.x.x-xmdk.rpm</filename> and
                      <filename>libfam0-devel-2.x.x-5mdk.i586.rpm</filename>)</para></listitem>
      <listitem><para>zlib1 arts libart_lgpl2 libstdc++5 libpcre0</para></listitem>
+     <listitem><para>kjsembed, if you use the &javascript_console_lnk; </para></listitem>
    </itemizedlist></para>
      <para>Most RPM-based distributions separate the headers from the libs. The headers are needed to compile
            &krusader;. Look for packages in the form foo-devel-*.rpm (&eg;
@@ -601,6 +602,40 @@
  </answer>
 </qandaentry>
 
+
+<qandaentry>
+  <question id="faqu_remoteMan">
+  <para>Where is RemoteMan, the remote connection manager ?</para>
+  </question>
+  <answer>
+  <para>RemoteMan has been replaced by our Bookmark Manager since Krusader 1.25-beta1.
+        The Bookmark Manager handles local files and 
+        <link linkend="remote-connections">remote &URL;'s</link> the same way.
+        RemoteMan is being left around until &krusader;-1.51 to allow an easier transition and
+        give you a chance to move your &bookmarks_lnk;.
+        RemoteMan was disabled since &krusader;-1.60.        
+        </para>
+  <para>&URL; transition procedure:
+  <orderedlist numeration="arabic">
+  <listitem>
+     <para>install &krusader;-1.51</para>
+  </listitem>
+  <listitem>
+     <para>open the RemoteMan and connect to an &FTP;</para>
+  </listitem>
+  <listitem>
+     <para>once inside, bookmark the current location, select a name and save.</para>
+  </listitem>
+  <listitem>
+     <para>do this for all your connections.</para>
+  </listitem>
+  </orderedlist>
+  </para>      
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+
 </qandaset>
 </sect1>
 
@@ -785,8 +820,10 @@
   <para>How can I support &krusader;?</para>
   </question>
   <answer>
-  <para>You can support &krusader; in many different ways: send us
-        <link linkend="faqg_wish_patch">feedback</link>, &faqbugreports_lnk;, patches,  ...
+  <para>You can <link linkend="help_krusader">support</link>&krusader; in many different ways:
+        please send us
+        <link linkend="faqg_wish_patch">feedback</link>, &faqbugreports_lnk;, patches,  
+        <link linkend="help_krusader">donations</link>, translations, ...
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>

@@ -244,7 +244,17 @@
       and the &faq_lnk;, if this does not solve your problem then
       feel free to ask for help with an &help_request_lnk;.</para></note>
 
+<tip><para>If you install &kdevelop; than (almost) everything that you need to compile &krusader; 
+           will be installed on your computer, BUT please don't use &kdevelop; to compile &krusader; 
+           if you are not a developer (possible automake hell), just follow the next instructions.</para></tip>
+
 <orderedlist>
+<listitem>
+   <para>Install all needed packages and libraries that you need for the compilation, please read the &faq_lnk;.
+         </para>
+   <para> </para> <!-- Empty line to make it more readable -->
+</listitem>
+
 <listitem>
    <para>Open your favourite terminal emulator (&eg; &konsole;).</para>
    <para> </para> <!-- Empty line to make it more readable -->
@@ -434,7 +444,7 @@ Good - your configure finished. Start make now
   <para>Use <userinput><command>./configure</command> <option>--help</option></userinput>
   to see more options or read the <filename>INSTALL</filename> file in the &krusader; sources.</para>
 
-  <para>If <command>./configure</command> fails, take a look at &missing_libs_lnk;.</para>
+  <note><para>If <command>./configure</command> fails, take a look at &missing_libs_lnk;.</para></note>
 
   <para> </para> <!-- Empty line to make it more readable -->
 </listitem>

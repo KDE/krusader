@@ -375,15 +375,16 @@
   <listitem><para>
   Open the <link linkend="remote-man">&FTP; connection manager</link>.</para>
   <para><keycap>Important: RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1.
-                                   The new manager handles local files and remote URLs
-                                   <!-- jade does not like an acronym element for "URL" here -->
-                                   the same way.
-                                   RemoteMan was left around to allow an easier transition and
-                                   give you a chance to move your bookmarks. It was REMOVED FROM CVS after Krusader 1.51.</keycap></para>
+                The new manager handles local files and remote URLs
+                <!-- Openjade does not like an acronym element for "URL" here -->
+                the same way.
+                RemoteMan was left around to allow an easier transition and
+                give you a chance to move your bookmarks. 
+                It was REMOVED FROM CVS after Krusader 1.51.</keycap></para>
 
-        <para>Try the new Bookmark-Manager: open a new remote connection. Once
-               done, press the <guibutton>bookmark</guibutton> button, select
-               <guimenuitem>'Add bookmark'</guimenuitem> and that's it!
+   <para>Try the new Bookmark-Manager: open a new remote connection.
+         Once done, press the <guibutton>bookmark</guibutton> button, select
+         <guimenuitem>'Add bookmark'</guimenuitem> and that's it!
   </para></listitem>
   </varlistentry>
 
@@ -440,7 +441,8 @@
   </menuchoice></term>
   <listitem>
   <para>
-  Gives access to the &useractions_lnk;, this is not the only place from which you can access User Actions; they can appear nearly everywhere &eg; Toolbar, right-click menu.
+  Gives access to the &useractions_lnk;, this is not the only place from which you can access 
+  User Actions; they can appear nearly everywhere &eg; Toolbar, right-click menu.
   </para>
   </listitem>
   </varlistentry>
@@ -494,7 +496,8 @@
   <guimenuitem>Custom</guimenuitem>
   </menuchoice></term>
   <listitem><para>Allows you to install a custom filter on the &krusader; panel. Only files that match
-  the filter pattern(s) and directories will be displayed. Don't forget to deactivate the custom filter after use, or some files may not be visible.</para>
+  the filter pattern(s) and directories will be displayed. 
+  Don't forget to deactivate the custom filter after use, or some files may not be visible.</para>
   </listitem>
   </varlistentry>
 
@@ -701,7 +704,8 @@
   <guimenu>Help</guimenu>
   <guimenuitem>Report Bug</guimenuitem>
   </menuchoice></term>
-  <listitem><para>Opens the &kde;'s bugzilla report dialog where you can report a bug or request a "wishlist" feature.</para>
+  <listitem><para>Opens the &kde;'s bugzilla report dialog where you can report a bug or request a 
+   "wishlist" feature.</para>
     <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla
     http://bugs.kde.org/, &kde;'s Bug Tracking System.
     Click on the next link to find out howto send &faqbugreports_lnk;.</remark></para></note>

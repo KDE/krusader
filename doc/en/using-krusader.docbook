@@ -63,12 +63,25 @@
       in the &konfigstartpg_lnk;, and you can toggle
       its use in the current session in the &viewmenu_lnk;.
       The Main Toolbar contents can be configured from the <guimenuitem>"Configure Toolbars"</guimenuitem>
-			in the &settingsmenu_lnk; or the <guilabel>"toolbar"</guilabel> tab in the &konfiglookandfeel_lnk;.
+      in the &settingsmenu_lnk; or the <guilabel>"toolbar"</guilabel> tab in the &konfiglookandfeel_lnk;.
       Since the various commands and options in &krusader; are context dependent, some commands are not always available
       (&ie;: you can't disconnect from an &FTP; session if you're not connected), the icon of an
-      inappropriate or inactive action will be deactivated (grayed-out) and you won't be able to click it.</para>
+      inappropriate or inactive action will be deactivated (grayed-out) and you won't be able to click it.
+      &bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar.</para>
 
 </sect2>
+
+<sect2 id="actions_toolbar">
+<title>Actions Toolbar</title>
+<para>&useractions_lnk; and &bookmarks_lnk; can be plugged in the <guilabel>Actions Toolbar</guilabel>.
+      To show it use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
+      <guimenuitem>Show Actions Toolbar</guimenuitem></menuchoice></emphasis>.
+      To add useractions use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
+      <guimenuitem>Configure Toolbars</guimenuitem></menuchoice></emphasis> and select Actions Toolbar.
+      You could &eg; drag the Actions Toolbar to the right side.
+</para>
+</sect2>
+
 
 <sect2 id="panels">
 <title>Panels</title>
@@ -259,8 +272,8 @@
              </listitem>
   <listitem><para><guibutton>"Root Button (/)"</guibutton>: changes the panel directory to the root directory.</para>
        </listitem>
-  <listitem><para><guibutton>"Sync-browsing Button"</guibutton>: when active, each directory-change in the
-															specific panel is performed in the other panel, also.</para>
+  <listitem><para><guibutton>"Sync-browsing Button"</guibutton>: when active, each directory-change in the 
+             specific panel is performed in the other panel, also.</para>
        </listitem>
 </itemizedlist>
 </para>
@@ -273,6 +286,14 @@
       Click on the <guibutton>"Folder history"</guibutton> button ("watch" symbol) to open the Folder history list.
       Here you can quickly change to previously visited folders, the currently focused folder is checked.
       On every new start of Krusader, the history list is empty.
+      </para>
+
+<para>The submenu <guilabel>Popular &URL;s</guilabel> holds persistent the most popular visited &URL;'s 
+      (local or remote). This submenu displays the top 15 popular urls, sorted by ranking, 
+      so that the top &URL; is the most popular.
+      This is easy for when u need to visit &URL;s often, but don't want to create &bookmarks_lnk;,
+      it serves as a temporary bookmark list for the most visited links. 
+      We are planning to add a dialog with quicksearch to browse the Popular &URL;s.
       </para>
 
 </sect3>
@@ -387,17 +408,6 @@
     </para></listitem>
 
 </itemizedlist>
-</para>
-</sect2>
-
-<sect2 id="actions_toolbar">
-<title>Actions Toolbar</title>
-<para>&useractions_lnk; and &bookmarks_lnk; can be plugged in the <guilabel>Actions Toolbar</guilabel>.
-      To show it use <emphasis role="bold"><menuchoice><guimenu>View</guimenu>
-      <guimenuitem>Show Actions Toolbar</guimenuitem></menuchoice></emphasis>.
-      To add useractions use <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
-      <guimenuitem>Configure Toolbars</guimenuitem></menuchoice></emphasis> and select Actions Toolbar.
-      You could &eg; drag the Actions Toolbar to the right side.
 </para>
 </sect2>
 

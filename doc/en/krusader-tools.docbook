@@ -35,6 +35,9 @@
   </mediaobject>
 </screenshot>
 
+<note><para>This section will be removed in the next release of the handbook, since
+            RemoteMan does not exist anymore.</para></note>
+
 <para><emphasis role="bold">Important: RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1.
       The new manager handles local files and remote &URL;'s the same way.
       RemoteMan is being left around until &krusader;-1.51 to allow an easier transition and
@@ -67,6 +70,31 @@
       </itemizedlist>
 </sect1>
 
+
+<sect1 id = "remote-connections">
+<title>Remote Connections</title>
+
+<para>Remote connections are easy made by typing the &URL; in the 
+     <link linkend="list_panel">Location Toolbar</link> some examples:</para>
+ 
+ <itemizedlist>
+     <listitem><para><userinput><replaceable>/mnt/cdrom/</replaceable></userinput></para>
+               </listitem>
+     <listitem><para><userinput><command>ftp://</command><replaceable>ftp.kde.org/pub/kde/</replaceable></userinput></para>
+               </listitem>
+     <listitem><para><userinput><command>sftp://</command><replaceable>sftp.foo.org/</replaceable></userinput></para>
+               </listitem>
+     <listitem><para><userinput><command>fish://</command><replaceable>username@hostname/</replaceable></userinput></para>
+               </listitem>
+     <listitem><para><userinput><command>smb://</command><replaceable>user:password@server/share</replaceable></userinput></para>
+               </listitem>               
+ </itemizedlist>          
+
+<para>You can Bookmark these &URL;'s, please read the <link linkend="bookman">Bookman</link> section 
+      regarding securely save your passwords.</para>
+
+<!-- TODO: Some more text need to be added here -->
+</sect1>
 
 <sect1 id = "mount-man">
 <title>MountMan: work with your mounted filesystems</title>
@@ -154,7 +182,7 @@
       so you can quickly call the bookmark name with <keycombo action="simul">&Alt;<keycap>foo</keycap></keycombo>.
       If you add the bookmark without entering a name, the bookmarks name will be the same as its target.
       <guilabel>"URL"</guilabel>
-      <!-- jade does not like an acronym element for "URL" here -->
+      <!-- Openjade does not like an acronym element for "URL" here -->
       is where the bookmark points to.
       <guilabel>"Create in"</guilabel> allows to make bookmark folders for organizing your bookmarks</para>
 
@@ -190,6 +218,52 @@
 <para>Bookman supports "special / permanent bookmarks" which means that they are added by the &krusader;-Krew to the top
       bookmark menu without the need of being saved to the file, right now the only one is <filename>"devices:/"</filename>
       You are able to turn them off.</para>
+
+<para><emphasis role="bold">Password handling</emphasis></para>
+<para>One of the benefits of the <link linkend="bookman">new bookmark manager</link> is that the password
+are saved using &kde;'s services - where your &konqueror;/&kmail; password are saved.
+Today, this is the wallet mostly. if you have a wallet, &kde; will save the passwords there.</para>
+
+<para>
+<variablelist>
+<varlistentry><term>Secure pasword storage</term>
+   <listitem><para>Click the bookmarks, a dialog will open and asking for username and password. 
+             supply them and click 'save password'. the passwords and usernames will be saved 
+             SECURELY by &kde;'s wallet (make sure it is enabled by your distro).
+             The downside here, is that if you reinstall and don't backup your passwords from the wallet 
+             as well as &krusader;'s bookmark file, something will be lost. 
+             btw, we are considering to interface with kde's wallet, but no details are known yet. 
+     </para></listitem>
+</varlistentry>
+
+<varlistentry><term>INSecure pasword storage</term>
+   <listitem><para>when you bookmark something, the dialog will display something like: 
+   "name: blah blah" 
+   "url: <userinput><command>ftp://</command><replaceable>username@ftp.test.com/</replaceable></userinput>"
+   Change the url to look like
+   <userinput><command>ftp://</command><replaceable>username:password@ftp.test.com/</replaceable></userinput>and save.
+   The next things will happen:
+  <itemizedlist>
+  <listitem>
+     <para>the password is saved INSECURELY as plain text in <filename>krbookmarks.xml</filename>, 
+           so you'll have to set permissions properly for it.</para>
+  </listitem>
+  <listitem>
+     <para>passwords will NEVER be shown again on screen, not even in the bookmark manager. 
+           it is kept hidden inside &krusader;.</para>
+  </listitem>
+  <listitem>
+     <para>clicking the bookmark will login to the requested site.</para>
+  </listitem>
+  <listitem>
+     <para>backing up <filename>krbookmarks.xml</filename> will save your passwords.</para>
+  </listitem>
+  </itemizedlist>
+    </para></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
 
 <screenshot>
   <screeninfo>&keditbookmarks; your Bookmark Manager</screeninfo>
@@ -1692,6 +1766,19 @@ You can also set a user under which the command should be executed.
 
 </sect1>
 
+<sect1 id = "javascript_console">
+<title>JavaScript console</title>
+
+<para>NOTE: this description is incomplete. (TODO)</para>
+
+<para><keycombo action="simul">&Alt;&Ctrl;<keycap>j</keycap></keycombo> opens a
+      JavaScript console based on &kjsembed_url;. 
+      A testingscript can be found on <ulink url="http://xmelegance.org/kjsembed/examples/index.html"></ulink> 
+      copy both to a location of your choice and addapt the path to calc.ui at the bottom of calc.js
+      Click 
+      <ulink url="http://sourceforge.net/mailarchive/forum.php?thread_id=6417325&amp;forum_id=43320">here</ulink> 
+      for more info.</para>
+</sect1>
 
 <sect1  id="diskusage">
 <title>Disk Usage</title>

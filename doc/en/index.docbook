@@ -106,6 +106,7 @@ Previous used Docbook
 <!ENTITY debian_qt_b_url '<ulink url="http://opendoorsoftware.com/cgi/http.pl?p=DebianQTChecklist">instructions</ulink>'>
 <!ENTITY freenode_url '<ulink url="http://freenode.net">freenode.org</ulink>'>
 <!ENTITY fink_prj_url '<ulink url="http://fink.sourceforge.net">fink.sourceforge.net</ulink>'>
+<!ENTITY kjsembed_url '<ulink url="http://xmelegance.org/kjsembed/">KJSEmbed</ulink>'>
 
 <!-- documentation links -->
 <!ENTITY konfigstartpg_lnk '<link linkend="konfigurator">Konfigurator Startup page</link>'>
@@ -142,6 +143,7 @@ Previous used Docbook
 <!ENTITY sync_browsing_lnk '<link linkend="panel_toolbar">Sync-browsing</link>'>
 <!ENTITY diskusage_lnk '<link linkend="diskusage">Disk Usage</link>'>
 <!ENTITY bookmarks_lnk '<link linkend="bookman">Bookmarks</link>'>
+<!ENTITY javascript_console_lnk '<link linkend="javascript_console">JavaScript console</link>'>
 
 <!ENTITY install_proc_lnk '<link linkend="installation">Installation procedure</link>'>
 <!ENTITY disablenote '<note><para>This feature is temporarily disabled and will be rewritten, sorry.</para></note>'>
@@ -183,6 +185,7 @@ Previous used Docbook
 <!ENTITY krename '<application>Krename</application>'>
 <!ENTITY kget '<application>kget</application>'>
 <!ENTITY filelight '<application>Filelight</application>'>
+<!ENTITY kdevelop '<application>Kdevelop</application>'>
 
 <!ENTITY fedora '<trademark class="registered">Fedora</trademark>'>
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
@@ -277,8 +280,8 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>28/01/2005</date>
-  <releaseinfo>1.60-00 CVS</releaseinfo>
+  <date>08/05/2005</date>
+  <releaseinfo>1.60-00</releaseinfo>
 
    <abstract>
   <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x</para>
@@ -389,7 +392,7 @@ Previous used Docbook
 </preface>
 
 
-<preface id="help_Krusader">
+<preface id="help_krusader">
   <title>Help &krusader;</title>
 
   <para>Here you get a chance to &contribute_url; to the &krusader; project.
@@ -398,8 +401,8 @@ Previous used Docbook
   All help is welcome. Thanks!</para>
 
   <para><emphasis role="bold">Translations</emphasis></para>
-  <para>&krusader; is available in many languages, some of these translations can use an update
-        and new untranslated languages are always welcome, please read the &i18nhowto_url;</para>
+  <para>&krusader; is available in many languages, several translations needs an update and new untranslated 
+        languages are always welcome of cource, please read the &i18nhowto_url;</para>
 
   <para><emphasis role="bold">Documentation</emphasis></para>
   <para>&krusader; is in need of documentation, since this is a time consuming task

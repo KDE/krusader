@@ -187,13 +187,15 @@ HTML_PARSING-->
       <listitem><para><guilabel>"&krusader; mode"</guilabel>: the way &krusader; has worked from day one.
          Both keys allow selecting files. To select more than one file, hold the
          &Ctrl; key and click the &LMB;. Right-click menu is invoked using a short click on
-				 the &RMB;.</para></listitem>
-  <listitem><para><guilabel>"&konqueror; mode"</guilabel>: pressing the &LMB; selects files --
-					you can click and select multiple files.
+         the &RMB;.</para></listitem>
+  <listitem><para><guilabel>"Konqueror mode"</guilabel>: pressing the &LMB; selects files --
+  <!-- Openjade does not like an application element for "Konqueror" here -->
+          you can click and select multiple files.
          Right-click menu is invoked using a short click on the &RMB;.
          </para></listitem>
-  <listitem><para><guilabel>"&tcmd; mode"</guilabel>: pressing the &RMB; selects multiple files
-					and the right-click menu is invoked by <guilabel>pressing and holding</guilabel> the &RMB;
+  <listitem><para><guilabel>"Total commander mode"</guilabel>: pressing the &RMB; selects multiple files
+  <!-- Openjade does not like an trademark element for "Total commander" here -->
+         and the right-click menu is invoked by <guilabel>pressing and holding</guilabel> the &RMB;
          The &LMB; does not select, but sets the current file without affecting the current selection.
          </para></listitem>
 </itemizedlist>
@@ -301,8 +303,8 @@ HTML_PARSING-->
       <guilabel>"Use Alternate Background color"</guilabel> checkbox will enable/disable
 			the alternate &kde; colors.
       </para>
-<!-- how to -->
-<!-- HTML_PARSING
+
+<!--HTML_PARSING
 <screenshot>
   <screeninfo>Konfigurator color page</screeninfo>
   <mediaobject>
