@@ -49,7 +49,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   
   QVBoxLayout *layout = new QVBoxLayout( this, 11, 6, "SynchronizeDialogLayout" );
 
-  cbRightToLeft = new QCheckBox( i18n( "Left to right: Copy %1 files (%2 bytes)" )
+  cbRightToLeft = new QCheckBox( i18n( "Right to left: Copy %1 files (%2 bytes)" )
                              .arg( leftCopyNr ).arg( KRpermHandler::parseSize( leftCopySize ).stripWhiteSpace() ),
                              this, "labelRightToLeft" );
   cbRightToLeft->setChecked( leftCopyNr != 0 );
@@ -62,7 +62,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( lbRightToLeft );
 
-  cbLeftToRight = new QCheckBox( i18n( "Right to left: Copy %1 files (%2 bytes)" )
+  cbLeftToRight = new QCheckBox( i18n( "Left to right: Copy %1 files (%2 bytes)" )
                              .arg( rightCopyNr ).arg( KRpermHandler::parseSize( rightCopySize ).stripWhiteSpace() ),
                              this, "cbLeftToRight" );
   cbLeftToRight->setChecked( rightCopyNr != 0 );
@@ -75,7 +75,7 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( lbLeftToRight );
 
-  cbDeletable   = new QCheckBox( i18n( "Right: Delete %1 files (%2 bytes)" )
+  cbDeletable   = new QCheckBox( i18n( "Left: Delete %1 files (%2 bytes)" )
                              .arg( deleteNr ).arg( KRpermHandler::parseSize( deleteSize ).stripWhiteSpace() ),
                              this, "cbDeletable" );
   cbDeletable->setChecked( deleteNr != 0 );
