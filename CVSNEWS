@@ -3,6 +3,14 @@ It should contain a brief description of new features;
 in some way an extension to the changelog.
 ------------------------------------------------------
 
+Virtual VFS.
+  This is not a virtual folder !
+  but more a container for URL's from different file system.
+  just perfect for displaying search results and so on...
+  Action you perform on the files in this VFS are performed on the 'real' files.
+  you don't just delete files from the VFS - you delete them from your hard drive.
+  limitations:: you can't create directories inside a virtual VFS.
+
 Primitive scripting support. condition: KJSEmbed is installed (package: KDEbindings)
   Ctrl+Alt+J opens the JavaScript-console. There you can play around:
   try 'Krusader.setCaption("Hey Ho, Let's go!");', "Krusader.children();", "Krusader.child("help").slots();"
