@@ -86,6 +86,9 @@ class KRslots : public QObject {
     void back();
     void slotPack();
     void slotUnpack();
+    void cut();
+    void copy();
+    void paste();
     void testArchive();
     void calcSpace();
     void FTPDisconnect();

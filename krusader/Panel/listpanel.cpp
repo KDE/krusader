@@ -744,6 +744,10 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
 #define LINK_HANDLING 107
 #define EJECT_ID      108
 #define PREVIEW_ID    109
+#define COPY_CLIP_ID  110
+#define MOVE_CLIP_ID  111
+#define PASTE_CLIP_ID 112
+
    // those will sometimes appear
 #define SERVICE_LIST_ID  200
    //////////////////////////////////////////////////////////
@@ -852,6 +856,13 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
    }
    // PROPERTIES
    popup.insertSeparator();
+   popup.insertItem( i18n( "Copy to Clipboard" ), COPY_CLIP_ID );
+   if ( func->files() ->vfs_isWritable() )
+   {
+     popup.insertItem( i18n( "Cut to Clipboard" ), MOVE_CLIP_ID );
+     popup.insertItem( i18n( "Paste from Clipboard" ), PASTE_CLIP_ID );
+   }
+   popup.insertSeparator();
    krProperties->plug( &popup );
    // run it, on the mouse location
    int j = QFontMetrics( popup.font() ).height() * 2;
@@ -918,6 +929,15 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
          break;
          case UNMOUNT_ID :
          krMtMan.unmount( func->files() ->vfs_getFile( item->name() ).path( -1 ) );
+         break;
+         case COPY_CLIP_ID :
+         func->copyToClipboard();
+         break;
+         case MOVE_CLIP_ID :
+         func->copyToClipboard( true );
+         break;
+         case PASTE_CLIP_ID :
+         func->pasteFromClipboard();
          break;
          case SEND_BY_EMAIL :
          SLOTS->sendFileByEmail( func->files() ->vfs_getFile( item->name() ).url() );

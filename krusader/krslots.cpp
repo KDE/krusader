@@ -290,6 +290,9 @@ void KRslots::testArchive()     { ACTIVE_FUNC->testArchive();                }
 void KRslots::calcSpace()       { ACTIVE_FUNC->calcSpace();                  }
 void KRslots::FTPDisconnect()   { ACTIVE_FUNC->FTPDisconnect();              }
 void KRslots::newFTPconnection(){ ACTIVE_FUNC->newFTPconnection();           }
+void KRslots::cut()             { ACTIVE_FUNC->copyToClipboard( true );      }
+void KRslots::copy()            { ACTIVE_FUNC->copyToClipboard( false );     }
+void KRslots::paste()           { ACTIVE_FUNC->pasteFromClipboard();         }
 
 // run external modules / programs
 void KRslots::runKonfigurator(bool firstTime) {

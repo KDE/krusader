@@ -422,6 +422,10 @@ void Krusader::setupActions() {
    KStdAction::quit( this, SLOT( quitKrusader() ), actionCollection(), "std_quit" );
    KStdAction::configureToolbars( SLOTS, SLOT( configToolbar() ), actionCollection(), "std_config_toolbar" );
    KStdAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
+   
+   KStdAction::cut( SLOTS, SLOT( cut() ), actionCollection(), "std_cut" );
+   KStdAction::copy( SLOTS, SLOT( copy() ), actionCollection(), "std_copy" );
+   KStdAction::paste( SLOTS, SLOT( paste() ), actionCollection(), "std_paste" );
 
    // the toggle actions
    actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), 0, SLOTS,
@@ -450,7 +454,7 @@ void Krusader::setupActions() {
 
    actTest = new KAction( i18n( "T&est Archive(s)" ), "ark", ALT + Key_E,
                           SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
-   actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", CTRL + Key_C,
+   actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", 0,
                                 SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
    actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "connect_creating", CTRL + Key_N,
                                    SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );

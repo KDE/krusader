@@ -73,6 +73,8 @@ public:
 	void copyFiles();
 	void deleteFiles();
 	void calcSpace(); // calculate the occupied space and show it in a dialog
+	void copyToClipboard( bool move=false );
+	void pasteFromClipboard();
 
 	// calculate the occupied space. A dialog appears, if calculation lasts more than 3 seconds
 	// and disappears, if the calculation is done. Returns true, if the result is ok and false
