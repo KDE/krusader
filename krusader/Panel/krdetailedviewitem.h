@@ -48,18 +48,18 @@ public:
   KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
   QString name() const;
   QString description() const; // for status bar
-  inline bool isDir() const { return (_vf ? _vf->vfile_isDir() : false); }
-  inline bool isExecutable() const { return (_vf ? _vf->vfile_isExecutable() : false); }
-  inline unsigned long size() const { return (_vf ? _vf->vfile_getSize() : 0); }
+  bool isDir() const { return (_vf ? _vf->vfile_isDir() : false); }
+  bool isExecutable() const { return (_vf ? _vf->vfile_isExecutable() : false); }
+  unsigned long size() const { return (_vf ? _vf->vfile_getSize() : 0); }
   QString dateTime() const;
-  inline time_t getTime_t() const { return _vf->vfile_getTime_t(); }
-  inline QString mime() const { return (_vf ? _vf->vfile_getMime() : QString::null); }
-  inline QString symlinkDest() const {
+  time_t getTime_t() const { return _vf->vfile_getTime_t(); }
+  QString mime() const { return (_vf ? _vf->vfile_getMime() : QString::null); }
+  QString symlinkDest() const {
    //return (_vf ? : _vf->vfile_getSymDest() : QString::null);
    if (_vf) return _vf->vfile_getSymDest();
    else return QString::null;
   }
-  inline bool isSymLink() const { return (_vf ? _vf->vfile_isSymLink() : false); }
+  bool isSymLink() const { return (_vf ? _vf->vfile_isSymLink() : false); }
   bool isSelected() const { return (_vf ? KListViewItem::isSelected() : false); }
   void setSelected(bool s) { KListViewItem::setSelected(s); }
 	/*void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int alignment){}*/
