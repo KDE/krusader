@@ -72,7 +72,8 @@ private:
 	KIO::UDSEntry* findFileEntry(const KURL& url);
   /** add a new directory (file list container). */
   KIO::UDSEntryList* addNewDir(QString path);
-
+  QString fullPathName( QString name );
+  
 	QDict<KIO::UDSEntryList> dirDict; //< the directoris data structure.
   bool archiveChanged;              //< true if the archive was changed.
   bool archiveChanging;             //< true if the archive is currently changing.
@@ -82,6 +83,7 @@ private:
   QString arcType;                  //< the archive type.
   bool cpioReady;                   //< Used for RPM files.
   QString password;                 //< Password for the archives
+  KConfig *krConfig;                //< The configuration file for krusader
 };
 
 

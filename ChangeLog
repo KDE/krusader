@@ -25,7 +25,9 @@
     
     REACTIVATED: usermenu (now using the new useraction-system)
 
+    FIXED: the viewer size is forgotten in maximized mode (KDE hack)
     FIXED: internationalization bugs, illegal usage of QString::latin1()
+    FIXED: krarc, ignores the packer dependencies
     FIXED: krarc, rar: mkdir does not work, illegal time and permission info
     FIXED: krarc, problem with copying / moving inside the archive
     FIXED: krarc, problem with international characters in put/mkdir

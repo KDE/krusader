@@ -77,6 +77,9 @@ int kdemain( int argc, char **argv ){
 kio_krarcProtocol::kio_krarcProtocol(const QCString &pool_socket, const QCString &app_socket)
  : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L),cpioReady(false),
    password(QString::null) {
+  krConfig = new KConfig( "krusaderrc" );
+  krConfig->setGroup( "Dependencies" );
+   
   dirDict.setAutoDelete(true);
 
   arcTempDir = locateLocal("tmp",QString::null);
@@ -843,11 +846,11 @@ bool kio_krarcProtocol::initArcParameters(){
 	KRDEBUG("arcType: "<<arcType);
 
   if(arcType == "zip"){
-    cmd = "unzip";
-    listCmd = "unzip -ZTs-z-t-h ";
-    getCmd  = "unzip -p ";
-    delCmd  = "zip -d ";
-    putCmd  = "zip -ry ";
+    cmd     = fullPathName( "unzip" );
+    listCmd = fullPathName( "unzip" ) + " -ZTs-z-t-h ";
+    getCmd  = fullPathName( "unzip" ) + " -p ";
+    delCmd  = fullPathName( "zip" ) + " -d ";
+    putCmd  = fullPathName( "zip" ) + " -ry ";
 
     if( !getPassword().isEmpty() )
     {
@@ -855,27 +858,27 @@ bool kio_krarcProtocol::initArcParameters(){
       putCmd += "-P '"+password+"' ";
     }
   } else if (arcType == "rar"){
-    cmd = "unrar" ;
-    listCmd = "unrar -c- v ";
-    getCmd  = "unrar p -ierr -idp -c- -y ";
-    delCmd  = "rar d ";
-    putCmd  = "rar -r a ";
+    cmd     = fullPathName( "unrar" );
+    listCmd = fullPathName( "unrar" ) + " -c- v ";
+    getCmd  = fullPathName( "unrar" ) + " p -ierr -idp -c- -y ";
+    delCmd  = fullPathName( "rar" ) + " d ";
+    putCmd  = fullPathName( "rar" ) + " -r a ";
   } else if(arcType == "rpm"){
-    cmd = "rpm";
-    listCmd = "rpm --dump -lpq ";
-    getCmd  = "cpio --force-local --no-absolute-filenames -ivdF";
+    cmd     = fullPathName( "rpm" );
+    listCmd = fullPathName( "rpm" ) + " --dump -lpq ";
+    getCmd  = fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -ivdF";
     delCmd  = QString::null;
     putCmd  = QString::null;
   } else if(arcType == "gzip"){
-    cmd = "gzip";
-    listCmd = "gzip -l";
-    getCmd  = "gzip -dc";
+    cmd     = fullPathName( "gzip" );
+    listCmd = fullPathName( "gzip" ) + " -l";
+    getCmd  = fullPathName( "gzip" ) + " -dc";
     delCmd  = QString::null;
     putCmd  = QString::null;
   } else if(arcType == "bzip2"){
-    cmd = "bzip2" ;
-    listCmd = "bzip2";
-    getCmd  = "bzip2 -dc";
+    cmd     = fullPathName( "bzip2" );
+    listCmd = fullPathName( "bzip2" );
+    getCmd  = fullPathName( "bzip2" ) + " -dc";
     delCmd  = QString::null;
     putCmd  = QString::null;
   } else {
@@ -931,6 +934,14 @@ QString kio_krarcProtocol::getPassword() {
   }
 
   return (password = "" );
+}
+
+QString kio_krarcProtocol::fullPathName( QString name )
+{
+  QString supposedName = krConfig->readEntry( name, name );
+  supposedName.replace( "\\", "\\\\" );
+  supposedName.replace( " ", "\\ " );  
+  return supposedName;
 }
 
 #include "krarc.moc"
