@@ -37,10 +37,9 @@
 #include <qstring.h>
 // KDE includes
 #include <kfileitem.h>
-#include <kdirwatch.h>
 // Krusader includes
 #include "vfs.h"
-
+#include "krdirwatch.h"
 
 class normal_vfs : public vfs{
 	Q_OBJECT
@@ -69,12 +68,11 @@ public:
 public slots:
 	// actually reads files and stats
 	bool vfs_refresh(QString origin);
-  void watcherListener(const QString& path){ vfs_refresh(path); }
-	inline  bool vfs_refresh(){ return vfs_refresh(vfs_origin);}
+  inline  bool vfs_refresh(){ return vfs_refresh(vfs_origin);}
 
 protected:
 	QList<vfile>  vfs_files;    // list of pointers to vfile	
-	KDirWatch watcher;
+	KRdirWatch watcher;
   bool writeableBase;
 };
 
