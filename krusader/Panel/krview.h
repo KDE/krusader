@@ -128,7 +128,7 @@ public:
   virtual void unselect(const QString& filter = "*") { changeSelection(filter, false); }
   virtual void invertSelection();
   virtual QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
-  virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; kdWarning() << "!!! " << _nameToMakeCurrent << endl; }
+  virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
   virtual QString firstUnmarkedBelowCurrent();
   virtual QString statistics();
 
