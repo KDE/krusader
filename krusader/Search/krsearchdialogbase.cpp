@@ -192,6 +192,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     if ( !name )
 	setName( "KrSearchBase" );
     resize( 596, 476 );
+		setMaximumHeight(476); setMaximumWidth(596);
     setCaption( i18n( "Krusader::Search" ) );
     KrSearchBaseLayout = new QGridLayout( this );
     KrSearchBaseLayout->setSpacing( 6 );
