@@ -85,7 +85,7 @@ class KCMDLine : public QWidget  {
 public: 
 	KCMDLine(QWidget *parent=0, const char *name=0);
 	~KCMDLine();
-	void setCurrent(const QString &p) { path->setText(p+">"); completion.setDir(p); }
+	void setCurrent(const QString &);
 	
 public slots:
   inline void setFocus() { cmdLine->setFocus(); } // overloaded for KCmdLine

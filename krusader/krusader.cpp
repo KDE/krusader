@@ -135,9 +135,11 @@ Krusader::Krusader() : KParts::MainWindow() {
 
 	// init the permmision handler class
   KRpermHandler::init();
-  kdDebug() << "Creating Krusader GUI..." << endl;
+
   // create the main view and set it
   mainView=new KrusaderView(this);
+  mainView->start();
+  
   // setup keyboard accelerators	
 	setupAccels();
 	
@@ -164,7 +166,6 @@ Krusader::Krusader() : KParts::MainWindow() {
   if (runKonfig) slot->runKonfigurator(true);
 
   // refresh the right and left panels
-  kdDebug() << "Opening the startup URLs..." << endl;
 	mainView->left->func->refresh();
 	mainView->right->func->refresh();
 }
@@ -201,7 +202,7 @@ bool Krusader::versionControl() {
   return retval;
 }
 
-void Krusader::statusBarUpdate(QString mess) {
+void Krusader::statusBarUpdate(QString& mess) {
   // change the message on the statusbar for 2 seconds
   statusBar()->message(mess,5000);
 }
@@ -366,12 +367,12 @@ void Krusader::savePosition(){
   config->writeEntry( "Panel Size", mainView->vert_splitter->sizes()[0]);
   config->writeEntry( "Terminal Size", mainView->vert_splitter->sizes()[1]);
 
-  config->writeEntry( "Left Name Size", mainView->left->fileList->columnWidth(0));
+/*  config->writeEntry( "Left Name Size", mainView->left->fileList->columnWidth(0));
   config->writeEntry( "Left Size Size", mainView->left->fileList->columnWidth(1));
   config->writeEntry( "Left Date Size", mainView->left->fileList->columnWidth(2));
   config->writeEntry( "Right Name Size", mainView->right->fileList->columnWidth(0));
   config->writeEntry( "Right Size Size", mainView->right->fileList->columnWidth(1));
-  config->writeEntry( "Right Date Size", mainView->right->fileList->columnWidth(2));
+  config->writeEntry( "Right Date Size", mainView->right->fileList->columnWidth(2));*/
   QValueList<int> lst = mainView->horiz_splitter->sizes();
   config->writeEntry( "Splitter Sizes", lst);
 

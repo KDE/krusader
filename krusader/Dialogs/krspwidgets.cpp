@@ -66,14 +66,14 @@ void KRSpWidgets::selectCompareColorMask(int *left, int *right) {
 
   // create the dialog, and fill in the data according to current color mask
   colorMaskDialog *dlg = new colorMaskDialog();
-  dlg->newerLeft->setChecked(l & KRListItem::newer);
+/*  dlg->newerLeft->setChecked(l & KRListItem::newer);
   dlg->olderLeft->setChecked(l & KRListItem::older);
   dlg->identicalLeft->setChecked(l & KRListItem::identical);
   dlg->exclusiveLeft->setChecked(l & KRListItem::exclusive);
   dlg->newerRight->setChecked(r & KRListItem::newer);
   dlg->olderRight->setChecked(r & KRListItem::older);
   dlg->identicalRight->setChecked(r & KRListItem::identical);
-  dlg->exclusiveRight->setChecked(r & KRListItem::exclusive);
+  dlg->exclusiveRight->setChecked(r & KRListItem::exclusive);*/
 
   if (!dlg->exec()) {
     *left = *right = -1;
@@ -82,7 +82,7 @@ void KRSpWidgets::selectCompareColorMask(int *left, int *right) {
 
   // create masks
   (*left) = 0; (*right) = 0;
-  (*left) |= (dlg->newerLeft->isChecked() ? KRListItem::newer : 0);
+/*  (*left) |= (dlg->newerLeft->isChecked() ? KRListItem::newer : 0);
   (*left) |= (dlg->olderLeft->isChecked() ? KRListItem::older : 0);
   (*left) |= (dlg->identicalLeft->isChecked() ? KRListItem::identical : 0);
   (*left) |= (dlg->exclusiveLeft->isChecked() ? KRListItem::exclusive : 0);
@@ -90,7 +90,7 @@ void KRSpWidgets::selectCompareColorMask(int *left, int *right) {
   (*right) |= (dlg->newerRight->isChecked() ? KRListItem::newer : 0);
   (*right) |= (dlg->olderRight->isChecked() ? KRListItem::older : 0);
   (*right) |= (dlg->identicalRight->isChecked() ? KRListItem::identical : 0);
-  (*right) |= (dlg->exclusiveRight->isChecked() ? KRListItem::exclusive : 0);
+  (*right) |= (dlg->exclusiveRight->isChecked() ? KRListItem::exclusive : 0);*/
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////

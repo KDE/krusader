@@ -106,6 +106,12 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
 	historyList.setAutoDelete(true);
 }
 
+void KCMDLine::setCurrent(const QString &p) {
+  path->setText(p+">");
+  completion.setDir(p);
+}
+
+
 KCMDLine::~KCMDLine(){
 }
 

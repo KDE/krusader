@@ -40,7 +40,8 @@ class ListPanelFunc : public QObject{
 friend class ListPanel;
 	Q_OBJECT
 public slots:
-	void execute(QListViewItem *i);
+	void execute(QString&);
+  void openUrl(const QString& path,const QString& type=QString::null );
 
 public:
 	ListPanelFunc(class ListPanel *parent);
@@ -49,7 +50,6 @@ public:
   inline void refresh(){ refresh(panel->virtualPath); } // re-read the files
 	inline vfs* files()  { return vfsStack.top();      } // return the vfs
   void refresh(const QString path);
-  void openUrl( QString path,QString type=QString::null );
   void refreshActions();
 
 	void redirectLink();

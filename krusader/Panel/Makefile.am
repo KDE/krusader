@@ -5,9 +5,9 @@ INCLUDES = $(all_includes)
 
 libPanel_a_METASOURCES = AUTO
 
-libPanel_a_SOURCES = panelfunc.cpp listpanel.cpp krlistitem.cpp kfilelist.cpp 
+libPanel_a_SOURCES = krview.cpp krdetailedviewitem.cpp krdetailedview.cpp panelfunc.cpp listpanel.cpp 
 
 
-EXTRA_DIST = kfilelist.cpp kfilelist.h krlistitem.cpp krlistitem.h listpanel.cpp panelfunc.cpp panelfunc.h listpanel.h 
+EXTRA_DIST = listpanel.cpp panelfunc.cpp panelfunc.h listpanel.h krdetailedview.cpp krdetailedview.h krdetailedviewitem.cpp krdetailedviewitem.h krview.cpp krview.h krviewitem.h 
 
 ####### kdevelop will overwrite this part!!! (end)############

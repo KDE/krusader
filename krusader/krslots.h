@@ -34,10 +34,11 @@
 #define KRSLOTS_H
 
 #include <qobject.h>
+// the 2 following #includes should go away with the ugly stubs on the bottom
+#include "krusader.h"
+#include "krusaderview.h"
 
-/**
-  *@author Shie Erlich & Rafi Yanai
-  */
+class ListPanel;
 
 class KRslots : public QObject  {
 	Q_OBJECT
@@ -112,6 +113,10 @@ public slots:
 	void deleteFiles();     	
 	// F9
 	void rename();
+
+  // ugly stubs, remove later ?
+  void slotCurrentChanged(QString p) { krApp->mainView->slotCurrentChanged(p); }
+  void slotSetActivePanel(ListPanel *p) { krApp->mainView->slotSetActivePanel(p); }
 };
 
 #endif

@@ -27,14 +27,16 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+#define _GNU_SOURCE
+
 // QT includes
 #include <qbitmap.h>
-#include <qheader.h>
 #include <qwhatsthis.h>
 #include <qstringlist.h>
 #include <qstrlist.h>
 #include <qdragobject.h>
 #include <qpopupmenu.h>
+#include <qheader.h>
 #include <qtimer.h>
 #include <qregexp.h>
 // KDE includes
@@ -42,6 +44,7 @@
 #include <klocale.h>
 #include <kmimetype.h>
 #include <kurl.h>
+#include <kurlrequester.h>
 #include <ktrader.h>
 #include <krun.h>
 #include <kopenwith.h>
@@ -63,28 +66,24 @@
 #include "../VFS/normal_vfs.h"
 #include "../VFS/krpermhandler.h"
 #include "listpanel.h"
-#include "krlistitem.h"
 #include "../defaults.h"
 #include "../resources.h"
-#include "kfilelist.h"
 #include "panelfunc.h"
 #include "../MountMan/kmountman.h"
 #include "../Dialogs/krdialogs.h"
 #include "../BookMan/bookman.h"
 #include "../Dialogs/krspwidgets.h"
+#include "krdetailedview.h"
 typedef QValueList<KServiceOffer> OfferList;
 
 /////////////////////////////////////////////////////
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
-					 QWidget(parent,name), colorMask(255), compareMode(false),
-           currDragItem(0), statsAgent(0) {
+  QWidget(parent, name), colorMask(255), currDragItem(0), compareMode(false),  statsAgent(0) {
 
-  setNameToMakeCurrent(QString::null);
   func = new ListPanelFunc(this);
   setAcceptDrops(true);
-  setMouseTracking(false);
 	layout=new QGridLayout(this,3,2);
 
   status = new KSqueezedTextLabel(this);
@@ -105,6 +104,7 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
   bookmarkList->setPixmap(im.scale(sheight,sheight));
   bookmarkList->setTextLabel(i18n("Open your bookmarks"),true);
   bookmarkList->setPopupDelay(10); // 0.01 seconds press
+  bookmarkList->setAcceptDrops(false);
   connect(bookmarkList,SIGNAL(pressed()),this,SLOT(slotFocusOnMe()));
   connect(bookmarkList,SIGNAL(pressed()),this,SLOT(slotRefreshBookmarks()));
     // create the pop-up menu for the bookmarks,
@@ -128,74 +128,28 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
   totals->setMaximumHeight(sheight);
   QWhatsThis::add(totals,i18n("The totals bar shows how much files exist, how many did you select and the bytes math"));
 
-  origin = new QPushButton("", this);
-  origin->setMaximumHeight(QFontMetrics(origin->font()).height()+4);
-  QWhatsThis::add(origin,i18n("This shows the full path to your current directory"));
-  connect(origin,SIGNAL(clicked()),this,SLOT(slotFocusOnMe()));
+  origin = new KURLRequester(this);
+  origin->setShowLocalProtocol(false);
+  origin->lineEdit()->setURLDropsEnabled(true);
+  origin->setMode(KFile::Directory | KFile::ExistingOnly);
+  connect(origin,SIGNAL(returnPressed(const QString&)),this,SLOT(slotFocusOnMe()));
+  connect(origin,SIGNAL(returnPressed(const QString&)),func,SLOT(openUrl(const QString&)));
+  connect(origin,SIGNAL(urlSelected(const QString&)),this,SLOT(slotFocusOnMe()));
+  connect(origin,SIGNAL(urlSelected(const QString&)),func,SLOT(openUrl(const QString&)));
 
-  fileList = new KFileList(this);
-  krConfig->setGroup("Look&Feel");
-  fileList->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
-	fileList->setAllColumnsShowFocus(true);
-	fileList->setMultiSelection(true);
-	fileList->setSelectionMode(QListView::Extended);
-	fileList->setShowSortIndicator(true);
-	fileList->setVScrollBarMode(QScrollView::AlwaysOn);
-	fileList->setHScrollBarMode(QScrollView::Auto);
-  //fileList->header()->setMaximumHeight(QFontMetrics(fileList->header()->font()).height()+2);
-	int i=QFontMetrics(fileList->font()).width("W");
-	int j=QFontMetrics(fileList->font()).width("0");
-  if (i<j) i=j;
-  // get the save sizes of the columns
-  QString side = (mirrored ? "Right " : "Left ");
-  krConfig->setGroup("Private");
-	fileList->addColumn(i18n("Name"),krConfig->readNumEntry(side+"Name Size",	i*17));
-	fileList->addColumn(i18n("Size"),krConfig->readNumEntry(side+"Size Size",
-	                    QFontMetrics(fileList->font()).width("00,000,000")+5));
-	fileList->setColumnAlignment(1,Qt::AlignRight);
-	fileList->addColumn(i18n("Date"),krConfig->readNumEntry(side+"Date Size",
-	                    QFontMetrics(fileList->font()).width("09/09/09  09:09")+5));
-	fileList->setColumnAlignment(2,Qt::AlignHCenter);
-	fileList->addColumn(i18n("r"),17);
-	fileList->addColumn(i18n("w"),17);
-	fileList->addColumn(i18n("x"),17);
-  fileList->setColumnAlignment(3,Qt::AlignCenter);
-  fileList->setColumnAlignment(4,Qt::AlignCenter);
-  fileList->setColumnAlignment(5,Qt::AlignCenter);
-  QWhatsThis::add(fileList,i18n("This is your regular file list. Except, the R,W and X column represent the permission whicb applies to you, i.e: if you see an 'X' in the W column, it means that YOU can't write to this file. No need to read a 10-length permission any more !!"));
-    // when fileList wants us to drag ...
-  connect(fileList, SIGNAL(letsDrag(int)), this, SLOT(startDragging(int)));	
-    // when the drag is finished
-  connect(this,SIGNAL(finishedDragging()), fileList, SLOT(finishedDragging()));
-  	// double click and pressing return executes
-  connect(fileList, SIGNAL(doubleClicked(QListViewItem*)), func,
-          SLOT(execute(QListViewItem*)));
-  connect(fileList, SIGNAL(returnPressed(QListViewItem *)), func,
-          SLOT(execute(QListViewItem*)));
-		// even a "drag-swush" through the list changes focus
-	connect(fileList, SIGNAL(mouseButtonPressed(int,QListViewItem *,const QPoint &,int)),
-					this,SLOT(slotFocusOnMe()));
-		// mouse over item event
-	connect(fileList, SIGNAL(onItem(QListViewItem*)),
-					this,SLOT(slotChangeStatus(QListViewItem*)));
-		// a change in the selection needs to update totals
-	connect(fileList, SIGNAL(selectionChanged()), this,	SLOT(slotUpdateTotals()));
-    // right-click menu
-  connect(fileList, SIGNAL(contextMenu(KListView *, QListViewItem*,const QPoint&)), this,
-          SLOT(popRightClickMenu(KListView *,QListViewItem*,const QPoint&)));
+  view = new KrDetailedView(this, krConfig);
+  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(executed(QString&)), func, SLOT(execute(QString&)));
+	connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(needFocus()), this, SLOT(slotFocusOnMe()));
+  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(selectionChanged()), this, SLOT(slotUpdateTotals()));
+  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(itemDescription(QString&)), krApp, SLOT(statusBarUpdate(QString&)));
+  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(contextMenu(const QPoint &)), this, SLOT(popRightClickMenu(const QPoint &)));
+  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));	
+  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));	
+  ////////////////////////////// to do connections ///////////////////////////////////////////////
 
-		// conncet krusder status bar with mouse over event...
-	connect(this,SIGNAL(signalStatus(QString)),
-					krApp, SLOT(statusBarUpdate(QString)));
-	  // when selection change..
-	connect(fileList, SIGNAL(currentChanged(QListViewItem *)),
-	        this,SLOT(slotSelectionChanged(QListViewItem *)));
-
-		// make sure that a focus/path change reflects in the command line and activePanel
-	connect(this,SIGNAL(cmdLineUpdate(QString)),this->parent()->parent()->parent(),
-					SLOT(slotCurrentChanged(QString)) );
-	connect(this,SIGNAL(activePanelChanged(ListPanel *)),this->parent()->parent()->parent(),
-					SLOT(slotSetActivePanel(ListPanel *)) );
+	// make sure that a focus/path change reflects in the command line and activePanel
+	connect(this,SIGNAL(cmdLineUpdate(QString)), SLOTS, SLOT(slotCurrentChanged(QString)) );
+	connect(this,SIGNAL(activePanelChanged(ListPanel *)), SLOTS, SLOT(slotSetActivePanel(ListPanel *)) );
 
     // when the BookMan asks to refresh bookmarks...
   connect(krBookMan, SIGNAL(refreshBookmarks()), this, SLOT(slotRefreshBookmarks()));
@@ -210,53 +164,58 @@ ListPanel::ListPanel(QWidget *parent, const bool mirrored, const char *name ) :
 		layout->addWidget(status,1,1);
 		layout->addWidget(bookmarkList,1,0);
 	}
-	layout->addMultiCellWidget(fileList,2,2,0,1);
-	layout->addMultiCellWidget(totals,3,3,0,1);
+  layout->addMultiCellWidget(dynamic_cast<KrDetailedView*>(view)->widget(), 2,2,0,1);
+  layout->addMultiCellWidget(totals,3,3,0,1);
 
 	filter = ALL;
 }
 
+void ListPanel::slotUpdateTotals() {
+	totals->setText(view->statistics());
+}
+
 void ListPanel::select(bool select, bool all) {
   if (all)
-    if (select) fileList->select(QString("*"));
-    else fileList->unselect(QString("*"));
+    if (select) view->select(QString("*"));
+    else view->unselect(QString("*"));
   else {
     QString answer=KRSpWidgets::getMask((select ? i18n(" Select Files ") : i18n(" Unselect Files ")));
   	// if the user canceled - quit
   	if (answer == QString::null) return;
-  	if (select) fileList->select(answer);
-  	else fileList->unselect(answer);
+  	if (select) view->select(answer);
+  	else view->unselect(answer);
   }
 }
 
 void ListPanel::invertSelection(){
-	fileList->invertSelection();
+	view->invertSelection();
 }
 
 void ListPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
-  krConfig->setGroup("Look&Feel");
-	otherPanel->focused=false;
+  // we start by calling the KVFS function
+	krConfig->setGroup("Look&Feel");
+
+  // take care of the 'otherpanel'
   QPalette q( otherPanel->status->palette() );
   q.setColor( QColorGroup::Foreground,KGlobalSettings::textColor());
   q.setColor( QColorGroup::Background,KGlobalSettings::baseColor());
 
-  otherPanel->origin->setPalette(q);
   otherPanel->status->setPalette(q);
   otherPanel->totals->setPalette(q);
 	otherPanel->bookmarkList->setBackgroundMode(PaletteBackground);
   otherPanel->bookmarkList->setPalette(q);
+  otherPanel->view->prepareForPassive();
 
-  focused=true;
-  QPalette sp( status->palette() );
-  sp.setColor( QColorGroup::Foreground,KGlobalSettings::highlightedTextColor() );
-  sp.setColor( QColorGroup::Background,KGlobalSettings::highlightColor() );
-  status->setPalette(sp);
-  origin->setPalette(sp);
-  totals->setPalette(sp);
+  // now, take care of this panel
+  QPalette p( status->palette() );
+  p.setColor( QColorGroup::Foreground,KGlobalSettings::highlightedTextColor() );
+  p.setColor( QColorGroup::Background,KGlobalSettings::highlightColor() );
+  status->setPalette(p);
+  totals->setPalette(p);
   bookmarkList->setBackgroundMode(PaletteBackground);
-  bookmarkList->setPalette(sp);
+  bookmarkList->setPalette(p);
 
-	fileList->setFocus();     // get the keyboard attention to the file list
+  view->prepareForActive();
 	emit cmdLineUpdate(realPath);
 	emit activePanelChanged(this);
 
@@ -265,18 +224,6 @@ void ListPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
   bp.setColor( QColorGroup::Background,KGlobalSettings::activeTitleColor() );
   bookmarks->setPalette(bp);
 	func->refreshActions();
-}
-
-// overload this to control the NAME column resize
-void ListPanel::resizeEvent ( QResizeEvent *e ) {
-  QWidget::resizeEvent(e);
-	int delta=e->size().width() - fileList->columnWidth(0) - fileList->columnWidth(1)
-															- fileList->columnWidth(2) - fileList->columnWidth(3)*5+11;
-	// do not down-size below base-size of 8 letters to the name column
-	int w=QFontMetrics(fileList->font()).width("W");
-	if (fileList->columnWidth(0)<(w*8) && delta<0) return;
-	fileList->setColumnWidth(0,fileList->columnWidth(0)+delta);
-	fileList->triggerUpdate();
 }
 
 // this is used to start the panel, AFTER setOther() has been used
@@ -314,245 +261,43 @@ void ListPanel::slotStartUpdate(){
 	
 	while( func->inRefresh ) ; // wait until the last refresh finish
 	func->inRefresh = true;  // make sure the next refresh wait for this one
-	
-	fileList->clear();
+  krApp->setCursor(KCursor::workingCursor());
+	view->clear();
 
 	// set the virtual path
 	virtualPath = func->files()->vfs_getOrigin();
 	if(func->files()->vfs_getType() == "normal")
 	  realPath = virtualPath;
-	// set the origin path
-  QString shortPath = virtualPath ,s1,s2;
-	shortPath = shortPath.replace( QRegExp("\\\\"),"#");
-	if ( QFontMetrics(origin->font()).width(shortPath)+40 > origin->width() ){
-		s1 = shortPath.left((shortPath.length()/2));
-		s2 = shortPath.right((shortPath.length()/2));
-		while( QFontMetrics(origin->font()).width(s1+"..."+s2)+40 > origin->width() ){
-			s1.truncate(s1.length()-1);
-			s2 = s2.right(s2.length()-1);
-  	}
-  	shortPath = s1+"..."+s2;
-  }
-	origin->setText(shortPath);
-
+	this->origin->setURL(virtualPath);
 	emit cmdLineUpdate(realPath);	// update the command line
 }
 
 void ListPanel::slotEndUpdate(){	
 	slotGetStats(virtualPath);
 	slotUpdate();
-	if( compareMode ) {
-	  otherPanel->fileList->clear();
+	if (compareMode) {
+	  otherPanel->view->clear();
 	  ((ListPanel*)otherPanel)->slotUpdate();
 	}
 	// return cursor to normal arrow
 	krApp->setCursor(KCursor::arrowCursor());
+  slotUpdateTotals();
 }
 
 void ListPanel::slotUpdate(){
-	QListViewItem *item = fileList->firstChild();
-	QListViewItem *currentItem = item;
-	QString size;
-	QString name;
-	vfs* files = func->files();
-	
 	// if we are not at the root add the ".." entery
 	QString origin = func->files()->vfs_getOrigin();
-	if( origin.right(1)!="/" && !((files->vfs_getType()=="ftp")&&
+	if( origin.right(1)!="/" && !((func->files()->vfs_getType()=="ftp")&&
       origin.find('/',origin.find(":/")+3)==-1) ) {
-		QListViewItem * item=new KRListItem(fileList,"..","<DIR>");
-		item->setPixmap(0,FL_LOADICON("up"));
-	  item->setSelectable(false);
-	}
+    view->addItems(func->files());
+  } else view->addItems(func->files(), false);
 
-	for( vfile* vf=files->vfs_getFirstFile(); vf != 0 ; vf=files->vfs_getNextFile() ){
-	
-		size =  KRpermHandler::parseSize(vf->vfile_getSize());
-		name =  vf->vfile_getName();
-		bool isDir = vf->vfile_isDir();
-		KRListItem::cmpColor color = KRListItem::none;
-		if( compareMode ){
-		  vfile* ovf = otherPanel->func->files()->vfs_search(vf->vfile_getName());
-		  if (ovf == 0 ) color = KRListItem::exclusive;  // this file doesn't exist on the other panel
-		  else{ // if we found such a file
-        QString date1 = KRpermHandler::date2qstring(vf->vfile_getDateTime());
-        QString date2 = KRpermHandler::date2qstring(ovf->vfile_getDateTime());
-        if (date1 > date2) color = KRListItem::newer; // this file is newer than the other
-        else
-        if (date1 < date2) color = KRListItem::older; // this file is older than the other
-        else
-        if (date1 == date2) color = KRListItem::identical; // the files are the same
-		  }
-		}
-		
-		if(!isDir){
-			switch(filter){
-    		case ALL : 		break;
-				case EXEC:  	if (!vf->vfile_isExecutable()) continue;
-											break;
-				case CUSTOM:  if (!QDir::match(filterMask,name)) continue;
-											break;
-			}
-		  if ( compareMode && !(color & colorMask) ) continue;
-		}
-
-		item = new KRListItem(fileList,item,name,
-				isDir ? QString("<DIR>") : size,
-		    vf->vfile_getDateTime(),"","","",color);
-
-  	switch (vf->vfile_isReadable()){
-      case ALLOWED_PERM: item->setText(3,QString("r")); break;
-      case UNKNOWN_PERM: item->setText(3,QString("?")); break;
-      case NO_PERM:      item->setText(3,QString("-")); break;
-    }
-  	switch (vf->vfile_isWriteable()){
-      case ALLOWED_PERM: item->setText(4,QString("w")); break;
-      case UNKNOWN_PERM: item->setText(4,QString("?")); break;
-      case NO_PERM:      item->setText(4,QString("-")); break;
-    }
-  	switch (vf->vfile_isExecutable()){
-      case ALLOWED_PERM: item->setText(5,QString("x")); break;
-      case UNKNOWN_PERM: item->setText(5,QString("?")); break;
-      case NO_PERM:      item->setText(5,QString("-")); break;
-    }
-				
-		item->setPixmap(0,getIcon(vf, color));
-
-		// if the item should be current - make it so
-		if(item->text(0) == nameToMakeCurrent) currentItem = item;
-	}
-	
-//	fileList->setSorting(0);
-	slotUpdateTotals();
- 	// set the currentItem -visible
-  fileList->setCurrentItem(currentItem);
-	fileList->ensureItemVisible(currentItem);
- 	
  	func->inRefresh = false;
-}
-
-// walk through the list and update the no. of selected files and their size
-////////////////////////////////////////////////////////////////////////////
-void ListPanel::slotUpdateTotals() {
-  int totalNo = 0, selectedNo = 0;
-	long long size=0 , totalSize = 0, selectedSize = 0;
-	QString totalsLine;
-		
-	for (QListViewItem *iterator=fileList->firstChild(); iterator != 0; iterator=iterator->itemBelow()){
-		// if the current item is not a directory - calculate it's size
-		if ( (iterator->text(1))!=QString("<DIR>") )
-			  size=(iterator->text(1).replace(QRegExp(","),"").toLong());
-		else
-				size = 0;
-    // update the totals numbers
-		if (iterator->text(0)!=QString("..")) ++totalNo;
-		totalSize+=size;
-		// if the current item is selected - update the selected numbers
-		if (iterator->isSelected() && iterator->text(0)!=QString("..")) {
-			++selectedNo;
-			selectedSize+=size;
-		}
-	}
-
-	totalsLine = QString("%1 "+i18n("out of")+" %2 "+i18n("selected")+", %3 "+i18n("out of")+
-					" %4").arg(selectedNo).arg(totalNo).arg(KIO::convertSize(selectedSize)).
-					arg(KIO::convertSize(totalSize));
-	totals->setText(totalsLine);
-}
-
-QPixmap ListPanel::getIcon(vfile* vf, KRListItem::cmpColor color){
-	krConfig->setGroup("Advanced");
-	//////////////////////////////
-	QPixmap icon;
-	QString mime = vf->vfile_getMime();
-	QPixmapCache::setCacheLimit( krConfig->readNumEntry("Icon Cache Size",_IconCacheSize) );
-	
-	// first try the cache
-	if (!QPixmapCache::find(mime,icon)){
-	  // get the icon.
-	  if ( mime == "Broken Link !"  )
-	    icon = FL_LOADICON("file_broken");
-	  else {
-	    icon = FL_LOADICON(KMimeType::mimeType(mime)->icon(QString::null,true));
-	  }
-	  // insert it into the cache
-    QPixmapCache::insert(mime,icon);
-	}
-	// if it's a symlink - add an arrow overlay
-	if(vf->vfile_isSymLink()){
-		QPixmap link(link_xpm);
-		bitBlt (&icon,0,icon.height()-11,&link,0,21,10,11,CopyROP,false);
-		icon.setMask( icon.createHeuristicMask(false) );
-  }
-
-  // color-coding for compare mode
-  if (color != KRListItem::none) {
-    QPixmap block;
-    switch (color) {
-      case KRListItem::exclusive : block = QPixmap(blue_xpm);
-                                   break;
-      case KRListItem::newer     : block = QPixmap(green_xpm);
-                                   break;
-      case KRListItem::older     : block = QPixmap(red_xpm);
-                                   break;
-      case KRListItem::identical : block = QPixmap(yellow_xpm);
-                                   break;
-			case KRListItem::none      : break; /* keep the compiler happy */
-    }
-		
-		bitBlt (&icon,icon.width()-11,0,&block,0,21,10,11,CopyROP,false);
-		icon.setMask( icon.createHeuristicMask(false) );
-  }
-	
-	return icon;	
-}
-
-void ListPanel::slotChangeStatus(QListViewItem *i){
-	if (fileList->getFilename(i)=="..") emit signalStatus(i18n("Climb up the directory tree"));
-	else{
- 	   	vfile* vf = func->files()->vfs_search(fileList->getFilename(i));
-			if(vf == 0) return;
-			
-			QString text = vf->vfile_getName();
-			
-			QString comment = KMimeType::mimeType(vf->vfile_getMime() )->comment(text, false );
-			
-  		QString myLinkDest = vf->vfile_getSymDest();
-  		long long mySize = vf->vfile_getSize();
-
- 			QString text2 = text.copy();
-  		mode_t m_fileMode = vf->vfile_getMode();
-
-  		if (vf->vfile_isSymLink() ){
-      	QString tmp;
-      	
-				if ( comment.isEmpty() )	tmp = i18n ( "Symbolic Link" ) ;
-				else if( vf->vfile_getMime() == "Broken Link !" ) tmp = i18n("(broken link !)");
-  		  else  tmp = i18n("%1 (Link)").arg(comment);
-      	
-				text += "->";
-      	text += myLinkDest;
-      	text += "  ";
-      	text += tmp;
-  		} else if ( S_ISREG( m_fileMode ) ){
-      	text = QString("%1 (%2)").arg(text2).arg( KIO::convertSize( mySize ) );
-      	text += "  ";
-      	text += comment;
-  		} else if ( S_ISDIR ( m_fileMode ) ){
-      	text += "/  ";
-     		text += comment;
-    	} else {
-      	text += "  ";
-      	text += comment;
-    	}
-			
-		emit signalStatus(text);
-	}
 }
 
 //  refresh the panel when a bookmark was chosen
 void ListPanel::slotBookmarkChosen(int id) {
- 	setNameToMakeCurrent(QString::null);
+ 	view->setNameToMakeCurrent(QString::null);
 	QString origin = krBookMan->getUrlById(id);
  	func->openUrl( origin );
 }
@@ -586,99 +331,46 @@ void ListPanel::gotStats(QString data) {
   if (statsAgent) delete statsAgent;
 }
 
-// calculate item under the mouse, keep it and rebuild the old one
-QListViewItem* ListPanel::itemOn(QPoint p) {
-  // if there is a previous dealt-with item, rebuild it's pixmap
-  if (currDragItem) currDragItem->setPixmap(0,currDragPix);
-  // find the size of the listview's header
-  int headerSize=height()-totals->height()-origin->height()-status->height()-fileList->visibleHeight();
-  headerSize-=(fileList->horizontalScrollBar()->isVisible() ?
-              fileList->horizontalScrollBar()->height() : 0);
-//  QPoint evPos=mapToGlobal(p);
-  p.setY(p.y()-headerSize);
-  QListViewItem *i=fileList->itemAt(fileList->mapFromGlobal(p));
-  if (!i) return 0;
-  currDragItem=i;             // keep the current item's id and pixmap
-  currDragPix=*i->pixmap(0);
-  return i;
-}
-
-void ListPanel::dragEnterEvent ( QDragEnterEvent *) {
-  currDragItem=0; // just making sure
-}
-
-void ListPanel::dragLeaveEvent ( QDragLeaveEvent *) {
-  // if leaving panel, make sure we cleaned-up first.
-  if (currDragItem) currDragItem->setPixmap(0,currDragPix);
-  currDragItem=0;
-}
-
+/**
+ * this function handles all the drag inside the panel which is NOT view-related.
+ * the view takes care of its own, and when the view get's a drop, it emits
+ * a gotDrop() signal, which is connected to handleDropOnView()
+ * this function wouldn't be needed, accept for making sure no one drags on the
+ * status or totals
+ */
 void ListPanel::dragMoveEvent( QDragMoveEvent *ev ) {
-  scroll = false;
   QStrList list;
   if (!QUriDrag::canDecode(ev) || !ev->provides("text/uri-list") ||
       !func->files()->vfs_isWritable() ){
     ev->ignore(); // not for us to handle!
     return;
-  } // if we got here, let's check the mouse location
-  QPoint evPos=mapToGlobal(ev->pos());
-  // calculate true width of fileList
-  int hdelta=(fileList->horizontalScrollBar()->isVisible() ?
-              fileList->horizontalScrollBar()->height() : 0);
-  // create locations
-  QPoint bottomRight(fileList->visibleWidth(),height()-totals->height()-hdelta);
-  QPoint topLeft(0,bottomRight.y()-fileList->visibleHeight());
-  topLeft=mapToGlobal(topLeft);
-  bottomRight=mapToGlobal(bottomRight);
-  // if we below the file list - scroll down
-  if ( evPos.y() > (bottomRight.y()-10) && evPos.y() < bottomRight.y() ){
-    fileList->startScrolling(1);
-    ev->acceptAction();
+  }
+  // if we got here, let's check the mouse location
+  if (status->geometry().contains(ev->pos()) ||
+      totals->geometry().contains(ev->pos()) ||
+      bookmarkList->geometry().contains(ev->pos())) {
+    ev->ignore();
     return;
-  }
-  // if we above the file list - scroll up
-  if ( evPos.y() < (topLeft.y()+10) && evPos.y() > topLeft.y()){
-    fileList->startScrolling(-1);
-    ev->acceptAction();
-    return;
-  }
-
-  // else implied - stop scrolling
-  fileList->startScrolling(0);
-
-  if ( evPos.x()<topLeft.x() || evPos.x()>bottomRight.x() ||
-       evPos.y()<topLeft.y() || evPos.y()>bottomRight.y() ) {
-     ev->ignore();  // if we're in a panel but out of the file list
-     return;
-  }
-  QListViewItem *i=itemOn(evPos);
-  // if we're pointing on an empty spot, leave
-  if (!i) { ev->acceptAction(); return; }
-  // otherwise, check if we're dragging on a directory
-  if (i->text(1)=="<DIR>" && i->text(0)!="..") {
-    i->setPixmap(0,FL_LOADICON("folder_open"));
   }
   ev->acceptAction();
 }
 
-void ListPanel::dropEvent( QDropEvent *ev ) {
+void ListPanel::handleDropOnView(QDropEvent *e) {
   // if copyToPanel is true, then we call a simple vfs_addfiles
   bool copyToDirInPanel=false;
-//  bool copyToZip=false;
   bool dragFromOtherPanel=false;
   bool dragFromThisPanel=false;
   bool isWritable=func->files()->vfs_isWritable();
 
   vfs* tempFiles = func->files();
   vfile *file;
-  QPoint evPos=mapToGlobal(ev->pos());
-  QListViewItem *i=itemOn(evPos);
+  KrViewItem *i=view->getKrViewItemAt(e->pos());
 
-  if (ev->source()==otherPanel) dragFromOtherPanel=true;
-  if (ev->source()==this)       dragFromThisPanel=true;
+  if (e->source()==otherPanel) dragFromOtherPanel=true;
+  if (e->source()==this)       dragFromThisPanel=true;
 
   if (i){
-     file=func->files()->vfs_search(i->text(0));
+     file=func->files()->vfs_search(i->name());
 
      if (!file) { // trying to drop on the ".."
        if(virtualPath.right(1)=="\\") // root of archive..
@@ -691,29 +383,26 @@ void ListPanel::dropEvent( QDropEvent *ev ) {
         if (isWritable) {
           // keep the folder_open icon until we're finished, do it only
           // if the folder is writeable, to avoid flicker
-          currDragPix=*i->pixmap(0);
-          i->setPixmap(0,FL_LOADICON("folder_open"));
         }
       }else
-        if (ev->source()==this) return ;// no dragging onto ourselves
+        if (e->source()==this) return ;// no dragging onto ourselves
     }
   } else    // if dragged from this panel onto an empty spot in the panel...
   if (dragFromThisPanel) {  // leave!
-    ev->ignore();
+    e->ignore();
     return;
   }
 
   if(!isWritable){
-    ev->ignore();
+    e->ignore();
     return;
   }
   //////////////////////////////////////////////////////////////////////////////
   // decode the data
   KURL::List URLs;
   QStrList list;
-  if (!QUriDrag::decode(ev,list)) {
-    ev->ignore(); // not for us to handle!
-    if (copyToDirInPanel) i->setPixmap(0,currDragPix); // clean-up
+  if (!QUriDrag::decode(e,list)) {
+    e->ignore(); // not for us to handle!
     return;
   } // now, the list of URLs is stored in 'list', we'll create a KURL::List
   QStrListIterator it(list);
@@ -726,60 +415,41 @@ void ListPanel::dropEvent( QDropEvent *ev ) {
 
   // the KURL::List is finished, let's go
   // --> display the COPY/MOVE/LINK menu
-  if (dragFromOtherPanel && ev->action()==QDropEvent::Move)
-    mode = KIO::CopyJob::Move;
-  else {
-    QPopupMenu popup;
-    popup.insertItem(i18n("Copy Here"),1);
-    if (func->files()->vfs_isWritable()) popup.insertItem(i18n("Move Here"),2);
-    if (func->files()->vfs_getType()=="normal" &&
-		    otherPanel->func->files()->vfs_getType()=="normal")
-      	popup.insertItem(i18n("Link Here"),3);
-    popup.insertItem(i18n("Cancel"),4);
-    int result=popup.exec(evPos);
-    switch (result) {
-      case 1 :
-        mode = KIO::CopyJob::Copy;
-        break;
-      case 2 :
-        mode = KIO::CopyJob::Move;
-        break;
-      case 3 :
-        mode = KIO::CopyJob::Link;
-        break;
-      case -1 :  // user pressed outside the menu
-      case 4:
-        if (copyToDirInPanel) i->setPixmap(0,currDragPix); // clean-up
-        return; // cancel was pressed;
-    }
-  } // big bunch o' stuff is finished, lets go on...
+  QPopupMenu popup(this);
+  popup.insertItem(i18n("Copy Here"),1);
+  if (func->files()->vfs_isWritable()) popup.insertItem(i18n("Move Here"),2);
+  if (func->files()->vfs_getType()=="normal" &&
+	    otherPanel->func->files()->vfs_getType()=="normal")
+    	popup.insertItem(i18n("Link Here"),3);
+  popup.insertItem(i18n("Cancel"),4);
+  QPoint tmp = mapToGlobal(e->pos());
+  int result=popup.exec(tmp);
+  switch (result) {
+    case 1 :
+      mode = KIO::CopyJob::Copy;
+      break;
+    case 2 :
+      mode = KIO::CopyJob::Move;
+      break;
+    case 3 :
+      mode = KIO::CopyJob::Link;
+      break;
+    case -1 :  // user pressed outside the menu
+    case 4:
+      return; // cancel was pressed;
+  }
 
   QString dir = "";
   if (copyToDirInPanel) {
-    dir = i->text(0);
-    i->setPixmap(0,currDragPix); // clean-up
+    dir = i->name();
   }
-  QWidget *notify = (!ev->source() ? 0 : ev->source());
+  QWidget *notify = (!e->source() ? 0 : e->source());
   tempFiles->vfs_addFiles(&URLs,mode,notify,dir);
 }
 
-void ListPanel::startDragging(int mode) {
-	QStringList names;
-	getSelectedNames(&names);
-	
-	bool draggingSingle;
-	// if the list is empty, don't drag nothing
-	switch (names.count()) {
-	  case 0 : emit finishedDragging(); // if dragged an empty space, don't do it!
-             return;
-    case 1 : draggingSingle=true;     // if drag a single file, change icon
-             break;
-    default: draggingSingle=false;
-  }
-	
+void ListPanel::startDragging(QStringList names, QPixmap px) {
 	KURL::List* urls = func->files()->vfs_getFiles(&names);
 	if( urls->isEmpty() ){ // avoid draging empty urls
-	  emit finishedDragging();
 	  return;
 	}
 	// KURL::List -> QStrList
@@ -789,17 +459,12 @@ void ListPanel::startDragging(int mode) {
 	delete urls; // free memory
           	
   QUriDrag *d=new QUriDrag(URIs,this);
-  if (draggingSingle) d->setPixmap(*fileList->currentItem()->pixmap(0),QPoint(-7,0));
-                 else d->setPixmap(FL_LOADICON("queue"),QPoint(-7,0));
-  emit finishedDragging();
-  switch (mode) {
-    case 0 : d->dragCopy(); break; // copy will be used for copy and for link
-    case 1 : d->dragMove(); break;
-  }
+  d->setPixmap(px,QPoint(-7,0));
+  d->dragCopy();
 }
 
 // pops a right-click menu for items
-void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint &loc) {
+void ListPanel::popRightClickMenu(const QPoint &loc) {
   // these are the values that will always exist in the menu
   #define OPEN_ID       90
   #define OPEN_WITH_ID  91
@@ -826,34 +491,26 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   bool multipleSelections=false;
   QListViewItem *iterator;
   // a quick hack to check if we've got more that one file selected
-  iterator=fileList->firstChild();
-  int i=0;
-  while (iterator) {
-    if (iterator->isSelected()) ++i;
-    iterator=iterator->itemBelow();
-    if (i>1) {
-      multipleSelections=true;
-      break;
-    }
-  }
-
-  if (fileList->getFilename(item)=="..") return;
-  vfile *vf = func->files()->vfs_search(fileList->getFilename(item));
-  if(vf==0) return;
+  KrViewItemList items;
+  view->getSelectedKrViewItems(&items);
+  if (items.empty()) return;
+  if (items.size() > 1) multipleSelections = true;
+  KrViewItem *item = items.first();
   // create the menu
   QPopupMenu popup,openWith,linkPopup;
   // the OPEN option - open preferd service
   popup.insertItem("Open/Run",OPEN_ID);      // create the open option
   if (!multipleSelections) { // meaningful only if one file is selected
-    popup.changeItem(OPEN_ID,*item->pixmap(0), // and add pixmap
-       i18n((vf->vfile_isExecutable())&&(!vf->vfile_isDir()) ? "Run" : "Open"));
+    popup.changeItem(OPEN_ID, item->icon(), // and add pixmap
+       i18n((item->isExecutable())&&(!item->isDir()) ? "Run" : "Open"));
     popup.insertSeparator();
   }
   // Open with
   // try to find-out which apps can open the file
-  OfferList offers =  KServiceTypeProfile::offers(vf->vfile_getMime());
+  OfferList offers;
   // this too, is meaningful only if one file is selected
   if (!multipleSelections) {
+    offers = KServiceTypeProfile::offers(item->mime());
     for(unsigned int i = 0; i<offers.count(); ++i){
       KService::Ptr service = offers[i].service();
       if( service->isValid() && service->type()=="Application" ) {
@@ -862,7 +519,7 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
       }
     }
     openWith.insertSeparator();
-    if(vf->vfile_isDir())
+    if(item->isDir())
       openWith.insertItem(krLoader->loadIcon("konsole",KIcon::Small),i18n("Terminal"),OPEN_TERM_ID);
     openWith.insertItem(i18n("Other..."),CHOOSE_ID);
     popup.insertItem(QPixmap(),&openWith,OPEN_WITH_ID);
@@ -881,7 +538,7 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   popup.insertItem(i18n("Delete"),DELETE_ID);
   // SHRED - only one file
   if (func->files()->vfs_getType()=="normal" &&
-      !vf->vfile_isDir() && !multipleSelections)
+      !item->isDir() && !multipleSelections)
   	popup.insertItem(i18n("Shred"),SHRED_ID);
   }
 	// create new shortcut or redirect links - not on ftp:
@@ -889,34 +546,32 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
 		popup.insertSeparator();
 		linkPopup.insertItem(i18n("new symlink"),NEW_SYMLINK);
     linkPopup.insertItem(i18n("new hardlink"),NEW_LINK);
-		if( vf->vfile_isSymLink() )
+		if( item->isSymLink() )
 			linkPopup.insertItem(i18n("redirect link"),REDIRECT_LINK);
     popup.insertItem(QPixmap(),&linkPopup,LINK_HANDLING);
     popup.changeItem(LINK_HANDLING,"Link handling");
-
-
   }
 	popup.insertSeparator();
-  if (func->files()->vfs_getType()!="ftp" && (vf->vfile_isDir() || multipleSelections))
+  if (func->files()->vfs_getType()!="ftp" && (item->isDir() || multipleSelections))
     krCalculate->plug(&popup);
-  if (func->files()->vfs_getType()=="normal" && vf->vfile_isDir() && !multipleSelections) {
-    if (krMtMan.getStatus(func->files()->vfs_getFile(fileList->getFilename(item)))==MountMan::KMountMan::MOUNTED)
+  if (func->files()->vfs_getType()=="normal" && item->isDir() && !multipleSelections) {
+    if (krMtMan.getStatus(func->files()->vfs_getFile(item->name()))==MountMan::KMountMan::MOUNTED)
         popup.insertItem(i18n("Unmount"),UNMOUNT_ID);
-    else if (krMtMan.getStatus(func->files()->vfs_getFile(fileList->getFilename(item)))==MountMan::KMountMan::NOT_MOUNTED)
+    else if (krMtMan.getStatus(func->files()->vfs_getFile(item->name()))==MountMan::KMountMan::NOT_MOUNTED)
         popup.insertItem(i18n("Mount"),MOUNT_ID);
-    if (krMtMan.ejectable(func->files()->vfs_getFile(fileList->getFilename(item))))
+    if (krMtMan.ejectable(func->files()->vfs_getFile(item->name())))
       popup.insertItem(i18n("Eject"), EJECT_ID);
   }
-
   // send by mail (only for KDE version >= 2.2.0)
-  if (Krusader::supportedTools().contains("MAIL") && !vf->vfile_isDir()) {
+  if (Krusader::supportedTools().contains("MAIL") && !item->isDir()) {
     popup.insertItem(i18n("Send by email"), SEND_BY_EMAIL);
   }
   // PROPERTIES
   popup.insertSeparator();
   krProperties->plug(&popup);
   // run it, on the mouse location
-  int result=popup.exec(loc);
+  int j=QFontMetrics(popup.font()).height()*2;
+  int result=popup.exec(QPoint(loc.x()+5,loc.y()+j));
   // check out the user's option
   KURL u;
   KURL::List lst;
@@ -924,15 +579,9 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   switch (result) {
     case -1 : return;     // the user clicked outside of the menu
     case OPEN_ID :        // Open/Run
-      //new KFileOpenWithHandler();
-      iterator=fileList->firstChild();
-      while (iterator) {
-        if (iterator->isSelected()) {
-          QString fname = fileList->getFilename(iterator);
-    	    u.setPath(func->files()->vfs_getFile(fname));
-          KRun::runURL(u, (func->files()->vfs_search(fname))->vfile_getMime());
-        }
-        iterator=iterator->itemBelow();
+      for (KrViewItemList::Iterator it = items.begin(); it!=items.end(); ++it) {
+        u.setPath(func->files()->vfs_getFile((*it)->name()));
+        KRun::runURL(u, item->mime());
       }
       break;
     case COPY_ID :
@@ -948,26 +597,25 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
       func->deleteFiles();
       break;
     case EJECT_ID :
-      MountMan::KMountMan::eject(func->files()->vfs_getFile(fileList->getFilename(item)));
+      MountMan::KMountMan::eject(func->files()->vfs_getFile(item->name()));
       break;
     case SHRED_ID :
       if (KMessageBox::warningContinueCancel(krApp,
-          i18n("Are you sure you want to shred ")+"\""+fileList->getFilename(item)+"\""+
+          i18n("Are you sure you want to shred ")+"\""+item->name()+"\""+
           " ? Once shred, the file is gone forever !!!",
           QString::null,KStdGuiItem::cont(),"Shred") == KMessageBox::Continue )
-        KShred::shred(func->files()->vfs_getFile(fileList->getFilename(item)));
+        KShred::shred(func->files()->vfs_getFile(item->name()));
       break;
     case OPEN_KONQ_ID :   // open in konqueror
-      kapp->startServiceByDesktopName("konqueror",func->files()->vfs_getFile(fileList->getFilename(item)));
+      kapp->startServiceByDesktopName("konqueror",func->files()->vfs_getFile(item->name()));
       break;
     case CHOOSE_ID :      // Other...
-      //new KFileOpenWithHandler();
-      u.setPath(func->files()->vfs_getFile(fileList->getFilename(item)));
+      u.setPath(func->files()->vfs_getFile(item->name()));
       lst.append(u);
       KRun::displayOpenWithDialog(lst);
       break;
     case MOUNT_ID :
-      krMtMan.mount(func->files()->vfs_getFile(fileList->getFilename(item)));
+      krMtMan.mount(func->files()->vfs_getFile(item->name()));
       break;
     case NEW_LINK :
 			func->krlink(false);
@@ -979,34 +627,29 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
 			func->redirectLink();
 			break;
     case UNMOUNT_ID :
-      krMtMan.unmount(func->files()->vfs_getFile(fileList->getFilename(item)));
+      krMtMan.unmount(func->files()->vfs_getFile(item->name()));
       break;
     case SEND_BY_EMAIL :
-      SLOTS->sendFileByEmail(func->files()->vfs_getFile(fileList->getFilename(item)));
+      SLOTS->sendFileByEmail(func->files()->vfs_getFile(item->name()));
       break;
     case OPEN_TERM_ID :   // open in terminal
 		  QString save = getcwd(0,0);
-		  chdir( func->files()->vfs_getFile(item->text(0)).local8Bit() );
+		  chdir( func->files()->vfs_getFile(item->name()).local8Bit() );
       KProcess proc;
 		  krConfig->setGroup("General");
 		  QString term = krConfig->readEntry("Terminal",_Terminal);
 		  proc << term;
-      if (!vf->vfile_isDir()) proc << "-e" << fileList->getFilename(item);
+      if (!item->isDir()) proc << "-e" << item->name();
   	  if(!proc.start(KProcess::DontCare))
   	    KMessageBox::sorry(krApp,i18n("Can't open ")+"\""+term+"\"");
 		  chdir(save.local8Bit());
       break;
 		}
     if( result >= SERVICE_LIST_ID ){
-      u.setPath(func->files()->vfs_getFile(fileList->getFilename(item)));
+      u.setPath(func->files()->vfs_getFile(item->name()));
       lst.append(u);
       KRun::run(*(offers[result-SERVICE_LIST_ID].service()),lst);
     }
-}
-
-void ListPanel::slotSelectionChanged(QListViewItem *item){
-  if( fileList->getFilename(item) != ".." )
-    setNameToMakeCurrent(fileList->getFilename(item));
 }
 
 void ListPanel::setFilter(FilterSpec f){
@@ -1030,23 +673,11 @@ void ListPanel::popBookmarks() {
 }
 
 QString ListPanel::getCurrentName() {
-  QString name;
-  QListViewItem *it = fileList->currentItem();
-  if ( !it ) return QString::null;  // safety
-  if ( (name = fileList->getFilename(it)) != "..")
-    return name;
+  QString name = view->getCurrentItem();
+  if (name != "..") return name;
   else return QString::null;
 }
 
 void ListPanel::prepareToDelete() {
-	setNameToMakeCurrent(fileList->getFilename(fileList->firstUnmarkedAboveCurrent()));
-}
-
-// this is called if the rightclick menu is popped from the keyboard
-void ListPanel::popRightClickMenu() {
-  // find out what's the current item and it's location
-  QListViewItem *item = fileList->currentItem();
-  if (item == 0) return;
-  QPoint loc(fileList->mapToGlobal(fileList->itemRect(item).topLeft()));
-  popRightClickMenu(fileList, item, loc);
+	view->setNameToMakeCurrent(view->firstUnmarkedAboveCurrent());
 }

@@ -66,7 +66,7 @@ public:
 public slots:
   // increase the internal progress bar
 	void incProgress(KProcess *,char *buffer,int buflen);
-	void statusBarUpdate(QString mess);
+	void statusBarUpdate(QString& mess);
   // in use by Krusader only
   void saveSettings();
   void savePosition();

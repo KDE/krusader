@@ -47,8 +47,8 @@
 #include <kdebug.h>
 // Krusader Includes
 #include "panelfunc.h"
-#include "krlistitem.h"
 #include "../krusader.h"
+#include "../krslots.h"
 #include "../defaults.h"
 #include "../VFS/normal_vfs.h"
 #include "../VFS/ftp_vfs.h"
@@ -76,24 +76,25 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent):
 	files()->vfs_refresh();
 }
 
-void ListPanelFunc::openUrl( QString path, QString type){
-	// check for archive:
+void ListPanelFunc::openUrl( const QString& path, const QString& type){
+  QString mytype, mypath = path;
+  // check for archive:
 	if( path.contains('\\') ) {
     // do we need to change VFS ?
 		QString archive = path.left( path.find('\\') );
 		QString directory = path.mid( path.findRev('\\')+1 );
 		if( type.isEmpty() ){
     	QString mime = KMimeType::findByURL(archive)->name();
-			type = mime.right(4);
-			if( type == "-rpm" ) type = "+rpm"; // open the rpm as normal archive
-			if( mime.contains("-rar") ) type = "-rar";
+			mytype = mime.right(4);
+			if( mytype == "-rpm" ) mytype = "+rpm"; // open the rpm as normal archive
+			if( mime.contains("-rar") ) mytype = "-rar";
 		}
-		changeVFS(type,archive);
+		changeVFS(mytype,archive);
 		// add warning to the backStack
 	  if(backStack.last() != "//WARNING//" ) backStack.append("//WARNING//");
 		
 		if( !directory.isEmpty() ){
-			panel->setNameToMakeCurrent(directory.mid(directory.findRev('/')+1));
+			panel->view->setNameToMakeCurrent(directory.mid(directory.findRev('/')+1));
 			directory =  directory.left(directory.findRev('/'));
       kdDebug() << archive+"\\"+directory << endl;
 			refresh(archive+"\\"+directory);
@@ -111,11 +112,11 @@ void ListPanelFunc::openUrl( QString path, QString type){
     // now we have a normal vfs- refresh it.
 		files()->blockSignals(false);
 		while( !KRpermHandler::dirExist(path) ){
-    	panel->setNameToMakeCurrent(path.mid(path.findRev('/')));
-			path = path.left(path.findRev('/'));
-			if( path.isEmpty() ) path = "/";	
+    	panel->view->setNameToMakeCurrent(mypath.mid(mypath.findRev('/')));
+			mypath = mypath.left(mypath.findRev('/'));
+			if( mypath.isEmpty() ) mypath = "/";	
 		}
-		refresh( path );
+		refresh( mypath );
 	}
 }
 
@@ -327,7 +328,7 @@ void ListPanelFunc::moveFiles(){
 		KURL destUrl;
 		destUrl.setPath(dest);
 		KIO::Job* job = new KIO::CopyJob(*fileUrls,destUrl, KIO::CopyJob::Move,false,true );
-		if (changed) connect(job,SIGNAL(result(KIO::Job*)),panel,SLOT(refresh()) );
+		if (changed) connect(job,SIGNAL(result(KIO::Job*)),SLOTS,SLOT(refresh()) );
   //else let the other panel do the dirty job
 	}else{
 		//check if copy is supported
@@ -351,7 +352,7 @@ void ListPanelFunc::rename(){
 	// if the user canceled - quit
 	if ( !ok || newName==fileName ) return;
 
-	panel->nameToMakeCurrent = newName;
+	panel->view->setNameToMakeCurrent(newName);
 	// as always - the vfs do the job
 	files()->vfs_rename(fileName,newName);
 }
@@ -371,7 +372,7 @@ void ListPanelFunc::mkdir(){
 		return;
 	}
 
-	panel->nameToMakeCurrent = dirName;
+	panel->view->setNameToMakeCurrent(dirName);
 	// as always - the vfs do the job
 	files()->vfs_mkdir(dirName);
 }
@@ -412,7 +413,7 @@ void ListPanelFunc::copyFiles() {
 		KURL destUrl;
 		destUrl.setPath(dest);
 		KIO::Job* job = new KIO::CopyJob(*fileUrls,destUrl, KIO::CopyJob::Copy,false,true );
-		if (refresh) connect(job,SIGNAL(result(KIO::Job*)),panel,SLOT(refresh()) );
+		if (refresh) connect(job,SIGNAL(result(KIO::Job*)),SLOTS,SLOT(refresh()) );
   // let the other panel do the dirty job
 	}else{
 		//check if copy is supported
@@ -496,10 +497,7 @@ void ListPanelFunc::deleteFiles() {
 }
 
 // this is done when you double click on a file
-void ListPanelFunc::execute(QListViewItem *i) {
-	if (!i) return;
-
-	QString name=panel->getFilename(i);
+void ListPanelFunc::execute(QString& name) {
 	if(name==".."){
 		dirUp();
 		return;
@@ -516,7 +514,7 @@ void ListPanelFunc::execute(QListViewItem *i) {
 
 	if (vf->vfile_isDir()){
 	  origin=="/"? origin+=name : origin+="/"+name;
-	  panel->nameToMakeCurrent = QString::null;
+	  panel->view->setNameToMakeCurrent(QString::null);
 		refresh(origin);
 	}
 	else if( KRarcHandler::arcHandled(type)){
@@ -539,8 +537,7 @@ void ListPanelFunc::dirUp(){
 	  vfsStack.remove();
     files()->blockSignals(false);
 		// make the current archive the current item on the new list
-		panel->nameToMakeCurrent =
-			origin.mid(origin.findRev('/')+1,origin.length()-origin.findRev('/')-2);
+		panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1,origin.length()-origin.findRev('/')-2));
 		files()->vfs_refresh();
 	  return;
 	}
@@ -549,7 +546,8 @@ void ListPanelFunc::dirUp(){
 	origin.truncate(origin.findRev('/'));
 
 	// make the current dir the current item on the new list
-	panel->nameToMakeCurrent = panel->virtualPath.right(panel->virtualPath.length()-origin.length()-1 );
+	panel->view->setNameToMakeCurrent(
+    panel->virtualPath.right(panel->virtualPath.length()-origin.length()-1) );
 
 	// check the '/' case
 	if ( origin=="" ) origin="/";
@@ -562,7 +560,7 @@ void ListPanelFunc::dirUp(){
 }
 
 void ListPanelFunc::changeVFS(QString type, QString origin){
-	panel->nameToMakeCurrent = QString::null;
+	panel->view->setNameToMakeCurrent(QString::null);
   vfs* v;
 	if (type == "ftp")
     v = new ftp_vfs(origin,panel);
@@ -747,7 +745,7 @@ void ListPanelFunc::FTPDisconnect(){
 		files()->blockSignals(false);
 		if( files()->vfs_getType() != "ftp" ) krFTPDiss->setEnabled(false);
     krFTPNew->setEnabled(true);
-    panel->nameToMakeCurrent = QString::null;
+    panel->view->setNameToMakeCurrent(QString::null);
     files()->vfs_refresh();
   }
 }
@@ -774,7 +772,7 @@ void ListPanelFunc::properties() {
   }
 	// create a new url and get the file's mode
   KPropertiesDialog *dlg=new KPropertiesDialog(fi);
-  connect(dlg,SIGNAL(applied()),panel,SLOT(refresh()));
+  connect(dlg,SIGNAL(applied()),SLOTS,SLOT(refresh()));
 }
 
 void ListPanelFunc::refreshActions(){

@@ -82,9 +82,9 @@ void KRslots::selectCompareMask() {
     MAIN_VIEW->left->colorMask = left;
     MAIN_VIEW->right->colorMask = right;
     if (krCompareDirs->isChecked() ) {
-      ((ListPanel*)MAIN_VIEW->left)->fileList->clear();
+      ((ListPanel*)MAIN_VIEW->left)->view->clear();
       ((ListPanel*)MAIN_VIEW->left)->slotUpdate();
-      ((ListPanel*)MAIN_VIEW->right)->fileList->clear();
+      ((ListPanel*)MAIN_VIEW->right)->view->clear();
       ((ListPanel*)MAIN_VIEW->right)->slotUpdate();
     }
   }
@@ -184,7 +184,7 @@ void KRslots::compareContent() {
 }
 
 void KRslots::rightclickMenu() {
-  ACTIVE_PANEL->popRightClickMenu();
+  ACTIVE_PANEL->popRightClickMenu(QPoint(0,0));
 }
 
 void KRslots::addBookmark(){
