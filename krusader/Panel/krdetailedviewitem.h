@@ -71,6 +71,9 @@ public:
 signals:
   void renameCancelled(KrDetailedViewItem *);
 
+public slots:
+  void remove();
+
 protected:
   // text() was made protected in order to catch every place where text(x) is used
   // to gain unlawful information on the object

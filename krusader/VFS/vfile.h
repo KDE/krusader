@@ -31,6 +31,7 @@
 
 // QT includes
 #include <qstring.h>
+#include <qobject.h>
 // System includes
 #include <sys/types.h>
 // KDE includes
@@ -42,7 +43,9 @@
  * contains the nessecery details about a file and member functions which
  *  allow the object to give out the needed details about the file.
  */
-class vfile{
+class vfile : public QObject{
+  Q_OBJECT
+  
 public:
   /**
 	 * Use this constructor when you know the following files properties: \n
@@ -95,8 +98,11 @@ public:
 	 */
 	inline void             vfile_setSize(KIO::filesize_t size) {vfile_size = size;}
 
-  virtual ~vfile(){}
+  virtual ~vfile(){emit vfile_destructed();}
 
+signals:
+  void             vfile_destructed();  /* signal of the destruction */
+    
 protected:
   // the file information list
   QString 	       vfile_name;     //< file name

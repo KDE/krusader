@@ -163,3 +163,5 @@ KIO::UDSEntry vfile::vfile_getEntry(){
 
 	return entry;
 }
+
+#include "vfile.moc"

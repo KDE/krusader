@@ -47,6 +47,14 @@
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
   QObject(parent), KListViewItem(parent, after), KrViewItem(),_vf(vf), _view(parent) {
   repaintItem();
+  if( _vf ) {
+    connect( _vf, SIGNAL( vfile_destructed() ), this, SLOT( remove() ) );
+  }
+}
+
+void KrDetailedViewItem::remove(){  
+  _vf = 0;
+  _view->takeItem( this );
 }
 
 void KrDetailedViewItem::repaintItem() {
