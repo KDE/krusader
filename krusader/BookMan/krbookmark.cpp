@@ -9,7 +9,7 @@
 KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent):
 	KAction(name, 0, 0, 0, parent), _url(url), _folder(false) {
 	connect(this, SIGNAL(activated()), this, SLOT(activatedProxy()));
-
+	setName(QString("Bookmark:"+name).latin1());
 	// what kind of a url is it?
 	if (_url.isLocalFile()) {
 		setIcon("folder");

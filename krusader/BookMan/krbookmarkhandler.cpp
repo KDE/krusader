@@ -20,7 +20,8 @@
 											
 KrBookmarkHandler::KrBookmarkHandler(): QObject(0) {
 	// create our own action collection and make the shortcuts apply only to parent
-	_collection = new KActionCollection(0, this, "bookmark collection");
+	//_collection = new KActionCollection(0, this, "bookmark collection");
+	_collection = krApp->actionCollection();
 
 	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
 	_root = new KrBookmark(i18n("Bookmarks"));
