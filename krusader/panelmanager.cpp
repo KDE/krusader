@@ -88,7 +88,7 @@ ListPanel* PanelManager::createPanel( bool setCurrent ) {
    return p;
 }
 
-void PanelManager::startPanel( ListPanel *panel, QString path ) {
+void PanelManager::startPanel( ListPanel *panel, const KURL& path ) {
    panel->start( path );
 }
 
@@ -141,7 +141,7 @@ void PanelManager::slotNewTab(const KURL& url, bool setCurrent) {
      _self = p;
      _other->otherPanel = _self;
    }
-   startPanel( p, url.url() );
+   startPanel( p, url );
 }
 
 void PanelManager::slotNewTab() {

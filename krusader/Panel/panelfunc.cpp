@@ -356,13 +356,11 @@ void ListPanelFunc::moveFiles() {
 			s.sprintf( i18n( "Move %d files to:" ).local8Bit(), fileNames.count() );
 
 		// ask the user for the copy dest
-		KChooseDir *chooser = new KChooseDir( 0, s, dest.prettyURL(), panel->virtualPath().prettyURL() );
-		if ( chooser->dest == QString::null )
-			return ; // the usr canceled		
-		if ( KURL::isRelativeURL(chooser->dest) ) 
-			dest = KURL::fromPathOrURL(files()->vfs_workingDir()+"/"+chooser->dest);
-		else 
-			dest = KURL::fromPathOrURL(chooser->dest);
+		dest = KChooseDir::getDir(s, dest, panel->virtualPath());
+		if ( dest.isEmpty() ) return ; // the user canceled
+		if ( dest.isRelativeURL(dest.url()) )  {
+			dest = KURL::fromPathOrURL(files()->vfs_workingDir()+"/"+dest.url());
+		}
 	}
 
 	if ( fileNames.isEmpty() )
@@ -463,13 +461,11 @@ void ListPanelFunc::copyFiles() {
 		else
 			s.sprintf( i18n( "Copy %d files to:" ).local8Bit(), fileNames.count() );
 		// ask the user for the copy dest
-		KChooseDir *chooser = new KChooseDir( 0, s, dest.prettyURL(), panel->virtualPath().prettyURL() );
-		if ( chooser->dest == QString::null )
-			return ; // the usr canceled		
-		if ( KURL::isRelativeURL(chooser->dest) ) 
-			dest = KURL::fromPathOrURL(files()->vfs_workingDir()+"/"+chooser->dest);
-		else 
-			dest = KURL::fromPathOrURL(chooser->dest);
+		dest = KChooseDir::getDir(s, dest, panel->virtualPath());
+		if ( dest.isEmpty() ) return ; // the user canceled
+		if ( dest.isRelativeURL(dest.url()) )  {
+			dest = KURL::fromPathOrURL(files()->vfs_workingDir()+"/"+dest.url());
+		}
 	}
 
 	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
@@ -784,6 +780,14 @@ void ListPanelFunc::unpack() {
 		s = i18n( "Unpack " ) + i18n( "%1 files" ).arg( fileNames.count() ) + i18n( "to" ) + ":";
 
 	// ask the user for the copy dest
+	KURL dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
+	if ( dest.isEmpty() ) return ; // the user canceled
+	if ( dest.isRelativeURL(dest.url()) )  {
+		dest = KURL::fromPathOrURL(files()->vfs_workingDir()+"/"+dest.url());
+	}
+	
+	
+/* REVIEW - rafi, can the "check for partial urls" below be replaced by isRelativeURL above ?	
 	KChooseDir *chooser = new KChooseDir( 0, s, panel->otherPanel->virtualPath().prettyURL(), panel->virtualPath().prettyURL() );
 	if ( chooser->dest == QString::null )
 		return ; // the usr canceled
@@ -794,6 +798,8 @@ void ListPanelFunc::unpack() {
 		dest = panel->virtualPath();
 		dest.addPath(chooser->dest);
 	}
+*/
+
 	bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath() );
 
 	for ( unsigned int i = 0; i < fileNames.count(); ++i ) {

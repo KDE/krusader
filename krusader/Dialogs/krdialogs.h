@@ -58,14 +58,11 @@ protected:
 	QLabel 			*message;
 };
 
-class KChooseDir : KURLRequesterDlg {
-	Q_OBJECT	
+// to use this class: call the static getDir() method. it returns a url.
+// if the user canceled, the url returned will be empty, so use url.isEmpty() to check
+class KChooseDir {
 public:
-	KChooseDir(QWidget *parent, QString text,QString url, QString cwd="");
-public slots:
-	void result();
-public:
-	static QString dest;
+	static KURL getDir(QString text,const KURL& url, const KURL& cwd=KURL());
 };
 
 class KRAbout : public KRDialog {

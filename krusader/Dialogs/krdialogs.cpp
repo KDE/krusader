@@ -48,6 +48,7 @@
 // Krusader includes
 #include "../krusader.h"
 #include "../resources.h"
+#include "../VFS/vfs.h"
 
 KRDialog::KRDialog(QWidget *parent, QString text,bool modal, bool roomForIcon) :
 					KDialog(parent,0,modal,WStyle_DialogBorder) {
@@ -58,19 +59,15 @@ KRDialog::KRDialog(QWidget *parent, QString text,bool modal, bool roomForIcon) :
 	setMaximumSize(minimumSize());
 }	
 
-QString KChooseDir::dest;
-
-KChooseDir::KChooseDir(QWidget *, QString text,QString url, QString cwd):
-	KURLRequesterDlg(url,text,krApp,"") {
-	urlRequester()->completionObject()->setDir(cwd);
-	dest = QString::null;
- 	connect(this,SIGNAL( okClicked() ),this,SLOT( result() ));
-  	exec();
-}
-
-void KChooseDir::result(){
-	dest = urlRequester()->completionObject()->replacedPath(
-		urlRequester()->lineEdit()->text());
+KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
+	KURLRequesterDlg *dlg = new KURLRequesterDlg(url.prettyURL(1),text,krApp,"");
+	dlg->urlRequester()->completionObject()->setDir(cwd.url());
+	dlg->exec();
+	
+	KURL u = vfs::fromPathOrURL(dlg->urlRequester()->completionObject()->replacedPath(
+		dlg->urlRequester()->lineEdit()->text()));
+	delete dlg;
+	return u;
 }
 
 KRAbout::KRAbout() : KRDialog(0,0,true,false) {

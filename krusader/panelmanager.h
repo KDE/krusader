@@ -32,7 +32,7 @@ class PanelManager: public QWidget {
      * Called once by KrusaderView to start the first panel. Subsequent called are done internally
      * Only starts the VFS inside the panel, you must first use createPanel() !
      */
-    void startPanel(ListPanel *panel, QString path);
+    void startPanel(ListPanel *panel, const KURL& path);
     /**
      * Swaps the left / right directions of the panel
      */

@@ -29,7 +29,6 @@
 #include <qtooltip.h>
 #include <kdebug.h>
 
-#define URL(X)			vfs::fromPathOrURL(X)
 #define DISPLAY(X)	(X.isLocalFile() ? X.path() : X.prettyURL())
 
 PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
