@@ -823,13 +823,18 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
       if ( e->state() == ControlButton ) {
         // user pressed CTRL+Right/Left - refresh other panel to the selected path if it's a
         // directory otherwise as this one
-        KURL newPath;
-        if ( view->getCurrentKrViewItem()->isDir() ) {
-          newPath = func->files()->vfs_getFile( view->getCurrentKrViewItem()->name() );
-        } else {
-          newPath = func->files()->vfs_getOrigin();
+        if( ( _left && e->key() == Key_Right ) || (!_left && e->key() == Key_Left ) )
+        {
+          KURL newPath;
+          if ( view->getCurrentKrViewItem()->isDir() ) {
+            newPath = func->files()->vfs_getFile( view->getCurrentKrViewItem()->name() );
+          } else {
+            newPath = func->files()->vfs_getOrigin();
+          }
+          otherPanel->func->openUrl( newPath );
         }
-        otherPanel->func->openUrl( newPath );
+        else
+          func->openUrl( otherPanel->func->files()->vfs_getOrigin() );
 
         slotFocusOnMe(); // return focus to us!
         return ;
