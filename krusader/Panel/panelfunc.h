@@ -82,7 +82,7 @@ public:
 	bool calcSpace(const QStringList & items,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs);
 	void FTPDisconnect();
 	void newFTPconnection();
-	void createVirtualFolder( KURL::List & files );
+	void createVirtualFolder( QString name, KURL::List & files );
 	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
 protected:

@@ -487,6 +487,8 @@ void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
 
 void KrSearchDialog::feedToListBox()
 {
+  static int listBoxNum = 1;
+  
   KURL::List urlList;
   QListViewItem * item = resultsList->firstChild();
   while( item )
@@ -496,8 +498,8 @@ void KrSearchDialog::feedToListBox()
     urlList.push_back( vfs::fromPathOrURL( name ) );
     item = item->nextSibling();
   }
-  ACTIVE_FUNC->createVirtualFolder( urlList );
-  
+  ACTIVE_FUNC->createVirtualFolder( i18n("Search result")+QString( " %1" )
+                                    .arg( listBoxNum++ ), urlList );  
   closeDialog();
 }
 

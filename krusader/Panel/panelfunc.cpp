@@ -147,7 +147,9 @@ void ListPanelFunc::delayedOpenUrl( const KURL& urlIn ) {
 		if( u.protocol() == "virt" && virtualFiles.count() != 0 ) {
 			vfsP->deleteLater();
 			vfsP = new virt_vfs( panel );
-			files()->vfs_addFiles( &virtualFiles, KIO::CopyJob::Copy, 0 );
+			vfsP->vfs_refresh( u );
+			
+			vfsP->vfs_addFiles( &virtualFiles, KIO::CopyJob::Copy, 0 );
 			virtualFiles.clear();                                                                        
 		} else {                
 			v = KrVfsHandler::getVfs( u, panel, files() );
@@ -168,8 +170,7 @@ void ListPanelFunc::delayedOpenUrl( const KURL& urlIn ) {
 	vfsP->vfs_setQuiet( false );
 
 	// update the urls stack
-	if ( files()->vfs_getType() != vfs::VIRT &&
-			!files() ->vfs_getOrigin().equals( urlStack.top() ) ) {
+	if ( !files() ->vfs_getOrigin().equals( urlStack.top() ) ) {
 		urlStack.push( files() ->vfs_getOrigin() );
 	}
 	// disconnect older signals
@@ -1032,10 +1033,10 @@ void ListPanelFunc::pasteFromClipboard() {
 	}
 }
 
-void ListPanelFunc::createVirtualFolder( KURL::List &fileList )
+void ListPanelFunc::createVirtualFolder( QString name, KURL::List &fileList )
 {
 	virtualFiles = fileList;
-	openUrl( KURL("virt:/") );
+	openUrl( KURL( "virt:/" + name ) );
 }
 
 
