@@ -737,7 +737,7 @@ void KRslots::slotCombine(){
                                  ACTIVE_PANEL->otherPanel->virtualPath(), ACTIVE_PANEL->virtualPath());
   if ( dest.isEmpty() ) return ; // the user canceled
 
-  bool combineToOtherPanel = ( dest == ACTIVE_PANEL->otherPanel->virtualPath() );
+  bool combineToOtherPanel = ( dest.equals( ACTIVE_PANEL->otherPanel->virtualPath(), true ) );
 
   Combiner combine( MAIN_VIEW, baseURL, dest, unixStyle );
   combine.combine();

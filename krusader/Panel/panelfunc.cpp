@@ -175,7 +175,7 @@ void ListPanelFunc::openUrl( const KURL& url, const QString& nameToMakeCurrent )
 	panel->inlineRefreshCancel();
 	// first the other dir, then the active! Else the focus changes and the other becomes active
 	if ( panel->syncBrowseButton->state() == SYNCBROWSE_CD ) {
-		// prevents that the sync-browsing circles itself to death      
+		// prevents that the sync-browsing circles itself to death
 		static bool inSync = false;
 		if( ! inSync ){
 			inSync = true;
@@ -391,7 +391,7 @@ void ListPanelFunc::moveFiles() {
 	panel->prepareToDelete();
 
 	// if we are not moving to the other panel :
-	if ( panel->otherPanel->virtualPath() != dest ) {
+	if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(1);
@@ -399,7 +399,7 @@ void ListPanelFunc::moveFiles() {
 		// refresh our panel when done
 		connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
 		// and if needed the other panel as well
-		if ( dest == panel->otherPanel->virtualPath() )
+		if ( dest.equals( panel->otherPanel->virtualPath(), true ) )
 			connect( job, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
 
 	} else { // let the other panel do the dirty job
@@ -486,14 +486,14 @@ void ListPanelFunc::copyFiles() {
 	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 
 	// if we are  not copying to the other panel :
-	if ( panel->otherPanel->virtualPath() != dest ) {
+	if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(1);
 		KIO::Job* job = new KIO::CopyJob( *fileUrls, dest, KIO::CopyJob::Copy, false, true );
-		if ( dest.path() == panel->virtualPath().path() )
-		// refresh our panel when done
-		connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
+		if ( dest.equals( panel->virtualPath(), true ) )
+			// refresh our panel when done
+			connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
 	// let the other panel do the dirty job
 	} else {
 		//check if copy is supported
@@ -791,7 +791,7 @@ void ListPanelFunc::unpack() {
 	KURL dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
 
-	bool packToOtherPanel = ( dest == panel->otherPanel->virtualPath() );
+	bool packToOtherPanel = ( dest.equals( panel->otherPanel->virtualPath(), true ) );
 
 	for ( unsigned int i = 0; i < fileNames.count(); ++i ) {
 		QString arcName = fileNames[ i ];
