@@ -75,7 +75,7 @@ the krusaderui.rc file. please read the faq's for more info.
 
 
 Need more help?
-For detailled installation instructions, please read the INSTALL file.
+For detailed installation instructions, please read the INSTALL file.
 Or read it on-line at: http://krusader.sourceforge.net/handbook/installation.html
 The FAQ's are available at: http://krusader.sourceforge.net/handbook/faq.html
 
@@ -116,12 +116,12 @@ or read it on-line at: http://krusader.sourceforge.net/help.php
 
 - Translators    Krusader is currently available in 16 languages:
                  English (done by the Krusader Krew),
-                 Bulgarian, Czech, Danish, Dutch, French, German, Hungarian, Italian,
-                 2x Japanese, Polish, Russian, Slovak, Spanish, Swedish.
+                 Bulgarian, Chinese, Czech, Danish, Dutch, French, German, Hungarian, Italian,
+                 Japanese, Polish, Russian, Slovak, Spanish, Swedish.
                  Some of these translations can use an update, please read the
                  "Krusader translation howto" for the latest information.
                  If you have a new or updated translation, please send it to Dirk.
-                 Please read "For Translators" further below in this file.
+                 Please read "For Translators" section further below in this file.
 
 - Documentation  Krusader is in need of documentation.
                  Help is always welcome.
@@ -138,39 +138,68 @@ or read it on-line at: http://krusader.sourceforge.net/help.php
 
 For Translators
 ===============
+DETAILED PROCEDURE
+We have a very detailed "Krusader translation howto" if you need some help.
+Also the latest news about the Krusader translations can be found here.
+This allows that even beginners or non-programmers can translate Krusader to
+their native language. Please look at
+http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389
+
+
+QUICKSTART PROCEDURE
 1.
+Run your Linux distribution in your native language
+
+2.
 Download the latest available version of Krusader with a checkout from CVS.
 Or if you are not familiar with CVS, download the latest Krusader CVS
 sourcecode snapshot (nightly tarball) from
 http://krusader.sourceforge.net/cvs.php
 and run
 $ make -f Makefile.cvs
-
-2.
-Update krusader.pot (translation template file) before running "$ make"
-(extracting all the English text from the sourcecode)
-Please don't forget to do this step, otherwise you will translate obsolete messages.
+$ ./configure
+$ make
 $ make -f admin/Makefile.common package-messages
+$ su -c 'make install'
+
+NOTE: The command "make -f admin/Makefile.common package-messages"
+      will update krusader.pot = the translation template file
+      (extracting all the English text from the sourcecode).
+      Please don't forget to do this step, otherwise you will translate obsolete messages.
+      It is important that this command is used AFTER the "make" command,
+      otherwise not everything is extracted from the sourcecode.
 
 3.
-Update foo.po (in the po directory), for existing translations only
-./po/$ msgmerge foo.po krusader.pot --output-file=foo.po
+- Existing translation:
+  Update foo.po (in the po directory)
+  ./po/$ msgmerge foo.po krusader.pot --output-file=foo.po
+
+- New translation:
+  To know your language abreviation foo run:  $ echo $LANG
+  (ex.: nl = Dutch, fr = French, it = Italian, ...)
+  Or look at the KDE language abreviation list at http://i18n.kde.org/teams/
+  Open krusader.pot with Kbabel and "save as" foo.po
 
 4.
-translate foo.po with Kbabel (Kbabel is easy to use)
+translate foo.po with Kbabel (Kbabel is easy to use, please read its manual)
 
 5.
-compile foo.po (in the po directory)
+compile foo.po, for error checking (in the po directory)
 ./po/$ msgfmt foo.po --statistics -c -v --output-file=foo.gmo
+If it reports "xx fuzzy translations" or "xx untranslated messages",
+please return to nr. 3
 
 6.
-If you have a new or updated translation, please send it to Dirk.
+Run the commands of nr. 2 to reinstall the new or updated translation
+btw. If you have a new translation: "make -f Makefile.cvs" will modify
+     the Makefiles in the krusader_kde3/po directory.
+     From now on your new translation will be compiled and installed :)
 
-TIP
-We have a verry detailed "Krusader translation howto" if you need more info,
-this allows that even beginners or non-programmers can translate Krusader to
-their native language. Please look at
-http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389
+Run Krusader and test your native translations.
+If necessary fix the foo.po file (redo nr. 4,5,6), and test again.
+
+7.
+If everything is ok, send the new or updated translation to Dirk.
 
 
 
