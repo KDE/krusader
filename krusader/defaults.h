@@ -191,6 +191,8 @@
 #define  _IgnoreDate        false
 // Asymmetric Client-File Server compare mode /////////////
 #define  _Asymmetric        false
+// Auto scrolling during comparing /////////////
+#define  _AutoScroll        false
 // The right arrow button is turned on /////////////
 #define  _BtnLeftToRight    true
 // The equals button is turned on /////////////

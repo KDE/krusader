@@ -53,8 +53,8 @@ Synchronizer::Synchronizer() : displayUpdateCount( 0 ), markEquals( true ), mark
   resultList.setAutoDelete( true );
 }
 
-void Synchronizer::compare( QString leftURL, QString rightURL, QString filter, bool subDirs,
-                            bool symLinks, bool igDate, bool asymm, bool cmpByCnt )
+int Synchronizer::compare( QString leftURL, QString rightURL, QString filter, bool subDirs,
+                            bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool autoSc )
 {
   resultList.clear();
 
@@ -63,6 +63,7 @@ void Synchronizer::compare( QString leftURL, QString rightURL, QString filter, b
   ignoreDate     = igDate;
   asymmetric     = asymm;
   cmpByContent   = cmpByCnt;
+  autoScroll     = autoSc;
   fileFilter     = filter;
   stopped = false;
 
@@ -74,6 +75,7 @@ void Synchronizer::compare( QString leftURL, QString rightURL, QString filter, b
   compareDirectory( 0, leftBaseDir = leftURL, rightBaseDir = rightURL, "" );
 
   emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
+  return fileCount;
 }
 
 void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftURL,
@@ -99,7 +101,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
     parent = addDuplicateItem( parent, addName, addDir, 0, 0, addLTime, addRTime, true );
 
   /* walking through in the left directory */  
-  for( left_file=left_directory->vfs_getFirstFile(); left_file != 0 ;
+  for( left_file=left_directory->vfs_getFirstFile(); left_file != 0 && !stopped ;
        left_file=left_directory->vfs_getNextFile() )
   {
     if ( left_file->vfile_isDir() || left_file->vfile_isSymLink() )
@@ -123,7 +125,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
   }
 
   /* walking through in the right directory */
-  for( right_file=right_directory->vfs_getFirstFile(); right_file != 0 ;
+  for( right_file=right_directory->vfs_getFirstFile(); right_file != 0 && !stopped ;
        right_file=right_directory->vfs_getNextFile() )
   {
     if( right_file->vfile_isDir() || right_file->vfile_isSymLink() )
@@ -141,7 +143,7 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
   /* walking through the subdirectories */
   if( recurseSubDirs )
   {
-    for( left_file=left_directory->vfs_getFirstFile(); left_file != 0 ;
+    for( left_file=left_directory->vfs_getFirstFile(); left_file != 0 && !stopped ;
          left_file=left_directory->vfs_getNextFile() )
     {
       if ( left_file->vfile_isDir() && ( followSymLinks || !left_file->vfile_isSymLink()) )
@@ -157,7 +159,8 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
       }
     }
 
-    for( right_file=right_directory->vfs_getFirstFile(); right_file != 0 ;
+    /* walking through the the right side subdirectories */
+    for( right_file=right_directory->vfs_getFirstFile(); right_file != 0 && !stopped ;
          right_file=right_directory->vfs_getNextFile() )
     {
       if ( right_file->vfile_isDir() && (followSymLinks || !right_file->vfile_isSymLink()) )
@@ -220,7 +223,7 @@ vfs * Synchronizer::getDirectory( QString url )
     return 0;
   }
 
-  emit statusInfo( i18n( "Scanned directories:%1" ).arg( scannedDirs++ ) );
+  emit statusInfo( i18n( "Scanned directories:%1" ).arg( ++scannedDirs ) );
   
   return v;
 }
@@ -237,7 +240,7 @@ SynchronizerFileItem * Synchronizer::addItem( SynchronizerFileItem *parent, QStr
                                   KIO::filesize_t leftSize, KIO::filesize_t rightSize,
                                   time_t leftDate, time_t rightDate, TaskType tsk, bool isDir )
 {
-  bool marked = isMarked( tsk, existsLeft && existsRight );
+  bool marked = autoScroll ? isMarked( tsk, existsLeft && existsRight ) : false;
   SynchronizerFileItem *item = new SynchronizerFileItem( file_name, dir, marked, 
     existsLeft, existsRight, leftSize, rightSize, leftDate, rightDate, tsk, isDir, parent );
 
@@ -247,10 +250,11 @@ SynchronizerFileItem * Synchronizer::addItem( SynchronizerFileItem *parent, QStr
   {
     markParentDirectories( item );
     fileCount++;
-    emit comparedFileData( item );
   }
 
-  if( displayUpdateCount++ % DISPLAY_UPDATE_PERIOD == (DISPLAY_UPDATE_PERIOD-1) )
+  emit comparedFileData( item );
+  
+  if( marked && (displayUpdateCount++ % DISPLAY_UPDATE_PERIOD == (DISPLAY_UPDATE_PERIOD-1) ) )
     qApp->processEvents();
     
   return item;
@@ -322,7 +326,7 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
     parent = addRightOnlyItem( parent, name, dir, 0, date, true );
 
   /* walking through the directory files */
-  for( file=directory->vfs_getFirstFile(); file != 0 ; file = directory->vfs_getNextFile() )
+  for( file=directory->vfs_getFirstFile(); file != 0 && !stopped; file = directory->vfs_getNextFile() )
   {
     if ( file->vfile_isDir() || file->vfile_isSymLink() )
       continue;
@@ -339,7 +343,7 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
   }
 
   /* walking through the subdirectories */
-  for( file=directory->vfs_getFirstFile(); file != 0 ; file=directory->vfs_getNextFile() )
+  for( file=directory->vfs_getFirstFile(); file != 0 && !stopped; file=directory->vfs_getNextFile() )
   {
     if ( file->vfile_isDir() && (followSymLinks || !file->vfile_isSymLink())  )
     {
@@ -395,20 +399,22 @@ void Synchronizer::markParentDirectories( SynchronizerFileItem *item )
     return;
 
   markParentDirectories( item->parent() );
+
   item->parent()->setMarked( true );
   fileCount++;
-  emit comparedFileData( item->parent() );
+  emit markChanged( item->parent() );
 }
 
-void Synchronizer::refresh()
+int Synchronizer::refresh()
 {
-  int step = 0;
   fileCount = 0;
   
   SynchronizerFileItem *item = resultList.first();
 
   while( item )
   {
+    item->noteMark();
+    
     bool marked = isMarked( item->task(), item->existsInLeft() && item->existsInRight() );
     item->setMarked( marked );
 
@@ -416,16 +422,22 @@ void Synchronizer::refresh()
     {
       markParentDirectories( item );
       fileCount++;
-      emit comparedFileData( item );
     }
 
-    if( step++ % DISPLAY_UPDATE_PERIOD == (DISPLAY_UPDATE_PERIOD-1) )
-      qApp->processEvents();
-    
     item = resultList.next();
   }
 
+  item = resultList.first();
+  while( item )
+  {
+    if( item->isMarkChanged() )
+      emit markChanged( item );
+
+    item = resultList.next();
+  }
+  
   emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
+  return fileCount;
 }
 
 bool Synchronizer::totalSizes( int * leftCopyNr, KIO::filesize_t *leftCopySize, int * rightCopyNr,
@@ -775,13 +787,13 @@ bool Synchronizer::compareByContent( QString file_name, QString dir )
             this, SLOT(slotFinished(KIO::Job *)));
 
   compareArray = QByteArray();
-  compareFinished = errorPrinted = false;
+  compareFinished = errorPrinted = statusLineChanged = false;
   compareResult = true;
   waitWindow = 0;
 
   rightReadJob->suspend();
 
-  QTimer *timer = new QTimer( this );
+  timer = new QTimer( this );
   connect( timer, SIGNAL(timeout()), SLOT(putWaitWindow()) );
   timer->start( 1500, true );
    
@@ -793,7 +805,10 @@ bool Synchronizer::compareByContent( QString file_name, QString dir )
 
   if( waitWindow )
     delete waitWindow;
-                                                    
+
+  if( statusLineChanged )
+    emit statusInfo( i18n( "Scanned directories:%1" ).arg( scannedDirs ) );
+                                                                                                        
   return compareResult;
 }
 
@@ -859,6 +874,7 @@ void Synchronizer::slotFinished(KIO::Job *job)
 
   if( job->error() && job->error() != KIO::ERR_USER_CANCELED && !errorPrinted )
   {
+    timer->stop();
     errorPrinted = true;
     KMessageBox::error(0, i18n("IO error at comparing file %1 with %2!")
                        .arg( leftURL.path() ).arg( rightURL.path() ) );
@@ -885,15 +901,23 @@ void Synchronizer::abortContentComparing()
 
 void Synchronizer::putWaitWindow()
 {
-  waitWindow = new QProgressDialog( 0, "SynchronizerWait", true );
-  waitWindow->setLabelText( i18n( "Comparing file %1..." ).arg( leftURL.fileName() ) );
-  waitWindow->setTotalSteps( 100 );
-  waitWindow->setAutoClose( false );
-  waitWindow->show();
+  if( autoScroll )
+  {
+    waitWindow = new QProgressDialog( 0, "SynchronizerWait", true );
+    waitWindow->setLabelText( i18n( "Comparing file %1..." ).arg( leftURL.fileName() ) );
+    waitWindow->setTotalSteps( 100 );
+    waitWindow->setAutoClose( false );
+    waitWindow->show();
 
-  if( leftReadJob )
-    connect(leftReadJob, SIGNAL(percent (KIO::Job *, unsigned long)),
-            this, SLOT(comparePercent(KIO::Job *, unsigned long)));  
+    if( leftReadJob )
+      connect(leftReadJob, SIGNAL(percent (KIO::Job *, unsigned long)),
+              this, SLOT(comparePercent(KIO::Job *, unsigned long)));
+  }
+  else
+  {
+    emit statusInfo ( i18n( "Comparing file %1..." ).arg( leftURL.fileName() ) );
+    statusLineChanged = true;
+  }
 }
 
 void Synchronizer::comparePercent(KIO::Job *, unsigned long percent)

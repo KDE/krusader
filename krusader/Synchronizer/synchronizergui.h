@@ -95,12 +95,13 @@ public slots:
   void stop();
   void closeDialog();
   void refresh();
-  void subdirsChecked( bool );
-  void statusInfo( QString );
-
+  
 protected slots:
   void reject();
   void addFile( SynchronizerFileItem * );
+  void markChanged( SynchronizerFileItem * );
+  void statusInfo( QString );
+  void subdirsChecked( bool );
 
 private:
   QString convertTime(time_t time) const;
@@ -121,6 +122,7 @@ protected:
   QCheckBox     *cbByContent;
   QCheckBox     *cbIgnoreDate;
   QCheckBox     *cbAsymmetric;
+  QCheckBox     *cbAutoScroll;
   
   QPushButton   *btnCompareDirs;
   QPushButton   *btnStopComparing;

@@ -137,6 +137,11 @@ void SynchronizeDialog::startSynchronization()
   connect( synchronizer,  SIGNAL( processedSizes( int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t ) ),
                     this, SLOT( processedSizes( int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t) ) );
   connect( synchronizer,  SIGNAL( pauseAccepted() ), this, SLOT( pauseAccepted() ) );
+
+  if( !cbRightToLeft->isChecked() ) leftCopySize = 0;
+  if( !cbLeftToRight->isChecked() ) rightCopySize = 0;
+  if( !cbDeletable->isChecked() )   deleteSize = 0;
+  
   synchronizer->synchronize( cbRightToLeft->isChecked(), cbLeftToRight->isChecked(),
                              cbDeletable->isChecked(), !cbOverwrite->isChecked() );
 }

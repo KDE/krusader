@@ -827,6 +827,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", _IgnoreDate  ) );
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", _Asymmetric  ) );
+  cbAutoScroll      = new QCheckBox( i18n( "Automatic Scrolling" ), optionGrid, "cbAutoScroll" );
+  cbAutoScroll->setChecked( krConfig->readBoolEntry( "Automatic Scrolling", _AutoScroll ) );
 
   /* =========================== Show options groupbox ============================= */
   
@@ -992,6 +994,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   
   connect( &synchronizer,     SIGNAL( comparedFileData( SynchronizerFileItem * ) ), this,
                               SLOT( addFile( SynchronizerFileItem * ) ) );
+  connect( &synchronizer,     SIGNAL( markChanged( SynchronizerFileItem * ) ), this,
+                              SLOT( markChanged( SynchronizerFileItem * ) ) );
   connect( &synchronizer,     SIGNAL( statusInfo( QString ) ), this, SLOT( statusInfo( QString ) ) );
 
   connect( btnLeftToRight,    SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
@@ -1059,6 +1063,7 @@ void SynchronizerGUI::closeDialog()
   krConfig->writeEntry("Compare By Content", cbByContent->isChecked() );
   krConfig->writeEntry("Ignore Date", cbIgnoreDate->isChecked() );
   krConfig->writeEntry("Asymmetric", cbAsymmetric->isChecked() );
+  krConfig->writeEntry("Automatic Scrolling", cbAutoScroll->isChecked() );
   krConfig->writeEntry("LeftToRight Button", btnLeftToRight->isOn() );
   krConfig->writeEntry("Equals Button", btnEquals->isOn() );
   krConfig->writeEntry("Differents Button", btnDifferents->isOn() );
@@ -1072,6 +1077,8 @@ void SynchronizerGUI::closeDialog()
 
 void SynchronizerGUI::compare()
 {
+  bool autoScrolling = cbAutoScroll->isChecked();
+  
   syncList->clear();
   lastItem = 0;
   
@@ -1085,17 +1092,21 @@ void SynchronizerGUI::compare()
   btnStopComparing->setEnabled( isComparing = true );
   btnSynchronize->setEnabled( false );
   disableMarkButtons();
-  synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(), fileFilter->currentText(),
-                       cbSubdirs->isChecked(), cbSymlinks->isChecked(), cbIgnoreDate->isChecked(),
-                       cbAsymmetric->isChecked(), cbByContent->isChecked() );
+  int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
+                       fileFilter->currentText(), cbSubdirs->isChecked(), cbSymlinks->isChecked(),
+                       cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
+                       autoScrolling );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnCompareDirs->setEnabled( true );
-  if( syncList->childCount() )
+  if( fileCount )
     btnSynchronize->setEnabled( true );
 
   if( wasClosed )
     closeDialog();
+
+  if( !autoScrolling )
+    refresh();
 }
 
 void SynchronizerGUI::stop()
@@ -1153,9 +1164,18 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
 
   if( listItem )
   {
+    if( !item->isMarked() )
+      listItem->setVisible( false );
     listItem->setPixmap(0, isDir ? folderIcon : fileIcon);
     syncList->ensureItemVisible( listItem );
   }
+}
+
+void SynchronizerGUI::markChanged( SynchronizerFileItem *item )
+{
+  SyncViewItem *listItem = (SyncViewItem *)item->userData();
+  if( listItem )
+    listItem->setVisible( item->isMarked() );
 }
 
 void SynchronizerGUI::subdirsChecked( bool isOn )
@@ -1205,15 +1225,14 @@ void SynchronizerGUI::refresh()
 {
   if( !isComparing )
   {
-    syncList->clear();
     setMarkFlags();
     btnCompareDirs->setEnabled( false );
     btnSynchronize->setEnabled( false );
     disableMarkButtons();
-    synchronizer.refresh();
+    int fileCount = synchronizer.refresh();
     enableMarkButtons();
     btnCompareDirs->setEnabled( true );
-    if( syncList->childCount() )
+    if( fileCount )
       btnSynchronize->setEnabled( true );    
   }
 }
@@ -1244,4 +1263,5 @@ void SynchronizerGUI::synchronize()
 void SynchronizerGUI::statusInfo( QString info )
 {
   statusLabel->setText( info );
+  qApp->processEvents();
 }

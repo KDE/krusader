@@ -63,6 +63,7 @@ class SynchronizerFileItem
     void                 *m_userData;     // user data
     bool                  m_overWrite;    // overwrite flag
     QString               m_destination;  // the destination URL at rename
+    bool                  m_lastMark;     // the previous mark flag
     
   public:
     SynchronizerFileItem(QString nam, QString dir, bool mark, bool exL,
@@ -74,7 +75,7 @@ class SynchronizerFileItem
                        m_rightSize( rightSize ), m_leftDate( leftDate ),
                        m_rightDate( rightDate ),m_task( tsk ), m_isDir( isDir ),
                        m_parent(parent), m_userData( 0 ), m_overWrite( false ),
-                       m_destination( QString::null ) {}
+                       m_destination( QString::null ), m_lastMark( false ) {}
 
     inline bool                   isMarked()              {return m_marked;}
     inline void                   setMarked( bool flag )  {m_marked = flag;}
@@ -95,6 +96,8 @@ class SynchronizerFileItem
     inline void                   setOverWrite()          {m_overWrite = true;}
     inline QString                destination()           {return m_destination;}
     inline void                   setDestination(QString d) {m_destination = d;}
+    inline void                   noteMark()              {m_lastMark = m_marked;}
+    inline bool                   isMarkChanged()         {return m_lastMark != m_marked;}
 };
 
 class Synchronizer : public QObject
@@ -106,11 +109,11 @@ class Synchronizer : public QObject
   
   public:
     Synchronizer();
-    void    compare( QString leftURL, QString rightURL, QString filter, bool subDirs, bool symLinks,
-                     bool igDate, bool asymm, bool cmpByCnt );
+    int     compare( QString leftURL, QString rightURL, QString filter, bool subDirs, bool symLinks,
+                     bool igDate, bool asymm, bool cmpByCnt, bool autoSc );
     void    stop() {stopped = true;}
     void    setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing, bool del );
-    void    refresh();
+    int     refresh();
     bool    totalSizes( int *, KIO::filesize_t *, int *, KIO::filesize_t *, int *, KIO::filesize_t * );
     void    synchronize( bool leftCopyEnabled, bool rightCopyEnabled, bool deleteEnabled, bool overWrite );
     void    pause();
@@ -120,6 +123,7 @@ class Synchronizer : public QObject
 
   signals:
     void    comparedFileData( SynchronizerFileItem * );
+    void    markChanged( SynchronizerFileItem * );
     void    synchronizationFinished();
     void    processedSizes( int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t );
     void    pauseAccepted();
@@ -164,6 +168,7 @@ class Synchronizer : public QObject
     bool                              ignoreDate;     // don't use date info at comparing
     bool                              asymmetric;     // asymmetric directory update
     bool                              cmpByContent;   // compare the files by content
+    bool                              autoScroll;     // automatic update of the directory
     QPtrList<SynchronizerFileItem>    resultList;     // the found files
     QString                           leftBaseDir;    // the left-side base directory
     QString                           rightBaseDir;   // the right-side base directory
@@ -203,11 +208,13 @@ class Synchronizer : public QObject
 
     bool                              compareFinished;// flag indicates, that comparation is finished
     bool                              compareResult;  // the result of the comparation
+    bool                              statusLineChanged; // true if the status line was changed
     bool                              errorPrinted;   // flag indicates error
     QProgressDialog                  *waitWindow;     // the wait window
     KIO::TransferJob                 *leftReadJob;    // compare left read job
     KIO::TransferJob                 *rightReadJob;   // compare right read job
     QByteArray                        compareArray;   // the array for comparing
+    QTimer                           *timer;          // timer to show the process dialog at compare by content
 };
 
 #endif /* __SYNCHRONIZER_H__ */
