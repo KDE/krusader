@@ -85,6 +85,7 @@ KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, K
       KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
 _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
 	initProperties(); // don't forget this!
+        lastSwushPosition = 0;
 
    if ( ColumnName[ 0 ].isEmpty() ) {
       ColumnName[ 0 ] = i18n( "Name" );
@@ -557,6 +558,11 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
        {
          if (newCurrent)
          {
+           if (KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0)
+           {
+             swushSelects = !newCurrent->isSelected();
+             lastSwushPosition = newCurrent;
+           }
            newCurrent->setSelected(!newCurrent->isSelected());
            newCurrent->repaint();
 			  selectionChanged = true;
@@ -575,6 +581,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    }
    if (e->button() == LeftButton)
    {
+     dragStartPos = e->pos();
      if (KrSelectionMode::getSelectionHandler()->leftButtonSelects())
      {
        if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection() && !(e->state() & ShiftButton)
@@ -678,7 +685,47 @@ void KrDetailedView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
    if ( ( singleClicked || renameTimer.isActive() ) && itemAt( contentsToViewport( e->pos() ) ) != clickedItem )
       CANCEL_TWO_CLICK_RENAME;
-   KListView::contentsMouseMoveEvent( e );
+   if ( e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
+      startDrag();
+   if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
+      && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
+      && KrSelectionMode::getSelectionHandler()->showContextMenu() >= 0 && e->state() == Qt::RightButton)
+      {
+         QListViewItem *newItem = itemAt( contentsToViewport( e->pos() ) );
+         e->accept();
+         if (newItem != lastSwushPosition && newItem)
+         {
+           // is the new item above or below the previous one?
+           QListViewItem * above = newItem;
+           QListViewItem * below = newItem;
+           for (;(above || below) && above != lastSwushPosition && below != lastSwushPosition;)
+           {
+             if (above)
+               above = above->itemAbove();
+             if (below)
+               below = below->itemBelow();
+           }
+           if (above == lastSwushPosition)
+           {
+             for (; above != newItem; above = above->itemBelow())
+               above->setSelected(swushSelects);
+             newItem->setSelected(swushSelects);
+             lastSwushPosition = newItem;
+             updateView();
+           }
+           else if (below == lastSwushPosition)
+           {
+             for (; below != newItem; below = below->itemAbove())
+               below->setSelected(swushSelects);
+             newItem->setSelected(swushSelects);
+             lastSwushPosition = newItem;
+             updateView();
+           }
+           contextMenuTimer.stop();
+         }
+      }
+      else
+         KListView::contentsMouseMoveEvent( e );
 }
 
 void KrDetailedView::contentsWheelEvent( QWheelEvent * e ) {

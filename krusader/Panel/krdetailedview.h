@@ -154,7 +154,9 @@ public slots:
 
 private:
    static QString ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
-   bool _focused;
+   bool _focused, swushSelects;
+   QPoint dragStartPos;
+   QListViewItem *lastSwushPosition;
    bool caseSensitiveSort;
    KrViewItem *_currDragItem;
    QString _nameInKConfig;
