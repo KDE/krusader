@@ -59,7 +59,7 @@
 using namespace MountMan;
 
 KMountMan::KMountMan() : QObject(), Ready(false), Operational(false),
-                         outputBuffer(0), tempFile(0) {
+                         outputBuffer(0), tempFile(0), mountManGui(0) {
 	filesystems.setAutoDelete(true);
 	localDf=new fsData();				 // will be used to move around information
   forceUpdate();
@@ -82,7 +82,11 @@ QString KMountMan::nextWord(QString &s,char c) {
   return temp;
 }
 
-void KMountMan::mainWindow() { mountManGui = new KMountManGUI(); }
+void KMountMan::mainWindow() {
+  mountManGui = new KMountManGUI();
+  delete mountManGui;   /* as KMountManGUI is modal, we can now delete it */
+  mountManGui = 0; /* for sanity */
+}
 
 // this version find the next word, delimeted by anything from
 // comma, space, tab or newline, in this order

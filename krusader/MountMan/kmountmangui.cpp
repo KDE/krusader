@@ -80,6 +80,11 @@ KMountManGUI::KMountManGUI() : KDialogBase(krApp, 0,true,"Mount.Man"),
   exec();
 }
 
+KMountManGUI::~KMountManGUI()
+{
+  delete watcher;
+}
+
 void KMountManGUI::createLayout() {
   mainPage=widget->addPage(i18n("Filesystems"),0);
   createMainPage();
