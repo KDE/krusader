@@ -40,7 +40,7 @@ private:
    bool _nessesary;
 };
 
-#define EXP_FUNC  QString expFunc ( const ListPanel*, const QStringList&, const bool&, const int& )
+#define EXP_FUNC  QString expFunc ( const ListPanel*, const QStringList&, const bool& )
 /** 
   *  Abstract baseclass for all expander-functions (which replace placeholder).
   *  A Placeholder is an entry containing the expression, its expanding function and Parameter.
@@ -196,6 +196,14 @@ public:
    EXP_FUNC;
 };
 
+/**
+  * This is setting marks in the string where he is later splitted up for each {all, selected, files, dirs}
+  */
+class exp_Each : public exp_placeholder {
+public:
+   exp_Each();
+   EXP_FUNC;
+};
 
 /**
  * The Expander expands the command of an UserAction by replacing all placeholders by thier current values.@n
@@ -259,11 +267,10 @@ public:
       { return _placeholder[ id ]; }
 
    /**
-     * This expands a whole commandline by calling (if callEach is true) expandCurrent for each selected item (else only once)
+     * This expands a whole commandline
      * 
      * @param stringToExpand the commandline with the placeholder
      * @param useUrl true if the path's should be expanded to an URL instead of an local path
-     * @param callEach true if %_Current% should be expanded once for every selected item
      * @return a list of all commands (one if callEach is false or one for every selectet item if true)
      */
    QStringList expand( const QString& stringToExpand, bool useUrl );
@@ -274,10 +281,16 @@ protected:
    * 
    * @param stringToExpand the commandline with the placeholder
    * @param useUrl true if the path's should be expanded to an URL instead of an local path
-   * @param currentItem the number of the current item (to expand once with every selectet item) or -1.
    * @return the expanded commanline for the current item
    */
-  QString expandCurrent( const QString& stringToExpand, bool useUrl, int currentItem );
+  QString expandCurrent( const QString& stringToExpand, bool useUrl );
+  /**
+   * This function searches for "@EACH"-marks to splitt the string in a list for each %_Each%-item
+   * 
+   * @param stringToSplitt the string which should be splitted
+   * @return the splitted list
+   */
+  QStringList splitEach( const QString& stringToSplit, bool useUrl );
   /**
    * @param panelIndicator either '_' for panel-independent placeholders, 'a', 'o', 'r', or 'l' for the active, other (inactive), right or left panel
    * @return a pointer to the right panel or NULL if no panel is needed.

@@ -61,7 +61,7 @@ exp_Path::exp_Path() {
    
    addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
 }
-QString exp_Path::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& ) {
+QString exp_Path::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl ) {
    NEED_PANEL
    
    QString result;
@@ -84,7 +84,7 @@ exp_Count::exp_Count() {
    
    addParameter( new exp_parameter( i18n("count all:"), "__choose:All;Files;Dirs;Selected", false ) );
 }
-QString exp_Count::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
+QString exp_Count::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& ) {
    NEED_PANEL
    
    int n = -1;
@@ -109,7 +109,7 @@ exp_Filter::exp_Filter() {
    _description = i18n("filter mask (*.h, *.cpp ...)");
    _needPanel = true;
 }
-QString exp_Filter::expFunc( const ListPanel* panel, const QStringList&, const bool&, const int& ) {
+QString exp_Filter::expFunc( const ListPanel* panel, const QStringList&, const bool& ) {
    NEED_PANEL
    
    return panel->view->filterMask();
@@ -123,23 +123,11 @@ exp_Current::exp_Current() {
    addParameter( new exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
    addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
 }
-QString exp_Current::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& /*currentItem*/ ) {
+QString exp_Current::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl ) {
    NEED_PANEL
    
-   QString item;
-//    if ( currentItem >= 0) {  // in a callEach-cycle
-//       if ( panel == ACTIVE_PANEL ) {  // callEach works only in the active panel
-//          QStringList items;
-//          panel->view->getSelectedItems( &items );
-//          item = items[currentItem];
-//       }
-//       else
-//          item = panel->view->getCurrentItem();
-//    }
-//    else {
-      item = panel->view->getCurrentItem();
-//    }
-   
+   QString item = panel->view->getCurrentItem();
+
    QString result;
    
    if ( parameter[0].lower() == "yes" )  // ommit the current path
@@ -169,7 +157,7 @@ exp_List::exp_List() {
    addParameter( new exp_parameter( i18n("Mask (optional, all but 'Selected')"), "__select", false ) );
    addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
 }
-QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& ) {
+QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& useUrl ) {
    NEED_PANEL
 
    // get selected items from view
@@ -235,7 +223,7 @@ exp_Select::exp_Select() {
    addParameter( new exp_parameter( i18n("Selection mask"), "__select", true ) );
    addParameter( new exp_parameter( i18n("Manipulate in which way"), "__choose:Set;Add;Remove", false ) );
 }
-QString exp_Select::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
+QString exp_Select::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& ) {
    NEED_PANEL
    
    QString mask;
@@ -264,7 +252,7 @@ exp_Goto::exp_Goto() {
    addParameter( new exp_parameter( i18n("please choose a path"), "__goto", true ) );
    addParameter( new exp_parameter( i18n("open the location in a new tab"), "__no", false ) );
 }
-QString exp_Goto::expFunc( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
+QString exp_Goto::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& ) {
    NEED_PANEL
    
    bool newTab = false;
@@ -303,7 +291,7 @@ exp_Ask::exp_Ask() {
    addParameter( new exp_parameter( i18n("Preset (optional)"), "", false ) );
    addParameter( new exp_parameter( i18n("Caption (optional)"), "", false ) );
 }
-QString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+QString exp_Ask::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    QString caption, preset;
    if ( parameter.count() <= 2 || parameter[2].isEmpty() )
       caption = i18n("User Action");
@@ -327,7 +315,7 @@ exp_Clipboard::exp_Clipboard() {
    addParameter( new exp_parameter( i18n("What should be copied"), "__placeholder", true ) );
    addParameter( new exp_parameter( i18n("Append to the current clipboard-content with this separator (optional)"), "", false ) );
 }
-QString exp_Clipboard::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+QString exp_Clipboard::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
 //    kdDebug() << "Expander::exp_Clipboard, parameter[0]: '" << parameter[0] << "', Clipboard: " << KApplication::clipboard()->text() << endl;
     if ( parameter.count() <= 1 || parameter[1].isEmpty() || KApplication::clipboard()->text().isEmpty() )
        KApplication::clipboard()->setText( parameter[0] );
@@ -345,7 +333,7 @@ exp_Copy::exp_Copy() {
    addParameter( new exp_parameter( i18n("What should be copied"), "__placeholder", true ) );
    addParameter( new exp_parameter( i18n("Where it should be copied"), "__placeholder", true ) );
 }                    
-QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
 
    // basicly the parameter can already be used as URL, but since KURL has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is nessesary:
    KURL src = vfs::fromPathOrURL( parameter[0] );
@@ -368,7 +356,7 @@ exp_Sync::exp_Sync() {
    
    addParameter( new exp_parameter( i18n("Choose a profile"), "__syncprofile", true ) );
 }
-QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    if ( parameter[0].isEmpty() ) {
       krOut << "Expander: no profile specified for %_Sync(profile)%; ignoring..." << endl;
       return QString::null;
@@ -386,7 +374,7 @@ exp_NewSearch::exp_NewSearch() {
    
    addParameter( new exp_parameter( i18n("Choose a profile"), "__searchprofile", true ) );
 }
-QString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+QString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    if ( parameter[0].isEmpty() ) {
       krOut << "Expander: no profile specified for %_NewSearch(profile)%; ignoring..." << endl;
       return QString::null;
@@ -404,7 +392,7 @@ exp_Profile::exp_Profile() {
    
    addParameter( new exp_parameter( i18n("Choose a profile"), "__panelprofile", true ) );
 }
-QString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+QString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
    if ( parameter[0].isEmpty() ) {
       krOut << "Expander: no profile specified for %_Profile(profile)%; ignoring..." << endl;
       return QString::null;
@@ -413,6 +401,66 @@ QString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, co
    MAIN_VIEW->profiles( parameter[0] );
 
    return QString::null;  // this doesn't return everything, that's normal!
+}
+
+exp_Each::exp_Each() {
+   _expression = "Each";
+   _description = i18n("Separate programm call for each...");
+   _needPanel = true;
+
+   addParameter( new exp_parameter( i18n("Which items"), "__choose:All;Files;Dirs;Selected", false ) );
+   addParameter( new exp_parameter( i18n("Omit the current path (optional)"), "__no", false ) );
+   addParameter( new exp_parameter( i18n("Mask (optional, all but 'Selected')"), "__select", false ) );
+   addParameter( new exp_parameter( i18n("Automatic escape spaces"), "__yes", false ) );
+}
+QString exp_Each::expFunc( const ListPanel* panel, const QStringList& parameter, const bool& ) {
+   NEED_PANEL
+   
+   QString mark = "@EACH";	//this mark is later used to splitt the commandline
+   
+   if ( panel == ACTIVE_PANEL )
+      mark += "a";
+   else if ( panel == OTHER_PANEL )
+      mark += "o";
+   else if ( panel == LEFT_PANEL )
+      mark += "l";
+   else if ( panel == RIGHT_PANEL )
+      mark += "r";
+   
+   if ( parameter[ 0 ].isEmpty() || parameter[ 0 ].lower() == "all" )
+      mark += "a";
+   else if ( parameter[ 0 ].lower() == "files" )
+      mark += "f";
+   else if ( parameter[ 0 ].lower() == "dirs" )
+      mark += "d";
+   else if ( parameter[ 0 ].lower() == "selected" )
+      mark += "s";
+   else {
+      krOut << "Expander: no Items specified for %_Each%; ignoring..." << endl;
+      return QString::null;
+   }
+
+   if ( parameter[1].lower() == "yes" )  // ommit the current path
+      mark += "y";
+   else
+      mark += "n";
+
+   QString mask;
+   if ( parameter.count() <= 2 || parameter[2].isEmpty() )
+      mask = "*";
+   else
+      mask = parameter[2];
+   
+   if ( parameter[3].lower() == "no" )  // don't escape spaces
+      mark += "n";
+   else
+      mark += "y";
+   
+   /*
+    * NOTE: This expFunc doesn't the work itself!!
+    * it sets only a mark where the commandline is splitt after _all_ placeholders are replaced!
+    */
+   return mark + mask + "@";
 }
 
 
@@ -427,6 +475,7 @@ Expander::Expander() {
    addPlaceholder( new exp_Filter() );
    addPlaceholder( new exp_Current() );
    addPlaceholder( new exp_List() );
+   addPlaceholder( new exp_Each() );
    addPlaceholder( new exp_separator( true ) );
    addPlaceholder( new exp_Select() );
    addPlaceholder( new exp_Goto() );
@@ -465,20 +514,19 @@ ListPanel* Expander::getPanel( const char& panelIndicator ) {
 }
 
 QStringList Expander::expand( const QString& stringToExpand, bool useUrl ) {
-   QStringList result;
-//    if ( callEach ) {
-//       QStringList items;
-//       ACTIVE_PANEL->view->getSelectedItems( &items );
-//       for ( unsigned int currentItem = 0; currentItem < items.count(); ++currentItem )
-//          result.append( expandCurrent( stringToExpand, useUrl, currentItem ) );
-//    }
-//    else
-      result.append( expandCurrent( stringToExpand, useUrl, -1 ) );
+   QStringList resultList;
+   
+   QString result = expandCurrent( stringToExpand, useUrl );
+   
+   if ( result.contains("@EACH") )
+      resultList = splitEach( result, useUrl );
+   else
+      resultList.append( result );
 
-   return result;
+   return resultList;
 }
 
-QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl, int currentItem ) {
+QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) {
    QString result = QString::null, exp = QString::null;
    int begin, end, i;
 //    int brackets = 0;
@@ -505,7 +553,7 @@ QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl, int
         for ( i = 0; i < placeholderCount(); ++i )
            if ( exp == placeholder( i )->expression() ) {
 //               kdDebug() << "---------------------------------------" << endl;
-              result += placeholder( i )->expFunc( getPanel( panelIndicator ), parameter, useUrl, currentItem );
+              result += placeholder( i )->expFunc( getPanel( panelIndicator ), parameter, useUrl );
 //               kdDebug() << "---------------------------------------" << endl;
               break;
            }
@@ -519,6 +567,83 @@ QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl, int
    // copy the rest of the string
    result += stringToExpand.mid( idx );
 //    kdDebug() << "============== result '" << result << "'" << endl;
+   return result;
+}
+
+QStringList Expander::splitEach( const QString& stringToSplit, bool useUrl ) {
+   kdDebug() << "stringToSplit: " << stringToSplit << endl;
+   QStringList chunks;
+   unsigned int idx = 0;
+   int begin, end;
+
+   // find all @EACH and put thier "parameter" in the array 'chunks'
+   while (idx < stringToSplit.length()) {
+      if ( ( begin = stringToSplit.find( "@EACH", idx ) ) == -1 ) break;
+      begin += 5; // = lenth ("@EACH")
+      end = stringToSplit.find( "@", begin );
+      chunks.append( stringToSplit.mid(begin, end - begin) );
+      
+      idx = end + 1;
+   }
+//    kdDebug() << "chunks: " << chunks << endl;
+
+   typedef QValueList <QStringList> ItemList;
+   ItemList itemList;
+   QStringList items;
+   
+   // get the items for each chunk
+   for ( QStringList::iterator it = chunks.begin(); it != chunks.end(); ++it ) {
+      items.clear();
+//       kdDebug() << "current chunk: " << *it << endl;
+      QString mask = (*it).mid(4);
+//       kdDebug() << "current mask: " << mask << endl;
+      QChar panelIndicator = (*it)[0];
+      kdDebug() << "current panel: " << panelIndicator << endl;
+      if ( (*it)[1] == 'a' ) // get all
+         getPanel( panelIndicator )->view->getItemsByMask( mask, &items );
+      else if ( (*it)[1] == 'f' ) // get files
+         getPanel( panelIndicator )->view->getItemsByMask( mask, &items, false, true );
+      else if ( (*it)[1] == 'd' ) // get dirs
+         getPanel( panelIndicator )->view->getItemsByMask( mask, &items, true, false );
+      else if ( (*it)[1] == 's' ) // get selected
+         getPanel( panelIndicator )->view->getSelectedItems( &items );
+
+      itemList.append( items );
+   }
+
+   unsigned int maxCount = 0;
+   
+   // check if we got for each chunk a replacement: find the smalles item-count
+   for ( ItemList::iterator it = itemList.begin(); it != itemList.end(); ++it ) {
+      if ( maxCount == 0 || (*it).count() < maxCount )
+         maxCount = (*it).count();
+   }
+   
+   QStringList result;
+   QString tmp, replacement;
+   
+   // replace the chunks with thier items
+   for ( unsigned int i = 0; i < maxCount; ++i ) {
+      tmp = stringToSplit;
+      for ( unsigned int c = 0; c < chunks.count(); ++c) {
+         if ( chunks[c][2] == 'y' ) { // ommit path
+            if (chunks[c][3] == 'n') // don't escape spaces
+               replacement = itemList[c][i];
+            else
+               replacement = bashquote( itemList[c][i] );
+         }
+         else {
+            KURL url = getPanel( (QChar) chunks[c][0] )->func->files()->vfs_getFile( itemList[c][i] );
+            if (chunks[c][3] == 'n') // don't escape spaces
+               replacement = (useUrl ? url.url() : url.path());
+            else
+               replacement = bashquote( (useUrl ? url.url() : url.path()) );
+         }
+         tmp.replace( "@EACH" + chunks[c] + "@", replacement );
+      } //for
+      result.append( tmp );
+   } //for
+
    return result;
 }
 
@@ -558,7 +683,7 @@ QStringList Expander::separateParameter( QString* exp, bool useUrl ) {
          *it = (*it).stripWhiteSpace();
          if ( (*it).left(1) == "\"" )
             *it = (*it).mid(1, (*it).length() - 2 );
-         *it = expandCurrent( *it, useUrl, -1 );
+         *it = expandCurrent( *it, useUrl );
       }
    }
       
