@@ -1,14 +1,14 @@
-# translation of krusader.po to Italiano
+# translation of krusader.pot to Italiano
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Giuseppe Bordoni <geppo@geppozone.com>, 2003,2004
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: it-cvs-2004_04_26\n"
+"Project-Id-Version: Krusader1.40\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-04-26 13:50+0200\n"
-"PO-Revision-Date: 2004-04-28 00:10+0200\n"
+"PO-Revision-Date: 2004-04-28 21:51+0200\n"
 "Last-Translator: Giuseppe Bordoni <geppo@geppozone.com>\n"
 "Language-Team: Italiano\n"
 "MIME-Version: 1.0\n"
@@ -17,18 +17,16 @@ msgstr ""
 "X-Generator: KBabel 1.0\n"
 
 #: GUI/dirhistorybutton.moc.cpp:34 GUI/dirhistorybutton.moc.cpp:42
-#, fuzzy
 msgid "DirHistoryButton"
-msgstr "Cronologia"
+msgstr "BottoneCronologiaDirectory"
 
 #: GUI/dirhistorybutton.cpp:36
 msgid "Open the directory history list"
 msgstr "Apri la cronologia delle directory"
 
 #: GUI/dirhistoryqueue.moc.cpp:34 GUI/dirhistoryqueue.moc.cpp:42
-#, fuzzy
 msgid "DirHistoryQueue"
-msgstr "Cronologia"
+msgstr "CodaCronologiaDirectory"
 
 #: GUI/kcmdline.cpp:60
 msgid "Name of directory where command will be processed."
@@ -261,8 +259,7 @@ msgstr ""
 
 #: Panel/listpanel.cpp:154
 msgid "Use superb KDE file dialog to choose location. "
-msgstr ""
-"Usa la superba finestra di dialogo di KDE per la scelta della posizione. "
+msgstr "Usa la superba finestra di dialogo di KDE per la scelta della posizione. "
 
 #: Panel/listpanel.cpp:158
 msgid ""
@@ -466,7 +463,7 @@ msgstr "%1 di %2 selezionati, %3 di %4"
 
 #: Panel/krcolorcache.moc.cpp:34 Panel/krcolorcache.moc.cpp:42
 msgid "KrColorCache"
-msgstr ""
+msgstr "KrCacheColori"
 
 #: Panel/krdetailedview.moc.cpp:34 Panel/krdetailedview.moc.cpp:42
 msgid "KrDetailedView"
@@ -474,7 +471,7 @@ msgstr "KrVistaDettaglio"
 
 #: Panel/krcalcspacedialog.moc.cpp:34 Panel/krcalcspacedialog.moc.cpp:42
 msgid "KrCalcSpaceDialog"
-msgstr ""
+msgstr "KrFinestraCalcolaSpazio"
 
 #: Panel/listpanel.moc.cpp:34 Panel/listpanel.moc.cpp:42
 msgid "ListPanel"
@@ -502,8 +499,7 @@ msgstr "Si possono modificare i collegamenti solo nei filesystem locali"
 
 #: Panel/panelfunc.cpp:167
 msgid "The current file is not a link, so i can't redirect it."
-msgstr ""
-"Il file attuale non è un collegamento quindi non è possibile redirigerlo."
+msgstr "Il file attuale non è un collegamento quindi non è possibile redirigerlo."
 
 #: Panel/panelfunc.cpp:174
 msgid "Please enter the new link destination:"
@@ -550,10 +546,8 @@ msgid "No permissions to edit this file."
 msgstr "Non hai i permessi per modificare questo file."
 
 #: Panel/panelfunc.cpp:303
-#, fuzzy
 msgid "Moving into archive is disabled"
-msgstr ""
-"Lo spostamento all'interno degli archivi è disabilitato in Konfigurator!"
+msgstr "Lo spostamento all'interno degli archivi è disabilitato"
 
 #: Panel/panelfunc.cpp:312
 msgid "Move "
@@ -747,8 +741,7 @@ msgid "Search string not found!"
 msgstr "Stringa non trovata!"
 
 #: krusader.cpp:207
-msgid ""
-"Status bar will show  basic informations about file below mouse pointer."
+msgid "Status bar will show  basic informations about file below mouse pointer."
 msgstr ""
 "La barra di stato mostrerà le informazioni basilari circa il file sotto al "
 "puntatore del mouse."
@@ -1063,8 +1056,7 @@ msgid "KrViewer is unable to download: "
 msgstr "KrViewer è impossibilitato a scaricare: "
 
 #: KViewer/krviewer.cpp:353
-msgid ""
-"The Document has been changed. Do you want to quit loosing the modifications?"
+msgid "The Document has been changed. Do you want to quit loosing the modifications?"
 msgstr "Il documento è stato cambiato. Si vuole uscire perdendo le modifiche?"
 
 #: Search/krsearchdialog.cpp:121
@@ -1601,10 +1593,8 @@ msgid "Free %"
 msgstr "Spazio libero %"
 
 #: MountMan/kmountmangui.cpp:218
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
-msgstr ""
-"Errore interno in MountMan. Per favore avverti gli sviluppatori. Grazie."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgstr "Errore interno in MountMan. Per favore avverti gli sviluppatori. Grazie."
 
 #: MountMan/kmountmangui.cpp:223
 msgid "MountMan"
@@ -2063,90 +2053,80 @@ msgid "Output"
 msgstr "Output"
 
 #: UserMenu/usermenuaddimpl.moc.cpp:34 UserMenu/usermenuaddimpl.moc.cpp:42
-#, fuzzy
 msgid "UserMenuAddImpl"
-msgstr "Menu utente"
+msgstr "AggiungiMenuUtente"
 
 #: UserMenu/usermenu.moc.cpp:34 UserMenu/usermenu.moc.cpp:42
-#, fuzzy
 msgid "UserMenuProcDlg"
-msgstr "Menu utente"
+msgstr "FinestraMenuUtente"
 
 #: UserMenu/usermenu.moc.cpp:129 UserMenu/usermenu.moc.cpp:137
-#, fuzzy
 msgid "UserMenuProc"
-msgstr "Menu utente"
+msgstr "ProcMenuUtente"
 
 #: UserMenu/usermenu.moc.cpp:217 UserMenu/usermenu.moc.cpp:225
-#, fuzzy
 msgid "UserMenuGui"
-msgstr "Menu utente"
+msgstr "GUIMenuUtente"
 
 #: UserMenu/usermenu.moc.cpp:322 UserMenu/usermenu.moc.cpp:330
-#, fuzzy
 msgid "UserMenu"
-msgstr "Menu utente"
+msgstr "MenuUtente"
 
 #: UserMenu/usermenuadd.cpp:198
 msgid "Add a new entry"
-msgstr ""
+msgstr "Aggiungi un nuovo elemento"
 
 #: UserMenu/usermenuadd.cpp:199
 msgid "Entry"
-msgstr ""
+msgstr "Elemento"
 
 #: UserMenu/usermenuadd.cpp:200
 msgid "Show this entry"
-msgstr ""
+msgstr "Mostra questo elemento"
 
 #: UserMenu/usermenuadd.cpp:201
 msgid "everywhere"
-msgstr ""
+msgstr "ovunque"
 
 #: UserMenu/usermenuadd.cpp:202
 msgid "only in"
-msgstr ""
+msgstr "Solo in"
 
 #: UserMenu/usermenuadd.cpp:204
-#, fuzzy
 msgid "Command accepts"
-msgstr "&Comandi"
+msgstr "Comando accetta"
 
 #: UserMenu/usermenuadd.cpp:205
 msgid "URLs (local and remote)"
-msgstr ""
+msgstr "URL (locali e remoti)"
 
 #: UserMenu/usermenuadd.cpp:206
-#, fuzzy
 msgid "Local files (no URLs)"
-msgstr "tutti i file (no directory)"
+msgstr "File locali (no URL)"
 
 #: UserMenu/usermenuadd.cpp:207
-#, fuzzy
 msgid "Execution mode"
-msgstr "Errore nell'esecuzione "
+msgstr "Modo di esecuzione"
 
 #: UserMenu/usermenuadd.cpp:208
 msgid "Collect output"
-msgstr ""
+msgstr "Cattura output"
 
 #: UserMenu/usermenuadd.cpp:209
-#, fuzzy
 msgid "Run in terminal"
-msgstr "Scegli un terminale"
+msgstr "Esegui in un terminale"
 
 #: UserMenu/usermenuadd.cpp:210
 msgid "No output collection"
-msgstr ""
+msgstr "Nessuna cattura dell'output"
 
 #: UserMenu/usermenuadd.cpp:211
 msgid "Separate standard error"
-msgstr ""
+msgstr "Standard output separato"
 
 #: UserMenu/usermenuadd.cpp:213
-#, fuzzy
 msgid "Command line"
-msgstr "Mostra &riga di comando"
+msgstr "Riga di comando"
 
 #: Synchronizer/synchronizergui.cpp:757
 msgid "Krusader::Synchronize Directories"
@@ -2186,8 +2166,7 @@ msgstr "Scendi nelle sotto-directory"
 
 #: Synchronizer/synchronizergui.cpp:834
 msgid "Compares not only the base directories but their subdirectories as well"
-msgstr ""
-"Confronta non solo le directory di base ma anche le loro sotto-directory"
+msgstr "Confronta non solo le directory di base ma anche le loro sotto-directory"
 
 #: Synchronizer/synchronizergui.cpp:835
 msgid "Follow symlinks"
@@ -2378,15 +2357,13 @@ msgid "Error executing "
 msgstr "Errore nell'esecuzione "
 
 #: Synchronizer/synchronizer.moc.cpp:34 Synchronizer/synchronizer.moc.cpp:42
-#, fuzzy
 msgid "Synchronizer"
-msgstr "Sincronizza"
+msgstr "Sincronizzatore"
 
 #: Synchronizer/synchronizergui.moc.cpp:34
 #: Synchronizer/synchronizergui.moc.cpp:42
-#, fuzzy
 msgid "SynchronizerGUI"
-msgstr "Sincronizza"
+msgstr "GUISincronizzatore"
 
 #: Synchronizer/synchronizedialog.cpp:48
 msgid "Krusader::Synchronize"
@@ -2463,9 +2440,8 @@ msgstr "Confronto file %1..."
 
 #: Synchronizer/synchronizedialog.moc.cpp:34
 #: Synchronizer/synchronizedialog.moc.cpp:42
-#, fuzzy
 msgid "SynchronizeDialog"
-msgstr "Sincronizza"
+msgstr "FinestraSincronizza"
 
 #: paneltabbar.cpp:32 Konfigurator/kglookfeel.cpp:93
 msgid "Panel"
@@ -2674,8 +2650,7 @@ msgstr "Imposta l'intero percorso delle applicazioni esterne"
 
 #: Konfigurator/konfigurator.cpp:174
 msgid "The current page has been changed. Do you want to apply changes?"
-msgstr ""
-"La pagina corrente è stata cambiata. Si vogliono applicare le modifiche?"
+msgstr "La pagina corrente è stata cambiata. Si vogliono applicare le modifiche?"
 
 #: Konfigurator/kglookfeel.cpp:50
 msgid "Operation"
@@ -3095,9 +3070,8 @@ msgstr "Directory"
 
 #: Konfigurator/kgdependencies.moc.cpp:34
 #: Konfigurator/kgdependencies.moc.cpp:42
-#, fuzzy
 msgid "KgDependencies"
-msgstr "Dipendenze"
+msgstr "DipendenzeKg"
 
 #: Konfigurator/kgstartup.cpp:45
 msgid "Panels"
@@ -3212,8 +3186,7 @@ msgid "Test archive when finished packing"
 msgstr "Prova l'archivio quando termina la compressione"
 
 #: Konfigurator/kgarchives.cpp:93
-msgid ""
-"If checked, Krusader will test the archive's intergrity after packing it."
+msgid "If checked, Krusader will test the archive's intergrity after packing it."
 msgstr "Eseguire il test di integrità dell'archivio dopo la creazione."
 
 #: Konfigurator/kgarchives.cpp:94
@@ -3221,8 +3194,7 @@ msgid "Test archive before unpacking"
 msgstr "Prova l'archivio prima di decomprimerlo"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"Some corrupted archives might cause a crash, therefore testing is suggested"
+msgid "Some corrupted archives might cause a crash, therefore testing is suggested"
 msgstr ""
 "Qualche archivio danneggiato potrebbe causare un blocco del sistema quindi è "
 "suggerita la prova"
@@ -3450,8 +3422,7 @@ msgstr "Impossibile eseguire 'df', MountMan non può essere avviato."
 
 #: krslots.cpp:417
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-msgstr ""
-"Impossibile trovare \"KsysCtrl\". Per favore installa il pacchetto KDE admin"
+msgstr "Impossibile trovare \"KsysCtrl\". Per favore installa il pacchetto KDE admin"
 
 #: krslots.cpp:425
 msgid ""
@@ -3507,13 +3478,12 @@ msgid "Combining %1.* to directory:"
 msgstr "Unione di %1.* nella directory:"
 
 #: Splitter/splitter.moc.cpp:34 Splitter/splitter.moc.cpp:42
-#, fuzzy
 msgid "Splitter"
-msgstr "D&ividi"
+msgstr "Divisione file"
 
 #: Splitter/splittergui.moc.cpp:34 Splitter/splittergui.moc.cpp:42
 msgid "SplitterGUI"
-msgstr ""
+msgstr "GUIDivisioneFile"
 
 #: Splitter/splittergui.cpp:39
 msgid "1.44 MB (3.5\")"
@@ -3604,8 +3574,7 @@ msgid "Not a valid CRC file!"
 msgstr "File CRC non valido!"
 
 #: Splitter/combiner.cpp:138
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Il controllo dell'integrità è impossibile senza un file CRC. Continuare "
 "l'unione?"
@@ -3628,9 +3597,8 @@ msgid "Error at writing file %1!"
 msgstr "Errore durante la scrittura del file %1!"
 
 #: Splitter/combiner.moc.cpp:34 Splitter/combiner.moc.cpp:42
-#, fuzzy
 msgid "Combiner"
-msgstr "&Unisci file"
+msgstr "UnisciFile"
 
 #: Splitter/splitter.cpp:71
 msgid "Krusader::Splitting..."
@@ -3772,3 +3740,4 @@ msgstr "Errore durante la lettura del file %1!"
 
 #~ msgid "Choose a temporary directory"
 #~ msgstr "Scegli una directory temporanea"
+
