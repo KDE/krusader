@@ -115,6 +115,7 @@ protected:
    void newColumn( KrDetailedViewProperties::ColumnType type );
    virtual void keyPressEvent( QKeyEvent *e );
    virtual void contentsMousePressEvent( QMouseEvent *e );
+   virtual void contentsMouseReleaseEvent (QMouseEvent *e);
    virtual void contentsMouseMoveEvent ( QMouseEvent * e );
    virtual void contentsWheelEvent( QWheelEvent *e );
    virtual bool acceptDrag( QDropEvent* e ) const;
@@ -132,6 +133,7 @@ protected slots:
    void slotCurrentChanged( QListViewItem *item );
    void handleContextMenu( QListViewItem*, const QPoint&, int );
    virtual void renameCurrentItem();
+   virtual void showContextMenu( );
    void inplaceRenameFinished( QListViewItem *it, int col );
    void quickSearch( const QString &, int = 0 );
    void stopQuickSearch( QKeyEvent* );
@@ -162,6 +164,8 @@ private:
    QTime clickTime;
    QListViewItem *clickedItem;
    QTimer renameTimer;
+   QTimer contextMenuTimer;
+   QPoint contextMenuPoint;
 	QDict<KrDetailedViewItem> dict;
 };
 

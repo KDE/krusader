@@ -30,6 +30,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krdetailedview.h"
 #include "krdetailedviewitem.h"
 #include "krcolorcache.h"
+#include "krselectionmode.h"
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
@@ -72,8 +73,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define _GroupColumn        false 
 // Do Quicksearch
 #define _DoQuicksearch      true 
-//experimental
-#define _newSelectionHandling 
 //////////////////////////////////////////////////////////////////////////
 
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
@@ -203,6 +202,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
    connect( panel->quickSearch, SIGNAL( process( QKeyEvent* ) ),
             this, SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
    connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
+   connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));
 
 
    setFocusPolicy( StrongFocus );
@@ -547,9 +547,62 @@ void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
 }
 
 void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
+   bool callDefaultHandler = true, processEvent = true, selectionChanged = false;
+   QListViewItem * oldCurrent = currentItem();
+   QListViewItem *newCurrent = itemAt( contentsToViewport( e->pos() ) );
+   if (e->button() == RightButton)
+   {
+     if (KrSelectionMode::getSelectionHandler()->rightButtonSelects())
+     {
+       if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() && !(e->state() & ShiftButton)
+          && !(e->state() & ControlButton) && !(e->state() & AltButton))
+       {
+         if (newCurrent)
+         {
+           newCurrent->setSelected(!newCurrent->isSelected());
+           newCurrent->repaint();
+			  selectionChanged = true;
+         }
+         callDefaultHandler = false;
+         processEvent = false;
+         e->accept();
+       }
+     }
+     else
+     {
+       callDefaultHandler = false;
+       processEvent = false;
+       e->accept();
+     }
+   }
+   if (e->button() == LeftButton)
+   {
+     if (KrSelectionMode::getSelectionHandler()->leftButtonSelects())
+     {
+       if (KrSelectionMode::getSelectionHandler()->leftButtonPreservesSelection() && !(e->state() & ShiftButton)
+          && !(e->state() & ControlButton) && !(e->state() & AltButton))
+       {
+         if (newCurrent)
+         {
+           newCurrent->setSelected(!newCurrent->isSelected());
+           newCurrent->repaint();
+			  selectionChanged = true;
+         }
+         callDefaultHandler = false;
+         processEvent = false;
+         e->accept();
+       }
+     }
+     else
+     {
+       callDefaultHandler = false;
+       processEvent = false;
+       e->accept();
+     }
+   }
 
    modifierPressed = false;
-   if ( e->state() & ShiftButton || e->state() & ControlButton || e->state() & AltButton ) {
+   if ( (e->state() & ShiftButton) || (e->state() & ControlButton) || (e->state() & AltButton) ) {
       CANCEL_TWO_CLICK_RENAME;
       modifierPressed = true;
    }
@@ -570,10 +623,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
 
    if ( !_focused )
       emit needFocus();
-#ifdef _newSelectionHandling
-   if ( e->state() & ShiftButton || e->state() & ControlButton || e->state() & AltButton ) {
-      QListViewItem * oldCurrent = currentItem();
-      QListViewItem *newCurrent = itemAt( contentsToViewport( e->pos() ) );
+   if (processEvent && ( (e->state() & ShiftButton) || (e->state() & ControlButton) || (e->state() & AltButton) ) && !KrSelectionMode::getSelectionHandler()->useQTSelection()){
       if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->state() & ShiftButton ) {
          int oldPos = oldCurrent->itemPos();
          int newPos = newCurrent->itemPos();
@@ -586,28 +636,28 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
             bottom = newCurrent;
          }
          QListViewItemIterator it( top );
-         bool changed = false;
          for ( ; it.current(); ++it ) {
             if ( !it.current() ->isSelected() ) {
                it.current() ->setSelected( true );
-               changed = true;
+               selectionChanged = true;
             }
             if ( it.current() == bottom )
                break;
          }
-         if ( changed ) {
-            emit selectionChanged();
-            triggerUpdate();
-         }
          QListView::setCurrentItem( newCurrent );
-      } else
-         KListView::contentsMousePressEvent( e );
-      return ;
+         callDefaultHandler = false;
+      }
    }
+	
+	if (selectionChanged)
+		updateView(); // don't call triggerUpdate directly!
+	
    //   QListViewItem * i = itemAt( contentsToViewport( e->pos() ) );
-   KListView::contentsMousePressEvent( e );
+   if (callDefaultHandler)
+     KListView::contentsMousePressEvent( e );
    //   if (i != 0) // comment in, if click sould NOT select
    //     setSelected(i, FALSE);
+   if (newCurrent) QListView::setCurrentItem(newCurrent);
 
    if ( ACTIVE_PANEL->quickSearch->isShown() ) {
       ACTIVE_PANEL->quickSearch->hide();
@@ -619,9 +669,12 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
       OTHER_PANEL->quickSearch->clear();
       krDirUp->setEnabled( true );
    }
-   return ;
-#endif
-   KListView::contentsMousePressEvent( e );
+}
+
+void KrDetailedView::contentsMouseReleaseEvent( QMouseEvent * e ) {
+  if (e->button() == RightButton)
+    contextMenuTimer.stop();
+  KListView::contentsMouseReleaseEvent( e );
 }
 
 void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
@@ -644,7 +697,17 @@ void KrDetailedView::handleContextMenu( QListViewItem * it, const QPoint & pos, 
    if ( dynamic_cast<KrViewItem*>( it ) ->
          name() == ".." )
       return ;
-   emit contextMenu( QPoint( pos.x(), pos.y() - header() ->height() ) );
+   int i = KrSelectionMode::getSelectionHandler()->showContextMenu();
+   contextMenuPoint = QPoint( pos.x(), pos.y() - header() ->height() );
+   if (i < 0)
+     showContextMenu();
+   else if (i > 0)
+     contextMenuTimer.start(i, true);
+}
+
+void KrDetailedView::showContextMenu()
+{
+   emit contextMenu( contextMenuPoint );
 }
 
 void KrDetailedView::startDrag() {
@@ -711,48 +774,47 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
       return ;
    }
    switch ( e->key() ) {
-#ifdef _newSelectionHandling
-         case Key_Up : {
+         case Key_Up : if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             QListViewItem * i = currentItem();
             if ( !i ) break;
             if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected() );
             i = i->itemAbove();
-         if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); /*QListView::setSelectionAnchor(i);*/}
-         }
-         break;
+         if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i );}
+         } else KListView::keyPressEvent(e);
+         return;
          case Key_Down :
          if ( e->state() == ControlButton ) { // let the panel handle it - jump to command line
             e->ignore();
             break;
-         } else {
+         } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             QListViewItem * i = currentItem();
             if ( !i ) break;
             if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected() );
             i = i->itemBelow();
-         if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); /*QListView::setSelectionAnchor(i);*/}
-         }
-         break;
-         case Key_Next: {
+         if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
+         } else KListView::keyPressEvent(e);
+         return;
+         case Key_Next:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             QListViewItem * i = currentItem(), *j;
             if ( !i ) break;
             QRect r( itemRect( i ) );
             if ( !r.height() ) break;
             for ( int page = visibleHeight() / r.height() - 1; page > 0 && ( j = i->itemBelow() ); --page )
                i = j;
-         if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); /*QListView::setSelectionAnchor(i);*/}
-            break;
-         }
-         case Key_Prior: {
+            if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
+         } else KListView::keyPressEvent(e);
+         return;
+         case Key_Prior:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             QListViewItem * i = currentItem(), *j;
             if ( !i ) break;
             QRect r( itemRect( i ) );
             if ( !r.height() ) break;
             for ( int page = visibleHeight() / r.height() - 1; page > 0 && ( j = i->itemAbove() ); --page )
                i = j;
-         if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); /*QListView::setSelectionAnchor(i);*/}
-            break;
-         }
-         case Key_Home: {
+            if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
+         } else KListView::keyPressEvent(e);
+         return;
+         case Key_Home:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             if ( e->state() & ShiftButton )  /* Shift+Home */
             {
                clearSelection();
@@ -762,11 +824,11 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                break;
             } else {
                QListViewItem * i = firstChild();
-               if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); /*QListView::setSelectionAnchor(i);*/}
+               if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
             }
-            break;
-         }
-         case Key_End: {
+         } else KListView::keyPressEvent(e);
+         return;
+         case Key_End:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             if ( e->state() & ShiftButton )  /* Shift+End */
             {
                clearSelection();
@@ -780,11 +842,11 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                   i = j;
                while ( ( j = i->itemBelow() ) )
                   i = j;
-            if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); /*QListView::setSelectionAnchor(i);*/}
+            if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
                break;
             }
-         }
-#endif
+         } else KListView::keyPressEvent(e);
+         return;
          case Key_Enter :
          case Key_Return : {
             if ( e->state() & ControlButton )         // let the panel handle it
@@ -833,7 +895,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
          //case Key_Up :
          //KListView::keyPressEvent( e );
          //break;
-#ifndef _newSelectionHandling
+/*#ifndef _newSelectionHandling
          case Key_Down :
          if ( e->state() == ControlButton ) { // let the panel handle it
             e->ignore();
@@ -841,39 +903,49 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
          } else
             KListView::keyPressEvent( e );
          break;
-#endif
+#endif*/
          case Key_Delete :                   // kill file
          SLOTS->deleteFiles();
          return ;
+         case Key_Insert : {
+            if (KrSelectionMode::getSelectionHandler()->insertMovesDown())
+               KListView::keyPressEvent( e );
+            else
+               KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
+            return ; 
+         }
          case Key_Space : {
             KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
-            if ( !viewItem || viewItem->name() == ".." ) {
-               KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
-               return ; // wrong type, just mark(unmark it)
-            }
-            if ( !( viewItem->isDir() && viewItem->size() <= 0 ) ) {
-               KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
-               return ;
-            }
-            //
-            // NOTE: this is buggy incase somewhere down in the folder we're calculating,
-            // there's a folder we can't enter (permissions). in that case, the returned
-            // size will not be correct.
-            //
-            KIO::filesize_t totalSize = 0;
-            unsigned long totalFiles = 0, totalDirs = 0;
-            QStringList items;
-            items.push_back( viewItem->name() );
-            if ( ACTIVE_PANEL->func->calcSpace( items, totalSize, totalFiles, totalDirs ) ) {
-               // did we succeed to calcSpace? we'll fail if we don't have permissions
-               if ( totalSize == 0 ) { // just mark it, and bail out
+            if ( !viewItem || viewItem->name() == ".." ) { // wrong type, just mark(unmark it)
+               if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
                   KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
-                  return ;
-               }
-               viewItem->setSize( totalSize );
-               viewItem->repaintItem();
+               else
+                  KListView::keyPressEvent( e );
+               return ; 
             }
-            KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
+            if ( viewItem->isDir() && viewItem->size() <= 0 &&  KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
+               //
+               // NOTE: this is buggy incase somewhere down in the folder we're calculating,
+               // there's a folder we can't enter (permissions). in that case, the returned
+               // size will not be correct.
+               //
+               KIO::filesize_t totalSize = 0;
+               unsigned long totalFiles = 0, totalDirs = 0;
+               QStringList items;
+               items.push_back( viewItem->name() );
+            if ( ACTIVE_PANEL->func->calcSpace( items, totalSize, totalFiles, totalDirs ) ) {
+                  // did we succeed to calcSpace? we'll fail if we don't have permissions
+                  if ( totalSize == 0 ) { // just mark it, and bail out
+                     goto mark;
+                  }
+                  viewItem->setSize( totalSize );
+                  viewItem->repaintItem();
+               }
+            }
+mark:       if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
+               KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
+            else
+               KListView::keyPressEvent( e );
          }
          break;
          case Key_A :                 // mark all
