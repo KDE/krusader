@@ -1,10 +1,28 @@
 <!DOCTYPE KrusaderUserActions>
 <KrusaderUserActions>
  <action name="sample_panesize" >
-  <title>equal panel-size</title>
+  <title>Equal panel-size</title>
   <tooltip>sets the ratio between the two panels to 50/50</tooltip>
   <icon>view_left_right</icon>
   <category>Samples</category>
   <command>%aPanelSize(&quot;50&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+Equal</defaultshortcut>
+ </action>
+ <action name="sample_edit_as_root" >
+  <title>Edit as root</title>
+  <tooltip>Edit a file as root</tooltip>
+  <icon>kwrite</icon>
+  <category>Samples</category>
+  <description>Edit a file with root permissions</description>
+  <command run_as="root" >kedit %aCurrent%</command>
+  <defaultshortcut>Ctrl+E</defaultshortcut>
+ </action>
+ <action name="sample_newmount" >
+  <title>Mount</title>
+  <tooltip>Mount a new filesystem</tooltip>
+  <icon>hdd_mount</icon>
+  <category>Samples</category>
+  <command run_as="root" executionmode="collect_output" >mount -t %_Ask(&quot;Filesystem Type?&quot;)% %_Ask(&quot;Device ?&quot;)% %_Ask(&quot;Mount Point ?&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+M</defaultshortcut>
  </action>
 </KrusaderUserActions>
