@@ -89,6 +89,7 @@ int main(int argc, char *argv[]) {
   aboutData.addCredit("Kukk Zoltan","Hungarian translation","kukkzoli@freemail.hu",0);
   aboutData.addCredit("Dmitry Chernyak","Russian translation","chernyak@mail.ru",0);
   aboutData.addCredit("Milen Ivanov","Bulgarian translation","milen.ivanov@abv.bg",0);
+  aboutData.addCredit("Jinghua Luo","Chinese Simplified translation","luojinghua@msn.com",0);
   aboutData.addCredit("Milan Brabec","the first patch ever !","mbrabec@volny.cz",0);
 
   // Command line arguments ...
