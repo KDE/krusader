@@ -52,7 +52,7 @@
 #include <qclipboard.h>
 #include <qheader.h>
 
-QString KrSearchDialog::lastSearchText = "";
+QString KrSearchDialog::lastSearchText = "*";
 int KrSearchDialog::lastSearchType = 0;
 bool KrSearchDialog::lastSearchForCase = false;
 bool KrSearchDialog::lastContainsWholeWord = false;
