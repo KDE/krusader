@@ -627,9 +627,13 @@
      <para>once inside, bookmark the current location, select a name and save.</para>
   </listitem>
   <listitem>
-     <para>do this for all your connections.</para>
+     <para>do this for all your connections, all the &bookmarks_lnk; are now stored 
+           in <filename>krbookmarks.xml</filename></para>
   </listitem>
-  </orderedlist>
+  <listitem>
+     <para>install &krusader;-1.60, it will use <filename>krbookmarks.xml</filename>
+           or import it if needed.</para>
+  </listitem>  </orderedlist>
   </para>      
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
@@ -820,7 +824,7 @@
   <para>How can I support &krusader;?</para>
   </question>
   <answer>
-  <para>You can <link linkend="help_krusader">support</link>&krusader; in many different ways:
+  <para>You can <link linkend="help_krusader">support</link> &krusader; in many different ways:
         please send us
         <link linkend="faqg_wish_patch">feedback</link>, &faqbugreports_lnk;, patches,  
         <link linkend="help_krusader">donations</link>, translations, ...
