@@ -258,6 +258,7 @@ void ListPanel::slotStartUpdate() {
   if ( func->files() ->vfs_getType() == "normal" )
     realPath = virtualPath;
   this->origin->setURL( virtualPath );
+  emit pathChanged(this);
   emit cmdLineUpdate( realPath );	// update the command line
 }
 

@@ -3,7 +3,7 @@ bin_PROGRAMS = krusader
 
 ## INCLUDES were found outside kdevelop specific part
 
-krusader_SOURCES = krservices.cpp main.cpp krusaderview.cpp krusader.cpp krslots.cpp kicons.cpp 
+krusader_SOURCES = krservices.cpp main.cpp krusaderview.cpp krusader.cpp krslots.cpp kicons.cpp panelmanager.cpp paneltabbar.cpp
 krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./GUI/libGUI.a ./Konfigurator/libKonfigurator.a ./KViewer/libKViewer.a ./MountMan/libMountMan.a ./Panel/libPanel.a ./RemoteMan/libRemoteMan.a ./VFS/libVFS.a ./Search/libSearch.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) $(LIBSOCKET)
 
 SUBDIRS = BookMan Dialogs GUI Konfigurator KViewer MountMan Panel RemoteMan VFS Search 
@@ -81,3 +81,4 @@ messages: rc.cpp
 	 $(XGETTEXT) $$LIST -o $(podir)/krusader.pot; \
 	fi
 
+noinst_HEADERS = panelmanager.h paneltabbar.h
