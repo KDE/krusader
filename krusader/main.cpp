@@ -68,8 +68,9 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Frank Schoolmeesters", "Documentation Manager", "frank_schoolmeesters@fastmail.fm", 0);
   aboutData.addCredit("Jan Halasa", "Bookmark Module", "xhalasa@fi.muni.cz", 0);
   aboutData.addCredit("Hans Loeffler", "Dir history button", 0, 0);
+  aboutData.addCredit("Szombathelyi György", "ISO KIO slave", 0, 0);
   aboutData.addCredit("Jan Willem", "Icons for Krusader", 0, 0);
-	aboutData.addCredit("Mikolaj Machowski", "Usability and QA", "<mikmach@wp.pl>", 0);
+  aboutData.addCredit("Mikolaj Machowski", "Usability and QA", "<mikmach@wp.pl>", 0);
   aboutData.addCredit("Cristi Dumitrescu","QA, bug-hunting, patches and general help","cristid@chip.ro",0);
   aboutData.addCredit("Aurelien Gateau","patch for KViewer","aurelien.gateau@free.fr",0);
   aboutData.addCredit("Rafael Munoz","Spanish translation","muror@hotpop.com",0);

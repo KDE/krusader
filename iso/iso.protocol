@@ -1,0 +1,11 @@
+[Protocol]
+exec=kio_iso
+protocol=iso
+listing=Name,Type,Size,Date,AccessDate,CreationDate,Access,Owner,Group,Link
+input=filesystem
+output=filesystem
+reading=true
+source=true
+Icon=cd
+Description=A kioslave for ISO9660 filesystems
+MimeType=application/x-iso
