@@ -29,13 +29,13 @@
 
 
 UserAction::UserAction() {
-  kdDebug() << "Initialisising useractions..." << endl;
+  krOut << "Initialisising useractions..." << endl;
   _xml = new UserActionXML();
    if ( _xml != 0 ) {
      QStringList actionNames = _xml->getActionNames();
      for ( QStringList::Iterator it = actionNames.begin(); it != actionNames.end(); ++it )
         addKrAction( _xml->readAction(*it) );
-     kdDebug() << _actions.count() << " useractions read." << endl;
+     krOut << _actions.count() << " useractions read." << endl;
    }
 }
 
@@ -96,6 +96,7 @@ UserAction::KrActionList* UserAction::actionList() {
 
 void UserAction::populateMenu( KPopupMenu* menu ) {
    for ( KrActionList::iterator it = _actions.begin(); it != _actions.end(); ++it )
-      (*it)->plug( menu );
+      if ( ! (*it)->isPlugged( menu ) )
+         (*it)->plug( menu );
 }
 
