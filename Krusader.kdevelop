@@ -2,21 +2,21 @@
 <kdevelop>
   <general>
     <author>Shie Erlich and Rafi Yanai</author>
-    <email/>
+    <email></email>
     <version>1.20</version>
     <projectmanagement>KDevAutoProject</projectmanagement>
     <primarylanguage>C++</primarylanguage>
     <ignoreparts>
+      <part>KDevBookmarks</part>
       <part>KDevClearCase</part>
       <part>KDevFileGroups</part>
       <part>KDevdistpart</part>
       <part>KDevPerforce</part>
-      <part>KDevBookmarks</part>
-      <part>KDevVisualBoyAdvance</part>
     </ignoreparts>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description/>
+    <description></description>
+    <secondaryLanguages/>
   </general>
   <kdevautoproject>
     <general>
@@ -24,12 +24,13 @@
       <useconfiguration>default</useconfiguration>
     </general>
     <run>
-      <mainprogram>./krusader/krusader</mainprogram>
-      <programargs/>
+      <mainprogram>krusader/krusader</mainprogram>
+      <programargs></programargs>
       <terminal>false</terminal>
       <envvars/>
       <autocompile>true</autocompile>
       <directoryradio>executable</directoryradio>
+      <customdirectory>/</customdirectory>
     </run>
     <make>
       <envvars>
@@ -39,18 +40,21 @@
       <abortonerror>true</abortonerror>
       <numberofjobs>2</numberofjobs>
       <dontact>false</dontact>
-      <makebin/>
+      <makebin></makebin>
     </make>
   </kdevautoproject>
   <kdevdebugger>
     <general>
       <dbgshell>libtool</dbgshell>
-      <programargs/>
-      <gdbpath/>
+      <programargs></programargs>
+      <gdbpath></gdbpath>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
       <runappinappdirectory>true</runappinappdirectory>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
     </general>
     <display>
       <staticmembers>false</staticmembers>
@@ -67,9 +71,14 @@
   </kdevfilecreate>
   <kdevdoctreeview>
     <projectdoc>
-      <userdocDir>/home/shie/krusader_kde3/html/</userdocDir>
-      <apidocDir>/home/shie/krusader_kde3/html/</apidocDir>
+      <userdocDir>html/</userdocDir>
+      <apidocDir>html/</apidocDir>
     </projectdoc>
+    <ignoreqt_xml/>
+    <ignoredoxygen/>
+    <ignorekdocs/>
+    <ignoretocs/>
+    <ignoredevhelp/>
   </kdevdoctreeview>
   <cppsupportpart>
     <codecompletion/>
@@ -123,6 +132,10 @@
       <automaticHeaderCompletion>true</automaticHeaderCompletion>
       <headerCompletionDelay>250</headerCompletionDelay>
     </codecompletion>
-    <references/>
+    <references>
+      <pcs>Qt</pcs>
+      <pcs>krusader-source</pcs>
+      <pcs>KDElibs</pcs>
+    </references>
   </kdevcppsupport>
 </kdevelop>
