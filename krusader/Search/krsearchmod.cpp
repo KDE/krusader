@@ -68,6 +68,9 @@ KRSearchMod::~KRSearchMod()
 
 void KRSearchMod::start()
 {
+  unScannedUrls.clear();
+  scannedUrls.clear();
+  
   // search every dir that needs to be searched
   for ( unsigned int i = 0; i < query->whereToSearch.count(); ++i )
       scanURL( query->whereToSearch [ i ] );
@@ -122,6 +125,8 @@ void KRSearchMod::scanURL( KURL url )
   while ( !unScannedUrls.isEmpty() )
   {
     KURL urlToCheck = unScannedUrls.pop();
+    
+    if( stopSearch ) return;
     
     if ( query->whereNotToSearch.contains( urlToCheck ) )
       continue;
