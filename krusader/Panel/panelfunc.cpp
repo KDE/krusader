@@ -706,6 +706,7 @@ void ListPanelFunc::calcSpace() {
                 if (viewItem)
                      viewItem->repaintItem();
         }
+  panel->slotUpdateTotals();
 }
 
 bool ListPanelFunc::calcSpace(const QStringList & items,KIO::filesize_t & totalSize,unsigned long & totalFiles,unsigned long & totalDirs) {

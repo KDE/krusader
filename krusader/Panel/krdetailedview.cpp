@@ -773,10 +773,14 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
       return ;
       case Key_Space : {
         KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
-        if ( !viewItem || !( viewItem->isDir() && viewItem->size() <= 0 ) || viewItem->name()==".." ) {
+        if ( !viewItem || viewItem->name()==".." ) {
           KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
           return ; // wrong type, just mark(unmark it)
           }
+        if ( !( viewItem->isDir() && viewItem->size() <= 0 ) ) {
+          KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
+          return ;
+        }
         //
         // NOTE: this is buggy incase somewhere down in the folder we're calculating,
         // there's a folder we can't enter (permissions). in that case, the returned
@@ -796,7 +800,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
           _countSize += totalSize;
           viewItem->repaintItem();
           }
-        //KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
+        KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
         }
       break;
       case Key_A :                // mark all
