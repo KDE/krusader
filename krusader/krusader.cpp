@@ -86,6 +86,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "UserMenu/usermenu.h"
 #include "panelmanager.h"
 #include "MountMan/kmountman.h"
+#include "BookMan/krbookmarkhandler.h"
 
 // define the static members
 Krusader *Krusader::App = 0;
@@ -146,6 +147,7 @@ KRadioAction  **Krusader::compareArray[] = {&actMarkNewerAndSingle, &actMarkNewe
 UserAction *Krusader::userAction = 0;
 Expander *Krusader::expander = 0;
 UserMenu *Krusader::userMenu = 0;
+KrBookmarkHandler *Krusader::bookman = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
@@ -204,6 +206,9 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 
    // create MountMan
    mountMan = new KMountMan();
+
+	// create bookman
+	bookman = new KrBookmarkHandler(this);
 
    // setup all the krusader's actions
    setupActions();

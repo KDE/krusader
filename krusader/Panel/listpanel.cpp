@@ -95,6 +95,7 @@ typedef QValueList<KServiceOffer> OfferList;
 //#define BOOKMAN2
 #ifdef BOOKMAN2
 #include "../BookMan/krbookmarkbutton.h"
+
 #endif // BOOKMAN2
 
 /////////////////////////////////////////////////////
@@ -140,9 +141,9 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
                                "current location to the list, edit bookmarks "
                                "or add subfolder to the list." ) );
 #ifdef BOOKMAN2
-	KrBookmarkButton *bmb = new KrBookmarkButton(this);
+	bmb = new KrBookmarkButton(this);
 	connect( bmb, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
-   connect( bmb->handler(), SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
+   connect( bmb, SIGNAL( openUrl( const KURL& ) ), func, SLOT( delayedOpenUrl( const KURL& ) ) );
 #endif // BOOKMAN2
 										 
    QHBoxLayout *totalsLayout = new QHBoxLayout(this);

@@ -57,6 +57,7 @@ class UserMenu;
 class UserAction;
 class Expander;
 class KMountMan;
+class KrBookmarkHandler;
 
 class Krusader : public KParts::MainWindow {
     Q_OBJECT
@@ -129,6 +130,7 @@ class Krusader : public KParts::MainWindow {
     static UserMenu *userMenu;
     static UserAction *userAction;
     static Expander *expander;
+	 static KrBookmarkHandler *bookman;
 
   signals:
     void changeMessage( QString );
@@ -144,6 +146,7 @@ class Krusader : public KParts::MainWindow {
 #define krApp        Krusader::App
 #define krConfig     Krusader::App->config
 #define krMtMan      (*(Krusader::App->mountMan))
+#define krBookMan    Krusader::App->bookman
 #define SLOTS        Krusader::App->slot
 #define krLoader     Krusader::App->iconLoader
 #define ACTIVE_PANEL (krApp->mainView->activePanel)
@@ -192,7 +195,7 @@ class Krusader : public KParts::MainWindow {
 #define krSplit           Krusader::App->actSplit
 #define krCombine         Krusader::App->actCombine
 #define krUserMenu        Krusader::App->actUserMenu
-#define krUserAction           Krusader::App->userAction
-#define krExpander           Krusader::App->expander
+#define krUserAction      Krusader::App->userAction
+#define krExpander        Krusader::App->expander
 
 #endif

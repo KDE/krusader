@@ -15,10 +15,10 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent): QToolButton(parent) {
 	setPopupDelay(10); // 0.01 seconds press
 	setAcceptDrops(false);
 
-	KActionMenu *acmBookmarks = new KActionMenu(i18n("Bookmarks"), "bookmark", 0, 0);
+	acmBookmarks = new KActionMenu(i18n("Bookmarks"), "bookmark", 0, 0);
 	acmBookmarks->setDelayed(false);
 
-	_handler = new KrBookmarkHandler(this, acmBookmarks->popupMenu());
+	//_handler = new KrBookmarkHandler(this, acmBookmarks->popupMenu());
 	setPopup(acmBookmarks->popupMenu());
 }
 

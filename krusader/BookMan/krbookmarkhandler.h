@@ -16,6 +16,7 @@ class KrBookmarkHandler: public QObject {
 
 	enum Actions { Border, BookmarkCurrent, ManageBookmarks };
 public:
+	KrBookmarkHandler(QObject *parent);
 	KrBookmarkHandler(QWidget *parent, KPopupMenu *menu);
 
 protected:
@@ -26,6 +27,7 @@ protected:
 	bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg);
 	bool importFromFileFolder(QDomNode &first, KrBookmark *parent, QString *errorMsg);
 	void exportToFile();
+	void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
 	void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
 	void clearBookmarks(KrBookmark *root);
 	void buildMenu(KrBookmark *parent, KPopupMenu *menu);

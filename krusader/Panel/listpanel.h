@@ -67,6 +67,7 @@ class DirHistoryButton;
 class DirHistoryQueue;
 class PanelPopup;
 class SyncBrowseButton;
+class KrBookmarkButton;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;
@@ -157,6 +158,7 @@ public:
 	QToolButton *popupBtn;
 	PanelPopup *popup;
    BookmarksButton *bookmarksButton;
+	KrBookmarkButton *bmb;
    DirHistoryQueue* dirHistoryQueue;
    DirHistoryButton* historyButton;
    SyncBrowseButton *syncBrowseButton;

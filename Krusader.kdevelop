@@ -56,8 +56,9 @@
         <cxxcompilerbinary>-DQT_THREAD_SUPPORT</cxxcompilerbinary>
         <f77compilerbinary/>
         <cflags/>
-        <cxxflags>-DQT_THREAD_SUPPORT</cxxflags>
+        <cxxflags>-DQT_THREAD_SUPPORT </cxxflags>
         <f77flags/>
+        <envvars/>
       </default>
     </configurations>
   </kdevautoproject>
@@ -77,6 +78,7 @@
     <display>
       <staticmembers>false</staticmembers>
       <demanglenames>true</demanglenames>
+      <outputradix>10</outputradix>
     </display>
   </kdevdebugger>
   <kdevfilecreate>

@@ -18,11 +18,21 @@
 #define BOOKMARKS_FILE	"krusader/bookman2.xml"
 #define TOP_OF_MENU		0
 #define BOTTOM_OF_MENU	_menu->indexOf(Border)
-#define CONNECT_BM(X)	connect(X, SIGNAL(activated(KrBookmark *)),					\
-											this, SLOT(bookmarkActivated(KrBookmark *)));
+#define CONNECT_BM(X)	connect(X, SIGNAL(activated(KrBookmark *)), this, SLOT(bookmarkActivated(KrBookmark *)));
 #define STOPWATCH		_dirwatch->stopDirScan(_filename)
 #define STARTWATCH	_dirwatch->restartDirScan(_filename)
 											
+KrBookmarkHandler::KrBookmarkHandler(QObject *parent): QObject(parent) {
+	// create our own action collection and make the shortcuts apply only to parent
+	_collection = new KActionCollection(0, parent, "bookmark collection");
+
+	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
+	_root = new KrBookmark("root");
+
+	// load bookmarks and populate the menu
+	importFromFile();
+}
+
 KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject(parent), _menu(menu) {
 // create our own action collection and make the shortcuts apply only to parent
 	_collection = new KActionCollection(0, parent);
@@ -33,7 +43,7 @@ KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject
 	// start watching the bookmarks file for updates
 	_filename = locateLocal( "data", BOOKMARKS_FILE );
 	_dirwatch = new KDirWatch(this);
-	_dirwatch->addFile(locateLocal("data", BOOKMARKS_FILE));
+	//_dirwatch->addFile(locateLocal("data", BOOKMARKS_FILE));
 	connect(_dirwatch, SIGNAL(dirty(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
 	connect(_dirwatch, SIGNAL(created(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
 
@@ -97,7 +107,7 @@ void KrBookmarkHandler::addBookmark(KrBookmark *bm, bool saveData, KrBookmark *f
 	folder->children().append(bm);
 
 	// add to menu
-	bm->plug(_menu, BOTTOM_OF_MENU); // add on top
+	bm->plug(_menu, BOTTOM_OF_MENU);
 	CONNECT_BM(bm);
 
 	if (saveData) // save
@@ -118,6 +128,21 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
 	where.appendChild(bookmark);
 }
 
+void KrBookmarkHandler::exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder) {
+	for (KrBookmark *bm = folder->children().first(); bm; bm = folder->children().next()) {
+		if (bm->isFolder()) {
+			QDomElement newFolder = doc.createElement("folder");
+			parent.appendChild(newFolder);
+			QDomElement title = doc.createElement("title");
+			title.appendChild(doc.createTextNode(bm->text()));
+			newFolder.appendChild(title);
+			exportToFileFolder(doc, newFolder, bm);
+		} else {
+			exportToFileBookmark(doc, parent, bm);
+		}
+	}
+}
+
 // export to file using the xbel standard
 //
 //  <xbel>
@@ -134,7 +159,6 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
 //    </folder>
 //  </xbel>
 void KrBookmarkHandler::exportToFile() {
-#if 0	
 	// disable the dirwatch while saving the file
 	STOPWATCH;
 
@@ -142,11 +166,7 @@ void KrBookmarkHandler::exportToFile() {
    QDomElement root = doc.createElement( "xbel" );
    doc.appendChild( root );
 
-	// iterate through the bookmark list
-	for (KrBookmark *bm = _bookmarks.first(); bm; bm = _bookmarks.next()) {
-		// TODO: support for folder
-		exportToFileBookmark(doc, root, bm);
-	}
+	exportToFileFolder(doc, root, _root);
 
 	QFile file(_filename);
 	if ( file.open( IO_WriteOnly ) ) {
@@ -159,7 +179,6 @@ void KrBookmarkHandler::exportToFile() {
 
 	// re-enable the dirwatch
 	STARTWATCH;
-#endif
 }
 
 bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg) {
@@ -217,7 +236,6 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 
 void KrBookmarkHandler::importFromFile() {
 	STOPWATCH;
-	
 	QFile file( _filename );
 	if ( !file.open(IO_ReadOnly))
 		return; // no bookmarks file
@@ -229,7 +247,6 @@ void KrBookmarkHandler::importFromFile() {
 	if ( !doc.setContent( &file, &errorMsg ) ) {
 		goto ERROR;
 	}
-
 	// iterate through the document: first child should be "xbel" (skip all until we find it)
 	n = doc.firstChild();	
 	while (!n.isNull() && n.toElement().tagName()!="xbel")
@@ -239,7 +256,6 @@ void KrBookmarkHandler::importFromFile() {
 		errorMsg = _filename+i18n(" doesn't seem to be a valid Bookmarks file");
 		goto ERROR;
 	} else n = n.firstChild(); // skip the xbel part
-
 	importFromFileFolder(n, _root, &errorMsg);
 	goto SUCCESS;
 	
@@ -249,7 +265,6 @@ ERROR:
 SUCCESS:
 	file.close();
 	buildMenu(_root, _menu);
-		
 	STARTWATCH;
 }
 
