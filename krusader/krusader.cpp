@@ -87,6 +87,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "panelmanager.h"
 #include "MountMan/kmountman.h"
 #include "BookMan/krbookmarkhandler.h"
+#include "Dialogs/popularurls.h"
 
 // define the static members
 Krusader *Krusader::App = 0;
@@ -230,6 +231,8 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    // create bookman
    bookman = new KrBookmarkHandler();
 
+	popularUrls = new PopularUrls(this);
+	
    // create the main view
    mainView = new KrusaderView( this );
    

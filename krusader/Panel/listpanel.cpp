@@ -91,6 +91,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krservices.h"
 #include "panelpopup.h" 
 #include "../UserAction/useractionpopupmenu.h"
+#include "../Dialogs/popularurls.h"
 
 #ifdef __LIBKONQ__
 #include <konq_popupmenu.h>
@@ -552,6 +553,7 @@ void ListPanel::slotStartUpdate() {
    // return cursor to normal arrow
    setCursor( KCursor::arrowCursor() );
    slotUpdateTotals();
+	krApp->popularUrls->addUrl(virtualPath);
 }
 
 void ListPanel::slotUpdate() {

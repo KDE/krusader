@@ -64,6 +64,7 @@ class UserAction;
 class Expander;
 class KMountMan;
 class KrBookmarkHandler;
+class PopularUrls;
 
 //static QTextOStream krOut(stdout);
 #define krOut kdDebug(50010)
@@ -108,6 +109,7 @@ class Krusader : public KParts::MainWindow {
     KrusaderView *mainView;  // The GUI
     KConfig *config;    // allow everyone to access the config
     KIconLoader *iconLoader; // the app's icon loader
+	 PopularUrls *popularUrls; // holds a sorted list of the most popular urls visited
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
     static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate;
