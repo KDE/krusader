@@ -74,11 +74,6 @@ panel( parent ), inRefresh( false ) {
   vfsStack.setAutoDelete( true );
   vfsStack.push( new normal_vfs( "/", panel ) );
   files() ->vfs_refresh();
-
-  // allow in-place renaming
-  connect(dynamic_cast<KListView*>(panel->view), SIGNAL(itemRenamed(QListViewItem *,const QString &,int)),
-          this, SLOT(rename(QListViewItem*, const QString &)));
-
 }
 
 void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
@@ -384,6 +379,12 @@ void ListPanelFunc::moveFiles() {
   }
 }
 
+// called from SLOTS to begin the renaming process
+void ListPanelFunc::rename() {
+  panel->view->renameCurrent();
+}
+
+// called by signal itemRenamed() from the view to complete the renaming process
 void ListPanelFunc::rename(QListViewItem *item, const QString &str) {
   if (dynamic_cast<KrViewItem*>(item)->name() == str) return; // do nothing
   panel->view->setNameToMakeCurrent( str );
