@@ -47,17 +47,10 @@
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
   QObject(parent), KListViewItem(parent, after), KrViewItem(),_vf(vf), _view(parent) {
   repaintItem();
-  if( _vf ) {
-    connect( _vf, SIGNAL( vfile_destructed() ), this, SLOT( remove() ) );
-  }
-}
-
-void KrDetailedViewItem::remove(){  
-  _vf = 0;
 }
 
 void KrDetailedViewItem::repaintItem() {
-    if (_vf == 0L) return;
+    if ( !_vf ) return;
     // set text in columns, according to what columns are available
     int id = KrDetailedView::Unused;
     if ((id = _view->column(KrDetailedView::Mime)) != -1) {
@@ -186,10 +179,10 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 QPixmap& KrDetailedViewItem::icon() {
   QPixmap *p;
 
-  if( _vf == 0 )
-    return *p;
-  
-  if (_view->_withIcons)
+  // This is bad - very bad. the function must return a valid reference,
+  // This is an interface flow - shie please fix it with a function that return QPixmap*
+  // this way we can return 0 - and do our error checking...
+  if ( !_vf || _view->_withIcons)
     p = new QPixmap(*(pixmap(_view->column(KrDetailedView::Name))));
   else p = new QPixmap(KrView::getIcon(_vf));
   return *p;

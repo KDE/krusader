@@ -35,6 +35,7 @@
 #include <sys/types.h>
 #include "../VFS/vfile.h"
 #include <klistview.h>
+#include <qguardedptr.h>
 #include <qobject.h>
 
 class QPixmap;
@@ -71,9 +72,6 @@ public:
 signals:
   void renameCancelled(KrDetailedViewItem *);
 
-public slots:
-  void remove();
-
 protected:
   // text() was made protected in order to catch every place where text(x) is used
   // to gain unlawful information on the object
@@ -83,7 +81,7 @@ private:
   // used INTERNALLY when calculation of dir size changes the displayed size of the item
   inline void setSize(KIO::filesize_t size) { _vf->vfile_setSize(size); }
 
-  vfile *_vf;
+  QGuardedPtr<vfile> _vf;
   KrDetailedView *_view;
 };
 
