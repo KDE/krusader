@@ -246,11 +246,45 @@
       </orderedlist>
 </para>
 
-<para>Bookman supports "special / permanent bookmarks" which means that they are added by the &krusader;-Krew to the top
-      bookmark menu without the need of being saved to the file, right now the only one is <filename>"devices:/"</filename>
-      You are able to turn them off.</para>
+<para>Bookman supports "special / permanent bookmarks" which means that they are added by the &krusader;-Krew 
+      to the top bookmark menu without the need of being saved to the file, right now there are two: 
+      <filename>devices:/</filename> and <filename>Virtual Filesystem</filename>
+      </para>
 
 <tip><para>&bookmarks_lnk; can be placed into the &main_toolbar_lnk; and the &actions_toolbar_lnk;.</para></tip>
+
+<para><emphasis role="bold">Virtual Filesystem</emphasis></para>
+<para>This is not a virtual folder, but a container for &URL;'s from different file systems.
+     It is used for &eg; the <guilabel>Feed to Listbox</guilabel> feature of the search module.
+     Actions you perform on the files in this VFS are performed on the 'real' files.
+     You don't just delete files from the VFS - you delete them from your hard drive.
+     Limitations: you can't create directories inside a virtual VFS.
+     The location toolbar will display &eg; <filename>virt:/Search results 1</filename>.
+</para>
+
+<para><emphasis role="bold">Popular URL's</emphasis></para>
+<para>The submenu <guilabel>Popular URL's</guilabel> 
+      <!-- Openjade does not like an acronym element for "URL" here -->
+      holds persistent the most popular visited &URL;'s 
+      (local or remote). This submenu displays the top 15 popular urls, sorted by ranking, 
+      so that the top &URL; is the most popular.
+      This is easy for when u need to visit &URL;s often, but don't want to create &bookmarks_lnk;,
+      it serves as a temporary bookmark list for the most visited links. 
+      We are planning to add a dialog with quicksearch to browse the Popular &URL;s.
+      You can use the fast two-enter dialog:
+ <itemizedlist>
+    <listitem><para>open the <guilabel>Popular URL's</guilabel> 
+                    <!-- Openjade does not like an acronym element for "URL" here -->
+                    or use <keycombo action="simul">&Ctrl;<keycap>z</keycap></keycombo>
+                    </para></listitem>
+    <listitem><para>type few letters to narrow the search
+                    </para></listitem>
+    <listitem><para>hit enter (you'll go to the &URL; list)
+                    </para></listitem>
+    <listitem><para>hit enter again and the panel is refreshed</para></listitem>
+ </itemizedlist>
+</para>
+
 
 <para><emphasis role="bold">Password handling</emphasis></para>
 <para>One of the benefits of the <link linkend="bookman">new bookmark manager</link> is that the password
@@ -442,8 +476,8 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <para>This screenshot shows a search for files whose size is between 10KB and 150KB,
       which were modified between October 10th and November 1st,
-      which belong to any user in the 'ftp' group,
-      and are readable and writeable by anyone in the 'ftp' group,
+      which belong to any user in the 'users' group,
+      and are readable and writeable by anyone in the 'users' group,
       but only readable to the rest of the world.</para>
 
 <para>The advanced page is divided into three parts: size, date and ownership.</para>
@@ -515,8 +549,10 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 <para><emphasis role="bold">Feed to listbox</emphasis></para>
 
 <para>When you click the <guibutton>"Feed to listbox"</guibutton> button after the results are displayed,
-      then &krusader; makes a Results-Tab in the List Panel with the resulting files/folders.
-      You can do whatever you want on the files in the new tab.</para>
+      then &krusader; ask for a Query Name, this name will be used in the Results-Tab in the List Panel
+      that holds the search results.
+      You can do whatever you want on the files in the new tab.
+      The location toolbar will display &eg; <filename>virt:/Search results 1</filename>.</para>
 
 <warning><para>The files in the Results-Tab are actually the original files.
                if you delete a file - it is removed!</para></warning>
@@ -1558,27 +1594,31 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <para>
   With the User-Action-system the user can make his own actions on files in the
-  panel or to access krusader-internal functions with parameter directly using
-  placeholder(s).
+  panel or to access krusader-internal functions with parameter directly using placeholder(s).
   The actions integrate seamlessly into &kde;'s action-system, so the standard
   edit-toolbar/shortcut-dialogs will show/manipulate the User-Actions too.
   The User-Actions are stored in <filename>~/.kde/share/apps/krusader/useraction.xml</filename>
   (the file-structure is documentated in doxygen-headers of UserActionXML).
-  Several examples of <filename>useraction.xml</filename> files can be found <link linkend="useraction_xml">here</link>.
-  User-Actions can be edit/add/im-/export using a new Konfigurator-module,
+  Several <link linkend="useraction_xml">examples</link> are included in the documentation.
+  User-Actions can be edit/add/im-/export using by using the 
+  <link linkend="konfig-useractions">Useractions manager</link> a Konfigurator-module,
   although we plan to move all action-related to a new ActionMan.
-  Once you understand how to write User-Actions you will find that &krusader; is a very powerful,
-	customizable tool.
-  <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-  <guimenuitem>User Menu</guimenuitem></menuchoice>
-    </emphasis>
-    or
-    <keycombo action="simul">&Ctrl;<keycap>`</keycap></keycombo>
-    opens the <guimenuitem>User Menu</guimenuitem>.
-  The <guimenuitem>User Menu</guimenuitem> is only one place from which you can access User Actions.
-  User-Actions can appear nearly everywhere, not only in the <guimenuitem>User Menu</guimenuitem>.
-  A menu entry <guimenuitem>Add new entry</guimenuitem> is available to add a new User-Action.
-  </para>
+  User-Actions can appear nearly everywhere:
+  <itemizedlist>
+      <listitem><para><link linkend="useractions-menu">Useractions Menu</link>
+                </para></listitem>
+      <listitem><para><keycombo action="simul">&Ctrl;<keycap>`</keycap></keycombo>
+                </para></listitem>
+      <listitem><para>&actions_toolbar_lnk;
+                </para></listitem>
+      <listitem><para>right-click menu's
+                </para></listitem>
+      <listitem><para>&etc;
+                </para></listitem>
+  </itemizedlist>
+  Once you understand how to write User-Actions you will find out that &krusader; has a very powerful,
+  customizable User-Actions tool.
+</para>
 
 
 <para><emphasis role="bold">Managing User-Actions</emphasis></para>
@@ -1586,22 +1626,23 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   <itemizedlist>
       <listitem><para><guimenuitem>"Add Action"</guimenuitem>:
                If you add an new action, you get an empty input-mask where you can
-               enter all the properties. The action will be added as soon as you press <guimenuitem>"Ok"</guimenuitem>.
-               Now the name is shown in the list on the left.
+               enter all the properties. The action will be added as soon as you press 
+               <guimenuitem>"Ok"</guimenuitem>. Now the name is shown in the list on the left.
                       </para></listitem>
      <listitem><para>To edit a User-Action:
                select the User-Action on the left.
-               Now you can choose it if you want to edit the properties, the changes will only take effect when you press
-         <guimenuitem>"Ok"</guimenuitem>.
+               Now you can choose it if you want to edit the properties, 
+               the changes will only take effect when you press <guimenuitem>"Ok"</guimenuitem>.
                       </para></listitem>
      <listitem><para><guimenuitem>"Remove Action"</guimenuitem>:
                Select the User-Action on the left and click the remove button.
                       </para></listitem>
      <listitem><para><guimenuitem>"Import Action"</guimenuitem>:
                If you import some actions they will be automatically added to your list.
-               If there are name-conflicts (the names have to be unique because these are the ID for &kde;'s action-system)
-         you're asked to resolve them. For this the list on the left will only show the actions where conflicts exists.
-         You now can give them new names or remove them.
+               If there are name-conflicts (the names have to be unique because these are 
+               the ID for &kde;'s action-system) you're asked to resolve them. 
+               For this the list on the left will only show the actions where conflicts exists.
+               You now can give them new names or remove them.
                      </para></listitem>
      <listitem><para><guimenuitem>"Export Action"</guimenuitem>:
                 If you export a User-Action you have to give a filename in which to store it.
@@ -1616,9 +1657,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 
 <para><emphasis role="bold"><guimenuitem>Basic Properties</guimenuitem></emphasis></para>
-<para><guimenuitem>"Distinct Name", "Title" and "Command line"</guimenuitem> are always required, all the other properties are optional.
+<para><guimenuitem>"Distinct Name", "Title" and "Command line"</guimenuitem> are always required, 
+                   all the other properties are optional.
     <itemizedlist>
-    <listitem><para><guimenuitem>"Distinct Name"</guimenuitem>: a unique name of the User-Action, used to identiy it for &kde;'s action-system.
+    <listitem><para><guimenuitem>"Distinct Name"</guimenuitem>: 
+                     a unique name of the User-Action, used to identiy it for &kde;'s action-system.
                     </para></listitem>
     <listitem><para><guimenuitem>"Icon button"</guimenuitem>: the icon for your User-Action.
                     </para></listitem>
@@ -1627,7 +1670,8 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
                     </para></listitem>
     <listitem><para><guimenuitem>"Title"</guimenuitem>: the title displayed in the menus/dialogs.
                     </para></listitem>
-    <listitem><para><guimenuitem>"Tooltip"</guimenuitem>: a tooltip for your User-Action, &eg; displayed in the toolbar on mouseover.
+    <listitem><para><guimenuitem>"Tooltip"</guimenuitem>: a tooltip for your User-Action, &eg; 
+                                 displayed in the toolbar on mouseover.
                     </para></listitem>
     <listitem><para><guimenuitem>"Description"</guimenuitem>: a description of what the User-Action is doing.
                     This is also displayed as <guimenuitem>"What's This"</guimenuitem> if you
@@ -1674,6 +1718,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
              </para></listitem>
          </itemizedlist>
       </listitem> -->
+      
       <listitem><para><guimenuitem>"Shortcut button"</guimenuitem>: configures a shortcut for the User-Action.</para></listitem>
     </itemizedlist>
 </para>
@@ -1762,25 +1807,38 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
     </orderedlist>
     </listitem>
      <listitem><para><userinput>Move</userinput> - Move from source to destination.</para>
-          <orderedlist>
+    <orderedlist>
          <listitem><para>&useraction_parameter; A source</para></listitem>
          <listitem><para>&useraction_parameter; A destination</para></listitem>
     </orderedlist>
     </listitem>
     <listitem><para><userinput>PanelSize</userinput> - Change the ratio between the two panels.</para>
-          <orderedlist>
+       <orderedlist>
           <listitem><para>&useraction_optional_parameter; A integer value, e.g., 80 makes the active panel use 80% of
                          &krusader;'s width (height in vertical-mode), omitting the parameter means 50%.
                          </para></listitem>
-    </orderedlist>
+       </orderedlist>
     </listitem>
     <listitem><para><userinput>Ask</userinput> - Cancel the execution.</para>
-          <orderedlist>
+       <orderedlist>
           <listitem><para>&useraction_optional_parameter; A string for the cancel question.
                          </para></listitem>
-    </orderedlist>
+       </orderedlist>
     </listitem>
+    <listitem><para><userinput>Script</userinput> - Executes an external 
+                    <link linkend="javascript_console">Javascript</link> file.</para>
+          <orderedlist>
+          <listitem><para>&useraction_parameter; path to the external foo.js file,
+                          if the path is relative the file will be read from 
+                          <filename>KDEappdata/krusader/js/</filename>.
+                    </para></listitem>
+          <listitem><para>&useraction_optional_parameter; if "yes" to execute the return of a script,
+                          in this case the Variable 'cmd' will be read.
+                    </para></listitem>                             
+         </orderedlist>
+     </listitem>
 </itemizedlist>
+
 A GUI-based helper for placeholder-adding is provided.
 Spaces In Path, Current and List are by default, automatically escaped.
 There is one more important thing to know: All placeholders that interact with &krusader;-internal functions are called

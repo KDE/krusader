@@ -673,6 +673,20 @@ new archive should be available and checked.</para>
       Here you can edit, create, delete, import or export user actions.
       For more information about this screen, look at the &useractions_lnk;.</para>
 
+
+<!--HTML_PARSING
+<screenshot>
+  <screeninfo>Konfigurator Useractions page</screeninfo>
+  <mediaobject>
+  <imageobject><imagedata fileref="kguseractions.png" format="PNG"/></imageobject>
+  <imageobject><imagedata fileref="kguseractions.png" format="EPS"/></imageobject>
+  <textobject><phrase>Konfigurator Look &amp; Feel page</phrase></textobject>
+  <caption><para>Konfigurator Useractions page.</para></caption>
+  </mediaobject>
+</screenshot>
+HTML_PARSING-->
+
+
 </sect1>
 
 <sect1 id="protocols">
@@ -680,6 +694,57 @@ new archive should be available and checked.</para>
 
 <para>This page links the mimes to protocols.
       &eg; protocol "tar" is linked to mime "application/x-tar".</para>
+
+
+<!--HTML_PARSING
+<screenshot>
+  <screeninfo>Konfigurator Protocols page</screeninfo>
+  <mediaobject>
+  <imageobject><imagedata fileref="kgprotocols.png" format="PNG"/></imageobject>
+  <imageobject><imagedata fileref="kgprotocols.png" format="EPS"/></imageobject>
+  <textobject><phrase>Konfigurator Look &amp; Feel page</phrase></textobject>
+  <caption><para>Konfigurator Protocols page.</para></caption>
+  </mediaobject>
+</screenshot>
+HTML_PARSING-->
+
+<para>In the <guilabel>Defined Links</guilabel> you will see &eg;
+<itemizedlist>
+
+  <listitem><para>Iso</para>
+     <itemizedlist>
+       <listitem><para>application/x-iso</para></listitem>
+     </itemizedlist>
+  </listitem>
+  
+  <listitem><para>krarc</para>
+     <itemizedlist>
+       <listitem><para>application/x-ace</para></listitem>
+       <listitem><para>application/x-arj</para></listitem>
+       <listitem><para>application/x-bzip2</para></listitem>
+       <listitem><para>application/x-cpio</para></listitem>
+       <listitem><para>application/x-gzip</para></listitem>
+       <listitem><para>application/x-jar</para></listitem>
+       <listitem><para>application/x-lha</para></listitem>
+       <listitem><para>application/x-rar</para></listitem>
+       <listitem><para>application/x-rpm</para></listitem>
+       <listitem><para>application/x-zip</para></listitem>
+     </itemizedlist>
+  </listitem>
+  
+  <listitem><para>tar</para>
+     <itemizedlist>
+       <listitem><para>application/x-tar</para></listitem>
+       <listitem><para>application/x-tarz</para></listitem>
+       <listitem><para>application/x-tbz</para></listitem>
+       <listitem><para>application/x-tgz</para></listitem>
+     </itemizedlist>
+  </listitem>
+
+</itemizedlist>
+
+
+</para>
 
 </sect1>
 
