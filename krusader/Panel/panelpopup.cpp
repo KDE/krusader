@@ -170,13 +170,13 @@ void PanelPopup::tabSelected( int id ) {
 	// if tab is tree, set something logical in the data line
 	switch (id) {
 		case Tree:
-			dataLine->setText("Tree:");
+			dataLine->setText( i18n("Tree:") );
 			break;
 		case Preview:
-			dataLine->setText("Preview:");
+			dataLine->setText( i18n("Preview:") );
 			break;
 		case QuickPanel:
-			dataLine->setText("Quick Select:");
+			dataLine->setText( i18n("Quick Select:") );
 			break;
 	}
 }
