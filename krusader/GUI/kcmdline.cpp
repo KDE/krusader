@@ -111,8 +111,10 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
 void KCMDLine::setCurrent( const QString &p ) {
   path->setText( p + ">" );
   completion.setDir( p );
+  // make sure our command is executed in the right directory
+  // This line is important for Krusader overall functions -> do not remove !
+  chdir( p.local8Bit() );
 }
-
 
 KCMDLine::~KCMDLine() {
    KConfigGroupSaver grpSvr( krConfig, "Private" );
