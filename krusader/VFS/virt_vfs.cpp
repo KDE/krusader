@@ -208,6 +208,7 @@ void virt_vfs::slotListResult(KIO::Job* /*job*/){
 
 /// to be implemented
 void virt_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool *stop){
+#if 0	
 	if (stop && *stop) return;
 	busy = true;
 	KDirSize* kds = KDirSize::dirSizeJob(vfs_getFile(name));
@@ -221,6 +222,7 @@ void virt_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned l
 	*totalDirs+=kds->totalSubdirs();
 	
 	kds->kill(true);
+#endif
 }
 
-#include "virt_vfs.moc.cpp"
+#include "virt_vfs.moc"
