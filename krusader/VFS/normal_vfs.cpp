@@ -55,16 +55,11 @@
 #include "../defaults.h"
 #include "../resources.h"
 
-normal_vfs::normal_vfs(QObject* panel):vfs(panel){
+normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
   setVfsFilesP(&vfs_files);
   vfs_files.setAutoDelete(true);
   
   vfs_type=NORMAL;
-
-	// connect the watcher
-  connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));
-	connect(&watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotCreated(const QString&)));
-  connect(&watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDeleted(const QString&)));	
 }
 
 bool normal_vfs::vfs_refresh(const KURL& origin){
@@ -76,9 +71,8 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	krConfig->setGroup("Advanced");
 	if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
    	
-	watcher.stopScan(); //stop watching the old dir
-	// and remove it from the list
-	if( !vfs_getOrigin().isEmpty() ) watcher.removeDir(vfs_getOrigin().path(-1)); 
+	delete watcher; //stop watching the old dir
+	watcher = 0;
 
 	// set the writable attribute to true, if that's not the case - the KIO job
   // will give the warnings and errors
@@ -123,15 +117,21 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	closedir(dir);
 	
 	if (!quietMode) emit startUpdate();
-	watcher.addDir(vfs_getOrigin().path(-1),true); //start watching the new dir
-  watcher.startScan(true);
+
+	watcher = new KDirWatch();
+	// connect the watcher
+  connect(watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));
+  connect(watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotCreated(const QString&)));
+  connect(watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDeleted(const QString&)));	
+  watcher->addDir(vfs_getOrigin().path(-1),true); //start watching the new dir
+  watcher->startScan(true);
 
   return true;
 }
 
 // copy a file to the vfs (physical)	
 void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir){
-  watcher.stopScan(); // we will refresh manually this time...	
+  watcher->stopScan(); // we will refresh manually this time...	
 
 	KURL dest;
 	dest.setPath(vfs_workingDir()+"/"+dir);
@@ -149,7 +149,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	QDir local( vfs_workingDir() );
   vfile* vf;
 
-  watcher.stopScan(); // we will refresh manually this time...	
+  watcher->stopScan(); // we will refresh manually this time...	
 
 	// names -> urls
 	for(uint i=0 ; i<fileNames->count(); ++i){
@@ -199,7 +199,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   KURL::List fileUrls;
   KURL url , dest;
 
-  watcher.stopScan(); // we will refresh manually this time...	
+  watcher->stopScan(); // we will refresh manually this time...	
 
   url.setPath( vfs_workingDir()+"/"+fileName );
   fileUrls.append(url);
@@ -274,13 +274,13 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 		return;
 	}
 	
-	KURL url = fromPathOrURL(path);
-	if( url.equals(vfs_getOrigin()) ){
+	if( path == vfs_getOrigin().path(-1) ){
 		// the directory itself is dirty - full refresh is needed
-		vfs_refresh(vfs_getOrigin());
+		vfs_refresh( vfs_getOrigin() );
 		return;
 	}
 	
+	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();
 	
 	// do we have it already ?
