@@ -40,6 +40,9 @@
     ADDED: mouse selection modes are back! thanks to heiner for doing the work
     ADDED: virtual VFS (try virt:/somthing/)
 
+    FIXED: auto filesystems cannot be mounted
+    FIXED: mountman enables only mounting the user-mountable filesystems
+           if we are not root
     FIXED: krusader fails to refresh at copying to the source directory on
            different name
     FIXED: color "Inactive Marked Current Foreground" was ignored (thx heiner)

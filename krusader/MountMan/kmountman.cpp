@@ -45,6 +45,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "kmountmangui.h"
 #include <unistd.h>
 #include "../Dialogs/krprogress.h"
+#include "../VFS/krpermhandler.h"
 
 #ifdef _OS_SOLARIS_
 #define FSTAB "/etc/vfstab"
@@ -73,7 +74,7 @@ KMountMan::KMountMan() : QObject(), Operational( false ), waiting(false), mountM
 #endif
 
 	// list of FS that we don't allow to mount/unmount
-	nonmount_fs << "supermount" << "auto";
+	nonmount_fs << "supermount";
 	{
 		KConfigGroupSaver saver(krConfig, "Advanced");
 		QStringList nonmount = QStringList::split(",", krConfig->readEntry("Nonmount Points", _NonMountPoints));
@@ -94,7 +95,23 @@ bool KMountMan::invalidFilesystem(QString type) {
 
 // this is an ugly hack, but type can actually be a mountpoint. oh well...
 bool KMountMan::nonmountFilesystem(QString type, QString mntPoint) {
-	return ((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0));
+	if ((nonmount_fs.contains(type) > 0) || (nonmount_fs_mntpoint.contains(mntPoint) > 0))
+		return true;
+	if( getuid() == 0 ) // we are root ?
+		return false;
+	   // create lists of current and possible mount points
+	KMountPoint * myPoint;
+	
+	KMountPoint::List current = KMountPoint::currentMountPoints( KMountPoint::NeedMountOptions );
+	if( ( myPoint = findInListByMntPoint( current, mntPoint ) ) != 0 ) {
+		QString userName = KRpermHandler::uid2user( getuid() );
+		return !myPoint->mountOptions().contains( "user" ) && 
+			!myPoint->mountOptions().contains( "user=" + userName );
+	}
+	KMountPoint::List possible = KMountPoint::possibleMountPoints( KMountPoint::NeedMountOptions );
+	if( ( myPoint = findInListByMntPoint( possible, mntPoint ) ) != 0 )
+		return !myPoint->mountOptions().contains( "user" );
+	return true;
 }
 
 void KMountMan::mainWindow() {
