@@ -153,13 +153,11 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   pwFile    = new PreviewItem( preview, i18n( "File" ) );
   pwDir     = new PreviewItem( preview, i18n( "Directory" ) );
   
-  generatePreview();
-
   previewGrid->addWidget( preview, 0 ,0 );
   
   kgColorsLayout->addWidget( hbox, 1 ,0 );
+
   slotDisable();
-  slotDisableCurrent();
 } 
 
 int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName,
@@ -221,7 +219,8 @@ void KgColors::slotDisable()
 
   generals->find("Enable Alternate Background")->setEnabled( enabled );
   generals->find("Show Current Item Always")->setEnabled( !enabled );
-  generatePreview();
+
+  slotDisableCurrent();
 }
 
 void KgColors::slotDisableCurrent()
