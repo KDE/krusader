@@ -41,6 +41,7 @@ A
 #include <kglobal.h>
 #include <klocale.h>
 #include <kaccelmanager.h>
+#include <kwin.h>
 
 #if KDE_IS_VERSION(3,2,0)
 #include <kactionclasses.h>
@@ -294,7 +295,7 @@ void Krusader::hideEvent ( QHideEvent *e ) {
   if ( actWnd )
     isModalTopWidget = actWnd->isModal();
 
-  if ( showTrayIcon && !isModalTopWidget && isMinimized() ) {
+  if ( showTrayIcon && !isModalTopWidget && KWin::windowInfo( winId() ).isMinimized() ) {
     sysTray->show();
     hide(); // needed to make sure krusader is removed from
     // the taskbar when minimizing (system tray issue)
