@@ -21,10 +21,12 @@ email                :
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../Panel/listpanel.h"
+#include "../Panel/panelfunc.h"
 #include <kdebug.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <qvbox.h>
+#include <kurl.h>
 
 /**
 
@@ -64,7 +66,7 @@ UMCmd UserMenu::expressions[ UserMenu::numOfExps ] = {
 #define GETPANEL  (str.lower()[1]=='a' ? ACTIVE : OTHER)
 
 QString UserMenu::exp_p( const QString& str ) {
-   return GETPANEL->virtualPath;
+   return GETPANEL->func->files()->vfs_getOrigin().path();
 }
 
 QString UserMenu::exp_anf( const QString& str ) {
@@ -226,6 +228,27 @@ void UserMenuGui::readEntries() {
 }
 
 UserMenuEntry UserMenuGui::run() {
+   // disable the entries that should not appear in this folder
+   for (uint i=1; i<count(); ++i) {
+      if (_entries[i-1].showEverywhere)
+         setItemVisible(i, true); // enable the item, it is displayed everywhere
+      else { // see if the current path is in the listpanel
+         bool showHere = false;
+         QString currentPath = ACTIVE->func->files()->vfs_getOrigin().path();
+         for ( QStringList::Iterator it = _entries[i-1].showIn.begin();
+               it != _entries[i-1].showIn.end();
+               ++it ) {
+            // is the folder == current path? (don't forget to remove trailing /s
+            if (currentPath == ((*it).right(1)=="/" ? (*it).left((*it).length()-1) : (*it))) {
+               showHere = true;
+               break;
+            }
+         }
+         setItemVisible(i, showHere);
+      }
+   }
+
+
    int idx = exec();
    if ( idx == -1 ) return QString::null; // nothing was selected
    if ( idx == 0 ) {
@@ -233,9 +256,8 @@ UserMenuEntry UserMenuGui::run() {
       return QString::null;
    }
 
-   // idx is {1..n} while _entries is {0..n-1}X2
-   // so, normalize idx to _entries, and add 1 since we want
-   // the command part of the {description,command} pair
+   // don't forget: index 0 is reserved for the 'add entry' command. that's why
+   // the entries is 0..n-1 and actual menu is 1..n
    return _entries[idx-1];
 }
 
