@@ -20,86 +20,100 @@
 *********************************************************************** -->
 <title>Introduction</title>
 <screenshot>
-	<screeninfo>Here's a screenshot of Krusader</screeninfo>
+	<screeninfo>Here's a screenshot of &krusader;</screeninfo>
 	<mediaobject>
 		<imageobject><imagedata fileref="krusader_title.png" format="PNG"/></imageobject>
 		<imageobject><imagedata fileref="krusader_title.png" format="EPS"/></imageobject>
-	  <textobject><phrase>KrusaderLogo</phrase></textobject>
+	  <textobject><phrase>Krusader Logo</phrase></textobject>
 	</mediaobject>
 	</screenshot>
 
 
 	<para>
-	Krusader is a twin-panel file-manager for &Linux;,
-	for KDE 3.x desktop environment.
+	&krusader; is a twin-panel file-manager for &Linux;,
+	for the &kde; 3.x desktop environment.
 	</para>
 	<para>
 	<itemizedlist>
-  <title>Krusader Features</title>
-  <listitem><para>Configurable toolbar and key-bindings.</para></listitem>
-	<listitem><para>Full Ace, Arj, Bzip2, Gzip, Tar, Rpm, Rar, Zip support.</para></listitem>
-	<listitem><para>Advanced search module that can search in archives</para></listitem>
-  <listitem><para>Directory comparison and filtering</para></listitem>
-  <listitem><para>Quick view and Tree panels</para></listitem>
-  <!-- changed by Frank 1.0.2 -->
-  <listitem><para>Ftp/Samba client with a connection manager with sftp/scp support</para></listitem>
-	<listitem><para>Opens a terminal to the browsed path.</para></listitem>
-  <listitem><para>Optional embedded console.</para></listitem>
-	<listitem><para>Configurable bookmark list (using Book.Man, the bookmark manager).</para></listitem>
-	<listitem><para>Easy editing of file permissions.</para></listitem>
-	<listitem><para>Shows the effective permissions for the current user.</para></listitem>
-	<listitem><para>Calculates occupied space by marked files and folders.</para></listitem>
-	<listitem><para>Internal viewer and configurable Editor</para></listitem>
-	<listitem><para>Offers a command line capable of running something in a terminal with a single click of a button.</para></listitem>
-	<listitem><para>Completely supports drag'n'drop: drag from Konqueror straight into a .tar.gz file, from Krusader's panel into the trash-bin, the desktop or into Konqueror !</para></listitem>
-	<listitem><para>Packs (or unpacks) files into a single archive of your choice, without typing a single command.</para></listitem>
-	<listitem><para>Tests the integrity of archives.</para></listitem>
-	<listitem><para>Compare files by content (via external diff program such as KDiff)</para></listitem>
-        <listitem><para>Fully mimetype-aware (with or without magic!).</para></listitem>
-        <!-- added by Frank 1.10 -->
-        <listitem><para><link linkend="Multi_Rename">Krename</link> support, a very powerfull
-	                              external batch renamer for KDE 3.x.</para></listitem>
-	<!-- added by Frank -->
-	<listitem><para>A nice bookmark system.</para></listitem>
-	<!-- added by Frank 1.29 -->
-	<listitem><para>Tabbed Browsing.</para></listitem>
-	<!-- added by Frank 1.29 -->
-	<listitem><para>Root mode.</para></listitem>
+  <title>&krusader; Features</title>
+	<listitem>
+	   <para>Configurable &toolbar_lnk; and
+	   <link linkend="key_bindings">key-bindings</link>.</para>
+	</listitem>
+	<listitem><para>Full Ace, Arj, Bzip2, Gzip, Tar, Rpm, Rar, Zip support
+	<link linkend="archives">support</link>.</para></listitem>
+	<listitem>
+	    <para><link linkend="krusearcher">Advanced search module</link> that can search in archives.</para>
+	</listitem>
+  <listitem><para><link linkend="compare-dir">Directory comparison</link> and
+  <link linkend="view-menu">filtering</link>.</para></listitem>
+ 	<listitem>
+            <para><link linkend="panels">Quick view and Tree panels</link>.</para>
+	</listitem>
+  <listitem><para>Ftp/Samba client with a <link linkend="remote-man">connection manager</link>
+  with SFTP/SCP support.</para></listitem>
+	<listitem><para>Opens a <link linkend="commands-menu">terminal</link> to the browsed
+	 path.</para></listitem>
+	<listitem>
+	   <para>Optional <link linkend="cmdline">embedded console</link>.</para>
+	</listitem>
+	<listitem>
+	    <para>Configurable <link linkend="bookman">bookmark</link> list (using Book.Man, the bookmark
+	    manager).</para>
+	</listitem>
+	<listitem><para>Easy editing of <link linkend="file-menu">file permissions</link>.</para></listitem>
+	<listitem><para>Shows the <link linkend="panels">effective permissions for the current
+	 user</link>.</para></listitem>
+	<listitem>
+	     <para><link linkend="calculate">Calculates occupied space</link> by marked files and
+	      folders.</para>
+	 </listitem>
+	<listitem>
+	      <para>Internal <link linkend="krviewer">viewer and configurable Editor</link></para>
+	</listitem>
+	<listitem>
+	       <para>Offers a <link linkend="cmdline">command line</link> capable of running something in a
+	       terminal with a single click of a button.</para>
+	 </listitem>
+	<listitem>
+	     <para>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, from
+	     &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!</para>
+	</listitem>
+	<listitem>
+	     <para><link linkend="unpacking-archives">Packs (or unpacks) files</link> into a single archive
+	     of your choice, without typing a single command.</para>
+	</listitem>
+	<listitem>
+	     <para><link linkend="test-archive">Tests the integrity of archives</link>.</para>
+	</listitem>
+	<listitem>
+	     <para><link linkend="compare-files">Compare files by content</link> (via external diff program
+	      such as &kompare; or &xxdiff;)</para>
+	 </listitem>
+        <listitem>
+	    <para>Fully <link linkend="konfig-general">mimetype-aware</link> (with or without magic!).</para>
+	</listitem>
+        <listitem>
+	    <para><link linkend="multi_rename">Krename</link> support, a very powerfull
+	                              external batch renamer for &kde; 3.x.</para>
+	</listitem>
+	<listitem>
+	   <para><link linkend="tabbrowsing">Tabbed Browsing</link>.</para>
+	</listitem>
+	<listitem>
+	    <para>&rootmode_lnk;.</para>
+	</listitem>
+	<listitem>
+	    <para><link linkend="split">File splitter</link> &amp; &combinefiles_lnk;.</para>
+	</listitem>
+	<listitem>
+	    <para>&syncdirs_lnk;.</para>
+	</listitem>
 	</itemizedlist>
 	</para>
 
-	<para>
-	Our aim is to give you a tool that does the two most important things:
-	manage your files the way you want it, and look great doing it !
-	To do just that, Krusader wears a great looking GUI,
-	supports drag n' drop and mimetypes (with or without magic!) -
-	all you need to feel right at home using it.
-	Krusader is packed with cool features, is fast and handles archives transparently,
-	basically, all you'd come to expect from tools like Midnight Commander.
-	Krusader is open-source, free and is released under the GNU Public License (GPL),
-	although we (the developers) still retain the copyright for the project and it's name.
-	</para>
-	<para>
-	The project's target is to create an all-in-one file-manager, which will do all
-	the things you'd expect from it, and then some... ;-)
-	Since the principle behind Krusader is based on the "old-school" managers
-	(Midnight commander, Norton commander), virtual filesystems became a main focus.
-	Virtual filesystems (VFSs) are an abstracted layer over all kinds of archived
-	information (ZIP files, FTP servers, NFS filesystems, SAMBA shares),
-	which allows the user to access all the information transparently -
-	just like entering a sub-directory.
-	Krusader currently supports VFSs for archives (Zip, Tar, GZip, BZip2, Ace, Rar, Arj),
-	packages (RPM) and filesystems (FTP, NFS, Samba).
-	Krusader also includes a built-in Mount-Manager, which enables you to
-	(un)mount filesystems with a single mouse click, and get usage information.
-	A Bookmark-Manager Remote-Connections Manager and Advanced Search module are also included.
-	We are planning to develop more modules in the near future,
-	thereby enhancing Krusader greatly. (eg: samba browser).
-	</para>
-
-	<para>We hope you'll enjoy it, we do !</para>
   <screenshot>
-	<screeninfo>Here's a screenshot of Krusader</screeninfo>
+	<screeninfo>Here's a screenshot of &krusader;</screeninfo>
 	<mediaobject>
 		<imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
 	  <imageobject><imagedata fileref="krusader1.eps" format="EPS"/></imageobject>

@@ -18,7 +18,7 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
-<title>Krusader Tools</title>
+<title>&krusader; Tools</title>
 <sect1 id = "remote-man">
 	<title>Remote Man: the FTP/SMB connection manager</title>
 	<screenshot>
@@ -28,9 +28,9 @@
 		<imageobject><imagedata fileref="remoteman.eps" format="EPS"/></imageobject>
 		<textobject><phrase>Screenshot</phrase></textobject>
 		</mediaobject>
-	</screenshot> <!-- updated by Frank 1.29 -->
+	</screenshot>
         <para><keycap>Important: RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1.
-                          The new manager handles local files and remote url the same way.
+                          The new manager handles local files and remote URL's the same way.
                           RemoteMan is being left around to allow an easier transition and
                           give you a chance to move your bookmarks. IT WILL BE REMOVED SOON!</keycap></para>
 
@@ -40,17 +40,17 @@
       <para>
 	RemoteMan is a central place for all your FTP/SMB needs. It is a tree-like list of remote locations,
 	each with its own username and password. You can create new "folders" (or groups) in the tree and place
-	remote sessions inside the groups. Each session includes a name (something that best describes the url)
+	remote sessions inside the groups. Each session includes a name (something that best describes the URL)
 	and a host. A hostname is a url which can begin with 'ftp://' or 'smb://'. Additional information that
 	can be filled is the username and password. Not filling these values will trigger an anonymous login. You
 	can also click the 'anonymous' checkbox, which will force an anonymous login. One can also decide on a
 	different port - or keep the default 21. If you choose a 'smb://' host, you cannot change the port.
 	Optional are the description (a freetext area) and remote directory. If you enter a remote directory,
-	Krusader will try, upon connection, to cd into that directory.</para>
+	&krusader; will try, upon connection, to cd into that directory.</para>
 	<itemizedlist>
-		<listitem><para><keycap>Double clicking</keycap> on a session makes Krusader connect to that host.
+		<listitem><para><keycap>Double clicking</keycap> on a session makes &krusader; connect to that host.
 		   You can also use the 'connect' button for that purpose.</para></listitem>
-		<listitem><para>The 'more' button does nothing for now. We keep some tricks for Krusader
+		<listitem><para>The 'more' button does nothing for now. We keep some tricks for &krusader;
 		   2.</para></listitem>
 	</itemizedlist>
 </sect1>
@@ -75,20 +75,20 @@
 	display "not mounted" instead of the graph.</para>
 	<itemizedlist>
 		<listitem><para><keycap>Double clicking</keycap> on a filesystem will close MountMan and open
-		that filesystem inside Krusader's active panel.</para></listitem>
+		that filesystem inside &krusader;'s active panel.</para></listitem>
 		<listitem><para><keycap>Right clicking</keycap> on a filesystem will open a small menu which
 		displays what actions can be performed on that filesystem. For now, you can only mount, unmount and
 		eject (if clicked on a removable filesystem - a cdrom).</para></listitem>
 	</itemizedlist>
-	<note><para>We plan to expand MountMan in the next evolution of Krusader. It'll be able to format floppies,
+	<note><para>We plan to expand MountMan in the next evolution of &krusader;. It'll be able to format floppies,
 	edit /etc/fstab, create new filesystems and more...</para></note>
 </sect1>
 
 <sect1 id = "bookman">
 <title>Book Man: Organize your bookmarks</title>
-	<note><para>Since Krusader 1.25-beta1 there is a new Book Man and Krusader's bookmark manager to edit and
-	organize your bookmarks is been replaced by KeditBookmarks.</para></note>
-	<para>BookMan is a tool which allows you to bookmark folders and URL's using Krusader, and later return to
+	<note><para>Since &krusader; 1.25-beta1 there is a new Book Man and &krusader;'s bookmark manager to edit and
+	organize your bookmarks has been replaced by &keditbookmarks;.</para></note>
+	<para>BookMan is a tool which allows you to bookmark folders and URL's using &krusader;, and later return to
 	them in a click of a button. All you need to do is click on the "bookmark" button.</para>
 	<screenshot>
 		<screeninfo>Bookman adding a bookmark</screeninfo>
@@ -99,10 +99,10 @@
 		</mediaobject>
 	</screenshot>
 	<para>Usually, you click on the "bookmark" button when you're in the target folder. For example, to bookmark
-	 '/usr/tmp', navigate Krusader there and click the <keycap>bookmarks button</keycap> and the <keycap>add
+	 '/usr/tmp', navigate &krusader; there and click the <keycap>bookmarks button</keycap> and the <keycap>add
 	 bookmark</keycap> button. When the "add bookmark" window appears, the URL line will say '/usr/tmp'. The upper
 	 line (Bookmark name) is what you like to call the bookmark (for example: temporary folder). If you add the
-	 bookmark without entering a name, the bookmark's name will be the same as its target. With the "New Bookmark
+	 bookmark without entering a name, the bookmarks name will be the same as its target. With the "New Bookmark
 	 folder" button you can create a new bookmark folder.</para>
 	<note><para>You can bookmark inside a remote filesystem (FTP or SAMBA) and later use the bookmark to quickly connect
 	to the remote machine. You CANNOT bookmark inside an archive.</para></note>
@@ -118,19 +118,20 @@
 		</mediaobject>
 	</screenshot>
 	<para>To edit and organize your bookmarks, click the <keycap>edit bookmarks</keycap> button,
-        KeditBookmarks will be displayed. This is where you can edit/remove and re-arrange the bookmarks.
-        KEditBookmarks (part of the kdebase package) is a bookmark editor for Konqueror, Krusader and other
-	applications, which use the <ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>
-	for the bookmark format. The bookmarks are stored in
+        &keditbookmarks; will be displayed. This is where you can edit/remove and re-arrange the bookmarks.
+        &keditbookmarks; (part of the kdebase package) is a bookmark editor for &konqueror;, &krusader; and other
+	applications, which use the &xbel_url; standard for the bookmark format. The bookmarks are stored in
 	<userinput>~/.kde/share/apps/krusader/krbookmarks.xml.</userinput></para>
-	<para>You can inport bookmarks from IE, Opera, Galeon, KDE, Mozilla, &Netscape;.
-        KeditBookmarks is easy to use, please read the KeditBookmarks or the Konqueror handbook if you need more
+	<para>You can inport bookmarks from <application>IE</application>, <application>Opera</application>,
+	<application>Galeon</application>, &kde;,
+	<application>Mozilla</application>, &Netscape;.
+        &keditbookmarks; is easy to use, please read the &keditbookmarks; or the &konqueror; handbook if you need more
 	info.</para>
 </sect1>
 
 <sect1 id = "krusearcher">
 <title>KruSearcher: find what you're looking for</title>
-	<para>Welcome to Krusader's powerful search module - nicknamed Krusearcher. It is the most able
+	<para>Welcome to &krusader;'s powerful search module - nicknamed Krusearcher. It is the most able
 	tool (that we know of) for &Linux;, since it allows so many different ways to quickly find the file you're
 	looking for. It is divided into two levels, the general and the advanced. Let's take a look at the general
 	page ...</para>
@@ -147,11 +148,11 @@
 	handles different aspects of the search. Let's look at them closely.</para>
 	<itemizedlist><title>Top Part:</title>
 		<listitem><para><keycap>Search for:</keycap> here you enter the main search criteria.
-		You can enter a filename, a wildcard (*.o.*, *.c etc.) or both - seperated by a space.
+		You can enter a filename, a wildcard (*.o.*, *.c etc.) or both - separated by a space.
 		</para></listitem>
 		<listitem><para><keycap>Case sensitive:</keycap> unchecking it will allow lower and upper case
 		search (ie: *.c interprets as *.c AND *.C).</para></listitem>
-		<listitem><para><keycap>Of type:</keycap> this box let's you search for a file not only by its
+		<listitem><para><keycap>Of type:</keycap> this box lets you search for a file not only by its
 		name, but also by its mimetype. For example, you can search for all the audio files whose name
 		begins with B. Usually this option defaults to 'all files', but you can choose to search for
 		archives, directories, images, text files, videos and audio files.</para></listitem>
@@ -165,37 +166,37 @@
 		If you want to enter more than one directory in one of the boxes, just write the first name and
 		press <keycap>Enter</keycap>. The directory's name will be copied to the bigger box and you'll be
 		 able to enter another name.
-		<note><para>The input line has an auto completion feature, corrosponding to KDE's global settings.
+		<note><para>The input line has an auto completion feature, corrosponding to &kde;'s global settings.
 		If you wish, you can click on the folder icon, and browse to the directory you wish to
 		add.</para></note>
 		</para></listitem>
 	</itemizedlist>
 	<itemizedlist><title>Bottom Part:</title>
-		<listitem><para><keycap>Text:</keycap> entering text here makes Krusader search for it inside the
-		files (grep). That way, you can search for all header files (*.h) which include the word 'krusader'
+		<listitem><para><keycap>Text:</keycap> entering text here makes &krusader; search for it inside the
+		files (grep). That way, you can search for all header files (*.h) which include the word 'testing 123'
 		inside them.</para></listitem>
 		<listitem><para><keycap>Match whole word only</keycap></para></listitem>
 		<listitem><para><keycap>Case sensitive:</keycap> refers to your text being searched for in upper
 		and lower case or the exact phrase you entered.</para></listitem>
 		<listitem><para><keycap>Search in subdirectories:</keycap> do a recursive search and dive into
 		every directory on the way.</para></listitem>
-		<listitem><para><keycap>Search in archives:</keycap> Krusader will search for your files inside
-		every supported archive. This, however, takes longer to perfrom.
+		<listitem><para><keycap>Search in archives:</keycap> &krusader; will search for your files inside
+		every supported archive. This, however, takes longer to perform.
 		<note><para>If you check this checkbox, you'll notice you cannot 'grep' inside files anymore.
-		This is done, since looking inside files which are archived, forces Krusader
+		This is done, since looking inside files which are archived, forces &krusader;
 		to extract them, which will results in an extremely long search.</para></note></para></listitem>
-		<listitem><para><keycap>Follow links:</keycap> if checked,  Krusader will follow soft-links during
+		<listitem><para><keycap>Follow links:</keycap> if checked,  &krusader; will follow soft-links during
 		the search.</para></listitem>
 	</itemizedlist>
 
 	<para>The above screenshot shows a search for all the files which end with c, cpp or h and include the
-	       string 'testing 123'. Krusader will search in /root, /opt, /bin and /usr, but not in /usr/lib and
+	       string 'testing 123'. &krusader; will search in /root, /opt, /bin and /usr, but not in /usr/lib and
 	       /usr/share.</para>
 
 	<para>Clicking the <keycap>search</keycap> button starts the search and displays the results page.
 	During the search, you may press the <keycap>stop</keycap> button to stop the search. The close button
 	is not operational during a search, so you must first stop the search and then <keycap>close</keycap> the
-	window. When a result is found, double clicking on it will make Krusader's active panel point to the found
+	window. When a result is found, double clicking on it will make &krusader;'s active panel point to the found
 	files - but will not close the search window, so you'll be able to click on a different result.</para>
 
 	<para>Sometimes, you need to narrow your search even more. Krusearcher allows a much finer search, and
@@ -220,7 +221,7 @@
 	<para><keycap>Date</keycap></para>
 	<para>This part offers three different ways of defining a date criteria:
 	<itemizedlist>
-		<listitem><para><keycap>Modified between:</keycap> allows you to enter two dates. Krusader will
+		<listitem><para><keycap>Modified between:</keycap> allows you to enter two dates. &krusader; will
 		search for files with a modification date between the first date and the second one. If you only
 		enter a date in the left box, you'll be searching for files older than that date. If you only enter
 		a date in the right box, you'll be searching for files newer than that date.
@@ -228,19 +229,19 @@
 		which allows you to easily browse through the calender and search for the desired date. Clicking on a
 		date will close the window and the date will appear in the input
 		box.</para></note></para></listitem>
-		<listitem><para><keycap>Not modified after:</keycap> choosing this option makes Krusader search
+		<listitem><para><keycap>Not modified after:</keycap> choosing this option makes &krusader; search
 		for files that were NOT modified after a given date, which is the same as searching for files older
 		than that date.</para></listitem>
 		<listitem><para><keycap>Modified in the last / not modified in the last:</keycap> in these input
 		boxes, you enter not a date, but a number. This number represents days/weeks/months (as chosen in the
-		near dropbox). Entering the number 5 in the upper input box, makes Krusader search for files that were
-		modified in the 5 days. Entering the number 2 in the lower input box makes Krusader search for files
+		near dropbox). Entering the number 5 in the upper input box, makes &krusader; search for files that were
+		modified in the 5 days. Entering the number 2 in the lower input box makes &krusader; search for files
 		that did NOT change in the last 2 days. The combination of both results in a search for files that were
 		changed in the last 5 days, but NOT in the last 2 days.</para></listitem>
 	</itemizedlist></para>
 	<para><keycap>Ownership</keycap></para>
 	<itemizedlist>
-		<listitem><para><keycap>Belongs to user / group:</keycap> by checking each of the corrosponding
+		<listitem><para><keycap>Belongs to user / group:</keycap> by checking each of the corresponding
 		checkboxes, you can search for files which belong to a certain user and/or group. The dropbox lists
 		all the user names and group names in the system, just choose one and go ahead.</para></listitem>
 		<listitem><para><keycap>Permissions:</keycap> divided into owner, group and all - it allows you
@@ -263,39 +264,40 @@
 </sect1>
 
 <sect1 id = "krviewer">
-<title>KrViewer: Krusader's internal viewer-editor</title>
+<title>KrViewer: &krusader;'s internal viewer-editor</title>
 	<para>To <keycap>view</keycap> a file as fast as possible according to it's type just put it under
 	the cursor and press <keycap>F3</keycap>.
-	Krusader's internal viewer is actually a Konqueror part, which can basically view every file type
-	viewable by Konqueror (ex. display pictures, play music, show the content of an archive),
+	&krusader;'s internal viewer is actually a &konqueror; part, which can basically view every file type
+	viewable by &konqueror; (ex. display pictures, play music, show the content of an archive),
 	this is called the 'Generic viewer'.</para>
 	<para>The viewer works as follows:<itemizedlist>
-		<listitem><para>It will try to view the file with the <remark>'Generic
-		                  viewer'.</remark></para></listitem>
+		<listitem><para>It will try to view the file with the <emphasis>'Generic
+		                  viewer'.</emphasis></para></listitem>
 		<listitem><para>When the file type cannot be determined or when a file (ex. a binary)
 				  don't has a associated action, it disables the 'generic viewer'.
-				  The file will be treated as a text file, this is the <remark>'Text viewer'</remark>.
+				  The file will be treated as a text file, this is the
+				  <emphasis>'Text viewer'</emphasis>.
 				  </para></listitem>
 		<listitem><para>The user can change in the 'KrViewer' menu between: 'Generic viewer' (if available),
-				  'Text viewer' and <remark>'Hex viewer'</remark>.</para></listitem>
+				  'Text viewer' and <emphasis>'Hex viewer'</emphasis>.</para></listitem>
 	</itemizedlist></para>
 
 	<para><keycombo><keycap>Shift</keycap><keycap>F3</keycap></keycombo> views a url on demand,
 	e.g. <screen>man:/krusader, http://krusader.sourceforce.net/, ftp://ftp.foo</screen></para>
-	<para>KrViewer can have the following menu's: File, Edit, View, Settings and Krviewer depending on witch
+	<para>KrViewer can have the following menu's: File, Edit, View, Settings and Krviewer depending on which
 	file type is viewed. They will be discussed in the Editor section.
 	The internal viewer can follow links on HTML pages.
 	With <keycombo><keycap>Ctrl</keycap><keycap>E</keycap></keycombo> the viewer will
-	start Krusader's internal editor (which is basicly the same application).</para>
+	start &krusader;'s internal editor (which is basically the same application).</para>
 
 	<para>Pressing <keycap>enter</keycap> on a selected file opens the file with the associated
 	application.</para>
 
 	<para><keycap>Editing</keycap> is similar to viewing but with the <keycap>F4</keycap> key.
-	The default editor is Krusader's internal editor. You can choose the used "F4" editor in the
-	<link linkend="konfig-general">Konfigurator general tab</link> .</para>
-	<para>Krusader internal editor has almost everything what you can expect of an editor.
-	Most of what is in the menu's is pretty self-explanatory.</para>
+	The default editor is &krusader;'s internal editor. You can choose the used "F4" editor in the
+	&konfiggereral_lnk;.</para>
+	<para>&krusader;'s internal editor has almost everything what you can expect of an editor.
+	Most of the menus are pretty self-explanatory.</para>
 	<para>File menu:
 	<itemizedlist>
 		<listitem><para>Save (Ctrl+S)</para></listitem>
@@ -326,7 +328,7 @@
 	<para>File menu:
 	<itemizedlist>
 		<listitem><para>Dynamic Word Wrap (F12)</para></listitem>
-		<listitem><para>Show Folding Markers (F9)(</para></listitem>
+		<listitem><para>Show Folding Markers (F9)</para></listitem>
 		<listitem><para>Show Icon Border (F6)</para></listitem>
 		<listitem><para>Show Line Numbers (F11)</para></listitem>
 		<listitem><para>Set Encoding: e.g. ISO8859-1, utf8, ...</para></listitem>

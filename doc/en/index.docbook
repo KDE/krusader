@@ -1,23 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
-  <!ENTITY krusader '<application>Krusader</application>'>
-  <!ENTITY kapp "&krusader;"><!-- replace test here -->
-  <!ENTITY kruforum '<ulink url="http://krusader.sourceforge.net/phpBB/index.php/">Krusader forum</ulink>'>
-  <!ENTITY kruwebsite '<ulink url="http://krusader.sourceforge.net/">Krusader website</ulink>'>
-  <!ENTITY krudownload '<ulink url="http://krusader.sourceforge.net/index.php?nav=down.php">Krusader  downloadpage</ulink>'>
-  <!ENTITY KonfigStartPg '<link linkend="konfig-startup">Konfigurator Startup page</link>'>
-  <!ENTITY % addindex "IGNORE">
-  <!ENTITY % English "INCLUDE"><!-- change language only here -->
-  <!-- each chapter is in a seperate sgml file -->
-	<!ENTITY introduction SYSTEM "introduction.sgml">
-	<!ENTITY using-krusader SYSTEM "using-krusader.sgml">
-        <!ENTITY commands SYSTEM "commands.sgml">
-	<!ENTITY konfigurator SYSTEM "konfigurator.sgml">
-	<!ENTITY krusader-tools SYSTEM "krusader-tools.sgml">
-	<!ENTITY faq SYSTEM "faq.sgml">
-	<!ENTITY credits SYSTEM "credits.sgml">
-	<!ENTITY installation SYSTEM "installation.sgml">
-]>
+
 <!-- **********************************************************************
                               index.docbook
                            +++++++++++++++++++
@@ -26,7 +9,7 @@
   e-mail               : krusader@users.sourceforge.net
   web site             : http://krusader.sourceforge.net
   description          : a Krusader Documentation File
-  
+
 ***************************************************************************
 * Permission is granted to copy, distribute and/or modify this            *
 * document under the terms of the GNU Free Documentation License,         *
@@ -37,6 +20,86 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
+
+<!ENTITY krusader 'Krusader'>
+<!ENTITY kapp "&krusader;">
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % English "INCLUDE"><!-- change language only here -->
+<!ENTITY package "kdeextragear-1">
+<!-- internet links -->
+<!ENTITY kruforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/index.php">&krusader; forum</ulink>'>
+<!ENTITY kruwebsite_url '<ulink url="http://krusader.sourceforge.net">Krusader website</ulink>'>
+<!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/index.php?nav=down.php">&krusader;  downloadpage</ulink>'>
+
+  <!ENTITY xxdiff '<ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>'>
+
+<!ENTITY krename_url '<ulink url="http://www.krename.net"><application>Krename</application></ulink>'>
+<!ENTITY freshmeat_url '<ulink url="http://www.freshmeat.net">freshmeat</ulink>'>
+<!ENTITY rpmfind_url '<ulink url="http://www.rpmfind.net">Rpmfind</ulink>'>
+<!ENTITY krucutedge_url '<ulink url="http://krusader.sourceforge.net/index.php?nav=cvs.php">&krusader;&apos;s Cutting Edge page</ulink>'>
+<!ENTITY viewcvs_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader">ViewCVS</ulink>'>
+<!ENTITY sfmirrors_url '<ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>'>
+<!ENTITY online_changelog_url '<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3">online <filename>ChangeLog</filename></ulink>'>
+<!ENTITY i18howto_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389">Krusader translation howto</ulink>'>
+<!ENTITY kru2forum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=6">Future Krusader discussion Forum</ulink>'>
+<!ENTITY mail_url '<ulink url="mailto:krusader@users.sourceforge.net">mail</ulink>'>
+<!ENTITY bugforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=3">bug discussions forum</ulink>'>
+<!ENTITY krunews_url '<ulink url="http://lists.sourceforge.net/lists/listinfo/krusader-news">&krusader;-news</ulink>'>
+<!ENTITY krunewsarch_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum=krusader-news">&krusader;-news Archives</ulink>'>
+<!ENTITY krulatestnews_url '<ulink url="http://krusader.sourceforge.net/index.php?nav=news.php">latest news</ulink>'>
+<!ENTITY krucommits_url '<ulink url="http://lists.sourceforge.net/lists/listinfo/krusader-commits">commits mailing list</ulink>'>
+<!ENTITY krucommitsarch_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum=krusader-commits">&krusader; commits Archives</ulink>'>
+<!ENTITY xbel_url '<ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>'>
+
+<!ENTITY online_todolist_url '<ulink url="http://sourceforge.net/tracker/?atid=560746&amp;group_id=6488&amp;func=browse">online todo list</ulink>'>
+ <!ENTITY online_buglist_url '<ulink url="http://sourceforge.net/tracker/?atid=106488&amp;group_id=6488&amp;func=browse">online bug list</ulink>'>
+<!ENTITY krufreebsd_port_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all">FreeBSD port</ulink>'>
+
+  <!-- bad links, need to be changed -->
+  <!ENTITY bad_link1 '<ulink url="http://apps.kde.com">apps.kde.com</ulink>.'>
+  <!ENTITY bad_link2 '<ulink url="http://members.home.nl/bruggie/kdiff2">kdiff2</ulink>'>
+
+  <!-- documentation links -->
+<!ENTITY konfigstartpg_lnk '<link linkend="konfig-startup">Konfigurator Startup page</link>'>
+<!ENTITY konfiglookandfeel_lnk '<link linkend="konfig-looknfeel">Konfigurator look and feel page</link>'>
+<!ENTITY konfiggereral_lnk '<link linkend="konfig-general">Konfigurator general page</link>'>
+<!ENTITY viewmenu_lnk '<link linkend="view-menu">view menu</link>'>
+<!ENTITY markmenu_lnk '<link linkend="mark-menu">mark menu</link>'>
+<!ENTITY comparemode_lnk '<link linkend="compare-dir">compare mode</link>'>
+<!ENTITY fnkeybar_lnk '<link linkend="fnkeys">FN Keys Bar</link>'>
+<!ENTITY toolbar_lnk '<link linkend="toolbar">Toolbar</link>'>
+<!ENTITY rootmode_lnk '<link linkend="root-mode">Root mode</link>'>
+<!ENTITY settingsmenu_lnk '<link linkend="settings-menu">settings menu</link>'>
+<!ENTITY keybindigs_lnk '<link linkend="key_bindings">Key-Bindings</link>'>
+<!ENTITY syncdirs_lnk '<link linkend="synchronize_dirs">Synchronize Directories</link>'>
+<!ENTITY splitfile_lnk '<link linkend="split">Split file</link>'>
+<!ENTITY combinefiles_lnk '<link linkend="combine">Combine files</link>'>
+<!ENTITY kdeqtdir_lnk '<link linkend="kde_qt_dir"><envar>KDEDIR</envar> - <envar>QTDIR</envar></link>'>
+<!ENTITY usermenu_lnk '<link linkend="user_menu">User menu</link>'>
+
+  <!-- other ENTITIES -->
+<!ENTITY keditbookmarks '<application>KeditBookmarks</application>'>
+<!ENTITY konqueror '<application>Konqueror</application>'>
+<!ENTITY mc '<application>Midnight Commander</application>'>
+<!ENTITY nc '<application>Norton Commander</application>'>
+<!ENTITY kompare '<application>Kompare</application>'>
+<!ENTITY xxdiff '<application>xxdiff</application>'>
+<!ENTITY konsole '<application>konsole</application>'>
+<!ENTITY disablenote '<note><para>This feature is temporarily disabled and will be rewritten sorry.</para></note>'>
+<!ENTITY bugreport_lnk 'Don&apos;t hesitate to send <link linkend="bug_report">Bug reports</link>.'>
+<!ENTITY newfeaturenote '<note><para>This is a new feature under development, some descriptions can be obsolete when
+                         functionality can change during the development. &bugreport_lnk;</para></note>'>
+
+  <!-- each chapter is in a seperate sgml file -->
+	<!ENTITY introduction SYSTEM "introduction.sgml">
+	<!ENTITY using-krusader SYSTEM "using-krusader.sgml">
+        <!ENTITY commands SYSTEM "commands.sgml">
+	<!ENTITY konfigurator SYSTEM "konfigurator.sgml">
+	<!ENTITY krusader-tools SYSTEM "krusader-tools.sgml">
+	<!ENTITY faq SYSTEM "faq.sgml">
+	<!ENTITY credits SYSTEM "credits.sgml">
+	<!ENTITY installation SYSTEM "installation.sgml">
+]>
 <book lang="&language;">
 <bookinfo>
 <title>The Krusader Handbook</title>
@@ -57,7 +120,7 @@
 	</affiliation>
 	</author>
         <author>
-        <firstname>Frank</firstname>		<!-- added by Frank -->
+        <firstname>Frank</firstname>
 	<surname>Schoolmeesters</surname>
 	<affiliation>
 	<address><email>codeknight@users.sourceforge.net</email></address>
@@ -68,34 +131,23 @@
 	<year>2000</year>
 	<year>2001</year>
 	<year>2002</year>
-        <year>2003</year>	<!-- added by Frank -->
+        <year>2003</year>
   <holder>Rafi Yanai</holder>
   <holder>Shie Erlich</holder>
 	</copyright>
-
 	<legalnotice>&FDLNotice;</legalnotice>
-
-	<date>26/11/2003</date>
-	<releaseinfo>1.00.04</releaseinfo>
+	<date>21/12/2003</date>
+	<releaseinfo>1.00.05</releaseinfo>
 
    <abstract>
 	<para>
-	Krusader is a file-manager for KDE 3.x,
-	patterned after old-school managers like midnight commander and norton commander.
+	&krusader; is a twin-panel &Linux; file-manager for the &kde; 3.x desktop environment,
+	patterned after old-school managers like &mc; and &nc;.
 	It features basically all your file-management needs, plus extensive archive handling,
 	mounted filesystems support, built-in advanced search module that can search in archives,
 	internal viewer, ftp/samba client and much much more.
 	</para>
-
-	<para>
-	NOTE: We are busy with updating the The Krusader Handbook.
-	At this moment some nice features are not (yet) documented. Check out the
-	<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/">online ChangeLog</ulink>
-        file or the ChangeLog file in the Krusader sources to find out the latest features. Please read also the
-	<link linkend="editors_note">Note from the Editors</link>, if you have ideas on how to improve the content
-	or like to contribute at the Krusader Handbook.
-	</para>
-	<para>Thank you for using Krusader.</para>
+	<para>Thank you for using &krusader;.</para>
    </abstract>
 
 	<keywordset>
@@ -105,12 +157,90 @@
         <keyword>samba</keyword>
 	<keyword>file</keyword>
 	<keyword>manager</keyword>
+	<keyword>filemanager</keyword>
+	<keyword>twinpanel</keyword>
 	<keyword>archive</keyword>
 	<keyword>ftp</keyword>
 	<keyword>mount</keyword>
+	<keyword>midnight</keyword>
+	<keyword>handbook</keyword>
+	<keyword>documentation</keyword>
 	</keywordset>
 
 </bookinfo>
+
+<preface><title>Foreword</title>
+
+	<note><para>
+	We are busy with updating the The Krusader Handbook.
+	At this moment some nice features are not (yet) documented. Check out the &online_changelog_url;
+        file or the <filename>ChangeLog</filename> file in the Krusader sources to find out the latest features.
+	Please read also the <link linkend="editors_note">Note from the Editors</link>,
+	if you have ideas on how to improve the content or like to contribute at the Krusader Handbook.
+	</para></note>
+
+	<para>
+	Our aim is to give you a tool that does the two most important things:
+	manage your files the way you want it, and look great doing it !
+	To do just that, Krusader wears a great looking GUI,
+	supports drag n' drop and mimetypes (with or without magic!) -
+	all you need to feel right at home using it.
+	Krusader is packed with cool features, is fast and handles archives transparently,
+	basically, all you'd come to expect from tools like &mc;.
+	Krusader is open-source, free and is released under the
+	<link linkend="credits">GNU Public License (GPL)</link>,
+	although we (the developers) still retain the copyright for the project and it's name.
+	</para>
+
+	<para>
+	The project's target is to create an all-in-one file-manager, which will do all
+	the things you'd expect from it, and then some... ;-)
+	Since the principle behind Krusader is based on the "old-school" managers
+	(&mc;, &nc;),
+	virtual filesystems became a main focus.
+	Virtual filesystems (VFSs) are an abstracted layer over all kinds of archived
+	information (ZIP files, FTP servers, NFS filesystems, SAMBA shares),
+	which allows the user to access all the information transparently -
+	just like entering a sub-directory.
+	Krusader currently supports VFSs for archives (Zip, Tar, GZip, BZip2, Ace, Rar, Arj),
+	packages (RPM) and filesystems (FTP, NFS, Samba).
+	Krusader also includes a built-in Mount-Manager, which enables you to
+	(un)mount filesystems with a single mouse click, and get usage information.
+	A Bookmark-Manager Remote-Connections Manager and Advanced Search module are also included.
+	We are planning to develop more modules in the near future,
+	thereby enhancing Krusader greatly. (eg: samba browser).
+	</para>
+
+	<para>We hope you'll enjoy it, we do !</para>
+
+</preface>
+
+<preface id="editors_note">
+  <title>Note from the Editors</title>
+
+  <para>As you may notice this handbook is written by various authors.
+         Whe have taken much care in insuring technical and vocabulary consistency.</para>
+
+  <para>Most of the authors write in English even though it is not their native language.
+        Therefore, you may notice strange sentence constructions.
+        Do not hesitate to let us know if something is not clear to you.</para>
+
+  <para>An open source project greatest strength is derived from getting user
+         feedback. That's why we'd love to hear what you have to say.
+         Documentation contributors are always welcome.
+         If you have ideas on how to improve the content,
+	 if you like to write about a ondocumented &krusader; feature,
+	 if you have remarks or suggestions about the &krusader; Handbook. Please let us know.
+         You can contact us even if you find typos!</para>
+
+   <para>Download the latest <link linkend="krusader_cvs">&krusader; CVS build</link>
+   to obtain the latest version of the &krusader; handbook.</para>
+
+   <para>For information about the &krusader; documentation project,
+          please contact the &krusader; documentation coordinator Frank Schoolmeesters
+	  <email>codeknight@users.sourceforge.net</email>.</para>
+
+</preface>
 
 	&introduction;
 	&using-krusader;
