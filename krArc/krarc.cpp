@@ -433,7 +433,7 @@ void kio_krarcProtocol::stat( const KURL & url ){
 	else error(KIO::ERR_DOES_NOT_EXIST,path);
 }
 
-void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool) {
+void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool overwrite) {
   KRDEBUG(url.path());
   
   if( dest.isLocalFile() )
@@ -441,6 +441,13 @@ void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool) {
     {
       if( url.fileName() != dest.fileName() )
         break;
+   
+      //the file exists and we don't want to overwrite
+      if ((!overwrite) && ( QFile( dest.path() ).exists() ) )
+      {
+         error(ERR_FILE_ALREADY_EXIST, QFile::encodeName(dest.path()) );
+         return;
+      };
       
       setArcFile(url.path());
       if( newArchiveURL && !initDirDict(url) ){ 
@@ -1061,7 +1068,7 @@ bool kio_krarcProtocol::initArcParameters(){
     cmd     = fullPathName( "unzip" );
     listCmd = fullPathName( "unzip" ) + " -ZTs-z-t-h ";
     getCmd  = fullPathName( "unzip" ) + " -p ";
-    copyCmd = fullPathName( "unzip" ) + " -j ";
+    copyCmd = fullPathName( "unzip" ) + " -jo ";
     
     if( KStandardDirs::findExe( "zip" ).isEmpty() ) {
       delCmd  = QString::null;
@@ -1083,7 +1090,7 @@ bool kio_krarcProtocol::initArcParameters(){
       cmd     = fullPathName( "unrar" );
       listCmd = fullPathName( "unrar" ) + " -c- v ";
       getCmd  = fullPathName( "unrar" ) + " p -ierr -idp -c- -y ";
-      copyCmd = fullPathName( "unrar" ) + " e ";
+      copyCmd = fullPathName( "unrar" ) + " e -y ";
       delCmd  = QString::null;
       putCmd  = QString::null;
     }
@@ -1092,7 +1099,7 @@ bool kio_krarcProtocol::initArcParameters(){
       cmd     = fullPathName( "rar" );
       listCmd = fullPathName( "rar" ) + " -c- v ";
       getCmd  = fullPathName( "rar" ) + " p -ierr -idp -c- -y ";
-      copyCmd = fullPathName( "rar" ) + " e ";
+      copyCmd = fullPathName( "rar" ) + " e -y ";
       delCmd  = fullPathName( "rar" ) + " d ";
       putCmd  = fullPathName( "rar" ) + " -r a ";
     }
@@ -1128,14 +1135,14 @@ bool kio_krarcProtocol::initArcParameters(){
     cmd     = fullPathName( "lha" );
     listCmd = fullPathName( "lha" ) + " l ";
     getCmd  = fullPathName( "lha" ) + " pq ";
-    copyCmd = fullPathName( "lha" ) + " ei ";
+    copyCmd = fullPathName( "lha" ) + " eif ";
     delCmd  = fullPathName( "lha" ) + " d ";
     putCmd  = fullPathName( "lha" ) + " a ";
   } else if(arcType == "ace"){
     cmd     = fullPathName( "unace" );
     listCmd = fullPathName( "unace" ) + " v";
-    getCmd  = fullPathName( "unace" ) + " e";
-    copyCmd = fullPathName( "unace" ) + " e";
+    getCmd  = fullPathName( "unace" ) + " e -o ";
+    copyCmd = fullPathName( "unace" ) + " e -o ";
     delCmd  = QString::null;
     putCmd  = QString::null;
   } else {
