@@ -43,6 +43,8 @@ static const char *description =
 
 static KCmdLineOptions options[] =
 {
+  { "left <path>", I18N_NOOP("Start left panel at <path>"), 0},
+  { "right <path>", I18N_NOOP("Start right panel at <path>"), 0},
   { 0, 0, 0 }
   // INSERT YOUR COMMANDLINE OPTIONS HERE
 };
@@ -82,6 +84,8 @@ int main(int argc, char *argv[]) {
   // Command line arguments ...
   KCmdLineArgs::init( argc, argv, &aboutData );
   KCmdLineArgs::addCmdLineOptions( options ); // Add our own options.
+
+  // check for command line arguments
 
   // create the application
   KApplication app;
