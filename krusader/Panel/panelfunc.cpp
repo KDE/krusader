@@ -86,10 +86,10 @@ void ListPanelFunc::openUrl( const QString& url, const QString& nameToMakeCurren
 	openUrl( vfs::fromPathOrURL( url ), nameToMakeCurrent );
 }
 
-void ListPanelFunc::openUrl( const KURL& urlIn, const QString& nameToMakeCurrent ) {
+void ListPanelFunc::delayedOpenUrl( const KURL& urlIn ) {
 	KURL url = urlIn;
 	url.cleanPath();
-
+	
 	// check for special cases first - don't refresh here !
 	// you may call openUrl or vfs_refresh()
 	if ( !url.isValid() ) {
@@ -147,7 +147,7 @@ void ListPanelFunc::openUrl( const KURL& urlIn, const QString& nameToMakeCurrent
 		if ( !v )
 			continue; //this should not happen !
 		if ( v != vfsP ) {
-			delete vfsP;
+			vfsP->deleteLater();
 			vfsP = v; // v != 0 so this is safe
 		}
 		connect( files(), SIGNAL(startJob(KIO::Job* )),
@@ -180,13 +180,15 @@ void ListPanelFunc::openUrl( const KURL& urlIn, const QString& nameToMakeCurrent
 		chdir( files() ->vfs_getOrigin().path().local8Bit() );
 }
 
-void ListPanelFunc::delayedOpenUrl( const KURL& url ) {
+void ListPanelFunc::openUrl( const KURL& url, const QString& nameToMakeCurrent ) {
+	panel->inlineRefreshCancel();	
+	this->nameToMakeCurrent = nameToMakeCurrent;
 	delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
 	delayTimer.start( 0, true );  /* to avoid qApp->processEvents() deadlock situaltion */
 }
 
 void ListPanelFunc::doOpenUrl() {
-	openUrl( delayURL );
+	delayedOpenUrl( delayURL );
 }
 
 void ListPanelFunc::goBack() {

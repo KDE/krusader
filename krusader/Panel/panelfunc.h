@@ -89,8 +89,9 @@ protected:
 	QValueStack<KURL>    urlStack;  // Path stack for the "back" button
 	bool                 inRefresh; // true when we are in refresh()
 	vfs*                 vfsP;      // pointer to vfs.
-   QTimer               delayTimer;
-   KURL                 delayURL;
+	QTimer               delayTimer;
+	KURL                 delayURL;
+	QString              nameToMakeCurrent;
 };
 
 #endif
