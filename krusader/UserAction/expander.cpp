@@ -630,6 +630,27 @@ QString exp_PanelSize::expFunc( const ListPanel* panel, const QStringList& param
    return QString::null;  // this doesn't return everything, that's normal!
 }
 
+#ifdef __KJSEMBED__
+exp_Script::exp_Script() {
+   _expression = "Script";
+   _description = i18n("Executes a JavaScript-extension");
+   _needPanel = false;
+   
+   addParameter( new exp_parameter( i18n("Location of the script"), "", true ) );
+}
+QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
+   if ( parameter[0].isEmpty() ) {
+      krOut << "Expander: no script specified for %_Script(script)%; abort..." << endl;
+      UA_CANCEL
+   }
+   
+   //TODO: If the script is only a filename (without path) or has a relative path, load it from $KDEDIR/share/apps/krusader/js
+
+   krJS->runFile( parameter[0] );
+
+   return QString::null;  // TODO: return the output of the js
+}
+#endif
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// end of expander classes ////////////////////////////////
@@ -658,6 +679,9 @@ Expander::Expander() {
    addPlaceholder( new exp_Sync() );
    addPlaceholder( new exp_NewSearch() );
    addPlaceholder( new exp_Profile() );
+   #ifdef __KJSEMBED__
+   addPlaceholder( new exp_Script() );
+   #endif
 //    addPlaceholder( new exp_Run() );
 }
 

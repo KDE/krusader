@@ -2,6 +2,14 @@ This file is only intended for the CVS.
 It should contain a brief description of new features;
 in some way an extension to the changelog.
 ------------------------------------------------------
+
+Primitive scripting support. condition: KJSEmbed is installed (package: KDEbindings)
+  Ctrl+Alt+J opens the JavaScript-console. There you can play around:
+  try 'Krusader.setCaption("Hey Ho, Let's go!");', "Krusader.children();", "Krusader.child("help").slots();"
+  and "Krusader.child("help").show();"....
+  In addition a new placeholder for the useraction, %_Script(path/to/script.js)% executes an external file.
+  Warning: very alpha!!
+
 krusader has now a new toolbar: actions toolbar. you can show/hide it using
 the view menu --> show actions toolbar. useful to put actions (and later bookmarks),
 put in as a side toolbar with small icons. __you'll have to overwrite krusaderui.rc__

@@ -1,3 +1,8 @@
+if include_libkjsembed
+AM_CPPFLAGS = -D__KJSEMBED__
+endif
+
+
 ####### kdevelop will overwrite this part!!! (begin)##########
 noinst_LIBRARIES = libUserAction.a
 

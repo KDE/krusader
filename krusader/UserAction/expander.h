@@ -232,6 +232,16 @@ public:
    EXP_FUNC;
 };
 
+#ifdef __KJSEMBED__
+/**
+  * This sets relation between the left and right panel
+  */
+class exp_Script : public exp_placeholder {
+public:
+   exp_Script();
+   EXP_FUNC;
+};
+#endif
 
 /**
  * The Expander expands the command of an UserAction by replacing all placeholders by thier current values.@n

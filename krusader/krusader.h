@@ -47,6 +47,10 @@
 #include <qstringlist.h>
 #include <qtextstream.h>
 
+#ifdef __KJSEMBED__
+#include <kjsembed/kjsembedpart.h>
+#endif
+
 class KrusaderStatus;
 class KRPleaseWaitHandler;
 class KrusaderView;
@@ -138,6 +142,11 @@ class Krusader : public KParts::MainWindow {
     static Expander *expander;
 	 static KrBookmarkHandler *bookman;
 
+    #ifdef __KJSEMBED__
+    static KJSEmbed::KJSEmbedPart *js;
+    static KAction *actShowJSConsole;
+    #endif
+  
   signals:
     void changeMessage( QString );
 
@@ -219,5 +228,10 @@ class Krusader : public KParts::MainWindow {
 #define krF8				  Krusader::App->actF8
 #define krF9				  Krusader::App->actF9
 #define krF10				  Krusader::App->actF10
+
+#ifdef __KJSEMBED__
+#define krJS			Krusader::App->js
+#define krJSConsole		Krusader::App->actShowJSConsole
+#endif
 
 #endif

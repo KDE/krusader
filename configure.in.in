@@ -5,6 +5,12 @@ KDE_CHECK_HEADER(konqbookmarkmanager.h, ,[have_libkonq=no] )
 
 AM_CONDITIONAL(include_libkonq, test "$have_libkonq" = yes)
 
+have_libkjsembed=yes
+KDE_CHECK_HEADER(kjsembed/kjsembedpart.h, ,[have_libkjsembed=no] )
+
+AM_CONDITIONAL(include_libkjsembed, test "$have_libkjsembed" = yes)
+
+
 AM_INIT_AUTOMAKE(krusader,1.55)
 
 dnl CXXFLAGS="$NOOPT_CXXFLAGS" dnl __kdevelop[noopt]__

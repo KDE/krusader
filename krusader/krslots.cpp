@@ -46,6 +46,11 @@
 #include <kdeversion.h>
 #include <kcmdlineargs.h>
 #include <KViewer/krviewer.h>
+
+#ifdef __KJSEMBED__
+#include <kjsembed/jsconsolewidget.h>
+#endif
+
 // Krusader includes
 #include "krslots.h"
 #include "krusader.h"
@@ -826,5 +831,11 @@ void KRslots::windowInactive() {
 	MAIN_VIEW->right->panelInactive();
 }
 
+#ifdef __KJSEMBED__
+//shows the JavaScript-Console
+void KRslots::jsConsole() {
+    krJS->view()->show();
+}
+#endif
 
 #include "krslots.moc"

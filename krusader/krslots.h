@@ -161,6 +161,10 @@ class KRslots : public QObject {
     // ugly stubs, remove later ?
     void slotCurrentChanged( QString p ) { MAIN_VIEW->slotCurrentChanged( p ); }
     void slotSetActivePanel( ListPanel *p ) { MAIN_VIEW->slotSetActivePanel( p ); }
+    
+    #ifdef __KJSEMBED__
+    void jsConsole();
+    #endif
 };
 
 #endif

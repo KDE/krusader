@@ -161,6 +161,11 @@ UserMenu *Krusader::userMenu = 0;
 KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
+#ifdef krJS
+KJSEmbed::KJSEmbedPart *Krusader::js = 0;
+KAction *Krusader::actShowJSConsole = 0;
+#endif
+
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 	// parse command line arguments
@@ -598,6 +603,13 @@ void Krusader::setupActions() {
    // setup all UserActions
    expander = new Expander();
    userAction = new UserAction();
+   
+   #ifdef __KJSEMBED__
+   js = new KJSEmbed::KJSEmbedPart();
+   // make this object, the class Krusader, available for scripting as "Krusader":
+   js->addObject( this, "Krusader" );
+   actBack = new KAction( i18n( "JavaScript console" ), ALT + CTRL + Key_J, SLOTS, SLOT( jsConsole() ), actionCollection(), "JS_Console" );
+   #endif
 }
 
 void Krusader::importKeyboardShortcuts(QString filename) {
