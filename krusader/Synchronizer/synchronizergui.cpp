@@ -1081,9 +1081,11 @@ void SynchronizerGUI::compare()
   btnCompareDirs->setEnabled( false );
   btnStopComparing->setEnabled( isComparing = true );
   btnSynchronize->setEnabled( false );
+  disableMarkButtons();
   synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(), fileFilter->currentText(),
                        cbSubdirs->isChecked(), cbSymlinks->isChecked(), cbIgnoreDate->isChecked(),
                        cbAsymmetric->isChecked() );
+  enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnCompareDirs->setEnabled( true );
   if( syncList->childCount() )
@@ -1122,7 +1124,7 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
     rightDate = SynchronizerGUI::convertTime( item->rightDate() );
   }
 
-  SyncViewItem *listItem;
+  SyncViewItem *listItem = 0;
   SyncViewItem *dirItem;
   
   if( item->parent() == 0 )
@@ -1141,18 +1143,43 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
       listItem = new SyncViewItem(item, dirItem, dirItem->lastItem(), leftName, leftSize,
                                   leftDate, Synchronizer::getTaskTypeName( item->task() ),
                                   rightDate, rightSize, rightName );
+                                  
+      dirItem->setLastItem( listItem );
     }
-
-    dirItem->setLastItem( listItem );
   }
 
-  listItem->setPixmap(0, isDir ? folderIcon : fileIcon);
-  syncList->ensureItemVisible( listItem );
+  if( listItem )
+  {
+    listItem->setPixmap(0, isDir ? folderIcon : fileIcon);
+    syncList->ensureItemVisible( listItem );
+  }
 }
 
 void SynchronizerGUI::subdirsChecked( bool isOn )
 {
   cbSymlinks->setEnabled( isOn );
+}
+
+void SynchronizerGUI::disableMarkButtons()
+{
+  btnLeftToRight->setEnabled( false );
+  btnEquals->setEnabled( false );
+  btnDifferents->setEnabled( false );
+  btnRightToLeft->setEnabled( false );
+  btnDeletable->setEnabled( false );
+  btnDuplicates->setEnabled( false );
+  btnSingles->setEnabled( false );
+}
+
+void SynchronizerGUI::enableMarkButtons()
+{
+  btnLeftToRight->setEnabled( true );
+  btnEquals->setEnabled( true );
+  btnDifferents->setEnabled( true );
+  btnRightToLeft->setEnabled( true );
+  btnDeletable->setEnabled( true );
+  btnDuplicates->setEnabled( true );
+  btnSingles->setEnabled( true );
 }
 
 QString SynchronizerGUI::convertTime(time_t time) const
@@ -1179,7 +1206,9 @@ void SynchronizerGUI::refresh()
     setMarkFlags();
     btnCompareDirs->setEnabled( false );
     btnSynchronize->setEnabled( false );
+    disableMarkButtons();
     synchronizer.refresh();
+    enableMarkButtons();
     btnCompareDirs->setEnabled( true );
     if( syncList->childCount() )
       btnSynchronize->setEnabled( true );    

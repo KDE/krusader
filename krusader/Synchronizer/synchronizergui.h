@@ -101,6 +101,8 @@ protected slots:
 private:
   QString convertTime(time_t time) const;
   void    setMarkFlags();
+  void    disableMarkButtons();
+  void    enableMarkButtons();
   
 protected:
   KHistoryCombo *leftLocation;
