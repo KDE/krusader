@@ -74,7 +74,7 @@ void KrDetailedViewItem::repaintItem() {
     if ((id = _view->column(KrDetailedView::Size)) != -1) {
       if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, "<DIR>");
 	    else setText(id, humanReadableSize ? KIO::convertSize(_vf->vfile_getSize())+"  " :
-		 						KRpermHandler::parseSize(_vf->vfile_getSize()));
+		 						KRpermHandler::parseSize(_vf->vfile_getSize())+" ");
     }
 
     if ((id = _view->column(KrDetailedView::DateTime)) != -1)
@@ -374,7 +374,8 @@ QString KrDetailedViewItem::description() const {
      	text += "  ";
      	text += tmp;
  		} else if ( S_ISREG( m_fileMode ) ){
-     	text = QString("%1 (%2)").arg(text2).arg( KIO::convertSize( mySize ) );
+     	text = QString("%1 (%2)").arg(text2).arg( humanReadableSize ?
+			KRpermHandler::parseSize(_vf->vfile_getSize()) : KIO::convertSize( mySize ) );
      	text += "  ";
      	text += comment;
  		} else if ( S_ISDIR ( m_fileMode ) ){
