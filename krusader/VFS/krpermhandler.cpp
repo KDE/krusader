@@ -36,7 +36,10 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <time.h>
+#include <klocale.h>
+#include <kglobal.h>
 // Qt includes
+#include <qdatetime.h>
 #include <qdir.h>
 // krusader includes
 #include "krpermhandler.h"
@@ -266,12 +269,16 @@ static QString round(int i){
 
 // create a easy to read date-time format
 QString KRpermHandler::time2QString(long time){
-	QString dateTime;
+  QString dateTime;
 	// convert the time_t to struct tm
 	struct tm* t=localtime(&time);
-	// construct the string
-	dateTime=round(t->tm_mday)+"/"+round(t->tm_mon+1)+"/"+round(t->tm_year%100)+
-		     +" "+round(t->tm_hour)+":"+round(t->tm_min);
+  QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
+
+  // construct the string
+  dateTime = KGlobal::locale()->formatDateTime(tmp);
+
+  //dateTime=round(t->tm_mday)+"/"+round(t->tm_mon+1)+"/"+round(t->tm_year%100)+
+	//	     +" "+round(t->tm_hour)+":"+round(t->tm_min);
 	return dateTime;
 }
 
