@@ -170,7 +170,6 @@ bool ftp_vfs::populateVfsList(const KURL& origin,bool showHidden) {
 
   while( busy ){
     qApp->processEvents();
-    qApp->eventLoop()->processEvents( QEventLoop::AllEvents|QEventLoop::WaitForMore); 
   }
 
   if( listError ) return false;

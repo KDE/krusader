@@ -100,6 +100,7 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
   // change directory to the new directory
 	if (chdir(path.local8Bit()) != 0) {
 		if( !quietMode ) KMessageBox::error(krApp, i18n("Access denied to")+path, i18n("Error"));
+		closedir(dir);
 		return false;
 	}
 
