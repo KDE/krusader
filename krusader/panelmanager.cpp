@@ -50,7 +50,12 @@ QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ), _self( self ), _
 
    if ( HIDE_ON_SINGLE_TAB ) HIDE
       else SHOW
-      }
+		
+#ifdef __KJSEMBED__
+   // make this object available for scripting
+   krApp->js->addObject( this, "PanelManager" );
+#endif
+}
 
 void PanelManager::slotChangePanel( ListPanel *p ) {
    _self = p;
