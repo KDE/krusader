@@ -1,6 +1,6 @@
 /***************************************************************************
-                     krdetailedview.cpp
-                    -------------------
+                   krdetailedview.cpp
+                  -------------------
 copyright            : (C) 2000-2002 by Shie Erlich & Rafi Yanai
 e-mail               : krusader@users.sourceforge.net
 web site             : http://krusader.sourceforge.net
@@ -17,7 +17,7 @@ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
 YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
-                                            S o u r c e    F i l e
+                                          S o u r c e    F i l e
 
 ***************************************************************************
 *                                                                         *
@@ -53,23 +53,23 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // Group name: KrDetailedView
 //
 // Ext Column
-#define _ExtColumn          true
+#define _ExtColumn          true 
 // Mime Column
-#define _MimeColumn         false
+#define _MimeColumn         false 
 // Size Column
-#define _SizeColumn         true
+#define _SizeColumn         true 
 // DateTime Column
-#define _DateTimeColumn     true
+#define _DateTimeColumn     true 
 // Perm Column
-#define _PermColumn         false
+#define _PermColumn         false 
 // KrPerm Column
-#define _KrPermColumn       true
+#define _KrPermColumn       true 
 // Owner Column
-#define _OwnerColumn        false
+#define _OwnerColumn        false 
 // Group Column
-#define _GroupColumn        false
+#define _GroupColumn        false 
 // Do Quicksearch
-#define _DoQuicksearch      true
+#define _DoQuicksearch      true 
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
@@ -196,6 +196,8 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
            this, SLOT( quickSearch( const QString& , int ) ) );
   connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( stop( QKeyEvent* ) ),
            this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
+  connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( process( QKeyEvent* ) ),
+           this, SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
 
 
   setFocusPolicy( StrongFocus );
@@ -383,8 +385,22 @@ void KrDetailedView::setSortMode( SortSpec mode ) {
   }
 
 void KrDetailedView::slotClicked( QListViewItem *item ) {
-  if ( !item )
-    return ;
+  if ( !item ) return ;
+
+    { // stop quick search in case a mouse click occured
+    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+    if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+      if ( krApp->mainView ) {
+        if ( krApp->mainView->activePanel ) {
+          if ( krApp->mainView->activePanel->quickSearch ) {
+            if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
+              stopQuickSearch( 0 );
+              }
+            }
+          }
+        }
+      }
+    }
 
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
@@ -420,10 +436,10 @@ void KrDetailedView::prepareForPassive() {
             }
           }
         }
-      }    
-  }
+      }
+    }
   _focused = false;
-}
+  }
 
 void KrDetailedView::slotItemDescription( QListViewItem * item ) {
   KrViewItem * it = dynamic_cast<KrViewItem*>( item );
@@ -433,6 +449,25 @@ void KrDetailedView::slotItemDescription( QListViewItem * item ) {
   emit itemDescription( desc );
   }
 
+void KrDetailedView::handleQuickSearchEvent(QKeyEvent * e)
+{
+   switch (e->key()) {
+      case Key_Insert:
+          KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
+          keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 ) );
+          break;
+      case Key_Home:
+          QListView::setCurrentItem(firstChild());
+          keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 ) );
+          break;
+      case Key_End:
+          QListView::setCurrentItem(firstChild());
+          keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Up, 0, 0 ) );
+          break;
+   }
+}
+  
+  
 void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
   if ( !item )
     return ;
@@ -529,7 +564,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
   switch ( e->key() ) {
       case Key_Enter :
       case Key_Return : {
-        if ( e->state() & ControlButton )      // let the panel handle it
+        if ( e->state() & ControlButton )        // let the panel handle it
           e->ignore();
         else {
           KrViewItem * i = getCurrentKrViewItem();
@@ -538,7 +573,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
           }
         break;
         }
-      case Key_QuoteLeft :       // Terminal Emulator bugfix
+      case Key_QuoteLeft :         // Terminal Emulator bugfix
       if ( e->state() == ControlButton ) { // let the panel handle it
         e->ignore();
         break;
@@ -563,7 +598,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
           }
         return ; // safety
         }
-      case Key_Backspace :                      // Terminal Emulator bugfix
+      case Key_Backspace :                        // Terminal Emulator bugfix
       case Key_Left :
       if ( e->state() == ControlButton ) { // let the panel handle it
         e->ignore();
@@ -582,7 +617,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         } else
         KListView::keyPressEvent( e );
       break;
-      case Key_Delete :                  // kill file
+      case Key_Delete :                    // kill file
       SLOTS->deleteFiles();
       return ;
       case Key_Space : {
@@ -613,7 +648,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         //KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
         }
       break;
-      case Key_A :              // mark all
+      case Key_A :                // mark all
       if ( e->state() == ControlButton ) {
         KListView::keyPressEvent( e );
         updateView();
@@ -624,12 +659,12 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         QListView::keyPressEvent( e ); return ; // otherwise the selection gets lost??!??
         }
       // if the key is A..Z or 1..0 do quick search otherwise...
-      if ( e->text().length() > 0 && e->text() [ 0 ].isPrint() )    // better choice. Otherwise non-ascii characters like Ö can not be the first character of a filename
+      if ( e->text().length() > 0 && e->text() [ 0 ].isPrint() )      // better choice. Otherwise non-ascii characters like Ö can not be the first character of a filename
         /*         if ( ( e->key() >= Key_A && e->key() <= Key_Z ) ||
                        ( e->key() >= Key_0 && e->key() <= Key_9 ) ||
                        ( e->key() == Key_Backspace ) ||
                        ( e->key() == Key_Down ) ||
-                       ( e->key() == Key_Period ) ) */{
+                       ( e->key() == Key_Period ) ) */{ 
         // are we doing quicksearch? if not, send keys to panel
         if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
           // are we using krusader's classic quicksearch, or wincmd style?
@@ -718,7 +753,7 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
     exit( 0 );
     }
   // check if the item was indeed renamed
-  if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() )         // was renamed
+  if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() )           // was renamed
     emit renameItem( dynamic_cast<KrDetailedViewItem*>( it ) ->name(), it->text( column( Name ) ) );
   else if ( column( Extention ) != -1 ) { // nothing happened, restore the view (if needed)
     int i;
@@ -747,7 +782,7 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
   bool caseSensitive = _config->readBoolEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
   if ( !direction ) {
-    if ( caseSensitive?item->name().startsWith( str ):item->name().lower().startsWith( str.lower() ) )
+    if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) )
       return ;
     direction = 1;
     }
@@ -758,7 +793,7 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
       item = ( direction > 0 ) ? getFirst() : getLast();
     if ( item == startItem )
       return ;
-    if ( caseSensitive?item->name().startsWith( str ):item->name().lower().startsWith( str.lower() ) ) {
+    if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) ) {
       makeItemVisible( item );
       setCurrentItem( item->name() );
       return ;
