@@ -31,8 +31,8 @@
 // Sys includes
 #include <time.h>
 #include <sys/param.h>
-#ifdef BSD
 #include <unistd.h>
+#ifdef BSD
 #include <sys/types.h>
 #endif
 // QT includes
