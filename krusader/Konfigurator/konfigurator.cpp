@@ -102,7 +102,7 @@ void Konfigurator::createLayout()
   // advanced
   newContent(new KgAdvanced(firstTime, widget->addPage(i18n("Advanced"),
     i18n("Be sure you know what you're doing"),
-    QPixmap(krLoader->loadIcon("file_important",KIcon::Desktop,32)))));
+    QPixmap(krLoader->loadIcon("messagebox_warning",KIcon::Desktop,32)))));
   // archives
   newContent(new KgArchives(firstTime, widget->addPage(i18n("Archives"),i18n("Costumize the way Krusader deals with archives"),
     QPixmap(krLoader->loadIcon("tgz",KIcon::Desktop,32)))));
@@ -114,7 +114,7 @@ void Konfigurator::createLayout()
     QPixmap(krLoader->loadIcon("kr_useractions",KIcon::Desktop,32)))));
   // protocols
   newContent(new KgProtocols(firstTime, widget->addPage(i18n("Protocols"),
-    i18n("Link mimes to protocols"), QPixmap(krLoader->loadIcon("exec",KIcon::Desktop,32)))));
+    i18n("Link mimes to protocols"), QPixmap(krLoader->loadIcon("about_kde",KIcon::Desktop,32)))));
 
   widget->showPage( widget->pageIndex( firstPage ) );
   slotApplyEnable();
