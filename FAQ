@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.60.0
-- Documentation date:  2005-02-28
-- Parsing date: Mon Feb 28 20:07:40 UTC 2005
+- Documentation date:  2005-03-17
+- Parsing date: Sun Mar 27 19:45:31 UTC 2005
 --------------------------------------------
  
 
@@ -424,38 +424,39 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
 7.2. Usage FAQ
 
    7.2.1. When I try to mount/unmount my cdrom/floppy, Krusader
-          says something about supermount, what's this about? 
+          says something about supermount, what's this about?
 
-   7.2.2. When I try to resize Krusader, so that it's smaller, I
+   7.2.2. Why does Krusader freezes on a dead mountpoint?
+   7.2.3. When I try to resize Krusader, so that it's smaller, I
           discover that I can't resize it below a certain size.
           Basically, it doesn't get much smaller. Why?
 
-   7.2.3. When I do some file operation, Krusader's panel doesn't
+   7.2.4. When I do some file operation, Krusader's panel doesn't
           refresh / I'm using Krusader with fam installed, but
           updates to the panel are not shown.
 
-   7.2.4. Samba ISO 8859-x codepage / what to do if Krusader does
+   7.2.5. Samba ISO 8859-x codepage / what to do if Krusader does
           not read shared directories containing national
           characters?
 
-   7.2.5. Krusader reports "krarc:... protocol not supported"
+   7.2.6. Krusader reports "krarc:... protocol not supported"
           error at opening an archive file.
 
-   7.2.6. When I try to establish an FTP connection, I get an
+   7.2.7. When I try to establish an FTP connection, I get an
           error message after 'Connect OK' saying 'Could not
           connect to host'.
 
-   7.2.7. I get "FTP protocol not supported by Krusader" error at
+   7.2.8. I get "FTP protocol not supported by Krusader" error at
           trying to open a remote FTP directory.
 
-   7.2.8. How can I disable the default sounds e.g. when I do a
+   7.2.9. How can I disable the default sounds e.g. when I do a
           delete action ?
 
-   7.2.9. I get the error message "Protocol not supported by
+   7.2.10. I get the error message "Protocol not supported by
           Krusader: "krarc:/path/to/foo-archive", when I try to
           open foo-Archive
 
-   7.2.10. Where is RemoteMan, the remote connection manager ?
+   7.2.11. Where is RemoteMan, the remote connection manager ?
 
    7.2.1. When I try to mount/unmount my cdrom/floppy, Krusader
    says something about supermount, what's this about?
@@ -472,7 +473,24 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    but as for now, we don't consider it a priority. Feel free to
    write a patch for it ;-).
 
-   7.2.2. When I try to resize Krusader, so that it's smaller, I
+   7.2.2. Why does Krusader freezes on a dead mountpoint?
+
+   When Krusader is e.g. browsing a NFS share and the NFS server
+   goes down, then Krusader will freeze. Krusader (including all
+   open internal viewers/editors) freeze and can only be killed
+   with kill -9. We have no solution for it in short term. The
+   problem is that you "hang" on the first access to the dead
+   share - so there is no way around it, no check to avoid it,
+   even ls will freeze. Just trying to read something - anything
+   - is enough to get you stuck. The one and only way around is
+   using a multi-threaded design - this way if we get stuck, we
+   don't hang the entire application event loop, but we don't
+   think that the time is right for adding threads, we are not
+   sure that *all* the KDE system out there are using Qt(TM)-mt
+   (the multi threaded version of the Qt(TM) library) so
+   currently it's a bug we have to learn to live with.
+
+   7.2.3. When I try to resize Krusader, so that it's smaller, I
    discover that I can't resize it below a certain size.
    Basically, it doesn't get much smaller. Why?
 
@@ -485,7 +503,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    pixels each button, that should give a minimum width of about
    500 pixels and seems reasonable to us.
 
-   7.2.3. When I do some file operation, Krusader's panel doesn't
+   7.2.4. When I do some file operation, Krusader's panel doesn't
    refresh / I'm using Krusader with fam installed, but updates
    to the panel are not shown.
 
@@ -501,7 +519,7 @@ $ su -c 'fam -l'
 
    Look at the manpages for more information about fam.
 
-   7.2.4. Samba ISO 8859-x codepage / what to do if Krusader does
+   7.2.5. Samba ISO 8859-x codepage / what to do if Krusader does
    not read shared directories containing national characters?
 
    Krusader does not handle (yet) Samba ISO 8859-x codepages, if
@@ -516,7 +534,7 @@ $ su -c 'fam -l'
    Unfortunately kcontrol (KDE 3.1.1) fails to configure it
    properly, so this step must be done with a text editor.
 
-   7.2.5. Krusader reports "krarc:... protocol not supported"
+   7.2.6. Krusader reports "krarc:... protocol not supported"
    error at opening an archive file.
 
    Solution: install the krarc slave properly:
@@ -529,7 +547,7 @@ $ su -c 'fam -l'
    or the directory where the KIO slaves are placed in your
    Linux® distribution.
 
-   7.2.6. When I try to establish an FTP connection, I get an
+   7.2.7. When I try to establish an FTP connection, I get an
    error message after 'Connect OK' saying 'Could not connect to
    host'.
 
@@ -538,7 +556,7 @@ $ su -c 'fam -l'
    Center and try again. KDE Control Center->Network->Preferences
    , "Enable Passive Mode (PASV)" has to be checked.
 
-   7.2.7. I get "FTP protocol not supported by Krusader" error at
+   7.2.8. I get "FTP protocol not supported by Krusader" error at
    trying to open a remote FTP directory.
 
    The reason for this error is that 'FTP via HTTP proxy' feature
@@ -547,7 +565,7 @@ $ su -c 'fam -l'
    Modify the proxy setting to not use HTTP proxy and FTP will
    work.
 
-   7.2.8. How can I disable the default sounds e.g. when I do a
+   7.2.9. How can I disable the default sounds e.g. when I do a
    delete action ?
 
    Those are the default KDE System sounds, and not related to
@@ -556,7 +574,7 @@ $ su -c 'fam -l'
    Multimedia->System Notifications , Event Source: "KDE System
    Notifications" and uncheck sound items you don't like.
 
-   7.2.9. I get the error message "Protocol not supported by
+   7.2.10. I get the error message "Protocol not supported by
    Krusader: "krarc:/path/to/foo-archive", when I try to open
    foo-Archive
 
@@ -569,7 +587,7 @@ $ su -c 'fam -l'
    using a 64 bit microprocessor. For more information click here
    .
 
-   7.2.10. Where is RemoteMan, the remote connection manager ?
+   7.2.11. Where is RemoteMan, the remote connection manager ?
 
    RemoteMan has been replaced by our Bookmark Manager since
    Krusader 1.25-beta1. The Bookmark Manager handles local files
@@ -592,29 +610,34 @@ $ su -c 'fam -l'
 
 7.3. General FAQ
 
-   7.3.1. Where can I report a wish, a patch or a comment?
-   7.3.2. Where can I report a bug?
+   7.3.1. How can I report a wish, a patch or a comment?
+   7.3.2. How can I report a bug?
    7.3.3. Does Krusader have a mailing list?
    7.3.4. Does Krusader have a IRC channel?
    7.3.5. How does the Krusader forum work?
    7.3.6. How can I translate Krusader to my native language?
    7.3.7. How can I support Krusader?
 
-   7.3.1. Where can I report a wish, a patch or a comment?
+   7.3.1. How can I report a wish, a patch or a comment?
 
    An open source project's greatest strength is derived from
    getting user feedback. That is why we love to hear what you
-   have to say. The most convenient way is to use the Krusader
-   Forum. For information on what remains to be done look at the
-   ToDo Forum. Adding ToDo items into the ToDo Forum is for
-   developers only, but feel free to post to the New Features
-   Discussion/Requests Forum for things that aren't on the ToDo
-   Forum, but should be. If you have a nice feature request, the
-   Krusader Krew will add your request to the Krusader Forum. For
-   more information about the forum click here . You can reach us
-   by mail or drop us a note in our Krusader Forum.
+   have to say. Your "Gripes" are our instructions. After about 6
+   months, programmers can no longer see their own mistakes. It's
+   natural. We want the ideas, xritiques, and feedback because we
+   all want to make Krusader the best, most useful, file manager
+   available anywhere. The most convenient way is to use the
+   Krusader Forum. For information on what remains to be done
+   look at the ToDo Forum. Adding ToDo items into the ToDo Forum
+   is for developers only, but feel free to post to the New
+   Features Discussion/Requests Forum for things that aren't on
+   the ToDo Forum, but should be. If you have a nice feature
+   request, the Krusader Krew will add your request to the
+   Krusader Forum. For more information about the forum click
+   here . You can reach us by mail or drop us a note in our
+   Krusader Forum.
 
-   7.3.2. Where can I report a bug?
+   7.3.2. How can I report a bug?
 
    We have an online Bug Tracking System.
 
