@@ -194,8 +194,8 @@ public:
   inline const QString    fileName()            const  {return m_name;}
   inline const char *     name()                const  {return m_name.ascii();}
   inline const QString    directory()           const  {return m_directory;}
-  inline const FileSize   size()                const  {return m_size;}
-  inline const FileSize   ownSize()             const  {return m_ownSize;}
+  inline const FileSize   size()                const  {return m_excluded ? 0 : m_size;}
+  inline const FileSize   ownSize()             const  {return m_excluded ? 0 : m_ownSize;}
   inline const mode_t     mode()                const  {return m_mode;}
   inline const QString    owner()               const  {return m_owner;}
   inline const QString    group()               const  {return m_group;}

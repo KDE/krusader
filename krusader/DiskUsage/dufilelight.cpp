@@ -29,12 +29,14 @@
  ***************************************************************************/
 
 #include "dufilelight.h"
+#include "radialMap/radialMap.h"
 
 DUFilelight::DUFilelight( DiskUsage *usage, QWidget *parent, const char *name )
   : RadialMap::Widget( parent, name ), diskUsage( usage ), currentDir( 0 )
 {
    connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
    connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
+   connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
    connect( this, SIGNAL( activated( const KURL& ) ), this, SLOT( slotActivated( const KURL& ) ) );
 }
 
@@ -45,7 +47,9 @@ void DUFilelight::slotDirChanged( Directory *dir )
     currentDir = dir;
     
     File::setBaseURL( diskUsage->getBaseURL() );
+    invalidate( false );
     create( dir );
+    refreshNeeded = false;
   }
 }
 
@@ -73,6 +77,41 @@ void DUFilelight::slotActivated( const KURL& url )
     currentDir = dir;
     diskUsage->changeDirectory( dir );  
   }
+}
+
+void DUFilelight::mousePressEvent( QMouseEvent *event )
+{
+   if( m_focus && !m_focus->isFake() )
+   {
+      KURL url   = RadialMap::Widget::url( m_focus->file() );
+
+      if( event->button() == Qt::RightButton )
+      {
+         if( m_focus->file() != currentDir )
+           diskUsage->rightClickMenu( (File *)m_focus->file() );
+         return;
+      }
+   }
+   RadialMap::Widget::mousePressEvent( event );
+}
+  
+void DUFilelight::slotRefresh() 
+{ 
+  refreshNeeded = false;
+  if( currentDir )
+  {
+    invalidate( false );
+    create( currentDir );
+  }
+}
+
+void DUFilelight::slotChanged( File * item )
+{
+   if( !refreshNeeded )
+   {
+     refreshNeeded = true;
+     QTimer::singleShot( 0, this, SLOT( slotRefresh() ) );
+   }
 }
 
 #include "dufilelight.moc"

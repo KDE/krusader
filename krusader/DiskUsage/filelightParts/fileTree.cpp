@@ -8,7 +8,7 @@
 #include <qstring.h>
 
 //static definitions
-const FileSize File::DENOMINATOR[4] = { 1ull<<0, 1ull<<10, 1ull<<20, 1ull<<30 };
+const FileSize File::DENOMINATOR[4] = { 0, 1ull<<10, 1ull<<20, 1ull<<30 };
 const char File::PREFIX[5][2]   = { "", "K", "M", "G", "T" };
 
 KURL baseURL;

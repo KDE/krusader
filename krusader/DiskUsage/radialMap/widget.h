@@ -89,7 +89,7 @@ namespace RadialMap
         virtual void mouseMoveEvent( QMouseEvent* );
         virtual void mousePressEvent( QMouseEvent* );
 
-    private:
+    protected:
         const Segment *segmentAt( QPoint& ) const;
         void paintExplodedLabels( QPainter& ) const;
 

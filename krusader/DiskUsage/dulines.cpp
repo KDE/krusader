@@ -199,7 +199,7 @@ void DULines::slotDirChanged( Directory *dirEntry )
 
 QPixmap DULines::createPixmap( int percent, int maxPercent, int maxWidth )
 {
-  if( percent < 0 || percent > maxPercent || maxWidth < 2 )
+  if( percent < 0 || percent > maxPercent || maxWidth < 2 || maxPercent == 0 )
     return QPixmap();
   maxWidth -= 2;
 

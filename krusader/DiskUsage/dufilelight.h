@@ -44,13 +44,20 @@ public:
 public slots:
   void slotDirChanged( Directory * );
   void clear();
+  void slotChanged( File * );
+  void slotRefresh();
 
 protected slots:  
   void slotActivated( const KURL& );
   
 protected:
+  virtual void mousePressEvent( QMouseEvent* );
+
   DiskUsage *diskUsage;  
   Directory *currentDir;
+  
+private:
+  bool refreshNeeded;
 };
 
 #endif /* __DU_FILELIGHT_H__ */
