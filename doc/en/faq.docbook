@@ -49,7 +49,8 @@
    </question>
    <answer>
    <para>No, &krusader; does not need the &kde; window manager to run on your computer but
-         &krusader; natural enviroment is &kde; because it is written with <application>kdevelop</application>.
+         &krusader;'s natural environment is &kde;, because it relies on services provides by 
+         the &kde; base libraries.
          Only some shared libraries are needed &eg; &kde; libraries, &Qt; libraries, &etc;
 	 This means that &krusader; runs on Gnome, Afterstep or other window managers if the aproriate 
 	 libraries are installed on your computer.
@@ -60,22 +61,22 @@
 
    <qandaentry>
    <question id="faqi_libs">
-   <para>Which packages/libraries needs &krusader; to run?</para>
+   <para>Which libraries needs &krusader; to run?</para>
    </question>
    <answer>
    <para>For running &krusader; (&eg; when you have installed &krusader; with a binary RPM) 
-         you need less packages as mentioned in the next question, 
+         you need less libraries or packages as mentioned in the next question, 
 	 &eg; you don't need the C-compliler &gcc; it's only needed 
 	 when you compile &krusader; from source.</para>
-    <para>Here is a (possibly incomplete) list of the required packages when you run &krusader;:</para>
+    <para>Here is a (possibly incomplete) list of the required shared libraries when you run &krusader;:</para>
    <para><itemizedlist>
-     <listitem><para>kdelibs, libqt3
+     <listitem><para>kdelibs >= 3.2 libqt3
                </para></listitem>
-    <listitem><para>XFree: libxfree86 libfreetype6 libfontconfig1 libnas2 libexpat0
+    <listitem><para>libxfree86 libfreetype6 libfontconfig1 
                </para></listitem>	       
-    <listitem><para>libjpeg62 libjpeg-devel libpng3 libmng1
+    <listitem><para>libjpeg62 libpng3 libmng1 zlib1 libstdc++5 libgcc1
                </para></listitem>	       
-    <listitem><para>fam
+    <listitem><para>libfam0 libpcre0 glibc libart_lgpl2 libexpat0 libnas2
                </para></listitem>	       
     </itemizedlist>
     A complete list of &shared_libdeps_url; is available.</para>
@@ -94,13 +95,10 @@
    <para><itemizedlist>
      <listitem><para>gcc-cpp gcc-c++ glibc libgcc1 (other compilers may work but haven't been tested)
                </para></listitem>
-     <listitem><para>autoconf (&eg; <filename>autoconf-2.x-xmdk.i586.rpm</filename>)
+     <listitem><para>autoconf automake XFree
                </para></listitem>
-     <listitem><para>automake (&eg; <filename>automake1.x-x.x.x-xmdk.i586.rpm</filename>)
-               </para></listitem>
-     <listitem><para>XFree: </para></listitem>
-     <listitem><para>libqt3 libqt-devel (all &krusader; versions >=1.02 are &Qt; 3.x only)</para></listitem>
-     <listitem><para>kdelibs kdelibs-devel (all &krusader; versions >=1.02 are &kde; 3.x only)</para></listitem>
+     <listitem><para>libqt3 libqt-devel (&krusader; v1.50 needs &Qt; 3.x)</para></listitem>
+     <listitem><para>kdelibs kdelibs-devel (&krusader; v1.50 needs KDElibs >= 3.2.x)</para></listitem>
      <listitem><para>libjpeg62 libjpeg-devel libpng3 libmng1</para></listitem>
      <listitem><para>fam libfam-devel (&eg; <filename>fam-2.x.x-xmdk.rpm</filename> and
                      <filename>libfam0-devel-2.x.x-5mdk.i586.rpm</filename>)</para></listitem>
@@ -317,16 +315,19 @@
    </qandaentry>
 
   <qandaentry>
-  <question id="faqi_nvdia">
-  <para>I have a <filename>libGLcore.so.1</filename> compile error after using the &nvdia; installer</para>
+  <question id="faqi_nvidia">
+  <para>I have a <filename>libGLcore.so.1</filename> compile error after using the &nvidia; installer</para>
   </question>
   <answer>
-  <para>This problem occurs when you use the &nvdia; installer and not the official &nvdia; packages
+  <para>This problem occurs when you use the &nvidia; installer and not the official &nvidia; packages
         of your distribution. &krusader; is based on &Qt; which can be linked against the X OpenGL libraries. 
-        As a result &krusader; may look for OpenGL as well. The problem is that the &nvdia; installer  
+        As a result &krusader; may look for OpenGL as well. The problem is that the &nvidia; installer  
         doesn't do its job properly, it replaces the OpenGL header files (which get included into &krusader;) but 
-        doesn't set the libGL links correctly. 
-        The solution depends on the distribution you are using, but it should be something like this: 
+        doesn't set the libGL links correctly.
+        The best solution is to use the &nvidia; packages provided by your distributor. 
+        The second solution is a (bad? :) hack, and also the exact commands depends on the used distribution and
+        the version of the &nvidia; driver (6111 in this example), 
+        but it should be something like this: 
 <screen><prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so.0</replaceable></userinput>
 <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so</replaceable></userinput>
 <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so.1.0.0</replaceable></userinput>
