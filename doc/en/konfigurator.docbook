@@ -183,16 +183,16 @@ HTML_PARSING-->
 </itemizedlist>
 
 <itemizedlist><title><guilabel>Mouse selection modes</guilabel></title>
-      <listitem><para><guilabel>Classic</guilabel>: the way &krusader; used to work from day one.
+      <listitem><para><guilabel>"&krusader; mode"</guilabel>: the way &krusader; used to work from day one.
          Both keys allow selecting files. To select more than one file, hold the
          &Ctrl; key and click the &LMB;. Right-click
          menu is invoked using a short click on the &RMB;.
                            </para></listitem>
-  <listitem><para><guilabel>"&konqueror; mode":</guilabel> this way, pressing the
+  <listitem><para><guilabel>"&konqueror; mode"</guilabel>: this way, pressing the
          &LMB; selects files - you can click and select multiple files.
          Right-click menu is invoked using a short click on the &RMB;.
          </para></listitem>
-  <listitem><para><guilabel>"Total commander mode"</guilabel>: this way pressing the
+  <listitem><para><guilabel>"&tcmd;"</guilabel>: this way pressing the
          &RMB; selects multiple files and the right-click menu is
          invoked by <guilabel>pressing and holding</guilabel> the &RMB;
          The &LMB; does not select, but sets the current file without affecting the current selection.
@@ -248,6 +248,14 @@ HTML_PARSING-->
 <title>Key-bindings</title>
 <para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
           of your favourite functions the way you want.</para>
+
+<para>With the <guibutton>"Inport shortcuts"</guibutton> <guibutton>"Export shortcuts"</guibutton> butons you can load and save 
+      a Key-binding configuration. This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom Key-bindings.
+      The only limitation at this is moment that the global &kde; key-bindings, &krusader; key-bindings who can't be changed yet,
+      some features in foo-commander that we either don't have or don't need. 
+      The Key-binding file is a binary <filename>foo.dat</filename> file.
+      btw. we are working on a &tcmd; dat file, if you like you can &mail_url; us your favorite foo-commander dat file, 
+      so that it can be shipped with &krusader;.</para>
 </sect2>
 
 
