@@ -46,6 +46,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qdir.h>
 #include <qwhatsthis.h>
 #include <qheader.h>
+#include <qstyle.h>
 #include <kprogress.h>
 #include <kstatusbar.h>
 #include <kinputdialog.h>
@@ -181,8 +182,8 @@ KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, K
    setAcceptDrops( true );
    setDragEnabled( true );
    setTooltipColumn( COLUMN(Name) );
-   //setDropVisualizer(false);
-   //setDropHighlighter(false);
+   setDropVisualizer(false);
+   setDropHighlighter(true);
    setSelectionModeExt( KListView::FileManager );
    setAllColumnsShowFocus( true );
    setShowSortIndicator( true );
@@ -247,7 +248,7 @@ void KrDetailedView::newColumn( KrDetailedViewProperties::ColumnType type ) {
 int KrDetailedView::column( KrDetailedViewProperties::ColumnType type ) {
 	return PROPS->column[type];
 }
-
+ 
 void KrDetailedView::addItem( vfile *vf ) {
    QString size = KRpermHandler::parseSize( vf->vfile_getSize() );
    QString name = vf->vfile_getName();
@@ -793,9 +794,20 @@ bool KrDetailedView::acceptDrag( QDropEvent* ) const {
    return true;
 }
 
+QRect KrDetailedView::drawItemHighlighter(QPainter *painter, QListViewItem *item)
+{
+  QRect r;
+  if( _currDragItem && item ) {
+    r = itemRect(item);
+
+    if (painter)
+       style().drawPrimitive(QStyle::PE_FocusRect, painter, r, colorGroup(),
+                             QStyle::Style_FocusAtBorder, colorGroup().highlight());
+  }
+  return r;
+}
+
 void KrDetailedView::contentsDropEvent( QDropEvent * e ) {
-   /*  if (_currDragItem)
-       static_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));*/
    e->setPoint( contentsToViewport( e->pos() ) );
    emit gotDrop( e );
    e->ignore();
@@ -803,28 +815,10 @@ void KrDetailedView::contentsDropEvent( QDropEvent * e ) {
 }
 
 void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
-   /*  KrViewItem *i=getKrViewItemAt(contentsToViewport(e->pos()));
-     // reset the last used icon
-     if (_currDragItem != i && _currDragItem)
-       static_cast<KListViewItem*>(_currDragItem)->setPixmap(column(Name), FL_LOADICON("folder"));
-     if (!i) {
-       e->acceptAction();
-       _currDragItem = 0L;
-       KListView::contentsDragMoveEvent(e);
-       return;
-     }
-     // otherwise, check if we're dragging on a directory
-     if (i->name()=="..") {
-       _currDragItem = 0L;
-       e->acceptAction();
-       KListView::contentsDragMoveEvent(e);
-       return;
-     }
-     if (i->isDir()) {
-       static_cast<KListViewItem*>(i)->setPixmap(column(Name),FL_LOADICON("folder_open"));
-       _currDragItem = i;
-       KListView::contentsDragMoveEvent(e);
-     }*/
+   _currDragItem = getKrViewItemAt(contentsToViewport(e->pos()));
+   if( _currDragItem && !_currDragItem->isDir() )
+     _currDragItem = 0;
+   
    KListView::contentsDragMoveEvent( e );
 }
 

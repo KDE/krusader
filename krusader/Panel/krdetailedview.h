@@ -123,6 +123,7 @@ protected:
    virtual bool acceptDrag( QDropEvent* e ) const;
    virtual void contentsDropEvent( QDropEvent *e );
    virtual void contentsDragMoveEvent( QDragMoveEvent *e );
+   virtual QRect drawItemHighlighter(QPainter *painter, QListViewItem *item);
    virtual void startDrag();
    virtual bool event( QEvent *e );
    virtual bool eventFilter( QObject * watched, QEvent * e );
