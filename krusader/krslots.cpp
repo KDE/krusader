@@ -165,15 +165,15 @@ void KRslots::compareContent() {
       KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+name1);
       return;
     }
-	} else tmp1 = url1.url();
+	} else tmp1 = url1.path();
   if (!url2.isLocalFile()) {
  		if( !KIO::NetAccess::download( url2, tmp2 ) ){
       KMessageBox::sorry(krApp,i18n("Krusader is unable to download: ")+name1);
       return;
     }
-	} else tmp2 = url2.url();
+	} else tmp2 = url2.path();
 
-  KShellProcess p;
+  KProcess p;
   p << diffProg << tmp1.mid(tmp1.find('/')) << tmp2.mid(tmp2.find('/'));
 	if (!p.start(KProcess::DontCare))
     KMessageBox::error(0,i18n("Error executing ")+diffProg+" !");
@@ -181,8 +181,8 @@ void KRslots::compareContent() {
     p.detach();
   sleep(2);	
 
-	if( tmp1 != url1.url() ) KIO::NetAccess::removeTempFile( tmp1 );
-	if( tmp2 != url2.url() ) KIO::NetAccess::removeTempFile( tmp2 );
+	if( tmp1 != url1.path() ) KIO::NetAccess::removeTempFile( tmp1 );
+	if( tmp2 != url2.path() ) KIO::NetAccess::removeTempFile( tmp2 );
 }
 
 void KRslots::rightclickMenu() {
