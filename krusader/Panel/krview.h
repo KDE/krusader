@@ -118,8 +118,8 @@ public:
   virtual void select(const QString& filter = "*") { changeSelection(filter, true); }
   virtual void unselect(const QString& filter = "*") { changeSelection(filter, false); }
   virtual void invertSelection();
-  virtual inline QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
-  virtual inline void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
+  virtual QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
+  virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
   virtual QString firstUnmarkedAboveCurrent();
   virtual QString statistics();
 
@@ -131,6 +131,8 @@ public:
   virtual SortSpec sortMode() const { return _sortMode; }
   virtual void setFilter(FilterSpec filter) { _filter = filter; }
   virtual FilterSpec filter() const { return _filter; }
+  virtual void setFilterMask(QString mask) { _filterMask = mask; }
+  virtual QString filterMask() const { return _filterMask; }
   inline QWidget *widget() { return _widget; }
   inline void setWidget(QWidget *w) { _widget = w; }
 
