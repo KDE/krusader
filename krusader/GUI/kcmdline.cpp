@@ -88,10 +88,7 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   connect( cmdLine, SIGNAL( returnToPanel() ), this, SLOT( slotReturnFocus() ));
 
   QWhatsThis::add
-    ( cmdLine, i18n( "<qt>Well, it's quite simple actually: You write "
-                     "your command in here, and Krusader obeys.<p>"
-                     "<Tip:>Move in command-line history with &lt;Up&gt; "
-                     "and &lt;Down&gt; arrows.</qt>" ) );
+    ( cmdLine, i18n( "<qt>Well, it's actually quite simple: You type your command here and Krusader obeys.<p><Tip:>Move within command-line history with &lt;Up&gt; and &lt;Down&gt; arrows.</qt>" ) );
   layout->addWidget( cmdLine, 0, 1 );
 
   // a run in terminal button

@@ -89,7 +89,7 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
   //   cfg_class  cfg_name                  default           text                                          restart ToolTip
     {//{"Archives","Allow Move Into Archive", _MoveIntoArchive, i18n( "Allow moving into archives" ),         false,  i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." )},
      {"Archives","Test Archives",           _TestArchives,    i18n( "Test archive when finished packing" ), false,  i18n( "If checked, Krusader will test the archive's integrity after packing it." )},
-     {"Archives","Test Before Unpack",      _TestBeforeUnpack,i18n( "Test archive before unpacking" ), false,  i18n( "Some corrupted archives might cause a crash, therefore testing is recommended." )}};
+     {"Archives","Test Before Unpack",      _TestBeforeUnpack,i18n( "Test archive before unpacking" ), false,  i18n( "Some corrupted archives might cause a crash, therefore testing is suggested." )}};
 
   KonfiguratorCheckBoxGroup *finetunes = createCheckBoxGroup( 1, 0, finetuners, 2, fineTuneGrp );
 
@@ -144,7 +144,7 @@ void KgArchives::slotAutoConfigure()
   else info+=i18n("unace: NOT found, unpacking is DISABLED.\n==> unace can be obtained at www.winace.com\n");
 
   info+=i18n("\nIf you install new packers, please install them");
-  info+=i18n("\nto your path. (ie: /usr/bin, /usr/local/bin etc.)");
+  info+=i18n("\nto your path, e.g., /usr/bin, /usr/local/bin, etc.");
   info+=i18n("\nThanks for flying Krusader :-)");
   KMessageBox::information(0,info,i18n("Results"));
   disableNonExistingPackers();

@@ -287,7 +287,7 @@ void KgUserActions::slotImport() {
   }
   else {
     //kdDebug() << "KgUserActions::slotImport: Not all actions importet due to name-conflicts" << endl;
-    KMessageBox::sorry( this, i18n("Couldn't import all actions because of name-conflicts. Check the action-list on the left to fix them.\nPlease note that these actions won't be imported if you close the Konfigurator now!") );
+    KMessageBox::sorry( this, i18n( "Couldn't import all actions because of name conflicts. Check the action-list on the left to fix them.\nPlease note that these actions won't be imported if you close the Konfigurator now!" ) );
     actionList->clear();
     actionList->insertStringList( actionNames );
     

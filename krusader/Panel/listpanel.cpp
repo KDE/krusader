@@ -845,7 +845,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       popup.insertSeparator();
    }
    
-   popup.insertItem( i18n("Useractions"), new UserActionPopupMenu( func->files()->vfs_getFile( item->name() ).url() ) );
+   popup.insertItem( i18n("User Actions"), new UserActionPopupMenu( func->files()->vfs_getFile( item->name() ).url() ) );
    
    KFileItemList _items;
    _items.setAutoDelete( true );

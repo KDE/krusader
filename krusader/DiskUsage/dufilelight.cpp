@@ -126,7 +126,7 @@ void DUFilelight::mousePressEvent( QMouseEvent *event )
      filelightPopup.insertItem( i18n("Increase contrast"), this, SLOT( increaseContrast() ) );
      filelightPopup.insertItem( i18n("Decrease contrast"), this, SLOT( decreaseContrast() ) );
           
-     int aid = filelightPopup.insertItem( i18n("Use antialiasing" ), this, SLOT( changeAntiAlias() ) );
+     int aid = filelightPopup.insertItem( i18n("Use anti-aliasing" ), this, SLOT( changeAntiAlias() ) );
      filelightPopup.setItemChecked( aid, Filelight::Config::antiAliasFactor > 1 );
      
      int sid = filelightPopup.insertItem( i18n("Show small files" ), this, SLOT( showSmallFiles() ) );

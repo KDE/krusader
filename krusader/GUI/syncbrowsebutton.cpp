@@ -43,7 +43,7 @@ SyncBrowseButton::SyncBrowseButton(QWidget *parent, const char *name) : QToolBut
   setToggleButton( true );
   
   setTextLabel( i18n( "This button toggles the sync-browse mode.\n"
-			"If active, each directory change is performed in the\n"
+			"When active, each directory change is performed in the\n"
 			"active and inactive panel - if possible." ), true );	//set this as toop-tip (somehow whatsthis::add(this, ...) don't work)
 
   connect( this, SIGNAL(toggled(bool)), this, SLOT(slotToggled(bool)) );

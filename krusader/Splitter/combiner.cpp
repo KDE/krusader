@@ -236,7 +236,7 @@ void Combiner::combineReceiveFinished(KIO::Job *job)
     if( fileCounter == 1 )
     {
       combineAbortJobs();
-      KMessageBox::questionYesNo(0, i18n("Can't open the first splitted file of %1!")
+      KMessageBox::questionYesNo(0, i18n("Can't open the first split file of %1!")
                                  .arg( fileName ) );
       emit reject();
       return;
@@ -276,7 +276,7 @@ void Combiner::combineSendFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     combineAbortJobs();
-    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
+    KMessageBox::error(0, i18n("Error writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
     emit reject();
     return;
   }

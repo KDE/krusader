@@ -86,7 +86,7 @@ void Konfigurator::createLayout( int startPage )
 {
   // startup
   newContent(new KgStartup(firstTime, widget->addPage(i18n("Startup"),
-    i18n("Krusader's setting upon startup"),QPixmap(krLoader->loadIcon("gear",
+    i18n("Krusader's settings upon startup"),QPixmap(krLoader->loadIcon("gear",
       KIcon::Desktop,32)))));
   // look n' feel
   newContent(new KgLookFeel(firstTime, widget->addPage(i18n("Look & Feel"),
@@ -99,7 +99,7 @@ void Konfigurator::createLayout( int startPage )
     i18n("Basic Operations"),QPixmap(krLoader->loadIcon("configure",KIcon::Desktop,32)))));
   // advanced
   newContent(new KgAdvanced(firstTime, widget->addPage(i18n("Advanced"),
-    i18n("Be sure you know what you're doing"),
+    i18n("Be sure you know what you're doing!"),
     QPixmap(krLoader->loadIcon("messagebox_warning",KIcon::Desktop,32)))));
   // archives
   newContent(new KgArchives(firstTime, widget->addPage(i18n("Archives"),i18n("Customize the way Krusader deals with archives"),

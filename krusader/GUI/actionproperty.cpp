@@ -206,7 +206,7 @@ void ActionProperty::editProtocol() {
   bool ok;
   QString text = KInputDialog::getText(
 		i18n( "Edit protocol" ),
-		i18n( "Set an other protocol:" ),
+		i18n( "Set another protocol:" ),
 		lbShowonlyProtocol->currentText(),
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
@@ -237,7 +237,7 @@ void ActionProperty::editPath() {
   bool ok;
   QString text = KInputDialog::getText(
 		i18n( "Edit path" ),
-		i18n( "Set an other path:" ),
+		i18n( "Set another path:" ),
 		lbShowonlyPath->currentText(),
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
@@ -273,7 +273,7 @@ void ActionProperty::editMime() {
   bool ok;
   QString text = KInputDialog::getText(
 		i18n( "Edit mime-type" ),
-		i18n( "Set an other mime-type:" ),
+		i18n( "Set another mime-type:" ),
 		lbShowonlyMime->currentText(),
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
@@ -309,7 +309,7 @@ void ActionProperty::editFile() {
   bool ok;
   QString text = KInputDialog::getText(
 		i18n( "Edit filename" ),
-		i18n( "Set an other filename:" ),
+		i18n( "Set another filename:" ),
 		lbShowonlyFile->currentText(),
 		&ok, this );
     if ( ok && !text.isEmpty() ) {

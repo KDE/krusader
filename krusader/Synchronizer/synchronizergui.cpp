@@ -1111,14 +1111,14 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QToolTip::add( cbSymlinks, i18n( "Follows the symbolic links also at comparing" ) );
   cbByContent       = new QCheckBox( i18n( "Compare by content" ), optionGrid, "cbByContent" );
   cbByContent->setChecked( krConfig->readBoolEntry( "Compare By Content", _CompareByContent  ) );
-  QToolTip::add( cbByContent, i18n( "Compares the duplicate files with the same size by their content" ) );
+  QToolTip::add( cbByContent, i18n( "Compares duplicated files with same size, by their content" ) );
   cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGrid, "cbIgnoreDate" );
   cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", _IgnoreDate  ) );
   QToolTip::add( cbIgnoreDate, i18n( "Ignores the date information at comparing (good if the files\nwere fetched from ftp, smb, archive, ... file systems)" ) );
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", _Asymmetric  ) );
-  QToolTip::add( cbAsymmetric, i18n( "Asymmetric mode. The left side is the destination, the right is the source directory.\n"
-                                     "The files existing only in the left directory will be deleted, the other differing ones\n"
+  QToolTip::add( cbAsymmetric, i18n( "Asymmetric mode: the left side is the destination, the right is the source directory.\n"
+                                     "Files existing only in the left directory will be deleted, the other differing ones\n"
                                      "will be copied from right to left (useful at updating a directory from a file server)." ) );
   cbIgnoreCase      = new QCheckBox( i18n( "Ignore Case" ), optionGrid, "cbIgnoreCase" );
   cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", _IgnoreCase ) );

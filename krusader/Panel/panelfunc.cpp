@@ -211,7 +211,7 @@ void ListPanelFunc::redirectLink() {
 	QString file = files() ->vfs_getFile( vf->vfile_getName() ).path( -1 );
 	QString currentLink = vf->vfile_getSymDest();
 	if ( currentLink.isEmpty() ) {
-		KMessageBox::sorry( krApp, i18n( "The current file is not a link, so i can't redirect it." ) );
+		KMessageBox::sorry( krApp, i18n( "The current file is not a link, so I can't redirect it." ) );
 		return ;
 	}
 
@@ -511,9 +511,9 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
 		QString s, b;
 		if ( fileNames.count() == 1 )
-			s = i18n( " this item ?" );
+			s = i18n( " this item?" );
 		else
-			s.sprintf( i18n( " these %d items ?" ).local8Bit(), fileNames.count() );
+			s.sprintf( i18n( " these %d items?" ).local8Bit(), fileNames.count() );
 		
 		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
 			s = i18n( "trash" ) + s;
@@ -543,7 +543,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 			dir.setPath( panel->virtualPath().path() + "/" + ( *name ) );
 			if ( dir.count() > 2 ) {
 				switch ( KMessageBox::warningYesNoCancel( krApp,
-				                                          i18n( "Directory " ) + ( *name ) + i18n( " is not empty !\nSkip this one or Delete All ?" ),
+				                                          i18n( "Directory " ) + ( *name ) + i18n( " is not empty!\nSkip this one or Delete All?" ),
 				                                          QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
 						case KMessageBox::Cancel :
 						return ;
@@ -759,7 +759,7 @@ void ListPanelFunc::testArchive() {
 	if ( KRarcHandler::test( url, type ) )
 		KMessageBox::information( krApp, i18n( "%1, test passed." ).arg( arcName ) );
 	else
-		KMessageBox::error( krApp, i18n( "%1, test failed !" ).arg( arcName ) );
+		KMessageBox::error( krApp, i18n( "%1, test failed!" ).arg( arcName ) );
 
 	// remove the downloaded file if necessary
 	if ( url != arcURL.path( -1 ) )

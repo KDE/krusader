@@ -193,7 +193,7 @@ void KMountMan::eject( QString mntPoint ) {
    proc << KrServices::fullPathName( "eject" ) << "\"" + mntPoint + "\"";
    proc.start( KProcess::Block );
    if ( !proc.normalExit() || proc.exitStatus() != 0 )         // if we failed with eject
-      KMessageBox::information( 0, i18n( "Error ejecting device ! You need to have 'eject' in your path." ), i18n( "Error" ), "CantExecuteEjectWarning" );
+      KMessageBox::information( 0, i18n( "Error ejecting device! You need to have 'eject' in your path." ), i18n( "Error" ), "CantExecuteEjectWarning" );
 }
 
 // returns true if the path is an ejectable mount point (at the moment CDROM)

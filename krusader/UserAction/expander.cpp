@@ -109,7 +109,7 @@ QString exp_Count::expFunc( const ListPanel* panel, const QStringList& parameter
 
 exp_Filter::exp_Filter() {
    _expression = "Filter";
-   _description = i18n("filter mask (*.h, *.cpp ...)");
+   _description = i18n("filter mask: *.h, *.cpp, etc.");
    _needPanel = true;
 }
 QString exp_Filter::expFunc( const ListPanel* panel, const QStringList&, const bool& ) {
@@ -287,7 +287,7 @@ exp_Search::exp_Search() {
 
 exp_Ask::exp_Ask() {
    _expression = "Ask";
-   _description = i18n("Question the user for a parameter");
+   _description = i18n("Ask the user for a parameter");
    _needPanel = false;
 
    addParameter( new exp_parameter( i18n("Question"), "Where do you want do go today?", true ) );

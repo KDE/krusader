@@ -280,7 +280,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 
    // create a status bar
    status = new KrusaderStatus( this );
-   QWhatsThis::add( status, i18n( "Status bar will show  basic informations "
+   QWhatsThis::add( status, i18n( "Statusbar will show basic information "
                                           "about file below mouse pointer." ) );
 
    // This enables Krusader to show a tray icon
@@ -342,7 +342,7 @@ bool Krusader::versionControl() {
    }
    // first installation of krusader
    if ( oldVer == 10.0 ) {
-      KMessageBox::information( krApp, i18n( "Welcome to Krusader, as this is your first run, Krusader will now run Konfigurator." ) );
+      KMessageBox::information( krApp, i18n( "Welcome to Krusader! As this is your first run, Krusader will now run Konfigurator." ) );
       retval = true;
    }
    config->writeEntry( "Version", VERSION );
@@ -594,13 +594,13 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
 	actF10 = new KAction( i18n( "F10 - Quit" ), Key_F10,
                 this, SLOT( quitKrusader() ) , actionCollection(), "F10_Quit" );
-	actPopularUrls = new KAction( i18n("Popular Urls"), CTRL+Key_Z,
+	actPopularUrls = new KAction( i18n("Popular URLs"), CTRL+Key_Z,
 					popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
 										
    // and at last we can set the tool-tips
-   actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );
-   actSelectAll->setToolTip( i18n( "Highlight all the files in the current directory" ) );
-   actUnselectAll->setToolTip( i18n( "Remove selection from all highlight files" ) );
+   actSelect->setToolTip( i18n( "Select files using a filter" ) );
+   actSelectAll->setToolTip( i18n("Select all files in the current directory" ) );
+   actUnselectAll->setToolTip( i18n( "Un-select all selected files" ) );
    actKonfigurator->setToolTip( i18n( "Setup Krusader the way you like it" ) );
    actBack->setToolTip( i18n( "Back to the place you came from" ) );
    actRoot->setToolTip( i18n( "ROOT (/)" ) );

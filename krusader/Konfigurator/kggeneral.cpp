@@ -95,7 +95,7 @@ if( first )
            this, SLOT( applyTempDir(QObject *,QString, QString) ) );
   generalGrid->addMultiCellWidget( hbox, 7, 7, 0, 1 );
 
-  QLabel *label4 = new QLabel( i18n( "Note: you must have full permissions for the temporary directory !" ),
+  QLabel *label4 = new QLabel( i18n( "NOTE: You must have full permissions for the temporary directory!" ),
                                generalGrp, "NoteLabel"  );
   generalGrid->addMultiCellWidget( label4, 8, 8, 0, 1 );
 
@@ -119,17 +119,17 @@ void KgGeneral::slotFindTools()
 
   info+=i18n("Searching for tools...\nSearch results:\n\n");
   if (PS("DIFF")) info+=i18n("diff: found ")+lst[lst.findIndex("DIFF") + 1]+i18n(", compare by content available.\n");
-  else info+=i18n("diff: no diff frontends found. Compare by content disabled.\nhint: Krusader supports kompare, kdiff3 and xxdiff\n\n");
+  else info+=i18n("diff: no diff frontends found. Compare by content disabled.\nhint: Krusader supports Kompare, Kdiff3 and Xxdiff\n\n");
 
   if (PS("MAIL")) info+=i18n("mail: found ")+lst[lst.findIndex("MAIL") + 1]+i18n(", sending files by email enabled.\n");
-  else info+=i18n("mail: no compatible mail-programs found. Sending files by email is disabled.\nhint: Krusader supports kmail\n\n");
+  else info+=i18n("mail: no compatible mail-programs found. Sending files by email is disabled.\nhint: Krusader supports Kmail\n\n");
 
   if (PS("RENAME")) info+=i18n("rename: found ")+lst[lst.findIndex("RENAME") + 1]+i18n(", multiple rename enabled.\n");
-  else info+=i18n("rename: no compatible renamer-programs found. multiple rename is disabled.\nhint: Krusader supports krename\n\n");
+  else info+=i18n("rename: no compatible rename-programs found. Multiple rename is disabled.\nhint: Krusader supports Krename\n\n");
 
 
   info+=i18n("\nIf you install new tools, please install them");
-  info+=i18n("\nto your path (ie: /usr/bin, /usr/local/bin etc.)");
+  info+=i18n("\nto your path, e.g. /usr/bin, /usr/local/bin, etc.");
   info+=i18n("\nand-or (re)configure the Tools path in");
   info+=i18n("\nKonfigurator->Dependencies if needed.");
   KMessageBox::information(0,info,i18n("Results"));

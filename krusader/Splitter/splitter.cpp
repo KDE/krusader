@@ -124,7 +124,7 @@ void Splitter::splitReceiveFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     splitAbortJobs();
-    KMessageBox::error(0, i18n("Error at reading file %1!").arg( fileName.prettyURL(0,KURL::StripFileProtocol) ) );
+    KMessageBox::error(0, i18n("Error reading file %1!").arg( fileName.prettyURL(0,KURL::StripFileProtocol) ) );
     emit reject();
     return;
   }
@@ -198,7 +198,7 @@ void Splitter::splitSendFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     splitAbortJobs();
-    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
+    KMessageBox::error(0, i18n("Error writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
     emit reject();
     return;
   }

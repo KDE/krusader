@@ -96,7 +96,7 @@ void KRslots::sendFileByEmail(QString filename) {
   QStringList lst = Krusader::supportedTools();
   if (lst.contains("MAIL")) mailProg=lst[lst.findIndex("MAIL") + 1];
   else {
-    KMessageBox::error(0,i18n("Krusader can't find any of the supported mail clients. Please install one to your path. Hint: Krusader supports kmail."));
+    KMessageBox::error(0,i18n("Krusader can't find a supported mail client. Please install one to your path. Hint: Krusader supports Kmail."));
     return;
   }
 
@@ -179,7 +179,7 @@ void KRslots::compareContent( KURL url1, KURL url2 )
   QStringList lst = Krusader::supportedTools();
   if (lst.contains("DIFF")) diffProg=lst[lst.findIndex("DIFF") + 1];
   else {
-    KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports kompare, kdiff3, kdiff and xxdiff."));
+    KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."));
     return;
   }
 
@@ -444,7 +444,7 @@ void KRslots::multiRename(){
 	QStringList lst = Krusader::supportedTools();
 	int i = lst.findIndex("RENAME");
 	if (i == -1){
-  	KMessageBox::sorry(krApp,i18n("Can't find a batch renamer tool.\nYou can get Krename at http://www.krename.net"));
+  	KMessageBox::sorry(krApp,i18n("Can't find a batch rename tool.\nYou can get Krename at http://www.krename.net"));
   	return;
 	}
 	QString pathToRename = lst[i+1];
@@ -689,7 +689,7 @@ void KRslots::slotCombine(){
       {
         if( windowsStyle )
         {
-          KMessageBox::error(0,i18n("Not a splitted file %1!").arg( name ));
+          KMessageBox::error(0,i18n("Not a split file %1!").arg( name ));
           return;
         }
         unixStyle = true;
@@ -705,7 +705,7 @@ void KRslots::slotCombine(){
            fileName = name;
         else if( fileName != name )
         {
-          KMessageBox::error(0,i18n("Select only one splitted file!"));
+          KMessageBox::error(0,i18n("Select only one split file!"));
           return;
         }
       }

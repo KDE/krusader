@@ -1250,7 +1250,7 @@ void Synchronizer::synchronizeWithKGet()
       if( progDlg == 0 )
       {
         progDlg = new KgetProgressDialog( krApp, "Synchronizer Progress Dlg", i18n("Krusader::Synchronizer"), 
-                                          i18n( "Feeding the URL-s to kget" ), true );
+                                          i18n( "Feeding the URLs to Kget" ), true );
         progDlg->progressBar()->setTotalSteps( totalCount );
         progDlg->show();
         qApp->processEvents();

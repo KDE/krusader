@@ -94,7 +94,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
 
     preSelections = new QListBox( Layout6, "preSelections" );
     preSelections->setVScrollBarMode( QListBox::AlwaysOn );
-    QWhatsThis::add(  preSelections, i18n( "A predefined selection is a file-mask which you use often, good\nexamples might be *.c, *.h, *.c *.o etc. You can Add these masks to\nthe list by writing them down and pressing the Add button.\nDelete removes a predefined selection and Clear removes all of them. Notice that the line in which you edit the mask has it's own history, you can roll it down if needed." ) );
+    QWhatsThis::add(  preSelections, i18n( "A predefined selection is a file-mask which you use often, some\nexamples are: *.c, *.h, *.c, *.o, etc. You can Add these masks to\nthe list by typing them and pressing the Add button.\nDelete removes a predefined selection and \nClear removes all of them. Notice that the line\nin which you edit the mask has it's own history,\nyou can scroll it, if needed." ) );
     hbox_2->addWidget( preSelections );
 
     vbox = new QVBoxLayout; 
@@ -128,7 +128,7 @@ KRMaskChoice::KRMaskChoice( QWidget* parent,  const char* name, bool modal, WFla
     hbox_3->addItem( spacer_2 );
 
     PushButton3 = new QPushButton( Layout18, "PushButton3" );
-    PushButton3->setText( i18n( "Ok"  ) );
+    PushButton3->setText( i18n( "OK"  ) );
     hbox_3->addWidget( PushButton3 );
 
     PushButton3_2 = new QPushButton( Layout18, "PushButton3_2" );

@@ -95,11 +95,11 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
   QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp, "iconCacheLabel" );
-  QToolTip::add( label, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
+  QToolTip::add( label, i18n( "Cache size determines how fast Krusader can display the contents of a panel; however, too large a cache might consume your memory." ) );
   fineTuneGrid->addWidget( label, 0, 0 );
   KonfiguratorSpinBox *spinBox = createSpinBox( "Advanced", "Icon Cache Size", _IconCacheSize,
                                                 1, 8192, fineTuneGrp, false );
-  QToolTip::add( spinBox, i18n( "Cache size determines how fast Krusader can display the contents of a panel. However too big a cache might consume your memory." ) );
+  QToolTip::add( spinBox, i18n( "Cache size determines how fast Krusader can display the contents of a panel; however, too large a cache might consume your memory." ) );
   spinBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
   fineTuneGrid->addWidget( spinBox, 0, 1 );
 
