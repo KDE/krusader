@@ -1,3 +1,4 @@
+# translation of de.po to german
 # translation of krusader.pot to german
 # Copyright (C) 2003, 2004 Free Software Foundation, Inc.
 # Christoph Thielecke <crissi99@gmx.de>, 2003.
@@ -8,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Krusader1.40\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-04-26 13:50+0200\n"
-"PO-Revision-Date: 2004-04-29 20:04+0200\n"
+"PO-Revision-Date: 2004-05-08 15:09+0200\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: german\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +53,7 @@ msgid ""
 "non-graphical) programs in a terminal of your choice. If it's pressed, "
 "terminal mode is active."
 msgstr ""
-"Der 'In Terminal ausführen'-Knopf erlaubt Krusader Konsolenprogramme(oder "
+"Der 'In Terminal ausführen'-Knopf erlaubt Krusader Konsolenprogramme (oder "
 "sonstige nicht-graphische Programme) in einem Terminal Ihrer Wahl "
 "auszuführen. Wenn er angeklickt wurde, ist der Terminal-Modus aktiv."
 
@@ -190,7 +191,7 @@ msgstr "Entpacken fehlgeschlagen"
 
 #: VFS/krarchandler.cpp:200
 msgid "Unpacking File(s)"
-msgstr "Datei(en) werden entpackt"
+msgstr "Dateien werden entpackt"
 
 #: VFS/krarchandler.cpp:250
 msgid "Testing Archive"
@@ -198,7 +199,7 @@ msgstr "Archiv wird getestet"
 
 #: VFS/krarchandler.cpp:284
 msgid "Packing File(s)"
-msgstr "Datei(en) werden gepackt"
+msgstr "Dateien werden gepackt"
 
 #: VFS/krarchandler.cpp:300
 msgid "Failed to pack: "
@@ -465,7 +466,7 @@ msgstr "KrCalcSpaceDialog"
 
 #: Panel/listpanel.moc.cpp:34 Panel/listpanel.moc.cpp:42
 msgid "ListPanel"
-msgstr "Listenfenster"
+msgstr "Listendateifenster"
 
 #: Panel/krcalcspacedialog.cpp:146
 msgid "Name: "
@@ -2786,7 +2787,7 @@ msgstr "Basisordner-Knopf (/) sichtbar"
 
 #: Konfigurator/kgadvanced.cpp:51
 msgid "Automount filesystems"
-msgstr "Automount-Dateisysteme"
+msgstr "Dateisysteme automatisch einhängen"
 
 #: Konfigurator/kgadvanced.cpp:51
 msgid "If checked, Krusader will mount FSTAB mount-points when needed."
@@ -2828,7 +2829,7 @@ msgstr "Größe des Symbol-Zwischenspeichers (KB):"
 msgid ""
 "Cache size determines how fast Krusader can display the contents of a panel. "
 "However too big a cache might consume your memory."
-msgstr "Die Größe des Zwischenspeichers bestimmt, wie schnell Krusader den Inhalt einer Seite darstellen kann. Jedoch kann ein zu großer Zwischenspeicher möglicherweise Ihren Speicher auslasten."
+msgstr "Die Größe des Zwischenspeichers bestimmt wie schnell Krusader den Inhalt einer Seite darstellen kann. Jedoch kann ein zu großer Zwischenspeicher möglicherweise Ihren Speicher auslasten."
 
 #: Konfigurator/kgadvanced.cpp:99
 msgid "Arguments of updatedb:"
@@ -3151,7 +3152,7 @@ msgstr "Automatische Konfiguration"
 
 #: Konfigurator/kgarchives.cpp:93
 msgid "Test archive when finished packing"
-msgstr "Archiv testen, wenn das Packen abgeschlossen ist"
+msgstr "Archiv testen wenn das Packen abgeschlossen ist"
 
 #: Konfigurator/kgarchives.cpp:93
 msgid "If checked, Krusader will test the archive's intergrity after packing it."
@@ -3328,8 +3329,8 @@ msgid ""
 "Krusader can't find any of the supported mail clients. Please install one to "
 "your path. Hint: Krusader supports kmail."
 msgstr ""
-"Krusader konnte keine unterstützten Mailprogramme finden. Bitte installieren "
-"Sie eines in Ihrem Pfad. Tip: Krusader unterstützt Kmail."
+"Krusader konnte keine unterstützten E-Mail-Programme finden. Bitte installieren "
+"Sie eines in Ihrem Pfad. Tipp: Krusader unterstützt KMail."
 
 #: krslots.cpp:131
 msgid "Sending file: "
@@ -3343,14 +3344,14 @@ msgstr "Weiß nicht, welche Dateien verglichen werden sollen."
 msgid ""
 "To compare 2 files by content, select (mark) a file in the left panel, and "
 "select another one in the right panel."
-msgstr "Um 2 Dateien nach Inhalt zu vergleichen, wählen Sie eine Datei im linken Fenster und eine andere Datei im rechten Fenster aus."
+msgstr "Um 2 Dateien nach Inhalt zu vergleichen, wählen Sie eine Datei im linken Dateifenster und eine andere Datei im rechten Dateifenster aus."
 
 #: krslots.cpp:210
 msgid ""
 "In order to save the time needed to enter an archive, Krusader will not "
 "allow bookmarks which point into an archive, as it is usually a mistake to "
 "do so!"
-msgstr "Um die Zeit einzusparen , die zum Hineingehen in ein Archiv benötigt wird, erlaubt Krusader keine Lesezeichen, die in Archive zeigen, da es üblicherweise ein Fehler ist, dies zu tun!"
+msgstr "Um die Zeit einzusparen , die beim Hineingehen in ein Archiv benötigt wird, erlaubt Krusader keine Lesezeichen, die in Archive zeigen, da es üblicherweise ein Fehler ist dies zu tun!"
 
 #: krslots.cpp:346
 msgid ""
@@ -3498,7 +3499,7 @@ msgstr "Krusader::Splitter"
 
 #: Splitter/splittergui.cpp:191
 msgid "The directory path URL is malformed!"
-msgstr "Die URL des Verzeichnispfades ist ungültig!"
+msgstr "Die Adresse des Verzeichnispfades ist ungültig!"
 
 #: Splitter/combiner.cpp:67
 msgid "Krusader::Combining..."
@@ -3514,8 +3515,7 @@ msgid ""
 "Validity checking is impossible without it. Continue combining?"
 msgstr ""
 "Die CRC-Information der Datei (%1) fehlt!\n"
-"Eine Gültigkeitsüberprüfung ist ohne diese unmöglich. Mit dem Zusammenfügen "
-"fortfahren?"
+"Eine Gültigkeitsüberprüfung ist ohne diese unmöglich. Mit dem Zusammenfügen fortfahren?"
 
 #: Splitter/combiner.cpp:115
 msgid "Error at reading the CRC file (%1)!"
@@ -3527,9 +3527,7 @@ msgstr "Keine gültige CRC-Datei!"
 
 #: Splitter/combiner.cpp:138
 msgid "Validity checking is impossible without a good CRC file. Continue combining?"
-msgstr ""
-"Eine Gültigkeitsüberprüfung ist ohne eine gültige CRC-Datei unmöglich. Mit "
-"dem Zusammenfügen fortfahren?"
+msgstr "Eine Gültigkeitsüberprüfung ist ohne eine gültige CRC-Datei unmöglich. Mit dem Zusammenfügen fortfahren?"
 
 #: Splitter/combiner.cpp:239
 msgid "Can't open the first splitted file of %1!"
