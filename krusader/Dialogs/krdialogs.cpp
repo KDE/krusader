@@ -62,10 +62,11 @@ KRDialog::KRDialog(QWidget *parent, QString text,bool modal, bool roomForIcon) :
 KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 	KURLRequesterDlg *dlg = new KURLRequesterDlg(url.prettyURL(1),text,krApp,"");
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
-	dlg->exec();
-	
-	KURL u = vfs::fromPathOrURL(dlg->urlRequester()->completionObject()->replacedPath(
-		dlg->urlRequester()->lineEdit()->text()));
+	KURL u;
+	if (dlg->exec() == QDialog::Accepted) {
+		u = vfs::fromPathOrURL(dlg->urlRequester()->completionObject()->replacedPath(
+			dlg->urlRequester()->lineEdit()->text()));
+	}
 	delete dlg;
 	return u;
 }
