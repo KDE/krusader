@@ -65,6 +65,11 @@ A
 #include "../MountMan/kmountman.h"
 #include "../resources.h"
 #include "../krservices.h"
+#include "../GUI/syncbrowsebutton.h"
+
+
+#define OTHER_FUNC	(panel->otherPanel->func)
+
 
 //////////////////////////////////////////////////////////
 //////		----------	List Panel -------------		////////
@@ -82,6 +87,20 @@ void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent
 
 void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
   //kdDebug() << "openUrl: " << url.url() << endl;
+  
+  //prevents that the sync-browsing circles itself to death
+  static bool bMaster = true;
+  
+  // first the other dir, then the active! Else the focus changes and the other becomes active
+  if ( panel->syncBrowseButton->state() == SYNCBROWSE_CD && bMaster) {
+	bMaster = false;
+	//do sync-browse stuff....
+	//QString relative_path = KURL::relativeURL( panel->getPath()+"/", url.url() );
+	//kdDebug() << "Sync: from: " << panel->getPath()+"/" << " to: " << url.url() << " -> relativeURL: " << relative_path << endl;
+	//OTHER_FUNC->openUrl( relative_path );
+	OTHER_FUNC->openUrl( KURL::relativeURL( panel->getPath()+"/", url.url() ) );	// the trailing slash is nessesary because krusader provides Dir's without it
+	bMaster = true;
+  }
 
 	// check for special cases:
   if( !url.isValid() ){

@@ -66,6 +66,7 @@ class KrQuickSearch;
 class DirHistoryButton;
 class DirHistoryQueue;
 class PanelPopup;
+class SyncBrowseButton;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;
@@ -154,6 +155,7 @@ public:
    BookmarksButton *bookmarksButton;
    DirHistoryQueue* dirHistoryQueue;
    DirHistoryButton* historyButton;
+   SyncBrowseButton *syncBrowseButton;
 
 private:
    bool &_left;

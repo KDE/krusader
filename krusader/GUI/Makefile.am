@@ -7,7 +7,8 @@ libGUI_a_METASOURCES = AUTO
 
 libGUI_a_SOURCES = dirhistoryqueue.cpp dirhistorybutton.cpp krusaderstatus.cpp \
 	kfnkeys.cpp kcmdline.cpp actionproperty.cpp actionpropertybase.ui \
-	addplaceholderpopup.cpp
+	addplaceholderpopup.cpp \
+	syncbrowsebutton.cpp
 
 
 EXTRA_DIST = kcmdline.cpp kcmdline.h kfnkeys.cpp kfnkeys.h krusaderstatus.cpp krusaderstatus.h dirhistorybutton.cpp dirhistorybutton.h dirhistoryqueue.cpp dirhistoryqueue.h 

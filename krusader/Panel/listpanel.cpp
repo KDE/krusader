@@ -83,6 +83,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krpreviewpopup.h"
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/dirhistoryqueue.h"
+#include "../GUI/syncbrowsebutton.h"
 #include "../krservices.h"
 #include "panelpopup.h" 
 
@@ -141,6 +142,9 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
       ( totals, i18n( "The totals bar shows how much files exist, "
                       "how many did you select and the bytes math" ) );
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
+   
+   // ... creates the button for sync-browsing
+   syncBrowseButton = new SyncBrowseButton( this );
 	
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
@@ -150,7 +154,8 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
 	totalsLayout->addWidget(popupBtn);
-	
+	totalsLayout->addWidget(syncBrowseButton);
+   
    quickSearch = new KrQuickSearch( this );
    krConfig->setGroup( "Look&Feel" );
    quickSearch->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
@@ -257,6 +262,7 @@ ListPanel::~ListPanel() {
    delete cdHomeButton;
    delete cdUpButton;
    delete cdOtherButton;
+   delete syncBrowseButton;
    delete layout;
 }
 
