@@ -1,7 +1,7 @@
 ####### kdevelop will overwrite this part!!! (begin)##########
 
 
-EXTRA_DIST = bookmanadd.png bookmanedit.png cmdline.png fnkeys.png kgadvanced.png kgarchives.png kggeneral.png kglookfeel.png kgstartup.png krusader1.png listpanel.png mainwindow.png mountman.png remoteman.png search_advanced.png search_general.png terminalEmu.png toolbar.png tabbed_browsing.png krusader_title.png 
+EXTRA_DIST = bookmanadd.png bookmanedit.png cmdline.png fnkeys.png kgadvanced.png kgarchives.png kggeneral.png kglookfeel.png kgstartup.png krusader1.png listpanel.png mainwindow.png mountman.png remoteman.png search_advanced.png search_general.png terminalEmu.png toolbar.png tabbed_browsing.png krusader_title.png
 
 install-data-local:
 	$(mkinstalldirs) $(kde_htmldir)/en/krusader/
@@ -40,6 +40,10 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/terminalEmu.png $(kde_htmldir)/en/krusader/terminalEmu.png
 	$(mkinstalldirs) $(kde_htmldir)/en/krusader/
 	$(INSTALL_DATA) $(srcdir)/toolbar.png $(kde_htmldir)/en/krusader/toolbar.png
+	$(mkinstalldirs) $(kde_htmldir)/en/krusader/
+	$(INSTALL_DATA) $(srcdir)/krusader_title.png $(kde_htmldir)/en/krusader/krusader_title.png
+	$(mkinstalldirs) $(kde_htmldir)/en/krusader/
+	$(INSTALL_DATA) $(srcdir)/tabbed_browsing.png $(kde_htmldir)/en/krusader/tabbed_browsing.png
 
 uninstall-local:
 	-rm -f $(kde_htmldir)/en/krusader/bookmanadd.png
