@@ -17,6 +17,7 @@
 #include "../panelmanager.h"
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
+#include "../Synchronizer/synchronizergui.h"
 
 #include <kdebug.h>
 #include <kinputdialog.h>
@@ -49,21 +50,24 @@ Expander::Placeholder Expander::placeholder[ Expander::numOfPlaceholder ] = {
 // if "expression" == "" => instertSeparator()
 // parameter: { "description", "default", nessesary }, ... (max 5, see .h)
          {"Path", i18n("panel's path"), exp_Path, {
-                    }, 0, true},
+                        {i18n("Automatic escape spaces"), "__yes", false}
+                    }, 1, true},
          {"Count", i18n("number of ..."), exp_Count, {
                         {i18n("count all:"), "__choose:All;Files;Dirs;Selected", false}
                     }, 1, true},
          {"Filter", i18n("filter mask (*.h, *.cpp ...)"), exp_Filter, {
                     }, 0, true},
          {"Current", i18n("current file (!= selected file)"), exp_Current, {
-                        {i18n("Ommit the current path (optional)"), "__no", false}
-                    }, 1, true},
+                        {i18n("Ommit the current path (optional)"), "__no", false},
+                        {i18n("Automatic escape spaces"), "__yes", false}
+                    }, 2, true},
          {"List", i18n("Itemlist of ..."), exp_List, {
                         {i18n("Which items"), "__choose:All;Files;Dirs;Selected", false},
                         {i18n("Separator between the items (optional)"), " ", false},
                         {i18n("Ommit the current path (optional)"), "__no", false},
-                        {i18n("Mask (optional, all but 'Selected')"), "__select", false}
-                    }, 4, true},
+                        {i18n("Mask (optional, all but 'Selected')"), "__select", false},
+                        {i18n("Automatic escape spaces"), "__yes", false}
+                    }, 5, true},
 //--------- Internals --------------
          {"", "", 0, {}, 0, true},  // Separator
          {"Select", i18n("Manipulate the selection"), exp_Select, {
@@ -92,6 +96,9 @@ Expander::Placeholder Expander::placeholder[ Expander::numOfPlaceholder ] = {
                         {i18n("What should be copied"), "__placeholder", true},
                         {i18n("Where it should be copied"), "__placeholder", true},
                     }, 2, false},
+         {"Sync", i18n("Opens a synchronizer-profile"), exp_Sync, {
+                        {i18n("Choose a profile"), "__syncprofile", true},
+                    }, 1, false},
          {"Run", i18n("Execute a script"), 0, {
                         {i18n("Script"), "__file", true},
                     }, 1, false}
@@ -103,15 +110,23 @@ Expander::Placeholder Expander::placeholder[ Expander::numOfPlaceholder ] = {
 
 ///////// expander functions //////////////////////////////////////////////////////////
 
-QString Expander::exp_Path( const ListPanel* panel, const QStringList&, const bool& useUrl, const int& ) {
+QString Expander::exp_Path( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& ) {
    if ( panel == 0 ) {
       kdWarning() << "Expander: no panel specified for %_Path%; ignoring..." << endl;
       return QString::null;
    }
+   
+   QString result;
+   
    if ( useUrl )
-      return panel->func->files()->vfs_getOrigin().url();
+      result = panel->func->files()->vfs_getOrigin().url();
    else
-      return panel->func->files()->vfs_getOrigin().path();
+      result = panel->func->files()->vfs_getOrigin().path();
+         
+   if ( parameter[0].lower() == "no" )  // don't escape spaces
+      return result;
+   else
+      return result.replace(" ", "\\ ");
 }
 
 QString Expander::exp_Count( const ListPanel* panel, const QStringList& parameter, const bool&, const int& ) {
@@ -164,14 +179,22 @@ QString Expander::exp_Current( const ListPanel* panel, const QStringList& parame
       item = panel->view->getCurrentItem();
    }
    
+   QString result;
+   
    if ( parameter[0].lower() == "yes" )  // ommit the current path
-      return item;
+      result = item;
+   else {
+      KURL url = panel->func->files()->vfs_getFile( item );
+      if ( useUrl )
+         result = url.url();
+      else
+         result = url.path();
+   }
 
-   KURL url = panel->func->files()->vfs_getFile( item );
-   if ( useUrl )
-      return url.url();
+   if ( parameter[1].lower() == "no" )  // don't escape spaces
+      return result;
    else
-      return url.path();
+      return result.replace(" ", "\\ ");
 }
 
 // items are separated by the second parameter
@@ -212,7 +235,10 @@ QString Expander::exp_List( const ListPanel* panel, const QStringList& parameter
       for (QStringList::Iterator it = items.begin(); it != items.end(); ++it) {
          if ( ! result.isEmpty() )
             result += separator;
-         result += *it;
+         if ( parameter[4].lower() == "no" )  // don't escape spaces
+            result += *it;
+         else
+            result += (*it).replace(" ", "\\ ");
       }
    }
    else {
@@ -222,7 +248,10 @@ QString Expander::exp_List( const ListPanel* panel, const QStringList& parameter
       for (KURL::List::Iterator it = list->begin(); it != list->end(); ++it) {
          if ( ! result.isEmpty() )
             result += separator;
-         result += ((useUrl ? (*it).url() : (*it).path()) );
+         if ( parameter[4].lower() == "no" )  // don't escape spaces
+            result += ( (useUrl ? (*it).url() : (*it).path()) );
+         else
+            result += ( (useUrl ? (*it).url() : (*it).path()) ).replace(" ", "\\ ");
       }
    }
 kdDebug() << "result: '" << result << "'" << endl;
@@ -315,6 +344,28 @@ QString Expander::exp_Copy( const ListPanel*, const QStringList& parameter, cons
 
    return QString::null;  // this doesn't return everything, that's normal!
 }
+
+QString Expander::exp_Sync( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+   if ( parameter[0].isEmpty() ) {
+      kdWarning() << "Expander: no profile specified for %_Sync(profile)%; ignoring..." << endl;
+      return QString::null;
+   }
+
+   SynchronizerGUI *sync = new SynchronizerGUI( krApp->mainView, parameter[0] );
+
+   bool refresh = sync->wasSynchronization();
+   delete sync;
+
+   // refresh both panels:
+   if( refresh ) {
+      // first the other, then the active; else the focus would change
+      getPanel( 'o' )->func->refresh();
+      getPanel( 'a' )->func->refresh();
+   }
+
+   return QString::null;  // this doesn't return everything, that's normal!
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// end of expander functions //////////////////////////////

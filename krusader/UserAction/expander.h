@@ -91,7 +91,7 @@ public:
      QString expression; ///< The placeholder (without '%' or panel-prefix)
      QString description; ///< A description of the placeholder
      EXPANDER expFunc; ///< The function used to expand it
-     Parameter parameter[4]; ///< All Parameter of this placeholder (WARNING: max 4; if needed more, change it in the header)
+     Parameter parameter[5]; ///< All Parameter of this placeholder (WARNING: max 4; if needed more, change it in the header)
      int parameterCount; ///< How many parameter are realy defined
      bool needPanel; ///< true if the placeholder needs a panel to operate on
   };
@@ -106,7 +106,7 @@ public:
    */
   static QStringList expand( const QString& stringToExpand, bool useUrl, bool callEach );
   
-  static const int numOfPlaceholder = 12; ///< How many Placeholder are realy defined
+  static const int numOfPlaceholder = 13; ///< How many Placeholder are realy defined
   /**
    * A List of all Placeholder and thier Parameter. This is used to generate the AddPlaceholderPopup as well as by the expand function
    */
@@ -153,6 +153,10 @@ protected:
    * This is equal to 'cp <first Parameter> <second Parameter>'.
    */
   static QString exp_Copy( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
+  /**
+   * This opens the synchronizer with a given profile
+   */
+  static QString exp_Sync( const ListPanel* panel, const QStringList& parameter, const bool& useUrl, const int& currentItem );
 
     
   /**
