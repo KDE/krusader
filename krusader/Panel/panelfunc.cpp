@@ -114,7 +114,7 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
   if( !urlStack.top().equals(url) ) urlStack.push( url );
   while( true ){
 		KURL u = urlStack.pop();
-		u.adjustPath(-1); // remove trailing "/"
+		//u.adjustPath(-1); // remove trailing "/"
 		u.cleanPath(); // Resolves "." and ".." components in path.
 		v = KrVfsHandler::getVfs(u,panel,files());
     if( !v ) continue; //this should not happen !

@@ -138,7 +138,7 @@ void ftp_vfs::slotListResult(KIO::Job *job){
 void ftp_vfs::startLister() {
   // Open the directory	marked by origin
   krConfig->setGroup("Look&Feel");
-  vfs_origin.adjustPath(+1);
+  //vfs_origin.adjustPath(+1);
   KIO::Job *job = KIO::listDir(vfs_origin,false,
                                krConfig->readBoolEntry("Show Hidden",_ShowHidden));
   connect(job,SIGNAL(entries(KIO::Job*,const KIO::UDSEntryList&)),
@@ -246,7 +246,9 @@ KURL ftp_vfs::vfs_getFile(const QString& name){
   vfile* vf=vfs_search(name);
   if( !vf ) return KURL(); // empty 
  
-  return vf->vfile_getUrl();
+  KURL url = vf->vfile_getUrl();
+  if( vf->vfile_isDir() ) url.adjustPath(+1);
+  return url;
 }
 
 void ftp_vfs::vfs_mkdir(const QString& name){
