@@ -24,9 +24,9 @@
 	&updating.documentation; -->
 
 <para>If you have problems with &krusader; please check the &install_proc_lnk;,
-       maybe your problem is caused by a bad installation.</para>
+       your problem maybe due to a bad installation.</para>
 
-<para>The &FAQ; are devided in three sections:
+<para>The &FAQ; are divided in three sections:
   <itemizedlist>
      <listitem><para><link linkend="faq_installation">Installation &FAQ;</link> (this page)</para></listitem>
      <listitem><para><link linkend="faq_usage">Usage &FAQ;</link>
@@ -44,13 +44,53 @@
 <qandaset>
 
    <qandaentry>
+   <question id="faqi_kdelibs">
+   <para>Does &krusader; needs &kde; to run?</para>
+   </question>
+   <answer>
+   <para>No, &krusader; does not need the &kde; window manager to run on your computer but
+         &krusader; natural enviroment is &kde; because it is written with <application>kdevelop</application>.
+         Only some shared libraries are needed &eg; &kde; libraries, &Qt; libraries, &etc;
+	 This means that &krusader; runs on Gnome, Afterstep or other window managers if the aproriate 
+	 libraries are installed on your computer.
+	 </para>
+   <para> </para> <!-- Empty line to make it more readable -->
+   </answer>
+   </qandaentry>
+
+   <qandaentry>
+   <question id="faqi_libs">
+   <para>Which packages/libraries needs &krusader; to run?</para>
+   </question>
+   <answer>
+   <para>For running &krusader; (&eg; when you have installed &krusader; with a binary RPM) 
+         you need less packages as mentioned in the next question, 
+	 &eg; you don't need the C-compliler &gcc; it's only needed 
+	 when you compile &krusader; from source.</para>
+    <para>Here is a (possibly incomplete) list of the required packages when you run &krusader;:</para>
+   <para><itemizedlist>
+     <listitem><para>kdelibs, libqt3
+               </para></listitem>
+    <listitem><para>XFree: libxfree86 libfreetype6 libfontconfig1 libnas2 libexpat0
+               </para></listitem>	       
+    <listitem><para>libjpeg62 libjpeg-devel libpng3 libmng1
+               </para></listitem>	       
+    <listitem><para>fam
+               </para></listitem>	       
+    </itemizedlist>
+    A complete list of &shared_libdeps_url; is available.</para>
+   <para> </para> <!-- Empty line to make it more readable -->
+   </answer>
+   </qandaentry>
+
+   <qandaentry>
    <question id="faqi_missing_libs">
    <para>I have followed all steps but <command>configure</command> complains about missing libs or headers.
          What do I need to do?</para>
    </question>
    <answer>
    <para>Please install them. ;-)</para>
-   <para>Here is a (possibly incomplete) list of &krusader;'s dependencies:</para>
+   <para>Here is a (possibly incomplete) list of the required packages when you compile &krusader; from source:</para>
    <para><itemizedlist>
      <listitem><para>gcc-cpp gcc-c++ glibc libgcc1 (other compilers may work but haven't been tested)
                </para></listitem>
@@ -58,7 +98,7 @@
                </para></listitem>
      <listitem><para>automake (&eg; <filename>automake1.x-x.x.x-xmdk.i586.rpm</filename>)
                </para></listitem>
-     <listitem><para>XFree: libxfree86 libfreetype6 libfontconfig1 libnas2 libexpat0</para></listitem>
+     <listitem><para>XFree: </para></listitem>
      <listitem><para>libqt3 libqt-devel (all &krusader; versions >=1.02 are &Qt; 3.x only)</para></listitem>
      <listitem><para>kdelibs kdelibs-devel (all &krusader; versions >=1.02 are &kde; 3.x only)</para></listitem>
      <listitem><para>libjpeg62 libjpeg-devel libpng3 libmng1</para></listitem>
@@ -173,7 +213,7 @@
    </question>
    <answer>
    <para>
-   Dit you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and nothing found?
+   Did you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and nothing found?
    Then you will have to compile &krusader; from source :)
    Even if you think that you have no skills, you will probably succeed in compiling  &krusader;!
    We provide a very detailed installation procedure. This howto allows that even newcomers will be 
@@ -191,22 +231,22 @@
    <answer>
    <para>In this case only the <guimenu>"Help"</guimenu> menu is visible and all the other menu items
    like &eg; <guimenu>"File"</guimenu> and <guimenu>"Mark"</guimenu> are gone.
-   This is because some distributions put the <filename>krusaderui.rc</filename> file in a wrong directory.
+   This is because some distributions put the <filename>krusaderui.rc</filename> file in the wrong directory.
    To solve the problem, just copy the <filename>krusaderui.rc</filename> file
    from the package <filename>krusader_kde3/krusader/krusaderui.rc</filename> to
    <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename>
    and <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> and re-run &krusader;.
    If you have compiled &krusader; from sources this is often caused when the
-   &kdeqtdir_lnk; enviroment variables are not right set, the result is that the
+   &kdeqtdir_lnk; environment variables are not right set, the result is that the
    <filename>krusaderui.rc</filename> file is installed in a wrong directory.
-   Please read also the next question.</para>
+   Please also read the next question.</para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
 
   <qandaentry>
   <question id="faqi_missing_menus">
-  <para>Some new menu items are missing after updating &krusader;, what is wrong?</para>
+  <para>Some new menu items are missing after updating &krusader;, what's wrong?</para>
   </question>
   <answer>
   <para>The <filename>krusaderui.rc</filename> file is stored in
@@ -270,7 +310,7 @@
 <prompt>$</prompt> <userinput><command>export</command> CPP=<replaceable>/usr/bin/cpp-3.2</replaceable></userinput>
 </screen>        
    For more information please take a look &debian_qt_a_url; and at the &debian_qt_b_url; 
-   on howto build a &Qt;/&kde;3 application on &debian;.
+   on how to build a &Qt;/&kde;3 application on &debian;.
    </para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -281,12 +321,12 @@
   <para>I have a <filename>libGLcore.so.1</filename> compile error after using the &nvdia; installer</para>
   </question>
   <answer>
-  <para>This problem occurs when you dit use the &nvdia; installer and not the official &nvdia; packages
-        of your distribution. &krusader; is based on &Qt; which can be linked against the X openGL libraries. 
+  <para>This problem occurs when you use the &nvdia; installer and not the official &nvdia; packages
+        of your distribution. &krusader; is based on &Qt; which can be linked against the X OpenGL libraries. 
         As a result &krusader; may look for OpenGL as well. The problem is that the &nvdia; installer  
-        doesn't do his job good enough, it replaces the OpenGL header files (which get included into &krusader;) but 
-        don't set the libGL links right. 
-        The solution depends on from the used distribution, but it should be something like this: 
+        doesn't do its job properly, it replaces the OpenGL header files (which get included into &krusader;) but 
+        doesn't set the libGL links correctly. 
+        The solution depends on the distribution you are using, but it should be something like this: 
 <screen><prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so.0</replaceable></userinput>
 <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so</replaceable></userinput>
 <prompt>$</prompt> <userinput><command>ln</command> -s <replaceable>libGLcore.so.1.0.6111  libGLcore.so.1.0.0</replaceable></userinput>
@@ -342,7 +382,7 @@
    <para>How can i build a RPM package for &krusader;?</para>
    </question>
    <answer>
-   <para>If you have experiance with compiling from source, you will probably be able to build a &krusader; RPM too.
+   <para>If you have experience with compiling from source, you will probably be able to build a &krusader; RPM too.
    Follow the next steps to build an RPM.
    </para>
    <warning><para>Never, ever build RPMs when logged in as root. Mistakes in buildings packages (&eg; a bad
@@ -361,9 +401,9 @@
 	 <filename class="directory">/usr/scr/RPM/SPECS</filename>
 	 Tip: the latest <filename>kusader.spec</filename> can be found in CVS.
          </para></listitem>
-         <listitem><para>Edit <filename>kusader.spec</filename> and add your name, your e-mail adress,
+         <listitem><para>Edit <filename>kusader.spec</filename> and add your name, your e-mail address,
          the rpm name, ... (please read the comments in <filename>kusader.spec</filename>).
-         Maybe other changes are needed if <command>rpmbuild</command> fails.
+         Other changes may be needed if <command>rpmbuild</command> fails.
          </para></listitem>
 	 <listitem><para>Build the binary and the source RPM with:
             <screen><prompt>$</prompt> <userinput><command>rpmbuild</command> <option>-ba</option>  <replaceable>/usr/scr/RPM/SPECS/krusader.spec</replaceable></userinput></screen>
@@ -589,11 +629,11 @@
     </para></listitem>
     </orderedlist></para>
     <para>Thanks for your cooperation!</para>
-    <note><para>If possible, try todo the same operation with &konqueror; or an other &kde; application.
+    <note><para>If possible, try to do the same operation with &konqueror; or an other &kde; application.
     If you encounter the same problem than it is possibly a &kioslave_url; or &kde; (kdelibs) bug,
     and not a &krusader; bug.
     &krusader; uses the &kde; libraries and the &kioslaves_url; for many operations.
-    In some cases you can encounter problems when your distribution is bad configured, please test it first
+    In some cases you can encounter problems if your distribution is incorrectly configured, please test it first
     as explained above, thanks!
     </para></note>
     <para> </para> <!-- Empty line to make it more readable -->
@@ -668,7 +708,7 @@
          previously discussed (this allows us to minimze the double/triple/... postings).
          If your issue has already been discussed in the past there is a great chance that you will have an instant solution
 	 for your issue/problem.
-         Some issues are asked over and over again, for this issues whe have the made the &faq_lnk; ;-)
+         Some issues are asked over and over again, for these issues we have the made the &faq_lnk; ;-)
          This also allows us also to spend more time in developing &krusader;.</para>
 
 <para>The &kruforum_url; is split up in five sections:

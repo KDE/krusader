@@ -53,9 +53,9 @@ Previous used Docbook
 <!ENTITY viewcvs_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader">ViewCVS</ulink>'>
 <!ENTITY sfmirrors_url '<ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>'>
 <!ENTITY changelog_url 
-'<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/ChangeLog?view=markup"><filename>ChangeLog</filename></ulink>'>
+'<ulink url="http://krusader.sourceforge.net/text.php?t=cvs.changelog"><filename>ChangeLog</filename></ulink>'>
 <!ENTITY cvsnews_url 
-'<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/CVSNEWS?view=markup"><filename>CVSNEWS</filename></ulink>'>
+'<ulink url="http://krusader.sourceforge.net/text.php?t=cvs.news"><filename>CVSNEWS</filename></ulink>'>
 <!ENTITY docchangelog_url '<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/doc/ChangeLog?view=markup">Documentation ChangeLog</ulink>'>
 <!ENTITY i18nhowto_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389">Krusader translation howto</ulink>'>
 <!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/down.php">&krusader; downloadpage</ulink>'>
@@ -63,6 +63,7 @@ Previous used Docbook
 <!ENTITY deb_packages_overview_url '<ulink url="http://packages.qa.debian.org/k/krusader.html">DEB packages overview</ulink>'>
 <!ENTITY mac_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-x 10.3 (Panther)</ulink>'>       
 
+<!ENTITY shared_libdeps_url '<ulink url="http://krusader.sourceforge.net/handbook/ldd_krusader.txt">shared library dependencies</ulink>'>
 <!ENTITY mailing_subscribe_url '<ulink url="http://sourceforge.net/mail/?group_id=6488">(un)subscribe</ulink>'>
 <!ENTITY krunews_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum_id=2328">&krusader;-news</ulink>'>
 <!ENTITY krulatestnews_url '<ulink url="http://krusader.sourceforge.net/news.php">latest news</ulink>'>
@@ -92,7 +93,7 @@ Previous used Docbook
 
 <!ENTITY debian_qt_a_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=710">in our forum</ulink>'>
 <!ENTITY debian_qt_b_url '<ulink url="http://opendoorsoftware.com/cgi/http.pl?p=DebianQTChecklist">instructions</ulink>'>
-<!ENTITY freenode_url '<ulink url="http://freenode.net">freenode.org"</ulink>'>
+<!ENTITY freenode_url '<ulink url="http://freenode.net">freenode.org</ulink>'>
 <!ENTITY fink_prj_url '<ulink url="http://fink.sourceforge.net">fink.sourceforge.net</ulink>'>
 
 <!-- documentation links -->
@@ -249,8 +250,8 @@ Previous used Docbook
 	</copyright>
 
 	<legalnotice>&FDLNotice;</legalnotice>
-	<date>25/10/2004</date>
-	<releaseinfo>1.50.02</releaseinfo>
+	<date>02/11/2004</date>
+	<releaseinfo>1.50.03</releaseinfo>
 
    <abstract>
 	<para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x.</para>
@@ -315,18 +316,18 @@ Previous used Docbook
   <title>Note from the Editors</title>
 
   <para>As you may notice this handbook is written by various authors.
-        We have taken much care in insuring technical and vocabulary consistency.</para>
+        We have taken much care in ensuring technical and vocabulary consistency.</para>
 
   <para>The authors write in English even though it is not their native language.
         Therefore, you may notice strange sentence constructions.
         Do not hesitate to let us know if something is not clear to you.</para>
 
-  <para>An open source project greatest strength is derived from getting user
+  <para>An open source projects greatest strength is derived from getting user
         feedback. That's why we'd love to hear what you have to say.
         Documentation contributors are always welcome.
         If you have ideas on how to improve the content,
-	if you like to write about a ondocumented &krusader; feature,
-	if you have remarks or suggestions about the &krusader; Handbook. Please let us know.
+	if you would like to write about an undocumented &krusader; feature,
+	if you have comments or suggestions about the &krusader; Handbook. Please let us know.
         You can contact us even if you find typos!</para>
 
    <para>The Handbook "revision" matches the &krusader; version number.

@@ -176,7 +176,7 @@
           </listitem>
           <listitem>
              <para>if more than one bookmarks start with <literal>'h'</literal>, 
-                   you shall have to continue adding letters, 
+                   you will have to continue adding letters, 
                    until you specified enough and again, the bookmark is executed.</para>
           </listitem> 
       </orderedlist>
@@ -938,7 +938,7 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Identation</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Identation configuration: automaticly indent, use spaces to indent, &Tab; keys indent,
+   <para>Identation configuration: automatically indent, use spaces to indent, &Tab; keys indent,
          &Backspace; keys indent, keep indent profile, keep extra spaces.</para>
    </listitem>
   </varlistentry>
@@ -961,7 +961,7 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Editing</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Editing configuration: word wrap config., witespace config., auto brackets, smart home,
+   <para>Editing configuration: word wrap config., whitespace config, auto brackets, smart home,
           wrap cursor, maximum undo steps.</para>
    </listitem>
   </varlistentry>
@@ -1323,11 +1323,11 @@ HTML_PARSING-->
     <itemizedlist>
         <listitem><para><guibutton>"Select items"</guibutton>:
 	           Opens a dialog which allows you to select items.
-		   This is the <guimenuitem>Select Group</guimenuitem> dialog  from the
+		   This is the <guimenuitem>Select Group</guimenuitem> dialog from the
 		   &markmenu_lnk;.</para></listitem>
         <listitem><para><guibutton>"Unselect items"</guibutton>:
 	           Opens a dialog which allows you to unselect items.
-		   This is the <guimenuitem>Unselect Group</guimenuitem> dialog  from the
+		   This is the <guimenuitem>Unselect Group</guimenuitem> dialog from the
 		   &markmenu_lnk;.</para></listitem>
         <listitem><para><guibutton>"Invert selection"</guibutton>:
 	           Invert the selection status of all items.</para></listitem>
@@ -1369,7 +1369,7 @@ HTML_PARSING-->
 	   <guimenuitem>"Synchronize with kget"</guimenuitem>
            to execute the synchronization, after that the listed files will be 
            downloaded with kget instead of krusader.
-	   Ofcource <application>kget</application> needs to be installed on your computer, 
+	   Of course <application>kget</application> needs to be installed on your computer, 
 	   otherwise it will not be available.</para>
     </listitem>
   </varlistentry>
@@ -1444,7 +1444,7 @@ HTML_PARSING-->
   Several examples of <filename>useraction.xml</filename> files can be found <link linkend="useraction_xml">here</link>.
   Useractions can be edit/add/im-/export using a new Konfigurator-module,
   although we plan to move all action-related to a new ActionMan.
-  Once you understand howto write useractions you will make from &krusader; a verry powerfull customizable tool.
+  Once you understand howto write useractions you will find that &krusader; is a very powerfull, customizable tool.
   <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
   <guimenuitem>User Menu</guimenuitem></menuchoice>
     </emphasis>
@@ -1466,7 +1466,7 @@ HTML_PARSING-->
                Now the name is shown in the list on the left.
                       </para></listitem>
      <listitem><para>To edit an Useraction: 
-               select the Useraction on the left and click the edit button.
+               select the Useraction on the left. 
                Now you can choose it if you want to edit the properties, the changes will only take effect when you press 
 	       <guimenuitem>"Ok"</guimenuitem>.
                       </para></listitem>	     
@@ -1474,33 +1474,32 @@ HTML_PARSING-->
                Select the Useraction on the left and click the remove button.
                       </para></listitem>
      <listitem><para><guimenuitem>"Inport Action"</guimenuitem>: 
-               If you import some actions they will be added automaticly to your list. 
+               If you import some actions they will be automatically added to your list. 
                If there are name-conflicts (the names have to be unique because these are the ID for &kde;'s action-system) 
-	       you're asked to resolf them. For this the list on the left will only show the actions where conflicts exists. 
+	       you're asked to resolve them. For this the list on the left will only show the actions where conflicts exists. 
 	       You now can give them new names or remove them.
                      </para></listitem>	     
      <listitem><para><guimenuitem>"Export Action"</guimenuitem>: 
                 If you export an useraction you have to give a file where to store it. 
-                If it does not exists it will be created. If it contains already some useractions, 
+                If it does not exist it will be created. If it contains already some useractions, 
                 the action you're exporting will be added to that file.
                     </para></listitem>
    </itemizedlist>
    All actions you've defined are now shown in the usermenu and in &kde;'s dialogs 
    for changing shortcuts and managing the toolbar. In addition all actions 
-   which are available for the current item will also show up in the rightclick menu.
+   available for the current item will also show up in the rightclick menu.
 </para>  
   
 
 <para><emphasis role="bold"><guimenuitem>Basic Properties</guimenuitem></emphasis></para>
-<para><guimenuitem>"Distict Name", "Title" and "Command line"</guimenuitem> are always required, all the other properties are optional.
+<para><guimenuitem>"Distinct Name", "Title" and "Command line"</guimenuitem> are always required, all the other properties are optional.
     <itemizedlist>
-    <listitem><para><guimenuitem>"Distict Name"</guimenuitem>: a unique name of the Useraction, used to identiy it for &kde;'s action-system.
-                    </para></listitem>
-    <listitem><para><guimenuitem>"Check"</guimenuitem>: checks that the <guimenuitem>"Distict Name"</guimenuitem> is unique.
+    <listitem><para><guimenuitem>"Distinct Name"</guimenuitem>: a unique name of the Useraction, used to identiy it for &kde;'s action-system.
                     </para></listitem>
     <listitem><para><guimenuitem>"Icon button"</guimenuitem>: the icon for you Useraction.
                     </para></listitem>
-    <listitem><para><guimenuitem>"Category"</guimenuitem>: adds an category for an better overview.
+    <listitem><para><guimenuitem>"Category"</guimenuitem>: adds an category for an better overview. 
+                    NOTE: this property is not used yet. It is planed to be used, but this is not implemented yet.
                     </para></listitem>
     <listitem><para><guimenuitem>"Title"</guimenuitem>: the title displayed in the menus/dialogs.
                     </para></listitem>
@@ -1530,8 +1529,6 @@ HTML_PARSING-->
 	 <listitem><para><guimenuitem>"Separate standard error"</guimenuitem>
 	           when "Collect output" is used the stdout and stderr are separately collected
 	           </para></listitem>
-	 <listitem><para><guimenuitem>"No output collection"</guimenuitem>:
-	                   just runs the command "invisibly"</para></listitem>
         </itemizedlist>
       </listitem>
       
@@ -1546,12 +1543,14 @@ HTML_PARSING-->
        </itemizedlist>
        </listitem>
       
-      <listitem><para><guimenuitem>"On multiple selection"</guimenuitem>:  </para>
+<!--    Not yet implemented, but will be after 1.50 stable is released  
+        <listitem><para><guimenuitem>"On multiple selection"</guimenuitem>:  </para>
         <itemizedlist>
 	 <listitem><para><guimenuitem>"separate call for each file"</guimenuitem>: executes the command for each selected file.
-	           </para></listitem>
-         </itemizedlist>
-      </listitem>
+	           </para></listitem> 
+         </itemizedlist> 
+      </listitem> -->
+      <listitem><para><guimenuitem>"Shortcut button"</guimenuitem>: configures a shortcut for the useraction.</para></listitem>
     </itemizedlist>
 </para>
 
@@ -1581,11 +1580,10 @@ execution-time (meaning after all placeholders are replaced).
 
 <para><emphasis role="bold"><guimenuitem>Advanced Properties</guimenuitem></emphasis></para>
 <para>Here you can configure where your command should be visible (for the rightclick-menu)
-In addition it's possibe to change the command executed and confim it separatly.
+In addition it's possible to change the command executed and confirm it separatly.
 You can also set a user under which the command should be executed.
 <itemizedlist>
   <listitem><para>Configures if the action is valid for a Protocol, Path, Mime-type or Filename.</para></listitem>
-  <listitem><para>Configures a shortcut for the useraction.</para></listitem>
   <listitem><para>Tweaking the commandline before beeing executed.</para></listitem>
 </itemizedlist>
 </para>

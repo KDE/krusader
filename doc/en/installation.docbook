@@ -21,6 +21,29 @@
 *********************************************************************** -->
 <title>Installation</title>
 
+<sect1 id="requirements">
+<title>Requirements</title>
+
+<para>In order to successfully use the most recent &krusader;, you need &kde;libs &gt;= 3.2.x.</para>
+
+<note><para>&krusader; v1.01 needs &kde;libs 2.x.x</para>
+      <para>&krusader; v1.02-1.40 needs &kde;libs 3.x.x</para>
+      <para>&krusader; v1.50 needs &kde;libs &gt;= 3.2.x</para></note>
+
+<para>Platforms: &Linux;, &freebsd;, &Solaris; and &MacOS; 10.3 (Panther).</para>
+
+<para>&krusader; uses about 3-4 MByte of memory to run 
+      (and about 15 Mbyte shared memory which is also used by more processes), 
+      but this may vary depending on your platform and configuration.
+      In order to handle archives the archivers must be configured <link linkend="konfig-dependencies">here</link>.</para>
+
+<para>A package of popular (un)packers, &krusader; itself and addons can be found on the &krudownload_url;.</para>
+
+<para>For more requirements, continue to read this chapter and read also the &faq_lnk; section.</para>
+
+</sect1>
+
+
 <sect1 id = "getting-krusader">
 <title>How to obtain &krusader;</title>
 
@@ -36,7 +59,7 @@
   
 <itemizedlist>
 	<listitem>
-	   <para>Often &Mandrake;, &feodora; and &SuSE; RPM's are available, sended in by &krusader; users.
+	   <para>Often &Mandrake;, &feodora; and &SuSE; RPM's are available, sent in by &krusader; users.
                  There might be some other packages our website, but that depends on other users contributions.</para>
 	</listitem>
 	<listitem>
@@ -62,9 +85,9 @@
 </itemizedlist>
 </para>
 
-<para>If you still can't find a RPM or DEB package, please don't wurry.
+<para>If you still can't find a RPM or DEB package, please don't worry.
       We provide a verry detailled installation procedure. This howto allows that even newcomers will be able
-      to compile &krusader; from source, even when you dit never before a compilation from source.
+      to compile &krusader; from source, even if you've never compiled a program from source.
       Please continue to read this chapter ;)</para>
 
 </sect2>
@@ -155,6 +178,11 @@
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
   (note: updates from within the modules directory do not need the -d parameter)</para>
 
+<para>To checkout a specific version of &krusader; from CVS (&eg; &krusader;-1.50) :
+  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login</option></userinput></screen>
+  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_50 krusader_kde3</option></userinput></screen>
+  (note: updates from within the modules directory do not need the -d parameter)</para>
+  
 <para>Mostly being &gentoo_url; users ourselves, we provide a &gentoo_life_ebuild_url; for all those who want 
       to stay on the bleeding edge of filemanagement and don't want to miss the advantages of portage. 
       Please take a look at our &krucutedge_url; for more installation details.</para>
@@ -170,30 +198,6 @@
 </sect2>
 
 </sect1>
-
-
-<sect1 id="requirements">
-<title>Requirements</title>
-
-<para>In order to successfully use &krusader;, you need &kde; 3.x.x.</para>
-
-<para><remark>For &kde; 2.x.x there is &krusader; v1.01, stable but there are no planned changes.</remark></para>
-
-<para>Note: all &krusader; versions >=1.02 are &kde; 3.x.x only.</para>
-
-<para>Platforms: &Linux;, &freebsd;, &Solaris; and &MacOS; 10.3 (Panther).</para>
-
-<para>&krusader; uses about 3-4 MByte of memory to run 
-      (and about 15 Mbyte shared memory which is also used by more processes), 
-      but this may vary depending on your platform and configuration.
-      In order to handle archives the archivers must be configured <link linkend="konfig-dependencies">here</link>.</para>
-
-<para>A package of popular (un)packers, &krusader; itself and addons can be found on the &krudownload_url;.</para>
-
-<para>For more requirements, continue to read this chapter and read also the &faq_lnk; section.</para>
-
-</sect1>
-
 
 
 <sect1 id="compilation">
@@ -241,7 +245,7 @@
 
 
 <listitem>
-<para>We recommend to create a separate directory to keep all the sources you compile in.
+<para>We recommend you create a separate directory to keep all the sources you compile in.
       This will give you a better overview of installed programs and makes it easier to uninstall them later.
       <screen><prompt>$</prompt> <userinput><command>mkdir</command> ~/source</userinput></screen>
       The chosen directory is just an example, any other will work.</para>
@@ -657,11 +661,11 @@ foo</screen>
 <appendix id="useraction_xml">
 <title>useraction.xml</title>
 <para>This appendix gives several examples of <filename>useraction.xml</filename> files.
-      By this way you can start do discover the power of the useractions and start learning using them.
+      By this way you can start do discover the power of the useractions and start learning to use them.
       If you have made a great useraction <link linkend="faqg_wish_patch">please send it in</link>, 
       we are planning to collect useractions on our website and are planning to ship &krusader; with several 
       great &useractions_lnk; in the near future.
-      Once you understand howto write useractions you will make from &krusader; a verry powerfull customizable tool.
+      Once you understand how to write useractions you find that &krusader; is a very powerfull customizable tool.
       </para>
 
 <itemizedlist>
