@@ -831,11 +831,11 @@ void KRslots::windowInactive() {
 	MAIN_VIEW->right->panelInactive();
 }
 
-#ifdef __KJSEMBED__
 //shows the JavaScript-Console
 void KRslots::jsConsole() {
+#ifdef __KJSEMBED__
     krJS->view()->show();
-}
 #endif
+}
 
 #include "krslots.moc"
