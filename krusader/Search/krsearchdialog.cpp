@@ -69,6 +69,7 @@
 #include <kdeversion.h>
 #include <kpopupmenu.h>
 #include <qcursor.h>
+#include <qclipboard.h>
 
 // private functions - used as services /////////////////////
 void changeDate(QLineEdit *p) {
@@ -617,11 +618,15 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
   {
     if( e->key() == Key_F4 )
     {
+      if (!containsText->currentText().isEmpty() && QApplication::clipboard()->text() != containsText->currentText())
+        QApplication::clipboard()->setText(containsText->currentText());
       editCurrent();
       return;
     }
     else if( e->key() == Key_F3 )
     {
+      if (!containsText->currentText().isEmpty() && QApplication::clipboard()->text() != containsText->currentText())
+        QApplication::clipboard()->setText(containsText->currentText());
       viewCurrent();
       return;
     }
