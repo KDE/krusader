@@ -84,8 +84,14 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
     // set the mimetype
     QString mime = kfi.mimetype(); 
     QString symDest = "";
-		if(symLink)symDest = kfi.linkDest();
-		// create a new virtual file object
+    if(symLink)
+    {
+      symDest = kfi.linkDest();
+      if ( kfi.isDir() || mime.contains("directory") )
+         perm[0] = 'd';
+    }
+
+    // create a new virtual file object
     if( kfi.user().isEmpty() )
       temp=new vfile(name,size,perm,mtime,symLink,getuid(),getgid(),mime,symDest,mode);
     else

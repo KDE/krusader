@@ -288,13 +288,23 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
 
   do
   {
-    if( isDir || leftSize == rightSize && (ignoreDate || leftDate == rightDate) )
+    if( isDir )
     {
-      if( isDir || !cmpByContent || compareByContent(file_name, dir) )
-        task = TT_EQUALS;
-      else
-        task = asymmetric ? TT_COPY_TO_LEFT : TT_DIFFERS;
+      task = TT_EQUALS;
       break;
+    }
+    if( leftSize == rightSize )
+    {
+      if( cmpByContent && compareByContent(file_name, dir) )
+      {
+        task = TT_EQUALS;
+        break;
+      }
+      if ( !cmpByContent && ( ignoreDate || leftDate == rightDate) )
+      {
+        task = TT_EQUALS;
+        break;
+      }
     }
 
     if( asymmetric )
