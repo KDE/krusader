@@ -52,7 +52,7 @@ into pages, each containing items related to that page. For some changes to the 
   disabled.</para>
 
   <para><guilabel>"Start with the following settings"</guilabel>: allows you to define a startup status
-    for each of the panel in the following manner:</para>
+    for each panel in the following manner:</para>
 
   <itemizedlist>
   <listitem><para><guilabel>"Left/Right Panel starts at"</guilabel>: the following options are available
@@ -78,21 +78,22 @@ into pages, each containing items related to that page. For some changes to the 
          state of the user interface components, and restores them to the condition they were during
          shutdown.</para></listitem>
   <listitem><para><guilabel>"Toolbar visible"</guilabel>: if checked, the
-         &toolbar_lnk; will be visible during startup.</para></listitem>
+         &toolbar_lnk; will be visible after startup.</para></listitem>
   <listitem><para><guilabel>"Statusbar visible"</guilabel>: if checked, the statusbar will be
          visible during startup.</para></listitem>
   <listitem><para><guilabel>"Function keys visible"</guilabel>: if checked, the
-         &fnkeybar_lnk; will be visible during
-         startup.</para></listitem>
+         &fnkeybar_lnk; will be visible after startup.
+         </para></listitem>
   <listitem><para><guilabel>"Command line visible"</guilabel>: if checked, the
-         <link linkend="cmdline">command line</link> will be visible during
-         startup.</para></listitem>
+         <link linkend="cmdline">command line</link> will be visible after startup.
+         </para></listitem>
   <listitem><para><guilabel>"Terminal emulator visible"</guilabel>: if checked, the terminal
-         emulator will be visible during startup.</para></listitem>
+         emulator will be visible after startup.
+         </para></listitem>
   <listitem><para><guilabel>"Restore last postion and size"</guilabel>: when launched, &krusader;
-          will resize itself to
-          the last size it was when last shutdown. &krusader; will also appear in the same location
-          on the screen.</para></listitem>
+          will resize itself to the last size it was when last shutdown. 
+          &krusader; will also appear in the same location on the screen.
+          </para></listitem>
   </itemizedlist>
   </para></listitem>
    </varlistentry>
@@ -131,7 +132,7 @@ HTML_PARSING-->
        protest.</para></listitem>
   <listitem><para><guilabel>"Minimize to tray"</guilabel>: if checked, when you minimize &krusader;,
        its icon will appear in the system tray instead of the taskbar.</para></listitem>
-  <listitem><para><guilabel>"Show hidden files"</guilabel>: if checked, &krusader; will display the "dot
+  <listitem><para><guilabel>"Show hidden files"</guilabel>: if checked, &krusader; will display the "dot-
        files" which are otherwise hidden.</para></listitem>
   <listitem><para><guilabel>"Automark directories"</guilabel>: when
        <link linkend="mark-menu">marking a group of files</link> (either by
@@ -142,6 +143,8 @@ HTML_PARSING-->
        files beginning with capital letters appear before files beginning with non-capital letters;
        otherwise, all files beginning with a specified letter (capital or otherwise) will appear
        together.</para></listitem>
+  <listitem><para><guilabel>"Use fullpath tab names"</guilabel>: if checked, display the full path 
+                             in the &foldertabs_lnk;, otherwise only the last part of the path will be displayed.</para></listitem>
   <listitem><para><guilabel>"New style quicksearch"</guilabel>: The new
              <link linkend="quicksearch">Quicksearch</link> feature is used.</para></listitem>
   <listitem><para><guilabel>"Case sensitive quicksearch"</guilabel>: When using the
@@ -149,9 +152,6 @@ HTML_PARSING-->
        files beginning with capital letters appear before files beginning with non-capital letters;
        otherwise, all files beginning with a specified letter (capital or otherwise) will appear
        together.</para></listitem>
-  <listitem><para><guilabel>"Show panel level toolbar"</guilabel>: if checked,
-                     show the toolbar in the panel with &eg; the <guibutton>"/"</guibutton> and
-         <guibutton>".."</guibutton> buttons.</para></listitem>
 
 <!--
   <listitem><para><guilabel>HTML viewers minimal font size</guilabel>: when viewing an HTML file
@@ -249,13 +249,21 @@ HTML_PARSING-->
 <para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
           of your favourite functions the way you want.</para>
 
-<para>With the <guibutton>"Inport shortcuts"</guibutton> <guibutton>"Export shortcuts"</guibutton> butons you can load and save 
-      a Key-binding configuration. This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom Key-bindings.
-      The only limitation at this is moment that the global &kde; key-bindings, &krusader; key-bindings who can't be changed yet,
-      some features in foo-commander that we either don't have or don't need. 
-      The Key-binding file is a binary <filename>foo.dat</filename> file.
-      btw. we are working on a &tcmd; dat file, if you like you can &mail_url; us your favorite foo-commander dat file, 
-      so that it can be shipped with &krusader;.</para>
+<para>With the <guibutton>"Inport shortcuts"</guibutton> <guibutton>"Export shortcuts"</guibutton> butons you 
+      can load and save a Key-binding configuration. 
+      This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom Key-bindings.
+      The only limitation at this is moment that the global &kde; key-bindings, &krusader; key-bindings who can't 
+      be changed yet, some features in foo-commander that we either don't have or don't need.
+      The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>, 
+      the <filename>foo.keymap.info</filename> contains a description, 
+      the <filename>foo.keymap</filename> is a binary file that holds the Key-bindings.
+      If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it, 
+      showing additional information regarding the loaded Key-bindings file. 
+      Here you have a chance to regret and not to import the Key-bindings file.
+      </para>
+      
+<para>A &tcmd; Key-bindings file is provided, if you like you can &mail_url; us your produced favorite foo-commander 
+      Key-bindings files, so that it can be shipped with &krusader;.</para>
 </sect2>
 
 
@@ -317,7 +325,7 @@ HTML_PARSING-->
         </listitem>
   <listitem><para><guilabel>"Show current item even if not focused"</guilabel>:
                     If checked, shows the last cursor position in the non active list panel.
-        This option is available when you don't use the &kde; default colors.</para>
+        This option is only available when you don't use the &kde; default colors.</para>
         </listitem>
   </itemizedlist>
   </listitem>
