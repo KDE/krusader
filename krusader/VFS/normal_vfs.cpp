@@ -238,7 +238,7 @@ void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned
 }
 
 vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
-	QString path = vfs_workingDir().local8Bit()+"/"+name.local8Bit();
+	QString path = vfs_workingDir()+"/"+name;
 	
 	KDE_struct_stat stat_p;
 	KDE_lstat(path.local8Bit(),&stat_p);
