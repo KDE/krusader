@@ -91,11 +91,11 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] =
   //   cfg_class  cfg_name                default               text                                      restart ToolTip
     {{"Startup","UI Save Settings",      _UiSave,               i18n( "Save settings on exit" ),          false,  ""},
-     {"Startup","Show tool bar",         _ShowToolBar,          i18n( "Toolbar visible" ),                true ,  ""},
-     {"Startup","Show status bar",       _ShowStatusBar,        i18n( "Statusbar visible" ),              true ,  ""},
-     {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Function keys visible" ),          true ,  ""},
-     {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Command-line visible" ),           true ,  ""},
-     {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Terminal Emulator visible" ),      true ,  ""},
+     {"Startup","Show tool bar",         _ShowToolBar,          i18n( "Toolbar visible" ),                false,  ""},
+     {"Startup","Show status bar",       _ShowStatusBar,        i18n( "Statusbar visible" ),              false,  ""},
+     {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Function keys visible" ),          false,  ""},
+     {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Command-line visible" ),           false,  ""},
+     {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Terminal Emulator visible" ),      false,  ""},
      {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Restore last position and size" ), false,  ""}};
 
   uiCbGroup = createCheckBoxGroup( 1, 0, uiCheckBoxes, 7, uiGrp );

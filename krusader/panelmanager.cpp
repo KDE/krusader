@@ -123,3 +123,28 @@ void PanelManager::slotCloseTab() {
 void PanelManager::slotRefreshActions() {
   krCloseTab->setEnabled(_tabbar->count() > 1);
 }
+
+void PanelManager::recreatePanels() {
+  int panelCount = _tabbar->count(), identifier = 0;
+  ListPanel *oldCurrent = _self, *newCurrent = 0;
+  
+  while( panelCount -- )
+  {
+    ListPanel *panel = dynamic_cast<PanelTab*>( _tabbar->tabAt( 0 ) )->panel;
+    slotNewTab( panel->virtualPath );
+
+    if( panel == oldCurrent )
+      newCurrent = _self, identifier = _tabbar->currentTab();
+
+    _tabbar->setCurrentTab( _tabbar->tabAt( 0 ) );
+    slotChangePanel( panel );
+
+    slotCloseTab();
+  }
+
+  if( newCurrent )
+  {
+    _tabbar->setCurrentTab( identifier );
+    slotChangePanel( newCurrent );
+  }
+}

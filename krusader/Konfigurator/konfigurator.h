@@ -50,6 +50,8 @@ public:
   Konfigurator(bool f=false); // true if Konfigurator is run for the first time
   ~Konfigurator() {};
 
+  bool isGUIRestartNeeded() { return restartGUI; }
+
 protected:
   void newContent(KonfiguratorPage *widget);// adds widget into newPage and connects to slot
   void createLayout();
@@ -72,6 +74,7 @@ private:
   int                         lastPage;
   bool                        internalCall;
   QTimer                      restoreTimer;
+  bool                        restartGUI;
 };
 
 #endif

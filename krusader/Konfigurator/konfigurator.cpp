@@ -54,7 +54,8 @@
 
 Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
       KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
-      KDialogBase::User1, false, i18n("Defaults") ), firstTime(f), internalCall( false )
+      KDialogBase::User1, false, i18n("Defaults") ), firstTime(f), internalCall( false ),
+      restartGUI( false )
 {
   setPlainCaption(i18n("Konfigurator - Creating Your Own Krusader"));
   kgFrames.setAutoDelete(true);
@@ -118,8 +119,9 @@ void Konfigurator::slotApply()
   int ndx = searchPage( lastPage = widget->activePageIndex() );
   if( kgFrames.at( ndx )->apply() )
   {
-    KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
-     QString::null,"konfigGUInotify");
+    restartGUI = true;
+//    KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
+//     QString::null,"konfigGUInotify");
   }
 }
 
@@ -175,8 +177,9 @@ bool Konfigurator::slotPageSwitch()
     case KMessageBox::Yes:
       if( currentPage->apply() )
       {
-        KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
-          QString::null,"konfigGUInotify");
+        restartGUI = true;
+//        KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
+//          QString::null,"konfigGUInotify");
       }
       break;
     default:

@@ -33,6 +33,7 @@
 #include <qstringlist.h>
 #include <qprogressdialog.h>
 #include <qlistview.h>
+#include <qpixmapcache.h>
 // KDE includes
 #include <klocale.h>
 #include <kprocess.h>
@@ -285,7 +286,25 @@ void KRslots::FTPDisconnect()   { ACTIVE_FUNC->FTPDisconnect();              }
 void KRslots::newFTPconnection(){ ACTIVE_FUNC->newFTPconnection();           }
 
 // run external modules / programs
-void KRslots::runKonfigurator(bool firstTime) { delete new Konfigurator(firstTime); }
+void KRslots::runKonfigurator(bool firstTime) {
+
+  krConfig->setGroup( "Look&Feel" );
+  int size = (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
+  
+  Konfigurator *konfigurator = new Konfigurator(firstTime);
+
+  if( konfigurator->isGUIRestartNeeded() )
+  {
+    krConfig->setGroup( "Look&Feel" );
+    if((krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt() != size )
+      QPixmapCache::clear();
+
+    MAIN_VIEW->leftMng->recreatePanels();
+    MAIN_VIEW->rightMng->recreatePanels();
+  }
+  
+  delete konfigurator;
+}
 
 void KRslots::toggleHidden(){
   krConfig->setGroup("Look&Feel");
