@@ -125,6 +125,7 @@ void PopularUrls::collectGarbage() {
 	while (count > maxUrls) {
 		n = tail;
 		removeNode(n);
+		ranks.remove( n->url.url() );
 		delete n;
 		--count;
 	}
@@ -170,8 +171,10 @@ void PopularUrls::insertNode(UrlNodeP node, UrlNodeP after) {
 		if (tail == after) tail = node;
 		node->prev = after;
 		node->next = after->next;
-		after->next->prev = node;
-		after->next = node;
+		if( node->next ) {
+			after->next->prev = node;
+			after->next = node;
+		}
 	}
 }
 
