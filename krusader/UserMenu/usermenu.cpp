@@ -44,43 +44,120 @@ In the following commands, we'll use '_' instead of 'a'/'o'. Please substitute a
 %_anf%  - number of files
 %_and%  - number of folders
 %_an%   - number of files and folders
-
+%_fm%   - filter mask (for example: *, *.cpp, *.h etc.)
 %_c%    - current file (or folder). Note: current != selected
 %_s%    - selected files and folders
-%_cs%   - selected files including current file (if it's not already selected)
 %_afd%  - all files and folders
 %_af%   - all files (not including folders)
 %_ad%   - all folders (not including files)
-%_fm%   - filter mask (for example: *, *.cpp, *.h etc.)
 
 */
 UMCmd UserMenu::expressions[ UserMenu::numOfExps ] = {
-         {"%_p%", "panel's path", exp_p},
-         {"%_anf%", "no. of files", exp_anf},
-         {"%_and%", "no. of folders", exp_and},
-         {"%_an%", "no. of files and folders", exp_an}
+         {"%_p%", i18n("panel's path"), exp_p},
+         {"%_anf%", i18n("no. of files"), exp_anf},
+         {"%_and%", i18n("no. of folders"), exp_and},
+         {"%_an%", i18n("no. of files and folders"), exp_an},
+         {"%_fm%", i18n("filter mask (*.h, *.cpp ...)"), exp_fm},
+         {"%_c%", i18n("current file (!= selected file)"), exp_c},
+         {"%_s%", i18n("selected files and folders"), exp_s},
+         {"%_afd%", i18n("all files and folders"), exp_afd},
+         {"%_af%", i18n("all files (not folders)"), exp_af},
+         {"%_ad%", i18n("all folders (not files)"), exp_ad}
       };
 
 #define ACTIVE    krApp->mainView->activePanel
 #define OTHER     krApp->mainView->activePanel->otherPanel
 #define GETPANEL  (str.lower()[1]=='a' ? ACTIVE : OTHER)
 
+///////// expander functions //////////////////////////////////////////////////////////
 QString UserMenu::exp_p( const QString& str, const bool& useUrl ) {
    if (useUrl) return GETPANEL->func->files()->vfs_getOrigin().url();
    else return GETPANEL->func->files()->vfs_getOrigin().path();
 }
 
-QString UserMenu::exp_anf( const QString& str, const bool& useUrl ) {
+QString UserMenu::exp_anf( const QString& str, const bool& ) {
    return QString("%1").arg(GETPANEL->view->numFiles());
 }
 
-QString UserMenu::exp_and( const QString& str, const bool& useUrl ) {
+QString UserMenu::exp_and( const QString& str, const bool& ) {
    return QString("%1").arg(GETPANEL->view->numDirs());
 }
 
-QString UserMenu::exp_an( const QString& str, const bool& useUrl ) {
+QString UserMenu::exp_an( const QString& str, const bool& ) {
    return QString("%1").arg(GETPANEL->view->numDirs()+GETPANEL->view->numFiles());
 }
+
+QString UserMenu::exp_fm( const QString& str, const bool& ) {
+   return GETPANEL->view->filterMask();
+}
+
+QString UserMenu::exp_c( const QString& str, const bool& useUrl ) {
+   KURL url = GETPANEL->func->files()->vfs_getFile(GETPANEL->view->getCurrentItem());
+   if (useUrl) return url.url();
+   else return url.path();
+}
+
+// items are separated by ';'
+QString UserMenu::exp_s( const QString& str, const bool& useUrl ) {
+   // get selected items from view
+   QStringList items;
+   GETPANEL->view->getSelectedItems(&items);
+   // translate to urls using vfs
+   KURL::List* list = GETPANEL->func->files()->vfs_getFiles(&items);
+   // parse everything to a single qstring
+   QString result;
+   for (KURL::List::Iterator it = list->begin(); it != list->end(); it++)
+      result += ((useUrl ? (*it).url() : (*it).path()) + ';');
+
+   return result;
+}
+
+// items are separated by ';'
+QString UserMenu::exp_afd( const QString& str, const bool& useUrl ) {
+   // get all items
+   QStringList items;
+   GETPANEL->view->getItemsByMask("*", &items);
+   // translate to urls using vfs
+   KURL::List* list = GETPANEL->func->files()->vfs_getFiles(&items);
+   // parse everything to a single qstring
+   QString result;
+   for (KURL::List::Iterator it = list->begin(); it != list->end(); it++)
+      result += ((useUrl ? (*it).url() : (*it).path()) + ';');
+
+   return result;
+}
+
+// items are separated by ';'
+QString UserMenu::exp_af( const QString& str, const bool& useUrl ) {
+   // get all items
+   QStringList items;
+   GETPANEL->view->getItemsByMask("*", &items, false, true);
+   // translate to urls using vfs
+   KURL::List* list = GETPANEL->func->files()->vfs_getFiles(&items);
+   // parse everything to a single qstring
+   QString result;
+   for (KURL::List::Iterator it = list->begin(); it != list->end(); it++)
+      result += ((useUrl ? (*it).url() : (*it).path()) + ';');
+
+   return result;
+}
+
+// items are separated by ';'
+QString UserMenu::exp_ad( const QString& str, const bool& useUrl ) {
+   // get all items
+   QStringList items;
+   GETPANEL->view->getItemsByMask("*", &items, true, false);
+   // translate to urls using vfs
+   KURL::List* list = GETPANEL->func->files()->vfs_getFiles(&items);
+   // parse everything to a single qstring
+   QString result;
+   for (KURL::List::Iterator it = list->begin(); it != list->end(); it++)
+      result += ((useUrl ? (*it).url() : (*it).path()) + ';');
+
+   return result;
+}
+
+////////// end of expander functions /////////////////////////////////////////////////
 
 void UserMenu::exec() {
    // execute menu and wait for selection

@@ -134,14 +134,20 @@ class UserMenu : public QWidget {
       UserMenu( QWidget *parent = 0, const char *name = 0 );
 
 
-      static const int numOfExps = 4;
+      static const int numOfExps = 10;
       static UMCmd expressions[ numOfExps ];
 
    protected:
-      static QString exp_p( const QString& str, const bool& useUrl );
-      static QString exp_anf( const QString& str, const bool& useUrl );
-      static QString exp_and( const QString& str, const bool& useUrl );
-      static QString exp_an( const QString& str, const bool& useUrl );
+      static QString exp_p( const QString& str, const bool& );
+      static QString exp_anf( const QString& str, const bool& );
+      static QString exp_and( const QString& str, const bool& );
+      static QString exp_an( const QString& str, const bool& );
+      static QString exp_fm( const QString& str, const bool& );
+      static QString exp_c( const QString& str, const bool& );
+      static QString exp_s( const QString& str, const bool& );
+      static QString exp_afd( const QString& str, const bool& );
+      static QString exp_af( const QString& str, const bool& );
+      static QString exp_ad( const QString& str, const bool& );
 
    private:
       UserMenuGui* _popup;
