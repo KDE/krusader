@@ -68,10 +68,17 @@ public:
 	PopularUrlsDlg();
 	~PopularUrlsDlg();
 	void run(KURL::List list);
-			
+	inline int result() const { return selection; } // returns index 0 - topmost, or -1
+	
+
+protected slots:
+	void slotSearchReturnPressed(const QString&);
+	void slotItemSelected(QListViewItem *it);
+	
 private:
 	KListView *urls;
 	KListViewSearchLine *search;
+	int selection;
 };
 
 

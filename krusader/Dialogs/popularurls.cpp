@@ -1,10 +1,15 @@
 #include <kmessagebox.h>
 #include <klocale.h>
+#include <qpushbutton.h>
 #include <klistview.h>
+#include <kiconloader.h>
 #include <klistviewsearchline.h>
 #include <qheader.h>
 #include <qlayout.h>
+#include <qlabel.h>
+#include <ktoolbarbutton.h>
 #include "../krusader.h"
+#include "../krslots.h"
 #include "popularurls.h"
 
 PopularUrls::PopularUrls(QObject *parent, const char *name) : QObject(parent, name), 
@@ -195,27 +200,69 @@ void PopularUrls::dumpList() {
 }
 
 void PopularUrls::showDialog() {
-	dlg->run(getMostPopularUrls(maxUrls));
+	KURL::List list = getMostPopularUrls(maxUrls);
+	dlg->run(list);
+	if (dlg->result() == -1) return;
+	SLOTS->refresh(list[dlg->result()]);
+	//printf("running %s\n", list[dlg->result()].url().latin1());fflush(stdout);
 }
 
 // ===================================== PopularUrlsDlg ======================================
 PopularUrlsDlg::PopularUrlsDlg(): 
-	KDialogBase(Plain, i18n("Popular Urls"), KDialogBase::Close, KDialogBase::NoDefault, krApp) {
-	QVBoxLayout *layout = new QVBoxLayout( plainPage(), 0, KDialog::spacingHint() );
+	KDialogBase(Plain, i18n("Popular Urls"), Close, KDialogBase::NoDefault, krApp) {
+	QGridLayout *layout = new QGridLayout( plainPage(), 0, KDialog::spacingHint() );
+	
 	// listview to contain the urls
 	urls = new KListView(plainPage());
 	urls->header()->hide();
 	urls->addColumn("");
 	urls->setSorting(-1);
-	// quick search
-	search = new KListViewSearchLine(plainPage(), urls);
+	urls->setVScrollBarMode(QScrollView::AlwaysOn);
 	
-	layout->addWidget(search);
-	layout->addWidget(urls);
+	// quick search
+	QToolButton *btn = new QToolButton(plainPage());
+	btn->setIconSet(SmallIcon("locationbar_erase"));
+	search = new KListViewSearchLine(plainPage(), urls);
+	search->setTrapReturnKey(true);
+	QLabel *lbl = new QLabel(search, i18n(" &Search: "), plainPage());
+
+	layout->addWidget(btn,0,0);
+	layout->addWidget(lbl,0,1);
+	layout->addWidget(search,0,2);
+	layout->addMultiCellWidget(urls,1,1,0,2);
 	setMaximumSize(600, 500);
+	
+	setTabOrder(search, urls);
+	setTabOrder(urls, actionButton(Close));
+	
+	connect(urls, SIGNAL(executed(QListViewItem*)), 
+		this, SLOT(slotItemSelected(QListViewItem*)));
+	connect(urls, SIGNAL(returnPressed(QListViewItem*)), 
+		this, SLOT(slotItemSelected(QListViewItem*)));		
+	connect(btn, SIGNAL(clicked()), search, SLOT(clear()));
+	connect(search, SIGNAL(returnPressed(const QString&)), 
+		this, SLOT(slotSearchReturnPressed(const QString&)));
 }
 
-PopularUrlsDlg::~ PopularUrlsDlg() {
+void PopularUrlsDlg::slotItemSelected(QListViewItem *it) {
+	selection = urls->itemIndex(it);
+	accept();
+}
+
+void PopularUrlsDlg::slotSearchReturnPressed(const QString&) {
+	urls->setFocus();
+	// select the first visible item
+	QListViewItemIterator it( urls );
+   while ( it.current() ) {
+		if ( it.current()->isVisible() ) {
+			urls->setSelected(it.current(), true);
+			urls->setCurrentItem(it.current());
+			break;
+		} else ++it;
+	} 
+}
+
+PopularUrlsDlg::~PopularUrlsDlg() {
 	delete search;
 	delete urls;
 }
@@ -227,9 +274,15 @@ void PopularUrlsDlg::run(KURL::List list) {
 	for (it = list.begin(); it!=list.end(); ++it) {
 		KListViewItem *item = new KListViewItem(urls, urls->lastItem());
 		item->setText(0, (*it).isLocalFile() ? (*it).path() : (*it).prettyURL());
+		item->setPixmap(0, (*it).isLocalFile() ? SmallIcon("folder") : SmallIcon("folder_html"));
 	}
+	//urls->setCurrentItem(urls->firstChild());
+	//urls->setSelected(urls->firstChild(), true);
+	setMinimumSize(urls->sizeHint().width()+45, 400);
 	
-	setMinimumSize(urls->sizeHint().width()+50, 200);
+	search->clear();
+	search->setFocus();
+	selection = -1;
 	exec();
 }
 
