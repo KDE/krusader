@@ -183,8 +183,13 @@ void KrViewer::edit(KURL url, bool create){
 
   if ( edit != "internal editor" ) {
     KProcess proc;
-    proc << edit << url.prettyURL();
-    if ( !proc.start( KProcess::DontCare ) )
+    // if the file is local, pass a normal path and not a url. this solves
+	 // the problem for editors that aren't url-aware
+	 if (url.isLocalFile())
+	 	proc << edit << url.path();
+	 else proc << edit << url.prettyURL();
+	 kdWarning() << url.path();
+	 if ( !proc.start( KProcess::DontCare ) )
       KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
     return;
   }
