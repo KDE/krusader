@@ -167,6 +167,7 @@ void KgUserActions::slotUpdateAction() {
   
   krUserAction->updateKrAction( *actionProperties->properties()->name(), actionProperties->properties() );
   krUserAction->xml()->writeActionDom();
+  krApp->userMenu->update();
   
   slotChangeAction();
   
