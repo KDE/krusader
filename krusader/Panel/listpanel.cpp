@@ -268,12 +268,12 @@ void ListPanel::togglePanelPopup() {
 		if (popupSizes.count() > 0)
 			dynamic_cast<QSplitter*>(popup->parent())->setSizes(popupSizes);
 		popup->show();
-		popupBtn->setPixmap(krLoader->loadIcon("down", KIcon::Panel));
+		popupBtn->setPixmap(krLoader->loadIcon("down", KIcon::Toolbar, 16));
 	} else {
 		popupSizes.clear();
 		popupSizes = dynamic_cast<QSplitter*>(popup->parent())->sizes();
 		popup->hide();
-		popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Panel));
+		popupBtn->setPixmap(krLoader->loadIcon("up", KIcon::Toolbar, 16));
 		// ugly hack. resize the splitter since it won't do so itself
 		QValueList<int> lst;
 		lst << height() << 0;
