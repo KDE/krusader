@@ -349,12 +349,12 @@ void kio_krarcProtocol::stat( const KURL & url ){
     error(ERR_UNSUPPORTED_ACTION,
     i18n("Accessing files is not supported with the %1 archives").arg(arcType) );
     return;
-  }
-  QString path = url.path();
+  }    
+  QString path = url.path(-1);
 	KURL newUrl = url;
 	
   // but treat the archive itself as the archive root
-	if( path == arcFile->url().path() ){
+	if( path == arcFile->url().path(-1) ){
     newUrl.setPath(path+"/");
 		path = newUrl.path();
 	}
@@ -558,7 +558,7 @@ UDSEntry* kio_krarcProtocol::findFileEntry(const KURL& url){
 		return 0;
 	}
 	QString name = url.path();
-	if( name.right(1) == "/" && arcDir == "/" ) name = "."; // the "/" case
+	if( arcFile->url().path(-1) == url.path(-1) ) name = "."; // the "/" case
 	else{
 		if( name.right(1) == "/" ) name.truncate(name.length()-1);
 		name = name.mid(name.findRev("/")+1);
