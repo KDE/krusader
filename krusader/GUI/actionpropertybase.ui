@@ -88,7 +88,7 @@
                                     <cstring>radioLocal</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>Local files only (no URL's)</string>
+                                    <string>Local files only (no URLs)</string>
                                 </property>
                                 <property name="checked">
                                     <bool>true</bool>
@@ -102,10 +102,10 @@
                                     <cstring>radioUrl</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>URL's (remote and local)</string>
+                                    <string>URLs (remote and local)</string>
                                 </property>
                                 <property name="toolTip" stdset="0">
-                                    <string>Substitute the placeholders with valid URL's</string>
+                                    <string>Substitute the placeholders with valid URLs</string>
                                 </property>
                             </widget>
                         </grid>
@@ -155,7 +155,7 @@
                                             <cstring>leDistinctName</cstring>
                                         </property>
                                         <property name="toolTip" stdset="0">
-                                            <string>An unique name for the action</string>
+                                            <string>A unique name for the action</string>
                                         </property>
                                     </widget>
                                     <widget class="KComboBox">
@@ -252,7 +252,7 @@
                             </sizepolicy>
                         </property>
                         <property name="text">
-                            <string>Commandline</string>
+                            <string>Command line</string>
                         </property>
                     </widget>
                     <widget class="KLineEdit" row="3" column="1" rowspan="1" colspan="3">
@@ -295,7 +295,7 @@
                             <string></string>
                         </property>
                         <property name="toolTip" stdset="0">
-                            <string>This commandline is executed</string>
+                            <string>This command line is executed</string>
                         </property>
                     </widget>
                     <widget class="QLabel" row="1" column="0">
@@ -363,7 +363,7 @@
                             </sizepolicy>
                         </property>
                         <property name="text">
-                            <string>Startpath</string>
+                            <string>Start path</string>
                         </property>
                     </widget>
                     <spacer row="6" column="0">
@@ -1038,7 +1038,7 @@
                             <string>Confirm each program call separately</string>
                         </property>
                         <property name="toolTip" stdset="0">
-                            <string>This allows you to tweak the commandline before beeing executed</string>
+                            <string>This allows you to tweak the command line before being executed</string>
                         </property>
                     </widget>
                     <widget class="QCheckBox" row="2" column="0">
@@ -1049,7 +1049,7 @@
                             <string>Run as different user</string>
                         </property>
                         <property name="toolTip" stdset="0">
-                            <string>execute the command under an other user-id</string>
+                            <string>execute the command under another user-id</string>
                         </property>
                     </widget>
                     <widget class="KLineEdit" row="2" column="1">
@@ -1121,3 +1121,4 @@
     <includehint>klineedit.h</includehint>
 </includehints>
 </UI>
+
