@@ -122,6 +122,9 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
     ::mkdir(tmpDir.left(i).local8Bit(),permissions);
   }
 
+  if( tmpDir.endsWith( "/" ) )
+    tmpDir.truncate( tmpDir.length() - 1 );
+       
 	// pack the directory
 	KShellProcess proc;
 	proc << putCmd << "\""+arcFile->url().path()+"\" " << "\""+tmpDir.mid(arcTempDir.length())+"\"";
@@ -715,8 +718,9 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
     nextWord(line); nextWord(line);
     // date & time
     QString d = nextWord(line);
-    QDate qdate(d.mid(6,2).toInt(),d.mid(3,2).toInt(),d.mid(0,2).toInt());
-    if( qdate.year() < 1930 ) qdate.addYears(100);
+    int year = 1900 + d.mid(6,2).toInt();
+    if( year < 1930 ) year+=100;
+    QDate qdate( year, d.mid(3,2).toInt(), d.mid(0,2).toInt() );
     QString t = nextWord(line);
     QTime qtime(t.mid(0,2).toInt(),t.mid(4,2).toInt(),0);
     time = QDateTime(qdate,qtime).toTime_t();    
@@ -804,7 +808,32 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
     if(dirDict.find(fullName) == 0)
       dirDict.insert(fullName,new UDSEntryList());
     else
+    {
+      // try to overwrite an existing entry
+      UDSEntryList::iterator entryIt;
+      UDSEntry::iterator atomIt;
+      
+      for ( entryIt = dir->begin(); entryIt != dir->end(); ++entryIt )
+        for( atomIt = (*entryIt).begin(); atomIt != (*entryIt).end(); ++atomIt )
+          if( (*atomIt).m_uds == UDS_NAME )
+            if((*atomIt).m_str == name)
+            {
+              for( atomIt = (*entryIt).begin(); atomIt != (*entryIt).end(); ++atomIt )
+              {
+                switch( (*atomIt).m_uds )
+                {
+                case UDS_MODIFICATION_TIME:
+                  (*atomIt).m_long = time;
+                  break;
+                case UDS_ACCESS:
+                  (*atomIt).m_long = mode & 07777;
+                  break;
+                }
+              }
+              return;
+            }
       return; // there is alreay an entry for this directory
+    }
   }
   
   dir->append(entry);
