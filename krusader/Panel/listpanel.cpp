@@ -1058,8 +1058,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          if ( e->state() & ControlButton ) {
             SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
             MAIN_VIEW->cmdLine->setFocus();
-         } else
-            e->ignore();
+         } else e->ignore();
          break;
          case Key_Right :
          case Key_Left :
@@ -1095,6 +1094,13 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          } else
             e->ignore();
          break;
+
+			case Key_Up :
+			if (e->state() == ControlButton) { // jump to the origin bar
+				origin->lineEdit()->selectAll();
+				origin->setFocus();
+			}
+			break;
 
          default:
          // if we got this, it means that the view is not doing
