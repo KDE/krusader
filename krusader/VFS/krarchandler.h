@@ -33,6 +33,7 @@
 #include <qstringlist.h>
 #include <qobject.h>
 #include <kprocess.h>
+#include <kurl.h>
 
 class KRarcHandler: public QObject {
 	Q_OBJECT
@@ -53,6 +54,8 @@ public:
   static QStringList supportedPackers();
   // removes the alias names for a packer
   static void removeAliases( QString &type );
+  // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
+  static bool isArchive(const KURL& url);
   // used to store the current archive password
   QString password;
   int inSet;

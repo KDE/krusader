@@ -42,6 +42,8 @@
 #include "../defaults.h"
 #include "../krservices.h"
 
+static QStringList arcProtocols = QStringList::split(";", "tar;bzip;bzip2;gzip;krarc;zip");
+
 QStringList KRarcHandler::supportedPackers() {
   QStringList packers;
 
@@ -410,4 +412,12 @@ void KRarcHandler::setPassword( KProcess * proc, char *buffer, int ) {
     } else password = QString::null;
   }
 
+bool KRarcHandler::isArchive(const KURL& url) {
+	QString protocol = url.protocol();
+	if (arcProtocols.find(protocol) != arcProtocols.end())
+		return true;
+	else return false;	
+}
+  
 #include "krarchandler.moc"
+
