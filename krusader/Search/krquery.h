@@ -42,6 +42,7 @@ public:
 
   bool match( vfile *file );     // checks if the given vfile object matches the conditions
   void normalize();              // make sure KRSearchMod can use the data
+  void setFilter( QString text ); // sets the text for filtering
 
   QStringList matches;           // what to search
   QStringList excludes;          // what to exclude

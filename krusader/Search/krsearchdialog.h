@@ -35,7 +35,6 @@
 
 #include <qwidget.h>
 #include <qstringlist.h>
-#include <kshellcompletion.h>
 #include "krsearchdialogbase.h"
 #include "krquery.h"
 #include "krsearchmod.h"
@@ -59,10 +58,6 @@ public slots:
   void stopSearch();
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
   void closeDialog();
-  void addToSearchIn();
-  void addToSearchInManually();
-  void addToDontSearchIn();
-  void addToDontSearchInManually();
   void modifiedBetweenSetDate1();
   void modifiedBetweenSetDate2();
   void notModifiedAfterSetDate();
@@ -80,14 +75,12 @@ private:
   void invalidDateMessage(QLineEdit *p);
   void fillList(QComboBox *list, QString filename);
   bool gui2query();
-  void deleteSelectedItems( QListBox * );
   void editCurrent();
   void viewCurrent();
 
 private:
   KRQuery *query;
   KRSearchMod *searcher;
-  KShellCompletion completion;
   QStringList savedSearches;
   bool isSearching;
   bool closed;

@@ -97,6 +97,8 @@ bool KRQuery::match( vfile *vf )
 {
   // see if the name matches
   if ( !fileMatch( vf->vfile_getName() ) ) return false;
+  // checking the mime
+  if( !type.isEmpty() && !checkType( vf->vfile_getMime() ) ) return false;
   // check that the size fit
   KIO::filesize_t size = vf->vfile_getSize();
   if ( minSize && size < minSize ) return false;
@@ -161,3 +163,26 @@ bool KRQuery::containsContent( QString file )
   }
   return false;
 }
+
+void KRQuery::setFilter( QString text )
+{
+  QString matchText = text;
+  QString excludeText;
+  
+  if( !matchText.contains( "*" ) && !matchText.contains( "?" ) && !matchText.contains( " " ) && !matchText.contains( "|" ) )
+    matchText = "*" + matchText + "*";
+    
+  int excludeNdx = matchText.find( '|' );
+  if( excludeNdx > -1 )
+  {
+    excludeText = matchText.mid( excludeNdx + 1 ).stripWhiteSpace();
+    matchText.truncate( excludeNdx );
+    matchText = matchText.stripWhiteSpace();
+    if( matchText.isEmpty() )
+      matchText = "*";
+  }
+  
+  matches  = QStringList::split(QChar(' '), matchText );
+  excludes = QStringList::split(QChar(' '), excludeText );
+}
+

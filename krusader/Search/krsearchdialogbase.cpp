@@ -34,77 +34,6 @@
 #include <qpixmap.h>
 #include <qlistbox.h>
 
-static const char* const image0_data[] = {
-"16 16 52 1",
-". c None",
-"# c #000000",
-"Q c #101010",
-"X c #181c18",
-"K c #202020",
-"w c #313031",
-"W c #313431",
-"V c #414041",
-"U c #414441",
-"a c #4a3018",
-"E c #4a484a",
-"T c #4a4c4a",
-"l c #524c4a",
-"h c #52504a",
-"j c #525052",
-"i c #5a5952",
-"J c #6a6962",
-"P c #6a6d6a",
-"S c #8b8d8b",
-"D c #949594",
-"R c #9c999c",
-"O c #9c9d9c",
-"C c #a4a19c",
-"M c #a4a1a4",
-"N c #a4a5a4",
-"I c #acaaac",
-"B c #acaeac",
-"F c #b47d41",
-"v c #b4b2b4",
-"u c #b4b6b4",
-"A c #bdbabd",
-"t c #bdbebd",
-"k c #c5854a",
-"H c #c5c2c5",
-"s c #c5c6c5",
-"r c #cdcacd",
-"L c #cdcecd",
-"z c #d5d2d5",
-"q c #d5d6d5",
-"x c #dedade",
-"p c #dedede",
-"b c #e6a562",
-"G c #e6e2e6",
-"o c #e6e6e6",
-"y c #eeeae6",
-"n c #eeeeee",
-"m c #f6f6f6",
-"f c #ffae62",
-"e c #ffc283",
-"d c #ffc683",
-"g c #ffca8b",
-"c c #ffd29c",
-"......####......",
-".....##.####.#..",
-"....#.....####..",
-"...........###..",
-"..........####..",
-".aaaa...........",
-"abcdbaaaaaaa....",
-"acdeffffffff#...",
-"ageahhhihhjjh###",
-"aeklmmnopqrstuvw",
-"aeaxpyopzsABCDE.",
-"aFhxxGpqrHuICJK.",
-"aaLrqqzLHABMDE..",
-"ajLtssHtuBNOPQ..",
-"atNIBBINMRDSE...",
-"KEETTTEEUVVWX..."};
-
 static const char* const image1_data[] = { 
 "16 16 17 1",
 ". c None",
@@ -141,42 +70,6 @@ static const char* const image1_data[] = {
 "#hhhhhhebbcccdd#",
 ".##############."};
 
-static const char * const image2_data[] = {
-"16 16 17 1",
-" 	c None",
-".	c #704A13",
-"+	c #8A6E3C",
-"@	c #997E52",
-"#	c #2C1D06",
-"$	c #EAD9B9",
-"%	c #E0CBA7",
-"&	c #C8A15E",
-"*	c #DAB579",
-"=	c #F8F5F0",
-"-	c #BF9346",
-";	c #AB6503",
-">	c #C1892B",
-",	c #B6710C",
-"'	c #965702",
-")	c #5A3202",
-"!	c #0D0702",
-"                ",
-"     .+@@@+#    ",
-"    +$$$%$$&#   ",
-"   .$%**%**$&#  ",
-"  .$*&*$=***%&# ",
-" .%*&**==**&&%-#",
-" .-&&&*$=%&&&-+#",
-" #;>$$$==$$$*,.#",
-" #;>========$,.#",
-" #;,-&*$=*&-,,.#",
-" #.;,,-%=&>,,')#",
-" !)';,,%=>,,')# ",
-"  !).;,&%>;;)#  ",
-"   !).;;;;;)#   ",
-"    !#).)))#    ",
-"     ######     "};
-
 /* 
  *  Constructs a KrSearchBase which is a child of 'parent', with the 
  *  name 'name' and widget flags set to 'f' 
@@ -187,9 +80,7 @@ static const char * const image2_data[] = {
 KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFlags fl )
     : QDialog( parent, name, modal, fl )
 {
-    QPixmap image0( ( const char** ) image0_data );
     QPixmap image1( ( const char** ) image1_data );
-    QPixmap image2( ( const char** ) image2_data );
     if ( !name )
 	setName( "KrSearchBase" );
 //    resize( 596, 476 );
@@ -227,188 +118,8 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     TabWidget2 = new QTabWidget( this, "TabWidget2" );
 
-    tab = new QWidget( TabWidget2, "tab" );
-    tabLayout = new QGridLayout( tab );
-    tabLayout->setSpacing( 6 );
-    tabLayout->setMargin( 11 );
-
-    GroupBox1_2 = new QGroupBox( tab, "GroupBox1_2" );
-    GroupBox1_2->setTitle( i18n( "&Don't search in" ) );
-    GroupBox1_2->setColumnLayout(0, Qt::Vertical );
-    GroupBox1_2->layout()->setSpacing( 0 );
-    GroupBox1_2->layout()->setMargin( 0 );
-    GroupBox1_2Layout = new QGridLayout( GroupBox1_2->layout() );
-    GroupBox1_2Layout->setAlignment( Qt::AlignTop );
-    GroupBox1_2Layout->setSpacing( 6 );
-    GroupBox1_2Layout->setMargin( 11 );
-
-    dontSearchInEdit = new KLineEdit( GroupBox1_2, "dontSearchInEdit" );
-
-    GroupBox1_2Layout->addWidget( dontSearchInEdit, 0, 0 );
-
-    dontSearchInBtn = new QToolButton( GroupBox1_2, "dontSearchInBtn" );
-    dontSearchInBtn->setText( "" );
-    dontSearchInBtn->setPixmap( image0 );
-
-    dontSearchInBtnAdd = new QToolButton( GroupBox1_2, "dontSearchInBtnAdd" );
-    dontSearchInBtnAdd->setText( "" );
-    dontSearchInBtnAdd->setPixmap( image2 );
-
-    GroupBox1_2Layout->addWidget( dontSearchInBtn, 0, 2 );
-    GroupBox1_2Layout->addWidget( dontSearchInBtnAdd, 0, 1 );
-
-    dontSearchIn = new QListBox( GroupBox1_2, "dontSearchIn" );
-    dontSearchIn->setSelectionMode( QListBox::Extended );
-
-    GroupBox1_2Layout->addMultiCellWidget( dontSearchIn, 1, 1, 0, 2 );
-
-    tabLayout->addWidget( GroupBox1_2, 1, 1 );
-
-    GroupBox1 = new QGroupBox( tab, "GroupBox1" );
-    GroupBox1->setTitle( i18n( "&Search in" ) );
-    GroupBox1->setColumnLayout(0, Qt::Vertical );
-    GroupBox1->layout()->setSpacing( 0 );
-    GroupBox1->layout()->setMargin( 0 );
-    GroupBox1Layout = new QGridLayout( GroupBox1->layout() );
-    GroupBox1Layout->setAlignment( Qt::AlignTop );
-    GroupBox1Layout->setSpacing( 6 );
-    GroupBox1Layout->setMargin( 11 );
-
-    searchInEdit = new KLineEdit( GroupBox1, "searchInEdit" );
-
-    GroupBox1Layout->addWidget( searchInEdit, 0, 0 );
-
-    searchIn = new QListBox( GroupBox1, "searchIn" );
-    searchIn->setSelectionMode( QListBox::Extended );
-
-    GroupBox1Layout->addMultiCellWidget( searchIn, 1, 1, 0, 2 );
-
-    searchInBtnAdd = new QToolButton( GroupBox1, "searchInBtnAdd" );
-    searchInBtnAdd->setText( "" );
-    searchInBtnAdd->setPixmap( image2 );
-
-    GroupBox1Layout->addWidget( searchInBtnAdd, 0, 1 );
-
-    tabLayout->addWidget( GroupBox1, 1, 0 );
-    searchInBtn = new QToolButton( GroupBox1, "searchInBtn" );
-    searchInBtn->setText( "" );
-    searchInBtn->setPixmap( image0 );
-
-    GroupBox1Layout->addWidget( searchInBtn, 0, 2 );
-
-
-    GroupBox14 = new QGroupBox( tab, "GroupBox14" );
-    GroupBox14->setTitle( i18n( "Containing text" ) );
-    GroupBox14->setColumnLayout(0, Qt::Vertical );
-    GroupBox14->layout()->setSpacing( 0 );
-    GroupBox14->layout()->setMargin( 0 );
-    GroupBox14Layout = new QGridLayout( GroupBox14->layout() );
-    GroupBox14Layout->setAlignment( Qt::AlignTop );
-    GroupBox14Layout->setSpacing( 6 );
-    GroupBox14Layout->setMargin( 11 );
-
-    Layout7 = new QHBoxLayout;
-    Layout7->setSpacing( 6 );
-    Layout7->setMargin( 0 );
-    QSpacerItem* spacer_2 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    Layout7->addItem( spacer_2 );
-
-    containsWholeWord = new QCheckBox( GroupBox14, "containsWholeWord" );
-    containsWholeWord->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, containsWholeWord->sizePolicy().hasHeightForWidth() ) );
-    containsWholeWord->setText( i18n( "&Match whole word only" ) );
-    containsWholeWord->setChecked( FALSE );
-    Layout7->addWidget( containsWholeWord );
-
-    containsTextCase = new QCheckBox( GroupBox14, "containsTextCase" );
-    containsTextCase->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, containsTextCase->sizePolicy().hasHeightForWidth() ) );
-    containsTextCase->setText( i18n( "Cas&e sensitive" ) );
-    containsTextCase->setChecked( TRUE );
-    Layout7->addWidget( containsTextCase );
-
-    GroupBox14Layout->addLayout( Layout7, 1, 0 );
-
-    Layout8 = new QHBoxLayout;
-    Layout8->setSpacing( 6 );
-    Layout8->setMargin( 0 );
-
-    TextLabel2 = new QLabel( GroupBox14, "TextLabel2" );
-    TextLabel2->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)1, TextLabel2->sizePolicy().hasHeightForWidth() ) );
-    TextLabel2->setText( i18n( "&Text:" ) );
-    Layout8->addWidget( TextLabel2 );
-
-    containsText = new KHistoryCombo( FALSE, GroupBox14, "containsText" );
-    containsText->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, containsText->sizePolicy().hasHeightForWidth() ) );
-    Layout8->addWidget( containsText );
-    TextLabel2->setBuddy(containsText);
-
-    GroupBox14Layout->addLayout( Layout8, 0, 0 );
-
-    tabLayout->addMultiCellWidget( GroupBox14, 2, 2, 0, 1 );
-
-    GroupBox140 = new QGroupBox( tab, "GroupBox140" );
-    GroupBox140->setTitle( "" );
-    GroupBox140->setColumnLayout(0, Qt::Vertical );
-    GroupBox140->layout()->setSpacing( 0 );
-    GroupBox140->layout()->setMargin( 0 );
-    GroupBox140Layout = new QGridLayout( GroupBox140->layout() );
-    GroupBox140Layout->setAlignment( Qt::AlignTop );
-    GroupBox140Layout->setSpacing( 6 );
-    GroupBox140Layout->setMargin( 11 );
-
-    searchForCase = new QCheckBox( GroupBox140, "searchForCase" );
-    searchForCase->setText( i18n( "&Case sensetive" ) );
-    searchForCase->setChecked( TRUE );
-
-    GroupBox140Layout->addWidget( searchForCase, 1, 2 );
-
-    TextLabel1 = new QLabel( GroupBox140, "TextLabel1" );
-    TextLabel1->setText( i18n( "Search &for:" ) );
-
-    GroupBox140Layout->addWidget( TextLabel1, 0, 0 );
-
-    TextLabel1_2 = new QLabel( GroupBox140, "TextLabel1_2" );
-    TextLabel1_2->setText( i18n( "&Of type:" ) );
-
-    GroupBox140Layout->addWidget( TextLabel1_2, 1, 0 );
-
-    ofType = new KComboBox( FALSE, GroupBox140, "ofType" );
-    ofType->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, ofType->sizePolicy().hasHeightForWidth() ) );
-    ofType->setEditable( FALSE );
-    TextLabel1_2->setBuddy(ofType);
-
-    GroupBox140Layout->addWidget( ofType, 1, 1 );
-
-    searchFor = new KHistoryCombo( FALSE, GroupBox140, "searchFor" );
-    searchFor->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, searchFor->sizePolicy().hasHeightForWidth() ) );
-    searchFor->setEditable( TRUE );
-    TextLabel1->setBuddy(searchFor);
-
-    GroupBox140Layout->addMultiCellWidget( searchFor, 0, 0, 1, 2 );
-
-    tabLayout->addMultiCellWidget( GroupBox140, 0, 0, 0, 1 );
-
-    Layout9_2 = new QHBoxLayout;
-    Layout9_2->setSpacing( 6 );
-    Layout9_2->setMargin( 0 );
-    QSpacerItem* spacer_3 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    Layout9_2->addItem( spacer_3 );
-
-    searchInDirs = new QCheckBox( tab, "searchInDirs" );
-    searchInDirs->setText( i18n( "Search in s&ubdirectories" ) );
-    searchInDirs->setChecked( TRUE );
-    Layout9_2->addWidget( searchInDirs );
-
-    searchInArchives = new QCheckBox( tab, "searchInArchives" );
-    searchInArchives->setEnabled( FALSE );
-    searchInArchives->setText( i18n( "Search in arch&ives" ) );
-    Layout9_2->addWidget( searchInArchives );
-
-    followLinks = new QCheckBox( tab, "followLinks" );
-    followLinks->setText( i18n( "Follow &links" ) );
-    Layout9_2->addWidget( followLinks );
-
-    tabLayout->addMultiCellLayout( Layout9_2, 3, 3, 0, 1 );
-    TabWidget2->insertTab( tab, i18n( "&General" ) );
+    generalFilter = new GeneralFilter( TabWidget2, "generalFilter" );
+    TabWidget2->insertTab( generalFilter, i18n( "&General" ) );
 
     tab_2 = new QWidget( TabWidget2, "tab_2" );
     tabLayout_2 = new QGridLayout( tab_2 );
@@ -740,12 +451,6 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     // signals and slots connections
     connect( mainSearchBtn, SIGNAL( clicked() ), this, SLOT( startSearch() ) );
     connect( mainStopBtn, SIGNAL( clicked() ), this, SLOT( stopSearch() ) );
-    connect( searchInBtn, SIGNAL( clicked() ), this, SLOT( addToSearchIn() ) );
-    connect( searchInBtnAdd, SIGNAL( clicked() ), this, SLOT( addToSearchInManually() ) );
-    connect( dontSearchInBtn, SIGNAL( clicked() ), this, SLOT( addToDontSearchIn() ) );
-    connect( dontSearchInBtnAdd, SIGNAL( clicked() ), this, SLOT( addToDontSearchInManually() ) );
-    connect( searchInEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( addToSearchInManually() ) );
-    connect( dontSearchInEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( addToDontSearchInManually() ) );
     connect( biggerThanEnabled, SIGNAL( toggled(bool) ), biggerThanAmount, SLOT( setEnabled(bool) ) );
     connect( biggerThanEnabled, SIGNAL( toggled(bool) ), biggerThanType, SLOT( setEnabled(bool) ) );
     connect( smallerThanEnabled, SIGNAL( toggled(bool) ), smallerThanAmount, SLOT( setEnabled(bool) ) );
@@ -780,11 +485,6 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     connect( notModifiedAfterBtn, SIGNAL( clicked() ), this, SLOT( notModifiedAfterSetDate() ) );
 
     // tab order
-    setTabOrder( searchFor, ofType );
-    setTabOrder( ofType, searchInEdit );
-    setTabOrder( searchInEdit, dontSearchInEdit );
-    setTabOrder( dontSearchInEdit, containsText );
-    setTabOrder( containsText, mainSearchBtn );
     setTabOrder( mainSearchBtn, mainCloseBtn );
     setTabOrder( mainCloseBtn, biggerThanEnabled );
     setTabOrder( biggerThanEnabled, biggerThanAmount );
@@ -814,14 +514,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     setTabOrder( allW, allX );
     setTabOrder( allX, mainStopBtn );
     setTabOrder( mainStopBtn, TabWidget2 );
-    setTabOrder( TabWidget2, dontSearchIn );
-    setTabOrder( dontSearchIn, searchIn );
-    setTabOrder( searchIn, containsTextCase );
-    setTabOrder( containsTextCase, searchForCase );
-    setTabOrder( searchForCase, searchInDirs );
-    setTabOrder( searchInDirs, searchInArchives );
-    setTabOrder( searchInArchives, followLinks );
-    setTabOrder( followLinks, biggerThanType );
+    setTabOrder( TabWidget2, biggerThanType );
     setTabOrder( biggerThanType, smallerThanType );
     setTabOrder( smallerThanType, modifiedInTheLastType );
     setTabOrder( modifiedInTheLastType, notModifiedInTheLastType );
@@ -850,26 +543,6 @@ bool KrSearchBase::event( QEvent* ev )
 	TextLabel4->setFont( TextLabel4_font ); 
     }
     return ret;
-}
-
-void KrSearchBase::addToDontSearchIn()
-{
-    qWarning( "KrSearchBase::addToDontSearchIn(): Not implemented yet!" );
-}
-
-void KrSearchBase::addToDontSearchInManually()
-{
-    qWarning( "KrSearchBase::addToDontSearchInManually(): Not implemented yet!" );
-}
-
-void KrSearchBase::addToSearchIn()
-{
-    qWarning( "KrSearchBase::addToSearchIn(): Not implemented yet!" );
-}
-
-void KrSearchBase::addToSearchInManually()
-{
-    qWarning( "KrSearchBase::addToSearchInManually(): Not implemented yet!" );
 }
 
 void KrSearchBase::closeDialog()

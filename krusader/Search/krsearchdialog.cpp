@@ -109,7 +109,7 @@ KrSearchDialog::KrSearchDialog(QWidget *parent, const char *name ) :
   show();
   // disable the search action ... no 2 searchers !
   krFind->setEnabled(false);
-  searchFor->setFocus();
+  generalFilter->searchFor->setFocus();
 	resultsList->setColumnAlignment(2, AlignRight);
 
   isSearching = closed = false;
@@ -129,35 +129,10 @@ void KrSearchDialog::invalidDateMessage(QLineEdit *p) {
 
 void KrSearchDialog::prepareGUI() {
   //=======> to be moved ...
-  searchForCase->setChecked(false);
   resultsList->setSorting(1); // sort by location
   belongsToUserData->setEditable(false); belongsToGroupData->setEditable(false);
-	searchInArchives->setEnabled(true);
-	connect(searchInArchives, SIGNAL(toggled(bool)), containsText, SLOT(setDisabled(bool)));
-	connect(searchInArchives, SIGNAL(toggled(bool)), containsTextCase, SLOT(setDisabled(bool)));
-	connect(searchInArchives, SIGNAL(toggled(bool)), containsWholeWord, SLOT(setDisabled(bool)));
-	
-  ofType->insertItem(i18n("All Files"));
-  ofType->insertItem(i18n("Archives"));
-  ofType->insertItem(i18n("Directories"));
-  ofType->insertItem(i18n("Image Files"));
-  ofType->insertItem(i18n("Text Files"));
-  ofType->insertItem(i18n("Video Files"));
-  ofType->insertItem(i18n("Audio Files"));
-
-  ofType->setEnabled(true);
   // ========================================
 
-  // additional connections ... adds history support etc.
-  connect(searchFor, SIGNAL(activated(const QString&)),
-          searchFor, SLOT(addToHistory(const QString&)));
-  connect(containsText, SIGNAL(activated(const QString&)),
-          containsText, SLOT(addToHistory(const QString&)));
-
-  // add shell completion
-  completion.setMode(KURLCompletion::FileCompletion);
-  searchInEdit->setCompletionObject(&completion);
-  dontSearchInEdit->setCompletionObject(&completion);
 
   // fix the results list
   // => make the results font smaller
@@ -177,26 +152,9 @@ void KrSearchDialog::prepareGUI() {
 	resultsList->setColumnWidth(3, j*7);
   resultsList->setColumnWidth(4, j*7);
 
-  // clear the searchin lists
-  searchIn->clear(); dontSearchIn->clear();
-
   // the path in the active panel should be the default search location
   QString path = krApp->mainView->activePanel->getPath();
-  searchInEdit->setText(path);
-
-  // load the completion and history lists
-  // ==> search for
-  krConfig->setGroup("Search");
-  QStringList list = krConfig->readListEntry("SearchFor Completion");
-  searchFor->completionObject()->setItems(list);
-  list = krConfig->readListEntry("SearchFor History");
-  searchFor->setHistoryItems(list);
-  // ==> grep
-  krConfig->setGroup("Search");
-  list = krConfig->readListEntry("ContainsText Completion");
-  containsText->completionObject()->setItems(list);
-  list = krConfig->readListEntry("ContainsText History");
-  containsText->setHistoryItems(list);
+  generalFilter->searchInEdit->setText(path);
 
   // fill the users and groups list
   fillList(belongsToUserData, USERSFILE);
@@ -216,21 +174,6 @@ void KrSearchDialog::closeDialog() {
     searcher = 0;
   }
   hide();
-  // save the history combos
-  // ==> search for
-  QStringList list = searchFor->completionObject()->items();
-  krConfig->setGroup("Search");
-  krConfig->writeEntry("SearchFor Completion", list);
-  list = searchFor->historyItems();
-  krConfig->writeEntry("SearchFor History", list);
-  // ==> grep text
-  list = containsText->completionObject()->items();
-  krConfig->setGroup("Search");
-  krConfig->writeEntry("ContainsText Completion", list);
-  list = containsText->historyItems();
-  krConfig->writeEntry("ContainsText History", list);
-
-  krConfig->sync();
   // re-enable the search action
   krFind->setEnabled(true);
   accept();
@@ -239,36 +182,6 @@ void KrSearchDialog::closeDialog() {
 void KrSearchDialog::reject() {
   closeDialog();
   KrSearchBase::reject();
-}
-
-void KrSearchDialog::addToSearchIn() {
-  KURL url = KFileDialog::getExistingURL();
-  if ( url.isEmpty()) return;
-  searchInEdit->setText( url.prettyURL( 0,KURL::StripFileProtocol ) );
-  searchInEdit->setFocus();
-}
-
-void KrSearchDialog::addToSearchInManually() {
-  if( searchInEdit->text().simplifyWhiteSpace().length() )
-  {  
-    searchIn->insertItem(searchInEdit->text());
-    searchInEdit->clear();
-  }
-}
-
-void KrSearchDialog::addToDontSearchIn() {
-  KURL url = KFileDialog::getExistingURL();
-  if ( url.isEmpty()) return;
-  dontSearchInEdit->setText( url.prettyURL( 0,KURL::StripFileProtocol ) );
-  dontSearchInEdit->setFocus();
-}
-
-void KrSearchDialog::addToDontSearchInManually() {
-  if( dontSearchInEdit->text().simplifyWhiteSpace().length() )
-  {
-    dontSearchIn->insertItem(dontSearchInEdit->text());
-    dontSearchInEdit->clear();
-  }
 }
 
 void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm){
@@ -285,73 +198,14 @@ bool KrSearchDialog::gui2query() {
   // prepare the query ...
   /////////////////// names, locations and greps
   if (query!=0) { delete query; query = 0; }
-  
-  QString matchText = searchFor->currentText().stripWhiteSpace();
-  QString excludeText;
-  
-  if( !matchText.contains( "*" ) && !matchText.contains( "?" ) && !matchText.contains( " " ) && !matchText.contains( "|" ) )
-    matchText = "*" + matchText + "*";
-    
-  int excludeNdx = matchText.find( '|' );
-  if( excludeNdx > -1 )
-  {
-    excludeText = matchText.mid( excludeNdx + 1 ).stripWhiteSpace();
-    matchText.truncate( excludeNdx );
-    matchText = matchText.stripWhiteSpace();
-    if( matchText.isEmpty() )
-      matchText = "*";
-  }
-  
   query = new KRQuery();
-  query->matches  = QStringList::split(QChar(' '), matchText );
-  query->excludes = QStringList::split(QChar(' '), excludeText );
-  query->matchesCaseSensitive = searchForCase->isChecked();
-  if (containsText->isEnabled())
-    query->contain = containsText->currentText();
-  query->containCaseSensetive = containsTextCase->isChecked();
-  query->containWholeWord     = containsWholeWord->isChecked();
-  query->inArchive = searchInArchives->isChecked();
-  query->recurse = searchInDirs->isChecked();
-  query->followLinks = followLinks->isChecked();
-  if (ofType->currentText()!=i18n("All Files"))
-    query->type = ofType->currentText();
-  else query->type = QString::null;
-  // create the lists
-  query->whereToSearch.clear();
-  QListBoxItem *item = searchIn->firstItem();
-  while ( item )
-  {    
-    query->whereToSearch.append( vfs::fromPathOrURL( item->text().simplifyWhiteSpace() ) );
-    item = item->next();
-  }
 
-  if (!searchInEdit->text().simplifyWhiteSpace().isEmpty())
-    query->whereToSearch.append( vfs::fromPathOrURL( searchInEdit->text().simplifyWhiteSpace() ) );
-
-  query->whereNotToSearch.clear();
-  item = dontSearchIn->firstItem();
-  while ( item )
+  if( !generalFilter->fillQuery( query ) )
   {
-    query->whereNotToSearch.append( vfs::fromPathOrURL( item->text().simplifyWhiteSpace() ) );
-    item = item->next();
-  }
-  if (!dontSearchInEdit->text().simplifyWhiteSpace().isEmpty())
-    query->whereNotToSearch.append( vfs::fromPathOrURL( dontSearchInEdit->text().simplifyWhiteSpace() ) );
-
-  // check that we have (at least) what to search, and where to search in
-  if (searchFor->currentText().simplifyWhiteSpace().isEmpty()) {
-    KMessageBox::error(0,i18n("No search criteria entered !"));
     TabWidget2->setCurrentPage(0); // set page to general
-    searchFor->setFocus();
     return false;
   }
-  if (query->whereToSearch.isEmpty() ) { // we need a place to search in
-    KMessageBox::error(0,i18n("Please specify a location to search in."));
-    TabWidget2->setCurrentPage(0); // set page to general
-    searchInEdit->setFocus();
-    return false;
-  }
-
+  
   // size calculations ////////////////////////////////////////////////
   if ( biggerThanEnabled->isChecked() &&
       !(biggerThanAmount->text().simplifyWhiteSpace()).isEmpty() ) {
@@ -475,7 +329,7 @@ bool KrSearchDialog::gui2query() {
 
 void KrSearchDialog::startSearch() {
   // first, informative messages
-  if (searchInArchives->isChecked()) {
+  if (generalFilter->searchInArchives->isChecked()) {
     KMessageBox::information(0, i18n("Since you chose to also search in archives, "
                                      "note the following limitations:\n"
                                      "You cannot search for text (grep) while doing"
@@ -485,8 +339,7 @@ void KrSearchDialog::startSearch() {
   // prepare the query /////////////////////////////////////////////
   if (!gui2query()) return;
   // else implied
-  searchFor->addToHistory(searchFor->currentText());
-  containsText->addToHistory(containsText->currentText());
+  generalFilter->queryAccepted();
 
   // prepare the gui ///////////////////////////////////////////////
   mainSearchBtn->setEnabled(false);
@@ -572,22 +425,6 @@ void KrSearchDialog::loadSearch() {
 void KrSearchDialog::loadSearch(QListViewItem *) {
 }
 
-void KrSearchDialog::deleteSelectedItems( QListBox *list_box )
-{
-  int i=0;
-  QListBoxItem *item;
-
-  while( (item = list_box->item(i)) )
-  {
-    if( item->isSelected() )
-    {
-      list_box->removeItem( i );
-      continue;
-    }
-    i++;
-  }
-}
-
 void KrSearchDialog::closeEvent(QCloseEvent *e)
 {                     /* if searching is in progress we must not close the window */
   if( isSearching )   /* because qApp->processEvents() is called by the searcher and */
@@ -607,32 +444,19 @@ void KrSearchDialog::keyPressEvent(QKeyEvent *e)
     stopSearch();         /* so we simply stop searching */
     return;
   }
-  else if( e->key() == Key_Delete )
-  {
-    if( searchIn->hasFocus() )
-    {
-      deleteSelectedItems( searchIn );
-      return;
-    }
-    if( dontSearchIn->hasFocus() )
-    {
-      deleteSelectedItems( dontSearchIn );
-      return;
-    }
-  }
   if( resultsList->hasFocus() )
   {
     if( e->key() == Key_F4 )
     {
-      if (!containsText->currentText().isEmpty() && QApplication::clipboard()->text() != containsText->currentText())
-        QApplication::clipboard()->setText(containsText->currentText());
+      if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
+        QApplication::clipboard()->setText(generalFilter->containsText->currentText());
       editCurrent();
       return;
     }
     else if( e->key() == Key_F3 )
     {
-      if (!containsText->currentText().isEmpty() && QApplication::clipboard()->text() != containsText->currentText())
-        QApplication::clipboard()->setText(containsText->currentText());
+      if (!generalFilter->containsText->currentText().isEmpty() && QApplication::clipboard()->text() != generalFilter->containsText->currentText())
+        QApplication::clipboard()->setText(generalFilter->containsText->currentText());
       viewCurrent();
       return;
     }

@@ -9,6 +9,8 @@
 #ifndef KRSEARCHBASE_H
 #define KRSEARCHBASE_H
 
+#include "generalfilter.h"
+
 #include <qvariant.h>
 #include <qdialog.h>
 
@@ -43,36 +45,12 @@ public:
     KrSearchBase( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, WFlags fl = 0 );
     ~KrSearchBase();
 
+    GeneralFilter *generalFilter;
     QPushButton* mainHelpBtn;
     QPushButton* mainSearchBtn;
     QPushButton* mainStopBtn;
     QPushButton* mainCloseBtn;
     QTabWidget* TabWidget2;
-    QWidget* tab;
-    QGroupBox* GroupBox1_2;
-    KLineEdit* dontSearchInEdit;
-    QToolButton* dontSearchInBtn;
-    QToolButton* dontSearchInBtnAdd;
-    QListBox* dontSearchIn;
-    QGroupBox* GroupBox1;
-    KLineEdit* searchInEdit;
-    QListBox* searchIn;
-    QToolButton* searchInBtn;
-    QToolButton* searchInBtnAdd;
-    QGroupBox* GroupBox14;
-    QCheckBox* containsTextCase;
-    QCheckBox* containsWholeWord;
-    QLabel* TextLabel2;
-    KHistoryCombo* containsText;
-    QGroupBox* GroupBox140;
-    QCheckBox* searchForCase;
-    QLabel* TextLabel1;
-    QLabel* TextLabel1_2;
-    KComboBox* ofType;
-    KHistoryCombo* searchFor;
-    QCheckBox* searchInDirs;
-    QCheckBox* searchInArchives;
-    QCheckBox* followLinks;
     QWidget* tab_2;
     QGroupBox* GroupBox29;
     QCheckBox* smallerThanEnabled;
@@ -123,10 +101,6 @@ public:
     QListView* resultsList;
 
 public slots:
-    virtual void addToDontSearchIn();
-    virtual void addToDontSearchInManually();
-    virtual void addToSearchIn();
-    virtual void addToSearchInManually();
     virtual void closeDialog();
     virtual void modifiedBetweenSetDate1();
     virtual void modifiedBetweenSetDate2();
@@ -139,14 +113,6 @@ public slots:
 protected:
     QGridLayout* KrSearchBaseLayout;
     QHBoxLayout* Layout9;
-    QGridLayout* tabLayout;
-    QGridLayout* GroupBox1_2Layout;
-    QGridLayout* GroupBox1Layout;
-    QGridLayout* GroupBox14Layout;
-    QHBoxLayout* Layout7;
-    QHBoxLayout* Layout8;
-    QGridLayout* GroupBox140Layout;
-    QHBoxLayout* Layout9_2;
     QGridLayout* tabLayout_2;
     QGridLayout* ButtonGroup2Layout;
     QGridLayout* GroupBox181Layout;
