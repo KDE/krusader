@@ -30,6 +30,7 @@
 #include "krview.h"
 #include "../kicons.h"
 #include "../defaults.h"
+#include "../VFS/krpermhandler.h"
 #include "krviewitem.h"
 #include <qnamespace.h>
 #include <qpixmapcache.h>
@@ -119,9 +120,10 @@ QString KrView::statistics() {
     if (it->size() > 0)
        _countSize += it->size();
    }
-   QString tmp = QString(i18n("%1 out of %2 selected, %3 out of %4"))
+   QString tmp = QString(i18n("%1 out of %2, %3 (%4) out of %5 (%6)"))
                  .arg( _numSelected ).arg( _count ).arg( KIO::convertSize( _selectedSize ) )
-                 .arg( KIO::convertSize( _countSize ) );
+                 .arg( KRpermHandler::parseSize(_selectedSize) )
+					  .arg( KIO::convertSize( _countSize ) ).arg( KRpermHandler::parseSize(_countSize) );
    return tmp;
 }
 
