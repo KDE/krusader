@@ -151,6 +151,9 @@ private:
   bool           wasSync;
   bool           firstResize;
   SyncViewItem  *lastItem;
+  
+  int            sizeX;
+  int            sizeY;
 };
 
 #endif /* __SYNCHRONIZERGUI_H__ */

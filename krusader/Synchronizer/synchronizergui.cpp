@@ -752,7 +752,7 @@ static const char * const folder_data[] = {
 
 SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory ) :
     QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ), isComparing( false ), wasClosed( false ),
-    wasSync( false ), firstResize( true )
+    wasSync( false ), firstResize( true ), sizeX( -1 ), sizeY( -1 )
 {
   setCaption( i18n("Krusader::Synchronize Directories") );
   QGridLayout *synchGrid = new QGridLayout( this );
@@ -950,17 +950,22 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   j=(i>j ? i : j);
   int typeWidth = j*7/2;
 
-  int leftNameWidth  = 9*typeWidth/2;
-  int rightNameWidth = 4*typeWidth;
-  int sizeWidth = 2*typeWidth;
-  int dateWidth = 3*typeWidth;
+  krConfig->setGroup("Synchronize");
+  
+  int leftNameWidth  = krConfig->readNumEntry("Left Name Width",  9*typeWidth/2 );
+  int leftSizeWidth  = krConfig->readNumEntry("Left Size Width",  2*typeWidth );
+  int leftDateWidth  = krConfig->readNumEntry("Left Date Width",  3*typeWidth );
+  int taskTypeWidth  = krConfig->readNumEntry("Task Type Width",  typeWidth );
+  int rightDateWidth = krConfig->readNumEntry("Right Date Width", 3*typeWidth );
+  int rightSizeWidth = krConfig->readNumEntry("Right Size Width", 2*typeWidth );
+  int rightNameWidth = krConfig->readNumEntry("Right Name Width", 4*typeWidth );
 
   syncList->addColumn(i18n("Name"),leftNameWidth);
-  syncList->addColumn(i18n("Size"),sizeWidth);
-  syncList->addColumn(i18n("Date"),dateWidth);
-  syncList->addColumn(i18n("<=>") ,typeWidth);
-  syncList->addColumn(i18n("Date"),dateWidth);
-  syncList->addColumn(i18n("Size"),sizeWidth);
+  syncList->addColumn(i18n("Size"),leftSizeWidth);
+  syncList->addColumn(i18n("Date"),leftDateWidth);
+  syncList->addColumn(i18n("<=>") ,taskTypeWidth);
+  syncList->addColumn(i18n("Date"),rightDateWidth);
+  syncList->addColumn(i18n("Size"),rightSizeWidth);
   syncList->addColumn(i18n("Name"),rightNameWidth);
   syncList->setColumnWidthMode(0,QListView::Manual);
   syncList->setColumnWidthMode(1,QListView::Manual);
@@ -1035,7 +1040,17 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnDeletable,      SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnDuplicates,     SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   connect( btnSingles,        SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
-  show();
+    
+  int sx = krConfig->readNumEntry( "Window Width",  -1 );
+  int sy = krConfig->readNumEntry( "Window Height",  -1 );
+  
+  if( sx != -1 && sy != -1 )
+    resize( sx, sy );
+  
+  if( krConfig->readBoolEntry( "Window Maximized",  false ) )
+      showMaximized();
+  else  
+      show();
 
   while( isShown() )
   {
@@ -1230,7 +1245,19 @@ void SynchronizerGUI::closeDialog()
   krConfig->writeEntry("Deletable Button", btnDeletable->isOn() );
   krConfig->writeEntry("Duplicates Button", btnDuplicates->isOn() );
   krConfig->writeEntry("Singles Button", btnSingles->isOn() );
- 
+  
+  krConfig->writeEntry("Window Width", sizeX );
+  krConfig->writeEntry("Window Height", sizeY );
+  krConfig->writeEntry("Window Maximized", isMaximized() );
+
+  krConfig->writeEntry("Left Name Width",  syncList->columnWidth( 0 ) );
+  krConfig->writeEntry("Left Size Width",  syncList->columnWidth( 1 ) );
+  krConfig->writeEntry("Left Date Width",  syncList->columnWidth( 2 ) );
+  krConfig->writeEntry("Task Type Width",  syncList->columnWidth( 3 ) );
+  krConfig->writeEntry("Right Date Width", syncList->columnWidth( 4 ) );
+  krConfig->writeEntry("Right Size Width", syncList->columnWidth( 5 ) );
+  krConfig->writeEntry("Right Name Width", syncList->columnWidth( 6 ) );
+   
   QDialog::reject();
 }
 
@@ -1424,7 +1451,13 @@ void SynchronizerGUI::synchronize()
 }
 
 void SynchronizerGUI::resizeEvent( QResizeEvent *e )
-{
+{   
+  if( !isMaximized() )
+  {
+    sizeX = e->size().width();
+    sizeY = e->size().height();
+  }
+
   if( !firstResize )
   {
     int delta = e->size().width() - e->oldSize().width() + (e->size().width() & 1 );
