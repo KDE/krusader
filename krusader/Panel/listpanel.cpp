@@ -87,7 +87,7 @@ ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
   setAcceptDrops(true);
 	layout=new QGridLayout(this,3,2);
 
-  status = new KSqueezedTextLabel(this);
+  status = new KrSqueezedTextLabel(this);
   krConfig->setGroup("Look&Feel");
   status->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
   status->setBackgroundMode(PaletteBackground);
@@ -97,6 +97,7 @@ ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
   int sheight = QFontMetrics(status->font()).height()+4;
   status->setMaximumHeight(sheight);
   QWhatsThis::add(status,i18n("The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of filesystem etc."));
+  connect(status, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
 
   	// ... create the bookmark list
   bookmarkList=new QToolButton(this);
@@ -121,7 +122,7 @@ ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
   connect(bookmarks,SIGNAL(activated(int)),this,
           SLOT(slotBookmarkChosen(int)));
 
-  totals = new KSqueezedTextLabel(this);
+  totals = new KrSqueezedTextLabel(this);
   krConfig->setGroup("Look&Feel");
   totals->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
   totals->setFrameStyle( QFrame::Box | QFrame::Raised);
@@ -129,6 +130,7 @@ ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
   totals->setLineWidth(1);		// a nice 3D touch :-)
   totals->setMaximumHeight(sheight);
   QWhatsThis::add(totals,i18n("The totals bar shows how much files exist, how many did you select and the bytes math"));
+  connect(totals, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
 
   origin = new KURLRequester(this);
   origin->setShowLocalProtocol(false);

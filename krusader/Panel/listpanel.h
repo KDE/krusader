@@ -51,8 +51,8 @@
 #include <keditcl.h>
 #include <klineedit.h>
 #include <qguardedptr.h>
-#include <ksqueezedtextlabel.h>
 #include "krview.h"
+#include "../Dialogs/krsqueezedtextlabel.h"
 
 class vfs;
 class vfile;
@@ -121,7 +121,7 @@ public:
 	QListViewItem *currDragItem;
 	QPopupMenu    *bookmarks;
 	QGuardedPtr<QObject> statsAgent;
-	KSqueezedTextLabel *status,*totals;
+	KrSqueezedTextLabel *status,*totals;
 	KURLRequester   *origin;
 	QGridLayout   *layout;
 

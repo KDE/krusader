@@ -155,12 +155,10 @@ _nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))) {
   setShowSortIndicator( true );
   header() ->setStretchEnabled( true, column( Name ) );
   restoreSettings();
-  kdDebug() << "Loaded sort " << sortColumn() << endl;
 }
 
 KrDetailedView::~KrDetailedView() {
   saveSettings();
-  kdDebug() << "Saving sort " << sortColumn() << endl;
 }
 
 void KrDetailedView::newColumn( ColumnType type ) {
