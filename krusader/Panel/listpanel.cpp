@@ -786,7 +786,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       // open in a new tab (if folder)
       if ( item->isDir() ) {
          popup.insertItem( i18n( "Open in a new tab" ), OPEN_TAB_ID );
-         popup.changeItem( OPEN_TAB_ID, krLoader->loadIcon( "favorites", KIcon::Panel ), i18n( "Open in a new tab" ) );
+         popup.changeItem( OPEN_TAB_ID, krLoader->loadIcon( "tab_new", KIcon::Panel ), i18n( "Open in a new tab" ) );
       }
       popup.insertSeparator();
    }
