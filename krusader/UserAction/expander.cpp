@@ -31,6 +31,21 @@
 					   return QString::null; \
 					}
 
+////////////////////////////////////////////////////////////
+//////////////////////// utils ////////////////////////
+////////////////////////////////////////////////////////////
+
+/**
+ * escapes everything that confuses bash in filenames
+ * @param s String to manipulate
+ * @return escaped string
+ */
+QString bashquote( QString s ) {
+    s.replace(" ", "\\ ");
+    s.replace("(", "\\(");
+    s.replace(")", "\\)");
+    return s;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////// expander classes ////////////////////////////////////
@@ -56,7 +71,7 @@ QString exp_Path::expFunc( const ListPanel* panel, const QStringList& parameter,
    if ( parameter[0].lower() == "no" )  // don't escape spaces
       return result;
    else
-      return result.replace(" ", "\\ ");
+      return bashquote(result);
 }
 
 exp_Count::exp_Count() {
@@ -137,7 +152,7 @@ QString exp_Current::expFunc( const ListPanel* panel, const QStringList& paramet
    if ( parameter[1].lower() == "no" )  // don't escape spaces
       return result;
    else
-      return result.replace(" ", "\\ ");
+      return bashquote(result);
 }
 
 exp_List::exp_List() {
@@ -189,7 +204,7 @@ QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter,
          if ( parameter[4].lower() == "no" )  // don't escape spaces
             result += *it;
          else
-            result += (*it).replace(" ", "\\ ");
+            result += bashquote(*it);
       }
    }
    else {
@@ -202,7 +217,7 @@ QString exp_List::expFunc( const ListPanel* panel, const QStringList& parameter,
          if ( parameter[4].lower() == "no" )  // don't escape spaces
             result += ( (useUrl ? (*it).url() : (*it).path()) );
          else
-            result += ( (useUrl ? (*it).url() : (*it).path()) ).replace(" ", "\\ ");
+            result += bashquote( (useUrl ? (*it).url() : (*it).path()) );
       }
    }
 
