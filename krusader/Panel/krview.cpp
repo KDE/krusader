@@ -121,12 +121,16 @@ void KrView::getSelectedKrViewItems( KrViewItemList *items ) {
 }
 
 QString KrView::statistics() {
-   _numSelected = _selectedSize = 0;
-   for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) )
+    _countSize = _numSelected = _selectedSize = 0;
+
+    for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ){
       if ( it->isSelected() ) {
          ++_numSelected;
          _selectedSize += it->size();
       }
+    if (it->size() > 0)
+       _countSize += it->size();
+   }
    QString tmp = QString(i18n("%1 out of %2 selected, %3 out of %4"))
                  .arg( _numSelected ).arg( _count ).arg( KIO::convertSize( _selectedSize ) )
                  .arg( KIO::convertSize( _countSize ) );

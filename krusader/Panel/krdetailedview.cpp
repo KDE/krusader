@@ -797,7 +797,6 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             return ;
             }
           viewItem->setSize( totalSize );
-          _countSize += totalSize;
           viewItem->repaintItem();
           }
         KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
