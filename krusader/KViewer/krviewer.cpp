@@ -235,7 +235,7 @@ void KrViewer::viewHex(){
 
     FILE *out = fopen(tmpFile.name().mid(tmpFile.name().find("/")).latin1(),"w");
 
-    long fileSize = f_in.size();
+    KIO::filesize_t fileSize = f_in.size();
     long address = 0;
     char buf[16];
 		unsigned int* pBuff = (unsigned int*)buf;
