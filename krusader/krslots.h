@@ -65,7 +65,6 @@ class KRslots : public QObject {
     void rootKrusader();
     void toggleHidden();
     void toggleSwapPanels();
-    void toggleSortByExt();
     void configToolbar();
     void configKeys();
     void toggleToolbar();

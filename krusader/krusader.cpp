@@ -336,12 +336,9 @@ void Krusader::setupActions() {
                                        SLOT( toggleHidden() ), actionCollection(), "toggle hidden files" );
   actToggleSwapPanels = new KToggleAction( i18n( "S&wap Panels" ), CTRL + Key_U, SLOTS,
                                        SLOT( toggleSwapPanels() ), actionCollection(), "toggle swap panels" );
-  actToggleSortByExt = new KToggleAction( i18n( "Sort By E&xtention" ), 0, SLOTS,
-                                          SLOT( toggleSortByExt() ), actionCollection(), "toggle sort by extention" );
   krConfig->setGroup( "Look&Feel" );
   actToggleHidden->setChecked( krConfig->readBoolEntry( "Show Hidden", _ShowHidden ) );
   actToggleSwapPanels->setChecked( false );
-  actToggleSortByExt->setChecked( krConfig->readBoolEntry( "Sort By Extention", _SortByExt ) );
 
   // and then the DONE actions
   actCmdlinePopup = new KAction( i18n("popup cmdline"), 0, CTRL + Key_Slash, SLOTS,

@@ -282,14 +282,6 @@ void KRslots::newFTPconnection(QString host)
 // run external modules / programs
 void KRslots::runKonfigurator(bool firstTime) { delete new Konfigurator(firstTime); }
 
-void KRslots::toggleSortByExt() {
-  krConfig->setGroup("Look&Feel");
-	bool ext = !krConfig->readBoolEntry("Sort By Extention",_SortByExt);
-	krApp->actToggleSortByExt->setChecked(ext);
-  krConfig->writeEntry("Sort By Extention",ext);
-  REFRESH_BOTH_PANELS;
-}
-
 void KRslots::toggleHidden(){
   krConfig->setGroup("Look&Feel");
 	bool show = !krConfig->readBoolEntry("Show Hidden",_ShowHidden);
