@@ -446,8 +446,8 @@ void Krusader::setupActions() {
 
    actTest = new KAction( i18n( "T&est Archive(s)" ), "ark", ALT + Key_E,
                           SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
-   actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", 0,
-                                SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
+   //actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", 0,
+   //                             SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
    actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "connect_creating", CTRL + Key_N,
                                    SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
    actProfiles = new KAction( i18n( "Pro&files" ), "kr_profile", ALT + Key_L,
