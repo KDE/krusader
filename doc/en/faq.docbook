@@ -136,8 +136,7 @@
    <para>How do i compile &krusader; when i'm using a 64 bit processor ?</para>
    </question>
    <answer>
-   <para>We don't have much experiance and feedback with 64 bit processors yet but our &kruforum_url; is a good start.
-         Please look <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=951">here</ulink>.
+   <para>Please look and search in our forum we don't have much experiance and feedback with &_64bit_url; microprocessors yet.
         </para>
     <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -583,6 +582,24 @@
   </answer>
   </qandaentry>
 
+<qandaentry>
+ <question id="faqu_krarc_support">
+ <para>I get the error message "Protocol not supported by Krusader:
+       "krarc:/path/to/foo-archive", when I try to open foo-Archive</para>
+ </question>
+ <answer>
+ <para>The icons, kio_slaves and documentation must be installed to the correct place in the &kde; directory tree. 
+       The <filename>kio_krarc.*</filename> files must be in the same directory with the
+       other KIO slaves. Try to locate <filename>kio_tar.*</filename> and copy/link the
+       <filename>kio_krarc.*</filename> files to the same location.
+       Don't forget to run <command># ldconfig</command> on this directory when you're done.
+       This problem can occur if you are using a &_64bit_url; microprocessor.
+       For more information click 
+       <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=991">here</ulink> .
+ </para>
+ <para> </para> <!-- Empty line to make it more readable -->
+ </answer>
+</qandaentry>
 
 </qandaset>
 </sect1>

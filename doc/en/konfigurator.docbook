@@ -110,7 +110,7 @@ into pages, each containing items related to that page. For some changes to the 
        and <guilabel>Key-bindings</guilabel> are &kde; standard tools we'll focus on
        the other sections:</para>
 
-<!--PARSING EXTRA CONTENT BEGIN-->
+<!--HTML_PARSING
 <screenshot>
   <screeninfo>Konfigurator Look &amp; Feel page</screeninfo>
   <mediaobject>
@@ -120,7 +120,7 @@ into pages, each containing items related to that page. For some changes to the 
   <caption><para>Konfigurator Look &amp; Feel page.</para></caption>
   </mediaobject>
 </screenshot>
-<!--PARSING EXTRA CONTENT END-->
+HTML_PARSING-->
 
 <sect2 id="konfig-looknfeel-operation">
 <title>Operation</title>
@@ -183,28 +183,22 @@ into pages, each containing items related to that page. For some changes to the 
 </itemizedlist>
 
 <itemizedlist><title><guilabel>Mouse selection modes</guilabel></title>
-  <listitem><para><keycap>NOTE:</keycap> this feature is disabled for the moment, due to a bug, sorry
-      <itemizedlist>
       <listitem><para><guilabel>Classic</guilabel>: the way &krusader; used to work from day one.
          Both keys allow selecting files. To select more than one file, hold the
          &Ctrl; key and click the &LMB;. Right-click
          menu is invoked using a short click on the &RMB;.
                            </para></listitem>
-  <listitem><para><guilabel>"Left mouse button selects":</guilabel> this way, pressing the
+  <listitem><para><guilabel>"&konqueror; mode":</guilabel> this way, pressing the
          &LMB; selects files - you can click and select multiple files.
          Right-click menu is invoked using a short click on the &RMB;.
          </para></listitem>
-  <listitem><para><guilabel>"Right button selects"</guilabel>: this way (sometimes referred to as
-         'total (windows) commander style') the &LMB; does not select,
-         but sets the current file without affecting the current selection. The
+  <listitem><para><guilabel>"Total commander mode"</guilabel>: this way pressing the
          &RMB; selects multiple files and the right-click menu is
-         invoked by <guilabel>pressing and holding</guilabel> the &RMB;.
+         invoked by <guilabel>pressing and holding</guilabel> the &RMB;
+         The &LMB; does not select, but sets the current file without affecting the current selection.
          </para></listitem>
-      </itemizedlist>
-    </para></listitem>
 </itemizedlist>
 </sect2>
-
 
 <sect2 id="konfig-looknfeel-panel">
 <title>Panel</title>
@@ -291,7 +285,7 @@ into pages, each containing items related to that page. For some changes to the 
       <guilabel>"Use alternate background color"</guilabel> checkbox will enable/disable the alternate &kde; colors.
       </para>
 
-<!--PARSING EXTRA CONTENT BEGIN-->
+<!--HTML_PARSING
 <screenshot>
   <screeninfo>Konfigurator color page</screeninfo>
   <mediaobject>
@@ -301,7 +295,7 @@ into pages, each containing items related to that page. For some changes to the 
   <caption><para>Konfigurator color page.</para></caption>
   </mediaobject>
 </screenshot>
-<!--PARSING EXTRA CONTENT END-->
+HTML_PARSING-->
 
 <variablelist>
  <varlistentry><term><guilabel>General</guilabel></term>
@@ -355,7 +349,7 @@ into pages, each containing items related to that page. For some changes to the 
 <title>General page</title>
 <para>Here you configure the basic operations.</para>
 
-<!--PARSING EXTRA CONTENT BEGIN-->
+<!--HTML_PARSING
 <screenshot>
   <screeninfo>Konfigurator General page</screeninfo>
   <mediaobject>
@@ -365,7 +359,7 @@ into pages, each containing items related to that page. For some changes to the 
   <caption><para>Konfigurator General page.</para></caption>
   </mediaobject>
 </screenshot>
-<!--PARSING EXTRA CONTENT END-->
+HTML_PARSING-->
 
 <para>The following options determine basic aspects of operation:
 
@@ -399,7 +393,7 @@ into pages, each containing items related to that page. For some changes to the 
 <para>This page handles more advanced issues, so you should double-check what you do here, since modifying
        things around here <remark>makes &krusader; a more powerful AND dangerous tool.</remark></para>
 
-<!--PARSING EXTRA CONTENT BEGIN-->
+<!--HTML_PARSING
 <screenshot>
   <screeninfo>Konfigurator Advanced page</screeninfo>
   <mediaobject>
@@ -409,7 +403,7 @@ into pages, each containing items related to that page. For some changes to the 
   <caption><para>Konfigurator Advanced page.</para></caption>
   </mediaobject>
 </screenshot>
-<!--PARSING EXTRA CONTENT END-->
+HTML_PARSING-->
 
 <para>The page is divided into three parts:</para>
 
@@ -469,7 +463,7 @@ executables in the configured path. Please configure the full path of the packag
 &konfigependencie_lnk; (&eg; to handle ZIP archives, &krusader;
 needs the <command>unzip</command> and <command>zip</command> executables).</para>
 
-<!--PARSING EXTRA CONTENT BEGIN-->
+<!--HTML_PARSING
 <screenshot>
   <screeninfo>Konfigurator Archives page</screeninfo>
   <mediaobject>
@@ -479,7 +473,7 @@ needs the <command>unzip</command> and <command>zip</command> executables).</par
   <caption><para>Konfigurator Archives page.</para></caption>
   </mediaobject>
 </screenshot>
-<!--PARSING EXTRA CONTENT END-->
+HTML_PARSING-->
 
 <para>If you've installed a certain archive application (let's say <command>arj</command>) and want &krusader;
 to know about it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; will search for all
