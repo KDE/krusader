@@ -684,7 +684,7 @@ void ListPanelFunc::pack() {
 
 	if (  QFileInfo( arcFile ).exists() ) {
 		QString msg = i18n( "The Archive " ) + PackGUI::filename + "." + PackGUI::type+
-		              i18n(" already exist, Do you want to overwrite the archive ?\n");
+		              i18n(" already exists. Do you want to overwrite the archive ?\n");
 		if( PackGUI::type == "zip" ){
 			msg = msg + i18n("(ZIP will replace identically named entries in the zip archive or add entries for new names)"); 
 		} else {
