@@ -268,12 +268,7 @@ tags: TAGS
 TAGS:
 
 
-#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-#>+ 4
-KDE_DIST=index.cache.bz2 
-
-DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
-
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -382,8 +377,9 @@ uninstall-am: uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 21
-index.cache.bz2: $(srcdir)/index.docbook $(KDE_XSL_STYLESHEET) commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml index.cache.bz2 
+index.cache.bz2: $(srcdir)/index.docbook $(KDE_XSL_STYLESHEET) commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml 
 	-@if test -n "$(MEINPROC)"; then echo $(MEINPROC) --check --cache index.cache.bz2 $(srcdir)/index.docbook; $(MEINPROC) --check --cache index.cache.bz2 $(srcdir)/index.docbook; fi
 
 docs-am: index.cache.bz2
@@ -407,20 +403,20 @@ clean-docs:
 #>+ 13
 install-nls:
 	$(mkinstalldirs) $(DESTDIR)$(kde_htmldir)/$(KDE_LANG)/krusader
-	@for base in commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml index.cache.bz2 ; do \
+	@for base in commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml ; do \
 	  echo $(INSTALL_DATA) $$base $(DESTDIR)$(kde_htmldir)/$(KDE_LANG)/krusader/$$base ;\
 	  $(INSTALL_DATA) $(srcdir)/$$base $(DESTDIR)$(kde_htmldir)/$(KDE_LANG)/krusader/$$base ;\
 	done
 
 uninstall-nls:
-	for base in commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml index.cache.bz2 ; do \
+	for base in commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml ; do \
 	  rm -f $(DESTDIR)$(kde_htmldir)/$(KDE_LANG)/krusader/$$base ;\
 	done
 
 
 #>+ 5
 distdir-nls:
-	for file in commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml index.cache.bz2 ; do \
+	for file in commands.sgml credits.sgml faq.sgml index.docbook installation.sgml introduction.sgml konfigurator.sgml krusader-tools.sgml using-krusader.sgml ; do \
 	  cp $(srcdir)/$$file $(distdir); \
 	done
 

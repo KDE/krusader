@@ -270,10 +270,12 @@ TAGS:
 
 #>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 #>+ 4
-KDE_DIST=cs.po pl.gmo krusader.pot fr.gmo dk.po dk.gmo sv.gmo pl.po de.gmo cs.gmo fr.po sv.po de.po 
+KDE_DIST=dk.po pl.po de.gmo sv.gmo dk.gmo pl.gmo krusader.pot cs.po fr.gmo fr.po de.po cs.gmo sv.po 
 
 #>- DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
 #>+ 1
+DISTFILES = $(GMOFILES) $(POFILES) $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
+
 DISTFILES = $(GMOFILES) $(POFILES) $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
 
 
@@ -383,6 +385,7 @@ uninstall-am: uninstall-info-am
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
+
 
 #>+ 19
 cs.gmo: cs.po

@@ -397,7 +397,7 @@ distclean-tags:
 
 #>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 #>+ 4
-KDE_DIST=krviewitem.cpp libPanel.a krdetailedview.cpp krview.h krdetailedview.h krviewitem.h 
+KDE_DIST=krviewitem.cpp krdetailedview.cpp krdetailedview.h krview.h krviewitem.h 
 
 DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
 
@@ -511,6 +511,7 @@ uninstall-am: uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 3
 kvfspanel.moc: $(srcdir)/kvfspanel.h
 	$(MOC) $(srcdir)/kvfspanel.h -o kvfspanel.moc
@@ -563,7 +564,7 @@ clean-moc-classes:
 	-rm -f  libPanel_a_meta_unload.cpp
 
 #>+ 11
-libPanel_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/treepanel.cpp $(srcdir)/quickviewpanel.cpp $(srcdir)/panelfunc.cpp $(srcdir)/listpanel.cpp $(srcdir)/kvfspanel.cpp $(srcdir)/krlistitem.cpp $(srcdir)/kfilelist.cpp $(srcdir)/libPanel_a_meta_unload.cpp  krview.moc.cpp krdetailedview.moc.cpp kvfspanel.moc kfilelist.moc panelfunc.moc 
+libPanel_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/treepanel.cpp $(srcdir)/quickviewpanel.cpp $(srcdir)/panelfunc.cpp $(srcdir)/listpanel.cpp $(srcdir)/kvfspanel.cpp $(srcdir)/krlistitem.cpp $(srcdir)/kfilelist.cpp libPanel_a_meta_unload.cpp  krview.moc.cpp krdetailedview.moc.cpp kvfspanel.moc kfilelist.moc panelfunc.moc 
 	@echo 'creating libPanel_a.all_cpp.cpp ...'; \
 	rm -f libPanel_a.all_cpp.files libPanel_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libPanel_a.all_cpp.final; \

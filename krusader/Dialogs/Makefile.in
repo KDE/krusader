@@ -405,12 +405,7 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-#>+ 4
-KDE_DIST=libDialogs.a 
-
-DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
-
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -521,6 +516,7 @@ uninstall-am: uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 3
 packgui.moc: $(srcdir)/packgui.h
 	$(MOC) $(srcdir)/packgui.h -o packgui.moc
@@ -593,7 +589,7 @@ clean-moc-classes:
 	-rm -f  libDialogs_a_meta_unload.cpp
 
 #>+ 11
-libDialogs_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krprogress.cpp $(srcdir)/packgui.cpp $(srcdir)/packguibase.cpp $(srcdir)/newftpgui.cpp $(srcdir)/krspwidgets.cpp $(srcdir)/krspecialwidgets.cpp $(srcdir)/krpleasewait.cpp $(srcdir)/krmaskchoice.cpp $(srcdir)/krdialogs.cpp $(srcdir)/colormaskdialog.cpp $(srcdir)/colormaskdialogbase.cpp $(srcdir)/libDialogs_a_meta_unload.cpp   packgui.moc packguibase.moc newftpgui.moc krdialogs.moc colormaskdialogbase.moc colormaskdialog.moc krmaskchoice.moc krpleasewait.moc krprogress.moc krspecialwidgets.moc 
+libDialogs_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krprogress.cpp $(srcdir)/packgui.cpp $(srcdir)/packguibase.cpp $(srcdir)/newftpgui.cpp $(srcdir)/krspwidgets.cpp $(srcdir)/krspecialwidgets.cpp $(srcdir)/krpleasewait.cpp $(srcdir)/krmaskchoice.cpp $(srcdir)/krdialogs.cpp $(srcdir)/colormaskdialog.cpp $(srcdir)/colormaskdialogbase.cpp libDialogs_a_meta_unload.cpp   packgui.moc packguibase.moc newftpgui.moc krdialogs.moc colormaskdialogbase.moc colormaskdialog.moc krmaskchoice.moc krpleasewait.moc krprogress.moc krspecialwidgets.moc 
 	@echo 'creating libDialogs_a.all_cpp.cpp ...'; \
 	rm -f libDialogs_a.all_cpp.files libDialogs_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libDialogs_a.all_cpp.final; \

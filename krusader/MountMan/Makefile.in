@@ -382,12 +382,7 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-#>+ 4
-KDE_DIST=libMountMan.a 
-
-DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
-
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -498,6 +493,7 @@ uninstall-am: uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 3
 kmountmangui.moc: $(srcdir)/kmountmangui.h
 	$(MOC) $(srcdir)/kmountmangui.h -o kmountmangui.moc
@@ -538,7 +534,7 @@ clean-moc-classes:
 	-rm -f  libMountMan_a_meta_unload.cpp
 
 #>+ 11
-libMountMan_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/kmountmangui.cpp $(srcdir)/kmountman.cpp $(srcdir)/libMountMan_a_meta_unload.cpp   kmountmangui.moc kmountman.moc 
+libMountMan_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/kmountmangui.cpp $(srcdir)/kmountman.cpp libMountMan_a_meta_unload.cpp   kmountmangui.moc kmountman.moc 
 	@echo 'creating libMountMan_a.all_cpp.cpp ...'; \
 	rm -f libMountMan_a.all_cpp.files libMountMan_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libMountMan_a.all_cpp.final; \

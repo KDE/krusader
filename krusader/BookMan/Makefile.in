@@ -392,12 +392,7 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-#>+ 4
-KDE_DIST=libBookMan.a 
-
-DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
-
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -508,6 +503,7 @@ uninstall-am: uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 3
 bookmaneditbase.moc: $(srcdir)/bookmaneditbase.h
 	$(MOC) $(srcdir)/bookmaneditbase.h -o bookmaneditbase.moc
@@ -560,7 +556,7 @@ clean-moc-classes:
 	-rm -f  libBookMan_a_meta_unload.cpp
 
 #>+ 11
-libBookMan_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/bookmangui.cpp $(srcdir)/bookmanguibase.cpp $(srcdir)/bookmanedit.cpp $(srcdir)/bookmaneditbase.cpp $(srcdir)/bookman.cpp $(srcdir)/libBookMan_a_meta_unload.cpp  bookmanguibase.moc.cpp bookmaneditbase.moc bookmangui.moc bookmanedit.moc bookman.moc 
+libBookMan_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/bookmangui.cpp $(srcdir)/bookmanguibase.cpp $(srcdir)/bookmanedit.cpp $(srcdir)/bookmaneditbase.cpp $(srcdir)/bookman.cpp libBookMan_a_meta_unload.cpp  bookmanguibase.moc.cpp bookmaneditbase.moc bookmangui.moc bookmanedit.moc bookman.moc 
 	@echo 'creating libBookMan_a.all_cpp.cpp ...'; \
 	rm -f libBookMan_a.all_cpp.files libBookMan_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libBookMan_a.all_cpp.final; \

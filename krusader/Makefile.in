@@ -507,12 +507,7 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-#>+ 4
-KDE_DIST=krusader 
-
-DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
-
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 
 top_distdir = ..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -719,6 +714,7 @@ messages:
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 3
 krslots.moc: $(srcdir)/krslots.h
 	$(MOC) $(srcdir)/krslots.h -o krslots.moc
@@ -763,7 +759,7 @@ clean-moc-classes:
 	-rm -f  krusader_meta_unload.cpp
 
 #>+ 11
-krusader.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/main.cpp $(srcdir)/krusaderview.cpp $(srcdir)/krusader.cpp $(srcdir)/krslots.cpp $(srcdir)/kicons.cpp $(srcdir)/krusader_meta_unload.cpp   krslots.moc krusader.moc krusaderview.moc 
+krusader.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/main.cpp $(srcdir)/krusaderview.cpp $(srcdir)/krusader.cpp $(srcdir)/krslots.cpp $(srcdir)/kicons.cpp krusader_meta_unload.cpp   krslots.moc krusader.moc krusaderview.moc 
 	@echo 'creating krusader.all_cpp.cpp ...'; \
 	rm -f krusader.all_cpp.files krusader.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> krusader.all_cpp.final; \

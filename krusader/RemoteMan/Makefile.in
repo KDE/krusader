@@ -383,12 +383,7 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-#>+ 4
-KDE_DIST=libRemoteMan.a 
-
-DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
-
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -499,6 +494,7 @@ uninstall-am: uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 3
 remoteman.moc: $(srcdir)/remoteman.h
 	$(MOC) $(srcdir)/remoteman.h -o remoteman.moc
@@ -539,7 +535,7 @@ clean-moc-classes:
 	-rm -f  libRemoteMan_a_meta_unload.cpp
 
 #>+ 11
-libRemoteMan_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/remoteman.cpp $(srcdir)/remotemanbase.cpp $(srcdir)/libRemoteMan_a_meta_unload.cpp   remoteman.moc remotemanbase.moc 
+libRemoteMan_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/remoteman.cpp $(srcdir)/remotemanbase.cpp libRemoteMan_a_meta_unload.cpp   remoteman.moc remotemanbase.moc 
 	@echo 'creating libRemoteMan_a.all_cpp.cpp ...'; \
 	rm -f libRemoteMan_a.all_cpp.files libRemoteMan_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libRemoteMan_a.all_cpp.final; \

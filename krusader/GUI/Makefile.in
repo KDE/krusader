@@ -386,12 +386,7 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-#>+ 4
-KDE_DIST=libGUI.a 
-
-DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
-
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -502,6 +497,7 @@ uninstall-am: uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 3
 krusaderstatus.moc: $(srcdir)/krusaderstatus.h
 	$(MOC) $(srcdir)/krusaderstatus.h -o krusaderstatus.moc
@@ -546,7 +542,7 @@ clean-moc-classes:
 	-rm -f  libGUI_a_meta_unload.cpp
 
 #>+ 11
-libGUI_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krusaderstatus.cpp $(srcdir)/kfnkeys.cpp $(srcdir)/kcmdline.cpp $(srcdir)/libGUI_a_meta_unload.cpp   krusaderstatus.moc kcmdline.moc kfnkeys.moc 
+libGUI_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krusaderstatus.cpp $(srcdir)/kfnkeys.cpp $(srcdir)/kcmdline.cpp libGUI_a_meta_unload.cpp   krusaderstatus.moc kcmdline.moc kfnkeys.moc 
 	@echo 'creating libGUI_a.all_cpp.cpp ...'; \
 	rm -f libGUI_a.all_cpp.files libGUI_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libGUI_a.all_cpp.final; \
