@@ -35,6 +35,7 @@
 #include <klocale.h>
 #include <qtooltip.h>
 #include <qvalidator.h>
+#include <kmessagebox.h>
 #include <kfiledialog.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
@@ -281,12 +282,20 @@ void KgLookFeel::slotEnablePanelToolbar()
 
 void KgLookFeel::slotImportShortcuts() {
 	// find $KDEDIR/share/apps/krusader
-	QString basedir = KGlobal::dirs()->findResource("data", "total_commander.keymap");
-	printf("===%s===\n", basedir.latin1());
+	QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
 	// let the user select a file to load
 	QString file = KFileDialog::getOpenFileName(basedir, "*.keymap", 0, i18n("Select a shortcuts file"));
 	if (file == QString::null) return;
-	
+	// check if there's an info file with the keymap
+	QFile info(file+".info");
+	if (info.open(IO_ReadOnly)) {
+		QTextStream stream(&info);
+		QStringList infoText = QStringList::split("\n", stream.read());
+		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap.\n"
+				"Are you sure you want to import this keymap ?"), infoText)!=KMessageBox::Yes)
+			return;
+	}
+	// ok, import away
 	krApp->importKeyboardShortcuts(file);
 	slotReload(keyBindings);	
 	keyBindings->setChanged();
