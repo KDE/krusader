@@ -41,7 +41,11 @@ A
 #include <kglobal.h>
 #include <klocale.h>
 #include <kaccelmanager.h>
+
+#if KDE_IS_VERSION(3,2,0)
 #include <kactionclasses.h>
+#endif
+
 #include <kdeversion.h> 
 // QT includes
 #include <qpixmap.h>
