@@ -668,7 +668,12 @@ void ListPanelFunc::unpack() {
 void ListPanelFunc::calcSpace() {
 	KrViewItemList items;
 	panel->view->getSelectedKrViewItems(&items);
-	if ( items.isEmpty() ) return ; // nothing to do
+	if ( items.isEmpty() )
+	{
+	  panel->view->selectAllIncludingDirs();
+	  panel->view->getSelectedKrViewItems(&items);
+	  if ( items.isEmpty() ) return ; // nothing to do
+	}
 
 	KrCalcSpaceDialog calc(krApp, files(), items, false);
 	calc.exec();

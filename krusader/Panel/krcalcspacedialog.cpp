@@ -39,10 +39,11 @@ A
 // Krusader Includes
 #include "krcalcspacedialog.h"
 #include "../krusader.h"
+#include "../VFS/krpermhandler.h"
 
 /* --=={ Patch by Heiner <h.eichmann@gmx.de> }==-- */
 KrCalcSpaceDialog::CalcThread::CalcThread(KrCalcSpaceDialog * parent, vfs * files, const KrViewItemList & items)
-	: m_totalSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_files(files), m_parent(parent)
+	: m_totalSize(0), m_currentSize(0), m_totalFiles(0), m_totalDirs(0), m_items(items), m_files(files), m_parent(parent)
         , m_threadInUse(true), m_stop(false) {}
 
 void KrCalcSpaceDialog::CalcThread::cleanUp(){
@@ -66,16 +67,17 @@ void KrCalcSpaceDialog::CalcThread::run(){
 	if ( !m_items.isEmpty() ) // if something to do: do the calculation
 	for ( KrViewItemList::ConstIterator it = m_items.begin(); it != m_items.end(); ++it )
         {
-                KIO::filesize_t totalSize = 0;
-		m_files->vfs_calcSpace( (*it)->name(), &totalSize, &m_totalFiles, &m_totalDirs , & m_stop);
+                m_currentSize = 0;
+                m_files->vfs_calcSpace( (*it)->name(), &m_currentSize, &m_totalFiles, &m_totalDirs , & m_stop);
                 if (m_stop)
                     break;
-                m_totalSize += totalSize;
                 KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( *it );
                 if (viewItem){
-                     KrCalcSpaceDialog::setDirSize(viewItem, totalSize);
+                     KrCalcSpaceDialog::setDirSize(viewItem, m_currentSize);
                      //viewItem->repaintItem(); // crash in KrDetailedViewItem::repaintItem(): setPixmap(_view->column(KrDetailedView::Name),KrView::getIcon(_vf))
                 }
+                m_totalSize += m_currentSize;
+                m_currentSize = 0;
         }
 	// synchronize to avoid race condition.
 	m_synchronizeUsageAccess.lock();
@@ -140,8 +142,10 @@ void KrCalcSpaceDialog::showResult(){
 	if (!m_thread) return;
 	QString msg;
 	QString fileName = ( ( m_thread->getItems().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getItems().first()->name() + "\n" ) : QString( "" ) );
-	msg = fileName + i18n( "Total occupied space: %1\nin %2 directories and %3 files" ).
-		arg( KIO::convertSize( m_thread->getTotalSize() ) ).arg( m_thread->getTotalDirs() ).arg( m_thread->getTotalFiles() );
+	msg = fileName + i18n( "Total occupied space: %1").arg( KIO::convertSize( m_thread->getTotalSize() ) );
+	if (m_thread->getTotalSize() >= 1024)
+	   msg += " (" + KRpermHandler::parseSize( m_thread->getTotalSize() ) + "bytes)";
+	msg += i18n("\nin %1 directories and %2 files" ).arg( m_thread->getTotalDirs() ).arg( m_thread->getTotalFiles() );
 	m_label->setText(msg);
 }
 

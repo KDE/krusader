@@ -116,6 +116,7 @@ public:
   virtual void getSelectedItems(QStringList* names);
   virtual void getItemsByMask(QString mask, QStringList* names, bool dirs = true, bool files = true);
   virtual void getSelectedKrViewItems(KrViewItemList *items);
+  virtual void selectAllIncludingDirs() { changeSelection("*", true, true); }
   virtual void select(const QString& filter = "*") { changeSelection(filter, true); }
   virtual void unselect(const QString& filter = "*") { changeSelection(filter, false); }
   virtual void invertSelection();
@@ -146,7 +147,7 @@ public:
 protected:
   KrView(KConfig *cfg = krConfig);
   static QPixmap getIcon(vfile *vf);
-  void changeSelection(const QString& filter, bool select);
+  void changeSelection(const QString& filter, bool select, bool includeDirs = false);
 
 
 protected:

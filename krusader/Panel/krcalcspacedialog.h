@@ -56,7 +56,7 @@ class KrCalcSpaceDialog : public KDialogBase{
 	   needed. Creator must call finished(), if the thread is no longer needed.
 	*/
 	class CalcThread : public QThread{
-		KIO::filesize_t m_totalSize;
+		KIO::filesize_t m_totalSize, m_currentSize;
 		unsigned long m_totalFiles;
 		unsigned long m_totalDirs;
 		const KrViewItemList m_items;
@@ -67,7 +67,7 @@ class KrCalcSpaceDialog : public KDialogBase{
 		bool m_stop;
 		void cleanUp(); // Deletes this, if possible
 	public:
-		KIO::filesize_t getTotalSize() const {return m_totalSize;} // the result
+		KIO::filesize_t getTotalSize() const {return m_totalSize + m_currentSize;} // the result
 		unsigned long getTotalFiles() const {return m_totalFiles;} // the result
 		unsigned long getTotalDirs() const {return m_totalDirs;} // the result
 		const KrViewItemList & getItems() const {return m_items;} // list of directories to calculate

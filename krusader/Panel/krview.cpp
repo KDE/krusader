@@ -133,9 +133,9 @@ QString KrView::statistics() {
    return tmp;
 }
 
-void KrView::changeSelection( const QString& filter, bool select ) {
+void KrView::changeSelection( const QString& filter, bool select, bool includeDirs ) {
    KConfigGroupSaver grpSvr( _config, "Look&Feel" /*nameInKConfig()*/ );
-   bool markDirs = _config->readBoolEntry( "Mark Dirs", _MarkDirs );
+   bool markDirs = _config->readBoolEntry( "Mark Dirs", _MarkDirs ) || includeDirs;
 
    KrViewItem *temp = getCurrentKrViewItem();
    for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ) {
