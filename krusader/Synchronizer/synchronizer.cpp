@@ -987,7 +987,10 @@ void Synchronizer::slotDataReceived(KIO::Job *job, const QByteArray &data)
   KIO::TransferJob *otherJob = ( job == leftReadJob ) ? rightReadJob : leftReadJob;
   
   if( otherJob == 0 )
-    abortContentComparing();
+  {
+    if( compareArray.size() )
+      abortContentComparing();
+  }
   else
   {    
     ((KIO::TransferJob *)job)->suspend();
