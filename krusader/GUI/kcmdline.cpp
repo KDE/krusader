@@ -79,7 +79,6 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
   QStringList list = krConfig->readListEntry( "cmdline history" );
   cmdLine->setHistoryItems( list );
 
-  connect( cmdLine, SIGNAL( activated( const QString& ) ), this, SLOT( setEditText( const QString& ) ) );
   connect( cmdLine, SIGNAL( returnPressed(const QString& ) ), this, SLOT( slotRun( const QString& ) ) );
   connect( cmdLine, SIGNAL( returnPressed(const QString &) ), cmdLine, SLOT( clearEdit() ) );
   connect( cmdLine, SIGNAL( returnToPanel() ), this, SLOT( slotReturnFocus() ));
@@ -147,10 +146,31 @@ void KCMDLine::slotRun(const QString &command1) {
     KShellProcess proc;
     chdir( panelPath.local8Bit() );
     // run in a terminal ???
-    if ( terminal->isOn() )
-      proc << krConfig->readEntry( "Terminal", _Terminal )
-      << "--noclose -e";
-    proc << command1;
+    if ( terminal->isOn() ) {
+      QString terminal = krConfig->readEntry( "Terminal", _Terminal );
+      proc << terminal;
+      // if the terminal support is - don't close when the command finish
+      //if( terminal == "konsole" ) proc << "--noclose ";
+      //if( terminal == "xterm" ) proc << "-hold ";
+      //if( terminal == "Eterm" ) proc << "--pause ";
+      proc << "-e ";
+      // redirect the command to file so pipe will be supperted..
+      KTempFile tmpfile("krcmd","tmp");
+      QTextStream *stream = tmpfile.textStream();
+      // delete the temporary file
+      *stream << "rm -rf " << tmpfile.name() << endl;
+      *stream << command1 << endl;
+      *stream << "echo" << endl;
+      *stream << "echo Krusader: "+i18n("This terminal will close in 1 hour..") << endl;
+      *stream << "sleep 3600" << endl;
+      
+      // execute file with favorite shell
+      proc << getenv("SHELL") << tmpfile.name(); 
+      
+    }
+    else {
+      proc << command1;
+    }
     proc.start( KProcess::DontCare );
 
     chdir( save.local8Bit() );
