@@ -74,8 +74,8 @@ void KrDetailedViewItem::repaintItem() {
     // set text in columns, according to what columns are available
     int id = KrDetailedView::Unused;
     if ((id = mimeColumn) != -1) {
-      QString tmp = _vf->vfile_getMime();
-      setText(id, tmp.mid(tmp.find('/')+1));
+      QString tmp = KMimeType::mimeType(_vf->vfile_getMime())->comment();
+      setText( id, tmp );
     }
     if ((id = sizeColumn) != -1) {
       if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, "<DIR>");
