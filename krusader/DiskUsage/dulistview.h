@@ -122,6 +122,7 @@ public:
 public slots:
   void slotDirChanged( Directory * );
   void slotChanged( File * );
+  void slotDeleted( File * );
   void slotRightClicked(QListViewItem *);
   void slotExpanded( QListViewItem * );
     

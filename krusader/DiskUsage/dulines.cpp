@@ -150,6 +150,7 @@ DULines::DULines( DiskUsage *usage, const char *name )
   connect( this, SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
            this, SLOT( slotRightClicked(QListViewItem *) ) );
   connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
+  connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotDeleted( File * ) ) );
 }
 
 DULines::~DULines()
@@ -340,6 +341,20 @@ void DULines::slotChanged( File * item )
         refreshNeeded = true;
         QTimer::singleShot( 0, this, SLOT( slotRefresh() ) );
       }
+      break;
+    }
+    duItem = (DULinesItem *)duItem->nextSibling();
+  }
+}
+
+void DULines::slotDeleted( File * item )
+{
+  DULinesItem *duItem = (DULinesItem *)firstChild();
+  while( duItem )
+  {
+    if( duItem->getFile() == item )
+    {
+      delete duItem;
       break;
     }
     duItem = (DULinesItem *)duItem->nextSibling();

@@ -50,6 +50,7 @@ public slots:
   void sectionResized( int );
   void slotRightClicked(QListViewItem *);
   void slotChanged( File * );
+  void slotDeleted( File * );
   void slotRefresh() { refreshNeeded = false; sectionResized( 0 ); }
   
 protected:

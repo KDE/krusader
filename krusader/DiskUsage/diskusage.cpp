@@ -32,6 +32,8 @@
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kmimetype.h>
+#include <kmessagebox.h>
+#include <kglobalsettings.h>
 #include <qpushbutton.h>
 #include <qhbox.h>
 #include <qvaluestack.h>
@@ -44,6 +46,8 @@
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
 #include "../kicons.h"
+#include "../defaults.h"
+#include "../krusader.h"
 #include "filelightParts/Config.h"
 
 #include "dulines.h"
@@ -51,14 +55,15 @@
 #include "dufilelight.h"
 
 // these are the values that will exist in the menu
-#define EXCLUDE_ID          90
-#define INCLUDE_ALL_ID      91
-#define PARENT_DIR_ID       92
-#define VIEW_POPUP_ID       93
-#define LINES_VIEW_ID       94
-#define DETAILED_VIEW_ID    95
-#define FILELIGHT_VIEW_ID   96
-#define ADDITIONAL_POPUP_ID 97
+#define DELETE_ID           90
+#define EXCLUDE_ID          91
+#define INCLUDE_ALL_ID      92
+#define PARENT_DIR_ID       93
+#define VIEW_POPUP_ID       94
+#define LINES_VIEW_ID       95
+#define DETAILED_VIEW_ID    96
+#define FILELIGHT_VIEW_ID   97
+#define ADDITIONAL_POPUP_ID 98
 
 DiskUsageDialog::DiskUsageDialog( QWidget *parent, const char *name ) : QDialog( parent, name, true ),
   cancelled( false )
@@ -350,6 +355,9 @@ void DiskUsage::calculateSizes( Directory *dirEntry, bool emitSig )
   KIO::filesize_t oldOwn = dirEntry->ownSize(), oldTotal = dirEntry->size();
   dirEntry->setSizes( total, own );
   
+  if( dirEntry == currentDirectory )
+    currentSize = total;
+  
   if( emitSig && ( own != oldOwn || total != oldTotal ) )
     emit changed( dirEntry );
 }
@@ -403,6 +411,70 @@ void DiskUsage::includeAll()
   calculateSizes( root, true );
   calculatePercents( true );
   createStatus();
+}
+
+void DiskUsage::del( File *file, bool calcPercents )
+{
+  if( file == root )
+    return;
+ 
+  if( calcPercents )
+  {
+    krConfig->setGroup( "Advanced" );
+    if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) 
+    {
+      if ( KMessageBox::warningContinueCancel( krApp, i18n( "Are you sure you want to delete " ) 
+                                             + file->fullPath() + "?" ) != KMessageBox::Continue )
+         return ;
+    }
+  }
+     
+  if( file == currentDirectory )
+    dirUp();
+  
+  if( file->isDir() )
+  {      
+    Directory *dir = dynamic_cast<Directory *>( file );
+    
+    Iterator<File> it;
+    while( ( it = dir->iterator() ) != dir->end() )
+      del( *it, false );
+  
+    QString path;  
+    for( const Directory *d = (Directory*)file; d != root && d && d->parent() != 0; d = d->parent() )
+    {
+      if( !path.isEmpty() )
+        path = "/" + path;
+        
+      path = d->fileName() + path;
+    }
+    
+    contentMap.remove( path );
+  }
+
+  emit deleted( file );
+  
+  krConfig->setGroup("General");
+  if( krConfig->readBoolEntry("Move To Trash",_MoveToTrash) )
+  {
+    KIO::Job *job = new KIO::CopyJob( vfs::fromPathOrURL( file->fullPath() ),KGlobalSettings::trashPath(),KIO::CopyJob::Move,false,false );
+    connect(job,SIGNAL(result(KIO::Job*)),krApp,SLOT(changeTrashIcon()));
+  }
+  else
+    new KIO::DeleteJob( vfs::fromPathOrURL( file->fullPath() ), false, false);
+
+  ((Directory *)(file->parent()))->remove( file );
+  delete file;
+    
+  if( calcPercents )
+  {  
+    qApp->processEvents(); // execute the delete
+    
+    calculateSizes( root, true );
+    calculatePercents( true );
+    createStatus();
+    emit enteringDirectory( currentDirectory );
+  }  
 }
 
 void * DiskUsage::getProperty( File *item, QString key )
@@ -475,6 +547,7 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
   
   if( fileItem != 0 )
   {
+    popup.insertItem(  i18n("Delete"),          DELETE_ID);
     popup.insertItem(  i18n("Exclude"),         EXCLUDE_ID);
     popup.insertSeparator();
   }
@@ -501,6 +574,9 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
   // check out the user's option
   switch (result)
   {
+  case DELETE_ID:
+    del( fileItem );
+    break;
   case EXCLUDE_ID:
     exclude( fileItem );
     break;
@@ -565,10 +641,10 @@ void DiskUsage::calculatePercents( bool emitSig, Directory *dirEntry )
     
       if( emitSig && newPerc != oldPerc )
         emit changed( item );
-    }
   
-    if( item->isDir() )
-      calculatePercents( emitSig, dynamic_cast<Directory *>( item ) );
+      if( item->isDir() )
+        calculatePercents( emitSig, dynamic_cast<Directory *>( item ) );
+    }
   }
 }
 

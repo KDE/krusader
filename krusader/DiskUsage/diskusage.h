@@ -76,6 +76,8 @@ public:
   void       exclude( File *file, bool calcPercents = true );
   void       includeAll();
   
+  void       del( File *file, bool calcPercents = true );
+  
   QString    getToolTip( File * );
   
   void       rightClickMenu( File *, KPopupMenu * = 0, QString = QString::null );
@@ -94,6 +96,7 @@ signals:
   void       enteringDirectory( Directory * );
   void       clearing();
   void       changed( File * );
+  void       deleted( File * );
   void       status( QString );
   void       viewChanged( int );
   

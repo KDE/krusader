@@ -75,10 +75,11 @@ DUListView::DUListView( DiskUsage *usage, const char *name )
   setColumnAlignment( 3, Qt::AlignRight );
   
   setSorting( 2 );
-  
+
   connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
   connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
   connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
+  connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotDeleted( File * ) ) );
 
   connect( this, SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
            this, SLOT( slotRightClicked(QListViewItem *) ) );
@@ -153,6 +154,16 @@ void DUListView::slotChanged( File * item )
   duItem->setText( 1, item->percent() );
   duItem->setText( 2, KRpermHandler::parseSize( item->size() ) + " " );
   duItem->setText( 3, KRpermHandler::parseSize( item->ownSize() ) + " " );
+}
+
+void DUListView::slotDeleted( File * item )
+{
+  void * itemPtr = diskUsage->getProperty( item, "ListView-Ref" );
+  if( itemPtr == 0 )
+    return;
+    
+  DUListViewItem *duItem = (DUListViewItem *)itemPtr;
+  delete duItem;
 }
   
 void DUListView::slotRightClicked( QListViewItem *item )

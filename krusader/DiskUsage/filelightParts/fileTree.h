@@ -189,7 +189,7 @@ public:
     m_name = QString::fromLocal8Bit( nameIn );
   }
   
-  virtual ~File() {}  
+  virtual ~File() {}
       
   inline const QString    fileName()            const  {return m_name;}
   inline const char *     name()                const  {return m_name.ascii();}
@@ -219,8 +219,8 @@ public:
   {
     m_ownSize = ownSize;
     m_size = totalSize;
-  }
-  
+  }  
+
   enum UnitPrefix { kilo, mega, giga, tera };
 
   static const FileSize DENOMINATOR[4];
@@ -266,6 +266,25 @@ public:
      
      Chain<File>::append( p );
      p->m_parent = this;
+  }
+  
+  void remove( File *p )
+  {
+    for( Iterator<File> it = Chain<File>::iterator(); it != Chain<File>::end(); ++it )
+      if( (*it) == p )
+      {
+        --m_fileCount;
+        
+        Directory *parent = m_parent;
+        while( parent )
+        {
+          parent->m_fileCount--;
+          parent = parent->m_parent;
+        }
+        
+        it.remove();
+        break;
+      }
   }
     
   uint fileCount() const { return m_fileCount; }
