@@ -723,7 +723,7 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
 
     port = new QSpinBox( this, "port" );
     port->setGeometry( QRect( 280, 70, 50, 21 ) );
-    port->setMaxValue( 999 );
+    port->setMaxValue( 65535 );
 #if QT_VERSION < 300
     port->setFrameShadow( QSpinBox::Sunken );
 #endif
