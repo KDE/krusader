@@ -774,7 +774,19 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
     time = QDateTime(qdate,qtime).toTime_t();    
     // permissions
     perm = nextWord(line);
-    if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;
+    
+    if( perm.length() == 7 ) // windows rar permission format
+    {
+      bool isDir  = ( perm.at(1).lower() == 'd' );
+      bool isReadOnly = ( perm.at(2).lower() == 'r' );
+      
+      perm = isDir ? "drwxr-xr-x" : "-rw-r--r--";
+      
+      if( isReadOnly )
+        perm.at( 2 ) = '-';
+    }        
+    
+    if(perm.length() != 10) perm = (perm.at(0)=='d')? "drwxr-xr-x" : "-rw-r--r--" ;    
     mode = parsePermString(perm);
   }
   if(arcType == "arj"){
