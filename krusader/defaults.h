@@ -236,6 +236,8 @@
 #define  _Asymmetric        false 
 // Case insensitive compare in synchronizer /////////////
 #define  _IgnoreCase        false 
+// Scrolls the results of the synchronization /////////////
+#define  _ScrollResults     false 
 // The right arrow button is turned on /////////////
 #define  _BtnLeftToRight    true 
 // The equals button is turned on /////////////

@@ -1292,6 +1292,17 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnCompareDirs->setDefault(true);
   buttons->addWidget( btnCompareDirs );
 
+  krConfig->setGroup("Synchronize");
+  btnScrollResults = new QPushButton( this, "btnSynchronize" );
+  btnScrollResults->setToggleButton( true );
+  btnScrollResults->setOn( krConfig->readBoolEntry( "Scroll Results", _ScrollResults ) );
+  btnScrollResults->hide();
+  if( btnScrollResults->isOn() )
+    btnScrollResults->setText( i18n( "Quiet" ) );
+  else
+    btnScrollResults->setText( i18n( "Scroll Results" ) );    
+  buttons->addWidget( btnScrollResults );
+  
   btnStopComparing = new QPushButton( this, "btnStopComparing" );
   btnStopComparing->setText( i18n( "Stop" ) );
   btnStopComparing->setEnabled(false);
@@ -1320,6 +1331,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnCompareDirs,    SIGNAL( clicked() ), this, SLOT( compare() ) );
   connect( btnStopComparing,  SIGNAL( clicked() ), this, SLOT( stop() ) );
   connect( btnSynchronize,    SIGNAL( clicked() ), this, SLOT( synchronize() ) );
+  connect( btnScrollResults,  SIGNAL( toggled(bool) ), this, SLOT( setScrolling(bool) ) );
   connect( btnCloseSync,      SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
 
   connect( cbSubdirs,         SIGNAL( toggled(bool) ), this, SLOT( subdirsChecked( bool ) ) );
@@ -1586,6 +1598,8 @@ void SynchronizerGUI::closeDialog()
   krConfig->writeEntry("Duplicates Button", btnDuplicates->isOn() );
   krConfig->writeEntry("Singles Button", btnSingles->isOn() );
   
+  krConfig->writeEntry("Scroll Results", btnScrollResults->isOn() );
+  
   krConfig->writeEntry("Window Width", sizeX );
   krConfig->writeEntry("Window Height", sizeY );
   krConfig->writeEntry("Window Maximized", isMaximized() );
@@ -1631,17 +1645,21 @@ void SynchronizerGUI::compare()
   btnSwapSides->setEnabled( false );
   btnStopComparing->setEnabled( isComparing = true );
   btnSynchronize->setEnabled( false );
+  btnCompareDirs->hide();
+  btnScrollResults->show();
   disableMarkButtons();
     
   int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
                        &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
-                       cbIgnoreCase->isChecked(), false );
+                       cbIgnoreCase->isChecked(), btnScrollResults->isOn() );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnCompareDirs->setEnabled( true );
   profileManager->setEnabled( true );
   btnSwapSides->setEnabled( true );
+  btnCompareDirs->show();
+  btnScrollResults->hide();
   if( fileCount )
     btnSynchronize->setEnabled( true );
 
@@ -1704,10 +1722,11 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
 
   if( listItem )
   {
+    listItem->setPixmap(0, isDir ? folderIcon : fileIcon);
     if( !item->isMarked() )
       listItem->setVisible( false );
-    listItem->setPixmap(0, isDir ? folderIcon : fileIcon);
-    syncList->ensureItemVisible( listItem );
+    else
+      syncList->ensureItemVisible( listItem );
   }
 }
 
@@ -1932,6 +1951,8 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", false ) );
   cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", false ) );
   
+  btnScrollResults->setOn( krConfig->readBoolEntry( "Scroll Results", false ) );
+  
   btnLeftToRight->setOn( krConfig->readBoolEntry( "Show Left To Right", true ) );
   btnEquals     ->setOn( krConfig->readBoolEntry( "Show Equals", true ) );
   btnDifferents ->setOn( krConfig->readBoolEntry( "Show Differents", true ) );
@@ -1958,6 +1979,8 @@ void SynchronizerGUI::saveToProfile( QString profile )
   krConfig->writeEntry( "Asymmetric", cbAsymmetric->isChecked() );
   krConfig->writeEntry( "Ignore Case", cbIgnoreCase->isChecked() );
   
+  krConfig->writeEntry( "Scroll Results", btnScrollResults->isOn() );
+  
   krConfig->writeEntry( "Show Left To Right", btnLeftToRight->isOn() );
   krConfig->writeEntry( "Show Equals", btnEquals->isOn() );
   krConfig->writeEntry( "Show Differents", btnDifferents->isOn() );
@@ -1973,4 +1996,14 @@ void SynchronizerGUI::connectFilters( const QString &newString )
     fileFilter->setEditText( newString );
   else
     generalFilter->searchFor->setEditText( newString );
+}
+
+void SynchronizerGUI::setScrolling( bool isOn )
+{
+  if( isOn )
+    btnScrollResults->setText( i18n( "Quiet" ) );
+  else
+    btnScrollResults->setText( i18n( "Scroll Results" ) );
+    
+  synchronizer.setScrolling( isOn );
 }

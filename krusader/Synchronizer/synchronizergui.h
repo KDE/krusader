@@ -108,6 +108,7 @@ protected slots:
   void reject();
   void addFile( SynchronizerFileItem * );
   void markChanged( SynchronizerFileItem * );
+  void setScrolling( bool );
   void statusInfo( QString );
   void subdirsChecked( bool );
   void setPanelLabels();
@@ -147,6 +148,7 @@ protected:
   QPushButton   *btnCompareDirs;
   QPushButton   *btnStopComparing;
   QPushButton   *btnSynchronize;
+  QPushButton   *btnScrollResults;
   
   QPushButton   *btnLeftToRight;
   QPushButton   *btnEquals;

@@ -257,31 +257,31 @@ SynchronizerFileItem * Synchronizer::addItem( SynchronizerFileItem *parent, QStr
                                   time_t leftDate, time_t rightDate, TaskType tsk,
                                   bool isDir, bool isTemp )
 {
-  bool marked = autoScroll ? isMarked( tsk, existsLeft && existsRight ) : false;
+  bool marked = autoScroll ? !isTemp && isMarked( tsk, existsLeft && existsRight ) : false;
   SynchronizerFileItem *item = new SynchronizerFileItem( leftFile, rightFile, leftDir, rightDir, marked, 
     existsLeft, existsRight, leftSize, rightSize, leftDate, rightDate, tsk, isDir,
     isTemp, parent );
-
-
-  if( marked )
-  {
-    if( markParentDirectories( item ) && autoScroll )
-    {
-      int oldFileCount = fileCount;
-      refresh( true );
-      fileCount = oldFileCount;
-    }
-    fileCount++;
-  }
 
   if( !isTemp )
   {     
     while( parent && parent->isTemporary() )
        setPermanent( parent );
 
+    bool doRefresh = false;
+         
+    if( marked )
+    {
+      fileCount++;
+      if( autoScroll && markParentDirectories( item ) )
+        doRefresh = true;
+    }
+
     resultList.append( item );
     emit comparedFileData( item );
 
+    if( doRefresh )
+      refresh( true );
+    
     if( marked && (displayUpdateCount++ % DISPLAY_UPDATE_PERIOD == (DISPLAY_UPDATE_PERIOD-1) ) )
       qApp->processEvents();
   }
@@ -691,6 +691,16 @@ void Synchronizer::swapSides()
   {
     item->swap( asymmetric );    
     item = resultList.next();
+  }
+}
+
+void Synchronizer::setScrolling( bool scroll )
+{
+  if( autoScroll = scroll )
+  {
+    int oldFileCount = fileCount;
+    refresh( true );
+    fileCount = oldFileCount;
   }
 }
 
@@ -1237,3 +1247,4 @@ vfile * Synchronizer::searchFile( vfs *vfs, QString file )
   }
   return 0;
 }
+

@@ -150,6 +150,7 @@ class Synchronizer : public QObject
     bool    totalSizes( int *, KIO::filesize_t *, int *, KIO::filesize_t *, int *, KIO::filesize_t * );
     void    synchronize( bool leftCopyEnabled, bool rightCopyEnabled, bool deleteEnabled, bool overWrite );
     void    synchronizeWithKGet();
+    void    setScrolling( bool scroll );
     void    pause();
     void    resume();
     void    swapSides();
