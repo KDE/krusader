@@ -52,6 +52,7 @@ protected:
 	virtual bool initArcParameters();
 	virtual void parseLine(int lineNo, QString line, QFile* temp);
 	virtual bool setArcFile(const QString& path);
+  virtual QString getPassword();
 
 	// archive specific commands
 	QString cmd;     ///< the archiver name.
@@ -79,6 +80,7 @@ private:
 	QString arcTempDir;               //< the currently used temp directory.
   QString arcType;                  //< the archive type.
   bool cpioReady;                   //< Used for RPM files.
+  QString password;                 //< Password for the archives
 };
 
 

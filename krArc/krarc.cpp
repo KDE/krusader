@@ -75,7 +75,8 @@ int kdemain( int argc, char **argv ){
 } // extern "C" 
 
 kio_krarcProtocol::kio_krarcProtocol(const QCString &pool_socket, const QCString &app_socket)
- : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L),cpioReady(false){
+ : SlaveBase("kio_krarc", pool_socket, app_socket), archiveChanged(true), arcFile(0L),cpioReady(false),
+   password(QString::null) {
   dirDict.setAutoDelete(true);
 
   arcTempDir = locateLocal("tmp",QString::null);
@@ -424,6 +425,7 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
 		KFileItem* newArcFile = new KFileItem(arcFile->url(),QString::null,0);
 		if( newArcFile->time(UDS_MODIFICATION_TIME) != arcFile->time(UDS_MODIFICATION_TIME) ){
       delete arcFile;
+      password = QString::null;
 			arcFile = newArcFile;
 		}
 		else { // same old file
@@ -434,6 +436,7 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
 	else {// it's a new file...
 		if( arcFile ){
 			delete arcFile;
+      password = QString::null;
 			arcFile = 0L;
 		}
 		QString newPath = path;
@@ -801,6 +804,12 @@ bool kio_krarcProtocol::initArcParameters(){
     getCmd  = "unzip -p ";
     delCmd  = "zip -d ";
     putCmd  = "zip -ry ";
+
+    if( !getPassword().isEmpty() )
+    {
+      getCmd += "-P '"+password+"' ";
+      putCmd += "-P '"+password+"' ";
+    }
   } else if (arcType == "rar"){
     cmd = "unrar" ;
     listCmd = "unrar -c- v ";
@@ -841,6 +850,43 @@ bool kio_krarcProtocol::initArcParameters(){
     return false;
   }
   return true;
+}
+
+
+QString kio_krarcProtocol::getPassword() {    
+  if( !password.isNull() )
+    return password;
+
+  QFile zipFile( arcFile->url().path() );
+  if( zipFile.open( IO_ReadOnly ) )
+  {
+    char zipHeader[8];
+
+    if( zipFile.readBlock( zipHeader, 8 ) != 8 )
+      return (password = "" );
+
+    if( zipHeader[0] != 'P' || zipHeader[1] != 'K' || zipHeader[2] != 3 || zipHeader[3] != 4 )
+      return (password = "" );
+    
+    if( ! ( zipHeader[6] & 1 ) )  /* not encrypted */
+      return (password = "" );
+        
+    KIO::AuthInfo authInfo;
+    authInfo.caption= i18n( "Zip Password Dialog" );
+    authInfo.username= "zipfile";
+    authInfo.readOnly = true;
+    authInfo.keepPassword = true;
+    authInfo.verifyPath = true;
+    authInfo.url = KURL::fromPathOrURL( arcFile->url().path() );
+
+    if( checkCachedAuthentication( authInfo ) )
+      return ( password = authInfo.password );
+
+    if ( openPassDlg( authInfo ) )
+      return ( password = authInfo.password );
+  }
+
+  return (password = "" );
 }
 
 #include "krarc.moc"
