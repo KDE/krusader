@@ -17,6 +17,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <time.h>
 
 
 #include <qdir.h>
@@ -461,15 +462,16 @@ bool kio_krarcProtocol::initDirDict(const KURL&, bool forced){
 	//if( !setArcFile(url.path()) ) return false;
 	// no need to rescan the archive if it's not changed
 	if( !archiveChanged && !forced ) return true;
+
 	// write the temp file
 	KShellProcess proc;
 	KTempFile temp("krarc","tmp");
 	temp.setAutoDelete(true);
-
-	proc << listCmd << "\""+arcFile->url().path()+"\"" <<" > " << temp.name();
-	proc.start(KProcess::Block);
-	if( !proc.normalExit() || !proc.exitStatus() == 0 )	return false;
-
+	if( arcType != "bzip2" ){
+		proc << listCmd << "\""+arcFile->url().path()+"\"" <<" > " << temp.name();
+		proc.start(KProcess::Block);
+		if( !proc.normalExit() || !proc.exitStatus() == 0 )	return false;
+  }
 	// clear the dir dictionary
 	dirDict.clear();
 
@@ -491,6 +493,12 @@ bool kio_krarcProtocol::initDirDict(const KURL&, bool forced){
   entry.append( atom );
 
 	root->append(entry);
+
+	if( arcType == "bzip2" ){
+		KRDEBUG("Got me here...");
+		parseLine(0,"",temp.file());
+		return true;
+	}
 
 	// parse the temp file
 	temp.file()->open(IO_ReadOnly);
@@ -647,7 +655,7 @@ UDSEntryList* kio_krarcProtocol::addNewDir(QString path){
   return dir;
 }
 
-void kio_krarcProtocol::parseLine(int, QString line, QFile*){
+void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*){
   UDSEntryList* dir;
 	UDSEntry entry;
 	UDSAtom atom;
@@ -715,12 +723,31 @@ void kio_krarcProtocol::parseLine(int, QString line, QFile*){
     group = nextWord(line);
     // symlink destination
     if( S_ISLNK(mode) ){
-      // ignore the next 3 fields
-      nextWord(line); nextWord(line); nextWord(line);
-      symlinkDest = nextWord(line);
+			// ignore the next 3 fields
+			nextWord(line); nextWord(line); nextWord(line);
+			symlinkDest = nextWord(line);
     }
   }
-
+  if( arcType == "gzip" ){
+		if( !lineNo ) return; //ignore the first line
+		// first field is uncompressed size - ignore it
+    nextWord(line);
+    // size
+    size = nextWord(line).toULong();
+    // ignore the next field
+    nextWord(line);
+    // full name
+    fullName = nextWord(line);
+    fullName = fullName.mid(fullName.findRev("/")+1);
+  }
+  if( arcType == "bzip2" ){
+		// There is no way to list bzip2 files, so we take our information from
+    // the archive itself...
+    fullName = arcFile->name();
+    if( fullName.endsWith("bz2") ) fullName.truncate(fullName.length()-4);
+    mode = arcFile->mode();
+    size = arcFile->size();
+  }
   if( fullName.right(1) == "/" ) fullName = fullName.left(fullName.length()-1);
   if( !fullName.startsWith("/") ) fullName = "/"+fullName;
   QString path = fullName.left(fullName.findRev("/")+1);
@@ -766,6 +793,8 @@ void kio_krarcProtocol::parseLine(int, QString line, QFile*){
 }
 
 bool kio_krarcProtocol::initArcParameters(){
+	KRDEBUG("arcType: "<<arcType);
+
   if(arcType == "zip"){
     cmd = "unzip";
     listCmd = "unzip -ZTs-z-t-h ";
@@ -784,6 +813,18 @@ bool kio_krarcProtocol::initArcParameters(){
     getCmd  = "cpio --force-local --no-absolute-filenames -ivdF";
     delCmd  = QString::null;
     putCmd  = QString::null;
+  } else if(arcType == "gzip"){
+    cmd = "gzip";
+    listCmd = "gzip -l";
+    getCmd  = "gzip -dc";
+    delCmd  = QString::null;
+    putCmd  = QString::null;
+  } else if(arcType == "bzip2"){
+    cmd = "bzip2" ;
+    listCmd = "bzip2";
+    getCmd  = "bzip2 -dc";
+    delCmd  = QString::null;
+    putCmd  = QString::null;
   } else {
     cmd     = QString::null;
     listCmd = QString::null;
@@ -796,6 +837,7 @@ bool kio_krarcProtocol::initArcParameters(){
     error( KIO::ERR_CANNOT_LAUNCH_PROCESS,
     cmd+
     i18n("\nMake sure that the %1 binary are installed properly on your system.").arg(cmd));
+    KRDEBUG("Failed to find cmd: " << cmd);
     return false;
   }
   return true;
