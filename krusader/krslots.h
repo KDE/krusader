@@ -38,6 +38,7 @@
 #include "krusader.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
+#include "BookMan/bookmarksbutton.h"
 
 class ListPanel;
 
@@ -98,8 +99,8 @@ public slots:
 	void changeTrashIcon();
   void showAboutApplication();
 	void multiRename();
-  void openRightBookmarks() { krApp->mainView->right->popBookmarks(); }
-  void openLeftBookmarks() { krApp->mainView->left->popBookmarks(); }
+  void openRightBookmarks() { krApp->mainView->right->bookmarksButton->openPopup(); }
+  void openLeftBookmarks() { krApp->mainView->left->bookmarksButton->openPopup(); }
 	// F2
 	void terminal();
 	// F3

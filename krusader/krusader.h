@@ -48,7 +48,6 @@
 #include "MountMan/kmountman.h"
 
 class KrusaderStatus;
-class BookMan;
 class KRPleaseWaitHandler;
 class KrusaderView;
 class KProcess;
@@ -89,7 +88,6 @@ class Krusader : public KParts::MainWindow {
   public:
     static Krusader *App;       // a kApp style pointer
     MountMan::KMountMan *mountMan;  // krusader's Mount Manager
-    BookMan *bookMan;   // The Bookmark Manager
     KrusaderView *mainView;  // The GUI
     KConfig *config;    // allow everyone to access the config
     KIconLoader *iconLoader; // the app's icon loader
@@ -98,8 +96,8 @@ class Krusader : public KParts::MainWindow {
     static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll;
     static KAction *actUnselectAll, *actInvert, *actSysInfo, *actSync, *actSavePosition;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
-    static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actBookMan, *actNewTool;
-    static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind, *actAddBookmark;
+    static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool;
+    static KAction *actKonfigurator, *actToolsSetup, *actBack, *actRoot, *actFind;
     static KAction *actSelectColorMask, *actMultiRename, *actAllFilter, *actOpenLeftBm, *actOpenRightBm;
     static KToggleAction *actToggleTerminal;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,
@@ -129,7 +127,6 @@ class Krusader : public KParts::MainWindow {
 #define krApp        Krusader::App
 #define krConfig     Krusader::App->config
 #define krMtMan      (*(Krusader::App->mountMan))
-#define krBookMan    Krusader::App->bookMan
 #define SLOTS        Krusader::App->slot
 #define krLoader     Krusader::App->iconLoader
 // krusader's actions - things krusader can do!
@@ -155,7 +152,6 @@ class Krusader : public KParts::MainWindow {
 #define krExecFiles       Krusader::App->actExecFilter     // show only executables
 #define krCustomFiles     Krusader::App->actCustomFilter   // show a custom set of files
 #define krMountMan        Krusader::App->actMountMan       // run Mount-manager
-#define krBookManExec     Krusader::App->actBookMan        // run Bookmark-manager
 #define krNewTool         Krusader::App->actNewTool        // Add a new tool to menu
 #define krKonfigurator    Krusader::App->actKonfigurator
 #define krToolsSetup      Krusader::App->actToolsSetup     // setup the tools menu
@@ -163,7 +159,6 @@ class Krusader : public KParts::MainWindow {
 #define krRoot            Krusader::App->actRoot
 #define krFind            Krusader::App->actFind           // find files
 #define krMultiRename     Krusader::App->actMultiRename
-#define krAddBookmark     Krusader::App->actAddBookmark    // add a bookmark
 #define krSelectColorMask Krusader::App->actSelectColorMask// select compare-mask
 #define krToggleTerminal  Krusader::App->actToggleTerminal
 #define krToggleSortByExt Krusader::App->actToggleSortByExt// Sort by extention

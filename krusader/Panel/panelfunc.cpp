@@ -874,7 +874,6 @@ void ListPanelFunc::refreshActions() {
   //  set up actions
   krMultiRename->setEnabled( vfsType == "normal" );  // batch rename
   krProperties ->setEnabled( vfsType == "normal" || vfsType == "ftp" ); // file properties
-  krAddBookmark->setEnabled( vfsType == "normal" || vfsType == "ftp" );
   krFTPDiss ->setEnabled( vfsType == "ftp" );     // disconnect an FTP session
   /*
     krUnpack->setEnabled(true);                            // unpack archive

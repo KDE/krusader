@@ -50,7 +50,6 @@ A
 #include "krusader.h"
 #include "kicons.h"
 #include "VFS/krpermhandler.h"
-#include "BookMan/bookman.h"
 #include "GUI/krusaderstatus.h"
 #include "RemoteMan/remoteman.h"
 #include "Dialogs/krpleasewait.h"
@@ -90,14 +89,13 @@ KAction *Krusader::actAllFilter = 0;
 KAction *Krusader::actExecFilter = 0;
 KAction *Krusader::actCustomFilter = 0;
 KAction *Krusader::actMountMan = 0;
-KAction *Krusader::actBookMan = 0;
 KAction *Krusader::actNewTool = 0;
 KAction *Krusader::actKonfigurator = 0;
 KAction *Krusader::actToolsSetup = 0;
 KAction *Krusader::actBack = 0;
 KAction *Krusader::actRoot = 0;
 KAction *Krusader::actFind = 0;
-KAction *Krusader::actAddBookmark = 0;
+//KAction *Krusader::actAddBookmark = 0;
 KAction *Krusader::actSavePosition = 0;
 KAction *Krusader::actSelectColorMask = 0;
 KAction *Krusader::actOpenLeftBm = 0;
@@ -143,9 +141,6 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
   // create an icon loader
   iconLoader = KGlobal::iconLoader();
-
-  // create BookMan
-  bookMan = new BookMan();
 
   // create MountMan
   mountMan = new MountMan::KMountMan();
@@ -350,16 +345,12 @@ void Krusader::setupActions() {
                                   SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
   actMountMan = new KAction( i18n( "&MountMan" ), "kcmpartitions", ALT + Key_Slash,
                              SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
-  actBookMan = new KAction( i18n( "&BookMan" ), "kr_bookman", 0,
-                            krBookMan, SLOT( showGUI() ), actionCollection(), "bookman" );
   actFind = new KAction( i18n( "&Search" ), "filefind", CTRL + Key_S,
                          SLOTS, SLOT( search() ), actionCollection(), "find" );
   actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                            SLOTS, SLOT( invert() ), actionCollection(), "invert" );
   actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,
                              SLOTS, SLOT( unmarkGroup() ), actionCollection(), "unselect group" );
-  actAddBookmark = new KAction( i18n( "Add Bookmark" ), "bookmark_add", CTRL + Key_B,
-                                SLOTS, SLOT( addBookmark() ), actionCollection(), "add bookmark" );
   actKonfigurator = new KAction( i18n( "&Konfigurator" ), "configure", 0,
                                  SLOTS, SLOT( startKonfigurator() ), actionCollection(), "konfigurator" );
   actBack = new KAction( i18n( "Back" ), "back", 0,
@@ -396,7 +387,6 @@ void Krusader::setupActions() {
   actBack->setToolTip( i18n( "Back to the place you came from" ) );
   actRoot->setToolTip( i18n( "ROOT (/)" ) );
   actFind->setToolTip( i18n( "Search for files" ) );
-  actAddBookmark->setToolTip( i18n( "Add the current path to your bookmarks" ) );
 }
 
 ///////////////////////////////////////////////////////////////////////////

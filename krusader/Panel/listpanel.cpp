@@ -70,7 +70,7 @@
 #include "panelfunc.h"
 #include "../MountMan/kmountman.h"
 #include "../Dialogs/krdialogs.h"
-#include "../BookMan/bookman.h"
+#include "../BookMan/bookmarksbutton.h"
 #include "../Dialogs/krspwidgets.h"
 #include "../GUI/kcmdline.h"
 #include "krdetailedview.h"
@@ -102,27 +102,9 @@ ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
   connect(status, SIGNAL(clicked()), this, SLOT(slotFocusOnMe()));
 
   // ... create the bookmark list
-  bookmarkList=new QToolButton(this);
-  bookmarkList->setFixedSize(sheight, sheight);
-  QImage im = krLoader->loadIcon("kr_bookmark",KIcon::Toolbar).convertToImage();
-  bookmarkList->setPixmap(im.scale(sheight,sheight));
-  bookmarkList->setTextLabel(i18n("Open your bookmarks"),true);
-  bookmarkList->setPopupDelay(10); // 0.01 seconds press
-  bookmarkList->setAcceptDrops(false);
-  connect(bookmarkList,SIGNAL(pressed()),this,SLOT(slotFocusOnMe()));
-  connect(bookmarkList,SIGNAL(pressed()),this,SLOT(slotRefreshBookmarks()));
-  // create the pop-up menu for the bookmarks,
-  // this means the panel needs to be
-  bookmarks=new QPopupMenu(this);
-  krConfig->setGroup("Look&Feel");
-  bookmarks->setFont(krConfig->readFontEntry("Filelist Font",_FilelistFont));
-  bookmarks->setBackgroundMode(PaletteLight);
-  slotRefreshBookmarks();
-  // and connect it to the button
-  bookmarkList->setPopup(bookmarks);
-  QWhatsThis::add(bookmarkList,i18n("Pressing this button will pop a menu with your bookmarks. Select a bookmark to go where it's pointing. Simple ehh?"));
-  connect(bookmarks,SIGNAL(activated(int)),this,
-          SLOT(slotBookmarkChosen(int)));
+  bookmarksButton = new BookmarksButton(this);
+  connect(bookmarksButton, SIGNAL(pressed()), this, SLOT(slotFocusOnMe()));
+  connect(bookmarksButton, SIGNAL(openUrl(const QString&)), func,SLOT(openUrl(const QString&)));
 
   totals = new KrSqueezedTextLabel(this);
   krConfig->setGroup("Look&Feel");
@@ -155,13 +137,10 @@ ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
   connect(this,SIGNAL(cmdLineUpdate(QString)), SLOTS, SLOT(slotCurrentChanged(QString)) );
   connect(this,SIGNAL(activePanelChanged(ListPanel *)), SLOTS, SLOT(slotSetActivePanel(ListPanel *)) );
 
-  // when the BookMan asks to refresh bookmarks...
-  connect(krBookMan, SIGNAL(refreshBookmarks()), this, SLOT(slotRefreshBookmarks()));
-
   // finish the layout
   layout->addMultiCellWidget(origin,0,0,0,1);
   layout->addWidget(status,1,0);
-  layout->addWidget(bookmarkList,1,1);
+  layout->addWidget(bookmarksButton,1,1);
   layout->addMultiCellWidget(dynamic_cast<KrDetailedView*>(view)->widget(), 2,2,0,1);
   layout->addMultiCellWidget(totals,3,3,0,1);
 
@@ -193,8 +172,8 @@ void ListPanel::invertSelection()
   view->invertSelection();
 }
 
-void ListPanel::slotFocusOnMe()
-{		 // give this VFS the focus (the path bar)
+void ListPanel::slotFocusOnMe() {
+  // give this VFS the focus (the path bar)
   // we start by calling the KVFS function
   krConfig->setGroup("Look&Feel");
 
@@ -205,8 +184,6 @@ void ListPanel::slotFocusOnMe()
 
   otherPanel->status->setPalette(q);
   otherPanel->totals->setPalette(q);
-  otherPanel->bookmarkList->setBackgroundMode(PaletteBackground);
-  otherPanel->bookmarkList->setPalette(q);
   otherPanel->view->prepareForPassive();
 
   // now, take care of this panel
@@ -215,17 +192,11 @@ void ListPanel::slotFocusOnMe()
   p.setColor( QColorGroup::Background,KGlobalSettings::highlightColor() );
   status->setPalette(p);
   totals->setPalette(p);
-  bookmarkList->setBackgroundMode(PaletteBackground);
-  bookmarkList->setPalette(p);
 
   view->prepareForActive();
   emit cmdLineUpdate(realPath);
   emit activePanelChanged(this);
 
-  QPalette bp( bookmarks->palette() );
-  bp.setColor( QColorGroup::Foreground,KGlobalSettings::activeTextColor() );
-  bp.setColor( QColorGroup::Background,KGlobalSettings::activeTitleColor() );
-  bookmarks->setPalette(bp);
   func->refreshActions();
 }
 
@@ -309,18 +280,6 @@ void ListPanel::slotUpdate()
   func->inRefresh = false;
 }
 
-//  refresh the panel when a bookmark was chosen
-void ListPanel::slotBookmarkChosen(int id)
-{
-  view->setNameToMakeCurrent(QString::null);
-  QString origin = krBookMan->getUrlById(id);
-  func->openUrl( origin );
-}
-
-void ListPanel::slotRefreshBookmarks()
-{
-  krBookMan->fillPopupMenu(bookmarks);
-}
 
 void ListPanel::slotGetStats(QString path)
 {
@@ -705,11 +664,6 @@ void ListPanel::setFilter(FilterSpec f)
       default:			return;
   }
   func->refresh();
-}
-
-void ListPanel::popBookmarks()
-{
-  bookmarks->exec(bookmarkList->mapToGlobal(QPoint(0,bookmarkList->height())));
 }
 
 QString ListPanel::getCurrentName()

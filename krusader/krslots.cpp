@@ -50,7 +50,6 @@
 #include "Panel/listpanel.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
-#include "BookMan/bookman.h"
 #include "GUI/krusaderstatus.h"
 #include "RemoteMan/remoteman.h"
 #include "Panel/panelfunc.h"
@@ -192,7 +191,6 @@ void KRslots::addBookmark(){
   if (path.contains('\\')>0)
     KMessageBox::information(0, i18n("In order to save the time needed to enter an archive, Krusader will not allow bookmarks which point into an archive, as it is usually a mistake to do so!"),
                              QString::null, "BookmarkArchives");
-  else krBookMan->addBookmark(path);
 }
 
 // GUI toggle slots

@@ -61,6 +61,7 @@ class PanelFunc;
 class statsCollector;
 class KrView;
 class KURLRequester;
+class BookmarksButton;
 
 class ListPanel : public QWidget {
 friend class ListPanelFunc;
@@ -82,8 +83,6 @@ public slots:
   void select(bool, bool);      // see doc in ListPanel
   void invertSelection();       // see doc in ListPanel
   void slotFocusOnMe(); // give this VFS the focus (the path bar)
-	void slotBookmarkChosen(int id);
-  void slotRefreshBookmarks();              // re-reads the bookmark list from disk
 	void slotUpdate();			                  // when the vfs finish to update...
   void slotUpdateTotals();
 	void slotStartUpdate();                   // internal
@@ -93,7 +92,6 @@ public slots:
 
 ///////////////////////// service functions - called internally ////////////////////////
   inline void setOther(ListPanel *panel) { otherPanel=panel; }
-  void popBookmarks();                      // see doc in ListPanel
  	void prepareToDelete();                   // internal use only
 
 protected:
@@ -115,18 +113,17 @@ public:
 	ListPanel		*otherPanel;
 	QString 		 virtualPath;
 	QString      realPath;
-	QToolButton *bookmarkList;
 	int          colorMask;
 	bool         compareMode;
   FilterSpec	   filter;
 	QString			   filterMask;
 	QPixmap        currDragPix;
 	QListViewItem *currDragItem;
-	QPopupMenu    *bookmarks;
 	QGuardedPtr<QObject> statsAgent;
 	KrSqueezedTextLabel *status,*totals;
 	KURLRequester   *origin;
 	QGridLayout   *layout;
+  BookmarksButton *bookmarksButton;
 
 private:
   bool _left;
