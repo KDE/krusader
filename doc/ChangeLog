@@ -2,16 +2,20 @@
 -------------------------------
 
 
-
-ADDED: UserAction Forum (faq.docbook), thanks Dirk
-ADDED: 64 bit FAQ (faq.docbook), thanks Marc on our forum
-       http://krusader.sourceforge.net/phpBB/viewtopic.php?t=951
+  ADDED: This handbook is available in several formats (HTML, TXT, RTF, PDF)
+  ADDED: resize to a small size even with Fn keys showing (FAQ)
+  ADDED: vertical-horizontal list panel, alt+ctrl+v
+  ADDED: ctrl-up arrow (from the panel) goes up to the Location Toolbar 
+  ADDED: New commandline option: --profile <panel-profile> 
+  ADDED: UserAction Forum (faq.docbook), thanks Dirk
+  ADDED: 64 bit FAQ (faq.docbook), thanks Marc on our forum
+         http://krusader.sourceforge.net/phpBB/viewtopic.php?t=951
+UPDATED: Function (FN) Keys Bar keybindings are now configurable         
 UPDATED: Amarok useraction, thanks Dirk (installation.docbook)
 
 1.51.00
 ======================
 Date: 28/11/2004
-Final handbook revision for "Krusader 1.50 and 1.51 stable"
 
 Richard Holt is now an official memmber of the documentation team.
 Welcome aboard Richard!
@@ -33,8 +37,8 @@ ADDED: useraction: Parameter-description for the placeholder
 ======================
 Date: 04/11/2004
 
-FIXED: doc/pics/Makefile.am dit not remove krusader_title.png & tabbed_browsing.png
-       when running 'make uninstall'
+FIXED: doc/pics/Makefile.am dit not remove krusader_title.png & 
+       tabbed_browsing.png when running 'make uninstall'
 ADDED: syncdir.png
 REMOVED: kglookfeel.png kggeneral.png kgadvanced.png kgarchives.png
          in cvs but not in the html documentation
