@@ -56,7 +56,7 @@ KMountManGUI::KMountManGUI() : KDialogBase(krApp, 0,true,"Mount.Man"),
 
   connect((QObject*)&krMtMan,SIGNAL(updated()),this,SLOT(updateList())); // <>
   connect(watcher,SIGNAL(dirty()),(QObject*)&krMtMan,SLOT(forceUpdate())); //<>
-  setButtonOKText(i18n("Close"),i18n("Close the Mount.Man window."),0);
+  setButtonOKText(i18n("&Close"),i18n("Close the Mount.Man window."),0);
   showButtonApply(false); showButtonCancel(false);
   setPlainCaption(i18n("MountMan - Your Mount-Manager"));
   widget=new KJanusWidget(this,0,KJanusWidget::Tabbed);
