@@ -1,12 +1,12 @@
 Compilation and installation
 ============================
 
-This text is extracted from Krusader Handbook version 1.40.00 (29/03/2004)
+This text is extracted from Krusader Handbook version 1.40.00 (15/04/2004)
 The Krusader Handbook is available in the Help menu of Krusader
 (after installing Krusader).
 
-For the HTML version look at
-http://krusader.sourceforge.net/handbook/installation.html 
+For the HTML version look at:
+http://krusader.sourceforge.net/handbook/installation.html
 
 The FAQ's can be found at:
 http://krusader.sourceforge.net/handbook/faq.html
@@ -34,7 +34,7 @@ $ su -c 'make install'
 
 When you install a Krusader cvs or beta version and if Krusader was previously
 installed on your computer, there is a possibility that you will have to update
-the krusaderui.rc file. Please read the faq's for more info.
+the krusaderui.rc file. Please read the FAQ's for more info.
 
 Since Krusader uses autoconf and automake you should have no trouble compiling it.
 Should you run into problems please read the detailed installation instructions below.
@@ -43,15 +43,15 @@ Should you run into problems please read the detailed installation instructions 
 Detailed installation instructions
 ==================================
 
-The next procedure will explain step by step in detail how to install Krusader.
+The next section will explain step by step in detail how to install Krusader.
 This question has been asked many times and especially users new to Linux often
 have problems compiling software from source. Therefore we are trying to keep
 the explanations as detailed as possible even if they are mostly not Krusader
 specific. Experienced users may easily skip most of the steps.
 
 
-If you encounter problems with installing Krusader, please read first this
-installation procedure and the FAQ's, if this does not solve the problem then
+If you encounter problems with installing Krusader, please read  this installation
+procedure first and then the FAQ's, if this does not solve the problem then
 feel free to ask for help with an help request.
 Please read the FAQ's if you don't know how to send a help request.
 
@@ -124,11 +124,11 @@ Please read the FAQ's if you don't know how to send a help request.
   commands to your /etc/profile) file.
 
 
-7. If you have download a stable version "krusader-x.xx.tar.gz"" or a beta
+7. If you have downloaded a stable version "krusader-x.xx.tar.gz"" or a beta
    version "krusader-x.xx-betax.tar.gz", you can skip this step, in this case
    the ./configure script is provided.
 
-   If you have download a CVS build or nightly tarball
+   If you have downloaded a CVS build or nightly tarball
    "krusader-cvs-yyyy-mm-dd.tar.gz", you will have to run the following
    command to create the ./configure script:
 
@@ -160,7 +160,7 @@ Please read the FAQ's if you don't know how to send a help request.
    Tip
    If you encounter problems with this command, Krusader provides 2 nightly
    builds (snapshots) one with a ./configure script and one without. Look at:
-   http://krusader.sourceforge.net/index.php?nav=cvs.php
+   http://krusader.sourceforge.net/cvs.php
 
 
 7. Now you are ready to run the ./configure script.
@@ -204,8 +204,8 @@ Please read the FAQ's if you don't know how to send a help request.
    (after the 'make install' command).
 
    Usually the Krusader binary will be installed in the KDEDIR/bin directory.
-   If you prefer to install Krusader in an other directory, you can do this
-   with te following command: ./configure --prefix=/usr/local. In this case
+   If you would prefer to install Krusader in a different directory, you can do this
+   with the following command: ./configure --prefix=/usr/local. In this case
    the Krusader binary will be installed in the /usr/local/bin directory.
 
    This part will also display a warning if the environment variables
@@ -266,10 +266,179 @@ Please read the FAQ's if you don't know how to send a help request.
     problem, feel free to ask for help with an help request.
 
 
+
+
+Installation FAQ's
+==================
+
+1.
+I have followed all steps but configure complains about missing libs or
+headers. What do I need to do?
+
+Please install them. ;-)
+
+Here is a (obviously incomplete) list of Krusader's dependencies:
+ gcc (other compilers may work but haven't been tested)
+ autoconf (e.g. autoconf-2.x-xmdk.i586.rpm)
+ automake (e.g. automake1.x-x.x.x-xmdk.i586.rpm)
+ XFree
+ Qt™ (all Krusader versions >=1.02 are Qt™ 3.x only)
+ kdelibs (all Krusader versions >=1.02 are KDE 3.x only)
+ libpng
+ fam and famlibs (e.g. fam-2.x.x-xmdk.rpm and libfam0-devel-2.x.x-5mdk.i586.rpm)
+
+Most RPM-based distributions separate the headers from the libs.
+The headers are needed to compile Krusader.
+Look for packages in the form foo-devel-*.rpm (e.g. kdelibs-devel-3.1-58mdk.i586.rpm)
+or foo-dev-*.deb for Debian based distributions. They most likely come with
+your distribution.
+
+Tip
+If you can't find the needed package, use the Rpmfind and click
+'missing lib or header' in the search line. Or use apt-cache search foo to
+find the corresponding package for Debian based distributions.
+
+
+2.
+I have successfully installed Krusader from source.
+Everything went fine but I can't start it. What's going wrong here?
+
+The Krusader binary is obviously not in your PATH.
+
+Use the find command to locate the binary.
+
+$  find /usr /opt -name  krusader -type f -perm +111
+/usr/local/bin/krusader
+Here, the binary somehow made it into /usr/local/bin. It is most likely,
+that your KDEDIR enviroment variable wasn't set properly,
+look at "6. Check the environment variables QTDIR and KDEDIR" of the
+"Detailed installation instructions" for more info.
+
+If you don't want to recompile Krusader, just add /usr/local/bin to your PATH.
+To do this for all users, append the following line in your /etc/profile file
+(or any other file your shell sources at startup).
+
+$ export  PATH=$PATH:/usr/local/bin
+
+
+3.
+I have downloaded the Source RPM for Krusader. What now?
+
+To recompile a Source RPM for your machine, do this (being root):
+
+$ su -c 'rpm --rebuild  </path/to/filename>'
+You will be asked to enter your root password.
+
+If nothing goes wrong, a RPM will be created at /usr/src/RPM/RPMS/i386
+(replace i386 with your arch). Install as usual, for example.
+
+$ su -c 'rpm -ivh  </path/to/filename>'
+You will be asked to enter your root password.
+
+
+4.
+I'm trying to install binary foo (RPM or DEB package), but it fails.
+What's wrong?
+
+Since we only provide (and use) the source, we don't know.
+Try to find another binary at Linux® software archives such as freshmeat or
+KDE-APPS.org. If you can't find a RPM package for your Linux® distribution,
+we recommend searching for it with Rpmfind or RPMpbone.net. Or better, please
+try to compile the Krusader sourcecode. We provide a verry detailled
+installation procedure if you have never done a compilation before.
+Feel free to post a help request if you encounter problems.
+
+
+5.
+I've installed Krusader, but when I start it, only the "Help" menu appears. Why?
+
+In this case only the "Help" menu is visible and all the other menu items like
+e.g. "File" and "Mark" are gone. This is because some distributions put the
+krusaderui.rc file in a wrong directory. To solve the problem, just copy the
+krusaderui.rc file from the package krusader_kde3/krusader/krusaderui.rc to
+$KDEDIR/share/apps/krusader/krusaderui.rc and ~/.kde/share/apps/krusader/krusaderui.rc
+and re-run Krusader. If you have compiled Krusader from sources this is often caused
+when the KDEDIR - QTDIR enviroment variables are not right set, the result is that
+the krusaderui.rc file is installed in a wrong directory.
+Please read also the next question.
+
+
+6.
+Some new menu items are missing after updating Krusader, what is wrong?
+
+The krusaderui.rc file is stored in $KDEDIR/share/apps/krusader/krusaderui.rc.
+When you change the "Toolbar", KDE makes a copy of that file in the home
+directory at ~/.kde/share/apps/krusader/krusaderui.rc. If Krusader was
+previously installed on your computer, and you install a newer Krusader version
+the ~/.kde/share/apps/krusader/krusaderui.rc file must be replaced with
+the newer version.
+
+The first line of krusaderui.rc contains the version number.
+After installing a newer Krusader stable version, KDE will replace automatiqly
+the old ~/.kde/share/apps/krusader/krusaderui.rc with the newer version when
+starting the new Krusader stable for the first time (KDE will detect the newer
+version number in the first line). In the past this was not the case due to a bug,
+this bug was resolved since "krusader-cvs-2004-02-24".
+When you install a Krusader CVS or beta version you will have to replace the
+~/.kde/share/apps/krusader/krusaderui.rc manually.
+
+If the ~/.kde/share/apps/krusader/krusaderui.rc file is too old, then the new menu
+elements will not be shown. Read the previous question for information on how to
+update the krusaderui.rc file. If krusaderui.rc is missing or in a wrong directory,
+only the "Help" menu appears, please read the previous question.
+
+
+7.
+When I run make it complains about libfam.la
+
+The ./configure script does not check for the presence of libfam.la, and make
+needs libfam.la to compile Krusader. If you know how this can be solved, please
+let us know. Install libfam0-devel-foo.rpm. Note: when you install Mandrake 9.1
+with the default settings, this package is not installed. If you need more
+information take a look at FAQ missing libs or headers.
+
+
+8.
+I am having trouble compiling and installing Krusader,
+how do I send a help request?
+
+Please read our detailed installation procedure and the FAQ's. If you can't find
+a solution to your problem then feel free to post a help request at our Krusader
+forum. But before posting a help request at our Krusader forum, please regard the
+following:
+
+Use the Search function of the Krusader Forum, your problem might be solved or
+discussed already.
+
+If you can't find a solution, please take a note of the following issues:
+
+the used Krusader version
+the used Linux® distribution + version
+a good description of the problem
+
+Without this information, it is very difficult for us to help you.
+
+Note
+If you give us the error messages (e.g. make error messages) please start with
+the FIRST error message, all the error messages who are following the first
+error message are consequences and not the cause of your problem.
+
+Post a help request with the information of the previous point at our
+General Discussion Forum.
+
+Thanks for your cooperation!
+
+
+
+
+More FAQ's can be found at:
+http://krusader.sourceforge.net/handbook/faq.html
 ----------------------------------------------------------------------------
 
 
-The following text are generic installation instructions for KDE applications 
+
+
+The following text are generic installation instructions for KDE applications
 (normally you will not need it). The following text is not written by us,
 but is automaticly generated by Kdevelop.
 

@@ -17,7 +17,7 @@ Some of the big changes are:
  * A folder-history button, a-la-total commander. thanks to Hans Loffler!
  * A directory synchronizer (thanks to Csaba). TEST IT
  * A file splitter module
-Also, many bugs have been fixed, including:    
+Also, many bugs have been fixed, including:
  * internal editor quits without notification even if the edited file was not saved
  * KDE 3.2 terminal exit at Ctrl+C
  * bug [ 906386 ] regarding refreshes of dirwatch with fam enabled
@@ -62,7 +62,7 @@ Check the environment variables KDEDIR - QTDIR.
 Unpack the tarball and go to the Krusader source directory.
 If you have done a download from CVS you will have to run the following command to
 create the "./configure" script:
-$ make -f  Makefile.cvs
+$ make -f Makefile.cvs
 
 Installation procedure:
 $ ./configure
@@ -75,7 +75,7 @@ the krusaderui.rc file. please read the faq's for more info.
 
 
 Need more help?
-For detailled installation instructions, please read the INSTALL file. 
+For detailled installation instructions, please read the INSTALL file.
 Or read it on-line at: http://krusader.sourceforge.net/handbook/installation.html
 The FAQ's are available at: http://krusader.sourceforge.net/handbook/faq.html
 
@@ -87,7 +87,7 @@ $ cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login
 $ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3
 (note: updates from within the modules directory do not need the -d parameter)
 
-Or download the nightly tarball from: http://krusader.sourceforge.net/index.php?nav=cvs.php
+Or download the nightly tarball from: http://krusader.sourceforge.net/cvs.php
 
 
 
@@ -106,7 +106,7 @@ From time to time we'll post things that need to be done, but can't be done by u
 If you feel you can help, click the appropriate link on the website.
 All help is welcome.
 Thanks!
-or read it on-line at: http://krusader.sourceforge.net/index.php?nav=help.php
+or read it on-line at: http://krusader.sourceforge.net/help.php
 
 
 - Developers     Are you able to write code with Kdevelop?
@@ -142,10 +142,12 @@ For Translators
 Download the latest available version of Krusader with a checkout from CVS.
 Or if you are not familiar with CVS, download the latest Krusader CVS
 sourcecode snapshot (nightly tarball) from
-http://krusader.sourceforge.net/index.php?nav=cvs.php
+http://krusader.sourceforge.net/cvs.php
+and run
+$ make -f Makefile.cvs
 
 2.
-Update krusader.pot (translation template file)
+Update krusader.pot (translation template file) before running "$ make"
 (extracting all the English text from the sourcecode)
 Please don't forget to do this step, otherwise you will translate obsolete messages.
 $ make -f admin/Makefile.common package-messages
@@ -174,16 +176,16 @@ http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389
 
 URL's
 =====
-Homepage       http://krusader.sourceforge.net 
-Installation   http://krusader.sourceforge.net/handbook/installation.html
-FAQ's          http://krusader.sourceforge.net/handbook/faq.html
-Documentation  http://krusader.sourceforge.net/handbook/index.html
-Todolist       http://sourceforge.net/tracker/?atid=560746&group_id=6488&func=browse
-Buglist        http://sourceforge.net/tracker/?atid=106488&group_id=6488&func=browse
-Forum          http://krusader.sourceforge.net/phpBB/index.php
-ChangeLog      http://krusader.sourceforge.net/index.php?nav=text.php&note=cvs.changelog&path=dev
-Downloadpages  http://krusader.sourceforge.net/index.php?nav=down.php
-               http://sourceforge.net/project/showfiles.php?group_id=6488
+Homepage        http://krusader.sourceforge.net
+Installation    http://krusader.sourceforge.net/handbook/installation.html
+FAQ's           http://krusader.sourceforge.net/handbook/faq.html
+Documentation   http://krusader.sourceforge.net/handbook/index.html
+Todolist        http://sourceforge.net/tracker/?atid=560746&group_id=6488&func=browse
+Buglist         http://sourceforge.net/tracker/?atid=106488&group_id=6488&func=browse
+Forum           http://krusader.sourceforge.net/phpBB/index.php
+ChangeLog       http://krusader.sourceforge.net/text.php?note=cvs.changelog&path=dev
+Download pages  http://krusader.sourceforge.net/down.php
+                http://sourceforge.net/project/showfiles.php?group_id=6488
 
 
 The Krusader Krew
