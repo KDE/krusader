@@ -193,7 +193,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
     showTrayIcon = true;
     sysTray = new KSystemTray( this );
     sysTray->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
-    sysTray->show();
+    sysTray->hide();
   }
 
   setCentralWidget( mainView );
