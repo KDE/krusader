@@ -330,8 +330,9 @@ exp_Copy::exp_Copy() {
 }                    
 QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
 
-   KURL src = parameter[0];
-   KURL dest = parameter[1];
+   // basicly the parameter can already be used as URL, but since KURL has problems with ftp-proxy-urls (like ftp://username@proxyusername@url...) this is nessesary:
+   KURL src = vfs::fromPathOrURL( parameter[0] );
+   KURL dest = vfs::fromPathOrURL( parameter[1] );
    
    if ( !dest.isValid() || !src.isValid() ) {
       kdWarning() << "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%" << endl;
