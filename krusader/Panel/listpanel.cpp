@@ -90,6 +90,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../GUI/syncbrowsebutton.h"
 #include "../krservices.h"
 #include "panelpopup.h" 
+#include "../UserAction/useractionpopupmenu.h"
 
 typedef QValueList<KServiceOffer> OfferList;
 
@@ -818,6 +819,8 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       popup.changeItem( OPEN_WITH_ID, i18n( "Open with" ) );
       popup.insertSeparator();
    }
+   
+   popup.insertItem( i18n("Useractions"), new UserActionPopupMenu( func->files()->vfs_getFile( item->name() ).url() ) );
    
    KFileItemList _items;
    _items.setAutoDelete( true );
