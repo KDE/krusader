@@ -4,9 +4,9 @@
 static KrSelectionMode *__currentSelectionMode = 0; // uninitiated, at first
 
 
-KrKDESelectionMode krKDESelectionMode;
-KrOriginalSelectionMode krOriginalSelectionMode;
-KrNewSelectionMode krNewSelectionMode;
+KonqSelectionMode konqSelectionMode;
+OriginalSelectionMode originalSelectionMode;
+TCSelectionMode tcSelectionMode;
 
 
 KrSelectionMode* KrSelectionMode::getSelectionHandler()
@@ -15,12 +15,20 @@ KrSelectionMode* KrSelectionMode::getSelectionHandler()
 		return __currentSelectionMode;
 	} else { // nothing yet, set the correct one
 		krConfig->setGroup( "Look&Feel" );
-   	QString mode = krConfig->readEntry("SelectionMode", "");
-   	if (mode == "KDESelectionMode") {
-      	__currentSelectionMode = &krKDESelectionMode;
-   	} else if (mode == "NewSelectionMode") {
-      	__currentSelectionMode = &krNewSelectionMode;
-   	} else __currentSelectionMode = &krOriginalSelectionMode;
+   	QString mode = krConfig->readEntry("Mouse Selection", "");
+		switch (mode.toInt()) {
+			case 0:
+				__currentSelectionMode = &originalSelectionMode;
+				break;
+			case 1:
+				__currentSelectionMode = &konqSelectionMode;
+				break;
+			case 2:
+				__currentSelectionMode = &tcSelectionMode;
+				break;
+			default:
+				break;
+		}
 		// init and return
 		__currentSelectionMode->init();
 		return __currentSelectionMode;

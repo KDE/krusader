@@ -32,7 +32,7 @@ protected:
 	int _showContextMenu;
 };
 
-class KrKDESelectionMode : public KrSelectionMode {
+class KonqSelectionMode : public KrSelectionMode {
 public:
    void init() {
 		_useQTSelection = true;
@@ -47,7 +47,7 @@ public:
 	}
 };
 
-class KrOriginalSelectionMode : public KrSelectionMode {
+class OriginalSelectionMode : public KrSelectionMode {
 public:
 	void init() {
 		_useQTSelection = false;
@@ -62,12 +62,12 @@ public:
 	}
 };
 
-class KrNewSelectionMode : public KrSelectionMode {
+class TCSelectionMode : public KrSelectionMode {
 public:
 	void init() {
 		_useQTSelection = false;
-		_spaceMovesDown = true;
-		_insertMovesDown = false;
+		_spaceMovesDown = false;
+		_insertMovesDown = true;
 		_spaceCalculatesDiskSpace = true;
 		_rightButtonSelects = true;
 		_leftButtonSelects = false;

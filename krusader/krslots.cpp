@@ -51,6 +51,7 @@
 #include "krusader.h"
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
+#include "Panel/krselectionmode.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
 #include "GUI/krusaderstatus.h"
@@ -311,7 +312,8 @@ void KRslots::runKonfigurator(bool firstTime) {
 
     MAIN_VIEW->leftMng->recreatePanels();
     MAIN_VIEW->rightMng->recreatePanels();
-	 MAIN_VIEW->fnKeys->updateShortcuts();
+	  MAIN_VIEW->fnKeys->updateShortcuts();
+		KrSelectionMode::resetSelectionHandler();
   }
   
   delete konfigurator;
