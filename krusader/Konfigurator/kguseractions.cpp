@@ -51,7 +51,7 @@
 //This is the filter in the KFileDialog of Import/Export:
 #define	FILE_FILTER	i18n("*.xml|xml-files") + '\n' + i18n("*|all files")
 //This is the name of the config-entry:
-#define	CFG_DONT_ASK_AGAIN_REMOVE_ACTION	"dontAskAgain_removeAction"
+
 
 KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
   KonfiguratorPage( first, parent, name )
@@ -203,7 +203,7 @@ void KgUserActions::slotRemoveAction() {
 		i18n("Are you sure that you want to remove this action?\nA recovery is not possible!"),	//text
 		i18n("Remove this action?"), 	//caption
 		i18n("Remove"),	//Label for the continue-button
-		CFG_DONT_ASK_AGAIN_REMOVE_ACTION,	//dontAskAgainName (for the config-file)
+		"Confirm Remove UserAction",	//dontAskAgainName (for the config-file)
 		KMessageBox::Dangerous) ;
 
     if ( MessageDelete != KMessageBox::Continue )
