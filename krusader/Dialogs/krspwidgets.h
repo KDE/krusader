@@ -31,7 +31,6 @@
 #include <qstrlist.h>
 #include "krmaskchoice.h"
 #include "newftpgui.h"
-#include "colormaskdialog.h"
 
 #ifndef KRSPWIDGETS_H
 #define KRSPWIDGETS_H
