@@ -1,3 +1,15 @@
+1.0.3 - KDE 3
+======================
+    ADDED: new and improved viewer.
+
+    FIXED: rewritten the panel sorting function, it should be better and faster now.
+    FIXED: back to KRDirWatch, since KDirWatch crashed us on systems with FAM enabled.
+    FIXED: removed the "panel start path is invalid" error message. if the start
+           path is invalid try to find the closest path (the previous solution was '/');
+    FIXED: don't watch read-only/not-readable directories - this should improve performance
+           and avoid a loooong wait time on super-mounted cdroms...
+
+
 1.0.2 - KDE 3
 ======================
     ADDED: new icon.
