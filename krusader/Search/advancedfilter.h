@@ -31,7 +31,7 @@
 #ifndef ADVANCEDFILTER_H
 #define ADVANCEDFILTER_H
 
-#include "krquery.h"
+#include "../VFS/krquery.h"
 
 #include <qwidget.h>
 #include <qcheckbox.h>

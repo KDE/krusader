@@ -31,7 +31,7 @@
 #ifndef GENERALFILTER_H
 #define GENERALFILTER_H
 
-#include "krquery.h"
+#include "../VFS/krquery.h"
 
 #include <qwidget.h>
 #include <qlayout.h>

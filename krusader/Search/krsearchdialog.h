@@ -35,7 +35,7 @@
 
 #include "generalfilter.h"
 #include "advancedfilter.h"
-#include "krquery.h"
+#include "../VFS/krquery.h"
 #include "krsearchmod.h"
 #include "../GUI/profilemanager.h"
 

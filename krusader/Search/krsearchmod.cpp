@@ -29,7 +29,7 @@
 ***************************************************************************/
 
 #include "krsearchmod.h"
-#include "krquery.h"
+#include "../VFS/krquery.h"
 #include "../krusader.h"
 #include "../resources.h"
 #include "../VFS/vfile.h"

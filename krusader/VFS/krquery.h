@@ -33,7 +33,7 @@
 #include <qstringlist.h>
 #include <time.h>
 #include <kurl.h>
-#include "../VFS/vfile.h"
+#include "vfile.h"
 
 class KRQuery {
 public: 

@@ -33,7 +33,7 @@
 #include "krquery.h"
 #include "../krusader.h"
 #include "../resources.h"
-#include "../VFS/krarchandler.h"
+#include "krarchandler.h"
 
 #include <qtextstream.h>
 #include <qregexp.h>

@@ -32,7 +32,7 @@
 #define __SYNCHRONIZER_H__
 
 #include "../VFS/vfs.h"
-#include "../Search/krquery.h"
+#include "../VFS/krquery.h"
 #include <qobject.h>
 #include <qptrvector.h>
 #include <qprogressdialog.h>

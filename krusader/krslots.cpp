@@ -63,7 +63,7 @@
 #include "resources.h"
 #include "GUI/kfnkeys.h"
 #include "GUI/kcmdline.h"
-#include "Search/krquery.h"
+#include "VFS/krquery.h"
 #include "Search/krsearchmod.h"
 #include "Search/krsearchdialog.h"
 #include "Locate/locate.h"

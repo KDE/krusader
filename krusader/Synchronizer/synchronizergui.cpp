@@ -34,7 +34,7 @@
 #include "../VFS/krpermhandler.h"
 #include "../KViewer/krviewer.h"
 #include "../Dialogs/krspwidgets.h"
-#include "../Search/krquery.h"
+#include "../VFS/krquery.h"
 #include "../krservices.h"
 #include "../krslots.h"
 #include "synchronizedialog.h"
