@@ -91,7 +91,7 @@ KonfiguratorCheckBox::KonfiguratorCheckBox( QString cls, QString name, bool dflt
   connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
   connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
  
-  connect( this, SIGNAL( toggled(bool) ), ext, SLOT( setChanged() ) );
+  connect( this, SIGNAL( stateChanged( int ) ), ext, SLOT( setChanged() ) );
   loadInitialValue();
 }
 
@@ -178,27 +178,28 @@ void KonfiguratorRadioButtons::addRadioButton( QRadioButton *radioWidget, QStrin
   radioButtons.append( radioWidget );
   radioValues.push_back( value );
 
-  connect( radioWidget, SIGNAL( toggled(bool) ), this, SLOT( setChanged() ) );
+  connect( radioWidget, SIGNAL( stateChanged(int) ), this, SLOT( setChanged() ) );
 }
 
 void KonfiguratorRadioButtons::selectButton( QString value )
 {
   int cnt = 0;
   QRadioButton *btn  = radioButtons.first();
-  if( btn )
-    btn->setChecked( true );
 
   while( btn )
   {
     if( value == radioValues[ cnt ] )
     {
       btn->setChecked( true );
-      break;
+      return;
     }
 
     btn = radioButtons.next();
     cnt++;
   }
+
+  if( radioButtons.first() )
+    radioButtons.first()->setChecked( true );
 }
 
 void KonfiguratorRadioButtons::loadInitialValue()
@@ -480,7 +481,7 @@ void KonfiguratorFontChooser::slotBrowseFont()
 
 KonfiguratorComboBox::KonfiguratorComboBox( QString cls, QString name, QString dflt,
     KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen, QWidget *parent,
-    const char *widgetName, bool rst ) : QComboBox ( parent, widgetName ),
+    const char *widgetName, bool rst, bool editable ) : QComboBox ( parent, widgetName ),
     defaultValue( dflt ), listLen( listInLen )
 {
   list = new KONFIGURATOR_NAME_VALUE_PAIR[ listInLen ];
@@ -496,8 +497,10 @@ KonfiguratorComboBox::KonfiguratorComboBox( QString cls, QString name, QString d
   connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
   connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
 
-  connect( this, SIGNAL( activated(int) ), ext, SLOT( setChanged() ) );
-    
+  connect( this, SIGNAL( highlighted(int) ), ext, SLOT( setChanged() ) );
+  connect( this, SIGNAL( textChanged ( const QString & ) ), ext, SLOT( setChanged() ) );
+
+  setEditable( editable );
   loadInitialValue();
 }
 
@@ -517,20 +520,24 @@ void KonfiguratorComboBox::loadInitialValue()
 
 void KonfiguratorComboBox::slotApply(QObject *,QString cls, QString name)
 {
-  selectEntry( currentText() );
+  QString value = editable() ? lineEdit()->text() : currentText();
   krConfig->setGroup( cls );
-  krConfig->writeEntry( name, list[selected].value );
+  krConfig->writeEntry( name, value );
 }
 
 void KonfiguratorComboBox::selectEntry( QString entry )
 {
-  selected = 0;
-
   for( int i=0; i != listLen; i++ )
     if( list[i].value == entry )
-      selected = i;
+    {
+      setCurrentItem( i );
+      return;
+    }
 
-  setCurrentItem( selected );
+  if( editable() )
+    lineEdit()->setText( entry );
+  else
+    setCurrentItem( 0 );
 }
 
 void KonfiguratorComboBox::slotSetDefaults(QObject *)

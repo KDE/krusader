@@ -52,7 +52,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   saveRadio = createRadioButtonGroup( "Startup", "Panels Save Settings",
       "false", 1, 0, savePanels, 2, panelsGrp, "mySaveRadio", false );
   panelsGrid->addMultiCellWidget( saveRadio->getGroupWidget(), 0, 0, 0, 3 );
-  connect( saveRadio->radioButtons.at( 1 ), SIGNAL( toggled( bool ) ), this, SLOT( slotDisable() ) );
+  connect( saveRadio->radioButtons.at( 1 ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
   
   KONFIGURATOR_NAME_VALUE_PAIR opCombo[] =
     {{ i18n( "homepage" ),              i18n( "homepage" )              },
@@ -61,8 +61,8 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
     
   leftPanelLbl = new QLabel( i18n( "Left panel starts at" ), panelsGrp, "leftPanelLbl" );
   panelsGrid->addWidget( leftPanelLbl, 1, 0 );
-  leftOrigin = createComboBox( "Startup", "Left Panel Origin", _LeftPanelOrigin, opCombo, 3, panelsGrp, false );
-  connect( leftOrigin, SIGNAL( activated( int ) ), this, SLOT( slotDisable() ) );
+  leftOrigin = createComboBox( "Startup", "Left Panel Origin", i18n( "homepage" ), opCombo, 3, panelsGrp, false );
+  connect( leftOrigin, SIGNAL( highlighted( int ) ), this, SLOT( slotDisable() ) );
   panelsGrid->addWidget( leftOrigin, 1, 1 ); 
   leftPanelLbl2 = new QLabel( i18n( "Homepage:" ), panelsGrp, "leftPanelLbl2" );
   panelsGrid->addWidget( leftPanelLbl2, 1, 2 );
@@ -71,8 +71,8 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   
   rightPanelLbl = new QLabel( i18n( "Right panel starts at" ), panelsGrp, "rightPanelLbl" );
   panelsGrid->addWidget( rightPanelLbl, 2, 0 );
-  rightOrigin = createComboBox( "Startup", "Right Panel Origin", _RightPanelOrigin, opCombo, 3, panelsGrp, false );
-  connect( rightOrigin, SIGNAL( activated( int ) ), this, SLOT( slotDisable() ) );
+  rightOrigin = createComboBox( "Startup", "Right Panel Origin", i18n( "homepage" ), opCombo, 3, panelsGrp, false );
+  connect( rightOrigin, SIGNAL( highlighted( int ) ), this, SLOT( slotDisable() ) );
   panelsGrid->addWidget( rightOrigin, 2, 1 );
   rightPanelLbl2 = new QLabel( i18n( "Homepage:" ), panelsGrp, "rightPanelLbl2" );
   panelsGrid->addWidget( rightPanelLbl2, 2, 2 );
@@ -122,6 +122,13 @@ void KgStartup::slotDisable()
   rightPanelLbl2->setEnabled( isDontSave && isRightHp );
   rightHomePage->lineEdit()->setEnabled( isDontSave && isRightHp );
   rightHomePage->button()->setEnabled( isDontSave && isRightHp );
+
+  KonfiguratorCheckBox *cbs = uiCbs.first();
+  while( cbs )
+  {
+    cbs->setEnabled( isDontSave );
+    cbs = uiCbs.next();
+  }
 }
 
 #include "kgstartup.moc"

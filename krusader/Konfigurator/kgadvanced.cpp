@@ -48,13 +48,14 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //   cfg_class  cfg_name           default     text                                      restart tooltip
-    {{"Advanced","Permission Check", false,      i18n( "I AM ROOT - use with caution !" ), false,  i18n( "Root Switch: if checked, Krusader will try to act as root - thus attempting to perform actions WITHOUT checking permissions !!!" )},
-     {"Advanced","AutoMount",        _AutoMount, i18n( "Automount filesystems" ),          false,  i18n( "If checked, Krusader will mount FSTAB mount-points when needed." )}};
+    {{"Advanced","AutoMount",        _AutoMount, i18n( "Automount filesystems" ),          false,  i18n( "If checked, Krusader will mount FSTAB mount-points when needed." )}};
 
-  QWidget *generals = createCheckBoxGroup( 2, 0, generalSettings, 2, generalCbs, generalGrp );
+  QWidget *generals = createCheckBoxGroup( 2, 0, generalSettings, 1, generalCbs, generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
 
-  generalCbs.at(0)->setEnabled( false ); /* disable Permission Check */
+#ifdef BSD
+  generalCbs.at(0)->setEnabled( false ); /* disable AutoMount on BSD */
+#endif
     
   kgAdvancedLayout->addWidget( generalGrp, 0 ,0 );
 

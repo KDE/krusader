@@ -230,12 +230,13 @@ public:
     * @param  text        The text field of the combobox
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
+    * @param  editable    Flag indicates that the combo can be edited
     *
     * @return             reference to the newly created combobox
     */
   KonfiguratorComboBox    *createComboBox(  QString cls, QString name, QString dflt,
                                            KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum,
-                                           QWidget *parent=0, bool rst=false );
+                                           QWidget *parent=0, bool rst=false, bool editable=false );
 
   /**
     * Creates a frame on the page.

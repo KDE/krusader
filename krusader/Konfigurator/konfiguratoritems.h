@@ -264,7 +264,8 @@ class KonfiguratorComboBox : public QComboBox
 public:
   KonfiguratorComboBox( QString cls, QString name, QString dflt,
                         KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen,
-                        QWidget *parent=0, const char *widgetName=0, bool rst=false );
+                        QWidget *parent=0, const char *widgetName=0,
+                        bool rst=false,  bool editable=false );
   ~KonfiguratorComboBox();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -278,7 +279,6 @@ protected:
   QString                       defaultValue;
   KONFIGURATOR_NAME_VALUE_PAIR *list;
   int                           listLen;
-  int                           selected;
   KonfiguratorExtension        *ext;
 
   void                          selectEntry( QString entry );

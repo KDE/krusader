@@ -270,11 +270,11 @@ KonfiguratorFontChooser *KonfiguratorPage::createFontChooser( QString cls, QStri
 }
 
 KonfiguratorComboBox *KonfiguratorPage::createComboBox(  QString cls, QString name, QString dflt,
-    KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool rst )
+    KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool rst, bool editable )
 {
   KonfiguratorComboBox *comboBox = new KonfiguratorComboBox( cls, name, dflt, params,
-                                        paramNum, parent,
-                                        QString(cls + "/" + name).ascii(), rst );
+                                        paramNum, parent, QString(cls + "/" + name).ascii(),
+                                        rst, editable );
 
   registerObject( comboBox->extension() );
   return comboBox;

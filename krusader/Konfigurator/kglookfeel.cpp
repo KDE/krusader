@@ -34,6 +34,7 @@
 #include <qtabwidget.h>
 #include <klocale.h>
 #include <qtooltip.h>
+#include <qvalidator.h>
 
 KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -81,19 +82,11 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      { i18n( "22" ),  "22" },
      { i18n( "32" ),  "32" },
      { i18n( "48" ),  "48" }};
-  createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hbox2, true );
+  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hbox2, true, true );
+  iconCombo->lineEdit()->setValidator( new QRegExpValidator( QRegExp( "[1-9]\\d{0,1}" ), iconCombo ) );
   createSpacer ( hbox2 );
   lookFeelGrid->addWidget( hbox2, 3, 0 );
 
-  QHBox *hbox3 = new QHBox( lookFeelGrp, "lookAndFeelHBox3" );
-  QLabel *lbl2 = new QLabel( i18n( "HTML viewer's min font size:" ), hbox3, "lookAndFeelLabel3" );
-  lbl2->setMinimumWidth( 230 );
-  KonfiguratorSpinBox *spinBox = createSpinBox( "Look&Feel", "Html Min Font Size", _HtmlMinFontSize,
-                                                1, 100, hbox3, false );
-  QToolTip::add( spinBox, i18n( "The minimum font size used by the html viewer." ) );
-  createSpacer ( hbox3 );
-  lookFeelGrid->addWidget( hbox3, 4, 0 );
-  
   lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep1" ), 5, 0 );
   
   addLabel( lookFeelGrid, 6, 0, i18n( "Mouse Selection Mode:" ),
