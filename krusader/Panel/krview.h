@@ -36,6 +36,8 @@
 #include "../VFS/vfs.h"
 #include "krviewitem.h"
 
+#include <kdebug.h>
+
 /****************************************************************************
  * READ THIS FIRST: Using the view
  *
@@ -126,7 +128,7 @@ public:
   virtual void unselect(const QString& filter = "*") { changeSelection(filter, false); }
   virtual void invertSelection();
   virtual QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
-  virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
+  virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; kdWarning() << "!!! " << _nameToMakeCurrent << endl; }
   virtual QString firstUnmarkedBelowCurrent();
   virtual QString statistics();
 

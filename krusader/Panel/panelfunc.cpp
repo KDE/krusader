@@ -404,6 +404,7 @@ void ListPanelFunc::rename() {
 
 // called by signal itemRenamed() from the view to complete the renaming process
 void ListPanelFunc::rename(const QString &oldname, const QString &newname) {
+  kdWarning() << "old " << oldname << " new " << newname << endl;
   if (oldname == newname) return; // do nothing
   panel->view->setNameToMakeCurrent( newname );
   // as always - the vfs do the job
