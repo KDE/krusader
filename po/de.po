@@ -1,3 +1,4 @@
+# Translation of de.pot to German
 # Translation of krusader.pot to German
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
@@ -8,12 +9,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.51-cvs\n"
+"Project-Id-Version: krusader-1.50-cvs\n"
 "Report-Msgid-Bugs-To: deschler@users.sourceforge.net\n"
 "POT-Creation-Date: 2004-12-03 18:29+0100\n"
-"PO-Revision-Date: 2004-12-03 18:33+0100\n"
+"PO-Revision-Date: 2004-12-06 17:33+0100\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"Language-Team: German\n"
+"Language-Team: German <German>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -232,8 +233,7 @@ msgstr "Platzhalter für die selektierten Dateien im Dateifenster hinzufügen"
 
 #: GUI/actionpropertybase.cpp:412
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
-msgstr ""
-"Die Beschreibung wird nur im Konfigurator und mittels Shift+F1 angezeigt"
+msgstr "Die Beschreibung wird nur im Konfigurator und mittels Shift+F1 angezeigt"
 
 #: GUI/actionpropertybase.cpp:413
 msgid "Start path"
@@ -331,8 +331,7 @@ msgstr "MIME-Typ"
 
 #: GUI/actionpropertybase.cpp:442
 msgid "Show the action only for these filenames (you may use '?' and '*')"
-msgstr ""
-"Zeige die Aktion nur für diese Dateinamen (Sie können '?' und '*' benutzen)"
+msgstr "Zeige die Aktion nur für diese Dateinamen (Sie können '?' und '*' benutzen)"
 
 #: GUI/actionpropertybase.cpp:446
 msgid "Filename"
@@ -344,8 +343,7 @@ msgstr "Jeden Programmaufruf separat bestätigen"
 
 #: GUI/actionpropertybase.cpp:448
 msgid "This allows you to tweak the command line before being executed"
-msgstr ""
-"Dies erlaubt Ihnen die Kommandozeile anzupassen bevor sie ausgeführt wird"
+msgstr "Dies erlaubt Ihnen die Kommandozeile anzupassen bevor sie ausgeführt wird"
 
 #: GUI/actionpropertybase.cpp:449
 msgid "Run as different user"
@@ -407,8 +405,7 @@ msgstr ""
 
 #: GUI/kcmdline.cpp:100
 msgid "If pressed, Krusader executes command line in a terminal."
-msgstr ""
-"Im gedrückten Zustand führt Krusader die Befehlszeile in einem Terminal aus."
+msgstr "Im gedrückten Zustand führt Krusader die Befehlszeile in einem Terminal aus."
 
 #: GUI/kcmdline.cpp:106
 msgid ""
@@ -639,7 +636,7 @@ msgstr "Anzahl von ..."
 
 #: UserAction/expander.cpp:85
 msgid "count all:"
-msgstr "Alle zählen:"
+msgstr "Was soll gezählt werden:"
 
 #: UserAction/expander.cpp:109
 msgid "filter mask (*.h, *.cpp ...)"
@@ -828,7 +825,7 @@ msgstr ""
 
 #: Panel/listpanel.cpp:164 Panel/listpanel.cpp:293
 msgid "Open the popup panel"
-msgstr "Das Popup Dateifenster öffnen"
+msgstr "Das Popup Panel öffnen"
 
 #: Panel/listpanel.cpp:180
 msgid "Use superb KDE file dialog to choose location. "
@@ -857,7 +854,7 @@ msgstr ".."
 
 #: Panel/listpanel.cpp:200
 msgid "Up"
-msgstr "Ebene hoch"
+msgstr "Aufwärts"
 
 #: Panel/listpanel.cpp:205
 msgid "~"
@@ -880,7 +877,7 @@ msgstr "Basisordner"
 
 #: Panel/listpanel.cpp:287
 msgid "Close the popup panel"
-msgstr "Das Popup Dateifenster schließen"
+msgstr "Das Popup Panel schließen"
 
 #: Panel/listpanel.cpp:378 Panel/listpanel.cpp:1029
 msgid " Select Files "
@@ -1039,8 +1036,7 @@ msgstr "Wirklich in den Reißwolf mit "
 
 #: Panel/listpanel.cpp:938
 msgid " ? Once shred, the file is gone forever !!!"
-msgstr ""
-" ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!"
+msgstr " ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!"
 
 #: Panel/listpanel.cpp:994 Panel/panelfunc.cpp:313 KViewer/krviewer.cpp:212
 #: krslots.cpp:411
@@ -1227,8 +1223,7 @@ msgstr "Sie können kein Verzeichnis editieren"
 
 #: Panel/panelfunc.cpp:329
 msgid "No permissions to edit this file."
-msgstr ""
-"Sie verfügen nicht über die nötigen Rechte um diese Datei zu editieren."
+msgstr "Sie verfügen nicht über die nötigen Rechte um diese Datei zu editieren."
 
 #: Panel/panelfunc.cpp:350
 msgid "Moving into archive is disabled"
@@ -1447,8 +1442,7 @@ msgid "Search string not found!"
 msgstr "Suchbegriff nicht gefunden!"
 
 #: krusader.cpp:273
-msgid ""
-"Status bar will show  basic informations about file below mouse pointer."
+msgid "Status bar will show  basic informations about file below mouse pointer."
 msgstr ""
 "Die Statusleiste zeigt allgemeine Informationen der Datei, über dem sich der "
 "Mauszeiger befindet."
@@ -1536,7 +1530,7 @@ msgstr "popup cmdline"
 
 #: krusader.cpp:474
 msgid "Up one directory"
-msgstr "Ein Verzeichnis hoch"
+msgstr "Aufwärts"
 
 #: krusader.cpp:475
 msgid "&Edit new file"
@@ -1708,7 +1702,7 @@ msgstr "Rechter Verzeichnisverlauf"
 
 #: krusader.cpp:581
 msgid "Toggle Popup Panel"
-msgstr "Das Popup Dateifenster umschalten"
+msgstr "Das Popup Panel umschalten"
 
 #: krusader.cpp:583
 msgid "Vertical Mode"
@@ -1792,7 +1786,7 @@ msgstr "Passen Sie Krusader Ihren eigenen Wünschen an"
 
 #: krusader.cpp:623
 msgid "Back to the place you came from"
-msgstr "Zurück an die Stelle von der Sie kamen"
+msgstr "Zurück"
 
 #: krusader.cpp:624
 msgid "ROOT (/)"
@@ -1843,8 +1837,7 @@ msgid "KrViewer is unable to download: "
 msgstr "KrViewer kann folgendes nicht herunterladen: "
 
 #: KViewer/krviewer.cpp:380
-msgid ""
-"The Document has been changed. Do you want to quit, losing the modifications?"
+msgid "The Document has been changed. Do you want to quit, losing the modifications?"
 msgstr "Das Dokument wurde verändert. Möchten Sie die Änderungen verwerfen?"
 
 #: Search/krsearchdialog.cpp:66
@@ -2322,8 +2315,7 @@ msgstr ""
 "Bitte benachrichtigen Sie die Entwickler"
 
 #: MountMan/kmountmangui.cpp:322
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan hat einen internen Fehler. Bitte benachrichtigen Sie die "
 "Entwickler. Vielen Dank."
@@ -2382,8 +2374,7 @@ msgstr "Krusader - SYSTEMVERWALTUNGS-MODUS"
 
 #: krusaderview.cpp:80
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen."
+msgstr "Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen."
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -2676,8 +2667,7 @@ msgstr "Einschließlich Unterordnern"
 
 #: Synchronizer/synchronizergui.cpp:1107
 msgid "Compares not only the base directories but their subdirectories as well"
-msgstr ""
-"Vergleicht nicht nur den Basisordner, sondern auch dessen Unterverzeichnisse"
+msgstr "Vergleicht nicht nur den Basisordner, sondern auch dessen Unterverzeichnisse"
 
 #: Synchronizer/synchronizergui.cpp:1108
 msgid "Follow symlinks"
@@ -2745,8 +2735,7 @@ msgstr "Optionen anzeigen"
 
 #: Synchronizer/synchronizergui.cpp:1150
 msgid "Lists the files marked to copy from left to right"
-msgstr ""
-"Listet Dateien auf, die als 'Kopiere von links nach rechts' markiert wurden"
+msgstr "Listet Dateien auf, die als 'Kopiere von links nach rechts' markiert wurden"
 
 #: Synchronizer/synchronizergui.cpp:1158
 msgid "Lists the files considered to be identical"
@@ -2758,8 +2747,7 @@ msgstr "Listet ausgeschlossene Dateien auf"
 
 #: Synchronizer/synchronizergui.cpp:1174
 msgid "Lists the files marked to copy from right to left"
-msgstr ""
-"Listet Dateien auf, die als 'Kopiere von rechts nach links' markiert wurden"
+msgstr "Listet Dateien auf, die als 'Kopiere von rechts nach links' markiert wurden"
 
 #: Synchronizer/synchronizergui.cpp:1182
 msgid "Lists the files marked to delete"
@@ -3329,8 +3317,7 @@ msgstr "MIME-Typen mit Protokollen verknüpfen"
 
 #: Konfigurator/konfigurator.cpp:187
 msgid "The current page has been changed. Do you want to apply changes?"
-msgstr ""
-"Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
+msgstr "Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
 
 #: Konfigurator/kglookfeel.cpp:50
 msgid "Operation"
@@ -3470,7 +3457,7 @@ msgstr "Kurzbefehle"
 
 #: Konfigurator/kglookfeel.cpp:188
 msgid "Panel Toolbar"
-msgstr "Dateifenster Werkzeugleiste"
+msgstr "Dateifenster-Werkzeugleiste"
 
 #: Konfigurator/kglookfeel.cpp:196
 msgid "Panel Toolbar visible"
@@ -3583,8 +3570,7 @@ msgstr "Protokoll aus der Verknüpfungs-Liste entfernen"
 
 #: Konfigurator/kgprotocols.cpp:92
 msgid "Add mime to the selected protocol on the link list"
-msgstr ""
-"MIME-Typ zum ausgewählten Protokoll in der Verknüpfungs-Liste hinzufügen"
+msgstr "MIME-Typ zum ausgewählten Protokoll in der Verknüpfungs-Liste hinzufügen"
 
 #: Konfigurator/kgprotocols.cpp:95
 msgid "Remove mime from the link list"
@@ -3923,18 +3909,15 @@ msgid "Test archive when finished packing"
 msgstr "Archiv nach dem Packen testen"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"If checked, Krusader will test the archive's intergrity after packing it."
-msgstr ""
-"Falls ausgewählt, wird Krusader die Archivintegrität nach dem Packen testen."
+msgid "If checked, Krusader will test the archive's intergrity after packing it."
+msgstr "Falls ausgewählt, wird Krusader die Archivintegrität nach dem Packen testen."
 
 #: Konfigurator/kgarchives.cpp:95
 msgid "Test archive before unpacking"
 msgstr "Archiv vor dem Entpacken testen"
 
 #: Konfigurator/kgarchives.cpp:95
-msgid ""
-"Some corrupted archives might cause a crash, therefore testing is suggested"
+msgid "Some corrupted archives might cause a crash, therefore testing is suggested"
 msgstr ""
 "Einige korrupte Archive können einen Absturz verursachen, daher ist das "
 "Testen zu empfehlen"
@@ -4416,8 +4399,7 @@ msgid "Not a valid CRC file!"
 msgstr "Keine gültige CRC-Datei!"
 
 #: Splitter/combiner.cpp:138
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Eine Gültigkeitsüberprüfung ist ohne eine gültige CRC-Datei unmöglich. Mit "
 "dem Zusammenfügen fortfahren?"
@@ -4454,3 +4436,4 @@ msgstr "Sie können kein Verzeichnis splitten!"
 #: Splitter/splitter.cpp:127
 msgid "Error at reading file %1!"
 msgstr "Fehler beim Lesen der Datei %1!"
+
