@@ -5,6 +5,7 @@
 #include <qheader.h>
 #include <qlayout.h>
 #include <qlabel.h>
+#include <kinputdialog.h>
 #include <kiconloader.h>
 #include <kdebug.h>
 
@@ -14,6 +15,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KURL url):
 	// create the 'new folder' button
 	setButtonText(KDialogBase::User1, i18n("New Folder"));
 	showButton(KDialogBase::User1, false); // hide it until _createIn is shown
+	connect(this, SIGNAL(user1Clicked()), this, SLOT(newFolder()));
 
 	// create the main widget
 	QWidget *page = new QWidget(this);
@@ -92,4 +94,20 @@ void KrAddBookmarkDlg::populateCreateInWidget(KrBookmark *root, KListViewItem *p
 			populateCreateInWidget(bm, item);
 		}
 	}
+}
+
+void KrAddBookmarkDlg::newFolder() {
+	// get the name
+	QString newFolder = KInputDialog::getText(i18n("New Folder"), i18n("Folder name:"), QString::null, 0, this);
+	if (newFolder == QString::null)
+		return;
+	// add to the list in bookman
+	KrBookmark *bm = new KrBookmark(newFolder);
+	krBookMan->addBookmark(bm, _xr[static_cast<KListViewItem*>(_createIn->selectedItem())]);
+	// fix the gui
+	KListViewItem *item = new KListViewItem(_createIn->selectedItem(), bm->text());
+	_xr[item] = bm;
+
+	_createIn->setCurrentItem(item);
+	item->setSelected(true);
 }

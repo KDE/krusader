@@ -18,6 +18,8 @@ KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent):
 			setIcon("tar");
 		else setIcon("folder_html");
 	}
+
+	_children.setAutoDelete(true);
 }
 
 KrBookmark::KrBookmark(QString name):

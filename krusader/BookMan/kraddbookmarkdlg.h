@@ -24,6 +24,7 @@ protected:
 protected slots:
 	void toggleCreateIn(bool show);
 	void createInSelection(QListViewItem *item);
+	void newFolder();
 	
 private:
 	KLineEdit *_name;
