@@ -119,7 +119,7 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
     
   if( permissions == -1 ) permissions = 0777; //set default permissions
   for( unsigned int i=arcTempDir.length();i<tmpDir.length(); i=tmpDir.find("/",i+1)){
-    ::mkdir(tmpDir.left(i).latin1(),permissions);
+    ::mkdir(tmpDir.left(i).local8Bit(),permissions);
   }
 
 	// pack the directory
@@ -158,7 +158,7 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 	}
 	int fd;
 	if ( resume ) {
-		fd = KDE_open( tmpFile.latin1(), O_RDWR );  // append if resuming
+		fd = KDE_open( tmpFile.local8Bit(), O_RDWR );  // append if resuming
 		KDE_lseek(fd, 0, SEEK_END); // Seek to end
 	} else {
 		// WABA: Make sure that we keep writing permissions ourselves,
@@ -169,7 +169,7 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 		else
 			initialMode = 0666;
 
-		fd = KDE_open(tmpFile.latin1(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
+		fd = KDE_open(tmpFile.local8Bit(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
 	}
   QByteArray buffer;
 	int readResult;
@@ -342,7 +342,7 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 	finished();
 }
 
-void kio_krarcProtocol::stat( const KURL & url ){
+void kio_krarcProtocol::stat( const KURL & url ){  
   KRDEBUG(url.path());
   if( !setArcFile(url.path()) ) return;
   if( listCmd.isEmpty() ){
@@ -361,7 +361,7 @@ void kio_krarcProtocol::stat( const KURL & url ){
 	// we might be stating a real file
 	if( QFileInfo(path).exists() ){
 		KDE_struct_stat buff;
-    KDE_stat( path.latin1(), &buff );
+    KDE_stat( path.local8Bit(), &buff );
 		QString mime = KMimeType::findByPath(path,buff.st_mode)->name();
 		statEntry(KFileItem(path,mime,buff.st_mode).entry());
     finished();
@@ -418,14 +418,15 @@ void kio_krarcProtocol::listDir(const KURL& url){
 }
 
 bool kio_krarcProtocol::setArcFile(const QString& path){
+	time_t currTime = time( 0 );
 	archiveChanged = true;
 	// is the file already set ?
-	if( arcFile && arcFile->url().path() == path.left(arcFile->url().path().length()) ){
+	if( arcFile && arcFile->url().path(-1) == path.left(arcFile->url().path(-1).length()) ){
 		// Has it changed ?
 		KFileItem* newArcFile = new KFileItem(arcFile->url(),QString::null,0);
-		if( newArcFile->time(UDS_MODIFICATION_TIME) != arcFile->time(UDS_MODIFICATION_TIME) ){
-      delete arcFile;
-      password = QString::null;
+		if( !newArcFile->cmp( *arcFile ) ){
+			delete arcFile;
+			password = QString::null;
 			arcFile = newArcFile;
 		}
 		else { // same old file
@@ -453,25 +454,39 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
        return false; // file not found
     }
 	}
+  
+  /* FIX: file change can only be detected if the timestamp between the two consequent 
+     changes is more than 1s. If the archive is continuously changing (check: move files 
+     inside the archive), krarc may erronously think, that the archive file is unchanged, 
+     because the timestamp is the same as the previous one. This situation can only occur
+     if the modification time equals with the current time. While this condition is true,
+     we can say, that the archive is changing, so content reread is always necessary 
+     during that period. */
+  if( archiveChanging )
+    archiveChanged = true;
+  archiveChanging = ( currTime == arcFile->time( UDS_MODIFICATION_TIME ) );
+  
   arcType = arcFile->mimetype();
   arcType = arcType.mid(arcType.findRev("-")+1);
-  arcPath = "\""+arcFile->url().path()+"\"";
+  arcPath = "\""+arcFile->url().path(-1)+"\"";
   arcPath.replace(QRegExp(" "),"\\ ");
   return initArcParameters();
 }
 
-bool kio_krarcProtocol::initDirDict(const KURL&, bool forced){
+bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	// set the archive location
 	//if( !setArcFile(url.path()) ) return false;
 	// no need to rescan the archive if it's not changed
 	if( !archiveChanged && !forced ) return true;
 
+	setArcFile( url.path() );   /* if the archive was changed refresh the file information */
+	
 	// write the temp file
 	KShellProcess proc;
 	KTempFile temp("krarc","tmp");
 	temp.setAutoDelete(true);
 	if( arcType != "bzip2" ){
-		proc << listCmd << "\""+arcFile->url().path()+"\"" <<" > " << temp.name();
+		proc << listCmd << "\""+arcFile->url().path(-1)+"\"" <<" > " << temp.name();
 		proc.start(KProcess::Block);
 		if( !proc.normalExit() || !proc.exitStatus() == 0 )	return false;
   }
