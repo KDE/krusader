@@ -552,7 +552,7 @@ void KrSearchDialog::fillList(QComboBox *list, QString filename) {
 }
 
 void KrSearchDialog::resultClicked(QListViewItem* i) {
- 	krApp->mainView->activePanel->func->openUrl((i->text(1)).replace(QRegExp("#"),"\\")+"/"+i->text(0));
+  krApp->mainView->activePanel->func->openUrl((i->text(1)),i->text(0));
   showMinimized();
 }
 
@@ -570,7 +570,7 @@ void KrSearchDialog::deleteSelectedItems( QListBox *list_box )
   int i=0;
   QListBoxItem *item;
 
-  while( item = list_box->item(i) )
+  while( (item = list_box->item(i)) )
   {
     if( item->isSelected() )
     {

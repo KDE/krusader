@@ -34,12 +34,13 @@
 #define KRSEARCHMOD_H
 
 #include <qobject.h>
+#include <qvaluestack.h>
 #include <qstringlist.h>
 #include <time.h>
 #include <kio/global.h>
 
 class KRQuery;
-class vfs;
+class ftp_vfs;
 
 class KRSearchMod : public QObject  {
   Q_OBJECT
@@ -49,7 +50,7 @@ public:
 
 	void scanDir( QString dir);
   void scanArchive( QString archive, QString type );
-  void scanVfsDir( vfs* v, QString dir,QString Archive );
+  void scanURL( ftp_vfs* v, QString url );
 	void start();
   void stop();
 
@@ -64,6 +65,7 @@ private:
 	bool checkType(QString mime);
 	bool fileMatch(QString name);
 	QStringList scanedDirs;
+	QValueStack<QString> unScanedUrls;
 	KRQuery *query;
 	QStringList results;
 };

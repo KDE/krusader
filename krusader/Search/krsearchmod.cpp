@@ -32,7 +32,7 @@
 #include "krquery.h"
 #include "../krusader.h"
 #include "../resources.h"
-#include "../VFS/arc_vfs.h"
+#include "../VFS/ftp_vfs.h"
 #include "../VFS/vfile.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krarchandler.h"
@@ -226,27 +226,43 @@ void KRSearchMod::scanArchive( QString archive, QString type ){
 	if( stopSearch ) return;
 	// ace and rar archives are currently not suported
 	if (type == "-arj" || type == "-ace" ) return;
-	
-	vfs *v = new arc_vfs(archive,type,0,true);
-   	
+
+	QString url;
+
+	if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" ){
+		url = "tar:"+archive;
+	} else {
+		url = "krarc:"+archive;
+  }
+
+	ftp_vfs *v = new ftp_vfs(url,0);
+
 	if ( v->vfs_error() ){
 			kdWarning() << "Failed to open vfs: " << archive.local8Bit() << endl;
 			delete v;
 			return;
 	}
   emit searching(archive);
-  qApp->processEvents();
-	scanVfsDir(v,"\\",archive);
+  while(v->isBusy()) qApp->processEvents();
+
+  unScanedUrls.push(v->vfs_getOrigin());
+  while( !unScanedUrls.isEmpty() ) scanURL(v,unScanedUrls.pop());
 	delete v;
 }
 
-void KRSearchMod::scanVfsDir( vfs* v, QString dir, QString archive ){
-	v->vfs_refresh(dir);
+void KRSearchMod::scanURL( ftp_vfs* v, QString url){
+	if( !v->vfs_refresh(url) ) return;
+
+	while(v->isBusy()) qApp->processEvents();
+
+	if( scanedDirs.contains(v->vfs_getOrigin()) ) return; // don't re-scan urls..
+  scanedDirs.append(v->vfs_getOrigin());
+
 	for( vfile* vf=v->vfs_getFirstFile(); vf != 0 ; vf=v->vfs_getNextFile() ){
 		QString name =  vf->vfile_getName();
+
 		if ( vf->vfile_isDir() ){
-			scanVfsDir(v,dir+"/"+name,archive);
-			v->vfs_refresh(dir);
+			unScanedUrls.append(v->vfs_getOrigin()+"/"+name);
 		}
     // see if the name matches
     if( !fileMatch(name) ) continue;
@@ -268,8 +284,8 @@ void KRSearchMod::scanVfsDir( vfs* v, QString dir, QString archive ){
 		if( !query->perm.isEmpty() && !checkPerm(vf->vfile_getPerm()) ) continue;
 
 		// if we got here - we got a winner
-    results.append(dir+name);
-		emit found(name, archive+dir, size, vf->vfile_getTime_t(),vf->vfile_getPerm());
+    results.append(v->vfs_getOrigin()+"/"+name);
+		emit found(name, v->vfs_getOrigin(), size, vf->vfile_getTime_t(),vf->vfile_getPerm());
     qApp->processEvents();
 	}
 }
