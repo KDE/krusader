@@ -8,15 +8,13 @@ krusader_LDADD   = ./BookMan/libBookMan.a ./Dialogs/libDialogs.a ./GUI/libGUI.a 
 
 SUBDIRS = BookMan Dialogs GUI Konfigurator KViewer MountMan Panel RemoteMan VFS Search Splitter Synchronizer UserMenu Locate 
 
-EXTRA_DIST = krusader.desktop defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h krusaderui.rc krusaderview.cpp krusaderview.h main.cpp resources.h x-ace.desktop krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 16-blue-krusader.png 22-blue-krusader.png 32-blue-krusader.png 48-blue-krusader.png 64-blue-krusader.png 16-red-krusader.png 22-red-krusader.png 32-red-krusader.png 48-red-krusader.png 64-red-krusader.png 
+EXTRA_DIST = krusader.desktop defaults.h kicons.cpp kicons.h krslots.cpp krslots.h krusader.cpp krusader.h krusaderui.rc krusaderview.cpp krusaderview.h main.cpp resources.h krservices.cpp krservices.h panelmanager.cpp panelmanager.h paneltabbar.cpp paneltabbar.h 16-blue-krusader.png 22-blue-krusader.png 32-blue-krusader.png 48-blue-krusader.png 64-blue-krusader.png 16-red-krusader.png 22-red-krusader.png 32-red-krusader.png 48-red-krusader.png 64-red-krusader.png 
 
 install-data-local:
 	$(mkinstalldirs) $(kde_appsdir)/Applications/
 	$(INSTALL_DATA) $(srcdir)/krusader.desktop $(kde_appsdir)/Applications/krusader.desktop
 	$(mkinstalldirs) $(kde_datadir)/krusader/
 	$(INSTALL_DATA) $(srcdir)/krusaderui.rc $(kde_datadir)/krusader/krusaderui.rc
-	$(mkinstalldirs) $(kde_mimedir)/application/
-	$(INSTALL_DATA) $(srcdir)/x-ace.desktop $(kde_mimedir)/application/x-ace.desktop
 	$(mkinstalldirs) $(kde_icondir)/hicolor/16x16/apps/
 	$(INSTALL_DATA) $(srcdir)/16-blue-krusader.png $(kde_icondir)/hicolor/16x16/apps/krusader.png
 	$(mkinstalldirs) $(kde_icondir)/hicolor/22x22/apps/
@@ -41,7 +39,6 @@ install-data-local:
 uninstall-local:
 	-rm -f $(kde_appsdir)/Applications/krusader.desktop
 	-rm -f $(kde_datadir)/krusader/krusaderui.rc
-	-rm -f $(kde_mimedir)/application/x-ace.desktop
 	-rm -f $(kde_icondir)/hicolor/16x16/apps/krusader.png
 	-rm -f $(kde_icondir)/hicolor/22x22/apps/krusader.png
 	-rm -f $(kde_icondir)/hicolor/32x32/apps/krusader.png
@@ -84,7 +81,7 @@ METASOURCES = AUTO
 krusader_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 # Uncomment the following two lines if you add a ui.rc file for your application to make use of
-# KDE´s XML GUI builing
+# KDEs XML GUI builing
 rcdir = $(kde_datadir)/krusader
 rc_DATA = krusaderui.rc
 
