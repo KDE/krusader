@@ -430,12 +430,12 @@ void Krusader::setupActions() {
   actFTPDisconnect = new KAction( i18n( "Disconnect &From Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
                                   SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
 #if KDE_IS_VERSION(3,2,0)	/* new mountman feature is available in kde 3.2 only! */
-  actMountMan = new KToolBarPopupAction( i18n( "&MountMan" ), "kcmpartitions", ALT + Key_Slash,
+  actMountMan = new KToolBarPopupAction( i18n( "&MountMan" ), "kr_mountman", ALT + Key_Slash,
                                          SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
   connect( ( ( KToolBarPopupAction* ) actMountMan ) ->popupMenu(), SIGNAL( aboutToShow() ),
            mountMan, SLOT( quickList() ) );
 #else
-  actMountMan = new KAction( i18n( "&MountMan" ), "kcmpartitions", ALT + Key_Slash,
+  actMountMan = new KAction( i18n( "&MountMan" ), "kr_mountman", ALT + Key_Slash,
                              SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
 #endif /* KDE 3.2 */
 
