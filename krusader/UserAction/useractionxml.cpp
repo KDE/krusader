@@ -26,6 +26,7 @@
 #define ACTION_DOCTYPE		"KrusaderUserActions"
 // in well formed XML the root-element has to have the same name then the doctype:
 #define ACTION_ROOT	ACTION_DOCTYPE
+#define ACTION_PROCESSINSTR	"version=\"1.0\" encoding=\"UTF-8\" "
 
 
 UserActionXML::UserActionXML() {
@@ -68,8 +69,12 @@ void UserActionXML::getActionDom() {
     }
 
   } // if ( file.open( IO_ReadOnly ) )
-  else
+  else { //create empty XML-document since no file was found
+    // adding: <?xml version="1.0" encoding="UTF-8" ?>
+    _doc->appendChild( _doc->createProcessingInstruction( "xml", ACTION_PROCESSINSTR ) );
+    //adding root-element
     _doc->appendChild( _doc->createElement( ACTION_ROOT ) ); // create new actionfile by adding a root-element ACTION_ROOT
+  }
     
 }
 
@@ -83,10 +88,15 @@ void UserActionXML::writeActionDom( QString filename ) {
      //TODO: create warning
      return;
    }
+   
+   if ( ! _doc->firstChild().isProcessingInstruction() ) {
+      // adding: <?xml version="1.0" encoding="UTF-8" ?> if not already present
+      QDomProcessingInstruction instr = _doc->createProcessingInstruction( "xml", ACTION_PROCESSINSTR );
+      _doc->insertBefore( instr, _doc->firstChild() );
+   }
  
    QTextStream ts( &file );
-   //ts << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << doc->toString().utf8();
-   ts << _doc->toString();
+   ts << _doc->toString().utf8();
  
    file.close();
 }
