@@ -591,13 +591,6 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e )
       else
         KListView::keyPressEvent( e );
       break;
-      case Key_Backspace :       // dir up
-      if ( e->state() == 0 )
-        SLOTS->dirUp();
-      return ;
-      case Key_QuoteLeft :      // home
-      SLOTS->home();
-      return ;
       case Key_Delete :          // kill file
       SLOTS->deleteFiles();
       return ;
@@ -622,7 +615,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e )
       break;
       default:
       KListView::keyPressEvent( e );
-      updateView();
+      //updateView();
       return ;
   }
 }

@@ -289,8 +289,8 @@ void Krusader::setupActions() {
 
 
   // second, the KDE standard action
-  KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" );
-  KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" );
+  KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
+  KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" )->setShortcut(Key_QuoteLeft);
   KStdAction::redisplay( SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
   actShowToolBar = KStdAction::showToolbar( SLOTS, SLOT( toggleToolbar() ), actionCollection(), "std_toolbar" );
   actShowStatusBar = KStdAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
