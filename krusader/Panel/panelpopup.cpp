@@ -105,5 +105,5 @@ void PanelPopup::failedToView( const KFileItem* kfi ) {
 
 void PanelPopup::treeSelection(QListViewItem*) {
 	emit selection(tree->currentURL());
-	emit hideMe();
+	//emit hideMe();
 }
