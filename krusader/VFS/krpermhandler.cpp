@@ -251,7 +251,7 @@ bool KRpermHandler::fileExist(QString path, QString name){
 QString KRpermHandler::time2QString(long time){
   QString dateTime;
 	// convert the time_t to struct tm
-	struct tm* t=localtime(&time);
+	struct tm* t=localtime((time_t *)&time);
   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
 
   // construct the string
