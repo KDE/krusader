@@ -33,11 +33,11 @@ public:
 	DirHistoryQueue(ListPanel* p);
 	~DirHistoryQueue();
   QStringList pathQueue;
-
+  bool checkPath(const QString& path);
   void RemovePath(const QString& path);
+
 private:
   void AddPath(const QString& path);
-  
   void DumpQueue();
 
   ListPanel* panel;

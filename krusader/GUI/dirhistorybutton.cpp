@@ -40,15 +40,15 @@ DirHistoryButton::DirHistoryButton(DirHistoryQueue* hQ, QWidget *parent, const c
   popupMenu = new QPopupMenu(this);
   Q_CHECK_PTR(popupMenu);
   
-//  popupMenu->insertItem("Test", this, SLOT(slotPopup()));
-//  popupMenu->insertItem("Test2", this, SLOT(slotPopup()));
   setPopup(popupMenu);
+  popupMenu->setCheckable(true);
 
   historyQueue = hQ;
 
   connect(popupMenu, SIGNAL(aboutToShow()), this, SLOT(slotAboutToShow()));
   connect(popupMenu, SIGNAL(activated(int)), this, SLOT(slotPopupActivated(int)));
 }
+
 DirHistoryButton::~DirHistoryButton(){
 }
 
@@ -59,7 +59,6 @@ void DirHistoryButton::openPopup()
   {
     popup()->exec(mapToGlobal(QPoint(0, height())));
   }
-//  kdDebug() << "History popup" << endl;
 }
 /** No descriptions */
 void DirHistoryButton::slotPopup(){
@@ -74,24 +73,19 @@ void DirHistoryButton::slotAboutToShow(){
   int id = 0;
   for (it=historyQueue->pathQueue.begin(); it!=historyQueue->pathQueue.end(); ++it)
   {
-//    popupMenu->insertItem(*it, this, SLOT(slotPopup()), 0, id++);
     popupMenu->insertItem(*it, id++);
+  }
+  if (id > 0)
+  {
+    popupMenu->setItemChecked(0, true);
   }
 }  
 /** No descriptions */
 void DirHistoryButton::slotPopupActivated(int id){
 //  kdDebug() << "popup activated" << endl;
   KURL url(historyQueue->pathQueue[id]);
-  QString p = url.path();
-  kdDebug() << p <<  "file: " << url.fileName() << ", dir: " << url.directory() <<  endl;
-  if (url.protocol() == "file")
+  if (historyQueue->checkPath(historyQueue->pathQueue[id]))
   {
-    QDir dir(historyQueue->pathQueue[id]);
-    if (!dir.exists())
-    {
-      historyQueue->RemovePath(historyQueue->pathQueue[id]);
-    }
+    emit openUrl( vfs::fromPathOrURL( url.prettyURL() ) );
   }
-  emit openUrl( vfs::fromPathOrURL( url.prettyURL() ) );
-//  emit openUrl(historyQueue->pathQueue[id]);
 }

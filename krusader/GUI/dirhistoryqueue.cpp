@@ -48,8 +48,8 @@ void DirHistoryQueue::AddPath(const QString& path)
   {
     pathQueue.remove(path);
   }
-  // prevent non file paths from occuring in the list: prevent
-  // infinite loop when calling such a path from the history menu
+
+// prevent non file paths from occuring in the list
 //  KURL url(path);
 //  if (url.protocol() == "file")
   {
@@ -65,7 +65,26 @@ void DirHistoryQueue::RemovePath(const QString& path)
   {
     pathQueue.remove(it);
   }
-      
+}
+
+bool DirHistoryQueue::checkPath(const QString& path)
+{
+  KURL url(path);
+
+  QString p = url.path();
+//  kdDebug() << "url:" << p <<  ", file: " << url.fileName() << ", dir: " << url.directory() <<  endl;
+  if (url.protocol() == "file")
+  {
+    QDir dir(path);
+    if (!dir.exists())
+    {
+      RemovePath(path);
+      return false;
+    }
+  }
+    
+  return true;
+  
 }
 
 void DirHistoryQueue::DumpQueue()
