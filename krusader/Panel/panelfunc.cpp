@@ -172,7 +172,28 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 }
 
 void ListPanelFunc::openUrl( const KURL& url, const QString& nameToMakeCurrent ) {
-	panel->inlineRefreshCancel();	
+	panel->inlineRefreshCancel();
+	// first the other dir, then the active! Else the focus changes and the other becomes active
+	if ( panel->syncBrowseButton->state() == SYNCBROWSE_CD ) {
+		// prevents that the sync-browsing circles itself to death      
+		static bool inSync = false;
+		if( ! inSync ){
+			inSync = true;
+			//do sync-browse stuff....
+			KURL otherDir = OTHER_PANEL->virtualPath();
+			OTHER_FUNC->files() ->vfs_setQuiet( true );
+			// the trailing slash is nessesary because krusader provides Dir's without it
+			// we can't use openUrl because the delay don't allow a check if the panel has realy changed!
+			OTHER_FUNC->immediateOpenUrl( KURL::relativeURL( panel->virtualPath().url() + "/", url.url() ) );
+			OTHER_FUNC->files() ->vfs_setQuiet( false );
+			// now we need to test ACTIVE_PANEL because the openURL has changed the active panel!!
+			if ( ACTIVE_PANEL->virtualPath().equals( otherDir ) ) {
+				// deactivating the sync-browse if syncbrowse not possible
+				panel->syncBrowseButton->setOn( false );
+			}
+			inSync = false;
+		}
+	}
 	this->nameToMakeCurrent = nameToMakeCurrent;
 	delayURL = url;               /* this function is useful for FTP url-s and bookmarks */
 	delayTimer.start( 0, true );  /* to avoid qApp->processEvents() deadlock situaltion */
@@ -597,13 +618,6 @@ void ListPanelFunc::execute( QString& name ) {
 	}
 
 	if ( vf->vfile_isDir() ) {
-		// first the other panel, then the active! Else the focus changes and the other becomes active
-		if ( panel->syncBrowseButton->state() == SYNCBROWSE_CD ) {
-			//do sync-browse stuff....
-			OTHER_FUNC->files() ->vfs_setQuiet( true ); // no error message if we fail...
-			OTHER_FUNC->execute( name );
-			OTHER_FUNC->files() ->vfs_setQuiet( false );
-		}
 		origin = files() ->vfs_getFile( name );
 		panel->view->setNameToMakeCurrent( QString::null );
 		openUrl( origin );
