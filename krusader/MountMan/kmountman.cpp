@@ -660,10 +660,10 @@ statsCollector::statsCollector(QString path, QObject *caller): QObject() {
     delete d;
     return;
   }
-	QString tmp=KIO::convertSizeFromKB(d->freeBlks())+i18n(" free out of ")+
-              KIO::convertSizeFromKB(d->totalBlks())+" (";
-  stats.sprintf("%d",(100-d->usedPerct()));
-  stats=tmp+stats+i18n("%) on [ ")+d->mntPoint()+" ("+d->type()+") ]";
+	stats=i18n("%1 free out of %2 (%3%) on %4 [ (%5) ]")
+              .arg( KIO::convertSizeFromKB(d->freeBlks()) )
+              .arg( KIO::convertSizeFromKB(d->totalBlks()) ).arg( 100-d->usedPerct())
+              .arg( d->mntPoint() ).arg( d->type() );
   emit gotStats(stats);
   delete d;
 }

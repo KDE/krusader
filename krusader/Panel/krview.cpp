@@ -127,7 +127,7 @@ QString KrView::statistics() {
          ++_numSelected;
          _selectedSize += it->size();
       }
-   QString tmp = QString( "%1 " + i18n( "out of" ) + " %2 " + i18n( "selected" ) + ", %3 " + i18n( "out of" ) + " %4" )
+   QString tmp = QString(i18n("%1 out of %2 selected, %3 out of %4"))
                  .arg( _numSelected ).arg( _count ).arg( KIO::convertSize( _selectedSize ) )
                  .arg( KIO::convertSize( _countSize ) );
    return tmp;
