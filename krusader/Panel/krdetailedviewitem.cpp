@@ -35,9 +35,11 @@
 #include "krdetailedview.h"
 #include "../VFS/krpermhandler.h"
 #include <sys/types.h>
+#include <qpainter.h>
 #include <pwd.h>
 #include <grp.h>
 #include <stdlib.h>
+#include <qpalette.h>
 #include <kdebug.h>
 #include <kmimetype.h>
 
@@ -125,14 +127,50 @@ QString KrDetailedViewItem::name() const {
 }
 
 void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align) {
+  QColorGroup _cg(cg);
+  // kdelibs' paintCell //////////////////////////////////////////
+  const QPixmap *pm = listView()->viewport()->backgroundPixmap();
+  if (pm && !pm->isNull())
+  {
+        _cg.setBrush(QColorGroup::Base, QBrush(backgroundColor(), *pm));
+        p->setBrushOrigin( -listView()->contentsX(), -listView()->contentsY() );
+  }
+  else
+  if (isAlternate())
+       if (listView()->viewport()->backgroundMode()==Qt::FixedColor)
+            _cg.setColor(QColorGroup::Background, static_cast< KListView* >(listView())->alternateBackground());
+       else
+        _cg.setColor(QColorGroup::Base, static_cast< KListView* >(listView())->alternateBackground());
+  // end of kdelibs' paintCell ///////////////////////////////////
+
+#define COLOR _cg.color(QColorGroup::Link)
+  // make selected items colored (wincmd style)
+  if (isSelected()) {
+      if (_view->getCurrentKrViewItem() == this) { // selected and current
+         // for visual comfortability, don't color it red if it's
+         // the only file that's selected
+         if (!_view->automaticSelection())
+            _cg.setColor(QColorGroup::HighlightedText, COLOR);
+         else _cg.setColor(QColorGroup::HighlightedText, _cg.color(QColorGroup::Foreground));
+         _cg.setColor(QColorGroup::Highlight, backgroundColor()); //?
+      } else { // selected but not current
+         _cg.setColor(QColorGroup::HighlightedText, COLOR);
+         _cg.setColor(QColorGroup::Highlight, backgroundColor());
+      }
+  } else if (_view->getCurrentKrViewItem() == this) { // current but not selected
+         _cg.setColor(QColorGroup::Base, backgroundColor());
+  } else { // not selected
+
+  }
+
   // center the <DIR> thing if needed
   if(column != _view->column(KrDetailedView::Size))
-    KListViewItem::paintCell(p, cg, column, width, align);
+   QListViewItem::paintCell(p, _cg, column, width, align);
   else if (_vf) {
     if (_vf->vfile_isDir() && _vf->vfile_getSize()<=0)
-      KListViewItem::paintCell(p, cg, column, width, Qt::AlignHCenter);
-    else KListViewItem::paintCell(p, cg, column, width, align); // size
-  } else KListViewItem::paintCell(p, cg, column, width, Qt::AlignHCenter); // updir
+      QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter);
+    else QListViewItem::paintCell(p, _cg, column, width, align); // size
+  } else QListViewItem::paintCell(p, _cg, column, width, Qt::AlignHCenter); // updir
 }
 
 
