@@ -154,3 +154,10 @@ QString KrServices::registerdProtocol(QString mimetype){
 	}
 	return (*slaveMap)[mimetype];
 }
+
+void KrServices::clearProtocolCache()
+{
+  if( slaveMap )
+    delete slaveMap;
+  slaveMap = 0;
+}

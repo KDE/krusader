@@ -30,6 +30,7 @@
 
 #include "kgprotocols.h"
 #include "../krusader.h"
+#include "../krservices.h"
 #include <klocale.h>
 #include <kprotocolinfo.h>
 #include <kmimetype.h>
@@ -320,6 +321,11 @@ void KgProtocols::setDefaults()
   QStringList krarcMimes = QStringList::split( ',', defaultKrarcMimes );
   for( QStringList::Iterator it = krarcMimes.begin(); it != krarcMimes.end(); it++ )
     addMime( *it, "krarc" );
+  
+  addProtocol( "tar" );
+  QStringList tarMimes = QStringList::split( ',', defaultTarMimes );
+  for( QStringList::Iterator it = tarMimes.begin(); it != tarMimes.end(); it++ )
+    addMime( *it, "tar" );
     
   slotDisableButtons();
     
@@ -383,6 +389,8 @@ bool KgProtocols::apply()
   }  
   krConfig->writeEntry( "Handled Protocols", protocolList );
   krConfig->sync();  
+  
+  KrServices::clearProtocolCache();
   
   emit sigChanged();  
   return false;

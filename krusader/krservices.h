@@ -36,6 +36,7 @@ public:
 	static QString      fullPathName( QString name, QString confName = QString::null );
 	static QStringList  separateArgs( QString args );
 	static QString      registerdProtocol(QString mimetype);
+	static void         clearProtocolCache();
 
 private:
 	static QMap<QString,QString>* slaveMap;
