@@ -176,7 +176,7 @@ KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const 
 
 KrDetailedView::~KrDetailedView()
 {
-  saveSettings();
+  //saveSettings();
 }
 
 void KrDetailedView::newColumn( ColumnType type )

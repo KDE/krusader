@@ -409,16 +409,11 @@ void Krusader::savePosition() {
   config->writeEntry( "Start Size", size() );
   config->writeEntry( "Panel Size", mainView->vert_splitter->sizes() [ 0 ] );
   config->writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
-
-  /*  config->writeEntry( "Left Name Size", mainView->left->fileList->columnWidth(0));
-    config->writeEntry( "Left Size Size", mainView->left->fileList->columnWidth(1));
-    config->writeEntry( "Left Date Size", mainView->left->fileList->columnWidth(2));
-    config->writeEntry( "Right Name Size", mainView->right->fileList->columnWidth(0));
-    config->writeEntry( "Right Size Size", mainView->right->fileList->columnWidth(1));
-    config->writeEntry( "Right Date Size", mainView->right->fileList->columnWidth(2));*/
   QValueList<int> lst = mainView->horiz_splitter->sizes();
   config->writeEntry( "Splitter Sizes", lst );
-
+  // save view settings ---> fix when we have tabbed-browsing
+  mainView->left->view->saveSettings();
+  mainView->right->view->saveSettings();
   config->sync();
 }
 
