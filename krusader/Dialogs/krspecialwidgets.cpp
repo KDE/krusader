@@ -65,7 +65,7 @@ QColor KRPie::colors[12]={Qt::red,Qt::blue,Qt::green,Qt::cyan,Qt::magenta,Qt::gr
 //////////////////////////////////////////////////////////////////////////////
 // This is the full constructor: use it for a mounted filesystem
 KRFSDisplay::KRFSDisplay(QWidget *parent, QString _alias, QString _realName,
-    long _total, long _free) : QWidget(parent), totalSpace(_total),
+    KIO::filesize_t _total, KIO::filesize_t _free) : QWidget(parent), totalSpace(_total),
     freeSpace(_free), alias(_alias), realName(_realName), mounted(true),
     empty(false), supermount(false) {
   resize(150,200);
@@ -155,7 +155,7 @@ void KRFSDisplay::paintEvent(QPaintEvent *) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-KRPie::KRPie(long _totalSize, QWidget *parent) : QWidget(parent,0), totalSize(_totalSize) {
+KRPie::KRPie(KIO::filesize_t _totalSize, QWidget *parent) : QWidget(parent,0), totalSize(_totalSize) {
   slices.setAutoDelete(true); // kill items when they are removed
   slices.append(new KRPieSlice(100,Qt::yellow,"DEFAULT"));
   sizeLeft=totalSize;
@@ -202,7 +202,7 @@ void KRPie::paintEvent(QPaintEvent *) {
 
 }
 
-void KRPie::addSlice(long size,QString label) {
+void KRPie::addSlice(KIO::filesize_t size,QString label) {
   int i=(slices.count() % 12);
   slices.removeLast();
   slices.append(new KRPieSlice(size*100/totalSize,colors[i],label));
