@@ -81,6 +81,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krpreviewpopup.h"
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/dirhistoryqueue.h"
+#include "../krservices.h"
 
 typedef QValueList<KServiceOffer> OfferList;
 
@@ -757,7 +758,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
       KProcess proc;
       krConfig->setGroup( "General" );
       QString term = krConfig->readEntry( "Terminal", _Terminal );
-      proc << term;
+      proc << KrServices::separateArgs( term );
       if ( !item->isDir() )
         proc << "-e" << item->name();
       if ( !proc.start( KProcess::DontCare ) )

@@ -65,6 +65,7 @@ A
 #include "../KViewer/krviewer.h"
 #include "../MountMan/kmountman.h"
 #include "../resources.h"
+#include "../krservices.h"
 
 //////////////////////////////////////////////////////////
 //////		----------	List Panel -------------		////////
@@ -251,7 +252,7 @@ void ListPanelFunc::terminal() {
   KProcess proc;
   krConfig->setGroup( "General" );
   QString term = krConfig->readEntry( "Terminal", _Terminal );
-  proc << term;
+  proc << KrServices::separateArgs( term );
   if ( !proc.start( KProcess::DontCare ) )
     KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + term + "\"" );
 

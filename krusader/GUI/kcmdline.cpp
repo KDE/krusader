@@ -44,6 +44,7 @@
 #include "../defaults.h"
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
+#include "../krservices.h"
 #include <qdir.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
@@ -149,7 +150,7 @@ void KCMDLine::slotRun(const QString &command1) {
     // run in a terminal ???
     if ( terminal->isOn() ) {
       QString terminal = krConfig->readEntry( "Terminal", _Terminal );
-      proc << terminal;
+      proc << KrServices::separateArgs( terminal );
       // if the terminal support is - don't close when the command finish
       //if( terminal == "konsole" ) proc << "--noclose ";
       //if( terminal == "xterm" ) proc << "-hold ";

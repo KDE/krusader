@@ -364,7 +364,7 @@ void KRslots::homeTerminal(){
   KProcess proc;
 	krConfig->setGroup("General");
 	QString term = krConfig->readEntry("Terminal",_Terminal);
-	proc <<  term;
+	proc << KrServices::separateArgs( term );
 	if(!proc.start(KProcess::DontCare))
 	  KMessageBox::sorry(krApp,i18n("Can't open ")+"\""+term+"\"");
 
