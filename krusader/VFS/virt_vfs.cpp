@@ -34,6 +34,7 @@
 #define VIRT_VFS_DB "virt_vfs.db"
 
 QDict<KURL::List> virt_vfs::virtVfsDict;
+KConfig* virt_vfs::virt_vfs_db=0;
 
 virt_vfs::virt_vfs( QObject* panel, bool quiet ) : vfs( panel, quiet ) {
 	// set the writable attribute
@@ -44,8 +45,7 @@ virt_vfs::virt_vfs( QObject* panel, bool quiet ) : vfs( panel, quiet ) {
 
 	virtVfsDict.setAutoDelete( true );
 	if ( virtVfsDict.isEmpty() ) {
-		KURL::List* urlList = new KURL::List();
-		virtVfsDict.insert( "/", urlList );
+		restore();
 	}
 
 	vfs_type = VIRT;
@@ -80,6 +80,7 @@ bool virt_vfs::populateVfsList( const KURL& origin, bool /*showHidden*/ ) {
 		addToList( vf );
 		++it;
 	}
+	save();
 	return true;
 }
 
@@ -261,14 +262,51 @@ vfile* virt_vfs::stat( const KURL& url ) {
 	return temp;
 }
 
+KConfig*  virt_vfs::getVirtDB(){
+	if( !virt_vfs_db ){
+		virt_vfs_db = new KConfig(VIRT_VFS_DB,false,"data");
+	}
+	return virt_vfs_db; 
+}
+
 bool virt_vfs::save(){
-	//QString filename = locateLocal( "data", VIRT_VFS_DB );
-	return false;
+	KConfig* db = getVirtDB();
+	
+	db->setGroup("virt_db");
+	QDictIterator<KURL::List> it( virtVfsDict ); // See QDictIterator
+	for( ; it.current(); ++it ){
+		KURL::List::iterator url;
+		QStringList entry;
+		for ( url = it.current()->begin() ; url != it.current()->end() ; ++url ) {
+			entry.append( (*url).prettyURL() );
+		}
+		db->writeEntry(it.currentKey(),entry);
+	}
+	
+	db->sync();
+	
+	return true;
 }
 
 bool virt_vfs::restore(){
-	//QString filename = locateLocal( "data", VIRT_VFS_DB );
-	return false;
+	KConfig* db = getVirtDB();
+	db->setGroup("virt_db");
+	
+	QMap<QString, QString> map = db->entryMap("virt_db");
+	QMap<QString, QString>::Iterator it;
+	KURL::List* urlList;
+	for ( it = map.begin(); it != map.end(); ++it ) {
+		urlList = new KURL::List( db->readListEntry(it.key()) );
+		virtVfsDict.insert( it.key(),urlList );
+		krOut << it.key() << " : " << *urlList << endl;
+	}
+
+	if( !virtVfsDict["/" ]){
+		urlList = new KURL::List();
+		virtVfsDict.insert( "/", urlList );	
+	}
+		
+	return true;
 }
 
 

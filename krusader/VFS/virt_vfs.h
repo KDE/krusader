@@ -18,6 +18,8 @@
 #ifndef VIRT_VFS_H
 #define VIRT_VFS_H
 
+#include <kconfig.h>
+
 #include "vfs.h"
 
 /**
@@ -45,21 +47,24 @@ public:
 	
 	/// Return the VFS working dir
 	QString vfs_workingDir(){ return QString::null; }
-
-	/// Save the dictionary to file
-	static bool save();
-	/// Restore the dictionary from file
-	static bool restore();
 	
 protected slots:
 	void slotStatResult(KIO::Job *job);
 
 protected:
+	/// Save the dictionary to file
+	bool save();
+	/// Restore the dictionary from file
+	bool restore();	
+	/// return the URLs DB
+	KConfig*  getVirtDB();
+
 	bool populateVfsList(const KURL& origin, bool showHidden);
 	vfile* stat(const KURL& url);
 	
 	vfileDict  vfs_files;    //< List of pointers to vfile.
 	static QDict<KURL::List> virtVfsDict;
+	static KConfig* virt_vfs_db;
 	bool busy;
 	QString path;
 	KIO::UDSEntry entry;
