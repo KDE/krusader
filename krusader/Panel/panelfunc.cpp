@@ -98,7 +98,7 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type){
 		changeVFS(mytype,archive);
 		// add warning to the backStack
 	  if(backStack.last() != "//WARNING//" ) backStack.append("//WARNING//");
-		
+
 		if( !directory.isEmpty() ){
 			panel->view->setNameToMakeCurrent(directory.mid(directory.findRev('/')+1));
 			directory =  directory.left(directory.findRev('/'));
@@ -117,11 +117,13 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type){
 		while( files()->vfs_getType() != "normal" ) vfsStack.remove();
     // now we have a normal vfs- refresh it.
 		files()->blockSignals(false);
+		mypath = QDir(mypath).canonicalPath();
 		while( !KRpermHandler::dirExist(mypath) ){
     	panel->view->setNameToMakeCurrent(mypath.mid(mypath.findRev('/')));
 			mypath = mypath.left(mypath.findRev('/'));
 			if( mypath.isEmpty() ) mypath = "/";
 		}
+		chdir( mypath );
 		refresh( mypath );
 	}
 }
