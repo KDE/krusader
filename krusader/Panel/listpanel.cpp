@@ -88,7 +88,9 @@ typedef QValueList<KServiceOffer> OfferList;
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel( QWidget *parent, bool left, const char *name ) :
-QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), _left( left ), quickSearch(0) {
+  QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), _left( left ), quickSearch(0),
+  cdRootButton( 0 ),cdUpButton( 0 )
+{
 
   func = new ListPanelFunc( this );
   setAcceptDrops( true );
@@ -143,7 +145,10 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   quickSearch->setLineWidth( 1 );		// a nice 3D touch :-)
   quickSearch->setMaximumHeight( sheight );
 
-  origin = new KURLRequester( this );
+  QHBox * hbox = new QHBox( this );
+  origin = new KURLRequester( hbox );
+  QPixmap pixMap = origin->button()->iconSet()->pixmap( QIconSet::Small, QIconSet::Normal );
+  origin->button()->setFixedSize( pixMap.width()+4, pixMap.height()+4 );
   QWhatsThis::add
     ( origin, i18n( "Use superb KDE file dialog to choose location. " ) );
   origin->setShowLocalProtocol( false );
@@ -155,6 +160,18 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   origin->setMode( KFile::Directory | KFile::ExistingOnly );
   connect( origin, SIGNAL( returnPressed( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
   connect( origin, SIGNAL( urlSelected( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
+
+  if (krConfig->readBoolEntry("Panel level tool bar",_PanelToolBar))
+  {
+    cdUpButton = new QToolButton( hbox, "cdUpB" );
+    cdRootButton = new QToolButton( hbox, "cdRootB" );
+    cdUpButton->setFixedSize( 21, origin->button()->height() );
+    cdRootButton->setFixedSize( 20, origin->button()->height() );
+    cdUpButton->setText( i18n( ".." ) );
+    cdRootButton->setText( i18n( "/" ) );
+    connect( cdUpButton,   SIGNAL( clicked() ), this, SLOT( slotFocusAndCDup() ) );
+    connect( cdRootButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndRoot() ) );
+  }
 
   view = new KrDetailedView( this, _left, krConfig );
   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( executed( QString& ) ), func, SLOT( execute( QString& ) ) );
@@ -171,7 +188,7 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   connect( this, SIGNAL( activePanelChanged( ListPanel * ) ), SLOTS, SLOT( slotSetActivePanel( ListPanel * ) ) );
 
   // finish the layout
-  layout->addMultiCellWidget( origin, 0, 0, 0, 2 );
+  layout->addMultiCellWidget( hbox, 0, 0, 0, 2 );
   layout->addWidget( status, 1, 0 );
   layout->addWidget(historyButton, 1, 1);
   layout->addWidget( bookmarksButton, 1, 2 );
@@ -191,11 +208,25 @@ ListPanel::~ListPanel() {
   delete totals;
   delete quickSearch;
   delete origin;
+  delete cdRootButton;
+  delete cdUpButton;
   delete layout;
 }
 
 void ListPanel::slotUpdateTotals() {
   totals->setText( view->statistics() );
+}
+
+void ListPanel::slotFocusAndCDup()
+{
+  slotFocusOnMe();
+  func->dirUp();
+}
+
+void ListPanel::slotFocusAndRoot()
+{
+  slotFocusOnMe();
+  func->root();
 }
 
 void ListPanel::select( bool select, bool all ) {

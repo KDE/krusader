@@ -91,6 +91,8 @@ public slots:
 	void slotStartUpdate();                   // internal
 	void slotGetStats(QString path);          // get the disk-free stats
 	void setFilter(KrView::FilterSpec f);
+  void slotFocusAndCDup();
+  void slotFocusAndRoot();
 
 ///////////////////////// service functions - called internally ////////////////////////
   inline void setOther(ListPanel *panel) { otherPanel=panel; }
@@ -127,9 +129,11 @@ public:
    KrQuickSearch *quickSearch;
 	KURLRequester   *origin;
 	QGridLayout   *layout;
-  BookmarksButton *bookmarksButton;
+	  QToolButton *cdRootButton;
+	  QToolButton *cdUpButton;
+   BookmarksButton *bookmarksButton;
    DirHistoryQueue* dirHistoryQueue;
-  DirHistoryButton* historyButton;
+   DirHistoryButton* historyButton;
 
 private:
   bool _left;

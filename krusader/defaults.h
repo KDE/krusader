@@ -74,6 +74,8 @@
 #define _SortByExt      false
 // Case Sensative Sort /
 #define _CaseSensativeSort false
+// Panel Level ToolBar /
+#define _PanelToolBar   true
 // Html Min Font Size //
 #define _HtmlMinFontSize 12
 // Filelist Icon Size //
@@ -211,4 +213,5 @@
 #define  _BtnDuplicates     true
 // The singles button is turned on /////////////
 #define  _BtnSingles        true
+
 

@@ -60,6 +60,7 @@ public:
 	void krlink(bool sym);
 	void goBack();
 	void dirUp();
+	void root();
 	void properties();
 	void terminal();
 	void editFile();

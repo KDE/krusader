@@ -63,9 +63,11 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  ""},
      {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), false,  ""},
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  ""},
-     {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""}};
+     {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""},
+     {"Look&Feel","Panel level tool bar", _PanelToolBar,   i18n( "Show panel level tool bar" ), true, ""},
+    };
 
-  cbs = createCheckBoxGroup( 2, 0, settings, 7, lookFeelGrp );
+  cbs = createCheckBoxGroup( 2, 0, settings, 8, lookFeelGrp );
   lookFeelGrid->addWidget( cbs, 0, 0 );
   connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
@@ -163,3 +165,4 @@ void KgLookFeel::slotDisable()
 }
 
 #include "kglookfeel.moc"
+

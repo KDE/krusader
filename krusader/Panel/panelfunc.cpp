@@ -544,6 +544,10 @@ void ListPanelFunc::dirUp() {
 	openUrl(files()->vfs_getOrigin().upURL(), files()->vfs_getOrigin().fileName());
 }
 
+void ListPanelFunc::root() {
+	openUrl( vfs::fromPathOrURL( "/" ) );
+}
+
 void ListPanelFunc::pack() {
   QStringList fileNames;
   panel->getSelectedNames( &fileNames );
