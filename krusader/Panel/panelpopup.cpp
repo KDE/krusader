@@ -5,6 +5,7 @@
 #include "../defaults.h"
 #include "../krslots.h"
 #include "panelfunc.h"
+#include <qtooltip.h>
 #include <qbuttongroup.h>
 #include <qtoolbutton.h>
 #include <kfiletreeview.h>
@@ -46,6 +47,7 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	connect(btns, SIGNAL(clicked(int)), this, SLOT(tabSelected(int)));
 	
 	treeBtn = new QToolButton(this);
+	QToolTip::add(treeBtn, i18n("Tree Panel: a tree view of the local file system"));
 	treeBtn->setPixmap(krLoader->loadIcon( "view_tree", KIcon::Toolbar, 16 ));
 	treeBtn->setFixedSize(20, 20);
 	treeBtn->setToggleButton(true);
@@ -53,12 +55,14 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	
 	
 	previewBtn = new QToolButton(this);
+	QToolTip::add(previewBtn, i18n("Preview Panel: display a preview of the current file"));
 	previewBtn->setPixmap(krLoader->loadIcon( "folder_image", KIcon::Toolbar, 16 ));
 	previewBtn->setFixedSize(20, 20);
 	previewBtn->setToggleButton(true);
 	btns->insert(previewBtn, Preview);
 	
 	quickBtn = new QToolButton(this);
+	QToolTip::add(quickBtn, i18n("Quick Panel: quick way to perform actions"));
 	quickBtn->setPixmap(krLoader->loadIcon( "kr_select", KIcon::Toolbar, 16 ));
 	quickBtn->setFixedSize(20, 20);
 	quickBtn->setToggleButton(true);
