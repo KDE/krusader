@@ -16,7 +16,7 @@
 #define HIDE  { _newTab->hide(); _tabbar->hide(); _closeTab->hide(); }
 
 PanelManager::PanelManager( QWidget *parent, bool left, ListPanel* &self, ListPanel* &other, ListPanel* &active ) :
-QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), _active( active ) {
+QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ), _self( self ), _other( other ), _active( active ) {
    _layout = new QGridLayout( this, 1, 1 );
    _stack = new QWidgetStack( this );
 
