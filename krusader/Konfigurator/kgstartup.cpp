@@ -97,7 +97,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
      {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Function keys visible" ),          false,  i18n( "Function keys will be visible after startup." ) },
      {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Command-line visible" ),           false,  i18n( "Command-line will be visible after startup." ) },
      {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Terminal Emulator visible" ),      false,  i18n( "Terminal Emulator will be visible after startup." ) },
-     {"Startup","Remember Position",     _RememberPos,          i18n( "Restore last position and size" ), false,  i18n( "When launched, Krusader will resize itself to the last size it was when last shutdown.\nKrusader will also appear in the same location on the screen." )
+     {"Startup","Remember Position",     _RememberPos,          i18n( "Save last position and size" ), false,  i18n( "When launched, Krusader will resize itself to the last size it was when last shutdown.\nKrusader will also appear in the same location on the screen.\nIf this disabled, you can use the setting menu 'Save Position' option to manualy set Krusader's size and position on startup" )
 }};
 
   uiCbGroup = createCheckBoxGroup( 1, 0, uiCheckBoxes, 7, uiGrp );
