@@ -37,6 +37,7 @@
 #include <kpopupmenu.h>
 #include <kiconloader.h>
 #include <klocale.h>
+#include <kmessagebox.h>
 
 #define DELETE_ITEM_ID    100
 
@@ -88,8 +89,16 @@ void KURLListRequester::slotAdd()
   QString text = urlLineEdit->text().simplifyWhiteSpace();
   if( text.length() )
   {  
-    urlListBox->insertItem( urlLineEdit->text() );
-    urlLineEdit->clear();
+    QString error = QString::null;    
+    emit checkValidity( text, error );
+    
+    if( !error.isNull() )
+      KMessageBox::error( this, error );
+    else
+    {  
+      urlListBox->insertItem( text );
+      urlLineEdit->clear();
+    }
   }
 }
 
@@ -154,13 +163,25 @@ KURL::List KURLListRequester::urlList()
 {
   KURL::List urls;
   
-  if (!urlLineEdit->text().simplifyWhiteSpace().isEmpty())
-    urls.append( vfs::fromPathOrURL( urlLineEdit->text().simplifyWhiteSpace() ) );
+  QString text = urlLineEdit->text().simplifyWhiteSpace();
+  if (!text.isEmpty())
+  {
+    QString error = QString::null;
+    emit checkValidity( text, error );
+    if( error.isNull() )
+      urls.append( vfs::fromPathOrURL( text ) );
+  }
     
   QListBoxItem *item = urlListBox->firstItem();
   while ( item )
   {    
-    urls.append( vfs::fromPathOrURL( item->text().simplifyWhiteSpace() ) );
+    QString text = item->text().simplifyWhiteSpace();
+    
+    QString error = QString::null;
+    emit checkValidity( text, error );    
+    if( error.isNull() )
+      urls.append( vfs::fromPathOrURL( text ) );
+      
     item = item->next();
   }
     

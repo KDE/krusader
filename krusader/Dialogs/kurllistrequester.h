@@ -50,7 +50,12 @@ public:
   
   KLineEdit   *lineEdit()    {return urlLineEdit;}
   QListBox    *listBox()     {return urlListBox;}
+  
+  void         setCompletionDir( QString dir ) { completion.setDir( dir ); }
 
+signals:
+  void         checkValidity( QString &text, QString &error );
+  
 protected slots:
   void         slotAdd();
   void         slotBrowse();

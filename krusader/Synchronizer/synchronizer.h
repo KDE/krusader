@@ -231,6 +231,7 @@ class Synchronizer : public QObject
     QPtrList<SynchronizerFileItem>    resultList;     // the found files
     QString                           leftBaseDir;    // the left-side base directory
     QString                           rightBaseDir;   // the right-side base directory
+    QStringList                       excludedPaths;  // list of the excluded paths
     KRQuery                           *query;         // the filter used for the query
     bool                              stopped;        // 'Stop' button was pressed
 

@@ -112,6 +112,8 @@ protected slots:
   void statusInfo( QString );
   void subdirsChecked( bool );
   void setPanelLabels();
+  void setCompletion();
+  void checkExcludeURLValidity( QString &text, QString &error );
   void connectFilters( const QString & );  
 
 private:

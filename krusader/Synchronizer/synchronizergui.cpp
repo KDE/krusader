@@ -1261,7 +1261,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   synchronizerTabs->insertTab( synchronizerTab, i18n( "&Synchronizer" ) );
   synchGrid->addWidget( synchronizerTabs, 0, 0 );
   
-  generalFilter = new GeneralFilter( 0, synchronizerTabs, "generalFilter" );
+  generalFilter = new GeneralFilter( HAS_DONT_SEARCH_IN, synchronizerTabs, "generalFilter" );
   generalFilter->searchFor->setEditText( fileFilter->currentText() );
   generalFilter->searchForCase->setChecked( true );
   synchronizerTabs->insertTab( generalFilter, i18n( "&General Filters" ) );  
@@ -1355,7 +1355,10 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnSingles,        SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
   
   connect( fileFilter,        SIGNAL( textChanged( const QString & ) ), this, SLOT( connectFilters( const QString & ) ) );
-  connect( generalFilter->searchFor, SIGNAL( textChanged( const QString & ) ), this, SLOT( connectFilters( const QString & ) ) );
+  connect( rightLocation,     SIGNAL( textChanged( const QString & ) ), this, SLOT( connectFilters( const QString & ) ) );
+  connect( generalFilter->searchFor, SIGNAL( textChanged( const QString & ) ), this, SLOT( setCompletion() ) );
+  connect( generalFilter->dontSearchIn, SIGNAL( checkValidity( QString &, QString & ) ), 
+           this, SLOT( checkExcludeURLValidity( QString &, QString & ) ) );
   
   connect( profileManager, SIGNAL( loadFromProfile( QString ) ), generalFilter, SLOT( loadFromProfile( QString ) ) );
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), generalFilter, SLOT( saveToProfile( QString ) ) );
@@ -1363,6 +1366,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), advancedFilter, SLOT( saveToProfile( QString ) ) );
   
   setPanelLabels();  
+  setCompletion();
   
   int sx = krConfig->readNumEntry( "Window Width",  -1 );
   int sy = krConfig->readNumEntry( "Window Height",  -1 );
@@ -1398,6 +1402,40 @@ void SynchronizerGUI::setPanelLabels()
     leftDirLabel->setText( i18n( "Left directory:" ) );
     rightDirLabel->setText( i18n( "Right directory:" ) );
   }
+}
+
+void SynchronizerGUI::setCompletion()
+{
+  generalFilter->dontSearchIn->setCompletionDir( rightLocation->currentText() );
+}
+
+void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
+{
+  KURL url = vfs::fromPathOrURL( text );
+  if( KURL::isRelativeURL( url.url() ) )
+    return;
+  
+  QString leftBase = leftLocation->currentText();
+  if( !leftBase.endsWith( "/" ) )
+    leftBase += "/";
+  KURL leftBaseURL = vfs::fromPathOrURL( leftBase );  
+  if( leftBaseURL.isParentOf( url ) && !url.isParentOf( leftBaseURL) )
+  {
+    text = KURL::relativeURL( leftBaseURL, url );
+    return;
+  }
+  
+  QString rightBase = rightLocation->currentText();
+  if( !rightBase.endsWith( "/" ) )
+    rightBase += "/";
+  KURL rightBaseURL = vfs::fromPathOrURL( rightBase );  
+  if( rightBaseURL.isParentOf( url ) && !url.isParentOf( rightBaseURL ) )
+  {
+    text = KURL::relativeURL( rightBaseURL, url );
+    return;
+  }
+    
+  error = i18n("URL must be the descendent of either the left or the right base URL!");
 }
 
 void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)

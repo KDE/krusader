@@ -101,6 +101,11 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   if( !leftURL.endsWith("/" ))  leftURL+="/";
   if( !rightURL.endsWith("/" )) rightURL+="/";
 
+  excludedPaths = query->whereNotToSearch.toStringList();
+  for( int i = 0; i != excludedPaths.count(); i++ )
+    if( excludedPaths[ i ].endsWith( "/" ) )
+      excludedPaths[ i ].truncate( excludedPaths[ i ].length() - 1 );
+  
   scannedDirs = fileCount = 0;
   
   compareDirectory( 0, leftBaseDir = leftURL, rightBaseDir = rightURL, "", "" );
@@ -186,6 +191,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
       {
         QString left_file_name =  left_file->vfile_getName();
         
+        if( excludedPaths.contains( leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name ) )
+          continue;
+
         if( (right_file = searchFile( right_directory, left_file_name )) == 0 )
           addSingleDirectory( parent, left_file_name, leftDir, left_file->vfile_getTime_t(), true, !query->match( left_file ) );
         else
@@ -208,6 +216,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
       if ( right_file->vfile_isDir() && (followSymLinks || !right_file->vfile_isSymLink()) )
       {
         file_name =  right_file->vfile_getName();
+
+        if( excludedPaths.contains( rightDir.isEmpty() ? file_name : rightDir+"/"+file_name ) )
+          continue;
 
         if( searchFile( left_directory, file_name ) == 0 )
           addSingleDirectory( parent, file_name, rightDir, right_file->vfile_getTime_t(), false, !query->match( right_file ) );
@@ -405,6 +416,10 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
     if ( file->vfile_isDir() && (followSymLinks || !file->vfile_isSymLink())  )
     {
         file_name =  file->vfile_getName();
+        
+        if( excludedPaths.contains( dirName.isEmpty() ? file_name : dirName+"/"+file_name ) )
+          continue;
+
         addSingleDirectory( parent, file_name, dirName, file->vfile_getTime_t(), isLeft, !query->match( file ) );
     }
   }
