@@ -255,9 +255,9 @@ void KRslots::insertFileName(bool full_path)
 }
 
 // directory list functions
-void KRslots::allFilter()			  {	ACTIVE_PANEL->setFilter(ListPanel::ALL);	 }
-void KRslots::execFilter()			{	ACTIVE_PANEL->setFilter(ListPanel::EXEC);	 }
-void KRslots::customFilter()		{	ACTIVE_PANEL->setFilter(ListPanel::CUSTOM);}
+void KRslots::allFilter()			  {	ACTIVE_PANEL->setFilter(KrView::All);	 }
+void KRslots::execFilter()			{	ACTIVE_PANEL->setFilter(KrView::All);	 }
+void KRslots::customFilter()		{	ACTIVE_PANEL->setFilter(KrView::Custom);}
 void KRslots::markAll()         { ACTIVE_PANEL->select(true,true);           }
 void KRslots::unmarkAll()       { ACTIVE_PANEL->select(false,true);          }
 void KRslots::markGroup()       { ACTIVE_PANEL->select(true,false);          }
