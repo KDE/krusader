@@ -30,6 +30,8 @@
 #ifndef KRVIEWITEM_H
 #define KRVIEWITEM_H
 
+#include <sys/types.h>
+
 class QString;
 class QPixmap;
 
@@ -42,6 +44,7 @@ public:
   virtual bool isExecutable() const = 0;
   virtual unsigned long size() const = 0;
   virtual QString dateTime() const = 0;
+  virtual time_t getTime_t() const = 0;
   virtual QString mime() const = 0;
   virtual QString symlinkDest() const = 0;
   virtual bool isSymLink() const = 0;

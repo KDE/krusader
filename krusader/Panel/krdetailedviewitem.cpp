@@ -214,7 +214,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   } else if (col == _view->column(KrDetailedView::Size)) {
     	result = QString::compare(num2qstring(size()),num2qstring(other->size()));
   } else if (col == _view->column(KrDetailedView::DateTime)) {
-      QString dt = dateTime();
+      /*QString dt = dateTime();
       QString dti = other->dateTime();
 			QString  d = ((dt[6] < '7')? "20" : "19") +
       		dt[6] + dt[7] + // year
@@ -228,7 +228,8 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 					dti[0] + dti[1] + // day
           dti[9] + dti[10]+ //	hour
 					dti[12]+ dti[13]; // minute
-    	result = QString::compare(d,id);
+    	result = QString::compare(d,id);*/
+      result = (getTime_t() > other->getTime_t() ? 1 : -1);
   } else {
     // Joker for extention and permissions (so far)
     result = QString::compare(text(col), i->text(col));
@@ -271,4 +272,13 @@ QString KrDetailedViewItem::description() const {
    	}
     return text;
   }
+}
+
+QString KrDetailedViewItem::dateTime() const {
+   // convert the time_t to struct tm
+   time_t time = getTime_t();
+   struct tm* t=localtime((time_t *)&time);
+
+   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
+   return KGlobal::locale()->formatDateTime(tmp);
 }

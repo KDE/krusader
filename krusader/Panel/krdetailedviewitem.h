@@ -32,6 +32,7 @@
 #define KRDETAILEDVIEWITEM_H
 
 #include "krviewitem.h"
+#include <sys/types.h>
 #include "../VFS/vfile.h"
 #include <klistview.h>
 #include <qobject.h>
@@ -50,7 +51,8 @@ public:
   inline bool isDir() const { return (_vf ? _vf->vfile_isDir() : false); }
   inline bool isExecutable() const { return (_vf ? _vf->vfile_isExecutable() : false); }
   inline unsigned long size() const { return (_vf ? _vf->vfile_getSize() : 0); }
-  inline QString dateTime() const { return (_vf ? _vf->vfile_getDateTime() : QString::null); }
+  QString dateTime() const;
+  inline time_t getTime_t() const { return _vf->vfile_getTime_t(); }
   inline QString mime() const { return (_vf ? _vf->vfile_getMime() : QString::null); }
   inline QString symlinkDest() const {
    //return (_vf ? : _vf->vfile_getSymDest() : QString::null);
