@@ -674,19 +674,41 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
          }
          case Key_Home:
          {
-           QListViewItem * i = firstChild();
-           if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+           if( e->state() & ShiftButton ) /* Shift+Home */
+           {
+             clearSelection();
+             KListView::keyPressEvent( e );
+             emit selectionChanged();
+             triggerUpdate();
+             break;
+           }
+           else
+           {
+             QListViewItem * i = firstChild();
+             if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+           }
            break;
          }
          case Key_End:
          {
-           QListViewItem *i = firstChild(), *j;
-           while ( (j = i->nextSibling()) )
-              i = j;
-           while ( (j = i->itemBelow()) )
-              i = j;
-           if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
-           break;
+           if( e->state() & ShiftButton ) /* Shift+End */
+           {
+             clearSelection();
+             KListView::keyPressEvent( e );
+             emit selectionChanged();
+             triggerUpdate();
+             break;
+           }
+           else
+           {
+             QListViewItem *i = firstChild(), *j;
+             while ( (j = i->nextSibling()) )
+                i = j;
+             while ( (j = i->itemBelow()) )
+                i = j;
+             if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+             break;
+           }
          }
 #endif
       case Key_Enter :
