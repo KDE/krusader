@@ -82,7 +82,7 @@ KURL vfs::fromPathOrURL( const QString &originIn )
      passwords and users with @ in them... */
   bool bugfix = origin.find("@") != origin.findRev("@");
   if(bugfix){
-    if(origin.find(":") != origin.findRev(":")){
+    if(origin.find(":") != origin.findRev(":", origin.findRev("@") )){
       int passStart = origin.find( ":",origin.find(":")+1 )+1;
       int passLen = origin.findRev("@")-passStart;
       password = origin.mid(passStart,passLen);
