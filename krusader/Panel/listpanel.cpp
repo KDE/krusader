@@ -733,34 +733,34 @@ void ListPanel::startDragging( QStringList names, QPixmap px ) {
 // pops a right-click menu for items
 void ListPanel::popRightClickMenu( const QPoint &loc ) {
    // these are the values that will always exist in the menu
-#define OPEN_TAB_ID   89
-#define OPEN_ID       90
-#define OPEN_WITH_ID  91
-#define OPEN_KONQ_ID  92
-#define OPEN_TERM_ID  93
-#define KONQ_MENU_ID  94
-#define CHOOSE_ID     95
-#define DELETE_ID     96
-#define COPY_ID       97
-#define MOVE_ID       98
-#define RENAME_ID     99
-#define PROPERTIES_ID 100
-#define MOUNT_ID      101
-#define UNMOUNT_ID    102
-#define SHRED_ID      103
-#define NEW_LINK      104
-#define NEW_SYMLINK   105
-#define REDIRECT_LINK 106
-#define SEND_BY_EMAIL 107
-#define LINK_HANDLING 108
-#define EJECT_ID      109
-#define PREVIEW_ID    110
-#define COPY_CLIP_ID  111
-#define MOVE_CLIP_ID  112
-#define PASTE_CLIP_ID 113
+#define OPEN_TAB_ID   150089
+#define OPEN_ID       150090
+#define OPEN_WITH_ID  150091
+#define OPEN_KONQ_ID  150092
+#define OPEN_TERM_ID  150093
+#define KONQ_MENU_ID  150094
+#define CHOOSE_ID     150095
+#define DELETE_ID     150096
+#define COPY_ID       150097
+#define MOVE_ID       150098
+#define RENAME_ID     150099
+#define PROPERTIES_ID 150100
+#define MOUNT_ID      150101
+#define UNMOUNT_ID    150102
+#define SHRED_ID      150103
+#define NEW_LINK      150104
+#define NEW_SYMLINK   150105
+#define REDIRECT_LINK 150106
+#define SEND_BY_EMAIL 150107
+#define LINK_HANDLING 150108
+#define EJECT_ID      150109
+#define PREVIEW_ID    150110
+#define COPY_CLIP_ID  150111
+#define MOVE_CLIP_ID  150112
+#define PASTE_CLIP_ID 150113
 
    // those will sometimes appear
-#define SERVICE_LIST_ID  200
+#define SERVICE_LIST_ID  150200
    //////////////////////////////////////////////////////////
    bool multipleSelections = false;
    // a quick hack to check if we've got more that one file selected
