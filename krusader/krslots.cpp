@@ -311,6 +311,7 @@ void KRslots::runKonfigurator(bool firstTime) {
 
     MAIN_VIEW->leftMng->recreatePanels();
     MAIN_VIEW->rightMng->recreatePanels();
+	 MAIN_VIEW->fnKeys->updateShortcuts();
   }
   
   delete konfigurator;

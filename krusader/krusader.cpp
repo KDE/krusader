@@ -138,6 +138,15 @@ KAction *Krusader::actSplit = 0;
 KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
 KAction *Krusader::actSyncDirs = 0;
+KAction *Krusader::actF2 = 0;
+KAction *Krusader::actF3 = 0;
+KAction *Krusader::actF4 = 0;
+KAction *Krusader::actF5 = 0;
+KAction *Krusader::actF6 = 0;
+KAction *Krusader::actF7 = 0;
+KAction *Krusader::actF8 = 0;
+KAction *Krusader::actF9 = 0;
+KAction *Krusader::actF10 = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
 KRadioAction  *Krusader::actMarkNewerAndSingle = 0;
 KRadioAction  *Krusader::actMarkSingle = 0;
@@ -371,6 +380,10 @@ void Krusader::resizeEvent ( QResizeEvent *e ) {
 
 void Krusader::setupAccels() {
 	 accels = new KAccel( this );
+	 // SHIFT+F3
+   accels->insert( "F3_ViewDlg", i18n( "F3 View Dialog" ), QString::null,
+                   SHIFT + Key_F3, SLOTS, SLOT( viewDlg() ) );
+#if 0	
 	// F2
    accels->insert( "F2_Terminal", i18n( "F2 Terminal" ), QString::null,
                    Key_F2, SLOTS, SLOT( terminal() ) );
@@ -401,6 +414,7 @@ void Krusader::setupAccels() {
    // F10
    accels->insert( "F10_Quit", i18n( "F10 Quit" ), QString::null,
                    Key_F10, this, SLOT( quitKrusader() ) );
+#endif
    // Tab
    accels->insert( "Tab-Switch panel", i18n( "Tab: switch panel" ), QString::null,
                    Key_Tab, mainView, SLOT( panelSwitch() ) );
@@ -581,6 +595,26 @@ void Krusader::setupActions() {
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );
 
+	// setup the Fn keys
+	actF2 = new KAction( i18n( "F2 - Open a terminal" ), Key_F2,
+                SLOTS, SLOT( terminal() ) , actionCollection(), "F2_Terminal" );
+	actF3 = new KAction( i18n( "F3 - View a file" ), Key_F3,
+                SLOTS, SLOT( view() ) , actionCollection(), "F3_View" );
+	actF4 = new KAction( i18n( "F4 - Edit a file" ), Key_F4,
+                SLOTS, SLOT( edit() ) , actionCollection(), "F4_Edit" );
+	actF5 = new KAction( i18n( "F5 - Copy" ), Key_F5,
+                SLOTS, SLOT( copyFiles() ) , actionCollection(), "F5_Copy" );
+	actF6 = new KAction( i18n( "F6 - Move" ), Key_F6,
+                SLOTS, SLOT( moveFiles() ) , actionCollection(), "F6_Move" );
+	actF7 = new KAction( i18n( "F7 - Mkdir" ), Key_F7,
+                SLOTS, SLOT( mkdir() ) , actionCollection(), "F7_Mkdir" );
+	actF8 = new KAction( i18n( "F8 - Delete" ), Key_F8,
+                SLOTS, SLOT( deleteFiles() ) , actionCollection(), "F8_Delete" );
+	actF9 = new KAction( i18n( "F9 - Rename" ), Key_F9,
+                SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
+	actF10 = new KAction( i18n( "F10 - Quit" ), Key_F10,
+                this, SLOT( quitKrusader() ) , actionCollection(), "F10_Quit" );
+										
    // and at last we can set the tool-tips
    actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );
    actSelectAll->setToolTip( i18n( "Highlight all the files in the current directory" ) );
@@ -759,6 +793,8 @@ void Krusader::updateGUI( bool enforce ) {
          mainView->cmdLine->show();
          actToggleCmdline->setChecked( true );
       }
+		// update the Fn bar to the shortcuts selected by the user
+		mainView->fnKeys->updateShortcuts();
       if ( !krConfig->readBoolEntry( "Show FN Keys", _ShowFNkeys ) ) {
          mainView->fnKeys->hide();
          actToggleFnkeys->setChecked( false );

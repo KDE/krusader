@@ -42,6 +42,8 @@
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
 #include "../defaults.h"
+#include "../krusaderview.h"
+#include "../GUI/kfnkeys.h"
 
 // the frames
 #include "kgwelcome.h"
@@ -125,7 +127,7 @@ void Konfigurator::slotUser1()
   int ndx = searchPage( lastPage = widget->activePageIndex() );
   kgFrames.at( ndx )->setDefaults();
 }
-
+#include <kdebug.h>
 void Konfigurator::slotApply()
 {
   int ndx = searchPage( lastPage = widget->activePageIndex() );
@@ -135,6 +137,9 @@ void Konfigurator::slotApply()
 //    KMessageBox::information(this,i18n("Changes to the GUI will be updated next time you run Krusader."),
 //     QString::null,"konfigGUInotify");
   }
+
+   // really ugly, but reload the Fn keys just in case - csaba: any better idea?
+	krApp->mainView->fnKeys->updateShortcuts();
 }
 
 void Konfigurator::slotCancel()

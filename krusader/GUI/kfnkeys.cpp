@@ -117,5 +117,17 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 		layout->activate();
 }
 
+void KFnKeys::updateShortcuts() {
+	F2->setText(krF2->shortcut().toString() + i18n(" Term"));
+	F3->setText(krF3->shortcut().toString() + i18n(" View"));
+	F4->setText(krF4->shortcut().toString() + i18n(" Edit"));
+	F5->setText(krF5->shortcut().toString() + i18n(" Copy"));
+	F6->setText(krF6->shortcut().toString() + i18n(" Move"));
+	F7->setText(krF7->shortcut().toString() + i18n(" Mkdir"));
+	F8->setText(krF8->shortcut().toString() + i18n(" Delete"));
+	F9->setText(krF9->shortcut().toString() + i18n(" Rename"));
+	F10->setText(krF10->shortcut().toString() + i18n(" Quit"));
+}
+
 #include "kfnkeys.moc"
 
