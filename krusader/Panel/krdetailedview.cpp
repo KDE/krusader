@@ -109,9 +109,9 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
    /////////////////////////////// listview ////////////////////////////////////
    { // use the {} so that KConfigGroupSaver will work correctly!
       KConfigGroupSaver grpSvr( _config, "Look&Feel" );
-	   _sortMode = static_cast<SortSpec>( KrView::Name | KrView::Descending | KrView::DirsFirst );
+	   _properties.sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name | KrViewProperties::Descending | KrViewProperties::DirsFirst );
    	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-      	_sortMode = static_cast<SortSpec>( _sortMode | KrView::IgnoreCase );
+      	_properties.sortMode = static_cast<KrViewProperties::SortSpec>( _properties.sortMode | KrViewProperties::IgnoreCase );
 		
       setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
       // decide on single click/double click selection
@@ -434,32 +434,32 @@ void KrDetailedView::clear() {
    dict.clear();
 }
 
-void KrDetailedView::setSortMode( SortSpec mode ) {
-   _sortMode = mode; // the KrViewItems will check it by themselves
-   bool ascending = !( mode & KrView::Descending );
+void KrDetailedView::setSortMode( KrViewProperties::SortSpec mode ) {
+   KrView::setSortMode(mode); // the KrViewItems will check it by themselves
+   bool ascending = !( mode & KrViewProperties::Descending );
    int cl = -1;
-   if ( mode & KrView::Name )
+   if ( mode & KrViewProperties::Name )
       cl = column( Name );
    else
-      if ( mode & KrView::Size )
+      if ( mode & KrViewProperties::Size )
          cl = column( Extention );
       else
-         if ( mode & KrView::Type )
+         if ( mode & KrViewProperties::Type )
             cl = column( Mime );
          else
-            if ( mode & KrView::Modified )
+            if ( mode & KrViewProperties::Modified )
                cl = column( DateTime );
             else
-               if ( mode & KrView::Permissions )
+               if ( mode & KrViewProperties::Permissions )
                   cl = column( Permissions );
                else
-                  if ( mode & KrView::KrPermissions )
+                  if ( mode & KrViewProperties::KrPermissions )
                      cl = column( KrPermissions );
                   else
-                     if ( mode & KrView::Owner )
+                     if ( mode & KrViewProperties::Owner )
                         cl = column( Owner );
                      else
-                        if ( mode & KrView::Group )
+                        if ( mode & KrViewProperties::Group )
                            cl = column( Group );
    setSorting( cl, ascending );
    KListView::sort();

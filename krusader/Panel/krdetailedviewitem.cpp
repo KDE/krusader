@@ -51,7 +51,7 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
 	KListViewItem(parent, after), KrViewItem(vf, parent->properties()), _view(parent) {
   
 	// cache memory accesses for better performance
-	caseSensitiveSort = !(_view->sortMode() & KrView::IgnoreCase);
+	caseSensitiveSort = !(_viewProperties.sortMode & KrViewProperties::IgnoreCase);
 	nameColumn        = _view->column(KrDetailedView::Name);        // the columns are stored for faster comparation
 	sizeColumn        = _view->column(KrDetailedView::Size);
 	dateTimeColumn    = _view->column(KrDetailedView::DateTime);

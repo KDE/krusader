@@ -80,7 +80,7 @@ public:
    virtual void updateView() { triggerUpdate(); emit selectionChanged(); }
    virtual void clear();
    virtual void sort() { KListView::sort(); }
-   virtual void setSortMode( SortSpec mode );
+   virtual void setSortMode( KrViewProperties::SortSpec mode );
    virtual void prepareForActive();
    virtual void prepareForPassive();
    virtual void saveSettings() { KListView::saveLayout( _config, nameInKConfig() ); }

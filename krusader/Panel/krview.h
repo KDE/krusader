@@ -45,7 +45,12 @@
 // information regarding how things should be displayed in the current view.
 class KrViewProperties {
 public:
+	enum SortSpec { Name=0x1, Ext=0x2, Size=0x4, Type=0x8, Modified=0x10, Permissions=0x20,
+						KrPermissions=0x40, Owner=0x80, Group=0x100, Descending=0x200,
+						DirsFirst=0x400, IgnoreCase=0x800 };
+	
 	bool displayIcons;	// true if icons should be displayed in this view
+	SortSpec sortMode;	// sort specifications
 };
 
 
@@ -73,9 +78,6 @@ class KrViewItem;
 typedef QValueList<KrViewItem*> KrViewItemList;
 class KrView {
 public:
-  enum SortSpec { Name=0x1, Ext=0x2, Size=0x4, Type=0x8, Modified=0x10, Permissions=0x20,
-                  KrPermissions=0x40, Owner=0x80, Group=0x100, Descending=0x200,
-                  DirsFirst=0x400, IgnoreCase=0x800 };
   enum FilterSpec { Dirs=0x1, Files=0x2, All=0x3, Custom=0x4, ApplyToDirs=0x8 };
 
 
@@ -143,8 +145,8 @@ public:
   // the following functions have a default and minimalistic //
   // implementation, and may be re-implemented if needed     //
   /////////////////////////////////////////////////////////////
-  virtual void setSortMode(SortSpec mode) { _sortMode = mode; }
-  virtual SortSpec sortMode() const { return _sortMode; }
+  virtual void setSortMode(KrViewProperties::SortSpec mode) { _properties.sortMode = mode; }
+  virtual KrViewProperties::SortSpec sortMode() const { return _properties.sortMode; }
   virtual void setFilter(FilterSpec filter) { _filter = filter; }
   virtual FilterSpec filter() const { return _filter; }
   virtual void setFilterMask(QString mask) { _filterMask = mask; }
@@ -162,7 +164,6 @@ protected:
 
 protected:
   KConfig *_config;
-  SortSpec _sortMode;
   FilterSpec _filter;
   QString _filterMask;
   QWidget *_widget;
