@@ -1,7 +1,7 @@
 ####### kdevelop will overwrite this part!!! (begin)##########
 
 
-EXTRA_DIST = about.png arc_pack16x16.png arc_pack22x22.png arc_pack32x32.png arc_test16x16.png arc_test22x22.png arc_test32x32.png arc_unpack16x16.png arc_unpack22x22.png arc_unpack32x32.png calc16x16.png calc22x22.png calc32x32.png compare16x16.png compare22x22.png compare32x32.png comparedirs16x16.png comparedirs22x22.png comparedirs32x32.png ftp_connect16x16.png ftp_connect22x22.png ftp_connect32x32.png ftp_disconnect16x16.png ftp_disconnect22x22.png ftp_disconnect32x32.png ftp_new16x16.png ftp_new22x22.png ftp_new32x32.png konfig_small.jpg kr_addbookmark16x16.png kr_addbookmark22x22.png kr_addbookmark32x32.png kr_bookman16x16.png kr_bookman22x22.png kr_bookman32x32.png kr_bookmark16x16.png kr_bookmark22x22.png kr_bookmark32x32.png kr_fullview16x16.png kr_fullview22x22.png kr_fullview32x32.png kr_hwinfo16x16.png kr_hwinfo22x22.png kr_hwinfo32x32.png kr_invert16x16.png kr_invert22x22.png kr_invert32x32.png kr_treeview16x16.png kr_treeview22x22.png kr_treeview32x32.png kr_unselect16x16.png kr_unselect22x22.png kr_unselect32x32.png Makefile Makefile.am Makefile.in mountman16x16.png mountman22x22.png mountman32x32.png properties16x16.png properties22x22.png properties32x32.png select16x16.png select22x22.png select32x32.png selectall16x16.png selectall22x22.png selectall32x32.png terminal16x16.png terminal22x22.png terminal32x32.png unselectall16x16.png unselectall22x22.png unselectall32x32.png kr_split16x16.png kr_split22x22.png kr_split32x32.png kr_combine16x16.png kr_combine22x22.png kr_combine32x32.png kr_syncdirs16x16.png kr_syncdirs22x22.png kr_syncdirs32x32.png
+EXTRA_DIST = about.png arc_pack16x16.png arc_pack22x22.png arc_pack32x32.png arc_test16x16.png arc_test22x22.png arc_test32x32.png arc_unpack16x16.png arc_unpack22x22.png arc_unpack32x32.png calc16x16.png calc22x22.png calc32x32.png compare16x16.png compare22x22.png compare32x32.png comparedirs16x16.png comparedirs22x22.png comparedirs32x32.png ftp_connect16x16.png ftp_connect22x22.png ftp_connect32x32.png ftp_disconnect16x16.png ftp_disconnect22x22.png ftp_disconnect32x32.png ftp_new16x16.png ftp_new22x22.png ftp_new32x32.png konfig_small.jpg kr_addbookmark16x16.png kr_addbookmark22x22.png kr_addbookmark32x32.png kr_bookman16x16.png kr_bookman22x22.png kr_bookman32x32.png kr_bookmark16x16.png kr_bookmark22x22.png kr_bookmark32x32.png kr_fullview16x16.png kr_fullview22x22.png kr_fullview32x32.png kr_hwinfo16x16.png kr_hwinfo22x22.png kr_hwinfo32x32.png kr_invert16x16.png kr_invert22x22.png kr_invert32x32.png kr_treeview16x16.png kr_treeview22x22.png kr_treeview32x32.png kr_unselect16x16.png kr_unselect22x22.png kr_unselect32x32.png Makefile Makefile.am Makefile.in mountman16x16.png mountman22x22.png mountman32x32.png properties16x16.png properties22x22.png properties32x32.png select16x16.png select22x22.png select32x32.png selectall16x16.png selectall22x22.png selectall32x32.png terminal16x16.png terminal22x22.png terminal32x32.png unselectall16x16.png unselectall22x22.png unselectall32x32.png kr_split16x16.png kr_split22x22.png kr_split32x32.png kr_combine16x16.png kr_combine22x22.png kr_combine32x32.png kr_dependencies.png kr_syncdirs16x16.png kr_syncdirs22x22.png kr_syncdirs32x32.png 
 
 install-data-local:
 	$(mkinstalldirs) $(kde_datadir)/krusader/
@@ -158,6 +158,8 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/kr_combine22x22.png $(kde_datadir)/krusader/icons/hicolor/22x22/actions/kr_combine.png
 	$(mkinstalldirs) $(kde_datadir)/krusader/icons/hicolor/32x32/actions/
 	$(INSTALL_DATA) $(srcdir)/kr_combine32x32.png $(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_combine.png
+	$(mkinstalldirs) $(kde_datadir)/krusader/icons/hicolor/32x32/actions/
+	$(INSTALL_DATA) $(srcdir)/kr_dependencies.png $(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_dependencies.png
 	$(mkinstalldirs) $(kde_datadir)/krusader/icons/hicolor/16x16/actions/
 	$(INSTALL_DATA) $(srcdir)/kr_syncdirs16x16.png $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_syncdirs.png
 	$(mkinstalldirs) $(kde_datadir)/krusader/icons/hicolor/22x22/actions/
@@ -243,6 +245,7 @@ uninstall-local:
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_combine.png
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/22x22/actions/kr_combine.png
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_combine.png
+	-rm -f $(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_dependencies.png
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/16x16/actions/kr_syncdirs.png
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/22x22/actions/kr_syncdirs.png
 	-rm -f $(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_syncdirs.png

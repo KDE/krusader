@@ -29,7 +29,9 @@ public:
 	KrServices(){}
 	~KrServices(){}
 
-	static bool cmdExist(QString cmdName);
+	static bool     cmdExist(QString cmdName);
+  static QString  detectFullPathName( QString name );
+  static QString  fullPathName( QString name );
 };
 
 #endif

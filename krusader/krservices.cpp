@@ -24,15 +24,61 @@
 #include <kdebug.h>
 // Krusader includes
 #include "krservices.h"
+#include "krusader.h"
 
-bool KrServices::cmdExist(QString cmdName){
+bool KrServices::cmdExist(QString cmdName)
+{
+  QString lastGroup = krConfig->group();
+
+  krConfig->setGroup( "Dependencies" );
+  if( QFile( krConfig->readEntry( cmdName, QString::null )).exists() )
+  {
+    krConfig->setGroup( lastGroup );
+    return true;
+  }
+
+  krConfig->setGroup( lastGroup );
+  return !detectFullPathName( cmdName ).isEmpty();  
+}
+
+QString KrServices::detectFullPathName(QString name)
+{
   QStringList path = QStringList::split(":",getenv("PATH"));
 
-	for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it ) {
-    if( QDir(*it).exists(cmdName) ){
-			return true;
-		}
-	}
-	
-	return false;
+  for ( QStringList::Iterator it = path.begin(); it != path.end(); ++it )
+  {
+    if( QDir(*it).exists( name ) )
+    {
+      QString dir = *it;
+      if( !dir.endsWith( "/" ) )
+        dir+="/";
+        
+      return dir+name;
+    }
+  }
+
+  return "";
+}
+
+QString KrServices::fullPathName( QString name )
+{
+  QString lastGroup = krConfig->group();
+  QString supposedName;
+
+  krConfig->setGroup( "Dependencies" );
+  if( QFile( supposedName = krConfig->readEntry( name, "" )).exists() )
+  {
+    krConfig->setGroup( lastGroup );
+    return supposedName;
+  }
+
+  if( ( supposedName = detectFullPathName( name ) ).isEmpty() )
+  {
+    krConfig->setGroup( lastGroup );
+    return "";
+  }
+
+  krConfig->writeEntry( name, supposedName );
+  krConfig->setGroup( lastGroup );
+  return supposedName;
 }

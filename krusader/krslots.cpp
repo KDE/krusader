@@ -71,6 +71,7 @@
 #include "Splitter/combiner.h"
 #include "UserMenu/usermenu.h"
 #include "Synchronizer/synchronizergui.h"
+#include "krservices.h"
 
 #define ACTIVE_PANEL        (krApp->mainView->activePanel)
 #define ACTIVE_FUNC         (krApp->mainView->activePanel->func)
@@ -380,11 +381,18 @@ void KRslots::multiRename(){
 	delete urls;
 }
 
-void KRslots::rootKrusader(){
+void KRslots::rootKrusader()
+{
+  if( !KrServices::cmdExist( "krusader" ) || !KrServices::cmdExist( "kdesu" ) )
+  {
+    KMessageBox::sorry( krApp, i18n( "Can't start root mode krusader, because krusader or kdesu is missing from the path. Please configure the dependencies in Konfigurator!" ) );
+    return;
+  }
+  
   KShellProcess proc;
-  proc << "kdesu" << QString("'") + KCmdLineArgs::appName() +
-       " --left=" +MAIN_VIEW->left->func->files()->vfs_getOrigin().url() +
-       " --right="+MAIN_VIEW->right->func->files()->vfs_getOrigin().url() + "'";
+  proc << KrServices::fullPathName( "kdesu" ) << QString("'") + KrServices::fullPathName( "krusader" ) +
+       " --left=\"" +MAIN_VIEW->left->func->files()->vfs_getOrigin().url() +
+       "\" --right=\""+MAIN_VIEW->right->func->files()->vfs_getOrigin().url() + "\"'";
 
   proc.start(KProcess::DontCare);
 }

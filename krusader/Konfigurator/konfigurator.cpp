@@ -50,6 +50,7 @@
 #include "kggeneral.h"
 #include "kgadvanced.h"
 #include "kgarchives.h"
+#include "kgdependencies.h"
 
 Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
       KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
@@ -98,6 +99,9 @@ void Konfigurator::createLayout()
   // archives
   newContent(new KgArchives(firstTime, widget->addPage(i18n("Archives"),i18n("Costumize the way Krusader deals with archives"),
     QPixmap(krLoader->loadIcon("tgz",KIcon::Desktop,32)))));
+  // dependencies
+  newContent(new KgDependencies(firstTime, widget->addPage(i18n("Dependencies"),i18n("Set the full path of the external applications"),
+    QPixmap(krLoader->loadIcon("kr_dependencies",KIcon::Desktop,32)))));
 
   widget->showPage( widget->pageIndex( firstPage ) );
   slotApplyEnable();
