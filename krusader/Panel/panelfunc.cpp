@@ -106,7 +106,6 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type ) {
     if ( !directory.isEmpty() ) {
       panel->view->setNameToMakeCurrent( directory.mid( directory.findRev( '/' ) + 1 ) );
       directory = directory.left( directory.findRev( '/' ) );
-      kdDebug() << archive + "\\" + directory << endl;
       refresh( archive + "\\" + directory );
     }
   }
@@ -567,7 +566,7 @@ void ListPanelFunc::execute( QString& name ) {
     origin == "/" ? origin += name : origin += "/" + name;
     panel->view->setNameToMakeCurrent( QString::null );
     refresh( origin );
-  } else if ( KRarcHandler::arcHandled( type ) ) {
+  } else if ( KRarcHandler::arcHandled( type ) && !origin.contains(":/")) {
     QString path = files()->vfs_getFile(vf->vfile_getName());
 		if(type == "-zip"){
 			path = "krarc:"+path;
