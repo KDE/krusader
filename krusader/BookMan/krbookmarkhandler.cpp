@@ -314,7 +314,6 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 // bookmark is opened in a new tab. ugly, but easier than overloading
 // KAction and KActionCollection.
 void KrBookmarkHandler::slotActivated(const KURL& url) {
-	krOut << "onec" << endl;
 	if (_middleClick)
 		SLOTS->newTab();
 	
