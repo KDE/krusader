@@ -20,16 +20,28 @@
 
 #include <qwidget.h>
 #include <usermenuadd.h>
+#include <qstringlist.h>
+#include "usermenu.h"
 
-/**
-  *@author Shie Erlich & Rafi Yanai
-  */
+class KPopupMenu;
 
 class UserMenuAddImpl : public UserMenuAdd  {
    Q_OBJECT
-public: 
+public:
 	UserMenuAddImpl(QWidget *parent=0, const char *name=0);
 	~UserMenuAddImpl();
+
+
+public slots:
+   void accept();
+   void popupAddMenu();
+
+signals:
+   void newEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
+                  bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0);
+
+private:
+   KPopupMenu *_popup, *_activeSub, *_otherSub;
 };
 
 #endif

@@ -75,6 +75,10 @@ class UserMenuGui: public KPopupMenu {
    protected:
       void readEntries();
 
+   protected slots:
+      void addEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
+                  bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0);
+
    private:
       QStringList _entries;
 };

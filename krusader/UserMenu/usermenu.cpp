@@ -16,6 +16,7 @@ email                :
  ***************************************************************************/
 
 #include "usermenu.h"
+#include "usermenuaddimpl.h"
 #include "../krusaderview.h"
 #include "../krusader.h"
 #include "../defaults.h"
@@ -172,12 +173,24 @@ void UserMenuGui::readEntries() {
 QString UserMenuGui::run() {
    int idx = exec();
    if ( idx == -1 ) return QString::null; // nothing was selected
-   if ( idx == 0 ) return QString::null; // todo: insert gui here
+   if ( idx == 0 ) {
+      UserMenuAddImpl *addgui = new UserMenuAddImpl(this);
+      connect(addgui, SIGNAL(newEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )),
+               this, SLOT(addEntry(QString, QString, UserMenuProc::ExecType, bool, bool, bool, bool, QStringList )));
+      addgui->exec();
+      delete addgui;
+      return QString::null;
+   }
 
    // idx is {1..n} while _entries is {0..n-1}X2
    // so, normalize idx to _entries, and add 1 since we want
    // the command part of the {description,command} pair
    return _entries[ ( idx -1 ) * 2 + 1 ];
+}
+
+void UserMenuGui::addEntry(QString name, QString cmdline, UserMenuProc::ExecType execType, bool separateStderr,
+                  bool acceptURLs, bool acceptRemote, bool showEverywhere, QStringList showIn = 0) {
+   kdWarning() << "UserMenuGui::addEntry" << endl;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
