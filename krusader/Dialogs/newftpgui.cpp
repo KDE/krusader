@@ -806,8 +806,12 @@ newFTPGUI::~newFTPGUI(){
 }
 
 void newFTPGUI::slotTextChanged(const QString& string){
-   if( string.startsWith("ftp") )
+   if( string.startsWith("ftp") || string.startsWith("sftp") || string.startsWith("fish") )
+   {
+     if( port->value() == 21 || port->value() == 22 )
+       port->setValue( string.startsWith("ftp") ? 21 : 22 );
      port->setEnabled(true);
+   }
    else
      port->setEnabled(false);
 }
