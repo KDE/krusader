@@ -276,7 +276,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 	
 	if( path == vfs_getOrigin().path(-1) ){
 		// the directory itself is dirty - full refresh is needed
-		vfs_refresh( vfs_getOrigin() );
+		QTimer::singleShot(0, this, SLOT( vfs_refresh() ) ); // safety: dirty signal comes from KDirWatch!
 		return;
 	}
 	

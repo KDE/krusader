@@ -49,7 +49,7 @@ class normal_vfs : public vfs{
 public:
 	// the constructor simply uses the inherited constructor
 	normal_vfs(QObject* panel);
- ~normal_vfs(){delete watcher;}
+ ~normal_vfs(){if( watcher ) delete watcher;}
 
 	/// Copy a file to the vfs (physical).
 	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "");
@@ -80,7 +80,7 @@ public slots:
 
 protected:
 	QDict<vfile>  vfs_files;    //< List of pointers to vfile	
-	KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories
+	KDirWatch *watcher;         //< The internal dir watcher - use to detect changes in directories
 	bool dirty;                 //< true if a watcher signal arrived while in quiet mode.
 	vfile* vfileFromName(const QString& name,bool mimeTypeMagic);
 };
