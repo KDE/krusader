@@ -230,26 +230,32 @@ void PanelManager::setCurrentTab( int panelIndex )
 }
 
 void PanelManager::recreatePanels() {
-   int panelCount = _tabbar->count(), identifier = 0;
-   ListPanel *oldCurrent = _self, *newCurrent = 0;
+   int actTab = activeTab();
+   
+   for( int i = 0; i != _tabbar->count(); i++ )
+   {
+     PanelTab *updatedPanel = dynamic_cast<PanelTab*>(_tabbar->tabAt( i ) );
+     
+     ListPanel *oldPanel = updatedPanel->panel;
+     ListPanel *newPanel = new ListPanel( _stack, _left );
+     _stack->addWidget( newPanel, i );
+     _stack->removeWidget( oldPanel );
 
-   while ( panelCount -- ) {
-      ListPanel * panel = dynamic_cast<PanelTab*>( _tabbar->tabAt( 0 ) ) ->panel;
-      slotNewTab( panel->virtualPath );
+     disconnect( oldPanel );
+     connect( newPanel, SIGNAL( activePanelChanged( ListPanel* ) ), this, SLOT( slotRefreshActions() ) );
+     connect( newPanel, SIGNAL( pathChanged(ListPanel*) ), _tabbar, SLOT(updateTab(ListPanel*)));
 
-      if ( panel == oldCurrent )
-         newCurrent = _self, identifier = _tabbar->currentTab();
-
-      _tabbar->setCurrentTab( _tabbar->tabAt( 0 ) );
-      slotChangePanel( panel );
-
-      slotCloseTab();
+     newPanel->otherPanel = _other;
+     if( _other->otherPanel == oldPanel )
+       _other->otherPanel = newPanel;         
+     updatedPanel->panel = newPanel;
+     newPanel->start( oldPanel->virtualPath );          
+     delete oldPanel;
+   
+     _tabbar->updateTab( newPanel );
    }
-
-   if ( newCurrent ) {
-      _tabbar->setCurrentTab( identifier );
-      slotChangePanel( newCurrent );
-   }
+   
+   setActiveTab( actTab );
 }
 
 void PanelManager::slotNextTab() {
