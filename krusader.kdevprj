@@ -33,7 +33,7 @@ email=
 kdevprj_version=1.3
 lfv_open_groups=
 make_options=\s-j1
-makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am,krusader/Splitter/Makefile.am
+makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am,krusader/Splitter/Makefile.am,krusader/Synchronizer/Makefile.am
 modifyMakefiles=true
 project_name=Krusader
 project_type=mini_kde2
@@ -729,7 +729,7 @@ type=HEADER
 
 [krusader/Makefile.am]
 files=krusader/krusader.desktop,krusader/lo32-app-krusader.png,krusader/lo16-app-krusader.png,krusader/defaults.h,krusader/kicons.cpp,krusader/kicons.h,krusader/krslots.cpp,krusader/krslots.h,krusader/krusader.cpp,krusader/krusader.h,krusader/krusaderui.rc,krusader/krusaderview.cpp,krusader/krusaderview.h,krusader/lo32-app-krusader2.png,krusader/main.cpp,krusader/resources.h,krusader/x-ace.desktop,krusader/krservices.cpp,krusader/krservices.h,krusader/panelmanager.cpp,krusader/panelmanager.h,krusader/paneltabbar.cpp,krusader/paneltabbar.h
-sub_dirs=BookMan,Dialogs,GUI,Konfigurator,KViewer,MountMan,Panel,RemoteMan,VFS,Search,Splitter
+sub_dirs=BookMan,Dialogs,GUI,Konfigurator,KViewer,MountMan,Panel,RemoteMan,VFS,Search,Splitter,Synchronizer
 type=prog_main
 
 [krusader/MountMan/Makefile.am]
@@ -981,6 +981,49 @@ install_location=
 type=SOURCE
 
 [krusader/Splitter/splittergui.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Synchronizer/Makefile.am]
+files=krusader/Synchronizer/synchronizedialog.cpp,krusader/Synchronizer/synchronizedialog.h,krusader/Synchronizer/synchronizer.cpp,krusader/Synchronizer/synchronizer.h,krusader/Synchronizer/synchronizergui.cpp,krusader/Synchronizer/synchronizergui.h
+sharedlib_LDFLAGS=-version-info 0:0:0
+sharedlib_rootname=Synchronizer
+sub_dirs=
+type=static_library
+
+[krusader/Synchronizer/synchronizedialog.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Synchronizer/synchronizedialog.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Synchronizer/synchronizer.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Synchronizer/synchronizer.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Synchronizer/synchronizergui.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Synchronizer/synchronizergui.h]
 dist=true
 install=false
 install_location=
