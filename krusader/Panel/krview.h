@@ -85,7 +85,10 @@ public:
   virtual KrViewItem *getCurrentKrViewItem() = 0;
   virtual KrViewItem *getKrViewItemAt(const QPoint &vp) = 0;
   virtual KrViewItem *findItemByName(const QString &name) = 0;
-  virtual void addItems(vfs* v, bool addUpDir = true) = 0;
+  virtual void addItems(vfs* v, bool addUpDir = true) = 0; // kill me, kill me now
+  virtual void addItem(vfile *vf) = 0;
+  virtual void delItem(const QString &name) = 0;
+  virtual void updateItem(vfile *vf) = 0;
   virtual QString getCurrentItem() const = 0;
   virtual void setCurrentItem(const QString& name) = 0;
   virtual void makeItemVisible(const KrViewItem *item) = 0;
@@ -99,11 +102,6 @@ public:
   virtual QString nameInKConfig() = 0;
   virtual void renameCurrentItem() = 0; // Rename current item. returns immediatly
   // also, the following must be implemented (but must be remarked here)
-  //
-  // public slots:
-  //   void addedVfile(const vfile *);
-  //   void updatedVfile(const vfile *);
-  //   void deleteVfile(const QString &);
   //
   // signals:
   //   void letsDrag(QStringList items, QPixmap icon);
