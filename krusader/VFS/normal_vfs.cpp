@@ -131,7 +131,7 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 
 // copy a file to the vfs (physical)	
 void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir){
-  watcher->stopScan(); // we will refresh manually this time...	
+  if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
 
 	KURL dest;
 	dest.setPath(vfs_workingDir()+"/"+dir);
@@ -149,7 +149,7 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	QDir local( vfs_workingDir() );
   vfile* vf;
 
-  watcher->stopScan(); // we will refresh manually this time...	
+  if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
 
 	// names -> urls
 	for(uint i=0 ; i<fileNames->count(); ++i){
@@ -199,7 +199,7 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   KURL::List fileUrls;
   KURL url , dest;
 
-  watcher->stopScan(); // we will refresh manually this time...	
+  if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
 
   url.setPath( vfs_workingDir()+"/"+fileName );
   fileUrls.append(url);
