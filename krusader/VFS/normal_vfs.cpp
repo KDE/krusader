@@ -64,30 +64,38 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
 
 bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 	QString path = origin.path(-1);
+		
+	// set the writable attribute to true, if that's not the case - the KIO job
+	// will give the warnings and errors
+	isWritable = true;
 	
-	// check that the new origin exists
-	if ( !QDir(path).exists() ) return false;
-    
-	krConfig->setGroup("Advanced");
-	if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
-   	
 	if( watcher ) delete watcher; //stop watching the old dir
 	watcher = 0;
 
-	// set the writable attribute to true, if that's not the case - the KIO job
-  // will give the warnings and errors
-	isWritable = true;
+	// set the origin...
+	vfs_origin = origin;
+	vfs_origin.setProtocol("file"); // do not remove !
+	vfs_origin.cleanPath();
+	
+	// check that the new origin exists
+	if ( !QDir(path).exists() )
+	{
+		if( !quietMode ) KMessageBox::error(krApp, i18n("Directory %1 does not exist!").arg( path ), i18n("Error"));
+		return false;
+	}
+    
+	krConfig->setGroup("Advanced");
+	if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
 	
 	krConfig->setGroup("General");
 	bool mtm    = krConfig->readBoolEntry("Mimetype Magic",_MimetypeMagic);
 
-	// set the origin...
-  vfs_origin = origin;
-	vfs_origin.setProtocol("file"); // do not remove !
-	vfs_origin.cleanPath();
-	
 	DIR* dir = opendir(path.local8Bit());
-	if(!dir) return false;
+	if(!dir) 
+	{
+		if( !quietMode ) KMessageBox::error(krApp, i18n("Can't open the %1 directory!").arg( path ), i18n("Error"));
+		return false;
+	}
 
   // change directory to the new directory
 	if (chdir(path.local8Bit()) != 0) {

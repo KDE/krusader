@@ -75,6 +75,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   locateSearchFor = new KHistoryCombo( false, hbox, "locateSearchFor" );
   krConfig->setGroup("Locate");
   QStringList list = krConfig->readListEntry("Search For");
+  locateSearchFor->setMaxCount(25);  // remember 25 items
   locateSearchFor->setHistoryItems(list);
   locateSearchFor->setEditable( true );
   locateSearchFor->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
