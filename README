@@ -31,13 +31,13 @@ Notice: if you've got bugs to report, please do so using Krusader's website,
 
 
 
-+------------------------------------------------------------------------------+
-| To learn what's new, read the Changelog file.                                |
-| For bug reports, fixes, patches and comments: please read the FAQ section of |
-| the Krusader Handbook.                                                       |
-| You can reach us by mail [krusader {*} users {.} sourceforge {.} net]        |
-| or drop us a note in our Krusader forum.                                     |
-+------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+| To learn what's new, read the Changelog file.                              |
+| For bug reports, fixes, patches and comments: please read the FAQ section  |
+| of the Krusader Handbook.                                                  |
+| You can reach us by mail [krusader {*} users {.} sourceforge {.} net]      |
+| or drop us a note in our Krusader forum.                                   |
++----------------------------------------------------------------------------+
 
 
 
@@ -46,8 +46,8 @@ Installation
 Check the environment variables KDEDIR - QTDIR.
 
 Unpack the tarball and go to the Krusader source directory.
-If you have done a download from CVS you will have to run the following command
-to create the "./configure" script:
+If you have done a download from CVS you will have to run the following
+command to create the "./configure" script:
 $ make -f Makefile.cvs
 
 Installation procedure:
@@ -56,8 +56,8 @@ $ make
 $ su -c 'make install'
 
 When you install a Krusader cvs or beta version and if Krusader was previously
-installed on your computer, there is a possibility that you will have to update
-the krusaderui.rc file. please read the FAQ for more info.
+installed on your computer, there is a possibility that you will have to
+update the krusaderui.rc file. please read the FAQ for more info.
 
 
 Need more help?
@@ -99,12 +99,13 @@ Or read it online at: http://krusader.sourceforge.net/help.php
 
 Translators
 -----------
-Krusader is currently available in 16 languages:
-English (done by the Krusader Krew), Bulgarian, Chinese, Czech, Danish, Dutch,
-French, German, Hungarian, Italian, Japanese, Polish, Russian, Slovak, Spanish,
-Swedish. Some of these translations can use an update, please read the
-"Krusader translation howto" for the latest information and have a look at the
-"For Translators" section further below in this file.
+Krusader is currently available in 20 languages:
+English (done by the Krusader Krew), Bosnian, Bulgarian, Catalan, Chinese,
+Czech, Danish, Dutch, French, German, Hungarian, Italian, Japanese, Polish,
+Portugese, Russian, Slovak, Spanish, Swedish, Ukrainian.
+Some of these translations can use an update, please read the
+"Krusader translation howto" for the latest information and have a look at
+the "For Translators" section further below in this file.
 
 Documentation
 -------------
@@ -128,9 +129,18 @@ Please contact Dirk Eschler.
 
 RPM Questions
 -------------
-Please read the FAQ "How can I build a RPM package for Krusader?" in the INSTALL
-file. For RPM and krusader.spec feedback, please contact Frank.
+Please read the FAQ "How can I build a RPM package for Krusader?" in the
+INSTALL file. For RPM and krusader.spec feedback, please contact Frank.
 
+Donations
+-------------
+http://sourceforge.net/project/project_donations.php?group_id=6488
+Honestly, we didn't consider donations, until users asked us for a way to
+donate to the project. Developing Krusader can be a full time job at times,
+and even though it is very time consuming, we all enjoy it, and want to see
+the project becomes even better. Donations for this project will be used for
+further development of Krusader, be it by purchasing hardware, or promoting
+of the project.
 
 
 For Translators
@@ -148,10 +158,10 @@ have to worry anymore about how foo.po must be updated. In the past some
 translators updated foo.po in a wrong way, so they translated obsolete messages,
 we want to prevent this, of course.
 
-With VIEWCVS you get a LIVE translation status with your browser at
+With i18n_status and ViewCVS to see the live translation status of Krusader! 
+http://krusader.sourceforge.net/text.php?t=translation.status
 http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/
-Look at the "Last log entry" column to see the translation status (don't look at
-the age column). The latest news about the Krusader translations can be in the
+The latest news about the Krusader translations can be in the
 LATEST NEWS section of the "Krusader translation howto".
 
 New translations
@@ -222,6 +232,10 @@ URL's
   http://krusader.sourceforge.net/text.php?t=cvs.changelog
 - CVSNEWS
   http://krusader.sourceforge.net/text.php?t=cvs.news
+- Krusader-devel-ro
+  http://sourceforge.net/mailarchive/forum.php?forum_id=43320
+- Donations
+  http://sourceforge.net/project/project_donations.php?group_id=6488
 - Download pages
   http://krusader.sourceforge.net/down.php
   http://sourceforge.net/project/showfiles.php?group_id=6488
@@ -247,9 +261,7 @@ known as the Krusader Krew:
 - Frank Schoolmeesters, documentation coordinator
   [frank_schoolmeesters {*} yahoo {.} com]
 - Richard Holt, documentation
-  [richard {.} holt {*} gmail {.} com]  
-- Mark Eatough, krusader handbook proof reader
-  [markeatough {*} yahoo {.} com]
+  [richard {.} holt {*} gmail {.} com]
 
 
 
@@ -261,8 +273,8 @@ It provides all the file-management features you could possibly want.
 Plus: extensive archive handling, mounted filesystem support, FTP, advanced
 search module, viewer/editor, directory synchronisation, file content
 comparisons, powerful batch renaming and much much more.
-It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace, arj
-and rpm and can handle other KIOSlaves such as smb:// or fish://
+It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace, arj,
+lha and rpm and can handle other KIOSlaves such as smb:// or fish://
 It is (almost) completely customizable, very user friendly, fast and looks great
 on your desktop! :-)
 
