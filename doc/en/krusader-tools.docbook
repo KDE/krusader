@@ -41,7 +41,7 @@
       give you a chance to move your bookmarks.
       REMOTEMAN IS DISABLED SINCE KRUSADER-1.60</emphasis></para>
 
-<para>Try the new bookmark-manager: open a new remote connection. once
+<para>Try the new bookmark-manager: open a new remote connection. Once
       done, press the <guibutton>"Bookmark"</guibutton> button, select
       <guimenuitem>"Add bookmark"</guimenuitem> and that's it!</para>
 
@@ -72,9 +72,9 @@
 <title>MountMan: handle your mounted filesystems</title>
 <para>MountMan is a tool which helps you manage your mounted filesystems.
       Once invoked, it displays a list of every mounted filesystem.
-      For each filesystem, MountMan displays its name (which is the actual device name - &ie;
+      For each filesystem, MountMan displays it's name (which is the actual device name - &ie;
       <filename class="directory">/dev/fd0</filename> for a <hardware>floppy</hardware>),
-      its type (vfat, ext3, ReiserFS ...) and its mount-point
+      it's type (vfat, ext3, ReiserFS ...) and it's mount-point
       (the directory on which the filesystem is mounted).</para>
 
 <screenshot>
@@ -87,7 +87,7 @@
   </mediaobject>
 </screenshot>
 
-<para>MountMan also displays usage information using total size, free size and percentage free.
+<para>MountMan also displays usage information using total size, free size, and percentage free.
       If those numbers say <guilabel>"N/A"</guilabel>, it usually means that the filesystem isn't mounted.
       Left clicking on a filesystem displays a pie chart on the left of the window, this
       graphically displays the usage information for the filesystem.
@@ -99,15 +99,15 @@
                 </para></listitem>
       <listitem><para><keycap>Right clicking</keycap> on a filesystem will open a small menu which
                 displays what actions can be performed on that filesystem.
-                For now you can only mount, unmount and eject (if clicking on a removable filesystem
-                - e.g. a <hardware>cdrom</hardware>).
+                For now you can only mount, unmount and eject (if clicking on a removable filesystem,
+                e.g., a <hardware>cdrom</hardware>).
                 </para></listitem>
    </itemizedlist>
 
 <note><para>We plan to expand MountMan in the next evolution of &krusader;.
             It will be able to format floppies, edit <filename class="directory">/etc/fstab</filename>,
-            create new filesystems and more...
-            btw. we have started working on it, see "Quickmode for MountMan"</para></note>
+            create new filesystems and more....
+            BTW, we have started working on it, see "Quickmode for MountMan"</para></note>
 
 <para><emphasis role="bold">Quickmode for MountMan</emphasis></para>
 
@@ -116,8 +116,8 @@
 <para>To activate Quickmode for MountMan, click AND HOLD the MountMan button on the &main_toolbar_lnk;</para>
 
 <para>General idea: display a list of all possible mountpoints.
-      Each time the menu is displayed, it determines if a mountpoint is mounted or not and associated the correct
-      action (mount or umount). This offers a quick interface to MountMan.
+      Each time the menu is displayed, it determines if a mountpoint is mounted or not
+			 and associates the correct action (mount or umount). This offers a quick interface to MountMan.
       It is working, and currently uses KMountMan::mount and unmount.
       It uses the new &kde; services for fstab-reading and this will enable us to remove A LOT of code
       from the "old" MountMan.</para>
@@ -128,8 +128,9 @@
 <sect1 id = "bookman">
 <title>BookMan: Organize your bookmarks</title>
 
-<para>BookMan is a tool which allows you to bookmark folders and &URL;'s using &krusader;, and later return to
-      them in a click of a button. All you need to do is click on the <guibutton>"Bookmark"</guibutton> button.</para>
+<para>BookMan is a tool which allows you to bookmark folders and &URL;'s using &krusader;,
+			and later return to them in a click of a button. All you need to do is click on
+			the <guibutton>"Bookmark"</guibutton> button.</para>
 
 <screenshot>
   <screeninfo>BookMan: the Bookmark menu</screeninfo>
@@ -157,8 +158,8 @@
       is where the bookmark points to.
       <guilabel>"Create in"</guilabel> allows to make bookmark folders for organizing your bookmarks</para>
 
-<note><para>You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark to quickly connect
-            to the remote machine. You CANNOT bookmark inside an archive.</para></note>
+<note><para>You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark
+			to quickly connect to the remote machine. You CANNOT bookmark inside an archive.</para></note>
 
 <para>To use your bookmarks, click the <guibutton>"Bookmark"</guibutton> button and choose one - as shown in
       the picture above. You may also use the keyboard shortcuts
@@ -206,7 +207,7 @@
       &keditbookmarks; (part of the kdebase package) is a bookmark editor for &konqueror;, &krusader; and other
       applications, which use the &xbel_url; standard for the bookmark format. The bookmarks are stored in
       <filename>~/.kde/share/apps/krusader/krbookmarks.xml.</filename></para>
-      <para>You can inport bookmarks from <application>IE</application>, <application>Opera</application>,
+      <para>You can import bookmarks from <application>IE</application>, <application>Opera</application>,
       <application>Galeon</application>, &kde;, <application>Mozilla</application>, &Netscape;.
        &keditbookmarks; is easy to use, please read the &keditbookmarks; or the &konqueror; handbook if you need more
        info.</para>
@@ -301,7 +302,7 @@
                </para></listitem>
     <listitem><para><guilabel>"Profiles"</guilabel>: if you have to do regularly the same search operation,
                you can save the search settings &eg; include files, exclude files, etc....
-               Press the 'profile' button, and you'll be able to add/ load / save / remove search profiles.
+               Press the 'profile' button, and you'll be able to add/load/save/remove search profiles.
                </para></listitem>
 </itemizedlist>
 
@@ -356,7 +357,7 @@
              If you only enter a date in the left box, you'll be searching for files older than that date.
              If you only enter a date in the right box, you'll be searching for files newer than that date.
              <note><para>You can click on the date icon (near the input boxes) to open a standard date window -
-                   which allows you to easily browse through the calender and search for the desired date.
+                   which allows you to easily browse through the calendar and search for the desired date.
                    Clicking on a date will close the window and the date will appear in the input box.
              </para></note>
              </para></listitem>
@@ -404,13 +405,13 @@
        the current panel directory. When you close the Krusearcher window, the selected item is selected in the
        active panel.</para>
 
-<para>When you click the <guibutton>"feed to listbox"</guibutton> button after the results are displayed, 
-      then &krusader; opens a new results-tab with the resulting files/folders. 
+<para>When you click the <guibutton>"feed to listbox"</guibutton> button after the results are displayed,
+      then &krusader; opens a new results-tab with the resulting files/folders.
       You can do whatever you want on the files in the new tab.</para>
 
-<warning><para>The files in the results-tab are actually the original files. 
+<warning><para>The files in the results-tab are actually the original files.
                if you delete a file - it is removed!</para></warning>
-       
+
 </sect1>
 
 <sect1 id = "krviewer">
@@ -422,7 +423,7 @@
 <sect2 id = "krview">
 <title>Viewer</title>
 
-<para>To view a file as fast as possible according to it's type just put it under the cursor and press
+<para>To view a file as fast as possible according to it's type, just put it under the cursor and press
       <keycap>F3</keycap>. &krusader;'s internal viewer is actually a &konqueror; part, which can basically
       view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an
       archive), this is called the 'Generic viewer'.</para>
@@ -432,7 +433,7 @@
        <listitem><para>It will try to view the file with the <emphasis>'Generic viewer'.</emphasis>
                  </para></listitem>
        <listitem><para>When the file type cannot be determined or when a file (&eg; a binary)
-                 doesn't have a associated action, it disables the 'generic viewer'.
+                 doesn't have an associated action, it disables the 'generic viewer'.
                  The file will be treated as a text file, this is the <emphasis>'Text viewer'</emphasis>.
                  </para></listitem>
        <listitem><para>The user can change in the
@@ -931,7 +932,7 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Colors</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Color configuration for the: background, selected text, current line and bracket highlighting.</para>
+   <para>Color configuration for the: Background, Selected text, Current line and Bracket highlighting.</para>
    </listitem>
   </varlistentry>
 
@@ -942,7 +943,7 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Fonts</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Fonts configuration for display and printer: font, font style and size, with a preview window.</para>
+   <para>Fonts configuration for display and printer: Font, font Style and Size, with a preview window.</para>
    </listitem>
   </varlistentry>
 
@@ -953,8 +954,8 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Indentation</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Indentation configuration: automatically indent, use spaces to indent, &Tab; keys indent,
-         &Backspace; keys indent, keep indent profile, keep extra spaces.</para>
+   <para>Indentation configuration: Automatically indent, use Spaces to indent, &Tab; Keys indent,
+         &Backspace; key unindents, keep indent profile, keep extra spaces.</para>
    </listitem>
   </varlistentry>
 
@@ -965,7 +966,7 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Selection</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Selection configuration: persistent selections, overwrite selected text.</para>
+   <para>Selection configuration: Persistent selections, Overwrite selected text.</para>
    </listitem>
   </varlistentry>
 
@@ -976,8 +977,8 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Editing</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Editing configuration: word wrap config., whitespace config, auto brackets, smart home,
-          wrap cursor, maximum undo steps.</para>
+   <para>Editing configuration: Word Wrap config., Whitespace config, Auto brackets, Smart home,
+          Wrap cursor, Maximum undo steps.</para>
    </listitem>
   </varlistentry>
 
@@ -999,7 +1000,7 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>Highlighting</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Highlighting configuration: default styles and highlight mode.</para>
+   <para>Highlighting configuration: Default styles and Highlight mode.</para>
    </listitem>
   </varlistentry>
 
@@ -1010,8 +1011,8 @@
    <guimenuitem>Configure Editor</guimenuitem>
    <guimenuitem>View defaults</guimenuitem></menuchoice></term>
    <listitem>
-   <para>View defaults: dynamic word wrap, show line numbers, show icon border, show folder markers if
-          available, sort bookmarks menu method.</para>
+   <para>View defaults: Dynamic word wrap, show Line numbers, show Icon border, show Folder markers if
+          available, sort Bookmarks menu method.</para>
    </listitem>
   </varlistentry>
 
@@ -1095,7 +1096,7 @@
 
 <para>This function compares the left and the right panel directories and shows the difference between them.
       After selecting some options and the "compare" function you can synchronize the files and directories.
-      One panel could be a &FTP; server. Don't forget the <guilabel>"compare by content"</guilabel> option
+      One panel could be an &FTP; server. Don't forget the <guilabel>"compare by content"</guilabel> option
       if the file size stays equal.
       Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
       <guimenuitem>Synchronize Directories</guimenuitem></menuchoice></emphasis>
@@ -1319,7 +1320,7 @@
       <listitem><para><guibutton>"Exclude"</guibutton>:
              excludes a file/dir from synchronization ( task change to != ).</para></listitem>
   <listitem><para><guibutton>"Restore original operation"</guibutton>:
-             task change to the original result of comparator.</para></listitem>
+             task change to the original result of comparison.</para></listitem>
   <listitem><para><guibutton>"Reverse direction"</guibutton>:
              task change ( -> to &lt;-, and &lt;- to -> ).</para></listitem>
         <listitem><para><guibutton>"Copy from right to left"</guibutton>:
@@ -1449,15 +1450,16 @@
 <para>
   With the User-Action-system the user can make his own actions on files in the
   panel or to access krusader-internal functions with parameter directly using
-  placeholder.
+  placeholder(s).
   The actions integrate seamlessly into &kde;'s action-system, so the standard
-  edit-toolbar/shortcut-dialogs can will show/manipulate the User-Actions too.
+  edit-toolbar/shortcut-dialogs will show/manipulate the User-Actions too.
   The User-Actions are stored in <filename>~/.kde/share/apps/krusader/useraction.xml</filename>
   (the file-structure is documentated in doxygen-headers of UserActionXML).
   Several examples of <filename>useraction.xml</filename> files can be found <link linkend="useraction_xml">here</link>.
   User-Actions can be edit/add/im-/export using a new Konfigurator-module,
   although we plan to move all action-related to a new ActionMan.
-  Once you understand how to write User-Actions you will find that &krusader; is a very powerful, customizable tool.
+  Once you understand how to write User-Actions you will find that &krusader; is a very powerful,
+	customizable tool.
   <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
   <guimenuitem>User Menu</guimenuitem></menuchoice>
     </emphasis>
@@ -1471,7 +1473,7 @@
 
 
 <para><emphasis role="bold">Managing User-Actions</emphasis></para>
-<para>Open Konfigurator and choose "User-Actions", here you can add/edit/remove/inport/export User-Actions.
+<para>Open Konfigurator and choose "User-Actions", here you can add/edit/remove/import/export User-Actions.
   <itemizedlist>
       <listitem><para><guimenuitem>"Add Action"</guimenuitem>:
                If you add an new action, you get an empty input-mask where you can
@@ -1486,14 +1488,14 @@
      <listitem><para><guimenuitem>"Remove Action"</guimenuitem>:
                Select the User-Action on the left and click the remove button.
                       </para></listitem>
-     <listitem><para><guimenuitem>"Inport Action"</guimenuitem>:
+     <listitem><para><guimenuitem>"Import Action"</guimenuitem>:
                If you import some actions they will be automatically added to your list.
                If there are name-conflicts (the names have to be unique because these are the ID for &kde;'s action-system)
          you're asked to resolve them. For this the list on the left will only show the actions where conflicts exists.
          You now can give them new names or remove them.
                      </para></listitem>
      <listitem><para><guimenuitem>"Export Action"</guimenuitem>:
-                If you export a User-Action you have to give a file where to store it.
+                If you export a User-Action you have to give a filename in which to store it.
                 If it does not exist it will be created. If it contains already some User-Actions,
                 the action you're exporting will be added to that file.
                     </para></listitem>
@@ -1537,7 +1539,7 @@
    <listitem><para><guimenuitem>"Run in terminal"</guimenuitem>: runs the command in the terminal.
              </para></listitem>
          <listitem><para><guimenuitem>"Collect output"</guimenuitem>:
-             collects the output off te executed programm in a &GUI; window.
+             collects the output off the executed programm in a &GUI; window.
              </para></listitem>
    <listitem><para><guimenuitem>"Separate standard error"</guimenuitem>
              when "Collect output" is used the stdout and stderr are separately collected
@@ -1643,35 +1645,35 @@
           <orderedlist>
          <listitem><para>&useraction_parameter; A panel-profile</para></listitem>
     </orderedlist>
-    </listitem>         
-     <listitem><para><userinput>Each</userinput> - splits the commandline into a list. 
+    </listitem>
+     <listitem><para><userinput>Each</userinput> - splits the commandline into a list.
            These commands are executed one after another.</para>
           <orderedlist>
          <listitem><para>&useraction_parameter; A list-item (all, all files, all dirs, all selected).</para></listitem>
     </orderedlist>
-    </listitem>         
+    </listitem>
      <listitem><para><userinput>Move</userinput> - Move from source to destination.</para>
           <orderedlist>
          <listitem><para>&useraction_parameter; A source</para></listitem>
          <listitem><para>&useraction_parameter; A destination</para></listitem>
     </orderedlist>
     </listitem>
-    <listitem><para><userinput>PanelSize</userinput> - Change the ration between the two panels.</para>
+    <listitem><para><userinput>PanelSize</userinput> - Change the ratio between the two panels.</para>
           <orderedlist>
-          <listitem><para>&useraction_optional_parameter; A integer value, e.g. 80 makes the active panel use 80% of 
-                         &krusader;'s width (height in vertical-mode), ommiting the parameter means 50%.
+          <listitem><para>&useraction_optional_parameter; A integer value, e.g., 80 makes the active panel use 80% of
+                         &krusader;'s width (height in vertical-mode), omitting the parameter means 50%.
                          </para></listitem>
     </orderedlist>
     </listitem>
     <listitem><para><userinput>Ask</userinput> - Cancel the execution.</para>
           <orderedlist>
-          <listitem><para>&useraction_optional_parameter; A string with for the cancel question.
+          <listitem><para>&useraction_optional_parameter; A string for the cancel question.
                          </para></listitem>
     </orderedlist>
     </listitem>
 </itemizedlist>
 A GUI-based helper for placeholder-adding is provided.
-Spaces In Path, Current and List are per default automatically escaped.
+Spaces In Path, Current and List are by default, automatically escaped.
 There is one more important thing to know: All placeholders that interact with &krusader;-internal functions are called
 at expand-time (meaning directly when the placeholders are replaced). External programms are called at
 execution-time (meaning after all placeholders are replaced).
@@ -1695,8 +1697,8 @@ You can also set a user under which the command should be executed.
 <title>Disk Usage</title>
 
 <para>The Disk Usage is based on the code of &filelight;.
-      The Disk Usage allows you to understand exactly where your diskspace is being used by a graphically representating
-      of your filesystem. The following presentations are possible:
+     The Disk Usage shows you exactly how your disk space is being used by a graphical
+			representation of your filesystem. The following presentations are possible:
  <itemizedlist>
   <listitem><para>Line view</para></listitem>
   <listitem><para>Detailed view</para></listitem>
@@ -1722,7 +1724,7 @@ You can also set a user under which the command should be executed.
 </screenshot>
 HTML_PARSING-->
 
-     
+
 </sect1>
 
 

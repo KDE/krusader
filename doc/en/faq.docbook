@@ -54,17 +54,17 @@
          Only some shared libraries are needed &eg; &kde; libraries, &Qt; libraries, &etc;
          This means that &krusader; runs on &gnome_url;, &afterstep_url; and other window managers
          if the aproriate packages are installed on your computer.</para>
-         <para> </para> <!-- Empty line to make it more readable -->        
+         <para> </para> <!-- Empty line to make it more readable -->
    <para>You don't need to switch to &kde;; you can still use &gnome_url; or another window manager.
           btw, you can configure the menu font by running
           <command>kcontrol</command>.</para>
-         <para> </para> <!-- Empty line to make it more readable --> 
+         <para> </para> <!-- Empty line to make it more readable -->
    <para>But a lot depends on what you would like to do with &krusader;.
          You should know that &krusader; uses the &kde; &kioslaves1_url; to access remote file systems,
          and only a limited number of slaves (bad choice of words slaves) are shipped with &kdelibs_url;,
          most of the &kioslaves2_url; are bundled with &kdebase_url; (including fish,sftp and tar).
          But ... if the property-dialog should show EXIF-data for .jpeg's, you need &kde;graphics
-         if you want ID3-infos, you need &kde;multimedia, and so on....</para> 
+         if you want ID3-infos, you need &kde;multimedia, and so on....</para>
         <para> </para> <!-- Empty line to make it more readable -->
    <para>To summarize, if you want a working &krusader; - install &kde;libs.
          If you want a functional &krusader; then you need &kde;libs + &kde;base.
@@ -84,14 +84,15 @@
    &eg; you don't need the C-compliler &gcc; it's only needed
    when you compile &krusader; from source.</para>
     <para>Here is a (possibly incomplete) list of the required shared libraries when you run &krusader;:</para>
+   <!-- I think we should really define which version of kde is needed for which version of krusader.  -->
    <para><itemizedlist>
-     <listitem><para>kdelibs >= 3.2 libqt3
+     <listitem><para>kdelibs >= 3.2  libqt3
                </para></listitem>
-    <listitem><para>libxfree86 libfreetype6 libfontconfig1
+    <listitem><para>libxfree86  libfreetype6  libfontconfig1
                </para></listitem>
-    <listitem><para>libjpeg62 libpng3 libmng1 zlib1 libstdc++5 libgcc1
+    <listitem><para>libjpeg62  libpng3  libmng1  zlib1  libstdc++5  libgcc1
                </para></listitem>
-    <listitem><para>libfam0 libpcre0 glibc libart_lgpl2 libexpat0 libnas2
+    <listitem><para>libfam0  libpcre0  glibc  libart_lgpl2  libexpat0  libnas2
                </para></listitem>
     </itemizedlist>
     A complete list of &shared_libdeps_url; is available.</para>
@@ -133,10 +134,10 @@
 
    <qandaentry>
    <question id="faqi_64bit">
-   <para>How do i compile &krusader; when i'm using a 64 bit processor ?</para>
+   <para>How do I compile &krusader; when I'm using a 64 bit processor ?</para>
    </question>
    <answer>
-   <para>Please look and search in our forum we don't have much experiance and feedback with &_64bit_url; microprocessors yet.
+   <para>Please look and search in our forums. We don't have much experience and feedback with &_64bit_url; microprocessors yet.
         </para>
     <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -196,10 +197,10 @@
    other distribution might work on your computer, but it is always the best that
    it matches your distribution.
    If you can't find a package that matches your distribution version, architecture or distribution,
-   than use a source RPM.
-   Because when you use a source RPM, the Krusader sources will be build on your computer,
-   it will build a suitable binary RPM for your distribution and architecture.
-   Please read the previous question, it explains howto install a source RPM.
+   then use a source RPM.
+   When you use a source RPM, the Krusader sources will be build, on your computer,
+   a suitable binary RPM for your distribution and architecture.
+   Please read the previous question, it explains how to install a source RPM.
    The best solution is explained in the next question.
    </para>
    <para> </para> <!-- Empty line to make it more readable -->
@@ -215,7 +216,7 @@
    Did you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and nothing found?
    Then you will have to compile &krusader; from source :)
    Even if you think that you have no skills, you will probably succeed in compiling  &krusader;!
-   We provide a very detailed installation procedure. This howto allows that even newcomers will be
+   We provide a very detailed installation procedure. This HowTo intends that newcomers will be
    able to compile &krusader; from source, even if they have never done a compilation from source before.
    Feel free to post a &help_request_lnk; if you encounter problems.
    </para>
@@ -228,16 +229,16 @@
    <para>I've installed &krusader;, but when I start it, only the <guimenu>"Help"</guimenu>
    menu appears. Why?</para></question>
    <answer>
-   <para>In this case only the <guimenu>"Help"</guimenu> menu is visible and all the other menu items
-   like &eg; <guimenu>"File"</guimenu> and <guimenu>"Mark"</guimenu> are gone.
+   <para>In this case only the <guimenu>"Help"</guimenu> menu is visible and all other menu items
+   like &eg; <guimenu>"File"</guimenu> and <guimenu>"Mark"</guimenu> are missing.
    This is because some distributions put the <filename>krusaderui.rc</filename> file in the wrong directory.
    To solve the problem, just copy the <filename>krusaderui.rc</filename> file
    from the package <filename>krusader_kde3/krusader/krusaderui.rc</filename> to
    <filename>$KDEDIR/share/apps/krusader/krusaderui.rc</filename>
    and <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> and re-run &krusader;.
    If you have compiled &krusader; from sources this is often caused when the
-   &kdeqtdir_lnk; environment variables are not right set, the result is that the
-   <filename>krusaderui.rc</filename> file is installed in a wrong directory.
+   &kdeqtdir_lnk; environment variables are not correctly set. The result is that the
+   <filename>krusaderui.rc</filename> file is installed in the wrong directory.
    Please also read the next question.</para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -269,7 +270,7 @@
    <prompt>$</prompt> <userinput><command>rm</command> <option>~/.kde/share/apps/krusader/krusaderui.rc</option></userinput>
          </para>
 
-  <para>If the <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> file is too old,
+  <para>If the <filename>~/.kde/share/apps/krusader/krusaderui.rc</filename> file is older,
         then the new menu elements will not be shown.
         Read the previous question for information on how to update the <filename>krusaderui.rc</filename> file.
         If <filename>krusaderui.rc</filename> is missing or in a wrong directory,
@@ -416,7 +417,7 @@
     <filename>krusader-1.50-beta1.suse91.src.rpm</filename>
          </para></listitem>
          <listitem><para>If it is not OK you will receive an error message during the rpmbuild process,
-   try to fix it and run <command>rpmbuild</command> again.
+   try to fix it and re-run <command>rpmbuild</command> again.
          </para></listitem>
          <listitem><para>And finally: <link linkend="faqi_rpm_source">test</link> the RPM before sending it in.
          </para></listitem>
@@ -468,7 +469,7 @@
       and you'll be able to resize &krusader; to your liking.
       Since version 1.51 we have improved this a lot better: when downsizing the buttons will look like 'F5 ..py',
       a tooltip will give the complete text. The minimum is 45 for pixels each button,
-      that should give a minimum width of about 500 pixels and seems reasonable to us.      
+      that should give a minimum width of about 500 pixels and seems reasonable to us.
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
@@ -485,8 +486,7 @@
       Feel free to write a patch for it ;-).
       We've tried the same source code on two different Gentoo installation: one worked,
       the other did not. The good news is that if you disable <application>fam</application>, &krusader; will
-      automatically revert to its internal mechanism (which is less efficient, but works) without needing to
-      recompile.
+      automatically revert to its internal mechanism (which is less efficient, but works) without needing to recompile.
       You can disable <application>fam</application> with:
       <screen><prompt>$</prompt> <userinput><command>su -c 'fam -l'</command></userinput></screen>
       Look at the manpages for more information about <application>fam</application>.
@@ -588,13 +588,13 @@
        "krarc:/path/to/foo-archive", when I try to open foo-Archive</para>
  </question>
  <answer>
- <para>The icons, kio_slaves and documentation must be installed to the correct place in the &kde; directory tree. 
+ <para>The icons, kio_slaves and documentation must be installed to the correct place in the &kde; directory tree.
        The <filename>kio_krarc.*</filename> files must be in the same directory with the
        other KIO slaves. Try to locate <filename>kio_tar.*</filename> and copy/link the
        <filename>kio_krarc.*</filename> files to the same location.
        Don't forget to run <command># ldconfig</command> on this directory when you're done.
        This problem can occur if you are using a &_64bit_url; microprocessor.
-       For more information click 
+       For more information click
        <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=991">here</ulink> .
  </para>
  <para> </para> <!-- Empty line to make it more readable -->
@@ -656,8 +656,7 @@
     If you encounter the same problem then it is possibly a &kioslaves1_url; or &kde; (kdelibs) bug,
     and not a &krusader; bug.
     &krusader; uses the &kde; libraries and the &kioslaves2_url; for many operations.
-    In some cases you can encounter problems if your distribution is incorrectly configured, please test it first
-    as explained above, thanks!
+    In some cases you can encounter problems if your distribution is incorrectly configured, please test it first as explained above, thanks!
     </para></note>
     <para> </para> <!-- Empty line to make it more readable -->
     <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla http://bugs.kde.org/,
@@ -688,10 +687,9 @@
      <listitem><para>&krudevel_ro_url; is a read-only copy of the developer mailing list of the &krusader; Krew.
                      A lot of people wanted to subscribe to krusader-devel, which is the developers-only mailing list.
                      We had to repectfully deny the requests, since the list is high-traffic as it is.
-                     However, since we do want that you can follow us, we setup a this mailing list which is basically the
-                     same as krusader-devel, just that it is read-only.
+                     However, since we do want that you can follow us, we setup this mailing list which is the same as krusader-devel, except that it is read-only.
                      If you want to follow the development on the bleeding edge, this is the place to be!
-                     Please note that the list is read-only, so posting to it does no good to anyone...
+                     Please note that the list is read-only, so posting is not allowed.
                      </para></listitem>
   </itemizedlist>
   </para>
@@ -733,8 +731,7 @@
 
   <para>Please use the &kruforumsearch_url; function of the &kruforum_url;, your issue may have been
          previously discussed (this allows us to minimze the double/triple/... postings).
-         If your issue has already been discussed in the past there is a great chance that you will have an instant solution
-   for your issue/problem.
+         If your issue has already been discussed in the past there is a great chance that you will have an instant solution for your issue/problem.
          Some issues are asked over and over again, for these issues we have the made the &faq_lnk; ;-)
          This also allows us also to spend more time in developing &krusader;.</para>
 
@@ -756,8 +753,8 @@
                have been implemented will be done by the &krusader; Krew.
                </para></listitem>
      <listitem><para>&useractionsforum_url; discussions about &useractions_lnk;.
-                     Posting your own UserActions is greatly appreciated.
-                     We plan to include the best ones in the next &krusader; releases.</para></listitem>                      
+                     Posting your own User Actions is greatly appreciated.
+                     We plan to include the best ones in the next &krusader; releases.</para></listitem>
      <listitem><para>&krugenforum_url;: everything that is &krusader; related and doesn't belong in the other
                       forums.</para></listitem>
   </itemizedlist>
@@ -777,7 +774,7 @@
   <para>How can I translate &krusader; to my native language?</para>
   </question>
   <answer>
-  <para>Please read the &i18nhowto_url;. It's not difficult to translate! Everyone can do it, it just takes some time.
+  <para>Please read the &i18nhowto_url;. It's not difficult to translate! Most anyone can do it, it just takes some time.
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
@@ -788,7 +785,7 @@
   <para>How can I support &krusader;?</para>
   </question>
   <answer>
-  <para>You can support &krusader; in many different ways: send us 
+  <para>You can support &krusader; in many different ways: send us
         <link linkend="faqg_wish_patch">feedback</link>, &faqbugreports_lnk;, patches,  ...
   </para>
   <para> </para> <!-- Empty line to make it more readable -->

@@ -31,14 +31,14 @@
 <note><para>&krusader; v1.01 needs &kde;libs 2.x.x</para>
       <para>&krusader; v1.02 - 1.40 needs &kde;libs 3.x.x</para>
       <para>&krusader; 1.40 prefers &gt;= 3.2.x (otherwise not all features will be available)</para>
-      <para>&krusader; v1.50 - 1.60 needs &kde;libs &gt;= 3.2.x but prefers 
+      <para>&krusader; v1.50 - 1.60 needs &kde;libs &gt;= 3.2.x but prefers
             &kde;libs &gt;= 3.3.x for stability</para></note>
 
-<para>Platforms: All POSIX (&Linux;/BSD/UNIX-like OSes), &Solaris; and 
+<para>Platforms: All POSIX (&Linux;/BSD/UNIX-like OSes), &Solaris; and
                  All BSD Platforms (FreeBSD/NetBSD/OpenBSD/&MacOS; 10.3 "Panther").</para>
 
 <para>&krusader; uses about 3-4 MByte of memory to run
-      (and about 15 Mbyte shared memory which is also used by more processes),
+      (and about 15 Mbyte shared memory which is also used by other processes),
       but this may vary depending on your platform and configuration.
       In order to handle archives the archivers must be configured <link linkend="konfig-dependencies">here</link>.</para>
 
@@ -91,7 +91,7 @@
         If you like &krusader; go to one of these sites and rate &krusader;, thanks.
 </para>
 
-<para>If you still can't find a RPM or DEB package, please don't worry.
+<para>If you still can't find an RPM or DEB package, please don't worry.
       We provide a very detailed installation procedure. This very thorough HowTo shows even newcomers how to
       compile &krusader; from source, even if you've never compiled a program from source.
       Please continue to read this chapter ;)</para>
@@ -114,7 +114,7 @@
   Before every stable release we release at least one development version, so that we can hunt down
   the bugs.</para>
 
-<warning><para>This releases are beta releases and will probably contain some bugs.</para></warning>
+<warning><para>These releases are beta releases and will probably contain some bugs.</para></warning>
 
 &dev_cvs_note;
 
@@ -125,7 +125,7 @@
            New features have to wait until the stable is released.</para>
   </listitem>
   <listitem>
-     <para>Have feedback from &krusader; users so that we can fix the bugs.</para>
+     <para>Obtain feedback from &krusader; users so that we can fix the bugs.</para>
   </listitem>
   <listitem>
      <para>Give translators the time to update the translations, for the coming stable.
@@ -149,9 +149,7 @@
   For those who are interested, the <emphasis role="bold">nightly tarball</emphasis> can be found on the
   &krucutedge_url;.
   Depending on the stage of development, this version will either be stable or unstable. Just before a stable release, the CVS version
-  is almost stable. After a stable release new features will be committed into CVS, which might lead to the appearance
-  of bugs. In some rare cases, the build will even not compile if we make a mistake, in that case
-  we try to fix the mistake as soon as possible.</para>
+  is almost stable. After a stable release new features will be committed into CVS, which might lead to the appearance of bugs. In some rare cases, the build will even not compile if we make a mistake, in that case we try to fix the mistake as soon as possible.</para>
 
 <para>&krusader; provides 2 nightly snapshots:
   <orderedlist numeration="arabic">
@@ -184,19 +182,19 @@
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
   (note: updates from within the modules directory do not need the -d parameter)</para>
 
-<para>I you want to checkout a specific version of &krusader; from CVS (&eg; &krusader;-1.50) :
+<para>If you want to checkout a specific version of &krusader; from CVS (&eg; &krusader;-1.50) :
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co -rversion_1_50 krusader_kde3</option></userinput></screen>
 </para>
 
-<para>I you want to checkout a specific date of &krusader; from CVS (&eg; &krusader;-2004-10-23) :
+<para>If you want to checkout a specific date of &krusader; from CVS (&eg; &krusader;-2004-10-23) :
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co -D2004-10-23 krusader_kde3</option></userinput></screen>
 </para>
 
-<para>Mostly being &gentoo_url; users ourselves, we provide a &gentoo_life_ebuild_url; for all those who want
+<para>Mostly being &gentoo_url; users, we provide a &gentoo_life_ebuild_url; for all those who want
       to stay on the bleeding edge of filemanagement and don't want to miss the advantages of portage.
       Please take a look at our &krucutedge_url; for more installation details.</para>
 
-<para>We provide also &viewcvs_url; to browse the CVS repository.</para>
+<para>We also provide &viewcvs_url; to browse the CVS repository.</para>
 
 </sect2>
 
@@ -234,9 +232,9 @@
 
 
 <sect2 id="detailinstall">
-<title>Detailed installation instructions</title>
+<title>Detailed Installation Instructions</title>
 
-<para>The next section will explain step by step in detail how to install &krusader;.
+<para>The next section will explain step by step, in detail, how to install &krusader;.
       This question has been asked many times and especially users new to &Linux; often have
       problems compiling software from source. Therefore, we are trying to keep the explanations as
       detailed as possible even if they are mostly not &krusader; specific.
@@ -325,8 +323,7 @@ Now we will set the enviroment variables with the <command>export</command> comm
 
   <note><para>These enviroment variables are only set for the lifetime of your current shell.
               When you close your terminal and open a new one they will be gone.
-              Assuming &krusader; is not the only &Qt;/&kde; program you want to compile, we recommend to make these
-              settings permanent (&eg; append both export commands to your
+              Assuming &krusader; is not the only &Qt;/&kde; program you want to compile, we recommend to make these settings permanent (&eg; append both export commands to your
               <filename class="directory">/etc/profile</filename>) file.</para></note>
 
    <para> </para> <!-- Empty line to make it more readable -->
@@ -429,7 +426,7 @@ Good - your configure finished. Start make now
            In this case the &krusader; binary will be installed in the
            <filename>/usr/local/bin</filename> directory.</para>
      <para>&SuSE; needs: <userinput><command>./configure</command>
-           <option> --prefix=<replaceable>/opt/kde3</replaceable></option></userinput>.</para>      
+           <option> --prefix=<replaceable>/opt/kde3</replaceable></option></userinput>.</para>
      <para>This part will also display a warning if the environment variables &kdeqtdir_lnk; are empty.</para>
 </tip>
 
@@ -565,7 +562,7 @@ foo</screen>
       <replaceable>&lt;path&gt;</replaceable></para>
 
 <para><option>--profile</option>
-      <replaceable>&lt;panel-profile&gt;</replaceable> Load <link linkend="panel_profiles">panel-profile</link> 
+      <replaceable>&lt;panel-profile&gt;</replaceable> Load <link linkend="panel_profiles">panel-profile</link>
       <replaceable>&lt;panel-profile&gt;</replaceable> on startup
       </para>
 
@@ -688,7 +685,7 @@ foo</screen>
 <appendix id="useraction_xml">
 <title>useraction.xml</title>
 <para>This appendix gives several examples of <filename>useraction.xml</filename> files.
-      In this way you can start to discover the power of the &useractions_lnk; and start learning how to use them.
+      With this you can begin to discover the power of the &useractions_lnk; and start learning how to use them.
       If you have made a useful user action please post it in the &useractionsforum_url;,
       we are collecting UserActions on our website and are planning to ship &krusader; with several
       great UserActions in the near future.
@@ -701,7 +698,7 @@ foo</screen>
 &lt;!DOCTYPE KrusaderUserActions>
  &lt;KrusaderUserActions>
   &lt;action name="uptime" >
-  &lt;title>uptime&lt;/title>
+  &lt;title>Up-time&lt;/title>
   &lt;tooltip>tells how long since the computer has been booted&lt;/tooltip>
   &lt;icon>clock&lt;/icon>
   &lt;category>information&lt;/category>
@@ -743,7 +740,7 @@ foo</screen>
 &lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>
  &lt;action name="clipboard current" >
-  &lt;title>Copy to clipboard&lt;/title>
+  &lt;title>Copy to Clipboard&lt;/title>
   &lt;tooltip>Copy to clipboard&lt;/tooltip>
   &lt;icon>klipper&lt;/icon>
   &lt;category>System&lt;/category>
@@ -770,7 +767,7 @@ foo</screen>
       <programlisting>
 &lt;!DOCTYPE KrusaderUserActions>
 &lt;action name="mnt/floppy bookmark" >
-  &lt;title>jumps to /mnt/floppy&lt;/title>
+  &lt;title>Jump to /mnt/floppy&lt;/title>
   &lt;category>Bookmarks&lt;/category>
   &lt;command>%aGoto(&quot;/mnt/floppy&quot;, &quot;yes&quot;)%&lt;/command>
  &lt;/action>
@@ -781,7 +778,7 @@ foo</screen>
       <programlisting>
 &lt;!DOCTYPE KrusaderUserActions>
  &lt;action name="asdfasdf" >
-  &lt;title>select in other panel&lt;/title>
+  &lt;title>Select in Other Panel&lt;/title>
   &lt;category>Selection&lt;/category>
   &lt;description>Select all filenames that are selected in the active panel, also in the non-active panel&lt;/description>
   &lt;command>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>
@@ -794,7 +791,7 @@ foo</screen>
 &lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>
  &lt;action name="backup current" >
-  &lt;title>Backup in current directory&lt;/title>
+  &lt;title>Backup in Current Directory&lt;/title>
   &lt;tooltip>Backup in current directory&lt;/tooltip>
   &lt;icon>filesaveas&lt;/icon>
   &lt;category>System&lt;/category>
@@ -810,7 +807,7 @@ foo</screen>
 &lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>
  &lt;action name="search" >
-  &lt;title>search testlt;/title>
+  &lt;title>Search Test&lt;/title>
   &lt;command>%_NewSearch(&quot;Search 2&quot;)%&lt;/command>
  &lt;/action>
 &lt;/KrusaderUserActions></programlisting>
@@ -821,7 +818,7 @@ foo</screen>
 &lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>
  &lt;action name="set wallpaper" >
-  &lt;title>Set as wallpaper&lt;/title>
+  &lt;title>Set as Wallpaper&lt;/title>
   &lt;tooltip>Set as wallpaper&lt;/tooltip>
   &lt;icon>image&lt;/icon>
   &lt;category>Service Menu&lt;/category>
@@ -837,7 +834,7 @@ foo</screen>
 &lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>
  &lt;action name="edit as root" >
-  &lt;title>Edit as root&lt;/title>
+  &lt;title>Edit as Root&lt;/title>
   &lt;tooltip>Edit as root&lt;/tooltip>
   &lt;icon>kwrite&lt;/icon>
   &lt;category>System&lt;/category>
@@ -850,26 +847,26 @@ foo</screen>
 
       <listitem><para>This useraction Add item(s) to Amarok playlist:
       <programlisting>
-&lt;!DOCTYPE KrusaderUserActions> 
-&lt;KrusaderUserActions> 
- &lt;action name="amarok enqueue" > 
-  &lt;title>Enqueue in Amarok&lt;/title> 
-  &lt;tooltip>Append selected item(s) to Amarok playlist&lt;/tooltip> 
-  &lt;icon>amarok&lt;/icon> 
-  &lt;category>Multimedia&lt;/category> 
-  &lt;description same_as="tooltip" /> 
-  &lt;command>amarok --append %aList(&quot;Selected&quot;)%&lt;/command> 
-  &lt;defaultshortcut>Win+A&lt;/defaultshortcut> 
- &lt;/action> 
+&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="amarok enqueue" >
+  &lt;title>Enqueue in Amarok&lt;/title>
+  &lt;tooltip>Append selected item(s) to Amarok playlist&lt;/tooltip>
+  &lt;icon>amarok&lt;/icon>
+  &lt;category>Multimedia&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command>amarok --append %aList(&quot;Selected&quot;)%&lt;/command>
+  &lt;defaultshortcut>Win+A&lt;/defaultshortcut>
+ &lt;/action>
 &lt;/KrusaderUserActions></programlisting>
-      </para></listitem>       
+      </para></listitem>
 
       <listitem><para>Opens <link linkend="krusyncdir">KruSyncDir</link>:
       <programlisting>
 &lt;!DOCTYPE KrusaderUserActions>
 &lt;KrusaderUserActions>
  &lt;action name="synchronizer" >
-  &lt;title>synchronizer&lt;/title>
+  &lt;title>Synchronizer&lt;/title>
   &lt;command>%_Sync(&quot;Sync 2&quot;)%&lt;/command>
  &lt;/action>
 &lt;/KrusaderUserActions></programlisting>

@@ -26,7 +26,7 @@ things and customize it to your own needs. At any time, pressing the <guibutton>
 will apply the changes, pressing <guibutton>"Close"</guibutton> will close Konfigurator, and pressing
 <guibutton>"Defaults"</guibutton> will re-apply &krusader;'s "factory" settings. Konfigurator is divided
 into pages, each containing items related to that page. For some changes to the &GUI;, you will have to close
-&krusader; and restart &krusader;.</para>
+and restart &krusader;.</para>
 
 <sect1 id="konfig-startup">
 <title>Startup page</title>
@@ -55,11 +55,11 @@ into pages, each containing items related to that page. For some changes to the 
     for each panel in the following manner:</para>
 
   <itemizedlist>
-  <listitem><para><guilabel>"Left/Right Panel starts at"</guilabel>: the following options are available
+  <listitem><para><guilabel>"Left/Right Panel starts at"</guilabel>: the following options are available:
     <itemizedlist>
     <listitem><para><remark>homepage:</remark> This panel will start at a
              specified homepage. In this case, you also need to choose a directory
-             which will be this panels homepage.</para></listitem>
+             which will be this panel's homepage.</para></listitem>
     <listitem><para><remark>workdir:</remark> This panel will start at the
              folder it was executed from.</para></listitem>
     <listitem><para><remark>last place it was:</remark> This panel will start
@@ -74,9 +74,9 @@ into pages, each containing items related to that page. For some changes to the 
    <varlistentry><term><guilabel>User Interface</guilabel></term>
   <listitem><para>Determine which parts of the user interface are visible during startup.
   <itemizedlist>
-  <listitem><para><guilabel>"Save settings on exit"</guilabel>: when shutdown, &krusader; checks the
-         state of the user interface components, and restores them to the condition they were during
-         shutdown.</para></listitem>
+  <listitem><para><guilabel>"Save settings on exit"</guilabel>: at shutdown, &krusader; saves the
+         state of the user interface components, and restores them to that state when next
+         started.</para></listitem>
   <listitem><para><guilabel>"Main Toolbar visible"</guilabel>: if checked, the
          &main_toolbar_lnk; will be visible after startup.</para></listitem>
   <listitem><para><guilabel>"Statusbar visible"</guilabel>: if checked, the statusbar will be
@@ -91,8 +91,8 @@ into pages, each containing items related to that page. For some changes to the 
          emulator will be visible after startup.
          </para></listitem>
   <listitem><para><guilabel>"Restore last postion and size"</guilabel>: when launched, &krusader;
-          will resize itself to the last size it was when last shutdown. 
-          &krusader; will also appear in the same location on the screen.
+          will resize itself to the size and position in effect when it was shutdown.
+          &krusader; will appear in the same location on the screen.
           </para></listitem>
   </itemizedlist>
   </para></listitem>
@@ -108,7 +108,7 @@ into pages, each containing items related to that page. For some changes to the 
       application to your needs. The page is divided into five tabs: <guilabel>Operation</guilabel>,
       <guilabel>Panel</guilabel>, <guilabel>Toolbar</guilabel>, <guilabel>Key-bindings</guilabel> and
       <guilabel>Panel Toolbar</guilabel>. Since <guilabel>Toolbar</guilabel>
-       and <guilabel>Key-bindings</guilabel> are &kde; standard tools we'll focus on
+       and <guilabel>Key-bindings</guilabel> are &kde; standard tools, we'll focus on
        the other sections:</para>
 
 <!--HTML_PARSING
@@ -128,26 +128,27 @@ HTML_PARSING-->
 
 <itemizedlist><title><guilabel>Look &amp; Feel</guilabel></title>
   <listitem><para><guilabel>"Warn on exit"</guilabel>: if checked, &krusader; will display an "Are you
-       sure?" warning when you're trying to shut it down. Otherwise, it will exit without
+       sure?" warning when you try to shut it down; otherwise, it will exit without
        protest.</para></listitem>
   <listitem><para><guilabel>"Minimize to tray"</guilabel>: if checked, when you minimize &krusader;,
-       its icon will appear in the system tray instead of the taskbar.</para></listitem>
-  <listitem><para><guilabel>"Show hidden files"</guilabel>: if checked, &krusader; will display the "dot-
+       it's icon will appear in the system tray instead of the taskbar.</para></listitem>
+  <listitem><para><guilabel>"Show Hidden files"</guilabel>: if checked, &krusader; will display the "dot-
        files" which are otherwise hidden.</para></listitem>
-  <listitem><para><guilabel>"Automark directories"</guilabel>: when
+  <listitem><para><guilabel>"Automark Directories"</guilabel>: when
        <link linkend="mark-menu">marking a group of files</link> (either by
-       using Select Group or by using Select All), &krusader; will check this option. If it is checked,
+       using Select Group or by using Select All), &krusader; will check this option. If checked,
        then directories matching the select criteria will also be marked; otherwise, only files will be
        marked.</para></listitem>
-  <listitem><para><guilabel>"Case sensitive sorting"</guilabel>: if checked (the &UNIX; default), all
+  <listitem><para><guilabel>"Case Sensitive Sorting"</guilabel>: if checked (the &UNIX; default), all
        files beginning with capital letters appear before files beginning with non-capital letters;
        otherwise, all files beginning with a specified letter (capital or otherwise) will appear
        together.</para></listitem>
-  <listitem><para><guilabel>"Use fullpath tab names"</guilabel>: if checked, display the full path 
-                             in the &foldertabs_lnk;, otherwise only the last part of the path will be displayed.</para></listitem>
-  <listitem><para><guilabel>"New style quicksearch"</guilabel>: The new
+  <listitem><para><guilabel>"Use fullpath tab names"</guilabel>: if checked, display the full path
+                             in the &foldertabs_lnk;, otherwise only the last part of the path will
+														 be displayed.</para></listitem>
+  <listitem><para><guilabel>"New style Quicksearch"</guilabel>: The new
              <link linkend="quicksearch">Quicksearch</link> feature is used.</para></listitem>
-  <listitem><para><guilabel>"Case sensitive quicksearch"</guilabel>: When using the
+  <listitem><para><guilabel>"Case Sensitive Quicksearch"</guilabel>: When using the
              <link linkend="quicksearch">Quicksearch</link> feature: if checked (the &UNIX; default), all
        files beginning with capital letters appear before files beginning with non-capital letters;
        otherwise, all files beginning with a specified letter (capital or otherwise) will appear
@@ -171,7 +172,7 @@ HTML_PARSING-->
                                 global policy"</guilabel>: if checked,
                   it uses &kde;'s <command>kcontrol</command> setting.
       <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
-                        <guimenuitem>Peripherials</guimenuitem><guimenuitem>Mouse</guimenuitem></menuchoice></emphasis>
+                        <guimenuitem>Peripherals</guimenuitem><guimenuitem>Mouse</guimenuitem></menuchoice></emphasis>
       here you will have two options:
       <itemizedlist>
         <listitem><para>Double-click to open files and folders (select icons on first click).
@@ -183,18 +184,16 @@ HTML_PARSING-->
 </itemizedlist>
 
 <itemizedlist><title><guilabel>Mouse selection modes</guilabel></title>
-      <listitem><para><guilabel>"&krusader; mode"</guilabel>: the way &krusader; used to work from day one.
+      <listitem><para><guilabel>"&krusader; mode"</guilabel>: the way &krusader; has worked from day one.
          Both keys allow selecting files. To select more than one file, hold the
-         &Ctrl; key and click the &LMB;. Right-click
-         menu is invoked using a short click on the &RMB;.
-                           </para></listitem>
-  <listitem><para><guilabel>"&konqueror; mode"</guilabel>: this way, pressing the
-         &LMB; selects files - you can click and select multiple files.
+         &Ctrl; key and click the &LMB;. Right-click menu is invoked using a short click on
+				 the &RMB;.</para></listitem>
+  <listitem><para><guilabel>"&konqueror; mode"</guilabel>: pressing the &LMB; selects files --
+					you can click and select multiple files.
          Right-click menu is invoked using a short click on the &RMB;.
          </para></listitem>
-  <listitem><para><guilabel>"&tcmd; mode"</guilabel>: this way pressing the
-         &RMB; selects multiple files and the right-click menu is
-         invoked by <guilabel>pressing and holding</guilabel> the &RMB;
+  <listitem><para><guilabel>"&tcmd; mode"</guilabel>: pressing the &RMB; selects multiple files
+					and the right-click menu is invoked by <guilabel>pressing and holding</guilabel> the &RMB;
          The &LMB; does not select, but sets the current file without affecting the current selection.
          </para></listitem>
 </itemizedlist>
@@ -209,7 +208,7 @@ HTML_PARSING-->
   <listitem><para><guilabel>"Filelist icon size"</guilabel>: allows you to change the size of the icons in
        the file lists. The available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
   <listitem><para><guilabel>"Extension Column"</guilabel>: if checked,
-                    show the last part of the filename (part after the last dot) in the Ext Column and not 
+                    show the last part of the filename (part after the last dot) in the Ext Column and not
                     as a complete filename in the Name Column like e.g. &konqueror; does.</para></listitem>
   <listitem><para><guilabel>"Permission Column"</guilabel>: if checked,
                     show the full perissions &eg; "-rw-r--r--".</para></listitem>
@@ -250,21 +249,21 @@ HTML_PARSING-->
 <para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
           of your favourite functions the way you want.</para>
 
-<para>With the <guibutton>"Inport shortcuts"</guibutton> <guibutton>"Export shortcuts"</guibutton> buttons you 
-      can load and save a Key-binding profile. 
-      This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom Key-bindings.
-      The only limitation at this is moment that the global &kde; key-bindings, &krusader; key-bindings who can't 
-      be changed yet, some features in foo-commander that we either don't have or don't need.
-      The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>, 
-      the <filename>foo.keymap.info</filename> contains a description, 
+<para>With the <guibutton>"Import shortcuts"</guibutton> <guibutton>"Export shortcuts"</guibutton> buttons you
+      can load and save a Key-binding profile.
+      This allows &krusader; to have the &tcmd;, &mc;, foo-commander, or your custom Key-bindings.
+      The only limitation is that global &kde; key-bindings and some &krusader; key-bindings can't
+      be changed yet, as well as some features in foo-commander that we either don't have or don't need.
+      The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
+      the <filename>foo.keymap.info</filename> contains a description,
       the <filename>foo.keymap</filename> is a binary file that holds the Key-bindings.
-      If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it, 
-      showing additional information regarding the loaded Key-bindings file. 
-      Here you have a chance to regret and not to import the Key-bindings file.
+      If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it,
+      showing additional information regarding the loaded Key-bindings file.
+      Here you have a chance to exit without importing the proposed Key-bindings file.
       </para>
-      
-<para>A &tcmd; Key-bindings file is provided, if you like you can &mail_url; us your produced favorite foo-commander 
-      Key-bindings files, so that it can be shipped with &krusader;.</para>
+
+<para>A &tcmd; Key-bindings file is provided. If you like you can &mail_url; us your favorite foo-commander
+      Key-bindings files. It might just be shipped with &krusader;. :-))</para>
 </sect2>
 
 
@@ -299,10 +298,11 @@ HTML_PARSING-->
 
 <para>This page configures the <link linkend="mainwindow">colors</link> in the list panel.
       The <guilabel>"KDE default colors"</guilabel> is the default color configuration,
-      <guilabel>"Use alternate background color"</guilabel> checkbox will enable/disable the alternate &kde; colors.
+      <guilabel>"Use Alternate Background color"</guilabel> checkbox will enable/disable
+			the alternate &kde; colors.
       </para>
-
-<!--HTML_PARSING
+<!-- how to -->
+<!-- HTML_PARSING
 <screenshot>
   <screeninfo>Konfigurator color page</screeninfo>
   <mediaobject>
@@ -318,7 +318,7 @@ HTML_PARSING-->
  <varlistentry><term><guilabel>General</guilabel></term>
   <listitem>
   <itemizedlist>
-  <listitem><para><guilabel>"Use alternate background color"</guilabel>:
+  <listitem><para><guilabel>"Use Alternate Background color"</guilabel>:
                      If checked, the <guilabel>"Background"</guilabel> color and the
                      <guilabel>"Alternate background"</guilabel> color alternates line by line.
                            When you don't use the &kde; default colors, you can configure the
@@ -335,9 +335,9 @@ HTML_PARSING-->
  <varlistentry><term><guilabel>Colors</guilabel></term>
   <listitem><para>Choose the colors the way you like. In the <guilabel>"Preview"</guilabel> section you can
   see the result. The colors of the active and inactive panel can be configured. The following items can
-  be configured</para>
+  be configured:</para>
   <itemizedlist>
-        <listitem><para><guilabel>Foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Directory foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Executable foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Symbolic link foreground</guilabel></para></listitem>
@@ -359,10 +359,10 @@ HTML_PARSING-->
   </listitem></varlistentry>
 
  <varlistentry><term><guilabel>Color schemes</guilabel></term>
-  <listitem><para>With the <guibutton>"Inport Color Scheme"</guibutton> <guibutton>"Export Color Scheme"</guibutton> 
-      buttons you can load and save a Color Scheme profile. 
+  <listitem><para>With the <guibutton>"Import Color Scheme"</guibutton> <guibutton>"Export Color Scheme"</guibutton>
+      buttons you can load and save a Color Scheme profile.
       This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom colors.
-      The Color Schemes are stored in <filename>$KDEDIR/share/apps/krusader</filename>, 
+      The Color Schemes are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
       the <filename>foo.color</filename> is a binary file that holds the Color Scheme.</para>
   </listitem></varlistentry>
 
@@ -390,7 +390,7 @@ HTML_PARSING-->
 <para>The following options determine basic aspects of operation:
 
 <itemizedlist>
-  <listitem><para><guilabel>"Delete files / Move to trash"</guilabel>: when &krusader; deletes files it can
+  <listitem><para><guilabel>"Delete files/Move to trash"</guilabel>: when &krusader; deletes files it can
        either 'really' delete them or move them to the trash folder, thereby making them available via
        &kde;'s trash.</para></listitem>
   <listitem><para><guilabel>"Use mimetype magic"</guilabel>: mimetype magic is a mechanism which allows
@@ -403,13 +403,13 @@ HTML_PARSING-->
        F4).</para></listitem>
   <listitem><para><guilabel>"Terminal"</guilabel>: choose what terminal emulator will be used when &krusader;
        opens a console window (via F2, or Commands->Terminal menu option).</para></listitem>
-  <listitem><para><guilabel>"Temp directory"</guilabel>: this option selects the base directory for
+  <listitem><para><guilabel>"Temp Directory"</guilabel>: this option selects the base directory for
        &krusader;'s temporary files. The actual files will be created in separate directories under the
        'Temp directory', so that each user running &krusader; will have his/her own temporary
        subdirectories under the chosen directory.
 
-  <note><para>You must choose a temporary directory such that all users running &krusader;
-           have full permissions to!</para></note></para></listitem>
+  <note><para>You must choose a temporary directory to which all users running &krusader;
+           have full permissions!</para></note></para></listitem>
 </itemizedlist></para>
 
 </sect1>
@@ -446,8 +446,8 @@ HTML_PARSING-->
         of your cdrom. Note, however, that &krusader;  will NOT unmount when exiting
         <filename class="directory">/mnt/cdrom</filename>.</para></listitem>
   <listitem><para><guilabel>"MountMan won't (un)mount the following mount-points"</guilabel>:
-              If you have filesystems that you don't want to accidently unmount (or mount) then
-        enter a list of mountpoints seperated by commas
+              If you have filesystems that you don't want to accidentally unmount (or mount) then
+        enter a list of mountpoints separated by commas
                     (&eg; <literal>/, /boot, /tmp</literal>) and &mountman_lnk; won't try to (un)mount them.</para></listitem>
   </itemizedlist>
   </listitem>
@@ -455,7 +455,7 @@ HTML_PARSING-->
 
 <varlistentry><term><guilabel>Confirmations</guilabel></term>
   <listitem><para>By checking the options in this section, &krusader; will ask for confirmation
-       before doing a specific action; otherwise, the following actions will be done without warning.</para>
+       before doing a specific action; otherwise, the following actions will be done without warning:</para>
        <itemizedlist>
            <listitem><para>deleting non empty directorie(s)</para></listitem>
            <listitem><para>deleting file(s)</para></listitem>
@@ -466,7 +466,7 @@ HTML_PARSING-->
 
 <varlistentry><term><guilabel>Fine-Tuning</guilabel></term>
   <listitem><itemizedlist>
-  <listitem><para><guilabel>"Icon cache size"</guilabel>: &krusader; uses an icon cache, so it won't have to
+  <listitem><para><guilabel>"Icon Cache Size"</guilabel>: &krusader; uses an icon cache, so it won't have to
       reload icons that were already used before. Of course, as the cache grows bigger, it can store more
       icons and further speed operations, but the memory footprint of &krusader; will be
       bigger.</para></listitem>

@@ -4,8 +4,8 @@ The Krusader Handbook ChangeLog
   ADDED: Ctrl+Alt+j keybinding for the JavaScript console
   ADDED: Help Krusader
   ADDED: Actions Toolbar
-  ADDED: color scheme export/import 
-  ADDED: searcher, feed to listbox (with virtual folders) 
+  ADDED: color scheme export/import
+  ADDED: searcher, feed to listbox (with virtual folders)
   ADDED: useraction placeholder %_ask(..)%
   ADDED: PanelSize placeholder %_PanelSize% %aPanelSize("80")%
   ADDED: show/hide listpanel Columns by right clicking the Column Header
@@ -20,19 +20,19 @@ The Krusader Handbook ChangeLog
   ADDED: This handbook is available in several formats (HTML, TXT, RTF, PDF)
   ADDED: resize to a small size even with Fn keys showing (FAQ)
   ADDED: vertical-horizontal list panel, alt+ctrl+v
-  ADDED: ctrl-up arrow (from the panel) goes up to the Location Toolbar 
-  ADDED: New commandline option: --profile <panel-profile> 
+  ADDED: ctrl-up arrow (from the panel) goes up to the Location Toolbar
+  ADDED: New commandline option: --profile <panel-profile>
   ADDED: UserAction Forum (faq.docbook), thanks Dirk
   ADDED: 64 bit FAQ (faq.docbook), thanks Marc on our forum
          http://krusader.sourceforge.net/phpBB/viewtopic.php?t=951
 
 UPDATED: Introduction and features separated into a new chapter
-UPDATED: Foreword, thanks to Terry Wilkinson  aka Fudoki
+UPDATED: Foreword, thanks to Terry "Fudoki" Wilkinson
 UPDATED: Toolbar -> Main Toolbar (due to the Actions Toolbar)
 UPDATED: remoteman was disabled. from now on, bookmark manager only
-UPDATED: Commands - New Net Connection: FTP, SMB, FISH or SFTP connection   
+UPDATED: Commands - New Net Connection: FTP, SMB, FISH or SFTP connection
 UPDATED: mouse seclection mode
-UPDATED: Function (FN) Keys Bar keybindings are now configurable         
+UPDATED: Function (FN) Keys Bar keybindings are now configurable
 UPDATED: Amarok useraction, thanks Dirk (installation.docbook)
 
 1.51.00
@@ -41,32 +41,31 @@ Date: 28/11/2004
 
 Richard Holt is now an official memmber of the documentation team.
 Welcome aboard Richard!
-  FIXED: many typos fixed - Thanks to Richard Hold
+  FIXED: many typos fixed - Thanks to Richard Holt
 
 1.50.04
 ======================
 Date: 19/11/2004
 
-  FIXED: Proof read and fixed spelling etc. - Thanks to Richard Hold
+  FIXED: Proof read and fixed spelling etc. - Thanks to Richard Holt
   FIXED: uncommented <?xml version="1.0" ?> in index.docbook
   FIXED: removed some acronym elements, the jade parser does not like them
-  FIXED: <imagedata fileref="foo.eps" ...> -> foo.png 
+  FIXED: <imagedata fileref="foo.eps" ...> -> foo.png
 REMOVED: bookmanuse.png not used anymore since hanbook 1.00.02
-         it was forgotten to delete it in cvs
   ADDED: useraction: Parameter-description for the placeholder
 
 1.50.03
 ======================
 Date: 04/11/2004
 
-  FIXED: doc/pics/Makefile.am dit not remove krusader_title.png & 
+  FIXED: doc/pics/Makefile.am did not remove krusader_title.png &
          tabbed_browsing.png when running 'make uninstall'
   ADDED: syncdir.png
 REMOVED: kglookfeel.png kggeneral.png kgadvanced.png kgarchives.png
          in cvs but not in the html documentation
-  ADDED: FAQ does Krusader needs KDE?
+  ADDED: FAQ: Does Krusader needs KDE?
 UPDATED: required KDElib versions
-UPDATED: Useractions, thanks for the feedback Jonas
+UPDATED: User Actions, thanks for the feedback Jonas B&auml;hr
   FIXED: Proof read and fixed spelling etc. - Thanks to Mark Eatough
 UPDATED-FIXED: many small issues
 
@@ -123,10 +122,9 @@ UPDATED: some obsolete issues
 UPDATED: Origin Button -> Location Toolbar
 UPDATED: usage of more default KDE Docbook entities, often located in
          /usr/share/apps/ksgmltools2/customization/en/
-	 /usr/share/apps/ksgmltools2/customization/entities/
+         /usr/share/apps/ksgmltools2/customization/entities/
 UPDATED-FIXED: many small issues
-	 
-	 
+
 1.40.01
 Date: 17/05/2004
 UPDATED: RPM FAQ
@@ -153,22 +151,22 @@ UPDATED-FIXED: many small issues
 ======================
 Date: 12.02.2004
 From now on the <releaseinfo> tag always matches the Krusader version number that is
-described in the documentation.
-e.g. "Krusader Handbook version 1.31.xx" describes "Krusader version 1.31"
+described in the documentation, e.g., "Krusader Handbook version 1.31.xx"
+describes "Krusader version 1.31"
 
   ADDED: New Quicksearch (using-krusader.sgml) - Thanks to Heiner Eichmann
   ADDED: Folder history (using-krusader.sgml) - Thanks to Hans Loffler
   ADDED: appendix: configuration files (installation.sgml)
 UPDATED: New Konfigurator (konfigurator.sgml) - Thanks to Karai Csaba
-UPDATED: I try to follow the guidelines of "The KDE DocBook Authors guide"
-         but in some cases i don't do that ;-)
+UPDATED: I try to follow the guidelines in "The KDE DocBook Authors guide"
+         but sometimes I don't do it. ;-)
 UPDATED: FAQ's (faq.sgml)
 UPDATED: Calculate occupied space (using-krusader.sgml) - Thanks to Heiner Eichmann
 UPDATED: Krviewer (krusader-tools.sgml)
-UPDATED: new package description - Thanks to Jonas B�r
+UPDATED: new package description - Thanks to Jonas B&auml;hr
 UPDATED-FIXED: many small issues
 Date: 01.02.2004
-  FIXED: Proof read and fixed spelling etc. - Thanks to Mark Eatough
+  FIXED: Proofread and fixed spelling, etc. - Thanks to Mark Eatough
 Date: 06.01.2004
   ADDED: User Menu (commands.sgml) - Thanks to Shie Erlich
 UPDATED: manpage (krusader.1)
@@ -188,7 +186,7 @@ UPDATED: Questions and Answers (faq.sgml)
 UPDATED: many small issues
   FIXED: many small issues
   FIXED: spelling mistakes/typos corrections
-         proof reading, thanks to Mark Eatough
+         proofreading, thanks to Mark Eatough
 
 1.00.04
 ======================
@@ -201,7 +199,7 @@ UPDATED: Questions and Answers (faq.sgml) krarc slave issue
   ADDED: Starting Krusader (installation.sgml)
   ADDED: Note from the Editors (installation.sgml)
   FIXED: spelling mistakes/typos corrections
-         proof reading, thanks to Mark Eatough
+         proofreading, thanks to Mark Eatough
 
 1.00.03
 ======================
@@ -216,11 +214,11 @@ KRUSADER MANPAGE:  ADDED: ~/.kde/share/apps/krusader/krbookmarks.xml
 UPDATED: cmdline.png, fnkeys.png, krusader1.png, listpanel.png
          mainwindow.png, terminalEmu.png, toolbar.png (using-krusader.sgml)
 UPDATED: BookMan, bookmanadd.png, bookmanedit.png (krusader-tools.sgml)
-REMOVED: bookmanuse.png (using-krusader.sgml)
+REMOVED: bookmanuse.png (using-krusader.sgml) [actually, not till 1.50.04 :]
 UPDATED: Note: RemoteMan wil be removed (krusader-tools.sgml)
   ADDED: tabbed browsing, tabbed_browsing.png (using-krusader.sgml)
 UPDATED: Tree Panel, Quick View Panel,
-         Note: is temporarily disabled since Krusader 1.12-beta1 and wil be rewritten, sorry.
+         Note: temporarily disabled since Krusader 1.12-beta1 --will be rewritten, sorry.
 	 small issues, Compare mode (using-krusader.sgml)
 UPDATED: Chapter 3. Command Reference (commands.sgml)
   ADDED: Questions and Answers (faq.sgml) Samba codepage issue
@@ -233,10 +231,10 @@ UPDATED: Introduction (introduction.sgml)
 ======================
 Date: 05.10.2003
 UPDATED: installation (installation.sgml)
-UPDATED: Questions and Answers (faq.sgml)
+UPDATED: Frequently Asked Questions and Answers (faq.sgml)
 UPDATED: Credits and License (credits.sgml)
   ADDED: NOTE: We are busy with updating the The Krusader Handbook. (index.docbook)
-UPDATED: small issues,  ex. KDE2.x -> 3.x (index.docbook)
+UPDATED: small issues, eg., KDE2.x -> 3.x (index.docbook)
 The Krusader Handbook is now continued and maintained by Frank Schoolmeesters.
 
 1.00.00
