@@ -655,6 +655,7 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
    krJS->runFile( filename );
    
    //TODO: messagebox on JS-errors
+   // comming with KDE-3.4: http://webcvs.kde.org/kdebindings/kjsembed/jsobjecteventproxy.cpp?rev=1.16&view=log
    
    //kdDebug() << "JS: done" << endl;
    
