@@ -43,6 +43,7 @@
 
 #include <time.h>
 #include <kglobal.h>
+#include <kinputdialog.h>
 #include <qregexp.h>
 #include <qfontmetrics.h>
 #include <kmessagebox.h>
@@ -489,6 +490,14 @@ void KrSearchDialog::rightClickMenu(QListViewItem *item, const QPoint&, int)
 void KrSearchDialog::feedToListBox()
 {
   static int listBoxNum = 1;
+  bool ok;
+  QString queryName = KInputDialog::getText(
+                i18n("Query name"),		// Caption
+                i18n("Here you can name the file collection"),	// Questiontext
+                i18n("Search results")+QString( " %1" ).arg( listBoxNum++ ),	// Default
+                &ok );
+   if ( ! ok)
+     return;
   
   KURL::List urlList;
   QListViewItem * item = resultsList->firstChild();
@@ -499,7 +508,7 @@ void KrSearchDialog::feedToListBox()
     urlList.push_back( vfs::fromPathOrURL( name ) );
     item = item->nextSibling();
   }
-  KURL url = KURL::fromPathOrURL(QString("virt:/")+ i18n("Search results")+QString( " %1" ).arg( listBoxNum++ ));
+  KURL url = KURL::fromPathOrURL( QString("virt:/") + queryName );
   virt_vfs v(0,true);
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
