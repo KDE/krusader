@@ -55,8 +55,6 @@ class KRslots : public QObject {
     ~KRslots() {}
 
   public slots:
-    void selectCompareMask();
-    void compareDirectories();
     void sendFileByEmail( QString filename );
     void compareContent();
     void compareContent( KURL, KURL );

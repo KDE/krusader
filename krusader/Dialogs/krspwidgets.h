@@ -48,7 +48,6 @@ public:
 
   static QString getMask(QString caption); // get file-mask for (un)selecting files
   static QString newFTP();
-  static void selectCompareColorMask(int *, int *);
 
 private:
   static QStrList maskList;  // used by KRMaskChoiceSub 

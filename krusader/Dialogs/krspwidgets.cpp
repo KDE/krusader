@@ -60,39 +60,6 @@ QString KRSpWidgets::getMask(QString caption) {
     else return p->selection->currentText();
 }
 
-void KRSpWidgets::selectCompareColorMask(int *left, int *right) {
-//  int l = krApp->mainView->left->colorMask;
-//  int r = krApp->mainView->right->colorMask;
-
-  // create the dialog, and fill in the data according to current color mask
-  colorMaskDialog *dlg = new colorMaskDialog();
-/*  dlg->newerLeft->setChecked(l & KRListItem::newer);
-  dlg->olderLeft->setChecked(l & KRListItem::older);
-  dlg->identicalLeft->setChecked(l & KRListItem::identical);
-  dlg->exclusiveLeft->setChecked(l & KRListItem::exclusive);
-  dlg->newerRight->setChecked(r & KRListItem::newer);
-  dlg->olderRight->setChecked(r & KRListItem::older);
-  dlg->identicalRight->setChecked(r & KRListItem::identical);
-  dlg->exclusiveRight->setChecked(r & KRListItem::exclusive);*/
-
-  if (!dlg->exec()) {
-    *left = *right = -1;
-    return;
-  }
-
-  // create masks
-  (*left) = 0; (*right) = 0;
-/*  (*left) |= (dlg->newerLeft->isChecked() ? KRListItem::newer : 0);
-  (*left) |= (dlg->olderLeft->isChecked() ? KRListItem::older : 0);
-  (*left) |= (dlg->identicalLeft->isChecked() ? KRListItem::identical : 0);
-  (*left) |= (dlg->exclusiveLeft->isChecked() ? KRListItem::exclusive : 0);
-
-  (*right) |= (dlg->newerRight->isChecked() ? KRListItem::newer : 0);
-  (*right) |= (dlg->olderRight->isChecked() ? KRListItem::older : 0);
-  (*right) |= (dlg->identicalRight->isChecked() ? KRListItem::identical : 0);
-  (*right) |= (dlg->exclusiveRight->isChecked() ? KRListItem::exclusive : 0);*/
-}
-
 /////////////////////////// newFTP ////////////////////////////////////////
 QString KRSpWidgets::newFTP() {
   newFTPSub *p=new newFTPSub();
@@ -174,16 +141,6 @@ KRMaskChoiceSub::KRMaskChoiceSub() : KRMaskChoice(0,0,true) {
   selection->lineEdit()->setText("*");
   selection->lineEdit()->selectAll();
   selection->setFocus();
-  // use compare-mode if available
-  if (krApp->krCompareDirs->isChecked()) {
-    // an ugly hack - use the (compare mode) string as a way to distinguish
-    // normal entries --> this should be fixed so that the dialog will know
-    preSelections->insertItem(i18n("Newer files (compare mode)"));
-    preSelections->insertItem(i18n("Older files (compare mode)"));
-    preSelections->insertItem(i18n("Identical files (compare mode)"));
-    preSelections->insertItem(i18n("Exclusive files (compare mode)"));
-    preSelections->update();
-  }
 }
 
 void KRMaskChoiceSub::reject() {

@@ -347,21 +347,6 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       size = KRpermHandler::parseSize( vf->vfile_getSize() );
       name = vf->vfile_getName();
       bool isDir = vf->vfile_isDir();
-      /*KRListItem::cmpColor color = KRListItem::none;
-      if( otherPanel->type == "list" && compareMode ){
-        vfile* ovf = otherPanel->files->vfs_search(vf->vfile_getName());
-        if (ovf == 0 ) color = KRListItem::exclusive;  // this file doesn't exist on the other panel
-        else{ // if we found such a file
-            QString date1 = KRpermHandler::date2qstring(vf->vfile_getDateTime());
-            QString date2 = KRpermHandler::date2qstring(ovf->vfile_getDateTime());
-            if (date1 > date2) color = KRListItem::newer; // this file is newer than the other
-            else
-            if (date1 < date2) color = KRListItem::older; // this file is older than the other
-            else
-            if (date1 == date2) color = KRListItem::identical; // the files are the same
-        }
-        }*/
-
       if ( !isDir || ( isDir && ( _filter & ApplyToDirs ) ) ) {
          switch ( _filter ) {
                case KrView::All :
@@ -382,7 +367,6 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
                case KrView::ApplyToDirs :
                break; // no-op, stop compiler complaints
          }
-         /*if ( compareMode && !(color & colorMask) ) continue;*/
       }
 
       item = new KrDetailedViewItem( this, item, vf );

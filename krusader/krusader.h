@@ -154,7 +154,6 @@ class Krusader : public KParts::MainWindow {
 #define krUnpack          Krusader::App->actUnpack         // unpack archive
 #define krTest            Krusader::App->actTest           // test archive
 #define krCompare         Krusader::App->actCompare        // compare 2 files by content
-#define krCompareDirs     Krusader::App->actCompareDirs    // compare 2 directories
 #define krCalculate       Krusader::App->actCalculate      // calculate occupied space
 #define krSelect          Krusader::App->actSelect         // select a group by filter
 #define krSelectAll       Krusader::App->actSelectAll      // select all files
@@ -177,7 +176,6 @@ class Krusader : public KParts::MainWindow {
 #define krRoot            Krusader::App->actRoot
 #define krFind            Krusader::App->actFind           // find files
 #define krMultiRename     Krusader::App->actMultiRename
-#define krSelectColorMask Krusader::App->actSelectColorMask// select compare-mask
 #define krToggleTerminal  Krusader::App->actToggleTerminal
 #define krToggleSortByExt Krusader::App->actToggleSortByExt// Sort by extention
 #define krOpenLeftBm      Krusader::App->actOpenLeftBm     // open left bookmarks

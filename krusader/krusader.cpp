@@ -410,9 +410,6 @@ void Krusader::setupActions() {
    KStdAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
 
    // the toggle actions
-   actCompareDirs = new KToggleAction( i18n( "Com&pare Mode" ), "view_left_right",
-                                       CTRL + Key_Equal, SLOTS, SLOT( compareDirectories() ), actionCollection(), "compare mode" );
-   actCompareDirs->setChecked( false );
    actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), 0, SLOTS,
                                         SLOT( toggleFnkeys() ), actionCollection(), "toggle fn bar" );
    actToggleFnkeys->setChecked( true );
@@ -437,8 +434,6 @@ void Krusader::setupActions() {
    new KAction( i18n( "&Edit new file" ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
    new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_red", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
-   actSelectColorMask = new KAction( i18n( "Co&nfigure compare-mode" ), 0,
-                                     SLOTS, SLOT( selectCompareMask() ), actionCollection(), "select colormask" );
    actTest = new KAction( i18n( "T&est Archive(s)" ), "ark", ALT + Key_E,
                           SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
    actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", CTRL + Key_C,

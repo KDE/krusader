@@ -65,24 +65,6 @@ QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ ) {
       icon.setMask( icon.createHeuristicMask( false ) );
    }
 
-   // color-coding for compare mode
-   /*  if (color != KRListItem::none) {
-       QPixmap block;
-       switch (color) {
-         case KRListItem::exclusive : block = QPixmap(blue_xpm);
-                                      break;
-         case KRListItem::newer     : block = QPixmap(green_xpm);
-                                      break;
-         case KRListItem::older     : block = QPixmap(red_xpm);
-                                      break;
-         case KRListItem::identical : block = QPixmap(yellow_xpm);
-                                      break;
-       }
-   		
-   		bitBlt (&icon,icon.width()-11,0,&block,0,21,10,11,CopyROP,false);
-   		icon.setMask( icon.createHeuristicMask(false) );
-     }*/
-
    return icon;
 }
 

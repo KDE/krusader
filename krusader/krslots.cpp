@@ -83,37 +83,6 @@
 #define ACTIVE_PANEL_MANAGER  (ACTIVE_PANEL == krApp->mainView->left ? krApp->mainView->leftMng : \
                                 krApp->mainView->rightMng)
 
-
-void KRslots::selectCompareMask() {
-  int left=0,right=0;
-  KRSpWidgets::selectCompareColorMask(&left, &right);
-  if (left>0 && right>0) { // safeguard
-    MAIN_VIEW->left->colorMask = left;
-    MAIN_VIEW->right->colorMask = right;
-    if (krCompareDirs->isChecked() ) {
-      ((ListPanel*)MAIN_VIEW->left)->view->clear();
-      ((ListPanel*)MAIN_VIEW->left)->slotUpdate();
-      ((ListPanel*)MAIN_VIEW->right)->view->clear();
-      ((ListPanel*)MAIN_VIEW->right)->slotUpdate();
-    }
-  }
-}
-
-void KRslots::compareDirectories() {
-  KMessageBox::sorry(0, i18n("Compare mode is temporarily disabled. sorry"));
-
-  if (!krCompareDirs->isChecked()) {
-    ACTIVE_PANEL->compareMode = false;
-    ACTIVE_PANEL->otherPanel->compareMode = false;
-    REFRESH_BOTH_PANELS;
-    return;
-  } // else is implied
-
-  ACTIVE_PANEL->compareMode = true;
-  ACTIVE_PANEL->otherPanel->compareMode = true;
-  REFRESH_BOTH_PANELS;
-}
-
 void KRslots::sendFileByEmail(QString filename) {
   QString mailProg;
   QStringList lst = Krusader::supportedTools();
