@@ -278,7 +278,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     searchIn = new QListBox( GroupBox1, "searchIn" );
     searchIn->setSelectionMode( QListBox::Extended );
-  
+
     GroupBox1Layout->addMultiCellWidget( searchIn, 1, 1, 0, 2 );
 
     searchInBtnAdd = new QToolButton( GroupBox1, "searchInBtnAdd" );
@@ -687,9 +687,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     TextLabel4->setFont( TextLabel4_font );
     TextLabel4->setText( i18n( "Note: a '?' is a wildcard" ) );
 
-    GroupBox181Layout->addWidget( TextLabel4, 2, 3 );
-    QSpacerItem* spacer_4 = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    GroupBox181Layout->addMultiCell( spacer_4, 2, 2, 0, 2 );
+    GroupBox181Layout->addMultiCellWidget( TextLabel4, 2, 2, 0, 3, Qt::AlignRight );
 
     tabLayout_2->addWidget( GroupBox181, 2, 0 );
     TabWidget2->insertTab( tab_2, i18n( "Advanced" ) );
