@@ -58,14 +58,17 @@ void UserActionXML::getActionDom() {
     }
     file.close();
     
-    QDomElement root = _doc->documentElement();
-    // check if the file got the right root-element (ACTION_ROOT) - this finds out if the xml-file read to the DOM is realy an krusader useraction-file
-    if( root.tagName() != ACTION_ROOT ) {
-      kdWarning() << "UserActions: the actionfile's root-element isn't called "ACTION_ROOT", using " << _filename << endl;
-      delete _doc; _doc = 0;
+    if ( _doc ) {
+      QDomElement root = _doc->documentElement();
+      // check if the file got the right root-element (ACTION_ROOT) - this finds out if the xml-file read to the DOM is realy an krusader useraction-file
+      if( root.tagName() != ACTION_ROOT ) {
+        kdWarning() << "UserActions: the actionfile's root-element isn't called "ACTION_ROOT", using " << _filename << endl;
+        delete _doc; _doc = 0;
+      }
     }
-      
-  } else
+
+  } // if ( file.open( IO_ReadOnly ) )
+  else
     _doc->appendChild( _doc->createElement( ACTION_ROOT ) ); // create new actionfile by adding a root-element ACTION_ROOT
     
 }
