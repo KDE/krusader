@@ -41,6 +41,7 @@
 
 KrViewer::KrViewer(QWidget *parent, const char *name ) :
   KParts::MainWindow(parent,name), manager(this,this){
+
   //setWFlags(WType_TopLevel | WDestructiveClose);
   setXMLFile("krviewerui.rc");
   setHelpMenuEnabled(false);
@@ -343,3 +344,10 @@ bool KrViewer::queryClose()
     return false;
   }
 }
+
+bool KrViewer::queryExit()
+{
+  kapp->ref(); // FIX: krusader exits at closing the viewer when minimized to tray
+  return true; // don't let the reference counter reach zero
+}
+

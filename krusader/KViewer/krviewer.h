@@ -53,6 +53,7 @@ public slots:
 
 protected:
   virtual bool queryClose();
+  virtual bool queryExit();
 
 private:
   KrViewer(QWidget *parent=0, const char *name=0);
