@@ -144,7 +144,7 @@ ListPanel::ListPanel(QWidget *parent, const char *name ) :
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(itemDescription(QString&)), krApp, SLOT(statusBarUpdate(QString&)));
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(contextMenu(const QPoint &)), this, SLOT(popRightClickMenu(const QPoint &)));
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));	
-  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));	
+  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
   ////////////////////////////// to do connections ///////////////////////////////////////////////
 
 	// make sure that a focus/path change reflects in the command line and activePanel
@@ -307,7 +307,7 @@ void ListPanel::slotGetStats(QString path) {
     status->setText(i18n("No space information inside archives"));
     return;
 	}
-	
+
 	if (path.contains(":/")) {
     status->setText(i18n("No space information on non-local filesystems"));
     return;
@@ -365,6 +365,7 @@ void ListPanel::handleDropOnView(QDropEvent *e) {
 
   if(!isWritable){
     e->ignore();
+    KMessageBox::sorry(0,i18n("Can't drop here, no write permissions."));
     return;
   }
   //////////////////////////////////////////////////////////////////////////////
