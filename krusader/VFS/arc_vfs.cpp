@@ -43,6 +43,7 @@
 #include <kio/jobclasses.h>
 #include <qprogressdialog.h>
 #include <kglobalsettings.h>
+#include <kmimetype.h>
 #include <kcursor.h>
 // krusader includes
 #include "arc_vfs.h"
