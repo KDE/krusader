@@ -89,7 +89,8 @@ QStringList KrServices::separateArgs( QString args )
 {
   QStringList argList;
   int   pointer = 0, tokenStart, len = args.length();
-  bool  quoted = false;
+  bool  quoted = false, slashed = false;
+  QChar quoteCh;
 
   do{
       while( pointer < len && args[ pointer ].isSpace() )
@@ -99,15 +100,36 @@ QStringList KrServices::separateArgs( QString args )
         break;
 
       tokenStart = pointer;
+
+      QString result="";
       
-      while( pointer < len && ( quoted || !args[ pointer ].isSpace()) )
+      while( pointer < len && ( quoted || slashed || !args[ pointer ].isSpace()) )
       {
-        if( args[pointer] == '"' )
-          quoted = !quoted;
+        slashed = false;
+        
+        if( !quoted && ( args[pointer] == '"' || args[pointer] == '\'' ) )
+          quoted = true, quoteCh = args[pointer];
+        else if( quoted && args[pointer] == quoteCh )
+          quoted = false;
+        else if( !quoted && args[pointer] == '\\' )
+        {
+          pointer++;
+          slashed = true;
+          continue;
+        }
+
+        result += args[pointer];        
         pointer++;
       }
 
-      argList.append( args.mid( tokenStart, pointer-tokenStart ) );
+      result = result.stripWhiteSpace();
+      if( result.startsWith( "'" ) && result.endsWith( "'" ) )
+        result = result.mid( 1, result.length()-2 );
+      else if( result.startsWith( "\"" ) && result.endsWith( "\"" ) )
+        result = result.mid( 1, result.length()-2 );
+
+      if( !result.isEmpty() )
+        argList.append( result );
       
     }while( pointer < len );
     
