@@ -91,7 +91,6 @@ class KRslots : public QObject {
     void execFilter();
     void customFilter();
     void newFTPconnection();
-    void newFTPconnection( QString host );
     void runKonfigurator( bool firstTime = false );
     void startKonfigurator() { runKonfigurator( false ); }
     void search();						 				// call the search module

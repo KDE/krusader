@@ -281,9 +281,8 @@ void KRslots::slotUnpack()      { ACTIVE_FUNC->unpack();                     }
 void KRslots::testArchive()     { ACTIVE_FUNC->testArchive();                }
 void KRslots::calcSpace()       { ACTIVE_FUNC->calcSpace();                  }
 void KRslots::FTPDisconnect()   { ACTIVE_FUNC->FTPDisconnect();              }
-void KRslots::newFTPconnection(){ newFTPconnection(QString::null); 					 }
-void KRslots::newFTPconnection(QString host)
-               					        { ACTIVE_FUNC->newFTPconnection(host);       }
+void KRslots::newFTPconnection(){ newFTPconnection();                        }
+
 // run external modules / programs
 void KRslots::runKonfigurator(bool firstTime) { delete new Konfigurator(firstTime); }
 
@@ -320,7 +319,7 @@ void KRslots::runRemoteMan() {
   QString host=remoteMan::getHost();
 	if (host==QString::null) return;
 	// otherwise, attempt a connection
-	newFTPconnection(host);
+	ACTIVE_FUNC->openUrl(host);
 }
 
 void KRslots::runMountMan() {
