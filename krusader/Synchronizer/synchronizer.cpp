@@ -33,11 +33,13 @@
 #include "../VFS/normal_vfs.h"
 #include "../VFS/vfile.h"
 #include "../krusader.h"
+#include "../krservices.h"
 #include <kurl.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <qapplication.h>
 #include <qregexp.h>
+#include <qdir.h>
 #include <kio/job.h>
 #include <kdialogbase.h>
 #include <kio/observer.h>
@@ -45,6 +47,7 @@
 #include <kio/skipdlg.h>
 #include <unistd.h>
 #include <qeventloop.h>
+#include <qprogressdialog.h>
 
 #define  DISPLAY_UPDATE_PERIOD        2
 
@@ -1095,4 +1098,92 @@ void Synchronizer::putWaitWindow()
 void Synchronizer::comparePercent(KIO::Job *, unsigned long percent)
 {
   waitWindow->setProgress( percent );
+}
+
+void Synchronizer::synchronizeWithKGet()
+{
+  bool isLeftLocal = vfs::fromPathOrURL( leftBaseDirectory() ).isLocalFile();
+  QProgressDialog *progDlg = 0;
+  int  processedCount = 0, totalCount = 0;
+  
+  SynchronizerFileItem *item = resultList.first();  
+  for(; item; item = resultList.next() )
+    if( item->isMarked() )
+      totalCount++;
+  
+  item = resultList.first();
+  while( item )
+  {
+    if( item->isMarked() )
+    {
+      KURL downloadURL, destURL;
+      QString dirName     = item->directory().isEmpty() ? "" : item->directory() + "/";
+      QString destDir;
+      
+      if( progDlg == 0 )
+      {
+        progDlg = new QProgressDialog( i18n( "Feeding the URL-s to kget" ), i18n("Cancel"), 
+                     totalCount, krApp, "Synchronizer Progress Dlg", true );
+        progDlg->setCaption( i18n( "Krusader::Synchronizer" ) );
+        progDlg->setAutoClose( false );
+        progDlg->show();
+        qApp->processEvents();
+      }
+    
+      if( item->task() == TT_COPY_TO_RIGHT && !isLeftLocal )
+      {
+        downloadURL = vfs::fromPathOrURL( leftBaseDirectory() + dirName + item->name() );
+        destDir     = rightBaseDirectory() + dirName;
+        destURL     = vfs::fromPathOrURL( destDir + item->name() );
+      }
+      if( item->task() == TT_COPY_TO_LEFT && isLeftLocal )
+      {
+        downloadURL = vfs::fromPathOrURL( rightBaseDirectory() + dirName + item->name() );
+        destDir     = leftBaseDirectory() + dirName;
+        destURL     = vfs::fromPathOrURL( destDir + item->name() );
+      }
+      
+      if( item->isDir() )
+        destDir += item->name();
+
+      // creating the directory system
+      for( int i=0; i >= 0 ; i= destDir.find('/',i+1) )
+        if( !QDir( destDir.left(i) ).exists() )
+          QDir().mkdir( destDir.left(i) );            
+        
+      if( !item->isDir() && !downloadURL.isEmpty() )
+      {
+        if( QFile( destURL.path() ).exists() )
+          QFile( destURL.path() ).remove();
+        
+        QString source = downloadURL.prettyURL();
+        if( source.contains( '@' ) >= 2 ) /* is this an ftp proxy URL? */
+        {
+          int lastAt = source.findRev( '@' );
+          QString startString = source.left( lastAt );
+          QString endString = source.mid( lastAt );
+          startString.replace( "@", "%40" );
+          source = startString+endString;
+        }
+        
+        KProcess p;
+
+        p << KrServices::fullPathName( "kget" ) << source << destURL.path();
+        if (!p.start(KProcess::Block))
+          KMessageBox::error(0,i18n("Error executing ")+KrServices::fullPathName( "kget" )+" !");
+        else
+          p.detach();
+      }
+      
+      progDlg->setProgress( ++processedCount );
+      qApp->processEvents();
+      
+      if( progDlg->wasCanceled() )
+        break;
+    }
+    item = resultList.next();
+  }
+  
+  if( progDlg )
+    delete progDlg;
 }

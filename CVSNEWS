@@ -4,6 +4,13 @@ in some way an extension to the changelog.
 ------------------------------------------------------
 When closing krusader, the tabs are saved and restored
 
+Synchronize with kget
+  If you want to synchronize a local directory with an instable ftp server, 
+  kget is a much better solution than simple file copying. After comparing 
+  you may right click on the result list and select 'Synchronize with kget'
+  to execute the synchronization, after that the listed files will be 
+  download with kget instead of krusader.
+
 Dropping URL-s onto the status / totals line:
   If a directory contains a lot of subdirectories, it may not possible to drop
   the URL onto the panel (on which only directories are visible). From now the

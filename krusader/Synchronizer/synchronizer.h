@@ -121,6 +121,7 @@ class Synchronizer : public QObject
     int     refresh( bool nostatus=false );
     bool    totalSizes( int *, KIO::filesize_t *, int *, KIO::filesize_t *, int *, KIO::filesize_t * );
     void    synchronize( bool leftCopyEnabled, bool rightCopyEnabled, bool deleteEnabled, bool overWrite );
+    void    synchronizeWithKGet();
     void    pause();
     void    resume();
 

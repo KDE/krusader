@@ -34,6 +34,7 @@
 #include "../VFS/krpermhandler.h"
 #include "../KViewer/krviewer.h"
 #include "../Dialogs/krspwidgets.h"
+#include "../krservices.h"
 #include "synchronizedialog.h"
 #include <qlayout.h>
 #include <kurlrequester.h>
@@ -1100,6 +1101,7 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   #define SELECT_ITEMS_ID     99
   #define DESELECT_ITEMS_ID   100
   #define INVERT_SELECTION_ID 101
+  #define SYNCH_WITH_KGET_ID  102
   //////////////////////////////////////////////////////////
   if (!itemIn)
     return;
@@ -1152,6 +1154,18 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
   popup.insertItem(i18n("Invert selection"),INVERT_SELECTION_ID);
   popup.setItemEnabled(INVERT_SELECTION_ID, true );
 
+  KURL leftBDir = vfs::fromPathOrURL( synchronizer.leftBaseDirectory() );
+  KURL rightBDir = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() );
+
+  if( KrServices::cmdExist( "kget" ) &&  
+    ( ( !leftBDir.isLocalFile() && rightBDir.isLocalFile() && btnLeftToRight->isOn() ) ||
+      ( leftBDir.isLocalFile() && !rightBDir.isLocalFile() && btnRightToLeft->isOn() ) ) )
+  {
+    popup.insertSeparator();
+    popup.insertItem(i18n("Synchronize with KGet"),SYNCH_WITH_KGET_ID);
+    popup.setItemEnabled(SYNCH_WITH_KGET_ID, true );
+  }
+  
   int result=popup.exec(QCursor::pos());
 
   // check out the user's option
@@ -1231,6 +1245,10 @@ void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)
       break;
     case INVERT_SELECTION_ID:
       syncList->invertSelection();
+      break;
+    case SYNCH_WITH_KGET_ID:
+      synchronizer.synchronizeWithKGet();
+      closeDialog();
       break;
     case -1 : return;     // the user clicked outside of the menu
   }  
