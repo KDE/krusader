@@ -71,7 +71,7 @@ A
 // Do Quicksearch
 #define _DoQuicksearch      true
 // Classic Quicksearch
-#define _ClassicQuicksearch true 
+#define _ClassicQuicksearch true
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
@@ -194,6 +194,8 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
   // connect quicksearch
   connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( textChanged( const QString& ) ),
            this, SLOT( quickSearch( const QString& ) ) );
+  connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( otherMatching( const QString&, int ) ),
+           this, SLOT( quickSearch( const QString& , int ) ) );
   connect( dynamic_cast<ListPanel*>( parent ) ->quickSearch, SIGNAL( stop( QKeyEvent* ) ),
            this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
 
@@ -410,6 +412,9 @@ void KrDetailedView::prepareForActive() {
 }
 
 void KrDetailedView::prepareForPassive() {
+  //if ( krApp && krApp->mainView && krApp->mainView->activePanel &&
+  //    krApp->mainView->activePanel->quickSearch && krApp->mainView->activePanel->quickSearch->isShown() )
+  //  stopQuickSearch(0);
   _focused = false;
 }
 
@@ -510,6 +515,11 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
 
   if ( !e || !firstChild() )
     return ; // subclass bug
+  if ( krApp->mainView->activePanel->quickSearch->isShown() )
+  {
+    krApp->mainView->activePanel->quickSearch->myKeyPressEvent( e );
+    return;
+  }
   switch ( e->key() ) {
       case Key_Enter :
       case Key_Return : {
@@ -712,18 +722,29 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
   setFocus();
 }
 
-void KrDetailedView::quickSearch( const QString & str ) {
-  QString target = str;
-  QListViewItem *it;
-
-  while ( ( it = findItem( target, column( Name ), Qt::BeginsWith ) ) == 0 ) {
-    if ( target == QString::null )
-      break;
-    target = target.mid( 0, target.length() - 1 );
+void KrDetailedView::quickSearch( const QString & str, int direction )
+{
+  KrViewItem * item = getCurrentKrViewItem();
+  if (!direction)
+  {
+    if (item->name().startsWith(str))
+      return;
+    direction = 1;
   }
-  if ( it ) {
-    setCurrentItem( dynamic_cast<KrViewItem*>( it ) ->name() );
-    ensureItemVisible( it );
+  KrViewItem * startItem = item;
+  while (true)
+  {
+    item = (direction > 0)?getNext(item):getPrev(item);
+    if (!item)
+      item = (direction > 0)?getFirst():getLast();
+    if (item == startItem)
+      return;
+    if (item->name().startsWith(str))
+    {
+      makeItemVisible(item);
+      setCurrentItem(item->name());
+      return;
+    }
   }
 }
 
@@ -731,8 +752,16 @@ void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
   krApp->mainView->activePanel->quickSearch->hide();
   krApp->mainView->activePanel->quickSearch->clear();
   krDirUp->setEnabled( true );
-  keyPressEvent( e );
+  if (e)
+    keyPressEvent( e );
 }
+
+//void KrDetailedView::focusOutEvent( QFocusEvent * e )
+//{
+//  if ( krApp->mainView->activePanel->quickSearch->isShown() )
+//    stopQuickSearch(0);
+//  KListView::focusOutEvent( e );
+//}
 
 void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
   KrView::setNameToMakeCurrent( dynamic_cast<KrViewItem*>( it ) ->name() );

@@ -60,6 +60,7 @@ class KrDetailedView : public KListView, public KrView {
     virtual ~KrDetailedView();
     virtual int column( ColumnType type );
     virtual KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
+    virtual KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastChild() ); }
     virtual KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemBelow() ); }
     virtual KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemAbove() ); }
     virtual KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
@@ -99,6 +100,7 @@ class KrDetailedView : public KListView, public KrView {
     virtual void contentsDropEvent( QDropEvent *e );
     virtual void contentsDragMoveEvent( QDragMoveEvent *e );
     virtual void startDrag();
+    //virtual void focusOutEvent( QFocusEvent * );
 
   protected slots:
     void rename(QListViewItem *item, int c);
@@ -108,7 +110,7 @@ class KrDetailedView : public KListView, public KrView {
     void slotCurrentChanged( QListViewItem *item );
     void handleContextMenu( QListViewItem*, const QPoint&, int );
     void inplaceRenameFinished( QListViewItem *it, int col );
-    void quickSearch(const QString &);
+    void quickSearch(const QString &, int = 0);
     void stopQuickSearch(QKeyEvent*);
     void setNameToMakeCurrent(QListViewItem *it);
     /**

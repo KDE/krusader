@@ -109,6 +109,7 @@ class KrQuickSearch: public KLineEdit {
 
    signals:
       void stop(QKeyEvent *e);
+      void otherMatching(const QString &, int);
 
 };
 

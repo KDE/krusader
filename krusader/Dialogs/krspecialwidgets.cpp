@@ -217,17 +217,25 @@ KrQuickSearch::KrQuickSearch(QWidget *parent, const char * name): KLineEdit(pare
 
 void KrQuickSearch::myKeyPressEvent(QKeyEvent *e) {
    switch (e->key()) {
-      case Key_Up:
-      case Key_Down:
       case Key_Escape:
+      case Key_Return:
       case Key_Enter:
+      case Key_Tab:
          emit stop(e);
          break;
+      case Key_Down:
+         otherMatching(text(), 1);
+         break;
+      case Key_Up:
+         otherMatching(text(), -1);
+         break;
+
       default:
-         kdWarning()<<"got " << e->text() << endl;
+         kdWarning()<<"got " << e->ascii() << ":" << e->text() << endl;
          keyPressEvent(e);
    }
 }
+
 
 
 #include "krspecialwidgets.moc"
