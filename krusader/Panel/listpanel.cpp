@@ -80,8 +80,8 @@ typedef QValueList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 // 					The list panel constructor             //
 /////////////////////////////////////////////////////
-ListPanel::ListPanel(QWidget *parent, const char *name ) :
-  QWidget(parent, name), colorMask(255), compareMode(false), currDragItem(0), statsAgent(0) {
+ListPanel::ListPanel(QWidget *parent, bool left, const char *name ) :
+  QWidget(parent, name), _left(left), colorMask(255), compareMode(false), currDragItem(0), statsAgent(0) {
 
   func = new ListPanelFunc(this);
   setAcceptDrops(true);
@@ -137,13 +137,13 @@ ListPanel::ListPanel(QWidget *parent, const char *name ) :
   connect(origin,SIGNAL(returnPressed(const QString&)),func,SLOT(openUrl(const QString&)));
   connect(origin,SIGNAL(urlSelected(const QString&)),func,SLOT(openUrl(const QString&)));
 
-  view = new KrDetailedView(this, krConfig);
+  view = new KrDetailedView(this, _left, krConfig);
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(executed(QString&)), func, SLOT(execute(QString&)));
 	connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(needFocus()), this, SLOT(slotFocusOnMe()));
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(selectionChanged()), this, SLOT(slotUpdateTotals()));
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(itemDescription(QString&)), krApp, SLOT(statusBarUpdate(QString&)));
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(contextMenu(const QPoint &)), this, SLOT(popRightClickMenu(const QPoint &)));
-  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));	
+  connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(letsDrag(QStringList, QPixmap)), this, SLOT(startDragging(QStringList, QPixmap)));
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(gotDrop(QDropEvent *)), this, SLOT(handleDropOnView(QDropEvent *)));
   ////////////////////////////// to do connections ///////////////////////////////////////////////
 
@@ -222,9 +222,10 @@ void ListPanel::slotFocusOnMe(){		 // give this VFS the focus (the path bar)
 
 // this is used to start the panel, AFTER setOther() has been used
 //////////////////////////////////////////////////////////////////
-void ListPanel::start(bool left) {
+void ListPanel::start() {
+  bool left = _left;
 	krConfig->setGroup("Startup");
-	
+
 	// set the startup path
 	if(left){
 	  if(krConfig->readEntry("Left Panel Origin",_LeftPanelOrigin) == i18n("homepage"))
@@ -240,7 +241,7 @@ void ListPanel::start(bool left) {
 	    virtualPath = krConfig->readEntry("lastHomeRight","/");
 	  else virtualPath = getcwd(0,0);
 	}
-	
+
 	realPath = virtualPath;
   func->openUrl(virtualPath);
 }

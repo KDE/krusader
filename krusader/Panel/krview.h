@@ -154,6 +154,7 @@ protected:
   QString _nameToMakeCurrent;
   uint _numSelected, _count, _numDirs;
   long long _countSize, _selectedSize;
+  bool _left;
 };
 
 #endif /* KRVIEW_H */

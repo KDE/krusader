@@ -67,11 +67,11 @@ friend class ListPanelFunc;
 	Q_OBJECT
 public:
 	enum FilterSpec{ALL,EXEC,CUSTOM};
- 	
+
   // constructor create the panel, but DOESN'T fill it with data, use start()
-  ListPanel(QWidget *parent, const char *name=0);
+  ListPanel(QWidget *parent, bool left, const char *name=0);
  ~ListPanel(){}
-  void start(bool left);
+  void start();
   inline QString getPath(){return virtualPath;}
   QString getCurrentName();
   void getSelectedNames(QStringList* fileNames) { view->getSelectedItems(fileNames); }
@@ -116,7 +116,7 @@ public:
 	int          colorMask;
 	bool         compareMode;
   FilterSpec	   filter;
-	QString			   filterMask;	
+	QString			   filterMask;
 	QPixmap        currDragPix;
 	QListViewItem *currDragItem;
 	QPopupMenu    *bookmarks;
@@ -124,6 +124,9 @@ public:
 	KSqueezedTextLabel *status,*totals;
 	KURLRequester   *origin;
 	QGridLayout   *layout;
+
+private:
+  bool _left;
 };
 
 #endif

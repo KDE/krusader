@@ -54,7 +54,7 @@ public:
   enum ColumnType { Name=0x0, Extention=0x1, Mime=0x2, Size=0x3, DateTime=0x4,
                     Permissions=0x5, KrPermissions=0x6, Owner=0x7, Group=0x8, Unused=0x9 };
 
-	KrDetailedView(QWidget *parent=0, KConfig *cfg = krConfig, const char *name=0);
+	KrDetailedView(QWidget *parent, bool left, KConfig *cfg = krConfig, const char *name=0);
 	~KrDetailedView();
   int column(ColumnType type);
   inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>(firstChild()); }
@@ -74,9 +74,9 @@ public:
   virtual void prepareForPassive();
   virtual void saveSettings() { KListView::saveLayout(_config, nameInKConfig()); }
   virtual void restoreSettings() { KListView::restoreLayout(_config, nameInKConfig()); }
-  virtual QString nameInKConfig() { return "KrDetailedView"; }
+  virtual QString nameInKConfig() { return _nameInKConfig; }
   QString itemToFilename(QListViewItem *it) { return dynamic_cast<KrViewItem*>(it)->name(); }//remove
-  
+
 ///////////////////////// todo ///////////////////////////////////
 //  virtual void setFilter(FilterSpec filter) {}
 
@@ -110,6 +110,8 @@ private:
   static QString ColumnName[MAX_COLUMNS];
   bool _withIcons, _focused;
   KrViewItem *_currDragItem;
+  QString _nameInKConfig;
+  bool _left;
 };
 
 #endif /* KRDETAILEDVIEW_H */

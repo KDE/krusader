@@ -57,7 +57,7 @@
 // Size Column
 #define _SizeColumn         true 
 // DateTime Column
-#define _DateTimeColumn     true 
+#define _DateTimeColumn     true
 // Perm Column
 #define _PermColumn         false 
 // KrPerm Column
@@ -72,8 +72,9 @@ QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "T
                                          i18n( "Size" ), i18n( "Modified" ), i18n( "Perms" ), i18n( "rwx" ),
                                          i18n( "Owner" ), i18n( "Group" ) };
 
-KrDetailedView::KrDetailedView( QWidget *parent, KConfig *cfg, const char *name ) :
-KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ) {
+KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
+KListView( parent, name ), KrView( cfg ), _focused( false ),  _left(left), _currDragItem( 0L ),
+_nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))) {
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   // setup the default sort and filter
   _filter = KrView::All;
@@ -153,10 +154,13 @@ KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L )
   setAllColumnsShowFocus( true );
   setShowSortIndicator( true );
   header() ->setStretchEnabled( true, column( Name ) );
+  restoreSettings();
+  kdDebug() << "Loaded sort " << sortColumn() << endl;
 }
 
 KrDetailedView::~KrDetailedView() {
   saveSettings();
+  kdDebug() << "Saving sort " << sortColumn() << endl;
 }
 
 void KrDetailedView::newColumn( ColumnType type ) {

@@ -43,7 +43,7 @@
 KrusaderView::KrusaderView(QWidget *parent, const char *name ) : QWidget(parent,name),
   konsole_part(0L) {}
 
-void KrusaderView::start() {    
+void KrusaderView::start() {
   ////////////////////////////////
   // make a 1x1 mainLayout, it will auto-expand:
 	mainLayout = new QGridLayout(this, 1, 1);
@@ -58,8 +58,8 @@ void KrusaderView::start() {
 
   // add 2 pseudo widgets and layouts to allow a smoother movement of the
   // whole screen, and allow the status bars to resize with the panels
-  left=new ListPanel(horiz_splitter);
-	right=new ListPanel(horiz_splitter);
+  left=new ListPanel(horiz_splitter, true);
+	right=new ListPanel(horiz_splitter, false);
 
   left->setOther(right); right->setOther(left);
 
@@ -67,12 +67,12 @@ void KrusaderView::start() {
 	fnKeys=new KFnKeys(this);
 	fnKeys->show();
 
-  // and insert the whole thing into the main layout... at last	
+  // and insert the whole thing into the main layout... at last
 	mainLayout->addWidget(vert_splitter,0,0);  //<>
 	mainLayout->addWidget(cmdLine,1,0);
 	mainLayout->addWidget(fnKeys,2,0);
 	mainLayout->activate();
-	
+
 	// get the last saved sizes of the splitter
 	krConfig->setGroup("Private");
 	QValueList<int> lst = krConfig->readIntListEntry("Splitter Sizes");
@@ -81,7 +81,7 @@ void KrusaderView::start() {
 
   qApp->processEvents();
   // make the left panel focused at program start
-  right->start(false);left->start(true);
+  right->start();left->start();
   activePanel=left; activePanel->slotFocusOnMe();  // left starts out active
 }
 
