@@ -73,7 +73,6 @@ public slots:
 	void vfs_slotDirty(const QString& path);
 	void vfs_slotCreated(const QString& path);
 	void vfs_slotDeleted(const QString& path);
-	void vfs_setQuiet(bool beQuiet);
 
 protected:
 	/// Re-reads files and stats and fills the vfile list
@@ -81,7 +80,6 @@ protected:
 
 	QDict<vfile>  vfs_files;     //< Dictionary of pointers to vfile	
 	KDirWatch *watcher;          //< The internal dir watcher - use to detect changes in directories
-	bool dirty;                  //< true if a watcher signal arrived while in quiet mode.
 	vfile* vfileFromName(const QString& name,bool mimeTypeMagic);
 };
 

@@ -271,7 +271,7 @@ vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 }
 
 void normal_vfs::vfs_slotDirty(const QString& path){ 
-	if( quietMode ){
+	if( disableRefresh ){
 		dirty = true;
 		return;
 	}
@@ -296,7 +296,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 }
 
 void normal_vfs::vfs_slotCreated(const QString& path){  
-	if( quietMode ){
+	if( disableRefresh ){
 		dirty = true;
 		return;
 	}	
@@ -313,7 +313,7 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 }
 
 void normal_vfs::vfs_slotDeleted(const QString& path){ 
-	if( quietMode ){
+	if( disableRefresh ){
 		dirty = true;
 		return;
 	}
@@ -326,16 +326,6 @@ void normal_vfs::vfs_slotDeleted(const QString& path){
 		emit deletedVfile(name);
 		removeFromList(name);	
 	}	
-}
-
-void normal_vfs::vfs_setQuiet(bool beQuiet){ 
-	if( beQuiet ){
-		dirty = false;
-		quietMode=beQuiet;
-	} else {
-		quietMode=beQuiet;
-		if( dirty ) vfs::vfs_refresh();
-	} 
 }
 
 #include "normal_vfs.moc"

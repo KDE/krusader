@@ -1117,3 +1117,13 @@ void ListPanel::slotItemDeleted(const QString& name) {
 void ListPanel::slotItemUpdated(vfile *vf) {
 	view->updateItem(vf);
 }
+
+void ListPanel::showEvent( QShowEvent * )
+{
+  func->files()->vfs_enableRefresh();
+}
+
+void ListPanel::hideEvent( QHideEvent * )
+{
+  func->files()->vfs_disableRefresh();
+}

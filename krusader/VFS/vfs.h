@@ -105,7 +105,8 @@ public slots:
 	virtual bool vfs_refresh(KIO::Job* job);
 	virtual bool vfs_refresh();
 	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
-	virtual void vfs_disableSignals(bool disable){ disableSignals=disable; }
+	virtual void vfs_disableRefresh();
+	virtual void vfs_enableRefresh();        
 
 signals: 	
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
@@ -129,8 +130,9 @@ protected:
 	VFS_TYPE      vfs_type;     //< the vfs type.
 	KURL          vfs_origin;   //< the path or file the VFS originates from.
 	bool quietMode;             //< if true the vfs won't display error messages or emit signals
-	bool disableSignals;        //< if true the signals emission is disabled
+	bool disableRefresh;        //< true if refresh is disabled
 	bool isWritable;            //< true if it's writable
+	bool dirty;                 //< true if a watcher signal arrived while in disabled refresh.
 
 private:
 	QDict<vfile>*  vfs_filesP;    //< Point to a lists of virtual files (vfile).

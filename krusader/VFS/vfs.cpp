@@ -38,7 +38,7 @@
 #include "../krusader.h"
 #include "../defaults.h"
 
-vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableSignals(false),vfileIterator(0){
+vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),vfileIterator(0){
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
 	 		connect(this,SIGNAL(incrementalRefreshFinished( QString )),panel,SLOT(slotGetStats( QString )));
@@ -112,6 +112,7 @@ void vfs::setVfsFilesP(QDict<vfile>* dict){
 }
 
 bool vfs::vfs_refresh(){ 
+	dirty = false;
 	// point the vfs_filesP to a NEW (empty) dictionary
 	vfs_filesP = new QDict<vfile>();
 	vfs_filesP->setAutoDelete(true);
@@ -170,6 +171,7 @@ bool vfs::vfs_refresh(){
 bool vfs::vfs_refresh(const KURL& origin){
 	if( origin.equals(vfs_getOrigin(),true) ) return vfs_refresh();
 	
+	dirty = false;        
 	krConfig->setGroup("Look&Feel");
 	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
 
@@ -178,8 +180,22 @@ bool vfs::vfs_refresh(const KURL& origin){
 	// and re-populate it
 	if (!populateVfsList(origin,showHidden) ) return false;
 	
-	if (!disableSignals) emit startUpdate();
+	if (!disableRefresh) emit startUpdate();
+	else dirty = true;        
 	return true;
+}
+
+void vfs::vfs_disableRefresh()
+{
+  disableRefresh = quietMode = true;
+  dirty = false;
+}
+
+void vfs::vfs_enableRefresh()
+{
+  disableRefresh = quietMode = false;
+  if( dirty )
+    vfs_refresh();
 }
 
 #include "vfs.moc"
