@@ -85,7 +85,7 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	
 
 	vfs_type = "ftp";
-  vfs_origin = origin;//url.prettyURL(-1);
+  vfs_origin = url.prettyURL(-1);
 
   vfs_refresh();	
 }

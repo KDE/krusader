@@ -23,7 +23,7 @@ cflags=-DKDE_NO_COMPAT
 cppflags=-DKDE_NO_COMPAT
 cxxflags=\s-O0 -Wall
 ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s          \s
+ldflags=\s           \s
 
 [General]
 AMChanged=false
@@ -39,7 +39,7 @@ project_name=Krusader
 project_type=mini_kde2
 short_info=
 sub_dir=krusader/
-version=1.10
+version=1.11
 version_control=None
 workspace=1
 
@@ -1585,5 +1585,12 @@ install_location=$$(kde_datadir)/krusader/icons/hicolor/32x32/actions/kr_unselec
 type=DATA
 
 [po/Makefile.am]
+files=po/es.po
 sub_dirs=
 type=po
+
+[po/es.po]
+dist=false
+install=false
+install_location=
+type=PO
