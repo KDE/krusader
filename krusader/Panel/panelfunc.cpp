@@ -718,7 +718,7 @@ void ListPanelFunc::dirUp() {
 
   // Do we need to change vfs ?
   bool changeVFS = files()->vfs_error();
-	if ( origin.right( 1 ) == "\\" ) { // leaving arc_vfs
+	if ( origin.right( 1 ) == "\\" && dynamic_cast<arc_vfs *>(files()) ) { // leaving arc_vfs
 		changeVFS = true;
     // make the current archive the current item on the new list
     panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1,origin.length()-origin.findRev('/')-2) );
