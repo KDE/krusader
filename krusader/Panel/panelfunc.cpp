@@ -661,13 +661,32 @@ void ListPanelFunc::pack() {
     files() ->vfs_calcSpace( ( *file ), &totalSize, &totalFiles, &totalDirs );
   }
 
+  // download remote URL-s if necessary
+  QString arcDir;
+  KTempDir *tempDir = 0;
+    
+  if( files() ->vfs_getOrigin().isLocalFile() )
+    arcDir = files() ->vfs_workingDir();
+  else
+  {
+    tempDir = new KTempDir();
+    tempDir->setAutoDelete( true );
+    arcDir = tempDir->name();
+    KURL::List *urlList = files() ->vfs_getFiles( &fileNames );
+    KIO::NetAccess::dircopy( *urlList, vfs::fromPathOrURL( arcDir ), 0 );
+  }
+  
   // pack the files
   // we must chdir() first because we supply *names* not URL's
   QString save = getcwd( 0, 0 );
-  chdir( files() ->vfs_workingDir().local8Bit() );
+  chdir( arcDir.local8Bit() );
   KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs );
   chdir( save.local8Bit() );
 
+  // delete the temporary directory if created
+  if( tempDir )
+    delete tempDir;
+  
   // copy from the temp file to it's right place
   if( tempDestFile )
   {
