@@ -128,10 +128,17 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
   QString leftPath, rightPath;
 
+  // get command-line arguments
   if ( args->isSet( "left" ) ) leftPath = args->getOption( "left" );
   else leftPath = QString::null;
   if ( args->isSet( "right" ) ) rightPath = args->getOption( "right" );
   else rightPath = QString::null;
+  // make sure left or right are not relative paths
+  if (!leftPath.startsWith("/") && leftPath.find(":/")<0) // make sure we don't touch things like ftp://
+  	leftPath = QDir::currentDirPath() + "/" + leftPath;
+  if (!rightPath.startsWith("/") && rightPath.find(":/")<0) // make sure we don't touch things like ftp://
+  	rightPath = QDir::currentDirPath() + "/" + rightPath;	
+  
 
   // create the "krusader"
   App = this;
