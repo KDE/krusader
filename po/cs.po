@@ -7,9 +7,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.50-beta1\n"
+"Project-Id-Version: krusader-1.50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-15 19:51+0200\n"
+"POT-Creation-Date: 2004-11-11 17:10+0100\n"
 "PO-Revision-Date: 2004-04-27 18:23+0200\n"
 "Last-Translator: Martin Sixta <lukumo84@seznam.cz>\n"
 "Language-Team: Czech\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3\n"
-
-#: GUI/actionproperty.moc.cpp:34 GUI/actionproperty.moc.cpp:42
-msgid "ActionProperty"
-msgstr ""
-
-#: GUI/dirhistorybutton.moc.cpp:34 GUI/dirhistorybutton.moc.cpp:42
-msgid "DirHistoryButton"
-msgstr "DirHistoryButton"
 
 #: GUI/dirhistorybutton.cpp:36
 msgid "Open the directory history list"
@@ -59,10 +51,6 @@ msgstr "Krusader::Synchronizovat"
 #, fuzzy
 msgid "Enter the profile name:"
 msgstr "Zadejte název souboru k úpravě:"
-
-#: GUI/dirhistoryqueue.moc.cpp:34 GUI/dirhistoryqueue.moc.cpp:42
-msgid "DirHistoryQueue"
-msgstr "DirHistoryQueue"
 
 #: GUI/syncbrowsebutton.cpp:45
 msgid ""
@@ -149,255 +137,253 @@ msgstr "Příkazová řádka je prázdná"
 msgid "There already is an action with this name"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:385
+#: GUI/actionpropertybase.cpp:386
 msgid "Action Property"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:386
+#: GUI/actionpropertybase.cpp:387
 #, fuzzy
 msgid "..."
 msgstr ".."
 
-#: GUI/actionpropertybase.cpp:387
+#: GUI/actionpropertybase.cpp:388
 #, fuzzy
 msgid "Description"
 msgstr "Popis:"
 
-#: GUI/actionpropertybase.cpp:388
+#: GUI/actionpropertybase.cpp:389
 msgid "Command accepts"
 msgstr "Příkaz akceptuje"
 
-#: GUI/actionpropertybase.cpp:389
+#: GUI/actionpropertybase.cpp:390
 #, fuzzy
-msgid "Local files only (no URL's)"
+msgid "Local files only (no URLs)"
 msgstr "Místní soubory (ne URL)"
 
-#: GUI/actionpropertybase.cpp:390
+#: GUI/actionpropertybase.cpp:391
 msgid "Substitute the placeholders with local filenames"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:391
-msgid "URL's (remote and local)"
-msgstr ""
-
 #: GUI/actionpropertybase.cpp:392
-msgid "Substitute the placeholders with valid URL's"
-msgstr ""
+#, fuzzy
+msgid "URLs (remote and local)"
+msgstr "URL (místní i vzdálené)"
 
 #: GUI/actionpropertybase.cpp:393
-msgid "The title displayed in the menu"
+msgid "Substitute the placeholders with valid URLs"
 msgstr ""
 
 #: GUI/actionpropertybase.cpp:394
+msgid "The title displayed in the menu"
+msgstr ""
+
+#: GUI/actionpropertybase.cpp:395
 #, fuzzy
 msgid "Title"
 msgstr "Bílá"
 
-#: GUI/actionpropertybase.cpp:395
-msgid "An unique name for the action"
-msgstr ""
-
 #: GUI/actionpropertybase.cpp:396
+#, fuzzy
+msgid "A unique name for the action"
+msgstr "Zadejte prosím název nové položky"
+
+#: GUI/actionpropertybase.cpp:397
 msgid "Choose a category for a better overview"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:397
+#: GUI/actionpropertybase.cpp:398
 msgid "icon"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:398
+#: GUI/actionpropertybase.cpp:399
 msgid "Choose an icon for the action"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:399
+#: GUI/actionpropertybase.cpp:400
 msgid "use tooltip"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:400
+#: GUI/actionpropertybase.cpp:401
 msgid "You may use the tooltip as description"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:401
+#: GUI/actionpropertybase.cpp:402
 #, fuzzy
 msgid "Distinct name"
 msgstr "Jméno sezení:"
 
-#: GUI/actionpropertybase.cpp:402
+#: GUI/actionpropertybase.cpp:403
 #, fuzzy
-msgid "Commandline"
+msgid "Command line"
 msgstr "Příkaz"
 
-#: GUI/actionpropertybase.cpp:403
+#: GUI/actionpropertybase.cpp:404
 msgid "A tooltip for the action"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:404
+#: GUI/actionpropertybase.cpp:405
 #, fuzzy
 msgid "You may want to set a working directory"
 msgstr "Nelze upravovat adresář"
 
-#: GUI/actionpropertybase.cpp:405
+#: GUI/actionpropertybase.cpp:406
 msgid "Tooltip"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:407
+#: GUI/actionpropertybase.cpp:408
 #, fuzzy
-msgid "This commandline is executed"
+msgid "This command line is executed"
 msgstr "Příkazová řádka je prázdná"
 
-#: GUI/actionpropertybase.cpp:408
+#: GUI/actionpropertybase.cpp:409
 msgid "Category"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:409 GUI/actionpropertybase.cpp:432
-#: GUI/actionpropertybase.cpp:437 GUI/addplaceholderpopup.cpp:252
+#: GUI/actionpropertybase.cpp:410 GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:438 GUI/addplaceholderpopup.cpp:252
 msgid "add"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:410
+#: GUI/actionpropertybase.cpp:411
 msgid "Add placeholders for the selected files in the panel"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:411
+#: GUI/actionpropertybase.cpp:412
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:412
+#: GUI/actionpropertybase.cpp:413
 #, fuzzy
-msgid "Startpath"
+msgid "Start path"
 msgstr "Spuštění"
 
-#: GUI/actionpropertybase.cpp:413
+#: GUI/actionpropertybase.cpp:414
 #, fuzzy
 msgid "Default shortcut:"
 msgstr "Výchozí"
 
-#: GUI/actionpropertybase.cpp:414
+#: GUI/actionpropertybase.cpp:415
 msgid "None"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:415
+#: GUI/actionpropertybase.cpp:416
 msgid "set a default keyboad shortcut"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:416
+#: GUI/actionpropertybase.cpp:417
 msgid "Execution mode"
 msgstr "Mód spuštění"
 
-#: GUI/actionpropertybase.cpp:417
+#: GUI/actionpropertybase.cpp:418
 msgid "Collect output"
 msgstr "Zobrazit výstup"
 
-#: GUI/actionpropertybase.cpp:418
+#: GUI/actionpropertybase.cpp:419
 msgid "Collect the output of the executed program"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:419
-msgid "Separate standard error"
-msgstr "Oddělit standardní chybový výstup"
-
 #: GUI/actionpropertybase.cpp:420
-#, fuzzy
-msgid "Separate standard out and standard error"
+msgid "Separate standard error"
 msgstr "Oddělit standardní chybový výstup"
 
 #: GUI/actionpropertybase.cpp:421
 #, fuzzy
+msgid "Separate standard out and standard error"
+msgstr "Oddělit standardní chybový výstup"
+
+#: GUI/actionpropertybase.cpp:422
+#, fuzzy
 msgid "Normal"
 msgstr "Formátovat"
 
-#: GUI/actionpropertybase.cpp:422
-msgid "Run in terminal"
-msgstr "Spustit v terminálu"
-
 #: GUI/actionpropertybase.cpp:423
-#, fuzzy
-msgid "Run the command in a terminal"
+msgid "Run in terminal"
 msgstr "Spustit v terminálu"
 
 #: GUI/actionpropertybase.cpp:424
 #, fuzzy
+msgid "Run the command in a terminal"
+msgstr "Spustit v terminálu"
+
+#: GUI/actionpropertybase.cpp:425
+#, fuzzy
 msgid "Basic Properties"
 msgstr "Základní operace"
 
-#: GUI/actionpropertybase.cpp:425
+#: GUI/actionpropertybase.cpp:426
 msgid "This Action is only available for the following"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:426 GUI/actionpropertybase.cpp:442
+#: GUI/actionpropertybase.cpp:427 GUI/actionpropertybase.cpp:443
 msgid "new"
-msgstr ""
-
-#: GUI/actionpropertybase.cpp:427 GUI/actionpropertybase.cpp:433
-#: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:443
-msgid "edit"
 msgstr ""
 
 #: GUI/actionpropertybase.cpp:428 GUI/actionpropertybase.cpp:434
 #: GUI/actionpropertybase.cpp:439 GUI/actionpropertybase.cpp:444
+msgid "edit"
+msgstr ""
+
+#: GUI/actionpropertybase.cpp:429 GUI/actionpropertybase.cpp:435
+#: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:445
 #, fuzzy
 msgid "remove"
 msgstr "Náhled"
 
-#: GUI/actionpropertybase.cpp:429
+#: GUI/actionpropertybase.cpp:430
 msgid "Show the action only for these protocols"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:430
+#: GUI/actionpropertybase.cpp:431
 msgid "Protocol"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:431
+#: GUI/actionpropertybase.cpp:432
 msgid "Show the action only in these paths"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:435
+#: GUI/actionpropertybase.cpp:436
 msgid "Path"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:436
+#: GUI/actionpropertybase.cpp:437
 msgid "Show the action only for these file-types"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:440
+#: GUI/actionpropertybase.cpp:441
 #, fuzzy
 msgid "Mime-type"
 msgstr "Typ souboru"
 
-#: GUI/actionpropertybase.cpp:441
+#: GUI/actionpropertybase.cpp:442
 msgid "Show the action only for these filenames (you may use '?' and '*')"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:446
 #, fuzzy
 msgid "Filename"
 msgstr "Přejmenovat"
 
-#: GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:447
 msgid "Confirm each program call separately"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:447
-msgid "This allows you to tweak the commandline before beeing executed"
-msgstr ""
-
 #: GUI/actionpropertybase.cpp:448
-msgid "Run as different user"
+msgid "This allows you to tweak the command line before being executed"
 msgstr ""
 
 #: GUI/actionpropertybase.cpp:449
-#, fuzzy
-msgid "execute the command under an other user-id"
-msgstr "Spustit v terminálu"
+msgid "Run as different user"
+msgstr ""
 
 #: GUI/actionpropertybase.cpp:450
 #, fuzzy
+msgid "execute the command under another user-id"
+msgstr "Spustit v terminálu"
+
+#: GUI/actionpropertybase.cpp:451
+#, fuzzy
 msgid "Advanced Properties"
 msgstr "&Vlastnosti"
-
-#: GUI/syncbrowsebutton.moc.cpp:34 GUI/syncbrowsebutton.moc.cpp:42
-msgid "SyncBrowseButton"
-msgstr ""
 
 #: GUI/addplaceholderpopup.cpp:54
 msgid "Active panel"
@@ -438,8 +424,9 @@ msgid "Name of directory where command will be processed."
 msgstr "Jméno adresáře, ve kterém se příkaz vykoná."
 
 #: GUI/kcmdline.cpp:91
+#, fuzzy
 msgid ""
-"<qt>Well, it's quite simple actually: You write you command in here, and "
+"<qt>Well, it's quite simple actually: You write your command in here, and "
 "Krusader obeys.<p><Tip:>Move in command-line history with &lt;Up&gt; and &lt;"
 "Down&gt; arrows.</qt>"
 msgstr ""
@@ -544,22 +531,6 @@ msgstr "F10 Konec"
 msgid "Quit Krusader."
 msgstr "Ukončit Krusader"
 
-#: GUI/addplaceholderpopup.moc.cpp:34 GUI/addplaceholderpopup.moc.cpp:42
-msgid "ParameterPlaceholder"
-msgstr ""
-
-#: GUI/addplaceholderpopup.moc.cpp:116 GUI/addplaceholderpopup.moc.cpp:124
-msgid "ParameterFile"
-msgstr ""
-
-#: GUI/addplaceholderpopup.moc.cpp:198 GUI/addplaceholderpopup.moc.cpp:206
-msgid "ParameterGoto"
-msgstr ""
-
-#: GUI/addplaceholderpopup.moc.cpp:286 GUI/addplaceholderpopup.moc.cpp:294
-msgid "ParameterDialog"
-msgstr ""
-
 #: VFS/ftp_vfs.cpp:138
 msgid ""
 "Malformed URL:\n"
@@ -609,7 +580,7 @@ msgstr "Nelze rozdělit adresář!"
 msgid "Access denied to"
 msgstr ""
 
-#: VFS/normal_vfs.cpp:196
+#: VFS/normal_vfs.cpp:197
 msgid "Can't create a directory check your permissions."
 msgstr "Nemohu vytvořit adresář, zkontrolujte svá práva."
 
@@ -814,33 +785,19 @@ msgstr "Potvrzování"
 msgid "Command being executed:"
 msgstr "Příkaz"
 
-#: UserAction/kraction.moc.cpp:34 UserAction/kraction.moc.cpp:42
-#, fuzzy
-msgid "KrActionProcDlg"
-msgstr "UserMenuProcDlg"
-
-#: UserAction/kraction.moc.cpp:129 UserAction/kraction.moc.cpp:137
-msgid "KrActionProc"
-msgstr ""
-
-#: UserAction/kraction.moc.cpp:217 UserAction/kraction.moc.cpp:225
-#, fuzzy
-msgid "KrAction"
-msgstr "Aplikace"
-
-#: Panel/krdetailedviewitem.cpp:356
+#: Panel/krdetailedviewitem.cpp:365
 msgid "Climb up the directory tree"
 msgstr "O adresář výše"
 
-#: Panel/krdetailedviewitem.cpp:368
+#: Panel/krdetailedviewitem.cpp:377
 msgid "Symbolic Link"
 msgstr "Symbolický odkaz"
 
-#: Panel/krdetailedviewitem.cpp:369
+#: Panel/krdetailedviewitem.cpp:378
 msgid "(broken link !)"
 msgstr "(neplatný odkaz!)"
 
-#: Panel/krdetailedviewitem.cpp:370
+#: Panel/krdetailedviewitem.cpp:379
 msgid "%1 (Link)"
 msgstr "%1 (Odkaz)"
 
@@ -903,7 +860,7 @@ msgstr ""
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:200 krusader.cpp:453
+#: Panel/listpanel.cpp:200
 msgid "Up"
 msgstr "Nahoru"
 
@@ -948,7 +905,7 @@ msgid "homepage"
 msgstr "Domovský adresář"
 
 #: Panel/listpanel.cpp:494 Panel/listpanel.cpp:502 krusader.cpp:236
-#: krusader.cpp:241 krusader.cpp:617 krusader.cpp:620
+#: krusader.cpp:241 krusader.cpp:621 krusader.cpp:624
 #: Konfigurator/kgstartup.cpp:60
 msgid "the last place it was"
 msgstr "poslední umístění"
@@ -988,15 +945,15 @@ msgstr "%1 volných z %2 (%3%) na %4 [ (%5) ]"
 msgid "Can't drop here, no write permissions."
 msgstr "Nemohu vytvořit adresář, zkontrolujte svá práva."
 
-#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:234
+#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:235
 msgid "Copy Here"
 msgstr "Kopírovat na toto místo"
 
-#: Panel/listpanel.cpp:688 Panel/panelpopup.cpp:235
+#: Panel/listpanel.cpp:688 Panel/panelpopup.cpp:236
 msgid "Move Here"
 msgstr "Přesunout na toto místo"
 
-#: Panel/listpanel.cpp:691 Panel/panelpopup.cpp:236
+#: Panel/listpanel.cpp:691 Panel/panelpopup.cpp:237
 msgid "Link Here"
 msgstr "Vytvořit odkaz na tomto místě"
 
@@ -1033,7 +990,7 @@ msgstr "Vlastní"
 msgid "Konqueror menu"
 msgstr ""
 
-#: Panel/listpanel.cpp:856 Panel/krdetailedview.cpp:988
+#: Panel/listpanel.cpp:856 Panel/krdetailedview.cpp:985
 msgid "Rename"
 msgstr "Přejmenovat"
 
@@ -1057,17 +1014,17 @@ msgstr "přesměrovat odkaz"
 msgid "Link handling"
 msgstr "Odkaz"
 
-#: Panel/listpanel.cpp:879 MountMan/kmountman.cpp:268
-#: MountMan/kmountmangui.cpp:322
+#: Panel/listpanel.cpp:879 MountMan/kmountman.cpp:286
+#: MountMan/kmountmangui.cpp:333
 msgid "Unmount"
 msgstr "Odpojit"
 
-#: Panel/listpanel.cpp:881 MountMan/kmountman.cpp:268
-#: MountMan/kmountmangui.cpp:318
+#: Panel/listpanel.cpp:881 MountMan/kmountman.cpp:286
+#: MountMan/kmountmangui.cpp:329
 msgid "Mount"
 msgstr "Připojit"
 
-#: Panel/listpanel.cpp:883 MountMan/kmountmangui.cpp:328
+#: Panel/listpanel.cpp:883 MountMan/kmountmangui.cpp:339
 msgid "Eject"
 msgstr "Vysunout"
 
@@ -1095,13 +1052,13 @@ msgstr "Opravdu chcete skartovat "
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr ""
 
-#: Panel/listpanel.cpp:994 Panel/panelfunc.cpp:307 KViewer/krviewer.cpp:212
+#: Panel/listpanel.cpp:994 Panel/panelfunc.cpp:313 KViewer/krviewer.cpp:212
 #: krslots.cpp:408
 msgid "Can't open "
 msgstr "Nelze otevřít"
 
 #: Panel/krdetailedview.cpp:88 Search/krsearchdialog.cpp:139
-#: MountMan/kmountmangui.cpp:119 Synchronizer/synchronizergui.cpp:1236
+#: MountMan/kmountmangui.cpp:124 Synchronizer/synchronizergui.cpp:1236
 #: Synchronizer/synchronizergui.cpp:1242
 msgid "Name"
 msgstr "Jméno"
@@ -1110,7 +1067,7 @@ msgstr "Jméno"
 msgid "Ext"
 msgstr "Přípona"
 
-#: Panel/krdetailedview.cpp:90 MountMan/kmountmangui.cpp:120
+#: Panel/krdetailedview.cpp:90 MountMan/kmountmangui.cpp:125
 msgid "Type"
 msgstr "Typ"
 
@@ -1140,21 +1097,17 @@ msgstr "Vlastník"
 msgid "Group"
 msgstr "Skupina"
 
-#: Panel/krdetailedview.cpp:988
+#: Panel/krdetailedview.cpp:985
 msgid "Rename "
 msgstr "Přejmenovat "
 
-#: Panel/krdetailedview.cpp:988
+#: Panel/krdetailedview.cpp:985
 msgid " to:"
 msgstr " na:"
 
 #: Panel/krview.cpp:116
 msgid "%1 out of %2 selected, %3 out of %4"
 msgstr "Označeno %1 z %2, %3 z %4"
-
-#: Panel/krcolorcache.moc.cpp:34 Panel/krcolorcache.moc.cpp:42
-msgid "KrColorCache"
-msgstr "KrColorCache"
 
 #: Panel/panelpopup.cpp:50
 #, fuzzy
@@ -1202,17 +1155,10 @@ msgstr "Náhled"
 msgid "Quick Select:"
 msgstr ""
 
-#: Panel/krdetailedview.moc.cpp:34 Panel/krdetailedview.moc.cpp:42
-msgid "KrDetailedView"
-msgstr "KrDetailedView"
-
-#: Panel/krcalcspacedialog.moc.cpp:34 Panel/krcalcspacedialog.moc.cpp:42
-msgid "KrCalcSpaceDialog"
-msgstr "KrCalcSpaceDialog"
-
-#: Panel/listpanel.moc.cpp:34 Panel/listpanel.moc.cpp:42
-msgid "ListPanel"
-msgstr "Seznam"
+#: Panel/panelpopup.cpp:194
+#, fuzzy
+msgid "Preview: "
+msgstr "Náhled"
 
 #: Panel/krcalcspacedialog.cpp:95
 #, fuzzy
@@ -1235,147 +1181,147 @@ msgstr ""
 "\n"
 "v %2 složkách a %3 souborech"
 
-#: Panel/panelfunc.cpp:197
+#: Panel/panelfunc.cpp:203
 msgid "You can edit links only on local file systems"
 msgstr "Odkazy lze upravovat pouze na místních souborových systémech"
 
-#: Panel/panelfunc.cpp:208
+#: Panel/panelfunc.cpp:214
 msgid "The current file is not a link, so i can't redirect it."
 msgstr "Aktuální soubor není odkazem, proto jej nelze přesměrovat."
 
-#: Panel/panelfunc.cpp:215
+#: Panel/panelfunc.cpp:221
 #, fuzzy
 msgid "Link Redirection"
 msgstr "Zaměnit směr kopírování"
 
-#: Panel/panelfunc.cpp:216
+#: Panel/panelfunc.cpp:222
 msgid "Please enter the new link destination:"
 msgstr "Prosím vložte umístění nového odkazu:"
 
-#: Panel/panelfunc.cpp:223
+#: Panel/panelfunc.cpp:229
 msgid "Can't remove old link: "
 msgstr "Nelze odstranit starý odkaz"
 
-#: Panel/panelfunc.cpp:228 Panel/panelfunc.cpp:268
+#: Panel/panelfunc.cpp:234 Panel/panelfunc.cpp:274
 msgid "Failed to create a new link: "
 msgstr "Selhalo vytváření nového odkazu: "
 
-#: Panel/panelfunc.cpp:235
+#: Panel/panelfunc.cpp:241
 msgid "You can create links only on local file systems"
 msgstr "Odkazy lze upravovat pouze na místních souborových systémech"
 
-#: Panel/panelfunc.cpp:244
+#: Panel/panelfunc.cpp:250
 #, fuzzy
 msgid "New link"
 msgstr "nový symb. odkaz"
 
-#: Panel/panelfunc.cpp:244
+#: Panel/panelfunc.cpp:250
 msgid "Create a new link to: "
 msgstr "Vytvořit nový odkaz na: "
 
-#: Panel/panelfunc.cpp:252 Panel/panelfunc.cpp:435
+#: Panel/panelfunc.cpp:258 Panel/panelfunc.cpp:441
 msgid "A directory or a file with this name already exists."
 msgstr "Adresář či soubor tohoto jména již existuje."
 
-#: Panel/panelfunc.cpp:264
+#: Panel/panelfunc.cpp:270
 msgid "Failed to create a new symlink: "
 msgstr "Selhalo vytváření nového odkazu:"
 
-#: Panel/panelfunc.cpp:265 Panel/panelfunc.cpp:269
+#: Panel/panelfunc.cpp:271 Panel/panelfunc.cpp:275
 msgid " To: "
 msgstr " Do:"
 
-#: Panel/panelfunc.cpp:283
+#: Panel/panelfunc.cpp:289
 msgid "No permissions to view this file."
 msgstr "Nemáte dostatečné práva pro čtení tohoto souboru."
 
-#: Panel/panelfunc.cpp:318
+#: Panel/panelfunc.cpp:324
 msgid "You can't edit a directory"
 msgstr "Nelze upravovat adresář"
 
-#: Panel/panelfunc.cpp:323
+#: Panel/panelfunc.cpp:329
 msgid "No permissions to edit this file."
 msgstr "Nemáte dostatečná práva k zápisu do tohoto souboru."
 
-#: Panel/panelfunc.cpp:345
+#: Panel/panelfunc.cpp:350
 msgid "Moving into archive is disabled"
 msgstr "Přesun do archívu není povolený"
 
-#: Panel/panelfunc.cpp:354
+#: Panel/panelfunc.cpp:359
 msgid "Move "
 msgstr "Přesunout "
 
-#: Panel/panelfunc.cpp:354 Panel/panelfunc.cpp:466 Panel/panelfunc.cpp:767
-#: Panel/panelfunc.cpp:769
+#: Panel/panelfunc.cpp:359 Panel/panelfunc.cpp:472 Panel/panelfunc.cpp:772
+#: Panel/panelfunc.cpp:774
 msgid "to"
 msgstr "do"
 
-#: Panel/panelfunc.cpp:356
+#: Panel/panelfunc.cpp:361
 #, c-format
 msgid "Move %d files to:"
 msgstr "Přesunout %d souborů do:"
 
-#: Panel/panelfunc.cpp:396
+#: Panel/panelfunc.cpp:401
 msgid "You can't move files to this file system"
 msgstr "Nelze přesunout soubory na tento souborový systém"
 
-#: Panel/panelfunc.cpp:422
+#: Panel/panelfunc.cpp:428
 #, fuzzy
 msgid "New directory"
 msgstr "%n adresář"
 
-#: Panel/panelfunc.cpp:422
+#: Panel/panelfunc.cpp:428
 msgid "Directory's name:"
 msgstr "Jméno adresáře:"
 
-#: Panel/panelfunc.cpp:466
+#: Panel/panelfunc.cpp:472
 msgid "Copy "
 msgstr "Kopírovat "
 
-#: Panel/panelfunc.cpp:468
+#: Panel/panelfunc.cpp:474
 #, c-format
 msgid "Copy %d files to:"
 msgstr "Kopírovat %d souborů do:"
 
-#: Panel/panelfunc.cpp:500
+#: Panel/panelfunc.cpp:506
 msgid "You can't copy files to this file system"
 msgstr "Nelze kopírovat soubory na tento souborový systém"
 
-#: Panel/panelfunc.cpp:511
+#: Panel/panelfunc.cpp:517
 msgid "You do not have write permission to this directory"
 msgstr "Nemáte práva zápisu do adresáře"
 
-#: Panel/panelfunc.cpp:526
+#: Panel/panelfunc.cpp:532
 #, fuzzy
 msgid " this item ?"
 msgstr "Bílá"
 
-#: Panel/panelfunc.cpp:528
+#: Panel/panelfunc.cpp:534
 #, fuzzy, c-format
 msgid " these %d items ?"
 msgstr " %d souborů ?"
 
-#: Panel/panelfunc.cpp:532
+#: Panel/panelfunc.cpp:538
 msgid "trash"
 msgstr "koš"
 
-#: Panel/panelfunc.cpp:533
+#: Panel/panelfunc.cpp:539
 msgid "&Trash"
 msgstr "&Koš"
 
-#: Panel/panelfunc.cpp:535
+#: Panel/panelfunc.cpp:541
 msgid "delete"
 msgstr "smazat"
 
-#: Panel/panelfunc.cpp:540
+#: Panel/panelfunc.cpp:546
 msgid "Are you sure you want to "
 msgstr "Jste si jistý, že chcete "
 
-#: Panel/panelfunc.cpp:559
+#: Panel/panelfunc.cpp:565
 msgid "Directory "
 msgstr "Adresář "
 
-#: Panel/panelfunc.cpp:559
+#: Panel/panelfunc.cpp:565
 msgid ""
 " is not empty !\n"
 "Skip this one or Delete All ?"
@@ -1383,71 +1329,62 @@ msgstr ""
 " není prázdný !\n"
 "Přeskočit jej nebo smazat vše?"
 
-#: Panel/panelfunc.cpp:560
+#: Panel/panelfunc.cpp:566
 msgid "&Skip"
 msgstr "&Přeskočit"
 
-#: Panel/panelfunc.cpp:560
+#: Panel/panelfunc.cpp:566
 msgid "&Delete All"
 msgstr "&Smazat vše"
 
-#: Panel/panelfunc.cpp:664
+#: Panel/panelfunc.cpp:671
 msgid "The Archive "
 msgstr "Archív "
 
-#: Panel/panelfunc.cpp:665
+#: Panel/panelfunc.cpp:672
 msgid " already exists, Do you want to overwrite the archive "
 msgstr "již existuje. Chcete přepsat archív"
 
-#: Panel/panelfunc.cpp:666
+#: Panel/panelfunc.cpp:673
 msgid "(all data in previous archive will be lost)"
 msgstr "(všechna data v předchozím archívu budou ztracena)"
 
-#: Panel/panelfunc.cpp:666
+#: Panel/panelfunc.cpp:673
 msgid "&Overwite"
 msgstr "&Přepsat"
 
-#: Panel/panelfunc.cpp:671
+#: Panel/panelfunc.cpp:678
 msgid "Counting files to pack"
 msgstr "Počítám soubory ke sbalení"
 
-#: Panel/panelfunc.cpp:736 Panel/panelfunc.cpp:793 krslots.cpp:182
+#: Panel/panelfunc.cpp:740 Panel/panelfunc.cpp:797 krslots.cpp:182
 #: krslots.cpp:188
 msgid "Krusader is unable to download: "
 msgstr "Krusader nemůže stáhnout: "
 
-#: Panel/panelfunc.cpp:743
+#: Panel/panelfunc.cpp:748
 msgid "%1, unknown archive type."
 msgstr "%1, neznámý typ archívu."
 
-#: Panel/panelfunc.cpp:749
+#: Panel/panelfunc.cpp:754
 msgid "%1, test passed."
 msgstr "%1, test byl úspěšný."
 
-#: Panel/panelfunc.cpp:751
+#: Panel/panelfunc.cpp:756
 msgid "%1, test failed !"
 msgstr "%1, test selhal !"
 
-#: Panel/panelfunc.cpp:767 Panel/panelfunc.cpp:769
+#: Panel/panelfunc.cpp:772 Panel/panelfunc.cpp:774
 msgid "Unpack "
 msgstr "Rozbalit "
 
-#: Panel/panelfunc.cpp:769
+#: Panel/panelfunc.cpp:774
 msgid "%1 files"
 msgstr " %1 souborů"
 
-#: Panel/panelfunc.cpp:820
+#: Panel/panelfunc.cpp:825
 msgid "%1, unknown archive type"
 msgstr "%1, neznámý typ archívu"
-
-#: Panel/panelpopup.moc.cpp:34 Panel/panelpopup.moc.cpp:42
-#, fuzzy
-msgid "PanelPopup"
-msgstr "Panel"
-
-#: panelmanager.moc.cpp:34 panelmanager.moc.cpp:42
-msgid "PanelManager"
-msgstr "PanelManager"
 
 #: Locate/locate.cpp:64
 msgid "Update DB"
@@ -1494,7 +1431,8 @@ msgid ""
 msgstr ""
 
 #: Locate/locate.cpp:230
-msgid "Error during the start of `locate` process!"
+#, fuzzy
+msgid "Error during the start of 'locate' process!"
 msgstr "Chyba při spuštění procesu 'locate'!"
 
 #: Locate/locate.cpp:304
@@ -1605,6 +1543,11 @@ msgstr "Proho&dit panely"
 #: krusader.cpp:450
 msgid "popup cmdline"
 msgstr "Zobrazit historii příkazové řádky"
+
+#: krusader.cpp:453
+#, fuzzy
+msgid "Up one directory"
+msgstr "V adresáři"
 
 #: krusader.cpp:454
 msgid "&Edit new file"
@@ -1779,70 +1722,75 @@ msgid "Right history"
 msgstr "Pravý adresář:"
 
 #: krusader.cpp:558
+#, fuzzy
+msgid "Toggle Popup Panel"
+msgstr "Druhý panel"
+
+#: krusader.cpp:560
+msgid "Vertical Mode"
+msgstr ""
+
+#: krusader.cpp:562
 msgid "New tab"
 msgstr "Nová záložka"
 
-#: krusader.cpp:560
+#: krusader.cpp:564
 msgid "Duplicate tab"
 msgstr "Duplikovat záložku"
 
-#: krusader.cpp:562
+#: krusader.cpp:566
 msgid "Close tab"
 msgstr "Zavřít záložku"
 
-#: krusader.cpp:564
+#: krusader.cpp:568
 #, fuzzy
 msgid "Next tab"
 msgstr "Nová záložka"
 
-#: krusader.cpp:566
+#: krusader.cpp:570
 msgid "Previous tab"
 msgstr ""
 
-#: krusader.cpp:568 UserMenu/usermenu.cpp:56
+#: krusader.cpp:572 UserMenu/usermenu.cpp:56
 msgid "User Menu"
 msgstr "Nabídka uživatele"
 
-#: krusader.cpp:572
+#: krusader.cpp:576
 msgid "Highlight files by using a filter"
 msgstr "Zvýraznit soubory vlastním filtrem"
 
-#: krusader.cpp:573
+#: krusader.cpp:577
 msgid "Highlight all the files in the current directory"
 msgstr "Zvýraznit všechny soubory v adresáři"
 
-#: krusader.cpp:574
+#: krusader.cpp:578
 msgid "Remove selection from all highlight files"
 msgstr "Odebrat výběr souborů"
 
-#: krusader.cpp:575
+#: krusader.cpp:579
 msgid "Setup Krusader the way you like it"
 msgstr "Nastavte si Krusader tak jak vám vyhovuje"
 
-#: krusader.cpp:576
+#: krusader.cpp:580
 msgid "Back to the place you came from"
 msgstr "Zpět na místo, odkud jste přišli"
 
-#: krusader.cpp:577
+#: krusader.cpp:581
 msgid "ROOT (/)"
 msgstr "KOŘEN (/)"
 
-#: krusader.cpp:578
+#: krusader.cpp:582
 msgid "Search for files"
 msgstr "Hledat soubory"
 
-#: krusader.cpp:616 krusader.cpp:619
+#: krusader.cpp:620 krusader.cpp:623
 msgid "List"
 msgstr "Seznam"
 
-#: krusader.cpp:662
+#: krusader.cpp:666
 #, fuzzy
 msgid "Ok to shutdown Krusader?"
 msgstr "Opravdu ukončit Krusader?"
-
-#: KViewer/krviewer.moc.cpp:34 KViewer/krviewer.moc.cpp:42
-msgid "KrViewer"
-msgstr "KrViewer"
 
 #: KViewer/krviewer.cpp:70
 msgid "&Generic viewer"
@@ -2233,38 +2181,6 @@ msgstr "Zavřít záložku"
 msgid "BookMan II"
 msgstr ""
 
-#: BookMan/bookmarksbutton.moc.cpp:34 BookMan/bookmarksbutton.moc.cpp:42
-msgid "BookmarksButton"
-msgstr "BookmarksButton"
-
-#: BookMan/krbookmarkhandler.moc.cpp:34 BookMan/krbookmarkhandler.moc.cpp:42
-#, fuzzy
-msgid "KrBookmarkHandler"
-msgstr "Editor záložek"
-
-#: BookMan/bookmarksbutton.cpp:32
-msgid "Open your bookmarks"
-msgstr "Otevřít záložky"
-
-#: BookMan/krbookmarkbutton.moc.cpp:34 BookMan/krbookmarkbutton.moc.cpp:42
-#, fuzzy
-msgid "KrBookmarkButton"
-msgstr "BookmarksButton"
-
-#: BookMan/kraddbookmarkdlg.moc.cpp:34 BookMan/kraddbookmarkdlg.moc.cpp:42
-#, fuzzy
-msgid "KrAddBookmarkDlg"
-msgstr "Přidat záložku"
-
-#: BookMan/addbookmarkdlg.cpp:29 BookMan/addbookmarkform.cpp:86
-msgid "Bookmark name:"
-msgstr "Jméno záložky"
-
-#: BookMan/addbookmarkdlg.cpp:30 BookMan/addbookmarkform.cpp:87
-#: BookMan/kraddbookmarkdlg.cpp:33
-msgid "URL:"
-msgstr "URL:"
-
 #: BookMan/krbookmarkhandler.cpp:126
 #, fuzzy
 msgid "Unable to write to "
@@ -2298,42 +2214,9 @@ msgstr "Jméno záložky"
 msgid "Manage Bookmarks"
 msgstr "Záložky vlevo"
 
-#: BookMan/krbookmark.moc.cpp:34 BookMan/krbookmark.moc.cpp:42
-#, fuzzy
-msgid "KrBookmark"
-msgstr "Editor záložek"
-
-#: BookMan/addbookmarkform.cpp:85
-msgid "Add bookmark"
-msgstr "Přidat záložku"
-
-#: BookMan/kbookmarkmenu.cpp:182
-msgid "Add a bookmark for the current document"
-msgstr "Přidat záložku pro aktuální dokument"
-
-#: BookMan/kbookmarkmenu.cpp:196
-msgid "Edit your bookmark collection in a separate window"
-msgstr "Upravit záložky v samostatném okně"
-
-#: BookMan/kbookmarkmenu.cpp:205
-msgid "&New Bookmark Folder..."
-msgstr "&Nový adresář záložek"
-
-#: BookMan/kbookmarkmenu.cpp:217
-msgid "Create a new bookmark folder in this menu"
-msgstr "Vytvořit novou složku záložek v této nabídce"
-
-#: BookMan/kbookmarkmenu.cpp:329
-msgid "Can't add bookmark with empty URL"
-msgstr "Nemohu přidat novou záložku bez URL"
-
 #: BookMan/krbookmark.cpp:32
 msgid "Devices"
 msgstr ""
-
-#: BookMan/kbookmarkmanager.moc.cpp:34 BookMan/kbookmarkmanager.moc.cpp:42
-msgid "KBookmarkManager"
-msgstr "Editor záložek"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 #, fuzzy
@@ -2350,6 +2233,10 @@ msgstr "počet složek"
 msgid "Name:"
 msgstr "Jméno: "
 
+#: BookMan/kraddbookmarkdlg.cpp:33
+msgid "URL:"
+msgstr "URL:"
+
 #: BookMan/kraddbookmarkdlg.cpp:40
 #, fuzzy
 msgid "Create in:"
@@ -2360,94 +2247,89 @@ msgstr "Vytvořit nový odkaz na: "
 msgid "Folder name:"
 msgstr "Jméno uživatele:"
 
-#: MountMan/kmountman.cpp:178
+#: MountMan/kmountman.cpp:196
 msgid "Error ejecting device ! You need to have 'eject' in your path."
 msgstr ""
 "Chyba při vysunování zařízení. Musíte mít program 'eject' v adresáři kam "
 "směřuje systémová proměnná PATH"
 
-#: MountMan/kmountman.cpp:205
+#: MountMan/kmountman.cpp:223
 msgid "%1 ZB"
 msgstr "%1 ZB"
 
-#: MountMan/kmountman.cpp:207
+#: MountMan/kmountman.cpp:225
 msgid "%1 TB"
 msgstr "%1 TB"
 
-#: MountMan/kmountman.cpp:212
+#: MountMan/kmountman.cpp:230
 msgid "%1 GB"
 msgstr "%1 GB"
 
-#: MountMan/kmountman.cpp:217
+#: MountMan/kmountman.cpp:235
 msgid "%1 MB"
 msgstr "%1 MB"
 
-#: MountMan/kmountman.cpp:222
+#: MountMan/kmountman.cpp:240
 msgid "%1 KB"
 msgstr "%1 KB"
 
-#: MountMan/kmountman.cpp:231
+#: MountMan/kmountman.cpp:249
 #, fuzzy
 msgid "MountMan is not operational. Sorry"
 msgstr "Správce připojení: vnitřní chyba, lituji."
 
-#: MountMan/kmountman.moc.cpp:34 MountMan/kmountman.moc.cpp:42
-#, fuzzy
-msgid "KMountMan"
-msgstr "MountMan"
-
-#: MountMan/kmountmangui.cpp:64
+#: MountMan/kmountmangui.cpp:69
 msgid "MountMan - Your Mount-Manager"
 msgstr "Správce připojení"
 
-#: MountMan/kmountmangui.cpp:93
+#: MountMan/kmountmangui.cpp:98
 msgid "Filesystems"
 msgstr "Souborové systémy"
 
-#: MountMan/kmountmangui.cpp:121
+#: MountMan/kmountmangui.cpp:126
 msgid "Mnt.Point"
 msgstr "Bod připojení"
 
-#: MountMan/kmountmangui.cpp:122
+#: MountMan/kmountmangui.cpp:127
 msgid "Total Size"
 msgstr "Celková velikost"
 
-#: MountMan/kmountmangui.cpp:123
+#: MountMan/kmountmangui.cpp:128
 msgid "Free Size"
 msgstr "Volný prostor"
 
-#: MountMan/kmountmangui.cpp:124
+#: MountMan/kmountmangui.cpp:129
 msgid "Free %"
 msgstr "Volno %"
 
-#: MountMan/kmountmangui.cpp:173 MountMan/kmountmangui.cpp:279
+#: MountMan/kmountmangui.cpp:183 MountMan/kmountmangui.cpp:290
 msgid "Critical Error"
 msgstr ""
 
-#: MountMan/kmountmangui.cpp:174
+#: MountMan/kmountmangui.cpp:184
 msgid ""
 "Internal error in MountMan\n"
 "Please email the developers"
 msgstr ""
 
-#: MountMan/kmountmangui.cpp:279
+#: MountMan/kmountmangui.cpp:290
 msgid ""
 "Internal error in MountMan\n"
 "Call the developers"
 msgstr ""
 
-#: MountMan/kmountmangui.cpp:311
+#: MountMan/kmountmangui.cpp:322
 msgid ""
 "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správce připojení dospěl k vnitřní chybě.Upozorněte prosím vývojáře. "
 "Děkujeme."
 
-#: MountMan/kmountmangui.cpp:316
+#: MountMan/kmountmangui.cpp:327
 msgid "MountMan"
 msgstr "MountMan"
 
-#: MountMan/kmountmangui.cpp:330
+#: MountMan/kmountmangui.cpp:341
 msgid "Format"
 msgstr "Formátovat"
 
@@ -2751,10 +2633,6 @@ msgstr "Port:"
 msgid "* Warning: Storing your password is not secure !!!"
 msgstr "* Pozor: Uložení hesla není bezpečné !!!"
 
-#: UserMenu/usermenu.moc.cpp:34 UserMenu/usermenu.moc.cpp:42
-msgid "UserMenuGui"
-msgstr "UserMenuGui"
-
 #: UserMenu/usermenuadd.cpp:29
 #, fuzzy
 msgid "Add a useraction"
@@ -2765,7 +2643,8 @@ msgid "Krusader::Synchronize Directories"
 msgstr "Krusader::Synchronizovat adresáře"
 
 #: Synchronizer/synchronizergui.cpp:1039
-msgid "Directory Comparation"
+#, fuzzy
+msgid "Directory Comparison"
 msgstr "Porovnávání adresářů"
 
 #: Synchronizer/synchronizergui.cpp:1053
@@ -3017,15 +2896,6 @@ msgstr "<DIR>"
 msgid "Synchronizer has nothing to do!"
 msgstr "Není nic k synchronizaci."
 
-#: Synchronizer/synchronizer.moc.cpp:34 Synchronizer/synchronizer.moc.cpp:42
-msgid "Synchronizer"
-msgstr "Synchronizovat"
-
-#: Synchronizer/synchronizergui.moc.cpp:34
-#: Synchronizer/synchronizergui.moc.cpp:42
-msgid "SynchronizerGUI"
-msgstr "SynchronizerGUI"
-
 #: Synchronizer/synchronizedialog.cpp:48
 msgid "Krusader::Synchronize"
 msgstr "Krusader::Synchronizovat"
@@ -3111,11 +2981,6 @@ msgstr "Krusader::Synchronizovat"
 #: Synchronizer/synchronizer.cpp:1216 krslots.cpp:104 krslots.cpp:199
 msgid "Error executing "
 msgstr "Chyba při spouštění "
-
-#: Synchronizer/synchronizedialog.moc.cpp:34
-#: Synchronizer/synchronizedialog.moc.cpp:42
-msgid "SynchronizeDialog"
-msgstr "SynchronizeDialog"
 
 #: paneltabbar.cpp:33 Konfigurator/kglookfeel.cpp:105
 msgid "Panel"
@@ -3840,11 +3705,6 @@ msgstr "Aplikace"
 msgid "Directory"
 msgstr "Adresář"
 
-#: Konfigurator/kgdependencies.moc.cpp:34
-#: Konfigurator/kgdependencies.moc.cpp:42
-msgid "KgDependencies"
-msgstr "KgDependencies"
-
 #: Konfigurator/kgstartup.cpp:45
 msgid "Panels"
 msgstr "Panely"
@@ -4358,14 +4218,6 @@ msgstr "Vyber pouze jeden rozdělený soubor!"
 msgid "Combining %1.* to directory:"
 msgstr "Slučování %1.* do adresáře:"
 
-#: Splitter/splitter.moc.cpp:34 Splitter/splitter.moc.cpp:42
-msgid "Splitter"
-msgstr "Rozdělit"
-
-#: Splitter/splittergui.moc.cpp:34 Splitter/splittergui.moc.cpp:42
-msgid "SplitterGUI"
-msgstr "SplitterGUI"
-
 #: Splitter/splittergui.cpp:39
 msgid "1.44 MB (3.5\")"
 msgstr "1.44 MB (3.5\")"
@@ -4478,10 +4330,6 @@ msgstr "Kontrola souboru se nezdařila. Soubor může být poškozen!"
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
 
-#: Splitter/combiner.moc.cpp:34 Splitter/combiner.moc.cpp:42
-msgid "Combiner"
-msgstr "Slučování"
-
 #: Splitter/splitter.cpp:71
 msgid "Krusader::Splitting..."
 msgstr "Krusader::Rozděluji..."
@@ -4498,13 +4346,119 @@ msgstr "Nelze rozdělit adresář!"
 msgid "Error at reading file %1!"
 msgstr "Chyba při čtení souboru %1!"
 
+#~ msgid "DirHistoryButton"
+#~ msgstr "DirHistoryButton"
+
+#~ msgid "DirHistoryQueue"
+#~ msgstr "DirHistoryQueue"
+
+#, fuzzy
+#~ msgid "KrActionProcDlg"
+#~ msgstr "UserMenuProcDlg"
+
+#, fuzzy
+#~ msgid "KrAction"
+#~ msgstr "Aplikace"
+
+#~ msgid "KrColorCache"
+#~ msgstr "KrColorCache"
+
+#~ msgid "KrDetailedView"
+#~ msgstr "KrDetailedView"
+
+#~ msgid "KrCalcSpaceDialog"
+#~ msgstr "KrCalcSpaceDialog"
+
+#~ msgid "ListPanel"
+#~ msgstr "Seznam"
+
+#, fuzzy
+#~ msgid "PanelPopup"
+#~ msgstr "Panel"
+
+#~ msgid "PanelManager"
+#~ msgstr "PanelManager"
+
+#~ msgid "KrViewer"
+#~ msgstr "KrViewer"
+
+#~ msgid "BookmarksButton"
+#~ msgstr "BookmarksButton"
+
+#, fuzzy
+#~ msgid "KrBookmarkHandler"
+#~ msgstr "Editor záložek"
+
+#~ msgid "Open your bookmarks"
+#~ msgstr "Otevřít záložky"
+
+#, fuzzy
+#~ msgid "KrBookmarkButton"
+#~ msgstr "BookmarksButton"
+
+#, fuzzy
+#~ msgid "KrAddBookmarkDlg"
+#~ msgstr "Přidat záložku"
+
+#~ msgid "Bookmark name:"
+#~ msgstr "Jméno záložky"
+
+#, fuzzy
+#~ msgid "KrBookmark"
+#~ msgstr "Editor záložek"
+
+#~ msgid "Add bookmark"
+#~ msgstr "Přidat záložku"
+
+#~ msgid "Add a bookmark for the current document"
+#~ msgstr "Přidat záložku pro aktuální dokument"
+
+#~ msgid "Edit your bookmark collection in a separate window"
+#~ msgstr "Upravit záložky v samostatném okně"
+
+#~ msgid "&New Bookmark Folder..."
+#~ msgstr "&Nový adresář záložek"
+
+#~ msgid "Create a new bookmark folder in this menu"
+#~ msgstr "Vytvořit novou složku záložek v této nabídce"
+
+#~ msgid "Can't add bookmark with empty URL"
+#~ msgstr "Nemohu přidat novou záložku bez URL"
+
+#~ msgid "KBookmarkManager"
+#~ msgstr "Editor záložek"
+
+#, fuzzy
+#~ msgid "KMountMan"
+#~ msgstr "MountMan"
+
+#~ msgid "UserMenuGui"
+#~ msgstr "UserMenuGui"
+
+#~ msgid "Synchronizer"
+#~ msgstr "Synchronizovat"
+
+#~ msgid "SynchronizerGUI"
+#~ msgstr "SynchronizerGUI"
+
+#~ msgid "SynchronizeDialog"
+#~ msgstr "SynchronizeDialog"
+
+#~ msgid "KgDependencies"
+#~ msgstr "KgDependencies"
+
+#~ msgid "Splitter"
+#~ msgstr "Rozdělit"
+
+#~ msgid "SplitterGUI"
+#~ msgstr "SplitterGUI"
+
+#~ msgid "Combiner"
+#~ msgstr "Slučování"
+
 #, fuzzy
 #~ msgid "No preview available"
 #~ msgstr "Náhled není dostupný"
-
-#, fuzzy
-#~ msgid "Preview: "
-#~ msgstr "Náhled"
 
 #~ msgid "Stalled"
 #~ msgstr "Pozastaveno"
@@ -4737,9 +4691,6 @@ msgstr "Chyba při čtení souboru %1!"
 
 #~ msgid "only in"
 #~ msgstr "pouze v"
-
-#~ msgid "URLs (local and remote)"
-#~ msgstr "URL (místní i vzdálené)"
 
 #~ msgid "No output collection"
 #~ msgstr "Nezobrazovat výstup"

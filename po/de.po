@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-31 16:12+0100\n"
-"PO-Revision-Date: 2004-10-31 16:16+0100\n"
+"POT-Creation-Date: 2004-11-11 17:10+0100\n"
+"PO-Revision-Date: 2004-11-11 17:11+0100\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -819,7 +819,7 @@ msgstr "Gleich"
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:200 krusader.cpp:453
+#: Panel/listpanel.cpp:200
 msgid "Up"
 msgstr "Ebene hoch"
 
@@ -862,7 +862,7 @@ msgid "homepage"
 msgstr "Startseite"
 
 #: Panel/listpanel.cpp:494 Panel/listpanel.cpp:502 krusader.cpp:236
-#: krusader.cpp:241 krusader.cpp:619 krusader.cpp:622
+#: krusader.cpp:241 krusader.cpp:621 krusader.cpp:624
 #: Konfigurator/kgstartup.cpp:60
 msgid "the last place it was"
 msgstr "Stelle an dem es zuletzt war"
@@ -1494,6 +1494,10 @@ msgstr "Dateifenster ver&tauschen"
 msgid "popup cmdline"
 msgstr "popup cmdline"
 
+#: krusader.cpp:453
+msgid "Up one directory"
+msgstr "Ein Verzeichnis hoch"
+
 #: krusader.cpp:454
 msgid "&Edit new file"
 msgstr "&Neue Datei editieren"
@@ -1663,62 +1667,66 @@ msgid "Toggle Popup Panel"
 msgstr "Das Popup Dateifenster umschalten"
 
 #: krusader.cpp:560
+msgid "Vertical Mode"
+msgstr "Vertikaler Modus"
+
+#: krusader.cpp:562
 msgid "New tab"
 msgstr "Neues Unterfenster"
 
-#: krusader.cpp:562
+#: krusader.cpp:564
 msgid "Duplicate tab"
 msgstr "Unterfenster duplizieren"
 
-#: krusader.cpp:564
+#: krusader.cpp:566
 msgid "Close tab"
 msgstr "Unterfenster schließen"
 
-#: krusader.cpp:566
+#: krusader.cpp:568
 msgid "Next tab"
 msgstr "Nächstes Unterfenster"
 
-#: krusader.cpp:568
+#: krusader.cpp:570
 msgid "Previous tab"
 msgstr "Vorheriges Unterfenster"
 
-#: krusader.cpp:570 UserMenu/usermenu.cpp:56
+#: krusader.cpp:572 UserMenu/usermenu.cpp:56
 msgid "User Menu"
 msgstr "Benutzer Menü"
 
-#: krusader.cpp:574
+#: krusader.cpp:576
 msgid "Highlight files by using a filter"
 msgstr "Dateien mittels Filter auswählen"
 
-#: krusader.cpp:575
+#: krusader.cpp:577
 msgid "Highlight all the files in the current directory"
 msgstr "Alle Dateien im aktuellen Verzeichnis auswählen"
 
-#: krusader.cpp:576
+#: krusader.cpp:578
 msgid "Remove selection from all highlight files"
 msgstr "Auswahl aller Dateien aufheben"
 
-#: krusader.cpp:577
+#: krusader.cpp:579
 msgid "Setup Krusader the way you like it"
 msgstr "Passen Sie Krusader Ihren eigenen Wünschen an"
 
-#: krusader.cpp:578
+#: krusader.cpp:580
 msgid "Back to the place you came from"
 msgstr "Zurück an die Stelle von der Sie kamen"
 
-#: krusader.cpp:579
+#: krusader.cpp:581
 msgid "ROOT (/)"
 msgstr "Basisordner (/)"
 
-#: krusader.cpp:580
+#: krusader.cpp:582
 msgid "Search for files"
 msgstr "Nach Dateien suchen"
 
-#: krusader.cpp:618 krusader.cpp:621
+#: krusader.cpp:620 krusader.cpp:623
 msgid "List"
 msgstr "Liste"
 
-#: krusader.cpp:664
+#: krusader.cpp:666
 msgid "Ok to shutdown Krusader?"
 msgstr "Krusader wirklich beenden?"
 

@@ -7,9 +7,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.50-beta1\n"
+"Project-Id-Version: krusader-1.50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-15 19:51+0200\n"
+"POT-Creation-Date: 2004-11-11 17:10+0100\n"
 "PO-Revision-Date: 2004-05-21 07:35+0200\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@fastmail.fm>\n"
 "Language-Team: Dutch\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
-
-#: GUI/actionproperty.moc.cpp:34 GUI/actionproperty.moc.cpp:42
-msgid "ActionProperty"
-msgstr "ActieEigenschap"
-
-#: GUI/dirhistorybutton.moc.cpp:34 GUI/dirhistorybutton.moc.cpp:42
-msgid "DirHistoryButton"
-msgstr "DirHistoriekKnop"
 
 #: GUI/dirhistorybutton.cpp:36
 msgid "Open the directory history list"
@@ -53,10 +45,6 @@ msgstr "Krusader::ProfielManager"
 #: GUI/profilemanager.cpp:93
 msgid "Enter the profile name:"
 msgstr "Profiel naam invoeren:"
-
-#: GUI/dirhistoryqueue.moc.cpp:34 GUI/dirhistoryqueue.moc.cpp:42
-msgid "DirHistoryQueue"
-msgstr "DirHistoriekWachtrij"
 
 #: GUI/syncbrowsebutton.cpp:45
 msgid ""
@@ -140,236 +128,244 @@ msgstr "Commandoregel is leeg"
 msgid "There already is an action with this name"
 msgstr "Er is al een actie met deze naam"
 
-#: GUI/actionpropertybase.cpp:385
+#: GUI/actionpropertybase.cpp:386
 msgid "Action Property"
 msgstr "Actie Eigenschap"
 
-#: GUI/actionpropertybase.cpp:386
+#: GUI/actionpropertybase.cpp:387
 msgid "..."
 msgstr "..."
 
-#: GUI/actionpropertybase.cpp:387
+#: GUI/actionpropertybase.cpp:388
 msgid "Description"
 msgstr "Beschrijving"
 
-#: GUI/actionpropertybase.cpp:388
+#: GUI/actionpropertybase.cpp:389
 msgid "Command accepts"
 msgstr "Commando aanvaard"
 
-#: GUI/actionpropertybase.cpp:389
-msgid "Local files only (no URL's)"
+#: GUI/actionpropertybase.cpp:390
+#, fuzzy
+msgid "Local files only (no URLs)"
 msgstr "Enkel lokale bestanden (geen URL's)"
 
-#: GUI/actionpropertybase.cpp:390
+#: GUI/actionpropertybase.cpp:391
 msgid "Substitute the placeholders with local filenames"
 msgstr "Plaatsvervangers met lokale bestandsnamen substitueren"
 
-#: GUI/actionpropertybase.cpp:391
-msgid "URL's (remote and local)"
+#: GUI/actionpropertybase.cpp:392
+#, fuzzy
+msgid "URLs (remote and local)"
 msgstr "URL's (op afstand en lokaal)"
 
-#: GUI/actionpropertybase.cpp:392
-msgid "Substitute the placeholders with valid URL's"
+#: GUI/actionpropertybase.cpp:393
+#, fuzzy
+msgid "Substitute the placeholders with valid URLs"
 msgstr "Plaatsvervangers substitueren met geldige URL's"
 
-#: GUI/actionpropertybase.cpp:393
+#: GUI/actionpropertybase.cpp:394
 msgid "The title displayed in the menu"
 msgstr "Titel tonenen in het menu"
 
-#: GUI/actionpropertybase.cpp:394
+#: GUI/actionpropertybase.cpp:395
 msgid "Title"
 msgstr "Titel"
 
-#: GUI/actionpropertybase.cpp:395
-msgid "An unique name for the action"
+#: GUI/actionpropertybase.cpp:396
+#, fuzzy
+msgid "A unique name for the action"
 msgstr "Unieke naam voor de actie"
 
-#: GUI/actionpropertybase.cpp:396
+#: GUI/actionpropertybase.cpp:397
 msgid "Choose a category for a better overview"
 msgstr "Categorie kiezen voor een beter overzicht"
 
-#: GUI/actionpropertybase.cpp:397
+#: GUI/actionpropertybase.cpp:398
 msgid "icon"
 msgstr "pictogram"
 
-#: GUI/actionpropertybase.cpp:398
+#: GUI/actionpropertybase.cpp:399
 msgid "Choose an icon for the action"
 msgstr "Pictogram kiezen voor de actie"
 
-#: GUI/actionpropertybase.cpp:399
+#: GUI/actionpropertybase.cpp:400
 msgid "use tooltip"
 msgstr "Gereedschaphint gebruiken"
 
-#: GUI/actionpropertybase.cpp:400
+#: GUI/actionpropertybase.cpp:401
 msgid "You may use the tooltip as description"
 msgstr "U mag de gereedschaphint als beschrijving gebruiken"
 
-#: GUI/actionpropertybase.cpp:401
+#: GUI/actionpropertybase.cpp:402
 msgid "Distinct name"
 msgstr "Naam onderscheiden"
 
-#: GUI/actionpropertybase.cpp:402
-msgid "Commandline"
+#: GUI/actionpropertybase.cpp:403
+#, fuzzy
+msgid "Command line"
 msgstr "Commandoregel"
 
-#: GUI/actionpropertybase.cpp:403
+#: GUI/actionpropertybase.cpp:404
 msgid "A tooltip for the action"
 msgstr "Gereedschaptip voor een actie"
 
-#: GUI/actionpropertybase.cpp:404
+#: GUI/actionpropertybase.cpp:405
 msgid "You may want to set a working directory"
 msgstr "Je kan een werkmap instellen"
 
-#: GUI/actionpropertybase.cpp:405
+#: GUI/actionpropertybase.cpp:406
 msgid "Tooltip"
 msgstr "Gereedschaphint"
 
-#: GUI/actionpropertybase.cpp:407
-msgid "This commandline is executed"
+#: GUI/actionpropertybase.cpp:408
+#, fuzzy
+msgid "This command line is executed"
 msgstr "Deze commandoregel is uitgevoerd"
 
-#: GUI/actionpropertybase.cpp:408
+#: GUI/actionpropertybase.cpp:409
 msgid "Category"
 msgstr "Categorie"
 
-#: GUI/actionpropertybase.cpp:409 GUI/actionpropertybase.cpp:432
-#: GUI/actionpropertybase.cpp:437 GUI/addplaceholderpopup.cpp:252
+#: GUI/actionpropertybase.cpp:410 GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:438 GUI/addplaceholderpopup.cpp:252
 msgid "add"
 msgstr "toevoegen"
 
-#: GUI/actionpropertybase.cpp:410
-msgid "Add placeholders for the selected files in the panel"
-msgstr "Een plaatshouder toevoegen voor de geselecteerde bestanden in het paneel"
-
 #: GUI/actionpropertybase.cpp:411
+msgid "Add placeholders for the selected files in the panel"
+msgstr ""
+"Een plaatshouder toevoegen voor de geselecteerde bestanden in het paneel"
+
+#: GUI/actionpropertybase.cpp:412
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
 msgstr "Beschrijving is enkel zichtbaar in Konfigurator via Shift F1"
 
-#: GUI/actionpropertybase.cpp:412
-msgid "Startpath"
+#: GUI/actionpropertybase.cpp:413
+#, fuzzy
+msgid "Start path"
 msgstr "Startpad"
 
-#: GUI/actionpropertybase.cpp:413
+#: GUI/actionpropertybase.cpp:414
 msgid "Default shortcut:"
 msgstr "Standaard shortcut:"
 
-#: GUI/actionpropertybase.cpp:414
+#: GUI/actionpropertybase.cpp:415
 msgid "None"
 msgstr "Geen"
 
-#: GUI/actionpropertybase.cpp:415
+#: GUI/actionpropertybase.cpp:416
 msgid "set a default keyboad shortcut"
 msgstr "Standaard toetsenbord sneltoets instellen"
 
-#: GUI/actionpropertybase.cpp:416
+#: GUI/actionpropertybase.cpp:417
 msgid "Execution mode"
 msgstr "Uitvoer modus"
 
-#: GUI/actionpropertybase.cpp:417
+#: GUI/actionpropertybase.cpp:418
 msgid "Collect output"
 msgstr "Uitvoer verzamelen"
 
-#: GUI/actionpropertybase.cpp:418
+#: GUI/actionpropertybase.cpp:419
 msgid "Collect the output of the executed program"
 msgstr "Uitvoer van het uitgevoerde programma verzamelen"
 
-#: GUI/actionpropertybase.cpp:419
+#: GUI/actionpropertybase.cpp:420
 msgid "Separate standard error"
 msgstr "Aparte standaard error"
 
-#: GUI/actionpropertybase.cpp:420
+#: GUI/actionpropertybase.cpp:421
 msgid "Separate standard out and standard error"
 msgstr "Aparte standaard uit en standaard error"
 
-#: GUI/actionpropertybase.cpp:421
+#: GUI/actionpropertybase.cpp:422
 msgid "Normal"
 msgstr "Normaal"
 
-#: GUI/actionpropertybase.cpp:422
+#: GUI/actionpropertybase.cpp:423
 msgid "Run in terminal"
 msgstr "In een terminal uitvoeren"
 
-#: GUI/actionpropertybase.cpp:423
+#: GUI/actionpropertybase.cpp:424
 msgid "Run the command in a terminal"
 msgstr "Commando uitvoeren in een terminal"
 
-#: GUI/actionpropertybase.cpp:424
+#: GUI/actionpropertybase.cpp:425
 msgid "Basic Properties"
 msgstr "Algemene instellingen"
 
-#: GUI/actionpropertybase.cpp:425
+#: GUI/actionpropertybase.cpp:426
 msgid "This Action is only available for the following"
 msgstr "Deze actie is enkel beschikbaar voor de volgende"
 
-#: GUI/actionpropertybase.cpp:426 GUI/actionpropertybase.cpp:442
+#: GUI/actionpropertybase.cpp:427 GUI/actionpropertybase.cpp:443
 msgid "new"
 msgstr "nieuw"
 
-#: GUI/actionpropertybase.cpp:427 GUI/actionpropertybase.cpp:433
-#: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:428 GUI/actionpropertybase.cpp:434
+#: GUI/actionpropertybase.cpp:439 GUI/actionpropertybase.cpp:444
 msgid "edit"
 msgstr "bewerken"
 
-#: GUI/actionpropertybase.cpp:428 GUI/actionpropertybase.cpp:434
-#: GUI/actionpropertybase.cpp:439 GUI/actionpropertybase.cpp:444
+#: GUI/actionpropertybase.cpp:429 GUI/actionpropertybase.cpp:435
+#: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:445
 msgid "remove"
 msgstr "verwijderen"
 
-#: GUI/actionpropertybase.cpp:429
+#: GUI/actionpropertybase.cpp:430
 msgid "Show the action only for these protocols"
 msgstr "Actie alleen tonen voor deze protocollen"
 
-#: GUI/actionpropertybase.cpp:430
+#: GUI/actionpropertybase.cpp:431
 msgid "Protocol"
 msgstr "Protocol"
 
-#: GUI/actionpropertybase.cpp:431
+#: GUI/actionpropertybase.cpp:432
 msgid "Show the action only in these paths"
 msgstr "Actie alleen tonen in deze paden"
 
-#: GUI/actionpropertybase.cpp:435
+#: GUI/actionpropertybase.cpp:436
 msgid "Path"
 msgstr "Pad"
 
-#: GUI/actionpropertybase.cpp:436
+#: GUI/actionpropertybase.cpp:437
 msgid "Show the action only for these file-types"
 msgstr "Actie alleen tonen voor deze bestand types"
 
-#: GUI/actionpropertybase.cpp:440
+#: GUI/actionpropertybase.cpp:441
 msgid "Mime-type"
 msgstr "Mime bestandstype"
 
-#: GUI/actionpropertybase.cpp:441
+#: GUI/actionpropertybase.cpp:442
 msgid "Show the action only for these filenames (you may use '?' and '*')"
-msgstr "Actie alleen tonen voor deze bestand types (u mag '?' en '*' gebruiken)"
+msgstr ""
+"Actie alleen tonen voor deze bestand types (u mag '?' en '*' gebruiken)"
 
-#: GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:446
 msgid "Filename"
 msgstr "Bestandsnaam"
 
-#: GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:447
 msgid "Confirm each program call separately"
 msgstr "Iedere programma-aanroep afzonderlijk bevestigen"
 
-#: GUI/actionpropertybase.cpp:447
-msgid "This allows you to tweak the commandline before beeing executed"
-msgstr "Laat u toe om de commandoregel aan te passen voordat hij uitgevoerd wordt"
-
 #: GUI/actionpropertybase.cpp:448
+#, fuzzy
+msgid "This allows you to tweak the command line before being executed"
+msgstr ""
+"Laat u toe om de commandoregel aan te passen voordat hij uitgevoerd wordt"
+
+#: GUI/actionpropertybase.cpp:449
 msgid "Run as different user"
 msgstr "Uitvoeren als een andere gebruiker"
 
-#: GUI/actionpropertybase.cpp:449
-msgid "execute the command under an other user-id"
+#: GUI/actionpropertybase.cpp:450
+#, fuzzy
+msgid "execute the command under another user-id"
 msgstr "Commando uitvoeren met een ander gebruikers ID"
 
-#: GUI/actionpropertybase.cpp:450
+#: GUI/actionpropertybase.cpp:451
 msgid "Advanced Properties"
 msgstr "Uitgebreide Eigenschappen"
-
-#: GUI/syncbrowsebutton.moc.cpp:34 GUI/syncbrowsebutton.moc.cpp:42
-msgid "SyncBrowseButton"
-msgstr "SynchroonBladerenKnop"
 
 #: GUI/addplaceholderpopup.cpp:54
 msgid "Active panel"
@@ -408,8 +404,9 @@ msgid "Name of directory where command will be processed."
 msgstr "Naam van de map waar het commando zal uitgevoerd worden."
 
 #: GUI/kcmdline.cpp:91
+#, fuzzy
 msgid ""
-"<qt>Well, it's quite simple actually: You write you command in here, and "
+"<qt>Well, it's quite simple actually: You write your command in here, and "
 "Krusader obeys.<p><Tip:>Move in command-line history with &lt;Up&gt; and &lt;"
 "Down&gt; arrows.</qt>"
 msgstr ""
@@ -515,22 +512,6 @@ msgstr "F10 Afsluiten "
 msgid "Quit Krusader."
 msgstr "Krusader Afsluiten."
 
-#: GUI/addplaceholderpopup.moc.cpp:34 GUI/addplaceholderpopup.moc.cpp:42
-msgid "ParameterPlaceholder"
-msgstr "ParameterPlaatshouder"
-
-#: GUI/addplaceholderpopup.moc.cpp:116 GUI/addplaceholderpopup.moc.cpp:124
-msgid "ParameterFile"
-msgstr "ParameterBestand"
-
-#: GUI/addplaceholderpopup.moc.cpp:198 GUI/addplaceholderpopup.moc.cpp:206
-msgid "ParameterGoto"
-msgstr "ParameterGaNaar"
-
-#: GUI/addplaceholderpopup.moc.cpp:286 GUI/addplaceholderpopup.moc.cpp:294
-msgid "ParameterDialog"
-msgstr "ParameterDialoog"
-
 #: VFS/ftp_vfs.cpp:138
 msgid ""
 "Malformed URL:\n"
@@ -579,7 +560,7 @@ msgstr "Kan map %1 niet openen!"
 msgid "Access denied to"
 msgstr "Toegang geweigerd tot"
 
-#: VFS/normal_vfs.cpp:196
+#: VFS/normal_vfs.cpp:197
 msgid "Can't create a directory check your permissions."
 msgstr "Kan deze map niet aanmaken controleer uw toegangsrechten."
 
@@ -714,7 +695,8 @@ msgstr "Wat moet er gekopieerd worden"
 
 #: UserAction/expander.cpp:310
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr "Aanhechten van de huidige klembord-inhoud met deze scheider (optioneel)"
+msgstr ""
+"Aanhechten van de huidige klembord-inhoud met deze scheider (optioneel)"
 
 #: UserAction/expander.cpp:324
 msgid "Copy a file/folder"
@@ -769,31 +751,19 @@ msgstr "Uitvoer bevestigingen"
 msgid "Command being executed:"
 msgstr "Commando dat uitgevoerd wordt:"
 
-#: UserAction/kraction.moc.cpp:34 UserAction/kraction.moc.cpp:42
-msgid "KrActionProcDlg"
-msgstr "KrActionProcDlg"
-
-#: UserAction/kraction.moc.cpp:129 UserAction/kraction.moc.cpp:137
-msgid "KrActionProc"
-msgstr "KrActionProc"
-
-#: UserAction/kraction.moc.cpp:217 UserAction/kraction.moc.cpp:225
-msgid "KrAction"
-msgstr "KrAction"
-
-#: Panel/krdetailedviewitem.cpp:356
+#: Panel/krdetailedviewitem.cpp:365
 msgid "Climb up the directory tree"
 msgstr "Omhoog gaan in de mappenstructuur"
 
-#: Panel/krdetailedviewitem.cpp:368
+#: Panel/krdetailedviewitem.cpp:377
 msgid "Symbolic Link"
 msgstr "Symbolische koppeling"
 
-#: Panel/krdetailedviewitem.cpp:369
+#: Panel/krdetailedviewitem.cpp:378
 msgid "(broken link !)"
 msgstr "(verbroken koppeling !)"
 
-#: Panel/krdetailedviewitem.cpp:370
+#: Panel/krdetailedviewitem.cpp:379
 msgid "%1 (Link)"
 msgstr "%1 (Koppeling)"
 
@@ -854,7 +824,7 @@ msgstr "Gelijk"
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:200 krusader.cpp:453
+#: Panel/listpanel.cpp:200
 msgid "Up"
 msgstr "Omhoog"
 
@@ -897,7 +867,7 @@ msgid "homepage"
 msgstr "thuismap"
 
 #: Panel/listpanel.cpp:494 Panel/listpanel.cpp:502 krusader.cpp:236
-#: krusader.cpp:241 krusader.cpp:617 krusader.cpp:620
+#: krusader.cpp:241 krusader.cpp:621 krusader.cpp:624
 #: Konfigurator/kgstartup.cpp:60
 msgid "the last place it was"
 msgstr "de laatste positie"
@@ -934,15 +904,15 @@ msgstr "%1 vrij van de %2 (%3%) op %4 [ (%5) ]"
 msgid "Can't drop here, no write permissions."
 msgstr "Kan hier niet droppen, geen schrijfpermissie."
 
-#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:234
+#: Panel/listpanel.cpp:686 Panel/panelpopup.cpp:235
 msgid "Copy Here"
 msgstr "Hier kopiëren"
 
-#: Panel/listpanel.cpp:688 Panel/panelpopup.cpp:235
+#: Panel/listpanel.cpp:688 Panel/panelpopup.cpp:236
 msgid "Move Here"
 msgstr "Hier verplaatsen"
 
-#: Panel/listpanel.cpp:691 Panel/panelpopup.cpp:236
+#: Panel/listpanel.cpp:691 Panel/panelpopup.cpp:237
 msgid "Link Here"
 msgstr "Hier koppelen"
 
@@ -978,7 +948,7 @@ msgstr "Gebruiker Acties"
 msgid "Konqueror menu"
 msgstr "Konqueror menu"
 
-#: Panel/listpanel.cpp:856 Panel/krdetailedview.cpp:988
+#: Panel/listpanel.cpp:856 Panel/krdetailedview.cpp:985
 msgid "Rename"
 msgstr "Hernoemen"
 
@@ -1002,17 +972,17 @@ msgstr "koppeling redirigeren"
 msgid "Link handling"
 msgstr "Koppeling beheer"
 
-#: Panel/listpanel.cpp:879 MountMan/kmountman.cpp:268
-#: MountMan/kmountmangui.cpp:322
+#: Panel/listpanel.cpp:879 MountMan/kmountman.cpp:286
+#: MountMan/kmountmangui.cpp:333
 msgid "Unmount"
 msgstr "Afkoppelen (unmount)"
 
-#: Panel/listpanel.cpp:881 MountMan/kmountman.cpp:268
-#: MountMan/kmountmangui.cpp:318
+#: Panel/listpanel.cpp:881 MountMan/kmountman.cpp:286
+#: MountMan/kmountmangui.cpp:329
 msgid "Mount"
 msgstr "Aankoppelen (mount)"
 
-#: Panel/listpanel.cpp:883 MountMan/kmountmangui.cpp:328
+#: Panel/listpanel.cpp:883 MountMan/kmountmangui.cpp:339
 msgid "Eject"
 msgstr "Uitwerpen"
 
@@ -1038,15 +1008,16 @@ msgstr "Bent u zeker dat u wilt vernietigen : "
 
 #: Panel/listpanel.cpp:938
 msgid " ? Once shred, the file is gone forever !!!"
-msgstr " ? Eenmaal vernietigd (shred), dan is het bestand voor altijd verloren !!!"
+msgstr ""
+" ? Eenmaal vernietigd (shred), dan is het bestand voor altijd verloren !!!"
 
-#: Panel/listpanel.cpp:994 Panel/panelfunc.cpp:307 KViewer/krviewer.cpp:212
+#: Panel/listpanel.cpp:994 Panel/panelfunc.cpp:313 KViewer/krviewer.cpp:212
 #: krslots.cpp:408
 msgid "Can't open "
 msgstr "Kan niet openen "
 
 #: Panel/krdetailedview.cpp:88 Search/krsearchdialog.cpp:139
-#: MountMan/kmountmangui.cpp:119 Synchronizer/synchronizergui.cpp:1236
+#: MountMan/kmountmangui.cpp:124 Synchronizer/synchronizergui.cpp:1236
 #: Synchronizer/synchronizergui.cpp:1242
 msgid "Name"
 msgstr "Naam"
@@ -1055,7 +1026,7 @@ msgstr "Naam"
 msgid "Ext"
 msgstr "Ext"
 
-#: Panel/krdetailedview.cpp:90 MountMan/kmountmangui.cpp:120
+#: Panel/krdetailedview.cpp:90 MountMan/kmountmangui.cpp:125
 msgid "Type"
 msgstr "Type"
 
@@ -1085,11 +1056,11 @@ msgstr "Eigenaar"
 msgid "Group"
 msgstr "Groep"
 
-#: Panel/krdetailedview.cpp:988
+#: Panel/krdetailedview.cpp:985
 msgid "Rename "
 msgstr "Hernoemen "
 
-#: Panel/krdetailedview.cpp:988
+#: Panel/krdetailedview.cpp:985
 msgid " to:"
 msgstr " naar:"
 
@@ -1097,13 +1068,10 @@ msgstr " naar:"
 msgid "%1 out of %2 selected, %3 out of %4"
 msgstr "%1 van de %2 geselecteerd, %3 van de %4"
 
-#: Panel/krcolorcache.moc.cpp:34 Panel/krcolorcache.moc.cpp:42
-msgid "KrColorCache"
-msgstr "KrKleurenCache"
-
 #: Panel/panelpopup.cpp:50
 msgid "Tree Panel: a tree view of the local file system"
-msgstr "Boomstruktuur paneel: boomstruktuurweergave van het lokale bestandsysteem"
+msgstr ""
+"Boomstruktuur paneel: boomstruktuurweergave van het lokale bestandsysteem"
 
 #: Panel/panelpopup.cpp:58
 msgid "Preview Panel: display a preview of the current file"
@@ -1141,17 +1109,10 @@ msgstr "Voorbeeldweergave:"
 msgid "Quick Select:"
 msgstr "Snelselecteren:"
 
-#: Panel/krdetailedview.moc.cpp:34 Panel/krdetailedview.moc.cpp:42
-msgid "KrDetailedView"
-msgstr "KrDetailView"
-
-#: Panel/krcalcspacedialog.moc.cpp:34 Panel/krcalcspacedialog.moc.cpp:42
-msgid "KrCalcSpaceDialog"
-msgstr "KrCalcSpaceDialoog"
-
-#: Panel/listpanel.moc.cpp:34 Panel/listpanel.moc.cpp:42
-msgid "ListPanel"
-msgstr "Lijstvenster"
+#: Panel/panelpopup.cpp:194
+#, fuzzy
+msgid "Preview: "
+msgstr "Voorbeeldweergave:"
 
 #: Panel/krcalcspacedialog.cpp:95
 msgid "Calculate Occupied Space"
@@ -1173,143 +1134,143 @@ msgstr ""
 "\n"
 "in %1 mappen en %2 bestanden"
 
-#: Panel/panelfunc.cpp:197
+#: Panel/panelfunc.cpp:203
 msgid "You can edit links only on local file systems"
 msgstr "Je kan enkel links bewerken op lokale bestandsystemen"
 
-#: Panel/panelfunc.cpp:208
+#: Panel/panelfunc.cpp:214
 msgid "The current file is not a link, so i can't redirect it."
 msgstr "Het huidig bestand is geen link, zodat ik niet kan redirigeren."
 
-#: Panel/panelfunc.cpp:215
+#: Panel/panelfunc.cpp:221
 msgid "Link Redirection"
 msgstr "Koppeling omlegging"
 
-#: Panel/panelfunc.cpp:216
+#: Panel/panelfunc.cpp:222
 msgid "Please enter the new link destination:"
 msgstr "Voer a.u.b. de nieuwe koppeling bestemming in:"
 
-#: Panel/panelfunc.cpp:223
+#: Panel/panelfunc.cpp:229
 msgid "Can't remove old link: "
 msgstr "Kan de oude koppeling niet verwijderen: "
 
-#: Panel/panelfunc.cpp:228 Panel/panelfunc.cpp:268
+#: Panel/panelfunc.cpp:234 Panel/panelfunc.cpp:274
 msgid "Failed to create a new link: "
 msgstr "Aanmaken van nieuwe koppeling is mislukt: "
 
-#: Panel/panelfunc.cpp:235
+#: Panel/panelfunc.cpp:241
 msgid "You can create links only on local file systems"
 msgstr "Je kan enkel koppelingen aanmaken op lokale bestandsystemen"
 
-#: Panel/panelfunc.cpp:244
+#: Panel/panelfunc.cpp:250
 msgid "New link"
 msgstr "Nieuwe koppeling"
 
-#: Panel/panelfunc.cpp:244
+#: Panel/panelfunc.cpp:250
 msgid "Create a new link to: "
 msgstr "Een nieuwe koppeling maken naar: "
 
-#: Panel/panelfunc.cpp:252 Panel/panelfunc.cpp:435
+#: Panel/panelfunc.cpp:258 Panel/panelfunc.cpp:441
 msgid "A directory or a file with this name already exists."
 msgstr "Een directory of bestand met deze naam bestaat reeds."
 
-#: Panel/panelfunc.cpp:264
+#: Panel/panelfunc.cpp:270
 msgid "Failed to create a new symlink: "
 msgstr "Aanmaken van nieuwe symbolische koppeling is mislukt:"
 
-#: Panel/panelfunc.cpp:265 Panel/panelfunc.cpp:269
+#: Panel/panelfunc.cpp:271 Panel/panelfunc.cpp:275
 msgid " To: "
 msgstr " Naar: "
 
-#: Panel/panelfunc.cpp:283
+#: Panel/panelfunc.cpp:289
 msgid "No permissions to view this file."
 msgstr "Geen toegangsrechten om dit bestand te bekijken."
 
-#: Panel/panelfunc.cpp:318
+#: Panel/panelfunc.cpp:324
 msgid "You can't edit a directory"
 msgstr "Je kan geen map bewerken"
 
-#: Panel/panelfunc.cpp:323
+#: Panel/panelfunc.cpp:329
 msgid "No permissions to edit this file."
 msgstr "Geen toegangsrechten om dit bestand te bewerken."
 
-#: Panel/panelfunc.cpp:345
+#: Panel/panelfunc.cpp:350
 msgid "Moving into archive is disabled"
 msgstr "Verplaatsen naar een archief is uitgeschakeld"
 
-#: Panel/panelfunc.cpp:354
+#: Panel/panelfunc.cpp:359
 msgid "Move "
 msgstr "Verplaatsen "
 
-#: Panel/panelfunc.cpp:354 Panel/panelfunc.cpp:466 Panel/panelfunc.cpp:767
-#: Panel/panelfunc.cpp:769
+#: Panel/panelfunc.cpp:359 Panel/panelfunc.cpp:472 Panel/panelfunc.cpp:772
+#: Panel/panelfunc.cpp:774
 msgid "to"
 msgstr "naar"
 
-#: Panel/panelfunc.cpp:356
+#: Panel/panelfunc.cpp:361
 #, c-format
 msgid "Move %d files to:"
 msgstr "%d bestanden verplaatsen naar:"
 
-#: Panel/panelfunc.cpp:396
+#: Panel/panelfunc.cpp:401
 msgid "You can't move files to this file system"
 msgstr "Je kan geen bestanden verplaatsen naar dit bestandssysteem"
 
-#: Panel/panelfunc.cpp:422
+#: Panel/panelfunc.cpp:428
 msgid "New directory"
 msgstr "Nieuwe map"
 
-#: Panel/panelfunc.cpp:422
+#: Panel/panelfunc.cpp:428
 msgid "Directory's name:"
 msgstr "Mapnaam:"
 
-#: Panel/panelfunc.cpp:466
+#: Panel/panelfunc.cpp:472
 msgid "Copy "
 msgstr "Kopiëren "
 
-#: Panel/panelfunc.cpp:468
+#: Panel/panelfunc.cpp:474
 #, c-format
 msgid "Copy %d files to:"
 msgstr "%d bestanden kopiëren naar:"
 
-#: Panel/panelfunc.cpp:500
+#: Panel/panelfunc.cpp:506
 msgid "You can't copy files to this file system"
 msgstr "Je kan geen bestanden kopiëren naar dit bestandssysteem"
 
-#: Panel/panelfunc.cpp:511
+#: Panel/panelfunc.cpp:517
 msgid "You do not have write permission to this directory"
 msgstr "U heeft geen schrijfrechten in deze directory"
 
-#: Panel/panelfunc.cpp:526
+#: Panel/panelfunc.cpp:532
 msgid " this item ?"
 msgstr " dit item ?"
 
-#: Panel/panelfunc.cpp:528
+#: Panel/panelfunc.cpp:534
 #, c-format
 msgid " these %d items ?"
 msgstr " deze %d items ?"
 
-#: Panel/panelfunc.cpp:532
+#: Panel/panelfunc.cpp:538
 msgid "trash"
 msgstr "prullenbak"
 
-#: Panel/panelfunc.cpp:533
+#: Panel/panelfunc.cpp:539
 msgid "&Trash"
 msgstr "&Prullenbak"
 
-#: Panel/panelfunc.cpp:535
+#: Panel/panelfunc.cpp:541
 msgid "delete"
 msgstr "wissen"
 
-#: Panel/panelfunc.cpp:540
+#: Panel/panelfunc.cpp:546
 msgid "Are you sure you want to "
 msgstr "Bent u er zeker van dat u "
 
-#: Panel/panelfunc.cpp:559
+#: Panel/panelfunc.cpp:565
 msgid "Directory "
 msgstr "Map "
 
-#: Panel/panelfunc.cpp:559
+#: Panel/panelfunc.cpp:565
 msgid ""
 " is not empty !\n"
 "Skip this one or Delete All ?"
@@ -1317,70 +1278,62 @@ msgstr ""
 " is niet leeg !\n"
 "Deze overslaan of alles wissen ?"
 
-#: Panel/panelfunc.cpp:560
+#: Panel/panelfunc.cpp:566
 msgid "&Skip"
 msgstr "&Overslaan"
 
-#: Panel/panelfunc.cpp:560
+#: Panel/panelfunc.cpp:566
 msgid "&Delete All"
 msgstr "&Alles wissen"
 
-#: Panel/panelfunc.cpp:664
+#: Panel/panelfunc.cpp:671
 msgid "The Archive "
 msgstr "Het archief "
 
-#: Panel/panelfunc.cpp:665
+#: Panel/panelfunc.cpp:672
 msgid " already exists, Do you want to overwrite the archive "
 msgstr " bestaat reeds, wilt u het archief overschrijven "
 
-#: Panel/panelfunc.cpp:666
+#: Panel/panelfunc.cpp:673
 msgid "(all data in previous archive will be lost)"
 msgstr "(alle gegevens in het vorige archief zullen verloren gaan)"
 
-#: Panel/panelfunc.cpp:666
+#: Panel/panelfunc.cpp:673
 msgid "&Overwite"
 msgstr "&Overschrijven"
 
-#: Panel/panelfunc.cpp:671
+#: Panel/panelfunc.cpp:678
 msgid "Counting files to pack"
 msgstr "Bestanden tellen om in te pakken"
 
-#: Panel/panelfunc.cpp:736 Panel/panelfunc.cpp:793 krslots.cpp:182
+#: Panel/panelfunc.cpp:740 Panel/panelfunc.cpp:797 krslots.cpp:182
 #: krslots.cpp:188
 msgid "Krusader is unable to download: "
 msgstr "Krusader is niet in staat om te downloaden: "
 
-#: Panel/panelfunc.cpp:743
+#: Panel/panelfunc.cpp:748
 msgid "%1, unknown archive type."
 msgstr "%1, onbekend archief type"
 
-#: Panel/panelfunc.cpp:749
+#: Panel/panelfunc.cpp:754
 msgid "%1, test passed."
 msgstr "%1, test geslaagd."
 
-#: Panel/panelfunc.cpp:751
+#: Panel/panelfunc.cpp:756
 msgid "%1, test failed !"
 msgstr "%1, test mislukt !"
 
-#: Panel/panelfunc.cpp:767 Panel/panelfunc.cpp:769
+#: Panel/panelfunc.cpp:772 Panel/panelfunc.cpp:774
 msgid "Unpack "
 msgstr "Uitpakken "
 
-#: Panel/panelfunc.cpp:769
+#: Panel/panelfunc.cpp:774
 msgid "%1 files"
 msgstr "%1 bestanden"
 
-#: Panel/panelfunc.cpp:820
+#: Panel/panelfunc.cpp:825
 msgid "%1, unknown archive type"
 msgstr "%1, onbekend archief type"
-
-#: Panel/panelpopup.moc.cpp:34 Panel/panelpopup.moc.cpp:42
-msgid "PanelPopup"
-msgstr "VensterPopup"
-
-#: panelmanager.moc.cpp:34 panelmanager.moc.cpp:42
-msgid "PanelManager"
-msgstr "VensterManager"
 
 #: Locate/locate.cpp:64
 msgid "Update DB"
@@ -1430,7 +1383,8 @@ msgstr ""
 "\n"
 
 #: Locate/locate.cpp:230
-msgid "Error during the start of `locate` process!"
+#, fuzzy
+msgid "Error during the start of 'locate' process!"
 msgstr "Fout tijdens het starten van het `locate` proces!"
 
 #: Locate/locate.cpp:304
@@ -1458,8 +1412,10 @@ msgid "Search string not found!"
 msgstr "Zoekstring niet gevonden!"
 
 #: krusader.cpp:260
-msgid "Status bar will show  basic informations about file below mouse pointer."
-msgstr "De statusbalk geeft algemene informatie over het bestand onder de muispijl."
+msgid ""
+"Status bar will show  basic informations about file below mouse pointer."
+msgstr ""
+"De statusbalk geeft algemene informatie over het bestand onder de muispijl."
 
 #: krusader.cpp:307
 msgid ""
@@ -1541,6 +1497,11 @@ msgstr "Panelen v&erwisselen"
 #: krusader.cpp:450
 msgid "popup cmdline"
 msgstr "commandoregel popup"
+
+#: krusader.cpp:453
+#, fuzzy
+msgid "Up one directory"
+msgstr "In map"
 
 #: krusader.cpp:454
 msgid "&Edit new file"
@@ -1707,68 +1668,73 @@ msgid "Right history"
 msgstr "Rechtse geschiedenis"
 
 #: krusader.cpp:558
+#, fuzzy
+msgid "Toggle Popup Panel"
+msgstr "Popup paneel sluiten"
+
+#: krusader.cpp:560
+msgid "Vertical Mode"
+msgstr ""
+
+#: krusader.cpp:562
 msgid "New tab"
 msgstr "Nieuwe Tab"
 
-#: krusader.cpp:560
+#: krusader.cpp:564
 msgid "Duplicate tab"
 msgstr "Tab Dupliceren"
 
-#: krusader.cpp:562
+#: krusader.cpp:566
 msgid "Close tab"
 msgstr "Tab sluiten"
 
-#: krusader.cpp:564
+#: krusader.cpp:568
 msgid "Next tab"
 msgstr "Volgende Tab"
 
-#: krusader.cpp:566
+#: krusader.cpp:570
 msgid "Previous tab"
 msgstr "Vorige Tab"
 
-#: krusader.cpp:568 UserMenu/usermenu.cpp:56
+#: krusader.cpp:572 UserMenu/usermenu.cpp:56
 msgid "User Menu"
 msgstr "Gebruikersmenu"
 
-#: krusader.cpp:572
+#: krusader.cpp:576
 msgid "Highlight files by using a filter"
 msgstr "Selecteer bestanden d.m.v. een filter"
 
-#: krusader.cpp:573
+#: krusader.cpp:577
 msgid "Highlight all the files in the current directory"
 msgstr "Selecteer alle bestanden in de huidige map"
 
-#: krusader.cpp:574
+#: krusader.cpp:578
 msgid "Remove selection from all highlight files"
 msgstr "Verwijder de selectie van alle gemarkeerde bestanden"
 
-#: krusader.cpp:575
+#: krusader.cpp:579
 msgid "Setup Krusader the way you like it"
 msgstr "Krusader instellen zoals u het wenst"
 
-#: krusader.cpp:576
+#: krusader.cpp:580
 msgid "Back to the place you came from"
 msgstr "Terugkeren naar de plaats van waar u komt"
 
-#: krusader.cpp:577
+#: krusader.cpp:581
 msgid "ROOT (/)"
 msgstr "ROOT (/)"
 
-#: krusader.cpp:578
+#: krusader.cpp:582
 msgid "Search for files"
 msgstr "Naar bestanden zoeken"
 
-#: krusader.cpp:616 krusader.cpp:619
+#: krusader.cpp:620 krusader.cpp:623
 msgid "List"
 msgstr "Lijst"
 
-#: krusader.cpp:662
+#: krusader.cpp:666
 msgid "Ok to shutdown Krusader?"
 msgstr "Ok om Krusader af te sluiten?"
-
-#: KViewer/krviewer.moc.cpp:34 KViewer/krviewer.moc.cpp:42
-msgid "KrViewer"
-msgstr "KrViewer"
 
 #: KViewer/krviewer.cpp:70
 msgid "&Generic viewer"
@@ -1803,7 +1769,8 @@ msgid "KrViewer is unable to download: "
 msgstr "KrViewer is niet in staat om te downloaden: "
 
 #: KViewer/krviewer.cpp:380
-msgid "The Document has been changed. Do you want to quit, losing the modifications?"
+msgid ""
+"The Document has been changed. Do you want to quit, losing the modifications?"
 msgstr ""
 "Het Document is gewijzigd. Wilt u afsluiten zonder deze wijzigingen op te "
 "slaan?"
@@ -2151,35 +2118,6 @@ msgstr "Huidige tab sluiten"
 msgid "BookMan II"
 msgstr "BladwijzerManager II"
 
-#: BookMan/bookmarksbutton.moc.cpp:34 BookMan/bookmarksbutton.moc.cpp:42
-msgid "BookmarksButton"
-msgstr "BladwijzersKnop"
-
-#: BookMan/krbookmarkhandler.moc.cpp:34 BookMan/krbookmarkhandler.moc.cpp:42
-msgid "KrBookmarkHandler"
-msgstr "KrBladwijzerBeheer"
-
-#: BookMan/bookmarksbutton.cpp:32
-msgid "Open your bookmarks"
-msgstr "Bladwijzers openen"
-
-#: BookMan/krbookmarkbutton.moc.cpp:34 BookMan/krbookmarkbutton.moc.cpp:42
-msgid "KrBookmarkButton"
-msgstr "KrBladwijzersKnop"
-
-#: BookMan/kraddbookmarkdlg.moc.cpp:34 BookMan/kraddbookmarkdlg.moc.cpp:42
-msgid "KrAddBookmarkDlg"
-msgstr "KrBladwijzerToevoegenDialoog"
-
-#: BookMan/addbookmarkdlg.cpp:29 BookMan/addbookmarkform.cpp:86
-msgid "Bookmark name:"
-msgstr "Bladwijzernaam:"
-
-#: BookMan/addbookmarkdlg.cpp:30 BookMan/addbookmarkform.cpp:87
-#: BookMan/kraddbookmarkdlg.cpp:33
-msgid "URL:"
-msgstr "URL:"
-
 #: BookMan/krbookmarkhandler.cpp:126
 msgid "Unable to write to "
 msgstr "Niet mogelijk om te schrijven naar "
@@ -2209,41 +2147,9 @@ msgstr "Huidige bladwijzer"
 msgid "Manage Bookmarks"
 msgstr "Bladwijzers beheren"
 
-#: BookMan/krbookmark.moc.cpp:34 BookMan/krbookmark.moc.cpp:42
-msgid "KrBookmark"
-msgstr "KrBladwijzer"
-
-#: BookMan/addbookmarkform.cpp:85
-msgid "Add bookmark"
-msgstr "Bladwijzer toevoegen"
-
-#: BookMan/kbookmarkmenu.cpp:182
-msgid "Add a bookmark for the current document"
-msgstr "Bladwijzer toevoegen voor het huidige document"
-
-#: BookMan/kbookmarkmenu.cpp:196
-msgid "Edit your bookmark collection in a separate window"
-msgstr "Bladwijzers collectie bewerken in een apart venster"
-
-#: BookMan/kbookmarkmenu.cpp:205
-msgid "&New Bookmark Folder..."
-msgstr "&Nieuwe bladwijzermap..."
-
-#: BookMan/kbookmarkmenu.cpp:217
-msgid "Create a new bookmark folder in this menu"
-msgstr "Nieuwe bladwijzermap in dit menu aanmaken"
-
-#: BookMan/kbookmarkmenu.cpp:329
-msgid "Can't add bookmark with empty URL"
-msgstr "Kan geen bladwijzer toevoegen met een lege URL"
-
 #: BookMan/krbookmark.cpp:32
 msgid "Devices"
 msgstr "Apparaten"
-
-#: BookMan/kbookmarkmanager.moc.cpp:34 BookMan/kbookmarkmanager.moc.cpp:42
-msgid "KBookmarkManager"
-msgstr "KBladwijzerManager"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2257,6 +2163,10 @@ msgstr "Nieuwe map"
 msgid "Name:"
 msgstr "Naam:"
 
+#: BookMan/kraddbookmarkdlg.cpp:33
+msgid "URL:"
+msgstr "URL:"
+
 #: BookMan/kraddbookmarkdlg.cpp:40
 msgid "Create in:"
 msgstr "Aanmaken in:"
@@ -2265,67 +2175,63 @@ msgstr "Aanmaken in:"
 msgid "Folder name:"
 msgstr "Mapnaam:"
 
-#: MountMan/kmountman.cpp:178
+#: MountMan/kmountman.cpp:196
 msgid "Error ejecting device ! You need to have 'eject' in your path."
 msgstr "Fout bij het uitwerpen ! Je moet 'uitwerpen' in uw pad."
 
-#: MountMan/kmountman.cpp:205
+#: MountMan/kmountman.cpp:223
 msgid "%1 ZB"
 msgstr "%1 ZB"
 
-#: MountMan/kmountman.cpp:207
+#: MountMan/kmountman.cpp:225
 msgid "%1 TB"
 msgstr "%1 TB"
 
-#: MountMan/kmountman.cpp:212
+#: MountMan/kmountman.cpp:230
 msgid "%1 GB"
 msgstr "%1 GB"
 
-#: MountMan/kmountman.cpp:217
+#: MountMan/kmountman.cpp:235
 msgid "%1 MB"
 msgstr "%1 Mb"
 
-#: MountMan/kmountman.cpp:222
+#: MountMan/kmountman.cpp:240
 msgid "%1 KB"
 msgstr "%1 Kb"
 
-#: MountMan/kmountman.cpp:231
+#: MountMan/kmountman.cpp:249
 msgid "MountMan is not operational. Sorry"
 msgstr "MountMan is niet operationeel. Sorry"
 
-#: MountMan/kmountman.moc.cpp:34 MountMan/kmountman.moc.cpp:42
-msgid "KMountMan"
-msgstr "KMountMan"
-
-#: MountMan/kmountmangui.cpp:64
+#: MountMan/kmountmangui.cpp:69
 msgid "MountMan - Your Mount-Manager"
 msgstr "MountMan - Uw Mount Manager"
 
-#: MountMan/kmountmangui.cpp:93
+#: MountMan/kmountmangui.cpp:98
 msgid "Filesystems"
 msgstr "Bestandssystemen"
 
-#: MountMan/kmountmangui.cpp:121
+#: MountMan/kmountmangui.cpp:126
 msgid "Mnt.Point"
 msgstr "Mountpunt"
 
-#: MountMan/kmountmangui.cpp:122
+#: MountMan/kmountmangui.cpp:127
 msgid "Total Size"
 msgstr "Totale grootte"
 
-#: MountMan/kmountmangui.cpp:123
+#: MountMan/kmountmangui.cpp:128
 msgid "Free Size"
 msgstr "Vrije ruimte"
 
-#: MountMan/kmountmangui.cpp:124
+#: MountMan/kmountmangui.cpp:129
 msgid "Free %"
 msgstr "Vrij %"
 
-#: MountMan/kmountmangui.cpp:173 MountMan/kmountmangui.cpp:279
+#: MountMan/kmountmangui.cpp:183 MountMan/kmountmangui.cpp:290
 msgid "Critical Error"
 msgstr "Kritieke fout"
 
-#: MountMan/kmountmangui.cpp:174
+#: MountMan/kmountmangui.cpp:184
 msgid ""
 "Internal error in MountMan\n"
 "Please email the developers"
@@ -2333,7 +2239,7 @@ msgstr ""
 "Interne fout in MountMan\n"
 "Stuur a.u.b. een e-mail naar de Krusader ontwikkelaars"
 
-#: MountMan/kmountmangui.cpp:279
+#: MountMan/kmountmangui.cpp:290
 msgid ""
 "Internal error in MountMan\n"
 "Call the developers"
@@ -2341,17 +2247,18 @@ msgstr ""
 "Interne fout in MountMan\n"
 "Verwittig gelieve de Krusader ontwikkelaars"
 
-#: MountMan/kmountmangui.cpp:311
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
+#: MountMan/kmountmangui.cpp:322
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan heeft een interne fout. Verwittig gelieve de Krusader "
 "ontwikkelaars. Dank U."
 
-#: MountMan/kmountmangui.cpp:316
+#: MountMan/kmountmangui.cpp:327
 msgid "MountMan"
 msgstr "MountMan"
 
-#: MountMan/kmountmangui.cpp:330
+#: MountMan/kmountmangui.cpp:341
 msgid "Format"
 msgstr "Formatteren"
 
@@ -2656,10 +2563,6 @@ msgstr "Poort:  "
 msgid "* Warning: Storing your password is not secure !!!"
 msgstr "* Waarschuwing: uw wachtwoord opslaan is niet veilig !!!"
 
-#: UserMenu/usermenu.moc.cpp:34 UserMenu/usermenu.moc.cpp:42
-msgid "UserMenuGui"
-msgstr "GebruikersMenuGui"
-
 #: UserMenu/usermenuadd.cpp:29
 msgid "Add a useraction"
 msgstr "Gebruikers actie toevoegen"
@@ -2669,7 +2572,8 @@ msgid "Krusader::Synchronize Directories"
 msgstr "Krusader::Map Synchronisatie"
 
 #: Synchronizer/synchronizergui.cpp:1039
-msgid "Directory Comparation"
+#, fuzzy
+msgid "Directory Comparison"
 msgstr "Map vergelijken"
 
 #: Synchronizer/synchronizergui.cpp:1053
@@ -2753,8 +2657,8 @@ msgid ""
 "Case insensitive filename compare. Use at synchronizing on Windows "
 "filesystems."
 msgstr ""
-"Hoofd/kleine letters negeren bestandsvergelijking. Gebruiken bij het synchroniseren van "
-"Windows bestandsystemen."
+"Hoofd/kleine letters negeren bestandsvergelijking. Gebruiken bij het "
+"synchroniseren van Windows bestandsystemen."
 
 #: Synchronizer/synchronizergui.cpp:1130
 msgid "Show options"
@@ -2913,15 +2817,6 @@ msgstr "<DIR>"
 msgid "Synchronizer has nothing to do!"
 msgstr "Er is niets om te synchroniseren!"
 
-#: Synchronizer/synchronizer.moc.cpp:34 Synchronizer/synchronizer.moc.cpp:42
-msgid "Synchronizer"
-msgstr "Synchronisatie"
-
-#: Synchronizer/synchronizergui.moc.cpp:34
-#: Synchronizer/synchronizergui.moc.cpp:42
-msgid "SynchronizerGUI"
-msgstr "SynchronisatieGUI"
-
 #: Synchronizer/synchronizedialog.cpp:48
 msgid "Krusader::Synchronize"
 msgstr "Krusader::Synchroniseren"
@@ -3006,11 +2901,6 @@ msgstr "Krusader::Synchroniseren"
 #: Synchronizer/synchronizer.cpp:1216 krslots.cpp:104 krslots.cpp:199
 msgid "Error executing "
 msgstr "Fout bij het uitvoeren "
-
-#: Synchronizer/synchronizedialog.moc.cpp:34
-#: Synchronizer/synchronizedialog.moc.cpp:42
-msgid "SynchronizeDialog"
-msgstr "SynchronisatieDialoog"
 
 #: paneltabbar.cpp:33 Konfigurator/kglookfeel.cpp:105
 msgid "Panel"
@@ -3420,7 +3310,8 @@ msgstr "Automount bestandsystemen"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "If checked, Krusader will mount FSTAB mount-points when needed."
-msgstr "Indien aangevinkt zal Krusader zal de FSTAB mountpunten mounten indien nodig."
+msgstr ""
+"Indien aangevinkt zal Krusader zal de FSTAB mountpunten mounten indien nodig."
 
 #: Konfigurator/kgadvanced.cpp:57
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -3711,11 +3602,6 @@ msgstr "Toepassing"
 msgid "Directory"
 msgstr "Map"
 
-#: Konfigurator/kgdependencies.moc.cpp:34
-#: Konfigurator/kgdependencies.moc.cpp:42
-msgid "KgDependencies"
-msgstr "KgAfhankelijkheden"
-
 #: Konfigurator/kgstartup.cpp:45
 msgid "Panels"
 msgstr "Panelen"
@@ -3833,7 +3719,8 @@ msgid "Test archive when finished packing"
 msgstr "Archief testen na het inpakken"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid "If checked, Krusader will test the archive's intergrity after packing it."
+msgid ""
+"If checked, Krusader will test the archive's intergrity after packing it."
 msgstr ""
 "Indien aangevinkt zal Krusader de integriteit van het archief testen na het "
 "inpakken."
@@ -3843,7 +3730,8 @@ msgid "Test archive before unpacking"
 msgstr "Archief eerst testen voor het uitpakken"
 
 #: Konfigurator/kgarchives.cpp:95
-msgid "Some corrupted archives might cause a crash, therefore testing is suggested"
+msgid ""
+"Some corrupted archives might cause a crash, therefore testing is suggested"
 msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
 "testen aangeraden"
@@ -4074,7 +3962,8 @@ msgstr "Deze actie verwijderen?"
 
 #: Konfigurator/kguseractions.cpp:254
 msgid "The file you've chosen doesn't seem to be a valid action-file."
-msgstr "Het bestand dat u gekozen heeft blijkt geen geldig actie-bestand te zijn."
+msgstr ""
+"Het bestand dat u gekozen heeft blijkt geen geldig actie-bestand te zijn."
 
 #: Konfigurator/kguseractions.cpp:262
 msgid "No actions found in this file."
@@ -4116,10 +4005,11 @@ msgid ""
 "current file in the active panel"
 msgstr ""
 "Om 2 bestanden op inhoud te vergelijken, kan je\n"
-"- selecteer één bestand in het linkse paneel en het andere in het rechter paneel\n"
+"- selecteer één bestand in het linkse paneel en het andere in het rechter "
+"paneel\n"
 "- exact twee bestanden in het achtieve paneel slecteren\n"
-"- er zeker van zijn dat er een bestand is in het ander paneel met dezelfde naam als "
-"  het huidige bestand in het actieve paneel"
+"- er zeker van zijn dat er een bestand is in het ander paneel met dezelfde "
+"naam als   het huidige bestand in het actieve paneel"
 
 #: krslots.cpp:174
 msgid ""
@@ -4127,7 +4017,8 @@ msgid ""
 "to your path. Hint: Krusader supports kompare, kdiff3, kdiff and xxdiff."
 msgstr ""
 "Krusader kan geen enkel van de ondersteunde diff-frontends vinden. "
-"Installeer deze in uw PAD. Hint: Krusader ondersteund kompare, kdiff3, kdiff en xxdiff."
+"Installeer deze in uw PAD. Hint: Krusader ondersteund kompare, kdiff3, kdiff "
+"en xxdiff."
 
 #: krslots.cpp:214
 msgid ""
@@ -4226,14 +4117,6 @@ msgstr "Je mag slechts één gesplitst bestand selecteren!"
 msgid "Combining %1.* to directory:"
 msgstr "%1.* combineren naar map:"
 
-#: Splitter/splitter.moc.cpp:34 Splitter/splitter.moc.cpp:42
-msgid "Splitter"
-msgstr "Splitser"
-
-#: Splitter/splittergui.moc.cpp:34 Splitter/splittergui.moc.cpp:42
-msgid "SplitterGUI"
-msgstr "SplitserGUI"
-
 #: Splitter/splittergui.cpp:39
 msgid "1.44 MB (3.5\")"
 msgstr "1.44 MB (3.5\")"
@@ -4324,7 +4207,8 @@ msgid "Not a valid CRC file!"
 msgstr "Ongeldig CRC bestand!"
 
 #: Splitter/combiner.cpp:138
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Geldigheids controle is onmogelijk zonder een goed CRC bestand. Doorgaan met "
 "combineren?"
@@ -4346,10 +4230,6 @@ msgstr "Onjuiste CRC controlesom! Het bestand kan beschadigd zijn!"
 msgid "Error at writing file %1!"
 msgstr "Fout bij het schrijven van bestand %1!"
 
-#: Splitter/combiner.moc.cpp:34 Splitter/combiner.moc.cpp:42
-msgid "Combiner"
-msgstr "Combineren"
-
 #: Splitter/splitter.cpp:71
 msgid "Krusader::Splitting..."
 msgstr "Krusader::Splitsen..."
@@ -4366,3 +4246,125 @@ msgstr "Je kan geen map splitsen!"
 msgid "Error at reading file %1!"
 msgstr "Fout bij het lezen van bestand %1!"
 
+#~ msgid "ActionProperty"
+#~ msgstr "ActieEigenschap"
+
+#~ msgid "DirHistoryButton"
+#~ msgstr "DirHistoriekKnop"
+
+#~ msgid "DirHistoryQueue"
+#~ msgstr "DirHistoriekWachtrij"
+
+#~ msgid "SyncBrowseButton"
+#~ msgstr "SynchroonBladerenKnop"
+
+#~ msgid "ParameterPlaceholder"
+#~ msgstr "ParameterPlaatshouder"
+
+#~ msgid "ParameterFile"
+#~ msgstr "ParameterBestand"
+
+#~ msgid "ParameterGoto"
+#~ msgstr "ParameterGaNaar"
+
+#~ msgid "ParameterDialog"
+#~ msgstr "ParameterDialoog"
+
+#~ msgid "KrActionProcDlg"
+#~ msgstr "KrActionProcDlg"
+
+#~ msgid "KrActionProc"
+#~ msgstr "KrActionProc"
+
+#~ msgid "KrAction"
+#~ msgstr "KrAction"
+
+#~ msgid "KrColorCache"
+#~ msgstr "KrKleurenCache"
+
+#~ msgid "KrDetailedView"
+#~ msgstr "KrDetailView"
+
+#~ msgid "KrCalcSpaceDialog"
+#~ msgstr "KrCalcSpaceDialoog"
+
+#~ msgid "ListPanel"
+#~ msgstr "Lijstvenster"
+
+#~ msgid "PanelPopup"
+#~ msgstr "VensterPopup"
+
+#~ msgid "PanelManager"
+#~ msgstr "VensterManager"
+
+#~ msgid "KrViewer"
+#~ msgstr "KrViewer"
+
+#~ msgid "BookmarksButton"
+#~ msgstr "BladwijzersKnop"
+
+#~ msgid "KrBookmarkHandler"
+#~ msgstr "KrBladwijzerBeheer"
+
+#~ msgid "Open your bookmarks"
+#~ msgstr "Bladwijzers openen"
+
+#~ msgid "KrBookmarkButton"
+#~ msgstr "KrBladwijzersKnop"
+
+#~ msgid "KrAddBookmarkDlg"
+#~ msgstr "KrBladwijzerToevoegenDialoog"
+
+#~ msgid "Bookmark name:"
+#~ msgstr "Bladwijzernaam:"
+
+#~ msgid "KrBookmark"
+#~ msgstr "KrBladwijzer"
+
+#~ msgid "Add bookmark"
+#~ msgstr "Bladwijzer toevoegen"
+
+#~ msgid "Add a bookmark for the current document"
+#~ msgstr "Bladwijzer toevoegen voor het huidige document"
+
+#~ msgid "Edit your bookmark collection in a separate window"
+#~ msgstr "Bladwijzers collectie bewerken in een apart venster"
+
+#~ msgid "&New Bookmark Folder..."
+#~ msgstr "&Nieuwe bladwijzermap..."
+
+#~ msgid "Create a new bookmark folder in this menu"
+#~ msgstr "Nieuwe bladwijzermap in dit menu aanmaken"
+
+#~ msgid "Can't add bookmark with empty URL"
+#~ msgstr "Kan geen bladwijzer toevoegen met een lege URL"
+
+#~ msgid "KBookmarkManager"
+#~ msgstr "KBladwijzerManager"
+
+#~ msgid "KMountMan"
+#~ msgstr "KMountMan"
+
+#~ msgid "UserMenuGui"
+#~ msgstr "GebruikersMenuGui"
+
+#~ msgid "Synchronizer"
+#~ msgstr "Synchronisatie"
+
+#~ msgid "SynchronizerGUI"
+#~ msgstr "SynchronisatieGUI"
+
+#~ msgid "SynchronizeDialog"
+#~ msgstr "SynchronisatieDialoog"
+
+#~ msgid "KgDependencies"
+#~ msgstr "KgAfhankelijkheden"
+
+#~ msgid "Splitter"
+#~ msgstr "Splitser"
+
+#~ msgid "SplitterGUI"
+#~ msgstr "SplitserGUI"
+
+#~ msgid "Combiner"
+#~ msgstr "Combineren"
