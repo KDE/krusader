@@ -225,6 +225,7 @@ void KBookmarkMenu::fillBookmarkMenu()
   if (!kapp->authorizeKAction("bookmarks"))
      return;
 
+  /*
   if ( m_bIsRoot )
   {
     if ( m_bAddBookmark ) {
@@ -252,6 +253,7 @@ void KBookmarkMenu::fillBookmarkMenu()
       connect(actionMenu->popupMenu(), SIGNAL(aboutToShow()), subMenu, SLOT(slotNSLoad()));
     }
   }
+  */
 
   KBookmarkGroup parentBookmark = m_pManager->findByAddress( m_parentAddress ).toGroup();
   Q_ASSERT(!parentBookmark.isNull());
