@@ -143,9 +143,6 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
                       "how many did you select and the bytes math" ) );
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
    
-   // ... creates the button for sync-browsing
-   syncBrowseButton = new SyncBrowseButton( this );
-	
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
    popupBtn->setFixedSize( 20, totals ->height() );
@@ -154,7 +151,6 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
 	totalsLayout->addWidget(popupBtn);
-	totalsLayout->addWidget(syncBrowseButton);
    
    quickSearch = new KrQuickSearch( this );
    krConfig->setGroup( "Look&Feel" );
@@ -202,6 +198,9 @@ cdRootButton( 0 ), cdUpButton( 0 ), popup(0), popupBtn(0) {
    cdRootButton->setText( i18n( "/" ) );
 	QToolTip::add(  cdRootButton, i18n( "Root" ) );
    connect( cdRootButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDRoot() ) );
+
+   // ... creates the button for sync-browsing
+   syncBrowseButton = new SyncBrowseButton( hbox );
 
    setPanelToolbar();
 
@@ -305,6 +304,11 @@ void ListPanel::setPanelToolbar() {
       origin->button() ->show();
    else
       origin->button() ->hide();
+
+   if ( panelToolBarVisible && ( krConfig->readBoolEntry( "SyncBrowse Button Visible", _syncBrowseButton ) ) )
+      syncBrowseButton->show();
+   else
+      syncBrowseButton->hide();
 }
 
 void ListPanel::slotUpdateTotals() {

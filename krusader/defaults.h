@@ -94,6 +94,8 @@
 #define _cdOther            false 
 // Open directory is turned on
 #define _Open               true 
+// syncBrowseButton is turned on
+#define _syncBrowseButton   true 
 // Use the default colors of KDE
 #define _KDEDefaultColors     true 
 // Enable Alternate Background colors

@@ -207,10 +207,11 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n( "Up button (..) visible" ),  true ,  ""},
      {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n( "Home button (~) visible" ), true ,  ""},
      {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n( "Root button (/) visible" ), true ,  ""},
+     {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n( "Toggle-button for synchron-browsing visible" ), true ,  ""},
     };
   
   
-  pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes, 5,
+  pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes, 6,
                                        panelToolbarGrp, "panelToolbarChecks");
   
   panelToolbarVLayout->addWidget( panelToolbarActive, 0, 0 );
