@@ -155,8 +155,8 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( contextMenu( const QPoint & ) ), this, SLOT( popRightClickMenu( const QPoint & ) ) );
   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( letsDrag( QStringList, QPixmap ) ), this, SLOT( startDragging( QStringList, QPixmap ) ) );
   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( gotDrop( QDropEvent * ) ), this, SLOT( handleDropOnView( QDropEvent * ) ) );
-  ////////////////////////////// to do connections ///////////////////////////////////////////////
-
+  connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked(QListViewItem *) ), SLOTS, SLOT( newTab( QListViewItem * ) ));  
+////////////////////////////// to do connections ///////////////////////////////////////////////
   // make sure that a focus/path change reflects in the command line and activePanel
   connect( this, SIGNAL( cmdLineUpdate( QString ) ), SLOTS, SLOT( slotCurrentChanged( QString ) ) );
   connect( this, SIGNAL( activePanelChanged( ListPanel * ) ), SLOTS, SLOT( slotSetActivePanel( ListPanel * ) ) );

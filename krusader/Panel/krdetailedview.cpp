@@ -106,6 +106,8 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
     connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
              this, SLOT( handleContextMenu( QListViewItem*, const QPoint&, int ) ) );
     connect( this, SIGNAL( currentChanged( QListViewItem* ) ), this, SLOT( setNameToMakeCurrent( QListViewItem* ) ) );
+    connect( this, SIGNAL( mouseButtonClicked ( int, QListViewItem *, const QPoint &, int) ),
+             this, SLOT( slotMouseClicked ( int, QListViewItem *, const QPoint &, int) ));
   }
 
   setWidget( this );
@@ -510,7 +512,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         break;
       }
       case Key_QuoteLeft :  // Terminal Emulator bugfix
-        if ( e->state() ) { // let the panel handle it
+        if ( e->state()==ControlButton ) { // let the panel handle it
           e->ignore();
           break;
         } else {          // a normal click - do a lynx-like moving thing
@@ -721,4 +723,9 @@ void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
 
 void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
   KrView::setNameToMakeCurrent( dynamic_cast<KrViewItem*>( it ) ->name() );
+}
+
+void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const QPoint & pos, int c ) {
+  if (button == Qt::MidButton)
+    emit middleButtonClicked(item);
 }

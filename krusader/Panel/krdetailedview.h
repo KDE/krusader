@@ -88,6 +88,7 @@ class KrDetailedView : public KListView, public KrView {
     void letsDrag( QStringList items, QPixmap icon );
     void gotDrop( QDropEvent *e );
     void renameItem( const QString &oldName, const QString &newName );
+    void middleButtonClicked(QListViewItem *item);
 
   protected:
     void newColumn( ColumnType type );
@@ -110,6 +111,10 @@ class KrDetailedView : public KListView, public KrView {
     void quickSearch(const QString &);
     void stopQuickSearch(QKeyEvent*);
     void setNameToMakeCurrent(QListViewItem *it);
+    /**
+     * used internally to produce the signal middleButtonClicked()
+     */
+    void slotMouseClicked( int button, QListViewItem * item, const QPoint & pos, int c );
 
   private:
     ColumnType _columns[ MAX_COLUMNS ];

@@ -74,6 +74,8 @@
                               MAIN_VIEW->left->func->refresh(); \
 	                            MAIN_VIEW->right->func->refresh();\
                               p->slotFocusOnMe(); }
+#define ACTIVE_PANEL_MANAGER  (ACTIVE_PANEL == krApp->mainView->left ? krApp->mainView->leftMng : \
+                                krApp->mainView->rightMng)
 
 
 void KRslots::selectCompareMask() {
@@ -472,27 +474,24 @@ void KRslots::editDlg(){
 }
 
 void KRslots::duplicateTab() {
-  if (ACTIVE_PANEL == krApp->mainView->left) {
-    krApp->mainView->leftMng->slotNewTab(ACTIVE_PANEL->virtualPath);
-  } else {
-    krApp->mainView->rightMng->slotNewTab(ACTIVE_PANEL->virtualPath);
-  }
+  ACTIVE_PANEL_MANAGER->slotNewTab(ACTIVE_PANEL->virtualPath);
 }
 
 void KRslots::newTab() {
-  if (ACTIVE_PANEL == krApp->mainView->left) {
-    krApp->mainView->leftMng->slotNewTab();
-  } else {
-    krApp->mainView->rightMng->slotNewTab();
+  ACTIVE_PANEL_MANAGER->slotNewTab();
+}
+
+void KRslots::newTab(QListViewItem *item) {
+  if (!item) return;
+  KrViewItem *it = dynamic_cast<KrViewItem*>(item);
+  if (it->isDir()) {
+    ACTIVE_PANEL_MANAGER->slotNewTab(ACTIVE_PANEL->virtualPath + "/" + it->name());
+    kdWarning() << ACTIVE_PANEL->virtualPath << it->name()<<endl;
   }
 }
 
 void KRslots::closeTab() {
-if (ACTIVE_PANEL == krApp->mainView->left) {
-    krApp->mainView->leftMng->slotCloseTab();
-  } else {
-    krApp->mainView->rightMng->slotCloseTab();
-  }
+  ACTIVE_PANEL_MANAGER->slotCloseTab();
 }
 
 #include "krslots.moc"

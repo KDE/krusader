@@ -110,6 +110,7 @@ class KRslots : public QObject {
     void cmdlinePopup() { krApp->mainView->cmdLine->popup(); }
     void duplicateTab();
     void newTab();
+    void newTab(QListViewItem *item);
     void closeTab();
     
     // F2
