@@ -410,7 +410,7 @@ distclean-tags:
 
 #>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 #>+ 4
-KDE_DIST=tags Makefile.dist configure.in.in krusader-1.01.tar.gz krusader.kdevses configure.files subdirs dist2rpm messages.log 
+KDE_DIST=Makefile.dist configure.in.in krusader.kdevses configure.files subdirs dist2rpm 
 
 DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
 

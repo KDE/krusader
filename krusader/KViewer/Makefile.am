@@ -5,9 +5,9 @@ INCLUDES = $(all_includes)
 
 libKViewer_a_METASOURCES = AUTO
 
-libKViewer_a_SOURCES = kviewerwidget.cpp kviewer.cpp 
+libKViewer_a_SOURCES = krviewer.cpp 
 
 
-EXTRA_DIST = kviewer.cpp kviewer.h kviewerwidget.cpp kviewerwidget.h 
+EXTRA_DIST = krviewer.cpp krviewer.h 
 
 ####### kdevelop will overwrite this part!!! (end)############

@@ -232,9 +232,9 @@ INCLUDES = $(all_includes)
 
 #>- libKViewer_a_METASOURCES = AUTO
 
-libKViewer_a_SOURCES = kviewerwidget.cpp kviewer.cpp 
+libKViewer_a_SOURCES = krviewer.cpp 
 
-EXTRA_DIST = kviewer.cpp kviewer.h kviewerwidget.cpp kviewerwidget.h 
+EXTRA_DIST = krviewer.cpp krviewer.h 
 subdir = krusader/KViewer
 mkinstalldirs = $(SHELL) $(top_srcdir)/admin/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
@@ -243,12 +243,12 @@ LIBRARIES = $(noinst_LIBRARIES)
 
 libKViewer_a_AR = $(AR) cru
 libKViewer_a_LIBADD =
-am_libKViewer_a_OBJECTS = kviewerwidget.$(OBJEXT) kviewer.$(OBJEXT)
+am_libKViewer_a_OBJECTS = krviewer.$(OBJEXT)
 #>- libKViewer_a_OBJECTS = $(am_libKViewer_a_OBJECTS)
 #>+ 6
 libKViewer_a_final_OBJECTS = libKViewer_a.all_cpp.o 
-libKViewer_a_nofinal_OBJECTS = kviewerwidget.$(OBJEXT) kviewer.$(OBJEXT)\
-	kviewer.moc.o  \
+libKViewer_a_nofinal_OBJECTS = krviewer.$(OBJEXT)\
+	krviewer.moc.o  \
 	libKViewer_a_meta_unload.o 
 @KDE_USE_FINAL_FALSE@libKViewer_a_OBJECTS = $(libKViewer_a_nofinal_OBJECTS)
 @KDE_USE_FINAL_TRUE@libKViewer_a_OBJECTS = $(libKViewer_a_final_OBJECTS)
@@ -259,7 +259,7 @@ CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
 depcomp = $(SHELL) $(top_srcdir)/admin/depcomp
-@AMDEP_TRUE@DEP_FILES = $(DEPDIR)/kviewer.Po $(DEPDIR)/kviewerwidget.Po
+@AMDEP_TRUE@DEP_FILES = $(DEPDIR)/krviewer.Po
 #>- CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 #>- $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 #>+ 2
@@ -325,8 +325,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/kviewer.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/kviewerwidget.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@$(DEPDIR)/krviewer.Po@am__quote@
 
 distclean-depend:
 	-rm -rf $(DEPDIR)
@@ -383,7 +382,12 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+#>+ 4
+KDE_DIST=libKViewer.a 
+
+DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
+
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -495,16 +499,12 @@ uninstall-am: uninstall-info-am
 .NOEXPORT:
 
 #>+ 3
-kviewer.moc.cpp: $(srcdir)/kviewer.h
-	$(MOC) $(srcdir)/kviewer.h -o kviewer.moc.cpp
-
-#>+ 3
-kviewerwidget.moc: $(srcdir)/kviewerwidget.h
-	$(MOC) $(srcdir)/kviewerwidget.h -o kviewerwidget.moc
+krviewer.moc.cpp: $(srcdir)/krviewer.h
+	$(MOC) $(srcdir)/krviewer.h -o krviewer.moc.cpp
 
 #>+ 3
 clean-metasources:
-	-rm -f  kviewer.moc.cpp kviewerwidget.moc
+	-rm -f  krviewer.moc.cpp
 
 #>+ 2
 docs-am:
@@ -517,12 +517,12 @@ force-reedit:
 
 
 #>+ 12
-libKViewer_a_meta_unload.cpp:  kviewer.moc.cpp kviewerwidget.moc
+libKViewer_a_meta_unload.cpp:  krviewer.moc.cpp
 	@echo 'creating libKViewer_a_meta_unload.cpp'
 	@-rm -f libKViewer_a_meta_unload.cpp
 	@if test ${kde_qtver} = 2; then \
 		echo 'static const char * _metalist_libKViewer_a[] = {' > libKViewer_a_meta_unload.cpp ;\
-		cat  kviewer.moc.cpp kviewerwidget.moc | grep 'char.*className' | sed -e 's/.*[^A-Za-z0-9_:]\([A-Za-z0-9_:]*\)::className.*$$/\"\1\",/' | sort | uniq >> libKViewer_a_meta_unload.cpp ;\
+		cat  krviewer.moc.cpp | grep 'char.*className' | sed -e 's/.*[^A-Za-z0-9_:]\([A-Za-z0-9_:]*\)::className.*$$/\"\1\",/' | sort | uniq >> libKViewer_a_meta_unload.cpp ;\
 		echo '0};' >> libKViewer_a_meta_unload.cpp ;\
 		echo '#include <kunload.h>' >> libKViewer_a_meta_unload.cpp ;\
 		echo '_UNLOAD(libKViewer_a)' >> libKViewer_a_meta_unload.cpp ;\
@@ -534,11 +534,11 @@ clean-moc-classes:
 	-rm -f  libKViewer_a_meta_unload.cpp
 
 #>+ 11
-libKViewer_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/kviewerwidget.cpp $(srcdir)/kviewer.cpp libKViewer_a_meta_unload.cpp  kviewer.moc.cpp kviewerwidget.moc 
+libKViewer_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krviewer.cpp $(srcdir)/libKViewer_a_meta_unload.cpp  krviewer.moc.cpp
 	@echo 'creating libKViewer_a.all_cpp.cpp ...'; \
 	rm -f libKViewer_a.all_cpp.files libKViewer_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libKViewer_a.all_cpp.final; \
-	for file in kviewerwidget.cpp kviewer.cpp libKViewer_a_meta_unload.cpp  kviewer.moc.cpp; do \
+	for file in krviewer.cpp libKViewer_a_meta_unload.cpp  krviewer.moc.cpp; do \
 	  echo "#include \"$$file\"" >> libKViewer_a.all_cpp.files; \
 	  test ! -f $(srcdir)/$$file || egrep '^#pragma +implementation' $(srcdir)/$$file >> libKViewer_a.all_cpp.final; \
 	done; \
@@ -568,6 +568,3 @@ cvs-clean:
 #>+ 3
 kde-rpo-clean:
 	-rm -f *.rpo
-
-#>+ 2
-$(srcdir)/kviewerwidget.cpp: kviewerwidget.moc 

@@ -405,7 +405,12 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+#>+ 4
+KDE_DIST=libDialogs.a 
+
+DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
+
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -541,10 +546,6 @@ colormaskdialog.moc: $(srcdir)/colormaskdialog.h
 	$(MOC) $(srcdir)/colormaskdialog.h -o colormaskdialog.moc
 
 #>+ 3
-krprogress.moc: $(srcdir)/krprogress.h
-	$(MOC) $(srcdir)/krprogress.h -o krprogress.moc
-
-#>+ 3
 krmaskchoice.moc: $(srcdir)/krmaskchoice.h
 	$(MOC) $(srcdir)/krmaskchoice.h -o krmaskchoice.moc
 
@@ -553,12 +554,16 @@ krpleasewait.moc: $(srcdir)/krpleasewait.h
 	$(MOC) $(srcdir)/krpleasewait.h -o krpleasewait.moc
 
 #>+ 3
+krprogress.moc: $(srcdir)/krprogress.h
+	$(MOC) $(srcdir)/krprogress.h -o krprogress.moc
+
+#>+ 3
 krspecialwidgets.moc: $(srcdir)/krspecialwidgets.h
 	$(MOC) $(srcdir)/krspecialwidgets.h -o krspecialwidgets.moc
 
 #>+ 3
 clean-metasources:
-	-rm -f  packgui.moc packguibase.moc newftpgui.moc krdialogs.moc colormaskdialogbase.moc colormaskdialog.moc krprogress.moc krmaskchoice.moc krpleasewait.moc krspecialwidgets.moc
+	-rm -f  packgui.moc packguibase.moc newftpgui.moc krdialogs.moc colormaskdialogbase.moc colormaskdialog.moc krmaskchoice.moc krpleasewait.moc krprogress.moc krspecialwidgets.moc
 
 #>+ 2
 docs-am:
@@ -571,12 +576,12 @@ force-reedit:
 
 
 #>+ 12
-libDialogs_a_meta_unload.cpp:  colormaskdialog.moc packgui.moc packguibase.moc krpleasewait.moc krmaskchoice.moc krprogress.moc newftpgui.moc krspecialwidgets.moc krdialogs.moc colormaskdialogbase.moc
+libDialogs_a_meta_unload.cpp:  colormaskdialog.moc packgui.moc packguibase.moc krprogress.moc krpleasewait.moc krmaskchoice.moc newftpgui.moc krspecialwidgets.moc krdialogs.moc colormaskdialogbase.moc
 	@echo 'creating libDialogs_a_meta_unload.cpp'
 	@-rm -f libDialogs_a_meta_unload.cpp
 	@if test ${kde_qtver} = 2; then \
 		echo 'static const char * _metalist_libDialogs_a[] = {' > libDialogs_a_meta_unload.cpp ;\
-		cat  colormaskdialog.moc packgui.moc packguibase.moc krpleasewait.moc krmaskchoice.moc krprogress.moc newftpgui.moc krspecialwidgets.moc krdialogs.moc colormaskdialogbase.moc | grep 'char.*className' | sed -e 's/.*[^A-Za-z0-9_:]\([A-Za-z0-9_:]*\)::className.*$$/\"\1\",/' | sort | uniq >> libDialogs_a_meta_unload.cpp ;\
+		cat  colormaskdialog.moc packgui.moc packguibase.moc krprogress.moc krpleasewait.moc krmaskchoice.moc newftpgui.moc krspecialwidgets.moc krdialogs.moc colormaskdialogbase.moc | grep 'char.*className' | sed -e 's/.*[^A-Za-z0-9_:]\([A-Za-z0-9_:]*\)::className.*$$/\"\1\",/' | sort | uniq >> libDialogs_a_meta_unload.cpp ;\
 		echo '0};' >> libDialogs_a_meta_unload.cpp ;\
 		echo '#include <kunload.h>' >> libDialogs_a_meta_unload.cpp ;\
 		echo '_UNLOAD(libDialogs_a)' >> libDialogs_a_meta_unload.cpp ;\
@@ -588,7 +593,7 @@ clean-moc-classes:
 	-rm -f  libDialogs_a_meta_unload.cpp
 
 #>+ 11
-libDialogs_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krprogress.cpp $(srcdir)/packgui.cpp $(srcdir)/packguibase.cpp $(srcdir)/newftpgui.cpp $(srcdir)/krspwidgets.cpp $(srcdir)/krspecialwidgets.cpp $(srcdir)/krpleasewait.cpp $(srcdir)/krmaskchoice.cpp $(srcdir)/krdialogs.cpp $(srcdir)/colormaskdialog.cpp $(srcdir)/colormaskdialogbase.cpp libDialogs_a_meta_unload.cpp   packgui.moc packguibase.moc newftpgui.moc krdialogs.moc colormaskdialogbase.moc colormaskdialog.moc krprogress.moc krmaskchoice.moc krpleasewait.moc krspecialwidgets.moc 
+libDialogs_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krprogress.cpp $(srcdir)/packgui.cpp $(srcdir)/packguibase.cpp $(srcdir)/newftpgui.cpp $(srcdir)/krspwidgets.cpp $(srcdir)/krspecialwidgets.cpp $(srcdir)/krpleasewait.cpp $(srcdir)/krmaskchoice.cpp $(srcdir)/krdialogs.cpp $(srcdir)/colormaskdialog.cpp $(srcdir)/colormaskdialogbase.cpp $(srcdir)/libDialogs_a_meta_unload.cpp   packgui.moc packguibase.moc newftpgui.moc krdialogs.moc colormaskdialogbase.moc colormaskdialog.moc krmaskchoice.moc krpleasewait.moc krprogress.moc krspecialwidgets.moc 
 	@echo 'creating libDialogs_a.all_cpp.cpp ...'; \
 	rm -f libDialogs_a.all_cpp.files libDialogs_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libDialogs_a.all_cpp.final; \

@@ -408,7 +408,12 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+#>+ 4
+KDE_DIST=libKonfigurator.a 
+
+DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
+
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -599,7 +604,7 @@ clean-moc-classes:
 	-rm -f  libKonfigurator_a_meta_unload.cpp
 
 #>+ 11
-libKonfigurator_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/konfigurator.cpp $(srcdir)/kgwelcome.cpp $(srcdir)/kgstartupimpl.cpp $(srcdir)/kgstartup.cpp $(srcdir)/kglookfeelimpl.cpp $(srcdir)/kglookfeel.cpp $(srcdir)/kggeneralimpl.cpp $(srcdir)/kggeneral.cpp $(srcdir)/kgarchivesimpl.cpp $(srcdir)/kgarchives.cpp $(srcdir)/kgadvancedimpl.cpp $(srcdir)/kgadvanced.cpp libKonfigurator_a_meta_unload.cpp   kgarchivesimpl.moc kgarchives.moc kgstartupimpl.moc konfigurator.moc kglookfeelimpl.moc kglookfeel.moc kggeneral.moc kgadvanced.moc kggeneralimpl.moc kgstartup.moc kgwelcome.moc kgadvancedimpl.moc 
+libKonfigurator_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/konfigurator.cpp $(srcdir)/kgwelcome.cpp $(srcdir)/kgstartupimpl.cpp $(srcdir)/kgstartup.cpp $(srcdir)/kglookfeelimpl.cpp $(srcdir)/kglookfeel.cpp $(srcdir)/kggeneralimpl.cpp $(srcdir)/kggeneral.cpp $(srcdir)/kgarchivesimpl.cpp $(srcdir)/kgarchives.cpp $(srcdir)/kgadvancedimpl.cpp $(srcdir)/kgadvanced.cpp $(srcdir)/libKonfigurator_a_meta_unload.cpp   kgarchivesimpl.moc kgarchives.moc kgstartupimpl.moc konfigurator.moc kglookfeelimpl.moc kglookfeel.moc kggeneral.moc kgadvanced.moc kggeneralimpl.moc kgstartup.moc kgwelcome.moc kgadvancedimpl.moc 
 	@echo 'creating libKonfigurator_a.all_cpp.cpp ...'; \
 	rm -f libKonfigurator_a.all_cpp.files libKonfigurator_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libKonfigurator_a.all_cpp.final; \

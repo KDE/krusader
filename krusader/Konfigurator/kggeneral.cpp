@@ -132,12 +132,16 @@ kgGeneral::kgGeneral( QWidget* parent,  const char* name )
 
     kgTerminal = new QLineEdit( GroupBox2, "kgTerminal" );
 
-    Layout8->addWidget( kgTerminal, 1, 1 );
+    Layout8->addWidget( kgTerminal, 2, 1 );
 
     TextLabel2 = new QLabel( GroupBox2, "TextLabel2" );
     TextLabel2->setText( i18n( "Terminal:" ) );
 
-    Layout8->addWidget( TextLabel2, 1, 0 );
+    Layout8->addWidget( TextLabel2, 2, 0 );
+
+    QLabel* hint = new QLabel(GroupBox2,"hint");
+    hint->setText(i18n("Hint: use 'internal editor' if you want to use Krusader's fast built-in editor") );
+    Layout8->addMultiCellWidget(hint,1,1,0,2);
 
     kgEditor = new QLineEdit( GroupBox2, "kgEditor" );
 
@@ -158,7 +162,7 @@ kgGeneral::kgGeneral( QWidget* parent,  const char* name )
     kgBrowseTerminal->setText( "" );
     kgBrowseTerminal->setPixmap( image0 );
 
-    Layout8->addWidget( kgBrowseTerminal, 1, 2 );
+    Layout8->addWidget( kgBrowseTerminal, 2, 2 );
 
     GroupBox2Layout->addMultiCellLayout( Layout8, 3, 3, 0, 2 );
 

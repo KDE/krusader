@@ -89,7 +89,7 @@
 // Terminal ///////////
 #define _Terminal      "konsole"
 // Editor /////////////
-#define _Editor        "kwrite"
+#define _Editor        "internal editor"
 // Temp Directory /////
 #define _TempDirectory "/tmp/krusader.tmp"
 

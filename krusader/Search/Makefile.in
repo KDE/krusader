@@ -388,7 +388,12 @@ GTAGS:
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH
 
-DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+#>- DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+#>+ 4
+KDE_DIST=libSearch.a 
+
+DISTFILES= $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST) $(KDE_DIST)
+
 
 top_distdir = ../..
 distdir = $(top_distdir)/$(PACKAGE)-$(VERSION)
@@ -543,7 +548,7 @@ clean-moc-classes:
 	-rm -f  libSearch_a_meta_unload.cpp
 
 #>+ 11
-libSearch_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krsearchmod.cpp $(srcdir)/krsearchdialog.cpp $(srcdir)/krsearchdialogbase.cpp $(srcdir)/krquery.cpp libSearch_a_meta_unload.cpp   krsearchdialogbase.moc krsearchdialog.moc krsearchmod.moc 
+libSearch_a.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/krsearchmod.cpp $(srcdir)/krsearchdialog.cpp $(srcdir)/krsearchdialogbase.cpp $(srcdir)/krquery.cpp $(srcdir)/libSearch_a_meta_unload.cpp   krsearchdialogbase.moc krsearchdialog.moc krsearchmod.moc 
 	@echo 'creating libSearch_a.all_cpp.cpp ...'; \
 	rm -f libSearch_a.all_cpp.files libSearch_a.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> libSearch_a.all_cpp.final; \

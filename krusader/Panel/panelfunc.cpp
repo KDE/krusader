@@ -59,7 +59,7 @@
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krpleasewait.h"
 #include "../Dialogs/krspwidgets.h"
-#include "../KViewer/kviewer.h"
+#include "../KViewer/krviewer.h"
 #include "../MountMan/kmountman.h"
 #include "../resources.h"
 
@@ -168,12 +168,10 @@ void ListPanelFunc::view(){
 	// let's get the file name (without the full path)
 	QString fileName = panel->getCurrentName();
 	if (fileName.isNull()) return;
-	// now, we need it's mimetype, thanks to the killer vFile
-	QString mimetype = panel->files->vfs_search(fileName)->vfile_getMime();
 	// at this point, let's take the full path
 	fileName = panel->files->vfs_getFile(fileName);
   // and call KViewer.
-  KViewer::view(fileName,mimetype);
+  KrViewer::view(fileName);
   // nothing more to it!	
 }
 
@@ -211,9 +209,13 @@ void ListPanelFunc::editFile(){
 	KProcess proc;
 	krConfig->setGroup("General");
 	QString edit = krConfig->readEntry("Editor",_Editor);
-	proc << edit << panel->files->vfs_getFile(name);
-  if(!proc.start(KProcess::DontCare))
-    KMessageBox::sorry(krApp,i18n("Can't open ")+"\""+edit+"\"");
+  if( edit == "internal editor" )
+     KrViewer::edit(panel->files->vfs_getFile(name));
+  else {
+    proc << edit << panel->files->vfs_getFile(name);
+    if(!proc.start(KProcess::DontCare))
+      KMessageBox::sorry(krApp,i18n("Can't open ")+"\""+edit+"\"");
+  }
 }
 
 void ListPanelFunc::moveFiles(){
