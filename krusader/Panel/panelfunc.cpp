@@ -449,7 +449,7 @@ void ListPanelFunc::mkdir() {
 			}
 			// else go into this dir
 			else {
-				openUrl( *it );
+				immediateOpenUrl( *it );
 				continue;
 			}
 		}
@@ -458,7 +458,7 @@ void ListPanelFunc::mkdir() {
 		// as always - the vfs do the job
 		files() ->vfs_mkdir( *it );
 		if ( dirTree.count() > 1 )
-			openUrl( *it );
+			immediateOpenUrl( *it );
 	} // for
 }
 
