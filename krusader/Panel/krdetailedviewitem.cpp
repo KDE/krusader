@@ -343,7 +343,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 		if (!ignoreCase && !PROPS->localeAwareCompareIsCaseSensitive) {
 			// sometimes, localeAwareCompare is not case sensative. in that case,
 			// we need to fallback to a simple string compare (KDE bug #40131)
-			return QString::compare(text0, itext0);
+			return QString::compare(e1, e2);
 		} else return QString::localeAwareCompare(e1, e2);
   }
 }
