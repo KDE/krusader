@@ -298,7 +298,6 @@ bool virt_vfs::restore(){
 	for ( it = map.begin(); it != map.end(); ++it ) {
 		urlList = new KURL::List( db->readListEntry(it.key()) );
 		virtVfsDict.insert( it.key(),urlList );
-		krOut << it.key() << " : " << *urlList << endl;
 	}
 
 	if( !virtVfsDict["/" ]){
