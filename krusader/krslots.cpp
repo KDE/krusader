@@ -172,7 +172,7 @@ void KRslots::compareContent( KURL url1, KURL url2 )
   QStringList lst = Krusader::supportedTools();
   if (lst.contains("DIFF")) diffProg=lst[lst.findIndex("DIFF") + 1];
   else {
-    KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports kdiff and xxdiff."));
+    KMessageBox::error(0,i18n("Krusader can't find any of the supported diff-frontends. Please install one to your path. Hint: Krusader supports kompare, kdiff3, kdiff and xxdiff."));
     return;
   }
 
