@@ -4,15 +4,15 @@
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # Rafael Munoz Rodriguez <rafaluco@netscape.net>, 2003
-# Quim Perez <noguer@osona.com>, 2004
+# Quim Perez Noguer <noguer@osona.com>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.60.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-02-20 02:36+0100\n"
-"PO-Revision-Date: 2004-10-29 18:52+0200\n"
-"Last-Translator: Quim Perez <noguer@osona.com>\n"
+"PO-Revision-Date: 2005-02-28 05:38+0100\n"
+"Last-Translator: Quim Perez Noguer <noguer@osona.com>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
-msgstr "Obre la llista historial de directoris"
+msgstr "Obre la llista historial de carpetes"
 
 #: GUI/profilemanager.cpp:47 GUI/profilemanager.cpp:67
 msgid "Profiles"
@@ -41,14 +41,13 @@ msgstr "Afegeix un nova entrada"
 
 #: GUI/profilemanager.cpp:93
 msgid "Krusader::ProfileManager"
-msgstr ""
+msgstr "Krusader::ProfileManager"
 
 #: GUI/profilemanager.cpp:93
 msgid "Enter the profile name:"
 msgstr "Entreu el nom del perfil:"
 
 #: GUI/syncbrowsebutton.cpp:45
-#, fuzzy
 msgid ""
 "This button toggles the sync-browse mode.\n"
 "When active, each directory change is performed in the\n"
@@ -71,7 +70,6 @@ msgid "Edit protocol"
 msgstr "Edita el protocol"
 
 #: GUI/actionproperty.cpp:209
-#, fuzzy
 msgid "Set another protocol:"
 msgstr "Escull un altre protocol:"
 
@@ -80,9 +78,8 @@ msgid "Edit path"
 msgstr "Canvia l'adreça"
 
 #: GUI/actionproperty.cpp:240
-#, fuzzy
 msgid "Set another path:"
-msgstr "Posa una altra adreça:"
+msgstr "Canvia l'ubicació:"
 
 #: GUI/actionproperty.cpp:259
 msgid "New mime-type"
@@ -97,7 +94,6 @@ msgid "Edit mime-type"
 msgstr "Edita el tipus mime:"
 
 #: GUI/actionproperty.cpp:276
-#, fuzzy
 msgid "Set another mime-type:"
 msgstr "Escull un nou tipus mime:"
 
@@ -114,9 +110,8 @@ msgid "Edit filename"
 msgstr "Modifica el nom de fitxer"
 
 #: GUI/actionproperty.cpp:312
-#, fuzzy
 msgid "Set another filename:"
-msgstr "Selecciona un altre nom de fitxer:"
+msgstr "Escolliu un altre nom de fitxer:"
 
 #: GUI/actionproperty.cpp:331
 msgid "Please set a unique name for the useraction"
@@ -140,7 +135,7 @@ msgstr "Propietat de l'acció"
 
 #: GUI/actionpropertybase.cpp:387
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: GUI/actionpropertybase.cpp:388
 msgid "Description"
@@ -151,7 +146,6 @@ msgid "Command accepts"
 msgstr "L'ordre accepta"
 
 #: GUI/actionpropertybase.cpp:390
-#, fuzzy
 msgid "Local files only (no URLs)"
 msgstr "Només fitxers en local (no URL)"
 
@@ -160,14 +154,12 @@ msgid "Substitute the placeholders with local filenames"
 msgstr "Substitueix els agafadors d'espai amb noms de fitxers locals"
 
 #: GUI/actionpropertybase.cpp:392
-#, fuzzy
 msgid "URLs (remote and local)"
 msgstr "URL (remota i local)"
 
 #: GUI/actionpropertybase.cpp:393
-#, fuzzy
 msgid "Substitute the placeholders with valid URLs"
-msgstr "Substitueix els agafadors d'espai amb URLs"
+msgstr "Ompleneu els espais en blanc amb URLs vàlides"
 
 #: GUI/actionpropertybase.cpp:394
 msgid "The title displayed in the menu"
@@ -178,7 +170,6 @@ msgid "Title"
 msgstr "Títol"
 
 #: GUI/actionpropertybase.cpp:396
-#, fuzzy
 msgid "A unique name for the action"
 msgstr "Nom unívoc de l'acció"
 
@@ -207,9 +198,8 @@ msgid "Distinct name"
 msgstr "Nom diferent"
 
 #: GUI/actionpropertybase.cpp:403
-#, fuzzy
 msgid "Command line"
-msgstr "línia d'ordres"
+msgstr "Línia d'ordres"
 
 #: GUI/actionpropertybase.cpp:404
 msgid "A tooltip for the action"
@@ -217,14 +207,13 @@ msgstr "Un indicador de funció per l'acció"
 
 #: GUI/actionpropertybase.cpp:405
 msgid "You may want to set a working directory"
-msgstr "Pot ser voleu definir un directori de treball"
+msgstr "Pot ser voleu definir una carpeta de treball"
 
 #: GUI/actionpropertybase.cpp:406
 msgid "Tooltip"
 msgstr "Indicador de funció"
 
 #: GUI/actionpropertybase.cpp:408
-#, fuzzy
 msgid "This command line is executed"
 msgstr "S'ha executat l'ordre en l'intèrpret"
 
@@ -244,12 +233,11 @@ msgstr "Afegeix un agafador d'espai per els fitxers seleccionats en el plafó"
 
 #: GUI/actionpropertybase.cpp:412
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
-msgstr "La descripció només es mostra en el Konfigurator i via Shift-F1"
+msgstr "La descripció només es mostra en el Konfigurator i via Majúscoles-F1"
 
 #: GUI/actionpropertybase.cpp:413
-#, fuzzy
 msgid "Start path"
-msgstr "Inicia"
+msgstr "Carpeta inicial"
 
 #: GUI/actionpropertybase.cpp:414
 msgid "Default shortcut:"
@@ -343,8 +331,7 @@ msgstr "Tipus mime"
 
 #: GUI/actionpropertybase.cpp:442
 msgid "Show the action only for these filenames (you may use '?' and '*')"
-msgstr ""
-"Mostra l'acció només per aquests noms de fitxers (podeu utilitar '?' i '*')"
+msgstr "Mostra l'acció només per aquests noms de fitxers (podeu utilitar '?' i '*')"
 
 #: GUI/actionpropertybase.cpp:446
 msgid "Filename"
@@ -355,7 +342,6 @@ msgid "Confirm each program call separately"
 msgstr "Confirma cada execució de programa per separat"
 
 #: GUI/actionpropertybase.cpp:448
-#, fuzzy
 msgid "This allows you to tweak the command line before executing"
 msgstr "Això permet que s'oculti l'intèrpret d'ordres abans que s'executi"
 
@@ -364,9 +350,8 @@ msgid "Run as different user"
 msgstr "Executa-ho en un usuari diferent"
 
 #: GUI/actionpropertybase.cpp:450
-#, fuzzy
 msgid "execute the command under another user-id"
-msgstr "Executa-ho en l'intèrpret d'ordres en un usuari diferent"
+msgstr "executa-ho en l'intèrpret d'ordres amb un usuari diferent"
 
 #: GUI/actionpropertybase.cpp:451
 msgid "Advanced Properties"
@@ -406,23 +391,21 @@ msgstr "Aquest agafador d'espai permet alguns paràmetres:"
 
 #: GUI/kcmdline.cpp:61
 msgid "Name of directory where command will be processed."
-msgstr "Directori on s'executaran les ordres en l'intèrpret"
+msgstr "Carpeta on s'executaran les ordres en l'intèrpret"
 
 #: GUI/kcmdline.cpp:91
-#, fuzzy
 msgid ""
 "<qt>Well, it's actually quite simple: You type your command here and "
 "Krusader obeys.<p><Tip:>Move within command line history with &lt;Up&gt; and "
 "&lt;Down&gt; arrows.</qt>"
 msgstr ""
-"<qt>Senzillament: Escriviu en la línia d'ordres i el Krusader obeeix.<p><Tip:"
+"<qt>Senzillament: Escriviu en la línia d'ordres i el Krusader obeirà.<p><Tip:"
 ">Prement les tecles de pujar i baixar, recuperareu les ordres que heu escrit "
 "abans.</qt>"
 
 #: GUI/kcmdline.cpp:97
 msgid "If pressed, Krusader executes command line in a terminal."
-msgstr ""
-"Si premeu aquí Krusader executarà les comandes en una finestra de terminal."
+msgstr "Si premeu aquí Krusader executarà les comandes en una finestra de terminal."
 
 #: GUI/kcmdline.cpp:103
 msgid ""
@@ -446,7 +429,7 @@ msgid ""
 "<qt>Open terminal in current directory.<p>You can define terminal in "
 "Konfigurator, default is konsole.</qt>"
 msgstr ""
-"<qt>Obre una finestra de terminal,  amb el directori actual.</p>En el "
+"<qt>Obre una finestra de terminal, en la carpeta actual.</p>En el "
 "Konfigurator podeu canviar el valor per defecte 'konsole', per algun altre "
 "terminal.</qt>"
 
@@ -492,7 +475,7 @@ msgstr "F7 CreaDir "
 
 #: GUI/kfnkeys.cpp:80
 msgid "Create directory in current panel."
-msgstr "Crea un directori en el plafó actiu."
+msgstr "Crea una carpeta en el plafó actiu."
 
 #: GUI/kfnkeys.cpp:84
 msgid "F8 Delete"
@@ -500,7 +483,7 @@ msgstr "F8 Esborra"
 
 #: GUI/kfnkeys.cpp:85
 msgid "Delete file, directory, etc."
-msgstr "Esborra un fitxer, un directori, etc."
+msgstr "Esborra un fitxer, una carpeta, etc."
 
 #: GUI/kfnkeys.cpp:89
 msgid "F9 Rename"
@@ -508,60 +491,51 @@ msgstr "F9 Renomena"
 
 #: GUI/kfnkeys.cpp:90
 msgid "Rename file, directory, etc."
-msgstr "Reanomena un fitxer, un directori, etc."
+msgstr "Reanomena un fitxer, una carpeta, etc."
 
 #: GUI/kfnkeys.cpp:94
 msgid "F10 Quit "
-msgstr "F10 Sortir "
+msgstr "F10 Surt"
 
 #: GUI/kfnkeys.cpp:95
 msgid "Quit Krusader."
-msgstr "Tanca el Krusader."
+msgstr "Abandona."
 
 #: GUI/kfnkeys.cpp:121
-#, fuzzy
 msgid " Term"
-msgstr "F2 Terminal  "
+msgstr " Terminal"
 
 #: GUI/kfnkeys.cpp:122
-#, fuzzy
 msgid " View"
-msgstr "F3 Veure"
+msgstr " Veure"
 
 #: GUI/kfnkeys.cpp:123
-#, fuzzy
 msgid " Edit"
-msgstr "F4 Edita"
+msgstr " Edita"
 
 #: GUI/kfnkeys.cpp:124
-#, fuzzy
 msgid " Copy"
-msgstr "F5 Copia"
+msgstr " Copia"
 
 #: GUI/kfnkeys.cpp:125
-#, fuzzy
 msgid " Move"
-msgstr "F6 Mou"
+msgstr " Mou"
 
 #: GUI/kfnkeys.cpp:126
-#, fuzzy
 msgid " Mkdir"
-msgstr "F7 CreaDir"
+msgstr " CreaDir"
 
 #: GUI/kfnkeys.cpp:127
-#, fuzzy
 msgid " Delete"
-msgstr "F8 Esborra"
+msgstr " Esborra"
 
 #: GUI/kfnkeys.cpp:128
-#, fuzzy
 msgid " Rename"
 msgstr "Renomena"
 
 #: GUI/kfnkeys.cpp:129
-#, fuzzy
 msgid " Quit"
-msgstr "Silenciós"
+msgstr " Surt"
 
 #: VFS/ftp_vfs.cpp:142
 msgid ""
@@ -601,30 +575,31 @@ msgstr "S'estan tornant a comprimir els fitxers..."
 
 #: VFS/normal_vfs.cpp:82
 msgid "Directory %1 does not exist!"
-msgstr "El directori '%1' no existeix!"
+msgstr "La carpeta '%1' no existeix!"
 
 #: VFS/normal_vfs.cpp:95
 msgid "Can't open the %1 directory!"
-msgstr "No es pot obrir el directori %1!"
+msgstr "No es pot obrir la carpeta %1!"
 
 #: VFS/normal_vfs.cpp:101
 msgid "Access denied to"
 msgstr "Accés denegat a"
 
 #: VFS/normal_vfs.cpp:198
-#, fuzzy
 msgid "Can't create a directory. Check your permissions."
-msgstr "No es pot crear el directori, comprobeu els permisos "
+msgstr "La carpeta no s'ha pogut crear, comprobeu els permisos "
 
 #: VFS/virt_vfs.cpp:89
 msgid ""
 "You can't copy files directly to the 'virt:/' directory.\n"
 "You can create a sub directory and copy your files into it."
 msgstr ""
+"No es pot copiar fitxers directametn a la carpeta 'virt:/'.\n"
+"Però si que podeu crear-hi una subcarpeta i copiar-hi tots els vostres fitxers."
 
 #: VFS/virt_vfs.cpp:154
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
+msgstr "Només es permet crear subcarpetes en la carpeta 'virt:/'."
 
 #: VFS/krquery.cpp:81 Dialogs/generalfilter.cpp:90
 #: Konfigurator/konfigurator.cpp:105
@@ -633,7 +608,7 @@ msgstr "Fitxers comprimits"
 
 #: VFS/krquery.cpp:82 Dialogs/generalfilter.cpp:91
 msgid "Directories"
-msgstr "Directoris"
+msgstr "Carpetes"
 
 #: VFS/krquery.cpp:83 Dialogs/generalfilter.cpp:92
 msgid "Image Files"
@@ -657,7 +632,7 @@ msgstr "Personalizat"
 
 #: VFS/krarchandler.cpp:160
 msgid "Counting files in archive"
-msgstr "S'estan comptant els fitxers comprimits."
+msgstr "S'està analitzant el fitxer comprimit."
 
 #: VFS/krarchandler.cpp:191 VFS/krarchandler.cpp:254
 msgid "Failed to unpack"
@@ -706,7 +681,6 @@ msgid "count all:"
 msgstr "compta tots:"
 
 #: UserAction/expander.cpp:113
-#, fuzzy
 msgid "filter mask: *.h, *.cpp, etc."
 msgstr "mascara del filtre (*.h, *.cpp ...)"
 
@@ -717,7 +691,7 @@ msgstr "Fitxer actiu (diferent que el fitxer seleccionat)"
 #: UserAction/expander.cpp:127 UserAction/expander.cpp:160
 #: UserAction/expander.cpp:229 UserAction/expander.cpp:529
 msgid "Omit the current path (optional)"
-msgstr "Omet el directori actual (opcional)"
+msgstr "Omet la carpeta actual (opcional)"
 
 #: UserAction/expander.cpp:155
 msgid "Item list of ..."
@@ -739,7 +713,7 @@ msgstr "Mascara (opcional, no es pot posar 'Selected')"
 
 #: UserAction/expander.cpp:224
 msgid "Filename of an itemlist ..."
-msgstr ""
+msgstr "Fitxer de l'elment ..."
 
 #: UserAction/expander.cpp:304
 msgid "Manipulate the selection"
@@ -766,7 +740,6 @@ msgid "open the location in a new tab"
 msgstr "obre el lloc en una nova pestanya"
 
 #: UserAction/expander.cpp:371
-#, fuzzy
 msgid "Ask the user for a parameter"
 msgstr "Pregunta a l'usuari el valor del paràmetre"
 
@@ -796,86 +769,84 @@ msgstr "Què s'ha de copiar"
 
 #: UserAction/expander.cpp:409
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr "Afegeix al  l'actual porta-retalls"
+msgstr "Afegeix aquest separador al porta-retalls (opcional)"
 
 #: UserAction/expander.cpp:423
 msgid "Copy a file/folder"
-msgstr "Copia un fitxer/directori"
+msgstr "Copia un fitxer/carpeta"
 
 #: UserAction/expander.cpp:427
 msgid "Where it should be copied"
 msgstr "On s'hauria de copiar"
 
 #: UserAction/expander.cpp:447
-#, fuzzy
 msgid "Move/Rename a file/folder"
-msgstr "Copia un fitxer/directori"
+msgstr "Copia/reanomena un fitxer o carpeta"
 
 #: UserAction/expander.cpp:450
 msgid "What moved/renamed"
-msgstr ""
+msgstr "Origen"
 
 #: UserAction/expander.cpp:451
-#, fuzzy
 msgid "New target/name"
-msgstr "Nou nom de fitxer"
+msgstr "Destinació"
 
 #: UserAction/expander.cpp:471
 msgid "Open a synchronizer-profile"
-msgstr "Perfil obre el sincronitzador"
+msgstr "Mode sincronització"
 
 #: UserAction/expander.cpp:474 UserAction/expander.cpp:492
 #: UserAction/expander.cpp:510
 msgid "Choose a profile"
-msgstr "Escull un perfil"
+msgstr "Selector de mode"
 
 #: UserAction/expander.cpp:489
 msgid "Open a searchmodule-profile"
-msgstr "Perfil obre el buscador"
+msgstr "Mode cercador"
 
 #: UserAction/expander.cpp:507
 msgid "Load a panel-profile"
-msgstr "Perfil carrega un plafó"
+msgstr "Carrega un mode en el plafó"
 
 #: UserAction/expander.cpp:525
 msgid "Separate programm call for each..."
-msgstr ""
+msgstr "Fes una crida separada per cada ..."
 
 #: UserAction/expander.cpp:585
 msgid "Set the sorting for this panel"
-msgstr ""
+msgstr "Selector del criteri d'ordenació per aquest plafó"
 
 #: UserAction/expander.cpp:588
-#, fuzzy
 msgid "Choose a column"
-msgstr "Escull un perfil"
+msgstr "Selector de columnes"
 
 #: UserAction/expander.cpp:589
 msgid "Choose the sort sequence"
-msgstr ""
+msgstr "Selecciona una seqüència d'ordenació"
 
 #: UserAction/expander.cpp:679
-#, fuzzy
 msgid "Set the relation between the two panels"
-msgstr "Separador entre elements (opcional)"
+msgstr "Estableix una relació entre els dos plafons"
 
 #: UserAction/expander.cpp:682
 msgid "Set the new size in percent"
-msgstr ""
+msgstr "Modifica la mida en tant per cent"
 
 #: UserAction/expander.cpp:718
 msgid "Executes a JavaScript-extension"
-msgstr ""
+msgstr "Executa una extensió Javascript"
 
 #: UserAction/expander.cpp:721
 msgid "Location of the script"
-msgstr ""
+msgstr "Ubicació de la seqüència d'ordres"
 
 #: UserAction/expander.cpp:722
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
 msgstr ""
+"Introduïu el valor dels paràmetres de l'execució (opcional).\n"
+"Per exemple \"nom=ElFitxer;any=2005\", si teniu dubtes consulteu el manual"
 
 #: UserAction/kraction.cpp:43
 msgid "Kill"
@@ -907,7 +878,7 @@ msgstr "Ordre que s'està executant:"
 
 #: Panel/krdetailedviewitem.cpp:371
 msgid "Climb up the directory tree"
-msgstr "Va al directori pare."
+msgstr "Puja a la carpeta pare."
 
 #: Panel/krdetailedviewitem.cpp:383
 msgid "Symbolic Link"
@@ -922,21 +893,19 @@ msgid "%1 (Link)"
 msgstr "%1 (Enllaç)"
 
 #: Panel/diff_panelpopup.cpp:6 Panel/panelpopup.cpp:80
-#, fuzzy
 msgid "Disk Usage Panel: view the usage of a directory"
-msgstr "Troceja el fitxer %1 al directori:"
+msgstr "Plafó d'informació del disc: Permet veure l'espai utilitzat"
 
 #: Panel/krpreviewpopup.cpp:32
 msgid "Preview not available"
 msgstr "No es pot previsualitzar"
 
 #: Panel/listpanel.cpp:127
-#, fuzzy
 msgid ""
 "The statusbar displays information about the FILESYSTEM which holds your "
 "current directory: Total size, free space, type of filesystem, etc."
 msgstr ""
-"La barra d'estat mostra informació sobre el directori actual: La mida total, "
+"La barra d'estat mostra informació sobre la carpeta actual: La mida total, "
 "l'espai lliure, el tipus de sitema de fitxers, etc."
 
 #: Panel/listpanel.cpp:143
@@ -968,28 +937,28 @@ msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
-"Nom del directori on us trobeu. Podeu posar-hi qualsevol adreça on us "
-"volgueu moure. També podeu fer servir protocols de la xarxa com ftp o fish."
+"Nom de la carpeta on us trobeu. Podeu posar-hi posari una nova destinació. "
+"Tant si és de disc local com una adreça de xarxa, de ftp o de fish."
 
 #: Panel/listpanel.cpp:203
 msgid "="
-msgstr ""
+msgstr "="
 
 #: Panel/listpanel.cpp:204
 msgid "Equal"
-msgstr ""
+msgstr "Igual"
 
 #: Panel/listpanel.cpp:209
 msgid ".."
-msgstr ""
+msgstr ".."
 
 #: Panel/listpanel.cpp:210
 msgid "Up"
-msgstr ""
+msgstr "Puja"
 
 #: Panel/listpanel.cpp:215
 msgid "~"
-msgstr ""
+msgstr "~"
 
 #: Panel/listpanel.cpp:216 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
 #: Panel/panelpopup.cpp:106 Panel/panelpopup.cpp:117
@@ -998,13 +967,13 @@ msgstr "Inici"
 
 #: Panel/listpanel.cpp:221
 msgid "/"
-msgstr ""
+msgstr "/"
 
 #: Panel/listpanel.cpp:222 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
 #: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
 #: krusader.cpp:541
 msgid "Root"
-msgstr "Root"
+msgstr "Arrel"
 
 #: Panel/listpanel.cpp:297
 msgid "Close the popup panel"
@@ -1033,8 +1002,7 @@ msgstr "l'últim lloc visitat"
 
 #: Panel/listpanel.cpp:586
 msgid "No space information on non-local filesystems"
-msgstr ""
-"Dins el sistema de fitxers extern no es pot calcular la mida dels fitxers"
+msgstr "Dins el sistema de fitxers extern no es pot calcular la mida dels fitxers"
 
 #: Panel/listpanel.cpp:593
 msgid "No space information on [dev]"
@@ -1054,7 +1022,7 @@ msgstr "El gestor de dispositius muntats Mountman està fent ..."
 
 #: Panel/listpanel.cpp:622
 msgid "unknown"
-msgstr ""
+msgstr "desconegut"
 
 #: Panel/listpanel.cpp:630
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
@@ -1176,19 +1144,16 @@ msgid "Can't open "
 msgstr "No s'ha pogut obrir "
 
 #: Panel/listpanel.cpp:1195
-#, fuzzy
 msgid ">> Reading..."
-msgstr "S'estan tornant a comprimir els fitxers..."
+msgstr ">> S'està llegint..."
 
 #: Panel/listpanel.cpp:1207
-#, fuzzy
 msgid "Reading"
-msgstr " (Llegint)"
+msgstr "S'està llegint"
 
 #: Panel/listpanel.cpp:1212
-#, fuzzy
 msgid "Reading: "
-msgstr " (Llegint)"
+msgstr "S'està llegint: "
 
 #: Panel/krdetailedview.cpp:97 Search/krsearchdialog.cpp:149
 #: MountMan/kmountmangui.cpp:124 Synchronizer/synchronizergui.cpp:1239
@@ -1244,37 +1209,32 @@ msgid " to:"
 msgstr " a:"
 
 #: Panel/krdetailedview.cpp:1288
-#, fuzzy
 msgid "Columns"
-msgstr "&Comandes"
+msgstr "Columnes"
 
 #: Panel/krview.cpp:125
-#, fuzzy
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
-msgstr "%1 dels %2 seleccionats, %3 de %4"
+msgstr "%1 dels %2, %3 (%4) dels %5 (%6)"
 
 #: Panel/panelpopup.cpp:51
 msgid "Tree Panel: a tree view of the local file system"
-msgstr "Vista Arbre: una vista de l'arbre de directoris"
+msgstr "Vista Arbre: una vista jeràrquica de les carpetes"
 
 #: Panel/panelpopup.cpp:59
 msgid "Preview Panel: display a preview of the current file"
-msgstr ""
-"Plafó de previsualització: mostra una previsualització del fitxer actual"
+msgstr "Plafó de previsualització: mostra una previsualització del fitxer actual"
 
 #: Panel/panelpopup.cpp:66
 msgid "Quick Panel: quick way to perform actions"
 msgstr "Plafó ràpid: un forma ràpida d'executar les accions"
 
 #: Panel/panelpopup.cpp:73
-#, fuzzy
 msgid "View Panel: view the current file"
-msgstr ""
-"Plafó de previsualització: mostra una previsualització del fitxer actual"
+msgstr "Plafó de previsualització: mostra una previsualització del fitxer actual"
 
 #: Panel/panelpopup.cpp:132 Panel/panelpopup.cpp:269
 msgid "Disk Usage: "
-msgstr ""
+msgstr "Informació del disc: "
 
 #: Panel/panelpopup.cpp:141
 msgid "Quick Select"
@@ -1305,23 +1265,20 @@ msgid "Quick Select:"
 msgstr "Seleccionar ràpidament:"
 
 #: Panel/panelpopup.cpp:237
-#, fuzzy
 msgid "View:"
-msgstr "F3 Veure"
+msgstr "Veure:"
 
 #: Panel/panelpopup.cpp:241
 msgid "Disk Usage:"
-msgstr ""
+msgstr "Informació del disc:"
 
 #: Panel/panelpopup.cpp:258
-#, fuzzy
 msgid "Preview: "
-msgstr "Previsualitza:"
+msgstr "Previsualitza: "
 
 #: Panel/panelpopup.cpp:262
-#, fuzzy
 msgid "View: "
-msgstr "F3 Veure"
+msgstr "Veure: "
 
 #: Panel/krcalcspacedialog.cpp:95
 msgid "Calculate Occupied Space"
@@ -1341,14 +1298,13 @@ msgid ""
 "in %1 directories and %2 files"
 msgstr ""
 "\n"
-"en %1 directoris i %2 fitxers"
+"en %1 carpetes i %2 fitxers"
 
 #: Panel/panelfunc.cpp:224
 msgid "You can edit links only on local file systems"
 msgstr "Només es poden editar enllaços en sistemes de fitxes locals"
 
 #: Panel/panelfunc.cpp:235
-#, fuzzy
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "El fitxer actual no és un enllaç, no es pot redefinir l'enllaç."
 
@@ -1382,7 +1338,7 @@ msgstr "Crea un nou enllaç a: "
 
 #: Panel/panelfunc.cpp:279 Panel/panelfunc.cpp:448
 msgid "A directory or a file with this name already exists."
-msgstr "Ja existeix un fitxer o directori amb aquest nom."
+msgstr "Ja existeix un fitxer o una carpeta amb aquest nom."
 
 #: Panel/panelfunc.cpp:291
 msgid "Failed to create a new symlink: "
@@ -1398,7 +1354,7 @@ msgstr "No es tenen permisos per veure aquest fitxer."
 
 #: Panel/panelfunc.cpp:345
 msgid "You can't edit a directory"
-msgstr "Els directoris no es poden editar"
+msgstr "Les carpetes no es poden editar"
 
 #: Panel/panelfunc.cpp:350
 msgid "No permissions to edit this file."
@@ -1428,11 +1384,11 @@ msgstr "No es poden moure fitxers a aquest sistema de fitxers"
 
 #: Panel/panelfunc.cpp:435
 msgid "New directory"
-msgstr "Nou directori"
+msgstr "Nova carpeta"
 
 #: Panel/panelfunc.cpp:435
 msgid "Directory's name:"
-msgstr "Nom del directori:"
+msgstr "Nom de la carpeta:"
 
 #: Panel/panelfunc.cpp:479
 msgid "Copy "
@@ -1449,15 +1405,14 @@ msgstr "No es poden copiar fitxers en aquest sistema de fitxers"
 
 #: Panel/panelfunc.cpp:515
 msgid "You do not have write permission to this directory"
-msgstr "No es tenen permisos d'escriptura en aquest directori"
+msgstr "No es tenen permisos d'escriptura en aquesta carpeta"
 
 #: Panel/panelfunc.cpp:532
-#, fuzzy
 msgid " this item?"
 msgstr " aquest element ?"
 
 #: Panel/panelfunc.cpp:534
-#, fuzzy, c-format
+#, c-format
 msgid " these %d items?"
 msgstr " aquests %d elements ?"
 
@@ -1475,20 +1430,19 @@ msgstr "esborrar"
 
 #: Panel/panelfunc.cpp:545
 msgid "Are you sure you want to "
-msgstr "Està segur que vol "
+msgstr "Esteu segurs que voleu "
 
 #: Panel/panelfunc.cpp:564
 msgid "Directory "
-msgstr "Directori "
+msgstr "Carpeta "
 
 #: Panel/panelfunc.cpp:564
-#, fuzzy
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
 msgstr ""
-" no està buit\n"
-"Voleu Saltar aquest directori o Esborrar el directori sencer?"
+" no està buida\n"
+"Voleu saltar-vos aquest carpeta o esborrar-la del tot?"
 
 #: Panel/panelfunc.cpp:565
 msgid "&Skip"
@@ -1496,25 +1450,23 @@ msgstr "&Salta"
 
 #: Panel/panelfunc.cpp:565
 msgid "&Delete All"
-msgstr "&Esborrar-ho tot"
+msgstr "&Esborra-ho tot"
 
 #: Panel/panelfunc.cpp:683
 msgid "The Archive "
 msgstr "El fitxer comprimit  "
 
 #: Panel/panelfunc.cpp:684
-#, fuzzy
 msgid " already exists. Do you want to overwrite the archive ?\n"
-msgstr " ja existeix, voleu sobreescriure'l "
+msgstr " ja existeix, voleu sobreescriure'l ?\n"
 
 #: Panel/panelfunc.cpp:686
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
-msgstr ""
+msgstr "(ZIP es sobreescriuran els fitxers que ja existeixin i s'afegiran el fitxers nous)"
 
 #: Panel/panelfunc.cpp:690
-#, fuzzy
 msgid "&Overwrite"
 msgstr "&Sobreescriu"
 
@@ -1536,7 +1488,6 @@ msgid "%1, test passed."
 msgstr "%1, ha passat el test."
 
 #: Panel/panelfunc.cpp:773
-#, fuzzy
 msgid "%1, test failed!"
 msgstr "%1, no ha passat el test !"
 
@@ -1562,7 +1513,7 @@ msgstr "Ubicació"
 
 #: Locate/locate.cpp:74
 msgid "Krusader::Locate"
-msgstr ""
+msgstr "Krusader::Locate"
 
 #: Locate/locate.cpp:77
 msgid "Search for:"
@@ -1587,8 +1538,7 @@ msgstr "Resultats"
 
 #: Locate/locate.cpp:198
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-" No es pot arrencar 'locate'! Comprova les 'Dependencies' en el konfigurator."
+msgstr " No es pot arrencar 'locate'! Comprova les 'Dependencies' en el konfigurator."
 
 #: Locate/locate.cpp:235
 msgid ""
@@ -1599,7 +1549,6 @@ msgstr ""
 "\n"
 
 #: Locate/locate.cpp:238
-#, fuzzy
 msgid "Error during the start of 'locate' process!"
 msgstr "S'ha produït un error a l'arrencar el procés `locate` !"
 
@@ -1628,58 +1577,52 @@ msgid "Search string not found!"
 msgstr "No s'ha trobat el text que es buscava !"
 
 #: Locate/locate.cpp:485
-#, fuzzy
 msgid "Locate results"
-msgstr "Ubicació"
+msgstr "Ubicació dels resultats"
 
 #: Locate/locate.cpp:491 Search/krsearchdialog.cpp:502
-#, fuzzy
 msgid "Query name"
-msgstr "Nom de l'usuari:"
+msgstr "Nom de l'usuari"
 
 #: Locate/locate.cpp:492 Search/krsearchdialog.cpp:503
 msgid "Here you can name the file collection"
-msgstr ""
+msgstr "Aquí podeu donar un nom a la col·lecció de fitxers"
 
 #: krusader.cpp:288
-#, fuzzy
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
-"La barra d'estat mostra la informació bàsica sobre el fitxer indicat pel "
+"La barra d'estat mostra la informació bàsica sobre el fitxer senyalat amb "
 "ratolí."
 
 #: krusader.cpp:341
-#, fuzzy
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
 "configuration to default values.\n"
 "Note: Your bookmarks and keybindings will remain intact.\n"
 " Krusader will now run Konfigurator."
 msgstr ""
-"S'ha trobat una configuració anterior a la versió 0.90, el Krusader,"
+"S'ha trobat una configuració anterior o igual a la versió 1.51, el Krusader, \n"
 "reinicialitzarà els valors de la configuració i executarà Konfigurator."
 
 #: krusader.cpp:351
-#, fuzzy
 msgid ""
 "Welcome to Krusader! As this is your first run, Krusader will now run "
 "Konfigurator."
 msgstr ""
-"Benvingut al Krusader, com que és la seva primera vegada, Krusader llençarà "
+"Benvingut al Krusader, com que és la vostra primera vegada, Krusader llençarà "
 "el Konfiturator."
 
 #: krusader.cpp:402
 msgid "F3 View Dialog"
-msgstr "F3 Veure  "
+msgstr "F3 Veure"
 
 #: krusader.cpp:405
 msgid "Tab: switch panel"
 msgstr "Tab: alterna de plafó esquerra/dreta"
 
 #: krusader.cpp:428
-#, fuzzy
 msgid "Show Actions Toolbar"
-msgstr "Mostra les opcions"
+msgstr "Mostra la barra d'accions"
 
 #: krusader.cpp:440
 msgid "Show &FN Keys Bar"
@@ -1703,15 +1646,13 @@ msgstr "&Intercanvia Plafons"
 
 #: krusader.cpp:457
 msgid "popup cmdline"
-msgstr ""
+msgstr "línia de comandes emergent"
 
 #: krusader.cpp:460 DiskUsage/diskusage.cpp:668
-#, fuzzy
 msgid "Up one directory"
-msgstr "En el directori"
+msgstr "Ves a la carpeta pare"
 
 #: krusader.cpp:461
-#, fuzzy
 msgid "&Edit New File"
 msgstr "&Edita un nou fitxer"
 
@@ -1748,12 +1689,10 @@ msgid "&Unpack"
 msgstr "&Descomprimeix"
 
 #: krusader.cpp:480
-#, fuzzy
 msgid "Sp&lit File"
 msgstr "Troce&ja fitxer"
 
 #: krusader.cpp:482
-#, fuzzy
 msgid "Com&bine Files"
 msgstr "Reaj&unta fitxers"
 
@@ -1771,29 +1710,25 @@ msgstr "Deseleccio&na-ho tot"
 
 #: krusader.cpp:490
 msgid "&Compare Directories"
-msgstr "&Compara directoris"
+msgstr "&Compara carpetes"
 
 #: krusader.cpp:492
-#, fuzzy
 msgid "&Mark Newer And Single"
 msgstr "&Marca els actualitzats i els nous"
 
 #: krusader.cpp:494
 msgid "Mark &Newer"
-msgstr ""
+msgstr "Marca els &actualitzats"
 
 #: krusader.cpp:496
-#, fuzzy
 msgid "Mark &Single"
-msgstr "Únics"
+msgstr "Marca el &nous"
 
 #: krusader.cpp:498
-#, fuzzy
 msgid "Mark Different &And Single"
 msgstr "Marc&a els diferents i els nous"
 
 #: krusader.cpp:500
-#, fuzzy
 msgid "Mark &Different"
 msgstr "Marca els &diferents"
 
@@ -1819,16 +1754,15 @@ msgstr "&Ubicació"
 
 #: krusader.cpp:527
 msgid "Synchronize &Directories"
-msgstr "Sincronitza &directoris"
+msgstr "Sincronitza &carpetes"
 
 #: krusader.cpp:529
-#, fuzzy
 msgid "S&ynchron directory changes"
-msgstr "Sincronitza directoris"
+msgstr "&Sincronitza"
 
 #: krusader.cpp:531
 msgid "D&isk Usage"
-msgstr ""
+msgstr "&Informació del disc"
 
 #: krusader.cpp:533
 msgid "&Invert Selection"
@@ -1855,7 +1789,6 @@ msgid "&Custom"
 msgstr "&Personalitza"
 
 #: krusader.cpp:551
-#, fuzzy
 msgid "Compare b&y Content"
 msgstr "Compara per &contingut"
 
@@ -1888,13 +1821,12 @@ msgid "Right history"
 msgstr "Històric (dreta)"
 
 #: krusader.cpp:569
-#, fuzzy
 msgid "Toggle Popup Panel"
 msgstr "Tanca el menú emergent"
 
 #: krusader.cpp:571
 msgid "Vertical Mode"
-msgstr ""
+msgstr "Mode vertical"
 
 #: krusader.cpp:573
 msgid "New tab"
@@ -1921,71 +1853,58 @@ msgid "User Menu"
 msgstr "Menú de l'usuari"
 
 #: krusader.cpp:585 UserMenu/usermenu.cpp:59
-#, fuzzy
 msgid "Manage user actions"
-msgstr "Afegir una acció"
+msgstr "Gestor d'accions"
 
 #: krusader.cpp:589
-#, fuzzy
 msgid "F2 - Open a terminal"
 msgstr "F2 Terminal"
 
 #: krusader.cpp:591
-#, fuzzy
 msgid "F3 - View a file"
-msgstr "F3 Veure  "
+msgstr "F3 Veure "
 
 #: krusader.cpp:593
-#, fuzzy
 msgid "F4 - Edit a file"
-msgstr "F4 Edita  "
+msgstr "F4 Edita "
 
 #: krusader.cpp:595
-#, fuzzy
 msgid "F5 - Copy"
 msgstr "F5 Copia"
 
 #: krusader.cpp:597
-#, fuzzy
 msgid "F6 - Move"
 msgstr "F6 Mou"
 
 #: krusader.cpp:599
-#, fuzzy
 msgid "F7 - Mkdir"
 msgstr "F7 CreaDir"
 
 #: krusader.cpp:601
-#, fuzzy
 msgid "F8 - Delete"
 msgstr "F8 Esborra"
 
 #: krusader.cpp:603
-#, fuzzy
 msgid "F9 - Rename"
 msgstr "F9 Renomena"
 
 #: krusader.cpp:605
-#, fuzzy
 msgid "F10 - Quit"
 msgstr "F10 Surt"
 
 #: krusader.cpp:607 BookMan/krbookmarkhandler.cpp:254
 msgid "Popular URLs"
-msgstr ""
+msgstr "URLs famoses"
 
 #: krusader.cpp:611
-#, fuzzy
 msgid "Select files using a filter"
 msgstr "Resalta els fitxers fent servir un filtre"
 
 #: krusader.cpp:612
-#, fuzzy
 msgid "Select all files in the current directory"
-msgstr "Resalta tots els fitxers del directori actual"
+msgstr "Resalta tots els fitxers de la carpeta actual"
 
 #: krusader.cpp:613
-#, fuzzy
 msgid "Un-select all selected files"
 msgstr "Seleccioneu només un sol fitxer a reajuntar!"
 
@@ -2007,40 +1926,35 @@ msgstr "Cerca fitxers"
 
 #: krusader.cpp:627
 msgid "JavaScript console"
-msgstr ""
+msgstr "Consola Javascript"
 
 #: krusader.cpp:657 Konfigurator/kgcolors.cpp:451
-#, fuzzy
 msgid "File "
-msgstr "Tots els fitxers"
+msgstr "Fitxer "
 
 #: krusader.cpp:657 Konfigurator/kgcolors.cpp:451
-#, fuzzy
 msgid " already exists. Are you sure you want to overwrite it?"
-msgstr " ja existeix, voleu sobreescriure'l "
+msgstr " ja existeix, voleu sobreescriure'l ?"
 
 #: krusader.cpp:658 Konfigurator/kgcolors.cpp:452
-#, fuzzy
 msgid "Overwrite"
-msgstr "&Sobreescriu"
+msgstr "Sobreescriu"
 
 #: krusader.cpp:660 Konfigurator/kgcolors.cpp:454
-#, fuzzy
 msgid "Error: unable to write to file"
-msgstr "No es pot escriure a "
+msgstr "No es pot escriure al fitxer"
 
 #: krusader.cpp:713 krusader.cpp:716
 msgid "List"
 msgstr "Llista"
 
 #: krusader.cpp:763
-#, fuzzy
 msgid "Are you sure you want to quit?"
-msgstr "Està segur que vol "
+msgstr "Voleu sortir del krusader?"
 
 #: KViewer/panelviewer.cpp:22
 msgid "No file selected or selected file can't be displayed."
-msgstr ""
+msgstr "No hi ha cap fitxer seleccionat o no es pot visualitzar."
 
 #: KViewer/krviewer.cpp:72
 msgid "&Generic viewer"
@@ -2072,11 +1986,11 @@ msgstr "KrViewer no pot descarregar "
 
 #: Search/krsearchdialog.cpp:70
 msgid "Krusader::Search"
-msgstr ""
+msgstr "Krusader::Search"
 
 #: Search/krsearchdialog.cpp:89
 msgid "Feed to listbox"
-msgstr ""
+msgstr "Ajusta a la llista"
 
 #: Search/krsearchdialog.cpp:94
 msgid "Search"
@@ -2143,11 +2057,8 @@ msgid "Edit File (F4)"
 msgstr "Edita fitxer (F4)"
 
 #: Search/krsearchdialog.cpp:496
-#, fuzzy
 msgid "Search results"
-msgstr ""
-"Resultat de la cerca:\n"
-"\n"
+msgstr "Resultat de la cerca"
 
 #: panelmanager.cpp:26
 msgid "Open a new tab in home"
@@ -2159,7 +2070,7 @@ msgstr "Tanca la pestanya"
 
 #: BookMan/krbookmarkbutton.cpp:15
 msgid "BookMan II"
-msgstr ""
+msgstr "Gestor d'adreces II"
 
 #: BookMan/krbookmarkhandler.cpp:130
 msgid "Unable to write to "
@@ -2195,9 +2106,8 @@ msgid "Devices"
 msgstr "Dispositius"
 
 #: BookMan/krbookmark.cpp:11
-#, fuzzy
 msgid "Virtual Filesystem"
-msgstr "Sistemes de fitxers"
+msgstr "Sistemes de fitxer virtual"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2224,11 +2134,8 @@ msgid "Folder name:"
 msgstr "Nom de la carpeta:"
 
 #: MountMan/kmountman.cpp:197
-#, fuzzy
 msgid "Error ejecting device! You need to have 'eject' in your path."
-msgstr ""
-"No es pot expulsar el dispositiu perquè no es troba eject !!! \n"
-"comproveu que estigui disponible l'executable ejectal directori /bin o /sbin."
+msgstr "No es pot expulsar el dispositiu perquè falta el programa 'eject'."
 
 #: MountMan/kmountman.cpp:224
 msgid "%1 ZB"
@@ -2299,8 +2206,7 @@ msgstr ""
 "Si us plau posis en contacte amb els desenvolupadors"
 
 #: MountMan/kmountmangui.cpp:322
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "MountMan Ha fallat."
 
 #: MountMan/kmountmangui.cpp:327
@@ -2345,7 +2251,7 @@ msgstr "Comença el plafó dreta en <path>"
 
 #: main.cpp:51
 msgid "Load this profile on startup"
-msgstr ""
+msgstr "Carrega el mode a l'iniciar"
 
 #: main.cpp:58
 msgid "Krusader"
@@ -2360,109 +2266,120 @@ msgid "Function keys allow performing fast operations on files."
 msgstr "Les dreceres del teclat us permeten anar més ràpid."
 
 #: Dialogs/krdialogs.cpp:124 Konfigurator/kglookfeel.cpp:103
-#, fuzzy
 msgid "Custom Selection Mode"
-msgstr "Mode Selecciona amb el Ratolí:"
+msgstr "Mode selecció"
 
 #: Dialogs/krdialogs.cpp:127
-#, fuzzy
 msgid "Based on KDE's selection mode"
 msgstr "Obeeix la política que té el KDE"
 
 #: Dialogs/krdialogs.cpp:128
 msgid "Left mouse button selects"
-msgstr ""
+msgstr "Selecciona amb el botó esquerra del ratolí"
 
 #: Dialogs/krdialogs.cpp:129
 msgid "Left mouse button preserves selection"
-msgstr ""
+msgstr "Conserva la selecció amb el botó esquerra"
 
 #: Dialogs/krdialogs.cpp:130
 msgid "Shift/Ctrl-Left mouse button selects"
-msgstr ""
+msgstr "Selecciona amb el botó esquerra amb Majús. o Ctrl"
 
 #: Dialogs/krdialogs.cpp:131
 msgid "Right mouse button selects"
-msgstr ""
+msgstr "selecciona amb el botó dret del ratolí "
 
 #: Dialogs/krdialogs.cpp:132
 msgid "Right mouse button preserves selection"
-msgstr ""
+msgstr "conserva la selecció amb el botó dret "
 
 #: Dialogs/krdialogs.cpp:133
 msgid "Shift/Ctrl-Right mouse button selects"
-msgstr ""
+msgstr "selecciona amb el botó dret amb Majús. o Ctrl, "
 
 #: Dialogs/krdialogs.cpp:134
 msgid "Spacebar moves down"
-msgstr ""
+msgstr "mou avall amb la barra d'espai"
 
 #: Dialogs/krdialogs.cpp:135
 msgid "Spacebar calculates disk space"
-msgstr ""
+msgstr "calcula l'espai ocupat amb la barra d'espai"
 
 #: Dialogs/krdialogs.cpp:136
 msgid "Insert moves down"
-msgstr ""
+msgstr "mou avall amb la tecal insert"
 
 #: Dialogs/krdialogs.cpp:137
 msgid "Right clicking pops context menu immediately"
-msgstr ""
+msgstr "Mostra el menú contextual amb el botó dret del ratolí immediatament"
 
 #: Dialogs/krdialogs.cpp:139
 msgid "Checking this will create a mode based on KDE's style."
-msgstr ""
+msgstr "Si marqueu la casella, el krusader funcionarà a l'estil KDE."
 
 #: Dialogs/krdialogs.cpp:140
 msgid "If checked, left clicking an item will select it."
-msgstr ""
+msgstr "Si la marqueu podreu seleccionar un fitxer amb el botó esquerra del ratolí."
 
 #: Dialogs/krdialogs.cpp:141
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
+"Si la marqueu podreu seleccionar amb el botó esquerra del ratolí "
+"sense deseleccionar els demés."
 
 #: Dialogs/krdialogs.cpp:143
 msgid ""
 "If checked, shift/ctrl left clicking will select items. Note: This is "
 "meaningless if 'Left Button Selects' is checked."
 msgstr ""
+"Si la marqueu podreu seleccionar un fitxer amb el botó esquerra del ratolí "
+"mentre premeu la tecla majúscoles o control."
 
 #: Dialogs/krdialogs.cpp:145
 msgid "If checked, right clicking an item will select it."
-msgstr ""
+msgstr "Si la marqueu podreu seleccionar un fitxer amb el botó dret del ratolí."
 
 #: Dialogs/krdialogs.cpp:146
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
+"Si la marqueu podreu seleccionar amb el botó dret del ratolí "
+"sense deseleccionar els demés."
 
 #: Dialogs/krdialogs.cpp:148
 msgid ""
 "If checked, shift/ctrl right clicking will select items. Note: This is "
 "meaningless if 'Right Button Selects' is checked."
 msgstr ""
+"Si la marqueu podreu seleccionar un fitxer amb el botó dret del ratolí "
+"mentre premeu la tecla majúscoles o control."
 
 #: Dialogs/krdialogs.cpp:150
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. Otherwise, current item is selected, but remains the current item."
 msgstr ""
+"Si la marqueu, podreu seleccionar el fitxer actual i moure el cursor un avall, "
+"amb la tecla espai. D'altra manera amb la barra d'espai se selecciona, però "
+"es queda en el mateix fitxer seleccionat."
 
 #: Dialogs/krdialogs.cpp:152
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) calculate space occupied by the folder "
 "(recursively)."
-msgstr ""
+msgstr "Si la marqueu, podreu saber l'espai ocupat per una carpeta amb la tecla espai."
 
 #: Dialogs/krdialogs.cpp:154
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. Otherwise, current item is not changed."
 msgstr ""
+"Si la marqueu, podreu seleccionar el fitxer actual i moure el cursor un avall, "
+"amb la tecla insert. D'altra manera no farà res."
 
 #: Dialogs/krdialogs.cpp:156
 msgid ""
@@ -2470,6 +2387,9 @@ msgid ""
 "context menu. Otherwise, user needs to click and hold the right mouse button "
 "for 500ms."
 msgstr ""
+"Si la marqueu, amb el botó dret es mostrarà el menú contextual del fitxer "
+"immediatament. Si no la marqueu, també us mostrarà el menú contextual, "
+"però després de 500ms d'apretar el botó."
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -2477,7 +2397,7 @@ msgstr "Origen:"
 
 #: Dialogs/krprogress.cpp:64 Dialogs/krprogress.cpp:239
 msgid "Destination:"
-msgstr "Destí:"
+msgstr "Destinació:"
 
 #: Dialogs/krprogress.cpp:112
 msgid "Krusader Progress"
@@ -2486,7 +2406,7 @@ msgstr "Progrés del Krusader"
 #: Dialogs/krprogress.cpp:165
 #, c-format
 msgid "%n directory"
-msgstr "%n directoris"
+msgstr "%n carpetes"
 
 #: Dialogs/krprogress.cpp:166
 #, c-format
@@ -2495,11 +2415,11 @@ msgstr "%n fitxers"
 
 #: Dialogs/krprogress.cpp:172
 msgid "%1% of %2 "
-msgstr ""
+msgstr "%1% de %2 "
 
 #: Dialogs/krprogress.cpp:174
 msgid " (Reading)"
-msgstr " (Llegint)"
+msgstr " (S'està llegint)"
 
 #: Dialogs/krprogress.cpp:191
 msgid "%1 of %2 complete"
@@ -2507,7 +2427,7 @@ msgstr "%1 de %2 fets"
 
 #: Dialogs/krprogress.cpp:201 Dialogs/krprogress.cpp:214
 msgid "%1 / %n directory"
-msgstr "%1 / %n directoris"
+msgstr "%1 / %n carpetes"
 
 #: Dialogs/krprogress.cpp:203 Dialogs/krprogress.cpp:217
 msgid "%1 / %n file"
@@ -2523,11 +2443,11 @@ msgstr "%1/s ( queden %2  )"
 
 #: Dialogs/packgui.cpp:90
 msgid "Please select a directory"
-msgstr "Si us plau seleccioneu un directori"
+msgstr "Si us plau seleccioneu una carpeta"
 
 #: Dialogs/krmaskchoice.cpp:58
 msgid "Choose Files"
-msgstr "Escull fitxers"
+msgstr "Selecció de fitxers"
 
 #: Dialogs/krmaskchoice.cpp:82
 msgid "Select the following files:"
@@ -2538,7 +2458,6 @@ msgid "Predefined Selections"
 msgstr "Seleccions habituals"
 
 #: Dialogs/krmaskchoice.cpp:97
-#, fuzzy
 msgid ""
 "A predefined selection is a file-mask which you use often.\n"
 "Some examples are: \"*.c, *.h\", \"*.c, *.o\", etc.\n"
@@ -2559,7 +2478,7 @@ msgstr ""
 
 #: Dialogs/krmaskchoice.cpp:106
 msgid "Adds the selection in the line-edit to the list"
-msgstr "Afegir la selecció a la llista"
+msgstr "Afegeix la selecció a la llista"
 
 #: Dialogs/krmaskchoice.cpp:111
 msgid "Delete the marked selection from the list"
@@ -2570,9 +2489,8 @@ msgid "Clears the entire list of selections"
 msgstr "Neteja tota la llista de seleccions"
 
 #: Dialogs/newftpgui.cpp:49
-#, fuzzy
 msgid "New Network Connection"
-msgstr "Nova &Conexió de Xarxa"
+msgstr "Nova conexió de xarxa"
 
 #: Dialogs/newftpgui.cpp:62
 msgid "About to connect to..."
@@ -2620,16 +2538,15 @@ msgstr "&Connecta"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
+msgstr "La llista de URLs famoses no és vàlida, i per tant es buidarà"
 
 #: Dialogs/popularurls.cpp:228
 msgid "Popular Urls"
-msgstr ""
+msgstr "URLs famoses"
 
 #: Dialogs/popularurls.cpp:243
-#, fuzzy
 msgid " &Search: "
-msgstr "&Cerca"
+msgstr "&Cerca: "
 
 #: Dialogs/krspecialwidgets.cpp:103
 msgid "Capacity: "
@@ -2648,9 +2565,8 @@ msgid "Not mounted."
 msgstr "No està muntat."
 
 #: Dialogs/generalfilter.cpp:52
-#, fuzzy
 msgid "File name"
-msgstr "Nom del fitxer:"
+msgstr "Nom del fitxer"
 
 #: Dialogs/generalfilter.cpp:62
 msgid "&Case sensitive"
@@ -2667,6 +2583,10 @@ msgid ""
 "If you type 'text' that results the same as '*text*'. You can exclude\n"
 "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' )."
 msgstr ""
+"Aquí podeu definir un filtre. Podeu definir un o més filtres amb comodins\n"
+"(*.o  *.*  *.c?? ) separats per un espai.\n"
+"És el mateix posar 'text' que '*text*'. També podeu excloure fitxers\n"
+"posant una barra '|' ( p.e. \"*.cpp *  *.h |  *.moc.cpp' )."
 
 #: Dialogs/generalfilter.cpp:82
 msgid "&Of type:"
@@ -2702,7 +2622,7 @@ msgstr "Disting&eix majúscoles/minúscoles"
 
 #: Dialogs/generalfilter.cpp:209
 msgid "Search in s&ubdirectories"
-msgstr "Cerca també en els s&ubdirectoris"
+msgstr "Cerca també en les s&ubcarpetes"
 
 #: Dialogs/generalfilter.cpp:214
 msgid "Search in arch&ives"
@@ -2713,13 +2633,12 @@ msgid "Follow &links"
 msgstr "Segueix els en&llaços"
 
 #: Dialogs/generalfilter.cpp:273
-#, fuzzy
 msgid "No search criteria entered!"
 msgstr "Per cercar cal introduir els criteris de cerca !"
 
 #: Dialogs/generalfilter.cpp:305
 msgid "Please specify a location to search in."
-msgstr "Si us plau especifiqueu el directori on començar la cerca."
+msgstr "Si us plau especifiqueu la carpeta on començar la cerca."
 
 #: Dialogs/packguibase.cpp:60 Dialogs/packguibase.cpp:113
 msgid "Pack"
@@ -2735,7 +2654,7 @@ msgstr "tar.bz2"
 
 #: Dialogs/packguibase.cpp:88
 msgid "In directory"
-msgstr "En el directori"
+msgstr "En la carpeta"
 
 #: Dialogs/packguibase.cpp:125 Konfigurator/kguseractions.cpp:70
 msgid "Ok"
@@ -2877,7 +2796,6 @@ msgid "The date '"
 msgstr "La data '"
 
 #: Dialogs/advancedfilter.cpp:475
-#, fuzzy
 msgid ""
 "' is not valid according to your locale.\n"
 "Please re-enter a valid date (use the date button for easy access)."
@@ -2887,34 +2805,27 @@ msgstr ""
 "calendari )"
 
 #: Dialogs/advancedfilter.cpp:505
-#, fuzzy
 msgid "Specified sizes are inconsistent!"
 msgstr "No es pot realitza la cerca entre les mides introduïdes !"
 
 #: Dialogs/advancedfilter.cpp:506
-#, fuzzy
 msgid ""
 "Please re-enter the values, so that the left-side size\n"
 "will be smaller than (or equal to) the right-side size."
-msgstr ""
-"Cal que la mida introduïda a l'esquerra sigui menor o igual a la de la dreta."
+msgstr "Cal que la mida introduïda a l'esquerra sigui menor o igual a la de la dreta."
 
 #: Dialogs/advancedfilter.cpp:524 Dialogs/advancedfilter.cpp:574
-#, fuzzy
 msgid "Dates are inconsistent!"
 msgstr "No es pot realitza la cerca entre les dates introduïdes !"
 
 #: Dialogs/advancedfilter.cpp:525
-#, fuzzy
 msgid ""
 "The date on the left is later than the date on the right.\n"
 "Please re-enter the dates, so that the left-side date will be\n"
 "earlier than the right-side date."
-msgstr ""
-"Cal que la data introduïda a l'esquerra sigui anterior  a la de la dreta."
+msgstr "Cal que la data introduïda a l'esquerra sigui anterior  a la de la dreta."
 
 #: Dialogs/advancedfilter.cpp:575
-#, fuzzy
 msgid ""
 "The date on top is later than the date on the bottom.\n"
 "Please re-enter the dates, so that the top date will be\n"
@@ -2963,7 +2874,7 @@ msgstr "Anònim"
 
 #: RemoteMan/remotemanbase.cpp:129
 msgid "Remote directory:"
-msgstr "Directori remot:"
+msgstr "Carpeta remota:"
 
 #: RemoteMan/remotemanbase.cpp:142
 msgid "Description:"
@@ -2991,12 +2902,11 @@ msgstr "* Atenció: millor que no guardeu les claus de pas, no és segur !!!"
 
 #: Synchronizer/synchronizergui.cpp:1020
 msgid "Krusader::Synchronize Directories"
-msgstr ""
+msgstr "Krusader::Synchronize Directories"
 
 #: Synchronizer/synchronizergui.cpp:1039
-#, fuzzy
 msgid "Directory Comparison"
-msgstr "Comparació de directoris"
+msgstr "Comparació de carpetes"
 
 #: Synchronizer/synchronizergui.cpp:1053
 msgid "File Filter:"
@@ -3004,20 +2914,19 @@ msgstr "Filtre de fitxers:"
 
 #: Synchronizer/synchronizergui.cpp:1075
 msgid "The left base directory"
-msgstr "El directori base (esq)"
+msgstr "La carpeta base (esq)"
 
 #: Synchronizer/synchronizergui.cpp:1104
 msgid "The right base directory"
-msgstr "El directori base (dreta)"
+msgstr "La carpeta base (dreta)"
 
 #: Synchronizer/synchronizergui.cpp:1108
 msgid "Recurse subdirectories"
-msgstr "Cerca també en els subdirectoris"
+msgstr "Fes-ho també en les subcarpetes"
 
 #: Synchronizer/synchronizergui.cpp:1110
 msgid "Compares not only the base directories but their subdirectories as well"
-msgstr ""
-"No només compara el directori base sinó que també compara els subnivells"
+msgstr "No només compara la carpeta base sinó que també compara les subcarpetes"
 
 #: Synchronizer/synchronizergui.cpp:1111
 msgid "Follow symlinks"
@@ -3032,7 +2941,6 @@ msgid "Compare by content"
 msgstr "Compara per contingut"
 
 #: Synchronizer/synchronizergui.cpp:1117
-#, fuzzy
 msgid "Compares duplicated files with same size, by their content"
 msgstr "Compara per contingut els fitxers de la mateixa mida"
 
@@ -3051,7 +2959,6 @@ msgid "Asymmetric"
 msgstr "Asimètric"
 
 #: Synchronizer/synchronizergui.cpp:1123
-#, fuzzy
 msgid ""
 "Asymmetric mode: the left side is the destination, the right is the source "
 "directory.\n"
@@ -3060,8 +2967,8 @@ msgid ""
 "will be copied from right to left (useful at updating a directory from a "
 "file server)."
 msgstr ""
-"Mode asimètric. El plafó de l'esquerra és el destí i el de la dreta és el "
-"directori origen.\n"
+"Mode asimètric. El plafó de l'esquerra és el destí i el de la dreta és la carpeta "
+" origen.\n"
 "Els fitxers que només existeixen en el plafó esquerra s'esborraran, els "
 "fitxers diferents \n"
 "es copiaran dels de la dreta (això és molt útil quan s'actualitzen fitxers "
@@ -3121,7 +3028,7 @@ msgstr "Llista aquells fitxers que només existeixen en una banda"
 
 #: Synchronizer/synchronizergui.cpp:1242
 msgid "<=>"
-msgstr ""
+msgstr "<=>"
 
 #: Synchronizer/synchronizergui.cpp:1261
 msgid "&Synchronizer"
@@ -3157,27 +3064,27 @@ msgstr "Sincronitza"
 
 #: Synchronizer/synchronizergui.cpp:1397
 msgid "Target directory:"
-msgstr "Directori desti:"
+msgstr "Carpeta destinació:"
 
 #: Synchronizer/synchronizergui.cpp:1398
 msgid "Source directory:"
-msgstr "Directori origen:"
+msgstr "Carpeta origen:"
 
 #: Synchronizer/synchronizergui.cpp:1402
 msgid "Left directory:"
-msgstr "Directori esquerra:"
+msgstr "Carpeta esquerra:"
 
 #: Synchronizer/synchronizergui.cpp:1403
 msgid "Right directory:"
-msgstr "Directori dreta:"
+msgstr "Carpeta dreta:"
 
 #: Synchronizer/synchronizergui.cpp:1438
 msgid "URL must be the descendant of either the left or the right base URL!"
-msgstr ""
+msgstr "La URL s'ha de basar en la URL esquerra o dreta!"
 
 #: Synchronizer/synchronizergui.cpp:1477
 msgid "Synchronize Directories"
-msgstr "Sincronitza directoris"
+msgstr "Sincronitza carpetes"
 
 #: Synchronizer/synchronizergui.cpp:1479 DiskUsage/diskusage.cpp:663
 msgid "Exclude"
@@ -3234,7 +3141,7 @@ msgstr "Sincronitza amb KGet"
 #: Synchronizer/synchronizergui.cpp:1732 Synchronizer/synchronizergui.cpp:1739
 #: Synchronizer/synchronizergui.cpp:1788 Synchronizer/synchronizergui.cpp:1795
 msgid "<DIR>"
-msgstr ""
+msgstr "<DIR>"
 
 #: Synchronizer/synchronizergui.cpp:1882
 msgid "Synchronizer has nothing to do!"
@@ -3242,7 +3149,7 @@ msgstr "El sincronitzador no té res a fer!"
 
 #: Synchronizer/synchronizedialog.cpp:48
 msgid "Krusader::Synchronize"
-msgstr ""
+msgstr "Krusader::Synchronize"
 
 #: Synchronizer/synchronizedialog.cpp:52
 msgid "Right to left: Copy %1 files (%2 bytes)"
@@ -3292,7 +3199,7 @@ msgstr "No es pot obrir la URL: %1!"
 
 #: Synchronizer/synchronizer.cpp:261 Synchronizer/synchronizer.cpp:1073
 msgid "Scanned directories:%1"
-msgstr "Directoris recorreguts: %1"
+msgstr "Carpetes analitzades: %1"
 
 #: Synchronizer/synchronizer.cpp:879 Synchronizer/synchronizer.cpp:887
 msgid "File Already Exists"
@@ -3308,8 +3215,7 @@ msgstr "No es pot esborrar el fitxer %1!"
 
 #: Synchronizer/synchronizer.cpp:1145
 msgid "IO error at comparing file %1 with %2!"
-msgstr ""
-"No es pot llegir el fitxer alguns dels fitxers %1, %2 per comparar-los!"
+msgstr "No es pot llegir el fitxer alguns dels fitxers %1, %2 per comparar-los!"
 
 #: Synchronizer/synchronizer.cpp:1174 Synchronizer/synchronizer.cpp:1185
 msgid "Comparing file %1..."
@@ -3317,10 +3223,9 @@ msgstr "Comparant el fitxer %1..."
 
 #: Synchronizer/synchronizer.cpp:1267
 msgid "Krusader::Synchronizer"
-msgstr ""
+msgstr "Krusader::Synchronizer"
 
 #: Synchronizer/synchronizer.cpp:1268
-#, fuzzy
 msgid "Feeding the URLs to Kget"
 msgstr "Carregant les URLs al Kget"
 
@@ -3333,267 +3238,246 @@ msgid "Panel"
 msgstr "Plafó"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:159
-#, fuzzy
 msgid "Open &Konqueror Here"
-msgstr "Menú Konqueror"
+msgstr "Obre el menú &Konqueror aquí"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:161
 msgid "Open &Konsole Here"
-msgstr ""
+msgstr "Obre aquí el &Konsole"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:166
 msgid "&Center Map Here"
-msgstr ""
+msgstr "Obre aquí el &Center Map"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:169
 msgid "&Open"
-msgstr ""
+msgstr "&Obre"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:192
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!"
 msgstr ""
+"<qt>La carpeta <i>'%1'</i> i totes les seves <b>subcarpetes</b> "
+"s'esborrarà del <b>tot</b>!"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!"
-msgstr ""
+msgstr "<qt><i>'%1'</i> s'esborrarà del <b>tot</b> !"
 
 #: DiskUsage/radialMap/builder.cpp:134
-#, fuzzy
 msgid "%1 files: ~ %2"
-msgstr "%1 fitxers"
+msgstr "%1 fitxers: ~ %2"
 
 #: DiskUsage/radialMap/segmentTip.cpp:103
-#, fuzzy
 msgid "Files: %1"
-msgstr "Fitxer número:%1"
+msgstr "Fitxers:%1"
 
 #: DiskUsage/dulines.cpp:232
-#, fuzzy
 msgid "Line View"
-msgstr "F3 Veure"
+msgstr "Veure línia"
 
 #: DiskUsage/dulines.cpp:235 DiskUsage/dulistview.cpp:59
 msgid "Percent"
-msgstr ""
+msgstr "Percentatge"
 
 #: DiskUsage/dulines.cpp:458
-#, fuzzy
 msgid "Show file sizes"
-msgstr "Mida màxima:"
+msgstr "Mostra mides"
 
 #: DiskUsage/dulines.cpp:461 DiskUsage/diskusage.cpp:688
-#, fuzzy
 msgid "Lines"
-msgstr "Enllaços"
+msgstr "Línies"
 
 #: DiskUsage/dufilelight.cpp:115
 msgid "Zoom In"
-msgstr ""
+msgstr "Amplia"
 
 #: DiskUsage/dufilelight.cpp:116
 msgid "Zoom Out"
-msgstr ""
+msgstr "Redueix"
 
 #: DiskUsage/dufilelight.cpp:119
 msgid "Rainbow"
-msgstr ""
+msgstr "Arc Sant Martí"
 
 #: DiskUsage/dufilelight.cpp:120
 msgid "High Contrast"
-msgstr ""
+msgstr "Contrast alt"
 
 #: DiskUsage/dufilelight.cpp:121
 msgid "KDE"
-msgstr ""
+msgstr "KDE"
 
 #: DiskUsage/dufilelight.cpp:124
 msgid "Scheme"
-msgstr ""
+msgstr "Esquema"
 
 #: DiskUsage/dufilelight.cpp:126
 msgid "Increase contrast"
-msgstr ""
+msgstr "Més contrast"
 
 #: DiskUsage/dufilelight.cpp:127
 msgid "Decrease contrast"
-msgstr ""
+msgstr "Menys contrast"
 
 #: DiskUsage/dufilelight.cpp:129
 msgid "Use anti-aliasing"
-msgstr ""
+msgstr "Amb anti-aliasing"
 
 #: DiskUsage/dufilelight.cpp:132
-#, fuzzy
 msgid "Show small files"
-msgstr "*|tots els fitxers"
+msgstr "Mostra fitxers petits"
 
 #: DiskUsage/dufilelight.cpp:135
 msgid "Vary label font sizes"
-msgstr ""
+msgstr "Varia la mida de les etiquetes"
 
 #: DiskUsage/dufilelight.cpp:138 DiskUsage/dufilelight.cpp:207
 msgid "Minimum font size"
-msgstr ""
+msgstr "Mide de lletra mínima"
 
 #: DiskUsage/dufilelight.cpp:140 DiskUsage/diskusage.cpp:692
+#, fuzzy
 msgid "Filelight"
-msgstr ""
+msgstr "Filelight"
 
 #: DiskUsage/dufilelight.cpp:206
 msgid "Krusader::Filelight"
-msgstr ""
+msgstr "Krusader::Filelight"
 
 #: DiskUsage/diskusagegui.cpp:45
 msgid "Krusader::Disk Usage"
-msgstr ""
+msgstr "Krusader::Disk Usage"
 
 #: DiskUsage/diskusagegui.cpp:60
 msgid "Start new disk usage search"
-msgstr ""
+msgstr "Analitza de nou el disc"
 
 #: DiskUsage/diskusagegui.cpp:64 DiskUsage/diskusage.cpp:672
 msgid "Refresh"
-msgstr ""
+msgstr "Refresca"
 
 #: DiskUsage/diskusagegui.cpp:68
-#, fuzzy
 msgid "Parent directory"
-msgstr "Directori desti:"
+msgstr "Carpeta pare"
 
 #: DiskUsage/diskusagegui.cpp:76
-#, fuzzy
 msgid "Line view"
-msgstr "F3 Veure"
+msgstr "Veure línia"
 
 #: DiskUsage/diskusagegui.cpp:81
-#, fuzzy
 msgid "Detailed view"
-msgstr "KrDetailedView"
+msgstr "Veure detall"
 
 #: DiskUsage/diskusagegui.cpp:86
 #, fuzzy
 msgid "Filelight view"
-msgstr "Visualitza el fitxer de la dreta"
+msgstr "Veure Filelight"
 
 #: DiskUsage/diskusagegui.cpp:219
-#, fuzzy
 msgid "Viewing the usage of directory:"
-msgstr "Troceja el fitxer %1 al directori:"
+msgstr "S'està mostrant l'utilització de la carpeta:"
 
 #: DiskUsage/dulistview.cpp:62
-#, fuzzy
 msgid "Total size"
 msgstr "Mida total"
 
 #: DiskUsage/dulistview.cpp:65
-#, fuzzy
 msgid "Own size"
-msgstr "Propietari"
+msgstr "Mida pròpia"
 
 #: DiskUsage/diskusage.cpp:99
 msgid "Loading Usage Information"
-msgstr ""
+msgstr "S'està analitzant la utilització"
 
 #: DiskUsage/diskusage.cpp:103
-#, fuzzy
 msgid "Files:"
-msgstr "Tots els fitxers"
+msgstr "Fitxers:"
 
 #: DiskUsage/diskusage.cpp:108
-#, fuzzy
 msgid "Directories:"
-msgstr "Directoris"
+msgstr "Carpetes:"
 
 #: DiskUsage/diskusage.cpp:113
-#, fuzzy
 msgid "Total Size:"
-msgstr "Mida total"
+msgstr "Mida total:"
 
 #: DiskUsage/diskusage.cpp:234
 msgid "Loading the disk usage information..."
-msgstr ""
+msgstr "S'està analitzant el disc..."
 
 #: DiskUsage/diskusage.cpp:379
 msgid ""
 "Stepping into the parent directory requires loading the content of the \"%1"
 "\" URL. Do you wish to continue?"
 msgstr ""
+"Si aneu a la carpeta pare, caldrà recarregar el contingut de la URL \"%1\". "
+"Voleu continuar?"
 
 #: DiskUsage/diskusage.cpp:383
 msgid "Krusader::DiskUsage"
-msgstr ""
+msgstr "Krusader::DiskUsage"
 
 #: DiskUsage/diskusage.cpp:532
-#, fuzzy
 msgid "Are you sure you want to delete "
-msgstr "Està segur que vol "
+msgstr "Voleu esborrar "
 
 #: DiskUsage/diskusage.cpp:631
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
-msgstr ""
+msgstr "Carpeta actual:%1,  Mida total:%2,  Mida pròpia:%3"
 
 #: DiskUsage/diskusage.cpp:657
 msgid "Disk Usage"
-msgstr ""
+msgstr "Utilització del disc"
 
 #: DiskUsage/diskusage.cpp:670
-#, fuzzy
 msgid "New search"
-msgstr "Nou estil de busca ràpida"
+msgstr "Nova cerca"
 
 #: DiskUsage/diskusage.cpp:674
 msgid "Include all"
-msgstr ""
+msgstr "posa'ls tots"
 
 #: DiskUsage/diskusage.cpp:676
 msgid "Step into"
-msgstr ""
+msgstr "Mou-te dins"
 
 #: DiskUsage/diskusage.cpp:690
-#, fuzzy
 msgid "Detailed"
-msgstr "KrDetailedView"
+msgstr "Detallat"
 
 #: DiskUsage/diskusage.cpp:695
-#, fuzzy
 msgid "Next"
-msgstr "Següent pestanya"
+msgstr "Següent"
 
 #: DiskUsage/diskusage.cpp:697
-#, fuzzy
 msgid "Previous"
-msgstr "Anterior pestanya"
+msgstr "Anterior"
 
 #: DiskUsage/diskusage.cpp:927
-#, fuzzy
 msgid "Type:"
-msgstr "Tipus"
+msgstr "Tipus:"
 
 #: DiskUsage/diskusage.cpp:928
-#, fuzzy
 msgid "Size:"
-msgstr "Mida"
+msgstr "Mida:"
 
 #: DiskUsage/diskusage.cpp:931
 msgid "Own size:"
-msgstr ""
+msgstr "Mida pròpia:"
 
 #: DiskUsage/diskusage.cpp:933
-#, fuzzy
 msgid "Last modified:"
-msgstr "Modificat"
+msgstr "Modificat:"
 
 #: DiskUsage/diskusage.cpp:934
-#, fuzzy
 msgid "Permissions:"
-msgstr "Permisos"
+msgstr "Permisos:"
 
 #: DiskUsage/diskusage.cpp:935
-#, fuzzy
 msgid "Owner:"
-msgstr "Propietari"
+msgstr "Propietari:"
 
 #: rc.cpp:4
 #, no-c-format
@@ -3603,7 +3487,7 @@ msgstr "&Marca"
 #: rc.cpp:6
 #, no-c-format
 msgid "Compare Se&tup"
-msgstr "Con&figura Comparació"
+msgstr "&Compara configuració"
 
 #: rc.cpp:8
 #, no-c-format
@@ -3611,9 +3495,9 @@ msgid "&Commands"
 msgstr "&Comandes"
 
 #: rc.cpp:16
-#, fuzzy, no-c-format
+#, no-c-format
 msgid "&Useractions"
-msgstr "Accions de l'usuari"
+msgstr "&Accions de l'usuari"
 
 #: Konfigurator/kgdependencies.cpp:50 Konfigurator/kggeneral.cpp:51
 #: Konfigurator/konfigurator.cpp:98 Konfigurator/kgadvanced.cpp:47
@@ -3639,7 +3523,7 @@ msgstr "Esborra fitxers"
 
 #: Konfigurator/kggeneral.cpp:56
 msgid "Files will be permanently deleted."
-msgstr ""
+msgstr "Els fitxers s'esborraran per sempre."
 
 #: Konfigurator/kggeneral.cpp:57
 msgid "Move to trash"
@@ -3647,7 +3531,7 @@ msgstr "Mou a la paparera"
 
 #: Konfigurator/kggeneral.cpp:57
 msgid "Files will be moved to Trash when deleted."
-msgstr ""
+msgstr "Els fitxers esborrats es mouran a la paperera."
 
 #: Konfigurator/kggeneral.cpp:64
 msgid "Use mimetype magic"
@@ -3675,12 +3559,11 @@ msgstr "Terminal:"
 
 #: Konfigurator/kggeneral.cpp:90
 msgid "Temp Directory:"
-msgstr "Directori temporal:"
+msgstr "Carpeta temporal:"
 
 #: Konfigurator/kggeneral.cpp:98
-#, fuzzy
 msgid "NOTE: You must have full permissions for the temporary directory!"
-msgstr "Nota: Es necessari tenir tots els permisos per directori temporal !"
+msgstr "Nota: Necessitareu tenir tots els permisos d'accés a la carpeta temporal !"
 
 #: Konfigurator/kggeneral.cpp:120
 msgid ""
@@ -3701,7 +3584,6 @@ msgid ", compare by content available.\n"
 msgstr ", podreu comparar el contingut de dos fitxers.\n"
 
 #: Konfigurator/kggeneral.cpp:122
-#, fuzzy
 msgid ""
 "diff: no diff frontends found. Compare by content disabled.\n"
 "hint: Krusader supports Kompare, Kdiff3 and Xxdiff\n"
@@ -3719,14 +3601,12 @@ msgid ", sending files by email enabled.\n"
 msgstr ", podreu enviar fitxers per correu electrònic.\n"
 
 #: Konfigurator/kggeneral.cpp:125
-#, fuzzy
 msgid ""
 "mail: no compatible mail-programs found. Sending files by email is "
 "disabled.\n"
 "hint: Krusader supports Kmail\n"
 "\n"
-msgstr ""
-"mail:  sense  kmail Krusader no podrà enviar fitxers per correu electrònic.\n"
+msgstr "mail:  sense  kmail Krusader no podrà enviar fitxers per correu electrònic.\n"
 
 #: Konfigurator/kggeneral.cpp:127
 msgid "rename: found "
@@ -3737,7 +3617,6 @@ msgid ", multiple rename enabled.\n"
 msgstr ", podreu renomenar massivament grups de fitxers.\n"
 
 #: Konfigurator/kggeneral.cpp:128
-#, fuzzy
 msgid ""
 "rename: no compatible rename-programs found. Multiple rename is disabled.\n"
 "hint: Krusader supports Krename\n"
@@ -3755,25 +3634,28 @@ msgstr ""
 "Aquí podreu configurar les noves eines que aneu instal·lant"
 
 #: Konfigurator/kggeneral.cpp:132
-#, fuzzy
 msgid ""
 "\n"
 "to your path, e.g. /usr/bin, /usr/local/bin, etc."
 msgstr ""
 "\n"
-"al vostre directori. (p.e: /usr/bin, /usr/local/bin etc.)"
+"a la vostre carpeta. (p.e: /usr/bin, /usr/local/bin etc.)"
 
 #: Konfigurator/kggeneral.cpp:133
 msgid ""
 "\n"
 "and-or (re)configure the Tools path in"
 msgstr ""
+"\n"
+"i/o configureu la ubicació de les eines a"
 
 #: Konfigurator/kggeneral.cpp:134
 msgid ""
 "\n"
 "Konfigurator->Dependencies if needed."
 msgstr ""
+"\n"
+"El Konfigurator > Dependències si cal."
 
 #: Konfigurator/konfigurator.cpp:62
 msgid "Defaults"
@@ -3789,7 +3671,6 @@ msgstr "Inicia"
 
 #: Konfigurator/konfigurator.cpp:89 Konfigurator/diff_konfigurator.cpp:7
 #: Konfigurator/diff_konfigurator.cpp:8
-#, fuzzy
 msgid "Krusader's settings upon startup"
 msgstr "Configuració del Krusader a l'iniciar-se"
 
@@ -3812,14 +3693,12 @@ msgid "Advanced"
 msgstr "Avançat"
 
 #: Konfigurator/konfigurator.cpp:102
-#, fuzzy
 msgid "Be sure you know what you're doing!"
-msgstr "Esteu segurs que això és el que voleu"
+msgstr "Esteu segurs que això és el que voleu!"
 
 #: Konfigurator/konfigurator.cpp:105
 msgid "Customize the way Krusader deals with archives"
-msgstr ""
-"Personalitza la forma amb què el Krusader gestiona els fitxers comprimits"
+msgstr "Personalitza la forma amb què el Krusader gestiona els fitxers comprimits"
 
 #: Konfigurator/konfigurator.cpp:108
 msgid "Dependencies"
@@ -3859,34 +3738,35 @@ msgstr "Avisa'm al sortir"
 
 #: Konfigurator/kglookfeel.cpp:66
 msgid "Display a warning when you try to exit Krusader."
-msgstr ""
+msgstr "Avisa'm que no vulgui sortir del Krusader per error."
 
 #: Konfigurator/kglookfeel.cpp:67
 msgid "Minimize to tray"
-msgstr "Minimitza "
+msgstr "Minimitza a la safata"
 
 #: Konfigurator/kglookfeel.cpp:67
 msgid ""
 "When minimizing Krusader, its icon will appear in the system tray instead of "
 "the taskbar."
 msgstr ""
+"Quan minimitzeu el Krusader, apareixerà un icona en la safata del sistema "
+"en comtpes de a la barra de tasques."
 
 #: Konfigurator/kglookfeel.cpp:68
 msgid "Show hidden files"
 msgstr "Mostra fitxers ocults"
 
 #: Konfigurator/kglookfeel.cpp:68
-#, fuzzy
 msgid "Display the dot files"
-msgstr "Mostra els fitxers esclosos"
+msgstr "Mostra els fitxers amb punt"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "Automark directories"
-msgstr "Automarca directoris"
+msgstr "Automarca carpetes"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "When matching the select criteria, directories will also be marked"
-msgstr ""
+msgstr "Aplica els criteris de la selecció a les carpetes també"
 
 #: Konfigurator/kglookfeel.cpp:70
 msgid "Case sensitive sorting"
@@ -3897,29 +3777,32 @@ msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
 msgstr ""
+"Estil UNIX, primer s'ordenen els noms que comencen en majúscoles "
+"i després els que comencen en minúscoles."
 
 #: Konfigurator/kglookfeel.cpp:71
-#, fuzzy
 msgid "Use full path tab names"
-msgstr "En les pestanyes mostra el nom complet del directori"
+msgstr "Mostra la ubicació sencera"
 
 #: Konfigurator/kglookfeel.cpp:71
 msgid ""
 "Display the full path in the Folder Tabs; otherwise, only the last part of "
 "the path will be displayed."
 msgstr ""
+"Si la marqueu en la pestanya es mostrarà la ubicació sencera de la carpeta  "
+"altrament només es mostrarà la part final."
 
 #: Konfigurator/kglookfeel.cpp:73
 msgid "New style quicksearch"
-msgstr "Nou estil de busca ràpida"
+msgstr "Nou estil de cerca ràpida"
 
 #: Konfigurator/kglookfeel.cpp:73
 msgid "Opens a quick search dialog box."
-msgstr ""
+msgstr "Obre el diàleg de cerca ràpida."
 
 #: Konfigurator/kglookfeel.cpp:74
 msgid "Case sensitive quicksearch"
-msgstr "Cerca ràpida distingint majúscoles"
+msgstr "Cerca ràpida distingint majúscoles/minúscoles"
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Single click / Double click Selection:"
@@ -3934,6 +3817,8 @@ msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
 msgstr ""
+"Amb un sol clic seleccionareu un fitxer; amb un doble clic obrireu el "
+"fitxer o entrareu dins la carpeta."
 
 #: Konfigurator/kglookfeel.cpp:89
 msgid "Obey KDE's global selection policy"
@@ -3941,16 +3826,15 @@ msgstr "Obeeix la política que té el KDE"
 
 #: Konfigurator/kglookfeel.cpp:89
 msgid "Use the KDE Kcontrol setting: KDE Control Center->Peripherals->Mouse"
-msgstr ""
+msgstr "Utilitza la configuració del Kcontrol del KDE (menú Perifèrics > Ratolí)"
 
 #: Konfigurator/kglookfeel.cpp:96
 msgid "Mouse Selection Mode:"
-msgstr "Mode Selecciona amb el Ratolí:"
+msgstr "Forma de seleccionar amb el Ratolí:"
 
 #: Konfigurator/kglookfeel.cpp:100
-#, fuzzy
 msgid "Krusader Mode"
-msgstr "Krusader"
+msgstr "Estil Krusader"
 
 #: Konfigurator/kglookfeel.cpp:100
 msgid ""
@@ -3958,11 +3842,14 @@ msgid ""
 "key and click the left mouse button.\n"
 "Right-click menu is invoked using a short click on the right mouse button."
 msgstr ""
+"Amb qualsevol de les dues tecles podreu seleccionar fitxers.\n"
+" Per seleccionar un grup de fitxers,"
+"cliqueu prement el botó control al mateix temps.\n"
+"Amb el botó dret apareixerà el menú contextual."
 
 #: Konfigurator/kglookfeel.cpp:101
-#, fuzzy
 msgid "Konqueror Mode"
-msgstr "Menú Konqueror"
+msgstr "Estil Konqueror"
 
 #: Konfigurator/kglookfeel.cpp:101
 msgid ""
@@ -3970,10 +3857,13 @@ msgid ""
 "multiple files.\n"
 "Right-click menu is invoked using a short click on the right mouse button."
 msgstr ""
+"Amb el botó esquerra del ratolí seleccioneu els fitxers, podeu seleccionar "
+"més  d'un fitxer.\n"
+"Amb el botó dret, apareixerà el menú contextual."
 
 #: Konfigurator/kglookfeel.cpp:102
 msgid "Total-Commander Mode"
-msgstr ""
+msgstr "Estil Total-Commander"
 
 #: Konfigurator/kglookfeel.cpp:102
 msgid ""
@@ -3983,10 +3873,15 @@ msgid ""
 "invoked by pressing\n"
 "and holding the right mouse button."
 msgstr ""
+"Amb el botó esquerra només poseu el cursor damunt del fitxer, però "
+"no el selecciona.\n"
+"Amb el botó dret podeu seleccionar vàris fitxers. \n"
+"Per veure el menú contextual, cal fer un clic amb el botó dret i prémer la "
+"tecla control alhora."
 
 #: Konfigurator/kglookfeel.cpp:103
 msgid "Design your own selection mode!"
-msgstr ""
+msgstr "Dissenyey el vostre estil personal!"
 
 #: Konfigurator/kglookfeel.cpp:118
 msgid "Panel settings"
@@ -4017,9 +3912,8 @@ msgid "48"
 msgstr "48"
 
 #: Konfigurator/kglookfeel.cpp:142
-#, fuzzy
 msgid "Show Columns:"
-msgstr "Mostra les opcions"
+msgstr "Mostra les columnes"
 
 #: Konfigurator/kglookfeel.cpp:147
 msgid "Extension"
@@ -4031,27 +3925,28 @@ msgid ""
 "Extension Column and\n"
 "not as a complete filename in the Name Column like e.g. Konqueror does."
 msgstr ""
+"Estil Konqueror: Separa el nom i l'extensió dels fitxers en les "
+"columnes Nom i Extensió respectivament."
 
 #: Konfigurator/kglookfeel.cpp:148
 msgid "Mimetype"
-msgstr ""
+msgstr "Tipus mime"
 
 #: Konfigurator/kglookfeel.cpp:148
 msgid "Show the Mimetype Column"
-msgstr ""
+msgstr "Mostra la columna 'Tipus mime'"
 
 #: Konfigurator/kglookfeel.cpp:149
 msgid "Show the Size Column"
-msgstr ""
+msgstr "Mostra la columna 'Mida'"
 
 #: Konfigurator/kglookfeel.cpp:150
 msgid "Date and Time"
 msgstr "Data i hora"
 
 #: Konfigurator/kglookfeel.cpp:150
-#, fuzzy
 msgid "Show the Date and Time Column"
-msgstr "Data i hora"
+msgstr "Mostra la columna 'Data i hora'"
 
 #: Konfigurator/kglookfeel.cpp:151
 msgid "Permission"
@@ -4059,7 +3954,7 @@ msgstr "Permisos"
 
 #: Konfigurator/kglookfeel.cpp:151
 msgid "Show the Full Permissions Column, e.g. '-rw-r--r--'"
-msgstr ""
+msgstr "Mostra la columna permisos sencera (estil '-rw-r--r--')"
 
 #: Konfigurator/kglookfeel.cpp:152
 msgid "Krusader Permission"
@@ -4067,23 +3962,23 @@ msgstr "Permís del Krusader"
 
 #: Konfigurator/kglookfeel.cpp:152
 msgid "Show only the rights of the current user, e.g. '-rw'"
-msgstr ""
+msgstr "Mostra els drets que té l'usuari actual"
 
 #: Konfigurator/kglookfeel.cpp:153
 msgid "Show the Owner Column"
-msgstr ""
+msgstr "Mostra la columna 'Propietari'"
 
 #: Konfigurator/kglookfeel.cpp:154
 msgid "Show the Group Column"
-msgstr ""
+msgstr "Mostra la columna 'Grup'"
 
 #: Konfigurator/kglookfeel.cpp:165
 msgid "Use icons in the filenames"
-msgstr "Utilitza icones en els noms de fitxer"
+msgstr "Mostra les icones associades als fitxers."
 
 #: Konfigurator/kglookfeel.cpp:165
 msgid "Show the icons for filenames and folders."
-msgstr ""
+msgstr "Mostra les icones associades als fitxers i carpetes."
 
 #: Konfigurator/kglookfeel.cpp:166
 msgid "Use human-readable file size"
@@ -4091,7 +3986,7 @@ msgstr "Mostra la mida dels fitxers de forma intel·ligent"
 
 #: Konfigurator/kglookfeel.cpp:166
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr ""
+msgstr "Amb aquesta opció es mostrarà la mida en B, KB, MB o GB, segons convingui."
 
 #: Konfigurator/kglookfeel.cpp:176
 msgid "Toolbar"
@@ -4099,103 +3994,101 @@ msgstr "Barra d'eines"
 
 #: Konfigurator/kglookfeel.cpp:186
 msgid "Key-bindings"
-msgstr "Associa les tecles"
+msgstr "Mapa del teclat"
 
 #: Konfigurator/kglookfeel.cpp:195
-#, fuzzy
 msgid "Import shortcuts"
-msgstr "Acció important"
+msgstr "Importa un mapa del teclat"
 
 #: Konfigurator/kglookfeel.cpp:197
 msgid "Load a Key-binding profile, e.g., total_commander.keymap"
 msgstr ""
+"Llegeix un mapa del teclat on hi ha la definició de què fa cada tecla"
+"(p.e. total_commander.keymap)"
 
 #: Konfigurator/kglookfeel.cpp:198
-#, fuzzy
 msgid "Export shortcuts"
-msgstr "Exporta l'acció"
+msgstr "Exporta el mapa del teclat"
 
 #: Konfigurator/kglookfeel.cpp:200
 msgid "Save current Key-bindings in a keymap file."
-msgstr ""
+msgstr "Desa el mapa del teclat en un fitxer."
 
 #: Konfigurator/kglookfeel.cpp:207
 msgid "Panel Toolbar"
 msgstr "Barra d'eines"
 
 #: Konfigurator/kglookfeel.cpp:215
-#, fuzzy
 msgid "Show Panel Toolbar"
-msgstr "Barra d'eines"
+msgstr "Mostra la barra d'eines"
 
 #: Konfigurator/kglookfeel.cpp:215
 msgid "Krusader will display the Panel Toolbar."
-msgstr ""
+msgstr "El Krusader mostrarà la barra d'eines."
 
 #: Konfigurator/kglookfeel.cpp:221
 msgid "Visible Panel Toolbar buttons"
-msgstr "Mostra la barra de botons"
+msgstr "Botons de la barra d'eines"
 
 #: Konfigurator/kglookfeel.cpp:227
 msgid "Open button"
-msgstr "Botó obre"
+msgstr "Botó 'Obre'"
 
 #: Konfigurator/kglookfeel.cpp:227
-#, fuzzy
 msgid "Opens the directory browser."
-msgstr "Obre la llista historial de directoris"
+msgstr "Mostra el diàleg per seleccionar una carpeta."
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Equal button (=)"
-msgstr "Botó igual (=)"
+msgstr "Botó 'Igual' (=)"
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Changes the panel directory to the other panel directory."
-msgstr ""
+msgstr "Mostra en el plafó actual la mateixa carpeta que en l'altre plafó."
 
 #: Konfigurator/kglookfeel.cpp:229
 msgid "Up button (..)"
-msgstr "Botó puja (..)"
+msgstr "Botó 'Puja' (..)"
 
 #: Konfigurator/kglookfeel.cpp:229
 msgid "Changes the panel directory to the parent directory."
-msgstr ""
+msgstr "Va a la carpeta pare de la carpeta actual."
 
 #: Konfigurator/kglookfeel.cpp:230
 msgid "Home button (~)"
-msgstr "Botó inici (~)"
+msgstr "Botó 'Inici' (~)"
 
 #: Konfigurator/kglookfeel.cpp:230
 msgid "Changes the panel directory to the home directory."
-msgstr ""
+msgstr "Va a la carpeta inici de l'usuari."
 
 #: Konfigurator/kglookfeel.cpp:231
 msgid "Root button (/)"
-msgstr "Botó Arrel (/)"
+msgstr "Botó 'Arrel' (/)"
 
 #: Konfigurator/kglookfeel.cpp:231
 msgid "Changes the panel directory to the root directory."
-msgstr ""
+msgstr "Va a la carpeta arrel."
 
 #: Konfigurator/kglookfeel.cpp:232
 msgid "Toggle-button for sync-browsing"
-msgstr "Interanvia els botons per sincronitzar"
+msgstr "Passa o surt del mode sincronitzador"
 
 #: Konfigurator/kglookfeel.cpp:232
-msgid ""
-"Each directory-change in the panel is also performed in the other panel."
-msgstr ""
+msgid "Each directory-change in the panel is also performed in the other panel."
+msgstr "Cada canvi en un plafó també es produeix en l'altre."
 
 #: Konfigurator/kglookfeel.cpp:295 Konfigurator/kglookfeel.cpp:313
-#, fuzzy
 msgid "Select a shortcuts file"
-msgstr "Seleccioneu només un sol fitxer a reajuntar!"
+msgstr "Escolliu un mapa del teclat"
 
 #: Konfigurator/kglookfeel.cpp:302
 msgid ""
 "The following information was attached to the keymap.\n"
 "Are you sure you want to import this keymap ?"
 msgstr ""
+"El fitxer mapa del teclat que voleu carregar conté la següent informació.\n"
+"Segur que voleu importar aquest mapa del teclat ?"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "Automount filesystems"
@@ -4203,7 +4096,7 @@ msgstr "Monta els dispositius automàticament"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "If checked, Krusader will mount FSTAB mount-points when needed."
-msgstr "Si està marcar, Krusader montarà els dispositius segons diu FSTAB."
+msgstr "Si la marqueu,el Krusader montarà els dispositius segons el que diu el FSTAB."
 
 #: Konfigurator/kgadvanced.cpp:57
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -4218,40 +4111,36 @@ msgid "Krusader will request user confirmation for the following operations:"
 msgstr "Krusader demanarà confirmació per les següents operacions:"
 
 #: Konfigurator/kgadvanced.cpp:79
-#, fuzzy
 msgid "Deleting non-empty directories"
-msgstr "S'està esborrant el directori que no està buit."
+msgstr "S'estan esborrant les carpetes encara que no estiguin buides"
 
 #: Konfigurator/kgadvanced.cpp:80
-#, fuzzy
 msgid "Deleting files"
 msgstr "S'estan esborrant els fitxers"
 
 #: Konfigurator/kgadvanced.cpp:81
-#, fuzzy
 msgid "Copying files"
-msgstr "S'està copìant els fitxers"
+msgstr "S'estan copìant els fitxers"
 
 #: Konfigurator/kgadvanced.cpp:82
-#, fuzzy
 msgid "Moving files"
-msgstr "S'està movent els fitxers"
+msgstr "S'estan movent els fitxers"
 
 #: Konfigurator/kgadvanced.cpp:83
-#, fuzzy
 msgid "Confirm feed to listbox"
-msgstr "Confirma abans d'executar"
+msgstr "Confirmeu que voleu ajustar a la llista"
 
 #: Konfigurator/kgadvanced.cpp:83
 msgid ""
 "if checked, Krusader will ask for a result-name; else the default value will "
 "be used"
 msgstr ""
+"si la marqueu, el Krusader us preguntarà perquè li dongueu nom, \n"
+"altrament es farà segons la configuració per defecte"
 
 #: Konfigurator/kgadvanced.cpp:84
-#, fuzzy
 msgid "Removing Useractions"
-msgstr "Voleu esborrar l'acció?"
+msgstr "Voleu esborrar les accions?"
 
 #: Konfigurator/kgadvanced.cpp:95 Konfigurator/kgarchives.cpp:85
 msgid "Fine-Tuning"
@@ -4259,15 +4148,14 @@ msgstr "Ajusta amb més detall"
 
 #: Konfigurator/kgadvanced.cpp:99
 msgid "Icon cache size (KB):"
-msgstr "Cache de icones (KB):"
+msgstr "Memòria cau d'icones (KB):"
 
 #: Konfigurator/kgadvanced.cpp:100 Konfigurator/kgadvanced.cpp:104
-#, fuzzy
 msgid ""
 "Cache size determines how fast Krusader can display the contents of a panel; "
 "however, too large a cache might consume your memory."
 msgstr ""
-"Com més cache Krusader podrà pintar el plafó més ràpid, però també cal "
+"Com més memòria cau es  pintarà el plafó més ràpid, però també cal "
 "pensar que pot consumir molta memòria."
 
 #: Konfigurator/kgadvanced.cpp:108
@@ -4380,7 +4268,7 @@ msgstr "Utilitza els colors del KDE"
 
 #: Konfigurator/kgcolors.cpp:60
 msgid "Krusader default color configuration."
-msgstr ""
+msgstr "Configuració per defecte dels colors."
 
 #: Konfigurator/kgcolors.cpp:61
 msgid "Use alternate background color"
@@ -4393,6 +4281,9 @@ msgid ""
 "When you don't use the KDE default colors, you can configure the alternate "
 "colors in the Colors box."
 msgstr ""
+"Podeu escollir dos colors de fons per cada línia. El normal i l'alternatiu.\n"
+"Quan no utilitzeu els colors per defecte del KDE, podreu configurar "
+"els colors alternatius en el diàleg de colors."
 
 #: Konfigurator/kgcolors.cpp:62
 msgid "Show current item even if not focused"
@@ -4403,6 +4294,8 @@ msgid ""
 "Shows the last cursor position in the non active list panel.\n"
 "This option is only available when you don't use the KDE default colors."
 msgstr ""
+"Mostra la última possició del cursor en l'altre plafó.\n"
+"Aquesta opció només es pot fer servir quan no s'utilitzene ls colors de KDE."
 
 #: Konfigurator/kgcolors.cpp:88
 msgid "Active"
@@ -4418,7 +4311,7 @@ msgstr "Color de la lletra:"
 
 #: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:129
 msgid "Directory foreground:"
-msgstr "Color de la lletra (directoris):"
+msgstr "Color de la lletra (carpetes):"
 
 #: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:98
 #: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:100
@@ -4531,30 +4424,27 @@ msgstr "Programa"
 
 #: Konfigurator/kgcolors.cpp:174
 msgid "Directory"
-msgstr "Directori "
+msgstr "Carpeta "
 
 #: Konfigurator/kgcolors.cpp:180
 msgid "Import color-scheme"
-msgstr ""
+msgstr "Importa un esquema de colors"
 
 #: Konfigurator/kgcolors.cpp:182
 msgid "Export color-scheme"
-msgstr ""
+msgstr "Exporta l'esquema de colors"
 
 #: Konfigurator/kgcolors.cpp:433
-#, fuzzy
 msgid "Select a color-scheme file"
-msgstr "Seleccioneu només un sol fitxer a reajuntar!"
+msgstr "Escolliu un esquema de colors"
 
 #: Konfigurator/kgcolors.cpp:437
-#, fuzzy
 msgid "Error: unable to read from file"
-msgstr "No es pot llegir el fitxer %1!"
+msgstr "No s'ha pogut llegir el fitxer"
 
 #: Konfigurator/kgcolors.cpp:447
-#, fuzzy
 msgid "Select a color scheme file"
-msgstr "Seleccioneu només un sol fitxer a reajuntar!"
+msgstr "Escolliu un esquema de colors"
 
 #: Konfigurator/kgstartup.cpp:45
 msgid "Panels"
@@ -4569,6 +4459,8 @@ msgid ""
 "When Krusader launches, the panels current directories will be the same as "
 "they were when Krusader was last shutdown."
 msgstr ""
+"Quan s'iniciï el Krusader, els plafons mostraran les mateixes carpetes que la "
+"última vegada que es va fer servir el Krusader."
 
 #: Konfigurator/kgstartup.cpp:51 Konfigurator/kgstartup.cpp:56
 #: Konfigurator/kgstartup.cpp:115
@@ -4577,11 +4469,11 @@ msgstr "Incia amb aquesta configuració:"
 
 #: Konfigurator/kgstartup.cpp:51
 msgid "Defines a startup status for each panel."
-msgstr ""
+msgstr "Defineix un estat inicial per a cada plafó."
 
 #: Konfigurator/kgstartup.cpp:60
 msgid "work dir"
-msgstr "directori de treball"
+msgstr "carpeta de treball"
 
 #: Konfigurator/kgstartup.cpp:63
 msgid "Left panel starts at"
@@ -4604,58 +4496,52 @@ msgid ""
 "Krusader checks the state of the user interface components,\n"
 "and restores them to their condition when last shutdown."
 msgstr ""
+"El krusader comprovarà l'estat dels components de l'interfície de l'usuari,\n"
+"i restaurarà l'estat de l'última vegada que es va fer servir el Krusader."
 
 #: Konfigurator/kgstartup.cpp:95
-#, fuzzy
 msgid "Show toolbar"
-msgstr "Barra d'eines"
+msgstr "Mostra la barra d'eines"
 
 #: Konfigurator/kgstartup.cpp:95
 msgid "Toolbar will be visible after startup."
-msgstr ""
+msgstr "La barra d'eines es mostrarà la pròxima vegada que s'engegui."
 
 #: Konfigurator/kgstartup.cpp:96
 msgid "Show statusbar"
-msgstr ""
+msgstr "Mostra la barra d'estat."
 
 #: Konfigurator/kgstartup.cpp:96
 msgid "Statusbar will be visible after startup."
-msgstr ""
+msgstr "La barra d'estat es mostrarà la pròxima vegada que s'engegui."
 
 #: Konfigurator/kgstartup.cpp:97
-#, fuzzy
 msgid "Show function keys"
-msgstr "Mostra les opcions"
+msgstr "Mostra la barra de tecles F1, F2, .."
 
 #: Konfigurator/kgstartup.cpp:97
-#, fuzzy
 msgid "Function keys will be visible after startup."
-msgstr "Mostra Barra Funcions del Teclat"
+msgstr "La barra de tecles F1, F2, ... es mostrarà la pròxima vegada que s'engegui."
 
 #: Konfigurator/kgstartup.cpp:98
-#, fuzzy
 msgid "Show command line"
-msgstr "Mostra la Línia de &Comandes"
+msgstr "Mostra la línia de comandes"
 
 #: Konfigurator/kgstartup.cpp:98
-#, fuzzy
 msgid "Command line will be visible after startup."
-msgstr "Mostra Linia de Comandes"
+msgstr "La línia de comandes es mostrarà la pròxima vegada que s'engegui."
 
 #: Konfigurator/kgstartup.cpp:99
-#, fuzzy
 msgid "Show terminal emulator"
-msgstr "Mostra l'&Emulador de Terminal"
+msgstr "Mostra l'emulador de terminal"
 
 #: Konfigurator/kgstartup.cpp:99
-#, fuzzy
 msgid "Terminal emulator will be visible after startup."
-msgstr "Mostra Emulador de Terminal"
+msgstr "L'emulador de terminal es mostrarà la pròxima vegada que s'engegui."
 
 #: Konfigurator/kgstartup.cpp:100
-#, fuzzy
 msgid "Save last position, size and panel settings"
-msgstr "Restaura la última possició i mida"
+msgstr "Desa l'estat i la mida dels plafons"
 
 #: Konfigurator/kgstartup.cpp:100
 msgid ""
@@ -4666,6 +4552,12 @@ msgid ""
 "If this option is disabled, you can use the menu 'Settings-Save Position'\n"
 "option to manually set Krusader's size and position at startup"
 msgstr ""
+"Quan torneu a engegar el Krusader, aquest tindrà el mateix estat i mida "
+"que quan el vau utilitzar per última vegada.\n"
+"El Krusader ocuparà exàctament la mateixa possició de la pantalla."
+"Si no marqueu la casella,\n aleshores podreu utilitzar l'opció "
+"'Desa l'estat i la possició' del menú Opcions, per definir un estat concret "
+"per començar sempre igual."
 
 #: Konfigurator/kgarchives.cpp:53
 msgid "Krusader transparently handles the following types of archives:"
@@ -4705,10 +4597,9 @@ msgstr "Ace"
 
 #: Konfigurator/kgarchives.cpp:66
 msgid "Lha"
-msgstr ""
+msgstr "Lha"
 
 #: Konfigurator/kgarchives.cpp:71
-#, fuzzy
 msgid ""
 "The archives that are \"greyed-out\" were unavailable on your\n"
 "system last time Krusader checked. If you wish Krusader to\n"
@@ -4727,11 +4618,9 @@ msgid "Test archive when finished packing"
 msgstr "Valida el fitxer comprimit quan acabi de comprimir                    "
 
 #: Konfigurator/kgarchives.cpp:91
-#, fuzzy
-msgid ""
-"If checked, Krusader will test the archive's integrity after packing it."
+msgid "If checked, Krusader will test the archive's integrity after packing it."
 msgstr ""
-"Si està marcat, el Krusader validarà els fitxers comprimits després de cada "
+"Si la marqueu, el Krusader validarà els fitxers comprimits després de cada "
 "procés de compressió."
 
 #: Konfigurator/kgarchives.cpp:92
@@ -4739,10 +4628,10 @@ msgid "Test archive before unpacking"
 msgstr "Testeja el fitxer a descomprimir"
 
 #: Konfigurator/kgarchives.cpp:92
-#, fuzzy
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr "Alguns fitxers mal comprimits poden penjar el sistema al descomprimir"
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr ""
+"Alguns fitxers mal comprimits poden penjar el sistema quan es descomprimeixi, "
+"per això s'aconsella validar-los abans."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid ""
@@ -4921,13 +4810,12 @@ msgstr ""
 "Aquí podreu configurar els compressors a mesura que els aneu instal·lant"
 
 #: Konfigurator/kgarchives.cpp:147
-#, fuzzy
 msgid ""
 "\n"
 "to your path, e.g., /usr/bin, /usr/local/bin, etc."
 msgstr ""
 "\n"
-"al vostre directori. (p.e: /usr/bin, /usr/local/bin etc.)"
+"a la vostre carpeta. (p.e: /usr/bin, /usr/local/bin etc.)"
 
 #: Konfigurator/kgarchives.cpp:148
 msgid ""
@@ -4939,7 +4827,7 @@ msgstr ""
 
 #: Konfigurator/kguseractions.cpp:52
 msgid "*.xml|xml-files"
-msgstr ""
+msgstr "*.xml|fitxers xml"
 
 #: Konfigurator/kguseractions.cpp:52
 msgid "*|all files"
@@ -4979,15 +4867,13 @@ msgstr "Voleu esborrar l'acció?"
 
 #: Konfigurator/kguseractions.cpp:254
 msgid "The file you've chosen doesn't seem to be a valid action-file."
-msgstr ""
-"El fitxer que heu seleccionat no sembla que sigui un fitxer d'accions vàlid."
+msgstr "El fitxer que heu seleccionat no sembla que sigui un fitxer d'accions vàlid."
 
 #: Konfigurator/kguseractions.cpp:262
 msgid "No actions found in this file."
 msgstr "El fitxer d'accions està buit."
 
 #: Konfigurator/kguseractions.cpp:290
-#, fuzzy
 msgid ""
 "Couldn't import all actions because of name conflicts. Check the action-list "
 "on the left to fix them.\n"
@@ -4996,15 +4882,13 @@ msgid ""
 msgstr ""
 "No s'han pogut llegir totes les accions, ja que hi ha conflicte de noms amb "
 "les actuals. \n"
-"Comproveu la llista d'incidències següent, abans de tancar el Konfigurator."
+"Compte que si tanqueu el Konfigurator ara les accions no s'hauran importat."
 
 #: krslots.cpp:100
-#, fuzzy
 msgid ""
 "Krusader can't find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports Kmail."
-msgstr ""
-"Sense un client de correu, com kmail, el Krusader no pot enviar correus."
+msgstr "Sense un client de correu, com kmail, el Krusader no pot enviar correus."
 
 #: krslots.cpp:107
 msgid "Sending file: "
@@ -5015,7 +4899,6 @@ msgid "Don't know which files to compare."
 msgstr "Abans de res seleccioneu els dos fitxers a comparar."
 
 #: krslots.cpp:144
-#, fuzzy
 msgid ""
 "To compare 2 files by content, you can either\n"
 "- select (mark) one file in the left panel, and one in the right panel\n"
@@ -5030,7 +4913,6 @@ msgstr ""
 "los"
 
 #: krslots.cpp:183
-#, fuzzy
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."
@@ -5070,17 +4952,15 @@ msgstr ""
 
 #: krslots.cpp:435
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-msgstr ""
-"No s'ha pogut trobar  \"KsysCtrl\". Si us plau instal·leu el paquet KDE Admin"
+msgstr "No s'ha pogut trobar  \"KsysCtrl\". Si us plau instal·leu el paquet KDE Admin"
 
 #: krslots.cpp:443
-#, fuzzy
 msgid ""
 "Can't find a batch rename tool.\n"
 "You can get Krename at http://www.krename.net"
 msgstr ""
 "No s'ha trobat l'eina Krename.\n"
-"Trobareu Krename a http://krename.net"
+"Trobareu Krename a http://www.krename.net"
 
 #: krslots.cpp:473
 msgid ""
@@ -5104,7 +4984,7 @@ msgstr "Abans de res seleccioneu el fitxer a trocejar."
 
 #: krslots.cpp:602
 msgid "You can't split a directory!"
-msgstr "El trocejador de fitxer, troceja fitxers no directoris!"
+msgstr "El trocejador de fitxers, troceja fitxers no carpetes!"
 
 #: krslots.cpp:633
 msgid "Don't know which files to combine."
@@ -5112,15 +4992,13 @@ msgstr "Cal seleccionar un fitxer a reajuntar."
 
 #: krslots.cpp:645
 msgid "You can't combine a directory!"
-msgstr "Reajuntar només funciona per fitxers, és inútil en directoris."
+msgstr "Reajuntar només funciona per fitxers, no per carpetes."
 
 #: krslots.cpp:664
-#, fuzzy
 msgid "Not a split file %1!"
 msgstr "El fitxer %1 no es pot reajuntar amb res!"
 
 #: krslots.cpp:679
-#, fuzzy
 msgid "Select only one split file!"
 msgstr "Seleccioneu només un sol fitxer a reajuntar!"
 
@@ -5130,43 +5008,43 @@ msgstr "El fitxer %1 no es pot reajuntar amb res!"
 
 #: krslots.cpp:734
 msgid "Combining %1.* to directory:"
-msgstr "S'està reajuntant els fitxers %1.* en el directori:"
+msgstr "S'està reajuntant els fitxers %1.* en la carpeta:"
 
 #: Splitter/splittergui.cpp:39
 msgid "1.44 MB (3.5\")"
-msgstr ""
+msgstr "1.44 MB (3.5\")"
 
 #: Splitter/splittergui.cpp:40
 msgid "1.2 MB (5.25\")"
-msgstr ""
+msgstr "1.2 MB (5.25\")"
 
 #: Splitter/splittergui.cpp:41
 msgid "720 kB (3.5\")"
-msgstr ""
+msgstr "720 kB (3.5\")"
 
 #: Splitter/splittergui.cpp:42
 msgid "360 kB (5.25\")"
-msgstr ""
+msgstr "360 kB (5.25\")"
 
 #: Splitter/splittergui.cpp:43
 msgid "100 MB (ZIP)"
-msgstr ""
+msgstr "100 MB (ZIP)"
 
 #: Splitter/splittergui.cpp:44
 msgid "250 MB (ZIP)"
-msgstr ""
+msgstr "250 MB (ZIP)"
 
 #: Splitter/splittergui.cpp:45
 msgid "650 MB (CD-R)"
-msgstr ""
+msgstr "650 MB (CD-R)"
 
 #: Splitter/splittergui.cpp:46
 msgid "700 MB (CD-R)"
-msgstr ""
+msgstr "700 MB (CD-R)"
 
 #: Splitter/splittergui.cpp:61
 msgid "Split the file %1 to directory:"
-msgstr "Troceja el fitxer %1 al directori:"
+msgstr "Troceja el fitxer %1 a la carpeta:"
 
 #: Splitter/splittergui.cpp:75
 msgid "User Defined"
@@ -5178,19 +5056,19 @@ msgstr "Mida màxima:"
 
 #: Splitter/splittergui.cpp:89
 msgid "Byte"
-msgstr ""
+msgstr "Byte"
 
 #: Splitter/splittergui.cpp:90
 msgid "kByte"
-msgstr ""
+msgstr "kByte"
 
 #: Splitter/splittergui.cpp:91
 msgid "MByte"
-msgstr ""
+msgstr "MByte"
 
 #: Splitter/splittergui.cpp:92
 msgid "GByte"
-msgstr ""
+msgstr "GByte"
 
 #: Splitter/splittergui.cpp:110
 msgid "&Split"
@@ -5198,15 +5076,15 @@ msgstr "&Troceja"
 
 #: Splitter/splittergui.cpp:119
 msgid "Krusader::Splitter"
-msgstr ""
+msgstr "Krusader::Splitter"
 
 #: Splitter/splittergui.cpp:194
 msgid "The directory path URL is malformed!"
-msgstr "La URL del directori és incorrecta!"
+msgstr "La URL de la carpeta és incorrecta!"
 
 #: Splitter/combiner.cpp:61
 msgid "Krusader::Combining..."
-msgstr ""
+msgstr "Krusader::Combining..."
 
 #: Splitter/combiner.cpp:62
 msgid "Combining the file %1..."
@@ -5230,14 +5108,12 @@ msgid "Not a valid CRC file!"
 msgstr "El fitxer CRC no és vàlid!"
 
 #: Splitter/combiner.cpp:133
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Sense un fitxer CRC vàlid no es pot saber si el fitxer reajuntat és bo. "
 "Voleu continuar?"
 
 #: Splitter/combiner.cpp:237
-#, fuzzy
 msgid "Can't open the first split file of %1!"
 msgstr "No es pot llegir el primer fitxer a reajuntar %1!"
 
@@ -5250,13 +5126,12 @@ msgid "Incorrect CRC checksum! The file might have been corrupted!"
 msgstr "La validació CRC ha fallat! El fitxer és corrupte!"
 
 #: Splitter/combiner.cpp:277 Splitter/splitter.cpp:201
-#, fuzzy
 msgid "Error writing file %1!"
 msgstr "No es pot escriure en el fitxer %1!"
 
 #: Splitter/splitter.cpp:71
 msgid "Krusader::Splitting..."
-msgstr ""
+msgstr "Krusader::Splitting..."
 
 #: Splitter/splitter.cpp:72
 msgid "Splitting the file %1..."
@@ -5264,10 +5139,9 @@ msgstr "Trocejant el fitxer %1..."
 
 #: Splitter/splitter.cpp:76
 msgid "Can't split a directory!"
-msgstr "El trocejador de fitxer, troceja fitxers no directoris!"
+msgstr "El trocejador de fitxer, troceja fitxers no carpetes!"
 
 #: Splitter/splitter.cpp:127
-#, fuzzy
 msgid "Error reading file %1!"
 msgstr "No es pot llegir el fitxer %1!"
 
@@ -5288,3 +5162,4 @@ msgstr "No es pot escriure en el fitxer %1!"
 
 #~ msgid "Filtering by the filename"
 #~ msgstr " Filtrant els noms de fitxers"
+
