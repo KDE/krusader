@@ -43,7 +43,6 @@
 #include <klocale.h>
 #include <kmimetype.h>
 #include <kurl.h>
-#include <kurlrequester.h>
 #include <ktrader.h>
 #include <krun.h>
 #include <kopenwith.h>
@@ -58,6 +57,7 @@
 #include <qimage.h>
 #include <qtabbar.h>
 #include <kdebug.h>
+#include <kurlrequester.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../krslots.h"
@@ -132,11 +132,8 @@ ListPanel::ListPanel(QWidget *parent, const char *name ) :
   origin->setShowLocalProtocol(false);
   origin->lineEdit()->setURLDropsEnabled(true);
   origin->setMode(KFile::Directory | KFile::ExistingOnly);
-  connect(origin,SIGNAL(returnPressed(const QString&)),this,SLOT(slotFocusOnMe()));
   connect(origin,SIGNAL(returnPressed(const QString&)),func,SLOT(openUrl(const QString&)));
-  connect(origin,SIGNAL(urlSelected(const QString&)),this,SLOT(slotFocusOnMe()));
   connect(origin,SIGNAL(urlSelected(const QString&)),func,SLOT(openUrl(const QString&)));
-  connect(origin,SIGNAL(textChanged(const QString&)),this,SLOT(slotFocusOnMe()));
 
   view = new KrDetailedView(this, krConfig);
   connect(dynamic_cast<KrDetailedView*>(view), SIGNAL(executed(QString&)), func, SLOT(execute(QString&)));

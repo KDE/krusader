@@ -77,13 +77,19 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent):
 }
 
 void ListPanelFunc::openUrl( const QString& path, const QString& type){
+  panel->slotFocusOnMe();
+
   QString mytype = type, mypath = path;
+
+  // make sure local urls are handles ok
+  if (mypath.lower().startsWith("file:")) mypath = mypath.mid(5);
+
   // check for archive:
-	if( path.contains('\\') ) {
+	if( mypath.contains('\\') ) {
     // do we need to change VFS ?
-		QString archive = path.left( path.find('\\') );
-		QString directory = path.mid( path.findRev('\\')+1 );
-		if( type.isEmpty() ){
+		QString archive = mypath.left( mypath.find('\\') );
+		QString directory = mypath.mid( mypath.findRev('\\')+1 );
+		if( mytype.isEmpty() ){
     	QString mime = KMimeType::findByURL(archive)->name();
 			mytype = mime.right(4);
 			if( mytype == "-rpm" ) mytype = "+rpm"; // open the rpm as normal archive
@@ -100,21 +106,21 @@ void ListPanelFunc::openUrl( const QString& path, const QString& type){
 			refresh(archive+"\\"+directory);
 		}
 	}
-	// remote file systems
-	else if( path.contains(":/") ){
+ // remote file systems
+	else if( mypath.contains(":/") ){
 		// first close all open archives / remote connections
 		while( files()->vfs_getType() != "normal" ) vfsStack.remove();
-		changeVFS("ftp",path);
+		changeVFS("ftp",mypath);
 	}
 	else{ // local directories
 		// first close all open archives / remote connections
 		while( files()->vfs_getType() != "normal" ) vfsStack.remove();
     // now we have a normal vfs- refresh it.
 		files()->blockSignals(false);
-		while( !KRpermHandler::dirExist(path) ){
+		while( !KRpermHandler::dirExist(mypath) ){
     	panel->view->setNameToMakeCurrent(mypath.mid(mypath.findRev('/')));
 			mypath = mypath.left(mypath.findRev('/'));
-			if( mypath.isEmpty() ) mypath = "/";	
+			if( mypath.isEmpty() ) mypath = "/";
 		}
 		refresh( mypath );
 	}
@@ -124,7 +130,7 @@ void ListPanelFunc::refresh(const QString path){
  	// change the cursor to busy
 	krApp->setCursor(KCursor::waitCursor());
 	// first, make this panel the active one
-	panel->slotFocusOnMe();
+//	panel->slotFocusOnMe();
 	// second make sure we're in the right vfs..
 	if ((panel->virtualPath.contains('\\') && !path.contains('\\')) ||  // arc -> normal
 	  panel->virtualPath.left(1) != "/" && path.left(1) == "/"){     // ftp -> normal

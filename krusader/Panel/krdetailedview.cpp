@@ -51,7 +51,7 @@
 // Group name: KrDetailedView
 //
 // Ext Column
-#define _ExtColumn          false
+#define _ExtColumn          true
 // Mime Column
 #define _MimeColumn         false
 // Size Column
@@ -191,9 +191,9 @@ void KrDetailedView::addItems(vfs *v, bool addUpDir) {
   }
 
   // add a progress bar to the totals statusbar
-	KProgress *pr = new KProgress(krApp->mainView->activePanel->totals);
+//	KProgress *pr = new KProgress(krApp->mainView->activePanel->totals);
 //  krApp->mainView->activePanel->totals->addWidget(pr,true);
-  pr->setTotalSteps(v->vfs_noOfFiles());
+//  pr->setTotalSteps(v->vfs_noOfFiles());
   // make sure the listview stops sorting itself - it makes us slower!
   int cnt = 0;
   int cl = columnSorted();
@@ -243,16 +243,16 @@ void KrDetailedView::addItems(vfs *v, bool addUpDir) {
       currentItem = item;
 
     cnt++;
-    if (cnt % 300 == 0) {
-      pr->show();
-      pr->advance(300);
-      kapp->processOneEvent();
-    }
+//    if (cnt % 300 == 0) {
+//      pr->show();
+//      pr->advance(300);
+//      kapp->processOneEvent();
+//    }
 	}
 
  	// kill progressbar
 //  krApp->mainView->activePanel->totals->removeWidget(pr);
-  delete(pr);
+//  delete(pr);
 
   // re-enable sorting
   setSorting(cl,as);
