@@ -601,6 +601,8 @@ void ListPanelFunc::dirUp() {
 
 	if( origin.contains(":/") ){ // ftp_vfs
     if( QFileInfo(origin.mid(origin.find(":/")+1)).exists() ) changeVFS = true;
+    // make the current archive the current item on the new list
+    panel->view->setNameToMakeCurrent(origin.mid(origin.findRev('/')+1) );
 	}
 
 	if( changeVFS ){
