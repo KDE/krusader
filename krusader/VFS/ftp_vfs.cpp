@@ -32,6 +32,7 @@
 // QT includes
 #include <qdir.h>
 #include <qregexp.h>
+#include <qtimer.h>
 // KDE includes
 #include <kmimetype.h>
 #include <kio/jobclasses.h>
@@ -58,8 +59,7 @@ template <class X> void kr_swap(X &a, X &b){
 ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	// set the writable attribute
 	isWritable = true;
-	int bugFixLoc = origin.find("@");
-
+	
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
   vfs_filesP2 = &vfs_files2;
@@ -69,14 +69,18 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	// breakdown the url;
 	/* FIXME: untill KDE fixes the bug we have to check for
      passwords with @ in them... */
-	bool bugfix = origin.find("@") != origin.findRev("@");
-	if(bugfix) origin = origin.remove(bugFixLoc,1);
-	KURL url = origin;
+  bool bugfix = origin.find("@") != origin.findRev("@");
+	if(bugfix){
+    int passStart = origin.find( ":",origin.find(":")+1 )+1;
+    int passLen = origin.findRev("@")-passStart;
+    password = origin.mid(passStart,passLen);
+    origin = origin.remove(passStart-1,passLen+1);
+  }
+  KURL url = origin;
 	port = url.port();
 	loginName = url.user();
-	password = url.pass();
+	if(password.isEmpty()) password = url.pass();
 	if(bugfix){
-		origin.insert(bugFixLoc,"@");
 		url.setPass(password);
 	}
 
@@ -84,7 +88,8 @@ ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
 	vfs_type = "ftp";
   vfs_origin = url.prettyURL(-1);
 
-  vfs_refresh(vfs_origin);	
+  QTimer::singleShot(500,this,SLOT(vfs_refresh()));
+  //vfs_refresh(vfs_origin);	
 }
 
 void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
@@ -189,6 +194,12 @@ bool ftp_vfs::vfs_refresh(QString origin) {
   vfs_origin = origin;
   vfs_url_backup = vfs_url;
   vfs_url = url;
+
+  // The following is needed because the new bookmark system
+  // is using KIO which in some mysterious way is causing a crash...
+  while( qApp->hasPendingEvents() ) qApp->processEvents();
+  while( qApp->hasPendingEvents() ) qApp->processEvents();
+  while( qApp->hasPendingEvents() ) qApp->processEvents();
 		
 	// Open the directory	marked by origin
 	krConfig->setGroup("Look&Feel");
