@@ -47,6 +47,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kprogress.h>
 #include <kstatusbar.h>
 #include <klineeditdlg.h>
+#include <kmessagebox.h>
+#include <klocale.h>
 
 //////////////////////////////////////////////////////////////////////////
 //  The following is KrDetailedView's settings in KConfig:
@@ -878,9 +880,23 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
     exit( 0 );
     }
   // check if the item was indeed renamed
-  if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() )           // was renamed
-    emit renameItem( dynamic_cast<KrDetailedViewItem*>( it ) ->name(), it->text( column( Name ) ) );
-  else if ( column( Extention ) != -1 ) { // nothing happened, restore the view (if needed)
+  bool restoreView = false;
+	if ( it->text( column( Name ) ) != dynamic_cast<KrDetailedViewItem*>( it ) ->name() ) { // was renamed
+		// make sure such an item doesn't already exists because panelfunc can't
+		// do it for us. it calls CopyJob::move() which will _move the item__ instead
+		KrViewItem *myIt=getFirst(); // this can't be 0L, otherwise we had nothing to rename
+		do {
+			if (myIt->name() == it->text(column(Name))) {
+				restoreView = true; // cancel rename
+				break;
+			}
+		} while (myIt=getNext(myIt));
+		if (!restoreView)
+			emit renameItem( dynamic_cast<KrDetailedViewItem*>( it ) ->name(), it->text( column( Name ) ) );
+		else KMessageBox::error(krApp, i18n("A file with that name already exists"), i18n("Error"));
+  } else restoreView = true;
+	
+	if ( column( Extention ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
     int i;
     QString ext, name = dynamic_cast<KrDetailedViewItem*>( it ) ->name();
     if ( ( i = name.findRev( '.' ) ) > 0 ) {
