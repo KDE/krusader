@@ -244,14 +244,17 @@ void KrViewer::viewHex(){
 			memset(buf,0,16);
 			int bufSize = ((fileSize-address) > 16)? 16 : (fileSize-address);
       in.readRawBytes(buf,bufSize);
-      fprintf(out,"0x%8.8lx: %8.8x %8.8x %8.8x %8.8x | ",address,pBuff[0],pBuff[1],pBuff[2],pBuff[3]);
-            /**(unsigned int*)&(buf[0]),*(unsigned int*)&(buf[4]),
-            *(unsigned int*)&(buf[8]),*(unsigned int*)&(buf[12]) );*/
+			fprintf(out,"0x%8.8lx: ",address);
+			for(int i=0; i<4; ++i){
+				if(i<(bufSize/4)) fprintf(out,"%8.8x ",pBuff[i]);
+				else fprintf(out,"         ");
+			}
+			fprintf(out,"| ");
+      /*fprintf(out,"0x%8.8lx: %8.8x %8.8x %8.8x %8.8x | ",address,pBuff[0],pBuff[1],pBuff[2],pBuff[3]); */
+
       for(int i=0; i<bufSize; ++i){
-        if(buf[i]>' ' && buf[i]<'~' )
-          fputc(buf[i],out);
-        else
-          fputc('.',out);
+        if(buf[i]>' ' && buf[i]<'~' ) fputc(buf[i],out);
+        else fputc('.',out);
       }
       fputc('\n',out);
 
