@@ -222,7 +222,7 @@ remoteManBase::remoteManBase( QWidget* parent,  const char* name, bool modal, WF
     Layout11->addWidget( portNum, 1, 2 );
 
     TextLabel1_2_2 = new QLabel( this, "TextLabel1_2_2" );
-    TextLabel1_2_2->setText( i18n( "Port:" ) );
+    TextLabel1_2_2->setText( i18n( "Port:   " ) );
 
     Layout11->addWidget( TextLabel1_2_2, 0, 2 );
 

@@ -246,7 +246,7 @@ void ListPanelFunc::krlink( bool sym ) {
 
   // if the name is already taken - quit
   if ( files() ->vfs_search( linkName ) != 0 ) {
-    KMessageBox::sorry( krApp, i18n( "A directory or a file with this file already exists." ) );
+    KMessageBox::sorry( krApp, i18n( "A directory or a file with this name already exists." ) );
     return ;
   }
 

@@ -137,7 +137,7 @@ kgStartup::kgStartup( QWidget* parent,  const char* name )
     panelsDontSave->setText( i18n( "Start with the following settings:" ) );
 
     panelsSave = new QRadioButton( ButtonGroup1, "panelsSave" );
-    panelsSave->setGeometry( QRect( 3, 3, 194, 19 ) );
+    panelsSave->setGeometry( QRect( 3, 3, 270, 19 ) );
     panelsSave->setText( i18n( "Save settings on exit" ) );
 
     GroupBox3Layout->addMultiCellWidget( ButtonGroup1, 0, 0, 0, 1 );
