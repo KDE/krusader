@@ -7,8 +7,8 @@
 #include <kdebug.h>
 
 #define BM_NAME(X)		(QString("Bookmark:")+X)
-#define NAME_DEVICES		I18N_NOOP("Devices")
-#define NAME_VIRTUAL		I18N_NOOP("Virtual Filesystem")
+static const char* NAME_DEVICES = I18N_NOOP("Devices");
+static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
 
 KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon):
 	KAction(name, 0, 0, 0, parent, BM_NAME(name).latin1()), 
