@@ -102,7 +102,7 @@ class KRslots : public QObject {
     void addBookmark();
     void runMountMan();
     void runRemoteMan();
-    void profiles();
+    void profiles( QString profileName = QString::null );
     void toggleFnkeys();
     void toggleCmdline();
     void changeTrashIcon();

@@ -783,13 +783,16 @@ void KRslots::compareSetup()
     }
 }
 
-void KRslots::profiles()
+void KRslots::profiles( QString profileName )
 {
   ProfileManager profileManager( "Panel" );
   profileManager.hide();
   connect( &profileManager, SIGNAL( saveToProfile( QString ) ), this, SLOT( savePanelProfiles( QString ) ) );
   connect( &profileManager, SIGNAL( loadFromProfile( QString ) ), this, SLOT( loadPanelProfiles( QString ) ) );
-  profileManager.profilePopup();
+  if( profileName.isEmpty() )
+    profileManager.profilePopup();
+  else
+    profileManager.loadByName( profileName );
 }
 
 void KRslots::loadPanelProfiles( QString group )

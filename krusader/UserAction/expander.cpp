@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author: Jonas Bähr (C) 2004
+// Author: Jonas Bï¿½r (C) 2004
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -20,6 +20,7 @@
 #include "../Synchronizer/synchronizergui.h"
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
+#include "../krslots.h"
 
 #include <kdebug.h>
 #include <kinputdialog.h>
@@ -390,8 +391,7 @@ QString exp_Profile::expFunc( const ListPanel*, const QStringList& parameter, co
       return QString::null;
    }
    
-   kdDebug() << "Panelprofiles are not working yet through UserActions." << endl;
-//    krProfileManager->loadByName( parameter[0] );
+   SLOTS->profiles( parameter[0] );
 
    return QString::null;  // this doesn't return everything, that's normal!
 }
