@@ -35,6 +35,7 @@ BookmarksButton::BookmarksButton(QWidget *parent) : QToolButton(parent)
 
   KActionMenu *acmBookmarks = new KActionMenu(i18n("Bookmarks"), "bookmark", 0, "bookmarks");
   acmBookmarks->setDelayed(false);
+  acmBookmarks->popupMenu()->setKeyboardShortcutsExecute(true);
 
   bookmarkHandler = new KBookmarkHandler(this, acmBookmarks->popupMenu());
   QObject::connect(bookmarkHandler, SIGNAL(openUrl(const KURL&)), this, SIGNAL(openUrl(const KURL&)));
