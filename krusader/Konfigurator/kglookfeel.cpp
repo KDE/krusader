@@ -63,13 +63,13 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   //   cfg_class  cfg_name                default             text                              restart tooltip
     {{"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  "Display a warning when you try to exit Krusader."},
      {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  "When minimizing Krusader, its icon will appear in the system tray instead of the taskbar."},
-     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  "Display the dot files"},
+     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  "Display the dot-files"},
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  "When matching the select criteria, directories will also be marked"},
-     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  "UNIX default, all files beginning with capital letters appear before files beginning with non-capital letters."},
-     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use fullpath tab names" ), true ,  "Display the full path in the Folder Tabs"},
+     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)."},
+     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use fullpath tab names" ), true ,  "Display the full path in the Folder Tabs, otherwise only the last part of the path will be displayed."},
      //{"Look&Feel","Single Click Selects", false,              i18n( "Single click executes" ),   false,  ""},
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  "Opens a quick search dialog box."},
-     {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""},
+     {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)."},
     };
 
   cbs = createCheckBoxGroup( 2, 0, settings, 8/*9*/, lookFeelGrp );
@@ -206,7 +206,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] = 
   //   cfg_class    cfg_name                default        text                             restart tooltip
-    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Panel Toolbar visible" ), false,  ""}
+    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Panel Toolbar visible" ), false,  "Krusader will display the Panel Toolbar."}
   };
 
   panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive");
@@ -218,12 +218,12 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = 
     {
   //   cfg_class    cfg_name                default             text                       restart tooltip
-     {"Look&Feel",  "Open Button Visible",  _Open,      i18n( "Open button" ),     true ,  ""},
-     {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n( "Equal button (=)" ),true ,  ""},
-     {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n( "Up button (..)" ),  true ,  ""},
-     {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n( "Home button (~)" ), true ,  ""},
-     {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n( "Root button (/)" ), true ,  ""},
-     {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n( "Toggle-button for sync-browsing" ), true ,  ""},
+     {"Look&Feel",  "Open Button Visible",  _Open,      i18n( "Open button" ),     true ,  "Opens the directory browser."},
+     {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n( "Equal button (=)" ),true ,  "Changes the panel directory to the other panel directory."},
+     {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n( "Up button (..)" ),  true ,  "Changes the panel directory to the parent directory."},
+     {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n( "Home button (~)" ), true ,  "Changes the panel directory to the home directory."},
+     {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n( "Root button (/)" ), true ,  "Changes the panel directory to the root directory."},
+     {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n( "Toggle-button for sync-browsing" ), true ,  "Each directory-change in the panel is also performed in the other panel."},
     };
   
   
