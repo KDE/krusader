@@ -90,7 +90,6 @@ private:
    KJanusWidget *widget;
    QListView *mountList;
    QTimer *watcher;
-	QStringList invalid_fs;
    QDateTime lastMtab;
 	// used for the getSpace - gotSpace functions
 	KMountPoint::List possible, mounted;

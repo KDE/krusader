@@ -55,16 +55,6 @@ A
 
 KMountManGUI::KMountManGUI() : KDialogBase( krApp, 0, true, "Mount.Man" ),
 info( 0 ), mountList( 0 ) {
-   // list of file systems we don't want to touch ----------------
-	invalid_fs << "swap" << "/dev/pts" << "tmpfs" << "supermount";
-#if defined(BSD)
-	invalid_fs << "procfs";
-#else
-	invalid_fs << "proc";
-#endif
-	
-	// -------------------------------------------------------------
-	
 	watcher = new QTimer( this );
    connect( watcher, SIGNAL( timeout() ), this, SLOT( checkMountChange() ) );
 
@@ -221,12 +211,10 @@ void KMountManGUI::addItemToMountList( QListView *lst, fsData &fs ) {
 }
 
 void KMountManGUI::updateList() {
-#define INVALID_FS(TYPE) (invalid_fs.contains(TYPE) > 0)
-
    mountList->clear();
    // this handles the mounted ones
 	for ( QValueList<fsData>::iterator it = fileSystems.begin(); it != fileSystems.end() ; ++it ) {
-		if (INVALID_FS((*it).type())) continue;
+		if (krMtMan.invalidFilesystem((*it).type())) continue;
       addItemToMountList( mountList, *it );
    }
 	
@@ -243,7 +231,7 @@ void KMountManGUI::updateList() {
 			data.setName((*it)->mountedFrom());
 			fileSystems.append(data);
 			
-			if (INVALID_FS(data.type())) continue;
+			if (krMtMan.invalidFilesystem(data.type())) continue;
 			addItemToMountList(mountList, data);
 		}
 	}
@@ -326,9 +314,13 @@ void KMountManGUI::clicked( QListViewItem *item ) {
    // create the menu
    KPopupMenu popup;
    popup.insertTitle( i18n( "MountMan" ) );
-   if ( !system->mounted() )
+   if ( !system->mounted() ) {
       popup.insertItem( i18n( "Mount" ), MOUNT_ID );
-   else popup.insertItem( i18n( "Unmount" ), UNMOUNT_ID );
+		popup.setItemEnabled( MOUNT_ID, !krMtMan.nonmountFilesystem(system->type()));
+	} else {
+		popup.insertItem( i18n( "Unmount" ), UNMOUNT_ID );
+		popup.setItemEnabled( UNMOUNT_ID, !krMtMan.nonmountFilesystem(system->type()));
+	}
    if ( krMtMan.ejectable( system->mntPoint() ) )
       //  if (system->type()=="iso9660" || krMtMan.followLink(system->name()).left(2)=="cd")
       popup.insertItem( i18n( "Eject" ), EJECT_ID );

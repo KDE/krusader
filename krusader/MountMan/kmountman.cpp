@@ -60,9 +60,27 @@ KMountMan::KMountMan() : QObject(), Operational( false ), mountManGui( 0 ) {
 		Operational = true;
 	}
 
+	// list of FS that we don't manage at all
+	invalid_fs << "swap" << "/dev/pts" << "tmpfs";
+#if defined(BSD)
+	invalid_fs << "procfs";
+#else
+	invalid_fs << "proc";
+#endif
+
+	// list of FS that we don't allow to mount/unmount
+	nonmount_fs << "supermount";
 }
 
 KMountMan::~KMountMan() {}
+
+bool KMountMan::invalidFilesystem(QString type) {
+	return (invalid_fs.contains(type) > 0);
+}
+
+bool KMountMan::nonmountFilesystem(QString type) {
+	return (nonmount_fs.contains(type) > 0);
+}
 
 void KMountMan::mainWindow() {
    mountManGui = new KMountManGUI();
@@ -220,6 +238,9 @@ void KMountMan::quickList() {
    int idx;
    for ( it = possible.begin(), idx = 0; it != possible.end(); ++it, ++idx ) {
       m = *it;
+		// skip nonmountable file systems
+		if (nonmountFilesystem(m->mountType()) || invalidFilesystem(m->mountType()))
+			continue;
       // does the mountpoint exist in current list? if so, it can only
       // be umounted, otherwise, it can be mounted
       bool needUmount = false;
