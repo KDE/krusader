@@ -34,6 +34,7 @@
 #include "konfiguratorpage.h"
 #include <qptrlist.h>
 #include <qvaluelist.h>
+#include <qlistview.h>
 
 class KgColors : public KonfiguratorPage
 {
@@ -42,10 +43,13 @@ class KgColors : public KonfiguratorPage
 public:
   KgColors( bool first, QWidget* parent=0,  const char* name=0 );
 
+  bool apply();
+
 public slots:
   void slotDisable();
   void slotForegroundChanged();
   void slotMarkedBackgroundChanged();
+  void generatePreview();
 
 private:
   int                        addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName = QString::null);
@@ -64,6 +68,43 @@ private:
   QPtrList<QLabel>                    labelList;
   QPtrList<KonfiguratorColorChooser>  itemList;
   QValueList<QString>                 itemNames;
-};
 
+  QListView                          *preview;
+
+  class PreviewItem : public QListViewItem
+  {
+  private:
+    QColor  defaultBackground;
+    QColor  defaultForeground;
+    QString label;
+    
+  public:
+    PreviewItem( QListView * parent, QString name ) : QListViewItem( parent, name )
+    {
+      defaultBackground = QColor( 255, 255, 255 );
+      defaultForeground = QColor( 0, 0, 0 );
+      label = name;
+    }
+
+    void setColor( QColor foregnd, QColor backgnd )
+    {
+      defaultForeground = foregnd;
+      defaultBackground = backgnd;
+      listView()->repaintItem( this );
+    }
+
+    QString text()
+    {
+      return label;
+    }
+
+    void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
+    {
+      QColorGroup _cg( cg );
+      _cg.setColor( QColorGroup::Base, defaultBackground );
+      _cg.setColor( QColorGroup::Text, defaultForeground );
+      QListViewItem::paintCell(p, _cg, column, width, align);
+    }
+  } *pwDir, *pwFile, *pwApp, *pwSymLink, *pwInvLink, *pwCurrent, *pwMark1, *pwMark2;
+};
 #endif /* __KGCOLORS_H__ */

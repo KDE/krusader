@@ -98,6 +98,8 @@
 #define _KDEDefaultColors     true 
 // Enable Alternate Background colors
 #define _AlternateBackground  true
+// Show current item even if not focussed
+#define _ShowCurrentItemAlways false
 
 /////////////////////// [General]
 // Mimetype Magic /////

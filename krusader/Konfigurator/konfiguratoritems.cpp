@@ -691,6 +691,7 @@ void KonfiguratorColorChooser::loadInitialValue()
   changeItem( createPixmap( customValue ), text( 0 ), 0 );
       
   ext->setChanged( false );
+  emit colorChanged();
   disableColorChooser = false;
 }
 
