@@ -22,6 +22,7 @@
 #include <kparts/mainwindow.h>
 #include <ktempfile.h>
 #include <kparts/partmanager.h>
+#include <kparts/browserextension.h>
 
 /**
   *@author Shie Erlich & Rafi Yanai
@@ -47,6 +48,8 @@ public slots:
 
   void keyPressEvent(QKeyEvent *e);
   void createGUI(KParts::Part*);
+
+  void handleOpenURLRequest( const KURL &url, const KParts::URLArgs & );
 private:
   KrViewer(QWidget *parent=0, const char *name=0);
   KParts::Part* getPart(KURL url, QString m ,bool readOnly);

@@ -31,6 +31,7 @@
 #include <kstatusbar.h>
 #include <kdebug.h>
 #include <klargefile.h>
+#include <khtml_part.h>
 // Krusader includes
 #include "krviewer.h"
 #include "../krusader.h"
@@ -126,7 +127,6 @@ void KrViewer::keyPressEvent(QKeyEvent *e) {
 }
 
 void KrViewer::view(KURL url){
-  //QString mimetype = KMimeType::findByURL( url )->name();
   KrViewer* viewer = new KrViewer(krApp);
 
   viewer->url = url;
@@ -196,13 +196,23 @@ void KrViewer::editText(){
 
 bool KrViewer::viewGeneric(){
   QString mimetype = KMimeType::findByURL( url )->name();
+  if( url.prettyURL().startsWith("man:") ) mimetype = "text/html";
   if( mimetype == "text/plain" )
     viewerMenu->setItemEnabled(1,false);
 
   if( !generic_part ){
-     generic_part = static_cast<KParts::ReadOnlyPart*>(getPart(url,mimetype,true));
-     if( generic_part ) manager.addPart(generic_part,this);
-     else return false;
+    if( mimetype.contains("html") ){
+      KHTMLPart* p = new KHTMLPart(this,0,0,0,KHTMLPart::BrowserViewGUI);
+      connect(p->browserExtension(), SIGNAL(openURLRequest(const KURL &, const KParts::URLArgs &)),
+              this,SLOT(handleOpenURLRequest(const KURL &,const KParts::URLArgs & )));
+
+      p-> openURL(url);
+      generic_part = p;
+    } else {
+      generic_part = static_cast<KParts::ReadOnlyPart*>(getPart(url,mimetype,true));
+    }
+    if( generic_part ) manager.addPart(generic_part,this);
+    else return false;
   }
 
   manager.setActivePart(generic_part);
@@ -270,4 +280,9 @@ void KrViewer::viewHex(){
     manager.addPart(hex_part,this);
   }
   manager.setActivePart(hex_part);
+}
+
+void KrViewer::handleOpenURLRequest( const KURL &url, const KParts::URLArgs & ){
+  if(generic_part) generic_part->openURL(url);
+
 }
