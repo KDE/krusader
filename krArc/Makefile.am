@@ -1,5 +1,5 @@
 ####### kdevelop will overwrite this part!!! (begin)##########
-kde_module_LTLIBRARIES = kio_krzip.la
+kde_module_LTLIBRARIES = kio_krarc.la
 
 
 INCLUDES = $(all_includes)
@@ -7,23 +7,23 @@ INCLUDES = $(all_includes)
 
 LDFLAGS =    
 
-kio_krzip_la_METASOURCES=AUTO
+kio_krarc_la_METASOURCES=AUTO
 
-kio_krzip_la_SOURCES = krzip.cpp 
-kio_krzip_la_LIBADD = $(LIB_KIO) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
+kio_krarc_la_SOURCES = krarc.cpp
+kio_krarc_la_LIBADD = $(LIB_KIO) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
 
-kio_krzip_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)     
+kio_krarc_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 
 
-EXTRA_DIST = krzip.cpp krzip.h krzip.protocol 
+EXTRA_DIST = krarc.cpp krarc.h krarc.protocol
 
 install-data-local:
 	$(mkinstalldirs)  $(kde_servicesdir)/
-	$(INSTALL_DATA) $(srcdir)/krzip.protocol  $(kde_servicesdir)/krzip.protocol
+	$(INSTALL_DATA) $(srcdir)/krarc.protocol  $(kde_servicesdir)/krarc.protocol
 
 uninstall-local:
-	-rm -f  $(kde_servicesdir)/krzip.protocol
+	-rm -f  $(kde_servicesdir)/krarc.protocol
 
 ####### kdevelop will overwrite this part!!! (end)############
 # These paths are KDE specific. Use them:
@@ -53,6 +53,6 @@ uninstall-local:
 messages:
 	LIST=`find . -name \*.h -o -name \*.hh -o -name \*.H -o -name \*.hxx -o -name \*.hpp -o -name \*.cpp -o -name \*.cc -o -name \*.cxx -o -name \*.ecpp -o -name \*.C`; \
 	if test -n "$$LIST"; then \
-		 $(XGETTEXT) -C -ki18n -x $(kde_includes)/kde.pot $$LIST -o ../po/krzip.pot; \
+		 $(XGETTEXT) -C -ki18n -x $(kde_includes)/kde.pot $$LIST -o ../po/krarc.pot; \
 	fi
 
