@@ -48,6 +48,7 @@
 #include <unistd.h>
 #include <qeventloop.h>
 #include <qprogressdialog.h>
+#include <kprocess.h>
 
 #define  DISPLAY_UPDATE_PERIOD        2
 

@@ -52,6 +52,7 @@
 #include <qimage.h>
 #include <qstringlist.h>
 #include <qsizepolicy.h>
+#include <ktempfile.h> 
 
 KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name ) {
   QGridLayout * layout = new QGridLayout( this, 1, 3 );
