@@ -21,9 +21,9 @@ addcxxflags=-DKDE_NO_COMPAT -DQT_NO_ASCII_CAST
 bin_program=krusader
 cflags=-DKDE_NO_COMPAT
 cppflags=-DKDE_NO_COMPAT
-cxxflags=\s-O0 -g3 -Wall -Werror
+cxxflags=\s-O0 -g3 -Wall
 ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s              \s
+ldflags=\s                 \s
 
 [General]
 AMChanged=false
@@ -31,7 +31,7 @@ author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux\s
 email=
 kdevprj_version=1.3
-lfv_open_groups=GNU
+lfv_open_groups=
 make_options=\s-j1
 makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am
 modifyMakefiles=true
