@@ -26,14 +26,14 @@ ldadd=UserMenu/libUserMenu.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialog
 ldflags=\s                                      \s
 
 [General]
-AMChanged=false
+AMChanged=true
 author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
 kdevprj_version=1.3
 lfv_open_groups=
 make_options=\s-j1
-makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am,krusader/Splitter/Makefile.am,krusader/Synchronizer/Makefile.am
+makefiles=Makefile.am,krusader/Makefile.am,doc/Makefile.am,doc/en/Makefile.am,po/Makefile.am,pics/Makefile.am,doc/pics/Makefile.am,krusader/BookMan/Makefile.am,krusader/Dialogs/Makefile.am,krusader/GUI/Makefile.am,krusader/Konfigurator/Makefile.am,krusader/KViewer/Makefile.am,krusader/MountMan/Makefile.am,krusader/Panel/Makefile.am,krusader/RemoteMan/Makefile.am,krusader/VFS/Makefile.am,krusader/Search/Makefile.am,krusader/Splitter/Makefile.am,krusader/Synchronizer/Makefile.am,krusader/UserMenu/Makefile.am
 modifyMakefiles=true
 project_name=Krusader
 project_type=mini_kde2
@@ -729,7 +729,7 @@ type=HEADER
 
 [krusader/Makefile.am]
 files=krusader/krusader.desktop,krusader/lo32-app-krusader.png,krusader/lo16-app-krusader.png,krusader/defaults.h,krusader/kicons.cpp,krusader/kicons.h,krusader/krslots.cpp,krusader/krslots.h,krusader/krusader.cpp,krusader/krusader.h,krusader/krusaderui.rc,krusader/krusaderview.cpp,krusader/krusaderview.h,krusader/lo32-app-krusader2.png,krusader/main.cpp,krusader/resources.h,krusader/x-ace.desktop,krusader/krservices.cpp,krusader/krservices.h,krusader/panelmanager.cpp,krusader/panelmanager.h,krusader/paneltabbar.cpp,krusader/paneltabbar.h
-sub_dirs=BookMan,Dialogs,GUI,Konfigurator,KViewer,MountMan,Panel,RemoteMan,VFS,Search,Splitter,Synchronizer
+sub_dirs=BookMan,Dialogs,GUI,Konfigurator,KViewer,MountMan,Panel,RemoteMan,VFS,Search,Splitter,Synchronizer,UserMenu
 type=prog_main
 
 [krusader/MountMan/Makefile.am]
@@ -764,11 +764,23 @@ install_location=
 type=HEADER
 
 [krusader/Panel/Makefile.am]
-files=krusader/Panel/listpanel.cpp,krusader/Panel/panelfunc.cpp,krusader/Panel/panelfunc.h,krusader/Panel/listpanel.h,krusader/Panel/krdetailedview.cpp,krusader/Panel/krdetailedview.h,krusader/Panel/krdetailedviewitem.cpp,krusader/Panel/krdetailedviewitem.h,krusader/Panel/krview.cpp,krusader/Panel/krview.h,krusader/Panel/krviewitem.h,krusader/Panel/krpreviewpopup.cpp,krusader/Panel/krpreviewpopup.h,krusader/Panel/krpopupmenu.cpp,krusader/Panel/krpopupmenu.h
+files=krusader/Panel/listpanel.cpp,krusader/Panel/panelfunc.cpp,krusader/Panel/panelfunc.h,krusader/Panel/listpanel.h,krusader/Panel/krdetailedview.cpp,krusader/Panel/krdetailedview.h,krusader/Panel/krdetailedviewitem.cpp,krusader/Panel/krdetailedviewitem.h,krusader/Panel/krview.cpp,krusader/Panel/krview.h,krusader/Panel/krviewitem.h,krusader/Panel/krpreviewpopup.cpp,krusader/Panel/krpreviewpopup.h,krusader/Panel/krpopupmenu.cpp,krusader/Panel/krpopupmenu.h,krusader/Panel/krcalcspacedialog.cpp,krusader/Panel/krcalcspacedialog.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=Panel
 sub_dirs=
 type=static_library
+
+[krusader/Panel/krcalcspacedialog.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Panel/krcalcspacedialog.h]
+dist=true
+install=false
+install_location=
+type=HEADER
 
 [krusader/Panel/krdetailedview.cpp]
 dist=true
@@ -1036,6 +1048,43 @@ install_location=
 type=SOURCE
 
 [krusader/Synchronizer/synchronizergui.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/UserMenu/Makefile.am]
+files=krusader/UserMenu/usermenu.cpp,krusader/UserMenu/usermenu.h,krusader/UserMenu/usermenuadd.ui,krusader/UserMenu/usermenuaddimpl.cpp,krusader/UserMenu/usermenuaddimpl.h
+sharedlib_LDFLAGS=-version-info 0:0:0
+sharedlib_rootname=UserMenu
+sub_dirs=
+type=static_library
+
+[krusader/UserMenu/usermenu.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/UserMenu/usermenu.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/UserMenu/usermenuadd.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/UserMenu/usermenuaddimpl.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/UserMenu/usermenuaddimpl.h]
 dist=true
 install=false
 install_location=

@@ -231,7 +231,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     tabLayout->setMargin( 11 );
 
     GroupBox1_2 = new QGroupBox( tab, "GroupBox1_2" );
-    GroupBox1_2->setTitle( i18n( "Don't search in" ) );
+    GroupBox1_2->setTitle( i18n( "&Don't search in" ) );
     GroupBox1_2->setColumnLayout(0, Qt::Vertical );
     GroupBox1_2->layout()->setSpacing( 0 );
     GroupBox1_2->layout()->setMargin( 0 );
@@ -250,8 +250,8 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     dontSearchInBtnAdd = new QToolButton( GroupBox1_2, "dontSearchInBtnAdd" );
     dontSearchInBtnAdd->setText( "" );
-    dontSearchInBtnAdd->setPixmap( image2 );    
-    
+    dontSearchInBtnAdd->setPixmap( image2 );
+
     GroupBox1_2Layout->addWidget( dontSearchInBtn, 0, 2 );
     GroupBox1_2Layout->addWidget( dontSearchInBtnAdd, 0, 1 );
 
@@ -263,7 +263,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     tabLayout->addWidget( GroupBox1_2, 1, 1 );
 
     GroupBox1 = new QGroupBox( tab, "GroupBox1" );
-    GroupBox1->setTitle( i18n( "Search in" ) );
+    GroupBox1->setTitle( i18n( "&Search in" ) );
     GroupBox1->setColumnLayout(0, Qt::Vertical );
     GroupBox1->layout()->setSpacing( 0 );
     GroupBox1->layout()->setMargin( 0 );
@@ -313,16 +313,16 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     containsWholeWord = new QCheckBox( GroupBox14, "containsWholeWord" );
     containsWholeWord->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, containsWholeWord->sizePolicy().hasHeightForWidth() ) );
-    containsWholeWord->setText( i18n( "Match whole word only" ) );
+    containsWholeWord->setText( i18n( "&Match whole word only" ) );
     containsWholeWord->setChecked( FALSE );
     Layout7->addWidget( containsWholeWord );
-    
+
     containsTextCase = new QCheckBox( GroupBox14, "containsTextCase" );
     containsTextCase->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, containsTextCase->sizePolicy().hasHeightForWidth() ) );
-    containsTextCase->setText( i18n( "Case sensetive" ) );
+    containsTextCase->setText( i18n( "Cas&e sensetive" ) );
     containsTextCase->setChecked( TRUE );
     Layout7->addWidget( containsTextCase );
-    
+
     GroupBox14Layout->addLayout( Layout7, 1, 0 );
 
     Layout8 = new QHBoxLayout;
@@ -331,12 +331,13 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     TextLabel2 = new QLabel( GroupBox14, "TextLabel2" );
     TextLabel2->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)1, TextLabel2->sizePolicy().hasHeightForWidth() ) );
-    TextLabel2->setText( i18n( "Text:" ) );
+    TextLabel2->setText( i18n( "&Text:" ) );
     Layout8->addWidget( TextLabel2 );
 
     containsText = new KHistoryCombo( FALSE, GroupBox14, "containsText" );
     containsText->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, containsText->sizePolicy().hasHeightForWidth() ) );
     Layout8->addWidget( containsText );
+    TextLabel2->setBuddy(containsText);
 
     GroupBox14Layout->addLayout( Layout8, 0, 0 );
 
@@ -353,30 +354,32 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     GroupBox140Layout->setMargin( 11 );
 
     searchForCase = new QCheckBox( GroupBox140, "searchForCase" );
-    searchForCase->setText( i18n( "Case sensetive" ) );
+    searchForCase->setText( i18n( "&Case sensetive" ) );
     searchForCase->setChecked( TRUE );
 
     GroupBox140Layout->addWidget( searchForCase, 1, 2 );
 
     TextLabel1 = new QLabel( GroupBox140, "TextLabel1" );
-    TextLabel1->setText( i18n( "Search for:" ) );
+    TextLabel1->setText( i18n( "Search &for:" ) );
 
     GroupBox140Layout->addWidget( TextLabel1, 0, 0 );
 
     TextLabel1_2 = new QLabel( GroupBox140, "TextLabel1_2" );
-    TextLabel1_2->setText( i18n( "Of type:" ) );
+    TextLabel1_2->setText( i18n( "&Of type:" ) );
 
     GroupBox140Layout->addWidget( TextLabel1_2, 1, 0 );
 
     ofType = new KComboBox( FALSE, GroupBox140, "ofType" );
     ofType->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, ofType->sizePolicy().hasHeightForWidth() ) );
     ofType->setEditable( FALSE );
+    TextLabel1_2->setBuddy(ofType);
 
     GroupBox140Layout->addWidget( ofType, 1, 1 );
 
     searchFor = new KHistoryCombo( FALSE, GroupBox140, "searchFor" );
     searchFor->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, searchFor->sizePolicy().hasHeightForWidth() ) );
     searchFor->setEditable( TRUE );
+    TextLabel1->setBuddy(searchFor);
 
     GroupBox140Layout->addMultiCellWidget( searchFor, 0, 0, 1, 2 );
 
@@ -389,21 +392,21 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     Layout9_2->addItem( spacer_3 );
 
     searchInDirs = new QCheckBox( tab, "searchInDirs" );
-    searchInDirs->setText( i18n( "Search in subdirectories" ) );
+    searchInDirs->setText( i18n( "Search in s&ubdirectories" ) );
     searchInDirs->setChecked( TRUE );
     Layout9_2->addWidget( searchInDirs );
 
     searchInArchives = new QCheckBox( tab, "searchInArchives" );
     searchInArchives->setEnabled( FALSE );
-    searchInArchives->setText( i18n( "Search in archives" ) );
+    searchInArchives->setText( i18n( "Search in arch&ives" ) );
     Layout9_2->addWidget( searchInArchives );
 
     followLinks = new QCheckBox( tab, "followLinks" );
-    followLinks->setText( i18n( "Follow links" ) );
+    followLinks->setText( i18n( "Follow &links" ) );
     Layout9_2->addWidget( followLinks );
 
     tabLayout->addMultiCellLayout( Layout9_2, 3, 3, 0, 1 );
-    TabWidget2->insertTab( tab, i18n( "General" ) );
+    TabWidget2->insertTab( tab, i18n( "&General" ) );
 
     tab_2 = new QWidget( TabWidget2, "tab_2" );
     tabLayout_2 = new QGridLayout( tab_2 );
@@ -416,7 +419,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     smallerThanEnabled = new QCheckBox( GroupBox29, "smallerThanEnabled" );
     smallerThanEnabled->setGeometry( QRect( 270, 20, 100, 21 ) );
-    smallerThanEnabled->setText( i18n( "Smaller than" ) );
+    smallerThanEnabled->setText( i18n( "&Smaller than" ) );
 
     smallerThanAmount = new QLineEdit( GroupBox29, "smallerThanAmount" );
     smallerThanAmount->setEnabled( FALSE );
@@ -432,7 +435,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     biggerThanEnabled = new QCheckBox( GroupBox29, "biggerThanEnabled" );
     biggerThanEnabled->setGeometry( QRect( 10, 20, 100, 21 ) );
-    biggerThanEnabled->setText( i18n( "Bigger than" ) );
+    biggerThanEnabled->setText( i18n( "&Bigger than" ) );
 
     biggerThanType = new KComboBox( FALSE, GroupBox29, "biggerThanType" );
     biggerThanType->insertItem( i18n( "Bytes" ) );
@@ -473,13 +476,14 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     ButtonGroup2Layout->addWidget( modifiedBetweenBtn1, 0, 4 );
 
     TextLabel2_2 = new QLabel( ButtonGroup2, "TextLabel2_2" );
-    TextLabel2_2->setText( i18n( "and" ) );
+    TextLabel2_2->setText( i18n( "an&d" ) );
 
     ButtonGroup2Layout->addWidget( TextLabel2_2, 0, 5 );
 
     modifiedBetweenData2 = new QLineEdit( ButtonGroup2, "modifiedBetweenData2" );
     modifiedBetweenData2->setEnabled( FALSE );
     modifiedBetweenData2->setText( "" );
+    TextLabel2_2->setBuddy(modifiedBetweenData2);
 
     ButtonGroup2Layout->addWidget( modifiedBetweenData2, 0, 6 );
 
@@ -504,7 +508,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     ButtonGroup2Layout->addMultiCellWidget( notModifiedAfterData, 1, 1, 2, 3 );
 
     modifiedInTheLastEnabled = new QRadioButton( ButtonGroup2, "modifiedInTheLastEnabled" );
-    modifiedInTheLastEnabled->setText( "" );
+    modifiedInTheLastEnabled->setText( "Mod&ified in the last" );
     ButtonGroup2->insert( modifiedInTheLastEnabled, 0 );
 
     ButtonGroup2Layout->addWidget( modifiedInTheLastEnabled, 2, 0 );
@@ -540,23 +544,25 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     ButtonGroup2Layout->addWidget( notModifiedInTheLastData, 3, 2 );
 
     TextLabel3_2 = new QLabel( ButtonGroup2, "TextLabel3_2" );
-    TextLabel3_2->setText( i18n( "Not modified in the last" ) );
+    TextLabel3_2->setText( i18n( "No&t modified in the last" ) );
+    TextLabel3_2->setBuddy(notModifiedInTheLastData);
 
-    ButtonGroup2Layout->addWidget( TextLabel3_2, 3, 1 );
+    ButtonGroup2Layout->addWidget( TextLabel3_2, 3, 0 );
 
     notModifiedAfterEnabled = new QRadioButton( ButtonGroup2, "notModifiedAfterEnabled" );
-    notModifiedAfterEnabled->setText( i18n( "Not modified after" ) );
+    notModifiedAfterEnabled->setText( i18n( "&Not modified after" ) );
     ButtonGroup2->insert( notModifiedAfterEnabled, 0 );
 
     ButtonGroup2Layout->addMultiCellWidget( notModifiedAfterEnabled, 1, 1, 0, 1 );
 
     modifiedInTheLast = new QLabel( ButtonGroup2, "modifiedInTheLast" );
-    modifiedInTheLast->setText( i18n( "Modified in the last" ) );
+    modifiedInTheLast->setText( i18n( "" ) );
 
     ButtonGroup2Layout->addWidget( modifiedInTheLast, 2, 1 );
 
     modifiedBetweenEnabled = new QRadioButton( ButtonGroup2, "modifiedBetweenEnabled" );
-    modifiedBetweenEnabled->setText( i18n( "Modified between" ) );
+    modifiedBetweenEnabled->setText( i18n( "&Modified between" ) );
+    modifiedInTheLast->setBuddy(modifiedBetweenEnabled);
     ButtonGroup2->insert( modifiedBetweenEnabled, 0 );
 
     ButtonGroup2Layout->addMultiCellWidget( modifiedBetweenEnabled, 0, 0, 0, 1 );
@@ -578,7 +584,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     Layout10->setMargin( 0 );
 
     belongsToUserEnabled = new QCheckBox( GroupBox181, "belongsToUserEnabled" );
-    belongsToUserEnabled->setText( i18n( "Belongs to user" ) );
+    belongsToUserEnabled->setText( i18n( "Belongs to &user" ) );
     Layout10->addWidget( belongsToUserEnabled );
 
     belongsToUserData = new QComboBox( FALSE, GroupBox181, "belongsToUserData" );
@@ -587,7 +593,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     Layout10->addWidget( belongsToUserData );
 
     belongsToGroupEnabled = new QCheckBox( GroupBox181, "belongsToGroupEnabled" );
-    belongsToGroupEnabled->setText( i18n( "Belongs to group" ) );
+    belongsToGroupEnabled->setText( i18n( "Belongs to gr&oup" ) );
     Layout10->addWidget( belongsToGroupEnabled );
 
     belongsToGroupData = new QComboBox( FALSE, GroupBox181, "belongsToGroupData" );
@@ -598,7 +604,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     GroupBox181Layout->addMultiCellLayout( Layout10, 0, 0, 0, 3 );
 
     GroupBox206 = new QGroupBox( GroupBox181, "GroupBox206" );
-    GroupBox206->setTitle( i18n( "Owner" ) );
+    GroupBox206->setTitle( i18n( "O&wner" ) );
 
     ownerW = new QComboBox( FALSE, GroupBox206, "ownerW" );
     ownerW->insertItem( i18n( "?" ) );
@@ -624,12 +630,12 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     GroupBox181Layout->addWidget( GroupBox206, 1, 1 );
 
     permissionsEnabled = new QCheckBox( GroupBox181, "permissionsEnabled" );
-    permissionsEnabled->setText( i18n( "Permissions" ) );
+    permissionsEnabled->setText( i18n( "P&ermissions" ) );
 
     GroupBox181Layout->addWidget( permissionsEnabled, 1, 0 );
 
     GroupBox206_2 = new QGroupBox( GroupBox181, "GroupBox206_2" );
-    GroupBox206_2->setTitle( i18n( "Group" ) );
+    GroupBox206_2->setTitle( i18n( "Grou&p" ) );
 
     groupW = new QComboBox( FALSE, GroupBox206_2, "groupW" );
     groupW->insertItem( i18n( "?" ) );
@@ -655,7 +661,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     GroupBox181Layout->addWidget( GroupBox206_2, 1, 2 );
 
     GroupBox206_3 = new QGroupBox( GroupBox181, "GroupBox206_3" );
-    GroupBox206_3->setTitle( i18n( "All" ) );
+    GroupBox206_3->setTitle( i18n( "A&ll" ) );
 
     allW = new QComboBox( FALSE, GroupBox206_3, "allW" );
     allW->insertItem( i18n( "?" ) );
@@ -690,7 +696,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     GroupBox181Layout->addMultiCellWidget( TextLabel4, 2, 2, 0, 3, Qt::AlignRight );
 
     tabLayout_2->addWidget( GroupBox181, 2, 0 );
-    TabWidget2->insertTab( tab_2, i18n( "Advanced" ) );
+    TabWidget2->insertTab( tab_2, i18n( "&Advanced" ) );
 
     tab_3 = new QWidget( TabWidget2, "tab_3" );
     tabLayout_3 = new QGridLayout( tab_3 );
@@ -725,7 +731,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     resultsList->addColumn( i18n( "Permissions" ) );
 
     tabLayout_3->addWidget( resultsList, 0, 0 );
-    TabWidget2->insertTab( tab_3, i18n( "Results" ) );
+    TabWidget2->insertTab( tab_3, i18n( "&Results" ) );
 
     KrSearchBaseLayout->addWidget( TabWidget2, 0, 0 );
 

@@ -2,7 +2,7 @@
 <kdevelop>
   <general>
     <author>Shie Erlich and Rafi Yanai</author>
-    <email></email>
+    <email/>
     <version>1.20</version>
     <projectmanagement>KDevAutoProject</projectmanagement>
     <primarylanguage>C++</primarylanguage>
@@ -15,7 +15,7 @@
     </ignoreparts>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description></description>
+    <description/>
     <secondaryLanguages/>
   </general>
   <kdevautoproject>
@@ -25,7 +25,7 @@
     </general>
     <run>
       <mainprogram>krusader/krusader</mainprogram>
-      <programargs></programargs>
+      <programargs/>
       <terminal>false</terminal>
       <envvars/>
       <autocompile>true</autocompile>
@@ -40,21 +40,39 @@
       <abortonerror>true</abortonerror>
       <numberofjobs>2</numberofjobs>
       <dontact>false</dontact>
-      <makebin></makebin>
+      <makebin/>
     </make>
+    <configurations>
+      <default>
+        <configargs/>
+        <builddir/>
+        <topsourcedir/>
+        <cppflags>-DQT_THREAD_SUPPORT</cppflags>
+        <ldflags/>
+        <ccompiler>kdevgccoptions</ccompiler>
+        <cxxcompiler>kdevgppoptions</cxxcompiler>
+        <f77compiler>kdevpgf77options</f77compiler>
+        <ccompilerbinary/>
+        <cxxcompilerbinary>-DQT_THREAD_SUPPORT</cxxcompilerbinary>
+        <f77compilerbinary/>
+        <cflags/>
+        <cxxflags>-DQT_THREAD_SUPPORT</cxxflags>
+        <f77flags/>
+      </default>
+    </configurations>
   </kdevautoproject>
   <kdevdebugger>
     <general>
       <dbgshell>libtool</dbgshell>
-      <programargs></programargs>
-      <gdbpath></gdbpath>
+      <programargs/>
+      <gdbpath/>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
       <runappinappdirectory>true</runappinappdirectory>
-      <configGdbScript></configGdbScript>
-      <runShellScript></runShellScript>
-      <runGdbScript></runGdbScript>
+      <configGdbScript/>
+      <runShellScript/>
+      <runGdbScript/>
     </general>
     <display>
       <staticmembers>false</staticmembers>

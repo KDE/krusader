@@ -76,7 +76,7 @@
                         </widget>
                         <widget class="QToolButton" row="1" column="2">
                             <property name="name">
-                                <cstring>toolButton2</cstring>
+                                <cstring>addFoldersButton</cstring>
                             </property>
                             <property name="enabled">
                                 <bool>false</bool>
@@ -307,7 +307,7 @@
     <connection>
         <sender>showOnlyIn</sender>
         <signal>toggled(bool)</signal>
-        <receiver>toolButton2</receiver>
+        <receiver>addFoldersButton</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
     <connection>
@@ -322,9 +322,22 @@
         <receiver>UserMenuAdd</receiver>
         <slot>accept()</slot>
     </connection>
+    <connection>
+        <sender>addButton</sender>
+        <signal>clicked()</signal>
+        <receiver>UserMenuAdd</receiver>
+        <slot>popupAddMenu()</slot>
+    </connection>
+    <connection>
+        <sender>addFoldersButton</sender>
+        <signal>clicked()</signal>
+        <receiver>UserMenuAdd</receiver>
+        <slot>addShowInFolder()</slot>
+    </connection>
 </connections>
 <slots>
-    <slot>saveEntry()</slot>
+    <slot>popupAddMenu()</slot>
+    <slot>addShowInFolder()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
