@@ -71,12 +71,6 @@ using namespace MountMan;
 
 KMountMan::KMountMan() : QObject(), Ready( false ), Operational( false ),
 outputBuffer( 0 ), tempFile( 0 ), mountManGui( 0 ), mtab( "" ) {
-#ifdef _OS_SOLARIS_
-  // disable mountman on solaris because of df issues.
-  // at least until we find a solaris box to test on
-  Operational = Ready = false;
-  return;
-#endif
 #if KDE_IS_VERSION(3,2,0)
   _actions = 0L;
 #endif /* KDE 3.2 */
@@ -159,17 +153,24 @@ bool KMountMan::createFilesystems() {
     }
   // and read it into the temporary array
   QTextStream t( &fstab );
+//kdWarning() << "debug: createFilesystems" << endl;
   while ( !fstab.atEnd() ) {
     s = t.readLine();
     s = s.simplifyWhiteSpace(); // remove TABs
     if ( s == QString::null || s == "" ) continue;  // skip empty lines in fstab
     // temp[0]==name, temp[1]==type, temp[2]==mount point, temp[3]==options
     // temp[4] is reserved for special cases, right now, only for supermount
+//kdWarning() << "debug: " << s << endl;
     bool remark = false;
     ( temp[ 0 ][ i ] ) = nextWord( s, ' ' );
+#if defined(_OS_SOLARIS_)
+    nextWord( s, ' ' );
+#endif
     ( temp[ 2 ][ i ] ) = nextWord( s, ' ' );
     ( temp[ 1 ][ i ] ) = nextWord( s, ' ' );
+#if !defined(_OS_SOLARIS_)
     ( temp[ 3 ][ i ] ) = nextWord( s, ' ' );
+#endif
     // now, we check if a remark was inserted in the line
     for ( int cnt = 0; cnt < 3; ++cnt )
       if ( temp[ cnt ][ i ] == "#" || temp[ cnt ][ i ].left( 1 ) == "#" ) {
@@ -200,7 +201,7 @@ bool KMountMan::createFilesystems() {
   --i; fstab.close();  // finished with it
   for ( j = 0; j <= i; ++j ) {
     if ( temp[ 0 ][ j ] == "" || temp[ 0 ][ j ] == "tmpfs" || temp[ 0 ][ j ] == "none" || temp[ 0 ][ j ] == "proc" ||
-#ifdef BSD
+#if defined(BSD)
          temp[ 0 ][ j ] == "swap" || temp[ 1 ][ j ] == "procfs" || temp[ 1 ][ j ] == "/dev/pts" ||        // FreeBSD: procfs instead of proc
 #else
          temp[ 0 ][ j ] == "swap" || temp[ 1 ][ j ] == "proc" || temp[ 1 ][ j ] == "/dev/pts" ||
@@ -235,7 +236,7 @@ bool KMountMan::createFilesystems() {
     }
   kdDebug() << "Mt.Man: found the following:\n" << forDebugOnly << "Trying DF..." << endl;
 
-#ifdef BSD
+#if defined(BSD) || defined(_OS_SOLARIS_)
   // FreeBSD problem: df does not retrive fs type.
   // Workaround: execute mount -p and merge result.
 
@@ -254,13 +255,18 @@ bool KMountMan::createFilesystems() {
 
   QString str = getOutput();
   QTextStream t2( str, IO_ReadOnly );
+//kdWarning() << "debug: mount -p" << endl;
   while ( !t2.atEnd() ) {
     s = t2.readLine();
     s = s.simplifyWhiteSpace(); // remove TABs
     if ( s == QString::null || s == "" ) continue;  // skip empty lines in fstab
     // temp[0]==name, temp[1]==type, temp[2]==mount point, temp[3]==options
     // temp[4] is reserved for special cases, right now, only for supermount
+//kdWarning() << "debug: " << s << endl;
     QString temp0 = nextWord( s, ' ' );
+#ifdef _OS_SOLARIS_
+QString temp4 = nextWord( s, ' ' ); // skip '-' column
+#endif
     QString temp2 = nextWord( s, ' ' );
     QString temp1 = nextWord( s, ' ' );
     QString temp3 = nextWord( s, ' ' );
@@ -273,10 +279,12 @@ bool KMountMan::createFilesystems() {
       system->setType( temp1 );
       system->setMntPoint( temp2 );
       system->supermount = false;
-      system->options = temp3;
+#ifndef _OS_SOLARIS_
+      system->options = temp3; // unknown column on solaris
+#endif
       filesystems.append( system );
       ++noOfFilesystems;
-      kdWarning() << "Mt.Man: filesystem [" << temp0 << "] found by mount -p is unlisted in /etc/fstab." << endl;
+      kdWarning() << "Mt.Man: filesystem [" << temp0 << "] found by mount -p is unlisted in "  << QString(FSTAB) << endl;
       }
     }
 #endif
@@ -298,8 +306,10 @@ void KMountMan::updateFilesystems() {
   tempFile->setAutoDelete( true );
   dfProc.clearArguments();
   dfProc.setExecutable( KrServices::fullPathName( "df" ) );
-#ifdef BSD
+#if defined(BSD)
   dfProc << ">" << tempFile->name(); // FreeBSD: df instead of df -T -P
+#elif defined(_OS_SOLARIS_)
+  dfProc << "-k" << ">" << tempFile->name(); // Solaris: df -k instead of df -T -P
 #else
   dfProc << "-T" << "-P" << ">" << tempFile->name();
 #endif
@@ -334,7 +344,7 @@ fsData* KMountMan::location( QString name ) {
   fsData * it;
   for ( it = filesystems.first() ; ( it != 0 ) ; it = filesystems.next() ) {
     if ( followLink( it->name() ) == followLink( name ) ) break;
-#ifdef BSD
+#if defined(BSD) || defined(_OS_SOLARIS_)
     if ( name.left( 2 ) == "//" && !strcasecmp( followLink( it->name() ).latin1(), followLink( name ).latin1() ) ) break; // FreeBSD: ignore case due to smbfs mounts
 #endif
 
@@ -441,19 +451,23 @@ void KMountMan::parseDfData( QString filename ) {
   s = t.readLine();  // read the 1st line - it's trash for us
   // now that we have a QString containing all the output of DF, let's get to work.
   int countFilesystems = 0; // sucessfully found filesystems
+//kdWarning() << "debug: parseDfData" << endl;
   while ( !t.eof() ) {
     bool newFS = false;
     s2 = s = t.readLine();  // this is the important one!
+//kdWarning() << "debug: " << s << endl;
     temp = nextWord( s, ' ' );
     // avoid adding unwanted filesystems to the list
     if ( temp == "tmpfs" ) continue;
-#ifdef BSD
+#if defined(BSD)
     if ( temp == "procfs" ) continue; // FreeBSD: ignore procfs too
+#elif defined(_OS_SOLARIS_)
+    if ( temp == "proc" || temp == "swap") continue; // Solaris: ignore procfs too
 #endif
     temp = followLink( temp );  // make sure DF gives us the true device and not a link
     fsData* loc = location( temp ); // where is the filesystem located in our list?
     if ( loc == 0 ) {
-      kdWarning() << "Mt.Man: filesystem [" << temp << "] found by DF is unlisted in /etc/fstab." << endl;
+      kdWarning() << "Mt.Man: filesystem [" << temp << "] found by DF is unlisted in " << QString(FSTAB) << endl;
       loc = new fsData();
       loc->supermount = false;
       filesystems.append( loc );
@@ -464,14 +478,14 @@ void KMountMan::parseDfData( QString filename ) {
       else loc->setName( "/dev/" + temp );
       newFS = true;
       }
-#ifndef BSD
+#if !defined(BSD) && !defined(_OS_SOLARIS_)
     temp = nextWord( s, ' ' );   // catch the TYPE
     // is it supermounted ?
     if ( temp == "supermount" ) loc->supermount = true;
     loc->setType( temp );
     if ( loc->type() != temp ) {
       kdWarning() << "Mt.Man: according to DF, filesystem [" << loc->name() <<
-      "] has a different type from what's stated in /etc/fstab." << endl;
+      "] has a different type from what's stated in " << QString(FSTAB) << endl;
       loc->setType( temp );  // DF knows best
       }
 #endif
@@ -673,7 +687,7 @@ void KMountMan::eject( QString mntPoint ) {
 
 // returns true if the path is an ejectable mount point (at the moment CDROM)
 bool KMountMan::ejectable( QString path ) {
-#ifndef BSD
+#if !defined(BSD) && !defined(_OS_SOLARIS_)
   fsData * it;
   for ( it = filesystems.first() ; ( it != 0 ) ; it = filesystems.next() )
     if ( it->mntPoint() == path &&
@@ -695,7 +709,7 @@ statsCollector::statsCollector( QString path, QObject *caller ) : QObject() {
 	emit gotStats(stats);
 	return;
   }
-#ifdef BSD
+#if defined(BSD)
   if ( path.left( 5 ) == "/procfs" ) { // /procfs is a special case - no volume information
     stats = i18n( "No space information on a [procfs]" );
 #else
@@ -734,7 +748,8 @@ void statsCollector::parseDf( QString filename, fsData * data ) {
   QString s;
   s = t.readLine();  // read the 1st line - it's trash for us
   s = t.readLine();  // this is the important one!
-#ifndef BSD
+//kdWarning() << "debug: parseDf: " << s << endl;
+#if !defined(BSD) && !defined(_OS_SOLARIS_)
   data->setName( KMountMan::nextWord( s, ' ' ) );
 #endif
   data->setType( KMountMan::nextWord( s, ' ' ) );
@@ -757,9 +772,12 @@ void statsCollector::getData( QString path, fsData * data ) {
 
   KShellProcess dfProc;
   QString tmpFile = krApp->getTempFile();
-
-#ifdef BSD
+#if defined(BSD)
   dfProc << KrServices::fullPathName ( "df" ) << "\"" + path + "\"" << ">" << tmpFile; // FreeBSD: df instead of df -T -P
+//kdWarning() << "debug: parseDf command: " << KrServices::fullPathName ( "df" ) << " \"" + path + "\" > " << tmpFile << endl;
+#elif defined(_OS_SOLARIS_)
+  dfProc << KrServices::fullPathName ( "df" ) << "-k" << "\"" + path + "\"" << ">" << tmpFile; // Solaris: df -k instead of df -T -P
+//kdWarning() << "debug: parseDf command: " << KrServices::fullPathName ( "df" ) << " -k \"" + path + "\" > " << tmpFile << endl;
 #else
   dfProc << KrServices::fullPathName ( "df" ) << "-T" << "-P" << "\"" + path + "\"" << ">" << tmpFile;
 #endif
