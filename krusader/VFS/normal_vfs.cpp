@@ -64,8 +64,6 @@ normal_vfs::normal_vfs(QString,QWidget* panel):vfs(panel){
 }
 
 bool normal_vfs::vfs_refresh(QString origin){
-  //kdDebug() << "vfs_refresh: " << origin << endl;
-
 	// check that the new origin exists
 	if ( !QDir(origin).exists() ) return false;
     
@@ -74,7 +72,6 @@ bool normal_vfs::vfs_refresh(QString origin){
    	
 	watcher.stopScan(); //stop watching the old dir
   if( origin != vfs_getOrigin() ){
-    //kdDebug() << "vfs_refresh2: " << origin << endl;
 		watcher.removeDir(vfs_getOrigin()); // and remove it from the list
 		watcher.addDir(origin/*,true*/); //start watching the new dir
 	}
