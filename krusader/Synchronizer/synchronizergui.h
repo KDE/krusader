@@ -32,6 +32,7 @@
 #define __SYNCHRONIZERGUI_H__
 
 #include "synchronizer.h"
+#include "../GUI/profilemanager.h"
 #include <qdialog.h>
 #include <qlistview.h>
 #include <kcombobox.h>
@@ -97,7 +98,8 @@ public slots:
   void closeDialog();
   void refresh();
   void swapSides();
-  void profiles();
+  void loadFromProfile( QString );
+  void saveToProfile( QString );
   
 protected slots:
   void reject();
@@ -112,14 +114,12 @@ private:
   void    setMarkFlags();
   void    disableMarkButtons();
   void    enableMarkButtons();
-  QString encodeName( QString );
-  QString decodeName( QString );
-  void    loadProfile( QString );
-  void    saveProfile( QString, int );
   
 protected:
   virtual void keyPressEvent( QKeyEvent * );
   virtual void resizeEvent( QResizeEvent *e );
+  
+  ProfileManager *profileManager;
   
   KHistoryCombo *leftLocation;
   KHistoryCombo *rightLocation;
@@ -135,7 +135,6 @@ protected:
   QCheckBox     *cbAsymmetric;
   QCheckBox     *cbAutoScroll;
   
-  QPushButton   *btnProfiles;
   QPushButton   *btnSwapSides;
   QPushButton   *btnCompareDirs;
   QPushButton   *btnStopComparing;

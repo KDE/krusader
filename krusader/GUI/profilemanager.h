@@ -41,6 +41,8 @@ class ProfileManager : public QPushButton
 public: 
   ProfileManager( QString profileType, QWidget * parent = 0, const char * name = 0 );
   
+  bool loadByName( QString name );
+  
 public slots:
   void profilePopup();
   

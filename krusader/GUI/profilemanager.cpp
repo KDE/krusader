@@ -258,5 +258,21 @@ void ProfileManager::profilePopup()
     emit saveToProfile( profileType + " - " + profileList[ result - OVERWRITE_ENTRY_ID ] );
   }  
 }
+  
+bool ProfileManager::loadByName( QString name )
+{
+  for( unsigned i=0; i != profileList.count() ; i++ )
+  {
+    krConfig->setGroup( profileType + " - " + profileList[i] ); 
+    QString currentName = krConfig->readEntry( "Name" );
+    
+    if( name == currentName )
+    {
+      emit loadFromProfile( profileType + " - " + profileList[ i ] );
+      return true;
+    }
+  }
+  return false;    
+}
 
 #include "profilemanager.moc"
