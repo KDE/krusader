@@ -335,7 +335,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   //kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
 
   if (col == nameColumn ) {
-      return QString::compare(text0,itext0);
+      return QString::localeAwareCompare(text0,itext0);
   } else if (col == sizeColumn ) {
       return QString::compare(num2qstring(size()),num2qstring(other->size()));
   } else if (col == dateTimeColumn ) {
@@ -343,7 +343,7 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   } else {
       QString e1 = (caseSensitiveSort ? text(col) : text(col).lower());
       QString e2 = (caseSensitiveSort ? i->text(col) : i->text(col).lower());
-      return QString::compare(e1, e2);
+      return QString::localeAwareCompare(e1, e2);
   }
 }
 
