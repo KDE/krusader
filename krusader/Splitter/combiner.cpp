@@ -110,21 +110,40 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
     error = i18n("Error at reading the CRC file (%1)!").arg( splURL.prettyURL(0,KURL::StripFileProtocol) );
   else
   {
+    splitFile.remove( '\r' ); // Windows compatibility
     QStringList splitFileContent = QStringList::split( '\n', splitFile );
     
-    if( splitFileContent.count() != 3 || !splitFileContent[0].startsWith("filename=") ||
-        !splitFileContent[1].startsWith("size=") ||
-        !splitFileContent[2].startsWith("crc32=") )
+    bool hasFileName = false, hasSize = false, hasCrc = false;
+    
+    for( int i = 0; i != splitFileContent.count(); i++ )
+    {
+      int ndx = splitFileContent[i].find( '=' );    
+      if( ndx == -1 )
+        continue;      
+      QString token = splitFileContent[i].left( ndx ).stripWhiteSpace();
+      QString value = splitFileContent[i].mid( ndx + 1 );      
+    
+      if( token == "filename" )
+      {
+        expectedFileName = value;
+        hasFileName = true;
+      }
+      else if( token == "size" ) 
+      {
+        sscanf( value.stripWhiteSpace().ascii(), "%llu", &expectedSize );
+        hasSize = true;
+      }
+      if( token == "crc32" )
+      {
+        expectedCrcSum   = value.stripWhiteSpace().rightJustify( 8, '0' );
+        hasCrc = true;
+      }
+    }
+    
+    if( !hasFileName || !hasSize || !hasCrc )
       error = i18n("Not a valid CRC file!");
     else
-    {
       hasValidSplitFile = true;
-      expectedFileName = splitFileContent[0].mid( 9 );
-      expectedCrcSum   = splitFileContent[2].mid( 6 ).rightJustify( 8, '0' );
-      
-      QString size = splitFileContent[1].mid( 5 );
-      sscanf( size.ascii(), "%llu", &expectedSize );
-    }
   }
       
   if( !error.isEmpty() )
