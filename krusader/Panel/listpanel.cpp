@@ -53,6 +53,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kglobalsettings.h>
+#include <qtooltip.h>
 #include <kdeversion.h>
 #include <qimage.h>
 #include <qtabbar.h>
@@ -165,25 +166,25 @@ cdRootButton( 0 ), cdUpButton( 0 ) {
    cdOtherButton = new QToolButton( hbox, "cdOtherButton" );
    cdOtherButton->setFixedSize( 20, origin->button() ->height() );
    cdOtherButton->setText( i18n( "=" ) );
-	QWhatsThis::add(  cdOtherButton, i18n( "Equal" ) );
+	QToolTip::add(  cdOtherButton, i18n( "Equal" ) );
    connect( cdOtherButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDOther() ) );
 
    cdUpButton = new QToolButton( hbox, "cdUpButton" );
    cdUpButton->setFixedSize( 20, origin->button() ->height() );
    cdUpButton->setText( i18n( ".." ) );
-	QWhatsThis::add(  cdUpButton, i18n( "Up" ) );
+	QToolTip::add(  cdUpButton, i18n( "Up" ) );
    connect( cdUpButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDup() ) );
 
    cdHomeButton = new QToolButton( hbox, "cdHomeButton" );
    cdHomeButton->setFixedSize( 20, origin->button() ->height() );
    cdHomeButton->setText( i18n( "~" ) );
-	QWhatsThis::add(  cdHomeButton, i18n( "Home" ) );
+	QToolTip::add(  cdHomeButton, i18n( "Home" ) );
    connect( cdHomeButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDHome() ) );
 
    cdRootButton = new QToolButton( hbox, "cdRootButton" );
    cdRootButton->setFixedSize( 20, origin->button() ->height() );
    cdRootButton->setText( i18n( "/" ) );
-	QWhatsThis::add(  cdRootButton, i18n( "Root" ) );
+	QToolTip::add(  cdRootButton, i18n( "Root" ) );
    connect( cdRootButton, SIGNAL( clicked() ), this, SLOT( slotFocusAndCDRoot() ) );
 
    setPanelToolbar();
