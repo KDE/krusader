@@ -96,7 +96,8 @@ kio_krarcProtocol::~kio_krarcProtocol(){
 void kio_krarcProtocol::receivedData(KProcess*,char* buf,int len){
 	QByteArray d(len);
 	d.setRawData(buf,len);
-	data(d);	
+	data(d);
+	processedSize(len);	
 }
 
 void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
@@ -218,6 +219,10 @@ void kio_krarcProtocol::get(const KURL& url ){
   if( cpioReady ){
     proc << getCmd << arcTempDir+"contents.cpio " << "\"*"+file+"\"";
   } else {
+    // Determine the mimetype of the file to be retrieved, and emit it.
+    // This is mandatory in all slaves (for KRun/BrowserRun to work).
+    KMimeType::Ptr mt = KMimeType::findByURL( arcTempDir+file, 0, false /* NOT local URL */ );
+    emit mimeType( mt->name() );
 	  proc << getCmd << "\""+arcFile->url().path()+"\" " << "\""+file+"\"";
     connect(&proc,SIGNAL(receivedStdout(KProcess*,char*,int)),
            this,SLOT(receivedData(KProcess*,char*,int)) );
