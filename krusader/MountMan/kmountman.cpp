@@ -60,7 +60,7 @@ using namespace MountMan;
 
 KMountMan::KMountMan() : QObject(), Ready(false), Operational(false),
                          outputBuffer(0), tempFile(0) {
-	filesystems.setAutoDelete(true);	
+	filesystems.setAutoDelete(true);
 	localDf=new fsData();				 // will be used to move around information
   forceUpdate();
 }
@@ -458,10 +458,18 @@ void KMountMan::forceUpdate() {
 
 void KMountMan::collectOutput(KProcess *p, char *buffer,int buflen) {
   if (!p) return; // don't collect data from unknown/undefined processes
-  if (!outputBuffer) outputBuffer=new QString();  // create buffer if needed
-  // add new buffer to the main output buffer
+  if (outputBuffer==0) outputBuffer = new QString();  // create buffer if needed
 
-  for (int i=0; i<buflen; ++i) (*outputBuffer)+=buffer[i];
+  // add new buffer to the main output buffer
+  for (int i=0; i<buflen; ++i)
+    (*outputBuffer) += buffer[i];
+}
+
+void KMountMan::clearOutput() {
+  if (outputBuffer != 0) {
+    delete outputBuffer;
+    outputBuffer=0;
+  }
 }
 
 // this is the generic version of mount - it receives a mntPoint and try to
@@ -483,7 +491,7 @@ void KMountMan::mount(QString mntPoint) {
   if (mountProc.normalExit())
     if (mountProc.exitStatus()==0) return; // incase of a normal exit
   // on any other case,report an error
-  KMessageBox::sorry(mountManGui,i18n("Unable to complete the mount.")+
+  KMessageBox::sorry(0,i18n("Unable to complete the mount.")+
     i18n("The error reported was:\n\n")+getOutput());
 }
 
@@ -522,7 +530,7 @@ void KMountMan::mount(fsData *p) {
   if (mountProc.normalExit())
     if (mountProc.exitStatus()==0) return; // incase of a normal exit
   // on any other case,report an error
-  KMessageBox::sorry(mountManGui,i18n("Unable to complete the mount.")+
+  KMessageBox::sorry(0,i18n("Unable to complete the mount.")+
     i18n("The error reported was:\n\n")+getOutput());
 }
 
