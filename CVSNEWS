@@ -3,6 +3,11 @@ It should contain a brief description of new features;
 in some way an extension to the changelog.
 ------------------------------------------------------
 
+Refresh-in-the-background: from now on, reading a remote url or
+the contents of an archive is done in the background. this means
+that krusader remains responsive and can be used to do whatever you need
+in any other panel or tab.
+
 useraction:new placeholder %_PanelSize%
   This placeholder can change the ration between the two panels.
   %aPanelSize("80")% makes the active panel use 80% of krusader's width (heigh in vertical-mode)

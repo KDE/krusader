@@ -127,7 +127,7 @@ void ListPanelFunc::openUrl( const KURL& urlIn, const QString& nameToMakeCurrent
 	// if we are not refreshing to current URL
 	if ( !files() ->vfs_getOrigin().equals( url, true ) ) {
 		// change the cursor to busy
-		krApp->setCursor( KCursor::waitCursor() );
+		panel->setCursor( KCursor::waitCursor() );
 		// clear the view - to avoid a repaint crash
 		panel->view->clear();
 	}

@@ -70,6 +70,7 @@ class DirHistoryQueue;
 class PanelPopup;
 class SyncBrowseButton;
 class KrBookmarkButton;
+class KPushButton;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;
@@ -139,6 +140,7 @@ protected slots:
 	void inlineRefreshInfoMessage( KIO::Job* job, const QString &msg );
 	void inlineRefreshListResult(KIO::Job* job);
 	void inlineRefreshPercent( KIO::Job*, unsigned long );
+	void inlineRefreshCancel();
 
 signals:
    void signalStatus( QString msg );       // emmited when we need to update the status bar
@@ -174,6 +176,8 @@ public:
    DirHistoryQueue* dirHistoryQueue;
    DirHistoryButton* historyButton;
    SyncBrowseButton *syncBrowseButton;
+	KPushButton *inlineRefreshCancelButton;
+	KIO::Job *inlineRefreshJob;
 
 private:
    bool &_left;

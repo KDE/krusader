@@ -104,7 +104,7 @@ typedef QValueList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
       QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), 
-		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0), _left( left ) {
+		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0), _left( left ), inlineRefreshJob(0) {
 
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
@@ -156,6 +156,10 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    connect( totals, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
    connect( totals, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnTotals(QDropEvent *) ) );  
    
+	// a cancel button for the inplace refresh mechanism
+	inlineRefreshCancelButton = new KPushButton(i18n("Cancel"), this);
+	connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
+	
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
    popupBtn->setFixedSize( 20, 20 );
@@ -163,6 +167,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
 	totalsLayout->addWidget(totals);
+	totalsLayout->addWidget(inlineRefreshCancelButton); inlineRefreshCancelButton->hide();
 	totalsLayout->addWidget(popupBtn);
    
    quickSearch = new KrQuickSearch( this );
@@ -517,7 +522,7 @@ void ListPanel::slotStartUpdate() {
    while ( func->inRefresh )
       ; // wait until the last refresh finish
    func->inRefresh = true;  // make sure the next refresh wait for this one
-   krApp->setCursor( KCursor::workingCursor() );
+   setCursor( KCursor::workingCursor() );
    view->clear();
 
    // set the virtual path
@@ -538,7 +543,7 @@ void ListPanel::slotStartUpdate() {
       ( ( ListPanel* ) otherPanel ) ->slotUpdate();
    }
    // return cursor to normal arrow
-   krApp->setCursor( KCursor::arrowCursor() );
+   setCursor( KCursor::arrowCursor() );
    slotUpdateTotals();
 }
 
@@ -1144,33 +1149,68 @@ void ListPanel::panelInactive() {
 }
 
 void ListPanel::slotJobStarted(KIO::Job* job) {
-	setEnabled(false);
+	// disable the parts of the panel we don't want touched
+	static_cast<KrDetailedView*>(view)->setEnabled(false);
+	status->setEnabled(false);
+	origin->setEnabled(false);
+	cdRootButton->setEnabled(false);
+   cdHomeButton->setEnabled(false);
+   cdUpButton->setEnabled(false);
+   cdOtherButton->setEnabled(false);
+	popupBtn->setEnabled(false);
+	popup->setEnabled(false);
+   bookmarksButton->setEnabled(false);
+   historyButton->setEnabled(false);
+   syncBrowseButton->setEnabled(false);
+
 	// connect to the job interface to provide in-panel refresh notification
 	connect( job, SIGNAL( infoMessage( KIO::Job*, const QString & ) ),
 		SLOT( inlineRefreshInfoMessage( KIO::Job*, const QString & ) ) );
 	connect( job, SIGNAL( percent( KIO::Job*, unsigned long ) ),
-      SLOT( inlineRefreshPercent( KIO::Job*, unsigned long ) ) );
-		
+      SLOT( inlineRefreshPercent( KIO::Job*, unsigned long ) ) );		
 	connect(job,SIGNAL(result(KIO::Job*)),
          this,SLOT(inlineRefreshListResult(KIO::Job*)));
+	connect(job,SIGNAL(canceled(KIO::Job*)),
+         this,SLOT(inlineRefreshListResult(KIO::Job*)));
+			
+	inlineRefreshJob = job;
 	
 	totals->setText(i18n(">> Reading..."));
-	status->setText(i18n(">> Reading..."));
+	inlineRefreshCancelButton->show();
+}
+
+void ListPanel::inlineRefreshCancel() {
+	if (inlineRefreshJob) {
+		inlineRefreshJob->kill(false);
+		inlineRefreshJob = 0;
+	}
 }
 
 void ListPanel::inlineRefreshPercent( KIO::Job*, unsigned long perc) {
 	QString msg = QString(">> %1: %2 % complete...").arg(i18n("Reading")).arg(perc);
 	totals->setText(msg);
-	status->setText(msg);
 }
 
 void ListPanel::inlineRefreshInfoMessage( KIO::Job*, const QString &msg ) {
 	totals->setText(">> " + i18n("Reading: ") + msg);
-	status->setText(">> " + i18n("Reading: ") + msg);
 }
 
 void ListPanel::inlineRefreshListResult(KIO::Job*) {
-	setEnabled(true);
+	// reenable everything
+	static_cast<KrDetailedView*>(view)->setEnabled(true);
+	status->setEnabled(true);
+	origin->setEnabled(true);
+	cdRootButton->setEnabled(true);
+   cdHomeButton->setEnabled(true);
+   cdUpButton->setEnabled(true);
+   cdOtherButton->setEnabled(true);
+	popupBtn->setEnabled(true);
+	popup->setEnabled(true);
+   bookmarksButton->setEnabled(true);
+   historyButton->setEnabled(true);
+   syncBrowseButton->setEnabled(true);
+	
+	inlineRefreshCancelButton->hide();
 }
 
 #include "listpanel.moc"
