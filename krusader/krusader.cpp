@@ -721,6 +721,10 @@ void Krusader::saveSettings() {
       config->writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
       config->writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
    }
+	
+	// save popular links
+	popularUrls->save();
+	
    config->sync();
 }
 
@@ -845,6 +849,8 @@ void Krusader::updateGUI( bool enforce ) {
          actToggleFnkeys->setChecked( true );
       }
    }
+	// popular urls
+	popularUrls->load();
 }
 
 // return a list in the format of TOOLS,PATH. for example

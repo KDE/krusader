@@ -1,3 +1,6 @@
+#include <kmessagebox.h>
+#include <klocale.h>
+#include "../krusader.h"
 #include "popularurls.h"
 
 PopularUrls::PopularUrls(QObject *parent, const char *name) : QObject(parent, name), 
@@ -5,6 +8,10 @@ PopularUrls::PopularUrls(QObject *parent, const char *name) : QObject(parent, na
 }
 
 PopularUrls::~PopularUrls() {
+	clearList();
+}
+
+void PopularUrls::clearList() {
 	if (head) {
 		UrlNodeP p=head, tmp;
 		while (p) {
@@ -14,23 +21,64 @@ PopularUrls::~PopularUrls() {
 		}
 	}
 	ranks.clear();
+	head = tail = 0;
 }
 
+void PopularUrls::save() {
+	KConfigGroupSaver svr(krConfig, "Private");
+	// prepare the string list containing urls and int list with ranks
+	QStringList urlList;
+	QValueList<int> rankList;
+	UrlNodeP p = head;
+	while (p) {
+		urlList << p->url.url();
+		rankList << p->rank;
+		p = p->next;
+	}
+	krConfig->writeEntry("PopularUrls", urlList);
+	krConfig->writeEntry("PopularUrlsRank", rankList);
+}
+
+void PopularUrls::load() {
+	KConfigGroupSaver svr(krConfig, "Private");
+	QStringList urlList = krConfig->readListEntry("PopularUrls");
+	QValueList<int> rankList = krConfig->readIntListEntry("PopularUrlsRank");
+	if (urlList.count() != rankList.count()) {
+		KMessageBox::error(krApp, i18n("Saved 'Popular Urls' are invalid. List will be cleared"));
+		return;
+	}
+	clearList();
+	// iterate through both lists and
+	QStringList::Iterator uit;
+	QValueList<int>::Iterator rit;
+	for (uit=urlList.begin(), rit=rankList.begin(); uit!=urlList.end() && rit!=rankList.end(); ++uit, ++rit) {
+		UrlNodeP node = new UrlNode;
+		node->url = *uit;
+		node->rank = *rit;
+		appendNode(node);
+		ranks.insert(*uit, node);
+	}
+}
+
+
+// returns a url list with the 'max' top popular urls 
 KURL::List PopularUrls::getMostPopularUrls(int max) {
 	// get at most 'max' urls
 	KURL::List list;
 	UrlNodeP p = head;
-	int count = 0;
-	while (p && count < max) {
-		//printf("sending %d : %s\n", p->rank, p->url.url().latin1());
+	int tmp = 0;
+	if (maxUrls < max) max = maxUrls; // don't give more than maxUrls
+	while (p && tmp < max) {
 		list << p->url;
 		p = p->next;
-		++count;
+		++tmp;
 	}
 	
 	return list;
 }
 
+// adds a url to the list, or increase rank of an existing url, making
+// sure to bump it up the list if needed
 void PopularUrls::addUrl(const KURL& url) {
 	KURL tmpurl = url;
 	tmpurl.adjustPath(1); // make a uniform trailing slash policy
@@ -59,6 +107,19 @@ void PopularUrls::addUrl(const KURL& url) {
 	//dumpList();
 }
 
+// once we have 'hardLimit' urls, remove the bottom urls
+// until we have only 'maxUrls' urls left
+void PopularUrls::collectGarbage() {
+	UrlNodeP n;
+	while (count > maxUrls) {
+		n = tail;
+		removeNode(n);
+		delete n;
+		--count;
+	}
+}
+
+// checks if 'node' needs to be bumped-up the ranking list and does it if needed
 void PopularUrls::relocateIfNeeded(UrlNodeP node) {
 	if (node->prev && (node->prev->rank < node->rank)) {
 		// iterate until we find the correct place to put it
@@ -75,6 +136,7 @@ void PopularUrls::relocateIfNeeded(UrlNodeP node) {
 	}
 }
 
+// removes a node from the list, but doesn't free memory!
 // note: this will be buggy in case the list becomes empty (which should never happen)
 void PopularUrls::removeNode(UrlNodeP node) {
 	if (node->prev) {
@@ -102,6 +164,7 @@ void PopularUrls::insertNode(UrlNodeP node, UrlNodeP after) {
 	}
 }
 
+// appends 'node' to the end of the list, collecting garbage if needed
 void PopularUrls::appendNode(UrlNodeP node) {
 	if (!tail) { // creating the first element
 		head = tail = node;
@@ -112,7 +175,7 @@ void PopularUrls::appendNode(UrlNodeP node) {
 		tail->next = node;
 		tail = node;
 	}
-	++count;
+	if (++count == hardLimit) collectGarbage();
 }
 
 void PopularUrls::dumpList() {

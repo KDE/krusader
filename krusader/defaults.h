@@ -224,6 +224,9 @@
 // lastHomeLeft       - Save the last place the left list panel was showing
 // lastUsedPacker     - used by packGUI to remember the last used packer
 
+/////////////////////// [Popular Urls]
+// PopularUrls     - a string list containing the top urls
+// PopularUrlsRank - an int list contains the urls' ranking
 
 /////////////////////// [Synchronize directories]
 // Don't overwrite automatically /////////////
