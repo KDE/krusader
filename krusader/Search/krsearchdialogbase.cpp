@@ -321,7 +321,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     containsTextCase = new QCheckBox( GroupBox14, "containsTextCase" );
     containsTextCase->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, containsTextCase->sizePolicy().hasHeightForWidth() ) );
-    containsTextCase->setText( i18n( "Cas&e sensetive" ) );
+    containsTextCase->setText( i18n( "Cas&e sensitive" ) );
     containsTextCase->setChecked( TRUE );
     Layout7->addWidget( containsTextCase );
 
