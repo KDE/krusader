@@ -324,10 +324,10 @@ bool Krusader::versionControl() {
    // older icompatible version
    if ( oldVer <= 0.9 ) {
       KMessageBox::information( krApp, i18n( "A configuration of 1.51 or older was detected. Krusader has to reset your configuration to default values.\nNote: Your bookmarks and keybindings will remain intact.\n Krusader will now run Konfigurator." ) );
-      if ( !QDir::home().remove( ".kde/share/config/krusaderrc" ) ) {
+      /*if ( !QDir::home().remove( ".kde/share/config/krusaderrc" ) ) {
          KMessageBox::error( krApp, i18n( "Unable to remove your krusaderrc file! Please remove it manually and rerun Krusader." ) );
          exit( 1 );
-      }
+      }*/
       retval = true;
       config->reparseConfiguration();
    }
