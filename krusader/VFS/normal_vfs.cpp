@@ -43,6 +43,7 @@
 #include <kglobalsettings.h>
 #include <kdebug.h>
 #include <klargefile.h>
+#include <kfileitem.h>
 // Krusader includes
 #include "normal_vfs.h"
 #include "../Dialogs/krdialogs.h"
@@ -214,15 +215,15 @@ void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned
   if (!name.contains("/")) name = vfs_workingDir()+"/"+name;
   if (name == "/proc") return;
 
-  QFileInfo qfi(name);
-  if(qfi.isSymLink() || !qfi.isDir()){ // single files are easy : )
+  KFileItem kfi( KFileItem::Unknown, KFileItem::Unknown, vfs::fromPathOrURL( name ) );
+  if(kfi.isLink() || !kfi.isDir()){ // single files are easy : )
     ++(*totalFiles);
-    (*totalSize) += qfi.size();
+    (*totalSize) += kfi.size();
   }
   else{  // handle directories
 		QDir dir(name);
     // avoid a nasty crash on un-readable dirs
-		if ( !qfi.isReadable() || !dir.exists() ) return;
+		if ( !kfi.isReadable() || !dir.exists() ) return;
 		++(*totalDirs);
     dir.setFilter(QDir::All|QDir::Hidden);
 	  dir.setSorting(QDir::Name|QDir::DirsFirst);

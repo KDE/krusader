@@ -27,6 +27,7 @@
     ADDED: mouse selection modes are back! thanks to heiner for doing the work
     ADDED: virtual VFS (try virt:/somthing/)
 
+    FIXED: [ 971831 ] space calculation failure if the file is bigger than 4 GByte
     FIXED: [ 1089450 ] synchronizer copies the date information for local files
     FIXED: [ 1109249 ] drag and drop doesn't work with international characters
     FIXED: viewer cannot open 600 files, when the owner column is enabled
