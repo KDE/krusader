@@ -192,20 +192,12 @@ void ListPanelFunc::terminal(){
 void ListPanelFunc::editFile(){
   QString name = panel->getCurrentName();
   if (name.isNull()) return;
-	// verify read permissions
-	krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-     panel->files->vfs_getType() == "normal" &&
-	  !panel->files->vfs_search(name)->vfile_isReadable()){
-		KMessageBox::sorry(krApp,i18n("You do not have permission to read ")+name);
-	  return;
-	}
-	
+
 	if(panel->files->vfs_search(name)->vfile_isDir()){
 		KMessageBox::sorry(krApp,i18n("You can't edit a directory"));
 	  return;
 	}
-	
+
 	KProcess proc;
 	krConfig->setGroup("General");
 	QString edit = krConfig->readEntry("Editor",_Editor);
@@ -219,20 +211,6 @@ void ListPanelFunc::editFile(){
 }
 
 void ListPanelFunc::moveFiles(){
-  // check that the current file system support move
-  if( !panel->files->supportMoveFrom ){
-    KMessageBox::sorry(krApp,i18n("You can't move files from this file system"));
-	  return;
-  }
-
-  // check that the you have write perm
-	krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	  !panel->files->isWritable){
-    KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
-	  return;
-  }
-
   QStringList fileNames;
 	panel->getSelectedNames(&fileNames);
 	if (fileNames.isEmpty()) return;  // safety
@@ -250,24 +228,6 @@ void ListPanelFunc::moveFiles(){
 	  dest=chooser->dest;
 	  if(dest==QString::null) return; // the usr canceled
   }
-	
-  bool skipAll=false;
-	for (QStringList::Iterator name = fileNames.begin(); name != fileNames.end();){
-	  // verify write (delete) permissions
-	  krConfig->setGroup("Advanced");
-	  if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-		  !panel->files->vfs_search(*name)->vfile_isReadable()){
-		  if( skipAll ) name=fileNames.remove(name);
-		  else switch( KMessageBox::warningYesNoCancel(krApp,
-	                 i18n("You do not have permission \nto move ")+(*name),
-	                 QString::null,i18n("&Skip"),i18n("Skip &All")) ){
-          case KMessageBox::Cancel : return; // stop operation
-          case KMessageBox::No     : skipAll=true;// DONT BREAK !
-          case KMessageBox::Yes    : name=fileNames.remove(name);
-      }
-	  }
-	  else name++;
-	}
 	
 	if (fileNames.isEmpty()) return; // nothing to copy
 	
@@ -291,15 +251,8 @@ void ListPanelFunc::moveFiles(){
   //else let the other panel do the dirty job
 	}else{
 		//check if copy is supported
-    if(!panel->otherPanel->files->supportMoveTo){
+    if(!panel->otherPanel->files->vfs_isWritable()){
       KMessageBox::sorry(krApp,i18n("You can't move files to this file system"));
-	    return;
-    }
-    // check that the you have write perm
-	  krConfig->setGroup("Advanced");
-	  if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	    !panel->otherPanel->files->isWritable){
-      KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
 	    return;
     }
     // finally..
@@ -308,16 +261,8 @@ void ListPanelFunc::moveFiles(){
 }
 
 void ListPanelFunc::rename(){
-  krConfig->setGroup("Advanced");
   QString fileName = panel->getCurrentName();
   if (fileName.isNull()) return;
-  if(krConfig->readBoolEntry("Permission Check",_PermCheck)){
-	  if(!panel->files->vfs_search(fileName)->vfile_isWriteable() ||
-	     !panel->files->isWritable){
-		  KMessageBox::sorry(krApp,i18n("You do not have permission to rename ")+fileName);
-	    return;
-    }
-  } 			
 
 	bool ok=false;
   QString newName =
@@ -325,25 +270,13 @@ void ListPanelFunc::rename(){
 
 	// if the user canceled - quit
 	if ( !ok || newName==fileName ) return;
-	// if the name is already taken - quit
-	if (panel->files->vfs_search(newName) != 0){
-		KMessageBox::sorry(krApp,i18n("A directory or a file with this name already exists."));
-		return;
-	}	
+	
 	panel->nameToMakeCurrent = newName;
 	// as always - the vfs do the job
 	panel->files->vfs_rename(fileName,newName);
 }
 
 void ListPanelFunc::mkdir(){
-	// check that the you have write perm
-	krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	  !panel->files->isWritable){
-    KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
-	  return;
-  }
-	
 	// ask the new dir name..
 	bool ok=false;
   QString dirName =
@@ -353,10 +286,11 @@ void ListPanelFunc::mkdir(){
 	if ( !ok || dirName.isEmpty() ) return;
 	
 	// if the name is already taken - quit
-	if (panel->files->vfs_search(dirName) != 0){
+	if (QDir(panel->files->vfs_getOrigin()+"/"+dirName).exists()){
 		KMessageBox::sorry(krApp,i18n("A directory or a file with this file already exists."));
 		return;
 	}	
+
 	panel->nameToMakeCurrent = dirName;
 	// as always - the vfs do the job
 	panel->files->vfs_mkdir(dirName);
@@ -380,23 +314,6 @@ void ListPanelFunc::copyFiles() {
 	  dest=chooser->dest;
 	  if(dest==QString::null) return; // the usr canceled
   }
-  bool skipAll=false;
-	for (QStringList::Iterator name = fileNames.begin(); name != fileNames.end();){
-	  // verify write (delete) permissions
-	  krConfig->setGroup("Advanced");
-	  if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-		  !panel->files->vfs_search(*name)->vfile_isReadable()){
-		  if( skipAll ) name=fileNames.remove(name);
-		  else switch( KMessageBox::warningYesNoCancel(krApp,
-	                 i18n("You do not have permission \nto copy ")+(*name),
-	                 QString::null,i18n("&Skip"),i18n("Skip &All")) ){
-          case KMessageBox::Cancel : return; // stop operation
-          case KMessageBox::No     : skipAll=true;// DONT BREAK !
-          case KMessageBox::Yes    : name=fileNames.remove(name);
-      }
-	  }
-	  else name++;
-	}
 
   if (fileNames.isEmpty()) return; // nothing to copy
 	
@@ -420,15 +337,8 @@ void ListPanelFunc::copyFiles() {
   // let the other panel do the dirty job
 	}else{
 		//check if copy is supported
-    if(!panel->otherPanel->files->supportCopyTo){
+    if( !panel->otherPanel->files->vfs_isWritable() ){
       KMessageBox::sorry(krApp,i18n("You can't copy files to this file system"));
-	    return;
-    }
-    // check that the you have write perm
-	  krConfig->setGroup("Advanced");
-	  if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	    !panel->otherPanel->files->isWritable){
-      KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
 	    return;
     }
     // finally..
@@ -440,17 +350,9 @@ void ListPanelFunc::deleteFiles() {
  	QStringList fileNames;
  	QStringList::Iterator name;
   QDir dir;
-  krConfig->setGroup("Advanced");
-	bool permVerify = krConfig->readBoolEntry("Permission Check",_PermCheck);
-	
-  //check if delete is supported
-  if(!panel->files->supportDelete){
-    KMessageBox::sorry(krApp,i18n("You can't delete files from this file system"));
-	  return;
-  }
 
   // check that the you have write perm
-	if(permVerify && !panel->files->isWritable){
+	if( !panel->files->vfs_isWritable() ){
     KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
 	  return;
   }
@@ -485,27 +387,10 @@ void ListPanelFunc::deleteFiles() {
 	krConfig->setGroup("Advanced");
 	bool emptyDirVerify = krConfig->readBoolEntry("Confirm Unempty Dir",_ConfirmUnemptyDir);
   emptyDirVerify = ((emptyDirVerify)&&(panel->files->vfs_getType() == "normal"));
-	bool skipAll = false;
 	
 	for( name = fileNames.begin(); name != fileNames.end(); ){
     vfile * vf = panel->files->vfs_search(*name);
 	
-		// verify write (delete) permissions
-	  if( permVerify && !vf->vfile_isWriteable()){
-	    if( skipAll ){
-	      name = fileNames.remove(name);
-        continue;
-	    }
-		  switch( KMessageBox::warningYesNoCancel(krApp,
-	          i18n("You do not have permission \nto delete ")+(*name).latin1(),
-	          QString::null,i18n("&Skip"),i18n("Skip &All")) ){
-	      case KMessageBox::Cancel : return; // stop operation
-        case KMessageBox::No     : skipAll = true; // DONT BREAK !
-        case KMessageBox::Yes    : name = fileNames.remove(name);
-                                   continue;
-      }
-	  }
-
 		// verify non-empty dirs delete... (only for norml vfs)
 		if ( emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink() ){
 			dir.setPath( panel->getPath()+"/"+(*name) );
@@ -547,14 +432,6 @@ void ListPanelFunc::execute(QListViewItem *i) {
 	if(vf == 0) return;
 	QString origin= panel->files->vfs_getOrigin();
 
-	// verify read permissions
-	krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck)){
-    if(!vf->vfile_isReadable()){
-      KMessageBox::sorry(krApp,i18n("You don't have premission to access this Directory / File !"));
-	    return;
-    }
-	}
 	QString type = vf->vfile_getMime().right(4);
  	if ( type == "-tbz" ) type = "zip2";
 	if ( type == "-tgz" || type == "tarz" ) type = "gzip";
@@ -630,9 +507,9 @@ void ListPanelFunc::changeVFS(QString type, QString origin){
 	if (type == "ftp")
     v = new ftp_vfs(origin,panel);
   else if( type == "-ace" || type == "-arj" || type == "-rpm" )
-    v = new temp_vfs(origin,type,panel,panel->files->isWritable);
+    v = new temp_vfs(origin,type,panel,panel->files->vfs_isWritable() );
   else
-    v = new arc_vfs(origin,type,panel,panel->files->isWritable);
+    v = new arc_vfs(origin,type,panel,panel->files->vfs_isWritable() );
    	
 	if ( v->vfs_error() ){
 			kdWarning() << "Failed to create vfs: " << origin.local8Bit() << endl;
@@ -662,23 +539,7 @@ void ListPanelFunc::pack() {
   QStringList fileNames;
   panel->getSelectedNames(&fileNames);
 	if (fileNames.isEmpty()) return;  // safety
-  bool skipAll = false;
-  for (QStringList::Iterator name = fileNames.begin(); name != fileNames.end();){
-    // verify read  permissions
-	  krConfig->setGroup("Advanced");
-	  if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-		  !panel->files->vfs_search(*name)->vfile_isReadable()){
-		  if(skipAll) name = fileNames.remove(name);
-		  else switch( KMessageBox::warningYesNoCancel(krApp,
-	        i18n("You do not have permission to pack ")+(*name).latin1(),
-	        QString::null,i18n("&Skip"),i18n("Skip &All")) ){
-	        case KMessageBox::Cancel : return; // stop operation
-          case KMessageBox::No     : skipAll = true;
-          case KMessageBox::Yes    : name = fileNames.remove(name);
-      }
-    }
-    else ++name;
-  }
+
   if (fileNames.count() == 0) return; // nothing to pack
 
   // choose the default name
@@ -700,13 +561,6 @@ void ListPanelFunc::pack() {
       PackGUI::destination = panel->otherPanel->files->vfs_workingDir();
 
   QString arcFile = PackGUI::destination+"/"+PackGUI::filename+"."+PackGUI::type;
-
-  krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-    (packToOtherPanel && !panel->otherPanel->files->isWritable) || !QFileInfo(PackGUI::destination).isWritable()){
-    KMessageBox::sorry(krApp,i18n("You don't have write permissions to the destination directory"));
-	  return;
-  }
 
   if(PackGUI::type != "zip" && QFileInfo(arcFile).exists()){
     if(KMessageBox::warningContinueCancel(krApp,
@@ -783,24 +637,10 @@ void ListPanelFunc::unpack(){
     else
       dest = panel->otherPanel->files->vfs_workingDir();
 
-  krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-    (packToOtherPanel && !panel->otherPanel->files->isWritable) || !QFileInfo(dest).isWritable()){
-    KMessageBox::sorry(krApp,i18n("You don't have write permissions to the destination directory"));
-	  return;
-  }
-
-
   for(unsigned int i=0; i<fileNames.count(); ++i){
     QString arcName = fileNames[i];
     if (arcName.isNull()) return;
     if (arcName=="..") return; // safety
-
-    if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	    !panel->files->vfs_search(arcName)->vfile_isReadable()){
-		  KMessageBox::sorry(krApp,i18n("You do not have permission to unpack ")+(arcName));
-	    return;
-    }
 
     QString mime = panel->files->vfs_search(arcName)->vfile_getMime();
     QString type = mime.right(4);
@@ -892,7 +732,7 @@ TreePanelFunc::TreePanelFunc(TreePanel *parent):panel(parent){}
 
 void TreePanelFunc::terminal(){
   QString save = getcwd(0,0);
-	chdir( panel->files->vfs_origin.local8Bit() );
+	chdir( panel->files->vfs_getOrigin().local8Bit() );
 	
   KProcess proc;
 	krConfig->setGroup("General");
@@ -905,15 +745,6 @@ void TreePanelFunc::terminal(){
 }
 
 void TreePanelFunc::mkdir(){
-  // check that the you have write perm
-	krConfig->setGroup("Advanced");
-	///////////////////////////////
-  if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	  !panel->files->isWritable){
-    KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
-	  return;
-  }
-	
   // ask the new dir name..
 	bool ok=false;
   QString dirName =
@@ -923,7 +754,7 @@ void TreePanelFunc::mkdir(){
 	if ( !ok || dirName.isEmpty() ) return;
 	
 	// if the name is already taken - quit
-	if (QDir(panel->files->vfs_origin+"/"+dirName).exists()){
+	if (QDir(panel->files->vfs_getOrigin()+"/"+dirName).exists()){
 		KMessageBox::sorry(krApp,i18n("A directory or a file with this file already exists."));
 		return;
 	}	
@@ -935,26 +766,17 @@ void TreePanelFunc::deleteFiles(){
   QStringList fileNames;
  	QDir dir;
 
-  // check that the you have write perm
-	krConfig->setGroup("Advanced");
-	///////////////////////////////
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	  !panel->files->isWritable){
-    KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
-	  return;
-  }
-
   // now ask the user if he want to delete:
 	krConfig->setGroup("Advanced");
 	if( krConfig->readBoolEntry("Confirm Delete",_ConfirmDelete) ){
 	  QString s,b;
 	  krConfig->setGroup("General");
 	  if( krConfig->readBoolEntry("Move To Trash",_MoveToTrash) ){
-	    s = i18n("trash ")+panel->files->vfs_origin;
+	    s = i18n("trash ")+panel->files->vfs_getOrigin();
 	    b = i18n("&Trash");
 	  }
 	  else {
-	    s = i18n("delete ")+panel->files->vfs_origin;
+	    s = i18n("delete ")+panel->files->vfs_getOrigin();
 	    b = i18n("&Delete");
 	  }
 	  // show message
@@ -966,10 +788,10 @@ void TreePanelFunc::deleteFiles(){
   //we want to warn the user about non empty dir
 	krConfig->setGroup("Advanced");
 	// verify non-empty dirs delete...
-	dir.setPath( panel->files->vfs_origin );
+	dir.setPath( panel->files->vfs_getOrigin() );
 	if ( dir.count() > 2 && krConfig->readBoolEntry("Confirm Unempty Dir",_ConfirmUnemptyDir) )
 	  if( KMessageBox::warningContinueCancel( krApp,
-		  i18n("Directory ")+(panel->files->vfs_origin)+i18n(" is not empty ! Are you sure ? "),
+		  i18n("Directory ")+(panel->files->vfs_getOrigin())+i18n(" is not empty ! Are you sure ? "),
 			QString::null,i18n("&Delete") ) == KMessageBox::Cancel) return;
 				
   // let the vfs do the job...
@@ -977,16 +799,8 @@ void TreePanelFunc::deleteFiles(){
 }
 
 void TreePanelFunc::rename(){
-  krConfig->setGroup("Advanced");
   QString fileName = panel->getCurrentName();
   if (fileName.isNull()) return;
-
-  if(krConfig->readBoolEntry("Permission Check",_PermCheck)){
-	  if( !panel->files->isWritable ){
-		  KMessageBox::sorry(krApp,i18n("You do not have permission to rename ")+fileName);
-	    return;
-    }
-  } 			
 
 	bool ok=false;
   QString newName =
@@ -994,12 +808,7 @@ void TreePanelFunc::rename(){
 
 	// if the user canceled - quit
 	if ( !ok || newName==fileName ) return;
-  // if the name is already taken - quit
-	QString path = panel->files->vfs_origin.left(panel->files->vfs_origin.findRev('/')-1);
-	if ( QDir(path+"/"+newName).exists() ) {
-		KMessageBox::sorry(krApp,i18n("A directory with this name already exists."));
-		return;
-	}	
+
 	// as always - the vfs do the job
 	panel->files->vfs_rename(fileName,newName);
 }
@@ -1013,7 +822,7 @@ void TreePanelFunc::copyFiles(){
 	
 	krConfig->setGroup("Advanced");
 	if( krConfig->readBoolEntry("Confirm Copy",_ConfirmCopy) ){
-    QString s = i18n("Copy ")+panel->files->vfs_origin+" "+i18n("to")+":";
+    QString s = i18n("Copy ")+panel->files->vfs_getOrigin()+" "+i18n("to")+":";
 	
 	  // ask the user for the copy dest
 	  KChooseDir *chooser = new KChooseDir( 0,s,panel->otherPanel->getPath() );
@@ -1021,16 +830,8 @@ void TreePanelFunc::copyFiles(){
 	  if(dest==QString::null) return; // the user canceled
   }
   	
-	// verify read permissions
-	krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-    !panel->files->supportMoveFrom){  // vfs_supportMoveFrom == readable
-	  KMessageBox::sorry(krApp,i18n("You do not have permission to move ")+(panel->files->vfs_origin));
-	  return; // stop operation
-	}
-
   KURL url;
-  url.setPath(panel->files->vfs_origin);
+  url.setPath(panel->files->vfs_getOrigin());
   KURL::List fileUrls;
   fileUrls.append(url);
 	
@@ -1040,16 +841,8 @@ void TreePanelFunc::copyFiles(){
   // let the other panel do the dirty job
 	}else{
 		//check if copy is supported
-    if(!panel->otherPanel->files->supportCopyTo){
+    if(!panel->otherPanel->files->vfs_isWritable()){
       KMessageBox::sorry(krApp,i18n("You can't copy files to this file system"));
-	    return;
-    }
-    // check that the you have write perm
-	  krConfig->setGroup("Advanced");
-	  ///////////////////////////////
-	  if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	    !panel->otherPanel->files->isWritable){
-      KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
 	    return;
     }
     // finally..
@@ -1058,35 +851,19 @@ void TreePanelFunc::copyFiles(){
 }
 
 void TreePanelFunc::moveFiles(){
-  // check that the you have write (delete) perm
-	krConfig->setGroup("Advanced");
-	///////////////////////////////
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	  !panel->files->isWritable){
-    KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
-	  return;
-  }
-	
 	QString dest = panel->otherPanel->getPath();
 	
 	krConfig->setGroup("Advanced");
 	if( krConfig->readBoolEntry("Confirm Move",_ConfirmMove) ){
-	  QString s = i18n("Move ")+panel->files->vfs_origin+" "+i18n("to")+":";
+	  QString s = i18n("Move ")+panel->files->vfs_getOrigin()+" "+i18n("to")+":";
 	  // ask the user for the copy dest
 	  KChooseDir *chooser = new KChooseDir( 0,s,panel->otherPanel->getPath() );
 	  dest=chooser->dest;
 	  if(dest==QString::null) return; // the usr canceled
   }
-  // verify read permissions
-	krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-    !panel->files->supportMoveFrom){  // vfs_supportMoveFrom == readable
-	  KMessageBox::sorry(krApp,i18n("You do not have permission to move ")+(panel->files->vfs_origin));
-	  return; // stop operation
-	}
 	
 	KURL url;
-	url.setPath(panel->files->vfs_origin);
+	url.setPath(panel->files->vfs_getOrigin());
 	KURL::List fileUrls;
 	fileUrls.append(url);
 	
@@ -1095,34 +872,12 @@ void TreePanelFunc::moveFiles(){
    new KIO::CopyJob(fileUrls,dest, KIO::CopyJob::Move,false,true );
   //else let the other panel do the dirty job
 	}else{
-		//check if copy is supported
-    if(!panel->otherPanel->files->supportMoveTo){
-      KMessageBox::sorry(krApp,i18n("You can't move files to this file system"));
-	    return;
-    }
-    // check that the you have write perm
-	  krConfig->setGroup("Advanced");
-	  ///////////////////////////////
-	  if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	    !panel->otherPanel->files->isWritable){
-      KMessageBox::sorry(krApp,i18n("You do not have write permission to this directory"));
-	    return;
-    }
     // finally..
     panel->otherPanel->files->vfs_addFiles(&fileUrls,KIO::CopyJob::Move,panel);
   }
 }
 
 void TreePanelFunc::pack() {
-
-  // verify read  permissions
-	krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-	   !panel->files->supportMoveFrom){
-	
-	  KMessageBox::sorry(krApp,i18n("You do not have permission to pack ")+(panel->files->vfs_origin));
-	  return; // stop operation
-  }
 
   // choose the default name
   QString defaultName = panel->getCurrentName();
@@ -1161,13 +916,6 @@ void TreePanelFunc::pack() {
 
   QString arcFile = PackGUI::destination+"/"+PackGUI::filename+"."+PackGUI::type;
 
-  krConfig->setGroup("Advanced");
-	if(krConfig->readBoolEntry("Permission Check",_PermCheck) &&
-    (packToOtherPanel && !panel->otherPanel->files->isWritable) || !QFileInfo(PackGUI::destination).isWritable()){
-    KMessageBox::sorry(krApp,i18n("You don't have write permissions to the destination directory"));
-	  return;
-  }
-
   if(PackGUI::type != "zip" && QFileInfo(arcFile).exists()){
     if( KMessageBox::warningContinueCancel(krApp,i18n("The Archive")+PackGUI::filename+"."+PackGUI::type+
         i18n(" already exists, Do you want to overwrite the archive ")+
@@ -1184,9 +932,9 @@ void TreePanelFunc::pack() {
   long long totalSize=0;
   long totalDirs=0, totalFiles=0;
   proc << "*";
-  panel->files->vfs_calcSpace(panel->files->vfs_origin,&totalSize,&totalFiles,&totalDirs);
+  panel->files->vfs_calcSpace(panel->files->vfs_getOrigin(),&totalSize,&totalFiles,&totalDirs);
   QString save = getcwd(0,0);
-  chdir(panel->files->vfs_origin.local8Bit());
+  chdir(panel->files->vfs_getOrigin().local8Bit());
 
   // tell the user to wait
   krApp->startWaiting(i18n("Packing Directory"),totalFiles+totalDirs);
@@ -1215,7 +963,7 @@ void TreePanelFunc::calcSpace(){
   krApp->setCursor(KCursor::waitCursor());// tell the user to wait
 
   // ask the vfs to calculate the space for the current dir
-  panel->files->vfs_calcSpace(panel->files->vfs_origin,&totalSize,&totalFiles,&totalDirs);
+  panel->files->vfs_calcSpace(panel->files->vfs_getOrigin(),&totalSize,&totalFiles,&totalDirs);
 
   // show the results to the user...
   krApp->setCursor(KCursor::arrowCursor());  // set the cursor to normal mode

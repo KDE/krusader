@@ -52,13 +52,6 @@
 #include "../resources.h"
 
 normal_vfs::normal_vfs(QString,QWidget* panel):vfs(panel){
-  supportCopyTo = true;
-  supportMoveFrom = true;     // the big 4 is supported by normal vfs...
- 	supportDelete = true;
- 	supportMoveTo = true;
- 	
- 	writeableBase = true;
- 	
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
 	
@@ -85,8 +78,6 @@ bool normal_vfs::vfs_refresh(QString origin){
 	// set the writable attribute
 	if( getgid()==0 ) isWritable = true;
 	else isWritable = KRpermHandler::fileWriteable(origin);
-	// we use "writeableBase" to make the vfs not writable on every refresh
-	isWritable = isWritable && writeableBase;
 	
  	krConfig->setGroup("Look&Feel");
 	bool hidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);

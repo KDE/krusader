@@ -40,14 +40,14 @@
 #include "../Dialogs/krdialogs.h"
 #include "../krusader.h"
 #include "../defaults.h"
+#include "krpermhandler.h"
 
 tree_vfs::tree_vfs(QString,QWidget* panel):vfs(panel){
-  supportCopyTo = true;
-  supportMoveFrom = true;     // the big 4 is supported by tree vfs...
- 	supportDelete = true;
- 	supportMoveTo = true;
- 		
 	vfs_type="tree";
+}
+
+bool tree_vfs::vfs_isWritable(){
+	return KRpermHandler::fileWriteable( vfs_getOrigin() );
 }
 
 bool tree_vfs::vfs_refresh(QString){

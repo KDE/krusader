@@ -45,7 +45,9 @@ kgAdvancedImpl::~kgAdvancedImpl(){
 
 void kgAdvancedImpl::slotSetup() {
   krConfig->setGroup("Advanced");
-  kgRootSwitch->setChecked(!krConfig->readBoolEntry("Permission Check",_PermCheck));
+  // no longer supported
+  //kgRootSwitch->setChecked(!krConfig->readBoolEntry("Permission Check",_PermCheck));
+	kgRootSwitch->setEnabled(false);
   kgAutomount->setChecked(krConfig->readBoolEntry("AutoMount",_AutoMount));
   kgNonEmpty->setChecked(krConfig->readBoolEntry("Confirm Unempty Dir",_ConfirmUnemptyDir));
   kgDelete->setChecked(krConfig->readBoolEntry("Confirm Delete",_ConfirmDelete));
@@ -56,7 +58,8 @@ void kgAdvancedImpl::slotSetup() {
 
 void kgAdvancedImpl::slotDefaultSettings() {
   krConfig->setGroup("Advanced");
-  krConfig->writeEntry("Permission Check",_PermCheck);
+  // no longer supported !
+  //krConfig->writeEntry("Permission Check",_PermCheck);
   krConfig->writeEntry("AutoMount",_AutoMount);
   krConfig->writeEntry("Confirm Unempty Dir",_ConfirmUnemptyDir);
   krConfig->writeEntry("Confirm Delete",_ConfirmDelete);

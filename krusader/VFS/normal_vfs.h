@@ -74,7 +74,6 @@ public slots:
 protected:
 	QList<vfile>  vfs_files;    // list of pointers to vfile	
 	KDirWatch watcher;
-  bool writeableBase;
 };
 
 #endif

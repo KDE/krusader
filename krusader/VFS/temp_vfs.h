@@ -40,6 +40,7 @@ public:
 	temp_vfs( QString origin, QString type, QWidget* panel, bool writeable);
 	~temp_vfs();
 	QString vfs_workingDir();
+  bool vfs_isWritable() { return false; } // temp vfs is not writable !
 
 public slots:
 	// actually reads files and stats

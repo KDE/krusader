@@ -63,9 +63,6 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
 	// set the cursor to busy mode
   if (!quietMode) krApp->setCursor(KCursor::waitCursor());
 
-  krConfig->setGroup("Archives");
-  supportMoveTo = krConfig->readBoolEntry("Allow Move Into Archive",_MoveIntoArchive);
-
   // set the writable attribute
 	isWritable = KRpermHandler::fileWriteable(origin);
   isWritable = ( write && isWritable ); 	
@@ -89,10 +86,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     addCmd  = "gzip -c";
     getCmd  = "-dc";
 		ignoreLines = -1;
-    supportCopyTo   = false;
-    supportDelete   = false;
-    supportMoveTo   = false;
-    supportMoveFrom = false;
+		isWritable = false;
   }
   if(type == "zip2"){
     cmd = "bzip2" ;
@@ -101,10 +95,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     addCmd  = "bzip2 -c";
     getCmd  = "-dc";
 		ignoreLines = -1;
-    supportCopyTo   = false;
-    supportDelete   = false;
-    supportMoveTo   = false;
-    supportMoveFrom = false;
+    isWritable = false;
   }
   if(type == "-tar"){
     cmd = "tar" ;
@@ -112,9 +103,6 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     delCmd  = cmd+" --delete -vf";
     addCmd  = cmd+" -uvf";
     getCmd  = " -xvf";
-    supportCopyTo = true;
-    supportDelete = true;
-		supportMoveTo = false;
   }
 	if(type == "-tgz"){
     cmd = "tar" ;
@@ -122,9 +110,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     delCmd  = "";
     addCmd  = cmd+" -uvzf";
     getCmd  = " -xzvf";
-    supportCopyTo = false;
-    supportDelete = false;
-		supportDelete = false;
+    isWritable = false;
   }
   if(type == "-tbz"){
     cmd = "tar" ;
@@ -132,9 +118,7 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     delCmd  = "";
     addCmd  = cmd+" -uvjf";
     getCmd  = " -xjvf";
-    supportCopyTo = false;
-    supportDelete = false;
-		supportDelete = false;
+    isWritable = false;
   }
 	if(type == "-zip"){
     password = KRarcHandler::getPassword(arcFile,type);
@@ -151,8 +135,6 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
 			getCmd = getCmd + " -P "+password;
 		}
     ignoreLines = 1;
-    supportCopyTo = true;
-    supportDelete = true;
   }
   // "-rpm" is used only to list the rpm - to extract files use "+rpm"
   if(type == "-rpm"){
@@ -164,9 +146,6 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     delCmd  = "";
     addCmd  = "";
     getCmd  = "";
-    supportCopyTo = false;
-    supportDelete = false;
-    supportMoveTo = false;
     isWritable    = false;
   }
   if( type == "+rpm" ){
@@ -182,9 +161,6 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     delCmd  = "";
     addCmd  = "";
     getCmd  = " --force-local --no-absolute-filenames -ivdF";
-    supportCopyTo = false;
-    supportDelete = false;
-    supportMoveTo = false;
     isWritable    = false;
   }
   if(type == "-rar"){
@@ -195,10 +171,6 @@ arc_vfs::arc_vfs(QString origin,QString type,QObject* panel,bool write):
     addCmd  = (doRar ? QString("rar -r a ") : QString("")) ;
     getCmd  = " x -y ";
     ignoreLines = 8;
-    supportMoveFrom = false;
-    supportDelete =  false ;
-    supportCopyTo =  doRar ;
-    supportMoveTo = (doRar && supportMoveTo ) ;
     isWritable    = (doRar && isWritable );
   }
 
@@ -595,7 +567,7 @@ void arc_vfs::repack(){
   chdir(tmpDir.local8Bit());
 	
   // delete from the archive files that were unpacked and deleted
-	if( supportDelete && isWritable){
+	if( vfs_isWritable() ){
 		QStringList filesToDelete;
 		getFilesToDelete(&filesToDelete);
 		if( !filesToDelete.isEmpty() ){
@@ -619,7 +591,7 @@ void arc_vfs::repack(){
 	}
 
   // finaly repack tmpDir
-  if( isWritable || vfs_type=="gzip" || vfs_type=="zip2" ){
+  if( vfs_isWritable() || vfs_type=="gzip" || vfs_type=="zip2" ){
     QStringList filesToPack;
 		getFilesToPack(&filesToPack);
 		if( !filesToPack.isEmpty() ){

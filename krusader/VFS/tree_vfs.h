@@ -58,6 +58,8 @@ public:
 	// return the working dir
 	inline QString vfs_workingDir() { return vfs_origin; }
 
+  bool 	vfs_isWritable();
+
 public slots:
 	bool vfs_refresh(QString origin);
 	inline  bool vfs_refresh(){return vfs_refresh(vfs_origin);}

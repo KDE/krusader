@@ -41,7 +41,6 @@
 
 temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
           normal_vfs(origin,panel){
-
   vfs_type="temp";
   // first we need to create a temp diretory
 	tmpDir = krApp->getTempDir();
@@ -49,14 +48,8 @@ temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
     error = true;
     return;
   }
-	
-	supportCopyTo = false;       //
-  supportMoveFrom = false;     // the big 4 is NOT supported by default.
- 	supportDelete = false;       // we can always change that later on...
- 	supportMoveTo = false;       //
- 	writeableBase = false;       //
 
-// then we must get the files from the origin to the tmp dir
+	// then we must get the files from the origin to the tmp dir
   if( type == "-arj" || type == "-ace" )
   	handleAceArj(origin,type);
   else if( type == "-rpm" )

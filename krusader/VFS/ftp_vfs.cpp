@@ -56,13 +56,9 @@ template <class X> void kr_swap(X &a, X &b){
 }
 
 ftp_vfs::ftp_vfs(QString origin,QWidget* panel):vfs(panel){
-  supportCopyTo = true;
-  supportMoveFrom = true;     // the big 4 is supported by ftp vfs...
-	supportDelete = true;
-	supportMoveTo = true;
 	// set the writable attribute
 	isWritable = true;
-// 	  kdDebug() << origin << endl;
+
   vfs_filesP = &vfs_files;
   vfs_files.setAutoDelete(true);
   vfs_filesP2 = &vfs_files2;

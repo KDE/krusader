@@ -47,21 +47,7 @@
 
 class vfs: public QObject{
 	Q_OBJECT
-protected: // allows derived classes to use these fields
-	QString		  	vfs_type;			// the vfs type;						
- 	QList<vfile> *vfs_filesP;
-	bool error;
-	bool quietMode;  // if true the vfs won't display error messages or emit signals
- 	 	
 public: 	
- 	QString      vfs_origin;	 	// the path or file the VFS originates from
- 		
- 	bool supportCopyTo;       // true if you can add files
- 	bool supportMoveTo;       // true if you can move files to
- 	bool supportMoveFrom;     // true if you can move files out
- 	bool supportDelete;       // true if you can support delete
- 	bool isWritable;	        // true if it's writable
-	
 	// service functions
   inline void vfs_addToList(vfile *data){ vfs_filesP->append(data); }
   inline void vfs_removeFromList(vfile *data){ vfs_filesP->remove(data); }
@@ -88,6 +74,8 @@ public:
 	// return the working dir
 	virtual QString vfs_workingDir()=0;
 	virtual void blockSignals(bool block){ QObject::blockSignals(block); }	
+	// check the write permission
+  virtual bool vfs_isWritable() { return isWritable; }
 
 	long vfs_totalSize();             // the total size of FILES in the vfs,
 	vfile* vfs_search(QString name);  // return vfile* or 0 if not found
@@ -110,6 +98,14 @@ public slots:
 signals: 	
   void startUpdate();
   void endUpdate();
+
+protected: // allows derived classes to use these fields
+	QString		  	vfs_type;			// the vfs type;
+	QString      vfs_origin;	 	// the path or file the VFS originates from
+ 	QList<vfile> *vfs_filesP;
+	bool error;
+	bool quietMode;   // if true the vfs won't display error messages or emit signals
+	bool isWritable;	// true if it's writable
 };
 
 #endif

@@ -654,7 +654,7 @@ void ListPanel::dragMoveEvent( QDragMoveEvent *ev ) {
   scroll = false;
   QStrList list;
   if (!QUriDrag::canDecode(ev) || !ev->provides("text/uri-list") ||
-      !files->isWritable || !files->supportCopyTo ){
+      !files->vfs_isWritable() ){
     ev->ignore(); // not for us to handle!
     return;
   } // if we got here, let's check the mouse location
@@ -704,7 +704,7 @@ void ListPanel::dropEvent( QDropEvent *ev ) {
 //  bool copyToZip=false;
   bool dragFromOtherPanel=false;
   bool dragFromThisPanel=false;
-  bool isWritable=files->isWritable;
+  bool isWritable=files->vfs_isWritable();
 
   vfs* tempFiles = files;
   vfile *file;
@@ -721,7 +721,7 @@ void ListPanel::dropEvent( QDropEvent *ev ) {
        if(virtualPath.right(1)=="\\") // root of archive..
           tempFiles=vfsStack->top();
        else copyToDirInPanel=true;
-       isWritable=tempFiles->isWritable;
+       isWritable=tempFiles->vfs_isWritable();
      }else{
       if (file->vfile_isDir()){
         copyToDirInPanel=true;
@@ -769,8 +769,7 @@ void ListPanel::dropEvent( QDropEvent *ev ) {
   else {
     QPopupMenu popup;
     popup.insertItem(i18n("Copy Here"),1);
-    if(otherPanel->files->supportMoveFrom && files->supportMoveTo)
-      popup.insertItem(i18n("Move Here"),2);
+    if (files->vfs_isWritable()) popup.insertItem(i18n("Move Here"),2);
     if (files->vfs_getType()=="normal" && otherPanel->files->vfs_getType()=="normal")
       popup.insertItem(i18n("Link Here"),3);
     popup.insertItem(i18n("Cancel"),4);
@@ -910,7 +909,7 @@ void ListPanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   }
   // COPY
   popup.insertItem(i18n("Copy"),COPY_ID);
-  if (files->isWritable) {
+  if (files->vfs_isWritable()) {
   // MOVE
   popup.insertItem(i18n("Move"),MOVE_ID);
   // RENAME - only one file

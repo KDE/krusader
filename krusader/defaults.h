@@ -95,7 +95,7 @@
 
 /////////////////////// [Advanced]
 // Permission Check ///
-#define _PermCheck     true
+//#define _PermCheck     true
 // AutoMount //////////
 #define _AutoMount     false
 // Confirm Unempty Dir //     (for delete)

@@ -313,11 +313,7 @@ QString TreePanel::returnPath(QListViewItem *item) {
 
 void TreePanel::slotSelectionChanged(QListViewItem *item){
   origin->setText(returnPath(item));
-  files->vfs_origin = virtualPath = realPath = returnPath(item);
-
-  // set the writable and readable attribute
-	files->isWritable = KRpermHandler::fileWriteable(realPath);
-	files->supportMoveFrom = KRpermHandler::fileReadable(realPath);
+  files->vfs_getOrigin() = virtualPath = realPath = returnPath(item);
 
   emit cmdLineUpdate(realPath);
   slotGetStats(realPath);
@@ -393,7 +389,7 @@ void TreePanel::popRightClickMenu(KListView *, QListViewItem* item,const QPoint 
   popup.insertSeparator();
   // COPY
   popup.insertItem(i18n("Copy"),COPY_ID);
-  if (files->isWritable) {
+  if (files->vfs_isWritable()) {
     // MOVE
     popup.insertItem(i18n("Move"),MOVE_ID);
     // RENAME
@@ -568,7 +564,7 @@ void TreePanel::dropEvent( QDropEvent *ev ) {
   fileList->setCurrentItem(i);
   slotSelectionChanged(i);
   KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy;
-  bool isWritable=files->isWritable;
+  bool isWritable=files->vfs_isWritable();
 
   // the KURL::List is finished, let's go
   // --> display the COPY/MOVE/LINK menu
@@ -577,8 +573,7 @@ void TreePanel::dropEvent( QDropEvent *ev ) {
   else {
     QPopupMenu popup;
     if (isWritable) popup.insertItem(i18n("Copy Here"),1);
-    if (otherPanel->files->supportMoveFrom && isWritable)
-      popup.insertItem(i18n("Move Here"),2);
+    if (isWritable) popup.insertItem(i18n("Move Here"),2);
     if (otherPanel->files->vfs_getType()=="normal" && isWritable)
       popup.insertItem(i18n("Link Here"),3);
     popup.insertItem(i18n("Cancel"),4);
