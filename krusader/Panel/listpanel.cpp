@@ -334,16 +334,17 @@ void ListPanel::start(bool left) {
 	  else virtualPath = getcwd(0,0);
 	}
 	
-	QFileInfo qfi(virtualPath);
+/*	QFileInfo qfi(virtualPath);
 	if (!qfi.isDir() || !qfi.exists()){
 	  virtualPath = "/";
 	  QString side = (left ? i18n("left") : i18n("right"));
-	  KMessageBox::error(krApp,i18n("The ")+side+i18n(" panel start path is invalid. Check your Konfigurator"));
+	  //KMessageBox::error(krApp,i18n("The ")+side+i18n(" panel start path is invalid. Check your Konfigurator"));
   }	
 	
 	realPath = virtualPath;
-	
+*/	
 	files = new normal_vfs(virtualPath,this);
+  openUrl(virtualPath);
 }
 
 void ListPanel::slotStartUpdate(){
