@@ -595,7 +595,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	
 	// write the temp file
 	KShellProcess proc;
-	KTempFile temp("krarc","tmp");
+	KTempFile temp( QString::null, "tmp" );
 	temp.setAutoDelete(true);
 	if( arcType != "bzip2" ){
 		proc << listCmd << "\""+arcFile->url().path(-1)+"\"" <<" > " << temp.name();
