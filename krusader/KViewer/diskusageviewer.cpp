@@ -29,6 +29,9 @@
  ***************************************************************************/
 
 #include "../krusader.h"
+#include "../krusaderview.h"
+#include "../Panel/listpanel.h"
+#include "../Panel/panelfunc.h"
 #include "diskusageviewer.h"
 
 DiskUsageViewer::DiskUsageViewer( QWidget *parent, char *name ) 
@@ -52,8 +55,9 @@ void DiskUsageViewer::openURL( KURL url )
   {
     diskUsage = new DiskUsage( "DiskUsageViewer", this );
     
-    connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
-    
+    connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotUpdateStatus() ) );
+    connect( diskUsage, SIGNAL( status( QString ) ), this, SLOT( slotUpdateStatus() ) );
+    connect( diskUsage, SIGNAL( newSearch() ), this, SLOT( slotNewSearch() ) );
     layout->addWidget( diskUsage, 0, 0 );
     this->show();
     diskUsage->show();
@@ -102,12 +106,18 @@ void DiskUsageViewer::setStatusLabel( QLabel *statLabel, QString pref )
   prefix = pref;
 }
 
-void DiskUsageViewer::slotDirChanged( Directory * dir )
+void DiskUsageViewer::slotUpdateStatus()
 {
-  if( statusLabel )
+  Directory * dir = diskUsage->getCurrentDir();
+  if( dir && statusLabel )
   {
     statusLabel->setText( prefix + dir->fileName() + "  [" + KIO::convertSize( dir->size() ) + "]" );
   }  
+}
+
+void DiskUsageViewer::slotNewSearch()
+{
+  diskUsage->load( ACTIVE_PANEL->func->files()->vfs_getOrigin() );
 }
 
 #include "diskusageviewer.moc"

@@ -367,8 +367,24 @@ void DiskUsage::stopLoad()
 
 void DiskUsage::dirUp()
 {
-  if( currentDirectory != 0 && currentDirectory->parent() != 0 )
-    changeDirectory( (Directory *)(currentDirectory->parent()) );
+  if( currentDirectory != 0 )
+  { 
+    if ( currentDirectory->parent() != 0 )
+      changeDirectory( (Directory *)(currentDirectory->parent()) );
+    else
+    {
+      KURL up = baseURL.upURL();
+      
+      if( KMessageBox::questionYesNo( this, i18n( "Stepping into the parent directory requires "
+                                                  "loading the content of the \"%1\" URL. Do you wish "
+                                                  "to continue?" )
+                                            .arg( up.prettyURL( 0, KURL::StripFileProtocol ) ),
+                                            i18n( "Krusader::DiskUsage" ), KStdGuiItem::yes(), 
+                                            KStdGuiItem::no(), "DiskUsageLoadParentDir"
+                                            ) == KMessageBox::Yes )
+        load( up );
+    }
+  }
 }
 
 Directory * DiskUsage::getDirectory( QString dir )

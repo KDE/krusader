@@ -52,7 +52,8 @@ signals:
   void openURLRequest(const KURL &);
   
 protected slots:
-  void slotDirChanged( Directory * );
+  void slotUpdateStatus();
+  void slotNewSearch();
 
 protected:  
   DiskUsage *diskUsage;
