@@ -1179,11 +1179,13 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
 }
 
 void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
-   ACTIVE_PANEL->quickSearch->hide();
-   ACTIVE_PANEL->quickSearch->clear();
-   krDirUp->setEnabled( true );
-   if ( e )
-      keyPressEvent( e );
+   if( ACTIVE_PANEL && ACTIVE_PANEL->quickSearch ) {
+     ACTIVE_PANEL->quickSearch->hide();
+     ACTIVE_PANEL->quickSearch->clear();
+     krDirUp->setEnabled( true );
+     if ( e )
+        keyPressEvent( e );
+   }
 }
 
 //void KrDetailedView::focusOutEvent( QFocusEvent * e )
