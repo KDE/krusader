@@ -71,6 +71,8 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 5 );
 
+  ADDITIONAL_COLOR transparent = { i18n("Transparent"), Qt::white, "transparent" };
+
   addColorSelector( "Foreground",                 i18n( "Foreground:" ),                  KGlobalSettings::textColor()                                                );
   addColorSelector( "Directory Foreground",       i18n( "Directory foreground:" ),        getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
   addColorSelector( "Executable Foreground",      i18n( "Executable foreground:" ),       getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
@@ -78,7 +80,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Invalid Symlink Foreground", i18n( "Invalid symlink foreground:" ),  getColorSelector( "Foreground" )->getColor(), i18n( "Same as foreground" )  );
   addColorSelector( "Background",                 i18n( "Background:" ),                  KGlobalSettings::baseColor()                                                );
   addColorSelector( "Alternate Background",       i18n( "Alternate background:" ),        KGlobalSettings::alternateBackgroundColor()                                 );
-  addColorSelector( "Marked Foreground",          i18n( "Marked foreground:" ),           KGlobalSettings::highlightedTextColor()                                     );
+  addColorSelector( "Marked Foreground",          i18n( "Marked foreground:" ),           KGlobalSettings::highlightedTextColor(), "", &transparent, 1                );
   addColorSelector( "Marked Background",          i18n( "Marked background:" ),           KGlobalSettings::highlightColor()                                           );
   addColorSelector( "Alternate Marked Background",i18n( "Alternate marked background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as marked background" )  );
   addColorSelector( "Current Foreground",         i18n( "Current foreground:" ),          Qt::white,                                    i18n( "Not used" )            );
@@ -118,12 +120,13 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   slotDisable();
 } 
 
-int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName )
+int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName,
+                                ADDITIONAL_COLOR *addColor, int addColNum )
 {
   int index = itemList.count();
 
   labelList.append( addLabel( colorsGrid, index, 0, name, colorsGrp, QString( "ColorsLabel%1" ).arg( index ).ascii() ) );
-  KonfiguratorColorChooser *chooser = createColorChooser( "Colors", cfgName, dflt, colorsGrp, false );
+  KonfiguratorColorChooser *chooser = createColorChooser( "Colors", cfgName, dflt, colorsGrp, false, addColor, addColNum );
   if( !dfltName.isEmpty() )
     chooser->setDefaultText( dfltName );
   colorsGrid->addWidget( chooser, index, 1 );
@@ -232,7 +235,9 @@ void KgColors::generatePreview()
       
     pwCurrent->setColor( currentFore, currentBck );
 
-    QColor markFore = getColorSelector( "Marked Foreground" )->getColor();
+    QColor markFore = getColorSelector( "Marked Foreground" )->getColor();    
+    if( getColorSelector( "Marked Foreground" )->currentItem() == 2 )
+      markFore = currentFore;    
     pwMark1->setColor( markFore, getColorSelector( "Marked Background" )->getColor() );
     pwMark2->setColor( markFore, getColorSelector( "Alternate Marked Background" )->getColor() );
   }

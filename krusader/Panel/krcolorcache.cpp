@@ -49,6 +49,21 @@ KrColorCache & KrColorCache::getColorCache()
    return *instance;
 }
 
+const QString & KrColorCache::getTextValue(const QString & textName) const
+{
+   QString * text = textCache.find(textName);
+   if (!text)
+   {
+      krConfig->setGroup("Colors");
+      text = new QString("");
+      *text = krConfig->readEntry(textName, "");
+      ((KrColorCache *)this)->textCache.replace(textName, text);
+      if (textCache.count() >= textCache.size())
+         ((KrColorCache *)this)->textCache.resize(textCache.count()*2+1);
+   }
+   return *text;
+}
+
 const QColor * KrColorCache::getColor(const QString & colorName) const
 {
    QColor * color = colorCache.find(colorName);
@@ -129,6 +144,7 @@ const QColor * KrColorCache::getAlternateMarkedBackgroundColor() const
 void KrColorCache::refreshColors()
 {
    colorCache.clear();
+   textCache.clear();
    krConfig->setGroup("Colors");
    kdeDefault = krConfig->readBoolEntry("KDE Default", _KDEDefaultColors);
    alternateBackgroundEnabled = krConfig->readBoolEntry("Enable Alternate Background", _AlternateBackground);

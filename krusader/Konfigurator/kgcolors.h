@@ -52,7 +52,8 @@ public slots:
   void generatePreview();
 
 private:
-  int                        addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName = QString::null);
+  int                        addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName = QString::null,
+                                               ADDITIONAL_COLOR *addColor = 0, int addColNum = 0);
   KonfiguratorColorChooser  *getColorSelector( QString name );
   QLabel                    *getSelectorLabel( QString name );
   

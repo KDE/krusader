@@ -394,21 +394,6 @@ void KrDetailedView::setSortMode( SortSpec mode ) {
 void KrDetailedView::slotClicked( QListViewItem *item ) {
   if ( !item ) return ;
 
-    { // stop quick search in case a mouse click occured
-    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
-    if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
-      if ( krApp->mainView ) {
-        if ( krApp->mainView->activePanel ) {
-          if ( krApp->mainView->activePanel->quickSearch ) {
-            if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
-              stopQuickSearch( 0 );
-              }
-            }
-          }
-        }
-      }
-    }
-
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
 
@@ -484,12 +469,56 @@ void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
   }
 
 void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
+    // stop quick search in case a mouse click occured
+    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+    if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
+      if ( krApp->mainView ) {
+        if ( krApp->mainView->activePanel ) {
+          if ( krApp->mainView->activePanel->quickSearch ) {
+            if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
+              stopQuickSearch( 0 );
+              }
+            }
+          }
+        }
+      }
+
   if ( !_focused )
     emit needFocus();
 #ifdef _newSelectionHandling
    if (e->state() & ShiftButton || e->state() & ControlButton || e->state() & AltButton)
    {
-     KListView::contentsMousePressEvent( e );
+    QListViewItem *oldCurrent = currentItem();
+    QListViewItem *newCurrent = itemAt( contentsToViewport( e->pos() ) );
+    if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->state() & ShiftButton ) {
+      int oldPos    = oldCurrent->itemPos();
+      int newPos    = newCurrent->itemPos();
+      QListViewItem *top = 0, *bottom = 0;
+      if ( oldPos > newPos ) {
+          top = newCurrent;
+          bottom = oldCurrent;
+        } else {
+          top = oldCurrent;
+          bottom = newCurrent;
+        }
+      QListViewItemIterator it( top );
+      bool changed = false;
+      for ( ; it.current(); ++it ) {
+        if ( !it.current()->isSelected() ) {
+          it.current()->setSelected( true );
+          changed = true;
+          }
+        if ( it.current() == bottom )
+          break;
+        }
+      if (changed){
+        emit selectionChanged();
+        triggerUpdate();
+        }
+      QListView::setCurrentItem(newCurrent);
+      }
+      else
+        KListView::contentsMousePressEvent( e );
      return;
    }
 //   QListViewItem * i = itemAt( contentsToViewport( e->pos() ) );
@@ -755,7 +784,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         QListView::keyPressEvent( e ); return ; // otherwise the selection gets lost??!??
         }
       // if the key is A..Z or 1..0 do quick search otherwise...
-      if ( e->text().length() > 0 && e->text() [ 0 ].isPrint() )      // better choice. Otherwise non-ascii characters like Ö can not be the first character of a filename
+      if ( e->text().length() > 0 && e->text() [ 0 ].isPrint() )      // better choice. Otherwise non-ascii characters like  can not be the first character of a filename
         /*         if ( ( e->key() >= Key_A && e->key() <= Key_Z ) ||
                        ( e->key() >= Key_0 && e->key() <= Key_9 ) ||
                        ( e->key() == Key_Backspace ) ||

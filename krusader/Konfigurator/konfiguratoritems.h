@@ -316,13 +316,21 @@ protected:
 // KonfiguratorColorChooser class
 ///////////////////////////////
 
+typedef struct
+{
+  QString name;
+  QColor  color;
+  QString value;
+} ADDITIONAL_COLOR;
+
 class KonfiguratorColorChooser : public QComboBox
 {
   Q_OBJECT
 
 public:
   KonfiguratorColorChooser( QString cls, QString name, QColor dflt,
-                            QWidget *parent=0, const char *widgetName=0, bool rst=false );
+                            QWidget *parent=0, const char *widgetName=0, bool rst=false,
+                            ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0 );
   ~KonfiguratorColorChooser();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -330,6 +338,7 @@ public:
   void          setDefaultColor( QColor dflt );
   void          setDefaultText( QString text );
   QColor        getColor();
+  void          changeAdditionalColor( unsigned num, QColor color );
 
 public slots:
   virtual void  loadInitialValue();
@@ -345,11 +354,12 @@ private:
   QPixmap       createPixmap( QColor color );
   
 protected:
-  QColor                        defaultValue;
-  QColor                        customValue;
-  QValueVector<QColor>          palette;
-  KonfiguratorExtension        *ext;
-  bool                          disableColorChooser;
+  QColor                          defaultValue;
+  QColor                          customValue;
+  QValueVector<QColor>            palette;
+  QValueVector<ADDITIONAL_COLOR>  additionalColors;
+  KonfiguratorExtension          *ext;
+  bool                            disableColorChooser;
 };
 
 #endif /* __KONFIGURATOR_ITEMS_H__ */

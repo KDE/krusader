@@ -596,7 +596,8 @@ void KonfiguratorComboBox::slotSetDefaults(QObject *)
 ///////////////////////////////
 
 KonfiguratorColorChooser::KonfiguratorColorChooser( QString cls, QString name, QColor dflt,
-    QWidget *parent, const char *widgetName, bool rst ) : QComboBox ( parent, widgetName ),
+    QWidget *parent, const char *widgetName, bool rst, ADDITIONAL_COLOR *addColPtr,
+    int addColNum ) : QComboBox ( parent, widgetName ),
     defaultValue( dflt ), disableColorChooser( true )
 {
   ext = new KonfiguratorExtension( this, cls, name, rst );
@@ -607,6 +608,13 @@ KonfiguratorColorChooser::KonfiguratorColorChooser( QString cls, QString name, Q
 
   addColor( i18n("Custom color" ),  QColor( 255, 255, 255 ) );
   addColor( i18n("Default" ),       defaultValue );
+
+  for( int i=0; i != addColNum; i++ )
+  {
+    additionalColors.push_back( addColPtr[i] );
+    addColor( addColPtr[i].name, addColPtr[i].color );
+  }
+  
   addColor( i18n("Red" ),           Qt::red );
   addColor( i18n("Green" ),         Qt::green );
   addColor( i18n("Blue" ),          Qt::blue );
@@ -675,16 +683,29 @@ void KonfiguratorColorChooser::loadInitialValue()
   }
   else
   {
-    QColor color = krConfig->readColorEntry( ext->getCfgName(), &defaultValue );
-    customValue = color;
-
-    setCurrentItem( 0 );
-    for( int i=2; i != palette.size(); i++ )
-      if( palette[i] == color )
+    bool found = false;
+    
+    for( unsigned j=0; j != additionalColors.size(); j++ )
+      if( additionalColors[j].value == selected )
       {
-        setCurrentItem( i );
+        setCurrentItem( 2 + j );
+        found = true;
         break;
       }
+
+    if( ! found )
+    {
+      QColor color = krConfig->readColorEntry( ext->getCfgName(), &defaultValue );
+      customValue = color;
+
+      setCurrentItem( 0 );
+      for( unsigned i= 2+additionalColors.size(); i != palette.size(); i++ )
+        if( palette[i] == color )
+        {
+          setCurrentItem( i );
+          break;
+        }
+    }
   }
 
   palette[0] = customValue;
@@ -705,6 +726,19 @@ void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
     emit colorChanged();
 }
 
+void KonfiguratorColorChooser::changeAdditionalColor( unsigned num, QColor color )
+{
+  if( num < additionalColors.size() )
+  {
+    palette[2+num] = color;
+    additionalColors[num].color = color;
+    changeItem( createPixmap( color ), text( 2+num ), 2+num );
+
+    if( currentItem() == 2+num )
+      emit colorChanged();
+  }
+}
+
 void KonfiguratorColorChooser::setDefaultText( QString text )
 {
   changeItem( createPixmap( defaultValue ), text, 1 );
@@ -717,6 +751,8 @@ void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
   QColor color = palette[ currentItem() ];
   if( currentItem() == 1 )    /* it's the default value? */
     krConfig->writeEntry( name, "" );   /* set nothing */
+  else if( currentItem() >= 2 && (unsigned)currentItem() < 2 + additionalColors.size() )
+    krConfig->writeEntry( name, additionalColors[ currentItem() - 2 ].value );
   else
     krConfig->writeEntry( name, color );
 }

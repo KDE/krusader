@@ -428,11 +428,14 @@ public:
     * @param  dflt        The default value of the color chooser
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
+    * @param  addColPtr   The additional color values
+    * @param  rst         Number of additional colors
     *
     * @return             reference to the newly created combobox
     */
   KonfiguratorColorChooser *createColorChooser(  QString cls, QString name, QColor dflt,
-                                                 QWidget *parent=0, bool rst=false );
+                                                 QWidget *parent=0, bool rst=false,
+                                                 ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0  );
 signals:
   /**
     * The signal is emitted if the changed flag was modified in any konfigurator item.

@@ -10,9 +10,11 @@ class KrColorCache : public QObject
   KrColorCache();
   static KrColorCache * instance;
   QDict<QColor> colorCache;
+  QDict<QString> textCache;
   bool kdeDefault, alternateBackgroundEnabled, showCurrentItemAlways;
 public:
   static KrColorCache & getColorCache();
+  const QString & getTextValue(const QString & textName) const;
   const QColor * getColor(const QString & colorName) const;
   const QColor * getForegroundColor() const;
   const QColor * getDirectoryForegroundColor() const;

@@ -306,10 +306,11 @@ void KonfiguratorPage::removeObject( KonfiguratorExtension *item )
 }
 
 KonfiguratorColorChooser *KonfiguratorPage::createColorChooser( QString cls, QString name, QColor dflt,
-                                                                QWidget *parent, bool rst )
+                                                                QWidget *parent, bool rst,
+                                                                ADDITIONAL_COLOR *addColPtr, int addColNum )
 {
   KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser( cls, name, dflt,  parent,
-                                        QString(cls + "/" + name).ascii(), rst );
+                                        QString(cls + "/" + name).ascii(), rst, addColPtr, addColNum );
 
   registerObject( colorChooser->extension() );
   return colorChooser;
