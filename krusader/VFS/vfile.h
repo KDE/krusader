@@ -90,13 +90,16 @@ public:
 	inline bool							vfile_isSymLink()		{ return vfile_symLink;   }
 	inline QString					vfile_getMime()			{ return vfile_mimeType;	}
 	inline QString					vfile_getSymDest()	{ return vfile_symDest;		}
-	inline mode_t						vfile_getMode()			{ return vfile_mode;			}		
+	inline mode_t						vfile_getMode()			{ return vfile_mode;			}
 	inline uid_t						vfile_getUid()			{ return vfile_ownerId;		}
   inline gid_t						vfile_getGid()			{ return vfile_groupId;		}
 	virtual char			      vfile_isReadable();
 	virtual char 			      vfile_isWriteable();
   virtual char			      vfile_isExecutable();
 	KIO::UDSEntry           vfile_getEntry(); // return the UDSEntry from the vfile
+  // used ONLY when calculating a directory's space, needs to change the
+  // displayed size of the viewitem and thus the vfile. For INTERNAL USE !
+  inline void             vfile_setSize(unsigned long size) {vfile_size = size;}
 
   virtual ~vfile(){}
 };

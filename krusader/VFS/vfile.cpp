@@ -1,4 +1,4 @@
-/***************************************************************************   
+/***************************************************************************
                        		vfile.cpp
                    		-------------------
     copyright            : (C) 2000 by Rafi Yanai
@@ -60,6 +60,8 @@ vfile::vfile(QString name,	                  // useful construtor
 	vfile_mimeType=mime;
 	vfile_symDest=symDest;
 	vfile_mode=mode;
+  if (vfile_isDir())
+    vfile_size = 0;
 }
 
 vfile::vfile(QString name,	                  // useful construtor
@@ -83,6 +85,8 @@ vfile::vfile(QString name,	                  // useful construtor
 		vfile_mimeType=mime;
 		vfile_symDest=symDest;
 		vfile_mode=mode;
+    if (vfile_isDir())
+  		vfile_size = 0;
 }
 
 char vfile::vfile_isReadable(){
