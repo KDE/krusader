@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.51-00
-- Documentation date:  06/12/2004
-- Parsing date: Mon Dec  6 22:12:20 CET 2004
+- Documentation version:  1.55-00
+- Documentation date:  28/01/2005
+- Parsing date: Thu Feb  3 21:46:54 CET 2005
 --------------------------------------------
  
 
@@ -67,16 +67,18 @@ A.1. Requirements
         Krusader 1.40 prefers >= 3.2.x (otherwise not all features
         will be available)
 
-        Krusader v1.50 needs KDElibs >= 3.2.x
+        Krusader v1.50 - 1.60 needs KDElibs >= 3.2.x but prefers
+        KDElibs >= 3.3.x for stability
 
-   Platforms:  Linux,  FreeBSD,  Solaris(TM)  and  Mac OS 10.3
-   (Panther).
+   Platforms:  All POSIX (Linux/BSD/UNIX-like OSes), Solaris(TM)
+   and  All  BSD  Platforms  (FreeBSD/NetBSD/OpenBSD/Mac OS 10.3
+   "Panther").
 
    Krusader  uses  about 3-4 MByte of memory to run (and about 15
-   Mbyte shared memory which is also used by more processes), but
-   this may vary depending on your platform and configuration. In
-   order  to  handle  archives  the  archivers must be configured
-   here.
+   Mbyte  shared  memory  which is also used by other processes),
+   but   this   may   vary   depending   on   your  platform  and
+   configuration.  In order to handle archives the archivers must
+   be configured here.
 
    A  package  of popular (un)packers, Krusader itself and addons
    can be found on the Krusader downloadpage.
@@ -99,10 +101,10 @@ A.2.1. Download Krusader
    tarballs  and RPM packages to whatever distro we are currently
    using.
 
-     * Often   Mandrake(TM),   Feodora   and   SuSE  RPM's  are
-       available,  sent in by Krusader users. There might be some
-       other  packages  on our website, but that depends on other
-       users contributions.
+     * Often Mandrake(TM), Fedora and SuSE RPM's are available,
+       sent  in  by  Krusader  users.  There  might be some other
+       packages  on  our website, but that depends on other users
+       contributions.
      * Debian  DEB  packages  and  a  DEB  packages overview are
        available.
      * There is a FreeBSD port thanks to Heiner Eichmann .
@@ -118,7 +120,7 @@ A.2.1. Download Krusader
    If  you  like  Krusader  go  to  one  of  these sites and rate
    Krusader, thanks.
 
-   If  you  still  can't  find a RPM or DEB package, please don't
+   If  you  still  can't find an RPM or DEB package, please don't
    worry. We provide a very detailed installation procedure. This
    very  thorough  HowTo  shows  even  newcomers  how  to compile
    Krusader  from source, even if you've never compiled a program
@@ -144,27 +146,27 @@ A.2.3. Development version (beta release)
    Before   every   stable   release  we  release  at  least  one
    development version, so that we can hunt down the bugs.
 
- Warning
+   Warning
 
-         This releases are beta releases and will probably contain some
-         bugs.
+           These releases are beta releases and will probably contain
+           some bugs.
 
    Note
 
         If you are using a development or CVS version, it is possible
         that the latest new features are not yet in the "The Krusader
         Handbook". Please read the ChangeLog file online or in the
-        Krusader sources to find out more about the latest new
-        features. For a brief description of the latest new features,
-        please read the CVSNEWS file online or in the Krusader
-        sources. User feedback and Bug reports are always welcome!
+        Krusader sources to find out more about the new features. For
+        a brief description, please read the CVSNEWS file online or in
+        the Krusader sources. User feedback and Bug reports are always
+        welcome!
 
    This version has 3 goals:
 
      * Apply  a feature-freeze until the stable is released, only
        bugs  will  be  fixed. New features have to wait until the
        stable is released.
-     * Have  feedback  from Krusader users so that we can fix the
+     * Obtain feedback from Krusader users so that we can fix the
        bugs.
      * Give  translators the time to update the translations, for
        the  coming  stable.  Please read the Krusader translation
@@ -221,22 +223,23 @@ $ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
    (note:  updates  from within the modules directory do not need
    the -d parameter)
 
-   To  checkout  a  specific  version  of Krusader from CVS (e.g.
-   Krusader-1.50) :
-$ cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login
+   If  you  want  to checkout a specific version of Krusader from
+   CVS (e.g. Krusader-1.50) :
 $ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
  -rversion_1_50 krusader_kde3
 
-   (note:  updates  from within the modules directory do not need
-   the -d parameter)
+   If  you  want to checkout a specific date of Krusader from CVS
+   (e.g. Krusader-2004-10-23) :
+$ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
+ -D2004-10-23 krusader_kde3
 
-   Mostly being Gentoo users ourselves, we provide a Gentoo Live
-   Ebuild  for all those who want to stay on the bleeding edge of
+   Mostly  being  Gentoo  users, we provide a Gentoo Live Ebuild
+   for  all  those  who  want  to  stay  on  the bleeding edge of
    filemanagement  and  don't  want  to  miss  the  advantages of
    portage.  Please  take  a  look at our Krusader's Cutting Edge
    page for more installation details.
 
-   We provide also ViewCVS to browse the CVS repository.
+   We also provide ViewCVS to browse the CVS repository.
      _________________________________________________________
 
 A.2.5. Older releases
@@ -258,7 +261,7 @@ $ make
 $ su -c 'make install'
 
    If  you  install  a  CVS  or  beta version and if Krusader was
-   previously  installed  on your computer then you should delete
+   previously  installed on your computer, then you should delete
    the  krusaderui.rc file in your home directory to activate the
    new menu entries $ rm ~/.kde/share/apps/krusader/krusaderui.rc
    , click here for more info.
@@ -268,9 +271,9 @@ $ su -c 'make install'
    the detailed installation instructions below.
      _________________________________________________________
 
-A.3.2. Detailed installation instructions
+A.3.2. Detailed Installation Instructions
 
-   The  next  section  will explain step by step in detail how to
+   The  next section will explain step by step, in detail, how to
    install  Krusader. This question has been asked many times and
    especially  users  new to Linux often have problems compiling
    software  from  source.  Therefore,  we are trying to keep the
@@ -278,10 +281,11 @@ A.3.2. Detailed installation instructions
    not  Krusader specific. Experienced users may easily skip most
    of the steps.
 
-   If  you  encounter  problems  installing Krusader, please read
-   this  installation  procedure  first and then the FAQ, if this
-   does not solve the problem then feel free to ask for help with
-   an help request.
+   Note
+
+        If you encounter problems, please read first this installation
+        procedure and the FAQ, if this does not solve your problem
+        then feel free to ask for help with an help request.
 
     1. Open your favourite terminal emulator (e.g. Konsole).
     2. We  recommend  you create a separate directory to keep all
@@ -403,13 +407,13 @@ qt_includes:          /usr/lib/qt3/include
 KDEDIR:               /usr
 QTDIR:                /usr/lib/qt3
 Install path:         /usr/bin
-krusader version:     1.50
+krusader version:     1.51
 krusader binary:      /usr/bin/krusader     (after 'make install')
 Thank you for using Krusader
 
 Good - your configure finished. Start make now
 bash$
-       This  is  the  output  for  Mandrake(TM)-Linux 9.2, other
+       This  is  the  output  for  Mandrake(TM)-Linux  10, other
        distributions may give a different output.
 
      Tip
@@ -423,6 +427,7 @@ bash$
          command: ./configure --prefix=/usr/local. In this case the
          Krusader binary will be installed in the /usr/local/bin
          directory.
+         SuSE needs: ./configure --prefix=/opt/kde3.
          This part will also display a warning if the environment
          variables KDEDIR - QTDIR are empty.
        Use  ./configure  --help  to  see more options or read the
@@ -448,7 +453,7 @@ bash$
 $ su -c 'make install'
        You will be asked to enter your root password.
    11. If  you  install a CVS or beta version and if Krusader was
-       previously  installed  on  your  computer  then you should
+       previously  installed  on  your  computer, then you should
        delete  the  krusaderui.rc  file in your home directory to
        activate the new menu entries $ rm
        ~/.kde/share/apps/krusader/krusaderui.rc  , click here for
@@ -499,10 +504,12 @@ foo
 
    --right <path> start right panel at <path>
 
-   --profile <panel-profile> opens panel-profile <panel-profile>
+   --profile  <panel-profile>  Load panel-profile <panel-profile>
+   on startup
 
-   Example:
+   Examples:
 $ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net
+$ krusader --profile ftp-managment
 
    The   standard   Qt(TM)   and  KDE  command-line  options  are
    available, and can be listed by entering krusader --help .
@@ -594,6 +601,18 @@ Appendix B. Configuration files
    UserActionXML.
 
    Location: ~/.kde/share/apps/krusader/useractions.xml
+
+   foo.keymap
+
+   Is a binary file that holds a Key-binding profile.
+
+   Location: $KDEDIR/share/apps/krusader/foo.keymap
+
+   foo.color
+
+   Is a binary file that holds the Color Scheme.
+
+   Location: $KDEDIR/share/apps/krusader/foo.color
      _________________________________________________________
 
 

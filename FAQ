@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.51-00
-- Documentation date:  06/12/2004
-- Parsing date: Mon Dec  6 22:12:20 CET 2004
+- Documentation version:  1.55-00
+- Documentation date:  28/01/2005
+- Parsing date: Thu Feb  3 21:46:54 CET 2005
 --------------------------------------------
  
 
@@ -45,7 +45,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 ------------------------------------------------------------------------
 
-Chapter 6. Frequently Asked Questions (FAQ)
+Chapter 7. Frequently Asked Questions (FAQ)
 
    If   you   have   problems  with  Krusader  please  check  the
    Installation  procedure,  your  problem  may  be  due to a bad
@@ -61,44 +61,44 @@ Chapter 6. Frequently Asked Questions (FAQ)
    is not clear to you, please let us know.
      _________________________________________________________
 
-6.1. Installation FAQ
+7.1. Installation FAQ
 
-   6.1.1. Does Krusader need KDE to run?
-   6.1.2. Which libraries does Krusader need to run?
-   6.1.3. I have followed all steps but configure complains about
+   7.1.1. Does Krusader need KDE to run?
+   7.1.2. Which libraries does Krusader need to run?
+   7.1.3. I have followed all steps but configure complains about
           missing libs or headers. What do I need to do?
 
-   6.1.4. How do i compile Krusader when i'm using a 64 bit
+   7.1.4. How do I compile Krusader when I'm using a 64 bit
           processor ?
 
-   6.1.5. I have downloaded the Source RPM
+   7.1.5. I have downloaded the Source RPM
           krusader-x.xx.dist.src.rpm What now?
 
-   6.1.6. I'm trying to install binary foo (RPM or DEB package),
+   7.1.6. I'm trying to install binary foo (RPM or DEB package),
           but it fails. What's wrong?
 
-   6.1.7. I can't find a RPM or DEB package for Krusader, What
+   7.1.7. I can't find a RPM or DEB package for Krusader, What
           now?
 
-   6.1.8. I've installed Krusader, but when I start it, only the
+   7.1.8. I've installed Krusader, but when I start it, only the
           "Help" menu appears. Why?
 
-   6.1.9. Some new menu items are missing after updating
+   7.1.9. Some new menu items are missing after updating
           Krusader, what's wrong?
 
-   6.1.10. When I run make it complains about libfam.la
-   6.1.11. Debian complains about Qt(TM) when running
+   7.1.10. When I run make it complains about libfam.la
+   7.1.11. Debian complains about Qt(TM) when running
           ./configure
 
-   6.1.12. I have a libGLcore.so.1 compile error after using the
+   7.1.12. I have a libGLcore.so.1 compile error after using the
           NVIDIA installer
 
-   6.1.13. I am having trouble compiling and installing Krusader,
+   7.1.13. I am having trouble compiling and installing Krusader,
           how do I send a help request?
 
-   6.1.14. How can I build an RPM package for Krusader?
+   7.1.14. How can I build an RPM package for Krusader?
 
-   6.1.1. Does Krusader need KDE to run?
+   7.1.1. Does Krusader need KDE to run?
 
    No,  Krusader  does  not need the KDE window manager to run on
    your  computer  but  Krusader's  natural  environment  is KDE,
@@ -126,7 +126,7 @@ Chapter 6. Frequently Asked Questions (FAQ)
    KDElibs  +  KDEbase.  If  you  need  more  functionality, then
    Krusader needs some more KDE packages.
 
-   6.1.2. Which libraries does Krusader need to run?
+   7.1.2. Which libraries does Krusader need to run?
 
    For  running  Krusader  (e.g. when you have installed Krusader
    with  a  binary  RPM)  you  need less libraries or packages as
@@ -144,7 +144,7 @@ Chapter 6. Frequently Asked Questions (FAQ)
 
    A complete list of shared library dependencies is available.
 
-   6.1.3. I have followed all steps but configure complains about
+   7.1.3. I have followed all steps but configure complains about
    missing libs or headers. What do I need to do?
 
    Please install them. ;-)
@@ -177,14 +177,13 @@ Chapter 6. Frequently Asked Questions (FAQ)
        apt-cache search foo to find the corresponding package for
        Debian based distributions.
 
-   6.1.4.  How  do  i  compile  Krusader  when i'm using a 64 bit
+   7.1.4.  How  do  I  compile  Krusader  when I'm using a 64 bit
    processor ?
 
-   We  don't  have  much  experiance  and  feedback  with  64 bit
-   processors  yet but our Krusader Forum is a good start. Please
-   look here.
+   Please  look  and  search  in  our  forums. We don't have much
+   experience and feedback with 64 bit microprocessors yet.
 
-   6.1.5. I have downloaded the Source RPM
+   7.1.5. I have downloaded the Source RPM
    krusader-x.xx.dist.src.rpm What now?
 
     1. Check  the  ownership and the permissions on /usr/src/RPM/
@@ -213,7 +212,7 @@ $ su -c 'rpm -Uvh  </path/to/rpmfile> krusader-x.xx.dist.rpm'
        a better (or updated) RPM book on the internet please let me
        know.
 
-   6.1.6.  I'm trying to install binary foo (RPM or DEB package),
+   7.1.6.  I'm trying to install binary foo (RPM or DEB package),
    but it fails. What's wrong?
 
    Since  we  only  provide  (and use) the source, we don't know.
@@ -233,32 +232,31 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    distrubution  or  even for an other distribution might work on
    your  computer, but it is always the best that it matches your
    distribution.  If  you  can't find a package that matches your
-   distribution version, architecture or distribution, than use a
-   source  RPM.  Because  when you use a source RPM, the Krusader
-   sources  will  be  build  on  your  computer,  it will build a
-   suitable  binary  RPM  for your distribution and architecture.
-   Please read the previous question, it explains howto install a
-   source  RPM.  The  best  solution  is  explained  in  the next
-   question.
+   distribution version, architecture or distribution, then use a
+   source  RPM.  When  you use a source RPM, the Krusader sources
+   will  be  build,  on  your computer, a suitable binary RPM for
+   your  distribution  and architecture. Please read the previous
+   question,  it  explains  how to install a source RPM. The best
+   solution is explained in the next question.
 
-   6.1.7.  I  can't  find a RPM or DEB package for Krusader, What
+   7.1.7.  I  can't  find a RPM or DEB package for Krusader, What
    now?
 
    Did you take a look at the URL's on the Installation procedure
    page?  Yes,  and  nothing found? Then you will have to compile
    Krusader  from  source  :)  Even if you think that you have no
    skills,  you  will  probably succeed in compiling Krusader! We
-   provide  a  very  detailed  installation procedure. This howto
-   allows  that  even  newcomers will be able to compile Krusader
-   from  source,  even if they have never done a compilation from
-   source  before.  Feel  free  to  post  a  help  request if you
-   encounter problems.
+   provide  a  very  detailed  installation procedure. This HowTo
+   intends  that  newcomers will be able to compile Krusader from
+   source, even if they have never done a compilation from source
+   before.  Feel  free  to  post  a help request if you encounter
+   problems.
 
-   6.1.8.  I've installed Krusader, but when I start it, only the
+   7.1.8.  I've installed Krusader, but when I start it, only the
    "Help" menu appears. Why?
 
-   In this case only the "Help" menu is visible and all the other
-   menu  items  like  e.g.  "File"  and  "Mark" are gone. This is
+   In  this  case  only  the "Help" menu is visible and all other
+   menu  items  like  e.g. "File" and "Mark" are missing. This is
    because  some  distributions put the krusaderui.rc file in the
    wrong   directory.   To  solve  the  problem,  just  copy  the
    krusaderui.rc file from the package
@@ -267,11 +265,11 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    ~/.kde/share/apps/krusader/krusaderui.rc  and re-run Krusader.
    If  you  have  compiled  Krusader  from  sources this is often
    caused  when  the KDEDIR - QTDIR environment variables are not
-   right  set,  the  result  is  that  the  krusaderui.rc file is
-   installed  in  a  wrong  directory.  Please also read the next
+   correctly  set.  The  result is that the krusaderui.rc file is
+   installed  in  the  wrong directory. Please also read the next
    question.
 
-   6.1.9.   Some  new  menu  items  are  missing  after  updating
+   7.1.9.   Some  new  menu  items  are  missing  after  updating
    Krusader, what's wrong?
 
    The krusaderui.rc file is stored in
@@ -296,14 +294,14 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    the  krusaderui.rc file in your home directory to activate the
    new menu entries $ rm ~/.kde/share/apps/krusader/krusaderui.rc
 
-   If  the  ~/.kde/share/apps/krusader/krusaderui.rc  file is too
-   old,  then  the  new menu elements will not be shown. Read the
+   If the ~/.kde/share/apps/krusader/krusaderui.rc file is older,
+   then  the  new  menu  elements  will  not  be  shown. Read the
    previous  question  for  information  on  how  to  update  the
    krusaderui.rc  file. If krusaderui.rc is missing or in a wrong
    directory,  only  the  "Help"  menu  appears,  please read the
    previous question.
 
-   6.1.10. When I run make it complains about libfam.la
+   7.1.10. When I run make it complains about libfam.la
 
    The  ./configure  script  does  not  check for the presence of
    libfam.la,  and  make  needs libfam.la to compile Krusader. If
@@ -313,7 +311,7 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    package  is not installed. If you need more information take a
    look at FAQ missing libs or headers.
 
-   6.1.11.   Debian   complains   about   Qt(TM)   when  running
+   7.1.11.   Debian   complains   about   Qt(TM)   when  running
    ./configure
 
    This  problem  occurs  when you use gcc 2.95, you will need to
@@ -328,7 +326,7 @@ $ export CPP=/usr/bin/cpp-3.2
    the  instructions on how to build a Qt(TM)/KDE3 application on
    Debian.
 
-   6.1.12.  I have a libGLcore.so.1 compile error after using the
+   7.1.12.  I have a libGLcore.so.1 compile error after using the
    NVIDIA installer
 
    This problem occurs when you use the NVIDIA installer and not
@@ -354,7 +352,7 @@ $ ln -s libGLcore.so.1.0.6111  libGL.so.1
 $ ln -s libGLcore.so.1.0.6111  libGL.so.1.0.0
 $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
-   6.1.13. I am having trouble compiling and installing Krusader,
+   7.1.13. I am having trouble compiling and installing Krusader,
    how do I send a help request?
 
    Please  read  our detailed installation procedure and the FAQ.
@@ -384,7 +382,7 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
    Thanks for your cooperation!
 
-   6.1.14. How can I build an RPM package for Krusader?
+   7.1.14. How can I build an RPM package for Krusader?
 
    If  you  have  experience with compiling from source, you will
    probably  be able to build a Krusader RPM too. Follow the next
@@ -416,42 +414,46 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
        krusader-1.50-beta1.suse91.i586.rpm                    and
        krusader-1.50-beta1.suse91.src.rpm
     7. If  it  is not OK you will receive an error message during
-       the  rpmbuild  process,  try  to  fix  it and run rpmbuild
+       the  rpmbuild  process,  try to fix it and re-run rpmbuild
        again.
     8. And finally: test the RPM before sending it in.
      _________________________________________________________
 
-6.2. Usage FAQ
+7.2. Usage FAQ
 
-   6.2.1. When I try to mount/unmount my cdrom/floppy, Krusader
+   7.2.1. When I try to mount/unmount my cdrom/floppy, Krusader
           says something about supermount, what's this about?
 
-   6.2.2. When I try to resize Krusader, so that it's smaller, I
+   7.2.2. When I try to resize Krusader, so that it's smaller, I
           discover that I can't resize it below a certain size.
           Basically, it doesn't get much smaller. Why?
 
-   6.2.3. When I do some file operation, Krusader's panel doesn't
+   7.2.3. When I do some file operation, Krusader's panel doesn't
           refresh / I'm using Krusader with fam installed, but
           updates to the panel are not shown.
 
-   6.2.4. Samba ISO 8859-x codepage / what to do if Krusader does
+   7.2.4. Samba ISO 8859-x codepage / what to do if Krusader does
           not read shared directories containing national
           characters?
 
-   6.2.5. Krusader reports "krarc:... protocol not supported"
+   7.2.5. Krusader reports "krarc:... protocol not supported"
           error at opening an archive file.
 
-   6.2.6. When I try to establish an FTP connection, I get an
+   7.2.6. When I try to establish an FTP connection, I get an
           error message after 'Connect OK' saying 'Could not
           connect to host'.
 
-   6.2.7. I get "FTP protocol not supported by Krusader" error at
+   7.2.7. I get "FTP protocol not supported by Krusader" error at
           trying to open a remote FTP directory.
 
-   6.2.8. How can I disable the default sounds e.g. when I do a
+   7.2.8. How can I disable the default sounds e.g. when I do a
           delete action ?
 
-   6.2.1.  When  I try to mount/unmount my cdrom/floppy, Krusader
+   7.2.9. I get the error message "Protocol not supported by
+          Krusader: "krarc:/path/to/foo-archive", when I try to
+          open foo-Archive
+
+   7.2.1.  When  I try to mount/unmount my cdrom/floppy, Krusader
    says something about supermount, what's this about?
 
    Supermount  is  a  daemon which handles mounting/unmounting of
@@ -465,7 +467,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    but  as for now, we don't consider it a priority. Feel free to
    write a patch for it ;-).
 
-   6.2.2.  When I try to resize Krusader, so that it's smaller, I
+   7.2.2.  When I try to resize Krusader, so that it's smaller, I
    discover  that  I  can't  resize  it  below  a  certain  size.
    Basically, it doesn't get much smaller. Why?
 
@@ -478,7 +480,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    pixels  each button, that should give a minimum width of about
    500 pixels and seems reasonable to us.
 
-   6.2.3. When I do some file operation, Krusader's panel doesn't
+   7.2.3. When I do some file operation, Krusader's panel doesn't
    refresh  /  I'm using Krusader with fam installed, but updates
    to the panel are not shown.
 
@@ -494,7 +496,7 @@ $ su -c 'fam -l'
 
    Look at the manpages for more information about fam.
 
-   6.2.4. Samba ISO 8859-x codepage / what to do if Krusader does
+   7.2.4. Samba ISO 8859-x codepage / what to do if Krusader does
    not read shared directories containing national characters?
 
    Krusader  does not handle (yet) Samba ISO 8859-x codepages, if
@@ -509,7 +511,7 @@ $ su -c 'fam -l'
    Unfortunately  kcontrol  (KDE  3.1.1)  fails  to  configure it
    properly, so this step must be done with a text editor.
 
-   6.2.5.  Krusader  reports  "krarc:...  protocol not supported"
+   7.2.5.  Krusader  reports  "krarc:...  protocol not supported"
    error at opening an archive file.
 
    Solution: install the krarc slave properly:
@@ -522,7 +524,7 @@ $ su -c 'fam -l'
    or  the  directory  where  the  KIO  slaves are placed in your
    Linux distribution.
 
-   6.2.6.  When  I  try  to establish an FTP connection, I get an
+   7.2.6.  When  I  try  to establish an FTP connection, I get an
    error  message after 'Connect OK' saying 'Could not connect to
    host'.
 
@@ -531,7 +533,7 @@ $ su -c 'fam -l'
    Center and try again. KDE Control Center->Network->Preferences
    , "Enable Passive Mode (PASV)" has to be checked.
 
-   6.2.7. I get "FTP protocol not supported by Krusader" error at
+   7.2.7. I get "FTP protocol not supported by Krusader" error at
    trying to open a remote FTP directory.
 
    The reason for this error is that 'FTP via HTTP proxy' feature
@@ -540,7 +542,7 @@ $ su -c 'fam -l'
    Modify  the  proxy  setting to not use HTTP proxy and FTP will
    work.
 
-   6.2.8.  How  can I disable the default sounds e.g. when I do a
+   7.2.8.  How  can I disable the default sounds e.g. when I do a
    delete action ?
 
    Those  are  the  default KDE System sounds, and not related to
@@ -548,18 +550,32 @@ $ su -c 'fam -l'
    KDE  Control  Center  (kcontrol):  KDE Control Center->Sound &
    Multimedia->System  Notifications  , Event Source: "KDE System
    Notifications" and uncheck sound items you don't like.
+
+   7.2.9.  I  get  the  error  message "Protocol not supported by
+   Krusader:  "krarc:/path/to/foo-archive",  when  I  try to open
+   foo-Archive
+
+   The  icons,  kio_slaves and documentation must be installed to
+   the  correct  place in the KDE directory tree. The kio_krarc.*
+   files must be in the same directory with the other KIO slaves.
+   Try to locate kio_tar.* and copy/link the kio_krarc.* files to
+   the  same  location.  Don't  forget  to run # ldconfig on this
+   directory  when you're done. This problem can occur if you are
+   using a 64 bit microprocessor. For more information click here
+   .
      _________________________________________________________
 
-6.3. General FAQ
+7.3. General FAQ
 
-   6.3.1. Where can I report a wish, a patch or a comment?
-   6.3.2. Where can I report a bug?
-   6.3.3. Does Krusader have a mailing list?
-   6.3.4. Does Krusader have a IRC channel?
-   6.3.5. How does the Krusader forum work?
-   6.3.6. How can I translate Krusader to my native language?
+   7.3.1. Where can I report a wish, a patch or a comment?
+   7.3.2. Where can I report a bug?
+   7.3.3. Does Krusader have a mailing list?
+   7.3.4. Does Krusader have a IRC channel?
+   7.3.5. How does the Krusader forum work?
+   7.3.6. How can I translate Krusader to my native language?
+   7.3.7. How can I support Krusader?
 
-   6.3.1. Where can I report a wish, a patch or a comment?
+   7.3.1. Where can I report a wish, a patch or a comment?
 
    An  open  source  project's  greatest strength is derived from
    getting  user  feedback.  That is why we love to hear what you
@@ -573,7 +589,7 @@ $ su -c 'fam -l'
    more information about the forum click here . You can reach us
    by mail or drop us a note in our Krusader Forum.
 
-   6.3.2. Where can I report a bug?
+   7.3.2. Where can I report a bug?
 
    We have an online Bug Tracking System.
 
@@ -611,7 +627,7 @@ $ su -c 'fam -l'
 
    Note
 
-   6.3.3. Does Krusader have a mailing list?
+   7.3.3. Does Krusader have a mailing list?
 
    Yes,  we  have  3  mailing  lists.  No  spam,  no bother, just
    Krusader. Feel free to (un)subscribe.
@@ -629,19 +645,26 @@ $ su -c 'fam -l'
        CVS,  it  will  be  reported  into this mailing list. This
        allows  you  to  follow the Krusader development ... live!
        Want to keep track? Waiting for a certain feature/bugfix?
-     * Krusader-devel  is  the  developer  mailing  list  of  the
-       Krusader Krew. If you are considering to join the Krusader
-       Krew  or  if  you  want  to  follow the development on the
-       bleeding edge, this is the place to be!
+     * Krusader-devel-ro  is  a  read-only  copy of the developer
+       mailing  list of the Krusader Krew. A lot of people wanted
+       to    subscribe    to   krusader-devel,   which   is   the
+       developers-only  mailing  list. We had to repectfully deny
+       the  requests,  since  the  list is high-traffic as it is.
+       However, since we do want that you can follow us, we setup
+       this  mailing  list  which  is the same as krusader-devel,
+       except  that  it  is  read-only. If you want to follow the
+       development on the bleeding edge, this is the place to be!
+       Please  note that the list is read-only, so posting is not
+       allowed.
 
-   6.3.4. Does Krusader have a IRC channel?
+   7.3.4. Does Krusader have a IRC channel?
 
    Yes,  we  have. Feel free to talk to the Krusader Krew, and of
    course  fellow-users  via  freenode.org servers. The server is
    irc.freenode.org,   the  channel  is  #krusader.  Everyone  is
    welcome.
 
-   6.3.5. How does the Krusader forum work?
+   7.3.5. How does the Krusader forum work?
 
    In  the  spirit  of  freedom  of  speech,  everything  that is
    Krusader  related  can  be discussed in our forum. It does not
@@ -653,10 +676,10 @@ $ su -c 'fam -l'
    issues  you  may  have.  But please remember the following, so
    that we can maintain some order in the chaos. ;-)
 
-   If  the  Documentation,  FAQ and the Krusader Forum can't help
-   you,  do  not  hesitate  to  drop  a posting in our forum. The
-   Krusader  Krew  or  the  Krusader  forum  community  is always
-   available to help you.
+   If   the   Documentation,   FAQ,   Krusader   Forum   and  the
+   Krusader-devel-ro-search  can't  help  you, do not hesitate to
+   drop a posting in our forum. The Krusader Krew or the Krusader
+   forum community is always available to help you.
 
    Please  use  the  Search  function of the Krusader Forum, your
    issue  may  have  been previously discussed (this allows us to
@@ -686,7 +709,7 @@ $ su -c 'fam -l'
        votes. Adding ToDo items or removing ToDo items which have
        been implemented will be done by the Krusader Krew.
      * UserActions  Forum  discussions about UserActions. Posting
-       your  own  UserActions  is greatly appreciated. We plan to
+       your  own  User Actions is greatly appreciated. We plan to
        include the best ones in the next Krusader releases.
      * General  Discussion  Forum:  everything  that  is Krusader
        related and doesn't belong in the other forums.
@@ -698,9 +721,13 @@ $ su -c 'fam -l'
    to  you! To make use of them, simply point your RSS aggregator
    to here.
 
-   6.3.6. How can I translate Krusader to my native language?
+   7.3.6. How can I translate Krusader to my native language?
 
    Please read the Krusader translation HowTo. It's not difficult
-   to translate! Everyone can do it, it just takes some time.
-     _________________________________________________________
+   to translate! Most anyone can do it, it just takes some time.
 
+   7.3.7. How can I support Krusader?
+
+   You  can  support  Krusader  in  many  different ways: send us
+   feedback, bug reports, patches, donations ...
+     _________________________________________________________
