@@ -204,7 +204,7 @@ void ListPanelFunc::openUrl( const QString& url,const QString& nameToMakeCurrent
 
 
 void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
-  kdDebug() << "openUrl: " << url.url() << endl;
+  //kdDebug() << "openUrl: " << url.url() << endl;
 
 	// check for special cases:
   if( !url.isValid() ){
@@ -241,7 +241,7 @@ void ListPanelFunc::openUrl( const KURL& url,const QString& nameToMakeCurrent) {
 		if( v != vfsP ){
       delete vfsP;
 			vfsP = v; // v != 0 so this is safe
-		} 
+		}
     if( vfsP->vfs_refresh(u) ) break; // we have a valid refreshed URL now
   }
 	// update the urls stack
@@ -263,7 +263,7 @@ void ListPanelFunc::goBack() {
   if ( urlStack.isEmpty() ) return ;
 
   urlStack.pop();
-  openUrl( urlStack.top() );
+  openUrl( urlStack.top(), files()->vfs_getOrigin().fileName());
 
   if ( urlStack.isEmpty() ) krBack->setEnabled( false );
 }
@@ -669,7 +669,7 @@ void ListPanelFunc::execute( QString& name ) {
 }
 
 void ListPanelFunc::dirUp() {
-	openUrl(files()->vfs_getOrigin().upURL());
+	openUrl(files()->vfs_getOrigin().upURL(), files()->vfs_getOrigin().fileName());
 }
 
 void ListPanelFunc::pack() {
