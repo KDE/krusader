@@ -248,8 +248,16 @@ void KFileList::keyPressEvent(QKeyEvent *e) {
     case Key_Delete :         // kill file
       SLOTS->deleteFiles();
       return;
+		case Key_Shift:
+		case Key_Control:
+			setSelectionModeExt(KListView::FileManager);
+			QListView::keyPressEvent(e);
+			break;
     default:
-      setSelectionModeExt(KListView::NoSelection);
+      if( e->state()==ControlButton || e->state()==ShiftButton )
+				setSelectionModeExt(KListView::FileManager);
+			else
+		  	setSelectionModeExt(KListView::NoSelection);
       QListView::keyPressEvent(e);
       setSelectionModeExt(KListView::FileManager);
       return;
