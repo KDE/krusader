@@ -4,6 +4,7 @@
 #include "../krslots.h"
 #include <kiconloader.h>
 #include <kmessagebox.h>
+#include <qptrlist.h>
 #include <kactioncollection.h>
 #include <klocale.h>
 #include <kdebug.h>
@@ -13,6 +14,7 @@
 
 #define SPECIAL_BOOKMARKS	true
 
+// ------------------------ for internal use
 #define BOOKMARKS_FILE	"krusader/bookman2.xml"
 #define TOP_OF_MENU		0
 #define BOTTOM_OF_MENU	_menu->indexOf(Border)
@@ -22,11 +24,20 @@
 #define STARTWATCH	_dirwatch->restartDirScan(_filename)
 											
 KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject(parent), _menu(menu) {
-	_filename = locateLocal( "data", BOOKMARKS_FILE );
-	
-	// create our own action collection and make the shortcuts apply only to parent
+// create our own action collection and make the shortcuts apply only to parent
 	_collection = new KActionCollection(0, parent);
+	
+	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
+	_root = new KrBookmark("root");
 
+	// start watching the bookmarks file for updates
+	_filename = locateLocal( "data", BOOKMARKS_FILE );
+	_dirwatch = new KDirWatch(this);
+	_dirwatch->addFile(locateLocal("data", BOOKMARKS_FILE));
+	connect(_dirwatch, SIGNAL(dirty(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
+	connect(_dirwatch, SIGNAL(created(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
+
+	// add quick navigation
 	_menu->setKeyboardShortcutsEnabled(true);
 	_menu->setKeyboardShortcutsExecute(true);
 	connect(_menu, SIGNAL(activated(int)), this, SLOT(menuOperation(int)));
@@ -53,10 +64,6 @@ KrBookmarkHandler::KrBookmarkHandler(QWidget *parent, KPopupMenu *menu): QObject
 		i18n("Bookmark Current"), BookmarkCurrent);
 	_menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
 		i18n("Manage Bookmarks"), ManageBookmarks);
-
-	_dirwatch = new KDirWatch(this);
-	_dirwatch->addFile(locateLocal("data", BOOKMARKS_FILE));
-	connect(_dirwatch, SIGNAL(dirty(const QString &)), this, SLOT(bookmarksUpdated(const QString &)));
 }
 
 void KrBookmarkHandler::bookmarkActivated(KrBookmark *bm) {
@@ -82,9 +89,12 @@ void KrBookmarkHandler::bookmarkCurrent(KURL url) {
 	}
 }
 
-void KrBookmarkHandler::addBookmark(KrBookmark *bm, bool saveData) {
+void KrBookmarkHandler::addBookmark(KrBookmark *bm, bool saveData, KrBookmark *folder) {
+	if (folder == 0)
+		folder = _root;
+		
 	// add to the list (bottom)
-	_bookmarks.append(bm);
+	folder->children().append(bm);
 
 	// add to menu
 	bm->plug(_menu, BOTTOM_OF_MENU); // add on top
@@ -124,6 +134,7 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
 //    </folder>
 //  </xbel>
 void KrBookmarkHandler::exportToFile() {
+#if 0	
 	// disable the dirwatch while saving the file
 	STOPWATCH;
 
@@ -148,9 +159,10 @@ void KrBookmarkHandler::exportToFile() {
 
 	// re-enable the dirwatch
 	STARTWATCH;
+#endif
 }
 
-bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, QString *errorMsg) {
+bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg) {
 	QString url, name;
 	// verify tag
 	if (e.tagName() != "bookmark") {
@@ -170,13 +182,40 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, QString *errorMsg
 	} else name = te.text();
 
 	// ok: got name and url, let's add a bookmark
-	addBookmark(new KrBookmark(name, url, _collection), false);
+	KrBookmark *bm = new KrBookmark(name, url, _collection);
+	parent->children().append(bm);
 
 	return true;
 }
 
+bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, QString *errorMsg) {
+	QString name;
+	QDomNode n = first;
+	while (!n.isNull()) {
+		QDomElement e = n.toElement();
+		if (e.tagName() == "bookmark") {
+			if (!importFromFileBookmark(e, parent, errorMsg))
+				return false;
+		} else if (e.tagName() == "folder") {
+			// the title is the first child of the folder
+			QDomElement tmp = e.firstChild().toElement();
+			if (tmp.tagName() != "title") {
+				*errorMsg = i18n("missing tag ")+"title";
+				return false;
+			} else name = tmp.text();
+			KrBookmark *folder = new KrBookmark(name);
+			parent->children().append(folder);
+
+			QDomNode nextOne = tmp.nextSibling();
+			if (!importFromFileFolder(nextOne, folder, errorMsg))
+				return false;
+		}
+		n = n.nextSibling();
+	}
+	return true;
+}
+
 void KrBookmarkHandler::importFromFile() {
-	clearBookmarks();
 	STOPWATCH;
 	
 	QFile file( _filename );
@@ -191,39 +230,58 @@ void KrBookmarkHandler::importFromFile() {
 		goto ERROR;
 	}
 
-	// iterate through the document: first child should be "xbel"
-	n = doc.firstChild();
+	// iterate through the document: first child should be "xbel" (skip all until we find it)
+	n = doc.firstChild();	
+	while (!n.isNull() && n.toElement().tagName()!="xbel")
+		n = n.nextSibling();
+
 	if (n.isNull() || n.toElement().tagName()!="xbel") {
 		errorMsg = _filename+i18n(" doesn't seem to be a valid Bookmarks file");
 		goto ERROR;
-	} else n = n.firstChild(); // skip the 'xbel' root
-	
-	while (!n.isNull()) {
-		e = n.toElement();
-		if (!importFromFileBookmark(e, &errorMsg))
-			goto ERROR;
-		n = n.nextSibling();
-	}
-	
+	} else n = n.firstChild(); // skip the xbel part
+
+	importFromFileFolder(n, _root, &errorMsg);
 	goto SUCCESS;
 	
 ERROR:
 	KMessageBox::error(krApp, "Error", i18n("Error reading bookmarks file: ")+errorMsg);
+
 SUCCESS:
 	file.close();
-
+	buildMenu(_root, _menu);
+		
 	STARTWATCH;
 }
 
+void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
+	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
+		if (bm->isFolder()) {
+			KPopupMenu *newMenu = new KPopupMenu(menu);
+			menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
+									bm->text(), newMenu, BOTTOM_OF_MENU);
+			buildMenu(bm, newMenu);
+		} else {
+			bm->plug(menu, BOTTOM_OF_MENU); // add on top
+			CONNECT_BM(bm);
+		}
+	}
+}
+
 void KrBookmarkHandler::bookmarksUpdated(const QString &) {
+	clearBookmarks(_root);
 	importFromFile();
 }
 
-void KrBookmarkHandler::clearBookmarks() {
-	KrBookmark *tmp, *bm = _bookmarks.first();
+void KrBookmarkHandler::clearBookmarks(KrBookmark *root) {
+	KrBookmark *tmp, *bm = root->children().first();
 	while (bm) {
+		if (bm->isFolder())
+			clearBookmarks(bm);
 		tmp = bm;
+		bm = root->children().next();
+
+		// TODO: clear all subfolders too
+		tmp->unplugAll();
 		delete tmp;
-		bm = _bookmarks.next();
 	}
 }

@@ -20,13 +20,15 @@ public:
 
 protected:
 	void bookmarkCurrent(KURL url);
-	void addBookmark(KrBookmark *bm, bool saveData = true);
+	void addBookmark(KrBookmark *bm, bool saveData = true, KrBookmark *parent = 0);
 	void deleteBookmark(KrBookmark *bm);
 	void importFromFile();
-	bool importFromFileBookmark(QDomElement &e, QString *errorMsg);
+	bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg);
+	bool importFromFileFolder(QDomNode &first, KrBookmark *parent, QString *errorMsg);
 	void exportToFile();
 	void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);
-	void clearBookmarks();
+	void clearBookmarks(KrBookmark *root);
+	void buildMenu(KrBookmark *parent, KPopupMenu *menu);
 	
 signals:
 	void openUrl(const KURL& url);
@@ -39,7 +41,7 @@ protected slots:
 private:
 	KPopupMenu *_menu;
 	KActionCollection *_collection;
-	QPtrList<KrBookmark> _bookmarks;
+	KrBookmark *_root;
 	KDirWatch *_dirwatch;
 	QString _filename;
 };

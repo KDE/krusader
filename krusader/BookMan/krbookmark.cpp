@@ -7,7 +7,7 @@
 #include <kdebug.h>
 
 KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent):
-	KAction(name, 0, 0, 0, parent), _url(url) {
+	KAction(name, 0, 0, 0, parent), _url(url), _folder(false) {
 	connect(this, SIGNAL(activated()), this, SLOT(activatedProxy()));
 
 	// what kind of a url is it?
@@ -20,13 +20,11 @@ KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent):
 	}
 }
 
-const KURL& KrBookmark::url() const {
-	return _url;
+KrBookmark::KrBookmark(QString name):
+	KAction(name, 0, 0, 0, 0), _folder(true) {
+	setIcon("folder");
 }
 
-void KrBookmark::setURL(const KURL& url) {
-	_url = url;
-}
 
 KrBookmark* KrBookmark::devices(KActionCollection *collection) {
 	KrBookmark *bm = new KrBookmark(I18N_NOOP("Devices"), "devices:/", collection);
