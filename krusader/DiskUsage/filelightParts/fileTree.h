@@ -221,13 +221,13 @@ public:
   
   enum UnitPrefix { kilo, mega, giga, tera };
 
-  static const uint DENOMINATOR[4];
+  static const FileSize DENOMINATOR[4];
   static const char PREFIX[4][3];
 
   QString fullPath( const Directory* = 0 ) const;
   QString humanReadableSize( UnitPrefix key = mega ) const;
 
-  static QString humanReadableSize( uint size, UnitPrefix Key = mega );
+  static QString humanReadableSize( FileSize size, UnitPrefix Key = mega );
   
   friend class Directory;
 
