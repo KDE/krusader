@@ -1242,13 +1242,16 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 <title>KruSyncDir: Synchronize Directories</title>
 
 <para>This function compares the left and the right panel directories and shows the difference between them.
-      After selecting some options and the "compare" function you can synchronize the files and directories.
-      One panel could be an &FTP; server. Don't forget the <guilabel>compare by content</guilabel> option
+      After selecting some options and the <guilabel>Compare</guilabel> function you can synchronize the 
+      files and directories.
+      One panel could be an &FTP; server. Don't forget the <guilabel>Compare by content</guilabel> option
       if the file size stays equal.
       Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
       <guimenuitem>Synchronize Directories</guimenuitem></menuchoice></emphasis>
       or
       <keycombo action="simul">&Ctrl;<keycap>Y</keycap></keycombo> to start this feature.</para>
+
+<note><para>For local files: the synchronizer changes the date information to the original dates.</para></note>
 
 <screenshot>
   <screeninfo>KruSyncDir: Synchronize Directories</screeninfo>
@@ -1262,16 +1265,20 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <para>
     <orderedlist><title>Procedure:</title>
-    <listitem><para>Set the left and the right directory.</para>
+    <listitem><para>Set the <guilabel>Left directory</guilabel> and the <guilabel>Right directory</guilabel>.</para>
               </listitem>
-    <listitem><para>Configure the optional file filter.</para>
+    <listitem><para>Configure the optional <guilabel>File Filter</guilabel>, 
+               <guilabel>General Filters</guilabel> and <guilabel>Advanced filters</guilabel>.
+               The <guilabel>General Filters</guilabel> includes a <guilabel>don't search in</guilabel> 
+               option which lets you exclude directories from comparision.
+               </para>
               </listitem>
     <listitem><para>Set the <link linkend="synccomp_checkb_options">checkbox options</link>:
                    <guilabel>Recurse subdirectories</guilabel>,
                    <guilabel>Follow symlinks</guilabel>, <guilabel>Compare by content</guilabel>,
                    <guilabel>Ignore Date</guilabel> and <guilabel>Asymmetric</guilabel>.</para>
               </listitem>
-    <listitem><para>Click on the <guibutton>"Compare"</guibutton> button to compare the directories.</para>
+    <listitem><para>Click on the <guibutton>Compare</guibutton> button to compare the directories.</para>
               </listitem>
     <listitem><para>By using the <link linkend="synccomp_show_options">Show options</link>, you can
                       include/exclude particular filetypes.
@@ -1281,12 +1288,12 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
                 determined by the Comparator with the
           <link linkend="synccomp_right_click">right click menu</link>.</para>
               </listitem>
-    <listitem><para>When you agree with the <guibutton>"Compare"</guibutton> results click on the
-                    <guibutton>"Synchronize"</guibutton> button to show the synchronize dialog.</para>
+    <listitem><para>When you agree with the <guibutton>Compare</guibutton> results click on the
+                    <guibutton>Synchronize</guibutton> button to show the synchronize dialog.</para>
               </listitem>
     <listitem><para>After selection the options of the
                      <link linkend="sychronizer">Synchronizer</link>, click on the
-                     <guibutton>"Start"</guibutton> button to start the synchronization process.</para>
+                     <guibutton>Start</guibutton> button to start the synchronization process.</para>
               </listitem>
     </orderedlist>
     A detailed explanation of all the functions and buttons is described in the following text.
@@ -1372,7 +1379,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 </variablelist>
 
-<para>When all the above things are done, click on the <guibutton>"Compare"</guibutton> button to compare the
+<para>When all the above things are done, click on the <guibutton>Compare</guibutton> button to compare the
        directories, the results are displayed in the "File List".</para>
 
 <variablelist><varlistentry><term>"File List"</term>
@@ -1432,13 +1439,13 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
     <varlistentry><term>Action buttons</term>
     <listitem>
     <itemizedlist>
-      <listitem><para><guibutton>"Compare"</guibutton>:
+      <listitem><para><guibutton>Compare</guibutton>:
              compares the directories, the results are displayed in the <guilabel>File List</guilabel>.</para></listitem>
-      <listitem><para><guibutton>"Stop"</guibutton>:
+      <listitem><para><guibutton>Stop</guibutton>:
              stops comparing.</para></listitem>
-  <listitem><para><guibutton>"Synchronize"</guibutton>:
+  <listitem><para><guibutton>Synchronize</guibutton>:
              shows the synchronize dialog.</para></listitem>
-  <listitem><para><guibutton>"Close"</guibutton>:
+  <listitem><para><guibutton>Close</guibutton>:
              closes the Synchronizer window.</para></listitem>
     </itemizedlist></listitem>
     </varlistentry>
@@ -1462,43 +1469,43 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
      If the selected item is a directory, the change will be applied on its
      files/subdirectories as well.</para>
     <itemizedlist>
-      <listitem><para><guibutton>"Synchronise Directories"</guibutton>:
+      <listitem><para><guibutton>Synchronise Directories</guibutton>:
              starts synchronization.</para></listitem>
-      <listitem><para><guibutton>"Exclude"</guibutton>:
+      <listitem><para><guibutton>Exclude</guibutton>:
              excludes a file/dir from synchronization ( task change to != ).</para></listitem>
-  <listitem><para><guibutton>"Restore original operation"</guibutton>:
+  <listitem><para><guibutton>Restore original operation</guibutton>:
              task change to the original result of comparison.</para></listitem>
-  <listitem><para><guibutton>"Reverse direction"</guibutton>:
+  <listitem><para><guibutton>Reverse direction</guibutton>:
              task change ( -> to &lt;-, and &lt;- to -> ).</para></listitem>
-        <listitem><para><guibutton>"Copy from right to left"</guibutton>:
+        <listitem><para><guibutton>Copy from right to left</guibutton>:
              task change to &lt;-.</para></listitem>
-        <listitem><para><guibutton>"Copy from left to right"</guibutton>:
+        <listitem><para><guibutton>Copy from left to right</guibutton>:
              task change to ->.</para></listitem>
-        <listitem><para><guibutton>"Delete ( left single )"</guibutton>:
+        <listitem><para><guibutton>Delete ( left single )</guibutton>:
              task change to DEL.</para></listitem>
     </itemizedlist>
 
     <para>2. change the selections</para>
     <itemizedlist>
-        <listitem><para><guibutton>"Select items"</guibutton>:
+        <listitem><para><guibutton>Select items</guibutton>:
              Opens a dialog which allows you to select items.
        This is the <guimenuitem>Select Group</guimenuitem> dialog from the
        &selectmenu_lnk;.</para></listitem>
-        <listitem><para><guibutton>"Unselect items"</guibutton>:
+        <listitem><para><guibutton>Unselect items</guibutton>:
              Opens a dialog which allows you to unselect items.
        This is the <guimenuitem>Unselect Group</guimenuitem> dialog from the
        &selectmenu_lnk;.</para></listitem>
-        <listitem><para><guibutton>"Invert selection"</guibutton>:
+        <listitem><para><guibutton>Invert selection</guibutton>:
              Invert the selection status of all items.</para></listitem>
     </itemizedlist>
 
     <para>3. others  Note: the following operations work on the right-clicked file and not on the selection.</para>
     <itemizedlist>
-        <listitem><para><guibutton>"View left file"</guibutton>:
+        <listitem><para><guibutton>View left file</guibutton>:
              starts viewer on the left file.</para></listitem>
-        <listitem><para><guibutton>"View right file"</guibutton>:
+        <listitem><para><guibutton>View right file</guibutton>:
              starts viewer on the right file.</para></listitem>
-        <listitem><para><guibutton>"Compare Files"</guibutton>:
+        <listitem><para><guibutton>Compare Files</guibutton>:
              starts the diff utility (&eg; &kompare;) on the files.</para></listitem>
     </itemizedlist>
     </listitem>
@@ -1508,12 +1515,13 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   <listitem>
    <itemizedlist>
      <listitem>
-       <para><guibutton>"Profiles"</guibutton>: If you have to synchronize often the same directories you can save the settings
-                         &eg; include files, exclude files, ...
-                         Press the 'profile' button, and you'll be able to add/ load / save / remove synchronizer profiles.</para>
+       <para><guibutton>Profiles</guibutton>: If you have to synchronize often the same 
+              directories you can save the settings &eg; include files, exclude files, ...
+              Press the <guibutton>Profile</guibutton> button, 
+              and you'll be able to add/ load / save / remove synchronizer profiles.</para>
      </listitem>
      <listitem>
-       <para><guibutton>"Swap sides"</guibutton>: swaps the <guilabel>File List</guilabel>.</para>
+       <para><guibutton>Swap sides</guibutton>: swaps the <guilabel>File List</guilabel>.</para>
     </listitem>
    </itemizedlist>
   </listitem>
@@ -1525,7 +1533,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
      <para>If you want to synchronize a local directory with an unstable ftp server,
            &kget; is a much better solution than simple file copying.
      After comparing you may right click on the result list and select
-     <guimenuitem>"Synchronize with kget"</guimenuitem>
+     <guimenuitem>Synchronize with kget</guimenuitem>
            to execute the synchronization, after that the listed files will be
            downloaded with kget instead of krusader.
      Of course <application>kget</application> needs to be installed on your computer;
@@ -1538,7 +1546,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 
     <para id="sychronizer"><emphasis role="bold">Synchronizer</emphasis></para>
-    <para>After pressing the <guibutton>"Synchronize"</guibutton> button the synchronization dialog appears.</para>
+    <para>After pressing the <guibutton>Synchronize</guibutton> button the synchronization dialog appears.</para>
 
     <variablelist>
     <varlistentry><term>Check boxes</term>
@@ -1556,7 +1564,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
                    enable / disable the left side deleting.</para></listitem>
   <listitem><para><guilabel>Confirm overwrites</guilabel>:
              By switching this option on, Krusader will show the
-                   <guibutton>"rename, skip, overwrite, skip all, overwrite all"</guibutton> dialog box,
+                   <guibutton>rename, skip, overwrite, skip all, overwrite all</guibutton> dialog box,
                    before overwriting the file.</para></listitem>
     </itemizedlist></listitem>
     </varlistentry>
@@ -1576,11 +1584,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
     <varlistentry><term>Action buttons</term>
     <listitem>
     <itemizedlist>
-      <listitem><para><guibutton>"Start"</guibutton>:
+      <listitem><para><guibutton>Start</guibutton>:
              starts synchronization.</para></listitem>
-      <listitem><para><guibutton>"Pause / Resume"</guibutton>:
+      <listitem><para><guibutton>Pause / Resume</guibutton>:
              pauses/resumes the synchronization process.</para></listitem>
-  <listitem><para><guibutton>"Close"</guibutton>:
+  <listitem><para><guibutton>Close</guibutton>:
              closes the synchronization dialog (and stops synchronization).</para></listitem>
     </itemizedlist></listitem>
     </varlistentry>
