@@ -41,10 +41,10 @@ public:
 public slots:
   bool viewGeneric();
   void viewHex();
-  void viewText();
+  bool viewText();
 
   bool editGeneric(QString mimetype, KURL _url);
-  void editText();
+  bool editText();
 
   void keyPressEvent(QKeyEvent *e);
   void createGUI(KParts::Part*);

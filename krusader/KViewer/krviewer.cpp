@@ -134,7 +134,11 @@ void KrViewer::view(KURL url){
   viewer->show();
 
   if( !viewer->viewGeneric() ){
-    viewer->viewText();
+    if( !viewer->viewText() )
+    {
+      viewer->destroy();
+      return;
+    }
     viewer->viewerMenu->setItemEnabled(1,false);
   }
 }
@@ -146,7 +150,11 @@ void KrViewer::edit(KURL url){
   viewer->setCaption("KrEdit: "+url.url());
   viewer->show();
 
-  viewer->editText();
+  if( !viewer->editText() )
+  {
+      viewer->destroy();
+      return;
+  }
 }
 
 bool KrViewer::editGeneric(QString mimetype, KURL _url){
@@ -186,12 +194,14 @@ bool KrViewer::editGeneric(QString mimetype, KURL _url){
   return true;
 }
 
-void KrViewer::editText(){
+bool KrViewer::editText(){
   if( !editor_part ){
     editor_part = static_cast<KParts::ReadWritePart*>(getPart(url,"text/plain",false));
+    if( !editor_part ) return false;
     manager.addPart(editor_part,this);
   }
   manager.setActivePart(editor_part);
+  return true;
 }
 
 bool KrViewer::viewGeneric(){
@@ -219,12 +229,14 @@ bool KrViewer::viewGeneric(){
   return true;
 }
 
-void KrViewer::viewText(){
+bool KrViewer::viewText(){
   if( !text_part ){
     text_part = static_cast<KParts::ReadOnlyPart*>(getPart(url,"text/plain",true));
+    if( !text_part ) return false;    
     manager.addPart(text_part,this);
   }
   manager.setActivePart(text_part);
+  return true;
 }
 
 void KrViewer::viewHex(){
@@ -277,6 +289,7 @@ void KrViewer::viewHex(){
       KIO::NetAccess::removeTempFile( file );
 
     hex_part = static_cast<KParts::ReadOnlyPart*>(getPart(tmpFile.name(),"text/plain",true));
+    if( !hex_part ) return;
     manager.addPart(hex_part,this);
   }
   manager.setActivePart(hex_part);
