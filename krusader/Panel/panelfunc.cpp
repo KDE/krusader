@@ -65,7 +65,6 @@ A
 #include "../Dialogs/krpleasewait.h"
 #include "../Dialogs/krspwidgets.h"
 #include "../KViewer/krviewer.h"
-#include "../MountMan/kmountman.h"
 #include "../resources.h"
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
