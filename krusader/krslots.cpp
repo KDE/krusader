@@ -328,8 +328,16 @@ void KRslots::toggleHidden(){
 }
 
 void KRslots::toggleSwapPanels(){
+  QValueList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
+
   MAIN_VIEW->horiz_splitter->moveToLast( MAIN_VIEW->leftMng );
 
+  int old = lst[ 0 ];
+  lst[ 0 ] = lst [ 1 ];
+  lst[ 1 ] = old;
+  
+  MAIN_VIEW->horiz_splitter->setSizes( lst );
+  
   ListPanel     *tmpPanel;     // temporary variables for swapping
   PanelManager  *tmpMng;
 
