@@ -80,6 +80,7 @@ private:
   void fillList(QComboBox *list, QString filename);
   bool gui2query();
   void query2gui();
+  void deleteSelectedItems( QListBox * );
 
 private:
   KRQuery *query;

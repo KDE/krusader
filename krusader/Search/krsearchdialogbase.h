@@ -11,6 +11,7 @@
 
 #include <qvariant.h>
 #include <qdialog.h>
+
 class QVBoxLayout; 
 class QHBoxLayout; 
 class QGridLayout; 
@@ -26,6 +27,7 @@ class QLineEdit;
 class QListView;
 class QListViewItem;
 class QMultiLineEdit;
+class QListBox;
 class QPushButton;
 class QRadioButton;
 class QTabWidget;
@@ -49,11 +51,13 @@ public:
     QGroupBox* GroupBox1_2;
     KLineEdit* dontSearchInEdit;
     QToolButton* dontSearchInBtn;
-    QMultiLineEdit* dontSearchIn;
+    QToolButton* dontSearchInBtnAdd;
+    QListBox* dontSearchIn;
     QGroupBox* GroupBox1;
     KLineEdit* searchInEdit;
-    QMultiLineEdit* searchIn;
+    QListBox* searchIn;
     QToolButton* searchInBtn;
+    QToolButton* searchInBtnAdd;
     QGroupBox* GroupBox14;
     QCheckBox* containsTextCase;
     QLabel* TextLabel2;

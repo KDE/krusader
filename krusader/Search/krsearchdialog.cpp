@@ -248,8 +248,11 @@ void KrSearchDialog::addToSearchIn() {
 }
 
 void KrSearchDialog::addToSearchInManually() {
-  searchIn->append(searchInEdit->text());
-  searchInEdit->clear();
+  if( searchInEdit->text().simplifyWhiteSpace().length() )
+  {  
+    searchIn->insertItem(searchInEdit->text());
+    searchInEdit->clear();
+  }
 }
 
 void KrSearchDialog::addToDontSearchIn() {
@@ -260,8 +263,11 @@ void KrSearchDialog::addToDontSearchIn() {
 }
 
 void KrSearchDialog::addToDontSearchInManually() {
-  dontSearchIn->append(dontSearchInEdit->text());
-  dontSearchInEdit->clear();
+  if( dontSearchInEdit->text().simplifyWhiteSpace().length() )
+  {
+    dontSearchIn->insertItem(dontSearchInEdit->text());
+    dontSearchInEdit->clear();
+  }
 }
 
 void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm){
@@ -301,10 +307,24 @@ bool KrSearchDialog::gui2query() {
     query->type = ofType->currentText();
   else query->type = QString::null;
   // create the lists
-  query->whereToSearch = QStringList::split(QChar('\n'), searchIn->text().simplifyWhiteSpace());
+  query->whereToSearch.clear();
+  QListBoxItem *item = searchIn->firstItem();
+  while ( item )
+  {    
+    query->whereToSearch.append( item->text().simplifyWhiteSpace() );
+    item = item->next();
+  }
+
   if (!searchInEdit->text().simplifyWhiteSpace().isEmpty())
     query->whereToSearch.append(searchInEdit->text().simplifyWhiteSpace());
-  query->whereNotToSearch = QStringList::split(QChar('\n'), dontSearchIn->text());
+
+  query->whereNotToSearch.clear();
+  item = dontSearchIn->firstItem();
+  while ( item )
+  {
+    query->whereNotToSearch.append( item->text().simplifyWhiteSpace() );
+    item = item->next();
+  }
   if (!dontSearchInEdit->text().simplifyWhiteSpace().isEmpty())
     query->whereNotToSearch.append(dontSearchInEdit->text().simplifyWhiteSpace());
 
@@ -544,6 +564,22 @@ void KrSearchDialog::loadSearch() {
 void KrSearchDialog::loadSearch(QListViewItem *) {
 }
 
+void KrSearchDialog::deleteSelectedItems( QListBox *list_box )
+{
+  int i=0;
+  QListBoxItem *item;
+
+  while( item = list_box->item(i) )
+  {
+    if( item->isSelected() )
+    {
+      list_box->removeItem( i );
+      continue;
+    }
+    i++;
+  }
+}
+
 void KrSearchDialog::closeEvent(QCloseEvent *e)
 {                     /* if searching is in progress we must not close the window */
   if( isSearching )   /* because qApp->processEvents() is called by the searcher and */
@@ -559,9 +595,25 @@ void KrSearchDialog::closeEvent(QCloseEvent *e)
 void KrSearchDialog::keyPressEvent(QKeyEvent *e)
 {
   if( isSearching && e->key() == Key_Escape ) /* at searching we must not close the window */
+  {
     stopSearch();         /* so we simply stop searching */
-  else
-    QDialog::keyPressEvent( e );
+    return;
+  }
+  else if( e->key() == Key_Delete )
+  {
+    if( searchIn->hasFocus() )
+    {
+      deleteSelectedItems( searchIn );
+      return;
+    }
+    if( dontSearchIn->hasFocus() )
+    {
+      deleteSelectedItems( dontSearchIn );
+      return;
+    }
+  }
+
+  QDialog::keyPressEvent( e );
 }
 
 

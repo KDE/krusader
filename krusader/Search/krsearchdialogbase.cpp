@@ -31,8 +31,9 @@
 #include <qwhatsthis.h>
 #include <qimage.h>
 #include <qpixmap.h>
+#include <qlistbox.h>
 
-static const char* const image0_data[] = { 
+static const char* const image0_data[] = {
 "16 16 52 1",
 ". c None",
 "# c #000000",
@@ -139,6 +140,41 @@ static const char* const image1_data[] = {
 "#hhhhhhebbcccdd#",
 ".##############."};
 
+static const char * const image2_data[] = {
+"16 16 17 1",
+" 	c None",
+".	c #704A13",
+"+	c #8A6E3C",
+"@	c #997E52",
+"#	c #2C1D06",
+"$	c #EAD9B9",
+"%	c #E0CBA7",
+"&	c #C8A15E",
+"*	c #DAB579",
+"=	c #F8F5F0",
+"-	c #BF9346",
+";	c #AB6503",
+">	c #C1892B",
+",	c #B6710C",
+"'	c #965702",
+")	c #5A3202",
+"!	c #0D0702",
+"                ",
+"     .+@@@+#    ",
+"    +$$$%$$&#   ",
+"   .$%**%**$&#  ",
+"  .$*&*$=***%&# ",
+" .%*&**==**&&%-#",
+" .-&&&*$=%&&&-+#",
+" #;>$$$==$$$*,.#",
+" #;>========$,.#",
+" #;,-&*$=*&-,,.#",
+" #.;,,-%=&>,,')#",
+" !)';,,%=>,,')# ",
+"  !).;,&%>;;)#  ",
+"   !).;;;;;)#   ",
+"    !#).)))#    ",
+"     ######     "};
 
 /* 
  *  Constructs a KrSearchBase which is a child of 'parent', with the 
@@ -152,6 +188,7 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 {
     QPixmap image0( ( const char** ) image0_data );
     QPixmap image1( ( const char** ) image1_data );
+    QPixmap image2( ( const char** ) image2_data );
     if ( !name )
 	setName( "KrSearchBase" );
     resize( 596, 476 );
@@ -211,12 +248,17 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     dontSearchInBtn->setText( "" );
     dontSearchInBtn->setPixmap( image0 );
 
-    GroupBox1_2Layout->addWidget( dontSearchInBtn, 0, 1 );
+    dontSearchInBtnAdd = new QToolButton( GroupBox1_2, "dontSearchInBtnAdd" );
+    dontSearchInBtnAdd->setText( "" );
+    dontSearchInBtnAdd->setPixmap( image2 );    
+    
+    GroupBox1_2Layout->addWidget( dontSearchInBtn, 0, 2 );
+    GroupBox1_2Layout->addWidget( dontSearchInBtnAdd, 0, 1 );
 
-    dontSearchIn = new QMultiLineEdit( GroupBox1_2, "dontSearchIn" );
-    dontSearchIn->setText( "" );
+    dontSearchIn = new QListBox( GroupBox1_2, "dontSearchIn" );
+    dontSearchIn->setSelectionMode( QListBox::Extended );
 
-    GroupBox1_2Layout->addMultiCellWidget( dontSearchIn, 1, 1, 0, 1 );
+    GroupBox1_2Layout->addMultiCellWidget( dontSearchIn, 1, 1, 0, 2 );
 
     tabLayout->addWidget( GroupBox1_2, 1, 1 );
 
@@ -234,18 +276,24 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
 
     GroupBox1Layout->addWidget( searchInEdit, 0, 0 );
 
-    searchIn = new QMultiLineEdit( GroupBox1, "searchIn" );
-    searchIn->setText( "" );
+    searchIn = new QListBox( GroupBox1, "searchIn" );
+    searchIn->setSelectionMode( QListBox::Extended );
+  
+    GroupBox1Layout->addMultiCellWidget( searchIn, 1, 1, 0, 2 );
 
-    GroupBox1Layout->addMultiCellWidget( searchIn, 1, 1, 0, 1 );
+    searchInBtnAdd = new QToolButton( GroupBox1, "searchInBtnAdd" );
+    searchInBtnAdd->setText( "" );
+    searchInBtnAdd->setPixmap( image2 );
 
+    GroupBox1Layout->addWidget( searchInBtnAdd, 0, 1 );
+
+    tabLayout->addWidget( GroupBox1, 1, 0 );
     searchInBtn = new QToolButton( GroupBox1, "searchInBtn" );
     searchInBtn->setText( "" );
     searchInBtn->setPixmap( image0 );
 
-    GroupBox1Layout->addWidget( searchInBtn, 0, 1 );
+    GroupBox1Layout->addWidget( searchInBtn, 0, 2 );
 
-    tabLayout->addWidget( GroupBox1, 1, 0 );
 
     GroupBox14 = new QGroupBox( tab, "GroupBox14" );
     GroupBox14->setTitle( i18n( "Containing text" ) );
@@ -681,7 +729,9 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     connect( mainSearchBtn, SIGNAL( clicked() ), this, SLOT( startSearch() ) );
     connect( mainStopBtn, SIGNAL( clicked() ), this, SLOT( stopSearch() ) );
     connect( searchInBtn, SIGNAL( clicked() ), this, SLOT( addToSearchIn() ) );
+    connect( searchInBtnAdd, SIGNAL( clicked() ), this, SLOT( addToSearchInManually() ) );
     connect( dontSearchInBtn, SIGNAL( clicked() ), this, SLOT( addToDontSearchIn() ) );
+    connect( dontSearchInBtnAdd, SIGNAL( clicked() ), this, SLOT( addToDontSearchInManually() ) );
     connect( searchInEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( addToSearchInManually() ) );
     connect( dontSearchInEdit, SIGNAL( returnPressed(const QString&) ), this, SLOT( addToDontSearchInManually() ) );
     connect( biggerThanEnabled, SIGNAL( toggled(bool) ), biggerThanAmount, SLOT( setEnabled(bool) ) );
