@@ -151,6 +151,8 @@ ParameterDialog::ParameterDialog( Expander::Placeholder* currentPlaceholder, QWi
          _parameter.append( new ParameterSelect( &currentPlaceholder->parameter[ i ], plainPage() ) );
       else if ( currentPlaceholder->parameter[ i ].preset == "__bookmark" )
          _parameter.append( new ParameterBookmark( &currentPlaceholder->parameter[ i ], plainPage() ) );
+      else if ( currentPlaceholder->parameter[ i ].preset == "__syncprofile" )
+         _parameter.append( new ParameterSyncprofile( &currentPlaceholder->parameter[ i ], plainPage() ) );
       else
          _parameter.append( new ParameterText( &currentPlaceholder->parameter[ i ], plainPage() ) );
    }
@@ -454,4 +456,33 @@ void ParameterBookmark::setBookmark( const KURL& url ) {
    _lineEdit->setText( url.url() );
 }
 
+///////////// ParameterSyncprofile
+ParameterSyncprofile::ParameterSyncprofile( Expander::Parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+   QVBoxLayout* layout = new QVBoxLayout( this );
+   layout->setAutoAdd( true );
+   layout->setSpacing( 6 );
+   
+   new QLabel( parameter->description, this );
+   _combobox = new KComboBox( this );
+   
+   krConfig->setGroup("Synchronize");
+  
+   int profileNum = krConfig->readNumEntry( "Profile Number", 0 );
+   int i;
+   for( i = 0; i != profileNum; i++ )
+      _combobox->insertItem( (krConfig->readListEntry(QString("Profile%1").arg(i+1)))[0] );
+}
+
+QString ParameterSyncprofile::text() {
+   return _combobox->currentText();
+} 
+QString ParameterSyncprofile::preset() {
+   return _combobox->text( 0 );
+} 
+void ParameterSyncprofile::reset() {
+   _combobox->setCurrentItem( 0 );
+} 
+bool ParameterSyncprofile::valid() {
+      return true;
+} 
 

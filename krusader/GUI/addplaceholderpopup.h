@@ -225,6 +225,20 @@ private slots:
    void setBookmark( const KURL & );
 };
 
+/**
+ *  A ComboBox with all profiles available for the Synchronizer
+ *  used with default = "__syncprofile"
+ */
+class ParameterSyncprofile : public ParameterBase {
+public:
+   ParameterSyncprofile( Expander::Parameter* parameter, QWidget* parent );
+   QString text();
+   QString preset();
+   void reset();
+   bool valid();
+private:
+   KComboBox * _combobox;
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// ParameterDialog ////////////////////////////////////
