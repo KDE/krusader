@@ -47,7 +47,7 @@ A
 #include <qdir.h>
 #include <qprinter.h>
 #include <qprogressdialog.h>
-#include <qvaluelist.h> 
+#include <qvaluelist.h>
 #include <qwhatsthis.h>
 // Krusader includes
 #include "krusader.h"
@@ -67,6 +67,7 @@ A
 #include "GUI/kcmdline.h"
 #include "krslots.h"
 #include "krservices.h"
+#include "UserMenu/usermenu.h"
 
 // define the static members
 Krusader *Krusader::App = 0;
@@ -110,8 +111,8 @@ KAction *Krusader::actCloseTab = 0;
 KAction *Krusader::actSplit = 0;
 KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
-
 KToggleAction *Krusader::actToggleTerminal = 0;
+UserMenu *Krusader::userMenu = 0;
 
 bool showTrayIcon = false;
 
@@ -173,6 +174,9 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   // create the main view and set it
   mainView = new KrusaderView( this );
   mainView->start(leftPath, rightPath);
+
+  // create the user menu
+  userMenu = new UserMenu(this);
 
   // setup keyboard accelerators
   setupAccels();
