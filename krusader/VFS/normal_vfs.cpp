@@ -27,10 +27,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#ifdef _OS_SOLARIS_
 #include <strings.h>
-#endif
-
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
