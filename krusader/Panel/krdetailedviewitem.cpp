@@ -42,21 +42,25 @@
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
   KListViewItem(parent, after), KrViewItem(), _vf(vf), _view(parent) {
+  repaintItem();
+}
+
+void KrDetailedViewItem::repaintItem() {
     if (_vf == 0L) return;
     // set text in columns, according to what columns are available
     int id = KrDetailedView::Unused;
-    if ((id = parent->column(KrDetailedView::Mime)) != -1) {
+    if ((id = _view->column(KrDetailedView::Mime)) != -1) {
       QString tmp = _vf->vfile_getMime();
       setText(id, tmp.mid(tmp.find('/')+1));
     }
-    if ((id = parent->column(KrDetailedView::Size)) != -1) {
-      if (_vf->vfile_isDir()) setText(id, "<DIR>");
-      else setText(id, KRpermHandler::parseSize(_vf->vfile_getSize()));
+    if ((id = _view->column(KrDetailedView::Size)) != -1) {
+      if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, "<DIR>");
+	    else setText(id, KRpermHandler::parseSize(_vf->vfile_getSize()));
     }
 
-    if ((id = parent->column(KrDetailedView::DateTime)) != -1)
+    if ((id = _view->column(KrDetailedView::DateTime)) != -1)
       setText(id, _vf->vfile_getDateTime());
-    if ((id = parent->column(KrDetailedView::KrPermissions)) != -1) {
+    if ((id = _view->column(KrDetailedView::KrPermissions)) != -1) {
       // first, build the krusader permissions
       QString tmp;
       switch (_vf->vfile_isReadable()){
@@ -64,28 +68,28 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
         case UNKNOWN_PERM: tmp+='?'; break;
         case NO_PERM:      tmp+='-'; break;
       }
-   	  switch (vf->vfile_isWriteable()){
+   	  switch (_vf->vfile_isWriteable()){
         case ALLOWED_PERM: tmp+='w'; break;
         case UNKNOWN_PERM: tmp+='?'; break;
         case NO_PERM:      tmp+='-'; break;
       }
-   	  switch (vf->vfile_isExecutable()){
+   	  switch (_vf->vfile_isExecutable()){
         case ALLOWED_PERM: tmp+='x'; break;
         case UNKNOWN_PERM: tmp+='?'; break;
         case NO_PERM:      tmp+='-'; break;
       }
       setText(id, tmp);
     }
-    if ((id = parent->column(KrDetailedView::Permissions)) != -1)
+    if ((id = _view->column(KrDetailedView::Permissions)) != -1)
       setText(id, _vf->vfile_getPerm());
-    if ((id = parent->column(KrDetailedView::Owner)) != -1) {
+    if ((id = _view->column(KrDetailedView::Owner)) != -1) {
       uid_t uid = _vf->vfile_getUid();
       QString username = QString("%1").arg((int)uid);
       struct passwd *p = getpwuid(uid);
       if (p!=NULL) username = QString(p->pw_name);
       setText(id, username);
     }
-    if ((id = parent->column(KrDetailedView::Group)) != -1) {
+    if ((id = _view->column(KrDetailedView::Group)) != -1) {
       gid_t gid = _vf->vfile_getGid();
       QString grpname = QString("%1").arg((int)gid);
       struct group *g = getgrgid(gid);
@@ -94,7 +98,7 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
     }
     // if we've got an extention column, clip the name accordingly
     QString name = _vf->vfile_getName(), ext = "";
-    if ((id = parent->column(KrDetailedView::Extention)) != -1 && !_vf->vfile_isDir()) {
+    if ((id = _view->column(KrDetailedView::Extention)) != -1 && !_vf->vfile_isDir()) {
       int i;
       if ((i = name.findRev('.')) > 0) {
         ext = name.mid(i+1);
@@ -102,10 +106,10 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
       }
       setText(id, ext);
     }
-    setText(parent->column(KrDetailedView::Name), name);
+    setText(_view->column(KrDetailedView::Name), name);
     // display an icon if needed
-    if (parent->_withIcons)
-      setPixmap(parent->column(KrDetailedView::Name),KrView::getIcon(_vf));
+    if (_view->_withIcons)
+      setPixmap(_view->column(KrDetailedView::Name),KrView::getIcon(_vf));
 }
 
 QString num2qstring(unsigned long num){
@@ -124,7 +128,8 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
   if(column != _view->column(KrDetailedView::Size))
     KListViewItem::paintCell(p, cg, column, width, align);
   else if (_vf) {
-    if (_vf->vfile_isDir()) KListViewItem::paintCell(p, cg, column, width, Qt::AlignHCenter);
+    if (_vf->vfile_isDir() && _vf->vfile_getSize()<=0)
+      KListViewItem::paintCell(p, cg, column, width, Qt::AlignHCenter);
     else KListViewItem::paintCell(p, cg, column, width, align); // size
   } else KListViewItem::paintCell(p, cg, column, width, Qt::AlignHCenter); // updir
 }
@@ -200,7 +205,7 @@ QString KrDetailedViewItem::description() const {
 		QString comment = KMimeType::mimeType(_vf->vfile_getMime())->comment(text, false);
  		QString myLinkDest = _vf->vfile_getSymDest();
 		long long mySize = _vf->vfile_getSize();
- 			
+
     QString text2 = text.copy();
 		mode_t m_fileMode = _vf->vfile_getMode();
 
@@ -209,7 +214,7 @@ QString KrDetailedViewItem::description() const {
 			if ( comment.isEmpty() )	tmp = i18n ( "Symbolic Link" ) ;
 			else if( _vf->vfile_getMime() == "Broken Link !" ) tmp = i18n("(broken link !)");
  		  else tmp = i18n("%1 (Link)").arg(comment);
-      	
+
 			text += "->";
      	text += myLinkDest;
      	text += "  ";
