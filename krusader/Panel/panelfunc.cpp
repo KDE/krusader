@@ -946,8 +946,8 @@ void ListPanelFunc::properties() {
 		vfile* vf = files() ->vfs_search( names[ i ] );
 		if ( !vf )
 			continue;
-		//KURL url = files()->vfs_getFile( names[i] );
-		fi.append( new KFileItem( vf->vfile_getEntry(), files() ->vfs_getOrigin(), false, true ) );
+		KURL url = files()->vfs_getFile( names[i] );
+		fi.append( new KFileItem( vf->vfile_getEntry(), url ) );
 	}
 
 	if ( fi.isEmpty() )
@@ -962,7 +962,7 @@ void ListPanelFunc::refreshActions() {
 	vfs::VFS_TYPE vfsType = files() ->vfs_getType();
 	//  set up actions
 	krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
-	krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
+	//krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
 	krFTPDiss ->setEnabled( vfsType == vfs::FTP );     // disconnect an FTP session
 	/*
 	  krUnpack->setEnabled(true);                            // unpack archive
