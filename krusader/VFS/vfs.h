@@ -104,6 +104,7 @@ public slots:
   /// or display a error message if the job fails
 	virtual bool vfs_refresh(KIO::Job* job);
 	virtual bool vfs_refresh(){ return vfs_refresh(vfs_getOrigin()); }
+	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
 
 signals: 	
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.

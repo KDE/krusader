@@ -68,13 +68,13 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel){
 }
 
 bool normal_vfs::vfs_refresh(const KURL& origin){
-  QString path = origin.path(-1);
+	QString path = origin.path(-1);
 	
 	// check that the new origin exists
 	if ( !QDir(path).exists() ) return false;
     
-  krConfig->setGroup("Advanced");
-  if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
+	krConfig->setGroup("Advanced");
+	if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
    	
 	watcher.stopScan(); //stop watching the old dir
 	// and remove it from the list
@@ -85,26 +85,26 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
   // will give the warnings and errors
 	isWritable = true;
 	
- 	krConfig->setGroup("Look&Feel");
+	krConfig->setGroup("Look&Feel");
 	bool hidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
 	krConfig->setGroup("General");
 	bool mtm    = krConfig->readBoolEntry("Mimetype Magic",_MimetypeMagic);
 
 	// set the origin...
   vfs_origin = origin;
-  vfs_origin.setProtocol("file"); // do not remove !
+	vfs_origin.setProtocol("file"); // do not remove !
 	vfs_origin.cleanPath();
   // clear the the list
 	clear();
 	
 	DIR* dir = opendir(path.local8Bit());
-  if(!dir) return false;
+	if(!dir) return false;
 
   // change directory to the new directory
-  if (chdir(path.local8Bit()) != 0) {
-  		KMessageBox::error(krApp, i18n("Access denied to")+path, i18n("Error"));
+	if (chdir(path.local8Bit()) != 0) {
+		if( !quietMode ) KMessageBox::error(krApp, i18n("Access denied to")+path, i18n("Error"));
 		return false;
-  }
+	}
 
 	struct dirent* dirEnt;
   QString name;
@@ -269,6 +269,11 @@ vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 }
 
 void normal_vfs::vfs_slotDirty(const QString& path){ 
+	if( quietMode ){
+		dirty = true;
+		return;
+	}
+	
 	KURL url = fromPathOrURL(path);
 	if( url.equals(vfs_getOrigin()) ){
 		// the directory itself is dirty - full refresh is needed
@@ -289,6 +294,11 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 }
 
 void normal_vfs::vfs_slotCreated(const QString& path){  
+	if( quietMode ){
+		dirty = true;
+		return;
+	}	
+	
 	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();	
 	// if it's in the CVS - it's an update not new file
@@ -301,6 +311,11 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 }
 
 void normal_vfs::vfs_slotDeleted(const QString& path){ 
+	if( quietMode ){
+		dirty = true;
+		return;
+	}
+	
 	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();
 	
@@ -309,6 +324,16 @@ void normal_vfs::vfs_slotDeleted(const QString& path){
 		emit deletedVfile(name);
 		removeFromList(name);	
 	}	
+}
+
+void normal_vfs::vfs_setQuiet(bool beQuiet){ 
+	if( beQuiet ){
+		dirty = false;
+		quietMode=beQuiet;
+	} else {
+		quietMode=beQuiet;
+		if( dirty ) vfs::vfs_refresh();
+	} 
 }
 
 #include "normal_vfs.moc"
