@@ -752,7 +752,7 @@ void KRslots::manageUseractions() {
 }
 
 void KRslots::slotSynchronizeDirs() {
-  SynchronizerGUI *sync = new SynchronizerGUI( MAIN_VIEW,
+  SynchronizerGUI *sync = new SynchronizerGUI( krApp,
                 MAIN_VIEW->left->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol),
                 MAIN_VIEW->right->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol) );
 
