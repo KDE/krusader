@@ -1482,11 +1482,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
     }
   }
       
-  while( isShown() )
-  {
-    qApp->processEvents();
-    qApp->eventLoop()->processEvents( QEventLoop::AllEvents|QEventLoop::WaitForMore);
-  }
+  exec();
 }
 
 SynchronizerGUI::~SynchronizerGUI()
