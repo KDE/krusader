@@ -66,7 +66,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krusader.h"
 #include "../krslots.h"
 #include "../kicons.h"
-#include "../VFS/normal_vfs.h"
 #include "../VFS/krpermhandler.h"
 #include "listpanel.h"
 #include "../krusaderview.h"
