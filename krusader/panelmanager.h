@@ -5,6 +5,7 @@
 #include <qlayout.h>
 #include "paneltabbar.h"
 
+class KConfig;
 class ListPanel;
 class QWidgetStack;
 class QToolButton;
@@ -40,6 +41,7 @@ class PanelManager: public QWidget {
      * Swaps the left / right directions of the panel
      */
     void swapPanels()             {_left = !_left;}
+	 void saveSettings(KConfig *config, const QString& key);
 
   public slots:
     /**

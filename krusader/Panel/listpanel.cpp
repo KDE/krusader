@@ -410,14 +410,16 @@ void ListPanel::start( QString path ) {
          if ( krConfig->readEntry( "Left Panel Origin", _LeftPanelOrigin ) == i18n( "homepage" ) )
             virtualPath = krConfig->readEntry( "Left Panel Homepage", _LeftHomepage );
          else if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
-            virtualPath = krConfig->readEntry( "lastHomeLeft", "/" );
+				// read the first of the tabbar. lastHomeLeft is obsolete!
+				virtualPath = (krConfig->readPathListEntry( "LeftTabBar" ))[0];
          else
             virtualPath = getcwd( 0, 0 ); //get_current_dir_name();
       } else { // right
          if ( krConfig->readEntry( "Right Panel Origin", _RightPanelOrigin ) == i18n( "homepage" ) )
             virtualPath = krConfig->readEntry( "Right Panel Homepage", _RightHomepage );
          else if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
-            virtualPath = krConfig->readEntry( "lastHomeRight", "/" );
+				// read the first of the tabbar. lastHomeLeft is obsolete!
+				virtualPath = (krConfig->readPathListEntry( "RightTabBar" ))[0];
          else
             virtualPath = getcwd( 0, 0 );
       }
