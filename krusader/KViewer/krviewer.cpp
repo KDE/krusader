@@ -40,7 +40,7 @@
 #include "../defaults.h"
 
 KrViewer::KrViewer(QWidget *parent, const char *name ) :
-  KParts::MainWindow(parent,name), manager(this,this){
+  KParts::MainWindow(parent,name), manager(this,this), normalExit(false){
 
   //setWFlags(WType_TopLevel | WDestructiveClose);
   setXMLFile("krviewerui.rc");
@@ -51,6 +51,7 @@ KrViewer::KrViewer(QWidget *parent, const char *name ) :
 
   connect(&manager,SIGNAL(activePartChanged(KParts::Part*)),
           this,SLOT(createGUI(KParts::Part*)));
+  
 
   viewerMenu = new QPopupMenu( this );
   viewerMenu->insertItem( i18n("&Generic viewer"), this, SLOT(viewGeneric()), CTRL+Key_G,1 );
@@ -65,6 +66,12 @@ KrViewer::KrViewer(QWidget *parent, const char *name ) :
 }
 
 KrViewer::~KrViewer(){
+	if (!normalExit && editor_part && editor_part->isModified() ) {
+    	switch ( KMessageBox::warningYesNo( this, i18n("The editor is about to close. Do you want to save your changes?")) ) {
+  			case KMessageBox::Yes :
+    			((KParts::ReadWritePart*)editor_part)->save();
+  			}
+	}
 	//kdDebug() << "KrViewer killed" << endl;
 }
 
@@ -351,6 +358,7 @@ void KrViewer::handleOpenURLRequest( const KURL &url, const KParts::URLArgs & ){
 
 bool KrViewer::queryClose()
 {
+  normalExit = true;
   if( !editor_part || !editor_part->isModified() )
     return true;
   

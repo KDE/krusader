@@ -69,6 +69,7 @@ private:
   KParts::ReadWritePart *editor_part;
 
   KTempFile tmpFile;
+  bool normalExit;
 };
 
 #endif
