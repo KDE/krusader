@@ -1098,3 +1098,5 @@ bool KrDetailedView::event( QEvent *e ) {
    return KListView::event( e );
 }
 
+
+#include "krdetailedview.moc"

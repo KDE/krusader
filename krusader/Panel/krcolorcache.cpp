@@ -239,3 +239,5 @@ void KrColorCache::refreshColors()
    colorsRefreshed();
 }
 
+
+#include "krcolorcache.moc"

@@ -4,32 +4,33 @@ kde_module_LTLIBRARIES = kio_iso.la
 INCLUDES = $(all_includes)
 
 
-LDFLAGS =      
+#LDFLAGS =      
 
 kio_iso_la_METASOURCES=AUTO
 
-kio_iso_la_SOURCES = kisodirectory.cpp kisofile.cpp qfilehack.cpp kiso.cpp iso.cpp 
-kio_iso_la_LIBADD = $(LIB_KIO) $(LIB_KDECORE) $(LIB_QT) libisofs/libisofs.la
+kio_iso_la_SOURCES = kisodirectory.cpp kisofile.cpp qfilehack.cpp kiso.cpp iso.cpp
+kio_iso_la_LIBADD = libisofs/libisofs.la $(LIB_KIO)
 
-kio_iso_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)       
+kio_iso_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
 
 SUBDIRS = libisofs
 
-EXTRA_DIST = iso.cpp iso.h iso.protocol kiso.cpp kiso.h qfilehack.cpp qfilehack.h kisofile.cpp kisofile.h kisodirectory.cpp kisodirectory.h isoservice.desktop 
+noinst_HEADERS = iso.h kiso.h qfilehack.h kisofile.h kisodirectory.h
+EXTRA_DIST = iso.protocol isoservice.desktop 
 
 install-data-local:
-	$(mkinstalldirs)  $(kde_servicesdir)/
-	$(INSTALL_DATA) $(srcdir)/iso.protocol  $(kde_servicesdir)/iso.protocol
-	$(mkinstalldirs)  $(kde_datadir)/konqueror/servicemenus/
-	$(INSTALL_DATA) $(srcdir)/isoservice.desktop  $(kde_datadir)/konqueror/servicemenus/isoservice.desktop
-	$(mkinstalldirs)  $(kde_confdir)/
-	$(INSTALL_DATA) $(srcdir)/kio_isorc $(kde_confdir)/kio_isorc
+	$(mkinstalldirs)  $(DESTDIR)$(kde_servicesdir)/
+	$(INSTALL_DATA) $(srcdir)/iso.protocol  $(DESTDIR)$(kde_servicesdir)/iso.protocol
+	$(mkinstalldirs)  $(DESTDIR)$(kde_datadir)/konqueror/servicemenus/
+	$(INSTALL_DATA) $(srcdir)/isoservice.desktop  $(DESTDIR)$(kde_datadir)/konqueror/servicemenus/isoservice.desktop
+	$(mkinstalldirs)  $(DESTDIR)$(kde_confdir)/
+	$(INSTALL_DATA) $(srcdir)/kio_isorc $(DESTDIR)$(kde_confdir)/kio_isorc
 
 uninstall-local:
-	-rm -f  $(kde_servicesdir)/iso.protocol
-	-rm -f  $(kde_datadir)/konqueror/servicemenus/isoservice.desktop
-	-rm -f  $(kde_confdir)/kio_isorc
+	-rm -f  $(DESTDIR)$(kde_servicesdir)/iso.protocol
+	-rm -f  $(DESTDIR)$(kde_datadir)/konqueror/servicemenus/isoservice.desktop
+	-rm -f  $(DESTDIR)$(kde_confdir)/kio_isorc
 
 # These paths are KDE specific. Use them:
 # kde_appsdir         Where your application's menu entry (.desktop) should go to.

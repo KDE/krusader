@@ -101,3 +101,5 @@ void DirHistoryQueue::DumpQueue()
   }
 }
 
+
+#include "dirhistoryqueue.moc"

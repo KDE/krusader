@@ -207,3 +207,5 @@ void SplitterGUI::keyPressEvent( QKeyEvent *e )
     QDialog::keyPressEvent( e );
   }
 }
+
+#include "splittergui.moc"

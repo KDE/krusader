@@ -247,3 +247,5 @@ void Splitter::splitFileFinished(KIO::Job *job)
 
   emit accept();
 }
+
+#include "splitter.moc"

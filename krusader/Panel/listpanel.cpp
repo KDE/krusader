@@ -1127,3 +1127,5 @@ void ListPanel::hideEvent( QHideEvent * )
 {
   func->files()->vfs_enableRefresh(false);
 }
+
+#include "listpanel.moc"

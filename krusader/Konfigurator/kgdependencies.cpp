@@ -124,3 +124,5 @@ void KgDependencies::slotApply( QObject *obj, QString cls, QString name )
     urlRequester->setURL( usedPath );
   }
 }
+
+#include "kgdependencies.moc"

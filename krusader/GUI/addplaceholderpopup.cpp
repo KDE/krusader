@@ -536,3 +536,5 @@ bool ParameterPanelprofile::valid() {
       return true;
 } 
 
+
+#include "addplaceholderpopup.moc"

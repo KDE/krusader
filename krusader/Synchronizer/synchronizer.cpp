@@ -1248,3 +1248,5 @@ vfile * Synchronizer::searchFile( vfs *vfs, QString file )
   return 0;
 }
 
+
+#include "synchronizer.moc"

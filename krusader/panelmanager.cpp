@@ -274,3 +274,5 @@ void PanelManager::slotPreviousTab() {
 	_tabbar->setCurrentTab(_tabbar->tabAt(nextInd));	
 	slotChangePanel(nextp);   
 }
+
+#include "panelmanager.moc"

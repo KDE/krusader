@@ -89,3 +89,5 @@ void DirHistoryButton::slotPopupActivated(int id){
     emit openUrl( vfs::fromPathOrURL( url.prettyURL() ) );
   }
 }
+
+#include "dirhistorybutton.moc"

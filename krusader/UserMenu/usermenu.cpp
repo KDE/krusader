@@ -101,3 +101,5 @@ void UserMenuGui::addEntry( UserActionProperties *properties ) {
    //kdDebug() << "UserMenuGui::addEntry finished" << endl;
 }
 
+
+#include "usermenu.moc"

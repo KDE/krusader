@@ -296,3 +296,5 @@ bool KrAction::isAvailable( const KURL& currentURL ) {
    return available;
 }
 
+
+#include "kraction.moc"

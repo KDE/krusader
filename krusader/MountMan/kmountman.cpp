@@ -295,3 +295,5 @@ void KMountMan::performAction( int idx ) {
    _actions = 0L;
    disconnect( ( ( KToolBarPopupAction* ) krMountMan ) ->popupMenu(), SIGNAL( activated( int ) ), 0, 0 );
 }
+
+#include "kmountman.moc"

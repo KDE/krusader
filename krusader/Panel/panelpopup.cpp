@@ -255,3 +255,5 @@ void PanelPopup::slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &l
          return ; // cancel was pressed;
    }
 }
+
+#include "panelpopup.moc"

@@ -5,25 +5,26 @@ kde_module_LTLIBRARIES = kio_krarc.la
 INCLUDES = $(all_includes)
 
 
-LDFLAGS =    
+#LDFLAGS =    
 
 kio_krarc_la_METASOURCES=AUTO
 
 kio_krarc_la_SOURCES = krarc.cpp
-kio_krarc_la_LIBADD = $(LIB_KIO) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
+kio_krarc_la_LIBADD = $(LIB_KIO)
+# $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
 
 kio_krarc_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 
+noinst_HEADERS = krarc.h
 
-
-EXTRA_DIST = krarc.cpp krarc.h krarc.protocol
+EXTRA_DIST = krarc.protocol
 
 install-data-local:
-	$(mkinstalldirs)  $(kde_servicesdir)/
-	$(INSTALL_DATA) $(srcdir)/krarc.protocol  $(kde_servicesdir)/krarc.protocol
+	$(mkinstalldirs) $(DESTDIR)$(kde_servicesdir)
+	$(INSTALL_DATA) $(srcdir)/krarc.protocol $(DESTDIR)$(kde_servicesdir)/krarc.protocol
 
 uninstall-local:
-	-rm -f  $(kde_servicesdir)/krarc.protocol
+	rm -f  $(DESTDIR)$(kde_servicesdir)/krarc.protocol
 
 ####### kdevelop will overwrite this part!!! (end)############
 # These paths are KDE specific. Use them:

@@ -441,3 +441,5 @@ void ActionProperty::changedShortcut( const KShortcut& shortcut ) {
   KeyButtonShortcut->setShortcut( shortcut, false );
   _properties->setDefaultShortcut( shortcut );
 }
+
+#include "actionproperty.moc"

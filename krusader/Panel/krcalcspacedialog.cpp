@@ -180,3 +180,5 @@ void KrCalcSpaceDialog::exec(){
 }
 /* --=={ End of patch by Heiner <h.eichmann@gmx.de> }==-- */
 
+
+#include "krcalcspacedialog.moc"

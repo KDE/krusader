@@ -2007,3 +2007,5 @@ void SynchronizerGUI::setScrolling( bool isOn )
     
   synchronizer.setScrolling( isOn );
 }
+
+#include "synchronizergui.moc"

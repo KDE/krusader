@@ -307,3 +307,5 @@ void Combiner::combineWritePercent(KIO::Job *, unsigned long)
   int percent = (int)((((double)receivedSize / expectedSize ) * 100. ) + 0.5 );
   setProgress( percent );
 }
+
+#include "combiner.moc"

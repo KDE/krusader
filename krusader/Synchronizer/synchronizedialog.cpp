@@ -194,3 +194,5 @@ void SynchronizeDialog::pauseAccepted()
   btnPause->setEnabled( true );
   isPause = false;
 }
+
+#include "synchronizedialog.moc"

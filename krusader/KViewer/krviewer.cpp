@@ -392,3 +392,5 @@ bool KrViewer::queryExit()
   return true; // don't let the reference counter reach zero
 }
 
+
+#include "krviewer.moc"
