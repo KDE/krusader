@@ -166,7 +166,10 @@ bool ftp_vfs::populateVfsList(const KURL& origin,bool showHidden) {
 
   job->setWindow(krApp);
  
-  if( !quietMode ) new KrProgress(job);
+  if( !quietMode ){ 
+    emit startJob(job);
+    new KrProgress(job);
+  }
 
   while( busy ){
     qApp->processEvents();

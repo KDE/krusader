@@ -110,6 +110,7 @@ public slots:
         
 signals: 	
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
+	void startJob(KIO::Job* job);
 	void incrementalRefreshFinished( QString ); //< emitted when the incremental refresh was finished
 	void addedVfile(vfile* vf);
 	void deletedVfile(const QString& name);
