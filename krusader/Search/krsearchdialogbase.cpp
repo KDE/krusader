@@ -201,9 +201,9 @@ KrSearchBase::KrSearchBase( QWidget* parent,  const char* name, bool modal, WFla
     Layout9->setSpacing( 6 );
     Layout9->setMargin( 0 );
 
-    mainHelpBtn = new QPushButton( this, "mainHelpBtn" );
+/*  mainHelpBtn = new QPushButton( this, "mainHelpBtn" );
     mainHelpBtn->setText( i18n( "Help" ) );
-    Layout9->addWidget( mainHelpBtn );
+    Layout9->addWidget( mainHelpBtn );*/
     QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
     Layout9->addItem( spacer );
 

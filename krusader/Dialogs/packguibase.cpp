@@ -497,9 +497,9 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     hbox_5->setSpacing( 6 );
     hbox_5->setMargin( 0 );
 
-    moveCheckbox = new QCheckBox( this, "moveCheckbox" );
+/*  moveCheckbox = new QCheckBox( this, "moveCheckbox" );
     moveCheckbox->setText( i18n( "Move into archive"  ) );
-    hbox_5->addWidget( moveCheckbox );
+    hbox_5->addWidget( moveCheckbox );*/
     QSpacerItem* spacer_3 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding );
     hbox_5->addItem( spacer_3 );
 
