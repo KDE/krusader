@@ -43,7 +43,7 @@ A
 #include <ktempfile.h>
 #include <kurl.h>
 #include <krun.h>
-#include <klineeditdlg.h>
+#include <kinputdialog.h>
 #include <kdebug.h>
 // Krusader Includes
 #include "panelfunc.h"
@@ -52,10 +52,8 @@ A
 #include "../krusader.h"
 #include "../krslots.h"
 #include "../defaults.h"
-#include "../VFS/normal_vfs.h"
-#include "../VFS/ftp_vfs.h"
-#include "../VFS/temp_vfs.h"
 #include "../VFS/vfile.h"
+#include "../VFS/vfs.h"
 #include "../VFS/krarchandler.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
@@ -184,7 +182,8 @@ void ListPanelFunc::redirectLink() {
   // ask the user for a new destination
   bool ok = false;
   QString newLink =
-    KLineEditDlg::getText( i18n( "Please enter the new link destination:" ), currentLink, &ok, krApp );
+    KInputDialog::getText( i18n("Link Redirection"),
+		                       i18n("Please enter the new link destination:"), currentLink, &ok, krApp );
 
   // if the user canceled - quit
   if ( !ok || newLink == currentLink )
@@ -212,7 +211,7 @@ void ListPanelFunc::krlink( bool sym ) {
   // ask the new link name..
   bool ok = false;
   QString linkName =
-    KLineEditDlg::getText( i18n( "Create a new link to: " ) + name.latin1(), name.latin1(), &ok, krApp );
+    KInputDialog::getText( i18n("New link"),i18n( "Create a new link to: " ) + name.latin1(), name.latin1(), &ok, krApp );
 
   // if the user canceled - quit
   if ( !ok || linkName == name )
@@ -389,7 +388,7 @@ void ListPanelFunc::mkdir() {
   // ask the new dir name..
   bool ok = false;
   QString dirName =
-    KLineEditDlg::getText( i18n( "Directory's name:" ), "", &ok, krApp );
+    KInputDialog::getText(i18n("New directory"),i18n( "Directory's name:" ), "", &ok, krApp );
 
   // if the user canceled - quit
   if ( !ok || dirName.isEmpty() )
@@ -746,6 +745,7 @@ void ListPanelFunc::newFTPconnection() {
   url = KRSpWidgets::newFTP();
   // if the user canceled - quit
   if ( url.isEmpty() ) return ;
+   
   krFTPDiss->setEnabled( true );
   openUrl(url );
 }
@@ -802,7 +802,7 @@ ListPanelFunc::~ListPanelFunc() {
 }
 
 vfs* ListPanelFunc::files() {
-	if( !vfsP ) vfsP = new normal_vfs(panel);
+	if( !vfsP ) vfsP = KrVfsHandler::getVfs("/",panel,0);
 	return vfsP;
 }
 
