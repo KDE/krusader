@@ -71,7 +71,7 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 	krConfig->setGroup("Advanced");
 	if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
    	
-	delete watcher; //stop watching the old dir
+	if( watcher ) delete watcher; //stop watching the old dir
 	watcher = 0;
 
 	// set the writable attribute to true, if that's not the case - the KIO job
