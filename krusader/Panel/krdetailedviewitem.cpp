@@ -341,8 +341,6 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
     itext0 = itext0.lower();
   }
 
-  //kdDebug() << "text0: "<< text0 << " ,itext0: "<<itext0 << endl;
-
   if (col == COLUMN(Name) ) {
       // localeAwareCompare doesn't handle names that start with a dot
 		if (text0.startsWith(".")) {
