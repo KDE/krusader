@@ -33,7 +33,6 @@ class QPopupMenu;
 class KrViewer : public KParts::MainWindow  {
    Q_OBJECT
 public: 
-  ~KrViewer();
   static void view(KURL url);
   static void edit(KURL url, bool create = false );
 
@@ -57,6 +56,8 @@ protected:
 
 private:
   KrViewer(QWidget *parent=0, const char *name=0);
+  ~KrViewer();
+  
   KParts::Part* getPart(KURL url, QString m ,bool readOnly, bool create=false);
   QPopupMenu* viewerMenu;
 
@@ -69,7 +70,6 @@ private:
   KParts::ReadWritePart *editor_part;
 
   KTempFile tmpFile;
-  bool normalExit;
 };
 
 #endif

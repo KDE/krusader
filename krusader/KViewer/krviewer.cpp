@@ -40,10 +40,9 @@
 #include "../defaults.h"
 
 KrViewer::KrViewer(QWidget *parent, const char *name ) :
-  KParts::MainWindow(parent,name), manager(this,this), normalExit(false){
+  KParts::MainWindow(parent,name), manager(this,this){
 
   //setWFlags(WType_TopLevel | WDestructiveClose);
-  setXMLFile("krviewerui.rc");
   setHelpMenuEnabled(false);
   
   // KDE HACK START: Viewer fails to resize at maximized mode
@@ -79,20 +78,44 @@ KrViewer::KrViewer(QWidget *parent, const char *name ) :
 }
 
 KrViewer::~KrViewer(){
-	if (!normalExit && editor_part && editor_part->isModified() ) {
-    	switch ( KMessageBox::warningYesNo( this, i18n("The editor is about to close. Do you want to save your changes?")) ) {
-  			case KMessageBox::Yes :
-    			((KParts::ReadWritePart*)editor_part)->save();
-  			}
-	}
-	//kdDebug() << "KrViewer killed" << endl;
+  
+  disconnect(&manager,SIGNAL(activePartChanged(KParts::Part*)),
+              this,SLOT(createGUI(KParts::Part*)));
+          
+  if( editor_part )
+  {
+    manager.removePart( editor_part );
+    delete editor_part;
+    editor_part = 0;
+  }
+
+  if( text_part )
+  {
+    manager.removePart( text_part );
+    delete text_part;
+    text_part = 0;
+  }
+
+  if( generic_part )
+  {
+    manager.removePart( generic_part );
+    delete generic_part;
+    generic_part = 0;
+  }
+
+  if( hex_part )
+  {
+    manager.removePart( hex_part );
+    delete hex_part;
+    hex_part = 0;
+  }
 }
 
 KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool create){
   KParts::Part *part = 0L;
   KLibFactory  *factory = 0;
   KTrader::OfferList offers = KTrader::self()->query(mimetype);
-  QString type = (readOnly ? "KParts::ReadOnlyPart" : "KParts::ReadWritePart");
+  QString typeIn = (readOnly ? "KParts::ReadOnlyPart" : "KParts::ReadWritePart");
   
   if( create )
   {
@@ -110,12 +133,20 @@ KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool 
     // since it is a part, it must also have a library... let's try to
     // load that now
 
+    QString type = typeIn;
+    
     QStringList args;
     QVariant argsProp = ptr->property( "X-KDE-BrowserView-Args" );
     if ( argsProp.isValid() )
     {
       QString argStr = argsProp.toString();
       args = QStringList::split( " ", argStr );
+    
+      if( ptr->serviceTypes().contains( "Browser/View" ) )
+      {
+        args << QString::fromLatin1( "Browser/View" );
+        type = "Browser/View";
+      }
     }
     
     QVariant prop = ptr->property( "X-KDE-BrowserView-AllowAsDefault" );
@@ -373,17 +404,10 @@ void KrViewer::handleOpenURLRequest( const KURL &url, const KParts::URLArgs & ){
 
 bool KrViewer::queryClose()
 {
-  normalExit = true;
-  if( !editor_part || !editor_part->isModified() )
-    return true;
-
-  switch ( KMessageBox::warningYesNo( this, i18n("The Document has been changed. Do you want to quit, losing the modifications?")) )
-  {
-  case KMessageBox::Yes :
-    return true;
-  default:
+  if( editor_part && editor_part->queryClose() == false )
     return false;
-  }
+    
+  return true;
 }
 
 bool KrViewer::queryExit()
