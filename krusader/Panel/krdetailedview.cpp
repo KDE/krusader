@@ -489,6 +489,7 @@ void KrDetailedView::keyPressEvent(QKeyEvent *e) {
       return;
     default:
       KListView::keyPressEvent(e);
+      updateView();
       return;
   }
 }
