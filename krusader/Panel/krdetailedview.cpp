@@ -98,8 +98,8 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
    }
 
    // setup the default sort and filter
-   _filter = KrView::All;
-   _filterMask = "*";
+   _properties.filter = KrViewProperties::All;
+   _properties.filterMask = "*";
 
    // first, clear the columns list. it will be updated by newColumn()
    for ( int i = 0; i < MAX_COLUMNS; i++ )
@@ -250,20 +250,20 @@ void KrDetailedView::addItem( vfile *vf ) {
    QString size = KRpermHandler::parseSize( vf->vfile_getSize() );
    QString name = vf->vfile_getName();
    bool isDir = vf->vfile_isDir();
-   if ( !isDir || ( isDir && ( _filter & ApplyToDirs ) ) ) {
-      switch ( _filter ) {
-            case KrView::All :
+   if ( !isDir || ( isDir && ( _properties.filter & KrViewProperties::ApplyToDirs ) ) ) {
+      switch ( _properties.filter ) {
+            case KrViewProperties::All :
                break;
-            case KrView::Custom :
-            if ( !QDir::match( _filterMask, name ) ) return ;
+            case KrViewProperties::Custom :
+            if ( !QDir::match( _properties.filterMask, name ) ) return ;
             break;
-            case KrView::Dirs:
+            case KrViewProperties::Dirs:
             if ( !vf->vfile_isDir() ) return ;
             break;
-            case KrView::Files:
+            case KrViewProperties::Files:
             if ( vf->vfile_isDir() ) return ;
             break;
-            case KrView::ApplyToDirs :
+            case KrViewProperties::ApplyToDirs :
             break; // no-op, stop compiler complaints
       }
    }
@@ -346,24 +346,24 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       size = KRpermHandler::parseSize( vf->vfile_getSize() );
       name = vf->vfile_getName();
       bool isDir = vf->vfile_isDir();
-      if ( !isDir || ( isDir && ( _filter & ApplyToDirs ) ) ) {
-         switch ( _filter ) {
-               case KrView::All :
+      if ( !isDir || ( isDir && ( _properties.filter & KrViewProperties::ApplyToDirs ) ) ) {
+         switch ( _properties.filter ) {
+               case KrViewProperties::All :
                break;
-               case KrView::Custom :
-               if ( !QDir::match( _filterMask, name ) )
+               case KrViewProperties::Custom :
+               if ( !QDir::match( _properties.filterMask, name ) )
                   continue;
                break;
-               case KrView::Dirs:
+               case KrViewProperties::Dirs:
                if ( !vf->vfile_isDir() )
                   continue;
                break;
-               case KrView::Files:
+               case KrViewProperties::Files:
                if ( vf->vfile_isDir() )
                   continue;
                break;
 
-               case KrView::ApplyToDirs :
+               case KrViewProperties::ApplyToDirs :
                break; // no-op, stop compiler complaints
          }
       }

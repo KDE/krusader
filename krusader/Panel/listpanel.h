@@ -104,7 +104,7 @@ public slots:
    void slotUpdateTotals();
    void slotStartUpdate();                   // internal
    void slotGetStats( QString path );          // get the disk-free stats
-   void setFilter( KrView::FilterSpec f );
+   void setFilter( KrViewProperties::FilterSpec f );
    void slotFocusAndCDRoot();
    void slotFocusAndCDHome();
    void slotFocusAndCDup();

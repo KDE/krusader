@@ -1020,12 +1020,12 @@ void ListPanel::popEmptyRightClickMenu( QListViewItem *item, const QPoint &loc, 
    }
 }
 
-void ListPanel::setFilter( KrView::FilterSpec f ) {
+void ListPanel::setFilter( KrViewProperties::FilterSpec f ) {
    switch ( f ) {
-         case KrView::All :
+         case KrViewProperties::All :
          //case KrView::EXEC:
          break;
-         case KrView::Custom :
+         case KrViewProperties::Custom :
          filterMask = KRSpWidgets::getMask( i18n( " Select Files " ) );
          // if the user canceled - quit
          if ( filterMask == QString::null )

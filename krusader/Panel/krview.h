@@ -43,14 +43,19 @@
 // an instance of this class, and fills it with the correct data. A reference
 // to this should be given to each KrViewItem, which then queries it for 
 // information regarding how things should be displayed in the current view.
+//
+// Every property that the item needs to know about the view must be here!
 class KrViewProperties {
 public:
 	enum SortSpec { Name=0x1, Ext=0x2, Size=0x4, Type=0x8, Modified=0x10, Permissions=0x20,
 						KrPermissions=0x40, Owner=0x80, Group=0x100, Descending=0x200,
 						DirsFirst=0x400, IgnoreCase=0x800 };
+	enum FilterSpec { Dirs=0x1, Files=0x2, All=0x3, Custom=0x4, ApplyToDirs=0x8 };
 	
 	bool displayIcons;	// true if icons should be displayed in this view
 	SortSpec sortMode;	// sort specifications
+	FilterSpec filter;	// what items to show (all, custom, exec)
+  	QString filterMask;	// what items to show (*.cpp, *.h etc)
 };
 
 
@@ -77,10 +82,6 @@ class KrViewItem;
  
 typedef QValueList<KrViewItem*> KrViewItemList;
 class KrView {
-public:
-  enum FilterSpec { Dirs=0x1, Files=0x2, All=0x3, Custom=0x4, ApplyToDirs=0x8 };
-
-
 public:
   ///////////////////////////////////////////////////////
   // Every view must implement the following functions //
@@ -147,10 +148,10 @@ public:
   /////////////////////////////////////////////////////////////
   virtual void setSortMode(KrViewProperties::SortSpec mode) { _properties.sortMode = mode; }
   virtual KrViewProperties::SortSpec sortMode() const { return _properties.sortMode; }
-  virtual void setFilter(FilterSpec filter) { _filter = filter; }
-  virtual FilterSpec filter() const { return _filter; }
-  virtual void setFilterMask(QString mask) { _filterMask = mask; }
-  virtual QString filterMask() const { return _filterMask; }
+  virtual void setFilter(KrViewProperties::FilterSpec filter) { _properties.filter = filter; }
+  virtual KrViewProperties::FilterSpec filter() const { return _properties.filter; }
+  virtual void setFilterMask(QString mask) { _properties.filterMask = mask; }
+  virtual QString filterMask() const { return _properties.filterMask; }
   inline QWidget *widget() { return _widget; }
   inline void setWidget(QWidget *w) { _widget = w; }
 
@@ -164,8 +165,6 @@ protected:
 
 protected:
   KConfig *_config;
-  FilterSpec _filter;
-  QString _filterMask;
   QWidget *_widget;
   QString _nameToMakeCurrent;
   uint _numSelected, _count, _numDirs;
