@@ -143,6 +143,7 @@ void KgLookFeel::slotReload( KonfiguratorKeyChooser * oldChooser )
   connect( keyBindings, SIGNAL( reload( KonfiguratorKeyChooser * ) ), this, SLOT( slotReload( KonfiguratorKeyChooser *) ) );
   keyBindingsLayout->addWidget(keyBindings->keyChooserWidget(),0,0);
   registerObject( keyBindings );
+  keyBindings->keyChooserWidget()->show();
 }
 
 void KgLookFeel::slotReload( KonfiguratorEditToolbarWidget * oldEditToolbar )
@@ -154,6 +155,7 @@ void KgLookFeel::slotReload( KonfiguratorEditToolbarWidget * oldEditToolbar )
   connect( editToolbar, SIGNAL( reload( KonfiguratorEditToolbarWidget * ) ), this, SLOT( slotReload( KonfiguratorEditToolbarWidget *) ) );
   toolBarLayout->addWidget(editToolbar->editToolbarWidget(),0,0);
   registerObject( editToolbar );
+  editToolbar->editToolbarWidget()->show();
 }
 
 #include "kglookfeel.moc"
