@@ -596,7 +596,7 @@ QString Expander::expandCurrent( const QString& stringToExpand, bool useUrl ) {
 }
 
 QStringList Expander::splitEach( const QString& stringToSplit, bool useUrl ) {
-   kdDebug() << "stringToSplit: " << stringToSplit << endl;
+//    kdDebug() << "stringToSplit: " << stringToSplit << endl;
    QStringList chunks;
    unsigned int idx = 0;
    int begin, end;
@@ -623,7 +623,7 @@ QStringList Expander::splitEach( const QString& stringToSplit, bool useUrl ) {
       QString mask = (*it).mid(4);
 //       kdDebug() << "current mask: " << mask << endl;
       QChar panelIndicator = (*it)[0];
-      kdDebug() << "current panel: " << panelIndicator << endl;
+//       kdDebug() << "current panel: " << panelIndicator << endl;
       if ( (*it)[1] == 'a' ) // get all
          getPanel( panelIndicator )->view->getItemsByMask( mask, &items );
       else if ( (*it)[1] == 'f' ) // get files
