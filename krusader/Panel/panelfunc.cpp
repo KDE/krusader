@@ -497,9 +497,9 @@ void ListPanelFunc::deleteFiles() {
   if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
     QString s, b;
     if ( fileNames.count() == 1 )
-      s = " " + fileNames.first() + " ?";
+      s = " this item?";
     else
-      s.sprintf( i18n( " %d files ?" ).local8Bit(), fileNames.count() );
+      s.sprintf( i18n( " these %d items ?" ).local8Bit(), fileNames.count() );
     krConfig->setGroup( "General" );
     if ( krConfig->readBoolEntry( "Move To Trash", _MoveToTrash ) &&
          files() ->vfs_getType() == vfs::NORMAL ) {
