@@ -1424,3 +1424,36 @@ void SynchronizerGUI::rightMenuCompareFiles( KURL url1, KURL url2 )
   if( tmp1 != url1.path() ) KIO::NetAccess::removeTempFile( tmp1 );
   if( tmp2 != url2.path() ) KIO::NetAccess::removeTempFile( tmp2 );
 }
+
+void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
+{
+  switch ( e->key() )
+  {
+  case Key_F3 :
+    QListViewItem *listItem =  syncList->currentItem();
+    if( listItem == 0 )
+      break;
+
+    SynchronizerFileItem *item = ((SyncViewItem *)listItem)->synchronizerItemRef();
+    QString dirName    = item->directory().isEmpty() ? "" : item->directory() + "/";
+
+    if( item->isDir() )
+      return;
+    
+    if ( e->state() == ShiftButton && item->existsInRight() )
+    {
+      KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + dirName + item->name() );
+      KrViewer::view( rightURL ); // view the file
+      return;
+    }
+    else if ( e->state() == 0 && item->existsInLeft() )
+    {
+      KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + dirName + item->name() );
+      KrViewer::view( leftURL ); // view the file
+      return;
+    }
+    break;
+  }  
+
+  QDialog::keyPressEvent( e );
+}

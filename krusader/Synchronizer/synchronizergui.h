@@ -112,6 +112,8 @@ private:
   void    rightMenuCompareFiles( KURL url1, KURL url2 );
 
 protected:
+  virtual void keyPressEvent( QKeyEvent * );
+
   KHistoryCombo *leftLocation;
   KHistoryCombo *rightLocation;
   KHistoryCombo *fileFilter;
