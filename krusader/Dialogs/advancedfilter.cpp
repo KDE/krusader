@@ -460,7 +460,7 @@ void AdvancedFilter::changeDate(QLineEdit *p) {
   QDate d = KGlobal::locale()->readDate(p->text());
   if (!d.isValid()) d = QDate::currentDate();
 
-  KRGetDate *gd = new KRGetDate(d);
+  KRGetDate *gd = new KRGetDate(d, this);
   d = gd->getDate();
   // if a user pressed ESC or closed the dialog, we'll return an invalid date
   if (d.isValid())

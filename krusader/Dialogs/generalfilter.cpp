@@ -38,13 +38,13 @@
 #include <kiconloader.h>
 #include <qtooltip.h>
 
-GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *name ) : QWidget( parent, name )
+GeneralFilter::GeneralFilter( int properties, QWidget *parent, const char *name ) : QWidget( parent, name )
 {
   QGridLayout *filterLayout = new QGridLayout( this );
   filterLayout->setSpacing( 6 );
   filterLayout->setMargin( 11 );
 
-  this->hasDirOptions = hasDirOptions;
+  this->properties = properties;
   
   // Options for name filtering
   
@@ -95,14 +95,16 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
   ofType->insertItem(i18n("Audio Files"));
     
   nameGroupLayout->addWidget( ofType, 1, 1 );
-  filterLayout->addMultiCellWidget( nameGroup, 0, 0, 0, 1 );
-
-  if( hasDirOptions )
-  {
-    KIconLoader *iconLoader = new KIconLoader();
-    QPixmap imageAdd = iconLoader->loadIcon( "1downarrow", KIcon::Panel, 16 );
-    QPixmap imageFolder = iconLoader->loadIcon( "folder", KIcon::Panel, 16 );
+  filterLayout->addWidget( nameGroup, 0, 0 );
     
+  QHBoxLayout *middleLayout = new QHBoxLayout();
+  middleLayout->setSpacing( 6 );
+  middleLayout->setMargin( 0 );
+  QSpacerItem* middleSpacer = new QSpacerItem( 1, 1, QSizePolicy::Fixed, QSizePolicy::Fixed );
+  middleLayout->addItem( middleSpacer );
+
+  if( properties & HAS_SEARCH_IN )
+  {
     // Options for search in
 
     QGroupBox *searchInGroup = new QGroupBox( this, "searchInGroup" );
@@ -118,8 +120,11 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
     searchIn = new KURLListRequester( searchInGroup, "searchIn" );
     searchInLayout->addWidget( searchIn, 0, 0 );
 
-    filterLayout->addWidget( searchInGroup, 1, 0 );
+    middleLayout->addWidget( searchInGroup );
+  }
   
+  if( properties & HAS_DONT_SEARCH_IN )
+  {  
     // Options for don't search in
 
     QGroupBox *dontSearchInGroup = new QGroupBox( this, "dontSearchInGroup" );
@@ -135,8 +140,10 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
     dontSearchIn = new KURLListRequester( dontSearchInGroup, "dontSearchIn" );
     dontSearchInLayout->addWidget( dontSearchIn, 0, 0 );
 
-    filterLayout->addWidget( dontSearchInGroup, 1, 1 );
+    middleLayout->addWidget( dontSearchInGroup );
   }
+  
+  filterLayout->addLayout( middleLayout, 1, 0 );  
   
   // Options for containing text
  
@@ -186,10 +193,9 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
 
   containsLayout->addLayout( containsCbsLayout, 1, 0 );
   
-  int position = hasDirOptions ?  2 : 1;
-  filterLayout->addMultiCellWidget( containsGroup, position, position, 0, 1 );  
+  filterLayout->addWidget( containsGroup, 2, 0 );  
   
-  if( hasDirOptions )
+  if( properties & HAS_RECURSE_OPTIONS )
   {
     // Options for recursive searching
     
@@ -212,12 +218,12 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
     followLinks->setText( i18n( "Follow &links" ) );
     recurseLayout->addWidget( followLinks );
 
-    filterLayout->addMultiCellLayout( recurseLayout, 3, 3, 0, 1 ); 
+    filterLayout->addLayout( recurseLayout, 3, 0 ); 
   }
   
   // Connection table
   
-  if( hasDirOptions )
+  if( properties & HAS_RECURSE_OPTIONS )
   {  
     connect( searchInArchives, SIGNAL(toggled(bool)), containsText, SLOT(setDisabled(bool)));
     connect( searchInArchives, SIGNAL(toggled(bool)), containsTextCase, SLOT(setDisabled(bool)));
@@ -225,21 +231,7 @@ GeneralFilter::GeneralFilter( bool hasDirOptions, QWidget *parent, const char *n
   }
   connect( searchFor, SIGNAL(activated(const QString&)), searchFor, SLOT(addToHistory(const QString&)));
   connect( containsText, SIGNAL(activated(const QString&)), containsText, SLOT(addToHistory(const QString&)));
-    
-  // tab order
-    
-  if( hasDirOptions )
-  {
-    setTabOrder( searchFor, ofType );
-    setTabOrder( ofType, searchIn );
-    setTabOrder( searchIn, dontSearchIn );
-    setTabOrder( dontSearchIn, containsTextCase );
-    setTabOrder( containsTextCase, searchForCase );
-    setTabOrder( searchForCase, searchInDirs );
-    setTabOrder( searchInDirs, searchInArchives );
-    setTabOrder( searchInArchives, followLinks );
-  }
-  
+      
   // load the completion and history lists
   // ==> search for
   krConfig->setGroup("Search");
@@ -278,7 +270,7 @@ bool GeneralFilter::fillQuery( KRQuery *query )
 {
   // check that we have (at least) what to search, and where to search in
   if (searchFor->currentText().simplifyWhiteSpace().isEmpty()) {
-    KMessageBox::error(0,i18n("No search criteria entered!"));
+    KMessageBox::error(this ,i18n("No search criteria entered!"));
     searchFor->setFocus();
     return false;
   }
@@ -295,25 +287,29 @@ bool GeneralFilter::fillQuery( KRQuery *query )
     query->type = ofType->currentText();
   else query->type = QString::null;
 
-  if ( hasDirOptions )
+  if ( properties & HAS_RECURSE_OPTIONS )
   {
     query->inArchive = searchInArchives->isChecked();
     query->recurse = searchInDirs->isChecked();
     query->followLinks = followLinks->isChecked();
     
     // create the lists
-  
+  }
+  if( properties & HAS_SEARCH_IN )
+  {
     query->whereToSearch = searchIn->urlList();
-    query->whereNotToSearch = dontSearchIn->urlList();
-
+    
     // checking the lists
       
     if (query->whereToSearch.isEmpty() ) { // we need a place to search in
-      KMessageBox::error(0,i18n("Please specify a location to search in."));
+      KMessageBox::error(this ,i18n("Please specify a location to search in."));
       searchIn->lineEdit()->setFocus();
       return false;
     }
   }
+  
+  if( properties & HAS_DONT_SEARCH_IN )
+    query->whereNotToSearch = dontSearchIn->urlList();
 
   return true;
 }
@@ -342,19 +338,26 @@ void GeneralFilter::loadFromProfile( QString name )
       break;
   }
 
-  if( hasDirOptions )
+  if( properties & HAS_RECURSE_OPTIONS )
   {
     searchInDirs->setChecked( krConfig->readBoolEntry( "Search In Subdirectories", true ) );
     searchInArchives->setChecked( krConfig->readBoolEntry( "Search In Archives", false ) );
     followLinks->setChecked( krConfig->readBoolEntry( "Follow Symlinks", false ) );
+  }
 
+  if( properties & HAS_SEARCH_IN )
+  {
     searchIn->lineEdit()->setText( krConfig->readEntry( "Search In Edit", "" ) );
-    dontSearchIn->lineEdit()->setText( krConfig->readEntry( "Dont Search In Edit", "" ) );
 
     searchIn->listBox()->clear();
     QStringList searchInList = krConfig->readListEntry( "Search In List" );
     if( !searchInList.isEmpty() )
       searchIn->listBox()->insertStringList( searchInList );
+  }
+  
+  if( properties & HAS_DONT_SEARCH_IN )
+  {
+    dontSearchIn->lineEdit()->setText( krConfig->readEntry( "Dont Search In Edit", "" ) );
 
     dontSearchIn->listBox()->clear();
     QStringList dontSearchInList = krConfig->readListEntry( "Dont Search In List" );
@@ -375,23 +378,29 @@ void GeneralFilter::saveToProfile( QString name )
   
   krConfig->writeEntry( "Mime Type", ofType->currentText() );
 
-  if( hasDirOptions )
+  if( properties & HAS_RECURSE_OPTIONS )
   {  
     krConfig->writeEntry( "Search In Subdirectories", searchInDirs->isChecked() );
     krConfig->writeEntry( "Search In Archives", searchInArchives->isChecked() );  
     krConfig->writeEntry( "Follow Symlinks", followLinks->isChecked() );
+  }
 
+  if( properties & HAS_SEARCH_IN )
+  {
     krConfig->writeEntry( "Search In Edit", searchIn->lineEdit()->text() );
-    krConfig->writeEntry( "Dont Search In Edit", dontSearchIn->lineEdit()->text() );
   
     QStringList searchInList;
-    QListBoxItem *item;
-    for ( item = searchIn->listBox()->firstItem(); item != 0; item = item->next() )
+    for ( QListBoxItem *item = searchIn->listBox()->firstItem(); item != 0; item = item->next() )
       searchInList.append( item->text().simplifyWhiteSpace() );
     krConfig->writeEntry( "Search In List", searchInList );
+  }
+  
+  if( properties & HAS_DONT_SEARCH_IN )
+  {
+    krConfig->writeEntry( "Dont Search In Edit", dontSearchIn->lineEdit()->text() );
   
     QStringList dontSearchInList;
-    for ( item = dontSearchIn->listBox()->firstItem(); item != 0; item = item->next() )
+    for ( QListBoxItem *item = dontSearchIn->listBox()->firstItem(); item != 0; item = item->next() )
       dontSearchInList.append( item->text().simplifyWhiteSpace() );
     krConfig->writeEntry( "Dont Search In List", dontSearchInList );
   }

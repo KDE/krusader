@@ -95,7 +95,7 @@ void KURLListRequester::slotAdd()
 
 void KURLListRequester::slotBrowse()
 {
-  KURL url = KFileDialog::getExistingURL();
+  KURL url = KFileDialog::getExistingURL( QString::null, this );
   if( !url.isEmpty())
     urlLineEdit->setText( url.prettyURL( 0,KURL::StripFileProtocol ) );
   urlLineEdit->setFocus();

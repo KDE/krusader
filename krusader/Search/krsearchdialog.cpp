@@ -110,7 +110,8 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   
   searcherTabs = new QTabWidget( this, "searcherTabs" );
 
-  generalFilter = new GeneralFilter( true, searcherTabs, "generalFilter" );
+  generalFilter = new GeneralFilter( HAS_DONT_SEARCH_IN | HAS_SEARCH_IN | HAS_RECURSE_OPTIONS, 
+                                     searcherTabs, "generalFilter" );
   searcherTabs->insertTab( generalFilter, i18n( "&General" ) );
 
   advancedFilter = new AdvancedFilter( searcherTabs, "advancedFilter" );
@@ -330,10 +331,10 @@ bool KrSearchDialog::gui2query() {
 void KrSearchDialog::startSearch() {
   // first, informative messages
   if (generalFilter->searchInArchives->isChecked()) {
-    KMessageBox::information(0, i18n("Since you chose to also search in archives, "
-                                     "note the following limitations:\n"
-                                     "You cannot search for text (grep) while doing"
-                                     " a search that includes archives."), 0, "searchInArchives");
+    KMessageBox::information(this, i18n("Since you chose to also search in archives, "
+                                        "note the following limitations:\n"
+                                        "You cannot search for text (grep) while doing"
+                                        " a search that includes archives."), 0, "searchInArchives");
   }
 
   // prepare the query /////////////////////////////////////////////

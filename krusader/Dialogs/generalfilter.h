@@ -42,12 +42,16 @@
 #include <kcombobox.h>
 #include <kshellcompletion.h>
 
+#define HAS_DONT_SEARCH_IN            0x8000
+#define HAS_SEARCH_IN                 0x4000
+#define HAS_RECURSE_OPTIONS           0x2000
+
 class GeneralFilter : public QWidget
 {
   Q_OBJECT
   
 public:
-  GeneralFilter( bool hasDirOptions, QWidget *parent = 0, const char *name = 0 );
+  GeneralFilter( int properties, QWidget *parent = 0, const char *name = 0 );
   ~GeneralFilter();
   
   bool fillQuery( KRQuery *query );
@@ -75,7 +79,7 @@ public:
     
   KShellCompletion completion;
   
-  bool hasDirOptions;
+  int properties;
 };
 
 #endif /* GENERALFILTER_H */

@@ -85,7 +85,7 @@ KRAbout::KRAbout() : KRDialog(0,0,true,false) {
   setGeometry(krApp->x()+krApp->width()/2-width()/2,krApp->y()+krApp->height()/2-height()/2,width(),height());
 }
 
-KRGetDate::KRGetDate(QDate date) : KDialog(0,0,true,WStyle_DialogBorder) {
+KRGetDate::KRGetDate(QDate date, QWidget *parent, const char *name) : KDialog(parent, name,true,WStyle_DialogBorder) {
   dateWidget = new KDatePicker(this, date);
   dateWidget->resize(dateWidget->sizeHint());
   setMinimumSize(dateWidget->sizeHint());

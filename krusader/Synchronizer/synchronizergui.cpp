@@ -1261,7 +1261,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   synchronizerTabs->insertTab( synchronizerTab, i18n( "&Synchronizer" ) );
   synchGrid->addWidget( synchronizerTabs, 0, 0 );
   
-  generalFilter = new GeneralFilter( false, synchronizerTabs, "generalFilter" );
+  generalFilter = new GeneralFilter( 0, synchronizerTabs, "generalFilter" );
   generalFilter->searchFor->setEditText( fileFilter->currentText() );
   generalFilter->searchForCase->setChecked( true );
   synchronizerTabs->insertTab( generalFilter, i18n( "&General Filters" ) );  

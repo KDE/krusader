@@ -90,7 +90,7 @@ public:
 class KRGetDate : public KDialog {
   Q_OBJECT
 public:
-  KRGetDate(QDate date=QDate::currentDate());
+  KRGetDate(QDate date=QDate::currentDate(), QWidget *parent = 0, const char *name = 0);
   QDate getDate();
 
 private slots:
