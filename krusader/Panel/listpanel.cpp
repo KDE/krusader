@@ -228,7 +228,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    connect( this, SIGNAL( activePanelChanged( ListPanel * ) ), SLOTS, SLOT( slotSetActivePanel( ListPanel * ) ) );
 	
 	// add a popup
-	popup = new PanelPopup(splt);
+	popup = new PanelPopup(splt, left);
 	connect(popup, SIGNAL(selection(const KURL&)), SLOTS, SLOT(refresh(const KURL&)));
 	connect(popup, SIGNAL(hideMe()), this, SLOT(togglePanelPopup()));
 	popup->hide();

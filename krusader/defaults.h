@@ -58,6 +58,13 @@
 #define _RightPanelOrigin "homepage" 
 // Right Panel Homepage
 #define _RightHomepage     "/"
+// Left Tab Bar
+// Right Tab Bar
+// Left Panel Popup
+#define _LeftPanelPopup		0
+// Right Panel Popup
+#define _RightPanelPopup	0
+
 
 ////////////////////////[Look&Feel]
 // Filelist Font ///////

@@ -1,3 +1,4 @@
+#include "../krusader.h"
 #include "panelpopup.h"
 #include "../kicons.h"
 #include "../Dialogs/krsqueezedtextlabel.h"
@@ -12,13 +13,12 @@
 #include <qheader.h>
 #include <krview.h>
 #include <krviewitem.h>
-#include <qwidgetstack.h>
 #include <klineedit.h>
 
 #include <kdebug.h>
 
-
-PanelPopup::PanelPopup( QWidget *parent ) : QWidget( parent ), stack( 0 ), viewer( 0 ), pjob( 0 ) {
+PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ), 
+	stack( 0 ), viewer( 0 ), pjob( 0 ) {
    QGridLayout * layout = new QGridLayout(this, 1, 1);
 	
 	// create the label+buttons setup
@@ -134,9 +134,19 @@ PanelPopup::PanelPopup( QWidget *parent ) : QWidget( parent ), stack( 0 ), viewe
 	// -------- finish the layout (General one)
 	layout->addMultiCellWidget(stack,1,1,0,3);
 	
-   // raise the tree part
-	treeBtn->setOn(true);
-	tabSelected(Tree);
+   // set the wanted widget
+	// ugly: are we left or right?
+	int id;
+	krConfig->setGroup("Startup");
+	if (left) {
+		id = krConfig->readNumEntry("Left Panel Popup", _LeftPanelPopup);
+		kdWarning() << "left " << id << endl;
+	} else {
+		id = krConfig->readNumEntry("Right Panel Popup", _RightPanelPopup);	
+		kdWarning() << "right " << id << endl;
+	}
+	btns->setButton(id);
+	tabSelected(id);
 }
 
 PanelPopup::~PanelPopup() {}

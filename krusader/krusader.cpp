@@ -68,6 +68,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Panel/panelfunc.h"
 #include "Konfigurator/konfigurator.h"
 #include "MountMan/kmountman.h"
+#include "Panel/panelpopup.h"
 #include "defaults.h"
 #include "resources.h"
 #include "GUI/kfnkeys.h"
@@ -533,8 +534,8 @@ void Krusader::savePosition() {
 void Krusader::saveSettings() {
    toolBar() ->saveSettings( krConfig, "Private" );
    config->setGroup( "Startup" );
-	mainView->leftMng->saveSettings( krConfig, "LeftTabBar" );
-	mainView->rightMng->saveSettings( krConfig, "RightTabBar" );
+	mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
+	mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
    bool panelsavesettings = config->readBoolEntry( "Panels Save Settings", _PanelsSave );
    bool rememberpos = config->readBoolEntry( "Remember Position", _RememberPos );
    bool uisavesettings = config->readBoolEntry( "UI Save Settings", _UiSave );
@@ -546,11 +547,10 @@ void Krusader::saveSettings() {
       config->writeEntry( "Right Panel Type", i18n( "List" ) );
       config->writeEntry( "Right Panel Origin", i18n( "the last place it was" ) );
    }
-
-	// lastHome* is obsolete! remove it
-   //config->writeEntry( "lastHomeLeft", mainView->left->realPath );
-   //config->writeEntry( "lastHomeRight", mainView->right->realPath );
-
+	// save the popup panel's page of the CURRENT tab
+	config->writeEntry( "Left Panel Popup", mainView->left->popup->currentPage() );
+	config->writeEntry( "Right Panel Popup", mainView->right->popup->currentPage() );
+	
    // save size and position
    if ( rememberpos || uisavesettings ) {
       savePosition();

@@ -2,6 +2,7 @@
 #define _PANELPOPUP_H
 
 #include <qwidget.h>
+#include <qwidgetstack.h>
 #include <qpixmap.h>
 #include <kfileitem.h>
 #include <qguardedptr.h>
@@ -10,7 +11,6 @@
 
 class QButtonGroup;
 class QLabel;
-class QWidgetStack;
 class QListViewItem;
 class KFileTreeView;
 class QToolButton;
@@ -22,8 +22,9 @@ class PanelPopup: public QWidget {
    Q_OBJECT
    enum Parts { Tree, Preview, QuickPanel, Last=0xFF };
 public:
-   PanelPopup( QWidget *parent );
+   PanelPopup( QWidget *parent, bool left );
    ~PanelPopup();
+	inline int currentPage() const { return stack->id(stack->visibleWidget()); }
 
 public slots:
    void update(KURL url);
