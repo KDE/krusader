@@ -150,16 +150,21 @@ void KgArchives::disableNonExistingPackers()
   cbs->find( "Do UnRar" )->setEnabled(PS("unrar"));
   cbs->find( "Do UnAce" )->setEnabled(PS("unace"));
   cbs->find( "Do Unarj" )->setEnabled(PS("unarj"));
+
+  krConfig->setGroup( "Archives" );
+  krConfig->writeEntry( "Supported Packers", lst );
 }
 
 bool KgArchives::apply()
 {
+  krConfig->setGroup( "Archives" );
   krConfig->writeEntry("Supported Packers",KRarcHandler::supportedPackers());
   return KonfiguratorPage::apply();
 }
 
 void KgArchives::setDefaults()
 {
+  krConfig->setGroup( "Archives" );
   krConfig->writeEntry("Supported Packers",KRarcHandler::supportedPackers());
   return KonfiguratorPage::setDefaults();
 }
