@@ -1,6 +1,6 @@
 ####### kdevelop will overwrite this part!!! (begin)##########
 
-SUBDIRS = en pics 
+SUBDIRS = en it pics 
 
 ####### kdevelop will overwrite this part!!! (end)############
 
