@@ -570,10 +570,13 @@ void ListPanelFunc::execute( QString& name ) {
 
 	QString protocol = KrServices::registerdProtocol(vf->vfile_getMime());        
  
-	QString type = vf->vfile_getMime().right( 4 );        
-	if ( vf->vfile_getMime().contains( "-rar" ) ) type = "-rar";
-	if ( !KRarcHandler::arcHandled( type ) )  // if the specified archive is disabled delete the protocol
-		protocol = "";
+	if( protocol == "tar" || protocol == "krarc" )
+	{
+		QString type = vf->vfile_getMime().right( 4 );        
+		if ( vf->vfile_getMime().contains( "-rar" ) ) type = "-rar";
+		if ( !KRarcHandler::arcHandled( type ) )  // if the specified archive is disabled delete the protocol
+			protocol = "";
+	}
 
 	if ( vf->vfile_isDir() ) {
 		//origin.addPath(name);
