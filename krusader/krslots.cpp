@@ -601,7 +601,8 @@ void KRslots::slotCombine()
 }
 
 void KRslots::userMenu() {
-  QString cmd = (new UserMenu())->exec();
+  UserMenu um;
+  QString cmd = um.exec();
 }
 
 #include "krslots.moc"
