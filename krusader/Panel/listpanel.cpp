@@ -832,9 +832,9 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
    if ( func->files() ->vfs_getType() == vfs::NORMAL && ( item->isDir() || multipleSelections ) )
       krCalculate->plug( &popup );
    if ( func->files() ->vfs_getType() == vfs::NORMAL && item->isDir() && !multipleSelections ) {
-      if ( krMtMan.getStatus( func->files() ->vfs_getFile( item->name() ).path( -1 ) ) == MountMan::KMountMan::MOUNTED )
+      if ( krMtMan.getStatus( func->files() ->vfs_getFile( item->name() ).path( -1 ) ) == KMountMan::MOUNTED )
          popup.insertItem( i18n( "Unmount" ), UNMOUNT_ID );
-      else if ( krMtMan.getStatus( func->files() ->vfs_getFile( item->name() ).path( -1 ) ) == MountMan::KMountMan::NOT_MOUNTED )
+      else if ( krMtMan.getStatus( func->files() ->vfs_getFile( item->name() ).path( -1 ) ) == KMountMan::NOT_MOUNTED )
          popup.insertItem( i18n( "Mount" ), MOUNT_ID );
       if ( krMtMan.ejectable( func->files() ->vfs_getFile( item->name() ).path( -1 ) ) )
          popup.insertItem( i18n( "Eject" ), EJECT_ID );
@@ -880,7 +880,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
          func->deleteFiles();
          break;
          case EJECT_ID :
-         MountMan::KMountMan::eject( func->files() ->vfs_getFile( item->name() ).path( -1 ) );
+         KMountMan::eject( func->files() ->vfs_getFile( item->name() ).path( -1 ) );
          break;
          case SHRED_ID :
          if ( KMessageBox::warningContinueCancel( krApp,

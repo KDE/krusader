@@ -45,7 +45,6 @@
 #include <kconfig.h>
 #include <kaccel.h>
 #include <qstringlist.h>
-#include "MountMan/kmountman.h"
 
 class KrusaderStatus;
 class KRPleaseWaitHandler;
@@ -56,6 +55,7 @@ class KIconLoader;
 class KSystemTray;
 class UserMenu;
 class UserAction;
+class KMountMan;
 
 class Krusader : public KParts::MainWindow {
     Q_OBJECT
@@ -91,7 +91,7 @@ class Krusader : public KParts::MainWindow {
 
   public:
     static Krusader *App;       // a kApp style pointer
-    MountMan::KMountMan *mountMan;  // krusader's Mount Manager
+    KMountMan *mountMan;  // krusader's Mount Manager
     KrusaderView *mainView;  // The GUI
     KConfig *config;    // allow everyone to access the config
     KIconLoader *iconLoader; // the app's icon loader

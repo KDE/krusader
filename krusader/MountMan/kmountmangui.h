@@ -47,8 +47,6 @@
 class KRFSDisplay;
 class KRdirWatch;
 
-namespace MountMan {
-
 class KMountManGUI : public KDialogBase {
   Q_OBJECT
 
@@ -80,5 +78,4 @@ private:
   QTimer *watcher;
 };
 
-};
 #endif

@@ -49,7 +49,6 @@
 #include <qcursor.h>
 #include <kguiitem.h>
 
-using namespace MountMan;
 
 KMountManGUI::KMountManGUI() : KDialogBase(krApp, 0,true,"Mount.Man"),
       info(0), mountList(0) {
@@ -239,7 +238,7 @@ void KMountManGUI::clicked(QListViewItem *item) {
     case -1 : return;     // the user clicked outside of the menu
     case MOUNT_ID   :
     case UNMOUNT_ID :
-      krMtMan.toggleMount(system->name());
+      krMtMan.toggleMount(system->mntPoint());
       break;
     case FORMAT_ID :
       break;

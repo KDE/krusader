@@ -79,6 +79,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "UserAction/useraction.h"
 #include "UserMenu/usermenu.h"
 #include "panelmanager.h"
+#include "MountMan/kmountman.h"
 
 // define the static members
 Krusader *Krusader::App = 0;
@@ -195,7 +196,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    iconLoader = KGlobal::iconLoader();
 
    // create MountMan
-   mountMan = new MountMan::KMountMan();
+   mountMan = new KMountMan();
 
    // setup all the krusader's actions
    setupActions();
