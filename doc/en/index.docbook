@@ -7,7 +7,7 @@
   <!-- each chapter is in a seperate sgml file -->
 	<!ENTITY introduction SYSTEM "introduction.sgml">
 	<!ENTITY using-krusader SYSTEM "using-krusader.sgml">
-  <!ENTITY commands SYSTEM "commands.sgml">
+        <!ENTITY commands SYSTEM "commands.sgml">
 	<!ENTITY konfigurator SYSTEM "konfigurator.sgml">
 	<!ENTITY krusader-tools SYSTEM "krusader-tools.sgml">
 	<!ENTITY faq SYSTEM "faq.sgml">
@@ -33,36 +33,57 @@
 	<address><email>yanai@users.sourceforge.net</email></address>
 	</affiliation>
 	</author>
+        <author>
+        <firstname>Frank</firstname>		<!-- added by Frank -->
+	<surname>Schoolmeesters</surname>
+	<affiliation>
+	<address><email>frank_schoolmeesters@yahoo.com</email></address>
+	</affiliation>
+	</author>
 	</authorgroup>
-
 	<copyright>
 	<year>2000</year>
 	<year>2001</year>
 	<year>2002</year>
+        <year>2003</year>	<!-- added by Frank -->
   <holder>Rafi Yanai</holder>
   <holder>Shie Erlich</holder>
 	</copyright>
 
 	<legalnotice>&FDLNotice;</legalnotice>
 
-	<date>01/01/2002</date>
-	<releaseinfo>1.00.00</releaseinfo>
+	<date>05/10/2003</date>			<!-- changed by Frank -->
+	<releaseinfo>1.00.01</releaseinfo> <!-- changed by Frank -->
 
-	<abstract>
+   <abstract>
+	<!-- changed by Frank -->
 	<para>
-	Krusader is a file-manager for KDE 2.x,
+	Krusader is a file-manager for KDE 3.x,
 	patterned after old-school managers like midnight commander and norton commander.
 	It features basically all your file-management needs, plus extensive archive handling,
 	mounted filesystems support, built-in advanced search module that can search in archives,
-   internal viewer, ftp/samba client and much much more.
+	internal viewer, ftp/samba client and much much more.
 	</para>
-	</abstract>
+
+	<!-- added by Frank -->
+	<para>
+	NOTE: We are busy with updating the The Krusader Handbook.
+	At this moment some nice features are not (yet) documented.
+	Check out the "ChangeLog" file in the Krusader sources
+	to find out the latest features. If you have remarks or suggestions, please let me know
+	<email>frank_schoolmeesters@yahoo.com</email>.
+        The updates in this Krusader Handbook release are: <link linkend="credits">Credits and License</link>,
+        <link linkend="faqlist">Questions and Answers</link>,
+        <link linkend="installation">Installation</link>.
+	</para>
+	<para>Thank you for using Krusader.</para>
+   </abstract>
 
 	<keywordset>
 	<keyword>KDE</keyword>
 	<keyword>commander</keyword>
 	<keyword>krusader</keyword>
-  <keyword>samba</keyword>
+        <keyword>samba</keyword>
 	<keyword>file</keyword>
 	<keyword>manager</keyword>
 	<keyword>archive</keyword>

@@ -1,4 +1,4 @@
-<appendix id = "installation">
+<appendix id = "installation"> <!-- changed by Frank --> <!-- made it up-to-date with the FAQ on the Krusader website -->
 <title>Installation</title>
 
   <sect1 id = "getting-Krusader">
@@ -17,64 +17,166 @@
   using. There might be some other packages on the site, but that depends on
   other users' contributions. If you can't find a RPM package for your linux distribution,
   we recommend searching for it on
-  <ulink url="http://www.rpmfind.net">The RPM search engine</ulink>(very usefull site).
+  <ulink url="http://www.rpmfind.net">The RPM search engine</ulink> (very usefull site).
   </para>
 
   </sect1>
 
   <sect1 id="requirements">
   <title>Requirements</title>
+  <!-- changed by Frank -->
+    <para>
+    In order to successfully use Krusader, you need KDE 3.x.x.
+    <screen>For KDE 2.x.x there is krusader v1.01, stable but there are no planned changes.</screen></para>
+    <para>Note: all versions >=1.02 are KDE 3.x.x only.</para>
+    <para>Krusader uses about 10 megs of memory to run, but this may vary depending
+    on your platform and configuration.
+    In order to handle archives the archivers must be installed to your PATH.
+    </para>
 
-  <para>
-  In order to successfully use Krusader, you need KDE 2.x.x.
-  Krusader uses about 10 megs of memory to run, but this may vary depending
-  on your platform and configuration.
-  In order to handle archives the archivers must be installed to your PATH.
-  </para>
+    <para>
+    A package of popular (un)packers as well as Krusader itself can be found on
+    <ulink url="http://krusader.sourceforge.net">Krusader's homepage</ulink>.
+    </para>
 
-  <para>
-  A package of popular (un)packers as well as Krusader itself can be found on
-  <ulink url="http://krusader.sourceforge.net">Krusader's homepage</ulink>.
-  </para>
-
-  <para>
-  You can find a list of changes at
-  <ulink url="http://krusader.sourceforge.net/changelog">the Krusader Changelog</ulink>.
-  </para>
+    <para>
+    You can find a list of changes at
+    <ulink url="http://krusader.sourceforge.net/changelog">the Krusader Changelog</ulink>.
+    </para>
   </sect1>
 
   <sect1 id="compilation">
   <title>Compilation and installation</title>
 
-  <para>
-  In order to compile and install Krusader make sure that the $KDEDIR environment variable is
-  defined on your system and is pointing to your KDE directory.
-  You can test this by typing:
-  <screen width="40">
-  <prompt>%</prompt> <userinput>echo $KDEDIR</userinput>
-  </screen>
-  in your shell prompt, the response should be your KDE directory.
-  If $KDEDIR is not defined or is not pointing to the right directory,
-  you may fix this with the following command:
-  <screen width="40">
-  <prompt>%</prompt> <userinput>export KDEDIR="replace with your kde dir"</userinput>
-  </screen>
-  </para>
+   <sect2 id="sourcedownload"> <!-- changed by Frank -->
+   <title>I have downloaded the Sources for Krusader. What now?</title>
 
-  <para>
-  After $KDEDIR is set, type the following in the base
-  directory of the Krusader distribution:
-  <screen width="40">
-  <prompt>%</prompt> <userinput>./configure</userinput>
-  <prompt>%</prompt> <userinput>make</userinput>
-  <prompt>%</prompt> <userinput>make install</userinput>
-  </screen>
-  the "make install" command must be executed as root.
-  </para>
+   <para>This question has been asked many times and especially users new to Linux often have
+   problems compiling software from source. Therefore we are trying to keep the explanations as
+   detailed as possible even if they are mostly not Krusader specific. Experienced users may
+   easily skip most of the steps.
 
-  <para>Since Krusader uses autoconf and automake you should have no trouble compiling it.
-  Should you run into problems please report them to us by email or use our web forum.
-  </para>
+   <orderedlist>
+   <listitem><para>Open your favourite terminal emulation (e.g. konsole).</para></listitem>
+   <listitem><para>We recommend to create a separate directory which keeps all the sources you compile.
+                   This will give you a better overview of installed programs and makes it easier to uninstall them
+                   later.
+		   <screen><prompt>%</prompt> <userinput><command>mkdir ~/source</command></userinput></screen>
+                   The chosen directory is just an example, any other will work.</para></listitem>
+    <listitem><para>Copy over the sources and unpack them.
+                    <screen><prompt>%</prompt> <userinput><command>cp /"krusader_dir"/krusader-x.xx.tar.gz ~/source</command></userinput></screen>
+                    <screen><prompt>%</prompt> <userinput><command>cd ~/source</command></userinput></screen>
+                    <screen><prompt>%</prompt> <userinput><command>tar -xzvf krusader-x.xx.tar.gz</command></userinput></screen></para></listitem>
+    <listitem><para>The tarball is no longer needed at this point, just delete it.
+                    <screen><prompt>%</prompt> <userinput><command>rm krusader-x.xx.tar.gz</command></userinput></screen></para></listitem>
+    <listitem><para>Change to the directory containing the sources.
+                    <screen><prompt>%</prompt> <userinput><command>cd  krusader-x.xx</command></userinput></screen></para></listitem>
+    <listitem><para>To determine your QT and KDE directories Krusader's configure script uses the environment
+                      variables QTDIR and KDEDIR.
+                    <screen>QTDIR  : path to your QT installation (e.g. /usr/qt3)</screen>
+                    <screen>KDEDIR : path to your KDE installation (e.g. /usr or /opt/kde3)</screen>
+                    Normally your distribution will set them for you, but experience has shown that some don't. You can
+                    easily check the values with the echo command.
+                    <screen><prompt>%</prompt> <userinput><command>echo $QTDIR</command></userinput></screen>
+                    <screen><prompt>%</prompt> <userinput><command>echo $KDEDIR</command></userinput></screen>
+                    In case you just receive empty lines, the variables are not set and you have to do it manually.
+                    If you have no idea what to set the variables to, ask your distributor or use the find command.
+                    <screen><prompt>%</prompt> <userinput><command>find /usr /opt -name qtconfig -type f -perm +111</command></userinput></screen>
+                    <screen><userinput>/usr/qt/3/bin/qtconfig</userinput></screen>
+
+                    <screen><prompt>%</prompt> <userinput><command>find /usr /opt -name startkde -type f -perm +111</command></userinput></screen>
+                    <screen><userinput>/usr/kde/3.1/bin/startkde </userinput></screen>
+                    In this case /usr/qt/3 is your QTDIR, /usr/kde/3.1 is your KDEDIR and installed binaries will
+                    go to /usr/kde/3.1/bin.
+
+                    <screen><prompt>%</prompt> <userinput><command>export QTDIR="replace with your QTDIR"</command></userinput></screen>
+                    <screen><prompt>%</prompt> <userinput><command>export KDEDIR="replace with your KDEDIR"</command></userinput></screen>
+
+                    Note, that the variables are only set for the lifetime of your current shell.
+                    If you close your terminal and open a new one they will be gone.
+                    Assuming Krusader is not the only QT/KDE program you want to compile, we recommend to make these
+                    settings permanent (e.g. append both export commands to your /etc/profile).</para></listitem>
+     <listitem><para>If you have download from CVS "krusader-cvs-yyyy-mm-dd.tar.gz" you wil have to run the following
+                     command to create the "./configure" script:
+                     <screen><prompt>%</prompt> <userinput><command>make -f Makefile.cvs</command></userinput></screen>
+                     You can skip this item if you have download "krusader-x.xx.tar.gz"</para></listitem>
+    <listitem><para>Now you should be ready to run the configure script.
+                     <screen><prompt>%</prompt> <userinput><command>./configure</command></userinput></screen>
+                     If configure fails, take a look at
+		     <link linkend="missing_libs">missing libs or headers</link></para></listitem>
+    <listitem><para>Start the compilation process with make.
+                    <screen><prompt>%</prompt> <userinput><command>make</command></userinput></screen>
+                    If configure was successful and make failed for some reason, then feel free to post a help request
+                    at our <ulink url="http://krusader.sourceforce.net/phpBB/">krusader forum</ulink>.</para></listitem>
+    <listitem><para>If nothing went wrong, finally install Krusader.
+                    <screen><prompt>%</prompt> <userinput><command>su -c 'make install'</command></userinput></screen>
+                    You will be asked to enter your root password.</para></listitem>
+    <listitem><para>Clean up to save some diskspace.
+                    <screen><prompt>%</prompt> <userinput><command>make clean</command></userinput></screen>
+                    This step is optional.</para></listitem>
+    <listitem><para>If you ever want to uninstall Krusader, just use
+                    <screen><prompt>%</prompt> <userinput><command>su -c 'make uninstall'</command></userinput></screen>
+                    You will be asked to enter your root password.</para></listitem>
+    </orderedlist>
+ </para></sect2>
+
+   <sect2 id="missing_libs"> <!-- changed by Frank -->
+   <title>I have followed all steps but configure complains about missing libs or headers. What to do?</title>
+   <para>Install them. ;-)</para>
+   <para>Here is a (obviously incomplete) list of Krusader's dependencies:</para>
+   <para><itemizedlist><listitem><para>gcc (other compilers may work but haven't been tested) </para></listitem>
+                   <listitem><para>autoconf</para></listitem>
+                   <listitem><para>automake</para></listitem>
+                   <listitem><para>xfree</para></listitem>
+                   <listitem><para>qt (all Krusader versions >=1.02 are QT3.x only)</para></listitem>
+                   <listitem><para>kdelibs (all Krusader versions >=1.02 are KDE3.x only)</para></listitem>
+                   <listitem><para>libpng </para></listitem>
+                   <listitem><para>fam</para></listitem></itemizedlist>
+                   </para><para>
+                   Most RPM-based distributions seperate the headers from the libs. The headers are needed to compile
+                   Krusader. Look for packages in the form foo-devel-*.rpm (e.g. kdelibs-devel-3.1-58mdk.i586.rpm).
+                   They most likely come with your distribution.</para>
+   </sect2>
+
+   <sect2 id="PATH">
+   <title>I have successfully installed Krusader from source. Everything went fine but i can't start it. What's going wrong here?</title>
+   <para><itemizedlist>
+          <listitem><para>The Krusader binary is obviously not in your PATH.</para></listitem>
+          <listitem><para>Use the find command to locate the binary.
+          <screen><prompt>%</prompt> <userinput><command> find /usr /opt -name krusader -type f -perm +111</command></userinput></screen>
+          <screen><userinput>/usr/local/bin/krusader</userinput></screen>
+          Here, the binary somehow made it into /usr/local/bin. It is most likely, that your KDEDIR wasn't set properly           (see <link linkend="compilation">Compilation and installation</link>)</para></listitem>
+          <listitem><para>If you don't want to recompile Krusader, just add /usr/local/bin to your PATH. To do this
+	                    for all users, append the following line to your /etc/profile (or any other file your shell
+			    sources at startup).
+         <screen><prompt>%</prompt> <userinput><command>export PATH=$PATH:/usr/local/bin</command></userinput></screen></para></listitem>
+    </itemizedlist></para>
+  </sect2>
+
+ <sect2 id="SourceRPM">
+    <title>I have downloaded the SourceRPM for Krusader. What now?</title>
+    <para><itemizedlist>
+            <listitem><para>To recompile a SourceRPM for your machine, do this (being root):
+            <screen><prompt>%</prompt> <userinput><command>su -c 'rpm --rebuild /path/to/filename'</command></userinput></screen>You will be asked to enter your root password.</para></listitem>
+            <listitem><para>f nothing goes wrong, a RPM will be created at /usr/src/RPM/RPMS/i386 (replace i386 with your arch) Install as usual, for example.
+            <screen><prompt>%</prompt> <userinput><command>su -c 'rpm -ivh /path/to/filename'</command></userinput></screen>You will be asked to enter your root password.</para></listitem>
+
+     </itemizedlist></para>
+  </sect2>
+
+ <sect2 id="binary">
+   <title>I'm trying to install binary foo, but it fails. What's wrong?</title>
+   <para><itemizedlist>
+          <listitem><para>Since we only provide (and use) the source, we don't know. Feel free to post a help request
+	                    at our <ulink url="http://krusader.sourceforce.net/phpBB/">krusader forum</ulink> .
+          </para></listitem>
+   </itemizedlist></para>
+ </sect2>
+
+<sect2 id="goto_faqlist">
+   <title>See also the FAQ's</title>
+   <para><screen>Goto <link linkend="faqlist">Questions and Answers</link></screen></para>
+</sect2>
 
 </sect1>
 
@@ -90,3 +192,4 @@
   </sect1>
 
 </appendix>
+
