@@ -659,7 +659,10 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
 	
    //   QListViewItem * i = itemAt( contentsToViewport( e->pos() ) );
    if (callDefaultHandler)
+   {
+     dragStartPos = QPoint( -1, -1 );
      KListView::contentsMousePressEvent( e );
+   }
    //   if (i != 0) // comment in, if click sould NOT select
    //     setSelected(i, FALSE);
    if (newCurrent) QListView::setCurrentItem(newCurrent);
@@ -685,7 +688,8 @@ void KrDetailedView::contentsMouseReleaseEvent( QMouseEvent * e ) {
 void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
    if ( ( singleClicked || renameTimer.isActive() ) && itemAt( contentsToViewport( e->pos() ) ) != clickedItem )
       CANCEL_TWO_CLICK_RENAME;
-   if ( e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
+   if ( dragStartPos != QPoint( -1, -1 ) &&
+        e->state() & LeftButton && ( dragStartPos - e->pos() ).manhattanLength() > QApplication::startDragDistance() )
       startDrag();
    if (KrSelectionMode::getSelectionHandler()->rightButtonPreservesSelection() 
       && KrSelectionMode::getSelectionHandler()->rightButtonSelects() 
