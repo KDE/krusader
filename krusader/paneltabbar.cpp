@@ -226,12 +226,11 @@ QString PanelTabBar::squeeze(QString text, int index) {
 }
 
 void PanelTabBar::resizeEvent ( QResizeEvent *e ) {
-   QTabBar::resizeEvent( e );
-   qApp->processEvents();
+    QTabBar::resizeEvent( e );
      
-   for (int i=0; i<count(); i++)
-     tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath, i));
-   layoutTabs();
+    for (int i=0; i<count(); i++)
+      tabAt(i)->setText(squeeze(dynamic_cast<PanelTab*>(tabAt(i))->panel->virtualPath, i));
+    layoutTabs();
 }
 
 
