@@ -45,6 +45,8 @@ public:
   DULines( DiskUsage *usage, const char *name );
   ~DULines();
 
+  File * getCurrentFile();
+  
 public slots:
   void slotDirChanged( Directory *dirEntry );
   void sectionResized( int );

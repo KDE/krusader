@@ -39,6 +39,8 @@
 DUFilelight::DUFilelight( DiskUsage *usage, const char *name )
   : RadialMap::Widget( usage, name ), diskUsage( usage ), currentDir( 0 )
 {
+   setFocusPolicy( QWidget::StrongFocus );
+
    connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotDirChanged( Directory * ) ) );
    connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
    connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
@@ -84,6 +86,16 @@ void DUFilelight::slotActivated( const KURL& url )
   }
 }
 
+File * DUFilelight::getCurrentFile()
+{
+  const RadialMap::Segment * focus = focusSegment();
+     
+  if( !focus || focus->isFake() || focus->file() == currentDir )
+    return 0;
+    
+  return (File *)focus->file();
+}
+
 void DUFilelight::mousePressEvent( QMouseEvent *event )
 {
    if( event->button() == Qt::RightButton )
@@ -96,8 +108,8 @@ void DUFilelight::mousePressEvent( QMouseEvent *event )
        file = (File *)focus->file();
 
      KPopupMenu filelightPopup;
-     filelightPopup.insertItem( i18n("Zoom In"),  this, SLOT( zoomIn() ) );
-     filelightPopup.insertItem( i18n("Zoom Out"), this, SLOT( zoomOut() ) );
+     filelightPopup.insertItem( i18n("Zoom In"),  this, SLOT( zoomIn() ), Key_Plus );
+     filelightPopup.insertItem( i18n("Zoom Out"), this, SLOT( zoomOut() ), Key_Minus );
      
      KPopupMenu schemePopup;           
      schemePopup.insertItem( i18n("Rainbow"),       this, SLOT( schemeRainbow() ) );
@@ -178,7 +190,7 @@ void DUFilelight::minFontSize()
   bool ok = false;
   
   int result = KInputDialog::getInteger( i18n( "Krusader::Filelight" ),
-    i18n( "Minimum font size" ), (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok );
+    i18n( "Minimum font size" ), (int)Filelight::Config::minFontPitch, 1, 100, 1, &ok, this );
 
   if ( ok )
   {

@@ -49,6 +49,9 @@
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../krusader.h"
+#include "../krusaderview.h"
+#include "../Panel/listpanel.h"
+#include "../Panel/panelfunc.h"
 #include "filelightParts/Config.h"
 
 #include "dulines.h"
@@ -56,15 +59,20 @@
 #include "dufilelight.h"
 
 // these are the values that will exist in the menu
-#define DELETE_ID           90
-#define EXCLUDE_ID          91
-#define INCLUDE_ALL_ID      92
-#define PARENT_DIR_ID       93
-#define VIEW_POPUP_ID       94
-#define LINES_VIEW_ID       95
-#define DETAILED_VIEW_ID    96
-#define FILELIGHT_VIEW_ID   97
-#define ADDITIONAL_POPUP_ID 98
+#define DELETE_ID            90
+#define EXCLUDE_ID           91
+#define PARENT_DIR_ID        92
+#define NEW_SEARCH_ID        93
+#define REFRESH_ID           94
+#define STEP_INTO_ID         95
+#define INCLUDE_ALL_ID       96
+#define VIEW_POPUP_ID        97
+#define LINES_VIEW_ID        98
+#define DETAILED_VIEW_ID     99
+#define FILELIGHT_VIEW_ID   100
+#define NEXT_VIEW_ID        101
+#define PREVIOUS_VIEW_ID    102
+#define ADDITIONAL_POPUP_ID 103
 
 LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : QScrollView( parent, name ), cancelled( false )
 {
@@ -163,6 +171,11 @@ void LoaderWidget::resizeEvent ( QResizeEvent *e )
   
   moveChild( widget, x, y );
 }
+
+void LoaderWidget::init()
+{
+  cancelled = false;
+}
   
 void LoaderWidget::setCurrentURL( KURL url )
 {
@@ -240,7 +253,9 @@ bool DiskUsage::load( KURL baseDir )
   
   int lastView = activeView;
   setView( VIEW_LOADER );
-    
+  
+  loaderView->init();  
+  
   while( !directoryStack.isEmpty() )
   {
     QString dirToCheck = directoryStack.pop();
@@ -311,7 +326,9 @@ bool DiskUsage::load( KURL baseDir )
   setView( lastView );
   
   calculateSizes();
-  changeDirectory( root );  
+  changeDirectory( root );
+  
+  emit loadFinished( result );  
   return result;
 }
 
@@ -455,7 +472,7 @@ void DiskUsage::del( File *file, bool calcPercents )
     krConfig->setGroup( "Advanced" );
     if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) 
     {
-      if ( KMessageBox::warningContinueCancel( krApp, i18n( "Are you sure you want to delete " ) 
+      if ( KMessageBox::warningContinueCancel( this, i18n( "Are you sure you want to delete " ) 
                                              + file->fullPath() + "?" ) != KMessageBox::Continue )
          return ;
     }
@@ -546,7 +563,7 @@ void DiskUsage::createStatus()
     return;
   
   KURL url = baseURL;  
-  if( !dirEntry->directory().isEmpty() )
+  if( dirEntry != root )
       url.addPath( dirEntry->directory() );
   
   emit status( i18n( "Current directory:%1,  Total size:%2,  Own size:%3" )
@@ -573,19 +590,31 @@ Directory* DiskUsage::getCurrentDir()
 
 void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString addPopupName )
 {
-  KPopupMenu popup;
+  KPopupMenu popup( this );
   
   popup.insertTitle( i18n("Disk Usage"));
   
   if( fileItem != 0 )
   {
     popup.insertItem(  i18n("Delete"),          DELETE_ID);
+    popup.setAccel( Key_Delete, DELETE_ID );    
     popup.insertItem(  i18n("Exclude"),         EXCLUDE_ID);
+    popup.setAccel( CTRL + Key_E, EXCLUDE_ID );    
     popup.insertSeparator();
   }
   
-  popup.insertItem(  i18n("Include all"),       INCLUDE_ALL_ID);
   popup.insertItem(  i18n("Up one directory"),  PARENT_DIR_ID);
+  popup.setAccel( SHIFT + Key_Up, PARENT_DIR_ID );    
+  popup.insertItem(  i18n("New search"),        NEW_SEARCH_ID);
+  popup.setAccel( CTRL + Key_N, NEW_SEARCH_ID );    
+  popup.insertItem(  i18n("Refresh"),           REFRESH_ID);
+  popup.setAccel( CTRL + Key_R, REFRESH_ID );  
+  popup.insertItem(  i18n("Include all"),       INCLUDE_ALL_ID);
+  popup.setAccel( CTRL + Key_I, INCLUDE_ALL_ID );  
+  popup.insertItem(  i18n("Step into"),         STEP_INTO_ID);
+  popup.setAccel( SHIFT + Key_Down, STEP_INTO_ID );    
+  popup.insertSeparator();
+  
   
   if( addPopup != 0 )
   {
@@ -595,28 +624,59 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
   
   KPopupMenu viewPopup;
   viewPopup.insertItem(i18n("Lines"),      LINES_VIEW_ID);
+  viewPopup.setAccel( CTRL + Key_L, LINES_VIEW_ID );    
   viewPopup.insertItem(i18n("Detailed"),   DETAILED_VIEW_ID);
+  viewPopup.setAccel( CTRL + Key_D, DETAILED_VIEW_ID );    
   viewPopup.insertItem(i18n("Filelight"),  FILELIGHT_VIEW_ID);
+  viewPopup.setAccel( CTRL + Key_F, FILELIGHT_VIEW_ID );    
+  viewPopup.insertSeparator();
+  viewPopup.insertItem(i18n("Next"),       NEXT_VIEW_ID);
+  viewPopup.setAccel( SHIFT + Key_Right, NEXT_VIEW_ID );    
+  viewPopup.insertItem(i18n("Previous"),   PREVIOUS_VIEW_ID);
+  viewPopup.setAccel( SHIFT + Key_Left, PREVIOUS_VIEW_ID );    
   
   popup.insertItem( QPixmap(), &viewPopup, VIEW_POPUP_ID );
   popup.changeItem( VIEW_POPUP_ID, i18n( "View" ) );
     
   int result=popup.exec(QCursor::pos());
 
+  executeAction( result, fileItem );
+}
+
+void DiskUsage::executeAction( int action, File * fileItem )  
+{
   // check out the user's option
-  switch (result)
+  switch ( action )
   {
   case DELETE_ID:
-    del( fileItem );
+    if( fileItem )
+      del( fileItem );
     break;
   case EXCLUDE_ID:
-    exclude( fileItem );
+    if( fileItem )
+      exclude( fileItem );
+    break;
+  case PARENT_DIR_ID:
+    dirUp();
+    break;
+  case NEW_SEARCH_ID:
+    emit newSearch();
+    break;    
+  case REFRESH_ID:
+    load( baseURL );
     break;
   case INCLUDE_ALL_ID:
     includeAll();
     break;
-  case PARENT_DIR_ID:
-    dirUp();
+  case STEP_INTO_ID:
+    {
+      QString uri;
+      if( fileItem && fileItem->isDir() )
+        uri = fileItem->fullPath();
+      else
+        uri = currentDirectory->fullPath();      
+      ACTIVE_FUNC->delayedOpenUrl(vfs::fromPathOrURL( uri ));
+    }
     break;
   case LINES_VIEW_ID:
     setView( VIEW_LINES );
@@ -627,7 +687,118 @@ void DiskUsage::rightClickMenu( File *fileItem, KPopupMenu *addPopup, QString ad
   case FILELIGHT_VIEW_ID:
     setView( VIEW_FILELIGHT );
     break;
+  case NEXT_VIEW_ID:
+    setView( ( activeView + 1 ) % 3 );
+    break;
+  case PREVIOUS_VIEW_ID:
+    setView( ( activeView + 2 ) % 3 );
+    break;
+  }  
+  setFocus();
+}
+
+void DiskUsage::keyPressEvent( QKeyEvent *e )
+{
+  if( activeView != VIEW_LOADER )
+  {
+    switch ( e->key() )
+    {
+    case Key_E:
+      if( e->state() == ControlButton )
+      {
+        executeAction( EXCLUDE_ID, getCurrentFile() );
+        return;
+      }
+    case Key_D:
+      if( e->state() == ControlButton )
+      {
+        executeAction( DETAILED_VIEW_ID );
+        return;
+      }
+    case Key_F:
+      if( e->state() == ControlButton )
+      {
+        executeAction( FILELIGHT_VIEW_ID );
+        return;
+      }
+    case Key_I:
+      if( e->state() == ControlButton )
+      {
+        executeAction( INCLUDE_ALL_ID );
+        return;
+      }
+      break;
+    case Key_L:
+      if( e->state() == ControlButton )
+      {
+        executeAction( LINES_VIEW_ID );
+        return;
+      }
+    case Key_N:
+      if( e->state() == ControlButton )
+      {
+        executeAction( NEW_SEARCH_ID );
+        return;
+      }
+      break;
+    case Key_R:
+      if( e->state() == ControlButton )
+      {
+        executeAction( REFRESH_ID );
+        return;
+      }
+      break;
+    case Key_Up:
+      if( e->state() == ShiftButton )
+      {
+        executeAction( PARENT_DIR_ID );
+        return;
+      }
+      break;
+    case Key_Down:
+      if( e->state() == ShiftButton )
+      {
+        executeAction( STEP_INTO_ID );
+        return;
+      }
+      break;
+    case Key_Left:
+      if( e->state() == ShiftButton )
+      {
+        executeAction( PREVIOUS_VIEW_ID );
+        return;
+      }
+      break;  
+    case Key_Right:
+      if( e->state() == ShiftButton )
+      {
+        executeAction( NEXT_VIEW_ID );
+        return;
+      }
+      break;  
+    case Key_Delete:
+      if( !e->state() )
+      {
+        executeAction( DELETE_ID, getCurrentFile() );
+        return;
+      }
+    case Key_Plus:
+      if( activeView == VIEW_FILELIGHT )
+      {
+        filelightView->zoomIn();
+        return;
+      }
+      break;
+    case Key_Minus:
+      if( activeView == VIEW_FILELIGHT )
+      {
+        filelightView->zoomOut();
+        return;
+      }
+      break;
+    }
   }
+  QWidgetStack::keyPressEvent( e );
 }
 
 QPixmap DiskUsage::getIcon( QString mime )
@@ -723,7 +894,28 @@ void DiskUsage::setView( int view )
     break;    
   }
   
+  visibleWidget()->setFocus();  
   emit viewChanged( activeView = view );
+}
+
+File * DiskUsage::getCurrentFile()
+{
+  File * file = 0;
+  
+  switch( activeView )
+  {
+  case VIEW_LINES:
+    file = lineView->getCurrentFile();
+    break;
+  case VIEW_DETAILED:
+    file = listView->getCurrentFile();
+    break;
+  case VIEW_FILELIGHT:
+    file = filelightView->getCurrentFile();
+    break;
+  }
+  
+  return file;
 }
 
 #include "diskusage.moc"

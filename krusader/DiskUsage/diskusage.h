@@ -89,7 +89,10 @@ public:
   void       rightClickMenu( File *, KPopupMenu * = 0, QString = QString::null );
   
   void       changeDirectory( Directory *dir );
+  
   Directory* getCurrentDir();
+  File*      getCurrentFile();
+  
   QPixmap    getIcon( QString mime );
   
   KURL       getBaseURL() { return baseURL; }
@@ -105,6 +108,8 @@ signals:
   void       deleted( File * );
   void       status( QString );
   void       viewChanged( int );
+  void       loadFinished( bool );
+  void       newSearch();
   
 protected:
   QDict< Directory > contentMap;
@@ -112,11 +117,14 @@ protected:
     
   Directory* currentDirectory;
   KIO::filesize_t currentSize;
+ 
+  virtual void keyPressEvent( QKeyEvent * );
   
   void       calculateSizes( Directory *dir = 0, bool emitSig = false );
   void       calculatePercents( bool emitSig = false, Directory *dir = 0  );
   void       include( Directory *dir );
   void       createStatus();
+  void       executeAction( int, File * = 0 );
   
   KURL       baseURL;             //< the base URL of loading
 
@@ -140,6 +148,7 @@ class LoaderWidget : public QScrollView
 public:
   LoaderWidget( QWidget *parent = 0, const char *name = 0 );
   
+  void init();
   void setCurrentURL( KURL url );
   void setValues( int fileNum, int dirNum, KIO::filesize_t total );  
   bool wasCancelled()  { return cancelled; }

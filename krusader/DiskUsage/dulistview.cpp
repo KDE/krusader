@@ -159,12 +159,26 @@ void DUListView::addDirectory( Directory *dirEntry, QListViewItem *parent )
     if( item->isDir() && !item->isSymLink() )
       lastItem->setExpandable( true );
   }
+  
+  QListViewItem *first = firstChild();
+  if( first )
+    setCurrentItem( first );
 }
 
 void DUListView::slotDirChanged( Directory *dirEntry )
 {
   clear();  
   addDirectory( dirEntry, 0 );
+}
+
+File * DUListView::getCurrentFile()
+{
+  QListViewItem *item = currentItem();
+  
+  if( item == 0 || item->text( 0 ) == ".." )
+    return 0;
+  
+  return ((DUListViewItem *)item)->getFile();
 }
 
 void DUListView::slotChanged( File * item )
@@ -246,6 +260,19 @@ void DUListView::keyPressEvent( QKeyEvent *e )
     if( doubleClicked( currentItem() ) )
       return;
     break;
+  case Key_Left :
+  case Key_Right :
+  case Key_Up :
+  case Key_Down :
+    if( e->state() == ShiftButton )
+    {
+      e->ignore();
+      return;
+    }
+    break;
+  case Key_Delete :
+    e->ignore();
+    return;
   }
   QListView::keyPressEvent( e );
 }

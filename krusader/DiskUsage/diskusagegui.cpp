@@ -37,10 +37,11 @@
 #include <qtimer.h>
 #include <qhbox.h>
 #include <klocale.h>
+#include <qtooltip.h>
 
 DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name ) 
   : QDialog( parent, name, false, 0 )
-{
+{  
   setCaption( i18n("Krusader::Disk Usage") );
   
   baseDirectory = vfs::fromPathOrURL( openDir );
@@ -56,12 +57,15 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
     
   btnNewSearch = new QToolButton( duTools, "btnNewSearch" );
   btnNewSearch->setIconSet( QIconSet(krLoader->loadIcon("fileopen",KIcon::Desktop)) );
+  QToolTip::add( btnNewSearch, i18n( "Start new disk usage search" ) );
   
   btnRefresh = new QToolButton( duTools, "btnRefresh" );
   btnRefresh->setIconSet( QIconSet(krLoader->loadIcon("reload",KIcon::Desktop)) );
+  QToolTip::add( btnRefresh, i18n( "Refresh" ) );
 
   btnDirUp = new QToolButton( duTools, "btnDirUp" );
   btnDirUp->setIconSet( QIconSet(krLoader->loadIcon("up",KIcon::Desktop)) );
+  QToolTip::add( btnDirUp, i18n( "Parent directory" ) );
   
   QWidget * separatorWidget = new QWidget( duTools, "separatorWidget" );
   separatorWidget->setMinimumWidth( 10 );
@@ -69,14 +73,17 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   btnLines = new QToolButton( duTools, "btnLines" );
   btnLines->setIconSet( QIconSet(krLoader->loadIcon("leftjust",KIcon::Desktop)) );
   btnLines->setToggleButton( true );
+  QToolTip::add( btnLines, i18n( "Line view" ) );
 
   btnDetailed = new QToolButton( duTools, "btnDetailed" );
   btnDetailed->setIconSet( QIconSet(krLoader->loadIcon("view_detailed",KIcon::Desktop)) );
   btnDetailed->setToggleButton( true );
+  QToolTip::add( btnDetailed, i18n( "Detailed view" ) );
 
   btnFilelight = new QToolButton( duTools, "btnFilelight" );
   btnFilelight->setIconSet( QIconSet(krLoader->loadIcon("none",KIcon::Desktop)) );
   btnFilelight->setToggleButton( true );
+  QToolTip::add( btnFilelight, i18n( "Filelight view" ) );
     
   QWidget *spacerWidget = new QWidget( duTools, "spacerWidget" );
   QHBoxLayout *hboxlayout = new QHBoxLayout( spacerWidget );
@@ -95,6 +102,7 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   
   connect( diskUsage, SIGNAL( status( QString ) ), this, SLOT( setStatus( QString ) ) );
   connect( diskUsage, SIGNAL( viewChanged( int ) ), this, SLOT( slotViewChanged( int ) ) );
+  connect( diskUsage, SIGNAL( newSearch() ), this,  SLOT( newSearch() ) );
   connect( btnNewSearch, SIGNAL( clicked() ), this, SLOT( newSearch() ) );
   connect( btnRefresh, SIGNAL( clicked() ), this, SLOT( loadUsageInfo() ) );
   connect( btnDirUp, SIGNAL( clicked() ), diskUsage, SLOT( dirUp() ) );
@@ -104,7 +112,10 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
   
   krConfig->setGroup( "DiskUsage" ); 
   
-  diskUsage->setView( krConfig->readNumEntry( "View",  VIEW_LINES ) );
+  int view = krConfig->readNumEntry( "View",  VIEW_LINES );
+  if( view < VIEW_LINES || view > VIEW_FILELIGHT )
+    view = VIEW_LINES;    
+  diskUsage->setView( view );
   
   sizeX = krConfig->readNumEntry( "Window Width",  QFontMetrics(font()).width("W") * 70 );
   sizeY = krConfig->readNumEntry( "Window Height", QFontMetrics(font()).height() * 25 );    
@@ -114,7 +125,7 @@ DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name )
     showMaximized();
   else  
     show();
-  
+
   exec();
 }
 

@@ -119,7 +119,9 @@ class DUListView : public QListView
 public:
   DUListView( DiskUsage *usage, const char *name );
   ~DUListView();
-    
+
+  File * getCurrentFile();
+      
 public slots:
   void slotDirChanged( Directory * );
   void slotChanged( File * );

@@ -42,6 +42,8 @@ class DUFilelight : public RadialMap::Widget
 public:
   DUFilelight( DiskUsage *usage, const char *name );
 
+  File * getCurrentFile();
+      
 public slots:
   void slotDirChanged( Directory * );
   void clear();

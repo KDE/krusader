@@ -324,6 +324,19 @@ void DULines::keyPressEvent( QKeyEvent *e )
     if( doubleClicked( currentItem() ) )
       return;
     break;
+  case Key_Left :
+  case Key_Right :
+  case Key_Up :
+  case Key_Down :
+    if( e->state() == ShiftButton )
+    {
+      e->ignore();
+      return;
+    }
+    break;
+  case Key_Delete :
+    e->ignore();
+    return;
   }
   QListView::keyPressEvent( e );
 }
@@ -336,6 +349,16 @@ void DULines::slotRightClicked( QListViewItem *item )
     file = ((DULinesItem *)item)->getFile();
 
   diskUsage->rightClickMenu( file );
+}
+
+File * DULines::getCurrentFile()
+{
+  QListViewItem *item = currentItem();
+  
+  if( item == 0 || item->text( 0 ) == ".." )
+    return 0;
+  
+  return ((DULinesItem *)item)->getFile();
 }
 
 void DULines::slotChanged( File * item )
