@@ -109,6 +109,7 @@ KAction *Krusader::actDupTab = 0;
 KAction *Krusader::actCloseTab = 0;
 KAction *Krusader::actSplit = 0;
 KAction *Krusader::actCombine = 0;
+KAction *Krusader::actUserMenu = 0;
 
 KToggleAction *Krusader::actToggleTerminal = 0;
 
@@ -421,6 +422,8 @@ void Krusader::setupActions() {
                           SLOT(duplicateTab()), actionCollection(), "duplicate tab");
   actCloseTab = new KAction(i18n("Close tab"), ALT+CTRL+Key_C, SLOTS,
                           SLOT(closeTab()), actionCollection(), "close tab");
+  actUserMenu = new KAction(i18n("User Menu"), ALT+CTRL+Key_U, SLOTS,
+                          SLOT(userMenu()), actionCollection(), "user menu");
   // and at last we can set the tool-tips
   actSelect->setToolTip( i18n( "Highlight files by using a filter" ) );
   actSelectAll->setToolTip( i18n( "Highlight all the files in the current directory" ) );

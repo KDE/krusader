@@ -69,6 +69,7 @@
 #include "Splitter/splittergui.h"
 #include "Splitter/splitter.h"
 #include "Splitter/combiner.h"
+#include "UserMenu/usermenu.h"
 
 #define ACTIVE_PANEL        (krApp->mainView->activePanel)
 #define ACTIVE_FUNC         (krApp->mainView->activePanel->func)
@@ -597,6 +598,13 @@ void KRslots::slotCombine()
 
   if ( combineToOtherPanel )
     ACTIVE_PANEL->otherPanel->func->refresh();
+}
+
+void KRslots::userMenu() {
+  UserMenu um(krApp);
+
+  um.exec();
+
 }
 
 #include "krslots.moc"

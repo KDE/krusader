@@ -113,6 +113,7 @@ class KRslots : public QObject {
     void closeTab();
     void slotSplit();
     void slotCombine();
+    void userMenu();
     
     // F2
     void terminal();
