@@ -497,7 +497,7 @@ void ListPanelFunc::deleteFiles() {
   if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
     QString s, b;
     if ( fileNames.count() == 1 )
-      s = " this item?";
+      s = i18n( " this item ?" );
     else
       s.sprintf( i18n( " these %d items ?" ).local8Bit(), fileNames.count() );
     krConfig->setGroup( "General" );
