@@ -40,7 +40,9 @@ void DirHistoryQueue::AddPath(const QString& path)
   {
     if (pathQueue.size() > 12)
     {
-      pathQueue.pop_front();
+    // change order of list (newest is first)
+//      pathQueue.pop_front();
+      pathQueue.pop_back();
     }
 //    DumpQueue();
   }
@@ -53,6 +55,8 @@ void DirHistoryQueue::AddPath(const QString& path)
 //  KURL url(path);
 //  if (url.protocol() == "file")
   {
+//    pathQueue.push_front(path);
+    // change order of list (newest is first)
     pathQueue.push_front(path);
   }
 }
