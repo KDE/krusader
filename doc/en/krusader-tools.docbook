@@ -1605,7 +1605,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   User-Actions can be edit/add/im-/export using by using the 
   <link linkend="konfig-useractions">Useractions manager</link> a Konfigurator-module,
   although we plan to move all action-related to a new ActionMan.
-  User-Actions can appear nearly everywhere:
+  User-Actions can appear nearly everywhere where "normal" KActions can be placed. 
+  They integrate seamless in the well knows Edit-(Toolbar,Shortcut) Dialogs from &kde;.
+  It's even possible to place them in the menubar, but for that one has to
+  manipulate the <filename>krusaderui.rc</filename> file with an editor.
+  Some examples:
   <itemizedlist>
       <listitem><para><link linkend="useractions-menu">Useractions Menu</link>
                 </para></listitem>
@@ -1622,6 +1626,17 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   customizable User-Actions tool.
 </para>
 
+<para>
+Basically User-Actions are a method to call external programs with variable parameters.
+You could for example have a useraction with the following
+<command>xmms <option>--enqueue %aList("Selected")%</option></command> to enqueue
+all selected items of the active panel to the current instance of xmms.
+In addition to that, there is limited access to krusader-internal functions
+which requires parameter, so <command>%aPanelSize("80")%</command> 
+will set the width of the active panel to 80% of &krusader;'s mainwindow.
+Since the parameter of placeholders can itself contain other placeholders, 
+little scripts are possible but real scripting can be done with the &javascript_console_lnk;.
+</para>
 
 <para><emphasis role="bold">Managing User-Actions</emphasis></para>
 <para>Open Konfigurator and choose "User-Actions", here you can add/edit/remove/import/export User-Actions.
