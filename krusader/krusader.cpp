@@ -242,13 +242,18 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
    // restore TabBar
    {
       KConfigGroupSaver grp( krConfig, "Startup" );
-      QStringList l1( krConfig->readPathListEntry( "LeftTabBar" ) );
-		QStringList l2( krConfig->readPathListEntry( "RightTabBar" ) );
+      QStringList l1( krConfig->readPathListEntry( "Left Tab Bar" ) );
+      QStringList l2( krConfig->readPathListEntry( "Right Tab Bar" ) );
       QStringList::const_iterator it;
-      for ( it = ++(l1.begin()); it != l1.end(); ++it )
-         mainView->leftMng->slotNewTab( *it );
-      for ( it = ++(l2.begin()); it != l2.end(); ++it )
-         mainView->rightMng->slotNewTab( *it );
+      
+      if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
+         for ( it = ++(l1.begin()); it != l1.end(); ++it )
+           mainView->leftMng->slotNewTab( *it );
+
+      krConfig->setGroup( "Startup" );             
+      if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
+         for ( it = ++(l2.begin()); it != l2.end(); ++it )
+           mainView->rightMng->slotNewTab( *it );
    }
 }
 
@@ -534,8 +539,8 @@ void Krusader::savePosition() {
 void Krusader::saveSettings() {
    toolBar() ->saveSettings( krConfig, "Private" );
    config->setGroup( "Startup" );
-	mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
-	mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
+   mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
+   mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
    bool panelsavesettings = config->readBoolEntry( "Panels Save Settings", _PanelsSave );
    bool rememberpos = config->readBoolEntry( "Remember Position", _RememberPos );
    bool uisavesettings = config->readBoolEntry( "UI Save Settings", _UiSave );
