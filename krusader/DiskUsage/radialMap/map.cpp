@@ -392,3 +392,14 @@ RadialMap::Map::paint( unsigned int scaleFactor )
 
    paint.end();
 }
+
+#if __GLIBC__ < 2 ||  __GLIBC__ == 2 && __GLIBC_MINOR__ < 1
+   
+   void
+   sincos( double angleRadians, double *Sin, double *Cos )
+   {
+      *Sin = sin( angleRadians );
+      *Cos = cos( angleRadians );
+   }
+
+#endif
