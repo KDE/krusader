@@ -61,9 +61,8 @@ normal_vfs::normal_vfs(QObject* panel):vfs(panel){
   
   vfs_type=NORMAL;
 
-	// connect the watcher to vfs_slotDirty
+	// connect the watcher
   connect(&watcher,SIGNAL(dirty(const QString&)),this,SLOT(vfs_slotDirty(const QString&)));
-  // when FAM is active, these two solve a bug where creation/deletion of files isn't reflected
 	connect(&watcher,SIGNAL(created(const QString&)),this, SLOT(vfs_slotCreated(const QString&)));
   connect(&watcher,SIGNAL(deleted(const QString&)),this, SLOT(vfs_slotDeleted(const QString&)));	
 }
@@ -109,9 +108,6 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 
 	struct dirent* dirEnt;
   QString name;
-	KURL mimeUrl;
-  char symDest[256];
-  KDE_struct_stat stat_p;
 
 	while( (dirEnt=readdir(dir)) != NULL ){
     name = QString::fromLocal8Bit(dirEnt->d_name);
@@ -120,31 +116,8 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
 		if ( !hidden && name.left(1) == "." ) continue ;
 		// we dont need the ".",".." enteries
 		if (name=="." || name == "..") continue;
-	  	
-	  KDE_lstat(vfs_workingDir().local8Bit()+"/"+name.local8Bit(),&stat_p);
-	  KIO::filesize_t size = stat_p.st_size;
-    QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
-	  bool symLink= S_ISLNK(stat_p.st_mode);
-	  if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
-	
-	  bzero(symDest,256);
-		mimeUrl.setPath(vfs_workingDir()+"/"+name);
-	  QString mime=KMimeType::findByURL( mimeUrl,stat_p.st_mode,true,!mtm)->name();
-	
-	  if( S_ISLNK(stat_p.st_mode) ){  // who the link is pointing to ?
-	    int endOfName=0;
-	    endOfName=readlink(vfs_workingDir().local8Bit()+"/"+name.local8Bit(),symDest,256);
-	    if ( endOfName != -1 ){
-	      if ( QDir(symDest).exists() || mime.contains("directory") ) perm[0] = 'd';
-	      //QString symTemp = (symDest[0]=='/' ? symDest : vfs_workingDir()+"/"+symDest);
-	      if ( !QDir(vfs_workingDir()).exists(symDest)  ) mime = "Broken Link !";
-      }
-      else kdWarning() << "Failed to read link: "<< vfs_workingDir()+"/"+name<<endl;
-	  }
-	  	
-	  // create a new virtual file object
-    vfile* temp=new vfile(name,size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
-                          stat_p.st_gid,mime,symDest,stat_p.st_mode);
+	  
+		vfile* temp = vfileFromName(name,mtm);
     addToList(temp);
   }
 	// clean up
@@ -264,7 +237,7 @@ void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned
   }
 }
 
-vfile* normal_vfs::vfileFromPath(const QString& name){
+vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 	QString path = vfs_workingDir().local8Bit()+"/"+name.local8Bit();
 	
 	KDE_struct_stat stat_p;
@@ -275,7 +248,7 @@ vfile* normal_vfs::vfileFromPath(const QString& name){
 	if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
 	
 	KURL mimeUrl = fromPathOrURL(path);
-	QString mime=KMimeType::findByURL( mimeUrl,stat_p.st_mode,true,false)->name();
+	QString mime=KMimeType::findByURL( mimeUrl,stat_p.st_mode,true,!mimeTypeMagic)->name();
 
 	char symDest[256];
 	bzero(symDest,256); 
@@ -310,7 +283,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 	
 	// we have an updated file..
 	removeFromList(name);
-	vfile* vf = vfileFromPath(name);
+	vfile* vf = vfileFromName(name,true);
 	addToList(vf);
 	emit updatedVfile(vf);		
 }
@@ -318,7 +291,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 void normal_vfs::vfs_slotCreated(const QString& path){  
 	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();	
-	vfile* vf = vfileFromPath(name);
+	vfile* vf = vfileFromName(name,true);
 	addToList(vf);
 	emit addedVfile(vf);	
 }

@@ -80,7 +80,7 @@ public slots:
 protected:
 	QDict<vfile>  vfs_files;    //< List of pointers to vfile	
 	KDirWatch watcher;          //< The internal dir watcher - use to detect changes in directories
-	vfile* vfileFromPath(const QString& path);
+	vfile* vfileFromName(const QString& name,bool mimeTypeMagic);
 };
 
 #endif
