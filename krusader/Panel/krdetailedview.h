@@ -111,7 +111,6 @@ class KrDetailedView : public KListView, public KrView {
     void slotCurrentChanged( QListViewItem *item );
     void handleContextMenu( QListViewItem*, const QPoint&, int );
     void inplaceRenameFinished( QListViewItem *it, int col );
-    void delayedQuickSearchEventHandling();
     void quickSearch(const QString &, int = 0);
     void stopQuickSearch(QKeyEvent*);
     void handleQuickSearchEvent(QKeyEvent*);
@@ -131,7 +130,6 @@ class KrDetailedView : public KListView, public KrView {
     KrViewItem *_currDragItem;
     QString _nameInKConfig;
     bool &_left;
-    QKeyEvent * delayedQuickSearchEvent;
 };
 
 #endif /* KRDETAILEDVIEW_H */

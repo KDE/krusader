@@ -80,7 +80,7 @@ QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg, const char *name ) :
     KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
-_nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ), delayedQuickSearchEvent( 0 ) {
+_nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
 
   if ( ColumnName[ 0 ].isEmpty() ) {
     ColumnName[ 0 ] = i18n( "Name" );
@@ -833,9 +833,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
               krDirUp->setEnabled( false );
               }
             // now, send the key to the quicksearch
-            //krApp->mainView->activePanel->quickSearch->myKeyPressEvent( e );
-            delayedQuickSearchEvent = new QKeyEvent( *e );
-            QTimer::singleShot ( 0, this, SLOT( delayedQuickSearchEventHandling() ) );
+            krApp->mainView->activePanel->quickSearch->myKeyPressEvent( e );
             }
           } else
           e->ignore(); // send to panel
@@ -925,14 +923,6 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
     repaintItem( it );
     }
   setFocus();
-  }
-
-void KrDetailedView::delayedQuickSearchEventHandling() {
-  if ( delayedQuickSearchEvent ) {
-    krApp->mainView->activePanel->quickSearch->myKeyPressEvent( delayedQuickSearchEvent );
-    delete delayedQuickSearchEvent;
-    delayedQuickSearchEvent = 0;
-    }
   }
 
 void KrDetailedView::quickSearch( const QString & str, int direction ) {
