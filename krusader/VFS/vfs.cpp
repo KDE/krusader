@@ -115,8 +115,6 @@ bool vfs::vfs_refresh(){
 	vfs_filesP = new QDict<vfile>();
 	vfs_filesP->setAutoDelete(true);
 	
-	kdDebug() << "vfs_refresh: " << vfs_origin.url() << endl;
-	
 	// and populate it
 	krConfig->setGroup("Look&Feel");
 	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
@@ -133,6 +131,7 @@ bool vfs::vfs_refresh(){
 				// the file was deleted..
 				emit deletedVfile(name);
 				vfs_searchP->remove(name);
+				// the remove() advance our iterator ! 
 				vf = vfileIterator->current();
 			} else {
 				if( *vf != *newVf ){
@@ -142,7 +141,7 @@ bool vfs::vfs_refresh(){
 				}
 				vf=vfs_getNextFile();
 			}
-			removeFromList(name);				
+			removeFromList(name);
 		}
 		// everything thats left is a new file
 		QDictIterator<vfile> it(*vfs_filesP);
@@ -153,7 +152,6 @@ bool vfs::vfs_refresh(){
 			vfile* newVf = new vfile();
 			*newVf = *vf;
 			vfs_searchP->insert(newVf->vfile_getName(),newVf);
-			kdDebug() << "emit addedVfile: "<< vf->vfile_getName() << endl;
 			emit addedVfile(newVf);
 		}
 	}
