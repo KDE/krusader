@@ -62,7 +62,8 @@ public:
    else return QString::null;
   }
   bool isSymLink() const { return (_vf ? _vf->vfile_isSymLink() : false); }
-  bool isSelected() const { return (_vf ? KListViewItem::isSelected() : false); }
+  // isSelected doesn't check of _vf on purpose! not needed here
+  bool isSelected() const { return KListViewItem::isSelected(); }
   void setSelected(bool s) { KListViewItem::setSelected(s); }
 	/*void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int alignment){}*/
   QPixmap& icon();
