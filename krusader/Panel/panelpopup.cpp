@@ -260,6 +260,7 @@ void PanelPopup::update( KURL url ) {
       case View:
 			panelviewer->openURL(url);
 			dataLine->setText( i18n("View: ")+url.fileName() );
+			break;
       case DskUsage:
 			if( url.fileName() == ".." )
 				url.setFileName( "" );
