@@ -7,9 +7,12 @@
     <projectmanagement>KDevAutoProject</projectmanagement>
     <primarylanguage>C++</primarylanguage>
     <ignoreparts>
-      <part>KDevPerforce</part>
-      <part>KDevVisualBoyAdvance</part>
       <part>KDevClearCase</part>
+      <part>KDevFileGroups</part>
+      <part>KDevdistpart</part>
+      <part>KDevPerforce</part>
+      <part>KDevBookmarks</part>
+      <part>KDevVisualBoyAdvance</part>
     </ignoreparts>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
@@ -25,6 +28,7 @@
       <programargs/>
       <terminal>false</terminal>
       <envvars/>
+      <autocompile>true</autocompile>
     </run>
     <make>
       <envvars>
@@ -45,6 +49,7 @@
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
+      <runappinappdirectory>true</runappinappdirectory>
     </general>
     <display>
       <staticmembers>false</staticmembers>
@@ -94,12 +99,25 @@
   </kdevfileview>
   <kdevcvs>
     <cvsoptions>-f -z3</cvsoptions>
-    <commitoptions/>
+    <commitoptions></commitoptions>
     <updateoptions>-dP</updateoptions>
-    <addoptions/>
+    <addoptions></addoptions>
     <removeoptions>-f</removeoptions>
     <diffoptions>-u3 -p</diffoptions>
-    <logoptions/>
-    <rshoptions/>
+    <logoptions></logoptions>
+    <rshoptions></rshoptions>
+    <revertoptions>-C -d -P</revertoptions>
   </kdevcvs>
+  <kdevcppsupport>
+    <codecompletion>
+      <includeGlobalFunctions>true</includeGlobalFunctions>
+      <includeTypes>true</includeTypes>
+      <includeEnums>true</includeEnums>
+      <includeTypedefs>false</includeTypedefs>
+      <automaticCodeCompletion>true</automaticCodeCompletion>
+      <automaticArgumentsHint>true</automaticArgumentsHint>
+      <codeCompletionDelay>250</codeCompletionDelay>
+      <argumentsHintDelay>400</argumentsHintDelay>
+    </codecompletion>
+  </kdevcppsupport>
 </kdevelop>
