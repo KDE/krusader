@@ -72,7 +72,7 @@ A
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "krdrag.h"
-
+#include <kurldrag.h>
 
 //////////////////////////////////////////////////////////
 //////          ----------      List Panel -------------                ////////
@@ -1013,19 +1013,14 @@ void ListPanelFunc::copyToClipboard( bool move ) {
 void ListPanelFunc::pasteFromClipboard() {
 	QClipboard * cb = QApplication::clipboard();
 	QMimeSource * data = cb->data();
-	QStringList fileNames;
-	if ( QUriDrag::canDecode( data ) ) {
-		QUriDrag::decodeToUnicodeUris( data, fileNames );
+	KURL::List urls;
+	if ( KURLDrag::canDecode( data ) ) {
+		KURLDrag::decode( data, urls );
 		bool cutSelection = KRDrag::decodeIsCutSelection( data );
-
-		KURL::List* fileUrls = new KURL::List();
-		for ( QStringList::Iterator name = fileNames.begin(); name != fileNames.end(); ++name ) {
-			fileUrls->append( vfs::fromPathOrURL( *name ) );
-		}
 
 		KURL destUrl = vfs::fromPathOrURL( panel->getPath() );
 
-		KIO::Job* job = new KIO::CopyJob( *fileUrls, destUrl, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, false, true );
+		KIO::Job* job = new KIO::CopyJob( urls, destUrl, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, false, true );
 		connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
 	}
 }
