@@ -105,8 +105,6 @@ KCMDLine::KCMDLine( QWidget *parent, const char *name ) : QWidget( parent, name 
                       "pressed, terminal mode is active." ) );
   layout->addWidget( terminal, 0, 2 );
   layout->activate();
-  // connections
-  connect( cmdLine, SIGNAL( returnFocus() ), this, SLOT( slotReturnFocus() ) );
 }
 
 void KCMDLine::setCurrent( const QString &p ) {
