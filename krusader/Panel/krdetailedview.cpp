@@ -7,18 +7,18 @@
 ---------------------------------------------------------------------------
  Description
 ***************************************************************************
-
+ 
  A
-
+ 
     db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
     88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
     88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
     88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
     88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
     YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
-
+ 
                                                     S o u r c e    F i l e
-
+ 
 ***************************************************************************
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
@@ -51,21 +51,21 @@
 // Group name: KrDetailedView
 //
 // Ext Column
-#define _ExtColumn          true 
+#define _ExtColumn          true
 // Mime Column
-#define _MimeColumn         false 
+#define _MimeColumn         false
 // Size Column
-#define _SizeColumn         true 
+#define _SizeColumn         true
 // DateTime Column
 #define _DateTimeColumn     true
 // Perm Column
-#define _PermColumn         false 
+#define _PermColumn         false
 // KrPerm Column
-#define _KrPermColumn       true 
+#define _KrPermColumn       true
 // Owner Column
-#define _OwnerColumn        false 
+#define _OwnerColumn        false
 // Group Column
-#define _GroupColumn        false 
+#define _GroupColumn        false
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "Type" ),
@@ -73,8 +73,8 @@ QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "T
                                          i18n( "Owner" ), i18n( "Group" ) };
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
-KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
-_nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left(left){
+    KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
+_nameInKConfig(QString("KrDetailedView")+QString((left?"Left":"Right"))),  _left(left) {
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   // setup the default sort and filter
   _filter = KrView::All;
@@ -230,7 +230,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
     if ( !isDir || ( isDir && ( _filter & ApplyToDirs ) ) ) {
       switch ( _filter ) {
           case KrView::All :
-          break;
+            break;
           case KrView::Custom :
           if ( !QDir::match( _filterMask, name ) )
             continue;
@@ -257,7 +257,8 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       _countSize += dynamic_cast<KrViewItem*>( item ) ->size();
     ++_count;
     // if the item should be current - make it so
-    if ( ( dynamic_cast<KrViewItem*>( item ) ) ->name() == nameToMakeCurrent() )
+    if ( ( dynamic_cast<KrViewItem*>( item ) ) ->
+         name() == nameToMakeCurrent() )
       currentItem = item;
 
     cnt++;
@@ -292,7 +293,8 @@ QString KrDetailedView::getCurrentItem() const {
 
 void KrDetailedView::setCurrentItem( const QString& name ) {
   for ( QListViewItem * it = firstChild(); it != 0; it = it->itemBelow() )
-    if ( dynamic_cast<KrViewItem*>( it ) ->name() == name ) {
+    if ( dynamic_cast<KrViewItem*>( it ) ->
+         name() == name ) {
       KListView::setCurrentItem( it );
       break;
     }
@@ -394,7 +396,8 @@ void KrDetailedView::handleContextMenu( QListViewItem* it, const QPoint& pos, in
     emit needFocus();
   if ( !it )
     return ;
-  if ( dynamic_cast<KrViewItem*>( it ) ->name() == ".." )
+  if ( dynamic_cast<KrViewItem*>( it ) ->
+       name() == ".." )
     return ;
   emit contextMenu( QPoint( pos.x(), pos.y() - header() ->height() ) );
 }
@@ -476,7 +479,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         }
       } else
         if ( e->state() == AltButton ) { // user pressed Alt+Right
-          ListPanel * p = krApp->mainView->activePanel;
+          //ListPanel * p = krApp->mainView->activePanel;
           krApp->mainView->right->popBookmarks();
           return ;
         } else { // just a normal click - do a lynx-like moving thing
@@ -502,7 +505,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         }
       } else
         if ( e->state() == AltButton ) { // user pressed Alt+Right
-          ListPanel * p = krApp->mainView->activePanel;
+          //ListPanel * p = krApp->mainView->activePanel;
           krApp->mainView->left->popBookmarks();
           return ;
         } else {          // a normal click - do a lynx-like moving thing
@@ -533,6 +536,25 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       case Key_Delete :          // kill file
       SLOTS->deleteFiles();
       return ;
+      case Key_Space :
+      if (e->state()==ControlButton) {
+        KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> (getCurrentKrViewItem());
+        if (!viewItem || !(viewItem->isDir() && viewItem->size()<=0)) {
+          KListView::keyPressEvent(e);
+          return; // wrong type
+        }
+        long long totalSize = 0;
+        long totalFiles = 0, totalDirs = 0;
+        QStringList names;
+        names.push_back(viewItem->name());
+        krApp->mainView->activePanel->func->calcSpace(names, totalSize, totalFiles, totalDirs);
+        viewItem->setSize(totalSize);
+        _countSize+=totalSize;
+        viewItem->repaintItem();
+        KListView::keyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Key_Insert, 0, 0));
+      } else
+        KListView::keyPressEvent(e);
+      return;
       default:
       KListView::keyPressEvent( e );
       updateView();
