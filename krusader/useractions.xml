@@ -22,7 +22,23 @@
   <tooltip>Mount a new filesystem</tooltip>
   <icon>hdd_mount</icon>
   <category>Samples</category>
-  <command run_as="root" executionmode="collect_output" >mount -t %_Ask(&quot;Filesystem Type?&quot;)% %_Ask(&quot;Device ?&quot;)% %_Ask(&quot;Mount Point ?&quot;)%</command>
+  <command executionmode="collect_output" run_as="root" >mount -t %_Ask(&quot;Filesystem Type?&quot;)% %_Ask(&quot;Device ?&quot;)% %_Ask(&quot;Mount Point ?&quot;)%</command>
   <defaultshortcut>Alt+Ctrl+M</defaultshortcut>
+ </action>
+ <action name="sample_amarok_enqueue" >
+  <title>Enqueue in Amarok</title>
+  <tooltip>Append selected item(s) to Amarok playlist</tooltip>
+  <icon>amarok</icon>
+  <category>Multimedia</category>
+  <description same_as="tooltip" />
+  <command>amarok --append %aList(&quot;Selected&quot;)%</command>
+  <defaultshortcut>Win+A</defaultshortcut>
+ </action>
+ <action name="filename_to_clipboard" >
+  <title>copy current item to clipboard</title>
+  <icon>editpaste</icon>
+  <category>Samples</category>
+  <command>%_Clipboard(&quot;%aCurrent%&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+C</defaultshortcut>
  </action>
 </KrusaderUserActions>
