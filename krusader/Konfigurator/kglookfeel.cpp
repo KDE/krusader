@@ -61,14 +61,14 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM settings[] =
   //   cfg_class  cfg_name                default             text                              restart tooltip
-    {{"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  ""},
-     {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  ""},
-     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  ""},
-     {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  ""},
-     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  ""},
-     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use fullpath tab names" ), true ,  ""},
+    {{"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  "Display a warning when you try to exit Krusader."},
+     {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  "When minimizing Krusader, its icon will appear in the system tray instead of the taskbar."},
+     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  "Display the dot files"},
+     {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  "When matching the select criteria, directories will also be marked"},
+     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  "UNIX default, all files beginning with capital letters appear before files beginning with non-capital letters."},
+     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use fullpath tab names" ), true ,  "Display the full path in the Folder Tabs"},
      //{"Look&Feel","Single Click Selects", false,              i18n( "Single click executes" ),   false,  ""},
-     {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  ""},
+     {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  "Opens a quick search dialog box."},
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  ""},
     };
 
@@ -83,8 +83,8 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
    KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
   //          name                                               value  tooltip
-    {{ i18n( "Double-click selects (classic)" ),                   "0", "" },
-     { i18n( "Obey KDE's global selection policy" ),               "1", "" }};    
+    {{ i18n( "Double-click selects (classic)" ),                   "0", "A single click on a file will select and focus, a double click opens the file or steps into the directory." },
+     { i18n( "Obey KDE's global selection policy" ),               "1", "Uses the KDE's kcontrol setting: KDE Control Center->Peripherials->Mouse" }};    
   KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, lookFeelGrp, "myLook&FeelRadio0", true );
   lookFeelGrid->addWidget( clickRadio, 8, 0 );
   
@@ -95,9 +95,9 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
             lookFeelGrp, "lookAndFeelLabel4" );
   KONFIGURATOR_NAME_VALUE_TIP mouseSelection[] =
   //            name                 value  tooltip
-    {{ i18n( "Krusader Mode" ),        "0", "" },
-     { i18n( "Konqueror Mode" ),       "1", "" },    
-     { i18n( "Total-Commander Mode" ), "2", "" }};
+    {{ i18n( "Krusader Mode" ),        "0", "Both keys allow selecting files. To select more than one file, hold the Ctrl key and click the left mouse button.\nRight-click menu is invoked using a short click on the right mouse button." },
+     { i18n( "Konqueror Mode" ),       "1", "Pressing the left mouse button selects files - you can click and select multiple files.\nRight-click menu is invoked using a short click on the right mouse button." },    
+     { i18n( "Total-Commander Mode" ), "2", "The left mouse button does not select, but sets the current file without affecting the current selection.\nThe right mouse button selects multiple files and the right-click menu is invoked by pressing\nand holding the right mouse button." }};
   KonfiguratorRadioButtons *mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
       "0", 1, 0, mouseSelection, 3, lookFeelGrp, "myLook&FeelRadio", true );
   lookFeelGrid->addWidget( mouseRadio, 11, 0 );
@@ -140,14 +140,14 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM fields[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
-    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  ""},
-     {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  ""},
-     {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  ""},
-     {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  ""},
-     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  ""},
-     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  ""},
-     {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  ""},
-     {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  ""},
+    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  "Show the extension Column (part after the last dot of the filename)"},
+     {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  "Show the mimetype Column"},
+     {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  "Show the Size Column"},
+     {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  "Show the Date and Time Column"},
+     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  "Show the full perissions Column. e.g. '-rw-r--r--'"},
+     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  "Show only the rights of the current user e.g. '-rw'"},
+     {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  "Show the Owner Column"},
+     {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  "Show the Group Column"},
     };
 
   KonfiguratorCheckBoxGroup *flds = createCheckBoxGroup( 0, 4, fields, 8, panelGrp );
@@ -158,8 +158,8 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
     {
-	 {"Look&Feel","With Icons",           _WithIcons,   i18n( "Use icons in the filenames" ), true ,  ""},
-	 {"Look&Feel","Human Readable Size",  _HumanReadableSize, i18n( "Use human-readable file size" ), true ,  ""},
+	 {"Look&Feel","With Icons",           _WithIcons,   i18n( "Use icons in the filenames" ), true ,  "Show the icons in filenames and folders."},
+	 {"Look&Feel","Human Readable Size",  _HumanReadableSize, i18n( "Use human-readable file size" ), true ,  "The file size will be displayed in kB, Mb etc. and not in bytes."},
     };
 
   KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 0, 2, panelSettings, 2, panelGrp );
