@@ -17,16 +17,16 @@ install_location=
 type=DATA
 
 [Config for BinMakefileAm]
-addcxxflags=-DKDE_NO_COMPAT -DQT_NO_ASCII_CAST
+addcxxflags=-DKDE_NO_COMPAT -DQT_NO_ASCII_CAST -D_LARGEFILE64_SOURCE
 bin_program=krusader
-cflags=-DKDE_NO_COMPAT\s
+cflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cppflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cxxflags=\s-O0 -Wall
 ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                                 \s
+ldflags=\s                                   \s
 
 [General]
-AMChanged=false
+AMChanged=true
 author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
@@ -39,7 +39,7 @@ project_name=Krusader
 project_type=mini_kde2
 short_info=
 sub_dir=krusader/
-version=1.29-beta1
+version=1.29-beta2
 version_control=None
 workspace=1
 
