@@ -34,8 +34,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kmessagebox.h>
 #include <kprocess.h>
 //#include <kprocctrl.h>
-#include <kio/jobclasses.h>
-#include <kio/job.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
 
@@ -83,15 +81,22 @@ KMountPoint *KMountMan::findInListByMntPoint(KMountPoint::List &lst, QString val
 	return 0;
 }
 
+void KMountMan::jobResult(KIO::Job *job) {
+	if ( job->error() )
+		job->showErrorDialog( 0 );
+}
+
 void KMountMan::mount( QString mntPoint ) {
 	KMountPoint::List possible = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions);
 	KMountPoint *m = findInListByMntPoint(possible, mntPoint);
 	if (!m) return;
 	KIO::SimpleJob *job = KIO::mount(false, m->mountType().local8Bit(), m->mountedFrom(), m->mountPoint());
+	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
 }
 
 void KMountMan::unmount( QString mntPoint ) {
 	KIO::SimpleJob *job = KIO::unmount(mntPoint);
+	connect(job, SIGNAL(result(KIO::Job* )), this, SLOT(jobResult(KIO::Job* )));
 }
 
 KMountMan::mntStatus KMountMan::getStatus( QString mntPoint ) {	

@@ -36,6 +36,8 @@ A
 
 // KDE includes
 #include <kdeversion.h>
+#include <kio/jobclasses.h>
+#include <kio/job.h>
 #include <kio/global.h>
 #include <kmountpoint.h>
 
@@ -70,6 +72,9 @@ public slots:
    void performAction( int idx );
    void quickList();
 
+protected slots:
+	void jobResult(KIO::Job *job);
+	
 protected:
 	// used internally
 	static KMountPoint *findInListByMntPoint(KMountPoint::List &lst, QString value); 
