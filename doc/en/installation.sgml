@@ -27,8 +27,13 @@
 <sect2 id="krusader_stable">
 <title>Stable version</title>
 <para><filename>krusader-x.xx.tar.gz</filename></para>
+<note><para>&krusader; is released under the
+      <link linkend="credits">GNU General Public License (GPL)</link>, this means that
+      THE PROGRAM IS PROVIDED "AS IS" WITH NO WARRANTY OF ANY KIND,
+      even when it is marked as a stable release.</para></note>
+
 <para>
-  The most updated stable version can be found on the &krudownload_url;.
+  The latest stable version can be found on the &krudownload_url;.
   It contains the source tarballs and RPM packages to whatever distro we are currently
   using. There might be some other packages on the site, but that depends on
   other users contributions.</para>
@@ -38,9 +43,14 @@
    If you can't find a RPM package for your &Linux; distribution,
    we recommend searching for it with &rpmfind_url; or &rpmpbone_url;.</para>
 
-<para>A &krufreebsd_port_url; of &krusader; is maintained, the <guibutton>"Search"</guibutton> button will 
+<para>A &krufreebsd_port_url; of &krusader; is maintained, the <guibutton>"Search"</guibutton> button will
       lead you to the latest BSD version.
        Many thanks to <link linkend="credits">Heiner Eichmann</link> !</para>
+
+<para>If you can't find a RPM package, don't wurry.
+      We provide a verry detailled installation procedure. This will allow that even newcomers will be able
+      to compile &krusader; from source, even when you dit never before a compilation from source.
+      Please continue reading this chapter.</para>
 
 </sect2>
 
@@ -438,6 +448,12 @@ make[1]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD'
   &krusaderui_rc_text;
   <para></para> <!-- Empty line to make it more readable -->
 </listitem>
+
+<listitem>
+  <para>Now you can <link linkend="starting-krusader">start</link> &krusader;.</para>
+  <para></para> <!-- Empty line to make it more readable -->
+</listitem>
+
 
 
 <listitem>

@@ -50,21 +50,22 @@
    </question>
    <answer>
    <para>Please install them. ;-)</para>
-   <para>Here is a (obviously incomplete) list of &krusader;'s dependencies:</para>
+   <para>Here is a (possibly incomplete) list of &krusader;'s dependencies:</para>
    <para><itemizedlist>
-     <listitem><para><application>gcc</application> (other compilers may work but haven't been tested)
+     <listitem><para>gcc-cpp gcc-c++ glibc libgcc1 (other compilers may work but haven't been tested)
                </para></listitem>
-     <listitem><para><application>autoconf</application> (&eg; <filename>autoconf-2.x-xmdk.i586.rpm</filename>)
+     <listitem><para>autoconf (&eg; <filename>autoconf-2.x-xmdk.i586.rpm</filename>)
                </para></listitem>
-     <listitem><para><application>automake</application> (&eg; <filename>automake1.x-x.x.x-xmdk.i586.rpm</filename>)
+     <listitem><para>automake (&eg; <filename>automake1.x-x.x.x-xmdk.i586.rpm</filename>)
                </para></listitem>
-     <listitem><para>XFree</para></listitem>
-     <listitem><para>&Qt; (all &krusader; versions >=1.02 are &Qt; 3.x only)</para></listitem>
-     <listitem><para>kdelibs (all &krusader; versions >=1.02 are &kde; 3.x only)</para></listitem>
-     <listitem><para>libpng </para></listitem>
-     <listitem><para>fam and famlibs (&eg; <filename>fam-2.x.x-xmdk.rpm</filename> and
+     <listitem><para>XFree: libxfree86 libfreetype6 libfontconfig1 libnas2 libexpat0</para></listitem>
+     <listitem><para>libqt3 libqt-devel (all &krusader; versions >=1.02 are &Qt; 3.x only)</para></listitem>
+     <listitem><para>kdelibs kdelibs-devel (all &krusader; versions >=1.02 are &kde; 3.x only)</para></listitem>
+     <listitem><para>libjpeg62 libjpeg-devel libpng3 libmng1</para></listitem>
+     <listitem><para>fam libfam-devel (&eg; <filename>fam-2.x.x-xmdk.rpm</filename> and
                      <filename>libfam0-devel-2.x.x-5mdk.i586.rpm</filename>)</para></listitem>
-     </itemizedlist></para>
+     <listitem><para>zlib1 arts libart_lgpl2 libstdc++5 libpcre0</para></listitem>
+   </itemizedlist></para>
      <para>Most RPM-based distributions separate the headers from the libs. The headers are needed to compile
            &krusader;. Look for packages in the form foo-devel-*.rpm (&eg;
            <filename>kdelibs-devel-3.1-58mdk.i586.rpm</filename>)
@@ -76,6 +77,7 @@
       <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
+
 
    <qandaentry>
    <question id="path">
@@ -101,38 +103,71 @@
    </answer>
    </qandaentry>
 
-   <qandaentry>
-   <question id="source_rpm">
-   <para>I have downloaded the Source RPM for &krusader;. What now?</para>
-   </question>
-   <answer>
-    <para><itemizedlist>
-            <listitem><para>To recompile a Source RPM for your machine, do this (being root):
-            <screen><prompt>$</prompt> <userinput><command>su -c 'rpm</command> <option>--rebuild</option>  <replaceable>&lt;/path/to/filename&gt;</replaceable>'</userinput></screen>You will be asked to enter your root password.</para></listitem>
-            <listitem><para>If nothing goes wrong, a RPM will be created at
-            <filename class="directory">/usr/src/RPM/RPMS/i386</filename> (replace i386 with your arch). Install as usual, for example.
-            <screen><prompt>$</prompt> <userinput><command>su -c 'rpm</command> <option>-ivh</option>  <replaceable>&lt;/path/to/filename&gt;</replaceable>'</userinput></screen>You will be asked to enter your root password.</para></listitem>
-    </itemizedlist></para>
+<qandaentry>
+<question id="rpm_source">
+  <para>I have downloaded the Source RPM <filename>krusader-x.xx.dist.src.rpm</filename>  What now?</para>
+  </question>
+  <answer>
+   <para><orderedlist>
+         <listitem><para>Set the right permissions to
+                    <filename class="directory">/usr/src/RPM/</filename> and all recursive directories
+                    so that your normal user can read-write-execute in these directories.
+         </para></listitem>
+         <listitem><para>To produce the binary RPM for your computer, do this:
+            <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>--rebuild</option> <replaceable>&lt;/path/to/rpmfile/&gt; krusader-x.xx.dist.src.rpm</replaceable></userinput></screen>
+         </para></listitem>
+         <listitem><para>If all <link linkend="faqq_missing_libs">dependencies</link> are ok,
+                         a binary RPM <filename>krusader-x.xx.dist.rpm</filename> will be created at
+                         <filename class="directory">/usr/src/RPM/RPMS/i586</filename> (replace i586 with your architecture).
+         </para></listitem>
+         <listitem><para>Test the binary RPM before installing:
+            <screen><prompt>$</prompt> <userinput><command>rpm</command> <option>-i --test</option>  <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable></userinput></screen>
+            If the prompt returns without a message, than everything is ok.
+         </para></listitem>
+	 <listitem><para>Install the binary RPM as usual, for example:
+            <screen><prompt>$</prompt> <userinput><command>su -c 'rpm</command> <option>-Uvh</option>  <replaceable>&lt;/path/to/rpmfile&gt; krusader-x.xx.dist.rpm</replaceable>'</userinput></screen>
+            You will be asked to enter your root password.
+         </para></listitem>
+         <listitem><para>Now you can <link linkend="starting-krusader">start</link> &krusader;.
+         </para></listitem>
+    </orderedlist></para>
+        <tip><para>For more information about RPM, take a look at the &maxrpm_url;.
+                   This book is verry good but it dates from the year 2000, so some issues are
+		   obsolete/changed/improved now. If you now a better (or updated) RPM book on the internet please
+                   <link linkend="editors_note">let me know</link>.</para></tip>
     <para> </para> <!-- Empty line to make it more readable -->
    </answer>
-   </qandaentry>
+</qandaentry>
+
 
    <qandaentry>
-   <question id="binary">
+   <question id="rpm_fails">
    <para>I'm trying to install binary foo (RPM or DEB package), but it fails. What's wrong?</para>
    </question>
    <answer>
    <para>Since we only provide (and use) the source, we don't know.
    Try to find another binary at &Linux; software archives such as &freshmeat_url; or &kde_apps_url;.
    If you can't find a RPM package for your &Linux; distribution, we recommend searching for it with
-   &rpmfind_url; or &rpmpbone_url;.
-   Or better, please try to compile the &krusader; sourcecode.
-   We provide a verry detailled &install_proc_lnk; if you have never done a compilation before.
-   Feel free to post a &help_request_lnk; if you encounter problems.
+   &rpmfind_url; or &rpmpbone_url;. Or better, please read next question.
    </para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
+
+<qandaentry>
+   <question id="rpm_notfound">
+   <para>I can't find a RPM package for &krusader;, What now?</para>
+   </question>
+   <answer>
+   <para>Compile &krusader; from source :)
+   Even when you think that you have no skills, you will probably succeed in compiling &krusader;!
+   We provide a verry detailled &install_proc_lnk;. This will allow that even newcomers will be able
+   to compile &krusader; from source, even when you dit never before a compilation from source.
+   Feel free to post a &help_request_lnk; if you encounter problems.
+   </para>
+   <para> </para> <!-- Empty line to make it more readable -->
+   </answer>
+</qandaentry>
 
    <qandaentry>
    <question id="krusaderui_rc">
@@ -235,6 +270,52 @@
       <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
+
+<qandaentry>
+   <question id="rpm_build">
+   <para>How can i build a RPM package for &krusader;?</para>
+   </question>
+   <answer>
+   <para>If you have experiance with compiling from source, you will probably be able to build a &krusader; RPM too.
+   Follow the next steps to build an RPM.
+   </para>
+   <para><orderedlist>
+         <listitem><para>Compile &krusader; from source to check that the compilation works fine.
+         </para></listitem>
+	 <listitem><para>Set the right permissions to
+                    <filename class="directory">/usr/src/RPM/</filename> and all recursive directories
+                    so that your normal user can read-write-execute in these directories.
+         </para></listitem>
+         <listitem><para>copy <filename>kusader1.xx.tar.gz</filename> to
+	 <filename class="directory">/usr/scr/RPM/SOURCE</filename>
+         </para></listitem>
+         <listitem><para>copy <filename>kusader.spec</filename> to
+	 <filename class="directory">/usr/scr/RPM/SPECS</filename>
+	 Tip: the latest <filename>kusader.spec</filename> can be found in CVS.
+         </para></listitem>
+         <listitem><para>Edit <filename>kusader.spec</filename> and add your name, your e-mail adress,
+         the rpm name, ... (please read the comments in <filename>kusader.spec</filename>).
+         Maybe other changes are needed if <command>rpmbuild</command> fails.
+         </para></listitem>
+	 <listitem><para>Build the binary an source RPM:
+            <screen><prompt>/usr/scr/RPM/SPECS $</prompt> <userinput><command>rpmbuild</command> <option>-ba</option>  <replaceable>krusader.spec</replaceable></userinput></screen>
+	  If everything went ok you will have a binaryRPM in
+          <filename class="directory">/usr/src/RPM/RPMS/i586</filename>  (depending on your architecture)
+          and a sourceRPM in <filename class="directory">/usr/src/RPM/SRPMS/</filename>
+          &eg; <filename>krusader-1.40-beta1.suse90.i586.rpm</filename> and
+	  <filename>krusader-1.40-beta1.suse90.src.rpm</filename>
+         </para></listitem>
+         <listitem><para>If it is not ok you will receive an error message during the rpmbuild process,
+	 try to fix it and run <command>rpmbuild</command> again.
+         </para></listitem>
+         <listitem><para>And final: <link linkend="rpm_source">test</link> the RPM before sending it in.
+         </para></listitem>
+    </orderedlist></para>
+
+   <para> </para> <!-- Empty line to make it more readable -->
+   </answer>
+</qandaentry>
+
 
 </qandaset>
 </sect1>
@@ -423,6 +504,11 @@
     </para></listitem>
     </orderedlist></para>
     <para>Thanks for your cooperation!</para>
+    <note><para>If possible try todo the same operation with &konqueror;, if you have the same problem than it is
+    probably a &kioslave_url; (kdelibs) bug, and not a &krusader; bug.
+    &krusader; uses the &kde; libraries and the &kioslaves_url; for several operations.
+    </para></note>
+    <para> </para> <!-- Empty line to make it more readable -->
     <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla http://bugs.kde.org/,
     &kde;'s Bug Tracking System.</remark></para></note>
     <para> </para> <!-- Empty line to make it more readable -->

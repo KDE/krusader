@@ -709,7 +709,7 @@
 		     will toggle the marking of the directory without affecting the selection of other
 		     files/directories.</para></listitem>
     <listitem>
-              <para>To calculate how much disk space is occupied by the selected files and directories
+              <para>To calculate how much disk space is occupied by the marked files and directories
                     in the active panel select
                     <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
                     <guimenuitem>Calculate Occupied Space</guimenuitem></menuchoice></emphasis>.
@@ -718,7 +718,8 @@
                     The space occupied by every selected directory will be shown as if the user just pressed
                     <keycap>SPACE</keycap> on that directories.
                     If the active panel is browsing an archive, the numbers will apply to the unpacked
-                    size of the selected files and directories.</para>
+                    size of the selected files and directories.
+                    After the calculation the marking state will toggle and the cusor will move one position down.</para>
 
               <note><para>Performing this operation on a very large filesystem (thousands of files) may be time
                           consuming. You can always cancel the calculation process by clicking the
@@ -1285,7 +1286,7 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <entry><para>Cursor jumps to ..</para></entry></row>
 <row>
 <entry><para><keycap>End</keycap></para></entry>
-<entry><para>Cursor jumps to latest file</para></entry></row>
+<entry><para>Cursor jumps to the latest file</para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>
