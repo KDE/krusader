@@ -623,8 +623,11 @@ void Krusader::importKeyboardShortcuts(QString filename) {
 
 void Krusader::exportKeyboardShortcuts(QString filename) {
 	QFile f(filename);
+	if (f.exists() && KMessageBox::warningContinueCancel(this, 
+		i18n("File ")+filename+i18n(" already exists. Are you sure you want to overwrite it?"),
+		i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) return;
 	if (!f.open(IO_WriteOnly)) {
-		krOut << "Error opening " << filename << endl;
+		KMessageBox::error(this, i18n("Error: unable to write to file"), i18n("Error"));
 		return;
 	}
 	QDataStream stream(&f);
