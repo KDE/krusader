@@ -28,6 +28,8 @@
  *                                                                         *
  ***************************************************************************/
 
+// Qt includes
+#include <qwhatsthis.h>
 // Krusader includes
 #include "krusaderview.h"
 #include "krusader.h"
@@ -66,6 +68,8 @@ void KrusaderView::start() {
   // create the function keys widget
 	fnKeys=new KFnKeys(this);
 	fnKeys->show();
+	QWhatsThis::add( fnKeys, i18n( "Function keys allow to perform fast "
+								   "operations on files." ) );
 
   // and insert the whole thing into the main layout... at last
 	mainLayout->addWidget(vert_splitter,0,0);  //<>

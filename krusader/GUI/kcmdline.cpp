@@ -54,6 +54,7 @@
 KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
   QGridLayout *layout=new QGridLayout(this,1,4);
   path=new QLabel(this);
+  QWhatsThis::add( path, i18n( "Name of directory where command will be processed." ) );
   path->setAlignment(Qt::AlignRight);
   path->setFrameStyle(QFrame::Box | QFrame::Sunken);
   path->setLineWidth(1);
@@ -66,7 +67,10 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
   cmdLine->setFont(KGlobalSettings::generalFont());
   cmdLine->setMaximumHeight(QFontMetrics(cmdLine->font()).height()+4);
   cmdLine->setCompletionObject(&completion);
-	QWhatsThis::add(cmdLine,i18n("Well, it's quite simple actually: You write you command in here, and Krusader obays."));
+	QWhatsThis::add(cmdLine,i18n("<qt>Well, it's quite simple actually: You write "
+								 "you command in here, and Krusader obeys.<p>"
+								 "<Tip:>Move in command-line history with &lt;Up&gt; "
+								 "and &lt;Down&gt; arrows.</qt>" ) );
   layout->addWidget(cmdLine,0,1);
   // history button
   history=new QToolButton(this);
@@ -80,7 +84,8 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
   history->setPopupDelay(1);
 	connect(historyMenu,SIGNAL(activated(int)),this,
           SLOT(setCmdLineText(int)));	
-	QWhatsThis::add(history,i18n("The history button pops up a menu with the last 20 commands you wrote to the command line. Choose your path..."));
+	QWhatsThis::add(history,i18n("The history button pops up a menu with the last 20 "
+								 "commands you wrote to the command line. Choose your path..."));
   layout->addWidget(history,0,2);
   // a run in terminal button
   terminal=new QToolButton(this);
@@ -90,7 +95,10 @@ KCMDLine::KCMDLine(QWidget *parent, const char *name ) : QWidget(parent,name) {
   terminal->setOn(false);
   im = krLoader->loadIcon("konsole",KIcon::Panel).convertToImage();
   terminal->setPixmap(im.scale(terminal->height(), terminal->height()));
-  QWhatsThis::add(terminal,i18n("The 'run in terminal' button allows Krusader to run console (or otherwise non-graphical) programs in a terminal of your choice. If it's pressed, termial mode is active."));
+  QWhatsThis::add(terminal,i18n("The 'run in terminal' button allows Krusader "
+			  					"to run console (or otherwise non-graphical) "
+								"programs in a terminal of your choice. If it's "
+								"pressed, terminal mode is active."));
   layout->addWidget(terminal,0,3);
   layout->activate();
   // connections

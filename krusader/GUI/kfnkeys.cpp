@@ -31,6 +31,7 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <qfontmetrics.h>
+#include <qwhatsthis.h>
 #include "kfnkeys.h"
 #include "../krusader.h"
 #include "../defaults.h"
@@ -43,30 +44,43 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 		setFont( KGlobalSettings::generalFont() );
 		layout=new QGridLayout(this,1,9);	// 9 keys
 		F2=new QPushButton( i18n("F2 Term  ") ,this);
+			QWhatsThis::add( F2, i18n( "<qt>Open terminal in current directory.<p>"
+									   "You can define terminal in Konfigurator, "
+									   "default is konsole.</qt>" ) );
 			connect(F2,SIGNAL(clicked()), SLOTS,
 						SLOT(terminal()));
 		F3=new QPushButton( i18n("F3 View  ") ,this);	
+			QWhatsThis::add( F3, i18n( "Open file in viewer." ) );
 			connect(F3,SIGNAL(clicked()), SLOTS,
 						SLOT(view()));
 		F4=new QPushButton( i18n("F4 Edit  ") ,this);
+			QWhatsThis::add( F4, i18n( "<qt>Edit file.<p>"
+									   "Editor is configurable in Konfigurator, "
+									   "default is 'internal editor'.</qt>" ) );
 			connect(F4,SIGNAL(clicked()), SLOTS,
 						SLOT(edit()));
 		F5=new QPushButton( i18n("F5 Copy  ") ,this);	
+			QWhatsThis::add( F5, i18n( "Copy file from one panel to the other." ) );
 			connect(F5,SIGNAL(clicked()), SLOTS,
 						SLOT(copyFiles()));
 		F6=new QPushButton( i18n("F6 Move") ,this);
+			QWhatsThis::add( F6, i18n( "Move file from one panel to the other." ) );
 			connect(F6,SIGNAL(clicked()), SLOTS,
 						SLOT(moveFiles()));
 		F7=new QPushButton( i18n("F7 Mkdir ") ,this);	
+			QWhatsThis::add( F7, i18n( "Create directory in current panel." ) );
 			connect(F7,SIGNAL(clicked()), SLOTS,
 						SLOT(mkdir()));
 		F8=new QPushButton( i18n("F8 Delete") ,this);
+			QWhatsThis::add( F8, i18n( "Delete file, directory, etc." ) );
 			connect(F8,SIGNAL(clicked()), SLOTS,
 						SLOT(deleteFiles()));
 		F9=new QPushButton( i18n("F9 Rename") ,this);	
+			QWhatsThis::add( F9, i18n( "Rename file, directory, etc." ) );
 			connect(F9,SIGNAL(clicked()), SLOTS,
 						SLOT(rename()));
 		F10=new QPushButton( i18n("F10 Quit ") ,this);
+			QWhatsThis::add( F10, i18n( "Quit Krusader." ) );
 			connect(F10,SIGNAL(clicked()),krApp,
 						SLOT(quitKrusader()));
 

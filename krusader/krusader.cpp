@@ -46,6 +46,7 @@ A
 #include <qprinter.h>
 #include <qprogressdialog.h>
 #include <qvaluelist.h> 
+#include <qwhatsthis.h>
 // Krusader includes
 #include "krusader.h"
 #include "kicons.h"
@@ -161,6 +162,8 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
 
   // create a status bar
   status = new KrusaderStatus( this );
+  QWhatsThis::add( status, i18n( "Status bar will show  basic informations "
+				"about file below mouse pointer." ) );
 
   // This enables Krusader to show a tray icon
   config->setGroup( "Look&Feel" );
