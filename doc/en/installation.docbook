@@ -28,6 +28,7 @@
 
 <note><para>&krusader; v1.01 needs &kde;libs 2.x.x</para>
       <para>&krusader; v1.02 - 1.40 needs &kde;libs 3.x.x</para>
+      <para>&krusader; 1.40 prefers &gt;= 3.2.x (otherwise not all features will be available)</para>
       <para>&krusader; v1.50 needs &kde;libs &gt;= 3.2.x</para></note>
 
 <para>Platforms: &Linux;, &freebsd;, &Solaris; and &MacOS; 10.3 (Panther).</para>
@@ -553,6 +554,10 @@ foo</screen>
 <para><option>--right</option>
       <replaceable>&lt;path&gt;</replaceable> start right panel at
       <replaceable>&lt;path&gt;</replaceable></para>
+
+<para><option>--profile</option>
+      <replaceable>&lt;panel-profile&gt;</replaceable> opens panel-profile
+      <replaceable>&lt;panel-profile&gt;</replaceable></para>
 
 <para>Example:
 <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=/mnt/cdrom --right=ftp://downloads@myserver.net</replaceable></userinput></screen>

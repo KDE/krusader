@@ -37,6 +37,7 @@ Previous used Docbook
                                    application is not maintained in KDE CVS -->
 
 <!-- internet links -->
+<!ENTITY onlinedoc_url '<ulink url="http://krusader.sourceforge.net/handbook/index.html">online</ulink>'>
 <!ENTITY mail_url '<ulink url="mailto:krusader@users.sourceforge.net">mail</ulink>'>
 <!ENTITY kruwebsite_url '<ulink url="http://krusader.sourceforge.net">Krusader website</ulink>'>
 <!ENTITY kruproject_url '<ulink url="http://sourceforge.net/projects/krusader">here</ulink>'>
@@ -232,7 +233,7 @@ Previous used Docbook
   <surname>Schoolmeesters</surname>
   <contrib>Documentation coordinator</contrib>
   <affiliation>
-  <address><email>frank_schoolmeesters@fastmail.fm</email></address>
+  <address><email>frank_schoolmeesters@yahoo.com</email></address>
   </affiliation>
   </author>
   <othercredit role="reviewer">
@@ -262,7 +263,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>30/11/2004</date>
+  <date>06/12/2004</date>
   <releaseinfo>1.51-00</releaseinfo>
 
    <abstract>
@@ -349,13 +350,28 @@ Previous used Docbook
 
    <para>For information about the &krusader; documentation project,
          please contact the &krusader; documentation coordinator Frank Schoolmeesters
-   <email>frank_schoolmeesters@fastmail.fm</email>.</para>
+   <email>frank_schoolmeesters@yahoo.com</email>.</para>
 
 <!--PARSING EXTRA CONTENT BEGIN-->
 <para>The e-mail adresses in this Handbook are "manipulated"  to prevent that spam bots
       catch the e-mail adresses, please fix first manually the e-mail adress before sending an e-mail,
       You can also dop a post in our &forum_lnk;. Thanks!</para>
 <!--PARSING EXTRA CONTENT END-->
+
+<para>This handbook is available in several formats. You can read get it in three ways:
+<itemizedlist>
+  <listitem>
+      <para>when using &krusader; it is available via the Help menu</para>
+  </listitem>
+  <listitem>
+      <para>read it &onlinedoc_url;</para>
+  </listitem>
+        <listitem>
+        <para>download the documentation tarballs (HTML, TXT, RTF, PDF) from the &sfmirrors_url;</para>
+  </listitem>
+</itemizedlist>
+The most recent version of this handbook is available when downloading and installing &krusader; from cvs. 
+</para>
 
 &dev_cvs_note;
 

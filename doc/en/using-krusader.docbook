@@ -107,7 +107,10 @@
     File copy/paste/cut via Clipboard between &konqueror; and &krusader;
     <keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo>,
     <keycombo action="simul">&Ctrl;<keycap>X</keycap></keycombo>,
-    <keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo> is supported.</para>
+    <keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo> is supported.
+    <keycombo action="simul">&Alt;&Ctrl;<keycap>V</keycap></keycombo> toggels the <guilabel>List Panel</guilabel>
+    between horizontal and vertical mode. 
+    </para>
 
 <para>The following items are available:
    <itemizedlist>
@@ -332,7 +335,7 @@
       when starting up &krusader; via the &konfigstartpg_lnk;, and you can toggle its use in the current
       session with the &viewmenu_lnk;.</para>
 
-<note><para>The actions performed by the function keys are currently hard coded and cannot be changed,
+<note><para>The actions performed by the function keys are configurable since version 1.51 and can be changed,
        they will remain active with or without the <guilabel>FN keys bar</guilabel>.</para></note>
 </sect2>
 
@@ -997,7 +1000,7 @@ TODO
            linked to a Key Binding.</para></tip>
 
 <para><emphasis role="bold">Function (FN) Keys</emphasis></para>
-<para>These are the Key Bindings of the &fnkeybar_lnk;, except F1. These Key Bindings are NOT configurable.</para>
+<para>These are the Key Bindings of the &fnkeybar_lnk;. These Key Bindings are configurable since version 1.51</para>
 <informaltable>
 <tgroup cols="2">
 <tbody>
@@ -1124,6 +1127,9 @@ TODO
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="folder_tabs">New tab</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>v</keycap></keycombo></para></entry>
+<entry><para>toggels the &list_panel_lnk; between horizontal and vertical mode.</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>Left Arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="folderhistory">Left History list</link></para></entry></row>
 <row>
@@ -1165,6 +1171,9 @@ TODO
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="cmdline">Go from the command line/terminal emulator to the active panel</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
+<entry><para>Go from the active panel to the <link linkend="list_panel">Location Toolbar</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>Home</keycap></keycombo></para></entry>
 <entry><para>Jumps to the Home directory</para></entry></row>
