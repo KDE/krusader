@@ -41,6 +41,8 @@ Previous used Docbook
 <!ENTITY mail_url '<ulink url="mailto:krusader@users.sourceforge.net">mail</ulink>'>
 <!ENTITY kruwebsite_url '<ulink url="http://krusader.sourceforge.net">Krusader website</ulink>'>
 <!ENTITY kruproject_url '<ulink url="http://sourceforge.net/projects/krusader">here</ulink>'>
+<!ENTITY contribute_url '<ulink url="http://krusader.sourceforge.net/help.php">contribute</ulink>'>
+<!ENTITY donate_url '<ulink url="http://sourceforge.net/project/project_donations.php?group_id=6488">donate</ulink>'>
 <!ENTITY kruforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/index.php">&krusader; Forum</ulink>'>
 <!ENTITY kruforumsearch_url '<ulink url="http://krusader.sourceforge.net/phpBB/search.php">Search</ulink>'>
 <!ENTITY krugenforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=1">General Discussion Forum</ulink>'>
@@ -53,7 +55,6 @@ Previous used Docbook
 <!ENTITY rss_url '<ulink url="http://krusader.sf.net/phpBB/rss.php">here</ulink>'>
 <!ENTITY krucutedge_url '<ulink url="http://krusader.sourceforge.net/cvs.php">&krusader;&apos;s Cutting Edge page</ulink>'>
 <!ENTITY _64bit_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=951">64 bit</ulink>'>
-
 
 <!ENTITY viewcvs_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader">ViewCVS</ulink>'>
 <!ENTITY sfmirrors_url '<ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488">Sourceforge mirrors</ulink>'>
@@ -277,11 +278,11 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>24/01/2005</date>
+  <date>25/01/2005</date>
   <releaseinfo>1.60-00 CVS</releaseinfo>
 
    <abstract>
-  <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x.</para>
+  <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x</para>
    </abstract>
 
   <keywordset>
@@ -303,40 +304,127 @@ Previous used Docbook
 <preface id="foreword">
   <title>Foreword</title>
 
+  <para>Welcome to &krusader;!</para> 
+
   <para>
-  Our aim is to give you a tool that does two most important things:
-  manage your files the way you want and look great doing it!
-  To do that, Krusader wears a great looking &GUI;,
-  supports drag'n'drop and mimetypes (with or without magic!) -
-  all you need to feel right at home using it.
-  Krusader is packed with cool features, is fast and handles archives transparently;
-  basically, all you've come to expect from tools like &mc;.
-  Krusader is open-source, free and is released under the &gpl_lnk;,
-  although we (the developers) still retain the copyright for the project and its name.
+  Our aim is to give you a facile, intuitive, tool that easily handles the most important tasks 
+  you perform on your computer each and every day: manage and process your files the way you want, 
+  and look great doing it!
+        
+  Whether you are a &Linux; expert or a novice, &krusader; makes routine file management tasks quick 
+  and accurate, allowing you to focus on the big picture, not command line syntax. 
+        
+  This is especially helpful if you are new to xxNIX operating systems.         
+  To do just that, &krusader; wears a great looking &GUI;, supports drag n' drop and mimetypes 
+  (with or without magic!) - all you need to feel right at home using it right from the start! 
+        
+  &krusader; is packed with cool features, is fast, and handles archives transparently. 
+  In addition, &krusader; streamlines many complex file management tasks, reducing fatigue, errors, 
+  and distraction. Basically, &krusader; provides all the helpful features you've come to expect from 
+  other quality file management tools like &mc; and &tcmd;.
+        
+  But why reinvent the wheel? you ask.  &krusader; is designed to integrate seamlessly with the 
+  &kde; Desktop, the desktop of choice for many programmers, network engineers, and other power users
+  of &Linux;.  With &krusader; even novice users can quickly access the power, convenience, and feature 
+  rich capabilities of the &kde; Desktop.               
+        
+  &krusader; is open-source, free, and is released under the &gpl_lnk;, 
+  although we (the developers) still retain the copyright for the project, its name,
+  and manage the project's continuing evolution.          
   </para>
 
   <para>
-  The project's goal is to create an all-in-one file-manager, which will do all
-  the things you expect from such a tool, and then some... ;-)
-  Since the principle behind Krusader is based on the "old-school" managers
-  (&mc;, &nc;),
-  virtual filesystems became a main focus.
-  Virtual filesystems (VFSs) are an abstracted layer over all kinds of archived
-  information (ZIP files, &FTP; servers, NFS filesystems, SAMBA shares, ISO cd/dvd images),
-  which allows the user to access all the information transparently -
-  just like entering a sub-directory.
-  Krusader currently supports VFSs for archives (Zip, Tar, GZip, BZip2, Ace, Rar, Arj, Lha),
-  packages (RPM) and filesystems (&FTP;, NFS, Samba, ISO).
-  Krusader also includes a built-in Mount-Manager, which enables you to
-  (un)mount filesystems with a single mouse click, and get usage information.
-  A Bookmark-Manager, Remote-Connections Manager and Advanced Search module are also included.
-  We are planning to develop more modules in the near future which will greatly enhance Krusader.
-  For information on what remains to be done, look at the &todoforum_url; .
-  </para>
+  The &krusader; Project's mission is to create an all-in-one file manager, which will do all the 
+  ordinary things you'd expect from it, plus a lot more ... ;-) 
+  
+  Since the principle behind &krusader; is based on the "old-school", dual-pane, managers 
+  (&mc;, &nc;, &etc;), it is a given that &krusader; handles all the standard Copy, Move, Delete, &etc; 
+  file operations, but that is just the foundation!
 
-  <para>We hope you'll enjoy it --we do!</para>
+  From the start, virtual filesystems became a main focus. 
+  Virtual filesystems (VFSs) are an abstracted layer over all kinds of archived information 
+  (ZIP files, &FTP; servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, &etc;), 
+  which allows the user to access all the information in these divergent types of filesystems transparently 
+  - just like entering an ordinary sub-directory!
+
+  &krusader; currently supports VFSs for all popular [and some specialized] types of archives 
+  (Zip, Tar, GZip, BZip2, Ace, Rar, Arj, Lha), configuration packages (RPM), 
+  and traditional remote filesystem types (&FTP;, NFS, Samba, FISH, SFTP).
+
+  &krusader; also includes a built-in Mount-Manager, which enables you to mount or unmount filesystems of all 
+  types with a single mouse click, and also get usage and other property information easily.
+
+  A Bookmark-Manager, Remote-Connections Manager and Advanced Search module are also included to speed the 
+  locating of needed files. &krusader; also allows you to configure your Toolbars to provide a wide variety 
+  of additional functionality including File Comparison (several user selectable methods available), 
+  Multiple File Rename, and standard Terminal windows can be spawned with a single mouse click! 
+  Need temporary Root access to your files, simply SU within a Terminal window or click on &krusader;'s
+  Root Mode to bring up a new &krusader; Manager as Root!
+
+  Advanced users benefit greatly from being able to carry out the clerical tasks effortlessly, 
+  without distraction from the task at hand  a real help during those late night edit/compile sessions. 
+  Convenient shortcut keys enable you to navigate directory trees with ease, create multiple tabbed directory 
+  views simultaneously, and access fully functional history lists  all with a single mouse click!
+
+  Due to efficient programming and low system overhead, &krusader; is perhaps the most efficient all around 
+  system management tool you can use to access the full potential of your computer using &kde;, 
+  or with any other standards compliant X Windows window manager. 
+  Although designed specifically for, and integrated with, &kde;; &krusader; works equally well with 
+  Gnome, Enlightenment, WindowMaker, BlackBox, Wiamea, XFCE, &etc; when the &kde;libraries are installed.
+
+  New extensibility is provided by the User Actions Framework that allows unlimited additional custom
+  functionality to be added to suit the user's specific needs and wishes.
+
+  We are planning to develop more modules in the near future, thereby enhancing &krusader; greatly. 
+  For information on what is proposed, approved, or remains to be completed look at the &todoforum_url;.
+
+  No other program we know of offers so many useful, easily accessible features in such an intuitive 
+  and simple format!  Best of all, we listen, and implement good suggestions that are consonant with 
+  the &krusader; Project's goal  making the very best File Manager we can! 
+
+  We hope you'll enjoy it --we do!
+  </para>
 
 </preface>
+
+
+<preface id="help_Krusader">
+  <title>Help &krusader;</title>
+
+  <para>Here you get a chance to &contribute_url; to the &krusader; project.
+  From time to time we'll post things that need to be done, but can't be done by us. 
+  If you feel you can help, click the appropriate link on the website.
+  All help is welcome. Thanks!</para>
+
+  <para><emphasis role="bold">Translations</emphasis></para>
+  <para>&krusader; is available in many languages, some of these translations can use an update
+        and new untranslated languages are always welcome, please read the &i18nhowto_url;</para>
+
+  <para><emphasis role="bold">Documentation</emphasis></para>
+  <para>&krusader; is in need of documentation, since this is a time consuming task 
+        Help is always welcome.</para>
+
+  <para><emphasis role="bold">Donations</emphasis></para>
+  <para>Honestly, we didn't consider donations, until users asked us for a way to &donate_url; to the project. 
+        Developing &krusader; can be a full time job at times, and even though it is very time consuming, 
+        we all enjoy it, and want to see the project becomes even better. 
+        Donations for this project will be used for further development of &krusader;, 
+        be it by purchasing hardware, or promoting of the project.</para>
+
+  <para><emphasis role="bold">Packagers</emphasis></para>
+  <para>We are always in need of packagers.</para>
+
+  <para><emphasis role="bold">FAQ</emphasis></para>
+  <para>If you have a question that is missing in the &faq_lnk;.</para>
+
+  <para><emphasis role="bold">Others</emphasis></para>
+  <para><link linkend="faqg_wish_patch">Feedback</link>, 
+  <link linkend="faqg_bug_report">Bug reports</link>, patches, &etc; are always welcome!
+  An open source project's greatest strength is derived from getting user feedback.
+  </para>
+
+</preface>
+
 
 <preface id="editors_note">
   <title>Note from the Editors</title>

@@ -1,4 +1,5 @@
 <chapter id="using-krusader">
+
 <!-- **********************************************************************
                             using-krusader.docbook
                           +++++++++++++++++++++++++++
@@ -19,6 +20,7 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
+
 <title>Using &krusader;</title>
 
 <sect1 id="ui">
@@ -473,8 +475,7 @@
 
 <para>Moving the cursor is easy, and you don't need this manual to tell you that left-clicking on
       a file will mark it, but here are some useful pointers:
-      <!-- For the moment there is only one method of 3 for using the mouse
-      (assuming you're using the classic mouse selection mode). -->
+      (assuming you're using &krusader;'s mouse selection mode)
 <itemizedlist>
     <listitem><para>The <keycap>SPACE</keycap> key will toggle the marking of the file under the cursor without
                       affecting the marking of other files/directories.</para>
@@ -524,23 +525,19 @@ TODO
 </para>
 </sect2>
 
-<!--
-TODO
-     For the moment there is only one method of 3 for using the mouse
-     This must be rewritten when the 3 mouse methods are working again
+
 <sect2 id="mouse_usage">
 <title>Mouse Usage</title>
-
-<para>There are several methods of using the mouse with &krusader;, the default one should be
+<para>There are several methods of using the mouse with &krusader;, we provide 
+      <link linkend="konfig-looknfeel">3 mouse selection modes</link> , the default one should be
        familiar from other file managers and include the use of the &Shift; key or the
-       &Ctrl; key to select multiple files. However, notice that left clicking will mark the file
-       under the cursor but will unmark all other files.
-    ##   Holding the &RMB; while dragging will mark all
-         the files the mouse passes over (and unmarks the rest) and holding down the mouse button without
-         moving it ##
-       (<keycap>right-click</keycap>) will pop up the right-click menu.</para>
+       &Ctrl; key to select multiple files. 
+       However, notice that left clicking will mark the file under the cursor but will unmark all other files.
+       Holding the &RMB; while dragging will mark all the files the mouse passes over (and unmarks the rest). 
+       Holding down the mouse button without moving it will pop up the right-click menu.
+       </para>
 </sect2>
--->
+
 
 <sect2 id="executing_commands">
 <title>Executing commands</title>
@@ -1146,6 +1143,9 @@ TODO
 <row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>c</keycap></keycombo></para></entry>
 <entry><para><link linkend="folder_tabs">Close tab</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>j</keycap></keycombo></para></entry>
+<entry><para>JavaScript console (based on KJSEmbed) TODO.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="folder_tabs">New tab</link></para></entry></row>

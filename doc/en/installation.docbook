@@ -1,4 +1,5 @@
 <appendix id = "installation">
+
 <!-- **********************************************************************
                                installation.docbook
                             ++++++++++++++++++++++++++
@@ -19,6 +20,7 @@
 * Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
 * MA 02111-1307, USA.                                                     *
 *********************************************************************** -->
+
 <title>Installation</title>
 
 <sect1 id="requirements">
@@ -29,9 +31,11 @@
 <note><para>&krusader; v1.01 needs &kde;libs 2.x.x</para>
       <para>&krusader; v1.02 - 1.40 needs &kde;libs 3.x.x</para>
       <para>&krusader; 1.40 prefers &gt;= 3.2.x (otherwise not all features will be available)</para>
-      <para>&krusader; v1.50 - 1.60 needs &kde;libs &gt;= 3.2.x</para></note>
+      <para>&krusader; v1.50 - 1.60 needs &kde;libs &gt;= 3.2.x but prefers 
+            &kde;libs &gt;= 3.3.x for stability</para></note>
 
-<para>Platforms: &Linux;, &freebsd;, &Solaris; and &MacOS; 10.3 (Panther).</para>
+<para>Platforms: All POSIX (&Linux;/BSD/UNIX-like OSes), &Solaris; and 
+                 All BSD Platforms (FreeBSD/NetBSD/OpenBSD/&MacOS; 10.3 "Panther").</para>
 
 <para>&krusader; uses about 3-4 MByte of memory to run
       (and about 15 Mbyte shared memory which is also used by more processes),
@@ -667,6 +671,17 @@ foo</screen>
 <para>This file stores the &useractions_lnk; configuration.
       The file-structure is documentated in doxygen-headers of UserActionXML.</para>
 <para>Location: <filename>~/.kde/share/apps/krusader/useractions.xml</filename></para>
+
+
+<para><emphasis role="bold">foo.keymap</emphasis></para>
+<para>Is a binary file that holds a <link linkend="konfig-looknfeel-keybindings">Key-binding profile</link>.</para>
+<para>Location: <filename>$KDEDIR/share/apps/krusader/foo.keymap</filename></para>
+
+
+<para><emphasis role="bold">foo.color</emphasis></para>
+<para>Is a binary file that holds the <link linkend="konfig-color">Color Scheme</link>.</para>
+<para>Location: <filename>$KDEDIR/share/apps/krusader/foo.color</filename></para>
+
 
 </appendix>
 
