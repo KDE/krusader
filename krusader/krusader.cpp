@@ -333,9 +333,8 @@ bool Krusader::versionControl() {
    config = kapp->config();
    
 	QString oldVerText = config->readEntry( "Version", "10.0" );
-   oldVerText.truncate( oldVerText.find( "-" ) );
+   oldVerText.truncate( oldVerText.findRev( "." ) ); // remove the third dot
    float oldVer = oldVerText.toFloat();
-
    // older icompatible version
    if ( oldVer <= 0.9 ) {
       KMessageBox::information( krApp, i18n( "A configuration of 1.51 or older was detected. Krusader has to reset your configuration to default values.\nNote: Your bookmarks and keybindings will remain intact.\n Krusader will now run Konfigurator." ) );
