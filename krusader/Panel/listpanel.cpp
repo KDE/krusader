@@ -34,11 +34,11 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qstringlist.h>
 #include <qstrlist.h>
 #include <qdragobject.h>
-#include <qpopupmenu.h>
 #include <qheader.h>
 #include <qtimer.h>
 #include <qregexp.h>
 // KDE includes
+#include <kpopupmenu.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kmimetype.h>
@@ -493,7 +493,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
     multipleSelections = true;
   KrViewItem *item = items.first();
   // create the menu
-  QPopupMenu popup, openWith, linkPopup;
+  KPopupMenu popup, openWith, linkPopup;
   // the OPEN option - open preferd service
   popup.insertItem( "Open/Run", OPEN_ID );      // create the open option
   if ( !multipleSelections ) { // meaningful only if one file is selected
