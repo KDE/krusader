@@ -52,7 +52,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *lookAndFeelLayout = new QGridLayout( tab );
   lookAndFeelLayout->setSpacing( 6 );
   lookAndFeelLayout->setMargin( 11 );
-  QGroupBox *lookFeelGrp = createFrame( i18n( "Look & Feel" ), tab, "kgLookAndFeelGrp" );
+  QGroupBox *lookFeelGrp = createFrame( i18n( "Look && Feel" ), tab, "kgLookAndFeelGrp" );
   QGridLayout *lookFeelGrid = createGridLayout( lookFeelGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM settings[] =
