@@ -575,7 +575,7 @@ void KMountMan::unmount(fsData *p) {
   if (umountProc.normalExit())
     if (umountProc.exitStatus()==0) return; // incase of a normal exit
   // on any other case,report an error
-  KMessageBox::sorry(mountManGui,i18n("Unable to complete the un-mount.")+
+  KMessageBox::sorry(0,i18n("Unable to complete the un-mount.")+
     i18n("The error reported was:\n\n")+getOutput());
 }
 
