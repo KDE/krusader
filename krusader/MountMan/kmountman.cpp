@@ -448,14 +448,28 @@ QString KMountMan::pointFromMtab( QString device ) {
 }
 
 KMountMan::mntStatus KMountMan::getStatus( QString mntPoint ) {
-   // parse the mount table and search for mntPoint
-   bool mounted = ( devFromMtab( mntPoint ) != QString::null );
-   if ( mounted )
-      return KMountMan::MOUNTED;
-   if ( mountPoints.findIndex( mntPoint ) == -1 )          // no such mountPoint is /etc/fstab
-      return KMountMan::DOESNT_EXIST;
-   else
-      return KMountMan::NOT_MOUNTED;
+	KMountPoint::List::iterator it;
+   KMountPoint *m;
+	
+	// 1: is it already mounted
+	KMountPoint::List current = KMountPoint::currentMountPoints();
+	for ( it = current.begin(); it != current.end(); ++it ) {
+      m = *it;
+      if (m->mountPoint() == mntPoint)
+			return KMountMan::MOUNTED;
+	}
+	
+	// 2: is it a mount point but not mounted?
+	KMountPoint::List possible = KMountPoint::possibleMountPoints();
+	for ( it = possible.begin(); it != possible.end(); ++it ) {
+      m = *it;
+      if (m->mountPoint() == mntPoint) {
+			return KMountMan::NOT_MOUNTED;
+		}
+	}
+	
+	// 3: unknown
+	return KMountMan::DOESNT_EXIST;
 }
 
 QString KMountMan::getDevice( QString mntPoint ) {
