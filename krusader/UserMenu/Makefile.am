@@ -5,7 +5,7 @@ INCLUDES = $(all_includes)
 
 libUserMenu_a_METASOURCES = AUTO
 
-libUserMenu_a_SOURCES = usermenuadd.cpp usermenu.cpp 
+libUserMenu_a_SOURCES = usermenu.cpp
 
 
 #EXTRA_DIST = usermenu.cpp usermenu.h 

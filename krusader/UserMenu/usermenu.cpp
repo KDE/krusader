@@ -19,11 +19,11 @@ email                :
 #include <klocale.h>
 
 #include "../krusader.h"
+#include "../Konfigurator/konfigurator.h"
 #include "../UserAction/kraction.h"
 #include "../UserAction/useraction.h"
 #include "../UserAction/useractionxml.h"
 #include "usermenu.h"
-#include "usermenuadd.h"
 
 
 void UserMenu::exec() {
@@ -44,10 +44,6 @@ void UserMenu::update() {
 
 UserMenuGui::UserMenuGui( UserMenu *, QWidget * parent ) : KPopupMenu( parent ) {
    createMenu();
-
-   // create the 'add entry' gui
-   _addgui = new UserMenuAdd(this);
-   connect( _addgui, SIGNAL( newEntry( UserActionProperties* ) ), this, SLOT( addEntry( UserActionProperties* ) ) );
 }
 
 void UserMenuGui::createMenu() {
@@ -60,7 +56,7 @@ void UserMenuGui::createMenu() {
 
    // add the "add new entry" command
    insertSeparator();
-   insertItem( i18n("Add new entry"), 0 );
+   insertItem( i18n("Manage user actions"), 0 );
 }
 
 void UserMenuGui::readEntries() {
@@ -83,23 +79,7 @@ void UserMenuGui::run() {
    if ( idx == -1 ) // nothing was selected
      return;
    if ( idx == 0 ) {
-      _addgui->exec();
+      Konfigurator konfigurator( false, 7 ); // page 7 are the UserActions
       return;
    }
 }
-
-void UserMenuGui::addEntry( UserActionProperties *properties ) {
-  //kdDebug() << "UserMenuGui::addEntry called" << endl;
-
-  // add the new action to the xml
-  krUserAction->xml()->addActionToDom( properties );
-  krUserAction->xml()->writeActionDom();
-  krUserAction->addKrAction( properties );
-  
-   // update the menu, by re-reading the entries
-   createMenu();
-   //kdDebug() << "UserMenuGui::addEntry finished" << endl;
-}
-
-
-#include "usermenu.moc"

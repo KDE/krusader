@@ -20,27 +20,17 @@ email                :
 
 #include <kpopupmenu.h>
 
-class UserActionProperties;
 class QWidget;
-class UserMenuAdd;
 class UserMenu;
 
 class UserMenuGui: public KPopupMenu {
-      Q_OBJECT
    public:
       UserMenuGui( UserMenu* menu, QWidget *parent = 0 );
       void run();
+      void createMenu();
 
    protected:
       void readEntries();
-
-   protected slots:
-      void addEntry( UserActionProperties *properties );
-   public slots:
-      void createMenu();
-
-   private:
-      UserMenuAdd *_addgui;
 };
 
 class UserMenu : public QWidget {
