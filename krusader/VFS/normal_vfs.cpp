@@ -95,7 +95,7 @@ bool normal_vfs::vfs_refresh(QString origin){
   if(!dir) return false;
 
   // change directory to the new directory
-  chdir(origin);
+  chdir(origin.local8Bit());
   
 	if (!quietMode) emit startUpdate();
 	

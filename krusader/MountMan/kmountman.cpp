@@ -426,8 +426,8 @@ void KMountMan::parseDfData(QString filename) {
     temp=nextWord(s,' ');
     loc->setTotalBlks(temp.toLong());
     temp=nextWord(s,' ');
-    loc->setUsedBlks(temp.toLong());
     temp=nextWord(s,' ');   // get rid of the next 2 words
+    loc->setFreeBlks(temp.toLong());
     temp=nextWord(s,' ');
     temp=nextWord(s,'\n');  // read the "mounted on" thing
     if (loc->mntPoint()!=temp) {
@@ -660,8 +660,9 @@ void statsCollector::parseDf(QString filename, fsData *data) {
 #endif
   data->setType(KMountMan::nextWord(s,' '));
   data->setTotalBlks( KMountMan::nextWord(s,' ').toLong() );
-  data->setUsedBlks( KMountMan::nextWord(s,' ').toLong() );
-  KMountMan::nextWord(s,' '); KMountMan::nextWord(s,' ');
+  KMountMan::nextWord(s,' ');
+  data->setFreeBlks( KMountMan::nextWord(s,' ').toLong() );
+  KMountMan::nextWord(s,' ');
 	data->setMntPoint(KMountMan::nextWord(s,'\n'));
   data->setMounted(true);
   f.close();

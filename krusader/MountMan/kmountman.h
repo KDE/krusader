@@ -139,7 +139,7 @@ namespace MountMan {
   class fsData {
     public:
       fsData() : Name( 0 ), Type( 0 ), MntPoint( 0 ), TotalBlks( 0 ),
-      UsedBlks( 0 ), Mounted( false ) {}
+      FreeBlks( 0 ), Mounted( false ) {}
 
       // get information
       inline QString name() {
@@ -158,22 +158,19 @@ namespace MountMan {
         return TotalBlks;
       }
       inline long freeBlks() {
-        return ( TotalBlks -UsedBlks );
+        return FreeBlks;
       }
       inline long long totalBytes() {
         return TotalBlks * 1024;
       }
-      inline long long usedBytes() {
-        return UsedBlks * 1024;
-      }
       inline long long freeBytes() {
-        return ( TotalBlks -UsedBlks ) * 1024;
+        return FreeBlks * 1024;
       }
       //////////////////// insert a good round function here /////////////////
       int usedPerct() {
         if ( TotalBlks == 0 )
           return 0;
-        float res = ( ( float ) UsedBlks ) / ( ( float ) TotalBlks ) * 100;
+        float res = ( ( float ) (TotalBlks-FreeBlks) ) / ( ( float ) TotalBlks ) * 100;
         if ( ( res - ( int ) res ) > 0.5 )
           return ( int ) res + 1;
         else
@@ -196,8 +193,8 @@ namespace MountMan {
       inline void setTotalBlks( long t_ ) {
         TotalBlks = t_;
       }
-      inline void setUsedBlks( long u_ ) {
-        UsedBlks = u_;
+      inline void setFreeBlks( long f_ ) {
+        FreeBlks = f_;
       }
       inline void setMounted( bool m_ ) {
         Mounted = m_;
@@ -208,7 +205,7 @@ namespace MountMan {
       QString Type;       // i.e: iso9600
       QString MntPoint;   // i.e: /mnt/cdrom
       long TotalBlks;  // measured in 1024bytes per block
-      long UsedBlks;
+      long FreeBlks;
       bool Mounted;    // true if filesystem is mounted
 
       // additional attributes of a filesystem, parsed from fstab
