@@ -87,8 +87,7 @@ void ftp_vfs::slotAddFiles(KIO::Job *, const KIO::UDSEntryList& entries){
     if(symLink)
     {
       symDest = kfi.linkDest();
-      if ( kfi.isDir() || mime.contains("directory") );
-         perm[0] = 'd';
+      if ( kfi.isDir() || mime.contains("directory") ) perm[0] = 'd';
     }
 
     // create a new virtual file object
