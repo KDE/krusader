@@ -510,15 +510,9 @@ void ListPanelFunc::deleteFiles() {
       b = i18n( "&Delete" );
     }
     // show message
-#if 0    
-	 if ( KMessageBox::warningContinueCancel( krApp, i18n( "Are you sure you want to " ) + s
-                                             , QString::null, b )
-         == KMessageBox::Cancel )
-      return ;
-#endif
-	 // note: this dialog returns Yes and No. don't put Cancel here!!!
-	 if ( KMessageBox::questionYesNoList(krApp, i18n("Are you sure you want to " ) + s
-			, fileNames, i18n("Warning"), b, i18n("Cancel") ) != KMessageBox::Yes)
+	 // note: i'm using continue and not yes/no because the yes/no has cancel as default button
+	 if ( KMessageBox::warningContinueCancelList(krApp, i18n("Are you sure you want to " ) + s
+			, fileNames, i18n("Warning"), b ) != KMessageBox::Continue)
 		return;
   }
   //we want to warn the user about non empty dir
