@@ -21,6 +21,7 @@
 #include <qcstring.h>
 #include <qdict.h>
 #include <qfile.h>
+#include <sys/types.h>
 
 #include <kurl.h>
 #include <kio/global.h>
