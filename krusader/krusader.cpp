@@ -369,9 +369,9 @@ void Krusader::setupActions() {
                          SLOTS, SLOT( slotPack() ), actionCollection(), "pack" );
   actUnpack = new KAction( i18n( "&Unpack" ), "kr_arc_unpack", ALT + Key_U,
                            SLOTS, SLOT( slotUnpack() ), actionCollection() , "unpack" );
-  actSplit = new KAction( i18n( "Sp&lit file" ), 0, CTRL + Key_P,
+  actSplit = new KAction( i18n( "Sp&lit file" ), "kr_split", CTRL + Key_P,
                          SLOTS, SLOT( slotSplit() ), actionCollection(), "split" );
-  actCombine = new KAction( i18n( "Com&bine files" ), 0, CTRL + Key_B,
+  actCombine = new KAction( i18n( "Com&bine files" ), "kr_combine", CTRL + Key_B,
                            SLOTS, SLOT( slotCombine() ), actionCollection() , "combine" );
   actSelect = new KAction( i18n( "Select &Group" ), "kr_select", CTRL + Key_Plus,
                            SLOTS, SLOT( markGroup() ), actionCollection(), "select group" );
