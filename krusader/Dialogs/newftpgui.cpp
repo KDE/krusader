@@ -13,6 +13,8 @@
 #include <qpushbutton.h>
 #include <qspinbox.h>
 #include <qlayout.h>
+#include <qhbox.h>
+#include <qgrid.h>
 #include <qvariant.h>
 #include <qtooltip.h>
 #include <qwhatsthis.h>
@@ -676,25 +678,47 @@ static const char* const image0_data[] = {
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
+ 
+ #define SIZE_MINIMUM	QSizePolicy( (QSizePolicy::SizeType)0, (QSizePolicy::SizeType)0 )
+ 
 newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl )
     : QDialog( parent, name, modal, fl ){
-
+    
+    QVBoxLayout * layout = new QVBoxLayout( this, 11, 6, "newFTPGUI_layout" );
+    layout->setAutoAdd(true);
+    
     QPixmap image0( ( const char** ) image0_data );
     if ( !name )
     setName( "newFTPGUI" );
     resize( 342, 261 );
     setCaption( i18n( "New FTP Connection"  ) );
-    setSizeGripEnabled( TRUE );
+//     setSizeGripEnabled( TRUE );
     setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)5, sizePolicy().hasHeightForWidth() ) );
     setMinimumSize( QSize( 342, 261 ) );
 
-    TextLabel1 = new QLabel( this, "TextLabel1" );
-    TextLabel1->setGeometry( QRect( 10, 50, 60, 20 ) );
-    TextLabel1->setText( i18n( "Host:"  ) );
+    
+    QHBox* hbox_image = new QHBox( this, "hbox_image" );
+    hbox_image->setSpacing( 6 );
+    
+    PixmapLabel1 = new QLabel( hbox_image, "PixmapLabel1" );
+    PixmapLabel1->setPixmap( image0 );
+    PixmapLabel1->setSizePolicy( SIZE_MINIMUM );
+
+    TextLabel3 = new QLabel( i18n( "About to connect to..."  ), hbox_image, "TextLabel3" );
+    QFont TextLabel3_font(  TextLabel3->font() );
+    TextLabel3_font.setBold( TRUE );
+    TextLabel3->setFont( TextLabel3_font );
+
+    
+    QGrid* grid_host = new QGrid( 3, this, "grid_host" );
+    
+    TextLabel1 = new QLabel( i18n( "Host:"  ), grid_host, "TextLabel1" );
+    QLabel* dummylabel = new QLabel( grid_host );		//FIXME: after 1.40 i18n-freeze: put "host" here and replace the host above with "protocol"
+    TextLabel1_3 = new QLabel( i18n( "Port:"  ), grid_host, "TextLabel1_3" );
 
     QStringList protocols = KProtocolInfo::protocols();
 
-    prefix = new KComboBox( FALSE, this, "protocol" );
+    prefix = new KComboBox( FALSE, grid_host, "protocol" );
     if( protocols.contains("ftp") )
       prefix->insertItem( i18n( "ftp://" ) );
     if( protocols.contains("smb") )
@@ -703,79 +727,17 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
       prefix->insertItem( i18n( "fish://" ));
     if( protocols.contains("sftp") )
       prefix->insertItem( i18n( "sftp://" ));
-    prefix->setGeometry( QRect( 10, 70, 70, 22 ) );
     prefix->setAcceptDrops( FALSE );
     prefix->setEnabled( TRUE );
+    prefix->setSizePolicy( SIZE_MINIMUM );
     connect( prefix,SIGNAL(activated(const QString& )),
                this,SLOT(slotTextChanged(const QString& )));
-
-    TextLabel1_2_2 = new QLabel( this, "TextLabel1_2_2" );
-    TextLabel1_2_2->setGeometry( QRect( 10, 150, 150, 20 ) );
-    TextLabel1_2_2->setText( i18n( "Password:"  ) );
-
-    TextLabel1_2 = new QLabel( this, "TextLabel1_2" );
-    TextLabel1_2->setGeometry( QRect( 10, 100, 150, 20 ) );
-    TextLabel1_2->setText( i18n( "Username:"  ) );
-
-    TextLabel1_3 = new QLabel( this, "TextLabel1_3" );
-    TextLabel1_3->setGeometry( QRect( 230, 50, 80, 20 ) );
-    TextLabel1_3->setText( i18n( "Port:"  ) );
-
-    port = new QSpinBox( this, "port" );
-    port->setGeometry( QRect( 280, 70, 50, 21 ) );
-    port->setMaxValue( 65535 );
-#if QT_VERSION < 300
-    port->setFrameShadow( QSpinBox::Sunken );
-#endif
-    port->setValue( 21 );
-
-    password = new QLineEdit( this, "password" );
-    password->setGeometry( QRect( 10, 170, 320, 22 ) );
-    password->setEchoMode( QLineEdit::Password );
-
-    QWidget* Layout6 = new QWidget( this, "Layout6" );
-    Layout6->setGeometry( QRect( 10, 210, 420, 34 ) );
-    hbox = new QHBoxLayout( Layout6 );
-    hbox->setSpacing( 6 );
-    hbox->setMargin( 0 );
-
-    connectBtn = new QPushButton( Layout6, "connectBtn" );
-    connectBtn->setText( i18n( "&Connect"  ) );
-    connectBtn->setAutoDefault( TRUE );
-    connectBtn->setDefault( TRUE );
-    hbox->addWidget( connectBtn );
-
-    saveBtn = new QPushButton( Layout6, "saveBtn" );
-    saveBtn->setText( i18n( "&Save"  ) );
-    saveBtn->setAutoDefault( TRUE );
-    hbox->addWidget( saveBtn );
-
-    cancelBtn = new QPushButton( Layout6, "cancelBtn" );
-    cancelBtn->setText( i18n( "&Cancel"  ) );
-    cancelBtn->setAutoDefault( TRUE );
-    hbox->addWidget( cancelBtn );
-
-    PixmapLabel1 = new QLabel( this, "PixmapLabel1" );
-    PixmapLabel1->setGeometry( QRect( 10, 10, 40, 40 ) );
-    PixmapLabel1->setPixmap( image0 );
-    PixmapLabel1->setScaledContents( TRUE );
-
-    TextLabel3 = new QLabel( this, "TextLabel3" );
-    TextLabel3->setGeometry( QRect( 60, 10, 300, 31 ) );
-    TextLabel3->setText( i18n( "About to connect to..."  ) );
-    QFont TextLabel3_font(  TextLabel3->font() );
-    TextLabel3_font.setBold( TRUE );
-    TextLabel3->setFont( TextLabel3_font );
-
-    username = new QLineEdit( this, "username" );
-    username->setGeometry( QRect( 10, 120, 320, 22 ) );
-
+    
     QFont font;
     font.setPointSize( 9 );
-    url = new KHistoryCombo( this, "url" );
+    url = new KHistoryCombo( grid_host, "url" );
     url->setFont( font );
     url->setMaximumHeight( 20 );
-    url->setGeometry( QRect( 80, 70, 200, 22 ) );
     connect( url, SIGNAL( activated( const QString& )),
              url, SLOT( addToHistory( const QString& )));
     // load the history and completion list after creating the history combo
@@ -784,6 +746,40 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     url->completionObject()->setItems( list );
     list = krConfig->readListEntry( "newFTP History list" );
     url->setHistoryItems( list );
+
+    port = new QSpinBox( grid_host, "port" );
+    port->setMaxValue( 65535 );
+#if QT_VERSION < 300
+    port->setFrameShadow( QSpinBox::Sunken );
+#endif
+    port->setValue( 21 );
+    port->setSizePolicy( SIZE_MINIMUM );
+
+
+    TextLabel1_2 = new QLabel( i18n( "Username:"  ), this, "TextLabel1_2" );
+    username = new QLineEdit( this, "username" );
+    TextLabel1_2_2 = new QLabel( i18n( "Password:"  ), this, "TextLabel1_2_2" );
+    password = new QLineEdit( this, "password" );
+    password->setEchoMode( QLineEdit::Password );
+
+    
+    QWidget* Layout6 = new QWidget( this, "Layout6" );
+    hbox = new QHBoxLayout( Layout6 );
+    hbox->setSpacing( 6 );
+    hbox->setMargin( 0 );
+
+    connectBtn = new QPushButton( i18n( "&Connect"  ), Layout6, "connectBtn" );
+    connectBtn->setAutoDefault( TRUE );
+    connectBtn->setDefault( TRUE );
+    hbox->addWidget( connectBtn );
+
+    saveBtn = new QPushButton( i18n( "&Save"  ), Layout6, "saveBtn" );
+    saveBtn->setAutoDefault( TRUE );
+    hbox->addWidget( saveBtn );
+
+    cancelBtn = new QPushButton( i18n( "&Cancel"  ), Layout6, "cancelBtn" );
+    cancelBtn->setAutoDefault( TRUE );
+    hbox->addWidget( cancelBtn );
 
     // signals and slots connections
     connect( connectBtn, SIGNAL( clicked() ), this, SLOT( accept() ) );
