@@ -248,7 +248,7 @@ void kio_krarcProtocol::get(const KURL& url ){
   // for RPM files extract the cpio file first
   if( !cpioReady && arcType == "rpm"){
     KShellProcess cpio;
-    cpio << "rpm2cpio" << arcPath << " > " << arcTempDir+"contents.cpio";
+    cpio << "rpm2cpio" << "\""+arcFile->url().path(-1)+"\"" << " > " << arcTempDir+"contents.cpio";
     cpio.start(KProcess::Block);
     cpioReady = true;
   }
@@ -587,7 +587,7 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
   if( arcType == "jar" )
     arcType = "zip";
   
-  arcPath = "\""+arcFile->url().path(-1)+"\"";
+  arcPath = arcFile->url().path(-1);
   arcPath.replace(QRegExp(" "),"\\ ");
   return initArcParameters();
 }
@@ -605,7 +605,10 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	KTempFile temp( QString::null, "tmp" );
 	temp.setAutoDelete(true);
 	if( arcType != "bzip2" ){
-		proc << listCmd << "\""+arcFile->url().path(-1)+"\"" <<" > " << temp.name();
+		if( arcType == "rpm" )
+			proc << listCmd << "\""+arcPath+"\"" <<" > " << temp.name();
+		else        
+			proc << listCmd << "\""+arcFile->url().path(-1)+"\"" <<" > " << temp.name();
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 			proc << "<" << "/dev/ptmx";
 		proc.start(KProcess::Block);
