@@ -43,7 +43,9 @@
 
 
 #ifdef __linux__
+#undef __STRICT_ANSI__
 #include <linux/cdrom.h>
+#define __STRICT_ANSI__
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #endif
