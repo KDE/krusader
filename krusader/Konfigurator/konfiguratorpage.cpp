@@ -305,4 +305,14 @@ void KonfiguratorPage::removeObject( KonfiguratorExtension *item )
     itemList.removeRef( item );
 }
 
+KonfiguratorColorChooser *KonfiguratorPage::createColorChooser( QString cls, QString name, QColor dflt,
+                                                                QWidget *parent, bool rst )
+{
+  KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser( cls, name, dflt,  parent,
+                                        QString(cls + "/" + name).ascii(), rst );
+
+  registerObject( colorChooser->extension() );
+  return colorChooser;
+}
+
 #include "konfiguratorpage.moc"

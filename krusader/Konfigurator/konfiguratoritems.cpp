@@ -30,7 +30,11 @@
 
 #include "konfiguratoritems.h"
 #include "../krusader.h"
- 
+#include <klocale.h>
+#include <qpainter.h>
+#include <qpen.h>
+#include <qcolordialog.h>
+  
 KonfiguratorExtension::KonfiguratorExtension( QObject *obj, QString cfgClass, QString cfgName, bool rst) :
       QObject(), objectPtr( obj ), applyConnected( false ), setDefaultsConnected( false ),
       changed( false ), restartNeeded( rst ), configClass( cfgClass ), configName( cfgName )
@@ -585,6 +589,150 @@ void KonfiguratorComboBox::selectEntry( QString entry )
 void KonfiguratorComboBox::slotSetDefaults(QObject *)
 {
   selectEntry( defaultValue );
+}
+
+
+// KonfiguratorColorChooser class
+///////////////////////////////
+
+KonfiguratorColorChooser::KonfiguratorColorChooser( QString cls, QString name, QColor dflt,
+    QWidget *parent, const char *widgetName, bool rst ) : QComboBox ( parent, widgetName ),
+    defaultValue( dflt ), disableColorChooser( true )
+{
+  ext = new KonfiguratorExtension( this, cls, name, rst );
+  
+  connect( ext, SIGNAL( applyAuto(QObject *,QString, QString) ), this, SLOT( slotApply(QObject *,QString, QString) ) );
+  connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
+  connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
+
+  addColor( i18n("Custom color" ),  QColor( 255, 255, 255 ) );
+  addColor( i18n("KDE default" ),   defaultValue );
+  addColor( i18n("Red" ),           Qt::red );
+  addColor( i18n("Green" ),         Qt::green );
+  addColor( i18n("Blue" ),          Qt::blue );
+  addColor( i18n("Cyan" ),          Qt::cyan );
+  addColor( i18n("Magenta" ),       Qt::magenta );
+  addColor( i18n("Yellow" ),        Qt::yellow );
+  addColor( i18n("Dark Red" ),      Qt::darkRed );
+  addColor( i18n("Dark Green" ),    Qt::darkGreen );
+  addColor( i18n("Dark Blue" ),     Qt::darkBlue );
+  addColor( i18n("Dark Cyan" ),     Qt::darkCyan );
+  addColor( i18n("Dark Magenta" ),  Qt::darkMagenta );
+  addColor( i18n("Dark Yellow" ),   Qt::darkYellow );
+  addColor( i18n("White" ),         Qt::white );
+  addColor( i18n("Light Gray" ),    Qt::lightGray );
+  addColor( i18n("Gray" ),          Qt::gray );
+  addColor( i18n("Dark Gray" ),     Qt::darkGray );
+  addColor( i18n("Black" ),         Qt::black );
+
+  connect( this, SIGNAL( highlighted(int) ), ext,  SLOT( setChanged() ) );
+  connect( this, SIGNAL( activated(int) ),   this, SLOT( slotCurrentChanged( int ) ) );
+
+  loadInitialValue();
+}
+
+KonfiguratorColorChooser::~KonfiguratorColorChooser()
+{
+  delete ext;
+}
+
+QPixmap KonfiguratorColorChooser::createPixmap( QColor color )
+{
+  QPainter painter;
+  QPen pen;
+  int size = QFontMetrics(font()).height()*3/4;
+  QRect rect( 0, 0, size, size );
+  QPixmap pixmap( rect.width(), rect.height() );
+
+  pen.setColor( Qt::black );
+  
+  painter.begin( &pixmap );
+  QBrush brush( color );
+  painter.fillRect( rect, brush );
+  painter.setPen( pen );
+  painter.drawRect( rect );
+  painter.end();
+
+  pixmap.detach();
+  return pixmap;
+}
+
+void KonfiguratorColorChooser::addColor( QString text, QColor color )
+{
+  insertItem( createPixmap(color), text );
+  palette.push_back( color );
+}
+
+void KonfiguratorColorChooser::loadInitialValue()
+{
+  disableColorChooser = true;
+  
+  krConfig->setGroup( ext->getCfgClass() );
+  QString selected = krConfig->readEntry( ext->getCfgName(), "" );
+  if( selected.isEmpty() )
+  {
+    setCurrentItem( 1 );
+    customValue = defaultValue;
+  }
+  else
+  {
+    QColor color = krConfig->readColorEntry( ext->getCfgName(), &defaultValue );
+    customValue = color;
+
+    setCurrentItem( 0 );
+    for( int i=2; i != palette.size(); i++ )
+      if( palette[i] == color )
+      {
+        setCurrentItem( i );
+        break;
+      }
+  }
+
+  palette[0] = customValue;
+  changeItem( createPixmap( customValue ), text( 0 ), 0 );
+      
+  ext->setChanged( false );
+  disableColorChooser = false;
+}
+
+void KonfiguratorColorChooser::setDefaultColor( QColor dflt )
+{
+  defaultValue = dflt;
+  palette[1] = defaultValue;
+  changeItem( createPixmap( defaultValue ), text( 1 ), 1 );
+}
+
+void KonfiguratorColorChooser::slotApply(QObject *,QString cls, QString name)
+{
+  krConfig->setGroup( cls );
+  
+  QColor color = palette[ currentItem() ];
+  if( currentItem() == 1 )    /* it's the default value? */
+    krConfig->writeEntry( name, "" );   /* set nothing */
+  else
+    krConfig->writeEntry( name, color );
+}
+
+void KonfiguratorColorChooser::slotSetDefaults(QObject *)
+{
+  setCurrentItem( 1 );
+}
+
+void KonfiguratorColorChooser::slotCurrentChanged( int number )
+{
+  ext->setChanged();
+  if( number == 0 && !disableColorChooser )
+  {
+    QColor color = QColorDialog::getColor ( customValue, this, "ColorDialog" );
+    if( color.isValid() )
+    {
+      disableColorChooser = true;
+      customValue = color;
+      palette[0] = customValue;
+      changeItem( createPixmap( customValue ), text( 0 ), 0 );
+      disableColorChooser = false;
+    }
+  }
 }
 
 #include "konfiguratoritems.moc"

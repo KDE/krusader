@@ -312,5 +312,40 @@ protected:
   void                          selectEntry( QString entry );
 };
 
+
+// KonfiguratorColorChooser class
+///////////////////////////////
+
+class KonfiguratorColorChooser : public QComboBox
+{
+  Q_OBJECT
+
+public:
+  KonfiguratorColorChooser( QString cls, QString name, QColor dflt,
+                            QWidget *parent=0, const char *widgetName=0, bool rst=false );
+  ~KonfiguratorColorChooser();
+
+  inline KonfiguratorExtension *extension()   {return ext;}
+
+  void          setDefaultColor( QColor dflt );
+
+public slots:
+  virtual void  loadInitialValue();
+  void          slotApply(QObject *,QString, QString);
+  void          slotSetDefaults(QObject *);
+  void          slotCurrentChanged( int number );
+
+private:
+  void          addColor( QString text, QColor color );
+  QPixmap       createPixmap( QColor color );
+  
+protected:
+  QColor                        defaultValue;
+  QColor                        customValue;
+  QValueVector<QColor>          palette;
+  KonfiguratorExtension        *ext;
+  bool                          disableColorChooser;
+};
+
 #endif /* __KONFIGURATOR_ITEMS_H__ */
 

@@ -415,6 +415,24 @@ public:
     */
   void                    removeObject( KonfiguratorExtension *item );
 
+  /**
+    * Adds a new color chooser combobox item to the page.
+    * <br>The chooser's widget's name is QString(cls + "/" + name).ascii()<br>
+    *
+    * Sample:<br><br>
+    * KonfiguratorColorChooser *myColorChooser = createColorChooser( "class", "name", QColor( 255, 0, 255 ), parentWidget );<br>
+    * myLayout->addWidget( myColorChooser, 0, 0 );
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The item name used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the color chooser
+    * @param  parent      Reference to the parent widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    *
+    * @return             reference to the newly created combobox
+    */
+  KonfiguratorColorChooser *createColorChooser(  QString cls, QString name, QColor dflt,
+                                                 QWidget *parent=0, bool rst=false );
 signals:
   /**
     * The signal is emitted if the changed flag was modified in any konfigurator item.
