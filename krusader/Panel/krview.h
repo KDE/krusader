@@ -143,10 +143,6 @@ public:
   inline QWidget *widget() { return _widget; }
   inline void setWidget(QWidget *w) { _widget = w; }
 
-  /////////////////remove/////////////////
-  virtual QString itemToFilename(QListViewItem *it) = 0;
-
-
   // todo: what about selection modes ???
   virtual ~KrView() {}
 protected:

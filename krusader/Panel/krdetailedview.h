@@ -85,7 +85,6 @@ public:
    virtual void saveSettings() { KListView::saveLayout( _config, nameInKConfig() ); }
    virtual void restoreSettings() { KListView::restoreLayout( _config, nameInKConfig() ); }
    virtual QString nameInKConfig() { return _nameInKConfig; }
-   virtual QString itemToFilename( QListViewItem *it ) { return dynamic_cast<KrViewItem*>( it ) ->name(); } //remove
    
    inline bool isCaseSensitiveSort() {return caseSensitiveSort;}
 
