@@ -54,6 +54,9 @@ public slots:
   void modifiedBetweenSetDate2();
   void notModifiedAfterSetDate();
   
+  void loadFromProfile( QString name );
+  void saveToProfile( QString name );
+  
 public:
   QCheckBox* smallerThanEnabled;
   QLineEdit* smallerThanAmount;

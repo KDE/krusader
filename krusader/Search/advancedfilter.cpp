@@ -28,6 +28,7 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "../krusader.h"
 #include "advancedfilter.h"
 #include "../Dialogs/krdialogs.h"
 
@@ -628,5 +629,109 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
 
   return true;
 }
+
+void AdvancedFilter::loadFromProfile( QString name )
+{
+  krConfig->setGroup( name );
+  
+  smallerThanEnabled->setChecked( krConfig->readBoolEntry( "Smaller Than Enabled", false ) );
+  smallerThanAmount->setText( krConfig->readEntry( "Smaller Than Amount", "" ) );
+  smallerThanType->setCurrentItem( krConfig->readNumEntry( "Smaller Than Type", 0 ) );
+
+  biggerThanEnabled->setChecked( krConfig->readBoolEntry( "Bigger Than Enabled", false ) );
+  biggerThanAmount->setText( krConfig->readEntry( "Bigger Than Amount", "" ) );
+  biggerThanType->setCurrentItem( krConfig->readNumEntry( "Bigger Than Type", 0 ) );
+  
+  modifiedBetweenEnabled->setChecked( krConfig->readBoolEntry( "Modified Between Enabled", false ) );
+  notModifiedAfterEnabled->setChecked( krConfig->readBoolEntry( "Not Modified After Enabled", false ) );
+  modifiedInTheLastEnabled->setChecked( krConfig->readBoolEntry( "Modified In The Last Enabled", false ) );
+
+  modifiedBetweenData1->setText( krConfig->readEntry( "Modified Between 1", "" ) );
+  modifiedBetweenData2->setText( krConfig->readEntry( "Modified Between 2", "" ) );
+
+  notModifiedAfterData->setText( krConfig->readEntry( "Not Modified After", "" ) );
+  modifiedInTheLastData->setText( krConfig->readEntry( "Modified In The Last", "" ) );
+  notModifiedInTheLastData->setText( krConfig->readEntry( "Not Modified In The Last", "" ) );
+  
+  modifiedInTheLastType->setCurrentItem( krConfig->readNumEntry( "Modified In The Last Type", 0 ) );
+  notModifiedInTheLastType->setCurrentItem( krConfig->readNumEntry( "Not Modified In The Last Type", 0 ) );
+
+  belongsToUserEnabled->setChecked( krConfig->readBoolEntry( "Belongs To User Enabled", false ) );
+  belongsToGroupEnabled->setChecked( krConfig->readBoolEntry( "Belongs To Group Enabled", false ) );
+  
+  QString user = krConfig->readEntry( "Belongs To User", "" );
+  for( int i = belongsToUserData->count(); i >= 0; i-- )
+  {
+    belongsToUserData->setCurrentItem( i );
+    if( belongsToUserData->currentText() == user )
+      break;
+  }
+
+  QString group = krConfig->readEntry( "Belongs To Group", "" );
+  for( int i = belongsToGroupData->count(); i >= 0; i-- )
+  {
+    belongsToGroupData->setCurrentItem( i );
+    if( belongsToGroupData->currentText() == group )
+      break;
+  }
+
+  permissionsEnabled->setChecked( krConfig->readBoolEntry( "Permissions Enabled", false ) );
+  
+  ownerW->setCurrentItem( krConfig->readNumEntry( "Owner Write", 0 ) );
+  ownerR->setCurrentItem( krConfig->readNumEntry( "Owner Read", 0 ) );
+  ownerX->setCurrentItem( krConfig->readNumEntry( "Owner Execute", 0 ) );
+  groupW->setCurrentItem( krConfig->readNumEntry( "Group Write", 0 ) );
+  groupR->setCurrentItem( krConfig->readNumEntry( "Group Read", 0 ) );
+  groupX->setCurrentItem( krConfig->readNumEntry( "Group Execute", 0 ) );
+  allW->setCurrentItem( krConfig->readNumEntry( "All Write", 0 ) );
+  allR->setCurrentItem( krConfig->readNumEntry( "All Read", 0 ) );
+  allX->setCurrentItem( krConfig->readNumEntry( "All Execute", 0 ) );
+}
+
+void AdvancedFilter::saveToProfile( QString name )
+{
+  krConfig->setGroup( name );
+  
+  krConfig->writeEntry( "Smaller Than Enabled", smallerThanEnabled->isChecked() );
+  krConfig->writeEntry( "Smaller Than Amount", smallerThanAmount->text() );
+  krConfig->writeEntry( "Smaller Than Type", smallerThanType->currentItem() );
+  
+  krConfig->writeEntry( "Bigger Than Enabled", biggerThanEnabled->isChecked() );
+  krConfig->writeEntry( "Bigger Than Amount", biggerThanAmount->text() );
+  krConfig->writeEntry( "Bigger Than Type", biggerThanType->currentItem() );
+
+  krConfig->writeEntry( "Modified Between Enabled", modifiedBetweenEnabled->isChecked() );
+  krConfig->writeEntry( "Not Modified After Enabled", notModifiedAfterEnabled->isChecked() );
+  krConfig->writeEntry( "Modified In The Last Enabled", modifiedInTheLastEnabled->isChecked() );
+
+  krConfig->writeEntry( "Modified Between 1", modifiedBetweenData1->text() );
+  krConfig->writeEntry( "Modified Between 2", modifiedBetweenData2->text() );
+
+  krConfig->writeEntry( "Not Modified After", notModifiedAfterData->text() );
+  krConfig->writeEntry( "Modified In The Last", modifiedInTheLastData->text() );
+  krConfig->writeEntry( "Not Modified In The Last", notModifiedInTheLastData->text() );
+
+  krConfig->writeEntry( "Modified In The Last Type", modifiedInTheLastType->currentItem() );
+  krConfig->writeEntry( "Not Modified In The Last Type", notModifiedInTheLastType->currentItem() );
+
+  krConfig->writeEntry( "Belongs To User Enabled", belongsToUserEnabled->isChecked() );
+  krConfig->writeEntry( "Belongs To Group Enabled", belongsToGroupEnabled->isChecked() );
+
+  krConfig->writeEntry( "Belongs To User", belongsToUserData->currentText() );
+  krConfig->writeEntry( "Belongs To Group", belongsToGroupData->currentText() );
+
+  krConfig->writeEntry( "Permissions Enabled", permissionsEnabled->isChecked() );
+
+  krConfig->writeEntry( "Owner Write", ownerW->currentItem() );
+  krConfig->writeEntry( "Owner Read", ownerR->currentItem() );
+  krConfig->writeEntry( "Owner Execute", ownerX->currentItem() );
+  krConfig->writeEntry( "Group Write", groupW->currentItem() );
+  krConfig->writeEntry( "Group Read", groupR->currentItem() );
+  krConfig->writeEntry( "Group Execute", groupX->currentItem() );
+  krConfig->writeEntry( "All Write", allW->currentItem() );
+  krConfig->writeEntry( "All Read", allR->currentItem() );
+  krConfig->writeEntry( "All Execute", allX->currentItem() );
+}
+
 
 #include "advancedfilter.moc"

@@ -532,4 +532,71 @@ void GeneralFilter::keyPressEvent(QKeyEvent *e)
   QWidget::keyPressEvent( e );
 }
 
+void GeneralFilter::loadFromProfile( QString name )
+{
+  krConfig->setGroup( name );
+
+  searchForCase->setChecked( krConfig->readBoolEntry( "Case Sensitive Search", false ) );
+  containsTextCase->setChecked( krConfig->readBoolEntry( "Case Sensitive Content", false ) );
+  containsWholeWord->setChecked( krConfig->readBoolEntry( "Match Whole Word Only", false ) );
+  searchInDirs->setChecked( krConfig->readBoolEntry( "Search In Subdirectories", true ) );
+  searchInArchives->setChecked( krConfig->readBoolEntry( "Search In Archives", false ) );
+  followLinks->setChecked( krConfig->readBoolEntry( "Follow Symlinks", false ) );
+
+  searchFor->setEditText( krConfig->readEntry( "Search For", "" ) );
+  containsText->setEditText( krConfig->readEntry( "Contains Text", "" ) );
+
+  QString mime = krConfig->readEntry( "Mime Type", "" );
+  for( int i = ofType->count(); i >= 0; i-- )
+  {
+    ofType->setCurrentItem( i );
+    if( ofType->currentText() == mime )
+      break;
+  }
+
+  searchInEdit->setText( krConfig->readEntry( "Search In Edit", "" ) );
+  dontSearchInEdit->setText( krConfig->readEntry( "Dont Search In Edit", "" ) );
+
+  searchIn->clear();
+  QStringList searchInList = krConfig->readListEntry( "Search In List" );
+  if( !searchInList.isEmpty() )
+    searchIn->insertStringList( searchInList );
+
+  dontSearchIn->clear();
+  QStringList dontSearchInList = krConfig->readListEntry( "Dont Search In List" );
+  if( !dontSearchInList.isEmpty() )
+    dontSearchIn->insertStringList( dontSearchInList );
+}
+
+void GeneralFilter::saveToProfile( QString name )
+{
+  krConfig->setGroup( name );
+  
+  krConfig->writeEntry( "Case Sensitive Search", searchForCase->isChecked() );
+  krConfig->writeEntry( "Case Sensitive Content", containsTextCase->isChecked() );
+  krConfig->writeEntry( "Match Whole Word Only", containsWholeWord->isChecked() );
+  krConfig->writeEntry( "Search In Subdirectories", searchInDirs->isChecked() );
+  krConfig->writeEntry( "Search In Archives", searchInArchives->isChecked() );  
+  krConfig->writeEntry( "Follow Symlinks", followLinks->isChecked() );
+
+  krConfig->writeEntry( "Search For", searchFor->currentText() );  
+  krConfig->writeEntry( "Contains Text", containsText->currentText() );  
+  
+  krConfig->writeEntry( "Mime Type", ofType->currentText() );
+  
+  krConfig->writeEntry( "Search In Edit", searchInEdit->text() );
+  krConfig->writeEntry( "Dont Search In Edit", dontSearchInEdit->text() );
+  
+  QStringList searchInList;
+  QListBoxItem *item;
+  for ( item = searchIn->firstItem(); item != 0; item = item->next() )
+    searchInList.append( item->text().simplifyWhiteSpace() );
+  krConfig->writeEntry( "Search In List", searchInList );
+  
+  QStringList dontSearchInList;
+  for ( item = dontSearchIn->firstItem(); item != 0; item = item->next() )
+    dontSearchInList.append( item->text().simplifyWhiteSpace() );
+  krConfig->writeEntry( "Dont Search In List", dontSearchInList );
+}
+  
 #include "generalfilter.moc"

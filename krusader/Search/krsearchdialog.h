@@ -37,6 +37,7 @@
 #include "advancedfilter.h"
 #include "krquery.h"
 #include "krsearchmod.h"
+#include "profilemanager.h"
 
 #include <qwidget.h>
 #include <ksqueezedtextlabel.h>
@@ -77,6 +78,7 @@ private:
 private:
   GeneralFilter  *generalFilter;
   AdvancedFilter *advancedFilter;
+  ProfileManager *profileManager;
     
   QPushButton* mainHelpBtn;
   QPushButton* mainSearchBtn;

@@ -55,7 +55,10 @@ public:
   bool fillQuery( KRQuery *query );
   void queryAccepted();
   
-public slots:  
+public slots:    
+  void loadFromProfile( QString name );
+  void saveToProfile( QString name );
+  
   void addToDontSearchIn();
   void addToDontSearchInManually();
   void addToSearchIn();

@@ -65,6 +65,9 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   buttonsLayout->setSpacing( 6 );
   buttonsLayout->setMargin( 0 );
 
+  profileManager = new ProfileManager( "SearcherProfile", this, "profileManager" );
+  buttonsLayout->addWidget( profileManager );
+  
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   buttonsLayout->addItem( spacer );
 
@@ -164,6 +167,11 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   connect( resultsList, SIGNAL( doubleClicked(QListViewItem*) ), this, SLOT( resultClicked(QListViewItem*) ) );
   connect( resultsList, SIGNAL( rightButtonClicked(QListViewItem*,const QPoint&,int) ), this, SLOT( rightClickMenu(QListViewItem*, const QPoint&, int) ) );
   connect( mainCloseBtn, SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
+  
+  connect( profileManager, SIGNAL( loadFromProfile( QString ) ), generalFilter, SLOT( loadFromProfile( QString ) ) );
+  connect( profileManager, SIGNAL( saveToProfile( QString ) ), generalFilter, SLOT( saveToProfile( QString ) ) );
+  connect( profileManager, SIGNAL( loadFromProfile( QString ) ), advancedFilter, SLOT( loadFromProfile( QString ) ) );
+  connect( profileManager, SIGNAL( saveToProfile( QString ) ), advancedFilter, SLOT( saveToProfile( QString ) ) );
 
   // tab order
   
