@@ -277,7 +277,7 @@ QString KRpermHandler::parseSize(KIO::filesize_t val){
   char buf[25];
   sprintf(buf,"%llu",val);
   QString temp(buf); 
-  if(temp.length() <=3 ) return temp+"  ";
+  if(temp.length() <=3 ) return temp;
   unsigned int i = temp.length()%3;
   if (i==0) i=3;
   QString size = temp.left(i)+",";
@@ -286,7 +286,7 @@ QString KRpermHandler::parseSize(KIO::filesize_t val){
     i+=3;
   }
   size = size + temp.right(3);
-  return size+"  ";
+  return size;
 }
 
 QString KRpermHandler::date2qstring(QString date){
