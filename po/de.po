@@ -8,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.60.0\n"
+"Project-Id-Version: krusader-1.60-cvs\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-02-20 02:36+0100\n"
-"PO-Revision-Date: 2005-02-20 02:39+0100\n"
+"PO-Revision-Date: 2005-02-22 23:32+0100\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -233,8 +233,7 @@ msgstr "Platzhalter für die selektierten Dateien im Dateifenster hinzufügen"
 
 #: GUI/actionpropertybase.cpp:412
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
-msgstr ""
-"Die Beschreibung wird nur im Konfigurator und mittels Umschalt+F1 angezeigt"
+msgstr "Die Beschreibung wird nur im Konfigurator und mittels Umschalt+F1 angezeigt"
 
 #: GUI/actionpropertybase.cpp:413
 msgid "Start path"
@@ -603,8 +602,7 @@ msgstr ""
 
 #: VFS/virt_vfs.cpp:154
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
-"Das Erstellen neuer Verzeichnisse ist nur im 'virt:/'-Verzeichnis erlaubt."
+msgstr "Das Erstellen neuer Verzeichnisse ist nur im 'virt:/'-Verzeichnis erlaubt."
 
 #: VFS/krquery.cpp:81 Dialogs/generalfilter.cpp:90
 #: Konfigurator/konfigurator.cpp:105
@@ -800,20 +798,20 @@ msgstr "Neues Ziel/Name"
 
 #: UserAction/expander.cpp:471
 msgid "Open a synchronizer-profile"
-msgstr "Ein Synchronizer-Profil laden"
+msgstr "Synchronizer-Profil laden"
 
 #: UserAction/expander.cpp:474 UserAction/expander.cpp:492
 #: UserAction/expander.cpp:510
 msgid "Choose a profile"
-msgstr "Ein Profil auswählen"
+msgstr "Profil auswählen"
 
 #: UserAction/expander.cpp:489
 msgid "Open a searchmodule-profile"
-msgstr "Ein Suchmodul-Profil laden"
+msgstr "Suchmodul-Profil laden"
 
 #: UserAction/expander.cpp:507
 msgid "Load a panel-profile"
-msgstr "Ein Dateifenster-Profil laden"
+msgstr "Dateifenster-Profil laden"
 
 #: UserAction/expander.cpp:525
 msgid "Separate programm call for each..."
@@ -833,11 +831,11 @@ msgstr "Eine Sortiersequenz auswählen"
 
 #: UserAction/expander.cpp:679
 msgid "Set the relation between the two panels"
-msgstr "Die Beziehung zwischen zwei Dateifenstern festlegen"
+msgstr "Beziehung zwischen zwei Dateifenstern festlegen"
 
 #: UserAction/expander.cpp:682
 msgid "Set the new size in percent"
-msgstr "Die neue Größe in Prozent angeben"
+msgstr "Neue Größe in Prozent angeben"
 
 #: UserAction/expander.cpp:718
 msgid "Executes a JavaScript-extension"
@@ -881,7 +879,7 @@ msgstr "Ausführung bestätigen"
 
 #: UserAction/kraction.cpp:220
 msgid "Command being executed:"
-msgstr "Das auszuführende Kommando:"
+msgstr "Auszuführendes Kommando:"
 
 #: Panel/krdetailedviewitem.cpp:371
 msgid "Climb up the directory tree"
@@ -1042,8 +1040,7 @@ msgstr "%1 frei von %2 (%3%) auf %4 [ (%5) ]"
 
 #: Panel/listpanel.cpp:691
 msgid "Can't drop here, no write permissions."
-msgstr ""
-"Aufgrund mangelnder Schreibberechtigung kann hier nichts abgelegt werden."
+msgstr "Aufgrund mangelnder Schreibberechtigung kann hier nichts abgelegt werden."
 
 #: Panel/listpanel.cpp:707 Panel/panelpopup.cpp:310
 msgid "Copy Here"
@@ -1149,8 +1146,7 @@ msgstr "Wirklich in den Reißwolf mit "
 
 #: Panel/listpanel.cpp:959
 msgid " ? Once shred, the file is gone forever !!!"
-msgstr ""
-" ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!"
+msgstr " ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!"
 
 #: Panel/listpanel.cpp:1015 Panel/panelfunc.cpp:334 KViewer/krviewer.cpp:259
 #: krslots.cpp:426
@@ -1374,8 +1370,7 @@ msgstr "Ein Verzeichnis kann nicht editiert werden"
 
 #: Panel/panelfunc.cpp:350
 msgid "No permissions to edit this file."
-msgstr ""
-"Sie verfügen nicht über die nötigen Rechte, um diese Datei zu editieren."
+msgstr "Sie verfügen nicht über die nötigen Rechte, um diese Datei zu editieren."
 
 #: Panel/panelfunc.cpp:367
 msgid "Moving into archive is disabled"
@@ -1977,8 +1972,7 @@ msgstr "Wirklich beenden?"
 
 #: KViewer/panelviewer.cpp:22
 msgid "No file selected or selected file can't be displayed."
-msgstr ""
-"Keine Datei ausgewählt oder ausgewählte Datei kann nicht angezeigt werden."
+msgstr "Keine Datei ausgewählt oder ausgewählte Datei kann nicht angezeigt werden."
 
 #: KViewer/krviewer.cpp:72
 msgid "&Generic viewer"
@@ -2233,8 +2227,7 @@ msgstr ""
 "Bitte benachrichtigen Sie die Entwickler"
 
 #: MountMan/kmountmangui.cpp:322
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Interner Fehler in MountMan\n"
 "Bitte benachrichtigen Sie die Entwickler"
@@ -2293,8 +2286,7 @@ msgstr "Krusader - SYSTEMVERWALTUNGS-MODUS"
 
 #: krusaderview.cpp:80
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen."
+msgstr "Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen."
 
 #: Dialogs/krdialogs.cpp:124 Konfigurator/kglookfeel.cpp:103
 msgid "Custom Selection Mode"
@@ -2573,8 +2565,7 @@ msgstr "&Verbinden"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
-"Die gespeicherten 'Beliebten Adressen' sind ungültig. Die Liste wird geleert."
+msgstr "Die gespeicherten 'Beliebten Adressen' sind ungültig. Die Liste wird geleert."
 
 #: Dialogs/popularurls.cpp:228
 msgid "Popular Urls"
@@ -2972,8 +2963,7 @@ msgstr "Unterordner einbeziehen"
 
 #: Synchronizer/synchronizergui.cpp:1110
 msgid "Compares not only the base directories but their subdirectories as well"
-msgstr ""
-"Vergleicht nicht nur den Basisordner, sondern auch dessen Unterverzeichnisse"
+msgstr "Vergleicht nicht nur den Basisordner, sondern auch dessen Unterverzeichnisse"
 
 #: Synchronizer/synchronizergui.cpp:1111
 msgid "Follow symlinks"
@@ -3042,8 +3032,7 @@ msgstr "Optionen anzeigen"
 
 #: Synchronizer/synchronizergui.cpp:1153
 msgid "Lists the files marked to copy from left to right"
-msgstr ""
-"Listet Dateien auf, die als 'Kopiere von links nach rechts' markiert wurden"
+msgstr "Listet Dateien auf, die als 'Kopiere von links nach rechts' markiert wurden"
 
 #: Synchronizer/synchronizergui.cpp:1161
 msgid "Lists the files considered to be identical"
@@ -3055,8 +3044,7 @@ msgstr "Listet ausgeschlossene Dateien auf"
 
 #: Synchronizer/synchronizergui.cpp:1177
 msgid "Lists the files marked to copy from right to left"
-msgstr ""
-"Listet Dateien auf, die als 'Kopiere von rechts nach links' markiert wurden"
+msgstr "Listet Dateien auf, die als 'Kopiere von rechts nach links' markiert wurden"
 
 #: Synchronizer/synchronizergui.cpp:1185
 msgid "Lists the files marked to delete"
@@ -3785,8 +3773,7 @@ msgstr "MIME-Typen mit Protokollen verknüpfen"
 
 #: Konfigurator/konfigurator.cpp:183
 msgid "The current page has been changed. Do you want to apply changes?"
-msgstr ""
-"Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
+msgstr "Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
 
 #: Konfigurator/kglookfeel.cpp:56
 msgid "Operation"
@@ -3830,8 +3817,7 @@ msgstr "Automatisches Auswählen von Verzeichnissen"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "When matching the select criteria, directories will also be marked"
-msgstr ""
-"Sofern das Auswahl-Kriterium stimmt, werden auch Verzeichnisse ausgewählt"
+msgstr "Sofern das Auswahl-Kriterium stimmt, werden auch Verzeichnisse ausgewählt"
 
 #: Konfigurator/kglookfeel.cpp:70
 msgid "Case sensitive sorting"
@@ -4052,8 +4038,7 @@ msgstr "Gut lesbare Dateigröße benutzen"
 
 #: Konfigurator/kglookfeel.cpp:166
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr ""
-"Die Dateigröße wird in B, KB, MB und GB, und nicht nur in Bytes angezeigt."
+msgstr "Die Dateigröße wird in B, KB, MB und GB, und nicht nur in Bytes angezeigt."
 
 #: Konfigurator/kglookfeel.cpp:176
 msgid "Toolbar"
@@ -4119,8 +4104,7 @@ msgstr "Aufwärts (..)"
 
 #: Konfigurator/kglookfeel.cpp:229
 msgid "Changes the panel directory to the parent directory."
-msgstr ""
-"Das Verzeichnis des Dateifensters wandert eine Ebene hoch im Verzeichnisbaum."
+msgstr "Das Verzeichnis des Dateifensters wandert eine Ebene hoch im Verzeichnisbaum."
 
 #: Konfigurator/kglookfeel.cpp:230
 msgid "Home button (~)"
@@ -4143,8 +4127,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Umschalten von Synchron-Browsing"
 
 #: Konfigurator/kglookfeel.cpp:232
-msgid ""
-"Each directory-change in the panel is also performed in the other panel."
+msgid "Each directory-change in the panel is also performed in the other panel."
 msgstr ""
 "Jeder Verzeichniswechsel im aktuellen Dateifenster wird auch im anderen "
 "Dateifenster durchgeführt."
@@ -4254,8 +4237,7 @@ msgstr "Protokoll aus der Verknüpfungsliste entfernen"
 
 #: Konfigurator/kgprotocols.cpp:92
 msgid "Add mime to the selected protocol on the link list"
-msgstr ""
-"MIME-Typ zum ausgewählten Protokoll in der Verknüpfungsliste hinzufügen"
+msgstr "MIME-Typ zum ausgewählten Protokoll in der Verknüpfungsliste hinzufügen"
 
 #: Konfigurator/kgprotocols.cpp:95
 msgid "Remove mime from the link list"
@@ -4695,8 +4677,7 @@ msgid "Test archive when finished packing"
 msgstr "Archiv nach dem Packen testen"
 
 #: Konfigurator/kgarchives.cpp:91
-msgid ""
-"If checked, Krusader will test the archive's integrity after packing it."
+msgid "If checked, Krusader will test the archive's integrity after packing it."
 msgstr "Falls ausgewählt, wird die Archivintegrität nach dem Packen getestet."
 
 #: Konfigurator/kgarchives.cpp:92
@@ -4704,8 +4685,7 @@ msgid "Test archive before unpacking"
 msgstr "Archiv vor dem Entpacken testen"
 
 #: Konfigurator/kgarchives.cpp:92
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Einige korrupte Archive können einen Absturz verursachen, daher ist das "
 "Testen zu empfehlen."
@@ -5199,8 +5179,7 @@ msgid "Not a valid CRC file!"
 msgstr "Keine gültige CRC-Datei!"
 
 #: Splitter/combiner.cpp:133
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Eine Gültigkeitsüberprüfung ist ohne eine gültige CRC-Datei unmöglich. Mit "
 "dem Zusammenfügen fortfahren?"
@@ -5240,3 +5219,4 @@ msgstr "Fehler beim Lesen der Datei %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Fehler beim Schreiben der Datei %1!"
+
