@@ -77,9 +77,7 @@
 void KRslots::selectCompareMask() {
   int left=0,right=0;
   KRSpWidgets::selectCompareColorMask(&left, &right);
-  kdWarning() << left << endl;
   if (left>0 && right>0) { // safeguard
-  kdWarning() << left << endl;
     MAIN_VIEW->left->colorMask = left;
     MAIN_VIEW->right->colorMask = right;
     if (krCompareDirs->isChecked() ) {
@@ -172,7 +170,6 @@ void KRslots::compareContent() {
       return;
     }
 	} else tmp2 = url2.url();
-  kdWarning() << tmp1.mid(tmp1.find('/')) << "," << tmp2.mid(tmp2.find('/')) <<endl;
 
   KShellProcess p;
   p << diffProg << tmp1.mid(tmp1.find('/')) << tmp2.mid(tmp2.find('/'));

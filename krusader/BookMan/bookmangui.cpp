@@ -91,7 +91,6 @@ void BookManGUI::slotPreAddBookmark() {
 }
 
 void BookManGUI::slotAddBookmark() {
-  kdWarning() << "2" << endl;
   // if the URL field is empty, don't do anything
   if (urlData->text().stripWhiteSpace()=="") return;
   // if the user didn't give a name, set the name as the url
@@ -110,7 +109,6 @@ void BookManGUI::slotAddBookmark() {
 }
 
 void BookManGUI::accept() {  // write down the additional info
-kdWarning() << "1" << endl;
   notInAccept = false;
   slotApply();
   if (closeGUI) slotAddBookmark();
