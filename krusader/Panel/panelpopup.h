@@ -8,11 +8,13 @@
 #include <kio/previewjob.h>
 
 
+class QButtonGroup;
 class QLabel;
 class QWidgetStack;
 class QListViewItem;
-class KMultiTabBar;
 class KFileTreeView;
+class QToolButton;
+class KrSqueezedTextLabel;
 
 class PanelPopup: public QWidget {
    Q_OBJECT
@@ -37,9 +39,11 @@ protected slots:
 protected:
    QWidgetStack *stack;
 	QLabel *viewer;
+	KrSqueezedTextLabel *dataLine;
 	QGuardedPtr<KIO::PreviewJob> pjob;
-	KMultiTabBar *tabbar;
 	KFileTreeView *tree;
+	QToolButton *treeBtn, *previewBtn;
+	QButtonGroup *btns;
 };
 
 #endif // _PANELPOPUP_H

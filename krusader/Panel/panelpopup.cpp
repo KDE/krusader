@@ -3,6 +3,8 @@
 
 #include <kdebug.h>
 
+
+#include <qbuttongroup.h>
 #include <kfiletreeview.h>
 #include <klocale.h>
 #include <qlayout.h>
@@ -13,18 +15,50 @@
 #include <qwidgetstack.h>
 #include <kmultitabbar.h>
 #include "../kicons.h"
-
+#include "../Dialogs/krsqueezedtextlabel.h"
+#include "../defaults.h"
 
 PanelPopup::PanelPopup( QWidget *parent ) : QWidget( parent ), stack( 0 ), viewer( 0 ), pjob( 0 ) {
-   QVBoxLayout * layout = new QVBoxLayout( this );
-
-   // create the button bar
-   tabbar = new KMultiTabBar( KMultiTabBar::Horizontal, this );
-   tabbar->appendTab( krLoader->loadIcon( "view_tree", KIcon::Panel ), Tree, "Tree" );
-   connect( tabbar->tab( Tree ), SIGNAL( clicked( int ) ), this, SLOT( tabSelected( int ) ) );
-   tabbar->appendTab( krLoader->loadIcon( "folder_image", KIcon::Panel ), Preview, "Preview" );
-   connect( tabbar->tab( Preview ), SIGNAL( clicked( int ) ), this, SLOT( tabSelected( int ) ) );
-
+   QGridLayout * layout = new QGridLayout(this, 1, 1);
+	
+	// create the label+buttons setup
+	dataLine = new KrSqueezedTextLabel(this);
+	dataLine->setText("blah blah");
+	krConfig->setGroup( "Look&Feel" );
+   dataLine->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
+   // --- hack: setup colors to be the same as an inactive panel
+	dataLine->setBackgroundMode( PaletteBackground );
+	QPalette q( dataLine->palette() );
+   q.setColor( QColorGroup::Foreground, KGlobalSettings::textColor() );
+   q.setColor( QColorGroup::Background, KGlobalSettings::baseColor() );
+   dataLine->setPalette( q );
+   dataLine->setFrameStyle( QFrame::Box | QFrame::Raised );
+   dataLine->setLineWidth( 1 );		// a nice 3D touch :-)
+   int sheight = QFontMetrics( dataLine->font() ).height() + 4;
+   dataLine->setMaximumHeight( sheight );
+	
+	btns = new QButtonGroup(this);
+	btns->setExclusive(true);
+	btns->hide();	// it should be invisible
+	connect(btns, SIGNAL(clicked(int)), this, SLOT(tabSelected(int)));
+	
+	treeBtn = new QToolButton(this);
+	treeBtn->setPixmap(krLoader->loadIcon( "view_tree", KIcon::Toolbar, 16 ));
+	treeBtn->setFixedSize(20, 20);
+	treeBtn->setToggleButton(true);
+	btns->insert(treeBtn, Tree);
+	
+	
+	previewBtn = new QToolButton(this);
+	previewBtn->setPixmap(krLoader->loadIcon( "folder_image", KIcon::Toolbar, 16 ));
+	previewBtn->setFixedSize(20, 20);
+	previewBtn->setToggleButton(true);
+	btns->insert(previewBtn, Preview);
+	
+	layout->addWidget(dataLine,0,0);
+	layout->addWidget(treeBtn,0,1);
+	layout->addWidget(previewBtn,0,2);
+	
    // create a widget stack on which to put the parts
    stack = new QWidgetStack( this );
 
@@ -46,21 +80,23 @@ PanelPopup::PanelPopup( QWidget *parent ) : QWidget( parent ), stack( 0 ), viewe
    viewer = new QLabel( i18n( "No preview available" ), stack );
    stack->addWidget( viewer, Preview );
 
-   layout->addWidget( tabbar );
-   layout->addWidget( stack );
-
+	layout->addMultiCellWidget(stack,1,1,0,2);
+	
    // raise the tree part
-   tabbar->setTab( Tree, true );
-   stack->raiseWidget( Tree );
+	treeBtn->setOn(true);
+	tabSelected(Tree);
 }
 
 PanelPopup::~PanelPopup() {}
 
 void PanelPopup::tabSelected( int id ) {
-	// unraise all tabs except selected one and raise the widget
-   for ( int i = Tree; i < Last; ++i )
-      tabbar->setTab( i, ( i == id ) );
    stack->raiseWidget( id );
+	// if tab is tree, set something logical in the data line
+	switch (id) {
+		case Tree:
+			dataLine->setText("Tree:");
+			break;
+	}
 }
 
 // decide which part to update, if at all
@@ -81,6 +117,7 @@ void PanelPopup::update( KURL url ) {
          lst.append( kfi );
          if ( pjob ) // stop running jobs
             delete pjob;
+			dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setText( i18n( "Please wait..." ) );
          pjob = new KIO::PreviewJob( lst, stack->width(), stack->height(), stack->width(), 1, true, true, 0 );
          connect( pjob, SIGNAL( gotPreview( const KFileItem*, const QPixmap& ) ),
                   this, SLOT( view( const KFileItem*, const QPixmap& ) ) );
@@ -94,12 +131,14 @@ void PanelPopup::update( KURL url ) {
 }
 
 // called when the preview job got something for us
-void PanelPopup::view( const KFileItem*, const QPixmap& pix ) {
-   dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setPixmap( pix );
+void PanelPopup::view( const KFileItem *kfi, const QPixmap& pix ) {
+   dataLine->setText(i18n("Preview: ") + kfi->name());
+	dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setPixmap( pix );
 }
 
 // preview job failed here...
 void PanelPopup::failedToView( const KFileItem* ) {
+	dataLine->setText("");
    dynamic_cast<QLabel*>( stack->widget( Preview ) ) ->setText( i18n( "No preview available" ) );
 }
 
