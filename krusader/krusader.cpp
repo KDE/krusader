@@ -111,6 +111,7 @@ KAction *Krusader::actCloseTab = 0;
 KAction *Krusader::actSplit = 0;
 KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
+KAction *Krusader::actSyncDirs = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
 UserMenu *Krusader::userMenu = 0;
 
