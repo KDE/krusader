@@ -70,7 +70,7 @@ Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
 void Konfigurator::newContent(KonfiguratorPage *page)
 {
   kgFrames.append(page);
-  connect( page, SIGNAL( sigChanged( bool ) ), this, SLOT( slotApplyEnable() ) );
+  connect( page, SIGNAL( sigChanged() ), this, SLOT( slotApplyEnable() ) );
 }
 
 void Konfigurator::createLayout()

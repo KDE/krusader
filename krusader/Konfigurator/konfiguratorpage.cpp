@@ -1,4 +1,4 @@
-/***************************************************************************
+/* **************************************************************************
                       konfiguratorpage.cpp  -  description
                              -------------------
     copyright            : (C) 2003 by Csaba Karai
@@ -32,7 +32,7 @@
 #include <qlayout.h>
 #include "../krusader.h"
 #include <qtooltip.h>
-    
+
 KonfiguratorPage::KonfiguratorPage( bool firstTime, QWidget* parent,  const char* name ) :
   QFrame( parent, name ), firstCall( firstTime )
 {
@@ -292,7 +292,7 @@ void KonfiguratorPage::registerObject( KonfiguratorExtension *item )
   KonfiguratorExtension *currentItem = itemList.current();
   
   itemList.append( item );
-  connect( item, SIGNAL( sigChanged( bool ) ), this, SIGNAL ( sigChanged( bool ) ) );
+  connect( item, SIGNAL( sigChanged( bool ) ), this, SIGNAL ( sigChanged( ) ) );
 
   itemList.find( currentItem );
 }

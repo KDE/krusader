@@ -1,4 +1,4 @@
-/***************************************************************************
+/* **************************************************************************
                        konfiguratorpage.h  -  description
                              -------------------
     copyright            : (C) 2003 by Csaba Karai
@@ -40,57 +40,391 @@
 
 struct KONFIGURATOR_CHECKBOX_PARAM;
 struct KONFIGURATOR_NAME_VALUE_PAIR;
-   
+
+/**
+  * KonfiguratorPage is responsible for handling pages in Konfigurator.
+  * It provides simple methods for create and manage Konfigurator pages.
+  *
+  * @short The base class of a page in Konfigurator
+  */  
 class KonfiguratorPage : public QFrame
 {
   Q_OBJECT
    
 public:
+/**
+  * The constructor of the KonfiguratorPage class.
+  *
+  * @param firstTime    this parameter is true if it is the first call of Konfigurator
+  * @param parent       reference to the parent widget
+  * @param name         name of the newly generated Konfigurator page widget
+  */
   KonfiguratorPage( bool firstTime, QWidget* parent,  const char* name );
 
+  /**
+    * Applies the changes in the Konfigurator page.
+    *
+    * Writes out all relevent information to the konfiguration object and synchronizes
+    * it with the file storage (hard disk, krusaderrc file). This function calls the apply()
+    * method of each konfigurator item and finally performs the synchronization.
+    *
+    * @return             a boolean value indicates that Krusader restart is needed for the correct change
+    */
   virtual bool apply();
+
+  /**
+    * Sets every konfigurator item to its default value on the page.
+    *
+    * This method calls the setDefaults() method of each konfigurator item. This function
+    * doesn't modify the current configuration, only the values of the GUI items. The
+    * apply() method must be called for finalizing the changes.
+    */
   virtual void setDefaults();
+
+  /**
+    * Reloads the original value of each konfigurator item from the configuration object.
+    *
+    * This function calls the loadInitialValue() method of each konfigurator item.
+    * Used to rollback the changes on the konfigurator page. Called if the user
+    * responds 'No' to the "Apply changes" question.
+    */
   virtual void loadInitialValues();
+
+  /**
+    * Checks whether the page was changed.
+    *
+    * This function calls the isChanged() method of each konfigurator item and
+    * performs logical OR operation on them. Actually, this function returns true
+    * if any of the konfigurator items was changed.
+    *
+    * @return             true if at least one of the konfigurator items was changed
+    */
   virtual bool isChanged();
 
+  /**
+    * Flag, indicates the first call of Konfigurator
+    * @return             true if konfigurator was started at the first time
+    */
   inline  bool isFirst()   {return firstCall;}
 
+  /**
+    * Adds a new checkbox item to the page.
+    * <br>The checkbox widget's name is QString(cls + "/" + name).ascii()<br>
+    *
+    * Sample:<br><br>
+    * KonfiguratorCheckBox *myCheckBox = createCheckBox( "class", "name", false, parentWidget );<br>
+    * myLayout->addWidget( myCheckBox, 0, 0 );
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The item name used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the checkbox
+    * @param  text        The text field of the checkbox
+    * @param  parent      Reference to the parent widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    * @param  toolTip     Tooltip used for this checkbox
+    *
+    * @return             reference to the newly created checkbox
+    */
   KonfiguratorCheckBox    *createCheckBox( QString cls, QString name, bool dflt,
                                            QString text, QWidget *parent=0, bool rst=false,
                                            QString toolTip = QString::null );
+
+  /**
+    * Adds a new spinbox item to the page.
+    * <br>The spinbox widget's name is QString(cls + "/" + name).ascii()<br>
+    *
+    * Sample:<br><br>
+    * KonfiguratorSpinBox *mySpinBox = createSpinBox( "class", "name", 10, 1, 100, parentWidget );<br>
+    * myLayout->addWidget( mySpinBox, 0, 0 );
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The item name used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the spinbox
+    * @param  min         The minimum value of the spinbox
+    * @param  max         The maximum value of the spinbox
+    * @param  parent      Reference to the parent widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    *
+    * @return             reference to the newly created spinbox
+    */
   KonfiguratorSpinBox     *createSpinBox(  QString cls, QString name, int dflt, int min,
                                            int max, QWidget *parent = 0, bool rst = false );
+
+  /**
+    * Adds a new editbox item to the page.
+    * <br>The editbox widget's name is QString(cls + "/" + name).ascii()<br>
+    *
+    * Sample:<br><br>
+    * KonfiguratorEditBox *myEditBox = createEditBox( "class", "name", "default", parentWidget );<br>
+    * myLayout->addWidget( myEditBox, 0, 0 );
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The itemname used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the editbox
+    * @param  text        The text field of the editbox
+    * @param  parent      Reference to the parent widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    *
+    * @return             reference to the newly created editbox
+    */
   KonfiguratorEditBox     *createEditBox(  QString cls, QString name, QString dflt,
                                            QWidget *parent=0, bool rst=false );
+
+  /**
+    * Adds a new URL requester item to the page.
+    * <br>The URL requester widget's name is QString(cls + "/" + name).ascii()<br>
+    *
+    * Sample:<br><br>
+    * KonfiguratorURLRequester *myURLRequester = createURLRequester( "class", "name", "default", parentWidget );<br>
+    * myLayout->addWidget( myURLRequester, 0, 0 );
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The itemname used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the URL requester
+    * @param  text        The text field of the URL requester
+    * @param  parent      Reference to the parent widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    *
+    * @return             reference to the newly created URL requester
+    */
   KonfiguratorURLRequester *createURLRequester(  QString cls, QString name,
                                            QString dflt, QWidget *parent, bool rst );
+
+  /**
+    * Adds a new font chooser item to the page.
+    * <br>The font chooser widget's name is QString(cls + "/" + name).ascii()<br>
+    *
+    * Sample:<br><br>
+    * KonfiguratorFontChooser *myFontChooser = createFontChooser( "class", "name", new QFont(), parentWidget );<br>
+    * myLayout->addWidget( myFontChooser, 0, 0 );
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The item name used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the font chooser
+    * @param  text        The text field of the font chooser
+    * @param  parent      Reference to the parent widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    *
+    * @return             reference to the newly created font chooser
+    */
   KonfiguratorFontChooser *createFontChooser(  QString cls, QString name, QFont *dflt,
                                            QWidget *parent=0, bool rst=false );
+
+  /**
+    * Adds a new combobox item to the page.
+    * <br>The combobox widget's name is QString(cls + "/" + name).ascii()<br>
+    *
+    * Sample:<br><br>
+    * KONFIGURATOR_NAME_VALUE_PAIR comboInfo[] =<br>
+    * &nbsp;{{ i18n( "combo text1" ), "value1" },<br>
+    * &nbsp;&nbsp;{ i18n( "combo text2" ), "value2" },<br>
+    * &nbsp;&nbsp;{ i18n( "combo text3" ), "value3" }};<br><br>
+    * KonfiguratorComboBox *myComboBox = createComboBox( "class", "name", "value2", comboInfo, 3, parentWidget );<br>
+    * myLayout->addWidget( myComboBox, 0, 0 );
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The item name used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the combobox
+    * @param  params      Pointer to the name-value pair array (combo elements)
+    * @param  paramNum    Number of the combobox elements
+    * @param  text        The text field of the combobox
+    * @param  parent      Reference to the parent widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    *
+    * @return             reference to the newly created combobox
+    */
   KonfiguratorComboBox    *createComboBox(  QString cls, QString name, QString dflt,
                                            KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum,
                                            QWidget *parent=0, bool rst=false );
 
+  /**
+    * Creates a frame on the page.
+    *
+    * Sample:<br><br>
+    * QGroupBox *myGroup = createFrame( i18n( "MyFrameName" ), parentWidget, "frameName" );<br>
+    * myLayout->addWidget( myGroup, 0, 0 );
+    *
+    * @param  text        The text written out onto the frame
+    * @param  parent      Reference to the parent widget
+    * @param  widgetName  The name of the widget
+    *
+    * @return             reference to the newly created frame
+    */
   QGroupBox               *createFrame( QString text = QString::null, QWidget *parent=0,
                                            const char *widgetName=0 );
 
+  /**
+    * Creates a new QGridLayout element and sets its margins.
+    *
+    * Sample:<br><br>
+    * QGroupBox *myGroup = createFrame( i18n( "MyFrameName" ), parentWidget, "frameName" );<br>
+    * QGridLayout *myLayout = createGridLayout( myGroup->layout() );<br>
+    * myLayout->addWidget( myGroup, 0, 0 );
+    *
+    * @param  parent      Reference to the parent layout
+    *
+    * @return             reference to the newly created QGridLayout
+    */
   QGridLayout             *createGridLayout( QLayout *parent );
+
+  /**
+    * Adds a new label to a grid layout.
+    *
+    * Sample:<br><br>
+    * QGroupBox *myGroup = createFrame( i18n( "MyFrameName" ), parentWidget, "frameName" );<br>
+    * QGridLayout *myLayout = createGridLayout( myGroup->layout() );<br>
+    * addLabel( myLayout, 0, 0, i18n( "Hello world!" ), myGroup, "myLabel" );<br>
+    * mainLayout->addWidget( myGroup, 0, 0 );
+    *
+    * @param  layout      The grid layout on which the item will be placed
+    * @param  x           the column to which the label will be placed
+    * @param  y           the row to which the label will be placed
+    * @param  label       the text of the label
+    * @param  parent      Reference to the parent widget
+    * @param  widgetName  The name of the newly generated label widget
+    *
+    * @return             reference to the newly created label
+    */
   QLabel                  *addLabel( QGridLayout *layout, int x, int y, QString label,
                                            QWidget *parent=0, const char *widgetName=0 );
+
+  /**
+    * Creates a spacer object (for justifying in QHBox).
+    *
+    * Sample:<br><br>
+    * QHBox *hbox = new QHBox( myParent, "hbox" );<br>
+    * createSpinBox( "class", "spin", 5, 1, 10, hbox );<br>
+    * createSpacer( hbox, "mySpacer" );<br>
+    * myLayout->addWidget( hbox, 0, 0 );
+    *
+    * @param  parent      Reference to the parent widget
+    * @param  widgetName  The name of the newly generated label widget
+    *
+    * @return             reference to the newly created spacer widget
+    */
   QWidget                 *createSpacer( QWidget *parent=0, const char *widgetName=0 );
-  QFrame                  *createLine( QWidget *parent, const char *widgetName );
+
+  /**
+    * Creates a separator line.
+    *
+    * Sample:<br><br>
+    * QFrame *myLine = createLine( myParent, "myLine" );<br>
+    * myLayout->addWidget( myLine, 1, 0 );<br>
+    *
+    * @param  parent      Reference to the parent widget
+    * @param  widgetName  The name of the newly generated label widget
+    *
+    * @return             reference to the newly created spacer widget
+    */
+  QFrame                  *createLine( QWidget *parent=0, const char *widgetName=0 );
+
+  /**
+    * Creates a checkbox group. A checkbox group contains a lot of checkboxes.
+    * The grouped checkboxes are embedded into one widget, which can be placed anywhere
+    * on the GUI. The placing of the elements can be horizontal or vertical in the group.
+    * At horizontal placing the sizex integer defines the maximum element number in
+    * one row, sizey is 0. At vertical placing sizex is 0, and sizey defines the
+    * maximum row number in one column. The references of the checkboxes are placed
+    * into a pointer list, given by the user.<br>
+    *
+    * One specific element can be reached by the reference list. The first element is
+    * cbList.at(0), the second is cbList.at(1), ...
+    *
+    * Sample:<br><br>
+    * KONFIGURATOR_CHECKBOX_PARAM myCBArray[] =<br>
+    * &nbsp;{{"CbClass","CbName1", false, i18n( "name1" ), false, "tooltip1"},<br>
+    * &nbsp;&nbsp;{"CbClass","CbName2", true, i18n( "name2" ), false, "tooltip2"},<br>
+    * &nbsp;&nbsp;{"CbClass","CbName3", true, i18n( "name3" ), false, "tooltip3"}};<br><br>
+    * QPtrList&lt;KonfiguratorCheckBox&gt; myCheckboxes;<br>
+    * QFrame *myCheckBoxGroup = createCheckBoxGroup( 1, 0, myCBArray, 3, myCheckboxes, myParent, "myCheckboxGroup" );<br>
+    * myCheckboxes.at( 0 )->setEnabled( false );<br><br>
+    * myLayout->addWidget( myCheckBoxGroup, 0, 0 );<br>
+    *
+    * @param  sizex       the maximum column number at horizontal placing
+    * @param  sizey       the maximum row number at vertical placing
+    * @param  params      pointer to the checkbox array
+    * @param  paramNum    number of the checkbox elements
+    * @param  cbList      reference to the pointerlist where the checkboxes will be placed
+    * @param  parent      Reference to the parent widget
+    * @param  widgetName  The name of the newly created checkbox group widget
+    *
+    * @return             reference to the newly created checkbox group widget
+    */
   QWidget                 *createCheckBoxGroup( int sizex, int sizey,
                                            KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum,
                                            QPtrList<KonfiguratorCheckBox> &cbList,
                                            QWidget *parent=0, const char *widgetName=0 );
+  /**
+    * Creates a radio button group. A radio button group contains a lot of radio buttons.
+    * The grouped buttons are embedded into one widget, which can be placed anywhere
+    * on the GUI. The placing of the elements can be horizontal or vertical in the group.
+    * At horizontal placing the sizex integer defines the maximum element number in
+    * one row, sizey is 0. At vertical placing sizex is 0, and sizey defines the
+    * maximum row number in one column.<br>
+    *
+    * The references of the buttons can be accessed by the radioButtons fields of the
+    * KonfiguratorRadioButtons object. The first element is myRadioGrp->radioButtons.at(0),
+    * the second is myRadioGrp->radioButtons.at(1), ...
+    *
+    * Sample:<br><br>
+    * KONFIGURATOR_NAME_VALUE_PAIR radioInfo[] =<br>
+    * &nbsp;{{ i18n( "radio text1" ), "value1" },<br>
+    * &nbsp;&nbsp;{ i18n( "radio text2" ), "value2" },<br>
+    * &nbsp;&nbsp;{ i18n( "radio text3" ), "value3" }};<br><br>
+    * KonfiguratorRadioButtons *myRadioGroup = createRadioButtonGroup( "class", "name", "value1", 1, 0, radioInfo, 3, myParent, "myRadioGroup" );<br>
+    * myRadioGroup->radioButtons.at( 0 )->setEnabled( false );<br>
+    * myLayout->addWidget( myRadioGroup->getGroupWidget(), 0, 0 );<br>
+    *
+    * @param  cls         The class name used in KConfig (ex. "Archives")
+    * @param  name        The item name used in KConfig (ex. "Do Tar")
+    * @param  dflt        The default value of the radio buttons
+    * @param  sizex       the maximum column number at horizontal placing
+    * @param  sizey       the maximum row number at vertical placing
+    * @param  params      pointer to the checkbox array
+    * @param  paramNum    number of the checkbox elements
+    * @param  parent      Reference to the parent widget
+    * @param  widgetName  The name of the newly created button group widget
+    * @param  rst         The change of this parameter requires Krusader restart
+    *
+    * @return             reference to the newly created radio button group widget
+    */
   KonfiguratorRadioButtons *createRadioButtonGroup( QString cls, QString name, 
                                            QString dflt, int sizex, int sizey,
                                            KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum,
                                            QWidget *parent=0, const char *widgetName=0, bool rst=false );
+
+  /**
+    * This function is used to insert new, unknown items into KonfiguratorPage. The
+    * item must be derived from KonfiguratorExtension class, which have
+    * isChanged(), apply(), setDefaults, loadInitialValue() methods. After that, the
+    * object is properly handled by Konfigurator page.
+    *
+    *
+    * @param  item        The item to be added to KonfiguratorPage
+    */
   void                    registerObject( KonfiguratorExtension *item );
+
+  /**
+    * This function is used to remove elements from KonfiguratorPage.
+    *
+    * Sample:<br><br>
+    * KonfiguratorEditBox *myEditBox = createEditBox( "class", "name", "default", parentWidget );<br>
+    * myLayout->addWidget( myEditBox, 0, 0 );<br>
+    * removeObject( myEditBox->extension() );
+    *
+    * After the removeObject myEditBox will be untouched at apply(), setDefaults(), isChanged(),
+    * loadInitialValues() methods of the KonfiguratorPage.
+    *
+    * @param  item        The item to be removed from KonfiguratorPage
+    */
   void                    removeObject( KonfiguratorExtension *item );
 
 signals:
-  void  sigChanged( bool );
+  /**
+    * The signal is emitted if the changed flag was modified in any konfigurator item.
+    * Used for enabling/disabling the apply button.
+    */
+  void  sigChanged();
   
 protected:
   QPtrList<KonfiguratorExtension> itemList;
@@ -99,13 +433,35 @@ private:
   bool  firstCall;
 };
 
+/**
+  * KONFIGURATOR_CHECKBOX_PARAM is the basic item of checkbox arrays. It contains
+  * every information related to a checkbox.
+  */
 struct KONFIGURATOR_CHECKBOX_PARAM
 {
+  /**
+    * The class used in KConfig (ex. "Archives")
+    */
   QString configClass;
+  /**
+    * The item name used in KConfig (ex. "Do Tar")
+    */
   QString configName;
+  /**
+    * The default value of the checkbox
+    */
   bool    defaultValue;
+  /**
+    * The text field of the checkbox
+    */
   QString text;
+  /**
+    * The change of this parameter requires Krusader restart
+    */
   bool    restart;
+  /**
+    * The checkbox's tooltip
+    */
   QString toolTip;
 };
 
