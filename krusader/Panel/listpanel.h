@@ -101,6 +101,11 @@ public slots:
    void slotFocusAndCDHome();
    void slotFocusAndCDup();
    void slotFocusAndCDOther();
+	// for signals from vfs' dirwatch
+	void slotItemAdded(vfile *vf);
+	void slotItemDeleted(const QString& name);
+	void slotItemUpdated(vfile *vf);
+	
 
    ///////////////////////// service functions - called internally ////////////////////////
    inline void setOther( ListPanel *panel ) {
