@@ -27,7 +27,6 @@
 #include <qstringlist.h>
 #include <qclipboard.h>
 
-#define ACTIVE    krApp->mainView->activePanel
 #define NEED_PANEL		if ( panel == 0 ) { \
 					   kdWarning() << "Expander: no panel specified for %_" << _expression << "%; ignoring..." << endl; \
 					   return QString::null; \
@@ -51,9 +50,9 @@ QString exp_Path::expFunc( const ListPanel* panel, const QStringList& parameter,
    QString result;
    
    if ( useUrl )
-      result = panel->func->files()->vfs_getOrigin().url();
+      result = panel->func->files()->vfs_getOrigin().url() + "/";
    else
-      result = panel->func->files()->vfs_getOrigin().path();
+      result = panel->func->files()->vfs_getOrigin().path() + "/";
          
    if ( parameter[0].lower() == "no" )  // don't escape spaces
       return result;
@@ -112,7 +111,7 @@ QString exp_Current::expFunc( const ListPanel* panel, const QStringList& paramet
    
    QString item;
    if ( currentItem >= 0) {  // in a callEach-cycle
-      if ( panel == ACTIVE ) {  // callEach works only in the active panel
+      if ( panel == ACTIVE_PANEL ) {  // callEach works only in the active panel
          QStringList items;
          panel->view->getSelectedItems( &items );
          item = items[currentItem];
@@ -334,8 +333,10 @@ QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const
    KURL src = parameter[0];
    KURL dest = parameter[1];
    
-   if ( !dest.isValid() || !src.isValid() )
+   if ( !dest.isValid() || !src.isValid() ) {
+      kdWarning() << "Expander: invalid URL's in %_Copy(\"src\", \"dest\")%" << endl;
       return QString::null; // do nothing with invalid url's
+   }
 
    new KIO::CopyJob( src, dest, KIO::CopyJob::Copy, false, true );
 
@@ -449,7 +450,7 @@ QStringList Expander::expand( const QString& stringToExpand, bool useUrl, bool c
    QStringList result;
    if ( callEach ) {
       QStringList items;
-      ACTIVE->view->getSelectedItems( &items );
+      ACTIVE_PANEL->view->getSelectedItems( &items );
       for ( unsigned int currentItem = 0; currentItem < items.count(); ++currentItem )
          result.append( expandCurrent( stringToExpand, useUrl, currentItem ) );
    }
