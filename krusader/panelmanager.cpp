@@ -53,9 +53,14 @@ QWidget( parent ), _layout( 0 ), _left( left ), _self( self ), _other( other ), 
       }
 
 void PanelManager::slotChangePanel( ListPanel *p ) {
-   _self = p;
+	// set the old panel to be quiet
+	_self->func->files()->vfs_setQuiet(true);
+
+	_self = p;
    _self->otherPanel = _other;
    _other->otherPanel = _self;
+	// and the active one to loud
+	_self->func->files()->vfs_setQuiet(false);
 
    _stack->raiseWidget( _self );
    kapp->processEvents();
@@ -137,8 +142,9 @@ void PanelManager::slotNewTab( QString path, bool setCurrent ) {
    p->otherPanel = _other;
    if( setCurrent )
    {
-     _self = p;
-     _other->otherPanel = _self;
+     //_self = p;
+     //_other->otherPanel = _self;
+	  slotChangePanel(p);
    }
    startPanel( p, path );
 }
@@ -150,14 +156,11 @@ void PanelManager::slotCloseTab() {
    // setup current one
    ListPanel * oldp;
    _self = _tabbar->removeCurrentPanel( oldp );
-   _stack->raiseWidget( _self );
-   _stack->removeWidget( oldp );
+	_stack->removeWidget( oldp );
    delete oldp;
 
-   // setup pointers
-   _self->otherPanel = _other;
-   _other->otherPanel = _self;
-   _self->slotFocusOnMe();
+	slotChangePanel(_self);
+	_self->slotFocusOnMe();
 
    // disable close button if only 1 tab is left
    if ( _tabbar->count() == 1 ) {
@@ -178,9 +181,7 @@ void PanelManager::slotCloseTab( int index ) {
          if( newCurrent != 0 )
          {
             _tabbar->setCurrentTab( newCurrent );
-            _self = newCurrent->panel;
-            _self->otherPanel = _other;
-            _other->otherPanel = _self;
+				slotChangePanel(newCurrent->panel);
          }
       }  
       _tabbar->removeTab( t );
@@ -222,11 +223,12 @@ void PanelManager::setCurrentTab( int panelIndex )
   if( current == 0 )
     return;  
   _tabbar->setCurrentTab( current );
-  _self = current->panel;
-  _self->otherPanel = _other;
-  _other->otherPanel = _self;
+  //_self = current->panel;
+  //_self->otherPanel = _other;
+  //_other->otherPanel = _self;
 
-  _stack->raiseWidget( _self );
+  //_stack->raiseWidget( _self );
+  slotChangePanel(current->panel);
 }
 
 void PanelManager::recreatePanels() {
