@@ -512,7 +512,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         break;
       }
       case Key_QuoteLeft :  // Terminal Emulator bugfix
-        if ( e->state()==ControlButton ) { // let the panel handle it
+//        if ( e->state()==ControlButton ) { // let the panel handle it
           e->ignore();
           break;
         } else {          // a normal click - do a lynx-like moving thing
