@@ -443,9 +443,13 @@ void KrDetailedView::keyPressEvent(QKeyEvent *e) {
         return;
       } else { // just a normal click - do a lynx-like moving thing
         KrViewItem *i = getCurrentKrViewItem();
+        if (i->name() == "..") { // if clicking on the ".." entry
+          SLOTS->dirUp(); // ask krusader to move up a directory
+          return;
+        }
         if (i->isDir()) {             // we create a return-pressed event,
-          QString tmp = i->name();
-          emit executed(tmp);  // thereby emulating a chdir
+            QString tmp = i->name();
+            emit executed(tmp);  // thereby emulating a chdir
         }
         return; // safety
       }
