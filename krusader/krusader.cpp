@@ -402,7 +402,10 @@ void Krusader::savePosition() {
 void Krusader::saveSettings() {
   toolBar() ->saveSettings( krConfig, "Private" );
   config->setGroup( "Startup" );
-  if ( config->readBoolEntry( "Panels Save Settings", _PanelsSave ) ) {
+  bool panelsavesettings = config->readBoolEntry("Panels Save Settings",_PanelsSave);
+  bool rememberpos = config->readBoolEntry("Remember Position",_RememberPos);
+  bool uisavesettings = config->readBoolEntry("UI Save Settings",_UiSave);
+  if ( panelsavesettings ) {
     // left panel
     config->writeEntry( "Left Panel Type", i18n( "List" ) );
     config->writeEntry( "Left Panel Origin", i18n( "the last place it was" ) );
@@ -415,13 +418,12 @@ void Krusader::saveSettings() {
   config->writeEntry( "lastHomeRight", mainView->right->realPath );
 
   // save size and position
-  if ( config->readBoolEntry( "Remember Position", _RememberPos ) ||
-       config->readBoolEntry( "UI Save Settings", _UiSave ) ) {
+  if ( rememberpos || uisavesettings ) {
     savePosition();
   }
 
   // save the gui
-  if ( config->readBoolEntry( "UI Save Settings", _UiSave ) ) {
+  if ( uisavesettings ) {
     config->writeEntry( "Show status bar", actShowStatusBar->isChecked() );
     config->writeEntry( "Show tool bar", actShowToolBar->isChecked() );
     config->writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );
