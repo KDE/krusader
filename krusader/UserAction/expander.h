@@ -358,6 +358,7 @@ protected:
   
 private:
    QValueList <exp_placeholder*> _placeholder;
+   bool _ua_cancel;
 };
 
 #endif // ifndef EXPANDER_H
