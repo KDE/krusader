@@ -26,7 +26,7 @@ ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.
 ldflags=\s                          \s
 
 [General]
-AMChanged=true
+AMChanged=false
 author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
@@ -751,7 +751,7 @@ install_location=
 type=HEADER
 
 [krusader/Panel/Makefile.am]
-files=krusader/Panel/listpanel.cpp,krusader/Panel/panelfunc.cpp,krusader/Panel/panelfunc.h,krusader/Panel/listpanel.h,krusader/Panel/krdetailedview.cpp,krusader/Panel/krdetailedview.h,krusader/Panel/krdetailedviewitem.cpp,krusader/Panel/krdetailedviewitem.h,krusader/Panel/krview.cpp,krusader/Panel/krview.h,krusader/Panel/krviewitem.h,krusader/Panel/krpreviewpopup.cpp,krusader/Panel/krpreviewpopup.h
+files=krusader/Panel/listpanel.cpp,krusader/Panel/panelfunc.cpp,krusader/Panel/panelfunc.h,krusader/Panel/listpanel.h,krusader/Panel/krdetailedview.cpp,krusader/Panel/krdetailedview.h,krusader/Panel/krdetailedviewitem.cpp,krusader/Panel/krdetailedviewitem.h,krusader/Panel/krview.cpp,krusader/Panel/krview.h,krusader/Panel/krviewitem.h,krusader/Panel/krpreviewpopup.cpp,krusader/Panel/krpreviewpopup.h,krusader/Panel/krpopupmenu.cpp,krusader/Panel/krpopupmenu.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=Panel
 sub_dirs=
@@ -776,6 +776,18 @@ install_location=
 type=SOURCE
 
 [krusader/Panel/krdetailedviewitem.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Panel/krpopupmenu.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Panel/krpopupmenu.h]
 dist=true
 install=false
 install_location=

@@ -38,7 +38,8 @@ A
 #include <kapplication.h>
 #include <dcopclient.h>
 #include <kglobal.h>
-#include <klocale.h> 
+#include <klocale.h>
+#include <kaccelmanager.h>
 // QT includes
 #include <qpixmap.h>
 #include <qstringlist.h>
@@ -177,6 +178,9 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ) {
   setCentralWidget( mainView );
   config->setGroup( "Look&Feel" );
   show();
+
+  // manage our keyboard short-cuts
+  //KAcceleratorManager::manage(this,true);
 
   setCursor( KCursor::arrowCursor() );
   // first, resize and move to starting point
