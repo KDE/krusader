@@ -838,9 +838,9 @@ QStringList Krusader::supportedTools() {
    QStringList tools;
 
    // first, a diff program: kdiff
-   if ( KrServices::cmdExist( "kdiff" ) ) {
+   if ( KrServices::cmdExist( "kdiff3" ) ) {
       tools.append( "DIFF" );
-      tools.append( KrServices::fullPathName( "kdiff", "diff utility" ) );
+      tools.append( KrServices::fullPathName( "kdiff3", "diff utility" ) );
    } else if ( KrServices::cmdExist( "kompare" ) ) {
       tools.append( "DIFF" );
       tools.append( KrServices::fullPathName( "kompare", "diff utility" ) );
