@@ -80,7 +80,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
      {"Advanced","Confirm Delete",        _ConfirmDelete,     i18n( "Deleting files" ),                   false,  ""},
      {"Advanced","Confirm Copy",          _ConfirmCopy,       i18n( "Copying files" ),                    false,  ""},
      {"Advanced","Confirm Move",          _ConfirmMove,       i18n( "Moving files" ),                     false,  ""},
-     {"Search","Confirm Feed to Listbox",  _ConfirmFeedToListbox, i18n( "Search: Feed to Listbox" ), false, i18n("if checked, Krusader will ask for a result-name; else \"Search result n\" will be used")},
+     {"Advanced","Confirm Feed to Listbox",  _ConfirmFeedToListbox, i18n( "Confirm feed to listbox" ), false, i18n("if checked, Krusader will ask for a result-name; else the default value will be used")},
      {"Notification Messages","Confirm Remove UserAction", true, i18n( "Removing Useractions" ), false,  ""}};
 
   KonfiguratorCheckBoxGroup *confWnd = createCheckBoxGroup( 2, 0, confirmations, 6, confirmGrp );

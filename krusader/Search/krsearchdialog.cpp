@@ -494,7 +494,7 @@ void KrSearchDialog::feedToListBox()
   static int listBoxNum = 1;
   QString queryName = i18n("Search results")+QString( " %1" ).arg( listBoxNum++ );
   
-  krConfig->setGroup( "Search" );
+  krConfig->setGroup( "Advanced" );
   if ( krConfig->readBoolEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
     bool ok;
     queryName = KInputDialog::getText(

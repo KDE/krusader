@@ -49,6 +49,7 @@
 #include <qcursor.h>
 #include <qeventloop.h>
 #include <kfinddialog.h>
+#include <kinputdialog.h>
 #include <qregexp.h>
 #include <qdir.h>
 
@@ -481,7 +482,20 @@ bool LocateDlg::find()
 void LocateDlg::feedToListBox()
 {
   static int listBoxNum = 1;
+  QString queryName = i18n("Locate results")+QString( " %1" ).arg( listBoxNum++ );
   
+  krConfig->setGroup( "Advanced" );
+  if ( krConfig->readBoolEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
+    bool ok;
+    queryName = KInputDialog::getText(
+                i18n("Query name"),		// Caption
+                i18n("Here you can name the file collection"),	// Questiontext
+                queryName,	// Default
+                &ok );
+     if ( ! ok)
+       return;
+  }
+    
   KURL::List urlList;
   QListViewItem * item = resultList->firstChild();
   while( item )
@@ -489,7 +503,7 @@ void LocateDlg::feedToListBox()
     urlList.push_back( vfs::fromPathOrURL( item->text( 0 ) ) );
     item = item->nextSibling();
   }
-  KURL url = KURL::fromPathOrURL(QString("virt:/")+ i18n("Locate results")+QString( " %1" ).arg( listBoxNum++ ));
+  KURL url = KURL::fromPathOrURL(QString("virt:/")+ queryName);
   virt_vfs v(0,true);
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
