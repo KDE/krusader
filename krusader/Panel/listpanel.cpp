@@ -504,7 +504,7 @@ void ListPanel::popRightClickMenu(const QPoint &loc) {
       openWith.insertItem(krLoader->loadIcon("konsole",KIcon::Small),i18n("Terminal"),OPEN_TERM_ID);
     openWith.insertItem(i18n("Other..."),CHOOSE_ID);
     popup.insertItem(QPixmap(),&openWith,OPEN_WITH_ID);
-    popup.changeItem(OPEN_WITH_ID,"Open with");
+    popup.changeItem(OPEN_WITH_ID,i18n("Open with"));
     popup.insertSeparator();
   }
   // COPY
