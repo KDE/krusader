@@ -92,7 +92,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   addLabel( lookFeelGrid, 10, 0, i18n( "Mouse Selection Mode:" ),
             lookFeelGrp, "lookAndFeelLabel4" );
   KONFIGURATOR_NAME_VALUE_PAIR mouseSelection[] =
-    {{ i18n( "Classic Mode" ),                   "0" },
+    {{ i18n( "Krusader Mode" ),                   "0" },
      { i18n( "Konqueror Mode" ),                      "1" },    
      { i18n( "Total-Commander Mode" ), "2" }};
   KonfiguratorRadioButtons *mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
