@@ -412,6 +412,12 @@
     <listitem><para><keycombo action="simul">&Shift;<keycap>left clicking</keycap></keycombo> will
                       mark all the files between the previous cursor location and the new one.</para>
 		      </listitem>
+    <listitem><para><keycombo action="simul">&Shift;<keycap>Home</keycap></keycombo> will
+                      clear the actual marking and marks the cusor and all elements above the cursor.</para>
+		      </listitem>
+    <listitem><para><keycombo action="simul">&Shift;<keycap>End</keycap></keycombo> will
+                      clear the actual marking and marks the cusor and all elements below the cursor.</para>
+		      </listitem>		      		      
     <listitem><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo>
                       or  <keycombo action="simul">&Ctrl;<keycap>Down arrow</keycap></keycombo>
                       will toggle the mark state of the files under the cursor.</para>
@@ -1274,6 +1280,12 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <row>
 <entry><para><keycap>MENU</keycap></para></entry>
 <entry><para>Right-click menu</para></entry></row>
+<row>
+<entry><para><keycap>Home</keycap></para></entry>
+<entry><para>Cursor jumps to ..</para></entry></row>
+<row>
+<entry><para><keycap>End</keycap></para></entry>
+<entry><para>Cursor jumps to latest file</para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>
@@ -1311,10 +1323,13 @@ will run the <command>ls</command> in the panel path <replaceable>p</replaceable
 <itemizedlist>
 <title>Other Key-bindings</title>
 	<listitem>
-	   <para><link linkend="krviewer">KrViewer</link>.</para>
+	   <para><link linkend="marking-files">Marking files</link></para>
 	</listitem>
 	<listitem>
-	   <para>&kde; Control center -> Accessibility -> Keyboard Shortcuts.</para>
+	   <para><link linkend="krviewer">KrViewer</link></para>
+	</listitem>
+	<listitem>
+	   <para>&kde; Control center -> Accessibility -> Keyboard Shortcuts</para>
 	</listitem>
 </itemizedlist>
 
