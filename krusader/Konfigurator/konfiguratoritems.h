@@ -283,6 +283,16 @@ struct KONFIGURATOR_NAME_VALUE_PAIR
   QString value;
 };
 
+// KONFIGURATOR_NAME_VALUE_TIP structure
+///////////////////////////////
+
+struct KONFIGURATOR_NAME_VALUE_TIP
+{
+  QString text;
+  QString value;
+  QString tooltip;
+};
+
 // KonfiguratorComboBox class
 ///////////////////////////////
 

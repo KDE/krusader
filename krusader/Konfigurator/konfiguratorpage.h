@@ -39,6 +39,7 @@
 #include <qlayout.h>
 
 struct KONFIGURATOR_CHECKBOX_PARAM;
+struct KONFIGURATOR_NAME_VALUE_TIP;
 struct KONFIGURATOR_NAME_VALUE_PAIR;
 
 /**
@@ -363,10 +364,10 @@ public:
     * The first element is myRadioGrp->find( 0 ), "myRadio" element is myRadioGrp->find( "myRadio" ) ...
     *
     * Sample:<br><br>
-    * KONFIGURATOR_NAME_VALUE_PAIR radioInfo[] =<br>
-    * &nbsp;{{ i18n( "radio text1" ), "value1" },<br>
-    * &nbsp;&nbsp;{ i18n( "radio text2" ), "value2" },<br>
-    * &nbsp;&nbsp;{ i18n( "radio text3" ), "value3" }};<br><br>
+    * KONFIGURATOR_NAME_VALUE_TIP radioInfo[] =<br>
+    * &nbsp;{{ i18n( "radio text1" ), "value1", i18n( "tooltip1" ) },<br>
+    * &nbsp;&nbsp;{ i18n( "radio text2" ), "value2", i18n( "tooltip2" ) },<br>
+    * &nbsp;&nbsp;{ i18n( "radio text3" ), "value3", i18n( "tooltip3" ) }};<br><br>
     * KonfiguratorRadioButtons *myRadioGroup = createRadioButtonGroup( "class", "name", "value1", 1, 0, radioInfo, 3, myParent, "myRadioGroup" );<br>
     * myRadioGroup->find( i18n( "radio text1" ) )->setEnabled( false );<br>
     * myLayout->addWidget( myRadioGroup, 0, 0 );<br>
@@ -386,7 +387,7 @@ public:
     */
   KonfiguratorRadioButtons *createRadioButtonGroup( QString cls, QString name, 
                                            QString dflt, int sizex, int sizey,
-                                           KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum,
+                                           KONFIGURATOR_NAME_VALUE_TIP *params, int paramNum,
                                            QWidget *parent=0, const char *widgetName=0, bool rst=false );
 
   /**

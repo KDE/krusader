@@ -57,7 +57,7 @@
 #include "kguseractions.h"
 #include "kgprotocols.h"
 
-Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
+Konfigurator::Konfigurator( bool f, int startPage ) : KDialogBase(0,0,true,"Konfigurator",
       KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
       KDialogBase::User1, false, i18n("Defaults") ), firstTime(f), internalCall( false ),
       restartGUI( false )
@@ -71,7 +71,7 @@ Konfigurator::Konfigurator(bool f) : KDialogBase(0,0,true,"Konfigurator",
   connect( widget, SIGNAL( aboutToShowPage(QWidget *) ), this, SLOT( slotPageSwitch() ) );
   connect( &restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
   
-  createLayout();
+  createLayout( startPage );
   setMainWidget(widget);
   exec();
 }
@@ -82,14 +82,10 @@ void Konfigurator::newContent(KonfiguratorPage *page)
   connect( page, SIGNAL( sigChanged() ), this, SLOT( slotApplyEnable() ) );
 }
 
-void Konfigurator::createLayout()
+void Konfigurator::createLayout( int startPage )
 {
-  // welcome
-//  newContent(new KgWelcome(firstTime, widget->addPage(i18n("Welcome"),i18n("Welcome to Konfigurator"),
-//    QPixmap(krLoader->loadIcon("krusader",KIcon::Desktop,32)))));
-  QFrame *firstPage;
   // startup
-  newContent(new KgStartup(firstTime, firstPage = widget->addPage(i18n("Startup"),
+  newContent(new KgStartup(firstTime, widget->addPage(i18n("Startup"),
     i18n("Krusader's setting upon startup"),QPixmap(krLoader->loadIcon("gear",
       KIcon::Desktop,32)))));
   // look n' feel
@@ -117,8 +113,8 @@ void Konfigurator::createLayout()
   // protocols
   newContent(new KgProtocols(firstTime, widget->addPage(i18n("Protocols"),
     i18n("Link mimes to protocols"), QPixmap(krLoader->loadIcon("about_kde",KIcon::Desktop,32)))));
-
-  widget->showPage( widget->pageIndex( firstPage ) );
+        
+  widget->showPage( widget->pageIndex( kgFrames.at( startPage )->parentWidget() ) );
   slotApplyEnable();
 }
 

@@ -76,26 +76,28 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   lookFeelGrid->addWidget( cbs, 0, 0 );
   connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
-  		lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep1" ), 1, 0 );
+  lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep1" ), 1, 0 );
   
-	addLabel( lookFeelGrid, 7, 0, i18n( "Single click / Double click Selection:" ),
+  addLabel( lookFeelGrid, 7, 0, i18n( "Single click / Double click Selection:" ),
             lookFeelGrp, "lookAndFeelLabel0" );
-				
-   KONFIGURATOR_NAME_VALUE_PAIR singleOrDoubleClick[] =
-    {{ i18n( "Double-click selects (classic)" ),                   "0" },
-     { i18n( "Obey KDE's global selection policy" ),               "1" }};    
+
+   KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
+  //          name                                               value  tooltip
+    {{ i18n( "Double-click selects (classic)" ),                   "0", "" },
+     { i18n( "Obey KDE's global selection policy" ),               "1", "" }};    
   KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, lookFeelGrp, "myLook&FeelRadio0", true );
   lookFeelGrid->addWidget( clickRadio, 8, 0 );
   
   
- 		 lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep2" ), 9, 0 );
+  lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep2" ), 9, 0 );
   
   addLabel( lookFeelGrid, 10, 0, i18n( "Mouse Selection Mode:" ),
             lookFeelGrp, "lookAndFeelLabel4" );
-  KONFIGURATOR_NAME_VALUE_PAIR mouseSelection[] =
-    {{ i18n( "Krusader Mode" ),                   "0" },
-     { i18n( "Konqueror Mode" ),                      "1" },    
-     { i18n( "Total-Commander Mode" ), "2" }};
+  KONFIGURATOR_NAME_VALUE_TIP mouseSelection[] =
+  //            name                 value  tooltip
+    {{ i18n( "Krusader Mode" ),        "0", "" },
+     { i18n( "Konqueror Mode" ),       "1", "" },    
+     { i18n( "Total-Commander Mode" ), "2", "" }};
   KonfiguratorRadioButtons *mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
       "0", 1, 0, mouseSelection, 3, lookFeelGrp, "myLook&FeelRadio", true );
   lookFeelGrid->addWidget( mouseRadio, 11, 0 );

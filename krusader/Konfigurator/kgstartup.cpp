@@ -45,9 +45,10 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   QGroupBox *panelsGrp = createFrame( i18n( "Panels" ), parent, "panelsGrp" );
   QGridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
 
-  KONFIGURATOR_NAME_VALUE_PAIR savePanels[] =
-    {{ i18n( "Save settings on exit" )             ,  "true" },
-     { i18n( "Start with the following settings:" ),  "false" } };
+  KONFIGURATOR_NAME_VALUE_TIP savePanels[] =
+  //          name                                    value   tooltip
+    {{ i18n( "Save settings on exit" )             ,  "true",  "" },
+     { i18n( "Start with the following settings:" ),  "false", "" } };
 
   saveRadio = createRadioButtonGroup( "Startup", "Panels Save Settings",
       "false", 1, 0, savePanels, 2, panelsGrp, "mySaveRadio", false );

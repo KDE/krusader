@@ -51,9 +51,10 @@ KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
   QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgGenGeneralGrp" );
   QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
-  KONFIGURATOR_NAME_VALUE_PAIR deleteMode[] =
-    {{ i18n( "Delete files" ),  "false" },
-     { i18n( "Move to trash" ), "true" }};
+  KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
+  //            name            value    tooltip
+    {{ i18n( "Delete files" ),  "false", "" },
+     { i18n( "Move to trash" ), "true",  "" }};
 
   KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
       "true", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );

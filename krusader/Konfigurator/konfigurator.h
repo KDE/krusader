@@ -47,14 +47,14 @@ class Konfigurator : public KDialogBase
    Q_OBJECT
 
 public:
-  Konfigurator(bool f=false); // true if Konfigurator is run for the first time
+  Konfigurator( bool f=false, int startPage = 0 ); // true if Konfigurator is run for the first time
   ~Konfigurator() {};
 
   bool isGUIRestartNeeded() { return restartGUI; }
 
 protected:
   void newContent(KonfiguratorPage *widget);// adds widget into newPage and connects to slot
-  void createLayout();
+  void createLayout( int startPage );
 
 protected slots:
   void slotUser1();
