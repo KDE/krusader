@@ -22,8 +22,8 @@ bin_program=krusader
 cflags=-DKDE_NO_COMPAT
 cppflags=-DKDE_NO_COMPAT
 cxxflags=\s-O0 -Wall
-ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                        \s
+ldadd=VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a -lm $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
+ldflags=\s                         \s
 
 [General]
 AMChanged=false
@@ -284,67 +284,67 @@ install_location=
 type=DATA
 
 [krusader/BookMan/Makefile.am]
-files=krusader/BookMan/bookman.cpp,krusader/BookMan/bookmaneditbase.cpp,krusader/BookMan/bookmaneditbase.h,krusader/BookMan/bookmanedit.cpp,krusader/BookMan/bookmanedit.h,krusader/BookMan/bookmanguibase.cpp,krusader/BookMan/bookmanguibase.h,krusader/BookMan/bookmangui.cpp,krusader/BookMan/bookmangui.h,krusader/BookMan/bookman.h
+files=krusader/BookMan/addbookmarkdlg.cpp,krusader/BookMan/addbookmarkdlg.h,krusader/BookMan/addbookmarkform.ui,krusader/BookMan/bookmarksbutton.cpp,krusader/BookMan/bookmarksbutton.h,krusader/BookMan/kbookmarkhandler.cpp,krusader/BookMan/kbookmarkhandler.h,krusader/BookMan/kbookmarkmanager.h,krusader/BookMan/kbookmarkmenu.cpp,krusader/BookMan/kbookmarkmenu.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=BookMan
 sub_dirs=
 type=static_library
 
-[krusader/BookMan/bookman.cpp]
+[krusader/BookMan/addbookmarkdlg.cpp]
 dist=true
 install=false
 install_location=
 type=SOURCE
 
-[krusader/BookMan/bookman.h]
+[krusader/BookMan/addbookmarkdlg.h]
 dist=true
 install=false
 install_location=
 type=HEADER
 
-[krusader/BookMan/bookmanedit.cpp]
+[krusader/BookMan/addbookmarkform.ui]
 dist=true
 install=false
 install_location=
 type=SOURCE
 
-[krusader/BookMan/bookmanedit.h]
+[krusader/BookMan/bookmarksbutton.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/BookMan/bookmarksbutton.h]
 dist=true
 install=false
 install_location=
 type=HEADER
 
-[krusader/BookMan/bookmaneditbase.cpp]
+[krusader/BookMan/kbookmarkhandler.cpp]
 dist=true
 install=false
 install_location=
 type=SOURCE
 
-[krusader/BookMan/bookmaneditbase.h]
+[krusader/BookMan/kbookmarkhandler.h]
 dist=true
 install=false
 install_location=
 type=HEADER
 
-[krusader/BookMan/bookmangui.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
-[krusader/BookMan/bookmangui.h]
+[krusader/BookMan/kbookmarkmanager.h]
 dist=true
 install=false
 install_location=
 type=HEADER
 
-[krusader/BookMan/bookmanguibase.cpp]
+[krusader/BookMan/kbookmarkmenu.cpp]
 dist=true
 install=false
 install_location=
 type=SOURCE
 
-[krusader/BookMan/bookmanguibase.h]
+[krusader/BookMan/kbookmarkmenu.h]
 dist=true
 install=false
 install_location=
