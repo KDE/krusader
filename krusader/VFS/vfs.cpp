@@ -36,7 +36,7 @@
 #include <time.h>
 #include "../krusader.h"
 
-vfs::vfs(QObject* panel, bool quiet): error(false),quietMode(quiet){
+vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),vfileIterator(0){
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
 		}
@@ -54,16 +54,6 @@ KIO::filesize_t vfs::vfs_totalSize(){
 		vf=vfs_getNextFile();
 	}
 	return temp;                                                     
-}
-
-vfile* vfs::vfs_search(const QString& name){	
-	vfile* temp = vfs_getFirstFile();
-		
-	while (temp!=0){
-		if (temp->vfile_getName()==name) return temp;
-		temp=vfs_getNextFile();
-	}
-	return 0;
 }
 
 bool vfs::vfs_refresh(KIO::Job* job){
@@ -111,43 +101,10 @@ KURL vfs::fromPathOrURL( const QString &originIn )
   return url;
 }
 
-#if 0
-QString vfs::round(int i){
-	QString t;
-	t.sprintf("%d",i);
-	if(i<10) t=("0"+t);
-	return t;
+void vfs::setVfsFilesP(QDict<vfile>* dict){
+	vfs_filesP=dict;
+	if( vfileIterator ) delete vfileIterator;
+	vfileIterator = new QDictIterator<vfile>(*dict);
 }
-
-QString vfs::month2Qstring(QString month){
-	if(month.lower() == "jan" ) return QString("01");
-	if(month.lower() == "feb" ) return QString("02");
-	if(month.lower() == "mar" ) return QString("03");
-	if(month.lower() == "apr" ) return QString("04");
-	if(month.lower() == "may" ) return QString("05");
-	if(month.lower() == "jun" ) return QString("06");
-	if(month.lower() == "jul" ) return QString("07");
-	if(month.lower() == "aug" ) return QString("08");
-	if(month.lower() == "sep" ) return QString("09");
-	if(month.lower() == "oct" ) return QString("10");
-	if(month.lower() == "nov" ) return QString("11");
-	if(month.lower() == "dec" ) return QString("12");
-	return QString("00");
-}
-
-// create a easy to read date-time format
-QString vfs::dateTime2QString(const QDateTime& datetime){
-	QString dateTime;
-	QDate date = datetime.date();
-	QTime time = datetime.time();
-
-	// construct the string
-	dateTime=round(date.day())+"/"+round(date.month())+
-	        "/"+round(date.year()%100)+
-		     +" "+round(time.hour())+":"+round(time.minute());
-	return dateTime;
-}
-
-#endif
 
 #include "vfs.moc"

@@ -76,7 +76,7 @@ public slots:
   void vfs_slotDirty(){ QTimer::singleShot(100,this,SLOT(vfs_refresh())); }
 
 protected:
-	QList<vfile>  vfs_files;    //< List of pointers to vfile	
+	QDict<vfile>  vfs_files;    //< List of pointers to vfile	
 	KDirWatch watcher;          //< The internal dir watcher - use to detect changes in directories
 };
 

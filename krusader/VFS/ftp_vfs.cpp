@@ -56,7 +56,7 @@ ftp_vfs::ftp_vfs(QObject* panel):vfs(panel),busy(false){
   // set the writable attribute
   isWritable = true;
 
-  vfs_filesP = &vfs_files;
+  setVfsFilesP(&vfs_files);
   vfs_files.setAutoDelete(true);
 
   vfs_type = FTP;
@@ -120,13 +120,12 @@ void ftp_vfs::slotRedirection(KIO::Job *, const KURL &url){
 void ftp_vfs::slotListResult(KIO::Job *job){
   if( job && job->error()){
     // we failed to refresh
+    listError = false;
     // display error message
     if ( !quietMode ) job->showErrorDialog(krApp);
-    error = true;
   }
   else {
     // if we got so far - so good
-    error = false;
     // tell the panel to refresh
     if (!quietMode) {
       emit startUpdate();
@@ -157,8 +156,6 @@ void ftp_vfs::startLister() {
 }
 
 bool ftp_vfs::vfs_refresh(const KURL& origin) {
-  error = false;
-
   QString errorMsg = QString::null;	
   if ( !origin.isValid() )
     errorMsg = i18n("Malformed URL:\n%1").arg(origin.url());
@@ -167,17 +164,17 @@ bool ftp_vfs::vfs_refresh(const KURL& origin) {
 
   if( !errorMsg.isEmpty() ){
     if (!quietMode) KMessageBox::sorry(krApp, errorMsg);
-    error = true;
     return false;
   }
 
   busy = true;
   
   // clear the the list and back up out current situation
-  vfs_files.clear();
+  clear();
   vfs_origin = origin;
 
   //QTimer::singleShot( 0,this,SLOT(startLister()) );
+	listError = false;
   startLister();
 
   while( busy ){
@@ -185,7 +182,7 @@ bool ftp_vfs::vfs_refresh(const KURL& origin) {
     qApp->eventLoop()->processEvents( QEventLoop::AllEvents|QEventLoop::WaitForMore); 
   }
 
-  if( error ) return false;
+  if( listError ) return false;
 
   return true;
 }

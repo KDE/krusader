@@ -43,20 +43,14 @@
 temp_vfs::temp_vfs( QString origin, QString type, QWidget* panel, bool ):
           normal_vfs(panel){
   vfs_type=TEMP;
-  // first we need to create a temp diretory
-	tmpDir = krApp->getTempDir();
-	if( tmpDir.isEmpty() ){
-    error = true;
-    return;
-  }
-
-	// then we must get the files from the origin to the tmp dir
+   // first we need to create a temp diretory
+  tmpDir = krApp->getTempDir();
+  // then we must get the files from the origin to the tmp dir
   if( type == "-arj" || type == "-ace" ) handleAceArj(origin,type);
   else if( type == "-rpm" ) handleRpm(origin);
-	else if( type == "-iso" ) handleIso(origin);
-	else{
-    if (!quietMode) KMessageBox::error(krApp,"Unknown temp_vfs type.");
-    error = true;
+  else if( type == "-iso" ) handleIso(origin);
+  else{
+  if (!quietMode) KMessageBox::error(krApp,"Unknown temp_vfs type.");
     return;
   }
 }
@@ -101,11 +95,9 @@ void temp_vfs::handleAceArj(QString origin, QString type){
 	// for ace and arj we just unpack to the tmpDir
 	if( !KRarcHandler::arcHandled(type) ){
   	if (!quietMode) KMessageBox::error(krApp,"This archive type is NOT supported");
-    error = true;
     return;
   }
   else if( !KRarcHandler::unpack(origin,type,tmpDir) ){
-  	error = true;
     return;
   }
 }

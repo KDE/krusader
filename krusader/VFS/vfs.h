@@ -34,6 +34,7 @@
 #include <qstring.h>
 #include <qptrlist.h>
 #include <qobject.h>
+#include <qdict.h>
 // KDE includes
 #include <kurl.h>
 #include <kio/jobclasses.h>
@@ -78,7 +79,7 @@ public:
 	/// Return true if the VFS url is writable
 	virtual bool vfs_isWritable() { return isWritable; }
 	/// Return vfile* or 0 if not found
-	vfile* vfs_search(const QString& name); 
+	inline vfile* vfs_search(const QString& name){ return (*vfs_filesP)[name]; } 
 
 	/// The total size of all the files in the VFS,
 	KIO::filesize_t vfs_totalSize();
@@ -88,12 +89,10 @@ public:
 	inline KURL vfs_getOrigin()          { return vfs_origin;          }
 	// Return the VFS type.
 	inline VFS_TYPE vfs_getType()        { return vfs_type;            }
-	/// Return true if an internal error occurs.
-	inline bool vfs_error()              { return error;               }
 	/// Return the first file in the VFS and set the internal iterator to the beginning of the list.
-	inline vfile* vfs_getFirstFile(){ return (vfs_filesP->isEmpty()) ? 0 : vfs_filesP->first(); }
+	inline vfile* vfs_getFirstFile(){ return (vfileIterator ? vfileIterator->toFirst() : 0); }
 	/// Return the the next file in the list and advance the iterator.
-	inline vfile* vfs_getNextFile() { return (vfs_filesP->next());  }
+	inline vfile* vfs_getNextFile() { return (vfileIterator ? ++(*vfileIterator) : 0);  }
     // KDE FTP proxy bug correction
     static KURL fromPathOrURL( const QString &originIn );
 
@@ -111,17 +110,23 @@ signals:
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
 
 protected:
+	/// Set the vfile list pointer
+	void setVfsFilesP(QDict<vfile>* dict);
+	/// clear and delete all current vfiles
+	inline void clear(){ vfs_filesP->clear(); }
 	/// Add a new vfile to the list.
-	inline void addToList(vfile *data){ vfs_filesP->append(data); }
+	inline void addToList(vfile *data){ vfs_filesP->insert(data->vfile_getName(),data); }
 	/// Deletes a vfile from the list.
-	inline void removeFromList(vfile *data){ vfs_filesP->remove(data); }
+	inline void removeFromList(vfile *data){ vfs_filesP->remove(data->vfile_getName()); }
 
 	VFS_TYPE      vfs_type;     //< the vfs type.
 	KURL          vfs_origin;   //< the path or file the VFS originates from.
-	QList<vfile>* vfs_filesP;   //< Point to a lists of virtual files (vfile).
-	bool error;                 //< true if the VFS failed to refresh.
 	bool quietMode;             //< if true the vfs won't display error messages or emit signals
 	bool isWritable;            //< true if it's writable
+
+private:
+	QDict<vfile>*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
+	QDictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
 };
 
 #endif

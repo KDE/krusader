@@ -77,10 +77,11 @@ public slots:
 	void startLister();
 
 protected:
-	QList<vfile>  vfs_files;    //< List of pointers to vfile.
+	QDict<vfile>  vfs_files;    //< List of pointers to vfile.
 	KURL origin_backup;         //< used to backup the old URL when refreshing to a new one,
 
 	bool busy;
+	bool listError;
 };
 
 #endif

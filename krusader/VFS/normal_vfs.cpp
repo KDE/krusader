@@ -56,7 +56,7 @@
 #include "../resources.h"
 
 normal_vfs::normal_vfs(QObject* panel):vfs(panel){
-  vfs_filesP = &vfs_files;
+  setVfsFilesP(&vfs_files);
   vfs_files.setAutoDelete(true);
   
   vfs_type=NORMAL;
@@ -98,7 +98,7 @@ bool normal_vfs::vfs_refresh(const KURL& origin){
   vfs_origin.setProtocol("file"); // do not remove !
 	vfs_origin.cleanPath();
   // clear the the list
-	vfs_files.clear();
+	clear();
 	
 	DIR* dir = opendir(path.local8Bit());
   if(!dir) return false;
