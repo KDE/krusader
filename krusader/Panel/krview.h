@@ -101,7 +101,7 @@ public:
   // signals:
   //   void letsDrag(QStringList items, QPixmap icon);
   //   void gotDrop(QDropEvent *);
-  //   void selectionChanged();  
+  //   void selectionChanged();
 
   //////////////////////////////////////////////////////
   // the following functions are already implemented, //
@@ -114,6 +114,7 @@ public:
   virtual uint count() const { return _count; }
   virtual KIO::filesize_t countSize() const { return _countSize; }
   virtual void getSelectedItems(QStringList* names);
+  virtual void getItemsByMask(QString mask, QStringList* names, bool dirs = true, bool files = true);
   virtual void getSelectedKrViewItems(KrViewItemList *items);
   virtual void select(const QString& filter = "*") { changeSelection(filter, true); }
   virtual void unselect(const QString& filter = "*") { changeSelection(filter, false); }
