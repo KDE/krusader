@@ -30,6 +30,7 @@
 
 #include "kgcolors.h"
 #include "../defaults.h"
+#include "../Panel/krcolorcache.h"
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <qhbox.h>
@@ -240,7 +241,7 @@ void KgColors::generatePreview()
 bool KgColors::apply()
 {
   bool result = KonfiguratorPage::apply();
-  /* TODO delete the color cache */
+  KrColorCache::getColorCache().refreshColors();
   return result;
 }
 

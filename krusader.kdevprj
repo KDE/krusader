@@ -855,7 +855,7 @@ install_location=
 type=HEADER
 
 [krusader/Panel/Makefile.am]
-files=krusader/Panel/listpanel.cpp,krusader/Panel/panelfunc.cpp,krusader/Panel/panelfunc.h,krusader/Panel/listpanel.h,krusader/Panel/krdetailedview.cpp,krusader/Panel/krdetailedview.h,krusader/Panel/krdetailedviewitem.cpp,krusader/Panel/krdetailedviewitem.h,krusader/Panel/krview.cpp,krusader/Panel/krview.h,krusader/Panel/krviewitem.h,krusader/Panel/krpreviewpopup.cpp,krusader/Panel/krpreviewpopup.h,krusader/Panel/krpopupmenu.cpp,krusader/Panel/krpopupmenu.h,krusader/Panel/krcalcspacedialog.cpp,krusader/Panel/krcalcspacedialog.h
+files=krusader/Panel/listpanel.cpp,krusader/Panel/panelfunc.cpp,krusader/Panel/panelfunc.h,krusader/Panel/listpanel.h,krusader/Panel/krdetailedview.cpp,krusader/Panel/krdetailedview.h,krusader/Panel/krdetailedviewitem.cpp,krusader/Panel/krdetailedviewitem.h,krusader/Panel/krview.cpp,krusader/Panel/krview.h,krusader/Panel/krviewitem.h,krusader/Panel/krpreviewpopup.cpp,krusader/Panel/krpreviewpopup.h,krusader/Panel/krpopupmenu.cpp,krusader/Panel/krpopupmenu.h,krusader/Panel/krcalcspacedialog.cpp,krusader/Panel/krcalcspacedialog.h,krusader/Panel/krcolorcache.cpp,krusader/Panel/krcolorcache.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=Panel
 sub_dirs=
@@ -868,6 +868,18 @@ install_location=
 type=SOURCE
 
 [krusader/Panel/krcalcspacedialog.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/Panel/krcolorcache.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/Panel/krcolorcache.h]
 dist=true
 install=false
 install_location=

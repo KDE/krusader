@@ -120,6 +120,7 @@ class KrDetailedView : public KListView, public KrView {
      * used internally to produce the signal middleButtonClicked()
      */
     void slotMouseClicked( int button, QListViewItem * item, const QPoint & pos, int c );
+    void refreshColors();
 
   private:
     ColumnType _columns[ MAX_COLUMNS ];

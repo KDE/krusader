@@ -29,6 +29,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 ***************************************************************************/
 #include "krdetailedview.h"
 #include "krdetailedviewitem.h"
+#include "krcolorcache.h"
 #include "../kicons.h"
 #include "../defaults.h"
 #include "../krusaderview.h"
@@ -119,6 +120,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
     connect( this, SIGNAL( currentChanged( QListViewItem* ) ), this, SLOT( setNameToMakeCurrent( QListViewItem* ) ) );
     connect( this, SIGNAL( mouseButtonClicked ( int, QListViewItem *, const QPoint &, int ) ),
              this, SLOT( slotMouseClicked ( int, QListViewItem *, const QPoint &, int ) ) );
+    connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
     }
 
   setWidget( this );
@@ -205,6 +207,7 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
 
   setFocusPolicy( StrongFocus );
   restoreSettings();
+  refreshColors();
   }
 
 KrDetailedView::~KrDetailedView() {
@@ -489,7 +492,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
      KListView::contentsMousePressEvent( e );
      return;
    }
-   QListViewItem * i = itemAt( contentsToViewport( e->pos() ) );
+//   QListViewItem * i = itemAt( contentsToViewport( e->pos() ) );
    KListView::contentsMousePressEvent( e );
 //   if (i != 0) // comment in, if click sould NOT select
 //     setSelected(i, FALSE);
@@ -917,3 +920,22 @@ void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const Q
   if ( button == Qt::MidButton )
     emit middleButtonClicked( item );
   }
+
+void KrDetailedView::refreshColors()
+{
+  if (!KrColorCache::getColorCache().isKDEDefault())
+  {
+    // KDE deafult is not choosen: set the background color (as this paints the empty areas) and the alternate color
+    const QColor * color = KrColorCache::getColorCache().getBackgroundColor();
+    setPaletteBackgroundColor(color?*color:KGlobalSettings::baseColor());
+    color = KrColorCache::getColorCache().getAlternateBackgroundColor();
+    setAlternateBackground(color?*color:KGlobalSettings::alternateBackgroundColor());
+  }
+  else
+  {
+    // KDE deaful tis choosen: set back the background color
+    setPaletteBackgroundColor(KGlobalSettings::baseColor());
+    // Set the alternate color to its default or to an invalid color, to turn alternate the background off.
+    setAlternateBackground(KrColorCache::getColorCache().isAlternateBackgroundEnabled()?KGlobalSettings::alternateBackgroundColor():QColor());
+  }
+}
