@@ -117,7 +117,7 @@ void KgGeneral::slotFindTools()
   QStringList lst=Krusader::supportedTools(); // get list of availble tools
 
   info+=i18n("Searching for tools...\nSearch results:\n\n");
-  if (PS("DIFF")) info+=i18n("diff: found ")+lst[lst.findIndex("DIFF") + 1]+i18n(", compare by content availble.\n");
+  if (PS("DIFF")) info+=i18n("diff: found ")+lst[lst.findIndex("DIFF") + 1]+i18n(", compare by content available.\n");
   else info+=i18n("diff: no diff frontends found. Compare by content disabled.\nhint: Krusader supports kdiff and xxdiff\n\n");
 
   if (PS("MAIL")) info+=i18n("mail: found ")+lst[lst.findIndex("MAIL") + 1]+i18n(", sending files by email enabled.\n");
