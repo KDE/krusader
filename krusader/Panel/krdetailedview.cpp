@@ -69,7 +69,9 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // Group Column
 #define _GroupColumn        false 
 // Do Quicksearch
-#define _DoQuicksearch      true 
+#define _DoQuicksearch      true
+//experimental
+#define _newSelectionHandling
 //////////////////////////////////////////////////////////////////////////
 
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
@@ -477,6 +479,29 @@ void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
 void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
   if ( !_focused )
     emit needFocus();
+#ifdef _newSelectionHandling
+   if (e->state() & ShiftButton || e->state() & ControlButton || e->state() & AltButton)
+   {
+     KListView::contentsMousePressEvent( e );
+     return;
+   }
+   QListViewItem * i = itemAt( contentsToViewport( e->pos() ) );
+   KListView::contentsMousePressEvent( e );
+//   if (i != 0) // comment in, if click sould NOT select
+//     setSelected(i, FALSE);
+
+   if ( krApp->mainView->activePanel->quickSearch->isShown() ) {
+         krApp->mainView->activePanel->quickSearch->hide();
+         krApp->mainView->activePanel->quickSearch->clear();
+         krDirUp->setEnabled( true );
+      }
+   if ( krApp->mainView->activePanel->otherPanel->quickSearch->isShown() ) {
+         krApp->mainView->activePanel->otherPanel->quickSearch->hide();
+         krApp->mainView->activePanel->otherPanel->quickSearch->clear();
+         krDirUp->setEnabled( true );
+      }
+   return;
+#endif
   KListView::contentsMousePressEvent( e );
   }
 
@@ -562,6 +587,68 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
     return ;
     }
   switch ( e->key() ) {
+#ifdef _newSelectionHandling
+         case Key_Up :
+         {
+           QListViewItem * i = currentItem();
+           if (!i) break;
+           if (e->state() == ShiftButton) setSelected(i, !i->isSelected());
+           i = i->itemAbove();
+           if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+         }
+         break;
+         case Key_Down :
+         if ( e->state() == ControlButton ) { // let the panel handle it - jump to command line
+            e->ignore();
+            break;
+         } else
+         {
+           QListViewItem * i = currentItem();
+           if (!i) break;
+           if (e->state() == ShiftButton) setSelected(i, !i->isSelected());
+           i = i->itemBelow();
+           if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+         }
+         break;
+         case Key_Next:
+         {
+           QListViewItem * i = currentItem(), *j;
+           if (!i) break;
+           QRect r( itemRect( i ) );
+           if (!r.height()) break;
+           for (int page = visibleHeight()/r.height()-1; page > 0 && (j = i->itemBelow()); --page )
+              i = j;
+           if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+           break;
+         }
+         case Key_Prior:
+         {
+           QListViewItem * i = currentItem(), *j;
+           if (!i) break;
+           QRect r( itemRect( i ) );
+           if (!r.height()) break;
+           for (int page = visibleHeight()/r.height()-1; page > 0 && (j = i->itemAbove()); --page )
+              i = j;
+           if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+           break;
+         }
+         case Key_Home:
+         {
+           QListViewItem * i = firstChild();
+           if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+           break;
+         }
+         case Key_End:
+         {
+           QListViewItem *i = firstChild(), *j;
+           while ( (j = i->nextSibling()) )
+              i = j;
+           while ( (j = i->itemBelow()) )
+              i = j;
+           if (i) {QListView::setCurrentItem(i); QListView::ensureItemVisible(i); /*QListView::setSelectionAnchor(i);*/}
+           break;
+         }
+#endif
       case Key_Enter :
       case Key_Return : {
         if ( e->state() & ControlButton )        // let the panel handle it
@@ -610,6 +697,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
       //case Key_Up :
       //KListView::keyPressEvent( e );
       //break;
+#ifndef _newSelectionHandling
       case Key_Down :
       if ( e->state() == ControlButton ) { // let the panel handle it
         e->ignore();
@@ -617,7 +705,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
         } else
         KListView::keyPressEvent( e );
       break;
-      case Key_Delete :                    // kill file
+#endif
+      case Key_Delete :                  // kill file
       SLOTS->deleteFiles();
       return ;
       case Key_Space : {
@@ -793,7 +882,7 @@ void KrDetailedView::quickSearch( const QString & str, int direction ) {
       item = ( direction > 0 ) ? getFirst() : getLast();
     if ( item == startItem )
       return ;
-    if ( caseSensitive ? item->name().startsWith( str ) : item->name().lower().startsWith( str.lower() ) ) {
+    if ( caseSensitive?item->name().startsWith( str ):item->name().lower().startsWith( str.lower() ) ) {
       makeItemVisible( item );
       setCurrentItem( item->name() );
       return ;
