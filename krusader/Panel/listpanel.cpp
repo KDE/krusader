@@ -534,18 +534,17 @@ void ListPanel::handleDropOnView( QDropEvent *e ) {
 
 void ListPanel::startDragging( QStringList names, QPixmap px ) {
   KURL::List * urls = func->files() ->vfs_getFiles( &names );
+
   if ( urls->isEmpty() ) { // avoid draging empty urls
+    delete urls;
     return ;
   }
-  // KURL::List -> QStrList
-  QStrList URIs;
-  for ( KURL::List::Iterator url = urls->begin(); url != urls->end() ; ++url )
-    URIs.append( ( *url ).url().local8Bit() );
-  delete urls; // free memory
 
-  QUriDrag *d = new QUriDrag( URIs, this );
+  QUriDrag *d = KURLDrag::newDrag( *urls, this );
   d->setPixmap( px, QPoint( -7, 0 ) );
   d->dragCopy();
+
+  delete urls; // free memory
 }
 
 // pops a right-click menu for items
