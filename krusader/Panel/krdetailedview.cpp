@@ -74,13 +74,24 @@ A
 #define _ClassicQuicksearch true 
 //////////////////////////////////////////////////////////////////////////
 
-QString KrDetailedView::ColumnName[] = { i18n( "Name" ), i18n( "Ext" ), i18n( "Type" ),
-                                         i18n( "Size" ), i18n( "Modified" ), i18n( "Perms" ), i18n( "rwx" ),
-                                         i18n( "Owner" ), i18n( "Group" ) };
+QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool left, KConfig *cfg, const char *name ) :
     KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
 _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ) {
+
+  if( ColumnName[ 0 ].isEmpty() )  {
+    ColumnName[ 0 ] = i18n( "Name" );
+    ColumnName[ 1 ] = i18n( "Ext" );
+    ColumnName[ 2 ] = i18n( "Type" );
+    ColumnName[ 3 ] = i18n( "Size" );
+    ColumnName[ 4 ] = i18n( "Modified" );
+    ColumnName[ 5 ] = i18n( "Perms" );
+    ColumnName[ 6 ] = i18n( "rwx" );
+    ColumnName[ 7 ] = i18n( "Owner" );
+    ColumnName[ 8 ] = i18n( "Group" );
+  }
+  
   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
   // setup the default sort and filter
   _filter = KrView::All;
