@@ -64,6 +64,7 @@
 #include "Search/krquery.h"
 #include "Search/krsearchmod.h"
 #include "Search/krsearchdialog.h"
+#include "Locate/locate.h"
 #include "VFS/vfs.h"
 #include "panelmanager.h"
 #include "Splitter/splittergui.h"
@@ -304,6 +305,20 @@ void KRslots::toggleSwapPanels(){
 
 void KRslots::search() {
   new KrSearchDialog();
+}
+
+void KRslots::locate()
+{
+  if( !KrServices::cmdExist( "locate" ) )
+  {
+    KMessageBox::error(krApp, i18n( "Can't find the 'locate' command. Please install the "
+                                    "findutils-locate package of GNU, or set its dependencies in "
+                                    "Konfigurator" ));
+    return;
+  }
+  
+  LocateDlg *loc = new LocateDlg();
+  delete loc;
 }
 
 void KRslots::runRemoteMan() {

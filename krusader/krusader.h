@@ -96,7 +96,7 @@ class Krusader : public KParts::MainWindow {
     KIconLoader *iconLoader; // the app's icon loader
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
-    static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll;
+    static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate;
     static KAction *actUnselectAll, *actInvert, *actSync, *actSavePosition;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool;

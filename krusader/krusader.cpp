@@ -98,6 +98,7 @@ KAction *Krusader::actToolsSetup = 0;
 KAction *Krusader::actBack = 0;
 KAction *Krusader::actRoot = 0;
 KAction *Krusader::actFind = 0;
+KAction *Krusader::actLocate = 0;
 //KAction *Krusader::actAddBookmark = 0;
 KAction *Krusader::actSavePosition = 0;
 KAction *Krusader::actSelectColorMask = 0;
@@ -419,6 +420,8 @@ void Krusader::setupActions() {
                              SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
   actFind = new KAction( i18n( "&Search" ), "filefind", CTRL + Key_S,
                          SLOTS, SLOT( search() ), actionCollection(), "find" );
+  actLocate = new KAction( i18n( "&Locate" ), "find", CTRL + Key_L,
+                         SLOTS, SLOT( locate() ), actionCollection(), "locate" );
   actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_D,
                          SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
   actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,

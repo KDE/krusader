@@ -61,8 +61,10 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   addApplication( "kompare",  pathsGrid, 4, general_tab );
   addApplication( "krename",  pathsGrid, 5, general_tab );
   addApplication( "krusader", pathsGrid, 6, general_tab );
-  addApplication( "mount",    pathsGrid, 7, general_tab );
-  addApplication( "umount",   pathsGrid, 8, general_tab );
+  addApplication( "locate",   pathsGrid, 7, general_tab );
+  addApplication( "mount",    pathsGrid, 8, general_tab );
+  addApplication( "umount",   pathsGrid, 9, general_tab );
+  addApplication( "updatedb", pathsGrid,10, general_tab );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );

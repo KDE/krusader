@@ -95,6 +95,7 @@ class KRslots : public QObject {
     void runKonfigurator( bool firstTime = false );
     void startKonfigurator() { runKonfigurator( false ); }
     void search();						 				// call the search module
+    void locate();
     void homeTerminal();
     void sysInfo();
     void addBookmark();
