@@ -179,7 +179,17 @@ bool ftp_vfs::vfs_refresh(const KURL& origin) {
 void ftp_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir){
   KURL destUrl = vfs_origin;
 
-  if(dir != "") destUrl.addPath(dir);
+  if(dir != "")
+  {
+    destUrl.addPath(dir);
+    destUrl.cleanPath();  // removes the '..', '.' and extra slashes from the URL.
+
+    if( destUrl.protocol() == "tar" || destUrl.protocol() == "zip" || destUrl.protocol() == "krarc" )
+    {
+      if( QDir( destUrl.path(-1) ).exists() )
+        destUrl.setProtocol( "file" );  // if we get out from the archive change the protocol
+    }
+  }
 
   KIO::Job* job = new KIO::CopyJob(*fileUrls,destUrl,mode,false,true );
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)) );
