@@ -35,6 +35,7 @@
 #include <klocale.h>
 #include <qwidget.h>
 #include <qtimer.h>
+#include <qdatetime.h>
 #include "krview.h"
 
 class QDragMoveEvent;
@@ -81,7 +82,6 @@ class KrDetailedView : public KListView, public KrView {
     virtual void restoreSettings() { KListView::restoreLayout( _config, nameInKConfig() ); }
     virtual QString nameInKConfig() { return _nameInKConfig; }
     virtual QString itemToFilename( QListViewItem *it ) { return dynamic_cast<KrViewItem*>( it ) ->name(); } //remove
-    virtual void renameCurrentItem();
 
   signals:
     void executed( QString &name );
@@ -97,19 +97,23 @@ class KrDetailedView : public KListView, public KrView {
     void newColumn( ColumnType type );
     virtual void keyPressEvent( QKeyEvent *e );
     virtual void contentsMousePressEvent( QMouseEvent *e );
+    virtual void contentsMouseMoveEvent ( QMouseEvent * e );
     virtual void contentsWheelEvent( QWheelEvent *e );
     virtual bool acceptDrag( QDropEvent* e ) const;
     virtual void contentsDropEvent( QDropEvent *e );
     virtual void contentsDragMoveEvent( QDragMoveEvent *e );
     virtual void startDrag();
+    virtual bool event( QEvent *e );
     //virtual void focusOutEvent( QFocusEvent * );
 
   protected slots:
     void rename(QListViewItem *item, int c);
+    void slotClicked( QListViewItem *item );
     void slotDoubleClicked( QListViewItem *item );
     void slotItemDescription( QListViewItem *item );
     void slotCurrentChanged( QListViewItem *item );
     void handleContextMenu( QListViewItem*, const QPoint&, int );
+    virtual void renameCurrentItem();
     void inplaceRenameFinished( QListViewItem *it, int col );
     void quickSearch(const QString &, int = 0);
     void stopQuickSearch(QKeyEvent*);
@@ -135,6 +139,12 @@ class KrDetailedView : public KListView, public KrView {
     KrViewItem *_currDragItem;
     QString _nameInKConfig;
     bool &_left;
+
+    bool  singleClicked;
+    bool  modifierPressed;
+    QTime clickTime;
+    QListViewItem *clickedItem;
+    QTimer renameTimer;
 };
 
 #endif /* KRDETAILEDVIEW_H */

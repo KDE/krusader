@@ -76,6 +76,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define _newSelectionHandling
 //////////////////////////////////////////////////////////////////////////
 
+#define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
+
 QString KrDetailedView::ColumnName[ MAX_COLUMNS ];
 
 KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg, const char *name ) :
@@ -115,12 +117,10 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
 	 if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
       connect( this, SIGNAL(executed(QListViewItem*)), this, SLOT(slotExecuted(QListViewItem*)));
 	 } else {
+    connect( this, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( slotClicked( QListViewItem* ) ) );
 	 	connect( this, SIGNAL( doubleClicked( QListViewItem* ) ), this, SLOT( slotDoubleClicked( QListViewItem* ) ) );
 	 }
-#if 0    
-    connect( this, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( slotClicked( QListViewItem* ) ) );
-    
-#endif
+
     // a change in the selection needs to update totals
     connect( this, SIGNAL( onItem( QListViewItem* ) ), this, SLOT( slotItemDescription( QListViewItem* ) ) );
     connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
@@ -211,11 +211,14 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
            this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
   connect( panel->quickSearch, SIGNAL( process( QKeyEvent* ) ),
            this, SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
-
+  connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
+           
 
   setFocusPolicy( StrongFocus );
   restoreSettings();
   refreshColors();
+
+  CANCEL_TWO_CLICK_RENAME;
   }
 
 KrDetailedView::~KrDetailedView() {
@@ -399,7 +402,36 @@ void KrDetailedView::setSortMode( SortSpec mode ) {
   KListView::sort();
   }
 
+void KrDetailedView::slotClicked( QListViewItem *item ) {
+  if ( !item ) return ;
+
+  if( !modifierPressed )
+  {
+    if( singleClicked && !renameTimer.isActive() )
+    {
+      KConfig *config = KGlobal::config();
+      config->setGroup("KDE");
+      int doubleClickInterval = config->readNumEntry("DoubleClickInterval", 400);
+
+      int msecsFromLastClick = clickTime.msecsTo( QTime::currentTime() );
+
+      if( msecsFromLastClick > doubleClickInterval && msecsFromLastClick < 5*doubleClickInterval )
+      {
+        singleClicked = false;
+        renameTimer.start( doubleClickInterval, true );
+        return;
+      }
+    }
+
+    CANCEL_TWO_CLICK_RENAME;
+    singleClicked = true;
+    clickTime = QTime::currentTime();
+    clickedItem = item;
+  }
+}
+
 void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
+    CANCEL_TWO_CLICK_RENAME;
     if ( !item )
       return ;
     QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
@@ -412,6 +444,7 @@ void KrDetailedView::prepareForActive() {
   }
 
 void KrDetailedView::prepareForPassive() {
+  CANCEL_TWO_CLICK_RENAME;
   if (renameLineEdit()->isVisible())
     renameLineEdit()->clearFocus();
   KConfigGroupSaver grpSvr( _config, "Look&Feel" );
@@ -457,12 +490,21 @@ void KrDetailedView::handleQuickSearchEvent(QKeyEvent * e)
 
 
 void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
+  CANCEL_TWO_CLICK_RENAME;
   if ( !item )
     return ;
   _nameToMakeCurrent = dynamic_cast<KrViewItem*>( item ) ->name();
   }
 
 void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
+
+    modifierPressed = false;
+    if (e->state() & ShiftButton || e->state() & ControlButton || e->state() & AltButton)
+    {
+      CANCEL_TWO_CLICK_RENAME;
+      modifierPressed = true;
+    }
+
     // stop quick search in case a mouse click occured
     KConfigGroupSaver grpSvr( _config, "Look&Feel" );
     if ( _config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) ) {
@@ -534,6 +576,13 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
 #endif
   KListView::contentsMousePressEvent( e );
   }
+
+void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e )
+{
+  if( (singleClicked || renameTimer.isActive()) && itemAt( contentsToViewport( e->pos() ) ) != clickedItem )
+    CANCEL_TWO_CLICK_RENAME;
+  KListView::contentsMouseMoveEvent( e );
+}
 
 void KrDetailedView::contentsWheelEvent( QWheelEvent * e ) {
   if ( !_focused )
@@ -706,7 +755,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
       case Key_Return : {
         if ( e->state() & ControlButton )        // let the panel handle it
           e->ignore();
-		  else {
+        else {
           KrViewItem * i = getCurrentKrViewItem();
           QString tmp = i->name();
           emit executed( tmp );
@@ -984,4 +1033,21 @@ void KrDetailedView::refreshColors()
     // Set the alternate color to its default or to an invalid color, to turn alternate the background off.
     setAlternateBackground(KrColorCache::getColorCache().isAlternateBackgroundEnabled()?KGlobalSettings::alternateBackgroundColor():QColor());
   }
+}
+
+bool KrDetailedView::event( QEvent *e )
+{
+  modifierPressed = false;
+
+  switch( e->type() )
+  {
+  case QEvent::Timer:
+  case QEvent::MouseMove:
+  case QEvent::MouseButtonPress:
+  case QEvent::MouseButtonRelease:
+    break;
+  default:
+    CANCEL_TWO_CLICK_RENAME;
+  }
+  KListView::event( e );
 }
