@@ -18,7 +18,7 @@
 #include <qwhatsthis.h>
 #include <klocale.h>
 
-/* 
+/*
  *  Constructs a kgArchives which is a child of 'parent', with the 
  *  name 'name'.'
  */
@@ -123,7 +123,7 @@ kgArchives::kgArchives( QWidget* parent,  const char* name )
     GroupBox2->setTitle( i18n( "Fine-Tuning" ) );
 
     QWidget* privateLayoutWidget = new QWidget( GroupBox2, "Layout4" );
-    privateLayoutWidget->setGeometry( QRect( 10, 20, 330, 60 ) );
+    privateLayoutWidget->setGeometry( QRect( 10, 20, 430, 60 ) );
     Layout4 = new QVBoxLayout( privateLayoutWidget );
     Layout4->setSpacing( 6 );
     Layout4->setMargin( 0 );
@@ -134,7 +134,7 @@ kgArchives::kgArchives( QWidget* parent,  const char* name )
     Layout4->addWidget( kgMoveIntoArchives );
 
     kgTestArchives = new QCheckBox( privateLayoutWidget, "kgTestArchives" );
-    kgTestArchives->setText( i18n( "Test archive when finished packing" ) );
+    kgTestArchives->setText( i18n( "Test archive when finished packingsdfsfsdfsdfsdfsdf!" ) );
     QToolTip::add(  kgTestArchives, i18n( "If checked, Krusader will test the archive's intergrity after packing it." ) );
     Layout4->addWidget( kgTestArchives );
 
