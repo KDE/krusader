@@ -80,6 +80,7 @@ protected:
   static QString defaultProtocols;
   static QString defaultIsoMimes;
   static QString defaultKrarcMimes;
+  static QString defaultTarMimes;
 };
 
 #endif /* __KgProtocols_H__ */

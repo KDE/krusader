@@ -38,14 +38,14 @@
 #include <kiconloader.h>
 #include <qtooltip.h>
 
-QString KgProtocols::defaultProtocols  = "krarc,iso";
+QString KgProtocols::defaultProtocols  = "krarc,iso,tar";
 QString KgProtocols::defaultIsoMimes   = "application/x-iso";
 QString KgProtocols::defaultKrarcMimes = "application/x-arj,application/x-bzip2,"
                                          "application/x-cpio,application/x-gzip,"
                                          "application/x-lha,application/x-rar,"
-                                         "application/x-rpm,application/x-tar,"
-                                         "application/x-tarz,application/x-tbz,"
-                                         "application/x-tgz,application/x-zip";
+                                         "application/x-rpm,application/x-zip";
+QString KgProtocols::defaultTarMimes   = "application/x-tar,application/x-tarz,"
+                                         "application/x-tbz,application/x-tgz";
 
 KgProtocols::KgProtocols( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -396,6 +396,7 @@ void KgProtocols::init()
     krConfig->writeEntry( "Handled Protocols", defaultProtocols );
     krConfig->writeEntry( "Mimes For iso",     defaultIsoMimes );
     krConfig->writeEntry( "Mimes For krarc",   defaultKrarcMimes );
+	 krConfig->writeEntry( "Mimes For tar",     defaultTarMimes );
   }
 }
 
