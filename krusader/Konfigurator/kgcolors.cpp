@@ -201,8 +201,8 @@ void KgColors::generatePreview()
       altBck = bck;
     QColor fore   = KGlobalSettings::textColor();
 
-    pwDir->setColor( fore, bck );    
-    pwFile->setColor( fore, altBck );
+    pwFile->setColor( fore, bck );    
+    pwDir->setColor( fore, altBck );
     pwApp->setColor( fore, bck );
     pwSymLink->setColor( fore, altBck );
     pwInvLink->setColor( fore, bck );
@@ -218,8 +218,8 @@ void KgColors::generatePreview()
     QColor currentFore;
     QColor currentBck = altBck;
 
-    pwDir->setColor( currentFore = getColorSelector( "Foreground" )->getColor(), bck );
-    pwFile->setColor( getColorSelector( "Directory Foreground" )->getColor(), altBck );
+    pwFile->setColor( currentFore = getColorSelector( "Foreground" )->getColor(), bck );
+    pwDir->setColor( getColorSelector( "Directory Foreground" )->getColor(), altBck );
     pwApp->setColor( getColorSelector( "Executable Foreground" )->getColor(), bck );
     pwSymLink->setColor( getColorSelector( "Symlink Foreground" )->getColor(), altBck );
     pwInvLink->setColor( getColorSelector( "Invalid Symlink Foreground" )->getColor(), bck );
