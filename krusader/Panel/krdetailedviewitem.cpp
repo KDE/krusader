@@ -90,18 +90,10 @@ void KrDetailedViewItem::repaintItem() {
     if ((id = _view->column(KrDetailedView::Permissions)) != -1)
       setText(id, _vf->vfile_getPerm());
     if ((id = _view->column(KrDetailedView::Owner)) != -1) {
-      uid_t uid = _vf->vfile_getUid();
-      QString username = QString("%1").arg((int)uid);
-      struct passwd *p = getpwuid(uid);
-      if (p!=NULL) username = QString(p->pw_name);
-      setText(id, username);
+      setText(id, _vf->vfile_getOwner());
     }
     if ((id = _view->column(KrDetailedView::Group)) != -1) {
-      gid_t gid = _vf->vfile_getGid();
-      QString grpname = QString("%1").arg((int)gid);
-      struct group *g = getgrgid(gid);
-      if (g!=NULL) grpname = QString(g->gr_name);
-      setText(id, grpname);
+      setText(id, _vf->vfile_getGroup());
     }
     // if we've got an extention column, clip the name accordingly
     QString name = _vf->vfile_getName(), ext = "";

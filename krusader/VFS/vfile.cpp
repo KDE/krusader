@@ -124,7 +124,7 @@ QString vfile::vfile_getOwner(){
 
 QString vfile::vfile_getGroup(){
   if( vfile_group.isEmpty() )
-    vfile_group=KRpermHandler::uid2user(vfile_getGid());
+    vfile_group=KRpermHandler::gid2group(vfile_getGid());
   return vfile_group;
 }
 
