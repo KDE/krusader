@@ -531,7 +531,9 @@ void ListPanel::start( KURL url, bool immediate ) {
    
    if ( !virt.isValid() )
       virt = URL("/");
-   _realPath = virt;
+   if( virt.isLocalFile() ) _realPath = virt;
+   else _realPath = URL("/");
+
    if( immediate )
      func->immediateOpenUrl( virt );
    else
