@@ -43,8 +43,8 @@
 #include "panelmanager.h"
 #include <klibloader.h> //<>
 
-KrusaderView::KrusaderView( QWidget *parent, const char *name ) : QWidget( parent, name ),
-konsole_part( 0L ) {}
+KrusaderView::KrusaderView( QWidget *parent, const char *name ) : QWidget( parent, name ), activePanel(0), 
+								konsole_part( 0L ) {}
 
 void KrusaderView::start( QString leftPath, QString rightPath ) {
   ////////////////////////////////
