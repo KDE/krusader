@@ -106,7 +106,8 @@ public slots:
 	virtual bool vfs_refresh();
 	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
 	virtual void vfs_enableRefresh(bool enable);        
-
+	virtual void vfs_disableMimeTypeMagic( bool disable ) { mimeTypeMagicDisabled = disable; }
+        
 signals: 	
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
 	void incrementalRefreshFinished( QString ); //< emitted when the incremental refresh was finished
@@ -132,6 +133,7 @@ protected:
 	bool disableRefresh;        //< true if refresh is disabled
 	bool isWritable;            //< true if it's writable
 	bool dirty;                 //< true if a watcher signal arrived while in disabled refresh.
+	bool mimeTypeMagicDisabled; //< true if the mime type magic is disabled
 
 private:
 	QDict<vfile>*  vfs_filesP;    //< Point to a lists of virtual files (vfile).

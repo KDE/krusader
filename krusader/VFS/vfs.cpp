@@ -38,7 +38,8 @@
 #include "../krusader.h"
 #include "../defaults.h"
 
-vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),vfileIterator(0){
+vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),vfileIterator(0), 
+                                      mimeTypeMagicDisabled( false ) {
 		if ( panel ){
 	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
 	 		connect(this,SIGNAL(incrementalRefreshFinished( QString )),panel,SLOT(slotGetStats( QString )));
