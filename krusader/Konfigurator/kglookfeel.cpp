@@ -302,7 +302,7 @@ void KgLookFeel::slotImportShortcuts() {
 	// ok, import away
 	krApp->importKeyboardShortcuts(file);
 	slotReload(keyBindings);	
-	//keyBindings->setChanged();
+	keyBindings->setChanged();
 }
 
 void KgLookFeel::slotExportShortcuts() {
