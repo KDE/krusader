@@ -115,33 +115,45 @@ bool vfs::vfs_refresh(){
 	vfs_filesP = new QDict<vfile>();
 	vfs_filesP->setAutoDelete(true);
 	
+	kdDebug() << "vfs_refresh: " << vfs_origin.url() << endl;
+	
 	// and populate it
 	krConfig->setGroup("Look&Feel");
 	bool showHidden = krConfig->readBoolEntry("Show Hidden",_ShowHidden);
 	bool res = populateVfsList(vfs_getOrigin(),showHidden);
 
+	QString name;
 	if( res ){
 		// compare the two list emiting signals when needed;;
-		for( vfile* vf = vfs_getFirstFile(); vf ; vf=vfs_getNextFile() ){
-			QString name = vf->vfile_getName();
+		for( vfile* vf = vfs_getFirstFile(); vf ;  ){
+			name = vf->vfile_getName();
 			vfile* newVf = (*vfs_filesP)[name];
+			
 			if( !newVf ){
 				// the file was deleted..
 				emit deletedVfile(name);
 				vfs_searchP->remove(name);
-			} else if( *vf != *newVf ){
-				// the file was changed..
-				*vf = *newVf;
-				emit updatedVfile(vf);
+				vf = vfileIterator->current();
+			} else {
+				if( *vf != *newVf ){
+					// the file was changed..
+					*vf = *newVf;
+					emit updatedVfile(vf);
+				}
+				vf=vfs_getNextFile();
 			}
-			removeFromList(name);
+			removeFromList(name);				
 		}
 		// everything thats left is a new file
 		QDictIterator<vfile> it(*vfs_filesP);
 		for(vfile* vf=it.toFirst(); vf; vf=(++it)){
+			// sanity checking
+			//if( !vf || (*vfs_searchP)[vf->vfile_getName()] ) continue;
+			
 			vfile* newVf = new vfile();
 			*newVf = *vf;
 			vfs_searchP->insert(newVf->vfile_getName(),newVf);
+			kdDebug() << "emit addedVfile: "<< vf->vfile_getName() << endl;
 			emit addedVfile(newVf);
 		}
 	}
