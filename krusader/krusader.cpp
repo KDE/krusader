@@ -209,7 +209,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    mountMan = new KMountMan();
 
 	// create bookman
-	bookman = new KrBookmarkHandler(this);
+	bookman = new KrBookmarkHandler();
 
    // setup all the krusader's actions
    setupActions();

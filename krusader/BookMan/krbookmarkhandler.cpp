@@ -22,14 +22,15 @@
 #define STOPWATCH		_dirwatch->stopDirScan(_filename)
 #define STARTWATCH	_dirwatch->restartDirScan(_filename)
 											
-KrBookmarkHandler::KrBookmarkHandler(QObject *parent): QObject(parent) {
+KrBookmarkHandler::KrBookmarkHandler(): QObject(0) {
 	// create our own action collection and make the shortcuts apply only to parent
-	_collection = new KActionCollection(0, parent, "bookmark collection");
+	_collection = new KActionCollection(0, this, "bookmark collection");
 
 	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
 	_root = new KrBookmark("root");
 
 	// load bookmarks and populate the menu
+	_filename = locateLocal( "data", BOOKMARKS_FILE );
 	importFromFile();
 }
 
@@ -234,8 +235,9 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 	return true;
 }
 
+
 void KrBookmarkHandler::importFromFile() {
-	STOPWATCH;
+	//STOPWATCH;
 	QFile file( _filename );
 	if ( !file.open(IO_ReadOnly))
 		return; // no bookmarks file
@@ -264,8 +266,13 @@ ERROR:
 
 SUCCESS:
 	file.close();
-	buildMenu(_root, _menu);
-	STARTWATCH;
+	//buildMenu(_root, _menu);
+	//STARTWATCH;
+}
+
+void KrBookmarkHandler::populate(KPopupMenu *menu) {
+	menu->clear();
+	buildMenu(_root, menu);
 }
 
 void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
@@ -273,10 +280,11 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 		if (bm->isFolder()) {
 			KPopupMenu *newMenu = new KPopupMenu(menu);
 			menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
-									bm->text(), newMenu, BOTTOM_OF_MENU);
+									bm->text(), newMenu);
 			buildMenu(bm, newMenu);
 		} else {
-			bm->plug(menu, BOTTOM_OF_MENU); // add on top
+kdWarning() << "Adding " << bm->text() << endl;
+			bm->plug(menu); // add on top
 			CONNECT_BM(bm);
 		}
 	}

@@ -16,8 +16,9 @@ class KrBookmarkHandler: public QObject {
 
 	enum Actions { Border, BookmarkCurrent, ManageBookmarks };
 public:
-	KrBookmarkHandler(QObject *parent);
+	KrBookmarkHandler();
 	KrBookmarkHandler(QWidget *parent, KPopupMenu *menu);
+	void populate(KPopupMenu *menu);
 
 protected:
 	void bookmarkCurrent(KURL url);
