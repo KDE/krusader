@@ -160,12 +160,14 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    connect( totals, SIGNAL( dropped( QDropEvent *) ), this, SLOT( handleDropOnTotals(QDropEvent *) ) );  
    
 	// a cancel button for the inplace refresh mechanism
-	inlineRefreshCancelButton = new KPushButton(i18n("Cancel"), this);
+	inlineRefreshCancelButton = new KPushButton(this);
+	inlineRefreshCancelButton->setFixedSize( 22, 20 );
+	inlineRefreshCancelButton->setPixmap(krLoader->loadIcon("cancel", KIcon::Toolbar, 16));
 	connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
 	
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
-   popupBtn->setFixedSize( 22, 20 );
+	popupBtn->setFixedSize( 22, 20 );
 	popupBtn->setPixmap(krLoader->loadIcon("1uparrow", KIcon::Toolbar, 16));
 	connect(popupBtn, SIGNAL(clicked()), this, SLOT(togglePanelPopup()));
 	QToolTip::add(  popupBtn, i18n( "Open the popup panel" ) );
