@@ -85,8 +85,6 @@ public:
    virtual void saveSettings() { KListView::saveLayout( _config, nameInKConfig() ); }
    virtual void restoreSettings() { KListView::restoreLayout( _config, nameInKConfig() ); }
    virtual QString nameInKConfig() { return _nameInKConfig; }
-   
-   inline bool isCaseSensitiveSort() {return caseSensitiveSort;}
 
 signals:
    void executed( QString &name );

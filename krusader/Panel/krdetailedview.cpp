@@ -96,13 +96,9 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
       ColumnName[ 8 ] = i18n( "Group" );
    }
 
-   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
    // setup the default sort and filter
    _filter = KrView::All;
    _filterMask = "*";
-   _sortMode = static_cast<SortSpec>( KrView::Name | KrView::Descending | KrView::DirsFirst );
-   if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
-      _sortMode = static_cast<SortSpec>( _sortMode | KrView::IgnoreCase );
 
    // first, clear the columns list. it will be updated by newColumn()
    for ( int i = 0; i < MAX_COLUMNS; i++ )
@@ -111,7 +107,10 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
    /////////////////////////////// listview ////////////////////////////////////
    { // use the {} so that KConfigGroupSaver will work correctly!
       KConfigGroupSaver grpSvr( _config, "Look&Feel" );
-      krConfig->setGroup( "Look&Feel" );
+	   _sortMode = static_cast<SortSpec>( KrView::Name | KrView::Descending | KrView::DirsFirst );
+   	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
+      	_sortMode = static_cast<SortSpec>( _sortMode | KrView::IgnoreCase );
+		
       setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
       // decide on single click/double click selection
       if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
@@ -181,8 +180,6 @@ _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right"
       setColumnWidthMode( column( Group ), QListView::Manual );
       setColumnWidth( column( Group ), QFontMetrics( font() ).width( 'X' ) * 6 );
    }
-   
-   caseSensitiveSort = krConfig->readBoolEntry("Case Sensative Sort",_CaseSensativeSort); 
    
    // determine basic settings for the listview
    setAcceptDrops( true );
@@ -719,8 +716,6 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
 }
 
 void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
-   KConfigGroupSaver grpSvr( _config, nameInKConfig() );
-
    if ( !e || !firstChild() )
       return ; // subclass bug
    if ( ACTIVE_PANEL->quickSearch->isShown() ) {
@@ -911,23 +906,25 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                            ( e->key() == Key_Down ) ||
                            ( e->key() == Key_Period ) ) */{ 
             // are we doing quicksearch? if not, send keys to panel
-            if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
+            //if ( _config->readBoolEntry( "Do Quicksearch", _DoQuicksearch ) ) {
                // are we using krusader's classic quicksearch, or wincmd style?
-               KConfigGroupSaver grpSvr( _config, "Look&Feel" );
-               if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
-                  KListView::keyPressEvent( e );
-               else {
-                  // first, show the quicksearch if its hidden
-                  if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
-                     ACTIVE_PANEL->quickSearch->show();
-                     // second, we need to disable the dirup action - hack!
-                     krDirUp->setEnabled( false );
-                  }
-                  // now, send the key to the quicksearch
-                  ACTIVE_PANEL->quickSearch->myKeyPressEvent( e );
-               }
-            } else
-               e->ignore(); // send to panel
+               {
+						KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+						if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+							KListView::keyPressEvent( e );
+						else {
+							// first, show the quicksearch if its hidden
+							if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
+								ACTIVE_PANEL->quickSearch->show();
+								// second, we need to disable the dirup action - hack!
+								krDirUp->setEnabled( false );
+							}
+							// now, send the key to the quicksearch
+							ACTIVE_PANEL->quickSearch->myKeyPressEvent( e );
+						}
+					}
+            //} else
+            //   e->ignore(); // send to panel
          } else {
             if ( ACTIVE_PANEL->quickSearch->isShown() ) {
                ACTIVE_PANEL->quickSearch->hide();
