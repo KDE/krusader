@@ -1510,7 +1510,7 @@
     <listitem><para><guimenuitem>"Command line"</guimenuitem>: is the command which is finaly executed. 
                      You can add placeholder using a GUI with the <guibutton>"add"</guibutton> button.
                      </para></listitem>
-    <listitem><para><guimenuitem>"Startpath"</guimenuitem>: the startpath of the command that will be executed.
+    <listitem><para><guimenuitem>"Startpath"</guimenuitem>: the working directory for the command that will be executed.
                      </para></listitem>
 		     
       <listitem><para><guimenuitem>"Execution mode"</guimenuitem>:</para>
@@ -1550,22 +1550,84 @@
     </itemizedlist>
 </para>
 
-<para>Currently, these placeholder are implemented (for details see 
-      UserAction/expander.cpp or doxygen):
+<para><emphasis role="bold">Commandline-syntax:</emphasis></para>
+<para>Basicly, everything you type in the commandline will get executed (if you type "ls -l", "ls -l" gets executed). You have the possiblity to
+get some character string from &krusader; which represents the current panel-state. This is done by placeholders. A placeholder beginns with a percent-sign ('%'), followd by a panel-indicator ('a' for the active, 'o' for the other, 'l' for the left and 'r' for the right panel. If the placeholder don't need a panel to operate on you have to indicate this by an underscore ('_')). Then commes the name of the placeholder (see the below-mentioned list), which may got some parameter nonted in brackets, and finaly again the percet-sign.</para>
+<para>This sounds very complicated, so lets make an example: '%aList("Selected")%' will be replaced by a list of all selected items in the active panel. So a command like 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' will execute xmms with a list of all .mp3's in the current panel, separated by a single blank.</para>
+<para>Currently, these placeholder are implemented:
 <itemizedlist>
-     <listitem><para><userinput>Path</userinput> - replaced by the panels path</para></listitem>
-     <listitem><para><userinput>Count</userinput> - replaced by the number of &lt;first parameter&gt;</para></listitem>
+     <listitem><para><userinput>Path</userinput> - replaced by the panels path</para>
+          <orderedlist>
+	       <listitem><para>&useraction_optional_parameter; Automatic escape spaces. &useraction_default; yes</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>Count</userinput> - replaced by the number of &lt;first parameter&gt;</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; Which items; either "All", "Selected", "Files" or "Dirs"</para></listitem>
+	  </orderedlist>
+	  </listitem>
      <listitem><para><userinput>Filter</userinput> - replaced by the panels filter-mask</para></listitem>
-     <listitem><para><userinput>Current</userinput> - replaced by the current item</para></listitem>
-     <listitem><para><userinput>List</userinput> replaced by a list of all &lt;first parameter&gt;</para></listitem>
-     <listitem><para><userinput>Select</userinput> - manipulates the selection in a panel</para></listitem>
-     <listitem><para><userinput>Goto</userinput> - changes the panels's path to &lt;first parameter&gt;</para></listitem>
-     <listitem><para><userinput>Ask</userinput> - asks the user for a some text and is replaced by the answer</para></listitem>
-     <listitem><para><userinput>Clipboard</userinput> - manipulates the clipboard</para></listitem>
-     <listitem><para><userinput>Copy</userinput> - copies a file, useful for quick, local, backups</para></listitem>
-     <listitem><para><userinput>Sync</userinput> - opens the Synchronizer with a given profile</para></listitem>
-     <listitem><para><userinput>NewSearch</userinput> - opens the search-windows with a given profile</para></listitem>
-     <listitem><para><userinput>Profile</userinput> - loads a given panel-profile </para></listitem>
+     <listitem><para><userinput>Current</userinput> - replaced by the current item</para>
+          <orderedlist>
+	       <listitem><para>&useraction_optional_parameter; Omit the current path. &useraction_default; no</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; Automatic escape spaces. &useraction_default; yes</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>List</userinput> - replaced by a list of all &lt;first parameter&gt;</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; Which items; either "All", "Selected", "Files" or "Dirs"</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; Separator between the items. &useraction_default; "&nbsp;"</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; Omit the current path. &useraction_default; no</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; Filtermask (for all but "Selected"). &useraction_default; *</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; Automatic escape spaces. &useraction_default; yes</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>Select</userinput> - manipulates the selection in a panel</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; Filtermask</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; manipulate in which way; either "Set", "Add" or "Remove". &useraction_default; "Set"</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>Goto</userinput> - changes the panels's path to &lt;first parameter&gt;</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; A relative or absolut path or an URL</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; Open the location in a new tab. &useraction_default; no</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>Ask</userinput> - asks the user for a some text and is replaced by the answer</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; The Question</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; A default answer</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; A caption for the questionbox</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>Clipboard</userinput> - manipulates the clipboard</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; The text that should go to the clipboard (you may want to use "%aCurrent%" here)</para></listitem>
+	       <listitem><para>&useraction_optional_parameter; Append the text to the current clipboard-content with this separator</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>Copy</userinput> - copies a file, useful for quick, local, backups</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; What should be copied</para></listitem>
+	       <listitem><para>&useraction_parameter; Where it should be copied</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>Sync</userinput> - opens the Synchronizer with a given profile</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; A profile for the Synchronizer</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>NewSearch</userinput> - opens the search-windows with a given profile</para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; A profile for the search-module</para></listitem>
+	  </orderedlist>
+	  </listitem>
+     <listitem><para><userinput>Profile</userinput> - loads a given panel-profile </para>
+          <orderedlist>
+	       <listitem><para>&useraction_parameter; A panel-profile</para></listitem>
+	  </orderedlist>
+	  </listitem>
 </itemizedlist>
 A GUI-based helper for placeholder-adding is provided.
 Spaces In Path, Current and List are per default automaticly escaped. 
@@ -1581,6 +1643,7 @@ You can also set a user under which the command should be executed.
 <itemizedlist>
   <listitem><para>Configures if the action is valid for a Protocol, Path, Mime-type or Filename.</para></listitem>
   <listitem><para>Tweaking the commandline before beeing executed.</para></listitem>
+  <listitem><para>Set a different user for the execution (this has no effect in krusader-internal functions)</para></listitem>
 </itemizedlist>
 </para>
 
