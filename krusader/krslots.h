@@ -40,6 +40,7 @@
 #include "Panel/listpanel.h"
 #include "BookMan/bookmarksbutton.h"
 #include "GUI/kcmdline.h"
+#include "GUI/dirhistorybutton.h"
 
 class ListPanel;
 
@@ -106,6 +107,8 @@ class KRslots : public QObject {
     void multiRename();
     void openRightBookmarks() { krApp->mainView->right->bookmarksButton->openPopup(); }
     void openLeftBookmarks() { krApp->mainView->left->bookmarksButton->openPopup(); }
+    void openLeftHistory() { krApp->mainView->left->historyButton->openPopup(); }
+    void openRightHistory() { krApp->mainView->right->historyButton->openPopup(); }
     void cmdlinePopup() { krApp->mainView->cmdLine->popup(); }
     void duplicateTab();
     void newTab();

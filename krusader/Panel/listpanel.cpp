@@ -79,6 +79,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../GUI/kcmdline.h"
 #include "krdetailedview.h"
 #include "krpreviewpopup.h"
+#include "../GUI/dirhistorybutton.h"
+#include "../GUI/dirhistoryqueue.h"
 
 typedef QValueList<KServiceOffer> OfferList;
 
@@ -90,7 +92,7 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
 
   func = new ListPanelFunc( this );
   setAcceptDrops( true );
-  layout = new QGridLayout( this, 3, 2 );
+  layout = new QGridLayout( this, 3, 3 );
 
   status = new KrSqueezedTextLabel( this );
   krConfig->setGroup( "Look&Feel" );
@@ -106,6 +108,12 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
                     "which hold your current directory: Total size, free space, "
                     "type of filesystem etc." ) );
   connect( status, SIGNAL( clicked() ), this, SLOT( slotFocusOnMe() ) );
+
+  // ... create the history button
+  dirHistoryQueue = new DirHistoryQueue(this);
+  historyButton = new DirHistoryButton(dirHistoryQueue, this, "historyButton");
+  connect(historyButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
+  connect(historyButton, SIGNAL(openUrl(const KURL&)), func, SLOT( openUrl( const KURL& ) ) );  
 
   // ... create the bookmark list
   bookmarksButton = new BookmarksButton( this );
@@ -163,13 +171,14 @@ QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0
   connect( this, SIGNAL( activePanelChanged( ListPanel * ) ), SLOTS, SLOT( slotSetActivePanel( ListPanel * ) ) );
 
   // finish the layout
-  layout->addMultiCellWidget( origin, 0, 0, 0, 1 );
+  layout->addMultiCellWidget( origin, 0, 0, 0, 2 );
   layout->addWidget( status, 1, 0 );
-  layout->addWidget( bookmarksButton, 1, 1 );
-  layout->addMultiCellWidget( dynamic_cast<KrDetailedView*>( view ) ->widget(), 2, 2, 0, 1 );
-  layout->addMultiCellWidget( quickSearch, 3, 3, 0, 1 );
+  layout->addWidget(historyButton, 1, 1);
+  layout->addWidget( bookmarksButton, 1, 2 );
+  layout->addMultiCellWidget( dynamic_cast<KrDetailedView*>( view ) ->widget(), 2, 2, 0, 2 );
+  layout->addMultiCellWidget( quickSearch, 3, 3, 0, 2 );
   quickSearch->hide();
-  layout->addMultiCellWidget( totals, 4, 4, 0, 1 );
+  layout->addMultiCellWidget( totals, 4, 4, 0, 2 );
 
   //filter = ALL;
 }

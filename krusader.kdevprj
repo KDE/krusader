@@ -22,11 +22,11 @@ bin_program=krusader
 cflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cppflags=-DKDE_NO_COMPAT -D_LARGEFILE64_SOURCE
 cxxflags=\s-O0 -Wall
-ldadd=UserMenu/libUserMenu.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
-ldflags=\s                                      \s
+ldadd=UserMenu/libUserMenu.a VFS/libVFS.a KViewer/libKViewer.a Dialogs/libDialogs.a BookMan/libBookMan.a GUI/libGUI.a $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
+ldflags=\s                                       \s
 
 [General]
-AMChanged=true
+AMChanged=false
 author=Shie Erlich & Rafi Yanai
 configure_args=\s--build=i386-linux --host=i386-linux --target=i386-linux --prefix=/usr\s
 email=
@@ -515,11 +515,35 @@ install_location=
 type=HEADER
 
 [krusader/GUI/Makefile.am]
-files=krusader/GUI/kcmdline.cpp,krusader/GUI/kcmdline.h,krusader/GUI/kfnkeys.cpp,krusader/GUI/kfnkeys.h,krusader/GUI/krusaderstatus.cpp,krusader/GUI/krusaderstatus.h
+files=krusader/GUI/kcmdline.cpp,krusader/GUI/kcmdline.h,krusader/GUI/kfnkeys.cpp,krusader/GUI/kfnkeys.h,krusader/GUI/krusaderstatus.cpp,krusader/GUI/krusaderstatus.h,krusader/GUI/dirhistorybutton.cpp,krusader/GUI/dirhistorybutton.h,krusader/GUI/dirhistoryqueue.cpp,krusader/GUI/dirhistoryqueue.h
 sharedlib_LDFLAGS=-version-info 0:0:0
 sharedlib_rootname=GUI
 sub_dirs=
 type=static_library
+
+[krusader/GUI/dirhistorybutton.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/GUI/dirhistorybutton.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[krusader/GUI/dirhistoryqueue.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[krusader/GUI/dirhistoryqueue.h]
+dist=true
+install=false
+install_location=
+type=HEADER
 
 [krusader/GUI/kcmdline.cpp]
 dist=true

@@ -5,9 +5,9 @@ INCLUDES = $(all_includes)
 
 libGUI_a_METASOURCES = AUTO
 
-libGUI_a_SOURCES = krusaderstatus.cpp kfnkeys.cpp kcmdline.cpp 
+libGUI_a_SOURCES = dirhistoryqueue.cpp dirhistorybutton.cpp krusaderstatus.cpp kfnkeys.cpp kcmdline.cpp 
 
 
-EXTRA_DIST = kcmdline.cpp kcmdline.h kfnkeys.cpp kfnkeys.h krusaderstatus.cpp krusaderstatus.h 
+EXTRA_DIST = kcmdline.cpp kcmdline.h kfnkeys.cpp kfnkeys.h krusaderstatus.cpp krusaderstatus.h dirhistorybutton.cpp dirhistorybutton.h dirhistoryqueue.cpp dirhistoryqueue.h 
 
 ####### kdevelop will overwrite this part!!! (end)############

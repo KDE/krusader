@@ -63,6 +63,8 @@ class KrView;
 class KURLRequester;
 class BookmarksButton;
 class KrQuickSearch;
+class DirHistoryButton;
+class DirHistoryQueue;
 
 class ListPanel : public QWidget {
 friend class ListPanelFunc;
@@ -126,6 +128,8 @@ public:
 	KURLRequester   *origin;
 	QGridLayout   *layout;
   BookmarksButton *bookmarksButton;
+   DirHistoryQueue* dirHistoryQueue;
+  DirHistoryButton* historyButton;
 
 private:
   bool _left;
