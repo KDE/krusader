@@ -41,6 +41,7 @@
 #include <qcursor.h>
 #include <qpixmapcache.h>
 #include <qgroupbox.h>
+#include <qguardedptr.h>
 #include "diskusage.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
@@ -559,22 +560,27 @@ void DiskUsage::del( File *file, bool calcPercents )
 
   emit deleted( file );
   
+  QGuardedPtr<KIO::Job> job;
+  
   krConfig->setGroup("General");
   if( krConfig->readBoolEntry("Move To Trash",_MoveToTrash) )
   {
-    KIO::Job *job = new KIO::CopyJob( vfs::fromPathOrURL( file->fullPath() ),KGlobalSettings::trashPath(),KIO::CopyJob::Move,false,false );
+    job = new KIO::CopyJob( vfs::fromPathOrURL( file->fullPath() ),KGlobalSettings::trashPath(),KIO::CopyJob::Move,false,false );
     connect(job,SIGNAL(result(KIO::Job*)),krApp,SLOT(changeTrashIcon()));
   }
   else
-    new KIO::DeleteJob( vfs::fromPathOrURL( file->fullPath() ), false, false);
-
+  {
+    job = new KIO::DeleteJob( vfs::fromPathOrURL( file->fullPath() ), false, false);
+  }
+  
+  while( !job.isNull() )
+    qApp->processEvents();
+  
   ((Directory *)(file->parent()))->remove( file );
   delete file;
     
   if( calcPercents )
   {  
-    qApp->processEvents(); // execute the delete
-    
     calculateSizes( root, true );
     calculatePercents( true );
     createStatus();
