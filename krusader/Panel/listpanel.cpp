@@ -73,6 +73,8 @@
 #include "../BookMan/bookman.h"
 #include "../Dialogs/krspwidgets.h"
 #include "krdetailedview.h"
+#include "krpreviewpopup.h"
+
 typedef QValueList<KServiceOffer> OfferList;
 
 /////////////////////////////////////////////////////
@@ -96,7 +98,7 @@ ListPanel::ListPanel(QWidget *parent, const char *name ) :
   status->setMaximumHeight(sheight);
   QWhatsThis::add(status,i18n("The status bar displays information about the FILESYSTEM which hold your current directory: Total size, free space, type of filesystem etc."));
 
-   // ... create the bookmark list
+  	// ... create the bookmark list
   bookmarkList=new QToolButton(this);
   bookmarkList->setFixedSize(sheight, sheight);
   QImage im = krLoader->loadIcon("kr_bookmark",KIcon::Toolbar).convertToImage();
@@ -453,6 +455,7 @@ void ListPanel::popRightClickMenu(const QPoint &loc) {
   #define SEND_BY_EMAIL 106
   #define LINK_HANDLING 107
   #define EJECT_ID      108
+	#define PREVIEW_ID    109
   // those will sometimes appear
   #define SERVICE_LIST_ID  200
   //////////////////////////////////////////////////////////
@@ -472,6 +475,16 @@ void ListPanel::popRightClickMenu(const QPoint &loc) {
        i18n((item->isExecutable())&&(!item->isDir()) ? "Run" : "Open"));
     popup.insertSeparator();
   }
+	// Preview - normal vfs only ?
+	KrPreviewPopup preview;
+	if ( func->files()->vfs_getType() == "normal"){
+		// create the preview popup
+		QStringList names;
+		getSelectedNames(&names);
+    preview.setUrls(func->files()->vfs_getFiles(&names));
+		popup.insertItem(QPixmap(),&preview,PREVIEW_ID);
+		popup.changeItem(PREVIEW_ID,i18n("Preview"));
+  }	
   // Open with
   // try to find-out which apps can open the file
   OfferList offers;
@@ -516,7 +529,7 @@ void ListPanel::popRightClickMenu(const QPoint &loc) {
 		if( item->isSymLink() )
 			linkPopup.insertItem(i18n("redirect link"),REDIRECT_LINK);
     popup.insertItem(QPixmap(),&linkPopup,LINK_HANDLING);
-    popup.changeItem(LINK_HANDLING,"Link handling");
+    popup.changeItem(LINK_HANDLING,i18n("Link handling"));
   }
 	popup.insertSeparator();
   if (func->files()->vfs_getType()!="ftp" && (item->isDir() || multipleSelections))
