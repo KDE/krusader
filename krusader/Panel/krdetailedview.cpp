@@ -545,13 +545,6 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
       case Key_Delete :             // kill file
       SLOTS->deleteFiles();
       return ;
-      case Key_A :         // mark all
-      if ( e->state() == ControlButton ) {
-        KListView::keyPressEvent( e );
-        updateView();
-      } else
-        e->ignore();
-      break;
       case Key_Space : {
         KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
         if ( !viewItem || !( viewItem->isDir() && viewItem->size() <= 0 ) ) {
@@ -580,6 +573,11 @@ void KrDetailedView::keyPressEvent( QKeyEvent *e ) {
         //KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
       }
       break;
+      case Key_A :         // mark all
+      if ( e->state() == ControlButton ) {
+        KListView::keyPressEvent( e );
+        updateView();
+      }
       default:
       // if the key is A..Z or 1..0 do quick search otherwise...
       if ( ( e->key() >= Key_A && e->key() <= Key_Z ) ||
