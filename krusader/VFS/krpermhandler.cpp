@@ -126,21 +126,24 @@ bool KRpermHandler::fileExecutable(QString localFile){
 QString KRpermHandler::mode2QString(mode_t m){
 	QString perm ="----------";
 	
-	if( S_ISLNK(m) ) perm[0]='l';  // check for symLink	
-  if( S_ISDIR(m) )  perm[0]='d';  // check for directory
-	
-	//ReadUser = 0400, WriteUser = 0200, ExeUser = 0100
-	if(m&0400) perm[1]='r';
-	if(m&0200) perm[2]='w';
-	if(m&0100) perm[3]='x';
-	//ReadGroup = 0040, WriteGroup = 0020, ExeGroup = 0010
-	if(m&0040) perm[4]='r';
-	if(m&0020) perm[5]='w';
-	if(m&0010) perm[6]='x';	
-	//ReadOther = 0004, WriteOther = 0002, ExeOther = 0001
-	if(m&0004) perm[7]='r';
-	if(m&0002) perm[8]='w';
-	if(m&0001) perm[9]='x';
+	if( S_ISLNK(m) ) perm[0]='l';  // check for symLink
+	if( S_ISDIR(m) ) perm[0]='d';  // check for directory
+
+	//ReadUser = 0400, WriteUser = 0200, ExeUser = 0100, Suid = 04000
+	if(m&0400)  perm[1]='r';
+	if(m&0200)  perm[2]='w';
+	if(m&0100)  perm[3]='x';
+	if(m&04000) perm[3]='s';
+	//ReadGroup = 0040, WriteGroup = 0020, ExeGroup = 0010, Gid = 02000
+	if(m&0040)  perm[4]='r';
+	if(m&0020)  perm[5]='w';
+	if(m&0010)  perm[6]='x';
+	if(m&02000) perm[6]='s';
+	//ReadOther = 0004, WriteOther = 0002, ExeOther = 0001, Sticky = 01000
+	if(m&0004)  perm[7]='r';
+	if(m&0002)  perm[8]='w';
+	if(m&0001)  perm[9]='x';
+	if(m&01000) perm[9]='t';
 
 	return perm;
 }
