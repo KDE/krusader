@@ -178,6 +178,15 @@ public:
    EXP_FUNC;
 };
 
+/**
+  * This opens the searchmodule with a given profile
+  */
+class exp_NewSearch : public exp_placeholder {
+public:
+   exp_NewSearch();
+   EXP_FUNC;
+};
+
 
 /**
  * The Expander expands the command of an UserAction by replacing all placeholders by thier current values.@n

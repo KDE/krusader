@@ -18,6 +18,7 @@
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../Synchronizer/synchronizergui.h"
+#include "../Search/krsearchdialog.h"
 
 #include <kdebug.h>
 #include <kinputdialog.h>
@@ -352,10 +353,25 @@ QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const
       return QString::null;
    }
 
-   SynchronizerGUI *sync = new SynchronizerGUI( MAIN_VIEW, parameter[0] );
-   // do the sync:
-   sync->wasSynchronization();
-   delete sync;
+   new SynchronizerGUI( MAIN_VIEW, parameter[0] );
+
+   return QString::null;  // this doesn't return everything, that's normal!
+}
+
+exp_NewSearch::exp_NewSearch() {
+   _expression = "NewSearch";
+   _description = i18n("Opens a searchmodule-profile");
+   _needPanel = false;
+   
+   addParameter( new exp_parameter( i18n("Choose a profile"), "__search", true ) );
+}
+QString exp_NewSearch::expFunc( const ListPanel*, const QStringList& parameter, const bool&, const int& ) {
+   if ( parameter[0].isEmpty() ) {
+      kdWarning() << "Expander: no profile specified for %_NewSearch(profile)%; ignoring..." << endl;
+      return QString::null;
+   }
+
+   new KrSearchDialog( parameter[0] );
 
    return QString::null;  // this doesn't return everything, that's normal!
 }
@@ -381,8 +397,8 @@ Expander::Expander() {
    addPlaceholder( new exp_Clipboard() );
    addPlaceholder( new exp_Copy() );
    addPlaceholder( new exp_Sync() );
+   addPlaceholder( new exp_NewSearch() );
 //    addPlaceholder( new exp_Run() );
-//    addPlaceholder( new exp_SearchExt() );
 }
 
 Expander::~Expander() {

@@ -52,7 +52,7 @@
 class KrSearchDialog : public QDialog  {
    Q_OBJECT
 public: 
-  KrSearchDialog(QWidget* parent = 0, const char* name = 0, bool modal = false, WFlags fl = 0 );
+  KrSearchDialog(QString profile = 0, QWidget* parent = 0, const char* name = 0, bool modal = false, WFlags fl = 0 );
 
   void prepareGUI();
     

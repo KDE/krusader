@@ -60,7 +60,7 @@ bool KrSearchDialog::lastSearchInArchives = false;
 bool KrSearchDialog::lastFollowSymLinks = false;
 
 // class starts here /////////////////////////////////////////
-KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, WFlags fl )
+KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* name, bool modal, WFlags fl )
                 : QDialog( parent, name, modal, fl ), query(0), searcher(0) 
 {
   setCaption( i18n( "Krusader::Search" ) );
@@ -107,17 +107,6 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   advancedFilter = new AdvancedFilter( searcherTabs, "advancedFilter" );
   searcherTabs->insertTab( advancedFilter, i18n( "&Advanced" ) );
 
-  // load the last used values
-  generalFilter->searchFor->setEditText( lastSearchText );
-  generalFilter->searchFor->lineEdit()->selectAll();
-  generalFilter->ofType->setCurrentItem( lastSearchType );
-  generalFilter->searchForCase->setChecked( lastSearchForCase );
-  generalFilter->containsWholeWord->setChecked( lastContainsWholeWord );
-  generalFilter->containsTextCase->setChecked( lastContainsWithCase );
-  generalFilter->searchInDirs->setChecked( lastSearchInSubDirs );
-  generalFilter->searchInArchives->setChecked( lastSearchInArchives );
-  generalFilter->followLinks->setChecked( lastFollowSymLinks );
-      
   resultTab = new QWidget( searcherTabs, "resultTab" );
   resultLayout = new QGridLayout( resultTab );
   resultLayout->setSpacing( 6 );
@@ -203,11 +192,7 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   setTabOrder( mainCloseBtn, mainStopBtn );
   setTabOrder( mainStopBtn, searcherTabs );
   setTabOrder( searcherTabs, resultsList );
-  
-  // the path in the active panel should be the default search location
-  QString path = ACTIVE_PANEL->getPath();
-  generalFilter->searchInEdit->setText(path);
-  
+
   krConfig->setGroup( "Search" );
   int sx = krConfig->readNumEntry( "Window Width",  -1 );
   int sy = krConfig->readNumEntry( "Window Height",  -1 );
@@ -225,6 +210,25 @@ KrSearchDialog::KrSearchDialog( QWidget* parent,  const char* name, bool modal, 
   generalFilter->searchFor->setFocus();
 
   isSearching = closed = false;
+  
+  // finaly, load a profile of apply defaults:
+  
+  if ( profile.isEmpty() ) {
+    // load the last used values
+    generalFilter->searchFor->setEditText( lastSearchText );
+    generalFilter->searchFor->lineEdit()->selectAll();
+    generalFilter->ofType->setCurrentItem( lastSearchType );
+    generalFilter->searchForCase->setChecked( lastSearchForCase );
+    generalFilter->containsWholeWord->setChecked( lastContainsWholeWord );
+    generalFilter->containsTextCase->setChecked( lastContainsWithCase );
+    generalFilter->searchInDirs->setChecked( lastSearchInSubDirs );
+    generalFilter->searchInArchives->setChecked( lastSearchInArchives );
+    generalFilter->followLinks->setChecked( lastFollowSymLinks );
+    generalFilter->searchInEdit->setText( ACTIVE_PANEL->getPath() ); // the path in the active panel should be the default search location
+  }
+  else
+    profileManager->loadByName( profile ); // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
+
 }
 
 void KrSearchDialog::closeDialog( bool isAccept ) 

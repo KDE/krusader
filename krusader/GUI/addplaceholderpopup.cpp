@@ -151,9 +151,11 @@ ParameterDialog::ParameterDialog( exp_placeholder* currentPlaceholder, QWidget *
       else if ( currentPlaceholder->parameter( i )->preset() == "__select" )
          _parameter.append( new ParameterSelect( currentPlaceholder->parameter( i ), plainPage() ) );
       else if ( currentPlaceholder->parameter( i )->preset() == "__bookmark" )
-         _parameter.append( new ParameterBookmark( currentPlaceholder->parameter( i ), plainPage() ) );
+         _parameter.append( new ParameterGoto( currentPlaceholder->parameter( i ), plainPage() ) );
       else if ( currentPlaceholder->parameter( i )->preset() == "__syncprofile" )
          _parameter.append( new ParameterSyncprofile( currentPlaceholder->parameter( i ), plainPage() ) );
+      else if ( currentPlaceholder->parameter( i )->preset() == "__search" )
+         _parameter.append( new ParameterSearch( currentPlaceholder->parameter( i ), plainPage() ) );
       else
          _parameter.append( new ParameterText( currentPlaceholder->parameter( i ), plainPage() ) );
    }
@@ -415,8 +417,8 @@ bool ParameterSelect::valid() {
       return true;
 } 
 
-///////////// ParameterBookmark
-ParameterBookmark::ParameterBookmark( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+///////////// ParameterGoto
+ParameterGoto::ParameterGoto( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
    QVBoxLayout* layout = new QVBoxLayout( this );
    layout->setAutoAdd( true );
    layout->setSpacing( 6 );
@@ -434,26 +436,26 @@ ParameterBookmark::ParameterBookmark( exp_parameter* parameter, QWidget* parent 
    connect( _bookmarkButton, SIGNAL(openUrl(const KURL &)), this, SLOT(setBookmark(const KURL &)) );
 }
 
-QString ParameterBookmark::text() {
+QString ParameterGoto::text() {
    return _lineEdit->text();
 }
-QString ParameterBookmark::preset() {
+QString ParameterGoto::preset() {
    return QString::null;
 } 
-void ParameterBookmark::reset() {
+void ParameterGoto::reset() {
    _lineEdit->setText( QString::null );
 } 
-bool ParameterBookmark::valid() {
+bool ParameterGoto::valid() {
    if ( _lineEdit->text().isEmpty() )
       return false;
    else
       return true;
 } 
-void ParameterBookmark::setDir() {
+void ParameterGoto::setDir() {
    QString folder = KFileDialog::getExistingDirectory(QString::null, this);
    _lineEdit->setText( folder );
 }
-void ParameterBookmark::setBookmark( const KURL& url ) {
+void ParameterGoto::setBookmark( const KURL& url ) {
    _lineEdit->setText( url.url() );
 }
 
@@ -482,3 +484,27 @@ bool ParameterSyncprofile::valid() {
       return true;
 } 
 
+///////////// ParameterSearch
+ParameterSearch::ParameterSearch( exp_parameter* parameter, QWidget* parent ) : ParameterBase( parameter, parent ) {
+   QVBoxLayout* layout = new QVBoxLayout( this );
+   layout->setAutoAdd( true );
+   layout->setSpacing( 6 );
+   
+   new QLabel( parameter->description(), this );
+   _combobox = new KComboBox( this );
+   
+   _combobox->insertStringList( ProfileManager::availableProfiles("SearcherProfile") );
+}
+
+QString ParameterSearch::text() {
+   return _combobox->currentText();
+} 
+QString ParameterSearch::preset() {
+   return _combobox->text( 0 );
+} 
+void ParameterSearch::reset() {
+   _combobox->setCurrentItem( 0 );
+} 
+bool ParameterSearch::valid() {
+      return true;
+} 

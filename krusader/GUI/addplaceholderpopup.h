@@ -206,12 +206,12 @@ private:
 
 /**
  *  A line-edit with a "choose dir"- and a bookmark-button
- *  used with default = "__bookmark"
+ *  used with default = "__goto"
  */
-class ParameterBookmark : public ParameterBase {
+class ParameterGoto : public ParameterBase {
 Q_OBJECT
 public:
-   ParameterBookmark( exp_parameter* parameter, QWidget* parent );
+   ParameterGoto( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
@@ -232,6 +232,21 @@ private slots:
 class ParameterSyncprofile : public ParameterBase {
 public:
    ParameterSyncprofile( exp_parameter* parameter, QWidget* parent );
+   QString text();
+   QString preset();
+   void reset();
+   bool valid();
+private:
+   KComboBox * _combobox;
+};
+
+/**
+ *  A ComboBox with all profiles available for the Searchmodule
+ *  used with default = "__search"
+ */
+class ParameterSearch : public ParameterBase {
+public:
+   ParameterSearch( exp_parameter* parameter, QWidget* parent );
    QString text();
    QString preset();
    void reset();
