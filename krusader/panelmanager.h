@@ -53,6 +53,8 @@ class PanelManager: public QWidget {
      */
     void slotNewTab(QString path);
     void slotNewTab();
+	 void slotNextTab();
+    void slotPreviousTab();	 
     void slotCloseTab();
 
   protected slots:

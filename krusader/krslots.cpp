@@ -550,12 +550,20 @@ void KRslots::newTab() {
   ACTIVE_PANEL_MANAGER->slotNewTab();
 }
 
+void KRslots::nextTab() {
+  ACTIVE_PANEL_MANAGER->slotNextTab();
+}
+
+void KRslots::previousTab() {
+  ACTIVE_PANEL_MANAGER->slotPreviousTab();
+}
+
 void KRslots::newTab(QListViewItem *item) {
   if (!item) return;
   KrViewItem *it = dynamic_cast<KrViewItem*>(item);
   if (it->isDir()) {
     ACTIVE_PANEL_MANAGER->slotNewTab(ACTIVE_PANEL->virtualPath + "/" + it->name());
-    kdWarning() << ACTIVE_PANEL->virtualPath << it->name()<<endl;
+    //kdWarning() << ACTIVE_PANEL->virtualPath << it->name()<<endl;
   }
 }
 

@@ -113,6 +113,8 @@ class KRslots : public QObject {
     void newTab();
     void newTab(QListViewItem *item);
     void closeTab();
+    void nextTab();
+    void previousTab();
     void slotSplit();
     void slotCombine();
     void userMenu();

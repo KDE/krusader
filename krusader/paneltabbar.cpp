@@ -34,6 +34,8 @@ PanelTabBar::PanelTabBar(QWidget *parent): QTabBar(parent), _maxTabLength(0) {
   setAcceptDrops(true);  
   insertAction(krNewTab);
   insertAction(krDupTab);
+  insertAction(krPreviousTab);
+  insertAction(krNextTab);
   insertAction(krCloseTab);
   krCloseTab->setEnabled(false); //can't close a single tab
 

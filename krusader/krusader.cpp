@@ -121,6 +121,8 @@ KAction *Krusader::actCmdlinePopup = 0;
 KAction *Krusader::actNewTab = 0;
 KAction *Krusader::actDupTab = 0;
 KAction *Krusader::actCloseTab = 0;
+KAction *Krusader::actNextTab = 0;
+KAction *Krusader::actPreviousTab = 0;
 KAction *Krusader::actSplit = 0;
 KAction *Krusader::actCombine = 0;
 KAction *Krusader::actUserMenu = 0;
@@ -510,6 +512,10 @@ void Krusader::setupActions() {
                             SLOT( duplicateTab() ), actionCollection(), "duplicate tab" );
    actCloseTab = new KAction( i18n( "Close tab" ), ALT + CTRL + Key_C, SLOTS,
                               SLOT( closeTab() ), actionCollection(), "close tab" );
+   actNextTab  = new KAction( i18n( "Next tab" ), SHIFT + Key_Right, SLOTS,
+	     SLOT( nextTab() ), actionCollection(), "next tab" );
+   actPreviousTab  = new KAction( i18n( "Previous tab" ), SHIFT + Key_Left, SLOTS,
+	     SLOT( previousTab() ), actionCollection(), "previous tab" );										
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );
 

@@ -147,6 +147,8 @@ void PanelManager::slotCloseTab() {
 
 void PanelManager::slotRefreshActions() {
    krCloseTab->setEnabled( _tabbar->count() > 1 );
+   krNextTab->setEnabled(_tabbar->count() > 1);
+   krPreviousTab->setEnabled(_tabbar->count() > 1);	
 }
 
 int PanelManager::activeTab()
@@ -184,4 +186,21 @@ void PanelManager::recreatePanels() {
       _tabbar->setCurrentTab( identifier );
       slotChangePanel( newCurrent );
    }
+}
+
+void PanelManager::slotNextTab() {
+   int currTab = _tabbar->currentTab();
+	int nextInd = (_tabbar->indexOf(currTab) == _tabbar->count()-1 ? 0 : _tabbar->indexOf(currTab)+1);
+	ListPanel *nextp = dynamic_cast<PanelTab*>(_tabbar->tabAt(nextInd))->panel;
+	_tabbar->setCurrentTab(_tabbar->tabAt(nextInd));	
+	slotChangePanel(nextp);   
+}
+
+
+void PanelManager::slotPreviousTab() {
+   int currTab = _tabbar->currentTab();
+	int nextInd = (_tabbar->indexOf(currTab) == 0 ? _tabbar->count()-1 : _tabbar->indexOf(currTab)-1);
+	ListPanel *nextp = dynamic_cast<PanelTab*>(_tabbar->tabAt(nextInd))->panel;
+	_tabbar->setCurrentTab(_tabbar->tabAt(nextInd));	
+	slotChangePanel(nextp);   
 }
