@@ -18,10 +18,11 @@ class KrSqueezedTextLabel;
 class KLineEdit;
 class KComboBox;
 class KImageFilePreview;
+class PanelViewer;
 
 class PanelPopup: public QWidget {
    Q_OBJECT
-   enum Parts { Tree, Preview, QuickPanel, Last=0xFF };
+   enum Parts { Tree, Preview, QuickPanel, View, Last=0xFF };
 public:
    PanelPopup( QWidget *parent, bool left );
    ~PanelPopup();
@@ -29,6 +30,8 @@ public:
 
 public slots:
    void update(KURL url);
+	void show();
+	void hide();
 	
 signals:
 	void selection(const KURL &url);
@@ -38,7 +41,7 @@ protected slots:
 	void tabSelected(int id);
 	void treeSelection(QListViewItem*);
 	void slotDroppedOnTree(QWidget *widget, QDropEvent *e, KURL::List &lst, KURL &);
-	
+	void handleOpenURLRequest(const KURL &url);
 	void quickSelect();
 	void quickSelect(const QString &);
         void quickSelectStore();
@@ -49,10 +52,11 @@ protected:
 	KrSqueezedTextLabel *dataLine;
 	QGuardedPtr<KIO::PreviewJob> pjob;
 	KFileTreeView *tree;
-	QToolButton *treeBtn, *previewBtn, *quickBtn;
+	QToolButton *treeBtn, *previewBtn, *quickBtn, *viewerBtn;
 	QButtonGroup *btns;
 	KLineEdit *quickFilter;
 	KComboBox *quickSelectCombo;
+	PanelViewer *panelviewer;
 };
 
 #endif // _PANELPOPUP_H

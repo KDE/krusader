@@ -19,7 +19,7 @@
 #include <klineedit.h>
 #include <kio/jobclasses.h>
 #include "../KViewer/kimagefilepreview.h"
-#include <kdebug.h>
+#include "../KViewer/panelviewer.h"
 
 PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ), 
 	stack( 0 ), viewer( 0 ), pjob( 0 ) {
@@ -67,11 +67,19 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	quickBtn->setFixedSize(20, 20);
 	quickBtn->setToggleButton(true);
 	btns->insert(quickBtn, QuickPanel);
-	
+
+	viewerBtn = new QToolButton(this);
+	QToolTip::add(viewerBtn, i18n("View Panel: view the current file"));
+	viewerBtn->setPixmap(krLoader->loadIcon( "kview", KIcon::Toolbar, 16 ));
+	viewerBtn->setFixedSize(20, 20);
+	viewerBtn->setToggleButton(true);
+	btns->insert(viewerBtn, View);	
+		
 	layout->addWidget(dataLine,0,0);
 	layout->addWidget(treeBtn,0,1);
 	layout->addWidget(previewBtn,0,2);
 	layout->addWidget(quickBtn,0,3);
+	layout->addWidget(viewerBtn,0,4);
 	
 	// create a widget stack on which to put the parts
    stack = new QWidgetStack( this );
@@ -103,6 +111,12 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	viewer = new KImageFilePreview(stack);
    stack->addWidget( viewer, Preview );
 
+	// create the panelview
+	
+	panelviewer = new PanelViewer(stack);
+	stack->addWidget(panelviewer, View);
+	connect(panelviewer, SIGNAL(openURLRequest(const KURL &)), this, SLOT(handleOpenURLRequest(const KURL &)));
+	
 	// create the quick-panel part ----
 	
 	QWidget *quickPanel = new QWidget(stack);
@@ -148,7 +162,7 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 	stack->addWidget(quickPanel, QuickPanel);
 	
 	// -------- finish the layout (General one)
-	layout->addMultiCellWidget(stack,1,1,0,3);
+	layout->addMultiCellWidget(stack,1,1,0,4);
 	
    // set the wanted widget
 	// ugly: are we left or right?
@@ -165,7 +179,28 @@ PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ),
 
 PanelPopup::~PanelPopup() {}
 
+void PanelPopup::show() {
+  QWidget::show();
+  tabSelected(stack->id(stack->visibleWidget()));
+}
+
+
+void PanelPopup::hide() {
+  QWidget::hide();
+  if (stack->id(stack->visibleWidget()) == View) panelviewer->closeURL();
+}
+
+void PanelPopup::handleOpenURLRequest(const KURL &url) {
+  if (KMimeType::findByURL(url.url())->name() == "inode/directory") ACTIVE_PANEL->func->openUrl(url);
+}
+
+
 void PanelPopup::tabSelected( int id ) {
+	KURL url = "";
+   if ( ACTIVE_PANEL && ACTIVE_PANEL->func && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view ) {
+     url = ACTIVE_PANEL->func->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem());
+   }
+	
    stack->raiseWidget( id );
 	// if tab is tree, set something logical in the data line
 	switch (id) {
@@ -174,16 +209,22 @@ void PanelPopup::tabSelected( int id ) {
 			break;
 		case Preview:
 			dataLine->setText( i18n("Preview:") );
+			update(url);
 			break;
 		case QuickPanel:
 			dataLine->setText( i18n("Quick Select:") );
 			break;
+		case View:
+			dataLine->setText( i18n("View:") );
+			update(url);
+			break;
 	}
+	if (id != View) panelviewer->closeURL();  
 }
 
 // decide which part to update, if at all
 void PanelPopup::update( KURL url ) {
-   if ( isHidden() ) return ; // failsafe
+   if ( isHidden() || url.url()=="" ) return ; // failsafe
 
    KFileItem *kfi;
    KFileItemList lst;
@@ -193,7 +234,9 @@ void PanelPopup::update( KURL url ) {
 			viewer->showPreview(url);
 			dataLine->setText( i18n("Preview: ")+url.fileName() );
 			break;
-
+      case View:
+			panelviewer->openURL(url);
+			dataLine->setText( i18n("View: ")+url.fileName() );
       case Tree:  // nothing to do
          break;
    }
