@@ -106,7 +106,7 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 			// possible relative URL - translate to full URL
 			url = files() ->vfs_getOrigin();
 			url.addPath( urlIn.url() );
-			kdDebug()<< urlIn.url() << "," << url.url() <<endl;
+			//kdDebug()<< urlIn.url() << "," << url.url() <<endl;
 		} else {
 			panel->slotStartUpdate();  // refresh the panel
 			return ;
@@ -172,7 +172,6 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 }
 
 void ListPanelFunc::openUrl( const KURL& url, const QString& nameToMakeCurrent ) {
-krOut << url.url() << nameToMakeCurrent << endl;
 	panel->inlineRefreshCancel();
 	// first the other dir, then the active! Else the focus changes and the other becomes active
 	if ( panel->syncBrowseButton->state() == SYNCBROWSE_CD ) {

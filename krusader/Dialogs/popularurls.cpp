@@ -153,7 +153,9 @@ void PopularUrls::decreaseRanks() {
 	if (head) {
 		UrlNodeP p=head;
 		while (p) {
-			p->rank -= DECREASE;
+			if (p->rank-DECREASE>=0)
+				p->rank -= DECREASE;
+			else p->rank = 0;
 			p=p->next;
 		}
 	}
