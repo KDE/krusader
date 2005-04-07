@@ -346,7 +346,7 @@ RadialMap::Map::paint( unsigned int scaleFactor )
 #if 0
                sincos( ra, &sinra, &cosra );
 #endif
-					sinra = sin(ra); cosra = cos(ra);
+	       sinra = sin(ra); cosra = cos(ra);
                pos.rx() = cpos.x() + static_cast<int>(cosra * radius);
                pos.ry() = cpos.y() - static_cast<int>(sinra * radius);
                pts.setPoint( i, pos );

@@ -229,8 +229,10 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
       rightSide = ( (*it)->a < 1440 || (*it)->a > 4320 );
 
       ra = M_PI/2880 * (*it)->a; //convert to radians
+#if 0
       sincos( ra, &sinra, &cosra );
-
+#endif
+	sinra = sin(ra); cosra = cos(ra);
 
       spacer = preSpacer + m_map.m_ringBreadth * (*it)->lvl;
 
