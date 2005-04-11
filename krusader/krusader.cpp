@@ -150,6 +150,7 @@ KAction *Krusader::actF7 = 0;
 KAction *Krusader::actF8 = 0;
 KAction *Krusader::actF9 = 0;
 KAction *Krusader::actF10 = 0;
+KAction *Krusader::actLocationBar = 0;
 KAction *Krusader::actPopularUrls = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
 KRadioAction  *Krusader::actMarkNewerAndSingle = 0;
@@ -527,7 +528,7 @@ void Krusader::setupActions() {
 
    actFind = new KAction( i18n( "&Search" ), "filefind", CTRL + Key_S,
                           SLOTS, SLOT( search() ), actionCollection(), "find" );
-   actLocate = new KAction( i18n( "&Locate" ), "find", CTRL + Key_L,
+   actLocate = new KAction( i18n( "&Locate" ), "find", SHIFT+CTRL + Key_L,
                             SLOTS, SLOT( locate() ), actionCollection(), "locate" );
    actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_Y,
                               SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
@@ -611,6 +612,9 @@ void Krusader::setupActions() {
                 this, SLOT( quitKrusader() ) , actionCollection(), "F10_Quit" );
 	actPopularUrls = new KAction( i18n("Popular URLs"), CTRL+Key_Z,
 					popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
+	actLocationBar = new KAction( i18n("Go to location bar"), CTRL+Key_L,
+					SLOTS, SLOT( slotLocationBar() ), actionCollection(), "location_bar");
+					
 										
    // and at last we can set the tool-tips
    actSelect->setToolTip( i18n( "Select files using a filter" ) );

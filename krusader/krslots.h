@@ -135,6 +135,7 @@ class KRslots : public QObject {
     void slotSynchronizeDirs();
     void slotSyncBrowse();
     void slotDiskUsage();
+    void slotLocationBar();
     void updatePopupPanel(QListViewItem*);
 		void windowActive(); // called when krusader's window becomes focussed
 		void windowInactive(); // called when another application steals the focus
@@ -162,6 +163,7 @@ class KRslots : public QObject {
     // ugly stubs, remove later ?
     void slotCurrentChanged( QString p ) { MAIN_VIEW->slotCurrentChanged( p ); }
     void slotSetActivePanel( ListPanel *p ) { MAIN_VIEW->slotSetActivePanel( p ); }
+
     
     void jsConsole();
 };

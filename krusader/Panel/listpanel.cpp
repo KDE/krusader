@@ -1120,10 +1120,6 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          break;
 
 			case Key_Up :
-			if (e->state() == ControlButton) { // jump to the origin bar
-				origin->lineEdit()->selectAll();
-				origin->setFocus();
-			}
 			break;
 
          default:

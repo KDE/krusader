@@ -826,6 +826,11 @@ void KRslots::windowInactive() {
 	MAIN_VIEW->right->panelInactive();
 }
 
+void KRslots::slotLocationBar() {
+	ACTIVE_PANEL->origin->lineEdit()->selectAll();
+	ACTIVE_PANEL->origin->setFocus();
+}
+
 //shows the JavaScript-Console
 void KRslots::jsConsole() {
 #ifdef __KJSEMBED__
