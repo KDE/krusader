@@ -75,9 +75,12 @@ void KrBookmarkHandler::deleteBookmark(KrBookmark *bm) {
 
 void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm) {
 	QDomElement bookmark = doc.createElement("bookmark");
+	// url
 	bookmark.setAttribute("href", bm->url().url());
+	// icon
+	bookmark.setAttribute("icon", bm->icon());
 	// title
-	QDomElement title = doc.createElement("title");
+	QDomElement title = doc.createElement("title");	
 	title.appendChild(doc.createTextNode(bm->text()));
 	bookmark.appendChild(title);
 
@@ -88,6 +91,7 @@ void KrBookmarkHandler::exportToFileFolder(QDomDocument &doc, QDomElement &paren
 	for (KrBookmark *bm = folder->children().first(); bm; bm = folder->children().next()) {
 		if (bm->isFolder()) {
 			QDomElement newFolder = doc.createElement("folder");
+			newFolder.setAttribute("icon", bm->icon());
 			parent.appendChild(newFolder);
 			QDomElement title = doc.createElement("title");
 			title.appendChild(doc.createTextNode(bm->text()));
@@ -172,13 +176,15 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 			if (!importFromFileBookmark(e, parent, errorMsg))
 				return false;
 		} else if (e.tagName() == "folder") {
+			QString iconName = "";
+			if (e.hasAttribute("icon")) iconName=e.attribute("icon");
 			// the title is the first child of the folder
 			QDomElement tmp = e.firstChild().toElement();
 			if (tmp.tagName() != "title") {
 				*errorMsg = i18n("missing tag ")+"title";
 				return false;
 			} else name = tmp.text();
-			KrBookmark *folder = new KrBookmark(name);
+			KrBookmark *folder = new KrBookmark(name, iconName);
 			parent->children().append(folder);
 
 			QDomNode nextOne = tmp.nextSibling();
@@ -286,7 +292,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 		} else if (bm->isFolder()) {
 			KPopupMenu *newMenu = new KPopupMenu(menu);
 			// add folders above bookmarks
-			menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
+			menu->insertItem(QIconSet(krLoader->loadIcon(bm->icon(), KIcon::Small)),
 									bm->text(), newMenu, -1 /* dummy id */, floc++);
 			++bloc; // stuffed a folder in the middle
 			++inSecondaryMenu;

@@ -37,9 +37,9 @@ KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent, QStrin
 	_children.setAutoDelete(true);
 }
 
-KrBookmark::KrBookmark(QString name):
+KrBookmark::KrBookmark(QString name, QString icon):
 	KAction(name, 0, 0, 0, 0), _folder(true), _separator(false) {
-	setIcon("folder");
+	setIcon(icon=="" ? "folder" : icon);
 }
 
 KrBookmark* KrBookmark::getExistingBookmark(QString name, KActionCollection *collection) {

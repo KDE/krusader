@@ -11,7 +11,7 @@ class KrBookmark: public KAction {
 	Q_OBJECT
 public:
 	KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon = "");
-	KrBookmark(QString name); // creates a folder
+	KrBookmark(QString name, QString icon = ""); // creates a folder
 	// text() and setText() to change the name of the bookmark
 	// icon() and setIcon() to change icons (by name)
 	inline const KURL& url() const { return _url; }
