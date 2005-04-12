@@ -40,7 +40,7 @@
 #include <qtooltip.h>
 #include <qpushbutton.h>
 
-GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent, const char *name ) : QWidget( parent, name ), 
+GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent, const char *name ) : QWidget( parent, name ),
     profileManager( 0 ), fltTabs( tabs )
 {
   QGridLayout *filterLayout = new QGridLayout( this );
@@ -129,7 +129,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
     profileLoadBtn = new QPushButton( i18n( "&Load" ), profileHandler, "profileLoadBtn" );
     profileLoadBtn->setEnabled( false );
     profileLayout->addWidget( profileLoadBtn, 1, 1 );
-    
+
     profileOverwriteBtn = new QPushButton( i18n( "&Overwrite" ), profileHandler, "profileOverwriteBtn" );
     profileOverwriteBtn->setEnabled( false );
     profileLayout->addWidget( profileOverwriteBtn, 2, 1 );
@@ -137,12 +137,12 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
     profileRemoveBtn = new QPushButton( i18n( "&Remove" ), profileHandler, "profileRemoveBtn" );
     profileRemoveBtn->setEnabled( false );
     profileLayout->addWidget( profileRemoveBtn, 3, 1 );
-    
+
     profileManager = new ProfileManager( "SelectionProfile", this, "selectionProfileManager" );
     profileManager->hide();
 
     middleLayout->addWidget( profileHandler );
-    
+
     refreshProfileListBox();
   }
 
@@ -276,7 +276,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
     connect( profileManager,      SIGNAL(loadFromProfile(QString )), fltTabs, SLOT( loadFromProfile(QString ) ) );
     connect( profileManager,      SIGNAL(saveToProfile(QString )), fltTabs, SLOT( saveToProfile(QString ) ) );
   }
-  
+
   if( properties & FilterTabs::HasRecurseOptions )
   {
     connect( searchInArchives, SIGNAL(toggled(bool)), containsText, SLOT(setDisabled(bool)));
@@ -464,7 +464,7 @@ void GeneralFilter::refreshProfileListBox()
 {
   profileListBox->clear();
   profileListBox->insertStringList( ProfileManager::availableProfiles( "SelectionProfile" ) );
-  
+
   if( profileListBox->count() != 0 )
   {
     profileLoadBtn->setEnabled( true );
@@ -473,7 +473,7 @@ void GeneralFilter::refreshProfileListBox()
   }
   else
   {
-    profileLoadBtn->setEnabled( true );
+    profileLoadBtn->setEnabled( false );
     profileOverwriteBtn->setEnabled( false );
     profileRemoveBtn->setEnabled( false );
   }
