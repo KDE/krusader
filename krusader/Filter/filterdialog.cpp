@@ -33,7 +33,7 @@
 #include "generalfilter.h"
 
 #include <klocale.h>
- 
+
 FilterDialog::FilterDialog(  QWidget *parent, const char *name )
     : KDialogBase( parent, name, true, i18n("Krusader::Choose Files"), Ok|Cancel )
 {
@@ -51,9 +51,9 @@ FilterDialog::FilterDialog(  QWidget *parent, const char *name )
   setMainWidget(filterWidget);
 
   generalFilter->searchFor->setFocus();
-  
+
   connect( filterTabs, SIGNAL( closeRequest(bool) ), this, SLOT( slotCloseRequest(bool) ) );
-    
+
   exec();
 }
 
@@ -72,7 +72,7 @@ void FilterDialog::slotCloseRequest( bool doAccept )
   else
     reject();
 }
-  
+
 void FilterDialog::slotOk()
 {
   if( filterTabs->fillQuery( &query ) )
@@ -83,3 +83,5 @@ void FilterDialog::slotOk()
 
   query = KRQuery();
 }
+
+#include "filterdialog.moc"

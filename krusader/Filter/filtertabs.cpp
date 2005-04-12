@@ -128,3 +128,6 @@ KRQuery FilterTabs::getQuery( QWidget *parent, const char *name )
   FilterDialog dialog( parent, name );
   return dialog.getQuery();
 }
+
+#include "filtertabs.moc"
+
