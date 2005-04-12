@@ -1,7 +1,7 @@
 /***************************************************************************
-                       profilemanager.h  -  description
+                         filterbase.h  -  description
                              -------------------
-    copyright            : (C) 2004 + by Csaba Karai
+    copyright            : (C) 2005 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -28,42 +28,23 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PROFILEMANAGER_H
-#define PROFILEMANAGER_H
+#ifndef FILTERBASE_H
+#define FILTERBASE_H
 
-#include <qpushbutton.h>
+#include "../VFS/krquery.h"
 #include <qstring.h>
 
-class ProfileManager : public QPushButton
-{
-  Q_OBJECT
-  
-public: 
-  ProfileManager( QString profileType, QWidget * parent = 0, const char * name = 0 );
-  
-  /**
-   * @param profileType Type of the profile (sync, search, ...)
-   * @return A list of all available profile-names
-   */
-  static QStringList availableProfiles( QString profileType );
+class FilterTabs;
 
-  QStringList getNames();
-    
-public slots:
-  void profilePopup();
-  
-  void newProfile( QString defaultName = QString::null );
-  void deleteProfile( QString name );
-  void overwriteProfile( QString name );
-  bool loadProfile( QString name );  
-  
-signals:
-  void saveToProfile( QString profileName );
-  void loadFromProfile( QString profileName );
-  
-private:
-  QString profileType;
-  QStringList profileList;
+class FilterBase
+{
+public:
+  virtual bool            fillQuery( KRQuery *query ) = 0;
+  virtual void            queryAccepted() = 0;
+  virtual void            loadFromProfile( QString name ) = 0;
+  virtual void            saveToProfile( QString name ) = 0;
+  virtual QString         name() = 0;
+  virtual FilterTabs *    filterTabs() = 0;
 };
 
-#endif /* PROFILEMANAGER_H */
+#endif /* FILTERBASE_H */

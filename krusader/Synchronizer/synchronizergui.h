@@ -33,8 +33,8 @@
 
 #include "synchronizer.h"
 #include "../GUI/profilemanager.h"
-#include "../Dialogs/advancedfilter.h"
-#include "../Dialogs/generalfilter.h"
+#include "../Filter/filtertabs.h"
+#include "../Filter/generalfilter.h"
 #include <qdialog.h>
 #include <qlistview.h>
 #include <kcombobox.h>
@@ -127,7 +127,7 @@ protected:
   virtual void resizeEvent( QResizeEvent *e );
   
   ProfileManager *profileManager;
-  AdvancedFilter *advancedFilter;
+  FilterTabs     *filterTabs;
   GeneralFilter  *generalFilter;
   
   QTabWidget    *synchronizerTabs;  

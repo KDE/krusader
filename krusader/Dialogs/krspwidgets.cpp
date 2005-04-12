@@ -33,6 +33,7 @@
 #include "../krusaderview.h"
 #include "../Panel/listpanel.h"
 #include "../kicons.h"
+#include "../Filter/filtertabs.h"
 #include <qcombobox.h>
 #include <qlabel.h>
 #include <qlineedit.h>
@@ -54,11 +55,16 @@ KRSpWidgets::KRSpWidgets(){
 }
 
 KRQuery KRSpWidgets::getMask(QString caption, bool nameOnly ) {
-  KRMaskChoiceSub *p=new KRMaskChoiceSub();
-  p->setCaption(caption);
-  p->exec();
-  if (p->selection->currentText()=="") return KRQuery();
-  else return KRQuery( p->selection->currentText() );
+  if( !nameOnly ) {
+    return FilterTabs::getQuery();
+  }
+  else {
+    KRMaskChoiceSub *p=new KRMaskChoiceSub();
+    p->setCaption(caption);
+    p->exec();
+    if (p->selection->currentText()=="") return KRQuery();
+    else return KRQuery( p->selection->currentText() );
+  }
 }
 
 /////////////////////////// newFTP ////////////////////////////////////////

@@ -1,7 +1,7 @@
 /***************************************************************************
                       profilemanager.cpp  -  description
                              -------------------
-    copyright            : (C) 2004 by Csaba Karai
+    copyright            : (C) 2004 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -89,27 +89,8 @@ void ProfileManager::profilePopup()
 
   // check out the user's selection
   if( result == ADD_NEW_ENTRY_ID )
-  {
-    QString profile = KInputDialog::getText( i18n( "Krusader::ProfileManager" ), i18n( "Enter the profile name:" ) );  
-    if( !profile.isEmpty() )
-    {
-      int profileNum = 1;
-      while( profileList.contains( QString( "%1" ).arg( profileNum ) ) )
-        profileNum++;
-
-      QString profileString = QString( "%1" ).arg( profileNum );
-      QString profileName = profileType + " - " + profileString;
-      profileList.append( QString( "%1" ).arg( profileString ) );
-  
-      krConfig->setGroup("Private");
-      krConfig->writeEntry( profileType, profileList );
-      
-      krConfig->setGroup( profileName );
-      krConfig->writeEntry( "Name", profile );
-      emit saveToProfile( profileName );
-      krConfig->sync();
-    }
-  }else if( result >= LOAD_ENTRY_ID && result < LOAD_ENTRY_ID + profileList.count() )
+    newProfile();
+  else if( result >= LOAD_ENTRY_ID && result < LOAD_ENTRY_ID + profileList.count() )
   {
     emit loadFromProfile( profileType + " - " + profileList[ result - LOAD_ENTRY_ID ] );
   }else if( result >= REMOVE_ENTRY_ID && result < REMOVE_ENTRY_ID + profileList.count() )
@@ -125,8 +106,67 @@ void ProfileManager::profilePopup()
     emit saveToProfile( profileType + " - " + profileList[ result - OVERWRITE_ENTRY_ID ] );
   }  
 }
+
+void ProfileManager::newProfile( QString defaultName )
+{
+  QString profile = KInputDialog::getText( i18n( "Krusader::ProfileManager" ), i18n( "Enter the profile name:" ), 
+                                           defaultName, 0, this );  
+  if( !profile.isEmpty() )
+  {
+    int profileNum = 1;
+    while( profileList.contains( QString( "%1" ).arg( profileNum ) ) )
+      profileNum++;
+
+    QString profileString = QString( "%1" ).arg( profileNum );
+    QString profileName = profileType + " - " + profileString;
+    profileList.append( QString( "%1" ).arg( profileString ) );
   
-bool ProfileManager::loadByName( QString name )
+    krConfig->setGroup("Private");
+    krConfig->writeEntry( profileType, profileList );
+      
+    krConfig->setGroup( profileName );
+    krConfig->writeEntry( "Name", profile );
+    emit saveToProfile( profileName );
+    krConfig->sync();
+  }
+}
+  
+void ProfileManager::deleteProfile( QString name )
+{
+  for( unsigned i=0; i != profileList.count() ; i++ )
+  {
+    krConfig->setGroup( profileType + " - " + profileList[ i ] ); 
+    QString currentName = krConfig->readEntry( "Name" );
+    
+    if( name == currentName )
+    {
+      krConfig->deleteGroup( profileType + " - " + profileList[ i ] );    
+      profileList.remove( profileList[ i ] );
+  
+      krConfig->setGroup("Private");
+      krConfig->writeEntry( profileType, profileList );
+      krConfig->sync();
+      return;
+    }
+  }
+}
+  
+void ProfileManager::overwriteProfile( QString name )
+{
+  for( unsigned i=0; i != profileList.count() ; i++ )
+  {
+    krConfig->setGroup( profileType + " - " + profileList[ i ] ); 
+    QString currentName = krConfig->readEntry( "Name" );
+    
+    if( name == currentName )
+    {
+      emit saveToProfile( profileType + " - " + profileList[ i ] );
+      return;
+    }
+  }
+}
+
+bool ProfileManager::loadProfile( QString name )
 {
   for( unsigned i=0; i != profileList.count() ; i++ )
   {

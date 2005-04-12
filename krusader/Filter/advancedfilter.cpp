@@ -1,7 +1,7 @@
 /***************************************************************************
                       advancedfilter.cpp  -  description
                              -------------------
-    copyright            : (C) 2003 by Shie Erlich & Rafi Yanai & Csaba Karai
+    copyright            : (C) 2003 + by Shie Erlich & Rafi Yanai & Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -30,7 +30,7 @@
 
 #include "../krusader.h"
 #include "advancedfilter.h"
-#include "krdialogs.h"
+#include "../Dialogs/krdialogs.h"
 
 #include <qgroupbox.h>
 #include <klocale.h>
@@ -46,15 +46,14 @@
 #define USERSFILE  QString("/etc/passwd")
 #define GROUPSFILE QString("/etc/group")
 
-
-AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( parent, name )
+AdvancedFilter::AdvancedFilter( FilterTabs *tabs, QWidget *parent, const char *name ) : QWidget( parent, name ), fltTabs( tabs )
 {
   QGridLayout *filterLayout = new QGridLayout( this );
   filterLayout->setSpacing( 6 );
   filterLayout->setMargin( 11 );
 
   // Options for size
-  
+
   QGroupBox *sizeGroup = new QGroupBox( this, "sizeGroup" );
   sizeGroup->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)1, sizeGroup->sizePolicy().hasHeightForWidth() ) );
   sizeGroup->setTitle( i18n( "Size" ) );
@@ -74,14 +73,14 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   biggerThanAmount->setEnabled( false );
   biggerThanAmount->setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed, biggerThanAmount->sizePolicy().hasHeightForWidth() ) );
   sizeLayout->addWidget( biggerThanAmount, 0, 1 );
-    
+
   biggerThanType = new KComboBox( false, sizeGroup, "biggerThanType" );
   biggerThanType->insertItem( i18n( "Bytes" ) );
   biggerThanType->insertItem( i18n( "KB" ) );
   biggerThanType->insertItem( i18n( "MB" ) );
   biggerThanType->setEnabled( false );
   sizeLayout->addWidget( biggerThanType, 0, 2 );
-  
+
   smallerThanEnabled = new QCheckBox( sizeGroup, "smallerThanEnabled" );
   smallerThanEnabled->setText( i18n( "&Smaller than" ) );
   sizeLayout->addWidget( smallerThanEnabled, 0, 3 );
@@ -99,7 +98,7 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   sizeLayout->addWidget( smallerThanType, 0, 5 );
 
   // set a tighter box around the type box
-  
+
   int height = QFontMetrics(biggerThanType->font()).height()+2;
   biggerThanType->setMaximumHeight(height);
   smallerThanType->setMaximumHeight(height);
@@ -107,9 +106,9 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   filterLayout->addWidget( sizeGroup, 0, 0 );
 
   // Options for date
-    
+
   QPixmap iconDate = krLoader->loadIcon( "date", KIcon::Toolbar, 16 );
-  
+
   QButtonGroup *dateGroup = new QButtonGroup( this, "dateGroup" );
   dateGroup->setTitle( i18n( "Date" ) );
   dateGroup->setExclusive( true );
@@ -120,18 +119,18 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   dateLayout->setAlignment( Qt::AlignTop );
   dateLayout->setSpacing( 6 );
   dateLayout->setMargin( 11 );
-    
+
   modifiedBetweenEnabled = new QRadioButton( dateGroup, "modifiedBetweenEnabled" );
   modifiedBetweenEnabled->setText( i18n( "&Modified between" ) );
   dateGroup->insert( modifiedBetweenEnabled, 0 );
 
   dateLayout->addMultiCellWidget( modifiedBetweenEnabled, 0, 0, 0, 1 );
-    
+
   modifiedBetweenData1 = new QLineEdit( dateGroup, "modifiedBetweenData1" );
   modifiedBetweenData1->setEnabled( false );
   modifiedBetweenData1->setText( "" );
   dateLayout->addMultiCellWidget( modifiedBetweenData1, 0, 0, 2, 3 );
-    
+
   modifiedBetweenBtn1 = new QToolButton( dateGroup, "modifiedBetweenBtn1" );
   modifiedBetweenBtn1->setEnabled( false );
   modifiedBetweenBtn1->setText( "" );
@@ -158,18 +157,18 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   notModifiedAfterEnabled->setText( i18n( "&Not modified after" ) );
   dateGroup->insert( notModifiedAfterEnabled, 0 );
   dateLayout->addMultiCellWidget( notModifiedAfterEnabled, 1, 1, 0, 1 );
-  
+
   notModifiedAfterData = new QLineEdit( dateGroup, "notModifiedAfterData" );
   notModifiedAfterData->setEnabled( false );
   notModifiedAfterData->setText( "" );
   dateLayout->addMultiCellWidget( notModifiedAfterData, 1, 1, 2, 3 );
-  
+
   notModifiedAfterBtn = new QToolButton( dateGroup, "notModifiedAfterBtn" );
   notModifiedAfterBtn->setEnabled( false );
   notModifiedAfterBtn->setText( "" );
   notModifiedAfterBtn->setPixmap( iconDate );
   dateLayout->addWidget( notModifiedAfterBtn, 1, 4 );
-  
+
   modifiedInTheLastEnabled = new QRadioButton( dateGroup, "modifiedInTheLastEnabled" );
   modifiedInTheLastEnabled->setText( i18n("Mod&ified in the last") );
   dateGroup->insert( modifiedInTheLastEnabled, 0 );
@@ -187,7 +186,7 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   modifiedInTheLastType->insertItem( i18n( "years" ) );
   modifiedInTheLastType->setEnabled( false );
   dateLayout->addMultiCellWidget( modifiedInTheLastType, 2, 2, 3, 4 );
-  
+
   notModifiedInTheLastData = new QLineEdit( dateGroup, "notModifiedInTheLastData" );
   notModifiedInTheLastData->setEnabled( false );
   notModifiedInTheLastData->setText( "" );
@@ -197,7 +196,7 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   notModifiedInTheLastLbl->setText( i18n( "No&t modified in the last" ) );
   notModifiedInTheLastLbl->setBuddy(notModifiedInTheLastData);
   dateLayout->addWidget( notModifiedInTheLastLbl, 3, 0 );
-    
+
   notModifiedInTheLastType = new QComboBox( false, dateGroup, "notModifiedInTheLastType" );
   notModifiedInTheLastType->insertItem( i18n( "days" ) );
   notModifiedInTheLastType->insertItem( i18n( "weeks" ) );
@@ -219,7 +218,7 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   ownershipLayout->setAlignment( Qt::AlignTop );
   ownershipLayout->setSpacing( 6 );
   ownershipLayout->setMargin( 11 );
-    
+
   QHBoxLayout *hboxLayout = new QHBoxLayout();
   hboxLayout->setSpacing( 6 );
   hboxLayout->setMargin( 0 );
@@ -247,18 +246,18 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   permissionsEnabled = new QCheckBox( ownershipGroup, "permissionsEnabled" );
   permissionsEnabled->setText( i18n( "P&ermissions" ) );
   ownershipLayout->addWidget( permissionsEnabled, 1, 0 );
-    
+
   QGroupBox *ownerGroup = new QGroupBox( ownershipGroup, "ownerGroup" );
   ownerGroup->setTitle( i18n( "O&wner" ) );
   int width = 2*height + height / 2;
-  
+
   ownerR = new QComboBox( false, ownerGroup, "ownerR" );
   ownerR->insertItem( i18n( "?" ) );
   ownerR->insertItem( i18n( "r" ) );
   ownerR->insertItem( i18n( "-" ) );
   ownerR->setEnabled( false );
   ownerR->setGeometry( QRect( 10, 20, width, height+6 ) );
-   
+
   ownerW = new QComboBox( false, ownerGroup, "ownerW" );
   ownerW->insertItem( i18n( "?" ) );
   ownerW->insertItem( i18n( "w" ) );
@@ -284,14 +283,14 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   groupR->insertItem( i18n( "-" ) );
   groupR->setEnabled( false );
   groupR->setGeometry( QRect( 10, 20, width, height+6 ) );
-  
+
   groupW = new QComboBox( false, groupGroup, "groupW" );
   groupW->insertItem( i18n( "?" ) );
   groupW->insertItem( i18n( "w" ) );
   groupW->insertItem( i18n( "-" ) );
   groupW->setEnabled( false );
   groupW->setGeometry( QRect( 10 + width, 20, width, height+6 ) );
-    
+
   groupX = new QComboBox( false, groupGroup, "groupX" );
   groupX->insertItem( i18n( "?" ) );
   groupX->insertItem( i18n( "x" ) );
@@ -335,11 +334,11 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   infoLabel->setText( i18n( "Note: a '?' is a wildcard" ) );
 
   ownershipLayout->addMultiCellWidget( infoLabel, 2, 2, 0, 3, Qt::AlignRight );
-  
+
   filterLayout->addWidget( ownershipGroup, 2, 0 );
-  
+
   // Connection table
-    
+
   connect( biggerThanEnabled, SIGNAL( toggled(bool) ), biggerThanAmount, SLOT( setEnabled(bool) ) );
   connect( biggerThanEnabled, SIGNAL( toggled(bool) ), biggerThanType, SLOT( setEnabled(bool) ) );
   connect( smallerThanEnabled, SIGNAL( toggled(bool) ), smallerThanAmount, SLOT( setEnabled(bool) ) );
@@ -368,12 +367,12 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   connect( modifiedBetweenBtn1, SIGNAL( clicked() ), this, SLOT( modifiedBetweenSetDate1() ) );
   connect( modifiedBetweenBtn2, SIGNAL( clicked() ), this, SLOT( modifiedBetweenSetDate2() ) );
   connect( notModifiedAfterBtn, SIGNAL( clicked() ), this, SLOT( notModifiedAfterSetDate() ) );
-  
+
   // fill the users and groups list
-  
+
   fillList(belongsToUserData, USERSFILE);
   fillList(belongsToGroupData, GROUPSFILE);
-    
+
   // tab order
   setTabOrder( biggerThanEnabled, biggerThanAmount );
   setTabOrder( biggerThanAmount, smallerThanEnabled );
@@ -406,17 +405,17 @@ AdvancedFilter::AdvancedFilter( QWidget *parent, const char *name ) : QWidget( p
   setTabOrder( modifiedInTheLastType, notModifiedInTheLastType );
 }
 
-void AdvancedFilter::modifiedBetweenSetDate1() 
+void AdvancedFilter::modifiedBetweenSetDate1()
 {
   changeDate(modifiedBetweenData1);
 }
 
-void AdvancedFilter::modifiedBetweenSetDate2() 
+void AdvancedFilter::modifiedBetweenSetDate2()
 {
   changeDate(modifiedBetweenData2);
 }
 
-void AdvancedFilter::notModifiedAfterSetDate() 
+void AdvancedFilter::notModifiedAfterSetDate()
 {
   changeDate(notModifiedAfterData);
 }
@@ -454,14 +453,14 @@ void AdvancedFilter::qdate2time_t(time_t *dest, QDate d, bool start) {
 
 void AdvancedFilter::fillList(QComboBox *list, QString filename) {
   QFile data(filename);
-  if (!data.open(IO_ReadOnly)) 
+  if (!data.open(IO_ReadOnly))
   {
     krOut << "Search: Unable to read " << filename << " !!!" << endl;
     return;
   }
   // and read it into the temporary array
   QTextStream t(&data);
-  while (!data.atEnd()) 
+  while (!data.atEnd())
   {
     QString s = t.readLine();
     QString name = s.left(s.find(':'));
@@ -469,7 +468,7 @@ void AdvancedFilter::fillList(QComboBox *list, QString filename) {
   }
 }
 
-void AdvancedFilter::invalidDateMessage(QLineEdit *p) 
+void AdvancedFilter::invalidDateMessage(QLineEdit *p)
 {
   KMessageBox::detailedError(this, i18n("Invalid date entered."),
                              i18n("The date '") + p->text() + i18n("' is not valid according to your locale.\n"
@@ -599,7 +598,7 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
 void AdvancedFilter::loadFromProfile( QString name )
 {
   krConfig->setGroup( name );
-  
+
   smallerThanEnabled->setChecked( krConfig->readBoolEntry( "Smaller Than Enabled", false ) );
   smallerThanAmount->setText( krConfig->readEntry( "Smaller Than Amount", "" ) );
   smallerThanType->setCurrentItem( krConfig->readNumEntry( "Smaller Than Type", 0 ) );
@@ -607,7 +606,7 @@ void AdvancedFilter::loadFromProfile( QString name )
   biggerThanEnabled->setChecked( krConfig->readBoolEntry( "Bigger Than Enabled", false ) );
   biggerThanAmount->setText( krConfig->readEntry( "Bigger Than Amount", "" ) );
   biggerThanType->setCurrentItem( krConfig->readNumEntry( "Bigger Than Type", 0 ) );
-  
+
   modifiedBetweenEnabled->setChecked( krConfig->readBoolEntry( "Modified Between Enabled", false ) );
   notModifiedAfterEnabled->setChecked( krConfig->readBoolEntry( "Not Modified After Enabled", false ) );
   modifiedInTheLastEnabled->setChecked( krConfig->readBoolEntry( "Modified In The Last Enabled", false ) );
@@ -618,13 +617,13 @@ void AdvancedFilter::loadFromProfile( QString name )
   notModifiedAfterData->setText( krConfig->readEntry( "Not Modified After", "" ) );
   modifiedInTheLastData->setText( krConfig->readEntry( "Modified In The Last", "" ) );
   notModifiedInTheLastData->setText( krConfig->readEntry( "Not Modified In The Last", "" ) );
-  
+
   modifiedInTheLastType->setCurrentItem( krConfig->readNumEntry( "Modified In The Last Type", 0 ) );
   notModifiedInTheLastType->setCurrentItem( krConfig->readNumEntry( "Not Modified In The Last Type", 0 ) );
 
   belongsToUserEnabled->setChecked( krConfig->readBoolEntry( "Belongs To User Enabled", false ) );
   belongsToGroupEnabled->setChecked( krConfig->readBoolEntry( "Belongs To Group Enabled", false ) );
-  
+
   QString user = krConfig->readEntry( "Belongs To User", "" );
   for( int i = belongsToUserData->count(); i >= 0; i-- )
   {
@@ -642,7 +641,7 @@ void AdvancedFilter::loadFromProfile( QString name )
   }
 
   permissionsEnabled->setChecked( krConfig->readBoolEntry( "Permissions Enabled", false ) );
-  
+
   ownerW->setCurrentItem( krConfig->readNumEntry( "Owner Write", 0 ) );
   ownerR->setCurrentItem( krConfig->readNumEntry( "Owner Read", 0 ) );
   ownerX->setCurrentItem( krConfig->readNumEntry( "Owner Execute", 0 ) );
@@ -657,11 +656,11 @@ void AdvancedFilter::loadFromProfile( QString name )
 void AdvancedFilter::saveToProfile( QString name )
 {
   krConfig->setGroup( name );
-  
+
   krConfig->writeEntry( "Smaller Than Enabled", smallerThanEnabled->isChecked() );
   krConfig->writeEntry( "Smaller Than Amount", smallerThanAmount->text() );
   krConfig->writeEntry( "Smaller Than Type", smallerThanType->currentItem() );
-  
+
   krConfig->writeEntry( "Bigger Than Enabled", biggerThanEnabled->isChecked() );
   krConfig->writeEntry( "Bigger Than Amount", biggerThanAmount->text() );
   krConfig->writeEntry( "Bigger Than Type", biggerThanType->currentItem() );

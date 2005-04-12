@@ -1,7 +1,7 @@
 /***************************************************************************
-                       generalfilter.h  -  description
+                        filterdialog.h  -  description
                              -------------------
-    copyright            : (C) 2003 by Csaba Karai
+    copyright            : (C) 2005 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -28,58 +28,33 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef GENERALFILTER_H
-#define GENERALFILTER_H
+#ifndef FILTERDIALOG_H
+#define FILTERDIALOG_H 
 
+#include <kdialogbase.h>
 #include "../VFS/krquery.h"
-#include "kurllistrequester.h"
 
-#include <qwidget.h>
-#include <qlayout.h>
-#include <qgroupbox.h>
-#include <qcheckbox.h>
-#include <qlabel.h>
-#include <kcombobox.h>
-#include <kshellcompletion.h>
+class FilterTabs;
+class GeneralFilter;
 
-#define HAS_DONT_SEARCH_IN            0x8000
-#define HAS_SEARCH_IN                 0x4000
-#define HAS_RECURSE_OPTIONS           0x2000
-
-class GeneralFilter : public QWidget
+class FilterDialog : public KDialogBase
 {
   Q_OBJECT
-  
+
 public:
-  GeneralFilter( int properties, QWidget *parent = 0, const char *name = 0 );
-  ~GeneralFilter();
+  FilterDialog(  QWidget *parent = 0, const char *name = 0 );
+  KRQuery getQuery();
+
+public slots:
+  void slotCloseRequest( bool doAccept );
   
-  bool fillQuery( KRQuery *query );
-  void queryAccepted();
-  
-public slots:    
-  void loadFromProfile( QString name );
-  void saveToProfile( QString name );
-  
-public:  
-  QCheckBox* searchForCase;  
-  QCheckBox* containsTextCase;
-  QCheckBox* containsWholeWord;
-  QCheckBox* searchInDirs;
-  QCheckBox* searchInArchives;
-  QCheckBox* followLinks;
-    
-  KURLListRequester *searchIn;
-  KURLListRequester *dontSearchIn;
-  
-  KHistoryCombo* searchFor;
-  KHistoryCombo* containsText;
-    
-  KComboBox* ofType;
-    
-  KShellCompletion completion;
-  
-  int properties;
+protected:
+  void slotOk();
+
+private:
+  FilterTabs * filterTabs;
+  GeneralFilter * generalFilter;
+  KRQuery query;
 };
 
-#endif /* GENERALFILTER_H */
+#endif /* FILTERDIALOG_H */

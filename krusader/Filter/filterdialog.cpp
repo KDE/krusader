@@ -1,7 +1,7 @@
 /***************************************************************************
-                       profilemanager.h  -  description
+                      filterdialog.cpp  -  description
                              -------------------
-    copyright            : (C) 2004 + by Csaba Karai
+    copyright            : (C) 2005 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -28,42 +28,58 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PROFILEMANAGER_H
-#define PROFILEMANAGER_H
+#include "filterdialog.h"
+#include "filtertabs.h"
+#include "generalfilter.h"
 
-#include <qpushbutton.h>
-#include <qstring.h>
-
-class ProfileManager : public QPushButton
+#include <klocale.h>
+ 
+FilterDialog::FilterDialog(  QWidget *parent, const char *name )
+    : KDialogBase( parent, name, true, i18n("Krusader::Choose Files"), Ok|Cancel )
 {
-  Q_OBJECT
-  
-public: 
-  ProfileManager( QString profileType, QWidget * parent = 0, const char * name = 0 );
-  
-  /**
-   * @param profileType Type of the profile (sync, search, ...)
-   * @return A list of all available profile-names
-   */
-  static QStringList availableProfiles( QString profileType );
+  QGridLayout *filterGrid = new QGridLayout( this->layout() );
+  filterGrid->setSpacing( 6 );
+  filterGrid->setMargin( 11 );
 
-  QStringList getNames();
+  QTabWidget *filterWidget = new QTabWidget( this, "filterTabs" );
+
+  filterTabs = FilterTabs::addTo( filterWidget, FilterTabs::HasProfileHandler );
+  generalFilter = (GeneralFilter *)filterTabs->get( "GeneralFilter" );
+  generalFilter->searchFor->setEditText( "*" );
+
+  filterGrid->addWidget( filterWidget, 0, 0 );
+  setMainWidget(filterWidget);
+
+  generalFilter->searchFor->setFocus();
+  
+  connect( filterTabs, SIGNAL( closeRequest(bool) ), this, SLOT( slotCloseRequest(bool) ) );
     
-public slots:
-  void profilePopup();
-  
-  void newProfile( QString defaultName = QString::null );
-  void deleteProfile( QString name );
-  void overwriteProfile( QString name );
-  bool loadProfile( QString name );  
-  
-signals:
-  void saveToProfile( QString profileName );
-  void loadFromProfile( QString profileName );
-  
-private:
-  QString profileType;
-  QStringList profileList;
-};
+  exec();
+}
 
-#endif /* PROFILEMANAGER_H */
+KRQuery FilterDialog::getQuery()
+{
+  return query;
+}
+
+void FilterDialog::slotCloseRequest( bool doAccept )
+{
+  if( doAccept )
+  {
+    slotOk();
+    accept();
+  }
+  else
+    reject();
+}
+  
+void FilterDialog::slotOk()
+{
+  if( filterTabs->fillQuery( &query ) )
+  {
+    KDialogBase::slotOk();
+    return;
+  }
+
+  query = KRQuery();
+}

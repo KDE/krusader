@@ -33,8 +33,8 @@
 #ifndef KRSEARCHDIALOG_H
 #define KRSEARCHDIALOG_H
 
-#include "../Dialogs/generalfilter.h"
-#include "../Dialogs/advancedfilter.h"
+#include "../Filter/filtertabs.h"
+#include "../Filter/generalfilter.h"
 #include "../VFS/krquery.h"
 #include "krsearchmod.h"
 #include "../GUI/profilemanager.h"
@@ -78,10 +78,11 @@ private:
   void viewCurrent();
 
 private:
-  GeneralFilter  *generalFilter;
-  AdvancedFilter *advancedFilter;
   ProfileManager *profileManager;
-    
+
+  FilterTabs * filterTabs;
+  GeneralFilter * generalFilter;
+      
   QPushButton* mainHelpBtn;
   QPushButton* mainSearchBtn;
   QPushButton* mainStopBtn;

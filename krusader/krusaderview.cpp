@@ -170,7 +170,7 @@ void KrusaderView::profiles( QString profileName )
   if( profileName.isEmpty() )
     profileManager.profilePopup();
   else
-    profileManager.loadByName( profileName );
+    profileManager.loadProfile( profileName );
 }
 
 void KrusaderView::loadPanelProfiles( QString group )

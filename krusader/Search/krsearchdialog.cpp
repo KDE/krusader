@@ -110,12 +110,8 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   
   searcherTabs = new QTabWidget( this, "searcherTabs" );
 
-  generalFilter = new GeneralFilter( HAS_DONT_SEARCH_IN | HAS_SEARCH_IN | HAS_RECURSE_OPTIONS, 
-                                     searcherTabs, "generalFilter" );
-  searcherTabs->insertTab( generalFilter, i18n( "&General" ) );
-
-  advancedFilter = new AdvancedFilter( searcherTabs, "advancedFilter" );
-  searcherTabs->insertTab( advancedFilter, i18n( "&Advanced" ) );
+  filterTabs = FilterTabs::addTo( searcherTabs, FilterTabs::Default );
+  generalFilter = (GeneralFilter *)filterTabs->get( "GeneralFilter" );
 
   resultTab = new QWidget( searcherTabs, "resultTab" );
   resultLayout = new QGridLayout( resultTab );
@@ -192,10 +188,8 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   connect( mainCloseBtn, SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
   connect( mainFeedToListBoxBtn, SIGNAL( clicked() ), this, SLOT( feedToListBox() ) );
   
-  connect( profileManager, SIGNAL( loadFromProfile( QString ) ), generalFilter, SLOT( loadFromProfile( QString ) ) );
-  connect( profileManager, SIGNAL( saveToProfile( QString ) ), generalFilter, SLOT( saveToProfile( QString ) ) );
-  connect( profileManager, SIGNAL( loadFromProfile( QString ) ), advancedFilter, SLOT( loadFromProfile( QString ) ) );
-  connect( profileManager, SIGNAL( saveToProfile( QString ) ), advancedFilter, SLOT( saveToProfile( QString ) ) );
+  connect( profileManager, SIGNAL( loadFromProfile( QString ) ), filterTabs, SLOT( loadFromProfile( QString ) ) );
+  connect( profileManager, SIGNAL( saveToProfile( QString ) ), filterTabs, SLOT( saveToProfile( QString ) ) );
 
   // tab order
   
@@ -239,7 +233,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
     generalFilter->searchIn->lineEdit()->setText( ACTIVE_PANEL->virtualPath().prettyURL() ); 
   }
   else
-    profileManager->loadByName( profile ); // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
+    profileManager->loadProfile( profile ); // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
 
 }
 
@@ -313,34 +307,21 @@ bool KrSearchDialog::gui2query() {
   if (query!=0) { delete query; query = 0; }
   query = new KRQuery();
 
-  if( !generalFilter->fillQuery( query ) )
-  {
-    searcherTabs->setCurrentPage(0); // set page to general
-    return false;
-  }
-  
-  if( !advancedFilter->fillQuery( query ) )
-  {
-    searcherTabs->setCurrentPage(1); // set page to general
-    return false;
-  }
-  
-  return true;
+  return filterTabs->fillQuery( query );
 }
 
 void KrSearchDialog::startSearch() {
+
+  // prepare the query /////////////////////////////////////////////
+  if (!gui2query()) return;
+  
   // first, informative messages
-  if (generalFilter->searchInArchives->isChecked()) {
+  if ( query->inArchive ) {
     KMessageBox::information(this, i18n("Since you chose to also search in archives, "
                                         "note the following limitations:\n"
                                         "You cannot search for text (grep) while doing"
                                         " a search that includes archives."), 0, "searchInArchives");
   }
-
-  // prepare the query /////////////////////////////////////////////
-  if (!gui2query()) return;
-  // else implied
-  generalFilter->queryAccepted();
 
   // prepare the gui ///////////////////////////////////////////////
   mainSearchBtn->setEnabled(false);

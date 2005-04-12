@@ -1,7 +1,7 @@
 /***************************************************************************
-                       profilemanager.h  -  description
+                         filtertab.h  -  description
                              -------------------
-    copyright            : (C) 2004 + by Csaba Karai
+    copyright            : (C) 2005 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -28,42 +28,52 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef PROFILEMANAGER_H
-#define PROFILEMANAGER_H
+#ifndef FILTERTABS_H
+#define FILTERTABS_H
 
-#include <qpushbutton.h>
-#include <qstring.h>
+#include <qtabwidget.h>
+#include <qptrlist.h>
 
-class ProfileManager : public QPushButton
+#include "filterbase.h"
+
+class FilterTabs : public QObject
 {
   Q_OBJECT
-  
-public: 
-  ProfileManager( QString profileType, QWidget * parent = 0, const char * name = 0 );
-  
-  /**
-   * @param profileType Type of the profile (sync, search, ...)
-   * @return A list of all available profile-names
-   */
-  static QStringList availableProfiles( QString profileType );
 
-  QStringList getNames();
+  public:
+
+    enum
+    {
+      HasProfileHandler       =   0x1000,
+      HasRecurseOptions       =   0x2000,
+      HasSearchIn             =   0x4000,
+      HasDontSearchIn         =   0x8000,
+
+      Default                 =   0xe000
+    };
+
+    static FilterTabs * addTo( QTabWidget *tabWidget, int props = FilterTabs::Default );
+    static KRQuery      getQuery( QWidget *parent = 0, const char *name = 0 );
+
+    FilterBase *get( QString name );
+
+  public slots:
+    void  loadFromProfile( QString );
+    void  saveToProfile( QString );
+    bool  fillQuery( KRQuery *query );
+    void  close( bool accept = true ) { emit closeRequest( accept ); }
+
+  signals:
+    void  closeRequest( bool accept = true );
     
-public slots:
-  void profilePopup();
-  
-  void newProfile( QString defaultName = QString::null );
-  void deleteProfile( QString name );
-  void overwriteProfile( QString name );
-  bool loadProfile( QString name );  
-  
-signals:
-  void saveToProfile( QString profileName );
-  void loadFromProfile( QString profileName );
-  
-private:
-  QString profileType;
-  QStringList profileList;
+  private:
+    FilterTabs( int properties, QTabWidget *tabWidget, QObject *parent );
+    void  acceptQuery();
+
+    QPtrList<FilterBase> filterList;
+    QValueList<int>      pageNumbers;
+
+    QTabWidget * tabWidget;
 };
 
-#endif /* PROFILEMANAGER_H */
+#endif /* FILTERTABS_H */
