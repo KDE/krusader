@@ -152,6 +152,8 @@ KAction *Krusader::actF9 = 0;
 KAction *Krusader::actF10 = 0;
 KAction *Krusader::actLocationBar = 0;
 KAction *Krusader::actPopularUrls = 0;
+KAction *Krusader::actJumpBack = 0;
+KAction *Krusader::actSetJumpBack = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
 KRadioAction  *Krusader::actMarkNewerAndSingle = 0;
 KRadioAction  *Krusader::actMarkSingle = 0;
@@ -614,8 +616,11 @@ void Krusader::setupActions() {
 					popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
 	actLocationBar = new KAction( i18n("Go to location bar"), CTRL+Key_L,
 					SLOTS, SLOT( slotLocationBar() ), actionCollection(), "location_bar");
-					
-										
+	actJumpBack = new KAction( i18n("Jump back"), "kr_jumpback", CTRL+Key_J,
+					SLOTS, SLOT( slotJumpBack() ), actionCollection(), "jump_back");
+	actSetJumpBack = new KAction( i18n("Set jump back point here"), "kr_setjumpback", CTRL+SHIFT+Key_J,
+					SLOTS, SLOT( slotSetJumpBack() ), actionCollection(), "set_jump_back");
+   
    // and at last we can set the tool-tips
    actSelect->setToolTip( i18n( "Select files using a filter" ) );
    actSelectAll->setToolTip( i18n("Select all files in the current directory" ) );

@@ -538,6 +538,8 @@ void ListPanel::start( KURL url, bool immediate ) {
      func->immediateOpenUrl( virt );
    else
      func->openUrl( virt );
+
+   setJumpBack( virt );
 }
 
 void ListPanel::slotStartUpdate() {
@@ -1227,6 +1229,14 @@ void ListPanel::inlineRefreshListResult(KIO::Job*) {
    syncBrowseButton->setEnabled(true);
 	
 	inlineRefreshCancelButton->hide();
+}
+
+void ListPanel::jumpBack() {
+	func->openUrl( _jumpBackURL );
+}
+
+void ListPanel::setJumpBack( KURL url ) {
+	_jumpBackURL = url;
 }
 
 #include "listpanel.moc"

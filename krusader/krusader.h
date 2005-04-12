@@ -121,7 +121,7 @@ class Krusader : public KParts::MainWindow {
     static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actSplit; 
 	 static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs, *actSyncBrowse;
 	 static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9, *actF10;
-	 static KAction *actPopularUrls, *actLocationBar;
+	 static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack;
     static KToggleAction *actToggleTerminal;
     static KRadioAction *actMarkNewerAndSingle, *actMarkNewer, *actMarkSingle, 
                         *actMarkDifferentAndSingle, *actMarkDifferent;
@@ -239,6 +239,8 @@ class Krusader : public KParts::MainWindow {
 #define krF10				  Krusader::App->actF10
 #define krPopularUrls	  Krusader::App->actPopularUrls
 #define krLocationBar	  Krusader::App->actLocationBar
+#define krJumpBack	  Krusader::App->actJumpBack
+#define krSetJumpBack	  Krusader::App->actSetJumpBack
 
 #ifdef __KJSEMBED__
 #define krJS			Krusader::App->js

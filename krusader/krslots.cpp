@@ -831,6 +831,14 @@ void KRslots::slotLocationBar() {
 	ACTIVE_PANEL->origin->setFocus();
 }
 
+void KRslots::slotJumpBack() {
+	ACTIVE_PANEL->jumpBack();
+}
+
+void KRslots::slotSetJumpBack() {
+	ACTIVE_PANEL->setJumpBack( ACTIVE_PANEL->virtualPath() );
+}
+
 //shows the JavaScript-Console
 void KRslots::jsConsole() {
 #ifdef __KJSEMBED__

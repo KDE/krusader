@@ -90,6 +90,8 @@ public:
    }
    void setPanelToolbar();
    bool isLeft() {return _left;}
+   void jumpBack();
+   void setJumpBack( KURL url );
 
 public slots:
    void gotStats( const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail); // displays filesystem status
@@ -178,6 +180,7 @@ public:
 
 protected:
    KURL _realPath; // named with _ to keep realPath() compatability
+   KURL _jumpBackURL;
    
 	
 private:

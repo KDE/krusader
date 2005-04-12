@@ -257,6 +257,9 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			CONNECT_BM(bm);
 			floc = bloc = 3; // 3 bookmarks
 		} 
+		// add the jump-back button
+		krJumpBack->plug(menu);
+		floc += 1; bloc += 1; // 1 bookmark
 		// add the popular links submenu
 		KPopupMenu *newMenu = new KPopupMenu(menu);
 		menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
@@ -306,6 +309,7 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 
 	if (!inSecondaryMenu) {
 		menu->insertSeparator();
+		krSetJumpBack->plug(menu);
 		menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
 			i18n("Bookmark Current"), BookmarkCurrent);
 		menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
