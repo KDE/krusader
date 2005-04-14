@@ -46,7 +46,7 @@
 #include <qtextstream.h>
 #include <qregexp.h>
 #include <klargefile.h>
-#include <kurlrequesterdlg.h> 
+#include <kurlrequesterdlg.h>
 
 #include <kmimetype.h>
 
@@ -55,7 +55,7 @@ KRSearchMod::KRSearchMod( const KRQuery* q )
   stopSearch = false; /// ===> added
   query = new KRQuery( *q );
   query->normalize();
-   
+
   remote_vfs = 0;
 }
 
@@ -70,11 +70,11 @@ void KRSearchMod::start()
 {
   unScannedUrls.clear();
   scannedUrls.clear();
-  
+
   // search every dir that needs to be searched
   for ( unsigned int i = 0; i < query->whereToSearch.count(); ++i )
       scanURL( query->whereToSearch [ i ] );
-  
+
   emit finished();
 }
 
@@ -86,37 +86,37 @@ void KRSearchMod::stop()
 void KRSearchMod::scanURL( KURL url )
 {
   if( stopSearch ) return;
-  
-  unScannedUrls.push( url );    
+
+  unScannedUrls.push( url );
   while ( !unScannedUrls.isEmpty() )
   {
     KURL urlToCheck = unScannedUrls.pop();
-    
+
     if( stopSearch ) return;
-    
+
     if ( query->whereNotToSearch.contains( urlToCheck ) )
       continue;
-    
+
     if( scannedUrls.contains( urlToCheck ) )
-      continue;    
+      continue;
     scannedUrls.push( urlToCheck );
-    
+
     emit searching( urlToCheck.prettyURL(0,KURL::StripFileProtocol) );
-    
+
     if ( urlToCheck.isLocalFile() )
       scanLocalDir( urlToCheck );
     else
       scanRemoteDir( urlToCheck );
-  
+
     qApp->processEvents(); // do a last one, in case passes%50 != 0
   }
 }
-  
+
 void KRSearchMod::scanLocalDir( KURL urlToScan )
 {
   int passes = 0;
   const int NO_OF_PASSES = 50;
-    
+
   QString dir = urlToScan.path( 1 );
 
   DIR* d = opendir( dir.local8Bit() );
@@ -127,25 +127,25 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
   while ( ( dirEnt = readdir( d ) ) != NULL )
   {
     QString name = QString::fromLocal8Bit( dirEnt->d_name );
-    
+
     // we dont scan the ".",".." enteries
     if ( name == "." || name == ".." ) continue;
 
     KDE_struct_stat stat_p;
     KDE_lstat( ( dir + name ).local8Bit(), &stat_p );
-    
+
     KURL url = vfs::fromPathOrURL( dir + name );
-    
+
     QString mime = QString::null;
-    if ( query->inArchive || !query->type.isEmpty() )
+    if ( query->inArchive || !query->hasMimeType() )
       mime = KMimeType::findByURL( url, stat_p.st_mode, true, false ) ->name();
 
-    // creating a vfile object for matching with krquery    
+    // creating a vfile object for matching with krquery
     vfile * vf = new vfile(name, (KIO::filesize_t)stat_p.st_size, KRpermHandler::mode2QString(stat_p.st_mode),
                            stat_p.st_mtime, S_ISLNK(stat_p.st_mode), stat_p.st_uid, stat_p.st_gid,
                            mime, "", stat_p.st_mode);
     vf->vfile_setUrl( url );
-    
+
     if ( query->recurse )
     {
       if ( S_ISLNK( stat_p.st_mode ) && query->followLinks )
@@ -161,16 +161,16 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
       if ( KRarcHandler::arcSupported( type ) )
       {
         KURL archiveURL = url;
-        
+
         if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" )
           archiveURL.setProtocol( "tar" );
         else
           archiveURL.setProtocol( "krarc" );
-          
+
         unScannedUrls.push( archiveURL );
       }
     }
-    
+
     if( query->match( vf ) )
     {
       // if we got here - we got a winner
@@ -191,7 +191,7 @@ void KRSearchMod::scanRemoteDir( KURL url )
 
   if( remote_vfs == 0 )
     remote_vfs = new ftp_vfs( 0 );
-    
+
   if ( !remote_vfs->vfs_refresh( url ) ) return ;
 
   for ( vfile * vf = remote_vfs->vfs_getFirstFile(); vf != 0 ; vf = remote_vfs->vfs_getNextFile() )
@@ -199,7 +199,7 @@ void KRSearchMod::scanRemoteDir( KURL url )
     QString name = vf->vfile_getName();
 
     if ( query->recurse )
-    {      
+    {
       if( ( vf->vfile_isSymLink() && query->followLinks ) || vf->vfile_isDir() )
       {
         KURL recurseURL = remote_vfs->vfs_getOrigin();
@@ -207,7 +207,7 @@ void KRSearchMod::scanRemoteDir( KURL url )
         unScannedUrls.push( recurseURL );
       }
     }
-    
+
     if( query->match( vf ) )
     {
       // if we got here - we got a winner

@@ -115,8 +115,8 @@ exp_Filter::exp_Filter() {
 }
 QString exp_Filter::expFunc( const ListPanel* panel, const QStringList&, const bool& ) {
    NEED_PANEL
-   
-   return panel->view->filterMask().filter();
+
+   return panel->view->filterMask().nameFilter();
 }
 
 exp_Current::exp_Current() {

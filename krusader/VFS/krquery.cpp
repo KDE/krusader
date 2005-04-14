@@ -52,14 +52,14 @@ KRQuery::KRQuery(): matchesCaseSensitive(true),
                     perm(QString::null),type(QString::null){}
 
 // set the defaults
-KRQuery::KRQuery( QString name ): matchesCaseSensitive(true),
+KRQuery::KRQuery( QString name, bool matchCase ):
                     contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false),
                     inArchive(false),recurse(true),followLinks(true),bNull( true ),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString::null),group(QString::null),
                     perm(QString::null),type(QString::null) {
-  setFilter( name );
+  setNameFilter( name, matchCase );
 }
 
 void KRQuery::normalize(){
@@ -90,6 +90,9 @@ bool KRQuery::checkType( QString mime ) const
 
 bool KRQuery::match( const QString name ) const
 {
+  if( excludes.count() == 0 && matches.count() == 0 ) /* true if there's no match condition */
+    return true;
+
   unsigned int len;
   for ( unsigned int i = 0; i < excludes.count(); ++i )
   {
@@ -136,7 +139,7 @@ bool KRQuery::match( vfile *vf ) const
       /* TODO: search in remote vfs is not yet implemented */
     }
   }
-    
+
   return true;
 }
 
@@ -164,7 +167,7 @@ bool KRQuery::containsContent( QString file ) const
         if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
           after != '_' && before != '_' )
             return true;
-        
+
         ndx++;
       }
     }
@@ -175,17 +178,18 @@ bool KRQuery::containsContent( QString file ) const
   return false;
 }
 
-void KRQuery::setFilter( QString text )
+void KRQuery::setNameFilter( QString text, bool cs )
 {
   bNull = false;
+  matchesCaseSensitive = cs;
   origFilter = text;
-  
+
   QString matchText = text;
   QString excludeText;
-  
+
   if( !matchText.contains( "*" ) && !matchText.contains( "?" ) && !matchText.contains( " " ) && !matchText.contains( "|" ) )
     matchText = "*" + matchText + "*";
-    
+
   int excludeNdx = matchText.find( '|' );
   if( excludeNdx > -1 )
   {
@@ -195,8 +199,64 @@ void KRQuery::setFilter( QString text )
     if( matchText.isEmpty() )
       matchText = "*";
   }
-  
+
   matches  = QStringList::split(QChar(' '), matchText );
   excludes = QStringList::split(QChar(' '), excludeText );
 }
 
+void KRQuery::setContent( QString content, bool cs, bool wholeWord )
+{
+  bNull = false;
+  contain = content;
+  containCaseSensetive = cs;
+  containWholeWord = wholeWord;
+}
+
+void KRQuery::setMinimumFileSize( KIO::filesize_t minimumSize )
+{
+  bNull = false;
+  minSize = minimumSize;
+}
+
+void KRQuery::setMaximumFileSize( KIO::filesize_t maximumSize )
+{
+  bNull = false;
+  maxSize = maximumSize;
+}
+
+void KRQuery::setNewerThan( time_t time )
+{
+  bNull = false;
+  newerThen = time;
+}
+
+void KRQuery::setOlderThan( time_t time )
+{
+  bNull = false;
+  olderThen = time;
+}
+
+void KRQuery::setOwner( QString ownerIn )
+{
+  bNull = false;
+  owner = ownerIn;
+}
+
+void KRQuery::setGroup( QString groupIn )
+{
+  bNull = false;
+  group = groupIn;
+}
+
+void KRQuery::setPermissions( QString permIn )
+{
+  bNull = false;
+  perm = permIn;
+}
+
+void KRQuery::setMimeType( QString typeIn, QStringList customList )
+{
+  bNull = false;
+  type = typeIn;
+  customType = customList;
+}

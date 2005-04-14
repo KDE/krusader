@@ -331,15 +331,16 @@ bool GeneralFilter::fillQuery( KRQuery *query )
 
   // now fill the query
 
-  query->setFilter( searchFor->currentText().stripWhiteSpace() );
-  query->matchesCaseSensitive = searchForCase->isChecked();
+  query->setNameFilter( searchFor->currentText().stripWhiteSpace(), searchForCase->isChecked() );
+
   if (containsText->isEnabled())
-    query->contain = containsText->currentText();
-  query->containCaseSensetive = containsTextCase->isChecked();
-  query->containWholeWord     = containsWholeWord->isChecked();
+    query->setContent( containsText->currentText(),
+                       containsTextCase->isChecked(),
+                       containsWholeWord->isChecked() );
+
   if (ofType->currentText()!=i18n("All Files"))
-    query->type = ofType->currentText();
-  else query->type = QString::null;
+    query->setMimeType( ofType->currentText() );
+  else query->setMimeType( QString::null );
 
   if ( properties & FilterTabs::HasRecurseOptions )
   {

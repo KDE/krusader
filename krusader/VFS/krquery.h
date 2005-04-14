@@ -35,50 +35,88 @@
 #include <kurl.h>
 #include "vfile.h"
 
-
-
 class KRQuery {
-public: 
+public:
+  // null query
   KRQuery();
-  KRQuery( QString name );
-  ~KRQuery() {};
+  // query only with name filter
+  KRQuery( QString name, bool matchCase = true );
 
+  // matching a file with the query
   bool match( vfile *file ) const;// checks if the given vfile object matches the conditions
+  // matching a name with the query
   bool match( QString name ) const;// matching the filename only
-  void normalize();               // make sure KRSearchMod can use the data
-  void setFilter( QString text ); // sets the text for filtering
-  QString filter() { return origFilter; } // returns the current filter mask
-  bool isNull() {return bNull;};          
 
-  QStringList matches;           // what to search
-  QStringList excludes;          // what to exclude
-  bool matchesCaseSensitive;
-  QString contain;               // file must contain this string
-  bool containCaseSensetive;
-  bool containWholeWord;
-  bool inArchive;                // if true- search in archive.
-  bool recurse;                  // if true recurse ob sub-dirs...
-  bool followLinks;
-  bool bNull;                   // flag if the query is null
-  
-  KURL::List whereToSearch;     // directorys to search
-  KURL::List whereNotToSearch;  // directorys NOT to search
-  // size
-  unsigned long minSize;
-  unsigned long maxSize;
-  //date
-  time_t newerThen;
-  time_t olderThen;
-  //permissions
-  QString owner;
-  QString group;
-  QString perm;
+  // sets the text for name filtering
+  void setNameFilter( QString text, bool cs=true );
+  // returns the current filter mask
+  QString nameFilter() { return origFilter; }
+  // returns whether the filter is case sensitive
+  bool isCaseSensitive() { return matchesCaseSensitive; }
+
+  // returns if the filter is null (was cancelled)
+  bool isNull() {return bNull;};
+
+  // sets the content part of the query
+  void setContent( QString content, bool cs=true, bool wholeWord=false );
+
+  // sets the minimum file size limit
+  void setMinimumFileSize( KIO::filesize_t );
+  // sets the maximum file size limit
+  void setMaximumFileSize( KIO::filesize_t );
+
+  // sets the time the file newer than
+  void setNewerThan( time_t time );
+  // sets the time the file older than
+  void setOlderThan( time_t time );
+
+  // sets the owner
+  void setOwner( QString ownerIn );
+  // sets the group
+  void setGroup( QString groupIn );
+  // sets the permissions
+  void setPermissions( QString permIn );
+
+  // sets the mimetype for the query
   // type, must be one of the following:
   // 1. a valid mime type name
   // 2. one of: i18n("Archives"),   i18n("Directories"), i18n("Image Files")
   //            i18n("Text Files"), i18n("Video Files"), i18n("Audio Files")
   // 3. i18n("Custom") in which case you must supply a list of valid mime-types
   //    in the member QStringList customType
+  void setMimeType( QString typeIn, QStringList customList = QStringList() );
+  // true if setMimeType was called
+  bool hasMimeType()  { return type.isEmpty(); }
+
+  bool inArchive;                // if true- search in archive.
+  bool recurse;                  // if true recurse ob sub-dirs...
+  bool followLinks;
+
+  void normalize();               // make sure KRSearchMod can use the data
+  KURL::List whereToSearch;     // directorys to search
+  KURL::List whereNotToSearch;  // directorys NOT to search
+
+protected:
+  QStringList matches;           // what to search
+  QStringList excludes;          // what to exclude
+  bool matchesCaseSensitive;
+
+  bool bNull;                    // flag if the query is null
+
+  QString contain;               // file must contain this string
+  bool containCaseSensetive;
+  bool containWholeWord;
+
+  KIO::filesize_t minSize;
+  KIO::filesize_t maxSize;
+
+  time_t newerThen;
+  time_t olderThen;
+
+  QString owner;
+  QString group;
+  QString perm;
+
   QString type;
   QStringList customType;
 
@@ -86,7 +124,7 @@ private:
   bool checkPerm(QString perm) const;
   bool checkType(QString mime) const;
   bool containsContent( QString file ) const;
-  
+
   QString origFilter;
 };
 

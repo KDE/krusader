@@ -478,29 +478,33 @@ void AdvancedFilter::invalidDateMessage(QLineEdit *p)
 
 bool AdvancedFilter::fillQuery( KRQuery *query )
 {
+  KIO::filesize_t minSize = 0, maxSize = 0;
+
   // size calculations ////////////////////////////////////////////////
   if ( biggerThanEnabled->isChecked() &&
       !(biggerThanAmount->text().simplifyWhiteSpace()).isEmpty() ) {
-    query->minSize = biggerThanAmount->text().toULong();
+    minSize = biggerThanAmount->text().toULong();
     switch ( biggerThanType->currentItem() ) {
-      case 1 : query->minSize *= 1024;
+      case 1 : minSize *= 1024;
                break;
-      case 2 : query->minSize *= (1024*1024);
+      case 2 : minSize *= (1024*1024);
                break;
     }
+    query->setMinimumFileSize( minSize );
   }
   if ( smallerThanEnabled->isChecked() &&
       !(smallerThanAmount->text().simplifyWhiteSpace()).isEmpty()) {
-    query->maxSize = smallerThanAmount->text().toULong();
+    maxSize = smallerThanAmount->text().toULong();
     switch (smallerThanType->currentItem()) {
-      case 1 : query->maxSize *= 1024;
+      case 1 : maxSize *= 1024;
                break;
-      case 2 : query->maxSize *= (1024*1024);
+      case 2 : maxSize *= (1024*1024);
                break;
     }
+    query->setMaximumFileSize( maxSize );
   }
   // check that minSize is smaller than maxSize
-  if ((query->minSize > 0) && (query->maxSize > 0) && (query->maxSize < query->minSize)) {
+  if ( ( minSize > 0) && ( maxSize > 0) && ( maxSize < minSize)) {
     KMessageBox::detailedError(this, i18n("Specified sizes are inconsistent!"),
       i18n("Please re-enter the values, so that the left-side size\n"
            "will be smaller than (or equal to) the right-side size."));
@@ -528,14 +532,20 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
         return false;
       }
       // all seems to be ok, create time_t
-      qdate2time_t(&(query->newerThen), d1, true);
-      qdate2time_t(&(query->olderThen), d2, false);
+
+      time_t newerTime, olderTime;
+      qdate2time_t(&newerTime, d1, true);
+      qdate2time_t(&olderTime, d2, false);
+      query->setNewerThan( newerTime );
+      query->setOlderThan( olderTime );
     }
   } else if (notModifiedAfterEnabled->isChecked()) {
     if ( !notModifiedAfterData->text().simplifyWhiteSpace().isEmpty() ) {
       QDate d = KGlobal::locale()->readDate(notModifiedAfterData->text());
       if (!d.isValid()) { invalidDateMessage(notModifiedAfterData); return false; }
-      qdate2time_t(&(query->olderThen), d, false);
+      time_t olderTime;
+      qdate2time_t(&olderTime, d, false);
+      query->setOlderThan( olderTime );
     }
   } else if (modifiedInTheLastEnabled->isChecked()) {
     if ( !(modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() &&
@@ -552,7 +562,9 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
                    break;
         }
         d1 = d1.addDays((-1) * tmp1);
-        qdate2time_t(&(query->newerThen), d1, true);
+        time_t newerTime;
+        qdate2time_t(&newerTime, d1, true);
+        query->setNewerThan( newerTime );
       }
       if (!notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty()) {
         int tmp2 = notModifiedInTheLastData->text().simplifyWhiteSpace().toInt();
@@ -565,7 +577,9 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
                    break;
         }
         d2 = d2.addDays((-1) * tmp2);
-        qdate2time_t(&(query->olderThen), d2, true);
+        time_t olderTime;
+        qdate2time_t(&olderTime, d2, true);
+        query->setOlderThan( olderTime );
       }
       if ( !modifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() &&
            !notModifiedInTheLastData->text().simplifyWhiteSpace().isEmpty() ) {
@@ -585,12 +599,12 @@ bool AdvancedFilter::fillQuery( KRQuery *query )
     QString perm = ownerR->currentText() + ownerW->currentText() + ownerX->currentText() +
                    groupR->currentText() + groupW->currentText() + groupX->currentText() +
                    allR->currentText()   + allW->currentText()   + allX->currentText();
-    query->perm = perm;
+    query->setPermissions( perm );
   }
   if (belongsToUserEnabled->isChecked())
-    query->owner = belongsToUserData->currentText();
+    query->setOwner( belongsToUserData->currentText() );
   if (belongsToGroupEnabled->isChecked())
-    query->group = belongsToGroupData->currentText();
+    query->setGroup( belongsToGroupData->currentText() );
 
   return true;
 }
