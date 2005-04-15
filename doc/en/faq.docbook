@@ -86,7 +86,7 @@
          when you compile &krusader; from source.</para>
          <para>Here is a list of the normally required shared libraries when you run &krusader;:</para>
    <para><itemizedlist>
-     <listitem><para>kdelibs >= 3.2  libqt3
+     <listitem><para>kdelibs (for the required &kde; version see the &install_proc_lnk;) libqt3
                </para></listitem>
     <listitem><para>libxfree86  libfreetype6  libfontconfig1
                </para></listitem>
@@ -708,6 +708,24 @@ easier transition and
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
 </qandaentry>
+
+  <qandaentry>
+  <question id="faqu_mimetypemagic_archives">
+  <para>Why mimetype magic isn't sometimes working inside archives?</para>
+  </question>
+  <answer>
+  <para>When you enter an archive and press <keycap>F3</keycap> to view a file that has no
+        known extension, &eg; <filename>README, INSTALL</filename> &etc;.
+        And if the viewer opens in hex-mode instead of the usual mode, 
+        than you need to configure:
+        <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
+      <guimenuitem>KDE components</guimenuitem><guimenuitem>File Associations</guimenuitem>
+      <guimenuitem>Application</guimenuitem><guimenuitem>octet-stream</guimenuitem></menuchoice></emphasis>,
+      <guilabel>binary viewer</guilabel> needs to be removed.
+      </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
 
 
 </qandaset>
