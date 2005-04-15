@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.60.0
-- Documentation date:  2005-02-28
-- Parsing date: Mon Feb 28 20:07:40 UTC 2005
+- Documentation date:  2005-04-15
+- Parsing date: Fri Apr 15 13:07:34 UTC 2005
 --------------------------------------------
  
 
@@ -59,18 +59,20 @@ A.1. Requirements
    In order to successfully use the most recent Krusader, you
    need KDElibs >= 3.3.x.
 
-   Note
+   Required KDE version:
 
-     * Krusader v1.01 needs KDElibs 2.x.x
-     * Krusader v1.02 - 1.40 needs KDElibs 3.x.x
-     * Krusader 1.40 prefers >= 3.2.x (otherwise not all features
-       will be available)
-     * Krusader v1.50 - 1.60 needs >= 3.3.x
+     * Krusader v1.01: KDE 2.x.x
+     * Krusader v1.02 - 1.40: KDE 3.0.x - KDE 3.2.x
+     * Krusader 1.40: prefers KDE 3.2.x (otherwise not all
+       features will be available)
+     * Krusader v1.50 - v1.51: KDE 3.2.x - KDE 3.3.x
+       (Konfigurator crash on KDE 3.4.x)
+     * Krusader v1.60.0: KDE 3.3.x - KDE 3.4.x
 
    Platforms:
 
-     * All POSIX (Linux®/BSD/UNIX-like OSes), Solaris(TM)
-     * All BSD Platforms (FreeBSD/NetBSD/OpenBSD/Mac® OS 10.3
+     * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris(TM)
+     * All BSD Platforms (FreeBSD®/NetBSD/OpenBSD/Mac® OS 10.3
        "Panther").
 
    Krusader uses about 3-4 MByte of memory to run (and about 15
@@ -100,7 +102,7 @@ A.2.1. Download Krusader
    tarballs and RPM packages to whatever distro we are currently
    using.
 
-     * Often Mandrake(TM), Fedora® and SuSE® RPM's and Debian®
+     * Often Mandrake(TM), Fedora(TM) and SuSE® RPM's and Debian®
        DEB's are available on our website, sended in by Krusader
        users. There might be some other packages, but that
        depends on users contributions.
@@ -136,7 +138,7 @@ A.2.2. Version scheme
 
    So in essence, releasing Krusader-1.60.0, means that we
    believe that Krusader is about 60% done with all the features
-   we'd schedule for thr 1.x.x series. Only 40% left to go until
+   we'd schedule for the 1.x.x series. Only 40% left to go until
    version 2.0.0 ;-) We hope it'd be easy to understand.
      _________________________________________________________
 
@@ -284,7 +286,7 @@ $ su -c 'make install'
    the detailed installation instructions below.
      _________________________________________________________
 
-A.3.2. Detailed Installation Instructions
+A.3.2. Installation Tutorial
 
    The next section will explain step by step, in detail, how to
    install Krusader. This question has been asked many times and
