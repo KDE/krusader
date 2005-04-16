@@ -344,9 +344,9 @@ bool GeneralFilter::fillQuery( KRQuery *query )
 
   if ( properties & FilterTabs::HasRecurseOptions )
   {
-    query->inArchive = searchInArchives->isChecked();
-    query->recurse = searchInDirs->isChecked();
-    query->followLinks = followLinks->isChecked();
+    query->setSearchInArchives( searchInArchives->isChecked() );
+    query->setRecursive( searchInDirs->isChecked() );
+    query->setFollowLinks( followLinks->isChecked() );
 
     // create the lists
   }

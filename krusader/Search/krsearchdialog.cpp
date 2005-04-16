@@ -65,23 +65,23 @@ bool KrSearchDialog::lastFollowSymLinks = false;
 
 // class starts here /////////////////////////////////////////
 KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* name, bool modal, WFlags fl )
-                : QDialog( parent, name, modal, fl ), query(0), searcher(0) 
+                : QDialog( parent, name, modal, fl ), query(0), searcher(0)
 {
   setCaption( i18n( "Krusader::Search" ) );
-  
+
   QGridLayout* searchBaseLayout = new QGridLayout( this );
   searchBaseLayout->setSpacing( 6 );
   searchBaseLayout->setMargin( 11 );
 
   // creating the dialog buttons ( Search, Stop, Close )
-  
+
   QHBoxLayout* buttonsLayout = new QHBoxLayout();
   buttonsLayout->setSpacing( 6 );
   buttonsLayout->setMargin( 0 );
 
   profileManager = new ProfileManager( "SearcherProfile", this, "profileManager" );
   buttonsLayout->addWidget( profileManager );
-  
+
   QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   buttonsLayout->addItem( spacer );
 
@@ -89,7 +89,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   mainFeedToListBoxBtn->setText( i18n( "Feed to listbox" ) );
   mainFeedToListBoxBtn->setEnabled(false);
   buttonsLayout->addWidget( mainFeedToListBoxBtn );
-  
+
   mainSearchBtn = new QPushButton( this, "mainSearchBtn" );
   mainSearchBtn->setText( i18n( "Search" ) );
   mainSearchBtn->setDefault(true);
@@ -107,7 +107,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   searchBaseLayout->addLayout( buttonsLayout, 1, 0 );
 
   // creating the searcher tabs
-  
+
   searcherTabs = new QTabWidget( this, "searcherTabs" );
 
   filterTabs = FilterTabs::addTo( searcherTabs, FilterTabs::Default );
@@ -119,7 +119,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   resultLayout->setMargin( 11 );
 
   // creating the result tab
-    
+
   QHBoxLayout* resultLabelLayout = new QHBoxLayout();
   resultLabelLayout->setSpacing( 6 );
   resultLabelLayout->setMargin( 0 );
@@ -149,7 +149,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   resultsList->addColumn( i18n( "Permissions" ) );
 
   resultsList->setSorting(1); // sort by location
-  
+
   // fix the results list
   // => make the results font smaller
   QFont resultsFont(  resultsList->font() );
@@ -159,27 +159,27 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   resultsList->setAllColumnsShowFocus(true);
   for (int i=0; i<5; ++i) // don't let it resize automatically
     resultsList->setColumnWidthMode(i, QListView::Manual);
-    
+
   int i=QFontMetrics(resultsList->font()).width("W");
   int j=QFontMetrics(resultsList->font()).width("0");
   j=(i>j ? i : j);
-  
+
   resultsList->setColumnWidth(0, krConfig->readNumEntry("Name Width", j*14) );
   resultsList->setColumnWidth(1, krConfig->readNumEntry("Path Width", j*25) );
   resultsList->setColumnWidth(2, krConfig->readNumEntry("Size Width", j*6) );
   resultsList->setColumnWidth(3, krConfig->readNumEntry("Date Width", j*7) );
   resultsList->setColumnWidth(4, krConfig->readNumEntry("Perm Width", j*7) );
   resultsList->setColumnAlignment( 2, AlignRight );
-  
+
   resultsList->header()->setStretchEnabled( true, 1 );
-  
+
   resultLayout->addWidget( resultsList, 0, 0 );
   searcherTabs->insertTab( resultTab, i18n( "&Results" ) );
 
   searchBaseLayout->addWidget( searcherTabs, 0, 0 );
 
   // signals and slots connections
-  
+
   connect( mainSearchBtn, SIGNAL( clicked() ), this, SLOT( startSearch() ) );
   connect( mainStopBtn, SIGNAL( clicked() ), this, SLOT( stopSearch() ) );
   connect( resultsList, SIGNAL( returnPressed(QListViewItem*) ), this, SLOT( resultClicked(QListViewItem*) ) );
@@ -187,12 +187,12 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   connect( resultsList, SIGNAL( rightButtonClicked(QListViewItem*,const QPoint&,int) ), this, SLOT( rightClickMenu(QListViewItem*, const QPoint&, int) ) );
   connect( mainCloseBtn, SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
   connect( mainFeedToListBoxBtn, SIGNAL( clicked() ), this, SLOT( feedToListBox() ) );
-  
+
   connect( profileManager, SIGNAL( loadFromProfile( QString ) ), filterTabs, SLOT( loadFromProfile( QString ) ) );
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), filterTabs, SLOT( saveToProfile( QString ) ) );
 
   // tab order
-  
+
   setTabOrder( mainSearchBtn, mainCloseBtn );
   setTabOrder( mainCloseBtn, mainStopBtn );
   setTabOrder( mainStopBtn, searcherTabs );
@@ -201,23 +201,23 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   krConfig->setGroup( "Search" );
   int sx = krConfig->readNumEntry( "Window Width",  -1 );
   int sy = krConfig->readNumEntry( "Window Height",  -1 );
-  
+
   if( sx != -1 && sy != -1 )
     resize( sx, sy );
-  
+
   if( krConfig->readBoolEntry( "Window Maximized",  false ) )
       showMaximized();
-  else  
+  else
       show();
-  
+
   // disable the search action ... no 2 searchers !
   krFind->setEnabled(false);
   generalFilter->searchFor->setFocus();
 
   isSearching = closed = false;
-  
+
   // finaly, load a profile of apply defaults:
-  
+
   if ( profile.isEmpty() ) {
     // load the last used values
     generalFilter->searchFor->setEditText( lastSearchText );
@@ -230,35 +230,35 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
     generalFilter->searchInArchives->setChecked( lastSearchInArchives );
     generalFilter->followLinks->setChecked( lastFollowSymLinks );
     // the path in the active panel should be the default search location
-    generalFilter->searchIn->lineEdit()->setText( ACTIVE_PANEL->virtualPath().prettyURL() ); 
+    generalFilter->searchIn->lineEdit()->setText( ACTIVE_PANEL->virtualPath().prettyURL() );
   }
   else
     profileManager->loadProfile( profile ); // important: call this _after_ you've connected profileManager ot the loadFromProfile!!
 
 }
 
-void KrSearchDialog::closeDialog( bool isAccept ) 
+void KrSearchDialog::closeDialog( bool isAccept )
 {
   // stop the search if it's on-going
   if (searcher!=0) {
     delete searcher;
     searcher = 0;
   }
-  
+
   // saving the searcher state
-  
+
   krConfig->setGroup( "Search" );
-  
+
   krConfig->writeEntry("Window Width", sizeX );
   krConfig->writeEntry("Window Height", sizeY );
   krConfig->writeEntry("Window Maximized", isMaximized() );
-  
+
   krConfig->writeEntry("Name Width",  resultsList->columnWidth( 0 ) );
   krConfig->writeEntry("Path Width",  resultsList->columnWidth( 1 ) );
   krConfig->writeEntry("Size Width",  resultsList->columnWidth( 2 ) );
   krConfig->writeEntry("Date Width",  resultsList->columnWidth( 3 ) );
   krConfig->writeEntry("Perm Width",  resultsList->columnWidth( 4 ) );
-  
+
   lastSearchText = generalFilter->searchFor->currentText();
   lastSearchType = generalFilter->ofType->currentItem();
   lastSearchForCase = generalFilter->searchForCase->isChecked();
@@ -267,14 +267,14 @@ void KrSearchDialog::closeDialog( bool isAccept )
   lastSearchInSubDirs = generalFilter->searchInDirs->isChecked();
   lastSearchInArchives = generalFilter->searchInArchives->isChecked();
   lastFollowSymLinks = generalFilter->followLinks->isChecked();
-  hide();  
+  hide();
   // re-enable the search action
   krFind->setEnabled(true);
   if( isAccept )
     QDialog::accept();
   else
     QDialog::reject();
-  
+
   this->deleteLater();
 }
 
@@ -283,7 +283,7 @@ void KrSearchDialog::reject() {
 }
 
 void KrSearchDialog::resizeEvent( QResizeEvent *e )
-{   
+{
   if( !isMaximized() )
   {
     sizeX = e->size().width();
@@ -314,9 +314,9 @@ void KrSearchDialog::startSearch() {
 
   // prepare the query /////////////////////////////////////////////
   if (!gui2query()) return;
-  
+
   // first, informative messages
-  if ( query->inArchive ) {
+  if ( query->searchInArchives() ) {
     KMessageBox::information(this, i18n("Since you chose to also search in archives, "
                                         "note the following limitations:\n"
                                         "You cannot search for text (grep) while doing"
@@ -328,7 +328,7 @@ void KrSearchDialog::startSearch() {
   mainCloseBtn->setEnabled(false);
   mainStopBtn->setEnabled(true);
   mainFeedToListBoxBtn->setEnabled(false);
-  resultsList->clear(); 
+  resultsList->clear();
   searchingLabel->setText("");
   foundLabel->setText(i18n("Found 0 matches."));
   searcherTabs->setCurrentPage(2); // show the results page
@@ -475,15 +475,15 @@ void KrSearchDialog::feedToListBox()
 {
   virt_vfs v(0,true);
   v.vfs_refresh( KURL( "/" ) );
-  
-  krConfig->setGroup( "Search" );  
-  int listBoxNum = krConfig->readNumEntry( "Feed To Listbox Counter", 1 );  
+
+  krConfig->setGroup( "Search" );
+  int listBoxNum = krConfig->readNumEntry( "Feed To Listbox Counter", 1 );
   QString queryName;
   do {
     queryName = i18n("Search results")+QString( " %1" ).arg( listBoxNum++ );
   }while( v.vfs_search( queryName ) != 0 );
-  krConfig->writeEntry( "Feed To Listbox Counter", listBoxNum );  
-  
+  krConfig->writeEntry( "Feed To Listbox Counter", listBoxNum );
+
   krConfig->setGroup( "Advanced" );
   if ( krConfig->readBoolEntry( "Confirm Feed to Listbox",  _ConfirmFeedToListbox ) ) {
     bool ok;
@@ -495,7 +495,7 @@ void KrSearchDialog::feedToListBox()
      if ( ! ok)
        return;
   }
-  
+
   KURL::List urlList;
   QListViewItem * item = resultsList->firstChild();
   while( item )
@@ -508,7 +508,7 @@ void KrSearchDialog::feedToListBox()
   KURL url = KURL::fromPathOrURL( QString("virt:/") + queryName );
   v.vfs_refresh( url );
   v.vfs_addFiles( &urlList, KIO::CopyJob::Copy, 0 );
-  //ACTIVE_FUNC->openUrl(url);  
+  //ACTIVE_FUNC->openUrl(url);
   ACTIVE_MNG->slotNewTab(url.prettyURL());
   closeDialog();
 }

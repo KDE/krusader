@@ -137,7 +137,7 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
     KURL url = vfs::fromPathOrURL( dir + name );
 
     QString mime = QString::null;
-    if ( query->inArchive || !query->hasMimeType() )
+    if ( query->searchInArchives() || !query->hasMimeType() )
       mime = KMimeType::findByURL( url, stat_p.st_mode, true, false ) ->name();
 
     // creating a vfile object for matching with krquery
@@ -146,14 +146,14 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
                            mime, "", stat_p.st_mode);
     vf->vfile_setUrl( url );
 
-    if ( query->recurse )
+    if ( query->isRecursive() )
     {
-      if ( S_ISLNK( stat_p.st_mode ) && query->followLinks )
+      if ( S_ISLNK( stat_p.st_mode ) && query->followLinks() )
         unScannedUrls.push( vfs::fromPathOrURL( QDir( dir + name ).canonicalPath() ) );
       else if ( S_ISDIR( stat_p.st_mode ) )
         unScannedUrls.push( url );
     }
-    if ( query->inArchive )
+    if ( query->searchInArchives() )
     {
       QString type = mime.right( 4 );
       if ( mime.contains( "-rar" ) ) type = "-rar";
@@ -198,9 +198,9 @@ void KRSearchMod::scanRemoteDir( KURL url )
   {
     QString name = vf->vfile_getName();
 
-    if ( query->recurse )
+    if ( query->isRecursive() )
     {
-      if( ( vf->vfile_isSymLink() && query->followLinks ) || vf->vfile_isDir() )
+      if( ( vf->vfile_isSymLink() && query->followLinks() ) || vf->vfile_isDir() )
       {
         KURL recurseURL = remote_vfs->vfs_getOrigin();
         recurseURL.addPath( name );

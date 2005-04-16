@@ -46,7 +46,7 @@
 KRQuery::KRQuery(): matchesCaseSensitive(true),
                     contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false),
-                    inArchive(false),recurse(true),followLinks(true),bNull( true ),
+                    inArchive(false),recurse(true),followLinksP(true),bNull( true ),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString::null),group(QString::null),
                     perm(QString::null),type(QString::null){}
@@ -55,7 +55,7 @@ KRQuery::KRQuery(): matchesCaseSensitive(true),
 KRQuery::KRQuery( QString name, bool matchCase ):
                     contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false),
-                    inArchive(false),recurse(true),followLinks(true),bNull( true ),
+                    inArchive(false),recurse(true),followLinksP(true),bNull( true ),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString::null),group(QString::null),
                     perm(QString::null),type(QString::null) {

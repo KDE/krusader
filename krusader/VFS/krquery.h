@@ -88,9 +88,18 @@ public:
   // true if setMimeType was called
   bool hasMimeType()  { return type.isEmpty(); }
 
-  bool inArchive;                // if true- search in archive.
-  bool recurse;                  // if true recurse ob sub-dirs...
-  bool followLinks;
+  // sets the search in archive flag
+  void setSearchInArchives( bool flag ) { inArchive = flag; }
+  // gets the search in archive flag
+  bool searchInArchives() { return inArchive; }
+  // sets the recursive flag
+  void setRecursive( bool flag ) { recurse = flag; }
+  // gets the recursive flag
+  bool isRecursive() { return recurse; }
+  // sets whether to follow symbolic links
+  void setFollowLinks( bool flag ) { followLinksP = flag; }
+  // gets whether to follow symbolic links
+  bool followLinks() { return followLinksP; }
 
   void normalize();               // make sure KRSearchMod can use the data
   KURL::List whereToSearch;     // directorys to search
@@ -119,6 +128,10 @@ protected:
 
   QString type;
   QStringList customType;
+
+  bool inArchive;                // if true- search in archive.
+  bool recurse;                  // if true recurse ob sub-dirs...
+  bool followLinksP;
 
 private:
   bool checkPerm(QString perm) const;
