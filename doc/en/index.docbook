@@ -71,8 +71,9 @@ Previous used Docbook
 <!ENTITY i18nhowto_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389">Krusader translation HowTo</ulink>'>
 <!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/down.php">&krusader; downloadpage</ulink>'>
 <!ENTITY debian_download_url '<ulink url="http://packages.debian.org/Krusader"><trademark class="registered">Debian</trademark></ulink>'>
-<!ENTITY deb_packages_url '<ulink url="http://packages.qa.debian.org/k/krusader.html">DEB packages</ulink>'>
 <!ENTITY mac_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-x 10.3 (Panther)</ulink>'>
+<!ENTITY dag_wiers_download_url '<ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink>'>
+<!ENTITY dries_verachtert_download_url '<ulink url="http://search.belnet.be/mirror/dries.ulyssis.org/">Dries Verachtert mirror</ulink>'>
 
 <!ENTITY shared_libdeps_url '<ulink url="http://krusader.sourceforge.net/handbook/ldd_krusader.txt">shared library dependencies</ulink>'>
 <!ENTITY mailing_subscribe_url '<ulink url="http://sourceforge.net/mail/?group_id=6488">(un)subscribe</ulink>'>
@@ -87,7 +88,7 @@ Previous used Docbook
 <!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/">more translator credits</ulink>'>
 
 <!-- internet links, Krusader binaries -->
-<!ENTITY freshmeat_url '<ulink url="http://www.freshmeat.net">freshmeat.net</ulink>'>
+<!ENTITY freshmeat_url '<ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink>'>
 <!ENTITY rpmfind_url '<ulink url="http://www.rpmfind.net">rpmfind.net</ulink>'>
 <!ENTITY rpmpbone_url '<ulink url="http://rpm.pbone.net">rpmpbone.net</ulink>'>
 <!ENTITY krufreebsd_port_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all">&freebsd; port</ulink>'>
@@ -99,7 +100,7 @@ Previous used Docbook
 <!ENTITY kdiff3_url '<ulink url="http://kdiff3.sourceforge.net">kdiff3</ulink>'>
 <!ENTITY krename_url '<ulink url="http://www.krename.net"><application>Krename</application></ulink>'>
 <!ENTITY xbel_url '<ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>'>
-<!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org">KDE-APPS.org</ulink>'>
+<!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink>'>
 <!ENTITY maxrpm_url '<ulink url="http://www.rpm.org/max-rpm">Maximum RPM Book</ulink>'>
 <!ENTITY kioslaves1_url '<ulink url="http://docs.kde.org/en/3.2/kdebase/kioslave/index.html">KIOSlaves</ulink>'>
 <!ENTITY kioslaves2_url '<ulink url="http://developer.kde.org/documentation/library/cvs-api/kio/html">KIOSlaves</ulink>'>
@@ -126,6 +127,7 @@ Previous used Docbook
 <!ENTITY fnkeybar_lnk '<link linkend="fnkeys">FN Keys Bar</link>'>
 <!ENTITY main_toolbar_lnk '<link linkend="main_toolbar">Main Toolbar</link>'>
 <!ENTITY actions_toolbar_lnk '<link linkend="actions_toolbar">Actions Toolbar</link>'>
+<!ENTITY location_toolbar_lnk '<link linkend="list_panel">Location Toolbar</link>'>
 <!ENTITY rootmode_lnk '<link linkend="root-mode">Root mode</link>'>
 <!ENTITY settingsmenu_lnk '<link linkend="settings-menu">Settings menu</link>'>
 <!ENTITY keybindigs_lnk '<link linkend="key_bindings">Key-Bindings</link>'>
@@ -201,8 +203,17 @@ Previous used Docbook
 
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
 <!ENTITY debian '<trademark class="registered">Debian</trademark>'>
+<!ENTITY mandriva '<trademark class="registered">Mandriva</trademark>'>
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
 <!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
+<!ENTITY firefox '<trademark class="registered">Firefox</trademark>'>
+<!ENTITY safari '<trademark class="registered">Safari</trademark>'>
+
+<!ENTITY mepis '<trademark class="registered">Mepis</trademark>'>
+<!ENTITY umbuntu '<trademark class="registered">Umbuntu</trademark>'>
+<!ENTITY kumbuntu '<trademark class="registered">Kumbuntu</trademark>'>
+<!ENTITY linspire '<trademark class="registered">Linspire</trademark>'>
+<!ENTITY xandros '<trademark class="registered">Xandros</trademark>'>
 
 <!ENTITY freebsd '<trademark class="copyright">FreeBSD</trademark>'>
 <!ENTITY tcmd '<trademark class="copyright">Total commander</trademark>'>
@@ -306,8 +317,8 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-04-15</date>
-  <releaseinfo>1.60.0</releaseinfo>
+  <date>2005-04-18</date>
+  <releaseinfo>1.61.0</releaseinfo>
 
    <abstract>
    <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x</para>
@@ -429,11 +440,16 @@ Previous used Docbook
   Thanks!</para>
 
   <para><emphasis role="bold">Translations</emphasis></para>
-  <para>&krusader; is available in many languages, several translations need an update and new untranslated
-        languages are always welcome, please read the &i18nhowto_url; .</para>
+  <para>&krusader; is available in many languages, but usually several translations do need an update 
+        and new untranslated languages are always welcome, please read the &i18nhowto_url; .
+        Even when there is already a translator for your native language, it is always interesting to
+        have a second or third translator &eg; for proofreading the translation.
+        Regularly the translator is not available when a translation update is needed (studies, holyday, ...).
+        Please contact the translator of your native language, he will appreciate this verry much that you will
+        offer some help.</para>
 
   <para><emphasis role="bold">Documentation</emphasis></para>
-  <para>&krusader; is in need of documentation, all help is welcome.</para>
+  <para>We try to document &krusader; for 100%, help is always welcome.</para>
 
   <para><emphasis role="bold">Donations</emphasis></para>
   <para>Honestly, we didn't consider donations, until users asked us for a way to &donate_url; to the project.
@@ -466,7 +482,7 @@ Previous used Docbook
 
     <para><emphasis role="bold">Porting &krusader; to &Windows;</emphasis></para>
     <para>&krusader; is written using &Qt;, but also using &kde;libs.
-          As long as &kde;libs do not run on &Windows;, poting &krusader; is not an option.
+          As long as &kde;libs do not run on &Windows;, porting &krusader; is not an option.
           However, we do believe, that once &Qt;4-GPL is released, efforts will be made to port &kde;libs 
           to &Windows;, and if that happens, we're in business and than we need a maintainer for porting 
           &krusader; to &Windows;.</para>
@@ -480,6 +496,8 @@ Previous used Docbook
   An open source project's greatest strength is derived from getting user feedback.
   </para>
 
+  <para>On some websites like &freshmeat_url; or &kde_apps_url; you can give a rate,
+       if you like &krusader; go to one of these sites and rate &krusader;, thanks.</para>
 </preface>
 
 
@@ -529,7 +547,8 @@ HTML_PARSING-->
               download them from the &sfmirrors_url;</para>
   </listitem>
 </itemizedlist>
-The most recent version of this handbook is available when downloading and installing &krusader; from cvs.
+The most recent version of this handbook is available when using &krusader; from cvs and
+the &onlinehandbook_url;.
 </para>
 
 &dev_cvs_note;

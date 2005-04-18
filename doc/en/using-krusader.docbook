@@ -418,6 +418,13 @@ and you control the current session with the &viewmenu_lnk;.
     or <keycombo action="simul">&Shift;<keycap>Right Arrow</keycap></keycombo>.
     </para></listitem>
 
+    <listitem><para>To <keycap>Jump back</keycap>: 
+    If you create a New Tab the Jump-Back-Point is saved. You can now step deep into the dir-tree and 
+    <keycombo action="simul">&Ctrl;<keycap>J</keycap></keycombo> brings you back to your starting position.
+    It's also possible to set the current directory manually as Jump-Back-Point via the Bookmark-menu.
+    </para></listitem>
+
+
 </itemizedlist>
 </para>
 </sect2>
@@ -1180,7 +1187,7 @@ TODO
 <entry><para><link linkend="cmdline">Go from the command line/terminal emulator to the active panel</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>Up arrow</keycap></keycombo></para></entry>
-<entry><para>Go from the active panel to the <link linkend="list_panel">Location Toolbar</link></para></entry></row>
+<entry><para>Go from the active panel to the &location_toolbar_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>Home</keycap></keycombo></para></entry>
 <entry><para>Jumps to the Home directory</para></entry></row>
@@ -1201,17 +1208,17 @@ TODO
 <entry><para><keycombo action="simul">&Ctrl;<keycap>b</keycap></keycombo></para></entry>
 <entry><para><link linkend="combine">Combine files</link></para></entry></row>
 <row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>c</keycap></keycombo></para></entry>
-<entry><para><link linkend="remote-man">Net Connections</link> (RemoteMan)</para></entry></row>
-<row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Open Bookmarks</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>j</keycap></keycombo></para></entry>
+<entry><para>A &safari;-like <link linkend="folder_tabs">Jump-Back</link> .</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>l</keycap></keycombo></para></entry>
-<entry><para>&locate_lnk;</para></entry></row>
+<entry><para>Go to the &location_toolbar_lnk; (origin) as in &firefox; and &konqueror;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo></para></entry>
-<entry><para><link linkend="remote-man">New Net Connection</link> (enter &URL; or host address)</para></entry></row>
+<entry><para><link linkend="commands-menu">New Network Connection</link> dialog.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>o</keycap></keycombo></para></entry>
 <entry><para>the inactive panel gets the same path as the active panel</para></entry></row>
@@ -1240,8 +1247,8 @@ TODO
 <entry><para><keycombo action="simul">&Ctrl;&Backspace;</keycombo></para></entry>
 <entry><para>Jumps to the Root directory</para></entry></row>
 <row>
-<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>f</keycap></keycombo></para></entry>
-<entry><para><link linkend="remote-man">Disconnect From Net</link></para></entry></row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>l</keycap></keycombo></para></entry>
+<entry><para>&locate_lnk;</para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>

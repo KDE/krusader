@@ -366,28 +366,6 @@
 
  <!-- vertical bar -->
 
-<varlistentry>  <!-- FTP Connect -->
-  <term><menuchoice>
-  <shortcut><keycombo action="simul">&Ctrl;<keycap>C</keycap></keycombo></shortcut>
-  <guimenu>Commands</guimenu>
-  <guimenuitem>Net Connections</guimenuitem>
-  </menuchoice></term>
-  <listitem><para>
-  Open the <link linkend="remote-man">&FTP; connection manager</link>.</para>
-  <para><keycap>Important: RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1.
-                The new manager handles local files and remote URLs
-                <!-- Openjade does not like an acronym element for "URL" here -->
-                the same way.
-                RemoteMan was left around to allow an easier transition and
-                give you a chance to move your bookmarks. 
-                It was REMOVED FROM CVS after Krusader 1.51.</keycap></para>
-
-   <para>Try the new Bookmark-Manager: open a new remote connection.
-         Once done, press the <guibutton>bookmark</guibutton> button, select
-         <guimenuitem>'Add bookmark'</guimenuitem> and that's it!
-  </para></listitem>
-</varlistentry>
-
 <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
@@ -395,20 +373,11 @@
   <guimenuitem>New Net Connection</guimenuitem>
   </menuchoice></term>
   <listitem><para>
-  Opens the new connection dialog which allows you to open a &FTP;, SMB, FISH or SFTP connection to a remote host.
-        If you leave the username and password fields empty you'll login as anonymous.
-  </para></listitem>
-</varlistentry>
-
-<varlistentry>
-        <term>
-  <menuchoice>
-  <shortcut><keycombo action="simul">&Shift;&Ctrl;<keycap>N</keycap></keycombo></shortcut>
-  <guimenu>Commands</guimenu>
-  <guimenuitem>Disconnect From Net</guimenuitem></menuchoice></term>
-  <listitem><para>
-  End the active &FTP;/SMB connection in the active panel. This action is disabled if the active panel
-        is not in &FTP;/SMB mode.
+  Opens the <link linkend="remote-connections">New Network Connection</link> dialog which allows
+  you to open a &FTP;, SMB, FISH or SFTP connection to a remote host.
+  Note: we are planning to rewrite this dialog.
+  If you leave the username and password fields empty you'll login as anonymous.
+  You can <link linkend="bookman">Bookmark</link> these remote sessions.
   </para></listitem>
 </varlistentry>
 

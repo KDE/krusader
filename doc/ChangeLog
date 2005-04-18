@@ -2,6 +2,20 @@ The Krusader Handbook ChangeLog
 -------------------------------
 
 
+  ADDED: A Safari-like Jump-Back feature (Ctrl-J and in the bookmark-menu)
+         This feature is inspired by the Snap-Back feature of Apple's webbrowser Safari
+  ADDED: i18n help
+
+UPDATED: How to obtain Krusader
+UPDATED: changed locate-gui shortcut from ctrl-l to ctrl+shift+l
+
+REMOVED: RemoteMan, the FTP/SMB connection manager
+         RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1
+         RemoteMan is disabled since Krusader-1.60.0
+REMOVED: remoteman.png (NOT YET DONE IN CVS, TODO)
+REMOVED: Ctrl+C: Commands -> Net Connections (RemoteMan)
+REMOVED: Ctrl+C+N Disconnect From Net (RemoteMan)
+
 1.60.0
 ======================
 Date: 2005-04-15

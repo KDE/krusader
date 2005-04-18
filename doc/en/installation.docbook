@@ -66,47 +66,68 @@
 <sect1 id = "getting-krusader">
 <title>How to obtain &krusader;</title>
 
-<para>The latest information about &krusader; can be found on the &kruwebsite_url;
-      and &krusader; project page at Sourceforge can be found &kruproject_url;.</para>
+<para>The latest information about &krusader; can be found on the &kruwebsite_url; .</para>
 
 <sect2 id="krusader_download">
 <title>Download &krusader;</title>
 
 <para>
-  The latest version can be found on the &krudownload_url; and on the &sfmirrors_url;.
-  It contains the source tarballs and RPM packages to whatever distro we are currently using.
+  The latest version (and older versions) can be found on the &krudownload_url; and on the &sfmirrors_url;.
+  It contains the source tarballs, RPM and DEB packages to whatever distro the &krusader;-Krew is using
+  and packages build by third-parties and &krusader; users.</para>
 
+<para>Distributions who include &krusader;
 <itemizedlist>
   <listitem>
-     <para>Often &Mandrake;, &fedora; and &SuSE; RPM's and &debian; DEB's are available on our website, 
-           sended in by &krusader; users.
-           There might be some other packages, but that depends on users contributions.</para>
+     <para>&SuSE; >= 9.3, please use &krusader;-1.60.0 and not &krusader;-1.51 
+           (might be instable on &SuSE;9.3-&kde;3.4)</para>
   </listitem>
   <listitem>
-     <para>&debian_download_url; &deb_packages_url; are available.</para>
+     <para>&debian_download_url; DEB packages, on our &krudownload_url; you might even find more
+           recent "unofficial" DEB packages.
+           Note: usually &debian; packages work on distributions who are "based on &debian;"
+           e.g. &mepis;, &umbuntu;, &kumbuntu;, &linspire;, &xandros;, ...</para>
   </listitem>
+  <listitem>
+     <para>&gentoo_url; Ebuild</para>
+  </listitem>  
   <listitem>
      <para>A &krufreebsd_port_url; is maintained by <link linkend="credits">Heiner Eichmann</link> .</para>
   </listitem>
-        <listitem>
-     <para>There is a &mac_download_url; port with the kdelibs (3.1.4) and &fink_prj_url;
-                 thanks to <link linkend="credits">Jonas Ba&euml;hr</link> .</para>
-  </listitem>
-        <listitem>
-     <para>&gentoo_url; Ebuild is available.</para>
-  </listitem>
-        <listitem>
+  <listitem>
+     <para>&mandriva; (formerly &Mandrake;), only in the "contrib" section for the moment.</para>
+  </listitem>    
+</itemizedlist>
+</para>
+
+<para>Third-parties
+<itemizedlist>
+     <listitem>
+       <para>&RedHat;/&fedora; RPM packages can usually found on the &krudownload_url;, 
+             &dag_wiers_download_url; or at &dries_verachtert_download_url;.</para>
+     </listitem>
+     <listitem>
+       <para>There is a &mac_download_url; port with the kdelibs (3.1.4) and &fink_prj_url;
+             thanks to <link linkend="credits">Jonas Ba&euml;hr</link> .</para>
+     </listitem>
+</itemizedlist>
+</para>
+
+<para>Search engines
+<itemizedlist>
+  <listitem>
      <para>You may also find packages on &Linux; software archives such as &freshmeat_url; or &kde_apps_url;.</para>
   </listitem>
-        <listitem>
-     <para>If you can't find an RPM package for your &Linux; distribution,
-                 we recommend searching for it with &rpmfind_url; or &rpmpbone_url;.</para>
+  <listitem>
+     <para>If you can't find a package for your distribution,
+           we recommend searching for it with &rpmfind_url; or &rpmpbone_url;.</para>
   </listitem>
 </itemizedlist>
         If you like &krusader; go to one of these sites and rate &krusader;, thanks.
 </para>
 
-<para>If you still can't find an RPM or DEB package, please don't worry.
+
+<para>If you still can't find a package, please don't worry.
       We provide a very detailed installation procedure. This very thorough HowTo shows even newcomers how to
       compile &krusader; from source, even if you've never compiled a program from source.
       Please continue to read this chapter ;)</para>
