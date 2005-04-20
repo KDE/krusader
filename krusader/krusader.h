@@ -122,7 +122,7 @@ class Krusader : public KParts::MainWindow {
 	 static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs, *actSyncBrowse;
 	 static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9, *actF10;
 	 static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack;
-    static KToggleAction *actToggleTerminal;
+    static KToggleAction *actToggleTerminal, *actVerticalMode;
     static KRadioAction *actMarkNewerAndSingle, *actMarkNewer, *actMarkSingle, 
                         *actMarkDifferentAndSingle, *actMarkDifferent;
     KToggleAction *actToggleFnkeys, *actToggleCmdline, *actShowToolBar,

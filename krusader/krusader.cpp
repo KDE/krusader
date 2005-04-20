@@ -155,6 +155,7 @@ KAction *Krusader::actPopularUrls = 0;
 KAction *Krusader::actJumpBack = 0;
 KAction *Krusader::actSetJumpBack = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
+KToggleAction *Krusader::actVerticalMode = 0;
 KRadioAction  *Krusader::actMarkNewerAndSingle = 0;
 KRadioAction  *Krusader::actMarkSingle = 0;
 KRadioAction  *Krusader::actMarkNewer = 0;
@@ -576,7 +577,7 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
         new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Key_Down, SLOTS,
                                           SLOT( togglePopupPanel() ), actionCollection(), "toggle popup panel" );
-        new KToggleAction( i18n( "Vertical Mode" ), ALT + CTRL + Key_R, MAIN_VIEW, 
+	actVerticalMode = new KToggleAction( i18n( "Vertical Mode" ), ALT + CTRL + Key_R, MAIN_VIEW, 
                                         SLOT( toggleVerticalMode() ), actionCollection(), "toggle vertical mode" );
    actNewTab = new KAction( i18n( "New tab" ), ALT + CTRL + Key_N, SLOTS,
                             SLOT( newTab() ), actionCollection(), "new tab" );
@@ -708,6 +709,9 @@ void Krusader::savePosition() {
    // save view settings ---> fix when we have tabbed-browsing
    mainView->left->view->saveSettings();
    mainView->right->view->saveSettings();
+   
+   config->setGroup( "Startup" );
+   config->writeEntry( "Vertical Mode", actVerticalMode->isChecked());
    config->sync();
 }
 
@@ -747,6 +751,7 @@ void Krusader::saveSettings() {
       config->writeEntry( "Show FN Keys", actToggleFnkeys->isChecked() );
       config->writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
       config->writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
+      config->writeEntry( "Vertical Mode", actVerticalMode->isChecked());
    }
 	
 	// save popular links
@@ -879,6 +884,11 @@ void Krusader::updateGUI( bool enforce ) {
       } else {
          mainView->fnKeys->show();
          actToggleFnkeys->setChecked( true );
+      }
+      // set vertical mode
+      if (krConfig->readBoolEntry( "Vertical Mode", false)) {
+      	actVerticalMode->setChecked(true);
+			mainView->toggleVerticalMode();
       }
    }
 	// popular urls
