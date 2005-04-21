@@ -603,16 +603,18 @@ configure smb.conf properly, so
   <!-- Thanks to Dirk Eschler -->
   <qandaentry>
   <question id="faqu_ftp_firewall">
-  <para>When I try to establish an &FTP; connection, I get an error message after 'Connect OK'
-        saying 'Could not connect to host'.</para>
+  <para>Why have i trouble with my &FTP; connection?</para>
   </question>
   <answer>
-  <para>You are probably behind a firewall/proxy and haven't enabled "Passive Mode".
-      Enable "Passive &FTP;" through &kde;'s &kcontrolcenter; and try again.
-      <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
+  <para>This problem often occurs when you are behind a firewall or proxy.
+      Open <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
       <guimenuitem>Network</guimenuitem><guimenuitem>Preferences</guimenuitem></menuchoice></emphasis> ,
-      <guilabel>"Enable Passive Mode (PASV)"</guilabel> has to be checked.
-Also, make sure you have no other FTP sessions open (using web browsers, etc.).
+      <guilabel>"Enable Passive Mode (PASV)"</guilabel> has to be turned on or off,
+      depending on it's current setting.
+      Now try your &FTP; session again to see if it works.
+      Also, make sure you have no other &FTP; sessions open (using web browsers, etc.), 
+      they might cause some trouble.
+      More information information can be found in &active_passive_ftp_url; .
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>

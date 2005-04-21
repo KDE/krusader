@@ -93,8 +93,12 @@ and restart &krusader;.</para>
          emulator will be visible after startup.
          </para></listitem>
   <listitem><para><guilabel>Restore last postion and size</guilabel>: when launched, &krusader;
-          will resize itself to the size and position in effect when it was shutdown.
-          &krusader; will appear in the same location on the screen.
+          will resize itself to the size it was when last shutdown.
+          &krusader; will also appear in the same location on the screen, having panels
+          sorted and aligned as they were. If this option is disabled, you can use the menu
+          <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
+          <guimenuitem>Save Position</guimenuitem></menuchoice></emphasis>
+          option to manually set &krusader; size and position at startup.
           </para></listitem>
   </itemizedlist>
   </para></listitem>
