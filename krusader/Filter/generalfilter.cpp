@@ -352,11 +352,11 @@ bool GeneralFilter::fillQuery( KRQuery *query )
   }
   if( properties & FilterTabs::HasSearchIn )
   {
-    query->whereToSearch = searchIn->urlList();
+    query->setSearchInDirs( searchIn->urlList() );
 
     // checking the lists
 
-    if (query->whereToSearch.isEmpty() ) { // we need a place to search in
+    if (query->searchInDirs().isEmpty() ) { // we need a place to search in
       KMessageBox::error(this ,i18n("Please specify a location to search in."));
       searchIn->lineEdit()->setFocus();
       return false;
@@ -364,7 +364,7 @@ bool GeneralFilter::fillQuery( KRQuery *query )
   }
 
   if( properties & FilterTabs::HasDontSearchIn )
-    query->whereNotToSearch = dontSearchIn->urlList();
+    query->setDontSearchInDirs( dontSearchIn->urlList() );
 
   return true;
 }

@@ -101,7 +101,7 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   if( !leftURL.endsWith("/" ))  leftURL+="/";
   if( !rightURL.endsWith("/" )) rightURL+="/";
 
-  excludedPaths = query->whereNotToSearch.toStringList();
+  excludedPaths = query->dontSearchInDirs().toStringList();
   for( unsigned i = 0; i != excludedPaths.count(); i++ )
     if( excludedPaths[ i ].endsWith( "/" ) )
       excludedPaths[ i ].truncate( excludedPaths[ i ].length() - 1 );

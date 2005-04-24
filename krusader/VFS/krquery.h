@@ -101,9 +101,16 @@ public:
   // gets whether to follow symbolic links
   bool followLinks() { return followLinksP; }
 
-  void normalize();               // make sure KRSearchMod can use the data
-  KURL::List whereToSearch;     // directorys to search
-  KURL::List whereNotToSearch;  // directorys NOT to search
+  // sets the folders where the searcher will search
+  void setSearchInDirs( KURL::List urls ) { whereToSearch = urls; }
+  // gets the folders where the searcher searches
+  KURL::List searchInDirs() { return whereToSearch; }
+  // sets the folders where search is not permitted
+  void setDontSearchInDirs( KURL::List urls ) { whereNotToSearch = urls; }
+  // gets the folders where search is not permitted
+  KURL::List dontSearchInDirs() { return whereNotToSearch; }
+  // checks if a URL is excluded
+  bool isExcluded( KURL url );
 
 protected:
   QStringList matches;           // what to search
@@ -132,6 +139,9 @@ protected:
   bool inArchive;                // if true- search in archive.
   bool recurse;                  // if true recurse ob sub-dirs...
   bool followLinksP;
+
+  KURL::List whereToSearch;     // directorys to search
+  KURL::List whereNotToSearch;  // directorys NOT to search
 
 private:
   bool checkPerm(QString perm) const;

@@ -43,29 +43,23 @@
 #include <qfile.h>
 
 // set the defaults
-KRQuery::KRQuery(): matchesCaseSensitive(true),
+KRQuery::KRQuery(): matchesCaseSensitive(true), bNull( true ),
                     contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false),
-                    inArchive(false),recurse(true),followLinksP(true),bNull( true ),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString::null),group(QString::null),
-                    perm(QString::null),type(QString::null){}
+                    perm(QString::null),type(QString::null),
+                    inArchive(false),recurse(true),followLinksP(true) {}
 
 // set the defaults
 KRQuery::KRQuery( QString name, bool matchCase ):
-                    contain(QString::null),containCaseSensetive(true),
-                    containWholeWord(false),
-                    inArchive(false),recurse(true),followLinksP(true),bNull( true ),
+                    bNull( true ),contain(QString::null),
+                    containCaseSensetive(true),containWholeWord(false),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
                     owner(QString::null),group(QString::null),
-                    perm(QString::null),type(QString::null) {
+                    perm(QString::null),type(QString::null),
+                    inArchive(false),recurse(true),followLinksP(true) {
   setNameFilter( name, matchCase );
-}
-
-void KRQuery::normalize(){
-  // remove the trailing "/" from the directories lists
-  for( KURL::List::Iterator it = whereNotToSearch.begin(); it != whereNotToSearch.end(); ++it )
-    (*it).setPath( (*it).path( -1 ));
 }
 
 bool KRQuery::checkPerm( QString filePerm ) const
@@ -260,3 +254,13 @@ void KRQuery::setMimeType( QString typeIn, QStringList customList )
   type = typeIn;
   customType = customList;
 }
+
+bool KRQuery::isExcluded( KURL url )
+{
+  for ( unsigned int i = 0; i < whereNotToSearch.count(); ++i )
+    if( whereNotToSearch [ i ].isParentOf( url ) || url.equals( whereNotToSearch [ i ], true ) )
+      return true;
+
+  return false;
+}
+

@@ -54,7 +54,6 @@ KRSearchMod::KRSearchMod( const KRQuery* q )
 {
   stopSearch = false; /// ===> added
   query = new KRQuery( *q );
-  query->normalize();
 
   remote_vfs = 0;
 }
@@ -71,9 +70,11 @@ void KRSearchMod::start()
   unScannedUrls.clear();
   scannedUrls.clear();
 
+  KURL::List whereToSearch = query->searchInDirs();
+
   // search every dir that needs to be searched
-  for ( unsigned int i = 0; i < query->whereToSearch.count(); ++i )
-      scanURL( query->whereToSearch [ i ] );
+  for ( unsigned int i = 0; i < whereToSearch.count(); ++i )
+      scanURL( whereToSearch [ i ] );
 
   emit finished();
 }
@@ -94,7 +95,7 @@ void KRSearchMod::scanURL( KURL url )
 
     if( stopSearch ) return;
 
-    if ( query->whereNotToSearch.contains( urlToCheck ) )
+    if( query->isExcluded( urlToCheck ) )
       continue;
 
     if( scannedUrls.contains( urlToCheck ) )
