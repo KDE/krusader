@@ -504,30 +504,8 @@ void ListPanel::slotFocusOnMe() {
 void ListPanel::start( KURL url, bool immediate ) {
    bool left = _left;
    KURL virt;
-	krConfig->setGroup( "Startup" );
-
-   // set the startup path
-   if ( !url.isEmpty() ) {
-      virt = url;
-   } else
-      if ( left ) {
-         if ( krConfig->readEntry( "Left Panel Origin", _LeftPanelOrigin ) == i18n( "homepage" ) )
-            virt = URL(krConfig->readEntry( "Left Panel Homepage", _LeftHomepage ));
-         else if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
-            // read the first of the tabbar. lastHomeLeft is obsolete!
-            virt = URL((krConfig->readPathListEntry( "Left Tab Bar" ))[0]);
-         else
-            virt = URL(getcwd( 0, 0 )); //get_current_dir_name();
-      } else { // right
-         if ( krConfig->readEntry( "Right Panel Origin", _RightPanelOrigin ) == i18n( "homepage" ) )
-            virt = URL(krConfig->readEntry( "Right Panel Homepage", _RightHomepage ));
-         else if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
-            // read the first of the tabbar. lastHomeLeft is obsolete!
-            virt = URL((krConfig->readPathListEntry( "Right Tab Bar" ))[0]);
-         else
-            virt = URL(getcwd( 0, 0 ));
-      }
-
+   
+   virt = url;
    
    if ( !virt.isValid() )
       virt = URL("/");

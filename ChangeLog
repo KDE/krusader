@@ -1,11 +1,13 @@
 ======================
-    
+
     --architecture-- Makefile.am's for /krusader and /pics revised
 
+    ADDED: starting more tabs with --left=tab1,tab2,tab3 --right=tab4,tab5
     ADDED: vertical mode is saved with 'ui save settings' or 'save position' and restored
     ADDED: A Safari-like Jump-Back feature (Ctrl-J and in the bookmark-menu)
     ADDED: CTRL-L shortcut to go to the location bar (origin) as in firefox and konqueror
     ADDED: filters for selecting files
+    CHANGED: the panel startup is profile based instead of directory based
     FIXED: problems with moving to trash at virt_fs and diskusage module
     FIXED: gcc 2.95 compiler fix
     FIXED: changed locate-gui shortcut from ctrl-l to shift+ctrl+l

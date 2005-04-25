@@ -463,7 +463,7 @@ KonfiguratorComboBox::KonfiguratorComboBox( QString cls, QString name, QString d
   connect( ext, SIGNAL( setDefaultsAuto(QObject *) ), this, SLOT( slotSetDefaults(QObject *) ) );
   connect( ext, SIGNAL( setInitialValue(QObject *) ), this, SLOT( loadInitialValue() ) );
 
-  connect( this, SIGNAL( highlighted(int) ), ext, SLOT( setChanged() ) );
+//  connect( this, SIGNAL( highlighted(int) ), ext, SLOT( setChanged() ) ); /* Removed because of startup combo failure */
   connect( this, SIGNAL( activated(int) ), ext, SLOT( setChanged() ) );
   connect( this, SIGNAL( textChanged ( const QString & ) ), ext, SLOT( setChanged() ) );
 

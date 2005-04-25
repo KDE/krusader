@@ -47,19 +47,7 @@
 // Remember Position
 #define _RememberPos      true 
 // Panels Save Settings
-#define _PanelsSave       false 
-// Left Panel Type
-#define _LeftPanelType    "List" 
-// Left Panel Origin
-#define _LeftPanelOrigin  "homepage" 
-// Left Panel Homepage
-#define _LeftHomepage     "/" 
-// Right Panel Type
-#define _RightPanelType   "List" 
-// Right Panel Origin
-#define _RightPanelOrigin "homepage" 
-// Right Panel Homepage
-#define _RightHomepage     "/"
+#define _PanelsSave       "Tabs"
 // Left Tab Bar
 // Right Tab Bar
 // Left Panel Popup

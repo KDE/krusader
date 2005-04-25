@@ -46,16 +46,7 @@ public slots:
 protected:
   KonfiguratorRadioButtons  *saveRadio;
   KonfiguratorCheckBoxGroup *uiCbGroup;
-  
-  QLabel                    *leftPanelLbl;
-  KonfiguratorComboBox      *leftOrigin;
-  QLabel                    *leftPanelLbl2;
-  KonfiguratorURLRequester  *leftHomePage;
-  
-  QLabel                    *rightPanelLbl;
-  KonfiguratorComboBox      *rightOrigin;
-  QLabel                    *rightPanelLbl2;
-  KonfiguratorURLRequester  *rightHomePage;
+  KonfiguratorComboBox      *profileCombo;
 };
 
 #endif /* __KGSTARTUP_H__ */

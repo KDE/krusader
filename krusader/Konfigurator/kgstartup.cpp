@@ -30,11 +30,12 @@
 
 #include "kgstartup.h"
 #include "../defaults.h"
+#include "../GUI/profilemanager.h"
 #include <klocale.h>
 #include <klineedit.h>
 
 KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
-  KonfiguratorPage( first, parent, name )
+  KonfiguratorPage( first, parent, name ), profileCombo( 0 )
 {
   QGridLayout *kgStartupLayout = new QGridLayout( parent );
   kgStartupLayout->setSpacing( 6 );
@@ -46,42 +47,29 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
 
   KONFIGURATOR_NAME_VALUE_TIP savePanels[] =
-  //          name                                    value   tooltip
-    {{ i18n( "Save settings on exit" )             ,  "true",  i18n( "When Krusader launches, the panels current directories will be the same as they were when Krusader was last shutdown." ) },
-     { i18n( "Start with the following settings:" ),  "false", i18n( "Defines a startup status for each panel." ) } };
+  //          name                            value      tooltip
+    {{ i18n( "Save and restore the last state of the tabs" )        , "Tabs",    i18n( "Saves the last state of the tabs at exit and restores it at startup." ) },
+     { i18n( "Don't save tabs, just restore the last saved state" ) , "None",    i18n( "The last state of the tabs is not saved at exit, just the last saved one is restored at startup." ) },
+     { i18n( "Start from profile:" )                                , "Profile", i18n( "Starts always from the following profile (at least one profile is necessary):" ) } };
 
   saveRadio = createRadioButtonGroup( "Startup", "Panels Save Settings",
-      "false", 1, 0, savePanels, 2, panelsGrp, "mySaveRadio", false );
-  panelsGrid->addMultiCellWidget( saveRadio, 0, 0, 0, 3 );
-  connect( saveRadio->find( i18n( "Start with the following settings:" ) ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
+      "Tabs", 1, 0, savePanels, 3, panelsGrp, "mySaveRadio", false );
+  panelsGrid->addWidget( saveRadio, 0, 0 );
+  connect( saveRadio->find( i18n( "Start from profile:" ) ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
   
-  KONFIGURATOR_NAME_VALUE_PAIR opCombo[] =
-    {{ i18n( "homepage" ),              i18n( "homepage" )              },
-     { i18n( "work dir" ),              i18n( "work dir" )              },
-     { i18n( "the last place it was" ), i18n( "the last place it was" ) }};
-    
-  leftPanelLbl = new QLabel( i18n( "Left panel starts at" ), panelsGrp, "leftPanelLbl" );
-  panelsGrid->addWidget( leftPanelLbl, 1, 0 );
-  leftOrigin = createComboBox( "Startup", "Left Panel Origin", i18n( "homepage" ), opCombo, 3, panelsGrp, false );
-  connect( leftOrigin, SIGNAL( highlighted( int ) ), this, SLOT( slotDisable() ) );
-  connect( leftOrigin, SIGNAL( activated( int ) ), this, SLOT( slotDisable() ) );
-  panelsGrid->addWidget( leftOrigin, 1, 1 ); 
-  leftPanelLbl2 = new QLabel( i18n( "Homepage:" ), panelsGrp, "leftPanelLbl2" );
-  panelsGrid->addWidget( leftPanelLbl2, 1, 2 );
-  leftHomePage = createURLRequester( "Startup", "Left Panel Homepage", _LeftHomepage, panelsGrp, false );
-  panelsGrid->addWidget( leftHomePage, 1, 3 );
+  QStringList profileList = ProfileManager::availableProfiles( "Panel" );
+  if( profileList.count() )
+  {
+    KONFIGURATOR_NAME_VALUE_PAIR comboItems[ profileList.count() ];
+    for( int i=0; i != profileList.count(); i++ )
+      comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];
+      
+    profileCombo = createComboBox( "Startup", "Starter Profile Name", profileList[ 0 ], comboItems, profileList.count(), panelsGrp, false, false );
+    panelsGrid->addWidget( profileCombo, 1, 0 );
+  }
+  else
+    saveRadio->find( i18n( "Start from profile:" ) )->setEnabled( false );
   
-  rightPanelLbl = new QLabel( i18n( "Right panel starts at" ), panelsGrp, "rightPanelLbl" );
-  panelsGrid->addWidget( rightPanelLbl, 2, 0 );
-  rightOrigin = createComboBox( "Startup", "Right Panel Origin", i18n( "homepage" ), opCombo, 3, panelsGrp, false );
-  connect( rightOrigin, SIGNAL( highlighted( int ) ), this, SLOT( slotDisable() ) );
-  connect( rightOrigin, SIGNAL( activated( int ) ), this, SLOT( slotDisable() ) );
-  panelsGrid->addWidget( rightOrigin, 2, 1 );
-  rightPanelLbl2 = new QLabel( i18n( "Homepage:" ), panelsGrp, "rightPanelLbl2" );
-  panelsGrid->addWidget( rightPanelLbl2, 2, 2 );
-  rightHomePage = createURLRequester( "Startup", "Right Panel Homepage", _RightHomepage, panelsGrp, false );
-  panelsGrid->addWidget( rightHomePage, 2, 3 );
-
   kgStartupLayout->addWidget( panelsGrp, 0, 0 );
 
   //  ------------------------ USERINTERFACE GROUPBOX ------------------------------
@@ -90,8 +78,8 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *uiGrid = createGridLayout( uiGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] =
-  //   cfg_class  cfg_name                default               text                                      restart ToolTip
-    {{"Startup","UI Save Settings",      _UiSave,               i18n( "Save settings on exit" ),          false,  i18n( "Krusader checks the state of the user interface components,\nand restores them to their condition when last shutdown." ) },
+  //   cfg_class  cfg_name                default               text                                   restart ToolTip
+    {{"Startup","UI Save Settings",      _UiSave,               i18n( "Save settings on exit" ),       false,  i18n( "Krusader checks the state of the user interface components,\nand restores them to their condition when last shutdown." ) },
      {"Startup","Show tool bar",         _ShowToolBar,          i18n( "Show toolbar" ),                false,  i18n( "Toolbar will be visible after startup." ) },
      {"Startup","Show status bar",       _ShowStatusBar,        i18n( "Show statusbar" ),              false,  i18n( "Statusbar will be visible after startup." ) },
      {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Show function keys" ),          false,  i18n( "Function keys will be visible after startup." ) },
@@ -112,22 +100,10 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
 void KgStartup::slotDisable()
 {
-  bool isDontSave = saveRadio->find( i18n( "Start with the following settings:" ) )->isChecked();
+  if( profileCombo )
+     profileCombo->setEnabled( saveRadio->find( i18n( "Start from profile:" ) )->isOn() );
+
   bool isUiSave   = !uiCbGroup->find( "UI Save Settings" )->isChecked();
-  bool isLeftHp   = leftOrigin->currentText() ==i18n("homepage");
-  bool isRightHp  = rightOrigin->currentText()==i18n("homepage");
-
-  leftPanelLbl->setEnabled( isDontSave );
-  leftOrigin->setEnabled( isDontSave );
-  leftPanelLbl2->setEnabled( isDontSave && isLeftHp );
-  leftHomePage->lineEdit()->setEnabled( isDontSave && isLeftHp );
-  leftHomePage->button()->setEnabled( isDontSave && isLeftHp );
-
-  rightPanelLbl->setEnabled( isDontSave );
-  rightOrigin->setEnabled( isDontSave );
-  rightPanelLbl2->setEnabled( isDontSave && isRightHp );
-  rightHomePage->lineEdit()->setEnabled( isDontSave && isRightHp );
-  rightHomePage->button()->setEnabled( isDontSave && isRightHp );
 
   int i=1;
   while( uiCbGroup->find( i ) )

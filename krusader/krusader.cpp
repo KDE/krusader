@@ -236,49 +236,59 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    KgProtocols::init();
 
    krConfig->setGroup( "Startup" );             
-   QStringList l1( krConfig->readPathListEntry( "Left Tab Bar" ) );
-   QStringList l2( krConfig->readPathListEntry( "Right Tab Bar" ) );
+   QStringList leftTabs = krConfig->readPathListEntry( "Left Tab Bar" );
+   QStringList rightTabs = krConfig->readPathListEntry( "Right Tab Bar" );
+   int         leftActiveTab = krConfig->readNumEntry( "Left Active Tab", 0 );
+   int         rightActiveTab = krConfig->readNumEntry( "Right Active Tab", 0 );
+   QString     startProfile = QString::null;
    
-   QString leftPath, rightPath, startProfile;   
+   if( krConfig->readEntry( "Panels Save Settings", _PanelsSave ) == "Profile" )
+      startProfile = krConfig->readEntry("Starter Profile Name", QString::null );
+   
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
-      leftPath = args->getOption( "left" );
+      leftTabs = QStringList::split( ',', args->getOption( "left" ) );
+      
+      leftActiveTab = 0;
+      
       // make sure left or right are not relative paths
-      if ( !leftPath.startsWith( "/" ) && leftPath.find( ":/" ) < 0 )    // make sure we don't touch things like ftp://
-         leftPath = QDir::currentDirPath() + "/" + leftPath;
-   } else leftPath = QString::null;
+      for( int i = 0; i != leftTabs.count(); i++ )
+      {
+        leftTabs[ i ] = leftTabs[ i ].stripWhiteSpace();
+        if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].find( ":/" ) < 0 )
+          leftTabs[ i ] = QDir::currentDirPath() + "/" + leftTabs[ i ];
+      }
+   }
    if ( args->isSet( "right" ) ) {
-      rightPath = args->getOption( "right" );
+      rightTabs = QStringList::split( ',', args->getOption( "right" ) );
+      
+      rightActiveTab = 0;
+      
       // make sure left or right are not relative paths
-      if ( !rightPath.startsWith( "/" ) && rightPath.find( ":/" ) < 0 )    // make sure we don't touch things like ftp://
-         rightPath = QDir::currentDirPath() + "/" + rightPath;
-   } else rightPath = QString::null;
-   if ( args->isSet( "profile" ) ) {
-      startProfile = args->getOption( "profile" );
-   } else startProfile = QString::null;
+      for( int i = 0; i != rightTabs.count(); i++ )
+      {
+        rightTabs[ i ] = rightTabs[ i ].stripWhiteSpace();
+        if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].find( ":/" ) < 0 )
+          rightTabs[ i ] = QDir::currentDirPath() + "/" + rightTabs[ i ];
+      }
+   }
+            
+   if ( args->isSet( "profile" ) )
+    startProfile = args->getOption( "profile" );
+   
+   if( !startProfile.isEmpty() ) {
+      leftTabs.clear();
+      rightTabs.clear();      
+      leftActiveTab = rightActiveTab = 0;
+   }
+   
+   if( leftTabs.count() == 0 )
+     leftTabs.push_back( QDir::homeDirPath() );
+   if( rightTabs.count() == 0 )
+     rightTabs.push_back( QDir::homeDirPath() );
    
    // starting the panels
-   mainView->start( leftPath, rightPath );
-
-   // restore TabBar
-   if (!runKonfig && startProfile.isEmpty() ) {
-      QStringList::const_iterator it;
-      
-      krConfig->setGroup( "Startup" );             
-      if ( krConfig->readEntry( "Left Panel Origin" ) == i18n( "the last place it was" ) )
-         for ( it = ++(l1.begin()); it != l1.end(); ++it )
-           mainView->leftMng->slotNewTab( *it );
-
-      krConfig->setGroup( "Startup" );             
-      if ( krConfig->readEntry( "Right Panel Origin" ) == i18n( "the last place it was" ) )
-         for ( it = ++(l2.begin()); it != l2.end(); ++it )
-           mainView->rightMng->slotNewTab( *it );
-   
-      krConfig->setGroup( "Startup" );             
-      mainView->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
-      krConfig->setGroup( "Startup" );             
-      mainView->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
-   }
+   mainView->start( leftTabs, leftActiveTab, rightTabs, rightActiveTab );
    
    // create the user menu
    userMenu = new UserMenu( this );
@@ -717,27 +727,22 @@ void Krusader::savePosition() {
 
 void Krusader::saveSettings() {
    toolBar() ->saveSettings( krConfig, "Private" );
-	toolBar("actionsToolBar")->saveSettings( krConfig, "Actions Toolbar" );
+   toolBar("actionsToolBar")->saveSettings( krConfig, "Actions Toolbar" );
    config->setGroup( "Startup" );
-   config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
-   config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
-   mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
-   mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
-   bool panelsavesettings = config->readBoolEntry( "Panels Save Settings", _PanelsSave );
+   bool panelsavesettings = config->readEntry( "Panels Save Settings", _PanelsSave ) == "Tabs";
+   if( panelsavesettings ) {
+      config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
+      config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
+      mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
+      mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
+   }
    bool rememberpos = config->readBoolEntry( "Remember Position", _RememberPos );
    bool uisavesettings = config->readBoolEntry( "UI Save Settings", _UiSave );
-   if ( panelsavesettings ) {
-      // left panel
-      config->writeEntry( "Left Panel Type", i18n( "List" ) );
-      config->writeEntry( "Left Panel Origin", i18n( "the last place it was" ) );
-      // right panel
-      config->writeEntry( "Right Panel Type", i18n( "List" ) );
-      config->writeEntry( "Right Panel Origin", i18n( "the last place it was" ) );
-   }
-	// save the popup panel's page of the CURRENT tab
-	config->writeEntry( "Left Panel Popup", mainView->left->popup->currentPage() );
-	config->writeEntry( "Right Panel Popup", mainView->right->popup->currentPage() );
-	
+
+   // save the popup panel's page of the CURRENT tab
+   config->writeEntry( "Left Panel Popup", mainView->left->popup->currentPage() );
+   config->writeEntry( "Right Panel Popup", mainView->right->popup->currentPage() );
+
    // save size and position
    if ( rememberpos || uisavesettings ) {
       savePosition();
@@ -753,10 +758,10 @@ void Krusader::saveSettings() {
       config->writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
       config->writeEntry( "Vertical Mode", actVerticalMode->isChecked());
    }
-	
-	// save popular links
-	popularUrls->save();
-	
+
+   // save popular links
+   popularUrls->save();
+
    config->sync();
 }
 
