@@ -79,25 +79,26 @@
 <para>Distributions who include &krusader;
 <itemizedlist>
   <listitem>
-     <para>&SuSE; >= 9.3, please use &krusader;-1.60.0 and not &krusader;-1.51 
+     <para>&suse_download_url; >= 9.3, Note: please use &krusader;-1.60.0 and not &krusader;-1.51 
            (might be instable on &SuSE;9.3-&kde;3.4)</para>
   </listitem>
   <listitem>
-     <para>&debian_download_url; DEB packages, on our &krudownload_url; you might even find more
+     <para>&debian_download_url;, on our &krudownload_url; you might find more
            recent "unofficial" DEB packages.
            Note: usually &debian; packages work on distributions who are "based on &debian;"
            e.g. &mepis;, &umbuntu;, &kumbuntu;, &linspire;, &xandros;, ...</para>
   </listitem>
   <listitem>
-     <para>&gentoo_url; Ebuild</para>
+     <para>&gentoo_download_url;</para>
   </listitem>  
   <listitem>
-     <para>A &krufreebsd_port_url; is maintained by <link linkend="credits">Heiner Eichmann</link> .</para>
+     <para>&freebsd_download_url;, the port is maintained by <link linkend="credits">Heiner Eichmann</link> .</para>
   </listitem>
   <listitem>
-     <para>&mandriva; (formerly &Mandrake;), only in the "contrib" section for the moment.</para>
+     <para>&mandriva_download_url; (formerly &Mandrake;), only in the "contrib" section for the moment.</para>
   </listitem>    
 </itemizedlist>
+Just use the install tools that your distro uses, and you will have &krusader; on your computer.
 </para>
 
 <para>Third-parties
@@ -245,7 +246,7 @@ We hope it'd be easy to understand.
   <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co -D2004-10-23 krusader_kde3</option></userinput></screen>
 </para>
 
-<para>Mostly being &gentoo_url; users, we provide a &gentoo_life_ebuild_url; for all those who want
+<para>Mostly being &gentoo; users, we provide a &gentoo_life_ebuild_url; for all those who want
       to stay on the bleeding edge of filemanagement and don't want to miss the advantages of portage.
       Please take a look at our &krucutedge_url; for more installation details.</para>
 

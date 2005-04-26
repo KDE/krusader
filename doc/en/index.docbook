@@ -70,11 +70,6 @@ Previous used Docbook
 '<ulink url="http://krusader.sourceforge.net/text.php?t=cvs.news"><filename>CVSNEWS</filename></ulink>'>
 <!ENTITY docchangelog_url '<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/doc/ChangeLog?view=markup">Documentation ChangeLog</ulink>'>
 <!ENTITY i18nhowto_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389">Krusader translation HowTo</ulink>'>
-<!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/down.php">&krusader; downloadpage</ulink>'>
-<!ENTITY debian_download_url '<ulink url="http://packages.debian.org/Krusader"><trademark class="registered">Debian</trademark></ulink>'>
-<!ENTITY mac_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-x 10.3 (Panther)</ulink>'>
-<!ENTITY dag_wiers_download_url '<ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink>'>
-<!ENTITY dries_verachtert_download_url '<ulink url="http://search.belnet.be/mirror/dries.ulyssis.org/">Dries Verachtert mirror</ulink>'>
 
 <!ENTITY shared_libdeps_url '<ulink url="http://krusader.sourceforge.net/handbook/ldd_krusader.txt">shared library dependencies</ulink>'>
 <!ENTITY mailing_subscribe_url '<ulink url="http://sourceforge.net/mail/?group_id=6488">(un)subscribe</ulink>'>
@@ -89,13 +84,23 @@ Previous used Docbook
 <!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/">more translator credits</ulink>'>
 
 <!-- internet links, Krusader binaries -->
+<!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/down.php">&krusader; downloadpage</ulink>'>
+<!ENTITY gentoo_life_ebuild_url '<ulink url="http://krusader.sourceforge.net/data/krusader-cvs-1.ebuild">&gentoo; Live Ebuild</ulink>'>
+
+<!ENTITY gentoo_download_url '<ulink url="http://packages.gentoo.org/search/?sstring=krusader">&gentoo;</ulink>'>
+<!ENTITY suse_download_url '<ulink url="http://search.belnet.be/packages/suse/suse/i386/9.3/suse/i586/">&SuSE;</ulink>'>
+<!ENTITY mandriva_download_url '<ulink url="http://search.belnet.be/packages/mandrake/10.2/i586/media/contrib/">&mandriva;</ulink>'>
+<!ENTITY freebsd_download_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all">&freebsd;</ulink>'>
+<!ENTITY debian_download_url '<ulink url="http://packages.debian.org/Krusader"><trademark class="registered">Debian</trademark></ulink>'>
+<!ENTITY mac_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-x 10.3 (Panther)</ulink>'>
+<!ENTITY dag_wiers_download_url '<ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink>'>
+<!ENTITY dries_verachtert_download_url '<ulink url="http://search.belnet.be/mirror/dries.ulyssis.org/">Dries Verachtert mirror</ulink>'>
+
 <!ENTITY freshmeat_url '<ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink>'>
 <!ENTITY rpmfind_url '<ulink url="http://www.rpmfind.net/linux/rpm2html/search.php?query=krusader">rpmfind</ulink>'>
 <!ENTITY rpmpbone_url '<ulink url="http://rpm.pbone.net/index.php3/stat/3/search/krusader">rpmpbone</ulink>'>
 <!ENTITY rpmseek_url '<ulink url="http://rpmseek.com/rpm-pl/krusader.html?hl=com&amp;cx=2155:K:0">rpmseek</ulink>'>
-<!ENTITY krufreebsd_port_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all">&freebsd; port</ulink>'>
-<!ENTITY gentoo_url '<ulink url="http://packages.gentoo.org/search/?sstring=krusader"><trademark class="registered">Gentoo</trademark></ulink>'>
-<!ENTITY gentoo_life_ebuild_url '<ulink url="http://krusader.sourceforge.net/data/krusader-cvs-1.ebuild">Gentoo Live Ebuild</ulink>'>
+
 
 <!-- internet links, others -->
 <!ENTITY xxdiff_url '<ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>'>
@@ -206,16 +211,17 @@ Previous used Docbook
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
 <!ENTITY debian '<trademark class="registered">Debian</trademark>'>
 <!ENTITY mandriva '<trademark class="registered">Mandriva</trademark>'>
-<!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
-<!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
-<!ENTITY firefox '<trademark class="registered">Firefox</trademark>'>
-<!ENTITY safari '<trademark class="registered">Safari</trademark>'>
-
+<!ENTITY gentoo '<trademark class="registered">Gentoo</trademark>'>
 <!ENTITY mepis '<trademark class="registered">Mepis</trademark>'>
 <!ENTITY umbuntu '<trademark class="registered">Umbuntu</trademark>'>
 <!ENTITY kumbuntu '<trademark class="registered">Kumbuntu</trademark>'>
 <!ENTITY linspire '<trademark class="registered">Linspire</trademark>'>
 <!ENTITY xandros '<trademark class="registered">Xandros</trademark>'>
+
+<!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
+<!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
+<!ENTITY firefox '<trademark class="registered">Firefox</trademark>'>
+<!ENTITY safari '<trademark class="registered">Safari</trademark>'>
 
 <!ENTITY freebsd '<trademark class="copyright">FreeBSD</trademark>'>
 <!ENTITY tcmd '<trademark class="copyright">Total commander</trademark>'>
@@ -319,7 +325,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-04-24</date>
+  <date>2005-04-26</date>
   <releaseinfo>1.61.0</releaseinfo>
 
    <abstract>
