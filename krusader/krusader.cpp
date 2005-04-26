@@ -125,6 +125,7 @@ KAction *Krusader::actFind = 0;
 KAction *Krusader::actLocate = 0;
 //KAction *Krusader::actAddBookmark = 0;
 KAction *Krusader::actSavePosition = 0;
+KAction *Krusader::actSaveTabs = 0;
 KAction *Krusader::actSelectColorMask = 0;
 KAction *Krusader::actOpenLeftBm = 0;
 KAction *Krusader::actOpenRightBm = 0;
@@ -438,6 +439,8 @@ void Krusader::setupActions() {
    // second, the KDE standard action
    //KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
    /* Shortcut disabled because of the Terminal Emulator bug. */
+   krConfig->setGroup( "Startup" );
+   bool manualSave = ( krConfig->readEntry( "Panels Save Settings", _PanelsSave ) == "None" );
    krConfig->setGroup( "Private" );
    int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
    
@@ -560,7 +563,10 @@ void Krusader::setupActions() {
    actRoot = new KAction( i18n( "Root" ), "top", CTRL + Key_Backspace,
                           SLOTS, SLOT( root() ), actionCollection(), "root" );
    actSavePosition = new KAction( i18n( "Save &Position" ), 0,
-                                  krApp, SLOT( savePosition() ), actionCollection(), "save position" );
+                                  krApp, SLOT( savePosition() ), actionCollection(), "save position" );   
+   actSaveTabs = new KAction( i18n( "Save &Tabs" ), 0,
+                                  krApp, SLOT( saveTabs() ), actionCollection(), "save tabs" );
+   actSaveTabs->setEnabled( manualSave );
    actAllFilter = new KAction( i18n( "&All Files" ), SHIFT + Key_F10,
                                SLOTS, SLOT( allFilter() ), actionCollection(), "all files" );
    //actExecFilter = new KAction( i18n( "&Executables" ), SHIFT + Key_F11,
@@ -725,16 +731,21 @@ void Krusader::savePosition() {
    config->sync();
 }
 
+void Krusader::saveTabs() {
+   config->setGroup( "Startup" );
+   config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
+   config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
+   mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
+   mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
+}
+
 void Krusader::saveSettings() {
    toolBar() ->saveSettings( krConfig, "Private" );
    toolBar("actionsToolBar")->saveSettings( krConfig, "Actions Toolbar" );
    config->setGroup( "Startup" );
    bool panelsavesettings = config->readEntry( "Panels Save Settings", _PanelsSave ) == "Tabs";
    if( panelsavesettings ) {
-      config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
-      config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
-      mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
-      mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
+      saveTabs();
    }
    bool rememberpos = config->readBoolEntry( "Remember Position", _RememberPos );
    bool uisavesettings = config->readBoolEntry( "UI Save Settings", _UiSave );

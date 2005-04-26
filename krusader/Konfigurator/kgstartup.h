@@ -44,6 +44,8 @@ public slots:
   void slotDisable();
   
 protected:
+  virtual bool apply();
+
   KonfiguratorRadioButtons  *saveRadio;
   KonfiguratorCheckBoxGroup *uiCbGroup;
   KonfiguratorComboBox      *profileCombo;

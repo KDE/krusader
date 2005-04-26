@@ -84,6 +84,7 @@ class Krusader : public KParts::MainWindow {
     void incProgress( KProcess *, char *buffer, int buflen );
     void statusBarUpdate( QString& mess );
     // in use by Krusader only
+    void saveTabs();
     void saveSettings();
     void savePosition();
     void quitKrusader();
@@ -112,7 +113,7 @@ class Krusader : public KParts::MainWindow {
 	 PopularUrls *popularUrls; // holds a sorted list of the most popular urls visited
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
-    static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate;
+    static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate, *actSaveTabs;
     static KAction *actUnselectAll, *actInvert, *actSync, *actDiskUsage, *actSavePosition, *actCompDirs;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect, *actProfiles;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool, *actSwapPanels;

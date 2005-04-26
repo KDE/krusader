@@ -31,6 +31,7 @@
 #include "kgstartup.h"
 #include "../defaults.h"
 #include "../GUI/profilemanager.h"
+#include "../krusader.h"
 #include <klocale.h>
 #include <klineedit.h>
 
@@ -48,9 +49,9 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_NAME_VALUE_TIP savePanels[] =
   //          name                            value      tooltip
-    {{ i18n( "Save and restore the last state of the tabs" )        , "Tabs",    i18n( "Saves the last state of the tabs at exit and restores it at startup." ) },
-     { i18n( "Don't save tabs, just restore the last saved state" ) , "None",    i18n( "The last state of the tabs is not saved at exit, just the last saved one is restored at startup." ) },
-     { i18n( "Start from profile:" )                                , "Profile", i18n( "Starts always from the following profile (at least one profile is necessary):" ) } };
+    {{ i18n( "Save the state of the tabs at exit and restore it at startup" ) , "Tabs",    i18n( "Saves the last state of the tabs at exit and restores it at startup." ) },
+     { i18n( "Restore a manually saved state at startup" )                    , "None",    i18n( "In the Settings menu the state of the tabs can be saved, and this will be restored after startup." ) },
+     { i18n( "Start from profile:" )                                          , "Profile", i18n( "Starts always from the following profile (at least one profile is necessary):" ) } };
 
   saveRadio = createRadioButtonGroup( "Startup", "Panels Save Settings",
       "Tabs", 1, 0, savePanels, 3, panelsGrp, "mySaveRadio", false );
@@ -108,6 +109,12 @@ void KgStartup::slotDisable()
   int i=1;
   while( uiCbGroup->find( i ) )
     uiCbGroup->find( i++ )->setEnabled( isUiSave );
+}
+
+bool KgStartup::apply()
+{
+  Krusader::actSaveTabs->setEnabled( saveRadio->find( i18n( "Restore a manually saved state at startup" ) )->isOn() );
+  return KonfiguratorPage::apply();
 }
 
 #include "kgstartup.moc"
