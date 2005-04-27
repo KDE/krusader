@@ -1,7 +1,7 @@
 /***************************************************************************
                           kgcolors.h  -  description
                              -------------------
-    copyright            : (C) 2004 by Csaba Karai
+    copyright            : (C) 2004 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -57,7 +57,7 @@ public slots:
   void slotInactiveAltBackgroundChanged();
   void slotInactiveMarkedBackgroundChanged();
   void generatePreview();
-  
+
 protected slots:
   void slotImportColors();
   void slotExportColors();
@@ -71,18 +71,20 @@ private:
   void                       serialize(class QDataStream &);
   void                       deserialize(class QDataStream &);
   void                       serializeItem(class QDataStream &, const char * name);
-  
+
 private:
   QWidget                            *colorsGrp;
   QGridLayout                        *colorsGrid;
   int                                 offset;
-  
+  int                                 endOfActiveColors;
+  int                                 endOfPanelColors;
+
   QGroupBox                          *previewGrp;
   QGridLayout                        *previewGrid;
   QTabWidget                         *colorTabWidget;
 
   KonfiguratorCheckBoxGroup          *generals;
-  
+
   QPtrList<QLabel>                    labelList;
   QPtrList<KonfiguratorColorChooser>  itemList;
   QValueList<QString>                 itemNames;
@@ -96,7 +98,7 @@ private:
     QColor  defaultBackground;
     QColor  defaultForeground;
     QString label;
-    
+
   public:
     PreviewItem( QListView * parent, QString name ) : QListViewItem( parent, name )
     {
@@ -124,6 +126,6 @@ private:
       _cg.setColor( QColorGroup::Text, defaultForeground );
       QListViewItem::paintCell(p, _cg, column, width, align);
     }
-  } *pwDir, *pwFile, *pwApp, *pwSymLink, *pwInvLink, *pwCurrent, *pwMark1, *pwMark2;
+  };
 };
 #endif /* __KGCOLORS_H__ */

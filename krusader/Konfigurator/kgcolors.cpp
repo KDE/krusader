@@ -1,7 +1,7 @@
 /***************************************************************************
                           kgcolors.cpp  -  description
                              -------------------
-    copyright            : (C) 2004 by Csaba Karai
+    copyright            : (C) 2004 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -110,19 +110,21 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Marked Current Foreground",         i18n( "Marked current foreground:" ),          Qt::white,                                    i18n( "Not used" ), &sameAsMarkedForegnd, 1);
   addColorSelector( "Current Background",         i18n( "Current background:" ),          Qt::white, i18n( "Not used" ), &sameAsBckgnd, 1                             );
 
+  colorsGrid->addWidget(createSpacer(colorsGrp, ""), itemList.count() - offset, 1);
+
   connect( getColorSelector( "Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotForegroundChanged() ) );
   connect( getColorSelector( "Background" ), SIGNAL( colorChanged() ), this, SLOT( slotBackgroundChanged() ) );
   connect( getColorSelector( "Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotAltBackgroundChanged() ) );
   connect( getColorSelector( "Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotMarkedBackgroundChanged() ) );
 
-  colorsGrp = new QWidget( colorTabWidget, "colorTab" );
+  colorsGrp = new QWidget( colorTabWidget, "colorTab2" );
   colorTabWidget->insertTab( colorsGrp, i18n( "Inactive" ) );
 
   colorsGrid = new QGridLayout( colorsGrp );
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 2 );
 
-  offset = itemList.count();
+  offset = endOfActiveColors = itemList.count();
 
   addColorSelector( "Inactive Foreground",                  i18n( "Foreground:" ),                  getColorSelector( "Foreground" )->getColor(), i18n( "Same as active" ) );
   ADDITIONAL_COLOR sameAsInactForegnd = { i18n("Same as foreground"), getColorSelector( "Inactive Foreground" )->getColor(), "Inactive Foreground" };
@@ -143,10 +145,37 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Inactive Marked Current Foreground",          i18n( "Marked current foreground:" ),          getColorSelector( "Marked Current Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactMarkedForegnd, 1 );
   addColorSelector( "Inactive Current Background",          i18n( "Current background:" ),          getColorSelector( "Current Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
 
+  colorsGrid->addWidget(createSpacer(colorsGrp, ""), itemList.count() - offset, 1);
+
   connect( getColorSelector( "Inactive Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveForegroundChanged() ) );
   connect( getColorSelector( "Inactive Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveBackgroundChanged() ) );
   connect( getColorSelector( "Inactive Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveAltBackgroundChanged() ) );
   connect( getColorSelector( "Inactive Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveMarkedBackgroundChanged() ) );
+
+  colorsGrp = new QWidget( colorTabWidget, "colorTab3" );
+  colorTabWidget->insertTab( colorsGrp, i18n( "Synchronizer" ) );
+
+  colorsGrid = new QGridLayout( colorsGrp );
+  colorsGrid->setSpacing( 0 );
+  colorsGrid->setMargin( 2 );
+
+  ADDITIONAL_COLOR KDEDefaultBase = { i18n("KDE default"), KGlobalSettings::baseColor(), "KDE default" };
+  ADDITIONAL_COLOR KDEDefaultFore = { i18n("KDE default"), KGlobalSettings::textColor(), "KDE default" };
+
+  offset = endOfPanelColors = itemList.count();
+
+  addColorSelector( "Synchronizer Equals Foreground", i18n( "Equals foreground:" ), Qt::black, QString::null, &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer Equals Background", i18n( "Equals background:" ), KGlobalSettings::baseColor(), QString::null, &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer Differs Foreground", i18n( "Differing foreground:" ), Qt::red, QString::null, &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer Differs Background", i18n( "Differing background:" ), KGlobalSettings::baseColor(), QString::null, &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer LeftCopy Foreground", i18n( "Copy to left foreground:" ), Qt::blue, QString::null, &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer LeftCopy Background", i18n( "Copy to left background:" ), KGlobalSettings::baseColor(), QString::null, &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer RightCopy Foreground", i18n( "Copy to right foreground:" ), Qt::darkGreen, QString::null, &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer RightCopy Background", i18n( "Copy to right background:" ), KGlobalSettings::baseColor(), QString::null, &KDEDefaultBase, 1 );
+  addColorSelector( "Synchronizer Delete Foreground", i18n( "Delete foreground:" ), Qt::white, QString::null, &KDEDefaultFore, 1 );
+  addColorSelector( "Synchronizer Delete Background", i18n( "Delete background:" ), Qt::red, QString::null, &KDEDefaultBase, 1 );
+
+  colorsGrid->addWidget(createSpacer(colorsGrp, ""), itemList.count() - offset, 1);
 
   colorsFrameGrid->addWidget( colorTabWidget, 0, 0 );
 
@@ -164,19 +193,10 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   preview->addColumn( i18n("Colors") );
   preview->header()->setStretchEnabled( true, 0 );
 
-  pwMark2   = new PreviewItem( preview, i18n( "Marked 2" ) );
-  pwMark1   = new PreviewItem( preview, i18n( "Marked 1" ) );
-  pwCurrent = new PreviewItem( preview, i18n( "Current" ) );
-  pwInvLink = new PreviewItem( preview, i18n( "Invalid symlink" ) );
-  pwSymLink = new PreviewItem( preview, i18n( "Symbolic link" ) );
-  pwApp     = new PreviewItem( preview, i18n( "Application" ) );
-  pwFile    = new PreviewItem( preview, i18n( "File" ) );
-  pwDir     = new PreviewItem( preview, i18n( "Directory" ) );
-
   previewGrid->addWidget( preview, 0 ,0 );
 
   kgColorsLayout->addMultiCellWidget( hbox, 1 ,1, 0, 2 );
-  
+
   importBtn = new KPushButton(i18n("Import color-scheme"),parent);
   kgColorsLayout->addWidget(importBtn,2,0);
   exportBtn = new KPushButton(i18n("Export color-scheme"),parent);
@@ -195,15 +215,16 @@ int KgColors::addColorSelector( QString cfgName, QString name, QColor dflt, QStr
 
   labelList.append( addLabel( colorsGrid, index, 0, name, colorsGrp, QString( "ColorsLabel%1" ).arg( index ).ascii() ) );
   KonfiguratorColorChooser *chooser = createColorChooser( "Colors", cfgName, dflt, colorsGrp, false, addColor, addColNum );
+  chooser->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+
   if( !dfltName.isEmpty() )
     chooser->setDefaultText( dfltName );
+
   colorsGrid->addWidget( chooser, index, 1 );
 
   connect( chooser, SIGNAL( colorChanged() ), this, SLOT( generatePreview() ) );
   if( !offset )
     connect( chooser, SIGNAL( colorChanged() ), this, SLOT( slotActiveChanged() ) );
-
-  chooser->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
 
   itemList.append( chooser );
   itemNames.append( cfgName );
@@ -241,11 +262,11 @@ void KgColors::slotDisable()
 
   importBtn->setEnabled(!enabled);
   exportBtn->setEnabled(!enabled);
-  
-  for( int i = 0; labelList.at( i ); i++ )
+
+  for( int i = 0; labelList.at( i ) && i < endOfPanelColors ; i++ )
     labelList.at( i )->setEnabled( !enabled );
 
-  for( int j = 0; itemList.at( j ); j++ )
+  for( int j = 0; itemList.at( j ) && j < endOfPanelColors ; j++ )
     itemList.at( j )->setEnabled( !enabled );
 
   generals->find("Enable Alternate Background")->setEnabled( enabled );
@@ -261,8 +282,8 @@ void KgColors::slotDisable()
 
 void KgColors::slotActiveChanged()
 {
-  for( int i = 0; i != offset; i++ )
-     itemList.at( offset + i )->setDefaultColor( itemList.at( i )->getColor() );
+  for( int i = 0; i != endOfActiveColors; i++ )
+     itemList.at( endOfActiveColors + i )->setDefaultColor( itemList.at( i )->getColor() );
 }
 
 void KgColors::slotForegroundChanged()
@@ -329,82 +350,116 @@ void KgColors::slotInactiveMarkedBackgroundChanged()
 
 void KgColors::generatePreview()
 {
-  if( generals->find( "KDE Default" )->isChecked() )
+  int currentPage = colorTabWidget->currentPageIndex();
+
+  preview->clear();
+
+  if( currentPage == 0 || currentPage == 1 )
   {
-    QColor bck    = KGlobalSettings::baseColor();
-    QColor altBck = KGlobalSettings::alternateBackgroundColor();
-    if( !generals->find("Enable Alternate Background")->isChecked() )
-      altBck = bck;
-    QColor fore   = KGlobalSettings::textColor();
+    PreviewItem *pwMark2   = new PreviewItem( preview, i18n( "Marked 2" ) );
+    PreviewItem *pwMark1   = new PreviewItem( preview, i18n( "Marked 1" ) );
+    PreviewItem *pwCurrent = new PreviewItem( preview, i18n( "Current" ) );
+    PreviewItem *pwInvLink = new PreviewItem( preview, i18n( "Invalid symlink" ) );
+    PreviewItem *pwSymLink = new PreviewItem( preview, i18n( "Symbolic link" ) );
+    PreviewItem *pwApp     = new PreviewItem( preview, i18n( "Application" ) );
+    PreviewItem *pwFile    = new PreviewItem( preview, i18n( "File" ) );
+    PreviewItem *pwDir     = new PreviewItem( preview, i18n( "Directory" ) );
 
-    pwFile->setColor( fore, altBck );
-    pwDir->setColor( fore, bck );
-    pwApp->setColor( fore, bck );
-    pwSymLink->setColor( fore, altBck );
-    pwInvLink->setColor( fore, bck );
-    pwCurrent->setColor( fore, altBck );
-    pwMark1->setColor( KGlobalSettings::highlightedTextColor(), KGlobalSettings::highlightColor() );
-    pwMark2->setColor( KGlobalSettings::highlightedTextColor(), KGlobalSettings::highlightColor() );
-  }
-  else
-  {
-    bool isInactive = colorTabWidget->currentPageIndex() == 1;
-    QString prefix="";
-
-    if( isInactive )
-      prefix = "Inactive ";
-
-    QColor  bck   = getColorSelector( prefix + "Background" )->getColor();
-    QColor altBck = getColorSelector( prefix + "Alternate Background" )->getColor();
-
-    QColor currentFore;
-    QColor currentBck = altBck;
-
-    pwFile->setColor( currentFore = getColorSelector( prefix + "Foreground" )->getColor(), altBck );
-    pwDir->setColor( getColorSelector( prefix + "Directory Foreground" )->getColor(), bck );
-    pwApp->setColor( getColorSelector( prefix + "Executable Foreground" )->getColor(), bck );
-    pwSymLink->setColor( getColorSelector( prefix + "Symlink Foreground" )->getColor(), altBck );
-    pwInvLink->setColor( getColorSelector( prefix + "Invalid Symlink Foreground" )->getColor(), bck );
-
-    if( isInactive )
+    if( generals->find( "KDE Default" )->isChecked() )
     {
-      if( generals->find( "Show Current Item Always" )->isChecked() )
-      {
-        if( getColorSelector( "Inactive Current Foreground" )->currentItem() != 1 )
-          currentFore = getColorSelector( "Inactive Current Foreground" )->getColor();
-        else
-        {
-          if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
-            currentFore = getColorSelector( "Current Foreground" )->getColor();
-        }
-        if( getColorSelector( "Inactive Current Background" )->currentItem() != 1 )
-          currentBck = getColorSelector( "Inactive Current Background" )->getColor();
-        else
-        {
-          if( getColorSelector( "Current Background" )->currentItem() != 1 )
-            currentBck = getColorSelector( "Current Background" )->getColor();
-        }
-      }
+      QColor bck    = KGlobalSettings::baseColor();
+      QColor altBck = KGlobalSettings::alternateBackgroundColor();
+      if( !generals->find("Enable Alternate Background")->isChecked() )
+        altBck = bck;
+      QColor fore   = KGlobalSettings::textColor();
+
+      pwFile->setColor( fore, altBck );
+      pwDir->setColor( fore, bck );
+      pwApp->setColor( fore, bck );
+      pwSymLink->setColor( fore, altBck );
+      pwInvLink->setColor( fore, bck );
+      pwCurrent->setColor( fore, altBck );
+      pwMark1->setColor( KGlobalSettings::highlightedTextColor(), KGlobalSettings::highlightColor() );
+      pwMark2->setColor( KGlobalSettings::highlightedTextColor(), KGlobalSettings::highlightColor() );
     }
     else
     {
-      if( getColorSelector( "Current Background" )->currentItem() != 1 )
-        currentBck = getColorSelector( "Current Background" )->getColor();
-      if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
-        currentFore = getColorSelector( "Current Foreground" )->getColor();
-      else currentFore = setColorIfContrastIsSufficient(currentBck, getColorSelector( prefix + "Foreground" )->getColor(), bck);
+      bool isInactive = currentPage == 1;
+      QString prefix="";
+
+      if( isInactive )
+        prefix = "Inactive ";
+
+      QColor  bck   = getColorSelector( prefix + "Background" )->getColor();
+      QColor altBck = getColorSelector( prefix + "Alternate Background" )->getColor();
+
+      QColor currentFore;
+      QColor currentBck = altBck;
+
+      pwFile->setColor( currentFore = getColorSelector( prefix + "Foreground" )->getColor(), altBck );
+      pwDir->setColor( getColorSelector( prefix + "Directory Foreground" )->getColor(), bck );
+      pwApp->setColor( getColorSelector( prefix + "Executable Foreground" )->getColor(), bck );
+      pwSymLink->setColor( getColorSelector( prefix + "Symlink Foreground" )->getColor(), altBck );
+      pwInvLink->setColor( getColorSelector( prefix + "Invalid Symlink Foreground" )->getColor(), bck );
+
+      if( isInactive )
+      {
+        if( generals->find( "Show Current Item Always" )->isChecked() )
+        {
+          if( getColorSelector( "Inactive Current Foreground" )->currentItem() != 1 )
+            currentFore = getColorSelector( "Inactive Current Foreground" )->getColor();
+          else
+          {
+            if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
+              currentFore = getColorSelector( "Current Foreground" )->getColor();
+          }
+          if( getColorSelector( "Inactive Current Background" )->currentItem() != 1 )
+            currentBck = getColorSelector( "Inactive Current Background" )->getColor();
+          else
+          {
+            if( getColorSelector( "Current Background" )->currentItem() != 1 )
+              currentBck = getColorSelector( "Current Background" )->getColor();
+          }
+        }
+      }
+      else
+      {
+        if( getColorSelector( "Current Background" )->currentItem() != 1 )
+          currentBck = getColorSelector( "Current Background" )->getColor();
+        if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
+          currentFore = getColorSelector( "Current Foreground" )->getColor();
+        else currentFore = setColorIfContrastIsSufficient(currentBck, getColorSelector( prefix + "Foreground" )->getColor(), bck);
+      }
+
+      pwCurrent->setColor( currentFore, currentBck );
+
+      QColor markFore = getColorSelector( prefix + "Marked Foreground" )->getColor();
+
+      if( !isInactive || getColorSelector( "Inactive Marked Foreground" )->currentItem() == 1 )
+        if( getColorSelector( "Marked Foreground" )->currentItem() == 2 )
+          markFore = currentFore;
+
+      pwMark1->setColor( markFore, getColorSelector( prefix + "Marked Background" )->getColor() );
+      pwMark2->setColor( markFore, getColorSelector( prefix + "Alternate Marked Background" )->getColor() );
     }
+  }else if( currentPage == 2 )
+  {
+    PreviewItem *pwDelete    = new PreviewItem( preview, i18n( "Delete" ) );
+    PreviewItem *pwRightCopy = new PreviewItem( preview, i18n( "Copy to right" ) );
+    PreviewItem *pwLeftCopy  = new PreviewItem( preview, i18n( "Copy to left" ) );
+    PreviewItem *pwDiffers   = new PreviewItem( preview, i18n( "Differing" ) );
+    PreviewItem *pwEquals    = new PreviewItem( preview, i18n( "Equals" ) );
 
-    pwCurrent->setColor( currentFore, currentBck );
-
-    QColor markFore = getColorSelector( prefix + "Marked Foreground" )->getColor();
-
-    if( !isInactive || getColorSelector( "Inactive Marked Foreground" )->currentItem() == 1 )
-      if( getColorSelector( "Marked Foreground" )->currentItem() == 2 )
-        markFore = currentFore;
-
-    pwMark1->setColor( markFore, getColorSelector( prefix + "Marked Background" )->getColor() );
-    pwMark2->setColor( markFore, getColorSelector( prefix + "Alternate Marked Background" )->getColor() );
+    pwEquals->setColor(    getColorSelector( "Synchronizer Equals Foreground" )->getColor(),
+                           getColorSelector( "Synchronizer Equals Background" )->getColor() );
+    pwDiffers->setColor(   getColorSelector( "Synchronizer Differs Foreground" )->getColor(),
+                           getColorSelector( "Synchronizer Differs Background" )->getColor() );
+    pwLeftCopy->setColor ( getColorSelector( "Synchronizer LeftCopy Foreground" )->getColor(),
+                           getColorSelector( "Synchronizer LeftCopy Background" )->getColor() );
+    pwRightCopy->setColor( getColorSelector( "Synchronizer RightCopy Foreground" )->getColor(),
+                           getColorSelector( "Synchronizer RightCopy Background" )->getColor() );
+    pwDelete->setColor(    getColorSelector( "Synchronizer Delete Foreground" )->getColor(),
+                           getColorSelector( "Synchronizer Delete Background" )->getColor() );
   }
 }
 
@@ -447,7 +502,7 @@ void KgColors::slotExportColors() {
 	QString file = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a color scheme file"));
 	if (file == QString::null) return;
 	QFile f(file);
-	if (f.exists() && KMessageBox::warningContinueCancel(this, 
+	if (f.exists() && KMessageBox::warningContinueCancel(this,
 		i18n("File ")+file+i18n(" already exists. Are you sure you want to overwrite it?"),
 		i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) return;
 	if (!f.open(IO_WriteOnly)) {
@@ -489,6 +544,16 @@ void KgColors::serialize(QDataStream & stream)
    serializeItem(stream, "Marked Current Foreground");
    serializeItem(stream, "Marked Foreground");
    serializeItem(stream, "Show Current Item Always");
+   serializeItem(stream, "Synchronizer Equals Foreground");
+   serializeItem(stream, "Synchronizer Equals Background");
+   serializeItem(stream, "Synchronizer Differs Foreground");
+   serializeItem(stream, "Synchronizer Differs Background");
+   serializeItem(stream, "Synchronizer LeftCopy Foreground");
+   serializeItem(stream, "Synchronizer LeftCopy Background");
+   serializeItem(stream, "Synchronizer RightCopy Foreground");
+   serializeItem(stream, "Synchronizer RightCopy Background");
+   serializeItem(stream, "Synchronizer Delete Foreground");
+   serializeItem(stream, "Synchronizer Delete Background");
    stream << QString("") << QString("");
 }
 
@@ -500,23 +565,21 @@ void KgColors::deserialize(QDataStream & stream)
       stream >> name >> value;
       if (name == "")
          break;
-         
-      fprintf( stderr, "%s\n", name.ascii() );
-         
+
       if (name == "KDE Default" || name == "Enable Alternate Background" || name == "Show Current Item Always" )
       {
         bool bValue = false;
         value = value.lower();
         if( value == "true" || value == "yes" || value == "on" || value == "1" )
           bValue = true;
-        
+
         generals->find( name )->setChecked( bValue );
         continue;
-      }   
+      }
       KonfiguratorColorChooser *selector = getColorSelector( name );
       if( selector == 0 )
         break;
-      selector->setValue( value );   
+      selector->setValue( value );
    }
 }
 

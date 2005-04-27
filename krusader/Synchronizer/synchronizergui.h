@@ -54,24 +54,26 @@ public:
     private:
       SynchronizerFileItem *syncItemRef;
       SyncViewItem         *lastItemRef;
+      QColor                textColor;
+      QColor                baseColor;
             
     public:
-      SyncViewItem( SynchronizerFileItem *item, QListView * parent, QListViewItem *after, QString label1,
+      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, QListView * parent, QListViewItem *after, QString label1,
                     QString label2 = QString::null, QString label3 = QString::null, QString label4 = QString::null,
                     QString label5 = QString::null, QString label6 = QString::null,
                     QString label7 = QString::null, QString label8 = QString::null ) :
                       QListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
-                                     label7, label8 ), syncItemRef( item ), lastItemRef( 0 )
+                                     label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
       {
         item->setUserData( (void *)this );
       }
       
-      SyncViewItem( SynchronizerFileItem *item, QListViewItem * parent, QListViewItem *after, QString label1,
+      SyncViewItem( SynchronizerFileItem *item, QColor txt, QColor base, QListViewItem * parent, QListViewItem *after, QString label1,
                     QString label2 = QString::null, QString label3 = QString::null, QString label4 = QString::null,
                     QString label5 = QString::null, QString label6 = QString::null,
                     QString label7 = QString::null, QString label8 = QString::null ) :
                       QListViewItem( parent, after, label1, label2, label3, label4, label5, label6,
-                                     label7, label8 ), syncItemRef( item ), lastItemRef( 0 )
+                                     label7, label8 ), syncItemRef( item ), lastItemRef( 0 ), textColor( txt ), baseColor( base )
       {
         item->setUserData( (void *)this );
       }
@@ -84,6 +86,21 @@ public:
       inline SynchronizerFileItem * synchronizerItemRef()       {return syncItemRef;}
       inline SyncViewItem         * lastItem()                  {return lastItemRef;}
       inline void                   setLastItem(SyncViewItem*s) {lastItemRef = s;}
+      
+      void setColors( QColor fore, QColor back ) {
+        textColor = fore;
+        baseColor = back;
+      }
+      
+      void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align)
+      {
+        QColorGroup _cg = cg;
+        if( textColor.isValid() )
+          _cg.setColor(QColorGroup::Text, textColor );
+        if( baseColor.isValid() )
+          _cg.setColor(QColorGroup::Base, baseColor );
+        QListViewItem::paintCell( p, _cg, column, width, align );
+      };
   };
    
 public:
@@ -175,6 +192,9 @@ private:
   
   int            sizeX;
   int            sizeY;
+  
+  QColor         foreGrounds[ TT_MAX ];
+  QColor         backGrounds[ TT_MAX ];
 };
 
 #endif /* __SYNCHRONIZERGUI_H__ */

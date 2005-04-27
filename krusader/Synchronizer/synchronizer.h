@@ -36,6 +36,7 @@
 #include <qobject.h>
 #include <qptrvector.h>
 #include <qprogressdialog.h>
+#include <qcolor.h>
 
 typedef enum 
 {
@@ -43,8 +44,13 @@ typedef enum
   TT_DIFFERS       = 1,   // the files are differents -> don't know what to do
   TT_COPY_TO_LEFT  = 2,   // the right file is newer  -> copy from right to left
   TT_COPY_TO_RIGHT = 3,   // the left file is newer   -> copy from left to right
-  TT_DELETE        = 4    // the left file is single  -> delete it
+  TT_DELETE        = 4,   // the left file is single  -> delete it
+  TT_MAX           = 5    // the maximum number of task types
 } TaskType;
+
+#define DECLARE_COLOR_NAME_ARRAY  QString COLOR_NAMES[] = { "Equals", "Differs", "LeftCopy", "RightCopy", "Delete" }
+#define DECLARE_BACKGROUND_DFLTS  QColor BCKG_DFLTS[] = { QColor(), QColor(), QColor(), QColor(), Qt::red }
+#define DECLARE_FOREGROUND_DFLTS  QColor FORE_DFLTS[] = { Qt::black, Qt::red,  Qt::blue, Qt::darkGreen, Qt::white }
 
 #define SWAP( A, B, TYPE )      {TYPE TMP = A; A = B; B = TMP;}
 #define REVERSE_TASK( A, asym ) {switch( A )                                           \
@@ -274,7 +280,7 @@ class Synchronizer : public QObject
     KIO::TransferJob                 *leftReadJob;    // compare left read job
     KIO::TransferJob                 *rightReadJob;   // compare right read job
     QByteArray                        compareArray;   // the array for comparing
-    QTimer                           *timer;          // timer to show the process dialog at compare by content
+    QTimer                           *timer;          // timer to show the process dialog at compare by content        
 };
 
 #endif /* __SYNCHRONIZER_H__ */

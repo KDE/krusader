@@ -1363,6 +1363,31 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   setPanelLabels();
   setCompletion();
 
+  /* =============================== Loading the colors ================================ */
+
+  krConfig->setGroup("Colors");
+  
+  DECLARE_COLOR_NAME_ARRAY;
+  DECLARE_BACKGROUND_DFLTS;
+  DECLARE_FOREGROUND_DFLTS;
+  
+  for( int clr = 0; clr != TT_MAX; clr ++ ) {
+    QString foreEntry = QString( "Synchronizer " ) + COLOR_NAMES[ clr ] + QString( " Foreground" );
+    QString bckgEntry = QString( "Synchronizer " ) + COLOR_NAMES[ clr ] + QString( " Background" );
+    
+    if( krConfig->readEntry( foreEntry ) == "KDE default" )
+      foreGrounds[ clr ] = QColor();
+    else
+      foreGrounds[ clr ] = krConfig->readColorEntry( foreEntry, &FORE_DFLTS[ clr ] );
+      
+    if( krConfig->readEntry( bckgEntry ) == "KDE default" )
+      backGrounds[ clr ] = QColor();
+    else
+      backGrounds[ clr ] = krConfig->readColorEntry( bckgEntry, &BCKG_DFLTS[ clr ] );
+      
+  }
+  
+  krConfig->setGroup("Synchronize");
   int sx = krConfig->readNumEntry( "Window Width",  -1 );
   int sy = krConfig->readNumEntry( "Window Height",  -1 );
 
@@ -1715,6 +1740,9 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
   QString leftName="", rightName="", leftDate="", rightDate="", leftSize="", rightSize="";
   bool    isDir = item->isDir();
 
+  QColor textColor = foreGrounds[ item->task() ];
+  QColor baseColor = backGrounds[ item->task() ];
+  
   if( item->existsInLeft() )
   {
     leftName = item->leftName();
@@ -1734,8 +1762,8 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
 
   if( item->parent() == 0 )
   {
-    listItem = new SyncViewItem(item, syncList, lastItem, leftName, leftSize, leftDate,
-                                Synchronizer::getTaskTypeName( item->task() ), rightDate,
+    listItem = new SyncViewItem(item, textColor, baseColor, syncList, lastItem, leftName, leftSize,
+                                leftDate, Synchronizer::getTaskTypeName( item->task() ), rightDate,
                                 rightSize, rightName );
     lastItem = listItem;
   }
@@ -1745,8 +1773,8 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
     if( dirItem )
     {
       dirItem->setOpen( true );
-      listItem = new SyncViewItem(item, dirItem, dirItem->lastItem(), leftName, leftSize,
-                                  leftDate, Synchronizer::getTaskTypeName( item->task() ),
+      listItem = new SyncViewItem(item, textColor, baseColor, dirItem, dirItem->lastItem(), leftName,
+                                  leftSize, leftDate, Synchronizer::getTaskTypeName( item->task() ),
                                   rightDate, rightSize, rightName );
 
       dirItem->setLastItem( listItem );
@@ -1789,6 +1817,7 @@ void SynchronizerGUI::markChanged( SynchronizerFileItem *item )
     listItem->setText( 0, leftName );
     listItem->setText( 1, leftSize );
     listItem->setText( 2, leftDate );
+    listItem->setColors( foreGrounds[ item->task() ], backGrounds[ item->task() ] );
     listItem->setText( 3, Synchronizer::getTaskTypeName( item->task() ) );
     listItem->setText( 4, rightDate );
     listItem->setText( 5, rightSize );
