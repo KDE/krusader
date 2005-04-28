@@ -91,10 +91,12 @@ Previous used Docbook
 <!ENTITY suse_download_url '<ulink url="http://search.belnet.be/packages/suse/suse/i386/9.3/suse/i586/">&SuSE;</ulink>'>
 <!ENTITY mandriva_download_url '<ulink url="http://search.belnet.be/packages/mandrake/10.2/i586/media/contrib/">&mandriva;</ulink>'>
 <!ENTITY freebsd_download_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all">&freebsd;</ulink>'>
-<!ENTITY debian_download_url '<ulink url="http://packages.debian.org/Krusader"><trademark class="registered">Debian</trademark></ulink>'>
+<!ENTITY debian_download_url '<ulink url="http://packages.debian.org/Krusader">&debian;</ulink>'>
+<!ENTITY netbsd_download_url '<ulink url="http://pkgsrc.netbsd.se/?cat=latest&amp;pkg=2183">&netbsd;</ulink>'>
 <!ENTITY mac_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-x 10.3 (Panther)</ulink>'>
 <!ENTITY dag_wiers_download_url '<ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink>'>
 <!ENTITY dries_verachtert_download_url '<ulink url="http://search.belnet.be/mirror/dries.ulyssis.org/">Dries Verachtert mirror</ulink>'>
+<!ENTITY mateusz_dubiel_url '<ulink url="http://mjd.radioemiter.pl/">Mateusz Dubiel</ulink>'>
 
 <!ENTITY freshmeat_url '<ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink>'>
 <!ENTITY rpmfind_url '<ulink url="http://www.rpmfind.net/linux/rpm2html/search.php?query=krusader">rpmfind</ulink>'>
@@ -207,6 +209,7 @@ Previous used Docbook
 
 <!-- trademark ENTITIES -->
 <!ENTITY fedora '<trademark>Fedora</trademark>'>
+<!ENTITY yoper '<trademark>Yoper</trademark>'>
 
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
 <!ENTITY debian '<trademark class="registered">Debian</trademark>'>
@@ -217,6 +220,12 @@ Previous used Docbook
 <!ENTITY kumbuntu '<trademark class="registered">Kumbuntu</trademark>'>
 <!ENTITY linspire '<trademark class="registered">Linspire</trademark>'>
 <!ENTITY xandros '<trademark class="registered">Xandros</trademark>'>
+<!ENTITY slackware '<trademark class="registered">Slackware</trademark>'>
+<!ENTITY arklinux '<trademark class="registered">Ark Linux</trademark>'>
+<!ENTITY archlinux '<trademark class="registered">Arch Linux</trademark>'>
+<!ENTITY netbsd '<trademark class="registered">NetBSD</trademark>'>
+<!ENTITY openbsd '<trademark class="registered">OpenBSD</trademark>'>
+
 
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
 <!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
@@ -325,7 +334,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-04-26</date>
+  <date>2005-04-28</date>
   <releaseinfo>1.61.0</releaseinfo>
 
    <abstract>
@@ -488,12 +497,12 @@ Previous used Docbook
         Jonas will help with pleasure this maintainer, the <filename>krusader-1.xx.info</filename> files are 
         available in cvs.</para>
 
-    <para><emphasis role="bold">Porting &krusader; to &Windows;</emphasis></para>
-    <para>&krusader; is written using &Qt;, but also using &kde;libs.
-          As long as &kde;libs do not run on &Windows;, porting &krusader; is not an option.
-          However, we do believe, that once &Qt;4-GPL is released, efforts will be made to port &kde;libs 
-          to &Windows;, and if that happens, we're in business and than we need a maintainer for porting 
-          &krusader; to &Windows;.</para>
+  <para><emphasis role="bold">Porting &krusader; to &Windows;</emphasis></para>
+  <para>&krusader; is written using &Qt; as well as &kde;libs. 
+        As long as &kde;libs do not run on &Windows;, porting &krusader; is not an option. 
+        However, we do believe, that once &Qt;4-GPL is released, efforts will be made
+        to port &kde;libs to &Windows;, and if that happens, we're in business
+        and then we need a maintainer for porting &krusader; to &Windows;.</para>
 
   <para><emphasis role="bold">FAQ</emphasis></para>
   <para>If you have a question that is missing in the &faq_lnk;, we would like to hear it.</para>
