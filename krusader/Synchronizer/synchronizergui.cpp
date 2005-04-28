@@ -1366,27 +1366,28 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   /* =============================== Loading the colors ================================ */
 
   krConfig->setGroup("Colors");
-  
+
   DECLARE_COLOR_NAME_ARRAY;
   DECLARE_BACKGROUND_DFLTS;
   DECLARE_FOREGROUND_DFLTS;
-  
+
   for( int clr = 0; clr != TT_MAX; clr ++ ) {
     QString foreEntry = QString( "Synchronizer " ) + COLOR_NAMES[ clr ] + QString( " Foreground" );
     QString bckgEntry = QString( "Synchronizer " ) + COLOR_NAMES[ clr ] + QString( " Background" );
-    
+
     if( krConfig->readEntry( foreEntry ) == "KDE default" )
       foreGrounds[ clr ] = QColor();
     else
       foreGrounds[ clr ] = krConfig->readColorEntry( foreEntry, &FORE_DFLTS[ clr ] );
-      
+
     if( krConfig->readEntry( bckgEntry ) == "KDE default" )
       backGrounds[ clr ] = QColor();
     else
       backGrounds[ clr ] = krConfig->readColorEntry( bckgEntry, &BCKG_DFLTS[ clr ] );
-      
   }
-  
+  if( backGrounds[ TT_EQUALS ].isValid() )
+    syncList->setPaletteBackgroundColor( backGrounds[ TT_EQUALS ] );
+
   krConfig->setGroup("Synchronize");
   int sx = krConfig->readNumEntry( "Window Width",  -1 );
   int sy = krConfig->readNumEntry( "Window Height",  -1 );
@@ -1742,7 +1743,7 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
 
   QColor textColor = foreGrounds[ item->task() ];
   QColor baseColor = backGrounds[ item->task() ];
-  
+
   if( item->existsInLeft() )
   {
     leftName = item->leftName();
