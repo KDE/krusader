@@ -46,7 +46,7 @@
 <para>Platforms:
  <itemizedlist>
    <listitem><para>All POSIX (&Linux;/BSD/&UNIX;-like OSes), &Solaris;</para></listitem>
-   <listitem><para>All BSD Platforms (&freebsd;/NetBSD/OpenBSD/&MacOS; 10.3 "Panther").</para></listitem>
+   <listitem><para>All BSD Platforms (&freebsd;/&netbsd;/&openbsd;/&MacOS; 10.3 "Panther").</para></listitem>
  </itemizedlist>
 </para>
 
@@ -96,9 +96,14 @@
   </listitem>
   <listitem>
      <para>&mandriva_download_url; (formerly &Mandrake;), only in the "contrib" section for the moment.</para>
-  </listitem>    
+  </listitem>
+  <listitem>
+     <para>&netbsd_download_url;, &yoper;, &arklinux;, &archlinux;, ...</para>
+  </listitem>          
 </itemizedlist>
-Just use the install tools that your distro uses, and you will have &krusader; on your computer.
+Just use the install tools that the distro uses to install the &krusader; package on your computer,
+sometimes an internet connection is needed if &krusader; is not available on the &CD; or DVD.
+There are probably more distributions who include &krusader;, sorry we can't mention you all.
 </para>
 
 <para>Third-parties
@@ -108,7 +113,11 @@ Just use the install tools that your distro uses, and you will have &krusader; o
              &dag_wiers_download_url; or at &dries_verachtert_download_url; .</para>
      </listitem>
      <listitem>
-       <para>There is a &mac_download_url; port with the kdelibs (3.1.4) and &fink_prj_url;
+       <para>&slackware; TGZ packages can usually found on the &krudownload_url;, 
+             thanks to &mateusz_dubiel_url; .</para>
+     </listitem>
+     <listitem>
+       <para>There is a &mac_download_url; port with &kde;libs 3.1.4 and &fink_prj_url;
              thanks to <link linkend="credits">Jonas Ba&euml;hr</link> .</para>
      </listitem>
 </itemizedlist>
@@ -117,7 +126,7 @@ Just use the install tools that your distro uses, and you will have &krusader; o
 <para>Search engines
 <itemizedlist>
   <listitem>
-     <para>You may also find packages on &Linux; software archives such as &freshmeat_url; or &kde_apps_url; .</para>
+     <para>You can also find packages on &Linux; software archives such as &freshmeat_url; or &kde_apps_url; .</para>
   </listitem>
   <listitem>
      <para>If you can't find a package for your distribution,
