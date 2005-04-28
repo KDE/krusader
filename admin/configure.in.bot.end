@@ -45,6 +45,15 @@ Krusader Project:
   krusader version:     ${VERSION}
   krusader binary:      ${prefix}/bin/${PACKAGE}     (after 'make install')
 "
+
+if (test $warn_konq);
+   then echo "NOTICE:  Since the Konqueror-headers are not found Krusader will be build without support for its service-menus"
+fi
+
+if (test $warn_js);
+   then echo "NOTICE:  Since the KJSEmbed-headers are not found Krusader will be build without JS support"
+fi
+
 if (test -z "$KDEDIR");
    then echo "WARNING:  KDEDIR enviroment variable is empty! Please read Krusader FAQ"
    exit 1

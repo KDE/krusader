@@ -1,15 +1,55 @@
 #MIN_CONFIG(3)
-have_libkonq=yes
-KDE_CHECK_HEADER(konq_popupmenu.h, ,[have_libkonq=no] )
-KDE_CHECK_HEADER(konqbookmarkmanager.h, ,[have_libkonq=no] )
+
+###################################################
+#		Check for Konqueror
+###################################################
+
+AC_ARG_WITH(konqueror,
+    AC_HELP_STRING([--without-konqueror],[build Krusader without support Konqueror's servicemenus [default=with]]),
+    [with_konq=$withval],
+    [with_konq=yes]
+)
+
+if test "$with_konq" != "no"; then
+	# check for the headers
+	have_libkonq=yes
+	KDE_CHECK_HEADER(konq_popupmenu.h, ,[have_libkonq=no] )
+	KDE_CHECK_HEADER(konqbookmarkmanager.h, ,[have_libkonq=no] )
+
+	if test "$have_libkonq" = "no"; then
+		# if this var is 'yes', the configure-suppery drops a warning.
+		# see admin/configure.in.bot.end
+		warn_konq = "yes"
+	fi
+fi
 
 AM_CONDITIONAL(include_libkonq, test "$have_libkonq" = yes)
 
-have_libkjsembed=yes
-KDE_CHECK_HEADER(kjsembed/kjsembedpart.h, ,[have_libkjsembed=no] )
+###################################################
+#		Check for JavaScript
+###################################################
+
+AC_ARG_WITH(javascript,
+    AC_HELP_STRING([--without-javascript],[build Krusader without JavaScript support [default=with]]),
+    [with_js=$withval],
+    [with_js=yes]
+)
+
+if test "$with_js" != "no"; then
+	# check for the header
+	have_libkjsembed=yes
+	KDE_CHECK_HEADER(kjsembed/kjsembedpart.h, ,[have_libkjsembed=no] )
+
+	if test "$have_libkjsembed" = "no"; then
+		# if this var is 'yes', the configure-suppery drops a warning.
+		# see admin/configure.in.bot.end
+		warn_js = "yes"
+	fi
+fi
 
 AM_CONDITIONAL(include_libkjsembed, test "$have_libkjsembed" = yes)
 
+###################################################
 
 AM_INIT_AUTOMAKE(krusader,1.60.0)
 

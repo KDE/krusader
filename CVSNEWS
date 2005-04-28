@@ -4,6 +4,11 @@
 | in some way an extension to the changelog.                                   |
 +==============================================================================+
 
+new configure-switches:
+  --without-konqueror - builds Krusader without Konqueror's servicemenus
+  --without-javascript - builds Krusader without JS support
+  In the past the support was always compiled in when the headers where found.
+
 Jump-Back:
   If you create a new tab the startup-path is saved. You can now step deep into
   the dir-tree and Ctrl-J brings you back to your starting-position.
