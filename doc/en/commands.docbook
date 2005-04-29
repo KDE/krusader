@@ -388,16 +388,16 @@
   <guimenu>Commands</guimenu>
   <guimenuitem>Profiles</guimenuitem></menuchoice></term>
   <listitem><para>
-  Panel profiles can be saved, restored, and erased. You could have several profiles
-  &eg; file-managment, ftp-managment, home, work, etc.
+  Panel profiles is a configuration file that can be saved, restored, and erased. 
   A panel profile contains:
   <itemizedlist>
           <listitem><para>all the tabs path (left / right)</para></listitem>
-    <listitem><para>the current tab (left / right)</para></listitem>
-    <listitem><para>and the selected side (left or right)</para></listitem>
-        </itemizedlist>
-  With the <link linkend="starting-krusader">commandline</link> you can load a
-  <replaceable>&lt;panel-profile&gt;</replaceable> on startup.
+          <listitem><para>the current tab (left / right)</para></listitem>
+          <listitem><para>and the selected side (left or right)</para></listitem>
+  </itemizedlist>
+  You can have several Panel profiles &eg; file-managment, ftp-managment, home, work, etc.     
+  With the &konfigstartpg_lnk; or <link linkend="starting-krusader">commandline</link> you can 
+  load the desired panel-profile on startup.
   </para></listitem>
 </varlistentry>
 
