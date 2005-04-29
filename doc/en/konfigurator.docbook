@@ -48,57 +48,60 @@ and restart &krusader;.</para>
 
 <variablelist>
 <varlistentry><term><guilabel>Panels</guilabel></term>
-   <listitem><para><guilabel>Save settings on exit</guilabel>: when &krusader; launches, the panels
-  current directory will be the same as it was, when &krusader; was shutdown - providing the location is
-  within a local filesystem. When checked, all the other checkboxes of the the startup page will be
-  disabled.</para>
-
-  <para><guilabel>Start with the following settings</guilabel>: allows you to define a startup status
-    for each panel in the following manner:</para>
-
-  <itemizedlist>
-  <listitem><para><guilabel>Left/Right Panel starts at</guilabel>: the following options are available:
-    <itemizedlist>
-    <listitem><para><remark>homepage:</remark> This panel will start at a
-             specified homepage. In this case, you also need to choose a directory
-             which will be this panel's homepage.</para></listitem>
-    <listitem><para><remark>workdir:</remark> This panel will start at the
-             folder it was executed from.</para></listitem>
-    <listitem><para><remark>last place it was:</remark> This panel will start
-             at the last directory it was in when &krusader; was shut
-             down.</para></listitem>
-        </itemizedlist>
-      </para></listitem>
+   <listitem>
+   <itemizedlist>
+   <listitem><para>
+             <guilabel>Save the state of the tabs at exit and restore it at startup</guilabel>
+             </para></listitem>
+   
+   <listitem><para>
+             <guilabel>Restore a manually saved state at startup</guilabel> : 
+                       Don't save the tabs, just restore the previously saved state.
+                       In the Settings menu the state of the tabs can be saved with
+                       <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
+                       <guimenuitem>Save Position</guimenuitem></menuchoice></emphasis> 
+                       and these tabs will be restored after startup.</para></listitem>
+    
+    <listitem><para>
+              <guilabel>Start from profile</guilabel> : 
+                        Starts always from the selected &panel_profiles_lnk;.             
+              </para></listitem>
   </itemizedlist>
+  </listitem>
+ </varlistentry>
 
-   </listitem></varlistentry>
-
-   <varlistentry><term><guilabel>User Interface</guilabel></term>
-  <listitem><para>Determine which parts of the user interface are visible during startup.
+<varlistentry><term><guilabel>User Interface</guilabel></term>
+  <listitem><para>Determine which parts of the user interface are visible after startup.
   <itemizedlist>
-  <listitem><para><guilabel>Save settings on exit</guilabel>: at shutdown, &krusader; saves the
-         state of the user interface components, and restores them to that state when next
-         started.</para></listitem>
-  <listitem><para><guilabel>Main Toolbar visible</guilabel>: if checked, the
-         &main_toolbar_lnk; will be visible after startup.</para></listitem>
-  <listitem><para><guilabel>Statusbar visible</guilabel>: if checked, the statusbar will be
-         visible during startup.</para></listitem>
-  <listitem><para><guilabel>Function keys visible</guilabel>: if checked, the
-         &fnkeybar_lnk; will be visible after startup.
+  <listitem><para><guilabel>Save settings on exit</guilabel>: if checked, 
+                  restore the user interface components to their condition when
+                  last shutdown.</para></listitem>
+                 
+  <listitem><para><guilabel>Show toolbar</guilabel>: if checked,
+                   &main_toolbar_lnk; will be visible after startup.</para></listitem>
+                   
+  <listitem><para><guilabel>Show statusbar</guilabel>: if checked, 
+            the &statusbar_lnk; will be visible after startup.</para></listitem>
+         
+  <listitem><para><guilabel>Show function keys</guilabel>: if checked, 
+         the &fnkeybar_lnk; will be visible after startup.
          </para></listitem>
-  <listitem><para><guilabel>Command line visible</guilabel>: if checked, the
-         <link linkend="cmdline">command line</link> will be visible after startup.
+         
+  <listitem><para><guilabel>Show command line</guilabel>: if checked, 
+         the &cmdline_lnk; will be visible after startup.
          </para></listitem>
-  <listitem><para><guilabel>Terminal emulator visible</guilabel>: if checked, the terminal
-         emulator will be visible after startup.
+         
+  <listitem><para><guilabel>Show terminal emulator</guilabel>: if checked, 
+            the &termemu_lnk; will be visible after startup.
          </para></listitem>
-  <listitem><para><guilabel>Restore last postion and size</guilabel>: when launched, &krusader;
-          will resize itself to the size it was when last shutdown.
-          &krusader; will also appear in the same location on the screen, having panels
-          sorted and aligned as they were. If this option is disabled, you can use the menu
-          <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
-          <guimenuitem>Save Position</guimenuitem></menuchoice></emphasis>
-          option to manually set &krusader; size and position at startup.
+         
+  <listitem><para><guilabel>Save last position, size and panel settings</guilabel>: when launched, 
+            &krusader; will resize itself to the size it was when last shutdown.
+            &krusader; will also appear in the same location on the screen, having panels sorted 
+            and aligned as they were. If this option is unchecked, you can use the menu
+            <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
+            <guimenuitem>Save Position</guimenuitem></menuchoice></emphasis> 
+            option to manually set &krusader;'s size and position at startup.
           </para></listitem>
   </itemizedlist>
   </para></listitem>
