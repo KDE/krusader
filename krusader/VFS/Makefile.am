@@ -14,4 +14,5 @@ libVFS_a_SOURCES = \
 	krpermhandler.cpp \
 	krdirwatch.cpp \
 	krarchandler.cpp \
+	preservingcopyjob.cpp \
 	ftp_vfs.cpp krquery.cpp
