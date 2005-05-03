@@ -86,7 +86,7 @@
      <para>&debian_download_url;, on our &krudownload_url; you might find more
            recent "unofficial" DEB packages.
            Note: usually &debian; packages work on distributions who are "based on &debian;"
-           e.g. &mepis;, &umbuntu;, &kumbuntu;, &linspire;, &xandros;, ...</para>
+           e.g. &mepis;, &ubuntu_download_url;, &kubuntu_download_url;, &linspire;, &xandros;, ...</para>
   </listitem>
   <listitem>
      <para>&gentoo_download_url;</para>
@@ -383,10 +383,10 @@ We hope it'd be easy to understand.
   If you have no idea what to set the variables to, or if you want to check if the variables are correctly set,
   ask your distributor or use the <command>find</command> command.
 
-<screen><prompt>$</prompt> <userinput><command>find</command> <option>/usr /opt -name</option> qtconfig <option>-type f -perm +111</option></userinput>
+<screen><prompt>$</prompt> <userinput><command>find</command> <option>/usr /opt -name</option> qtconfig <option>-type f 2>/dev/null</option></userinput>
 /usr/lib/qt3/bin/qtconfig
-<prompt>$</prompt> <userinput><command>find </command> <option>/usr /opt -name</option> startkde <option>-type f -perm +111</option></userinput>
-/usr/bin/startkde</screen>
+<prompt>$</prompt> <userinput><command>find </command> <option>/usr /opt -name</option> kdeinit <option>-type 2>/dev/null</option></userinput>
+/usr/bin/kdeinit</screen>
 
 
 In this case <filename>/usr/lib/qt3</filename> is your <envar>QTDIR</envar> and  <filename>/usr</filename> is your <envar>KDEDIR</envar>. The installed binaries will go to <filename>/usr/bin</filename>.

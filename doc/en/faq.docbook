@@ -48,19 +48,21 @@
    <para>Does &krusader; need &kde; to run?</para>
    </question>
    <answer>
-   <para>No, &krusader; does not need the &kde; window manager to run on your computer but
-         &krusader;'s natural environment is &kde;, because it relies on services provided by
+   <para><emphasis>No, &krusader; does not need the &kde; window manager</emphasis> to run on your computer 
+         but &krusader;'s natural environment is &kde;, because it relies on services provided by
          the &kde; base libraries.
          Only some shared libraries are needed &eg; &kde; libraries, &Qt; libraries, &etc;
-         This means that &krusader; runs on &gnome_url;, &afterstep_url; and other window managers
-         provided the approriate libraries are installed on your computer.</para>
+         This means that &krusader; runs on &gnome_url;, &afterstep_url;, &xfce_url; and other window managers
+         provided the approriate libraries are installed on your computer.
+         All this is not a problem since the apt-get world can resolve these dependencies instantly.
+         </para>
          <para> </para> <!-- Empty line to make it more readable -->
-   <para>You don't need to switch to &kde; to use &krusader;; you can still use &gnome_url; 
-         or another window manager.
-         However, configuration of the &krusader; fonts and behavior is done by running
+   <para>You don't need to switch to the &kde; window manager to use &krusader;; you can still use 
+         &gnome_url;, &afterstep_url;, &xfce_url; or another window manager.
+         However, the configuration of the &krusader; fonts and some behavior is done by running
           <command>Kcontrol</command>.</para>
          <para> </para> <!-- Empty line to make it more readable -->
-   <para>But a lot depends on what you would like to do with &krusader;.
+   <para>A lot depends on what you would like to do with &krusader;.
          You should know that &krusader; uses the &kde; &kioslaves1_url; to access remote file systems,
          and support for only a limited number of filesystem types are shipped with &kdelibs_url;,
          most of the &kioslaves2_url; are bundled with &kdebase_url; (including fish, sftp and tar).
@@ -69,7 +71,8 @@
         <para> </para> <!-- Empty line to make it more readable -->
    <para>To summarize, if you want a working &krusader; - install &kde;libs.
          If you want a functional &krusader; then you need &kde;libs + &kde;base.
-          For maximum functionality, &krusader; needs all of the &kde; package libraries.
+         For maximum functionality, &krusader; needs all of the &kde; package libraries,
+         but the &kde; window manager is optional.
    </para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -81,10 +84,10 @@
    </question>
    <answer>
    <para>For running &krusader; (&eg; when you have installed &krusader; with a binary RPM)
-         you need fewer libraries or packages as mentioned in the next question,
-         &eg; you don't need the C-compliler &gcc; it's only needed
-         when you compile &krusader; from source.</para>
-         <para>Here is a list of the normally required shared libraries when you run &krusader;:</para>
+         you need less libraries than if you compile &krusader; from source.
+         &eg; you only need the C-compliler &gcc; when you compile &krusader; from source 
+         (see the next question).</para>
+         <para>Here is a (possibly incomplete) list of the required shared libraries when you run &krusader;:</para>
    <para><itemizedlist>
      <listitem><para>kdelibs (for the required &kde; version see the &install_proc_lnk;) libqt3
                </para></listitem>
@@ -95,7 +98,8 @@
     <listitem><para>libfam0  libpcre0  glibc  libart_lgpl2  libexpat0  libnas2
                </para></listitem>
     </itemizedlist>
-    Click the following link for the complete list of &shared_libdeps_url;.</para>
+    If you need more info please take a look at the &shared_libdeps_url; or the &deb_requirements_url; .
+    </para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
    </qandaentry>
@@ -113,8 +117,8 @@
                </para></listitem>
      <listitem><para>autoconf automake XFree
                </para></listitem>
-     <listitem><para>libqt3 libqt-devel (&krusader; v1.50 needs &Qt; 3.x)</para></listitem>
-     <listitem><para>kdelibs kdelibs-devel (&krusader; v1.50 needs KDElibs >= 3.2.x)</para></listitem>
+     <listitem><para>libqt3 libqt-devel</para></listitem>
+     <listitem><para>kdelibs kdelibs-devel</para></listitem>
      <listitem><para>libjpeg62 libjpeg-devel libpng3 libmng1</para></listitem>
      <listitem><para>fam libfam-devel (&eg; <filename>fam-2.x.x-xmdk.rpm</filename> and
                      <filename>libfam0-devel-2.x.x-5mdk.i586.rpm</filename>)</para></listitem>
