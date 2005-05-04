@@ -282,8 +282,8 @@ HTML_PARSING-->
       The only limitation is that global &kde; key-bindings and some &krusader; key-bindings can't
       be changed yet, as well as some features in foo-commander that we either don't have or don't need.
       The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
-      the <filename>foo.keymap.info</filename> contains a description,
-      the <filename>foo.keymap</filename> is a binary file that holds the Key-bindings.
+      <filename>foo.keymap.info</filename> contains a description,
+      <filename>foo.keymap</filename> is a binary file that holds the Key-bindings.
       If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it,
       showing additional information regarding the loaded Key-bindings file.
       Here you have a chance to exit without importing the proposed Key-bindings file.
