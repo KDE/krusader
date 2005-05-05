@@ -487,7 +487,15 @@ void KonfiguratorComboBox::loadInitialValue()
 
 void KonfiguratorComboBox::slotApply(QObject *,QString cls, QString name)
 {
-  QString value = editable() ? lineEdit()->text() : currentText();
+  QString text = editable() ? lineEdit()->text() : currentText();
+  QString value = text;
+  
+  for( int i=0; i != listLen; i++ )
+    if( list[i].text == text ) {
+      value = list[i].value;
+      break;
+    }
+  
   krConfig->setGroup( cls );
   krConfig->writeEntry( name, value );
 }

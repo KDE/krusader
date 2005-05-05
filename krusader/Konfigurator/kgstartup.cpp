@@ -46,30 +46,20 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   QGroupBox *panelsGrp = createFrame( i18n( "Panels" ), parent, "panelsGrp" );
   QGridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
-
-  KONFIGURATOR_NAME_VALUE_TIP savePanels[] =
-  //          name                            value      tooltip
-    {{ i18n( "Save the state of the tabs at exit and restore it at startup" ) , "Tabs",    i18n( "Saves the last state of the tabs at exit and restores it at startup." ) },
-     { i18n( "Restore a manually saved state at startup" )                    , "None",    i18n( "In the Settings menu the state of the tabs can be saved, and this will be restored after startup." ) },
-     { i18n( "Start from profile:" )                                          , "Profile", i18n( "Starts always from the following profile (at least one profile is necessary):" ) } };
-
-  saveRadio = createRadioButtonGroup( "Startup", "Panels Save Settings",
-      "Tabs", 1, 0, savePanels, 3, panelsGrp, "mySaveRadio", false );
-  panelsGrid->addWidget( saveRadio, 0, 0 );
-  connect( saveRadio->find( i18n( "Start from profile:" ) ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
+  
+  addLabel( panelsGrid, 0, 0, i18n( "Starting session:" ), panelsGrp, "Startup session" );
   
   QStringList profileList = ProfileManager::availableProfiles( "Panel" );
-  if( profileList.count() )
-  {
-    KONFIGURATOR_NAME_VALUE_PAIR comboItems[ profileList.count() ];
-    for( int i=0; i != profileList.count(); i++ )
-      comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];
+  profileList.push_front( "<" + i18n( "Last session" ) + ">" );
+  
+  KONFIGURATOR_NAME_VALUE_PAIR comboItems[ profileList.count() ];
+  for( int i=0; i != profileList.count(); i++ )
+    comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];    
+  comboItems[ 0 ].value = "";
       
-    profileCombo = createComboBox( "Startup", "Starter Profile Name", profileList[ 0 ], comboItems, profileList.count(), panelsGrp, false, false );
-    panelsGrid->addWidget( profileCombo, 1, 0 );
-  }
-  else
-    saveRadio->find( i18n( "Start from profile:" ) )->setEnabled( false );
+  profileCombo = createComboBox( "Startup", "Starter Profile Name", comboItems[ 0 ].value, comboItems, profileList.count(), panelsGrp, false, false );
+  profileCombo->setSizePolicy(  QSizePolicy::Expanding, QSizePolicy::Fixed);
+  panelsGrid->addWidget( profileCombo, 0, 1 );
   
   kgStartupLayout->addWidget( panelsGrp, 0, 0 );
 
@@ -101,20 +91,11 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
 void KgStartup::slotDisable()
 {
-  if( profileCombo )
-     profileCombo->setEnabled( saveRadio->find( i18n( "Start from profile:" ) )->isOn() );
-
   bool isUiSave   = !uiCbGroup->find( "UI Save Settings" )->isChecked();
 
   int i=1;
   while( uiCbGroup->find( i ) )
     uiCbGroup->find( i++ )->setEnabled( isUiSave );
-}
-
-bool KgStartup::apply()
-{
-  Krusader::actSaveTabs->setEnabled( saveRadio->find( i18n( "Restore a manually saved state at startup" ) )->isOn() );
-  return KonfiguratorPage::apply();
 }
 
 #include "kgstartup.moc"
