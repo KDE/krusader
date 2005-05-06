@@ -49,7 +49,7 @@ bool    PackGUI::moveIntoArchive=false;
 PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename) :
     PackGUIBase(0,0,true) {
   // first, fill the WhatToPack textfield with information
-  QString temp=QString("%1 files").arg(noOfFiles);
+  QString temp=QString(i18n("%1 files")).arg(noOfFiles);
   if (noOfFiles>1) TextLabel1->setText(TextLabel1->text()+" "+temp);
     else TextLabel1->setText(TextLabel1->text()+" "+filename);
 
