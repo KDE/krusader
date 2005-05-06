@@ -57,7 +57,7 @@ if( first )
      { i18n( "Move to trash" ), "true",  i18n( "Files will be moved to Trash when deleted." ) }};
 
   KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
-      "true", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );
+      _MoveToTrash ? "true" : "false", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );
   generalGrid->addMultiCellWidget( trashRadio, 0, 0, 0, 1 );
 
   KonfiguratorCheckBox *checkBox = createCheckBox( "General", "Mimetype Magic", _MimetypeMagic,
