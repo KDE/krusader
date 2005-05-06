@@ -4,6 +4,13 @@
 | in some way an extension to the changelog.                                   |
 +==============================================================================+
 
+New zip/tar slave - based on KDE's but support writing to archive
+  Modified KDE tar slave (which also handle ZIP archives) to support writing.
+  Compared to kr_arc:
+  Pros: Speed. No need for external binary. Speed. did I mentioned speed ?
+  Cons: does not support delete from archive.
+  (You need to change the protocol registration to use this slave)
+
 new configure-switches:
   --without-konqueror - builds Krusader without Konqueror's servicemenus
   --without-javascript - builds Krusader without JS support
