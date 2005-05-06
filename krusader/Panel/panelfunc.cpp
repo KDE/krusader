@@ -116,7 +116,9 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	panel->slotFocusOnMe();
 
 	// if we are not refreshing to current URL
-	if ( !files() ->vfs_getOrigin().equals( url, true ) ) {
+	bool is_equal_url = files() ->vfs_getOrigin().equals( url, true );
+	
+	if ( !is_equal_url ) {
 		// change the cursor to busy
 		panel->setCursor( KCursor::waitCursor() );
 		// clear the view - to avoid a repaint crash
@@ -125,6 +127,13 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 
 	if ( !nameToMakeCurrent.isEmpty() ) {
 		panel->view->setNameToMakeCurrent( nameToMakeCurrent );
+		// if the url we're refreshing into is the current one, then the
+		// partial url will not generate the needed signals to actually allow the
+		// view to use nameToMakeCurrent. do it here instead (patch by Thomas Jarosch)
+		if ( is_equal_url ) {
+		    panel->view->setCurrentItem( nameToMakeCurrent );
+		    panel->view->makeItemVisible( panel->view->getCurrentKrViewItem() );
+		}		
 	}
 
 	vfs* v = 0;
