@@ -1,0 +1,12 @@
+[Protocol]
+exec=kio_tar
+protocol=tar
+mimetype=application/x-tar
+input=filesystem
+output=filesystem
+listing=Name,Type,Size,Date,Access,Owner,Group,Link
+reading=true
+source=true
+DocPath=kioslave/tar.html
+Icon=tar
+Class=:local
