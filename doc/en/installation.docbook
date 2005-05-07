@@ -509,6 +509,22 @@ Good - your configure finished. Start make now
   <para>Use <userinput><command>./configure</command> <option>--help</option></userinput>
   to see more options or read the <filename>INSTALL</filename> file in the &krusader; sources.</para>
 
+<para><command>./configure</command> has two specific &krusader; options:
+<itemizedlist>
+   <listitem>
+        <para><userinput><command>./configure</command> <option>--without-konqueror</option></userinput>: 
+              build Krusader without support &konqueror;'s servicemenus, default=with.
+              This means that &konqueror;'s right-click menu entries will not be available.</para>
+   </listitem>
+   <listitem>
+        <para><userinput><command>./configure</command> <option>--without-javascript</option></userinput>: 
+              build Krusader without JavaScript support, default=with.
+              This means that the &javascript_console_lnk; will not be available.</para>
+   </listitem>
+</itemizedlist>
+In the past the support was always compiled in when the headers where found, now you have the choice.
+</para>
+
   <note><para>If <command>./configure</command> fails, take a look at &missing_libs_lnk;.</para></note>
 
   <para> </para> <!-- Empty line to make it more readable -->
