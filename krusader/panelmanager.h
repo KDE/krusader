@@ -43,6 +43,7 @@ class PanelManager: public QWidget {
     int  activeTab();
     void setActiveTab( int );
     void setCurrentTab( int );
+    void refreshAllTabs( bool invalidate = false );
 
   public slots:
     /**

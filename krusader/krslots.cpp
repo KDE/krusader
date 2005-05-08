@@ -326,10 +326,12 @@ void KRslots::runKonfigurator(bool firstTime) {
 
 void KRslots::toggleHidden(){
   krConfig->setGroup("Look&Feel");
-	bool show = !krConfig->readBoolEntry("Show Hidden",_ShowHidden);
-	krApp->actToggleHidden->setChecked(show);
+  bool show = !krConfig->readBoolEntry("Show Hidden",_ShowHidden);
+  krApp->actToggleHidden->setChecked(show);
   krConfig->writeEntry("Show Hidden",show);
-	REFRESH_BOTH_PANELS;
+
+  MAIN_VIEW->leftMng->refreshAllTabs( true );
+  MAIN_VIEW->rightMng->refreshAllTabs( true );
 }
 
 void KRslots::toggleSwapPanels(){

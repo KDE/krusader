@@ -281,4 +281,20 @@ void PanelManager::slotPreviousTab() {
 	slotChangePanel(nextp);   
 }
 
+void PanelManager::refreshAllTabs( bool invalidate ) {
+   int i=0;
+   while (i < _tabbar->count()) {
+      PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
+      if (t && t->panel && t->panel->func ) {
+         vfs * vfs = t->panel->func->files();
+         if( vfs ) {
+            if( invalidate )
+               vfs->vfs_invalidate();
+            vfs->vfs_refresh();
+         }
+      }
+      ++i;
+   }
+}
+
 #include "panelmanager.moc"
