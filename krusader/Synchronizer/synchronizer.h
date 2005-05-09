@@ -149,7 +149,7 @@ class Synchronizer : public QObject
   public:
     Synchronizer();
     int     compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs, bool symLinks,
-                     bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc );
+                     bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc, QStringList &selFiles );
     void    stop() {stopped = true;}
     void    setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing, bool del );
     int     refresh( bool nostatus=false );
@@ -281,6 +281,7 @@ class Synchronizer : public QObject
     KIO::TransferJob                 *rightReadJob;   // compare right read job
     QByteArray                        compareArray;   // the array for comparing
     QTimer                           *timer;          // timer to show the process dialog at compare by content        
+    QStringList                       selectedFiles;  // the selected files to compare
 };
 
 #endif /* __SYNCHRONIZER_H__ */

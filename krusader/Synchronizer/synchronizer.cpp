@@ -83,7 +83,8 @@ void Synchronizer::reset()
 }
 
 int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs,
-                            bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc )
+                            bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool igCase, 
+                            bool autoSc, QStringList &selFiles )
 {
   resultList.clear();
 
@@ -94,6 +95,7 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   cmpByContent   = cmpByCnt;
   autoScroll     = autoSc;
   ignoreCase     = igCase;
+  selectedFiles  = selFiles;
   stopped = false;
 
   this->query = query;
@@ -137,9 +139,13 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
   }
 
   QString file_name;
+  bool checkIfSelected = false;
 
   if( !leftDir.isEmpty() || !rightDir.isEmpty() )
     parent = addDuplicateItem( parent, addLeftName, addRightName, addLeftDir, addRightDir, 0, 0, addLTime, addRTime, true, isTemp );
+  
+  if( leftDir.isEmpty() && rightDir.isEmpty() && selectedFiles.count() )
+    checkIfSelected = true;
 
   /* walking through in the left directory */
   for( left_file=left_directory->vfs_getFirstFile(); left_file != 0 && !stopped ;
@@ -149,6 +155,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
       continue;
 
     file_name =  left_file->vfile_getName();
+
+    if( checkIfSelected && !selectedFiles.contains( file_name ) )
+      continue;
 
     if( !query->match( left_file ) )
       continue;
@@ -174,6 +183,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
 
     file_name =  right_file->vfile_getName();
 
+    if( checkIfSelected && !selectedFiles.contains( file_name ) )
+      continue;
+
     if( !query->match( right_file ) )
       continue;
 
@@ -190,6 +202,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
       if ( left_file->vfile_isDir() && ( followSymLinks || !left_file->vfile_isSymLink()) )
       {
         QString left_file_name =  left_file->vfile_getName();
+    
+        if( checkIfSelected && !selectedFiles.contains( left_file_name ) )
+          continue;
 
         if( excludedPaths.contains( leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name ) )
           continue;
@@ -217,6 +232,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
       {
         file_name =  right_file->vfile_getName();
 
+        if( checkIfSelected && !selectedFiles.contains( file_name ) )
+          continue;
+          
         if( excludedPaths.contains( rightDir.isEmpty() ? file_name : rightDir+"/"+file_name ) )
           continue;
 

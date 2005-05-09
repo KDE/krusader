@@ -132,7 +132,7 @@ class KRslots : public QObject {
     void slotCombine();
     void userMenu();
     void manageUseractions();
-    void slotSynchronizeDirs();
+    void slotSynchronizeDirs( QStringList selected = QStringList() );
     void slotSyncBrowse();
     void slotDiskUsage();
     void slotLocationBar();

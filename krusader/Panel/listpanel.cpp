@@ -755,12 +755,13 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
 #define NEW_SYMLINK   150105
 #define REDIRECT_LINK 150106
 #define SEND_BY_EMAIL 150107
-#define LINK_HANDLING 150108
-#define EJECT_ID      150109
-#define PREVIEW_ID    150110
-#define COPY_CLIP_ID  150111
-#define MOVE_CLIP_ID  150112
-#define PASTE_CLIP_ID 150113
+#define SYNC_SELECTED 150108
+#define LINK_HANDLING 150109
+#define EJECT_ID      150110
+#define PREVIEW_ID    150111
+#define COPY_CLIP_ID  150112
+#define MOVE_CLIP_ID  150113
+#define PASTE_CLIP_ID 150114
 
    // those will sometimes appear
 #define SERVICE_LIST_ID  150200
@@ -889,6 +890,10 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
    if ( Krusader::supportedTools().contains( "MAIL" ) && !item->isDir() ) {
       popup.insertItem( i18n( "Send by email" ), SEND_BY_EMAIL );
    }
+   if ( view->numSelected() ) {
+      popup.insertItem( i18n( "Synchronize selected files" ), SYNC_SELECTED );   
+   }
+   
    // PROPERTIES
    popup.insertSeparator();
    popup.insertItem( i18n( "Copy to Clipboard" ), COPY_CLIP_ID );
@@ -976,6 +981,25 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
          break;
          case SEND_BY_EMAIL :
          SLOTS->sendFileByEmail( func->files() ->vfs_getFile( item->name() ).url() );
+         break;
+         case SYNC_SELECTED :
+         {   
+            QStringList selectedNames;
+            for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it )
+               selectedNames.append( ( *it ) ->name() );
+
+            if( otherPanel->view->numSelected() ) {
+               KrViewItemList otherItems;
+               otherPanel->view->getSelectedKrViewItems( &otherItems );
+            
+               for ( KrViewItemList::Iterator it2 = otherItems.begin(); it2 != otherItems.end(); ++it2 ) {
+                  QString name = ( *it2 ) ->name();
+                  if( !selectedNames.contains( name ) )
+                    selectedNames.append( name );
+               }
+            }
+            SLOTS->slotSynchronizeDirs( selectedNames );
+         }
          break;
          case OPEN_TERM_ID :          // open in terminal
          QString save = getcwd( 0, 0 );

@@ -1005,12 +1005,14 @@ static const char * const swap_sides_data[] = {
 "                                                      ",
 "                                                      "};
 
-SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory ) :
-    QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ), isComparing( false ), wasClosed( false ),
-    wasSync( false ), firstResize( true ), sizeX( -1 ), sizeY( -1 )
+SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory, QStringList selList ) :
+    QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ), selectedFiles( selList ), isComparing( false ),
+    wasClosed( false ), wasSync( false ), firstResize( true ), sizeX( -1 ), sizeY( -1 )
 {
   QString profileName = QString::null;
 
+  hasSelectedFiles = ( selectedFiles.count() != 0 );
+  
   if( rightDirectory.isNull() ) // if rightDirectory is null, leftDirectory is actually the profile name to load
   {
     profileName = leftDirectory;
@@ -1073,6 +1075,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   leftUrlReq->setMinimumWidth( 250 );
   grid->addWidget( leftUrlReq, 1 ,0 );
   QToolTip::add( leftLocation, i18n( "The left base directory" ) );
+  leftUrlReq->setEnabled( !hasSelectedFiles );
+  leftLocation->setEnabled( !hasSelectedFiles );
 
   fileFilter = new KHistoryCombo(false, compareDirs, "SynchronizerFilter");
   fileFilter->setMaxCount(25);  // remember 25 items
@@ -1102,6 +1106,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   rightUrlReq->setMinimumWidth( 250 );
   grid->addWidget( rightUrlReq, 1 ,2 );
   QToolTip::add( rightLocation, i18n( "The right base directory" ) );
+  rightUrlReq->setEnabled( !hasSelectedFiles );
+  rightLocation->setEnabled( !hasSelectedFiles );
 
   QHBox *optionBox  = new QHBox( compareDirs );
   QGrid *optionGrid = new QGrid( 3, optionBox );
@@ -1413,7 +1419,17 @@ SynchronizerGUI::~SynchronizerGUI()
 
 void SynchronizerGUI::setPanelLabels()
 {
-  if( cbAsymmetric->isChecked() )
+  if( hasSelectedFiles && cbAsymmetric->isChecked() )
+  {
+    leftDirLabel->setText( i18n( "Selected files from target directory:" ) );
+    rightDirLabel->setText( i18n( "Selected files from source directory:" ) );
+  }
+  else if( hasSelectedFiles && !cbAsymmetric->isChecked() )
+  {
+    leftDirLabel->setText( i18n( "Selected files from left directory:" ) );
+    rightDirLabel->setText( i18n( "Selected files from right directory:" ) );
+  }
+  else if( cbAsymmetric->isChecked() )
   {
     leftDirLabel->setText( i18n( "Target directory:" ) );
     rightDirLabel->setText( i18n( "Source directory:" ) );
@@ -1711,7 +1727,7 @@ void SynchronizerGUI::compare()
   int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
                        &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
-                       cbIgnoreCase->isChecked(), btnScrollResults->isOn() );
+                       cbIgnoreCase->isChecked(), btnScrollResults->isOn(), selectedFiles );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnCompareDirs->setEnabled( true );
@@ -2003,9 +2019,12 @@ void SynchronizerGUI::loadFromProfile( QString profile )
 
   krConfig->setGroup( profile );
 
-  leftLocation->setCurrentText( krConfig->readEntry( "Left Location" ) );
+  if( !hasSelectedFiles )
+  {
+    leftLocation->setCurrentText( krConfig->readEntry( "Left Location" ) );
+    rightLocation->setCurrentText( krConfig->readEntry( "Right Location" ) );
+  }
   fileFilter->setCurrentText( krConfig->readEntry( "Search For" ) );
-  rightLocation->setCurrentText( krConfig->readEntry( "Right Location" ) );
 
   cbSubdirs->   setChecked( krConfig->readBoolEntry( "Recurse Subdirectories", true ) );
   cbSymlinks->  setChecked( krConfig->readBoolEntry( "Follow Symlinks", false ) );

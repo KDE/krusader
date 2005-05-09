@@ -756,10 +756,10 @@ void KRslots::manageUseractions() {
    Konfigurator konfigurator( false, 7 ); // page 7 are the UserActions
 }
 
-void KRslots::slotSynchronizeDirs() {
+void KRslots::slotSynchronizeDirs( QStringList selected ) {
   SynchronizerGUI *sync = new SynchronizerGUI( krApp,
                 MAIN_VIEW->left->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol),
-                MAIN_VIEW->right->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol) );
+                MAIN_VIEW->right->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol), selected );
 
   bool refresh = sync->wasSynchronization();
   delete sync;

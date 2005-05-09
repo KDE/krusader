@@ -105,7 +105,7 @@ public:
    
 public:
   // if rightDirectory is null, leftDirectory is actually the profile name to load
-  SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory = QString::null );
+  SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory = QString::null, QStringList selList = QStringList() );
   ~SynchronizerGUI();
 
   inline bool wasSynchronization()    {return wasSync;}
@@ -181,6 +181,8 @@ protected:
   QLabel        *leftDirLabel;
   QLabel        *rightDirLabel;
   
+  QStringList    selectedFiles;
+  
 private:
   QPixmap        fileIcon;
   QPixmap        folderIcon;
@@ -188,6 +190,7 @@ private:
   bool           wasClosed;
   bool           wasSync;
   bool           firstResize;
+  bool           hasSelectedFiles;
   SyncViewItem  *lastItem;
   
   int            sizeX;
