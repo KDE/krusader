@@ -7,6 +7,8 @@ endif
 if include_libkjsembed
 AM_CPPFLAGS = -D__KJSEMBED__
 LIB_KJSEMBED = -lkjsembed
+KRJSDIR = KrJS
+LIB_KRJS = KrJS/libKrJS.a
 endif
 
 
@@ -27,6 +29,7 @@ SUBDIRS = \
 	Splitter \
 	Synchronizer \
 	UserAction \
+	$(KRJSDIR) \
 	UserMenu \
 	VFS
 
@@ -81,6 +84,7 @@ krusader_LDADD   = \
 	UserMenu/libUserMenu.a \
 	Locate/libLocate.a \
 	UserAction/libUserAction.a \
+	$(LIB_KRJS) \
 	KViewer/libKViewer.a \
 	Filter/libFilter.a \
 	Dialogs/libDialogs.a \

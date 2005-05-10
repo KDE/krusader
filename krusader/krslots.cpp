@@ -48,6 +48,7 @@
 #include <KViewer/krviewer.h>
 
 #ifdef __KJSEMBED__
+#include "KrJS/krjs.h"
 #include <kjsembed/jsconsolewidget.h>
 #endif
 
@@ -844,6 +845,8 @@ void KRslots::slotSetJumpBack() {
 //shows the JavaScript-Console
 void KRslots::jsConsole() {
 #ifdef __KJSEMBED__
+    if ( ! krJS )
+        krJS = new KrJS();
     krJS->view()->show();
 #endif
 }

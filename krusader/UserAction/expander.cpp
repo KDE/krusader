@@ -22,6 +22,10 @@
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
 
+#ifdef __KJSEMBED__
+#include "../KrJS/krjs.h"
+#endif
+
 #include <kdebug.h>
 #include <kinputdialog.h>
 #include <kstandarddirs.h>
@@ -726,13 +730,16 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
       krOut << "Expander: no script specified for %_Script(script)%; abort..." << endl;
       return UA_CANCEL;
    }
-   
+
    QString filename = parameter[0];
    if ( filename.find('/') && KURL::isRelativeURL(filename) ) {
       // this return the local version of the file if this exists. else the global one is returnd
       filename = locate( "data", "krusader/js/"+filename );
    }
-   
+
+  if ( ! krJS )
+      krJS = new KrJS();
+
    QString jsReturn = QString::null;
    if ( parameter[1].lower() == "yes" )	// to stay compatible with the old-style parameter
       jsReturn = "cmd";
@@ -748,7 +755,11 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
             krJS->putValue( jsVariable, KJSEmbed::convertToValue(krJS->globalExec(), jsValue ) );
       }
    }
-      
+
+   // set up the variable scriptDir with the directory of the current script
+   krJS->putValue( "scriptDir", KJSEmbed::convertToValue(krJS->globalExec(), KURL(filename).directory(false) ) );
+
+
    //FIXME: messagebox on JS-errors
    // comming with KDE-3.4: http://webcvs.kde.org/kdebindings/kjsembed/jsobjecteventproxy.cpp?rev=1.16&view=log
 

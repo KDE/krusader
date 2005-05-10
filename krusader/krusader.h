@@ -49,7 +49,7 @@
 #include <kdebug.h>
 
 #ifdef __KJSEMBED__
-#include <kjsembed/kjsembedpart.h>
+class KrJS;
 #endif
 
 class KrusaderStatus;
@@ -150,7 +150,7 @@ class Krusader : public KParts::MainWindow {
 	 static KrBookmarkHandler *bookman;
 
     #ifdef __KJSEMBED__
-    static KJSEmbed::KJSEmbedPart *js;
+    static KrJS *js;
     static KAction *actShowJSConsole;
     #endif
   

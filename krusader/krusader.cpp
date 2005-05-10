@@ -89,6 +89,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "BookMan/krbookmarkhandler.h"
 #include "Dialogs/popularurls.h"
 
+#ifdef __KJSEMBED__
+#include "KrJS/krjs.h"
+#endif
+
 // define the static members
 Krusader *Krusader::App = 0;
 KAction *Krusader::actProperties = 0;
@@ -171,7 +175,7 @@ KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
 
 #ifdef __KJSEMBED__
-KJSEmbed::KJSEmbedPart *Krusader::js = 0;
+KrJS *Krusader::js = 0;
 KAction *Krusader::actShowJSConsole = 0;
 #endif
 
@@ -647,9 +651,6 @@ void Krusader::setupActions() {
    userAction = new UserAction();
    
    #ifdef __KJSEMBED__
-   js = new KJSEmbed::KJSEmbedPart();
-   // make this object, the class Krusader, available for scripting as "Krusader":
-   js->addObject( this, "Krusader" );
    actBack = new KAction( i18n( "JavaScript console" ), ALT + CTRL + Key_J, SLOTS, SLOT( jsConsole() ), actionCollection(), "JS_Console" );
    #endif
 }
