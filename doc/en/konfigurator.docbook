@@ -50,21 +50,12 @@ and restart &krusader;.</para>
 <varlistentry><term><guilabel>Panels</guilabel></term>
    <listitem>
    <itemizedlist>
-   <listitem><para>
-             <guilabel>Save the state of the tabs at exit and restore it at startup</guilabel>
-             </para></listitem>
-   
-   <listitem><para>
-             <guilabel>Restore a manually saved state at startup</guilabel> : 
-                       Don't save the tabs, just restore the previously saved state.
-                       In the Settings menu the state of the tabs can be saved with
-                       <emphasis role="bold"><menuchoice><guimenu>Settings</guimenu>
-                       <guimenuitem>Save Position</guimenuitem></menuchoice></emphasis> 
-                       and these tabs will be restored after startup.</para></listitem>
-    
     <listitem><para>
-              <guilabel>Start from profile</guilabel> : 
-                        Starts always from the selected &panel_profiles_lnk;.             
+              <guilabel>Starting Session</guilabel> : 
+                        Starts the selected &panel_profiles_lnk;.
+                        A Panel Profile contains: all the tabs paths, the current tab and the active panel.
+                        <guilabel>&lt;Last session&gt;</guilabel> is a special Panel Profile,
+                        it is saved automaticly when closing &krusader;.              
               </para></listitem>
   </itemizedlist>
   </listitem>
