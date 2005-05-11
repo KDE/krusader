@@ -21,6 +21,7 @@
 #include "../Synchronizer/synchronizergui.h"
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
+#include "../VFS/preservingcopyjob.h"
 
 #ifdef __KJSEMBED__
 #include "../KrJS/krjs.h"
@@ -441,7 +442,7 @@ QString exp_Copy::expFunc( const ListPanel*, const QStringList& parameter, const
       return UA_CANCEL; // do nothing with invalid url's
    }
 
-   new KIO::CopyJob( src, dest, KIO::CopyJob::Copy, false, true );
+   PreservingCopyJob::createCopyJob( PM_DEFAULT, src, dest, KIO::CopyJob::Copy, false, true );
 
    return QString::null;  // this doesn't return everything, that's normal!
 }
@@ -465,7 +466,7 @@ QString exp_Move::expFunc( const ListPanel*, const QStringList& parameter, const
       return UA_CANCEL; // do nothing with invalid url's
    }
 
-   new KIO::CopyJob( src, dest, KIO::CopyJob::Move, false, true );
+   PreservingCopyJob::createCopyJob( PM_DEFAULT, src, dest, KIO::CopyJob::Move, false, true );
 
    return QString::null;  // this doesn't return everything, that's normal!
 }

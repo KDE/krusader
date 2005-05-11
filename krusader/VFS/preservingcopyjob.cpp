@@ -29,6 +29,8 @@
  ***************************************************************************/
 
 #include "preservingcopyjob.h"
+#include "../defaults.h"
+#include "../krusader.h"
 #include <utime.h>
 
 PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, CopyMode mode,
@@ -63,6 +65,32 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KUR
     timestamp.modtime = mtime;
 
     utime( (const char *)( to.path( -1 ).local8Bit() ), &timestamp );
+  }
+}
+
+KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo )
+{
+  if( ! dest.isLocalFile() )
+    pmode = PM_NONE;
+
+  switch( pmode )
+  {
+  case PM_PRESERVE_DATE:
+    return new PreservingCopyJob( src, dest, mode, asMethod, showProgressInfo );
+  case PM_DEFAULT:
+    {
+      QString group = krConfig->group();
+      krConfig->setGroup( "Advanced" );
+      bool preserve = krConfig->readBoolEntry( "PreserveDate", _PreserveDate );
+      krConfig->setGroup( group );
+      if( preserve )
+        return new PreservingCopyJob( src, dest, mode, asMethod, showProgressInfo );
+      else
+        return new KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo );
+    }
+  case PM_NONE:
+  default:
+    return new KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo );
   }
 }
 

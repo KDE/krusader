@@ -63,6 +63,7 @@ A
 #include "../VFS/krarchandler.h"
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
+#include "../VFS/preservingcopyjob.h"
 #include "../Dialogs/packgui.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krpleasewait.h"
@@ -364,6 +365,8 @@ void ListPanelFunc::editFile() {
 }
 
 void ListPanelFunc::moveFiles() {
+	PreserveMode pmode = PM_DEFAULT;
+
 	QStringList fileNames;
 	panel->getSelectedNames( &fileNames );
 	if ( fileNames.isEmpty() )
@@ -404,7 +407,7 @@ void ListPanelFunc::moveFiles() {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(1);
-		KIO::Job* job = new KIO::CopyJob( *fileUrls, dest, KIO::CopyJob::Move, false, true );
+		KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls, dest, KIO::CopyJob::Move, false, true );
 		job->setAutoErrorHandlingEnabled( true );
 		// refresh our panel when done
 		connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
@@ -419,7 +422,7 @@ void ListPanelFunc::moveFiles() {
 			return ;
 		}
 		// finally..
-		otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Move, files() );
+		otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Move, files(), "", pmode );
 	}
 }
 
@@ -473,6 +476,8 @@ void ListPanelFunc::mkdir() {
 }
 
 void ListPanelFunc::copyFiles() {
+	PreserveMode pmode = PM_DEFAULT;
+
 	QStringList fileNames;
 	panel->getSelectedNames( &fileNames );
 	if ( fileNames.isEmpty() )
@@ -500,7 +505,7 @@ void ListPanelFunc::copyFiles() {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(1);
-		KIO::Job* job = new KIO::CopyJob( *fileUrls, dest, KIO::CopyJob::Copy, false, true );
+		KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls, dest, KIO::CopyJob::Copy, false, true );
 		job->setAutoErrorHandlingEnabled( true );
 		if ( dest.equals( panel->virtualPath(), true ) ||
 			dest.upURL().equals( panel->virtualPath(), true ) )
@@ -514,7 +519,7 @@ void ListPanelFunc::copyFiles() {
 			return ;
 		}
 		// finally..
-		otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Copy, 0 );
+		otherFunc() ->files() ->vfs_addFiles( fileUrls, KIO::CopyJob::Copy, 0, "", pmode );
 	}
 }
 
@@ -1008,7 +1013,8 @@ void ListPanelFunc::pasteFromClipboard() {
 
 		KURL destUrl = panel->virtualPath();
 
-		KIO::Job* job = new KIO::CopyJob( urls, destUrl, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, false, true );
+		KIO::Job* job = PreservingCopyJob::createCopyJob( PM_DEFAULT, urls,
+			 destUrl, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, false, true );
 		job->setAutoErrorHandlingEnabled( true );
 		connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
 	}

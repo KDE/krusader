@@ -40,6 +40,7 @@
 #include <kio/jobclasses.h>
 // Krusader includes
 #include "vfile.h"
+#include "preservingcopyjob.h"
 
 /**
  * The vfs class is an extendable class which by itself does (almost)
@@ -61,7 +62,7 @@ public:
 	virtual			~vfs(){}
 
 	/// Copy a file to the vfs (physical).
-	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "")=0;	
+	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT)=0;	
 	/// Remove a file from the vfs (physical)
 	virtual void vfs_delFiles(QStringList *fileNames)=0;	
 	/// Return a list of URLs for multiple files	

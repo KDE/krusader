@@ -1,7 +1,7 @@
 /***************************************************************************
                          kgadvanced.cpp  -  description
                              -------------------
-    copyright            : (C) 2004 by Csaba Karai
+    copyright            : (C) 2004 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -48,10 +48,11 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
-  //   cfg_class  cfg_name           default     text                                      restart tooltip
-    {{"Advanced","AutoMount",        _AutoMount, i18n( "Automount filesystems" ),          false,  i18n( "If checked, Krusader will mount FSTAB mount-points when needed." )}};
+  //   cfg_class  cfg_name           default        text                                                restart tooltip
+    {{"Advanced","PreserveDate",     _PreserveDate, i18n( "Preserve date for local copy/move (slower)" ), false,  i18n( "If checked, Krusader will change the modification time of the local files according to the source one. This can make the copy slower." ) },
+     {"Advanced","AutoMount",        _AutoMount,    i18n( "Automount filesystems" ),             false,  i18n( "If checked, Krusader will mount FSTAB mount-points when needed." )}};
 
-  KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 2, 0, generalSettings, 1, generalGrp );
+  KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 1, 0, generalSettings, 2, generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
 
   addLabel( generalGrid, 2, 0, i18n( "MountMan won't (un)mount the following mount-points:" ),

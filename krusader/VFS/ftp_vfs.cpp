@@ -187,7 +187,7 @@ bool ftp_vfs::populateVfsList( const KURL& origin, bool showHidden ) {
 
 
 // copy a file to the vfs (physical)
-void ftp_vfs::vfs_addFiles( KURL::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir ) {
+void ftp_vfs::vfs_addFiles( KURL::List *fileUrls, KIO::CopyJob::CopyMode mode, QObject* toNotify, QString dir,  PreserveMode /*pmode*/ ) {
 	KURL destUrl = vfs_origin;
 
 	if ( dir != "" ) {

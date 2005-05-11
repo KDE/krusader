@@ -84,7 +84,7 @@ bool virt_vfs::populateVfsList( const KURL& origin, bool /*showHidden*/ ) {
 	return true;
 }
 
-void virt_vfs::vfs_addFiles( KURL::List *fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/ ) {
+void virt_vfs::vfs_addFiles( KURL::List *fileUrls, KIO::CopyJob::CopyMode /*mode*/, QObject* /*toNotify*/, QString /*dir*/, PreserveMode /*pmode*/ ) {
 	if ( path == "/" ) {
 		if ( !quietMode )
 			KMessageBox::error( krApp, i18n( "You can't copy files directly to the 'virt:/' directory.\nYou can create a sub directory and copy your files into it." ), i18n( "Error" ) );

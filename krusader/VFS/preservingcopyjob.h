@@ -34,12 +34,21 @@
 #include <kio/jobclasses.h>
 #include <qmap.h>
 
+typedef enum {
+  PM_NONE          = 0,
+  PM_PRESERVE_DATE = 1,
+  PM_DEFAULT       = 2
+} PreserveMode;
+
 class PreservingCopyJob : public KIO::CopyJob
 {
   Q_OBJECT
 
 public:
+
   PreservingCopyJob( const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
+
+  static KIO::CopyJob *createCopyJob( PreserveMode mode, const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
 
 public slots:
   void slotAboutToCreate (KIO::Job *, const QValueList< KIO::CopyInfo > &);

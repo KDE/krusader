@@ -128,7 +128,9 @@
 // Permission Check ///
 //#define _PermCheck     true
 // AutoMount //////////
-#define _AutoMount     false 
+#define _AutoMount        false 
+// Preserving date //////////
+#define _PreserveDate     false
 // Nonmount Points ////
 #define _NonMountPoints	"/, "
 // Confirm Unempty Dir //     (for delete)

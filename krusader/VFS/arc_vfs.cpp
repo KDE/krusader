@@ -265,7 +265,7 @@ bool arc_vfs::getDirs(){
 
 
 // copy a file to the vfs (physical)
-void arc_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir){
+void arc_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir, PreserveMode /*pmode*/ ){
   if ( addCmd.isEmpty() ) return;
 
   // get the path inside the archive

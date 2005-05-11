@@ -133,13 +133,13 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 }
 
 // copy a file to the vfs (physical)	
-void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir){
+void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir, PreserveMode pmode ){
   if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
 
 	KURL dest;
 	dest.setPath(vfs_workingDir()+"/"+dir);
 
-  KIO::Job* job = new KIO::CopyJob(*fileUrls,dest,mode,false,true );
+  KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls,dest,mode,false,true );
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()) );
   if(mode == KIO::CopyJob::Move) // notify the other panel
     connect(job,SIGNAL(result(KIO::Job*)),toNotify,SLOT(vfs_refresh(KIO::Job*)) );

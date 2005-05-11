@@ -33,7 +33,7 @@ public:
 	~virt_vfs();
 	
 	/// Copy a file to the vfs (physical).
-	void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "");	
+	void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "",  PreserveMode pmode = PM_DEFAULT );	
 	/// Remove a file from the vfs (physical)
 	void vfs_delFiles(QStringList *fileNames);	
 	/// Return a list of URLs for multiple files	
