@@ -47,6 +47,7 @@
 #include <kstandarddirs.h>
 #include <kdeversion.h>
 #include <qcheckbox.h>
+#include <krecentdocument.h>
 // Krusader includes
 #include "../krusader.h"
 #include "../resources.h"
@@ -68,6 +69,79 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 	}
 	delete dlg;
 	return u;
+}
+
+KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &preserveDate ) {
+	KURLRequesterDlgForCopy *dlg = new KURLRequesterDlgForCopy(url.prettyURL(1),text, preserveDate, krApp,"" );        
+	dlg->urlRequester()->completionObject()->setDir(cwd.url());
+	KURL u;
+	if (dlg->exec() == QDialog::Accepted) {
+		u = vfs::fromPathOrURL(dlg->urlRequester()->completionObject()->replacedPath(
+			dlg->urlRequester()->lineEdit()->text()));
+		if (u.isRelativeURL(u.url())) {
+			KURL temp = u;
+			u = cwd;
+			u.addPath(temp.url());
+		}
+	}
+	preserveDate = dlg->preserveDate();
+	delete dlg;
+	return u;
+}
+
+KURLRequesterDlgForCopy::KURLRequesterDlgForCopy( const QString& urlName, const QString& _text, bool presDate, QWidget *parent,
+                                                  const char *name, bool modal )
+			:   KDialogBase( Plain, QString::null, Ok|Cancel|User1, Ok, parent, name, modal, true, KStdGuiItem::clear() ) {
+	QVBoxLayout * topLayout = new QVBoxLayout( plainPage(), 0, spacingHint() );
+
+	QLabel * label = new QLabel( _text, plainPage() );
+	topLayout->addWidget( label );
+
+	urlRequester_ = new KURLRequester( urlName, plainPage(), "urlRequester" );
+	urlRequester_->setMinimumWidth( urlRequester_->sizeHint().width() * 3 );
+	topLayout->addWidget( urlRequester_ );
+	preserveDateCB = new QCheckBox(i18n("Preserve date (only for local targets)"), plainPage());        
+	preserveDateCB->setChecked( presDate );
+	topLayout->addWidget( preserveDateCB );
+	urlRequester_->setFocus();
+	connect( urlRequester_->lineEdit(), SIGNAL(textChanged(const QString&)),
+		SLOT(slotTextChanged(const QString&)) );
+	bool state = !urlName.isEmpty();
+	enableButtonOK( state );
+	enableButton( KDialogBase::User1, state );
+	connect( this, SIGNAL( user1Clicked() ), SLOT( slotClear() ) );
+}
+
+KURLRequesterDlgForCopy::KURLRequesterDlgForCopy() {
+}
+
+bool KURLRequesterDlgForCopy::preserveDate() {
+	return preserveDateCB->isChecked();
+}
+
+void KURLRequesterDlgForCopy::slotTextChanged(const QString & text) {
+	bool state = !text.stripWhiteSpace().isEmpty();
+	enableButtonOK( state );
+	enableButton( KDialogBase::User1, state );
+}
+
+void KURLRequesterDlgForCopy::slotClear() {
+	urlRequester_->clear();
+}
+
+KURL KURLRequesterDlgForCopy::selectedURL() const {
+	if ( result() == QDialog::Accepted ) {
+		KURL url = KURL::fromPathOrURL( urlRequester_->url() );
+		if( url.isValid() )
+			KRecentDocument::add(url);                                
+		return url;
+	}        
+	else
+		return KURL();
+}
+
+KURLRequester * KURLRequesterDlgForCopy::urlRequester() {
+	return urlRequester_;
 }
 
 KRGetDate::KRGetDate(QDate date, QWidget *parent, const char *name) : KDialog(parent, name,true,WStyle_DialogBorder) {

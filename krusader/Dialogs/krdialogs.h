@@ -69,6 +69,26 @@ public:
 	 *              this is used for completion of partial urls
 	 */
 	static KURL getDir(QString text,const KURL& url, const KURL& cwd);
+	static KURL getDir(QString text,const KURL& url, const KURL& cwd, bool & preserveDate );
+};
+
+class KURLRequesterDlgForCopy : public KDialogBase {
+  Q_OBJECT
+public:
+	KURLRequesterDlgForCopy( const QString& url, const QString& text, bool presDate,
+				QWidget *parent, const char *name, bool modal=true );
+	KURLRequesterDlgForCopy();
+
+	KURL selectedURL() const;
+	bool preserveDate();        
+        
+	KURLRequester *urlRequester();
+private slots:
+	void slotClear();
+	void slotTextChanged(const QString &);
+private:
+	KURLRequester *urlRequester_;
+	QCheckBox *preserveDateCB;
 };
 
 class KRGetDate : public KDialog {
