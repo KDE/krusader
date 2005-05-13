@@ -34,6 +34,7 @@
 #include "../krusader.h"
 #include <klocale.h>
 #include <klineedit.h>
+#include <qtooltip.h>
 
 KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   KonfiguratorPage( first, parent, name ), profileCombo( 0 )
@@ -47,8 +48,9 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   QGroupBox *panelsGrp = createFrame( i18n( "Panels" ), parent, "panelsGrp" );
   QGridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
   
-  addLabel( panelsGrid, 0, 0, i18n( "Starting session:" ), panelsGrp, "Startup session" );
-  
+  QLabel *label = addLabel( panelsGrid, 0, 0, i18n( "Starting session:" ), panelsGrp, "Startup session" );
+  QToolTip::add( label, i18n( "Starts the selected Panel profile. A Panel Profile contains: all the tabs paths,\n the current tab and the active panel. <Last session> is a special Panel Profile,\n it is saved automaticly when closing Krusader." ) );
+
   QStringList profileList = ProfileManager::availableProfiles( "Panel" );
   profileList.push_front( "<" + i18n( "Last session" ) + ">" );
   
