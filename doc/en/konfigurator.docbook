@@ -455,6 +455,10 @@ HTML_PARSING-->
 <varlistentry><term><guilabel>General</guilabel></term>
   <listitem>
   <itemizedlist>
+  <listitem><para><guilabel>Preserve date for local copy/move (slower)</guilabel>: 
+                  If checked, Krusader will change the modification time of the local files according 
+                  to the source one. This can make the copy slower.
+                  </para></listitem>
   <listitem><para><guilabel>Automount filesystems</guilabel>: this makes &krusader; try to mount a
         filesystem before entering it. For example, if you click on
         <filename class="directory">/mnt/cdrom</filename>
@@ -462,14 +466,16 @@ HTML_PARSING-->
         <filename class="directory">/etc/fstab</filename> as a mount point), &krusader; will check if it
         is mounted. If not, it will try and mount it for you and then enter, so that you'd see the contents
         of your cdrom. Note, however, that &krusader;  will NOT unmount when exiting
-        <filename class="directory">/mnt/cdrom</filename>.</para></listitem>
+        <filename class="directory">/mnt/cdrom</filename>.
+         </para></listitem>
   <listitem><para><guilabel>MountMan won't (un)mount the following mount-points</guilabel>:
-              If you have filesystems that you don't want to accidentally unmount (or mount) then
-        enter a list of mountpoints separated by commas
-                    (&eg; <literal>/, /boot, /tmp</literal>) and &mountman_lnk; won't try to (un)mount them.</para></listitem>
+            If you have filesystems that you don't want to accidentally unmount (or mount) then
+            enter a list of mountpoints separated by commas
+            (&eg; <literal>/, /boot, /tmp</literal>) and &mountman_lnk; won't try to (un)mount them.
+         </para></listitem>
   </itemizedlist>
   </listitem>
-  </varlistentry>
+</varlistentry>
 
 <varlistentry><term><guilabel>Confirmations</guilabel></term>
   <listitem><para>By checking the options in this section, &krusader; will ask for confirmation
