@@ -196,7 +196,7 @@ and you control the current session with the &viewmenu_lnk;.
                  files by typing their names, or the first few characters of a filename.
                  Pressing &Enter; or double clicking on a file will open/execute that file.
                  You can select/unselect files using the mouse with the <keycap>Insert</keycap> key or the
-                 &selectmenu_lnk;.</para></listitem>
+                 &markmenu_lnk;.</para></listitem>
       <listitem><para><emphasis><guilabel>Totals Label</guilabel></emphasis> :
                  marking or unmarking files will change the
                  <emphasis><guilabel>Totals Label</guilabel></emphasis> at the bottom
@@ -549,7 +549,7 @@ TODO
 -->
     <listitem><para>The ".." entry is not markable.</para>
                       </listitem>
-    <listitem><para>The &selectmenu_lnk; can offer more ways to select your files.</para>
+    <listitem><para>The &markmenu_lnk; can offer more ways to select your files.</para>
                       </listitem>
 </itemizedlist>
 </para>
@@ -1023,7 +1023,7 @@ TODO
       to copy F5, Alt+u Unpack, &etc;</para>
       
 <para>You can several operations with the &foldertabs_lnk;, 
-      Several <link linkend="select-menu">selection</link> operations can be used
+      Several <link linkend="mark-menu">selection</link> operations can be used
       And at the end you can close &krusader; with F10.</para>
 
 </sect1>
@@ -1141,13 +1141,13 @@ TODO
 <entry><para><link linkend="unpacking-archives">Unpack files</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>+</keycap></keycombo></para></entry>
-<entry><para><link linkend="select-menu">Select All</link></para></entry></row>
+<entry><para><link linkend="mark-menu">Select All</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>-</keycap></keycombo></para></entry>
-<entry><para><link linkend="select-menu">Unselect All</link></para></entry></row>
+<entry><para><link linkend="mark-menu">Unselect All</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>*</keycap></keycombo></para></entry>
-<entry><para><link linkend="select-menu">Invert Selection</link></para></entry></row>
+<entry><para><link linkend="mark-menu">Invert Selection</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>/</keycap></keycombo></para></entry>
 <entry><para><link linkend="mount-man">MountMan</link></para></entry></row>
@@ -1198,10 +1198,10 @@ TODO
 <tbody>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></para></entry>
-<entry><para><link linkend="select-menu">Select Group</link></para></entry></row>
+<entry><para><link linkend="mark-menu">Select Group</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></para></entry>
-<entry><para><link linkend="select-menu">Unselect Group</link></para></entry></row>
+<entry><para><link linkend="mark-menu">Unselect Group</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></para></entry>
 <entry><para><link linkend="view-menu">Compare directories</link> (Compare Mode)</para></entry></row>

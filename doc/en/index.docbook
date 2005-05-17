@@ -51,7 +51,7 @@ Previous used Docbook
 <!ENTITY kruforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/index.php">&krusader; Forum</ulink>'>
 <!ENTITY kruforumsearch_url '<ulink url="http://krusader.sourceforge.net/phpBB/search.php">Search</ulink>'>
 <!ENTITY krugenforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=1">General Discussion Forum</ulink>'>
-<!ENTITY newsforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=7&amp;sid=ee745f342b392ab3e71364cca7da4314">News and Announcements Forum</ulink>'>
+<!ENTITY newsforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=7">News and Announcements Forum</ulink>'>
 <!ENTITY bugforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=3">Bug Discussion Forum</ulink>'>
 <!ENTITY featureforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=6">New Features Discussion/Requests Forum</ulink>'>
 <!ENTITY todoforum_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=10">ToDo Forum</ulink>'>
@@ -73,13 +73,13 @@ Previous used Docbook
 
 <!ENTITY shared_libdeps_url '<ulink url="http://krusader.sourceforge.net/handbook/ldd_krusader.txt">shared library dependencies</ulink>'>
 <!ENTITY deb_requirements_url '<ulink url="http://packages.debian.org/unstable/utils/krusader">requirements on &debian;</ulink>'>
-<!ENTITY mailing_subscribe_url '<ulink url="http://sourceforge.net/mail/?group_id=6488">(un)subscribe</ulink>'>
-<!ENTITY krunews_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum_id=2328">&krusader;-news</ulink>'>
+<!ENTITY mailing_subscribe_url '<ulink url="http://krusader.sourceforge.net/lists.php">(un)subscribe</ulink>'>
+<!ENTITY krunews_url '<ulink url="http://groups-beta.google.com/group/krusader-news">&krusader;-news</ulink>'>
 <!ENTITY krulatestnews_url '<ulink url="http://krusader.sourceforge.net/news.php">latest news</ulink>'>
+
 <!ENTITY krucommits_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum_id=34772">&krusader;-commits</ulink>'>
-<!ENTITY krudevel_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum_id=35367">&krusader;-devel</ulink>'>
-<!ENTITY krudevel_ro_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum_id=43320">&krusader;-devel-ro</ulink>'>
-<!ENTITY krudevel_ro_search_url '<ulink url="http://sourceforge.net/search/index.php?type_of_search=mlists&amp;group_id=6488&amp;forum_id=43320">&krusader;-devel-ro-search</ulink>'>
+<!ENTITY krudevel_url '<ulink url="http://groups-beta.google.com/group/krusader-devel">&krusader;-devel</ulink>'>
+<!ENTITY krudoc_url '<ulink url="http://groups-beta.google.com/group/krusader-doc">&krusader;-doc</ulink>'>
 
 <!ENTITY online_buglist_url '<ulink url="http://sourceforge.net/tracker/?atid=106488&amp;group_id=6488&amp;func=browse">online bug list</ulink>'>
 <!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/">more translator credits</ulink>'>
@@ -132,6 +132,7 @@ Previous used Docbook
 <!ENTITY kjsembed_url '<ulink url="http://xmelegance.org/kjsembed/">KJSEmbed</ulink>'>
 
 <!ENTITY ofm_url '<ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink>'>
+<!ENTITY disk_order_url '<ulink url="http://www.likemac.ru/english/"><trademark class="copyright">Disk Order</trademark></ulink>'>
 
 <!-- documentation links -->
 <!ENTITY selection_modes_lnk '<link linkend="selection_modes">Selection Modes</link>'>
@@ -140,7 +141,7 @@ Previous used Docbook
 <!ENTITY konfiggereral_lnk '<link linkend="konfig-general">Konfigurator General page</link>'>
 <!ENTITY konfigependencie_lnk '<link linkend="konfig-dependencies">Konfigurator Dependencie page</link>'>
 <!ENTITY viewmenu_lnk '<link linkend="view-menu">View menu</link>'>
-<!ENTITY selectmenu_lnk '<link linkend="select-menu">Select menu</link>'>
+<!ENTITY markmenu_lnk '<link linkend="mark-menu">Mark menu</link>'>
 <!ENTITY comparedir_lnk '<link linkend="compare-dir">Compare Directories</link>'>
 <!ENTITY fnkeybar_lnk '<link linkend="fnkeys">FN Keys Bar</link>'>
 <!ENTITY main_toolbar_lnk '<link linkend="main_toolbar">Main Toolbar</link>'>
@@ -247,6 +248,7 @@ Previous used Docbook
 
 <!ENTITY freebsd '<trademark class="copyright">FreeBSD</trademark>'>
 <!ENTITY tcmd '<trademark class="copyright">Total commander</trademark>'>
+<!ENTITY tcmd_url '<ulink url="http://www.ghisler.com/">&tcmd;</ulink>'>
 
 <!-- useraction ENTITIES -->
 <!ENTITY useraction_parameter 'Parameter:'>
@@ -347,7 +349,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-05-14</date>
+  <date>2005-05-17</date>
   <releaseinfo>1.61.0</releaseinfo>
 
    <abstract>

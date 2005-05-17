@@ -194,8 +194,8 @@
 </variablelist>
 </sect1>
 
-<sect1 id="select-menu">
-<title>The <guimenu>Selection</guimenu> Menu</title>
+<sect1 id="mark-menu">
+<title>The <guimenu>Mark</guimenu> Menu</title>
   <para>The actions in this menu allow you to select or unselect multiple files in the
                active panel. Directories are selected (or not) according to your choice in the
                &konfiglookandfeel_lnk;.
@@ -205,22 +205,22 @@
   <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></shortcut>
-  <guimenu>Selection</guimenu>
+  <guimenu>Mark</guimenu>
   <guimenuitem>Select Group</guimenuitem>
   </menuchoice></term>
   <listitem><para>
   Opens a dialog which allows you to select files in the active panel.
-        You can enter a list of space-separated file patterns (&ie;: <literal role="extension">*.c,  *.ccp</literal>).
-        Using the <guibutton>Add</guibutton> button you can store your selection for future use,
-        double-clicking on a previous selection is the same as entering the selection and pressing
-        the <guibutton>OK</guibutton> button.
+  You can enter a list of space-separated file patterns (&ie;: <literal role="extension">*.c,  *.ccp</literal>).
+  With the Profile Handler you can manage your selections for future usage, this will speed up your work. 
+  A double-click on a Profile is the same as entering the selection and pressing
+  the <guibutton>OK</guibutton> button.
   </para></listitem>
 </varlistentry>
 
 <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut>
-  <guimenu>Selection</guimenu>
+  <guimenu>Mark</guimenu>
   <guimenuitem>Unselect Group</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -232,7 +232,7 @@
 <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>+</keycap></keycombo></shortcut>
-  <guimenu>Selection</guimenu>
+  <guimenu>Mark</guimenu>
   <guimenuitem>Select All</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -243,7 +243,7 @@
 <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>-</keycap></keycombo></shortcut>
-  <guimenu>Selection</guimenu>
+  <guimenu>Mark</guimenu>
   <guimenuitem>Unselect All</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -254,7 +254,7 @@
 <varlistentry>
   <term><menuchoice>
   <shortcut><keycombo action="simul">&Alt;<keycap>*</keycap></keycombo></shortcut>
-  <guimenu>Selection</guimenu>
+  <guimenu>Mark</guimenu>
   <guimenuitem>Invert Selection</guimenuitem>
   </menuchoice></term>
   <listitem><para>
@@ -265,7 +265,7 @@
 
 <varlistentry>
   <term><menuchoice>
-  <guimenu>Selection</guimenu>
+  <guimenu>Mark</guimenu>
   <guimenuitem>Compare Directories</guimenuitem>
   </menuchoice></term>
   <listitem><para>Toggles &krusader; &comparedir_lnk; function.</para>
@@ -274,7 +274,7 @@
 
 <varlistentry>
   <term><menuchoice>
-  <guimenu>Selection</guimenu>
+  <guimenu>Mark</guimenu>
   <guimenuitem>Compare setup</guimenuitem>
   </menuchoice></term>
   <listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>

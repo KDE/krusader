@@ -787,9 +787,8 @@ easier transition and
     &online_buglist_url; of the Bug Tracking System.</para></listitem>
     <listitem><para>If you can't find this bug mentioned, please <emphasis role="bold">submit</emphasis> it
     into the bug tracker by clicking the <guibutton>"Submit New"</guibutton> button in the bug-tracker window.
-    Please submit the following issues: the &krusader; version used, the &Linux;
-distribution + version used, processor type, and
-    as good a description of the problem as you can manage.
+    Please submit the following issues: the &krusader; version used, the &Linux; distribution + version used, 
+    processor type, and as good a description of the problem as you can manage.
     </para></listitem>
     </orderedlist></para>
     <para>Thanks for your cooperation!</para>
@@ -797,12 +796,13 @@ distribution + version used, processor type, and
     If you encounter the same problem then it is possibly a &kioslaves1_url; or &kde; (kdelibs) bug,
     and not a &krusader; bug.
     &krusader; uses the &kde; libraries and the &kioslaves2_url; for many operations.
-    In some cases you can encounter problems if your distribution is incorrectly configured, please test it first as explained above, thanks!
+    In some cases you can encounter problems if your distribution is incorrectly configured, 
+    please test it first as explained above, thanks!
     </para></note>
     <para> </para> <!-- Empty line to make it more readable -->
     <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla http://bugs.kde.org/,
-    &kde;'s Bug Tracking System. Report &krusader; bugs
-directly to us.</remark></para></note>
+    &kde;'s Bug Tracking System. Report &krusader; bugs 
+    directly to us.</remark></para></note>
     <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
@@ -812,32 +812,30 @@ directly to us.</remark></para></note>
   <para>Does &krusader; have a mailing list?</para>
   </question>
   <answer>
-  <para>Yes, we have 3 mailing lists.
-        No spam, no bother, just &krusader;. Feel free to &mailing_subscribe_url;.</para>
+  <para>Yes, we have 4 mailing lists.
+        No spam, no bother, just &krusader;. Feel free to &mailing_subscribe_url;.
+        Please note that all the mailinglists are read-only, so posting is not allowed.</para>
 
-  <para>Tip. our mailing lists are archived and with the &URL;'s below you can view them with a browser,
+  <para>Tip. our mailing lists can be browsed online or read with a newsreader,
         so that you don't even have to subscribe to see the mailing lists.
      <itemizedlist>
-     <listitem><para>&krunews_url; is used to notify &krusader; users about new releases, major bugfixes &etc; .
+     <listitem><para>&krunews_url; is a very low volume list, used for announcements of new versions or 
+                     critical bugfixes.
                      The news can also been read online at &krulatestnews_url; and in the &newsforum_url;
-                     which are basically the same but displayed in another
-format.
+                     which are basically the same but displayed in another format.
                      </para></listitem>
+     <listitem><para>&krudevel_url; is the developer mailing list.
+                     If you want to follow the development of &krusader; on the bleeding edge, 
+                     this is the place to be!                    
+                     </para></listitem>                     
+     <listitem><para>&krudoc_url; is the documentation mailing list.
+                     </para></listitem>                                          
      <listitem><para>&krucommits_url; when the &krusader; Krew commits code into
-CVS, it will be reported in this mailing list.
+                     CVS, it will be reported in this mailing list.
                      This allows you to follow the &krusader; development ... live!
                      Want to keep track? Waiting for a certain feature/bugfix?
                      </para></listitem>
-     <listitem><para>&krudevel_ro_url; is a read-only copy of the developer mailing list of the &krusader; Krew.
-                     A lot of people wanted to subscribe to krusader-devel, which is the developers-only mailing list.
-                     We had to repectfully deny the requests, since the list is high-traffic as it is.
-                     However, since we do want you to be able to follow our
-progress, we setup this mailing list which is the same as krusader-devel, except
-that it is read-only.
-                     If you want to follow the development of &krusader; on the
-bleeding edge, this is the place to be!
-                     Please note that the list is read-only, so posting is not allowed.
-                     </para></listitem>
+     
   </itemizedlist>
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
@@ -870,20 +868,19 @@ bleeding edge, this is the place to be!
         An open source project's greatest strength is derived from getting user feedback.
         That is why we love to hear what you have to say.
         With your feedback we can make &krusader; better and better; otherwise,
-we are not aware of issues and ideas you may have.
+        we are not aware of issues and ideas you may have.
         But please remember the following, so that we can maintain some order in the chaos. ;-)</para>
 
-  <para>If the <link linkend="index">Documentation</link>, &faq_lnk;, &kruforum_url; and the &krudevel_ro_search_url;
-        can't help you, do not hesitate to drop a note to our forum.
-        The &krusader; Krew or the &krusader; forum community is always available to help you.</para>
+  <para>If the <link linkend="index">Documentation</link>, &faq_lnk;, &kruforum_url; and &krudevel_url;
+        (please use the search function ) can't help you, do not hesitate to drop a note to our forum.
+        The &krusader; Krew or the &krusader; community is always available to help you.</para>
 
   <para>Please use the &kruforumsearch_url; function of the &kruforum_url;, your issue may have been
          previously discussed (this allows us to minimze the double/triple/... postings).
          If your issue has already been discussed in the past there is a great
-chance that you will have an instant solution for your issue/problem.  If the
-issue is currently being discussed, you can join in the discussion.
-         Some questions are asked over and over again, for these we have
-made the &faq_lnk; ;-)
+         chance that you will have an instant solution for your issue/problem. 
+         If the issue is currently being discussed, you can join in the discussion.
+         Some questions are asked over and over again, for these we have made the &faq_lnk; ;-)
          This also allows us also to spend more time in developing &krusader;.</para>
 
 <para>The &kruforum_url; is split into six sections:
@@ -925,7 +922,8 @@ made the &faq_lnk; ;-)
   <para>How can I translate &krusader; to my native language?</para>
   </question>
   <answer>
-  <para>Please read the &i18nhowto_url;. It's not difficult to translate! Most anyone can do it, it just takes some time.
+  <para>Please read the &i18nhowto_url;. It's not difficult to translate! 
+        Most anyone can do it, it just takes some time.
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
@@ -945,6 +943,32 @@ made the &faq_lnk; ;-)
   </answer>
 </qandaentry>
 
+<qandaentry>
+  <question id="faqg_mac">
+  <para>Is there a &MacOS; X version?</para>
+  </question>
+  <answer>
+  <para>Yes, but for the moment only &krusader;-1.40
+        We are looking for a maintainer for the &krusader; &MacOS; X port. 
+        Please <link linkend="help_krusader">help us</link>, thanks.
+        A recommended native file manager for &MacOS; is &disk_order_url; (shareware).
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqg_win">
+  <para>Is there a &Windows; version?</para>
+  </question>
+  <answer>
+  <para>No, but this might change in the future.
+        Please <link linkend="help_krusader">help us</link>, thanks.
+        A recommended native file manager for &Windows; is &tcmd_url; (shareware).
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
 
 
 </qandaset>
@@ -953,7 +977,10 @@ made the &faq_lnk; ;-)
 <!--
   <qandaentry>
       <question><para> </para></question>
-      <answer><para>  </para></answer>
+      <answer>
+        <para> </para>
+        <para> </para> // Empty line to make it more readable
+      </answer>
   </qandaentry>
 -->
 
