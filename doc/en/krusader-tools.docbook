@@ -205,7 +205,20 @@
       <filename>devices:/</filename> and <filename>Virtual Filesystem</filename>
       </para>
 
-<tip><para>&bookmarks_lnk; can be placed into the &main_toolbar_lnk; and the &actions_toolbar_lnk;.</para></tip>
+<para><emphasis role="bold">Bookmarks as action buttons on the Toolbar</emphasis></para>
+<para>Bookmarks can be placed as buttons on the &main_toolbar_lnk; or the &actions_toolbar_lnk;,
+      you can even make a key-binding if you want.
+ <itemizedlist>
+    <listitem><para>create your &bookmarks_lnk; .
+              </para></listitem>
+    <listitem><para>If you want, you can create keybindings for the bookmarks in the 
+                    <guilabel>Key-bindings</guilabel> section of the &konfiglookandfeel_lnk; .
+                    </para></listitem>
+    <listitem><para>Add your bookmarks as action buttons on the &main_toolbar_lnk; or the &actions_toolbar_lnk; with
+                    the <guilabel>Toolbar</guilabel> section of the &konfiglookandfeel_lnk; .
+                    </para></listitem>
+ </itemizedlist>
+</para>
 
 <para><emphasis role="bold">Virtual Filesystem</emphasis></para>
 <para>This is not a virtual folder, but a container for &URL;'s from different file systems.
