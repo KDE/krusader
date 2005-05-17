@@ -36,7 +36,6 @@
 #include "../Panel/listpanel.h"
 #include "../Panel/panelfunc.h"
 #include "../Dialogs/krdialogs.h"
-#include "../VFS/krpermhandler.h"
 #include "../VFS/virt_vfs.h"
 #include "../KViewer/krviewer.h"
 #include "krsearchmod.h"
@@ -295,8 +294,8 @@ void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, ti
   // convert the time_t to struct tm
   struct tm* t=localtime((time_t *)&mtime);
   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-  new QListViewItem(resultsList, what, where.replace(QRegExp("\\\\"),"#"),
-                    KRpermHandler::parseSize(size), KGlobal::locale()->formatDateTime(tmp), perm);
+  new ResultListViewItem(resultsList, what, where.replace(QRegExp("\\\\"),"#"),
+                    size, KGlobal::locale()->formatDateTime(tmp), perm);
   QString totals = QString(i18n("Found %1 matches.")).arg(resultsList->childCount());
   foundLabel->setText(totals);
 }

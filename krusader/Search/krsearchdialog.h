@@ -36,6 +36,7 @@
 #include "../Filter/filtertabs.h"
 #include "../Filter/generalfilter.h"
 #include "../VFS/krquery.h"
+#include "../VFS/krpermhandler.h"
 #include "krsearchmod.h"
 #include "../GUI/profilemanager.h"
 
@@ -114,6 +115,39 @@ private:
   
   int            sizeX;
   int            sizeY;
+};
+
+class ResultListViewItem : QListViewItem
+{
+public:
+  ResultListViewItem( QListView *resultsList, QString name, QString where, KIO::filesize_t size, 
+                      QString date, QString perm ) : QListViewItem( resultsList, name, where, 
+                      KRpermHandler::parseSize(size), date, perm )
+  {
+    fileSize = size;
+  }  
+  
+  virtual int compare(QListViewItem *i,int col,bool ascending ) const
+  {
+    if( col == 2 ) {
+      ResultListViewItem *other = (ResultListViewItem *)i;
+      KIO::filesize_t otherSize = other->getSize();
+      
+      if( fileSize == otherSize )
+        return 0;
+      if( fileSize > otherSize )
+        return 1;
+      return -1;
+    }
+    return QListViewItem::compare( i, col, ascending );
+  }
+
+  KIO::filesize_t getSize() {
+    return fileSize;
+  }
+  
+private:
+  KIO::filesize_t fileSize;
 };
 
 #endif
