@@ -64,7 +64,7 @@ vfile::vfile(const QString& name,	                  // useful construtor
 	vfile_mimeType=mime;
 	vfile_symDest=symDest;
 	vfile_mode=mode;
-	if (vfile_isDir())
+	if (vfile_isDir() && !vfile_symLink )
 		vfile_size = 0;
 }
 
@@ -92,7 +92,7 @@ vfile::vfile(const QString& name,	                  // useful construtor
 	vfile_mimeType=mime;
 	vfile_symDest=symDest;
 	vfile_mode=mode;
-	if (vfile_isDir())
+	if ( vfile_isDir() && !vfile_symLink )
 		vfile_size = 0;
 }
 

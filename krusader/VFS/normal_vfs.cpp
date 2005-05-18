@@ -247,8 +247,8 @@ void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned
     if ( !dir.exists() ) return;
     
     ++(*totalDirs);
-    dir.setFilter(QDir::All|QDir::Hidden);
-    dir.setSorting(QDir::Name|QDir::DirsFirst);
+    dir.setFilter(QDir::All | QDir::System | QDir::Hidden);
+    dir.setSorting(QDir::Name | QDir::DirsFirst);
 
     // recurse on all the files in the directory
     QFileInfoList* fileList = const_cast<QFileInfoList*>(dir.entryInfoList());
