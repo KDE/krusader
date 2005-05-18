@@ -307,7 +307,8 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
 
    // This enables Krusader to show a tray icon
    sysTray = new KSystemTray( this );
-   sysTray->setPixmap( iconLoader->loadIcon( "krusader", KIcon::Panel, 22 ) );
+   // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
+   sysTray->setPixmap( iconLoader->loadIcon( privIcon(), KIcon::Panel, 22 ) );
    sysTray->hide();
 
    setCentralWidget( mainView );
@@ -990,6 +991,14 @@ QString Krusader::getTempFile() {
    while ( QDir().exists( tmpDir ) )
       tmpDir = tmpDir + kapp->randomString( 8 );
    return tmpDir;
+}
+
+
+char* Krusader::privIcon() {
+   if ( geteuid() )
+      return "krusader_blue";
+   else
+      return "krusader_red";
 }
 
 

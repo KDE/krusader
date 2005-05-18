@@ -54,6 +54,33 @@ static KCmdLineOptions options[] =
 };
 
 int main(int argc, char *argv[]) {
+
+// ============ begin icon-stuff ===========
+// If the user has no icon specified over the commandline we set up uor own.
+// this is acording to the users privileges. The icons are in Krusader::privIcon()
+
+  bool hasIcon = false;
+  int i = 0;
+  char * myArgv[argc+2];
+
+ // if no --miniicon is given, --icon is used. So we don't need to check for --miniicon separately
+  for ( i = 0; i < argc; ++i ) {
+    if ( strcmp(argv[ i ], "--icon") == 0 )
+     hasIcon = true;
+  }
+
+  if ( ! hasIcon ) {
+    for ( i = 0; i < argc; ++i )
+      myArgv[ i ] = argv[ i ];
+
+    myArgv[ argc ] = "--icon";
+    myArgv[ ++argc ] = Krusader::privIcon();
+    myArgv[ ++argc ] = 0;
+
+    argv = myArgv;
+  }
+// ============ end icon-stuff ===========
+
   // ABOUT data information
   KAboutData aboutData( "krusader", ( geteuid() ? I18N_NOOP("Krusader") :
                         I18N_NOOP("Krusader - ROOT PRIVILEGES")),

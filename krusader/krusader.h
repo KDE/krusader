@@ -75,6 +75,11 @@ class Krusader : public KParts::MainWindow {
     Krusader();
     ~Krusader();
     void refreshView();				 // re-create the main view
+    /**
+     * This returns a defferent icon if krusader runs with root-privileges
+     * @return a character string with the specitif icon-name
+     */
+    static char* privIcon();
     static QStringList supportedTools(); // find supported tools
 	 void importKeyboardShortcuts(QString filename);
 	 void exportKeyboardShortcuts(QString filename);
