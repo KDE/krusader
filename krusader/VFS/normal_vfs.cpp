@@ -223,26 +223,40 @@ void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned
   if (!name.contains("/")) name = vfs_workingDir()+"/"+name;
   if (name == "/proc") return;
 
-  KFileItem kfi( KFileItem::Unknown, KFileItem::Unknown, vfs::fromPathOrURL( name ) );
-  if(kfi.isLink() || !kfi.isDir()){ // single files are easy : )
+  KDE_struct_stat stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem 
+  KDE_lstat(name.local8Bit(),&stat_p);   //         reports wrong size for a symbolic link
+  
+  if( S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode) ) { // single files are easy : )
     ++(*totalFiles);
-    (*totalSize) += kfi.size();
+    (*totalSize) += stat_p.st_size;
   }
   else{  // handle directories
-		QDir dir(name);
     // avoid a nasty crash on un-readable dirs
-		if ( !kfi.isReadable() || !dir.exists() ) return;
-		++(*totalDirs);
+    bool readable = false;
+    if( stat_p.st_uid == getuid() )
+      readable = !!(S_IRUSR & stat_p.st_mode);
+    else if ( stat_p.st_gid == getgid() )
+      readable = !!(S_IRGRP & stat_p.st_mode );
+    else
+      readable = !!(S_IROTH & stat_p.st_mode );
+    
+    if( !readable )
+      return;
+      
+    QDir dir(name);    
+    if ( !dir.exists() ) return;
+    
+    ++(*totalDirs);
     dir.setFilter(QDir::All|QDir::Hidden);
-	  dir.setSorting(QDir::Name|QDir::DirsFirst);
-	
-	  // recurse on all the files in the directory
-	  QFileInfoList* fileList = const_cast<QFileInfoList*>(dir.entryInfoList());
-	  for (QFileInfo* qfiP = fileList->first(); qfiP != 0; qfiP = fileList->next()){
+    dir.setSorting(QDir::Name|QDir::DirsFirst);
+
+    // recurse on all the files in the directory
+    QFileInfoList* fileList = const_cast<QFileInfoList*>(dir.entryInfoList());
+    for (QFileInfo* qfiP = fileList->first(); qfiP != 0; qfiP = fileList->next()){
       if ( *stop ) return;
       if (qfiP->fileName() != "." && qfiP->fileName() != "..")
-	      vfs_calcSpace(name+"/"+qfiP->fileName(),totalSize,totalFiles,totalDirs,stop);
-	  }
+        vfs_calcSpace(name+"/"+qfiP->fileName(),totalSize,totalFiles,totalDirs,stop);
+    }
   }
 }
 
