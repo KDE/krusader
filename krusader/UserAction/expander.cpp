@@ -30,6 +30,7 @@
 #include <kdebug.h>
 #include <kinputdialog.h>
 #include <kstandarddirs.h>
+#include <kmessagebox.h>
 #include <ktempfile.h>
 #include <qstringlist.h>
 #include <qclipboard.h>
@@ -741,6 +742,8 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
   if ( ! krJS )
       krJS = new KrJS();
 
+   KJS::ExecState *exec = krJS->globalExec();
+
    QString jsReturn = QString::null;
    if ( parameter[1].lower() == "yes" )	// to stay compatible with the old-style parameter
       jsReturn = "cmd";
@@ -753,21 +756,64 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
          if ( jsVariable == "return" )
             jsReturn = jsValue.stripWhiteSpace();
          else
-            krJS->putValue( jsVariable, KJSEmbed::convertToValue(krJS->globalExec(), jsValue ) );
+            krJS->putValue( jsVariable, KJSEmbed::convertToValue(exec, jsValue ) );
       }
    }
 
    // set up the variable scriptDir with the directory of the current script
-   krJS->putValue( "scriptDir", KJSEmbed::convertToValue(krJS->globalExec(), KURL(filename).directory(false) ) );
+   krJS->putValue( "scriptDir", KJSEmbed::convertToValue(exec, KURL(filename).directory(false) ) );
 
 
-   //FIXME: messagebox on JS-errors
-   // comming with KDE-3.4: http://webcvs.kde.org/kdebindings/kjsembed/jsobjecteventproxy.cpp?rev=1.16&view=log
+   bool ok = krJS->runFile( filename );
+   KJS::Completion jsres = krJS->completion();
 
-   krJS->runFile( filename );
+   // this is based on this example-code http://webcvs.kde.org/kdebindings/kjsembed/kjscmd.cpp?rev=1.28&view=auto
+   if ( jsres.complType() != KJS::Normal) {
+      switch ( jsres.complType() ) {
+         case KJS::Break:
+         case KJS::Continue:
+            // TODO: find out what this means
+            krOut << "JavaScript: " << jsres.value().toString(exec).qstring() << endl;
+            break;
+         case KJS::ReturnValue:
+            // that's only needed when a specific function is called
+            //someString = jsres.value().toString(exec).qstring();
+            break;
+         case KJS::Throw:
+            {
+#if KDE_IS_VERSION(3,4,0)
+            KJS::Object exception = jsres.value().toObject(exec);
+            int line = exception.get( exec, KJS::Identifier("line") ).toNumber(exec);
+            QString type = exception.get( exec, KJS::Identifier("name") ).toString(exec).qstring();
+            QString message = exception.get( exec, KJS::Identifier("message") ).toString(exec).qstring();
+
+            krOut << "JavaScript: Uncaught " << type << " exception at: " << line << endl;
+            krOut << message << endl;
+
+            KMessageBox::error ( 0,	//parent
+		( line < 0 ?
+		QString( i18n("In %1:\nUncaught JavaScript exception '%2'\n%3") ).arg(filename).arg(type).arg(message) :
+		QString( i18n("In %1:\nUncaught JavaScript exception '%2' at line %3\n%4") ).arg(filename).arg(type).arg(line).arg(message)
+		),	//text
+		i18n("JavaScript error"), 	//caption
+		KMessageBox::Dangerous) ;
+#else
+            KMessageBox::error ( 0,	//parent
+		QString(i18n("In %1:\nThere is an error in the JavaScript")).arg(filename),	//text
+		i18n("JavaScript error"), 	//caption
+		KMessageBox::Dangerous) ;
+#endif
+            break;
+            }
+         default:
+            krOut << "JavaScript: Unknown error." << endl;
+            break;
+      } // switch
+   } // if
+
 
    krOut << "JS: done" << endl;
-   
+
    if ( ! jsReturn.isEmpty() )
       return krJS->getValue( jsReturn ).toString( krJS->globalExec() ).qstring();
    else
