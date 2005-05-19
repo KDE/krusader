@@ -844,7 +844,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
 					QListView::ensureItemVisible( i );
 				}
          } else KListView::keyPressEvent(e);
-         return;
+         break;
          case Key_Down :
          if ( e->state() == ControlButton ) { // let the panel handle it - jump to command line
             e->ignore();
@@ -856,7 +856,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             i = i->itemBelow();
          if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
          } else KListView::keyPressEvent(e);
-         return;
+         break;
          case Key_Next:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             QListViewItem * i = currentItem(), *j;
             if ( !i ) break;
@@ -866,7 +866,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                i = j;
             if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
          } else KListView::keyPressEvent(e);
-         return;
+         break;
          case Key_Prior:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             QListViewItem * i = currentItem(), *j;
             if ( !i ) break;
@@ -876,7 +876,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                i = j;
             if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
          } else KListView::keyPressEvent(e);
-         return;
+         break;
          case Key_Home:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             if ( e->state() & ShiftButton )  /* Shift+Home */
             {
@@ -890,7 +890,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                if ( i ) {QListView::setCurrentItem( i ); QListView::ensureItemVisible( i ); }
             }
          } else KListView::keyPressEvent(e);
-         return;
+         break;
          case Key_End:  if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
             if ( e->state() & ShiftButton )  /* Shift+End */
             {
@@ -909,7 +909,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                break;
             }
          } else KListView::keyPressEvent(e);
-         return;
+         break;
          case Key_Enter :
          case Key_Return : {
             if ( e->state() & ControlButton )         // let the panel handle it
@@ -970,13 +970,13 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
          case Key_Delete :                   // kill file
          SLOTS->deleteFiles(e->state() == ShiftButton);
 				
-         return ;
+         break ;
          case Key_Insert : {
             if (KrSelectionMode::getSelectionHandler()->insertMovesDown())
                KListView::keyPressEvent( e );
             else
                KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
-            return ; 
+            break ; 
          }
          case Key_Space : {
             KrDetailedViewItem * viewItem = static_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
@@ -985,7 +985,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                   KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
                else
                   KListView::keyPressEvent( e );
-               return ; 
+               break ; 
             }
             if ( viewItem->isDir() && viewItem->size() <= 0 &&  KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
                //
