@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-05-13 13:11+0200\n"
-"PO-Revision-Date: 2005-05-13 13:23+0200\n"
+"PO-Revision-Date: 2005-05-20 19:18+0200\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -83,19 +83,19 @@ msgstr "Einen neuen Pfad eingeben:"
 
 #: GUI/actionproperty.cpp:259
 msgid "New mime-type"
-msgstr "Neuer MIME-Typ"
+msgstr "Neuer Dateityp"
 
 #: GUI/actionproperty.cpp:260
 msgid "Set a mime-type:"
-msgstr "MIME-Typ eingeben:"
+msgstr "Dateityp eingeben:"
 
 #: GUI/actionproperty.cpp:275
 msgid "Edit mime-type"
-msgstr "MIME-Typ editieren"
+msgstr "Dateityp editieren"
 
 #: GUI/actionproperty.cpp:276
 msgid "Set another mime-type:"
-msgstr "Einen neuen MIME-Typ eingeben:"
+msgstr "Einen neuen Dateityp eingeben:"
 
 #: GUI/actionproperty.cpp:295
 msgid "New filename"
@@ -151,7 +151,7 @@ msgstr "Lokale Dateien (keine Adressen)"
 
 #: GUI/actionpropertybase.cpp:391
 msgid "Substitute the placeholders with local filenames"
-msgstr "Ersetze die Platzhalter mit lokalen Dateinamen"
+msgstr "Die Platzhalter mit lokalen Dateinamen ersetzen"
 
 #: GUI/actionpropertybase.cpp:392
 msgid "URLs (remote and local)"
@@ -233,8 +233,7 @@ msgstr "Platzhalter für die selektierten Dateien im Dateifenster hinzufügen"
 
 #: GUI/actionpropertybase.cpp:412
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
-msgstr ""
-"Die Beschreibung wird nur im Konfigurator und mittels Umschalt+F1 angezeigt"
+msgstr "Die Beschreibung wird nur im Konfigurator und mittels Umschalt+F1 angezeigt"
 
 #: GUI/actionpropertybase.cpp:413
 msgid "Start path"
@@ -328,7 +327,7 @@ msgstr "Zeige die Aktion nur für diese Dateitypen"
 
 #: GUI/actionpropertybase.cpp:441
 msgid "Mime-type"
-msgstr "MIME-Typ"
+msgstr "Dateityp"
 
 #: GUI/actionpropertybase.cpp:442
 msgid "Show the action only for these filenames (you may use '?' and '*')"
@@ -603,8 +602,7 @@ msgstr ""
 
 #: VFS/virt_vfs.cpp:159
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
-"Das Erstellen neuer Verzeichnisse ist nur im 'virt:/'-Verzeichnis erlaubt."
+msgstr "Das Erstellen neuer Verzeichnisse ist nur im 'virt:/'-Verzeichnis erlaubt."
 
 #: VFS/krquery.cpp:75 Filter/generalfilter.cpp:93
 #: Konfigurator/konfigurator.cpp:105
@@ -1314,8 +1312,7 @@ msgstr "%1 frei von %2 (%3%) auf %4 [ (%5) ]"
 
 #: Panel/listpanel.cpp:673
 msgid "Can't drop here, no write permissions."
-msgstr ""
-"Aufgrund mangelnder Schreibberechtigung kann hier nichts abgelegt werden."
+msgstr "Aufgrund mangelnder Schreibberechtigung kann hier nichts abgelegt werden."
 
 #: Panel/listpanel.cpp:689 Panel/panelpopup.cpp:310
 msgid "Copy Here"
@@ -1425,8 +1422,7 @@ msgstr "Wirklich in den Reißwolf mit "
 
 #: Panel/listpanel.cpp:946
 msgid " ? Once shred, the file is gone forever !!!"
-msgstr ""
-" ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!"
+msgstr " ? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!"
 
 #: Panel/listpanel.cpp:1021 Panel/panelfunc.cpp:344 KViewer/krviewer.cpp:259
 #: krslots.cpp:429
@@ -1649,8 +1645,7 @@ msgstr "Ein Verzeichnis kann nicht editiert werden"
 
 #: Panel/panelfunc.cpp:360
 msgid "No permissions to edit this file."
-msgstr ""
-"Sie verfügen nicht über die nötigen Rechte, um diese Datei zu editieren."
+msgstr "Sie verfügen nicht über die nötigen Rechte, um diese Datei zu editieren."
 
 #: Panel/panelfunc.cpp:379
 msgid "Moving into archive is disabled"
@@ -1916,7 +1911,7 @@ msgstr "Tab: Dateifenster wechseln"
 
 #: krusader.cpp:452
 msgid "Show Actions Toolbar"
-msgstr "Aktionen-Werkzeugleiste anzeigen"
+msgstr "Aktionswerkzeugleiste anzeigen"
 
 #: krusader.cpp:464
 msgid "Show &FN Keys Bar"
@@ -2256,8 +2251,7 @@ msgstr "Wirklich beenden?"
 
 #: KViewer/panelviewer.cpp:22
 msgid "No file selected or selected file can't be displayed."
-msgstr ""
-"Keine Datei ausgewählt oder ausgewählte Datei kann nicht angezeigt werden."
+msgstr "Keine Datei ausgewählt oder ausgewählte Datei kann nicht angezeigt werden."
 
 #: KViewer/krviewer.cpp:72
 msgid "&Generic viewer"
@@ -2506,8 +2500,7 @@ msgstr ""
 "Bitte benachrichtigen Sie die Entwickler"
 
 #: MountMan/kmountmangui.cpp:322
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Interner Fehler in MountMan\n"
 "Bitte benachrichtigen Sie die Entwickler"
@@ -2566,8 +2559,7 @@ msgstr "Krusader - SYSTEMVERWALTUNGS-MODUS"
 
 #: krusaderview.cpp:80
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen."
+msgstr "Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen."
 
 #: Dialogs/krdialogs.cpp:103
 msgid "Preserve date (only for local targets)"
@@ -2850,8 +2842,7 @@ msgstr "&Verbinden"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
-"Die gespeicherten 'Beliebten Adressen' sind ungültig. Die Liste wird geleert."
+msgstr "Die gespeicherten 'Beliebten Adressen' sind ungültig. Die Liste wird geleert."
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -2883,7 +2874,7 @@ msgstr "Packe"
 
 #: Dialogs/packguibase.cpp:70
 msgid "To archive"
-msgstr "In Archiv:"
+msgstr "Archiv:"
 
 #: Dialogs/packguibase.cpp:77
 msgid "tar.bz2"
@@ -2903,7 +2894,7 @@ msgstr "Auswahl eingeben:"
 
 #: Dialogs/krspwidgets.cpp:153 Dialogs/krspwidgets.cpp:180
 msgid "compare mode"
-msgstr "Vergleichs-Modus"
+msgstr "Vergleichsmodus"
 
 #: RemoteMan/remoteman.cpp:84 RemoteMan/remoteman.cpp:87
 msgid "New group"
@@ -2999,8 +2990,7 @@ msgstr "Unterordner einbeziehen"
 
 #: Synchronizer/synchronizergui.cpp:1116
 msgid "Compares not only the base directories but their subdirectories as well"
-msgstr ""
-"Vergleicht nicht nur den Basisordner, sondern auch dessen Unterverzeichnisse"
+msgstr "Vergleicht nicht nur den Basisordner, sondern auch dessen Unterverzeichnisse"
 
 #: Synchronizer/synchronizergui.cpp:1117
 msgid "Follow symlinks"
@@ -3069,8 +3059,7 @@ msgstr "Optionen anzeigen"
 
 #: Synchronizer/synchronizergui.cpp:1159
 msgid "Lists the files marked to copy from left to right"
-msgstr ""
-"Listet Dateien auf, die als 'Von links nach rechts kopieren' markiert wurden"
+msgstr "Listet Dateien auf, die als 'Von links nach rechts kopieren' markiert wurden"
 
 #: Synchronizer/synchronizergui.cpp:1167
 msgid "Lists the files considered to be identical"
@@ -3082,8 +3071,7 @@ msgstr "Listet ausgeschlossene Dateien auf"
 
 #: Synchronizer/synchronizergui.cpp:1183
 msgid "Lists the files marked to copy from right to left"
-msgstr ""
-"Listet Dateien auf, die als 'Von rechts nach links kopieren' markiert wurden"
+msgstr "Listet Dateien auf, die als 'Von rechts nach links kopieren' markiert wurden"
 
 #: Synchronizer/synchronizergui.cpp:1191
 msgid "Lists the files marked to delete"
@@ -3627,9 +3615,7 @@ msgstr "Mimetype magic benutzen"
 
 #: Konfigurator/kggeneral.cpp:65
 msgid "Mimetype magic allows better distinction of file types, but is slower"
-msgstr ""
-"Mimetype magic ermöglicht eine bessere Unterscheidung von Dateitypen, aber "
-"es ist langsamer"
+msgstr "Mimetype Magic ermöglicht eine bessere Unterscheidung der Dateitypen, ist aber langsamer."
 
 #: Konfigurator/kggeneral.cpp:71
 msgid "Editor:"
@@ -3814,12 +3800,11 @@ msgstr "Protokolle"
 
 #: Konfigurator/konfigurator.cpp:115
 msgid "Link mimes to protocols"
-msgstr "MIME-Typen mit Protokollen verknüpfen"
+msgstr "Dateitypen mit Protokollen verknüpfen"
 
 #: Konfigurator/konfigurator.cpp:183
 msgid "The current page has been changed. Do you want to apply changes?"
-msgstr ""
-"Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
+msgstr "Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
 
 #: Konfigurator/kglookfeel.cpp:56
 msgid "Operation"
@@ -3863,8 +3848,7 @@ msgstr "Automatisches Auswählen von Verzeichnissen"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "When matching the select criteria, directories will also be marked"
-msgstr ""
-"Sofern das Auswahl-Kriterium stimmt, werden auch Verzeichnisse ausgewählt"
+msgstr "Sofern das Auswahl-Kriterium stimmt, werden auch Verzeichnisse ausgewählt"
 
 #: Konfigurator/kglookfeel.cpp:70
 msgid "Case sensitive sorting"
@@ -4029,11 +4013,11 @@ msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:148
 msgid "Mimetype"
-msgstr "MIME-Typ"
+msgstr "Dateityp"
 
 #: Konfigurator/kglookfeel.cpp:148
 msgid "Show the Mimetype Column"
-msgstr "Die MIME-Typ-Spalte anzeigen"
+msgstr "Die Dateityp-Spalte anzeigen"
 
 #: Konfigurator/kglookfeel.cpp:149
 msgid "Show the Size Column"
@@ -4085,8 +4069,7 @@ msgstr "Gut lesbare Dateigröße benutzen"
 
 #: Konfigurator/kglookfeel.cpp:166
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr ""
-"Die Dateigröße wird in B, KB, MB und GB, und nicht nur in Bytes angezeigt."
+msgstr "Die Dateigröße wird in B, KB, MB und GB, und nicht nur in Bytes angezeigt."
 
 #: Konfigurator/kglookfeel.cpp:176
 msgid "Toolbar"
@@ -4126,7 +4109,7 @@ msgstr "Krusader wird die Dateifenster-Werkzeugleiste anzeigen."
 
 #: Konfigurator/kglookfeel.cpp:221
 msgid "Visible Panel Toolbar buttons"
-msgstr "Anzuzeigende Knöpfe in der Dateifenster-Werkzeugleiste"
+msgstr "Sichtbare Knöpfe in der Dateifenster-Werkzeugleiste"
 
 #: Konfigurator/kglookfeel.cpp:227
 msgid "Open button"
@@ -4173,8 +4156,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Umschalten von Synchron-Browsing"
 
 #: Konfigurator/kglookfeel.cpp:232
-msgid ""
-"Each directory-change in the panel is also performed in the other panel."
+msgid "Each directory-change in the panel is also performed in the other panel."
 msgstr ""
 "Jeder Verzeichniswechsel im aktuellen Dateifenster wird auch im anderen "
 "Dateifenster durchgeführt."
@@ -4296,16 +4278,15 @@ msgstr "Protokoll aus der Verknüpfungsliste entfernen"
 
 #: Konfigurator/kgprotocols.cpp:92
 msgid "Add mime to the selected protocol on the link list"
-msgstr ""
-"MIME-Typ zum ausgewählten Protokoll in der Verknüpfungsliste hinzufügen"
+msgstr "Dateityp zum ausgewählten Protokoll in der Verknüpfungsliste hinzufügen"
 
 #: Konfigurator/kgprotocols.cpp:95
 msgid "Remove mime from the link list"
-msgstr "MIME-Typ aus der Verknüpfungsliste entfernen"
+msgstr "Dateityp aus der Verknüpfungsliste entfernen"
 
 #: Konfigurator/kgprotocols.cpp:113
 msgid "Mimes"
-msgstr "MIME-Typen"
+msgstr "Dateitypen"
 
 #: Konfigurator/konfiguratoritems.cpp:538
 msgid "Custom color"
@@ -4398,7 +4379,7 @@ msgid ""
 "When you don't use the KDE default colors, you can configure the alternate "
 "colors in the Colors box."
 msgstr ""
-"'Hintergrund' und 'Alternativer Hintergrund' wechseln sich Zeile für Zeile "
+"'Hintergrund' und 'Alternativ-Hintergrund' wechseln sich Zeile für Zeile "
 "ab.\n"
 "Sofern nicht die KDE-Standardfarben benutzt werden, kann die alternative "
 "Farbe in der Farb-Box ausgewählt werden."
@@ -4430,7 +4411,7 @@ msgstr "Vordergrund:"
 
 #: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:131
 msgid "Directory foreground:"
-msgstr "Verzeichnis Vordergrund:"
+msgstr "Verzeichnis-Vordergrund:"
 
 #: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:98
 #: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:100
@@ -4440,15 +4421,15 @@ msgstr "Selbe wie Vordergrund"
 
 #: Konfigurator/kgcolors.cpp:98 Konfigurator/kgcolors.cpp:132
 msgid "Executable foreground:"
-msgstr "Ausführbar Vordergrund:"
+msgstr "Ausführbar-Vordergrund:"
 
 #: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:133
 msgid "Symbolic link foreground:"
-msgstr "Symbolische Verknüpfung Vordergrund:"
+msgstr "Symbolische-Verknüpfung-Vordergrund:"
 
 #: Konfigurator/kgcolors.cpp:100 Konfigurator/kgcolors.cpp:134
 msgid "Invalid symlink foreground:"
-msgstr "Ungültige symbolische Verknüpfung Vordergrund:"
+msgstr "Ungültige-Symbolische-Verknüpfung-Vordergrund:"
 
 #: Konfigurator/kgcolors.cpp:101 Konfigurator/kgcolors.cpp:135
 msgid "Background:"
@@ -4460,31 +4441,31 @@ msgstr "Selbe wie Hintergrund"
 
 #: Konfigurator/kgcolors.cpp:103 Konfigurator/kgcolors.cpp:137
 msgid "Alternate background:"
-msgstr "Alternativer Hintergrund:"
+msgstr "Alternativ-Hintergrund:"
 
 #: Konfigurator/kgcolors.cpp:104 Konfigurator/kgcolors.cpp:138
 msgid "Marked foreground:"
-msgstr "Ausgewählter Vordergrund:"
+msgstr "Ausgewählt-Vordergrund:"
 
 #: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:139
 msgid "Marked background:"
-msgstr "Ausgewählter Hintergrund:"
+msgstr "Ausgewählt-Hintergrund:"
 
 #: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:140
 msgid "Same as alt. background"
-msgstr "Selbe wie alternativer Hintergrund"
+msgstr "Selbe wie Alternativ-Hintergrund"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:142
 msgid "Alternate marked background:"
-msgstr "Alternativer ausgewählter Hintergrund:"
+msgstr "Alternativ-Ausgewählt-Hintergrund:"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:141
 msgid "Same as marked background"
-msgstr "Selbe wie ausgewählter Hintergrund"
+msgstr "Selbe wie Ausgewählt-Hintergrund"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:143
 msgid "Current foreground:"
-msgstr "Aktueller Vordergrund:"
+msgstr "Aktuell-Vordergrund:"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:110
 #: Konfigurator/kgcolors.cpp:111
@@ -4493,15 +4474,15 @@ msgstr "Nicht benutzt"
 
 #: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:144
 msgid "Same as marked foreground"
-msgstr "Selbe wie ausgewählter Vordergrund"
+msgstr "Selbe wie Ausgewählt-Vordergrund"
 
 #: Konfigurator/kgcolors.cpp:110 Konfigurator/kgcolors.cpp:145
 msgid "Marked current foreground:"
-msgstr "Ausgewählter aktueller Vordergrund:"
+msgstr "Ausgewählt-Aktuell-Vordergrund:"
 
 #: Konfigurator/kgcolors.cpp:111 Konfigurator/kgcolors.cpp:146
 msgid "Current background:"
-msgstr "Aktueller Hintergrund:"
+msgstr "Aktuell-Hintergrund:"
 
 #: Konfigurator/kgcolors.cpp:121
 msgid "Inactive"
@@ -4776,8 +4757,7 @@ msgid "Test archive when finished packing"
 msgstr "Archiv nach dem Packen testen"
 
 #: Konfigurator/kgarchives.cpp:91
-msgid ""
-"If checked, Krusader will test the archive's integrity after packing it."
+msgid "If checked, Krusader will test the archive's integrity after packing it."
 msgstr "Falls ausgewählt, wird die Archivintegrität nach dem Packen getestet."
 
 #: Konfigurator/kgarchives.cpp:92
@@ -4785,8 +4765,7 @@ msgid "Test archive before unpacking"
 msgstr "Archiv vor dem Entpacken testen"
 
 #: Konfigurator/kgarchives.cpp:92
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Einige korrupte Archive können einen Absturz verursachen, daher ist das "
 "Testen zu empfehlen."
@@ -5280,8 +5259,7 @@ msgid "Not a valid CRC file!"
 msgstr "Keine gültige CRC-Datei!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Eine Gültigkeitsüberprüfung ist ohne eine gültige CRC-Datei unmöglich. Mit "
 "dem Zusammenfügen fortfahren?"
@@ -5321,3 +5299,4 @@ msgstr "Fehler beim Lesen der Datei %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Fehler beim Schreiben der Datei %1!"
+
