@@ -309,14 +309,14 @@ We hope it'd be easy to understand.
       and the &faq_lnk;, if this does not solve your problem then
       feel free to ask for help with an &help_request_lnk;.</para></note>
 
-<tip><para>If you install &kdevelop; then (almost) everything that you need to compile &krusader;
-           will be installed on your computer, BUT please don't use &kdevelop; to compile &krusader;
-           if you are not a developer (possible automake hell), just follow the next instructions.</para></tip>
 
 <orderedlist>
 <listitem>
    <para>Install all needed packages and libraries that you need for the compilation, please read the &faq_lnk;.
-         </para>
+   <tip><para>If you install &kdevelop; then (almost) everything that you need to compile &krusader;
+           will be installed on your computer, BUT please don't use &kdevelop; to compile &krusader;
+           if you are not a developer (possible automake hell), just follow the next instructions.</para></tip>
+          </para>
    <para> </para> <!-- Empty line to make it more readable -->
 </listitem>
 
@@ -378,16 +378,15 @@ We hope it'd be easy to understand.
 /usr</screen>
 
   If both commands give an output, the enviroment variables are set
-  (the above example are the settings of &Mandrake;-&Linux;).
+  (the above example are the settings of &mandriva;-&Linux;).
   In case you just receive empty lines, the variables are not set and you have to set them it manually.
   If you have no idea what to set the variables to, or if you want to check if the variables are correctly set,
   ask your distributor or use the <command>find</command> command.
 
 <screen><prompt>$</prompt> <userinput><command>find</command> <option>/usr /opt -name</option> qtconfig <option>-type f 2>/dev/null</option></userinput>
 /usr/lib/qt3/bin/qtconfig
-<prompt>$</prompt> <userinput><command>find </command> <option>/usr /opt -name</option> kdeinit <option>-type 2>/dev/null</option></userinput>
+<prompt>$</prompt> <userinput><command>find</command> <option>/usr /opt -name</option> kdeinit <option>-type f 2>/dev/null</option></userinput>
 /usr/bin/kdeinit</screen>
-
 
 In this case <filename>/usr/lib/qt3</filename> is your <envar>QTDIR</envar> and  <filename>/usr</filename> is your <envar>KDEDIR</envar>. The installed binaries will go to <filename>/usr/bin</filename>.
 Now we will set the enviroment variables with the <command>export</command> command.
@@ -419,7 +418,7 @@ Now we will set the enviroment variables with the <command>export</command> comm
 
   <para>If everything is OK you will see the following output on your screen:
 
-<screen><prompt>$</prompt> <userinput><command>make</command> <option>-f</option>  Makefile.cvs</userinput>
+<screen><prompt>$</prompt> <userinput><command>make</command> <option>-f</option> Makefile.cvs</userinput>
 This Makefile is only for the CVS repository
 This will be deleted before making the distribution
 *** Creating acinclude.m4
@@ -492,10 +491,13 @@ Good - your configure finished. Start make now
 
 <tip><para>At the end of the <command>./configure</command> script you will find a summary of the most
            important settings, &eg; where the &krusader; binary will be installed (after the
-           'make install' command).</para>
-     <para>Usually the &krusader; binary will be installed in the <filename>KDEDIR/bin</filename>
-           directory.
-           If you would prefer to install &krusader; in a different directory, you can do this with the following
+           'make install' command).</para></tip>
+
+<para>Usually the &krusader; binary will be installed in the <filename>KDEDIR/bin</filename>
+      directory by the RPM or DEB package. Usually when compiling from source these files will be
+      installed in an other directory to not mix files of your package system and your files.
+
+      To install &krusader; in an other directory, you can use the following
            command: <userinput><command>./configure</command>
            <option> --prefix=<replaceable>/usr/local</replaceable></option></userinput>.
            In this case the &krusader; binary will be installed in the
@@ -503,7 +505,7 @@ Good - your configure finished. Start make now
      <para>&SuSE; needs: <userinput><command>./configure</command>
            <option> --prefix=<replaceable>/opt/kde3</replaceable></option></userinput>.</para>
      <para>This part will also display a warning if the environment variables &kdeqtdir_lnk; are empty.</para>
-</tip>
+
 
   <para> </para> <!-- Empty line to make it more readable -->
   <para>Use <userinput><command>./configure</command> <option>--help</option></userinput>
