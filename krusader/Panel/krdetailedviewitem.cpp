@@ -51,10 +51,19 @@
 	column[ KrDetailedViewProperties::X ]
 #define PROPS	static_cast<const KrDetailedViewProperties*>(_viewProperties)
 
+int KrDetailedViewItem::expHeight = 0;
+
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
 	KListViewItem(parent, after), KrViewItem(vf, parent->properties()) {
 #ifdef FASTER
 	initiated = false;
+	// get the expected height of an item - should be done only once
+	if (expHeight == 0) {
+		KConfigGroupSaver svr(krConfig, "Look&Feel");
+  		expHeight = (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
+  		qDebug("%d", expHeight);
+	}
+
 #endif	
 	// there's a special case, where if _vf is null, then we've got the ".." (updir) item
 	// in that case, create a special vfile for that item, and delete it, if needed
@@ -74,6 +83,16 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
 	
 	repaintItem();
 }
+
+#ifdef FASTER
+void KrDetailedViewItem::setup() {
+	// idea: when not having pixmaps in the first place, the height of the item is smaller then with
+	// the pixmap. when the pixmap is inserted, the item resizes, thereby making ensureItemVisible()
+	// become 'confused' and stop working. therefore, we set the correct height here and avoid the issue
+	KListViewItem::setup();
+	setHeight(expHeight);
+}
+#endif
 
 void KrDetailedViewItem::repaintItem() {
     if ( dummyVfile ) return;

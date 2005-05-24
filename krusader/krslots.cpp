@@ -58,6 +58,7 @@
 #include "krusaderview.h"
 #include "Panel/listpanel.h"
 #include "Panel/krselectionmode.h"
+#include "Panel/krdetailedviewitem.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
 #include "GUI/krusaderstatus.h"
@@ -315,6 +316,8 @@ void KRslots::runKonfigurator(bool firstTime) {
     krConfig->setGroup( "Look&Feel" );
     if((krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt() != size )
       QPixmapCache::clear();
+      
+    KrDetailedViewItem::itemHeightChanged(); // needed when icon size / font size changes
 
     MAIN_VIEW->leftMng->slotRecreatePanels();
     MAIN_VIEW->rightMng->slotRecreatePanels();
