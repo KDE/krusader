@@ -155,7 +155,7 @@ public:
   virtual void setFilter(KrViewProperties::FilterSpec filter) { _properties->filter = filter; }
   virtual KrViewProperties::FilterSpec filter() const { return _properties->filter; }
   virtual void setFilterMask( KRQuery mask ) { _properties->filterMask = mask; }
-  virtual KRQuery filterMask() const { return _properties->filterMask; }
+  virtual const KRQuery& filterMask() const { return _properties->filterMask; }
   inline QWidget *widget() { return _widget; }
   inline void setWidget(QWidget *w) { _widget = w; }
 

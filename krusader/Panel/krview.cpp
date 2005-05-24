@@ -126,6 +126,9 @@ QString KrView::statistics() {
                  .arg( _numSelected ).arg( _count ).arg( KIO::convertSize( _selectedSize ) )
                  .arg( KRpermHandler::parseSize(_selectedSize) )
 					  .arg( KIO::convertSize( _countSize ) ).arg( KRpermHandler::parseSize(_countSize) );
+	// notify if we're running a filtered view
+	if (filter() != KrViewProperties::All)
+		tmp = ">> [ " + filterMask().nameFilter() + " ]  "+tmp;
    return tmp;
 }
 

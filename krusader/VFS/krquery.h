@@ -50,7 +50,7 @@ public:
   // sets the text for name filtering
   void setNameFilter( QString text, bool cs=true );
   // returns the current filter mask
-  QString nameFilter() { return origFilter; }
+  const QString& nameFilter() const { return origFilter; }
   // returns whether the filter is case sensitive
   bool isCaseSensitive() { return matchesCaseSensitive; }
 
