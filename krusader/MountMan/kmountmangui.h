@@ -33,6 +33,7 @@
 #ifndef KMOUNTMANGUI_H
 #define KMOUNTMANGUI_H
 
+#include <sys/param.h>
 #include <kdialogbase.h>
 #include <qlistview.h>
 #include <kjanuswidget.h>
@@ -177,8 +178,20 @@ private:
    // additional attributes of a filesystem, parsed from fstab
 public:
    QString options;    // additional fstab options
-
 };
+
+class KrMountDetector {
+#if defined(BSD)
+   QString checksum;
+#else
+   QDateTime lastMtab;
+#endif
+public:
+  KrMountDetector();
+  static KrMountDetector * getInstance();
+  bool hasMountsChanged();
+};
+
 
 
 #endif

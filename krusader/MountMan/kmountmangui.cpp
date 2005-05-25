@@ -51,12 +51,15 @@ A
 #include <qfileinfo.h>
 #include <sys/param.h>
 
-// use of version of it until kde fixes theirs
-#include "kdiskfreesp.h"
-
-
-
+#if defined(BSD)
+#include <kmountpoint.h>
+#include <kmdcodec.h>
+#else
 #define MTAB	"/etc/mtab"
+#endif
+
+// use our version of it until kde fixes theirs
+#include "kdiskfreesp.h"
 
 KMountManGUI::KMountManGUI() : KDialogBase( krApp, 0, true, "Mount.Man" ),
 info( 0 ), mountList( 0 ) {
@@ -145,7 +148,7 @@ void KMountManGUI::createMainPage() {
 
 void KMountManGUI::getSpaceData() {
    fileSystems.clear();
-	lastMtab = QFileInfo(MTAB).lastModified();
+	KrMountDetector::getInstance()->hasMountsChanged();
 	
    mounted = KMountPoint::currentMountPoints();
 	possible = KMountPoint::possibleMountPoints();
@@ -256,7 +259,7 @@ void KMountManGUI::updateList() {
 }
 
 void KMountManGUI::checkMountChange() {
-	if (QFileInfo(MTAB).lastModified() != lastMtab)
+	if (KrMountDetector::getInstance()->hasMountsChanged())
 		getSpaceData();
    watcher->start( WATCHER_DELAY, true );   // starting the watch timer ( single shot )
 }
@@ -356,6 +359,35 @@ void KMountManGUI::clicked( QListViewItem *item ) {
          KMountMan::eject( system->mntPoint() );
          break;
    }
+}
+
+KrMountDetector::KrMountDetector() {
+   hasMountsChanged();
+}
+
+bool KrMountDetector::hasMountsChanged() {
+#if defined(BSD)
+   KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
+   KMD5 md5;
+   for(KMountPoint::List::iterator i = mountPoints.begin(); i != mountPoints.end(); ++i) {
+      md5.update((*i)->mountedFrom().utf8());
+      md5.update((*i)->realDeviceName().utf8());
+      md5.update((*i)->mountPoint().utf8());
+      md5.update((*i)->mountType().utf8());
+   }
+   QString s = md5.hexDigest();
+   bool result = s != checksum;
+   checksum = s;
+#else
+   bool result = QFileInfo(MTAB).lastModified() != lastMtab;
+   lastMtab = QFileInfo(MTAB).lastModified();
+#endif
+   return result;
+}
+
+KrMountDetector krMountDetector;
+KrMountDetector * KrMountDetector::getInstance() {
+   return & krMountDetector;
 }
 
 #include "kmountmangui.moc"
