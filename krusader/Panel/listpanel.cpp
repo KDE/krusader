@@ -1084,8 +1084,13 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          case Key_Enter :
          case Key_Return :
          if ( e->state() & ControlButton ) {
-            SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
-            MAIN_VIEW->cmdLine->setFocus();
+         	if (e->state() & AltButton) {
+         		vfile *vf = view->getCurrentKrViewItem()->getVfile();
+         		if (vf && vf->vfile_isDir()) SLOTS->newTab(vf->vfile_getUrl());
+         	} else {
+					SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
+					MAIN_VIEW->cmdLine->setFocus();
+            }
          } else e->ignore();
          break;
          case Key_Right :
