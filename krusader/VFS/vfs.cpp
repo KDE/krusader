@@ -195,8 +195,7 @@ void vfs::vfs_enableRefresh(bool enable){
 	dirty = false;
 }
 
-/// to be implemented
-#if KDE_IS_VERSION(3,3,0) && 0
+#if KDE_IS_VERSION(3,3,0)
 #include <kdirsize.h>
 void vfs::slotKdsResult( KIO::Job* job){
 	if( job && !job->error() ){
