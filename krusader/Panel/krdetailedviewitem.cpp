@@ -60,8 +60,7 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
 	// get the expected height of an item - should be done only once
 	if (expHeight == 0) {
 		KConfigGroupSaver svr(krConfig, "Look&Feel");
-  		expHeight = (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
-  		qDebug("%d", expHeight);
+  		expHeight = 2 + (krConfig->readEntry("Filelist Icon Size",_FilelistIconSize)).toInt();
 	}
 
 #endif	
