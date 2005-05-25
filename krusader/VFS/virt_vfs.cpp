@@ -210,7 +210,7 @@ vfile* virt_vfs::stat( const KURL& url ) {
 	}
 	KFileItem* kfi;
 	if ( url.isLocalFile() ) {
-		kfi = new KFileItem( KFileItem::Unknown, KFileItem::Unknown, url );
+		kfi = new KFileItem( KFileItem::Unknown, KFileItem::Unknown, url, true );
 	}
 	else {
 		busy = true;
@@ -219,7 +219,7 @@ vfile* virt_vfs::stat( const KURL& url ) {
 		while ( busy ) qApp->processEvents();
 		if( entry.isEmpty()  ) return 0; // statJob failed
 		
-		kfi = new KFileItem(entry, url );
+		kfi = new KFileItem(entry, url, true );
 	}
 	
 	if ( !kfi->time( KIO::UDS_MODIFICATION_TIME ) ){
@@ -242,11 +242,11 @@ vfile* virt_vfs::stat( const KURL& url ) {
 	mode_t mode = kfi->mode() | kfi->permissions();
 	QString perm = KRpermHandler::mode2QString( mode );
 // set the mimetype
-	QString mime = kfi->mimetype();
+	QString mime = QString::null;
 	QString symDest = "";
 	if ( symLink ) {
 		symDest = kfi->linkDest();
-		if ( kfi->isDir() || mime.contains( "directory" ) ) perm[ 0 ] = 'd';
+		if ( kfi->isDir() ) perm[ 0 ] = 'd';
 	}
 
 	// create a new virtual file object

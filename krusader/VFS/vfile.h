@@ -86,7 +86,6 @@ public:
 	inline const QString&   vfile_getPerm()    const { return vfile_perm;           }
 	inline bool             vfile_isDir()      const { return (vfile_perm[0]=='d'); }
 	inline bool             vfile_isSymLink()  const { return vfile_symLink;        }
-	inline const QString&   vfile_getMime()    const { return vfile_mimeType;       }
 	inline const QString&   vfile_getSymDest() const { return vfile_symDest;        }
 	inline mode_t           vfile_getMode()    const { return vfile_mode;           }
 	inline uid_t            vfile_getUid()     const { return vfile_ownerId;        }
@@ -94,6 +93,7 @@ public:
 	inline time_t           vfile_getTime_t()  const { return vfile_time_t;         }
 	inline const KURL&      vfile_getUrl()     const { return vfile_url;            }
   
+	const QString&          vfile_getMime();
 	const QString&          vfile_getOwner();
 	const QString&          vfile_getGroup();
 	const KIO::UDSEntry     vfile_getEntry(); //< return the UDSEntry from the vfile
@@ -111,7 +111,7 @@ public:
 
 protected:
 	// the file information list
-	QString 	       vfile_name;     //< file name
+	QString          vfile_name;     //< file name
 	KIO::filesize_t  vfile_size;     //< file size
 	mode_t           vfile_mode;     //< file mode
 	uid_t            vfile_ownerId;  //< file owner id

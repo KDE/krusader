@@ -41,7 +41,6 @@
 #include <qtimer.h>
 #include <qeventloop.h>
 // KDE includes
-#include <kmimetype.h>
 #include <kio/jobclasses.h>
 #include <klocale.h>
 #include <kio/job.h>
@@ -77,7 +76,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 
 	// as long as u can find files - add them to the vfs
 	for ( ; it != end; ++it ) {
-		KFileItem kfi( *it, vfs_origin, false, true );
+		KFileItem kfi( *it, vfs_origin, true, true );
 		vfile *temp;
 
 		// get file statistics
@@ -91,11 +90,11 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 		mode_t mode = kfi.mode() | kfi.permissions();
 		QString perm = KRpermHandler::mode2QString( mode );
 		// set the mimetype
-		QString mime = kfi.mimetype();
+		QString mime = QString::null;
 		QString symDest = "";
 		if ( symLink ) {
 			symDest = kfi.linkDest();
-			if ( kfi.isDir() || mime.contains( "directory" ) ) perm[ 0 ] = 'd';
+			if ( kfi.isDir() ) perm[ 0 ] = 'd';
 		}
 
 		// create a new virtual file object

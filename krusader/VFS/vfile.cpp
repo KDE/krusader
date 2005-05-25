@@ -35,6 +35,8 @@
 #include <sys/stat.h>
 // Qt includes
 #include <qdatetime.h>
+// KDE includes
+#include <kmimetype.h>
 // Krusader includes
 #include "vfile.h"
 #include "krpermhandler.h"
@@ -115,6 +117,14 @@ char vfile::vfile_isExecutable() const {
 		return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
 	else
 		return KRpermHandler::ftpExecutable(vfile_userName, vfile_owner, vfile_perm);
+}
+
+const QString& vfile::vfile_getMime(){
+	if( vfile_mimeType == QString::null ){ // mimetype == "" is OK so don't check mimetype.empty() !
+		vfile_mimeType = KMimeType::findByURL( vfile_getUrl(),vfile_getMode(),true,false)->name();
+		if( vfile_mimeType.contains("directory") ) vfile_perm[0] = 'd';
+	}
+	return vfile_mimeType;
 }
 
 const QString& vfile::vfile_getOwner(){

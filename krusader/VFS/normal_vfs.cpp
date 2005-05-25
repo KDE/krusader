@@ -115,7 +115,7 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 		// we dont need the ".",".." enteries
 		if (name=="." || name == "..") continue;
 	  
-		vfile* temp = vfileFromName(name,mtm);
+		vfile* temp = vfileFromName(name);
     addToList(temp);
   }
 	// clean up
@@ -260,7 +260,7 @@ void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned
   }
 }
 
-vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
+vfile* normal_vfs::vfileFromName(const QString& name){
 	QString path = vfs_workingDir()+"/"+name;
 	
 	KDE_struct_stat stat_p;
@@ -271,7 +271,7 @@ vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 	if( S_ISDIR(stat_p.st_mode) ) perm[0] = 'd';
 	
 	KURL mimeUrl = fromPathOrURL(path);
-	QString mime=KMimeType::findByURL( mimeUrl,stat_p.st_mode,true,!mimeTypeMagic)->name();
+	QString mime=QString::null;
 
 	char symDest[256];
 	bzero(symDest,256); 
@@ -279,7 +279,7 @@ vfile* normal_vfs::vfileFromName(const QString& name,bool mimeTypeMagic){
 		int endOfName=0;
 		endOfName=readlink(path.local8Bit(),symDest,256);
 		if ( endOfName != -1 ){
-			if ( QDir(QString::fromLocal8Bit( symDest ) ).exists() || mime.contains("directory") ) perm[0] = 'd';
+			if ( QDir(QString::fromLocal8Bit( symDest ) ).exists() ) perm[0] = 'd';
 			if ( !QDir(vfs_workingDir()).exists( QString::fromLocal8Bit ( symDest ) ) ) mime = "Broken Link !";
 		}
 		else krOut << "Failed to read link: "<< path<<endl;
@@ -327,7 +327,7 @@ void normal_vfs::vfs_slotDirty(const QString& path){
 	
 	// we have an updated file..
 	removeFromList(name);
-	vfile* vf = vfileFromName(name,true);
+	vfile* vf = vfileFromName(name);
 	addToList(vf);
 	emit updatedVfile(vf);
 }
@@ -344,7 +344,7 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 	if( vfs_search(name) )
 		return vfs_slotDirty(path);
 	
-	vfile* vf = vfileFromName(name,true);
+	vfile* vf = vfileFromName(name);
 	addToList(vf);
 	emit addedVfile(vf);	
 }
