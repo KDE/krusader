@@ -1131,7 +1131,12 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       emit renameItem( static_cast<KrDetailedViewItem*>( it ) ->name(), it->text( COLUMN( Name ) ) );
    } else restoreView = true;
 
+   // restore the view always! if the file was indeed renamed, we'll get a signal from the vfs about
+   // it, and update the view when needed
+#if 0
    if ( COLUMN( Extention ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
+#endif
+      
       int i;
       QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
       if ( !static_cast<KrDetailedViewItem*>( it ) ->isDir() )
@@ -1142,7 +1147,10 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       it->setText( COLUMN( Name ), name );
       it->setText( COLUMN( Extention ), ext );
       repaintItem( it );
+#if 0
    }
+#endif
+
    setFocus();
    
    currentlyRenamedItem = 0;
