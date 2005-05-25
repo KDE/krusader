@@ -1153,6 +1153,10 @@ void ListPanel::slotItemUpdated(vfile *vf) {
 	view->updateItem(vf);
 }
 
+void ListPanel::slotCleared() {
+	view->clear();
+}
+
 void ListPanel::showEvent( QShowEvent *e ) {
   panelActive();
   QWidget::showEvent(e);

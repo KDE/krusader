@@ -55,9 +55,6 @@
 #include "../krslots.h"
 
 normal_vfs::normal_vfs(QObject* panel):vfs(panel), watcher(0) {
-  setVfsFilesP(&vfs_files);
-  vfs_files.setAutoDelete(true);
-  
   vfs_type=NORMAL;
 }
 

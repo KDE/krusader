@@ -122,8 +122,6 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	if ( !is_equal_url ) {
 		// change the cursor to busy
 		panel->setCursor( KCursor::waitCursor() );
-		// clear the view - to avoid a repaint crash
-		panel->view->clear();
 	}
 
 	if ( !nameToMakeCurrent.isEmpty() ) {
@@ -148,7 +146,7 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 		if ( !v )
 			continue; //this should not happen !
 		if ( v != vfsP ) {
-			vfsP->deleteLater();
+			delete vfsP;
 			vfsP = v; // v != 0 so this is safe
 		}
 		connect( files(), SIGNAL(startJob(KIO::Job* )),
@@ -168,6 +166,7 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	disconnect( files(), SIGNAL( addedVfile( vfile* ) ), 0, 0 );
 	disconnect( files(), SIGNAL( updatedVfile( vfile* ) ), 0, 0 );
 	disconnect( files(), SIGNAL( deletedVfile( const QString& ) ), 0, 0 );
+	disconnect( files(), SIGNAL( cleared() ), 0, 0 );
 	// connect to the vfs's dirwatch signals
 	connect( files(), SIGNAL( addedVfile( vfile* ) ),
 	         panel, SLOT( slotItemAdded( vfile* ) ) );
@@ -175,6 +174,8 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	         panel, SLOT( slotItemUpdated( vfile* ) ) );
 	connect( files(), SIGNAL( deletedVfile( const QString& ) ),
 	         panel, SLOT( slotItemDeleted( const QString& ) ) );
+	connect( files(), SIGNAL( cleared() ),
+	         panel, SLOT( slotCleared() ) );
 	
 	// on local file system change the working directory
 	if ( files() ->vfs_getType() == vfs::NORMAL )
@@ -986,8 +987,6 @@ void ListPanelFunc::refreshActions() {
 }
 
 ListPanelFunc::~ListPanelFunc() {
-	// clear the view - to avoid a repaint crash
-	panel->view->clear();
 	delete files(); // delete all vfs objects
 }
 

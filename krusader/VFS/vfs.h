@@ -59,7 +59,7 @@ public:
 	 * @param quiet if true, the VFS will not display error messages
 	 */
 	vfs(QObject* panel, bool quiet=false);
-	virtual			~vfs(){}
+	virtual			~vfs();
 
 	/// Copy a file to the vfs (physical).
 	virtual void vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir = "", PreserveMode pmode = PM_DEFAULT)=0;	
@@ -118,6 +118,7 @@ signals:
 	void addedVfile(vfile* vf);
 	void deletedVfile(const QString& name);
 	void updatedVfile(vfile* vf);
+	void cleared();
 
 protected:
 	/// Feel the vfs dictionary with vfiles, must be implemented for each vfs
@@ -125,7 +126,7 @@ protected:
 	/// Set the vfile list pointer
 	void setVfsFilesP(vfileDict* dict);
 	/// clear and delete all current vfiles
-	inline void clear(){ vfs_filesP->clear(); }
+	inline void clear();
 	/// Add a new vfile to the list.
 	inline void addToList(vfile *data){ vfs_filesP->insert(data->vfile_getName(),data); }
 	/// Deletes a vfile from the list.
@@ -147,6 +148,7 @@ protected slots:
 private:
 	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
 	vfileDict*  vfs_searchP;   //< Searches are preformed in this dictionary (usualy points to vfs_files)	
+	vfileDict   vfs_files;     //< List of pointers to vfile.
 	QDictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
 	
 	// used in the calcSpace function

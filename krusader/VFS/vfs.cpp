@@ -41,11 +41,17 @@
 
 vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),mimeTypeMagicDisabled( false ),
                                       invalidated(true),vfileIterator(0) {
-		if ( panel ){
-	 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
-	 		connect(this,SIGNAL(incrementalRefreshFinished( const KURL& )),panel,SLOT(slotGetStats( const KURL& )));
-		}
-		else quietMode = true;
+	setVfsFilesP( &vfs_files );                                      
+	vfs_files.setAutoDelete(true);
+	if ( panel ){
+		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
+		connect(this,SIGNAL(incrementalRefreshFinished( const KURL& )),panel,SLOT(slotGetStats( const KURL& )));
+	}
+	else quietMode = true;                
+}
+
+vfs::~vfs() {
+	clear(); // please don't remove this line. This informs the view about deleting the references
 }
 
 KIO::filesize_t vfs::vfs_totalSize(){
@@ -195,6 +201,13 @@ void vfs::vfs_enableRefresh(bool enable){
 	dirty = false;
 }
 
+void vfs::clear()
+{
+	emit cleared();
+	vfs_files.clear();
+}
+
+/// to be implemented
 #if KDE_IS_VERSION(3,3,0)
 #include <kdirsize.h>
 void vfs::slotKdsResult( KIO::Job* job){

@@ -116,6 +116,7 @@ public slots:
 	void slotItemAdded(vfile *vf);
 	void slotItemDeleted(const QString& name);
 	void slotItemUpdated(vfile *vf);
+	void slotCleared();        
 	void panelActive(); // called when the panel becomes active
 	void panelInactive(); // called when panel becomes inactive
 	

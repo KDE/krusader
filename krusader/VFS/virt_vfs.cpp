@@ -40,9 +40,6 @@ virt_vfs::virt_vfs( QObject* panel, bool quiet ) : vfs( panel, quiet ) {
 	// set the writable attribute
 	isWritable = true;
 
-	vfs_files.setAutoDelete( true );
-	setVfsFilesP( &vfs_files );
-
 	virtVfsDict.setAutoDelete( true );
 	if ( virtVfsDict.isEmpty() ) {
 		restore();
