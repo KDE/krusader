@@ -244,7 +244,7 @@ void LocateDlg::slotUser3()   /* The locate button */
     enableButton( KDialogBase::User1, false ); /* disable the stop button */
     isFeedToListBox = false;
   }else{
-    setButtonText( KDialogBase::User1, "Feed to listbox" ); /* feed to listbox */
+    setButtonText( KDialogBase::User1, i18n("Feed to listbox") ); /* feed to listbox */
     isFeedToListBox = true;
   }
 }
