@@ -121,7 +121,7 @@ char vfile::vfile_isExecutable() const {
 
 const QString& vfile::vfile_getMime(){
 	if( vfile_mimeType == QString::null ){ // mimetype == "" is OK so don't check mimetype.empty() !
-		vfile_mimeType = KMimeType::findByURL( vfile_getUrl(),vfile_getMode(),true,false)->name();
+		vfile_mimeType = KMimeType::findByURL( vfile_getUrl(),vfile_getMode(),vfile_getUrl().isLocalFile(),false)->name();
 		if( vfile_mimeType.contains("directory") ) vfile_perm[0] = 'd';
 	}
 	return vfile_mimeType;
