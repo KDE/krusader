@@ -239,11 +239,11 @@ vfile* virt_vfs::stat( const KURL& url ) {
 	mode_t mode = kfi->mode() | kfi->permissions();
 	QString perm = KRpermHandler::mode2QString( mode );
 // set the mimetype
-	QString mime = QString::null;
+	QString mime = kfi->mimetype(); //QString::null;
 	QString symDest = "";
 	if ( symLink ) {
 		symDest = kfi->linkDest();
-		if ( kfi->isDir() ) perm[ 0 ] = 'd';
+		if ( kfi->isDir() || mime.contains("directory") ) perm[ 0 ] = 'd';
 	}
 
 	// create a new virtual file object
