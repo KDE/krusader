@@ -76,14 +76,47 @@ KURL KRSpWidgets::newFTP() {
 	
 	QString protocol = p->prefix->currentText();
 	protocol.truncate(protocol.length() - 3); // remove the trailing ://
+	QString username = p->username->text().simplifyWhiteSpace();
+	QString password = p->password->text().simplifyWhiteSpace();
+	QString uri = p->url->currentText();
+
+	int uriStart = uri.findRev( '@' ); /* lets the user enter user and password in the URI field */
+	if( uriStart != -1 ) {
+		QString uriUser = uri.left( uriStart );
+		QString uriPsw = QString::null;
+		uri = uri.mid( uriStart + 1 );
+
+		int pswStart = uriUser.find( ':' ); /* getting the password name from the URL */
+		if( pswStart != -1 ) {
+			uriPsw = uriUser.mid( pswStart + 1 );
+			uriUser = uriUser.left( pswStart );
+		}
+
+		if( !uriUser.isEmpty() )           /* handling the ftp proxy username and password also */
+			username = username.isEmpty() ? uriUser : username + "@" + uriUser;
+
+		if( !uriPsw.isEmpty() )           /* handling the ftp proxy username and password also */
+			password = password.isEmpty() ? uriPsw : password + "@" + uriPsw;
+	}
+
+	QString host = uri;               /* separating the hostname and path from the uri */
+	QString path = QString::null;
+	int pathStart = uri.find( "/" );
+	if( pathStart != -1 ) {
+		path = host.mid( pathStart );
+		host = host.left( pathStart );
+	}
+
+	/* setting the parameters of the URL */
 	url.setProtocol(protocol);
-		url.setHost(p->url->currentText());
-	if (url.protocol().startsWith("ftp"))
+	url.setHost( host );
+	url.setPath( path );
+	if ( protocol == "ftp" || protocol == "fish" || protocol == "sftp" )
 		url.setPort(p->port->cleanText().toShort());
-	if (!p->username->text().simplifyWhiteSpace().isEmpty())
-		url.setUser(p->username->text().simplifyWhiteSpace());
-	if (!p->password->text().simplifyWhiteSpace().isEmpty())
-		url.setPass(p->password->text().simplifyWhiteSpace());
+	if (!username.isEmpty())
+		url.setUser( username );
+	if (!password.isEmpty())
+		url.setPass( password );
   
   return url;
 }
