@@ -41,17 +41,19 @@
 
 vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),mimeTypeMagicDisabled( false ),
                                       invalidated(true),vfileIterator(0) {
-	setVfsFilesP( &vfs_files );                                      
-	vfs_files.setAutoDelete(true);
+		
+
+	setVfsFilesP( new vfileDict() );
 	if ( panel ){
 		connect(this,SIGNAL(startUpdate()),panel,SLOT(slotStartUpdate()));
 		connect(this,SIGNAL(incrementalRefreshFinished( const KURL& )),panel,SLOT(slotGetStats( const KURL& )));
 	}
-	else quietMode = true;                
+	else quietMode = true;
 }
 
 vfs::~vfs() {
 	clear(); // please don't remove this line. This informs the view about deleting the references
+	delete vfs_filesP;
 }
 
 KIO::filesize_t vfs::vfs_totalSize(){
@@ -115,6 +117,7 @@ KURL vfs::fromPathOrURL( const QString &originIn )
 void vfs::setVfsFilesP(vfileDict* dict){
 	vfs_filesP=dict;
 	vfs_searchP = dict;
+	dict->setAutoDelete(true);
 	if( vfileIterator ) delete vfileIterator;
 	vfileIterator = new QDictIterator<vfile>(*dict);
 }
@@ -123,7 +126,7 @@ bool vfs::vfs_refresh(){
 	dirty = false;
 	// point the vfs_filesP to a NEW (empty) dictionary
 	vfs_filesP = new vfileDict();
-	//vfs_filesP->setAutoDelete(true);
+	vfs_filesP->setAutoDelete(true);
 	
 	// and populate it
 	krConfig->setGroup("Look&Feel");
@@ -170,7 +173,7 @@ bool vfs::vfs_refresh(){
 	vfileDict *temp = vfs_filesP;
 	vfs_filesP = vfs_searchP;
 	delete temp;
-	emit incrementalRefreshFinished( vfs_origin );        
+	emit incrementalRefreshFinished( vfs_origin );
 	
 	return res; 
 }
@@ -204,7 +207,7 @@ void vfs::vfs_enableRefresh(bool enable){
 void vfs::clear()
 {
 	emit cleared();
-	vfs_files.clear();
+	vfs_filesP->clear();
 }
 
 /// to be implemented

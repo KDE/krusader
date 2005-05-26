@@ -89,29 +89,29 @@ public:
 	inline unsigned long vfs_noOfFiles() { return vfs_filesP->count(); }
 	/// Returns the VFS url.
 	inline KURL vfs_getOrigin()          { return vfs_origin;          }
-	// Return the VFS type.
+	/// Return the VFS type.
 	inline VFS_TYPE vfs_getType()        { return vfs_type;            }
 	/// Return the first file in the VFS and set the internal iterator to the beginning of the list.
 	inline vfile* vfs_getFirstFile(){ return (vfileIterator ? vfileIterator->toFirst() : 0); }
 	/// Return the the next file in the list and advance the iterator.
 	inline vfile* vfs_getNextFile() { return (vfileIterator ? ++(*vfileIterator) : 0);  }
-    // KDE FTP proxy bug correction
-    static KURL fromPathOrURL( const QString &originIn );
+   // KDE FTP proxy bug correction
+   static KURL fromPathOrURL( const QString &originIn );
 
 
 public slots:
 	/// Re-reads files and stats and fills the vfile list
 	virtual bool vfs_refresh(const KURL& origin);
 	/// Used to refresh the VFS when a job finishs. it calls the refresh() slot
-  /// or display a error message if the job fails
+	/// or display a error message if the job fails
 	virtual bool vfs_refresh(KIO::Job* job);
 	virtual bool vfs_refresh();
 	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
 	virtual void vfs_enableRefresh(bool enable);        
 	virtual void vfs_disableMimeTypeMagic( bool disable ) { mimeTypeMagicDisabled = disable; }
 	virtual void vfs_invalidate() { invalidated = true; }
-        
-signals: 	
+
+signals:
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
 	void startJob(KIO::Job* job);
 	void incrementalRefreshFinished( const KURL& ); //< emitted when the incremental refresh was finished
@@ -142,13 +142,12 @@ protected:
 	bool invalidated;           //< the content of the cache is invalidated
 	
 protected slots:
-	// The slot for the KDirSize job
+	/// The slot for the KDirSize job
 	void slotKdsResult(KIO::Job *job);
 	
 private:
 	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
 	vfileDict*  vfs_searchP;   //< Searches are preformed in this dictionary (usualy points to vfs_files)	
-	vfileDict   vfs_files;     //< List of pointers to vfile.
 	QDictIterator<vfile>* vfileIterator; //< Point to a dictionary of virtual files (vfile).
 	
 	// used in the calcSpace function
