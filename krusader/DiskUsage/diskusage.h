@@ -45,6 +45,7 @@
 #include <ksqueezedtextlabel.h>
 #include <qwidgetstack.h>
 #include <qscrollview.h>
+#include <qtimer.h>
 
 #define VIEW_LINES      0
 #define VIEW_DETAILED   1
@@ -68,6 +69,7 @@ public:
   ~DiskUsage();
   
   void       load( KURL dirName );
+  void       close();
   void       stopLoad();
   bool       isLoading()     { return loading; }
   
@@ -147,17 +149,24 @@ protected:
   
   QString    configGroup;
   
+  bool       first;
   bool       loading;
   bool       abortLoading;
+  bool       clearAfterAbort;
 
   QValueStack<QString> directoryStack;
   QPtrStack<Directory> parentStack;
 
-  vfs * searchVfs;
+  vfs       * searchVfs;
+  vfile     * currentVfile;
+  Directory * currentParent;
+  QString     dirToCheck;
   
   int   fileNum; 
   int   dirNum;
   int   viewBeforeLoad;
+
+  QTimer loadingTimer;
 };
 
 

@@ -175,8 +175,9 @@ protected:
   int               m_percent;  //< percent flag
 
 public:
-  File( Directory *parentIn, QString nameIn, QString dir, FileSize sizeIn, mode_t modeIn,  QString ownerIn,
-        QString groupIn, QString permIn, time_t timeIn, bool symLinkIn, QString mimeTypeIn )
+  File( Directory *parentIn, const QString &nameIn, const QString &dir, FileSize sizeIn, mode_t modeIn,
+        const QString &ownerIn, const QString &groupIn, const QString &permIn, time_t timeIn, bool symLinkIn,
+        const QString &mimeTypeIn )
   : m_parent( parentIn ), m_name( nameIn ), m_directory( dir ), m_size( sizeIn ), m_ownSize( sizeIn ), m_mode( modeIn ), 
     m_owner( ownerIn ), m_group( groupIn ), m_perm( permIn ), m_time( timeIn ), m_symLink( symLinkIn ), 
     m_mimeType( mimeTypeIn ), m_excluded( false ), m_percent( -1 ) {}
@@ -191,17 +192,17 @@ public:
   
   virtual ~File() {}
       
-  inline const QString    fileName()            const  {return m_name;}
+  inline const QString &  fileName()            const  {return m_name;}
   inline const char *     name()                const  {return m_name.ascii();}
-  inline const QString    directory()           const  {return m_directory;}
+  inline const QString &  directory()           const  {return m_directory;}
   inline const FileSize   size()                const  {return m_excluded ? 0 : m_size;}
   inline const FileSize   ownSize()             const  {return m_excluded ? 0 : m_ownSize;}
   inline const mode_t     mode()                const  {return m_mode;}
-  inline const QString    owner()               const  {return m_owner;}
-  inline const QString    group()               const  {return m_group;}
-  inline const QString    perm()                const  {return m_perm;}
+  inline const QString &  owner()               const  {return m_owner;}
+  inline const QString &  group()               const  {return m_group;}
+  inline const QString &  perm()                const  {return m_perm;}
   inline const time_t     time()                const  {return m_time;}
-  inline const QString    mime()                const  {return m_mimeType;}
+  inline const QString &  mime()                const  {return m_mimeType;}
   inline const bool       isSymLink()           const  {return m_symLink;}
   virtual const bool      isDir()               const  {return false;}
   inline const bool       isExcluded()          const  {return m_excluded;}
@@ -239,8 +240,9 @@ public:
 class Directory : public Chain<File>, public File
 {
 public:
-  Directory( Directory *parentIn, QString nameIn, QString dir, FileSize sizeIn, mode_t modeIn,  QString ownerIn,
-             QString groupIn, QString permIn, time_t timeIn, bool symLinkIn, QString mimeTypeIn )
+  Directory( Directory *parentIn, const QString &nameIn, const QString &dir, FileSize sizeIn, mode_t modeIn,
+             const QString &ownerIn, const QString &groupIn, const QString &permIn, time_t timeIn, bool symLinkIn, 
+             const QString &mimeTypeIn )
   : File( parentIn, nameIn, dir, sizeIn, modeIn, ownerIn, groupIn, permIn, timeIn, symLinkIn, mimeTypeIn ),
     m_fileCount( 0 ) 
   {}

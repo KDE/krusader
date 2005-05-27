@@ -74,6 +74,8 @@
 #define PREVIOUS_VIEW_ID    102
 #define ADDITIONAL_POPUP_ID 103
 
+#define MAX_FILENUM         100
+
 LoaderWidget::LoaderWidget( QWidget *parent, const char *name ) : QScrollView( parent, name ), cancelled( false )
 {
   viewport()->setEraseColor( Qt::white );
@@ -196,7 +198,7 @@ void LoaderWidget::slotCancelled()
 
 DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidgetStack( parent, name ),
                       currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ),
-                      abortLoading( false ), searchVfs( 0 )
+                      abortLoading( false ), clearAfterAbort( false ), searchVfs( 0 )
 {
   listView = new DUListView( this, "DU ListView" );
   lineView = new DULines( this, "DU LineView" );
@@ -212,6 +214,8 @@ DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidget
 
   Filelight::Config::read();
   propertyMap.setAutoDelete( true );
+
+  connect( &loadingTimer, SIGNAL( timeout() ), this, SLOT( slotLoadDirectory() ) );
 }
 
 DiskUsage::~DiskUsage()
@@ -255,7 +259,7 @@ void DiskUsage::load( KURL baseDir )
   searchVfs = KrVfsHandler::getVfs( baseDir );
   if( searchVfs == 0 )
   {
-    loading = abortLoading = false;
+    loading = abortLoading = clearAfterAbort = false;
     emit loadFinished( false );
     return;
   }
@@ -263,6 +267,7 @@ void DiskUsage::load( KURL baseDir )
   searchVfs->vfs_setQuiet( true );
   searchVfs->vfs_enableRefresh( false );
   searchVfs->vfs_disableMimeTypeMagic( true );
+  currentVfile = 0;
 
   if( !loading )
   {
@@ -276,95 +281,112 @@ void DiskUsage::load( KURL baseDir )
   loaderView->setCurrentURL( baseURL );
   loaderView->setValues( fileNum, dirNum, currentSize );
 
-  qApp->processEvents();
-
-  QTimer::singleShot( 0, this, SLOT( slotLoadDirectory() ) );
+  loadingTimer.start( 0, true );
 }
 
 void DiskUsage::slotLoadDirectory()
 {
-  if( directoryStack.isEmpty() || loaderView->wasCancelled() || abortLoading )
+  if( ( currentVfile == 0 && directoryStack.isEmpty() ) || loaderView->wasCancelled() || abortLoading )
   {
     if( searchVfs )
       delete searchVfs;
     searchVfs = 0;
+    currentVfile = 0;
 
     setView( viewBeforeLoad );
 
-    calculateSizes();
-    changeDirectory( root );
-
-    loading = abortLoading = false;
+    if( clearAfterAbort )
+      clear();
+    else {
+      calculateSizes();
+      changeDirectory( root );
+    }
 
     emit loadFinished( !( loaderView->wasCancelled() || abortLoading ) );
+
+    loading = abortLoading = clearAfterAbort = false;
   }
   else if( loading )
   {
-    do
+    for( int counter = 0; counter != MAX_FILENUM; counter ++ )
     {
-      QString dirToCheck = directoryStack.pop();
-      Directory *parent = parentStack.pop();
+      if( currentVfile == 0 )
+      {
+        if( directoryStack.isEmpty() )
+          break;
 
-      contentMap.insert( dirToCheck, parent );
+        dirToCheck = directoryStack.pop();
+        currentParent = parentStack.pop();
 
-      KURL url = baseURL;
+        contentMap.insert( dirToCheck, currentParent );
 
-      if( !dirToCheck.isEmpty() )
-        url.addPath( dirToCheck );
+        KURL url = baseURL;
+
+        if( !dirToCheck.isEmpty() )
+          url.addPath( dirToCheck );
 
 #if defined(BSD)
-      if ( url.isLocalFile() && url.path().left( 7 ) == "/procfs" )
-        break;
+        if ( url.isLocalFile() && url.path().left( 7 ) == "/procfs" )
+          break;
 #else
-      if ( url.isLocalFile() && url.path().left( 5 ) == "/proc" )
-        break;
+        if ( url.isLocalFile() && url.path().left( 5 ) == "/proc" )
+          break;
 #endif
 
-      loaderView->setCurrentURL( url );
+        loaderView->setCurrentURL( url );
 
-      if( !searchVfs->vfs_refresh( url ) )
-        break;
+        if( !searchVfs->vfs_refresh( url ) )
+          break;
 
-      dirNum++;
+        dirNum++;
 
-      vfile * file = searchVfs->vfs_getFirstFile();
-      while( file )
+        currentVfile = searchVfs->vfs_getFirstFile();
+      }
+      else
       {
         fileNum++;
         File *newItem = 0;
 
-        if( file->vfile_isDir() && !file->vfile_isSymLink() )
+        if( currentVfile->vfile_isDir() && !currentVfile->vfile_isSymLink() )
         {
-          newItem = new Directory( parent, file->vfile_getName(), dirToCheck, file->vfile_getSize(),
-                                   file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(),
-                                   file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
-                                   file->vfile_getMime() );
-          directoryStack.push( (dirToCheck.isEmpty() ? "" : dirToCheck + "/" )+ file->vfile_getName() );
+          newItem = new Directory( currentParent, currentVfile->vfile_getName(), dirToCheck, currentVfile->vfile_getSize(),
+                                   currentVfile->vfile_getMode(), currentVfile->vfile_getOwner(), currentVfile->vfile_getGroup(),
+                                   currentVfile->vfile_getPerm(), currentVfile->vfile_getTime_t(), currentVfile->vfile_isSymLink(),
+                                   "" );
+          directoryStack.push( (dirToCheck.isEmpty() ? "" : dirToCheck + "/" )+ currentVfile->vfile_getName() );
           parentStack.push( dynamic_cast<Directory *>( newItem ) );
         }
         else
         {
-          newItem = new File( parent, file->vfile_getName(), dirToCheck, file->vfile_getSize(),
-                              file->vfile_getMode(), file->vfile_getOwner(), file->vfile_getGroup(),
-                              file->vfile_getPerm(), file->vfile_getTime_t(), file->vfile_isSymLink(),
-                              file->vfile_getMime() );
-          currentSize += file->vfile_getSize();
+          newItem = new File( currentParent, currentVfile->vfile_getName(), dirToCheck, currentVfile->vfile_getSize(),
+                              currentVfile->vfile_getMode(), currentVfile->vfile_getOwner(), currentVfile->vfile_getGroup(),
+                              currentVfile->vfile_getPerm(), currentVfile->vfile_getTime_t(), currentVfile->vfile_isSymLink(),
+                              "" );
+          currentSize += currentVfile->vfile_getSize();
         }
-        parent->append( newItem );
+        currentParent->append( newItem );
 
-        file = searchVfs->vfs_getNextFile();
+        currentVfile = searchVfs->vfs_getNextFile();
       }
+    }
 
-      loaderView->setValues( fileNum, dirNum, currentSize );
-    }while( 0 );
-
-    QTimer::singleShot( 0, this, SLOT( slotLoadDirectory() ) );
+    loaderView->setValues( fileNum, dirNum, currentSize );
+    loadingTimer.start( 0, true );
   }
 }
 
 void DiskUsage::stopLoad()
 {
   abortLoading = true;
+}
+
+void DiskUsage::close()
+{
+  if( loading )
+  {
+    abortLoading = true;
+    clearAfterAbort = true;
+  }
 }
 
 void DiskUsage::dirUp()

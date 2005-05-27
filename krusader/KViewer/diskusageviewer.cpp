@@ -98,6 +98,8 @@ void DiskUsageViewer::openURL( KURL url )
 
 void DiskUsageViewer::closeURL()
 {
+  if( diskUsage )
+    diskUsage->close();
 }
 
 void DiskUsageViewer::setStatusLabel( QLabel *statLabel, QString pref )
