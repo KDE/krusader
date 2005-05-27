@@ -1,59 +1,71 @@
-/***************************************************************************
-                                krpopupmenu.h 
-                             -------------------
-    begin                : Tue Aug 26 2003
-    copyright            : (C) 2003 by Shie Erlich & Rafi Yanai
-    email                : 
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-
 #ifndef KRPOPUPMENU_H
 #define KRPOPUPMENU_H
 
-#include <qwidget.h>
-#include <qpopupmenu.h>
+#include <kpopupmenu.h>
+#include <kurl.h>
+#include <kuserprofile.h>
+#include "listpanel.h"
+#include "krpreviewpopup.h"
+#include "../UserAction/useractionpopupmenu.h"
+#ifdef __LIBKONQ__
+#include <konq_popupmenu.h>
+#include <konqbookmarkmanager.h>
+#endif
 
-class KrPopupMenu : public QPopupMenu  {
-   Q_OBJECT
-public: 
-	KrPopupMenu(QWidget *parent=0, const char *name=0);
+// should be renamed to KrContextMenu or similar
+class KrPopupMenu : public KPopupMenu {
+	Q_OBJECT
+public:
+	static void run(const QPoint &pos, ListPanel *panel);
+
+protected:	
+	KrPopupMenu(ListPanel *thePanel, QWidget *parent=0);
 	~KrPopupMenu();
+	void performAction(int id);
+	void addEmptyMenu(); // adds the choices for a menu without selected items
 
-//  void populate(KURL::List urls);
+	enum ID {
+		OPEN_ID,
+		OPEN_WITH_ID,
+		OPEN_KONQ_ID,
+		OPEN_TERM_ID,
+		OPEN_TAB_ID,
+		PREVIEW_ID,
+		KONQ_MENU_ID,
+		CHOOSE_ID,
+		DELETE_ID,
+		COPY_ID,
+		MOVE_ID,
+		RENAME_ID,
+		PROPERTIES_ID,
+		MOUNT_ID,
+		UNMOUNT_ID,
+		SHRED_ID,
+		NEW_LINK_ID,
+		NEW_SYMLINK_ID,
+		REDIRECT_LINK_ID,
+		SYNC_SELECTED_ID,
+		SEND_BY_EMAIL_ID,
+		LINK_HANDLING_ID,
+		EJECT_ID,
+		COPY_CLIP_ID,
+		MOVE_CLIP_ID,
+		PASTE_CLIP_ID,
+		SERVICE_LIST_ID // ALWAYS KEEP THIS ONE LAST!!!
+	};
 
-protected:
-  enum ID{
-    OPEN_ID       = 90,
-    OPEN_WITH_ID  = 91,
-    OPEN_KONQ_ID  = 92,
-    OPEN_TERM_ID  = 93,
-    CHOOSE_ID     = 94,
-    DELETE_ID     = 95,
-    COPY_ID       = 96,
-    MOVE_ID       = 97,
-    RENAME_ID     = 98,
-    PROPERTIES_ID = 99,
-    MOUNT_ID      = 100,
-    UNMOUNT_ID    = 101,
-    SHRED_ID      = 102,
-    NEW_LINK      = 103,
-    NEW_SYMLINK   = 104,
-    REDIRECT_LINK = 105,
-    SEND_BY_EMAIL = 106,
-    LINK_HANDLING = 107,
-    EJECT_ID      = 108,
-    PREVIEW_ID    = 109,
-  // those will sometimes appear
-    SERVICE_LIST_ID  = 200
-  };
+private:
+	ListPanel *panel;
+	bool empty, multipleSelections;
+	KPopupMenu openWith, linkPopup;
+   KrPreviewPopup preview;
+   KActionCollection *actions;
+   KrViewItemList items; // list of selected items
+   KrViewItem *item; // the (first) selected item
+   QValueList<KServiceOffer> offers;
+#ifdef __LIBKONQ__
+   KonqPopupMenu *konqMenu;
+#endif
 };
 
 #endif
