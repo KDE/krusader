@@ -347,12 +347,15 @@ void DiskUsage::slotLoadDirectory()
         fileNum++;
         File *newItem = 0;
 
+        QString mime = KMimeType::findByURL( currentVfile->vfile_getUrl(), currentVfile->vfile_getMode(),
+                                             currentVfile->vfile_getUrl().isLocalFile(), true)->name();
+
         if( currentVfile->vfile_isDir() && !currentVfile->vfile_isSymLink() )
         {
           newItem = new Directory( currentParent, currentVfile->vfile_getName(), dirToCheck, currentVfile->vfile_getSize(),
                                    currentVfile->vfile_getMode(), currentVfile->vfile_getOwner(), currentVfile->vfile_getGroup(),
                                    currentVfile->vfile_getPerm(), currentVfile->vfile_getTime_t(), currentVfile->vfile_isSymLink(),
-                                   "" );
+                                   mime );
           directoryStack.push( (dirToCheck.isEmpty() ? "" : dirToCheck + "/" )+ currentVfile->vfile_getName() );
           parentStack.push( dynamic_cast<Directory *>( newItem ) );
         }
@@ -361,7 +364,7 @@ void DiskUsage::slotLoadDirectory()
           newItem = new File( currentParent, currentVfile->vfile_getName(), dirToCheck, currentVfile->vfile_getSize(),
                               currentVfile->vfile_getMode(), currentVfile->vfile_getOwner(), currentVfile->vfile_getGroup(),
                               currentVfile->vfile_getPerm(), currentVfile->vfile_getTime_t(), currentVfile->vfile_isSymLink(),
-                              "" );
+                              mime );
           currentSize += currentVfile->vfile_getSize();
         }
         currentParent->append( newItem );
