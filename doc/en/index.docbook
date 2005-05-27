@@ -84,6 +84,8 @@ Previous used Docbook
 <!ENTITY online_buglist_url '<ulink url="http://sourceforge.net/tracker/?atid=106488&amp;group_id=6488&amp;func=browse">online bug list</ulink>'>
 <!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/">more translator credits</ulink>'>
 
+<!ENTITY fhs_url '<ulink url="http://www.pathname.com/fhs/">Filesystem Hierarchy Standard (FHS)</ulink>'>
+
 <!-- internet links, Krusader binaries -->
 <!ENTITY krudownload_url '<ulink url="http://krusader.sourceforge.net/down.php">&krusader; downloadpage</ulink>'>
 <!ENTITY gentoo_life_ebuild_url '<ulink url="http://krusader.sourceforge.net/data/krusader-cvs-1.ebuild">&gentoo; Live Ebuild</ulink>'>
@@ -133,6 +135,7 @@ Previous used Docbook
 
 <!ENTITY ofm_url '<ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink>'>
 <!ENTITY disk_order_url '<ulink url="http://www.likemac.ru/english/"><trademark class="copyright">Disk Order</trademark></ulink>'>
+
 
 <!-- documentation links -->
 <!ENTITY selection_modes_lnk '<link linkend="selection_modes">Selection Modes</link>'>
@@ -270,7 +273,7 @@ Previous used Docbook
 <bookinfo id="index">
 <title>The Krusader Handbook</title>
 
-  <authorgroup>
+<authorgroup>
   <othercredit role="developer">
         <firstname>Shie</firstname><surname>Erlich</surname>
         <contrib>Author and initial Handbook author</contrib>
@@ -325,13 +328,7 @@ Previous used Docbook
         <contrib>Documentation</contrib>
         <affiliation><address><email>sekhmet_616@yahoo.com</email></address></affiliation>
   </othercredit>
-        
-  <othercredit role="reviewer">
-        <firstname>Mark</firstname><surname>Eatough</surname>
-        <contrib>Handbook proofreader</contrib>
-        <affiliation><address><email>markeatough@yahoo.com</email></address></affiliation>
-        </othercredit>
-  </authorgroup>
+</authorgroup>      
 
   <copyright>
         <year>2000</year>
@@ -349,7 +346,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-05-17</date>
+  <date>2005-05-27</date>
   <releaseinfo>1.61.0</releaseinfo>
 
    <abstract>
