@@ -84,9 +84,6 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 	krConfig->setGroup("Advanced");
 	if (krConfig->readBoolEntry("AutoMount",_AutoMount)) krMtMan.autoMount(path);
 	
-	krConfig->setGroup("General");
-	bool mtm    = !mimeTypeMagicDisabled && krConfig->readBoolEntry("Mimetype Magic",_MimetypeMagic);
-
 	DIR* dir = opendir(path.local8Bit());
 	if(!dir) 
 	{

@@ -108,7 +108,6 @@ public slots:
 	virtual bool vfs_refresh();
 	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
 	virtual void vfs_enableRefresh(bool enable);        
-	virtual void vfs_disableMimeTypeMagic( bool disable ) { mimeTypeMagicDisabled = disable; }
 	virtual void vfs_invalidate() { invalidated = true; }
 
 signals:
@@ -138,7 +137,6 @@ protected:
 	bool disableRefresh;        //< true if refresh is disabled
 	bool isWritable;            //< true if it's writable
 	bool dirty;                 //< true if a watcher signal arrived while in disabled refresh.
-	bool mimeTypeMagicDisabled; //< true if the mime type magic is disabled
 	bool invalidated;           //< the content of the cache is invalidated
 	
 protected slots:

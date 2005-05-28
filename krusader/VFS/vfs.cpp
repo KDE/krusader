@@ -39,7 +39,7 @@
 #include "../krusader.h"
 #include "../defaults.h"
 
-vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),mimeTypeMagicDisabled( false ),
+vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),
                                       invalidated(true),vfileIterator(0) {
 		
 
