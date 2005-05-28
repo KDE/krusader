@@ -61,9 +61,9 @@ vfs* KrVfsHandler::getVfs(const KURL& url,QObject* parent,vfs* oldVfs){
 		switch( newType ){
 		  case (vfs::NORMAL) : newVfs = new normal_vfs(parent); break;
 		  case (vfs::FTP   ) : newVfs = new ftp_vfs(parent)   ; break;
-//		  case (vfs::TEMP  ) : newVfs = new temp_vfs(parent)  ; break;
+		  case (vfs::TEMP  ) : newVfs = 0/*new temp_vfs(parent)*/  ; break;
 		  case (vfs::VIRT  ) : newVfs = new virt_vfs(parent)  ; break;
-      case (vfs::ERROR ) : newVfs = 0                     ; break;
+      case (vfs::ERROR ) : newVfs = 0                       ; break;
 		}
   }
 

@@ -249,7 +249,6 @@ void PanelPopup::tabSelected( int id ) {
 void PanelPopup::update( KURL url ) {
    if ( isHidden() || url.url()=="" ) return ; // failsafe
 
-   KFileItem *kfi;
    KFileItemList lst;
 
    switch ( stack->id( stack->visibleWidget() ) ) {

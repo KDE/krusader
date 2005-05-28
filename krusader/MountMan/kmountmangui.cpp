@@ -180,7 +180,7 @@ void KMountManGUI::gettingSpaceData() {
 }
 
 void KMountManGUI::gettingSpaceData( const QString &mountPoint, unsigned long kBSize,
-                                     unsigned long kBUsed, unsigned long kBAvail ) {
+                                     unsigned long /*kBUsed*/, unsigned long kBAvail ) {
    KMountPoint *m = KMountMan::findInListByMntPoint( mounted, mountPoint );
    if ( !m ) { // this should never never never happen!
       KMessageBox::error( 0, i18n( "Critical Error" ),

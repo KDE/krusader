@@ -55,7 +55,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   profileList.push_front( "<" + i18n( "Last session" ) + ">" );
   
   KONFIGURATOR_NAME_VALUE_PAIR comboItems[ profileList.count() ];
-  for( int i=0; i != profileList.count(); i++ )
+  for(unsigned int i=0; i != profileList.count(); i++ )
     comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];    
   comboItems[ 0 ].value = "";
       

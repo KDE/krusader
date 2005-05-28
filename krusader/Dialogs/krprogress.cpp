@@ -224,8 +224,8 @@ void KrProgress::slotSpeed( KIO::Job*, unsigned long bytes_per_second )
   if ( bytes_per_second == 0 ) {
     speedLabel->setText( i18n( "Working") );
   } else {
-    QTime remaining = KIO::calculateRemaining( m_iTotalSize, m_iProcessedSize, bytes_per_second );
-    speedLabel->setText( i18n( "%1/s ( %2 remaining )").arg( KIO::convertSize( bytes_per_second )).arg( remaining.toString() ) );
+    unsigned int remaining = KIO::calculateRemainingSeconds( m_iTotalSize, m_iProcessedSize, bytes_per_second );
+    speedLabel->setText( i18n( "%1/s ( %2 remaining )").arg( KIO::convertSize( bytes_per_second )).arg( KIO::convertSeconds(remaining) ) );
   }
 }
 

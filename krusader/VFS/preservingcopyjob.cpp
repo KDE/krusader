@@ -45,7 +45,7 @@ PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, C
   }
 }
 
-void PreservingCopyJob::slotAboutToCreate( KIO::Job *job, const QValueList< KIO::CopyInfo > &files )
+void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const QValueList< KIO::CopyInfo > &files )
 {
   for ( QValueList< KIO::CopyInfo >::ConstIterator it = files.begin(); it != files.end(); ++it )
     fileAttributes[ (*it).uSource.url().ascii() ] = (*it).mtime;

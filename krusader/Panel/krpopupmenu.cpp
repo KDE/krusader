@@ -39,7 +39,10 @@ void KrPopupMenu::run(const QPoint &pos, ListPanel *panel) {
 }
 
 KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(parent), panel(thePanel), empty(false), 
-	actions(0), multipleSelections(false), konqMenu(0) {
+	multipleSelections(false),actions(0) {
+#ifdef __LIBKONQ__
+	konqMenu = 0;
+#endif
 	
    panel->view->getSelectedKrViewItems( &items );
    if ( items.empty() ) {

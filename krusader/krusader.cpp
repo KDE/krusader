@@ -255,7 +255,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
       leftActiveTab = 0;
       
       // make sure left or right are not relative paths
-      for( int i = 0; i != leftTabs.count(); i++ )
+      for(unsigned int i = 0; i != leftTabs.count(); i++ )
       {
         leftTabs[ i ] = leftTabs[ i ].stripWhiteSpace();
         if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].find( ":/" ) < 0 )
@@ -268,7 +268,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
       rightActiveTab = 0;
       
       // make sure left or right are not relative paths
-      for( int i = 0; i != rightTabs.count(); i++ )
+      for(unsigned int i = 0; i != rightTabs.count(); i++ )
       {
         rightTabs[ i ] = rightTabs[ i ].stripWhiteSpace();
         if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].find( ":/" ) < 0 )
@@ -442,8 +442,6 @@ void Krusader::setupActions() {
    // second, the KDE standard action
    //KStdAction::up( SLOTS, SLOT( dirUp() ), actionCollection(), "std_up" )->setShortcut(Key_Backspace);
    /* Shortcut disabled because of the Terminal Emulator bug. */
-   krConfig->setGroup( "Startup" );
-   bool manualSave = ( krConfig->readEntry( "Panels Save Settings", _PanelsSave ) == "None" );
    krConfig->setGroup( "Private" );
    int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
    
@@ -691,7 +689,7 @@ void Krusader::exportKeyboardShortcuts(QString filename) {
 	QDataStream stream(&f);
 	
 	KAction *action;
-	for (int i=0; i<actionCollection()->count(); ++i) {
+	for (unsigned int i=0; i<actionCollection()->count(); ++i) {
 		action = actionCollection()->action(i);
 		int key = action->shortcut().keyCodeQt();
 		if (key) { // if a valid shortcut exists
@@ -992,7 +990,6 @@ QString Krusader::getTempFile() {
       tmpDir = tmpDir + kapp->randomString( 8 );
    return tmpDir;
 }
-
 
 char* Krusader::privIcon() {
    if ( geteuid() )

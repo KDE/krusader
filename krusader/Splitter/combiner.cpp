@@ -115,7 +115,7 @@ void Combiner::combineSplitFileFinished(KIO::Job *job)
     
     bool hasFileName = false, hasSize = false, hasCrc = false;
     
-    for( int i = 0; i != splitFileContent.count(); i++ )
+    for(unsigned int i = 0; i != splitFileContent.count(); i++ )
     {
       int ndx = splitFileContent[i].find( '=' );    
       if( ndx == -1 )

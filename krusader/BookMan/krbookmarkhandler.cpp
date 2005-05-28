@@ -70,7 +70,7 @@ void KrBookmarkHandler::addBookmark(KrBookmark *bm, KrBookmark *folder) {
 	exportToFile();
 }
 
-void KrBookmarkHandler::deleteBookmark(KrBookmark *bm) {
+void KrBookmarkHandler::deleteBookmark(KrBookmark */*bm*/) {
 }
 
 void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm) {

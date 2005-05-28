@@ -97,7 +97,7 @@ void ListPanelFunc::openUrl( const QString& url, const QString& nameToMakeCurren
 void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	KURL url = urlIn;
 	url.cleanPath();
-	
+
 	// check for special cases first - don't refresh here !
 	// you may call openUrl or vfs_refresh()
 	if ( !url.isValid() ) {

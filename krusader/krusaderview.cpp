@@ -107,10 +107,10 @@ void KrusaderView::start( QStringList leftTabs, int leftActiveTab, QStringList r
   activePanel = left;
   activePanel->slotFocusOnMe();  // left starts out active
      
-  for( int i = 1; i < leftTabs.count(); i++ )
+  for(unsigned int i = 1; i < leftTabs.count(); i++ )
     leftMng->slotNewTab( leftTabs[ i ] );
 
-  for( int j = 1; j < rightTabs.count(); j++ )
+  for(unsigned int j = 1; j < rightTabs.count(); j++ )
     rightMng->slotNewTab( rightTabs[ j ] );
        
   leftMng->setActiveTab( leftActiveTab );

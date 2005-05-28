@@ -106,7 +106,7 @@ typedef QValueList<KServiceOffer> OfferList;
 /////////////////////////////////////////////////////
 ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
       QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), 
-		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0), _left( left ), inlineRefreshJob(0) {
+		quickSearch( 0 ), cdRootButton( 0 ), cdUpButton( 0 ), popupBtn(0), popup(0),inlineRefreshJob(0), _left( left ) {
 
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
@@ -501,7 +501,6 @@ void ListPanel::slotFocusOnMe() {
 // this is used to start the panel, AFTER setOther() has been used
 //////////////////////////////////////////////////////////////////
 void ListPanel::start( KURL url, bool immediate ) {
-   bool left = _left;
    KURL virt;
    
    virt = url;
@@ -739,7 +738,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
    KrPopupMenu::run(QPoint( loc.x() + 5, loc.y() + j ), this);
 }
 
-void ListPanel::popEmptyRightClickMenu( QListViewItem *item, const QPoint &loc, int ) {
+void ListPanel::popEmptyRightClickMenu( QListViewItem */*item*/, const QPoint &loc, int ) {
 	KrPopupMenu::run(loc, this);
 }
 
