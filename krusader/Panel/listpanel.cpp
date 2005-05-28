@@ -163,7 +163,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	inlineRefreshCancelButton->setFixedSize( 22, 20 );
 	inlineRefreshCancelButton->setPixmap(krLoader->loadIcon("cancel", KIcon::Toolbar, 16));
 	connect(inlineRefreshCancelButton, SIGNAL(clicked()), this, SLOT(inlineRefreshCancel()));
-	
+
 	// a quick button to open the popup panel
 	popupBtn = new QToolButton( this, "popupbtn" );
 	popupBtn->setFixedSize( 22, 20 );
@@ -182,6 +182,15 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    quickSearch->setMaximumHeight( sheight );
 
    QHBox * hbox = new QHBox( this );
+
+	// clear-origin button
+	bool clearButton = krConfig->readBoolEntry("Clear Location Bar Visible", _ClearLocation);
+	if (clearButton){
+		clearOrigin = new QToolButton(hbox, "clearorigin");
+		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", KIcon::Toolbar, 16));
+		QToolTip::add(  clearOrigin, i18n( "Clear the location bar" ) );
+	}
+
    origin = new KURLRequester( hbox );
    QPixmap pixMap = origin->button() ->iconSet() ->pixmap( QIconSet::Small, QIconSet::Normal );
    origin->button() ->setFixedSize( pixMap.width() + 4, pixMap.height() + 4 );
@@ -196,7 +205,14 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    origin->setMode( KFile::Directory | KFile::ExistingOnly );
    connect( origin, SIGNAL( returnPressed( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
    connect( origin, SIGNAL( urlSelected( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
-
+   
+	// this is here on purpose, do not move up!
+	if (clearButton) {
+		clearOrigin->setFixedSize( 20, origin->button() ->height() );
+		connect(clearOrigin, SIGNAL(clicked()), origin->lineEdit(), SLOT(clear()));
+	}
+	//
+   
    cdOtherButton = new QToolButton( hbox, "cdOtherButton" );
    cdOtherButton->setFixedSize( 20, origin->button() ->height() );
    cdOtherButton->setText( i18n( "=" ) );

@@ -95,6 +95,8 @@
 #define _Open               false 
 // syncBrowseButton is turned on
 #define _syncBrowseButton   false 
+// Clear Location Bar Visible
+#define _ClearLocation		true
 // Use the default colors of KDE
 #define _KDEDefaultColors     true 
 // Enable Alternate Background colors
