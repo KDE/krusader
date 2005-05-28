@@ -93,7 +93,7 @@ public:
 	inline time_t           vfile_getTime_t()  const { return vfile_time_t;         }
 	inline const KURL&      vfile_getUrl()     const { return vfile_url;            }
   
-	const QString&          vfile_getMime();
+	const QString&          vfile_getMime(bool fast=false);
 	const QString&          vfile_getOwner();
 	const QString&          vfile_getGroup();
 	const KIO::UDSEntry     vfile_getEntry(); //< return the UDSEntry from the vfile

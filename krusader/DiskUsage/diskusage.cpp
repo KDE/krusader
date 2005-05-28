@@ -266,7 +266,6 @@ void DiskUsage::load( KURL baseDir )
 
   searchVfs->vfs_setQuiet( true );
   searchVfs->vfs_enableRefresh( false );
-  searchVfs->vfs_disableMimeTypeMagic( true );
   currentVfile = 0;
 
   if( !loading )
@@ -347,8 +346,7 @@ void DiskUsage::slotLoadDirectory()
         fileNum++;
         File *newItem = 0;
 
-        QString mime = KMimeType::findByURL( currentVfile->vfile_getUrl(), currentVfile->vfile_getMode(),
-                                             currentVfile->vfile_getUrl().isLocalFile(), true)->name();
+        QString mime = currentVfile->vfile_getMime(true); // fast == not using mimetype magic
 
         if( currentVfile->vfile_isDir() && !currentVfile->vfile_isSymLink() )
         {
