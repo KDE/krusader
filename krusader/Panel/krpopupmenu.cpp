@@ -46,7 +46,9 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
 	
    panel->view->getSelectedKrViewItems( &items );
    if ( items.empty() ) {
-   	addEmptyMenu();
+   	addCreateNewMenu();
+   	insertSeparator();
+   	addEmptyMenuEntries();
       return;
 	} else if ( items.size() > 1 ) multipleSelections = true;
 
@@ -119,8 +121,11 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
                            KonqPopupMenu::ShowProperties, KParts::BrowserExtension::DefaultPopupItems );
    insertItem( QPixmap(), konqMenu, KONQ_MENU_ID );
    changeItem( KONQ_MENU_ID, i18n( "Konqueror menu" ) );
-   insertSeparator();
 #endif
+   
+	// ------------- 'create new' submenu
+   addCreateNewMenu();
+	insertSeparator();
    
    // ---------- COPY
    insertItem( i18n( "Copy" ), COPY_ID );
@@ -196,8 +201,17 @@ KrPopupMenu::~KrPopupMenu() {
 #endif	
 }
 
-void KrPopupMenu::addEmptyMenu() {
+void KrPopupMenu::addEmptyMenuEntries() {
 	insertItem( i18n( "Paste from Clipboard" ), PASTE_CLIP_ID );
+}
+
+void KrPopupMenu::addCreateNewMenu() {
+	createNewPopup.insertItem( krLoader->loadIcon( "folder", KIcon::Small ), i18n("Folder"), MKDIR_ID);
+	createNewPopup.insertItem( krLoader->loadIcon( "txt", KIcon::Small ), i18n("Text file"), NEW_TEXT_FILE_ID);
+	
+	insertItem( QPixmap(), &createNewPopup, CREATE_NEW_ID);
+	changeItem( CREATE_NEW_ID, i18n( "Create new" ) );
+	
 }
 
 void KrPopupMenu::performAction(int id) {
@@ -275,6 +289,12 @@ void KrPopupMenu::performAction(int id) {
          case SEND_BY_EMAIL_ID :
          	SLOTS->sendFileByEmail( panel->func->files() ->vfs_getFile( item->name() ).url() );
          	break;
+			case MKDIR_ID :
+				SLOTS->mkdir();
+				break;
+			case NEW_TEXT_FILE_ID:
+				SLOTS->editDlg();
+				break;
          case SYNC_SELECTED_ID :
          	{
 				QStringList selectedNames;

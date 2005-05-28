@@ -22,7 +22,8 @@ protected:
 	KrPopupMenu(ListPanel *thePanel, QWidget *parent=0);
 	~KrPopupMenu();
 	void performAction(int id);
-	void addEmptyMenu(); // adds the choices for a menu without selected items
+	void addEmptyMenuEntries(); // adds the choices for a menu without selected items
+	void addCreateNewMenu(); // adds a "create new" submenu
 
 	enum ID {
 		OPEN_ID,
@@ -51,13 +52,16 @@ protected:
 		COPY_CLIP_ID,
 		MOVE_CLIP_ID,
 		PASTE_CLIP_ID,
+		MKDIR_ID,
+		NEW_TEXT_FILE_ID,
+		CREATE_NEW_ID,
 		SERVICE_LIST_ID // ALWAYS KEEP THIS ONE LAST!!!
 	};
 
 private:
 	ListPanel *panel;
 	bool empty, multipleSelections;
-	KPopupMenu openWith, linkPopup;
+	KPopupMenu openWith, linkPopup, createNewPopup;
    KrPreviewPopup preview;
    KActionCollection *actions;
    KrViewItemList items; // list of selected items
