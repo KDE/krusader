@@ -371,7 +371,7 @@ void kio_isoProtocol::stat( const KURL & url )
 
 void kio_isoProtocol::getFile( const KIsoFile *isoFileEntry, const QString &path )
 {
-    long long size, pos = 0;
+    unsigned long long size, pos = 0;
     bool mime=false,zlib=false;
     QByteArray fileData, pointer_block, inbuf, outbuf;
     char *pptr = 0;
