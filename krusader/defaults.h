@@ -107,6 +107,8 @@
 #define _WithIcons          true
 // Single Click Selects
 #define _SingleClickSelects false
+// Numeric Permissions
+#define _NumericPermissions false
 
 /////////////////////// [General]
 // Mimetype Magic /////

@@ -50,6 +50,7 @@
 #define COLUMN(X)	static_cast<const KrDetailedViewProperties*>(_viewProperties)->	\
 	column[ KrDetailedViewProperties::X ]
 #define PROPS	static_cast<const KrDetailedViewProperties*>(_viewProperties)
+#define PERM_BITMASK (S_IRWXU|S_IRWXG|S_IRWXO)
 
 int KrDetailedViewItem::expHeight = 0;
 
@@ -95,10 +96,11 @@ void KrDetailedViewItem::setup() {
 
 void KrDetailedViewItem::repaintItem() {
     if ( dummyVfile ) return;
+    QString tmp;
     // set text in columns, according to what columns are available
     int id = KrDetailedViewProperties::Unused;
     if ((id = COLUMN(Mime)) != -1) {
-      QString tmp = KMimeType::mimeType(_vf->vfile_getMime())->comment();
+      tmp = KMimeType::mimeType(_vf->vfile_getMime())->comment();
       setText( id, tmp );
     }
     if ((id = COLUMN(Size)) != -1) {
@@ -111,7 +113,6 @@ void KrDetailedViewItem::repaintItem() {
       setText(id, dateTime());
     if ((id = COLUMN(KrPermissions)) != -1) {
       // first, build the krusader permissions
-      QString tmp;
       switch (_vf->vfile_isReadable()){
         case ALLOWED_PERM: tmp+='r'; break;
         case UNKNOWN_PERM: tmp+='?'; break;
@@ -129,8 +130,11 @@ void KrDetailedViewItem::repaintItem() {
       }
       setText(id, tmp);
     }
-    if ((id = COLUMN(Permissions) ) != -1)
-      setText(id, _vf->vfile_getPerm());
+    if ((id = COLUMN(Permissions) ) != -1) {
+		if (PROPS->numericPermissions) {
+      	setText(id, tmp.sprintf("0%o", _vf->vfile_getMode() & PERM_BITMASK));
+		} else setText(id, _vf->vfile_getPerm());
+	 }
     if ((id = COLUMN(Owner)) != -1) {
       setText(id, _vf->vfile_getOwner());
     }
@@ -378,7 +382,7 @@ QString KrDetailedViewItem::description() const {
 	mode_t m_fileMode = _vf->vfile_getMode();
 	
 	if (_vf->vfile_isSymLink() ){
-	QString tmp;
+		QString tmp;
 		if ( comment.isEmpty() )	tmp = i18n ( "Symbolic Link" ) ;
 		else if( _vf->vfile_getMime() == "Broken Link !" ) tmp = i18n("(broken link !)");
 		else tmp = i18n("%1 (Link)").arg(comment);

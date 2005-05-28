@@ -1276,16 +1276,15 @@ void KrDetailedView::makeItemVisible( const KrViewItem *item ) {
 
 void KrDetailedView::initProperties() {
 	_properties = new KrDetailedViewProperties;
+	KConfigGroupSaver grpSvr( _config, "Look&Feel" );	
 	PROPS->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
 	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
 		KrViewProperties::Descending | KrViewProperties::DirsFirst );
-	{
-	KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+	PROPS->numericPermissions = _config->readBoolEntry("Numeric permissions", _NumericPermissions);
 	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
       	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
 				 KrViewProperties::IgnoreCase );
 	PROPS->humanReadableSize = krConfig->readBoolEntry("Human Readable Size", _HumanReadableSize);
-	}
 	PROPS->localeAwareCompareIsCaseSensitive = QString( "a" ).localeAwareCompare( "B" ) > 0; // see KDE bug #40131
 }
 
