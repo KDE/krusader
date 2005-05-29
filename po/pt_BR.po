@@ -62,7 +62,7 @@ msgstr "Novo protocolo"
 
 #: GUI/actionproperty.cpp:193
 msgid "Set a protocol:"
-msgstr "Configure um protocolo:"
+msgstr "Defina um protocolo:"
 
 #: GUI/actionproperty.cpp:208
 msgid "Edit protocol"
@@ -70,7 +70,7 @@ msgstr "Editar protocolo"
 
 #: GUI/actionproperty.cpp:209
 msgid "Set another protocol:"
-msgstr "Configure outro protocolo:"
+msgstr "Defina outro protocolo:"
 
 #: GUI/actionproperty.cpp:239
 msgid "Edit path"
@@ -78,7 +78,7 @@ msgstr "Editar localização"
 
 #: GUI/actionproperty.cpp:240
 msgid "Set another path:"
-msgstr "Introduza outra localização:"
+msgstr "Defina outro caminho:"
 
 #: GUI/actionproperty.cpp:259
 msgid "New mime-type"
@@ -86,7 +86,7 @@ msgstr "Novo tipo-mime"
 
 #: GUI/actionproperty.cpp:260
 msgid "Set a mime-type:"
-msgstr "Configurar um tipo-mime:"
+msgstr "Defina um tipo-mime:"
 
 #: GUI/actionproperty.cpp:275
 msgid "Edit mime-type"
@@ -94,7 +94,7 @@ msgstr "Editar tipo-mime"
 
 #: GUI/actionproperty.cpp:276
 msgid "Set another mime-type:"
-msgstr "Configure outro tipo-mime:"
+msgstr "Defina outro tipo-mime:"
 
 #: GUI/actionproperty.cpp:295
 msgid "New filename"
@@ -102,7 +102,7 @@ msgstr "Novo nome de arquivo"
 
 #: GUI/actionproperty.cpp:296
 msgid "Set a filename:"
-msgstr "Insira um nome de arquivo:"
+msgstr "Defina um nome de arquivo:"
 
 #: GUI/actionproperty.cpp:311
 msgid "Edit filename"
@@ -110,15 +110,15 @@ msgstr "Editar nome de arquivo"
 
 #: GUI/actionproperty.cpp:312
 msgid "Set another filename:"
-msgstr "Inserir outro nome de arquivo:"
+msgstr "Defina outro nome de arquivo:"
 
 #: GUI/actionproperty.cpp:331
 msgid "Please set a unique name for the useraction"
-msgstr "Por favor insira um nome único para a ação do usuário"
+msgstr "Por favor defina um nome único para a ação do usuário"
 
 #: GUI/actionproperty.cpp:336
 msgid "Please set a title for the menu entry"
-msgstr "Insira um título para a entrada do menu"
+msgstr "Defina um título para a entrada do menu"
 
 #: GUI/actionproperty.cpp:341
 msgid "Command line is empty"
@@ -206,7 +206,7 @@ msgstr "Um tooltip para a ação"
 
 #: GUI/actionpropertybase.cpp:405
 msgid "You may want to set a working directory"
-msgstr "Você poderá escolher um diretório de trabalho"
+msgstr "Você poderá definir um diretório de trabalho"
 
 #: GUI/actionpropertybase.cpp:406
 msgid "Tooltip"
@@ -232,7 +232,7 @@ msgstr "Adicione placeholders para os arquivos selecionados no painel"
 
 #: GUI/actionpropertybase.cpp:412
 msgid "The description is only displayed in the Konfigurator and via Shift-F1"
-msgstr "Esta descrição só é mostrada no Konfigurador e com Shift F1"
+msgstr "Esta descrição só é mostrada no Konfigurador e com Shift-F1"
 
 #: GUI/actionpropertybase.cpp:413
 msgid "Start path"
@@ -248,7 +248,7 @@ msgstr "Nenhum"
 
 #: GUI/actionpropertybase.cpp:416
 msgid "set a default keyboad shortcut"
-msgstr "Escolha um atalho de teclado padrão"
+msgstr "Define um atalho de teclado padrão"
 
 #: GUI/actionpropertybase.cpp:417
 msgid "Execution mode"
@@ -342,8 +342,8 @@ msgid "Confirm each program call separately"
 msgstr "Confirmar cada chamada do programa separadamente"
 
 #: GUI/actionpropertybase.cpp:448
-#, fuzzy
-msgid "This allows you to tweak the command line before being executed"
+msgid ""
+"This allows you to tweak the command line before being executed"
 msgstr ""
 "Isto permite que você altere a linha de comandos antes de ela ser executada"
 
@@ -353,7 +353,7 @@ msgstr "Executar como um usuário diferente"
 
 #: GUI/actionpropertybase.cpp:450
 msgid "execute the command under another user-id"
-msgstr "executar o comando usando um id de outro usuário"
+msgstr "Esxecutar o comando usando um id de outro usuário"
 
 #: GUI/actionpropertybase.cpp:451
 msgid "Advanced Properties"
@@ -417,12 +417,12 @@ msgid ""
 "terminal mode is active."
 msgstr ""
 "O botão 'executar no terminal' permite que o Krusader execute programas do "
-"console (ou por outro lado, modo não gráfico) no terminal da sua escolha. Se "
+"console (portanto, modo não gráfico) no terminal da sua escolha. Se "
 "pressionado, o modo terminal é ativo."
 
 #: GUI/kcmdline.cpp:180
 msgid "This terminal will close in 1 hour.."
-msgstr "Este terminal irá fechar dentro de 1 hora.."
+msgstr "Este terminal será fechado dentro de 1 hora.."
 
 #: GUI/kfnkeys.cpp:50
 msgid "F2 Term  "
@@ -529,8 +529,7 @@ msgid " Mkdir"
 msgstr " CriarDir"
 
 #: GUI/kfnkeys.cpp:127
-#, fuzzy
-msgid " Delete"
+msgid "Delete"
 msgstr "Apagar"
 
 #: GUI/kfnkeys.cpp:128
@@ -699,7 +698,7 @@ msgid ""
 msgstr ""
 "Aqui você pode definir o critério de seleção dos nomes de arquivos.\n"
 "Pode usar caracteres especiais (*.o .* *.c?? etc.),\n"
-"e acrescentar mais items separando por espaços.\n"
+"e acrescentar mais itens separando por espaços.\n"
 "Se escrever 'text' isto resulta no mesmo que '*text*'.\n"
 "Você pode excluir padrões da busca com '|' (ex. '*.cpp *.h | *.moc.cpp' )."
 
@@ -989,16 +988,16 @@ msgstr "Omitir a localização atual (opcional)"
 
 #: UserAction/expander.cpp:161
 msgid "Item list of ..."
-msgstr "Lista dos items de ..."
+msgstr "Lista dos itens de ..."
 
 #: UserAction/expander.cpp:164 UserAction/expander.cpp:233
 #: UserAction/expander.cpp:534
 msgid "Which items"
-msgstr "Quais items"
+msgstr "Quais itens"
 
 #: UserAction/expander.cpp:165 UserAction/expander.cpp:234
 msgid "Separator between the items (optional)"
-msgstr "Separador entre items (opcional)"
+msgstr "Separador entre itens (opcional)"
 
 #: UserAction/expander.cpp:167 UserAction/expander.cpp:236
 #: UserAction/expander.cpp:536
@@ -1007,7 +1006,7 @@ msgstr "Máscara (opcional, todos menos 'Selecionado')"
 
 #: UserAction/expander.cpp:230
 msgid "Filename of an itemlist ..."
-msgstr "Nome do arquivo de uma lista de items ..."
+msgstr "Nome do arquivo de uma lista de itens ..."
 
 #: UserAction/expander.cpp:310
 msgid "Manipulate the selection"
@@ -1110,7 +1109,7 @@ msgstr "Separar cada chamada de programas para cada..."
 
 #: UserAction/expander.cpp:591
 msgid "Set the sorting for this panel"
-msgstr "Escolha a seleção para este painel"
+msgstr "Defina a ordenação para este painel"
 
 #: UserAction/expander.cpp:594
 msgid "Choose a column"
@@ -1122,11 +1121,11 @@ msgstr "Escolha a sequência de seleção"
 
 #: UserAction/expander.cpp:685
 msgid "Set the relation between the two panels"
-msgstr "Escolha a relação entre os dois paineis"
+msgstr "Definir a relação entre os dois paineis"
 
 #: UserAction/expander.cpp:688
 msgid "Set the new size in percent"
-msgstr "Escolha o novo tamanho em percentagem"
+msgstr "Defina o novo tamanho em percentagem"
 
 #: UserAction/expander.cpp:724
 msgid "Executes a JavaScript-extension"
@@ -1141,7 +1140,7 @@ msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
 msgstr ""
-"Escolha algumas variáveis para a execução (opcional).\n"
+"Defina algumas variáveis para a execução (opcional).\n"
 "i.e. \"return=cmd;foo=bar\", consulte o handbook para mais informação"
 
 #: UserAction/expander.cpp:795
@@ -1150,6 +1149,9 @@ msgid ""
 "Uncaught JavaScript exception '%2'\n"
 "%3"
 msgstr ""
+"Em %1:\n"
+"Exceção JavaScript não detectada '%2'\n"
+"%3"
 
 #: UserAction/expander.cpp:796
 msgid ""
@@ -1157,17 +1159,22 @@ msgid ""
 "Uncaught JavaScript exception '%2' at line %3\n"
 "%4"
 msgstr ""
+"Em %1:\n"
+"Exceção JavaScript não detectada '%2' na linha %3\n"
+"%4"
 
 #: UserAction/expander.cpp:798 UserAction/expander.cpp:803
 #, fuzzy
 msgid "JavaScript error"
-msgstr "console JavaScript"
+msgstr "Erro JavaScript"
 
 #: UserAction/expander.cpp:802
 msgid ""
 "In %1:\n"
 "There is an error in the JavaScript"
 msgstr ""
+"Em %1:\n"
+"Existe um erro no JavaScript"
 
 #: UserAction/kraction.cpp:43
 msgid "Kill"
@@ -1512,7 +1519,7 @@ msgstr ""
 #: Panel/krpopupmenu.cpp:53
 #, fuzzy
 msgid "Open/Run"
-msgstr "Botão abrir"
+msgstr "Abrir/Executar"
 
 #: Panel/krpopupmenu.cpp:55
 msgid "Run"
@@ -1722,12 +1729,12 @@ msgstr "Você não tem permissões para escrever neste diretório"
 
 #: Panel/panelfunc.cpp:557
 msgid " this item?"
-msgstr " este item ?"
+msgstr " este item?"
 
 #: Panel/panelfunc.cpp:559
 #, c-format
 msgid " these %d items?"
-msgstr " esses %d items ?"
+msgstr " esses %d itens?"
 
 #: Panel/panelfunc.cpp:562 DiskUsage/diskusage.cpp:539
 msgid "trash"
@@ -1778,7 +1785,7 @@ msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
 msgstr ""
-"(ZIP irá substiuir entradas com nomes idênticos no arquivo zip ou adicionar "
+"(ZIP substiuirá entradas com nomes idênticos no arquivo zip ou adicionará "
 "entradas para os novos nomes)"
 
 #: Panel/panelfunc.cpp:720
@@ -1908,7 +1915,7 @@ msgstr "Aqui você pode nomear a coleção de arquivos"
 #: krusader.cpp:305
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
-"A barra de estado irá mostrar informações básicas sobre o arquivo que se "
+"A barra de estado mostrará informações básicas sobre o arquivo que se "
 "encontra sob o ponteiro do mouse."
 
 #: krusader.cpp:361
@@ -1984,7 +1991,7 @@ msgstr "&Testar Arquivo(s)"
 
 #: krusader.cpp:493
 msgid "New Net &Connection"
-msgstr "Nova conexão de R&ede"
+msgstr "Nova Conexão de R&ede"
 
 #: krusader.cpp:495
 msgid "Pro&files"
@@ -2104,7 +2111,7 @@ msgstr "Todos os Ar&quivos"
 
 #: krusader.cpp:574
 msgid "&Custom"
-msgstr "&Personalizada"
+msgstr "&Personalizado"
 
 #: krusader.cpp:576
 msgid "Compare b&y Content"
@@ -2224,7 +2231,7 @@ msgstr "Retornar"
 
 #: krusader.cpp:638
 msgid "Set jump back point here"
-msgstr "Seta o ponto de retorno"
+msgstr "Define aqui como ponto de retorno"
 
 #: krusader.cpp:642
 msgid "Select files using a filter"
@@ -2590,7 +2597,7 @@ msgstr "Preservar a data (somente para destinos locais)"
 
 #: Dialogs/krdialogs.cpp:198 Konfigurator/kglookfeel.cpp:103
 msgid "Custom Selection Mode"
-msgstr "Modo Seleção Personalizada"
+msgstr "Modo Seleção Personalizado"
 
 #: Dialogs/krdialogs.cpp:201
 msgid "Based on KDE's selection mode"
@@ -2634,52 +2641,52 @@ msgstr "Insert move para baixo"
 
 #: Dialogs/krdialogs.cpp:211
 msgid "Right clicking pops context menu immediately"
-msgstr "Click direito abre o menu de contexto imediatamente"
+msgstr "Clique direito abre o menu de contexto imediatamente"
 
 #: Dialogs/krdialogs.cpp:213
 msgid "Checking this will create a mode based on KDE's style."
-msgstr "Selecionando isto criará um modo baseado no estilo do KDE."
+msgstr "Marcar essa opção criará um modo baseado no estilo do KDE."
 
 #: Dialogs/krdialogs.cpp:214
 msgid "If checked, left clicking an item will select it."
-msgstr "Se selecionado, clicar com o botão esquerdo irá selecioná-lo."
+msgstr "Se marcado, clicar com o botão esquerdo em um item irá selecioná-lo."
 
 #: Dialogs/krdialogs.cpp:215
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
-"Se selecionado, clicar com o botão esquerdo irá selecioná-lo,\n"
-"mas não irá desmarcar outros items previamente selecionados."
+"Se marcado, clicar com o botão esquerdo em um item irá selecioná-lo,\n"
+"mas não irá desmarcar outros itens previamente selecionados."
 
 #: Dialogs/krdialogs.cpp:217
 msgid ""
 "If checked, shift/ctrl left clicking will select items. Note: This is "
 "meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"Se selecionado,shift/ctrl clicar com o botão esquerdo irá selecionar items.\n"
-"Note: Isto não terá significado se 'Botão Esquerdo Seleciona' estiver "
-"selecionado."
+"Se marcado, shift/ctrl clicar com o botão esquerdo irá selecionar os itens.\n"
+"Note: isto não terá significado se 'Botão Esquerdo Seleciona' estiver "
+"marcado."
 
 #: Dialogs/krdialogs.cpp:219
 msgid "If checked, right clicking an item will select it."
 msgstr ""
-"Se selecionado, clicar com o botão direito em um item irá selecioná-lo."
+"Se marcado, clicar com o botão direito em um item irá selecioná-lo."
 
 #: Dialogs/krdialogs.cpp:220
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
-"Se selecionado, clicar com o botão direito em um item irá selecioná-lo,\n"
-"mas não irá desmarcar outros items previamente selecionados."
+"Se marcado, clicar com o botão direito em um item irá selecioná-lo,\n"
+"mas não irá desmarcar outros itens previamente selecionados."
 
 #: Dialogs/krdialogs.cpp:222
 msgid ""
 "If checked, shift/ctrl right clicking will select items. Note: This is "
 "meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"Se selecionado,shift/ctrl clicar com o botão direito irá selecionar items.\n"
+"Se marcado,shift/ctrl clicar com o botão direito irá selecionar itens.\n"
 "Note: Isto não terá significado se 'Botão Direito Seleciona' estiver "
 "selecionado."
 
@@ -2688,9 +2695,9 @@ msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. Otherwise, current item is selected, but remains the current item."
 msgstr ""
-"Se selecionado, pressionar a barra de espaço irá selecionar o item atual e "
+"Se marcado, pressionar a barra de espaço irá selecionar o item atual e "
 "mover\n"
-"para baixo. Em outro caso, o item atual é selecionado, mas permanece a "
+"para baixo. Caso contrário, o item atual é selecionado, mas permanece a "
 "seleção atual."
 
 #: Dialogs/krdialogs.cpp:226
@@ -2699,9 +2706,9 @@ msgid ""
 "(except from selecting the folder) calculate space occupied by the folder "
 "(recursively)."
 msgstr ""
-"Se selecionado, pressionar a barra de espaço enquanto o item atual é uma "
+"Se marcado, pressionar a barra de espaço enquanto o item atual é uma "
 "pasta, irá\n"
-"(sem ser selecionado de uma pasta) calcular o espaço ocupado pela pasta "
+"(salvo selecionar a pasta) calcular o espaço ocupado pela pasta "
 "(recursivamente)."
 
 #: Dialogs/krdialogs.cpp:228
@@ -2709,9 +2716,9 @@ msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. Otherwise, current item is not changed."
 msgstr ""
-"Se selecionado, pressionar INSERT irá selecionar o item atual e mover para "
+"Se marcado, pressionar INSERT irá selecionar o item atual e mover para "
 "baixo\n"
-"para o próximo item. Porém o item atual não é alterado."
+"para o próximo item. Caso contrário o item atual não é alterado."
 
 #: Dialogs/krdialogs.cpp:230
 msgid ""
@@ -2719,9 +2726,9 @@ msgid ""
 "context menu. Otherwise, user needs to click and hold the right mouse button "
 "for 500ms."
 msgstr ""
-"Se selecionado, clicar com o botão direito irá resultar na visualização "
+"Se marcado, clicar com o botão direito irá resultar na visualização "
 "imediata\n"
-"do menu de contexto. Porém o usuário necessita clicar e segurar\n"
+"do menu de contexto. Caso contrário o usuário necessita clicar e segurar\n"
 "o botão direito do mouse por 500ms."
 
 #: Dialogs/krprogress.cpp:59
@@ -3227,11 +3234,11 @@ msgstr "Comparar arquivos"
 
 #: Synchronizer/synchronizergui.cpp:1540 Synchronizer/synchronizergui.cpp:1619
 msgid "Select items"
-msgstr "Selecionar items"
+msgstr "Selecionar itens"
 
 #: Synchronizer/synchronizergui.cpp:1542 Synchronizer/synchronizergui.cpp:1620
 msgid "Deselect items"
-msgstr "Deselecionar items"
+msgstr "Deselecionar itens"
 
 #: Synchronizer/synchronizergui.cpp:1544
 msgid "Invert selection"
@@ -3474,7 +3481,7 @@ msgstr "Visualização detalhada"
 
 #: DiskUsage/diskusagegui.cpp:86
 msgid "Filelight view"
-msgstr "Visualizar Filelight"
+msgstr "Visualização Filelight"
 
 #: DiskUsage/diskusagegui.cpp:219
 msgid "Viewing the usage of directory:"
@@ -3815,7 +3822,7 @@ msgstr "Dependências"
 
 #: Konfigurator/konfigurator.cpp:108
 msgid "Set the full path of the external applications"
-msgstr "Definir o caminho completo das aplicações externas"
+msgstr "Defina o caminho completo das aplicações externas"
 
 #: Konfigurator/konfigurator.cpp:111
 msgid "Configure your personal actions"
@@ -3867,7 +3874,7 @@ msgstr "Mostrar os arquivos escondidos"
 
 #: Konfigurator/kglookfeel.cpp:68
 msgid "Display the dot files"
-msgstr "Lista os arquivos . (escondidos)"
+msgstr "Lista os arquivos '.' (escondidos)"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "Automark directories"
@@ -3900,8 +3907,8 @@ msgid ""
 "Display the full path in the Folder Tabs; otherwise, only the last part of "
 "the path will be displayed."
 msgstr ""
-"Mostra o caminho completo nas painels das Pastas,\n"
-"senão só a última parte do caminho será mostrada."
+"Mostra o caminho completo nos paineis das Pastas,\n"
+"caso contrário só a última parte do caminho será mostrada."
 
 #: Konfigurator/kglookfeel.cpp:73
 msgid "New style quicksearch"
@@ -4139,7 +4146,7 @@ msgstr "Mostrar Painel Barra de Ferramentas"
 
 #: Konfigurator/kglookfeel.cpp:215
 msgid "Krusader will display the Panel Toolbar."
-msgstr "Krusader irá mostrar o Painel Barra de Ferramentas."
+msgstr "Krusader mostrará o Painel Barra de Ferramentas."
 
 #: Konfigurator/kglookfeel.cpp:221
 msgid "Visible Panel Toolbar buttons"
@@ -4159,7 +4166,7 @@ msgstr "Botão igual (=)"
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Changes the panel directory to the other panel directory."
-msgstr "Muda o painel de diretórios para o diretório do outro painel."
+msgstr "Muda o diretório do painel para o diretório do outro painel."
 
 #: Konfigurator/kglookfeel.cpp:229
 msgid "Up button (..)"
@@ -4183,7 +4190,7 @@ msgstr "Botão Raiz (/)"
 
 #: Konfigurator/kglookfeel.cpp:231
 msgid "Changes the panel directory to the root directory."
-msgstr "Muda o diretório painel para o diretório raiz."
+msgstr "Muda o diretório do painel para o diretório raiz."
 
 #: Konfigurator/kglookfeel.cpp:232
 msgid "Toggle-button for sync-browsing"
@@ -4192,7 +4199,7 @@ msgstr "Botão modificador para navegação-sincronizada"
 #: Konfigurator/kglookfeel.cpp:232
 msgid ""
 "Each directory-change in the panel is also performed in the other panel."
-msgstr "Cada alteração no diretório no painel também é feita no outro painel."
+msgstr "Cada alteração no diretório do painel também é feita no outro painel."
 
 #: Konfigurator/kglookfeel.cpp:295 Konfigurator/kglookfeel.cpp:313
 msgid "Select a shortcuts file"
@@ -4215,7 +4222,7 @@ msgid ""
 "If checked, Krusader will change the modification time of the local files "
 "according to the source one. This can make the copy slower."
 msgstr ""
-"Se selecionado, Krusader alterará a data de modificação dos arquivos locais\n"
+"Se marcado, Krusader alterará a data de modificação dos arquivos locais\n"
 "de acordo com o arquivo de origem. Isto pode fazer a copia mas lenta."
 
 #: Konfigurator/kgadvanced.cpp:53
@@ -4225,7 +4232,7 @@ msgstr "Automontar sistemas de arquivos"
 #: Konfigurator/kgadvanced.cpp:53
 msgid "If checked, Krusader will mount FSTAB mount-points when needed."
 msgstr ""
-"Se escolhido, o Krusader vai montar os pontos\n"
+"Se marcado, o Krusader vai montar os pontos\n"
 "de montagem do FSTAB sempre que necessário."
 
 #: Konfigurator/kgadvanced.cpp:58
@@ -4239,7 +4246,7 @@ msgstr "Confirmações"
 #: Konfigurator/kgadvanced.cpp:75
 msgid "Krusader will request user confirmation for the following operations:"
 msgstr ""
-"Krusader irá perguntar ao usuário confirmação para as seguintes operações:"
+"Krusader pedirá ao usuário confirmação para as seguintes operações:"
 
 #: Konfigurator/kgadvanced.cpp:80
 msgid "Deleting non-empty directories"
@@ -4266,8 +4273,8 @@ msgid ""
 "if checked, Krusader will ask for a result-name; else the default value will "
 "be used"
 msgstr ""
-"Se selecionado, o Krusader irá perguntar por um nome de resultado, senão o "
-"valor padrão será usado"
+"Se marcado, o Krusader perguntará por um nome para o resultado,\n"
+"caso contrário o valor padrão será usado"
 
 #: Konfigurator/kgadvanced.cpp:85
 msgid "Removing Useractions"
@@ -4425,7 +4432,7 @@ msgid ""
 "Shows the last cursor position in the non active list panel.\n"
 "This option is only available when you don't use the KDE default colors."
 msgstr ""
-"Mostra a última posição do cursor na lista do painel de não ativos.\n"
+"Mostra a última posição do cursor na lista do painel inativo.\n"
 "Esta opção só está disponível quando você não usa as cores padrão do KDE."
 
 #: Konfigurator/kgcolors.cpp:88
@@ -4657,6 +4664,11 @@ msgid ""
 "Profile,\n"
 " it is saved automaticly when closing Krusader."
 msgstr ""
+"Inicia o Perfil do Painel. Um Perfil do Painel contém: todos os " 
+"caminhos das abas,\n"
+"a aba atual e o painel ativo. <Última sessão> é um Perfil do Painel "
+"especial,\n"
+"que é salvo automaticamente ao fechar o Krusader."
 
 #: Konfigurator/kgstartup.cpp:55
 msgid "Last session"
@@ -4676,7 +4688,7 @@ msgid ""
 "and restores them to their condition when last shutdown."
 msgstr ""
 "O Krusader verifica o estado dos componentes da interface do usuário,\n"
-"e restaura-os para a mesma condição de quando foi desligado."
+"e restaurá-os para a mesma condição de quando foi desligado."
 
 #: Konfigurator/kgstartup.cpp:76
 msgid "Show toolbar"
@@ -4802,7 +4814,7 @@ msgstr "Testar arquivo quando terminada a compactação"
 msgid ""
 "If checked, Krusader will test the archive's integrity after packing it."
 msgstr ""
-"Se selecionado, o Krusader irá testar a integridade dos arquivos depois de "
+"Se marcado, o Krusader testará a integridade dos arquivos depois de "
 "os compactar."
 
 #: Konfigurator/kgarchives.cpp:92
@@ -4814,7 +4826,7 @@ msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Arquivos corrompidos podem causar instabilidade no sistema, por isso um "
-"teste é sugerido"
+"teste é sugerido."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid ""
@@ -5114,7 +5126,7 @@ msgid ""
 "of GNU, or set its dependencies in Konfigurator"
 msgstr ""
 "Não consigo encontrar o comando 'localizar'. Instale o pacote findutils-"
-"locate do GNU, ou configure as dependências no Konfigurador"
+"locate do GNU, ou defina suas dependências no Konfigurador"
 
 #: krslots.cpp:390
 msgid ""
@@ -5161,9 +5173,9 @@ msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
 msgstr ""
-"Não posso começar o modo SUPERUTILIZADOR do Krusader, porque o krusader ou o "
-"kdesu não estão no seu diretório. Por favor configure as dependências no "
-"Konfigurador!"
+"Não posso iniciar o modo SUPERUTILIZADOR do Krusader, porque o krusader ou o "
+"kdesu não estão presentes em caminhos definidos. Por favor configure as "
+"dependências no Konfigurador!"
 
 #: krslots.cpp:534
 msgid "Enter a URL to view:"
