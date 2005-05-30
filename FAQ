@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.60.0
-- Documentation date:  2005-04-15
-- Parsing date: Fri Apr 15 13:07:34 UTC 2005
+- Documentation version:  1.70.0CVS
+- Documentation date:  2005-05-30
+- Parsing date: Mon May 30 19:36:50 UTC 2005
 --------------------------------------------
  
 
@@ -106,15 +106,18 @@ Chapter 7. Frequently Asked Questions (FAQ)
    because it relies on services provided by the KDE base
    libraries. Only some shared libraries are needed e.g. KDE
    libraries, Qt(TM) libraries, etc. This means that Krusader
-   runs on GNOME, AfterStep and other window managers provided
-   the approriate libraries are installed on your computer.
+   runs on GNOME, AfterStep, XFce and other window managers
+   provided the approriate libraries are installed on your
+   computer. All this is not a problem since the apt-get world
+   can resolve these dependencies instantly.
 
-   You don't need to switch to KDE to use Krusader; you can still
-   use GNOME or another window manager. However, configuration of
-   the Krusader fonts and behavior is done by running Kcontrol.
+   You don't need to switch to the KDE window manager to use
+   Krusader; you can still use GNOME, AfterStep, XFce or another
+   window manager. However, the configuration of the Krusader
+   fonts and some behavior is done by running Kcontrol.
 
-   But a lot depends on what you would like to do with Krusader.
-   You should know that Krusader uses the KDE KIOSlaves to access
+   A lot depends on what you would like to do with Krusader. You
+   should know that Krusader uses the KDE KIOSlaves to access
    remote file systems, and support for only a limited number of
    filesystem types are shipped with KDElibs, most of the
    KIOSlaves are bundled with KDEbase (including fish, sftp and
@@ -125,18 +128,18 @@ Chapter 7. Frequently Asked Questions (FAQ)
    To summarize, if you want a working Krusader - install
    KDElibs. If you want a functional Krusader then you need
    KDElibs + KDEbase. For maximum functionality, Krusader needs
-   all of the KDE package libraries.
+   all of the KDE package libraries, but the KDE window manager
+   is optional.
 
    7.1.2. Which libraries does Krusader need to run?
 
    For running Krusader (e.g. when you have installed Krusader
-   with a binary RPM) you need fewer libraries or packages as
-   mentioned in the next question, e.g. you don't need the
-   C-compliler gcc it's only needed when you compile Krusader
-   from source.
+   with a binary RPM) you need less libraries than if you compile
+   Krusader from source. e.g. you only need the C-compliler gcc
+   when you compile Krusader from source (see the next question).
 
-   Here is a list of the normally required shared libraries when
-   you run Krusader:
+   Here is a (possibly incomplete) list of the required shared
+   libraries when you run Krusader:
 
      * kdelibs (for the required KDE version see the Installation
        procedure) libqt3
@@ -144,8 +147,8 @@ Chapter 7. Frequently Asked Questions (FAQ)
      * libjpeg62 libpng3 libmng1 zlib1 libstdc++5 libgcc1
      * libfam0 libpcre0 glibc libart_lgpl2 libexpat0 libnas2
 
-   Click the following link for the complete list of shared
-   library dependencies.
+   If you need more info please take a look at the shared library
+   dependencies or the requirements on Debian® .
 
    7.1.3. I have followed all steps but configure complains about
    missing libs or headers. What do I need to do?
@@ -158,9 +161,8 @@ Chapter 7. Frequently Asked Questions (FAQ)
      * gcc-cpp gcc-c++ glibc libgcc1 (other compilers may work
        but haven't been tested)
      * autoconf automake XFree
-     * libqt3 libqt-devel (Krusader v1.50 needs Qt(TM) 3.x)
-     * kdelibs kdelibs-devel (Krusader v1.50 needs KDElibs >=
-       3.2.x)
+     * libqt3 libqt-devel
+     * kdelibs kdelibs-devel
      * libjpeg62 libjpeg-devel libpng3 libmng1
      * fam libfam-devel (e.g. fam-2.x.x-xmdk.rpm and
        libfam0-devel-2.x.x-5mdk.i586.rpm)
@@ -177,10 +179,10 @@ Chapter 7. Frequently Asked Questions (FAQ)
 
    Tip
 
-   If you can't find the needed package, use rpmfind.net and
-   click 'missing lib or header' in the search line. Or use
-   apt-cache search foo to find the corresponding package for
-   Debian® based distributions.
+   If you can't find the needed package, use rpmfind and click
+   'missing lib or header' in the search line. Or use apt-cache
+   search foo to find the corresponding package for Debian® based
+   distributions.
 
    7.1.4. How do I compile Krusader when I'm using a 64 bit
    processor ?
@@ -237,7 +239,7 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    software archives such as freshmeat.net or KDE-APPS.org, DO
    NOT INSTALL A DAMAGED RPM. If you still can't find the
    appropriate package for your Linux® distribution, we recommend
-   searching for it with rpmfind.net or rpmpbone.net.
+   searching for it with rpmfind or rpmpbone.
 
    In general, a package for an older version of your
    distrubution or even for another distribution might work on
@@ -454,10 +456,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    7.2.6. Krusader reports "krarc:... protocol not supported"
           error at opening an archive file.
 
-   7.2.7. When I try to establish an FTP connection, I get an
-          error message after 'Connect OK' saying 'Could not
-          connect to host'.
-
+   7.2.7. Why have i trouble with my FTP connection?
    7.2.8. I get "FTP protocol not supported by Krusader" error at
           trying to open a remote FTP directory.
 
@@ -567,16 +566,16 @@ $ su -c 'fam -l'
    or the directory where the KIO slaves are placed in your
    Linux® distribution.
 
-   7.2.7. When I try to establish an FTP connection, I get an
-   error message after 'Connect OK' saying 'Could not connect to
-   host'.
+   7.2.7. Why have i trouble with my FTP connection?
 
-   You are probably behind a firewall/proxy and haven't enabled
-   "Passive Mode". Enable "Passive FTP" through KDE's KDE Control
-   Center and try again. KDE Control Center->Network->Preferences
-   , "Enable Passive Mode (PASV)" has to be checked. Also, make
-   sure you have no other FTP sessions open (using web browsers,
-   etc.).
+   This problem often occurs when you are behind a firewall or
+   proxy. Open KDE Control Center->Network->Preferences , "Enable
+   Passive Mode (PASV)" has to be turned on or off, depending on
+   it's current setting. Now try your FTP session again to see if
+   it works. Also, make sure you have no other FTP sessions open
+   (using web browsers, etc.), they might cause some trouble.
+   More information information can be found in Active FTP vs.
+   Passive FTP, a Definitive Explanation .
 
    7.2.8. I get "FTP protocol not supported by Krusader" error at
    trying to open a remote FTP directory.
@@ -651,6 +650,8 @@ $ su -c 'fam -l'
    7.3.5. How does the Krusader forum work?
    7.3.6. How can I translate Krusader to my native language?
    7.3.7. How can I support Krusader?
+   7.3.8. Is there a Mac® OS X version?
+   7.3.9. Is there a Windows® version?
 
    7.3.1. How can I report a wish, a patch, a suggestion, or a
    comment?
@@ -661,16 +662,23 @@ $ su -c 'fam -l'
    months, programmers can no longer see their own mistakes. It's
    natural. We want the ideas, xritiques, and feedback because we
    all want to make Krusader the best, most useful, file manager
-   available anywhere. The most convenient way is to use the
-   Krusader Forum. For information on what remains to be done
+   available anywhere.
+
+   If you like to send in a patch, please discuss it first with
+   Shie Erlich before writing a patch. Sometimes we can't apply a
+   patch if the patch is in conflict with the "general design" of
+   the code, this would be very pity and a waste of your precious
+   time.
+
+   The most convenient way to contact us is to use the Krusader
+   Forum, or by mail. For information on what remains to be done
    look at the ToDo Forum. Adding ToDo items into the ToDo Forum
    is for developers only, but feel free to post to the New
    Features Discussion/Requests Forum for things that aren't on
    the ToDo Forum, but should be. If you have a nice feature
-   request, the Krusader Krew will add your request to the
-   Krusader Forum. We review and discuss every submission. For
-   more information about the forum click here . You can reach us
-   by mail or drop us a note in our Krusader Forum.
+   request, the Krusader Krew will add your request to the ToDo
+   Forum. We review and discuss every submission. For more
+   information how the forum works click here .
 
    7.3.2. How can I report a bug?
 
@@ -713,33 +721,27 @@ $ su -c 'fam -l'
 
    7.3.3. Does Krusader have a mailing list?
 
-   Yes, we have 3 mailing lists. No spam, no bother, just
-   Krusader. Feel free to (un)subscribe.
+   Yes, we have 4 mailing lists. No spam, no bother, just
+   Krusader. Feel free to (un)subscribe. Please note that all the
+   mailinglists are read-only, so posting is not allowed.
 
-   Tip. our mailing lists are archived and with the URL's below
-   you can view them with a browser, so that you don't even have
-   to subscribe to see the mailing lists.
+   Tip. our mailing lists can be browsed online or read with a
+   newsreader, so that you don't even have to subscribe to see
+   the mailing lists.
 
-     * Krusader-news is used to notify Krusader users about new
-       releases, major bugfixes etc. . The news can also been
-       read online at latest news and in the News and
-       Announcements Forum which are basically the same but
-       displayed in another format.
+     * Krusader-news is a very low volume list, used for
+       announcements of new versions or critical bugfixes. The
+       news can also been read online at latest news and in the
+       News and Announcements Forum which are basically the same
+       but displayed in another format.
+     * Krusader-devel is the developer mailing list. If you want
+       to follow the development of Krusader on the bleeding
+       edge, this is the place to be!
+     * Krusader-doc is the documentation mailing list.
      * Krusader-commits when the Krusader Krew commits code into
        CVS, it will be reported in this mailing list. This allows
        you to follow the Krusader development ... live! Want to
        keep track? Waiting for a certain feature/bugfix?
-     * Krusader-devel-ro is a read-only copy of the developer
-       mailing list of the Krusader Krew. A lot of people wanted
-       to subscribe to krusader-devel, which is the
-       developers-only mailing list. We had to repectfully deny
-       the requests, since the list is high-traffic as it is.
-       However, since we do want you to be able to follow our
-       progress, we setup this mailing list which is the same as
-       krusader-devel, except that it is read-only. If you want
-       to follow the development of Krusader on the bleeding
-       edge, this is the place to be! Please note that the list
-       is read-only, so posting is not allowed.
 
    7.3.4. Does Krusader have a IRC channel?
 
@@ -761,10 +763,10 @@ $ su -c 'fam -l'
    following, so that we can maintain some order in the chaos.
    ;-)
 
-   If the Documentation, FAQ, Krusader Forum and the
-   Krusader-devel-ro-search can't help you, do not hesitate to
-   drop a note to our forum. The Krusader Krew or the Krusader
-   forum community is always available to help you.
+   If the Documentation, FAQ, Krusader Forum and Krusader-devel
+   (please use the search function ) can't help you, do not
+   hesitate to drop a note to our forum. The Krusader Krew or the
+   Krusader community is always available to help you.
 
    Please use the Search function of the Krusader Forum, your
    issue may have been previously discussed (this allows us to
@@ -809,13 +811,26 @@ $ su -c 'fam -l'
 
    7.3.6. How can I translate Krusader to my native language?
 
-   Please read the Krusader translation HowTo. It's not difficult
-   to translate! Most anyone can do it, it just takes some time.
+   Please read the i18n page. It's not difficult to translate!
+   Most anyone can do it, it just takes some time.
 
    7.3.7. How can I support Krusader?
 
    You can support Krusader in many different ways: please send
    us feedback, bug reports, patches, donations, translations,
    ...
+
+   7.3.8. Is there a Mac® OS X version?
+
+   Yes, but for the moment only Krusader-1.40 We are looking for
+   a maintainer for the Krusader Mac® OS X port. Please help us,
+   thanks. A recommended native file manager for Mac® OS is Disk
+   Order© (shareware).
+
+   7.3.9. Is there a Windows® version?
+
+   No, but this might change in the future. Please help us,
+   thanks. A recommended native file manager for Windows® is
+   Total commander© (shareware).
      _________________________________________________________
 
