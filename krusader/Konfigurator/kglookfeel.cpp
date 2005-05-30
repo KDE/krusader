@@ -71,7 +71,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the Folder Tabs; otherwise, only the last part of the path will be displayed." ) },
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  i18n( "Opens a quick search dialog box." ) },
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
-     {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "Permission column shows octal numbers instead of rwxrwxrwx") },
+     {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "Permission column (Look & Feel 'Panel' Tab) shows octal numbers '0755' instead of 'rwxr-xr-x'.") },
     };
 
   cbs = createCheckBoxGroup( 2, 0, settings, 9, lookFeelGrp );
@@ -148,7 +148,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  i18n( "Show the Mimetype Column" ) },
      {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  i18n( "Show the Size Column" ) },
      {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  i18n( "Show the Date and Time Column" ) },
-     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "Show the Full Permissions Column, e.g. '-rw-r--r--'" ) },
+     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "Show the full perissions e.g. 'rwxr-xr-x' or as octal numbers '0755' instead\n with enable/disable 'Nummeric Permissions' in Look & Feel 'Operation' Tab." ) },
      {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  i18n( "Show only the rights of the current user, e.g. '-rw'" ) },
      {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  i18n( "Show the Owner Column" ) },
      {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  i18n( "Show the Group Column" ) },
