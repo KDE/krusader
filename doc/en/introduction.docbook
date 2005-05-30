@@ -32,8 +32,8 @@
   </mediaobject>
 </screenshot>
 
-<para>&krusader; is an advanced, twin-panel, "commander"-style file-manager
-      for &kde; (similar to &mc; or &tcmd;) but with many extras.
+<para>&krusader; is an advanced, twin-panel, (commander-style) file-manager
+      for &kde; similar to &mc; or &tcmd; but with many extras.
       &krusader; offers all the file-management features you could possibly want, and more!</para>
 
 <para>Plus: extensive Archive handling, mounted Filesystem support, &FTP;,
@@ -280,7 +280,7 @@ seamlessly integrated.</para>
 
 <para>
 <itemizedlist>
-  <title>New features in version 1.61.0</title>
+  <title>New features in CVS</title>
   
   <listitem>
         <para>Improved Selection filters (used in Synchronizer, Searcher, ...)</para>
@@ -296,6 +296,22 @@ seamlessly integrated.</para>
 
   <listitem>
         <para>&javascript_console_lnk; .</para>
+  </listitem>
+
+  <listitem>
+        <para>preserve date for local targets at copy / move .</para>
+  </listitem>
+
+  <listitem>
+        <para>calculate space in archives and remote FS.</para>
+  </listitem>
+
+  <listitem>
+        <para>Permissions column as octal numbers.</para>
+  </listitem>
+
+  <listitem>
+        <para>Read very fast direcories containing many files.</para>
   </listitem>
 
 </itemizedlist>

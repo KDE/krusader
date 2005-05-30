@@ -168,7 +168,7 @@ and you control the current session with the &viewmenu_lnk;.
          <listitem><para>And last but not least &remote_connections_lnk; !</para>
                </listitem>
     </itemizedlist>
-     You can copy-paste an &URL; in the <guibutton>Location Toolbar</guibutton>.
+     You can copy-paste an &URL; in the <guibutton>Location Toolbar</guibutton> or use a middle click.
      With the Right-Click menu you can configure the autocomplete function.
      </para></listitem>
        <listitem><para><link linkend="panel_toolbar"><emphasis><guibutton>Panel toolbar</guibutton></emphasis></link> :
@@ -203,8 +203,10 @@ and you control the current session with the &viewmenu_lnk;.
                  of the panel, which displays how many files you've selected (and how much total disk space they use)
                  as well as the total file and disk usage of the current directory (as opposed to the information label
                  that displays information for the whole file system).
-     If a directory contains a lot of subdirectories, it may not possible to drop the &URL; onto the panel
-     (on which only directories are visible), but the &URL; can be dropped onto the "Status Bar" or "Totals Label" instead.
+                 If a directory contains a lot of subdirectories, it may not possible to drop the &URL; onto the panel
+                 (on which only directories are visible), but the &URL; can be dropped onto the "Status Bar" or 
+                 "Totals Label" instead.
+                 When a <link linkend="view-menu">custom filter</link>is set, it will show the setting. example: [*.cpp]. 
                  </para></listitem>
     </itemizedlist>
     When using the "&kde; default <link linkend="konfig-color">colors</link>",
@@ -418,6 +420,10 @@ and you control the current session with the &viewmenu_lnk;.
 
     <listitem><para>To <keycap>change tabs</keycap>: <keycombo action="simul">&Shift;<keycap>Left Arrow</keycap></keycombo>
     or <keycombo action="simul">&Shift;<keycap>Right Arrow</keycap></keycombo>.
+    </para></listitem>
+
+    <listitem><para>To open the current folder in a new tab: use  
+    <keycombo action="simul">&Ctrl;&Alt;&Enter;</keycombo>
     </para></listitem>
 
     <listitem><para>To <keycap>Jump back</keycap>: 
@@ -832,27 +838,30 @@ TODO
 <para>There are two ways to calculate the occupied space of files/directories.
   <itemizedlist>
     <listitem>
-              <para>Pressing the <keycap>SPACE</keycap> on a directory under the cursor
-                     instantly calculates the occupied size. Pressing <keycap>SPACE</keycap> a second time
+         <para>Pressing the <keycap>SPACE</keycap> on a directory under the cursor
+         instantly calculates the occupied size. Pressing <keycap>SPACE</keycap> a second time
          will toggle the marking of the directory without affecting the selection status of other
          files/directories.</para></listitem>
     <listitem>
-              <para>To calculate how much disk space is occupied by the marked files and directories
-                    in the active panel select
-                    <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
-                    <guimenuitem>Calculate Occupied Space</guimenuitem></menuchoice></emphasis>.
-                    After a (hopefully) small delay, a dialog box will be displayed with total occupied space and
-                    the number of files and directories you selected.
-                    The space occupied by every selected directory will be shown as if the user just pressed
-                    <keycap>SPACE</keycap> on that directories.
-                    If the active panel is browsing an archive, the numbers will apply to the *unpacked*
-                    size of the selected files and directories, not their compressed size.
-                    After the calculation the marking state will toggle and the cusor will move one position down.</para>
-
-              <note><para>Performing this operation on a very large filesystem (thousands of files) may
-							be time consuming. You can always cancel the calculation process at any time by clicking on the
-              <guibutton>"Cancel"</guibutton> button.</para></note></listitem>
-  </itemizedlist>
+         <para>To calculate how much disk space is occupied by the marked files and directories
+               in the active panel select
+               <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
+               <guimenuitem>Calculate Occupied Space</guimenuitem></menuchoice></emphasis>.
+               After a (hopefully) small delay, a dialog box will be displayed with total occupied space and
+               the number of files and directories you selected.
+               The space occupied by every selected directory will be shown as if the user just pressed
+               <keycap>SPACE</keycap> on that directories.
+               If the active panel is browsing an archive, the numbers will apply to the *unpacked*
+               size of the selected files and directories, not their compressed size.
+               After the calculation the marking state will toggle and the cusor will move one position down.</para>
+               </listitem>
+   </itemizedlist>
+   Calculating the occupied space on remote filesystems is supported.
+              
+  <note><para>Performing this operation on a very large filesystem (thousands of files) may
+              be time consuming. You can always cancel the calculation process at any time by clicking on the
+              <guibutton>"Cancel"</guibutton> button.</para></note>
+  
 </para>
 </sect2>
 
@@ -1163,27 +1172,6 @@ TODO
 <entry><para><keycombo action="simul">&Alt;<keycap>Down Arrow</keycap></keycombo></para></entry>
 <entry><para>&popup_panel_lnk;</para></entry></row>
 <row>
-<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>c</keycap></keycombo></para></entry>
-<entry><para><link linkend="folder_tabs">Close tab</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>j</keycap></keycombo></para></entry>
-<entry><para>&javascript_console_lnk;</para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>n</keycap></keycombo></para></entry>
-<entry><para><link linkend="folder_tabs">New tab</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>r</keycap></keycombo></para></entry>
-<entry><para>toggels the &list_panel_lnk; between horizontal and vertical mode.</para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>Left Arrow</keycap></keycombo></para></entry>
-<entry><para><link linkend="folderhistory">Left History list</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Alt;&Ctrl;<keycap>Right Arrow</keycap></keycombo></para></entry>
-<entry><para><link linkend="folderhistory">Right History list</link></para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Alt;&Ctrl;&Shift;<keycap>n</keycap></keycombo></para></entry>
-<entry><para><link linkend="folder_tabs">Duplicate a tab</link></para></entry></row>
-<row>
 <entry><para><keycombo action="simul">&Alt;<keycap>F1..F12</keycap></keycombo></para></entry>
 <entry><para>Standard (&kde;) key-bindings</para></entry></row>
 </tbody>
@@ -1280,6 +1268,32 @@ TODO
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>l</keycap></keycombo></para></entry>
 <entry><para>&locate_lnk;</para></entry></row>
+
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>c</keycap></keycombo></para></entry>
+<entry><para><link linkend="folder_tabs">Close tab</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>j</keycap></keycombo></para></entry>
+<entry><para>&javascript_console_lnk;</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>n</keycap></keycombo></para></entry>
+<entry><para><link linkend="folder_tabs">New tab</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>r</keycap></keycombo></para></entry>
+<entry><para>toggels the &list_panel_lnk; between horizontal and vertical mode.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>Left Arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="folderhistory">Left History list</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>Right Arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="folderhistory">Right History list</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;&Shift;<keycap>n</keycap></keycombo></para></entry>
+<entry><para><link linkend="folder_tabs">Duplicate a tab</link></para></entry></row>
+<row>
+
+<entry><para><keycombo action="simul">&Ctrl;&Alt;&Enter;</keycombo></para></entry>
+<entry><para>Open current folder in a <link linkend="folder_tabs">new tab</link></para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>

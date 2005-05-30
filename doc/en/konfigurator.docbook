@@ -127,32 +127,46 @@ HTML_PARSING-->
 <title>Operation</title>
 
 <itemizedlist><title><guilabel>Look &amp; Feel</guilabel></title>
-  <listitem><para><guilabel>Warn on exit</guilabel>: if checked, &krusader; will display an "Are you
-       sure?" warning when you try to shut it down; otherwise, it will exit without
-       protest.</para></listitem>
-  <listitem><para><guilabel>Minimize to tray</guilabel>: if checked, when you minimize &krusader;,
-       it's icon will appear in the system tray instead of the taskbar.</para></listitem>
-  <listitem><para><guilabel>Show Hidden files</guilabel>: if checked, &krusader; will display the "dot-
-       files" which are otherwise hidden.</para></listitem>
-  <listitem><para><guilabel>Automark Directories</guilabel>: when
-       <link linkend="mark-menu">selecting a group of files</link> (either by
-       using Select Group or by using Select All), &krusader; will check this option. If checked,
-       then directories matching the select criteria will also be marked; otherwise, only files will be
-       marked.</para></listitem>
-  <listitem><para><guilabel>Case Sensitive Sorting</guilabel>: if checked (the &UNIX; default), all
-       files beginning with capital letters appear before files beginning with non-capital letters;
-       otherwise, all files beginning with a specified letter (capital or otherwise) will appear
-       together.</para></listitem>
-  <listitem><para><guilabel>Use fullpath tab names</guilabel>: if checked, display the full path
-                             in the &foldertabs_lnk;, otherwise only the last part of the path will
-														 be displayed.</para></listitem>
-  <listitem><para><guilabel>New style Quicksearch</guilabel>: The new
-             <link linkend="quicksearch">Quicksearch</link> feature is used.</para></listitem>
-  <listitem><para><guilabel>Case Sensitive Quicksearch</guilabel>: When using the
-             <link linkend="quicksearch">Quicksearch</link> feature: if checked (the &UNIX; default), all
-       files beginning with capital letters appear before files beginning with non-capital letters;
-       otherwise, all files beginning with a specified letter (capital or otherwise) will appear
-       together.</para></listitem>
+  <listitem><para><guilabel>Warn on exit</guilabel>: 
+                  if checked, &krusader; will display an "Are you 
+                  sure?" warning when you try to shut it down; otherwise, it will exit without 
+                  protest.
+                  </para></listitem>
+  <listitem><para><guilabel>Minimize to tray</guilabel>: 
+                  if checked, when you minimize &krusader;, it's icon will appear in the system 
+                  tray instead of the taskbar.
+                  </para></listitem>
+  <listitem><para><guilabel>Show Hidden files</guilabel>: 
+                  if checked, &krusader; will display the "dot-files" which are otherwise hidden.
+                  </para></listitem>
+  <listitem><para><guilabel>Automark Directories</guilabel>: 
+                  when <link linkend="mark-menu">selecting a group of files</link> (either by
+                  using Select Group or by using Select All), &krusader; will check this option. 
+                  If checked, then directories matching the select criteria will also be marked; 
+                  otherwise, only files will be marked.
+                   </para></listitem>
+  <listitem><para><guilabel>Case Sensitive Sorting</guilabel>: 
+                  if checked (the &UNIX; default), all files beginning with capital letters appear 
+                  before files beginning with non-capital letters; otherwise, all files beginning 
+                  with a specified letter (capital or otherwise) will appear together.
+                  </para></listitem>
+  <listitem><para><guilabel>Use fullpath tab names</guilabel>: 
+                   if checked, display the full path in the &foldertabs_lnk;, otherwise only the 
+                   last part of the path will be displayed.
+                   </para></listitem>
+  <listitem><para><guilabel>New style Quicksearch</guilabel>: 
+                  The new <link linkend="quicksearch">Quicksearch</link> feature is used.
+                  </para></listitem>
+  <listitem><para><guilabel>Numeric permissions</guilabel>: 
+                   Permission column (Look &amp; Feel <guilabel>Panel</guilabel> Tab) shows octal 
+                   numbers '0755' instead of 'rwxr-xr-x'.
+                   </para></listitem>
+  <listitem><para><guilabel>Case Sensitive Quicksearch</guilabel>: 
+                   When using the <link linkend="quicksearch">Quicksearch</link> feature: 
+                   if checked (the &UNIX; default), all files beginning with capital letters appear 
+                   before files beginning with non-capital letters; otherwise, all files beginning 
+                   with a specified letter (capital or otherwise) will appear together.
+                   </para></listitem>
 
 <!--
   <listitem><para><guilabel>HTML viewers minimal font size</guilabel>: when viewing an HTML file
@@ -229,7 +243,9 @@ HTML_PARSING-->
                     show the last part of the filename (part after the last dot) in the Ext Column and not
                     as a complete filename in the Name Column like e.g. &konqueror; does.</para></listitem>
   <listitem><para><guilabel>Permission Column</guilabel>: if checked,
-                    show the full perissions &eg; "-rw-r--r--".</para></listitem>
+                    show the full perissions &eg; "rwxr-xr-x" or as octal numbers '0755' instead
+                    with enable/disable <guilabel>Nummeric Permissions</guilabel> in Look &amp; Feel 
+                    <guilabel>Operation</guilabel> Tab.</para></listitem>
   <listitem><para><guilabel>Mimetype Column</guilabel>: if checked,
                     show the mimetype field.</para></listitem>
   <listitem><para><guilabel>&krusader; Permission Column</guilabel>: if checked,
@@ -291,6 +307,8 @@ HTML_PARSING-->
 
 <para>The buttons on the <guilabel>Panel Toolbar</guilabel> can be made visible or hidden:
 <itemizedlist>
+  <listitem><para><guilabel>Clear Location bar</guilabel> button: clears the &location_toolbar_lnk;</para>
+             </listitem>
   <listitem><para><guilabel>Open</guilabel> button</para>
              </listitem>
   <listitem><para><guilabel>Equal (=)</guilabel> button</para>
@@ -302,7 +320,7 @@ HTML_PARSING-->
   <listitem><para><guilabel>Root (/)</guilabel> button</para>
              </listitem>
   <listitem><para><guilabel>Toggle-button for sync-browsing</guilabel>: if checked,
-                     show the &sync_browsing_lnk; button.</para></listitem>
+                            show the &sync_browsing_lnk; button.</para></listitem>
 </itemizedlist>
 </para>
 

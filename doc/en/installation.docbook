@@ -196,7 +196,7 @@ We hope it'd be easy to understand.
   </listitem>
   <listitem>
      <para>Give translators the time to update the translations, for the coming stable.
-           Please read the &i18nhowto_url;</para>
+           Please read the &i18n_page_url;</para>
   </listitem>
   </itemizedlist>
 </para>
@@ -558,11 +558,10 @@ Than you need to restart &kde;, and check again.
 
 <screen>
 foo
-make[2]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD/krArc'
-make[2]: Entering directory `/foo/krusader-cvs-YYYY-MM-DD'
-make[2]: Nothing to be done for `all-am'.
-make[2]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD'
-make[1]: Leaving directory `/foo/krusader-cvs-YYYY-MM-DD'
+make[2]: Leaving directory `/home/source/krusader_kde3/tar'
+make[2]: Entering directory `/home/source/krusader_kde3'
+make[2]: Leaving directory `/home/source/krusader_kde3'
+make[1]: Leaving directory `/home/source/krusader_kde3'
 <prompt>bash$</prompt>
 </screen>
 </para>

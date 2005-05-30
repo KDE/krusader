@@ -69,7 +69,7 @@ Previous used Docbook
 <!ENTITY cvsnews_url
 '<ulink url="http://krusader.sourceforge.net/text.php?t=cvs.news"><filename>CVSNEWS</filename></ulink>'>
 <!ENTITY docchangelog_url '<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/doc/ChangeLog?view=markup">Documentation ChangeLog</ulink>'>
-<!ENTITY i18nhowto_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=389">Krusader translation HowTo</ulink>'>
+<!ENTITY i18n_page_url '<ulink url="http://krusader.sourceforge.net/i18n.php">i18n page</ulink>'>
 
 <!ENTITY shared_libdeps_url '<ulink url="http://krusader.sourceforge.net/handbook/ldd_krusader.txt">shared library dependencies</ulink>'>
 <!ENTITY deb_requirements_url '<ulink url="http://packages.debian.org/unstable/utils/krusader">requirements on &debian;</ulink>'>
@@ -346,8 +346,8 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-05-27</date>
-  <releaseinfo>1.61.0</releaseinfo>
+  <date>2005-05-30</date>
+  <releaseinfo>1.70.0 CVS</releaseinfo>
 
    <abstract>
    <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x</para>
@@ -470,7 +470,7 @@ Previous used Docbook
 
   <para><emphasis role="bold">Translations</emphasis></para>
   <para>&krusader; is available in many languages, but usually several translations do need an update 
-        and new untranslated languages are always welcome, please read the &i18nhowto_url; .
+        and new untranslated languages are always welcome, please read the &i18n_page_url; .
         Even when there is already a translator for your native language, it is always interesting to
         have a second or third translator &eg; for proofreading the translation.
         Regularly the translator is not available when a translation update is needed (studies, holyday, ...).
