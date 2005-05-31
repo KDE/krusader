@@ -49,6 +49,7 @@ public:
    int column[ MAX_COLUMNS ];	// column[ColumnType] contains the number of the requested column.
 										// This is used by column() and whenever item uses text() or setText()
 	bool humanReadableSize;		// display size as KB, MB or just as a long number
+	bool numericPermissions; // show full permission column as octal numbers
 
 	KrDetailedViewProperties() {
 		for ( int i = 0; i < MAX_COLUMNS; i++ ) column[i] = Unused;

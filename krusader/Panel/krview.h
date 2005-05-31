@@ -58,7 +58,6 @@ public:
 	FilterSpec filter;	// what items to show (all, custom, exec)
 	KRQuery filterMask;	// what items to show (*.cpp, *.h etc)
 	bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
-	bool numericPermissions; // show full permission column as octal numbers
 };
 
 
