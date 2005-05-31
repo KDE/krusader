@@ -132,7 +132,7 @@ void KrDetailedViewItem::repaintItem() {
     }
     if ((id = COLUMN(Permissions) ) != -1) {
 		if (PROPS->numericPermissions) {
-      	setText(id, tmp.sprintf("0%o", _vf->vfile_getMode() & PERM_BITMASK));
+      	setText(id, tmp.sprintf("%o", _vf->vfile_getMode() & PERM_BITMASK));
 		} else setText(id, _vf->vfile_getPerm());
 	 }
     if ((id = COLUMN(Owner)) != -1) {
