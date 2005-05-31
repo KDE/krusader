@@ -118,7 +118,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
 	// -------------- konqueror menu
    actions = new KActionCollection(this);
 	konqMenu = new KonqPopupMenu( KonqBookmarkManager::self(), _items, panel->func->files()->vfs_getOrigin(), *actions, 0, this, 
-                           KonqPopupMenu::ShowProperties, KParts::BrowserExtension::DefaultPopupItems );
+                           KonqPopupMenu::NoFlags, KParts::BrowserExtension::DefaultPopupItems );
    insertItem( QPixmap(), konqMenu, KONQ_MENU_ID );
    changeItem( KONQ_MENU_ID, i18n( "Konqueror menu" ) );
 #endif
