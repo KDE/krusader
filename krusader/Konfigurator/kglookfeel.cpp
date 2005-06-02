@@ -144,12 +144,12 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM fields[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
-    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  i18n( "Show the last part of the filename (part after the last dot) in the Extension Column and\nnot as a complete filename in the Name Column like e.g. Konqueror does." ) },
+    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  i18n( "Show the last part of the filename (part after the last dot) in the Extension Column and\nnot as a complete filename in the Name Column like e.g. Konqueror does" ) },
      {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  i18n( "Show the Mimetype Column" ) },
      {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  i18n( "Show the Size Column" ) },
      {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  i18n( "Show the Date and Time Column" ) },
-     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "Show the full perissions e.g. 'rwxr-xr-x' or as octal numbers '0755' instead\n with enable/disable 'Nummeric Permissions' in Look & Feel 'Operation' Tab." ) },
-     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  i18n( "Show only the rights of the current user, e.g. '-rw'" ) },
+     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "Show the full permissions. Default representation is a string ('rwxr-xr-x') and can be changed\nto octal numbers ('0755') by enabling 'Numeric Permissions' in 'Look & Feel -> Operation'" ) },
+     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  i18n( "Show the permissions of the current user only, e.g. '-rw'" ) },
      {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  i18n( "Show the Owner Column" ) },
      {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  i18n( "Show the Group Column" ) },
     };
