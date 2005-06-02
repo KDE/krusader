@@ -968,7 +968,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
          break;
 #endif*/
          case Key_Delete :                   // kill file
-         SLOTS->deleteFiles(e->state() == ShiftButton);
+         SLOTS->deleteFiles( e->state() == ShiftButton || e->state() == ControlButton );
 				
          break ;
          case Key_Insert : {
