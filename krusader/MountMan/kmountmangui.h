@@ -68,7 +68,7 @@ public:
 
 protected slots:
    void doubleClicked( QListViewItem * );
-   void clicked( QListViewItem * );
+   void clicked( QListViewItem *, const QPoint& pos, int col );
    void changeActive( QListViewItem * );
    void checkMountChange(); // check whether the mount table was changed
 

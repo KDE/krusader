@@ -81,8 +81,8 @@ info( 0 ), mountList( 0 ) {
    // connections
    connect( mountList, SIGNAL( doubleClicked( QListViewItem * ) ), this,
             SLOT( doubleClicked( QListViewItem* ) ) );
-   connect( mountList, SIGNAL( rightButtonPressed( QListViewItem *, const QPoint &, int ) ),
-            this, SLOT( clicked( QListViewItem* ) ) );
+   connect( mountList, SIGNAL( contextMenuRequested( QListViewItem *, const QPoint &, int ) ),
+            this, SLOT( clicked( QListViewItem*, const QPoint&, int ) ) );
    connect( mountList, SIGNAL( clicked( QListViewItem * ) ), this,
             SLOT( changeActive( QListViewItem * ) ) );
    connect( mountList, SIGNAL( selectionChanged( QListViewItem * ) ), this,
@@ -303,7 +303,7 @@ void KMountManGUI::changeActive( QListViewItem *i ) {
 }
 
 // called when right-clicked on a filesystem
-void KMountManGUI::clicked( QListViewItem *item ) {
+void KMountManGUI::clicked( QListViewItem *item, const QPoint& pos, int col ) {
    // these are the values that will exist in the menu
 #define MOUNT_ID       90
 #define UNMOUNT_ID     91
@@ -345,7 +345,7 @@ void KMountManGUI::clicked( QListViewItem *item ) {
       popup.setItemEnabled( FORMAT_ID, false );
    }
 
-   int result = popup.exec( QCursor::pos() );
+   int result = popup.exec( pos );
    // check out the user's option
    switch ( result ) {
          case - 1 : return ;     // the user clicked outside of the menu
