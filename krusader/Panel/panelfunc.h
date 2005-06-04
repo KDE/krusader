@@ -33,6 +33,7 @@
 #ifndef PANELFUNC_H
 #define PANELFUNC_H
 #include "listpanel.h"
+#include "krviewitem.h"
 #include <qobject.h>
 #include <qvaluestack.h>
 #include <qtimer.h>
@@ -41,6 +42,8 @@ class ListPanelFunc : public QObject{
 friend class ListPanel;
 	Q_OBJECT
 public slots:
+	inline vfile* getVFile(KrViewItem *item) { return files()->vfs_search(item->name()); }
+	inline vfile* getVFile(const QString& name) { return files()->vfs_search(name); }
 	void execute(QString&);
 	void openUrl(const KURL& path, const QString& nameToMakeCurrent = QString::null);
 	void openUrl(const QString& path, const QString& nameToMakeCurrent = QString::null);

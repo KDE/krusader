@@ -60,7 +60,6 @@
 class vfs;
 class vfile;
 class KRdirWatch;
-class PanelFunc;
 class KrView;
 class KURLRequester;
 class BookmarksButton;
@@ -76,8 +75,8 @@ class ListPanel : public QWidget {
    friend class ListPanelFunc;
    Q_OBJECT
 public:
-   //enum FilterSpec{ALL,EXEC,CUSTOM};
-
+	#define ITEM2VFILE(PANEL_PTR, KRVIEWITEM)		PANEL_PTR->func->files()->vfs_search(KRVIEWITEM->name())
+	#define NAME2VFILE(PANEL_PTR, STRING_NAME)	PANEL_PTR->func->files()->vfs_search(STRING_NAME)
    // constructor create the panel, but DOESN'T fill it with data, use start()
    ListPanel( QWidget *parent, bool &left, const char *name = 0 );
    ~ListPanel();
