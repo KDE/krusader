@@ -796,7 +796,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          case Key_Return :
          if ( e->state() & ControlButton ) {
          	if (e->state() & AltButton) {
-         		vfile *vf = view->getCurrentKrViewItem()->getVfile();
+         		vfile *vf = func->files()->vfs_search(view->getCurrentKrViewItem()->name());
          		if (vf && vf->vfile_isDir()) SLOTS->newTab(vf->vfile_getUrl());
          	} else {
 					SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
