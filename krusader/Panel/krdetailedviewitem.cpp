@@ -50,7 +50,7 @@
 #define COLUMN(X)	static_cast<const KrDetailedViewProperties*>(_viewProperties)->	\
 	column[ KrDetailedViewProperties::X ]
 #define PROPS	static_cast<const KrDetailedViewProperties*>(_viewProperties)
-#define PERM_BITMASK (S_IRWXU|S_IRWXG|S_IRWXO)
+#define PERM_BITMASK (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)
 
 int KrDetailedViewItem::expHeight = 0;
 
@@ -132,7 +132,7 @@ void KrDetailedViewItem::repaintItem() {
     }
     if ((id = COLUMN(Permissions) ) != -1) {
 		if (PROPS->numericPermissions) {
-      	setText(id, tmp.sprintf("%o", _vf->vfile_getMode() & PERM_BITMASK));
+      	setText(id, tmp.sprintf("%.4o", _vf->vfile_getMode() & PERM_BITMASK));
 		} else setText(id, _vf->vfile_getPerm());
 	 }
     if ((id = COLUMN(Owner)) != -1) {
