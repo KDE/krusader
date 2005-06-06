@@ -23,6 +23,7 @@
 #include <ktempfile.h>
 #include <kparts/partmanager.h>
 #include <kparts/browserextension.h>
+#include <qguardedptr.h>
 
 /**
   *@author Shie Erlich & Rafi Yanai
@@ -67,10 +68,10 @@ private:
   KURL url;
   KParts::PartManager manager;
 
-  KParts::ReadOnlyPart  *generic_part;
-  KParts::ReadOnlyPart  *text_part;
-  KParts::ReadOnlyPart  *hex_part;
-  KParts::ReadWritePart *editor_part;
+  QGuardedPtr<KParts::ReadOnlyPart> generic_part;  /* JavaScript self.close() destructs KHTMLPart, so please don't remove QGuardedPtr */
+  QGuardedPtr<KParts::ReadOnlyPart> text_part;     /* the other QGuardedPtr-s are for sanity */
+  QGuardedPtr<KParts::ReadOnlyPart> hex_part;
+  QGuardedPtr<KParts::ReadWritePart> editor_part;
 
   KTempFile tmpFile;
   

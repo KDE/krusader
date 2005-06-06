@@ -196,6 +196,9 @@ KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool 
 }
 
 void KrViewer::createGUI(KParts::Part* part){
+  if( part == 0 )  /*     KHTMLPart calls this function with 0 at destruction.    */
+    return;        /*   Can cause crash after JavaScript self.close() if removed  */
+
   // make sure all the other parts are hidden
   if(generic_part) generic_part->widget()->hide();
   if(text_part)    text_part->widget()->hide();
@@ -333,6 +336,9 @@ bool KrViewer::viewGeneric(){
       KHTMLPart* p = new KHTMLPart(this,0,0,0,KHTMLPart::BrowserViewGUI);
       connect(p->browserExtension(), SIGNAL(openURLRequest(const KURL &, const KParts::URLArgs &)),
               this,SLOT(handleOpenURLRequest(const KURL &,const KParts::URLArgs & )));
+      /* At JavaScript self.close() the KHTMLPart destroys itself.  */
+      /* After destruction, just close the window */
+      connect( p, SIGNAL( destroyed() ), this, SLOT( close() ) );
 
       p-> openURL(url);
       generic_part = p;

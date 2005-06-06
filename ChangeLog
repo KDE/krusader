@@ -28,6 +28,7 @@
 
   CHANGED: the panel startup is profile based instead of directory based
 
+    FIXED: [ 1213137 ] javascript self.close() causes crash in the viewer
     FIXED: Control+Delete can be used in those distributions where Shift+Delete doesn't work
     FIXED: [ 1186534 ] problems with the new network connection (port, path, password, username)
     FIXED: renaming does not change the view, until VFS sends a signal about the rename actually being done
