@@ -66,6 +66,7 @@ private:
    KActionCollection *actions;
    KrViewItemList items; // list of selected items
    KrViewItem *item; // the (first) selected item
+   KFileItemList _items;
    QValueList<KServiceOffer> offers;
 #ifdef __LIBKONQ__
    KonqPopupMenu *konqMenu;

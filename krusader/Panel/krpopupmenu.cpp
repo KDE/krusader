@@ -106,7 +106,6 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
 	
 	// --------------- user actions
    insertItem( i18n("User Actions"), new UserActionPopupMenu( panel->func->files()->vfs_getFile( item->name() ).url() ) );
-   KFileItemList _items;
    _items.setAutoDelete( true );
    for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
 		vfile *file = panel->func->files()->vfs_search(((*it)->name()));
