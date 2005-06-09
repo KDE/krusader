@@ -88,6 +88,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "MountMan/kmountman.h"
 #include "BookMan/krbookmarkhandler.h"
 #include "Dialogs/popularurls.h"
+#include "GUI/krremoteencodingmenu.h"
 
 #ifdef __KJSEMBED__
 #include "KrJS/krjs.h"
@@ -607,6 +608,7 @@ void Krusader::setupActions() {
                               SLOT( userMenu() ), actionCollection(), "user menu" );
    actManageUseractions = new KAction( i18n( "Manage user actions" ), 0, SLOTS,
                               SLOT( manageUseractions() ), actionCollection(), "manage useractions" );
+   new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection(), "changeremoteencoding");
 
         // setup the Fn keys
         actF2 = new KAction( i18n( "F2 - Open a terminal" ), Key_F2,
