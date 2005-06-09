@@ -62,6 +62,7 @@ public:
 class QDragMoveEvent;
 class KrRenameTimerObject;
 class ListPanel;
+class KrDetailedViewItem;
 
 /**
  * KrDetailedView implements everthing and anything regarding a detailed view in a filemananger.

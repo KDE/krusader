@@ -45,6 +45,8 @@ A
 #include <stdlib.h>
 #include <math.h>
 
+class KMountManGUI;
+
 class KMountMan : public QObject {
    Q_OBJECT
    friend class KMountManGUI;

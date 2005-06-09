@@ -70,6 +70,7 @@ class PanelPopup;
 class SyncBrowseButton;
 class KrBookmarkButton;
 class KPushButton;
+class ListPanelFunc;
 
 class ListPanel : public QWidget {
    friend class ListPanelFunc;
