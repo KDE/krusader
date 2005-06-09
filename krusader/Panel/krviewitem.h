@@ -39,16 +39,11 @@ class QString;
 class QPixmap;
 
 class KrViewItem {
+	friend class KrView;
+
 public:
    virtual QString name() const = 0;
-   virtual bool isDir() const = 0;
-   virtual bool isExecutable() const = 0;
-   virtual KIO::filesize_t size() const = 0;
    virtual QString dateTime() const = 0;
-   virtual time_t getTime_t() const = 0;
-   virtual QString mime() const = 0;
-   virtual QString symlinkDest() const = 0;
-   virtual bool isSymLink() const = 0;
    virtual QString description() const = 0;
    virtual bool isSelected() const = 0;
    virtual void setSelected( bool s ) = 0;
@@ -56,8 +51,11 @@ public:
    
 	KrViewItem(vfile *vf, const KrViewProperties* properties): _vf(vf), dummyVfile(false), _viewProperties(properties) {}
    virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
-   virtual vfile* getVfile() { return _vf; }
 		
+   // DON'T USE THOSE OUTSIDE THE VIEWS!!!
+   virtual inline vfile* getVfile() const { return _vf; }
+   virtual inline vfile* getMutableVfile() { return _vf; }
+
 protected:
 	vfile* _vf;			// each view item holds a pointer to a corrosponding vfile for fast access	
 	bool dummyVfile;	// used in case our item represents the ".." (updir) item

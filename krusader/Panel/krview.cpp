@@ -83,8 +83,8 @@ void KrView::getItemsByMask( QString mask, QStringList* names, bool dirs, bool f
    for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ) {
       if ( ( it->name() == ".." ) || !QDir::match( mask, it->name() ) ) continue;
       // if we got here, than the item fits the mask
-      if ( it->isDir() && !dirs ) continue; // do we need to skip folders?
-      if ( !it->isDir() && !files ) continue; // do we need to skip files
+      if ( it->getVfile()->vfile_isDir() && !dirs ) continue; // do we need to skip folders?
+      if ( !it->getVfile()->vfile_isDir() && !files ) continue; // do we need to skip files
       names->append( it->name() );
    }
 }
@@ -117,10 +117,10 @@ QString KrView::statistics() {
     for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ){
       if ( it->isSelected() ) {
          ++_numSelected;
-         _selectedSize += it->size();
+         _selectedSize += it->getVfile()->vfile_getSize();
       }
-    if (it->size() > 0)
-       _countSize += it->size();
+    if (it->getVfile()->vfile_getSize() > 0)
+       _countSize += it->getVfile()->vfile_getSize();
    }
    QString tmp = QString(i18n("%1 out of %2, %3 (%4) out of %5 (%6)"))
                  .arg( _numSelected ).arg( _count ).arg( KIO::convertSize( _selectedSize ) )
@@ -139,7 +139,7 @@ void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDi
    KrViewItem *temp = getCurrentKrViewItem();
    for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ) {
       if ( it->name() == ".." ) continue;
-      if ( it->isDir() && !markDirs ) continue;
+      if ( it->getVfile()->vfile_isDir() && !markDirs ) continue;
       
       vfile * file = it->getVfile();
       if( file == 0 ) continue;
@@ -149,12 +149,12 @@ void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDi
          if ( select ) {
             if ( !it->isSelected() ) {
                ++_numSelected;
-               _selectedSize += it->size();
+               _selectedSize += it->getVfile()->vfile_getSize();
             }
          } else {
             if ( it->isSelected() ) {
                --_numSelected;
-               _selectedSize -= it->size();
+               _selectedSize -= it->getVfile()->vfile_getSize();
             }
          }
          it->setSelected( select );
@@ -171,13 +171,13 @@ void KrView::invertSelection() {
    KrViewItem *temp = getCurrentKrViewItem();
    for ( KrViewItem * it = getFirst(); it != 0; it = getNext( it ) ) {
       if ( it->name() == ".." ) continue;
-      if ( it->isDir() && !markDirs && !it->isSelected() ) continue;
+      if ( it->getVfile()->vfile_isDir() && !markDirs && !it->isSelected() ) continue;
       if ( it->isSelected() ) {
          --_numSelected;
-         _selectedSize -= it->size();
+         _selectedSize -= it->getVfile()->vfile_getSize();
       } else {
          ++_numSelected;
-         _selectedSize += it->size();
+         _selectedSize += it->getVfile()->vfile_getSize();
       }
       it->setSelected( !it->isSelected() );
    }

@@ -444,7 +444,7 @@ void ListPanel::compareDirs() {
            
       bool isSingle = ( otherItem == 0 ), isDifferent = false, isNewer = false;
    
-      if( item->isDir() && !selectDirs )
+      if( func->getVFile(item)->vfile_isDir() && !selectDirs )
       {
          item->setSelected( false );
          continue;
@@ -452,9 +452,9 @@ void ListPanel::compareDirs() {
       
       if( otherItem )
       {
-         if( !item->isDir() )
-            isDifferent = otherItem->size() != item->size();
-         isNewer = item->getTime_t() > otherItem->getTime_t();
+         if( !func->getVFile(item)->vfile_isDir() )
+            isDifferent = ITEM2VFILE(otherPanel,otherItem)->vfile_getSize() != func->getVFile(item)->vfile_getSize();
+         isNewer = func->getVFile(item)->vfile_getTime_t() > ITEM2VFILE(otherPanel, otherItem)->vfile_getTime_t();
       }
 
       switch( compareMode )
@@ -811,7 +811,7 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
             // directory otherwise as this one
             if ( ( _left && e->key() == Key_Right ) || ( !_left && e->key() == Key_Left ) ) {
                KURL newPath;
-               if ( view->getCurrentKrViewItem() ->isDir() ) {
+               if ( func->getVFile(view->getCurrentKrViewItem())->vfile_isDir() ) {
                   newPath = func->files() ->vfs_getFile( view->getCurrentKrViewItem() ->name() );
                } else {
                   newPath = func->files() ->vfs_getOrigin();

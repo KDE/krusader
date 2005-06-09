@@ -53,13 +53,14 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
 	} else if ( items.size() > 1 ) multipleSelections = true;
 
    item = items.first();
+   vfile *vf = panel->func->getVFile(item);
    
    // ------------ the OPEN option - open prefered service
    insertItem( i18n("Open/Run"), OPEN_ID );
    if ( !multipleSelections ) { // meaningful only if one file is selected
-		changeItem( OPEN_ID, item->icon(), i18n(item->isExecutable() && !item->isDir() ? "Run" : "Open" ) );
+		changeItem( OPEN_ID, item->icon(), i18n(vf->vfile_isExecutable() && !vf->vfile_isDir() ? "Run" : "Open" ) );
       // open in a new tab (if folder)
-      if ( item->isDir() ) {
+      if ( vf->vfile_isDir() ) {
          insertItem( i18n( "Open in a new tab" ), OPEN_TAB_ID );
          changeItem( OPEN_TAB_ID, krLoader->loadIcon( "tab_new", KIcon::Panel ), i18n( "Open in a new tab" ) );
       }
@@ -78,10 +79,10 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    // -------------- Open with: try to find-out which apps can open the file
    // this too, is meaningful only if one file is selected or if all the files
    // have the same mimetype !
-   QString mime = item->mime();
+   QString mime = panel->func->getVFile(item)->vfile_getMime();
    // check if all the list have the same mimetype
    for ( unsigned int i = 1; i < items.size(); ++i ) {
-      if ( ( *items.at( i ) ) ->mime() != mime ) {
+      if ( panel->func->getVFile(( *items.at( i ) )) ->vfile_getMime() != mime ) {
          mime = QString::null;
          break;
       }
@@ -96,7 +97,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
          }
       }
       openWith.insertSeparator();
-      if ( item->isDir() )
+      if ( vf->vfile_isDir() )
          openWith.insertItem( krLoader->loadIcon( "konsole", KIcon::Small ), i18n( "Terminal" ), OPEN_TERM_ID );
       openWith.insertItem( i18n( "Other..." ), CHOOSE_ID );
       insertItem( QPixmap(), &openWith, OPEN_WITH_ID );
@@ -138,7 +139,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
       insertItem( i18n( "Delete" ), DELETE_ID );
       // -------- SHRED - only one file
       if ( panel->func->files() ->vfs_getType() == vfs::NORMAL &&
-            !item->isDir() && !multipleSelections )
+            !vf->vfile_isDir() && !multipleSelections )
          insertItem( i18n( "Shred" ), SHRED_ID );
    }
    
@@ -148,7 +149,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
       insertSeparator();
       linkPopup.insertItem( i18n( "new symlink" ), NEW_SYMLINK_ID );
       linkPopup.insertItem( i18n( "new hardlink" ), NEW_LINK_ID );
-      if ( item->isSymLink() )
+      if ( panel->func->getVFile(item)->vfile_isSymLink() )
          linkPopup.insertItem( i18n( "redirect link" ), REDIRECT_LINK_ID);
       insertItem( QPixmap(), &linkPopup, LINK_HANDLING_ID );
       changeItem( LINK_HANDLING_ID, i18n( "Link handling" ) );
@@ -156,11 +157,11 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    insertSeparator();
 
    // ---------- calculate space
-   if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && ( item->isDir() || multipleSelections ) )
+   if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && ( vf->vfile_isDir() || multipleSelections ) )
       krCalculate->plug( this );
 	
 	// ---------- mount/umount/eject
-   if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && item->isDir() && !multipleSelections ) {
+   if ( panel->func->files() ->vfs_getType() == vfs::NORMAL && vf->vfile_isDir() && !multipleSelections ) {
       if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) ) == KMountMan::MOUNTED )
          insertItem( i18n( "Unmount" ), UNMOUNT_ID );
       else if ( krMtMan.getStatus( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) ) == KMountMan::NOT_MOUNTED )
@@ -170,7 +171,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    }
    
    // --------- send by mail
-   if ( Krusader::supportedTools().contains( "MAIL" ) && !item->isDir() ) {
+   if ( Krusader::supportedTools().contains( "MAIL" ) && !vf->vfile_isDir() ) {
       insertItem( i18n( "Send by email" ), SEND_BY_EMAIL_ID );
    }
    
@@ -228,7 +229,7 @@ void KrPopupMenu::performAction(int id) {
          case OPEN_ID :
          	for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
             	u = panel->func->files()->vfs_getFile( ( *it ) ->name() );
-            	KRun::runURL( u, item->mime() );
+            	KRun::runURL( u, panel->func->getVFile(item)->vfile_getMime() );
          	}
          	break;
          case COPY_ID :
@@ -320,7 +321,7 @@ void KrPopupMenu::performAction(int id) {
 				KConfigGroupSaver saver(krConfig, "General");
          	QString term = krConfig->readEntry( "Terminal", _Terminal );
          	proc << KrServices::separateArgs( term );
-         	if ( !item->isDir() ) proc << "-e" << item->name();
+         	if ( !panel->func->getVFile(item)->vfile_isDir() ) proc << "-e" << item->name();
          	if ( term.contains( "konsole" ) ) {   /* KDE 3.2 bug (konsole is killed by pressing Ctrl+C) */
          	                                      /* Please remove the patch if the bug is corrected */
 					proc << "&";

@@ -43,21 +43,13 @@ class QPixmap;
 class KrDetailedView;
 
 class KrDetailedViewItem : public KListViewItem, public KrViewItem {
-
 friend class KrDetailedView;
 friend class KrCalcSpaceDialog;
 public:
 	KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
 	inline QString name() const { return _vf->vfile_getName(); }
 	QString description() const; // for status bar
-	inline bool isDir() const { return _vf->vfile_isDir(); }
-	inline bool isExecutable() const { return _vf->vfile_isExecutable(); }
-	inline KIO::filesize_t size() const { return _vf->vfile_getSize(); }
 	QString dateTime() const;
-	inline time_t getTime_t() const { return _vf->vfile_getTime_t(); }
-	inline QString mime() const { return _vf->vfile_getMime(); }
-	inline QString symlinkDest() const { return _vf->vfile_getSymDest(); }
-	inline bool isSymLink() const { return _vf->vfile_isSymLink(); }
 	inline bool isSelected() const { return KListViewItem::isSelected(); }
 	inline void setSelected(bool s) { KListViewItem::setSelected(s); }
 	QPixmap icon();

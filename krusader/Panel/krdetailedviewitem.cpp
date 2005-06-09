@@ -51,6 +51,7 @@
 	column[ KrDetailedViewProperties::X ]
 #define PROPS	static_cast<const KrDetailedViewProperties*>(_viewProperties)
 #define PERM_BITMASK (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)
+#define VF	getVfile()
 
 int KrDetailedViewItem::expHeight = 0;
 
@@ -213,16 +214,16 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
     // First calculate fore- and background.
     QColor background = isAlternate()?KrColorCache::getColorCache().getAlternateBackgroundColor(isActive):KrColorCache::getColorCache().getBackgroundColor(isActive);
     QColor foreground;
-    if (isSymLink())
+    if (VF->vfile_isSymLink())
     {
        if (_vf->vfile_getMime() == "Broken Link !" )
           foreground = KrColorCache::getColorCache().getInvalidSymlinkForegroundColor(isActive);
        else
           foreground = KrColorCache::getColorCache().getSymlinkForegroundColor(isActive);
     }
-    else if (isDir())
+    else if (VF->vfile_isDir())
        foreground = KrColorCache::getColorCache().getDirectoryForegroundColor(isActive);
-    else if (isExecutable())
+    else if (VF->vfile_isExecutable())
        foreground = KrColorCache::getColorCache().getExecutableForegroundColor(isActive);
     else
        foreground = KrColorCache::getColorCache().getForegroundColor(isActive);
@@ -329,9 +330,9 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   KrViewItem *other = dynamic_cast<KrViewItem*>(i);
 
   // handle directory sorting
-  if (isDir()){
-    if (!other->isDir()) return 1*asc;
-  } else if(other->isDir()) return -1*asc;
+  if (VF->vfile_isDir()){
+    if (!other->VF->vfile_isDir()) return 1*asc;
+  } else if(other->VF->vfile_isDir()) return -1*asc;
 
   QString text0 = name();
   if (text0 == "..") return 1*asc;
@@ -356,9 +357,9 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 			return QString::compare(text0, itext0);
 		} else return QString::localeAwareCompare(text0,itext0);
   } else if (col == COLUMN(Size) ) {
-      return QString::compare(num2qstring(size()),num2qstring(other->size()));
+      return QString::compare(num2qstring(VF->vfile_getSize()),num2qstring(other->VF->vfile_getSize()));
   } else if (col == COLUMN(DateTime) ) {
-      return (getTime_t() > other->getTime_t() ? 1 : -1);
+      return (VF->vfile_getTime_t() > other->VF->vfile_getTime_t() ? 1 : -1);
   } else {
       QString e1 = (!ignoreCase ? text(col) : text(col).lower());
       QString e2 = (!ignoreCase ? i->text(col) : i->text(col).lower());
@@ -408,7 +409,7 @@ QString KrDetailedViewItem::description() const {
 
 QString KrDetailedViewItem::dateTime() const {
    // convert the time_t to struct tm
-   time_t time = getTime_t();
+   time_t time = VF->vfile_getTime_t();
    struct tm* t=localtime((time_t *)&time);
 
    QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));

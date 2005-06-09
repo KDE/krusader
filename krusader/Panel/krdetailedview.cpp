@@ -81,6 +81,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #define CANCEL_TWO_CLICK_RENAME {singleClicked = false;renameTimer.stop();}
 #define COLUMN(X)	static_cast<KrDetailedViewProperties*>(_properties)->column[ KrDetailedViewProperties::X ]
 #define PROPS	static_cast<KrDetailedViewProperties*>(_properties)	
+#define VF	getVfile()
 
 #define COLUMN_POPUP_IDS    91
 
@@ -277,7 +278,7 @@ void KrDetailedView::addItem( vfile *vf ) {
    dict.insert( vf->vfile_getName(), item );
    if ( isDir )
       ++_numDirs;
-   else _countSize += static_cast<KrViewItem*>( item ) ->size();
+   else _countSize += vf->vfile_getSize();
    ++_count;
    
    if (item->name() == nameToMakeCurrent() )
@@ -293,10 +294,10 @@ void KrDetailedView::delItem( const QString &name ) {
       krOut << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
 		return;
 	} 
-	if (it->isDir()) {
+	if (it->VF->vfile_isDir()) {
 		--_numDirs;
 	} else {
-		_countSize -= it->size();
+		_countSize -= it->VF->vfile_getSize();
 	}
 	--_count;
 	
@@ -375,7 +376,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       if ( isDir )
          ++_numDirs;
       else
-         _countSize += dvitem->size();
+         _countSize += dvitem->VF->vfile_getSize();
       ++_count;
       // if the item should be current - make it so
       if ( dvitem->name() == nameToMakeCurrent() )
@@ -819,7 +820,7 @@ void KrDetailedView::contentsDropEvent( QDropEvent * e ) {
 
 void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
    _currDragItem = getKrViewItemAt(contentsToViewport(e->pos()));
-   if( _currDragItem && !_currDragItem->isDir() )
+   if( _currDragItem && !_currDragItem->VF->vfile_isDir() )
      _currDragItem = 0;
    
    KListView::contentsDragMoveEvent( e );
@@ -940,7 +941,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                SLOTS->dirUp(); // ask krusader to move up a directory
                return ;
             }
-            if ( i->isDir() ) {             // we create a return-pressed event,
+            if ( i->VF->vfile_isDir() ) {             // we create a return-pressed event,
                QString tmp = i->name();
                emit executed( tmp );  // thereby emulating a chdir
             }
@@ -987,7 +988,8 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                   KListView::keyPressEvent( e );
                break ; 
             }
-            if ( viewItem->isDir() && viewItem->size() <= 0 &&  KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
+            if ( viewItem->VF->vfile_isDir() && viewItem->VF->vfile_getSize() <= 0 && 
+					KrSelectionMode::getSelectionHandler()->spaceCalculatesDiskSpace()) {
                //
                // NOTE: this is buggy incase somewhere down in the folder we're calculating,
                // there's a folder we can't enter (permissions). in that case, the returned
@@ -1139,7 +1141,7 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       
       int i;
       QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
-      if ( !static_cast<KrDetailedViewItem*>( it ) ->isDir() )
+      if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() )
          if ( ( i = name.findRev( '.' ) ) > 0 ) {
             ext = name.mid( i + 1 );
             name = name.mid( 0, i );
