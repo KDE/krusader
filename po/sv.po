@@ -4,7 +4,7 @@
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # Erik Johansson <erre@telia.com>, 2001.
-# Anders Lindén <connyosis@gmx.net>, 2004.
+# Anders Linden <connyosis@gmx.net>, 2004.
 # Peter Landgren <peter.talken@telia.com>, 2005.
 #
 msgid ""
@@ -12,13 +12,13 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-02 20:29+0200\n"
-"PO-Revision-Date: 2005-02-27 15:46+0100\n"
+"PO-Revision-Date: 2005-06-04 08:10+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3.1\n"
+"X-Generator: KBabel 1.9.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -344,7 +344,6 @@ msgid "Confirm each program call separately"
 msgstr "Bekräfta varje programanrop separat"
 
 #: GUI/actionpropertybase.cpp:448
-#, fuzzy
 msgid "This allows you to tweak the command line before being executed"
 msgstr "Detta tillåter dig att 'nypa' kommandoraden innan den utförs"
 
@@ -674,9 +673,8 @@ msgid "&Advanced"
 msgstr "&Avancerad"
 
 #: Filter/filterdialog.cpp:38
-#, fuzzy
 msgid "Krusader::Choose Files"
-msgstr "Välj filer"
+msgstr "Krusader::Välj filer"
 
 #: Filter/generalfilter.cpp:55
 msgid "File name"
@@ -713,17 +711,15 @@ msgstr "Alla filer"
 
 #: Filter/generalfilter.cpp:114
 msgid "&Profile handler"
-msgstr ""
+msgstr "&Profilhanterare"
 
 #: Filter/generalfilter.cpp:126
-#, fuzzy
 msgid "&Add"
-msgstr "&Avancerad"
+msgstr "&Addera"
 
 #: Filter/generalfilter.cpp:129
-#, fuzzy
 msgid "&Load"
-msgstr "&Lokalisera"
+msgstr "&Ladda"
 
 #: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:715
 msgid "&Overwrite"
@@ -1248,7 +1244,7 @@ msgstr "Öppna pop-upp-panelen"
 #: Panel/listpanel.cpp:191
 #, fuzzy
 msgid "Clear the location bar"
-msgstr "Hoppa till en plats"
+msgstr "Hoppa till en platsraden"
 
 #: Panel/listpanel.cpp:198
 msgid "Use superb KDE file dialog to choose location. "
@@ -2234,17 +2230,16 @@ msgid "Popular URLs"
 msgstr "Populära URL:er"
 
 #: krusader.cpp:632
-#, fuzzy
 msgid "Go to location bar"
-msgstr "Hoppa till en plats"
+msgstr "Hoppa till en platsraden"
 
 #: krusader.cpp:634
 msgid "Jump back"
-msgstr ""
+msgstr "Hoppa tillbaka"
 
 #: krusader.cpp:636
 msgid "Set jump back point here"
-msgstr ""
+msgstr "Sätt bakåthoppspunkt här"
 
 #: krusader.cpp:640
 msgid "Select files using a filter"
@@ -2431,9 +2426,8 @@ msgid "Manage Bookmarks"
 msgstr "Hantera bokmärken"
 
 #: BookMan/krbookmark.cpp:12
-#, fuzzy
 msgid "Media"
-msgstr "redigera"
+msgstr "Media"
 
 #: BookMan/krbookmark.cpp:14
 msgid "Devices"
@@ -2445,7 +2439,7 @@ msgstr "Virtuellt Filsystem"
 
 #: BookMan/krbookmark.cpp:17
 msgid "Local Network"
-msgstr ""
+msgstr "Lokalt nätverk"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2588,7 +2582,7 @@ msgstr "Börja vänster panel i <path>"
 
 #: main.cpp:50
 msgid "Start right panel at <path>"
-msgstr "Börja höger panel it <path>"
+msgstr "Börja höger panel i <path>"
 
 #: main.cpp:51
 msgid "Load this profile on startup"
@@ -4177,12 +4171,12 @@ msgstr "Synliga knappar för Panelverktygsfält"
 #: Konfigurator/kglookfeel.cpp:227
 #, fuzzy
 msgid "Clear location bar button"
-msgstr "Hoppa till en plats"
+msgstr "Hoppa till en platsraden"
 
 #: Konfigurator/kglookfeel.cpp:227
 #, fuzzy
 msgid "Clears the location bar"
-msgstr "Hoppa till en plats"
+msgstr "Hoppa till en platsraden"
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Open button"
@@ -4569,64 +4563,52 @@ msgid "Same as active"
 msgstr "Samma som aktiv"
 
 #: Konfigurator/kgcolors.cpp:156
-#, fuzzy
 msgid "Synchronizer"
-msgstr "&Synkroniserare"
+msgstr "Synkroniserare"
 
 #: Konfigurator/kgcolors.cpp:162 Konfigurator/kgcolors.cpp:163
-#, fuzzy
 msgid "KDE default"
-msgstr "Standard"
+msgstr "KDE-standard"
 
 #: Konfigurator/kgcolors.cpp:167
-#, fuzzy
 msgid "Equals foreground:"
-msgstr "Körbar i förgrunden:"
+msgstr "Lika som förgrund:"
 
 #: Konfigurator/kgcolors.cpp:168
-#, fuzzy
 msgid "Equals background:"
-msgstr "Markerad bakgrund:"
+msgstr "Lika som bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:169
-#, fuzzy
 msgid "Differing foreground:"
-msgstr "Mappförgrund:"
+msgstr "Avvikande förgrund:"
 
 #: Konfigurator/kgcolors.cpp:170
-#, fuzzy
 msgid "Differing background:"
-msgstr "Alternativ bakgrund:"
+msgstr "Avvikande bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:171
-#, fuzzy
 msgid "Copy to left foreground:"
-msgstr "Aktuell förgrund:"
+msgstr "Kopiera till vänster förgrund:"
 
 #: Konfigurator/kgcolors.cpp:172
-#, fuzzy
 msgid "Copy to left background:"
-msgstr "Aktuell bakgrund:"
+msgstr "Kopiera till vänster bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:173
-#, fuzzy
 msgid "Copy to right foreground:"
-msgstr "Aktuell förgrund:"
+msgstr "Kopiera till höger förgrund:"
 
 #: Konfigurator/kgcolors.cpp:174
-#, fuzzy
 msgid "Copy to right background:"
-msgstr "Aktuell bakgrund:"
+msgstr "Kopiare till höger bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:175
-#, fuzzy
 msgid "Delete foreground:"
-msgstr "Mappförgrund:"
+msgstr "Radera förgrund:"
 
 #: Konfigurator/kgcolors.cpp:176
-#, fuzzy
 msgid "Delete background:"
-msgstr "Alternativ bakgrund:"
+msgstr "Radera bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:200
 msgid "Import color-scheme"
@@ -4665,23 +4647,20 @@ msgid "Directory"
 msgstr "Mapp"
 
 #: Konfigurator/kgcolors.cpp:448
-#, fuzzy
 msgid "Copy to right"
-msgstr "Kopiera från vänster till höger"
+msgstr "Kopiera åt höger"
 
 #: Konfigurator/kgcolors.cpp:449
-#, fuzzy
 msgid "Copy to left"
-msgstr "Kopiera från höger till vänster"
+msgstr "Kopiera åt vänster"
 
 #: Konfigurator/kgcolors.cpp:450
 msgid "Differing"
-msgstr ""
+msgstr "Avvikande"
 
 #: Konfigurator/kgcolors.cpp:451
-#, fuzzy
 msgid "Equals"
-msgstr "Lika"
+msgstr "Lika med"
 
 #: Konfigurator/kgcolors.cpp:488
 msgid "Select a color-scheme file"
@@ -5390,9 +5369,32 @@ msgstr "Fel vid läsning av fil %1!"
 msgid "Error at writing file %1!"
 msgstr "Fel vid skrivning av fil %1!"
 
+#~ msgid "Save &Tabs"
+#~ msgstr "Spara &Flikar"
+
 #~ msgid "Show the Full Permissions Column, e.g. '-rw-r--r--'"
 #~ msgstr "Visa komplett behörighetskolumn. t. ex . '-rw-r-r-'"
 
-#, fuzzy
+#~ msgid "Save the state of the tabs at exit and restore it at startup"
+#~ msgstr "Spara flikarnas status vid avslut och återställ vid uppstart"
+
+#~ msgid "Saves the last state of the tabs at exit and restores it at startup."
+#~ msgstr "Spara sista flikstatus vid avslut och återställ vid uppstart."
+
+#~ msgid "Restore a manually saved state at startup"
+#~ msgstr "Återställ ett manuellt sparat status vid uppstart"
+
+#~ msgid ""
+#~ "In the Settings menu the state of the tabs can be saved, and this will be "
+#~ "restored after startup."
+#~ msgstr ""
+#~ "I inställningsmenyn kan flikstatus sparas och detta kommer att "
+#~ "återställas efter uppstart."
+
 #~ msgid "Start from profile:"
-#~ msgstr "Sök efter filer"
+#~ msgstr "Starta från profil:"
+
+#~ msgid ""
+#~ "Starts always from the following profile (at least one profile is "
+#~ "necessary):"
+#~ msgstr "Starta alltid från följande profil (åtminstone en profil krävs):"
