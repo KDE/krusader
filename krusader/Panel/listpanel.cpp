@@ -247,21 +247,36 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	splt->setChildrenCollapsible(true);
 	splt->setOrientation(QObject::Vertical);
 	
-   view = new KrDetailedView( splt, this, _left, krConfig );
+   view = new KrDetailedView( splt, _left, krConfig );
+   view->init();
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( executed( QString& ) ), func, SLOT( execute( QString& ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( needFocus() ), this, SLOT( slotFocusOnMe() ) );
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( selectionChanged() ), this, SLOT( slotUpdateTotals() ) );
+   connect( view->op(), SIGNAL( selectionChanged() ), this, SLOT( slotUpdateTotals() ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( itemDescription( QString& ) ), krApp, SLOT( statusBarUpdate( QString& ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( contextMenu( const QPoint & ) ), this, SLOT( popRightClickMenu( const QPoint & ) ) );
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( rightButtonPressed( QListViewItem *, const QPoint &, int ) ), this, SLOT( popEmptyRightClickMenu( QListViewItem *, const QPoint &, int ) ) );
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( letsDrag( QStringList, QPixmap ) ), this, SLOT( startDragging( QStringList, QPixmap ) ) );
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( gotDrop( QDropEvent * ) ), this, SLOT( handleDropOnView( QDropEvent * ) ) );
+   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( rightButtonPressed( QListViewItem *, const QPoint &, int ) ), 
+   	this, SLOT( popEmptyRightClickMenu( QListViewItem *, const QPoint &, int ) ) );
+   connect( view->op(), SIGNAL( letsDrag( QStringList, QPixmap ) ), this, SLOT( startDragging( QStringList, QPixmap ) ) );
+   connect( view->op(), SIGNAL( gotDrop( QDropEvent * ) ), this, SLOT( handleDropOnView( QDropEvent * ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked( QListViewItem * ) ), SLOTS, SLOT( newTab( QListViewItem * ) ) );
 	connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( currentChanged( QListViewItem* ) ), 
 		SLOTS, SLOT( updatePopupPanel( QListViewItem* ) ) );
    // make sure that a focus/path change reflects in the command line and activePanel
    connect( this, SIGNAL( cmdLineUpdate( QString ) ), SLOTS, SLOT( slotCurrentChanged( QString ) ) );
    connect( this, SIGNAL( activePanelChanged( ListPanel * ) ), SLOTS, SLOT( slotSetActivePanel( ListPanel * ) ) );
+   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( renameItem( const QString &, const QString & ) ),
+            func, SLOT( rename( const QString &, const QString & ) ) );
+	// connect quicksearch
+   connect( quickSearch, SIGNAL( textChanged( const QString& ) ),
+            dynamic_cast<KrDetailedView*>( view ), SLOT( quickSearch( const QString& ) ) );
+   connect( quickSearch, SIGNAL( otherMatching( const QString&, int ) ),
+            dynamic_cast<KrDetailedView*>( view ), SLOT( quickSearch( const QString& , int ) ) );
+   connect( quickSearch, SIGNAL( stop( QKeyEvent* ) ),
+            dynamic_cast<KrDetailedView*>( view ), SLOT( stopQuickSearch( QKeyEvent* ) ) );
+   connect( quickSearch, SIGNAL( process( QKeyEvent* ) ),
+            dynamic_cast<KrDetailedView*>( view ), SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
+
+
 	
 	// add a popup
 	popup = new PanelPopup(splt, left);

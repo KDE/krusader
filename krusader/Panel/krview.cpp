@@ -39,12 +39,30 @@
 #include <kmimetype.h>
 #include <klocale.h>
 
+// ----------------------------- operator
+KrViewOperator::KrViewOperator(KrView *view): _view(view) {
+}
+
+KrViewOperator::~KrViewOperator() {
+}
+
+// ----------------------------- krview
+
 KrView::KrView( KConfig *cfg ) : _config( cfg ), _nameToMakeCurrent( QString::null ),
-_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0) {}
+_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0) {
+}
 
 KrView::~KrView() {
 	if (_properties)
 		qFatal("A class inheriting KrView didn't delete _properties!");
+	if (_operator) 
+		qFatal("A class inheriting KrView didn't delete _operator!");
+}
+
+void KrView::init() {
+	initProperties();
+	initOperator();
+	setup();
 }
 
 QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ ) {

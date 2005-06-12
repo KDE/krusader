@@ -31,12 +31,17 @@
 #define KRVIEW_H
 
 #include <qpixmap.h>
+#include <qvariant.h>
 #include "../krusader.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
 #include "../VFS/krquery.h"
 
 #include <kdebug.h>
+
+class KrView;
+class KrViewItem;
+typedef QValueList<KrViewItem*> KrViewItemList;
 
 // KrViewProperties
 // This class is an interface class between KrView and KrViewItem
@@ -60,6 +65,24 @@ public:
 	bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
 };
 
+class KrViewOperator: public QObject {
+	Q_OBJECT
+public:
+	KrViewOperator(KrView *view);
+	~KrViewOperator();
+	
+	void emitSelectionChanged() { emit selectionChanged(); }
+	void emitGotDrop(QDropEvent *e) { emit gotDrop(e); }
+	void emitLetsDrag(QStringList items, QPixmap icon ) { emit letsDrag(items, icon); }
+	
+signals:
+	void selectionChanged();
+	void gotDrop( QDropEvent *e );
+	void letsDrag( QStringList items, QPixmap icon );
+	
+protected:
+	KrView* _view; // NEVER delete this
+};
 
 /****************************************************************************
  * READ THIS FIRST: Using the view
@@ -81,15 +104,24 @@ public:
  * 5) nameToMakeCurrent(), setNameToMakeCurrent() - work with QString
  *
  * IMPORTANT NOTE: every one who subclasses this must call initProperties() in the constructor !!!
- */
-class KrViewItem;
- 
-typedef QValueList<KrViewItem*> KrViewItemList;
+ */ 
 class KrView {
 public:
+  // instantiating a new view
+  // 1. new KrView
+  // 2. view->init()
+  // notes: constructor does as little as possible, setup() does the rest. esp, note that
+  // if you need something from operator or properties, move it into setup()
+  virtual void init();
+protected:
+  virtual void initProperties() { qFatal("Please implement your own initProperties() method"); }
+  virtual void initOperator() { qFatal("Please implement your own initOperator() method"); }
+  virtual void setup() { qFatal("Please implement your own setup() method"); }
+  
   ///////////////////////////////////////////////////////
   // Every view must implement the following functions //
   ///////////////////////////////////////////////////////
+public:
   virtual KrViewItem *getFirst() = 0;
   virtual KrViewItem *getNext(KrViewItem *current) = 0;
   virtual KrViewItem *getPrev(KrViewItem *current) = 0;
@@ -112,17 +144,8 @@ public:
   virtual void prepareForPassive() = 0;
   virtual QString nameInKConfig() = 0;
   virtual void renameCurrentItem() = 0; // Rename current item. returns immediatly
-protected:
-  virtual void initProperties() = 0;
   
-public:  
-  // also, the following must be implemented (but must be remarked here)
-  //
-  // signals:
-  //   void letsDrag(QStringList items, QPixmap icon);
-  //   void gotDrop(QDropEvent *);
-  //   void selectionChanged();
-
+public:
   //////////////////////////////////////////////////////
   // the following functions are already implemented, //
   // and normally - should NOT be re-implemented.     //
@@ -144,7 +167,8 @@ public:
   virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
   virtual QString firstUnmarkedBelowCurrent();
   virtual QString statistics();
-  const KrViewProperties* properties() const { return _properties; }
+  virtual const KrViewProperties* properties() const { return _properties; }
+  virtual KrViewOperator* op() const { return _operator; }
 
   /////////////////////////////////////////////////////////////
   // the following functions have a default and minimalistic //
@@ -175,6 +199,7 @@ protected:
   KIO::filesize_t _countSize, _selectedSize;
   bool _left;
   KrViewProperties *_properties;
+  KrViewOperator *_operator;
 };
 
 #endif /* KRVIEW_H */

@@ -40,8 +40,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../GUI/kcmdline.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../panelmanager.h"
-#include "listpanel.h"
-#include "panelfunc.h"
 #include <qlayout.h>
 #include <qdir.h>
 #include <qwhatsthis.h>
@@ -87,13 +85,13 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 
 QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
 
-KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg, const char *name ) :
+KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg, const char *name ) :
       KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
       _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ),
-      currentlyRenamedItem( 0 )    {
-	initProperties(); // don't forget this!
-        lastSwushPosition = 0;
+      currentlyRenamedItem( 0 )    {}
 
+void KrDetailedView::setup() {
+	lastSwushPosition = 0;
    if ( ColumnName[ 0 ].isEmpty() ) {
       ColumnName[ 0 ] = i18n( "Name" );
       ColumnName[ 1 ] = i18n( "Ext" );
@@ -202,17 +200,6 @@ KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, K
    // allow in-place renaming
    connect( renameLineEdit(), SIGNAL( done( QListViewItem *, int ) ),
             this, SLOT( inplaceRenameFinished( QListViewItem*, int ) ) );
-   connect( this, SIGNAL( renameItem( const QString &, const QString & ) ),
-            panel->func, SLOT( rename( const QString &, const QString & ) ) );
-   // connect quicksearch
-   connect( panel->quickSearch, SIGNAL( textChanged( const QString& ) ),
-            this, SLOT( quickSearch( const QString& ) ) );
-   connect( panel->quickSearch, SIGNAL( otherMatching( const QString&, int ) ),
-            this, SLOT( quickSearch( const QString& , int ) ) );
-   connect( panel->quickSearch, SIGNAL( stop( QKeyEvent* ) ),
-            this, SLOT( stopQuickSearch( QKeyEvent* ) ) );
-   connect( panel->quickSearch, SIGNAL( process( QKeyEvent* ) ),
-            this, SLOT( handleQuickSearchEvent( QKeyEvent* ) ) );
    connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
    connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));
 
@@ -225,8 +212,8 @@ KrDetailedView::KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, K
 }
 
 KrDetailedView::~KrDetailedView() {
-	delete _properties;
-	_properties = 0;
+	delete _properties; _properties = 0;
+	delete _operator; _operator = 0;
 }
 
 void KrDetailedView::newColumn( KrDetailedViewProperties::ColumnType type ) {
@@ -285,7 +272,7 @@ void KrDetailedView::addItem( vfile *vf ) {
       setCurrentItem(item->name()); // dictionary based - quick
 
    ensureItemVisible( currentItem() );
-   emit selectionChanged();
+   op()->emitSelectionChanged();
 }
 
 void KrDetailedView::delItem( const QString &name ) {
@@ -302,7 +289,7 @@ void KrDetailedView::delItem( const QString &name ) {
 	--_count;
 	
 	delete it;
-	emit selectionChanged();
+	op()->emitSelectionChanged();
 }
 
 void KrDetailedView::updateItem( vfile *vf ) {
@@ -321,7 +308,7 @@ void KrDetailedView::updateItem( vfile *vf ) {
       if ( current )
          setCurrentItem( vf->vfile_getName() );
    }
-	emit selectionChanged();
+	op()->emitSelectionChanged();
 }
 
 
@@ -428,7 +415,7 @@ void KrDetailedView::setCurrentItem( const QString& name ) {
 }
 
 void KrDetailedView::clear() {
-   emit KListView::selectionChanged(); /* to avoid rename crash at refresh */
+	op()->emitSelectionChanged(); /* to avoid rename crash at refresh */
    KListView::clear();
    _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
    dict.clear();
@@ -787,7 +774,7 @@ void KrDetailedView::startDrag() {
       px = FL_LOADICON( "queue" ); // how much are we dragging
    else
       px = getCurrentKrViewItem() ->icon();
-   emit letsDrag( items, px );
+   op()->emitLetsDrag( items, px );
 }
 
 KrViewItem *KrDetailedView::getKrViewItemAt( const QPoint & vp ) {
@@ -813,7 +800,7 @@ QRect KrDetailedView::drawItemHighlighter(QPainter *painter, QListViewItem *item
 
 void KrDetailedView::contentsDropEvent( QDropEvent * e ) {
    e->setPoint( contentsToViewport( e->pos() ) );
-   emit gotDrop( e );
+   op()->emitGotDrop(e);
    e->ignore();
    KListView::contentsDropEvent( e );
 }
@@ -883,7 +870,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             {
                clearSelection();
                KListView::keyPressEvent( e );
-               emit selectionChanged();
+               op()->emitSelectionChanged();
                triggerUpdate();
                break;
             } else {
@@ -897,7 +884,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             {
                clearSelection();
                KListView::keyPressEvent( e );
-               emit selectionChanged();
+               op()->emitSelectionChanged();
                triggerUpdate();
                break;
             } else {
@@ -1276,6 +1263,12 @@ void KrDetailedView::makeItemVisible( const KrViewItem *item ) {
 	ensureItemVisible( static_cast<const KrDetailedViewItem*>( item ) ); 
 }
 
+void KrDetailedView::initOperator() {
+	_operator = new KrViewOperator(this);
+	// klistview emits selection changed, so chain them to operator
+	connect(this, SIGNAL(selectionChanged()), _operator, SIGNAL(selectionChanged()));
+}
+
 void KrDetailedView::initProperties() {
 	_properties = new KrDetailedViewProperties;
 	KConfigGroupSaver grpSvr( _config, "Look&Feel" );	
@@ -1381,5 +1374,9 @@ void KrDetailedView::sortOrderChanged(int) {
 	ensureItemVisible(currentItem());
 }
 
+void KrDetailedView::updateView() {
+	triggerUpdate(); 
+	op()->emitSelectionChanged();
+}
 
 #include "krdetailedview.moc"

@@ -76,7 +76,7 @@ class KrDetailedView : public KListView, public KrView {
    friend class KrDetailedViewItem;
 
 public:
-   KrDetailedView( QWidget *parent, ListPanel *panel, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
+   KrDetailedView( QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
    virtual ~KrDetailedView();
    virtual int column( KrDetailedViewProperties::ColumnType type );
    virtual KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
@@ -93,7 +93,7 @@ public:
  	virtual QString getCurrentItem() const;
    virtual void makeItemVisible( const KrViewItem *item );	
    virtual void setCurrentItem( const QString& name );
-   virtual void updateView() { triggerUpdate(); emit selectionChanged(); }
+   virtual void updateView();
    virtual void clear();
    virtual void sort() { KListView::sort(); }
    virtual void setSortMode( KrViewProperties::SortSpec mode );
@@ -108,12 +108,13 @@ signals:
    void itemDescription( QString &desc );
    void needFocus();
    void contextMenu( const QPoint &point );
-   void letsDrag( QStringList items, QPixmap icon );
-   void gotDrop( QDropEvent *e );
    void renameItem( const QString &oldName, const QString &newName );
    void middleButtonClicked( QListViewItem *item );
 
 protected:
+	virtual void setup();
+	virtual void initProperties();
+	virtual void initOperator();
    void newColumn( KrDetailedViewProperties::ColumnType type );
    void selectColumns();
    
@@ -129,7 +130,6 @@ protected:
    virtual void startDrag();
    virtual bool event( QEvent *e );
    virtual bool eventFilter( QObject * watched, QEvent * e );
-	virtual void initProperties();
 
 protected slots:
    void rename( QListViewItem *item, int c );
@@ -141,9 +141,6 @@ protected slots:
    virtual void renameCurrentItem();
    virtual void showContextMenu( );
    void inplaceRenameFinished( QListViewItem *it, int col );
-   void quickSearch( const QString &, int = 0 );
-   void stopQuickSearch( QKeyEvent* );
-   void handleQuickSearchEvent( QKeyEvent* );
    void setNameToMakeCurrent( QListViewItem *it );
 	void sortOrderChanged(int);
 
@@ -158,6 +155,9 @@ protected slots:
 
 public slots:
    void refreshColors();
+   void quickSearch( const QString &, int = 0 );
+   void stopQuickSearch( QKeyEvent* );
+   void handleQuickSearchEvent( QKeyEvent* );
 
 private:
    static QString ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
