@@ -21,4 +21,6 @@ libPanel_a_SOURCES = \
 	listpanel.cpp \
 	panelpopup.cpp \
 	krdrag.cpp \
-	krselectionmode.cpp
+	krselectionmode.cpp \
+	krbriefview.cpp
+
