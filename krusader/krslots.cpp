@@ -368,7 +368,17 @@ void KRslots::toggleSwapPanels(){
 }
 
 void KRslots::search() {
-  new KrSearchDialog();
+	if ( KrSearchDialog::SearchDialog != 0 ) {
+		krConfig->setGroup( "Search" );
+		if( krConfig->readBoolEntry( "Window Maximized",  false ) )
+	KrSearchDialog::SearchDialog->showMaximized();
+		else
+			KrSearchDialog::SearchDialog->showNormal();
+	
+		KrSearchDialog::SearchDialog->raise();
+		KrSearchDialog::SearchDialog->setActiveWindow();
+	} else
+		KrSearchDialog::SearchDialog = new KrSearchDialog();
 }
 
 void KRslots::locate()

@@ -53,6 +53,8 @@
 #include <qclipboard.h>
 #include <qheader.h>
 
+KrSearchDialog *KrSearchDialog::SearchDialog = 0;
+
 QString KrSearchDialog::lastSearchText = "*";
 int KrSearchDialog::lastSearchType = 0;
 bool KrSearchDialog::lastSearchForCase = false;
@@ -209,8 +211,6 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   else
       show();
 
-  // disable the search action ... no 2 searchers !
-  krFind->setEnabled(false);
   generalFilter->searchFor->setFocus();
 
   isSearching = closed = false;
@@ -267,8 +267,8 @@ void KrSearchDialog::closeDialog( bool isAccept )
   lastSearchInArchives = generalFilter->searchInArchives->isChecked();
   lastFollowSymLinks = generalFilter->followLinks->isChecked();
   hide();
-  // re-enable the search action
-  krFind->setEnabled(true);
+  
+  SearchDialog = 0;
   if( isAccept )
     QDialog::accept();
   else

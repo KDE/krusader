@@ -70,6 +70,8 @@ public slots:
   virtual void rightClickMenu(QListViewItem*, const QPoint&, int);
   virtual void resizeEvent( QResizeEvent *e );
 
+  static KrSearchDialog *SearchDialog;
+  
 protected slots:
   void reject();
 
