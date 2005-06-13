@@ -48,7 +48,6 @@ friend class KrCalcSpaceDialog;
 public:
 	KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
 	inline QString name() const { return _vf->vfile_getName(); }
-	QString description() const; // for status bar
 	QString dateTime() const;
 	inline bool isSelected() const { return KListViewItem::isSelected(); }
 	inline void setSelected(bool s) { KListViewItem::setSelected(s); }

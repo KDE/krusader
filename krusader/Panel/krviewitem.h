@@ -44,7 +44,7 @@ class KrViewItem {
 public:
    virtual QString name() const = 0;
    virtual QString dateTime() const = 0;
-   virtual QString description() const = 0;
+   virtual QString description() const;
    virtual bool isSelected() const = 0;
    virtual void setSelected( bool s ) = 0;
    virtual QPixmap icon() = 0;

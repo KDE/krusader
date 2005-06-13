@@ -36,7 +36,6 @@ A
 #include <qwidget.h>
 #include <qtimer.h>
 #include <qdatetime.h>
-#include <qdict.h>
 #include "krview.h"
 #include "krviewitem.h"
 
@@ -48,7 +47,6 @@ public:
 	static const int MAX_COLUMNS = 9;
    int column[ MAX_COLUMNS ];	// column[ColumnType] contains the number of the requested column.
 										// This is used by column() and whenever item uses text() or setText()
-	bool humanReadableSize;		// display size as KB, MB or just as a long number
 	bool numericPermissions; // show full permission column as octal numbers
 
 	KrDetailedViewProperties() {
@@ -87,9 +85,6 @@ public:
    virtual KrViewItem *getKrViewItemAt( const QPoint &vp );
    virtual KrViewItem *findItemByName( const QString &name ) { return dynamic_cast<KrViewItem*>( findItem( name, 0 ) ); }
    virtual void addItems( vfs *v, bool addUpDir = true );
-	virtual void addItem(vfile *vf);
-	virtual void delItem(const QString &name);
-	virtual void updateItem(vfile *vf);
  	virtual QString getCurrentItem() const;
    virtual void makeItemVisible( const KrViewItem *item );	
    virtual void setCurrentItem( const QString& name );
@@ -105,7 +100,6 @@ public:
 
 signals:
    void executed( QString &name );
-   void itemDescription( QString &desc );
    void needFocus();
    void contextMenu( const QPoint &point );
    void renameItem( const QString &oldName, const QString &newName );
@@ -115,6 +109,8 @@ protected:
 	virtual void setup();
 	virtual void initProperties();
 	virtual void initOperator();
+	virtual KrViewItem *preAddItem(vfile *vf);
+	virtual bool preDelItem(KrViewItem *item) { return true; } // nothing special to do
    void newColumn( KrDetailedViewProperties::ColumnType type );
    void selectColumns();
    
@@ -175,8 +171,6 @@ private:
    QTimer renameTimer;
    QTimer contextMenuTimer;
    QPoint contextMenuPoint;
-	QDict<KrDetailedViewItem> dict;
-        
    QListViewItem *currentlyRenamedItem;
 };
 

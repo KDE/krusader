@@ -32,6 +32,7 @@
 
 #include <qpixmap.h>
 #include <qvariant.h>
+#include <qdict.h>
 #include "../krusader.h"
 #include "../VFS/vfile.h"
 #include "../VFS/vfs.h"
@@ -63,25 +64,39 @@ public:
 	FilterSpec filter;	// what items to show (all, custom, exec)
 	KRQuery filterMask;	// what items to show (*.cpp, *.h etc)
 	bool localeAwareCompareIsCaseSensitive; // mostly, it is not! depends on LC_COLLATE
+	bool humanReadableSize;		// display size as KB, MB or just as a long number
 };
 
+// operator can handle two ways of doing things:
+// 1. if the view is a widget (inherits krview and klistview for example)
+// 2. if the view HAS A widget (a krview-son has a member of klistview)
+// this is done by specifying the view and the widget in the constructor,
+// even if they are actually the same object (specify it twice in that case)
 class KrViewOperator: public QObject {
 	Q_OBJECT
 public:
-	KrViewOperator(KrView *view);
+	KrViewOperator(KrView *view, QWidget *widget);
 	~KrViewOperator();
+	KrView *view() const { return _view; }
+	QWidget *widget() const { return _widget; }
 	
 	void emitSelectionChanged() { emit selectionChanged(); }
 	void emitGotDrop(QDropEvent *e) { emit gotDrop(e); }
 	void emitLetsDrag(QStringList items, QPixmap icon ) { emit letsDrag(items, icon); }
+	void emitItemDescription(QString &desc) { emit itemDescription(desc); }
 	
 signals:
 	void selectionChanged();
 	void gotDrop( QDropEvent *e );
 	void letsDrag( QStringList items, QPixmap icon );
+	void itemDescription( QString &desc );
+	
+public slots:
 	
 protected:
-	KrView* _view; // NEVER delete this
+	// never delete those
+	KrView *_view;
+	QWidget *_widget;
 };
 
 /****************************************************************************
@@ -129,13 +144,10 @@ public:
   virtual KrViewItem *getKrViewItemAt(const QPoint &vp) = 0;
   virtual KrViewItem *findItemByName(const QString &name) = 0;
   virtual void addItems(vfs* v, bool addUpDir = true) = 0; // kill me, kill me now
-  virtual void addItem(vfile *vf) = 0;
-  virtual void delItem(const QString &name) = 0;
-  virtual void updateItem(vfile *vf) = 0;
   virtual QString getCurrentItem() const = 0;
   virtual void setCurrentItem(const QString& name) = 0;
   virtual void makeItemVisible(const KrViewItem *item) = 0;
-  virtual void clear() = 0;
+  virtual void clear();
   virtual void updateView() = 0;
   virtual void sort() = 0;
   virtual void saveSettings() = 0;
@@ -144,12 +156,19 @@ public:
   virtual void prepareForPassive() = 0;
   virtual QString nameInKConfig() = 0;
   virtual void renameCurrentItem() = 0; // Rename current item. returns immediatly
-  
+
+protected:
+	virtual KrViewItem *preAddItem(vfile *vf) = 0;
+	virtual bool preDelItem(KrViewItem *item) = 0;
+
 public:
   //////////////////////////////////////////////////////
   // the following functions are already implemented, //
   // and normally - should NOT be re-implemented.     //
   //////////////////////////////////////////////////////
+  virtual void addItem(vfile *vf);
+  virtual void updateItem(vfile *vf);
+  virtual void delItem(const QString &name);
   virtual uint numSelected() const { return _numSelected; }
   virtual KIO::filesize_t selectedSize() const { return _selectedSize; }
   virtual uint numFiles() const { return _count-_numDirs; }
@@ -200,6 +219,7 @@ protected:
   bool _left;
   KrViewProperties *_properties;
   KrViewOperator *_operator;
+  QDict<KrViewItem> _dict;
 };
 
 #endif /* KRVIEW_H */

@@ -51,6 +51,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
+#include <qdict.h>
 
 //////////////////////////////////////////////////////////////////////////
 //  The following is KrDetailedView's settings in KConfig:
@@ -237,8 +238,9 @@ void KrDetailedView::newColumn( KrDetailedViewProperties::ColumnType type ) {
 int KrDetailedView::column( KrDetailedViewProperties::ColumnType type ) {
 	return PROPS->column[type];
 }
- 
-void KrDetailedView::addItem( vfile *vf ) {
+
+// if vfile passes the filter, create an item, otherwise, drop it
+KrViewItem *KrDetailedView::preAddItem( vfile *vf ) {
    QString size = KRpermHandler::parseSize( vf->vfile_getSize() );
    QString name = vf->vfile_getName();
    bool isDir = vf->vfile_isDir();
@@ -247,70 +249,21 @@ void KrDetailedView::addItem( vfile *vf ) {
             case KrViewProperties::All :
                break;
             case KrViewProperties::Custom :
-            if ( !_properties->filterMask.match( vf ) ) return ;
+            if ( !_properties->filterMask.match( vf ) ) return 0;
             break;
             case KrViewProperties::Dirs:
-            if ( !vf->vfile_isDir() ) return ;
+            if ( !vf->vfile_isDir() ) return 0;
             break;
             case KrViewProperties::Files:
-            if ( vf->vfile_isDir() ) return ;
+            if ( vf->vfile_isDir() ) return 0;
             break;
             case KrViewProperties::ApplyToDirs :
             break; // no-op, stop compiler complaints
       }
    }
    // passed the filter ...
-   KrDetailedViewItem *item = new KrDetailedViewItem( this, lastItem(), vf );
-   // add to dictionary
-   dict.insert( vf->vfile_getName(), item );
-   if ( isDir )
-      ++_numDirs;
-   else _countSize += vf->vfile_getSize();
-   ++_count;
-   
-   if (item->name() == nameToMakeCurrent() )
-      setCurrentItem(item->name()); // dictionary based - quick
-
-   ensureItemVisible( currentItem() );
-   op()->emitSelectionChanged();
+	return new KrDetailedViewItem( this, lastItem(), vf );
 }
-
-void KrDetailedView::delItem( const QString &name ) {
-	 KrDetailedViewItem * it = dict[ name ];
-   if ( !it ) {
-      krOut << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
-		return;
-	} 
-	if (it->VF->vfile_isDir()) {
-		--_numDirs;
-	} else {
-		_countSize -= it->VF->vfile_getSize();
-	}
-	--_count;
-	
-	delete it;
-	op()->emitSelectionChanged();
-}
-
-void KrDetailedView::updateItem( vfile *vf ) {
-   // since we're deleting the item, make sure we keep
-   // it's properties first and repair it later
-   KrDetailedViewItem * it = dict[ vf->vfile_getName() ];
-   if ( !it ) {
-      krOut << "got signal updatedVfile(" << vf->vfile_getName() << ") but can't find KrViewItem" << endl;
-   } else {
-		bool selected = it->isSelected();
-      bool current = ( getCurrentKrViewItem() == it );
-      delItem( vf->vfile_getName() );
-      addItem( vf );
-      // restore settings
-      ( dict[ vf->vfile_getName() ] ) ->setSelected( selected );
-      if ( current )
-         setCurrentItem( vf->vfile_getName() );
-   }
-	op()->emitSelectionChanged();
-}
-
 
 void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
    QListViewItem * item = firstChild();
@@ -322,11 +275,6 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       new KrDetailedViewItem( this, ( QListViewItem* ) 0L, ( vfile* ) 0L );
    }
 
-   // add a progress bar to the totals statusbar
-   //	KProgress *pr = new KProgress(krApp->mainView->activePanel->totals);
-   //  krApp->mainView->activePanel->totals->addWidget(pr,true);
-   //  pr->setTotalSteps(v->vfs_noOfFiles());
-   // make sure the listview stops sorting itself - it makes us slower!
    int cnt = 0;
    int cl = columnSorted();
    bool as = ascendingSort();
@@ -359,7 +307,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
       }
 
       KrDetailedViewItem *dvitem = new KrDetailedViewItem( this, item, vf );
-      dict.insert( vf->vfile_getName(), dvitem );
+      _dict.insert( vf->vfile_getName(), dvitem );
       if ( isDir )
          ++_numDirs;
       else
@@ -370,16 +318,8 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
          currentItem = static_cast<QListViewItem*>(dvitem);
 
       cnt++;
-      //    if (cnt % 300 == 0) {
-      //      pr->show();
-      //      pr->advance(300);
-      //      kapp->processOneEvent();
-      //    }
    }
 
-   // kill progressbar
-   //  krApp->mainView->activePanel->totals->removeWidget(pr);
-   //  delete(pr);
 
    // re-enable sorting
    setSorting( cl, as );
@@ -400,25 +340,15 @@ QString KrDetailedView::getCurrentItem() const {
 }
 
 void KrDetailedView::setCurrentItem( const QString& name ) {
-   KrDetailedViewItem * it = dict[ name ];
+   KrDetailedViewItem * it = dynamic_cast<KrDetailedViewItem*>(_dict[ name ]);
    if ( it )
       KListView::setCurrentItem( it );
-#if 0
-   for ( QListViewItem * it = firstChild(); it != 0; it = it->itemBelow() )
-      if ( static_cast<KrViewItem*>( it ) ->
-            name() == name ) {
-         KListView::setCurrentItem( it );
-         break;
-      }
-#endif
-
 }
 
 void KrDetailedView::clear() {
 	op()->emitSelectionChanged(); /* to avoid rename crash at refresh */
    KListView::clear();
-   _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
-   dict.clear();
+   KrView::clear();
 }
 
 void KrDetailedView::setSortMode( KrViewProperties::SortSpec mode ) {
@@ -517,7 +447,7 @@ void KrDetailedView::slotItemDescription( QListViewItem * item ) {
    if ( !it )
       return ;
    QString desc = it->description();
-   emit itemDescription( desc );
+   op()->emitItemDescription(desc);
 }
 
 void KrDetailedView::handleQuickSearchEvent( QKeyEvent * e ) {
@@ -1264,7 +1194,7 @@ void KrDetailedView::makeItemVisible( const KrViewItem *item ) {
 }
 
 void KrDetailedView::initOperator() {
-	_operator = new KrViewOperator(this);
+	_operator = new KrViewOperator(this, this);
 	// klistview emits selection changed, so chain them to operator
 	connect(this, SIGNAL(selectionChanged()), _operator, SIGNAL(selectionChanged()));
 }

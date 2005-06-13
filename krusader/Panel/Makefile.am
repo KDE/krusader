@@ -15,6 +15,7 @@ libPanel_a_SOURCES = \
 	krpopupmenu.cpp \
 	krpreviewpopup.cpp \
 	krview.cpp \
+	krviewitem.cpp \
 	krdetailedviewitem.cpp \
 	krdetailedview.cpp \
 	panelfunc.cpp \

@@ -39,8 +39,10 @@
 #include <kmimetype.h>
 #include <klocale.h>
 
+#define VF	getVfile()
+
 // ----------------------------- operator
-KrViewOperator::KrViewOperator(KrView *view): _view(view) {
+KrViewOperator::KrViewOperator(KrView *view, QWidget *widget): _view(view), _widget(widget) {
 }
 
 KrViewOperator::~KrViewOperator() {
@@ -214,4 +216,65 @@ QString KrView::firstUnmarkedBelowCurrent() {
    }
    if ( !iterator ) return QString::null;
    return iterator->name();
+}
+
+void KrView::delItem(const QString &name) {
+	KrViewItem * it = _dict[ name ];
+   if ( !it ) {
+      krOut << "got signal deletedVfile(" << name << ") but can't find KrViewItem" << endl;
+		return;
+	}	
+	if (!preDelItem(it)) return; // do not delete this after all
+	
+	// remove from dict
+	if (it->VF->vfile_isDir()) {
+		--_numDirs;
+	} else {
+		_countSize -= it->VF->vfile_getSize();
+	}
+	--_count;	
+	delete it;
+	op()->emitSelectionChanged();
+}
+
+void KrView::addItem( vfile *vf ) {
+	KrViewItem *item = preAddItem(vf);
+	if (!item) return; // don't add it after all
+	
+	// add to dictionary
+   _dict.insert( vf->vfile_getName(), item );
+   if ( vf->vfile_isDir() )
+      ++_numDirs;
+   else _countSize += vf->vfile_getSize();
+   ++_count;
+   
+   if (item->name() == nameToMakeCurrent() )
+      setCurrentItem(item->name()); // dictionary based - quick
+
+   makeItemVisible( item );
+   op()->emitSelectionChanged();
+}
+
+void KrView::updateItem(vfile *vf) {
+   // since we're deleting the item, make sure we keep
+   // it's properties first and repair it later
+   KrViewItem * it = _dict[ vf->vfile_getName() ];
+   if ( !it ) {
+      krOut << "got signal updatedVfile(" << vf->vfile_getName() << ") but can't find KrViewItem" << endl;
+   } else {
+		bool selected = it->isSelected();
+      bool current = ( getCurrentKrViewItem() == it );
+      delItem( vf->vfile_getName() );
+      addItem( vf );
+      // restore settings
+      ( _dict[ vf->vfile_getName() ] ) ->setSelected( selected );
+      if ( current )
+         setCurrentItem( vf->vfile_getName() );
+   }
+	op()->emitSelectionChanged();
+}
+
+void KrView::clear() {
+   _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
+   _dict.clear();
 }
