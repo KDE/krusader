@@ -249,13 +249,13 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	
    view = new KrDetailedView( splt, _left, krConfig );
    view->init();
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( executed( QString& ) ), func, SLOT( execute( QString& ) ) );
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( needFocus() ), this, SLOT( slotFocusOnMe() ) );
+   connect( view->op(), SIGNAL( executed( QString& ) ), func, SLOT( execute( QString& ) ) );
+   connect( view->op(), SIGNAL( needFocus() ), this, SLOT( slotFocusOnMe() ) );
    connect( view->op(), SIGNAL( selectionChanged() ), this, SLOT( slotUpdateTotals() ) );
    connect( view->op(), SIGNAL( itemDescription( QString& ) ), krApp, SLOT( statusBarUpdate( QString& ) ) );
    connect( view->op(), SIGNAL( contextMenu( const QPoint & ) ), this, SLOT( popRightClickMenu( const QPoint & ) ) );
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( rightButtonPressed( QListViewItem *, const QPoint &, int ) ), 
-   	this, SLOT( popEmptyRightClickMenu( QListViewItem *, const QPoint &, int ) ) );
+   connect( view->op(), SIGNAL( emptyContextMenu( const QPoint &) ), 
+   	this, SLOT( popEmptyRightClickMenu( const QPoint & ) ) );
    connect( view->op(), SIGNAL( letsDrag( QStringList, QPixmap ) ), this, SLOT( startDragging( QStringList, QPixmap ) ) );
    connect( view->op(), SIGNAL( gotDrop( QDropEvent * ) ), this, SLOT( handleDropOnView( QDropEvent * ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( middleButtonClicked( QListViewItem * ) ), SLOTS, SLOT( newTab( QListViewItem * ) ) );
@@ -769,7 +769,7 @@ void ListPanel::popRightClickMenu( const QPoint &loc ) {
    KrPopupMenu::run(QPoint( loc.x() + 5, loc.y() + j ), this);
 }
 
-void ListPanel::popEmptyRightClickMenu( QListViewItem */*item*/, const QPoint &loc, int ) {
+void ListPanel::popEmptyRightClickMenu( const QPoint &loc ) {
 	KrPopupMenu::run(loc, this);
 }
 

@@ -86,8 +86,10 @@ public:
 	void emitLetsDrag(QStringList items, QPixmap icon ) { emit letsDrag(items, icon); }
 	void emitItemDescription(QString &desc) { emit itemDescription(desc); }
 	void emitContextMenu(const QPoint &point) { emit contextMenu(point); }
+	void emitEmptyContextMenu(const QPoint &point) { emit emptyContextMenu(point); }
    void emitRenameItem(const QString &oldName, const QString &newName) { emit renameItem(oldName, newName); }
-
+   void emitExecuted( QString &name ) { emit executed(name); }
+   void emitNeedFocus() { emit needFocus(); }
 	
 signals:
 	void selectionChanged();
@@ -95,7 +97,11 @@ signals:
 	void letsDrag( QStringList items, QPixmap icon );
 	void itemDescription( QString &desc );
    void contextMenu( const QPoint &point );
+   void emptyContextMenu( const QPoint& point );
    void renameItem( const QString &oldName, const QString &newName );
+   void executed( QString &name );
+   void needFocus();
+
 	
 protected:
 	// never delete those

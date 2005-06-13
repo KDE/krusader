@@ -99,8 +99,6 @@ public:
    virtual QString nameInKConfig() { return _nameInKConfig; }
 
 signals:
-   void executed( QString &name );
-   void needFocus();
    void middleButtonClicked( QListViewItem *item );
 
 protected:
@@ -137,14 +135,15 @@ protected slots:
    void inplaceRenameFinished( QListViewItem *it, int col );
    void setNameToMakeCurrent( QListViewItem *it );
 	void sortOrderChanged(int);
-
+	void slotRightButtonPressed(QListViewItem*, const QPoint& point, int);
+	
    /**
     * used internally to produce the signal middleButtonClicked()
     */
    void slotMouseClicked( int button, QListViewItem * item, const QPoint & pos, int c );
    inline void slotExecuted( QListViewItem* i ) {
       QString tmp = dynamic_cast<KrViewItem*>( i ) ->name();
-      emit executed( tmp );
+      op()->emitExecuted( tmp );
    }
 
 public slots:

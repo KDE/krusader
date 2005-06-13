@@ -121,6 +121,8 @@ void KrDetailedView::setup() {
       connect( this, SIGNAL( onItem( QListViewItem* ) ), this, SLOT( slotItemDescription( QListViewItem* ) ) );
       connect( this, SIGNAL( contextMenuRequested( QListViewItem*, const QPoint&, int ) ),
                this, SLOT( handleContextMenu( QListViewItem*, const QPoint&, int ) ) );
+		connect( this, SIGNAL( rightButtonPressed(QListViewItem*, const QPoint&, int)),
+			this, SLOT(slotRightButtonPressed(QListViewItem*, const QPoint&, int)));
       connect( this, SIGNAL( currentChanged( QListViewItem* ) ), this, SLOT( setNameToMakeCurrent( QListViewItem* ) ) );
       connect( this, SIGNAL( mouseButtonClicked ( int, QListViewItem *, const QPoint &, int ) ),
                this, SLOT( slotMouseClicked ( int, QListViewItem *, const QPoint &, int ) ) );
@@ -415,7 +417,7 @@ void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
    if ( !item )
       return ;
    QString tmp = dynamic_cast<KrViewItem*>( item ) ->name();
-   emit executed( tmp );
+   op()->emitExecuted(tmp);
 }
 
 void KrDetailedView::prepareForActive() {
@@ -560,7 +562,7 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    }
 
    if ( !_focused )
-      emit needFocus();
+   	op()->emitNeedFocus();
    if (processEvent && ( (e->state() & ShiftButton) || (e->state() & ControlButton) || (e->state() & AltButton) ) && !KrSelectionMode::getSelectionHandler()->useQTSelection()){
       if ( oldCurrent && newCurrent && oldCurrent != newCurrent && e->state() & ShiftButton ) {
          int oldPos = oldCurrent->itemPos();
@@ -667,13 +669,13 @@ void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
 
 void KrDetailedView::contentsWheelEvent( QWheelEvent * e ) {
    if ( !_focused )
-      emit needFocus();
+      op()->emitNeedFocus();
    KListView::contentsWheelEvent( e );
 }
 
 void KrDetailedView::handleContextMenu( QListViewItem * it, const QPoint & pos, int ) {
    if ( !_focused )
-      emit needFocus();
+      op()->emitNeedFocus();
    if ( !it )
       return ;
    if ( static_cast<KrDetailedViewItem*>( it ) ->
@@ -823,7 +825,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             else {
                KrViewItem * i = getCurrentKrViewItem();
                QString tmp = i->name();
-               emit executed( tmp );
+               op()->emitExecuted(tmp);
             }
             break;
          }
@@ -848,7 +850,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             }
             if ( i->VF->vfile_isDir() ) {             // we create a return-pressed event,
                QString tmp = i->name();
-               emit executed( tmp );  // thereby emulating a chdir
+               op()->emitExecuted(tmp); // thereby emulating a chdir
             }
             return ; // safety
          }
@@ -1287,6 +1289,10 @@ void KrDetailedView::sortOrderChanged(int) {
 void KrDetailedView::updateView() {
 	triggerUpdate(); 
 	op()->emitSelectionChanged();
+}
+
+void KrDetailedView::slotRightButtonPressed(QListViewItem*, const QPoint& point, int) {
+	op()->emitEmptyContextMenu(point);
 }
 
 #include "krdetailedview.moc"
