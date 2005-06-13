@@ -79,17 +79,21 @@ public:
 	~KrViewOperator();
 	KrView *view() const { return _view; }
 	QWidget *widget() const { return _widget; }
+	void startDrag();
 	
 	void emitSelectionChanged() { emit selectionChanged(); }
 	void emitGotDrop(QDropEvent *e) { emit gotDrop(e); }
 	void emitLetsDrag(QStringList items, QPixmap icon ) { emit letsDrag(items, icon); }
 	void emitItemDescription(QString &desc) { emit itemDescription(desc); }
+	void emitContextMenu( const QPoint &point ) { emit contextMenu(point); }
 	
 signals:
 	void selectionChanged();
 	void gotDrop( QDropEvent *e );
 	void letsDrag( QStringList items, QPixmap icon );
 	void itemDescription( QString &desc );
+   void contextMenu( const QPoint &point );
+
 	
 public slots:
 	

@@ -691,20 +691,7 @@ void KrDetailedView::showContextMenu()
 {
 	if (lastSwushPosition)
 		lastSwushPosition->setSelected(true);
-   emit contextMenu( contextMenuPoint );
-}
-
-void KrDetailedView::startDrag() {
-   QStringList items;
-   getSelectedItems( &items );
-   if ( items.empty() )
-      return ; // don't drag an empty thing
-   QPixmap px;
-   if ( items.count() > 1 )
-      px = FL_LOADICON( "queue" ); // how much are we dragging
-   else
-      px = getCurrentKrViewItem() ->icon();
-   op()->emitLetsDrag( items, px );
+	op()->emitContextMenu( contextMenuPoint );
 }
 
 KrViewItem *KrDetailedView::getKrViewItemAt( const QPoint & vp ) {
@@ -743,6 +730,7 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
    KListView::contentsDragMoveEvent( e );
 }
 
+// TODO: for brief mode, move as much of this as possible to the viewOperator
 void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
    if ( !e || !firstChild() )
       return ; // subclass bug
@@ -999,6 +987,7 @@ void KrDetailedView::rename( QListViewItem * item, int c ) {
    renameLineEdit() ->selectAll();
 }
 
+// TODO: move to operator
 void KrDetailedView::renameCurrentItem() {
    int c;
    QString newName, fileName;

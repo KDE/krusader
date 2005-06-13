@@ -101,7 +101,6 @@ public:
 signals:
    void executed( QString &name );
    void needFocus();
-   void contextMenu( const QPoint &point );
    void renameItem( const QString &oldName, const QString &newName );
    void middleButtonClicked( QListViewItem *item );
 
@@ -123,7 +122,7 @@ protected:
    virtual void contentsDropEvent( QDropEvent *e );
    virtual void contentsDragMoveEvent( QDragMoveEvent *e );
    virtual QRect drawItemHighlighter(QPainter *painter, QListViewItem *item);
-   virtual void startDrag();
+   virtual void startDrag() { op()->startDrag(); }
    virtual bool event( QEvent *e );
    virtual bool eventFilter( QObject * watched, QEvent * e );
 

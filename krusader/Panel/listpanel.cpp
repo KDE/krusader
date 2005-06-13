@@ -253,7 +253,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( needFocus() ), this, SLOT( slotFocusOnMe() ) );
    connect( view->op(), SIGNAL( selectionChanged() ), this, SLOT( slotUpdateTotals() ) );
    connect( view->op(), SIGNAL( itemDescription( QString& ) ), krApp, SLOT( statusBarUpdate( QString& ) ) );
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( contextMenu( const QPoint & ) ), this, SLOT( popRightClickMenu( const QPoint & ) ) );
+   connect( view->op(), SIGNAL( contextMenu( const QPoint & ) ), this, SLOT( popRightClickMenu( const QPoint & ) ) );
    connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( rightButtonPressed( QListViewItem *, const QPoint &, int ) ), 
    	this, SLOT( popEmptyRightClickMenu( QListViewItem *, const QPoint &, int ) ) );
    connect( view->op(), SIGNAL( letsDrag( QStringList, QPixmap ) ), this, SLOT( startDragging( QStringList, QPixmap ) ) );

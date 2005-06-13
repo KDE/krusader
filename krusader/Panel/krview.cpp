@@ -48,6 +48,19 @@ KrViewOperator::KrViewOperator(KrView *view, QWidget *widget): _view(view), _wid
 KrViewOperator::~KrViewOperator() {
 }
 
+void KrViewOperator::startDrag() {
+   QStringList items;
+   _view->getSelectedItems( &items );
+   if ( items.empty() )
+      return ; // don't drag an empty thing
+   QPixmap px;
+   if ( items.count() > 1 )
+      px = FL_LOADICON( "queue" ); // how much are we dragging
+   else
+      px = _view->getCurrentKrViewItem() ->icon();
+   emit letsDrag( items, px );
+}
+
 // ----------------------------- krview
 
 KrView::KrView( KConfig *cfg ) : _config( cfg ), _nameToMakeCurrent( QString::null ),
