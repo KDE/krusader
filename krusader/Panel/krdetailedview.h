@@ -101,7 +101,6 @@ public:
 signals:
    void executed( QString &name );
    void needFocus();
-   void renameItem( const QString &oldName, const QString &newName );
    void middleButtonClicked( QListViewItem *item );
 
 protected:

@@ -38,6 +38,8 @@
 #include <qbitmap.h>
 #include <kmimetype.h>
 #include <klocale.h>
+#include <kinputdialog.h>
+
 
 #define VF	getVfile()
 
@@ -291,3 +293,24 @@ void KrView::clear() {
    _count = _numSelected = _numDirs = _selectedSize = _countSize = 0;
    _dict.clear();
 }
+
+// good old dialog box
+void KrView::renameCurrentItem() {
+   QString newName, fileName;
+
+   KrViewItem *it = getCurrentKrViewItem();
+   if ( it ) fileName = it->name();
+   else return ; // quit if no current item available
+   
+   // don't allow anyone to rename ..
+   if ( fileName == ".." ) return ;
+
+	bool ok = false;
+	newName = KInputDialog::getText( i18n( "Rename" ), i18n( "Rename " ) + fileName + i18n( " to:" ),
+												fileName, &ok, krApp );
+	// if the user canceled - quit
+	if ( !ok || newName == fileName )
+		return ;
+	op()->emitRenameItem(it->name(), newName);
+}
+

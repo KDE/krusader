@@ -131,7 +131,7 @@ void KrDetailedView::setup() {
    setWidget( this );
 
    // add whatever columns are needed to the listview
-   krConfig->setGroup( "Look&Feel" );
+   krConfig->setGroup( nameInKConfig() );
    
 	newColumn( KrDetailedViewProperties::Name );  // we always have a name
    setColumnWidthMode( COLUMN(Name), QListView::Manual );
@@ -987,11 +987,12 @@ void KrDetailedView::rename( QListViewItem * item, int c ) {
    renameLineEdit() ->selectAll();
 }
 
-// TODO: move to operator
 void KrDetailedView::renameCurrentItem() {
    int c;
    QString newName, fileName;
 
+	// handle inplace renaming, if possible
+	
    KrDetailedViewItem *it = static_cast<KrDetailedViewItem*>(getCurrentKrViewItem());
    if ( it )
       fileName = it->name();
@@ -1012,15 +1013,10 @@ void KrDetailedView::renameCurrentItem() {
       rename( static_cast<QListViewItem*>( it ), c );
       // signal will be emited when renaming is done, and finalization
       // will occur in inplaceRenameFinished()
-   } else { // do this in case inplace renaming is disabled
-      // good old dialog box
-      bool ok = false;
-      newName = KInputDialog::getText( i18n( "Rename" ), i18n( "Rename " ) + fileName + i18n( " to:" ),
-                                       fileName, &ok, krApp );
-      // if the user canceled - quit
-      if ( !ok || newName == fileName )
-         return ;
-      emit renameItem( it->name(), newName );
+   } else {
+   	// do this in case inplace renaming is disabled
+   	// this actually does the good old dialog box rename
+   	KrView::renameCurrentItem();
    }
 }
 
@@ -1036,7 +1032,7 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
    // check if the item was indeed renamed
    bool restoreView = false;
    if ( it->text( COLUMN( Name ) ) != static_cast<KrDetailedViewItem*>( it ) ->name() ) { // was renamed
-      emit renameItem( static_cast<KrDetailedViewItem*>( it ) ->name(), it->text( COLUMN( Name ) ) );
+      op()->emitRenameItem( static_cast<KrDetailedViewItem*>( it ) ->name(), it->text( COLUMN( Name ) ) );
    } else restoreView = true;
 
    // restore the view always! if the file was indeed renamed, we'll get a signal from the vfs about
@@ -1064,6 +1060,7 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
    currentlyRenamedItem = 0;
 }
 
+// TODO: move the whole quicksearch mess out of here and into krview
 void KrDetailedView::quickSearch( const QString & str, int direction ) {
    KrViewItem * item = getCurrentKrViewItem();
    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
@@ -1098,13 +1095,7 @@ void KrDetailedView::stopQuickSearch( QKeyEvent * e ) {
    }
 }
 
-//void KrDetailedView::focusOutEvent( QFocusEvent * e )
-//{
-//  if ( krApp->mainView->activePanel->quickSearch->isShown() )
-//    stopQuickSearch(0);
-//  KListView::focusOutEvent( e );
-//}
-
+// internal: converts signal from qlistview to krview
 void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
 	if (!it) return;
    KrView::setNameToMakeCurrent( static_cast<KrDetailedViewItem*>( it ) ->name() );
@@ -1244,7 +1235,7 @@ void KrDetailedView::selectColumns()
   
   int result=popup.exec(QCursor::pos());
 
-  krConfig->setGroup( "Look&Feel" );
+  krConfig->setGroup( nameInKConfig() );
   
   switch( result - COLUMN_POPUP_IDS )
   {
@@ -1284,8 +1275,8 @@ void KrDetailedView::selectColumns()
   
   if( refresh )
   {
-    QTimer::singleShot( 0, MAIN_VIEW->leftMng, SLOT( slotRecreatePanels() ) );
-    QTimer::singleShot( 0, MAIN_VIEW->rightMng, SLOT( slotRecreatePanels() ) );
+	 PanelManager *p = ACTIVE_PANEL->view == this ? ACTIVE_MNG : OTHER_MNG;
+    QTimer::singleShot( 0, p, SLOT( slotRecreatePanels() ) );
   }
 }
 

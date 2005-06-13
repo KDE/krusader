@@ -85,7 +85,9 @@ public:
 	void emitGotDrop(QDropEvent *e) { emit gotDrop(e); }
 	void emitLetsDrag(QStringList items, QPixmap icon ) { emit letsDrag(items, icon); }
 	void emitItemDescription(QString &desc) { emit itemDescription(desc); }
-	void emitContextMenu( const QPoint &point ) { emit contextMenu(point); }
+	void emitContextMenu(const QPoint &point) { emit contextMenu(point); }
+   void emitRenameItem(const QString &oldName, const QString &newName) { emit renameItem(oldName, newName); }
+
 	
 signals:
 	void selectionChanged();
@@ -93,9 +95,7 @@ signals:
 	void letsDrag( QStringList items, QPixmap icon );
 	void itemDescription( QString &desc );
    void contextMenu( const QPoint &point );
-
-	
-public slots:
+   void renameItem( const QString &oldName, const QString &newName );
 	
 protected:
 	// never delete those
@@ -159,7 +159,7 @@ public:
   virtual void prepareForActive() = 0;
   virtual void prepareForPassive() = 0;
   virtual QString nameInKConfig() = 0;
-  virtual void renameCurrentItem() = 0; // Rename current item. returns immediatly
+  virtual void renameCurrentItem(); // Rename current item. returns immediatly
 
 protected:
 	virtual KrViewItem *preAddItem(vfile *vf) = 0;

@@ -264,7 +264,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    // make sure that a focus/path change reflects in the command line and activePanel
    connect( this, SIGNAL( cmdLineUpdate( QString ) ), SLOTS, SLOT( slotCurrentChanged( QString ) ) );
    connect( this, SIGNAL( activePanelChanged( ListPanel * ) ), SLOTS, SLOT( slotSetActivePanel( ListPanel * ) ) );
-   connect( dynamic_cast<KrDetailedView*>( view ), SIGNAL( renameItem( const QString &, const QString & ) ),
+   connect( view->op(), SIGNAL( renameItem( const QString &, const QString & ) ),
             func, SLOT( rename( const QString &, const QString & ) ) );
 	// connect quicksearch
    connect( quickSearch, SIGNAL( textChanged( const QString& ) ),
