@@ -16,8 +16,8 @@
     ADDED: useraction: Drop a warning on JavaScript-errors
     ADDED: set krusaders icon acording to the users privileges
     ADDED: preserve date for local targets at copy / move
-    ADDED: useraction: For JS-extensions the global variable scriptDir is available,
-           indicating the location of the current script
+    ADDED: useraction: For JS-extensions the global variable scriptDir is
+           available, indicating the location of the current script
     --architecture-- moved JavaScript-stuff into it's own module KrJS
     --architecture-- Makefile.am's for /krusader and /pics revised
     ADDED: Serbian translation (thanks Sasa Tomic)
@@ -25,30 +25,38 @@
     ADDED: synchronize selected files
     ADDED: colorful synchronizer :-)
     ADDED: starting more tabs with --left=tab1,tab2,tab3 --right=tab4,tab5
-    ADDED: vertical mode is saved with 'ui save settings' or 'save position' and restored
+    ADDED: vertical mode is saved with 'ui save settings' or 'save position'
+           and restored
     ADDED: A Safari-like Jump-Back feature (Ctrl-J and in the bookmark-menu)
-    ADDED: CTRL-L shortcut to go to the location bar (origin) as in firefox and konqueror
+    ADDED: CTRL-L shortcut to go to the location bar (origin) as in firefox and
+           konqueror
     ADDED: filters for selecting files
     ADDED: New zip/tar slave - based on KDE's but support writing to archive
 
   CHANGED: the panel startup is profile based instead of directory based
 
     FIXED: [ 1213137 ] javascript self.close() causes crash in the viewer
-    FIXED: Control+Delete can be used in those distributions where Shift+Delete doesn't work
-    FIXED: [ 1186534 ] problems with the new network connection (port, path, password, username)
-    FIXED: renaming does not change the view, until VFS sends a signal about the rename actually being done
+    FIXED: Control+Delete can be used in those distributions where Shift+Delete
+           doesn't work
+    FIXED: [ 1186534 ] problems with the new network connection (port, path,
+           password, username)
+    FIXED: renaming does not change the view, until VFS sends a signal about the
+           rename actually being done
     FIXED: [ 1174273 ] updating the status bar at pressing the arrow keys
     FIXED: calcspace and diskusage shows the same size
     FIXED: [ 1180202 ] calcspace calculates wrong size for symbolic links
     FIXED: [ 1196779 ] searcher, sorting by size is broken
-    FIXED: changing the 'show hidden files' sets the active tab to right, untouches the inactive ones
+    FIXED: changing the 'show hidden files' sets the active tab to right,
+           untouches the inactive ones
     FIXED: the  default value of moving to trash is wrong in Konfigurator
     FIXED: problems with moving to trash at virt_fs and diskusage module
     FIXED: gcc 2.95 compiler fix
     FIXED: changed locate-gui shortcut from ctrl-l to shift+ctrl+l
     FIXED: bookmark icons were not saved correctly
-    FIXED: clicking a search result won't jump to it, if it's in the current directory (patch by Thomas Jarosch)
+    FIXED: clicking a search result won't jump to it, if it's in the current
+           directory (patch by Thomas Jarosch)
 
+  UPDATED: Spanish translation (thanks Alejandro Araiza Alvarado)
   UPDATED: Slovenian translation (thanks Matej Urbancic)
   UPDATED: Swedish translation (thanks Peter Landgren)
   UPDATED: Chinese Simplified translation (thanks Jinghua Luo)
