@@ -75,8 +75,13 @@
     </itemizedlist>
 </para>
 
+<para>To change the charset of the remote host use
+      <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+      <guimenuitem>Select Remote Charset</guimenuitem></menuchoice></emphasis>.</para>
+
 <para>To end the current Active Connection select <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-      <guimenuitem>FTP Disconnect</guimenuitem></menuchoice></emphasis>.</para>
+      <guimenuitem>FTP Disconnect</guimenuitem></menuchoice></emphasis> or change
+      the path in the &location_toolbar_lnk;.</para>
 
 
 </sect1>
@@ -229,7 +234,20 @@
      The location toolbar will display &eg; <filename>virt:/Search results 1</filename>.
 </para>
 
-<para><emphasis role="bold">Popular URL's</emphasis></para>
+
+<para id="jump_back"><emphasis role="bold">Jump back</emphasis></para>
+<para>The submenu <guilabel>Jump back</guilabel> or
+      <keycombo action="simul">&Ctrl;<keycap>J</keycap></keycombo> 
+      brings you back to your starting position when you dit create a New Tab in the panel window.
+      This feature is very handy if you go deep into a directory tree, than you can return with one 
+      action to the starting point.
+      With <guilabel>Set jump back point here</guilabel> or 
+      <keycombo action="simul">&Ctrl;&Shift;<keycap>J</keycap></keycombo> sets the current 
+      directory as a jump back point.
+</para>
+
+
+<para id="popular_urls"><emphasis role="bold">Popular URL's</emphasis></para>
 <para>The submenu <guilabel>Popular URL's</guilabel> 
       <!-- Openjade does not like an acronym element for "URL" here -->
       holds persistent the most popular visited &URL;'s 
@@ -260,7 +278,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <para>
 <variablelist>
-<varlistentry><term>Secure pasword storage</term>
+<varlistentry><term>Secure password storage</term>
    <listitem><para>Click the bookmarks, a dialog will open and asking for username and password. 
              supply them and click 'save password'. the passwords and usernames will be saved 
              SECURELY by &kde;'s wallet (make sure it is enabled by your distro).
@@ -270,7 +288,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
      </para></listitem>
 </varlistentry>
 
-<varlistentry><term>INSecure pasword storage</term>
+<varlistentry><term>INSecure password storage</term>
    <listitem><para>when you bookmark something, the dialog will display something like: 
    "name: blah blah" 
    "url: <userinput><command>ftp://</command><replaceable>username@ftp.test.com/</replaceable></userinput>"

@@ -119,7 +119,7 @@ There are probably more distributions who include &krusader;, sorry we can't men
              thanks to &mateusz_dubiel_url; .</para>
      </listitem>
      <listitem>
-       <para>There is a &mac_download_url; port with &kde;libs 3.1.4 and &fink_prj_url;
+       <para>There is a &mac_download_url; port with &kde;libs 3.1.4 and &fink_url;
              thanks to <link linkend="credits">Jonas Ba&euml;hr</link> .</para>
      </listitem>
 </itemizedlist>
@@ -631,6 +631,74 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
 </sect1>
 
 
+
+<sect1 id="mac-port">
+<title>&MacOS;-x port</title>
+
+<para>Krusader can be ported to &MacOS; X with &fink_url; and &kde;libs (3.1.4),
+      Jonas B&auml;hr has proven this with &krusader;-1.40 on &MacOS; 10.3 "Panther".
+      Unfortunately the only kdelib-binaries which fink has to offer is 3.1.4 which means you need
+      to use &krusader;-1.40 .
+      Unfortunately the &MacOS; X &krusader; port doesn't have the same power as in a native &kde; 
+      environement.
+      To run &krusader; you need also X11 which doesn't realy interact with the rest of the
+      desktop (drag and drop, etc...) 
+      We hope that &Qt;4/&kde;4 will solve most of these problems. 
+</para>
+
+
+<para>Installation Instructions for &krusader;-1.40
+<orderedlist>
+      
+   <listitem>
+      <para>Download and install &fink_url; and read the documentation</para>
+   </listitem>
+      
+   <listitem>
+      <para>Extract the <filename>krusader-1.40.fink.darwin-ppc.tar.bz2</filename> 
+            package to <filename>/sw/fink/dist/local/main/</filename> 
+            Only root can write here, you may have to create 'local' and 'main'
+      </para>
+   </listitem>
+
+   <listitem>
+       <para>Run as root: <command>fink install krusader</command></para>
+   </listitem>
+
+</orderedlist>
+</para>
+
+
+<para>If you like to compile code and if you use X11 on regularly then these are the
+installation instructions for more recent &krusader; package.
+
+  <orderedlist>
+      
+   <listitem>
+      <para>install &apple_x11_url;</para>
+   </listitem>
+      
+   <listitem>
+      <para>install the &apple_x11_sdk_url; developer-tools with X11 headers (gcc is included)
+      </para>
+   </listitem>
+
+   <listitem>
+       <para>install the fink-base</para>
+   </listitem>
+
+   <listitem>
+       <para>compile kdelibs 3.4.1 (fink provides the nessesary <filename>.info</filename> file)</para>
+   </listitem>
+
+   <listitem>
+       <para>compile a &krusader;-package</para>
+   </listitem>
+
+  </orderedlist>
+</para>
+
+</sect1>
 
 
 <sect1 id="starting-krusader">

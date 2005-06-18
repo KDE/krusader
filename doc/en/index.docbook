@@ -91,7 +91,7 @@ Previous used Docbook
 <!ENTITY gentoo_life_ebuild_url '<ulink url="http://krusader.sourceforge.net/data/krusader-cvs-1.ebuild">&gentoo; Live Ebuild</ulink>'>
 
 <!ENTITY gentoo_download_url '<ulink url="http://packages.gentoo.org/search/?sstring=krusader">&gentoo;</ulink>'>
-<!ENTITY suse_download_url '<ulink url="http://search.novell.com/NSearch/SearchServlet?bbshow=true&amp;bbindex=&amp;theme=&amp;encoding=iso-8859-1&amp;noredirect=&amp;collection=&amp;query=krusader">&SuSE;</ulink>'>
+<!ENTITY suse_download_url '<ulink url="http://search.novell.com/qfsearch/SearchServlet?bbshow=true&amp;query0=krusader&amp;operator0=0&amp;collection=Novell&amp;date=&amp;numhits=10&amp;template=ResultListTemplate.html&amp;submit+search=Search">&SuSE;</ulink>'>
 <!ENTITY mandriva_download_url '<ulink url="http://search.belnet.be/packages/mandrake/10.2/i586/media/contrib/">&mandriva;</ulink>'>
 <!ENTITY freebsd_download_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all">&freebsd;</ulink>'>
 <!ENTITY debian_download_url '<ulink url="http://packages.debian.org/Krusader">&debian;</ulink>'>
@@ -130,12 +130,13 @@ Previous used Docbook
 <!ENTITY debian_qt_a_url '<ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=710">in our forum</ulink>'>
 <!ENTITY debian_qt_b_url '<ulink url="http://opendoorsoftware.com/cgi/http.pl?p=DebianQTChecklist">instructions</ulink>'>
 <!ENTITY freenode_url '<ulink url="http://freenode.net">freenode.org</ulink>'>
-<!ENTITY fink_prj_url '<ulink url="http://fink.sourceforge.net">fink.sourceforge.net</ulink>'>
+<!ENTITY fink_url '<ulink url="http://fink.sourceforge.net">fink</ulink>'>
 <!ENTITY kjsembed_url '<ulink url="http://xmelegance.org/kjsembed/">KJSEmbed</ulink>'>
 
 <!ENTITY ofm_url '<ulink url="http://www.softpanorama.org/OFM/index.shtml">Orthodox File Manager (OFM)</ulink>'>
 <!ENTITY disk_order_url '<ulink url="http://www.likemac.ru/english/"><trademark class="copyright">Disk Order</trademark></ulink>'>
-
+<!ENTITY apple_x11_url '<ulink url="http://www.apple.com/downloads/macosx/apple/x11formacosx.html">&apple; X11</ulink>'>
+<!ENTITY apple_x11_sdk_url '<ulink url="http://developer.apple.com/darwin/runningX11.html">&apple; X11 SDK</ulink>'>
 
 <!-- documentation links -->
 <!ENTITY selection_modes_lnk '<link linkend="selection_modes">Selection Modes</link>'>
@@ -248,6 +249,7 @@ Previous used Docbook
 <!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
 <!ENTITY firefox '<trademark class="registered">Firefox</trademark>'>
 <!ENTITY safari '<trademark class="registered">Safari</trademark>'>
+<!ENTITY apple '<trademark class="registered">Apple</trademark>'>
 
 <!ENTITY freebsd '<trademark class="copyright">FreeBSD</trademark>'>
 <!ENTITY tcmd '<trademark class="copyright">Total commander</trademark>'>
@@ -313,21 +315,28 @@ Previous used Docbook
   <author>
         <firstname>Frank</firstname>
         <surname>Schoolmeesters</surname>
-        <contrib>Documentation Coordinator</contrib>
+        <contrib>Documentation &amp; Marketing Manager</contrib>
         <affiliation><address><email>frank_schoolmeesters@yahoo.com</email></address></affiliation>
   </author>
   
   <othercredit role="reviewer">
         <firstname>Richard</firstname><surname>Holt</surname>
-        <contrib>Documentation</contrib>
+        <contrib>Documentation &amp; Proofing</contrib>
         <affiliation><address><email>richard.holt@gmail.com</email></address></affiliation>
   </othercredit>
 
   <othercredit role="reviewer">
         <firstname>Terry "Fudoki"</firstname><surname>Wilkinson</surname>
-        <contrib>Documentation</contrib>
+        <contrib>Documentation &amp; Public Relations</contrib>
         <affiliation><address><email>sekhmet_616@yahoo.com</email></address></affiliation>
   </othercredit>
+
+  <othercredit role="reviewer">
+        <firstname>Matej</firstname><surname>Urban&ccaron;i&ccaron;</surname>
+        <contrib>Marketing &amp; Product Research</contrib>
+        <affiliation><address><email>matej@amis.net</email></address></affiliation>
+  </othercredit>
+
 </authorgroup>      
 
   <copyright>
@@ -346,7 +355,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-05-30</date>
+  <date>2005-06-17</date>
   <releaseinfo>1.70.0 CVS</releaseinfo>
 
    <abstract>
@@ -479,14 +488,12 @@ Previous used Docbook
         any time (feature freeze or not).</para>
 
   <para><emphasis role="bold">Documentation</emphasis></para>
-  <para>We try to document &krusader; for 100%, help is always welcome.</para>
+  <para>Help is needed (documentation writers) for keeping the Krusader documentation up to date.</para>
 
   <para><emphasis role="bold">Donations</emphasis></para>
   <para>Honestly, we didn't consider donations, until users asked us for a way to &donate_url; to the project.
-        Developing &krusader; can be a full time job at times, and even though it is very time consuming,
-        we all enjoy it, and want to see the project become even better.
-        Donations for this project will be used for further development of &krusader;,
-        be it by purchasing hardware, or promoting of the project.</para>
+        &krusader; is and will always be free in all terms of the GNU Public License. 
+        </para>
 
   <para><emphasis role="bold">UserActions</emphasis></para>
   <para>Krusader comes with a nice set of &useractions_lnk; , 
@@ -499,8 +506,11 @@ Previous used Docbook
   <para>We are always in need of packagers for rpm's, deb's, etc. 
         All help is welcome.</para>
 
+<!--
+   We are waiting for QT4/KDE4 with fink and Krusader 2.x  ;)
+   
   <para><emphasis role="bold">Maintainer for porting &krusader; to &MacOS; X</emphasis></para>
-  <para>Krusader can be ported to &MacOS; X with &fink_prj_url; and &kde;libs (3.1.4),
+  <para>Krusader can be ported to &MacOS; X with &fink_url; and &kde;libs (3.1.4),
         Jonas B&auml;hr has proven this with &krusader;-1.40 on &MacOS; 10.3 "Panther".
         Unfortunately Jonas doesn't have the time to maintain this port and &krusader;-1.40 is the only
         successfull port to &MacOS; X. An attempt to port &krusader;-1.50 to &MacOS; X dit fail due some
@@ -509,10 +519,11 @@ Previous used Docbook
         environement, once a native &kde;lib on &MacOS; without X will allow it to run &krusader; smoothly.
         Jonas will help with pleasure this maintainer, the <filename>krusader-1.xx.info</filename> files are 
         available in cvs.</para>
+-->
 
   <para><emphasis role="bold">Porting &krusader; to &Windows;</emphasis></para>
   <para>&krusader; is written using &Qt; as well as &kde;libs. 
-        As long as &kde;libs do not run on &Windows;, porting &krusader; is not an option. 
+        As long as &kde;libs does not run on &Windows;, porting &krusader; is not an option. 
         However, we do believe, that once &Qt;4-GPL is released, efforts will be made
         to port &kde;libs to &Windows;, and if that happens, we're in business
         and then we need a maintainer for porting &krusader; to &Windows;.</para>
@@ -558,11 +569,6 @@ Previous used Docbook
          please contact the &krusader; documentation coordinator, Frank Schoolmeesters
    <email>frank_schoolmeesters@yahoo.com</email>.</para>
 
-<!--HTML_PARSING
-<para>The e-mail adresses in this Handbook are "manipulated"  to prevent that spam bots
-      catch the e-mail adresses, please fix first manually the e-mail adress before sending an e-mail,
-      You can also dop a post in our &forum_lnk;. Thanks!</para>
-HTML_PARSING-->
 
 <para>This handbook is available in several formats.
 <itemizedlist>
@@ -577,8 +583,8 @@ HTML_PARSING-->
               download them from the &sfmirrors_url;</para>
   </listitem>
 </itemizedlist>
-The most recent version of this handbook is available when using &krusader; from cvs and
-the &onlinehandbook_url;.
+The most recent version of this handbook is available when using &krusader; from cvs
+or the &onlinehandbook_url;.
 </para>
 
 &dev_cvs_note;
