@@ -368,6 +368,16 @@
 
 <varlistentry>
   <term><menuchoice>
+  <guimenu>Commands</guimenu>
+  <guimenuitem>Select Remote Charset</guimenuitem>
+  </menuchoice></term>
+  <listitem><para>
+  Change the charset of the remote host of the <link linkend="remote-connections">remote connection</link>.
+  </para></listitem>
+</varlistentry>
+
+<varlistentry>
+  <term><menuchoice>
   <shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
   <guimenuitem>New Net Connection</guimenuitem>
@@ -381,16 +391,6 @@
   </para></listitem>
 </varlistentry>
 
-
-<varlistentry>
-  <term><menuchoice>
-  <guimenu>Commands</guimenu>
-  <guimenuitem>Select Remote Charset</guimenuitem>
-  </menuchoice></term>
-  <listitem><para>
-  Change the charset of the remote host of your <link linkend="remote-connections">network connection</link>.
-  </para></listitem>
-</varlistentry>
 
 
 <varlistentry id="panel_profiles">
