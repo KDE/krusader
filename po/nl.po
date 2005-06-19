@@ -1,5 +1,5 @@
 # Translation of krusader.pot to Dutch
-# 
+#
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package.
@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-06-02 20:29+0200\n"
-"PO-Revision-Date: 2005-02-22 22:03+0100\n"
+"PO-Revision-Date: 2005-06-19 22:08+0200\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>\n"
 "Language-Team:  <kde-i18n-nl@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
-msgstr "Maphistoriek lijst openen"
+msgstr "Folderhistoriek lijst openen"
 
 #: GUI/profilemanager.cpp:47 GUI/profilemanager.cpp:67
 msgid "Profiles"
@@ -331,8 +331,7 @@ msgstr "Mime bestandstype"
 
 #: GUI/actionpropertybase.cpp:442
 msgid "Show the action only for these filenames (you may use '?' and '*')"
-msgstr ""
-"Actie alleen tonen voor deze bestand types (u mag '?' en '*' gebruiken)"
+msgstr "Actie alleen tonen voor deze bestand types (u mag '?' en '*' gebruiken)"
 
 #: GUI/actionpropertybase.cpp:446
 msgid "Filename"
@@ -343,10 +342,8 @@ msgid "Confirm each program call separately"
 msgstr "Iedere programma-aanroep afzonderlijk bevestigen"
 
 #: GUI/actionpropertybase.cpp:448
-#, fuzzy
 msgid "This allows you to tweak the command line before being executed"
-msgstr ""
-"Laat u toe om de commandoregel aan te passen voordat hij uitgevoerd wordt"
+msgstr "Laat u toe om de commandoregel aan te passen voordat hij uitgevoerd wordt"
 
 #: GUI/actionpropertybase.cpp:449
 msgid "Run as different user"
@@ -408,8 +405,7 @@ msgstr ""
 
 #: GUI/kcmdline.cpp:97
 msgid "If pressed, Krusader executes command line in a terminal."
-msgstr ""
-"Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
+msgstr "Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
 
 #: GUI/kcmdline.cpp:103
 msgid ""
@@ -675,9 +671,8 @@ msgid "&Advanced"
 msgstr "Gea&vanceerd"
 
 #: Filter/filterdialog.cpp:38
-#, fuzzy
 msgid "Krusader::Choose Files"
-msgstr "Bestanden kiezen"
+msgstr "Krusader::Bestanden kiezen"
 
 #: Filter/generalfilter.cpp:55
 msgid "File name"
@@ -715,17 +710,15 @@ msgstr "Alle bestanden"
 
 #: Filter/generalfilter.cpp:114
 msgid "&Profile handler"
-msgstr ""
+msgstr "&Profielbeheer"
 
 #: Filter/generalfilter.cpp:126
-#, fuzzy
 msgid "&Add"
-msgstr "Gea&vanceerd"
+msgstr "T&oevoegen"
 
 #: Filter/generalfilter.cpp:129
-#, fuzzy
 msgid "&Load"
-msgstr "&Locate"
+msgstr "&Laden"
 
 #: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:715
 msgid "&Overwrite"
@@ -1066,8 +1059,7 @@ msgstr "Wat moet er gekopieerd worden"
 
 #: UserAction/expander.cpp:415
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Aanhechten van de huidige klembord-inhoud met deze scheider (optioneel)"
+msgstr "Aanhechten van de huidige klembord-inhoud met deze scheider (optioneel)"
 
 #: UserAction/expander.cpp:429
 msgid "Copy a file/folder"
@@ -1152,6 +1144,9 @@ msgid ""
 "Uncaught JavaScript exception '%2'\n"
 "%3"
 msgstr ""
+"In %1:\n"
+"Onuitvoerbare JavaScript exception '%2'\n"
+"%3"
 
 #: UserAction/expander.cpp:796
 msgid ""
@@ -1159,17 +1154,21 @@ msgid ""
 "Uncaught JavaScript exception '%2' at line %3\n"
 "%4"
 msgstr ""
+"In %1:\n"
+"Onuitvoerbare JavaScript exception '%2' in lijn %3\n"
+"%4"
 
 #: UserAction/expander.cpp:798 UserAction/expander.cpp:803
-#, fuzzy
 msgid "JavaScript error"
-msgstr "JavaScript console"
+msgstr "JavaScript fout"
 
 #: UserAction/expander.cpp:802
 msgid ""
 "In %1:\n"
 "There is an error in the JavaScript"
 msgstr ""
+"In %1:\n"
+"Er is een fout in het JavaScript"
 
 #: UserAction/kraction.cpp:43
 msgid "Kill"
@@ -1248,9 +1247,8 @@ msgid "Open the popup panel"
 msgstr "Popup venster openen"
 
 #: Panel/listpanel.cpp:191
-#, fuzzy
 msgid "Clear the location bar"
-msgstr "Naar een bestemming springen"
+msgstr "Locatiebalk wissen"
 
 #: Panel/listpanel.cpp:198
 msgid "Use superb KDE file dialog to choose location. "
@@ -1428,8 +1426,7 @@ msgstr "%1 van de %2, %3 (%4) van de %5 (%6)"
 
 #: Panel/panelpopup.cpp:51
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
+msgstr "Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
 
 #: Panel/panelpopup.cpp:59
 msgid "Preview Panel: display a preview of the current file"
@@ -1516,9 +1513,8 @@ msgstr ""
 "in %1 mappen en %2 bestanden"
 
 #: Panel/krpopupmenu.cpp:58
-#, fuzzy
 msgid "Open/Run"
-msgstr "Openknop"
+msgstr "Openen/Uitvoeren"
 
 #: Panel/krpopupmenu.cpp:60
 msgid "Run"
@@ -1591,9 +1587,8 @@ msgid "Send by email"
 msgstr "Met e-mail verzenden"
 
 #: Panel/krpopupmenu.cpp:180
-#, fuzzy
 msgid "Synchronize selected files"
-msgstr "Mappen synchroniseren"
+msgstr "Geselecteerde bestanden synchroniseren"
 
 #: Panel/krpopupmenu.cpp:185
 msgid "Copy to Clipboard"
@@ -1608,19 +1603,16 @@ msgid "Paste from Clipboard"
 msgstr "Klembordinhoud plakken"
 
 #: Panel/krpopupmenu.cpp:209
-#, fuzzy
 msgid "Folder"
-msgstr "Nieuwe map"
+msgstr "Map"
 
 #: Panel/krpopupmenu.cpp:210
-#, fuzzy
 msgid "Text file"
-msgstr "Tekst bestanden"
+msgstr "Tekst bestand"
 
 #: Panel/krpopupmenu.cpp:213
-#, fuzzy
 msgid "Create new"
-msgstr "Aanmaken in:"
+msgstr "Nieuw aanmaken"
 
 #: Panel/krpopupmenu.cpp:252
 msgid "Are you sure you want to shred "
@@ -1628,8 +1620,7 @@ msgstr "Bent u zeker dat u wilt vernietigen : "
 
 #: Panel/krpopupmenu.cpp:253
 msgid " ? Once shred, the file is gone forever !!!"
-msgstr ""
-" ? Eenmaal vernietigd (shred), dan is het bestand voor altijd verloren !!!"
+msgstr " ? Eenmaal vernietigd (shred), dan is het bestand voor altijd verloren !!!"
 
 #: Panel/krpopupmenu.cpp:331 Panel/panelfunc.cpp:345 KViewer/krviewer.cpp:259
 #: krslots.cpp:432
@@ -2239,17 +2230,16 @@ msgid "Popular URLs"
 msgstr "Populaire URLs"
 
 #: krusader.cpp:632
-#, fuzzy
 msgid "Go to location bar"
-msgstr "Naar een bestemming springen"
+msgstr "Naar locatiebalk gaan"
 
 #: krusader.cpp:634
 msgid "Jump back"
-msgstr ""
+msgstr "Terug springen"
 
 #: krusader.cpp:636
 msgid "Set jump back point here"
-msgstr ""
+msgstr "Terugspringspunt hier instellen"
 
 #: krusader.cpp:640
 msgid "Select files using a filter"
@@ -2437,9 +2427,8 @@ msgid "Manage Bookmarks"
 msgstr "Bladwijzers beheren"
 
 #: BookMan/krbookmark.cpp:12
-#, fuzzy
 msgid "Media"
-msgstr "bewerken"
+msgstr "Media"
 
 #: BookMan/krbookmark.cpp:14
 msgid "Devices"
@@ -2451,7 +2440,7 @@ msgstr "Virtueel Bestandssysteem"
 
 #: BookMan/krbookmark.cpp:17
 msgid "Local Network"
-msgstr ""
+msgstr "Lokaal netwerk"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2550,8 +2539,7 @@ msgstr ""
 "Verwittig gelieve de Krusader ontwikkelaars"
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan heeft een interne fout. Verwittig gelieve de Krusader "
 "ontwikkelaars. Dank U."
@@ -2614,7 +2602,7 @@ msgstr "Functie toetsen laten snelle bestandsbewerkingen toe."
 
 #: Dialogs/krdialogs.cpp:103
 msgid "Preserve date (only for local targets)"
-msgstr ""
+msgstr "Datum behouden (alleen voor locale doelen)"
 
 #: Dialogs/krdialogs.cpp:198 Konfigurator/kglookfeel.cpp:103
 msgid "Custom Selection Mode"
@@ -3174,24 +3162,20 @@ msgid "Synchronize"
 msgstr "Synchroniseren"
 
 #: Synchronizer/synchronizergui.cpp:1424
-#, fuzzy
 msgid "Selected files from target directory:"
-msgstr "Selecteer alle bestanden in de huidige map"
+msgstr "Geselecteerde bestanden van de doel map:"
 
 #: Synchronizer/synchronizergui.cpp:1425
-#, fuzzy
 msgid "Selected files from source directory:"
-msgstr "Selecteer alle bestanden in de huidige map"
+msgstr "Geselecteerde bestanden van de bron map:"
 
 #: Synchronizer/synchronizergui.cpp:1429
-#, fuzzy
 msgid "Selected files from left directory:"
-msgstr "Bestand %1 splitsen in map:"
+msgstr "Geselecteerde bestanden van de linkse map:"
 
 #: Synchronizer/synchronizergui.cpp:1430
-#, fuzzy
 msgid "Selected files from right directory:"
-msgstr "Bestand %1 splitsen in map:"
+msgstr "Geselecteerde bestanden van de rechtse map:"
 
 #: Synchronizer/synchronizergui.cpp:1434
 msgid "Target directory:"
@@ -3904,8 +3888,7 @@ msgstr "Mappen automatisch markeren"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "When matching the select criteria, directories will also be marked"
-msgstr ""
-"Wanneer de criteria overeenstemmen zullen de directories geselecteerd worden"
+msgstr "Wanneer de criteria overeenstemmen zullen de directories geselecteerd worden"
 
 #: Konfigurator/kglookfeel.cpp:70
 msgid "Case sensitive sorting"
@@ -3944,15 +3927,16 @@ msgid "Case sensitive quicksearch"
 msgstr "Hoofdlettergevoelig snelzoeken"
 
 #: Konfigurator/kglookfeel.cpp:74
-#, fuzzy
 msgid "Numeric Permissions"
-msgstr "Krusader toegangsrechten"
+msgstr "Numerieke toegangsrechten"
 
 #: Konfigurator/kglookfeel.cpp:74
 msgid ""
 "Permission column (Look & Feel 'Panel' Tab) shows octal numbers '0755' "
 "instead of 'rwxr-xr-x'."
 msgstr ""
+"Toegangsrechten kolom, toon octale nummers '0755' "
+"i.p.v. 'rwxr-xr-x'."
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Single click / Double click Selection:"
@@ -4070,13 +4054,12 @@ msgid "Extension"
 msgstr "Extensie"
 
 #: Konfigurator/kglookfeel.cpp:147
-#, fuzzy
 msgid ""
 "Show the last part of the filename (part after the last dot) in the "
 "Extension Column and\n"
 "not as a complete filename in the Name Column like e.g. Konqueror does"
 msgstr ""
-"Toon het laatste gedeelte van de bestandsnaam (gedeelte after het laaste "
+"Toon het laatste gedeelte van de bestandsnaam (gedeelte achter het laatste "
 "punt) in de Extensie kolom en\n"
 "niet als een complete bestandsnaam in de Naam kolom zoals bv. Konqueror doet."
 
@@ -4111,13 +4094,16 @@ msgid ""
 "to octal numbers ('0755') by enabling 'Numeric Permissions' in 'Look & Feel -"
 "> Operation'"
 msgstr ""
+"Toon alle toegangsrechten. Standaard representatie is een string ('rwxr-xr-x'), "
+"deze kan veranderd worden in\n"
+"octale nummers ('0755') door het activeren van 'Nummerieke toegansrechten' in "
+"'Uiterlijk & Gedrag > Werking' "
 
 #: Konfigurator/kglookfeel.cpp:152
 msgid "Krusader Permission"
 msgstr "Krusader toegangsrechten"
 
 #: Konfigurator/kglookfeel.cpp:152
-#, fuzzy
 msgid "Show the permissions of the current user only, e.g. '-rw'"
 msgstr "Enkel de toegangsrechten van de huidige gebruiker weergeven, bv. '-rw'"
 
@@ -4186,14 +4172,12 @@ msgid "Visible Panel Toolbar buttons"
 msgstr "Zichtbaar Paneel werkbalkknoppen"
 
 #: Konfigurator/kglookfeel.cpp:227
-#, fuzzy
 msgid "Clear location bar button"
-msgstr "Naar een bestemming springen"
+msgstr "Locatiebalk wissen knop"
 
 #: Konfigurator/kglookfeel.cpp:227
-#, fuzzy
 msgid "Clears the location bar"
-msgstr "Naar een bestemming springen"
+msgstr "De locatiebalk wissen"
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Open button"
@@ -4240,8 +4224,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Knop voor synchroon bladeren omschakelen"
 
 #: Konfigurator/kglookfeel.cpp:233
-msgid ""
-"Each directory-change in the panel is also performed in the other panel."
+msgid "Each directory-change in the panel is also performed in the other panel."
 msgstr ""
 "Elke map verandering in het venster wordt ook uitgevoerd in het ander "
 "venster."
@@ -4260,13 +4243,15 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "Preserve date for local copy/move (slower)"
-msgstr ""
+msgstr "Datum behouden bij lokaal kopiëren/verplaatsen (trager)"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid ""
 "If checked, Krusader will change the modification time of the local files "
 "according to the source one. This can make the copy slower."
 msgstr ""
+"Indien aangevinkt, Krusader zal de wijzigingstijd van de lokale bestanden "
+"wijzigen volgens het bronbestand. Dit kan het kopiëren langzamer maken."
 
 #: Konfigurator/kgadvanced.cpp:53
 msgid "Automount filesystems"
@@ -4274,8 +4259,7 @@ msgstr "Automount bestandsystemen"
 
 #: Konfigurator/kgadvanced.cpp:53
 msgid "If checked, Krusader will mount FSTAB mount-points when needed."
-msgstr ""
-"Indien aangevinkt zal Krusader zal de FSTAB mountpunten mounten indien nodig."
+msgstr "Indien aangevinkt zal Krusader zal de FSTAB mountpunten mounten indien nodig."
 
 #: Konfigurator/kgadvanced.cpp:58
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -4580,64 +4564,52 @@ msgid "Same as active"
 msgstr "Zelfde als actief"
 
 #: Konfigurator/kgcolors.cpp:156
-#, fuzzy
 msgid "Synchronizer"
-msgstr "&Synchroniseren"
+msgstr "Synchroniseren"
 
 #: Konfigurator/kgcolors.cpp:162 Konfigurator/kgcolors.cpp:163
-#, fuzzy
 msgid "KDE default"
-msgstr "Standaard instellingen"
+msgstr "KDE standaard"
 
 #: Konfigurator/kgcolors.cpp:167
-#, fuzzy
 msgid "Equals foreground:"
-msgstr "Uitvoerbaar bestand voorgrond:"
+msgstr "Gelijk aan voorgrond:"
 
 #: Konfigurator/kgcolors.cpp:168
-#, fuzzy
 msgid "Equals background:"
-msgstr "Gemarkeerde achtergrond:"
+msgstr "Gelijk aan achtergrond:"
 
 #: Konfigurator/kgcolors.cpp:169
-#, fuzzy
 msgid "Differing foreground:"
-msgstr "Map voorgrond:"
+msgstr "Verschillen voorgrond:"
 
 #: Konfigurator/kgcolors.cpp:170
-#, fuzzy
 msgid "Differing background:"
-msgstr "Afwisselende achtergrond:"
+msgstr "Verschillen achtergrond:"
 
 #: Konfigurator/kgcolors.cpp:171
-#, fuzzy
 msgid "Copy to left foreground:"
-msgstr "Huidige voorgrond:"
+msgstr "Kopiëren naar links voorgrond:"
 
 #: Konfigurator/kgcolors.cpp:172
-#, fuzzy
 msgid "Copy to left background:"
-msgstr "Huidige achtergrond:"
+msgstr "Kopiëren naar rechts achtergrond:"
 
 #: Konfigurator/kgcolors.cpp:173
-#, fuzzy
 msgid "Copy to right foreground:"
-msgstr "Huidige voorgrond:"
+msgstr "Kopiëren naar rechts voorgrond:"
 
 #: Konfigurator/kgcolors.cpp:174
-#, fuzzy
 msgid "Copy to right background:"
-msgstr "Huidige achtergrond:"
+msgstr "Kopiëren naar rechts achtergrond:"
 
 #: Konfigurator/kgcolors.cpp:175
-#, fuzzy
 msgid "Delete foreground:"
-msgstr "Map voorgrond:"
+msgstr "Wissen voorgrond:"
 
 #: Konfigurator/kgcolors.cpp:176
-#, fuzzy
 msgid "Delete background:"
-msgstr "Afwisselende achtergrond:"
+msgstr "Wissen achtergrond:"
 
 #: Konfigurator/kgcolors.cpp:200
 msgid "Import color-scheme"
@@ -4676,23 +4648,20 @@ msgid "Directory"
 msgstr "Map"
 
 #: Konfigurator/kgcolors.cpp:448
-#, fuzzy
 msgid "Copy to right"
-msgstr "Kopiëren van links naar rechts"
+msgstr "Kopiëren naar rechts"
 
 #: Konfigurator/kgcolors.cpp:449
-#, fuzzy
 msgid "Copy to left"
-msgstr "Kopiëren van rechts naar links"
+msgstr "Kopiëren naar links"
 
 #: Konfigurator/kgcolors.cpp:450
 msgid "Differing"
-msgstr ""
+msgstr "Verschillen"
 
 #: Konfigurator/kgcolors.cpp:451
-#, fuzzy
 msgid "Equals"
-msgstr "Gelijk"
+msgstr "Gelijk aan"
 
 #: Konfigurator/kgcolors.cpp:488
 msgid "Select a color-scheme file"
@@ -4712,7 +4681,7 @@ msgstr "Vensters"
 
 #: Konfigurator/kgstartup.cpp:51
 msgid "Starting session:"
-msgstr ""
+msgstr "Start sessie:"
 
 #: Konfigurator/kgstartup.cpp:52
 msgid ""
@@ -4722,11 +4691,13 @@ msgid ""
 "Profile,\n"
 " it is saved automaticly when closing Krusader."
 msgstr ""
+"Het geselecteerde venster profiel starten. Een venster profiel bevat: alle tab paden,\n"
+" de huidige tab en het actieve venster. <Laatste sessie> is een speciaal venster profiel,\n"
+"deze wordt automatisch opgelagen bij het afsluiten van Krusader."
 
 #: Konfigurator/kgstartup.cpp:55
-#, fuzzy
 msgid "Last session"
-msgstr "Nieuwe sessie"
+msgstr "Laatste sessie"
 
 #: Konfigurator/kgstartup.cpp:70
 msgid "User Interface"
@@ -4865,8 +4836,7 @@ msgid "Test archive when finished packing"
 msgstr "Archief testen na het inpakken"
 
 #: Konfigurator/kgarchives.cpp:91
-msgid ""
-"If checked, Krusader will test the archive's integrity after packing it."
+msgid "If checked, Krusader will test the archive's integrity after packing it."
 msgstr ""
 "Indien aangevinkt zal Krusader de integriteit van het archief testen na het "
 "inpakken."
@@ -4876,8 +4846,7 @@ msgid "Test archive before unpacking"
 msgstr "Archief eerst testen voor het uitpakken"
 
 #: Konfigurator/kgarchives.cpp:92
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
 "testen aangeraden"
@@ -5116,8 +5085,7 @@ msgstr "Deze actie verwijderen?"
 
 #: Konfigurator/kguseractions.cpp:256
 msgid "The file you've chosen doesn't seem to be a valid action-file."
-msgstr ""
-"Het bestand dat u gekozen heeft blijkt geen geldig actie-bestand te zijn."
+msgstr "Het bestand dat u gekozen heeft blijkt geen geldig actie-bestand te zijn."
 
 #: Konfigurator/kguseractions.cpp:264
 msgid "No actions found in this file."
@@ -5363,8 +5331,7 @@ msgid "Not a valid CRC file!"
 msgstr "Ongeldig CRC bestand!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Geldigheids controle is onmogelijk zonder een goed CRC bestand. Doorgaan met "
 "combineren?"
@@ -5405,9 +5372,3 @@ msgstr "Fout bij het lezen van bestand %1!"
 msgid "Error at writing file %1!"
 msgstr "Fout bij het schrijven van bestand %1!"
 
-#~ msgid "Show the Full Permissions Column, e.g. '-rw-r--r--'"
-#~ msgstr "Volledige toegangsrechten kolom weergeven, bv. '-rw-r--r--'"
-
-#, fuzzy
-#~ msgid "Start from profile:"
-#~ msgstr "Naar bestanden zoeken"
