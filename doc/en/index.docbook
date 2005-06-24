@@ -179,6 +179,8 @@ Previous used Docbook
 <!ENTITY sync_browsing_lnk '<link linkend="panel_toolbar">Sync-browsing</link>'>
 <!ENTITY diskusage_lnk '<link linkend="diskusage">Disk Usage</link>'>
 <!ENTITY bookmarks_lnk '<link linkend="bookman">Bookmarks</link>'>
+<!ENTITY bookmark-manager_lnk '<link linkend="bookman">Bookmark-Manager</link>'>
+<!ENTITY advanced_search_module_lnk '<link linkend="krusearcher">Advanced Search module</link>'>
 <!ENTITY javascript_console_lnk '<link linkend="javascript_console">JavaScript console</link>'>
 <!ENTITY archives_lnk '<link linkend="archives">archives</link>'>
 <!ENTITY remote_connections_lnk '<link linkend="remote-connections">Remote Connections</link>'>
@@ -214,6 +216,11 @@ Previous used Docbook
                        <link linkend="faqg_wish_patch">User feedback</link> and
                        <link linkend="faqg_bug_report">Bug reports</link> are always welcome!
                  </para></note>'>
+
+
+<!-- markup ENTITIES -->
+<!ENTITY folder_tabs '<guibutton>Folder Tabs</guibutton>'>
+<!ENTITY right_click '<keycap>Right-click</keycap>'>
 
 
 <!-- application ENTITIES -->
@@ -355,7 +362,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-06-17</date>
+  <date>2005-06-21</date>
   <releaseinfo>1.70.0 CVS</releaseinfo>
 
    <abstract>
@@ -433,12 +440,12 @@ Previous used Docbook
   Ease and consistency are the goal.</para>
 
   <para>
-  A <link linkend="bookman">Bookmark-Manager</link> for local files/remote &URL;s and an
-  <link linkend="krusearcher">Advanced Search module</link>  are also included
-  to speed the locating of needed files. &krusader; also allows you to configure your Toolbars to
-  provide a wide variety of additional functionality including File Comparison (several user
-  selectable methods available), Multiple File Rename, and standard Terminal windows can be spawned
-  with a single mouse click! Need temporary Root access to your files?
+  A &bookmark-manager_lnk; for local files/remote &URL;s and an &advanced_search_module_lnk; 
+  are also included to speed the locating of needed files. &krusader; also allows you to 
+  configure your Toolbars to provide a wide variety of additional functionality including 
+  File Comparison (several user selectable methods available), Multiple File Rename, 
+  and standard Terminal windows can be spawned with a single mouse click! 
+  Need temporary Root access to your files?
   Simply "SU" within a Terminal window or click on &krusader;'s "Root Mode" to bring up a
   new &krusader; Manager as Root!</para>
 
@@ -560,7 +567,7 @@ Previous used Docbook
         You can contact us even if you find typos!</para>
 
    <para>The Handbook "revision" matches the &krusader; version number.
-         &eg; "&krusader; Handbook revision 1.60.xx" describes "&krusader; 1.60"</para>
+         &eg; "&krusader; Handbook revision 1.70.x" describes "&krusader; 1.70.x"</para>
 
    <para>Please read the &docchangelog_url; file online or in the &krusader; sources to find
          out the latest changes in the &krusader; Handbook.</para>

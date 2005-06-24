@@ -52,7 +52,7 @@
   <screeninfo>&krusader; screenshot</screeninfo>
   <mediaobject id="krusader_screenshot">
     <imageobject><imagedata fileref="krusader1.png" format="PNG"/></imageobject>
-          <imageobject><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
+    <imageobject><imagedata fileref="krusader1.png" format="EPS"/></imageobject>
     <textobject><phrase>&krusader; screenshot</phrase></textobject>
     <caption><para>&krusader; screenshot</para></caption>
   </mediaobject>
@@ -66,9 +66,8 @@
 <title>Features</title>
 
 <note><para>
-The most important features are listed here, but it would make this list too
-long if we were to
-display <emphasis>all</emphasis> the features and improvements.
+The most important features are listed here, it would make this list too
+long if we want to display <emphasis>all</emphasis> the features and improvements.
 You will discover even more features in this documentation and in the &changelog_url; file.
 </para></note>
 
@@ -84,7 +83,7 @@ You will discover even more features in this documentation and in the &changelog
      </para></listitem>
   <listitem>
 
-      <para><link linkend="krusearcher">Advanced search module</link> that can search in archives.</para>
+      <para>&advanced_search_module_lnk; that can search in archives.</para>
   </listitem>
 
   <listitem>
@@ -101,8 +100,8 @@ You will discover even more features in this documentation and in the &changelog
   </listitem>
 
   <listitem>
-       <para>Open a <link linkend="commands-menu">Terminal</link> &eg;
-&konsole;, defaults to the browsed path.</para>
+       <para>Open a <link linkend="commands-menu">Terminal</link> 
+             &eg; &konsole;, defaults to the browsed path.</para>
   </listitem>
 
   <listitem>
@@ -115,12 +114,12 @@ You will discover even more features in this documentation and in the &changelog
    </listitem>
 
   <listitem>
-      <para><link linkend="bookman">Bookmark-Manager</link>.</para>
+      <para>&bookmark-manager_lnk;.</para>
   </listitem>
 
   <listitem>
-      <para>Easy editing of <link linkend="file-menu">file permissions</link>
-and ownership.</para>
+      <para>Easy editing of <link linkend="file-menu">file permissions</link> 
+            and ownership.</para>
   </listitem>
 
   <listitem>
@@ -136,8 +135,8 @@ and ownership.</para>
   </listitem>
 
   <listitem>
-       <para>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, from
-       &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!</para>
+       <para>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, 
+       from &krusader;'s panel into the trash-bin, the desktop or into &konqueror;!</para>
   </listitem>
 
   <listitem>
@@ -155,8 +154,8 @@ and ownership.</para>
   </listitem>
 
   <listitem>
-      <para>Fully <link linkend="konfig-general">mimetype-aware</link> (with or
-without "magic"!).</para>
+      <para>Fully <link linkend="konfig-general">mimetype-aware</link> 
+            (with or without "magic"!).</para>
   </listitem>
 
   <listitem>
@@ -165,8 +164,7 @@ without "magic"!).</para>
 
   <listitem>
       <para><link linkend="multi_rename">Krename</link> support, a very powerful
-                                external batch renamer for &kde;,
-seamlessly integrated.</para>
+            external batch renamer for &kde;, seamlessly integrated.</para>
   </listitem>
 
   <listitem>
@@ -280,10 +278,11 @@ seamlessly integrated.</para>
 
 <para>
 <itemizedlist>
-  <title>New features in CVS</title>
+  <title>New features in CVS (future version 1.70.0)</title>
   
   <listitem>
-        <para>Improved Selection filters (used in Synchronizer, Searcher, ...)</para>
+        <para><link linkend="krusearcher">Improved Selection filters</link> 
+              used in &eg; Synchronizer and KruSearcher.</para>
   </listitem>
 
   <listitem>
@@ -299,19 +298,25 @@ seamlessly integrated.</para>
   </listitem>
 
   <listitem>
-        <para>preserve date for local targets at copy / move .</para>
+        <para><link linkend="konfig-advanced">preserve date</link> 
+              for local targets at copy / move .</para>
   </listitem>
 
   <listitem>
-        <para>calculate space in archives and remote FS.</para>
+        <para><link linkend="calculate">Calculates occupied space</link> 
+              in archives and remote FS.</para>
   </listitem>
 
   <listitem>
-        <para>Permissions column as octal numbers.</para>
+        <para><link linkend="konfig-looknfeel-operation">Numeric permissions</link></para>
   </listitem>
 
   <listitem>
-        <para>Read very fast directories containing many files.</para>
+        <para>Increased perfromance: &eg; read much faster directories with many files.</para>
+  </listitem>
+
+  <listitem>
+        <para>For more new features, please read the &changelog_url; and &cvsnews_url;.</para>
   </listitem>
 
 </itemizedlist>
