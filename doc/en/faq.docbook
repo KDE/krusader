@@ -734,6 +734,27 @@ easier transition and
   </qandaentry>
 
 
+  <qandaentry>
+  <question id="faqu_handbook">
+  <para>Why does the handbook not work?</para>
+  </question>
+  <answer>
+  <para>This error will happen on &debian; (or &debian; based) distro with 
+        the krusader_1.51-1_i386.deb package.
+        You will see the next error message if you try to open the handbook:
+        "The requested help file could not be found. Check that you have installed the documentation."
+        To fix it go to <filename>/usr/share/doc/kde/HTML/en/krusader/</filename>,
+        you will see the <filename>foo.docbook.gz</filename> files.
+        Now, you need to extract all these files with root priveleges 
+        ("File->Unpack" with &krusader;) to create <filename>foo.docbook</filename> files.
+        Now the handbook will work.
+        This error is fixed in the krusader_1.60.0-1_i386.deb package and higher numbers.
+      </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
+
 </qandaset>
 </sect1>
 
