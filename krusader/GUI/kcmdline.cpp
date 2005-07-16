@@ -46,6 +46,7 @@
 #include "../Panel/listpanel.h"
 #include "../krservices.h"
 #include <qdir.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <qfontmetrics.h>
@@ -171,7 +172,8 @@ void KCMDLine::slotRun(const QString &command1) {
       //if( terminal == "Eterm" ) proc << "--pause ";
       proc << "-e ";
       // redirect the command to file so pipe will be supperted..
-      KTempFile tmpfile("krcmd","tmp");
+//      KTempFile tmpfile("krcmd","tmp");
+      KTempFile tmpfile(locateLocal("tmp","krcmd"),"tmp");
       QTextStream *stream = tmpfile.textStream();
       // delete the temporary file
       *stream << "rm -rf " << tmpfile.name() << endl;
