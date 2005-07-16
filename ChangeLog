@@ -1,4 +1,6 @@
 ======================
+    FIXED: crash when "run in terminal mode" was active on a directory with
+           insufficient permissions (thanks Oleksandr Shneyder)
     ADDED: column types can be changed and saved individually to each panel
     (each side)
     --architecture-- refactoring in the view. things might be a bit unstable
@@ -12,7 +14,8 @@
     ADDED: calculate space in archives and remote FS (KDE >= 3.3.0) 
     ADDED: experimental support for mimetype-on-demand 
     ADDED: experimental support for icon-on-demand 
-    ADDED: when custom filter is set, the Totals line will show the filter. example: [*.cpp]
+    ADDED: when custom filter is set, the Totals line will show the filter.
+           example: [*.cpp]
     ADDED: useraction: Drop a warning on JavaScript-errors
     ADDED: set krusaders icon acording to the users privileges
     ADDED: preserve date for local targets at copy / move
