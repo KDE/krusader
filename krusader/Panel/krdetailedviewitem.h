@@ -37,7 +37,7 @@
 #include <klistview.h>
 #include <qguardedptr.h>
 
-#define FASTER
+//#define FASTER
 
 class QPixmap;
 class KrDetailedView;
@@ -55,8 +55,8 @@ public:
 	int compare(QListViewItem *i,int col,bool ascending ) const;
 	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
 	void repaintItem();
-#ifdef FASTER	
-	static void itemHeightChanged() { expHeight = 0; } // force the items to resize when icon/font size change
+	static void itemHeightChanged(); // force the items to resize when icon/font size change
+#ifdef FASTER		
 	virtual void setup(); // called when listview needs to know the height of the item
 #endif
 

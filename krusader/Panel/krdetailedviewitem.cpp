@@ -53,7 +53,9 @@
 #define PERM_BITMASK (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)
 #define VF	getVfile()
 
+#ifdef FASTER
 int KrDetailedViewItem::expHeight = 0;
+#endif // FASTER
 
 KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf):
 	KListViewItem(parent, after), KrViewItem(vf, parent->properties()) {
@@ -380,3 +382,8 @@ QString KrDetailedViewItem::dateTime() const {
    return KGlobal::locale()->formatDateTime(tmp);
 }
 
+void KrDetailedViewItem::itemHeightChanged() {
+#ifdef FASTER
+	expHeight = 0;
+#endif
+}
