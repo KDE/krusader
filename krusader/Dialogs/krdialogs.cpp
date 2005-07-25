@@ -210,25 +210,25 @@ UserSelectionModeDlg::UserSelectionModeDlg(QWidget *parent):
 	insertMovesDown = new QCheckBox(i18n("Insert moves down"), plainPage());
 	contextMenuImmediate = new QCheckBox(i18n("Right clicking pops context menu immediately"), plainPage());
 	
-	QToolTip::add(qtSelection, i18n("Checking this will create a mode based on KDE's style."));
+	QToolTip::add(qtSelection, i18n("If checked, use a mode based on KDE's style."));
 	QToolTip::add(leftButtonSelects, i18n("If checked, left clicking an item will select it."));
 	QToolTip::add(leftButtonPreserves, i18n("If checked, left clicking an item will select it, but will not"
 		" unselect other, already selected items."));
-	QToolTip::add(shiftCtrlLeftSelects, i18n("If checked, shift/ctrl left clicking will select items. Note:"
+	QToolTip::add(shiftCtrlLeftSelects, i18n("If checked, shift/ctrl left clicking will select items. \nNote:"
 		" This is meaningless if 'Left Button Selects' is checked."));
 	QToolTip::add(rightButtonSelects, i18n("If checked, right clicking an item will select it."));
 	QToolTip::add(rightButtonPreserves, i18n("If checked, right clicking an item will select it, but will not"
 		" unselect other, already selected items."));
-	QToolTip::add(shiftCtrlRightSelects, i18n("If checked, shift/ctrl right clicking will select items. Note:"
+	QToolTip::add(shiftCtrlRightSelects, i18n("If checked, shift/ctrl right clicking will select items. \nNote:"
 		" This is meaningless if 'Right Button Selects' is checked."));
 	QToolTip::add(spaceMovesDown, i18n("If checked, pressing the spacebar will select the current item and move"
-		" down. Otherwise, current item is selected, but remains the current item."));
+		" down. \nOtherwise, current item is selected, but remains the current item."));
 	QToolTip::add(spaceCalcSpace, i18n("If checked, pressing the spacebar while the current item is a folder,"
-		" will (except from selecting the folder) calculate space occupied by the folder (recursively)."));
+		" will (except from selecting the folder) \ncalculate space occupied by the folder (recursively)."));
 	QToolTip::add(insertMovesDown, i18n("If checked, pressing INSERT will select the current item, and move down"
-		" to the next item. Otherwise, current item is not changed."));
+		" to the next item. \nOtherwise, current item is not changed."));
 	QToolTip::add(contextMenuImmediate, i18n("If checked, right clicking will result in an immediate showing of"
-		" the context menu. Otherwise, user needs to click and hold the right mouse button for 500ms."));
+		" the context menu. \nOtherwise, user needs to click and hold the right mouse button for 500ms."));
 
 	layout->addMultiCellWidget(qtSelection, 0,0,0,0);
 	layout->addMultiCellWidget(leftButtonSelects, 1,1,0,0);
