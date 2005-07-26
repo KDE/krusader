@@ -385,10 +385,11 @@ void ListPanelFunc::moveFiles() {
 	if ( krConfig->readBoolEntry( "Confirm Move", _ConfirmMove ) ) {
 		bool preserveDate = krConfig->readBoolEntry( "PreserveDate", _PreserveDate );
 		QString s;
+
 		if ( fileNames.count() == 1 )
-			s = i18n( "Move " ) + fileNames.first() + " " + i18n( "to" ) + ":";
+			s = i18n("Move %1 to:").arg(fileNames.first());
 		else
-			s.sprintf( i18n( "Move %d files to:" ).local8Bit(), fileNames.count() );
+			s = i18n("Move %1 files to:").arg(fileNames.count());
 
 		// ask the user for the copy dest
 		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveDate);
@@ -496,10 +497,12 @@ void ListPanelFunc::copyFiles() {
 	if ( krConfig->readBoolEntry( "Confirm Copy", _ConfirmCopy ) ) {
 		bool preserveDate = krConfig->readBoolEntry( "PreserveDate", _PreserveDate );
 		QString s;
+
 		if ( fileNames.count() == 1 )
-			s = i18n( "Copy " ) + fileNames.first() + " " + i18n( "to" ) + ":";
+			s = i18n("Copy %1 to:").arg(fileNames.first());
 		else
-			s.sprintf( i18n( "Copy %d files to:" ).local8Bit(), fileNames.count() );
+			s = i18n("Copy %1 files to:").arg(fileNames.count());
+
 		// ask the user for the copy dest
 		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveDate );
 		if ( dest.isEmpty() ) return ; // the user canceled
@@ -552,6 +555,11 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	// now ask the user if he want to delete:
 	krConfig->setGroup( "Advanced" );
 	if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
+
+		/**
+		TODO revert if multiple plural support doesn't work,
+			 but fix the word puzzles and local8Bit() which breaks encoding
+
 		QString s, b;
 		if ( fileNames.count() == 1 )
 			s = i18n( " this item?" );
@@ -569,6 +577,23 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 		// note: i'm using continue and not yes/no because the yes/no has cancel as default button
 		if ( KMessageBox::warningContinueCancelList( krApp, i18n( "Are you sure you want to " ) + s
 		                                             , fileNames, i18n( "Warning" ), b ) != KMessageBox::Continue )
+			return ;
+		*/
+
+		QString s, b;
+
+		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
+			s = i18n( "Do you really want to move this item to the trash?", "Do you really want to move these %n items to the trash?", fileNames.count() );
+			b = i18n( "&Trash" );
+		} else {
+			s = i18n( "Do you really want to delete this item?", "Do you really want to delete these %n items?", fileNames.count() );
+			b = i18n( "&Delete" );
+		}
+
+		// show message
+		// note: i'm using continue and not yes/no because the yes/no has cancel as default button
+		if ( KMessageBox::warningContinueCancelList( krApp, s, fileNames,
+                                                     i18n( "Warning" ), b ) != KMessageBox::Continue )
 			return ;
 	}
 	//we want to warn the user about non empty dir
