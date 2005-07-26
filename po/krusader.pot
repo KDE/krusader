@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-22 23:53+0200\n"
+"POT-Creation-Date: 2005-07-27 01:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -691,7 +691,7 @@ msgstr ""
 msgid "&Load"
 msgstr ""
 
-#: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:715
+#: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:740
 msgid "&Overwrite"
 msgstr ""
 
@@ -1603,7 +1603,7 @@ msgstr ""
 msgid "Create a new link to: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:290 Panel/panelfunc.cpp:466
+#: Panel/panelfunc.cpp:290 Panel/panelfunc.cpp:467
 msgid "A directory or a file with this name already exists."
 msgstr ""
 
@@ -1631,136 +1631,120 @@ msgstr ""
 msgid "Moving into archive is disabled"
 msgstr ""
 
-#: Panel/panelfunc.cpp:389
-msgid "Move "
+#: Panel/panelfunc.cpp:390
+msgid "Move %1 to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:389 Panel/panelfunc.cpp:500 Panel/panelfunc.cpp:815
-#: Panel/panelfunc.cpp:817
-msgid "to"
+#: Panel/panelfunc.cpp:392
+msgid "Move %1 files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:391
-#, c-format
-msgid "Move %d files to:"
-msgstr ""
-
-#: Panel/panelfunc.cpp:427
+#: Panel/panelfunc.cpp:428
 msgid "You can't move files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:453
+#: Panel/panelfunc.cpp:454
 msgid "New directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:453
+#: Panel/panelfunc.cpp:454
 msgid "Directory's name:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:500
-msgid "Copy "
-msgstr ""
-
 #: Panel/panelfunc.cpp:502
-#, c-format
-msgid "Copy %d files to:"
+msgid "Copy %1 to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:529
+#: Panel/panelfunc.cpp:504
+msgid "Copy %1 files to:"
+msgstr ""
+
+#: Panel/panelfunc.cpp:532
 msgid "You can't copy files to this file system"
 msgstr ""
 
-#: Panel/panelfunc.cpp:540
+#: Panel/panelfunc.cpp:543
 msgid "You do not have write permission to this directory"
 msgstr ""
 
-#: Panel/panelfunc.cpp:557
-msgid " this item?"
+#: Panel/panelfunc.cpp:586
+msgid "Do you really want to move this item to the trash?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:559
-#, c-format
-msgid " these %d items?"
-msgstr ""
-
-#: Panel/panelfunc.cpp:562 DiskUsage/diskusage.cpp:562
-msgid "trash"
-msgstr ""
-
-#: Panel/panelfunc.cpp:563 DiskUsage/diskusage.cpp:563
+#: Panel/panelfunc.cpp:587 DiskUsage/diskusage.cpp:563
 msgid "&Trash"
 msgstr ""
 
-#: Panel/panelfunc.cpp:565 DiskUsage/diskusage.cpp:565
-msgid "delete"
-msgstr ""
-
-#: Panel/panelfunc.cpp:570 DiskUsage/diskusage.cpp:573
-msgid "Are you sure you want to "
-msgstr ""
-
 #: Panel/panelfunc.cpp:589
+msgid "Do you really want to delete this item?"
+msgstr ""
+
+#: Panel/panelfunc.cpp:614
 msgid "Directory "
 msgstr ""
 
-#: Panel/panelfunc.cpp:589
+#: Panel/panelfunc.cpp:614
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:590
+#: Panel/panelfunc.cpp:615
 msgid "&Skip"
 msgstr ""
 
-#: Panel/panelfunc.cpp:590
+#: Panel/panelfunc.cpp:615
 msgid "&Delete All"
 msgstr ""
 
-#: Panel/panelfunc.cpp:708
+#: Panel/panelfunc.cpp:733
 msgid "The Archive "
 msgstr ""
 
-#: Panel/panelfunc.cpp:709
+#: Panel/panelfunc.cpp:734
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr ""
 
-#: Panel/panelfunc.cpp:711
+#: Panel/panelfunc.cpp:736
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
 msgstr ""
 
-#: Panel/panelfunc.cpp:720
+#: Panel/panelfunc.cpp:745
 msgid "Counting files to pack"
 msgstr ""
 
-#: Panel/panelfunc.cpp:783 Panel/panelfunc.cpp:838 krslots.cpp:193
+#: Panel/panelfunc.cpp:808 Panel/panelfunc.cpp:863 krslots.cpp:193
 #: krslots.cpp:199
 msgid "Krusader is unable to download: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:791
+#: Panel/panelfunc.cpp:816
 msgid "%1, unknown archive type."
 msgstr ""
 
-#: Panel/panelfunc.cpp:797
+#: Panel/panelfunc.cpp:822
 msgid "%1, test passed."
 msgstr ""
 
-#: Panel/panelfunc.cpp:799
+#: Panel/panelfunc.cpp:824
 msgid "%1, test failed!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:815 Panel/panelfunc.cpp:817
+#: Panel/panelfunc.cpp:840 Panel/panelfunc.cpp:842
 msgid "Unpack "
 msgstr ""
 
-#: Panel/panelfunc.cpp:817 Dialogs/packgui.cpp:52
+#: Panel/panelfunc.cpp:840 Panel/panelfunc.cpp:842
+msgid "to"
+msgstr ""
+
+#: Panel/panelfunc.cpp:842 Dialogs/packgui.cpp:52
 msgid "%1 files"
 msgstr ""
 
-#: Panel/panelfunc.cpp:864
+#: Panel/panelfunc.cpp:889
 msgid "%1, unknown archive type"
 msgstr ""
 
@@ -2569,7 +2553,7 @@ msgid "Right clicking pops context menu immediately"
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:213
-msgid "Checking this will create a mode based on KDE's style."
+msgid "If checked, use a mode based on KDE's style."
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:214
@@ -2584,8 +2568,8 @@ msgstr ""
 
 #: Dialogs/krdialogs.cpp:217
 msgid ""
-"If checked, shift/ctrl left clicking will select items. Note: This is "
-"meaningless if 'Left Button Selects' is checked."
+"If checked, shift/ctrl left clicking will select items. \n"
+"Note: This is meaningless if 'Left Button Selects' is checked."
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:219
@@ -2600,34 +2584,36 @@ msgstr ""
 
 #: Dialogs/krdialogs.cpp:222
 msgid ""
-"If checked, shift/ctrl right clicking will select items. Note: This is "
-"meaningless if 'Right Button Selects' is checked."
+"If checked, shift/ctrl right clicking will select items. \n"
+"Note: This is meaningless if 'Right Button Selects' is checked."
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:224
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
-"down. Otherwise, current item is selected, but remains the current item."
+"down. \n"
+"Otherwise, current item is selected, but remains the current item."
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:226
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
-"(except from selecting the folder) calculate space occupied by the folder "
-"(recursively)."
+"(except from selecting the folder) \n"
+"calculate space occupied by the folder (recursively)."
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:228
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
-"the next item. Otherwise, current item is not changed."
+"the next item. \n"
+"Otherwise, current item is not changed."
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:230
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
-"context menu. Otherwise, user needs to click and hold the right mouse button "
-"for 500ms."
+"context menu. \n"
+"Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
 
 #: Dialogs/krprogress.cpp:59
@@ -3402,6 +3388,18 @@ msgstr ""
 
 #: DiskUsage/diskusage.cpp:407
 msgid "Krusader::DiskUsage"
+msgstr ""
+
+#: DiskUsage/diskusage.cpp:562
+msgid "trash"
+msgstr ""
+
+#: DiskUsage/diskusage.cpp:565
+msgid "delete"
+msgstr ""
+
+#: DiskUsage/diskusage.cpp:573
+msgid "Are you sure you want to "
 msgstr ""
 
 #: DiskUsage/diskusage.cpp:675
