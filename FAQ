@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.70.0CVS
-- Documentation date:  2005-05-30
-- Parsing date: Mon May 30 19:36:50 UTC 2005
+- Documentation date:  2005-07-01
+- Parsing date: Thu Jul 28 19:53:35 UTC 2005
 --------------------------------------------
  
 
@@ -471,6 +471,8 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    7.2.12. Why mimetype magic isn't sometimes working inside
           archives?
 
+   7.2.13. Why does the handbook not work?
+
    7.2.1. When I try to mount/unmount my cdrom/floppy, Krusader
    says something about supermount, what's this about?
 
@@ -637,6 +639,20 @@ $ su -c 'fam -l'
    need to configure: KDE Control Center->KDE components->File
    Associations->Application->octet-stream, binary viewer needs
    to be removed.
+
+   7.2.13. Why does the handbook not work?
+
+   This error will happen on Debian® (or Debian® based) distro
+   with the krusader_1.51-1_i386.deb package. You will see the
+   next error message if you try to open the handbook: "The
+   requested help file could not be found. Check that you have
+   installed the documentation." To fix it go to
+   /usr/share/doc/kde/HTML/en/krusader/, you will see the
+   foo.docbook.gz files. Now, you need to extract all these files
+   with root priveleges ("File->Unpack" with Krusader) to create
+   foo.docbook files. Now the handbook will work. This error is
+   fixed in the krusader_1.60.0-1_i386.deb package and higher
+   numbers.
      _________________________________________________________
 
 7.3. General FAQ

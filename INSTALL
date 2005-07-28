@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.70.0CVS
-- Documentation date:  2005-05-30
-- Parsing date: Mon May 30 19:36:50 UTC 2005
+- Documentation date:  2005-07-01
+- Parsing date: Thu Jul 28 19:53:35 UTC 2005
 --------------------------------------------
  
 
@@ -132,7 +132,7 @@ A.2.1. Download Krusader
      * Slackware® TGZ packages can usually found on the Krusader
        downloadpage, thanks to Mateusz Dubiel .
      * There is a Mac® OS-x 10.3 (Panther) port with KDElibs
-       3.1.4 and fink.sourceforge.net thanks to Jonas Baëhr .
+       3.1.4 and fink thanks to Jonas Baëhr .
 
    Search engines
 
@@ -559,7 +559,40 @@ $ su -c 'make uninstall'
    request.
      _________________________________________________________
 
-A.4. Starting Krusader
+A.4. Mac® OS-x port
+
+   Krusader can be ported to Mac® OS X with fink and KDElibs
+   (3.1.4), Jonas Bähr has proven this with Krusader-1.40 on Mac®
+   OS 10.3 "Panther". Unfortunately the only kdelib-binaries
+   which fink has to offer is 3.1.4 which means you need to use
+   Krusader-1.40 . Unfortunately the Mac® OS X Krusader port
+   doesn't have the same power as in a native KDE environement.
+   To run Krusader you need also X11 which doesn't realy interact
+   with the rest of the desktop (drag and drop, etc...) We hope
+   that Qt(TM)4/KDE4 will solve most of these problems.
+
+   Installation Instructions for Krusader-1.40
+
+    1. Download and install fink and read the documentation
+    2. Extract the krusader-1.40.fink.darwin-ppc.tar.bz2 package
+       to /sw/fink/dist/local/main/ Only root can write here, you
+       may have to create 'local' and 'main'
+    3. Run as root: fink install krusader
+
+   If you like to compile code and if you use X11 on regularly
+   then these are the installation instructions for more recent
+   Krusader package.
+
+    1. install Apple® X11
+    2. install the Apple® X11 SDK developer-tools with X11
+       headers (gcc is included)
+    3. install the fink-base
+    4. compile kdelibs 3.4.1 (fink provides the nessesary .info
+       file)
+    5. compile a Krusader-package
+     _________________________________________________________
+
+A.5. Starting Krusader
 
    Type krusader (lower case) at a command prompt. You can create
    shortcut on your desktop or create an entry in the (KDE) menu.
@@ -626,7 +659,7 @@ $ krusader --profile ftp-managment
           Show license information
      _________________________________________________________
 
-A.5. Configure Krusader
+A.6. Configure Krusader
 
    When you run Krusader for the first time the Krusader
    configuration module Konfigurator will show up and allow you
