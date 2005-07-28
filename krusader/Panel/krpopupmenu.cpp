@@ -135,6 +135,12 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
       // ------- RENAME - only one file
       if ( !multipleSelections )
          insertItem( i18n( "Rename" ), RENAME_ID );
+  
+      // -------- MOVE TO TRASH
+      KConfigGroupSaver saver(krConfig, "General");
+      bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
+      if( trash )
+        insertItem( i18n( "Move to trash" ), TRASH_ID );
       // -------- DELETE
       insertItem( i18n( "Delete" ), DELETE_ID );
       // -------- SHRED - only one file
@@ -241,8 +247,11 @@ void KrPopupMenu::performAction(int id) {
          case RENAME_ID :
          	SLOTS->rename();
          	break;
+         case TRASH_ID :
+         	panel->func->deleteFiles( false );
+         	break;
          case DELETE_ID :
-         	panel->func->deleteFiles();
+         	panel->func->deleteFiles( true );
          	break;
          case EJECT_ID :
          	KMountMan::eject( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
