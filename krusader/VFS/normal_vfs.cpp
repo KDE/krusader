@@ -295,23 +295,29 @@ void normal_vfs::vfs_slotRefresh()
 	refreshTimer.start( maxRefreshFrequency, true );
 }
 
+bool normal_vfs::burstRefresh(const QString& path ){
+	if( path == vfs_getOrigin().path(-1) ) {
+		if( !refreshTimer.isActive() ) {
+			// the directory itself is dirty - full refresh is needed
+			QTimer::singleShot(0, this, SLOT( vfs_slotRefresh() ) ); // safety: dirty signal comes from KDirWatch!
+			return true;
+		}
+		disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
+		connect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
+		dirty = true;
+		return true;
+	}
+	return false;
+}
+
 void normal_vfs::vfs_slotDirty(const QString& path){ 
 	if( disableRefresh ){
 		dirty = true;
 		return;
 	}
 	
-	if( path == vfs_getOrigin().path(-1) ){
-		if( !refreshTimer.isActive() ) {
-			// the directory itself is dirty - full refresh is needed
-			QTimer::singleShot(0, this, SLOT( vfs_slotRefresh() ) ); // safety: dirty signal comes from KDirWatch!
-			return;
-		}
-		disconnect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
-		connect( &refreshTimer, SIGNAL( timeout() ), this, SLOT( vfs_slotRefresh() ) );
-		dirty = true;
-		return;                
-	}
+	if( burstRefresh( path ) )
+		return;        
 	
 	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();
@@ -332,6 +338,10 @@ void normal_vfs::vfs_slotCreated(const QString& path){
 		return;
 	}	
 	
+	if( burstRefresh( path ) )
+		return;        
+	
+	
 	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();	
 	// if it's in the CVS - it's an update not new file
@@ -348,6 +358,10 @@ void normal_vfs::vfs_slotDeleted(const QString& path){
 		dirty = true;
 		return;
 	}
+	
+	if( burstRefresh( path ) )
+		return;        
+	
 	
 	KURL url = fromPathOrURL(path);
 	QString name = url.fileName();

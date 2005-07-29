@@ -37,6 +37,7 @@
 
   CHANGED: the panel startup is profile based instead of directory based
 
+    FIXED: burst refresh if FAM is enabled
     FIXED: crash when "run in terminal mode" was active on a directory with
            insufficient permissions (thanks Oleksandr Shneyder)
     FIXED: [ 1213137 ] javascript self.close() causes crash in the viewer
