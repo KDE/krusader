@@ -136,6 +136,7 @@ protected slots:
    void setNameToMakeCurrent( QListViewItem *it );
 	void sortOrderChanged(int);
 	void slotRightButtonPressed(QListViewItem*, const QPoint& point, int);
+	void slotSortOrderChanged(int col);
 	
    /**
     * used internally to produce the signal middleButtonClicked()

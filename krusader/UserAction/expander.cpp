@@ -837,8 +837,7 @@ Expander::Expander() {
    addPlaceholder( new exp_separator( true ) );
    addPlaceholder( new exp_Select() );
    addPlaceholder( new exp_Goto() );
-   //FIXME: activate this placehodler as soon as KrView::SortMode works
-   //addPlaceholder( new exp_ColSort() );
+   addPlaceholder( new exp_ColSort() );
    addPlaceholder( new exp_PanelSize() );
 //    addPlaceholder( new exp_Search() );
    //Panel-independent:

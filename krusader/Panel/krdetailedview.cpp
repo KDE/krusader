@@ -206,6 +206,7 @@ void KrDetailedView::setup() {
    connect( &renameTimer, SIGNAL( timeout() ), this, SLOT( renameCurrentItem() ) );
    connect( &contextMenuTimer, SIGNAL (timeout()), this, SLOT (showContextMenu()));
 
+	connect( header(), SIGNAL(clicked(int)), this, SLOT(slotSortOrderChanged(int )));
 
    setFocusPolicy( StrongFocus );
    restoreSettings();
@@ -1184,6 +1185,8 @@ void KrDetailedView::initOperator() {
 void KrDetailedView::initProperties() {
 	_properties = new KrDetailedViewProperties;
 	KConfigGroupSaver grpSvr( _config, "Look&Feel" );	
+	for (int i=0; i<KrDetailedViewProperties::MAX_COLUMNS;++i)
+		PROPS->column[i]=-1;	
 	PROPS->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
 	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
 		KrViewProperties::Descending | KrViewProperties::DirsFirst );
@@ -1293,6 +1296,50 @@ void KrDetailedView::updateView() {
 
 void KrDetailedView::slotRightButtonPressed(QListViewItem*, const QPoint& point, int) {
 	op()->emitEmptyContextMenu(point);
+}
+
+// hack: this needs to be done in a more cross-view way
+void KrDetailedView::slotSortOrderChanged(int col) {
+	// map the column to a sort specification
+	KrViewProperties::SortSpec sp;
+	int i;
+	for (i = 0; i < KrDetailedViewProperties::MAX_COLUMNS; ++i) {
+		if (PROPS->column[i] == col) break;
+	}
+	switch (i) {
+		case KrDetailedViewProperties::Name:
+			sp = KrViewProperties::Name; break;
+		case KrDetailedViewProperties::Extention:
+			sp = KrViewProperties::Ext; break;
+		case KrDetailedViewProperties::Mime:
+			sp = KrViewProperties::Type; break;
+		case KrDetailedViewProperties::Size:
+			sp = KrViewProperties::Size; break;
+		case KrDetailedViewProperties::DateTime:
+			sp = KrViewProperties::Modified; break;
+		case KrDetailedViewProperties::Permissions:
+			sp = KrViewProperties::Permissions; break;
+		case KrDetailedViewProperties::KrPermissions:
+			sp = KrViewProperties::KrPermissions; break;
+		case KrDetailedViewProperties::Owner:
+			sp = KrViewProperties::Owner; break;
+		case KrDetailedViewProperties::Group:
+			sp = KrViewProperties::Group; break;
+		default: qFatal("slotSortOrderChanged: unknown column");
+	}
+	if (sortMode() & KrViewProperties::DirsFirst) 
+		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::DirsFirst);
+	if (sortMode() & KrViewProperties::IgnoreCase)
+		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::IgnoreCase);
+	if (sortMode() & KrViewProperties::Descending)
+		sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::Descending);
+	// fix the ascending/decending stuff
+	if (sortMode() == sp) {
+		if (sp & KrViewProperties::Descending) 
+			sp = static_cast<KrViewProperties::SortSpec>(sp &~ KrViewProperties::Descending);
+		else sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::Descending);
+	}
+	PROPS->sortMode = sp;
 }
 
 #include "krdetailedview.moc"
