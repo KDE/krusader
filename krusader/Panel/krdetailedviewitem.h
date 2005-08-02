@@ -37,7 +37,7 @@
 #include <klistview.h>
 #include <qguardedptr.h>
 
-//#define FASTER
+#define FASTER
 
 class QPixmap;
 class KrDetailedView;
