@@ -1,10 +1,10 @@
 /***************************************************************************
-                          krviewer.h  -  description
-                             -------------------
-    begin                : Thu Apr 18 2002
-    copyright            : (C) 2002 by Shie Erlich & Rafi Yanai
-    email                : 
- ***************************************************************************/
+                         krviewer.h  -  description
+                            -------------------
+   begin                : Thu Apr 18 2002
+   copyright            : (C) 2002 by Shie Erlich & Rafi Yanai
+   email                : 
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -19,64 +19,55 @@
 #define KRVIEWER_H
 
 #include <qwidget.h>
+#include <qintdict.h>
 #include <kparts/mainwindow.h>
 #include <ktempfile.h>
 #include <kparts/partmanager.h>
 #include <kparts/browserextension.h>
 #include <qguardedptr.h>
+#include <ktabwidget.h>
 
 /**
   *@author Shie Erlich & Rafi Yanai
   */
 
 class QPopupMenu;
+class PanelViewerBase;
 
-class KrViewer : public KParts::MainWindow  {
-   Q_OBJECT
-public: 
-  static void view(KURL url);
-  static void edit(KURL url, bool create = false );
+class KrViewer : public KParts::MainWindow {
+	Q_OBJECT
+public:
+	static void view( KURL url );
+	static void edit( KURL url, bool create = false );
 
 
 public slots:
-  bool viewGeneric();
-  void viewHex();
-  bool viewText();
-
-  bool editGeneric(QString mimetype, KURL _url);
-  bool editText( bool create = false );
-
-  void keyPressEvent(QKeyEvent *e);
-  void createGUI(KParts::Part*);
-
-  void handleOpenURLRequest( const KURL &url, const KParts::URLArgs & );
+	void keyPressEvent( QKeyEvent *e );
+	void createGUI( KParts::Part* );
+	void tabChanged(QWidget* w);
+	void tabCloseRequest(QWidget *w);
 
 protected:
-  virtual bool queryClose();
-  virtual bool queryExit();
+	virtual bool queryClose();
+	virtual bool queryExit();
 
-protected slots:
-  void slotStatResult( KIO::Job* job );
-  
 private:
-  KrViewer(QWidget *parent=0, const char *name=0);
-  ~KrViewer();
-  
-  KParts::Part* getPart(KURL url, QString m ,bool readOnly, bool create=false);
-  QPopupMenu* viewerMenu;
+	KrViewer( QWidget *parent = 0, const char *name = 0 );
+	~KrViewer();
+	void addTab(PanelViewerBase* pvb, KURL& url, QString msg);
 
-  KURL url;
-  KParts::PartManager manager;
+	KParts::PartManager manager;
+	QPopupMenu* viewerMenu;
+	KTempFile tmpFile;
+	KTabWidget tabBar;
+	QIconSet icon;
+	QIntDict<PanelViewerBase> viewerDict;
 
-  QGuardedPtr<KParts::ReadOnlyPart> generic_part;  /* JavaScript self.close() destructs KHTMLPart, so please don't remove QGuardedPtr */
-  QGuardedPtr<KParts::ReadOnlyPart> text_part;     /* the other QGuardedPtr-s are for sanity */
-  QGuardedPtr<KParts::ReadOnlyPart> hex_part;
-  QGuardedPtr<KParts::ReadWritePart> editor_part;
+	static KrViewer* viewer;
 
-  KTempFile tmpFile;
-  
-  bool busy;
-  KIO::UDSEntry entry;
+//	bool busy;
+//	KIO::UDSEntry entry;
+
 };
 
 #endif

@@ -1,10 +1,10 @@
 /***************************************************************************
-                          krviewer.cpp  -  description
-                             -------------------
-    begin                : Thu Apr 18 2002
-    copyright            : (C) 2002 by Shie Erlich & Rafi Yanai
-    email                :
- ***************************************************************************/
+                         krviewer.cpp  -  description
+                            -------------------
+   begin                : Thu Apr 18 2002
+   copyright            : (C) 2002 by Shie Erlich & Rafi Yanai
+   email                :
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -13,11 +13,11 @@
  *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
- ***************************************************************************/
+ ***************************************************************************/ 
 // Qt includes
 #include <qdatastream.h>
 #include <qfile.h>
-#include <qpopupmenu.h>
+#include <qpopupmenu.h> 
 // KDE includes
 #include <kmenubar.h>
 #include <kmimetype.h>
@@ -35,408 +35,341 @@
 #include <klargefile.h>
 #include <khtml_part.h>
 #include <kprocess.h>
-#include <kfileitem.h>
+#include <kfileitem.h> 
 // Krusader includes
 #include "krviewer.h"
 #include "../krusader.h"
 #include "../defaults.h"
+#include "../kicons.h"
 
-KrViewer::KrViewer(QWidget *parent, const char *name ) :
-  KParts::MainWindow(parent,name), manager(this,this){
+#include "panelviewer.h"
 
-  //setWFlags(WType_TopLevel | WDestructiveClose);
-  setXMLFile( "krviewer.rc" ); // kpart-related xml file
-  setHelpMenuEnabled(false);
-  
-  // KDE HACK START: Viewer fails to resize at maximized mode
-  int scnum = QApplication::desktop()->screenNumber(parentWidget());
-  QRect desk = QApplication::desktop()->screenGeometry(scnum);
-  KGlobal::config()->setGroup( "KrViewerWindow" );
-  QSize size( KGlobal::config()->readNumEntry( QString::fromLatin1("Width %1").arg(desk.width()), 0 ),
-              KGlobal::config()->readNumEntry( QString::fromLatin1("Height %1").arg(desk.height()), 0 ) );
-  if( size.width() > desk.width() )
-    KGlobal::config()->writeEntry( QString::fromLatin1("Width %1").arg(desk.width()), desk.width() );
-  if( size.height() > desk.height() )
-    KGlobal::config()->writeEntry( QString::fromLatin1("Height %1").arg(desk.height()), desk.height() );
-  // KDE HACK END
-    
-  setAutoSaveSettings("KrViewerWindow",true);
-  tmpFile.setAutoDelete(true);
-  hex_part=generic_part=text_part=editor_part=0L;
+KrViewer* KrViewer::viewer = NULL;
 
-  connect(&manager,SIGNAL(activePartChanged(KParts::Part*)),
-          this,SLOT(createGUI(KParts::Part*)));
-  
+KrViewer::KrViewer( QWidget *parent, const char *name ) :
+KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 
-  viewerMenu = new QPopupMenu( this );
-  viewerMenu->insertItem( i18n("&Generic viewer"), this, SLOT(viewGeneric()), CTRL+Key_G,1 );
-  viewerMenu->insertItem( i18n("&Text viewer"),    this, SLOT(viewText()),    CTRL+Key_T,2 );
-  viewerMenu->insertItem( i18n("&Hex viewer"),     this, SLOT(viewHex()),     CTRL+Key_H,3 );
-  viewerMenu->insertSeparator();
-  viewerMenu->insertItem( i18n("Text &editor"),    this, SLOT(editText()), CTRL+Key_E,4 );
-  viewerMenu->insertSeparator();
-  viewerMenu->insertItem( i18n("&Close"), this, SLOT( close() ), Key_Escape );
+	//setWFlags(WType_TopLevel | WDestructiveClose);
+	setXMLFile( "krviewer.rc" ); // kpart-related xml file
+	setHelpMenuEnabled( false );
 
-  statusBar()->show();
+	// KDE HACK START: Viewer fails to resize at maximized mode
+	int scnum = QApplication::desktop() ->screenNumber( parentWidget() );
+	QRect desk = QApplication::desktop() ->screenGeometry( scnum );
+	KGlobal::config() ->setGroup( "KrViewerWindow" );
+	QSize size( KGlobal::config() ->readNumEntry( QString::fromLatin1( "Width %1" ).arg( desk.width() ), 0 ),
+	            KGlobal::config() ->readNumEntry( QString::fromLatin1( "Height %1" ).arg( desk.height() ), 0 ) );
+	if ( size.width() > desk.width() )
+		KGlobal::config() ->writeEntry( QString::fromLatin1( "Width %1" ).arg( desk.width() ), desk.width() );
+	if ( size.height() > desk.height() )
+		KGlobal::config() ->writeEntry( QString::fromLatin1( "Height %1" ).arg( desk.height() ), desk.height() );
+	// KDE HACK END
+
+	setAutoSaveSettings( "KrViewerWindow", true );
+	tmpFile.setAutoDelete( true );
+
+	connect( &manager, SIGNAL( activePartChanged( KParts::Part* ) ),
+	         this, SLOT( createGUI( KParts::Part* ) ) );
+	connect( &tabBar, SIGNAL( currentChanged( QWidget *) ),
+	         this, SLOT( tabChanged(QWidget*) ) );
+	connect( &tabBar, SIGNAL( closeRequest( QWidget *) ),
+	         this, SLOT( tabCloseRequest(QWidget*) ) );
+
+	icon = QIconSet(krLoader->loadIcon("view_detailed",KIcon::Small));
+	viewerDict.setAutoDelete( true );
+	setCentralWidget( &tabBar );
+
+	viewerMenu = new QPopupMenu( this );
+//	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + Key_G, 1 );
+//	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + Key_T, 2 );
+//	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + Key_H, 3 );
+//	viewerMenu->insertSeparator();
+//	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + Key_E, 4 );
+//	viewerMenu->insertSeparator();
+	viewerMenu->insertItem( i18n( "&Close" ), this, SLOT( close() ), Key_Escape );
+
+	statusBar() ->show();
+	tabBar.setHoverCloseButton(true);
 }
 
-KrViewer::~KrViewer(){
-  
-  disconnect(&manager,SIGNAL(activePartChanged(KParts::Part*)),
-              this,SLOT(createGUI(KParts::Part*)));
-          
-  if( editor_part )
-  {
-    manager.removePart( editor_part );
-    delete editor_part;
-    editor_part = 0;
-  }
+KrViewer::~KrViewer() {
 
-  if( text_part )
-  {
-    manager.removePart( text_part );
-    delete text_part;
-    text_part = 0;
-  }
+	disconnect( &manager, SIGNAL( activePartChanged( KParts::Part* ) ),
+	            this, SLOT( createGUI( KParts::Part* ) ) );
 
-  if( generic_part )
-  {
-    manager.removePart( generic_part );
-    delete generic_part;
-    generic_part = 0;
-  }
-
-  if( hex_part )
-  {
-    manager.removePart( hex_part );
-    delete hex_part;
-    hex_part = 0;
-  }
+	viewer = NULL;
 }
 
-void KrViewer::slotStatResult( KIO::Job* job ) {
-  if( !job || job->error() ) entry = KIO::UDSEntry();
-  else entry = static_cast<KIO::StatJob*>(job)->statResult();
-  busy = false;
+void KrViewer::createGUI( KParts::Part* part ) {
+	if ( part == 0 )   /*     KHTMLPart calls this function with 0 at destruction.    */
+		return ;        /*   Can cause crash after JavaScript self.close() if removed  */
+
+	// and show the new part widget
+	connect( part, SIGNAL( setStatusBarText( const QString& ) ),
+	         this, SLOT( slotSetStatusBarText( const QString& ) ) );
+
+	KParts::MainWindow::createGUI( part );
+
+	// and "fix" the menubar
+	menuBar() ->removeItem( 70 );
+	menuBar() ->insertItem( i18n( "&KrViewer" ), viewerMenu, 70 );
+	menuBar() ->show();
 }
 
-KParts::Part* KrViewer::getPart(KURL url, QString mimetype ,bool readOnly, bool create){
-  KParts::Part *part = 0L;
-  KLibFactory  *factory = 0;
-  KTrader::OfferList offers = KTrader::self()->query(mimetype);
-  QString typeIn = (readOnly ? "KParts::ReadOnlyPart" : "KParts::ReadWritePart");
-  
-  if( create )
-  {
-    KIO::StatJob* statJob = KIO::stat( url, false );
-    connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
-    busy = true;
-    while ( busy ) qApp->processEvents();
-    if( !entry.isEmpty() )
-    {
-      KFileItem file( entry, url );
-      if( file.isReadable() )
-        create = false;
-    }
-  }
-
-  // in theory, we only care about the first one.. but let's try all
-  // offers just in case the first can't be loaded for some reason
-  KTrader::OfferList::Iterator it(offers.begin());
-  for( ; it != offers.end(); ++it) {
-    KService::Ptr ptr = (*it);
-    // we now know that our offer can handle mimetype and is a part.
-    // since it is a part, it must also have a library... let's try to
-    // load that now
-
-    QString type = typeIn;
-    
-    QStringList args;
-    QVariant argsProp = ptr->property( "X-KDE-BrowserView-Args" );
-    if ( argsProp.isValid() )
-    {
-      QString argStr = argsProp.toString();
-      args = QStringList::split( " ", argStr );
-    
-      if( ptr->serviceTypes().contains( "Browser/View" ) )
-      {
-        args << QString::fromLatin1( "Browser/View" );
-        type = "Browser/View";
-      }
-    }
-    
-    QVariant prop = ptr->property( "X-KDE-BrowserView-AllowAsDefault" );
-
-    if ( !prop.isValid() || prop.toBool() ) // defaults to true
-    {
-      factory = KLibLoader::self()->factory( ptr->library().latin1() );
-      if (factory) {
-        part = static_cast<KParts::Part *>(factory->create(this,
-                             ptr->name().latin1(), type.latin1(), args ));
-        if( part )
-        {
-          if( !create )
-          {
-            if( ((KParts::ReadOnlyPart*)part)->openURL( url ) ) break;
-            else {
-              delete part;
-              part = 0L;
-            }
-          }
-          else
-          {
-            ((KParts::ReadWritePart*)part)->saveAs( url );
-            break;
-          }
-        }
-      }
-    }
-  }
-  return part;
-}
-
-void KrViewer::createGUI(KParts::Part* part){
-  if( part == 0 )  /*     KHTMLPart calls this function with 0 at destruction.    */
-    return;        /*   Can cause crash after JavaScript self.close() if removed  */
-
-  // make sure all the other parts are hidden
-  if(generic_part) generic_part->widget()->hide();
-  if(text_part)    text_part->widget()->hide();
-  if(hex_part)     hex_part->widget()->hide();
-  if(editor_part)  editor_part->widget()->hide();
-
-  // and show the new part widget
- 	connect(part,SIGNAL(setStatusBarText(const QString&)),
-          this,SLOT(slotSetStatusBarText(const QString&)));
-	KParts::MainWindow::createGUI(part);
-  setCentralWidget(part->widget());
-  part->widget()->show();
-
-  // and "fix" the menubar
-  menuBar()->removeItem(70);
-  menuBar()->insertItem( i18n("&KrViewer"), viewerMenu,70 );
-  menuBar()->show();
-}
-
-void KrViewer::keyPressEvent(QKeyEvent *e) {
-  switch (e->key()) {
-    case Key_F10:
-    case Key_Escape:
-      close();
-      break;
-		default:
+void KrViewer::keyPressEvent( QKeyEvent *e ) {
+	switch ( e->key() ) {
+			case Key_F10:
+			case Key_Escape:
+			close();
+			break;
+			default:
 			e->ignore();
 			break;
-  }
+	}
 }
 
-void KrViewer::view(KURL url){
-  KrViewer* viewer = new KrViewer(krApp);
+void KrViewer::view( KURL url ) {
+	if( !viewer ){	
+		viewer = new KrViewer( krApp );
+	}
+	else {
+		viewer->raise();
+		viewer->setActiveWindow();
+	}
 
-  viewer->url = url;
-  viewer->setCaption("KrViewer: "+url.url());
-  viewer->show();
+	PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
+	viewer->addTab(viewWidget,url,"Viewing");
 
-  if( !viewer->viewGeneric() ){
-    if( !viewer->viewText() )
-    {
-      viewer->destroy();
-      return;
-    }
-    viewer->viewerMenu->setItemEnabled(1,false);
-  }
 }
 
-void KrViewer::edit(KURL url, bool create){
-  krConfig->setGroup( "General" );
-  QString edit = krConfig->readEntry( "Editor", _Editor );
+void KrViewer::edit( KURL url, bool ) {
+	krConfig->setGroup( "General" );
+	QString edit = krConfig->readEntry( "Editor", _Editor );
 
-  if ( edit != "internal editor" ) {
-    KProcess proc;
-    // if the file is local, pass a normal path and not a url. this solves
-	 // the problem for editors that aren't url-aware
-	 if (url.isLocalFile())
-	 	proc << QStringList::split(' ', edit) << url.path();
-	 else proc << QStringList::split(' ', edit) << url.prettyURL();
-	 if ( !proc.start( KProcess::DontCare ) )
-      KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
-    return;
-  }
+	if ( edit != "internal editor" ) {
+		KProcess proc;
+		// if the file is local, pass a normal path and not a url. this solves
+		// the problem for editors that aren't url-aware
+		if ( url.isLocalFile() )
+			proc << QStringList::split( ' ', edit ) << url.path();
+		else proc << QStringList::split( ' ', edit ) << url.prettyURL();
+		if ( !proc.start( KProcess::DontCare ) )
+			KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
+		return ;
+	}
 
-  KrViewer* viewer = new KrViewer(krApp);
+	if( !viewer ){	
+		viewer = new KrViewer( krApp );
+	}
+	else {
+		viewer->raise();
+		viewer->setActiveWindow();
+	}
 
-  viewer->url = url;
-  viewer->setCaption("KrEdit: "+url.url());
-  viewer->show();
-
-  if( !viewer->editText( create ) )
-  {
-      viewer->destroy();
-      return;
-  }
+	PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
+	viewer->addTab(editWidget,url,QString("Editing"));
 }
 
-bool KrViewer::editGeneric(QString mimetype, KURL _url){
-  KParts::ReadWritePart *kedit_part = 0L;
-  KLibFactory *factory = 0;
-  KTrader::OfferList offers = KTrader::self()->query(mimetype);
+void KrViewer::addTab(PanelViewerBase* pvb, KURL& url, QString msg){
 
-  // in theory, we only care about the first one.. but let's try all
-  // offers just in case the first can't be loaded for some reason
-  KTrader::OfferList::Iterator it(offers.begin());
-  for( ; it != offers.end(); ++it) {
-    KService::Ptr ptr = (*it);
-    // we now know that our offer can handle mimetype and is a part.
-    // since it is a part, it must also have a library... let's try to
-    // load that now
-    factory = KLibLoader::self()->factory( ptr->library().latin1() );
-    if (factory) {
-      kedit_part = static_cast<KParts::ReadWritePart *>(factory->create(this,
-                           ptr->name().latin1(), "KParts::ReadWritePart"));
-      if( kedit_part )
-        if(kedit_part->openURL(_url) ) break;
-        else {
-          delete kedit_part;
-          kedit_part = 0L;
-        }
-    }
-  }
+	setCaption( msg+": " + url.prettyURL() );
 
-  if (!kedit_part){
-    KMessageBox::error(this,i18n("Sorry, can't find internal editor"));
-    return false;
-  }
+	KParts::Part* part = pvb->openURL(url);
 
-  setCentralWidget(kedit_part->widget());
-  createGUI(kedit_part);
-  kedit_part->widget()->show();
-  return true;
+	if( !part ) return;
+
+	manager.addPart( part, this );
+	manager.setActivePart( part );
+	tabBar.insertTab(pvb,icon,url.fileName()+"("+msg+")");	
+	tabBar.setCurrentPage(tabBar.indexOf(pvb));
+	viewer->tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
+
+	viewerDict.insert( tabBar.currentPageIndex(),pvb );
+
+	show();
+	tabBar.show();
 }
 
-bool KrViewer::editText( bool create ){
-  if( !editor_part ){
-    editor_part = static_cast<KParts::ReadWritePart*>(getPart(url,"text/plain",false,create));
-    if( !editor_part ) return false;
-    manager.addPart(editor_part,this);
-  }
-  manager.setActivePart(editor_part);
-  return true;
+void KrViewer::tabChanged(QWidget* w){
+	manager.setActivePart( static_cast<PanelViewerBase*>(w)->part() );
 }
 
-bool KrViewer::viewGeneric(){
-  QString mimetype = KMimeType::findByURL( url )->name();
-  // ugly hack: don't try to get a part for an XML file, it usually don't work
-  if( mimetype == "text/xml" ) return false;
-  if( url.prettyURL().startsWith("man:") ) mimetype = "text/html";
-  if( mimetype == "text/plain" )
-    viewerMenu->setItemEnabled(1,false);
+void KrViewer::tabCloseRequest(QWidget *w){
+	if( !w ) return;
 
-  if( !generic_part ){
-    if( mimetype.contains("html") ){
-      KHTMLPart* p = new KHTMLPart(this,0,0,0,KHTMLPart::BrowserViewGUI);
-      connect(p->browserExtension(), SIGNAL(openURLRequest(const KURL &, const KParts::URLArgs &)),
-              this,SLOT(handleOpenURLRequest(const KURL &,const KParts::URLArgs & )));
-      /* At JavaScript self.close() the KHTMLPart destroys itself.  */
-      /* After destruction, just close the window */
-      connect( p, SIGNAL( destroyed() ), this, SLOT( close() ) );
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>(w);
+	manager.removePart(pvb->part());
+	tabBar.removePage(w);
+	viewerDict.remove(tabBar.indexOf(w));
 
-      p-> openURL(url);
-      generic_part = p;
-    } else {
-      generic_part = static_cast<KParts::ReadOnlyPart*>(getPart(url,mimetype,true));
-    }
-    if( generic_part ) manager.addPart(generic_part,this);
-    else return false;
-  }
+	if( tabBar.count() <= 0 ){
+		delete viewer;
+		viewer = 0;
+	}
 
-  manager.setActivePart(generic_part);
-  return true;
 }
 
-bool KrViewer::viewText(){
-  if( !text_part ){
-    text_part = static_cast<KParts::ReadOnlyPart*>(getPart(url,"text/plain",true));
-    if( !text_part ) return false;    
-    manager.addPart(text_part,this);
-  }
-  manager.setActivePart(text_part);
-  return true;
+bool KrViewer::queryClose() {
+	
+//	if ( editor_part && editor_part->queryClose() == false )
+//		return false;
+	return true;
 }
 
-void KrViewer::viewHex(){
-  if( !hex_part ){
-    QString file;
-    // files that are not local must first be downloaded
-    if( !url.isLocalFile() ){
-      if( !KIO::NetAccess::download( url, file ) ){
-        KMessageBox::sorry(this,i18n("KrViewer is unable to download: ")+url.url());
-        return;
-      }
-    } else file = url.path();
+bool KrViewer::queryExit() {
+	kapp->ref(); // FIX: krusader exits at closing the viewer when minimized to tray
+	return true; // don't let the reference counter reach zero
+}
 
+#if 0
+bool KrViewer::editGeneric( QString mimetype, KURL _url ) {
+	KParts::ReadWritePart * kedit_part = 0L;
+	KLibFactory *factory = 0;
+	KTrader::OfferList offers = KTrader::self() ->query( mimetype );
 
-    // create a hex file
-    QFile f_in( file );
-    f_in.open( IO_ReadOnly );
-    QDataStream in( &f_in );
+	// in theory, we only care about the first one.. but let's try all
+	// offers just in case the first can't be loaded for some reason
+	KTrader::OfferList::Iterator it( offers.begin() );
+	for ( ; it != offers.end(); ++it ) {
+		KService::Ptr ptr = ( *it );
+		// we now know that our offer can handle mimetype and is a part.
+		// since it is a part, it must also have a library... let's try to
+		// load that now
+		factory = KLibLoader::self() ->factory( ptr->library().latin1() );
+		if ( factory ) {
+			kedit_part = static_cast<KParts::ReadWritePart *>( factory->create( this,
+			             ptr->name().latin1(), "KParts::ReadWritePart" ) );
+			if ( kedit_part )
+				if ( kedit_part->openURL( _url ) ) break;
+				else {
+					delete kedit_part;
+					kedit_part = 0L;
+				}
+		}
+	}
 
-    FILE *out = KDE_fopen(tmpFile.name().local8Bit(),"w");
+	if ( !kedit_part ) {
+		KMessageBox::error( this, i18n( "Sorry, can't find internal editor" ) );
+		return false;
+	}
 
-    KIO::filesize_t fileSize = f_in.size();
-    KIO::filesize_t address = 0;
-    char buf[16];
-		unsigned int* pBuff = (unsigned int*)buf;
+	setCentralWidget( kedit_part->widget() );
+	createGUI( kedit_part );
+	kedit_part->widget() ->show();
+	return true;
+}
 
-    while( address<fileSize ){
-			memset(buf,0,16);
-			int bufSize = ((fileSize-address) > 16)? 16 : (fileSize-address);
-      in.readRawBytes(buf,bufSize);
-			fprintf(out,"0x%8.8llx: ",address);
-			for(int i=0; i<4; ++i){
-				if(i<(bufSize/4)) fprintf(out,"%8.8x ",pBuff[i]);
-				else fprintf(out,"         ");
+bool KrViewer::editText( bool create ) {
+	if ( !editor_part ) {
+		editor_part = static_cast<KParts::ReadWritePart*>( getPart( url, "text/plain", false, create ) );
+		if ( !editor_part ) return false;
+		manager.addPart( editor_part, this );
+	}
+	manager.setActivePart( editor_part );
+	tabBar.addTab(editor_part->widget(),url.fileName());
+	return true;
+}
+
+bool KrViewer::viewGeneric() {
+	QString mimetype = KMimeType::findByURL( url ) ->name();
+	// ugly hack: don't try to get a part for an XML file, it usually don't work
+	if ( mimetype == "text/xml" ) return false;
+	if ( url.prettyURL().startsWith( "man:" ) ) mimetype = "text/html";
+	if ( mimetype == "text/plain" )
+		viewerMenu->setItemEnabled( 1, false );
+
+	if ( !generic_part ) {
+		if ( mimetype.contains( "html" ) ) {
+			KHTMLPart * p = new KHTMLPart( this, 0, 0, 0, KHTMLPart::BrowserViewGUI );
+			connect( p->browserExtension(), SIGNAL( openURLRequest( const KURL &, const KParts::URLArgs & ) ),
+			         this, SLOT( handleOpenURLRequest( const KURL &, const KParts::URLArgs & ) ) );
+			/* At JavaScript self.close() the KHTMLPart destroys itself.  */
+			/* After destruction, just close the window */
+			connect( p, SIGNAL( destroyed() ), this, SLOT( close() ) );
+
+			p-> openURL( url );
+			generic_part = p;
+		} else {
+			generic_part = static_cast<KParts::ReadOnlyPart*>( getPart( url, mimetype, true ) );
+		}
+		if ( generic_part ) manager.addPart( generic_part, this );
+		
+		else return false;
+	}
+
+	manager.setActivePart( generic_part );
+	tabBar.addTab(generic_part->widget(),url.fileName());
+	return true;
+}
+
+bool KrViewer::viewText() {
+	if ( !text_part ) {
+		text_part = static_cast<KParts::ReadOnlyPart*>( getPart( url, "text/plain", true ) );
+		if ( !text_part ) return false;
+		manager.addPart( text_part, this );
+	}
+	manager.setActivePart( text_part );
+	tabBar.addTab(text_part->widget(),url.fileName());
+	return true;
+}
+
+void KrViewer::viewHex() {
+	if ( !hex_part ) {
+		QString file;
+		// files that are not local must first be downloaded
+		if ( !url.isLocalFile() ) {
+			if ( !KIO::NetAccess::download( url, file ) ) {
+				KMessageBox::sorry( this, i18n( "KrViewer is unable to download: " ) + url.url() );
+				return ;
 			}
-			fprintf(out,"| ");
+		} else file = url.path();
 
-      for(int i=0; i<bufSize; ++i){
-        if(buf[i]>' ' && buf[i]<'~' ) fputc(buf[i],out);
-        else fputc('.',out);
-      }
-      fputc('\n',out);
 
-      address += 16;
-    }
-    // clean up
-    f_in.close();
-		fclose(out);
-    if( !url.isLocalFile() )
-      KIO::NetAccess::removeTempFile( file );
+		// create a hex file
+		QFile f_in( file );
+		f_in.open( IO_ReadOnly );
+		QDataStream in( &f_in );
 
-    hex_part = static_cast<KParts::ReadOnlyPart*>(getPart(tmpFile.name(),"text/plain",true));
-    if( !hex_part ) return;
-    manager.addPart(hex_part,this);
-  }
-  manager.setActivePart(hex_part);
+		FILE *out = KDE_fopen( tmpFile.name().local8Bit(), "w" );
+
+		KIO::filesize_t fileSize = f_in.size();
+		KIO::filesize_t address = 0;
+		char buf[ 16 ];
+		unsigned int* pBuff = ( unsigned int* ) buf;
+
+		while ( address < fileSize ) {
+			memset( buf, 0, 16 );
+			int bufSize = ( ( fileSize - address ) > 16 ) ? 16 : ( fileSize - address );
+			in.readRawBytes( buf, bufSize );
+			fprintf( out, "0x%8.8llx: ", address );
+			for ( int i = 0; i < 4; ++i ) {
+				if ( i < ( bufSize / 4 ) ) fprintf( out, "%8.8x ", pBuff[ i ] );
+				else fprintf( out, "         " );
+			}
+			fprintf( out, "| " );
+
+			for ( int i = 0; i < bufSize; ++i ) {
+				if ( buf[ i ] > ' ' && buf[ i ] < '~' ) fputc( buf[ i ], out );
+				else fputc( '.', out );
+			}
+			fputc( '\n', out );
+
+			address += 16;
+		}
+		// clean up
+		f_in.close();
+		fclose( out );
+		if ( !url.isLocalFile() )
+			KIO::NetAccess::removeTempFile( file );
+
+		hex_part = static_cast<KParts::ReadOnlyPart*>( getPart( tmpFile.name(), "text/plain", true ) );
+		if ( !hex_part ) return ;
+		manager.addPart( hex_part, this );
+	}
+	manager.setActivePart( hex_part );
+	tabBar.addTab(hex_part->widget(),url.fileName());
 }
-
-void KrViewer::handleOpenURLRequest( const KURL &url, const KParts::URLArgs & ){
-  if(generic_part) generic_part->openURL(url);
-
-}
-
-bool KrViewer::queryClose()
-{
-  if( editor_part && editor_part->queryClose() == false )
-    return false;
-    
-  return true;
-}
-
-bool KrViewer::queryExit()
-{
-  kapp->ref(); // FIX: krusader exits at closing the viewer when minimized to tray
-  return true; // don't let the reference counter reach zero
-}
+#endif
 
 
 #include "krviewer.moc"

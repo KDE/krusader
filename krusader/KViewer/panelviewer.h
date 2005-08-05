@@ -8,30 +8,57 @@
 #include <qdict.h>
 #include <qlabel.h>
 
-class PanelViewer: public QWidgetStack {
-  Q_OBJECT
-  public slots:
-    bool openURL(const KURL &url);
-    bool closeURL();
-    
-  signals:
-    void openURLRequest(const KURL &url);
-  
-  public:
-    PanelViewer(QWidget *parent = 0);
-    ~PanelViewer();
-    inline KURL url() const;
-    inline KParts::ReadOnlyPart *part() const;
+class PanelViewerBase: public QWidgetStack {
+	Q_OBJECT
+public slots:
+	virtual KParts::ReadOnlyPart* openURL( const KURL& ){ return 0;} 
+	virtual bool closeURL(){ return false; }
 
-  protected:
-    QDict<KParts::ReadOnlyPart> *mimes;
-    KParts::ReadOnlyPart *getPart(QString mimetype);
-    KParts::ReadOnlyPart *cpart;
-    QString cmimetype;
-    KURL curl;   
-    QLabel *fallback;     
+signals:
+	void openURLRequest( const KURL &url );
+
+public:
+	PanelViewerBase( QWidget *parent = 0 );
+	virtual ~PanelViewerBase();
+	inline KURL url() const { return curl; }
+	inline KParts::ReadOnlyPart* part() const { return cpart; }
+
+protected:
+	QDict<KParts::ReadOnlyPart> *mimes;
+	KParts::ReadOnlyPart *cpart;
+
+	QString cmimetype;
+	KURL curl;
+	QLabel *fallback;
+
 };
 
+class PanelViewer: public PanelViewerBase {
+	Q_OBJECT
+public slots:
+	KParts::ReadOnlyPart* openURL( const KURL &url );
+	bool closeURL();
 
+public:
+	PanelViewer( QWidget *parent = 0 );
+	~PanelViewer();
+
+protected:
+	KParts::ReadOnlyPart *getPart( QString mimetype );
+};
+
+class PanelEditor: public PanelViewerBase {
+	Q_OBJECT
+public slots:
+	KParts::ReadOnlyPart* openURL( const KURL &url );
+	bool closeURL();
+
+public:
+	PanelEditor( QWidget *parent = 0 );
+	~PanelEditor();
+
+protected:
+	KParts::ReadWritePart *getPart( QString mimetype );
+};
 
 #endif
