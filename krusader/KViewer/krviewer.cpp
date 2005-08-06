@@ -86,7 +86,8 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 //	viewerMenu->insertSeparator();
 //	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + Key_E, 4 );
 //	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( i18n( "&Close" ), this, SLOT( close() ), Key_Escape );
+	viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
+	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), Key_F10 );
 
 	statusBar() ->show();
 	tabBar.setHoverCloseButton(true);
@@ -118,11 +119,13 @@ void KrViewer::createGUI( KParts::Part* part ) {
 
 void KrViewer::keyPressEvent( QKeyEvent *e ) {
 	switch ( e->key() ) {
-			case Key_F10:
-			case Key_Escape:
+		case Key_F10:
 			close();
 			break;
-			default:
+		case Key_Escape:
+			tabCloseRequest();
+			break;
+		default:
 			e->ignore();
 			break;
 	}
@@ -157,6 +160,14 @@ void KrViewer::edit( KURL url, bool ) {
 			KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + edit + "\"" );
 		return ;
 	}
+
+//	KIO::StatJob* statJob = KIO::stat( url, false );
+//	connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
+//	busy = true;
+//	while ( busy ) qApp->processEvents();
+//	if( !entry.isEmpty() ) {
+//		KFileItem file( entry, url );
+//	}
 
 	if( !viewer ){	
 		viewer = new KrViewer( krApp );
@@ -206,13 +217,13 @@ void KrViewer::tabCloseRequest(QWidget *w){
 		delete viewer;
 		viewer = 0;
 	}
+}
 
+void KrViewer::tabCloseRequest(){
+	tabCloseRequest( tabBar.currentPage() ); 
 }
 
 bool KrViewer::queryClose() {
-	
-//	if ( editor_part && editor_part->queryClose() == false )
-//		return false;
 	return true;
 }
 

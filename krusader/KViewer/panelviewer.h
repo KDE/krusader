@@ -5,6 +5,7 @@
 #include <qstring.h>
 #include <qwidgetstack.h>
 #include <kparts/part.h>
+#include <kio/job.h>
 #include <qdict.h>
 #include <qlabel.h>
 
@@ -52,6 +53,7 @@ class PanelEditor: public PanelViewerBase {
 public slots:
 	KParts::ReadOnlyPart* openURL( const KURL &url );
 	bool closeURL();
+	void slotStatResult( KIO::Job* job );
 
 public:
 	PanelEditor( QWidget *parent = 0 );
@@ -59,6 +61,9 @@ public:
 
 protected:
 	KParts::ReadWritePart *getPart( QString mimetype );
+
+	bool busy;
+	KIO::UDSEntry entry;
 };
 
 #endif

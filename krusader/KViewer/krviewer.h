@@ -46,6 +46,7 @@ public slots:
 	void createGUI( KParts::Part* );
 	void tabChanged(QWidget* w);
 	void tabCloseRequest(QWidget *w);
+	void tabCloseRequest();
 
 protected:
 	virtual bool queryClose();
@@ -64,10 +65,6 @@ private:
 	QIntDict<PanelViewerBase> viewerDict;
 
 	static KrViewer* viewer;
-
-//	bool busy;
-//	KIO::UDSEntry entry;
-
 };
 
 #endif

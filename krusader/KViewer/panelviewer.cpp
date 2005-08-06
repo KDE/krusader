@@ -1,6 +1,7 @@
 #include <kurl.h>
 #include <qstring.h>
 #include <qwidgetstack.h>
+#include <qapplication.h>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <qdict.h>
@@ -10,6 +11,7 @@
 #include <klibloader.h>
 #include <kuserprofile.h>
 #include <kdebug.h>
+#include <kfileitem.h>
 #include "panelviewer.h"
 
 #define DICTSIZE 211
@@ -126,11 +128,28 @@ KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url ) {
 		addWidget( cpart->widget() );
 		raiseWidget( cpart->widget() );
 	}
-	if ( cpart && cpart->openURL( curl ) ) return cpart;
 	else {
 		raiseWidget( fallback );
 		return 0;
 	}
+
+	bool create = true;
+	KIO::StatJob* statJob = KIO::stat( url, false );
+	connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
+	busy = true;
+	while ( busy ) qApp->processEvents();
+	if( !entry.isEmpty() ) {
+		KFileItem file( entry, url );
+		if( file.isReadable() ) create = false;
+	}
+	
+	if( create ){
+		if( static_cast<KParts::ReadWritePart *>(cpart)->saveAs( curl ) ) return cpart;
+	}
+	else {
+		if ( cpart->openURL( curl ) ) return cpart;
+	}
+	return 0;
 }
 
 bool PanelEditor::closeURL() {
@@ -143,7 +162,7 @@ bool PanelEditor::closeURL() {
 	return true;
 }
 
-KParts::ReadWritePart *PanelEditor::getPart( QString mimetype ) {
+KParts::ReadWritePart* PanelEditor::getPart( QString mimetype ) {
 	KParts::ReadWritePart * part = 0L;
 	KLibFactory *factory = 0;
 	KService::Ptr ptr = KServiceTypeProfile::preferredService( mimetype, "KParts/ReadWritePart" );
@@ -174,5 +193,10 @@ KParts::ReadWritePart *PanelEditor::getPart( QString mimetype ) {
 	return part;
 }
 
+void PanelEditor::slotStatResult( KIO::Job* job ) {
+  if( !job || job->error() ) entry = KIO::UDSEntry();
+  else entry = static_cast<KIO::StatJob*>(job)->statResult();
+  busy = false;
+}
 
 #include "panelviewer.moc"
