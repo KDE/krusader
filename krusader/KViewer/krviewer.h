@@ -27,6 +27,7 @@
 #include <qguardedptr.h>
 #include <ktabwidget.h>
 
+
 /**
   *@author Shie Erlich & Rafi Yanai
   */
@@ -38,12 +39,18 @@ class KrViewer : public KParts::MainWindow {
 	Q_OBJECT
 public:
 	static void view( KURL url );
-	static void edit( KURL url, bool create = false );
+	static void edit( KURL url );
 
 
 public slots:
 	void keyPressEvent( QKeyEvent *e );
 	void createGUI( KParts::Part* );
+
+	void viewGeneric();
+	void viewText();
+	void viewHex();
+	void editText();
+
 	void tabChanged(QWidget* w);
 	void tabCloseRequest(QWidget *w);
 	void tabCloseRequest();
@@ -55,7 +62,7 @@ protected:
 private:
 	KrViewer( QWidget *parent = 0, const char *name = 0 );
 	~KrViewer();
-	void addTab(PanelViewerBase* pvb, KURL& url, QString msg);
+	void addTab(PanelViewerBase* pvb, QString msg, KParts::Part* part);
 
 	KParts::PartManager manager;
 	QPopupMenu* viewerMenu;

@@ -422,7 +422,7 @@ void KrSearchDialog::editCurrent()
     QString name = current->text(1);
     name += (name.endsWith( "/" ) ? current->text(0) : "/" + current->text(0) );
     KURL url = vfs::fromPathOrURL( name );
-    KrViewer::edit( url, true );
+    KrViewer::edit( url );
   }
 }
 

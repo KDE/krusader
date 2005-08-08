@@ -48,16 +48,27 @@ PanelViewerBase( parent ) {
 PanelViewer::~PanelViewer() {
 }
 
-KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url ) {
+KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, Mode mode ) {
 	closeURL();
 	curl = url;
-	cmimetype = KMimeType::findByURL( curl ) ->name();
-	cpart = ( *mimes ) [ cmimetype ];
-	if ( !cpart ) cpart = getPart( cmimetype );
+
+	if( mode == Generic ){
+		cmimetype = KMimeType::findByURL( curl ) ->name();
+		cpart = ( *mimes ) [ cmimetype ];
+		if ( !cpart ){
+			cpart = getPart( cmimetype );
+			mimes->insert( cmimetype, cpart );			
+		}
+	}
+
+	if( mode == Hex ){
+		if ( !cpart ) cpart = getHexPart();
+	}
+	
 	if ( !cpart ) cpart = getPart( "text/plain" );
 	if ( !cpart ) cpart = getPart( "all/allfiles" );
+
 	if ( cpart ) {
-		mimes->insert( cmimetype, cpart );
 		addWidget( cpart->widget() );
 		raiseWidget( cpart->widget() );
 	}
@@ -74,7 +85,7 @@ bool PanelViewer::closeURL() {
 	return false;
 }
 
-KParts::ReadOnlyPart *PanelViewer::getPart( QString mimetype ) {
+KParts::ReadOnlyPart* PanelViewer::getPart( QString mimetype ) {
 	KParts::ReadOnlyPart * part = 0L;
 	KLibFactory *factory = 0;
 	KService::Ptr ptr = KServiceTypeProfile::preferredService( mimetype, "KParts/ReadOnlyPart" );
@@ -105,6 +116,18 @@ KParts::ReadOnlyPart *PanelViewer::getPart( QString mimetype ) {
 	return part;
 }
 
+KParts::ReadOnlyPart* PanelViewer::getHexPart(){
+	KParts::ReadOnlyPart * part = 0L;
+
+	KLibFactory * factory = KLibLoader::self() ->factory( "libkhexedit2part" );
+	if ( factory ) {
+		// Create the part
+		part = ( KParts::ReadOnlyPart * ) factory->create( this, "hexedit2part","KParts::ReadOnlyPart" );
+	}
+
+	return part;
+}
+
 /* ----==={ PanelEditor }===---- */
 
 PanelEditor::PanelEditor( QWidget *parent ) :
@@ -115,16 +138,23 @@ PanelEditor::~PanelEditor() {
 	static_cast<KParts::ReadWritePart *>(cpart)->queryClose();
 }
 
-KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url ) {
+KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url, Mode mode ) {
 	closeURL();
 	curl = url;
-	cmimetype = KMimeType::findByURL( curl ) ->name();
-	cpart = ( *mimes ) [ cmimetype ];
-	if ( !cpart ) cpart = getPart( cmimetype );
+
+	if( mode == Generic ){
+		cmimetype = KMimeType::findByURL( curl ) ->name();
+		cpart = ( *mimes ) [ cmimetype ];
+		if ( !cpart ){ 
+			cpart = getPart( cmimetype );
+			mimes->insert( cmimetype, cpart );
+		}
+	}
+
 	if ( !cpart ) cpart = getPart( "text/plain" );
 	if ( !cpart ) cpart = getPart( "all/allfiles" );
+
 	if ( cpart ) {
-		mimes->insert( cmimetype, cpart );
 		addWidget( cpart->widget() );
 		raiseWidget( cpart->widget() );
 	}

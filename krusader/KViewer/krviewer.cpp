@@ -80,12 +80,12 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	setCentralWidget( &tabBar );
 
 	viewerMenu = new QPopupMenu( this );
-//	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + Key_G, 1 );
-//	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + Key_T, 2 );
-//	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + Key_H, 3 );
-//	viewerMenu->insertSeparator();
-//	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + Key_E, 4 );
-//	viewerMenu->insertSeparator();
+	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + Key_G, 1 );
+	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + Key_T, 2 );
+	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + Key_H, 3 );
+	viewerMenu->insertSeparator();
+	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + Key_E, 4 );
+	viewerMenu->insertSeparator();
 	viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
 	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), Key_F10 );
 
@@ -141,11 +141,12 @@ void KrViewer::view( KURL url ) {
 	}
 
 	PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
-	viewer->addTab(viewWidget,url,"Viewing");
+	KParts::Part* part = viewWidget->openURL(url);
+	viewer->addTab(viewWidget,"Viewing",part);
 
 }
 
-void KrViewer::edit( KURL url, bool ) {
+void KrViewer::edit( KURL url ) {
 	krConfig->setGroup( "General" );
 	QString edit = krConfig->readEntry( "Editor", _Editor );
 
@@ -161,14 +162,6 @@ void KrViewer::edit( KURL url, bool ) {
 		return ;
 	}
 
-//	KIO::StatJob* statJob = KIO::stat( url, false );
-//	connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
-//	busy = true;
-//	while ( busy ) qApp->processEvents();
-//	if( !entry.isEmpty() ) {
-//		KFileItem file( entry, url );
-//	}
-
 	if( !viewer ){	
 		viewer = new KrViewer( krApp );
 	}
@@ -178,16 +171,15 @@ void KrViewer::edit( KURL url, bool ) {
 	}
 
 	PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
-	viewer->addTab(editWidget,url,QString("Editing"));
+	KParts::Part* part = editWidget->openURL(url,PanelViewerBase::Text);
+	viewer->addTab(editWidget,QString("Editing"),part);
 }
 
-void KrViewer::addTab(PanelViewerBase* pvb, KURL& url, QString msg){
-
-	setCaption( msg+": " + url.prettyURL() );
-
-	KParts::Part* part = pvb->openURL(url);
-
+void KrViewer::addTab(PanelViewerBase* pvb, QString msg ,KParts::Part* part){
 	if( !part ) return;
+
+	KURL url = pvb->url();
+	setCaption( msg+": " + url.prettyURL() );
 
 	manager.addPart( part, this );
 	manager.setActivePart( part );
@@ -231,6 +223,43 @@ bool KrViewer::queryExit() {
 	kapp->ref(); // FIX: krusader exits at closing the viewer when minimized to tray
 	return true; // don't let the reference counter reach zero
 }
+
+void KrViewer::viewGeneric(){
+	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	if( !pvb ) return;
+
+	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
+	KParts::Part* part = viewerWidget->openURL(pvb->url(),PanelViewerBase::Generic);
+	viewer->addTab(viewerWidget,QString("Viewing"),part);
+}
+
+void KrViewer::viewText(){
+	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	if( !pvb ) return;
+
+	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
+	KParts::Part* part = viewerWidget->openURL(pvb->url(),PanelViewerBase::Text);
+	viewer->addTab(viewerWidget,QString("Viewing"),part);
+}
+
+void KrViewer::viewHex(){
+	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	if( !pvb ) return;
+
+	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
+	KParts::Part* part = viewerWidget->openURL(pvb->url(),PanelViewerBase::Hex);
+	viewer->addTab(viewerWidget,QString("Viewing"),part);
+}
+
+void KrViewer::editText(){
+	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	if( !pvb ) return;
+
+	PanelViewerBase* editWidget = new PanelEditor(&tabBar);
+	KParts::Part* part = editWidget->openURL(pvb->url(),PanelViewerBase::Text);
+	viewer->addTab(editWidget,QString("Editing"),part);
+}
+
 
 #if 0
 bool KrViewer::editGeneric( QString mimetype, KURL _url ) {

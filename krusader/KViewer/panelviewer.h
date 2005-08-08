@@ -11,18 +11,20 @@
 
 class PanelViewerBase: public QWidgetStack {
 	Q_OBJECT
-public slots:
-	virtual KParts::ReadOnlyPart* openURL( const KURL& ){ return 0;} 
-	virtual bool closeURL(){ return false; }
-
-signals:
-	void openURLRequest( const KURL &url );
-
 public:
+	enum Mode{Generic,Text,Hex};
+
 	PanelViewerBase( QWidget *parent = 0 );
 	virtual ~PanelViewerBase();
 	inline KURL url() const { return curl; }
 	inline KParts::ReadOnlyPart* part() const { return cpart; }
+
+public slots:
+	virtual KParts::ReadOnlyPart* openURL( const KURL&, Mode=Generic ){ return 0;} 
+	virtual bool closeURL(){ return false; }
+
+signals:
+	void openURLRequest( const KURL &url );
 
 protected:
 	QDict<KParts::ReadOnlyPart> *mimes;
@@ -37,7 +39,7 @@ protected:
 class PanelViewer: public PanelViewerBase {
 	Q_OBJECT
 public slots:
-	KParts::ReadOnlyPart* openURL( const KURL &url );
+	KParts::ReadOnlyPart* openURL( const KURL &url, Mode mode=Generic );
 	bool closeURL();
 
 public:
@@ -46,12 +48,13 @@ public:
 
 protected:
 	KParts::ReadOnlyPart *getPart( QString mimetype );
+	KParts::ReadOnlyPart*  getHexPart();
 };
 
 class PanelEditor: public PanelViewerBase {
 	Q_OBJECT
 public slots:
-	KParts::ReadOnlyPart* openURL( const KURL &url );
+	KParts::ReadOnlyPart* openURL( const KURL &url, Mode mode=Generic );
 	bool closeURL();
 	void slotStatResult( KIO::Job* job );
 
@@ -60,7 +63,7 @@ public:
 	~PanelEditor();
 
 protected:
-	KParts::ReadWritePart *getPart( QString mimetype );
+	KParts::ReadWritePart* getPart( QString mimetype );
 
 	bool busy;
 	KIO::UDSEntry entry;

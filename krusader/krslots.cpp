@@ -555,7 +555,7 @@ void KRslots::editDlg(){
 	KURL dest = KChooseDir::getDir(i18n("Enter the filename to edit:"), ACTIVE_PANEL->virtualPath(), ACTIVE_PANEL->virtualPath());
 	if ( dest.isEmpty() ) return ; // the user canceled
 
-    KrViewer::edit( dest, true );
+    KrViewer::edit( dest );
     
     if( dest.upURL().equals( ACTIVE_PANEL->virtualPath(), true ) )
       refresh();
