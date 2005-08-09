@@ -4,6 +4,7 @@
 #include <qapplication.h>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
+#include <kmessagebox.h>
 #include <qdict.h>
 #include <qlabel.h>
 #include <kmimetype.h>
@@ -123,6 +124,9 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart(){
 	if ( factory ) {
 		// Create the part
 		part = ( KParts::ReadOnlyPart * ) factory->create( this, "hexedit2part","KParts::ReadOnlyPart" );
+	}
+	else {
+		 KMessageBox::information(this,i18n("Can't find KHexEdit, reverting to text mode"),i18n("Sorry"),"KHexEditNotFound");
 	}
 
 	return part;
