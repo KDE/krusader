@@ -826,19 +826,15 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
             // directory otherwise as this one
             if ( ( _left && e->key() == Key_Right ) || ( !_left && e->key() == Key_Left ) ) {
                KURL newPath;
-               if ( func->getVFile(view->getCurrentKrViewItem())->vfile_isDir() ) {
-                  newPath = func->files() ->vfs_getFile( view->getCurrentKrViewItem() ->name() );
+               vfile *v = func->getVFile(view->getCurrentKrViewItem());
+               if ( v && v->vfile_isDir() && v->vfile_getName() != ".." ) {
+		  newPath = v->vfile_getUrl();
                } else {
                   newPath = func->files() ->vfs_getOrigin();
                }
                otherPanel->func->openUrl( newPath );
-            } else
-               func->openUrl( otherPanel->func->files() ->vfs_getOrigin() );
-
-            slotFocusOnMe(); // return focus to us!
+            } else func->openUrl( otherPanel->func->files() ->vfs_getOrigin() );
             return ;
-            //} else if (e->state() == ShiftButton) {
-            //	krApp->mainView->leftMng->changePanel(e->key() == Key_Left);
          } else
             e->ignore();
          break;
