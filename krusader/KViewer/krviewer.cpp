@@ -89,7 +89,8 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
 	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), Key_F10 );
 
-	statusBar() ->show();
+	//toolBar() ->insertLined("Edit:",1,"",this,"",true ,i18n("Enter an URL to edit and press enter"));
+	
 	tabBar.setHoverCloseButton(true);
 }
 
@@ -110,6 +111,10 @@ void KrViewer::createGUI( KParts::Part* part ) {
 	         this, SLOT( slotSetStatusBarText( const QString& ) ) );
 
 	KParts::MainWindow::createGUI( part );
+
+	toolBar() ->insertSeparator(1,1);
+	toolBar() ->show();
+	statusBar() ->show();
 
 	// and "fix" the menubar
 	menuBar() ->removeItem( 70 );
