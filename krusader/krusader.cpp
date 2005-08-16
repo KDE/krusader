@@ -245,9 +245,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
    QStringList rightTabs = krConfig->readPathListEntry( "Right Tab Bar" );
    int         leftActiveTab = krConfig->readNumEntry( "Left Active Tab", 0 );
    int         rightActiveTab = krConfig->readNumEntry( "Right Active Tab", 0 );
-   QString     startProfile = QString::null;
-   
-   startProfile = krConfig->readEntry("Starter Profile Name", QString::null );
+   QString     startProfile = krConfig->readEntry("Starter Profile Name", QString::null );
    
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
@@ -262,6 +260,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
         if( !leftTabs[ i ].startsWith( "/" ) && leftTabs[ i ].find( ":/" ) < 0 )
           leftTabs[ i ] = QDir::currentDirPath() + "/" + leftTabs[ i ];
       }
+      startProfile = QString::null;
    }
    if ( args->isSet( "right" ) ) {
       rightTabs = QStringList::split( ',', args->getOption( "right" ) );
@@ -275,6 +274,7 @@ Krusader::Krusader() : KParts::MainWindow(), sysTray( 0 ), isStarting( true ) {
         if( !rightTabs[ i ].startsWith( "/" ) && rightTabs[ i ].find( ":/" ) < 0 )
           rightTabs[ i ] = QDir::currentDirPath() + "/" + rightTabs[ i ];
       }
+      startProfile = QString::null;
    }
             
    if ( args->isSet( "profile" ) )
