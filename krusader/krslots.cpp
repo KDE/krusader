@@ -583,7 +583,11 @@ void KRslots::previousTab() {
 void KRslots::newTab(QListViewItem *item) {
   if (!item) return;
   KrViewItem *it = dynamic_cast<KrViewItem*>(item);
-  if (ITEM2VFILE(ACTIVE_PANEL, it)->vfile_isDir()) {
+  if( it->name() == ".." ) {
+    KURL url = ACTIVE_PANEL->virtualPath();
+    ACTIVE_PANEL_MANAGER->slotNewTab( url.upURL() );
+  }
+  else if (ITEM2VFILE(ACTIVE_PANEL, it)->vfile_isDir()) {
     KURL url = ACTIVE_PANEL->virtualPath();
     url.addPath( it->name() );
     ACTIVE_PANEL_MANAGER->slotNewTab( url );
