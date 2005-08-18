@@ -36,7 +36,7 @@
 
 KrusaderStatus::KrusaderStatus(QWidget *parent, const char *name ):
   KStatusBar(parent,name){
-	insertItem(S_READY,S_READY_ID);
+	insertItem(i18n("Ready."), S_READY_ID);
 	setMaximumHeight(QFontMetrics(font()).height()+2);
 }
 

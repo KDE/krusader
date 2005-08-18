@@ -1,7 +1,7 @@
 /***************************************************************************
                         kguseractions.cpp  -  description
                              -------------------
-    copyright            : (C) 2004 by Jonas Bähr
+    copyright            : (C) 2004 by Jonas Bï¿½r
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -49,7 +49,10 @@
 #include "../UserAction/useractionproperties.h"
 
 //This is the filter in the KFileDialog of Import/Export:
-#define	FILE_FILTER	i18n("*.xml|xml-files") + '\n' + i18n("*|all files")
+/*
+   Does not work with patched gettext-kde
+   #define	FILE_FILTER	i18n("*.xml|xml-files") + '\n' + i18n("*|all files")
+*/
 //This is the name of the config-entry:
 
 
@@ -246,7 +249,7 @@ void KgUserActions::slotRemoveAction() {
 void KgUserActions::slotImport() {
   //kdDebug() << "entering KgUserActions::slotImport" << endl;
   
-  QString filename = KFileDialog::getOpenFileName(QString::null, FILE_FILTER, this);
+  QString filename = KFileDialog::getOpenFileName(QString::null, i18n("*.xml|xml-files\n*|all files"), this);
   if ( filename.isEmpty() )
     return;
   
@@ -309,7 +312,7 @@ void KgUserActions::slotExport() {
   if ( actionList->currentText().isEmpty() )
     return;
   
-  QString filename = KFileDialog::getSaveFileName(QString::null, FILE_FILTER, this);
+  QString filename = KFileDialog::getSaveFileName(QString::null, i18n("*.xml|xml-files\n*|all files"), this);
   if ( filename.isEmpty() )
     return;
 

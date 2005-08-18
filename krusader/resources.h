@@ -35,10 +35,8 @@
 
 // STATUSBAR messages
 #define S_READY_ID            1001
-#define	S_READY								i18n("Ready.")
 
 //////////////////////////// auxilary functions (macros) /////////////////////////
 #define MDISABLE(X)			menuBar()->setItemEnabled(X,false)
 
 #endif
-
