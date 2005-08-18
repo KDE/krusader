@@ -826,11 +826,17 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
             // directory otherwise as this one
             if ( ( _left && e->key() == Key_Right ) || ( !_left && e->key() == Key_Left ) ) {
                KURL newPath;
-               vfile *v = func->getVFile(view->getCurrentKrViewItem());
-               if ( v && v->vfile_isDir() && v->vfile_getName() != ".." ) {
-		  newPath = v->vfile_getUrl();
+               KrViewItem *it = view->getCurrentKrViewItem();
+
+               if( it->name() == ".." ) {
+                  newPath = func->files()->vfs_getOrigin().upURL();
                } else {
-                  newPath = func->files() ->vfs_getOrigin();
+                  vfile *v = func->getVFile( it );
+                  if ( v && v->vfile_isDir() && v->vfile_getName() != ".." ) {
+                     newPath = v->vfile_getUrl();
+                  } else {
+                     newPath = func->files() ->vfs_getOrigin();
+                  }
                }
                otherPanel->func->openUrl( newPath );
             } else func->openUrl( otherPanel->func->files() ->vfs_getOrigin() );
