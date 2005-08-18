@@ -523,6 +523,7 @@ for cat in $catalogs; do
 done
 }
 
+
 extract_messages()
 {
 podir=${podir:-$PWD/po}
@@ -544,16 +545,16 @@ for subdir in $dirs; do
 	    echo "$subdir has *.rc, *.ui or *.kcfg files, but not correct messages line"
 	fi
    fi
-   if find . -name \*.c\* -o -name \*.h\* | xargs fgrep -s -q KAboutData ; then
+   if find . -name \*.c\* -o -name \*.h\* | fgrep -v ".svn" | xargs fgrep -s -q KAboutData ; then
 	echo -e 'i18n("_: NAME OF TRANSLATORS\\n"\n"Your names")\ni18n("_: EMAIL OF TRANSLATORS\\n"\n"Your emails")' > _translatorinfo.cpp
    else echo " " > _translatorinfo.cpp
    fi
    perl -e '$mes=0; while (<STDIN>) { next if (/^(if\s|else\s|endif)/); if (/^messages:/) { $mes=1; print $_; next; } if ($mes) { if (/$\\(XGETTEXT\)/ && / -o/) { s/ -o \$\(podir\)/ _translatorinfo.cpp -o \$\(podir\)/ } print $_; } else { print $_; } }' < Makefile.am | egrep -v '^include ' > _transMakefile
 
-   kdepotpath=${includedir:-${KDEDIR:-`kde-config --prefix`}/include}/kde.pot
+   kdepotpath=${includedir:-`kde-config --expandvars --install include`}/kde.pot
 
    $MAKE -s -f _transMakefile podir=$podir EXTRACTRC="$EXTRACTRC" PREPARETIPS="$PREPARETIPS" srcdir=. \
-	XGETTEXT="${XGETTEXT:-xgettext} --foreign-user -C -ci18n -ki18n -ktr2i18n -kI18N_NOOP -kI18N_NOOP2 -kaliasLocale -x $kdepotpath" messages
+	XGETTEXT="${XGETTEXT:-xgettext-kde} --foreign-user -C -ci18n -ki18n -ktr2i18n -kI18N_NOOP -kI18N_NOOP2 -kaliasLocale -x $kdepotpath" messages
    exit_code=$?
    if test "$exit_code" != 0; then
        echo "make exit code: $exit_code"
@@ -569,6 +570,20 @@ rm -f $tmpname
 
 package_messages()
 {
+# Ensure the patched gettext for KDE is available
+which xgettext-kde >/dev/null 2>&1
+if test $? -eq 1; then
+  echo "xgettext-kde not found. Aborting."
+  echo
+  echo "Get the patched gettext for KDE (0.10.35) and install the binaries"
+  echo "with \"-kde\" suffix. Make sure that at least xgettext-kde is in your \$PATH".
+  echo
+  echo "ftp://ftp.kde.org/pub/kde/devel/gettext-kde/"
+  echo
+
+  exit
+fi
+
 rm -rf po.backup
 mkdir po.backup
 
