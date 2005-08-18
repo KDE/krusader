@@ -58,7 +58,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    // ------------ the OPEN option - open prefered service
    insertItem( i18n("Open/Run"), OPEN_ID );
    if ( !multipleSelections ) { // meaningful only if one file is selected
-		changeItem( OPEN_ID, item->icon(), i18n(vf->vfile_isExecutable() && !vf->vfile_isDir() ? "Run" : "Open" ) );
+		changeItem( OPEN_ID, item->icon(), vf->vfile_isExecutable() && !vf->vfile_isDir() ? i18n("Run") : i18n("Open") );
       // open in a new tab (if folder)
       if ( vf->vfile_isDir() ) {
          insertItem( i18n( "Open in a new tab" ), OPEN_TAB_ID );
