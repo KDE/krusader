@@ -555,31 +555,6 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 	// now ask the user if he want to delete:
 	krConfig->setGroup( "Advanced" );
 	if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
-
-		/**
-		TODO revert if multiple plural support doesn't work,
-			 but fix the word puzzles and local8Bit() which breaks encoding
-
-		QString s, b;
-		if ( fileNames.count() == 1 )
-			s = i18n( " this item?" );
-		else
-			s.sprintf( i18n( " these %d items?" ).local8Bit(), fileNames.count() );
-		
-		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
-			s = i18n( "trash" ) + s;
-			b = i18n( "&Trash" );
-		} else {
-			s = i18n( "delete" ) + s;
-			b = i18n( "&Delete" );
-		}
-		// show message
-		// note: i'm using continue and not yes/no because the yes/no has cancel as default button
-		if ( KMessageBox::warningContinueCancelList( krApp, i18n( "Are you sure you want to " ) + s
-		                                             , fileNames, i18n( "Warning" ), b ) != KMessageBox::Continue )
-			return ;
-		*/
-
 		QString s, b;
 
 		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
