@@ -4,14 +4,14 @@
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 # Martin Sixta <lukumo84@seznam.cz>, 2003, 2004.
-# Vaclav Juza <vaclavjuza@seznam.cz>, 2005.
+# Václav Jůza <vaclavjuza@seznam.cz>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-18 12:00+0200\n"
-"PO-Revision-Date: 2005-06-25 04:07+0200\n"
+"PO-Revision-Date: 2005-08-19 14:05+0200\n"
 "Last-Translator: Vaclav Juza <vaclavjuza@seznam.cz>\n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -1700,14 +1700,12 @@ msgid "Moving into archive is disabled"
 msgstr "Přesun do archívu není povolený"
 
 #: Panel/panelfunc.cpp:390
-#, fuzzy
 msgid "Move %1 to:"
-msgstr "Přesunout %d souborů do:"
+msgstr "Přesunout %d do:"
 
 #: Panel/panelfunc.cpp:392
-#, fuzzy
 msgid "Move %1 files to:"
-msgstr "Přesunout %d souborů do:"
+msgstr "Přesunout %1 souborů do:"
 
 #: Panel/panelfunc.cpp:428
 msgid "You can't move files to this file system"
@@ -1722,14 +1720,12 @@ msgid "Directory's name:"
 msgstr "Název adresáře:"
 
 #: Panel/panelfunc.cpp:502
-#, fuzzy
 msgid "Copy %1 to:"
-msgstr "Kopírovat %d souborů do:"
+msgstr "Kopírovat %1 do:"
 
 #: Panel/panelfunc.cpp:504
-#, fuzzy
 msgid "Copy %1 files to:"
-msgstr "Kopírovat %d souborů do:"
+msgstr "Kopírovat %1 souborů do:"
 
 #: Panel/panelfunc.cpp:532
 msgid "You can't copy files to this file system"
@@ -1745,10 +1741,13 @@ msgid ""
 "_n: Do you really want to move this item to the trash?\n"
 "Do you really want to move these %n items to the trash?"
 msgstr ""
+"Opravdu chcete tuto položku vyhodit do koše?\n"
+"Opravdu chcete tyto %n položky vyhodit do koše?\n"
+"Opravdu chcete těchto %n položek vyhodit do koše?"
 
 #: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:587
 msgid "&Trash"
-msgstr "&Koš"
+msgstr "Vyhodit do &koše"
 
 #: Panel/panelfunc.cpp:589
 #, c-format
@@ -1756,6 +1755,9 @@ msgid ""
 "_n: Do you really want to delete this item?\n"
 "Do you really want to delete these %n items?"
 msgstr ""
+"Opravdu chcete smazat tuto položku?\n"
+"Opravdu chcete smazat tyto %n položky?\n"
+"Opravdu chcete smazat těchto %n položek?"
 
 #: Panel/panelfunc.cpp:614
 msgid "Directory "
@@ -1921,8 +1923,7 @@ msgstr "Zde můžete pojmenovat skupinu souborů"
 
 #: krusader.cpp:306
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
+msgstr "Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
 
 #: krusader.cpp:362
 msgid ""
@@ -1940,8 +1941,7 @@ msgstr ""
 msgid ""
 "Welcome to Krusader! As this is your first run, Krusader will now run "
 "Konfigurator."
-msgstr ""
-"Vítejte v Krusaderu. Protože jsem spuštěn poprvé, spustím Konfigurátor."
+msgstr "Vítejte v Krusaderu. Protože jsem spuštěn poprvé, spustím Konfigurátor."
 
 #: krusader.cpp:426
 msgid "F3 View Dialog"
@@ -2188,9 +2188,8 @@ msgid "Manage user actions"
 msgstr "Upravit uživatelské akce"
 
 #: krusader.cpp:611
-#, fuzzy
 msgid "Select Remote Charset"
-msgstr "Označit položky"
+msgstr "Nastavit vzdálenou znakovou sadu"
 
 #: krusader.cpp:614
 msgid "F2 - Open a terminal"
@@ -2302,7 +2301,7 @@ msgstr "Žádný soubor není vybrán, nebo vybraný nemůže být zobrazen."
 
 #: KViewer/panelviewer.cpp:129
 msgid "Can't find KHexEdit, reverting to text mode"
-msgstr ""
+msgstr "Nemohu najít KHexEdit, přepínám do textového režimu"
 
 #: KViewer/krviewer.cpp:83
 msgid "&Generic viewer"
@@ -2321,9 +2320,8 @@ msgid "Text &editor"
 msgstr "Textový &editor"
 
 #: KViewer/krviewer.cpp:89
-#, fuzzy
 msgid "&Close current tab"
-msgstr "Zavřít záložku"
+msgstr "&Zavřít současnou záložku"
 
 #: KViewer/krviewer.cpp:121
 msgid "&KrViewer"
@@ -2552,8 +2550,7 @@ msgstr ""
 "Volejte vývojáře (v angličtině samozřejmě :-)."
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správce připojení dospěl k vnitřní chybě. Upozorněte prosím vývojáře. "
 "(anglicky)Děkujeme."
@@ -2663,9 +2660,8 @@ msgid "Right clicking pops context menu immediately"
 msgstr "Pravé tlačítko vybalí kontextovou nabídku okamžitě"
 
 #: Dialogs/krdialogs.cpp:213
-#, fuzzy
 msgid "If checked, use a mode based on KDE's style."
-msgstr "Zaškrtnutí tohoto přepínače vytvoří režim založený na stylu KDE"
+msgstr "Při zaškrtnutí tohoto přepínače se použije režim založený na stylu KDE"
 
 #: Dialogs/krdialogs.cpp:214
 msgid "If checked, left clicking an item will select it."
@@ -2680,13 +2676,13 @@ msgstr ""
 "neodznačí ostatní, již označené položky."
 
 #: Dialogs/krdialogs.cpp:217
-#, fuzzy
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
 msgstr ""
 "Pokud je zaškrtnuto, shift/ctrl+kliknutí levým tlačítkem na položku ji "
-"označí. Nemá význam, pokud je zaškrtnuto 'Levé tlačítko označí'."
+"označí. \n"
+"Pozn.: Nemá význam, pokud je zaškrtnuto 'Levé tlačítko označí'."
 
 #: Dialogs/krdialogs.cpp:219
 msgid "If checked, right clicking an item will select it."
@@ -2701,53 +2697,52 @@ msgstr ""
 "neodznačí ostatní, již označené položky."
 
 #: Dialogs/krdialogs.cpp:222
-#, fuzzy
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"Pokud je zaškrtnuto, shift/ctrl+kliknutí levým tlačítkem na položku ji "
-"označí. Nemá význam, pokud je zaškrtnuto 'Pravé tlačítko označí'."
+"Pokud je zaškrtnuto, shift/ctrl+kliknutí pravým tlačítkem na položku ji "
+"označí. \n"
+"Pozn.: Nemá význam, pokud je zaškrtnuto 'Pravé tlačítko označí'."
 
 #: Dialogs/krdialogs.cpp:224
-#, fuzzy
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. \n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
 "Pokud zaškrtnuto, stisknutí mezerníku označí současnou položku a posune "
-"dolů. Jinak se současná položka označí, ale zůstane současnou."
+"dolů.\n"
+"Jinak se současná položka označí, ale zůstane současnou."
 
 #: Dialogs/krdialogs.cpp:226
-#, fuzzy
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) \n"
 "calculate space occupied by the folder (recursively)."
 msgstr ""
-"Pokud zaškrtnuto, stisknutí mezerníku, když je současná položka adresář, "
+"Pokud zaškrtnuto, stisknutí mezerníku, když je současná položka adresář, \n"
 "spočítá obsazené místo složky (rekurzivně)."
 
 #: Dialogs/krdialogs.cpp:228
-#, fuzzy
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. \n"
 "Otherwise, current item is not changed."
 msgstr ""
 "Pokud zaškrtnuto, stisknutí klávesy INSERT označí současnou položku a posune "
-"dolů. jinak se současná položka nemění."
+"dolů. \n"
+"Jinak se současná položka nemění."
 
 #: Dialogs/krdialogs.cpp:230
-#, fuzzy
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
 "context menu. \n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
 "Pokud zaškrtnuto, po kliknutí pravým tlačítkem se kontextová nabídka objeví "
-"ihned. Jinak musí uživatel čekat 500ms."
+"ihned. \n"
+"Jinak musí uživatel stisknout a držet tlačítko 500ms."
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -2762,11 +2757,14 @@ msgid "Krusader Progress"
 msgstr "Krusader - postup"
 
 #: Dialogs/krprogress.cpp:165
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: %n directory\n"
 "%n directories"
-msgstr "Otevřít seznam s historií adresářů"
+msgstr ""
+"%n adresář\n"
+"%n adresáře\n"
+"%n adresářů"
 
 #: Dialogs/krprogress.cpp:166
 #, c-format
@@ -2774,6 +2772,9 @@ msgid ""
 "_n: %n file\n"
 "%n files"
 msgstr ""
+"%n soubor\n"
+"%n soubory\n"
+"%n souborů"
 
 #: Dialogs/krprogress.cpp:172
 msgid "%1% of %2 "
@@ -2792,12 +2793,18 @@ msgid ""
 "_n: %1 / %n directory\n"
 "%1 / %n directories"
 msgstr ""
+"%1 z %n adresáře\n"
+"%1 ze %n adresářů\n"
+"%1 z %n adresářů"
 
 #: Dialogs/krprogress.cpp:203 Dialogs/krprogress.cpp:217
 msgid ""
 "_n: %1 / %n file\n"
 "%1 / %n files"
 msgstr ""
+"%1 z %n souboru\n"
+"%1 ze %n souborů\n"
+"%1 z %n souborů"
 
 #: Dialogs/krprogress.cpp:225
 msgid "Working"
@@ -3392,8 +3399,7 @@ msgstr "&Otevřít"
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!"
-msgstr ""
-"<qt>Adresář <i>'%1'</i> bude <b>i s obsahem</b> a <b>trvale</b> odstraněn!"
+msgstr "<qt>Adresář <i>'%1'</i> bude <b>i s obsahem</b> a <b>trvale</b> odstraněn!"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!"
@@ -3680,8 +3686,7 @@ msgstr "Používat magická čísla MIME typů"
 
 #: Konfigurator/kggeneral.cpp:65
 msgid "Mimetype magic allows better distinction of file types, but is slower"
-msgstr ""
-"Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší"
+msgstr "Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší"
 
 #: Konfigurator/kggeneral.cpp:71
 msgid "Editor:"
@@ -4245,8 +4250,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Přepínací tlačítko pro synchronizované prohlížení"
 
 #: Konfigurator/kglookfeel.cpp:233
-msgid ""
-"Each directory-change in the panel is also performed in the other panel."
+msgid "Each directory-change in the panel is also performed in the other panel."
 msgstr "Každá změna v jednom panelu se provede rovněž v protilehlém panelu."
 
 #: Konfigurator/kglookfeel.cpp:296 Konfigurator/kglookfeel.cpp:314
@@ -4285,8 +4289,7 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:58
 msgid "MountMan won't (un)mount the following mount-points:"
-msgstr ""
-"Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
+msgstr "Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
 
 #: Konfigurator/kgadvanced.cpp:72
 msgid "Confirmations"
@@ -4857,18 +4860,15 @@ msgid "Test archive when finished packing"
 msgstr "Zkontrolovat archív po sbalení"
 
 #: Konfigurator/kgarchives.cpp:91
-msgid ""
-"If checked, Krusader will test the archive's integrity after packing it."
-msgstr ""
-"Je-li zvoleno, Krusader bude kontrolovat správnost archívu po zabalení."
+msgid "If checked, Krusader will test the archive's integrity after packing it."
+msgstr "Je-li zvoleno, Krusader bude kontrolovat správnost archívu po zabalení."
 
 #: Konfigurator/kgarchives.cpp:92
 msgid "Test archive before unpacking"
 msgstr "Zkontrolovat archív před rozbalením"
 
 #: Konfigurator/kgarchives.cpp:92
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Některé poškozené archívy mohou způsobit spadnutí programu. Proto se "
 "doporučuje zapnout testování archívů."
@@ -5099,11 +5099,12 @@ msgid "Remove this action?"
 msgstr "Odstranit tuto akci?"
 
 #: Konfigurator/kguseractions.cpp:252 Konfigurator/kguseractions.cpp:315
-#, fuzzy
 msgid ""
 "*.xml|xml-files\n"
 "*|all files"
-msgstr "*.xml|xml soubory"
+msgstr ""
+"*.xml|xml soubory\n"
+"*|všechny soubory"
 
 #: Konfigurator/kguseractions.cpp:259
 msgid "The file you've chosen doesn't seem to be a valid action-file."
@@ -5351,8 +5352,7 @@ msgid "Not a valid CRC file!"
 msgstr "Neplatný CRC soubor!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Kontrola platnosti je nemožná bez platného CRC (kontrolní součet) souboru. "
 "Pokračovat ve slučování?"
@@ -5393,29 +5393,3 @@ msgstr "Chyba při čtení souboru %1!"
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
 
-#~ msgid "Move "
-#~ msgstr "Přesunout "
-
-#~ msgid "Copy "
-#~ msgstr "Kopírovat "
-
-#~ msgid " this item?"
-#~ msgstr " tato položka?"
-
-#~ msgid " these %d items?"
-#~ msgstr " těchto %d položek?"
-
-#~ msgid "%n directory"
-#~ msgstr "%n adresář"
-
-#~ msgid "%n file"
-#~ msgstr " %n soubor"
-
-#~ msgid "%1 / %n directory"
-#~ msgstr "%1 / %n adresář"
-
-#~ msgid "%1 / %n file"
-#~ msgstr "%1 / %n souborů"
-
-#~ msgid "*|all files"
-#~ msgstr "*|Všechny soubory"
