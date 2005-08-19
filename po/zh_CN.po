@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-18 12:00+0200\n"
-"PO-Revision-Date: 2005-05-13 00:08+0800\n"
+"PO-Revision-Date: 2005-08-19 08:18+0800\n"
 "Last-Translator: Jinghua Luo <luojinghua@msn.com>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1151,15 +1151,16 @@ msgid ""
 msgstr ""
 
 #: UserAction/expander.cpp:798 UserAction/expander.cpp:803
-#, fuzzy
 msgid "JavaScript error"
-msgstr "JavaScript 控制台"
+msgstr "JavaScript 错误"
 
 #: UserAction/expander.cpp:802
 msgid ""
 "In %1:\n"
 "There is an error in the JavaScript"
 msgstr ""
+"在 %1中:\n"
+"JavaScript 错误。"
 
 #: UserAction/kraction.cpp:43
 msgid "Kill"
@@ -1220,9 +1221,8 @@ msgid "Open the popup panel"
 msgstr "打开弹出面板"
 
 #: Panel/listpanel.cpp:191
-#, fuzzy
 msgid "Clear the location bar"
-msgstr "转到位置条"
+msgstr "清除位置栏"
 
 #: Panel/listpanel.cpp:198
 msgid "Use superb KDE file dialog to choose location. "
@@ -1502,9 +1502,8 @@ msgstr ""
 "在 %1 个目录 和 %2 个文件中"
 
 #: Panel/krpopupmenu.cpp:59
-#, fuzzy
 msgid "Open/Run"
-msgstr "打开按钮"
+msgstr "打开/运行"
 
 #: Panel/krpopupmenu.cpp:61
 msgid "Run"
@@ -1581,9 +1580,8 @@ msgid "Send by email"
 msgstr "用邮件发送"
 
 #: Panel/krpopupmenu.cpp:186
-#, fuzzy
 msgid "Synchronize selected files"
-msgstr "同步目录"
+msgstr "同步选择的文件"
 
 #: Panel/krpopupmenu.cpp:191
 msgid "Copy to Clipboard"
@@ -1598,19 +1596,16 @@ msgid "Paste from Clipboard"
 msgstr "从剪切板中粘贴"
 
 #: Panel/krpopupmenu.cpp:215
-#, fuzzy
 msgid "Folder"
-msgstr "新建文件夹"
+msgstr "文件夹"
 
 #: Panel/krpopupmenu.cpp:216
-#, fuzzy
 msgid "Text file"
 msgstr "文本文件"
 
 #: Panel/krpopupmenu.cpp:219
-#, fuzzy
 msgid "Create new"
-msgstr "创建到"
+msgstr "新建"
 
 #: Panel/krpopupmenu.cpp:261
 msgid "Are you sure you want to shred "
@@ -1690,14 +1685,12 @@ msgid "Moving into archive is disabled"
 msgstr "移动到档案己禁用"
 
 #: Panel/panelfunc.cpp:390
-#, fuzzy
 msgid "Move %1 to:"
-msgstr "移动 %d 个文件到"
+msgstr "移动 %1 到："
 
 #: Panel/panelfunc.cpp:392
-#, fuzzy
 msgid "Move %1 files to:"
-msgstr "移动 %d 个文件到"
+msgstr "移动 %1 到："
 
 #: Panel/panelfunc.cpp:428
 msgid "You can't move files to this file system"
@@ -1712,14 +1705,12 @@ msgid "Directory's name:"
 msgstr "目录名称："
 
 #: Panel/panelfunc.cpp:502
-#, fuzzy
 msgid "Copy %1 to:"
-msgstr "复制 %d 个文件到："
+msgstr "复制 %1 到："
 
 #: Panel/panelfunc.cpp:504
-#, fuzzy
 msgid "Copy %1 files to:"
-msgstr "复制 %d 个文件到："
+msgstr "复制 %1 到："
 
 #: Panel/panelfunc.cpp:532
 msgid "You can't copy files to this file system"
@@ -2176,9 +2167,8 @@ msgid "Manage user actions"
 msgstr "管理用户动作"
 
 #: krusader.cpp:611
-#, fuzzy
 msgid "Select Remote Charset"
-msgstr "选择项目"
+msgstr "选择远程主机编码"
 
 #: krusader.cpp:614
 msgid "F2 - Open a terminal"
@@ -2309,9 +2299,8 @@ msgid "Text &editor"
 msgstr "文件编辑器(&E)"
 
 #: KViewer/krviewer.cpp:89
-#, fuzzy
 msgid "&Close current tab"
-msgstr "关闭当前标签"
+msgstr "关闭当前标签(&C)"
 
 #: KViewer/krviewer.cpp:121
 msgid "&KrViewer"
@@ -2647,7 +2636,6 @@ msgid "Right clicking pops context menu immediately"
 msgstr "右键单击立即弹出菜单"
 
 #: Dialogs/krdialogs.cpp:213
-#, fuzzy
 msgid "If checked, use a mode based on KDE's style."
 msgstr "选择这个将会创建基于 kde 样式的模式"
 
@@ -2662,13 +2650,12 @@ msgid ""
 msgstr "如果您选择了它，左键单击将会选择项目， 但不是取消其它已经的项目。"
 
 #: Dialogs/krdialogs.cpp:217
-#, fuzzy
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"如果您选择了它， shift/ctrl left同时单击将会选择您的项目。注意， 如果您选择了"
-"左键选择，这项选择是没有任何意义的。"
+"如果您选择了它， shift/ctrl 同时单击左键将会选择您的项目。\n"
+"注意， 如果您选择了左键选择，这项选择是没有任何意义的。"
 
 #: Dialogs/krdialogs.cpp:219
 msgid "If checked, right clicking an item will select it."
@@ -2681,13 +2668,12 @@ msgid ""
 msgstr ""
 
 #: Dialogs/krdialogs.cpp:222
-#, fuzzy
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"如果您选择了它， shift/ctrl left同时单击将会选择您的项目。注意， 如果您选择了"
-"左键选择，这项选择是没有任何意义的。"
+"如果您选择了它， shift/ctrl 同时单击左键将会选择您的项目。\n"
+"注意， 如果您选择了左键选择，这项选择是没有任何意义的。"
 
 #: Dialogs/krdialogs.cpp:224
 msgid ""
@@ -2730,11 +2716,13 @@ msgid "Krusader Progress"
 msgstr "Krusader 进度"
 
 #: Dialogs/krprogress.cpp:165
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: %n directory\n"
 "%n directories"
-msgstr "打开目录历史记录列表"
+msgstr ""
+"_n: %n 个目录\n"
+"%n 个目录"
 
 #: Dialogs/krprogress.cpp:166
 #, c-format
@@ -2742,10 +2730,12 @@ msgid ""
 "_n: %n file\n"
 "%n files"
 msgstr ""
+"_n: %n 个文件\n"
+"%n 个文件"
 
 #: Dialogs/krprogress.cpp:172
 msgid "%1% of %2 "
-msgstr "%2 中的%1"
+msgstr "%2 中的 %1"
 
 #: Dialogs/krprogress.cpp:174
 msgid " (Reading)"
@@ -2760,12 +2750,16 @@ msgid ""
 "_n: %1 / %n directory\n"
 "%1 / %n directories"
 msgstr ""
+"_n: %1 /%n 个目录\n"
+"%1 / %n 个目录"
 
 #: Dialogs/krprogress.cpp:203 Dialogs/krprogress.cpp:217
 msgid ""
 "_n: %1 / %n file\n"
 "%1 / %n files"
 msgstr ""
+"_n: %1 / %n 个文件\n"
+"%1 / %n 个文件"
 
 #: Dialogs/krprogress.cpp:225
 msgid "Working"
@@ -2773,7 +2767,7 @@ msgstr "工作中"
 
 #: Dialogs/krprogress.cpp:233
 msgid "%1/s ( %2 remaining )"
-msgstr "%1/s ( 剩余%2)"
+msgstr "%1/s (剩余 %2)"
 
 #: Dialogs/packgui.cpp:90
 msgid "Please select a directory"
@@ -3135,24 +3129,20 @@ msgid "Synchronize"
 msgstr "同步"
 
 #: Synchronizer/synchronizergui.cpp:1424
-#, fuzzy
 msgid "Selected files from target directory:"
-msgstr "选中当前目录中所有的文件"
+msgstr "选择目标目录中所有的文件："
 
 #: Synchronizer/synchronizergui.cpp:1425
-#, fuzzy
 msgid "Selected files from source directory:"
-msgstr "选中当前目录中所有的文件"
+msgstr "选择源目录中所有的文件："
 
 #: Synchronizer/synchronizergui.cpp:1429
-#, fuzzy
 msgid "Selected files from left directory:"
-msgstr "分解文件 %1 到目录："
+msgstr "选择左边目录中的文件："
 
 #: Synchronizer/synchronizergui.cpp:1430
-#, fuzzy
 msgid "Selected files from right directory:"
-msgstr "分解文件 %1 到目录："
+msgstr "选择右边目录中的文件："
 
 #: Synchronizer/synchronizergui.cpp:1434
 msgid "Target directory:"
@@ -3890,15 +3880,14 @@ msgid "Case sensitive quicksearch"
 msgstr "大小写敏感快速搜索"
 
 #: Konfigurator/kglookfeel.cpp:74
-#, fuzzy
 msgid "Numeric Permissions"
-msgstr "Krusader 权限"
+msgstr "数字式权限"
 
 #: Konfigurator/kglookfeel.cpp:74
 msgid ""
 "Permission column (Look & Feel 'Panel' Tab) shows octal numbers '0755' "
 "instead of 'rwxr-xr-x'."
-msgstr ""
+msgstr "权限栏 (感观面板栏) 显示八进制数字如 '0755' 而不是 'rwxr-xr-x'。"
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Single click / Double click Selection:"
@@ -4047,17 +4036,16 @@ msgid "Krusader Permission"
 msgstr "Krusader 权限"
 
 #: Konfigurator/kglookfeel.cpp:152
-#, fuzzy
 msgid "Show the permissions of the current user only, e.g. '-rw'"
 msgstr "只显示当然用户的权限，比如 '-rw' "
 
 #: Konfigurator/kglookfeel.cpp:153
 msgid "Show the Owner Column"
-msgstr "显示所有者列 "
+msgstr "显示所有者栏 "
 
 #: Konfigurator/kglookfeel.cpp:154
 msgid "Show the Group Column"
-msgstr "显示用户组列"
+msgstr "显示组栏"
 
 #: Konfigurator/kglookfeel.cpp:165
 msgid "Use icons in the filenames"
@@ -4073,7 +4061,7 @@ msgstr "使用可读性的文件大小"
 
 #: Konfigurator/kglookfeel.cpp:166
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr "文件‘大小’以 B, KB, MB 和 GB来显示而不是字节数。"
+msgstr "文件‘大小’以 B, KB, MB 和 GB 来表示而不是字节数。"
 
 #: Konfigurator/kglookfeel.cpp:176
 msgid "Toolbar"
@@ -4116,14 +4104,12 @@ msgid "Visible Panel Toolbar buttons"
 msgstr "显示面板工具栏按钮"
 
 #: Konfigurator/kglookfeel.cpp:227
-#, fuzzy
 msgid "Clear location bar button"
-msgstr "转到位置条"
+msgstr "位置栏清除按钮"
 
 #: Konfigurator/kglookfeel.cpp:227
-#, fuzzy
 msgid "Clears the location bar"
-msgstr "转到位置条"
+msgstr "清除位置栏"
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Open button"
