@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-08-18 12:00+0200\n"
-"PO-Revision-Date: 2005-06-19 22:08+0200\n"
+"PO-Revision-Date: 2005-08-19 20:14+0200\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>\n"
 "Language-Team:  <kde-i18n-nl@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -335,8 +335,7 @@ msgstr "Mime bestandstype"
 
 #: GUI/actionpropertybase.cpp:442
 msgid "Show the action only for these filenames (you may use '?' and '*')"
-msgstr ""
-"Actie alleen tonen voor deze bestand types (u mag '?' en '*' gebruiken)"
+msgstr "Actie alleen tonen voor deze bestand types (u mag '?' en '*' gebruiken)"
 
 #: GUI/actionpropertybase.cpp:446
 msgid "Filename"
@@ -348,8 +347,7 @@ msgstr "Iedere programma-aanroep afzonderlijk bevestigen"
 
 #: GUI/actionpropertybase.cpp:448
 msgid "This allows you to tweak the command line before being executed"
-msgstr ""
-"Laat u toe om de commandoregel aan te passen voordat hij uitgevoerd wordt"
+msgstr "Laat u toe om de commandoregel aan te passen voordat hij uitgevoerd wordt"
 
 #: GUI/actionpropertybase.cpp:449
 msgid "Run as different user"
@@ -411,8 +409,7 @@ msgstr ""
 
 #: GUI/kcmdline.cpp:98
 msgid "If pressed, Krusader executes command line in a terminal."
-msgstr ""
-"Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
+msgstr "Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
 
 #: GUI/kcmdline.cpp:104
 msgid ""
@@ -1068,8 +1065,7 @@ msgstr "Wat moet er gekopieerd worden"
 
 #: UserAction/expander.cpp:415
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Aanhechten van de huidige klembord-inhoud met deze scheider (optioneel)"
+msgstr "Aanhechten van de huidige klembord-inhoud met deze scheider (optioneel)"
 
 #: UserAction/expander.cpp:429
 msgid "Copy a file/folder"
@@ -1436,8 +1432,7 @@ msgstr " naar:"
 
 #: Panel/panelpopup.cpp:51
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
+msgstr "Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
 
 #: Panel/panelpopup.cpp:59
 msgid "Preview Panel: display a preview of the current file"
@@ -1636,8 +1631,7 @@ msgstr "Bent u zeker dat u wilt vernietigen : "
 
 #: Panel/krpopupmenu.cpp:262
 msgid " ? Once shred, the file is gone forever !!!"
-msgstr ""
-" ? Eenmaal vernietigd (shred), dan is het bestand voor altijd verloren !!!"
+msgstr " ? Eenmaal vernietigd (shred), dan is het bestand voor altijd verloren !!!"
 
 #: KViewer/krviewer.cpp:166 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:345
 #: krslots.cpp:442
@@ -1709,14 +1703,12 @@ msgid "Moving into archive is disabled"
 msgstr "Verplaatsen naar een archief is uitgeschakeld"
 
 #: Panel/panelfunc.cpp:390
-#, fuzzy
 msgid "Move %1 to:"
-msgstr "%d bestanden verplaatsen naar:"
+msgstr "Verplaats %1 naar:"
 
 #: Panel/panelfunc.cpp:392
-#, fuzzy
 msgid "Move %1 files to:"
-msgstr "%d bestanden verplaatsen naar:"
+msgstr "%1 bestanden verplaatsen naar:"
 
 #: Panel/panelfunc.cpp:428
 msgid "You can't move files to this file system"
@@ -1731,14 +1723,12 @@ msgid "Directory's name:"
 msgstr "Mapnaam:"
 
 #: Panel/panelfunc.cpp:502
-#, fuzzy
 msgid "Copy %1 to:"
-msgstr "%d bestanden kopiëren naar:"
+msgstr "Kopieer %1 naar:"
 
 #: Panel/panelfunc.cpp:504
-#, fuzzy
 msgid "Copy %1 files to:"
-msgstr "%d bestanden kopiëren naar:"
+msgstr "%1 bestanden kopiëren naar:"
 
 #: Panel/panelfunc.cpp:532
 msgid "You can't copy files to this file system"
@@ -1754,6 +1744,8 @@ msgid ""
 "_n: Do you really want to move this item to the trash?\n"
 "Do you really want to move these %n items to the trash?"
 msgstr ""
+"Bent u er zeker van dat u dit item naar de prullenbak wil verplaatsen?\n"
+"Bent u er zeker van dat u %n items naar de prullenbak wil verplaatsen?\n?"
 
 #: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:587
 msgid "&Trash"
@@ -1765,6 +1757,8 @@ msgid ""
 "_n: Do you really want to delete this item?\n"
 "Do you really want to delete these %n items?"
 msgstr ""
+"Bent u er zeker van dat u dit item wil wissen?\n"
+"Bent u er zeker van dat u deze %n items wil wissen?"
 
 #: Panel/panelfunc.cpp:614
 msgid "Directory "
@@ -2201,9 +2195,8 @@ msgid "Manage user actions"
 msgstr "Gebruikers acties beheren"
 
 #: krusader.cpp:611
-#, fuzzy
 msgid "Select Remote Charset"
-msgstr "Items selecteren"
+msgstr "Remote Taalcodering selecteren"
 
 #: krusader.cpp:614
 msgid "F2 - Open a terminal"
@@ -2317,7 +2310,7 @@ msgstr ""
 
 #: KViewer/panelviewer.cpp:129
 msgid "Can't find KHexEdit, reverting to text mode"
-msgstr ""
+msgstr "Kan KHexEdit niet vinden, tekst modus wordt toegepast"
 
 #: KViewer/krviewer.cpp:83
 msgid "&Generic viewer"
@@ -2336,9 +2329,8 @@ msgid "Text &editor"
 msgstr "Tekst &editor"
 
 #: KViewer/krviewer.cpp:89
-#, fuzzy
 msgid "&Close current tab"
-msgstr "Huidige tab sluiten"
+msgstr "&Huidige tab sluiten"
 
 #: KViewer/krviewer.cpp:121
 msgid "&KrViewer"
@@ -2565,8 +2557,7 @@ msgstr ""
 "Verwittig gelieve de Krusader ontwikkelaars"
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan heeft een interne fout. Verwittig gelieve de Krusader "
 "ontwikkelaars. Dank U."
@@ -2676,11 +2667,8 @@ msgid "Right clicking pops context menu immediately"
 msgstr "Rechter muisknop laat het context menu onmiddellijk verschijnen."
 
 #: Dialogs/krdialogs.cpp:213
-#, fuzzy
 msgid "If checked, use a mode based on KDE's style."
-msgstr ""
-"Indien aangevinkt, zal er een modus gebruikt worden die gebaseerd is op de "
-"KDE stijl."
+msgstr "Indien aangevinkt, zal er een modus gebruikt worden die gebaseerd is op de KDE stijl."
 
 #: Dialogs/krdialogs.cpp:214
 msgid "If checked, left clicking an item will select it."
@@ -2690,18 +2678,13 @@ msgstr "Indien aangevinkt, links klikken zal selecteren."
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
-msgstr ""
-"Indien aangevinkt, links klikken zal een item selecteren, maar zal andere "
-"reeds geselecteerde items niet deselecteren."
+msgstr "Indien aangevinkt, links klikken zal een item selecteren, maar zal andere reeds geselecteerde items niet deselecteren."
 
 #: Dialogs/krdialogs.cpp:217
-#, fuzzy
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
-msgstr ""
-"Indien aangevinkt, shift/ctrl links klikken zal items selecteren. Nota: dit "
-"is betekenisloos inden 'Linker knop selecteert' is aangevinkt."
+msgstr "Indien aangevinkt, shift/ctrl links klikken zal items selecteren. \n Nota: dit is betekenisloos inden 'Linker knop selecteert' is aangevinkt."
 
 #: Dialogs/krdialogs.cpp:219
 msgid "If checked, right clicking an item will select it."
@@ -2711,62 +2694,43 @@ msgstr "Indien aangevinkt, rechts klikken zal een item selecteren."
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
-msgstr ""
-"Indien aangevinkt, rechts klikken zal een item selecteren, maar zal andere "
-"reeds geselecteerde items niet deselecteren."
+msgstr "Indien aangevinkt, rechts klikken zal een item selecteren, maar zal andere reeds geselecteerde items niet deselecteren."
 
 #: Dialogs/krdialogs.cpp:222
-#, fuzzy
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
-msgstr ""
-"Indien aangevinkt, shift/ctrl rechts klikken zal items selecteren. Nota: dit "
-"is betekenisloos inden 'Rechter knop selecteert' is aangevinkt."
+msgstr "Indien aangevinkt, shift/ctrl rechts klikken zal items selecteren.\n Nota: dit is betekenisloos inden 'Rechter knop selecteert' is aangevinkt."
 
 #: Dialogs/krdialogs.cpp:224
-#, fuzzy
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. \n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
-"Indien aangevinkt, spatiebalk induwen zal het huidig item selecteren en één "
-"plaats naar beneden gaan. Anders zal het huidig item selecteren en op de "
-"huidige plaats blijven."
+"Indien aangevinkt, spatiebalk induwen zal het huidig item selecteren en één plaats naar beneden gaan.\n "
+"Anders zal het huidig item selecteren en op de  huidige plaats blijven."
 
 #: Dialogs/krdialogs.cpp:226
-#, fuzzy
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) \n"
 "calculate space occupied by the folder (recursively)."
-msgstr ""
-"Indien aangevinkt, de spatiebalk induwen wanneer het huidig item een map is, "
-"zal buiten het selecteren van de map ook recursief de verbruikte ruimte "
-"berekenen."
+msgstr "Indien aangevinkt, de spatiebalk induwen wanneer het huidig item een map is, zal buiten het selecteren van de map \n ook recursief de verbruikte ruimte berekenen."
 
 #: Dialogs/krdialogs.cpp:228
-#, fuzzy
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. \n"
 "Otherwise, current item is not changed."
-msgstr ""
-"Indien aangevinkt, INSERT induwen zal het huidig item selecteren, en "
-"verplaatst zich één plaats naar beneden naar het vogende item. Anders, "
-"huidig item is niet veranderd."
+msgstr "Indien aangevinkt, INSERT induwen zal het huidig item selecteren, en verplaatst zich één plaats naar beneden naar het vogende item. \n Anders, huidig item is niet veranderd."
 
 #: Dialogs/krdialogs.cpp:230
-#, fuzzy
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
 "context menu. \n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
-msgstr ""
-"Indien aangevinkt, rechts klikken zal onmiddellijk het context menu tonen. "
-"Anders, de gebruiker moet de rechter muisknop klikken en gedurende 500ms "
-"houden."
+msgstr "Indien aangevinkt, rechts klikken zal onmiddellijk het context menu tonen. \n Anders, de gebruiker moet de rechter muisknop klikken en gedurende 500ms houden."
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -2781,11 +2745,13 @@ msgid "Krusader Progress"
 msgstr "Krusader vooruitgang"
 
 #: Dialogs/krprogress.cpp:165
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: %n directory\n"
 "%n directories"
-msgstr "Folderhistoriek lijst openen"
+msgstr ""
+"%n map\n"
+"%n mappen"
 
 #: Dialogs/krprogress.cpp:166
 #, c-format
@@ -2793,6 +2759,8 @@ msgid ""
 "_n: %n file\n"
 "%n files"
 msgstr ""
+"%n bestand\n"
+"%n bestanden"
 
 #: Dialogs/krprogress.cpp:172
 msgid "%1% of %2 "
@@ -2811,12 +2779,16 @@ msgid ""
 "_n: %1 / %n directory\n"
 "%1 / %n directories"
 msgstr ""
+"%1 / %n map\n"
+"%1 / %n mappen"
 
 #: Dialogs/krprogress.cpp:203 Dialogs/krprogress.cpp:217
 msgid ""
 "_n: %1 / %n file\n"
 "%1 / %n files"
 msgstr ""
+"%1 / %n bestand\n"
+"%1 / %n bestanden"
 
 #: Dialogs/krprogress.cpp:225
 msgid "Working"
@@ -3939,8 +3911,7 @@ msgstr "Mappen automatisch markeren"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "When matching the select criteria, directories will also be marked"
-msgstr ""
-"Wanneer de criteria overeenstemmen zullen de directories geselecteerd worden"
+msgstr "Wanneer de criteria overeenstemmen zullen de directories geselecteerd worden"
 
 #: Konfigurator/kglookfeel.cpp:70
 msgid "Case sensitive sorting"
@@ -4274,8 +4245,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Knop voor synchroon bladeren omschakelen"
 
 #: Konfigurator/kglookfeel.cpp:233
-msgid ""
-"Each directory-change in the panel is also performed in the other panel."
+msgid "Each directory-change in the panel is also performed in the other panel."
 msgstr ""
 "Elke map verandering in het venster wordt ook uitgevoerd in het ander "
 "venster."
@@ -4310,8 +4280,7 @@ msgstr "Automount bestandsystemen"
 
 #: Konfigurator/kgadvanced.cpp:53
 msgid "If checked, Krusader will mount FSTAB mount-points when needed."
-msgstr ""
-"Indien aangevinkt zal Krusader zal de FSTAB mountpunten mounten indien nodig."
+msgstr "Indien aangevinkt zal Krusader zal de FSTAB mountpunten mounten indien nodig."
 
 #: Konfigurator/kgadvanced.cpp:58
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -4890,8 +4859,7 @@ msgid "Test archive when finished packing"
 msgstr "Archief testen na het inpakken"
 
 #: Konfigurator/kgarchives.cpp:91
-msgid ""
-"If checked, Krusader will test the archive's integrity after packing it."
+msgid "If checked, Krusader will test the archive's integrity after packing it."
 msgstr ""
 "Indien aangevinkt zal Krusader de integriteit van het archief testen na het "
 "inpakken."
@@ -4901,8 +4869,7 @@ msgid "Test archive before unpacking"
 msgstr "Archief eerst testen voor het uitpakken"
 
 #: Konfigurator/kgarchives.cpp:92
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
 "testen aangeraden"
@@ -5132,16 +5099,16 @@ msgid "Remove this action?"
 msgstr "Deze actie verwijderen?"
 
 #: Konfigurator/kguseractions.cpp:252 Konfigurator/kguseractions.cpp:315
-#, fuzzy
 msgid ""
 "*.xml|xml-files\n"
 "*|all files"
-msgstr "*.xml|xml-bestanden"
+msgstr ""
+"*.xml|xml-bestanden\n"
+"*|all bestanden"
 
 #: Konfigurator/kguseractions.cpp:259
 msgid "The file you've chosen doesn't seem to be a valid action-file."
-msgstr ""
-"Het bestand dat u gekozen heeft blijkt geen geldig actie-bestand te zijn."
+msgstr "Het bestand dat u gekozen heeft blijkt geen geldig actie-bestand te zijn."
 
 #: Konfigurator/kguseractions.cpp:267
 msgid "No actions found in this file."
@@ -5387,8 +5354,7 @@ msgid "Not a valid CRC file!"
 msgstr "Ongeldig CRC bestand!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Geldigheids controle is onmogelijk zonder een goed CRC bestand. Doorgaan met "
 "combineren?"
@@ -5429,29 +5395,3 @@ msgstr "Fout bij het lezen van bestand %1!"
 msgid "Error at writing file %1!"
 msgstr "Fout bij het schrijven van bestand %1!"
 
-#~ msgid "Move "
-#~ msgstr "Verplaatsen "
-
-#~ msgid "Copy "
-#~ msgstr "Kopiëren "
-
-#~ msgid " this item?"
-#~ msgstr " dit item ?"
-
-#~ msgid " these %d items?"
-#~ msgstr " deze %d items ?"
-
-#~ msgid "%n directory"
-#~ msgstr "map %n"
-
-#~ msgid "%n file"
-#~ msgstr "bestand %n"
-
-#~ msgid "%1 / %n directory"
-#~ msgstr "map %1 / %n"
-
-#~ msgid "%1 / %n file"
-#~ msgstr "bestand %1 / %n"
-
-#~ msgid "*|all files"
-#~ msgstr "*| alle bestanden"
