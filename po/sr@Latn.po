@@ -3,21 +3,21 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
-# Sasa Tomic <stomic@gmx.net>, 2005.
+# Sasa Tomic <tomic80@gmail.com>, 2005.
 # Proofread by: Chusslove Illich <caslav.ilic@gmx.net>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-18 12:00+0200\n"
-"PO-Revision-Date: 2005-07-22 15:45+0200\n"
+"Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
+"POT-Creation-Date: 2005-08-19 12:47+0200\n"
+"PO-Revision-Date: 2005-08-21 17:46+0200\n"
 "Last-Translator: Sasa Tomic <stomic@gmx.net>\n"
 "Language-Team: Serbian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
+"X-Generator: KBabel 1.10.2\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -37,7 +37,7 @@ msgstr "Ukloni ulaz"
 
 #: GUI/profilemanager.cpp:83
 msgid "Overwrite entry"
-msgstr "Prebriši ulaz"
+msgstr "Prepiši ulaz"
 
 #: GUI/profilemanager.cpp:86
 msgid "Add new entry"
@@ -347,7 +347,7 @@ msgstr "Potvrdi odvojeno svaki poziv programa"
 
 #: GUI/actionpropertybase.cpp:448
 msgid "This allows you to tweak the command line before being executed"
-msgstr "Ovo omogućava da doterate komandnu liniju pre njenog izvršavanja"
+msgstr "Ovo vam omogućava da doterate komandnu liniju pre izvršavanja"
 
 #: GUI/actionpropertybase.cpp:449
 msgid "Run as different user"
@@ -355,7 +355,7 @@ msgstr "Pokreni kao drugi korisnik"
 
 #: GUI/actionpropertybase.cpp:450
 msgid "execute the command under another user-id"
-msgstr "pokreni naredbu pod drugim korisničkim id"
+msgstr "pokreni naredbu pod drugim korisničkim id."
 
 #: GUI/actionpropertybase.cpp:451
 msgid "Advanced Properties"
@@ -404,7 +404,7 @@ msgid ""
 "&lt;Down&gt; arrows.</qt>"
 msgstr ""
 "<qt>Pa, zapravo je jako jednostavno: Ukucate komandu ovde i Krusader poštuje."
-"<p><Tip:>Krećite se kroz istoriju komandnih linija koristeći strelice &lt;"
+"<p><Savet:>Krećite se kroz istoriju komandnih linija koristeći strelice &lt;"
 "Gore&gt; i &lt;Dole&gt;.</qt>"
 
 #: GUI/kcmdline.cpp:98
@@ -423,7 +423,7 @@ msgstr ""
 
 #: GUI/kcmdline.cpp:182
 msgid "This terminal will close in 1 hour.."
-msgstr "Ovaj terminal će se zatvoriti za 1 sat.."
+msgstr "Ovaj terminal će se zatvoriti za 1 sat..."
 
 #: GUI/kfnkeys.cpp:50
 msgid "F2 Term  "
@@ -471,7 +471,7 @@ msgstr "F6 Premesti  "
 
 #: GUI/kfnkeys.cpp:75
 msgid "Move file from one panel to the other."
-msgstr "Premesti fajl iz jednog panela u drugi."
+msgstr "Premesti fajl iz jednog panela u drugi"
 
 #: GUI/kfnkeys.cpp:79
 msgid "F7 Mkdir "
@@ -700,7 +700,7 @@ msgid ""
 "If you type 'text' that results the same as '*text*'. You can exclude\n"
 "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' )."
 msgstr ""
-"Ovde možete uneti kriterijum za filtiranje imena fajlova. Možete koristiti "
+"Ovde možete uneti kriterijum za filtriranje imena fajlova. Možete koristiti "
 "džokere\n"
 "(*.o .* *.c?? itd.), i dati više stavki razdvojenih razmakom.\n"
 "Ukoliko kucate „text“, to je isto kao „*text*“. Možete izuzeti \n"
@@ -716,7 +716,7 @@ msgstr "Svi fajlovi"
 
 #: Filter/generalfilter.cpp:114
 msgid "&Profile handler"
-msgstr "Rukovaoc profilima"
+msgstr "&Rukovaoc profilima"
 
 #: Filter/generalfilter.cpp:126
 msgid "&Add"
@@ -726,7 +726,7 @@ msgstr "&Dodaj"
 msgid "&Load"
 msgstr "&Učitaj"
 
-#: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:740
+#: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:715
 msgid "&Overwrite"
 msgstr "&Prebriši"
 
@@ -791,7 +791,7 @@ msgstr "Bajtova"
 
 #: Filter/advancedfilter.cpp:79 Filter/advancedfilter.cpp:95
 msgid "KB"
-msgstr "kB"
+msgstr "KB"
 
 #: Filter/advancedfilter.cpp:80 Filter/advancedfilter.cpp:96
 msgid "MB"
@@ -1238,11 +1238,11 @@ msgstr "Otvori iskačući panel"
 
 #: Panel/listpanel.cpp:191
 msgid "Clear the location bar"
-msgstr "Očisti liniju lokacije"
+msgstr "Očisti traku lokacije"
 
 #: Panel/listpanel.cpp:198
 msgid "Use superb KDE file dialog to choose location. "
-msgstr "Koristite veličanstveni KDE dijalog za izabiranje lokacije. "
+msgstr "Koristite veličanstveni KDE dijalog za izabiranje lokacije."
 
 #: Panel/listpanel.cpp:202
 msgid ""
@@ -1344,15 +1344,15 @@ msgstr "Premesti ovde"
 msgid "Link Here"
 msgstr "Poveži ovde"
 
-#: Panel/listpanel.cpp:928
+#: Panel/listpanel.cpp:934
 msgid ">> Reading..."
 msgstr ">> Čitam..."
 
-#: Panel/listpanel.cpp:940
+#: Panel/listpanel.cpp:946
 msgid "Reading"
 msgstr "Čitam"
 
-#: Panel/listpanel.cpp:945
+#: Panel/listpanel.cpp:951
 msgid "Reading: "
 msgstr "Čitam: "
 
@@ -1615,7 +1615,7 @@ msgstr "Nalepi iz klipborda"
 
 #: Panel/krpopupmenu.cpp:215
 msgid "Folder"
-msgstr "Folder"
+msgstr "Fascikla"
 
 #: Panel/krpopupmenu.cpp:216
 msgid "Text file"
@@ -1644,7 +1644,7 @@ msgstr "Možete urediti veze jedino na lokalnim fajl sistemima"
 
 #: Panel/panelfunc.cpp:246
 msgid "The current file is not a link, so I can't redirect it."
-msgstr "Trenutni fajl nije veza, pa ga ne možete preusmeriti."
+msgstr "Trenutni fajl nije veza, pa ga ne možete preusmeriti"
 
 #: Panel/panelfunc.cpp:253
 msgid "Link Redirection"
@@ -1684,7 +1684,7 @@ msgstr "Nisam uspeo da kreiram novu simboličku vezu: "
 
 #: Panel/panelfunc.cpp:303 Panel/panelfunc.cpp:307
 msgid " To: "
-msgstr " do: "
+msgstr " do:"
 
 #: Panel/panelfunc.cpp:321
 msgid "No permissions to view this file."
@@ -1742,29 +1742,29 @@ msgstr "Ne možete kopirati fajlove na ovaj fajl sistem"
 msgid "You do not have write permission to this directory"
 msgstr "Nemate dozvolu za pisanje u ovaj direktorijum"
 
-#: Panel/panelfunc.cpp:586
+#: Panel/panelfunc.cpp:561
 #, c-format
 msgid ""
 "_n: Do you really want to move this item to the trash?\n"
 "Do you really want to move these %n items to the trash?"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:587
+#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:562
 msgid "&Trash"
 msgstr "&Smeće"
 
-#: Panel/panelfunc.cpp:589
+#: Panel/panelfunc.cpp:564
 #, c-format
 msgid ""
 "_n: Do you really want to delete this item?\n"
 "Do you really want to delete these %n items?"
 msgstr ""
 
-#: Panel/panelfunc.cpp:614
+#: Panel/panelfunc.cpp:589
 msgid "Directory "
 msgstr "Direktorijum "
 
-#: Panel/panelfunc.cpp:614
+#: Panel/panelfunc.cpp:589
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
@@ -1772,23 +1772,23 @@ msgstr ""
 " nije prazan!\n"
 "Preskoči ovaj ili obriši sve?"
 
-#: Panel/panelfunc.cpp:615
+#: Panel/panelfunc.cpp:590
 msgid "&Skip"
 msgstr "&Preskoči"
 
-#: Panel/panelfunc.cpp:615
+#: Panel/panelfunc.cpp:590
 msgid "&Delete All"
 msgstr "&Obriši sve"
 
-#: Panel/panelfunc.cpp:733
+#: Panel/panelfunc.cpp:708
 msgid "The Archive "
 msgstr "Arhiva"
 
-#: Panel/panelfunc.cpp:734
+#: Panel/panelfunc.cpp:709
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " već postoji. Da li želite da prebrišete arhivu?\n"
 
-#: Panel/panelfunc.cpp:736
+#: Panel/panelfunc.cpp:711
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -1796,40 +1796,40 @@ msgstr ""
 "(ZIP će zameniti identično imenovane ulaze u zip arhivi ili dodati ulaze za "
 "nove nazive)"
 
-#: Panel/panelfunc.cpp:745
+#: Panel/panelfunc.cpp:720
 msgid "Counting files to pack"
 msgstr "Brojim fajlove za pakovanje"
 
-#: Panel/panelfunc.cpp:808 Panel/panelfunc.cpp:863 krslots.cpp:193
+#: Panel/panelfunc.cpp:783 Panel/panelfunc.cpp:838 krslots.cpp:193
 #: krslots.cpp:199
 msgid "Krusader is unable to download: "
 msgstr "Krusader ne može da preuzme: "
 
-#: Panel/panelfunc.cpp:816
+#: Panel/panelfunc.cpp:791
 msgid "%1, unknown archive type."
 msgstr "%1, nepoznata vrsta arhive."
 
-#: Panel/panelfunc.cpp:822
+#: Panel/panelfunc.cpp:797
 msgid "%1, test passed."
 msgstr "%1, test uspešan."
 
-#: Panel/panelfunc.cpp:824
+#: Panel/panelfunc.cpp:799
 msgid "%1, test failed!"
 msgstr "%1, test neuspešan!"
 
-#: Panel/panelfunc.cpp:840 Panel/panelfunc.cpp:842
+#: Panel/panelfunc.cpp:815 Panel/panelfunc.cpp:817
 msgid "Unpack "
 msgstr "Raspakuj "
 
-#: Panel/panelfunc.cpp:840 Panel/panelfunc.cpp:842
+#: Panel/panelfunc.cpp:815 Panel/panelfunc.cpp:817
 msgid "to"
 msgstr "do"
 
-#: Dialogs/packgui.cpp:52 Panel/panelfunc.cpp:842
+#: Dialogs/packgui.cpp:52 Panel/panelfunc.cpp:817
 msgid "%1 files"
 msgstr "%1 fajlova"
 
-#: Panel/panelfunc.cpp:889
+#: Panel/panelfunc.cpp:864
 msgid "%1, unknown archive type"
 msgstr "%1, nepoznat tip arhive"
 
@@ -2194,9 +2194,8 @@ msgid "Manage user actions"
 msgstr "Upravljanje korisničkim akcijama"
 
 #: krusader.cpp:611
-#, fuzzy
 msgid "Select Remote Charset"
-msgstr "Označi stavke"
+msgstr "Izaberi udaljeni skup znakova"
 
 #: krusader.cpp:614
 msgid "F2 - Open a terminal"
@@ -2240,7 +2239,7 @@ msgstr "Popularni URL-ovi"
 
 #: krusader.cpp:634
 msgid "Go to location bar"
-msgstr "Skoči na liniju lokacije"
+msgstr "Idi na traku lokacije"
 
 #: krusader.cpp:636
 msgid "Jump back"
@@ -2248,7 +2247,7 @@ msgstr "Skoči unazad"
 
 #: krusader.cpp:638
 msgid "Set jump back point here"
-msgstr "Postavi ovde tačku za skok unazad"
+msgstr "Postavi ovde tačku skoka unazad"
 
 #: krusader.cpp:642
 msgid "Select files using a filter"
@@ -2288,11 +2287,11 @@ msgstr "Fajl "
 
 #: Konfigurator/kgcolors.cpp:506 krusader.cpp:685
 msgid " already exists. Are you sure you want to overwrite it?"
-msgstr " već postoji. Da li ste sigurni da želite da ga prebrišete?"
+msgstr " već postoji. Da li ste sigurni da želite da ga prepišete?"
 
 #: Konfigurator/kgcolors.cpp:507 krusader.cpp:686
 msgid "Overwrite"
-msgstr "Prebriši"
+msgstr "Prepiši"
 
 #: Konfigurator/kgcolors.cpp:509 krusader.cpp:688
 msgid "Error: unable to write to file"
@@ -2443,7 +2442,7 @@ msgstr "Upravljanje markerima"
 
 #: BookMan/krbookmark.cpp:12
 msgid "Media"
-msgstr "Medij"
+msgstr "Medijum"
 
 #: BookMan/krbookmark.cpp:14
 msgid "Devices"
@@ -2453,7 +2452,7 @@ msgstr "Uređaji"
 msgid "Virtual Filesystem"
 msgstr "Virtuelni fajl sistem"
 
-#: BookMan/krbookmark.cpp:17
+#: BookMan/krbookmark.cpp:20
 msgid "Local Network"
 msgstr "Lokalna mreža"
 
@@ -2503,7 +2502,7 @@ msgstr "%1 MB"
 
 #: MountMan/kmountman.cpp:241
 msgid "%1 KB"
-msgstr "%1 kB"
+msgstr "%1 KB"
 
 #: MountMan/kmountman.cpp:250
 msgid "MountMan is not operational. Sorry"
@@ -2616,7 +2615,7 @@ msgstr ""
 
 #: Dialogs/krdialogs.cpp:103
 msgid "Preserve date (only for local targets)"
-msgstr "Sačuvaj datum (samo za lokalna odredišta)"
+msgstr "Očuvaj datum (samo za lokalna odredišta)"
 
 #: Dialogs/krdialogs.cpp:198 Konfigurator/kglookfeel.cpp:103
 msgid "Custom Selection Mode"
@@ -2689,7 +2688,7 @@ msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"Ako je štiklirano, shift/ctrl levi klik će izabrati stavke. Napomena: Ovo je "
+"Ako je štiklirano, shift/Ctrl levi klik će izabrati stavke. Napomena: Ovo je "
 "besmisleno ako je štiklirano „Levo dugme izabira“."
 
 #: Dialogs/krdialogs.cpp:219
@@ -2710,7 +2709,7 @@ msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"Ako je štiklirano, shift/ctrl desni klik će izabrati stavke. Napomena: Ovo "
+"Ako je štiklirano, shift/Ctrl desni klik će izabrati stavke. Napomena: Ovo "
 "je besmisleno ako je štiklirano „Desno dugme izabire“."
 
 #: Dialogs/krdialogs.cpp:224
@@ -3073,7 +3072,7 @@ msgstr "Upoređuj po sadržaju"
 
 #: Synchronizer/synchronizergui.cpp:1123
 msgid "Compares duplicated files with same size, by their content"
-msgstr "Upoređuje duplirane fajlove sa istom veličinom, po njihovom sadržaju"
+msgstr "Upoređuje duplirane fajlove sa istom veličinom, po njihovom sadržaju."
 
 #: Synchronizer/synchronizergui.cpp:1124
 msgid "Ignore Date"
@@ -3189,11 +3188,11 @@ msgstr "Uskladi"
 
 #: Synchronizer/synchronizergui.cpp:1424
 msgid "Selected files from target directory:"
-msgstr "Izabrani fajlovi u odredišnom direktorijumu:"
+msgstr "Izabrani fajlovi iz odredišnog direktorijuma:"
 
 #: Synchronizer/synchronizergui.cpp:1425
 msgid "Selected files from source directory:"
-msgstr "Izabrani fajlovi u izvorišnom direktorijumu:"
+msgstr "Izabrani fajlovi iz izvorišnog direktorijuma:"
 
 #: Synchronizer/synchronizergui.cpp:1429
 msgid "Selected files from left directory:"
@@ -3314,7 +3313,7 @@ msgstr "Levo: Obriši %1 fajlova (%2 bajtova)"
 
 #: Synchronizer/synchronizedialog.cpp:100
 msgid "Confirm overwrites"
-msgstr "Potvrdi prebrisavanje"
+msgstr "Potvrdi prepisivanje"
 
 #: Synchronizer/synchronizedialog.cpp:109
 msgid "Start"
@@ -3883,7 +3882,7 @@ msgstr "Trenutna stranica je izmenjena. Da li želite da primenite izmene?"
 
 #: Konfigurator/kglookfeel.cpp:56
 msgid "Operation"
-msgstr "Izvršavanje"
+msgstr "Operacija"
 
 #: Konfigurator/kglookfeel.cpp:61
 msgid "Look && Feel"
@@ -3965,15 +3964,13 @@ msgstr "Brzo pretraživanje osetljivo na veličinu slova"
 
 #: Konfigurator/kglookfeel.cpp:74
 msgid "Numeric Permissions"
-msgstr "Brojčane dozvole"
+msgstr "Numeričke dozvole"
 
 #: Konfigurator/kglookfeel.cpp:74
 msgid ""
 "Permission column (Look & Feel 'Panel' Tab) shows octal numbers '0755' "
 "instead of 'rwxr-xr-x'."
-msgstr ""
-"Kolona dozvola (Jezičak 'Panela' Izgled i Osećaj) pokazuje oktalne brojeve "
-"'0755' umesto 'rwxr-xr-x'."
+msgstr "Kolona dozvola"
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Single click / Double click Selection:"
@@ -4099,7 +4096,7 @@ msgid ""
 msgstr ""
 "Prikaži poslednji deo imena fajla (deo nakon poslednje tačke) u koloni "
 "nastavka, \n"
-"a ne ceo naziv fajla u koloni naziva (kao što npr. Konqueror radi)"
+"a ne ceo naziv fajla u koloni naziva kao što npr. Konqueror radi"
 
 #: Konfigurator/kglookfeel.cpp:148
 msgid "Mimetype"
@@ -4132,9 +4129,10 @@ msgid ""
 "to octal numbers ('0755') by enabling 'Numeric Permissions' in 'Look & Feel -"
 "> Operation'"
 msgstr ""
-"Prikaži pune dozvole. Podrazumevani prikaz je string ('rwxr-xr-x') i može se "
-"izmeniti tako da bude niz oktalnih brojeva ('0755') tako što se uključi "
-"'Numeričke dozvole' u 'Izgled i Osećaj -> Izvršavanje'"
+"Prikaži pune dozvole. Podrazumevani prikaz je string ('rwxr-xr-x') i može "
+"biti izmenjen \n"
+"u oktalne brojeve ('0755') uključujući 'Numeričke dozvole' u 'Izgled i "
+"osećaj -> Izvršavanje'"
 
 #: Konfigurator/kglookfeel.cpp:152
 msgid "Krusader Permission"
@@ -4142,7 +4140,7 @@ msgstr "Krusader-ove dozvole"
 
 #: Konfigurator/kglookfeel.cpp:152
 msgid "Show the permissions of the current user only, e.g. '-rw'"
-msgstr "Prikaži samo prava trenutnog korisnika, npr. '-rw'"
+msgstr "Prikaži samo dozvole trenutnog korisnika, npr. „-rw“"
 
 #: Konfigurator/kglookfeel.cpp:153
 msgid "Show the Owner Column"
@@ -4166,7 +4164,7 @@ msgstr "Koristi ljudski-čitljive veličine fajlova"
 
 #: Konfigurator/kglookfeel.cpp:166
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr "Veličine fajlova su prikazane u B, kB, MB i GB, ne samo u bajtovima."
+msgstr "Veličine fajlova su prikazane u B, KB, MB i GB, ne samo u bajtovima."
 
 #: Konfigurator/kglookfeel.cpp:176
 msgid "Toolbar"
@@ -4210,11 +4208,11 @@ msgstr "Vidljivi dugmići trake panela"
 
 #: Konfigurator/kglookfeel.cpp:227
 msgid "Clear location bar button"
-msgstr "Dugme za čišćenje trake za lokaciju"
+msgstr "Očisti traku lokacije"
 
 #: Konfigurator/kglookfeel.cpp:227
 msgid "Clears the location bar"
-msgstr "Čisti traku za lokaciju"
+msgstr "Čisti traku lokacije"
 
 #: Konfigurator/kglookfeel.cpp:228
 msgid "Open button"
@@ -4258,7 +4256,7 @@ msgstr "Menja direktorijum panela u koreni direktorijum."
 
 #: Konfigurator/kglookfeel.cpp:233
 msgid "Toggle-button for sync-browsing"
-msgstr "Dugme za sinhronizovano pregledanje"
+msgstr "Dugme za sinhronizovano pregledanje."
 
 #: Konfigurator/kglookfeel.cpp:233
 msgid ""
@@ -4279,15 +4277,15 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "Preserve date for local copy/move (slower)"
-msgstr "Sačuvaj datum za lokalno kopiranje/premeštanje (sporije)"
+msgstr "Očuvaj datum pri lokalnom kopiranju/premeštanju (usporava)"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid ""
 "If checked, Krusader will change the modification time of the local files "
 "according to the source one. This can make the copy slower."
 msgstr ""
-"Ukoliko je štiklirano, Krusader će promeniti vreme izmene lokalnih fajlova "
-"prema izvorišnim. Ovo može učiniti kopiranje sporijim."
+"Ako je štiklirano, Krusader će promeniti vreme izmene lokalnih fajlova prema "
+"izvorišnim. Ovo može učiniti kopiranje sporijim."
 
 #: Konfigurator/kgadvanced.cpp:53
 msgid "Automount filesystems"
@@ -4348,7 +4346,7 @@ msgstr "Fino štelovanje"
 
 #: Konfigurator/kgadvanced.cpp:100
 msgid "Icon cache size (KB):"
-msgstr "Veličina keša ikona (kB):"
+msgstr "Veličina keša ikona (KB):"
 
 #: Konfigurator/kgadvanced.cpp:101 Konfigurator/kgadvanced.cpp:105
 msgid ""
@@ -4608,43 +4606,43 @@ msgstr "KDE podrazumevano"
 
 #: Konfigurator/kgcolors.cpp:167
 msgid "Equals foreground:"
-msgstr "Jednako prvom planu:"
+msgstr "Prvi plan jednakih:"
 
 #: Konfigurator/kgcolors.cpp:168
 msgid "Equals background:"
-msgstr "Jednako pozadini:"
+msgstr "Pozadina jednakih:"
 
 #: Konfigurator/kgcolors.cpp:169
 msgid "Differing foreground:"
-msgstr "Različit prvi plan:"
+msgstr "Prvi plan razlike:"
 
 #: Konfigurator/kgcolors.cpp:170
 msgid "Differing background:"
-msgstr "Različita pozadina:"
+msgstr "Pozadina razlike:"
 
 #: Konfigurator/kgcolors.cpp:171
 msgid "Copy to left foreground:"
-msgstr "Kopiraj u levi prvi plan:"
+msgstr "Prvi plan kopiranja u levo:"
 
 #: Konfigurator/kgcolors.cpp:172
 msgid "Copy to left background:"
-msgstr "Kopiraj u levu pozadinu:"
+msgstr "Pozadina kopiranja u levo:"
 
 #: Konfigurator/kgcolors.cpp:173
 msgid "Copy to right foreground:"
-msgstr "Kopiraj u desni prvi plan:"
+msgstr "Prvi plan kopiranja u desno:"
 
 #: Konfigurator/kgcolors.cpp:174
 msgid "Copy to right background:"
-msgstr "Kopiraj u desnu pozadinu:"
+msgstr "Pozadina kopiranja u desno:"
 
 #: Konfigurator/kgcolors.cpp:175
 msgid "Delete foreground:"
-msgstr "Izbriši prvi plan:"
+msgstr "Prvi plan brisanja:"
 
 #: Konfigurator/kgcolors.cpp:176
 msgid "Delete background:"
-msgstr "Izbriši pozadinu:"
+msgstr "Pozadina brisanja:"
 
 #: Konfigurator/kgcolors.cpp:200
 msgid "Import color-scheme"
@@ -4716,7 +4714,7 @@ msgstr "Paneli"
 
 #: Konfigurator/kgstartup.cpp:51
 msgid "Starting session:"
-msgstr "Počinjem sesiju:"
+msgstr "Pokrećem sesiju:"
 
 #: Konfigurator/kgstartup.cpp:52
 msgid ""
@@ -4726,7 +4724,7 @@ msgid ""
 "Profile,\n"
 " it is saved automaticly when closing Krusader."
 msgstr ""
-"Počinje izabrani profil Panela. Profil Panela sadrži: sve jezičke putanja,\n"
+"Pokreće izabrani profil Panela. Profil Panela sadrži: sve jezičke putanja,\n"
 " trenutni jezičak i aktivni panel. <Poslednja sesija> je specijalni profil "
 "Panela,\n"
 " snima se automatski pri zatvaranju Krusader-a."
@@ -5233,35 +5231,35 @@ msgstr "Unesite URL za pregled:"
 msgid "Enter the filename to edit:"
 msgstr "Unesite ime fajla za uređivanje:"
 
-#: krslots.cpp:609
+#: krslots.cpp:613
 msgid "Don't know which file to split."
 msgstr "Ne znam koji fajl treba razdvojiti."
 
-#: krslots.cpp:618
+#: krslots.cpp:622
 msgid "You can't split a directory!"
 msgstr "Ne možete razdvajati direktorijum!"
 
-#: krslots.cpp:649
+#: krslots.cpp:653
 msgid "Don't know which files to combine."
 msgstr "Ne znam koje fajlove treba spajati."
 
-#: krslots.cpp:661
+#: krslots.cpp:665
 msgid "You can't combine a directory!"
 msgstr "Ne možete spajati direktorijum!"
 
-#: krslots.cpp:680
+#: krslots.cpp:684
 msgid "Not a split file %1!"
 msgstr "Nije razdvojeni fajl %1!"
 
-#: krslots.cpp:695
+#: krslots.cpp:699
 msgid "Select only one split file!"
 msgstr "Odaberite samo jedan razdvojeni fajl!"
 
-#: krslots.cpp:743
+#: krslots.cpp:747
 msgid "Not a splitted file %1!"
 msgstr "Nije razdvojeni fajl %1!"
 
-#: krslots.cpp:750
+#: krslots.cpp:754
 msgid "Combining %1.* to directory:"
 msgstr "Spajanje %1.* u direktorijum:"
 
