@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-18 12:00+0200\n"
-"PO-Revision-Date: 2005-06-16 18:51+0100\n"
+"Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
+"POT-Creation-Date: 2005-08-19 12:47+0200\n"
+"PO-Revision-Date: 2005-08-22 13:43+0100\n"
 "Last-Translator: Matej Urbancic <matej.urbancic@amis.net>\n"
 "Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
@@ -726,7 +726,7 @@ msgstr "&Dodaj"
 msgid "&Load"
 msgstr "&Naloži"
 
-#: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:740
+#: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:715
 msgid "&Overwrite"
 msgstr "&Prepiši"
 
@@ -1343,15 +1343,15 @@ msgstr "Premakni sem"
 msgid "Link Here"
 msgstr "Poveži sem"
 
-#: Panel/listpanel.cpp:928
+#: Panel/listpanel.cpp:934
 msgid ">> Reading..."
 msgstr ">> Berem..."
 
-#: Panel/listpanel.cpp:940
+#: Panel/listpanel.cpp:946
 msgid "Reading"
 msgstr "Berem"
 
-#: Panel/listpanel.cpp:945
+#: Panel/listpanel.cpp:951
 msgid "Reading: "
 msgstr "Berem:"
 
@@ -1702,14 +1702,12 @@ msgid "Moving into archive is disabled"
 msgstr "Premikanje v arhiv je onemogočeno"
 
 #: Panel/panelfunc.cpp:390
-#, fuzzy
 msgid "Move %1 to:"
-msgstr "Premakni %d datoteke v:"
+msgstr "Premakni %1 v:"
 
 #: Panel/panelfunc.cpp:392
-#, fuzzy
 msgid "Move %1 files to:"
-msgstr "Premakni %d datoteke v:"
+msgstr "Premakni %1 datotek v:"
 
 #: Panel/panelfunc.cpp:428
 msgid "You can't move files to this file system"
@@ -1724,14 +1722,12 @@ msgid "Directory's name:"
 msgstr "Ime mape:"
 
 #: Panel/panelfunc.cpp:502
-#, fuzzy
 msgid "Copy %1 to:"
-msgstr "Kopiram %d datotek v:"
+msgstr "Kopiraj %1 v:"
 
 #: Panel/panelfunc.cpp:504
-#, fuzzy
 msgid "Copy %1 files to:"
-msgstr "Kopiram %d datotek v:"
+msgstr "Kopiraj %1 datotek v:"
 
 #: Panel/panelfunc.cpp:532
 msgid "You can't copy files to this file system"
@@ -1741,29 +1737,33 @@ msgstr "Kopiranje datotek v ta datotečni sistem ni mogoče."
 msgid "You do not have write permission to this directory"
 msgstr "Ni dovoljenja za pisanje v to mapo "
 
-#: Panel/panelfunc.cpp:586
+#: Panel/panelfunc.cpp:561
 #, c-format
 msgid ""
 "_n: Do you really want to move this item to the trash?\n"
 "Do you really want to move these %n items to the trash?"
 msgstr ""
+"_n: Zares želiš premakniti izbrano v koš?\n"
+"Zares želiš premakniti  %n datotek v koš?"
 
-#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:587
+#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:562
 msgid "&Trash"
 msgstr "&Smeti"
 
-#: Panel/panelfunc.cpp:589
+#: Panel/panelfunc.cpp:564
 #, c-format
 msgid ""
 "_n: Do you really want to delete this item?\n"
 "Do you really want to delete these %n items?"
 msgstr ""
+"_n: Zares želiš izbrisati izbrano?\n"
+"Zares želiš izbrisati  %n datotek?"
 
-#: Panel/panelfunc.cpp:614
+#: Panel/panelfunc.cpp:589
 msgid "Directory "
 msgstr "Mapa"
 
-#: Panel/panelfunc.cpp:614
+#: Panel/panelfunc.cpp:589
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
@@ -1771,23 +1771,23 @@ msgstr ""
 " ni prazen!\n"
 "Preskoči tega ali izbriši vse?"
 
-#: Panel/panelfunc.cpp:615
+#: Panel/panelfunc.cpp:590
 msgid "&Skip"
 msgstr "&Preskoči"
 
-#: Panel/panelfunc.cpp:615
+#: Panel/panelfunc.cpp:590
 msgid "&Delete All"
 msgstr "&Izbriši vse"
 
-#: Panel/panelfunc.cpp:733
+#: Panel/panelfunc.cpp:708
 msgid "The Archive "
 msgstr "Arhiv"
 
-#: Panel/panelfunc.cpp:734
+#: Panel/panelfunc.cpp:709
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " že obstaja. Naj arhiv prepišem?\n"
 
-#: Panel/panelfunc.cpp:736
+#: Panel/panelfunc.cpp:711
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -1795,40 +1795,40 @@ msgstr ""
 "(ZIP bo zamenjal enaka imena vnosov v zip arhivu ali pa dodal vnose za nova "
 "imena)"
 
-#: Panel/panelfunc.cpp:745
+#: Panel/panelfunc.cpp:720
 msgid "Counting files to pack"
 msgstr "Preštevanje datotek za stiskanje"
 
-#: Panel/panelfunc.cpp:808 Panel/panelfunc.cpp:863 krslots.cpp:193
+#: Panel/panelfunc.cpp:783 Panel/panelfunc.cpp:838 krslots.cpp:193
 #: krslots.cpp:199
 msgid "Krusader is unable to download: "
 msgstr "Krusader ne more pretočiti: "
 
-#: Panel/panelfunc.cpp:816
+#: Panel/panelfunc.cpp:791
 msgid "%1, unknown archive type."
 msgstr "%1 je nepoznan tip arhiva"
 
-#: Panel/panelfunc.cpp:822
+#: Panel/panelfunc.cpp:797
 msgid "%1, test passed."
 msgstr "%1, test uspešen."
 
-#: Panel/panelfunc.cpp:824
+#: Panel/panelfunc.cpp:799
 msgid "%1, test failed!"
 msgstr "%1, napaka pri testu!"
 
-#: Panel/panelfunc.cpp:840 Panel/panelfunc.cpp:842
+#: Panel/panelfunc.cpp:815 Panel/panelfunc.cpp:817
 msgid "Unpack "
 msgstr "Razširi "
 
-#: Panel/panelfunc.cpp:840 Panel/panelfunc.cpp:842
+#: Panel/panelfunc.cpp:815 Panel/panelfunc.cpp:817
 msgid "to"
 msgstr "v"
 
-#: Dialogs/packgui.cpp:52 Panel/panelfunc.cpp:842
+#: Dialogs/packgui.cpp:52 Panel/panelfunc.cpp:817
 msgid "%1 files"
 msgstr "%1 datoteke"
 
-#: Panel/panelfunc.cpp:889
+#: Panel/panelfunc.cpp:864
 msgid "%1, unknown archive type"
 msgstr "%1, nepoznan tip arhiva"
 
@@ -2190,9 +2190,8 @@ msgid "Manage user actions"
 msgstr "Upravljaj s skripti"
 
 #: krusader.cpp:611
-#, fuzzy
 msgid "Select Remote Charset"
-msgstr "Označi predmete"
+msgstr "Izberi oddaljen nabor znakov"
 
 #: krusader.cpp:614
 msgid "F2 - Open a terminal"
@@ -2304,7 +2303,7 @@ msgstr "Ni izbranih datotek ali pa teh ni mogoče prikazati."
 
 #: KViewer/panelviewer.cpp:129
 msgid "Can't find KHexEdit, reverting to text mode"
-msgstr ""
+msgstr "ne najdem KHexEdit, prestavljam v tekstni način"
 
 #: KViewer/krviewer.cpp:83
 msgid "&Generic viewer"
@@ -2323,7 +2322,6 @@ msgid "Text &editor"
 msgstr "Urejevalec &teksta"
 
 #: KViewer/krviewer.cpp:89
-#, fuzzy
 msgid "&Close current tab"
 msgstr "Zapri trenutni zavihek"
 
@@ -2449,7 +2447,7 @@ msgstr "Naprave"
 msgid "Virtual Filesystem"
 msgstr "Virtualni datotečni sistem"
 
-#: BookMan/krbookmark.cpp:17
+#: BookMan/krbookmark.cpp:20
 msgid "Local Network"
 msgstr "Lokalno Omrežje"
 
@@ -2656,9 +2654,8 @@ msgid "Right clicking pops context menu immediately"
 msgstr "Desni klik takoj pokaže kontekstni meni"
 
 #: Dialogs/krdialogs.cpp:213
-#, fuzzy
 msgid "If checked, use a mode based on KDE's style."
-msgstr "Ustvari način prikaza, ki temelji na KDE stilu."
+msgstr "Odkljukano uporabi način prikaza, ki temelji na KDE stilu."
 
 #: Dialogs/krdialogs.cpp:214
 msgid "If checked, left clicking an item will select it."
@@ -2673,13 +2670,13 @@ msgstr ""
 "oznake ostalih že označenih datotek."
 
 #: Dialogs/krdialogs.cpp:217
-#, fuzzy
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"Če je označeno, bo Shift+Ctrl levi klik označil datoteko. Nastavitev je "
-"nesmiselna, če je izbrana tudi \"Levi klik označi\"."
+"Če je odkljukano, Shift+Ctrl levi klik označi datoteko. \n"
+"Opomba: Nastavitev je nesmiselna, če je izbrana tudi nastavitev 'Levi klik "
+"označi'."
 
 #: Dialogs/krdialogs.cpp:219
 msgid "If checked, right clicking an item will select it."
@@ -2694,53 +2691,49 @@ msgstr ""
 "oznake ostalih že označenih datotek."
 
 #: Dialogs/krdialogs.cpp:222
-#, fuzzy
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"Če je izbrano, bo Shift+Ctrl in desni klik označil izbrano datoteko. "
-"Nastavitev pride v upoštev samo če je označeno tudi \"Desni klik označi\"."
+"Če je odkljukano, Shift+Ctrl desni klik označi datoteko. \n"
+"Opomba: Nastavitev je nesmiselna, če je izbrana tudi nastavitev 'Desni klik "
+"označi'."
 
 #: Dialogs/krdialogs.cpp:224
-#, fuzzy
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. \n"
 "Otherwise, current item is selected, but remains the current item."
 msgstr ""
-"Če je izbrano, bo s preslednico označena izbrana datoteka in se bo oznaka "
-"pomaknila polje nižje. Če ni, se bo izbrani element označil in bo ostal tudi "
-"izbran.."
+"Če je odkljukano, bo preslednica označila izbrano datoteko in se oznaka "
+"pomakne polje nižje. Če ni, se bo izbrani element označil in bo ostal tudi "
+"izbran."
 
 #: Dialogs/krdialogs.cpp:226
-#, fuzzy
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) \n"
 "calculate space occupied by the folder (recursively)."
 msgstr ""
-"Če je izbrano, bo s preslednico, na izbrani mapi (razen označevanja) izpisan "
-"tudi prostor, ki ga celotno drevo mape zaseda."
+"Če je odkljukano, bo s preslednico na izbrani mapi (razen označevanja) "
+"izpisan izračun zasedenosti prostora, ki ga celotno drevo mape zaseda."
 
 #: Dialogs/krdialogs.cpp:228
-#, fuzzy
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. \n"
 "Otherwise, current item is not changed."
 msgstr ""
-"Če je izbrano, bo s tipko INSERT označil izbrano datoteko in se pomaknil "
-"polje nižje. Če ni, se izbrani element ne bo označil."
+"Če je odkljukano, bo s tipko INSERT označena izbrana datoteka, izbor pa se "
+"pomakne polje nižje. Če ni, se izbrani element ne bo označil."
 
 #: Dialogs/krdialogs.cpp:230
-#, fuzzy
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
 "context menu. \n"
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
-"Če je izbrano, bo desni klik takoj prikazal meni vsebine. Če ni, mora "
+"Če je odkljukano, bo desni klik takoj prikazal meni vsebine. Če ni, mora "
 "uporabnik klikniti in držati desni gumb miške."
 
 #: Dialogs/krprogress.cpp:59
@@ -2756,11 +2749,13 @@ msgid "Krusader Progress"
 msgstr "Prikaz napredka"
 
 #: Dialogs/krprogress.cpp:165
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: %n directory\n"
 "%n directories"
-msgstr "Odpri zgodovino mape"
+msgstr ""
+"_n: %n mapa\n"
+"%n map"
 
 #: Dialogs/krprogress.cpp:166
 #, c-format
@@ -2768,6 +2763,8 @@ msgid ""
 "_n: %n file\n"
 "%n files"
 msgstr ""
+"_n: %n datoteka\n"
+"%n datotek"
 
 #: Dialogs/krprogress.cpp:172
 msgid "%1% of %2 "
@@ -2786,12 +2783,16 @@ msgid ""
 "_n: %1 / %n directory\n"
 "%1 / %n directories"
 msgstr ""
+"_n: %1 / %n mapa\n"
+"%1 / %n map"
 
 #: Dialogs/krprogress.cpp:203 Dialogs/krprogress.cpp:217
 msgid ""
 "_n: %1 / %n file\n"
 "%1 / %n files"
 msgstr ""
+"_n: %1 / %n datoteka\n"
+"%1 / %n datotek"
 
 #: Dialogs/krprogress.cpp:225
 msgid "Working"
@@ -5073,11 +5074,12 @@ msgid "Remove this action?"
 msgstr "Odstranim ta skript?"
 
 #: Konfigurator/kguseractions.cpp:252 Konfigurator/kguseractions.cpp:315
-#, fuzzy
 msgid ""
 "*.xml|xml-files\n"
 "*|all files"
-msgstr "*.xml|xml-datoteke"
+msgstr ""
+"*.xml|xml-datoteke\n"
+"*|vse datoteke"
 
 #: Konfigurator/kguseractions.cpp:259
 msgid "The file you've chosen doesn't seem to be a valid action-file."
@@ -5188,35 +5190,35 @@ msgstr "Vnesite URL za pregled:"
 msgid "Enter the filename to edit:"
 msgstr "Vnesi ime datoteke za urejanje:"
 
-#: krslots.cpp:609
+#: krslots.cpp:613
 msgid "Don't know which file to split."
 msgstr "Ne vem katere datoteke naj razdelim."
 
-#: krslots.cpp:618
+#: krslots.cpp:622
 msgid "You can't split a directory!"
 msgstr "Ni mogoče razdeliti map!"
 
-#: krslots.cpp:649
+#: krslots.cpp:653
 msgid "Don't know which files to combine."
 msgstr "Ne vem katere datoteke naj zlepim."
 
-#: krslots.cpp:661
+#: krslots.cpp:665
 msgid "You can't combine a directory!"
 msgstr "Ni mogoče zlepiti map!"
 
-#: krslots.cpp:680
+#: krslots.cpp:684
 msgid "Not a split file %1!"
 msgstr "Datoteka %1 ni razdeljena!"
 
-#: krslots.cpp:695
+#: krslots.cpp:699
 msgid "Select only one split file!"
 msgstr "Označite samo eno razdeljeno datoteko!"
 
-#: krslots.cpp:743
+#: krslots.cpp:747
 msgid "Not a splitted file %1!"
 msgstr "Datoteka %1 ni razdeljena!"
 
-#: krslots.cpp:750
+#: krslots.cpp:754
 msgid "Combining %1.* to directory:"
 msgstr "Zlepljam %1.* v mapo:"
 
@@ -5358,30 +5360,3 @@ msgstr "Napaka pri branju datoteke %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Napaka pri pisanju datoteke %1!"
-
-#~ msgid "Move "
-#~ msgstr "Premakni"
-
-#~ msgid "Copy "
-#~ msgstr "Kopiraj"
-
-#~ msgid " this item?"
-#~ msgstr "ta predmet ?"
-
-#~ msgid " these %d items?"
-#~ msgstr "Teh %d predmetov?"
-
-#~ msgid "%n directory"
-#~ msgstr "%n mapa"
-
-#~ msgid "%n file"
-#~ msgstr "%n datoteka"
-
-#~ msgid "%1 / %n directory"
-#~ msgstr "%1 / %n mapa"
-
-#~ msgid "%1 / %n file"
-#~ msgstr "%1 / %n datoteka"
-
-#~ msgid "*|all files"
-#~ msgstr "*|vse datoteke"
