@@ -92,15 +92,16 @@ Previous used Docbook
 
 <!ENTITY gentoo_download_url '<ulink url="http://packages.gentoo.org/search/?sstring=krusader">&gentoo;</ulink>'>
 <!ENTITY suse_download_url '<ulink url="http://search.novell.com/qfsearch/SearchServlet?bbshow=true&amp;query0=krusader&amp;operator0=0&amp;collection=Novell&amp;date=&amp;numhits=10&amp;template=ResultListTemplate.html&amp;submit+search=Search">&SuSE;</ulink>'>
-<!ENTITY mandriva_download_url '<ulink url="http://search.belnet.be/packages/mandrake/10.2/i586/media/contrib/">&mandriva;</ulink>'>
+<!ENTITY mandriva_download_url '<ulink url="http://search.belnet.be/packages/mandrake/2005/i586/media/contrib/">&mandriva;</ulink>'>
 <!ENTITY freebsd_download_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all">&freebsd;</ulink>'>
 <!ENTITY debian_download_url '<ulink url="http://packages.debian.org/Krusader">&debian;</ulink>'>
 <!ENTITY netbsd_download_url '<ulink url="http://pkgsrc.netbsd.se/?cat=latest&amp;pkg=2183">&netbsd;</ulink>'>
 <!ENTITY yoper_download_url '<ulink url="http://ftp.belnet.be/linux/yoper/yoper/testing/RPMS.testing/">&yoper;</ulink>'>
-<!ENTITY mac_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-x 10.3 (Panther)</ulink>'>
-<!ENTITY ubuntu_download_url '<ulink url="http://security.ubuntu.com/ubuntu/pool/universe/k/krusader/">&ubuntu;</ulink>'>
+<!ENTITY macosx_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-X</ulink>'>
+<!ENTITY ubuntu_kubuntu_download_url '<ulink url="http://security.ubuntu.com/ubuntu/pool/universe/k/krusader/">&ubuntu;/&kubuntu;</ulink>'>
 <!ENTITY kubuntu_download_url '<ulink url="http://frode.kde.no/ubuntu/krusader/">&kubuntu;</ulink>'>
 <!ENTITY archlinux_download_url '<ulink url="http://www.archlinux.org/packages.php?id=793">&archlinux;</ulink>'>
+<!ENTITY distrowatch_com_url '<ulink url="http://distrowatch.com/search.php?pkg=krusader&amp;pkgver=1.60.0">Distrowatch.com</ulink>'>
 
 <!ENTITY dag_wiers_download_url '<ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink>'>
 <!ENTITY dries_verachtert_download_url '<ulink url="http://search.belnet.be/mirror/dries.ulyssis.org/">Dries Verachtert mirror</ulink>'>
@@ -120,7 +121,7 @@ Previous used Docbook
 <!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink>'>
 <!ENTITY maxrpm_url '<ulink url="http://www.rpm.org/max-rpm">Maximum RPM Book</ulink>'>
 <!ENTITY kioslaves1_url '<ulink url="http://docs.kde.org/en/3.2/kdebase/kioslave/index.html">KIOSlaves</ulink>'>
-<!ENTITY kioslaves2_url '<ulink url="http://developer.kde.org/documentation/library/cvs-api/kio/html">KIOSlaves</ulink>'>
+<!ENTITY kioslaves2_url '<ulink url="http://developer.kde.org/documentation/library/3.2-api/kio/html/">KIOSlaves</ulink>'>
 <!ENTITY kdelibs_url '<ulink url="http://lxr.kde.org/source/kdelibs/kioslave">&kde;libs</ulink>'>
 <!ENTITY kdebase_url '<ulink url="http://lxr.kde.org/source/kdebase/kioslave">&kde;base</ulink>'>
 <!ENTITY gnome_url '<ulink url="http://www.gnome.org"><application>GNOME</application></ulink>'>
@@ -137,6 +138,11 @@ Previous used Docbook
 <!ENTITY disk_order_url '<ulink url="http://www.likemac.ru/english/"><trademark class="copyright">Disk Order</trademark></ulink>'>
 <!ENTITY apple_x11_url '<ulink url="http://www.apple.com/downloads/macosx/apple/x11formacosx.html">&apple; X11</ulink>'>
 <!ENTITY apple_x11_sdk_url '<ulink url="http://developer.apple.com/darwin/runningX11.html">&apple; X11 SDK</ulink>'>
+<!ENTITY bodo_tasche_url '<ulink url="http://blog.wannawork.de/about.php">Bodo Tasche</ulink>'>
+
+<!ENTITY sourceforge_net_url '<ulink url="http://sourceforge.net/">Sourceforge.net</ulink>'>
+
+
 
 <!-- documentation links -->
 <!ENTITY selection_modes_lnk '<link linkend="selection_modes">Selection Modes</link>'>
@@ -250,6 +256,7 @@ Previous used Docbook
 <!ENTITY archlinux '<trademark class="registered">Arch Linux</trademark>'>
 <!ENTITY netbsd '<trademark class="registered">NetBSD</trademark>'>
 <!ENTITY openbsd '<trademark class="registered">OpenBSD</trademark>'>
+<!ENTITY knoppix '<trademark class="registered">Knoppix</trademark>'>
 
 
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
@@ -297,7 +304,7 @@ Previous used Docbook
   
   <othercredit role="developer">
         <firstname>Dirk</firstname><surname>Eschler</surname>
-        <contrib>Webmaster and i18n coordinator</contrib>
+        <contrib>Webmaster &amp; i18n coordinator</contrib>
         <affiliation><address><email>deschler@users.sourceforge.net</email></address></affiliation>
   </othercredit>
   
@@ -322,7 +329,7 @@ Previous used Docbook
   <author>
         <firstname>Frank</firstname>
         <surname>Schoolmeesters</surname>
-        <contrib>Documentation &amp; Marketing Manager</contrib>
+        <contrib>Documentation &amp; Marketing coordinator</contrib>
         <affiliation><address><email>frank_schoolmeesters@yahoo.com</email></address></affiliation>
   </author>
   
@@ -330,12 +337,6 @@ Previous used Docbook
         <firstname>Richard</firstname><surname>Holt</surname>
         <contrib>Documentation &amp; Proofing</contrib>
         <affiliation><address><email>richard.holt@gmail.com</email></address></affiliation>
-  </othercredit>
-
-  <othercredit role="reviewer">
-        <firstname>Terry "Fudoki"</firstname><surname>Wilkinson</surname>
-        <contrib>Documentation &amp; Public Relations</contrib>
-        <affiliation><address><email>sekhmet_616@yahoo.com</email></address></affiliation>
   </othercredit>
 
   <othercredit role="reviewer">
@@ -362,11 +363,11 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-07-01</date>
+  <date>2005-08-22</date>
   <releaseinfo>1.70.0 CVS</releaseinfo>
 
    <abstract>
-   <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE 3.x</para>
+   <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE</para>
    </abstract>
 
  <keywordset>

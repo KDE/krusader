@@ -48,7 +48,7 @@
 <para>Platforms:
  <itemizedlist>
    <listitem><para>All POSIX (&Linux;/BSD/&UNIX;-like OSes), &Solaris;</para></listitem>
-   <listitem><para>All BSD Platforms (&freebsd;/&netbsd;/&openbsd;/&MacOS; 10.3 "Panther").</para></listitem>
+   <listitem><para>All BSD Platforms (&freebsd;/&netbsd;/&openbsd;/&MacOS; X).</para></listitem>
  </itemizedlist>
 </para>
 
@@ -86,9 +86,9 @@
   </listitem>
   <listitem>
      <para>&debian_download_url;, on our &krudownload_url; you might find more
-           recent "unofficial" DEB packages.
+           recent "unofficial bleeding-edge" DEB packages.
            Note: usually &debian; packages work on distributions who are "based on &debian;"
-           e.g. &mepis;, &ubuntu_download_url;, &kubuntu_download_url;, &linspire;, &xandros;, ...</para>
+           e.g. &mepis;, &ubuntu_kubuntu_download_url;, &linspire;, &xandros;, ...</para>
   </listitem>
   <listitem>
      <para>&gentoo_download_url;</para>
@@ -100,7 +100,10 @@
      <para>&mandriva_download_url; (formerly &Mandrake;), only in the "contrib" section for the moment.</para>
   </listitem>
   <listitem>
-     <para>&netbsd_download_url;, &yoper_download_url;, &arklinux;, &archlinux_download_url;, ...</para>
+     <para>&knoppix; 4.0 DVD, &netbsd_download_url;, &yoper_download_url;, &arklinux;, &archlinux_download_url;, ...</para>
+  </listitem>          
+  <listitem>
+     <para>Even more distributions can be found with &distrowatch_com_url;</para>
   </listitem>          
 </itemizedlist>
 Just use the install tools that the distro uses to install the &krusader; package on your computer,
@@ -119,8 +122,8 @@ There are probably more distributions who include &krusader;, sorry we can't men
              thanks to &mateusz_dubiel_url; .</para>
      </listitem>
      <listitem>
-       <para>There is a &mac_download_url; port with &kde;libs 3.1.4 and &fink_url;
-             thanks to <link linkend="credits">Jonas Ba&euml;hr</link> .</para>
+       <para>There is a &macosx_download_url; port with the help of &fink_url; ,
+             the port is maintained by &bodo_tasche_url; .</para>
      </listitem>
 </itemizedlist>
 </para>
@@ -635,67 +638,72 @@ make[1]: Leaving directory `/home/source/krusader_kde3'
 <sect1 id="mac-port">
 <title>&MacOS;-x port</title>
 
-<para>Krusader can be ported to &MacOS; X with &fink_url; and &kde;libs (3.1.4),
-      Jonas B&auml;hr has proven this with &krusader;-1.40 on &MacOS; 10.3 "Panther".
-      Unfortunately the only kdelib-binaries which fink has to offer is 3.1.4 which means you need
-      to use &krusader;-1.40 .
-      Unfortunately the &MacOS; X &krusader; port doesn't have the same power as in a native &kde; 
-      environement.
+<para>Krusader is ported to &MacOS; thanks to Jonas B&auml;hr and &bodo_tasche_url; .
+      Unfortunately the only *stable* kdelib-binaries which &fink_url; has to offer is currenly 
+      3.1.4 which means you need to use &krusader;-1.40 .
+      Unfortunately the &MacOS; X &krusader; port doesn't have the same power as in a native
+      &Linux;-&kde; environement.
       To run &krusader; you need also X11 which doesn't realy interact with the rest of the
-      desktop (drag and drop, etc...) 
-      We hope that &Qt;4/&kde;4 will solve most of these problems. 
+      &MacOS; desktop (drag and drop, etc...) 
+      We hope that &Qt;4/&kde;4 will solve most of these problems.
+      When you want a higher Krusader version than you need to compile &kde; , what is not
+      so difficult with &fink_url; but it takes some CPU cycles. 
 </para>
 
 
 <para>Installation Instructions for &krusader;-1.40
 <orderedlist>
-      
-   <listitem>
-      <para>Download and install &fink_url; and read the documentation</para>
-   </listitem>
-      
-   <listitem>
-      <para>Extract the <filename>krusader-1.40.fink.darwin-ppc.tar.bz2</filename> 
-            package to <filename>/sw/fink/dist/local/main/</filename> 
-            Only root can write here, you may have to create 'local' and 'main'
-      </para>
-   </listitem>
 
-   <listitem>
-       <para>Run as root: <command>fink install krusader</command></para>
-   </listitem>
+  <listitem>
+     <para>Download and install &fink_url; with the &kde;3.1 binaries
+           provided by fink and read the documentation.</para>
+  </listitem>
+
+  <listitem>
+     <para>Extract the <filename>krusader-1.40.fink.darwin-ppc.tar.bz2</filename>
+           package to <filename>/sw/fink/dist/local/main/</filename>
+           Only root can write here, you may have to create 'local' and 'main'
+     </para>
+  </listitem>
+
+  <listitem>
+      <para>Run as root: <command>fink install krusader</command></para>
+  </listitem>
 
 </orderedlist>
 </para>
 
 
-<para>If you like to compile code and if you use X11 on regularly then these are the
-installation instructions for more recent &krusader; package.
+<para>If you like to compile more sourcecode or if you want to use a more recent
+&krusader; version then these are the installation instructions.
 
-  <orderedlist>
-      
-   <listitem>
-      <para>install &apple_x11_url;</para>
-   </listitem>
-      
-   <listitem>
-      <para>install the &apple_x11_sdk_url; developer-tools with X11 headers (gcc is included)
-      </para>
-   </listitem>
+ <orderedlist>
 
-   <listitem>
-       <para>install the fink-base</para>
-   </listitem>
+  <listitem>
+     <para>install &apple_x11_url;</para>
+  </listitem>
 
-   <listitem>
-       <para>compile kdelibs 3.4.1 (fink provides the nessesary <filename>.info</filename> file)</para>
-   </listitem>
+  <listitem>
+     <para>install the &apple_x11_sdk_url; developer-tools with X11
+           headers (gcc is included)</para>
+  </listitem>
 
-   <listitem>
-       <para>compile a &krusader;-package</para>
-   </listitem>
+  <listitem>
+      <para>install the fink-base</para>
+  </listitem>
 
-  </orderedlist>
+  <listitem>
+      <para>compile kdelibs 3.4.1 or higher (fink provides the
+            necessary <filename>.info</filename> files)</para>
+  </listitem>
+
+  <listitem>
+      <para>compile the &krusader;-tarball or follow steps 2 and 3 of the previous section
+           if a recent &krusader;-package &eg; 
+           <filename>krusader-1.60.0.fink.darwin-ppc.tar.bz2</filename> is available</para>
+  </listitem>
+
+ </orderedlist>
 </para>
 
 </sect1>
@@ -1078,7 +1086,6 @@ foo</screen>
   <entry><para>&kde; version</para></entry>
 </row>
 
-
 <row>
   <entry><para>1.70.0-beta1</para></entry>
   <entry><para>2005-??-??</para></entry>
@@ -1206,9 +1213,87 @@ foo</screen>
 </row>
 
 <row>
-  <entry><para>0.60-1</para></entry>
-  <entry><para>2000-07-23</para></entry>
-  <entry><para>&kde; 2.x.x</para></entry>
+ <entry><para>0.99</para></entry>
+ <entry><para>2001-12-01</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.98</para></entry>
+ <entry><para>2001-10-27</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.97</para></entry>
+ <entry><para>2001-10-08</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.95</para></entry>
+ <entry><para>2001-07-22</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.93</para></entry>
+ <entry><para>2001-05-31</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.92</para></entry>
+ <entry><para>2001-05-17</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.91</para></entry>
+ <entry><para>2001-05-10</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.90</para></entry>
+ <entry><para>2001-04-30</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.79</para></entry>
+ <entry><para>2001-02-25</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.65</para></entry>
+ <entry><para>2000-08-19</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>0.60</para></entry>
+ <entry><para>2000-07-19</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>M2 (milestone 2)</para></entry>
+ <entry><para>2000-07-11</para></entry>
+ <entry><para>&kde; 2.x.x</para></entry>
+</row>
+
+<row>
+ <entry><para>M1 (milestone 1)</para></entry>
+ <entry><para>2000-??-??</para></entry>
+ <entry><para>&kde; 2.x.x (Kleopatra 1.91)</para></entry>
+</row>
+
+<row>
+ <entry><para>Project began</para></entry>
+ <entry><para>2000-04-30</para></entry>
+ <entry><para>Kleopatra 1.91</para></entry>
 </row>
 
 </tbody>

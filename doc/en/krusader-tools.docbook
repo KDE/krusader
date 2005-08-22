@@ -27,7 +27,12 @@
 <title>Remote Connections</title>
 
 <para>Remote connections are easy made by typing the &URL; in the 
-     <link linkend="list_panel">Location Toolbar</link> some examples:</para>
+     <link linkend="list_panel">Location Toolbar</link> , these are actually &kioslaves1_url; .
+     Please note that the &krusader; panel does not support all &kioslaves2_url; &eg;
+     <command>http://</command> will not work in the panel, but will work in the 
+     <link linkend="krviewer">viewer</link> .
+     
+     Some examples:</para>
  
  <itemizedlist>
      <listitem><para><userinput><command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable></userinput></para>
@@ -43,7 +48,11 @@
  </itemizedlist>          
 
 <para>You can Bookmark these &URL;'s, please read the <link linkend="bookman">Bookman</link> section 
-      regarding securely save your passwords.</para>
+      regarding securely save your passwords.
+      Connect to multiple sites is &URL;'s, add bookmarks to the &URL;'s and open them one by one,
+      or all together using a profile.
+      To switch from one to another, just open a new tab for each.
+      </para>
 
 <para>There are three ways to start a Remote Connection:
 <itemizedlist>
@@ -79,9 +88,21 @@
       <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
       <guimenuitem>Select Remote Charset</guimenuitem></menuchoice></emphasis>.</para>
 
-<para>To end the current Active Connection select <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-      <guimenuitem>FTP Disconnect</guimenuitem></menuchoice></emphasis> or change
-      the path in the &location_toolbar_lnk;.</para>
+<para>You can <emphasis role="bold">close the current Active Remote Connection</emphasis> by several methods:
+      <itemizedlist>
+        <listitem>
+           <para>Manually: <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
+                 <guimenuitem>Disconnect From Net</guimenuitem></menuchoice></emphasis></para>
+        </listitem>
+        
+        <listitem>
+           <para>Manually: Add the disconnect button to the &main_toolbar_lnk; and click on it.</para>
+        </listitem>
+        
+        <listitem><para>Automatically: change the &URL; in the &location_toolbar_lnk; .</para>
+        </listitem>
+      </itemizedlist>      
+</para>
 
 
 </sect1>
@@ -557,13 +578,13 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 <para>To view a file as fast as possible according to it's type, just put it under the cursor and press
       <keycap>F3</keycap>. &krusader;'s internal viewer is actually a &konqueror; part, which can basically
       view every file type viewable by &konqueror; (&eg; display pictures, play music, show the content of an
-      archive), this is called the 'Generic viewer'.</para>
+      archive), this is called the 'Generic viewer'. You need to configure the mimetypes for this.</para>
 
 <para>The viewer works as follows:
      <itemizedlist>
        <listitem><para>It will try to view the file with the <emphasis>'Generic viewer'.</emphasis>
                  </para></listitem>
-       <listitem><para>When the file type cannot be determined or when a file (&eg; a binary)
+       <listitem><para>When the file type (mimetype) cannot be determined or when a file (&eg; a binary)
                  doesn't have an associated action, it disables the 'generic viewer'.
                  The file will be treated as a text file, this is the <emphasis>'Text viewer'</emphasis>.
                  </para></listitem>
