@@ -47,12 +47,12 @@ KrBookmark* KrBookmark::getExistingBookmark(QString name, KActionCollection *col
 }
 
 KrBookmark* KrBookmark::devices(KActionCollection *collection) {
-	KrBookmark *bm = getExistingBookmark(NAME_DEVICES, collection);	
+	KrBookmark *bm = getExistingBookmark(i18n(NAME_DEVICES), collection);	
 	if (!bm) {
 #if KDE_IS_VERSION(3,4,0)
-		bm = new KrBookmark(NAME_DEVICES, "media:/", collection);
+		bm = new KrBookmark(i18n(NAME_DEVICES), "media:/", collection);
 #else
-		bm = new KrBookmark(NAME_DEVICES, "devices:/", collection);
+		bm = new KrBookmark(i18n(NAME_DEVICES), "devices:/", collection);
 #endif
 		bm->setIconSet(krLoader->loadIcon("blockdevice", KIcon::Small));
 	}
@@ -60,18 +60,18 @@ KrBookmark* KrBookmark::devices(KActionCollection *collection) {
 }
 
 KrBookmark* KrBookmark::virt(KActionCollection *collection) {
-	KrBookmark *bm = getExistingBookmark(NAME_VIRTUAL, collection);	
+	KrBookmark *bm = getExistingBookmark(i18n(NAME_VIRTUAL), collection);	
 	if (!bm) {
-		bm = new KrBookmark(NAME_VIRTUAL, "virt:/", collection);
+		bm = new KrBookmark(i18n(NAME_VIRTUAL), "virt:/", collection);
 		bm->setIconSet(krLoader->loadIcon("pipe", KIcon::Small));
 	}
 	return bm;
 }
 
 KrBookmark* KrBookmark::lan(KActionCollection *collection) {
-	KrBookmark *bm = getExistingBookmark(NAME_LAN, collection);	
+	KrBookmark *bm = getExistingBookmark(i18n(NAME_LAN), collection);	
 	if (!bm) {
-		bm = new KrBookmark(NAME_LAN, "lan:/", collection);
+		bm = new KrBookmark(i18n(NAME_LAN), "lan:/", collection);
 		bm->setIconSet(krLoader->loadIcon("network", KIcon::Small));
 	}
 	return bm;
