@@ -49,10 +49,7 @@
 #include "../UserAction/useractionproperties.h"
 
 //This is the filter in the KFileDialog of Import/Export:
-/*
-   Does not work with patched gettext-kde
-   #define	FILE_FILTER	i18n("*.xml|xml-files") + '\n' + i18n("*|all files")
-*/
+static const char* FILE_FILTER = I18N_NOOP("*.xml|xml-files\n*|all files");
 //This is the name of the config-entry:
 
 
@@ -249,7 +246,7 @@ void KgUserActions::slotRemoveAction() {
 void KgUserActions::slotImport() {
   //kdDebug() << "entering KgUserActions::slotImport" << endl;
   
-  QString filename = KFileDialog::getOpenFileName(QString::null, i18n("*.xml|xml-files\n*|all files"), this);
+  QString filename = KFileDialog::getOpenFileName(QString::null, i18n(FILE_FILTER), this);
   if ( filename.isEmpty() )
     return;
   
@@ -312,7 +309,7 @@ void KgUserActions::slotExport() {
   if ( actionList->currentText().isEmpty() )
     return;
   
-  QString filename = KFileDialog::getSaveFileName(QString::null, i18n("*.xml|xml-files\n*|all files"), this);
+  QString filename = KFileDialog::getSaveFileName(QString::null, i18n(FILE_FILTER), this);
   if ( filename.isEmpty() )
     return;
 
