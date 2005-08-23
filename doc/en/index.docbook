@@ -99,8 +99,11 @@ Previous used Docbook
 <!ENTITY yoper_download_url '<ulink url="http://ftp.belnet.be/linux/yoper/yoper/testing/RPMS.testing/">&yoper;</ulink>'>
 <!ENTITY macosx_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-X</ulink>'>
 <!ENTITY ubuntu_kubuntu_download_url '<ulink url="http://security.ubuntu.com/ubuntu/pool/universe/k/krusader/">&ubuntu;/&kubuntu;</ulink>'>
-<!ENTITY kubuntu_download_url '<ulink url="http://frode.kde.no/ubuntu/krusader/">&kubuntu;</ulink>'>
 <!ENTITY archlinux_download_url '<ulink url="http://www.archlinux.org/packages.php?id=793">&archlinux;</ulink>'>
+<!ENTITY frugalware_linux_download_url '<ulink url="http://frugalware.org/packages.php?id=280">&frugalware_linux;</ulink>'>
+<!ENTITY pclinuxos_download_url '<ulink url="http://www.pclinuxonline.com/pclos/html/package_list.html">&pclinuxos;</ulink>'>
+<!ENTITY altlinux_download_url '<ulink url="http://www.altlinux.com/index.php?module=sisyphus&amp;package=krusader">&altlinux;</ulink>'>
+
 <!ENTITY distrowatch_com_url '<ulink url="http://distrowatch.com/search.php?pkg=krusader&amp;pkgver=1.60.0">Distrowatch.com</ulink>'>
 
 <!ENTITY dag_wiers_download_url '<ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink>'>
@@ -114,9 +117,11 @@ Previous used Docbook
 
 
 <!-- internet links, others -->
-<!ENTITY xxdiff_url '<ulink url="http://xxdiff.sourceforge.net">xxdiff</ulink>'>
-<!ENTITY kdiff3_url '<ulink url="http://kdiff3.sourceforge.net">kdiff3</ulink>'>
+<!ENTITY xxdiff_url '<ulink url="http://xxdiff.sourceforge.net"><application>xxdiff</application></ulink>'>
+<!ENTITY kdiff3_url '<ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink>'>
 <!ENTITY krename_url '<ulink url="http://www.krename.net"><application>Krename</application></ulink>'>
+<!ENTITY kasablanca_url '<ulink url="http://kasablanca.berlios.de/">Kasablanca</ulink>'>
+<!ENTITY kftpgrabber_url '<ulink url="http://kftpgrabber.sourceforge.net/"><application>Kftpgrabber</application></ulink>'>
 <!ENTITY xbel_url '<ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>'>
 <!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink>'>
 <!ENTITY maxrpm_url '<ulink url="http://www.rpm.org/max-rpm">Maximum RPM Book</ulink>'>
@@ -238,10 +243,12 @@ Previous used Docbook
 <!ENTITY kdevelop '<application>Kdevelop</application>'>
 <!ENTITY keditbookmarks '<application>KeditBookmarks</application>'>
 
-<!-- trademark ENTITIES -->
+<!-- (TM) Trademark ENTITIES -->
 <!ENTITY fedora '<trademark>Fedora</trademark>'>
 <!ENTITY yoper '<trademark>Yoper</trademark>'>
+<!ENTITY openlx '<trademark>OpenLX</trademark>'>
 
+<!-- (R) Registered ENTITIES -->
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
 <!ENTITY debian '<trademark class="registered">Debian</trademark>'>
 <!ENTITY mandriva '<trademark class="registered">Mandriva</trademark>'>
@@ -257,14 +264,18 @@ Previous used Docbook
 <!ENTITY netbsd '<trademark class="registered">NetBSD</trademark>'>
 <!ENTITY openbsd '<trademark class="registered">OpenBSD</trademark>'>
 <!ENTITY knoppix '<trademark class="registered">Knoppix</trademark>'>
+<!ENTITY frugalware_linux '<trademark class="registered">Frugalware Linux</trademark>'>
+<!ENTITY pclinuxos '<trademark class="registered">PCLinuxOS</trademark>'>
+<!ENTITY altlinux '<trademark class="registered">altlinux</trademark>'>
 
-
+ 
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
 <!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
 <!ENTITY firefox '<trademark class="registered">Firefox</trademark>'>
 <!ENTITY safari '<trademark class="registered">Safari</trademark>'>
 <!ENTITY apple '<trademark class="registered">Apple</trademark>'>
 
+<!-- (C) Copyright ENTITIES -->
 <!ENTITY freebsd '<trademark class="copyright">FreeBSD</trademark>'>
 <!ENTITY tcmd '<trademark class="copyright">Total commander</trademark>'>
 <!ENTITY tcmd_url '<ulink url="http://www.ghisler.com/">&tcmd;</ulink>'>
@@ -363,8 +374,8 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-08-22</date>
-  <releaseinfo>1.70.0 CVS</releaseinfo>
+  <date>2005-08-23</date>
+  <releaseinfo>1.70.0</releaseinfo>
 
    <abstract>
    <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE</para>

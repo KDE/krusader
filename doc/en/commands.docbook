@@ -277,7 +277,7 @@
   <guimenu>Mark</guimenu>
   <guimenuitem>Compare setup</guimenuitem>
   </menuchoice></term>
-  <listitem><para>Configures the <guimenuitem>"Compare Directories"</guimenuitem> function.</para>
+  <listitem><para>Configures the <guimenuitem>Compare Directories</guimenuitem> function.</para>
    <itemizedlist>
             <listitem><para><guimenuitem>Select Newer and Single</guimenuitem> (default)
                       </para></listitem>
@@ -391,6 +391,17 @@
   </para></listitem>
 </varlistentry>
 
+<varlistentry>
+        <term>
+  <menuchoice>
+  <shortcut><keycombo action="simul">&Shift;&Ctrl;<keycap>N</keycap></keycombo></shortcut>
+  <guimenu>Commands</guimenu>
+  <guimenuitem>Disconnect From Net</guimenuitem></menuchoice></term>
+  <listitem><para>
+  End the <link linkend="remote-connections">remote connection</link> in the active panel and
+  return to the startup path.
+  </para></listitem>
+</varlistentry>
 
 
 <varlistentry id="panel_profiles">

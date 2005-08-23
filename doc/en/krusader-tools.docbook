@@ -31,43 +31,52 @@
      Please note that the &krusader; panel does not support all &kioslaves2_url; &eg;
      <command>http://</command> will not work in the panel, but will work in the 
      <link linkend="krviewer">viewer</link> .
-     
      Some examples:</para>
  
  <itemizedlist>
      <listitem><para><userinput><command>ftp://</command><replaceable>public.ftpserver.org/directory/</replaceable></userinput></para>
-               </listitem>
-  <listitem><para><userinput><command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable></userinput></para>
-               </listitem> 
-     <listitem><para><userinput><command>sftp://</command><replaceable>sftp.foo.org/</replaceable></userinput></para>
-               </listitem>
+     </listitem>
+     
      <listitem><para><userinput><command>fish://</command><replaceable>username@hostname/</replaceable></userinput></para>
-               </listitem>
+     </listitem>
+                                   
+     <listitem><para><userinput><command>sftp://</command><replaceable>username:password@sftp.foo.org/</replaceable></userinput></para>          
+     </listitem>
+     
+     <listitem><para><userinput><command>ftp://</command><replaceable>username@my.server.org:21/directory/</replaceable></userinput></para>
+     </listitem> 
+         
      <listitem><para><userinput><command>smb://</command><replaceable>username:password@server/share</replaceable></userinput></para>
-               </listitem>               
+     </listitem>
+
+     <listitem><para><userinput><command>ftp://</command><replaceable>username@proxyusername:password@proxipassword@hostname/directory</replaceable></userinput></para>
+     </listitem>     
  </itemizedlist>          
 
+ 
 <para>You can Bookmark these &URL;'s, please read the <link linkend="bookman">Bookman</link> section 
       regarding securely save your passwords.
-      Connect to multiple sites is &URL;'s, add bookmarks to the &URL;'s and open them one by one,
-      or all together using a profile.
-      To switch from one to another, just open a new tab for each.
+      For connecting to multiple locations, bookmark these &URL;'s and open them one by one,
+      or open them all together using a &panel_profiles_lnk; .
+      To switch from one to another location, just open a &foldertabs_lnk; for each.
       </para>
 
 <para>There are three ways to start a Remote Connection:
 <itemizedlist>
       <listitem><para>Type the &URL; in the <link linkend="list_panel">Location Toolbar</link></para>
-               </listitem>
+      </listitem>
+               
       <listitem><para>Selecting <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-                <guimenuitem>FTP New Connection</guimenuitem></menuchoice></emphasis> which will pop-up a
+                <guimenuitem>New Net Connection</guimenuitem></menuchoice></emphasis> which will pop-up a
                 dialog that will ask for the remote site details.
                 This dialog is handy if you are not used to type remote &URL;'s in the Location Toolbar.
                 Leaving the password and user name fields empty will try to log you in as annonymous.
-                NOTE: we are planning to update this dialog window.</para>
-                </listitem>
-      <listitem><para>You can bookmark a directory on a remote host and return to this
-                directory from the bookmark button on the top corner of your panel just like in a web browser.</para>
-                </listitem>
+                NOTE: we are planning to rewrite this dialog window.</para>
+      </listitem>
+                
+      <listitem><para>You can bookmark a directory on a remote host and return to this directory from the 
+                      bookmark button on the top corner of your panel just like in a web browser.</para>
+      </listitem>
 </itemizedlist>
 </para>
 
@@ -104,6 +113,11 @@
       </itemizedlist>      
 </para>
 
+<note>
+  <para>&krusader; is a filemanager that supports remote connections via &kioslaves1_url;,
+        but if you are looking for &eg; a full featured &FTP;-client we recommend you to
+        use &eg; &kasablanca_url; or &kftpgrabber_url;</para>
+</note>
 
 </sect1>
 
@@ -169,7 +183,7 @@
 
 <para>BookMan is a tool which allows you to bookmark folders and &URL;'s using &krusader;,
 			and later return to them in a click of a button. All you need to do is click on
-			the <guibutton>"Bookmark"</guibutton> button.</para>
+			the <guibutton>Bookmark</guibutton> button.</para>
 
 <screenshot>
   <screeninfo>BookMan: the Bookmark menu</screeninfo>
@@ -181,10 +195,10 @@
   </mediaobject>
 </screenshot>
 
-<para>Usually, you click on the <guibutton>"Bookmark"</guibutton> button when you're in the target folder.
+<para>Usually, you click on the <guibutton>Bookmark</guibutton> button when you're in the target folder.
       For example, to bookmark <filename class="directory">/usr/tmp</filename>, navigate &krusader;
-      there and click the <guibutton>"Bookmark"</guibutton> button and select
-      <guimenuitem>"Bookmark Current"</guimenuitem>.
+      there and click the <guibutton>Bookmark</guibutton> button and select
+      <guimenuitem>Bookmark Current</guimenuitem>.
       When the <guilabel>Bookmark Current</guilabel> dialog box appears, the &URL; line will say
       <filename class="directory">/usr/tmp</filename>.
       <guilabel>Name</guilabel> is for the name you would like to give to the bookmark (for example: temporary
@@ -200,7 +214,7 @@
 <note><para>You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark 
        to quickly connect to the remote machine. NOTE:You CANNOT bookmark inside an archive.</para></note>
 
-<para>To use your bookmarks, click the <guibutton>"Bookmark"</guibutton> button and choose one - as shown in
+<para>To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and choose one - as shown in
       the picture above. You may also use the keyboard shortcuts
       <keycombo action="simul">&Alt;<keycap>right/left arrow</keycap></keycombo> to
       <keycap>open right/left panel bookmarks list</keycap> or
@@ -349,8 +363,8 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   </mediaobject>
 </screenshot>
 
-<para>To edit and organize your bookmarks, click the <guibutton>"Bookmark"</guibutton> button and select
-      <guimenuitem>"Manage Bookmarks"</guimenuitem>, &keditbookmarks; will be displayed.
+<para>To edit and organize your bookmarks, click the <guibutton>Bookmark</guibutton> button and select
+      <guimenuitem>Manage Bookmarks</guimenuitem>, &keditbookmarks; will be displayed.
       This is where you can edit/remove and re-arrange the bookmarks.
       &keditbookmarks; (part of the kdebase package) is a bookmark editor for &konqueror;, &krusader; and other
       applications, which use the &xbel_url; standard for the bookmark format. The bookmarks are stored in
@@ -461,10 +475,10 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
       <filename class="directory">/usr/share</filename>.
       </para>
 
-<para>Clicking the <guibutton>"Search"</guibutton> button starts the search and displays the results page.
-      During the search, you may press the <guibutton>"Stop"</guibutton> button to stop the search.
-      The <guibutton>"Close"</guibutton> button is not operational during a search, so you must first stop
-      the search and then <guibutton>"Close"</guibutton> the window.
+<para>Clicking the <guibutton>Search</guibutton> button starts the search and displays the results page.
+      During the search, you may press the <guibutton>Stop</guibutton> button to stop the search.
+      The <guibutton>Close</guibutton> button is not operational during a search, so you must first stop
+      the search and then <guibutton>Close</guibutton> the window.
       When a result is found, double clicking on it will make &krusader;'s active panel point to the found
       files - but will not close the search window, so you'll be able to click on a different result.</para>
 
@@ -544,9 +558,9 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <para><emphasis role="bold">Results</emphasis></para>
 
-<para>Clicking on the <guibutton>"Search"</guibutton> button to start the search and open the Results window.
+<para>Clicking on the <guibutton>Search</guibutton> button to start the search and open the Results window.
        Here you can see the progress and the the results of the search action. If you want you can stop the current
-       search action with the <guibutton>"Stop"</guibutton> button.
+       search action with the <guibutton>Stop</guibutton> button.
        In the result list select the file and use <keycap>F3</keycap>/<keycap>F4</keycap> to view/edit or use
        the right-click menu.
        When you click on a found item, the directory of the active panel will change if the selected item is not in
@@ -555,7 +569,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 
 <para><emphasis role="bold">Feed to listbox</emphasis></para>
 
-<para>When you click the <guibutton>"Feed to listbox"</guibutton> button after the results are displayed,
+<para>When you click the <guibutton>Feed to listbox</guibutton> button after the results are displayed,
       then &krusader; ask for a Query Name, this name will be used in the Results-Tab in the List Panel
       that holds the search results.
       You can do whatever you want on the files in the new tab.
@@ -1654,27 +1668,27 @@ little scripts are possible but real scripting can be done with the &javascript_
 <para><emphasis role="bold">Managing User-Actions</emphasis></para>
 <para>Open Konfigurator and choose "User-Actions", here you can add/edit/remove/import/export User-Actions.
   <itemizedlist>
-      <listitem><para><guimenuitem>"Add Action"</guimenuitem>:
+      <listitem><para><guimenuitem>Add Action</guimenuitem>:
                If you add an new action, you get an empty input-mask where you can
                enter all the properties. The action will be added as soon as you press 
-               <guimenuitem>"Ok"</guimenuitem>. Now the name is shown in the list on the left.
+               <guimenuitem>Ok</guimenuitem>. Now the name is shown in the list on the left.
                       </para></listitem>
      <listitem><para>To edit a User-Action:
                select the User-Action on the left.
                Now you can choose it if you want to edit the properties, 
-               the changes will only take effect when you press <guimenuitem>"Ok"</guimenuitem>.
+               the changes will only take effect when you press <guimenuitem>Ok</guimenuitem>.
                       </para></listitem>
-     <listitem><para><guimenuitem>"Remove Action"</guimenuitem>:
+     <listitem><para><guimenuitem>Remove Action</guimenuitem>:
                Select the User-Action on the left and click the remove button.
                       </para></listitem>
-     <listitem><para><guimenuitem>"Import Action"</guimenuitem>:
+     <listitem><para><guimenuitem>Import Action</guimenuitem>:
                If you import some actions they will be automatically added to your list.
                If there are name-conflicts (the names have to be unique because these are 
                the ID for &kde;'s action-system) you're asked to resolve them. 
                For this the list on the left will only show the actions where conflicts exists.
                You now can give them new names or remove them.
                      </para></listitem>
-     <listitem><para><guimenuitem>"Export Action"</guimenuitem>:
+     <listitem><para><guimenuitem>Export Action</guimenuitem>:
                 If you export a User-Action you have to give a filename in which to store it.
                 If it does not exist it will be created. If it contains already some User-Actions,
                 the action you're exporting will be added to that file.
@@ -1710,7 +1724,7 @@ little scripts are possible but real scripting can be done with the &javascript_
     <listitem><para><guimenuitem>"Use Tooltip checkbox"</guimenuitem>: uses the tooltip as description.
                     </para></listitem>
     <listitem><para><guimenuitem>"Command line"</guimenuitem>: is the command which is finaly executed.
-                     You can add placeholder using a GUI with the <guibutton>"add"</guibutton> button.
+                     You can add placeholder using a GUI with the <guibutton>add</guibutton> button.
                      </para></listitem>
     <listitem><para><guimenuitem>"Startpath"</guimenuitem>: the working directory for the command that will be executed.
                      </para></listitem>

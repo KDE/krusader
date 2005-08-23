@@ -24,9 +24,9 @@
 <title>Konfigurator: &krusader;'s Configuration Center</title>
 
 <para>Konfigurator is &krusader;'s configuration center. Here you can modify the way &krusader; does
-things and customize it to your own needs. At any time, pressing the <guibutton>"Apply"</guibutton> button
-will apply the changes, pressing <guibutton>"Close"</guibutton> will close Konfigurator, and pressing
-<guibutton>"Defaults"</guibutton> will re-apply &krusader;'s "factory" settings. Konfigurator is divided
+things and customize it to your own needs. At any time, pressing the <guibutton>Apply</guibutton> button
+will apply the changes, pressing <guibutton>Close</guibutton> will close Konfigurator, and pressing
+<guibutton>Defaults</guibutton> will re-apply &krusader;'s "factory" settings. Konfigurator is divided
 into pages, each containing items related to that page. For some changes to the &GUI;, you will have to close
 and restart &krusader;.</para>
 
@@ -283,7 +283,7 @@ HTML_PARSING-->
 <para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
           of your favourite functions the way you want.</para>
 
-<para>With the <guibutton>"Import shortcuts"</guibutton> <guibutton>"Export shortcuts"</guibutton> buttons you
+<para>With the <guibutton>Import shortcuts</guibutton> <guibutton>Export shortcuts</guibutton> buttons you
       can load and save a Key-binding profile.
       This allows &krusader; to have the &tcmd;, &mc;, foo-commander, or your custom Key-bindings.
       The only limitation is that global &kde; key-bindings and some &krusader; key-bindings can't
@@ -395,7 +395,7 @@ HTML_PARSING-->
   </listitem></varlistentry>
 
  <varlistentry><term><guilabel>Color schemes</guilabel></term>
-  <listitem><para>With the <guibutton>"Import Color Scheme"</guibutton> <guibutton>"Export Color Scheme"</guibutton>
+  <listitem><para>With the <guibutton>Import Color Scheme</guibutton> <guibutton>Export Color Scheme</guibutton>
       buttons you can load and save a Color Scheme profile.
       This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom colors.
       The Color Schemes are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
@@ -544,7 +544,7 @@ needs the <command>unzip</command> and <command>zip</command> executables).</par
 HTML_PARSING-->
 
 <para>If you've installed a certain archive application (let's say <command>arj</command>) and want &krusader;
-to know about it, just click the <guibutton>"Auto Configure"</guibutton> button. &krusader; will search for all
+to know about it, just click the <guibutton>Auto Configure</guibutton> button. &krusader; will search for all
 supported executables and print a report listing the archive formats that can be handled. If all went well the
 new archive should be available and checked.</para>
 
@@ -709,7 +709,7 @@ ACE doesn't want, that other programs could cooperate with it.
 Unace has closed source, and they wrote some additional lines, that if the stdin is redirected 
 to somewhere else, unace gets into infinite loop. 
 It works with the same manner as 'su', where you cannot enter the password only from the stdin. 
-&krusader;1-51 and 1-60 emulates the command line environment for being able to cooperate with unace,
+&krusader;1-51 and 1-60.0 emulates the command line environment for being able to cooperate with unace,
 but we noticed that unace always changes its output's format from release to release, 
 making the cooperation almost impossible.
 </para></note>
