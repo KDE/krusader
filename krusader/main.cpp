@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
 
  // if no --miniicon is given, --icon is used. So we don't need to check for --miniicon separately
   for ( i = 0; i < argc; ++i ) {
-    if ( strcmp(argv[ i ], "--icon") == 0 )
+    if ( strstr(argv[ i ], "-icon") != 0 ) // important: just one dash because both can appear!
      hasIcon = true;
   }
 
