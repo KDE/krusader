@@ -8,10 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
-"Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2005-08-19 12:47+0200\n"
-"PO-Revision-Date: 2005-08-22 13:43+0100\n"
-"Last-Translator: Matej Urbancic <matej.urbancic@amis.net>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-23 13:16+0200\n"
+"PO-Revision-Date: 2005-09-01 12:23+0100\n"
+"Last-Translator: Matej Urbančič <matej.urbancic@amis.net>\n"
 "Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,6 +52,14 @@ msgstr "Krusader::Upravljalec profilov"
 #: GUI/profilemanager.cpp:112
 msgid "Enter the profile name:"
 msgstr "Vnesi ime profila:"
+
+#: GUI/krremoteencodingmenu.cpp:97
+msgid "Reload"
+msgstr "Osveži"
+
+#: GUI/krremoteencodingmenu.cpp:98 Konfigurator/konfiguratoritems.cpp:539
+msgid "Default"
+msgstr "Privzeto"
 
 #: GUI/syncbrowsebutton.cpp:45
 msgid ""
@@ -585,6 +593,14 @@ msgstr "Prepakiranje..."
 msgid "Directory %1 does not exist!"
 msgstr "Mapa %1 ne obstaja!"
 
+#: BookMan/krbookmarkhandler.cpp:134 Konfigurator/kgcolors.cpp:492
+#: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
+#: VFS/krarchandler.cpp:352 VFS/krarchandler.cpp:359 VFS/normal_vfs.cpp:80
+#: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
+#: VFS/virt_vfs.cpp:156 krusader.cpp:688
+msgid "Error"
+msgstr "Napaka"
+
 #: VFS/normal_vfs.cpp:90
 msgid "Can't open the %1 directory!"
 msgstr "Ne morem odpreti mape %1"
@@ -718,7 +734,7 @@ msgstr "Vse datoteke"
 msgid "&Profile handler"
 msgstr "Upravljalec &Profilov"
 
-#: Filter/generalfilter.cpp:126
+#: Dialogs/krmaskchoice.cpp:105 Filter/generalfilter.cpp:126
 msgid "&Add"
 msgstr "&Dodaj"
 
@@ -729,6 +745,10 @@ msgstr "&Naloži"
 #: Filter/generalfilter.cpp:133 Panel/panelfunc.cpp:715
 msgid "&Overwrite"
 msgstr "&Prepiši"
+
+#: Filter/generalfilter.cpp:137 RemoteMan/remotemanbase.cpp:155
+msgid "&Remove"
+msgstr "Odstrani"
 
 #: Filter/generalfilter.cpp:154
 msgid "&Search in"
@@ -1176,6 +1196,12 @@ msgstr ""
 "V %1:\n"
 "je napaka v JavaScriptu"
 
+#: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:105
+#: Synchronizer/synchronizedialog.cpp:116
+#: Synchronizer/synchronizergui.cpp:1323 UserAction/kraction.cpp:40
+msgid "Close"
+msgstr "Zapri"
+
 #: UserAction/kraction.cpp:43
 msgid "Kill"
 msgstr "Prekini"
@@ -1342,6 +1368,12 @@ msgstr "Premakni sem"
 #: Panel/listpanel.cpp:723 Panel/panelpopup.cpp:311
 msgid "Link Here"
 msgstr "Poveži sem"
+
+#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:129
+#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:724
+#: Panel/panelpopup.cpp:312
+msgid "Cancel"
+msgstr "Prekliči"
 
 #: Panel/listpanel.cpp:934
 msgid ">> Reading..."
@@ -1526,6 +1558,10 @@ msgstr "Odpri/Poženi"
 msgid "Run"
 msgstr "Poženi"
 
+#: Panel/krpopupmenu.cpp:61
+msgid "Open"
+msgstr "Odpri"
+
 #: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
 msgid "Open in a new tab"
 msgstr "Odpri v novem zavihku"
@@ -1554,9 +1590,23 @@ msgstr "Skripti"
 msgid "Konqueror menu"
 msgstr "Konqueror meni"
 
+#: Panel/krpopupmenu.cpp:131
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: Panel/krpopupmenu.cpp:134
+msgid "Move"
+msgstr "Premakni"
+
 #: Konfigurator/kggeneral.cpp:57 Panel/krpopupmenu.cpp:143
 msgid "Move to trash"
 msgstr "Premakni v smeti"
+
+#: Dialogs/krmaskchoice.cpp:110 Dialogs/kurllistrequester.cpp:149
+#: DiskUsage/diskusage.cpp:705 Konfigurator/kgcolors.cpp:447
+#: Panel/krpopupmenu.cpp:145
+msgid "Delete"
+msgstr "Izbriši"
 
 #: Panel/krpopupmenu.cpp:149
 msgid "Shred"
@@ -1759,6 +1809,16 @@ msgstr ""
 "_n: Zares želiš izbrisati izbrano?\n"
 "Zares želiš izbrisati  %n datotek?"
 
+#: DiskUsage/diskusage.cpp:566 DiskUsage/radialMap/widgetEvents.cpp:172
+#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:565
+msgid "&Delete"
+msgstr "Izbriši"
+
+#: DiskUsage/diskusage.cpp:574 Konfigurator/kgcolors.cpp:507
+#: Panel/panelfunc.cpp:571 krusader.cpp:686
+msgid "Warning"
+msgstr "Opozorilo"
+
 #: Panel/panelfunc.cpp:589
 msgid "Directory "
 msgstr "Mapa"
@@ -1831,6 +1891,11 @@ msgstr "%1 datoteke"
 #: Panel/panelfunc.cpp:864
 msgid "%1, unknown archive type"
 msgstr "%1, nepoznan tip arhiva"
+
+#: Locate/locate.cpp:67 Locate/locate.cpp:208 Search/krsearchdialog.cpp:101
+#: Synchronizer/synchronizergui.cpp:1313
+msgid "Stop"
+msgstr "Stop"
 
 #: Locate/locate.cpp:67
 msgid "Update DB"
@@ -1952,6 +2017,10 @@ msgstr "F3 Dialog pregleda"
 #: krusader.cpp:429
 msgid "Tab: switch panel"
 msgstr "Zavihek: zamenjaj okno"
+
+#: krusader.cpp:450
+msgid "&Reload"
+msgstr "&Osveži"
 
 #: krusader.cpp:452
 msgid "Show Actions Toolbar"
@@ -2109,6 +2178,10 @@ msgstr "Odznači sk&upino"
 msgid "Configure &Krusader"
 msgstr "Nastavi &Krusaderja"
 
+#: krusader.cpp:563
+msgid "Back"
+msgstr "Nazaj"
+
 #: krusader.cpp:567
 msgid "Save &Position"
 msgstr "Shrani &položaj"
@@ -2140,6 +2213,11 @@ msgstr "Desni zaznamki"
 #: krusader.cpp:583
 msgid "Left bookmarks"
 msgstr "Levi zaznamki"
+
+#: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
+#: BookMan/krbookmarkhandler.cpp:29 krusader.cpp:585
+msgid "Bookmarks"
+msgstr "Zaznamki"
 
 #: krusader.cpp:587
 msgid "Sync Panels"
@@ -2305,6 +2383,11 @@ msgstr "Ni izbranih datotek ali pa teh ni mogoče prikazati."
 msgid "Can't find KHexEdit, reverting to text mode"
 msgstr "ne najdem KHexEdit, prestavljam v tekstni način"
 
+#: KViewer/panelviewer.cpp:129
+#, fuzzy
+msgid "Sorry"
+msgstr "Oprosti"
+
 #: KViewer/krviewer.cpp:83
 msgid "&Generic viewer"
 msgstr "&Generični pregledovalnik"
@@ -2324,6 +2407,10 @@ msgstr "Urejevalec &teksta"
 #: KViewer/krviewer.cpp:89
 msgid "&Close current tab"
 msgstr "Zapri trenutni zavihek"
+
+#: KViewer/krviewer.cpp:90
+msgid "&Quit"
+msgstr "Izhod"
 
 #: KViewer/krviewer.cpp:121
 msgid "&KrViewer"
@@ -2447,7 +2534,7 @@ msgstr "Naprave"
 msgid "Virtual Filesystem"
 msgstr "Virtualni datotečni sistem"
 
-#: BookMan/krbookmark.cpp:20
+#: BookMan/krbookmark.cpp:17
 msgid "Local Network"
 msgstr "Lokalno Omrežje"
 
@@ -2502,6 +2589,10 @@ msgstr "%1 KB"
 #: MountMan/kmountman.cpp:250
 msgid "MountMan is not operational. Sorry"
 msgstr "Priklopnik naprav ni operativen."
+
+#: MountMan/kmountmangui.cpp:70 RemoteMan/remotemanbase.cpp:73
+msgid "&Close"
+msgstr "Zapri"
 
 #: MountMan/kmountmangui.cpp:72
 msgid "MountMan - Your Mount-Manager"
@@ -2842,9 +2933,17 @@ msgstr "Doda izbor v urejevalni vrstici na listo"
 msgid "Delete the marked selection from the list"
 msgstr "Izbriši označeno iz liste"
 
+#: Dialogs/krmaskchoice.cpp:115
+msgid "&Clear"
+msgstr "Počisti"
+
 #: Dialogs/krmaskchoice.cpp:116
 msgid "Clears the entire list of selections"
 msgstr "Očisti označeni vnos z liste"
+
+#: Dialogs/krmaskchoice.cpp:131
+msgid "OK"
+msgstr "V Redu"
 
 #: Dialogs/newftpgui.cpp:49
 msgid "New Network Connection"
@@ -2894,6 +2993,11 @@ msgstr "Geslo:"
 msgid "&Connect"
 msgstr "&Povezovanje"
 
+#: Dialogs/krpleasewait.cpp:59 Dialogs/newftpgui.cpp:137
+#: Splitter/splittergui.cpp:114
+msgid "&Cancel"
+msgstr "Prekliči"
+
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
 msgstr "Shranjeni popularni URL-ji so nepravilni. Listo bom spraznil"
@@ -2938,7 +3042,7 @@ msgstr "tar.bz2"
 msgid "In directory"
 msgstr "V mapo"
 
-#: Dialogs/packguibase.cpp:125 Konfigurator/kguseractions.cpp:73
+#: Dialogs/packguibase.cpp:125 Konfigurator/kguseractions.cpp:70
 msgid "Ok"
 msgstr "OK"
 
@@ -3585,6 +3689,10 @@ msgstr "Naslednji"
 msgid "Previous"
 msgstr "Predhodni"
 
+#: DiskUsage/diskusage.cpp:745
+msgid "View"
+msgstr "Pogled"
+
 #: DiskUsage/diskusage.cpp:971
 msgid "Type:"
 msgstr "Tip:"
@@ -3609,6 +3717,12 @@ msgstr "Dovoljenja:"
 msgid "Owner:"
 msgstr "Lastnik:"
 
+#. i18n: file krusaderui.rc line 4
+#: rc.cpp:3
+#, no-c-format
+msgid "&File"
+msgstr "Datoteka "
+
 #. i18n: file krusaderui.rc line 23
 #: rc.cpp:6
 #, no-c-format
@@ -3627,11 +3741,35 @@ msgstr "Primerjaj - po meri"
 msgid "&Commands"
 msgstr "&Ukazi"
 
+#. i18n: file krusaderui.rc line 57
+#: rc.cpp:15
+#, no-c-format
+msgid "&View"
+msgstr "Pogled"
+
+#. i18n: file krusaderui.rc line 74
+#: rc.cpp:18
+#, no-c-format
+msgid "&Tools"
+msgstr "Pripomočki"
+
+#. i18n: file krusaderui.rc line 82
+#: rc.cpp:21
+#, no-c-format
+msgid "&Settings"
+msgstr "Na&stavitve"
+
 #. i18n: file krusaderui.rc line 91
 #: rc.cpp:24
 #, no-c-format
 msgid "&Useractions"
 msgstr "Skripti "
+
+#. i18n: file krusaderui.rc line 96
+#: rc.cpp:27
+#, no-c-format
+msgid "&Help"
+msgstr "Pomoč"
 
 #: Konfigurator/kgadvanced.cpp:47 Konfigurator/kgarchives.cpp:50
 #: Konfigurator/kgcolors.cpp:52 Konfigurator/kgdependencies.cpp:50
@@ -4646,6 +4784,10 @@ msgstr "Simbolična povezava"
 msgid "Application"
 msgstr "Aplikacija"
 
+#: Konfigurator/kgcolors.cpp:365
+msgid "File"
+msgstr "Datoteka "
+
 #: Konfigurator/kgcolors.cpp:366
 msgid "Directory"
 msgstr "Mapa"
@@ -5041,39 +5183,7 @@ msgstr ""
 "\n"
 "Hvala za testiranje Krusaderja :-)"
 
-#: Konfigurator/kguseractions.cpp:74
-msgid "Reset"
-msgstr "Ponovno naloži"
-
-#: Konfigurator/kguseractions.cpp:75
-msgid "New Action"
-msgstr "Nov skript"
-
-#: Konfigurator/kguseractions.cpp:76
-msgid "Remove Action"
-msgstr "Odstrani skript"
-
-#: Konfigurator/kguseractions.cpp:77
-msgid "Import Action"
-msgstr "Uvozi skript"
-
-#: Konfigurator/kguseractions.cpp:78
-msgid "Export Action"
-msgstr "Izvozi skript"
-
-#: Konfigurator/kguseractions.cpp:209
-msgid ""
-"Are you sure that you want to remove this action?\n"
-"A recovery is not possible!"
-msgstr ""
-"Naj zares odstranim ta skript?\n"
-"Povrnitev ni mogoča!"
-
-#: Konfigurator/kguseractions.cpp:210
-msgid "Remove this action?"
-msgstr "Odstranim ta skript?"
-
-#: Konfigurator/kguseractions.cpp:252 Konfigurator/kguseractions.cpp:315
+#: Konfigurator/kguseractions.cpp:52
 msgid ""
 "*.xml|xml-files\n"
 "*|all files"
@@ -5081,15 +5191,51 @@ msgstr ""
 "*.xml|xml-datoteke\n"
 "*|vse datoteke"
 
-#: Konfigurator/kguseractions.cpp:259
+#: Konfigurator/kguseractions.cpp:71
+msgid "Reset"
+msgstr "Ponovno naloži"
+
+#: Konfigurator/kguseractions.cpp:72
+msgid "New Action"
+msgstr "Nov skript"
+
+#: Konfigurator/kguseractions.cpp:73
+msgid "Remove Action"
+msgstr "Odstrani skript"
+
+#: Konfigurator/kguseractions.cpp:74
+msgid "Import Action"
+msgstr "Uvozi skript"
+
+#: Konfigurator/kguseractions.cpp:75
+msgid "Export Action"
+msgstr "Izvozi skript"
+
+#: Konfigurator/kguseractions.cpp:206
+msgid ""
+"Are you sure that you want to remove this action?\n"
+"A recovery is not possible!"
+msgstr ""
+"Naj zares odstranim ta skript?\n"
+"Povrnitev ni mogoča!"
+
+#: Konfigurator/kguseractions.cpp:207
+msgid "Remove this action?"
+msgstr "Odstranim ta skript?"
+
+#: Konfigurator/kguseractions.cpp:208
+msgid "Remove"
+msgstr "Odstrani"
+
+#: Konfigurator/kguseractions.cpp:256
 msgid "The file you've chosen doesn't seem to be a valid action-file."
 msgstr "Datoketa, ki ste jo izbrali ni prava skriptna datoteka."
 
-#: Konfigurator/kguseractions.cpp:267
+#: Konfigurator/kguseractions.cpp:264
 msgid "No actions found in this file."
 msgstr "Nisem našel pravih skriptov v tej datoteki."
 
-#: Konfigurator/kguseractions.cpp:294
+#: Konfigurator/kguseractions.cpp:291
 msgid ""
 "Couldn't import all actions because of name conflicts. Check the action-list "
 "on the left to fix them.\n"
