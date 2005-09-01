@@ -1,304 +1,123 @@
-# krusader.spec  --  use rpmbuild to build a Krusader RPM package
-# this spec file works on Mandrake 10.0/10.1 for Krusader-1.51
-# other distributions may need to make some modifications
-# If you have comments or suggestions about this spec file,
-# please send to: [frank_schoolmeesters {*} yahool {.} com]
-# Thanks for your cooperation!
-# Krusader Krew.
+Name:		krusader
+Version:	1.60.0
+Release:	3%{?dist}
+Summary:	An advanced twin-panel (commander-style) file-manager for KDE
 
-# NOTE: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
+Group:		Applications/File
+License:	GPL
+URL:		http://krusader.sourceforge.net/
+Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Patch0:		krusader-1.60.0-desktop.patch
+Patch1:		krusader-1.60.0-gcc4.patch
+Patch2:		krusader-1.60.0-newline.patch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%define version 1.51.06
-%define release mdk101
-#%define beta beta1
-
-# Package information
-Summary:			Advanced, twin-panel, commander-style file-manager for KDE 3.2.x
-Name:					krusader
-Version: 	 		%{version}
-Release: 	 		%{release}
-Distribution:	Mandrake Linux 10.1
-Source0: 	 		%{name}-%{version}.tar.gz
-#Source0:				%{name}-%{version}-%{beta}.tar.gz
-License: 	 		GPL
-Group: 				File tools
-
-# requirements for building the software package, not the binary PRM requirements
-# e.g., for installing the binary RPM you don't need a C-compiler
-BuildRequires: automake autoconf diffutils file m4 texinfo gettext zlib1
-BuildRequires: kdelibs >= 3.2.0 kdelibs-devel >= 3.2.0
-BuildRequires: libqt3 >= 3 libqt-devel >= 3.1.0 arts-devel >= 1.1.0
-BuildRequires: libjpeg62 libjpeg-devel libpng3 libmng1
-BuildRequires: libfam-devel arts libart_lgpl2 libstdc++5 libpcre0
-BuildRequires: libxfree86 libfreetype6 libfontconfig1 libnas2 libexpat0
-BuildRequires: rpm-build gcc-cpp gcc-c++ glibc libgcc1
-
-# BuildRoot: dir that acts as a staging area, that looks like the final install dir
-# typically (for Mandrake): /var/tmp/krusader-buildroot
-# this will become the %%RPM_BUILD_ROOT enviroment variable
-BuildRoot:			%{_tmppath}/%{name}-buildroot
-URL: 		 				http://krusader.sourceforge.net
-Vendor:					Krusader Krew [krusader {*} users {.} sourceforge {.}net]
-Packager:				Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
-
-# makes binary rpm relocatable e.g.
-# rpm -Uvh --relocate /usr=/opt krusader-1.51.mdk100.i586.rpm
-# rpm -Uvh --relocate /usr=/usr/local krusader-1.51.mdk100.i586.rpm
-Prefix:			/usr
-
-# dependencies requirements for the binary RPM package
-Requires: 	kdelibs >= 3.2.0
+BuildRequires:	kdelibs-devel >= 3.3.0 qt-devel >= 3.3.0 arts-devel >= 1.3.0
+BuildRequires:	kdebase-devel >= 3.3.0 kdebindings-devel >= 3.3.0 gamin-devel
+BuildRequires:	libpng-devel libselinux-devel automake desktop-file-utils
+BuildRequires:	gettext
 
 %description
-Advanced, twin-panel, commander-style file-manager for KDE 3.2.x
+Krusader is an advanced twin-panel (commander-style) file-manager for KDE
 (similar to Midnight or Total Commander) but with many extras.
-Offers all the file-management features you could possibly want.
-
-Plus: extensive Archive handling, mounted Filesystem support, FTP,
-advanced Search module, viewer/Editor, directory Synchronisation,
-file content Comparisons, powerful batch Renaming, and much, much more.
-Supports archive formats: tar, zip, bzip2, gzip, rar, ace, arj and rpm.
-Handles other KIOSlaves, such as, smb:// or fish://.
-
-Almost completely customizable!
-Very user friendly, fast, and looks great on your desktop! :-)
+It provides all the file-management features you could possibly want.
+Plus: extensive archive handling, mounted filesystem support, FTP, advanced
+search module, viewer/editor, directory synchronisation, file content
+comparisons, powerful batch renaming and much much more.
+It supports the following archive formats: tar, zip, bzip2, gzip, rar, ace,
+arj and rpm and can handle other KIOSlaves such as smb:// or fish://
+It is (almost) completely customizable, very user friendly, fast and looks
+great on your desktop! :-)
 
 You should give it a try.
 
-
-# preparing for the build by unpacking the sources and applying any patches
-# in /usr/src/RPM/BUILD/krusader-%version on Mandrake
 %prep
-rm -rf $RPM_BUILD_ROOT
-# changes to the build dir /usr/src/RPM/BUILD/krusader-%version-%release  on Mandrake
-# -q: run quietly
-%setup -q -n %{name}-%{version}
-#%setup -q -n %{name}-%{version}-%{beta}
+%setup -q
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
-# commands to build the software in /usr/src/RPM/BUILD/krusader-%version%release on Mandrake
 %build
-# set enviroment variables
-export QTDIR=%{_libdir}/qt3
-export KDEDIR=%{_prefix}
+unset QTDIR || : ; . /etc/profile.d/qt.sh
+export QTLIB=${QTDIR}/lib QTINC=${QTDIR}/include
 
-export LD_LIBRARY_PATH=$QTDIR/lib:$KDEDIR/lib:$LD_LIBRARY_PATH
-export PATH=$QTDIR/bin:$KDEDIR/bin:$PATH
+%configure \
+	--disable-rpath
 
-export CFLAGS=$RPM_OPT_FLAGS
-export CXXFLAGS=$RPM_OPT_FLAGS
+make %{?_smp_mflags}
 
-# run configure
-# %%configure doesn't work
-# bindir = /usr/bin on Mandrake
-# datadir = /usr/share on Mandrake
-./configure --prefix=%{_prefix} \
-	    --bindir=%{_bindir} \
-	    --datadir=%{_datadir} \
-	    --libdir=%{_libdir} \
-            --disable-rpath \
-	    --disable-debug
-
-# run make
-%make
-
-
-
-# commands to install the software in $RPM_BUILD_ROOT
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall KDEDIR=$RPM_BUILD_ROOT%{_prefix} kde_minidir=$RPM_BUILD_ROOT%{_miconsdir}
-# menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
+make install DESTDIR=$RPM_BUILD_ROOT
 
-# adds krusader in the KDE menu with the file /usr/lib/menu/krusader on Mandrake
-# Kmenu -> "System/File tools" -> krusader
-# /usr/bin/kdedesktop2mdkmenu.pl is a Mandrake Perl script to generate the Kmenu entry
-kdedesktop2mdkmenu.pl krusader "System/File tools"    %{buildroot}/%{_datadir}/applnk/Applications/krusader.desktop   %{buildroot}/%{_menudir}/krusader
+desktop-file-install --vendor fedora --delete-original \
+	--dir $RPM_BUILD_ROOT%{_datadir}/applications \
+	--add-category X-Fedora \
+	$RPM_BUILD_ROOT%{_datadir}/applnk/Applications/*.desktop
 
-# menu
-# creates the file /usr/lib/menu/krusader on Mandrake, this adds krusader in the KDE menu
-# in the "System/File tools" section
-#mkdir -p %{buildroot}/%{_menudir}
-#cat > %{buildroot}/%{_menudir}/%name << EOF
-#?package(%name): \
-#needs="x11" \
-#kde_filename="%name" \
-#section="System/File tools" \
-#title="%name" \
-#icon="%name.png" \
-#command="%{_bindir}/%name" \
-#kde_command="%name -caption \"%c\" %i %m  " \
-#longtitle="%summary" \
-#kde_opt="\\\nMiniIcon=%name.png\\\nDocPath=%name/index.html\\\nTerminal=0"
-#EOF
+# Workaround for some wicked install bug
+rm -rf $RPM_BUILD_ROOT%{_tmppath}
 
-# obsolete since 1.40 stable
-# removes /usr/share/mimelnk/application/x-ace.desktop on Mandrake
-# because x-ace.desktop is now provided by KDE
-# rm -rf $RPM_BUILD_ROOT/%{_datadir}/mimelnk/application/*.desktop
+# Make symlink relative
+pushd $RPM_BUILD_ROOT%{_datadir}/doc/HTML/en/krusader/
+ln -s -f ../common
+popd
 
-
-#icons for rpmlint
-mkdir -p %buildroot/{%_liconsdir,%_miconsdir,%_iconsdir}
-ln -s %_datadir/icons/hicolor/48x48/apps/%{name}.png %buildroot/%_liconsdir
-ln -s %_datadir/icons/hicolor/32x32/apps/%{name}.png %buildroot/%_iconsdir
-ln -s %_datadir/icons/hicolor/16x16/apps/%{name}.png %buildroot/%_miconsdir
-
-
-# find the installed languages e.g. French (fr), Dutch (nl), ...
 %find_lang %{name}
 
-# commands to clean up after the build and install in $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-
-
-# script that runs after installing the RPM package
-%post
-# updates the KDE menu with Krusader
-%{update_menus}
-
-
-
-# script that runs after uninstalling the RPM package
-%postun
-# removes Krusader from the KDE menu
-%{clean_menus}
-
-
-
-# all the files that the RPM package should install, this list must be exhaustive
-# i18n   /usr/share/locale/foo/LC_MESSAGES/krusader.mo on mandrake
-# installs language file(s) if the language(s) is(are) installed on the target computer
-%files -f %{name}.lang
-
-# default attributes for all files in the package (-, user, group)
-# - = leave the permissions like they are in the source tarball, e.g., 644
-%defattr(-,root,root)
-# documentation files (docdir name does not need to be included)
-%doc README AUTHORS ChangeLog TODO COPYING krusader.lsm INSTALL FAQ CVSNEWS krusader.spec
-# Docbook documentation
-%doc %{_datadir}/doc/HTML/en/*
-
-# bindir = /usr/bin, krusader binary: /usr/bin/krusader  on Mandrake
-%{_bindir}/*
-
-# libdir = /usr/lib, usr/lib/kde3, usr/lib/menu on Mandrake
-%{_libdir}/kde3/*
-
-# datadir = /usr/share on Mandrake
-%{_datadir}/applnk/Applications/krusader.desktop
-%{_datadir}/applnk/Applications/krusader_root-mode.desktop
-
-# /usr/share/apps/krusader/ on Mandrake
-# dir = inlude empty dir but not the files
-%dir %{_datadir}/apps/krusader/
-%{_datadir}/apps/krusader/*.rc
-%{_datadir}/apps/krusader/*.png
-%{_datadir}/apps/krusader/*.jpg
-%{_datadir}/apps/krusader/total_commander.*
-%{_datadir}/apps/krusader/useractions.xml
-
-# /usr/share/apps/krusader/icons/ on Mandrake
-%dir %{_datadir}/apps/krusader/icons/
-%dir %{_datadir}/apps/krusader/icons/hicolor/
-
-# /usr/share/apps/krusader/icons/hicolor/16x16/actions/*.png on Mandrake
-%dir %{_datadir}/apps/krusader/icons/hicolor/16x16/
-%dir %{_datadir}/apps/krusader/icons/hicolor/16x16/actions/
-%{_datadir}/apps/krusader/icons/hicolor/16x16/actions/*.png
-
-# /usr/share/apps/krusader/icons/hicolor/22x22/actions/*.png on Mandrake
-%dir %{_datadir}/apps/krusader/icons/hicolor/22x22/
-%dir %{_datadir}/apps/krusader/icons/hicolor/22x22/actions/
-%{_datadir}/apps/krusader/icons/hicolor/22x22/actions/*.png
-
-# /usr/share/apps/krusader/icons/hicolor/32x32/actions/*.png on Mandrake
-%dir %{_datadir}/apps/krusader/icons/hicolor/32x32/
-%dir %{_datadir}/apps/krusader/icons/hicolor/32x32/actions/
-%{_datadir}/apps/krusader/icons/hicolor/32x32/actions/*.png
-
-# /usr/share/icons/hicolor/16x16/apps/ on Mandrake
-%dir %{_datadir}/icons/hicolor/16x16/apps/
-%{_datadir}/icons/hicolor/16x16/apps/*.png
-
-%dir %{_datadir}/icons/hicolor/22x22/apps/
-%{_datadir}/icons/hicolor/22x22/apps/*.png
-
-%dir %{_datadir}/icons/hicolor/32x32/apps/
-%{_datadir}/icons/hicolor/32x32/apps/*.png
-
-%dir %{_datadir}/icons/hicolor/48x48/apps/
-%{_datadir}/icons/hicolor/48x48/apps/*.png
-
-%dir %{_datadir}/icons/hicolor/64x64/apps/
-%{_datadir}/icons/hicolor/64x64/apps/*.png
-
-# /usr/share/services/krarc.protocol on Mandrake
-%{_datadir}/services/*
-
-# usr/lib/menu on Mandrake
-%{_menudir}/*
-
-# /usr/share/apps/konqueror/servicemenus/isoservice.desktop on Mandrake
+%files -f %name.lang
+%defattr(-, root, root)
+%doc doc/actions_tutorial.txt AUTHORS ChangeLog COPYING CVSNEWS FAQ README TODO
+%{_bindir}/krusader
+%{_libdir}/kde3/kio_iso.*
+%{_libdir}/kde3/kio_krarc.*
+%{_datadir}/applications/*krusader*.desktop
 %{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
-
-# /usr/share/config/kio_isorc on Mandrake
+%{_datadir}/apps/krusader/
 %{_datadir}/config/kio_isorc
-
-# /usr/share/mimelnk/application/x-ace.desktop on Mandrake
-#%{_datadir}/mimelnk/application/*.desktop
-
-%{_miconsdir}/%{name}.png
-%{_iconsdir}/%{name}.png
-%{_liconsdir}/%{name}.png
-
-# manpage usr/share/man/man1/krusader.1.bz2 on mandrake
-%{_mandir}/man1/*
-
+%{_datadir}/doc/HTML/en/*
+%{_datadir}/icons/hicolor/*/apps/*
+%{_mandir}/man1/krusader.1*
+%{_datadir}/services/iso.protocol
+%{_datadir}/services/krarc.protocol
 
 %changelog
-* Fri Jan 14 2005 Richard Holt [ richard.holt {*} gmail {.} com ]
-- 1.51.06-cvs200501141400-mdk101
+* Fri Aug 25 2005 Marcin Garski <mgarski@post.pl> 1.60.0-3
+- Include .la files
+- Include actions_tutorial.txt
+- Fix krusader_root-mode.desktop file to show only in KDE and under System
+  category
+- Fix compile warnings
 
-* Thu Jan 13 2005 Richard Holt [ richard.holt {*} gmail {.} com ]
-- 1.51.04-cvs20050109-mdk101
+* Fri Aug 12 2005 Marcin Garski <mgarski@post.pl> 1.60.0-2
+- Spec improvements for Fedora Extras
 
-* Fri Dec 10 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
-- 1.51-mdk100
-  removed some minor unnecessary lines in the spec file
+* Wed Aug 10 2005 Marcin Garski <mgarski@post.pl> 1.60.0-1
+- Updated to version 1.60.0 & clean up for Fedora Extras
 
-* Mon Nov 1 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
-- 1.50-mdk100
-  fix: icons for rpmlint
-  re-used kdedesktop2mdkmenu.pl
-  Note: Krusader 1.50 or higher compiles only on KDE 3.2 or higher
+* Fri Dec 17 2004 Marcin Garski <mgarski@post.pl> 1.51.fc2kde331
+- Updated to version 1.51
 
-* Wed Oct 13 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
--  1.50-beta1.mdk100
-  new files added in RPM package:
-  /usr/share/apps/konqueror/servicemenus/isoservice.desktop
-  /usr/share/config/kio_isorc
+* Sat Nov 11 2004 Marcin Garski <mgarski@post.pl> 1.50.fc2kde331
+- Added Requires:
 
-* Thu Jul 26 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
-- 1.40.mdk100
-  Mandrake 10.0 has changed the KDE-menu entries
-  Former KDE menu entry "Applications/File tools" in Mdk 9.2 is now "System/File tools/"
-  Now using distro independent script to create "/usr/lib/menu/krusader" and
-  not the Mandrake Perl script kdedesktop2mdkmenu.pl
-  This adds Krusader in the KDE menu in the "System/File tools" section.
+* Tue Nov 02 2004 Marcin Garski <mgarski@post.pl> 1.50.fc2
+- Updated to version 1.50 & spec cleanup
 
-* Fri Jun 25 2004 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
-- 1.40-beta2.mdk92
-- x-ace.desktop is removed in krusader-1.40-beta2/krusader/Makefile.am
-  x-ace.desktop is now supplied by KDE
-- binary rpm is now relocatable, default is /usr
-  you can relocate it to, e.g., /usr/local or /opt
-  then run $ rpm -Uvh --relocate /usr=/opt krusader-1.40.mdk92.i586.rpm
+* Fri Aug 06 2004 Marcin Garski <mgarski@post.pl> 1.40-1.fc2
+- Updated to version 1.40
 
-* Wed May 12 2003 Frank Schoolmeesters [frank_schoolmeesters {*} yahool {.} com]
-- 1.40-beta1.mdk92
-- Initial specfile derived from spec file by Laurent MONTEL [lmontel {*} mandrakesoft {.} com]
+* Wed Jun 23 2004 Marcin Garski <mgarski@post.pl> 1.40-beta2.fc2
+- Updated to version 1.40-beta2
 
+* Wed Jun 02 2004 Marcin Garski <mgarski@post.pl> 1.40-beta1.fc2
+- Rebuild for Fedora Core 2 & huge spec cleanup
 
+* Mon Nov 17 2003 11:05:00 Marian POPESCU <softexpert@libertysurf.fr> [1.30]
+- Updated to 1.30 release + changed description to match the official one
+
+* Tue Jul 03 2003 17:00:00 Marcin Garski <mgarski@post.pl> [1.20]
+- Initial specfile
