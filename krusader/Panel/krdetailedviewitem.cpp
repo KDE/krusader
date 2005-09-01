@@ -362,6 +362,8 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
       return QString::compare(num2qstring(VF->vfile_getSize()),num2qstring(other->VF->vfile_getSize()));
   } else if (col == COLUMN(DateTime) ) {
       return (VF->vfile_getTime_t() > other->VF->vfile_getTime_t() ? 1 : -1);
+  } else if (col == COLUMN(Permissions) && PROPS->numericPermissions) {
+		return ((text(col).toLong() > i->text(col).toLong()) ? 1 : -1);
   } else {
       QString e1 = (!ignoreCase ? text(col) : text(col).lower());
       QString e2 = (!ignoreCase ? i->text(col) : i->text(col).lower());
