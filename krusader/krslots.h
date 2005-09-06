@@ -56,7 +56,8 @@ class KRslots : public QObject {
     ~KRslots() {}
 
   public slots:
-    void md5deep();
+    void createChecksum();
+    void matchChecksum();
     void sendFileByEmail( QString filename );
     void compareContent();
     void compareContent( KURL, KURL );

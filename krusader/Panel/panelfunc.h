@@ -76,7 +76,8 @@ public:
 	void copyFiles();
 	void deleteFiles(bool reallyDelete=false);
 	void calcSpace(); // calculate the occupied space and show it in a dialog
-	void md5deep();
+	void createChecksum();
+	void matchChecksum();
 	void copyToClipboard( bool move=false );
 	void pasteFromClipboard();
 

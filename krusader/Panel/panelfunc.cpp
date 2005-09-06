@@ -887,8 +887,12 @@ void ListPanelFunc::unpack() {
 		panel->otherPanel->func->refresh();
 }
 
-void ListPanelFunc::md5deep() {
-	qDebug("md5deep stub");
+void ListPanelFunc::createChecksum() {
+	qDebug("create stub");
+}
+
+void ListPanelFunc::matchChecksum() {
+	qDebug("match stub");
 }
 
 void ListPanelFunc::calcSpace() {
