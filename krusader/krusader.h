@@ -126,7 +126,7 @@ class Krusader : public KParts::MainWindow {
     static KAction *actNewTab, *actDupTab, *actCloseTab, *actPreviousTab, *actNextTab, *actSplit; 
 	 static KAction *actCombine, *actUserMenu, *actManageUseractions, *actSyncDirs, *actSyncBrowse;
 	 static KAction *actF2, *actF3, *actF4, *actF5, *actF6, *actF7, *actF8, *actF9, *actF10;
-	 static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack;
+	 static KAction *actPopularUrls, *actLocationBar, *actJumpBack, *actSetJumpBack, *actMd5Deep;
     static KToggleAction *actToggleTerminal, *actVerticalMode;
     static KRadioAction *actMarkNewerAndSingle, *actMarkNewer, *actMarkSingle, 
                         *actMarkDifferentAndSingle, *actMarkDifferent;
@@ -198,6 +198,7 @@ class Krusader : public KParts::MainWindow {
 #define krTest            Krusader::App->actTest           // test archive
 #define krCompare         Krusader::App->actCompare        // compare 2 files by content
 #define krCalculate       Krusader::App->actCalculate      // calculate occupied space
+#define krMd5Deep			  Krusader::App->actMd5Deep		  // md5deep action
 #define krSelect          Krusader::App->actSelect         // select a group by filter
 #define krSelectAll       Krusader::App->actSelectAll      // select all files
 #define krUnselect        Krusader::App->actUnselect       // unselect by filter

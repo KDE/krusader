@@ -66,6 +66,9 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   addApplication( "mount",    pathsGrid, 9, general_tab );
   addApplication( "umount",   pathsGrid,10, general_tab );
   addApplication( "updatedb", pathsGrid,11, general_tab );
+  addApplication( "md5deep", pathsGrid, 12, general_tab );
+  addApplication( "sha1deep", pathsGrid, 13, general_tab );
+  addApplication( "sha256deep", pathsGrid, 14, general_tab );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );

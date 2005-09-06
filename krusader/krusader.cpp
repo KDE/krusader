@@ -102,6 +102,7 @@ KAction *Krusader::actUnpack = 0;
 KAction *Krusader::actTest = 0;
 KAction *Krusader::actCompare = 0;
 KAction *Krusader::actCalculate = 0;
+KAction *Krusader::actMd5Deep = 0;
 KAction *Krusader::actSelect = 0;
 KAction *Krusader::actSelectAll = 0;
 KAction *Krusader::actUnselect = 0;
@@ -495,6 +496,8 @@ void Krusader::setupActions() {
                                    MAIN_VIEW, SLOT( profiles() ), actionCollection(), "profile" );
    actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kcalc", 0,
                                SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
+	actMd5Deep = new KAction( i18n( "Multi MD5" ), "multimd5", 0,
+                               SLOTS, SLOT( md5deep() ), actionCollection(), "multimd5" );
    actProperties = new KAction( i18n( "&Properties" ), "help", 0,
                                 SLOTS, SLOT( properties() ), actionCollection(), "properties" );
    actPack = new KAction( i18n( "Pac&k" ), "kr_arc_pack", ALT + Key_P,

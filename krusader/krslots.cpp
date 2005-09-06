@@ -302,6 +302,7 @@ void KRslots::newFTPconnection(){ ACTIVE_FUNC->newFTPconnection();           }
 void KRslots::cut()             { ACTIVE_FUNC->copyToClipboard( true );      }
 void KRslots::copy()            { ACTIVE_FUNC->copyToClipboard( false );     }
 void KRslots::paste()           { ACTIVE_FUNC->pasteFromClipboard();         }
+void KRslots::md5deep()         { ACTIVE_FUNC->md5deep();						  }
 
 // run external modules / programs
 void KRslots::runKonfigurator(bool firstTime) {

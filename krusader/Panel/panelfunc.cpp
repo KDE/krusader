@@ -887,6 +887,10 @@ void ListPanelFunc::unpack() {
 		panel->otherPanel->func->refresh();
 }
 
+void ListPanelFunc::md5deep() {
+	qDebug("md5deep stub");
+}
+
 void ListPanelFunc::calcSpace() {
 	QStringList items;
 	panel->view->getSelectedItems( &items );
