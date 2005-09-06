@@ -50,6 +50,7 @@ A
 #include <kstandarddirs.h>
 #include <ktempdir.h> 
 #include <kurlrequester.h>
+#include <kprocio.h>
 // Krusader Includes
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
@@ -888,7 +889,52 @@ void ListPanelFunc::unpack() {
 }
 
 void ListPanelFunc::createChecksum() {
-	qDebug("create stub");
+  // what can we run?
+	bool md5sum = KrServices::cmdExist("md5sum");
+	bool md5deep = KrServices::cmdExist("md5deep");
+	if (!md5sum && !md5deep) {
+		KMessageBox::error(0,i18n("<qt>Please install <b>md5sum</b> or <b>md5deep</b>. If a tool is installed, please set its path in the Dependencies configuration page"));
+		return;
+	}
+	KrViewItemList items;
+	QStringList args;
+	panel->view->getSelectedKrViewItems( &items );
+	if ( items.isEmpty() ) return ; // nothing to do
+	// do we need to use md5deep? (folders)
+	bool folders=false;
+	for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
+		if (getVFile(*it)->vfile_isDir()) {
+			folders = true;
+			if (md5deep) args << (*it)->name();
+		} else args << (*it)->name();
+	}
+	if (folders && !md5deep) {
+		KMessageBox::information(0,i18n("<qt>You have selected folders, but don't have <b>md5deep</b> installed. Krusader will calculate md5 checksums only for the files."));
+	}	
+	// prepare the process
+	KProcIO p;
+	bool recursive = (folders && md5deep);
+	QString binary = (recursive ? "md5deep" : "md5sum");
+	p << KrServices::fullPathName( binary );
+	if (recursive) p << "-r";
+	p << args;
+	bool r = p.start(KProcess::Block, true);
+	if (r) p.wait();
+	if (!r || !p.normalExit()) {	
+		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(binary));
+		return;
+	}
+	// gather output
+	QStringList output;
+	QString line;
+	while (p.readln(line) != -1) {
+		output << line;
+	}
+	//if (p.exitStatus()!=0) {
+      KMessageBox::errorList(0,i18n("This is just a temporary STUB"), output);
+      return;
+	//}
+	
 }
 
 void ListPanelFunc::matchChecksum() {
