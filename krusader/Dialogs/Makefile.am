@@ -16,4 +16,5 @@ libDialogs_a_SOURCES = \
 	krmaskchoice.cpp \
 	krdialogs.cpp \
 	kurllistrequester.cpp \
-	popularurls.cpp
+	popularurls.cpp \
+	checksumdlg.cpp

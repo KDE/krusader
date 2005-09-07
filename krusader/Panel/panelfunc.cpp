@@ -69,6 +69,7 @@ A
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krpleasewait.h"
 #include "../Dialogs/krspwidgets.h"
+#include "../Dialogs/checksumdlg.h"
 #include "../KViewer/krviewer.h"
 #include "../resources.h"
 #include "../krservices.h"
@@ -889,7 +890,13 @@ void ListPanelFunc::unpack() {
 }
 
 void ListPanelFunc::createChecksum() {
-  // what can we run?
+	// are we in a local file system?
+	if (files()->vfs_getType() != vfs::NORMAL) {
+		KMessageBox::error(0,i18n("Calculating checksum is supported only on local filesystems"));
+		return;
+	}
+	
+	// what can we run?
 	bool md5sum = KrServices::cmdExist("md5sum");
 	bool md5deep = KrServices::cmdExist("md5deep");
 	if (!md5sum && !md5deep) {
@@ -900,7 +907,8 @@ void ListPanelFunc::createChecksum() {
 	QStringList args;
 	panel->view->getSelectedKrViewItems( &items );
 	if ( items.isEmpty() ) return ; // nothing to do
-	// do we need to use md5deep? (folders)
+	// determine if we need recursive mode (md5deep)
+	// if we don't have md5deep, dump all the folders
 	bool folders=false;
 	for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
 		if (getVFile(*it)->vfile_isDir()) {
@@ -911,7 +919,7 @@ void ListPanelFunc::createChecksum() {
 	if (folders && !md5deep) {
 		KMessageBox::information(0,i18n("<qt>You have selected folders, but don't have <b>md5deep</b> installed. Krusader will calculate md5 checksums only for the files."));
 	}	
-	// prepare the process
+	// run the process, catching its output
 	KProcIO p;
 	bool recursive = (folders && md5deep);
 	QString binary = (recursive ? "md5deep" : "md5sum");
@@ -927,13 +935,12 @@ void ListPanelFunc::createChecksum() {
 	// gather output
 	QStringList output;
 	QString line;
-	while (p.readln(line) != -1) {
-		output << line;
-	}
-	//if (p.exitStatus()!=0) {
-      KMessageBox::errorList(0,i18n("This is just a temporary STUB"), output);
+	while (p.readln(line) != -1) output << line;
+	if (p.exitStatus()!=0) {
+      KMessageBox::errorList(0,i18n("<qt>There was an error creating the requested checksum.\nHere's the output of <b>%1</b>:").arg(binary), output);
       return;
-	//}
+	}
+	CreateChecksumDlg dlg(output, panel->realPath());
 	
 }
 
