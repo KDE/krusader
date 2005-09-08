@@ -28,13 +28,14 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <qlabel.h>
+#include <qhbox.h>
+#include <klocale.h>
+#include <kmessagebox.h>
+#include "krresulttabledialog.h"
 #include "kggeneral.h"
 #include "../defaults.h"
 #include "../krusader.h"
-#include <klocale.h>
-#include <qlabel.h>
-#include <qhbox.h>
-#include <kmessagebox.h>
 
 KgGeneral::KgGeneral( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -113,26 +114,9 @@ void KgGeneral::applyTempDir(QObject *obj,QString cls, QString name)
 
 void KgGeneral::slotFindTools()
 {
-  #define PS(x) lst.contains(x)>0
-  QString info;
-  QStringList lst=Krusader::supportedTools(); // get list of availble tools
-
-  info+=i18n("Searching for tools...\nSearch results:\n\n");
-  if (PS("DIFF")) info+=i18n("diff: found ")+lst[lst.findIndex("DIFF") + 1]+i18n(", compare by content available.\n");
-  else info+=i18n("diff: no diff frontends found. Compare by content disabled.\nhint: Krusader supports Kompare, Kdiff3 and Xxdiff\n\n");
-
-  if (PS("MAIL")) info+=i18n("mail: found ")+lst[lst.findIndex("MAIL") + 1]+i18n(", sending files by email enabled.\n");
-  else info+=i18n("mail: no compatible mail-programs found. Sending files by email is disabled.\nhint: Krusader supports Kmail\n\n");
-
-  if (PS("RENAME")) info+=i18n("rename: found ")+lst[lst.findIndex("RENAME") + 1]+i18n(", multiple rename enabled.\n");
-  else info+=i18n("rename: no compatible rename-programs found. Multiple rename is disabled.\nhint: Krusader supports Krename\n\n");
-
-
-  info+=i18n("\nIf you install new tools, please install them");
-  info+=i18n("\nto your path, e.g. /usr/bin, /usr/local/bin, etc.");
-  info+=i18n("\nand-or (re)configure the Tools path in");
-  info+=i18n("\nKonfigurator->Dependencies if needed.");
-  KMessageBox::information(0,info,i18n("Results"));
+  KrResultTableDialog* dia = new KrResultTableDialog(this, KrResultTableDialog::Tool, i18n("Search results"), i18n("Searching for tools..."),
+    "package_settings", i18n("Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"));
+  dia->exec();
 }
 
 #include "kggeneral.moc"

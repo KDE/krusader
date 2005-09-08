@@ -28,15 +28,17 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kgarchives.h"
-#include "../defaults.h"
-#include "../VFS/krarchandler.h"
-#include "../krusader.h"
-#include <klocale.h>
-#include <qpushbutton.h>
 #include <qhbox.h>
-#include <qstringlist.h>
-#include <kmessagebox.h>
+#include <qpushbutton.h>
+
+#include "kgarchives.h"
+#include "krresulttable.h"
+#include "krresulttabledialog.h"
+
+#include "searchobject.h"
+#include "../defaults.h"
+#include "../krusader.h"
+#include "../VFS/krarchandler.h"
 
 KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -77,7 +79,7 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
   createSpacer( hbox, "spacer2" );
   generalGrid->addWidget( hbox, 3, 0 );
   connect( btnAutoConfigure, SIGNAL( clicked() ), this, SLOT( slotAutoConfigure() ) );
-
+ 
   kgArchivesLayout->addWidget( generalGrp, 0 ,0 );
 
   //  ------------------------ FINE-TUNING GROUPBOX --------------------------------
@@ -88,7 +90,7 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
   //   cfg_class  cfg_name                  default           text                                          restart ToolTip
     {//{"Archives","Allow Move Into Archive", _MoveIntoArchive, i18n( "Allow moving into archives" ),         false,  i18n( "This action can be tricky, since system failure during the process\nmight result in misplaced files. If this happens,\nthe files are stored in a temp directory inside /tmp." )},
-     {"Archives","Test Archives",           _TestArchives,    i18n( "Test archive when finished packing" ), false,  i18n( "If checked, Krusader will test the archive's integrity after packing it." )},
+     {"Archives","Test Archives",           _TestArchives,    i18n( "Test archive after packing" ), false,  i18n( "Check the archive's integrity after packing it." )},
      {"Archives","Test Before Unpack",      _TestBeforeUnpack,i18n( "Test archive before unpacking" ), false,  i18n( "Some corrupted archives might cause a crash; therefore, testing is suggested." )}};
 
   KonfiguratorCheckBoxGroup *finetunes = createCheckBoxGroup( 1, 0, finetuners, 2, fineTuneGrp );
@@ -103,50 +105,13 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
 
 }
 
+
 void KgArchives::slotAutoConfigure()
 {
-  #define PS(x) lst.contains(x)>0
+  KrResultTableDialog* dia = new KrResultTableDialog(this, KrResultTableDialog::Archiver, i18n("Search results"), i18n("Searching for packers..."),
+    "package", i18n("Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"));
+  dia->exec();
 
-  QString info;
-  QStringList lst=KRarcHandler::supportedPackers(); // get list of availble packers
-
-  info+=i18n("Search results:\n\n");
-  if (PS("tar")) info+=i18n("tar: found, packing and unpacking enabled.\n");
-  else info+=i18n("tar: NOT found, packing and unpacking DISABLED.\n==> tar can be obtained at www.gnu.org\n");
-  if (PS("gzip")) info+=i18n("gzip: found, packing and unpacking enabled.\n");
-  else info+=i18n("gzip: NOT found, packing and unpacking DISABLED.\n==> gzip can be obtained at www.gnu.org\n");
-  if (PS("bzip2")) info+=i18n("bzip2: found, packing and unpacking enabled.\n");
-  else info+=i18n("bzip2: NOT found, packing and unpacking DISABLED.\n==> bzip2 can be obtained at www.gnu.org\n");
-  if (PS("unzip")) info+=i18n("unzip: found, unpacking enabled.\n");
-  else info+=i18n("unzip: NOT found, unpacking DISABLED.\n==> unzip can be obtained at www.info-zip.org\n");
-  if (PS("zip")) info+=i18n("zip: found, packing enabled.\n");
-  else info+=i18n("zip: NOT found, packing DISABLED.\n==> zip can be obtained at www.info-zip.org\n");
-  if (PS("lha")) info+=i18n("lha: found, packing and unpacking enabled.\n");
-  else info+=i18n("lha: NOT found, packing and unpacking DISABLED.\n==> lha can be obtained at www.gnu.org\n");
-  if (PS("rpm") && PS("cpio")) info+=i18n("rpm: found, unpacking enabled.\n");
-  else if (PS("rpm") && !PS("cpio")) info+=i18n("rpm found but cpio NOT found: unpacking DISABLED.\n==>cpio can be obtained at www.gnu.org\n");
-  else info+=i18n("rpm: NOT found, unpacking is DISABLED.\n==> rpm can be obtained at www.gnu.org\n");
-  if (PS("unrar")) info+=i18n("unrar: found, unpacking is enabled.\n");
-  else {
-    if( PS("rar")) info+=i18n("unrar: NOT found.\n");
-    else           info+=i18n("unrar: NOT found, unpacking is DISABLED.\n==> unrar can be obtained at www.rarsoft.com\n");
-  }
-  if (PS("rar")) info+=i18n("rar: found, packing and unpacking is enabled.\n");
-  else info+=i18n("rar: NOT found, packing is DISABLED.\n==> rar can be obtained at www.rarsoft.com\n");
-  if (PS("unarj")) info+=i18n("unarj: found, unpacking is enabled.\n");
-  else {
-    if( PS("arj")) info+=i18n("unarj: NOT found.\n");
-    else           info+=i18n("unarj: NOT found, unpacking is DISABLED.\n==> unarj can be obtained at www.arjsoft.com\n");
-  }
-  if (PS("arj")) info+=i18n("arj: found, packing and unpacking is enabled.\n");
-  else info+=i18n("arj: NOT found, packing is DISABLED.\n==> arj can be obtained at www.arjsoft.com\n");
-  if (PS("unace")) info+=i18n("unace: found, unpacking is enabled.\n");
-  else info+=i18n("unace: NOT found, unpacking is DISABLED.\n==> unace can be obtained at www.winace.com\n");
-
-  info+=i18n("\nIf you install new packers, please install them");
-  info+=i18n("\nto your path, e.g., /usr/bin, /usr/local/bin, etc.");
-  info+=i18n("\nThanks for flying Krusader :-)");
-  KMessageBox::information(0,info,i18n("Results"));
   disableNonExistingPackers();
 }
 
@@ -184,4 +149,3 @@ void KgArchives::setDefaults()
 }
 
 #include "kgarchives.moc"
-

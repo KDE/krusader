@@ -17,4 +17,7 @@ libKonfigurator_a_SOURCES = \
 	kgarchives.cpp \
 	kgadvanced.cpp \
 	kguseractions.cpp \
-	kgprotocols.cpp
+	kgprotocols.cpp \
+	krresulttable.cpp \
+	krresulttabledialog.cpp \
+	searchobject.cpp
