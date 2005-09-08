@@ -21,6 +21,7 @@
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qmap.h>
+#include <kprocess.h>
 
 /**
   *@author Shie Erlich & Rafi Yanai
@@ -41,6 +42,31 @@ public:
 private:
 	static QMap<QString,QString>* slaveMap;
 
+};
+
+
+// TODO: make KrServices a namespace and move it there
+
+// wraps over kprocess, but buffers stdout and stderr and allows easy access to them later
+// note, that you still have to enable stdout,stderr in KEasyProcess::start() for buffering
+// to happen (ie: start(KEasyProcess::Block, KEasyProcess::AllOutput);)
+class KEasyProcess: public KProcess {
+	Q_OBJECT
+public:
+	KEasyProcess(QObject *parent, const char *name=0);
+	KEasyProcess();
+	virtual ~KEasyProcess() {}
+
+	const QString& stdout() const { return _stdout; }
+	const QString& stderr() const { return _stderr; }
+
+protected slots:
+	void receivedStdout (KProcess *proc, char *buffer, int buflen);
+	void receivedStderr (KProcess *proc, char *buffer, int buflen);
+	void init();
+
+private:
+	QString _stdout, _stderr;
 };
 
 #endif

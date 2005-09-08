@@ -920,28 +920,21 @@ void ListPanelFunc::createChecksum() {
 		KMessageBox::information(0,i18n("<qt>You have selected folders, but don't have <b>md5deep</b> installed. Krusader will calculate md5 checksums only for the files."));
 	}	
 	// run the process, catching its output
-	KProcIO p;
+	KEasyProcess p;
 	bool recursive = (folders && md5deep);
 	QString binary = (recursive ? "md5deep" : "md5sum");
 	p << KrServices::fullPathName( binary );
 	if (recursive) p << "-r";
 	p << args;
-	bool r = p.start(KProcess::Block, true);
+	bool r = p.start(KEasyProcess::Block, KEasyProcess::AllOutput);
 	if (r) p.wait();
 	if (!r || !p.normalExit()) {	
 		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(binary));
 		return;
 	}
-	// gather output
-	QStringList output;
-	QString line;
-	while (p.readln(line) != -1) output << line;
-	if (p.exitStatus()!=0) {
-      KMessageBox::errorList(0,i18n("<qt>There was an error creating the requested checksum.\nHere's the output of <b>%1</b>:").arg(binary), output);
-      return;
-	}
-	CreateChecksumDlg dlg(output, panel->realPath());
-	
+	// send both stdout and stderr
+	CreateChecksumDlg dlg(QStringList::split('\n', p.stdout(), false),
+								QStringList::split('\n', p.stderr(), false), panel->realPath());
 }
 
 void ListPanelFunc::matchChecksum() {

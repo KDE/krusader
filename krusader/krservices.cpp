@@ -161,3 +161,28 @@ void KrServices::clearProtocolCache()
     delete slaveMap;
   slaveMap = 0;
 }
+
+
+// ------- KEasyProcess
+KEasyProcess::KEasyProcess(QObject *parent, const char *name): KProcess(parent, name) {
+	init();
+}
+
+KEasyProcess::KEasyProcess(): KProcess() {
+	init();
+}
+
+void KEasyProcess::init() {
+	connect(this, SIGNAL(receivedStdout(KProcess *, char *, int)),
+		this, SLOT(receivedStdout(KProcess *, char *, int)));
+	connect(this, SIGNAL(receivedStderr(KProcess *, char *, int)),
+		this, SLOT(receivedStderr(KProcess *, char *, int)));
+}
+
+void KEasyProcess::receivedStdout (KProcess *proc, char *buffer, int buflen) {
+	_stdout+=QString::fromLatin1(buffer, buflen);
+}
+
+void KEasyProcess::receivedStderr (KProcess *proc, char *buffer, int buflen) {
+	_stderr+=QString::fromLatin1(buffer, buflen);
+}
