@@ -934,7 +934,7 @@ void ListPanelFunc::createChecksum() {
 	}
 	// send both stdout and stderr
 	CreateChecksumDlg dlg(QStringList::split('\n', p.stdout(), false),
-								QStringList::split('\n', p.stderr(), false), panel->realPath());
+								QStringList::split('\n', p.stderr(), false), panel->realPath(), binary);
 }
 
 void ListPanelFunc::matchChecksum() {

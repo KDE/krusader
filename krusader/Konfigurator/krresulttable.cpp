@@ -238,22 +238,28 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
 {
   _supported = Krusader::supportedTools(); // get list of available tools
 
-  QValueVector<Application*> vecDiff, vecMail, vecRename;
+  QValueVector<Application*> vecDiff, vecMail, vecRename, vecMd5;
   Application* kdiff3  = new Application("kdiff3",  "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
   Application* kompare = new Application("kompare", "http://www.caffeinated.me.uk/kompare/", KrServices::cmdExist("kompare"));
   Application* xxdiff  = new Application("xxdiff",  "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
   Application* kmail   = new Application("kmail",   "http://kmail.kde.org/", KrServices::cmdExist("kmail"));
   Application* krename = new Application("krename", "http://www.krename.net/", KrServices::cmdExist("krename"));
+  Application* md5sum = new Application("md5sum", "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
+  Application* md5deep = new Application("md5deep", "http://md5deep.sourceforge.net/", KrServices::cmdExist("md5deep"));
+
 
   vecDiff.push_back(kdiff3);
   vecDiff.push_back(kompare);
   vecDiff.push_back(xxdiff);
   vecMail.push_back(kmail);
   vecRename.push_back(krename);
+  vecMd5.push_back(md5sum);
+  vecMd5.push_back(md5deep);
 
   ApplicationGroup* diff   = new ApplicationGroup( i18n("diff utility"),  PS("DIFF"),   vecDiff);
   ApplicationGroup* mail   = new ApplicationGroup( i18n("email client"),  PS("MAIL"),   vecMail);
   ApplicationGroup* rename = new ApplicationGroup( i18n("batch renamer"), PS("RENAME"), vecRename);
+  ApplicationGroup* md5 = new ApplicationGroup( i18n("md5 checksum"), PS("MD5"), vecMd5);
 
   _tableHeaders.append( i18n("Name") );
   _tableHeaders.append( i18n("Found") );
@@ -265,16 +271,20 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
   addRow(diff, _grid);
   addRow(mail, _grid);
   addRow(rename, _grid);
+  addRow(md5, _grid);
 
   delete kmail;
   delete kompare;
   delete kdiff3;
   delete xxdiff;
   delete krename;
+  delete md5sum;
+  delete md5deep;
 
   delete diff;
   delete mail;
   delete rename;
+  delete md5;
 }
 
 KrToolResultTable::~KrToolResultTable()

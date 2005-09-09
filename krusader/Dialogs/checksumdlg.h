@@ -6,10 +6,14 @@
 class CreateChecksumDlg: public KDialogBase {
 //	Q_OBJECT
 public:
-	CreateChecksumDlg(const QStringList& stdout, const QStringList& stderr, const QString& path);
+	CreateChecksumDlg(const QStringList& stdout, const QStringList& stderr, 
+		const QString& path, const QString& binary);
 
 protected:
 	void saveChecksum(const QStringList& data, QString filename);
+	
+private:
+	QString _binary;
 };
 
 

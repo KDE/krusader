@@ -13,8 +13,9 @@
 #include <kfiledialog.h>
 #include <qframe.h>
 
-CreateChecksumDlg::CreateChecksumDlg(const QStringList& stdout, const QStringList& stderr, const QString& path):
-	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp) {
+CreateChecksumDlg::CreateChecksumDlg(const QStringList& stdout, const QStringList& stderr, 
+	const QString& path, const QString& binary):
+	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
 	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
 		KDialogBase::marginHint(), KDialogBase::spacingHint());
 
@@ -111,6 +112,7 @@ void CreateChecksumDlg::saveChecksum(const QStringList& data, QString filename) 
 		return;
 	}
 	QTextStream stream(&file);
+	stream << "# " << _binary << " - created by krusader. please don't modify this line" << "\n";
 	for ( QStringList::ConstIterator it = data.constBegin(); it != data.constEnd(); ++it)
 		stream << *it << "\n";
 	file.close();
