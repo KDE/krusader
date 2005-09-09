@@ -12,6 +12,7 @@
 #include <qtextstream.h>
 #include <kfiledialog.h>
 #include <qframe.h>
+#include <kiconloader.h>
 
 CreateChecksumDlg::CreateChecksumDlg(const QStringList& stdout, const QStringList& stderr, 
 	const QString& path, const QString& binary):
@@ -27,7 +28,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& stdout, const QStringLis
 	// create the icon and title
 	QHBoxLayout *hlayout = new QHBoxLayout(layout, KDialogBase::spacingHint());
 	QLabel p(plainPage());
-	p.setPixmap(QMessageBox::standardIcon(errors ? QMessageBox::Critical : QMessageBox::Information));
+	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIcon::Desktop, 32));
 	hlayout->addWidget(&p);
 	
 	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while creating the checksums") :
