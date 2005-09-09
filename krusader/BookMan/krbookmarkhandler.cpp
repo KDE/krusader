@@ -241,8 +241,28 @@ void KrBookmarkHandler::populate(KPopupMenu *menu) {
 void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 	static int inSecondaryMenu = 0; // used to know if we're on the top menu
 	int floc=0, bloc=0;
-	
+
+	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
+		if (bm->isSeparator()) { // separator
+			menu->insertSeparator(bloc++);
+		} else if (bm->isFolder()) {
+			KPopupMenu *newMenu = new KPopupMenu(menu);
+			// add folders above bookmarks
+			menu->insertItem(QIconSet(krLoader->loadIcon(bm->icon(), KIcon::Small)),
+									bm->text(), newMenu, -1 /* dummy id */, floc++);
+			++bloc; // stuffed a folder in the middle
+			++inSecondaryMenu;
+			buildMenu(bm, newMenu);
+			--inSecondaryMenu;
+		} else { // ordinary bookmark
+			bm->plug(menu, bloc++);
+			CONNECT_BM(bm);
+		}
+	}
+
 	if (!inSecondaryMenu) {
+		menu->insertSeparator(); floc--; bloc--;
+		
 		// do we need to add special bookmarks?
 		if (SPECIAL_BOOKMARKS) {
 			// note: special bookmarks are not kept inside the _bookmarks list and added ad-hoc
@@ -255,11 +275,13 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			bm = KrBookmark::virt(_collection);
 			bm->plug(menu);
 			CONNECT_BM(bm);
-			floc = bloc = 3; // 3 bookmarks
+			floc += 3; bloc += 3; // 3 bookmarks
 		} 
+		
 		// add the jump-back button
 		krJumpBack->plug(menu);
 		floc += 1; bloc += 1; // 1 bookmark
+		
 		// add the popular links submenu
 		KPopupMenu *newMenu = new KPopupMenu(menu);
 		menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
@@ -285,28 +307,10 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 		newMenu->installEventFilter(this);
 		
 		// finished with popular links
-		menu->insertSeparator();
-		floc += 2; bloc +=2; // 1 group + separator
+		floc += 1; bloc +=1; // 1 group
 	}
-
-	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
-		if (bm->isSeparator()) { // separator
-			menu->insertSeparator(bloc++);
-		} else if (bm->isFolder()) {
-			KPopupMenu *newMenu = new KPopupMenu(menu);
-			// add folders above bookmarks
-			menu->insertItem(QIconSet(krLoader->loadIcon(bm->icon(), KIcon::Small)),
-									bm->text(), newMenu, -1 /* dummy id */, floc++);
-			++bloc; // stuffed a folder in the middle
-			++inSecondaryMenu;
-			buildMenu(bm, newMenu);
-			--inSecondaryMenu;
-		} else { // ordinary bookmark
-			bm->plug(menu, bloc++);
-			CONNECT_BM(bm);
-		}
-	}
-
+	
+	
 	if (!inSecondaryMenu) {
 		menu->insertSeparator();
 		krSetJumpBack->plug(menu);
