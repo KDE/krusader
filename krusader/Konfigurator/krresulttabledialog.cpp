@@ -29,13 +29,23 @@
  ***************************************************************************/
 
 #include "krresulttabledialog.h"
-
+/*
 KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   const QString& caption, const QString& heading, const QString& headerIcon,
   const QString& hint)
   : KDialogBase( parent, "KrSearchResultDialog", true, caption, KDialogBase::Ok,
                  KDialogBase::Ok, false )
+*/
+KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
+  const QString& caption, const QString& heading, const QString& headerIcon,
+  const QString& hint)
+  : KDialogBase( parent, "KrSearchResultDialog", true, caption, KDialogBase::Help|KDialogBase::Ok,
+                 KDialogBase::Ok, false )
+
 {
+  // launch handbook at sect1-id via help button
+  setHelp("konfig-archives");
+
   _page = new QWidget(this);
   setMainWidget(_page);
   _topLayout = new QVBoxLayout(_page, 0, spacingHint());
