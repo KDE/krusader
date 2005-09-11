@@ -1,6 +1,6 @@
 noinst_LIBRARIES = libKonfigurator.a
 
-INCLUDES = $(all_includes)
+INCLUDES = -I$(top_builddir)/krusader/GUI $(all_includes)
 
 libKonfigurator_a_METASOURCES = AUTO
 

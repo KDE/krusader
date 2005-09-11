@@ -1,8 +1,7 @@
 noinst_LIBRARIES = libradialmap.a
 
-INCLUDES = \
-	$(all_includes) \
-	-I../filelightParts
+INCLUDES = -I$(top_srcdir)/krusader/DiskUsage/filelightParts \
+	 $(all_includes)
 
 METASOURCES = AUTO
 
