@@ -82,9 +82,6 @@ protected:
   QGridLayout* _grid;
   QHBox* _iconBox;
   QLabel* _label; // generic label
-  QLabel* _nameLabel;
-  QLabel* _foundLabel;
-  QLabel* _noteLabel;
 
   /**
   * Creates the main grid layout and attaches the table header
@@ -92,6 +89,14 @@ protected:
   * @return bool  Pointer to the main grid layout
   */
   QGridLayout* initTable();
+
+  /**
+  * Applies settings to each cell of the grid layout
+  * Supposed to be run after a row was added
+  *
+  * @param const QGridLayout* grid  The GridLayout
+  */
+  void adjustRow(QGridLayout* grid);
 };
 
 // -----------------------------------------------------------------------------
@@ -108,8 +113,6 @@ public:
 
 protected:
   KURLLabel* _nameLabel;
-  QLabel* _packingLabel;
-  QLabel* _unpackingLabel;
 
 protected slots:
   void website(const QString&);
@@ -128,8 +131,6 @@ public:
   bool addRow(SearchObject* search, QGridLayout* grid);
 
 protected:
-  QLabel* _supportedLabel;
-  QLabel* _statusLabel;
   QValueVector<Application*> _apps;
 
 protected slots:

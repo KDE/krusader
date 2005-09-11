@@ -29,6 +29,8 @@
  ***************************************************************************/
 
 #include "krresulttable.h"
+#include <iostream>
+using namespace std;
 
 #define PS(x) _supported.contains(x)>0
 
@@ -46,22 +48,15 @@ KrResultTable::~KrResultTable()
 QGridLayout* KrResultTable::initTable()
 {
   _grid = new QGridLayout(this, _numRows, _numColumns);
-//   _grid->setAlignment(Qt::AlignTop);
   _grid->setColStretch(_numColumns-1, 1); // stretch last column
-//   _grid->setSpacing(5);
-//   _grid->setMargin(5);
-//   _grid->set
 
   // +++ Build and add table header +++
   int column = 0;
   for( QStringList::Iterator it=_tableHeaders.begin(); it!=_tableHeaders.end(); ++it )
   {
     _label = new QLabel(*it, this);
-
-    _grid->addWidget(_label, 0, column);
-    // FIXME iterate over qgridlayout and set to maximum width plus some extra space
-    _grid->setColSpacing(column, _label->sizeHint().width()+25);
     _label->setMargin(5);
+    _grid->addWidget(_label, 0, column);
 
     // Set font
     QFont defFont = KGlobalSettings::generalFont();
@@ -75,6 +70,27 @@ QGridLayout* KrResultTable::initTable()
   return _grid;
 }
 
+
+void KrResultTable::adjustRow(QGridLayout* grid)
+{
+  QLayoutIterator it = grid->iterator();
+  QLayoutItem *child;
+  int col = 0;
+
+  while( (child = it.current()) != 0 )
+  {
+    // Add some space between columns
+    child->widget()->setMinimumWidth( child->widget()->sizeHint().width() + 15 );
+
+    // Paint uneven rows in alternate color
+    if( ((col/_numColumns)%2) )
+      child->widget()->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
+
+    ++it;
+    ++col;
+  }
+}
+
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
@@ -85,7 +101,7 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
 
   Archiver* tar   = new Archiver("tar",   "http://www.gnu.org",      PS("tar"),   true,  true);
   Archiver* gzip  = new Archiver("gzip",  "http://www.gnu.org",      PS("gzip"),  true,  true);
-  Archiver* bzip2 = new Archiver("bzip2", "http://www.gnu.org",      PS("bzip2"), true,  false);
+  Archiver* bzip2 = new Archiver("bzip2", "http://www.gnu.org",      PS("bzip2"), true,  true);
   Archiver* lha   = new Archiver("lha",   "http://www.gnu.org",      PS("lha"),   true,  true);
   Archiver* zip   = new Archiver("zip",   "http://www.info-zip.org", PS("zip"),   true,  false);
   Archiver* unzip = new Archiver("unzip", "http://www.info-zip.org", PS("unzip"), false, true);
@@ -152,71 +168,66 @@ KrArchiverResultTable::~KrArchiverResultTable()
 bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
 {
   Archiver* arch = dynamic_cast<Archiver*>(search);
-  ++_numRows;
 
   // Name column
-  _nameLabel = new KURLLabel(arch->getWebsite(), arch->getSearchName(), this);
-  _nameLabel->setMargin(5);
-  _nameLabel->setAlignment(Qt::AlignTop);
-  grid->addWidget(_nameLabel, _numRows, 0);
-  connect(_nameLabel, SIGNAL(leftClickedURL(const QString&)),
+  _label = new KURLLabel(arch->getWebsite(), arch->getSearchName(), this);
+  _label->setMargin(5);
+  _label->setAlignment(Qt::AlignTop);
+  grid->addWidget(_label, _numRows, 0);
+  connect(_label, SIGNAL(leftClickedURL(const QString&)),
                       SLOT(website(const QString&)));
 
   // Found column
-  _foundLabel = new QLabel(this);
-  _foundLabel->setMargin(5);
-  _foundLabel->setAlignment(Qt::AlignTop);
+  QHBox* hbox = new QHBox(this); // [icon][label]
+  _label = new QLabel(hbox);
+  hbox->setMargin(4); // FIXME 1px difference?
   if(arch->getFound())
-    _foundLabel->setPixmap(krLoader->loadIcon("button_ok", KIcon::Desktop, 16));
-  else
-    _foundLabel->setPixmap(krLoader->loadIcon("no", KIcon::Desktop, 16));
-  grid->addWidget(_foundLabel, _numRows, 1);
+    _label->setPixmap(krLoader->loadIcon("button_ok", KIcon::Desktop, 16));
+  _label->setFixedWidth( _label->sizeHint().width()+5 ); // add some space between icon and label
+  _label = new QLabel( arch->getPath(), hbox );
+  grid->addWidget(hbox, _numRows, 1);
 
   // Packing column
-  _packingLabel = new QLabel(this);
-  _packingLabel->setMargin(5);
-  _packingLabel->setAlignment(Qt::AlignTop);
+  _label = new QLabel(this);
+  _label->setMargin(5);
+  _label->setAlignment( Qt::AlignTop );
   if( arch->getIsPacker() && arch->getFound() ) {
-    _packingLabel->setText( i18n("enabled") );
-    _packingLabel->setPaletteForegroundColor("darkgreen");
+    _label->setText( i18n("enabled") );
+    _label->setPaletteForegroundColor("darkgreen");
   } else if( arch->getIsPacker() && !arch->getFound() ) {
-    _packingLabel->setText( i18n("disabled") );
-    _packingLabel->setPaletteForegroundColor("red");
+    _label->setText( i18n("disabled") );
+    _label->setPaletteForegroundColor("red");
   } else
-    _packingLabel->setText( "" );
-  grid->addWidget(_packingLabel, _numRows, 2);
+    _label->setText( "" );
+  grid->addWidget(_label, _numRows, 2);
 
   // Unpacking column
-  _unpackingLabel = new QLabel(this);
-  _unpackingLabel->setMargin(5);
-  _unpackingLabel->setAlignment(Qt::AlignTop);
+  _label = new QLabel(this);
+  _label->setMargin(5);
+  _label->setAlignment( Qt::AlignTop );
   if( arch->getIsUnpacker() && arch->getFound() ) {
-    _unpackingLabel->setText( i18n("enabled") );
-    _unpackingLabel->setPaletteForegroundColor("darkgreen");
+    _label->setText( i18n("enabled") );
+    _label->setPaletteForegroundColor("darkgreen");
   } else if( arch->getIsUnpacker() && !arch->getFound() ) {
-    _unpackingLabel->setText( i18n("disabled") );
-    _unpackingLabel->setPaletteForegroundColor("red");
+    _label->setText( i18n("disabled") );
+    _label->setPaletteForegroundColor("red");
   } else
-    _unpackingLabel->setText( "" );
-  grid->addWidget(_unpackingLabel, _numRows, 3);
+    _label->setText( "" );
+  grid->addWidget(_label, _numRows, 3);
 
   // Note column
-  _noteLabel = new QLabel(arch->getNote(), this);
-  _noteLabel->setMargin(5);
-  _noteLabel->setMinimumWidth(300);
-//   _noteLabel->setMinimumWidth( _noteLabel->fontMetrics().maxWidth()*30 );
-  _noteLabel->setAlignment(Qt::AlignTop | Qt::WordBreak); // wrap words
-  grid->addWidget(_noteLabel, _numRows, 4);
+  _label = new QLabel(arch->getNote(), this);
+  _label->setMargin(5);
+  _label->setAlignment( Qt::AlignTop | Qt::WordBreak ); // wrap words
+  grid->addWidget(_label, _numRows, 4);
 
-  // Paint uneven rows in alternate color
-  if(!(_numRows % 2)) {
-    _nameLabel->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-    _foundLabel->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-    _packingLabel->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-    _unpackingLabel->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-    _noteLabel->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-  }
+  // Apply shared design elements
+  adjustRow(_grid);
 
+  // Ensure the last column takes more space
+  _label->setMinimumWidth(300);
+
+  ++_numRows;
   return true;
 }
 
@@ -229,10 +240,6 @@ void KrArchiverResultTable::website(const QString& url)
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-/**
-* TODO We can search for application groups, but not for single tools.
-*      class Application is capable of holding the tool->found information already
-*/
 KrToolResultTable::KrToolResultTable(QWidget* parent)
  : KrResultTable(parent)
 {
@@ -244,9 +251,8 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
   Application* xxdiff  = new Application("xxdiff",  "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
   Application* kmail   = new Application("kmail",   "http://kmail.kde.org/", KrServices::cmdExist("kmail"));
   Application* krename = new Application("krename", "http://www.krename.net/", KrServices::cmdExist("krename"));
-  Application* md5sum = new Application("md5sum", "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
+  Application* md5sum  = new Application("md5sum",  "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
   Application* md5deep = new Application("md5deep", "http://md5deep.sourceforge.net/", KrServices::cmdExist("md5deep"));
-
 
   vecDiff.push_back(kdiff3);
   vecDiff.push_back(kompare);
@@ -259,9 +265,10 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
   ApplicationGroup* diff   = new ApplicationGroup( i18n("diff utility"),  PS("DIFF"),   vecDiff);
   ApplicationGroup* mail   = new ApplicationGroup( i18n("email client"),  PS("MAIL"),   vecMail);
   ApplicationGroup* rename = new ApplicationGroup( i18n("batch renamer"), PS("RENAME"), vecRename);
-  ApplicationGroup* md5 = new ApplicationGroup( i18n("md5 checksum"), PS("MD5"), vecMd5);
+  ApplicationGroup* md5    = new ApplicationGroup( i18n("md5 checksum"),  PS("MD5"),    vecMd5);
 
-  _tableHeaders.append( i18n("Name") );
+  _tableHeaders.append( i18n("Group") );
+  _tableHeaders.append( i18n("Tool") );
   _tableHeaders.append( i18n("Found") );
   _tableHeaders.append( i18n("Status") );
   _numColumns = _tableHeaders.size();
@@ -295,59 +302,62 @@ KrToolResultTable::~KrToolResultTable()
 bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
 {
   ApplicationGroup* appGroup = dynamic_cast<ApplicationGroup*>(search);
-  ++_numRows;
+  QValueVector<Application*> _apps = appGroup->getAppVec();
 
   // Name column
-  _nameLabel = new QLabel(appGroup->getSearchName(), this);
-  _nameLabel->setMargin(5);
-  _nameLabel->setAlignment(Qt::AlignTop);
-  grid->addWidget(_nameLabel, _numRows, 0);
+  _label = new QLabel(appGroup->getSearchName(), this);
+  _label->setMargin(5);
+  _label->setAlignment( Qt::AlignTop );
+  grid->addWidget(_label, _numRows, 0);
 
-  // Found column
-  QValueVector<Application*> _apps = appGroup->getAppVec();
-  QVBox* vbox = new QVBox(this);
-  vbox->setMargin(5);
-  vbox->setSpacing(5);
-  vbox->layout()->setAlignment(Qt::AlignTop);
+  // Tool column
+  QVBox* toolBox = new QVBox(this);
   for( QValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
-    QHBox* hbox = new QHBox(vbox); // [icon][label]
-    _foundLabel = new QLabel(hbox, "iconLabel");
-    if( (*it)->getFound() )
-      _foundLabel->setPixmap(krLoader->loadIcon("button_ok", KIcon::Desktop, 16));
-    else
-      _foundLabel->setPixmap(krLoader->loadIcon("no", KIcon::Desktop, 16));
-    _foundLabel->setFixedSize( _foundLabel->sizeHint().width()+10, _foundLabel->sizeHint().height() ); // add some space between icon and label
-
-    KURLLabel* l = new KURLLabel( (*it)->getWebsite(), (*it)->getAppName(), hbox);
+    KURLLabel* l = new KURLLabel( (*it)->getWebsite(), (*it)->getAppName(), toolBox);
     l->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    l->setMargin(5);
     connect(l, SIGNAL(leftClickedURL(const QString&)),
                SLOT(website(const QString&)));
   }
-  grid->addWidget(vbox, _numRows, 1);
+  grid->addWidget(toolBox, _numRows, 1);
+
+  // Found column
+  QVBox* vbox = new QVBox(this);
+  for( QValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
+  {
+    QHBox* hbox = new QHBox(vbox); // [icon][label]
+    _label = new QLabel(hbox);
+    if( (*it)->getFound() )
+      _label->setPixmap(krLoader->loadIcon("button_ok", KIcon::Desktop, 16));
+    _label->setFixedWidth( _label->sizeHint().width()+5 ); // add some space between icon and label
+
+    _label = new QLabel( (*it)->getPath(), hbox);
+    _label->setMargin(5);
+    _label->setAlignment( Qt::AlignTop );
+  }
+  grid->addWidget(vbox, _numRows, 2);
 
   // Status column
-  _statusLabel = new QLabel(this);
-  _statusLabel->setMargin(5);
-  _statusLabel->setAlignment(Qt::AlignTop);
+  _label = new QLabel(this);
+  _label->setMargin(5);
+  _label->setAlignment( Qt::AlignTop );
   if( appGroup->getFoundGroup() ) {
-    _statusLabel->setText( i18n("enabled") );
-    _statusLabel->setPaletteForegroundColor("darkgreen");
+    _label->setText( i18n("enabled") );
+    _label->setPaletteForegroundColor("darkgreen");
   } else {
-    _statusLabel->setText( i18n("disabled") );
-    _statusLabel->setPaletteForegroundColor("red");
+    _label->setText( i18n("disabled") );
+    _label->setPaletteForegroundColor("red");
   }
-  grid->addWidget(_statusLabel, _numRows, 2);
+  grid->addWidget(_label, _numRows, 3);
 
+  // Apply shared design elements
+  adjustRow(_grid);
 
-  // Paint uneven rows in alternate color
-  if(!(_numRows % 2)) {
-    _nameLabel->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-    _foundLabel->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-    _statusLabel->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-    vbox->setPaletteBackgroundColor( KGlobalSettings::baseColor() );
-  }
+  // Ensure the last column takes more space
+  _label->setMinimumWidth(300);
 
+  ++_numRows;
   return true;
 }
 
