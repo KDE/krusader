@@ -55,14 +55,16 @@ Application::Application()
 Application::Application(const QString& searchName, bool found, const QString& appName, const QString& website, const QString& note)
   : SearchObject(searchName, found, note),
     _appName(appName),
-    _website(website)
+    _website(website),
+    _path(KrServices::fullPathName(appName))
 {
 }
 
 Application::Application(const QString& searchName, const QString& website, bool found, const QString& note)
   : SearchObject(searchName, found, note),
     _appName(searchName),
-    _website(website)
+    _website(website),
+    _path(KrServices::fullPathName(searchName))
 {
 }
 

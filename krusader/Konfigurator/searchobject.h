@@ -33,6 +33,7 @@
 
 #include <qstring.h>
 #include <qvaluevector.h>
+#include "../krservices.h"
 
 /**
 @author Dirk Eschler <deschler@users.sourceforge.net>
@@ -73,12 +74,15 @@ public:
 
   const QString& getWebsite() const { return _website; }
   const QString& getAppName() const { return _appName; }
+  const QString& getPath() const { return _path; }
   void setWebsite(const QString& s) { _website = s; }
   void setAppName(const QString& s) { _appName = s; }
+  void setPath(const QString& s) { _path = s; }
 
 protected:
   QString _appName;
   QString _website;
+  QString _path;
 };
 
 // -----------------------------------------------------------------------------
