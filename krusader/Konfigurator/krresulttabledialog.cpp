@@ -40,6 +40,7 @@ KrResultTableDialog::KrResultTableDialog( QWidget *parent, DialogType type,
   _page = new QWidget(this);
   setMainWidget(_page);
   _topLayout = new QVBoxLayout(_page, 0, spacingHint());
+  _topLayout->setAlignment( Qt::AlignTop );
 
   // +++ Heading +++
   // prepare the icon
