@@ -180,9 +180,9 @@ void KEasyProcess::init() {
 }
 
 void KEasyProcess::receivedStdout (KProcess *proc, char *buffer, int buflen) {
-	_stdout+=QString::fromLatin1(buffer, buflen);
+	_stdout+=QString::fromLocal8Bit(buffer, buflen);
 }
 
 void KEasyProcess::receivedStderr (KProcess *proc, char *buffer, int buflen) {
-	_stderr+=QString::fromLatin1(buffer, buflen);
+	_stderr+=QString::fromLocal8Bit(buffer, buflen);
 }
