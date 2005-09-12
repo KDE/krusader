@@ -890,19 +890,6 @@ void ListPanelFunc::unpack() {
 }
 
 void ListPanelFunc::createChecksum() {
-	// are we in a local file system?
-	if (files()->vfs_getType() != vfs::NORMAL) {
-		KMessageBox::error(0,i18n("Calculating checksum is supported only on local filesystems"));
-		return;
-	}
-	
-	// what can we run?
-	bool md5sum = KrServices::cmdExist("md5sum");
-	bool md5deep = KrServices::cmdExist("md5deep");
-	if (!md5sum && !md5deep) {
-		KMessageBox::error(0,i18n("<qt>Please install <b>md5sum</b> or <b>md5deep</b>. If a tool is installed, please set its path in the Dependencies configuration page"));
-		return;
-	}
 	KrViewItemList items;
 	QStringList args;
 	panel->view->getSelectedKrViewItems( &items );
@@ -913,12 +900,13 @@ void ListPanelFunc::createChecksum() {
 	for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
 		if (getVFile(*it)->vfile_isDir()) {
 			folders = true;
-			if (md5deep) args << (*it)->name();
+			args << (*it)->name();
 		} else args << (*it)->name();
 	}
-	if (folders && !md5deep) {
-		KMessageBox::information(0,i18n("<qt>You have selected folders, but don't have <b>md5deep</b> installed. Krusader will calculate md5 checksums only for the files."));
-	}	
+	
+	CreateChecksumDlg dlg(args, folders, panel->realPath());
+	
+/*	
 	// run the process, catching its output
 	KEasyProcess p;
 	bool recursive = (folders && md5deep);
@@ -933,8 +921,8 @@ void ListPanelFunc::createChecksum() {
 		return;
 	}
 	// send both stdout and stderr
-	CreateChecksumDlg dlg(QStringList::split('\n', p.stdout(), false),
-								QStringList::split('\n', p.stderr(), false), panel->realPath(), binary);
+	ChecksumResultsDlg dlg(QStringList::split('\n', p.stdout(), false),
+								QStringList::split('\n', p.stderr(), false), panel->realPath(), binary);*/
 }
 
 void ListPanelFunc::matchChecksum() {
@@ -1018,10 +1006,12 @@ void ListPanelFunc::properties() {
 
 void ListPanelFunc::refreshActions() {
 	vfs::VFS_TYPE vfsType = files() ->vfs_getType();
+	qDebug("------ %d --------", vfsType);
 	//  set up actions
 	krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
 	//krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties
 	krFTPDiss ->setEnabled( vfsType == vfs::FTP );     // disconnect an FTP session
+	krCreateCS->setEnabled( vfsType == vfs::NORMAL );
 	/*
 	  krUnpack->setEnabled(true);                            // unpack archive
 	  krTest->setEnabled(true);                              // test archive

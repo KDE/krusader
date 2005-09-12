@@ -13,8 +13,117 @@
 #include <kfiledialog.h>
 #include <qframe.h>
 #include <kiconloader.h>
+#include "../krservices.h"
 
-CreateChecksumDlg::CreateChecksumDlg(const QStringList& stdout, const QStringList& stderr, 
+
+#define MAKE_TOOLS(TYPE, BINARIES, BINARIES_R) \
+	{ TYPE, BINARIES, sizeof(BINARIES)/sizeof(QString), BINARIES_R, sizeof(BINARIES_R)/sizeof(QString) }
+	
+// md5
+QString md5Binaries[] = {"md5sum", "md5deep"};
+QString md5Binaries_r[] = {"md5deep"};
+ToolType md5Tools = MAKE_TOOLS("MD5", md5Binaries, md5Binaries_r);
+
+// sha1
+QString sha1Binaries[] = {"sha1sum", "sha1deep"};
+QString sha1Binaries_r[] = {"sha1deep"};
+ToolType sha1Tools = MAKE_TOOLS("SHA1", sha1Binaries, sha1Binaries_r);
+
+// sha256
+QString sha256Binaries[] = {"sha256deep"};
+QString sha256Binaries_r[] = {"sha256deep"};
+ToolType sha256Tools = MAKE_TOOLS("SHA256", sha256Binaries, sha256Binaries_r);
+
+// tiger
+QString tigerBinaries[] = {"tigerdeep"};
+QString tigerBinaries_r[] = {"tigerdeep"};
+ToolType tigerTools = MAKE_TOOLS("Tiger", tigerBinaries, tigerBinaries_r);
+
+ToolType tools[] = { md5Tools, sha1Tools, sha256Tools, tigerTools };
+
+
+// ------------- CreateChecksumDlg
+
+// returns a list of tools which can work with recursive or non-recursive mode and are installed
+SuggestedTools CreateChecksumDlg::getTools(bool folders) {
+	SuggestedTools result;
+	uint i;
+	for (i=0; i < sizeof(tools)/sizeof(ToolType); ++i)
+		if (folders) {
+			for (int j=0; j < tools[i].numTools_r; ++j) {
+				if (KrServices::cmdExist(tools[i].tools_r[j])) {
+					result.append(SuggestedTool(tools[i].type, tools[i].tools_r[j]));
+					break; // use the first tool we can find
+				}
+			}
+		} else {
+			for (int j=0; j < tools[i].numTools; ++j) {
+				if (KrServices::cmdExist(tools[i].tools[j])) {
+					result.append(SuggestedTool(tools[i].type, tools[i].tools[j]));
+					break; // use the first tool we can find
+				}
+			}
+		}
+	
+	return result;
+}
+
+CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path):
+	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp) {
+	
+	SuggestedTools tools = getTools(containFolders);
+
+	if (tools.size() == 0) { // nothing was suggested?!
+		QString error = i18n("<qt>Can't calculate checksum since no supported tool was found. "
+			"Please check the <b>Dependencies</b> page in Krusader's settings.");
+		if (containFolders) 
+			error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
+			" Krusader currently supports <i>md5deep</i>");
+		KMessageBox::error(0, error);
+		return;
+	}
+	
+	//SuggestedTools::iterator it;
+	//for ( it = tools.begin(); it != tools.end(); ++it )
+   //	qDebug("type: %s, name: %s", (*it).type.latin1(), (*it).binary.latin1());
+	
+/*	if (tools.size() != 0) {
+		QString toolsMsg = i18n("Krusader currently supports ");
+		for (int i=0; i<
+		
+		QString msg = i18n("<qt>Can't create checksum<br>Krusader found none of the supported tools.");
+		KMessageBox::error(0, msg);
+		return;
+	}*/
+	
+	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
+		KDialogBase::marginHint(), KDialogBase::spacingHint());
+	
+	int row=0;
+		
+	// title (icon+text)	
+	QHBoxLayout *hlayout = new QHBoxLayout(layout, KDialogBase::spacingHint());
+	QLabel *p = new QLabel(plainPage());
+	p->setPixmap(krLoader->loadIcon("binary", KIcon::Desktop, 32));
+	hlayout->addWidget(p);
+	QLabel *l = new QLabel(i18n("About to calculate checksum for the following files") + 
+		(containFolders ? i18n(" and folders:") : ":"), plainPage());
+	hlayout->addWidget(l);
+	layout->addMultiCellLayout(hlayout, row, row, 0, 1, Qt::AlignLeft); 
+	++row;
+	
+	// file list
+	KListBox *lb = new KListBox(plainPage());
+	lb->insertStringList(files);
+	layout->addMultiCellWidget(lb, row, row, 0, 1);
+	
+	exec();
+	
+}
+
+// ------------- ChecksumResultsDlg
+
+ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr, 
 	const QString& path, const QString& binary):
 	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
 	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
@@ -97,7 +206,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& stdout, const QStringLis
 	}
 }
 
-void CreateChecksumDlg::saveChecksum(const QStringList& data, QString filename) {
+void ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename) {
 	if (QFile::exists(filename) &&
 		KMessageBox::warningContinueCancel(this,
 		i18n("File %1 already exists.\nAre you sure you want to overwrite it?").arg(filename),
