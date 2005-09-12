@@ -6,8 +6,10 @@
 #include <qwidgetstack.h>
 #include <kparts/part.h>
 #include <kio/job.h>
+#include <ktempfile.h>
 #include <qdict.h>
 #include <qlabel.h>
+
 
 class PanelViewerBase: public QWidgetStack {
 	Q_OBJECT
@@ -49,6 +51,7 @@ public:
 protected:
 	KParts::ReadOnlyPart *getPart( QString mimetype );
 	KParts::ReadOnlyPart*  getHexPart();
+	void oldHexViewer(KTempFile& tmpFile);
 };
 
 class PanelEditor: public PanelViewerBase {

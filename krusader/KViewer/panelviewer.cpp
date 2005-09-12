@@ -8,11 +8,15 @@
 #include <qdict.h>
 #include <qlabel.h>
 #include <kmimetype.h>
+#include <ktempfile.h>
 #include <klocale.h>
 #include <klibloader.h>
 #include <kuserprofile.h>
 #include <kdebug.h>
 #include <kfileitem.h>
+#include <kio/netaccess.h>
+#include <qfile.h>
+#include <kde_file.h>
 #include "panelviewer.h"
 
 #define DICTSIZE 211
@@ -58,12 +62,15 @@ KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, Mode mode ) {
 		cpart = ( *mimes ) [ cmimetype ];
 		if ( !cpart ){
 			cpart = getPart( cmimetype );
-			mimes->insert( cmimetype, cpart );			
+			mimes->insert( cmimetype, cpart );
 		}
 	}
 
+	KTempFile tmpFile;
+
 	if( mode == Hex ){
 		if ( !cpart ) cpart = getHexPart();
+		if ( !cpart ) oldHexViewer(tmpFile);
 	}
 	
 	if ( !cpart ) cpart = getPart( "text/plain" );
@@ -125,11 +132,59 @@ KParts::ReadOnlyPart* PanelViewer::getHexPart(){
 		// Create the part
 		part = ( KParts::ReadOnlyPart * ) factory->create( this, "hexedit2part","KParts::ReadOnlyPart" );
 	}
-	else {
-		 KMessageBox::information(this,i18n("Can't find KHexEdit, reverting to text mode"),i18n("Sorry"),"KHexEditNotFound");
-	}
 
 	return part;
+}
+
+void PanelViewer::oldHexViewer(KTempFile& tmpFile) {
+	QString file;
+	// files that are not local must first be downloaded
+	if ( !curl.isLocalFile() ) {
+		if ( !KIO::NetAccess::download( curl, file,this ) ) {
+			KMessageBox::sorry( this, i18n( "KrViewer is unable to download: " ) + curl.url() );
+			return ;
+		}
+	} else file = curl.path();
+
+
+	// create a hex file
+	QFile f_in( file );
+	f_in.open( IO_ReadOnly );
+	QDataStream in( &f_in );
+
+	FILE *out = KDE_fopen( tmpFile.name().local8Bit(), "w" );
+
+	KIO::filesize_t fileSize = f_in.size();
+	KIO::filesize_t address = 0;
+	char buf[ 16 ];
+	unsigned int* pBuff = ( unsigned int* ) buf;
+
+	while ( address < fileSize ) {
+		memset( buf, 0, 16 );
+		int bufSize = ( ( fileSize - address ) > 16 ) ? 16 : ( fileSize - address );
+		in.readRawBytes( buf, bufSize );
+		fprintf( out, "0x%8.8llx: ", address );
+		for ( int i = 0; i < 4; ++i ) {
+			if ( i < ( bufSize / 4 ) ) fprintf( out, "%8.8x ", pBuff[ i ] );
+			else fprintf( out, "         " );
+		}
+		fprintf( out, "| " );
+
+		for ( int i = 0; i < bufSize; ++i ) {
+			if ( buf[ i ] > ' ' && buf[ i ] < '~' ) fputc( buf[ i ], out );
+			else fputc( '.', out );
+		}
+		fputc( '\n', out );
+
+		address += 16;
+	}
+	// clean up
+	f_in.close();
+	fclose( out );
+	if ( !curl.isLocalFile() )
+	KIO::NetAccess::removeTempFile( file );
+
+	curl = tmpFile.name();
 }
 
 /* ----==={ PanelEditor }===---- */
