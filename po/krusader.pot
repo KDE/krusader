@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2005-09-09 13:26+0200\n"
+"POT-Creation-Date: 2005-09-12 21:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -598,7 +598,7 @@ msgstr ""
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr ""
 
-#: Filter/generalfilter.cpp:93 Konfigurator/konfigurator.cpp:105
+#: Filter/generalfilter.cpp:93 Konfigurator/konfigurator.cpp:107
 #: VFS/krquery.cpp:75
 msgid "Archives"
 msgstr ""
@@ -1329,10 +1329,9 @@ msgid "Reading: "
 msgstr ""
 
 #: DiskUsage/dulines.cpp:238 DiskUsage/dulistview.cpp:56
-#: Konfigurator/krresulttable.cpp:111 Konfigurator/krresulttable.cpp:258
-#: MountMan/kmountmangui.cpp:127 Panel/krdetailedview.cpp:97
-#: Search/krsearchdialog.cpp:146 Synchronizer/synchronizergui.cpp:1245
-#: Synchronizer/synchronizergui.cpp:1251
+#: Konfigurator/krresulttable.cpp:127 MountMan/kmountmangui.cpp:127
+#: Panel/krdetailedview.cpp:97 Search/krsearchdialog.cpp:146
+#: Synchronizer/synchronizergui.cpp:1245 Synchronizer/synchronizergui.cpp:1251
 msgid "Name"
 msgstr ""
 
@@ -1363,7 +1362,8 @@ msgid "Owner"
 msgstr ""
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/kglookfeel.cpp:154
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1238
+#: Konfigurator/krresulttable.cpp:270 Panel/krdetailedview.cpp:105
+#: Panel/krdetailedview.cpp:1238
 msgid "Group"
 msgstr ""
 
@@ -1522,7 +1522,7 @@ msgstr ""
 msgid "Open with"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:111 Panel/krpopupmenu.cpp:109
+#: Konfigurator/konfigurator.cpp:113 Panel/krpopupmenu.cpp:109
 msgid "User Actions"
 msgstr ""
 
@@ -1750,7 +1750,7 @@ msgstr ""
 msgid "&Delete"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:102 DiskUsage/diskusage.cpp:574
+#: Dialogs/checksumdlg.cpp:104 DiskUsage/diskusage.cpp:574
 #: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:573 krusader.cpp:692
 msgid "Warning"
 msgstr ""
@@ -2021,7 +2021,7 @@ msgstr ""
 msgid "Calculate &Occupied Space"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:17 krusader.cpp:500
+#: Dialogs/checksumdlg.cpp:19 krusader.cpp:500
 msgid "Create Checksum"
 msgstr ""
 
@@ -2258,7 +2258,7 @@ msgstr ""
 msgid "F10 - Quit"
 msgstr ""
 
-#: BookMan/krbookmarkhandler.cpp:266 krusader.cpp:638
+#: BookMan/krbookmarkhandler.cpp:288 krusader.cpp:638
 msgid "Popular URLs"
 msgstr ""
 
@@ -2314,7 +2314,7 @@ msgstr ""
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:102 Konfigurator/kgcolors.cpp:507 krusader.cpp:692
+#: Dialogs/checksumdlg.cpp:104 Konfigurator/kgcolors.cpp:507 krusader.cpp:692
 msgid "Overwrite"
 msgstr ""
 
@@ -2463,11 +2463,11 @@ msgstr ""
 msgid "Error reading bookmarks file: "
 msgstr ""
 
-#: BookMan/krbookmarkhandler.cpp:314
+#: BookMan/krbookmarkhandler.cpp:318
 msgid "Bookmark Current"
 msgstr ""
 
-#: BookMan/krbookmarkhandler.cpp:316
+#: BookMan/krbookmarkhandler.cpp:320
 msgid "Manage Bookmarks"
 msgstr ""
 
@@ -2973,45 +2973,45 @@ msgstr ""
 msgid "compare mode"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:32
+#: Dialogs/checksumdlg.cpp:34
 msgid "Errors were detected while creating the checksums"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:33
+#: Dialogs/checksumdlg.cpp:35
 msgid "Checksums were created successfully"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:40
+#: Dialogs/checksumdlg.cpp:42
 msgid "Here are the calculated checksums:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:45
+#: Dialogs/checksumdlg.cpp:47
 msgid "Hash"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:46 Konfigurator/kgcolors.cpp:365
+#: Dialogs/checksumdlg.cpp:48 Konfigurator/kgcolors.cpp:365
 msgid "File"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:65
+#: Dialogs/checksumdlg.cpp:67
 msgid "Here are the errors received:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:79
+#: Dialogs/checksumdlg.cpp:81
 msgid "Save checksum to file"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:101
+#: Dialogs/checksumdlg.cpp:103
 msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:104
+#: Dialogs/checksumdlg.cpp:106
 msgid "Select a file to save to"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:109
+#: Dialogs/checksumdlg.cpp:111
 #, c-format
 msgid "Error saving file %1"
 msgstr ""
@@ -3728,7 +3728,7 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:47 Konfigurator/kgarchives.cpp:52
 #: Konfigurator/kgcolors.cpp:52 Konfigurator/kgdependencies.cpp:50
-#: Konfigurator/kggeneral.cpp:52 Konfigurator/konfigurator.cpp:98
+#: Konfigurator/kggeneral.cpp:52 Konfigurator/konfigurator.cpp:100
 msgid "General"
 msgstr ""
 
@@ -3795,53 +3795,61 @@ msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:103
+#: Konfigurator/krresulttable.cpp:119
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:109
+#: Konfigurator/krresulttable.cpp:125
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:112 Konfigurator/krresulttable.cpp:259
+#: Konfigurator/krresulttable.cpp:128 Konfigurator/krresulttable.cpp:272
 msgid "Found"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:113
+#: Konfigurator/krresulttable.cpp:129
 msgid "Packing"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:114
+#: Konfigurator/krresulttable.cpp:130
 msgid "Unpacking"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:115
+#: Konfigurator/krresulttable.cpp:131
 msgid "Note"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:180 Konfigurator/krresulttable.cpp:194
-#: Konfigurator/krresulttable.cpp:324
+#: Konfigurator/krresulttable.cpp:195 Konfigurator/krresulttable.cpp:209
+#: Konfigurator/krresulttable.cpp:346
 msgid "enabled"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:183 Konfigurator/krresulttable.cpp:197
-#: Konfigurator/krresulttable.cpp:327
+#: Konfigurator/krresulttable.cpp:198 Konfigurator/krresulttable.cpp:212
+#: Konfigurator/krresulttable.cpp:349
 msgid "disabled"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:254
+#: Konfigurator/krresulttable.cpp:265
 msgid "diff utility"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:255
+#: Konfigurator/krresulttable.cpp:266
 msgid "email client"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:256
+#: Konfigurator/krresulttable.cpp:267
 msgid "batch renamer"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:260
+#: Konfigurator/krresulttable.cpp:268
+msgid "md5 checksum"
+msgstr ""
+
+#: Konfigurator/krresulttable.cpp:271
+msgid "Tool"
+msgstr ""
+
+#: Konfigurator/krresulttable.cpp:273
 msgid "Status"
 msgstr ""
 
@@ -3853,60 +3861,60 @@ msgstr ""
 msgid "Konfigurator - Creating Your Own Krusader"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:88
+#: Konfigurator/konfigurator.cpp:90
 msgid "Startup"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:89
+#: Konfigurator/konfigurator.cpp:91
 msgid "Krusader's settings upon startup"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:92 Konfigurator/konfigurator.cpp:93
+#: Konfigurator/konfigurator.cpp:94 Konfigurator/konfigurator.cpp:95
 msgid "Look & Feel"
 msgstr ""
 
 #: Konfigurator/kgcolors.cpp:78 Konfigurator/kgcolors.cpp:193
-#: Konfigurator/konfigurator.cpp:95 Konfigurator/konfigurator.cpp:96
+#: Konfigurator/konfigurator.cpp:97 Konfigurator/konfigurator.cpp:98
 msgid "Colors"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:99
+#: Konfigurator/konfigurator.cpp:101
 msgid "Basic Operations"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:101
+#: Konfigurator/konfigurator.cpp:103
 msgid "Advanced"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:102
+#: Konfigurator/konfigurator.cpp:104
 msgid "Be sure you know what you're doing!"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:105
+#: Konfigurator/konfigurator.cpp:107
 msgid "Customize the way Krusader deals with archives"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:108
+#: Konfigurator/konfigurator.cpp:110
 msgid "Dependencies"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:108
+#: Konfigurator/konfigurator.cpp:110
 msgid "Set the full path of the external applications"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:111
+#: Konfigurator/konfigurator.cpp:113
 msgid "Configure your personal actions"
 msgstr ""
 
-#: Konfigurator/kgprotocols.cpp:102 Konfigurator/konfigurator.cpp:114
+#: Konfigurator/kgprotocols.cpp:102 Konfigurator/konfigurator.cpp:116
 msgid "Protocols"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:115
+#: Konfigurator/konfigurator.cpp:117
 msgid "Link mimes to protocols"
 msgstr ""
 
-#: Konfigurator/konfigurator.cpp:183
+#: Konfigurator/konfigurator.cpp:185
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr ""
 
