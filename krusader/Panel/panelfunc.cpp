@@ -905,24 +905,6 @@ void ListPanelFunc::createChecksum() {
 	}
 	
 	CreateChecksumDlg dlg(args, folders, panel->realPath());
-	
-/*	
-	// run the process, catching its output
-	KEasyProcess p;
-	bool recursive = (folders && md5deep);
-	QString binary = (recursive ? "md5deep" : "md5sum");
-	p << KrServices::fullPathName( binary );
-	if (recursive) p << "-r";
-	p << args;
-	bool r = p.start(KEasyProcess::Block, KEasyProcess::AllOutput);
-	if (r) p.wait();
-	if (!r || !p.normalExit()) {	
-		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(binary));
-		return;
-	}
-	// send both stdout and stderr
-	ChecksumResultsDlg dlg(QStringList::split('\n', p.stdout(), false),
-								QStringList::split('\n', p.stderr(), false), panel->realPath(), binary);*/
 }
 
 void ListPanelFunc::matchChecksum() {

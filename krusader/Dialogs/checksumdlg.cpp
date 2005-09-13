@@ -13,30 +13,47 @@
 #include <kfiledialog.h>
 #include <qframe.h>
 #include <kiconloader.h>
+#include <kcombobox.h>
 #include "../krservices.h"
 
+// this part is so ugly since g++ 3.3.x has a bug regarding arrays containing arrays :-(
+// to add a new tool, do the following:
+// 1) if you just want to add a binary that does MD5 (or any other supported checksum), just
+//    add it to the correct array (ie: md5Binaries or md5Binaries_r) depending if it's recursive or not
+// 2) if you want to add a new checksum type, you'll need to
+//    * create newBinaries[], newBinaries_r[] and define a new ToolType for it
+//    * add it to the end of the ToolType tools[] array
+
+// defines a type of tool (ie: sha1, md5)
+typedef struct _toolType {
+	QString type; // md5 or sha1
+	const char **tools; // list of binaries
+	int numTools;
+	const char **tools_r; // list of recursive binaries
+	int numTools_r;
+} ToolType;
 
 #define MAKE_TOOLS(TYPE, BINARIES, BINARIES_R) \
 	{ TYPE, BINARIES, sizeof(BINARIES)/sizeof(QString), BINARIES_R, sizeof(BINARIES_R)/sizeof(QString) }
-	
+
 // md5
-QString md5Binaries[] = {"md5sum", "md5deep"};
-QString md5Binaries_r[] = {"md5deep"};
+const char *md5Binaries[] = {"md5sum", "md5deep"};
+const char *md5Binaries_r[] = {"md5deep"};
 ToolType md5Tools = MAKE_TOOLS("MD5", md5Binaries, md5Binaries_r);
 
 // sha1
-QString sha1Binaries[] = {"sha1sum", "sha1deep"};
-QString sha1Binaries_r[] = {"sha1deep"};
+const char *sha1Binaries[] = {"sha1sum", "sha1deep"};
+const char *sha1Binaries_r[] = {"sha1deep"};
 ToolType sha1Tools = MAKE_TOOLS("SHA1", sha1Binaries, sha1Binaries_r);
 
 // sha256
-QString sha256Binaries[] = {"sha256deep"};
-QString sha256Binaries_r[] = {"sha256deep"};
+const char *sha256Binaries[] = {"sha256deep"};
+const char *sha256Binaries_r[] = {"sha256deep"};
 ToolType sha256Tools = MAKE_TOOLS("SHA256", sha256Binaries, sha256Binaries_r);
 
 // tiger
-QString tigerBinaries[] = {"tigerdeep"};
-QString tigerBinaries_r[] = {"tigerdeep"};
+const char *tigerBinaries[] = {"tigerdeep"};
+const char *tigerBinaries_r[] = {"tigerdeep"};
 ToolType tigerTools = MAKE_TOOLS("Tiger", tigerBinaries, tigerBinaries_r);
 
 ToolType tools[] = { md5Tools, sha1Tools, sha256Tools, tigerTools };
@@ -78,23 +95,10 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 			"Please check the <b>Dependencies</b> page in Krusader's settings.");
 		if (containFolders) 
 			error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
-			" Krusader currently supports <i>md5deep</i>");
+			" Krusader currently supports <i>md5deep, sha1deep, sha256deep and tigerdeep</i>");
 		KMessageBox::error(0, error);
 		return;
 	}
-	
-	//SuggestedTools::iterator it;
-	//for ( it = tools.begin(); it != tools.end(); ++it )
-   //	qDebug("type: %s, name: %s", (*it).type.latin1(), (*it).binary.latin1());
-	
-/*	if (tools.size() != 0) {
-		QString toolsMsg = i18n("Krusader currently supports ");
-		for (int i=0; i<
-		
-		QString msg = i18n("<qt>Can't create checksum<br>Krusader found none of the supported tools.");
-		KMessageBox::error(0, msg);
-		return;
-	}*/
 	
 	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
 		KDialogBase::marginHint(), KDialogBase::spacingHint());
@@ -106,9 +110,9 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	QLabel *p = new QLabel(plainPage());
 	p->setPixmap(krLoader->loadIcon("binary", KIcon::Desktop, 32));
 	hlayout->addWidget(p);
-	QLabel *l = new QLabel(i18n("About to calculate checksum for the following files") + 
+	QLabel *l1 = new QLabel(i18n("About to calculate checksum for the following files") + 
 		(containFolders ? i18n(" and folders:") : ":"), plainPage());
-	hlayout->addWidget(l);
+	hlayout->addWidget(l1);
 	layout->addMultiCellLayout(hlayout, row, row, 0, 1, Qt::AlignLeft); 
 	++row;
 	
@@ -116,15 +120,47 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	KListBox *lb = new KListBox(plainPage());
 	lb->insertStringList(files);
 	layout->addMultiCellWidget(lb, row, row, 0, 1);
-	
-	exec();
-	
+	++row;
+
+	// checksum method
+	QHBoxLayout *hlayout2 = new QHBoxLayout(layout, KDialogBase::spacingHint());
+	QLabel *l2 = new QLabel(i18n("Select the checksum method:"), plainPage());
+	hlayout2->addWidget(l2);
+	KComboBox *method = new KComboBox(plainPage());
+	// -- fill the combo with available methods
+	SuggestedTools::iterator it;
+	int i;
+	for ( i=0, it = tools.begin(); it != tools.end(); ++it, ++i )
+		method->insertItem((*it).type, i);
+	method->setFocus();
+	hlayout2->addWidget(method);	
+	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
+	++row;
+
+	if (exec() != Accepted) return;
+	// else implied: run the process
+	KEasyProcess proc;
+	QString binary = tools[method->currentItem()].binary;
+	proc << KrServices::fullPathName( binary );
+	if (containFolders) proc << "-r"; // BUG: this works only for md5deep and friends
+	proc << files;
+	bool r = proc.start(KEasyProcess::Block, KEasyProcess::AllOutput);
+	if (r) proc.wait();
+	if (!r || !proc.normalExit()) {	
+		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(binary));
+		return;
+	}
+	// send both stdout and stderr
+	ChecksumResultsDlg dlg(QStringList::split('\n', proc.stdout(), false),
+								QStringList::split('\n', proc.stderr(), false),
+								path, binary, tools[method->currentItem()].type.lower());
+
 }
 
 // ------------- ChecksumResultsDlg
 
 ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr, 
-	const QString& path, const QString& binary):
+	const QString& path, const QString& binary, const QString& type):
 	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
 	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
 		KDialogBase::marginHint(), KDialogBase::spacingHint());
@@ -192,7 +228,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 		hlayout2->addWidget(cb);
 	
 		le = new KLineEdit(plainPage());
-		le->setText(path+"/checksum.md5");
+		le->setText(path+"/checksum."+type);
 		hlayout2->addWidget(le, Qt::AlignLeft);
 		layout->addMultiCellLayout(hlayout2, row, row,0,1, Qt::AlignLeft);
 		++row;

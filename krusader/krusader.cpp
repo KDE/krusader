@@ -941,14 +941,6 @@ QStringList Krusader::supportedTools() {
       tools.append( "RENAME" );
       tools.append( KrServices::fullPathName( "krename" ) );
    }
-   // md5 tool
-   if (KrServices::cmdExist("md5deep")) {
-   	tools.append("MD5");
-   	tools.append(KrServices::fullPathName("md5deep", "md5 utility"));
-   } else if (KrServices::cmdExist("md5sum")) {
-   	tools.append("MD5");
-   	tools.append(KrServices::fullPathName("md5sum", "md5 utility"));
-   }
 
    return tools;
 }
