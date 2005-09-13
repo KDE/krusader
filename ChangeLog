@@ -1,6 +1,6 @@
 ======================
     ADDED: Nicer application search results
-    ADDED: i18n multiple plural support (thanks Václav Juza)
+    ADDED: i18n multiple plural support (thanks Vaclav Juza)
     ADDED: right click menu -> trash, delete, shred options
     ADDED: column types can be changed and saved individually to each panel
     (each side)
@@ -39,6 +39,8 @@
 
   CHANGED: the panel startup is profile based instead of directory based
 
+    FIXED: [ 1169980 ] User Actions Titles are not stored in system encoding
+           (thanks Vaclav Juza)
     FIXED: '-icon' as well as '--icon' as command-line arguments are handled
     FIXED: [ 1272583 ] fixes on the .desktop files, thanks Marcin Garski
     FIXED: [ 1217697 ] Can't translate some Bookman II menu entries
