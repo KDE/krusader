@@ -56,7 +56,12 @@ const char *tigerBinaries[] = {"tigerdeep"};
 const char *tigerBinaries_r[] = {"tigerdeep"};
 ToolType tigerTools = MAKE_TOOLS("Tiger", tigerBinaries, tigerBinaries_r);
 
-ToolType tools[] = { md5Tools, sha1Tools, sha256Tools, tigerTools };
+// whirlpool
+const char *whirlpoolBinaries[] = {"tigerdeep"};
+const char *whirlpoolBinaries_r[] = {"tigerdeep"};
+ToolType whirlpoolTools = MAKE_TOOLS("Whirlpool", whirlpoolBinaries, whirlpoolBinaries_r);
+
+ToolType tools[] = { md5Tools, sha1Tools, sha256Tools, tigerTools, whirlpoolTools };
 
 
 // ------------- CreateChecksumDlg

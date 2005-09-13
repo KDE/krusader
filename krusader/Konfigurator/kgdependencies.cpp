@@ -70,6 +70,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   addApplication( "sha1deep", pathsGrid, 13, general_tab );
   addApplication( "sha256deep", pathsGrid, 14, general_tab );
   addApplication( "tigerdeep", pathsGrid, 15, general_tab );
+  addApplication( "whirlpooldeep", pathsGrid, 16, general_tab );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );
