@@ -115,7 +115,8 @@ class KRslots : public QObject {
     void multiRename();
     void openRightBookmarks() { RIGHT_PANEL->slotFocusOnMe(); RIGHT_PANEL->bookmarksButton->openPopup(); }
     void openLeftBookmarks() { LEFT_PANEL->slotFocusOnMe(); LEFT_PANEL->bookmarksButton->openPopup(); }
-	 void openBookmarks() { ACTIVE_PANEL->bookmarksButton->openPopup(); }	
+	 void openBookmarks() { ACTIVE_PANEL->bookmarksButton->openPopup(); }
+	 void openHistory() { ACTIVE_PANEL->historyButton->openPopup(); }
     void openLeftHistory() { LEFT_PANEL->historyButton->openPopup(); }
     void openRightHistory() { RIGHT_PANEL->historyButton->openPopup(); }
 	 void syncPanels() {

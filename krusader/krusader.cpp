@@ -590,6 +590,8 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
 	new KAction( i18n( "Bookmarks" ), CTRL + Key_D,
                 SLOTS, SLOT( openBookmarks() ), actionCollection(), "bookmarks" );
+	new KAction( i18n( "History" ), CTRL + Key_H,
+                SLOTS, SLOT( openHistory() ), actionCollection(), "history" );
 	new KAction( i18n( "Sync Panels" ), ALT + Key_O,
 					 SLOTS, SLOT( syncPanels() ), actionCollection(), "sync panels");
    new KAction( i18n( "Left history" ), ALT + CTRL + Key_Left,
