@@ -1006,7 +1006,7 @@ void ListPanelFunc::properties() {
 
 void ListPanelFunc::refreshActions() {
 	vfs::VFS_TYPE vfsType = files() ->vfs_getType();
-	qDebug("------ %d --------", vfsType);
+
 	//  set up actions
 	krMultiRename->setEnabled( vfsType == vfs::NORMAL );  // batch rename
 	//krProperties ->setEnabled( vfsType == vfs::NORMAL || vfsType == vfs::FTP ); // file properties

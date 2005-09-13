@@ -555,6 +555,11 @@ void ListPanel::slotStartUpdate() {
    func->inRefresh = true;  // make sure the next refresh wait for this one
 	if (inlineRefreshJob)
 		inlineRefreshListResult(0);
+
+	if( this == ACTIVE_PANEL ){
+		slotFocusOnMe();
+	}
+
    setCursor( KCursor::workingCursor() );
    view->clear();
 
