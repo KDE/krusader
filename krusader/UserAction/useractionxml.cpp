@@ -105,7 +105,8 @@ void UserActionXML::writeActionDom( QString filename ) {
    }
  
    QTextStream ts( &file );
-   ts << _doc->toString().utf8();
+   ts.setEncoding(ts.UnicodeUTF8);
+   ts << _doc->toString();
  
    file.close();
 }
