@@ -55,7 +55,7 @@ if( first )
   KONFIGURATOR_NAME_VALUE_TIP deleteMode[] =
   //            name            value    tooltip
     {{ i18n( "Delete files" ),  "false", i18n( "Files will be permanently deleted." ) },
-     { i18n( "Move to trash" ), "true",  i18n( "Files will be moved to Trash when deleted." ) }};
+     { i18n( "Move to trash" ), "true",  i18n( "Files will be moved to trash when deleted." ) }};
 
   KonfiguratorRadioButtons *trashRadio = createRadioButtonGroup( "General", "Move To Trash",
       _MoveToTrash ? "true" : "false", 2, 0, deleteMode, 2, generalGrp, "myRadio", false );
@@ -63,7 +63,7 @@ if( first )
 
   KonfiguratorCheckBox *checkBox = createCheckBox( "General", "Mimetype Magic", _MimetypeMagic,
                      i18n( "Use mimetype magic" ), generalGrp, false,
-                     i18n( "Mimetype magic allows better distinction of file types, but is slower" ) );
+                     i18n( "Mimetype magic allows better distinction of file types, but is slower." ) );
   generalGrid->addMultiCellWidget( checkBox, 1, 1, 0, 1 );
 
   QFrame *line1 = createLine( generalGrp, "line1" );
@@ -96,7 +96,7 @@ if( first )
            this, SLOT( applyTempDir(QObject *,QString, QString) ) );
   generalGrid->addMultiCellWidget( hbox, 7, 7, 0, 1 );
 
-  QLabel *label4 = new QLabel( i18n( "NOTE: You must have full permissions for the temporary directory!" ),
+  QLabel *label4 = new QLabel( i18n( "Note: you must have full permissions for the temporary directory!" ),
                                generalGrp, "NoteLabel"  );
   generalGrid->addMultiCellWidget( label4, 8, 8, 0, 1 );
 
