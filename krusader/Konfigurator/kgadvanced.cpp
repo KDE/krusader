@@ -32,7 +32,7 @@
 #include "../defaults.h"
 #include <klocale.h>
 #include <qhbox.h>
-#include <qtooltip.h>
+#include <qwhatsthis.h>
 #include <sys/param.h>
 
 KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
@@ -49,8 +49,8 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //   cfg_class  cfg_name           default        text                                                restart tooltip
-    {{"Advanced","PreserveDate",     _PreserveDate, i18n( "Preserve date for local copy/move (slower)" ), false,  i18n( "If checked, Krusader will change the modification time of the local files according to the source one. This can make the copy slower." ) },
-     {"Advanced","AutoMount",        _AutoMount,    i18n( "Automount filesystems" ),             false,  i18n( "If checked, Krusader will mount FSTAB mount-points when needed." )}};
+    {{"Advanced","PreserveDate",     _PreserveDate, i18n( "Preserve date for local copy/move (slower)" ), false,  i18n( "Change the modification time of local files according to the source one. This can slow down the copy process." ) },
+     {"Advanced","AutoMount",        _AutoMount,    i18n( "Automount filesystems" ),             false,  i18n( "When stepping into a directory which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters." )}};
 
   KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 1, 0, generalSettings, 2, generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
@@ -72,16 +72,16 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   QGroupBox *confirmGrp = createFrame( i18n( "Confirmations" ), parent, "confirmGrp" );
   QGridLayout *confirmGrid = createGridLayout( confirmGrp->layout() );
 
-  addLabel( confirmGrid, 0, 0, "\n"+i18n( "Krusader will request user confirmation for the following operations:" )+"\n",
+  addLabel( confirmGrid, 0, 0, "\n"+i18n( "Request user confirmation for the following operations:" )+"\n",
             confirmGrp, "KgAdvLabel1" );
-            
+
   KONFIGURATOR_CHECKBOX_PARAM confirmations[] =
   //   cfg_class  cfg_name                default             text                                          restart ToolTip
     {{"Advanced","Confirm Unempty Dir",   _ConfirmUnemptyDir, i18n( "Deleting non-empty directories" ),   false,  ""},
      {"Advanced","Confirm Delete",        _ConfirmDelete,     i18n( "Deleting files" ),                   false,  ""},
      {"Advanced","Confirm Copy",          _ConfirmCopy,       i18n( "Copying files" ),                    false,  ""},
      {"Advanced","Confirm Move",          _ConfirmMove,       i18n( "Moving files" ),                     false,  ""},
-     {"Advanced","Confirm Feed to Listbox",  _ConfirmFeedToListbox, i18n( "Confirm feed to listbox" ), false, i18n("if checked, Krusader will ask for a result-name; else the default value will be used")},
+     {"Advanced","Confirm Feed to Listbox",  _ConfirmFeedToListbox, i18n( "Confirm feed to listbox" ), false, i18n("Ask for a result name when feeding items to the listbox. By default the standard value is used.")},
      {"Notification Messages","Confirm Remove UserAction", true, i18n( "Removing Useractions" ), false,  ""}};
 
   KonfiguratorCheckBoxGroup *confWnd = createCheckBoxGroup( 2, 0, confirmations, 6, confirmGrp );
@@ -98,11 +98,11 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   fineTuneGrid->setAlignment( Qt::AlignLeft | Qt::AlignTop );
   
   QLabel *label = new QLabel( i18n( "Icon cache size (KB):" ), fineTuneGrp, "iconCacheLabel" );
-  QToolTip::add( label, i18n( "Cache size determines how fast Krusader can display the contents of a panel; however, too large a cache might consume your memory." ) );
+  QWhatsThis::add( label, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
   fineTuneGrid->addWidget( label, 0, 0 );
   KonfiguratorSpinBox *spinBox = createSpinBox( "Advanced", "Icon Cache Size", _IconCacheSize,
                                                 1, 8192, fineTuneGrp, false );
-  QToolTip::add( spinBox, i18n( "Cache size determines how fast Krusader can display the contents of a panel; however, too large a cache might consume your memory." ) );
+  QWhatsThis::add( spinBox, i18n( "The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory." ) );
   spinBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed);
   fineTuneGrid->addWidget( spinBox, 0, 1 );
 
