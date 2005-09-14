@@ -71,7 +71,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the folder tabs; otherwise, only the last part of the path will be displayed." ) },
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  i18n( "Opens a quick search dialog box." ) },
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
-     {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "<qt>Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.<p>The columns can be can configured at <i>Look & Feel -> Panel -> Show Columns</i>.</qt>") },
+     {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.<p>The columns can be can configured at <i>Look & Feel -> Panel -> Show Columns</i>.") },
     };
 
   cbs = createCheckBoxGroup( 2, 0, settings, 9, lookFeelGrp );
@@ -86,7 +86,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
    KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
   //          name                                               value  tooltip
     {{ i18n( "Double-click selects (classic)" ),                   "0", i18n( "A single click on a file will select and focus, a double click opens the file or steps into the directory." ) },
-     { i18n( "Obey KDE's global selection policy" ),               "1", i18n( "<qt>Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i></qt>" ) }};    
+     { i18n( "Obey KDE's global selection policy" ),               "1", i18n( "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>" ) }};    
   KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, lookFeelGrp, "myLook&FeelRadio0", true );
   lookFeelGrid->addWidget( clickRadio, 8, 0 );
   
@@ -148,7 +148,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  i18n( "Show the mimetype column." ) },
      {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  i18n( "Show the size column." ) },
      {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  i18n( "Show the date and time column." ) },
-     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "<qt>Show the full permissions. Default representation is a string (rwxr-xr-x) and can be changed to octal numbers (0755) by enabling <b>Numeric Permissions</b> at <i>Look & Feel -> Operation</i>.</qt>" ) },
+     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "Show the full permissions. Default representation is a string (rwxr-xr-x) and can be changed to octal numbers (0755) by enabling <b>Numeric Permissions</b> at <i>Look & Feel -> Operation</i>." ) },
      {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  i18n( "Show the permissions of the current user only (-rw)." ) },
      {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  i18n( "Show the owner column." ) },
      {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  i18n( "Show the group column." ) },
