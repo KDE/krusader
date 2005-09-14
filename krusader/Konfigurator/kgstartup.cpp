@@ -34,7 +34,6 @@
 #include "../krusader.h"
 #include <klocale.h>
 #include <klineedit.h>
-// #include <qtooltip.h>
 #include <qwhatsthis.h>
 
 KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
@@ -50,7 +49,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
   
   QLabel *label = addLabel( panelsGrid, 0, 0, i18n( "Startup profile:" ), panelsGrp, "Startup session" );
-  QWhatsThis::add( label, i18n( "<qt><p><img src='toolbar|kr_profile'></p>Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.</qt>" ) );
+  QWhatsThis::add( label, "<p><img src='toolbar|kr_profile'></p>" + i18n( "Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed." ) );
 
   QStringList profileList = ProfileManager::availableProfiles( "Panel" );
   profileList.push_front( "<" + i18n( "Last session" ) + ">" );
@@ -79,7 +78,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
      {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Show function keys" ),          false,  i18n( "Function keys will be visible after startup." ) },
      {"Startup","Show Cmd Line",         _ShowCmdline,          i18n( "Show command line" ),           false,  i18n( "Command line will be visible after startup." ) },
      {"Startup","Show Terminal Emulator",_ShowTerminalEmulator, i18n( "Show terminal emulator" ),      false,  i18n( "Terminal emulator will be visible after startup." ) },
-     {"Startup","Remember Position",     _RememberPos,          i18n( "Save last position, size and panel settings" ), false,  i18n( "<qt>At startup, the main window will resize itself to the size it was when last shutdown. It will also appear in the same location of the screen, having panels sorted and aligned as they were before.<p>If this option is disabled, you can use the menu <i>Settings -> Save Position</i> option to manually set the main window's size and position at startup.</qt>" )
+     {"Startup","Remember Position",     _RememberPos,          i18n( "Save last position, size and panel settings" ), false,  i18n( "At startup, the main window will resize itself to the size it was when last shutdown. It will also appear in the same location of the screen, having panels sorted and aligned as they were before.<p>If this option is disabled, you can use the menu <i>Settings -> Save Position</i> option to manually set the main window's size and position at startup." )
 }};
 
   uiCbGroup = createCheckBoxGroup( 1, 0, uiCheckBoxes, 7, uiGrp );
