@@ -34,7 +34,7 @@
 #include "../Dialogs/krdialogs.h"
 #include <qtabwidget.h>
 #include <klocale.h>
-#include <qtooltip.h>
+#include <qwhatsthis.h>
 #include <qvalidator.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
@@ -63,15 +63,15 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM settings[] =
   //   cfg_class  cfg_name                default             text                              restart tooltip
-    {{"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  i18n( "Display a warning when you try to exit Krusader." ) },
-     {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  i18n( "When minimizing Krusader, its icon will appear in the system tray instead of the taskbar." ) },
-     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display the dot files" ) },
-     {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  i18n( "When matching the select criteria, directories will also be marked" ) },
+    {{"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  i18n( "Display a warning when trying to close the main window." ) },
+     {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  i18n( "The icon will appear in the system tray instead of the taskbar, when Krusader is minimized." ) },
+     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
+     {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  i18n( "When matching the select criteria, directories will also be marked." ) },
      {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
-     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the Folder Tabs; otherwise, only the last part of the path will be displayed." ) },
+     {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the folder tabs; otherwise, only the last part of the path will be displayed." ) },
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  i18n( "Opens a quick search dialog box." ) },
      {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
-     {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "Permission column (Look & Feel 'Panel' Tab) shows octal numbers '0755' instead of 'rwxr-xr-x'.") },
+     {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "<qt>Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.<p>The columns can be can configured at <i>Look & Feel -> Panel -> Show Columns</i>.</qt>") },
     };
 
   cbs = createCheckBoxGroup( 2, 0, settings, 9, lookFeelGrp );
@@ -86,7 +86,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
    KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
   //          name                                               value  tooltip
     {{ i18n( "Double-click selects (classic)" ),                   "0", i18n( "A single click on a file will select and focus, a double click opens the file or steps into the directory." ) },
-     { i18n( "Obey KDE's global selection policy" ),               "1", i18n( "Use the KDE Kcontrol setting: KDE Control Center->Peripherals->Mouse" ) }};    
+     { i18n( "Obey KDE's global selection policy" ),               "1", i18n( "<qt>Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i></qt>" ) }};    
   KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, lookFeelGrp, "myLook&FeelRadio0", true );
   lookFeelGrid->addWidget( clickRadio, 8, 0 );
   
@@ -97,9 +97,9 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
             lookFeelGrp, "lookAndFeelLabel4" );
   KONFIGURATOR_NAME_VALUE_TIP mouseSelection[] =
   //            name                 value  tooltip
-    {{ i18n( "Krusader Mode" ),        "0", i18n( "Both keys allow selecting files. To select more than one file, hold the Ctrl key and click the left mouse button.\nRight-click menu is invoked using a short click on the right mouse button." ) },
-     { i18n( "Konqueror Mode" ),       "1", i18n( "Pressing the left mouse button selects files - you can click and select multiple files.\nRight-click menu is invoked using a short click on the right mouse button." ) },    
-     { i18n( "Total-Commander Mode" ), "2", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection.\nThe right mouse button selects multiple files and the right-click menu is invoked by pressing\nand holding the right mouse button." ) },
+    {{ i18n( "Krusader Mode" ),        "0", i18n( "Both keys allow selecting files. To select more than one file, hold the Ctrl key and click the left mouse button. Right-click menu is invoked using a short click on the right mouse button." ) },
+     { i18n( "Konqueror Mode" ),       "1", i18n( "Pressing the left mouse button selects files - you can click and select multiple files. Right-click menu is invoked using a short click on the right mouse button." ) },    
+     { i18n( "Total-Commander Mode" ), "2", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection. The right mouse button selects multiple files and the right-click menu is invoked by pressing and holding the right mouse button." ) },
 	  { i18n( "Custom Selection Mode" ),       "3", i18n( "Design your own selection mode!" ) }};
  mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
       "0", 1, 0, mouseSelection, 4, lookFeelGrp, "myLook&FeelRadio", true );
@@ -144,14 +144,14 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM fields[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
-    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  i18n( "Show the last part of the filename (part after the last dot) in the Extension Column and\nnot as a complete filename in the Name Column like e.g. Konqueror does" ) },
-     {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  i18n( "Show the Mimetype Column" ) },
-     {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  i18n( "Show the Size Column" ) },
-     {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  i18n( "Show the Date and Time Column" ) },
-     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "Show the full permissions. Default representation is a string ('rwxr-xr-x') and can be changed\nto octal numbers ('0755') by enabling 'Numeric Permissions' in 'Look & Feel -> Operation'" ) },
-     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  i18n( "Show the permissions of the current user only, e.g. '-rw'" ) },
-     {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  i18n( "Show the Owner Column" ) },
-     {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  i18n( "Show the Group Column" ) },
+    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  i18n( "Show the last part of the filename (part after the last dot) in the extension column and not as a complete filename in the name column, like for instance Konqueror does." ) },
+     {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  i18n( "Show the mimetype column." ) },
+     {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  i18n( "Show the size column." ) },
+     {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  i18n( "Show the date and time column." ) },
+     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "<qt>Show the full permissions. Default representation is a string (rwxr-xr-x) and can be changed to octal numbers (0755) by enabling <b>Numeric Permissions</b> at <i>Look & Feel -> Operation</i>.</qt>" ) },
+     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  i18n( "Show the permissions of the current user only (-rw)." ) },
+     {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  i18n( "Show the owner column." ) },
+     {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  i18n( "Show the group column." ) },
     };
 
   KonfiguratorCheckBoxGroup *flds = createCheckBoxGroup( 0, 4, fields, 8, panelGrp );
@@ -183,7 +183,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   //  -------------------------- KEY-BINDINGS TAB ----------------------------------
   tab_3 = new QWidget( tabWidget, "tab_3" );
-  tabWidget->insertTab( tab_3, i18n( "Key-bindings" ) );
+  tabWidget->insertTab( tab_3, i18n( "Keybindings" ) );
 
   keyBindingsLayout = new QGridLayout( tab_3 );
   keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3);
@@ -194,10 +194,10 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   // import and export shortcuts
   KPushButton *importBtn = new KPushButton(i18n("Import shortcuts"),tab_3);
   keyBindingsLayout->addWidget(importBtn,1,0);
-  QToolTip::add(  importBtn, i18n( "Load a Key-binding profile, e.g., total_commander.keymap" ) );
+  QWhatsThis::add( importBtn, i18n( "Load a keybinding profile, e.g., total_commander.keymap" ) );
   KPushButton *exportBtn = new KPushButton(i18n("Export shortcuts"),tab_3);
   keyBindingsLayout->addWidget(exportBtn,1,1);
-  QToolTip::add(  exportBtn, i18n( "Save current Key-bindings in a keymap file." ) );
+  QWhatsThis::add( exportBtn, i18n( "Save current keybindings in a keymap file." ) );
   keyBindingsLayout->addWidget(createSpacer(tab_3, "tab3spacer"), 1,2);
   connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportShortcuts()));
   connect(exportBtn, SIGNAL(clicked()), this, SLOT(slotExportShortcuts()));
@@ -212,7 +212,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] = 
   //   cfg_class    cfg_name                default        text                             restart tooltip
-    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Show Panel Toolbar" ), false,  i18n( "Krusader will display the Panel Toolbar." ) }
+    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Show Panel Toolbar" ), false,  i18n( "The panel toolbar will be visible." ) }
   };
 
   panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive");
@@ -224,13 +224,13 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarCheckboxes[] = 
     {
   //   cfg_class    cfg_name                default             text                       restart tooltip
-  	  {"Look&Feel",  "Clear Location Bar Visible",  _ClearLocation,      i18n( "Clear location bar button" ),    true ,  i18n( "Clears the location bar" ) },
+     {"Look&Feel",  "Clear Location Bar Visible",  _ClearLocation,      i18n( "Clear location bar button" ),    true ,  i18n( "Clears the location bar" ) },
      {"Look&Feel",  "Open Button Visible",  _Open,      i18n( "Open button" ),     true ,  i18n( "Opens the directory browser." ) },
      {"Look&Feel",  "Equal Button Visible", _cdOther,   i18n( "Equal button (=)" ),true ,  i18n( "Changes the panel directory to the other panel directory." ) },
      {"Look&Feel",  "Up Button Visible",    _cdUp,      i18n( "Up button (..)" ),  true ,  i18n( "Changes the panel directory to the parent directory." ) },
      {"Look&Feel",  "Home Button Visible",  _cdHome,    i18n( "Home button (~)" ), true ,  i18n( "Changes the panel directory to the home directory." ) },
      {"Look&Feel",  "Root Button Visible",  _cdRoot,    i18n( "Root button (/)" ), true ,  i18n( "Changes the panel directory to the root directory." ) },
-     {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n( "Toggle-button for sync-browsing" ), true ,  i18n( "Each directory-change in the panel is also performed in the other panel." ) },
+     {"Look&Feel",  "SyncBrowse Button Visible",  _syncBrowseButton,    i18n( "Toggle-button for sync-browsing" ), true ,  i18n( "Each directory change in the panel is also performed in the other panel." ) },
     };
   
   
@@ -300,8 +300,7 @@ void KgLookFeel::slotImportShortcuts() {
 	if (info.open(IO_ReadOnly)) {
 		QTextStream stream(&info);
 		QStringList infoText = QStringList::split("\n", stream.read());
-		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap.\n"
-				"Are you sure you want to import this keymap ?"), infoText)!=KMessageBox::Yes)
+		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap. Are you sure you want to import this keymap ?"), infoText)!=KMessageBox::Yes)
 			return;
 	}
 	// ok, import away
