@@ -47,13 +47,15 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   QGroupBox *panelsGrp = createFrame( i18n( "Panels" ), parent, "panelsGrp" );
   QGridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
-  
+
+  QString s = "<p><img src='toolbar|kr_profile'></p>" + i18n( "Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
   QLabel *label = addLabel( panelsGrid, 0, 0, i18n( "Startup profile:" ), panelsGrp, "Startup session" );
-  QWhatsThis::add( label, "<p><img src='toolbar|kr_profile'></p>" + i18n( "Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed." ) );
+  QWhatsThis::add( label, s );
+  QWhatsThis::add( panelsGrp, s );
 
   QStringList profileList = ProfileManager::availableProfiles( "Panel" );
   profileList.push_front( "<" + i18n( "Last session" ) + ">" );
-  
+
   KONFIGURATOR_NAME_VALUE_PAIR comboItems[ profileList.count() ];
   for(unsigned int i=0; i != profileList.count(); i++ )
     comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];    
