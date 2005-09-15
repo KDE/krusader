@@ -206,7 +206,6 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	hlayout2->addWidget(l2);
 	KURLRequester *checksumFile = new KURLRequester( plainPage() );
 	hlayout2->addWidget(checksumFile);
-
 	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
 
 
