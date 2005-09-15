@@ -599,7 +599,9 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
    new KAction( i18n( "Right history" ), ALT + CTRL + Key_Right,
                 SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
-        new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Key_Down, SLOTS,
+	new KAction( i18n( "New symlink" ), CTRL + ALT + Key_S,
+					SLOTS, SLOT( newSymlink() ), actionCollection(), "new symlink");
+   new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Key_Down, SLOTS,
                                           SLOT( togglePopupPanel() ), actionCollection(), "toggle popup panel" );
 	actVerticalMode = new KToggleAction( i18n( "Vertical Mode" ), ALT + CTRL + Key_R, MAIN_VIEW, 
                                         SLOT( toggleVerticalMode() ), actionCollection(), "toggle vertical mode" );
