@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>405</width>
+            <width>407</width>
             <height>414</height>
         </rect>
     </property>
@@ -176,7 +176,7 @@
                                             <string></string>
                                         </property>
                                         <property name="whatsThis" stdset="0">
-                                            <string>Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and won't appear in any other menu. The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.</string>
+                                            <string>Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and doesn't appear in any other menu.&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.</string>
                                         </property>
                                     </widget>
                                     <widget class="KComboBox">
@@ -269,7 +269,7 @@
                             <string>Identifier:</string>
                         </property>
                         <property name="whatsThis" stdset="0">
-                            <string>Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and won't appear in any other menu. The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.</string>
+                            <string>Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and doesn't appear in any other menu.&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.</string>
                         </property>
                     </widget>
                     <widget class="QLabel" row="7" column="0">
@@ -491,7 +491,7 @@ Please consult the handbook to learn more about the syntax.</string>
                                     <string></string>
                                 </property>
                                 <property name="whatsThis" stdset="0">
-                                    <string>Set a default keyboad shortcut.</string>
+                                    <string>Set a default keyboard shortcut.</string>
                                 </property>
                             </widget>
                         </hbox>
@@ -653,9 +653,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="text">
                                                 <string>&amp;New...</string>
                                             </property>
-                                            <property name="accel">
-                                                <string>Alt+N</string>
-                                            </property>
                                         </widget>
                                         <widget class="QToolButton" row="1" column="1">
                                             <property name="name">
@@ -683,9 +680,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             </property>
                                             <property name="text">
                                                 <string>Chan&amp;ge...</string>
-                                            </property>
-                                            <property name="accel">
-                                                <string>Alt+G</string>
                                             </property>
                                         </widget>
                                         <spacer row="3" column="1">
@@ -731,9 +725,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             </property>
                                             <property name="text">
                                                 <string>De&amp;lete</string>
-                                            </property>
-                                            <property name="accel">
-                                                <string>Alt+L</string>
                                             </property>
                                         </widget>
                                         <widget class="KListBox" row="0" column="0" rowspan="4" colspan="1">
@@ -798,9 +789,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="text">
                                                 <string>&amp;New...</string>
                                             </property>
-                                            <property name="accel">
-                                                <string>Alt+N</string>
-                                            </property>
                                         </widget>
                                         <widget class="QToolButton" row="1" column="1">
                                             <property name="name">
@@ -829,9 +817,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="text">
                                                 <string>Chan&amp;ge...</string>
                                             </property>
-                                            <property name="accel">
-                                                <string>Alt+G</string>
-                                            </property>
                                         </widget>
                                         <widget class="QToolButton" row="2" column="1">
                                             <property name="name">
@@ -859,9 +844,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             </property>
                                             <property name="text">
                                                 <string>De&amp;lete</string>
-                                            </property>
-                                            <property name="accel">
-                                                <string>Alt+L</string>
                                             </property>
                                         </widget>
                                         <spacer row="3" column="1">
@@ -932,9 +914,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="text">
                                                 <string>&amp;New...</string>
                                             </property>
-                                            <property name="accel">
-                                                <string>Alt+N</string>
-                                            </property>
                                         </widget>
                                         <widget class="QToolButton" row="1" column="1">
                                             <property name="name">
@@ -963,9 +942,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="text">
                                                 <string>Chan&amp;ge...</string>
                                             </property>
-                                            <property name="accel">
-                                                <string>Alt+G</string>
-                                            </property>
                                         </widget>
                                         <widget class="QToolButton" row="2" column="1">
                                             <property name="name">
@@ -993,9 +969,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             </property>
                                             <property name="text">
                                                 <string>De&amp;lete</string>
-                                            </property>
-                                            <property name="accel">
-                                                <string>Alt+L</string>
                                             </property>
                                         </widget>
                                         <spacer row="3" column="1">
@@ -1066,9 +1039,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="text">
                                                 <string>&amp;New...</string>
                                             </property>
-                                            <property name="accel">
-                                                <string>Alt+N</string>
-                                            </property>
                                         </widget>
                                         <widget class="QToolButton" row="1" column="1">
                                             <property name="name">
@@ -1097,9 +1067,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="text">
                                                 <string>Chan&amp;ge...</string>
                                             </property>
-                                            <property name="accel">
-                                                <string>Alt+G</string>
-                                            </property>
                                         </widget>
                                         <widget class="QToolButton" row="2" column="1">
                                             <property name="name">
@@ -1127,9 +1094,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             </property>
                                             <property name="text">
                                                 <string>De&amp;lete</string>
-                                            </property>
-                                            <property name="accel">
-                                                <string>Alt+L</string>
                                             </property>
                                         </widget>
                                         <spacer row="3" column="1">
