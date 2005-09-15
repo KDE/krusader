@@ -373,7 +373,7 @@ bool Krusader::versionControl() {
 
    // first installation of krusader
    if ( firstRun ) {
-      KMessageBox::information( krApp, i18n( "Welcome to Krusader! As this is your first run, Krusader will now run Konfigurator." ) );
+      KMessageBox::information( krApp, i18n( "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine will now be checked for external applications. Then the Konfigurator will be launched where you can customize Krusader to your needs.</p></qt>" ) );
       retval = true;
    }
    config->writeEntry( "Version", VERSION );
