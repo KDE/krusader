@@ -142,11 +142,8 @@ void KRslots::compareContent() {
   }
   else  {
     // if we got here, then we can't be sure what file to diff
-    KMessageBox::detailedError(0,i18n("Don't know which files to compare."),
-      i18n("To compare 2 files by content, you can either\n"
-    "- select (mark) one file in the left panel, and one in the right panel\n"
-    "- select exactly two files in the active panel\n"
-    "- make sure there is a file in the other panel, with the same name as the current file in the active panel"));
+    KMessageBox::detailedError(0, i18n("Don't know which files to compare."), "<qt>" + i18n("To compare two files by content, you can either:<ul><li>Select one file in the left panel, and one in the right panel.</li><li>Select exactly two files in the active panel.</li><li>Make sure there is a file in the other panel, with the same name as the current file in the active panel.</li></ul>") + "</qt>" );
+
     return;
   }
 
