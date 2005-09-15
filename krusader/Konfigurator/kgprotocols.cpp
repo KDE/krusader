@@ -37,7 +37,7 @@
 #include <qvbox.h>
 #include <qheader.h>
 #include <kiconloader.h>
-#include <qtooltip.h>
+#include <qwhatsthis.h>
 
 QString KgProtocols::defaultProtocols  = "krarc,iso,tar";
 QString KgProtocols::defaultIsoMimes   = "application/x-iso";
@@ -76,10 +76,10 @@ KgProtocols::KgProtocols( bool first, QWidget* parent,  const char* name ) :
   addSpacer( vbox1 );
   btnAddProtocol = new QPushButton( vbox1, "btnAddProtocolButton" );
   btnAddProtocol->setPixmap( krLoader->loadIcon( "1leftarrow", KIcon::Small ) );
-  QToolTip::add( btnAddProtocol, i18n( "Add protocol to the link list" ) );
+  QWhatsThis::add( btnAddProtocol, i18n( "Add protocol to the link list." ) );
   btnRemoveProtocol = new QPushButton( vbox1, "btnRemoveProtocolButton" );
   btnRemoveProtocol->setPixmap( krLoader->loadIcon( "1rightarrow", KIcon::Small ) );
-  QToolTip::add( btnRemoveProtocol, i18n( "Remove protocol from the link list" ) );
+  QWhatsThis::add( btnRemoveProtocol, i18n( "Remove protocol from the link list." ) );
   addSpacer( vbox1 );
   
   KgProtocolsLayout->addWidget( vbox1, 0 ,1 );
@@ -89,10 +89,10 @@ KgProtocols::KgProtocols( bool first, QWidget* parent,  const char* name ) :
   addSpacer( vbox2 );
   btnAddMime = new QPushButton( vbox2, "btnAddMimeButton" );
   btnAddMime->setPixmap( krLoader->loadIcon( "1leftarrow", KIcon::Small ) );
-  QToolTip::add( btnAddMime, i18n( "Add mime to the selected protocol on the link list" ) );
+  QWhatsThis::add( btnAddMime, i18n( "Add mime to the selected protocol on the link list." ) );
   btnRemoveMime = new QPushButton( vbox2, "btnRemoveMimeButton" );
   btnRemoveMime->setPixmap( krLoader->loadIcon( "1rightarrow", KIcon::Small ) );
-  QToolTip::add( btnAddMime, i18n( "Remove mime from the link list" ) );
+  QWhatsThis::add( btnRemoveMime, i18n( "Remove mime from the link list." ) );
   addSpacer( vbox2 );
   
   KgProtocolsLayout->addWidget( vbox2, 1 ,1 );
