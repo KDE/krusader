@@ -14,14 +14,18 @@ public:
 };
 typedef QValueList<SuggestedTool> SuggestedTools;
 
+
 class CreateChecksumDlg: public KDialogBase {
 public:
 	CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
-	
-protected:
-	SuggestedTools getTools(bool folders);
 };
 
+
+class MatchChecksumDlg: public KDialogBase {
+public:
+	MatchChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
+
+};
 
 class ChecksumResultsDlg: public KDialogBase {
 public:

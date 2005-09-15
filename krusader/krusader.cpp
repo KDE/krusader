@@ -498,9 +498,9 @@ void Krusader::setupActions() {
                                    MAIN_VIEW, SLOT( profiles() ), actionCollection(), "profile" );
    actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kcalc", 0,
                                SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
-   actCreateChecksum = new KAction( i18n( "Create Checksum" ), "create_checksum", 0,
+   actCreateChecksum = new KAction( i18n( "Create Checksum" ), "binary", 0,
                                SLOTS, SLOT( createChecksum() ), actionCollection(), "create checksum" );
-   actMatchChecksum = new KAction( i18n( "Match Checksum" ), "match_checksum", 0,
+   actMatchChecksum = new KAction( i18n( "Verify Checksum" ), "match_checksum", 0,
                                SLOTS, SLOT( matchChecksum() ), actionCollection(), "match checksum" );
    actProperties = new KAction( i18n( "&Properties" ), "help", 0,
                                 SLOTS, SLOT( properties() ), actionCollection(), "properties" );

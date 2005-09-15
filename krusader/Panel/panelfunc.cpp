@@ -889,26 +889,34 @@ void ListPanelFunc::unpack() {
 		panel->otherPanel->func->refresh();
 }
 
-void ListPanelFunc::createChecksum() {
+// a small ugly function, used to prevent duplication of EVERY line of
+// code (except 1) from createChecksum and matchChecksum
+static void checksum_wrapper(ListPanel *panel, QStringList& args, bool &folders) {
 	KrViewItemList items;
-	QStringList args;
 	panel->view->getSelectedKrViewItems( &items );
 	if ( items.isEmpty() ) return ; // nothing to do
 	// determine if we need recursive mode (md5deep)
-	// if we don't have md5deep, dump all the folders
-	bool folders=false;
+	folders=false;
 	for ( KrViewItemList::Iterator it = items.begin(); it != items.end(); ++it ) {
-		if (getVFile(*it)->vfile_isDir()) {
+		if (panel->func->getVFile(*it)->vfile_isDir()) {
 			folders = true;
 			args << (*it)->name();
 		} else args << (*it)->name();
 	}
-	
+}
+
+void ListPanelFunc::createChecksum() {
+	QStringList args;
+	bool folders;
+	checksum_wrapper(panel, args, folders);
 	CreateChecksumDlg dlg(args, folders, panel->realPath());
 }
 
 void ListPanelFunc::matchChecksum() {
-	qDebug("match stub");
+	QStringList args;
+	bool folders;
+	checksum_wrapper(panel, args, folders);
+	MatchChecksumDlg dlg(args, folders, panel->realPath());
 }
 
 void ListPanelFunc::calcSpace() {

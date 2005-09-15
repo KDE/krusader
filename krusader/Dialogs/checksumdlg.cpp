@@ -14,6 +14,7 @@
 #include <qframe.h>
 #include <kiconloader.h>
 #include <kcombobox.h>
+#include <kurlrequester.h>
 #include "../krservices.h"
 
 // this part is so ugly since g++ 3.3.x has a bug regarding arrays containing arrays :-(
@@ -63,11 +64,8 @@ ToolType whirlpoolTools = MAKE_TOOLS("Whirlpool", whirlpoolBinaries, whirlpoolBi
 
 ToolType tools[] = { md5Tools, sha1Tools, sha256Tools, tigerTools, whirlpoolTools };
 
-
-// ------------- CreateChecksumDlg
-
 // returns a list of tools which can work with recursive or non-recursive mode and are installed
-SuggestedTools CreateChecksumDlg::getTools(bool folders) {
+static SuggestedTools getTools(bool folders) {
 	SuggestedTools result;
 	uint i;
 	for (i=0; i < sizeof(tools)/sizeof(ToolType); ++i)
@@ -89,6 +87,8 @@ SuggestedTools CreateChecksumDlg::getTools(bool folders) {
 	
 	return result;
 }
+
+// ------------- CreateChecksumDlg
 
 CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path):
 	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp) {
@@ -162,6 +162,87 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 
 }
 
+// ------------- MatchChecksumDlg
+MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders, const QString& path):
+	KDialogBase(Plain, i18n("Verify Checksum"), Ok | Cancel, Ok, krApp) {
+	
+	SuggestedTools tools = getTools(containFolders);
+
+	if (tools.size() == 0) { // nothing was suggested?!
+		QString error = i18n("<qt>Can't verify checksum since no supported tool was found. "
+			"Please check the <b>Dependencies</b> page in Krusader's settings.");
+		if (containFolders) 
+			error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
+			" Krusader currently supports <i>md5deep, sha1deep, sha256deep and tigerdeep</i>");
+		KMessageBox::error(0, error);
+		return;
+	}
+	
+	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
+		KDialogBase::marginHint(), KDialogBase::spacingHint());
+	
+	int row=0;
+		
+	// title (icon+text)	
+	QHBoxLayout *hlayout = new QHBoxLayout(layout, KDialogBase::spacingHint());
+	QLabel *p = new QLabel(plainPage());
+	p->setPixmap(krLoader->loadIcon("binary", KIcon::Desktop, 32));
+	hlayout->addWidget(p);
+	QLabel *l1 = new QLabel(i18n("About to verify checksum for the following files") +
+		(containFolders ? i18n(" and folders:") : ":"), plainPage());
+	hlayout->addWidget(l1);
+	layout->addMultiCellLayout(hlayout, row, row, 0, 1, Qt::AlignLeft); 
+	++row;
+	
+	// file list
+	KListBox *lb = new KListBox(plainPage());
+	lb->insertStringList(files);
+	layout->addMultiCellWidget(lb, row, row, 0, 1);
+	++row;
+
+	// checksum file
+	QHBoxLayout *hlayout2 = new QHBoxLayout(layout, KDialogBase::spacingHint());
+	QLabel *l2 = new QLabel(i18n("Checksum file:"), plainPage());
+	hlayout2->addWidget(l2);
+	KURLRequester *checksumFile = new KURLRequester( plainPage() );
+	hlayout2->addWidget(checksumFile);
+
+	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
+
+
+/*
+	KComboBox *method = new KComboBox(plainPage());
+	// -- fill the combo with available methods
+	SuggestedTools::iterator it;
+	int i;
+	for ( i=0, it = tools.begin(); it != tools.end(); ++it, ++i )
+		method->insertItem((*it).type, i);
+	method->setFocus();
+	hlayout2->addWidget(method);	
+	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
+	++row;
+*/
+	if (exec() != Accepted) return;
+/*	
+	// else implied: run the process
+	KEasyProcess proc;
+	QString binary = tools[method->currentItem()].binary;
+	proc << KrServices::fullPathName( binary );
+	if (containFolders) proc << "-r"; // BUG: this works only for md5deep and friends
+	proc << files;
+	bool r = proc.start(KEasyProcess::Block, KEasyProcess::AllOutput);
+	if (r) proc.wait();
+	if (!r || !proc.normalExit()) {	
+		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(binary));
+		return;
+	}
+	// send both stdout and stderr
+	ChecksumResultsDlg dlg(QStringList::split('\n', proc.stdout(), false),
+								QStringList::split('\n', proc.stderr(), false),
+								path, binary, tools[method->currentItem()].type.lower());
+*/
+}
+
 // ------------- ChecksumResultsDlg
 
 ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr, 
@@ -224,26 +305,25 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 	}
 
 	// save checksum to disk, if any hashes are found
-	KLineEdit *le=0;
+	KURLRequester *checksumFile=0;
 	QCheckBox *cb=0;
 	if (successes) {
 		QHBoxLayout *hlayout2 = new QHBoxLayout(layout, KDialogBase::spacingHint());
-		cb = new QCheckBox(i18n("Save checksum to file"), plainPage());
+		cb = new QCheckBox(i18n("Save checksum to file:"), plainPage());
 		cb->setChecked(true);
 		hlayout2->addWidget(cb);
-	
-		le = new KLineEdit(plainPage());
-		le->setText(path+"/checksum."+type);
-		hlayout2->addWidget(le, Qt::AlignLeft);
+
+		checksumFile = new KURLRequester( path+"/checksum."+type, plainPage() );
+		hlayout2->addWidget(checksumFile, Qt::AlignLeft);
 		layout->addMultiCellLayout(hlayout2, row, row,0,1, Qt::AlignLeft);
 		++row;
-		connect(cb, SIGNAL(toggled(bool)), le, SLOT(setEnabled(bool)));	
-		le->setFocus();
+		connect(cb, SIGNAL(toggled(bool)), checksumFile, SLOT(setEnabled(bool)));
+		checksumFile->setFocus();
 	}
 	
 	if (exec() == Accepted && successes && cb->isChecked() &&
-		!le->text().simplifyWhiteSpace().isEmpty()) {
-		saveChecksum(stdout, le->text());
+		!checksumFile->url().simplifyWhiteSpace().isEmpty()) {
+		saveChecksum(stdout, checksumFile->url());
 	}
 }
 
