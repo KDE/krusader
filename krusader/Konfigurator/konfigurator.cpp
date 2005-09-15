@@ -58,7 +58,7 @@
 #include "kgprotocols.h"
 
 Konfigurator::Konfigurator( bool f, int startPage ) : KDialogBase(0,0,true,"Konfigurator",
-      KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
+      KDialogBase::Help | KDialogBase::User1 | KDialogBase::Apply | KDialogBase::Cancel,
       KDialogBase::User1, false, i18n("Defaults") ), firstTime(f), internalCall( false ),
       restartGUI( false )
 {
@@ -67,6 +67,8 @@ Konfigurator::Konfigurator( bool f, int startPage ) : KDialogBase(0,0,true,"Konf
   widget=new KJanusWidget(this,0,KJanusWidget::IconList);
 
   setButtonCancel(i18n("Close"));
+
+  setHelp("konfigurator");
   
   connect( widget, SIGNAL( aboutToShowPage(QWidget *) ), this, SLOT( slotPageSwitch() ) );
   connect( &restoreTimer, SIGNAL(timeout()), this, SLOT(slotRestorePage()));
