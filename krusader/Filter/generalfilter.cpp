@@ -37,7 +37,7 @@
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <kiconloader.h>
-#include <qtooltip.h>
+#include <qwhatsthis.h>
 #include <qpushbutton.h>
 
 GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent, const char *name ) : QWidget( parent, name ),
@@ -76,10 +76,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   searchForLabel->setBuddy( searchFor );
   nameGroupLayout->addMultiCellWidget( searchFor, 0, 0, 1, 2 );
 
-  QToolTip::add( searchFor, i18n( "Here you enter the filename filtering criteria. You can use wildcards\n"
-                                  "(*.o .* *.c?? etc.), and give more items separated by space.\n"
-                                  "If you type 'text' that results the same as '*text*'. You can exclude\n"
-                                  "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' )." ) );
+  QWhatsThis::add( searchFor, "<img src='toolbar|find'><p>" + i18n("The filename filtering criteria is defined here.<p>You can make use of wildcards. Multiple patterns are separated by space and patterns are excluded from the search using the pipe symbol.<p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'."));
 
   QLabel *searchType = new QLabel( nameGroup, "searchType" );
   searchType->setText( i18n( "&Of type:" ) );
