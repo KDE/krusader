@@ -48,7 +48,7 @@
 #include <kmessagebox.h>
 #include <kio/netaccess.h>
 #include <qeventloop.h>
-#include <qtooltip.h>
+#include <qwhatsthis.h>
 #include <qregexp.h>
 #include <qheader.h>
 #include <kinputdialog.h>
@@ -1074,7 +1074,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   leftUrlReq->setMode( KFile::Directory );
   leftUrlReq->setMinimumWidth( 250 );
   grid->addWidget( leftUrlReq, 1 ,0 );
-  QToolTip::add( leftLocation, i18n( "The left base directory" ) );
+  QWhatsThis::add( leftLocation, i18n( "The left base directory used during the synchronisation process." ) );
   leftUrlReq->setEnabled( !hasSelectedFiles );
   leftLocation->setEnabled( !hasSelectedFiles );
 
@@ -1088,10 +1088,10 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   fileFilter->setHistoryItems(list);
   fileFilter->setEditText("*");
   grid->addWidget( fileFilter, 1 ,1 );
-  QToolTip::add( fileFilter, i18n( "Here you enter the filename filtering criteria. You can use wildcards\n"
-                                  "(*.o .* *.c?? etc.), and give more items separated by space.\n"
-                                  "If you type 'text' that results the same as '*text*'. You can exclude\n"
-                                  "patterns from the search with '|' (e.g. '*.cpp *.h | *.moc.cpp' )." ) );
+
+  QString wtFilter = "<img src='toolbar|find'><p>" + i18n("The filename filtering criteria is defined here.<p>You can make use of wildcards. Multiple patterns are separated by space and patterns are excluded from the search using the pipe symbol.<p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.");
+  QWhatsThis::add(fileFilter, wtFilter);
+  QWhatsThis::add(filterLabel, wtFilter);
 
   rightLocation = new KHistoryCombo(compareDirs, "SynchronizerHistoryRight");
   rightLocation->setMaxCount(25);  // remember 25 items
@@ -1105,7 +1105,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   rightUrlReq->setMode( KFile::Directory );
   rightUrlReq->setMinimumWidth( 250 );
   grid->addWidget( rightUrlReq, 1 ,2 );
-  QToolTip::add( rightLocation, i18n( "The right base directory" ) );
+  QWhatsThis::add( rightLocation, i18n( "The right base directory used during the synchronisation process." ) );
   rightUrlReq->setEnabled( !hasSelectedFiles );
   rightLocation->setEnabled( !hasSelectedFiles );
 
@@ -1113,25 +1113,23 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QGrid *optionGrid = new QGrid( 3, optionBox );
   cbSubdirs         = new QCheckBox( i18n( "Recurse subdirectories" ), optionGrid, "cbSubdirs" );
   cbSubdirs->setChecked( krConfig->readBoolEntry( "Recurse Subdirectories", _RecurseSubdirs  ) );
-  QToolTip::add( cbSubdirs, i18n( "Compares not only the base directories but their subdirectories as well" ) );
+  QWhatsThis::add( cbSubdirs, i18n( "Compare not only the base directories but their subdirectories as well." ) );
   cbSymlinks        = new QCheckBox( i18n( "Follow symlinks" ), optionGrid, "cbSymlinks" );
   cbSymlinks->setChecked( krConfig->readBoolEntry( "Follow Symlinks", _FollowSymlinks  ) );
   cbSymlinks->setEnabled( cbSubdirs->isChecked() );
-  QToolTip::add( cbSymlinks, i18n( "Follows the symbolic links also at comparing" ) );
+  QWhatsThis::add( cbSymlinks, i18n( "Follow symbolic links during the compare process." ) );
   cbByContent       = new QCheckBox( i18n( "Compare by content" ), optionGrid, "cbByContent" );
   cbByContent->setChecked( krConfig->readBoolEntry( "Compare By Content", _CompareByContent  ) );
-  QToolTip::add( cbByContent, i18n( "Compares duplicated files with same size, by their content" ) );
+  QWhatsThis::add( cbByContent, i18n( "Compare duplicated files with same size by content." ) );
   cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGrid, "cbIgnoreDate" );
   cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", _IgnoreDate  ) );
-  QToolTip::add( cbIgnoreDate, i18n( "Ignores the date information at comparing (good if the files\nwere fetched from ftp, smb, archive, ... file systems)" ) );
+  QWhatsThis::add( cbIgnoreDate, i18n( "Ignore date information during the compare process.<p><b>Note</b>: useful if the files are located on network filesystems or in archives." ) );
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", _Asymmetric  ) );
-  QToolTip::add( cbAsymmetric, i18n( "Asymmetric mode: the left side is the destination, the right is the source directory.\n"
-                                     "Files existing only in the left directory will be deleted, the other differing ones\n"
-                                     "will be copied from right to left (useful at updating a directory from a file server)." ) );
+  QWhatsThis::add( cbAsymmetric, i18n( "<b>Asymmetric mode</b><p>The left side is the destination, the right is the source directory. Files existing only in the left directory will be deleted, the other differing ones will be copied from right to left.<p><b>Note</b>: useful when updating a directory from a file server." ) );
   cbIgnoreCase      = new QCheckBox( i18n( "Ignore Case" ), optionGrid, "cbIgnoreCase" );
   cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", _IgnoreCase ) );
-  QToolTip::add( cbIgnoreCase, i18n( "Case insensitive filename compare. Use at synchronizing on Windows filesystems." ) );
+  QWhatsThis::add( cbIgnoreCase, i18n( "Case insensitive filename compare.<p><b>Note</b>: useful when synchronizing Windows filesystems." ) );
 
   /* =========================== Show options groupbox ============================= */
 
@@ -1156,7 +1154,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnLeftToRight->setPixmap( showLeftToRight );
   btnLeftToRight->setToggleButton( true );
   btnLeftToRight->setOn( krConfig->readBoolEntry( "LeftToRight Button", _BtnLeftToRight ) );
-  QToolTip::add( btnLeftToRight, i18n( "Lists the files marked to copy from left to right" ) );
+  QWhatsThis::add( btnLeftToRight, i18n( "Show files marked to <i>Copy from left to right</i>." ) );
   showOptionsLayout->addWidget( btnLeftToRight, 0, 0);
 
   btnEquals = new QPushButton( showOptions, "btnEquals" );
@@ -1164,7 +1162,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnEquals->setPixmap( showEquals );
   btnEquals->setToggleButton( true );
   btnEquals->setOn( krConfig->readBoolEntry( "Equals Button", _BtnEquals ) );
-  QToolTip::add( btnEquals, i18n( "Lists the files considered to be identical" ) );
+  QWhatsThis::add( btnEquals, i18n( "Show files considered to be identical." ) );
   showOptionsLayout->addWidget( btnEquals, 0, 1);
 
   btnDifferents = new QPushButton( showOptions, "btnDifferents" );
@@ -1172,7 +1170,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnDifferents->setPixmap( showDifferents );
   btnDifferents->setToggleButton( true );
   btnDifferents->setOn( krConfig->readBoolEntry( "Differents Button", _BtnDifferents ) );
-  QToolTip::add( btnDifferents, i18n( "Lists the excluded files" ) );
+  QWhatsThis::add( btnDifferents, i18n( "Show excluded files." ) );
   showOptionsLayout->addWidget( btnDifferents, 0, 2);
 
   btnRightToLeft = new QPushButton( showOptions, "btnRightToLeft" );
@@ -1180,7 +1178,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnRightToLeft->setPixmap( showRightToLeft );
   btnRightToLeft->setToggleButton( true );
   btnRightToLeft->setOn( krConfig->readBoolEntry( "RightToLeft Button", _BtnRightToLeft ) );
-  QToolTip::add( btnRightToLeft, i18n( "Lists the files marked to copy from right to left" ) );
+  QWhatsThis::add( btnRightToLeft, i18n( "Show files marked to <i>Copy from right to left</i>" ) );
   showOptionsLayout->addWidget( btnRightToLeft, 0, 3);
 
   btnDeletable = new QPushButton( showOptions, "btnDeletable" );
@@ -1188,7 +1186,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnDeletable->setPixmap( showDeletable );
   btnDeletable->setToggleButton( true );
   btnDeletable->setOn( krConfig->readBoolEntry( "Deletable Button", _BtnDeletable ) );
-  QToolTip::add( btnDeletable, i18n( "Lists the files marked to delete" ) );
+  QWhatsThis::add( btnDeletable, i18n( "Show files marked to delete." ) );
   showOptionsLayout->addWidget( btnDeletable, 0, 4);
 
   btnDuplicates = new QPushButton( showOptions, "btnDuplicates" );
@@ -1196,7 +1194,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnDuplicates->setMinimumHeight( btnLeftToRight->height() );
   btnDuplicates->setToggleButton( true );
   btnDuplicates->setOn( krConfig->readBoolEntry( "Duplicates Button", _BtnDuplicates ) );
-  QToolTip::add( btnDuplicates, i18n( "Lists those files that exist in both side" ) );
+  QWhatsThis::add( btnDuplicates, i18n( "Show files that exist on both sides." ) );
   showOptionsLayout->addWidget( btnDuplicates, 0, 5);
 
   btnSingles = new QPushButton( showOptions, "btnSingles" );
@@ -1204,7 +1202,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnSingles->setMinimumHeight( btnLeftToRight->height() );
   btnSingles->setToggleButton( true );
   btnSingles->setOn( krConfig->readBoolEntry( "Singles Button", _BtnSingles ) );
-  QToolTip::add( btnSingles, i18n( "Lists those files that exist only in either side" ) );
+  QWhatsThis::add( btnSingles, i18n( "Show files that exist on one side only." ) );
   showOptionsLayout->addWidget( btnSingles, 0, 6);
 
   grid->addMultiCellWidget( optionBox, 2, 2, 0, 2 );
@@ -1284,7 +1282,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QPixmap swapSides( ( const char** ) swap_sides_data );
   btnSwapSides = new QPushButton( this, "btnSwapSides" );
   btnSwapSides->setPixmap( swapSides );
-  QToolTip::add( btnSwapSides, i18n( "Swap sides" ) );
+  QWhatsThis::add( btnSwapSides, i18n( "Swap sides." ) );
   buttons->addWidget( btnSwapSides );
 
   statusLabel = new QLabel( this, "statusLabel" );
