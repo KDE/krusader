@@ -131,6 +131,9 @@ protected:
 	/// Deletes a vfile from the list.
 	inline void removeFromList(QString name){ vfs_filesP->remove(name); }
 
+	/// Deletes a vfile from the list.
+	void calculateURLSize(KURL url,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool * stop);
+        
 	VFS_TYPE      vfs_type;     //< the vfs type.
 	KURL          vfs_origin;   //< the path or file the VFS originates from.
 	bool quietMode;             //< if true the vfs won't display error messages or emit signals
@@ -142,7 +145,8 @@ protected:
 protected slots:
 	/// The slot for the KDirSize job
 	void slotKdsResult(KIO::Job *job);
-	
+	void slotStatResultArrived(KIO::Job *job);
+        
 private:
 	vfileDict*  vfs_filesP;    //< Point to a lists of virtual files (vfile).
 	vfileDict*  vfs_searchP;   //< Searches are preformed in this dictionary (usualy points to vfs_files)	
@@ -150,6 +154,8 @@ private:
 	
 	// used in the calcSpace function
 	bool* kds_busy;
+	bool  stat_busy;
+	KIO::UDSEntry entry;        
 	KIO::filesize_t* kds_totalSize;
 	unsigned long*   kds_totalFiles;
 	unsigned long*   kds_totalDirs;

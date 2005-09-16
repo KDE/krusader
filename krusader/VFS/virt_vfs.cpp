@@ -309,5 +309,16 @@ bool virt_vfs::restore(){
 	return true;
 }
 
+void virt_vfs::vfs_calcSpace( QString name , KIO::filesize_t* totalSize, unsigned long* totalFiles, unsigned long* totalDirs, bool* stop ) {
+	if ( stop && *stop ) return ;
+	if( path == "/" ) {
+		KURL::List* urlList = virtVfsDict[ name ];
+		if ( urlList )
+			for( int i=0; (i != urlList->size()) && !(*stop); i++ )
+				calculateURLSize( (*urlList)[ i ], totalSize, totalFiles, totalDirs, stop );
+		return;        
+	}                
+	return vfs::vfs_calcSpace( name, totalSize, totalFiles, totalDirs, stop );
+}
 
 #include "virt_vfs.moc"

@@ -698,6 +698,10 @@ void ListPanelFunc::pack() {
 	QString arcFile;
 	if ( destURL.isLocalFile() )
 		arcFile = destURL.path();
+	else if( destURL.protocol() == "virt" ) {
+		KMessageBox::error( krApp, i18n( "Cannot pack files onto a virtual destination!" ) );
+		return;                
+	}        
 	else {
 		tempDestFile = new KTempFile( QString::null, "." + PackGUI::type );
 		tempDestFile->setAutoDelete( true );
