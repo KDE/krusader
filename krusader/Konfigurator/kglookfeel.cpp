@@ -137,27 +137,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   createSpacer ( hbox2 );
   panelGrid->addWidget( hbox2, 1, 0 );
 
-  panelGrid->addWidget( createLine( panelGrp, "lookSep2" ), 2, 0 );
-
-  addLabel( panelGrid, 3, 0, i18n( "Show Columns:" ),
-            panelGrp, "panelLabel" );
-
-  KONFIGURATOR_CHECKBOX_PARAM fields[] =
-  //   cfg_class  cfg_name                default text                                  restart tooltip
-    {{"Look&Feel","Ext Column",           true,   i18n( "Extension" ),           true ,  i18n( "Show the last part of the filename (part after the last dot) in the extension column and not as a complete filename in the name column, like for instance Konqueror does." ) },
-     {"Look&Feel","Mime Column",          false,  i18n( "Mimetype" ),            true ,  i18n( "Show the mimetype column." ) },
-     {"Look&Feel","Size Column",          true,   i18n( "Size" ),                true ,  i18n( "Show the size column." ) },
-     {"Look&Feel","DateTime Column",      true,   i18n( "Date and Time" ),       true ,  i18n( "Show the date and time column." ) },
-     {"Look&Feel","Perm Column",          false,  i18n( "Permission" ),          true ,  i18n( "Show the full permissions. Default representation is a string (rwxr-xr-x) and can be changed to octal numbers (0755) by enabling <b>Numeric Permissions</b> at <i>Look & Feel -> Operation</i>." ) },
-     {"Look&Feel","KrPerm Column",        true,   i18n( "Krusader Permission" ), true ,  i18n( "Show the permissions of the current user only (-rw)." ) },
-     {"Look&Feel","Owner Column",         false,  i18n( "Owner" ),               true ,  i18n( "Show the owner column." ) },
-     {"Look&Feel","Group Column",         false,  i18n( "Group" ),               true ,  i18n( "Show the group column." ) },
-    };
-
-  KonfiguratorCheckBoxGroup *flds = createCheckBoxGroup( 0, 4, fields, 8, panelGrp );
-  panelGrid->addWidget( flds, 4, 0 );
-
-  panelGrid->addWidget( createLine( panelGrp, "lookSep3" ), 5, 0 );
+  panelGrid->addWidget( createLine( panelGrp, "lookSep3" ), 2, 0 );
 
   KONFIGURATOR_CHECKBOX_PARAM panelSettings[] =
   //   cfg_class  cfg_name                default text                                  restart tooltip
@@ -167,7 +147,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
     };
 
   KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 0, 2, panelSettings, 2, panelGrp );
-  panelGrid->addWidget( panelSett, 6, 0 );
+  panelGrid->addWidget( panelSett, 3, 0 );
   
   panelLayout->addWidget( panelGrp, 0, 0 );
 
