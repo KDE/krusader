@@ -212,48 +212,6 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
 	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
-void normal_vfs::vfs_calcSpace(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool* stop){
-  if ( *stop ) return;
-  if (!name.contains("/")) name = vfs_workingDir()+"/"+name;
-  if (name == "/proc") return;
-
-  KDE_struct_stat stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem 
-  KDE_lstat(name.local8Bit(),&stat_p);   //         reports wrong size for a symbolic link
-  
-  if( S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode) ) { // single files are easy : )
-    ++(*totalFiles);
-    (*totalSize) += stat_p.st_size;
-  }
-  else{  // handle directories
-    // avoid a nasty crash on un-readable dirs
-    bool readable = false;
-    if( stat_p.st_uid == getuid() )
-      readable = !!(S_IRUSR & stat_p.st_mode);
-    else if ( stat_p.st_gid == getgid() )
-      readable = !!(S_IRGRP & stat_p.st_mode );
-    else
-      readable = !!(S_IROTH & stat_p.st_mode );
-    
-    if( !readable )
-      return;
-      
-    QDir dir(name);    
-    if ( !dir.exists() ) return;
-    
-    ++(*totalDirs);
-    dir.setFilter(QDir::All | QDir::System | QDir::Hidden);
-    dir.setSorting(QDir::Name | QDir::DirsFirst);
-
-    // recurse on all the files in the directory
-    QFileInfoList* fileList = const_cast<QFileInfoList*>(dir.entryInfoList());
-    for (QFileInfo* qfiP = fileList->first(); qfiP != 0; qfiP = fileList->next()){
-      if ( *stop ) return;
-      if (qfiP->fileName() != "." && qfiP->fileName() != "..")
-        vfs_calcSpace(name+"/"+qfiP->fileName(),totalSize,totalFiles,totalDirs,stop);
-    }
-  }
-}
-
 vfile* normal_vfs::vfileFromName(const QString& name){
 	QString path = vfs_workingDir()+"/"+name;
 	

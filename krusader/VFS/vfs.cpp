@@ -36,6 +36,7 @@
 #include <qeventloop.h>
 #include <kapplication.h>
 #include <klargefile.h>
+#include <qdir.h>
 #include "vfs.h"
 #include "../krusader.h"
 #include "../defaults.h"
@@ -236,13 +237,8 @@ void vfs::calculateURLSize( KURL url,  KIO::filesize_t* totalSize, unsigned long
 	kds_totalDirs  = totalDirs;
 
 	if( url.isLocalFile() ) {
-		KDE_struct_stat stat_p;                
-		KDE_lstat(url.path(-1).local8Bit(),&stat_p);
-		if( S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode) ) {
-			++(*totalFiles);
-			(*totalSize) += stat_p.st_size;
-			return;                
-		}
+		vfs_calcSpaceLocal( url.path(-1), totalSize, totalFiles, totalDirs, stop );
+		return;
 	} else {
 		stat_busy = true;
 		KIO::StatJob* statJob = KIO::stat( url, false );
@@ -253,10 +249,10 @@ void vfs::calculateURLSize( KURL url,  KIO::filesize_t* totalSize, unsigned long
 		if( kfi.isFile() || kfi.isLink() ) {
 			*totalFiles++;
 			*totalSize += kfi.size();
-			return;                
-		}        
-	}       
-	        
+			return;
+		}
+	}
+	
 	KDirSize* kds  = KDirSize::dirSizeJob( url );
 	connect( kds, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotKdsResult( KIO::Job* ) ) );
 	while ( !(*stop) ){ 
@@ -264,6 +260,49 @@ void vfs::calculateURLSize( KURL url,  KIO::filesize_t* totalSize, unsigned long
 		usleep(1000);
 	}
 }
+
+void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned long *totalFiles,unsigned long *totalDirs, bool* stop){
+  if ( *stop ) return;
+  if (!name.contains("/")) name = vfs_workingDir()+"/"+name;
+  if (name == "/proc") return;
+
+  KDE_struct_stat stat_p;                // KDE lstat is necessary as QFileInfo and KFileItem 
+  KDE_lstat(name.local8Bit(),&stat_p);   //         reports wrong size for a symbolic link
+  
+  if( S_ISLNK(stat_p.st_mode) || !S_ISDIR(stat_p.st_mode) ) { // single files are easy : )
+    ++(*totalFiles);
+    (*totalSize) += stat_p.st_size;
+  }
+  else{  // handle directories
+    // avoid a nasty crash on un-readable dirs
+    bool readable = false;
+    if( stat_p.st_uid == getuid() )
+      readable = !!(S_IRUSR & stat_p.st_mode);
+    else if ( stat_p.st_gid == getgid() )
+      readable = !!(S_IRGRP & stat_p.st_mode );
+    else
+      readable = !!(S_IROTH & stat_p.st_mode );
+    
+    if( !readable )
+      return;
+      
+    QDir dir(name);    
+    if ( !dir.exists() ) return;
+    
+    ++(*totalDirs);
+    dir.setFilter(QDir::All | QDir::System | QDir::Hidden);
+    dir.setSorting(QDir::Name | QDir::DirsFirst);
+
+    // recurse on all the files in the directory
+    QFileInfoList* fileList = const_cast<QFileInfoList*>(dir.entryInfoList());
+    for (QFileInfo* qfiP = fileList->first(); qfiP != 0; qfiP = fileList->next()){
+      if ( *stop ) return;
+      if (qfiP->fileName() != "." && qfiP->fileName() != "..")
+        vfs_calcSpaceLocal(name+"/"+qfiP->fileName(),totalSize,totalFiles,totalDirs,stop);
+    }
+  }
+}
+
         
 void vfs::slotStatResultArrived( KIO::Job* job ) {
 	if( !job || job->error() ) entry = KIO::UDSEntry();
