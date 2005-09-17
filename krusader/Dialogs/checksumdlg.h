@@ -4,16 +4,7 @@
 #include <kdialogbase.h>
 #include <qvaluelist.h>
 
-// defines a suggestion: binary and a type
-class SuggestedTool {
-public:
-	SuggestedTool() {}
-	SuggestedTool(const QString& t, const QString& b): type(t), binary(b) {}
-	QString type; // same as ToolType::type
-	QString binary; // binary name
-};
-typedef QValueList<SuggestedTool> SuggestedTools;
-
+extern void initChecksumModule();
 
 class CreateChecksumDlg: public KDialogBase {
 public:
@@ -25,7 +16,10 @@ class MatchChecksumDlg: public KDialogBase {
 public:
 	MatchChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
 
+protected:
+	bool verifyChecksumFile(QString path, QString& extension);
 };
+
 
 class ChecksumResultsDlg: public KDialogBase {
 public:
@@ -39,5 +33,10 @@ private:
 	QString _binary;
 };
 
+
+class VerifyResultDlg: public KDialogBase {
+public:
+	VerifyResultDlg(const QStringList& failed);
+};
 
 #endif // CHECKSUMDLG_H

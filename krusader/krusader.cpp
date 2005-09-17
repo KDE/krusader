@@ -89,6 +89,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "BookMan/krbookmarkhandler.h"
 #include "Dialogs/popularurls.h"
 #include "GUI/krremoteencodingmenu.h"
+#include "Dialogs/checksumdlg.h"
 
 #ifdef __KJSEMBED__
 #include "KrJS/krjs.h"
@@ -242,6 +243,9 @@ sysTray( 0 ), isStarting( true ) {
 
    // init the protocol handler
    KgProtocols::init();
+   
+   // init the checksum tools
+   initChecksumModule();
 
    krConfig->setGroup( "Startup" );             
    QStringList leftTabs = krConfig->readPathListEntry( "Left Tab Bar" );

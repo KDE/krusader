@@ -14,76 +14,134 @@
 #include <qframe.h>
 #include <kiconloader.h>
 #include <kcombobox.h>
+#include <qfileinfo.h>
 #include <kurlrequester.h>
 #include "../krservices.h"
+#include <qptrlist.h>
+#include <qmap.h>
 
-// this part is so ugly since g++ 3.3.x has a bug regarding arrays containing arrays :-(
-// to add a new tool, do the following:
-// 1) if you just want to add a binary that does MD5 (or any other supported checksum), just
-//    add it to the correct array (ie: md5Binaries or md5Binaries_r) depending if it's recursive or not
-// 2) if you want to add a new checksum type, you'll need to
-//    * create newBinaries[], newBinaries_r[] and define a new ToolType for it
-//    * add it to the end of the ToolType tools[] array
+class CS_Tool; // forward
+typedef void PREPARE_PROC_FUNC(KEasyProcess& proc, CS_Tool *self, const QStringList& files, 
+	const QString checksumFile, bool recursive);
+typedef QStringList GET_FAILED_FUNC(const QStringList& stdout, const QStringList& stderr);
 
-// defines a type of tool (ie: sha1, md5)
-typedef struct _toolType {
-	QString type; // md5 or sha1
-	const char **tools; // list of binaries
-	int numTools;
-	const char **tools_r; // list of recursive binaries
-	int numTools_r;
-} ToolType;
+class CS_Tool {
+public:
+	static const int NumOfTypes = 5;
+	enum Type { MD5=0, SHA1, SHA256, TIGER, WHIRLPOOL };
+	
+	Type type;
+	QString binary;
+	bool recursive;
+	PREPARE_PROC_FUNC *create, *verify;
+	GET_FAILED_FUNC *failed;
+};
 
-#define MAKE_TOOLS(TYPE, BINARIES, BINARIES_R) \
-	{ TYPE, BINARIES, sizeof(BINARIES)/sizeof(QString), BINARIES_R, sizeof(BINARIES_R)/sizeof(QString) }
+class CS_ToolByType {
+public:
+	QPtrList<CS_Tool> tools, r_tools; // normal and recursive tools	
+};
 
-// md5
-const char *md5Binaries[] = {"md5sum", "md5deep"};
-const char *md5Binaries_r[] = {"md5deep"};
-ToolType md5Tools = MAKE_TOOLS("MD5", md5Binaries, md5Binaries_r);
+// handles md5sum and sha1sum
+void sumCreateFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, const QString, bool recursive) {
+	proc << KrServices::fullPathName( self->binary );
+	Q_ASSERT(!recursive); 
+	proc << files;	
+}
 
-// sha1
-const char *sha1Binaries[] = {"sha1sum", "sha1deep"};
-const char *sha1Binaries_r[] = {"sha1deep"};
-ToolType sha1Tools = MAKE_TOOLS("SHA1", sha1Binaries, sha1Binaries_r);
+void sumVerifyFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, const QString checksumFile, bool recursive) {
+	proc << KrServices::fullPathName( self->binary );
+	Q_ASSERT(!recursive);
+	proc << "-c" << checksumFile;
+}
 
-// sha256
-const char *sha256Binaries[] = {"sha256deep"};
-const char *sha256Binaries_r[] = {"sha256deep"};
-ToolType sha256Tools = MAKE_TOOLS("SHA256", sha256Binaries, sha256Binaries_r);
+QStringList sumFailedFunc(const QStringList& stdout, const QStringList& stderr) {
+	// md5sum and sha1sum print "...: FAILED" for failed files and display
+	// the number of failures to stderr. so if stderr is empty, we'll assume all is ok
+	QStringList result;
+	if (stderr.size()==0) return result;
+	result += stderr;
+	// grep for the ":FAILED" substring
+	const QString tmp = QString(": FAILED").local8Bit();
+	for (uint i=0; i<stdout.size();++i) {
+		if (stdout[i].find(tmp) != -1)
+			result += stdout[i];
+	}
+	
+	return result;
+}
 
-// tiger
-const char *tigerBinaries[] = {"tigerdeep"};
-const char *tigerBinaries_r[] = {"tigerdeep"};
-ToolType tigerTools = MAKE_TOOLS("Tiger", tigerBinaries, tigerBinaries_r);
+// handles *deep binaries
+void deepCreateFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, const QString, bool recursive) {
+	proc << KrServices::fullPathName( self->binary );
+	if (recursive) proc << "-r";
+	proc << files;	
+}
 
-// whirlpool
-const char *whirlpoolBinaries[] = {"tigerdeep"};
-const char *whirlpoolBinaries_r[] = {"tigerdeep"};
-ToolType whirlpoolTools = MAKE_TOOLS("Whirlpool", whirlpoolBinaries, whirlpoolBinaries_r);
+void deepVerifyFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, const QString checksumFile, bool recursive) {
+	proc << KrServices::fullPathName( self->binary );
+	if (recursive) proc << "-r";
+	proc << "-x" << checksumFile << files;
+}
 
-ToolType tools[] = { md5Tools, sha1Tools, sha256Tools, tigerTools, whirlpoolTools };
+QStringList deepFailedFunc(const QStringList& stdout, const QStringList& stderr) {
+	// *deep dumps (via -x) all failed hashes to stdout
+	return stdout;
+}
+
+// important: this table should be ordered like so that all md5 tools should be
+// one after another, and then all sha1 and so on and so forth. they tools must be grouped,
+// since the code in getTools() counts on it!
+CS_Tool cs_tools[] = {
+	// type					binary				recursive		create_func			verify_func			failed_func
+	{CS_Tool::MD5, 		"md5sum", 			false, 			sumCreateFunc,		sumVerifyFunc,		sumFailedFunc},
+	{CS_Tool::MD5, 		"md5deep", 			true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::SHA1, 		"sha1sum", 			false, 			sumCreateFunc,		sumVerifyFunc,		sumFailedFunc},
+	{CS_Tool::SHA1, 		"sha1deep",			true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::SHA256, 	"sha256deep",		true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::TIGER,		"tigerdeep", 		true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::WHIRLPOOL, "whirlpooldeep",	true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+};
+
+CS_ToolByType toolByType[CS_Tool::NumOfTypes];
+QMap<QString, CS_Tool::Type> cs_textToType;
+QMap<CS_Tool::Type, QString> cs_typeToText;
+
+void initChecksumModule() {
+	// prepare the dictionaries
+	cs_textToType["md5"]=CS_Tool::MD5;
+	cs_textToType["sha1"]=CS_Tool::SHA1;
+	cs_textToType["sha256"]=CS_Tool::SHA256;
+	cs_textToType["tiger"]=CS_Tool::TIGER;
+	cs_textToType["whirlpool"]=CS_Tool::WHIRLPOOL;
+	
+	cs_typeToText[CS_Tool::MD5]="md5";
+	cs_typeToText[CS_Tool::SHA1]="sha1";
+	cs_typeToText[CS_Tool::SHA256]="sha256";
+	cs_typeToText[CS_Tool::TIGER]="tiger";
+	cs_typeToText[CS_Tool::WHIRLPOOL]="whirlpool";
+	
+	// loop through cs_tools and assign them
+	for (uint i=0; i < sizeof(cs_tools)/sizeof(CS_Tool); ++i) {
+		if (cs_tools[i].recursive)
+			toolByType[cs_tools[i].type].tools.append(&cs_tools[i]);
+		else toolByType[cs_tools[i].type].r_tools.append(&cs_tools[i]);
+	}
+}
+
+// --------------------------------------------------
 
 // returns a list of tools which can work with recursive or non-recursive mode and are installed
-static SuggestedTools getTools(bool folders) {
-	SuggestedTools result;
+// note: only 1 tool from each type is suggested
+static QPtrList<CS_Tool> getTools(bool folders) {
+	QPtrList<CS_Tool> result;
 	uint i;
-	for (i=0; i < sizeof(tools)/sizeof(ToolType); ++i)
-		if (folders) {
-			for (int j=0; j < tools[i].numTools_r; ++j) {
-				if (KrServices::cmdExist(tools[i].tools_r[j])) {
-					result.append(SuggestedTool(tools[i].type, tools[i].tools_r[j]));
-					break; // use the first tool we can find
-				}
-			}
-		} else {
-			for (int j=0; j < tools[i].numTools; ++j) {
-				if (KrServices::cmdExist(tools[i].tools[j])) {
-					result.append(SuggestedTool(tools[i].type, tools[i].tools[j]));
-					break; // use the first tool we can find
-				}
-			}
-		}
+	for (i=0; i < sizeof(cs_tools)/sizeof(CS_Tool); ++i) {
+		if (result.last() && result.last()->type == cs_tools[i].type) continue; // 1 from each type please
+		if (folders && !cs_tools[i].recursive) continue;
+		if (KrServices::cmdExist(cs_tools[i].binary))
+			result.append(&cs_tools[i]);
+	}
 	
 	return result;
 }
@@ -93,9 +151,9 @@ static SuggestedTools getTools(bool folders) {
 CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path):
 	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp) {
 	
-	SuggestedTools tools = getTools(containFolders);
+	QPtrList<CS_Tool> tools = getTools(containFolders);
 
-	if (tools.size() == 0) { // nothing was suggested?!
+	if (tools.count() == 0) { // nothing was suggested?!
 		QString error = i18n("<qt>Can't calculate checksum since no supported tool was found. "
 			"Please check the <b>Dependencies</b> page in Krusader's settings.");
 		if (containFolders) 
@@ -133,10 +191,9 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	hlayout2->addWidget(l2);
 	KComboBox *method = new KComboBox(plainPage());
 	// -- fill the combo with available methods
-	SuggestedTools::iterator it;
-	int i;
-	for ( i=0, it = tools.begin(); it != tools.end(); ++it, ++i )
-		method->insertItem((*it).type, i);
+	uint i;
+	for ( i=0; i<tools.count(); ++i )
+		method->insertItem( cs_typeToText[tools.at(i)->type], i);
 	method->setFocus();
 	hlayout2->addWidget(method);	
 	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
@@ -145,30 +202,29 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	if (exec() != Accepted) return;
 	// else implied: run the process
 	KEasyProcess proc;
-	QString binary = tools[method->currentItem()].binary;
-	proc << KrServices::fullPathName( binary );
-	if (containFolders) proc << "-r"; // BUG: this works only for md5deep and friends
-	proc << files;
+	CS_Tool *mytool = tools.at(method->currentItem());
+	mytool->create(proc, mytool, files, QString::null, containFolders);
 	bool r = proc.start(KEasyProcess::Block, KEasyProcess::AllOutput);
 	if (r) proc.wait();
 	if (!r || !proc.normalExit()) {	
-		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(binary));
+		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
 		return;
 	}
 	// send both stdout and stderr
 	ChecksumResultsDlg dlg(QStringList::split('\n', proc.stdout(), false),
 								QStringList::split('\n', proc.stderr(), false),
-								path, binary, tools[method->currentItem()].type.lower());
+								path, mytool->binary, cs_typeToText[mytool->type]);
 
 }
 
 // ------------- MatchChecksumDlg
+
 MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders, const QString& path):
 	KDialogBase(Plain, i18n("Verify Checksum"), Ok | Cancel, Ok, krApp) {
 	
-	SuggestedTools tools = getTools(containFolders);
+	QPtrList<CS_Tool> tools = getTools(containFolders);
 
-	if (tools.size() == 0) { // nothing was suggested?!
+	if (tools.count() == 0) { // nothing was suggested?!
 		QString error = i18n("<qt>Can't verify checksum since no supported tool was found. "
 			"Please check the <b>Dependencies</b> page in Krusader's settings.");
 		if (containFolders) 
@@ -205,41 +261,94 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	QLabel *l2 = new QLabel(i18n("Checksum file:"), plainPage());
 	hlayout2->addWidget(l2);
 	KURLRequester *checksumFile = new KURLRequester( plainPage() );
+	checksumFile->fileDialog()->setURL(path);
+	checksumFile->setFocus();
 	hlayout2->addWidget(checksumFile);
 	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
 
-
-/*
-	KComboBox *method = new KComboBox(plainPage());
-	// -- fill the combo with available methods
-	SuggestedTools::iterator it;
-	int i;
-	for ( i=0, it = tools.begin(); it != tools.end(); ++it, ++i )
-		method->insertItem((*it).type, i);
-	method->setFocus();
-	hlayout2->addWidget(method);	
-	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
-	++row;
-*/
 	if (exec() != Accepted) return;
-/*	
+	QString file = checksumFile->url().simplifyWhiteSpace();
+	QString extension;
+	if (!verifyChecksumFile(file, extension)) {
+		KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br>Please specify a valid checksum file.").arg(file));
+		return;
+	}
+	
+	// do we have a tool for that extension?
+	uint i;
+	CS_Tool *mytool = 0;
+	for ( i=0; i < tools.count(); ++i )
+		if (cs_typeToText[tools.at(i)->type] == extension.lower()) {
+			mytool = tools.at(i);
+			break;
+		}
+	if (!mytool) {
+		KMessageBox::error(0, i18n("<qt>Krusader can't find a checksum tool that handles %1 on your system. Please check the <b>Dependencies</b> page in Krusader's settings.").arg(extension));
+		return;
+	}
+	
 	// else implied: run the process
 	KEasyProcess proc;
-	QString binary = tools[method->currentItem()].binary;
-	proc << KrServices::fullPathName( binary );
-	if (containFolders) proc << "-r"; // BUG: this works only for md5deep and friends
-	proc << files;
+	mytool->verify(proc, mytool, files, file, containFolders);
 	bool r = proc.start(KEasyProcess::Block, KEasyProcess::AllOutput);
 	if (r) proc.wait();
 	if (!r || !proc.normalExit()) {	
-		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(binary));
+		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
 		return;
 	}
 	// send both stdout and stderr
-	ChecksumResultsDlg dlg(QStringList::split('\n', proc.stdout(), false),
-								QStringList::split('\n', proc.stderr(), false),
-								path, binary, tools[method->currentItem()].type.lower());
-*/
+	VerifyResultDlg dlg(
+		mytool->failed(
+			QStringList::split('\n', proc.stdout(), false),
+			QStringList::split('\n', proc.stderr(), false)
+		)
+	);
+}
+
+bool MatchChecksumDlg::verifyChecksumFile(QString path,  QString& extension) {
+	QFileInfo f(path);
+	if (!f.exists() || f.isDir()) return false;
+	// find the extension
+	extension = path.mid(path.findRev(".")+1);
+	
+	// TODO: do we know the extension? if not, ask the user for one
+	
+	
+	return true;
+}
+
+// ------------- VerifyResultDlg
+VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
+	KDialogBase(Plain, i18n("Verify Checksum"), Close, Close, krApp) {
+	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
+		KDialogBase::marginHint(), KDialogBase::spacingHint());
+
+	bool errors = failed.size()>0;
+	int row = 0;
+	
+	// create the icon and title
+	QHBoxLayout *hlayout = new QHBoxLayout(layout, KDialogBase::spacingHint());
+	QLabel p(plainPage());
+	p.setPixmap(krLoader->loadIcon(errors ? "messagebox_critical" : "messagebox_info", KIcon::Desktop, 32));
+	hlayout->addWidget(&p);
+	
+	QLabel *l1 = new QLabel((errors ? i18n("Errors were detected while verifying the checksums") :
+		i18n("Checksums were verified successfully")), plainPage());
+	hlayout->addWidget(l1);
+	layout->addMultiCellLayout(hlayout,row,row,0,1, Qt::AlignLeft);
+	++row;
+
+	if (errors) { 
+		QLabel *l3 = new QLabel(i18n("The following files have failed:"), plainPage());
+		layout->addMultiCellWidget(l3, row, row, 0, 1);
+		++row;
+		KListBox *lb2 = new KListBox(plainPage());
+		lb2->insertStringList(failed);
+		layout->addMultiCellWidget(lb2, row, row, 0, 1);
+		++row;
+	}
+		
+	exec();
 }
 
 // ------------- ChecksumResultsDlg
@@ -342,9 +451,9 @@ void ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename)
 		return;
 	}
 	QTextStream stream(&file);
-	stream << "# " << _binary << " - created by krusader. please don't modify this line" << "\n";
 	for ( QStringList::ConstIterator it = data.constBegin(); it != data.constEnd(); ++it)
 		stream << *it << "\n";
 	file.close();
 	return;
 }
+
