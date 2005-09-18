@@ -210,10 +210,14 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
 		return;
 	}
+	// suggest a filename
+	QString suggestedFilename = path + '/';
+	if (files.count() > 1) suggestedFilename += ("checksum." + cs_typeToText[mytool->type]);
+	else suggestedFilename += (files[0] + '.' + cs_typeToText[mytool->type]);
 	// send both stdout and stderr
 	ChecksumResultsDlg dlg(QStringList::split('\n', proc.stdout(), false),
 								QStringList::split('\n', proc.stderr(), false),
-								path, mytool->binary, cs_typeToText[mytool->type]);
+								suggestedFilename, mytool->binary, cs_typeToText[mytool->type]);
 
 }
 
@@ -354,7 +358,7 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 // ------------- ChecksumResultsDlg
 
 ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr, 
-	const QString& path, const QString& binary, const QString& type):
+	const QString& suggestedFilename, const QString& binary, const QString& type):
 	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
 	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
 		KDialogBase::marginHint(), KDialogBase::spacingHint());
@@ -421,7 +425,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 		cb->setChecked(true);
 		hlayout2->addWidget(cb);
 
-		checksumFile = new KURLRequester( path+"/checksum."+type, plainPage() );
+		checksumFile = new KURLRequester( suggestedFilename, plainPage() );
 		hlayout2->addWidget(checksumFile, Qt::AlignLeft);
 		layout->addMultiCellLayout(hlayout2, row, row,0,1, Qt::AlignLeft);
 		++row;
