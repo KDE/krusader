@@ -204,12 +204,17 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	KEasyProcess proc;
 	CS_Tool *mytool = tools.at(method->currentItem());
 	mytool->create(proc, mytool, files, QString::null, containFolders);
-	bool r = proc.start(KEasyProcess::Block, KEasyProcess::AllOutput);
+	
+	krApp->startWaiting(i18n("Calculating checksums ..."), 0);	
+	
+	bool r = proc.start(KEasyProcess::NotifyOnExit, KEasyProcess::AllOutput);
 	if (r) proc.wait();
+	krApp->stopWait();
 	if (!r || !proc.normalExit()) {	
 		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
 		return;
 	}
+	
 	// suggest a filename
 	QString suggestedFilename = path + '/';
 	if (files.count() > 1) suggestedFilename += ("checksum." + cs_typeToText[mytool->type]);
@@ -418,46 +423,74 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 
 	// save checksum to disk, if any hashes are found
 	KURLRequester *checksumFile=0;
-	QCheckBox *cb=0;
+	QCheckBox *saveFileCb=0;
 	if (successes) {
 		QHBoxLayout *hlayout2 = new QHBoxLayout(layout, KDialogBase::spacingHint());
-		cb = new QCheckBox(i18n("Save checksum to file:"), plainPage());
-		cb->setChecked(true);
-		hlayout2->addWidget(cb);
+		saveFileCb = new QCheckBox(i18n("Save checksum to file:"), plainPage());
+		saveFileCb->setChecked(true);
+		hlayout2->addWidget(saveFileCb);
 
 		checksumFile = new KURLRequester( suggestedFilename, plainPage() );
 		hlayout2->addWidget(checksumFile, Qt::AlignLeft);
 		layout->addMultiCellLayout(hlayout2, row, row,0,1, Qt::AlignLeft);
 		++row;
-		connect(cb, SIGNAL(toggled(bool)), checksumFile, SLOT(setEnabled(bool)));
+		connect(saveFileCb, SIGNAL(toggled(bool)), checksumFile, SLOT(setEnabled(bool)));
 		checksumFile->setFocus();
 	}
 	
-	if (exec() == Accepted && successes && cb->isChecked() &&
-		!checksumFile->url().simplifyWhiteSpace().isEmpty()) {
-		saveChecksum(stdout, checksumFile->url());
+	QCheckBox *onePerFile;
+	if (stdout.size() > 1) {
+		onePerFile = new QCheckBox(i18n("Checksum file for each source file"), plainPage());
+		onePerFile->setChecked(false);
+		// clicking this, disables the 'save as' part
+		connect(onePerFile, SIGNAL(toggled(bool)), saveFileCb, SLOT(toggle()));
+		connect(onePerFile, SIGNAL(toggled(bool)), saveFileCb, SLOT(setDisabled(bool)));
+		connect(onePerFile, SIGNAL(toggled(bool)), checksumFile, SLOT(setDisabled(bool)));
+		layout->addMultiCellWidget(onePerFile, row, row,0,1, Qt::AlignLeft);
+		++row;
+	}
+	
+	if (exec() == Accepted && successes) {
+		if (onePerFile->isChecked()) {
+			savePerFile(stdout, suggestedFilename.mid(suggestedFilename.findRev('.')));
+		} else if (saveFileCb->isEnabled() && saveFileCb->isChecked() && !checksumFile->url().simplifyWhiteSpace().isEmpty()) {
+			saveChecksum(stdout, checksumFile->url());
+		}
 	}
 }
 
-void ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename) {
+bool ChecksumResultsDlg::saveChecksum(const QStringList& data, QString filename) {
 	if (QFile::exists(filename) &&
 		KMessageBox::warningContinueCancel(this,
 		i18n("File %1 already exists.\nAre you sure you want to overwrite it?").arg(filename),
 		i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) {
 		// find a better name to save to
 		filename = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a file to save to"));
-		if (filename.simplifyWhiteSpace().isEmpty()) return;
+		if (filename.simplifyWhiteSpace().isEmpty()) return false;
 	} 
 	QFile file(filename);
 	if (!file.open(IO_WriteOnly)) {
 		KMessageBox::detailedError(0, i18n("Error saving file %1").arg(filename),
 			file.errorString());
-		return;
+		return false;
 	}
 	QTextStream stream(&file);
 	for ( QStringList::ConstIterator it = data.constBegin(); it != data.constEnd(); ++it)
 		stream << *it << "\n";
 	file.close();
-	return;
+	return true;
 }
 
+void ChecksumResultsDlg::savePerFile(const QStringList& data, const QString& type) {
+	krApp->startWaiting(i18n("Saving checksum files..."), 0);
+	for ( QStringList::ConstIterator it = data.begin(); it != data.end(); ++it ) {
+			QString line = (*it).simplifyWhiteSpace();
+			QString filename = line.mid(line.find(' ')+1)+type;
+			if (!saveChecksum(*it, filename)) {
+				KMessageBox::error(0, i18n("Errors occured while saving multiple checksums. Stopping"));
+				krApp->stopWait();
+				return;
+			}
+	}
+	krApp->stopWait();
+}

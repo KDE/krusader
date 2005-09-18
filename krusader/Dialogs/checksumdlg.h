@@ -24,10 +24,11 @@ protected:
 class ChecksumResultsDlg: public KDialogBase {
 public:
 	ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr, 
-		const QString& path, const QString& binary, const QString& type);
+		const QString& suggestedFilename, const QString& binary, const QString& type);
 
 protected:
-	void saveChecksum(const QStringList& data, QString filename);
+	bool saveChecksum(const QStringList& data, QString filename);
+	void savePerFile(const QStringList& data, const QString& type);
 	
 private:
 	QString _binary;
