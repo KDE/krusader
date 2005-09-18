@@ -82,10 +82,15 @@ bool KRQuery::checkType( QString mime ) const
   return false;
 }
 
-bool KRQuery::match( const QString name ) const
+bool KRQuery::match( const QString nameIn ) const
 {
   if( excludes.count() == 0 && matches.count() == 0 ) /* true if there's no match condition */
     return true;
+
+  QString name( nameIn );
+  int ndx = nameIn.findRev( '/' ); // virtual filenames may contain '/'
+  if( ndx != -1 )                  // but the end of the filename is OK
+    name = nameIn.mid( ndx + 1 );
 
   unsigned int len;
   for ( unsigned int i = 0; i < excludes.count(); ++i )
