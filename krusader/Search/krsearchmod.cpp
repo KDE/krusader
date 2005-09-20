@@ -56,6 +56,7 @@ KRSearchMod::KRSearchMod( const KRQuery* q )
   query = new KRQuery( *q );
 
   remote_vfs = 0;
+  virtual_vfs = 0;
 }
 
 KRSearchMod::~KRSearchMod()
@@ -63,6 +64,8 @@ KRSearchMod::~KRSearchMod()
   delete query;
   if( remote_vfs )
     delete remote_vfs;
+  if( virtual_vfs )
+    delete virtual_vfs;
 }
 
 void KRSearchMod::start()
@@ -189,31 +192,39 @@ void KRSearchMod::scanRemoteDir( KURL url )
 {
   int passes = 0;
   const int NO_OF_PASSES = 50;
+  
+  vfs * vfs_;
+  
 
-  if( remote_vfs == 0 )
-    remote_vfs = new ftp_vfs( 0 );
+  if( url.protocol() == "virt" ) 
+  {
+    if( virtual_vfs == 0 )
+      virtual_vfs = new virt_vfs( 0 );
+    vfs_ = virtual_vfs;
+  }
+  else
+  { 
+    if( remote_vfs == 0 )
+      remote_vfs = new ftp_vfs( 0 );
+    vfs_ = remote_vfs;
+  }
 
-  if ( !remote_vfs->vfs_refresh( url ) ) return ;
+  if ( !vfs_->vfs_refresh( url ) ) return ;
 
-  for ( vfile * vf = remote_vfs->vfs_getFirstFile(); vf != 0 ; vf = remote_vfs->vfs_getNextFile() )
+  for ( vfile * vf = vfs_->vfs_getFirstFile(); vf != 0 ; vf = vfs_->vfs_getNextFile() )
   {
     QString name = vf->vfile_getName();
+    KURL fileURL = vfs_->vfs_getFile( name );
 
-    if ( query->isRecursive() )
-    {
-      if( ( vf->vfile_isSymLink() && query->followLinks() ) || vf->vfile_isDir() )
-      {
-        KURL recurseURL = remote_vfs->vfs_getOrigin();
-        recurseURL.addPath( name );
-        unScannedUrls.push( recurseURL );
-      }
-    }
+    if ( query->isRecursive() && (( vf->vfile_isSymLink() && query->followLinks() ) || vf->vfile_isDir() ) )
+        unScannedUrls.push( fileURL );
 
     if( query->match( vf ) )
     {
       // if we got here - we got a winner
-      results.append( remote_vfs->vfs_getOrigin().prettyURL( 1 ) + name );
-      emit found( name, remote_vfs->vfs_getOrigin().prettyURL( -1 ), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm() );
+      results.append( fileURL.prettyURL( -1, KURL::StripFileProtocol ) );
+      
+      emit found( fileURL.fileName(), fileURL.upURL().prettyURL( -1, KURL::StripFileProtocol ), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm() );
       if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
     }
   }

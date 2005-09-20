@@ -40,6 +40,7 @@
 #include <kio/global.h>
 #include <kurl.h>
 #include "../VFS/ftp_vfs.h"
+#include "../VFS/virt_vfs.h"
 
 
 class KRQuery;
@@ -72,6 +73,7 @@ private:
   QStringList results;
   
   ftp_vfs *remote_vfs;
+  virt_vfs *virtual_vfs;
 };
 
 #endif
