@@ -3,20 +3,18 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
-# Milen Ivanov <milen.ivanov@abv.bg>, 2004.
+# Milen Ivanov <milen.kerat@gmail.com>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-16 00:28+0200\n"
-"PO-Revision-Date: 2004-10-21 17:42+0200\n"
-"Last-Translator: Milen Ivanov <kerat@mail.bg>\n"
+"POT-Creation-Date: 2005-09-20 13:55+0200\n"
+"PO-Revision-Date: 2005-06-28 22:05+0200\n"
+"Last-Translator: Milen Ivanov <milen.kerat@gmail.com>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -272,7 +270,7 @@ msgstr "Категория"
 #: Dialogs/krmaskchoice.cpp:105 GUI/actionpropertybase.cpp:431
 #, fuzzy
 msgid "Add"
-msgstr "&Допълнителни"
+msgstr "&Добавяне"
 
 #: GUI/actionpropertybase.cpp:433
 #, fuzzy
@@ -639,7 +637,7 @@ msgstr "Директорията %1 не съществува!"
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
 #: VFS/krarchandler.cpp:352 VFS/krarchandler.cpp:359 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:156 krusader.cpp:699
+#: VFS/virt_vfs.cpp:156 krusader.cpp:703
 msgid "Error"
 msgstr ""
 
@@ -737,9 +735,8 @@ msgid "&Advanced"
 msgstr "&Допълнителни"
 
 #: Filter/filterdialog.cpp:38
-#, fuzzy
 msgid "Krusader::Choose Files"
-msgstr "Изберете файлове"
+msgstr "Krusader::Избор на файлове"
 
 #: Filter/generalfilter.cpp:55
 msgid "File name"
@@ -776,16 +773,14 @@ msgid "&Profile handler"
 msgstr ""
 
 #: Filter/generalfilter.cpp:125
-#, fuzzy
 msgid "&Add"
-msgstr "&Допълнителни"
+msgstr "&Добавяне"
 
 #: Filter/generalfilter.cpp:128
-#, fuzzy
 msgid "&Load"
-msgstr "М&естонахождение"
+msgstr "&Зареждане"
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:717
+#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:721
 msgid "&Overwrite"
 msgstr "&Презапис"
 
@@ -838,10 +833,9 @@ msgstr "Не е въведен критерий за търсене!"
 msgid "Please specify a location to search in."
 msgstr "Посочете място за търсене."
 
-#: Filter/advancedfilter.cpp:59 Konfigurator/kglookfeel.cpp:149
-#: Panel/krdetailedview.cpp:100 Panel/krdetailedview.cpp:1223
-#: Search/krsearchdialog.cpp:148 Synchronizer/synchronizergui.cpp:1244
-#: Synchronizer/synchronizergui.cpp:1248
+#: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:100
+#: Panel/krdetailedview.cpp:1223 Search/krsearchdialog.cpp:148
+#: Synchronizer/synchronizergui.cpp:1244 Synchronizer/synchronizergui.cpp:1248
 msgid "Size"
 msgstr "Размер"
 
@@ -1222,15 +1216,16 @@ msgid ""
 msgstr ""
 
 #: UserAction/expander.cpp:798 UserAction/expander.cpp:803
-#, fuzzy
 msgid "JavaScript error"
-msgstr "JavaScript конзола"
+msgstr "JavaScript грешка"
 
 #: UserAction/expander.cpp:802
 msgid ""
 "In %1:\n"
 "There is an error in the JavaScript"
 msgstr ""
+"В %1:\n"
+"Има грешка в JavaScript"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:105
 #: Synchronizer/synchronizedialog.cpp:116
@@ -1301,9 +1296,8 @@ msgid "Open the popup panel"
 msgstr "Отваряне на изскачащия панел"
 
 #: Panel/listpanel.cpp:191
-#, fuzzy
 msgid "Clear the location bar"
-msgstr "Преход към местоположение"
+msgstr "Изчистване на лентата"
 
 #: Panel/listpanel.cpp:198
 msgid "Use superb KDE file dialog to choose location. "
@@ -1349,7 +1343,7 @@ msgstr "/"
 
 #: Panel/listpanel.cpp:237 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
 #: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
-#: krusader.cpp:572
+#: krusader.cpp:576
 msgid "Root"
 msgstr "Root"
 
@@ -1456,14 +1450,13 @@ msgstr "Права"
 msgid "rwx"
 msgstr "rwx"
 
-#: DiskUsage/dulistview.cpp:77 Konfigurator/kglookfeel.cpp:153
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1235
+#: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:104
+#: Panel/krdetailedview.cpp:1235
 msgid "Owner"
 msgstr "Собственик"
 
-#: DiskUsage/dulistview.cpp:80 Konfigurator/kglookfeel.cpp:154
-#: Konfigurator/krresulttable.cpp:285 Panel/krdetailedview.cpp:105
-#: Panel/krdetailedview.cpp:1238
+#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:285
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1238
 msgid "Group"
 msgstr "Група"
 
@@ -1593,9 +1586,8 @@ msgstr ""
 "в %1 директории и %2 файла"
 
 #: Panel/krpopupmenu.cpp:59
-#, fuzzy
 msgid "Open/Run"
-msgstr "Бутон отваряне"
+msgstr "Отваряне/Стартиране"
 
 #: Panel/krpopupmenu.cpp:61
 msgid "Run"
@@ -1694,9 +1686,8 @@ msgid "Send by email"
 msgstr "Изпращане по поща"
 
 #: Panel/krpopupmenu.cpp:186
-#, fuzzy
 msgid "Synchronize selected files"
-msgstr "Синхронизация на директории"
+msgstr "Синхронизация на избраните файлове"
 
 #: Panel/krpopupmenu.cpp:191
 msgid "Copy to Clipboard"
@@ -1711,19 +1702,16 @@ msgid "Paste from Clipboard"
 msgstr "Поставяне от клипборда"
 
 #: Panel/krpopupmenu.cpp:215
-#, fuzzy
 msgid "Folder"
-msgstr "Нова папка"
+msgstr "Папка"
 
 #: Panel/krpopupmenu.cpp:216
-#, fuzzy
 msgid "Text file"
-msgstr "Текстови файлове"
+msgstr "Текстов файл"
 
 #: Panel/krpopupmenu.cpp:219
-#, fuzzy
 msgid "Create new"
-msgstr "Създаване в:"
+msgstr "Създава нов"
 
 #: Panel/krpopupmenu.cpp:261
 msgid "Are you sure you want to shred "
@@ -1866,8 +1854,8 @@ msgstr ""
 msgid "&Delete"
 msgstr " Изтриване"
 
-#: Dialogs/checksumdlg.cpp:333 DiskUsage/diskusage.cpp:574
-#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:573 krusader.cpp:697
+#: Dialogs/checksumdlg.cpp:466 DiskUsage/diskusage.cpp:574
+#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:573 krusader.cpp:701
 #, fuzzy
 msgid "Warning"
 msgstr "Изпълнение"
@@ -1892,15 +1880,19 @@ msgstr "&Отказ"
 msgid "&Delete All"
 msgstr "И&зтрива всичко"
 
-#: Panel/panelfunc.cpp:710
+#: Panel/panelfunc.cpp:702
+msgid "Cannot pack files onto a virtual destination!"
+msgstr ""
+
+#: Panel/panelfunc.cpp:714
 msgid "The Archive "
 msgstr "Архивът "
 
-#: Panel/panelfunc.cpp:711
+#: Panel/panelfunc.cpp:715
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " вече съществува, искате ли да презапишете архива?\n"
 
-#: Panel/panelfunc.cpp:713
+#: Panel/panelfunc.cpp:717
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -1908,40 +1900,40 @@ msgstr ""
 "(ZIP ще замени записите с еднакви име в архива или ще добави записи за "
 "новите имена)"
 
-#: Panel/panelfunc.cpp:722
+#: Panel/panelfunc.cpp:726
 msgid "Counting files to pack"
 msgstr "Брои файловете за архивиране"
 
-#: Panel/panelfunc.cpp:785 Panel/panelfunc.cpp:840 krslots.cpp:190
+#: Panel/panelfunc.cpp:787 Panel/panelfunc.cpp:842 krslots.cpp:190
 #: krslots.cpp:196
 msgid "Krusader is unable to download: "
 msgstr "Krusader не може да свали: "
 
-#: Panel/panelfunc.cpp:793
+#: Panel/panelfunc.cpp:795
 msgid "%1, unknown archive type."
 msgstr "%1, непознат тип архив."
 
-#: Panel/panelfunc.cpp:799
+#: Panel/panelfunc.cpp:801
 msgid "%1, test passed."
 msgstr "%1, теста завършен."
 
-#: Panel/panelfunc.cpp:801
+#: Panel/panelfunc.cpp:803
 msgid "%1, test failed!"
 msgstr "%1, теста неуспешен!"
 
-#: Panel/panelfunc.cpp:817 Panel/panelfunc.cpp:819
+#: Panel/panelfunc.cpp:819 Panel/panelfunc.cpp:821
 msgid "Unpack "
 msgstr "Разархивиране на "
 
-#: Panel/panelfunc.cpp:817 Panel/panelfunc.cpp:819
+#: Panel/panelfunc.cpp:819 Panel/panelfunc.cpp:821
 msgid "to"
 msgstr "в"
 
-#: Dialogs/packgui.cpp:52 Panel/panelfunc.cpp:819
+#: Dialogs/packgui.cpp:52 Panel/panelfunc.cpp:821
 msgid "%1 files"
 msgstr "%1 файла"
 
-#: Panel/panelfunc.cpp:866
+#: Panel/panelfunc.cpp:868
 msgid "%1, unknown archive type"
 msgstr "%1, непознат тип архив"
 
@@ -2041,12 +2033,12 @@ msgstr "Query name"
 msgid "Here you can name the file collection"
 msgstr "Тук можете да именувате файловата колекция"
 
-#: krusader.cpp:309
+#: krusader.cpp:313
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
 "Лентата за състояние ще показва основна информация за файла под маркера."
 
-#: krusader.cpp:365
+#: krusader.cpp:369
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
 "configuration to default values.\n"
@@ -2058,399 +2050,398 @@ msgstr ""
 "Забележка: Вашите отметки и клавишни комбинации остават същите.\n"
 " Krusader ще стартира конфигуратора."
 
-#: krusader.cpp:377
+#: krusader.cpp:381
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
 
-#: krusader.cpp:429
+#: krusader.cpp:433
 msgid "F3 View Dialog"
 msgstr "F3 Диалог Преглед"
 
-#: krusader.cpp:432
+#: krusader.cpp:436
 msgid "Tab: switch panel"
 msgstr "Tab: превключва панелите"
 
-#: krusader.cpp:453
+#: krusader.cpp:457
 #, fuzzy
 msgid "&Reload"
-msgstr "М&естонахождение"
+msgstr "&Зареждане"
 
-#: krusader.cpp:455
+#: krusader.cpp:459
 msgid "Show Actions Toolbar"
 msgstr "Показване на панела с действия"
 
-#: krusader.cpp:467
+#: krusader.cpp:471
 msgid "Show &FN Keys Bar"
 msgstr "Лента &функц. клавиши"
 
-#: krusader.cpp:470
+#: krusader.cpp:474
 msgid "Show &Command Line"
 msgstr "&Команден ред"
 
-#: krusader.cpp:473
+#: krusader.cpp:477
 msgid "Show Terminal &Emulator"
 msgstr "Терминален ем&улатор"
 
-#: krusader.cpp:476
+#: krusader.cpp:480
 msgid "Show &Hidden Files"
 msgstr "Ск&рити файлове"
 
-#: krusader.cpp:478
+#: krusader.cpp:482
 msgid "S&wap Panels"
 msgstr "Ра&зменяне панели"
 
-#: krusader.cpp:484
+#: krusader.cpp:488
 msgid "popup cmdline"
 msgstr "показване команден ред"
 
-#: DiskUsage/diskusage.cpp:712 krusader.cpp:487
+#: DiskUsage/diskusage.cpp:712 krusader.cpp:491
 msgid "Up one directory"
 msgstr "Нагоре една директория"
 
-#: krusader.cpp:488
+#: krusader.cpp:492
 msgid "&Edit New File"
 msgstr "Нов файл за &редактиране"
 
-#: krusader.cpp:489
+#: krusader.cpp:493
 msgid "Start &Root Mode Krusader"
 msgstr "&Стартиране Krusader в режим Root"
 
-#: krusader.cpp:491
+#: krusader.cpp:495
 msgid "T&est Archive(s)"
 msgstr "&Тестване архив(и)"
 
-#: krusader.cpp:495
+#: krusader.cpp:499
 msgid "New Net &Connection"
 msgstr "Нова мрежова &връзка"
 
-#: krusader.cpp:497
+#: krusader.cpp:501
 msgid "Pro&files"
 msgstr "&Профили"
 
-#: krusader.cpp:499
+#: krusader.cpp:503
 msgid "Calculate &Occupied Space"
 msgstr "Из&числяване заетото място"
 
-#: Dialogs/checksumdlg.cpp:94 Dialogs/checksumdlg.cpp:249 krusader.cpp:501
+#: Dialogs/checksumdlg.cpp:152 Dialogs/checksumdlg.cpp:367 krusader.cpp:505
 #, fuzzy
 msgid "Create Checksum"
-msgstr "Създаване в:"
+msgstr "Създава нов"
 
-#: Dialogs/checksumdlg.cpp:167 krusader.cpp:503
+#: Dialogs/checksumdlg.cpp:232 Dialogs/checksumdlg.cpp:331 krusader.cpp:507
 msgid "Verify Checksum"
 msgstr ""
 
-#: krusader.cpp:505
+#: krusader.cpp:509
 msgid "&Properties"
 msgstr "&Свойства"
 
-#: krusader.cpp:507
+#: krusader.cpp:511
 msgid "Pac&k"
 msgstr "Ар&хивиране"
 
-#: krusader.cpp:509
+#: krusader.cpp:513
 msgid "&Unpack"
 msgstr "Ра&зархивиране"
 
-#: krusader.cpp:511
+#: krusader.cpp:515
 msgid "Sp&lit File"
 msgstr "Раз&деляне на файл"
 
-#: krusader.cpp:513
+#: krusader.cpp:517
 msgid "Com&bine Files"
 msgstr "&Обединяване на файлове"
 
-#: krusader.cpp:515
+#: krusader.cpp:519
 msgid "Select &Group"
 msgstr "&Групов избор"
 
-#: krusader.cpp:517
+#: krusader.cpp:521
 msgid "&Select All"
 msgstr "Избор на &всичко"
 
-#: krusader.cpp:519
+#: krusader.cpp:523
 msgid "U&nselect All"
 msgstr "&Отмяна избор на всичко"
 
-#: krusader.cpp:521
+#: krusader.cpp:525
 msgid "&Compare Directories"
 msgstr "&Сравняване на директории"
 
-#: krusader.cpp:523
+#: krusader.cpp:527
 msgid "&Mark Newer And Single"
 msgstr "&Маркиране на нови и единични"
 
-#: krusader.cpp:525
+#: krusader.cpp:529
 msgid "Mark &Newer"
 msgstr "Маркиране на &новите"
 
-#: krusader.cpp:527
+#: krusader.cpp:531
 msgid "Mark &Single"
 msgstr "Маркиране на &единични"
 
-#: krusader.cpp:529
+#: krusader.cpp:533
 msgid "Mark Different &And Single"
 msgstr "Маркиране на различни &и единични"
 
-#: krusader.cpp:531
+#: krusader.cpp:535
 msgid "Mark &Different"
 msgstr "Маркиране на &различните"
 
-#: krusader.cpp:540
+#: krusader.cpp:544
 msgid "&Terminal"
 msgstr "&Терминал"
 
-#: krusader.cpp:542
+#: krusader.cpp:546
 msgid "Disconnect &From Net"
 msgstr "Разкачане от мре&жата"
 
-#: krusader.cpp:545 krusader.cpp:550
+#: krusader.cpp:549 krusader.cpp:554
 msgid "&MountMan"
 msgstr "&Монтиране на устройства"
 
-#: krusader.cpp:554
+#: krusader.cpp:558
 msgid "&Search"
 msgstr "Тъ&рсене"
 
-#: krusader.cpp:556
+#: krusader.cpp:560
 msgid "&Locate"
 msgstr "М&естонахождение"
 
-#: krusader.cpp:558
+#: krusader.cpp:562
 msgid "Synchronize &Directories"
 msgstr "Син&хронизиране на директории"
 
-#: krusader.cpp:560
+#: krusader.cpp:564
 msgid "S&ynchron directory changes"
 msgstr "Син&хронизация при промяна на директория"
 
-#: krusader.cpp:562
+#: krusader.cpp:566
 msgid "D&isk Usage"
 msgstr "&Заето място"
 
-#: krusader.cpp:564
+#: krusader.cpp:568
 msgid "&Invert Selection"
 msgstr "&Инвертиране избора"
 
-#: krusader.cpp:566
+#: krusader.cpp:570
 msgid "&Unselect Group"
 msgstr "Отменяне гр&упов избор"
 
-#: krusader.cpp:568
+#: krusader.cpp:572
 msgid "Configure &Krusader"
 msgstr "&Настройка на Krusader"
 
-#: krusader.cpp:570
+#: krusader.cpp:574
 #, fuzzy
 msgid "Back"
 msgstr "Черно"
 
-#: krusader.cpp:574
+#: krusader.cpp:578
 msgid "Save &Position"
 msgstr "&Запис разположение"
 
-#: krusader.cpp:576
+#: krusader.cpp:580
 msgid "&All Files"
 msgstr "&Всички файлове"
 
-#: krusader.cpp:580
+#: krusader.cpp:584
 msgid "&Custom"
 msgstr "&Потребителски"
 
-#: krusader.cpp:582
+#: krusader.cpp:586
 msgid "Compare b&y Content"
 msgstr "Сравн&яване по съдържание"
 
-#: krusader.cpp:584
+#: krusader.cpp:588
 msgid "Multi &Rename"
 msgstr "&Групово преименуване"
 
-#: krusader.cpp:586
+#: krusader.cpp:590
 msgid "Right-click menu"
 msgstr "Контекстно меню"
 
-#: krusader.cpp:588
+#: krusader.cpp:592
 msgid "Right bookmarks"
 msgstr "Отметки отдясно"
 
-#: krusader.cpp:590
+#: krusader.cpp:594
 msgid "Left bookmarks"
 msgstr "Отметки отляво"
 
 #: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:29 krusader.cpp:592
+#: BookMan/krbookmarkhandler.cpp:29 krusader.cpp:596
 #, fuzzy
 msgid "Bookmarks"
 msgstr "Добавяне на отметка"
 
-#: krusader.cpp:594
+#: krusader.cpp:598
 #, fuzzy
 msgid "History"
 msgstr "Хроника за левия панел"
 
-#: krusader.cpp:596
+#: krusader.cpp:600
 msgid "Sync Panels"
 msgstr "Синхронизиране на панелите"
 
-#: krusader.cpp:598
+#: krusader.cpp:602
 msgid "Left history"
 msgstr "Хроника за левия панел"
 
-#: krusader.cpp:600
+#: krusader.cpp:604
 msgid "Right history"
 msgstr "Хроника за десния панел"
 
-#: krusader.cpp:602
+#: krusader.cpp:606
 #, fuzzy
 msgid "New symlink"
 msgstr "нова символна връзка"
 
-#: krusader.cpp:604
+#: krusader.cpp:608
 msgid "Toggle Popup Panel"
 msgstr "Превключване на изскачащ панел"
 
-#: krusader.cpp:606
+#: krusader.cpp:610
 msgid "Vertical Mode"
 msgstr "Вертикално разделяне"
 
-#: krusader.cpp:608
+#: krusader.cpp:612
 msgid "New tab"
 msgstr "Нов подпрозорец"
 
-#: krusader.cpp:610
+#: krusader.cpp:614
 msgid "Duplicate tab"
 msgstr "Дублиране на подпрозореца"
 
-#: krusader.cpp:612
+#: krusader.cpp:616
 msgid "Close tab"
 msgstr "Затваряне на подпрозореца"
 
-#: krusader.cpp:614
+#: krusader.cpp:618
 msgid "Next tab"
 msgstr "Следващия подпрозорец"
 
-#: krusader.cpp:616
+#: krusader.cpp:620
 msgid "Previous tab"
 msgstr "Предишния подпрозорец"
 
-#: UserMenu/usermenu.cpp:52 krusader.cpp:618
+#: UserMenu/usermenu.cpp:52 krusader.cpp:622
 msgid "User Menu"
 msgstr "Потребителско меню"
 
-#: UserMenu/usermenu.cpp:59 krusader.cpp:620
+#: UserMenu/usermenu.cpp:59 krusader.cpp:624
 msgid "Manage user actions"
 msgstr "Управление на потребителските действия"
 
-#: krusader.cpp:622
+#: krusader.cpp:626
 #, fuzzy
 msgid "Select Remote Charset"
 msgstr "Избор на обекти"
 
-#: krusader.cpp:625
+#: krusader.cpp:629
 msgid "F2 - Open a terminal"
 msgstr "F2 - Отваря терминал"
 
-#: krusader.cpp:627
+#: krusader.cpp:631
 msgid "F3 - View a file"
 msgstr "F3 - Преглед на файл"
 
-#: krusader.cpp:629
+#: krusader.cpp:633
 msgid "F4 - Edit a file"
 msgstr "F4 - Редактиране на файл"
 
-#: krusader.cpp:631
+#: krusader.cpp:635
 msgid "F5 - Copy"
 msgstr "F5 - Копиране"
 
-#: krusader.cpp:633
+#: krusader.cpp:637
 msgid "F6 - Move"
 msgstr "F6 - Преместване"
 
-#: krusader.cpp:635
+#: krusader.cpp:639
 msgid "F7 - Mkdir"
 msgstr "F7 - СъздДир"
 
-#: krusader.cpp:637
+#: krusader.cpp:641
 msgid "F8 - Delete"
 msgstr "F8 - Изтриване"
 
-#: krusader.cpp:639
+#: krusader.cpp:643
 msgid "F9 - Rename"
 msgstr "F9 - Преименуване"
 
-#: krusader.cpp:641
+#: krusader.cpp:645
 msgid "F10 - Quit"
 msgstr "F10 - Изход"
 
-#: BookMan/krbookmarkhandler.cpp:288 krusader.cpp:643
+#: BookMan/krbookmarkhandler.cpp:288 krusader.cpp:647
 msgid "Popular URLs"
 msgstr "Популярни URL-и"
 
-#: krusader.cpp:645
-#, fuzzy
+#: krusader.cpp:649
 msgid "Go to location bar"
-msgstr "Преход към местоположение"
+msgstr "Преход към лента местоположение"
 
-#: krusader.cpp:647
+#: krusader.cpp:651
 msgid "Jump back"
 msgstr ""
 
-#: krusader.cpp:649
+#: krusader.cpp:653
 msgid "Set jump back point here"
 msgstr ""
 
-#: krusader.cpp:653
+#: krusader.cpp:657
 msgid "Select files using a filter"
 msgstr "Избор на файлове чрез филтър"
 
-#: krusader.cpp:654
+#: krusader.cpp:658
 msgid "Select all files in the current directory"
 msgstr "Избор на всички файлове в текущата директория"
 
-#: krusader.cpp:655
+#: krusader.cpp:659
 msgid "Un-select all selected files"
 msgstr "Размаркиране на всички избрани файлове"
 
-#: krusader.cpp:656
+#: krusader.cpp:660
 msgid "Setup Krusader the way you like it"
 msgstr "Настройте Krusader да изглежда както искате!"
 
-#: krusader.cpp:657
+#: krusader.cpp:661
 msgid "Back to the place you came from"
 msgstr "Обратно към мястото от където дойдохте"
 
-#: krusader.cpp:658
+#: krusader.cpp:662
 msgid "ROOT (/)"
 msgstr "ROOT (/)"
 
-#: krusader.cpp:659
+#: krusader.cpp:663
 msgid "Search for files"
 msgstr "Търсене на файлове"
 
-#: krusader.cpp:666
+#: krusader.cpp:670
 msgid "JavaScript console"
 msgstr "JavaScript конзола"
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:696
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:700
 msgid "File "
 msgstr "Файла "
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:696
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:700
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr " вече съществува, искате ли да го презапишете?"
 
-#: Dialogs/checksumdlg.cpp:333 Konfigurator/kgcolors.cpp:507 krusader.cpp:697
+#: Dialogs/checksumdlg.cpp:466 Konfigurator/kgcolors.cpp:507 krusader.cpp:701
 msgid "Overwrite"
 msgstr "Презапис"
 
-#: Konfigurator/kgcolors.cpp:509 krusader.cpp:699
+#: Konfigurator/kgcolors.cpp:509 krusader.cpp:703
 msgid "Error: unable to write to file"
 msgstr "Грешка: Невъзможен запис на файл"
 
-#: krusader.cpp:801
+#: krusader.cpp:805
 msgid "Are you sure you want to quit?"
 msgstr "Наистина ли искате да излезете?"
 
@@ -2596,9 +2587,8 @@ msgid "Manage Bookmarks"
 msgstr "Управление на отметките"
 
 #: BookMan/krbookmark.cpp:12
-#, fuzzy
 msgid "Media"
-msgstr "редакт."
+msgstr "Медия"
 
 #: BookMan/krbookmark.cpp:14
 msgid "Devices"
@@ -2610,7 +2600,7 @@ msgstr "Виртуални файлови системи"
 
 #: BookMan/krbookmark.cpp:17
 msgid "Local Network"
-msgstr ""
+msgstr "Локална мрежа"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2761,11 +2751,11 @@ msgstr "Стартиране на десния панел в <path>"
 msgid "Load this profile on startup"
 msgstr "Зареждане на този профил при стартиране"
 
-#: main.cpp:85
+#: main.cpp:86
 msgid "Krusader"
 msgstr "Krusader"
 
-#: main.cpp:86
+#: main.cpp:87
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - ROOT ПРАВА"
 
@@ -3136,96 +3126,138 @@ msgstr "Въведи селекция:"
 msgid "compare mode"
 msgstr "режим сравняване"
 
-#: Dialogs/checksumdlg.cpp:99
+#: Dialogs/checksumdlg.cpp:157
 msgid ""
 "<qt>Can't calculate checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:102 Dialogs/checksumdlg.cpp:175
+#: Dialogs/checksumdlg.cpp:160 Dialogs/checksumdlg.cpp:240
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
 "sha256deep and tigerdeep</i>"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:118
+#: Dialogs/checksumdlg.cpp:176
 msgid "About to calculate checksum for the following files"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:119 Dialogs/checksumdlg.cpp:192
+#: Dialogs/checksumdlg.cpp:177 Dialogs/checksumdlg.cpp:257
 msgid " and folders:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:132
+#: Dialogs/checksumdlg.cpp:190
 msgid "Select the checksum method:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:155
+#: Dialogs/checksumdlg.cpp:208
+msgid "Calculating checksums ..."
+msgstr ""
+
+#: Dialogs/checksumdlg.cpp:214 Dialogs/checksumdlg.cpp:305
 msgid "<qt>There was an error while running <b>%1</b>."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:172
+#: Dialogs/checksumdlg.cpp:237
 msgid ""
 "<qt>Can't verify checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:191
+#: Dialogs/checksumdlg.cpp:256
 #, fuzzy
 msgid "About to verify checksum for the following files"
 msgstr "Избор на следните файлове:"
 
-#: Dialogs/checksumdlg.cpp:205
+#: Dialogs/checksumdlg.cpp:270
 msgid "Checksum file:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:264
+#: Dialogs/checksumdlg.cpp:282
+msgid ""
+"<qt>Error reading checksum file <i>%1</i>.<br>Please specify a valid "
+"checksum file."
+msgstr ""
+
+#: Dialogs/checksumdlg.cpp:295
+msgid ""
+"<qt>Krusader can't find a checksum tool that handles %1 on your system. "
+"Please check the <b>Dependencies</b> page in Krusader's settings."
+msgstr ""
+
+#: Dialogs/checksumdlg.cpp:344
+msgid "Errors were detected while verifying the checksums"
+msgstr ""
+
+#: Dialogs/checksumdlg.cpp:345
+msgid "Checksums were verified successfully"
+msgstr ""
+
+#: Dialogs/checksumdlg.cpp:351
+#, fuzzy
+msgid "The following files have failed:"
+msgstr "Избор на следните файлове:"
+
+#: Dialogs/checksumdlg.cpp:382
 msgid "Errors were detected while creating the checksums"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:265
+#: Dialogs/checksumdlg.cpp:383
 msgid "Checksums were created successfully"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:272
+#: Dialogs/checksumdlg.cpp:390
 msgid "Here are the calculated checksums:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:277
+#: Dialogs/checksumdlg.cpp:395
 #, fuzzy
 msgid "Hash"
 msgstr "кошче"
 
-#: Dialogs/checksumdlg.cpp:278 Konfigurator/kgcolors.cpp:365
+#: Dialogs/checksumdlg.cpp:396 Konfigurator/kgcolors.cpp:365
 #, fuzzy
 msgid "File"
 msgstr "Файла "
 
-#: Dialogs/checksumdlg.cpp:297
+#: Dialogs/checksumdlg.cpp:415
 msgid "Here are the errors received:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:311
+#: Dialogs/checksumdlg.cpp:429
 msgid "Save checksum to file:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:332
+#: Dialogs/checksumdlg.cpp:443
+msgid "Checksum file for each source file"
+msgstr ""
+
+#: Dialogs/checksumdlg.cpp:465
 #, fuzzy
 msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
 msgstr " вече съществува, искате ли да го презапишете?"
 
-#: Dialogs/checksumdlg.cpp:335
+#: Dialogs/checksumdlg.cpp:468
 #, fuzzy
 msgid "Select a file to save to"
 msgstr " Избор на файлове "
 
-#: Dialogs/checksumdlg.cpp:340
+#: Dialogs/checksumdlg.cpp:473
 #, fuzzy, c-format
 msgid "Error saving file %1"
 msgstr "Грешка при четене на файла %1!"
+
+#: Dialogs/checksumdlg.cpp:485
+#, fuzzy
+msgid "Saving checksum files..."
+msgstr "Разделяне на файла %1..."
+
+#: Dialogs/checksumdlg.cpp:490
+msgid "Errors occured while saving multiple checksums. Stopping"
+msgstr ""
 
 #: RemoteMan/remoteman.cpp:84 RemoteMan/remoteman.cpp:87
 msgid "New group"
@@ -3456,24 +3488,20 @@ msgid "Synchronize"
 msgstr "Синхронизация"
 
 #: Synchronizer/synchronizergui.cpp:1422
-#, fuzzy
 msgid "Selected files from target directory:"
-msgstr "Избор на всички файлове в текущата директория"
+msgstr "Избрани файлове от директория-цел:"
 
 #: Synchronizer/synchronizergui.cpp:1423
-#, fuzzy
 msgid "Selected files from source directory:"
-msgstr "Избор на всички файлове в текущата директория"
+msgstr "Избрани файлове от директория-източник:"
 
 #: Synchronizer/synchronizergui.cpp:1427
-#, fuzzy
 msgid "Selected files from left directory:"
-msgstr "Разделяне на файлът %1 в директория:"
+msgstr "Избрани файлове от лявата директория:"
 
 #: Synchronizer/synchronizergui.cpp:1428
-#, fuzzy
 msgid "Selected files from right directory:"
-msgstr "Разделяне на файлът %1 в директория:"
+msgstr "Избрани файлове от дясната директория:"
 
 #: Synchronizer/synchronizergui.cpp:1432
 msgid "Target directory:"
@@ -4254,9 +4282,8 @@ msgid "Case sensitive quicksearch"
 msgstr "Бързо търсене според главни/малки букви"
 
 #: Konfigurator/kglookfeel.cpp:74
-#, fuzzy
 msgid "Numeric Permissions"
-msgstr "Права Krusader"
+msgstr "Правата в цифров вид"
 
 #: Konfigurator/kglookfeel.cpp:74
 msgid ""
@@ -4376,205 +4403,131 @@ msgstr "32"
 msgid "48"
 msgstr "48"
 
-#: Konfigurator/kglookfeel.cpp:142
-msgid "Show Columns:"
-msgstr "Показване на колони:"
-
-#: Konfigurator/kglookfeel.cpp:147
-msgid "Extension"
-msgstr "Разширение"
-
-#: Konfigurator/kglookfeel.cpp:147
-#, fuzzy
-msgid ""
-"Show the last part of the filename (part after the last dot) in the "
-"extension column and not as a complete filename in the name column, like for "
-"instance Konqueror does."
-msgstr ""
-"Показване на последната част от файла (тази след последната точка) в колона "
-"Разширения, \n"
-"а не цялото име на файла в колоната Име на файла, като напр. в Konqueror."
-
-#: Konfigurator/kglookfeel.cpp:148
-msgid "Mimetype"
-msgstr "Програмни типове Mimetype"
-
-#: Konfigurator/kglookfeel.cpp:148
-#, fuzzy
-msgid "Show the mimetype column."
-msgstr "Показване на колоната Mimetype"
-
-#: Konfigurator/kglookfeel.cpp:149
-#, fuzzy
-msgid "Show the size column."
-msgstr "Показване на колоната Размер"
-
-#: Konfigurator/kglookfeel.cpp:150
-msgid "Date and Time"
-msgstr "Дата/час"
-
-#: Konfigurator/kglookfeel.cpp:150
-#, fuzzy
-msgid "Show the date and time column."
-msgstr "Показване на колоната Дата/час"
-
-#: Konfigurator/kglookfeel.cpp:151
-msgid "Permission"
-msgstr "Права"
-
-#: Konfigurator/kglookfeel.cpp:151
-msgid ""
-"Show the full permissions. Default representation is a string (rwxr-xr-x) "
-"and can be changed to octal numbers (0755) by enabling <b>Numeric "
-"Permissions</b> at <i>Look & Feel -> Operation</i>."
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:152
-msgid "Krusader Permission"
-msgstr "Права Krusader"
-
-#: Konfigurator/kglookfeel.cpp:152
-#, fuzzy
-msgid "Show the permissions of the current user only (-rw)."
-msgstr "Показване правата само на текущия потребител, напр. '-rw'"
-
-#: Konfigurator/kglookfeel.cpp:153
-#, fuzzy
-msgid "Show the owner column."
-msgstr "Показване на колоната Собственик"
-
-#: Konfigurator/kglookfeel.cpp:154
-#, fuzzy
-msgid "Show the group column."
-msgstr "Показване на колоната Група"
-
-#: Konfigurator/kglookfeel.cpp:165
+#: Konfigurator/kglookfeel.cpp:145
 msgid "Use icons in the filenames"
 msgstr "Икони до файловите имена"
 
-#: Konfigurator/kglookfeel.cpp:165
+#: Konfigurator/kglookfeel.cpp:145
 msgid "Show the icons for filenames and folders."
 msgstr "Показване на иконите на файловете и папките."
 
-#: Konfigurator/kglookfeel.cpp:166
+#: Konfigurator/kglookfeel.cpp:146
 msgid "Use human-readable file size"
 msgstr "Лесно четим размер на файл"
 
-#: Konfigurator/kglookfeel.cpp:166
+#: Konfigurator/kglookfeel.cpp:146
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "Размера на файловете се показват в B, KB, MB и GB, не само в байтове."
 
-#: Konfigurator/kglookfeel.cpp:176
+#: Konfigurator/kglookfeel.cpp:156
 msgid "Toolbar"
 msgstr "Лента с инструменти"
 
-#: Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:166
 #, fuzzy
 msgid "Keybindings"
 msgstr "Клавишни комбинации"
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:175
 msgid "Import shortcuts"
 msgstr "Внасяне на препратки"
 
-#: Konfigurator/kglookfeel.cpp:197
+#: Konfigurator/kglookfeel.cpp:177
 #, fuzzy
 msgid "Load a keybinding profile, e.g., total_commander.keymap"
 msgstr ""
 "Зареждане на профил за клавишните комбинации, като напр. total_commander."
 "keymap"
 
-#: Konfigurator/kglookfeel.cpp:198
+#: Konfigurator/kglookfeel.cpp:178
 msgid "Export shortcuts"
 msgstr "Изнасяне на препратки"
 
-#: Konfigurator/kglookfeel.cpp:200
+#: Konfigurator/kglookfeel.cpp:180
 #, fuzzy
 msgid "Save current keybindings in a keymap file."
 msgstr "Запис на текущите клавишни комбинации в файл."
 
-#: Konfigurator/kglookfeel.cpp:207
+#: Konfigurator/kglookfeel.cpp:187
 msgid "Panel Toolbar"
 msgstr "Лента с инструменти за панела"
 
-#: Konfigurator/kglookfeel.cpp:215
+#: Konfigurator/kglookfeel.cpp:195
 msgid "Show Panel Toolbar"
 msgstr "Показване на Лента с инструменти за панела"
 
-#: Konfigurator/kglookfeel.cpp:215
+#: Konfigurator/kglookfeel.cpp:195
 #, fuzzy
 msgid "The panel toolbar will be visible."
 msgstr "Лентата с инструменти ще се покаже след стартиране."
 
-#: Konfigurator/kglookfeel.cpp:221
+#: Konfigurator/kglookfeel.cpp:201
 msgid "Visible Panel Toolbar buttons"
 msgstr "Видими бутони на лентата на панела"
 
-#: Konfigurator/kglookfeel.cpp:227
-#, fuzzy
+#: Konfigurator/kglookfeel.cpp:207
 msgid "Clear location bar button"
-msgstr "Преход към местоположение"
+msgstr "Бутон за изчистване на лента местоположение"
 
-#: Konfigurator/kglookfeel.cpp:227
-#, fuzzy
+#: Konfigurator/kglookfeel.cpp:207
 msgid "Clears the location bar"
-msgstr "Преход към местоположение"
+msgstr "Изчистване на лента местоположение"
 
-#: Konfigurator/kglookfeel.cpp:228
+#: Konfigurator/kglookfeel.cpp:208
 msgid "Open button"
 msgstr "Бутон отваряне"
 
-#: Konfigurator/kglookfeel.cpp:228
+#: Konfigurator/kglookfeel.cpp:208
 msgid "Opens the directory browser."
 msgstr "Отваряне браузъра на директории."
 
-#: Konfigurator/kglookfeel.cpp:229
+#: Konfigurator/kglookfeel.cpp:209
 msgid "Equal button (=)"
 msgstr "Бутон уеднаквяване (=)"
 
-#: Konfigurator/kglookfeel.cpp:229
+#: Konfigurator/kglookfeel.cpp:209
 msgid "Changes the panel directory to the other panel directory."
 msgstr "Променя директорията в панела на съответната в другия панел."
 
-#: Konfigurator/kglookfeel.cpp:230
+#: Konfigurator/kglookfeel.cpp:210
 msgid "Up button (..)"
 msgstr "Бутон нагоре (..)"
 
-#: Konfigurator/kglookfeel.cpp:230
+#: Konfigurator/kglookfeel.cpp:210
 msgid "Changes the panel directory to the parent directory."
 msgstr "Сменя директорията в панела на родителската директория."
 
-#: Konfigurator/kglookfeel.cpp:231
+#: Konfigurator/kglookfeel.cpp:211
 msgid "Home button (~)"
 msgstr "Бутон домашна директория (~)"
 
-#: Konfigurator/kglookfeel.cpp:231
+#: Konfigurator/kglookfeel.cpp:211
 msgid "Changes the panel directory to the home directory."
 msgstr "Сменя директорията в панела на домашната директория."
 
-#: Konfigurator/kglookfeel.cpp:232
+#: Konfigurator/kglookfeel.cpp:212
 msgid "Root button (/)"
 msgstr "Бутон основна директория (/)"
 
-#: Konfigurator/kglookfeel.cpp:232
+#: Konfigurator/kglookfeel.cpp:212
 msgid "Changes the panel directory to the root directory."
 msgstr "Сменя директорията в панела на коренната директория."
 
-#: Konfigurator/kglookfeel.cpp:233
+#: Konfigurator/kglookfeel.cpp:213
 msgid "Toggle-button for sync-browsing"
 msgstr "Превключващ бутон за синхронно браузване"
 
-#: Konfigurator/kglookfeel.cpp:233
+#: Konfigurator/kglookfeel.cpp:213
 #, fuzzy
 msgid ""
 "Each directory change in the panel is also performed in the other panel."
 msgstr "Всяка смяна на директория в панела се извършва и в другия панел."
 
-#: Konfigurator/kglookfeel.cpp:296 Konfigurator/kglookfeel.cpp:313
+#: Konfigurator/kglookfeel.cpp:276 Konfigurator/kglookfeel.cpp:293
 msgid "Select a shortcuts file"
 msgstr "Изберете файл с препратки"
 
-#: Konfigurator/kglookfeel.cpp:303
+#: Konfigurator/kglookfeel.cpp:283
 #, fuzzy
 msgid ""
 "The following information was attached to the keymap. Are you sure you want "
@@ -4588,10 +4541,13 @@ msgid "Preserve date for local copy/move (slower)"
 msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:52
+#, fuzzy
 msgid ""
 "Change the modification time of local files according to the source one. "
 "This can slow down the copy process."
 msgstr ""
+"Ако бъде отметнато, Krusader ще уеднакви времената на промяна на локалните "
+"файлове с тези на източниците.Това ще увеличи времето за копиране."
 
 #: Konfigurator/kgadvanced.cpp:53
 msgid "Automount filesystems"
@@ -4911,64 +4867,52 @@ msgid "Same as active"
 msgstr "Също като активни"
 
 #: Konfigurator/kgcolors.cpp:156
-#, fuzzy
 msgid "Synchronizer"
-msgstr "&Синхронизатор"
+msgstr "Синхронизатор"
 
 #: Konfigurator/kgcolors.cpp:162 Konfigurator/kgcolors.cpp:163
-#, fuzzy
 msgid "KDE default"
-msgstr "Възстановяване"
+msgstr "KDE default"
 
 #: Konfigurator/kgcolors.cpp:167
-#, fuzzy
 msgid "Equals foreground:"
-msgstr "Изпълними файлове:"
+msgstr ""
 
 #: Konfigurator/kgcolors.cpp:168
-#, fuzzy
 msgid "Equals background:"
-msgstr "Маркиран фон:"
+msgstr ""
 
 #: Konfigurator/kgcolors.cpp:169
-#, fuzzy
 msgid "Differing foreground:"
-msgstr "Директория:"
+msgstr ""
 
 #: Konfigurator/kgcolors.cpp:170
-#, fuzzy
 msgid "Differing background:"
-msgstr "Редуващ се цвят:"
+msgstr ""
 
 #: Konfigurator/kgcolors.cpp:171
-#, fuzzy
 msgid "Copy to left foreground:"
-msgstr "Текущ текст:"
+msgstr "Копиране на ляво:"
 
 #: Konfigurator/kgcolors.cpp:172
-#, fuzzy
 msgid "Copy to left background:"
-msgstr "Текущ фон:"
+msgstr "Копиране на ляво във фон:"
 
 #: Konfigurator/kgcolors.cpp:173
-#, fuzzy
 msgid "Copy to right foreground:"
-msgstr "Текущ текст:"
+msgstr "Копиране на дясно:"
 
 #: Konfigurator/kgcolors.cpp:174
-#, fuzzy
 msgid "Copy to right background:"
-msgstr "Текущ фон:"
+msgstr "Копиране на дясно във фон:"
 
 #: Konfigurator/kgcolors.cpp:175
-#, fuzzy
 msgid "Delete foreground:"
-msgstr "Директория:"
+msgstr "Изтриване:"
 
 #: Konfigurator/kgcolors.cpp:176
-#, fuzzy
 msgid "Delete background:"
-msgstr "Редуващ се цвят:"
+msgstr "Изтриване във фон:"
 
 #: Konfigurator/kgcolors.cpp:200
 msgid "Import color-scheme"
@@ -5007,23 +4951,20 @@ msgid "Directory"
 msgstr "Директория"
 
 #: Konfigurator/kgcolors.cpp:448
-#, fuzzy
 msgid "Copy to right"
-msgstr "Копиране от ляво на дясно"
+msgstr "Копиране на дясно"
 
 #: Konfigurator/kgcolors.cpp:449
-#, fuzzy
 msgid "Copy to left"
-msgstr "Копиране от дясно на ляво"
+msgstr "Копиране на ляво"
 
 #: Konfigurator/kgcolors.cpp:450
 msgid "Differing"
 msgstr ""
 
 #: Konfigurator/kgcolors.cpp:451
-#, fuzzy
 msgid "Equals"
-msgstr "Равно"
+msgstr ""
 
 #: Konfigurator/kgcolors.cpp:488
 msgid "Select a color-scheme file"
@@ -5052,12 +4993,11 @@ msgstr ""
 #: Konfigurator/kgstartup.cpp:52
 #, fuzzy
 msgid "Startup profile:"
-msgstr "Търсене на файлове"
+msgstr "Въведете име на профил:"
 
 #: Konfigurator/kgstartup.cpp:57
-#, fuzzy
 msgid "Last session"
-msgstr "Нова сесия"
+msgstr "Последната сесия"
 
 #: Konfigurator/kgstartup.cpp:72
 msgid "User Interface"
@@ -5554,6 +5494,58 @@ msgstr "Грешка при четене на файла %1!"
 msgid "Error at writing file %1!"
 msgstr "Грешка при записване на файла %1!"
 
+#~ msgid "Show Columns:"
+#~ msgstr "Показване на колони:"
+
+#~ msgid "Extension"
+#~ msgstr "Разширение"
+
+#, fuzzy
+#~ msgid ""
+#~ "Show the last part of the filename (part after the last dot) in the "
+#~ "extension column and not as a complete filename in the name column, like "
+#~ "for instance Konqueror does."
+#~ msgstr ""
+#~ "Показване на последната част от файла (тази след последната точка) в "
+#~ "колона Разширения, \n"
+#~ "а не цялото име на файла в колоната за име, като напр. в Konqueror."
+
+#~ msgid "Mimetype"
+#~ msgstr "Програмни типове Mimetype"
+
+#, fuzzy
+#~ msgid "Show the mimetype column."
+#~ msgstr "Показване на колоната Mimetype"
+
+#, fuzzy
+#~ msgid "Show the size column."
+#~ msgstr "Показване на колоната Размер"
+
+#~ msgid "Date and Time"
+#~ msgstr "Дата/час"
+
+#, fuzzy
+#~ msgid "Show the date and time column."
+#~ msgstr "Показване на колоната Дата/час"
+
+#~ msgid "Permission"
+#~ msgstr "Права"
+
+#~ msgid "Krusader Permission"
+#~ msgstr "Права Krusader"
+
+#, fuzzy
+#~ msgid "Show the permissions of the current user only (-rw)."
+#~ msgstr "Показване правата само на текущия потребител, напр. '-rw'"
+
+#, fuzzy
+#~ msgid "Show the owner column."
+#~ msgstr "Показване на колоната Собственик"
+
+#, fuzzy
+#~ msgid "Show the group column."
+#~ msgstr "Показване на колоната Група"
+
 #~ msgid "Description"
 #~ msgstr "Описание"
 
@@ -5617,12 +5609,30 @@ msgstr "Грешка при записване на файла %1!"
 #~ msgid "The date '"
 #~ msgstr "Датата '"
 
+#~ msgid " this item?"
+#~ msgstr " този елемент?"
+
+#~ msgid " these %d items?"
+#~ msgstr " тези %d елемента?"
+
 #~ msgid ""
 #~ "Welcome to Krusader! As this is your first run, Krusader will now run "
 #~ "Konfigurator."
 #~ msgstr ""
 #~ "Добре дошли в Krusader! Тъй като това е вашият пръв пуск, Krusader ще "
 #~ "стартира конфигуратора."
+
+#~ msgid "%n directory"
+#~ msgstr "%n директория"
+
+#~ msgid "%n file"
+#~ msgstr "%n файл"
+
+#~ msgid "%1 / %n directory"
+#~ msgstr "%1 / %n директория"
+
+#~ msgid "%1 / %n file"
+#~ msgstr "%1 / %n файл"
 
 #~ msgid "The left base directory"
 #~ msgstr "Лявата базова директория"
@@ -5902,26 +5912,5 @@ msgstr "Грешка при записване на файла %1!"
 #~ "\n"
 #~ "Благодарности, че използвате Krusader :-)"
 
-#~ msgid " this item?"
-#~ msgstr " този елемент?"
-
-#~ msgid " these %d items?"
-#~ msgstr " тези %d елемента?"
-
-#~ msgid "%n directory"
-#~ msgstr "%n директория"
-
-#~ msgid "%n file"
-#~ msgstr "%n файл"
-
-#~ msgid "%1 / %n directory"
-#~ msgstr "%1 / %n директория"
-
-#~ msgid "%1 / %n file"
-#~ msgstr "%1 / %n файл"
-
 #~ msgid "*|all files"
 #~ msgstr "*|всички файлове"
-
-#~ msgid "Show the Full Permissions Column, e.g. '-rw-r--r--'"
-#~ msgstr "Показване на колоната Права, напр. '-rw-r--r--'"
