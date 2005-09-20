@@ -1135,7 +1135,39 @@ TODO
 </para>
 
 </sect2>
+
+<sect2 id="checksum">
+<title>Checksum creation-verification</title>
+
+<para>
+  <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
+  <guimenuitem>Create Checksum</guimenuitem></menuchoice></emphasis> :
+  &krusader; checks which tools you have and if those tools allow recursive
+  operation (in case you selected folders), you choose the type of checksum (md5, sha...) 
+  and it is generated. You can then save the
+  checksum to a file, usually called checksum.md5 (or .sha1 or whatever).
+</para>
+
+<para>
+  <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
+  <guimenuitem>Verify Checksum</guimenuitem></menuchoice></emphasis> :
+  &krusader; checks if you have a tool that supports the type of checksum you need
+  (from your specified checksum file) and displays the files that failed
+  the checksum (if any).
+</para>
+
+<para>
+  The nice thing is that the system abstracts over different checksum mechanisms 
+  and different binaries. Right now, it supports md5, sha1, sha256, tiger and whirlpool.
+  You probably have md5sum and sha1sum already, if you install md5deep you'll have others.
+</para>
+
+
+</sect2>
+
 </sect1>
+
+
 
 
 <sect1 id="keyboard">
@@ -1359,7 +1391,10 @@ TODO
 <entry><para><link linkend="combine">Combine files</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo></para></entry>
-<entry><para><link linkend="bookman">Open Bookmarks</link></para></entry></row>
+<entry><para><link linkend="bookman">Open Bookmarks</link> in the active panel.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>h</keycap></keycombo></para></entry>
+<entry><para><link linkend="folderhistory">Opens History list</link> in the active panel.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>j</keycap></keycombo></para></entry>
 <entry><para>A &safari;-like <link linkend="folder_tabs">Jump-Back</link> .</para></entry></row>
@@ -1412,6 +1447,9 @@ TODO
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>r</keycap></keycombo></para></entry>
 <entry><para>toggels the &list_panel_lnk; between horizontal and vertical mode.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>s</keycap></keycombo></para></entry>
+<entry><para>Create a new symlink.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>Left Arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="folderhistory">Left History list</link></para></entry></row>

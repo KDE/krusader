@@ -1,6 +1,10 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
+  ADDED: checksum creation/verification mechanism
+  ADDED: ctrl-alt-s creates a new symlink
+  ADDED: ctrl-h opens history on the active panel
+  ADDED: 1.70.0 (Hellfire)
   ADDED: appendix: release overview
   ADDED: FAQ, Why does the handbook not work?
   ADDED: MacOS-X port installation instructions
@@ -26,6 +30,7 @@ The Krusader Handbook ChangeLog
          This feature is inspired by the Snap-Back feature of Apple's webbrowser Safari
   ADDED: i18n help (Help Krusader)
 
+UPDATED: Distro's who include distro urls
 UPDATED: Remote connections
 UPDATED: Bookman: in kde 3.4, devices:/ is now media:/
 UPDATED: new i18n page url
@@ -40,6 +45,8 @@ UPDATED: FAQ, Why have i trouble with my FTP connection?
          thanks to Peter J. [ pecko {*} pecko {.} sk] at http://www.pecko.sk
 UPDATED: How to obtain Krusader
 UPDATED: changed locate-gui shortcut from ctrl-l to ctrl+shift+l
+
+FIXED:   Some manpage issues, thanks Sönke Dibbern
 
 REMOVED: RemoteMan, the FTP/SMB connection manager
          RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1

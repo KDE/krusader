@@ -73,13 +73,14 @@ Previous used Docbook
 
 <!ENTITY shared_libdeps_url '<ulink url="http://krusader.sourceforge.net/handbook/ldd_krusader.txt">shared library dependencies</ulink>'>
 <!ENTITY deb_requirements_url '<ulink url="http://packages.debian.org/unstable/utils/krusader">requirements on &debian;</ulink>'>
-<!ENTITY mailing_subscribe_url '<ulink url="http://krusader.sourceforge.net/lists.php">(un)subscribe</ulink>'>
+<!ENTITY mailing_lists_url '<ulink url="http://krusader.sourceforge.net/lists.php">mailing lists</ulink>'>
 <!ENTITY krunews_url '<ulink url="http://groups-beta.google.com/group/krusader-news">&krusader;-news</ulink>'>
 <!ENTITY krulatestnews_url '<ulink url="http://krusader.sourceforge.net/news.php">latest news</ulink>'>
 
 <!ENTITY krucommits_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum_id=34772">&krusader;-commits</ulink>'>
 <!ENTITY krudevel_url '<ulink url="http://groups-beta.google.com/group/krusader-devel">&krusader;-devel</ulink>'>
 <!ENTITY krudoc_url '<ulink url="http://groups-beta.google.com/group/krusader-doc">&krusader;-doc</ulink>'>
+<!ENTITY krui18n_url '<ulink url="http://groups-beta.google.com/group/krusader-i18n">&krusader;-i18n</ulink>'>
 
 <!ENTITY online_buglist_url '<ulink url="http://sourceforge.net/tracker/?atid=106488&amp;group_id=6488&amp;func=browse">online bug list</ulink>'>
 <!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/">more translator credits</ulink>'>
@@ -99,15 +100,18 @@ Previous used Docbook
 <!ENTITY yoper_download_url '<ulink url="http://ftp.belnet.be/linux/yoper/yoper/testing/RPMS.testing/">&yoper;</ulink>'>
 <!ENTITY macosx_download_url '<ulink url="http://krusader.sourceforge.net/down.php">&MacOS;-X</ulink>'>
 <!ENTITY ubuntu_kubuntu_download_url '<ulink url="http://security.ubuntu.com/ubuntu/pool/universe/k/krusader/">&ubuntu;/&kubuntu;</ulink>'>
+<!ENTITY linspire_download_url '<ulink url="http://www.linspire.com/lindows_products_details.php?product_id=3160&amp;pg=specs">&linspire;</ulink>'>
 <!ENTITY archlinux_download_url '<ulink url="http://www.archlinux.org/packages.php?id=793">&archlinux;</ulink>'>
 <!ENTITY frugalware_linux_download_url '<ulink url="http://frugalware.org/packages.php?id=280">&frugalware_linux;</ulink>'>
 <!ENTITY pclinuxos_download_url '<ulink url="http://www.pclinuxonline.com/pclos/html/package_list.html">&pclinuxos;</ulink>'>
 <!ENTITY altlinux_download_url '<ulink url="http://www.altlinux.com/index.php?module=sisyphus&amp;package=krusader">&altlinux;</ulink>'>
+<!ENTITY klik_protocol_download_url '<ulink url="http://klik.atekon.de/details.php?section=utils&amp;package=krusader">klik protocol</ulink>'>
 
+<!ENTITY fedora_extras_url '<ulink url="http://fedoraproject.org/wiki/Extras/UsingExtras ">&fedora; Extras</ulink>'>
 <!ENTITY distrowatch_com_url '<ulink url="http://distrowatch.com/search.php?pkg=krusader&amp;pkgver=1.60.0">Distrowatch.com</ulink>'>
 
 <!ENTITY dag_wiers_download_url '<ulink url="http://dag.wieers.com/packages/krusader/">dag.wieers.com</ulink>'>
-<!ENTITY dries_verachtert_download_url '<ulink url="http://search.belnet.be/mirror/dries.ulyssis.org/">Dries Verachtert mirror</ulink>'>
+<!ENTITY dries_verachtert_download_url '<ulink url="http://dries.ulyssis.org/rpm/packages/krusader/info.html">Dries Verachtert RPM Repository</ulink>'>
 <!ENTITY mateusz_dubiel_url '<ulink url="http://mjd.radioemiter.pl/">Mateusz Dubiel</ulink>'>
 
 <!ENTITY freshmeat_url '<ulink url="http://freshmeat.net/projects/krusader/">freshmeat.net</ulink>'>
@@ -146,6 +150,8 @@ Previous used Docbook
 <!ENTITY bodo_tasche_url '<ulink url="http://blog.wannawork.de/about.php">Bodo Tasche</ulink>'>
 
 <!ENTITY sourceforge_net_url '<ulink url="http://sourceforge.net/">Sourceforge.net</ulink>'>
+
+<!ENTITY whatsthis_url '<ulink url="http://urbanlizard.com/~aseigo/whatsthis_tutorial/">WhatsThis</ulink>'>
 
 
 
@@ -374,11 +380,12 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-08-23</date>
-  <releaseinfo>1.70.0</releaseinfo>
+  <date>2005-09-20</date>
+  <releaseinfo>1.70.0 (Hellfire)</releaseinfo>
 
    <abstract>
-   <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE</para>
+   <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE, 
+         and other desktops in the *nix world</para>
    </abstract>
 
  <keywordset>
@@ -507,7 +514,8 @@ Previous used Docbook
         any time (feature freeze or not).</para>
 
   <para><emphasis role="bold">Documentation</emphasis></para>
-  <para>Help is needed (documentation writers) for keeping the Krusader documentation up to date.</para>
+  <para>Help is needed (we are looking for documentation writers) for keeping the &krusader;
+        documentation up to date.</para>
 
   <para><emphasis role="bold">Donations</emphasis></para>
   <para>Honestly, we didn't consider donations, until users asked us for a way to &donate_url; to the project.
@@ -525,20 +533,10 @@ Previous used Docbook
   <para>We are always in need of packagers for rpm's, deb's, etc. 
         All help is welcome.</para>
 
-<!--
-   We are waiting for QT4/KDE4 with fink and Krusader 2.x  ;)
-   
-  <para><emphasis role="bold">Maintainer for porting &krusader; to &MacOS; X</emphasis></para>
-  <para>Krusader can be ported to &MacOS; X with &fink_url; and &kde;libs (3.1.4),
-        Jonas B&auml;hr has proven this with &krusader;-1.40 on &MacOS; 10.3 "Panther".
-        Unfortunately Jonas doesn't have the time to maintain this port and &krusader;-1.40 is the only
-        successfull port to &MacOS; X. An attempt to port &krusader;-1.50 to &MacOS; X dit fail due some
-        small porting problems and some lack of time. 
-        At this moment the &MacOS; X &krusader; port doesn't have the same power then in a native &kde; 
-        environement, once a native &kde;lib on &MacOS; without X will allow it to run &krusader; smoothly.
-        Jonas will help with pleasure this maintainer, the <filename>krusader-1.xx.info</filename> files are 
-        available in cvs.</para>
--->
+
+  <para><emphasis role="bold">Usersfeedback for the &krusader; &MacOS; X port</emphasis></para>
+  <para>Krusader is <link linkend="mac-port">ported</link> to &macosx_download_url; with &fink_url; 
+        and &kde;libs, the port is maintained by &bodo_tasche_url;, all feedback is welcome.</para>
 
   <para><emphasis role="bold">Porting &krusader; to &Windows;</emphasis></para>
   <para>&krusader; is written using &Qt; as well as &kde;libs. 

@@ -278,7 +278,7 @@ You will discover even more features in this documentation and in the &changelog
 
 <para>
 <itemizedlist>
-  <title>New features since version 1.70.0</title>
+  <title>New features since version 1.70.0 (Hellfire)</title>
   
   <listitem>
         <para><link linkend="krusearcher">Improved Selection filters</link> 
@@ -312,11 +312,20 @@ You will discover even more features in this documentation and in the &changelog
   </listitem>
 
   <listitem>
-        <para>Increased perfromance: &eg; read much faster directories with many files.</para>
+        <para>Increased perfromance: reads much faster directories with many files.</para>
   </listitem>
 
   <listitem>
         <para><link linkend="krviewer">Editor/Viewer Browsing tabs</link> .</para>
+  </listitem>
+
+  <listitem>
+        <para><link linkend="checksum">Checksum creation-verification</link> that supports
+              md5, sha1, sha256, tiger, whirlpool, md5deep.</para>
+  </listitem>
+
+  <listitem>
+        <para>&whatsthis_url; in favour of Tooltips where reasonable.</para>
   </listitem>
 
   <listitem>

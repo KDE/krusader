@@ -30,7 +30,7 @@
 
 <para>Required &kde; version:
 <itemizedlist>
-   <listitem><para>&krusader; v1.01: &kde; 2.x.x </para>
+   <listitem><para>&krusader; v1.01: &kde; 2.x.x</para>
              </listitem>
       <listitem><para>&krusader; v1.02 - 1.40: &kde; 3.0.x - &kde; 3.2.x</para>
              </listitem>
@@ -40,6 +40,8 @@
               </listitem>
       <listitem><para>&krusader; v1.60.0- v1.70.0: &kde; 3.3.x - &kde; 3.4.x</para>
               </listitem>
+      <listitem><para>&krusader; 1.70.0: prefers &kde; 3.4.x (otherwise not all features will be available)</para>
+              </listitem>              
       <listitem><para>&krusader; v2.xx.x: &kde; 4.x - &Qt; 4.x The big challenge, a first release maybe in 2006 ;)</para>
               </listitem>
 </itemizedlist>
@@ -84,11 +86,17 @@
      <para>&suse_download_url; >= 9.3, Note: please use &krusader;-1.60.0 and not &krusader;-1.51 
            (might be instable on &SuSE;9.3-&kde;3.4)</para>
   </listitem>
+     <listitem>
+       <para>&fedora; via &fedora_extras_url;, thanks to Marcin Garski. 
+            &RedHat; RPM packages can usually found on the &krudownload_url;, 
+             &dag_wiers_download_url; or at &dries_verachtert_download_url; .</para>
+     </listitem>
   <listitem>
      <para>&debian_download_url;, on our &krudownload_url; you might find more
            recent "unofficial bleeding-edge" DEB packages.
-           Note: usually &debian; packages work on distributions who are "based on &debian;"
-           e.g. &mepis;, &ubuntu_kubuntu_download_url;, &linspire;, &xandros;, ...</para>
+           Note: usually &debian; packages work also on distributions who are "based on &debian;",
+           some of them provide their own packages.
+           e.g. &mepis;, &ubuntu_kubuntu_download_url;, &linspire_download_url;, &xandros;, ...</para>
   </listitem>
   <listitem>
      <para>&mandriva_download_url;, &gentoo_download_url;, &knoppix; 4.0 DVD, &yoper_download_url;</para>
@@ -111,12 +119,8 @@ sometimes an internet connection is needed if &krusader; is not available on the
 There are probably more distributions who include &krusader;, sorry we can't mention you all.
 </para>
 
-<para>Third-parties
+<para>Others
 <itemizedlist>
-     <listitem>
-       <para>&RedHat;/&fedora; RPM packages can usually found on the &krudownload_url;, 
-             &dag_wiers_download_url; or at &dries_verachtert_download_url; .</para>
-     </listitem>
      <listitem>
        <para>&slackware; TGZ packages can usually found on the &krudownload_url;, 
              thanks to &mateusz_dubiel_url; .</para>
@@ -124,6 +128,9 @@ There are probably more distributions who include &krusader;, sorry we can't men
      <listitem>
        <para>There is a &macosx_download_url; port with the help of &fink_url; ,
              the port is maintained by &bodo_tasche_url; .</para>
+     </listitem>
+     <listitem>
+       <para>Installation via the &klik_protocol_download_url; .</para>
      </listitem>
 </itemizedlist>
 </para>
@@ -1087,8 +1094,14 @@ foo</screen>
 </row>
 
 <row>
-  <entry><para>1.70.0-beta1</para></entry>
-  <entry><para>2005-??-??</para></entry>
+  <entry><para>1.70.0 (Hellfire)</para></entry>
+  <entry><para>2005-11-??</para></entry>
+  <entry><para>&kde; 3.3.x - 3.4.x</para></entry>
+</row>
+
+<row>
+  <entry><para>1.70.0-beta1 (Hellfire)</para></entry>
+  <entry><para>2005-10-??</para></entry>
   <entry><para>&kde; 3.3.x - 3.4.x</para></entry>
 </row>
 
