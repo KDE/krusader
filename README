@@ -1,32 +1,31 @@
-Krusader 1.60.0 final
-=====================
-First, as you might have noticed, krusader uses a new version scheme. 
-The idea behind the new scheme is quite simple really:
-First digit - the major version
-Second digit(s) - percentage of features completed for this major version
-third digit(s) - bugfixes.
-So in essence, releasing 1.60.0, means that we believe that krusader is about 60%
-done with all the features we'd schedule for thr 1.x.x series. Only 40% left to
-go until version 2.0.0 ;-) We hope it'd be easy to understand.
+Krusader 1.70.0-beta1 (Hellfire)
+===============================
+This is the first beta in the 1.70.x series. 
+Download it, play with it, push it to the limit, break it if you can,
+and then tell us what you found! 
 
-As usual, a lot of bugfixes and a lot of features. some of the interesting ones:
-* Ability to select you own color scheme. Comes with total-commander and midnight-commander
-  color schemes by default. Try Konfigurator->Colors->Import Color-Scheme
-* Import/Export keyboard shortcuts. Comes with a total-commander keybindings scheme.
-* 4 Selection Modes to choose from. The last one is actually a user-defined selection mode.
-* Many improvements to the user-action system. Included are some actions suggested by
-  our users in the forum.
-* Popular Urls - Krusader keeps a list of the most visited urls, and allows you to _quickly_
-  go anywhere you need. Click ctrl-Z to give it a try
-* Virtual Vfs: an implementation of virtual folders. To try it, perform a search and click
-  "feed to listbox". Also, you can type something like "virt:/test1" into the origin bar
-* Bookmarks can now be placed into toolbars, and krusader has a new "action toolbar" especially
-  for user actions and bookmarks
-* When opening a remote url or an archive, krusader does not block the user interface. you can
-  keep working in any other panel or tab while krusader opens the remote location.
-* Many improvements to the synchronizer module
-* A new disk-usage module. Available either by ALT-D, or by choosing the component in the 3rd panel.
-* A new full-viewer (as opposed to a thumbnail viewer) in the 3rd panel.
+Krusader v1.70.0 contains over 40 changes, bug fixes and updates in
+response to reports and requests from our users.
+The highlights are:
+* checksum creation/verification mechanism that supports
+  md5, sha1, sha256, tiger, whirlpool, md5deep
+* editor/viewer tabs
+* improved performance when reading directories with many files 
+* Nicer application search results
+* i18n multiple plural support
+* right click menu -> trash, delete, shred options
+* column types can be changed and saved individually to each panel (each side)
+* select remote encoding menu for fish, ftp and sftp protocols
+* permissions column as octal numbers
+* calculate space in archives and remote FS (KDE >= 3.3.0) 
+* preserve date for local targets at copy / move
+* synchronize selected files
+* starting more tabs with --left=tab1,tab2,tab3 --right=tab4,tab5
+* A Safari-like Jump-Back feature (Ctrl-J and in the bookmark-menu)
+* filters for selecting files
+* New zip/tar slave - based on KDE's but support writing to archive
+* Use WhatsThis in favour of tooltips where reasonable
+and more ...
 
 enjoy!
   Krusader Krew
@@ -72,7 +71,6 @@ update the krusaderui.rc file. please read the FAQ for more info.
 
 Need more help?
 For detailed installation instructions, please read the INSTALL and FAQ file.
-
 Or read it online at:
 http://krusader.sourceforge.net/handbook/installation.html
 The FAQ are available at:
@@ -116,7 +114,8 @@ http://krusader.sourceforge.net/i18n.php
 
 Documentation
 -------------
-Krusader is in need of documentation. Help is always welcome.
+Help is needed (we are looking for documentation writers) for keeping the
+Krusader documentation up to date.
 Please contact Frank.
 
 FAQ
@@ -222,7 +221,8 @@ If everything is ok, send the updated translation to Dirk Eschler.
 URL's
 =====
 - Homepage
-  http://krusader.sourceforge.net
+  http://www.krusader.org
+  http://krusader.sourceforge.net  
 - Installation
   http://krusader.sourceforge.net/handbook/installation.html
 - FAQ
