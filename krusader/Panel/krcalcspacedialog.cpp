@@ -141,14 +141,17 @@ void KrCalcSpaceDialog::timer(){
 }
 
 void KrCalcSpaceDialog::showResult(){
-	if (!m_thread) return;
-	QString msg;
-	QString fileName = ( ( m_thread->getItems().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getItems().first() + "\n" ) : QString( "" ) );
-	msg = fileName + i18n( "Total occupied space: %1").arg( KIO::convertSize( m_thread->getTotalSize() ) );
-	if (m_thread->getTotalSize() >= 1024)
-	   msg += " (" + KRpermHandler::parseSize( m_thread->getTotalSize() ) + "bytes)";
-	msg += i18n("\nin %1 directories and %2 files" ).arg( m_thread->getTotalDirs() ).arg( m_thread->getTotalFiles() );
-	m_label->setText(msg);
+  if (!m_thread) return;
+  QString msg;
+  QString fileName = ( ( m_thread->getItems().count() == 1 ) ? ( i18n( "Name: " ) + m_thread->getItems().first() + "\n" ) : QString( "" ) );
+  msg = fileName + i18n( "Total occupied space: %1").arg( KIO::convertSize( m_thread->getTotalSize() ) );
+  if (m_thread->getTotalSize() >= 1024)
+     msg += " (" + KRpermHandler::parseSize( m_thread->getTotalSize() ) + "bytes)";
+  msg += "\n";
+  msg += i18n("in 1 directory", "in %n directories", m_thread->getTotalDirs() );
+  msg += " ";
+  msg += i18n("and 1 file", "and %n files", m_thread->getTotalFiles() );
+  m_label->setText(msg);
 }
 
 void KrCalcSpaceDialog::slotCancel(){
