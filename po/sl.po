@@ -1,16 +1,17 @@
+# Translation of sl.po to Slovenian
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
-# Matej Urbancic <matej.urbancic@amis.net>, 2005.
+# Matej Urbancic <matej.urban@gmail.com>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-20 13:55+0200\n"
-"PO-Revision-Date: 2005-09-20 14:41+0100\n"
-"Last-Translator: Matej Urbančič <matej.urban@gmail.com>\n"
+"POT-Creation-Date: 2005-09-21 00:23+0200\n"
+"PO-Revision-Date: 2005-09-21 01:11+0200\n"
+"Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,9 +19,9 @@ msgstr ""
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: KBabel 1.10\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0)\n"
+"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms:  nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -310,7 +311,7 @@ msgstr "Skupni izhod"
 
 #: GUI/actionpropertybase.cpp:445
 msgid "Collect the output of the executed program."
-msgstr "Zberi izhodne informacije  izvedenega programa."
+msgstr "Zberi izhodne informacije izvedenega programa."
 
 #: GUI/actionpropertybase.cpp:446
 msgid "Separate standard error"
@@ -334,7 +335,7 @@ msgstr "Poženi ukaz v terminalu."
 
 #: GUI/actionpropertybase.cpp:453
 msgid "Basic Properties"
-msgstr "Osnovne Nastavitve"
+msgstr "Osnovne lastnosti"
 
 #: GUI/actionpropertybase.cpp:454
 msgid "The Useraction is only available for"
@@ -402,7 +403,7 @@ msgstr "Izvedi <i>ukaz</i> pod drugim uporabniškim ID."
 
 #: GUI/actionpropertybase.cpp:486
 msgid "Advanced Properties"
-msgstr "Napredne nastavitve"
+msgstr "Napredne lastnosti"
 
 #: GUI/addplaceholderpopup.cpp:55
 msgid "Active panel"
@@ -474,7 +475,7 @@ msgstr "Ta terminal se bo zaprl po 1 uri."
 
 #: GUI/kfnkeys.cpp:50
 msgid "F2 Term  "
-msgstr "F2 Term  "
+msgstr "F2 Term "
 
 #: GUI/kfnkeys.cpp:51
 msgid ""
@@ -486,7 +487,7 @@ msgstr ""
 
 #: GUI/kfnkeys.cpp:57
 msgid "F3 View  "
-msgstr "F3 Poglej  "
+msgstr "F3 Poglej "
 
 #: GUI/kfnkeys.cpp:58
 msgid "Open file in viewer."
@@ -494,7 +495,7 @@ msgstr "Odpri datoteko v pregledovalniku."
 
 #: GUI/kfnkeys.cpp:62
 msgid "F4 Edit  "
-msgstr "F4 Uredi  "
+msgstr "F4 Uredi "
 
 #: GUI/kfnkeys.cpp:63
 msgid ""
@@ -506,7 +507,7 @@ msgstr ""
 
 #: GUI/kfnkeys.cpp:69
 msgid "F5 Copy  "
-msgstr "F5 Kopiraj  "
+msgstr "F5 Kopiraj "
 
 #: GUI/kfnkeys.cpp:70
 msgid "Copy file from one panel to the other."
@@ -974,7 +975,7 @@ msgid ""
 "The date %1 is not valid according to your locale. Please re-enter a valid "
 "date (use the date button for easy access)."
 msgstr ""
-"Datum %1  ne sovpada z vašim naborom. Ponovno vnesi pravilen datum (uporabi "
+"Datum %1 ne sovpada z vašim naborom. Ponovno vnesi pravilen datum (uporabi "
 "datumski gumb za enostaven vnos)."
 
 #: Filter/advancedfilter.cpp:508
@@ -1574,13 +1575,27 @@ msgstr "Ime:"
 msgid "Total occupied space: %1"
 msgstr "Skupna zasedenost prostora: %1"
 
-#: Panel/krcalcspacedialog.cpp:150
+#: Panel/krcalcspacedialog.cpp:151
+#, fuzzy, c-format
 msgid ""
-"\n"
-"in %1 directories and %2 files"
+"_n: in 1 directory\n"
+"in %n directories"
 msgstr ""
-"\n"
-"v %1 mapah in %2 datotekah"
+"_n: %n mapa\n"
+"%n mapi\n"
+"%n mape\n"
+"%n map"
+
+#: Panel/krcalcspacedialog.cpp:153
+#, fuzzy, c-format
+msgid ""
+"_n: and 1 file\n"
+"and %n files"
+msgstr ""
+"_n: %n datoteka\n"
+"%n datoteki\n"
+"%n datoteke\n"
+"%n datotek"
 
 #: Panel/krpopupmenu.cpp:59
 msgid "Open/Run"
@@ -1825,8 +1840,10 @@ msgid ""
 "_n: Do you really want to move this item to the trash?\n"
 "Do you really want to move these %n items to the trash?"
 msgstr ""
-"_n: Zares želiš premakniti izbrano v koš?\n"
-"Zares želiš premakniti  %n datotek v koš?"
+"_n: Zares želiš premakniti izbrano datoteko v koš?\n"
+"Zares želiš premakniti %n datoteki v koš?\n"
+"Zares želiš premakniti %n datoteke v koš?\n"
+"Zares želiš premakniti %n datotek v koš?"
 
 #: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:564
 msgid "&Trash"
@@ -1839,7 +1856,7 @@ msgid ""
 "Do you really want to delete these %n items?"
 msgstr ""
 "_n: Zares želiš izbrisati izbrano?\n"
-"Zares želiš izbrisati  %n datotek?"
+"Zares želiš izbrisati %n datotek?"
 
 #: DiskUsage/diskusage.cpp:566 DiskUsage/radialMap/widgetEvents.cpp:172
 #: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:567
@@ -2891,6 +2908,8 @@ msgid ""
 "%n directories"
 msgstr ""
 "_n: %n mapa\n"
+"%n mapi\n"
+"%n mape\n"
 "%n map"
 
 #: Dialogs/krprogress.cpp:166
@@ -2900,6 +2919,8 @@ msgid ""
 "%n files"
 msgstr ""
 "_n: %n datoteka\n"
+"%n datoteki\n"
+"%n datoteke\n"
 "%n datotek"
 
 #: Dialogs/krprogress.cpp:172
@@ -2912,7 +2933,7 @@ msgstr " (Berem)"
 
 #: Dialogs/krprogress.cpp:191
 msgid "%1 of %2 complete"
-msgstr "Končanih %1 od %2"
+msgstr "Končano %1 od %2"
 
 #: Dialogs/krprogress.cpp:201 Dialogs/krprogress.cpp:214
 msgid ""
@@ -2920,6 +2941,8 @@ msgid ""
 "%1 / %n directories"
 msgstr ""
 "_n: %1 / %n mapa\n"
+"%1 / %n mapi\n"
+"%1 / %n mape\n"
 "%1 / %n map"
 
 #: Dialogs/krprogress.cpp:203 Dialogs/krprogress.cpp:217
@@ -2928,6 +2951,8 @@ msgid ""
 "%1 / %n files"
 msgstr ""
 "_n: %1 / %n datoteka\n"
+"%1 / %n datoteki\n"
+"%1 / %n datoteke\n"
 "%1 / %n datotek"
 
 #: Dialogs/krprogress.cpp:225
@@ -3566,7 +3591,7 @@ msgstr "Krusader::Usklajevanje"
 
 #: Synchronizer/synchronizedialog.cpp:52
 msgid "Right to left: Copy %1 files (%2 bytes)"
-msgstr "Z desne na levo: Kopiram %1 datotek (%2 bajta)"
+msgstr "Z desne na levo: Kopiram %1 datotek (%2 bajtov)"
 
 #: Synchronizer/synchronizedialog.cpp:59 Synchronizer/synchronizedialog.cpp:72
 #: Synchronizer/synchronizedialog.cpp:85
@@ -3578,11 +3603,11 @@ msgstr "\tPripravljen: %1/%2 datotek, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:65
 msgid "Left to right: Copy %1 files (%2 bytes)"
-msgstr "Z leva na desno: Kopiram %1 datotek (%2 bajta)"
+msgstr "Z leve na desno: Kopiram %1 datotek (%2 bajtov)"
 
 #: Synchronizer/synchronizedialog.cpp:78
 msgid "Left: Delete %1 files (%2 bytes)"
-msgstr "Levo: Brišem %1 datotek (%2 bajta)"
+msgstr "Levo: Brišem %1 datotek (%2 bajtov)"
 
 #: Synchronizer/synchronizedialog.cpp:100
 msgid "Confirm overwrites"
@@ -3605,7 +3630,7 @@ msgstr "Nadaljuj"
 #: Synchronizer/synchronizer.cpp:118 Synchronizer/synchronizer.cpp:526
 #, c-format
 msgid "File number:%1"
-msgstr "Å t. datoteke: %1"
+msgstr "Št. datoteke: %1"
 
 #: Synchronizer/synchronizer.cpp:274
 msgid "Error at opening URL:%1!"
@@ -3630,7 +3655,7 @@ msgstr "Napaka pri brisanju datoteke %1!"
 
 #: Synchronizer/synchronizer.cpp:1163
 msgid "IO error at comparing file %1 with %2!"
-msgstr "IO napaka pri primerjanju datoteke %1 z %2!"
+msgstr "IO napaka pri primerjvi datoteke %1 z %2!"
 
 #: Synchronizer/synchronizer.cpp:1192 Synchronizer/synchronizer.cpp:1203
 msgid "Comparing file %1..."
@@ -3672,12 +3697,11 @@ msgstr "&Odpri"
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!"
-msgstr ""
-"<qt>Mapa <i>'%1'</i> bo <b>popolno</b> in <b>permanentno</b> izbrisana!"
+msgstr "<qt>Mapa <i>'%1'</i> bo <b>popolno</b> in <b>trajno</b> zbrisana!"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!"
-msgstr "<qt><i>'%1'</i> bo <b>permanentno</b> brisan!"
+msgstr "<qt><i>'%1'</i> bo <b>trajno</b> zbrisana!"
 
 #: DiskUsage/radialMap/builder.cpp:134
 msgid "%1 files: ~ %2"
@@ -3824,7 +3848,7 @@ msgstr "Nalagam informacije o uporabi diska..."
 msgid ""
 "Stepping into the parent directory requires loading the content of the \"%1"
 "\" URL. Do you wish to continue?"
-msgstr "Vhod v nad-mapo zahteva zagon vsebine \"%1\" URL. Naj nadaljujem?"
+msgstr "Vhod v nad-mapo zahteva zagon povezave \"%1\". Naj nadaljujem?"
 
 #: DiskUsage/diskusage.cpp:407
 msgid "Krusader::DiskUsage"
@@ -3888,7 +3912,7 @@ msgstr "Velikost:"
 
 #: DiskUsage/diskusage.cpp:975
 msgid "Own size:"
-msgstr "Velikost"
+msgstr "Lastna velikost"
 
 #: DiskUsage/diskusage.cpp:977
 msgid "Last modified:"
@@ -3968,7 +3992,7 @@ msgstr "Stiskalniki"
 
 #: Konfigurator/kgdependencies.cpp:124
 msgid "The %1 path is incorrect, no valid path found."
-msgstr "Pot %1 ni pravilna, ne najdem pravilne poti."
+msgstr "Pot %1 ni pravilna, ne najdem veljavne poti."
 
 #: Konfigurator/kgdependencies.cpp:127
 msgid "The %1 path is incorrect, %2 used instead."
@@ -3994,7 +4018,7 @@ msgstr "Uporabi magični mimetype"
 msgid "Mimetype magic allows better distinction of file types, but is slower."
 msgstr ""
 "Magični mime-tip omogoča boljše razlikovanje med tipi datotek, vendar je "
-"proces  počasnejši."
+"proces počasnejši."
 
 #: Konfigurator/kggeneral.cpp:72
 msgid "Editor:"
@@ -5412,6 +5436,13 @@ msgstr "Napaka pri branju datoteke %1!"
 msgid "Error at writing file %1!"
 msgstr "Napaka pri pisanju datoteke %1!"
 
+#~ msgid ""
+#~ "\n"
+#~ "in %1 directories and %2 files"
+#~ msgstr ""
+#~ "\n"
+#~ "v %1 mapah in %2 datotekah"
+
 #~ msgid "Show Columns:"
 #~ msgstr "Stolpci"
 
@@ -5424,7 +5455,7 @@ msgstr "Napaka pri pisanju datoteke %1!"
 #~ "for instance Konqueror does."
 #~ msgstr ""
 #~ "Prikaži končnico datoteke (za zadnjo piko) v stolpcu podaljška in ne kot "
-#~ "celotno ime. (npr.  pri Konquerorju)."
+#~ "celotno ime. (npr. pri Konquerorju)."
 
 #~ msgid "Mimetype"
 #~ msgstr "Mimetype"
