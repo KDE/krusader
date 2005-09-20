@@ -80,9 +80,13 @@ int main(int argc, char *argv[]) {
     argv = myArgv;
   }
 // ============ end icon-stuff ===========
+
   // ABOUT data information
-#define CODENAME	"Hellfire"
-  QString versionName = QString("%1 (%2)").arg(VERSION).arg(CODENAME);
+#ifdef RELEASE_NAME
+  QString versionName = QString("%1 \"%2\"").arg(VERSION).arg(RELEASE_NAME);
+#else
+  QString versionName = VERSION;
+#endif
   KAboutData aboutData( "krusader", ( geteuid() ? I18N_NOOP("Krusader") :
                         I18N_NOOP("Krusader - ROOT PRIVILEGES")),
     versionName.latin1(), description, KAboutData::License_GPL,
