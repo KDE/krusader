@@ -141,6 +141,30 @@
   <term>
   <menuchoice>
   <guimenu>File</guimenu>
+  <guimenuitem>Create Checksum</guimenuitem></menuchoice></term>
+  <listitem>
+  <para>
+  <link linkend="checksum">Checksum creation</link> on file(s) and/or folder(s).
+  </para>
+  </listitem>
+</varlistentry>
+
+<varlistentry>
+  <term>
+  <menuchoice>
+  <guimenu>File</guimenu>
+  <guimenuitem>Verify Checksum</guimenuitem></menuchoice></term>
+  <listitem>
+  <para>
+  <link linkend="checksum">Verify Checksum</link> .
+  </para>
+  </listitem>
+</varlistentry>
+
+<varlistentry>
+  <term>
+  <menuchoice>
+  <guimenu>File</guimenu>
   <guimenuitem>Calculate Occupied Space</guimenuitem></menuchoice></term>
   <listitem>
   <para>
@@ -176,30 +200,6 @@
   The &combinefiles_lnk; function combines multiple files into one file after the &splitfile_lnk;
         function was used.
   </para></listitem>
-</varlistentry>
-
-<varlistentry>
-  <term>
-  <menuchoice>
-  <guimenu>File</guimenu>
-  <guimenuitem>Create Checksum</guimenuitem></menuchoice></term>
-  <listitem>
-  <para>
-  <link linkend="checksum">Checksum creation</link> on file(s) and/or folder(s).
-  </para>
-  </listitem>
-</varlistentry>
-
-<varlistentry>
-  <term>
-  <menuchoice>
-  <guimenu>File</guimenu>
-  <guimenuitem>Verify Checksum</guimenuitem></menuchoice></term>
-  <listitem>
-  <para>
-  <link linkend="checksum">Verify Checksum</link> .
-  </para>
-  </listitem>
 </varlistentry>
 
  <!--vertical bar -->
@@ -749,13 +749,12 @@
   <guimenu>Help</guimenu>
   <guimenuitem>Report Bug</guimenuitem>
   </menuchoice></term>
-  <listitem><para>Opens the &kde;'s bugzilla report dialog where you can report a bug or request a 
-   "wishlist" feature.</para>
+  <listitem><para>Opens the bug report dialog for sending bug reports via mail.</para>
     <note><para><remark>If you've got bugs to report please do not use &kde;'s bugzilla
     http://bugs.kde.org/, &kde;'s Bug Tracking System.
-    Click on the next link to find out how to send &faqbugreports_lnk;.</remark></para></note>
-    <para>If you have a wish, a patch, or a comment click
-    <link linkend="faqg_wish_patch">here</link>.</para>
+    We use Sourceforge.net for reporting and managing our &faqbugreports_lnk;.</remark></para></note>
+    <para>Wishes, patches, and comments are always
+    <link linkend="faqg_wish_patch">welcome</link>.</para>
   </listitem>
 </varlistentry>
 

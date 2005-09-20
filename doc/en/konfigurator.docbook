@@ -332,10 +332,11 @@ HTML_PARSING-->
 <sect1 id="konfig-color">
 <title>Colors page</title>
 
-<para>This page configures the <link linkend="mainwindow">colors</link> in the list panel.
+<para>This page configures the colors in the &list_panel_lnk; and the
+      <link linkend="krusyncdir">Synchronizer</link> .
       The <guilabel>KDE default colors</guilabel> is the default color configuration,
       <guilabel>Use Alternate Background color</guilabel> checkbox will enable/disable
-			the alternate &kde; colors.
+      the alternate &kde; colors.
       </para>
 
 <!--HTML_PARSING
@@ -370,8 +371,7 @@ HTML_PARSING-->
 
  <varlistentry><term><guilabel>Colors</guilabel></term>
   <listitem><para>Choose the colors the way you like. In the <guilabel>Preview</guilabel> section you can
-  see the result. The colors of the active and inactive panel can be configured. The following items can
-  be configured:</para>
+  see the result. The following items of the active and inactive panel can be configured:</para>
   <itemizedlist>
   <listitem><para><guilabel>Foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Directory foreground</guilabel></para></listitem>
@@ -387,9 +387,23 @@ HTML_PARSING-->
   <listitem><para><guilabel>Marked current foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Current background</guilabel></para></listitem>
   </itemizedlist>
+  <para>The following items of the <link linkend="krusyncdir">Synchronizer</link> can be configured:</para>
+  <itemizedlist>
+  <listitem><para><guilabel>Equals foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Equals background</guilabel></para></listitem>
+  <listitem><para><guilabel>Differing foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Differing background</guilabel></para></listitem>
+  <listitem><para><guilabel>Copy to left foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Copy to left background</guilabel></para></listitem>
+  <listitem><para><guilabel>Copy to right foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Copy to left background</guilabel></para></listitem>
+  <listitem><para><guilabel>Delete foreground</guilabel></para></listitem>
+  <listitem><para><guilabel>Delete background</guilabel></para></listitem>
+  </itemizedlist>  
   </listitem>
  </varlistentry>
 
+  
  <varlistentry><term><guilabel>Preview</guilabel></term>
   <listitem><para>Here you see a preview of the configured colors.</para>
   </listitem></varlistentry>
@@ -629,8 +643,31 @@ new archive should be available and checked.</para>
 </row>
 <row>
 <entry><para><command>updatedb</command></para></entry>
-<entry>
-  <para><filename class="directory"><replaceable>/usr/bin/updatedb</replaceable></filename></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/updatedb</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>md5deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/md5deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha1deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha1deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha1deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha1deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha256deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha256deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>tigerdeep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/tigerdeep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>whirlpooldeep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/whirlpooldeep</replaceable></filename></para></entry>
 </row>
 </tbody>
 </tgroup>
