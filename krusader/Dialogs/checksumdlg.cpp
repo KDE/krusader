@@ -451,7 +451,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 	}
 	
 	if (exec() == Accepted && successes) {
-		if (onePerFile->isChecked()) {
+		if (stdout.size()>1 && onePerFile->isChecked()) {
 			savePerFile(stdout, suggestedFilename.mid(suggestedFilename.findRev('.')));
 		} else if (saveFileCb->isEnabled() && saveFileCb->isChecked() && !checksumFile->url().simplifyWhiteSpace().isEmpty()) {
 			saveChecksum(stdout, checksumFile->url());
