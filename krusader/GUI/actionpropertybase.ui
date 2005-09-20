@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>407</width>
-            <height>414</height>
+            <width>405</width>
+            <height>410</height>
         </rect>
     </property>
     <property name="caption">
@@ -28,9 +28,6 @@
         <widget class="QTabWidget" row="0" column="0">
             <property name="name">
                 <cstring>tabWidget3</cstring>
-            </property>
-            <property name="whatsThis" stdset="0">
-                <string></string>
             </property>
             <widget class="QWidget">
                 <property name="name">
@@ -99,9 +96,6 @@
                                 <property name="checked">
                                     <bool>true</bool>
                                 </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
-                                </property>
                                 <property name="whatsThis" stdset="0">
                                     <string>Substitute the &lt;b&gt;Placeholders&lt;/b&gt; with local filenames.</string>
                                 </property>
@@ -113,9 +107,6 @@
                                 <property name="text">
                                     <string>URL's (remote and local)</string>
                                 </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
-                                </property>
                                 <property name="whatsThis" stdset="0">
                                     <string>Substitute the &lt;b&gt;Placeholders&lt;/b&gt; with valid URL's.</string>
                                 </property>
@@ -125,9 +116,6 @@
                     <widget class="KLineEdit" row="2" column="1" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>leTitle</cstring>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string></string>
                         </property>
                         <property name="whatsThis" stdset="0">
                             <string>The title displayed in the &lt;b&gt;Usermenu&lt;/b&gt;.</string>
@@ -172,9 +160,6 @@
                                         <property name="name">
                                             <cstring>leDistinctName</cstring>
                                         </property>
-                                        <property name="toolTip" stdset="0">
-                                            <string></string>
-                                        </property>
                                         <property name="whatsThis" stdset="0">
                                             <string>Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and doesn't appear in any other menu.&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.</string>
                                         </property>
@@ -185,9 +170,6 @@
                                         </property>
                                         <property name="editable">
                                             <bool>true</bool>
-                                        </property>
-                                        <property name="toolTip" stdset="0">
-                                            <string></string>
                                         </property>
                                         <property name="whatsThis" stdset="0">
                                             <string>&lt;b&gt;Useractions&lt;/b&gt; can be grouped in categories for better distinction. Choose a existing &lt;i&gt;Category&lt;/i&gt; or create a new one by entering a name.</string>
@@ -222,9 +204,6 @@
                                 <property name="text">
                                     <string>Icon</string>
                                 </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
-                                </property>
                                 <property name="whatsThis" stdset="0">
                                     <string>Each &lt;b&gt;Useraction&lt;/b&gt; can have its own icon. It will appear in front of the title in the &lt;b&gt;Usermenu&lt;/b&gt;.</string>
                                 </property>
@@ -245,9 +224,6 @@
                         </property>
                         <property name="text">
                             <string>Use tooltip</string>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string></string>
                         </property>
                         <property name="whatsThis" stdset="0">
                             <string>The &lt;i&gt;Tooltip&lt;/i&gt; can be used as &lt;i&gt;Description&lt;/i&gt;.</string>
@@ -297,9 +273,6 @@ Please consult the handbook to learn more about the syntax.</string>
                         <property name="name">
                             <cstring>leTooltip</cstring>
                         </property>
-                        <property name="toolTip" stdset="0">
-                            <string></string>
-                        </property>
                         <property name="whatsThis" stdset="0">
                             <string>The &lt;i&gt;Tooltip&lt;/i&gt; is shown when the mouse cursor is hold over an entry of the &lt;b&gt;Useraction Toolbar&lt;/b&gt;.</string>
                         </property>
@@ -307,9 +280,6 @@ Please consult the handbook to learn more about the syntax.</string>
                     <widget class="KLineEdit" row="8" column="1" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>leStartpath</cstring>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string></string>
                         </property>
                         <property name="whatsThis" stdset="0">
                             <string>The &lt;i&gt;Workdir&lt;/i&gt; defines in which directory the &lt;i&gt;Command&lt;/i&gt; will be executed.</string>
@@ -339,9 +309,6 @@ Please consult the handbook to learn more about the syntax.</string>
                             <cstring>leCommandline</cstring>
                         </property>
                         <property name="text">
-                            <string></string>
-                        </property>
-                        <property name="toolTip" stdset="0">
                             <string></string>
                         </property>
                         <property name="whatsThis" stdset="0">
@@ -388,10 +355,7 @@ Please consult the handbook to learn more about the syntax.</string>
                             </size>
                         </property>
                         <property name="text">
-                            <string>Add</string>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string></string>
+                            <string>&amp;Add</string>
                         </property>
                         <property name="whatsThis" stdset="0">
                             <string>Add &lt;b&gt;Placeholders&lt;/b&gt; for the selected files in the panel.</string>
@@ -403,9 +367,6 @@ Please consult the handbook to learn more about the syntax.</string>
                         </property>
                         <property name="wordWrap">
                             <enum>WidgetWidth</enum>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string></string>
                         </property>
                         <property name="whatsThis" stdset="0">
                             <string>A detailed description of the &lt;b&gt;Useraction&lt;/b&gt;. It is only displayed in the &lt;i&gt;Konfigurator&lt;/i&gt; and via &lt;code&gt;Shift-F1&lt;/code&gt;.</string>
@@ -487,9 +448,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                 <property name="text">
                                     <string>None</string>
                                 </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
-                                </property>
                                 <property name="whatsThis" stdset="0">
                                     <string>Set a default keyboard shortcut.</string>
                                 </property>
@@ -522,9 +480,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                 <property name="text">
                                     <string>Collect output</string>
                                 </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
-                                </property>
                                 <property name="whatsThis" stdset="0">
                                     <string>Collect the output of the executed program.</string>
                                 </property>
@@ -538,9 +493,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                 </property>
                                 <property name="text">
                                     <string>Separate standard error</string>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
                                 </property>
                                 <property name="whatsThis" stdset="0">
                                     <string>Separate standard out and standard error in the output collection.</string>
@@ -563,9 +515,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                 </property>
                                 <property name="text">
                                     <string>Run in terminal</string>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
                                 </property>
                                 <property name="whatsThis" stdset="0">
                                     <string>Run the command in a terminal.</string>
@@ -731,9 +680,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="name">
                                                 <cstring>lbShowonlyProtocol</cstring>
                                             </property>
-                                            <property name="toolTip" stdset="0">
-                                                <string></string>
-                                            </property>
                                             <property name="whatsThis" stdset="0">
                                                 <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the values defined here.</string>
                                             </property>
@@ -754,9 +700,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                         <widget class="KListBox" row="0" column="0" rowspan="4" colspan="1">
                                             <property name="name">
                                                 <cstring>lbShowonlyPath</cstring>
-                                            </property>
-                                            <property name="toolTip" stdset="0">
-                                                <string></string>
                                             </property>
                                             <property name="whatsThis" stdset="0">
                                                 <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the values defined here.</string>
@@ -880,9 +823,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="name">
                                                 <cstring>lbShowonlyMime</cstring>
                                             </property>
-                                            <property name="toolTip" stdset="0">
-                                                <string></string>
-                                            </property>
                                             <property name="whatsThis" stdset="0">
                                                 <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the values defined here.</string>
                                             </property>
@@ -1005,9 +945,6 @@ Please consult the handbook to learn more about the syntax.</string>
                                             <property name="name">
                                                 <cstring>lbShowonlyFile</cstring>
                                             </property>
-                                            <property name="toolTip" stdset="0">
-                                                <string></string>
-                                            </property>
                                             <property name="whatsThis" stdset="0">
                                                 <string>Show the &lt;b&gt;Useraction&lt;/b&gt; only for the filenames defined here. The wildcards '&lt;code&gt;?&lt;/code&gt;' and '&lt;code&gt;*&lt;/code&gt;' can be used.</string>
                                             </property>
@@ -1125,9 +1062,6 @@ Please consult the handbook to learn more about the syntax.</string>
                         <property name="text">
                             <string>Confirm each program call separately</string>
                         </property>
-                        <property name="toolTip" stdset="0">
-                            <string></string>
-                        </property>
                         <property name="whatsThis" stdset="0">
                             <string>Allows to tweak the &lt;i&gt;Command&lt;/i&gt; before it is executed.</string>
                         </property>
@@ -1138,9 +1072,6 @@ Please consult the handbook to learn more about the syntax.</string>
                         </property>
                         <property name="text">
                             <string>Run as different user:</string>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string></string>
                         </property>
                         <property name="whatsThis" stdset="0">
                             <string>Execute the &lt;i&gt;Command&lt;/i&gt; under a different user-id.</string>
