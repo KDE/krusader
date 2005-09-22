@@ -815,10 +815,10 @@ void ListPanelFunc::unpack() {
 		return ;  // safety
 
 	QString s;
-	if ( fileNames.count() == 1 )
-		s = i18n( "Unpack " ) + fileNames[ 0 ] + " " + i18n( "to" ) + ":";
-	else
-		s = i18n( "Unpack " ) + i18n( "%1 files" ).arg( fileNames.count() ) + i18n( "to" ) + ":";
+  if(fileNames.count() == 1)
+    s = i18n("Unpack %1 to:").arg(fileNames[0]);
+  else
+    s = i18n("Unpack 1 file to:", "Unpack %n files to:", fileNames.count());
 
 	// ask the user for the copy dest
 	KURL dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
