@@ -49,9 +49,10 @@ bool    PackGUI::moveIntoArchive=false;
 PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename) :
     PackGUIBase(0,0,true) {
   // first, fill the WhatToPack textfield with information
-  QString temp=QString(i18n("%1 files")).arg(noOfFiles);
-  if (noOfFiles>1) TextLabel1->setText(TextLabel1->text()+" "+temp);
-    else TextLabel1->setText(TextLabel1->text()+" "+filename);
+  if(noOfFiles == 1)
+    TextLabel1->setText( i18n("Pack %1").arg(filename) );
+  else
+    TextLabel1->setText( i18n("Pack 1 file", "Pack %n files", noOfFiles) );
 
   // now, according to the Konfigurator, fill the combobox with the information
   // about what kind of packing we can do

@@ -388,10 +388,10 @@ void ListPanelFunc::moveFiles() {
 		bool preserveDate = krConfig->readBoolEntry( "PreserveDate", _PreserveDate );
 		QString s;
 
-		if ( fileNames.count() == 1 )
-			s = i18n("Move %1 to:").arg(fileNames.first());
-		else
-			s = i18n("Move %1 files to:").arg(fileNames.count());
+  if( fileNames.count() == 1 )
+    s = i18n("Move %1 to:").arg(fileNames.first());
+  else
+    s = i18n("Move 1 file to:", "Move %n files to:", fileNames.count());
 
 		// ask the user for the copy dest
 		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveDate);
@@ -500,10 +500,10 @@ void ListPanelFunc::copyFiles() {
 		bool preserveDate = krConfig->readBoolEntry( "PreserveDate", _PreserveDate );
 		QString s;
 
-		if ( fileNames.count() == 1 )
-			s = i18n("Copy %1 to:").arg(fileNames.first());
-		else
-			s = i18n("Copy %1 files to:").arg(fileNames.count());
+  if( fileNames.count() == 1 )
+    s = i18n("Copy %1 to:").arg(fileNames.first());
+  else
+    s = i18n("Copy 1 file to:", "Copy %n files to:", fileNames.count());
 
 		// ask the user for the copy dest
 		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveDate );
