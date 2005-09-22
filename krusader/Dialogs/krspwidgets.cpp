@@ -43,7 +43,8 @@
 #include <klocale.h>
 #include <kcombobox.h>
 #include <kiconloader.h>
-
+#include <kcursor.h>
+#include <qbitmap.h>
 #include "../resources.h"
 
 ///////////////////// initiation of the static members ////////////////////////
@@ -225,3 +226,61 @@ void KRMaskChoiceSub::acceptFromList(QListBoxItem *i) {
   selection->insertItem(i->text(),0);
   accept();
 }
+
+////////////////////////// QuickNavLineEdit ////////////////////
+
+QuickNavLineEdit::QuickNavLineEdit(const QString &string, QWidget *parent, const char *name):
+	KLineEdit(string, parent, name), _numOfSelectedChars(0), _dummyDisplayed(false), _pop(0) {}
+	
+QuickNavLineEdit::QuickNavLineEdit(QWidget *parent, const char *name): 
+	KLineEdit(parent, name), _numOfSelectedChars(0), _dummyDisplayed(false), _pop(0) {}
+
+void QuickNavLineEdit::leaveEvent(QEvent *) {
+	clearAll();
+}
+
+void QuickNavLineEdit::mousePressEvent( QMouseEvent *m ) {
+	if (m->state()!=ControlButton) clearAll();
+	else if (_numOfSelectedChars) 
+			emit returnPressed(text().left(_numOfSelectedChars));
+	KLineEdit::mousePressEvent(m);
+}
+
+void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
+	if (m->state()!=ControlButton) { // works only with ctrl pressed
+		clearAll();
+		KLineEdit::mouseMoveEvent(m);
+		return;
+	}
+	
+	// find how much of the string we've selected (approx) 
+	// and select from from the start to the closet slash (on the right)
+	const QString tx = text().simplifyWhiteSpace();
+	if (tx.isEmpty()) {
+		clearAll();
+		return;
+	}
+	
+	int avgCharSize = fontMetrics().width(tx)/tx.length();
+	int numOfChars = m->x() / avgCharSize;
+	if (numOfChars) {
+		int idx = tx.find('/', numOfChars);
+		if (idx == -1 && !_dummyDisplayed) { // pointing on or after the current directory
+			if (_pop) delete _pop;
+			_pop = KPassivePopup::message(i18n("Quick Navigation"), 
+				i18n("<qt>Already at")+" <i>"+tx.left(idx)+"</i>",
+				*(KCursor::handCursor().bitmap()), this);
+			_dummyDisplayed=true;
+			_numOfSelectedChars=0;
+		} else if (idx>0 && idx!=_numOfSelectedChars) {
+			_numOfSelectedChars=idx;
+			if (_pop) delete _pop;
+			_dummyDisplayed=false;
+			_pop = KPassivePopup::message(i18n("Quick Navigation"), 
+				i18n("<qt>Click to go to")+" <i>"+tx.left(idx)+"</i>",
+				*(KCursor::handCursor().bitmap()), this);
+		}
+	}
+	KLineEdit::mouseMoveEvent(m);
+}
+

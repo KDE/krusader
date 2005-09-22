@@ -102,7 +102,7 @@ typedef QValueList<KServiceOffer> OfferList;
 #define URL(X) KURL::fromPathOrURL(X)
 
 /////////////////////////////////////////////////////
-// 					The list panel constructor             //
+// 					The list panel constructor       //
 /////////////////////////////////////////////////////
 ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
       QWidget( parent, name ), colorMask( 255 ), compareMode( false ), currDragItem( 0 ), statsAgent( 0 ), 
@@ -190,8 +190,9 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 		clearOrigin->setPixmap(krLoader->loadIcon("locationbar_erase", KIcon::Toolbar, 16));
 		QToolTip::add(  clearOrigin, i18n( "Clear the location bar" ) );
 	}
-
-   origin = new KURLRequester( hbox );
+	
+	QuickNavLineEdit *qnle = new QuickNavLineEdit(this);
+   origin = new KURLRequester( qnle, hbox );
    QPixmap pixMap = origin->button() ->iconSet() ->pixmap( QIconSet::Small, QIconSet::Normal );
    origin->button() ->setFixedSize( pixMap.width() + 4, pixMap.height() + 4 );
    QWhatsThis::add

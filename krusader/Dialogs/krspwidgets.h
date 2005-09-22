@@ -27,15 +27,16 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+#ifndef KRSPWIDGETS_H
+#define KRSPWIDGETS_H
 
 #include <qstrlist.h>
 #include <kurl.h>
 #include "krmaskchoice.h"
 #include "newftpgui.h"
 #include "../VFS/krquery.h"
-
-#ifndef KRSPWIDGETS_H
-#define KRSPWIDGETS_H
+#include <klineedit.h>
+#include <kpassivepopup.h>
 
 class newFTPGUI;
 
@@ -80,6 +81,27 @@ public slots:
 protected:
   void reject();
   void accept();  
+};
+
+/////////////////////////// QuickNavLineEdit //////////////////////////
+// same as line edit, but hold ctrl while pointing to it... and see! //
+///////////////////////////////////////////////////////////////////////
+
+class QuickNavLineEdit: public KLineEdit {
+public:
+	QuickNavLineEdit(const QString &string, QWidget *parent, const char *name=0);
+ 	QuickNavLineEdit(QWidget *parent=0, const char *name=0);
+ 	virtual ~QuickNavLineEdit() {}
+ 	
+protected:
+	void mouseMoveEvent( QMouseEvent *m);
+	void leaveEvent( QEvent * );
+	void mousePressEvent( QMouseEvent *m );
+	inline void clearAll() { _numOfSelectedChars = 0; if (_pop) delete _pop; _dummyDisplayed=false; }
+private:
+	int _numOfSelectedChars;
+	bool _dummyDisplayed;
+	QGuardedPtr<KPassivePopup> _pop;
 };
 
 #endif
