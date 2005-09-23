@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2005-09-20 13:55+0200\n"
+"POT-Creation-Date: 2005-09-23 00:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,240 +136,240 @@ msgstr ""
 msgid "Action Property"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:388
+#: GUI/actionpropertybase.cpp:387
 msgid "..."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:389 RemoteMan/remotemanbase.cpp:142
+#: GUI/actionpropertybase.cpp:388 RemoteMan/remotemanbase.cpp:142
 msgid "Description:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:390 GUI/actionpropertybase.cpp:435
+#: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:422
 msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift-F1</code>."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:391
+#: GUI/actionpropertybase.cpp:390
 msgid "Command accepts"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:392
+#: GUI/actionpropertybase.cpp:391
 msgid "Local files only (no URL's)"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:394
+#: GUI/actionpropertybase.cpp:392
 msgid "Substitute the <b>Placeholders</b> with local filenames."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:395
+#: GUI/actionpropertybase.cpp:393
 msgid "URL's (remote and local)"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:397
+#: GUI/actionpropertybase.cpp:394
 msgid "Substitute the <b>Placeholders</b> with valid URL's."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:401
+#: GUI/actionpropertybase.cpp:395 GUI/actionpropertybase.cpp:397
 msgid "The title displayed in the <b>Usermenu</b>."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:400
+#: GUI/actionpropertybase.cpp:396
 msgid "Title:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:403 GUI/actionpropertybase.cpp:413
+#: GUI/actionpropertybase.cpp:398 GUI/actionpropertybase.cpp:405
 msgid ""
 "Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
 "<i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:405 GUI/actionpropertybase.cpp:430
+#: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:419
 msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:406
+#: GUI/actionpropertybase.cpp:400
 msgid "Icon"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:408
+#: GUI/actionpropertybase.cpp:401
 msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:409
+#: GUI/actionpropertybase.cpp:402
 msgid "Use tooltip"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:411
+#: GUI/actionpropertybase.cpp:403
 msgid "The <i>Tooltip</i> can be used as <i>Description</i>."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:412
+#: GUI/actionpropertybase.cpp:404
 msgid "Identifier:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:414
+#: GUI/actionpropertybase.cpp:406
 msgid "Command:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:415 GUI/actionpropertybase.cpp:426
+#: GUI/actionpropertybase.cpp:407 GUI/actionpropertybase.cpp:415
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
 "sequence of multiple commands with <b>Placeholders</b>.<p>\n"
-"Examples:<ul><code><li>eject /mnt/cdrom</code></li><li>amarok --append "
+"Examples:<ul><code><li>eject /mnt/cdrom</li><li>amarok --append "
 "%aList(\"Selected\")%</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:419 GUI/actionpropertybase.cpp:423
+#: GUI/actionpropertybase.cpp:410 GUI/actionpropertybase.cpp:413
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:421 GUI/actionpropertybase.cpp:437
+#: GUI/actionpropertybase.cpp:411 GUI/actionpropertybase.cpp:424
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:422
+#: GUI/actionpropertybase.cpp:412
 msgid "Tooltip:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:429
+#: GUI/actionpropertybase.cpp:418
 msgid "Category:"
 msgstr ""
 
-#: Dialogs/krmaskchoice.cpp:105 GUI/actionpropertybase.cpp:431
-msgid "Add"
+#: Filter/generalfilter.cpp:125 GUI/actionpropertybase.cpp:420
+msgid "&Add"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:421
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:436
+#: GUI/actionpropertybase.cpp:423
 msgid "Workdir:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:438
+#: GUI/actionpropertybase.cpp:425
 msgid "Default shortcut:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:439
+#: GUI/actionpropertybase.cpp:426
 msgid "None"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:441
+#: GUI/actionpropertybase.cpp:427
 msgid "Set a default keyboard shortcut."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:442
+#: GUI/actionpropertybase.cpp:428
 msgid "Execution mode"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:429
 msgid "Collect output"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:430
 msgid "Collect the output of the executed program."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:431
 msgid "Separate standard error"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:448
+#: GUI/actionpropertybase.cpp:432
 msgid "Separate standard out and standard error in the output collection."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:449
+#: GUI/actionpropertybase.cpp:433
 msgid "Normal"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:450
+#: GUI/actionpropertybase.cpp:434
 msgid "Run in terminal"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:452
+#: GUI/actionpropertybase.cpp:435
 msgid "Run the command in a terminal."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:453
+#: GUI/actionpropertybase.cpp:436
 msgid "Basic Properties"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:454
+#: GUI/actionpropertybase.cpp:437
 msgid "The Useraction is only available for"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:455 GUI/actionpropertybase.cpp:463
-#: GUI/actionpropertybase.cpp:469 GUI/actionpropertybase.cpp:475
+#: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:444
+#: GUI/actionpropertybase.cpp:449 GUI/actionpropertybase.cpp:454
 msgid "&New..."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:456 GUI/actionpropertybase.cpp:464
-#: GUI/actionpropertybase.cpp:470 GUI/actionpropertybase.cpp:476
+#: GUI/actionpropertybase.cpp:439 GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:450 GUI/actionpropertybase.cpp:455
 msgid "Chan&ge..."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:457 GUI/actionpropertybase.cpp:465
-#: GUI/actionpropertybase.cpp:471 GUI/actionpropertybase.cpp:477
+#: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:451 GUI/actionpropertybase.cpp:456
 msgid "De&lete"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:459 GUI/actionpropertybase.cpp:462
-#: GUI/actionpropertybase.cpp:468
+#: GUI/actionpropertybase.cpp:441 GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:448
 msgid "Show the <b>Useraction</b> only for the values defined here."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:460
+#: GUI/actionpropertybase.cpp:442
 msgid "Protocol"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:466
+#: GUI/actionpropertybase.cpp:447
 msgid "Path"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:472
+#: GUI/actionpropertybase.cpp:452
 msgid "Mime-type"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:474
+#: GUI/actionpropertybase.cpp:453
 msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:478
+#: GUI/actionpropertybase.cpp:457
 msgid "Filename"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:479
+#: GUI/actionpropertybase.cpp:458
 msgid "Confirm each program call separately"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:481
+#: GUI/actionpropertybase.cpp:459
 msgid "Allows to tweak the <i>Command</i> before it is executed."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:482
+#: GUI/actionpropertybase.cpp:460
 msgid "Run as different user:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:484 GUI/actionpropertybase.cpp:485
+#: GUI/actionpropertybase.cpp:461 GUI/actionpropertybase.cpp:462
 msgid "Execute the <i>Command</i> under a different user-id."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:486
+#: GUI/actionpropertybase.cpp:463
 msgid "Advanced Properties"
 msgstr ""
 
@@ -720,10 +720,6 @@ msgstr ""
 
 #: Filter/generalfilter.cpp:113
 msgid "&Profile handler"
-msgstr ""
-
-#: Filter/generalfilter.cpp:125
-msgid "&Add"
 msgstr ""
 
 #: Filter/generalfilter.cpp:128
@@ -1214,7 +1210,7 @@ msgid ""
 "math"
 msgstr ""
 
-#: Panel/listpanel.cpp:172 Panel/listpanel.cpp:333
+#: Panel/listpanel.cpp:172 Panel/listpanel.cpp:334
 msgid "Open the popup panel"
 msgstr ""
 
@@ -1222,122 +1218,122 @@ msgstr ""
 msgid "Clear the location bar"
 msgstr ""
 
-#: Panel/listpanel.cpp:198
+#: Panel/listpanel.cpp:199
 msgid "Use superb KDE file dialog to choose location. "
 msgstr ""
 
-#: Panel/listpanel.cpp:202
+#: Panel/listpanel.cpp:203
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
 
-#: Panel/listpanel.cpp:218
+#: Panel/listpanel.cpp:219
 msgid "="
 msgstr ""
 
-#: Panel/listpanel.cpp:219
+#: Panel/listpanel.cpp:220
 msgid "Equal"
 msgstr ""
 
-#: Panel/listpanel.cpp:224
+#: Panel/listpanel.cpp:225
 msgid ".."
 msgstr ""
 
-#: Panel/listpanel.cpp:225
+#: Panel/listpanel.cpp:226
 msgid "Up"
 msgstr ""
 
-#: Panel/listpanel.cpp:230
+#: Panel/listpanel.cpp:231
 msgid "~"
 msgstr ""
 
-#: Panel/listpanel.cpp:231 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
+#: Panel/listpanel.cpp:232 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
 #: Panel/panelpopup.cpp:106 Panel/panelpopup.cpp:117
 msgid "Home"
 msgstr ""
 
-#: Panel/listpanel.cpp:236
+#: Panel/listpanel.cpp:237
 msgid "/"
 msgstr ""
 
-#: Panel/listpanel.cpp:237 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
+#: Panel/listpanel.cpp:238 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
 #: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
 #: krusader.cpp:576
 msgid "Root"
 msgstr ""
 
-#: Panel/listpanel.cpp:327
+#: Panel/listpanel.cpp:328
 msgid "Close the popup panel"
 msgstr ""
 
-#: Panel/listpanel.cpp:429 Panel/listpanel.cpp:787
+#: Panel/listpanel.cpp:430 Panel/listpanel.cpp:788
 msgid " Select Files "
 msgstr ""
 
-#: Panel/listpanel.cpp:429
+#: Panel/listpanel.cpp:430
 msgid " Unselect Files "
 msgstr ""
 
-#: Panel/listpanel.cpp:602
+#: Panel/listpanel.cpp:603
 msgid "No space information on non-local filesystems"
 msgstr ""
 
-#: Panel/listpanel.cpp:609
+#: Panel/listpanel.cpp:610
 msgid "No space information on [dev]"
 msgstr ""
 
-#: Panel/listpanel.cpp:614
+#: Panel/listpanel.cpp:615
 msgid "No space information on [procfs]"
 msgstr ""
 
-#: Panel/listpanel.cpp:619
+#: Panel/listpanel.cpp:620
 msgid "No space information on [proc]"
 msgstr ""
 
-#: Panel/listpanel.cpp:624
+#: Panel/listpanel.cpp:625
 msgid "Mt.Man: working ..."
 msgstr ""
 
-#: Panel/listpanel.cpp:638
+#: Panel/listpanel.cpp:639
 msgid "unknown"
 msgstr ""
 
-#: Panel/listpanel.cpp:646
+#: Panel/listpanel.cpp:647
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr ""
 
-#: Panel/listpanel.cpp:707
+#: Panel/listpanel.cpp:708
 msgid "Can't drop here, no write permissions."
 msgstr ""
 
-#: Panel/listpanel.cpp:723 Panel/panelpopup.cpp:309
+#: Panel/listpanel.cpp:724 Panel/panelpopup.cpp:309
 msgid "Copy Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:725 Panel/panelpopup.cpp:310
+#: Panel/listpanel.cpp:726 Panel/panelpopup.cpp:310
 msgid "Move Here"
 msgstr ""
 
-#: Panel/listpanel.cpp:728 Panel/panelpopup.cpp:311
+#: Panel/listpanel.cpp:729 Panel/panelpopup.cpp:311
 msgid "Link Here"
 msgstr ""
 
 #: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:129
-#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:729
+#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:730
 #: Panel/panelpopup.cpp:312
 msgid "Cancel"
 msgstr ""
 
-#: Panel/listpanel.cpp:939
+#: Panel/listpanel.cpp:940
 msgid ">> Reading..."
 msgstr ""
 
-#: Panel/listpanel.cpp:951
+#: Panel/listpanel.cpp:952
 msgid "Reading"
 msgstr ""
 
-#: Panel/listpanel.cpp:956
+#: Panel/listpanel.cpp:957
 msgid "Reading: "
 msgstr ""
 
@@ -1496,10 +1492,18 @@ msgstr ""
 msgid "Total occupied space: %1"
 msgstr ""
 
-#: Panel/krcalcspacedialog.cpp:150
+#: Panel/krcalcspacedialog.cpp:151
+#, c-format
 msgid ""
-"\n"
-"in %1 directories and %2 files"
+"_n: in 1 directory\n"
+"in %n directories"
+msgstr ""
+
+#: Panel/krcalcspacedialog.cpp:153
+#, c-format
+msgid ""
+"_n: and 1 file\n"
+"and %n files"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:59
@@ -1708,7 +1712,10 @@ msgid "Move %1 to:"
 msgstr ""
 
 #: Panel/panelfunc.cpp:394
-msgid "Move %1 files to:"
+#, c-format
+msgid ""
+"_n: Move 1 file to:\n"
+"Move %n files to:"
 msgstr ""
 
 #: Panel/panelfunc.cpp:430
@@ -1728,7 +1735,10 @@ msgid "Copy %1 to:"
 msgstr ""
 
 #: Panel/panelfunc.cpp:506
-msgid "Copy %1 files to:"
+#, c-format
+msgid ""
+"_n: Copy 1 file to:\n"
+"Copy %n files to:"
 msgstr ""
 
 #: Panel/panelfunc.cpp:534
@@ -1824,16 +1834,15 @@ msgstr ""
 msgid "%1, test failed!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:819 Panel/panelfunc.cpp:821
-msgid "Unpack "
+#: Panel/panelfunc.cpp:819
+msgid "Unpack %1 to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:819 Panel/panelfunc.cpp:821
-msgid "to"
-msgstr ""
-
-#: Dialogs/packgui.cpp:52 Panel/panelfunc.cpp:821
-msgid "%1 files"
+#: Panel/panelfunc.cpp:821
+#, c-format
+msgid ""
+"_n: Unpack 1 file to:\n"
+"Unpack %n files to:"
 msgstr ""
 
 #: Panel/panelfunc.cpp:868
@@ -2624,11 +2633,11 @@ msgstr ""
 msgid "Load this profile on startup"
 msgstr ""
 
-#: main.cpp:86
+#: main.cpp:90
 msgid "Krusader"
 msgstr ""
 
-#: main.cpp:87
+#: main.cpp:91
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr ""
 
@@ -2810,7 +2819,19 @@ msgstr ""
 msgid "%1/s ( %2 remaining )"
 msgstr ""
 
-#: Dialogs/packgui.cpp:90
+#: Dialogs/packgui.cpp:53
+#, c-format
+msgid "Pack %1"
+msgstr ""
+
+#: Dialogs/packgui.cpp:55
+#, c-format
+msgid ""
+"_n: Pack 1 file\n"
+"Pack %n files"
+msgstr ""
+
+#: Dialogs/packgui.cpp:91
 msgid "Please select a directory"
 msgstr ""
 
@@ -2835,6 +2856,10 @@ msgid ""
 "Delete removes a predefined selection and Clear removes all of them.\n"
 "Notice that the line in which you edit the mask has it's own history, you "
 "can scroll it, if needed."
+msgstr ""
+
+#: Dialogs/krmaskchoice.cpp:105
+msgid "Add"
 msgstr ""
 
 #: Dialogs/krmaskchoice.cpp:106
@@ -2958,12 +2983,24 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: Dialogs/krspwidgets.cpp:150
+#: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
 msgstr ""
 
-#: Dialogs/krspwidgets.cpp:186 Dialogs/krspwidgets.cpp:213
+#: Dialogs/krspwidgets.cpp:187 Dialogs/krspwidgets.cpp:214
 msgid "compare mode"
+msgstr ""
+
+#: Dialogs/krspwidgets.cpp:270 Dialogs/krspwidgets.cpp:279
+msgid "Quick Navigation"
+msgstr ""
+
+#: Dialogs/krspwidgets.cpp:271
+msgid "<qt>Already at"
+msgstr ""
+
+#: Dialogs/krspwidgets.cpp:280
+msgid "<qt>Click to go to"
 msgstr ""
 
 #: Dialogs/checksumdlg.cpp:157
@@ -4069,8 +4106,7 @@ msgstr ""
 #: Konfigurator/kglookfeel.cpp:74
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
-"the permission column.<p>The columns can be configured at <i>Look & Feel -> "
-"Panel -> Show Columns</i>."
+"the permission column."
 msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:83
