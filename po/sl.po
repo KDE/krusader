@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-21 00:23+0200\n"
+"POT-Creation-Date: 2005-09-24 14:16+0200\n"
 "PO-Revision-Date: 2005-09-21 01:11+0200\n"
 "Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -149,15 +149,15 @@ msgstr "Skript s tem imenom že obstaja"
 msgid "Action Property"
 msgstr "Lastnosti skripta"
 
-#: GUI/actionpropertybase.cpp:388
+#: GUI/actionpropertybase.cpp:387
 msgid "..."
 msgstr "..."
 
-#: GUI/actionpropertybase.cpp:389 RemoteMan/remotemanbase.cpp:142
+#: GUI/actionpropertybase.cpp:388 RemoteMan/remotemanbase.cpp:142
 msgid "Description:"
 msgstr "Opis:"
 
-#: GUI/actionpropertybase.cpp:390 GUI/actionpropertybase.cpp:435
+#: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:422
 msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift-F1</code>."
@@ -165,35 +165,35 @@ msgstr ""
 "Podroben opis <b>skripta</b>. Prikazan je samo v <i>Konfiguratorju</i> in "
 "preko <code>Shift-F1</code>."
 
-#: GUI/actionpropertybase.cpp:391
+#: GUI/actionpropertybase.cpp:390
 msgid "Command accepts"
 msgstr "Sprejemi ukazov"
 
-#: GUI/actionpropertybase.cpp:392
+#: GUI/actionpropertybase.cpp:391
 msgid "Local files only (no URL's)"
 msgstr "Samo lokalne datoteke (brez URL-jev)"
 
-#: GUI/actionpropertybase.cpp:394
+#: GUI/actionpropertybase.cpp:392
 msgid "Substitute the <b>Placeholders</b> with local filenames."
 msgstr "Zamenjaj <b>držala</b> z lokalnimi imeni datotek"
 
-#: GUI/actionpropertybase.cpp:395
+#: GUI/actionpropertybase.cpp:393
 msgid "URL's (remote and local)"
 msgstr "URL-ji (oddaljeni in lokalni)"
 
-#: GUI/actionpropertybase.cpp:397
+#: GUI/actionpropertybase.cpp:394
 msgid "Substitute the <b>Placeholders</b> with valid URL's."
 msgstr "Zamenjaj <b>držala</b> z veljavnimi URL-ji."
 
-#: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:401
+#: GUI/actionpropertybase.cpp:395 GUI/actionpropertybase.cpp:397
 msgid "The title displayed in the <b>Usermenu</b>."
 msgstr "Naslov prikazan v <b>Uporabniškem meniju</b>"
 
-#: GUI/actionpropertybase.cpp:400
+#: GUI/actionpropertybase.cpp:396
 msgid "Title:"
 msgstr "Naslov:"
 
-#: GUI/actionpropertybase.cpp:403 GUI/actionpropertybase.cpp:413
+#: GUI/actionpropertybase.cpp:398 GUI/actionpropertybase.cpp:405
 msgid ""
 "Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
@@ -203,7 +203,7 @@ msgstr ""
 "se ne pojavlja v drugih menijih.<p><b>Opozorilo</b>: <i>Naslov</i> prikazan "
 "v <b>uporabniškem meniju</b> se lahko določi spodaj."
 
-#: GUI/actionpropertybase.cpp:405 GUI/actionpropertybase.cpp:430
+#: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:419
 msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
@@ -211,11 +211,11 @@ msgstr ""
 "<b>Skripti</b> so lahko zloženi v kategorije. Izberi obstoječo "
 "<i>Kategorijo</i> ali ustvari novo z vnosom imena."
 
-#: GUI/actionpropertybase.cpp:406
+#: GUI/actionpropertybase.cpp:400
 msgid "Icon"
 msgstr "Ikona"
 
-#: GUI/actionpropertybase.cpp:408
+#: GUI/actionpropertybase.cpp:401
 msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
@@ -223,28 +223,29 @@ msgstr ""
 "Vsak <b>skript</b> ima lahko svojo ikono. Pojavila se bo pred naslovom v "
 "<b>uporabniškem meniju</b>."
 
-#: GUI/actionpropertybase.cpp:409
+#: GUI/actionpropertybase.cpp:402
 msgid "Use tooltip"
 msgstr "Uporabi namig"
 
-#: GUI/actionpropertybase.cpp:411
+#: GUI/actionpropertybase.cpp:403
 msgid "The <i>Tooltip</i> can be used as <i>Description</i>."
 msgstr "<i>Namig</i> lahko uporabim kot <i>Opis</i>."
 
-#: GUI/actionpropertybase.cpp:412
+#: GUI/actionpropertybase.cpp:404
 msgid "Identifier:"
 msgstr "Določevalo:"
 
-#: GUI/actionpropertybase.cpp:414
+#: GUI/actionpropertybase.cpp:406
 msgid "Command:"
 msgstr "Ukaz:"
 
-#: GUI/actionpropertybase.cpp:415 GUI/actionpropertybase.cpp:426
+#: GUI/actionpropertybase.cpp:407 GUI/actionpropertybase.cpp:415
+#, fuzzy
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
 "sequence of multiple commands with <b>Placeholders</b>.<p>\n"
-"Examples:<ul><code><li>eject /mnt/cdrom</code></li><li>amarok --append %aList"
+"Examples:<ul><code><li>eject /mnt/cdrom</li><li>amarok --append %aList"
 "(\"Selected\")%</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
@@ -255,7 +256,7 @@ msgstr ""
 "(\"Selected\")%</li></code></ul>\n"
 "Več informacij lahko najdeš v navodilih."
 
-#: GUI/actionpropertybase.cpp:419 GUI/actionpropertybase.cpp:423
+#: GUI/actionpropertybase.cpp:410 GUI/actionpropertybase.cpp:413
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
@@ -263,117 +264,117 @@ msgstr ""
 "<i>Namig</i> se pokaže, ko kazalo miške pokrije vnosom na <b>skriptnem "
 "traku</b>."
 
-#: GUI/actionpropertybase.cpp:421 GUI/actionpropertybase.cpp:437
+#: GUI/actionpropertybase.cpp:411 GUI/actionpropertybase.cpp:424
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
 msgstr "<i>Delovna mapa</i> določa v kateri mapi bo <i>ukaz</i> izveden."
 
-#: GUI/actionpropertybase.cpp:422
+#: GUI/actionpropertybase.cpp:412
 msgid "Tooltip:"
 msgstr "Namig:"
 
-#: GUI/actionpropertybase.cpp:429
+#: GUI/actionpropertybase.cpp:418
 msgid "Category:"
 msgstr "Kategorija:"
 
-#: Dialogs/krmaskchoice.cpp:105 GUI/actionpropertybase.cpp:431
-msgid "Add"
-msgstr "Dodaj"
+#: Filter/generalfilter.cpp:125 GUI/actionpropertybase.cpp:420
+msgid "&Add"
+msgstr "&Dodaj"
 
-#: GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:421
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr "Dodaj <b>držala</b> za označene datoteke v oknu."
 
-#: GUI/actionpropertybase.cpp:436
+#: GUI/actionpropertybase.cpp:423
 msgid "Workdir:"
 msgstr "Delovna mapa:"
 
-#: GUI/actionpropertybase.cpp:438
+#: GUI/actionpropertybase.cpp:425
 msgid "Default shortcut:"
 msgstr "Privzeta bližnjica:"
 
-#: GUI/actionpropertybase.cpp:439
+#: GUI/actionpropertybase.cpp:426
 msgid "None"
 msgstr "Brez"
 
-#: GUI/actionpropertybase.cpp:441
+#: GUI/actionpropertybase.cpp:427
 msgid "Set a default keyboard shortcut."
 msgstr "Določi privzeto tipkovno bližnjico."
 
-#: GUI/actionpropertybase.cpp:442
+#: GUI/actionpropertybase.cpp:428
 msgid "Execution mode"
 msgstr "Izvršljivi način"
 
-#: GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:429
 msgid "Collect output"
 msgstr "Skupni izhod"
 
-#: GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:430
 msgid "Collect the output of the executed program."
 msgstr "Zberi izhodne informacije izvedenega programa."
 
-#: GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:431
 msgid "Separate standard error"
 msgstr "Ločena standardna napaka"
 
-#: GUI/actionpropertybase.cpp:448
+#: GUI/actionpropertybase.cpp:432
 msgid "Separate standard out and standard error in the output collection."
 msgstr "Loči standardni izhod in standardno napako v izpisu informacij."
 
-#: GUI/actionpropertybase.cpp:449
+#: GUI/actionpropertybase.cpp:433
 msgid "Normal"
 msgstr "Normalno"
 
-#: GUI/actionpropertybase.cpp:450
+#: GUI/actionpropertybase.cpp:434
 msgid "Run in terminal"
 msgstr "Izvedi v terminalu"
 
-#: GUI/actionpropertybase.cpp:452
+#: GUI/actionpropertybase.cpp:435
 msgid "Run the command in a terminal."
 msgstr "Poženi ukaz v terminalu."
 
-#: GUI/actionpropertybase.cpp:453
+#: GUI/actionpropertybase.cpp:436
 msgid "Basic Properties"
 msgstr "Osnovne lastnosti"
 
-#: GUI/actionpropertybase.cpp:454
+#: GUI/actionpropertybase.cpp:437
 msgid "The Useraction is only available for"
 msgstr "Skript je na voljo samo za"
 
-#: GUI/actionpropertybase.cpp:455 GUI/actionpropertybase.cpp:463
-#: GUI/actionpropertybase.cpp:469 GUI/actionpropertybase.cpp:475
+#: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:444
+#: GUI/actionpropertybase.cpp:449 GUI/actionpropertybase.cpp:454
 msgid "&New..."
 msgstr "&Nov..."
 
-#: GUI/actionpropertybase.cpp:456 GUI/actionpropertybase.cpp:464
-#: GUI/actionpropertybase.cpp:470 GUI/actionpropertybase.cpp:476
+#: GUI/actionpropertybase.cpp:439 GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:450 GUI/actionpropertybase.cpp:455
 msgid "Chan&ge..."
 msgstr "Spremeni..."
 
-#: GUI/actionpropertybase.cpp:457 GUI/actionpropertybase.cpp:465
-#: GUI/actionpropertybase.cpp:471 GUI/actionpropertybase.cpp:477
+#: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:451 GUI/actionpropertybase.cpp:456
 msgid "De&lete"
 msgstr "Izbriši"
 
-#: GUI/actionpropertybase.cpp:459 GUI/actionpropertybase.cpp:462
-#: GUI/actionpropertybase.cpp:468
+#: GUI/actionpropertybase.cpp:441 GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:448
 msgid "Show the <b>Useraction</b> only for the values defined here."
 msgstr "Prikaži <b>skript</b> samo za definirane vrednosti."
 
-#: GUI/actionpropertybase.cpp:460
+#: GUI/actionpropertybase.cpp:442
 msgid "Protocol"
 msgstr "Protokol"
 
-#: GUI/actionpropertybase.cpp:466
+#: GUI/actionpropertybase.cpp:447
 msgid "Path"
 msgstr "Pot"
 
-#: GUI/actionpropertybase.cpp:472
+#: GUI/actionpropertybase.cpp:452
 msgid "Mime-type"
 msgstr "Mime-tip"
 
-#: GUI/actionpropertybase.cpp:474
+#: GUI/actionpropertybase.cpp:453
 msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
@@ -381,27 +382,27 @@ msgstr ""
 "Prikaži <b>skripte</b> samo za imena datotek določenih tu. Lahko uporabite "
 "nadomestna znaka '<code>?</code>' in '<code>*</code>'."
 
-#: GUI/actionpropertybase.cpp:478
+#: GUI/actionpropertybase.cpp:457
 msgid "Filename"
 msgstr "Ime datoteke"
 
-#: GUI/actionpropertybase.cpp:479
+#: GUI/actionpropertybase.cpp:458
 msgid "Confirm each program call separately"
 msgstr "Potrdi vsak poziv programa ločeno"
 
-#: GUI/actionpropertybase.cpp:481
+#: GUI/actionpropertybase.cpp:459
 msgid "Allows to tweak the <i>Command</i> before it is executed."
 msgstr "Dovoli spreminjanje <i>ukaza</i> pred izvršitvijo ."
 
-#: GUI/actionpropertybase.cpp:482
+#: GUI/actionpropertybase.cpp:460
 msgid "Run as different user:"
 msgstr "Izvedi kot drug uporabnik:"
 
-#: GUI/actionpropertybase.cpp:484 GUI/actionpropertybase.cpp:485
+#: GUI/actionpropertybase.cpp:461 GUI/actionpropertybase.cpp:462
 msgid "Execute the <i>Command</i> under a different user-id."
 msgstr "Izvedi <i>ukaz</i> pod drugim uporabniškim ID."
 
-#: GUI/actionpropertybase.cpp:486
+#: GUI/actionpropertybase.cpp:463
 msgid "Advanced Properties"
 msgstr "Napredne lastnosti"
 
@@ -774,10 +775,6 @@ msgstr "Vse datoteke"
 #: Filter/generalfilter.cpp:113
 msgid "&Profile handler"
 msgstr "Upravljavec &Profilov"
-
-#: Filter/generalfilter.cpp:125
-msgid "&Add"
-msgstr "&Dodaj"
 
 #: Filter/generalfilter.cpp:128
 msgid "&Load"
@@ -1291,7 +1288,7 @@ msgstr ""
 "Info trak prikazuje koliko datotek obstaja, koliko je označenih in skupno "
 "zasedenost prostora."
 
-#: Panel/listpanel.cpp:172 Panel/listpanel.cpp:333
+#: Panel/listpanel.cpp:172 Panel/listpanel.cpp:334
 msgid "Open the popup panel"
 msgstr "Odpri popup okno"
 
@@ -1299,11 +1296,11 @@ msgstr "Odpri popup okno"
 msgid "Clear the location bar"
 msgstr "Počisti lokacijsko vrstico"
 
-#: Panel/listpanel.cpp:198
+#: Panel/listpanel.cpp:199
 msgid "Use superb KDE file dialog to choose location. "
 msgstr "Izkoristi KDE dialog za izbor lokacije."
 
-#: Panel/listpanel.cpp:202
+#: Panel/listpanel.cpp:203
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
@@ -1311,112 +1308,112 @@ msgstr ""
 "Ime trenutne mape. Lahko tudi dodate ime želene lokacije za premikanje "
 "datotek. Možna je uporaba protokolov fish in ftp."
 
-#: Panel/listpanel.cpp:218
+#: Panel/listpanel.cpp:219
 msgid "="
 msgstr "="
 
-#: Panel/listpanel.cpp:219
+#: Panel/listpanel.cpp:220
 msgid "Equal"
 msgstr "Enak"
 
-#: Panel/listpanel.cpp:224
+#: Panel/listpanel.cpp:225
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:225
+#: Panel/listpanel.cpp:226
 msgid "Up"
 msgstr "Gor"
 
-#: Panel/listpanel.cpp:230
+#: Panel/listpanel.cpp:231
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:231 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
+#: Panel/listpanel.cpp:232 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
 #: Panel/panelpopup.cpp:106 Panel/panelpopup.cpp:117
 msgid "Home"
 msgstr "Domov"
 
-#: Panel/listpanel.cpp:236
+#: Panel/listpanel.cpp:237
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:237 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
+#: Panel/listpanel.cpp:238 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
 #: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
 #: krusader.cpp:576
 msgid "Root"
 msgstr "Koren"
 
-#: Panel/listpanel.cpp:327
+#: Panel/listpanel.cpp:328
 msgid "Close the popup panel"
 msgstr "Zapri popup okno"
 
-#: Panel/listpanel.cpp:429 Panel/listpanel.cpp:787
+#: Panel/listpanel.cpp:430 Panel/listpanel.cpp:788
 msgid " Select Files "
 msgstr " Označi datoteke"
 
-#: Panel/listpanel.cpp:429
+#: Panel/listpanel.cpp:430
 msgid " Unselect Files "
 msgstr " Odznači datoteke"
 
-#: Panel/listpanel.cpp:602
+#: Panel/listpanel.cpp:603
 msgid "No space information on non-local filesystems"
 msgstr "Ni informacije o prostoru na mrežnem datotečnem sistemu"
 
-#: Panel/listpanel.cpp:609
+#: Panel/listpanel.cpp:610
 msgid "No space information on [dev]"
 msgstr "Ni prostorskih informacij o [dev]"
 
-#: Panel/listpanel.cpp:614
+#: Panel/listpanel.cpp:615
 msgid "No space information on [procfs]"
 msgstr "Ni prostorskih informacij o [procf]"
 
-#: Panel/listpanel.cpp:619
+#: Panel/listpanel.cpp:620
 msgid "No space information on [proc]"
 msgstr "Ni prostorskih informacij o [proc]"
 
-#: Panel/listpanel.cpp:624
+#: Panel/listpanel.cpp:625
 msgid "Mt.Man: working ..."
 msgstr "Priklopnik: delam ..."
 
-#: Panel/listpanel.cpp:638
+#: Panel/listpanel.cpp:639
 msgid "unknown"
 msgstr "neznano"
 
-#: Panel/listpanel.cpp:646
+#: Panel/listpanel.cpp:647
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr "Prosto %1 od skupaj %2 (%3%) na %4 [(%5)]"
 
-#: Panel/listpanel.cpp:707
+#: Panel/listpanel.cpp:708
 msgid "Can't drop here, no write permissions."
 msgstr "Ne morem odložiti na tej lokaciji. Nimam dovoljenja za pisanje."
 
-#: Panel/listpanel.cpp:723 Panel/panelpopup.cpp:309
+#: Panel/listpanel.cpp:724 Panel/panelpopup.cpp:309
 msgid "Copy Here"
 msgstr "Kopiraj tu"
 
-#: Panel/listpanel.cpp:725 Panel/panelpopup.cpp:310
+#: Panel/listpanel.cpp:726 Panel/panelpopup.cpp:310
 msgid "Move Here"
 msgstr "Premakni sem"
 
-#: Panel/listpanel.cpp:728 Panel/panelpopup.cpp:311
+#: Panel/listpanel.cpp:729 Panel/panelpopup.cpp:311
 msgid "Link Here"
 msgstr "Poveži sem"
 
 #: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:129
-#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:729
+#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:730
 #: Panel/panelpopup.cpp:312
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: Panel/listpanel.cpp:939
+#: Panel/listpanel.cpp:940
 msgid ">> Reading..."
 msgstr ">> Berem..."
 
-#: Panel/listpanel.cpp:951
+#: Panel/listpanel.cpp:952
 msgid "Reading"
 msgstr "Berem"
 
-#: Panel/listpanel.cpp:956
+#: Panel/listpanel.cpp:957
 msgid "Reading: "
 msgstr "Berem:"
 
@@ -1803,8 +1800,15 @@ msgid "Move %1 to:"
 msgstr "Premakni %1 v:"
 
 #: Panel/panelfunc.cpp:394
-msgid "Move %1 files to:"
-msgstr "Premakni %1 datotek v:"
+#, fuzzy, c-format
+msgid ""
+"_n: Move 1 file to:\n"
+"Move %n files to:"
+msgstr ""
+"_n: %n datoteka\n"
+"%n datoteki\n"
+"%n datoteke\n"
+"%n datotek"
 
 #: Panel/panelfunc.cpp:430
 msgid "You can't move files to this file system"
@@ -1823,8 +1827,15 @@ msgid "Copy %1 to:"
 msgstr "Kopiraj %1 v:"
 
 #: Panel/panelfunc.cpp:506
-msgid "Copy %1 files to:"
-msgstr "Kopiraj %1 datotek v:"
+#, fuzzy, c-format
+msgid ""
+"_n: Copy 1 file to:\n"
+"Copy %n files to:"
+msgstr ""
+"_n: %n datoteka\n"
+"%n datoteki\n"
+"%n datoteke\n"
+"%n datotek"
 
 #: Panel/panelfunc.cpp:534
 msgid "You can't copy files to this file system"
@@ -1929,17 +1940,21 @@ msgstr "%1, test uspešen."
 msgid "%1, test failed!"
 msgstr "%1, napaka pri testu!"
 
-#: Panel/panelfunc.cpp:819 Panel/panelfunc.cpp:821
-msgid "Unpack "
+#: Panel/panelfunc.cpp:819
+#, fuzzy
+msgid "Unpack %1 to:"
 msgstr "Razširi "
 
-#: Panel/panelfunc.cpp:819 Panel/panelfunc.cpp:821
-msgid "to"
-msgstr "v"
-
-#: Dialogs/packgui.cpp:52 Panel/panelfunc.cpp:821
-msgid "%1 files"
-msgstr "%1 datoteke"
+#: Panel/panelfunc.cpp:821
+#, fuzzy, c-format
+msgid ""
+"_n: Unpack 1 file to:\n"
+"Unpack %n files to:"
+msgstr ""
+"_n: %n datoteka\n"
+"%n datoteki\n"
+"%n datoteke\n"
+"%n datotek"
 
 #: Panel/panelfunc.cpp:868
 msgid "%1, unknown archive type"
@@ -2742,11 +2757,11 @@ msgstr "Zaženi desno okno v <pot>"
 msgid "Load this profile on startup"
 msgstr "Zaženi profil ob zagonu"
 
-#: main.cpp:86
+#: main.cpp:90
 msgid "Krusader"
 msgstr "Krusader"
 
-#: main.cpp:87
+#: main.cpp:91
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - skrbniški dostop "
 
@@ -2963,7 +2978,23 @@ msgstr "Delam"
 msgid "%1/s ( %2 remaining )"
 msgstr "%1/s (še %2)"
 
-#: Dialogs/packgui.cpp:90
+#: Dialogs/packgui.cpp:53
+#, fuzzy, c-format
+msgid "Pack %1"
+msgstr "Stisni"
+
+#: Dialogs/packgui.cpp:55
+#, fuzzy, c-format
+msgid ""
+"_n: Pack %n file\n"
+"Pack %n files"
+msgstr ""
+"_n: %n datoteka\n"
+"%n datoteki\n"
+"%n datoteke\n"
+"%n datotek"
+
+#: Dialogs/packgui.cpp:91
 msgid "Please select a directory"
 msgstr "Izberi mapo "
 
@@ -2994,6 +3025,10 @@ msgstr ""
 "listi z vpisom maske in potrdilom na gumb 'Dodaj'.\n"
 "Vnose lahko zbrišemo ločeno ali spraznimo celoten izbor. Maske imajo lastno "
 "zgodovino, ki jo lahko pregledujemo."
+
+#: Dialogs/krmaskchoice.cpp:105
+msgid "Add"
+msgstr "Dodaj"
 
 #: Dialogs/krmaskchoice.cpp:106
 msgid "Adds the selection in the line-edit to the list"
@@ -3116,13 +3151,25 @@ msgstr "V mapo"
 msgid "Ok"
 msgstr "OK"
 
-#: Dialogs/krspwidgets.cpp:150
+#: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
 msgstr "Vnesi izbor:"
 
-#: Dialogs/krspwidgets.cpp:186 Dialogs/krspwidgets.cpp:213
+#: Dialogs/krspwidgets.cpp:187 Dialogs/krspwidgets.cpp:214
 msgid "compare mode"
 msgstr "primerjanje"
+
+#: Dialogs/krspwidgets.cpp:270 Dialogs/krspwidgets.cpp:279
+msgid "Quick Navigation"
+msgstr ""
+
+#: Dialogs/krspwidgets.cpp:271
+msgid "<qt>Already at"
+msgstr ""
+
+#: Dialogs/krspwidgets.cpp:280
+msgid "<qt>Click to go to"
+msgstr ""
 
 #: Dialogs/checksumdlg.cpp:157
 msgid ""
@@ -4261,10 +4308,10 @@ msgid "Numeric Permissions"
 msgstr "Numerična dovoljenja"
 
 #: Konfigurator/kglookfeel.cpp:74
+#, fuzzy
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
-"the permission column.<p>The columns can be configured at <i>Look & Feel -> "
-"Panel -> Show Columns</i>."
+"the permission column."
 msgstr ""
 "Prikaži osmiška števila (0755) namesto standardnih dovoljenj (rwxr-xr-x) v "
 "stolpcu okna.<p>Stolpce lahko nastavim v <i>Izgled & Oblika -> Okno -> "
@@ -5435,6 +5482,18 @@ msgstr "Napaka pri branju datoteke %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Napaka pri pisanju datoteke %1!"
+
+#~ msgid "Move %1 files to:"
+#~ msgstr "Premakni %1 datotek v:"
+
+#~ msgid "Copy %1 files to:"
+#~ msgstr "Kopiraj %1 datotek v:"
+
+#~ msgid "to"
+#~ msgstr "v"
+
+#~ msgid "%1 files"
+#~ msgstr "%1 datoteke"
 
 #~ msgid ""
 #~ "\n"
