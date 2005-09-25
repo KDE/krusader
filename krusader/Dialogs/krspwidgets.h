@@ -98,6 +98,8 @@ protected:
 	void leaveEvent( QEvent * );
 	void mousePressEvent( QMouseEvent *m );
 	inline void clearAll() { _numOfSelectedChars = 0; if (_pop) delete _pop; _dummyDisplayed=false; }
+	void init();
+	
 private:
 	int _numOfSelectedChars;
 	bool _dummyDisplayed;

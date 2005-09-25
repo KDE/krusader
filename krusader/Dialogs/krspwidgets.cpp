@@ -230,10 +230,17 @@ void KRMaskChoiceSub::acceptFromList(QListBoxItem *i) {
 ////////////////////////// QuickNavLineEdit ////////////////////
 
 QuickNavLineEdit::QuickNavLineEdit(const QString &string, QWidget *parent, const char *name):
-	KLineEdit(string, parent, name), _numOfSelectedChars(0), _dummyDisplayed(false), _pop(0) {}
+	KLineEdit(string, parent, name) { init(); }
 	
 QuickNavLineEdit::QuickNavLineEdit(QWidget *parent, const char *name): 
-	KLineEdit(parent, name), _numOfSelectedChars(0), _dummyDisplayed(false), _pop(0) {}
+	KLineEdit(parent, name) { init(); }
+
+void QuickNavLineEdit::init() {
+	_numOfSelectedChars=0;
+	_dummyDisplayed=false;
+	_pop=0;
+	setCompletionMode( KGlobalSettings::CompletionPopupAuto );
+}
 
 void QuickNavLineEdit::leaveEvent(QEvent *) {
 	clearAll();
