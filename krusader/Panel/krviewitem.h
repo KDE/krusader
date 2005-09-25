@@ -53,7 +53,7 @@ public:
    virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
 		
    // DON'T USE THOSE OUTSIDE THE VIEWS!!!
-   virtual inline vfile* getVfile() const { return _vf; }
+   virtual inline const vfile* getVfile() const { return _vf; }
    virtual inline vfile* getMutableVfile() { return _vf; }
 
 protected:

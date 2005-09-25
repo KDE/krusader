@@ -176,7 +176,7 @@ void KrView::changeSelection( const KRQuery& filter, bool select, bool includeDi
       if ( it->name() == ".." ) continue;
       if ( it->getVfile()->vfile_isDir() && !markDirs ) continue;
       
-      vfile * file = it->getVfile();
+      vfile * file = it->getMutableVfile(); // filter::match calls getMimetype which isn't const
       if( file == 0 ) continue;
       
       if( filter.match( file ) ) {
