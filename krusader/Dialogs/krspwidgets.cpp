@@ -267,18 +267,21 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 		int idx = tx.find('/', numOfChars);
 		if (idx == -1 && !_dummyDisplayed) { // pointing on or after the current directory
 			if (_pop) delete _pop;
-			_pop = KPassivePopup::message(i18n("Quick Navigation"), 
-				i18n("<qt>Already at")+" <i>"+tx.left(idx)+"</i>",
+
+			_pop = KPassivePopup::message( i18n("Quick Navigation"),
+				"<qt>" + i18n("Already at <i>%1</i>").arg(tx.left(idx)) + "</qt>",
 				*(KCursor::handCursor().bitmap()), this);
+
 			_dummyDisplayed=true;
 			_numOfSelectedChars=0;
 		} else if (idx>0 && idx!=_numOfSelectedChars) {
 			_numOfSelectedChars=idx;
 			if (_pop) delete _pop;
 			_dummyDisplayed=false;
-			_pop = KPassivePopup::message(i18n("Quick Navigation"), 
-				i18n("<qt>Click to go to")+" <i>"+tx.left(idx)+"</i>",
-				*(KCursor::handCursor().bitmap()), this);
+
+			_pop = KPassivePopup::message( i18n("Quick Navigation"),
+				"<qt>" + i18n("Click to go to <i>%1</i>").arg(tx.left(idx)) + "</qt>",
+				*(KCursor::handCursor().bitmap()), this );
 		}
 	}
 	KLineEdit::mouseMoveEvent(m);
