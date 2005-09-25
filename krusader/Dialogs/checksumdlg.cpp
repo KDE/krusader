@@ -28,7 +28,7 @@ typedef QStringList GET_FAILED_FUNC(const QStringList& stdout, const QStringList
 class CS_Tool {
 public:
 	static const int NumOfTypes = 5;
-	enum Type { MD5=0, SHA1, SHA256, TIGER, WHIRLPOOL };
+	enum Type { MD5=0, SHA1, SHA256, TIGER, WHIRLPOOL};
 	
 	Type type;
 	QString binary;
@@ -93,6 +93,26 @@ QStringList deepFailedFunc(const QStringList& stdout, const QStringList& stderr)
 	return stdout;
 }
 
+// handles cfv binary
+void cfvCreateFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, 
+	const QString, bool recursive, const QString& type) {
+	proc << KrServices::fullPathName( self->binary ) << "-C" << "-VV";
+	if (recursive) proc << "-rr";
+	proc << "-t" << type << "-f-" << "-U" << files;	
+}
+
+void cfvVerifyFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, 
+	const QString checksumFile, bool recursive, const QString&type) {
+	proc << KrServices::fullPathName( self->binary ) << "-M";
+	if (recursive) proc << "-rr";
+	proc << "-U" << "-VV" << "-t" << type << "-f" << checksumFile;// << files;
+}
+
+QStringList cfvFailedFunc(const QStringList& stdout, const QStringList& stderr) {
+	// cfv dumps all failed hashes to stderr
+	return stderr;
+}
+
 // important: this table should be ordered like so that all md5 tools should be
 // one after another, and then all sha1 and so on and so forth. they tools must be grouped,
 // since the code in getTools() counts on it!
@@ -100,8 +120,10 @@ CS_Tool cs_tools[] = {
 	// type					binary				recursive		create_func			verify_func			failed_func
 	{CS_Tool::MD5, 		"md5sum", 			false, 			sumCreateFunc,		sumVerifyFunc,		sumFailedFunc},
 	{CS_Tool::MD5, 		"md5deep", 			true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::MD5,			"cfv",				true,				cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
 	{CS_Tool::SHA1, 		"sha1sum", 			false, 			sumCreateFunc,		sumVerifyFunc,		sumFailedFunc},
 	{CS_Tool::SHA1, 		"sha1deep",			true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
+	{CS_Tool::SHA1,		"cfv",				true,				cfvCreateFunc,		cfvVerifyFunc,		cfvFailedFunc},
 	{CS_Tool::SHA256, 	"sha256deep",		true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
 	{CS_Tool::TIGER,		"tigerdeep", 		true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
 	{CS_Tool::WHIRLPOOL, "whirlpooldeep",	true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
@@ -112,7 +134,7 @@ QMap<QString, CS_Tool::Type> cs_textToType;
 QMap<CS_Tool::Type, QString> cs_typeToText;
 
 void initChecksumModule() {
-	// prepare the dictionaries
+	// prepare the dictionaries - pity it has to be manually
 	cs_textToType["md5"]=CS_Tool::MD5;
 	cs_textToType["sha1"]=CS_Tool::SHA1;
 	cs_textToType["sha256"]=CS_Tool::SHA256;
@@ -207,7 +229,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	// else implied: run the process
 	KEasyProcess proc;
 	CS_Tool *mytool = tools.at(method->currentItem());
-	mytool->create(proc, mytool, files, QString::null, containFolders);
+	mytool->create(proc, mytool, files, QString::null, containFolders, method->currentText());
 	
 	krApp->startWaiting(i18n("Calculating checksums ..."), 0);	
 	
@@ -302,7 +324,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	
 	// else implied: run the process
 	KEasyProcess proc;
-	mytool->verify(proc, mytool, files, file, containFolders);
+	mytool->verify(proc, mytool, files, file, containFolders, extension);
 	bool r = proc.start(KEasyProcess::Block, KEasyProcess::AllOutput);
 	if (r) proc.wait();
 	if (!r || !proc.normalExit()) {	
