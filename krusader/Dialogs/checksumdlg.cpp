@@ -22,7 +22,7 @@
 
 class CS_Tool; // forward
 typedef void PREPARE_PROC_FUNC(KEasyProcess& proc, CS_Tool *self, const QStringList& files, 
-	const QString checksumFile, bool recursive);
+	const QString checksumFile, bool recursive, const QString& type=QString::null);
 typedef QStringList GET_FAILED_FUNC(const QStringList& stdout, const QStringList& stderr);
 
 class CS_Tool {
@@ -43,13 +43,15 @@ public:
 };
 
 // handles md5sum and sha1sum
-void sumCreateFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, const QString, bool recursive) {
+void sumCreateFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, 
+	const QString, bool recursive, const QString&) {
 	proc << KrServices::fullPathName( self->binary );
 	Q_ASSERT(!recursive); 
 	proc << files;	
 }
 
-void sumVerifyFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, const QString checksumFile, bool recursive) {
+void sumVerifyFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, 
+	const QString checksumFile, bool recursive, const QString& type) {
 	proc << KrServices::fullPathName( self->binary );
 	Q_ASSERT(!recursive);
 	proc << "-c" << checksumFile;
@@ -72,13 +74,15 @@ QStringList sumFailedFunc(const QStringList& stdout, const QStringList& stderr) 
 }
 
 // handles *deep binaries
-void deepCreateFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, const QString, bool recursive) {
+void deepCreateFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, 
+	const QString, bool recursive, const QString&) {
 	proc << KrServices::fullPathName( self->binary );
 	if (recursive) proc << "-r";
-	proc << files;	
+	proc << "-l" << files;	
 }
 
-void deepVerifyFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, const QString checksumFile, bool recursive) {
+void deepVerifyFunc(KEasyProcess& proc, CS_Tool *self, const QStringList& files, 
+	const QString checksumFile, bool recursive, const QString&) {
 	proc << KrServices::fullPathName( self->binary );
 	if (recursive) proc << "-r";
 	proc << "-x" << checksumFile << files;
@@ -438,7 +442,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 		checksumFile->setFocus();
 	}
 	
-	QCheckBox *onePerFile;
+	QCheckBox *onePerFile=0;
 	if (stdout.size() > 1) {
 		onePerFile = new QCheckBox(i18n("Checksum file for each source file"), plainPage());
 		onePerFile->setChecked(false);
