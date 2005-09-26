@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2005-09-23 00:49+0200\n"
+"POT-Creation-Date: 2005-09-26 20:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1370,7 +1370,7 @@ msgstr ""
 msgid "Owner"
 msgstr ""
 
-#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:285
+#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:270
 #: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1238
 msgid "Group"
 msgstr ""
@@ -1714,7 +1714,7 @@ msgstr ""
 #: Panel/panelfunc.cpp:394
 #, c-format
 msgid ""
-"_n: Move 1 file to:\n"
+"_n: Move %n file to:\n"
 "Move %n files to:"
 msgstr ""
 
@@ -1737,7 +1737,7 @@ msgstr ""
 #: Panel/panelfunc.cpp:506
 #, c-format
 msgid ""
-"_n: Copy 1 file to:\n"
+"_n: Copy %n file to:\n"
 "Copy %n files to:"
 msgstr ""
 
@@ -1772,7 +1772,7 @@ msgstr ""
 msgid "&Delete"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:466 DiskUsage/diskusage.cpp:574
+#: Dialogs/checksumdlg.cpp:492 DiskUsage/diskusage.cpp:574
 #: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:573 krusader.cpp:701
 msgid "Warning"
 msgstr ""
@@ -1841,7 +1841,7 @@ msgstr ""
 #: Panel/panelfunc.cpp:821
 #, c-format
 msgid ""
-"_n: Unpack 1 file to:\n"
+"_n: Unpack %n file to:\n"
 "Unpack %n files to:"
 msgstr ""
 
@@ -1932,11 +1932,11 @@ msgstr ""
 msgid "Locate results"
 msgstr ""
 
-#: Locate/locate.cpp:499 Search/krsearchdialog.cpp:490
+#: Locate/locate.cpp:499 Search/krsearchdialog.cpp:524
 msgid "Query name"
 msgstr ""
 
-#: Locate/locate.cpp:500 Search/krsearchdialog.cpp:491
+#: Locate/locate.cpp:500 Search/krsearchdialog.cpp:525
 msgid "Here you can name the file collection"
 msgstr ""
 
@@ -2027,11 +2027,11 @@ msgstr ""
 msgid "Calculate &Occupied Space"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:152 Dialogs/checksumdlg.cpp:367 krusader.cpp:505
+#: Dialogs/checksumdlg.cpp:178 Dialogs/checksumdlg.cpp:393 krusader.cpp:505
 msgid "Create Checksum"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:232 Dialogs/checksumdlg.cpp:331 krusader.cpp:507
+#: Dialogs/checksumdlg.cpp:258 Dialogs/checksumdlg.cpp:357 krusader.cpp:507
 msgid "Verify Checksum"
 msgstr ""
 
@@ -2328,7 +2328,7 @@ msgstr ""
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:466 Konfigurator/kgcolors.cpp:507 krusader.cpp:701
+#: Dialogs/checksumdlg.cpp:492 Konfigurator/kgcolors.cpp:507 krusader.cpp:701
 msgid "Overwrite"
 msgstr ""
 
@@ -2388,7 +2388,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: Search/krsearchdialog.cpp:132 Search/krsearchdialog.cpp:332
+#: Search/krsearchdialog.cpp:132 Search/krsearchdialog.cpp:359
 msgid "Found 0 matches."
 msgstr ""
 
@@ -2400,39 +2400,43 @@ msgstr ""
 msgid "Permissions"
 msgstr ""
 
-#: Search/krsearchdialog.cpp:178
+#: Search/krsearchdialog.cpp:187
+msgid "Text found:"
+msgstr ""
+
+#: Search/krsearchdialog.cpp:197
 msgid "&Results"
 msgstr ""
 
-#: Search/krsearchdialog.cpp:299
+#: Search/krsearchdialog.cpp:324
 msgid "Found %1 matches."
 msgstr ""
 
-#: Search/krsearchdialog.cpp:319
+#: Search/krsearchdialog.cpp:346
 msgid ""
 "Since you chose to also search in archives, note the following limitations:\n"
 "You cannot search for text (grep) while doing a search that includes "
 "archives."
 msgstr ""
 
-#: Search/krsearchdialog.cpp:369
+#: Search/krsearchdialog.cpp:397
 msgid "Finished searching."
 msgstr ""
 
-#: Search/krsearchdialog.cpp:452
+#: Search/krsearchdialog.cpp:486
 msgid "Krusader Search"
 msgstr ""
 
-#: Search/krsearchdialog.cpp:454
+#: Search/krsearchdialog.cpp:488
 msgid "View File (F3)"
 msgstr ""
 
-#: Search/krsearchdialog.cpp:455
+#: Search/krsearchdialog.cpp:489
 msgid "Edit File (F4)"
 msgstr ""
 
 #: Konfigurator/kgarchives.cpp:111 Konfigurator/kggeneral.cpp:117
-#: Search/krsearchdialog.cpp:482
+#: Search/krsearchdialog.cpp:516
 msgid "Search results"
 msgstr ""
 
@@ -2827,7 +2831,7 @@ msgstr ""
 #: Dialogs/packgui.cpp:55
 #, c-format
 msgid ""
-"_n: Pack 1 file\n"
+"_n: Pack %n file\n"
 "Pack %n files"
 msgstr ""
 
@@ -2991,141 +2995,141 @@ msgstr ""
 msgid "compare mode"
 msgstr ""
 
-#: Dialogs/krspwidgets.cpp:270 Dialogs/krspwidgets.cpp:279
+#: Dialogs/krspwidgets.cpp:278 Dialogs/krspwidgets.cpp:289
 msgid "Quick Navigation"
 msgstr ""
 
-#: Dialogs/krspwidgets.cpp:271
-msgid "<qt>Already at"
+#: Dialogs/krspwidgets.cpp:279
+msgid "Already at <i>%1</i>"
 msgstr ""
 
-#: Dialogs/krspwidgets.cpp:280
-msgid "<qt>Click to go to"
+#: Dialogs/krspwidgets.cpp:290
+msgid "Click to go to <i>%1</i>"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:157
+#: Dialogs/checksumdlg.cpp:183
 msgid ""
 "<qt>Can't calculate checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:160 Dialogs/checksumdlg.cpp:240
+#: Dialogs/checksumdlg.cpp:186 Dialogs/checksumdlg.cpp:266
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
 "sha256deep and tigerdeep</i>"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:176
+#: Dialogs/checksumdlg.cpp:202
 msgid "About to calculate checksum for the following files"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:177 Dialogs/checksumdlg.cpp:257
+#: Dialogs/checksumdlg.cpp:203 Dialogs/checksumdlg.cpp:283
 msgid " and folders:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:190
+#: Dialogs/checksumdlg.cpp:216
 msgid "Select the checksum method:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:208
+#: Dialogs/checksumdlg.cpp:234
 msgid "Calculating checksums ..."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:214 Dialogs/checksumdlg.cpp:305
+#: Dialogs/checksumdlg.cpp:240 Dialogs/checksumdlg.cpp:331
 msgid "<qt>There was an error while running <b>%1</b>."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:237
+#: Dialogs/checksumdlg.cpp:263
 msgid ""
 "<qt>Can't verify checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:256
+#: Dialogs/checksumdlg.cpp:282
 msgid "About to verify checksum for the following files"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:270
+#: Dialogs/checksumdlg.cpp:296
 msgid "Checksum file:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:282
+#: Dialogs/checksumdlg.cpp:308
 msgid ""
 "<qt>Error reading checksum file <i>%1</i>.<br>Please specify a valid "
 "checksum file."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:295
+#: Dialogs/checksumdlg.cpp:321
 msgid ""
 "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:344
+#: Dialogs/checksumdlg.cpp:370
 msgid "Errors were detected while verifying the checksums"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:345
+#: Dialogs/checksumdlg.cpp:371
 msgid "Checksums were verified successfully"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:351
+#: Dialogs/checksumdlg.cpp:377
 msgid "The following files have failed:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:382
+#: Dialogs/checksumdlg.cpp:408
 msgid "Errors were detected while creating the checksums"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:383
+#: Dialogs/checksumdlg.cpp:409
 msgid "Checksums were created successfully"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:390
+#: Dialogs/checksumdlg.cpp:416
 msgid "Here are the calculated checksums:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:395
+#: Dialogs/checksumdlg.cpp:421
 msgid "Hash"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:396 Konfigurator/kgcolors.cpp:365
+#: Dialogs/checksumdlg.cpp:422 Konfigurator/kgcolors.cpp:365
 msgid "File"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:415
+#: Dialogs/checksumdlg.cpp:441
 msgid "Here are the errors received:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:429
+#: Dialogs/checksumdlg.cpp:455
 msgid "Save checksum to file:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:443
+#: Dialogs/checksumdlg.cpp:469
 msgid "Checksum file for each source file"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:465
+#: Dialogs/checksumdlg.cpp:491
 msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:468
+#: Dialogs/checksumdlg.cpp:494
 msgid "Select a file to save to"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:473
+#: Dialogs/checksumdlg.cpp:499
 #, c-format
 msgid "Error saving file %1"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:485
+#: Dialogs/checksumdlg.cpp:511
 msgid "Saving checksum files..."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:490
+#: Dialogs/checksumdlg.cpp:516
 msgid "Errors occured while saving multiple checksums. Stopping"
 msgstr ""
 
@@ -3839,15 +3843,15 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: Konfigurator/kgdependencies.cpp:77
+#: Konfigurator/kgdependencies.cpp:78
 msgid "Packers"
 msgstr ""
 
-#: Konfigurator/kgdependencies.cpp:124
+#: Konfigurator/kgdependencies.cpp:125
 msgid "The %1 path is incorrect, no valid path found."
 msgstr ""
 
-#: Konfigurator/kgdependencies.cpp:127
+#: Konfigurator/kgdependencies.cpp:128
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr ""
 
@@ -3910,7 +3914,7 @@ msgstr ""
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:128 Konfigurator/krresulttable.cpp:287
+#: Konfigurator/krresulttable.cpp:128 Konfigurator/krresulttable.cpp:272
 msgid "Found"
 msgstr ""
 
@@ -3927,36 +3931,36 @@ msgid "Note"
 msgstr ""
 
 #: Konfigurator/krresulttable.cpp:195 Konfigurator/krresulttable.cpp:209
-#: Konfigurator/krresulttable.cpp:376
+#: Konfigurator/krresulttable.cpp:346
 msgid "enabled"
 msgstr ""
 
 #: Konfigurator/krresulttable.cpp:198 Konfigurator/krresulttable.cpp:212
-#: Konfigurator/krresulttable.cpp:379
+#: Konfigurator/krresulttable.cpp:349
 msgid "disabled"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:276
-msgid "batch renamer"
-msgstr ""
-
-#: Konfigurator/krresulttable.cpp:277
+#: Konfigurator/krresulttable.cpp:265
 msgid "diff utility"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:278
+#: Konfigurator/krresulttable.cpp:266
 msgid "email client"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:279
-msgid "checksum tool "
+#: Konfigurator/krresulttable.cpp:267
+msgid "batch renamer"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:286
+#: Konfigurator/krresulttable.cpp:268
+msgid "md5 checksum"
+msgstr ""
+
+#: Konfigurator/krresulttable.cpp:271
 msgid "Tool"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:288
+#: Konfigurator/krresulttable.cpp:273
 msgid "Status"
 msgstr ""
 
