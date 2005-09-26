@@ -32,6 +32,9 @@
 #include "../defaults.h"
 #include "../krusader.h"
 #include <utime.h>
+#include <klargefile.h>
+#include <kio/job.h>
+#include <kfileitem.h>
 
 PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, CopyMode mode,
   bool asMethod, bool showProgressInfo ) : KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo )
@@ -47,24 +50,96 @@ PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, C
 
 void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const QValueList< KIO::CopyInfo > &files )
 {
-  for ( QValueList< KIO::CopyInfo >::ConstIterator it = files.begin(); it != files.end(); ++it )
-    fileAttributes[ (*it).uSource.url().ascii() ] = (*it).mtime;
+  for ( QValueList< KIO::CopyInfo >::ConstIterator it = files.begin(); it != files.end(); ++it ) {
+    
+    time_info time_nfo;
+    time_nfo.copy_finished = false;
+    time_nfo.to = (*it).uDest;
+    time_nfo.mtime = (*it).mtime;
+    time_nfo.ctime = (*it).ctime;
+
+    if( time_nfo.ctime == 0 || time_nfo.ctime == ((time_t) -1 ) )
+      time_nfo.ctime = time_nfo.mtime;
+        
+    if( time_nfo.mtime == 0 || time_nfo.mtime == ((time_t) -1 ) ) {       /* is it correct? */
+      KURL origURL = (*it).uSource;
+      if( origURL.isLocalFile() ) {
+        KDE_struct_stat stat_p;
+        KDE_lstat( origURL.path(-1).local8Bit(),&stat_p);    /* getting the date information */
+      
+        time_nfo.mtime = stat_p.st_mtime;      
+        time_nfo.ctime = stat_p.st_ctime;
+      } else {
+        KIO::StatJob* statJob = KIO::stat( origURL, false );
+        connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
+        pendingJobs[ statJob ] = origURL;
+      }
+    }
+    
+    fileAttributes[ (*it).uSource ] = time_nfo;
+  }
+}
+
+void PreservingCopyJob::setTime( KURL url, time_info time_nfo ) {
+    if( url.isLocalFile() ) {
+      struct utimbuf timestamp;
+
+      timestamp.actime  = time_nfo.ctime;
+      timestamp.modtime = time_nfo.mtime;
+
+      utime( (const char *)( url.path( -1 ).local8Bit() ), &timestamp );
+    }
+    fileAttributes.remove( url );
 }
 
 void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KURL &to, bool, bool)
 {
-  QString key = from.url();
-
-  if( fileAttributes.count( key ) )
+  if( fileAttributes.count( from ) )
   {
-    time_t mtime = fileAttributes[ key ];
+    fileAttributes[ from ].copy_finished = true;
+    
+    if( fileAttributes[ from ].mtime == 0 || fileAttributes[ from ].mtime == ((time_t) -1 ) || 
+        fileAttributes[ from ].ctime == 0 || fileAttributes[ from ].ctime == ((time_t) -1 ) )
+      return;
+    
+    setTime( to, fileAttributes[ from ] );
+  }
+}
 
-    struct utimbuf timestamp;
+void PreservingCopyJob::slotStatResult( KIO::Job* job ) {
+  if( !job )
+    return;
+    
+  if( pendingJobs.count( job ) ) {
+    KURL origURL = pendingJobs[ job ];
+    pendingJobs.remove( job );
+    
+    if( job->error() ) {
+      fileAttributes.remove( origURL );
+      return;  
+    }
+    
+    if( fileAttributes.count( origURL ) )
+    {
+      KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();
+      
+      KFileItem kfi(entry, origURL );
+      time_t mtime =  kfi.time( KIO::UDS_MODIFICATION_TIME );
+      time_t ctime =  kfi.time( KIO::UDS_CREATION_TIME );
 
-    timestamp.actime = time( 0 );
-    timestamp.modtime = mtime;
-
-    utime( (const char *)( to.path( -1 ).local8Bit() ), &timestamp );
+      if( ctime == 0 || ctime == ((time_t) -1 ) )
+        ctime = mtime;
+            
+      if( mtime == 0 || mtime == ((time_t) -1 ) /*|| ctime == 0 || ctime == ((time_t) -1 )*/)
+        fileAttributes.remove( origURL );
+      else {
+        fileAttributes[ origURL ].mtime = mtime;
+        fileAttributes[ origURL ].ctime = ctime;
+        
+        if( fileAttributes[ origURL ].copy_finished )
+          setTime( fileAttributes[ origURL ].to, fileAttributes[ origURL ] );        
+      }
+    }
   }
 }
 

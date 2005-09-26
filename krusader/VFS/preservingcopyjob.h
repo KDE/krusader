@@ -40,6 +40,14 @@ typedef enum {
   PM_DEFAULT       = 2
 } PreserveMode;
 
+
+struct time_info {
+  bool   copy_finished;
+  KURL   to;
+  time_t mtime;
+  time_t ctime;
+};
+
 class PreservingCopyJob : public KIO::CopyJob
 {
   Q_OBJECT
@@ -54,8 +62,15 @@ public slots:
   void slotAboutToCreate (KIO::Job *, const QValueList< KIO::CopyInfo > &);
   void slotCopyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool);
 
+protected slots:
+  void slotStatResult(KIO::Job *job);
+
+protected:
+  void setTime( KURL url, time_info time_nfo );
+  
 private:
-  QMap<QString, time_t> fileAttributes;
+  QMap<KURL, time_info> fileAttributes;
+  QMap<KIO::Job *, KURL> pendingJobs;
 };
 
 #endif /* __PRESERVING_COPY_JOB_H__ */
