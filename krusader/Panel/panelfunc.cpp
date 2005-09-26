@@ -391,7 +391,7 @@ void ListPanelFunc::moveFiles() {
   if( fileNames.count() == 1 )
     s = i18n("Move %1 to:").arg(fileNames.first());
   else
-    s = i18n("Move 1 file to:", "Move %n files to:", fileNames.count());
+    s = i18n("Move %n file to:", "Move %n files to:", fileNames.count());
 
 		// ask the user for the copy dest
 		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveDate);
@@ -503,7 +503,7 @@ void ListPanelFunc::copyFiles() {
   if( fileNames.count() == 1 )
     s = i18n("Copy %1 to:").arg(fileNames.first());
   else
-    s = i18n("Copy 1 file to:", "Copy %n files to:", fileNames.count());
+    s = i18n("Copy %n file to:", "Copy %n files to:", fileNames.count());
 
 		// ask the user for the copy dest
 		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveDate );
@@ -818,7 +818,7 @@ void ListPanelFunc::unpack() {
   if(fileNames.count() == 1)
     s = i18n("Unpack %1 to:").arg(fileNames[0]);
   else
-    s = i18n("Unpack 1 file to:", "Unpack %n files to:", fileNames.count());
+    s = i18n("Unpack %n file to:", "Unpack %n files to:", fileNames.count());
 
 	// ask the user for the copy dest
 	KURL dest = KChooseDir::getDir(s, panel->otherPanel->virtualPath(), panel->virtualPath());
