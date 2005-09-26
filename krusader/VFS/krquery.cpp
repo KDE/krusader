@@ -161,7 +161,7 @@ bool KRQuery::containsContent( QString file ) const
   int ndx = 0;
   while ( !text.atEnd() )
   {
-    lastSuccessfulGrep = line = text.readLine();
+    line = text.readLine();
     if ( line.isNull() ) break;
     if ( containWholeWord )
     {
@@ -172,6 +172,7 @@ bool KRQuery::containsContent( QString file ) const
 
         if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
           after != '_' && before != '_' ) {
+          	lastSuccessfulGrep = line;
           	fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
             return true;
            }
@@ -179,6 +180,7 @@ bool KRQuery::containsContent( QString file ) const
       }
     }
     else if ( (ndx = line.find( contain, 0, containCaseSensetive )) != -1 ) {
+    	lastSuccessfulGrep = line;
     	fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
       return true;
     }
