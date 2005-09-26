@@ -89,7 +89,6 @@ void PreservingCopyJob::setTime( KURL url, time_info time_nfo ) {
 
       utime( (const char *)( url.path( -1 ).local8Bit() ), &timestamp );
     }
-    fileAttributes.remove( url );
 }
 
 void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KURL &to, bool, bool)
@@ -103,6 +102,7 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KUR
       return;
     
     setTime( to, fileAttributes[ from ] );
+    fileAttributes.remove( from );
   }
 }
 
@@ -136,8 +136,10 @@ void PreservingCopyJob::slotStatResult( KIO::Job* job ) {
         fileAttributes[ origURL ].mtime = mtime;
         fileAttributes[ origURL ].ctime = ctime;
         
-        if( fileAttributes[ origURL ].copy_finished )
+        if( fileAttributes[ origURL ].copy_finished ) {
           setTime( fileAttributes[ origURL ].to, fileAttributes[ origURL ] );        
+          fileAttributes.remove( origURL );
+        }
       }
     }
   }
