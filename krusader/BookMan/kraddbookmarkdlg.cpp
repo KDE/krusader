@@ -25,7 +25,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KURL url):
 	// name and url
 	QLabel *lb1 = new QLabel(i18n("Name:"), page);
 	_name = new KLineEdit(page);
-	_name->setText(url.url()); // default name is the url
+	_name->setText(url.prettyURL()); // default name is the url
 	_name->selectAll(); // make the text selected
 	layout->addWidget(lb1, 0, 0);	
 	layout->addWidget(_name, 0, 1);
