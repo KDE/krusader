@@ -138,7 +138,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   searchingLabel->setText( "" );
   resultLabelLayout->addWidget( searchingLabel );
 
-  resultLayout->addLayout( resultLabelLayout, 1, 0 );
+  resultLayout->addLayout( resultLabelLayout, 2, 0 );
 
   // creating the result list view
 
@@ -175,6 +175,25 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   resultsList->header()->setStretchEnabled( true, 1 );
 
   resultLayout->addWidget( resultsList, 0, 0 );
+
+  QHBoxLayout* foundTextLayout = new QHBoxLayout();
+  foundTextLayout->setSpacing( 6 );
+  foundTextLayout->setMargin( 0 );
+  
+  QLabel *l1 = new QLabel(resultTab);
+  l1->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)1, l1->sizePolicy().hasHeightForWidth() ) );
+  l1->setFrameShape( QLabel::StyledPanel );
+  l1->setFrameShadow( QLabel::Sunken );
+  l1->setText(i18n("Text found:"));
+  foundTextLayout->addWidget( l1 );
+
+  foundTextLabel = new KSqueezedTextLabel(resultTab);
+  foundTextLabel->setFrameShape( QLabel::StyledPanel );
+  foundTextLabel->setFrameShadow( QLabel::Sunken );
+  foundTextLabel->setText("");
+  foundTextLayout->addWidget( foundTextLabel );
+  resultLayout->addLayout(foundTextLayout, 1, 0);
+  
   searcherTabs->insertTab( resultTab, i18n( "&Results" ) );
 
   searchBaseLayout->addWidget( searcherTabs, 0, 0 );
@@ -183,8 +202,14 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
 
   connect( mainSearchBtn, SIGNAL( clicked() ), this, SLOT( startSearch() ) );
   connect( mainStopBtn, SIGNAL( clicked() ), this, SLOT( stopSearch() ) );
-  connect( resultsList, SIGNAL( returnPressed(QListViewItem*) ), this, SLOT( resultClicked(QListViewItem*) ) );
-  connect( resultsList, SIGNAL( doubleClicked(QListViewItem*) ), this, SLOT( resultClicked(QListViewItem*) ) );
+  connect( resultsList, SIGNAL( returnPressed(QListViewItem*) ), this,
+  	SLOT( resultDoubleClicked(QListViewItem*) ) );
+  connect( resultsList, SIGNAL( doubleClicked(QListViewItem*) ), this,
+  	SLOT( resultDoubleClicked(QListViewItem*) ) );
+  connect( resultsList, SIGNAL( currentChanged(QListViewItem*) ), this,
+  		SLOT( resultClicked(QListViewItem*) ) );
+  connect( resultsList, SIGNAL( clicked(QListViewItem*) ), this,
+  		SLOT( resultClicked(QListViewItem*) ) );
   connect( resultsList, SIGNAL( rightButtonClicked(QListViewItem*,const QPoint&,int) ), this, SLOT( rightClickMenu(QListViewItem*, const QPoint&, int) ) );
   connect( mainCloseBtn, SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
   connect( mainFeedToListBoxBtn, SIGNAL( clicked() ), this, SLOT( feedToListBox() ) );
@@ -290,14 +315,16 @@ void KrSearchDialog::resizeEvent( QResizeEvent *e )
   }
 }
 
-void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm){
+void KrSearchDialog::found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText){
   // convert the time_t to struct tm
   struct tm* t=localtime((time_t *)&mtime);
   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-  new ResultListViewItem(resultsList, what, where.replace(QRegExp("\\\\"),"#"),
-                    size, KGlobal::locale()->formatDateTime(tmp), perm);
+  ResultListViewItem *it =new ResultListViewItem(resultsList, what,
+  	 where.replace(QRegExp("\\\\"),"#"), size, KGlobal::locale()->formatDateTime(tmp), perm);
   QString totals = QString(i18n("Found %1 matches.")).arg(resultsList->childCount());
   foundLabel->setText(totals);
+
+  if (!foundText.isEmpty()) it->setFoundText(foundText);
 }
 
 bool KrSearchDialog::gui2query() {
@@ -331,6 +358,7 @@ void KrSearchDialog::startSearch() {
   searchingLabel->setText("");
   foundLabel->setText(i18n("Found 0 matches."));
   searcherTabs->setCurrentPage(2); // show the results page
+  foundTextLabel->setText("");
   qApp->processEvents();
 
   // start the search.
@@ -341,8 +369,8 @@ void KrSearchDialog::startSearch() {
   searcher  = new KRSearchMod(query);
   connect(searcher, SIGNAL(searching(const QString&)),
           searchingLabel, SLOT(setText(const QString&)));
-  connect(searcher, SIGNAL(found(QString,QString,KIO::filesize_t,time_t,QString)),
-                this, SLOT(found(QString,QString,KIO::filesize_t,time_t,QString)));
+  connect(searcher, SIGNAL(found(QString,QString,KIO::filesize_t,time_t,QString,QString)),
+                this, SLOT(found(QString,QString,KIO::filesize_t,time_t,QString,QString)));
   connect(searcher, SIGNAL(finished()), this, SLOT(stopSearch()));
 
   isSearching = true;
@@ -369,9 +397,15 @@ void KrSearchDialog::stopSearch() {
   searchingLabel->setText(i18n("Finished searching."));
 }
 
-void KrSearchDialog::resultClicked(QListViewItem* i) {
+void KrSearchDialog::resultDoubleClicked(QListViewItem* i) {
   ACTIVE_FUNC->openUrl(vfs::fromPathOrURL(i->text(1)),i->text(0));
   showMinimized();
+}
+
+void KrSearchDialog::resultClicked(QListViewItem* i) {
+	ResultListViewItem *it = dynamic_cast<ResultListViewItem*>(i);
+	if (!it->foundText().isEmpty())
+		foundTextLabel->setText(it->foundText());
 }
 
 void KrSearchDialog::closeEvent(QCloseEvent *e)

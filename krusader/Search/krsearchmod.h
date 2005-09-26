@@ -63,7 +63,7 @@ private:
 signals:
   void finished();
   void searching(const QString&);
-  void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
+  void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString textFound);
 
 private:
   bool stopSearch;

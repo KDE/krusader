@@ -142,6 +142,14 @@ bool KRQuery::match( vfile *vf ) const
   return true;
 }
 
+// takes the string and adds BOLD to it, so that when it is displayed,
+// the grepped text will be bold
+void fixFoundTextForDisplay(QString& haystack, int start, int length) {
+	haystack.insert(start+length, "</b>");
+	haystack.insert(start, "<b>");
+	haystack = ("<qt>"+haystack);
+}
+
 bool KRQuery::containsContent( QString file ) const
 {
   QFile qf( file );
@@ -150,30 +158,33 @@ bool KRQuery::containsContent( QString file ) const
   QTextStream text( &qf );
   text.setEncoding( QTextStream::Locale );
   QString line;
+  int ndx = 0;
   while ( !text.atEnd() )
   {
-    line = text.readLine();
+    lastSuccessfulGrep = line = text.readLine();
     if ( line.isNull() ) break;
     if ( containWholeWord )
     {
-      int ndx = 0;
-
       while ( ( ndx = line.find( contain, ndx, containCaseSensetive ) ) != -1 )
       {
         QChar before = line.at( ndx - 1 );
         QChar after = line.at( ndx + contain.length() );
 
         if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
-          after != '_' && before != '_' )
+          after != '_' && before != '_' ) {
+          	fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
             return true;
-
+           }
         ndx++;
       }
     }
-    else if ( line.find( contain, 0, containCaseSensetive ) != -1 )
+    else if ( (ndx = line.find( contain, 0, containCaseSensetive )) != -1 ) {
+    	fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
       return true;
+    }
 
   }
+  lastSuccessfulGrep = QString::null; // nothing was found
   return false;
 }
 

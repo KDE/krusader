@@ -112,6 +112,8 @@ public:
   // checks if a URL is excluded
   bool isExcluded( KURL url );
 
+  const QString& foundText() const { return lastSuccessfulGrep; }
+
 protected:
   QStringList matches;           // what to search
   QStringList excludes;          // what to exclude
@@ -149,6 +151,7 @@ private:
   bool containsContent( QString file ) const;
 
   QString origFilter;
+  mutable QString lastSuccessfulGrep;
 };
 
 #endif

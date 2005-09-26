@@ -61,8 +61,9 @@ public slots:
   void startSearch();
   void stopSearch();
   void feedToListBox();
-  void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm);
+  void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString foundText);
   void closeDialog( bool isAccept = true );
+  void resultDoubleClicked(QListViewItem*);
   void resultClicked(QListViewItem*);
 
   virtual void keyPressEvent(QKeyEvent *e);
@@ -96,7 +97,8 @@ private:
   QWidget* resultTab;
   QGridLayout* resultLayout;
   QLabel* foundLabel;
-  KSqueezedTextLabel* searchingLabel;
+  KSqueezedTextLabel *foundTextLabel;
+  KSqueezedTextLabel *searchingLabel;
   
   QListView* resultsList;
 
@@ -119,7 +121,7 @@ private:
   int            sizeY;
 };
 
-class ResultListViewItem : QListViewItem
+class ResultListViewItem : public QListViewItem
 {
 public:
   ResultListViewItem( QListView *resultsList, QString name, QString where, KIO::filesize_t size, 
@@ -128,6 +130,9 @@ public:
   {
     fileSize = size;
   }  
+
+  void setFoundText(QString text) { _foundText=text; }
+  const QString& foundText() const { return _foundText; }
   
   virtual int compare(QListViewItem *i,int col,bool ascending ) const
   {
@@ -150,6 +155,7 @@ public:
   
 private:
   KIO::filesize_t fileSize;
+  QString _foundText;
 };
 
 #endif
