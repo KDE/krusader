@@ -245,27 +245,37 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
 {
   _supported = Krusader::supportedTools(); // get list of available tools
 
-  QValueVector<Application*> vecDiff, vecMail, vecRename, vecMd5;
-  Application* kdiff3  = new Application("kdiff3",  "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
-  Application* kompare = new Application("kompare", "http://www.caffeinated.me.uk/kompare/", KrServices::cmdExist("kompare"));
-  Application* xxdiff  = new Application("xxdiff",  "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
-  Application* kmail   = new Application("kmail",   "http://kmail.kde.org/", KrServices::cmdExist("kmail"));
-  Application* krename = new Application("krename", "http://www.krename.net/", KrServices::cmdExist("krename"));
-  Application* md5sum  = new Application("md5sum",  "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
-  Application* md5deep = new Application("md5deep", "http://md5deep.sourceforge.net/", KrServices::cmdExist("md5deep"));
+  QValueVector<Application*> vecDiff, vecMail, vecRename, vecChecksum;
+  Application* kdiff3         = new Application("kdiff3",        "http://kdiff3.sourceforge.net/", KrServices::cmdExist("kdiff3"));
+  Application* kompare        = new Application("kompare",       "http://www.caffeinated.me.uk/kompare/", KrServices::cmdExist("kompare"));
+  Application* xxdiff         = new Application("xxdiff",        "http://xxdiff.sourceforge.net/", KrServices::cmdExist("xxdiff"));
+  Application* kmail          = new Application("kmail",         "http://kmail.kde.org/", KrServices::cmdExist("kmail"));
+  Application* krename        = new Application("krename",       "http://www.krename.net/", KrServices::cmdExist("krename"));
+  Application* md5sum         = new Application("md5sum",        "http://www.gnu.org/software/textutils/textutils.html", KrServices::cmdExist("md5sum"));
+  Application* md5deep        = new Application("md5deep",       "http://md5deep.sourceforge.net/", KrServices::cmdExist("md5deep"));
+  Application* sha1deep       = new Application("sha1deep",      "http://md5deep.sourceforge.net/", KrServices::cmdExist("sha1deep"));
+  Application* sha256deep     = new Application("sha256deep",    "http://md5deep.sourceforge.net/", KrServices::cmdExist("sha256deep"));
+  Application* tigerdeep      = new Application("tigerdeep",     "http://md5deep.sourceforge.net/", KrServices::cmdExist("tigerdeep"));
+  Application* whirlpooldeep  = new Application("whirlpooldeep", "http://md5deep.sourceforge.net/", KrServices::cmdExist("whirlpooldeep"));
+  Application* cfv            = new Application("cfv",           "http://cfv.sourceforge.net/", KrServices::cmdExist("cfv"));
 
   vecDiff.push_back(kdiff3);
   vecDiff.push_back(kompare);
   vecDiff.push_back(xxdiff);
   vecMail.push_back(kmail);
   vecRename.push_back(krename);
-  vecMd5.push_back(md5sum);
-  vecMd5.push_back(md5deep);
+  vecChecksum.push_back(md5sum);
+  vecChecksum.push_back(md5deep);
+  vecChecksum.push_back(sha1deep);
+  vecChecksum.push_back(sha256deep);
+  vecChecksum.push_back(tigerdeep);
+  vecChecksum.push_back(whirlpooldeep);
+  vecChecksum.push_back(cfv);
 
-  ApplicationGroup* diff   = new ApplicationGroup( i18n("diff utility"),  PS("DIFF"),   vecDiff);
-  ApplicationGroup* mail   = new ApplicationGroup( i18n("email client"),  PS("MAIL"),   vecMail);
-  ApplicationGroup* rename = new ApplicationGroup( i18n("batch renamer"), PS("RENAME"), vecRename);
-  ApplicationGroup* md5    = new ApplicationGroup( i18n("md5 checksum"),  PS("MD5"),    vecMd5);
+  ApplicationGroup* diff     = new ApplicationGroup( i18n("diff utility"),     PS("DIFF"),   vecDiff);
+  ApplicationGroup* mail     = new ApplicationGroup( i18n("email client"),     PS("MAIL"),   vecMail);
+  ApplicationGroup* rename   = new ApplicationGroup( i18n("batch renamer"),    PS("RENAME"), vecRename);
+  ApplicationGroup* checksum = new ApplicationGroup( i18n("checksum utility"), PS("MD5"),    vecChecksum);
 
   _tableHeaders.append( i18n("Group") );
   _tableHeaders.append( i18n("Tool") );
@@ -278,7 +288,7 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
   addRow(diff, _grid);
   addRow(mail, _grid);
   addRow(rename, _grid);
-  addRow(md5, _grid);
+  addRow(checksum, _grid);
 
   delete kmail;
   delete kompare;
@@ -287,11 +297,16 @@ KrToolResultTable::KrToolResultTable(QWidget* parent)
   delete krename;
   delete md5sum;
   delete md5deep;
+  delete sha1deep;
+  delete sha256deep;
+  delete tigerdeep;
+  delete whirlpooldeep;
+  delete cfv;
 
   delete diff;
   delete mail;
   delete rename;
-  delete md5;
+  delete checksum;
 }
 
 KrToolResultTable::~KrToolResultTable()

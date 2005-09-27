@@ -950,6 +950,29 @@ QStringList Krusader::supportedTools() {
       tools.append( "RENAME" );
       tools.append( KrServices::fullPathName( "krename" ) );
    }
+  // md5 tool
+  if (KrServices::cmdExist("md5deep")) {
+      tools.append("MD5");
+      tools.append(KrServices::fullPathName("md5deep", "checksum utility"));
+  } else if (KrServices::cmdExist("md5sum")) {
+      tools.append("MD5");
+      tools.append(KrServices::fullPathName("md5sum", "checksum utility"));
+  } else if (KrServices::cmdExist("sha1deep")) {
+      tools.append("MD5");
+      tools.append(KrServices::fullPathName("sha1deep", "checksum utility"));
+  } else if (KrServices::cmdExist("sha256deep")) {
+      tools.append("MD5");
+      tools.append(KrServices::fullPathName("sha256deep", "checksum utility"));
+  } else if (KrServices::cmdExist("tigerdeep")) {
+      tools.append("MD5");
+      tools.append(KrServices::fullPathName("tigerdeep", "checksum utility"));
+  } else if (KrServices::cmdExist("whirlpooldeep")) {
+      tools.append("MD5");
+      tools.append(KrServices::fullPathName("whirlpooldeep", "checksum utility"));
+  } else if (KrServices::cmdExist("cfv")) {
+      tools.append("MD5");
+      tools.append(KrServices::fullPathName("cfv", "checksum utility"));
+  }
 
    return tools;
 }
