@@ -41,13 +41,6 @@ typedef enum {
 } PreserveMode;
 
 
-struct time_info {
-  bool   copy_finished;
-  KURL   to;
-  time_t mtime;
-  time_t ctime;
-};
-
 class PreservingCopyJob : public KIO::CopyJob
 {
   Q_OBJECT
@@ -61,15 +54,10 @@ public:
 public slots:
   void slotAboutToCreate (KIO::Job *, const QValueList< KIO::CopyInfo > &);
   void slotCopyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool);
-
-protected slots:
-  void slotStatResult(KIO::Job *job);
-
-protected:
-  void setTime( KURL url, time_info time_nfo );
+  virtual void slotResult( Job *job );
   
 private:
-  QMap<KURL, time_info> fileAttributes;
+  QMap<KURL, time_t>     fileAttributes;
   QMap<KIO::Job *, KURL> pendingJobs;
 };
 
