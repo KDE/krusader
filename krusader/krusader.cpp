@@ -950,7 +950,7 @@ QStringList Krusader::supportedTools() {
       tools.append( "RENAME" );
       tools.append( KrServices::fullPathName( "krename" ) );
    }
-  // md5 tool
+  // checksum utility
   if (KrServices::cmdExist("md5deep")) {
       tools.append("MD5");
       tools.append(KrServices::fullPathName("md5deep", "checksum utility"));
