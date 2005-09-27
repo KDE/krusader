@@ -66,34 +66,44 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   addApplication( "mount",    pathsGrid, 9, general_tab );
   addApplication( "umount",   pathsGrid,10, general_tab );
   addApplication( "updatedb", pathsGrid,11, general_tab );
-  addApplication( "md5deep", pathsGrid, 12, general_tab );
-  addApplication( "sha1deep", pathsGrid, 13, general_tab );
-  addApplication( "sha256deep", pathsGrid, 14, general_tab );
-  addApplication( "tigerdeep", pathsGrid, 15, general_tab );
-  addApplication( "whirlpooldeep", pathsGrid, 16, general_tab );
-  addApplication( "cfv", pathsGrid, 17, general_tab );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );
   tabWidget->insertTab( packers_tab, i18n( "Packers" ) );
 
-  QGridLayout *archGrid = new QGridLayout( packers_tab );
-  archGrid->setSpacing( 6 );
-  archGrid->setMargin( 11 );
-  archGrid->setAlignment( Qt::AlignTop );
+  QGridLayout *archGrid1 = new QGridLayout( packers_tab );
+  archGrid1->setSpacing( 6 );
+  archGrid1->setMargin( 11 );
+  archGrid1->setAlignment( Qt::AlignTop );
 
-  addApplication( "arj",   archGrid, 0, packers_tab );
-  addApplication( "bzip2", archGrid, 1, packers_tab );
-  addApplication( "cpio",  archGrid, 2, packers_tab );
-  addApplication( "gzip",  archGrid, 3, packers_tab );
-  addApplication( "lha",   archGrid, 4, packers_tab );
-  addApplication( "rar",   archGrid, 5, packers_tab );
-  addApplication( "tar",   archGrid, 6, packers_tab );
-  addApplication( "unace", archGrid, 7, packers_tab );
-  addApplication( "unarj", archGrid, 8, packers_tab );
-  addApplication( "unrar", archGrid, 9, packers_tab );
-  addApplication( "unzip", archGrid,10, packers_tab );
-  addApplication( "zip",   archGrid,11, packers_tab );
+  addApplication( "arj",   archGrid1, 0, packers_tab );
+  addApplication( "bzip2", archGrid1, 1, packers_tab );
+  addApplication( "cpio",  archGrid1, 2, packers_tab );
+  addApplication( "gzip",  archGrid1, 3, packers_tab );
+  addApplication( "lha",   archGrid1, 4, packers_tab );
+  addApplication( "rar",   archGrid1, 5, packers_tab );
+  addApplication( "tar",   archGrid1, 6, packers_tab );
+  addApplication( "unace", archGrid1, 7, packers_tab );
+  addApplication( "unarj", archGrid1, 8, packers_tab );
+  addApplication( "unrar", archGrid1, 9, packers_tab );
+  addApplication( "unzip", archGrid1,10, packers_tab );
+  addApplication( "zip",   archGrid1,11, packers_tab );
+
+  //  ---------------------------- CHECKSUM TAB -------------------------------------
+  QWidget *checksum_tab = new QWidget( tabWidget, "tab_4" );
+  tabWidget->insertTab( checksum_tab, i18n( "Checksum Utilities" ) );
+
+  QGridLayout *archGrid2 = new QGridLayout( checksum_tab );
+  archGrid2->setSpacing( 6 );
+  archGrid2->setMargin( 11 );
+  archGrid2->setAlignment( Qt::AlignTop );
+
+  addApplication( "md5deep",			archGrid2, 0, checksum_tab );
+  addApplication( "sha1deep",			archGrid2, 1, checksum_tab );
+  addApplication( "sha256deep",		archGrid2, 2, checksum_tab );
+  addApplication( "tigerdeep",		archGrid2, 3, checksum_tab );
+  addApplication( "whirlpooldeep",	archGrid2, 4, checksum_tab );
+  addApplication( "cfv", 				archGrid2, 5, checksum_tab );
 
   kgDependenciesLayout->addWidget( tabWidget, 0, 0 );
 }
