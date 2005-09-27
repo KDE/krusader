@@ -52,7 +52,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   if(noOfFiles == 1)
     TextLabel1->setText( i18n("Pack %1").arg(filename) );
   else
-    TextLabel1->setText( i18n("Pack %n file", "Pack %n files", noOfFiles) );
+    TextLabel1->setText( i18n("Pack 1 file", "Pack %n files", noOfFiles) );
 
   // now, according to the Konfigurator, fill the combobox with the information
   // about what kind of packing we can do
