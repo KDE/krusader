@@ -1,3 +1,25 @@
+# added manualy, it dumps a summary of the most important settings
+# and displays a warning if the KDEDIR or QTDIR is empty
+echo "
+Krusader Project:
+-----------------
+  Source code location: ${srcdir}
+  C Compiler:           ${CC}
+  C Compiler flags:     ${CFLAGS}
+  C++ Compiler:         ${CXX}
+  prefix:               ${prefix}
+  kde_includes:        ${ac_kde_includes}
+  kde_libraries:         ${ac_kde_libraries}
+  kde_locale:           ${prefix}/share/locale
+  qt_libraries:         ${ac_qt_libraries}
+  qt_includes:          ${ac_qt_includes}
+  KDEDIR:               ${KDEDIR}
+  QTDIR:                ${QTDIR}
+  Install path:         ${prefix}/bin
+  krusader version:     ${VERSION}
+  krusader binary:      ${prefix}/bin/${PACKAGE}     (after 'make install')
+"
+
 # Check if KDE_SET_PREFIX was called, and --prefix was passed to configure
 if test -n "$kde_libs_prefix" -a -n "$given_prefix"; then
   # And if so, warn when they don't match
@@ -24,27 +46,6 @@ if test "$all_tests" = "bad"; then
     echo ""
   fi
 else
-# added manualy, it dumps a summary of the most important settings
-# and displays a warning if the KDEDIR or QTDIR is empty
-echo "
-Krusader Project:
------------------
-  Source code location: ${srcdir}
-  C Compiler:           ${CC}
-  C Compiler flags:     ${CFLAGS}
-  C++ Compiler:         ${CXX}
-  prefix:               ${prefix}
-  kde_libraries:        ${ac_kde_includes}
-  kde_includes:         ${ac_kde_libraries}
-  kde_locale:           ${prefix}/share/locale
-  qt_libraries:         ${ac_qt_libraries}
-  qt_includes:          ${ac_qt_includes}
-  KDEDIR:               ${KDEDIR}
-  QTDIR:                ${QTDIR}
-  Install path:         ${prefix}/bin
-  krusader version:     ${VERSION}
-  krusader binary:      ${prefix}/bin/${PACKAGE}     (after 'make install')
-"
 
 if (test $warn_konq);
    then echo "NOTICE:  Since the Konqueror-headers are not found Krusader will be build without support for its service-menus"
@@ -56,11 +57,10 @@ fi
 
 if (test -z "$KDEDIR");
    then echo "WARNING:  KDEDIR enviroment variable is empty! Please read Krusader FAQ"
-   exit 1
 fi
+
 if (test -z "$QTDIR");
    then echo "WARNING:  QTDIR enviroment variable is empty!  Please read Krusader FAQ"
-   exit 1  
 fi
   echo ""
   echo "Good - your configure finished. Start make now"
