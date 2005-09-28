@@ -148,9 +148,9 @@ void KrCalcSpaceDialog::showResult(){
   if (m_thread->getTotalSize() >= 1024)
      msg += " (" + KRpermHandler::parseSize( m_thread->getTotalSize() ) + "bytes)";
   msg += "\n";
-  msg += i18n("in 1 directory", "in %n directories", m_thread->getTotalDirs() );
+  msg += i18n("in %n directory", "in %n directories", m_thread->getTotalDirs() );
   msg += " ";
-  msg += i18n("and 1 file", "and %n files", m_thread->getTotalFiles() );
+  msg += i18n("and %n file", "and %n files", m_thread->getTotalFiles() );
   m_label->setText(msg);
 }
 
