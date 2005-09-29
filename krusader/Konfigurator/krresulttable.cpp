@@ -178,14 +178,9 @@ bool KrArchiverResultTable::addRow(SearchObject* search, QGridLayout* grid)
                       SLOT(website(const QString&)));
 
   // Found column
-  QHBox* hbox = new QHBox(this); // [icon][label]
-  _label = new QLabel(hbox);
-  hbox->setMargin(4); // FIXME 1px difference?
-  if(arch->getFound())
-    _label->setPixmap(krLoader->loadIcon("button_ok", KIcon::Desktop, 16));
-  _label->setFixedWidth( _label->sizeHint().width()+5 ); // add some space between icon and label
-  _label = new QLabel( arch->getPath(), hbox );
-  grid->addWidget(hbox, _numRows, 1);
+  _label = new QLabel( arch->getPath(), this );
+  _label->setMargin(5);
+  grid->addWidget(_label, _numRows, 1);
 
   // Packing column
   _label = new QLabel(this);
@@ -341,13 +336,7 @@ bool KrToolResultTable::addRow(SearchObject* search, QGridLayout* grid)
   QVBox* vbox = new QVBox(this);
   for( QValueVector<Application*>::Iterator it=_apps.begin(); it!=_apps.end(); it++ )
   {
-    QHBox* hbox = new QHBox(vbox); // [icon][label]
-    _label = new QLabel(hbox);
-    if( (*it)->getFound() )
-      _label->setPixmap(krLoader->loadIcon("button_ok", KIcon::Desktop, 16));
-    _label->setFixedWidth( _label->sizeHint().width()+5 ); // add some space between icon and label
-
-    _label = new QLabel( (*it)->getPath(), hbox);
+    _label = new QLabel( (*it)->getPath(), vbox);
     _label->setMargin(5);
     _label->setAlignment( Qt::AlignTop );
   }
