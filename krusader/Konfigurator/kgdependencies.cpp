@@ -98,12 +98,14 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   archGrid2->setMargin( 11 );
   archGrid2->setAlignment( Qt::AlignTop );
 
-  addApplication( "md5deep",			archGrid2, 0, checksum_tab );
-  addApplication( "sha1deep",			archGrid2, 1, checksum_tab );
-  addApplication( "sha256deep",		archGrid2, 2, checksum_tab );
-  addApplication( "tigerdeep",		archGrid2, 3, checksum_tab );
-  addApplication( "whirlpooldeep",	archGrid2, 4, checksum_tab );
-  addApplication( "cfv", 				archGrid2, 5, checksum_tab );
+  addApplication( "md5sum",			archGrid2, 0, checksum_tab );
+  addApplication( "sha1sum",			archGrid2, 1, checksum_tab );
+  addApplication( "md5deep",			archGrid2, 2, checksum_tab );
+  addApplication( "sha1deep",			archGrid2, 3, checksum_tab );
+  addApplication( "sha256deep",		archGrid2, 4, checksum_tab );
+  addApplication( "tigerdeep",		archGrid2, 5, checksum_tab );
+  addApplication( "whirlpooldeep",	archGrid2, 6, checksum_tab );
+  addApplication( "cfv", 				archGrid2, 7, checksum_tab );
 
   kgDependenciesLayout->addWidget( tabWidget, 0, 0 );
 }
