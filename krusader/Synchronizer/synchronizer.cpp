@@ -1078,8 +1078,11 @@ bool Synchronizer::compareByContent( QString leftName, QString leftDir, QString 
   connect( timer, SIGNAL(timeout()), SLOT(putWaitWindow()) );
   timer->start( 1500, true );
 
-  while( !compareFinished )
+  while( !compareFinished ) {
+    if( stopped )
+      abortContentComparing(), compareFinished = true;
     qApp->processEvents();
+  }
 
   timer->stop();
   delete timer;
