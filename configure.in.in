@@ -19,7 +19,7 @@ if test "$with_konq" != "no"; then
 	if test "$have_libkonq" = "no"; then
 		# if this var is 'yes', the configure-suppery drops a warning.
 		# see admin/configure.in.bot.end
-		warn_konq = "yes"
+		warn_konq=yes
 	fi
 fi
 
@@ -43,7 +43,7 @@ if test "$with_js" != "no"; then
 	if test "$have_libkjsembed" = "no"; then
 		# if this var is 'yes', the configure-suppery drops a warning.
 		# see admin/configure.in.bot.end
-		warn_js = "yes"
+		warn_js=yes
 	fi
 fi
 
