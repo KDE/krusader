@@ -769,6 +769,41 @@ QString exp_Script::expFunc( const ListPanel*, const QStringList& parameter, con
 }
 #endif
 
+exp_View::exp_View() {
+   _expression = "View";
+   _description = i18n("View a file with Krusader's internal viewer");
+   _needPanel = false;
+
+   addParameter( new exp_parameter( i18n("Which file to view (normaly '%aCurrent%')"), "__placeholder", true ) );
+   addParameter( new exp_parameter( i18n("Choose a view-mode"), "__choose:generic;text;hex", false ) );
+   //addParameter( new exp_parameter( i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
+   //TODO: window-mode 'panel' should open the file in the third-hand viewer
+   addParameter( new exp_parameter( i18n("Choose a window-mode"), "__choose:tab;window", false ) );
+}
+QString exp_View::expFunc( const ListPanel*, const QStringList& parameter, const bool& ) {
+   if ( parameter[0].isEmpty() ) {
+      krOut << "Expander: no file to view in %_View(filename)%; abort..." << endl;
+      return UA_CANCEL;
+   }
+
+   QString viewMode, windowMode;
+   if ( parameter.count() <= 1 || parameter[1].isEmpty() )
+      viewMode = "generic";
+   else
+      viewMode = parameter[1];
+
+   if ( parameter.count() <= 2 || parameter[2].isEmpty() )
+      windowMode = "tab";
+   else
+      windowMode = parameter[2];
+
+
+   //TODO: Call the viewer with viewMode and windowMode. Filename is in parameter[0].
+   // It would be nice if parameter[0] could also be a space-separated filename-list (provided if the first parameter is %aList(selected)%)
+
+   return QString::null;  // this doesn't return everything, that's normal!
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// end of expander classes ////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -799,6 +834,7 @@ Expander::Expander() {
    #ifdef __KJSEMBED__
    addPlaceholder( new exp_Script() );
    #endif
+   //addPlaceholder( new exp_View() );
 //    addPlaceholder( new exp_Run() );
 }
 

@@ -253,6 +253,16 @@ public:
 #endif
 
 /**
+  * This loads a file in the internal viewer
+  */
+class exp_View : public exp_placeholder {
+public:
+   exp_View();
+   EXP_FUNC;
+};
+
+
+/**
  * The Expander expands the command of an UserAction by replacing all placeholders by thier current values.@n
  * Each placeholder begins with a '%'-sign, followed by one char indicating the panel, followed by a command which may have some paramenter enclosed in brackets and also ends with a '%'-sign.
  * Examples are %aPath% or %rBookmark("/home/jonas/src/krusader_kde3", "yes")%.@n
