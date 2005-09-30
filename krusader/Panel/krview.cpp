@@ -86,19 +86,14 @@ QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ ) {
    //krConfig->setGroup("Advanced");
    //////////////////////////////
    QPixmap icon;
-   QString mime = vf->vfile_getMime();
+   QString icon_name = vf->vfile_getIcon();
    //QPixmapCache::setCacheLimit( krConfig->readNumEntry("Icon Cache Size",_IconCacheSize) );
 
    // first try the cache
-   if ( !QPixmapCache::find( mime, icon ) ) {
-      // get the icon.
-      if ( mime == "Broken Link !" )
-         icon = FL_LOADICON( "file_broken" );
-      else {
-         icon = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString::null, true ) );
-      }
+   if ( !QPixmapCache::find( icon_name, icon ) ) {
+      icon = FL_LOADICON( icon_name );
       // insert it into the cache
-      QPixmapCache::insert( mime, icon );
+      QPixmapCache::insert( icon_name, icon );
    }
    // if it's a symlink - add an arrow overlay
    if ( vf->vfile_isSymLink() ) {

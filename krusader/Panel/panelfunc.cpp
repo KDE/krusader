@@ -51,6 +51,7 @@ A
 #include <ktempdir.h> 
 #include <kurlrequester.h>
 #include <kprocio.h>
+#include <kdesktopfile.h>
 // Krusader Includes
 #include "panelfunc.h"
 #include "krcalcspacedialog.h"
@@ -657,7 +658,8 @@ void ListPanelFunc::execute( QString& name ) {
 		openUrl( path );
 	} else {
 		KURL url = files() ->vfs_getFile( name );
-		KRun::runURL( url, vf->vfile_getMime() );
+		KFileItem kfi( vf->vfile_getEntry(), url,true );
+		kfi.run();	
 	}
 }
 

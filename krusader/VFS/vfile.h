@@ -36,6 +36,7 @@
 #include <sys/types.h>
 // KDE includes
 #include <kio/global.h>
+#include <kmimetype.h>
 
 /**
  * The Virtual File class handles all the details of maintaining a single
@@ -106,7 +107,11 @@ public:
 	 * displayed size of the viewitem and thus the vfile. For INTERNAL USE !
 	 */
 	inline void             vfile_setSize(KIO::filesize_t size) {vfile_size = size;}
-	inline void             vfile_setUrl(const KURL& url){ vfile_url = url; }
+	inline void             vfile_setUrl(const KURL& url)       {vfile_url = url;  }
+
+	inline void             vfile_setIcon(const QString& icn)   {vfile_icon = icn; }
+	inline QString          vfile_getIcon();
+
 	virtual ~vfile(){}
 
 protected:
@@ -125,6 +130,20 @@ protected:
 	QString          vfile_mimeType; //< file mimetype
 	QString          vfile_symDest;  //< if it's a sym link - its detination
 	KURL             vfile_url;      //< file URL - empty by default
+	QString          vfile_icon;     //< the name of the icon file
 };
+
+	
+QString vfile::vfile_getIcon(){
+	if( vfile_icon.isEmpty() ){
+		QString mime = this->vfile_getMime();
+      if ( mime == "Broken Link !" )
+         vfile_icon = "file_broken";
+      else {
+         vfile_icon = KMimeType::mimeType( mime ) ->icon( QString::null, true );
+      }		
+	}
+	return vfile_icon;
+}
 
 #endif

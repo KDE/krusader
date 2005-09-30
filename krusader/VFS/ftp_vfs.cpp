@@ -86,7 +86,7 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 		mode_t mode = kfi.mode() | kfi.permissions();
 		QString perm = KRpermHandler::mode2QString( mode );
 		// set the mimetype
-		QString mime = QString::null;
+		QString mime = kfi.mimetype();
 		QString symDest = "";
 		if ( symLink ) {
 			symDest = kfi.linkDest();
@@ -105,7 +105,12 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 			temp = new vfile( name, size, perm, mtime, symLink, kfi.user(), kfi.group(), currentUser, mime, symDest, mode );
 		}
 
-		temp->vfile_setUrl( kfi.url() );
+		if( !kfi.localPath().isEmpty() ){
+			temp->vfile_setUrl( kfi.localPath() );
+		} else {
+			temp->vfile_setUrl( kfi.url() );
+		}
+		temp->vfile_setIcon( kfi.iconName() );
 		addToList( temp );
 	}
 }
