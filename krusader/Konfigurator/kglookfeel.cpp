@@ -191,8 +191,8 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   panelToolbarVLayout->setMargin( 11 );
 
   KONFIGURATOR_CHECKBOX_PARAM panelToolbarActiveCheckbox[] = 
-  //   cfg_class    cfg_name                default        text                             restart tooltip
-    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Show Panel Toolbar" ), false,  i18n( "The panel toolbar will be visible." ) }
+  //   cfg_class    cfg_name                default        text                          restart tooltip
+    {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Show Panel Toolbar" ), true,   i18n( "The panel toolbar will be visible." ) }
   };
 
   panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive");
@@ -214,7 +214,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
     };
   
   
-  pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes, 6,
+  pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes, 7,
                                        panelToolbarGrp, "panelToolbarChecks");
   
   panelToolbarVLayout->addWidget( panelToolbarActive, 0, 0 );
@@ -267,6 +267,7 @@ void KgLookFeel::slotEnablePanelToolbar()
   pnlcbs->find( "Up Button Visible"       )->setEnabled(enableTB);
   pnlcbs->find( "Equal Button Visible"    )->setEnabled(enableTB);
   pnlcbs->find( "Open Button Visible"     )->setEnabled(enableTB);  
+  pnlcbs->find("SyncBrowse Button Visible")->setEnabled(enableTB);  
 }
 
 void KgLookFeel::slotImportShortcuts() {
