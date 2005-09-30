@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-28 15:31+0200\n"
+"POT-Creation-Date: 2005-10-01 01:18+0200\n"
 "PO-Revision-Date: 2005-09-28 10:24+0200\n"
 "Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -589,7 +589,7 @@ msgstr " Preimenuj"
 msgid " Quit"
 msgstr " Izhod"
 
-#: VFS/ftp_vfs.cpp:137
+#: VFS/ftp_vfs.cpp:142
 #, c-format
 msgid ""
 "Malformed URL:\n"
@@ -598,7 +598,7 @@ msgstr ""
 "Nepravilni URL:\n"
 "%1"
 
-#: VFS/ftp_vfs.cpp:139
+#: VFS/ftp_vfs.cpp:144
 #, c-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -724,6 +724,38 @@ msgstr "Potrebujem geslo"
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Arhiv je zaščiten, vnesite geslo:"
 
+#: KrJS/krjs.cpp:65
+msgid ""
+"In %1:\n"
+"Uncaught JavaScript exception '%2'\n"
+"%3"
+msgstr ""
+"V %1:\n"
+"Neujeta napaka v JavaScriptu '%2'\n"
+"%3"
+
+#: KrJS/krjs.cpp:66
+msgid ""
+"In %1:\n"
+"Uncaught JavaScript exception '%2' at line %3\n"
+"%4"
+msgstr ""
+"V %1:\n"
+"Neujeta napaka v JavaScriptu '%2' v vrstici %3\n"
+"%4"
+
+#: KrJS/krjs.cpp:68 KrJS/krjs.cpp:73
+msgid "JavaScript error"
+msgstr "JavaScript: napaka"
+
+#: KrJS/krjs.cpp:72
+msgid ""
+"In %1:\n"
+"There is an error in the JavaScript"
+msgstr ""
+"V %1:\n"
+"je napaka v JavaScriptu"
+
 #: Filter/filtertabs.cpp:44
 msgid "&General"
 msgstr "&Splošno"
@@ -779,7 +811,7 @@ msgstr "Upravljavec &Profilov"
 msgid "&Load"
 msgstr "&Naloži"
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:721
+#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:723
 msgid "&Overwrite"
 msgstr "&Prepiši"
 
@@ -1193,37 +1225,23 @@ msgstr ""
 "Določi spremenljivke za izvajanje (izborno).\n"
 "npr. \"return=cmd;foo=bar\", več o tem v dokumentaciji"
 
-#: UserAction/expander.cpp:795
-msgid ""
-"In %1:\n"
-"Uncaught JavaScript exception '%2'\n"
-"%3"
+#: UserAction/expander.cpp:774
+msgid "View a file with Krusader's internal viewer"
 msgstr ""
-"V %1:\n"
-"Neujeta napaka v JavaScriptu '%2'\n"
-"%3"
 
-#: UserAction/expander.cpp:796
-msgid ""
-"In %1:\n"
-"Uncaught JavaScript exception '%2' at line %3\n"
-"%4"
+#: UserAction/expander.cpp:777
+msgid "Which file to view (normaly '%aCurrent%')"
 msgstr ""
-"V %1:\n"
-"Neujeta napaka v JavaScriptu '%2' v vrstici %3\n"
-"%4"
 
-#: UserAction/expander.cpp:798 UserAction/expander.cpp:803
-msgid "JavaScript error"
-msgstr "JavaScript: napaka"
+#: UserAction/expander.cpp:778
+#, fuzzy
+msgid "Choose a view-mode"
+msgstr "Izberi profil"
 
-#: UserAction/expander.cpp:802
-msgid ""
-"In %1:\n"
-"There is an error in the JavaScript"
-msgstr ""
-"V %1:\n"
-"je napaka v JavaScriptu"
+#: UserAction/expander.cpp:781
+#, fuzzy
+msgid "Choose a window-mode"
+msgstr "Izberi stolpec"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:105
 #: Synchronizer/synchronizedialog.cpp:116
@@ -1449,7 +1467,7 @@ msgstr "rwx"
 msgid "Owner"
 msgstr "Lastnik"
 
-#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:280
+#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:275
 #: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1238
 msgid "Group"
 msgstr "Skupina"
@@ -1474,19 +1492,19 @@ msgstr "(napačna povezava!)"
 msgid "%1 (Link)"
 msgstr "%1 (povezava)"
 
-#: Panel/krview.cpp:160
+#: Panel/krview.cpp:155
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 od %2, %3 (%4) od %5 (%6)"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:309
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:304
 msgid "Rename"
 msgstr "Preimenuj"
 
-#: Panel/krview.cpp:309
+#: Panel/krview.cpp:304
 msgid "Rename "
 msgstr "Preimenuj"
 
-#: Panel/krview.cpp:309
+#: Panel/krview.cpp:304
 msgid " to:"
 msgstr " v:"
 
@@ -1572,9 +1590,9 @@ msgid "Total occupied space: %1"
 msgstr "Skupna zasedenost prostora: %1"
 
 #: Panel/krcalcspacedialog.cpp:151
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"_n: in 1 directory\n"
+"_n: in %n directory\n"
 "in %n directories"
 msgstr ""
 "v %n mapah\n"
@@ -1583,9 +1601,9 @@ msgstr ""
 "v %n mapah"
 
 #: Panel/krcalcspacedialog.cpp:153
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"_n: and 1 file\n"
+"_n: and %n file\n"
 "and %n files"
 msgstr ""
 "in %n datotekah\n"
@@ -1725,80 +1743,80 @@ msgstr "Res želite razcefrati datoteke "
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr " ? Po cefranju datotek ni več mogoče povrniti!"
 
-#: KViewer/krviewer.cpp:166 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:347
+#: KViewer/krviewer.cpp:166 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:348
 #: krslots.cpp:441
 msgid "Can't open "
 msgstr "Ne morem odpreti"
 
-#: Panel/panelfunc.cpp:237
+#: Panel/panelfunc.cpp:238
 msgid "You can edit links only on local file systems"
 msgstr "Povezave lahko urejate samo na lokalnem sistemu "
 
-#: Panel/panelfunc.cpp:248
+#: Panel/panelfunc.cpp:249
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Izbrana datoteka ni povezava, zato je ne morem preusmeriti."
 
-#: Panel/panelfunc.cpp:255
+#: Panel/panelfunc.cpp:256
 msgid "Link Redirection"
 msgstr "Preusmeritev povezave"
 
-#: Panel/panelfunc.cpp:256
+#: Panel/panelfunc.cpp:257
 msgid "Please enter the new link destination:"
 msgstr "Vnesi nov cilj povezave:"
 
-#: Panel/panelfunc.cpp:263
+#: Panel/panelfunc.cpp:264
 msgid "Can't remove old link: "
 msgstr "Ne morem odstraniti stare povezave:"
 
-#: Panel/panelfunc.cpp:268 Panel/panelfunc.cpp:308
+#: Panel/panelfunc.cpp:269 Panel/panelfunc.cpp:309
 msgid "Failed to create a new link: "
 msgstr "Napaka pri postavitvi nove povezave:"
 
-#: Panel/panelfunc.cpp:275
+#: Panel/panelfunc.cpp:276
 msgid "You can create links only on local file systems"
 msgstr "Povezavo lahko ustvarim samo na lokalnem sistemu "
 
-#: Panel/panelfunc.cpp:284
+#: Panel/panelfunc.cpp:285
 msgid "New link"
 msgstr "Nova simbolična povezava"
 
-#: Panel/panelfunc.cpp:284
+#: Panel/panelfunc.cpp:285
 msgid "Create a new link to: "
 msgstr "Kreiraj novo povezavo v:"
 
-#: Panel/panelfunc.cpp:292 Panel/panelfunc.cpp:469
+#: Panel/panelfunc.cpp:293 Panel/panelfunc.cpp:470
 msgid "A directory or a file with this name already exists."
 msgstr "Mapa ali datoteka s tem imenom že obstaja."
 
-#: Panel/panelfunc.cpp:304
+#: Panel/panelfunc.cpp:305
 msgid "Failed to create a new symlink: "
 msgstr "Napaka pri ustvarjanju simbolične povezave: "
 
-#: Panel/panelfunc.cpp:305 Panel/panelfunc.cpp:309
+#: Panel/panelfunc.cpp:306 Panel/panelfunc.cpp:310
 msgid " To: "
 msgstr " V:"
 
-#: Panel/panelfunc.cpp:323
+#: Panel/panelfunc.cpp:324
 msgid "No permissions to view this file."
 msgstr "Nimam dovoljenja za pregled te datoteke."
 
-#: Panel/panelfunc.cpp:358
+#: Panel/panelfunc.cpp:359
 msgid "You can't edit a directory"
 msgstr "Urejanje mape ni mogoče "
 
-#: Panel/panelfunc.cpp:363
+#: Panel/panelfunc.cpp:364
 msgid "No permissions to edit this file."
 msgstr "Nimam dovoljenja za urejanje te datoteke."
 
-#: Panel/panelfunc.cpp:382
+#: Panel/panelfunc.cpp:383
 msgid "Moving into archive is disabled"
 msgstr "Premikanje v arhiv je onemogočeno"
 
-#: Panel/panelfunc.cpp:392
+#: Panel/panelfunc.cpp:393
 msgid "Move %1 to:"
 msgstr "Premakni %1 v:"
 
-#: Panel/panelfunc.cpp:394
+#: Panel/panelfunc.cpp:395
 #, fuzzy, c-format
 msgid ""
 "_n: Move %n file to:\n"
@@ -1809,23 +1827,23 @@ msgstr ""
 "Premakni %n datoteki\n"
 "Premakni %n datoteke"
 
-#: Panel/panelfunc.cpp:430
+#: Panel/panelfunc.cpp:431
 msgid "You can't move files to this file system"
 msgstr "Prestavljanje datotek na ta datotečni sistem ni mogoče"
 
-#: Panel/panelfunc.cpp:456
+#: Panel/panelfunc.cpp:457
 msgid "New directory"
 msgstr "Nova mapa"
 
-#: Panel/panelfunc.cpp:456
+#: Panel/panelfunc.cpp:457
 msgid "Directory's name:"
 msgstr "Ime mape:"
 
-#: Panel/panelfunc.cpp:504
+#: Panel/panelfunc.cpp:505
 msgid "Copy %1 to:"
 msgstr "Kopiraj %1 v:"
 
-#: Panel/panelfunc.cpp:506
+#: Panel/panelfunc.cpp:507
 #, fuzzy, c-format
 msgid ""
 "_n: Copy %n file to:\n"
@@ -1836,15 +1854,15 @@ msgstr ""
 "Kopiraj %n datoteki\n"
 "Kopiraj %n datoteke"
 
-#: Panel/panelfunc.cpp:534
+#: Panel/panelfunc.cpp:535
 msgid "You can't copy files to this file system"
 msgstr "Kopiranje datotek v ta datotečni sistem ni mogoče."
 
-#: Panel/panelfunc.cpp:545
+#: Panel/panelfunc.cpp:546
 msgid "You do not have write permission to this directory"
 msgstr "Nimam dovoljenja za pisanje v to mapo "
 
-#: Panel/panelfunc.cpp:563
+#: Panel/panelfunc.cpp:564
 #, c-format
 msgid ""
 "_n: Do you really want to move this item to the trash?\n"
@@ -1855,11 +1873,11 @@ msgstr ""
 "Zares želiš premakniti %n datoteki v koš?\n"
 "Zares želiš premakniti %n datoteke v koš?"
 
-#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:564
+#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:565
 msgid "&Trash"
 msgstr "&Smeti"
 
-#: Panel/panelfunc.cpp:566
+#: Panel/panelfunc.cpp:567
 #, c-format
 msgid ""
 "_n: Do you really want to delete this item?\n"
@@ -1871,20 +1889,20 @@ msgstr ""
 "Zares želiš izbrisati %n datoteke?"
 
 #: DiskUsage/diskusage.cpp:566 DiskUsage/radialMap/widgetEvents.cpp:172
-#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:567
+#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:568
 msgid "&Delete"
 msgstr "&Izbriši"
 
 #: Dialogs/checksumdlg.cpp:492 DiskUsage/diskusage.cpp:574
-#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:573 krusader.cpp:701
+#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:574 krusader.cpp:701
 msgid "Warning"
 msgstr "Opozorilo"
 
-#: Panel/panelfunc.cpp:591
+#: Panel/panelfunc.cpp:592
 msgid "Directory "
 msgstr "Mapa"
 
-#: Panel/panelfunc.cpp:591
+#: Panel/panelfunc.cpp:592
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
@@ -1892,27 +1910,27 @@ msgstr ""
 " ni prazen!\n"
 "Preskoči tega ali izbriši vse?"
 
-#: Panel/panelfunc.cpp:592
+#: Panel/panelfunc.cpp:593
 msgid "&Skip"
 msgstr "&Preskoči"
 
-#: Panel/panelfunc.cpp:592
+#: Panel/panelfunc.cpp:593
 msgid "&Delete All"
 msgstr "&Izbriši vse"
 
-#: Panel/panelfunc.cpp:702
+#: Panel/panelfunc.cpp:704
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Ne morem stisniti datotek na virtualni cilj!"
 
-#: Panel/panelfunc.cpp:714
+#: Panel/panelfunc.cpp:716
 msgid "The Archive "
 msgstr "Arhiv"
 
-#: Panel/panelfunc.cpp:715
+#: Panel/panelfunc.cpp:717
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " že obstaja. Naj arhiv prepišem?\n"
 
-#: Panel/panelfunc.cpp:717
+#: Panel/panelfunc.cpp:719
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -1920,32 +1938,32 @@ msgstr ""
 "(ZIP bo zamenjal enaka imena vnosov v zip arhivu ali pa dodal vnose za nova "
 "imena)"
 
-#: Panel/panelfunc.cpp:726
+#: Panel/panelfunc.cpp:728
 msgid "Counting files to pack"
 msgstr "Preštevanje datotek za stiskanje"
 
-#: Panel/panelfunc.cpp:787 Panel/panelfunc.cpp:842 krslots.cpp:190
+#: Panel/panelfunc.cpp:789 Panel/panelfunc.cpp:844 krslots.cpp:190
 #: krslots.cpp:196
 msgid "Krusader is unable to download: "
 msgstr "Krusader ne more pretočiti: "
 
-#: Panel/panelfunc.cpp:795
+#: Panel/panelfunc.cpp:797
 msgid "%1, unknown archive type."
 msgstr "%1 je nepoznan tip arhiva"
 
-#: Panel/panelfunc.cpp:801
+#: Panel/panelfunc.cpp:803
 msgid "%1, test passed."
 msgstr "%1, test uspešen."
 
-#: Panel/panelfunc.cpp:803
+#: Panel/panelfunc.cpp:805
 msgid "%1, test failed!"
 msgstr "%1, napaka pri testu!"
 
-#: Panel/panelfunc.cpp:819
+#: Panel/panelfunc.cpp:821
 msgid "Unpack %1 to:"
 msgstr "Razširi %1 na:"
 
-#: Panel/panelfunc.cpp:821
+#: Panel/panelfunc.cpp:823
 #, fuzzy, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
@@ -1956,7 +1974,7 @@ msgstr ""
 "Razširi %n datoteki v:\n"
 "Razširi %n datoteke v:"
 
-#: Panel/panelfunc.cpp:868
+#: Panel/panelfunc.cpp:870
 msgid "%1, unknown archive type"
 msgstr "%1, nepoznan tip arhiva"
 
@@ -2392,7 +2410,7 @@ msgstr "F9 - Preimenuj"
 msgid "F10 - Quit"
 msgstr "F10 - Izhod"
 
-#: BookMan/krbookmarkhandler.cpp:288 krusader.cpp:647
+#: BookMan/krbookmarkhandler.cpp:267 krusader.cpp:647
 msgid "Popular URLs"
 msgstr "Popularni URL-ji"
 
@@ -2596,11 +2614,11 @@ msgstr "izgleda da ni prava datoteka z zaznamki"
 msgid "Error reading bookmarks file: "
 msgstr "Napaka pri branju zaznamkov: "
 
-#: BookMan/krbookmarkhandler.cpp:318
+#: BookMan/krbookmarkhandler.cpp:308
 msgid "Bookmark Current"
 msgstr "Trenutni zaznamek"
 
-#: BookMan/krbookmarkhandler.cpp:320
+#: BookMan/krbookmarkhandler.cpp:310
 msgid "Manage Bookmarks"
 msgstr "Uredi zaznamke"
 
@@ -3666,12 +3684,12 @@ msgid "Start"
 msgstr "Začetek"
 
 #: Synchronizer/synchronizedialog.cpp:113
-#: Synchronizer/synchronizedialog.cpp:185 Synchronizer/synchronizer.cpp:1232
-#: Synchronizer/synchronizer.cpp:1242
+#: Synchronizer/synchronizedialog.cpp:185 Synchronizer/synchronizer.cpp:1235
+#: Synchronizer/synchronizer.cpp:1245
 msgid "Pause"
 msgstr "Pavza"
 
-#: Synchronizer/synchronizedialog.cpp:193 Synchronizer/synchronizer.cpp:1244
+#: Synchronizer/synchronizedialog.cpp:193 Synchronizer/synchronizer.cpp:1247
 msgid "Resume"
 msgstr "Nadaljuj"
 
@@ -3684,7 +3702,7 @@ msgstr "Št. datoteke: %1"
 msgid "Error at opening URL:%1!"
 msgstr "Napaka pri odpiranju naslova: %1!"
 
-#: Synchronizer/synchronizer.cpp:279 Synchronizer/synchronizer.cpp:1091
+#: Synchronizer/synchronizer.cpp:279 Synchronizer/synchronizer.cpp:1094
 #, c-format
 msgid "Scanned directories:%1"
 msgstr "Skenirane mape: %1"
@@ -3701,23 +3719,23 @@ msgstr "Napaka pri kopiranju datoteke %1 v %2!"
 msgid "Error at deleting file %1!"
 msgstr "Napaka pri brisanju datoteke %1!"
 
-#: Synchronizer/synchronizer.cpp:1163
+#: Synchronizer/synchronizer.cpp:1166
 msgid "IO error at comparing file %1 with %2!"
 msgstr "IO napaka pri primerjvi datoteke %1 z %2!"
 
-#: Synchronizer/synchronizer.cpp:1192 Synchronizer/synchronizer.cpp:1203
+#: Synchronizer/synchronizer.cpp:1195 Synchronizer/synchronizer.cpp:1206
 msgid "Comparing file %1..."
 msgstr "Primerjam datoteko %1..."
 
-#: Synchronizer/synchronizer.cpp:1287
+#: Synchronizer/synchronizer.cpp:1290
 msgid "Krusader::Synchronizer"
 msgstr "Krusader:: Usklajevalnik map "
 
-#: Synchronizer/synchronizer.cpp:1288
+#: Synchronizer/synchronizer.cpp:1291
 msgid "Feeding the URLs to Kget"
 msgstr "Pošiljam naslove na Kget"
 
-#: Synchronizer/synchronizer.cpp:1337 krslots.cpp:115 krslots.cpp:207
+#: Synchronizer/synchronizer.cpp:1340 krslots.cpp:115 krslots.cpp:207
 msgid "Error executing "
 msgstr "Napaka pri izvedbi "
 
@@ -4043,11 +4061,11 @@ msgstr "Stiskalniki"
 msgid "Checksum Utilities"
 msgstr "Datoteka s kontrolnih vsotami:"
 
-#: Konfigurator/kgdependencies.cpp:135
+#: Konfigurator/kgdependencies.cpp:137
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "Pot %1 ni pravilna, ne najdem veljavne poti."
 
-#: Konfigurator/kgdependencies.cpp:138
+#: Konfigurator/kgdependencies.cpp:140
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "Pot %1 ni pravilna, uporabil bom %2."
 
@@ -4114,7 +4132,7 @@ msgstr ""
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr "rpm je najden, vendar manjka cpio, ki je potreben za razširjanje"
 
-#: Konfigurator/krresulttable.cpp:128 Konfigurator/krresulttable.cpp:282
+#: Konfigurator/krresulttable.cpp:128 Konfigurator/krresulttable.cpp:277
 msgid "Found"
 msgstr "Najdeno"
 
@@ -4130,38 +4148,38 @@ msgstr "Razširjanje"
 msgid "Note"
 msgstr "Opozorilo"
 
-#: Konfigurator/krresulttable.cpp:195 Konfigurator/krresulttable.cpp:209
-#: Konfigurator/krresulttable.cpp:361
+#: Konfigurator/krresulttable.cpp:190 Konfigurator/krresulttable.cpp:204
+#: Konfigurator/krresulttable.cpp:350
 msgid "enabled"
 msgstr "omogočeno"
 
-#: Konfigurator/krresulttable.cpp:198 Konfigurator/krresulttable.cpp:212
-#: Konfigurator/krresulttable.cpp:364
+#: Konfigurator/krresulttable.cpp:193 Konfigurator/krresulttable.cpp:207
+#: Konfigurator/krresulttable.cpp:353
 msgid "disabled"
 msgstr "onemogočeno"
 
-#: Konfigurator/krresulttable.cpp:275
+#: Konfigurator/krresulttable.cpp:270
 msgid "diff utility"
 msgstr "diff orodje"
 
-#: Konfigurator/krresulttable.cpp:276
+#: Konfigurator/krresulttable.cpp:271
 msgid "email client"
 msgstr "program za e-pošto"
 
-#: Konfigurator/krresulttable.cpp:277
+#: Konfigurator/krresulttable.cpp:272
 msgid "batch renamer"
 msgstr "serijski preimenovalec"
 
-#: Konfigurator/krresulttable.cpp:278
+#: Konfigurator/krresulttable.cpp:273
 #, fuzzy
 msgid "checksum utility"
 msgstr "orodje za kontrolne vsote "
 
-#: Konfigurator/krresulttable.cpp:281
+#: Konfigurator/krresulttable.cpp:276
 msgid "Tool"
 msgstr "Pripomoček"
 
-#: Konfigurator/krresulttable.cpp:283
+#: Konfigurator/krresulttable.cpp:278
 msgid "Status"
 msgstr "Status"
 
@@ -4540,11 +4558,11 @@ msgid ""
 "Each directory change in the panel is also performed in the other panel."
 msgstr "Vsaka sprememba mape se odraža v obeh oknih."
 
-#: Konfigurator/kglookfeel.cpp:276 Konfigurator/kglookfeel.cpp:293
+#: Konfigurator/kglookfeel.cpp:277 Konfigurator/kglookfeel.cpp:294
 msgid "Select a shortcuts file"
 msgstr "Označi bližnjice datotek"
 
-#: Konfigurator/kglookfeel.cpp:283
+#: Konfigurator/kglookfeel.cpp:284
 msgid ""
 "The following information was attached to the keymap. Are you sure you want "
 "to import this keymap ?"

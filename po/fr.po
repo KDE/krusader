@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-cvs\n"
 "Report-Msgid-Bugs-To: deschler@users.sourceforge.net\n"
-"POT-Creation-Date: 2005-09-30 13:03+0200\n"
+"POT-Creation-Date: 2005-10-01 01:18+0200\n"
 "PO-Revision-Date: 2005-09-30 07:37+0200\n"
 "Last-Translator: Guillerm David <dguillerm@gmail.com>\n"
 "Language-Team: French\n"
@@ -597,7 +597,7 @@ msgstr " Renommer"
 msgid " Quit"
 msgstr " Quitter"
 
-#: VFS/ftp_vfs.cpp:137
+#: VFS/ftp_vfs.cpp:142
 #, c-format
 msgid ""
 "Malformed URL:\n"
@@ -606,7 +606,7 @@ msgstr ""
 "URL mal formée :\n"
 "%1"
 
-#: VFS/ftp_vfs.cpp:139
+#: VFS/ftp_vfs.cpp:144
 #, c-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -734,6 +734,38 @@ msgstr "Mot de passe requis"
 msgid "This archive is encrypted, please supply the password:"
 msgstr "L'archive est protégée, veuillez entrez le mot de passe:"
 
+#: KrJS/krjs.cpp:65
+msgid ""
+"In %1:\n"
+"Uncaught JavaScript exception '%2'\n"
+"%3"
+msgstr ""
+"Dans %1:\n"
+"Exception Javascript '%2'\n"
+"%3"
+
+#: KrJS/krjs.cpp:66
+msgid ""
+"In %1:\n"
+"Uncaught JavaScript exception '%2' at line %3\n"
+"%4"
+msgstr ""
+"Dans %1:\n"
+"Eception JavaScript '%2' à la ligne %3\n"
+"%4"
+
+#: KrJS/krjs.cpp:68 KrJS/krjs.cpp:73
+msgid "JavaScript error"
+msgstr "Erreur Javascript"
+
+#: KrJS/krjs.cpp:72
+msgid ""
+"In %1:\n"
+"There is an error in the JavaScript"
+msgstr ""
+"Dans %1:\n"
+"Il y a une erreur Javascript"
+
 #: Filter/filtertabs.cpp:44
 msgid "&General"
 msgstr "&Général"
@@ -790,7 +822,7 @@ msgstr "Gestionnaire de &profils"
 msgid "&Load"
 msgstr "&Charger"
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:721
+#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:723
 msgid "&Overwrite"
 msgstr "É&craser"
 
@@ -1207,37 +1239,23 @@ msgstr ""
 "Définir des variables pour l'exécution (optionnel).\n"
 "ex. \"return=cmd;foo=bar\", consultez le manuel pour plus d'informations"
 
-#: UserAction/expander.cpp:795
-msgid ""
-"In %1:\n"
-"Uncaught JavaScript exception '%2'\n"
-"%3"
+#: UserAction/expander.cpp:774
+msgid "View a file with Krusader's internal viewer"
 msgstr ""
-"Dans %1:\n"
-"Exception Javascript '%2'\n"
-"%3"
 
-#: UserAction/expander.cpp:796
-msgid ""
-"In %1:\n"
-"Uncaught JavaScript exception '%2' at line %3\n"
-"%4"
+#: UserAction/expander.cpp:777
+msgid "Which file to view (normaly '%aCurrent%')"
 msgstr ""
-"Dans %1:\n"
-"Eception JavaScript '%2' à la ligne %3\n"
-"%4"
 
-#: UserAction/expander.cpp:798 UserAction/expander.cpp:803
-msgid "JavaScript error"
-msgstr "Erreur Javascript"
+#: UserAction/expander.cpp:778
+#, fuzzy
+msgid "Choose a view-mode"
+msgstr "Choisir un profil"
 
-#: UserAction/expander.cpp:802
-msgid ""
-"In %1:\n"
-"There is an error in the JavaScript"
-msgstr ""
-"Dans %1:\n"
-"Il y a une erreur Javascript"
+#: UserAction/expander.cpp:781
+#, fuzzy
+msgid "Choose a window-mode"
+msgstr "Choisir une colonne"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:105
 #: Synchronizer/synchronizedialog.cpp:116
@@ -1494,19 +1512,19 @@ msgstr "(lien rompu !)"
 msgid "%1 (Link)"
 msgstr "%1 (Lien)"
 
-#: Panel/krview.cpp:160
+#: Panel/krview.cpp:155
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 sur %2, %3 (%4) sur %5 (%6)"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:309
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:304
 msgid "Rename"
 msgstr "Renommer"
 
-#: Panel/krview.cpp:309
+#: Panel/krview.cpp:304
 msgid "Rename "
 msgstr "Renommer "
 
-#: Panel/krview.cpp:309
+#: Panel/krview.cpp:304
 msgid " to:"
 msgstr " vers:"
 
@@ -1744,82 +1762,82 @@ msgstr "Êtes-vous sûr de vouloir détruire"
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr " ? une fois coupé, le fichier est irrécupérable !!!"
 
-#: KViewer/krviewer.cpp:166 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:347
+#: KViewer/krviewer.cpp:166 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:348
 #: krslots.cpp:441
 msgid "Can't open "
 msgstr "Ouverture impossible"
 
-#: Panel/panelfunc.cpp:237
+#: Panel/panelfunc.cpp:238
 msgid "You can edit links only on local file systems"
 msgstr ""
 "Vous ne pouvez éditer de liens que dans les systèmes de fichiers locaux"
 
-#: Panel/panelfunc.cpp:248
+#: Panel/panelfunc.cpp:249
 msgid "The current file is not a link, so I can't redirect it."
 msgstr ""
 "Le fichier courant n'est pas un lien, alors la redirection est impossible."
 
-#: Panel/panelfunc.cpp:255
+#: Panel/panelfunc.cpp:256
 msgid "Link Redirection"
 msgstr "Redirection de lien"
 
-#: Panel/panelfunc.cpp:256
+#: Panel/panelfunc.cpp:257
 msgid "Please enter the new link destination:"
 msgstr "Entrez la nouvelle cible du lien:"
 
-#: Panel/panelfunc.cpp:263
+#: Panel/panelfunc.cpp:264
 msgid "Can't remove old link: "
 msgstr "Impossible d'effacer l'ancien lien: "
 
-#: Panel/panelfunc.cpp:268 Panel/panelfunc.cpp:308
+#: Panel/panelfunc.cpp:269 Panel/panelfunc.cpp:309
 msgid "Failed to create a new link: "
 msgstr "Impossible de créer un nouveau lien: "
 
-#: Panel/panelfunc.cpp:275
+#: Panel/panelfunc.cpp:276
 msgid "You can create links only on local file systems"
 msgstr "Vous ne pouvez créer de liens que dans les systèmes de fichiers locaux"
 
-#: Panel/panelfunc.cpp:284
+#: Panel/panelfunc.cpp:285
 msgid "New link"
 msgstr "Nouveau lien"
 
-#: Panel/panelfunc.cpp:284
+#: Panel/panelfunc.cpp:285
 msgid "Create a new link to: "
 msgstr "Créer un nouveau lien vers: "
 
-#: Panel/panelfunc.cpp:292 Panel/panelfunc.cpp:469
+#: Panel/panelfunc.cpp:293 Panel/panelfunc.cpp:470
 msgid "A directory or a file with this name already exists."
 msgstr "Un répertoire ou un fichier du même nom existe déjà."
 
-#: Panel/panelfunc.cpp:304
+#: Panel/panelfunc.cpp:305
 msgid "Failed to create a new symlink: "
 msgstr "Impossible de créer un nouveau lien symbolique: "
 
-#: Panel/panelfunc.cpp:305 Panel/panelfunc.cpp:309
+#: Panel/panelfunc.cpp:306 Panel/panelfunc.cpp:310
 msgid " To: "
 msgstr " Vers: "
 
-#: Panel/panelfunc.cpp:323
+#: Panel/panelfunc.cpp:324
 msgid "No permissions to view this file."
 msgstr "Pas de permissions pour afficher le fichier."
 
-#: Panel/panelfunc.cpp:358
+#: Panel/panelfunc.cpp:359
 msgid "You can't edit a directory"
 msgstr "Vous ne pouvez pas éditer un répertoire"
 
-#: Panel/panelfunc.cpp:363
+#: Panel/panelfunc.cpp:364
 msgid "No permissions to edit this file."
 msgstr "Pas de permissions pour éditer ce fichier."
 
-#: Panel/panelfunc.cpp:382
+#: Panel/panelfunc.cpp:383
 msgid "Moving into archive is disabled"
 msgstr "Le déplacement dans les archives est déactivé"
 
-#: Panel/panelfunc.cpp:392
+#: Panel/panelfunc.cpp:393
 msgid "Move %1 to:"
 msgstr "Déplacer %1 vers:"
 
-#: Panel/panelfunc.cpp:394
+#: Panel/panelfunc.cpp:395
 #, fuzzy, c-format
 msgid ""
 "_n: Move %n file to:\n"
@@ -1828,23 +1846,23 @@ msgstr ""
 "_n: %n fichier\n"
 "%n fichiers"
 
-#: Panel/panelfunc.cpp:430
+#: Panel/panelfunc.cpp:431
 msgid "You can't move files to this file system"
 msgstr "Vous ne pouvez pas déplacer de fichiers dans ce système de fichiers"
 
-#: Panel/panelfunc.cpp:456
+#: Panel/panelfunc.cpp:457
 msgid "New directory"
 msgstr "Nouveau répertoire"
 
-#: Panel/panelfunc.cpp:456
+#: Panel/panelfunc.cpp:457
 msgid "Directory's name:"
 msgstr "Nom du répertoire:"
 
-#: Panel/panelfunc.cpp:504
+#: Panel/panelfunc.cpp:505
 msgid "Copy %1 to:"
 msgstr "Copier %1 vers:"
 
-#: Panel/panelfunc.cpp:506
+#: Panel/panelfunc.cpp:507
 #, fuzzy, c-format
 msgid ""
 "_n: Copy %n file to:\n"
@@ -1853,15 +1871,15 @@ msgstr ""
 "_n: %n fichier\n"
 "%n fichiers"
 
-#: Panel/panelfunc.cpp:534
+#: Panel/panelfunc.cpp:535
 msgid "You can't copy files to this file system"
 msgstr "Vous ne pouvez pas copier de fichiers dans ce système de fichiers"
 
-#: Panel/panelfunc.cpp:545
+#: Panel/panelfunc.cpp:546
 msgid "You do not have write permission to this directory"
 msgstr "Vous n'avez pas la permission d'écriture dans ce répertoire"
 
-#: Panel/panelfunc.cpp:563
+#: Panel/panelfunc.cpp:564
 #, c-format
 msgid ""
 "_n: Do you really want to move this item to the trash?\n"
@@ -1870,11 +1888,11 @@ msgstr ""
 "_n: Voulez vous vraiment déplacer cet objet vers la poubelle?\n"
 "Voulez vous vraiment déplacer ces %n objets vers la poubelle?"
 
-#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:564
+#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:565
 msgid "&Trash"
 msgstr "&Corbeille"
 
-#: Panel/panelfunc.cpp:566
+#: Panel/panelfunc.cpp:567
 #, c-format
 msgid ""
 "_n: Do you really want to delete this item?\n"
@@ -1884,20 +1902,20 @@ msgstr ""
 "Voulez vous vraiment effacer ces %n objets?"
 
 #: DiskUsage/diskusage.cpp:566 DiskUsage/radialMap/widgetEvents.cpp:172
-#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:567
+#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:568
 msgid "&Delete"
 msgstr "&Supprimer"
 
 #: Dialogs/checksumdlg.cpp:492 DiskUsage/diskusage.cpp:574
-#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:573 krusader.cpp:701
+#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:574 krusader.cpp:701
 msgid "Warning"
 msgstr "Attention"
 
-#: Panel/panelfunc.cpp:591
+#: Panel/panelfunc.cpp:592
 msgid "Directory "
 msgstr "Répertoire "
 
-#: Panel/panelfunc.cpp:591
+#: Panel/panelfunc.cpp:592
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
@@ -1905,27 +1923,27 @@ msgstr ""
 " n'est pas vide !\n"
 "Ignorer ce répertoire ou tout supprimer?"
 
-#: Panel/panelfunc.cpp:592
+#: Panel/panelfunc.cpp:593
 msgid "&Skip"
 msgstr "&Ignorer"
 
-#: Panel/panelfunc.cpp:592
+#: Panel/panelfunc.cpp:593
 msgid "&Delete All"
 msgstr "&Tout supprimer"
 
-#: Panel/panelfunc.cpp:702
+#: Panel/panelfunc.cpp:704
 msgid "Cannot pack files onto a virtual destination!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:714
+#: Panel/panelfunc.cpp:716
 msgid "The Archive "
 msgstr "L'archive "
 
-#: Panel/panelfunc.cpp:715
+#: Panel/panelfunc.cpp:717
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " existe déjà. Voulez vous écraser l'archive ?\n"
 
-#: Panel/panelfunc.cpp:717
+#: Panel/panelfunc.cpp:719
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -1933,33 +1951,33 @@ msgstr ""
 "(ZIP va replacer les entrées identiques dans l'archive zip ou ajouter des "
 "entrées pour les nouveaux noms)"
 
-#: Panel/panelfunc.cpp:726
+#: Panel/panelfunc.cpp:728
 msgid "Counting files to pack"
 msgstr "Compte les fichiers à compresser"
 
-#: Panel/panelfunc.cpp:787 Panel/panelfunc.cpp:842 krslots.cpp:190
+#: Panel/panelfunc.cpp:789 Panel/panelfunc.cpp:844 krslots.cpp:190
 #: krslots.cpp:196
 msgid "Krusader is unable to download: "
 msgstr "Krusader ne peut pas télécharger: "
 
-#: Panel/panelfunc.cpp:795
+#: Panel/panelfunc.cpp:797
 msgid "%1, unknown archive type."
 msgstr "%1, type d'archive inconnu."
 
-#: Panel/panelfunc.cpp:801
+#: Panel/panelfunc.cpp:803
 msgid "%1, test passed."
 msgstr "%1, test réussi."
 
-#: Panel/panelfunc.cpp:803
+#: Panel/panelfunc.cpp:805
 msgid "%1, test failed!"
 msgstr "%1, échec du test!"
 
-#: Panel/panelfunc.cpp:819
+#: Panel/panelfunc.cpp:821
 #, fuzzy
 msgid "Unpack %1 to:"
 msgstr "Décompresser "
 
-#: Panel/panelfunc.cpp:821
+#: Panel/panelfunc.cpp:823
 #, fuzzy, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
@@ -1968,7 +1986,7 @@ msgstr ""
 "_n: %n fichier\n"
 "%n fichiers"
 
-#: Panel/panelfunc.cpp:868
+#: Panel/panelfunc.cpp:870
 msgid "%1, unknown archive type"
 msgstr "%1, type d'archive inconnu"
 
@@ -3711,12 +3729,12 @@ msgid "Start"
 msgstr "Démarrer"
 
 #: Synchronizer/synchronizedialog.cpp:113
-#: Synchronizer/synchronizedialog.cpp:185 Synchronizer/synchronizer.cpp:1232
-#: Synchronizer/synchronizer.cpp:1242
+#: Synchronizer/synchronizedialog.cpp:185 Synchronizer/synchronizer.cpp:1235
+#: Synchronizer/synchronizer.cpp:1245
 msgid "Pause"
 msgstr "Pause"
 
-#: Synchronizer/synchronizedialog.cpp:193 Synchronizer/synchronizer.cpp:1244
+#: Synchronizer/synchronizedialog.cpp:193 Synchronizer/synchronizer.cpp:1247
 msgid "Resume"
 msgstr "Renommer"
 
@@ -3729,7 +3747,7 @@ msgstr "fichier numéro: %1"
 msgid "Error at opening URL:%1!"
 msgstr "Erreur à l'ouverture de l'URL: %1 !"
 
-#: Synchronizer/synchronizer.cpp:279 Synchronizer/synchronizer.cpp:1091
+#: Synchronizer/synchronizer.cpp:279 Synchronizer/synchronizer.cpp:1094
 #, c-format
 msgid "Scanned directories:%1"
 msgstr "Répertoires parcourus : %1"
@@ -3746,23 +3764,23 @@ msgstr "Erreur lors de la copie du fichier %1 vers %2!"
 msgid "Error at deleting file %1!"
 msgstr "Erreur lors de la suppression du fichier %1!"
 
-#: Synchronizer/synchronizer.cpp:1163
+#: Synchronizer/synchronizer.cpp:1166
 msgid "IO error at comparing file %1 with %2!"
 msgstr "Erreur d'E/S lors de la comparaison du fichier %1 avec %2!"
 
-#: Synchronizer/synchronizer.cpp:1192 Synchronizer/synchronizer.cpp:1203
+#: Synchronizer/synchronizer.cpp:1195 Synchronizer/synchronizer.cpp:1206
 msgid "Comparing file %1..."
 msgstr "Comparaison du fichier %1..."
 
-#: Synchronizer/synchronizer.cpp:1287
+#: Synchronizer/synchronizer.cpp:1290
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Synchroniser"
 
-#: Synchronizer/synchronizer.cpp:1288
+#: Synchronizer/synchronizer.cpp:1291
 msgid "Feeding the URLs to Kget"
 msgstr "Envoi des URLS vers Kget"
 
-#: Synchronizer/synchronizer.cpp:1337 krslots.cpp:115 krslots.cpp:207
+#: Synchronizer/synchronizer.cpp:1340 krslots.cpp:115 krslots.cpp:207
 msgid "Error executing "
 msgstr "Erreur d'exécution "
 
@@ -4613,11 +4631,11 @@ msgstr ""
 "Chaque changement de répertoire fait dans un panneau se fait aussi dans "
 "l'autre panneau."
 
-#: Konfigurator/kglookfeel.cpp:276 Konfigurator/kglookfeel.cpp:293
+#: Konfigurator/kglookfeel.cpp:277 Konfigurator/kglookfeel.cpp:294
 msgid "Select a shortcuts file"
 msgstr "Sélectionner un fichier de raccourci"
 
-#: Konfigurator/kglookfeel.cpp:283
+#: Konfigurator/kglookfeel.cpp:284
 msgid ""
 "The following information was attached to the keymap. Are you sure you want "
 "to import this keymap ?"
