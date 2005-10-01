@@ -5,6 +5,8 @@ Download it, play with it, push it to the limit, break it if you can,
 and then tell us what you found! 
 
 IMPORTANT: Please remove your ~/.kde/share/apps/krusader/krusaderui.rc file after installation!!!
+(Else you won't see new menu entries. But please note: This will also reset all your changes on
+toolbars and shortcuts!)
 
 Krusader v1.70.0 contains over 40 changes, bug fixes and updates in
 response to reports and requests from our users.
@@ -18,7 +20,9 @@ New Modules/Features
   the text in the url bar to see this new feature in action
 * checksum creation/verification mechanism that supports
   md5, sha1, sha256, tiger, whirlpool. external supported tools are md5deep and cfv.
-* editor/viewer is now tabbed. try it and see.
+* editor/viewer is now tabbed and a new placeholder for the UserActions
+  allows to open the viewer with different view- and window-modes:
+  %_View("filename", "view-mode", "window-mode")%
 * filters for selecting files - click "select files" to see how
 * column types can be changed and saved individually to each panel (each side).
   right click on the column names to use this mechanism
@@ -52,6 +56,7 @@ Usability
 * Right-click menu now has a "Create new" submenu
 * New "clear location bar" button, a-la Konqueror
 * Krusader's icon is set according to user's priveldges
+
 
 Translations
 ------------
@@ -296,7 +301,7 @@ known as the Krusader Krew:
   [ckarai {*} users {.} sourceforge {.} net]
 - Heiner Eichmann, developer
   [h.eichmann {*} gmx {.} de]
-- Jonas Baer, developer
+- Jonas Baehr, developer
   [jonas {.} baehr {*} users {.} web {.} de]
 - Frank Schoolmeesters, documentation and marketing coordinator
   [frank_schoolmeesters {*} yahoo {.} com]
