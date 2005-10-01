@@ -4,28 +4,59 @@ This is the first beta in the 1.70.x series.
 Download it, play with it, push it to the limit, break it if you can,
 and then tell us what you found! 
 
+IMPORTANT: Please remove your ~/.kde/share/apps/krusader/krusaderui.rc file after installation!!!
+
 Krusader v1.70.0 contains over 40 changes, bug fixes and updates in
 response to reports and requests from our users.
 The highlights are:
-* checksum creation/verification mechanism that supports
-  md5, sha1, sha256, tiger, whirlpool, md5deep
-* editor/viewer tabs
-* improved performance when reading directories with many files 
-* Nicer application search results
-* i18n multiple plural support
-* right click menu -> trash, delete, shred options
-* column types can be changed and saved individually to each panel (each side)
-* select remote encoding menu for fish, ftp and sftp protocols
-* permissions column as octal numbers
-* calculate space in archives and remote FS (KDE >= 3.3.0) 
-* preserve date for local targets at copy / move
-* synchronize selected files
-* starting more tabs with --left=tab1,tab2,tab3 --right=tab4,tab5
-* A Safari-like Jump-Back feature (Ctrl-J and in the bookmark-menu)
-* filters for selecting files
+
+New Modules/Features
+--------------------
 * New zip/tar slave - based on KDE's but support writing to archive
+* A Safari-like Jump-Back feature (Ctrl-J and in the bookmark-menu)
+* Quick Navigation: hold the CTRL button and move the mouse over 
+  the text in the url bar to see this new feature in action
+* checksum creation/verification mechanism that supports
+  md5, sha1, sha256, tiger, whirlpool. external supported tools are md5deep and cfv.
+* editor/viewer is now tabbed. try it and see.
+* filters for selecting files - click "select files" to see how
+* column types can be changed and saved individually to each panel (each side).
+  right click on the column names to use this mechanism
+* When searching for text inside files, the result will display the line
+  in which the requested was found.
+* select remote encoding menu for fish, ftp and sftp protocols.
+  Accessible via a new subemenu in the Command menu.
+* One can now Synchronize selected files, via right-click menu
+
+Improvements
+------------
+* Synchronizer is now in color !
+* calculate space in archives and remote FS (KDE >= 3.3.0) 
+* improved performance when reading directories with many files 
+* new permissions column as octal numbers
+* preserve date for local targets on copy / move operations
+* starting krusader with more tabs, using --left=tab1,tab2,tab3 --right=tab4,tab5
 * Use WhatsThis in favour of tooltips where reasonable
 and more ...
+
+
+Usability
+---------
+* Ctrl-L goes to the location bar (url bar), as in konqueror and firefox
+* Ctrl-Alt-ENTER opens the selected folder in a new tab
+* Alt-Ctrl-S creates a new symlink
+* Ctrl-H opens the history list on the current panel (much like ctrl-d)
+* When starting krusader for the first time, auto detection of tools is
+  displayed in a more coherent and good looking way
+* Trash, delete and shred options are added directly into the right click menu
+* Right-click menu now has a "Create new" submenu
+* New "clear location bar" button, a-la Konqueror
+* Krusader's icon is set according to user's priveldges
+
+Translations
+------------
+* Many new and updated :-)
+* i18n multiple plural support
 
 enjoy!
   Krusader Krew
