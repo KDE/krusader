@@ -56,6 +56,8 @@ public slots:
 	void tabChanged(QWidget* w);
 	void tabCloseRequest(QWidget *w);
 	void tabCloseRequest();
+	
+	void checkModified();
 
 protected:
 	virtual bool queryClose();

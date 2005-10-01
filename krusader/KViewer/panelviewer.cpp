@@ -291,4 +291,8 @@ void PanelEditor::slotStatResult( KIO::Job* job ) {
   busy = false;
 }
 
+bool PanelEditor::isModified(){
+	return static_cast<KParts::ReadWritePart *>(cpart)->isModified();
+}
+
 #include "panelviewer.moc"

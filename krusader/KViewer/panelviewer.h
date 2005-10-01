@@ -21,6 +21,7 @@ public:
 	virtual ~PanelViewerBase();
 	inline KURL url() const { return curl; }
 	inline KParts::ReadOnlyPart* part() const { return cpart; }
+	virtual bool isModified() { return false; }
 
 public slots:
 	virtual KParts::ReadOnlyPart* openURL( const KURL&, KrViewer::Mode=KrViewer::Generic ){ return 0;} 
@@ -57,6 +58,9 @@ protected:
 
 class PanelEditor: public PanelViewerBase {
 	Q_OBJECT
+public:
+	virtual bool isModified();
+
 public slots:
 	KParts::ReadOnlyPart* openURL( const KURL &url, KrViewer::Mode mode=KrViewer::Generic );
 	bool closeURL();

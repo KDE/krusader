@@ -18,6 +18,7 @@
 #include <qdatastream.h>
 #include <qfile.h>
 #include <qpopupmenu.h> 
+#include <qtimer.h>
 // KDE includes
 #include <kmenubar.h>
 #include <kmimetype.h>
@@ -92,6 +93,8 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	//toolBar() ->insertLined("Edit:",1,"",this,"",true ,i18n("Enter an URL to edit and press enter"));
 	
 	tabBar.setHoverCloseButton(true);
+
+	checkModified();
 }
 
 KrViewer::~KrViewer() {
@@ -267,6 +270,31 @@ void KrViewer::editText(){
 	addTab(editWidget,QString("Editing"),part);
 }
 
+void KrViewer::checkModified(){
+	QTimer::singleShot( 1000, this, SLOT(checkModified()) );
+
+	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	if( !pvb ) return;
+
+	// add a * to modified files.
+	if( pvb->isModified() ){
+		QString label = tabBar.tabLabel(pvb);
+		if( !label.endsWith("*)") ){
+			label.truncate(label.length()-1);
+			label.append("*)");
+			tabBar.setTabLabel(pvb,label);
+		}
+	}
+	// remove the * from previously modified files.
+	else {
+		QString label = tabBar.tabLabel(pvb);
+		if( label.endsWith("*)") ){
+			label.truncate(label.length()-2);
+			label.append(")");
+			tabBar.setTabLabel(pvb,label);
+		}		
+	}
+}
 
 #if 0
 bool KrViewer::editGeneric( QString mimetype, KURL _url ) {
