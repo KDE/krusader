@@ -3,7 +3,7 @@
 <KrusaderUserActions>
  <action name="sample_panesize" >
   <title>Equal panel-size</title>
-  <tooltip>sets the ratio between the two panels to 50/50</tooltip>
+  <tooltip>Sets the ratio between the two panels to 50/50</tooltip>
   <icon>view_left_right</icon>
   <category>Samples</category>
   <command>%aPanelSize(&quot;50&quot;)%</command>
@@ -36,10 +36,46 @@
   <defaultshortcut>Win+A</defaultshortcut>
  </action>
  <action name="filename_to_clipboard" >
-  <title>copy current item to clipboard</title>
+  <title>Copy current item to clipboard</title>
   <icon>editpaste</icon>
   <category>Samples</category>
   <command>%_Clipboard(&quot;%aCurrent%&quot;)%</command>
   <defaultshortcut>Alt+Ctrl+C</defaultshortcut>
+ </action>
+ <action name="sort_by_name" >
+  <title>Sort by Name</title>
+  <tooltip>Sort by Name</tooltip>
+  <icon>view_text</icon>
+  <category>User Interface</category>
+  <description>Sorts the active panel by Name</description>
+  <command>%aColSort(&quot;Name&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+1</defaultshortcut>
+ </action>
+ <action name="sort_by_extension" >
+  <title>Sort by Extension</title>
+  <tooltip>Sort by Extension</tooltip>
+  <icon>view_text</icon>
+  <category>User Interface</category>
+  <description>Sorts the active panel by Extension</description>
+  <command>%aColSort(&quot;Ext&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+2</defaultshortcut>
+ </action>
+ <action name="sort_by_size" >
+  <title>Sort by Size</title>
+  <tooltip>Sort by Size</tooltip>
+  <icon>view_text</icon>
+  <category>User Interface</category>
+  <description>Sorts the active panel by Size</description>
+  <command>%aColSort(&quot;Size&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+3</defaultshortcut>
+ </action>
+ <action name="sort_by_modified" >
+  <title>Sort by Modified</title>
+  <tooltip>Sort by Modified</tooltip>
+  <icon>view_text</icon>
+  <category>User Interface</category>
+  <description>Sorts the active panel by Modified</description>
+  <command>%aColSort(&quot;Modified&quot;)%</command>
+  <defaultshortcut>Alt+Ctrl+4</defaultshortcut>
  </action>
 </KrusaderUserActions>
