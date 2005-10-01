@@ -97,7 +97,7 @@ private:
   QWidget* resultTab;
   QGridLayout* resultLayout;
   QLabel* foundLabel;
-  KSqueezedTextLabel *foundTextLabel;
+  KrSqueezedTextLabel *foundTextLabel;
   KSqueezedTextLabel *searchingLabel;
   
   QListView* resultsList;

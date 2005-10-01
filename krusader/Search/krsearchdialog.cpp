@@ -187,7 +187,7 @@ KrSearchDialog::KrSearchDialog( QString profile, QWidget* parent,  const char* n
   l1->setText(i18n("Text found:"));
   foundTextLayout->addWidget( l1 );
 
-  foundTextLabel = new KSqueezedTextLabel(resultTab);
+  foundTextLabel = new KrSqueezedTextLabel(resultTab);
   foundTextLabel->setFrameShape( QLabel::StyledPanel );
   foundTextLabel->setFrameShadow( QLabel::Sunken );
   foundTextLabel->setText("");
@@ -404,8 +404,13 @@ void KrSearchDialog::resultDoubleClicked(QListViewItem* i) {
 
 void KrSearchDialog::resultClicked(QListViewItem* i) {
 	ResultListViewItem *it = dynamic_cast<ResultListViewItem*>(i);
-	if (!it->foundText().isEmpty())
-		foundTextLabel->setText(it->foundText());
+	if (!it->foundText().isEmpty()) {
+		// ugly hack: find the <b> and </b> in the text, then
+		// use it to set the are which we don't want squeezed
+		int idx = it->foundText().find("<b>")-4; // take "<qt>" into account
+		int length = it->foundText().find("</b>")-idx+4;
+		foundTextLabel->setText(it->foundText(), idx, length);
+	}
 }
 
 void KrSearchDialog::closeEvent(QCloseEvent *e)
