@@ -22,6 +22,7 @@
 #include "../Search/krsearchdialog.h"
 #include "../GUI/profilemanager.h"
 #include "../VFS/preservingcopyjob.h"
+#include "../KViewer/krviewer.h"
 
 #ifdef __KJSEMBED__
 #include "../KrJS/krjs.h"
@@ -797,7 +798,11 @@ QString exp_View::expFunc( const ListPanel*, const QStringList& parameter, const
    else
       windowMode = parameter[2];
 
+   KrViewer::Mode mode = KrViewer::Generic;
+   if( viewMode == "text" ) mode = KrViewer::Text;
+   else if( viewMode == "hex" ) mode = KrViewer::Hex;
 
+	KrViewer::view(parameter[0],mode,(windowMode == "window"));
    //TODO: Call the viewer with viewMode and windowMode. Filename is in parameter[0].
    // It would be nice if parameter[0] could also be a space-separated filename-list (provided if the first parameter is %aList(selected)%)
 
@@ -834,7 +839,7 @@ Expander::Expander() {
    #ifdef __KJSEMBED__
    addPlaceholder( new exp_Script() );
    #endif
-   //addPlaceholder( new exp_View() );
+   addPlaceholder( new exp_View() );
 //    addPlaceholder( new exp_Run() );
 }
 
