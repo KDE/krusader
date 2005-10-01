@@ -53,11 +53,11 @@ PanelViewerBase( parent ) {
 PanelViewer::~PanelViewer() {
 }
 
-KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, Mode mode ) {
+KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, KrViewer::Mode mode ) {
 	closeURL();
 	curl = url;
 
-	if( mode == Generic ){
+	if( mode == KrViewer::Generic ){
 		cmimetype = KMimeType::findByURL( curl ) ->name();
 		cpart = ( *mimes ) [ cmimetype ];
 		if ( !cpart ){
@@ -68,7 +68,7 @@ KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, Mode mode ) {
 
 	KTempFile tmpFile;
 
-	if( mode == Hex ){
+	if( mode == KrViewer::Hex ){
 		if ( !cpart ) cpart = getHexPart();
 		if ( !cpart ) oldHexViewer(tmpFile);
 	}
@@ -80,7 +80,10 @@ KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, Mode mode ) {
 		addWidget( cpart->widget() );
 		raiseWidget( cpart->widget() );
 	}
-	if ( cpart && cpart->openURL( curl ) ) return cpart;
+	if ( cpart && cpart->openURL( curl ) ){
+		curl = url; /* needed because of the oldHexViewer */
+		return cpart;
+	}
 	else {
 		raiseWidget( fallback );
 		return 0;
@@ -197,11 +200,11 @@ PanelEditor::~PanelEditor() {
 	static_cast<KParts::ReadWritePart *>(cpart)->queryClose();
 }
 
-KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url, Mode mode ) {
+KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url, KrViewer::Mode mode ) {
 	closeURL();
 	curl = url;
 
-	if( mode == Generic ){
+	if( mode == KrViewer::Generic ){
 		cmimetype = KMimeType::findByURL( curl ) ->name();
 		cpart = ( *mimes ) [ cmimetype ];
 		if ( !cpart ){ 

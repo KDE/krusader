@@ -10,19 +10,20 @@
 #include <qdict.h>
 #include <qlabel.h>
 
+#include "krviewer.h"
+
 
 class PanelViewerBase: public QWidgetStack {
 	Q_OBJECT
-public:
-	enum Mode{Generic,Text,Hex};
 
+public:
 	PanelViewerBase( QWidget *parent = 0 );
 	virtual ~PanelViewerBase();
 	inline KURL url() const { return curl; }
 	inline KParts::ReadOnlyPart* part() const { return cpart; }
 
 public slots:
-	virtual KParts::ReadOnlyPart* openURL( const KURL&, Mode=Generic ){ return 0;} 
+	virtual KParts::ReadOnlyPart* openURL( const KURL&, KrViewer::Mode=KrViewer::Generic ){ return 0;} 
 	virtual bool closeURL(){ return false; }
 
 signals:
@@ -41,7 +42,7 @@ protected:
 class PanelViewer: public PanelViewerBase {
 	Q_OBJECT
 public slots:
-	KParts::ReadOnlyPart* openURL( const KURL &url, Mode mode=Generic );
+	KParts::ReadOnlyPart* openURL( const KURL &url, KrViewer::Mode mode=KrViewer::Generic );
 	bool closeURL();
 
 public:
@@ -57,7 +58,7 @@ protected:
 class PanelEditor: public PanelViewerBase {
 	Q_OBJECT
 public slots:
-	KParts::ReadOnlyPart* openURL( const KURL &url, Mode mode=Generic );
+	KParts::ReadOnlyPart* openURL( const KURL &url, KrViewer::Mode mode=KrViewer::Generic );
 	bool closeURL();
 	void slotStatResult( KIO::Job* job );
 

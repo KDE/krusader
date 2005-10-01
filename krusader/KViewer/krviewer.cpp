@@ -99,7 +99,7 @@ KrViewer::~KrViewer() {
 	disconnect( &manager, SIGNAL( activePartChanged( KParts::Part* ) ),
 	            this, SLOT( createGUI( KParts::Part* ) ) );
 
-	viewer = NULL;
+	if( this == viewer ) viewer = NULL;
 }
 
 void KrViewer::createGUI( KParts::Part* part ) {
@@ -136,22 +136,31 @@ void KrViewer::keyPressEvent( QKeyEvent *e ) {
 	}
 }
 
-void KrViewer::view( KURL url ) {
-	if( !viewer ){	
-		viewer = new KrViewer( krApp );
+KrViewer* KrViewer::getViewer(bool new_window){
+	if( !new_window ){
+		if( !viewer ){	
+			viewer = new KrViewer( krApp );
+		}
+		else {
+			viewer->raise();
+			viewer->setActiveWindow();
+		}
+		return viewer;
 	}
-	else {
-		viewer->raise();
-		viewer->setActiveWindow();
-	}
+	else return new KrViewer( krApp );
+}	
+
+
+void KrViewer::view( KURL url, Mode mode,  bool new_window ) {
+	KrViewer* viewer = getViewer(new_window);
 
 	PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
-	KParts::Part* part = viewWidget->openURL(url);
+	KParts::Part* part = viewWidget->openURL(url,mode);
 	viewer->addTab(viewWidget,"Viewing",part);
 
 }
 
-void KrViewer::edit( KURL url ) {
+void KrViewer::edit( KURL url, Mode mode, bool new_window ) {
 	krConfig->setGroup( "General" );
 	QString edit = krConfig->readEntry( "Editor", _Editor );
 
@@ -167,16 +176,10 @@ void KrViewer::edit( KURL url ) {
 		return ;
 	}
 
-	if( !viewer ){	
-		viewer = new KrViewer( krApp );
-	}
-	else {
-		viewer->raise();
-		viewer->setActiveWindow();
-	}
+	KrViewer* viewer = getViewer(new_window);
 
 	PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
-	KParts::Part* part = editWidget->openURL(url,PanelViewerBase::Text);
+	KParts::Part* part = editWidget->openURL(url,mode);
 	viewer->addTab(editWidget,QString("Editing"),part);
 }
 
@@ -190,7 +193,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg ,KParts::Part* part){
 	manager.setActivePart( part );
 	tabBar.insertTab(pvb,icon,url.fileName()+"("+msg+")");	
 	tabBar.setCurrentPage(tabBar.indexOf(pvb));
-	viewer->tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
+	tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
 
 	viewerDict.insert( tabBar.currentPageIndex(),pvb );
 
@@ -211,8 +214,7 @@ void KrViewer::tabCloseRequest(QWidget *w){
 	viewerDict.remove(tabBar.indexOf(w));
 
 	if( tabBar.count() <= 0 ){
-		delete viewer;
-		viewer = 0;
+		delete this;
 	}
 }
 
@@ -234,8 +236,8 @@ void KrViewer::viewGeneric(){
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-	KParts::Part* part = viewerWidget->openURL(pvb->url(),PanelViewerBase::Generic);
-	viewer->addTab(viewerWidget,QString("Viewing"),part);
+	KParts::Part* part = viewerWidget->openURL(pvb->url(),Generic);
+	addTab(viewerWidget,QString("Viewing"),part);
 }
 
 void KrViewer::viewText(){
@@ -243,8 +245,8 @@ void KrViewer::viewText(){
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-	KParts::Part* part = viewerWidget->openURL(pvb->url(),PanelViewerBase::Text);
-	viewer->addTab(viewerWidget,QString("Viewing"),part);
+	KParts::Part* part = viewerWidget->openURL(pvb->url(),Text);
+	addTab(viewerWidget,QString("Viewing"),part);
 }
 
 void KrViewer::viewHex(){
@@ -252,8 +254,8 @@ void KrViewer::viewHex(){
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
-	KParts::Part* part = viewerWidget->openURL(pvb->url(),PanelViewerBase::Hex);
-	viewer->addTab(viewerWidget,QString("Viewing"),part);
+	KParts::Part* part = viewerWidget->openURL(pvb->url(),Hex);
+	addTab(viewerWidget,QString("Viewing"),part);
 }
 
 void KrViewer::editText(){
@@ -261,8 +263,8 @@ void KrViewer::editText(){
 	if( !pvb ) return;
 
 	PanelViewerBase* editWidget = new PanelEditor(&tabBar);
-	KParts::Part* part = editWidget->openURL(pvb->url(),PanelViewerBase::Text);
-	viewer->addTab(editWidget,QString("Editing"),part);
+	KParts::Part* part = editWidget->openURL(pvb->url(),Text);
+	addTab(editWidget,QString("Editing"),part);
 }
 
 

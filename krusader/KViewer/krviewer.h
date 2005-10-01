@@ -38,8 +38,10 @@ class PanelViewerBase;
 class KrViewer : public KParts::MainWindow {
 	Q_OBJECT
 public:
-	static void view( KURL url );
-	static void edit( KURL url );
+	enum Mode{Generic,Text,Hex};
+
+	static void view( KURL url, Mode mode=Generic, bool new_window=false );
+	static void edit( KURL url, Mode mode=Text, bool new_window=false  );
 
 
 public slots:
@@ -63,6 +65,7 @@ private:
 	KrViewer( QWidget *parent = 0, const char *name = 0 );
 	~KrViewer();
 	void addTab(PanelViewerBase* pvb, QString msg, KParts::Part* part);
+	static KrViewer* getViewer(bool new_window);	
 
 	KParts::PartManager manager;
 	QPopupMenu* viewerMenu;
