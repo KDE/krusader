@@ -66,14 +66,13 @@ protected:
 private:
 	KrViewer( QWidget *parent = 0, const char *name = 0 );
 	~KrViewer();
-	void addTab(PanelViewerBase* pvb, QString msg, KParts::Part* part);
+	void addTab(PanelViewerBase* pvb, QString msg,QString iconName, KParts::Part* part);
 	static KrViewer* getViewer(bool new_window);	
 
 	KParts::PartManager manager;
 	QPopupMenu* viewerMenu;
 	KTempFile tmpFile;
 	KTabWidget tabBar;
-	QIconSet icon;
 	QIntDict<PanelViewerBase> viewerDict;
 	int returnFocusToKrusader;
 

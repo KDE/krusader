@@ -45,6 +45,11 @@
 
 #include "panelviewer.h"
 
+#define VIEW_ICON     "viewmag"
+#define EDIT_ICON     "edit"
+#define MODIFIED_ICON "filesaveas"
+
+
 KrViewer* KrViewer::viewer = NULL;
 
 KrViewer::KrViewer( QWidget *parent, const char *name ) :
@@ -76,7 +81,8 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	connect( &tabBar, SIGNAL( closeRequest( QWidget *) ),
 	         this, SLOT( tabCloseRequest(QWidget*) ) );
 
-	icon = QIconSet(krLoader->loadIcon("view_detailed",KIcon::Small));
+//	"edit"
+//	"filesaveas"
 	viewerDict.setAutoDelete( true );
 	setCentralWidget( &tabBar );
 
@@ -159,7 +165,7 @@ void KrViewer::view( KURL url, Mode mode,  bool new_window ) {
 
 	PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
 	KParts::Part* part = viewWidget->openURL(url,mode);
-	viewer->addTab(viewWidget,"Viewing",part);
+	viewer->addTab(viewWidget,"Viewing",VIEW_ICON,part);
 
 	viewer->returnFocusToKrusader = 2;
 }
@@ -184,14 +190,16 @@ void KrViewer::edit( KURL url, Mode mode, bool new_window ) {
 
 	PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
 	KParts::Part* part = editWidget->openURL(url,mode);
-	viewer->addTab(editWidget,QString("Editing"),part);
+	viewer->addTab(editWidget,QString("Editing"),EDIT_ICON,part);
 }
 
-void KrViewer::addTab(PanelViewerBase* pvb, QString msg ,KParts::Part* part){
+void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KParts::Part* part){
 	if( !part ) return;
 
 	KURL url = pvb->url();
 	setCaption( msg+": " + url.prettyURL() );
+
+	QIconSet icon = QIconSet(krLoader->loadIcon(iconName,KIcon::Small));
 
 	manager.addPart( part, this );
 	manager.setActivePart( part );
@@ -247,7 +255,7 @@ void KrViewer::viewGeneric(){
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
 	KParts::Part* part = viewerWidget->openURL(pvb->url(),Generic);
-	addTab(viewerWidget,QString("Viewing"),part);
+	addTab(viewerWidget,QString("Viewing"),VIEW_ICON,part);
 }
 
 void KrViewer::viewText(){
@@ -256,7 +264,7 @@ void KrViewer::viewText(){
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
 	KParts::Part* part = viewerWidget->openURL(pvb->url(),Text);
-	addTab(viewerWidget,QString("Viewing"),part);
+	addTab(viewerWidget,QString("Viewing"),VIEW_ICON,part);
 }
 
 void KrViewer::viewHex(){
@@ -265,7 +273,7 @@ void KrViewer::viewHex(){
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
 	KParts::Part* part = viewerWidget->openURL(pvb->url(),Hex);
-	addTab(viewerWidget,QString("Viewing"),part);
+	addTab(viewerWidget,QString("Viewing"),VIEW_ICON,part);
 }
 
 void KrViewer::editText(){
@@ -274,7 +282,7 @@ void KrViewer::editText(){
 
 	PanelViewerBase* editWidget = new PanelEditor(&tabBar);
 	KParts::Part* part = editWidget->openURL(pvb->url(),Text);
-	addTab(editWidget,QString("Editing"),part);
+	addTab(editWidget,QString("Editing"),EDIT_ICON,part);
 }
 
 void KrViewer::checkModified(){
@@ -289,7 +297,9 @@ void KrViewer::checkModified(){
 		if( !label.endsWith("*)") ){
 			label.truncate(label.length()-1);
 			label.append("*)");
-			tabBar.setTabLabel(pvb,label);
+			QIconSet icon = QIconSet(krLoader->loadIcon(MODIFIED_ICON,KIcon::Small));
+
+			tabBar.changeTab(pvb,icon,label);
 		}
 	}
 	// remove the * from previously modified files.
@@ -298,7 +308,9 @@ void KrViewer::checkModified(){
 		if( label.endsWith("*)") ){
 			label.truncate(label.length()-2);
 			label.append(")");
-			tabBar.setTabLabel(pvb,label);
+			QIconSet icon = QIconSet(krLoader->loadIcon(MODIFIED_ICON,KIcon::Small));
+
+			tabBar.changeTab(pvb,icon,label);
 		}		
 	}
 }
