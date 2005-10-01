@@ -75,6 +75,7 @@ private:
 	KTabWidget tabBar;
 	QIconSet icon;
 	QIntDict<PanelViewerBase> viewerDict;
+	int returnFocusToKrusader;
 
 	static KrViewer* viewer;
 };

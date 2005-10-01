@@ -161,6 +161,7 @@ void KrViewer::view( KURL url, Mode mode,  bool new_window ) {
 	KParts::Part* part = viewWidget->openURL(url,mode);
 	viewer->addTab(viewWidget,"Viewing",part);
 
+	viewer->returnFocusToKrusader = 2;
 }
 
 void KrViewer::edit( KURL url, Mode mode, bool new_window ) {
@@ -206,6 +207,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg ,KParts::Part* part){
 
 void KrViewer::tabChanged(QWidget* w){
 	manager.setActivePart( static_cast<PanelViewerBase*>(w)->part() );
+	if( returnFocusToKrusader ) --returnFocusToKrusader;
 }
 
 void KrViewer::tabCloseRequest(QWidget *w){
@@ -218,6 +220,11 @@ void KrViewer::tabCloseRequest(QWidget *w){
 
 	if( tabBar.count() <= 0 ){
 		delete this;
+	}
+
+	if( returnFocusToKrusader ){ 
+		krApp->raise();
+		krApp->setActiveWindow();
 	}
 }
 
