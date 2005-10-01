@@ -127,6 +127,8 @@
 #define _NewStyleQuicksearch true 
 // Case Sensitive quick search, if _NewStyleQuicksearch is true
 #define _CaseSensitiveQuicksearch false
+// View In Separate Window
+#define _ViewInSeparateWindow		false
 
 /////////////////////// [Advanced]
 // Permission Check ///
