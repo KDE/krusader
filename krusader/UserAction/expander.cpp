@@ -775,7 +775,7 @@ exp_View::exp_View() {
    _description = i18n("View a file with Krusader's internal viewer");
    _needPanel = false;
 
-   addParameter( new exp_parameter( i18n("Which file to view (normaly '%aCurrent%')"), "__placeholder", true ) );
+   addParameter( new exp_parameter( i18n("Which file to view (normally '%aCurrent%')"), "__placeholder", true ) );
    addParameter( new exp_parameter( i18n("Choose a view-mode"), "__choose:generic;text;hex", false ) );
    //addParameter( new exp_parameter( i18n("Choose a window-mode"), "__choose:tab;window;panel", false ) );
    //TODO: window-mode 'panel' should open the file in the third-hand viewer
