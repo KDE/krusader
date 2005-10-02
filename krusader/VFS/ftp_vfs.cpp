@@ -105,11 +105,15 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 			temp = new vfile( name, size, perm, mtime, symLink, kfi.user(), kfi.group(), currentUser, mime, symDest, mode );
 		}
 
+#if KDE_IS_VERSION(3,4,0)
 		if( !kfi.localPath().isEmpty() ){
 			temp->vfile_setUrl( kfi.localPath() );
 		} else {
 			temp->vfile_setUrl( kfi.url() );
 		}
+#else
+		temp->vfile_setUrl( kfi.url() );
+#endif
 		temp->vfile_setIcon( kfi.iconName() );
 		addToList( temp );
 	}
