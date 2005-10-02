@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0-beta1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-10-02 13:12+0200\n"
-"PO-Revision-Date: 2005-10-01 13:45+0200\n"
+"PO-Revision-Date: 2005-10-02 17:54+0200\n"
 "Last-Translator: Vaclav Juza <vaclavjuza@seznam.cz>\n"
-"Language-Team: Czech\n"
+"Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -266,8 +266,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
+msgstr "<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
 
 #: GUI/actionpropertybase.cpp:412
 msgid "Tooltip:"
@@ -1229,7 +1228,6 @@ msgid "View a file with Krusader's internal viewer"
 msgstr "Zobrazit soubor se zabudovaným prohlížečem Krusaderu"
 
 #: UserAction/expander.cpp:778
-#, fuzzy
 msgid "Which file to view (normally '%aCurrent%')"
 msgstr "Který soubor zobrazit (normálně '%aCurrent%')"
 
@@ -2066,8 +2064,7 @@ msgstr "Zde můžete pojmenovat skupinu souborů"
 
 #: krusader.cpp:313
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
+msgstr "Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
 
 #: krusader.cpp:369
 msgid ""
@@ -2736,8 +2733,7 @@ msgstr ""
 "Volejte vývojáře (v angličtině samozřejmě :-)."
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správce připojení dospěl k vnitřní chybě. Upozorněte prosím vývojáře. "
 "(anglicky)Děkujeme."
@@ -3413,13 +3409,11 @@ msgstr "Filtr souborů"
 
 #: Synchronizer/synchronizergui.cpp:1077
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"Během synchronizačního procesu se použil základní adresář levého panelu."
+msgstr "Během synchronizačního procesu se použil základní adresář levého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1108
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"Během synchronizačního procesu se použil základní adresář pravého panelu."
+msgstr "Během synchronizačního procesu se použil základní adresář pravého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1114
 msgid "Recurse subdirectories"
@@ -3767,8 +3761,7 @@ msgstr "&Otevřít"
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!"
-msgstr ""
-"<qt>Adresář <i>'%1'</i> bude <b>i s obsahem</b> a <b>trvale</b> odstraněn!"
+msgstr "<qt>Adresář <i>'%1'</i> bude <b>i s obsahem</b> a <b>trvale</b> odstraněn!"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!"
@@ -4093,8 +4086,7 @@ msgstr "Používat magická čísla MIME typů"
 
 #: Konfigurator/kggeneral.cpp:66
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
+msgstr "Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
 
 #: Konfigurator/kggeneral.cpp:73
 msgid "Editor:"
@@ -4114,44 +4106,41 @@ msgstr "Terminál:"
 
 #: Konfigurator/kggeneral.cpp:93
 msgid "Default viewer mode:"
-msgstr ""
+msgstr "Výchozí režim prohlížeče:"
 
 #: Konfigurator/kggeneral.cpp:98
-#, fuzzy
 msgid "Generic mode"
-msgstr "&Všeobecné zobrazení"
+msgstr "Všeobecné zobrazení"
 
 #: Konfigurator/kggeneral.cpp:98
 msgid "Use the system's default viewer"
-msgstr ""
+msgstr "Použít výchozí prohlížeč v systému"
 
 #: Konfigurator/kggeneral.cpp:99
-#, fuzzy
 msgid "Text mode"
-msgstr "Nalezen text:"
+msgstr "Textové zobrazení"
 
 #: Konfigurator/kggeneral.cpp:99
 msgid "View the file in text-only mode"
-msgstr ""
+msgstr "Zobrazit soubor jen v textovém režimu"
 
 #: Konfigurator/kggeneral.cpp:100
-#, fuzzy
 msgid "Hex mode"
-msgstr "Režim porovnávání"
+msgstr "Hex (šestnáctkový) režim"
 
 #: Konfigurator/kggeneral.cpp:100
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
+msgstr "Zobrazit soubor v šestnáctkovém režimu (lepší pro binární soubory)"
 
 #: Konfigurator/kggeneral.cpp:106
 msgid "Viewer opens each file in a separate window"
-msgstr ""
+msgstr "Prohlížeč otevře každý soubor ve zvláštním okně"
 
 #: Konfigurator/kggeneral.cpp:107
 msgid ""
 "If checked, each file will open in a separate window, otherwise, the viewer "
 "will work in a single, tabbed mode"
-msgstr ""
+msgstr "Pokud je zaškrtnuto, každý soubor se otevře do nového okna. V opačném případě prohlížeč bude pracovat v jednom okně, v režimu záložek"
 
 #: Konfigurator/kggeneral.cpp:116
 msgid "Temp Directory:"
@@ -4166,8 +4155,7 @@ msgid "Searching for tools..."
 msgstr "Hledání nástrojů ..."
 
 #: Konfigurator/kggeneral.cpp:143
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové nástroje do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -4409,8 +4397,7 @@ msgid "Obey KDE's global selection policy"
 msgstr "Přizpůsobit se nastavení KDE"
 
 #: Konfigurator/kglookfeel.cpp:89
-msgid ""
-"Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
+msgid "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
 msgstr ""
 "Použije globální nastavení KDE:<p><i>Ovládací Centrum KDE (Kcontrol) -> "
 "Periférie -> Myš</i>"
@@ -4602,8 +4589,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Přepínací tlačítko pro synchronizované prohlížení"
 
 #: Konfigurator/kglookfeel.cpp:213
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Každá změna v jednom panelu se provede rovněž v protilehlém panelu."
 
 #: Konfigurator/kglookfeel.cpp:277 Konfigurator/kglookfeel.cpp:294
@@ -4644,8 +4630,7 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:58
 msgid "MountMan won't (un)mount the following mount-points:"
-msgstr ""
-"Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
+msgstr "Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
 
 #: Konfigurator/kgadvanced.cpp:72
 msgid "Confirmations"
@@ -5224,8 +5209,7 @@ msgid "Test archive before unpacking"
 msgstr "Zkontrolovat archív před rozbalením"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Některé poškozené archívy mohou způsobit spadnutí programu. Proto se "
 "doporučuje zapnout testování archívů."
@@ -5235,8 +5219,7 @@ msgid "Searching for packers..."
 msgstr "Hledání archivátorů..."
 
 #: Konfigurator/kgarchives.cpp:112
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové archivátory do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -5529,8 +5512,7 @@ msgid "Not a valid CRC file!"
 msgstr "Neplatný CRC soubor!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Kontrola platnosti je nemožná bez platného CRC (kontrolní součet) souboru. "
 "Pokračovat ve slučování?"
@@ -5570,3 +5552,4 @@ msgstr "Chyba při čtení souboru %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
+
