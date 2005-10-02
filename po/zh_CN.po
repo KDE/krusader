@@ -7,9 +7,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0-cvs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-01 01:18+0200\n"
+"Project-Id-Version: krusader-1.70.0-beta1\n"
+"Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
+"POT-Creation-Date: 2005-10-02 13:12+0200\n"
 "PO-Revision-Date: 2005-08-19 08:18+0800\n"
 "Last-Translator: Jinghua Luo <luojinghua@msn.com>\n"
 "Language-Team: Chinese Simplified\n"
@@ -470,7 +470,7 @@ msgstr ""
 "‘在终端中执行’按键允许 Krusader 在您选择的终端中执行控制台程序（非图形的）。"
 "如果您按下了这个按钮， 将会激活终端模式。"
 
-#: GUI/kcmdline.cpp:179
+#: GUI/kcmdline.cpp:182
 msgid "This terminal will close in 1 hour.."
 msgstr "终端将会在一小时之后关闭..."
 
@@ -1035,204 +1035,204 @@ msgstr ""
 "请重新输入日期，\n"
 "且最上面的必须早于最下面的日期。"
 
-#: UserAction/expander.cpp:69
+#: UserAction/expander.cpp:70
 msgid "panel's path"
 msgstr "面板路径"
 
-#: UserAction/expander.cpp:72 UserAction/expander.cpp:134
-#: UserAction/expander.cpp:168 UserAction/expander.cpp:237
-#: UserAction/expander.cpp:537
+#: UserAction/expander.cpp:73 UserAction/expander.cpp:135
+#: UserAction/expander.cpp:169 UserAction/expander.cpp:238
+#: UserAction/expander.cpp:538
 msgid "Automatic escape spaces"
 msgstr "自动过滤空格"
 
-#: UserAction/expander.cpp:92
+#: UserAction/expander.cpp:93
 msgid "number of ..."
 msgstr "数量..."
 
-#: UserAction/expander.cpp:95
+#: UserAction/expander.cpp:96
 msgid "count all:"
 msgstr "计算所有："
 
-#: UserAction/expander.cpp:119
+#: UserAction/expander.cpp:120
 msgid "filter mask: *.h, *.cpp, etc."
 msgstr "过滤器： *.h,*.cpp, 等等"
 
-#: UserAction/expander.cpp:130
+#: UserAction/expander.cpp:131
 msgid "current file (!= selected file)"
 msgstr "当前的文件 (!=所选择的文件)"
 
-#: UserAction/expander.cpp:133 UserAction/expander.cpp:166
-#: UserAction/expander.cpp:235 UserAction/expander.cpp:535
+#: UserAction/expander.cpp:134 UserAction/expander.cpp:167
+#: UserAction/expander.cpp:236 UserAction/expander.cpp:536
 msgid "Omit the current path (optional)"
 msgstr "忽略当前路径 (可选的)"
 
-#: UserAction/expander.cpp:161
+#: UserAction/expander.cpp:162
 msgid "Item list of ..."
 msgstr "项目列表 ..."
 
-#: UserAction/expander.cpp:164 UserAction/expander.cpp:233
-#: UserAction/expander.cpp:534
+#: UserAction/expander.cpp:165 UserAction/expander.cpp:234
+#: UserAction/expander.cpp:535
 msgid "Which items"
 msgstr "哪一些项目"
 
-#: UserAction/expander.cpp:165 UserAction/expander.cpp:234
+#: UserAction/expander.cpp:166 UserAction/expander.cpp:235
 msgid "Separator between the items (optional)"
 msgstr "项目分隔符 (可选的)"
 
-#: UserAction/expander.cpp:167 UserAction/expander.cpp:236
-#: UserAction/expander.cpp:536
+#: UserAction/expander.cpp:168 UserAction/expander.cpp:237
+#: UserAction/expander.cpp:537
 msgid "Mask (optional, all but 'Selected')"
 msgstr "掩码 (可选的，所有的除了选中的)"
 
-#: UserAction/expander.cpp:230
+#: UserAction/expander.cpp:231
 msgid "Filename of an itemlist ..."
 msgstr "项目列表文件名称 ..."
 
-#: UserAction/expander.cpp:310
+#: UserAction/expander.cpp:311
 msgid "Manipulate the selection"
 msgstr "选择操作"
 
-#: UserAction/expander.cpp:313
+#: UserAction/expander.cpp:314
 msgid "Selection mask"
 msgstr "选择过滤器"
 
-#: UserAction/expander.cpp:314
+#: UserAction/expander.cpp:315
 msgid "Manipulate in which way"
 msgstr "操作方法"
 
-#: UserAction/expander.cpp:339
+#: UserAction/expander.cpp:340
 msgid "Jump to a location"
 msgstr "转到位置"
 
-#: UserAction/expander.cpp:342
+#: UserAction/expander.cpp:343
 msgid "please choose a path"
 msgstr "请选择一个路径"
 
-#: UserAction/expander.cpp:343
+#: UserAction/expander.cpp:344
 msgid "open the location in a new tab"
 msgstr "在新标签打开位置"
 
-#: UserAction/expander.cpp:377
+#: UserAction/expander.cpp:378
 msgid "Ask the user for a parameter"
 msgstr "要求用户提供参数"
 
-#: UserAction/expander.cpp:380
+#: UserAction/expander.cpp:381
 msgid "Question"
 msgstr "提问"
 
-#: UserAction/expander.cpp:381
+#: UserAction/expander.cpp:382
 msgid "Preset (optional)"
 msgstr "默认设置 (可选的)"
 
-#: UserAction/expander.cpp:382
+#: UserAction/expander.cpp:383
 msgid "Caption (optional)"
 msgstr "标题 (可选的)"
 
-#: UserAction/expander.cpp:388
+#: UserAction/expander.cpp:389
 msgid "User Action"
 msgstr "用户动作"
 
-#: UserAction/expander.cpp:411
+#: UserAction/expander.cpp:412
 msgid "Copy to clipboard"
 msgstr "复制到剪切板"
 
-#: UserAction/expander.cpp:414 UserAction/expander.cpp:432
+#: UserAction/expander.cpp:415 UserAction/expander.cpp:433
 msgid "What should be copied"
 msgstr "我要复制哪些"
 
-#: UserAction/expander.cpp:415
+#: UserAction/expander.cpp:416
 msgid "Append to the current clipboard-content with this separator (optional)"
 msgstr "附加到当前的剪切板并用这个分隔符分离 (可选的)"
 
-#: UserAction/expander.cpp:429
+#: UserAction/expander.cpp:430
 msgid "Copy a file/folder"
 msgstr "复制文件或目录"
 
-#: UserAction/expander.cpp:433
+#: UserAction/expander.cpp:434
 msgid "Where it should be copied"
 msgstr "我该从哪里复制"
 
-#: UserAction/expander.cpp:453
+#: UserAction/expander.cpp:454
 msgid "Move/Rename a file/folder"
 msgstr "移动/重命名文件或目录"
 
-#: UserAction/expander.cpp:456
+#: UserAction/expander.cpp:457
 msgid "What moved/renamed"
 msgstr "移动/重命名的"
 
-#: UserAction/expander.cpp:457
+#: UserAction/expander.cpp:458
 msgid "New target/name"
 msgstr "新建目标/名称"
 
-#: UserAction/expander.cpp:477
+#: UserAction/expander.cpp:478
 msgid "Open a synchronizer-profile"
 msgstr "打开一个同步器配置"
 
-#: UserAction/expander.cpp:480 UserAction/expander.cpp:498
-#: UserAction/expander.cpp:516
+#: UserAction/expander.cpp:481 UserAction/expander.cpp:499
+#: UserAction/expander.cpp:517
 msgid "Choose a profile"
 msgstr "选择一个配置"
 
-#: UserAction/expander.cpp:495
+#: UserAction/expander.cpp:496
 msgid "Open a searchmodule-profile"
 msgstr "打开一个搜索模块配置"
 
-#: UserAction/expander.cpp:513
+#: UserAction/expander.cpp:514
 msgid "Load a panel-profile"
 msgstr "加载一个面板配置"
 
-#: UserAction/expander.cpp:531
+#: UserAction/expander.cpp:532
 msgid "Separate programm call for each..."
 msgstr ""
 
-#: UserAction/expander.cpp:591
+#: UserAction/expander.cpp:592
 msgid "Set the sorting for this panel"
 msgstr "设置面板排序方式"
 
-#: UserAction/expander.cpp:594
+#: UserAction/expander.cpp:595
 msgid "Choose a column"
 msgstr "选择一行"
 
-#: UserAction/expander.cpp:595
+#: UserAction/expander.cpp:596
 msgid "Choose the sort sequence"
 msgstr "选择排序序列"
 
-#: UserAction/expander.cpp:685
+#: UserAction/expander.cpp:686
 msgid "Set the relation between the two panels"
 msgstr "设置两个面板关系"
 
-#: UserAction/expander.cpp:688
+#: UserAction/expander.cpp:689
 msgid "Set the new size in percent"
 msgstr "以百分比设置新的大小"
 
-#: UserAction/expander.cpp:724
+#: UserAction/expander.cpp:725
 msgid "Executes a JavaScript-extension"
 msgstr "执行一个 JavaScript 扩展"
 
-#: UserAction/expander.cpp:727
+#: UserAction/expander.cpp:728
 msgid "Location of the script"
 msgstr "脚本位置"
 
-#: UserAction/expander.cpp:728
+#: UserAction/expander.cpp:729
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
 msgstr ""
 
-#: UserAction/expander.cpp:774
+#: UserAction/expander.cpp:775
 msgid "View a file with Krusader's internal viewer"
 msgstr ""
 
-#: UserAction/expander.cpp:777
-msgid "Which file to view (normaly '%aCurrent%')"
+#: UserAction/expander.cpp:778
+msgid "Which file to view (normally '%aCurrent%')"
 msgstr ""
 
-#: UserAction/expander.cpp:778
+#: UserAction/expander.cpp:779
 #, fuzzy
 msgid "Choose a view-mode"
 msgstr "选择一个配置"
 
-#: UserAction/expander.cpp:781
+#: UserAction/expander.cpp:782
 #, fuzzy
 msgid "Choose a window-mode"
 msgstr "选择一行"
@@ -1736,7 +1736,7 @@ msgstr "您确定要粉碎 "
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr "? 一旦粉碎, 文件将永远失去！！！"
 
-#: KViewer/krviewer.cpp:166 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:348
+#: KViewer/krviewer.cpp:185 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:348
 #: krslots.cpp:441
 msgid "Can't open "
 msgstr "不能打开"
@@ -2044,11 +2044,11 @@ msgstr "字符串没找到！"
 msgid "Locate results"
 msgstr "Locate 结果"
 
-#: Locate/locate.cpp:499 Search/krsearchdialog.cpp:524
+#: Locate/locate.cpp:499 Search/krsearchdialog.cpp:529
 msgid "Query name"
 msgstr "查询名称"
 
-#: Locate/locate.cpp:500 Search/krsearchdialog.cpp:525
+#: Locate/locate.cpp:500 Search/krsearchdialog.cpp:530
 msgid "Here you can name the file collection"
 msgstr "这里您可以输入文件集"
 
@@ -2465,40 +2465,40 @@ msgstr "您确定要退出么？"
 msgid "No file selected or selected file can't be displayed."
 msgstr "您没有选择文件或者您选择的文件不可以显示。"
 
-#: KViewer/krviewer.cpp:367 KViewer/panelviewer.cpp:144
+#: KViewer/krviewer.cpp:416 KViewer/panelviewer.cpp:147
 msgid "KrViewer is unable to download: "
 msgstr "KViewer下载失败："
 
-#: KViewer/krviewer.cpp:83
+#: KViewer/krviewer.cpp:90
 msgid "&Generic viewer"
 msgstr "通用查看器(&G)"
 
-#: KViewer/krviewer.cpp:84
+#: KViewer/krviewer.cpp:91
 msgid "&Text viewer"
 msgstr "文本查看器(&T)"
 
-#: KViewer/krviewer.cpp:85
+#: KViewer/krviewer.cpp:92
 msgid "&Hex viewer"
 msgstr "二进制查看器(&T)"
 
-#: KViewer/krviewer.cpp:87
+#: KViewer/krviewer.cpp:94
 msgid "Text &editor"
 msgstr "文件编辑器(&E)"
 
-#: KViewer/krviewer.cpp:89
+#: KViewer/krviewer.cpp:96
 msgid "&Close current tab"
 msgstr "关闭当前标签(&C)"
 
-#: KViewer/krviewer.cpp:90
+#: KViewer/krviewer.cpp:97
 #, fuzzy
 msgid "&Quit"
 msgstr "退出"
 
-#: KViewer/krviewer.cpp:121
+#: KViewer/krviewer.cpp:130
 msgid "&KrViewer"
 msgstr "KrViewer(&K)"
 
-#: KViewer/krviewer.cpp:297
+#: KViewer/krviewer.cpp:346
 msgid "Sorry, can't find internal editor"
 msgstr "对不起，没有找到内建编辑器"
 
@@ -2549,20 +2549,20 @@ msgstr ""
 msgid "Finished searching."
 msgstr "搜索完成."
 
-#: Search/krsearchdialog.cpp:486
+#: Search/krsearchdialog.cpp:491
 msgid "Krusader Search"
 msgstr "Krusader：：Search"
 
-#: Search/krsearchdialog.cpp:488
+#: Search/krsearchdialog.cpp:493
 msgid "View File (F3)"
 msgstr "查看文件 (F3)"
 
-#: Search/krsearchdialog.cpp:489
+#: Search/krsearchdialog.cpp:494
 msgid "Edit File (F4)"
 msgstr "编辑文件 (F4)"
 
-#: Konfigurator/kgarchives.cpp:111 Konfigurator/kggeneral.cpp:117
-#: Search/krsearchdialog.cpp:516
+#: Konfigurator/kgarchives.cpp:111 Konfigurator/kggeneral.cpp:142
+#: Search/krsearchdialog.cpp:521
 msgid "Search results"
 msgstr "搜索结果"
 
@@ -4051,30 +4051,71 @@ msgstr "使用 MimeType magic"
 msgid "Mimetype magic allows better distinction of file types, but is slower."
 msgstr "使用Mimetype magic可以更好的区分文件的类型, 但是会慢一些"
 
-#: Konfigurator/kggeneral.cpp:72
+#: Konfigurator/kggeneral.cpp:73
 msgid "Editor:"
 msgstr "编辑器："
 
-#: Konfigurator/kggeneral.cpp:78
+#: Konfigurator/kggeneral.cpp:79
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
 msgstr "注释： 如果您要使用 Krusader 快速的内建编辑器就选择‘内建编辑器’。"
 
-#: Konfigurator/kggeneral.cpp:81
+#: Konfigurator/kggeneral.cpp:82
 msgid "Terminal:"
 msgstr "终端："
 
-#: Konfigurator/kggeneral.cpp:91
+#: Konfigurator/kggeneral.cpp:93
+msgid "Default viewer mode:"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:98
+#, fuzzy
+msgid "Generic mode"
+msgstr "通用查看器(&G)"
+
+#: Konfigurator/kggeneral.cpp:98
+msgid "Use the system's default viewer"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:99
+#, fuzzy
+msgid "Text mode"
+msgstr "删除前景色："
+
+#: Konfigurator/kggeneral.cpp:99
+msgid "View the file in text-only mode"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:100
+#, fuzzy
+msgid "Hex mode"
+msgstr "比较模式"
+
+#: Konfigurator/kggeneral.cpp:100
+msgid "View the file in hex-mode (better for binary files)"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:106
+msgid "Viewer opens each file in a separate window"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:107
+msgid ""
+"If checked, each file will open in a separate window, otherwise, the viewer "
+"will work in a single, tabbed mode"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:116
 msgid "Temp Directory:"
 msgstr "临时目录："
 
-#: Konfigurator/kggeneral.cpp:99
+#: Konfigurator/kggeneral.cpp:124
 #, fuzzy
 msgid "Note: you must have full permissions for the temporary directory!"
 msgstr "注意： 您必须有临时目录的完全的读写权限！"
 
-#: Konfigurator/kggeneral.cpp:117
+#: Konfigurator/kggeneral.cpp:142
 #, fuzzy
 msgid "Searching for tools..."
 msgstr ""
@@ -4082,7 +4123,7 @@ msgstr ""
 "搜索结果：\n"
 "\n"
 
-#: Konfigurator/kggeneral.cpp:118
+#: Konfigurator/kggeneral.cpp:143
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
