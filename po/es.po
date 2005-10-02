@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0-beta1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net\n"
 "POT-Creation-Date: 2005-10-02 13:12+0200\n"
-"PO-Revision-Date: 2005-09-24 19:55+0000\n"
+"PO-Revision-Date: 2005-10-02 16:47+0000\n"
 "Last-Translator: Alejandro Araiza Alvarado <mebrelith@gmail.com>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -238,7 +238,6 @@ msgid "Command:"
 msgstr "Comandos:"
 
 #: GUI/actionpropertybase.cpp:407 GUI/actionpropertybase.cpp:415
-#, fuzzy
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -1237,21 +1236,20 @@ msgstr ""
 
 #: UserAction/expander.cpp:775
 msgid "View a file with Krusader's internal viewer"
-msgstr ""
+msgstr "Ver un archivo con el visor interno de Krusader."
 
 #: UserAction/expander.cpp:778
+#, fuzzy
 msgid "Which file to view (normally '%aCurrent%')"
-msgstr ""
+msgstr "Cual archivo ver (normalmente '%aCurrent%')"
 
 #: UserAction/expander.cpp:779
-#, fuzzy
 msgid "Choose a view-mode"
-msgstr "Escoger un perfil"
+msgstr "Escoger una vista"
 
 #: UserAction/expander.cpp:782
-#, fuzzy
 msgid "Choose a window-mode"
-msgstr "Escoger una columna"
+msgstr "Escoger un modo de ventana"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:105
 #: Synchronizer/synchronizedialog.cpp:116
@@ -1602,22 +1600,22 @@ msgid "Total occupied space: %1"
 msgstr "Espacio total ocupado: %1"
 
 #: Panel/krcalcspacedialog.cpp:151
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: in %n directory\n"
 "in %n directories"
 msgstr ""
-"%n directorio\n"
-"%n directorios"
+"en %n directorio\n"
+"en %n directorios"
 
 #: Panel/krcalcspacedialog.cpp:153
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: and %n file\n"
 "and %n files"
 msgstr ""
-"%n archivo\n"
-"%n archivos"
+" y %n archivo\n"
+" y %n archivos"
 
 #: Panel/krpopupmenu.cpp:59
 msgid "Open/Run"
@@ -1825,13 +1823,13 @@ msgid "Move %1 to:"
 msgstr "Mover %1 a:"
 
 #: Panel/panelfunc.cpp:395
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Move %n file to:\n"
 "Move %n files to:"
 msgstr ""
-"%n archivo\n"
-"%n archivos"
+" Mover %n archivo a:\n"
+"Mover %n archivos a:"
 
 #: Panel/panelfunc.cpp:431
 msgid "You can't move files to this file system"
@@ -1850,13 +1848,13 @@ msgid "Copy %1 to:"
 msgstr "Copiar %1 a:"
 
 #: Panel/panelfunc.cpp:507
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Copy %n file to:\n"
 "Copy %n files to:"
 msgstr ""
-"%n archivo\n"
-"%n archivos"
+" Copiar %n archivo a:\n"
+"Copiar %n archivos a:"
 
 #: Panel/panelfunc.cpp:535
 msgid "You can't copy files to this file system"
@@ -1920,7 +1918,7 @@ msgstr "&Eliminar todos"
 
 #: Panel/panelfunc.cpp:704
 msgid "Cannot pack files onto a virtual destination!"
-msgstr ""
+msgstr "¡No se pueden empaquetar archivos a un destino virtual!"
 
 #: Panel/panelfunc.cpp:716
 msgid "The Archive "
@@ -1960,18 +1958,17 @@ msgid "%1, test failed!"
 msgstr "%1, prueba falló!"
 
 #: Panel/panelfunc.cpp:821
-#, fuzzy
 msgid "Unpack %1 to:"
-msgstr "Descomprimir "
+msgstr "Descomprimir %1 a:"
 
 #: Panel/panelfunc.cpp:823
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
 "Unpack %n files to:"
 msgstr ""
-"%n archivo\n"
-"%n archivos"
+" Descomprimir %n archivo a:\n"
+"Descomprimir %n archivos a:"
 
 #: Panel/panelfunc.cpp:870
 msgid "%1, unknown archive type"
@@ -2543,9 +2540,8 @@ msgid "Permissions"
 msgstr "Permisos"
 
 #: Search/krsearchdialog.cpp:187
-#, fuzzy
 msgid "Text found:"
-msgstr "Borrar frente:"
+msgstr "Texto encontrado:"
 
 #: Search/krsearchdialog.cpp:197
 msgid "&Results"
@@ -3016,18 +3012,18 @@ msgid "%1/s ( %2 remaining )"
 msgstr "%1/s ( %2 restantes )"
 
 #: Dialogs/packgui.cpp:53
-#, fuzzy, c-format
+#, c-format
 msgid "Pack %1"
-msgstr "Comprimir"
+msgstr "Comprimir %1"
 
 #: Dialogs/packgui.cpp:55
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Pack %n file\n"
 "Pack %n files"
 msgstr ""
-"%n archivo\n"
-"%n archivos"
+" Comprimir %n archivo\n"
+"Comprimir %n archivos"
 
 #: Dialogs/packgui.cpp:91
 msgid "Please select a directory"
@@ -3197,15 +3193,15 @@ msgstr "Modo de comparación"
 
 #: Dialogs/krspwidgets.cpp:278 Dialogs/krspwidgets.cpp:289
 msgid "Quick Navigation"
-msgstr ""
+msgstr "Navegación rápida"
 
 #: Dialogs/krspwidgets.cpp:279
 msgid "Already at <i>%1</i>"
-msgstr ""
+msgstr "Ya se encuentra en <i>%1</i>"
 
 #: Dialogs/krspwidgets.cpp:290
 msgid "Click to go to <i>%1</i>"
-msgstr ""
+msgstr "Haga click para ir a <i>%1</i>"
 
 #: Dialogs/checksumdlg.cpp:183
 msgid ""
@@ -3240,7 +3236,7 @@ msgstr "Seleccione el metódo de sumario de integridad:"
 
 #: Dialogs/checksumdlg.cpp:234
 msgid "Calculating checksums ..."
-msgstr ""
+msgstr "Calculando sumarios de integridad ..."
 
 #: Dialogs/checksumdlg.cpp:240 Dialogs/checksumdlg.cpp:331
 msgid "<qt>There was an error while running <b>%1</b>."
@@ -3271,34 +3267,29 @@ msgid ""
 "<qt>Error reading checksum file <i>%1</i>.<br>Please specify a valid "
 "checksum file."
 msgstr ""
+"<qt>Error al leer el sumario de integridad <i>%1</i>.<br>Por favor "
+"especifique un sumario de integridad válido-</qt>"
 
 #: Dialogs/checksumdlg.cpp:321
-#, fuzzy
 msgid ""
 "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
-"<qt>No se pudo verificar el sumario de integridad debido a que no se "
-"encontró alguna herramienta para el trabajo. Por favor revise la página de "
-"<b>Dependencias</b> en la configuración de Krusader.<p>Examples:"
-"<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li></"
-"code></ul><b>Note</b>: el termino de busqueda '<code>text</code>' es "
-"equivalente a '<code>*text*</code>'."
+"<qt>Krusader no pudo encontrar la herramienta de verificación de integridad "
+"que maneja %1 en su sistema. Por favor revise la página de <b>Dependencias</"
+"b> en la configuración de Krusader."
 
 #: Dialogs/checksumdlg.cpp:370
-#, fuzzy
 msgid "Errors were detected while verifying the checksums"
-msgstr "Se encontraron errores al crear los sumarios de integridad"
+msgstr "Se encontraron errores al revisar los sumarios de integridad."
 
 #: Dialogs/checksumdlg.cpp:371
-#, fuzzy
 msgid "Checksums were verified successfully"
-msgstr "Los sumarios de integridad fueron creados exitosamente"
+msgstr "Los sumarios de integridad fueron verificados exitosamente"
 
 #: Dialogs/checksumdlg.cpp:377
-#, fuzzy
 msgid "The following files have failed:"
-msgstr "Seleccionar los siguientes archivos:"
+msgstr "Los siguientes archivos fallaron:"
 
 #: Dialogs/checksumdlg.cpp:408
 msgid "Errors were detected while creating the checksums"
@@ -3329,9 +3320,8 @@ msgid "Save checksum to file:"
 msgstr "Guardar el sumario de integridad al archivo:"
 
 #: Dialogs/checksumdlg.cpp:469
-#, fuzzy
 msgid "Checksum file for each source file"
-msgstr "Los sumarios de integridad fueron creados exitosamente"
+msgstr "Sumario de integridad para cada archivo fuente"
 
 #: Dialogs/checksumdlg.cpp:491
 msgid ""
@@ -3351,14 +3341,12 @@ msgid "Error saving file %1"
 msgstr "Error guardando el archivo %1"
 
 #: Dialogs/checksumdlg.cpp:511
-#, fuzzy
 msgid "Saving checksum files..."
-msgstr "Guardar el sumario de integridad al archivo:"
+msgstr "Guardando sumarios de integridad..."
 
 #: Dialogs/checksumdlg.cpp:516
-#, fuzzy
 msgid "Errors occured while saving multiple checksums. Stopping"
-msgstr "Se encontraron errores al crear los sumarios de integridad"
+msgstr "Se encontraron errores al crear los sumarios de integridad. Deteniendo"
 
 #: RemoteMan/remoteman.cpp:84 RemoteMan/remoteman.cpp:87
 msgid "New group"
@@ -4090,9 +4078,8 @@ msgid "Packers"
 msgstr "Compresores"
 
 #: Konfigurator/kgdependencies.cpp:94
-#, fuzzy
 msgid "Checksum Utilities"
-msgstr "Archivo de sumario de integridad:"
+msgstr "Utilidades de verificación de integridad"
 
 #: Konfigurator/kgdependencies.cpp:137
 msgid "The %1 path is incorrect, no valid path found."
@@ -4156,7 +4143,7 @@ msgstr ""
 #: Konfigurator/kggeneral.cpp:99
 #, fuzzy
 msgid "Text mode"
-msgstr "Borrar frente:"
+msgstr "Texto encontrado:"
 
 #: Konfigurator/kggeneral.cpp:99
 msgid "View the file in text-only mode"
@@ -4248,9 +4235,8 @@ msgid "batch renamer"
 msgstr "renombrado por lotes"
 
 #: Konfigurator/krresulttable.cpp:273
-#, fuzzy
 msgid "checksum utility"
-msgstr "herramienta de sumario de integridad"
+msgstr "Herramienta de verificación de integridad"
 
 #: Konfigurator/krresulttable.cpp:276
 msgid "Tool"
@@ -4412,14 +4398,12 @@ msgid "Numeric Permissions"
 msgstr "Permisos númericos"
 
 #: Konfigurator/kglookfeel.cpp:74
-#, fuzzy
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
-"Mostrar números octales (0755) en lugar de los estandáres para permisos "
-"(rwxr-xr-x) en la columna de permisos.<p>Las columnas pueden ser "
-"configuradas en <i>Apariencia -> Operación</i>."
+"Mostrar números octales (0755) en lugar de los estándares para permisos "
+"(rwxr-xr-x) en la columna de permisos."
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Single click / Double click Selection:"
@@ -5613,77 +5597,3 @@ msgstr "¡Error leyendo el archivo %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "¡Error escribiendo el archivo %1!"
-
-#~ msgid ""
-#~ "\n"
-#~ "in %1 directories and %2 files"
-#~ msgstr ""
-#~ "\n"
-#~ "en %1 directorios y %2 archivos"
-
-#~ msgid "Move %1 files to:"
-#~ msgstr "Mover %1 archivos a:"
-
-#~ msgid "Copy %1 files to:"
-#~ msgstr "Copiar %1 archivos a:"
-
-#~ msgid "to"
-#~ msgstr "a"
-
-#~ msgid "%1 files"
-#~ msgstr "%1 archivos"
-
-#~ msgid "Show Columns:"
-#~ msgstr "Mostrar columnas:"
-
-#~ msgid "Extension"
-#~ msgstr "Extensión"
-
-#~ msgid ""
-#~ "Show the last part of the filename (part after the last dot) in the "
-#~ "extension column and not as a complete filename in the name column, like "
-#~ "for instance Konqueror does."
-#~ msgstr ""
-#~ "Mostrar la última parte del nombre de archivo (la parte despues de el "
-#~ "punto) en la columna Extensión y no como un nombre de archivo completo en "
-#~ "la columna Nombre. p.ej. como se hace en el Konqueror"
-
-#~ msgid "Mimetype"
-#~ msgstr "Tipo mime"
-
-#~ msgid "Show the mimetype column."
-#~ msgstr "Mostrar la columna Tipo mime."
-
-#~ msgid "Show the size column."
-#~ msgstr "Mostrar la columna de tamaño."
-
-#~ msgid "Date and Time"
-#~ msgstr "Fecha y hora"
-
-#~ msgid "Show the date and time column."
-#~ msgstr "Mostrar la columna de fecha y hora."
-
-#~ msgid "Permission"
-#~ msgstr "Permiso"
-
-#~ msgid ""
-#~ "Show the full permissions. Default representation is a string (rwxr-xr-x) "
-#~ "and can be changed to octal numbers (0755) by enabling <b>Numeric "
-#~ "Permissions</b> at <i>Look & Feel -> Operation</i>."
-#~ msgstr ""
-#~ "Mostrar los permisos completos. La representación por omisión es como una "
-#~ "cadena ('rwxr-xr-x') y puede ser cambiada a números octales ('0755') "
-#~ "activando la opción <b>Permisos númericos' en 'Apariencia' -> Operación</"
-#~ "b>."
-
-#~ msgid "Krusader Permission"
-#~ msgstr "Permisos Krusader"
-
-#~ msgid "Show the permissions of the current user only (-rw)."
-#~ msgstr "Mostrar solamente los permisos del usuario actual, p.ej. '-rw'."
-
-#~ msgid "Show the owner column."
-#~ msgstr "Mostrar la columna de propietario."
-
-#~ msgid "Show the group column."
-#~ msgstr "Mostrar la columna de grupo."
