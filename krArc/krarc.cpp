@@ -148,7 +148,7 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
        
 	// pack the directory
 	KShellProcess proc;
-	proc << putCmd << "'"+arcFile->url().path()+"' " << "'"+tmpDir.mid(arcTempDir.length())+"'";
+	proc << putCmd << convertName( arcFile->url().path() ) + " " << convertName( tmpDir.mid(arcTempDir.length()) );
   infoMessage(i18n("Creating %1 ...").arg( url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
 	proc.start(KProcess::Block);
@@ -210,7 +210,7 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 	close(fd);
 	// pack the file
 	KShellProcess proc;
-	proc << putCmd << "'"+arcFile->url().path()+"' " << "'"+tmpFile.mid(arcTempDir.length())+"'";
+	proc << putCmd << convertName( arcFile->url().path() )+ " " <<convertName( tmpFile.mid(arcTempDir.length()) );
   infoMessage(i18n("Packing %1 ...").arg( url.fileName() ) );
   QDir::setCurrent(arcTempDir);
   proc.start(KProcess::Block);
@@ -248,7 +248,7 @@ void kio_krarcProtocol::get(const KURL& url ){
   // for RPM files extract the cpio file first
   if( !cpioReady && arcType == "rpm"){
     KShellProcess cpio;
-    cpio << "rpm2cpio" << "'"+arcFile->url().path(-1)+"'" << " > " << arcTempDir+"contents.cpio";
+    cpio << "rpm2cpio" << convertName( arcFile->url().path(-1) ) << " > " << arcTempDir+"contents.cpio";
     cpio.start(KProcess::Block);
     cpioReady = true;
   }
@@ -256,9 +256,9 @@ void kio_krarcProtocol::get(const KURL& url ){
   QString file = url.path().mid(arcFile->url().path().length()+1);
 	KShellProcess proc;
   if( cpioReady ){
-    proc << getCmd << arcTempDir+"contents.cpio " << "'*"+file+"'";
+    proc << getCmd << arcTempDir+"contents.cpio " << convertName( "*"+file );
   } else if(  arcType == "arj" || arcType == "ace" ) {
-    proc << getCmd << "'"+arcFile->url().path()+"' " << "'"+file+"'";
+    proc << getCmd << convertName( arcFile->url().path() )+ " " << convertName( file );
     if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
       proc << "<" << "/dev/ptmx"; 
     file = url.fileName();
@@ -268,7 +268,7 @@ void kio_krarcProtocol::get(const KURL& url ){
     // This is mandatory in all slaves (for KRun/BrowserRun to work).
     KMimeType::Ptr mt = KMimeType::findByURL( arcTempDir+file, 0, false /* NOT local URL */ );
     emit mimeType( mt->name() );
-	  proc << getCmd << "'"+arcFile->url().path()+"' " << "'"+file+"'";
+	  proc << getCmd << convertName( arcFile->url().path() )+" " << convertName( file );
     connect(&proc,SIGNAL(receivedStdout(KProcess*,char*,int)),
            this,SLOT(receivedData(KProcess*,char*,int)) );
   }
@@ -387,7 +387,7 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
     if(arcType == "zip") file = file + "/";
   }
   KShellProcess proc;
-	proc << delCmd << "'"+arcFile->url().path()+"' " << "'"+file+"'";
+	proc << delCmd << convertName( arcFile->url().path() )+" " << convertName( file );
 	infoMessage(i18n("Deleting %1 ...").arg( url.fileName() ) );
 	proc.start(KProcess::Block);
 	//  force a refresh of archive information
@@ -472,7 +472,7 @@ void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool overw
       QDir::setCurrent( destDir.local8Bit() );
 
       KShellProcess proc;
-      proc << copyCmd << "'"+arcFile->url().path()+"' " << "'"+file+"'";
+      proc << copyCmd << convertName( arcFile->url().path() )+" " << convertName( file );
       if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
         proc << "<" << "/dev/ptmx"; 
 
@@ -606,9 +606,9 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	temp.setAutoDelete(true);
 	if( arcType != "bzip2" ){
 		if( arcType == "rpm" )
-			proc << listCmd << "'"+arcPath+"'" <<" > " << temp.name();
+			proc << listCmd << convertName( arcPath ) <<" > " << temp.name();
 		else        
-			proc << listCmd << "'"+arcFile->url().path(-1)+"'" <<" > " << temp.name();
+			proc << listCmd << convertName( arcFile->url().path(-1) ) <<" > " << temp.name();
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 			proc << "<" << "/dev/ptmx";
 		proc.start(KProcess::Block);
@@ -1209,9 +1209,33 @@ QString kio_krarcProtocol::fullPathName( QString name )
   QString supposedName = krConfig->readEntry( name, name );
   if( supposedName.isEmpty() )
     supposedName = name;
-  supposedName.replace( "\\", "\\\\" );
-  supposedName.replace( " ", "\\ " );  
-  return supposedName;
+  return escape( supposedName );
+}
+
+QString kio_krarcProtocol::convertName( QString name ) {
+  if( !name.contains( '\'' ) )
+    return "'" + name + "'";
+  if( !name.contains( '"' ) && !name.contains( '$' ) )
+    return "\"" + name + "\"";
+  return escape( name );
+}
+
+QString kio_krarcProtocol::escape( QString name ) {
+  name.replace( "\\", "\\\\" );
+  name.replace( " ", "\\ " );  
+  name.replace( "(", "\\(" );  
+  name.replace( ")", "\\)" );  
+  name.replace( ";", "\\;" );  
+  name.replace( "|", "\\|" );  
+  name.replace( "`", "\\`" );  
+  name.replace( "$", "\\$" );  
+  name.replace( "&", "\\&" );  
+  name.replace( "<", "\\<" );  
+  name.replace( ">", "\\>" );  
+  name.replace( "'", "\\'" );  
+  name.replace( "\"", "\\\"" );  
+
+  return name;
 }
 
 #include "krarc.moc"

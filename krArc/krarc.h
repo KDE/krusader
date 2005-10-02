@@ -75,6 +75,8 @@ private:
   /** add a new directory (file list container). */
   KIO::UDSEntryList* addNewDir(QString path);
   QString fullPathName( QString name );
+  static QString convertName( QString name );
+  static QString escape( QString name );
   
 	QDict<KIO::UDSEntryList> dirDict; //< the directoris data structure.
   bool archiveChanged;              //< true if the archive was changed.
