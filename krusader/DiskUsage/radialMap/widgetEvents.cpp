@@ -174,11 +174,11 @@ RadialMap::Widget::mousePressEvent( QMouseEvent *e )
          switch( popup.exec( e->globalPos(), 1 ) ) {
          case 0:
             //KRun::runCommand will show an error message if there was trouble
-            KRun::runCommand( QString( "kfmclient openURL \"%1\"" ).arg( url.url() ) );
+            KRun::runCommand( QString( "kfmclient openURL '%1'" ).arg( url.url() ) );
             break;
 
          case 1:
-            KRun::runCommand( QString( "konsole --workdir \"%1\"" ).arg( url.url() ) );
+            KRun::runCommand( QString( "konsole --workdir '%1'" ).arg( url.url() ) );
             break;
 
          case 2:

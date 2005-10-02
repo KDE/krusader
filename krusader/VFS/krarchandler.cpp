@@ -163,7 +163,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type ) {
   long count = 1;
   KTempFile tmpFile( /*"tmp"*/ QString::null, "krusader-unpack" ); // commented out as it created files in the current dir!
   KShellProcess list;
-  list << lister << + "\"" + archive + "\"" << ">" << tmpFile.name() ;
+  list << lister << + "'" + archive + "'" << ">" << tmpFile.name() ;
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
     list<< "<" << "/dev/ptmx";
   list.start( KProcess::Block );
@@ -221,11 +221,11 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
 
   // unpack the files
   KShellProcess proc;
-  proc << packer << " \"" + archive + "\"";
+  proc << packer << " '" + archive + "'";
   if( type == "zip2" || type=="gzip" ){
     QString arcname = archive.mid(archive.findRev("/")+1);
     if( arcname.contains(".") ) arcname = arcname.left(arcname.findRev("."));
-    proc << ">" << "\""+dest+"/"+arcname+"\"";
+    proc << ">" << "'"+dest+"/"+arcname+"'";
   }
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
     proc << "<" << "/dev/ptmx";
@@ -284,7 +284,7 @@ bool KRarcHandler::test( QString archive, QString type, long count, QString pass
 
   // unpack the files
   KShellProcess proc;
-  proc << packer << + "\"" + archive + "\"";
+  proc << packer << + "'" + archive + "'";
 
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
     proc << "<" << "/dev/ptmx";
@@ -326,10 +326,10 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
 
   // prepare to pack
   KShellProcess proc;
-  proc << packer << "\"" + dest + "\"";
+  proc << packer << "'" + dest + "'";
 
   for ( QStringList::Iterator file = fileNames.begin(); file != fileNames.end(); ++file ) {
-    proc << "\"" + ( *file ) + "\"";
+    proc << "'" + ( *file ) + "'";
     }
 
   // tell the user to wait
