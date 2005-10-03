@@ -48,6 +48,7 @@
   CHANGED: Use WhatsThis in favour of tooltips where reasonable
   CHANGED: the panel startup is profile based instead of directory based
 
+    FIXED: disk usage crash on remote vfs because of recursion
     FIXED: [ 1262907 ] crash when closing an sftp tab which is loading
     FIXED: krarc error, when the filename contains '$' or '&'
     FIXED: synchronizer, compare by content can be terminated by <Stop>

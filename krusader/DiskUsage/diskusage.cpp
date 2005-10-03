@@ -233,6 +233,10 @@ DiskUsage::~DiskUsage()
 
 void DiskUsage::load( KURL baseDir )
 {
+  if( searchVfs && !searchVfs->vfs_canDelete() ) {
+    return;
+  }
+
   fileNum = dirNum = 0;
   currentSize = 0;
 
@@ -285,10 +289,15 @@ void DiskUsage::load( KURL baseDir )
 
 void DiskUsage::slotLoadDirectory()
 {
+  if( searchVfs && !searchVfs->vfs_canDelete() ) { // recursive call from slotLoadDirectory?
+    loadingTimer.start( 100, true );               // as it can cause crash, ignore it and wait while
+    return;                                        // the recursion finishes
+  }
   if( ( currentVfile == 0 && directoryStack.isEmpty() ) || loaderView->wasCancelled() || abortLoading )
   {
     if( searchVfs )
       delete searchVfs;
+    
     searchVfs = 0;
     currentVfile = 0;
 
