@@ -149,13 +149,20 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 		if ( !v )
 			continue; //this should not happen !
 		if ( v != vfsP ) {
-			delete vfsP;
+			if( vfsP->vfs_canDelete() )                
+				delete vfsP;
+			else {
+				connect( vfsP, SIGNAL( deleteAllowed() ), vfsP, SLOT( deleteLater() ) );
+				vfsP->vfs_requestDelete();                                
+			}
 			vfsP = v; // v != 0 so this is safe
 		}
 		connect( files(), SIGNAL(startJob(KIO::Job* )),
 				panel, SLOT(slotJobStarted(KIO::Job* )));
 		if ( vfsP->vfs_refresh( u ) )
 			break; // we have a valid refreshed URL now
+		if ( vfsP == 0 )  // the object was deleted during vfs_refresh? Hoping the best...
+			return;                
 		// prevent repeated error messages
 		if ( vfsP->vfs_isDeleting() )
 			break;                
@@ -1027,7 +1034,15 @@ void ListPanelFunc::refreshActions() {
 }
 
 ListPanelFunc::~ListPanelFunc() {
-	delete files(); // delete all vfs objects
+	if( !vfsP ) {
+		if( vfsP->vfs_canDelete() )
+			delete vfsP;
+		else {
+			connect( vfsP, SIGNAL( deleteAllowed() ), vfsP, SLOT( deleteLater() ) );
+			vfsP->vfs_requestDelete();
+		}
+	}
+	vfsP = 0;
 }
 
 vfs* ListPanelFunc::files() {
