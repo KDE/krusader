@@ -404,6 +404,8 @@ void KrSearchDialog::resultDoubleClicked(QListViewItem* i) {
 
 void KrSearchDialog::resultClicked(QListViewItem* i) {
 	ResultListViewItem *it = dynamic_cast<ResultListViewItem*>(i);
+	if( it == 0 )
+		return;                
 	if (!it->foundText().isEmpty()) {
 		// ugly hack: find the <b> and </b> in the text, then
 		// use it to set the are which we don't want squeezed
