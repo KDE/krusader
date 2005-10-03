@@ -31,6 +31,7 @@
 #ifndef __PRESERVING_COPY_JOB_H__
 #define __PRESERVING_COPY_JOB_H__
 
+#include <time.h>
 #include <kio/jobclasses.h>
 #include <qmap.h>
 
