@@ -213,7 +213,7 @@ vfile* virt_vfs::stat( const KURL& url ) {
 		busy = true;
 		KIO::StatJob* statJob = KIO::stat( url, false );
 		connect( statJob, SIGNAL( result( KIO::Job* ) ), this, SLOT( slotStatResult( KIO::Job* ) ) );
-		while ( busy ) qApp->processEvents();
+		while ( busy && vfs_processEvents() );
 		if( entry.isEmpty()  ) return 0; // statJob failed
 		
 		kfi = new KFileItem(entry, url, true );

@@ -63,6 +63,8 @@ class PanelManager: public QWidget {
     void slotRefreshActions();
 
   private:
+    void deletePanel( ListPanel *p );
+  
     QGridLayout *_layout;
     QHBoxLayout *_barLayout;
     bool _left;

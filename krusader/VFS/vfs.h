@@ -97,6 +97,14 @@ public:
 	inline vfile* vfs_getFirstFile(){ return (vfileIterator ? vfileIterator->toFirst() : 0); }
 	/// Return the the next file in the list and advance the iterator.
 	inline vfile* vfs_getNextFile() { return (vfileIterator ? ++(*vfileIterator) : 0);  }
+	/// returns true if the vfs can be deleted without crash        
+	virtual bool vfs_canDelete() { return deletePossible; } 
+	/// process the application events               
+	virtual bool vfs_processEvents();        
+	/// process the application events               
+	virtual void vfs_requestDelete();        
+	/// process the application events               
+	virtual bool vfs_isDeleting()    { return deleteRequested; }
    // KDE FTP proxy bug correction
    static KURL fromPathOrURL( const QString &originIn );
 
@@ -110,7 +118,7 @@ public slots:
 	virtual bool vfs_refresh();
 	virtual void vfs_setQuiet(bool beQuiet){ quietMode=beQuiet; }
 	virtual void vfs_enableRefresh(bool enable);        
-	virtual void vfs_invalidate() { invalidated = true; }
+	virtual void vfs_invalidate() { invalidated = true; }          
 
 signals:
 	void startUpdate(); //< emitted when the VFS starts to refresh its list of vfiles.
@@ -120,6 +128,7 @@ signals:
 	void deletedVfile(const QString& name);
 	void updatedVfile(vfile* vf);
 	void cleared();
+	void deleteAllowed();                
 
 protected:
 	/// Feel the vfs dictionary with vfiles, must be implemented for each vfs
@@ -157,6 +166,8 @@ private:
 	// used in the calcSpace function
 	bool* kds_busy;
 	bool  stat_busy;
+	bool  deletePossible;        
+	bool  deleteRequested;
 	KIO::UDSEntry entry;        
 	KIO::filesize_t* kds_totalSize;
 	unsigned long*   kds_totalFiles;

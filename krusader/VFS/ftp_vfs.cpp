@@ -180,9 +180,7 @@ bool ftp_vfs::populateVfsList( const KURL& origin, bool showHidden ) {
 		//new KrProgress(job); ==> disabled because of in-panel refresh
 	}
 
-	while ( busy ) {
-		qApp->eventLoop() ->processEvents( QEventLoop::AllEvents | QEventLoop::WaitForMore );
-	}
+	while ( busy && vfs_processEvents());
 
 	if ( listError ) return false;
 

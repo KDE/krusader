@@ -157,6 +157,8 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 		if ( vfsP->vfs_refresh( u ) )
 			break; // we have a valid refreshed URL now
 		// prevent repeated error messages
+		if ( vfsP->vfs_isDeleting() )
+			break;                
 		vfsP->vfs_setQuiet( true );
 	}
 	vfsP->vfs_setQuiet( false );

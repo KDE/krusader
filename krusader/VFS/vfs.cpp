@@ -42,7 +42,8 @@
 #include "../defaults.h"
 
 vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),
-                                      invalidated(true),vfileIterator(0) {
+                                      invalidated(true),vfileIterator(0),deletePossible( true ),
+                                      deleteRequested( false ) {
 		
 
 	setVfsFilesP( new vfileDict() );
@@ -54,6 +55,8 @@ vfs::vfs(QObject* panel, bool quiet): quietMode(quiet),disableRefresh(false),
 }
 
 vfs::~vfs() {
+	if( !deletePossible )
+		fprintf( stderr, "INTERNAL ERROR: trying to delete vfs while it is used! This may cause crash. Hoping the best...\n" );
 	clear(); // please don't remove this line. This informs the view about deleting the references
 	delete vfs_filesP;
 }
@@ -210,6 +213,25 @@ void vfs::clear()
 {
 	emit cleared();
 	vfs_filesP->clear();
+}
+
+bool vfs::vfs_processEvents() {
+	if( deleteRequested )
+		return false;        
+	deletePossible = false;
+	qApp->eventLoop() ->processEvents( QEventLoop::AllEvents | QEventLoop::WaitForMore );
+	deletePossible = true;        
+	if( deleteRequested ) {
+		emit deleteAllowed();
+		return false;
+	}        
+	return true;                
+}
+
+void vfs::vfs_requestDelete() {
+	if( deletePossible )
+		emit deleteAllowed();
+	deleteRequested = true;
 }
 
 /// to be implemented

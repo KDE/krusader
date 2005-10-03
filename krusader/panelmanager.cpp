@@ -153,7 +153,7 @@ void PanelManager::slotCloseTab() {
    _self = _tabbar->removeCurrentPanel( oldp );
    _stack->raiseWidget( _self );
    _stack->removeWidget( oldp );
-   delete oldp;
+   deletePanel( oldp );
 
    // setup pointers
    _self->otherPanel = _other;
@@ -187,7 +187,7 @@ void PanelManager::slotCloseTab( int index ) {
       _tabbar->removeTab( t );
 
       _stack->removeWidget( oldp );
-      delete oldp;      
+      deletePanel( oldp );
    }
 
    if ( _tabbar->count() == 1 ) 
@@ -251,7 +251,7 @@ void PanelManager::slotRecreatePanels() {
        _other->otherPanel = newPanel;         
      updatedPanel->panel = newPanel;
      newPanel->start( oldPanel->virtualPath(), true );          
-     delete oldPanel;
+     deletePanel( oldPanel );
    
      _tabbar->updateTab( newPanel );
    }
@@ -290,6 +290,15 @@ void PanelManager::refreshAllTabs( bool invalidate ) {
       }
       ++i;
    }
+}
+
+void PanelManager::deletePanel( ListPanel * p ) {
+  if( p && p->func && p->func->files() && !p->func->files()->vfs_canDelete() ) {
+    connect( p->func->files(), SIGNAL( deleteAllowed() ), p, SLOT( deleteLater() ) );
+    p->func->files()->vfs_requestDelete();
+    return;
+  }
+  delete p;
 }
 
 #include "panelmanager.moc"
