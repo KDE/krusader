@@ -35,7 +35,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
-KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ) {
+KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ), _stdout(0), _stderr(0) {
 
    setButtonOK( i18n( "Close" ) );
    enableButtonOK( false ); // disable the close button, until the process finishes
@@ -65,7 +65,13 @@ KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, K
 }
 
 void KrActionProcDlg::addStderr( KProcess *, char *buffer, int buflen ) {
-   _stderr->append( QString::fromLatin1( buffer, buflen ) );
+   if (_stderr)
+      _stderr->append( QString::fromLatin1( buffer, buflen ) );
+   else {
+      _stdout->setItalic(true);
+      _stdout->append( QString::fromLatin1( buffer, buflen ) );
+      _stdout->setItalic(false);
+   }
 }
 
 void KrActionProcDlg::addStdout( KProcess *, char *buffer, int buflen ) {
