@@ -32,7 +32,7 @@
 
 // QT includes
 #include <qstring.h>
-#include <qptrlist.h>
+#include <qvaluelist.h>
 #include <qobject.h>
 #include <qdict.h>
 // KDE includes
@@ -41,6 +41,7 @@
 // Krusader includes
 #include "vfile.h"
 #include "preservingcopyjob.h"
+#include "krquery.h"
 
 /**
  * The vfs class is an extendable class which by itself does (almost)
@@ -84,7 +85,8 @@ public:
 	virtual bool vfs_isWritable() { return isWritable; }
 	/// Return vfile* or 0 if not found
 	inline vfile* vfs_search(const QString& name){ return (*vfs_searchP)[name]; } 
-
+	/// Return an empty vfile* list if not found
+	QValueList<vfile*> vfs_search(const KRQuery& filter);
 	/// The total size of all the files in the VFS,
 	KIO::filesize_t vfs_totalSize();
 	/// The number of files in the VFS

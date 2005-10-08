@@ -903,7 +903,7 @@ void ListPanelFunc::unpack() {
 }
 
 // a small ugly function, used to prevent duplication of EVERY line of
-// code (except 1) from createChecksum and matchChecksum
+// code (maybe except 3) from createChecksum and matchChecksum
 static void checksum_wrapper(ListPanel *panel, QStringList& args, bool &folders) {
 	KrViewItemList items;
 	panel->view->getSelectedKrViewItems( &items );
@@ -929,7 +929,11 @@ void ListPanelFunc::matchChecksum() {
 	QStringList args;
 	bool folders;
 	checksum_wrapper(panel, args, folders);
-	MatchChecksumDlg dlg(args, folders, panel->realPath());
+	QValueList<vfile*> checksumFiles = files()->vfs_search(
+		KRQuery(MatchChecksumDlg::checksumTypesFilter)
+	);
+	MatchChecksumDlg dlg(args, folders, panel->realPath(), 
+		(checksumFiles.size()==1 ? checksumFiles[0]->vfile_getUrl().url() : QString::null));
 }
 
 void ListPanelFunc::calcSpace() {

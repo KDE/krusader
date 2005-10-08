@@ -18,7 +18,10 @@ private:
 
 class MatchChecksumDlg: public KDialogBase {
 public:
-	MatchChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
+	MatchChecksumDlg(const QStringList& files, bool containFolders, 
+		const QString& path, const QString& checksumFile=QString::null);
+
+	static QString checksumTypesFilter;
 
 protected:
 	bool verifyChecksumFile(QString path, QString& extension);

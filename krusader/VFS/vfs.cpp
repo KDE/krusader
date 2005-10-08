@@ -337,4 +337,12 @@ void vfs::slotKdsResult(KIO::Job *job){/* empty */}
 void vfs::vfs_calcSpace( QString /*name*/ , KIO::filesize_t* /*totalSize*/, unsigned long* /*totalFiles*/, unsigned long* /*totalDirs*/, bool* /*stop*/ ) {/* empty*/}
 #endif
 
+QValueList<vfile*> vfs::vfs_search(const KRQuery& filter) {
+	QValueList<vfile*> result;
+	for ( vfile *vf = vfs_getFirstFile(); vf != 0 ; vf = vfs_getNextFile() )
+		if (filter.match(vf)) 
+			result.append(vf);
+	return result;
+}
+
 #include "vfs.moc"

@@ -145,7 +145,9 @@ CS_Tool cs_tools[] = {
 	{CS_Tool::WHIRLPOOL, "whirlpooldeep",	true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
 };
 
+#if 0
 CS_ToolByType toolByType[CS_Tool::NumOfTypes];
+#endif
 QMap<QString, CS_Tool::Type> cs_textToType;
 QMap<CS_Tool::Type, QString> cs_typeToText;
 
@@ -162,13 +164,20 @@ void initChecksumModule() {
 	cs_typeToText[CS_Tool::SHA256]="sha256";
 	cs_typeToText[CS_Tool::TIGER]="tiger";
 	cs_typeToText[CS_Tool::WHIRLPOOL]="whirlpool";
-	
+
+	// build the checksumFilter (for usage in KRQuery)
+	QMap<QString, CS_Tool::Type>::Iterator it;
+	for (it=cs_textToType.begin(); it!=cs_textToType.end(); ++it)
+		MatchChecksumDlg::checksumTypesFilter += ("*."+it.key()+" ");
+
+#if 0	
 	// loop through cs_tools and assign them
 	for (uint i=0; i < sizeof(cs_tools)/sizeof(CS_Tool); ++i) {
 		if (cs_tools[i].recursive)
 			toolByType[cs_tools[i].type].tools.append(&cs_tools[i]);
 		else toolByType[cs_tools[i].type].r_tools.append(&cs_tools[i]);
 	}
+#endif // 0
 }
 
 // --------------------------------------------------
@@ -283,7 +292,10 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 
 // ------------- MatchChecksumDlg
 
-MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders, const QString& path):
+QString MatchChecksumDlg::checksumTypesFilter;
+
+MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders, 
+	const QString& path, const QString& checksumFile):
 	KDialogBase(Plain, i18n("Verify Checksum"), Ok | Cancel, Ok, krApp) {
 	
 	QPtrList<CS_Tool> tools = getTools(containFolders);
@@ -324,14 +336,16 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	QHBoxLayout *hlayout2 = new QHBoxLayout(layout, KDialogBase::spacingHint());
 	QLabel *l2 = new QLabel(i18n("Checksum file:"), plainPage());
 	hlayout2->addWidget(l2);
-	KURLRequester *checksumFile = new KURLRequester( plainPage() );
-	checksumFile->fileDialog()->setURL(path);
-	checksumFile->setFocus();
-	hlayout2->addWidget(checksumFile);
+	KURLRequester *checksumFileReq = new KURLRequester( plainPage() );
+	if (!checksumFile.isEmpty())
+		checksumFileReq->setURL(checksumFile);
+	checksumFileReq->fileDialog()->setURL(path);
+	checksumFileReq->setFocus();
+	hlayout2->addWidget(checksumFileReq);
 	layout->addMultiCellLayout(hlayout2, row, row, 0, 1, Qt::AlignLeft);
 
 	if (exec() != Accepted) return;
-	QString file = checksumFile->url().simplifyWhiteSpace();
+	QString file = checksumFileReq->url().simplifyWhiteSpace();
 	QString extension;
 	if (!verifyChecksumFile(file, extension)) {
 		KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br>Please specify a valid checksum file.").arg(file));
