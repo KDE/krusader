@@ -7,6 +7,7 @@
 #include <klineedit.h>
 #include <klistview.h>
 #include <qpixmap.h>
+#include <kcursor.h>
 #include <kmessagebox.h>
 #include <qfile.h>
 #include <qtextstream.h>
@@ -232,10 +233,11 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	mytool->create(proc, mytool, files, QString::null, containFolders, method->currentText());
 	
 	krApp->startWaiting(i18n("Calculating checksums ..."), 0);	
-	
+	QApplication::setOverrideCursor( KCursor::waitCursor() );
 	bool r = proc.start(KEasyProcess::NotifyOnExit, KEasyProcess::AllOutput);
 	if (r) proc.wait();
 	krApp->stopWait();
+	QApplication::restoreOverrideCursor();
 	if (!r || !proc.normalExit()) {	
 		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
 		return;
@@ -325,12 +327,16 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	// else implied: run the process
 	KEasyProcess proc;
 	mytool->verify(proc, mytool, files, file, containFolders, extension);
-	bool r = proc.start(KEasyProcess::Block, KEasyProcess::AllOutput);
+	krApp->startWaiting(i18n("Verifying checksums ..."), 0);	
+	QApplication::setOverrideCursor( KCursor::waitCursor() );
+	bool r = proc.start(KEasyProcess::NotifyOnExit, KEasyProcess::AllOutput);
 	if (r) proc.wait();
 	if (!r || !proc.normalExit()) {	
 		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
 		return;
 	}
+	QApplication::restoreOverrideCursor();
+	krApp->stopWait();
 	// send both stdout and stderr
 	VerifyResultDlg dlg(
 		mytool->failed(
