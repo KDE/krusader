@@ -162,6 +162,15 @@ void KrServices::clearProtocolCache()
   slaveMap = 0;
 }
 
+bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines) {
+	if (!stream) return false;
+	QString line;
+	while ( !stream->atEnd() ) {
+		line = stream->readLine().simplifyWhiteSpace();
+		if (keepEmptyLines || !line.isEmpty()) target.append(line);
+	}
+	return true;
+}
 
 // ------- KEasyProcess
 KEasyProcess::KEasyProcess(QObject *parent, const char *name): KProcess(parent, name) {

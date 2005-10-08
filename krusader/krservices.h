@@ -38,6 +38,7 @@ public:
 	static QStringList  separateArgs( QString args );
 	static QString      registerdProtocol(QString mimetype);
 	static void         clearProtocolCache();
+	static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines=false);
 
 private:
 	static QMap<QString,QString>* slaveMap;

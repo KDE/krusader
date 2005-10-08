@@ -4,11 +4,15 @@
 #include <kdialogbase.h>
 #include <qvaluelist.h>
 
+class KTempFile;
 extern void initChecksumModule();
 
 class CreateChecksumDlg: public KDialogBase {
 public:
 	CreateChecksumDlg(const QStringList& files, bool containFolders, const QString& path);
+
+private:
+	KTempFile *tmpOut, *tmpErr;
 };
 
 
@@ -18,12 +22,15 @@ public:
 
 protected:
 	bool verifyChecksumFile(QString path, QString& extension);
+
+private:
+	KTempFile *tmpOut, *tmpErr;
 };
 
 
 class ChecksumResultsDlg: public KDialogBase {
 public:
-	ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr, 
+	ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr,
 		const QString& suggestedFilename, const QString& binary, const QString& type);
 
 protected:
