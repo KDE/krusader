@@ -163,9 +163,9 @@ void KrDetailedViewItem::repaintItem() {
 }
 
 QString num2qstring(KIO::filesize_t num){
-  char buf[26];
-  sprintf(buf,"%025llu",num);
-  return QString(buf);
+  QString buf;
+  buf.sprintf("%025llu",num);
+  return buf;
 }
 
 void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align) {
