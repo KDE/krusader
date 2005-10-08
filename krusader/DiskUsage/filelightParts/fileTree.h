@@ -210,9 +210,9 @@ public:
   inline const int        intPercent()          const  {return m_percent;}
   inline const QString    percent()             const  {if( m_percent < 0 )
                                                          return "INV";
-                                                        char buf[ 25 ];  
-                                                        sprintf( buf, "%d.%02d%%", m_percent / 100, m_percent % 100 );
-                                                        return QString( buf );}
+                                                        QString buf; 
+                                                        buf.sprintf( "%d.%02d%%", m_percent / 100, m_percent % 100 );
+                                                        return buf;}
   inline void             setPercent( int p )          {m_percent = p;}  
   inline const Directory* parent()              const  {return m_parent;}
   

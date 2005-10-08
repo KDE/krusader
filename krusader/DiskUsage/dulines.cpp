@@ -58,15 +58,15 @@ public:
     
     DULinesItem *compWith = dynamic_cast< DULinesItem * >( i );
         
-    char buf1[25], buf2[25];
+    QString buf1,buf2;
     
     switch( col )
     {
     case 0:    
     case 1:
-      sprintf(buf1,"%025llu",file->size());
-      sprintf(buf2,"%025llu",compWith->file->size());
-      return -QString::compare( QString( buf1 ), QString( buf2 ) );
+      buf1.sprintf("%025llu",file->size());
+      buf2.sprintf("%025llu",compWith->file->size());
+      return -QString::compare( buf1, buf2 );
     default:    
       return QListViewItem::compare( i, col, ascending );
     }

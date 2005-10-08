@@ -85,19 +85,19 @@ public:
     
     DUListViewItem *compWith = dynamic_cast< DUListViewItem * >( i );
         
-    char buf1[25], buf2[25];
+    QString buf1,buf2;
     
     switch( col )
     {
     case 1:    
     case 2:
-      sprintf(buf1,"%025llu",file->size());
-      sprintf(buf2,"%025llu",compWith->file->size());
-      return -QString::compare( QString( buf1 ), QString( buf2 ) );
+      buf1.sprintf("%025llu",file->size());
+      buf2.sprintf("%025llu",compWith->file->size());
+      return -QString::compare( buf1, buf2 );
     case 3:
-      sprintf(buf1,"%025llu",file->ownSize());
-      sprintf(buf2,"%025llu",compWith->file->ownSize());
-      return -QString::compare( QString( buf1 ), QString( buf2 ) );
+      buf1.sprintf("%025llu",file->ownSize());
+      buf2.sprintf("%025llu",compWith->file->ownSize());
+      return -QString::compare( buf1, buf2 );
     case 5:
       return QListViewItem::compare( i, col, !ascending );
     default:    

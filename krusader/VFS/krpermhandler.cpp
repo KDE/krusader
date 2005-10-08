@@ -264,9 +264,8 @@ bool KRpermHandler::fileExist( QString path, QString name ) {
 }
 
 QString KRpermHandler::parseSize( KIO::filesize_t val ) {
-	char buf[ 25 ];
-	sprintf( buf, "%llu", val );
-	QString temp( buf );
+	QString temp;
+	temp.sprintf( "%llu", val );
 	if ( temp.length() <= 3 ) return temp;
 	unsigned int i = temp.length() % 3;
 	if ( i == 0 ) i = 3;
