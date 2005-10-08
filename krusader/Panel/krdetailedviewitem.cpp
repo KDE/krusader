@@ -163,7 +163,7 @@ void KrDetailedViewItem::repaintItem() {
 }
 
 QString num2qstring(KIO::filesize_t num){
-  char buf[25];
+  char buf[26];
   sprintf(buf,"%025llu",num);
   return QString(buf);
 }
