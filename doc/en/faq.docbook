@@ -373,6 +373,25 @@ distribution used and
    </answer>
    </qandaentry>
 
+<qandaentry>
+  <question id="faqi_gcc4">
+  <para>Why &krusader;-1.60.0 does not compile with gcc4?</para>
+  </question>
+  <answer>
+  <para>Because &krusader;-1.60.0 was not gcc4 compatible, it needs first some patches:
+      <itemizedlist>
+      <listitem><para>add 'class ListPanelFunc;' in krusader/Panel/listpanel.h</para></listitem>
+      <listitem><para>add 'class KMountManGUI;' in krusader/MountMan/kmountman.h</para></listitem> 
+      <listitem><para>add 'class KrDetailedViewItem;' in krusader/Panel/krdetailedview.h </para></listitem> 
+      </itemizedlist>
+      More information can be found in our 
+      <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1328">forum</ulink> .    
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+   
+   
   <qandaentry>
   <question id="faqi_help_request">
   <para>I am having trouble compiling and installing &krusader;, how do I send a help request?</para>
