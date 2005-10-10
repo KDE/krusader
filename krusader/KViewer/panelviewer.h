@@ -26,6 +26,7 @@ public:
 public slots:
 	virtual KParts::ReadOnlyPart* openURL( const KURL&, KrViewer::Mode=KrViewer::Generic ){ return 0;} 
 	virtual bool closeURL(){ return false; }
+	virtual bool queryClose() { return true; }
 
 signals:
 	void openURLRequest( const KURL &url );
@@ -64,6 +65,7 @@ public:
 public slots:
 	KParts::ReadOnlyPart* openURL( const KURL &url, KrViewer::Mode mode=KrViewer::Generic );
 	bool closeURL();
+	bool queryClose();
 	void slotStatResult( KIO::Job* job );
 
 public:

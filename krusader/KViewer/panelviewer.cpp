@@ -24,7 +24,7 @@
 /* ----==={ PanelViewerBase }===---- */
 
 PanelViewerBase::PanelViewerBase( QWidget *parent ) :
-QWidgetStack( parent ) {
+QWidgetStack( parent ), mimes( 0 ), cpart( 0 ) {
 	setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Ignored ) );
 
 	mimes = new QDict<KParts::ReadOnlyPart>( DICTSIZE, false );
@@ -197,7 +197,6 @@ PanelViewerBase( parent ) {
 }
 
 PanelEditor::~PanelEditor() {
-	static_cast<KParts::ReadWritePart *>(cpart)->queryClose();
 }
 
 KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url, KrViewer::Mode mode ) {
@@ -244,13 +243,18 @@ KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url, KrViewer::Mode mode
 	return 0;
 }
 
+bool PanelEditor::queryClose() {
+	if ( !cpart ) return true;
+	return static_cast<KParts::ReadWritePart *>(cpart)->queryClose();
+}
+
 bool PanelEditor::closeURL() {
-	raiseWidget( fallback );
-
 	if ( !cpart ) return false;
-
-	static_cast<KParts::ReadWritePart *>(cpart)->queryClose();
-	static_cast<KParts::ReadWritePart *>(cpart)->closeURL(true);
+	
+	static_cast<KParts::ReadWritePart *>(cpart)->closeURL( false );
+	
+	raiseWidget( fallback );
+	cpart = 0;
 	return true;
 }
 

@@ -222,9 +222,18 @@ void KrViewer::tabCloseRequest(QWidget *w){
 	if( !w ) return;
 
 	PanelViewerBase* pvb = static_cast<PanelViewerBase*>(w);
+	
+	if( !pvb->queryClose() )
+		return;
+		
 	manager.removePart(pvb->part());
+	
+	if( !pvb->closeURL() )
+	return;
+	
+	long key = tabBar.indexOf(w);
 	tabBar.removePage(w);
-	viewerDict.remove(tabBar.indexOf(w));
+	viewerDict.remove( key );
 
 	if( tabBar.count() <= 0 ){
 		delete this;
@@ -241,6 +250,14 @@ void KrViewer::tabCloseRequest(){
 }
 
 bool KrViewer::queryClose() {
+	QIntDictIterator<PanelViewerBase> it( viewerDict );
+	for ( ; it.current(); ++it ) {
+		PanelViewerBase* pvb = viewerDict[ it.currentKey() ];
+		tabBar.setCurrentPage(tabBar.indexOf(pvb));
+		
+		if( !pvb->queryClose() )
+			return false;
+	}
 	return true;
 }
 
@@ -308,7 +325,7 @@ void KrViewer::checkModified(){
 		if( label.endsWith("*)") ){
 			label.truncate(label.length()-2);
 			label.append(")");
-			QIconSet icon = QIconSet(krLoader->loadIcon(MODIFIED_ICON,KIcon::Small));
+			QIconSet icon = QIconSet(krLoader->loadIcon(EDIT_ICON,KIcon::Small));
 
 			tabBar.changeTab(pvb,icon,label);
 		}		
