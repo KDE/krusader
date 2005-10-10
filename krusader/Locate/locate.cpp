@@ -144,11 +144,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   setMainWidget(widget);
   show();
 
-  while( isShown() )
-  {
-    qApp->processEvents();
-    qApp->eventLoop()->processEvents( QEventLoop::AllEvents|QEventLoop::WaitForMore);
-  }
+  exec();
 }
 
 void LocateDlg::slotUser1()   /* The stop / feed to listbox button */
