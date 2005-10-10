@@ -429,19 +429,10 @@ QString KRarcHandler::convertName( QString name ) {
 }
 
 QString KRarcHandler::escape( QString name ) {
-  name.replace( "\\", "\\\\" );
-  name.replace( " ", "\\ " );  
-  name.replace( "(", "\\(" );  
-  name.replace( ")", "\\)" );  
-  name.replace( ";", "\\;" );  
-  name.replace( "|", "\\|" );  
-  name.replace( "`", "\\`" );  
-  name.replace( "$", "\\$" );  
-  name.replace( "&", "\\&" );  
-  name.replace( "<", "\\<" );  
-  name.replace( ">", "\\>" );  
-  name.replace( "'", "\\'" );  
-  name.replace( "\"", "\\\"" );  
+  const QString evilstuff = "\\\"'`()[]{}!?;$&<>| ";		// stuff that should get escaped
+     
+    for ( unsigned int i = 0; i < evilstuff.length(); ++i )
+        name.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
 
   return name;
 }

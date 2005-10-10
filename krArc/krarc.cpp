@@ -560,7 +560,7 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
 		for(int pos=0; pos >= 0; pos = newPath.find("/",pos+1)){
 			QFileInfo qfi(newPath.left(pos));
 			if( qfi.exists() && !qfi.isDir() ){
-    		arcFile = new KFileItem(newPath.left(pos),QString::null,0);
+    			arcFile = new KFileItem(KURL::fromPathOrURL( newPath.left(pos) ),QString::null,0);
 				break;
 			}
 		}
@@ -588,7 +588,6 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
     arcType = "zip";
   
   arcPath = arcFile->url().path(-1);
-  arcPath.replace(QRegExp(" "),"\\ ");
   return initArcParameters();
 }
 
@@ -1221,19 +1220,11 @@ QString kio_krarcProtocol::convertName( QString name ) {
 }
 
 QString kio_krarcProtocol::escape( QString name ) {
-  name.replace( "\\", "\\\\" );
-  name.replace( " ", "\\ " );  
-  name.replace( "(", "\\(" );  
-  name.replace( ")", "\\)" );  
-  name.replace( ";", "\\;" );  
-  name.replace( "|", "\\|" );  
-  name.replace( "`", "\\`" );  
-  name.replace( "$", "\\$" );  
-  name.replace( "&", "\\&" );  
-  name.replace( "<", "\\<" );  
-  name.replace( ">", "\\>" );  
-  name.replace( "'", "\\'" );  
-  name.replace( "\"", "\\\"" );  
+    
+  const QString evilstuff = "\\\"'`()[]{}!?;$&<>| ";		// stuff that should get escaped
+     
+    for ( unsigned int i = 0; i < evilstuff.length(); ++i )
+        name.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
 
   return name;
 }

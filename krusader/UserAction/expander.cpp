@@ -53,7 +53,7 @@
  */
 QString bashquote( QString s ) {
     
-    const QString evilstuff = "\\\"'`()[]{}!?;&<>| ";		// stuff that should get escaped
+    const QString evilstuff = "\\\"'`()[]{}!?;$&<>| ";		// stuff that should get escaped
      
     for ( unsigned int i = 0; i < evilstuff.length(); ++i )
         s.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
