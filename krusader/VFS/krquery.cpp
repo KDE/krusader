@@ -198,10 +198,7 @@ void KRQuery::setNameFilter( QString text, bool cs )
 
   QString matchText = text;
   QString excludeText;
-
-  if( !matchText.contains( "*" ) && !matchText.contains( "?" ) && !matchText.contains( " " ) && !matchText.contains( "|" ) )
-    matchText = "*" + matchText + "*";
-
+  
   int excludeNdx = matchText.find( '|' );
   if( excludeNdx > -1 )
   {
@@ -213,7 +210,17 @@ void KRQuery::setNameFilter( QString text, bool cs )
   }
 
   matches  = QStringList::split(QChar(' '), matchText );
+  
+  if( !matchText.contains( "*" ) && !matchText.contains( "?" ) ) {
+    for ( unsigned int i = 0; i < matches.count(); ++i )
+      matches[ i ] = "*" + matches[ i ] + "*";
+  }
+  
   excludes = QStringList::split(QChar(' '), excludeText );
+  if( !excludeText.contains( "*" ) && !excludeText.contains( "?" ) ) {
+    for ( unsigned int i = 0; i < excludes.count(); ++i )
+      excludes[ i ] = "*" + excludes[ i ] + "*";
+  }
 }
 
 void KRQuery::setContent( QString content, bool cs, bool wholeWord )
