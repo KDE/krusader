@@ -130,6 +130,7 @@ int main(int argc, char *argv[]) {
   aboutData.addCredit("Arpad Biro","Hungarian translation","biro_arpad@yahoo.com",0);
   aboutData.addCredit("Giuseppe Bordoni", "Italian translation", "geppo@geppozone.com", 0);
   aboutData.addCredit("UTUMI Hirosi", "Japanese translation", "utuhiro@mx12.freecom.ne.jp", 0);
+  aboutData.addCredit("Dovydas Sankauskas", "Lithuanian translation", "laisve@gmail.com", 0);
   aboutData.addCredit("Bruno Queiros", "Portuguese translation", "brunoqueiros@portugalmail.com", 0);
   aboutData.addCredit("Lukasz Janyst","Old Polish translation","ljan@wp.pl",0);
   aboutData.addCredit("Pawel Salawa","Polish translation","boogie@myslenice.one.pl",0);
