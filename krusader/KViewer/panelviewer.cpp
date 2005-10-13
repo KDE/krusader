@@ -92,7 +92,10 @@ KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, KrViewer::Mode mode
 
 bool PanelViewer::closeURL() {
 	raiseWidget( fallback );
-	if ( cpart && cpart->closeURL() ) return true;
+	if ( cpart && cpart->closeURL() ) {
+		cpart = 0;
+		return true;
+	}
 	return false;
 }
 

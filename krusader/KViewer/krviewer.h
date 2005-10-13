@@ -19,7 +19,6 @@
 #define KRVIEWER_H
 
 #include <qwidget.h>
-#include <qintdict.h>
 #include <kparts/mainwindow.h>
 #include <ktempfile.h>
 #include <kparts/partmanager.h>
@@ -73,7 +72,6 @@ private:
 	QPopupMenu* viewerMenu;
 	KTempFile tmpFile;
 	KTabWidget tabBar;
-	QIntDict<PanelViewerBase> viewerDict;
 	int returnFocusToKrusader;
 
 	static KrViewer* viewer;

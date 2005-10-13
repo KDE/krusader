@@ -83,7 +83,6 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 
 //	"edit"
 //	"filesaveas"
-	viewerDict.setAutoDelete( true );
 	setCentralWidget( &tabBar );
 
 	viewerMenu = new QPopupMenu( this );
@@ -207,8 +206,6 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	tabBar.setCurrentPage(tabBar.indexOf(pvb));
 	tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
 
-	viewerDict.insert( tabBar.currentPageIndex(),pvb );
-
 	show();
 	tabBar.show();
 }
@@ -228,12 +225,9 @@ void KrViewer::tabCloseRequest(QWidget *w){
 		
 	manager.removePart(pvb->part());
 	
-	if( !pvb->closeURL() )
-	return;
+	pvb->closeURL();
 	
-	long key = tabBar.indexOf(w);
 	tabBar.removePage(w);
-	viewerDict.remove( key );
 
 	if( tabBar.count() <= 0 ){
 		delete this;
@@ -250,10 +244,12 @@ void KrViewer::tabCloseRequest(){
 }
 
 bool KrViewer::queryClose() {
-	QIntDictIterator<PanelViewerBase> it( viewerDict );
-	for ( ; it.current(); ++it ) {
-		PanelViewerBase* pvb = viewerDict[ it.currentKey() ];
-		tabBar.setCurrentPage(tabBar.indexOf(pvb));
+	for( int i=0; i != tabBar.count(); i++ ) {
+		PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.page( i ) );
+		if( !pvb )
+			continue;
+		
+		tabBar.setCurrentPage( i );
 		
 		if( !pvb->queryClose() )
 			return false;
@@ -267,7 +263,7 @@ bool KrViewer::queryExit() {
 }
 
 void KrViewer::viewGeneric(){
-	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
@@ -276,7 +272,7 @@ void KrViewer::viewGeneric(){
 }
 
 void KrViewer::viewText(){
-	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
@@ -285,7 +281,7 @@ void KrViewer::viewText(){
 }
 
 void KrViewer::viewHex(){
-	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
 	if( !pvb ) return;
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
@@ -294,7 +290,7 @@ void KrViewer::viewHex(){
 }
 
 void KrViewer::editText(){
-	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
 	if( !pvb ) return;
 
 	PanelViewerBase* editWidget = new PanelEditor(&tabBar);
@@ -305,7 +301,7 @@ void KrViewer::editText(){
 void KrViewer::checkModified(){
 	QTimer::singleShot( 1000, this, SLOT(checkModified()) );
 
-	PanelViewerBase* pvb = viewerDict[tabBar.currentPageIndex()];
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
 	if( !pvb ) return;
 
 	// add a * to modified files.
