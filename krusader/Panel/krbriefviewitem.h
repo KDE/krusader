@@ -50,9 +50,9 @@ public:
 	int compare(QIconViewItem *i) const;
 	void paintItem(QPainter *p, const QColorGroup &cg);
 	void repaintItem() {}
-/*	static void itemHeightChanged(); // force the items to resize when icon/font size change
-	virtual void setup(); // called when listview needs to know the height of the item
-*/
+	static void itemHeightChanged(); // force the items to resize when icon/font size change
+	// TODO: virtual void setup(); // called when iconview needs to know the height of the item
+
 private:
 	bool initiated;
 	static int expHeight;

@@ -59,6 +59,7 @@
 #include "Panel/listpanel.h"
 #include "Panel/krselectionmode.h"
 #include "Panel/krdetailedviewitem.h"
+#include "Panel/krbriefviewitem.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
 #include "GUI/krusaderstatus.h"
@@ -317,6 +318,7 @@ void KRslots::runKonfigurator(bool firstTime) {
       QPixmapCache::clear();
       
     KrDetailedViewItem::itemHeightChanged(); // needed when icon size / font size changes
+	 KrBriefViewItem::itemHeightChanged();
 
     MAIN_VIEW->leftMng->slotRecreatePanels();
     MAIN_VIEW->rightMng->slotRecreatePanels();

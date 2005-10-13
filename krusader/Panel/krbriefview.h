@@ -5,7 +5,7 @@
 #include "krviewitem.h"
 #include <kiconview.h>
 
-class KrBriefView: public KIconView, KrView {
+class KrBriefView: public KIconView, public KrView {
 	friend class KrBriefViewItem;
 	Q_OBJECT
 public:
@@ -40,6 +40,9 @@ protected:
 	virtual void setup();
 	virtual void initProperties();
 	virtual void initOperator();
+	virtual KrViewItem *preAddItem(vfile *vf) {}
+	virtual bool preDelItem(KrViewItem *item) {}
+
   
 signals:
 	void letsDrag(QStringList items, QPixmap icon);

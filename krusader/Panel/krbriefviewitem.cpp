@@ -201,3 +201,7 @@ void KrBriefViewItem::paintItem(QPainter *p, const QColorGroup &cg) {
 	}
 #endif
 }
+
+void KrBriefViewItem::itemHeightChanged() {
+	expHeight = 0;
+}
