@@ -159,6 +159,7 @@ public:
   virtual void makeItemVisible(const KrViewItem *item) = 0;
   virtual void clear();
   virtual void updateView() = 0;
+  virtual void updateItem(KrViewItem* item) = 0;
   virtual void sort() = 0;
   virtual void saveSettings() = 0;
   virtual void restoreSettings() = 0;

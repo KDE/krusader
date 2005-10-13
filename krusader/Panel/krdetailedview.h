@@ -89,6 +89,7 @@ public:
    virtual void makeItemVisible( const KrViewItem *item );	
    virtual void setCurrentItem( const QString& name );
    virtual void updateView();
+   virtual void updateItem(KrViewItem* item);
    virtual void clear();
    virtual void sort() { KListView::sort(); }
    virtual void setSortMode( KrViewProperties::SortSpec mode );

@@ -1294,6 +1294,10 @@ void KrDetailedView::updateView() {
 	op()->emitSelectionChanged();
 }
 
+void KrDetailedView::updateItem(KrViewItem* item) {
+	dynamic_cast<KrDetailedViewItem*>(item)->repaintItem();
+}
+
 void KrDetailedView::slotRightButtonPressed(QListViewItem*, const QPoint& point, int) {
 	op()->emitEmptyContextMenu(point);
 }

@@ -948,13 +948,10 @@ void ListPanelFunc::calcSpace() {
 
 	KrCalcSpaceDialog calc( krApp, panel, items, false );
 	calc.exec();
-	KrDetailedView * view = dynamic_cast<KrDetailedView *> ( panel->view );
-	if ( !view )
-		return ;
 	for ( QStringList::ConstIterator it = items.begin(); it != items.end(); ++it ) {
-		KrDetailedViewItem * viewItem = dynamic_cast<KrDetailedViewItem *> ( view->findItemByName( *it ) );
+		KrViewItem *viewItem = panel->view->findItemByName( *it );
 		if ( viewItem )
-			viewItem->repaintItem();
+			panel->view->updateItem(viewItem);
 	}
 	panel->slotUpdateTotals();
 }
