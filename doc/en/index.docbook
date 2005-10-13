@@ -105,7 +105,16 @@ Previous used Docbook
 <!ENTITY frugalware_linux_download_url '<ulink url="http://frugalware.org/packages.php?id=280">&frugalware_linux;</ulink>'>
 <!ENTITY pclinuxos_download_url '<ulink url="http://www.pclinuxonline.com/pclos/html/package_list.html">&pclinuxos;</ulink>'>
 <!ENTITY altlinux_download_url '<ulink url="http://www.altlinux.com/index.php?module=sisyphus&amp;package=krusader">&altlinux;</ulink>'>
-<!ENTITY klik_protocol_download_url '<ulink url="http://klik.atekon.de/details.php?section=utils&amp;package=krusader">klik protocol</ulink>'>
+
+
+<!ENTITY klik_protocol_url '<ulink url="http://klik.atekon.de/">klik protocol</ulink>'>
+<!ENTITY klik_krusader_url '<ulink url="klik://krusader">klik://krusader</ulink>'>
+<!ENTITY klik_krusader_latest_url '<ulink url="klik://krusader-latest">klik://krusader-latest</ulink>'>
+<!ENTITY klik_krusader_cvs_url '<ulink url="klik://krusader-cvs">klik://krusader-cvs</ulink>'>
+<!ENTITY klik_available_url '<ulink url="http://klik.atekon.de/details.php?section=utils&amp;package=krusader">available</ulink>'>
+<!ENTITY klik_available_latest_url '<ulink url="http://klik.atekon.de/details.php?section=utils&amp;package=krusader-latest">available</ulink>'>
+<!ENTITY klik_available_cvs_url '<ulink url="http://klik.atekon.de/details.php?section=utils&amp;package=krusader-cvs">available</ulink>'>
+
 
 <!ENTITY fedora_extras_url '<ulink url="http://fedoraproject.org/wiki/Extras/UsingExtras ">&fedora; Extras</ulink>'>
 <!ENTITY distrowatch_com_url '<ulink url="http://distrowatch.com/search.php?pkg=krusader&amp;pkgver=1.60.0">Distrowatch.com</ulink>'>
@@ -380,7 +389,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-10-09</date>
+  <date>2005-10-13</date>
   <releaseinfo>1.70.0 "Hellfire"</releaseinfo>
 
    <abstract>
