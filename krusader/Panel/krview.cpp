@@ -43,6 +43,7 @@
 
 #define VF	getVfile()
 
+
 // ----------------------------- operator
 KrViewOperator::KrViewOperator(KrView *view, QWidget *widget): _view(view), _widget(widget) {
 }
@@ -65,8 +66,8 @@ void KrViewOperator::startDrag() {
 
 // ----------------------------- krview
 
-KrView::KrView( KConfig *cfg ) : _config( cfg ), _nameToMakeCurrent( QString::null ),
-_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0) {
+KrView::KrView( KConfig *cfg ) : _config( cfg ), _widget(0), _nameToMakeCurrent( QString::null ),
+_numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0), _focused( false ), _nameInKConfig(QString::null) {
 }
 
 KrView::~KrView() {
@@ -77,6 +78,12 @@ KrView::~KrView() {
 }
 
 void KrView::init() {
+	// sanity checks:
+	if (_nameInKConfig.isEmpty())
+		qFatal("_nameInKConfig must be set during construction of KrView inheritors");
+	if (!_widget)
+		qFatal("_widget must be set during construction of KrView inheritors");
+	// ok, continue
 	initProperties();
 	initOperator();
 	setup();

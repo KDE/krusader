@@ -2,26 +2,32 @@
 #define KRBRIEFVIEW_H
 
 #include "krview.h"
+#include "krviewitem.h"
 #include <kiconview.h>
 
 class KrBriefView: public KIconView, KrView {
+	friend class KrBriefViewItem;
 	Q_OBJECT
 public:
-	virtual KrViewItem *getFirst() {}	
-	virtual KrViewItem *getNext(KrViewItem *current) {}
-	virtual KrViewItem *getPrev(KrViewItem *current) {}
-	virtual KrViewItem *getCurrentKrViewItem() {}
-	virtual KrViewItem *getKrViewItemAt(const QPoint &vp) {}
-	virtual KrViewItem *findItemByName(const QString &name) {}
+	KrBriefView( QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
+	virtual ~KrBriefView();
+	virtual inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstItem() ); }
+	virtual inline KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastItem() ); }
+	virtual inline KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<QIconViewItem*>( current ) ->nextItem() ); }
+   virtual inline KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<QIconViewItem*>( current ) ->prevItem() ); }
+	virtual inline KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
+	virtual KrViewItem *getKrViewItemAt(const QPoint &vp);
+	virtual inline KrViewItem *findItemByName(const QString &name) { return dynamic_cast<KrViewItem*>( findItem( name, Qt::ExactMatch ) ); }
 	virtual void addItems(vfs* v, bool addUpDir = true) {}
 	virtual void addItem(vfile *vf) {}
 	virtual void delItem(const QString &name) {}
 	virtual void updateItem(vfile *vf) {}
-	virtual QString getCurrentItem() const {}
+	virtual QString getCurrentItem() const;
 	virtual void setCurrentItem(const QString& name) {}
 	virtual void makeItemVisible(const KrViewItem *item) {}
 	virtual void clear() {}
 	virtual void updateView() {}
+	virtual void updateItem(KrViewItem* item) {}
 	virtual void sort() {}
 	virtual void saveSettings() {}
 	virtual void restoreSettings() {}
@@ -29,8 +35,11 @@ public:
 	virtual void prepareForPassive() {}
 	virtual QString nameInKConfig() {}
 	virtual void renameCurrentItem() {}
+
 protected:
-  virtual void initProperties(){}
+	virtual void setup();
+	virtual void initProperties();
+	virtual void initOperator();
   
 signals:
 	void letsDrag(QStringList items, QPixmap icon);

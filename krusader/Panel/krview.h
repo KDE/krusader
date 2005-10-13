@@ -131,6 +131,7 @@ protected:
  * IMPORTANT NOTE: every one who subclasses this must call initProperties() in the constructor !!!
  */ 
 class KrView {
+friend class KrViewItem;
 public:
   // instantiating a new view
   // 1. new KrView
@@ -138,6 +139,7 @@ public:
   // notes: constructor does as little as possible, setup() does the rest. esp, note that
   // if you need something from operator or properties, move it into setup()
   virtual void init();
+
 protected:
   virtual void initProperties() { qFatal("Please implement your own initProperties() method"); }
   virtual void initOperator() { qFatal("Please implement your own initOperator() method"); }
@@ -148,6 +150,7 @@ protected:
   ///////////////////////////////////////////////////////
 public:
   virtual KrViewItem *getFirst() = 0;
+  virtual KrViewItem *getLast() = 0;
   virtual KrViewItem *getNext(KrViewItem *current) = 0;
   virtual KrViewItem *getPrev(KrViewItem *current) = 0;
   virtual KrViewItem *getCurrentKrViewItem() = 0;
@@ -163,10 +166,10 @@ public:
   virtual void sort() = 0;
   virtual void saveSettings() = 0;
   virtual void restoreSettings() = 0;
-  virtual void prepareForActive() = 0;
-  virtual void prepareForPassive() = 0;
-  virtual QString nameInKConfig() = 0;
+  virtual void prepareForActive() { _focused = true; }
+  virtual void prepareForPassive() { _focused = false; }
   virtual void renameCurrentItem(); // Rename current item. returns immediatly
+  virtual QString nameInKConfig() const { return _nameInKConfig; }
 
 protected:
 	virtual KrViewItem *preAddItem(vfile *vf) = 0;
@@ -231,6 +234,8 @@ protected:
   KrViewProperties *_properties;
   KrViewOperator *_operator;
   QDict<KrViewItem> _dict;
+  bool _focused;
+  QString _nameInKConfig;
 };
 
 #endif /* KRVIEW_H */

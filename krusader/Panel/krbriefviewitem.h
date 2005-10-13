@@ -1,5 +1,5 @@
 /***************************************************************************
-                            krdetailedviewitem.h
+                            krbriefviewitem.h
                              -------------------
     copyright            : (C) 2000-2002 by Shie Erlich & Rafi Yanai
     e-mail               : krusader@users.sourceforge.net
@@ -28,46 +28,39 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KRDETAILEDVIEWITEM_H
-#define KRDETAILEDVIEWITEM_H
+#ifndef KRBRIEFVIEWITEM_H
+#define KRBRIEFVIEWITEM_H
 
 #include "krviewitem.h"
 #include <sys/types.h>
 #include "../VFS/vfile.h"
-#include <klistview.h>
+#include <kiconview.h>
 #include <qguardedptr.h>
 
-#define FASTER
-
 class QPixmap;
-class KrDetailedView;
+class KrBriefView;
 
-class KrDetailedViewItem : public KListViewItem, public KrViewItem {
-friend class KrDetailedView;
+class KrBriefViewItem : public KIconViewItem, public KrViewItem {
+friend class KrBriefView;
 friend class KrCalcSpaceDialog;
 public:
-	KrDetailedViewItem(KrDetailedView *parent, QListViewItem *after, vfile *vf);
-	inline bool isSelected() const { return KListViewItem::isSelected(); }
-	inline void setSelected(bool s) { KListViewItem::setSelected(s); }
-	int compare(QListViewItem *i,int col,bool ascending ) const;
-	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
-	void repaintItem();
-	static void itemHeightChanged(); // force the items to resize when icon/font size change
-#ifdef FASTER		
+	KrBriefViewItem(KrBriefView *parent, QIconViewItem *after, vfile *vf);
+	inline bool isSelected() const { return KIconViewItem::isSelected(); }
+	inline void setSelected(bool s) { KIconViewItem::setSelected(s); }
+	int compare(QIconViewItem *i) const;
+	void paintItem(QPainter *p, const QColorGroup &cg);
+	void repaintItem() {}
+/*	static void itemHeightChanged(); // force the items to resize when icon/font size change
 	virtual void setup(); // called when listview needs to know the height of the item
-#endif
-
-protected:
-	// text() was made protected in order to catch every place where text(x) is used
-	// to gain unlawful information on the object
-	virtual inline QString text(int column) const { return KListViewItem::text(column); }
-
+*/
 private:
-	static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2);
-#ifdef FASTER	
 	bool initiated;
 	static int expHeight;
-#endif
+	// TODO:
+	static const QColor & setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2) {}
+	
+	
+//	static int expHeight;
 };
 
 #endif

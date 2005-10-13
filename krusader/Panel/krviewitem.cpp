@@ -2,6 +2,9 @@
 #include "../VFS/krpermhandler.h"
 #include <klocale.h>
 #include <kmimetype.h>
+#include <sys/types.h>
+#include <time.h>
+#include <stdlib.h>
 
 #define PROPS	static_cast<const KrViewProperties*>(_viewProperties)
 
@@ -41,3 +44,27 @@ QString KrViewItem::description() const {
 	return text;
 }
 
+QString KrViewItem::dateTime() const {
+   // convert the time_t to struct tm
+   time_t time = _vf->vfile_getTime_t();
+   struct tm* t=localtime((time_t *)&time);
+
+   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
+   return KGlobal::locale()->formatDateTime(tmp);
+}
+
+QPixmap KrViewItem::icon() {
+#if 0  
+  QPixmap *p;
+
+  // This is bad - very bad. the function must return a valid reference,
+  // This is an interface flow - shie please fix it with a function that return QPixmap*
+  // this way we can return 0 - and do our error checking...
+  
+  // shie answers: why? what's the difference? if we return an empty pixmap, others can use it as it
+  // is, without worrying or needing to do error checking. empty pixmap displays nothing
+#endif
+	if (dummyVfile || !_viewProperties->displayIcons)
+		return QPixmap();
+	else return KrView::getIcon(_vf);
+}

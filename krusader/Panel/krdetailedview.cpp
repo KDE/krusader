@@ -87,9 +87,10 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg, const char *name ) :
-      KListView( parent, name ), KrView( cfg ), _focused( false ), _currDragItem( 0L ),
-      _nameInKConfig( QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ), _left( left ),
-      currentlyRenamedItem( 0 )    {}
+      KListView( parent, name ), KrView( cfg ), _currDragItem( 0L ), currentlyRenamedItem( 0 ) {
+	setWidget( this );
+	_nameInKConfig=QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ;
+}
 
 void KrDetailedView::setup() {
 	lastSwushPosition = 0;
@@ -129,8 +130,6 @@ void KrDetailedView::setup() {
       connect( &KrColorCache::getColorCache(), SIGNAL( colorsRefreshed() ), this, SLOT( refreshColors() ) );
 		connect( header(), SIGNAL(clicked(int)), this, SLOT(sortOrderChanged(int )));
    }
-
-   setWidget( this );
 
    // add whatever columns are needed to the listview
    krConfig->setGroup( nameInKConfig() );
@@ -422,11 +421,12 @@ void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
 }
 
 void KrDetailedView::prepareForActive() {
+	KrView::prepareForActive();
    setFocus();
-   _focused = true;
 }
 
 void KrDetailedView::prepareForPassive() {
+	KrView::prepareForPassive();
    CANCEL_TWO_CLICK_RENAME;
    if ( renameLineEdit() ->isVisible() )
       renameLineEdit() ->clearFocus();
@@ -442,7 +442,6 @@ void KrDetailedView::prepareForPassive() {
          }
       }
    }
-   _focused = false;
 }
 
 void KrDetailedView::slotItemDescription( QListViewItem * item ) {
@@ -698,7 +697,7 @@ void KrDetailedView::showContextMenu()
 }
 
 KrViewItem *KrDetailedView::getKrViewItemAt( const QPoint & vp ) {
-   return static_cast<KrDetailedViewItem*>( KListView::itemAt( vp ) );
+   return dynamic_cast<KrViewItem*>( KListView::itemAt( vp ) );
 }
 
 bool KrDetailedView::acceptDrag( QDropEvent* ) const {

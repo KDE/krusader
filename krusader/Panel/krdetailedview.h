@@ -77,13 +77,13 @@ public:
    KrDetailedView( QWidget *parent, bool &left, KConfig *cfg = krConfig, const char *name = 0 );
    virtual ~KrDetailedView();
    virtual int column( KrDetailedViewProperties::ColumnType type );
-   virtual KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
-   virtual KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastChild() ); }
-   virtual KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemBelow() ); }
-   virtual KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemAbove() ); }
-   virtual KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
+   virtual inline KrViewItem *getFirst() { return dynamic_cast<KrViewItem*>( firstChild() ); }
+   virtual inline KrViewItem *getLast() { return dynamic_cast<KrViewItem*>( lastChild() ); }
+   virtual inline KrViewItem *getNext( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemBelow() ); }
+   virtual inline KrViewItem *getPrev( KrViewItem *current ) { return dynamic_cast<KrViewItem*>( dynamic_cast<KListViewItem*>( current ) ->itemAbove() ); }
+   virtual inline KrViewItem *getCurrentKrViewItem() { return dynamic_cast<KrViewItem*>( currentItem() ); }
    virtual KrViewItem *getKrViewItemAt( const QPoint &vp );
-   virtual KrViewItem *findItemByName( const QString &name ) { return dynamic_cast<KrViewItem*>( findItem( name, 0 ) ); }
+   virtual inline KrViewItem *findItemByName( const QString &name ) { return dynamic_cast<KrViewItem*>( findItem( name, 0 ) ); }
    virtual void addItems( vfs *v, bool addUpDir = true );
  	virtual QString getCurrentItem() const;
    virtual void makeItemVisible( const KrViewItem *item );	
@@ -95,9 +95,8 @@ public:
    virtual void setSortMode( KrViewProperties::SortSpec mode );
    virtual void prepareForActive();
    virtual void prepareForPassive();
-   virtual void saveSettings() { KListView::saveLayout( _config, nameInKConfig() ); }
-   virtual void restoreSettings() { KListView::restoreLayout( _config, nameInKConfig() ); }
-   virtual QString nameInKConfig() { return _nameInKConfig; }
+   virtual inline void saveSettings() { KListView::saveLayout( _config, nameInKConfig() ); }
+   virtual inline void restoreSettings() { KListView::restoreLayout( _config, nameInKConfig() ); }
 
 signals:
    void middleButtonClicked( QListViewItem *item );
@@ -107,7 +106,7 @@ protected:
 	virtual void initProperties();
 	virtual void initOperator();
 	virtual KrViewItem *preAddItem(vfile *vf);
-	virtual bool preDelItem(KrViewItem *item) { return true; } // nothing special to do
+	virtual inline bool preDelItem(KrViewItem *item) { return true; } // nothing special to do
    void newColumn( KrDetailedViewProperties::ColumnType type );
    void selectColumns();
    
@@ -156,13 +155,11 @@ public slots:
 
 private:
    static QString ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
-   bool _focused, swushSelects;
+   bool swushSelects;
    QPoint dragStartPos;
    QListViewItem *lastSwushPosition;
    bool caseSensitiveSort;
    KrViewItem *_currDragItem;
-   QString _nameInKConfig;
-   bool &_left;
    bool singleClicked;
    bool modifierPressed;
    QTime clickTime;

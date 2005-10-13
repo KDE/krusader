@@ -42,12 +42,12 @@ class KrViewItem {
 	friend class KrView;
 
 public:
-   virtual QString name() const = 0;
-   virtual QString dateTime() const = 0;
+   virtual inline QString name() const { return _vf->vfile_getName(); }
+   virtual QString dateTime() const;
    virtual QString description() const;
    virtual bool isSelected() const = 0;
    virtual void setSelected( bool s ) = 0;
-   virtual QPixmap icon() = 0;
+   virtual QPixmap icon();
    
 	KrViewItem(vfile *vf, const KrViewProperties* properties): _vf(vf), dummyVfile(false), _viewProperties(properties) {}
    virtual ~KrViewItem() { if (dummyVfile) delete _vf; }
@@ -57,6 +57,9 @@ public:
    virtual inline vfile* getMutableVfile() { return _vf; }
 
 protected:
+	// used INTERNALLY when calculation of dir size changes the displayed size of the item
+	inline void setSize(KIO::filesize_t size) { _vf->vfile_setSize(size); }
+
 	vfile* _vf;			// each view item holds a pointer to a corrosponding vfile for fast access	
 	bool dummyVfile;	// used in case our item represents the ".." (updir) item
 	const KrViewProperties* _viewProperties;

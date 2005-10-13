@@ -310,22 +310,6 @@ const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor &
    return color1;
 }
 
-QPixmap KrDetailedViewItem::icon() {
-#if 0  
-  QPixmap *p;
-
-  // This is bad - very bad. the function must return a valid reference,
-  // This is an interface flow - shie please fix it with a function that return QPixmap*
-  // this way we can return 0 - and do our error checking...
-  
-  // shie answers: why? what's the difference? if we return an empty pixmap, others can use it as it
-  // is, without worrying or needing to do error checking. empty pixmap displays nothing
-#endif
-	if (dummyVfile || !PROPS->displayIcons)
-		return QPixmap();
-	else return KrView::getIcon(_vf);
-}
-
 int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const {
   bool ignoreCase = (PROPS->sortMode & KrViewProperties::IgnoreCase);
   int asc = ( ascending ? -1 : 1 );
@@ -373,15 +357,6 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
 			return QString::compare(e1, e2);
 		} else return QString::localeAwareCompare(e1, e2);
   }
-}
-
-QString KrDetailedViewItem::dateTime() const {
-   // convert the time_t to struct tm
-   time_t time = VF->vfile_getTime_t();
-   struct tm* t=localtime((time_t *)&time);
-
-   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
-   return KGlobal::locale()->formatDateTime(tmp);
 }
 
 void KrDetailedViewItem::itemHeightChanged() {
