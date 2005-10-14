@@ -1897,12 +1897,22 @@ little scripts are possible but real scripting can be done with the &javascript_
 
      <listitem><para><userinput>ColSort</userinput> - set the sorting
           on a column of a specific panel.</para>
-          <orderedlist>
-     <listitem><para>&useraction_parameter; Which items; either "Name", "Ext", "Type", "Size",
+     <orderedlist>
+     <listitem><para>&useraction_parameter; Column: either "Name", "Ext", "Type", "Size",
                      "Modified", "Perms", "rwx", "Owner" and "Group"</para></listitem>
-     <listitem><para>&useraction_parameter; Which items; either "Toggle", "Asc", "Desc"
+     <listitem><para>&useraction_parameter; Sort sequence: either "Toggle", "Asc", "Desc"
                      </para></listitem>
-    </orderedlist>
+      </orderedlist>
+     </listitem>
+
+     <listitem><para><userinput>View</userinput> - set the view mode.</para>
+     <orderedlist>
+     <listitem><para>&useraction_parameter; View mode: either "generic", "text", "hex"
+                     </para></listitem>
+     <listitem><para>&useraction_parameter; Window Mode: either "tab", "window"
+                     </para></listitem>
+     </orderedlist>
+
     </listitem>
 </itemizedlist>
 
