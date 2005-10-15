@@ -82,7 +82,7 @@ void ArchiveProtocol::put( const KURL& url, int, bool, bool resume ){
 		      i18n("Writing to %1 is not supported").arg(filename) );
 		return;
 	}
-	while( temp=buffer.dequeue() ){
+	while( (temp=buffer.dequeue()) ){
 		m_archiveFile->writeData(temp->data(),temp->size());
 	}
 	m_archiveFile->doneWriting(size);
