@@ -94,8 +94,13 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	viewerMenu->insertSeparator();
 	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + Key_E, 4 );
 	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( i18n( "&Next tab" ), this, SLOT( nextTab() ), CTRL+ALT+Key_Right );
-	viewerMenu->insertItem( i18n( "&Previous tab" ), this, SLOT( prevTab() ), CTRL+ALT+Key_Left );
+	viewerMenu->insertItem( i18n( "&Next tab" ), this, SLOT( nextTab() ), ALT+Key_Right );
+	viewerMenu->insertItem( i18n( "&Previous tab" ), this, SLOT( prevTab() ), ALT+Key_Left );
+
+	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL+Key_D );
+	//no point in detaching only one tab..
+	viewerMenu->setItemEnabled(detachActionIndex,false);	
+
 	viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
 	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), Key_F10 );
 
@@ -225,6 +230,11 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	tabBar.setCurrentPage(tabBar.indexOf(pvb));
 	tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
 
+	// now we can offer the option to detach tabs (we have more than one)
+	if( tabBar.count() > 1 ){
+		viewerMenu->setItemEnabled(detachActionIndex,true);	
+	}
+
 	show();
 	tabBar.show();
 }
@@ -232,6 +242,9 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 void KrViewer::tabChanged(QWidget* w){
 	manager.setActivePart( static_cast<PanelViewerBase*>(w)->part() );
 	if( returnFocusToKrusader ) --returnFocusToKrusader;
+
+	// set this viewer to be the main viewer
+	viewer = this;
 }
 
 void KrViewer::tabCloseRequest(QWidget *w){
@@ -250,6 +263,9 @@ void KrViewer::tabCloseRequest(QWidget *w){
 
 	if( tabBar.count() <= 0 ){
 		delete this;
+	} else if( tabBar.count() == 1 ){
+		//no point in detaching only one tab..
+		viewerMenu->setItemEnabled(detachActionIndex,false);
 	}
 
 	if( returnFocusToKrusader ){ 
@@ -356,6 +372,19 @@ void KrViewer::prevTab(){
 	int index = (tabBar.currentPageIndex()-1)%tabBar.count();
 	while( index < 0 ) index+=tabBar.count();
 	tabBar.setCurrentPage( index );
+}
+
+void KrViewer::detachTab(){
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	if( !pvb ) return;
+
+	KrViewer* viewer = getViewer(true);
+
+	manager.removePart(pvb->part());
+	tabBar.removePage(pvb);
+	pvb->reparent(&viewer->tabBar,QPoint(0,0));
+
+	viewer->addTab(pvb,"Viewing",VIEW_ICON,pvb->part());
 }
 
 #if 0

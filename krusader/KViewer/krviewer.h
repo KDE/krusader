@@ -59,12 +59,15 @@ public slots:
 
 	void nextTab();
 	void prevTab();
+	void detachTab();
 	
 	void checkModified();
 
 protected:
 	virtual bool queryClose();
 	virtual bool queryExit();
+
+	void focusInEvent( QFocusEvent * ){ viewer = this; }
 
 private:
 	KrViewer( QWidget *parent = 0, const char *name = 0 );
@@ -77,6 +80,7 @@ private:
 	KTempFile tmpFile;
 	KTabWidget tabBar;
 	int returnFocusToKrusader;
+	int detachActionIndex;
 
 	static KrViewer* viewer;
 };
