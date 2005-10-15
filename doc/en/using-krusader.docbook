@@ -1162,8 +1162,9 @@ TODO
 
 <para>
   The nice thing is that the system abstracts over different checksum mechanisms 
-  and different binaries. Right now, it supports md5, sha1, sha256, tiger and whirlpool.
-  You probably have md5sum and sha1sum already, if you install md5deep you'll have others.
+  and different binaries. Right now, it supports md5, sha1, sha256, tiger, whirlpool and cfv.
+  You probably have md5sum and sha1sum already, external supported tools are md5deep 
+  (sha256, tiger, whirlpool) and cfv.
 </para>
 
 

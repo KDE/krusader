@@ -451,8 +451,14 @@ HTML_PARSING-->
        with and without mimetype magic and decide what's best for you.</para></listitem>
   <listitem><para><guilabel>Editor</guilabel>: choose what editor will be used when editing a file (via
        F4).</para></listitem>
+  <listitem><para><guilabel>Default viewer mode</guilabel>: eighter: generic, text or hex mode.
+             </para></listitem>
+  <listitem><para><guilabel>Viewer opens each file in a separate window</guilabel>: 
+            use browsing tabs or not. 
+            </para></listitem>
   <listitem><para><guilabel>Terminal</guilabel>: choose what terminal emulator will be used when &krusader;
        opens a console window (via F2, or Commands->Terminal menu option).</para></listitem>
+
   <listitem><para><guilabel>Temp Directory</guilabel>: this option selects the base directory for
        &krusader;'s temporary files. The actual files will be created in separate directories under the
        'Temp directory', so that each user running &krusader; will have his/her own temporary
@@ -645,37 +651,16 @@ new archive should be available and checked.</para>
 <entry><para><command>updatedb</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/updatedb</replaceable></filename></para></entry>
 </row>
-<row>
-<entry><para><command>md5deep</command></para></entry>
-<entry><para><filename class="directory"><replaceable>/usr/bin/md5deep</replaceable></filename></para></entry>
-</row>
-<row>
-<entry><para><command>sha1deep</command></para></entry>
-<entry><para><filename class="directory"><replaceable>/usr/bin/sha1deep</replaceable></filename></para></entry>
-</row>
-<row>
-<entry><para><command>sha1deep</command></para></entry>
-<entry><para><filename class="directory"><replaceable>/usr/bin/sha1deep</replaceable></filename></para></entry>
-</row>
-<row>
-<entry><para><command>sha256deep</command></para></entry>
-<entry><para><filename class="directory"><replaceable>/usr/bin/sha256deep</replaceable></filename></para></entry>
-</row>
-<row>
-<entry><para><command>tigerdeep</command></para></entry>
-<entry><para><filename class="directory"><replaceable>/usr/bin/tigerdeep</replaceable></filename></para></entry>
-</row>
-<row>
-<entry><para><command>whirlpooldeep</command></para></entry>
-<entry><para><filename class="directory"><replaceable>/usr/bin/whirlpooldeep</replaceable></filename></para></entry>
-</row>
 </tbody>
 </tgroup>
 </informaltable>
 </para>
 
-<tip><para>By default &kompare; (part of the kdebase package) is used as external diff utility but you can also use
-           your favorite diff utility &eg; &xxdiff_url; or &kdiff3_url; , just fill in the full path and enjoy.</para></tip>
+
+
+<tip><para>By default &kompare; (part of the kdebase package) is used as external diff utility but
+           you can also use your favorite diff utility &eg; &xxdiff_url; or &kdiff3_url; , 
+           just fill in the full path and enjoy.</para></tip>
 
 <para><emphasis role="bold">Packers tab</emphasis></para>
 <para>Here you can configure the full path of the following external packers:
@@ -750,6 +735,49 @@ It works with the same manner as 'su', where you cannot enter the password only 
 but we noticed that unace always changes its output's format from release to release, 
 making the cooperation almost impossible.
 </para></note>
+
+<para><emphasis role="bold">Checksum Utilities tab</emphasis></para>
+<para>Here you can configure the full path of the following external Checksum Utilities:
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>Checksum Utilities</entry>
+<entry>configurable full path</entry>
+</row>
+<row>
+<entry><para><command>md5deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/md5deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha1deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha1deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha1deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha1deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha256deep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha256deep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>tigerdeep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/tigerdeep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>whirlpooldeep</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/whirlpooldeep</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>cfv</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/cfv</replaceable></filename></para></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</para>
+
 
 </sect1>
 
