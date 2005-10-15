@@ -158,6 +158,21 @@ KrViewer* KrViewer::getViewer(bool new_window){
 	else return new KrViewer( krApp );
 }	
 
+void KrViewer::view( KURL url ) {
+	Mode defaultMode = Generic;
+	bool defaultWindow = false;
+
+	krConfig->setGroup( "General" );
+	defaultWindow = krConfig->readBoolEntry( "View In Separate Window",_ViewInSeparateWindow );
+
+	QString modeString = krConfig->readEntry( "Default Viewer Mode","generic" );
+
+	if( modeString == "generic" ) defaultMode = Generic;
+	else if( modeString == "text" ) defaultMode = Text;
+	else if( modeString == "hex" ) defaultMode = Hex;
+
+	view(url,defaultMode,defaultWindow);
+}
 
 void KrViewer::view( KURL url, Mode mode,  bool new_window ) {
 	KrViewer* viewer = getViewer(new_window);

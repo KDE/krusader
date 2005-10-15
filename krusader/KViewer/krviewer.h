@@ -39,7 +39,8 @@ class KrViewer : public KParts::MainWindow {
 public:
 	enum Mode{Generic,Text,Hex};
 
-	static void view( KURL url, Mode mode=Generic, bool new_window=false );
+	static void view( KURL url );
+	static void view( KURL url, Mode mode, bool new_window );
 	static void edit( KURL url, Mode mode=Text, bool new_window=false  );
 
 
