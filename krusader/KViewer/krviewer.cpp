@@ -81,6 +81,8 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	connect( &tabBar, SIGNAL( closeRequest( QWidget *) ),
 	         this, SLOT( tabCloseRequest(QWidget*) ) );
 
+	tabBar.setTabReorderingEnabled(false);
+	tabBar.setAutomaticResizeTabs(true);
 //	"edit"
 //	"filesaveas"
 	setCentralWidget( &tabBar );
@@ -92,6 +94,8 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	viewerMenu->insertSeparator();
 	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + Key_E, 4 );
 	viewerMenu->insertSeparator();
+	viewerMenu->insertItem( i18n( "&Next tab" ), this, SLOT( nextTab() ), CTRL+ALT+Key_Right );
+	viewerMenu->insertItem( i18n( "&Previous tab" ), this, SLOT( prevTab() ), CTRL+ALT+Key_Left );
 	viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
 	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), Key_F10 );
 
@@ -341,6 +345,17 @@ void KrViewer::checkModified(){
 			tabBar.changeTab(pvb,icon,label);
 		}		
 	}
+}
+
+void KrViewer::nextTab(){
+	int index = (tabBar.currentPageIndex()+1)%tabBar.count();
+	tabBar.setCurrentPage( index );
+}
+
+void KrViewer::prevTab(){
+	int index = (tabBar.currentPageIndex()-1)%tabBar.count();
+	while( index < 0 ) index+=tabBar.count();
+	tabBar.setCurrentPage( index );
 }
 
 #if 0

@@ -56,6 +56,9 @@ public slots:
 	void tabChanged(QWidget* w);
 	void tabCloseRequest(QWidget *w);
 	void tabCloseRequest();
+
+	void nextTab();
+	void prevTab();
 	
 	void checkModified();
 
