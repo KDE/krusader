@@ -172,6 +172,31 @@ bool KrServices::fileToStringList(QTextStream *stream, QStringList& target, bool
 	return true;
 }
 
+QString KrServices::quote( QString name ) {
+  if( !name.contains( '\'' ) )
+    return "'" + name + "'";
+  if( !name.contains( '"' ) && !name.contains( '$' ) )
+    return "\"" + name + "\"";
+  return escape( name );
+}
+
+QStringList KrServices::quote( const QStringList& names ) {
+	QStringList result;
+	for (int i=0; i<names.size(); ++i)
+		result.append(quote(names[i]));
+	return result;
+}
+
+QString KrServices::escape( QString name ) {
+  const QString evilstuff = "\\\"'`()[]{}!?;$&<>| ";		// stuff that should get escaped
+     
+    for ( unsigned int i = 0; i < evilstuff.length(); ++i )
+        name.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
+
+  return name;
+}
+
+
 // ------- KEasyProcess
 KEasyProcess::KEasyProcess(QObject *parent, const char *name): KProcess(parent, name) {
 	init();

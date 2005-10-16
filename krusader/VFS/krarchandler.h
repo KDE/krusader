@@ -62,9 +62,6 @@ public:
   static QString getPassword(QString archive, QString type);
 public slots:
   void setPassword(KProcess *,char *buffer,int buflen);
-protected:
-  static QString convertName( QString name );
-  static QString escape( QString name );
 };
 
 #endif

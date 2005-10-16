@@ -39,6 +39,11 @@ public:
 	static QString      registerdProtocol(QString mimetype);
 	static void         clearProtocolCache();
 	static bool         fileToStringList(QTextStream *stream, QStringList& target, bool keepEmptyLines=false);
+	static QString		  quote( QString name );
+	static QStringList  quote( const QStringList& names );
+
+protected:
+	static QString 	  escape( QString name );
 
 private:
 	static QMap<QString,QString>* slaveMap;

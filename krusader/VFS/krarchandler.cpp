@@ -163,7 +163,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type ) {
   long count = 1;
   KTempFile tmpFile( /*"tmp"*/ QString::null, "krusader-unpack" ); // commented out as it created files in the current dir!
   KShellProcess list;
-  list << lister << convertName( archive ) << ">" << tmpFile.name() ;
+  list << lister << KrServices::quote( archive ) << ">" << tmpFile.name() ;
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
     list<< "<" << "/dev/ptmx";
   list.start( KProcess::Block );
@@ -221,11 +221,11 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
 
   // unpack the files
   KShellProcess proc;
-  proc << packer << " " + convertName( archive );
+  proc << packer << " " + KrServices::quote( archive );
   if( type == "zip2" || type=="gzip" ){
     QString arcname = archive.mid(archive.findRev("/")+1);
     if( arcname.contains(".") ) arcname = arcname.left(arcname.findRev("."));
-    proc << ">" << convertName( dest+"/"+arcname );
+    proc << ">" << KrServices::quote( dest+"/"+arcname );
   }
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
     proc << "<" << "/dev/ptmx";
@@ -284,7 +284,7 @@ bool KRarcHandler::test( QString archive, QString type, long count, QString pass
 
   // unpack the files
   KShellProcess proc;
-  proc << packer << convertName( archive );
+  proc << packer << KrServices::quote( archive );
 
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
     proc << "<" << "/dev/ptmx";
@@ -326,10 +326,10 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
 
   // prepare to pack
   KShellProcess proc;
-  proc << packer << convertName( dest );
+  proc << packer << KrServices::quote( dest );
 
   for ( QStringList::Iterator file = fileNames.begin(); file != fileNames.end(); ++file ) {
-    proc << convertName( *file );
+    proc << KrServices::quote( *file );
     }
 
   // tell the user to wait
@@ -419,23 +419,6 @@ bool KRarcHandler::isArchive(const KURL& url) {
 	else return false;	
 }
 
-
-QString KRarcHandler::convertName( QString name ) {
-  if( !name.contains( '\'' ) )
-    return "'" + name + "'";
-  if( !name.contains( '"' ) && !name.contains( '$' ) )
-    return "\"" + name + "\"";
-  return escape( name );
-}
-
-QString KRarcHandler::escape( QString name ) {
-  const QString evilstuff = "\\\"'`()[]{}!?;$&<>| ";		// stuff that should get escaped
-     
-    for ( unsigned int i = 0; i < evilstuff.length(); ++i )
-        name.replace( evilstuff[ i ], ('\\' + evilstuff[ i ]) );
-
-  return name;
-}
 
   
 #include "krarchandler.moc"
