@@ -933,7 +933,7 @@ void ListPanelFunc::matchChecksum() {
 		KRQuery(MatchChecksumDlg::checksumTypesFilter)
 	);
 	MatchChecksumDlg dlg(args, folders, panel->realPath(), 
-		(checksumFiles.size()==1 ? checksumFiles[0]->vfile_getUrl().url() : QString::null));
+		(checksumFiles.size()==1 ? checksumFiles[0]->vfile_getUrl().prettyURL() : QString::null));
 }
 
 void ListPanelFunc::calcSpace() {

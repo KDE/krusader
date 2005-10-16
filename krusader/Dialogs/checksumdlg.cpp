@@ -256,7 +256,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	tmpErr = new KTempFile(locateLocal("tmp", "krusader"), ".stderr" );
 	KProcess proc;
 	CS_Tool *mytool = tools.at(method->currentItem());
-	mytool->create(proc, mytool, files, QString::null, containFolders, 
+	mytool->create(proc, mytool, KrServices::quote(files), QString::null, containFolders, 
 		tmpOut->name(), tmpErr->name(), method->currentText());
 	
 	krApp->startWaiting(i18n("Calculating checksums ..."), 0);	
@@ -369,7 +369,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	tmpOut = new KTempFile(locateLocal("tmp", "krusader"), ".stdout" );
 	tmpErr = new KTempFile(locateLocal("tmp", "krusader"), ".stderr" );
 	KProcess proc;
-	mytool->verify(proc, mytool, files, file, containFolders, tmpOut->name(), tmpErr->name(), extension);
+	mytool->verify(proc, mytool, KrServices::quote(files), KrServices::quote(file), containFolders, tmpOut->name(), tmpErr->name(), extension);
 	krApp->startWaiting(i18n("Verifying checksums ..."), 0);	
 	QApplication::setOverrideCursor( KCursor::waitCursor() );
 	bool r = proc.start(KProcess::NotifyOnExit, KProcess::AllOutput);
@@ -390,7 +390,6 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 		KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
 		return;
 	}
-	
 	VerifyResultDlg dlg(mytool->failed(stdout, stderr));
 	tmpOut->unlink(); delete tmpOut;
 	tmpErr->unlink(); delete tmpErr;
