@@ -869,4 +869,8 @@ void KRslots::jsConsole() {
 #endif
 }
 
+void KRslots::bookmarkCurrent() {
+	krBookMan->bookmarkCurrent(ACTIVE_PANEL->virtualPath());
+}
+
 #include "krslots.moc"

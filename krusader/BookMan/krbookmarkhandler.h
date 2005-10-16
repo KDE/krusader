@@ -20,9 +20,9 @@ public:
 	~KrBookmarkHandler();
 	void populate(KPopupMenu *menu);
 	void addBookmark(KrBookmark *bm, KrBookmark *parent = 0);
+	void bookmarkCurrent(KURL url);
 
 protected:
-	void bookmarkCurrent(KURL url);
 	void deleteBookmark(KrBookmark *bm);
 	void importFromFile();
 	bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg);
