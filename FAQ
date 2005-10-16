@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.70.0CVS
-- Documentation date:  2005-07-01
-- Parsing date: Thu Jul 28 19:53:35 UTC 2005
+- Documentation version:  1.70.0
+- Documentation date:  2005-10-15
+- Parsing date: Sun Oct 16 18:52:30 UTC 2005
 --------------------------------------------
  
 
@@ -12,23 +12,21 @@ NOTE:
 after the parsing process to generate this TXT file all te URL's are gone,
 to see the URL's again please take a look at the HTML version of this file.
 
-The HTML version of the FAQ can be found at:
-http://krusader.sourceforge.net/handbook/faq.html
-
 Feedback for the documentation is always welcome.
 
 Frank Schoolmeesters, documentation coordinator
 [frank_schoolmeesters {*} yahoo {.} com]
 
-The most recent version of this document is available when downloading and installing Krusader from cvs. 
+The most recent version of this document is available online at: 
+http://krusader.sourceforge.net/handbook/faq.html
 
-Newer versions of the docmentation should always be available:
-- online reading:
+More documentation is available at:
+- online:
     http://krusader.sourceforge.net/handbook/index.html
 - most recent tarball
     http://sourceforge.net/project/showfiles.php?group_id=6488
-- when downloading and installing the most recent Krusader from the
-    cvs repository (the doc's will be available via the Help menu) 
+- when downloading and installing the most recent Krusader,
+  the doc's will be available via the Help menu
 
 
             as always, enjoy
@@ -94,10 +92,11 @@ Chapter 7. Frequently Asked Questions (FAQ)
    7.1.12. I have a libGLcore.so.1 compile error after using the
           NVIDIA® installer
 
-   7.1.13. I am having trouble compiling and installing Krusader,
+   7.1.13. Why Krusader-1.60.0 does not compile with gcc4?
+   7.1.14. I am having trouble compiling and installing Krusader,
           how do I send a help request?
 
-   7.1.14. How can I build an RPM package for Krusader?
+   7.1.15. How can I build an RPM package for Krusader?
 
    7.1.1. Does Krusader need KDE to run?
 
@@ -368,7 +367,19 @@ $ ln -s libGLcore.so.1.0.6111  libGL.so.1
 $ ln -s libGLcore.so.1.0.6111  libGL.so.1.0.0
 $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
-   7.1.13. I am having trouble compiling and installing Krusader,
+   7.1.13. Why Krusader-1.60.0 does not compile with gcc4?
+
+   Because Krusader-1.60.0 was not gcc4 compatible, it needs
+   first some patches:
+
+     * add 'class ListPanelFunc;' in krusader/Panel/listpanel.h
+     * add 'class KMountManGUI;' in krusader/MountMan/kmountman.h
+     * add 'class KrDetailedViewItem;' in
+       krusader/Panel/krdetailedview.h
+
+   More information can be found in our forum .
+
+   7.1.14. I am having trouble compiling and installing Krusader,
    how do I send a help request?
 
    Please read our detailed installation procedure and the FAQ.
@@ -398,7 +409,7 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
    Thanks for your cooperation!
 
-   7.1.14. How can I build an RPM package for Krusader?
+   7.1.15. How can I build an RPM package for Krusader?
 
    If you have experience with compiling from source, you will
    probably be able to build a Krusader RPM too. Follow the next
@@ -666,8 +677,8 @@ $ su -c 'fam -l'
    7.3.5. How does the Krusader forum work?
    7.3.6. How can I translate Krusader to my native language?
    7.3.7. How can I support Krusader?
-   7.3.8. Is there a Mac® OS X version?
-   7.3.9. Is there a Windows® version?
+   7.3.8. Is there a Mac® OS X port?
+   7.3.9. Is there a Windows® port?
 
    7.3.1. How can I report a wish, a patch, a suggestion, or a
    comment?
@@ -715,8 +726,8 @@ $ su -c 'fam -l'
     2. Check if the bug is already posted in the online bug list
        of the Bug Tracking System.
     3. If you can't find this bug mentioned, please submit it
-       into the bug tracker by clicking the "Submit New" button
-       in the bug-tracker window. Please submit the following
+       into the bug tracker by clicking the Submit New button in
+       the bug-tracker window. Please submit the following
        issues: the Krusader version used, the Linux® distribution
        + version used, processor type, and as good a description
        of the problem as you can manage.
@@ -737,22 +748,24 @@ $ su -c 'fam -l'
 
    7.3.3. Does Krusader have a mailing list?
 
-   Yes, we have 4 mailing lists. No spam, no bother, just
+   Yes, currently have 5 mailing lists. No spam, no bother, just
    Krusader. Feel free to (un)subscribe. Please note that all the
-   mailinglists are read-only, so posting is not allowed.
+   mailinglists except Krusader-i18n are read-only , so posting
+   is not allowed.
 
    Tip. our mailing lists can be browsed online or read with a
-   newsreader, so that you don't even have to subscribe to see
+   newsreader, so that you don't even need to subscribe to read
    the mailing lists.
 
      * Krusader-news is a very low volume list, used for
-       announcements of new versions or critical bugfixes. The
-       news can also been read online at latest news and in the
-       News and Announcements Forum which are basically the same
-       but displayed in another format.
+       newsletters and announcements of new versions or critical
+       bugfixes. The news can also been read online at latest
+       news and in the News and Announcements Forum which are
+       basically the same but displayed in another format.
      * Krusader-devel is the developer mailing list. If you want
        to follow the development of Krusader on the bleeding
        edge, this is the place to be!
+     * Krusader-i18n is the translations mailing list.
      * Krusader-doc is the documentation mailing list.
      * Krusader-commits when the Krusader Krew commits code into
        CVS, it will be reported in this mailing list. This allows
@@ -836,14 +849,14 @@ $ su -c 'fam -l'
    us feedback, bug reports, patches, donations, translations,
    ...
 
-   7.3.8. Is there a Mac® OS X version?
+   7.3.8. Is there a Mac® OS X port?
 
-   Yes, but for the moment only Krusader-1.40 We are looking for
-   a maintainer for the Krusader Mac® OS X port. Please help us,
-   thanks. A recommended native file manager for Mac® OS is Disk
-   Order© (shareware).
+   Yes, there is Mac® OS X port, but you will not have (yet) the
+   all the power like on Linux®. Please read the Mac® OS X port
+   section for more information. A recommended native file
+   manager for Mac® OS is Disk Order© (shareware).
 
-   7.3.9. Is there a Windows® version?
+   7.3.9. Is there a Windows® port?
 
    No, but this might change in the future. Please help us,
    thanks. A recommended native file manager for Windows® is

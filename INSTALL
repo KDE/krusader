@@ -1,48 +1,43 @@
 --------------------------------------------
-- Documentation version:  1.70.0CVS
-- Documentation date:  2005-07-01
-- Parsing date: Thu Jul 28 19:53:35 UTC 2005
+- Documentation version:  1.70.0
+- Documentation date:  2005-10-15
+- Parsing date: Sun Oct 16 18:52:30 UTC 2005
 --------------------------------------------
  
-
 This file contains the TXT install instructions for Krusader.
 This file is parsed from Docbook/XML source files.
-
-After the TXT install instructions for Krusader you will find
-generic installation instructions for KDE applications.
 
 NOTE:
 after the parsing process to generate this TXT file all te URL's are gone,
 to see the URL's again please take a look at the HTML version of this file.
-
-The HTML version of this file can be found at:      
-http://krusader.sourceforge.net/handbook/installation.html
-
-The HTML version of the FAQ can be found at:
-http://krusader.sourceforge.net/handbook/faq.html
 
 Feedback for the documentation is always welcome.
 
 Frank Schoolmeesters, documentation coordinator
 [frank_schoolmeesters {*} yahoo {.} com]
 
-The most recent version of this document is available when downloading and installing Krusader from cvs. 
+The most recent version of this document is available online at: 
+http://krusader.sourceforge.net/handbook/installation.html
 
-Newer versions of the docmentation should always be available:
-- online reading:
+The HTML version of the FAQ can be found at:
+http://krusader.sourceforge.net/handbook/faq.html
+
+
+More documentation is available at:
+- online:
     http://krusader.sourceforge.net/handbook/index.html
 - most recent tarball
     http://sourceforge.net/project/showfiles.php?group_id=6488
-- when downloading and installing the most recent Krusader from the
-    cvs repository (the doc's will be available via the Help menu) 
+- when downloading and installing the most recent Krusader,
+  the doc's will be available via the Help menu
 
 
             as always, enjoy
                  Krusader Krew.
 
                       http://krusader.sourceforge.net
-		      
 
+		      
 db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
 88 ,8P' 88  `8D 88    88 88'  YP d8' `8b 88  `8D 88'     88  `8D
 88,8P   88oobY' 88    88 `8bo.   88ooo88 88   88 88ooooo 88oobY'
@@ -67,15 +62,16 @@ A.1. Requirements
        features will be available)
      * Krusader v1.50 - v1.51: KDE 3.2.x - KDE 3.3.x
        (Konfigurator crash on KDE 3.4.x)
-     * Krusader v1.60.0: KDE 3.3.x - KDE 3.4.x
+     * Krusader v1.60.0- v1.70.0: KDE 3.3.x - KDE 3.4.x
+     * Krusader 1.70.0: prefers KDE 3.4.x (otherwise not all
+       features will be available)
      * Krusader v2.xx.x: KDE 4.x - Qt(TM) 4.x The big challenge,
-       a first release maybe at the end of 2005 ;)
+       a first release maybe in 2006 ;)
 
    Platforms:
 
      * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris(TM)
-     * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS 10.3
-       "Panther").
+     * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS X).
 
    Krusader uses about 3-4 MByte of memory to run (and about 15
    Mbyte shared memory which is also used by other processes),
@@ -108,15 +104,21 @@ A.2.1. Download Krusader
 
      * SuSE® >= 9.3, Note: please use Krusader-1.60.0 and not
        Krusader-1.51 (might be instable on SuSE®9.3-KDE3.4)
+     * Fedora(TM) via Fedora(TM) Extras, thanks to Marcin Garski.
+       Red Hat® RPM packages can usually found on the Krusader
+       downloadpage, dag.wieers.com or at Dries Verachtert RPM
+       Repository .
      * Debian®, on our Krusader downloadpage you might find more
-       recent "unofficial" DEB packages. Note: usually Debian®
-       packages work on distributions who are "based on Debian®"
-       e.g. Mepis®, Ubuntu®, Kubuntu®, Linspire®, Xandros®, ...
-     * Gentoo®
+       recent "unofficial bleeding-edge" DEB packages. Note:
+       usually Debian® packages work also on distributions who
+       are "based on Debian®", some of them provide their own
+       packages. e.g. Mepis®, Ubuntu®/Kubuntu®, Linspire®,
+       Xandros®, ...
+     * Mandriva®, Gentoo®, Knoppix® 4.0 DVD, Yoper(TM)
+     * Arch Linux®, Frugalware Linux®, PCLinuxOS®, altlinux®
      * FreeBSD®, the port is maintained by Heiner Eichmann .
-     * Mandriva® (formerly Mandrake(TM)), only in the "contrib"
-       section for the moment.
-     * NetBSD®, Yoper(TM), Ark Linux®, Arch Linux®, ...
+     * NetBSD®, Ark Linux®, OpenLX(TM)
+     * Even more distributions can be found with Distrowatch.com
 
    Just use the install tools that the distro uses to install the
    Krusader package on your computer, sometimes an internet
@@ -124,15 +126,22 @@ A.2.1. Download Krusader
    DVD. There are probably more distributions who include
    Krusader, sorry we can't mention you all.
 
-   Third-parties
+   Others
 
-     * Red Hat®/Fedora(TM) RPM packages can usually found on the
-       Krusader downloadpage, dag.wieers.com or at Dries
-       Verachtert mirror .
      * Slackware® TGZ packages can usually found on the Krusader
        downloadpage, thanks to Mateusz Dubiel .
-     * There is a Mac® OS-x 10.3 (Panther) port with KDElibs
-       3.1.4 and fink thanks to Jonas Baëhr .
+     * There is a Mac® OS-X port with the help of fink , the port
+       is maintained by Bodo Tasche .
+
+   Installation via the klik protocol .
+
+     * klik://krusader downloads Krusader provided by Debian®
+       stable, more information is available .
+     * klik://krusader-latest downloads the latest stable
+       Krusader provided by the Krusader Krew, more information
+       is available .
+     * klik://krusader-cvs downloads a cvs snapshot of Krusader
+       provided by Krusader Krew, more information is available .
 
    Search engines
 
@@ -561,35 +570,40 @@ $ su -c 'make uninstall'
 
 A.4. Mac® OS-x port
 
-   Krusader can be ported to Mac® OS X with fink and KDElibs
-   (3.1.4), Jonas Bähr has proven this with Krusader-1.40 on Mac®
-   OS 10.3 "Panther". Unfortunately the only kdelib-binaries
-   which fink has to offer is 3.1.4 which means you need to use
-   Krusader-1.40 . Unfortunately the Mac® OS X Krusader port
-   doesn't have the same power as in a native KDE environement.
-   To run Krusader you need also X11 which doesn't realy interact
-   with the rest of the desktop (drag and drop, etc...) We hope
-   that Qt(TM)4/KDE4 will solve most of these problems.
+   Krusader is ported to Mac® OS thanks to Jonas Bähr and Bodo
+   Tasche . Unfortunately the only *stable* kdelib-binaries which
+   fink has to offer is currenly 3.1.4 which means you need to
+   use Krusader-1.40 . Unfortunately the Mac® OS X Krusader port
+   doesn't have the same power as in a native Linux®-KDE
+   environement. To run Krusader you need also X11 which doesn't
+   realy interact with the rest of the Mac® OS desktop (drag and
+   drop, etc...) We hope that Qt(TM)4/KDE4 will solve most of
+   these problems. When you want a higher Krusader version than
+   you need to compile KDE , what is not so difficult with fink
+   but it takes some CPU cycles.
 
    Installation Instructions for Krusader-1.40
 
-    1. Download and install fink and read the documentation
+    1. Download and install fink with the KDE3.1 binaries
+       provided by fink and read the documentation.
     2. Extract the krusader-1.40.fink.darwin-ppc.tar.bz2 package
        to /sw/fink/dist/local/main/ Only root can write here, you
        may have to create 'local' and 'main'
     3. Run as root: fink install krusader
 
-   If you like to compile code and if you use X11 on regularly
-   then these are the installation instructions for more recent
-   Krusader package.
+   If you like to compile more sourcecode or if you want to use a
+   more recent Krusader version then these are the installation
+   instructions.
 
     1. install Apple® X11
     2. install the Apple® X11 SDK developer-tools with X11
        headers (gcc is included)
     3. install the fink-base
-    4. compile kdelibs 3.4.1 (fink provides the nessesary .info
-       file)
-    5. compile a Krusader-package
+    4. compile kdelibs 3.4.1 or higher (fink provides the
+       necessary .info files)
+    5. compile the Krusader-tarball or follow steps 2 and 3 of
+       the previous section if a recent Krusader-package e.g.
+       krusader-1.60.0.fink.darwin-ppc.tar.bz2 is available
      _________________________________________________________
 
 A.5. Starting Krusader
@@ -611,8 +625,8 @@ foo
    Krusader.
 
    You can also use Alt+F2 to open the Run Command dialog box,
-   type krusader (lower case) and press Enter or click on the
-   "Run" button.
+   type krusader (lower case) and press Enter or click on the Run
+   button.
 
    If Krusader is installed by an RPM or DEB package then usually
    Krusader can be started from the K menu. e.g. on
