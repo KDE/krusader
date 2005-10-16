@@ -46,11 +46,13 @@ public slots:
   void cycleProgress();
   void incProgress(int i);
   void killJob();
-	void setJob(KIO::Job* j);
+  void setJob(KIO::Job* j);
+  bool wasCancelled() const { return _wasCancelled; }
+
 private:
   QGuardedPtr<KIO::Job> job;
 	static KRPleaseWait * dlg;
-  bool cycle, cycleMutex, incMutex;
+  bool cycle, cycleMutex, incMutex, _wasCancelled;
 };
 
 

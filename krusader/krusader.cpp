@@ -836,6 +836,10 @@ void Krusader::startWaiting( QString msg, int count , bool cancel ) {
    plzWait->startWaiting( msg , count, cancel );
 }
 
+bool Krusader::wasWaitingCancelled() const { 
+	return plzWait->wasCancelled(); 
+}
+
 void Krusader::incProgress( KProcess *, char *buffer, int buflen ) {
    int howMuch = 0;
    for ( int i = 0 ; i < buflen; ++i )

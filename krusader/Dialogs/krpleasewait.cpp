@@ -98,7 +98,7 @@ void KRPleaseWaitHandler::startWaiting( QString msg, int count , bool cancel){
     dlg = new KRPleaseWait( msg , count, cancel);
 		connect( dlg,SIGNAL(cancelled()),this,SLOT(killJob()) );
   }
-  incMutex=cycleMutex=false;
+  incMutex=cycleMutex=_wasCancelled=false;
   dlg->setProgress(0);
 	
 	dlg->setLabelText(msg);
@@ -126,6 +126,7 @@ KRPleaseWait* KRPleaseWaitHandler::dlg = 0;
 void KRPleaseWaitHandler::killJob(){
 	if( !job.isNull() ) job->kill(false);
 	stopWait();
+	_wasCancelled = true;
 }
 
 void KRPleaseWaitHandler::setJob(KIO::Job* j){ job=j; }

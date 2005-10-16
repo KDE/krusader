@@ -143,6 +143,7 @@ class Krusader : public KParts::MainWindow {
     KRPleaseWaitHandler* plzWait;
     void startWaiting( QString msg = "Please Wait", int count = 0 , bool cancel = false );
     void stopWait();
+	 bool wasWaitingCancelled() const;
 
     KrusaderStatus *status;
     KRslots *slot;

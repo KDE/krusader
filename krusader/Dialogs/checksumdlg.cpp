@@ -259,12 +259,17 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	mytool->create(proc, mytool, KrServices::quote(files), QString::null, containFolders, 
 		tmpOut->name(), tmpErr->name(), method->currentText());
 	
-	krApp->startWaiting(i18n("Calculating checksums ..."), 0);	
+	krApp->startWaiting(i18n("Calculating checksums ..."), 0, true);	
 	QApplication::setOverrideCursor( KCursor::waitCursor() );
 	bool r = proc.start(KProcess::NotifyOnExit, KProcess::AllOutput);
 	if (r) while ( proc.isRunning() ) {
 		usleep( 500 );
-    		qApp->processEvents();
+		qApp->processEvents();
+		if (krApp->wasWaitingCancelled()) { // user cancelled
+			proc.kill();
+			QApplication::restoreOverrideCursor();
+			return;
+		}
    };
 	krApp->stopWait();
 	QApplication::restoreOverrideCursor();
@@ -370,12 +375,17 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	tmpErr = new KTempFile(locateLocal("tmp", "krusader"), ".stderr" );
 	KProcess proc;
 	mytool->verify(proc, mytool, KrServices::quote(files), KrServices::quote(file), containFolders, tmpOut->name(), tmpErr->name(), extension);
-	krApp->startWaiting(i18n("Verifying checksums ..."), 0);	
+	krApp->startWaiting(i18n("Verifying checksums ..."), 0, true);	
 	QApplication::setOverrideCursor( KCursor::waitCursor() );
 	bool r = proc.start(KProcess::NotifyOnExit, KProcess::AllOutput);
 	if (r) while ( proc.isRunning() ) {
 		usleep( 500 );
-    		qApp->processEvents();
+  		qApp->processEvents();
+		if (krApp->wasWaitingCancelled()) { // user cancelled
+			proc.kill();
+			QApplication::restoreOverrideCursor();
+			return;
+		}
    };
 	if (!r || !proc.normalExit()) {	
 		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
