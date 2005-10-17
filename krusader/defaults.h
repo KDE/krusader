@@ -118,7 +118,9 @@
 // Move To Trash //////
 #define _MoveToTrash   false 
 // Terminal ///////////
-#define _Terminal      "konsole" 
+#define _Terminal      "konsole"
+// Send CDs ///////////
+#define _SendCDs		true
 // Editor /////////////
 #define _Editor        "internal editor" 
 // Temp Directory /////

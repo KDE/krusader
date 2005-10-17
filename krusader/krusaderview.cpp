@@ -122,7 +122,9 @@ void KrusaderView::start( QStringList leftTabs, int leftActiveTab, QStringList r
 void KrusaderView::slotCurrentChanged( QString p ) {
   cmdLine->setCurrent( p );
   if ( konsole_part != 0L ) {
-    konsole_part->openURL( KURL( p ) );
+	 KConfigGroupSaver grp(krConfig, "General");
+    if (krConfig->readBoolEntry("Send CDs", _SendCDs)) // hopefully, this is cached in kconfig
+    	konsole_part->openURL( KURL( p ) );
   }
 }
 

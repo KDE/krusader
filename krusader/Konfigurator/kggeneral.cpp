@@ -79,19 +79,13 @@ if( first )
   QLabel *label2 = new QLabel( i18n( "Hint: use 'internal editor' if you want to use Krusader's fast built-in editor" ), generalGrp, "EditorLabel" );
   generalGrid->addMultiCellWidget( label2, 4, 4, 0, 1 );
 
-  QLabel *label3 = new QLabel( i18n( "Terminal:" ), generalGrp, "TerminalLabel" );
-  generalGrid->addWidget( label3, 5, 0 );
-  KonfiguratorURLRequester *urlReq2 = createURLRequester( "General", "Terminal", "konsole",
-                                      generalGrp, false );
-  generalGrid->addWidget( urlReq2, 5, 1 );
+QFrame *line2 = createLine( generalGrp, "line2" );
+  generalGrid->addMultiCellWidget( line2, 5, 5, 0, 1 );
 
-  QFrame *line2 = createLine( generalGrp, "line2" );
-  generalGrid->addMultiCellWidget( line2, 6, 6, 0, 1 );
-  
   // viewer
 
   QLabel *label32 = new QLabel( i18n("Default viewer mode:"), generalGrp);
-  generalGrid->addWidget(label32, 7, 0);
+  generalGrid->addWidget(label32, 6, 0);
   
   KONFIGURATOR_NAME_VALUE_TIP viewMode[] =
   //            name            value    tooltip
@@ -100,16 +94,31 @@ if( first )
      { i18n( "Hex mode" ), "hex",  i18n( "View the file in hex-mode (better for binary files)" ) } };
   KonfiguratorRadioButtons *viewRadio= createRadioButtonGroup( "General", "Default Viewer Mode",
       "generic", 3, 0, viewMode, 3, generalGrp, "myRadio2", false );
-  generalGrid->addMultiCellWidget( viewRadio, 8, 8, 0, 1 );
+  generalGrid->addMultiCellWidget( viewRadio, 7, 7, 0, 1 );
 
   KonfiguratorCheckBox *viewerCheckbox= createCheckBox( "General", "View In Separate Window", _ViewInSeparateWindow,
                      i18n( "Viewer opens each file in a separate window" ), generalGrp, false,
                      i18n( "If checked, each file will open in a separate window, otherwise, the viewer will work in a single, tabbed mode" ) );
-  generalGrid->addMultiCellWidget( viewerCheckbox, 9, 9, 0, 1 );
+  generalGrid->addMultiCellWidget( viewerCheckbox, 8, 8, 0, 1 );
 
 
   QFrame *line3 = createLine( generalGrp, "line3" );
-  generalGrid->addMultiCellWidget( line3, 10, 10, 0, 1 );
+  generalGrid->addMultiCellWidget( line3, 9, 9, 0, 1 );
+
+	// terminal
+  QLabel *label3 = new QLabel( i18n( "Terminal:" ), generalGrp, "TerminalLabel" );
+  generalGrid->addWidget( label3, 10, 0 );
+  KonfiguratorURLRequester *urlReq2 = createURLRequester( "General", "Terminal", "konsole",
+                                      generalGrp, false );
+  generalGrid->addWidget( urlReq2, 10, 1 );
+
+  KonfiguratorCheckBox *checkBox1 = createCheckBox( "General", "Send CDs", _SendCDs,
+                     i18n( "Terminal Emulator sends Chdir on panel change" ), generalGrp, false,
+                     i18n( "When checked, whenever the panel is changed (for example, by pressing TAB), krusader changes the current directory in the terminal emulator." ) );
+  generalGrid->addMultiCellWidget( checkBox1, 11, 11, 0, 1 );
+
+  QFrame *line31 = createLine( generalGrp, "line4" );
+  generalGrid->addMultiCellWidget( line31, 12, 12, 0, 1 );
 
 	// temp dir
   QHBox *hbox = new QHBox( generalGrp, "hbox" );
@@ -119,11 +128,11 @@ if( first )
   urlReq3->setMode( KFile::Directory );
   connect( urlReq3->extension(), SIGNAL( applyManually(QObject *,QString, QString) ),
            this, SLOT( applyTempDir(QObject *,QString, QString) ) );
-  generalGrid->addMultiCellWidget( hbox, 11, 11, 0, 1 );
+  generalGrid->addMultiCellWidget( hbox, 13, 13, 0, 1 );
 
   QLabel *label4 = new QLabel( i18n( "Note: you must have full permissions for the temporary directory!" ),
                                generalGrp, "NoteLabel"  );
-  generalGrid->addMultiCellWidget( label4, 12, 12, 0, 1 );
+  generalGrid->addMultiCellWidget( label4, 14, 14, 0, 1 );
 
   kgGeneralLayout->addWidget( generalGrp, 0 ,0 );
 }
