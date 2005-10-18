@@ -215,9 +215,10 @@
        to quickly connect to the remote machine. NOTE:You CANNOT bookmark inside an archive.</para></note>
 
 <para>To use your bookmarks, click the <guibutton>Bookmark</guibutton> button and choose one - as shown in
-      the picture above. You may also use the keyboard shortcuts
+      the picture above. You may also use the &keybindigs_lnk; : 
+      <keycombo action="simul">&Ctrl;&Shift;<keycap>d</keycap></keycombo> to bookmark the current item,
       <keycombo action="simul">&Alt;<keycap>right/left arrow</keycap></keycombo> to
-      <keycap>open right/left panel bookmarks list</keycap> or
+      <keycap>open right/left panel bookmarks list</keycap> and
       <keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo> to
       open the bookmarks of the active panel.
       A &MMB; click on bookmarks opens them in a new <link linkend="folder_tabs">Folder tab</link>.
@@ -1657,6 +1658,13 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   customizable User-Actions tool.
 </para>
 
+<tip><para>
+      Please consider to upload your UserActions at &kde_files_url;. 
+      We are collecting UserActions, if your UserAction is selected by us it will be shipped with 
+      &krusader; at the next release.
+      We provide also an &useractionsforum_url;. 
+</para></tip>
+
 <para>
 Basically User-Actions are a method to call external programs with variable parameters.
 You could for example have a useraction with the following
@@ -1958,6 +1966,12 @@ You can also set a user under which the command should be executed.
 
 <para><emphasis role="bold">Warning:</emphasis> The whole JavaScript-support is experimental and
       not ment to be used in productive environments yet!</para>
+
+<tip><para>
+     Please consider to upload your JavaScripts at &kde_files_url; so that they become available 
+     for the &krusader; users.
+     Maybe they will be shipped with &krusader; at the next release. :-))
+</para></tip>
 
 <para>JavaScript applications have usually 2 files <filename>foo.js</filename> and 
       <filename>foo.ui</filename>.

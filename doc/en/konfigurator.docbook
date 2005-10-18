@@ -296,8 +296,12 @@ HTML_PARSING-->
       Here you have a chance to exit without importing the proposed Key-bindings file.
       </para>
 
-<para>A &tcmd; Key-bindings file is provided. If you like you can &mail_url; us your favorite foo-commander
-      Key-bindings files. It might just be shipped with &krusader;. :-))</para>
+<tip><para>
+      A &tcmd; Key-bindings file is provided. You can upload your favorite Key-bindings files
+      at &kde_files_url; so that they become available for the &krusader; users.
+      Maybe they will be shipped with &krusader; at the next release. :-))
+</para></tip>
+
 </sect2>
 
 
@@ -414,6 +418,13 @@ HTML_PARSING-->
       This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom colors.
       The Color Schemes are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
       the <filename>foo.color</filename> is a binary file that holds the Color Scheme.</para>
+      
+      <tip><para>
+      A &mc; and &tcmd; Color scheme file is provided. You can upload your favorite Color schemes files
+      at &kde_files_url; so that they become available for the &krusader; users.
+      Maybe they will be shipped with &krusader; at the next release. :-))
+      </para></tip>
+
   </listitem></varlistentry>
 
 </variablelist>
@@ -624,11 +635,11 @@ new archive should be available and checked.</para>
 <entry><para><filename class="directory"><replaceable>/usr/bin/kmail</replaceable></filename></para></entry>
 </row>
 <row>
-<entry><para><command>kompare</command></para></entry>
+<entry><para>diff utility</para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/kompare</replaceable></filename></para></entry>
 </row>
 <row>
-<entry><para>diff utility</para></entry>
+<entry><command>krename</command></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/krename</replaceable></filename></para></entry>
 </row>
 <row>
@@ -663,7 +674,8 @@ new archive should be available and checked.</para>
            just fill in the full path and enjoy.</para></tip>
 
 <para><emphasis role="bold">Packers tab</emphasis></para>
-<para>Here you can configure the full path of the following external packers:
+<para>Here you can configure the full path of the following external packers,
+      &krusader; offers also a <link linkend="konfig-archives">auto configure tool</link> for packagers.
 <informaltable>
 <tgroup cols="2">
 <tbody>
@@ -731,13 +743,14 @@ ACE doesn't want, that other programs could cooperate with it.
 Unace has closed source, and they wrote some additional lines, that if the stdin is redirected 
 to somewhere else, unace gets into infinite loop. 
 It works with the same manner as 'su', where you cannot enter the password only from the stdin. 
-&krusader;1-51 and 1-60.0 emulates the command line environment for being able to cooperate with unace,
+&krusader; >= 1-51 emulates the command line environment for being able to cooperate with unace,
 but we noticed that unace always changes its output's format from release to release, 
 making the cooperation almost impossible.
 </para></note>
 
 <para><emphasis role="bold">Checksum Utilities tab</emphasis></para>
-<para>Here you can configure the full path of the following external Checksum Utilities:
+<para>Here you can configure the full path of the following external
+      <link linkend="checksum">Checksum Utilities</link>:
 <informaltable>
 <tgroup cols="2">
 <tbody>
@@ -786,7 +799,7 @@ making the cooperation almost impossible.
 
 <para>This page configures the user actions of the &useractions_lnk;.
       Here you can edit, create, delete, import or export user actions.
-      For more information about this screen, look at the &useractions_lnk;.</para>
+      For more information about this screen, look at the &useractions_lnk; page.</para>
 
 
 <!--HTML_PARSING
