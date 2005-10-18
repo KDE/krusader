@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Heiner Eichmann","Developer", "h.eichmann@gmx.de", 0);  
   aboutData.addAuthor("Jonas Baehr", "Developer", "jonas.baehr@web.de", 0);
   aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "deschler@users.sourceforge.net", 0);
-  aboutData.addAuthor("Frank Schoolmeesters", "Documentation coordinator", "frank_schoolmeesters@yahoo.com", 0);
+  aboutData.addAuthor("Frank Schoolmeesters", "Documentation and marketing coordinator", "frank_schoolmeesters@yahoo.com", 0);
   aboutData.addCredit("The UsefulArts Organization", "Great icon for krusader", "mail@usefularts.rg", 0);
   aboutData.addCredit("Gábor Lehel", "Viewer module for 3rd Hand", "illissius@gmail.com", 0);
   aboutData.addCredit("Mark Eatough", "Handbook Proof-Reader", "markeatough@yahoo.com", 0);
