@@ -469,7 +469,9 @@ HTML_PARSING-->
             </para></listitem>
   <listitem><para><guilabel>Terminal</guilabel>: choose what terminal emulator will be used when &krusader;
        opens a console window (via F2, or Commands->Terminal menu option).</para></listitem>
-
+  <listitem><para><guilabel>Terminal Emulator sends Chdir on a panel change</guilabel>: 
+            if unchecked, there will be no <command>cd</command> sended to the Termainal Emulator if
+            the panelfolder changes.</para></listitem>
   <listitem><para><guilabel>Temp Directory</guilabel>: this option selects the base directory for
        &krusader;'s temporary files. The actual files will be created in separate directories under the
        'Temp directory', so that each user running &krusader; will have his/her own temporary
