@@ -1953,9 +1953,6 @@ You can also set a user under which the command should be executed.
 <para><keycombo action="simul">&Alt;&Ctrl;<keycap>j</keycap></keycombo> opens the JavaScript-console.
       (only available if libkjsembed is present at compile- and runtime)</para>
       
-<para><emphasis role="bold">Warning:</emphasis> The whole JavaScript-support is experimental and not ment
-      to be used in productive environments yet!</para>
-
 <para>The JavaScript console is an interface to the embeded JS-Interpreter which can be used 
       to play around and test how things work.</para>
       
@@ -1964,8 +1961,13 @@ You can also set a user under which the command should be executed.
 <sect1 id = "javascript_interface">
 <title>JavaScript interface</title>
 
-<para><emphasis role="bold">Warning:</emphasis> The whole JavaScript-support is experimental and
-      not ment to be used in productive environments yet!</para>
+<para><emphasis role="bold">Warning:</emphasis>
+  The JS-Support is quite stable (which means that it won't crash &krusader;
+  (hopefully ;)) and you can't loose any data by using it). However, the
+  JS-interface will certainly change! So using it can't do any harm but you
+  must know that your scripts may (or quite certainly, if you're interacting
+  with Krusader) won't work with future versions of &krusader; anymore.
+</para>
 
 <tip><para>
      Please consider to upload your JavaScripts at &kde_files_url; so that they become available 
