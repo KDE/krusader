@@ -538,7 +538,7 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
 	if( arcFile && arcFile->url().path(-1) == path.left(arcFile->url().path(-1).length()) ){
 		newArchiveURL = false;        
 		// Has it changed ?
-		KFileItem* newArcFile = new KFileItem(arcFile->url(),QString::null,0);
+		KFileItem* newArcFile = new KFileItem(arcFile->url(),QString::null,arcFile->mode());
 		if( !newArcFile->cmp( *arcFile ) ){
 			delete arcFile;
 			password = QString::null;
@@ -560,7 +560,9 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
 		for(int pos=0; pos >= 0; pos = newPath.find("/",pos+1)){
 			QFileInfo qfi(newPath.left(pos));
 			if( qfi.exists() && !qfi.isDir() ){
-    			arcFile = new KFileItem(KURL::fromPathOrURL( newPath.left(pos) ),QString::null,0);
+				KDE_struct_stat stat_p;
+				KDE_lstat(newPath.left(pos).local8Bit(),&stat_p);
+    			arcFile = new KFileItem(KURL::fromPathOrURL( newPath.left(pos) ),QString::null,stat_p.st_mode);
 				break;
 			}
 		}
