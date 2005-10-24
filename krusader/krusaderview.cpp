@@ -189,11 +189,11 @@ void KrusaderView::loadPanelProfiles( QString group )
   krConfig->setGroup( group );
   MAIN_VIEW->leftMng->loadSettings( krConfig, "Left Tabs" );
   krConfig->setGroup( group );
-  MAIN_VIEW->leftMng->setCurrentTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
-  krConfig->setGroup( group );
   MAIN_VIEW->rightMng->loadSettings( krConfig, "Right Tabs" );
   krConfig->setGroup( group );
-  MAIN_VIEW->rightMng->setCurrentTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
+  MAIN_VIEW->leftMng->setActiveTab( krConfig->readNumEntry( "Left Active Tab", 0 ) );
+  krConfig->setGroup( group );
+  MAIN_VIEW->rightMng->setActiveTab( krConfig->readNumEntry( "Right Active Tab", 0 ) );
   krConfig->setGroup( group );  
   if( krConfig->readBoolEntry( "Left Side Is Active", true ) )
     MAIN_VIEW->left->slotFocusOnMe();
