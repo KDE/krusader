@@ -36,6 +36,7 @@
 #include <kmessagebox.h>
 #include <kinputdialog.h> 
 #include <qfile.h>
+#include <kstandarddirs.h>
 // Krusader includes
 #include "krarchandler.h"
 #include "../krusader.h"
@@ -53,7 +54,7 @@ QStringList KRarcHandler::supportedPackers() {
   if ( KrServices::cmdExist( "bzip2" ) ) packers.append( "bzip2" );
   if ( KrServices::cmdExist( "unzip" ) ) packers.append( "unzip" );
   if ( KrServices::cmdExist( "zip" ) ) packers.append( "zip" );
-  if ( KrServices::cmdExist( "rpm" ) ) packers.append( "rpm" );
+  if ( KrServices::cmdExist( "rpm" ) && KrServices::cmdExist( "rpm2cpio" ) )  packers.append( "rpm" );
   if ( KrServices::cmdExist( "lha" ) ) packers.append( "lha" );
   if ( KrServices::cmdExist( "cpio" ) ) packers.append( "cpio" );
   if ( KrServices::cmdExist( "unrar" ) ) packers.append( "unrar" );
@@ -154,6 +155,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type ) {
   else if ( type == "-rar" ) lister = KrServices::fullPathName( KrServices::cmdExist( "rar" ) ? "rar" : "unrar" ) + " l";
   else if ( type == "-ace" ) lister = KrServices::fullPathName( "unace" ) + " l";
   else if ( type == "-arj" ) lister = KrServices::fullPathName( KrServices::cmdExist( "arj" ) ? "arj" : "unarj" ) + " l";
+  else if ( type == "-rpm" ) lister = KrServices::fullPathName( "rpm" ) + " --dump -lpq";
   else return 0L;
 
   // tell the user to wait
@@ -187,7 +189,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
   krConfig->setGroup( "Archives" );
   if ( krConfig->readBoolEntry( "Test Before Unpack", _TestBeforeUnpack ) ) {
     // test first - or be sorry later...
-    if ( !test( archive, type, 0 ) ) {
+    if ( type != "-rpm" && !test( archive, type, 0 ) ) {
       KMessageBox::error( krApp, i18n( "Failed to unpack" ) + " \"" + archive + "\" !" );
       return false;
       }
@@ -199,7 +201,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
   if ( count == 1 ) count = 0 ;
 
   // choose the right packer for the job
-  QString packer;
+  QString packer, cpioName = QString::null;
 
   removeAliases( type );
   
@@ -217,6 +219,18 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
   else if ( type == "-arj" ) packer = KrServices::cmdExist( "arj" ) ?
                                       KrServices::fullPathName( "arj" ) + " -y x" :
                                       KrServices::fullPathName( "unarj" ) + " x";
+  else if ( type == "-rpm" ) {
+    QString tempDir = locateLocal("tmp",QString::null);
+
+    cpioName = tempDir+"/contents.cpio";
+
+    KShellProcess cpio;
+    cpio << KrServices::fullPathName( "rpm2cpio" ) << " " + KrServices::quote( archive ) << " > " << cpioName;
+    cpio.start(KProcess::Block);
+    
+    archive = cpioName;
+    packer = KrServices::fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -ivdF";
+  }
   else return false;
 
   // unpack the files
@@ -235,9 +249,13 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
 
   // tell the user to wait
   krApp->startWaiting( i18n( "Unpacking File(s)" ), count );
-  if ( count != 0 )
+  if ( count != 0 ) {
     connect( &proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
              krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
+    if( type == "-rpm" )
+      connect( &proc, SIGNAL( receivedStderr( KProcess*, char*, int ) ),
+               krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
+  }
 
   // start the unpacking process
   proc.start( KProcess::NotifyOnExit, KProcess::AllOutput );
@@ -249,6 +267,9 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
   krApp->stopWait();
   chdir( save.local8Bit() );
 
+  if( !cpioName.isEmpty() )
+    QFile( cpioName ).remove();    /* remove the cpio file */
+  
   // check the return value
   if ( !proc.normalExit() ) {
     KMessageBox::error( krApp, i18n( "Failed to unpack" ) + " \"" + archive + "\" !" );
