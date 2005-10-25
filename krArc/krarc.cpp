@@ -542,6 +542,7 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
 		if( !newArcFile->cmp( *arcFile ) ){
 			delete arcFile;
 			password = QString::null;
+			cpioReady = false;
 			arcFile = newArcFile;
 		}
 		else { // same old file
@@ -550,9 +551,10 @@ bool kio_krarcProtocol::setArcFile(const QString& path){
 		}
 	}
 	else {// it's a new file...
+		cpioReady = false;
 		if( arcFile ){
 			delete arcFile;
-      password = QString::null;
+			password = QString::null;
 			arcFile = 0L;
 		}
 		QString newPath = path;
