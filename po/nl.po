@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-10-02 13:12+0200\n"
-"PO-Revision-Date: 2005-10-07 21:47+0200\n"
-"Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"PO-Revision-Date: 2005-10-25 19:48+0200\n"
+"Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>\n"
+"Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,9 +65,9 @@ msgid ""
 "When active, each directory change is performed in the\n"
 "active and inactive panel - if possible."
 msgstr ""
-"Deze knop zal de synchroon-bladeren modus omschakelen\n"
-"Indien deze modus actief is zal elke map verandering uitgevoerd in het actieve\n"
-"en niet actieve venster - indien mogelijk."
+"Deze knop zal de synchroon-bladeren modus omschakelen.\n"
+"Indien actief, zal elke map verandering uitgevoerd in het actieve\n"
+"en het niet actieve venster - indien mogelijk."
 
 #: GUI/actionproperty.cpp:192
 msgid "New protocol"
@@ -158,7 +158,7 @@ msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift-F1</code>."
 msgstr ""
-"De uitgebreide beschrijving van de <b>gebruikersactie</b>. Is enkel zichtbaar in "
+"Een uitgebreide beschrijving van de <b>gebruikersactie</b>. Is enkel zichtbaar in "
 "<i>Konfigurator</i> en via <code>Shift-F1</code>."
 
 #: GUI/actionpropertybase.cpp:390
@@ -195,7 +195,8 @@ msgid ""
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
 "<i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
-"Unieke naam van de <b>gebuikersactie</b>. Deze is alleen gebruikt in  <i>Konfigurator</i> en komt niet voor in een ander menu.<p><b>Nota</b>: De "
+"Unieke naam van de <b>gebuikersactie</b>. Deze is alleen gebruikt in "
+" <i>Konfigurator</i> en verschijnt niet voor in een ander menu.<p><b>Nota</b>: De "
 "<i>Titel</i> in het <b>gebruikersmenu</b> kan beneden ingesteld worden."
 
 #: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:419
@@ -255,7 +256,7 @@ msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
-"De <i>Gereedschaphint</i> is zichtbaar wanneer de de muis over een gebruikeractie staat"
+"De <i>Gereedschaphint</i> is zichtbaar wanneer de de muispijl over een gebruikeractie staat"
 "in <b>gebruikeractie werkbalk</b>."
 
 #: GUI/actionpropertybase.cpp:411 GUI/actionpropertybase.cpp:424
@@ -372,7 +373,9 @@ msgstr "Mime bestandstype"
 msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. De "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
-msgstr "Alleen de <b>Gebruikersactie<b> tonen voor deze gedefinieerde bestandsnamen. De jokers '<code>?</code>' en '<code>*</code>' kunnen gebruikt worden."
+msgstr ""
+"Alleen de <b>Gebruikersactie<b> tonen voor deze gedefinieerde bestandsnamen. De "
+" jokers '<code>?</code>' en '<code>*</code>' kunnen gebruikt worden."
 
 #: GUI/actionpropertybase.cpp:457
 msgid "Filename"
@@ -396,7 +399,7 @@ msgstr "<i>Commando</i> uitvoeren met een ander gebruikers ID."
 
 #: GUI/actionpropertybase.cpp:463
 msgid "Advanced Properties"
-msgstr "Uitgebreide Eigenschappen"
+msgstr "Uitgebreide eigenschappen"
 
 #: GUI/addplaceholderpopup.cpp:55
 msgid "Active panel"
@@ -424,7 +427,7 @@ msgstr "Uitvoerbaar"
 
 #: GUI/addplaceholderpopup.cpp:131
 msgid "User Action Parameter Dialog"
-msgstr "Gebruiker Actie Parameter Dialoog"
+msgstr "Gebruikersactie Parameter Dialoog"
 
 #: GUI/addplaceholderpopup.cpp:139
 msgid "This placeholder allows some parameter:"
@@ -494,7 +497,9 @@ msgstr "F4 Bewerken "
 msgid ""
 "<qt>Edit file.<p>Editor is configurable in Konfigurator, default is "
 "'internal editor'.</qt>"
-msgstr "<qt>Bestand bewerken.<p>De Editor is instelbaar in Konfigurator, de standaard editor is de 'interne editor'.</qt>"
+msgstr ""
+"<qt>Bestand bewerken.<p>De Editor is instelbaar in Konfigurator, "
+" de standaard editor is de 'interne editor'.</qt>"
 
 #: GUI/kfnkeys.cpp:69
 msgid "F5 Copy  "
@@ -534,7 +539,7 @@ msgstr "F9 Hernoemen"
 
 #: GUI/kfnkeys.cpp:90
 msgid "Rename file, directory, etc."
-msgstr "Bestand, map hernoemen enz."
+msgstr "Bestand, map, enz. hernoemen"
 
 #: GUI/kfnkeys.cpp:94
 msgid "F10 Quit "
@@ -713,7 +718,7 @@ msgstr "Paswoord is nodig"
 
 #: VFS/krarchandler.cpp:409
 msgid "This archive is encrypted, please supply the password:"
-msgstr "Dit archief is versleuteld, geef het wachtwoord a.u.b."
+msgstr "Dit archief is versleuteld, wachtwoord invoeren a.u.b.:"
 
 #: KrJS/krjs.cpp:65
 msgid ""
@@ -780,7 +785,9 @@ msgid ""
 "b>: the search term '<code>text</code>' is equivalent to '<code>*text*</"
 "code>'."
 msgstr ""
-"De bestandsnaam filter criteria worden hier ingesteld.<p>Je kan gebruik maken van jokers. Meerdere patronenen worden gescheiden door een spatie. Om patronen uit te sluiten van de zoekopdracht gebruikt men het pipe '|' symbool. <p>Voorbeelden:<ul><code><li>*."
+"De bestandsnaam filter criteria worden hier ingesteld.<p>Je kan gebruik maken "
+"van jokers. Meerdere patronen worden gescheiden door een spatie. Om patronen uit "
+"te sluiten van de zoekopdracht gebruikt men het pipe '|' symbool.<p>Voorbeelden:<ul><code><li>*."
 "o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Nota</"
 "b>: de zoekterm '<code>text</code>' is hetzlfde als '<code>*text*</code>'."
 
@@ -846,11 +853,11 @@ msgstr "In &link bestemmingen zoeken"
 
 #: Filter/generalfilter.cpp:326
 msgid "No search criteria entered!"
-msgstr "Geen zoekcriteria ingevoerd !"
+msgstr "Geen zoekcriteria ingevoerd!"
 
 #: Filter/generalfilter.cpp:359
 msgid "Please specify a location to search in."
-msgstr "Voer a.u.b. een zoeklocatie in."
+msgstr "Een zoeklocatie invoeren a.u.b."
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:100
 #: Panel/krdetailedview.cpp:1223 Search/krsearchdialog.cpp:148
@@ -993,7 +1000,7 @@ msgid ""
 "date (use the date button for easy access)."
 msgstr ""
 "De datum %1' komt niet overeen met uw lokale instellingen.\n"
-"Voer a.u.b. opnieuw een geldige datum in (gebruik de datumknop voor eenvoudige invoer)."
+"A.u.b. opnieuw een geldige datum invoeren (gebruik de datumknop voor eenvoudige invoer)."
 
 #: Filter/advancedfilter.cpp:508
 msgid "Specified sizes are inconsistent!"
@@ -1003,7 +1010,9 @@ msgstr "De ingevoerde waardes zijn onsamenhangend!"
 msgid ""
 "Please re-enter the values, so that the left side size will be smaller than "
 "(or equal to) the right side size."
-msgstr "Voer a.u.b. de waardes opnieuw in, zodat de waarde van de linker zijde kleiner (of gelijk) is dan de waarde aan de rechter zijde."
+msgstr ""
+"Waardes a.u.b. opnieuw invoeren, zodat de waarde van de linker zijde kleiner (of gelijk) "
+" is dan de waarde aan de rechter zijde."
 
 #: Filter/advancedfilter.cpp:526 Filter/advancedfilter.cpp:584
 msgid "Dates are inconsistent!"
@@ -1016,7 +1025,7 @@ msgid ""
 "date."
 msgstr ""
 "De datum links is later dan de datum rechts."
-"Voer a.u.b. opnieuw de datums in, zodat de linkse datum"
+"Datums a.u.b. opnieuw invoeren, zodat de linkse datum "
 "vroeger is dan de rechter datum."
 
 #: Filter/advancedfilter.cpp:585
@@ -1025,7 +1034,7 @@ msgid ""
 "dates, so that the top date will be earlier than the bottom date."
 msgstr ""
 "De datum bovenaan is later dan de datum onderaan."
-"Voer a.u.b. opnieuw de datums in, zodat de bovenste datum"
+"Datums a.u.b. opnieuw invoeren, zodat de bovenste datum "
 "vroeger is dan de onderste datum."
 
 #: UserAction/expander.cpp:70
@@ -1061,7 +1070,7 @@ msgstr "Huidig pad omleiden (optioneel)"
 
 #: UserAction/expander.cpp:162
 msgid "Item list of ..."
-msgstr "Item lijst van ..."
+msgstr "Itemlijst van ..."
 
 #: UserAction/expander.cpp:165 UserAction/expander.cpp:234
 #: UserAction/expander.cpp:535
@@ -1083,7 +1092,7 @@ msgstr "Bestandsnaam of een itemlijst ..."
 
 #: UserAction/expander.cpp:311
 msgid "Manipulate the selection"
-msgstr "De selectie bewerken"
+msgstr "Selectie bewerken"
 
 #: UserAction/expander.cpp:314
 msgid "Selection mask"
@@ -1143,11 +1152,11 @@ msgstr "Bestand/map kopiëren"
 
 #: UserAction/expander.cpp:434
 msgid "Where it should be copied"
-msgstr "Naar waar het moet gekopieerd worden"
+msgstr "Naar waar het gekopieerd moet worden"
 
 #: UserAction/expander.cpp:454
 msgid "Move/Rename a file/folder"
-msgstr "Bestand/map  verplaatsen/hernoemen"
+msgstr "Bestand/map verplaatsen/hernoemen"
 
 #: UserAction/expander.cpp:457
 msgid "What moved/renamed"
@@ -1220,7 +1229,7 @@ msgstr "Een bestand bekijken met Krusader's interne viewer"
 
 #: UserAction/expander.cpp:778
 msgid "Which file to view (normally '%aCurrent%')"
-msgstr "Om welk bestand te bekijken (normaal  '%aCurrent%')"
+msgstr "Om welk bestand te bekijken (normaal '%aCurrent%')"
 
 #: UserAction/expander.cpp:779
 msgid "Choose a view-mode"
@@ -1629,7 +1638,7 @@ msgstr "Openen met"
 
 #: Konfigurator/konfigurator.cpp:113 Panel/krpopupmenu.cpp:109
 msgid "User Actions"
-msgstr "Gebruiker Acties"
+msgstr "Gebruikersacties"
 
 #: Panel/krpopupmenu.cpp:123
 msgid "Konqueror menu"
@@ -1721,7 +1730,7 @@ msgstr "Nieuw aanmaken"
 
 #: Panel/krpopupmenu.cpp:261
 msgid "Are you sure you want to shred "
-msgstr "Bent u zeker dat u wilt vernietigen : "
+msgstr "Bent u zeker dat u wilt vernietigen "
 
 #: Panel/krpopupmenu.cpp:262
 msgid " ? Once shred, the file is gone forever !!!"
@@ -1872,7 +1881,7 @@ msgstr "&Verwijderen"
 #: Dialogs/checksumdlg.cpp:492 DiskUsage/diskusage.cpp:574
 #: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:574 krusader.cpp:701
 msgid "Warning"
-msgstr "Opgepast"
+msgstr "Waarschuwing"
 
 #: Panel/panelfunc.cpp:592
 msgid "Directory "
