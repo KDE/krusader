@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include <klargefile.h>
 #include <qfile.h>
 #include <kurl.h>
 #include <kdebug.h>
@@ -133,8 +134,9 @@ bool kio_isoProtocol::checkNewFile( QString fullPath, QString & path, int starts
     {
         QString tryPath = fullPath.left( pos );
         kdDebug()   << fullPath << "  trying " << tryPath << endl;
-        struct stat statbuf;
-        if ( ::stat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
+
+        KDE_struct_stat statbuf;
+        if ( KDE_lstat( QFile::encodeName(tryPath), &statbuf ) == 0 && !S_ISDIR(statbuf.st_mode) )
         {
             isoFile = tryPath;
             m_mtime = statbuf.st_mtime;
