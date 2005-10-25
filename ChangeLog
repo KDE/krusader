@@ -4,6 +4,9 @@
     ADDED: you can turn off sending CDs to the terminal emulator (general tab)
     ADDED: unpacking from RPM packages (much faster than using krarc)
 
+  CHANGED: our write-enabled tar KIO-slave is only build when --with-kiotar is passed
+           to ./configure. In this case the KDE-version will may be overwritten!
+
     FIXED: krarc doesn't notice the change of the rpm file to create new contents.cpio
     FIXED: iso protocol cannot step into files larger than 2 GByte
     FIXED: KDE 3.4, starting from profile misses the active tab which causes inconsistent state

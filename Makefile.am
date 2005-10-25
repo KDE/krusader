@@ -1,6 +1,11 @@
 ####### kdevelop will overwrite this part!!! (begin)##########
 
-SUBDIRS = krusader po pics doc krArc iso tar
+# the condition for this is found in configure.in.in
+if with_tar
+TARDIR = tar
+endif
+
+SUBDIRS = krusader po pics doc krArc iso $(TARDIR)
 
 EXTRA_DIST = krusader.kdevprj admin AUTHORS COPYING ChangeLog INSTALL README TODO krusader.lsm krusader.spec 
 

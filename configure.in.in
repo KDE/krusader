@@ -50,6 +50,18 @@ fi
 AM_CONDITIONAL(include_libkjsembed, test "$have_libkjsembed" = yes)
 
 ###################################################
+#		If our own tar-KIO schould be build
+###################################################
+
+AC_ARG_WITH(kiotar,
+    AC_HELP_STRING([--with-kiotar],[use our write-enabled version of KDE's tar KIO-Slave [default=without]]),
+    [with_tar=$withval],
+    [with_tar=no]
+)
+
+AM_CONDITIONAL(with_tar, test "$with_tar" != "no")
+
+###################################################
 
 AM_INIT_AUTOMAKE(krusader,1.70.0-beta1)
 # This adds the RELEASE_NAME-Marco to config.h (where also VERSION is defined).

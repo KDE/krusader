@@ -55,6 +55,10 @@ if (test $warn_js);
    then echo "NOTICE:  Since the KJSEmbed-headers are not found Krusader will be build without JS support"
 fi
 
+if (test $with_tar != "no");
+   then echo "NOTICE:  Our write-enabled version of KDE's tar KIO-Slave will be build. \"make install\" will may overwrite the KDE-version!"
+fi
+
 if (test -z "$KDEDIR");
    then echo "WARNING:  KDEDIR enviroment variable is empty! Please read Krusader FAQ"
 fi
