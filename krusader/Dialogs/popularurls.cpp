@@ -46,7 +46,7 @@ void PopularUrls::save() {
 	QValueList<int> rankList;
 	UrlNodeP p = head;
 	while (p) {
-		urlList << p->url.url();
+		urlList << p->url.prettyURL();
 		rankList << p->rank;
 		p = p->next;
 	}
@@ -69,7 +69,7 @@ void PopularUrls::load() {
 	QValueList<int>::Iterator rit;
 	for (uit=urlList.begin(), rit=rankList.begin(); uit!=urlList.end() && rit!=rankList.end(); ++uit, ++rit) {
 		UrlNodeP node = new UrlNode;
-		node->url = *uit;
+		node->url = KURL::fromPathOrURL( *uit );
 		node->rank = *rit;
 		appendNode(node);
 		ranks.insert(*uit, node);

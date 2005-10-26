@@ -7,6 +7,7 @@
   CHANGED: our write-enabled tar KIO-slave is only build when --with-kiotar is passed
            to ./configure. In this case the KDE-version will may be overwritten!
 
+    FIXED: [ 1323613 ] SECURITY!!! PopularUrls stores cleartext passwords in krusaderrc
     FIXED: [ 1329044 ] krarc, missed similar file names belonging to different rpm-s
     FIXED: krarc doesn't notice the change of the rpm file to create new contents.cpio
     FIXED: iso protocol cannot step into files larger than 2 GByte
