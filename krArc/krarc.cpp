@@ -600,6 +600,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	//if( !setArcFile(url.path()) ) return false;
 	// no need to rescan the archive if it's not changed
 	if( !archiveChanged && !forced ) return true;
+	cpioReady = false;
 
 	setArcFile( url.path() );   /* if the archive was changed refresh the file information */
 	
@@ -1112,7 +1113,7 @@ bool kio_krarcProtocol::initArcParameters(){
   } else if(arcType == "rpm"){
     cmd     = fullPathName( "rpm" );
     listCmd = fullPathName( "rpm" ) + " --dump -lpq ";
-    getCmd  = fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -ivdF";
+    getCmd  = fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -iuvdF";
     delCmd  = QString::null;
     putCmd  = QString::null;
     copyCmd = QString::null;

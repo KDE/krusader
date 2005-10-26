@@ -229,7 +229,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString dest ) {
     cpio.start(KProcess::Block);
     
     archive = cpioName;
-    packer = KrServices::fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -ivdF";
+    packer = KrServices::fullPathName( "cpio" ) + " --force-local --no-absolute-filenames -iuvdF";
   }
   else return false;
 
