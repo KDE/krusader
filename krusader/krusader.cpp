@@ -506,7 +506,7 @@ void Krusader::setupActions() {
                                SLOTS, SLOT( createChecksum() ), actionCollection(), "create checksum" );
    actMatchChecksum = new KAction( i18n( "Verify Checksum" ), "match_checksum", 0,
                                SLOTS, SLOT( matchChecksum() ), actionCollection(), "match checksum" );
-   actProperties = new KAction( i18n( "&Properties" ), "help", 0,
+   actProperties = new KAction( i18n( "&Properties" ), "help", ALT+Key_Enter,
                                 SLOTS, SLOT( properties() ), actionCollection(), "properties" );
    actPack = new KAction( i18n( "Pac&k" ), "kr_arc_pack", ALT + Key_P,
                           SLOTS, SLOT( slotPack() ), actionCollection(), "pack" );
