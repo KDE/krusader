@@ -19,6 +19,7 @@
 #define KRVIEWER_H
 
 #include <qwidget.h>
+#include <qptrlist.h>
 #include <kparts/mainwindow.h>
 #include <ktempfile.h>
 #include <kparts/partmanager.h>
@@ -37,6 +38,8 @@ class PanelViewerBase;
 class KrViewer : public KParts::MainWindow {
 	Q_OBJECT
 public:
+	virtual ~KrViewer();
+	
 	enum Mode{Generic,Text,Hex};
 
 	static void view( KURL url );
@@ -66,12 +69,12 @@ public slots:
 protected:
 	virtual bool queryClose();
 	virtual bool queryExit();
+	virtual void windowActivationChange ( bool oldActive );
 
-	void focusInEvent( QFocusEvent * ){ viewer = this; }
+	virtual void focusInEvent( QFocusEvent * ){ if( viewers.remove( this ) ) viewers.prepend( this ); } // move to first
 
 private:
 	KrViewer( QWidget *parent = 0, const char *name = 0 );
-	~KrViewer();
 	void addTab(PanelViewerBase* pvb, QString msg,QString iconName, KParts::Part* part);
 	static KrViewer* getViewer(bool new_window);	
 
@@ -82,7 +85,7 @@ private:
 	int returnFocusToKrusader;
 	int detachActionIndex;
 
-	static KrViewer* viewer;
+	static QPtrList<KrViewer> viewers; // the first viewer is the active one
 };
 
 #endif

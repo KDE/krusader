@@ -50,7 +50,7 @@
 #define MODIFIED_ICON "filesaveas"
 
 
-KrViewer* KrViewer::viewer = NULL;
+QPtrList<KrViewer> KrViewer::viewers;
 
 KrViewer::KrViewer( QWidget *parent, const char *name ) :
 KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
@@ -118,7 +118,7 @@ KrViewer::~KrViewer() {
 	disconnect( &manager, SIGNAL( activePartChanged( KParts::Part* ) ),
 	            this, SLOT( createGUI( KParts::Part* ) ) );
 
-	if( this == viewer ) viewer = NULL;
+	viewers.remove( this );
 }
 
 void KrViewer::createGUI( KParts::Part* part ) {
@@ -157,16 +157,20 @@ void KrViewer::keyPressEvent( QKeyEvent *e ) {
 
 KrViewer* KrViewer::getViewer(bool new_window){
 	if( !new_window ){
-		if( !viewer ){	
-			viewer = new KrViewer( krApp );
+		if( !viewers.first() ){	
+			viewers.prepend( new KrViewer( krApp ) ); // add to first (active)
 		}
 		else {
-			viewer->raise();
-			viewer->setActiveWindow();
+			viewers.first()->raise();
+			viewers.first()->setActiveWindow();
 		}
-		return viewer;
+		return viewers.first();
 	}
-	else return new KrViewer( krApp );
+	else {
+		KrViewer *newViewer = new KrViewer( krApp );
+		viewers.prepend( newViewer );
+		return newViewer;
+	}
 }	
 
 void KrViewer::view( KURL url ) {
@@ -246,7 +250,7 @@ void KrViewer::tabChanged(QWidget* w){
 	if( returnFocusToKrusader ) --returnFocusToKrusader;
 
 	// set this viewer to be the main viewer
-	viewer = this;
+	if( viewers.remove( this ) ) viewers.prepend( this ); // move to first
 }
 
 void KrViewer::tabCloseRequest(QWidget *w){
@@ -387,6 +391,11 @@ void KrViewer::detachTab(){
 	pvb->reparent(&viewer->tabBar,QPoint(0,0));
 
 	viewer->addTab(pvb,"Viewing",VIEW_ICON,pvb->part());
+}
+
+void KrViewer::windowActivationChange ( bool oldActive ) {
+	if( isActiveWindow() )
+		if( viewers.remove( this ) ) viewers.prepend( this ); // move to first
 }
 
 #if 0
