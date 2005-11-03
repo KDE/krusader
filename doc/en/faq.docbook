@@ -1,4 +1,5 @@
 <chapter id="faq">
+
 <!-- **********************************************************************
                                faq.docbook
                           ++++++++++++++++++++
@@ -6,7 +7,7 @@
                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
                           & the Krusader Krew
   e-mail               : krusader@users.sourceforge.net
-  web site             : http://krusader.sourceforge.net
+  web site             : http://www.krusader.org
   description          : a Krusader Documentation File
 
 ***************************************************************************
@@ -659,6 +660,32 @@ configure smb.conf properly, so
   </answer>
   </qandaentry>
 
+
+  <qandaentry>
+  <question id="faqu_close_connection">
+  <para>How can i close a remote connection (&eg; a FTP connection) ?</para>
+  </question>
+  <answer>
+  <para>It's explained in the <link linkend="remote-connections">remote connections chapter</link> .
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
+  <qandaentry>
+  <question id="faqu_media_protocol">
+  <para>Why do i have some trouble with the media:// protocol?</para>
+  </question>
+  <answer>
+  <para>At the moment of writing the media:// protocol is instable, we need to wait until 
+        the &kde; team corrects it, every other protocol works properly with &krusader;,
+        only media fails. More information regarding this issue is available in               
+        <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1357">our forum</ulink> .
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
   <!-- Thanks to thepieman at the Krusader Forum -->
   <qandaentry>
   <question id="faqu_sound">
@@ -690,7 +717,7 @@ copy/link the
        This problem can sometimes occur if you are using a &_64bit_url;
 microprocessor.
        For more information click
-       <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=991">here</ulink> .
+       <ulink url="www.krusader.org/phpBB/viewtopic.php?t=991">here</ulink> .
  </para>
  <para> </para> <!-- Empty line to make it more readable -->
  </answer>
