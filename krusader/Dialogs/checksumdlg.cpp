@@ -145,9 +145,6 @@ CS_Tool cs_tools[] = {
 	{CS_Tool::WHIRLPOOL, "whirlpooldeep",	true, 			deepCreateFunc,	deepVerifyFunc,	deepFailedFunc},
 };
 
-#if 0
-CS_ToolByType toolByType[CS_Tool::NumOfTypes];
-#endif
 QMap<QString, CS_Tool::Type> cs_textToType;
 QMap<CS_Tool::Type, QString> cs_typeToText;
 
@@ -169,15 +166,6 @@ void initChecksumModule() {
 	QMap<QString, CS_Tool::Type>::Iterator it;
 	for (it=cs_textToType.begin(); it!=cs_textToType.end(); ++it)
 		MatchChecksumDlg::checksumTypesFilter += ("*."+it.key()+" ");
-
-#if 0	
-	// loop through cs_tools and assign them
-	for (uint i=0; i < sizeof(cs_tools)/sizeof(CS_Tool); ++i) {
-		if (cs_tools[i].recursive)
-			toolByType[cs_tools[i].type].tools.append(&cs_tools[i]);
-		else toolByType[cs_tools[i].type].r_tools.append(&cs_tools[i]);
-	}
-#endif // 0
 }
 
 // --------------------------------------------------
