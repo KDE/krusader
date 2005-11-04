@@ -80,6 +80,7 @@ KrBookmark* KrBookmark::lan(KActionCollection *collection) {
 KrBookmark* KrBookmark::separator() {
 	KrBookmark *bm = new KrBookmark("");
 	bm->_separator = true;
+	bm->_folder = false;
 	return bm;
 }
 

@@ -254,6 +254,10 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 	}
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
 		if (bm->isFolder()) continue;
+		if (bm->isSeparator() ) {
+			menu->insertSeparator();
+			continue;
+		}
 		bm->plug(menu, -1 /* end of list */);
 		CONNECT_BM(bm);
 	}
