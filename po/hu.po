@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2005-10-02 13:12+0200\n"
+"POT-Creation-Date: 2005-11-03 22:44+0100\n"
 "PO-Revision-Date: 2005-03-25 20:52+0100\n"
 "Last-Translator: Arpad Biro <biro_arpad@yahoo.com>\n"
 "Language-Team: Hungarian\n"
@@ -600,7 +600,7 @@ msgstr " Átnevezés"
 msgid " Quit"
 msgstr " Kilépés"
 
-#: VFS/ftp_vfs.cpp:142
+#: VFS/ftp_vfs.cpp:146
 #, c-format
 msgid ""
 "Malformed URL:\n"
@@ -609,7 +609,7 @@ msgstr ""
 "Hibás URL:\n"
 "%1"
 
-#: VFS/ftp_vfs.cpp:144
+#: VFS/ftp_vfs.cpp:148
 #, c-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -644,9 +644,9 @@ msgstr "\"%1\" könyvtár nem létezik."
 
 #: BookMan/krbookmarkhandler.cpp:134 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
-#: VFS/krarchandler.cpp:352 VFS/krarchandler.cpp:359 VFS/normal_vfs.cpp:80
+#: VFS/krarchandler.cpp:373 VFS/krarchandler.cpp:380 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:156 krusader.cpp:703
+#: VFS/virt_vfs.cpp:156 krusader.cpp:705
 msgid "Error"
 msgstr ""
 
@@ -703,35 +703,35 @@ msgstr "Hangfájlok"
 msgid "Custom"
 msgstr "Egyéni"
 
-#: VFS/krarchandler.cpp:160
+#: VFS/krarchandler.cpp:162
 msgid "Counting files in archive"
 msgstr "Archívumban levő fájlok számolása"
 
-#: VFS/krarchandler.cpp:191 VFS/krarchandler.cpp:254
+#: VFS/krarchandler.cpp:193 VFS/krarchandler.cpp:275
 msgid "Failed to unpack"
 msgstr "Kicsomagolás nem sikerült"
 
-#: VFS/krarchandler.cpp:237
+#: VFS/krarchandler.cpp:251
 msgid "Unpacking File(s)"
 msgstr "Fájl(ok) kicsomagolása"
 
-#: VFS/krarchandler.cpp:293
+#: VFS/krarchandler.cpp:314
 msgid "Testing Archive"
 msgstr "Archívum vizsgálata"
 
-#: VFS/krarchandler.cpp:336
+#: VFS/krarchandler.cpp:357
 msgid "Packing File(s)"
 msgstr "Fájl(ok) csomagolása"
 
-#: VFS/krarchandler.cpp:352 VFS/krarchandler.cpp:359
+#: VFS/krarchandler.cpp:373 VFS/krarchandler.cpp:380
 msgid "Failed to pack: "
 msgstr "Csomagolás nem sikerült: "
 
-#: VFS/krarchandler.cpp:408
+#: VFS/krarchandler.cpp:429
 msgid "Password Needed"
 msgstr "Jelszó szükséges"
 
-#: VFS/krarchandler.cpp:409
+#: VFS/krarchandler.cpp:430
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Ez az archívum titkosított; adja meg a jelszót:"
 
@@ -812,7 +812,7 @@ msgstr ""
 msgid "&Load"
 msgstr "Fáj&lkeresés"
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:723
+#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:732
 msgid "&Overwrite"
 msgstr "&Felülírás"
 
@@ -865,8 +865,8 @@ msgstr "Nem adott meg keresési feltételt."
 msgid "Please specify a location to search in."
 msgstr "Adja meg a keresés helyét."
 
-#: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:100
-#: Panel/krdetailedview.cpp:1223 Search/krsearchdialog.cpp:148
+#: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:101
+#: Panel/krdetailedview.cpp:1222 Search/krsearchdialog.cpp:148
 #: Synchronizer/synchronizergui.cpp:1244 Synchronizer/synchronizergui.cpp:1248
 msgid "Size"
 msgstr "Méret"
@@ -1280,11 +1280,11 @@ msgstr "Szabványos hibakimenet (stderr)"
 msgid "Output"
 msgstr "Kimenet"
 
-#: UserAction/kraction.cpp:219
+#: UserAction/kraction.cpp:225
 msgid "Confirm execution"
 msgstr "Futtatás megerősítése"
 
-#: UserAction/kraction.cpp:220
+#: UserAction/kraction.cpp:226
 msgid "Command being executed:"
 msgstr "Futtatandó parancs:"
 
@@ -1292,7 +1292,7 @@ msgstr "Futtatandó parancs:"
 msgid "Preview not available"
 msgstr "Nincs előnézet"
 
-#: Panel/listpanel.cpp:126
+#: Panel/listpanel.cpp:131
 msgid ""
 "The statusbar displays information about the FILESYSTEM which holds your "
 "current directory: Total size, free space, type of filesystem, etc."
@@ -1300,7 +1300,7 @@ msgstr ""
 "Az állapotsor információt közöl az aktuális könyvtárt tartalmazó "
 "fájlrendszerről: teljes méret, szabad hely, fájlrendszer típusa stb."
 
-#: Panel/listpanel.cpp:142
+#: Panel/listpanel.cpp:147
 msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
@@ -1308,7 +1308,7 @@ msgstr ""
 "A könyvjelzőmenü megnyitása. Felvehető a listába az aktuális hely, "
 "szerkeszthetők a könyvjelzők, továbbá új almappa vehető fel a listába."
 
-#: Panel/listpanel.cpp:156
+#: Panel/listpanel.cpp:161
 msgid ""
 "The totals bar shows how many files exist, how many selected and the bytes "
 "math"
@@ -1316,20 +1316,20 @@ msgstr ""
 "Az \"összesen\" jelző mutatja a fájlok számát, a kijelöltek számát és az "
 "összméretet"
 
-#: Panel/listpanel.cpp:172 Panel/listpanel.cpp:334
+#: Panel/listpanel.cpp:177 Panel/listpanel.cpp:358
 msgid "Open the popup panel"
 msgstr "Felbukkanó panel megnyitása"
 
-#: Panel/listpanel.cpp:191
+#: Panel/listpanel.cpp:196
 #, fuzzy
 msgid "Clear the location bar"
 msgstr "Ugrás egy helyre"
 
-#: Panel/listpanel.cpp:199
+#: Panel/listpanel.cpp:204
 msgid "Use superb KDE file dialog to choose location. "
 msgstr "A KDE könyvtármegadási ablakának használata a hely kiválasztásához"
 
-#: Panel/listpanel.cpp:203
+#: Panel/listpanel.cpp:208
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
@@ -1338,187 +1338,187 @@ msgstr ""
 "megadhatja a kívánt hely nevét. Lehetőség van hálózati protokollok "
 "használatára (például ftp:// vagy fish://)."
 
-#: Panel/listpanel.cpp:219
+#: Panel/listpanel.cpp:224
 msgid "="
 msgstr "="
 
-#: Panel/listpanel.cpp:220
+#: Panel/listpanel.cpp:225
 msgid "Equal"
 msgstr "Egyenlő"
 
-#: Panel/listpanel.cpp:225
+#: Panel/listpanel.cpp:230
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:226
+#: Panel/listpanel.cpp:231
 msgid "Up"
 msgstr "Fel"
 
-#: Panel/listpanel.cpp:231
+#: Panel/listpanel.cpp:236
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:232 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
+#: Panel/listpanel.cpp:237 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
 #: Panel/panelpopup.cpp:106 Panel/panelpopup.cpp:117
 msgid "Home"
 msgstr "Saját könyvtár"
 
-#: Panel/listpanel.cpp:237
+#: Panel/listpanel.cpp:242
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:238 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
+#: Panel/listpanel.cpp:243 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
 #: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
 #: krusader.cpp:576
 msgid "Root"
 msgstr "Gyökérkönyvtár"
 
-#: Panel/listpanel.cpp:328
+#: Panel/listpanel.cpp:352
 msgid "Close the popup panel"
 msgstr "Felbukkanó panel bezárása"
 
-#: Panel/listpanel.cpp:430 Panel/listpanel.cpp:788
+#: Panel/listpanel.cpp:454 Panel/listpanel.cpp:812
 msgid " Select Files "
 msgstr " Fájlok kijelölése "
 
-#: Panel/listpanel.cpp:430
+#: Panel/listpanel.cpp:454
 msgid " Unselect Files "
 msgstr " Kijelölés megszüntetése "
 
-#: Panel/listpanel.cpp:603
+#: Panel/listpanel.cpp:627
 msgid "No space information on non-local filesystems"
 msgstr "Távoli fájlrendszerekről nincs méretinformáció"
 
-#: Panel/listpanel.cpp:610
+#: Panel/listpanel.cpp:634
 msgid "No space information on [dev]"
 msgstr "A [dev]-ről nincs méretinformáció"
 
-#: Panel/listpanel.cpp:615
+#: Panel/listpanel.cpp:639
 msgid "No space information on [procfs]"
 msgstr "A [procfs]-ről nincs méretinformáció"
 
-#: Panel/listpanel.cpp:620
+#: Panel/listpanel.cpp:644
 msgid "No space information on [proc]"
 msgstr "A [proc]-ról nincs méretinformáció"
 
-#: Panel/listpanel.cpp:625
+#: Panel/listpanel.cpp:649
 msgid "Mt.Man: working ..."
 msgstr "Csatoláskezelő: kis türelmet..."
 
-#: Panel/listpanel.cpp:639
+#: Panel/listpanel.cpp:663
 msgid "unknown"
 msgstr "ismeretlen"
 
-#: Panel/listpanel.cpp:647
+#: Panel/listpanel.cpp:671
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr "%1 szabad (összesen %2) (%3%) itt: %4 [ (%5) ]"
 
-#: Panel/listpanel.cpp:708
+#: Panel/listpanel.cpp:732
 msgid "Can't drop here, no write permissions."
 msgstr "Nem dobhatja ide, nincsen írási joga."
 
-#: Panel/listpanel.cpp:724 Panel/panelpopup.cpp:309
+#: Panel/listpanel.cpp:748 Panel/panelpopup.cpp:309
 msgid "Copy Here"
 msgstr "Másolás ide"
 
-#: Panel/listpanel.cpp:726 Panel/panelpopup.cpp:310
+#: Panel/listpanel.cpp:750 Panel/panelpopup.cpp:310
 msgid "Move Here"
 msgstr "Áthelyezés ide"
 
-#: Panel/listpanel.cpp:729 Panel/panelpopup.cpp:311
+#: Panel/listpanel.cpp:753 Panel/panelpopup.cpp:311
 msgid "Link Here"
 msgstr "Linkelés ide"
 
 #: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:129
-#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:730
+#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:754
 #: Panel/panelpopup.cpp:312
 #, fuzzy
 msgid "Cancel"
 msgstr "Panel"
 
-#: Panel/listpanel.cpp:940
+#: Panel/listpanel.cpp:964
 msgid ">> Reading..."
 msgstr ">> Olvasás..."
 
-#: Panel/listpanel.cpp:952
+#: Panel/listpanel.cpp:976
 msgid "Reading"
 msgstr "Olvasás"
 
-#: Panel/listpanel.cpp:957
+#: Panel/listpanel.cpp:981
 msgid "Reading: "
 msgstr "Olvasás: "
 
 #: DiskUsage/dulines.cpp:238 DiskUsage/dulistview.cpp:56
 #: Konfigurator/krresulttable.cpp:127 MountMan/kmountmangui.cpp:127
-#: Panel/krdetailedview.cpp:97 Search/krsearchdialog.cpp:146
+#: Panel/krdetailedview.cpp:98 Search/krsearchdialog.cpp:146
 #: Synchronizer/synchronizergui.cpp:1243 Synchronizer/synchronizergui.cpp:1249
 msgid "Name"
 msgstr "Név"
 
-#: Panel/krdetailedview.cpp:98 Panel/krdetailedview.cpp:1217
+#: Panel/krdetailedview.cpp:99 Panel/krdetailedview.cpp:1216
 msgid "Ext"
 msgstr "Kiterj."
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:99 Panel/krdetailedview.cpp:1220
+#: Panel/krdetailedview.cpp:100 Panel/krdetailedview.cpp:1219
 msgid "Type"
 msgstr "Típus"
 
-#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1226
+#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1225
 msgid "Modified"
 msgstr "Módosítva"
 
-#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1229
+#: Panel/krdetailedview.cpp:103 Panel/krdetailedview.cpp:1228
 msgid "Perms"
 msgstr "Jogok"
 
-#: Panel/krdetailedview.cpp:103 Panel/krdetailedview.cpp:1232
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1231
 msgid "rwx"
 msgstr "rwx"
 
-#: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:104
-#: Panel/krdetailedview.cpp:1235
+#: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:105
+#: Panel/krdetailedview.cpp:1234
 msgid "Owner"
 msgstr "Tulajdonos"
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:275
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1238
+#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1237
 msgid "Group"
 msgstr "Csoport"
 
-#: Panel/krdetailedview.cpp:1204
+#: Panel/krdetailedview.cpp:1203
 msgid "Columns"
 msgstr "Oszlopok"
 
-#: Panel/krviewitem.cpp:9
+#: Panel/krviewitem.cpp:12
 msgid "Climb up the directory tree"
 msgstr "Egy szinttel feljebb a könyvtárfában"
 
-#: Panel/krviewitem.cpp:21
+#: Panel/krviewitem.cpp:24
 msgid "Symbolic Link"
 msgstr "Szimbolikus link"
 
-#: Panel/krviewitem.cpp:22
+#: Panel/krviewitem.cpp:25
 msgid "(broken link !)"
 msgstr "(sérült link)"
 
-#: Panel/krviewitem.cpp:23
+#: Panel/krviewitem.cpp:26
 msgid "%1 (Link)"
 msgstr "%1 (link)"
 
-#: Panel/krview.cpp:155
+#: Panel/krview.cpp:162
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 (összesen %2), %3 (%4) (összesen %5 (%6))"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:304
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:311
 msgid "Rename"
 msgstr "Átnevezés"
 
-#: Panel/krview.cpp:304
+#: Panel/krview.cpp:311
 msgid "Rename "
 msgstr "Átnevezendő: "
 
-#: Panel/krview.cpp:304
+#: Panel/krview.cpp:311
 msgid " to:"
 msgstr "   Cél:"
 
@@ -1674,7 +1674,7 @@ msgid "Move to trash"
 msgstr "Áthelyezés a szemetesbe"
 
 #: Dialogs/krmaskchoice.cpp:110 Dialogs/kurllistrequester.cpp:149
-#: DiskUsage/diskusage.cpp:705 Konfigurator/kgcolors.cpp:447
+#: DiskUsage/diskusage.cpp:714 Konfigurator/kgcolors.cpp:447
 #: Panel/krpopupmenu.cpp:145
 #, fuzzy
 msgid "Delete"
@@ -1758,154 +1758,154 @@ msgstr "Biztos, hogy véglegesen törli ezt: "
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr "? Ha véglegesen törli, akkor a fájl visszavonhatatlanul elvész."
 
-#: KViewer/krviewer.cpp:185 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:348
-#: krslots.cpp:441
+#: KViewer/krviewer.cpp:214 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:357
+#: krslots.cpp:443
 msgid "Can't open "
 msgstr "A következő nem nyitható meg: "
 
-#: Panel/panelfunc.cpp:238
+#: Panel/panelfunc.cpp:247
 msgid "You can edit links only on local file systems"
 msgstr "Linkeket csak helyi fájlrendszereken lehet szerkeszteni."
 
-#: Panel/panelfunc.cpp:249
+#: Panel/panelfunc.cpp:258
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Az aktuális fájl nem egy link, így nem lehet átirányítani."
 
-#: Panel/panelfunc.cpp:256
+#: Panel/panelfunc.cpp:265
 msgid "Link Redirection"
 msgstr "Link-átirányítás"
 
-#: Panel/panelfunc.cpp:257
+#: Panel/panelfunc.cpp:266
 msgid "Please enter the new link destination:"
 msgstr "Adja meg a link új célját:"
 
-#: Panel/panelfunc.cpp:264
+#: Panel/panelfunc.cpp:273
 msgid "Can't remove old link: "
 msgstr "Nem lehet eltávolítani a régi linket: "
 
-#: Panel/panelfunc.cpp:269 Panel/panelfunc.cpp:309
+#: Panel/panelfunc.cpp:278 Panel/panelfunc.cpp:318
 msgid "Failed to create a new link: "
 msgstr "Új link létrehozása nem sikerült: "
 
-#: Panel/panelfunc.cpp:276
+#: Panel/panelfunc.cpp:285
 msgid "You can create links only on local file systems"
 msgstr "Linkeket csak helyi fájlrendszereken lehet létrehozni."
 
-#: Panel/panelfunc.cpp:285
+#: Panel/panelfunc.cpp:294
 msgid "New link"
 msgstr "Új link"
 
-#: Panel/panelfunc.cpp:285
+#: Panel/panelfunc.cpp:294
 msgid "Create a new link to: "
 msgstr "Új link létrehozása erre: "
 
-#: Panel/panelfunc.cpp:293 Panel/panelfunc.cpp:470
+#: Panel/panelfunc.cpp:302 Panel/panelfunc.cpp:479
 msgid "A directory or a file with this name already exists."
 msgstr "Ezen a néven már létezik fájl vagy könyvtár."
 
-#: Panel/panelfunc.cpp:305
+#: Panel/panelfunc.cpp:314
 msgid "Failed to create a new symlink: "
 msgstr "Új szimbolikus link létrehozása nem sikerült: "
 
-#: Panel/panelfunc.cpp:306 Panel/panelfunc.cpp:310
+#: Panel/panelfunc.cpp:315 Panel/panelfunc.cpp:319
 msgid " To: "
 msgstr " Cél: "
 
-#: Panel/panelfunc.cpp:324
+#: Panel/panelfunc.cpp:333
 msgid "No permissions to view this file."
 msgstr "Nincs jogosultsága a fájl megjelenítéséhez."
 
-#: Panel/panelfunc.cpp:359
+#: Panel/panelfunc.cpp:368
 msgid "You can't edit a directory"
 msgstr "Könyvtárt nem lehet szerkeszteni."
 
-#: Panel/panelfunc.cpp:364
+#: Panel/panelfunc.cpp:373
 msgid "No permissions to edit this file."
 msgstr "Nincs jogosultsága a fájl szerkesztéséhez."
 
-#: Panel/panelfunc.cpp:383
+#: Panel/panelfunc.cpp:392
 msgid "Moving into archive is disabled"
 msgstr "Az archívumba való áthelyezés le van tiltva"
 
-#: Panel/panelfunc.cpp:393
+#: Panel/panelfunc.cpp:402
 #, fuzzy
 msgid "Move %1 to:"
 msgstr "%d fájl áthelyezése ide:"
 
-#: Panel/panelfunc.cpp:395
+#: Panel/panelfunc.cpp:404
 #, c-format
 msgid ""
 "_n: Move %n file to:\n"
 "Move %n files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:431
+#: Panel/panelfunc.cpp:440
 msgid "You can't move files to this file system"
 msgstr "Erre a fájlrendszerre nem tud áthelyezni fájlokat."
 
-#: Panel/panelfunc.cpp:457
+#: Panel/panelfunc.cpp:466
 msgid "New directory"
 msgstr "Új könyvtár"
 
-#: Panel/panelfunc.cpp:457
+#: Panel/panelfunc.cpp:466
 msgid "Directory's name:"
 msgstr "A könyvtár neve:"
 
-#: Panel/panelfunc.cpp:505
+#: Panel/panelfunc.cpp:514
 #, fuzzy
 msgid "Copy %1 to:"
 msgstr "%d fájl másolása ide:"
 
-#: Panel/panelfunc.cpp:507
+#: Panel/panelfunc.cpp:516
 #, c-format
 msgid ""
 "_n: Copy %n file to:\n"
 "Copy %n files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:535
+#: Panel/panelfunc.cpp:544
 msgid "You can't copy files to this file system"
 msgstr "Erre a fájlrendszerre nem tud másolni."
 
-#: Panel/panelfunc.cpp:546
+#: Panel/panelfunc.cpp:555
 msgid "You do not have write permission to this directory"
 msgstr "Ehhez a könyvtárhoz nincs írási jogosultsága"
 
-#: Panel/panelfunc.cpp:564
+#: Panel/panelfunc.cpp:573
 #, c-format
 msgid ""
 "_n: Do you really want to move this item to the trash?\n"
 "Do you really want to move these %n items to the trash?"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:563 Panel/panelfunc.cpp:565
+#: DiskUsage/diskusage.cpp:572 Panel/panelfunc.cpp:574
 msgid "&Trash"
 msgstr "&Szemetesbe"
 
-#: Panel/panelfunc.cpp:567
+#: Panel/panelfunc.cpp:576
 #, c-format
 msgid ""
 "_n: Do you really want to delete this item?\n"
 "Do you really want to delete these %n items?"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:566 DiskUsage/radialMap/widgetEvents.cpp:172
-#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:568
+#: DiskUsage/diskusage.cpp:575 DiskUsage/radialMap/widgetEvents.cpp:172
+#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:577
 #, fuzzy
 msgid "&Delete"
 msgstr " Törlés"
 
-#: Dialogs/checksumdlg.cpp:492 DiskUsage/diskusage.cpp:574
-#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:574 krusader.cpp:701
+#: Dialogs/checksumdlg.cpp:557 DiskUsage/diskusage.cpp:583
+#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:583 krusader.cpp:703
 #, fuzzy
 msgid "Warning"
 msgstr "Kis türelmet"
 
-#: Panel/panelfunc.cpp:592
+#: Panel/panelfunc.cpp:601
 msgid "Directory "
 msgstr "A(z) \""
 
-#: Panel/panelfunc.cpp:592
+#: Panel/panelfunc.cpp:601
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
@@ -1913,27 +1913,27 @@ msgstr ""
 "\" könyvtár nem üres.\n"
 "Kihagyja ezt vagy törli az összeset?"
 
-#: Panel/panelfunc.cpp:593
+#: Panel/panelfunc.cpp:602
 msgid "&Skip"
 msgstr "&Kihagyás"
 
-#: Panel/panelfunc.cpp:593
+#: Panel/panelfunc.cpp:602
 msgid "&Delete All"
 msgstr "Összes &törlése"
 
-#: Panel/panelfunc.cpp:704
+#: Panel/panelfunc.cpp:713
 msgid "Cannot pack files onto a virtual destination!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:716
+#: Panel/panelfunc.cpp:725
 msgid "The Archive "
 msgstr "\""
 
-#: Panel/panelfunc.cpp:717
+#: Panel/panelfunc.cpp:726
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr "\" nevű archívum már létezik. Felül szeretné írni azt?\n"
 
-#: Panel/panelfunc.cpp:719
+#: Panel/panelfunc.cpp:728
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -1941,44 +1941,44 @@ msgstr ""
 "(A Zip felülírja a Zip-archívumban az azonos nevű bejegyzéseket illetve új "
 "bejegyzéseket vesz fel az új neveknek)"
 
-#: Panel/panelfunc.cpp:728
+#: Panel/panelfunc.cpp:737
 msgid "Counting files to pack"
 msgstr "A csomagolni kívánt fájlok számolása"
 
-#: Panel/panelfunc.cpp:789 Panel/panelfunc.cpp:844 krslots.cpp:190
-#: krslots.cpp:196
+#: Panel/panelfunc.cpp:798 Panel/panelfunc.cpp:853 krslots.cpp:191
+#: krslots.cpp:197
 msgid "Krusader is unable to download: "
 msgstr "A Krusader nem tudja letölteni a következőt: "
 
-#: Panel/panelfunc.cpp:797
+#: Panel/panelfunc.cpp:806
 msgid "%1, unknown archive type."
 msgstr "%1: ismeretlen archívumtípus."
 
-#: Panel/panelfunc.cpp:803
+#: Panel/panelfunc.cpp:812
 msgid "%1, test passed."
 msgstr "%1: rendben."
 
-#: Panel/panelfunc.cpp:805
+#: Panel/panelfunc.cpp:814
 msgid "%1, test failed!"
 msgstr "%1: a tesztelés hibát jelzett."
 
-#: Panel/panelfunc.cpp:821
+#: Panel/panelfunc.cpp:830
 #, fuzzy
 msgid "Unpack %1 to:"
 msgstr "Kicsomagolás: "
 
-#: Panel/panelfunc.cpp:823
+#: Panel/panelfunc.cpp:832
 #, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
 "Unpack %n files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:870
+#: Panel/panelfunc.cpp:879
 msgid "%1, unknown archive type"
 msgstr "%1: ismeretlen archívumtípus"
 
-#: Locate/locate.cpp:67 Locate/locate.cpp:208 Search/krsearchdialog.cpp:101
+#: Locate/locate.cpp:67 Locate/locate.cpp:204 Search/krsearchdialog.cpp:101
 #: Synchronizer/synchronizergui.cpp:1311
 #, fuzzy
 msgid "Stop"
@@ -1988,7 +1988,7 @@ msgstr "   Cél"
 msgid "Update DB"
 msgstr "Adatbázis frissítése"
 
-#: Locate/locate.cpp:67 Locate/locate.cpp:318
+#: Locate/locate.cpp:67 Locate/locate.cpp:314
 msgid "Locate"
 msgstr "Fájlkeresés"
 
@@ -2016,13 +2016,13 @@ msgstr "Nagybetűérzékeny"
 msgid "Results"
 msgstr "Eredmények"
 
-#: Locate/locate.cpp:198
+#: Locate/locate.cpp:194
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Nem lehet elindítani a \"locate\" programot. Ellenőrizze a \"Függőségek\" "
 "lapot a Konfigurátorban."
 
-#: Locate/locate.cpp:235
+#: Locate/locate.cpp:231
 msgid ""
 "Locate produced the following error message:\n"
 "\n"
@@ -2030,47 +2030,47 @@ msgstr ""
 "A \"locate\" a következő hibát adta:\n"
 "\n"
 
-#: Locate/locate.cpp:238
+#: Locate/locate.cpp:234
 msgid "Error during the start of 'locate' process!"
 msgstr "Hiba a \"locate\" folyamat indítása közben."
 
-#: Locate/locate.cpp:247 Search/krsearchdialog.cpp:90
+#: Locate/locate.cpp:243 Search/krsearchdialog.cpp:90
 msgid "Feed to listbox"
 msgstr "Listába való felvétel"
 
-#: Locate/locate.cpp:320
+#: Locate/locate.cpp:316
 msgid "View (F3)"
 msgstr "Megjelenítés (F3)"
 
-#: Locate/locate.cpp:321
+#: Locate/locate.cpp:317
 msgid "Edit (F4)"
 msgstr "Szerkesztés (F4)"
 
-#: Locate/locate.cpp:325
+#: Locate/locate.cpp:321
 msgid "Find (Ctrl+F)"
 msgstr "Keresés (Ctrl+F)"
 
-#: Locate/locate.cpp:326
+#: Locate/locate.cpp:322
 msgid "Find next (Ctrl+N)"
 msgstr "Következő keresése (Ctrl+N)"
 
-#: Locate/locate.cpp:327
+#: Locate/locate.cpp:323
 msgid "Find previous (Ctrl+P)"
 msgstr "Előző keresése (Ctrl+P)"
 
-#: Locate/locate.cpp:423 Locate/locate.cpp:440
+#: Locate/locate.cpp:419 Locate/locate.cpp:436
 msgid "Search string not found!"
 msgstr "A keresett szöveg nem található."
 
-#: Locate/locate.cpp:491
+#: Locate/locate.cpp:487
 msgid "Locate results"
 msgstr "Keresési eredmények"
 
-#: Locate/locate.cpp:499 Search/krsearchdialog.cpp:529
+#: Locate/locate.cpp:495 Search/krsearchdialog.cpp:531
 msgid "Query name"
 msgstr "Lekérdezési név"
 
-#: Locate/locate.cpp:500 Search/krsearchdialog.cpp:530
+#: Locate/locate.cpp:496 Search/krsearchdialog.cpp:532
 msgid "Here you can name the file collection"
 msgstr "Itt elnevezheti a fájlgyűjteményt"
 
@@ -2138,7 +2138,7 @@ msgstr "A &panelek felcserélése"
 msgid "popup cmdline"
 msgstr "Parancssor megjelenítése"
 
-#: DiskUsage/diskusage.cpp:712 krusader.cpp:491
+#: DiskUsage/diskusage.cpp:721 krusader.cpp:491
 msgid "Up one directory"
 msgstr "Egy könyvtárral feljebb"
 
@@ -2166,12 +2166,12 @@ msgstr "Pro&filok"
 msgid "Calculate &Occupied Space"
 msgstr "Elfo&glalt terület számítása"
 
-#: Dialogs/checksumdlg.cpp:178 Dialogs/checksumdlg.cpp:393 krusader.cpp:505
+#: Dialogs/checksumdlg.cpp:203 Dialogs/checksumdlg.cpp:458 krusader.cpp:505
 #, fuzzy
 msgid "Create Checksum"
 msgstr "Létrehozás ebben:"
 
-#: Dialogs/checksumdlg.cpp:258 Dialogs/checksumdlg.cpp:357 krusader.cpp:507
+#: Dialogs/checksumdlg.cpp:304 Dialogs/checksumdlg.cpp:422 krusader.cpp:507
 msgid "Verify Checksum"
 msgstr ""
 
@@ -2318,172 +2318,176 @@ msgstr "Bal oldali könyvjelzők"
 msgid "Bookmarks"
 msgstr "Könyvjelző felvétele"
 
-#: krusader.cpp:598
+#: BookMan/krbookmarkhandler.cpp:308 krusader.cpp:598
+msgid "Bookmark Current"
+msgstr "Hozzáadás a könyvjelzőkhöz"
+
+#: krusader.cpp:600
 #, fuzzy
 msgid "History"
 msgstr "Bal oldali előzmények"
 
-#: krusader.cpp:600
+#: krusader.cpp:602
 msgid "Sync Panels"
 msgstr "Panelek szinkronizálása"
 
-#: krusader.cpp:602
+#: krusader.cpp:604
 msgid "Left history"
 msgstr "Bal oldali előzmények"
 
-#: krusader.cpp:604
+#: krusader.cpp:606
 msgid "Right history"
 msgstr "Jobb oldali előzmények"
 
-#: krusader.cpp:606
+#: krusader.cpp:608
 #, fuzzy
 msgid "New symlink"
 msgstr "Új szimbolikus link"
 
-#: krusader.cpp:608
+#: krusader.cpp:610
 msgid "Toggle Popup Panel"
 msgstr "Felbukkanó panel nyitása/bezárása"
 
-#: krusader.cpp:610
+#: krusader.cpp:612
 msgid "Vertical Mode"
 msgstr "Függőleges mód"
 
-#: krusader.cpp:612
+#: krusader.cpp:614
 msgid "New tab"
 msgstr "Új lap"
 
-#: krusader.cpp:614
+#: krusader.cpp:616
 msgid "Duplicate tab"
 msgstr "Lap megkettőzése"
 
-#: krusader.cpp:616
+#: krusader.cpp:618
 msgid "Close tab"
 msgstr "Lap bezárása"
 
-#: krusader.cpp:618
+#: krusader.cpp:620
 msgid "Next tab"
 msgstr "Következő lap"
 
-#: krusader.cpp:620
+#: krusader.cpp:622
 msgid "Previous tab"
 msgstr "Előző lap"
 
-#: UserMenu/usermenu.cpp:52 krusader.cpp:622
+#: UserMenu/usermenu.cpp:52 krusader.cpp:624
 msgid "User Menu"
 msgstr "Felhasználói menü"
 
-#: UserMenu/usermenu.cpp:59 krusader.cpp:624
+#: UserMenu/usermenu.cpp:59 krusader.cpp:626
 msgid "Manage user actions"
 msgstr "Felhasználói műveletek kezelése"
 
-#: krusader.cpp:626
+#: krusader.cpp:628
 #, fuzzy
 msgid "Select Remote Charset"
 msgstr "Elemek kijelölése"
 
-#: krusader.cpp:629
+#: krusader.cpp:631
 msgid "F2 - Open a terminal"
 msgstr "F2 - Terminál nyitása"
 
 # a stringek hosszára figyelni kell, hogy az ablakot lehessen kicsire is méretezni
-#: krusader.cpp:631
+#: krusader.cpp:633
 msgid "F3 - View a file"
 msgstr "F3 - Fájl megjelenítése"
 
-#: krusader.cpp:633
+#: krusader.cpp:635
 msgid "F4 - Edit a file"
 msgstr "F4 - Fájl szerkesztése"
 
-#: krusader.cpp:635
+#: krusader.cpp:637
 msgid "F5 - Copy"
 msgstr "F5 - Másolás"
 
-#: krusader.cpp:637
+#: krusader.cpp:639
 msgid "F6 - Move"
 msgstr "F6 - Áthelyezés"
 
-#: krusader.cpp:639
+#: krusader.cpp:641
 msgid "F7 - Mkdir"
 msgstr "F7 - Új könyvtár"
 
-#: krusader.cpp:641
+#: krusader.cpp:643
 msgid "F8 - Delete"
 msgstr "F8 - Törlés"
 
-#: krusader.cpp:643
+#: krusader.cpp:645
 msgid "F9 - Rename"
 msgstr "F9 - Átnevezés"
 
-#: krusader.cpp:645
+#: krusader.cpp:647
 msgid "F10 - Quit"
 msgstr "F10 - Kilépés"
 
-#: BookMan/krbookmarkhandler.cpp:267 krusader.cpp:647
+#: BookMan/krbookmarkhandler.cpp:267 krusader.cpp:649
 msgid "Popular URLs"
 msgstr "Gyakran látogatott helyek"
 
-#: krusader.cpp:649
+#: krusader.cpp:651
 #, fuzzy
 msgid "Go to location bar"
 msgstr "Ugrás egy helyre"
 
-#: krusader.cpp:651
+#: krusader.cpp:653
 msgid "Jump back"
 msgstr ""
 
-#: krusader.cpp:653
+#: krusader.cpp:655
 msgid "Set jump back point here"
 msgstr ""
 
-#: krusader.cpp:657
+#: krusader.cpp:659
 msgid "Select files using a filter"
 msgstr "Fájlok kijelölése szűrő használatával"
 
-#: krusader.cpp:658
+#: krusader.cpp:660
 msgid "Select all files in the current directory"
 msgstr "Az aktuális könyvtárban levő összes fájl kijelölése"
 
-#: krusader.cpp:659
+#: krusader.cpp:661
 msgid "Un-select all selected files"
 msgstr "Az összes kijelölt fájl kijelölésének megszüntetése"
 
-#: krusader.cpp:660
+#: krusader.cpp:662
 msgid "Setup Krusader the way you like it"
 msgstr "A Krusader beállítása az Önnek megfelelő módon"
 
-#: krusader.cpp:661
+#: krusader.cpp:663
 msgid "Back to the place you came from"
 msgstr "Vissza az előző helyre"
 
-#: krusader.cpp:662
+#: krusader.cpp:664
 msgid "ROOT (/)"
 msgstr "Gyökér (/)"
 
-#: krusader.cpp:663
+#: krusader.cpp:665
 msgid "Search for files"
 msgstr "Fájlok keresése"
 
-#: krusader.cpp:670
+#: krusader.cpp:672
 msgid "JavaScript console"
 msgstr "JavaScript-konzol"
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:700
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:702
 msgid "File "
 msgstr "\""
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:700
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:702
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr "\" nevű fájl már létezik. Felül szeretné írni azt?"
 
-#: Dialogs/checksumdlg.cpp:492 Konfigurator/kgcolors.cpp:507 krusader.cpp:701
+#: Dialogs/checksumdlg.cpp:557 Konfigurator/kgcolors.cpp:507 krusader.cpp:703
 msgid "Overwrite"
 msgstr "Felülírás"
 
-#: Konfigurator/kgcolors.cpp:509 krusader.cpp:703
+#: Konfigurator/kgcolors.cpp:509 krusader.cpp:705
 msgid "Error: unable to write to file"
 msgstr "Hiba: nem lehet írni a fájlba"
 
-#: krusader.cpp:805
+#: krusader.cpp:807
 msgid "Are you sure you want to quit?"
 msgstr "Valóban szeretne kilépni?"
 
@@ -2491,41 +2495,56 @@ msgstr "Valóban szeretne kilépni?"
 msgid "No file selected or selected file can't be displayed."
 msgstr "Nincs kijelölve fájl, vagy a kijelölt fájl nem jeleníthető meg."
 
-#: KViewer/krviewer.cpp:416 KViewer/panelviewer.cpp:147
+#: KViewer/krviewer.cpp:499 KViewer/panelviewer.cpp:150
 msgid "KrViewer is unable to download: "
 msgstr "A KrNézegető nem tudja letölteni a következőt: "
 
-#: KViewer/krviewer.cpp:90
+#: KViewer/krviewer.cpp:93
 msgid "&Generic viewer"
 msgstr "Általános me&gjelenítő"
 
-#: KViewer/krviewer.cpp:91
+#: KViewer/krviewer.cpp:94
 msgid "&Text viewer"
 msgstr "Szövegmegjelení&tő"
 
-#: KViewer/krviewer.cpp:92
+#: KViewer/krviewer.cpp:95
 msgid "&Hex viewer"
 msgstr "&Hexadecimális megjelenítő"
 
-#: KViewer/krviewer.cpp:94
+#: KViewer/krviewer.cpp:97
 msgid "Text &editor"
 msgstr "Szöv&egszerkesztő"
 
-#: KViewer/krviewer.cpp:96
+#: KViewer/krviewer.cpp:99
+#, fuzzy
+msgid "&Next tab"
+msgstr "Következő lap"
+
+#: KViewer/krviewer.cpp:100
+#, fuzzy
+msgid "&Previous tab"
+msgstr "Előző lap"
+
+#: KViewer/krviewer.cpp:102
+#, fuzzy
+msgid "&Detach tab"
+msgstr "Következő lap"
+
+#: KViewer/krviewer.cpp:106
 #, fuzzy
 msgid "&Close current tab"
 msgstr "Aktuális lap bezárása"
 
-#: KViewer/krviewer.cpp:97
+#: KViewer/krviewer.cpp:107
 #, fuzzy
 msgid "&Quit"
 msgstr " Kilépés"
 
-#: KViewer/krviewer.cpp:130
+#: KViewer/krviewer.cpp:140
 msgid "&KrViewer"
 msgstr "&KrNézegető"
 
-#: KViewer/krviewer.cpp:346
+#: KViewer/krviewer.cpp:429
 msgid "Sorry, can't find internal editor"
 msgstr "A belső szerkesztő nem található"
 
@@ -2576,20 +2595,20 @@ msgstr ""
 msgid "Finished searching."
 msgstr "Keresés befejezve."
 
-#: Search/krsearchdialog.cpp:491
+#: Search/krsearchdialog.cpp:493
 msgid "Krusader Search"
 msgstr "Krusader - keresés"
 
-#: Search/krsearchdialog.cpp:493
+#: Search/krsearchdialog.cpp:495
 msgid "View File (F3)"
 msgstr "Megjelenítés (F3)"
 
-#: Search/krsearchdialog.cpp:494
+#: Search/krsearchdialog.cpp:496
 msgid "Edit File (F4)"
 msgstr "Szerkesztés (F4)"
 
-#: Konfigurator/kgarchives.cpp:111 Konfigurator/kggeneral.cpp:142
-#: Search/krsearchdialog.cpp:521
+#: Konfigurator/kgarchives.cpp:111 Konfigurator/kggeneral.cpp:151
+#: Search/krsearchdialog.cpp:523
 msgid "Search results"
 msgstr "A keresés eredménye"
 
@@ -2626,10 +2645,6 @@ msgstr " nem egy érvényes könyvjelzőfájl"
 msgid "Error reading bookmarks file: "
 msgstr "Hiba a könyvjelzőfájl olvasásakor: "
 
-#: BookMan/krbookmarkhandler.cpp:308
-msgid "Bookmark Current"
-msgstr "Hozzáadás a könyvjelzőkhöz"
-
 #: BookMan/krbookmarkhandler.cpp:310
 msgid "Manage Bookmarks"
 msgstr "Könyvjelzők kezelése"
@@ -2659,7 +2674,7 @@ msgstr "Könyvjelző felvétele"
 msgid "New Folder"
 msgstr "Új könyvtár"
 
-#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:970
+#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:979
 msgid "Name:"
 msgstr "Név:"
 
@@ -3227,136 +3242,146 @@ msgstr ""
 msgid "Click to go to <i>%1</i>"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:183
+#: Dialogs/checksumdlg.cpp:208
 msgid ""
 "<qt>Can't calculate checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:186 Dialogs/checksumdlg.cpp:266
+#: Dialogs/checksumdlg.cpp:211 Dialogs/checksumdlg.cpp:312
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
 "sha256deep and tigerdeep</i>"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:202
+#: Dialogs/checksumdlg.cpp:227
 msgid "About to calculate checksum for the following files"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:203 Dialogs/checksumdlg.cpp:283
+#: Dialogs/checksumdlg.cpp:228 Dialogs/checksumdlg.cpp:329
 msgid " and folders:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:216
+#: Dialogs/checksumdlg.cpp:241
 msgid "Select the checksum method:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:234
+#: Dialogs/checksumdlg.cpp:262
 msgid "Calculating checksums ..."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:240 Dialogs/checksumdlg.cpp:331
+#: Dialogs/checksumdlg.cpp:277 Dialogs/checksumdlg.cpp:391
 msgid "<qt>There was an error while running <b>%1</b>."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:263
+#: Dialogs/checksumdlg.cpp:289 Dialogs/checksumdlg.cpp:400
+#, fuzzy
+msgid "Error reading stdout or stderr"
+msgstr "Hiba a könyvjelzőfájl olvasásakor: "
+
+#: Dialogs/checksumdlg.cpp:309
 msgid ""
 "<qt>Can't verify checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:282
+#: Dialogs/checksumdlg.cpp:328
 #, fuzzy
 msgid "About to verify checksum for the following files"
 msgstr "A következő fájlok kijelölése:"
 
-#: Dialogs/checksumdlg.cpp:296
+#: Dialogs/checksumdlg.cpp:342
 msgid "Checksum file:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:308
+#: Dialogs/checksumdlg.cpp:356
 msgid ""
 "<qt>Error reading checksum file <i>%1</i>.<br>Please specify a valid "
 "checksum file."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:321
+#: Dialogs/checksumdlg.cpp:369
 msgid ""
 "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:370
+#: Dialogs/checksumdlg.cpp:378
+#, fuzzy
+msgid "Verifying checksums ..."
+msgstr "\"%1\" fájl darabolása..."
+
+#: Dialogs/checksumdlg.cpp:435
 msgid "Errors were detected while verifying the checksums"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:371
+#: Dialogs/checksumdlg.cpp:436
 msgid "Checksums were verified successfully"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:377
+#: Dialogs/checksumdlg.cpp:442
 #, fuzzy
 msgid "The following files have failed:"
 msgstr "A következő fájlok kijelölése:"
 
-#: Dialogs/checksumdlg.cpp:408
+#: Dialogs/checksumdlg.cpp:473
 msgid "Errors were detected while creating the checksums"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:409
+#: Dialogs/checksumdlg.cpp:474
 msgid "Checksums were created successfully"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:416
+#: Dialogs/checksumdlg.cpp:481
 msgid "Here are the calculated checksums:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:421
+#: Dialogs/checksumdlg.cpp:486
 #, fuzzy
 msgid "Hash"
 msgstr "szemetesbe tenni"
 
-#: Dialogs/checksumdlg.cpp:422 Konfigurator/kgcolors.cpp:365
+#: Dialogs/checksumdlg.cpp:487 Konfigurator/kgcolors.cpp:365
 #, fuzzy
 msgid "File"
 msgstr "\""
 
-#: Dialogs/checksumdlg.cpp:441
+#: Dialogs/checksumdlg.cpp:506
 msgid "Here are the errors received:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:455
+#: Dialogs/checksumdlg.cpp:520
 msgid "Save checksum to file:"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:469
+#: Dialogs/checksumdlg.cpp:534
 msgid "Checksum file for each source file"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:491
+#: Dialogs/checksumdlg.cpp:556
 #, fuzzy
 msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
 msgstr "\" nevű fájl már létezik. Felül szeretné írni azt?"
 
-#: Dialogs/checksumdlg.cpp:494
+#: Dialogs/checksumdlg.cpp:559
 #, fuzzy
 msgid "Select a file to save to"
 msgstr " Fájlok kijelölése "
 
-#: Dialogs/checksumdlg.cpp:499
+#: Dialogs/checksumdlg.cpp:564
 #, fuzzy, c-format
 msgid "Error saving file %1"
 msgstr "Hiba a(z) \"%1\" fájl olvasásakor."
 
-#: Dialogs/checksumdlg.cpp:511
+#: Dialogs/checksumdlg.cpp:576
 #, fuzzy
 msgid "Saving checksum files..."
 msgstr "\"%1\" fájl darabolása..."
 
-#: Dialogs/checksumdlg.cpp:516
+#: Dialogs/checksumdlg.cpp:581
 msgid "Errors occured while saving multiple checksums. Stopping"
 msgstr ""
 
@@ -3636,7 +3661,7 @@ msgstr ""
 msgid "Synchronize Directories"
 msgstr "Könyvtárak szinkronizálása"
 
-#: DiskUsage/diskusage.cpp:707 Synchronizer/synchronizergui.cpp:1514
+#: DiskUsage/diskusage.cpp:716 Synchronizer/synchronizergui.cpp:1514
 msgid "Exclude"
 msgstr "Kihagyás"
 
@@ -3781,7 +3806,7 @@ msgstr "Krusader::Szinkronizáló"
 msgid "Feeding the URLs to Kget"
 msgstr "URL-ek átadása a KGet-nek"
 
-#: Synchronizer/synchronizer.cpp:1340 krslots.cpp:115 krslots.cpp:207
+#: Synchronizer/synchronizer.cpp:1340 krslots.cpp:116 krslots.cpp:208
 msgid "Error executing "
 msgstr "Hiba a végrehajtás közben - "
 
@@ -3838,7 +3863,7 @@ msgstr "Százalék"
 msgid "Show file sizes"
 msgstr "Fájlméretek megjelenítése"
 
-#: DiskUsage/diskusage.cpp:732 DiskUsage/dulines.cpp:461
+#: DiskUsage/diskusage.cpp:741 DiskUsage/dulines.cpp:461
 msgid "Lines"
 msgstr "Vonalak"
 
@@ -3890,7 +3915,7 @@ msgstr "Változó címke-betűméretek"
 msgid "Minimum font size"
 msgstr "Minimális betűméret"
 
-#: DiskUsage/diskusage.cpp:736 DiskUsage/dufilelight.cpp:140
+#: DiskUsage/diskusage.cpp:745 DiskUsage/dufilelight.cpp:140
 msgid "Filelight"
 msgstr "Kördiagram"
 
@@ -3906,7 +3931,7 @@ msgstr "Krusader::Lemezhasználat"
 msgid "Start new disk usage search"
 msgstr "Új lemezhasználati lekérdezés"
 
-#: DiskUsage/diskusage.cpp:716 DiskUsage/diskusagegui.cpp:64
+#: DiskUsage/diskusage.cpp:725 DiskUsage/diskusagegui.cpp:64
 msgid "Refresh"
 msgstr "Frissítés"
 
@@ -3954,11 +3979,11 @@ msgstr "Könyvtárak:"
 msgid "Total Size:"
 msgstr "Teljes méret:"
 
-#: DiskUsage/diskusage.cpp:239
+#: DiskUsage/diskusage.cpp:243
 msgid "Loading the disk usage information..."
 msgstr "Lemezhasználati információ betöltése..."
 
-#: DiskUsage/diskusage.cpp:403
+#: DiskUsage/diskusage.cpp:412
 msgid ""
 "Stepping into the parent directory requires loading the content of the \"%1"
 "\" URL. Do you wish to continue?"
@@ -3966,80 +3991,80 @@ msgstr ""
 "A szülőkönyvtárba való lépéshez be kell olvasni a(z) \"%1\" hely tartalmát. "
 "Szeretné folytatni?"
 
-#: DiskUsage/diskusage.cpp:407
+#: DiskUsage/diskusage.cpp:416
 msgid "Krusader::DiskUsage"
 msgstr "Krusader::Lemezhasználat"
 
-#: DiskUsage/diskusage.cpp:562
+#: DiskUsage/diskusage.cpp:571
 msgid "trash"
 msgstr "szemetesbe tenni"
 
-#: DiskUsage/diskusage.cpp:565
+#: DiskUsage/diskusage.cpp:574
 msgid "delete"
 msgstr "törölni"
 
-#: DiskUsage/diskusage.cpp:573
+#: DiskUsage/diskusage.cpp:582
 msgid "Are you sure you want to "
 msgstr "Valóban szeretné "
 
-#: DiskUsage/diskusage.cpp:675
+#: DiskUsage/diskusage.cpp:684
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
 msgstr "Aktuális könyvtár: %1,  teljes méret:%2,  saját méret:%3"
 
-#: DiskUsage/diskusage.cpp:701
+#: DiskUsage/diskusage.cpp:710
 msgid "Disk Usage"
 msgstr "Lemezhasználat"
 
-#: DiskUsage/diskusage.cpp:714
+#: DiskUsage/diskusage.cpp:723
 msgid "New search"
 msgstr "Új keresés"
 
-#: DiskUsage/diskusage.cpp:718
+#: DiskUsage/diskusage.cpp:727
 msgid "Include all"
 msgstr "Az összes felvétele"
 
-#: DiskUsage/diskusage.cpp:720
+#: DiskUsage/diskusage.cpp:729
 msgid "Step into"
 msgstr "Belépés"
 
-#: DiskUsage/diskusage.cpp:734
+#: DiskUsage/diskusage.cpp:743
 msgid "Detailed"
 msgstr "Részletes"
 
-#: DiskUsage/diskusage.cpp:739
+#: DiskUsage/diskusage.cpp:748
 msgid "Next"
 msgstr "Következő"
 
-#: DiskUsage/diskusage.cpp:741
+#: DiskUsage/diskusage.cpp:750
 msgid "Previous"
 msgstr "Előző"
 
-#: DiskUsage/diskusage.cpp:745
+#: DiskUsage/diskusage.cpp:754
 #, fuzzy
 msgid "View"
 msgstr "Megjelenítés:"
 
-#: DiskUsage/diskusage.cpp:971
+#: DiskUsage/diskusage.cpp:980
 msgid "Type:"
 msgstr "Típus:"
 
-#: DiskUsage/diskusage.cpp:972
+#: DiskUsage/diskusage.cpp:981
 msgid "Size:"
 msgstr "Méret:"
 
-#: DiskUsage/diskusage.cpp:975
+#: DiskUsage/diskusage.cpp:984
 msgid "Own size:"
 msgstr "Saját méret:"
 
-#: DiskUsage/diskusage.cpp:977
+#: DiskUsage/diskusage.cpp:986
 msgid "Last modified:"
 msgstr "Legutóbbi módosítás:"
 
-#: DiskUsage/diskusage.cpp:978
+#: DiskUsage/diskusage.cpp:987
 msgid "Permissions:"
 msgstr "Engedélyek:"
 
-#: DiskUsage/diskusage.cpp:979
+#: DiskUsage/diskusage.cpp:988
 msgid "Owner:"
 msgstr "Tulajdonos:"
 
@@ -4155,63 +4180,73 @@ msgstr ""
 "Tipp: ha a Krusader gyors beépített szerkesztőjét szeretné használni, akkor "
 "írjon be \"internal editor\"-t."
 
-#: Konfigurator/kggeneral.cpp:82
-msgid "Terminal:"
-msgstr "Terminál:"
-
-#: Konfigurator/kggeneral.cpp:93
+#: Konfigurator/kggeneral.cpp:87
 msgid "Default viewer mode:"
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:98
+#: Konfigurator/kggeneral.cpp:92
 #, fuzzy
 msgid "Generic mode"
 msgstr "Általános me&gjelenítő"
 
-#: Konfigurator/kggeneral.cpp:98
+#: Konfigurator/kggeneral.cpp:92
 msgid "Use the system's default viewer"
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:99
+#: Konfigurator/kggeneral.cpp:93
 #, fuzzy
 msgid "Text mode"
 msgstr "Könyvtár:"
 
-#: Konfigurator/kggeneral.cpp:99
+#: Konfigurator/kggeneral.cpp:93
 msgid "View the file in text-only mode"
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:100
+#: Konfigurator/kggeneral.cpp:94
 #, fuzzy
 msgid "Hex mode"
 msgstr "összehasonlítási mód"
 
-#: Konfigurator/kggeneral.cpp:100
+#: Konfigurator/kggeneral.cpp:94
 msgid "View the file in hex-mode (better for binary files)"
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:106
+#: Konfigurator/kggeneral.cpp:100
 msgid "Viewer opens each file in a separate window"
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:107
+#: Konfigurator/kggeneral.cpp:101
 msgid ""
 "If checked, each file will open in a separate window, otherwise, the viewer "
 "will work in a single, tabbed mode"
 msgstr ""
 
+#: Konfigurator/kggeneral.cpp:109
+msgid "Terminal:"
+msgstr "Terminál:"
+
 #: Konfigurator/kggeneral.cpp:116
+msgid "Terminal Emulator sends Chdir on panel change"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:117
+msgid ""
+"When checked, whenever the panel is changed (for example, by pressing TAB), "
+"krusader changes the current directory in the terminal emulator."
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:125
 msgid "Temp Directory:"
 msgstr "Átmeneti könyvtár:"
 
-#: Konfigurator/kggeneral.cpp:124
+#: Konfigurator/kggeneral.cpp:133
 #, fuzzy
 msgid "Note: you must have full permissions for the temporary directory!"
 msgstr ""
 "Megjegyzés: teljes hozzáférési jogosultsággal kell rendelkeznie az átmeneti "
 "könyvtárhoz."
 
-#: Konfigurator/kggeneral.cpp:142
+#: Konfigurator/kggeneral.cpp:151
 #, fuzzy
 msgid "Searching for tools..."
 msgstr ""
@@ -4219,7 +4254,7 @@ msgstr ""
 "A keresés eredménye:\n"
 "\n"
 
-#: Konfigurator/kggeneral.cpp:143
+#: Konfigurator/kggeneral.cpp:152
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
@@ -5405,7 +5440,7 @@ msgstr ""
 "műveletlistát a bal oldalon és javítsa a műveleteket.\n"
 "Ezek a műveletek nem kerülnek importálásra, ha most bezárja a Konfigurátort."
 
-#: krslots.cpp:102
+#: krslots.cpp:103
 msgid ""
 "Krusader can't find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports Kmail."
@@ -5413,15 +5448,15 @@ msgstr ""
 "A Krusader nem talált támogatott levelezőprogramot. Telepítsen egyet. Tipp: "
 "a Krusader a KMailt támogatja."
 
-#: krslots.cpp:109
+#: krslots.cpp:110
 msgid "Sending file: "
 msgstr "Fájl küldése: "
 
-#: krslots.cpp:145
+#: krslots.cpp:146
 msgid "Don't know which files to compare."
 msgstr "Mely fájlokat kell összehasonlítani?"
 
-#: krslots.cpp:145
+#: krslots.cpp:146
 #, fuzzy
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5435,7 +5470,7 @@ msgstr ""
 "- meggyőződik arról, hogy a másik panelen létezik az aktív panel aktuális "
 "fájljával megegyező nevű fájl"
 
-#: krslots.cpp:182
+#: krslots.cpp:183
 msgid ""
 "Krusader can't find any of the supported diff-frontends. Please install one "
 "to your path. Hint: Krusader supports Kompare, Kdiff3 and Xxdiff."
@@ -5444,7 +5479,7 @@ msgstr ""
 "Telepítsen egyet. A Krusader a következőket támogatja: Kompare, Kdiff3, "
 "Xxdiff."
 
-#: krslots.cpp:387
+#: krslots.cpp:389
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
@@ -5452,7 +5487,7 @@ msgstr ""
 "Nem található a \"locate\" program. Telepítse a GNU findutils-locate "
 "csomagot, vagy állítsa be a függőségeket a Konfigurátorban."
 
-#: krslots.cpp:399
+#: krslots.cpp:401
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager. The new "
 "manager handles local files and remote URLs the same way. RemoteMan is being "
@@ -5470,17 +5505,17 @@ msgstr ""
 "nyomja meg a \"könyvjelző\" gombot, majd válassza a \"Hozzáadás a "
 "könyvjelzőkhöz\" funkciót."
 
-#: krslots.cpp:418
+#: krslots.cpp:420
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Nem lehet elindítani a \"mount\" programot. Ellenőrizze a \"Függőségek\" "
 "lapot a Konfigurátorban."
 
-#: krslots.cpp:450
+#: krslots.cpp:452
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr "\"KsysCtrl\" nem található, telepítse a KDE admin csomagot"
 
-#: krslots.cpp:458
+#: krslots.cpp:460
 msgid ""
 "Can't find a batch rename tool.\n"
 "You can get Krename at http://www.krename.net"
@@ -5488,7 +5523,7 @@ msgstr ""
 "Nem található tömeges átnevezési eszköz.\n"
 "A Krename program beszerezhető a http://www.krename.net helyen."
 
-#: krslots.cpp:488
+#: krslots.cpp:490
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
@@ -5497,43 +5532,43 @@ msgstr ""
 "vagy a kdesu program nincs az elérési útvonalon. Állítsa be a függőségeket a "
 "Konfigurátorban."
 
-#: krslots.cpp:543
+#: krslots.cpp:545
 msgid "Enter a URL to view:"
 msgstr "Adja meg a megjelenítendő URL-t:"
 
-#: krslots.cpp:554
+#: krslots.cpp:556
 msgid "Enter the filename to edit:"
 msgstr "Adja meg a szerkesztendő fájl nevét:"
 
-#: krslots.cpp:612
+#: krslots.cpp:614
 msgid "Don't know which file to split."
 msgstr "Melyik fájlt szeretné darabolni?"
 
-#: krslots.cpp:621
+#: krslots.cpp:623
 msgid "You can't split a directory!"
 msgstr "Könyvtárt nem lehet darabolni."
 
-#: krslots.cpp:652
+#: krslots.cpp:654
 msgid "Don't know which files to combine."
 msgstr "Mely fájlokat szeretné egyesíteni?"
 
-#: krslots.cpp:664
+#: krslots.cpp:666
 msgid "You can't combine a directory!"
 msgstr "Könyvtárt nem lehet egyesíteni."
 
-#: krslots.cpp:683
+#: krslots.cpp:685
 msgid "Not a split file %1!"
 msgstr "\"%1\" nem egy darabolt fájl."
 
-#: krslots.cpp:698
+#: krslots.cpp:700
 msgid "Select only one split file!"
 msgstr "Csak egy darabolt fájlt jelöljön ki."
 
-#: krslots.cpp:746
+#: krslots.cpp:748
 msgid "Not a splitted file %1!"
 msgstr "\"%1\" nem egy darabolt fájl."
 
-#: krslots.cpp:753
+#: krslots.cpp:755
 msgid "Combining %1.* to directory:"
 msgstr "\"%1.*\" egyesítése ebbe a könyvtárba:"
 

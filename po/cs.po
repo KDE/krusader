@@ -10,14 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2005-10-18 23:38+0200\n"
+"POT-Creation-Date: 2005-11-03 22:44+0100\n"
 "PO-Revision-Date: 2005-10-19 00:51+0200\n"
 "Last-Translator: Vaclav Juza <vaclavjuza@seznam.cz>\n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.10.2\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -265,7 +266,8 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr "<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
+msgstr ""
+"<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
 
 #: GUI/actionpropertybase.cpp:412
 msgid "Tooltip:"
@@ -630,7 +632,7 @@ msgstr "Adresář %1 neexistuje!"
 
 #: BookMan/krbookmarkhandler.cpp:134 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
-#: VFS/krarchandler.cpp:352 VFS/krarchandler.cpp:359 VFS/normal_vfs.cpp:80
+#: VFS/krarchandler.cpp:373 VFS/krarchandler.cpp:380 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
 #: VFS/virt_vfs.cpp:156 krusader.cpp:705
 msgid "Error"
@@ -689,35 +691,35 @@ msgstr "Audio Soubory"
 msgid "Custom"
 msgstr "Vlastní"
 
-#: VFS/krarchandler.cpp:160
+#: VFS/krarchandler.cpp:162
 msgid "Counting files in archive"
 msgstr "Počítám soubory v archívu"
 
-#: VFS/krarchandler.cpp:191 VFS/krarchandler.cpp:254
+#: VFS/krarchandler.cpp:193 VFS/krarchandler.cpp:275
 msgid "Failed to unpack"
 msgstr "Selhalo rozbalování"
 
-#: VFS/krarchandler.cpp:237
+#: VFS/krarchandler.cpp:251
 msgid "Unpacking File(s)"
 msgstr "Rozbalit soubor(y)"
 
-#: VFS/krarchandler.cpp:293
+#: VFS/krarchandler.cpp:314
 msgid "Testing Archive"
 msgstr "Ověřování archívu"
 
-#: VFS/krarchandler.cpp:336
+#: VFS/krarchandler.cpp:357
 msgid "Packing File(s)"
 msgstr "Sbalení souborů"
 
-#: VFS/krarchandler.cpp:352 VFS/krarchandler.cpp:359
+#: VFS/krarchandler.cpp:373 VFS/krarchandler.cpp:380
 msgid "Failed to pack: "
 msgstr "Sbalování selhalo: "
 
-#: VFS/krarchandler.cpp:408
+#: VFS/krarchandler.cpp:429
 msgid "Password Needed"
 msgstr "Je zapotřebí heslo"
 
-#: VFS/krarchandler.cpp:409
+#: VFS/krarchandler.cpp:430
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Tento archív je zašifrovaný, zadejte heslo:"
 
@@ -1738,7 +1740,7 @@ msgstr "Opravdu chcete skartovat "
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr " ? Jak se jednou skartuje, je nenávratně pryč !!!"
 
-#: KViewer/krviewer.cpp:208 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:357
+#: KViewer/krviewer.cpp:214 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:357
 #: krslots.cpp:443
 msgid "Can't open "
 msgstr "Nelze otevřít "
@@ -2063,7 +2065,8 @@ msgstr "Zde můžete pojmenovat skupinu souborů"
 
 #: krusader.cpp:313
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr "Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
+msgstr ""
+"Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
 
 #: krusader.cpp:369
 msgid ""
@@ -2476,51 +2479,51 @@ msgstr "Jste si jistý, že chcete odejít?"
 msgid "No file selected or selected file can't be displayed."
 msgstr "Žádný soubor není vybrán, nebo vybraný nemůže být zobrazen."
 
-#: KViewer/krviewer.cpp:488 KViewer/panelviewer.cpp:150
+#: KViewer/krviewer.cpp:499 KViewer/panelviewer.cpp:150
 msgid "KrViewer is unable to download: "
 msgstr "KrViewer nemůže stáhnout: "
 
-#: KViewer/krviewer.cpp:91
+#: KViewer/krviewer.cpp:93
 msgid "&Generic viewer"
 msgstr "&Všeobecné zobrazení"
 
-#: KViewer/krviewer.cpp:92
+#: KViewer/krviewer.cpp:94
 msgid "&Text viewer"
 msgstr "&Textové zobrazení"
 
-#: KViewer/krviewer.cpp:93
+#: KViewer/krviewer.cpp:95
 msgid "&Hex viewer"
 msgstr "&Hex (šestnáctkové) zobrazení"
 
-#: KViewer/krviewer.cpp:95
+#: KViewer/krviewer.cpp:97
 msgid "Text &editor"
 msgstr "Textový &editor"
 
-#: KViewer/krviewer.cpp:97
+#: KViewer/krviewer.cpp:99
 msgid "&Next tab"
 msgstr "&Další záložka"
 
-#: KViewer/krviewer.cpp:98
+#: KViewer/krviewer.cpp:100
 msgid "&Previous tab"
 msgstr "&Předchozí záložka"
 
-#: KViewer/krviewer.cpp:100
+#: KViewer/krviewer.cpp:102
 msgid "&Detach tab"
 msgstr "&Osamostatnit záložku"
 
-#: KViewer/krviewer.cpp:104
+#: KViewer/krviewer.cpp:106
 msgid "&Close current tab"
 msgstr "&Zavřít současnou záložku"
 
-#: KViewer/krviewer.cpp:105
+#: KViewer/krviewer.cpp:107
 msgid "&Quit"
 msgstr "U&končit"
 
-#: KViewer/krviewer.cpp:138
+#: KViewer/krviewer.cpp:140
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: KViewer/krviewer.cpp:418
+#: KViewer/krviewer.cpp:429
 msgid "Sorry, can't find internal editor"
 msgstr "Promiňte, nelze najít interní editor"
 
@@ -2744,7 +2747,8 @@ msgstr ""
 "Volejte vývojáře (v angličtině samozřejmě :-)."
 
 #: MountMan/kmountmangui.cpp:325
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správce připojení dospěl k vnitřní chybě. Upozorněte prosím vývojáře. "
 "(anglicky)Děkujeme."
@@ -3428,11 +3432,13 @@ msgstr "Filtr souborů"
 
 #: Synchronizer/synchronizergui.cpp:1077
 msgid "The left base directory used during the synchronisation process."
-msgstr "Během synchronizačního procesu se použil základní adresář levého panelu."
+msgstr ""
+"Během synchronizačního procesu se použil základní adresář levého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1108
 msgid "The right base directory used during the synchronisation process."
-msgstr "Během synchronizačního procesu se použil základní adresář pravého panelu."
+msgstr ""
+"Během synchronizačního procesu se použil základní adresář pravého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1114
 msgid "Recurse subdirectories"
@@ -3780,7 +3786,8 @@ msgstr "&Otevřít"
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!"
-msgstr "<qt>Adresář <i>'%1'</i> bude <b>i s obsahem</b> a <b>trvale</b> odstraněn!"
+msgstr ""
+"<qt>Adresář <i>'%1'</i> bude <b>i s obsahem</b> a <b>trvale</b> odstraněn!"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!"
@@ -4105,7 +4112,8 @@ msgstr "Používat magická čísla MIME typů"
 
 #: Konfigurator/kggeneral.cpp:66
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr "Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
+msgstr ""
+"Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
 
 #: Konfigurator/kggeneral.cpp:73
 msgid "Editor:"
@@ -4171,7 +4179,9 @@ msgstr "Při změně panelu se provede změna adresáře v emulátoru terminálu
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
-msgstr "Pokud je zatrženo, pokud se změní panel (např. stisknutím TAB), Krusader změní současný adresář v emulátoru terminálu."
+msgstr ""
+"Pokud je zatrženo, pokud se změní panel (např. stisknutím TAB), Krusader "
+"změní současný adresář v emulátoru terminálu."
 
 #: Konfigurator/kggeneral.cpp:125
 msgid "Temp Directory:"
@@ -4186,7 +4196,8 @@ msgid "Searching for tools..."
 msgstr "Hledání nástrojů ..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové nástroje do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -4428,7 +4439,8 @@ msgid "Obey KDE's global selection policy"
 msgstr "Přizpůsobit se nastavení KDE"
 
 #: Konfigurator/kglookfeel.cpp:89
-msgid "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
+msgid ""
+"Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
 msgstr ""
 "Použije globální nastavení KDE:<p><i>Ovládací Centrum KDE (Kcontrol) -> "
 "Periférie -> Myš</i>"
@@ -4620,7 +4632,8 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Přepínací tlačítko pro synchronizované prohlížení"
 
 #: Konfigurator/kglookfeel.cpp:213
-msgid "Each directory change in the panel is also performed in the other panel."
+msgid ""
+"Each directory change in the panel is also performed in the other panel."
 msgstr "Každá změna v jednom panelu se provede rovněž v protilehlém panelu."
 
 #: Konfigurator/kglookfeel.cpp:277 Konfigurator/kglookfeel.cpp:294
@@ -4661,7 +4674,8 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:58
 msgid "MountMan won't (un)mount the following mount-points:"
-msgstr "Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
+msgstr ""
+"Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
 
 #: Konfigurator/kgadvanced.cpp:72
 msgid "Confirmations"
@@ -5240,7 +5254,8 @@ msgid "Test archive before unpacking"
 msgstr "Zkontrolovat archív před rozbalením"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid ""
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Některé poškozené archívy mohou způsobit spadnutí programu. Proto se "
 "doporučuje zapnout testování archívů."
@@ -5250,7 +5265,8 @@ msgid "Searching for packers..."
 msgstr "Hledání archivátorů..."
 
 #: Konfigurator/kgarchives.cpp:112
-msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové archivátory do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -5543,7 +5559,8 @@ msgid "Not a valid CRC file!"
 msgstr "Neplatný CRC soubor!"
 
 #: Splitter/combiner.cpp:152
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Kontrola platnosti je nemožná bez platného CRC (kontrolní součet) souboru. "
 "Pokračovat ve slučování?"
@@ -5583,4 +5600,3 @@ msgstr "Chyba při čtení souboru %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
-
