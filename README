@@ -1,12 +1,19 @@
-Krusader 1.70.0-beta1 (Hellfire)
+Krusader 1.70.0-beta2 (Afterburner)
 ===============================
-This is the first beta in the 1.70.x series. 
+Welcome is the 2nd beta in the 1.70.x series. 
 Download it, play with it, push it to the limit, break it if you can,
 and then tell us what you found! 
 
 IMPORTANT: Please remove your ~/.kde/share/apps/krusader/krusaderui.rc file after installation!!!
 (Else you won't see new menu entries. But please note: This will also reset all your changes on
 toolbars and shortcuts!)
+
+Changes since beta1 include (but not limited to):
+* Improvements in the checksum module
+* More control over the terminal emulator (requested feature)
+* Our modified KIO-TAR is now built only when passing --with-kiotar to configure
+* Bugfixes to bookmarks, viewer and much more
+* A fix for a nasty bug that was plagueing people with gcc 4.x  
 
 Krusader v1.70.0 contains over 40 changes, bug fixes and updates in
 response to reports and requests from our users.
