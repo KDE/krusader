@@ -6,17 +6,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0-beta2\n"
+"Project-Id-Version: krusader-1.70.0\n"
 "POT-Creation-Date: 2005-11-03 22:44+0100\n"
-"PO-Revision-Date: 2005-10-12 19:14+0100\n"
+"PO-Revision-Date: 2005-11-05 18:46+0000\n"
 "Last-Translator: Dovydas Sankauskas <laisve@gmail.com>\n"
-"Language-Team: Lithuanian <komp_lt@konf.lt>\n"
+"Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -2506,19 +2505,16 @@ msgid "Text &editor"
 msgstr "&Keisti tekstą"
 
 #: KViewer/krviewer.cpp:99
-#, fuzzy
 msgid "&Next tab"
-msgstr "Kita kortelė"
+msgstr "&Kita kortelė"
 
 #: KViewer/krviewer.cpp:100
-#, fuzzy
 msgid "&Previous tab"
-msgstr "Ankstesnė kortelė"
+msgstr "&Ankstesnė kortelė"
 
 #: KViewer/krviewer.cpp:102
-#, fuzzy
 msgid "&Detach tab"
-msgstr "Kita kortelė"
+msgstr "A&tskirti kortelę"
 
 #: KViewer/krviewer.cpp:106
 msgid "&Close current tab"
@@ -2756,8 +2752,7 @@ msgstr ""
 "Prašome pranešti kūrėjams apie klaidą."
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Vidinė Prijungiamų įrenginių tarnybos klaida.\n"
 "Prašome pranešti kūrėjams apie klaidą el. paštu."
@@ -3265,9 +3260,8 @@ msgid "<qt>There was an error while running <b>%1</b>."
 msgstr "<qt>Vykdant <b>%1</b> įvyko klaida."
 
 #: Dialogs/checksumdlg.cpp:289 Dialogs/checksumdlg.cpp:400
-#, fuzzy
 msgid "Error reading stdout or stderr"
-msgstr "Nepavyko perskaityti žymelių bylos:"
+msgstr "Nepavyko perskaityti arba standartinės išvesties arba standartinės klaidų išvesties"
 
 #: Dialogs/checksumdlg.cpp:309
 msgid ""
@@ -3302,9 +3296,8 @@ msgstr ""
 "Krusader derinimo skyriuje <b>Keliai</b>."
 
 #: Dialogs/checksumdlg.cpp:378
-#, fuzzy
 msgid "Verifying checksums ..."
-msgstr "Tikrinti kontrolinę sumą"
+msgstr "Tikrinamos kontrolinės sumos..."
 
 #: Dialogs/checksumdlg.cpp:435
 msgid "Errors were detected while verifying the checksums"
@@ -4141,8 +4134,7 @@ msgstr "Redaktorius:"
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
-msgstr ""
-"Patariame naudoti „internal editor“ – greitą vidinį Krusader redaktorių"
+msgstr "Patariame naudoti „internal editor“ – greitą vidinį Krusader redaktorių"
 
 #: Konfigurator/kggeneral.cpp:87
 msgid "Default viewer mode:"
@@ -4193,13 +4185,13 @@ msgstr "Terminalas:"
 
 #: Konfigurator/kggeneral.cpp:116
 msgid "Terminal Emulator sends Chdir on panel change"
-msgstr ""
+msgstr "Terminalas keičia aplanką paskui aktyvų langą"
 
 #: Konfigurator/kggeneral.cpp:117
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
-msgstr ""
+msgstr "Jei ši parinktis įjungta, keičiant aktyvų langą (tarkime su klavišu TAB), terminale darbinis aplakas bus pakeistas į tą, kuris yra aktyviame lange."
 
 #: Konfigurator/kggeneral.cpp:125
 msgid "Temp Directory:"
@@ -4214,16 +4206,14 @@ msgid "Searching for tools..."
 msgstr "Ieškoma įrankių..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Naujus įrankius įdiekite į savo programų aplanką <code>$PATH</code> (pvz. /"
 "usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:119
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"nepavyko rasti unarj, bet surasta arj, todėl arj bus naudojama išpakavimui"
+msgstr "nepavyko rasti unarj, bet surasta arj, todėl arj bus naudojama išpakavimui"
 
 #: Konfigurator/krresulttable.cpp:125
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -4421,8 +4411,7 @@ msgstr "Naujoviška greitoji paieška"
 
 #: Konfigurator/kglookfeel.cpp:72
 msgid "Opens a quick search dialog box."
-msgstr ""
-"Įjungus šią parinktį, vykdant greitą paiešką bus atvertas paieškos laukelis."
+msgstr "Įjungus šią parinktį, vykdant greitą paiešką bus atvertas paieškos laukelis."
 
 #: Konfigurator/kglookfeel.cpp:73
 msgid "Case sensitive quicksearch"
@@ -4461,8 +4450,7 @@ msgid "Obey KDE's global selection policy"
 msgstr "Elgtis pagal KDE bendrus nustatymus"
 
 #: Konfigurator/kglookfeel.cpp:89
-msgid ""
-"Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
+msgid "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
 msgstr ""
 "Naudoti KDE valdymo centre įrašytus nustatymus: <p> <i>KDE Valdymo centras-"
 ">Periferija->Pelė</i>"
@@ -4655,10 +4643,8 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Sinchroninio naršymo mygtukas"
 
 #: Konfigurator/kglookfeel.cpp:213
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
-msgstr ""
-"Kiekvienas aplanko pakeitimas šiame lange bus pateiktas ir kitame lange."
+msgid "Each directory change in the panel is also performed in the other panel."
+msgstr "Kiekvienas aplanko pakeitimas šiame lange bus pateiktas ir kitame lange."
 
 #: Konfigurator/kglookfeel.cpp:277 Konfigurator/kglookfeel.cpp:294
 msgid "Select a shortcuts file"
@@ -5277,8 +5263,7 @@ msgid "Test archive before unpacking"
 msgstr "Patikrinti bylą prieš išpakuojant"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Kai kurios klaidingai supakuotos bylos gali sukelti programos darbo "
 "sutrikimą, todėl rekomenduojama patikrinti bylą."
@@ -5288,8 +5273,7 @@ msgid "Searching for packers..."
 msgstr "Ieškoma pakavimo įrankių..."
 
 #: Konfigurator/kgarchives.cpp:112
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Naujus pakavimo  įrankius įdiekite į savo programų aplanką <code>$PATH</"
 "code> (pvz. /usr/bin)"
@@ -5585,8 +5569,7 @@ msgid "Not a valid CRC file!"
 msgstr "Tai ne CRC byla!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Nepavyks patikrinti sujungtos bylos kokybės, nes trūksta CRC bylos. Ar "
 "vistiek sujungti?"
@@ -5626,3 +5609,4 @@ msgstr "Klaida skaitant bylą %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Klaida įrašant bylą %1!"
+
