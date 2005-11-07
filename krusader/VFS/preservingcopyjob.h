@@ -34,6 +34,7 @@
 #include <time.h>
 #include <kio/jobclasses.h>
 #include <qmap.h>
+#include <qvaluelist.h>
 
 typedef enum {
   PM_NONE          = 0,
@@ -55,11 +56,14 @@ public:
 public slots:
   void slotAboutToCreate (KIO::Job *, const QValueList< KIO::CopyInfo > &);
   void slotCopyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool);
+  void slotFinished();
   virtual void slotResult( Job *job );
   
 private:
   QMap<KURL, time_t>     fileAttributes;
   QMap<KIO::Job *, KURL> pendingJobs;
+  QValueList<KURL>       directoriesToStamp;
+  QValueList<KURL>       originalDirectories;
 };
 
 #endif /* __PRESERVING_COPY_JOB_H__ */

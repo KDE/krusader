@@ -46,6 +46,8 @@ PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, C
              this, SLOT( slotAboutToCreate (KIO::Job *, const QValueList< KIO::CopyInfo > &) ) );
     connect( this, SIGNAL( copyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool) ),
              this, SLOT( slotCopyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool) ) );
+    connect( this, SIGNAL( result( KIO::Job * ) ),
+             this, SLOT( slotFinished() ) );
   }
 }
 
@@ -79,9 +81,20 @@ void PreservingCopyJob::slotResult( Job *job ) {
   CopyJob::slotResult( job );
 }
 
-void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KURL &to, bool, bool)
+void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KURL &to, bool postpone, bool)
 {
-  if( fileAttributes.count( from ) ) {
+  if( postpone ) { // the directories are stamped at the last step, so if it's a directory, we postpone
+    unsigned i=0;
+    QString path = to.path( -1 );
+
+    for( ; i != directoriesToStamp.count(); i++ ) // sort the URL-s to avoid parent time stamp modification
+      if( path >= directoriesToStamp[ i ].path( -1 ) )
+        break;
+
+    directoriesToStamp.insert( directoriesToStamp.at( i ), to );
+    originalDirectories.insert( originalDirectories.at( i ), from );
+  }
+  else if( fileAttributes.count( from ) ) {
     time_t mtime = fileAttributes[ from ];
     fileAttributes.remove( from );
    
@@ -94,6 +107,15 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KUR
     timestamp.modtime = mtime;
 
     utime( (const char *)( to.path( -1 ).local8Bit() ), &timestamp );
+  }
+}
+
+void PreservingCopyJob::slotFinished() {
+  for( int i=0; i != directoriesToStamp.count(); i++ ) {
+    KURL from = originalDirectories[ i ];
+    KURL to = directoriesToStamp[ i ];
+
+    slotCopyingDone( 0, from, to, false, false );
   }
 }
 
