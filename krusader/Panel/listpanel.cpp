@@ -216,6 +216,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	if (clearButton) {
 		clearOrigin->setFixedSize( 20, origin->button() ->height() );
 		connect(clearOrigin, SIGNAL(clicked()), origin->lineEdit(), SLOT(clear()));
+		connect(clearOrigin, SIGNAL(clicked()), origin->lineEdit(), SLOT(setFocus()));
 	}
 	//
    
