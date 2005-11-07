@@ -105,8 +105,8 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
   Archiver* lha   = new Archiver("lha",   "http://www.gnu.org",      PS("lha"),   true,  true);
   Archiver* zip   = new Archiver("zip",   "http://www.info-zip.org", PS("zip"),   true,  false);
   Archiver* unzip = new Archiver("unzip", "http://www.info-zip.org", PS("unzip"), false, true);
-  Archiver* arj   = new Archiver("arj",   "http://www.arjsoft.com",  PS("arj"),   true,  true);
-  Archiver* unarj = new Archiver("unarj", "http://www.arjsoft.com",  PS("unarj"), false, true);
+  Archiver* arj   = new Archiver("arj",   "http://www.arjsoftware.com",  PS("arj"),   true,  true);
+  Archiver* unarj = new Archiver("unarj", "http://www.arjsoftware.com",  PS("unarj"), false, true);
   Archiver* unace = new Archiver("unace", "http://www.winace.com",   PS("unace"), false, true);
   Archiver* rar   = new Archiver("rar",   "http://www.rarsoft.com",  PS("rar"),   true,  true);
   Archiver* unrar = new Archiver("unrar", "http://www.rarsoft.com",  PS("unrar"), false, true);
