@@ -158,6 +158,8 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
   }
   if ( konsole_part ) {      // if we succeeded in creating the konsole
     terminal_dock->show();
+    if( konsole_part->widget() )
+      konsole_part->widget()->setFocus();
     krToggleTerminal->setChecked( true );
   } else {
     terminal_dock->hide();
