@@ -142,6 +142,7 @@ void KrusaderView::slotSetActivePanel( ListPanel *p ) { activePanel = p; }
 
 void KrusaderView::slotTerminalEmulator( bool show ) {
   if ( !show ) {  // hiding the terminal
+    activePanel->slotFocusOnMe();
     terminal_dock->hide();
     return ;
   }
@@ -162,6 +163,7 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
       konsole_part->widget()->setFocus();
     krToggleTerminal->setChecked( true );
   } else {
+    activePanel->slotFocusOnMe();
     terminal_dock->hide();
     krToggleTerminal->setChecked( false );
   }
