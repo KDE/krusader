@@ -45,6 +45,7 @@
 #include <qwidget.h>
 #include <qpushbutton.h>
 #include <qhbox.h>
+#include <qvaluelist.h>
 
 class PanelManager;
 class ListPanel;
@@ -64,7 +65,8 @@ public:
   void cmdLineUnFocus();// return focus from command line to active panel
   inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
   inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
-  	
+  QValueList<int> getTerminalEmulatorSplitterSizes();
+  
 public slots:
   void slotCurrentChanged(QString p);
 	void slotSetActivePanel(ListPanel *p);
@@ -91,6 +93,7 @@ public:
   QHBox       *terminal_dock;             // docking widget for terminal emulator
   KParts::ReadOnlyPart *konsole_part;     // the actual part pointer
   QSplitter		*horiz_splitter, *vert_splitter;
+  QValueList<int> verticalSplitterSizes;
 
 private:
   QGridLayout *mainLayout, *terminal_layout;

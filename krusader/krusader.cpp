@@ -736,6 +736,9 @@ void Krusader::savePosition() {
    config->writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
    QValueList<int> lst = mainView->horiz_splitter->sizes();
    config->writeEntry( "Splitter Sizes", lst );
+   if( !MAIN_VIEW->getTerminalEmulatorSplitterSizes().isEmpty() )
+     config->writeEntry( "Terminal Emulator Splitter Sizes", MAIN_VIEW->getTerminalEmulatorSplitterSizes() );
+   
    // save view settings ---> fix when we have tabbed-browsing
    mainView->left->view->saveSettings();
    mainView->right->view->saveSettings();

@@ -96,6 +96,8 @@ void KrusaderView::start( QStringList leftTabs, int leftActiveTab, QStringList r
     lst[ 0 ] = lst[ 1 ] = avg;
   }
   horiz_splitter->setSizes( lst );  
+
+  verticalSplitterSizes = krConfig->readIntListEntry( "Terminal Emulator Splitter Sizes" );
     
   show();
 
@@ -143,7 +145,13 @@ void KrusaderView::slotSetActivePanel( ListPanel *p ) { activePanel = p; }
 void KrusaderView::slotTerminalEmulator( bool show ) {
   if ( !show ) {  // hiding the terminal
     activePanel->slotFocusOnMe();
+    if( terminal_dock->isVisible() )
+      verticalSplitterSizes = vert_splitter->sizes();
     terminal_dock->hide();
+    QValueList<int> newSizes;
+    newSizes.push_back( vert_splitter->height() );
+    newSizes.push_back( 0 );
+    vert_splitter->setSizes( newSizes );
     return ;
   }
   // else implied
@@ -158,6 +166,9 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
       konsole_part = 0L;
   }
   if ( konsole_part ) {      // if we succeeded in creating the konsole
+    if( !verticalSplitterSizes.empty() )
+      vert_splitter->setSizes( verticalSplitterSizes );
+      
     terminal_dock->show();
     if( konsole_part->widget() )
       konsole_part->widget()->setFocus();
@@ -167,6 +178,13 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     terminal_dock->hide();
     krToggleTerminal->setChecked( false );
   }
+}
+
+QValueList<int> KrusaderView::getTerminalEmulatorSplitterSizes() {
+  if( terminal_dock->isVisible() )
+    return vert_splitter->sizes();
+  else
+    return verticalSplitterSizes;
 }
 
 void KrusaderView::killTerminalEmulator() {
