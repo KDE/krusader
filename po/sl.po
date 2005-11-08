@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0-beta2\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-11-03 22:44+0100\n"
-"PO-Revision-Date: 2005-11-05 09:16+0100\n"
+"PO-Revision-Date: 2005-11-07 18:24+0100\n"
 "Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
@@ -1517,7 +1517,7 @@ msgstr "Drevesno Okno: pogled drevesne strukture sistema"
 
 #: Panel/panelpopup.cpp:59
 msgid "Preview Panel: display a preview of the current file"
-msgstr "Pregledovalno Okno: prikaži vsebino datoteke"
+msgstr "Predogledovalno Okno: predogled trenutne datoteke"
 
 #: Panel/panelpopup.cpp:66
 msgid "Quick Panel: quick way to perform actions"
@@ -1525,56 +1525,56 @@ msgstr "Izbiranje: hiter način izbiranja datotek"
 
 #: Panel/panelpopup.cpp:73
 msgid "View Panel: view the current file"
-msgstr "Pregledovalno Okno: prikaži vsebino datoteke"
+msgstr "Pregledovalno Okno: prikaži trenutno datoteko"
 
 #: Panel/panelpopup.cpp:80
 msgid "Disk Usage Panel: view the usage of a directory"
-msgstr "Pregled zasedenosti mape: preglej zasedenost map"
+msgstr "Zasedenosti mape: preglej zasedenost map"
 
 #: Panel/panelpopup.cpp:132
 #: Panel/panelpopup.cpp:268
 msgid "Disk Usage: "
-msgstr "Poraba diska:"
+msgstr "Zasedenost diska:"
 
 #: Panel/panelpopup.cpp:141
 msgid "Quick Select"
-msgstr "Hitro izbiranje"
+msgstr "Hitra izbira "
 
 #: Panel/panelpopup.cpp:158
 msgid "apply the selection"
-msgstr "uporabi izbor"
+msgstr "Uporabi"
 
 #: Panel/panelpopup.cpp:164
 msgid "store the current selection"
-msgstr "shrani trenutni izbor"
+msgstr "Shrani izbor"
 
 #: Panel/panelpopup.cpp:170
 msgid "select group dialog"
-msgstr "Izberi dialog skupine"
+msgstr "Izberi datoteke"
 
 #: Panel/panelpopup.cpp:227
 msgid "Tree:"
-msgstr "Drevo:"
+msgstr "Drevo: "
 
 #: Panel/panelpopup.cpp:230
 msgid "Preview:"
-msgstr "Predogled"
+msgstr "Predogled: "
 
 #: Panel/panelpopup.cpp:234
 msgid "Quick Select:"
-msgstr "Hitri izbor:"
+msgstr "Hitri izbor: "
 
 #: Panel/panelpopup.cpp:237
 msgid "View:"
-msgstr "Poglej:"
+msgstr "Poglej: "
 
 #: Panel/panelpopup.cpp:241
 msgid "Disk Usage:"
-msgstr "Poraba diska:"
+msgstr "Zasedenost: "
 
 #: Panel/panelpopup.cpp:257
 msgid "Preview: "
-msgstr "Predogled"
+msgstr "Predogled: "
 
 #: Panel/panelpopup.cpp:261
 msgid "View: "
@@ -1887,10 +1887,10 @@ msgid ""
 "_n: Do you really want to move this item to the trash?\n"
 "Do you really want to move these %n items to the trash?"
 msgstr ""
-"Zares želite premakniti %n datotek v koš?\n"
-"Zares želite premakniti datoteko v koš?\n"
-"Zares želite premakniti %n datoteki v koš?\n"
-"Zares želite premakniti %n datoteke v koš?"
+"Zares želite premakniti %n predmetov v koš?\n"
+"Zares želite premakniti predmet v koš?\n"
+"Zares želite premakniti %n predmeta v koš?\n"
+"Zares želite premakniti %n predmete v koš?"
 
 #: DiskUsage/diskusage.cpp:572
 #: Panel/panelfunc.cpp:574
@@ -1903,10 +1903,10 @@ msgid ""
 "_n: Do you really want to delete this item?\n"
 "Do you really want to delete these %n items?"
 msgstr ""
-"Zares želite izbrisati %n datotek?\n"
-"Zares želite izbrisati datoteko?\n"
-"Zares želite izbrisati %n datoteki?\n"
-"Zares želite izbrisati %n datoteke?"
+"Zares želite izbrisati %n predmetov?\n"
+"Zares želite izbrisati predmet?\n"
+"Zares želite izbrisati %n predmeta?\n"
+"Zares želite izbrisati %n predmete?"
 
 #: DiskUsage/diskusage.cpp:575
 #: DiskUsage/radialMap/widgetEvents.cpp:172
@@ -1925,15 +1925,15 @@ msgstr "Opozorilo"
 
 #: Panel/panelfunc.cpp:601
 msgid "Directory "
-msgstr "Mapa"
+msgstr "Mapa "
 
 #: Panel/panelfunc.cpp:601
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
 msgstr ""
-" ni prazen!\n"
-"Preskoči tega ali izbriši vse?"
+" ni prazna!\n"
+"Preskočim to mapo ali izbrišem celotno vsebino?"
 
 #: Panel/panelfunc.cpp:602
 msgid "&Skip"
@@ -2287,7 +2287,7 @@ msgstr "&Usklajene spremembe map"
 
 #: krusader.cpp:566
 msgid "D&isk Usage"
-msgstr "Poraba &diska"
+msgstr "Zasedenost &diska"
 
 #: krusader.cpp:568
 msgid "&Invert Selection"
@@ -2462,7 +2462,7 @@ msgstr "Skoči nazaj"
 
 #: krusader.cpp:655
 msgid "Set jump back point here"
-msgstr "Določi mesto za skok nazaj"
+msgstr "Določi točko skoka"
 
 #: krusader.cpp:659
 msgid "Select files using a filter"
@@ -2678,7 +2678,7 @@ msgstr "Uredi zaznamke"
 
 #: BookMan/krbookmark.cpp:12
 msgid "Media"
-msgstr "Mediji"
+msgstr "Priklopi"
 
 #: BookMan/krbookmark.cpp:14
 msgid "Devices"
@@ -2908,41 +2908,41 @@ msgstr "Če je odkljukano bo uporabljen način prikaza, ki temelji na KDE stilu.
 
 #: Dialogs/krdialogs.cpp:214
 msgid "If checked, left clicking an item will select it."
-msgstr "Če je odkljukano, bo levi klik označil datoteko."
+msgstr "Če je odkljukano, bo levi klik označil predmet."
 
 #: Dialogs/krdialogs.cpp:215
 msgid "If checked, left clicking an item will select it, but will not unselect other, already selected items."
-msgstr "Če je odkljukano, bo levi klik miške označil izbrano, vendar ne bo odstranil oznak ostalih že označenih datotek."
+msgstr "Če je odkljukano, bo levi klik miške označil izbrano, vendar ne bo odstranil oznak ostalih že označenih predmetov."
 
 #: Dialogs/krdialogs.cpp:217
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
 msgstr ""
-"Če je odkljukano, Shift+Ctrl levi klik označi datoteko. \n"
+"Če je odkljukano, Shift+Ctrl levi klik označi predmet. \n"
 "Opomba: Nastavitev je nesmiselna, če je izbrana tudi nastavitev 'Levi klik označi'."
 
 #: Dialogs/krdialogs.cpp:219
 msgid "If checked, right clicking an item will select it."
-msgstr "Če je odkljukano, bo desni klik označil datoteko."
+msgstr "Če je odkljukano, bo desni klik označil predmet."
 
 #: Dialogs/krdialogs.cpp:220
 msgid "If checked, right clicking an item will select it, but will not unselect other, already selected items."
-msgstr "Če je odkljukano, bo desni klik miške označil izbrano, vendar ne bo odstranil oznake ostalih že označenih datotek."
+msgstr "Če je odkljukano, bo desni klik miške označil izbrano, vendar ne bo odstranil oznake ostalih že označenih predmetov."
 
 #: Dialogs/krdialogs.cpp:222
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
 msgstr ""
-"Če je odkljukano, Shift+Ctrl desni klik označi datoteko. \n"
+"Če je odkljukano, Shift+Ctrl desni klik označi predmet. \n"
 "Opomba: Nastavitev je nesmiselna, če je izbrana tudi nastavitev 'Desni klik označi'."
 
 #: Dialogs/krdialogs.cpp:224
 msgid ""
 "If checked, pressing the spacebar will select the current item and move down. \n"
 "Otherwise, current item is selected, but remains the current item."
-msgstr "Če je odkljukano, bo preslednica označila izbrano datoteko in se oznaka pomakne polje nižje. Če ni, se bo izbrani element označil in bo ostal tudi izbran."
+msgstr "Če je odkljukano, bo preslednica označila izbrani predmet in se izbor pomakne polje nižje. Če ni, se bo izbrani predmet označil in bo ostal tudi izbran."
 
 #: Dialogs/krdialogs.cpp:226
 msgid ""
@@ -2954,7 +2954,7 @@ msgstr "Če je odkljukano, bo s preslednico na izbrani mapi (razen označevanja)
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to the next item. \n"
 "Otherwise, current item is not changed."
-msgstr "Če je odkljukano, bo s tipko INSERT označena izbrana datoteka, izbor pa se pomakne polje nižje. Če ni, se izbrani element ne bo označil."
+msgstr "Če je odkljukano, bo s tipko INSERT označen izbran predmet, izbor pa se pomakne polje nižje. Če ni, se izbrani predmet ne bo spremenil."
 
 #: Dialogs/krdialogs.cpp:230
 msgid ""
@@ -3390,7 +3390,7 @@ msgstr "Priklopnik omrežja"
 
 #: RemoteMan/remoteman.cpp:360
 msgid "Are you sure you want to delete this item ???"
-msgstr "Naj zares zbrišem ta predmet???"
+msgstr "Naj zares zbrišem ta predmet ???"
 
 #: RemoteMan/remotemanbase.cpp:41
 msgid "RemoteMan: Connection Manager"
@@ -3907,7 +3907,7 @@ msgstr "Osveži"
 
 #: DiskUsage/diskusagegui.cpp:68
 msgid "Parent directory"
-msgstr "Mapa višje:"
+msgstr "Mapa višje"
 
 #: DiskUsage/diskusagegui.cpp:76
 msgid "Line view"
@@ -3979,7 +3979,7 @@ msgstr "Trenutna mapa: %1 - skupaj: %2 b - lastna velikost: %3"
 
 #: DiskUsage/diskusage.cpp:710
 msgid "Disk Usage"
-msgstr "Poraba diska"
+msgstr "Zasedenost diska"
 
 #: DiskUsage/diskusage.cpp:723
 msgid "New search"
