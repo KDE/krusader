@@ -474,7 +474,7 @@ void Krusader::setupActions() {
    actToggleCmdline = new KToggleAction( i18n( "Show &Command Line" ), 0, SLOTS,
                                          SLOT( toggleCmdline() ), actionCollection(), "toggle command line" );
    actToggleCmdline->setChecked( true );
-   actToggleTerminal = new KToggleAction( i18n( "Show Terminal &Emulator" ), ALT + Key_T, SLOTS,
+   actToggleTerminal = new KToggleAction( i18n( "Show Terminal &Emulator" ), ALT + CTRL + Key_T, SLOTS,
                                           SLOT( toggleTerminal() ), actionCollection(), "toggle terminal emulator" );
    actToggleTerminal->setChecked( false );
    actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), CTRL + Key_Period, SLOTS,
