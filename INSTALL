@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.70.0
-- Documentation date:  2005-10-15
-- Parsing date: Sun Oct 16 18:52:30 UTC 2005
+- Documentation date:  2005-11-09
+- Parsing date: Thu Nov 10 19:29:54 UTC 2005
 --------------------------------------------
  
 This file contains the TXT install instructions for Krusader.
@@ -104,20 +104,22 @@ A.2.1. Download Krusader
 
      * SuSE® >= 9.3, Note: please use Krusader-1.60.0 and not
        Krusader-1.51 (might be instable on SuSE®9.3-KDE3.4)
-     * Fedora(TM) via Fedora(TM) Extras, thanks to Marcin Garski.
-       Red Hat® RPM packages can usually found on the Krusader
-       downloadpage, dag.wieers.com or at Dries Verachtert RPM
-       Repository .
+     * Fedora(TM) via Fedora(TM) Extras # yum install krusader
+       will do the job, thanks to Marcin Garski. Red Hat® RPM
+       packages can usually found on the Krusader downloadpage,
+       dag.wieers.com or at Dries Verachtert RPM Repository .
      * Debian®, on our Krusader downloadpage you might find more
        recent "unofficial bleeding-edge" DEB packages. Note:
        usually Debian® packages work also on distributions who
        are "based on Debian®", some of them provide their own
        packages. e.g. Mepis®, Ubuntu®/Kubuntu®, Linspire®,
        Xandros®, ...
-     * Mandriva®, Gentoo®, Knoppix® 4.0 DVD, Yoper(TM)
+     * Mandriva® via the contrib repository # urpmi krusader will
+       do the job, Gentoo®, Knoppix® 4.x DVD, Kanotix®, Yoper(TM)
      * Arch Linux®, Frugalware Linux®, PCLinuxOS®, altlinux®
      * FreeBSD®, the port is maintained by Heiner Eichmann .
-     * NetBSD®, Ark Linux®, OpenLX(TM)
+     * NetBSD®, Ark Linux®, OpenLX(TM), Source Mage®, Lunar
+       Linux®
      * Even more distributions can be found with Distrowatch.com
 
    Just use the install tools that the distro uses to install the
@@ -138,10 +140,9 @@ A.2.1. Download Krusader
      * klik://krusader downloads Krusader provided by Debian®
        stable, more information is available .
      * klik://krusader-latest downloads the latest stable
-       Krusader provided by the Krusader Krew, more information
-       is available .
+       Krusader provided by the Krusader Krew.
      * klik://krusader-cvs downloads a cvs snapshot of Krusader
-       provided by Krusader Krew, more information is available .
+       provided by Krusader Krew.
 
    Search engines
 

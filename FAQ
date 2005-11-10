@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.70.0
-- Documentation date:  2005-10-15
-- Parsing date: Sun Oct 16 18:52:30 UTC 2005
+- Documentation date:  2005-11-09
+- Parsing date: Thu Nov 10 19:29:54 UTC 2005
 --------------------------------------------
  
 
@@ -471,18 +471,22 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    7.2.8. I get "FTP protocol not supported by Krusader" error at
           trying to open a remote FTP directory.
 
-   7.2.9. How can I disable the default sounds e.g. when I do a
+   7.2.9. How can i close a remote connection (e.g. a FTP
+          connection) ?
+
+   7.2.10. Why do i have some trouble with the media:// protocol?
+   7.2.11. How can I disable the default sounds e.g. when I do a
           delete action ?
 
-   7.2.10. I get the error message "Protocol not supported by
+   7.2.12. I get the error message "Protocol not supported by
           Krusader: "krarc:/path/to/foo-archive", when I try to
           open foo-Archive
 
-   7.2.11. Where is RemoteMan, the remote connection manager ?
-   7.2.12. Why mimetype magic isn't sometimes working inside
+   7.2.13. Where is RemoteMan, the remote connection manager ?
+   7.2.14. Why mimetype magic isn't sometimes working inside
           archives?
 
-   7.2.13. Why does the handbook not work?
+   7.2.15. Why does the handbook not work?
 
    7.2.1. When I try to mount/unmount my cdrom/floppy, Krusader
    says something about supermount, what's this about?
@@ -599,7 +603,19 @@ $ su -c 'fam -l'
    Center. Modify the proxy settings to not use HTTP proxy and
    FTP will work.
 
-   7.2.9. How can I disable the default sounds e.g. when I do a
+   7.2.9. How can i close a remote connection (e.g. a FTP
+   connection) ?
+
+   It's explained in the remote connections chapter .
+
+   7.2.10. Why do i have some trouble with the media:// protocol?
+
+   At the moment of writing the media:// protocol is instable, we
+   need to wait until the KDE team corrects it, every other
+   protocol works properly with Krusader, only media fails. More
+   information regarding this issue is available in our forum .
+
+   7.2.11. How can I disable the default sounds e.g. when I do a
    delete action ?
 
    Those are the default KDE System sounds, and not related to
@@ -608,7 +624,7 @@ $ su -c 'fam -l'
    Multimedia->System Notifications , Event Source: "KDE System
    Notifications" and uncheck sound items you don't like.
 
-   7.2.10. I get the error message "Protocol not supported by
+   7.2.12. I get the error message "Protocol not supported by
    Krusader: "krarc:/path/to/foo-archive", when I try to open
    foo-Archive
 
@@ -621,7 +637,7 @@ $ su -c 'fam -l'
    if you are using a 64 bit microprocessor. For more information
    click here .
 
-   7.2.11. Where is RemoteMan, the remote connection manager ?
+   7.2.13. Where is RemoteMan, the remote connection manager ?
 
    RemoteMan has been replaced by our Bookmark Manager since
    Krusader 1.25-beta1. The Bookmark Manager handles local files
@@ -641,7 +657,7 @@ $ su -c 'fam -l'
     5. install Krusader-1.60, it will use krbookmarks.xml or
        import it if needed.
 
-   7.2.12. Why mimetype magic isn't sometimes working inside
+   7.2.14. Why mimetype magic isn't sometimes working inside
    archives?
 
    When you enter an archive and press F3 to view a file that has
@@ -651,7 +667,7 @@ $ su -c 'fam -l'
    Associations->Application->octet-stream, binary viewer needs
    to be removed.
 
-   7.2.13. Why does the handbook not work?
+   7.2.15. Why does the handbook not work?
 
    This error will happen on Debian® (or Debian® based) distro
    with the krusader_1.51-1_i386.deb package. You will see the
