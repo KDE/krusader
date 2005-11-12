@@ -9,12 +9,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0-beta2\n"
+"Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-11-03 22:44+0100\n"
-"PO-Revision-Date: 2005-10-04 19:35+0200\n"
+"PO-Revision-Date: 2005-11-06 19:03+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
-"Language-Team: Swedish\n"
+"Language-Team: Svenska\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1147,8 +1147,7 @@ msgstr "Vad skall kopieras"
 
 #: UserAction/expander.cpp:416
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Lägg till till aktuellt urklippsinnehåll med detta skiljetecken (valfritt)"
+msgstr "Lägg till till aktuellt urklippsinnehåll med detta skiljetecken (valfritt)"
 
 #: UserAction/expander.cpp:430
 msgid "Copy a file/folder"
@@ -2498,19 +2497,16 @@ msgid "Text &editor"
 msgstr "Text r&edigerare"
 
 #: KViewer/krviewer.cpp:99
-#, fuzzy
 msgid "&Next tab"
-msgstr "Nästa flik"
+msgstr "&Nästa flik"
 
 #: KViewer/krviewer.cpp:100
-#, fuzzy
 msgid "&Previous tab"
-msgstr "Föregående flik"
+msgstr "&Föregående flik"
 
 #: KViewer/krviewer.cpp:102
-#, fuzzy
 msgid "&Detach tab"
-msgstr "Nästa flik"
+msgstr "&Koppla bort flik"
 
 #: KViewer/krviewer.cpp:106
 msgid "&Close current tab"
@@ -2747,8 +2743,7 @@ msgstr ""
 "Kontakta utvecklarna"
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Det har uppståt ett internt fel i MountMan.Var vänlig och rapportera detta "
 "till utvecklarna.Tack."
@@ -3237,9 +3232,8 @@ msgid "<qt>There was an error while running <b>%1</b>."
 msgstr "<qt>Det blev ett fel vid körning av <b>%1</b>."
 
 #: Dialogs/checksumdlg.cpp:289 Dialogs/checksumdlg.cpp:400
-#, fuzzy
 msgid "Error reading stdout or stderr"
-msgstr "Fel vid läsning av bokmärkesfil: "
+msgstr "Fel vid läsning av stdout eller stderr"
 
 #: Dialogs/checksumdlg.cpp:309
 msgid ""
@@ -3274,9 +3268,8 @@ msgstr ""
 "system. Kontrollera <b>Beroende</b>-sidan i Krusader's inställningar."
 
 #: Dialogs/checksumdlg.cpp:378
-#, fuzzy
 msgid "Verifying checksums ..."
-msgstr "Verifiera checksumma"
+msgstr "Verifierar checksumma..."
 
 #: Dialogs/checksumdlg.cpp:435
 msgid "Errors were detected while verifying the checksums"
@@ -3597,8 +3590,7 @@ msgstr "Höger mapp:"
 
 #: Synchronizer/synchronizergui.cpp:1473
 msgid "URL must be the descendant of either the left or the right base URL!"
-msgstr ""
-"URL måste härstamma från antingen den vänstra eller den högra grund-URL:en!"
+msgstr "URL måste härstamma från antingen den vänstra eller den högra grund-URL:en!"
 
 #: Synchronizer/synchronizergui.cpp:1512
 msgid "Synchronize Directories"
@@ -4166,13 +4158,13 @@ msgstr "Terminal:"
 
 #: Konfigurator/kggeneral.cpp:116
 msgid "Terminal Emulator sends Chdir on panel change"
-msgstr ""
+msgstr "Terminalemulator sänder Chdir vid paneländring"
 
 #: Konfigurator/kggeneral.cpp:117
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
-msgstr ""
+msgstr "Om markerad, kommer krusader, närhelst panelen ändras (t. ex. genom att trycka TAB), att ändra aktuell mapp i terminalemulatorn."
 
 #: Konfigurator/kggeneral.cpp:125
 msgid "Temp Directory:"
@@ -4187,15 +4179,12 @@ msgid "Searching for tools..."
 msgstr "Söker efter verktyg..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Se till att ionstallera ny verktyg i din <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Se till att ionstallera ny verktyg i din <code>$PATH</code> (e.g. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:119
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj hittades ej, men arj hittad, vilken kommer att användas till uppackning"
+msgstr "unarj hittades ej, men arj hittad, vilken kommer att användas till uppackning"
 
 #: Konfigurator/krresulttable.cpp:125
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -4431,8 +4420,7 @@ msgid "Obey KDE's global selection policy"
 msgstr "Följ KDE's övergripande urvalssätt"
 
 #: Konfigurator/kglookfeel.cpp:89
-msgid ""
-"Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
+msgid "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
 msgstr ""
 "Använd KDE'sglobala inställning:<p><i>KDE Control Center->Kringutrustning-"
 ">Mus</i>"
@@ -4630,8 +4618,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Växlarknapp för synkroniseringsläsning"
 
 #: Konfigurator/kglookfeel.cpp:213
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Varje mappändring i panelen utförs också i den andra panelen."
 
 #: Konfigurator/kglookfeel.cpp:277 Konfigurator/kglookfeel.cpp:294
@@ -5254,20 +5241,16 @@ msgid "Test archive before unpacking"
 msgstr "Testa arkivfil före uppackning"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Vissa trasiga arkivfiler kan åstadkomma krascher, därför föreslås testning."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Vissa trasiga arkivfiler kan åstadkomma krascher, därför föreslås testning."
 
 #: Konfigurator/kgarchives.cpp:111
 msgid "Searching for packers..."
 msgstr "Sök efter packare..."
 
 #: Konfigurator/kgarchives.cpp:112
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Se till att installera nya packare i din <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Se till att installera nya packare i din <code>$PATH</code> (e.g. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:52
 msgid ""
@@ -5557,10 +5540,8 @@ msgid "Not a valid CRC file!"
 msgstr "Inte en giltig CRC-fil!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
-msgstr ""
-"Giltighetskontroll är omöjlig utan en giltig CRC-fil. Fortsätta att slå ihop?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgstr "Giltighetskontroll är omöjlig utan en giltig CRC-fil. Fortsätta att slå ihop?"
 
 #: Splitter/combiner.cpp:256
 msgid "Can't open the first split file of %1!"
@@ -5597,3 +5578,4 @@ msgstr "Fel vid läsning av fil %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Fel vid skrivning av fil %1!"
+
