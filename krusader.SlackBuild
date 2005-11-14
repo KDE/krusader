@@ -1,11 +1,12 @@
 #!/bin/sh
 
-# krusader.SlackBuild  --  use this script to build a Slackware tgz package
+# krusader.SlackBuild  --  use this script to build a Slackware package
 # this script works on Slackware 10.1 for Krusader-1.60.0
-# date: 2005-04-28
-# this script is written by
+# 
+# this script is written by 
 # Mateusz Dubiel [ mjd {*} radioemiter {.} pl ]
-# http://mjd.radioemiter.pl/
+# http://mjd.radioemiter.pl/ 
+
 
 CWD=`pwd`
 if [ "$TMP" = "" ]; then
@@ -36,8 +37,6 @@ make install DESTDIR=$PKG
 rm -rf $PKG/tmp
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
-#cat $CWD/doinst.sh > $PKG/install/doinst.sh
-# Build the package:
 cd $PKG
 makepkg -l y -c n $TMP/krusader-$VERSION-$ARCH-$BUILD.tgz
 mv $TMP/krusader-$VERSION-$ARCH-$BUILD.tgz $CWD
