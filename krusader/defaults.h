@@ -169,13 +169,15 @@
 #define _DoUnRar       true 
 // Do UnAce ///////////
 #define _DoUnAce       true 
-// Do Arj /////////////          ====> new
+// Do Arj /////////////
 #define _DoArj         true 
-// Do UnArj ///////////          ====> new
+// Do UnArj ///////////
 #define _DoUnarj       true 
-// Do RPM /////////////          ====> new
+// Do RPM /////////////
 #define _DoRPM         true 
-// Do Lha /////////////          ====> new
+// Do DEB /////////////          ====> new
+#define _DoDEB         true
+// Do Lha /////////////
 #define _DoLha         true 
 // Allow Move Into Archive //
 #define _MoveIntoArchive false 

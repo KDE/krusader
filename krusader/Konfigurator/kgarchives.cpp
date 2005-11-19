@@ -65,9 +65,11 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
      {"Archives","Do Unarj", _DoArj,   i18n( "Arj" ),   false,  ""},
      {"Archives","Do RPM",   _DoRPM,   i18n( "Rpm" ),   false,  ""},
      {"Archives","Do UnAce", _DoUnAce, i18n( "Ace" ),   false,  ""},
-     {"Archives","Do Lha",   _DoLha,   i18n( "Lha" ),   false,  ""}};
+     {"Archives","Do Lha",   _DoLha,   i18n( "Lha" ),   false,  ""},
+     {"Archives","Do DEB",   _DoDEB,   i18n( "Deb" ),   false,  ""}
+    };
 
-  cbs = createCheckBoxGroup( 3, 0, packers, 9, generalGrp );
+  cbs = createCheckBoxGroup( 3, 0, packers, 10, generalGrp );
   generalGrid->addWidget( cbs, 1, 0 );
 
   addLabel( generalGrid, 2, 0, i18n( "The archives that are \"greyed-out\" were unavailable on your\nsystem last time Krusader checked. If you wish Krusader to\nsearch again, click the 'Auto Configure' button." ),
@@ -129,6 +131,7 @@ void KgArchives::disableNonExistingPackers()
   cbs->find( "Do UnRar" )->setEnabled(PS("unrar") || PS("rar") );
   cbs->find( "Do UnAce" )->setEnabled(PS("unace"));
   cbs->find( "Do Unarj" )->setEnabled(PS("unarj") || PS("arj") );
+  cbs->find( "Do DEB" )->setEnabled(PS("dpkg") && PS("tar") );
 
   krConfig->setGroup( "Archives" );
   krConfig->writeEntry( "Supported Packers", lst );

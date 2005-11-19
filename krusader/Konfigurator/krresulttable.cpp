@@ -111,6 +111,7 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
   Archiver* rar   = new Archiver("rar",   "http://www.rarsoft.com",  PS("rar"),   true,  true);
   Archiver* unrar = new Archiver("unrar", "http://www.rarsoft.com",  PS("unrar"), false, true);
   Archiver* rpm   = new Archiver("rpm",   "http://www.gnu.org",      PS("rpm"),   false, true);
+  Archiver* dpkg  = new Archiver("dpkg",  "http://www.dpkg.org",     PS("dpkg"),  false, true);
 
   // Special case: arj can unpack, but unarj is prefered
   if(PS("arj") && PS("unarj"))
@@ -145,6 +146,7 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
   addRow(rar, _grid);
   addRow(unrar, _grid);
   addRow(rpm, _grid);
+  addRow(dpkg, _grid);
 
   delete tar;
   delete gzip;
@@ -158,6 +160,7 @@ KrArchiverResultTable::KrArchiverResultTable(QWidget* parent)
   delete rar;
   delete unrar;
   delete rpm;
+  delete dpkg;
 }
 
 KrArchiverResultTable::~KrArchiverResultTable()
