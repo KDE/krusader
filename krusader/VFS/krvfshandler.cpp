@@ -42,7 +42,7 @@ vfs::VFS_TYPE KrVfsHandler::getVfsType(const KURL& url){
 		return vfs::NORMAL;
 	}
   else{
-		if(url.protocol() == "virt_old") return vfs::VIRT;
+		if(url.protocol() == "virt") return vfs::VIRT;
 		else return vfs::FTP;
 	}
 	return vfs::ERROR;
