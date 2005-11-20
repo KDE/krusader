@@ -560,9 +560,8 @@ you'll see a list of archive formats. Some are checked and some are grayed-out. 
 (not grayed-out) are supported by &krusader;. If you check them, then &krusader; will handle them transparently
 and let you open them as folders; otherwise, &krusader; will attempt to invoke an application which opens that
 type of archive. If a certain archive is grayed-out, it means that &krusader; couldn't find the appropriate
-executables in the configured path. Please configure the full path of the packagers in the
-&konfigependencie_lnk; (&eg; to handle ZIP archives, &krusader;
-needs the <command>unzip</command> and <command>zip</command> executables).</para>
+executables in the configured path.
+The next archives are supported: tar, gzip, bzip2, zip, rar, arj, rpm, ace, lha, deb.</para>
 
 <!--HTML_PARSING
 <screenshot>
@@ -583,6 +582,12 @@ new archive should be available and checked.</para>
 
 <note><para>Please install new packagers to your <envar>PATH</envar> (&ie;: <filename>/usr/bin</filename> or
              <filename>/usr/local/bin</filename> &etc;)</para></note>
+
+<para>The full path of the packagers is stored in the &konfigdependencie_lnk; 
+      (&eg; to handle ZIP archives, &krusader; needs the <command>unzip</command> and 
+      <command>zip</command> executables).
+      It's possible that you need to configure manually the mimes to the protocols in the 
+      &konfigprotocol_lnk;.</para>
 
 <para><guilabel>Fine-Tuning</guilabel>
   <itemizedlist>
@@ -761,6 +766,14 @@ making the cooperation almost impossible.
 <entry>configurable full path</entry>
 </row>
 <row>
+<entry><para><command>md5sum</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/md5sum</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>sha1sum</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/usr/bin/sha1sum</replaceable></filename></para></entry>
+</row>
+<row>
 <entry><para><command>md5deep</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/usr/bin/md5deep</replaceable></filename></para></entry>
 </row>
@@ -853,6 +866,8 @@ HTML_PARSING-->
        <listitem><para>application/x-arj</para></listitem>
        <listitem><para>application/x-bzip2</para></listitem>
        <listitem><para>application/x-cpio</para></listitem>
+       <listitem><para>application/x-deb</para></listitem>
+       <listitem><para>application/x-debian-package</para></listitem>
        <listitem><para>application/x-gzip</para></listitem>
        <listitem><para>application/x-jar</para></listitem>
        <listitem><para>application/x-lha</para></listitem>

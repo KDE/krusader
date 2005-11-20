@@ -171,7 +171,8 @@ Previous used Docbook
 <!ENTITY konfigstartpg_lnk '<link linkend="konfigurator">Konfigurator Startup page</link>'>
 <!ENTITY konfiglookandfeel_lnk '<link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>'>
 <!ENTITY konfiggereral_lnk '<link linkend="konfig-general">Konfigurator General page</link>'>
-<!ENTITY konfigependencie_lnk '<link linkend="konfig-dependencies">Konfigurator Dependencie page</link>'>
+<!ENTITY konfigdependencie_lnk '<link linkend="konfig-dependencies">Konfigurator Dependencie page</link>'>
+<!ENTITY konfigprotocol_lnk '<link linkend="konfig-dependencies">Konfigurator Protocol page</link>'>
 <!ENTITY viewmenu_lnk '<link linkend="view-menu">View menu</link>'>
 <!ENTITY markmenu_lnk '<link linkend="mark-menu">Mark menu</link>'>
 <!ENTITY comparedir_lnk '<link linkend="compare-dir">Compare Directories</link>'>
@@ -296,7 +297,7 @@ Previous used Docbook
 
 <!-- (C) Copyright ENTITIES -->
 <!ENTITY freebsd '<trademark class="copyright">FreeBSD</trademark>'>
-<!ENTITY tcmd '<trademark class="copyright">Total commander</trademark>'>
+<!ENTITY tcmd '<trademark class="copyright">Total Commander</trademark>'>
 <!ENTITY tcmd_url '<ulink url="http://www.ghisler.com/">&tcmd;</ulink>'>
 
 <!-- useraction ENTITIES -->
@@ -393,11 +394,11 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2005-11-17</date>
+  <date>2005-11-20</date>
   <releaseinfo>1.70.0 "Round Robin"</releaseinfo>
 
    <abstract>
-   <para>&krusader; is an advanced twin-panel (commander-style) file-manager for KDE, 
+   <para>&krusader; is an advanced, twin-panel (commander-style) file-manager for KDE, 
          and other desktops in the *nix world</para>
    </abstract>
 
@@ -490,7 +491,7 @@ Previous used Docbook
   system management tool you can use to access the full potential of your computer using &kde;,
   or with any other standards compliant X Windows window manager. Although designed specifically for,
   and tightly integrated with, &kde;; &krusader; works equally well with Gnome, Enlightenment, WindowMaker,
-  IceWM, BlackBox, Wiamea, XFCE, etc. -- when the &kde;libraries are installed.</para>
+  IceWM, BlackBox, Wiamea, XFCE, etc. -- when the &kde; libraries are installed.</para>
 
   <para>
   New extensibility is provided by the flexible &useractions_lnk;,
@@ -500,7 +501,7 @@ Previous used Docbook
   For information on what is proposed, approved, or remains to be completed look at the &todoforum_url;.</para>
 
   <para>
-  No other program we know of offers so many useful, easily accessible features in such an intuitive
+  No other program we know of, offers so many useful, easily accessible features in such an intuitive
   and simple format! Best of all, we listen, and implement good suggestions that are consonant with the
   &krusader; Project's goal: making &krusader; the very best File Manager available!</para>
   <para>We hope you'll enjoy it -- we do!</para>
@@ -511,7 +512,7 @@ Previous used Docbook
 <preface id="help_krusader">
   <title>Help &krusader;</title>
 
-  <para>Here you get a chance to &contribute_url; to the &krusader; project.
+  <para>Here is your opportunity to &contribute_url; to the &krusader; project.
   There are things that need to be done, but can't be done by us.
   If you feel you can help, don't hesitate to contact us.
   Thanks!</para>
@@ -519,10 +520,10 @@ Previous used Docbook
   <para><emphasis role="bold">Translations</emphasis></para>
   <para>&krusader; is available in many languages, but usually several translations do need an update 
         and new untranslated languages are always welcome, please read the &i18n_page_url; .
-        Even when there is already a translator for your native language, it is always interesting to
+        Even when there is already a translator for your native language, it is always helpful to
         have a second or third translator &eg; for proofreading the translation.
-        Regularly the translator is not available when a translation update is needed (studies, holyday, ...).
-        Please contact the translator of your native language, he will appreciate this verry much that you will
+        Sometimes, the regular translator is not available when a translation update is needed (studies, holyday, ...).
+        Please contact the translator for your native language; he will appreciate very much that you will
         offer some help. Any translation (even partial translations) are accepted by the &krusader;-Krew at
         any time (feature freeze or not).</para>
 
@@ -531,23 +532,23 @@ Previous used Docbook
         documentation up to date.</para>
 
   <para><emphasis role="bold">Donations</emphasis></para>
-  <para>Honestly, we didn't consider donations, until users asked us for a way to &donate_url; to the project.
-        &krusader; is and will always be free in all terms of the GNU Public License. 
+  <para>Actually, we hadn't considered donations, until users asked us for a way to &donate_url; to the project.
+        &krusader; is and always will be free, in all the terms of the GNU Public License. 
         </para>
 
   <para><emphasis role="bold">UserActions</emphasis></para>
   <para>Krusader comes with a nice set of &useractions_lnk; , 
         providing simple and advanced features of all sorts.
-        If you have made a useful User action please post it in the  &useractionsforum_url;
+        If you have made a useful User action, please post it in the  &useractionsforum_url;
         we are collecting UserActions on our website, the "best ones" will be shipped with Krusader.
         Thanks!</para>
 
   <para><emphasis role="bold">Packagers</emphasis></para>
-  <para>We are always in need of packagers for rpm's, deb's, etc. 
+  <para>We are always in need of packagers for different distro rpm's, deb's, etc. 
         All help is welcome.</para>
 
 
-  <para><emphasis role="bold">Usersfeedback for the &krusader; &MacOS; X port</emphasis></para>
+  <para><emphasis role="bold">Users feedback for the &krusader; &MacOS; X port</emphasis></para>
   <para>Krusader is <link linkend="mac-port">ported</link> to &macosx_download_url; with &fink_url; 
         and &kde;libs, the port is maintained by &bodo_tasche_url;, all feedback is welcome.</para>
 
