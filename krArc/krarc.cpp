@@ -590,6 +590,8 @@ bool kio_krarcProtocol::setArcFile( const QString& path ) {
 
 	if ( arcType == "jar" )
 		arcType = "zip";
+	if( arcType.contains("deb") )
+		arcType = "deb";
 
 	arcPath = arcFile->url().path( -1 );
 	return initArcParameters();
