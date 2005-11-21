@@ -33,6 +33,7 @@
 #include <kaboutdata.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <ksplashscreen.h>
 #include <unistd.h>
 
 // Krusader includes
@@ -155,14 +156,29 @@ int main(int argc, char *argv[]) {
 
   // create the application
   KrusaderApp app;
+  
+  // splash screen
+  KSplashScreen *splash = 0;
+  QPixmap pixmap( "splash.jpg" );
+  if (!pixmap.isNull()) {
+    splash = new KSplashScreen( pixmap );
+    splash->show();
+  }
+  
   Krusader *krusader = new Krusader();
-	// make sure we receive X's focus in/out events
-	QObject::connect(&app, SIGNAL(windowActive()), krusader->slot, SLOT(windowActive()));
-	QObject::connect(&app, SIGNAL(windowInactive()), krusader->slot, SLOT(windowInactive()));
+  // make sure we receive X's focus in/out events
+  QObject::connect(&app, SIGNAL(windowActive()), krusader->slot, SLOT(windowActive()));
+  QObject::connect(&app, SIGNAL(windowInactive()), krusader->slot, SLOT(windowInactive()));
 	
   // and set krusader to be the main widget in it
   app.setMainWidget(krusader);
   krusader->show();
+  
+  // hide splashscreen
+  if (splash) {
+    splash->finish(krusader);
+    delete splash;
+  }
 
   // let's go.
   return app.exec();
