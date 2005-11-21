@@ -1042,9 +1042,9 @@ QString Krusader::getTempFile() {
 
 char* Krusader::privIcon() {
    if ( geteuid() )
-      return "krusader_blue";
+      return "krusader-user";
    else
-      return "krusader_red";
+      return "krusader-root";
 }
 
 
