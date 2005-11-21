@@ -42,7 +42,7 @@
 #include "krusaderapp.h"
 
 static const char *description =
-	I18N_NOOP("Krusader\nTwin-panel File Manager for KDE");
+	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
 // INSERT A DESCRIPTION FOR YOUR APPLICATION HERE
 
 static KCmdLineOptions options[] =
@@ -92,8 +92,10 @@ int main(int argc, char *argv[]) {
                         I18N_NOOP("Krusader - ROOT PRIVILEGES")),
     versionName.latin1(), description, KAboutData::License_GPL,
     "(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2005, Krusader Krew",
-    0,
-    "http://krusader.sourceforge.net",
+    "Feedback:\nhttp://www.krusader.org/phpBB/\n\n"
+    "IRC:\nServer: irc.freenode.net, channel: #krusader"
+    ,
+    "http://www.krusader.org",
     "krusader@users.sourceforge.net");
   aboutData.addAuthor("Rafi Yanai","Author", "yanai@users.sourceforge.net");
   aboutData.addAuthor("Shie Erlich","Author", "erlich@users.sourceforge.net");
