@@ -101,7 +101,9 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Jonas Baehr", "Developer", "jonas.baehr@web.de", 0);
   aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "deschler@users.sourceforge.net", 0);
   aboutData.addAuthor("Frank Schoolmeesters", "Documentation and marketing coordinator", "frank_schoolmeesters@yahoo.com", 0);
-  aboutData.addCredit("The UsefulArts Organization", "Great icon for krusader", "mail@usefularts.rg", 0);
+  aboutData.addCredit("Andrew Neupokoev", "Killer Logo and Icons for Krusader (contest winner)",
+  		"doom-blue@yandex.ru", 0);
+  aboutData.addCredit("The UsefulArts Organization", "Icon for krusader", "mail@usefularts.rg", 0);
   aboutData.addCredit("Gábor Lehel", "Viewer module for 3rd Hand", "illissius@gmail.com", 0);
   aboutData.addCredit("Mark Eatough", "Handbook Proof-Reader", "markeatough@yahoo.com", 0);
   aboutData.addCredit("Jan Halasa", "The old Bookmark Module", "xhalasa@fi.muni.cz", 0);
