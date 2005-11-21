@@ -495,7 +495,8 @@ If you haven't done so in a while, run ./configure --help
         <filename>KDEDIR/bin</filename> directory.
         According to the &fhs_url;, any user installed files should go to the <filename>/usr/local</filename> 
         directory, but in some cases you might want that &krusader; will be installed in an other directory, 
-        this behaviour can be determed with the prefix option.
+        this behaviour can be determed with the prefix option. If you don't have root access 
+        <filename>/home/YOUR_USERNAME/.kde</filename> is probably a good choice.
         
        <screen><prompt>$</prompt> <userinput><command>./configure</command> <option>--prefix=/usr/local</option></userinput></screen></para>
 
