@@ -161,7 +161,8 @@ int main(int argc, char *argv[]) {
   
   // splash screen
   KSplashScreen *splash = 0;
-  QPixmap pixmap( "splash.jpg" );
+  QString splashFilename = locate( "data", "krusader/splash.jpg" );
+  QPixmap pixmap( splashFilename );
   if (!pixmap.isNull()) {
     splash = new KSplashScreen( pixmap );
     splash->show();
