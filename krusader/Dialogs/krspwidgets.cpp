@@ -113,7 +113,7 @@ KURL KRSpWidgets::newFTP() {
 	url.setHost( host );
 	url.setPath( path );
 	if ( protocol == "ftp" || protocol == "fish" || protocol == "sftp" )
-		url.setPort(p->port->cleanText().toShort());
+		url.setPort(p->port->cleanText().toInt());
 	if (!username.isEmpty())
 		url.setUser( username );
 	if (!password.isEmpty())
