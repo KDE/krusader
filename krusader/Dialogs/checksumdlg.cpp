@@ -27,7 +27,7 @@ class CS_Tool; // forward
 typedef void PREPARE_PROC_FUNC(KProcess& proc, CS_Tool *self, const QStringList& files, 
 	const QString checksumFile, bool recursive, const QString& stdoutFileName, 
 	const QString& stderrFileName,	const QString& type=QString::null);
-typedef QStringList GET_FAILED_FUNC(const QStringList& stdout, const QStringList& stderr);
+typedef QStringList GET_FAILED_FUNC(const QStringList& stdOut, const QStringList& stdErr);
 
 class CS_Tool {
 public:
@@ -65,17 +65,17 @@ void sumVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << "-c" << checksumFile << "1>" << stdoutFileName << "2>" << stderrFileName;
 }
 
-QStringList sumFailedFunc(const QStringList& stdout, const QStringList& stderr) {
+QStringList sumFailedFunc(const QStringList& stdOut, const QStringList& stdErr) {
 	// md5sum and sha1sum print "...: FAILED" for failed files and display
 	// the number of failures to stderr. so if stderr is empty, we'll assume all is ok
 	QStringList result;
-	if (stderr.size()==0) return result;
-	result += stderr;
+	if (stdErr.size()==0) return result;
+	result += stdErr;
 	// grep for the ":FAILED" substring
 	const QString tmp = QString(": FAILED").local8Bit();
-	for (uint i=0; i<stdout.size();++i) {
-		if (stdout[i].find(tmp) != -1)
-			result += stdout[i];
+	for (uint i=0; i<stdOut.size();++i) {
+		if (stdOut[i].find(tmp) != -1)
+			result += stdOut[i];
 	}
 	
 	return result;
@@ -100,9 +100,9 @@ void deepVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << "-x" << checksumFile << files << "1>" << stdoutFileName << "2>" << stderrFileName;
 }
 
-QStringList deepFailedFunc(const QStringList& stdout, const QStringList& stderr) {
+QStringList deepFailedFunc(const QStringList& stdOut, const QStringList& stdErr) {
 	// *deep dumps (via -x) all failed hashes to stdout
-	return stdout;
+	return stdOut;
 }
 
 // handles cfv binary
@@ -124,9 +124,9 @@ void cfvVerifyFunc(KProcess& proc, CS_Tool *self, const QStringList& files,
 	proc << "-U" << "-VV" << "-t" << type << "-f" << checksumFile << "1>" << stdoutFileName << "2>" << stderrFileName;// << files;
 }
 
-QStringList cfvFailedFunc(const QStringList& stdout, const QStringList& stderr) {
+QStringList cfvFailedFunc(const QStringList& stdOut, const QStringList& stdErr) {
 	// cfv dumps all failed hashes to stderr
-	return stderr;
+	return stdErr;
 }
 
 // important: this table should be ordered like so that all md5 tools should be
@@ -271,14 +271,14 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	if (files.count() > 1) suggestedFilename += ("checksum." + cs_typeToText[mytool->type]);
 	else suggestedFilename += (files[0] + '.' + cs_typeToText[mytool->type]);
 	// send both stdout and stderr
-	QStringList stdout, stderr;
-	if (!KrServices::fileToStringList(tmpOut->textStream(), stdout) || 
-			!KrServices::fileToStringList(tmpErr->textStream(), stderr)) {
+	QStringList stdOut, stdErr;
+	if (!KrServices::fileToStringList(tmpOut->textStream(), stdOut) || 
+			!KrServices::fileToStringList(tmpErr->textStream(), stdErr)) {
 		KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
 		return;
 	}
 
-	ChecksumResultsDlg dlg( stdout, stderr, suggestedFilename, mytool->binary, cs_typeToText[mytool->type]);
+	ChecksumResultsDlg dlg( stdOut, stdErr, suggestedFilename, mytool->binary, cs_typeToText[mytool->type]);
 	tmpOut->unlink(); delete tmpOut;
 	tmpErr->unlink(); delete tmpErr;
 }
@@ -382,13 +382,13 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	QApplication::restoreOverrideCursor();
 	krApp->stopWait();
 	// send both stdout and stderr
-	QStringList stdout,stderr;
-	if (!KrServices::fileToStringList(tmpOut->textStream(), stdout) || 
-			!KrServices::fileToStringList(tmpErr->textStream(), stderr)) {
+	QStringList stdOut,stdErr;
+	if (!KrServices::fileToStringList(tmpOut->textStream(), stdOut) || 
+			!KrServices::fileToStringList(tmpErr->textStream(), stdErr)) {
 		KMessageBox::error(krApp, i18n("Error reading stdout or stderr"));
 		return;
 	}
-	VerifyResultDlg dlg(mytool->failed(stdout, stderr));
+	VerifyResultDlg dlg(mytool->failed(stdOut, stdErr));
 	tmpOut->unlink(); delete tmpOut;
 	tmpErr->unlink(); delete tmpErr;
 }
@@ -441,15 +441,15 @@ VerifyResultDlg::VerifyResultDlg(const QStringList& failed):
 
 // ------------- ChecksumResultsDlg
 
-ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr, 
+ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
 	const QString& suggestedFilename, const QString& binary, const QString& type):
 	KDialogBase(Plain, i18n("Create Checksum"), Ok | Cancel, Ok, krApp), _binary(binary) {
 	QGridLayout *layout = new QGridLayout( plainPage(), 1, 1,
 		KDialogBase::marginHint(), KDialogBase::spacingHint());
 
 	// md5 tools display errors into stderr, so we'll use that to determine the result of the job
-	bool errors = stderr.size()>0;
-	bool successes = stdout.size()>0;
+	bool errors = stdErr.size()>0;
+	bool successes = stdOut.size()>0;
 	int row = 0;
 	
 	// create the icon and title
@@ -474,7 +474,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 		lv->addColumn(i18n("Hash"));
 		lv->addColumn(i18n("File"));
 		lv->setAllColumnsShowFocus(true);
-		for ( QStringList::ConstIterator it = stdout.begin(); it != stdout.end(); ++it ) {
+		for ( QStringList::ConstIterator it = stdOut.begin(); it != stdOut.end(); ++it ) {
 			QString line = (*it).simplifyWhiteSpace();
 			int space = line.find(' ');
 			new KListViewItem(lv, line.left(space), line.mid(space+1));
@@ -495,7 +495,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 		layout->addMultiCellWidget(l3, row, row, 0, 1);
 		++row;
 		KListBox *lb = new KListBox(plainPage());
-		lb->insertStringList(stderr);
+		lb->insertStringList(stdErr);
 		layout->addMultiCellWidget(lb, row, row, 0, 1);
 		++row;
 	}
@@ -518,7 +518,7 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 	}
 	
 	QCheckBox *onePerFile=0;
-	if (stdout.size() > 1) {
+	if (stdOut.size() > 1) {
 		onePerFile = new QCheckBox(i18n("Checksum file for each source file"), plainPage());
 		onePerFile->setChecked(false);
 		// clicking this, disables the 'save as' part
@@ -530,10 +530,10 @@ ChecksumResultsDlg::ChecksumResultsDlg(const QStringList& stdout, const QStringL
 	}
 	
 	if (exec() == Accepted && successes) {
-		if (stdout.size()>1 && onePerFile->isChecked()) {
-			savePerFile(stdout, suggestedFilename.mid(suggestedFilename.findRev('.')));
+		if (stdOut.size()>1 && onePerFile->isChecked()) {
+			savePerFile(stdOut, suggestedFilename.mid(suggestedFilename.findRev('.')));
 		} else if (saveFileCb->isEnabled() && saveFileCb->isChecked() && !checksumFile->url().simplifyWhiteSpace().isEmpty()) {
-			saveChecksum(stdout, checksumFile->url());
+			saveChecksum(stdOut, checksumFile->url());
 		}
 	}
 }

@@ -33,7 +33,7 @@ private:
 
 class ChecksumResultsDlg: public KDialogBase {
 public:
-	ChecksumResultsDlg(const QStringList& stdout, const QStringList& stderr,
+	ChecksumResultsDlg(const QStringList& stdOut, const QStringList& stdErr,
 		const QString& suggestedFilename, const QString& binary, const QString& type);
 
 protected:
