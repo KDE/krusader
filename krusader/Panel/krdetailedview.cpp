@@ -1171,7 +1171,7 @@ bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
 }
 
 void KrDetailedView::makeItemVisible( const KrViewItem *item ) {
-	qApp->processEvents();
+//	qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
 	ensureItemVisible( static_cast<const KrDetailedViewItem*>( item ) );
 }
 
