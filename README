@@ -8,6 +8,21 @@ IMPORTANT: Please remove your ~/.kde/share/apps/krusader/krusaderui.rc file afte
 (Else you won't see new menu entries. But please note: This will also reset all your changes on
 toolbars and shortcuts!)
 
+IMPORTANT: Crashes in Krusader caused by Qt 3.3.5
+*************************************************
+We've been getting a lot of emails and bug reports regarding random
+crashes in Krusader, especially during some file operations (copy/move etc.).
+These crashes are related to Qt 3.3.5 and NOT Krusader.
+It seems that Qt 3.3.5 introduced a serious bug which is now causing random 
+crashes in many KDE applications including Konqueror.
+You can google for it to find out more. 
+
+As far as we know, debian and suse already posted new Qt binaries that fix the problem,
+and gentoo has masked Qt 3.3.5 completely.
+As for now, you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on your distribution.
+For more information is available on our website at
+http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407 
+
 Changes since beta1 include (but not limited to):
 * Improvements in the checksum module
 * More control over the terminal emulator (requested feature)
@@ -64,6 +79,7 @@ Usability
 * Right-click menu now has a "Create new" submenu
 * New "clear location bar" button, a-la Konqueror
 * Krusader's icon is set according to user's priveldges
+
 
 
 Translations
