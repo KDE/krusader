@@ -486,6 +486,28 @@ message during the rpmbuild process,
 <qandaset>
 
   <qandaentry>
+  <question id="faqu_qt355">
+  <para>Why does &krusader; crash?</para>
+  </question>
+  <answer>
+  <para>We've been getting a lot of emails and bug reports regarding random crashes in 
+        &krusader;, especially during some file operations (copy/move etc.).
+        <emphasis role="bold">These crashes are related to &Qt; 3.3.5 and NOT &krusader;.</emphasis>
+        It seems that &Qt; 3.3.5 introduced a serious bug which is currently (December 2005) 
+        causing random crashes in many &kde; applications including &konqueror;.
+        You can Google for it to find out more. 
+        As far as we know, &debian;-Sid and &SuSE; already posted new &Qt; binaries that fix the problem,
+        and &gentoo; has masked &Qt; 3.3.5 completely.
+        As for now, you either need &Qt; 3.3.4 or a fixed &Qt; 3.3.5, depending on your distribution.
+        More information is available on our  
+        <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407">website</ulink>.
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
+
+  <qandaentry>
   <question id="faqu_supermount">
   <para>When I try to mount/unmount my cdrom/floppy, &krusader; says
              something about supermount, what's this about?</para>
