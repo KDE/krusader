@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.70.0
-- Documentation date:  2005-11-09
-- Parsing date: Thu Nov 10 19:29:54 UTC 2005
+- Documentation date:  2005-12-09
+- Parsing date: Sat Dec 10 16:59:28 UTC 2005
 --------------------------------------------
  
 This file contains the TXT install instructions for Krusader.
@@ -71,7 +71,7 @@ A.1. Requirements
    Platforms:
 
      * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris(TM)
-     * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS X).
+     * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS).
 
    Krusader uses about 3-4 MByte of memory to run (and about 15
    Mbyte shared memory which is also used by other processes),
@@ -130,8 +130,9 @@ A.2.1. Download Krusader
 
    Others
 
-     * Slackware® TGZ packages can usually found on the Krusader
-       downloadpage, thanks to Mateusz Dubiel .
+     * Slackware® tgz binaries can usually found on the Krusader
+       downloadpage, or use Portpkg that contains a Krusader
+       SlackBuild, # portpkg krusader will do the job.
      * There is a Mac® OS-X port with the help of fink , the port
        is maintained by Bodo Tasche .
 
@@ -458,7 +459,9 @@ $
        user installed files should go to the /usr/local
        directory, but in some cases you might want that Krusader
        will be installed in an other directory, this behaviour
-       can be determed with the prefix option.
+       can be determed with the prefix option. If you don't have
+       root access /home/YOUR_USERNAME/.kde is probably a good
+       choice.
 $ ./configure --prefix=/usr/local
        This will take about 1 minute, if everything goes well it
        will e.g. end with the following messages:

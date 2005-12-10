@@ -1,7 +1,7 @@
 --------------------------------------------
 - Documentation version:  1.70.0
-- Documentation date:  2005-11-09
-- Parsing date: Thu Nov 10 19:29:54 UTC 2005
+- Documentation date:  2005-12-09
+- Parsing date: Sat Dec 10 16:59:28 UTC 2005
 --------------------------------------------
  
 
@@ -41,6 +41,23 @@ db   dD d8888b. db    db .d8888.  .d8b.  d8888b. d88888b d8888b.
 88`8b   88`8b   88    88   `Y8b. 88~~~88 88   88 88~~~~~ 88`8b
 88 `88. 88 `88. 88b  d88 db   8D 88   88 88  .8D 88.     88 `88.
 YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD 
+
+------------------------------------------------------------------------
+
+IMPORTANT: Crashes in Krusader caused by Qt 3.3.5
+*************************************************
+We've been getting a lot of emails and bug reports regarding random
+crashes in Krusader, especially during some file operations (copy/move etc.).
+These crashes are related to Qt 3.3.5 and NOT Krusader.
+It seems that Qt 3.3.5 introduced a serious bug which is now causing random 
+crashes in many KDE applications including Konqueror.
+You can google for it to find out more. 
+
+As far as we know, debian and suse already posted new Qt binaries that fix the problem,
+and gentoo has masked Qt 3.3.5 completely.
+As for now, you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on your distribution.
+For more information is available on our website at
+http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407 
 
 ------------------------------------------------------------------------
 
@@ -92,7 +109,7 @@ Chapter 7. Frequently Asked Questions (FAQ)
    7.1.12. I have a libGLcore.so.1 compile error after using the
           NVIDIA® installer
 
-   7.1.13. Why Krusader-1.60.0 does not compile with gcc4?
+   7.1.13. Why Krusader-1.60.x does not compile with gcc4?
    7.1.14. I am having trouble compiling and installing Krusader,
           how do I send a help request?
 
@@ -367,9 +384,9 @@ $ ln -s libGLcore.so.1.0.6111  libGL.so.1
 $ ln -s libGLcore.so.1.0.6111  libGL.so.1.0.0
 $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
-   7.1.13. Why Krusader-1.60.0 does not compile with gcc4?
+   7.1.13. Why Krusader-1.60.x does not compile with gcc4?
 
-   Because Krusader-1.60.0 was not gcc4 compatible, it needs
+   Because Krusader-1.60.x was not gcc4 compatible, it needs
    first some patches:
 
      * add 'class ListPanelFunc;' in krusader/Panel/listpanel.h
@@ -448,47 +465,63 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
 
 7.2. Usage FAQ
 
-   7.2.1. When I try to mount/unmount my cdrom/floppy, Krusader
+   7.2.1. Why does Krusader crash?
+   7.2.2. When I try to mount/unmount my cdrom/floppy, Krusader
           says something about supermount, what's this about?
 
-   7.2.2. Why does Krusader freeze or hang on a dead mountpoint?
-   7.2.3. When I try to resize Krusader, so that it's smaller, I
+   7.2.3. Why does Krusader freeze or hang on a dead mountpoint?
+   7.2.4. When I try to resize Krusader, so that it's smaller, I
           discover that I can't resize it below a certain size.
           Basically, it doesn't get much smaller. Why?
 
-   7.2.4. When I do some file operation, and Krusader's panel
+   7.2.5. When I do some file operation, and Krusader's panel
           doesn't refresh / I'm using Krusader with fam
           installed, but updates to the panel are not shown.
 
-   7.2.5. Samba ISO 8859-x codepage / what to do if Krusader does
+   7.2.6. Samba ISO 8859-x codepage / what to do if Krusader does
           not read shared directories containing special
           international characters?
 
-   7.2.6. Krusader reports "krarc:... protocol not supported"
+   7.2.7. Krusader reports "krarc:... protocol not supported"
           error at opening an archive file.
 
-   7.2.7. Why have i trouble with my FTP connection?
-   7.2.8. I get "FTP protocol not supported by Krusader" error at
+   7.2.8. Why have i trouble with my FTP connection?
+   7.2.9. I get "FTP protocol not supported by Krusader" error at
           trying to open a remote FTP directory.
 
-   7.2.9. How can i close a remote connection (e.g. a FTP
+   7.2.10. How can i close a remote connection (e.g. a FTP
           connection) ?
 
-   7.2.10. Why do i have some trouble with the media:// protocol?
-   7.2.11. How can I disable the default sounds e.g. when I do a
+   7.2.11. Why do i have some trouble with the media:// protocol?
+   7.2.12. How can I disable the default sounds e.g. when I do a
           delete action ?
 
-   7.2.12. I get the error message "Protocol not supported by
+   7.2.13. I get the error message "Protocol not supported by
           Krusader: "krarc:/path/to/foo-archive", when I try to
           open foo-Archive
 
-   7.2.13. Where is RemoteMan, the remote connection manager ?
-   7.2.14. Why mimetype magic isn't sometimes working inside
+   7.2.14. Where is RemoteMan, the remote connection manager ?
+   7.2.15. Why mimetype magic isn't sometimes working inside
           archives?
 
-   7.2.15. Why does the handbook not work?
+   7.2.16. Why does the handbook not work?
 
-   7.2.1. When I try to mount/unmount my cdrom/floppy, Krusader
+   7.2.1. Why does Krusader crash?
+
+   We've been getting a lot of emails and bug reports regarding
+   random crashes in Krusader, especially during some file
+   operations (copy/move etc.). These crashes are related to
+   Qt(TM) 3.3.5 and NOT Krusader. It seems that Qt(TM) 3.3.5
+   introduced a serious bug which is currently (December 2005)
+   causing random crashes in many KDE applications including
+   Konqueror. You can Google for it to find out more. As far as
+   we know, Debian®-Sid and SuSE® already posted new Qt(TM)
+   binaries that fix the problem, and Gentoo® has masked Qt(TM)
+   3.3.5 completely. As for now, you either need Qt(TM) 3.3.4 or
+   a fixed Qt(TM) 3.3.5, depending on your distribution. More
+   information is available on our website.
+
+   7.2.2. When I try to mount/unmount my cdrom/floppy, Krusader
    says something about supermount, what's this about?
 
    Supermount is a daemon which handles the mounting/unmounting
@@ -504,7 +537,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    this can be solved, but as for now, we don't consider it a
    priority. Feel free to write a patch for it ;-).
 
-   7.2.2. Why does Krusader freeze or hang on a dead mountpoint?
+   7.2.3. Why does Krusader freeze or hang on a dead mountpoint?
 
    When Krusader is e.g. browsing a NFS share and the NFS server
    goes down, then Krusader will freeze. This Krusader (and all
@@ -525,7 +558,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    major issue in any case; so currently this is just a bug we
    have to learn to live with.
 
-   7.2.3. When I try to resize Krusader, so that it's smaller, I
+   7.2.4. When I try to resize Krusader, so that it's smaller, I
    discover that I can't resize it below a certain size.
    Basically, it doesn't get much smaller. Why?
 
@@ -538,7 +571,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    give the complete text. The minimum width is 45 pixels for
    each button.
 
-   7.2.4. When I do some file operation, and Krusader's panel
+   7.2.5. When I do some file operation, and Krusader's panel
    doesn't refresh / I'm using Krusader with fam installed, but
    updates to the panel are not shown.
 
@@ -554,7 +587,7 @@ $ su -c 'fam -l'
 
    Look at the manpages for more information about fam.
 
-   7.2.5. Samba ISO 8859-x codepage / what to do if Krusader does
+   7.2.6. Samba ISO 8859-x codepage / what to do if Krusader does
    not read shared directories containing special international
    characters?
 
@@ -570,7 +603,7 @@ $ su -c 'fam -l'
    Unfortunately kcontrol (KDE 3.1.1) fails to configure smb.conf
    properly, so this must be done manually with a text editor.
 
-   7.2.6. Krusader reports "krarc:... protocol not supported"
+   7.2.7. Krusader reports "krarc:... protocol not supported"
    error at opening an archive file.
 
    Solution: install the krarc slave properly:
@@ -583,7 +616,7 @@ $ su -c 'fam -l'
    or the directory where the KIO slaves are placed in your
    Linux® distribution.
 
-   7.2.7. Why have i trouble with my FTP connection?
+   7.2.8. Why have i trouble with my FTP connection?
 
    This problem often occurs when you are behind a firewall or
    proxy. Open KDE Control Center->Network->Preferences , "Enable
@@ -594,7 +627,7 @@ $ su -c 'fam -l'
    More information information can be found in Active FTP vs.
    Passive FTP, a Definitive Explanation .
 
-   7.2.8. I get "FTP protocol not supported by Krusader" error at
+   7.2.9. I get "FTP protocol not supported by Krusader" error at
    trying to open a remote FTP directory.
 
    The reason for this error is that 'FTP via HTTP proxy' feature
@@ -603,19 +636,19 @@ $ su -c 'fam -l'
    Center. Modify the proxy settings to not use HTTP proxy and
    FTP will work.
 
-   7.2.9. How can i close a remote connection (e.g. a FTP
+   7.2.10. How can i close a remote connection (e.g. a FTP
    connection) ?
 
    It's explained in the remote connections chapter .
 
-   7.2.10. Why do i have some trouble with the media:// protocol?
+   7.2.11. Why do i have some trouble with the media:// protocol?
 
    At the moment of writing the media:// protocol is instable, we
    need to wait until the KDE team corrects it, every other
    protocol works properly with Krusader, only media fails. More
    information regarding this issue is available in our forum .
 
-   7.2.11. How can I disable the default sounds e.g. when I do a
+   7.2.12. How can I disable the default sounds e.g. when I do a
    delete action ?
 
    Those are the default KDE System sounds, and not related to
@@ -624,7 +657,7 @@ $ su -c 'fam -l'
    Multimedia->System Notifications , Event Source: "KDE System
    Notifications" and uncheck sound items you don't like.
 
-   7.2.12. I get the error message "Protocol not supported by
+   7.2.13. I get the error message "Protocol not supported by
    Krusader: "krarc:/path/to/foo-archive", when I try to open
    foo-Archive
 
@@ -637,7 +670,7 @@ $ su -c 'fam -l'
    if you are using a 64 bit microprocessor. For more information
    click here .
 
-   7.2.13. Where is RemoteMan, the remote connection manager ?
+   7.2.14. Where is RemoteMan, the remote connection manager ?
 
    RemoteMan has been replaced by our Bookmark Manager since
    Krusader 1.25-beta1. The Bookmark Manager handles local files
@@ -657,7 +690,7 @@ $ su -c 'fam -l'
     5. install Krusader-1.60, it will use krbookmarks.xml or
        import it if needed.
 
-   7.2.14. Why mimetype magic isn't sometimes working inside
+   7.2.15. Why mimetype magic isn't sometimes working inside
    archives?
 
    When you enter an archive and press F3 to view a file that has
@@ -667,7 +700,7 @@ $ su -c 'fam -l'
    Associations->Application->octet-stream, binary viewer needs
    to be removed.
 
-   7.2.15. Why does the handbook not work?
+   7.2.16. Why does the handbook not work?
 
    This error will happen on Debian® (or Debian® based) distro
    with the krusader_1.51-1_i386.deb package. You will see the
@@ -689,12 +722,13 @@ $ su -c 'fam -l'
 
    7.3.2. How can I report a bug?
    7.3.3. Does Krusader have a mailing list?
-   7.3.4. Does Krusader have a IRC channel?
-   7.3.5. How does the Krusader forum work?
-   7.3.6. How can I translate Krusader to my native language?
-   7.3.7. How can I support Krusader?
-   7.3.8. Is there a Mac® OS X port?
-   7.3.9. Is there a Windows® port?
+   7.3.4. Does Krusader provides newsfeeds?
+   7.3.5. Does Krusader have a IRC channel?
+   7.3.6. How does the Krusader forum work?
+   7.3.7. How can I translate Krusader to my native language?
+   7.3.8. How can I support Krusader?
+   7.3.9. Is there a Mac® OS X port?
+   7.3.10. Is there a Windows® port?
 
    7.3.1. How can I report a wish, a patch, a suggestion, or a
    comment?
@@ -764,38 +798,48 @@ $ su -c 'fam -l'
 
    7.3.3. Does Krusader have a mailing list?
 
-   Yes, currently have 5 mailing lists. No spam, no bother, just
-   Krusader. Feel free to (un)subscribe. Please note that all the
-   mailinglists except Krusader-i18n are read-only , so posting
-   is not allowed.
+   Yes, currently have 6 mailing lists. No spam, no bother, just
+   Krusader. Feel free to (un)subscribe.
 
    Tip. our mailing lists can be browsed online or read with a
-   newsreader, so that you don't even need to subscribe to read
-   the mailing lists.
+   newsreader, so that you don't even need to subscribe to follow
+   the action on the mailing lists.
 
      * Krusader-news is a very low volume list, used for
        newsletters and announcements of new versions or critical
        bugfixes. The news can also been read online at latest
        news and in the News and Announcements Forum which are
        basically the same but displayed in another format.
-     * Krusader-devel is the developer mailing list. If you want
-       to follow the development of Krusader on the bleeding
-       edge, this is the place to be!
+     * Krusader-devel is the developer mailing list (read-only).
+       If you want to follow the development of Krusader on the
+       bleeding edge, this is the place to be!
+     * Krusader-users is the Krusader users mailing list. Here
+       you can ask help and talk with the Krusader users and
+       developers.
      * Krusader-i18n is the translations mailing list.
      * Krusader-doc is the documentation mailing list.
-     * Krusader-commits when the Krusader Krew commits code into
-       CVS, it will be reported in this mailing list. This allows
-       you to follow the Krusader development ... live! Want to
-       keep track? Waiting for a certain feature/bugfix?
+     * Krusader-commits (read-only) when the Krusader Krew
+       commits code into CVS, it will be reported in this mailing
+       list. This allows you to follow the Krusader development
+       ... live! Want to keep track? Waiting for a certain
+       feature/bugfix?
 
-   7.3.4. Does Krusader have a IRC channel?
+   7.3.4. Does Krusader provides newsfeeds?
+
+   Yes, we do. Several newsfeeds in various formats are
+   available. rss-filerelease feed, rss-forumfeed, krusader-news
+   feed, krusader-devel feed and even additional feeds by
+   gmane.org. krusader-users feed, krusader-i18n feed,
+   krusader-doc feed.
+
+   7.3.5. Does Krusader have a IRC channel?
 
    Yes, we have. Feel free to talk to the Krusader Krew, and of
    course fellow-users via freenode.org servers. The server is
    irc.freenode.org, the channel is #krusader. Everyone is
    welcome.
 
-   7.3.5. How does the Krusader forum work?
+   7.3.6. How does the Krusader forum work?
 
    In the spirit of freedom of speech, everything that is
    Krusader related can be discussed in our forum. It does not
@@ -854,28 +898,28 @@ $ su -c 'fam -l'
    to you! To make use of them, simply point your RSS aggregator
    to here.
 
-   7.3.6. How can I translate Krusader to my native language?
+   7.3.7. How can I translate Krusader to my native language?
 
    Please read the i18n page. It's not difficult to translate!
    Most anyone can do it, it just takes some time.
 
-   7.3.7. How can I support Krusader?
+   7.3.8. How can I support Krusader?
 
    You can support Krusader in many different ways: please send
    us feedback, bug reports, patches, donations, translations,
    ...
 
-   7.3.8. Is there a Mac® OS X port?
+   7.3.9. Is there a Mac® OS X port?
 
    Yes, there is Mac® OS X port, but you will not have (yet) the
    all the power like on Linux®. Please read the Mac® OS X port
    section for more information. A recommended native file
    manager for Mac® OS is Disk Order© (shareware).
 
-   7.3.9. Is there a Windows® port?
+   7.3.10. Is there a Windows® port?
 
    No, but this might change in the future. Please help us,
    thanks. A recommended native file manager for Windows® is
-   Total commander© (shareware).
+   Total Commander© (shareware).
      _________________________________________________________
 
