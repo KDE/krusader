@@ -161,6 +161,7 @@ bool KRQuery::containsContent( QString file ) const
   int ndx = 0;
   while ( !text.atEnd() )
   {
+    ndx = 0;
     line = text.readLine();
     if ( line.isNull() ) break;
     if ( containWholeWord )
