@@ -3,21 +3,21 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2005, Krusader Krew
 # This file is distributed under the same license as the Krusader package
+#
 # Christoph Thielecke <crissi99@gmx.de>, 2003.
 # Dirk Eschler <deschler@users.sourceforge.net>, 2003, 2004, 2005.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-11-03 22:44+0100\n"
-"PO-Revision-Date: 2005-11-18 23:26+0100\n"
+"PO-Revision-Date: 2005-12-18 20:48+0100\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -46,7 +46,7 @@ msgstr "Neuen Eintrag hinzufügen"
 
 #: GUI/profilemanager.cpp:112
 msgid "Krusader::ProfileManager"
-msgstr "Krusader::Profil-Manager"
+msgstr "Krusader::Profilmanager"
 
 #: GUI/profilemanager.cpp:112
 msgid "Enter the profile name:"
@@ -144,7 +144,7 @@ msgstr "Eine Aktion mit diesem Namen existiert bereits"
 
 #: GUI/actionpropertybase.cpp:386
 msgid "Action Property"
-msgstr "Aktioneneigenschaft"
+msgstr "Aktionseigenschaft"
 
 #: GUI/actionpropertybase.cpp:387
 msgid "..."
@@ -184,7 +184,7 @@ msgstr "Die <b>Platzhalter</b> mit gültigen Adressen ersetzen."
 
 #: GUI/actionpropertybase.cpp:395 GUI/actionpropertybase.cpp:397
 msgid "The title displayed in the <b>Usermenu</b>."
-msgstr "Der Titel wird im <b>Aktionenmenü</b> angezeigt."
+msgstr "Der Titel wird im <b>Aktionsmenü</b> angezeigt."
 
 #: GUI/actionpropertybase.cpp:396
 msgid "Title:"
@@ -198,7 +198,7 @@ msgid ""
 msgstr ""
 "Eindeutiger Name der <b>Aktion</b>. Er wird nur im <i>Konfigurator</"
 "i> benutzt und erscheint sonst in keinem Menü.<p><b>Hinweis</b>: Der "
-"<i>Titel</i>, der im <b>Aktionenmenü</b> erscheint kann weiter unten "
+"<i>Titel</i>, der im <b>Aktionsmenü</b> erscheint kann weiter unten "
 "eingegeben werden."
 
 #: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:419
@@ -220,7 +220,7 @@ msgid ""
 "title in the <b>Usermenu</b>."
 msgstr ""
 "Jeder Aktion kann ein eigenes Symbol zugeordnet werden. Es erscheint "
-"vor dem Titel im <b>Aktionenmenü</b>."
+"vor dem Titel im <b>Aktionsmenü</b>."
 
 #: GUI/actionpropertybase.cpp:402
 msgid "Use tooltip"
@@ -259,7 +259,7 @@ msgid ""
 "the <b>Useraction Toolbar</b>."
 msgstr ""
 "Die <i>Kurzinfo</i> wird angezeigt, wenn der Mauszeiger über einem Eintrag "
-"der <b>Aktionenwerkzeugleiste</b> gehalten wird."
+"der <b>Aktionswerkzeugleiste</b> gehalten wird."
 
 #: GUI/actionpropertybase.cpp:411 GUI/actionpropertybase.cpp:424
 msgid ""
@@ -432,7 +432,7 @@ msgstr "Ausführen"
 
 #: GUI/addplaceholderpopup.cpp:131
 msgid "User Action Parameter Dialog"
-msgstr "Aktionenparameter-Dialog"
+msgstr "Aktionsparameterdialog"
 
 #: GUI/addplaceholderpopup.cpp:139
 msgid "This placeholder allows some parameter:"
@@ -1588,7 +1588,7 @@ msgstr "Anzeigen: "
 
 #: Panel/krcalcspacedialog.cpp:95
 msgid "Calculate Occupied Space"
-msgstr "Belegten Speicherplatz berechnen"
+msgstr "Belegten Speicherplatz ermittlen"
 
 #: Panel/krcalcspacedialog.cpp:146
 msgid "Name: "
@@ -2114,7 +2114,7 @@ msgstr "Dokument e&rneut laden"
 
 #: krusader.cpp:459
 msgid "Show Actions Toolbar"
-msgstr "Aktionenwerkzeugleiste anzeigen"
+msgstr "Aktionswerkzeugleiste anzeigen"
 
 #: krusader.cpp:471
 msgid "Show &FN Keys Bar"
@@ -2150,7 +2150,7 @@ msgstr "&Neue Datei editieren"
 
 #: krusader.cpp:493
 msgid "Start &Root Mode Krusader"
-msgstr "K&rusader im Systemverwaltungs-Modus starten"
+msgstr "K&rusader im Systemverwaltungsmodus starten"
 
 #: krusader.cpp:495
 msgid "T&est Archive(s)"
@@ -2166,7 +2166,7 @@ msgstr "Pro&file"
 
 #: krusader.cpp:503
 msgid "Calculate &Occupied Space"
-msgstr "&Belegten Speicherplatz berechnen"
+msgstr "&Belegten Speicherplatz ermitteln"
 
 #: Dialogs/checksumdlg.cpp:203 Dialogs/checksumdlg.cpp:458 krusader.cpp:505
 msgid "Create Checksum"
@@ -2371,7 +2371,7 @@ msgstr "Vorheriges Unterfenster"
 
 #: UserMenu/usermenu.cpp:52 krusader.cpp:624
 msgid "User Menu"
-msgstr "Aktionenmenü"
+msgstr "Aktionsmenü"
 
 #: UserMenu/usermenu.cpp:59 krusader.cpp:626
 msgid "Manage user actions"
@@ -2809,7 +2809,7 @@ msgstr "Krusader"
 
 #: main.cpp:91
 msgid "Krusader - ROOT PRIVILEGES"
-msgstr "Krusader - SYSTEMVERWALTUNGS-MODUS"
+msgstr "Krusader - SYSTEMVERWALTUNGSMODUS"
 
 #: krusaderview.cpp:80
 msgid "Function keys allow performing fast operations on files."
@@ -2926,11 +2926,7 @@ msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) \n"
 "calculate space occupied by the folder (recursively)."
-msgstr ""
-"Wenn der aktuelle Eintrag ein Verzeichnis ist, wird durch das Betätigen der\n"
-"Leertaste das Verzeichnis nicht nur ausgewählt, sondern es wird ebenfalls\n"
-"der benötigte Speicherplatzbedarf inklusive aller Unterverzeichnisse\n"
-"berechnet."
+msgstr "Wenn der aktuelle Eintrag ein Verzeichnis ist, wird durch das Betätigen der Leertaste das Verzeichnis nicht nur ausgewählt, sondern es wird ebenfalls der benötigte Speicherplatzbedarf inklusive aller Unterverzeichnisse berechnet."
 
 #: Dialogs/krdialogs.cpp:228
 msgid ""
@@ -3922,7 +3918,7 @@ msgstr "Filelight-Ansicht"
 
 #: DiskUsage/diskusagegui.cpp:219
 msgid "Viewing the usage of directory:"
-msgstr "Speicherplatzbedarf von Verzeichnis betrachten:"
+msgstr "Speicherplatzbedarf von Verzeichnis visualisieren:"
 
 #: DiskUsage/dulistview.cpp:62
 msgid "Total size"
@@ -4155,7 +4151,7 @@ msgstr "Generischer Modus"
 
 #: Konfigurator/kggeneral.cpp:92
 msgid "Use the system's default viewer"
-msgstr "Standardviewer des Systems verwenden"
+msgstr "Standardviewer des Systems verwenden."
 
 #: Konfigurator/kggeneral.cpp:93
 msgid "Text mode"
@@ -4163,7 +4159,7 @@ msgstr "Textmodus"
 
 #: Konfigurator/kggeneral.cpp:93
 msgid "View the file in text-only mode"
-msgstr "Datei im Textmodus betrachten"
+msgstr "Datei im Textmodus öffnen."
 
 #: Konfigurator/kggeneral.cpp:94
 msgid "Hex mode"
@@ -4171,7 +4167,7 @@ msgstr "Hexmodus"
 
 #: Konfigurator/kggeneral.cpp:94
 msgid "View the file in hex-mode (better for binary files)"
-msgstr "Datei im Hexmodus betrachten (besser bei Binärdateien)"
+msgstr "Datei im Hexmodus öffnen (besser geeignet für Binärdateien)."
 
 #: Konfigurator/kggeneral.cpp:100
 msgid "Viewer opens each file in a separate window"
@@ -4191,7 +4187,7 @@ msgstr "Terminal:"
 
 #: Konfigurator/kggeneral.cpp:116
 msgid "Terminal Emulator sends Chdir on panel change"
-msgstr "Terminalemulator gleicht Verzeichnis an beim Dateifensterwechsel"
+msgstr "Terminalemulator gleicht Verzeichnis an"
 
 #: Konfigurator/kggeneral.cpp:117
 msgid ""
@@ -4207,7 +4203,7 @@ msgstr "Temporäres Verzeichnis:"
 
 #: Konfigurator/kggeneral.cpp:133
 msgid "Note: you must have full permissions for the temporary directory!"
-msgstr "Hinweis: Sie müssen volle Rechte im temporären Verzeichnis besitzen"
+msgstr "Hinweis: Sie benötigen sämtliche Rechte im temporären Verzeichnis"
 
 #: Konfigurator/kggeneral.cpp:151
 msgid "Searching for tools..."
@@ -4312,7 +4308,7 @@ msgstr "Fortgeschritten"
 
 #: Konfigurator/konfigurator.cpp:104
 msgid "Be sure you know what you're doing!"
-msgstr "Bei diesen Einstellungen ist Vorsicht geboten!"
+msgstr "Diese Einstellungen sind nur für Experten gedacht!"
 
 #: Konfigurator/konfigurator.cpp:107
 msgid "Customize the way Krusader deals with archives"
@@ -4594,11 +4590,11 @@ msgstr "Dateifenster-Werkzeugleiste anzeigen"
 
 #: Konfigurator/kglookfeel.cpp:195
 msgid "The panel toolbar will be visible."
-msgstr "Die Werkzeugleiste wird angezeigt werden."
+msgstr "Die Dateifenster-Werkzeugleiste anzeigen."
 
 #: Konfigurator/kglookfeel.cpp:201
 msgid "Visible Panel Toolbar buttons"
-msgstr "Sichtbare Knöpfe in der Dateifenster-Werkzeugleiste"
+msgstr "Knöpfe in der Dateifenster-Werkzeugleiste"
 
 #: Konfigurator/kglookfeel.cpp:207
 msgid "Clear location bar button"
@@ -4732,7 +4728,7 @@ msgid ""
 "Ask for a result name when feeding items to the listbox. By default the "
 "standard value is used."
 msgstr ""
-"Beim 'Einspeisen ins Dateifenster' nach einem Dateinamen fragen. Ansonsten "
+"Bei 'Ins Dateifenster einspeisen' nach einem Dateinamen fragen. Ansonsten "
 "wird ein Standardwert verwendet."
 
 #: Konfigurator/kgadvanced.cpp:85
@@ -5337,7 +5333,7 @@ msgstr "Entfernen"
 
 #: Konfigurator/kguseractions.cpp:256
 msgid "The file you've chosen doesn't seem to be a valid action-file."
-msgstr "Die ausgewählte Datei scheint keine gültige Aktionendatei zu sein."
+msgstr "Die ausgewählte Datei scheint keine gültige Aktionsdatei zu sein."
 
 #: Konfigurator/kguseractions.cpp:264
 msgid "No actions found in this file."
@@ -5351,7 +5347,7 @@ msgid ""
 "Konfigurator now!"
 msgstr ""
 "Aufgrund von Namenskonflikten konnten nicht alle Aktionen importiert "
-"werden. Überprüfen Sie die Aktionenliste auf der linken Seite, um die Konflikte zu "
+"werden. Überprüfen Sie die Aktionsliste auf der linken Seite, um die Konflikte zu "
 "beheben.\n"
 "Bitte beachten Sie, dass die Aktionen nicht importiert werden, falls der Konfigurator jetzt geschlossen wird!"
 
@@ -5445,10 +5441,7 @@ msgstr ""
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
-msgstr ""
-"Krusader kann nicht im Systemverwaltungs-Modus gestartet werden, da sich\n"
-"'krusader' und/oder 'kdesu' nicht in Ihrem Pfad befinden. Bitte stellen Sie\n"
-"die entsprechenden Abhängigkeiten im Konfigurator ein."
+msgstr "Krusader kann nicht im Systemverwaltungsmodus gestartet werden, da sich 'krusader' und/oder 'kdesu' nicht in Ihrem Pfad befinden. Bitte stellen Sie die entsprechenden Abhängigkeiten im Konfigurator ein."
 
 #: krslots.cpp:545
 msgid "Enter a URL to view:"
