@@ -1,5 +1,6 @@
     ADDED: winning icons, SVGs and fixed code to use them
-    ADDED: DUMMY splash screen (krusader/splash.jpg) which will be replaced later
+    ADDED: DUMMY splash screen (krusader/splash.jpg) which will be replaced
+           later
     FIXED: 'match whole word only' flag doesn't work in search
     FIXED: [ 1352107 ] File search "as you type"
     FIXED: [ 1351641 ] Krusader 1.70.0-beta2 on Sparc/Solaris: checksumdlg.h
@@ -16,45 +17,58 @@
     ADDED: you can turn off sending CDs to the terminal emulator (general tab)
     ADDED: unpacking from RPM packages (much faster than using krarc)
 
-  CHANGED: our write-enabled tar KIO-slave is only build when --with-kiotar is passed
-           to ./configure. In this case the KDE-version will may be overwritten!
+  CHANGED: our write-enabled tar KIO-slave is only build when --with-kiotar is
+           passed to ./configure. In this case the KDE-version will may be
+           overwritten!
 
     FIXED: [ 1345220 ] bookmarks: separators shown as folders
-    FIXED: new viewer tabs were sometimes added to windows different from the previously used ones
-    FIXED: [ 1323613 ] SECURITY!!! PopularUrls stores cleartext passwords in krusaderrc
-    FIXED: [ 1329044 ] krarc, missed similar file names belonging to different rpm-s
-    FIXED: krarc doesn't notice the change of the rpm file to create new contents.cpio
+    FIXED: new viewer tabs were sometimes added to windows different from the
+           previously used ones
+    FIXED: [ 1323613 ] SECURITY!!! PopularUrls stores cleartext passwords in
+           krusaderrc
+    FIXED: [ 1329044 ] krarc, missed similar file names belonging to different
+           rpm-s
+    FIXED: krarc doesn't notice the change of the rpm file to create new
+           contents.cpio
     FIXED: iso protocol cannot step into files larger than 2 GByte
-    FIXED: KDE 3.4, starting from profile misses the active tab which causes inconsistent state
+    FIXED: KDE 3.4, starting from profile misses the active tab which causes
+           inconsistent state
     FIXED: krarc reports 000 permission for bz2 files
     FIXED: bug in checksum module regarding names with spaces
     FIXED: konfigurator minor fixes
     FIXED: viewer, the tabs were identified by its page index, which can change
-    FIXED: searcher: space means logical OR "text1 text2" == "*text1* || *text2*"
+    FIXED: searcher: space means logical OR
+           "text1 text2" == "*text1* || *text2*"
     FIXED: krarc cannot step into those archives which name contains '#'
-    FIXED: viewer doesn't warning to save the window at close, and ignores "Cancel" button
+    FIXED: viewer doesn't warning to save the window at close, and ignores
+           "Cancel" button
     FIXED: locate dialog doesn't close when exiting krusader
-    FIXED: UserAction: Crash when a programm wrote to stderr but only stdout was collected
-           (Thanks to Shao Lo)
+    FIXED: UserAction: Crash when a programm wrote to stderr but only stdout
+           was collected (Thanks to Shao Lo)
     FIXED: searcher crash when clicking onto an empty field after the results
     FIXED: disk usage crash on remote vfs because of recursion
     FIXED: [ 1262907 ] crash when closing an sftp tab which is loading
 
-1.70.0-beta1 hellfire
+1.70.0-beta1 Hellfire
 =====================
-    ADDED: KrSqueezedTextLabel can now specify the area in the string to be always visible
-    ADDED: when searching for text inside file, the first line containing the text is displayed
+    ADDED: KrSqueezedTextLabel can now specify the area in the string to be
+           always visible
+    ADDED: when searching for text inside file, the first line containing the
+           text is displayed
     ADDED: checksum module now supports the cfv tool (for md5 and sha1)
-    ADDED: QuickNavigation: hold ctrl and move the mouse over the url bar to see !
-    ADDED: new checksum creation/verification mechanism (see mail titled "new checksum feature" to krusader-devel)
+    ADDED: QuickNavigation: hold ctrl and move the mouse over the url bar to
+           see!
+    ADDED: new checksum creation/verification mechanism
+           (see mail titled "new checksum feature" to krusader-devel)
     ADDED: alt-ctrl-s creates a new symlink
     ADDED: ctrl-h opens history on the current panel
     ADDED: Nicer application search results
     ADDED: i18n multiple plural support (thanks Vaclav Juza)
     ADDED: right click menu -> trash, delete, shred options
     ADDED: column types can be changed and saved individually to each panel
-    (each side)
-    --architecture-- refactoring in the view. enforcement of getVfile and getMutableVfile
+           (each side)
+    --architecture-- refactoring in the view. enforcement of getVfile and
+                     getMutableVfile
     --architecture-- removed a lot of KrViewItem's API
     ADDED: select remote encoding menu for fish, ftp and sftp protocols
     ADDED: clear-location-bar button a-la konqueror (configurable)

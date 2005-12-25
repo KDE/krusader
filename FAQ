@@ -53,10 +53,10 @@ It seems that Qt 3.3.5 introduced a serious bug which is now causing random
 crashes in many KDE applications including Konqueror.
 You can google for it to find out more. 
 
-As far as we know, debian and suse already posted new Qt binaries that fix the problem,
-and gentoo has masked Qt 3.3.5 completely.
-As for now, you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on your distribution.
-For more information is available on our website at
+As far as we know, debian and suse already posted new Qt binaries that fix the
+problem, and gentoo has masked Qt 3.3.5 completely.
+As for now, you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on your
+distribution. For more information is available on our website at
 http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407 
 
 ------------------------------------------------------------------------
@@ -103,11 +103,11 @@ Chapter 7. Frequently Asked Questions (FAQ)
           Krusader, what's wrong?
 
    7.1.10. When I run make it complains about libfam.la
-   7.1.11. Debian® complains about Qt(TM) when running
+   7.1.11. Debian complains about Qt(TM) when running
           ./configure
 
    7.1.12. I have a libGLcore.so.1 compile error after using the
-          NVIDIA® installer
+          NVIDIA installer
 
    7.1.13. Why Krusader-1.60.x does not compile with gcc4?
    7.1.14. I am having trouble compiling and installing Krusader,
@@ -164,7 +164,7 @@ Chapter 7. Frequently Asked Questions (FAQ)
      * libfam0 libpcre0 glibc libart_lgpl2 libexpat0 libnas2
 
    If you need more info please take a look at the shared library
-   dependencies or the requirements on Debian® .
+   dependencies or the requirements on Debian .
 
    7.1.3. I have followed all steps but configure complains about
    missing libs or headers. What do I need to do?
@@ -189,7 +189,7 @@ Chapter 7. Frequently Asked Questions (FAQ)
    Most RPM-based distributions separate the headers from the
    libs. The headers are needed to compile Krusader. Look for
    packages in the form foo-devel-*.rpm (e.g.
-   kdelibs-devel-3.1-58mdk.i586.rpm) or foo-dev-*.deb for Debian®
+   kdelibs-devel-3.1-58mdk.i586.rpm) or foo-dev-*.deb for Debian
    based distributions. These are usua lly included with your
    distribution.
 
@@ -197,7 +197,7 @@ Chapter 7. Frequently Asked Questions (FAQ)
 
    If you can't find the needed package, use rpmfind and click
    'missing lib or header' in the search line. Or use apt-cache
-   search foo to find the corresponding package for Debian® based
+   search foo to find the corresponding package for Debian based
    distributions.
 
    7.1.4. How do I compile Krusader when I'm using a 64 bit
@@ -251,10 +251,10 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    If the prompt returns without any message, than everything is
    OK.
 
-   If the RPM is not OK, try to find another package at Linux®
+   If the RPM is not OK, try to find another package at Linux
    software archives such as freshmeat.net or KDE-APPS.org, DO
    NOT INSTALL A DAMAGED RPM. If you still can't find the
-   appropriate package for your Linux® distribution, we recommend
+   appropriate package for your Linux distribution, we recommend
    searching for it with rpmfind or rpmpbone.
 
    In general, a package for an older version of your
@@ -337,11 +337,11 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    libfam.la, and make needs libfam.la to compile Krusader. If
    you know how this can be solved, please let us know. Install
    libfam0-devel-foo.rpm. Note: when you install
-   Mandrake(TM)-Linux® 9.2 with the default settings, this
+   Mandrake(TM)-Linux 9.2 with the default settings, this
    package is not installed. If you need more information take a
    look at FAQ missing libs or headers.
 
-   7.1.11. Debian® complains about Qt(TM) when running
+   7.1.11. Debian complains about Qt(TM) when running
    ./configure
 
    This problem occurs when you use gcc 2.95, you need to install
@@ -354,24 +354,24 @@ $ export CPP=/usr/bin/cpp-3.2
 
    For more information please take a look in our forum and at
    the instructions on how to build a Qt(TM)/KDE3 application on
-   Debian®.
+   Debian.
 
    7.1.12. I have a libGLcore.so.1 compile error after using the
-   NVIDIA® installer
+   NVIDIA installer
 
-   This problem occurs when you use the NVIDIA® installer and not
-   the official NVIDIA® packages of your distribution. Krusader
+   This problem occurs when you use the NVIDIA installer and not
+   the official NVIDIA packages of your distribution. Krusader
    is based on Qt(TM) which can be linked against the X OpenGL
    libraries. As a result Krusader may look for OpenGL as well.
-   The problem is that the NVIDIA® installer (prior to version
+   The problem is that the NVIDIA installer (prior to version
    7xxx) doesn't do its job properly, it replaces the OpenGL
    header files (which get included into Krusader) but doesn't
    set the libGL links correctly. The best solution is to use the
-   NVIDIA® packages provided by your distributor or a new NVIDIA®
+   NVIDIA packages provided by your distributor or a new NVIDIA
    installer, the current version is 7114. If, for some reason,
-   you must use an old NVIDIA® driver, one solution is the
+   you must use an old NVIDIA driver, one solution is the
    following (bad? :) hack, the exact commands depend on the
-   distribution used and the version of the NVIDIA® driver (6111
+   distribution used and the version of the NVIDIA driver (6111
    in this example), but it should read something like this:
 $ ln -s libGLcore.so.1.0.6111  libGLcore.so.0
 $ ln -s libGLcore.so.1.0.6111  libGLcore.so
@@ -410,7 +410,7 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
     2. If you can't find a solution, please make a note of the
        following issues:
           + the Krusader version used
-          + the Linux® distribution + version used
+          + the Linux distribution + version used
           + a good description of the problem
        Without this information, it is very difficult for us to
        help you.
@@ -515,8 +515,8 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    introduced a serious bug which is currently (December 2005)
    causing random crashes in many KDE applications including
    Konqueror. You can Google for it to find out more. As far as
-   we know, Debian®-Sid and SuSE® already posted new Qt(TM)
-   binaries that fix the problem, and Gentoo® has masked Qt(TM)
+   we know, Debian-Sid and SuSE already posted new Qt(TM)
+   binaries that fix the problem, and Gentoo has masked Qt(TM)
    3.3.5 completely. As for now, you either need Qt(TM) 3.3.4 or
    a fixed Qt(TM) 3.3.5, depending on your distribution. More
    information is available on our website.
@@ -544,7 +544,7 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    other open internal viewers/editors) freeze is fatal, and can
    only be corrected with the kill -9. We have no solution to
    offer here. This is an issue not confined to file managers, or
-   even the Linux® OS! The problem is that you "hang" on the
+   even the Linux OS! The problem is that you "hang" on the
    first access to the dead share - so there is no way around it,
    no check to avoid it, even ls will freeze. Just trying to read
    something - anything - is enough to get you stuck. The one and
@@ -614,7 +614,7 @@ $ su -c 'fam -l'
    Copy the krarc.protocol file into $KDEDIR/share/services
 
    or the directory where the KIO slaves are placed in your
-   Linux® distribution.
+   Linux distribution.
 
    7.2.8. Why have i trouble with my FTP connection?
 
@@ -702,7 +702,7 @@ $ su -c 'fam -l'
 
    7.2.16. Why does the handbook not work?
 
-   This error will happen on Debian® (or Debian® based) distro
+   This error will happen on Debian (or Debian based) distro
    with the krusader_1.51-1_i386.deb package. You will see the
    next error message if you try to open the handbook: "The
    requested help file could not be found. Check that you have
@@ -727,8 +727,8 @@ $ su -c 'fam -l'
    7.3.6. How does the Krusader forum work?
    7.3.7. How can I translate Krusader to my native language?
    7.3.8. How can I support Krusader?
-   7.3.9. Is there a Mac® OS X port?
-   7.3.10. Is there a Windows® port?
+   7.3.9. Is there a Mac OS X port?
+   7.3.10. Is there a Windows port?
 
    7.3.1. How can I report a wish, a patch, a suggestion, or a
    comment?
@@ -778,7 +778,7 @@ $ su -c 'fam -l'
     3. If you can't find this bug mentioned, please submit it
        into the bug tracker by clicking the Submit New button in
        the bug-tracker window. Please submit the following
-       issues: the Krusader version used, the Linux® distribution
+       issues: the Krusader version used, the Linux distribution
        + version used, processor type, and as good a description
        of the problem as you can manage.
 
@@ -909,17 +909,17 @@ $ su -c 'fam -l'
    us feedback, bug reports, patches, donations, translations,
    ...
 
-   7.3.9. Is there a Mac® OS X port?
+   7.3.9. Is there a Mac OS X port?
 
-   Yes, there is Mac® OS X port, but you will not have (yet) the
-   all the power like on Linux®. Please read the Mac® OS X port
+   Yes, there is Mac OS X port, but you will not have (yet) the
+   all the power like on Linux. Please read the Mac OS X port
    section for more information. A recommended native file
-   manager for Mac® OS is Disk Order© (shareware).
+   manager for Mac OS is Disk Order (shareware).
 
-   7.3.10. Is there a Windows® port?
+   7.3.10. Is there a Windows port?
 
    No, but this might change in the future. Please help us,
-   thanks. A recommended native file manager for Windows® is
-   Total Commander© (shareware).
+   thanks. A recommended native file manager for Windows is
+   Total Commander (shareware).
      _________________________________________________________
 

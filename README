@@ -1,26 +1,27 @@
 Krusader 1.70.0-beta2 (Afterburner)
-===============================
+===================================
 Welcome is the 2nd beta in the 1.70.x series. 
-Download it, play with it, push it to the limit, break it if you can,
-and then tell us what you found! 
+Download it, play with it, push it to the limit, break it if you can, and then
+tell us what you found! 
 
-IMPORTANT: Please remove your ~/.kde/share/apps/krusader/krusaderui.rc file after installation!!!
-(Else you won't see new menu entries. But please note: This will also reset all your changes on
-toolbars and shortcuts!)
+IMPORTANT: Please remove your ~/.kde/share/apps/krusader/krusaderui.rc file
+           after installation!!!
+           (Else you won't see new menu entries. But please note: This will
+           also reset all your changes on toolbars and shortcuts!)
 
 IMPORTANT: Crashes in Krusader caused by Qt 3.3.5
 *************************************************
-We've been getting a lot of emails and bug reports regarding random
-crashes in Krusader, especially during some file operations (copy/move etc.).
-These crashes are related to Qt 3.3.5 and NOT Krusader.
-It seems that Qt 3.3.5 introduced a serious bug which is now causing random 
+We've been getting a lot of emails and bug reports regarding random crashes in
+Krusader, especially during some file operations (copy/move etc.). These crashes
+are related to Qt 3.3.5 and NOT Krusader.
+It seems that Qt 3.3.5 introduced a serious bug which is now causing random
 crashes in many KDE applications including Konqueror.
 You can google for it to find out more. 
 
-As far as we know, debian and suse already posted new Qt binaries that fix the problem,
-and gentoo has masked Qt 3.3.5 completely.
-As for now, you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on your distribution.
-For more information is available on our website at
+As far as we know, debian and suse already posted new Qt binaries that fix the
+problem, and gentoo has masked Qt 3.3.5 completely.
+As for now, you either need Qt 3.3.4 or a fixed Qt 3.3.5, depending on your
+distribution. For more information is available on our website at
 http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1407 
 
 Changes since beta1 include (but not limited to):
@@ -30,8 +31,8 @@ Changes since beta1 include (but not limited to):
 * Bugfixes to bookmarks, viewer and much more
 * A fix for a nasty bug that was plagueing people with gcc 4.x  
 
-Krusader v1.70.0 contains over 40 changes, bug fixes and updates in
-response to reports and requests from our users.
+Krusader v1.70.0 contains over 40 changes, bug fixes and updates in response to
+reports and requests from our users.
 The highlights are:
 
 New Modules/Features
@@ -40,31 +41,32 @@ New Modules/Features
 * A Safari-like Jump-Back feature (Ctrl-J and in the bookmark-menu)
 * Quick Navigation: hold the CTRL button and move the mouse over 
   the text in the url bar to see this new feature in action
-* checksum creation/verification mechanism that supports
-  md5, sha1, sha256, tiger, whirlpool. external supported tools are md5deep and cfv.
-* editor/viewer is now tabbed. Configure it in General->Viewer
+* Checksum creation/verification mechanism that supports md5, sha1, sha256,
+  tiger, whirlpool. external supported tools are md5deep and cfv.
+* Editor/viewer is now tabbed. Configure it in General->Viewer
 * Viewer has a new placeholder for the UserActions which allows
   to open the viewer with different view- and window-modes:
   %_View("filename", "view-mode", "window-mode")%
-* filters for selecting files - click "select files" to see how
-* column types can be changed and saved individually to each panel (each side).
+* Filters for selecting files - click "select files" to see how
+* Column types can be changed and saved individually to each panel (each side).
   right click on the column names to use this mechanism
 * When searching for text inside files, the result will display the line
   in which the requested was found.
-* select remote encoding menu for fish, ftp and sftp protocols.
+* Select remote encoding menu for fish, ftp and sftp protocols.
   Accessible via a new subemenu in the Command menu.
 * One can now Synchronize selected files, via right-click menu
 
 Improvements
 ------------
-* Synchronizer is now in color !
-* calculate space in archives and remote FS (KDE >= 3.3.0) 
-* improved performance when reading directories with many files 
-* new permissions column as octal numbers
-* preserve date for local targets on copy / move operations
-* starting krusader with more tabs, using --left=tab1,tab2,tab3 --right=tab4,tab5
+* Synchronizer is now in color!
+* Calculate space in archives and remote FS (KDE >= 3.3.0) 
+* Improved performance when reading directories with many files 
+* New permissions column as octal numbers
+* Preserve date for local targets on copy / move operations
+* Starting krusader with more tabs,
+  using --left=tab1,tab2,tab3 --right=tab4,tab5
 * Use WhatsThis in favour of tooltips where reasonable
-and more ...
+  and more ...
 
 
 Usability
