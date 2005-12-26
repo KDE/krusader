@@ -10,18 +10,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0-beta2\n"
+"Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-11-03 22:44+0100\n"
-"PO-Revision-Date: 2005-10-12 21:46+0000\n"
+"PO-Revision-Date: 2005-12-26 23:19+0000\n"
 "Last-Translator: Pawel Salawa <boogie@myslenice.one.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -364,8 +363,7 @@ msgstr "&Usuń"
 #: GUI/actionpropertybase.cpp:441 GUI/actionpropertybase.cpp:443
 #: GUI/actionpropertybase.cpp:448
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr ""
-"Pokaż <b>Akcję użytkownika</b> tylko dla typów plików zdefiniowanych tutaj."
+msgstr "Pokaż <b>Akcję użytkownika</b> tylko dla typów plików zdefiniowanych tutaj."
 
 #: GUI/actionpropertybase.cpp:442
 msgid "Protocol"
@@ -1383,8 +1381,7 @@ msgstr " Odznaczanie plików "
 
 #: Panel/listpanel.cpp:627
 msgid "No space information on non-local filesystems"
-msgstr ""
-"Brak informacji o ilości wolnego miejsca na nie lokalnych systemach plików"
+msgstr "Brak informacji o ilości wolnego miejsca na nie lokalnych systemach plików"
 
 #: Panel/listpanel.cpp:634
 msgid "No space information on [dev]"
@@ -2013,8 +2010,7 @@ msgstr "Wyniki"
 
 #: Locate/locate.cpp:194
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Nie można uruchomić 'locate'! Sprawdź stronę 'Zależności' w konfiguratorze."
+msgstr "Nie można uruchomić 'locate'! Sprawdź stronę 'Zależności' w konfiguratorze."
 
 #: Locate/locate.cpp:231
 msgid ""
@@ -2507,23 +2503,20 @@ msgid "Text &editor"
 msgstr "&Edytor tekstu"
 
 #: KViewer/krviewer.cpp:99
-#, fuzzy
 msgid "&Next tab"
-msgstr "Następna zakładka"
+msgstr "&Następna zakładka"
 
 #: KViewer/krviewer.cpp:100
-#, fuzzy
 msgid "&Previous tab"
-msgstr "Poprzednia zakładka"
+msgstr "&Poprzednia zakładka"
 
 #: KViewer/krviewer.cpp:102
-#, fuzzy
 msgid "&Detach tab"
-msgstr "Następna zakładka"
+msgstr "Uwolnij zakła&dkę"
 
 #: KViewer/krviewer.cpp:106
 msgid "&Close current tab"
-msgstr "Zamknij &bieżącą zakładkę"
+msgstr "Zamknij bieżą&cą zakładkę"
 
 #: KViewer/krviewer.cpp:107
 msgid "&Quit"
@@ -2757,8 +2750,7 @@ msgstr ""
 "Daj znać autorom"
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "Wewnętrzny błąd MountMana. Proszę powiadomić twórców. Dziękuję."
 
 #: MountMan/kmountmangui.cpp:330
@@ -2811,8 +2803,7 @@ msgstr "Krusader - UPRAWNIENIA ADMINISTRATORA"
 
 #: krusaderview.cpp:80
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
+msgstr "Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
 
 #: Dialogs/krdialogs.cpp:103
 msgid "Preserve date (only for local targets)"
@@ -3142,8 +3133,7 @@ msgstr "&Anuluj"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
-"Zapisane 'Popularne adresy URL' są niepoprawne. Lista zostanie wyczyszczona"
+msgstr "Zapisane 'Popularne adresy URL' są niepoprawne. Lista zostanie wyczyszczona"
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -3250,9 +3240,8 @@ msgid "<qt>There was an error while running <b>%1</b>."
 msgstr "<qt>Wystąpił błąd podczas uruchamiania <b>%1</b>."
 
 #: Dialogs/checksumdlg.cpp:289 Dialogs/checksumdlg.cpp:400
-#, fuzzy
 msgid "Error reading stdout or stderr"
-msgstr "Błąd podczas odczytu pliku zakładek: "
+msgstr "Błąd podczas odczytu stdout lub stderr"
 
 #: Dialogs/checksumdlg.cpp:309
 msgid ""
@@ -3289,9 +3278,8 @@ msgstr ""
 "Krusadera."
 
 #: Dialogs/checksumdlg.cpp:378
-#, fuzzy
 msgid "Verifying checksums ..."
-msgstr "Sprawdź sumy kontrolne"
+msgstr "Sprawdzanie sum kontrolnych..."
 
 #: Dialogs/checksumdlg.cpp:435
 msgid "Errors were detected while verifying the checksums"
@@ -3519,8 +3507,7 @@ msgstr "Pokaż opcje"
 
 #: Synchronizer/synchronizergui.cpp:1157
 msgid "Show files marked to <i>Copy from left to right</i>."
-msgstr ""
-"Wyświetla pliki zaznaczone do <i>skopiowania z lewej strony na prawą</i>."
+msgstr "Wyświetla pliki zaznaczone do <i>skopiowania z lewej strony na prawą</i>."
 
 #: Synchronizer/synchronizergui.cpp:1165
 msgid "Show files considered to be identical."
@@ -3532,8 +3519,7 @@ msgstr "Wyświetla pliki wykluczone."
 
 #: Synchronizer/synchronizergui.cpp:1181
 msgid "Show files marked to <i>Copy from right to left</i>"
-msgstr ""
-"Wyświetla pliki zaznaczone do <i>skopiowania z prawej strony na lewą</i>."
+msgstr "Wyświetla pliki zaznaczone do <i>skopiowania z prawej strony na lewą</i>."
 
 #: Synchronizer/synchronizergui.cpp:1189
 msgid "Show files marked to delete."
@@ -4185,13 +4171,15 @@ msgstr "Terminal:"
 
 #: Konfigurator/kggeneral.cpp:116
 msgid "Terminal Emulator sends Chdir on panel change"
-msgstr ""
+msgstr "Zmieniaj katalog emulatora terminala podczas zmiany panela."
 
 #: Konfigurator/kggeneral.cpp:117
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
 msgstr ""
+"Kiedy zaznaczone, za każdym razem gdy panel jest zmieniany (np przez wciśnięcie TAB), "
+"krusader zmienia bierzący katalog w emulatorze terminala."
 
 #: Konfigurator/kggeneral.cpp:125
 msgid "Temp Directory:"
@@ -4206,8 +4194,7 @@ msgid "Searching for tools..."
 msgstr "Poszukiwanie narzędzi..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Upewnij się czy zainstalowałeś nowe narzędzia w twojej ścieżce <code>$PATH</"
 "code> (np. /usr/bin)"
@@ -4454,8 +4441,7 @@ msgid "Obey KDE's global selection policy"
 msgstr "Przestrzegaj globalnych zasad wybierania KDE"
 
 #: Konfigurator/kglookfeel.cpp:89
-msgid ""
-"Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
+msgid "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
 msgstr ""
 "Użyj ustawień KDE KControl:<p><i>Centrum Sterowania KDE->Urządzenia "
 "peryferyjne->Mysz</i>"
@@ -4649,10 +4635,8 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Przycisk przełączający przeglądanie synchroniczne"
 
 #: Konfigurator/kglookfeel.cpp:213
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
-msgstr ""
-"Każda zmiana katalogu w panelu jest dokonywana również w drugim panelu."
+msgid "Each directory change in the panel is also performed in the other panel."
+msgstr "Każda zmiana katalogu w panelu jest dokonywana również w drugim panelu."
 
 #: Konfigurator/kglookfeel.cpp:277 Konfigurator/kglookfeel.cpp:294
 msgid "Select a shortcuts file"
@@ -5272,8 +5256,7 @@ msgid "Test archive before unpacking"
 msgstr "Testowanie archiwum po zakończeniu pakowania"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Niektóre uszkodzone archiwa mogą spowodować upadek, dlatego sugerowane jest "
 "testowanie."
@@ -5283,8 +5266,7 @@ msgid "Searching for packers..."
 msgstr "Szukanie narzędzie pakujących..."
 
 #: Konfigurator/kgarchives.cpp:112
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Upewnij się że zainstalowałeś nowe narzędzia pakujące w ścieżce <code>$PATH</"
 "code> (np. /usr/bin)"
@@ -5416,8 +5398,7 @@ msgstr ""
 
 #: krslots.cpp:420
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Nie można uruchomić 'mount'! Sprawdź stronę 'Zależności' w Konfiguratorze."
+msgstr "Nie można uruchomić 'mount'! Sprawdź stronę 'Zależności' w Konfiguratorze."
 
 #: krslots.cpp:452
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
@@ -5577,8 +5558,7 @@ msgid "Not a valid CRC file!"
 msgstr "Nieprawidłowy plik CRC!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Sprawdzanie poprawności bez dobrego pliku CRC jest niemożliwe. Kontynuować "
 "łączenie?"
@@ -5618,3 +5598,4 @@ msgstr "Błąd podczas odczytu pliku %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Błąd podczas zapisu pliku %1!"
+
