@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-11-03 22:44+0100\n"
-"PO-Revision-Date: 2005-12-26 23:36+0100\n"
+"PO-Revision-Date: 2005-12-27 13:03+0100\n"
 "Last-Translator: Arpad Biro <biro_arpad@yahoo.com>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -160,8 +160,8 @@ msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift-F1</code>."
 msgstr ""
-"A <b>felhasználói művelet</b> részletes leírása. Csak a <i>Konfigurátorban</i> "
-"és a <code>Shift+F1</code> lenyomására jelenik meg."
+"A <b>felhasználói művelet</b> részletes leírása. Csak a <i>Konfigurátorban</"
+"i> és a <code>Shift+F1</code> lenyomására jelenik meg."
 
 #: GUI/actionpropertybase.cpp:390
 msgid "Command accepts"
@@ -198,8 +198,8 @@ msgid ""
 "<i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
 "A <b>felhasználói művelet</b> egyedi neve. Csak a <i>Konfigurátorban</i> "
-"használatos; más menüben nem jelenik meg.<p><b>Megjegyzés</b>: "
-"a <b>felhasználói menüben</b> megjelenített <i>cím</i> lentebb állítható be."
+"használatos; más menüben nem jelenik meg.<p><b>Megjegyzés</b>: a "
+"<b>felhasználói menüben</b> megjelenített <i>cím</i> lentebb állítható be."
 
 #: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:419
 msgid ""
@@ -219,6 +219,8 @@ msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
 msgstr ""
+"Minden <b>felhasználói műveletnek</b> lehet saját ikonja. Az ikon "
+"a cím előtt fog megjelenni a <b>felhasználói menüben</b>."
 
 #: GUI/actionpropertybase.cpp:402
 msgid "Use tooltip"
@@ -226,7 +228,7 @@ msgstr "Eszköztipp használata"
 
 #: GUI/actionpropertybase.cpp:403
 msgid "The <i>Tooltip</i> can be used as <i>Description</i>."
-msgstr ""
+msgstr "Az <i>eszköztipp</i> használható <i>leírásként</i>"
 
 #: GUI/actionpropertybase.cpp:404
 msgid "Identifier:"
@@ -245,18 +247,30 @@ msgid ""
 "(\"Selected\")%</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
+"A <i>parancs</i> megadja azt a parancsot, amely a <b>felhasználói művelet</b> "
+"használatakor végrehajtásra kerül. Ez lehet egy egyszerű, parancsértelmezőben "
+"használatos parancs is, vagy több parancs összetett sorozata. <b>Változók</b> "
+"is használhatók a parancsokban.<p>\n"
+"Példák:<ul><code><li>eject /mnt/cdrom</li><li>amarok --append %aList"
+"(\"Selected\")%</li></code></ul>\n"
+"A szintaxis a kézikönyvben van részletesen leírva."
 
 #: GUI/actionpropertybase.cpp:410 GUI/actionpropertybase.cpp:413
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
+"Az <i>eszköztipp</i> akkor jelenik meg, amikor az egérkurzor a "
+"<b>felhasználói műveleteket tartalmazó eszköztár</b> megfelelő "
+"bejegyzésén áll"
 
 #: GUI/actionpropertybase.cpp:411 GUI/actionpropertybase.cpp:424
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
 msgstr ""
+"A <i>munkakönyvtár</i> határozza meg, hogy melyik könyvtárban "
+"hajtódik végre a <i>parancs</i>"
 
 #: GUI/actionpropertybase.cpp:412
 msgid "Tooltip:"
@@ -348,7 +362,7 @@ msgstr "&Törlés"
 #: GUI/actionpropertybase.cpp:441 GUI/actionpropertybase.cpp:443
 #: GUI/actionpropertybase.cpp:448
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr "A <b>művelet</b> csak ezeknél a fájltípusoknál való megjelenítése"
+msgstr "A <b>művelet</b> csak ezen értékek esetén való megjelenítése"
 
 #: GUI/actionpropertybase.cpp:442
 msgid "Protocol"
@@ -367,6 +381,9 @@ msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
 msgstr ""
+"Csak az itt megadott fájlneveknél jelenjen meg a <b>felhasználói művelet</b>. "
+"Használhatók a \"<code>?</code>\" és a \"<code>*</code>\" helyettesítési "
+"karakterek."
 
 #: GUI/actionpropertybase.cpp:457
 msgid "Filename"
@@ -721,6 +738,9 @@ msgid ""
 "Uncaught JavaScript exception '%2'\n"
 "%3"
 msgstr ""
+"A(z) \"%1\" fájlban:\n"
+"Nem kezelt JavaScript-kivétel: \"%2\"\n"
+"%3"
 
 #: KrJS/krjs.cpp:66
 msgid ""
@@ -728,6 +748,9 @@ msgid ""
 "Uncaught JavaScript exception '%2' at line %3\n"
 "%4"
 msgstr ""
+"A(z) \"%1\" fájlban:\n"
+"Nem kezelt JavaScript-kivétel: \"%2\" ebben a sorban: %3\n"
+"%4"
 
 #: KrJS/krjs.cpp:68 KrJS/krjs.cpp:73
 msgid "JavaScript error"
@@ -738,6 +761,8 @@ msgid ""
 "In %1:\n"
 "There is an error in the JavaScript"
 msgstr ""
+"A(z) \"%1\" fájlban:\n"
+"Hiba van a JavaScript kódban"
 
 #: Filter/filtertabs.cpp:44
 msgid "&General"
@@ -772,12 +797,12 @@ msgid ""
 "b>: the search term '<code>text</code>' is equivalent to '<code>*text*</"
 "code>'."
 msgstr ""
-"Itt adható meg a fájlnévszűrési feltétel.<p>Helyettesítési karakterek "
-"is használhatók. Több minta esetén azokat szóközzel kell elválasztani; "
-"a keresésből a \"függőleges vonal\" (\"pipe\") jellel zárható ki egy "
-"minta.<p>Példák:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp "
-"*.h | *.moc.cpp</li></code></ul><b>Megjegyzés</b>: a \"<code>szöveg</code>\" "
-"keresési minta jelentése megegyezik a \"<code>*szöveg*</code>\" mintáéval."
+"Itt adható meg a fájlnévszűrési feltétel.<p>Helyettesítési karakterek is "
+"használhatók. Több minta esetén azokat szóközzel kell elválasztani; a "
+"keresésből a \"függőleges vonal\" (\"pipe\") jellel zárható ki egy minta."
+"<p>Példák:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</"
+"li></code></ul><b>Megjegyzés</b>: a \"<code>szöveg</code>\" keresési minta "
+"jelentése megegyezik a \"<code>*szöveg*</code>\" mintáéval."
 
 #: Filter/generalfilter.cpp:84
 msgid "&Of type:"
@@ -987,8 +1012,8 @@ msgid ""
 "The date %1 is not valid according to your locale. Please re-enter a valid "
 "date (use the date button for easy access)."
 msgstr ""
-"A(z) \"%1\" dátum nem felel meg a helyi beállításoknak. "
-"Adjon meg egy érvényes dátumot (használhatja a \"dátum\" gombot is)."
+"A(z) \"%1\" dátum nem felel meg a helyi beállításoknak. Adjon meg egy "
+"érvényes dátumot (használhatja a \"dátum\" gombot is)."
 
 #: Filter/advancedfilter.cpp:508
 msgid "Specified sizes are inconsistent!"
@@ -999,8 +1024,8 @@ msgid ""
 "Please re-enter the values, so that the left side size will be smaller than "
 "(or equal to) the right side size."
 msgstr ""
-"Adja meg újra az értékeket úgy, hogy a bal oldali méret "
-"kisebb vagy egyenlő legyen mint a jobb oldali méret."
+"Adja meg újra az értékeket úgy, hogy a bal oldali méret kisebb vagy egyenlő "
+"legyen mint a jobb oldali méret."
 
 #: Filter/advancedfilter.cpp:526 Filter/advancedfilter.cpp:584
 msgid "Dates are inconsistent!"
@@ -1012,18 +1037,17 @@ msgid ""
 "the dates, so that the left side date will be earlier than the right side "
 "date."
 msgstr ""
-"A bal oldalon szereplő dátum későbbi mint a jobb oldalon szereplő. "
-"Adja meg újra a dátumokat úgy, hogy a bal oldalon szereplő dátum korábbi "
-"legyen mint a jobb oldali."
+"A bal oldalon szereplő dátum későbbi mint a jobb oldalon szereplő. Adja meg "
+"újra a dátumokat úgy, hogy a bal oldalon szereplő dátum korábbi legyen mint "
+"a jobb oldali."
 
 #: Filter/advancedfilter.cpp:585
 msgid ""
 "The date on top is later than the date on the bottom. Please re-enter the "
 "dates, so that the top date will be earlier than the bottom date."
 msgstr ""
-"A fent szereplő dátum későbbi mint az alul szereplő. "
-"Adja meg újra a dátumokat úgy, hogy a fent szereplő dátum korábbi "
-"legyen mint az alsó."
+"A fent szereplő dátum későbbi mint az alul szereplő. Adja meg újra a "
+"dátumokat úgy, hogy a fent szereplő dátum korábbi legyen mint az alsó."
 
 #: UserAction/expander.cpp:70
 msgid "panel's path"
@@ -2055,8 +2079,9 @@ msgid ""
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
 "<qt><b>Üdvözli a Krusader!</b><p>Mivel a programot most indította először, "
-"ezért a Krusader megkeresi a külső alkalmazásokat a számítógépen. Ezt követően "
-"elindul a Konfigurátor, ahol igény szerint módosíthatók a Krusader beállításai.</p></qt>"
+"ezért a Krusader megkeresi a külső alkalmazásokat a számítógépen. Ezt "
+"követően elindul a Konfigurátor, ahol igény szerint módosíthatók a Krusader "
+"beállításai.</p></qt>"
 
 #: krusader.cpp:433
 msgid "F3 View Dialog"
@@ -2841,7 +2866,7 @@ msgid ""
 "other, already selected items."
 msgstr ""
 "Ha be van jelölve, akkor a bal oldali egérgombnak egy elemen való lenyomása\n"
-"kijelöli azon elemet, de nem szünteti meg más, korábban kijelölt elemek "
+"kijelöli azon elemet, de nem szünteti meg más, korábban kijelölt elemek\n"
 "kijelölését"
 
 #: Dialogs/krdialogs.cpp:217
@@ -2865,9 +2890,8 @@ msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
 msgstr ""
-"Ha be van jelölve, akkor a jobb oldali egérgombnak egy elemen való "
-"lenyomása\n"
-"kijelöli azon elemet, de nem szünteti meg más, korábban kijelölt elemek "
+"Ha be van jelölve, akkor a jobb oldali egérgombnak egy elemen való lenyomása\n"
+"kijelöli azon elemet, de nem szünteti meg más, korábban kijelölt elemek\n"
 "kijelölését"
 
 #: Dialogs/krdialogs.cpp:222
@@ -3181,6 +3205,9 @@ msgid ""
 "<qt>Can't calculate checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
+"<qt>Ellenőrzőösszeg-számítás nem lehetséges, mivel nem található "
+"megfelelő alkalmazás. Ellenőrizze a <b>Függőségek</b> lapot a Krusader "
+"beállításainál."
 
 #: Dialogs/checksumdlg.cpp:211 Dialogs/checksumdlg.cpp:312
 msgid ""
@@ -3188,14 +3215,18 @@ msgid ""
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
 "sha256deep and tigerdeep</i>"
 msgstr ""
+"<qt><b>Megjegyzés</b>: Könyvtárakat jelölt ki, és valószínűleg nincs "
+"telepítve alkönyvtárakat kezelő ellenőrzőösszeg-eszköz. A Krusader "
+"jelenleg a következőket támogatja: <i>md5deep, sha1deep, sha256deep, "
+"tigerdeep</i>."
 
 #: Dialogs/checksumdlg.cpp:227
 msgid "About to calculate checksum for the following files"
-msgstr ""
+msgstr "Ellenőrzőösszeg számítása a következő fájlokra"
 
 #: Dialogs/checksumdlg.cpp:228 Dialogs/checksumdlg.cpp:329
 msgid " and folders:"
-msgstr ""
+msgstr " és könyvtárakra:"
 
 #: Dialogs/checksumdlg.cpp:241
 msgid "Select the checksum method:"
@@ -3207,23 +3238,26 @@ msgstr "Ellenőrzőösszegek számítása ..."
 
 #: Dialogs/checksumdlg.cpp:277 Dialogs/checksumdlg.cpp:391
 msgid "<qt>There was an error while running <b>%1</b>."
-msgstr ""
+msgstr "<qt>Hiba történt a(z) <b>%1</b> futtatásakor."
 
 #: Dialogs/checksumdlg.cpp:289 Dialogs/checksumdlg.cpp:400
-#, fuzzy
 msgid "Error reading stdout or stderr"
-msgstr "Hiba a könyvjelzőfájl olvasásakor: "
+msgstr ""
+"Hiba a szabványos kimenet (stdout) vagy a szabványos hibakimenet "
+"(stderr) olvasásakor"
 
 #: Dialogs/checksumdlg.cpp:309
 msgid ""
 "<qt>Can't verify checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
+"<qt>Ellenőrzőösszeg-ellenőrzés nem lehetséges, mivel nem található "
+"megfelelő alkalmazás. Ellenőrizze a <b>Függőségek</b> lapot a Krusader "
+"beállításainál."
 
 #: Dialogs/checksumdlg.cpp:328
-#, fuzzy
 msgid "About to verify checksum for the following files"
-msgstr "A következő fájlok kijelölése:"
+msgstr "Ellenőrzőösszeg ellenőrzése a következő fájlokra"
 
 #: Dialogs/checksumdlg.cpp:342
 msgid "Checksum file:"
@@ -3234,12 +3268,17 @@ msgid ""
 "<qt>Error reading checksum file <i>%1</i>.<br>Please specify a valid "
 "checksum file."
 msgstr ""
+"<qt>Hiba a(z) <i>%1</i> ellenőrzőösszeg-fájl olvasásakor.<br>Adjon meg egy "
+"érvényes ellenőrzőösszeg-fájlt."
 
 #: Dialogs/checksumdlg.cpp:369
 msgid ""
 "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings."
 msgstr ""
+"<qt>A Krusader nem talál olyan ellenőrzőösszeg-eszközt a rendszeren, amely "
+"kezelné a(z) %1 kiterjesztést. Ellenőrizze a <b>Függőségek</b> lapot "
+"a Krusader beállításainál."
 
 #: Dialogs/checksumdlg.cpp:378
 msgid "Verifying checksums ..."
@@ -3259,11 +3298,11 @@ msgstr "A következő fájlok esetében a Krusader hibát észlelt:"
 
 #: Dialogs/checksumdlg.cpp:473
 msgid "Errors were detected while creating the checksums"
-msgstr ""
+msgstr "Hiba történt az ellenőrzőösszegek létrehozásakor"
 
 #: Dialogs/checksumdlg.cpp:474
 msgid "Checksums were created successfully"
-msgstr ""
+msgstr "Az ellenőrzőösszegek létrehozása megtörtént"
 
 #: Dialogs/checksumdlg.cpp:481
 msgid "Here are the calculated checksums:"
@@ -3283,37 +3322,36 @@ msgstr "A kapott hibák:"
 
 #: Dialogs/checksumdlg.cpp:520
 msgid "Save checksum to file:"
-msgstr ""
+msgstr "Ellenőrzőösszegek mentése fájlba:"
 
 #: Dialogs/checksumdlg.cpp:534
 msgid "Checksum file for each source file"
-msgstr ""
+msgstr "Különálló ellenőrzőösszeg-fájl minden egyes forrásfájlhoz"
 
 #: Dialogs/checksumdlg.cpp:556
-#, fuzzy
 msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
-msgstr "\" nevű fájl már létezik. Felül szeretné írni azt?"
+msgstr ""
+"\"%1\" nevű fájl már létezik.\n"
+"Felül szeretné írni azt?"
 
 #: Dialogs/checksumdlg.cpp:559
-#, fuzzy
 msgid "Select a file to save to"
-msgstr " Fájlok kijelölése "
+msgstr "Válasszon célfájlt a mentéshez"
 
 #: Dialogs/checksumdlg.cpp:564
-#, fuzzy, c-format
+#, c-format
 msgid "Error saving file %1"
-msgstr "Hiba a(z) \"%1\" fájl olvasásakor."
+msgstr "Hiba a(z) \"%1\" fájlba való mentéskor."
 
 #: Dialogs/checksumdlg.cpp:576
-#, fuzzy
 msgid "Saving checksum files..."
-msgstr "\"%1\" fájl darabolása..."
+msgstr "Ellenőrzőösszeg-fájlok mentése ..."
 
 #: Dialogs/checksumdlg.cpp:581
 msgid "Errors occured while saving multiple checksums. Stopping"
-msgstr ""
+msgstr "Hiba történt az ellenőrzőösszegek mentésekor. A folyamat leállítva."
 
 #: RemoteMan/remoteman.cpp:84 RemoteMan/remoteman.cpp:87
 msgid "New group"
@@ -3434,8 +3472,9 @@ msgid ""
 "Ignore date information during the compare process.<p><b>Note</b>: useful if "
 "the files are located on network filesystems or in archives."
 msgstr ""
-"Dátuminformáció figyelmen kívül hagyása az összehasonlítás közben.<p><b>Megjegyzés</b>: "
-"hasznos lehet akkor, ha a fájlok hálózati fájlrendszereken vagy archívumokban vannak."
+"Dátuminformáció figyelmen kívül hagyása az összehasonlítás közben."
+"<p><b>Megjegyzés</b>: hasznos lehet akkor, ha a fájlok hálózati "
+"fájlrendszereken vagy archívumokban vannak."
 
 #: Synchronizer/synchronizergui.cpp:1127
 msgid "Asymmetric"
@@ -3448,10 +3487,10 @@ msgid ""
 "the other differing ones will be copied from right to left.<p><b>Note</b>: "
 "useful when updating a directory from a file server."
 msgstr ""
-"<b>Aszimmetrikus mód</b><p>. A bal oldali a cél-, a jobb oldali a forráskönyvtár. "
-"Azok a fájlok, amelyek csak a bal oldalon léteznek, törlődnek, a többi "
-"eltérő fájl átmásolódik jobbról balra.<p><b>Megjegyzés</b>: hasznos egy "
-"könyvtárnak egy fájlkiszolgálóról történő frissítésekor."
+"<b>Aszimmetrikus mód</b><p>A bal oldali a cél-, a jobb oldali a "
+"forráskönyvtár. Azok a fájlok, amelyek csak a bal oldalon léteznek, "
+"törlődnek, a többi eltérő fájl átmásolódik jobbról balra.<p><b>Megjegyzés</"
+"b>: hasznos egy könyvtárnak egy fájlkiszolgálóról történő frissítésekor."
 
 #: Synchronizer/synchronizergui.cpp:1130
 msgid "Ignore Case"
@@ -4129,8 +4168,8 @@ msgid ""
 "will work in a single, tabbed mode"
 msgstr ""
 "Ha be van jelölve, akkor minden fájl különálló ablakban lesz megnyitva. Ha "
-"nincs bejelölve, akkor a megjelenítő egyetlen, több lapot tartalmazó "
-"ablakot használ."
+"nincs bejelölve, akkor a megjelenítő egyetlen, több lapot tartalmazó ablakot "
+"használ."
 
 #: Konfigurator/kggeneral.cpp:109
 msgid "Terminal:"
@@ -4145,9 +4184,9 @@ msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
 msgstr ""
-"Ha be van jelölve, akkor a Krusader minden (például a Tab "
-"billentyű lenyomására történő) panelváltáskor belép az ekkor "
-"aktuálissá váló könyvtárba a terminálemulátorban"
+"Ha be van jelölve, akkor a Krusader minden (például a Tab billentyű "
+"lenyomására történő) panelváltáskor belép az ekkor aktuálissá váló "
+"könyvtárba a terminálemulátorban"
 
 #: Konfigurator/kggeneral.cpp:125
 msgid "Temp Directory:"
@@ -4155,9 +4194,7 @@ msgstr "Átmeneti könyvtár:"
 
 #: Konfigurator/kggeneral.cpp:133
 msgid "Note: you must have full permissions for the temporary directory!"
-msgstr ""
-"Megjegyzés: teljes jogosultsággal kell rendelkeznie az átmeneti "
-"könyvtárhoz."
+msgstr "Megjegyzés: teljes jogosultsággal kell rendelkeznie az átmeneti könyvtárhoz."
 
 #: Konfigurator/kggeneral.cpp:151
 msgid "Searching for tools..."
@@ -4169,11 +4206,15 @@ msgstr "Új eszközöket a <code>$PATH</code> útvonalra telepítsen (példa: /u
 
 #: Konfigurator/krresulttable.cpp:119
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr "\"unarj\" nem található, viszont \"arj\" igen - az utóbbi lesz használva kicsomagoláshoz"
+msgstr ""
+"\"unarj\" nem található, viszont \"arj\" igen - az utóbbi lesz használva "
+"kicsomagoláshoz"
 
 #: Konfigurator/krresulttable.cpp:125
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr "\"rpm\" található, de \"cpio\" nem - az utóbbi program szükséges kicsomagoláshoz"
+msgstr ""
+"\"rpm\" található, de \"cpio\" nem - az utóbbi program szükséges "
+"kicsomagoláshoz"
 
 #: Konfigurator/krresulttable.cpp:128 Konfigurator/krresulttable.cpp:277
 msgid "Found"
@@ -4315,8 +4356,8 @@ msgid ""
 "The icon will appear in the system tray instead of the taskbar, when "
 "Krusader is minimized."
 msgstr ""
-"A Krusader minimalizálásakor a program ikonja a rendszertálcára kerül, "
-"nem pedig a feladatlistára"
+"A Krusader minimalizálásakor a program ikonja a rendszertálcára kerül, nem "
+"pedig a feladatlistára"
 
 #: Konfigurator/kglookfeel.cpp:68
 msgid "Show hidden files"
@@ -4345,7 +4386,7 @@ msgid ""
 "All files beginning with capital letters appear before files beginning with "
 "non-capital letters (UNIX default)."
 msgstr ""
-"Az összes, nagybetűvel kezdődő nevű fájl a kisbetűvel kezdődő nevűek\n"
+"Az összes, nagybetűvel kezdődő nevű fájl a kisbetűvel kezdődő nevűek "
 "előtt jelenik meg (a UNIX-rendszerek alapértelmezése)"
 
 #: Konfigurator/kglookfeel.cpp:71
@@ -4381,8 +4422,8 @@ msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
-"A jogosultságok oszlopában oktális számok jelenjenek meg (példa: 0755) "
-"az alapértelmezett jogosultságformátum (példa: rwxr-xr-x) helyett"
+"A jogosultságok oszlopában oktális számok jelenjenek meg (példa: 0755) az "
+"alapértelmezett jogosultságformátum (példa: rwxr-xr-x) helyett"
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Single click / Double click Selection:"
@@ -4397,7 +4438,7 @@ msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
 msgstr ""
-"Egy fájlon való kattintás kijelöli és aktuálissá teszi azt; egy\n"
+"Egy fájlon való kattintás kijelöli és aktuálissá teszi azt; egy "
 "dupla kattintás pedig megnyitja a fájlt illetve belép a könyvtárba"
 
 #: Konfigurator/kglookfeel.cpp:89
@@ -4406,7 +4447,9 @@ msgstr "A KDE globális kijelölési módszerének használata"
 
 #: Konfigurator/kglookfeel.cpp:89
 msgid "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
-msgstr "A KDE globális beállításának használata:<p><i>KDE Vezérlőpult -> Perifériák -> Egér</i>"
+msgstr ""
+"A KDE globális beállításának használata:<p><i>KDE Vezérlőpult -> Perifériák -"
+"> Egér</i>"
 
 #: Konfigurator/kglookfeel.cpp:96
 msgid "Mouse Selection Mode:"
@@ -4422,9 +4465,9 @@ msgid ""
 "key and click the left mouse button. Right-click menu is invoked using a "
 "short click on the right mouse button."
 msgstr ""
-"Mindkét gomb használható fájlkijelölésre. Több fájl kijelöléséhez "
-"tartsa lenyomva a Ctrl billentyűt és nyomja le a bal oldali egérgombot. "
-"A környezeti menüt a jobb oldali egérgomb lenyomásával lehet előhívni."
+"Mindkét gomb használható fájlkijelölésre. Több fájl kijelöléséhez tartsa "
+"lenyomva a Ctrl billentyűt és nyomja le a bal oldali egérgombot. A "
+"környezeti menüt a jobb oldali egérgomb lenyomásával lehet előhívni."
 
 #: Konfigurator/kglookfeel.cpp:101
 msgid "Konqueror Mode"
@@ -4436,8 +4479,8 @@ msgid ""
 "multiple files. Right-click menu is invoked using a short click on the right "
 "mouse button."
 msgstr ""
-"A bal oldali egérgomb fájlokat jelöl ki; több fájl is kijelölhető. "
-"A környezeti menüt a jobb oldali egérgomb lenyomásával lehet előhívni."
+"A bal oldali egérgomb fájlokat jelöl ki; több fájl is kijelölhető. A "
+"környezeti menüt a jobb oldali egérgomb lenyomásával lehet előhívni."
 
 #: Konfigurator/kglookfeel.cpp:102
 msgid "Total-Commander Mode"
@@ -4450,10 +4493,10 @@ msgid ""
 "files and the right-click menu is invoked by pressing and holding the right "
 "mouse button."
 msgstr ""
-"A bal oldali egérgomb nem végez kijelölést, viszont a kijelölés "
-"módosítása nélkül aktuálissá teszi az adott fájlt. "
-"A jobb oldali egérgomb több fájlt jelöl ki. A környezeti menüt a "
-"jobb oldali egérgomb lenyomva tartásával lehet előhívni."
+"A bal oldali egérgomb nem végez kijelölést, viszont a kijelölés módosítása "
+"nélkül aktuálissá teszi az adott fájlt. A jobb oldali egérgomb több fájlt "
+"jelöl ki. A környezeti menüt a jobb oldali egérgomb lenyomva tartásával "
+"lehet előhívni."
 
 #: Konfigurator/kglookfeel.cpp:103
 msgid "Design your own selection mode!"
@@ -4502,7 +4545,7 @@ msgstr "Könnyebben olvasható fájlméretek használata"
 #: Konfigurator/kglookfeel.cpp:146
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr ""
-"A fájlméretek nem feltétlenül bájtban jelennek meg, hanem lehetőleg\n"
+"A fájlméretek nem feltétlenül bájtban jelennek meg, hanem lehetőleg "
 "kilobájtban, megabájtban vagy gigabájtban"
 
 #: Konfigurator/kglookfeel.cpp:156
@@ -4610,8 +4653,8 @@ msgid ""
 "The following information was attached to the keymap. Are you sure you want "
 "to import this keymap ?"
 msgstr ""
-"A következő információ van a gyorsbillentyű-profilhoz csatolva. "
-"Biztosan szeretné betölteni ezt a gyorsbillentyű-profilt?"
+"A következő információ van a gyorsbillentyű-profilhoz csatolva. Biztosan "
+"szeretné betölteni ezt a gyorsbillentyű-profilt?"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid "Preserve date for local copy/move (slower)"
@@ -4622,8 +4665,8 @@ msgid ""
 "Change the modification time of local files according to the source one. "
 "This can slow down the copy process."
 msgstr ""
-"Helyi fájlok módosítási idejének megváltoztatása a forrásfájloknak megfelelően. "
-"Ez lassíthatja a másolási folyamatot."
+"Helyi fájlok módosítási idejének megváltoztatása a forrásfájloknak "
+"megfelelően. Ez lassíthatja a másolási folyamatot."
 
 #: Konfigurator/kgadvanced.cpp:53
 msgid "Automount filesystems"
@@ -4634,9 +4677,8 @@ msgid ""
 "When stepping into a directory which is defined as a mount point in the "
 "<b>fstab</b>, try mounting it with the defined parameters."
 msgstr ""
-"Olyan könyvtárba való belépéskor, amely könyvtár szerepel az "
-"<b>fstab</b> fájlban csatolási pontként, történjen csatolás "
-"a megadott paraméterekkel."
+"Olyan könyvtárba való belépéskor, amely könyvtár szerepel az <b>fstab</b> "
+"fájlban csatolási pontként, történjen csatolás a megadott paraméterekkel."
 
 #: Konfigurator/kgadvanced.cpp:58
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -4695,9 +4737,9 @@ msgid ""
 "The icon cache size influences how fast the contents of a panel can be "
 "displayed. However, too large a cache might consume your memory."
 msgstr ""
-"Az ikon-gyorsítótár mérete befolyásolja, hogy a Krusader milyen gyorsan tudja "
-"megjeleníteni a panelek tartalmát. A túl nagy gyorsítótár-méret túlzott "
-"memóriafogyasztást okozhat."
+"Az ikon-gyorsítótár mérete befolyásolja, hogy a Krusader milyen gyorsan "
+"tudja megjeleníteni a panelek tartalmát. A túl nagy gyorsítótár-méret "
+"túlzott memóriafogyasztást okozhat."
 
 #: Konfigurator/kgadvanced.cpp:109
 msgid "Arguments of updatedb:"
@@ -4812,8 +4854,8 @@ msgid ""
 "Use KDE's global color configuration.<p><i>KDE Control Center -> Appearance "
 "& Themes -> Colors</i>"
 msgstr ""
-"A KDE globális színbeállításának használata:<p><i>KDE Vezérlőpult -> Megjelenés, témák "
-"-> Színek</i>"
+"A KDE globális színbeállításának használata:<p><i>KDE Vezérlőpult -> "
+"Megjelenés, témák -> Színek</i>"
 
 #: Konfigurator/kgcolors.cpp:61
 msgid "Use alternate background color"
@@ -4838,8 +4880,8 @@ msgid ""
 "Shows the last cursor position in the non active list panel.<p>This option "
 "is only available when you don't use the <i>KDE default colors</i>."
 msgstr ""
-"A legutóbbi kurzorpozíció megjelenítése a nem aktív listapanelen.<p>"
-"Ez az opció csak akkor elérhető, ha nem az <i>alapértelmezett KDE-színek</i> "
+"A legutóbbi kurzorpozíció megjelenítése a nem aktív listapanelen.<p>Ez az "
+"opció csak akkor elérhető, ha nem az <i>alapértelmezett KDE-színek</i> "
 "vannak használva."
 
 #: Konfigurator/kgcolors.cpp:88
@@ -5067,10 +5109,10 @@ msgid ""
 "saved automatically when Krusader is closed."
 msgstr ""
 "Megadja az indításkor használt panelprofilt. Egy panelprofil a következőket "
-"tartalmazza:<ul><li>az összes lap útvonala</li><li>az aktuális "
-"lap</li><li>az aktív panel</li></ul>A <b>&lt;Legutóbbi "
-"munkafolyamat&gt;</b> egy speciális panelprofil, amely automatikusan "
-"mentésre kerül a Krusaderből való kilépéskor."
+"tartalmazza:<ul><li>az összes lap útvonala</li><li>az aktuális lap</"
+"li><li>az aktív panel</li></ul>A <b>&lt;Legutóbbi munkafolyamat&gt;</b> egy "
+"speciális panelprofil, amely automatikusan mentésre kerül a Krusaderből való "
+"kilépéskor."
 
 #: Konfigurator/kgstartup.cpp:52
 msgid "Startup profile:"
@@ -5093,8 +5135,8 @@ msgid ""
 "Check the state of the user interface components and restore them to their "
 "condition when last shutdown."
 msgstr ""
-"A felhasználói felület komponenseinek állapotának ellenőrzése "
-"és visszaállítása a legutóbbi leállításkor érvényben levő állapotra"
+"A felhasználói felület komponenseinek állapotának ellenőrzése és "
+"visszaállítása a legutóbbi leállításkor érvényben levő állapotra"
 
 #: Konfigurator/kgstartup.cpp:78
 msgid "Show toolbar"
@@ -5149,12 +5191,11 @@ msgid ""
 "the main window's size and position at startup."
 msgstr ""
 "Indításkor a főablak átméretezi magát arra a méretre, amely a Krusader "
-"legutóbbi leállításakor érvényben volt. "
-"Az ablak a képernyő ugyanazon helyén fog megjelenni, mint korábban, "
-"továbbá a panelek rendezési és igazítási módja is azonos lesz a "
-"korábbival.<p>Ha ez az opció ki van kapcsolva, akkor is el lehet menteni "
-"kézzel a főablak méretét és pozícióját (a jövőbeli indítások számára) a "
-"Beállítások menü <i>Pozíció mentése</i> funkciójával."
+"legutóbbi leállításakor érvényben volt. Az ablak a képernyő ugyanazon helyén "
+"fog megjelenni, mint korábban, továbbá a panelek rendezési és igazítási "
+"módja is azonos lesz a korábbival.<p>Ha ez az opció ki van kapcsolva, akkor "
+"is el lehet menteni kézzel a főablak méretét és pozícióját (a jövőbeli "
+"indítások számára) a Beállítások menü <i>Pozíció mentése</i> funkciójával."
 
 #: Konfigurator/kgarchives.cpp:55
 msgid "Krusader transparently handles the following types of archives:"
@@ -5320,11 +5361,11 @@ msgid ""
 "in the active panel.</li><li>Make sure there is a file in the other panel, "
 "with the same name as the current file in the active panel.</li></ul>"
 msgstr ""
-"Két fájl tartalom szerinti összehasonlításához az alábbiakat "
-"teheti:<ul><li>kijelöl egy fájlt a bal panelen és egyet a jobb "
-"panelen</li><li>kijelöl pontosan kettő fájlt az aktív "
-"panelen</li><li>meggyőződik arról, hogy a másik panelen létezik "
-"az aktív panel aktuális fájljával megegyező nevű fájl</li></ul>"
+"Két fájl tartalom szerinti összehasonlításához az alábbiakat teheti:"
+"<ul><li>kijelöl egy fájlt a bal panelen és egyet a jobb panelen</"
+"li><li>kijelöl pontosan kettő fájlt az aktív panelen</li><li>meggyőződik "
+"arról, hogy a másik panelen létezik az aktív panel aktuális fájljával "
+"megegyező nevű fájl</li></ul>"
 
 #: krslots.cpp:183
 msgid ""
