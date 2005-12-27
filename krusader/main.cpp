@@ -40,6 +40,7 @@
 #include "krusader.h"
 #include "krslots.h"
 #include "krusaderapp.h"
+#include "defaults.h"
 
 static const char *description =
 	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
@@ -159,15 +160,20 @@ int main(int argc, char *argv[]) {
   // create the application
   KrusaderApp app;
   
-  // splash screen
+  // splash screen - if the user wants one
   KSplashScreen *splash = 0;
-  QString splashFilename = locate( "data", "krusader/splash.png" );
-  QPixmap pixmap( splashFilename );
-  if (!pixmap.isNull()) {
-    splash = new KSplashScreen( pixmap );
-    splash->show();
+  { // don't remove bracket
+  KConfigGroupSaver saver(app.config(), "Look&Feel");
+  if (app.config()->readBoolEntry( "Show splashscreen", _ShowSplashScreen )) {
+  	QString splashFilename = locate( "data", "krusader/splash.png" );
+  	QPixmap pixmap( splashFilename );
+  	if (!pixmap.isNull()) {
+    		splash = new KSplashScreen( pixmap );
+    		splash->show();
+  	}
   }
-  
+  } // don't remove bracket
+
   Krusader *krusader = new Krusader();
   // make sure we receive X's focus in/out events
   QObject::connect(&app, SIGNAL(windowActive()), krusader->slot, SLOT(windowActive()));

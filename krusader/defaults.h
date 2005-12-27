@@ -111,6 +111,8 @@
 #define _SingleClickSelects false
 // Numeric Permissions
 #define _NumericPermissions false
+// Show splashscreen
+#define _ShowSplashScreen true
 
 /////////////////////// [General]
 // Mimetype Magic /////
