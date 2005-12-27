@@ -8,13 +8,14 @@ This file contains the TXT install instructions for Krusader.
 This file is parsed from Docbook/XML source files.
 
 NOTE:
-after the parsing process to generate this TXT file all te URL's are gone,
-to see the URL's again please take a look at the HTML version of this file.
+after the parsing process to generate this TXT file all te URL's are
+gone, to see the URL's again please take a look at the HTML version of
+this file.
 
 Feedback for the documentation is always welcome.
 
 Frank Schoolmeesters, documentation coordinator
-[frank_schoolmeesters {*} yahoo {.} com]
+[frank_schoolmeesters * yahoo com]
 
 The most recent version of this document is available online at: 
 http://krusader.sourceforge.net/handbook/installation.html
@@ -70,8 +71,8 @@ A.1. Requirements
 
    Platforms:
 
-     * All POSIX (Linux®/BSD/UNIX®-like OSes), Solaris(TM)
-     * All BSD Platforms (FreeBSD®/NetBSD®/OpenBSD®/Mac® OS).
+     * All POSIX (Linux/BSD/UNIX-like OSes), Solaris(TM)
+     * All BSD Platforms (FreeBSD/NetBSD/OpenBSD/Mac OS).
 
    Krusader uses about 3-4 MByte of memory to run (and about 15
    Mbyte shared memory which is also used by other processes),
@@ -102,24 +103,24 @@ A.2.1. Download Krusader
 
    Distributions who include Krusader
 
-     * SuSE® >= 9.3, Note: please use Krusader-1.60.0 and not
-       Krusader-1.51 (might be instable on SuSE®9.3-KDE3.4)
+     * SuSE >= 9.3, Note: please use Krusader-1.60.0 and not
+       Krusader-1.51 (might be instable on SuSE9.3-KDE3.4)
      * Fedora(TM) via Fedora(TM) Extras # yum install krusader
-       will do the job, thanks to Marcin Garski. Red Hat® RPM
+       will do the job, thanks to Marcin Garski. Red Hat RPM
        packages can usually found on the Krusader downloadpage,
        dag.wieers.com or at Dries Verachtert RPM Repository .
-     * Debian®, on our Krusader downloadpage you might find more
+     * Debian, on our Krusader downloadpage you might find more
        recent "unofficial bleeding-edge" DEB packages. Note:
-       usually Debian® packages work also on distributions who
-       are "based on Debian®", some of them provide their own
-       packages. e.g. Mepis®, Ubuntu®/Kubuntu®, Linspire®,
-       Xandros®, ...
-     * Mandriva® via the contrib repository # urpmi krusader will
-       do the job, Gentoo®, Knoppix® 4.x DVD, Kanotix®, Yoper(TM)
-     * Arch Linux®, Frugalware Linux®, PCLinuxOS®, altlinux®
-     * FreeBSD®, the port is maintained by Heiner Eichmann .
-     * NetBSD®, Ark Linux®, OpenLX(TM), Source Mage®, Lunar
-       Linux®
+       usually Debian packages work also on distributions who
+       are "based on Debian", some of them provide their own
+       packages. e.g. Mepis, Ubuntu/Kubuntu, Linspire,
+       Xandros, ...
+     * Mandriva via the contrib repository # urpmi krusader will
+       do the job, Gentoo, Knoppix 4.x DVD, Kanotix, Yoper(TM)
+     * Arch Linux, Frugalware Linux, PCLinuxOS, altlinux
+     * FreeBSD, the port is maintained by Heiner Eichmann .
+     * NetBSD, Ark Linux, OpenLX(TM), Source Mage, Lunar
+       Linux
      * Even more distributions can be found with Distrowatch.com
 
    Just use the install tools that the distro uses to install the
@@ -130,15 +131,15 @@ A.2.1. Download Krusader
 
    Others
 
-     * Slackware® tgz binaries can usually found on the Krusader
+     * Slackware tgz binaries can usually found on the Krusader
        downloadpage, or use Portpkg that contains a Krusader
        SlackBuild, # portpkg krusader will do the job.
-     * There is a Mac® OS-X port with the help of fink , the port
+     * There is a Mac OS-X port with the help of fink , the port
        is maintained by Bodo Tasche .
 
    Installation via the klik protocol .
 
-     * klik://krusader downloads Krusader provided by Debian®
+     * klik://krusader downloads Krusader provided by Debian
        stable, more information is available .
      * klik://krusader-latest downloads the latest stable
        Krusader provided by the Krusader Krew.
@@ -147,7 +148,7 @@ A.2.1. Download Krusader
 
    Search engines
 
-     * You can also find packages on Linux® software archives
+     * You can also find packages on Linux software archives
        such as freshmeat.net or KDE-APPS.org .
      * If you can't find a package for your distribution, we
        recommend searching for it with rpmfind , rpmpbone or
@@ -285,7 +286,7 @@ $ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
 $ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
  -D2005-05-23 krusader_kde3
 
-   Mostly being Gentoo® users, we provide a Gentoo® Live Ebuild
+   Mostly being Gentoo users, we provide a Gentoo Live Ebuild
    for all those who want to stay on the bleeding edge of
    filemanagement and don't want to miss the advantages of
    portage. Please take a look at our Krusader's Cutting Edge
@@ -327,13 +328,13 @@ A.3.2. Installation Tutorial
 
    The next section will explain step by step, in detail, how to
    install Krusader. This question has been asked many times and
-   especially users new to Linux® often have problems compiling
+   especially users new to Linux often have problems compiling
    software from source. Therefore, we are trying to keep the
    explanations as detailed as possible even if they are mostly
    not Krusader specific. Experienced users may easily skip most
    of the steps.
 
-   Because not all Linux® distributions do follow the Filesystem
+   Because not all Linux distributions do follow the Filesystem
    Hierarchy Standard (FHS) it's unfortunately impossible to
    write a tutorial that always works in all circumstances, but
    with these guidelines will be a big help in the right
@@ -390,7 +391,7 @@ $ echo $KDEDIR
 /usr
        If both commands give an output, the enviroment variables
        are set (the above example are the settings of
-       Mandriva®-Linux®). In case you just receive empty lines,
+       Mandriva-Linux). In case you just receive empty lines,
        the variables are not set and you have to set them it
        manually. If you have no idea what to set the variables
        to, or if you want to check if the variables are correctly
@@ -453,7 +454,7 @@ $
    If you encounter problems with this command click here.
    Krusader provides 2 nightly builds (snapshots) one with a
    ./configure script and one without.
-    9. Your Linux® distro Krusader RPM or DEB package will
+    9. Your Linux distro Krusader RPM or DEB package will
        usually install Krusader in the KDEDIR/bin directory.
        According to the Filesystem Hierarchy Standard (FHS), any
        user installed files should go to the /usr/local
@@ -493,7 +494,7 @@ Thank you for using Krusader
 
 Good - your configure finished. Start make now
 bash$
-       This is the output for Mandrake(TM)-Linux® 10, other
+       This is the output for Mandrake(TM)-Linux 10, other
        distributions may give a different output.
 
    Tip
@@ -572,15 +573,15 @@ $ su -c 'make uninstall'
    request.
      _________________________________________________________
 
-A.4. Mac® OS-x port
+A.4. Mac OS-x port
 
-   Krusader is ported to Mac® OS thanks to Jonas Bähr and Bodo
+   Krusader is ported to Mac OS thanks to Jonas Bï¿½r and Bodo
    Tasche . Unfortunately the only *stable* kdelib-binaries which
    fink has to offer is currenly 3.1.4 which means you need to
-   use Krusader-1.40 . Unfortunately the Mac® OS X Krusader port
-   doesn't have the same power as in a native Linux®-KDE
+   use Krusader-1.40 . Unfortunately the Mac OS X Krusader port
+   doesn't have the same power as in a native Linux-KDE
    environement. To run Krusader you need also X11 which doesn't
-   realy interact with the rest of the Mac® OS desktop (drag and
+   realy interact with the rest of the Mac OS desktop (drag and
    drop, etc...) We hope that Qt(TM)4/KDE4 will solve most of
    these problems. When you want a higher Krusader version than
    you need to compile KDE , what is not so difficult with fink
@@ -599,8 +600,8 @@ A.4. Mac® OS-x port
    more recent Krusader version then these are the installation
    instructions.
 
-    1. install Apple® X11
-    2. install the Apple® X11 SDK developer-tools with X11
+    1. install Apple X11
+    2. install the Apple X11 SDK developer-tools with X11
        headers (gcc is included)
     3. install the fink-base
     4. compile kdelibs 3.4.1 or higher (fink provides the
@@ -634,7 +635,7 @@ foo
 
    If Krusader is installed by an RPM or DEB package then usually
    Krusader can be started from the K menu. e.g. on
-   Mandrake(TM)-Linux® 10.0 click on the [kmenu.png] icon button
+   Mandrake(TM)-Linux 10.0 click on the [kmenu.png] icon button
    and choose Applications->File tools->Krusader.
 
    Command-line options:
