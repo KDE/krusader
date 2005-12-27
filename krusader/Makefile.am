@@ -152,7 +152,7 @@ krusaderlocal_DATA = \
 	total_commander.keymap \
 	total_commander.keymap.info \
 	useractions.xml \
-	splash.jpg
+	splash.png
 
 
 
