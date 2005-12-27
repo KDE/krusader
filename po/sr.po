@@ -8,17 +8,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0-beta2\n"
+"Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-11-03 22:44+0100\n"
-"PO-Revision-Date: 2005-10-04 00:09+0200\n"
+"PO-Revision-Date: 2005-12-27 23:35+0100\n"
 "Last-Translator: Sasa Tomic <stomic@gmx.net>\n"
 "Language-Team: Serbian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.10.2\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -662,8 +661,7 @@ msgstr ""
 
 #: VFS/virt_vfs.cpp:156
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
-"Креирање нових директоријума је дозвољено једино у директоријуму „virt:/“."
+msgstr "Креирање нових директоријума је дозвољено једино у директоријуму „virt:/“."
 
 #: Filter/generalfilter.cpp:92 Konfigurator/konfigurator.cpp:107
 #: VFS/krquery.cpp:75
@@ -2013,8 +2011,7 @@ msgstr "Резултати"
 
 #: Locate/locate.cpp:194
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Не могу да покренем „locate“! Проверите страницу „Зависности“ у подешавањима."
+msgstr "Не могу да покренем „locate“! Проверите страницу „Зависности“ у подешавањима."
 
 #: Locate/locate.cpp:231
 msgid ""
@@ -2070,8 +2067,7 @@ msgstr "Овде можете именовати колекцију фајлов
 
 #: krusader.cpp:313
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Статусна трака приказује основне информације о фајлу испод показивача миша."
+msgstr "Статусна трака приказује основне информације о фајлу испод показивача миша."
 
 #: krusader.cpp:369
 msgid ""
@@ -2505,19 +2501,16 @@ msgid "Text &editor"
 msgstr "Текст &уређивач"
 
 #: KViewer/krviewer.cpp:99
-#, fuzzy
 msgid "&Next tab"
-msgstr "Следећи језичак"
+msgstr "&Следећи језичак"
 
 #: KViewer/krviewer.cpp:100
-#, fuzzy
 msgid "&Previous tab"
-msgstr "Претходни језичак"
+msgstr "&Претходни језичак"
 
 #: KViewer/krviewer.cpp:102
-#, fuzzy
 msgid "&Detach tab"
-msgstr "Следећи језичак"
+msgstr "&Откачи језичак"
 
 #: KViewer/krviewer.cpp:106
 msgid "&Close current tab"
@@ -2752,8 +2745,7 @@ msgstr ""
 "Контактирајте програмере"
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Менаџер монтирања је наишао на унутрашњу грешку. Молимо вас обавестите "
 "програмере. Хвала вам."
@@ -3143,8 +3135,7 @@ msgstr "&Откажи"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
-"Снимљена листа „Популарни URL-ови“ је неисправна. Листа ће бити избрисана."
+msgstr "Снимљена листа „Популарни URL-ови“ је неисправна. Листа ће бити избрисана."
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -3249,9 +3240,8 @@ msgid "<qt>There was an error while running <b>%1</b>."
 msgstr "<qt>Појавила се грешка при извршавању <b>%1</b>."
 
 #: Dialogs/checksumdlg.cpp:289 Dialogs/checksumdlg.cpp:400
-#, fuzzy
 msgid "Error reading stdout or stderr"
-msgstr "Грешка при читању фајла маркера: "
+msgstr "Грешка при читању стандардног излаза или излаза грешке"
 
 #: Dialogs/checksumdlg.cpp:309
 msgid ""
@@ -3288,9 +3278,8 @@ msgstr ""
 "подешавањима."
 
 #: Dialogs/checksumdlg.cpp:378
-#, fuzzy
 msgid "Verifying checksums ..."
-msgstr "Провери контролну суму"
+msgstr "Проверавам контролне суме ..."
 
 #: Dialogs/checksumdlg.cpp:435
 msgid "Errors were detected while verifying the checksums"
@@ -3788,8 +3777,7 @@ msgstr "&Отвори"
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!"
-msgstr ""
-"<qt>Директоријум <i>%1</i> ће бити <b>рекурзивно</b> и <b>трајно</b> обрисан!"
+msgstr "<qt>Директоријум <i>%1</i> ће бити <b>рекурзивно</b> и <b>трајно</b> обрисан!"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!"
@@ -4114,8 +4102,7 @@ msgstr "Користи магију MIME типова"
 
 #: Konfigurator/kggeneral.cpp:66
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Магија MIME типова омогућава боље разликовање типова фајлова, али је спорија."
+msgstr "Магија MIME типова омогућава боље разликовање типова фајлова, али је спорија."
 
 #: Konfigurator/kggeneral.cpp:73
 msgid "Editor:"
@@ -4175,13 +4162,13 @@ msgstr "Терминал:"
 
 #: Konfigurator/kggeneral.cpp:116
 msgid "Terminal Emulator sends Chdir on panel change"
-msgstr ""
+msgstr "Емулатор терминала шаље 'chdir' при промени панела"
 
 #: Konfigurator/kggeneral.cpp:117
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing TAB), "
 "krusader changes the current directory in the terminal emulator."
-msgstr ""
+msgstr "Када је штиклирано, при промени панела (нпр. када се притисне ТАБ), krusader мења тренутни директоријум у емулатору терминала."
 
 #: Konfigurator/kggeneral.cpp:125
 msgid "Temp Directory:"
@@ -4196,10 +4183,8 @@ msgid "Searching for tools..."
 msgstr "Тражим алате..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Уверите се да инсталирате нове алате у ваш <code>$PATH</code> (нпр. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Уверите се да инсталирате нове алате у ваш <code>$PATH</code> (нпр. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:119
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -4368,8 +4353,7 @@ msgstr "Аутоматски означи директоријуме"
 
 #: Konfigurator/kglookfeel.cpp:69
 msgid "When matching the select criteria, directories will also be marked."
-msgstr ""
-"При испуњавању критеријума изабирања, директоријуми ће такође бити означени."
+msgstr "При испуњавању критеријума изабирања, директоријуми ће такође бити означени."
 
 #: Konfigurator/kglookfeel.cpp:70
 msgid "Case sensitive sorting"
@@ -4440,8 +4424,7 @@ msgid "Obey KDE's global selection policy"
 msgstr "Поштуј KDE-ову глобалну политику избора"
 
 #: Konfigurator/kglookfeel.cpp:89
-msgid ""
-"Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
+msgid "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>"
 msgstr ""
 "Користи KDE-ово глобално подешавање:<p><i>KDE Контролни центар->Периферије-"
 ">Миш</i>"
@@ -4634,8 +4617,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Дугме за синхронизовано прегледање."
 
 #: Konfigurator/kglookfeel.cpp:213
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Свака промена директоријума у панелу односи се и на други панел."
 
 #: Konfigurator/kglookfeel.cpp:277 Konfigurator/kglookfeel.cpp:294
@@ -5255,18 +5237,15 @@ msgid "Test archive before unpacking"
 msgstr "Испробај архиву пре распакивања"
 
 #: Konfigurator/kgarchives.cpp:94
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Неке оштећене архиве могу изазвати рушење; стога, тестирање се препоручује."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Неке оштећене архиве могу изазвати рушење; стога, тестирање се препоручује."
 
 #: Konfigurator/kgarchives.cpp:111
 msgid "Searching for packers..."
 msgstr "Тражим архивере..."
 
 #: Konfigurator/kgarchives.cpp:112
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Уверите се да инсталирате нове архивере у ваш <code>$PATH</code> (нпр. /usr/"
 "bin)"
@@ -5397,8 +5376,7 @@ msgstr ""
 
 #: krslots.cpp:420
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Не могу да покренем „mount“! Проверите страницу „Зависности“ у Подешавањима."
+msgstr "Не могу да покренем „mount“! Проверите страницу „Зависности“ у Подешавањима."
 
 #: krslots.cpp:452
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
@@ -5557,8 +5535,7 @@ msgid "Not a valid CRC file!"
 msgstr "Није исправан CRC фајл!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Проверавање исправности је немогуће без доброг CRC фајла. Да наставим са "
 "спајањем?"
@@ -5598,3 +5575,4 @@ msgstr "Грешка при читању фајла %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Грешка при писању фајла %1!"
+
