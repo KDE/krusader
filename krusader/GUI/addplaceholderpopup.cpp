@@ -98,6 +98,7 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
       QString filename = KFileDialog::getOpenFileName(QString::null, QString::null, this);
       if (filename != QString::null)
          return filename + " "; // with extra space
+         //return filename; // without extra space
    } else { // user selected something from the menus
       exp_placeholder* currentPlaceholder = krExpander->placeholder( res & ~( ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK ) );
 //       if ( &currentPlaceholder->expFunc == 0 ) {
@@ -118,7 +119,8 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
          panel = "r";
       else if ( res & INDEPENDENT_MASK )
          panel = "_";
-      return "%" + panel + currentPlaceholder->expression() + parameter + "% "; // with extra space
+      //return "%" + panel + currentPlaceholder->expression() + parameter + "% "; // with extra space
+      return "%" + panel + currentPlaceholder->expression() + parameter + "%"; // without extra space
    }
 	return QString::null;
 }

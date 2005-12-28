@@ -174,8 +174,11 @@ bool ActionProperty::checkName( const QString& name ) {
 
 
 void ActionProperty::addPlaceholder() {
-   QString exp = _popup->getPlaceholder( mapToGlobal( QPoint( ButtonAddPlaceholder->pos().x() + ButtonAddPlaceholder->width() * 3 / 2,
-                                        ButtonAddPlaceholder->pos().y() + ButtonAddPlaceholder->height() / 2 ) ) );
+   QString exp = _popup->getPlaceholder( mapToGlobal(
+                                     QPoint(
+                                        ButtonAddPlaceholder->pos().x() + ButtonAddPlaceholder->width()+6, // 6 is the default margin
+                                        ButtonAddPlaceholder->pos().y()
+                                     ) ) );
    leCommandline->insert( exp );
 }
 
