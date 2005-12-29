@@ -1129,11 +1129,24 @@ TODO
 
 <para>Results window
 <itemizedlist>
-      <listitem><para>double click on an item: steps to its directory, makes the item
-                          visible and closes the locate dialog.</para></listitem>
+  <listitem><para>double click on an item: steps to its directory, makes the item
+                      visible and closes the locate dialog.</para>
+  </listitem>
+     
+  <listitem><para>right click: edit/view/find menu.
+     <itemizedlist>
       <listitem><para><keycap>F3</keycap>: views the current item.</para></listitem>
-  <listitem><para><keycap>F4</keycap>: edit the current item.</para></listitem>
-  <listitem><para>right click: edit/view/find menu.</para></listitem>
+      <listitem><para><keycap>F4</keycap>: edit the current item.</para></listitem>
+      <listitem><para><keycombo action="simul">&Ctrl;<keycap>f</keycap></keycombo>: 
+                      find files in the results window.</para></listitem>
+      <listitem><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo>: 
+                      next search result.</para></listitem>
+      <listitem><para><keycombo action="simul">&Ctrl;<keycap>p</keycap></keycombo>: 
+                      previous search result.</para></listitem>
+  </itemizedlist>
+
+  </para></listitem>
+    
 </itemizedlist>
 
 </para>
@@ -1216,6 +1229,7 @@ TODO
            them with the &konfiglookandfeel_lnk;. Here you will find even more actions who can be
            linked to a Key Binding.</para></tip>
 
+<!-- FN keys -->
 <para><emphasis role="bold">Function (FN) Keys</emphasis></para>
 <para>These are the Key Bindings of the &fnkeybar_lnk;. These Key Bindings are configurable since version 1.51</para>
 <informaltable>
@@ -1256,6 +1270,7 @@ TODO
 </informaltable>
 
 
+<!-- SHIFT keys -->
 <para><emphasis role="bold">SHIFT keys</emphasis></para>
 <informaltable>
 <tgroup cols="2">
@@ -1294,6 +1309,7 @@ TODO
 </informaltable>
 
 
+<!-- ALT keys -->
 <para><emphasis role="bold">ALT keys</emphasis></para>
 <informaltable>
 <tgroup cols="2">
@@ -1351,6 +1367,7 @@ TODO
 </informaltable>
 
 
+<!-- CTRL -->
 <para><emphasis role="bold">CTRL keys</emphasis></para>
 <informaltable>
 <tgroup cols="2">
@@ -1366,7 +1383,7 @@ TODO
 <entry><para><link linkend="view-menu">Compare directories</link> (Compare Mode)</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>.</keycap></keycombo></para></entry>
-<entry><para><link linkend="view-menu">Show Hidden Files</link></para></entry></row>
+<entry><para><link linkend="view-menu">Show/Hide Hidden (dot) Files</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>/</keycap></keycombo></para></entry>
 <entry><para><link linkend="cmdline">Opens command line history list</link></para></entry></row>
@@ -1402,20 +1419,28 @@ TODO
 <entry><para><keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Open Bookmarks</link> in the active panel.</para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>e</keycap></keycombo></para></entry>
+<entry><para>Edit file as root (Default Useraction)</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>h</keycap></keycombo></para></entry>
 <entry><para><link linkend="folderhistory">Opens History list</link> in the active panel.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>j</keycap></keycombo></para></entry>
-<entry><para>A &safari;-like <link linkend="folder_tabs">Jump-Back</link> .</para></entry></row>
+<entry><para>A &safari;-like <link linkend="jump_back">Jump-Back</link> .</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>l</keycap></keycombo></para></entry>
 <entry><para>Go to the &location_toolbar_lnk; (origin) as in &firefox; and &konqueror;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="commands-menu">New Network Connection</link> dialog.</para></entry></row>
+<!-- TODO: Is this entry gone ????
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>o</keycap></keycombo></para></entry>
 <entry><para>the inactive panel gets the same path as the active panel</para></entry></row>
+-->
+<row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>o</keycap></keycombo></para></entry>
+<entry><para>Select directory dialog to open this directory in the panel.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>p</keycap></keycombo></para></entry>
 <entry><para><link linkend="split">Split file</link></para></entry></row>
@@ -1424,7 +1449,7 @@ TODO
 <entry><para><link linkend="view-menu">Swap Panels</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>r</keycap></keycombo></para></entry>
-<entry><para><link linkend="panels">Reload panel (Refresh)</link></para></entry></row>
+<entry><para><link linkend="panels">Reload (Refresh) Panel</link></para></entry></row>
 <row>
 <entry><para><keycombo><keycap>Ctrl</keycap><keycap>s</keycap></keycombo></para></entry>
 <entry><para><link linkend="krusearcher">Search</link></para></entry></row>
@@ -1437,17 +1462,44 @@ TODO
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>z</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Popular URL's</link></para></entry></row>
-
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Backspace;</keycombo></para></entry>
 <entry><para>Jumps to the Root directory</para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>PageUp</keycap></keycombo></para></entry>
+<entry><para>Up one directory</para></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+
+
+<!-- CTRL+SHIFT -->
+<para><emphasis role="bold">CTRL+SHIFT keys</emphasis></para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>d</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Bookmark current item</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>f</keycap></keycombo></para></entry>
+<entry><para><link linkend="remote-connections">Disconnect remote connection</link></para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>j</keycap></keycombo></para></entry>
+<entry><para><link linkend="jump_back">Set jump back point</link></para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>l</keycap></keycombo></para></entry>
 <entry><para>&locate_lnk;</para></entry></row>
+</tbody>
+</tgroup>
+</informaltable>
 
+
+<!-- CTRL+ALT -->
+<para><emphasis role="bold">CTRL+ALT keys</emphasis></para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>c</keycap></keycombo></para></entry>
 <entry><para><link linkend="folder_tabs">Close tab</link></para></entry></row>
@@ -1455,17 +1507,20 @@ TODO
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>j</keycap></keycombo></para></entry>
 <entry><para>&javascript_console_lnk;</para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>m</keycap></keycombo></para></entry>
+<entry><para>Mount (Default Useraction)</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="folder_tabs">New tab</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>r</keycap></keycombo></para></entry>
-<entry><para>toggels the &list_panel_lnk; between horizontal and vertical mode.</para></entry></row>
+<entry><para>Toggels the &list_panel_lnk; between horizontal and vertical mode.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>s</keycap></keycombo></para></entry>
 <entry><para>Create a new symlink.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>t</keycap></keycombo></para></entry>
-<entry><para>show/hide the <link linkend="cmdline">terminal emulator</link>.</para></entry></row>
+<entry><para>Show/hide the <link linkend="cmdline">terminal emulator</link>.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>Left Arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="folderhistory">Left History list</link></para></entry></row>
@@ -1473,10 +1528,12 @@ TODO
 <entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>Right Arrow</keycap></keycombo></para></entry>
 <entry><para><link linkend="folderhistory">Right History list</link></para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;&Alt;<keycap>=</keycap></keycombo></para></entry>
+<entry><para>Equal Panel Size (Default Useraction)</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;&Alt;&Shift;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="folder_tabs">Duplicate a tab</link></para></entry></row>
 <row>
-
 <entry><para><keycombo action="simul">&Ctrl;&Alt;&Enter;</keycombo></para></entry>
 <entry><para>Open current folder in a <link linkend="folder_tabs">new tab</link></para></entry></row>
 </tbody>
@@ -1484,7 +1541,8 @@ TODO
 </informaltable>
 
 
-<para><emphasis role="bold">Non Krusader, CTRL keys</emphasis></para>
+<!-- GENERAL CTRL -->
+<para><emphasis role="bold">General CTRL keys</emphasis></para>
 <informaltable>
 <tgroup cols="2">
 <tbody>
@@ -1493,10 +1551,8 @@ TODO
 <entry><para>Select all</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>PageDown</keycap></keycombo></para></entry>
-<entry><para>Select all below the cursor</para></entry></row>
-<row>
-<entry><para><keycombo action="simul">&Ctrl;<keycap>PageUp</keycap></keycombo></para></entry>
-<entry><para>Select all above the cursor</para></entry></row>
+<entry><para>Move to the lower part in the current directory</para></entry></row>
+
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>F1..F12</keycap></keycombo></para></entry>
 <entry><para>Standard (&kde;) key-bindings</para></entry></row>
@@ -1508,6 +1564,7 @@ TODO
 </informaltable>
 
 
+<!-- OTHER KEYS -->
 <para><emphasis role="bold">Other keys</emphasis></para>
 <informaltable>
 <tgroup cols="2">
@@ -1559,7 +1616,9 @@ TODO
 </informaltable>
 
 
-<para id="cmdline_keybindings"><emphasis role="bold">&cmdline_lnk;</emphasis></para>
+<!-- COMMANDLINE -->
+<para id="cmdline_keybindings"><emphasis role="bold">Command Line</emphasis></para>
+<para>&cmdline_lnk; keybindings.</para>
 <informaltable>
 <tgroup cols="2">
 <tbody>
@@ -1588,6 +1647,7 @@ TODO
 </informaltable>
 
 
+<!-- OTHER KEYS URL'S -->
 <itemizedlist>
 <title>Other Key-bindings</title>
   <listitem>
@@ -1595,6 +1655,12 @@ TODO
   </listitem>
   <listitem>
      <para><link linkend="krviewer">KrViewer</link></para>
+  </listitem>
+  <listitem>
+     <para>&diskusage_lnk;</para>
+  </listitem>
+  <listitem>
+     <para>&locate_lnk;</para>
   </listitem>
   <listitem>
      <para>&kcontrolcenter; -> Accessibility -> Keyboard Shortcuts</para>

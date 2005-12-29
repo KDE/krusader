@@ -686,6 +686,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
 <title>Menu overview</title>
 <para>Most of the menus are pretty self-explanatory. ;-)</para>
 
+<!-- FILE menu -->
 <variablelist id="kredit_file_menu"><title><guimenu>File</guimenu> menu</title>
    <varlistentry>
    <term>
@@ -733,14 +734,15 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    <term>
    <menuchoice>
    <shortcut><keycombo action="simul">&Ctrl;<keycap>P</keycap></keycombo></shortcut>
-   <guimenu>Print</guimenu>
-   <guimenuitem>Export</guimenuitem></menuchoice></term>
+   <guimenu>File</guimenu>
+   <guimenuitem>Print</guimenuitem></menuchoice></term>
    <listitem>
    <para>Print the file.</para>
    </listitem>
   </varlistentry>
 </variablelist>
 
+<!-- EDIT menu -->
 <variablelist id="kredit_edit_menu"><title><guimenu>Edit</guimenu> menu</title>
   <varlistentry>
    <term>
@@ -824,7 +826,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    <menuchoice>
    <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>B</keycap></keycombo></shortcut>
    <guimenu>Edit</guimenu>
-   <guimenuitem>Toggle Block Selection</guimenuitem></menuchoice></term>
+   <guimenuitem>Block Selection Mode</guimenuitem></menuchoice></term>
    <listitem>
    <para>Toggle Block Selection, this will activate/deactivate the block selection possibility.</para>
    </listitem>
@@ -833,10 +835,11 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   <varlistentry>
    <term>
    <menuchoice>
+  <shortcut><keycap>Insert</keycap></shortcut>
    <guimenu>Edit</guimenu>
-   <guimenuitem>Toggle Insert</guimenuitem></menuchoice></term>
+   <guimenuitem>Overwrite Mode</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Toggle Insert mode.</para>
+   <para>Toggle Insert/Overwrite Mode.</para>
    </listitem>
   </varlistentry>
 
@@ -896,11 +899,34 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   </varlistentry>
 </variablelist>
 
+<!-- VIEW menu -->
 <variablelist id="kredit_view_menu"><title><guimenu>View</guimenu> menu</title>
   <varlistentry>
    <term>
    <menuchoice>
-   <shortcut><keycap>F12</keycap></shortcut>
+   <shortcut><keycap>F7</keycap></shortcut>
+   <guimenu>View</guimenu>
+   <guimenuitem>Switch to Command Line.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Display Command Line.</para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Schema.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Set Schema &eg; &krusader; Normal, &krusader; Printing, 
+         &kate; Normal, &kwrite; Normal.</para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F10</keycap></shortcut>
    <guimenu>View</guimenu>
    <guimenuitem>Dynamic Word Wrap</guimenuitem></menuchoice></term>
    <listitem>
@@ -908,14 +934,23 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    </listitem>
   </varlistentry>
 
-  <varlistentry>
+ <varlistentry>
    <term>
    <menuchoice>
-   <shortcut><keycap>F9</keycap></shortcut>
    <guimenu>View</guimenu>
-   <guimenuitem>Show Folding Markers</guimenuitem></menuchoice></term>
+   <guimenuitem>Dynamic Word Wrap Indicators</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Show Folding Markers.</para>  <!-- TODO -->
+   <para>Off, Follow Line Numbers, Always On.</para>
+   </listitem>
+  </varlistentry>
+
+ <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Show Static Word Wrap marker</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para> <!-- TODO -->
    </listitem>
   </varlistentry>
 
@@ -945,6 +980,37 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    <term>
    <menuchoice>
    <guimenu>View</guimenu>
+   <guimenuitem>Show Scrollbar Marks.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F9</keycap></shortcut>
+   <guimenu>View</guimenu>
+   <guimenuitem>Hide Folding Markers</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
+   <guimenuitem>Code Folding.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>  <!-- TODO -->
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>View</guimenu>
    <guimenuitem>Set Encoding</guimenuitem></menuchoice></term>
    <listitem>
    <para>&eg; ISO8859-1, utf8, utf16, tscii, ... .</para>
@@ -952,15 +1018,16 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   </varlistentry>
 </variablelist>
 
+<!-- BOOKMARKS menu -->
 <variablelist id="kredit_bookmarks_menu"><title><guimenu>Bookmarks</guimenu> menu</title>
   <varlistentry>
    <term>                               <!-- TODO -->
    <menuchoice>
    <shortcut><keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo></shortcut>
    <guimenu>Bookmark</guimenu>
-   <guimenuitem>Toggle Bookmark</guimenuitem></menuchoice></term>
+   <guimenuitem>Set Bookmark</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Toggle Bookmark.</para>
+   <para></para>
    </listitem>
   </varlistentry>
 
@@ -968,13 +1035,15 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    <term>
    <menuchoice>
    <guimenu>Bookmark</guimenu>
-   <guimenuitem>Clear Bookmarks</guimenuitem></menuchoice></term>
+   <guimenuitem>Clear All Bookmarks</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Clear Bookmarks.</para>
+   <para></para>
    </listitem>
   </varlistentry>
 
-  <varlistentry>
+<!-- These enties are gone on my system with kde3.3.2
+  
+<varlistentry>
    <term>
    <menuchoice>
    <shortcut><keycombo action="simul">&Alt;<keycap>PageDown</keycap></keycombo></shortcut>
@@ -995,9 +1064,33 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    <para>Go to the previous Bookmark.</para>
    </listitem>
   </varlistentry>
+-->
+
 </variablelist>
 
+
+<!-- TOOLS menu -->
 <variablelist id="kredit_tools_menu"><title><guimenu>Tools</guimenu> menu</title>
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Read Only Mode</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Filetype  Mode</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
   <varlistentry>
    <term>
    <menuchoice>
@@ -1027,7 +1120,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    <guimenu>Tools</guimenu>
    <guimenuitem>Indent</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Indent.</para> <!-- TODO-->
+   <para></para> <!-- TODO-->
    </listitem>
   </varlistentry>
 
@@ -1038,7 +1131,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    <guimenu>Tools</guimenu>
    <guimenuitem>Unindent</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Unindent.</para> <!-- TODO-->
+   <para></para> <!-- TODO-->
    </listitem>
   </varlistentry>
 
@@ -1048,14 +1141,14 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
    <guimenu>Tools</guimenu>
    <guimenuitem>Clean Indendation</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Clean Indendation.</para> <!-- TODO-->
+   <para></para> <!-- TODO-->
    </listitem>
   </varlistentry>
 
   <varlistentry>
    <term>
    <menuchoice>
-   <shortcut><keycombo action="simul">&Ctrl;<keycap>#</keycap></keycombo></shortcut>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo></shortcut>
    <guimenu>Tools</guimenu>
    <guimenuitem>Comment</guimenuitem></menuchoice></term>
    <listitem>
@@ -1066,7 +1159,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   <varlistentry>
    <term>
    <menuchoice>
-   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>#</keycap></keycombo></shortcut>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>D</keycap></keycombo></shortcut>
    <guimenu>Tools</guimenu>
    <guimenuitem>Uncomment</guimenuitem></menuchoice></term>
    <listitem>
@@ -1077,25 +1170,60 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   <varlistentry>
    <term>
    <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>U</keycap></keycombo></shortcut>
    <guimenu>Tools</guimenu>
-   <guimenuitem>Apply Word Wrap</guimenuitem></menuchoice></term>
+   <guimenuitem>Uppercase</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Apply Word Wrap.</para> <!-- TODO-->
+   <para></para>
    </listitem>
   </varlistentry>
 
   <varlistentry>
    <term>
    <menuchoice>
-   <shortcut><keycombo action="simul">&Ctrl;<keycap>M</keycap></keycombo></shortcut>
+   <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>U</keycap></keycombo></shortcut>
    <guimenu>Tools</guimenu>
-   <guimenuitem>Editing command</guimenuitem></menuchoice></term>
+   <guimenuitem>Lowercase</guimenuitem></menuchoice></term>
    <listitem>
-   <para>Opens a dialog box for entering a editing command.</para> <!-- TODO-->
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;&Ctrl;<keycap>U</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Capitalize</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Ctrl;<keycap>J</keycap></keycombo></shortcut>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Join Lines</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <guimenu>Tools</guimenu>
+   <guimenuitem>Word Wrap Document</guimenuitem></menuchoice></term>
+   <listitem>
+   <para></para> <!-- TODO-->
    </listitem>
   </varlistentry>
 </variablelist>
 
+
+<!-- SETTINGS -> CONFIGURE EDITOR menu -->
 <variablelist id="kredit_settings_menu"><title><guimenu>Settings -> Configure Editor</guimenu> menu</title>
   <varlistentry>
    <term>
@@ -1201,6 +1329,7 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   </varlistentry>
 </variablelist>
 
+<!-- KRVIEWER menu -->
 <variablelist id="kredit_krviewer_menu"><title><guimenu>KrViewer</guimenu> menu</title>
   <varlistentry>
    <term>
@@ -1250,7 +1379,51 @@ Today, this is the wallet mostly. if you have a wallet, &kde; will save the pass
   <varlistentry>
    <term>
    <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;<keycap>Right</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Next Tab</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Next browsing Tab.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;<keycap>Left</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Previous Tab</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Previous browsing Tab.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycombo action="simul">&Alt;<keycap>D</keycap></keycombo></shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Detach Tab</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Detach browsing Tab and open in a new window.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
    <shortcut>&Esc;</shortcut>
+   <guimenu>KrViewer</guimenu>
+   <guimenuitem>Close current Tab.</guimenuitem></menuchoice></term>
+   <listitem>
+   <para>Close current browsing Tab.</para>
+   </listitem>
+  </varlistentry>
+
+  <varlistentry>
+   <term>
+   <menuchoice>
+   <shortcut><keycap>F10</keycap></shortcut>
    <guimenu>KrViewer</guimenu>
    <guimenuitem>Close</guimenuitem></menuchoice></term>
    <listitem>
@@ -2025,12 +2198,12 @@ You can also set a user under which the command should be executed.
 
 </sect1>
 
-<sect1  id="diskusage">
+<sect1 id="diskusage">
 <title>Disk Usage</title>
 
 <para>The Disk Usage is based on the code of &filelight;.
-     The Disk Usage shows you exactly how your disk space is being used by a graphical
-			representation of your filesystem. The following presentations are possible:
+      The Disk Usage shows you exactly how your disk space is being used by a graphical
+      representation of your filesystem. The following presentations are possible:
  <itemizedlist>
   <listitem><para>Line view</para></listitem>
   <listitem><para>Detailed view</para></listitem>
@@ -2040,8 +2213,43 @@ You can also set a user under which the command should be executed.
  Choose <emphasis role="bold"><menuchoice><guimenu>Tools</guimenu>
       <guimenuitem>Disk Usage</guimenuitem></menuchoice></emphasis>
       or
-      <keycombo action="simul">&Alt;<keycap>d</keycap></keycombo> to start this feature.
-      It is also available in the &popup_panel_lnk;.
+      <keycombo action="simul">&Alt;<keycap>d</keycap></keycombo> to start this feature in a
+       separate window, or open it insided  the &popup_panel_lnk;.
+</para>
+
+<para>Disk Usage Keybindings, right click menu.
+ <itemizedlist>
+  <listitem><para><keycap>Del</keycap>: 
+            Delete</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>e</keycap></keycombo>: 
+            Exclude</para></listitem>
+  <listitem><para><keycombo action="simul">&Shift;<keycap>Arrow Up</keycap></keycombo>: 
+            parent dir</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo>: 
+            new search</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>r</keycap></keycombo>: 
+            refresh</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>i</keycap></keycombo>: 
+            include all</para></listitem>
+  <listitem><para><keycombo action="simul">&Shift;<keycap>Arrow Down</keycap></keycombo>: 
+            step into</para></listitem>
+  
+  <listitem><para>View menu:
+  <itemizedlist>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>l</keycap></keycombo>: 
+            line view</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo>: 
+            detailed view</para></listitem>
+  <listitem><para><keycombo action="simul">&Ctrl;<keycap>f</keycap></keycombo>: 
+            filelight view</para></listitem>
+  <listitem><para><keycombo action="simul">&Shift;<keycap>Arrow Right</keycap></keycombo>: 
+            next view</para></listitem>
+  <listitem><para><keycombo action="simul">&Shift;<keycap>Arrow Left</keycap></keycombo>: 
+            previous view</para></listitem>
+  </itemizedlist>
+  </para></listitem>
+
+ </itemizedlist>
 </para>
 
 <!--HTML_PARSING
