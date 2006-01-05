@@ -167,6 +167,9 @@ HTML_PARSING-->
                    before files beginning with non-capital letters; otherwise, all files beginning 
                    with a specified letter (capital or otherwise) will appear together.
                    </para></listitem>
+  <listitem><para><guilabel>Show splashscreen</guilabel>: 
+                   Display a splashscreen when starting &krusader;.
+                   </para></listitem>
 
 <!--
   <listitem><para><guilabel>HTML viewers minimal font size</guilabel>: when viewing an HTML file
@@ -239,29 +242,47 @@ HTML_PARSING-->
        lists.</para></listitem>
   <listitem><para><guilabel>Filelist icon size</guilabel>: allows you to change the size of the icons in
        the file lists. The available sizes are 16x16, 22x22, 32x32 and 48x48 pixels.</para></listitem>
-  <listitem><para><guilabel>Extension Column</guilabel>: if checked,
-                    show the last part of the filename (part after the last dot) in the Ext Column and not
-                    as a complete filename in the Name Column like e.g. &konqueror; does.</para></listitem>
-  <listitem><para><guilabel>Permission Column</guilabel>: if checked,
-                    show the full perissions &eg; "rwxr-xr-x" or as octal numbers '0755' instead
-                    with enable/disable <guilabel>Nummeric Permissions</guilabel> in Look &amp; Feel 
-                    <guilabel>Operation</guilabel> Tab.</para></listitem>
-  <listitem><para><guilabel>Mimetype Column</guilabel>: if checked,
-                    show the mimetype field.</para></listitem>
-  <listitem><para><guilabel>&krusader; Permission Column</guilabel>: if checked,
-                    show only the rights of the current user &eg; "-rw".</para></listitem>
-  <listitem><para><guilabel>Size Column</guilabel>: if checked,
-                    show the size field.</para></listitem>
-  <listitem><para><guilabel>Owner Column</guilabel>: if checked,
-                    show the owner field.</para></listitem>
-  <listitem><para><guilabel>Date and Time Column</guilabel>: if checked,
-                    show the date and time field.</para></listitem>
-  <listitem><para><guilabel>Group Column</guilabel>: if checked,
-                    show the group field.</para></listitem>
   <listitem><para><guilabel>Use icons in filenames</guilabel>: if checked,
                     show the icons in filenames and folders.</para></listitem>
   <listitem><para><guilabel>Human readable file size</guilabel>: if checked,
                     the file size will be displayed in kB, Mb &etc; and not in bytes (default).</para></listitem>
+  <listitem><para>Since &krusader;-1.70.0 you need to configure the Columns with the right click menu 
+                  in the panel and not in Konfigurator.
+                  The left and right panel use their own Columns independently.
+                  The next Columns are available:
+      <itemizedlist>
+        <listitem><para><guilabel>Name</guilabel>
+                  </para></listitem>
+        <listitem><para><guilabel>Ext</guilabel>: 
+                    show the last part of the filename (part after the last dot) in the Ext Column and not
+                    as a complete filename in the Name Column like e.g. &konqueror; does.
+                  </para></listitem>
+        <listitem><para><guilabel>Type</guilabel>: 
+                    show the mimetype field.
+                   </para></listitem>
+        <listitem><para><guilabel>Size</guilabel>: 
+                    show the size field.
+                   </para></listitem>
+        <listitem><para><guilabel>Modified</guilabel>: 
+                    show the modified date and time field.
+                   </para></listitem>
+        <listitem><para><guilabel>Perms</guilabel>: 
+                    show the full perissions &eg; "rwxr-xr-x" or as octal numbers '0755' instead
+                    with enable/disable <guilabel>Nummeric Permissions</guilabel> in Look &amp; Feel 
+                    <guilabel>Operation</guilabel> Tab.
+                   </para></listitem>
+        <listitem><para><guilabel>rwx</guilabel>: 
+                    show only the rights of the current user &eg; "-rw".
+                   </para></listitem>
+        <listitem><para><guilabel>Owner</guilabel>: 
+                    show the owner field.
+                   </para></listitem>
+        <listitem><para><guilabel>Group</guilabel>: 
+                    show the group field.
+                   </para></listitem>
+       </itemizedlist>
+    </para></listitem> 
+
 </itemizedlist>
 
 <tip><para>Uncheck the un-used columns, this allows more space for columns in use.
