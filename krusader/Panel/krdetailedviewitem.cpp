@@ -116,6 +116,7 @@ void KrDetailedViewItem::repaintItem() {
       setText(id, dateTime());
     if ((id = COLUMN(KrPermissions)) != -1) {
       // first, build the krusader permissions
+      tmp=QString::null;
       switch (_vf->vfile_isReadable()){
         case ALLOWED_PERM: tmp+='r'; break;
         case UNKNOWN_PERM: tmp+='?'; break;
