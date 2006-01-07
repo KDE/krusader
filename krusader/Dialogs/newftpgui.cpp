@@ -87,11 +87,8 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
     prefix->setSizePolicy( SIZE_MINIMUM );
     connect( prefix,SIGNAL(activated(const QString& )),
                this,SLOT(slotTextChanged(const QString& )));
-    
-    QFont font;
-    font.setPointSize( 9 );
+
     url = new KHistoryCombo( grid_host, "url" );
-    url->setFont( font );
     url->setMaximumHeight( 20 );
     connect( url, SIGNAL( activated( const QString& )),
              url, SLOT( addToHistory( const QString& )));
