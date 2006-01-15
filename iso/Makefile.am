@@ -9,7 +9,7 @@ INCLUDES = $(all_includes)
 kio_iso_la_METASOURCES=AUTO
 
 kio_iso_la_SOURCES = kisodirectory.cpp kisofile.cpp qfilehack.cpp kiso.cpp iso.cpp
-kio_iso_la_LIBADD = libisofs/libisofs.la $(LIB_KIO)
+kio_iso_la_LIBADD = libisofs/libisofs.la $(LIB_QT) $(LIB_KDECORE) $(LIB_KIO)
 
 kio_iso_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
 

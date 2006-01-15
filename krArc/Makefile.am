@@ -10,7 +10,7 @@ INCLUDES = $(all_includes)
 kio_krarc_la_METASOURCES=AUTO
 
 kio_krarc_la_SOURCES = krarc.cpp
-kio_krarc_la_LIBADD = $(LIB_KIO)
+kio_krarc_la_LIBADD = $(LIB_QT) $(LIB_KDECORE) $(LIB_KIO)
 # $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
 
 kio_krarc_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
