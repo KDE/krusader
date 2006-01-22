@@ -90,21 +90,21 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	setCentralWidget( &tabBar );
 
 	viewerMenu = new QPopupMenu( this );
-	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + Key_G, 1 );
-	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + Key_T, 2 );
-	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + Key_H, 3 );
+	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + SHIFT + Key_G, 1 );
+	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + SHIFT + Key_T, 2 );
+	viewerMenu->insertItem( i18n( "&Hex viewer" ), this, SLOT( viewHex() ), CTRL + SHIFT + Key_H, 3 );
 	viewerMenu->insertSeparator();
-	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + Key_E, 4 );
+	viewerMenu->insertItem( i18n( "Text &editor" ), this, SLOT( editText() ), CTRL + SHIFT + Key_E, 4 );
 	viewerMenu->insertSeparator();
 	viewerMenu->insertItem( i18n( "&Next tab" ), this, SLOT( nextTab() ), ALT+Key_Right );
 	viewerMenu->insertItem( i18n( "&Previous tab" ), this, SLOT( prevTab() ), ALT+Key_Left );
 
-	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL+Key_D );
+	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL + SHIFT + Key_B );
 	//no point in detaching only one tab..
 	viewerMenu->setItemEnabled(detachActionIndex,false);	
 
 	viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
-	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), Key_F10 );
+	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), CTRL + Key_Q );
 
 	//toolBar() ->insertLined("Edit:",1,"",this,"",true ,i18n("Enter an URL to edit and press enter"));
 	
