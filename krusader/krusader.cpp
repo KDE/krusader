@@ -615,7 +615,7 @@ void Krusader::setupActions() {
                             SLOT( newTab() ), actionCollection(), "new tab" );
    actDupTab = new KAction( i18n( "Duplicate tab" ), ALT + CTRL + SHIFT + Key_N, SLOTS,
                             SLOT( duplicateTab() ), actionCollection(), "duplicate tab" );
-   actCloseTab = new KAction( i18n( "Close tab" ), ALT + CTRL + Key_C, SLOTS,
+   actCloseTab = new KAction( i18n( "Close tab" ), CTRL + Key_W, SLOTS,
                               SLOT( closeTab() ), actionCollection(), "close tab" );
    actNextTab  = new KAction( i18n( "Next tab" ), SHIFT + Key_Right, SLOTS,
 	     SLOT( nextTab() ), actionCollection(), "next tab" );
