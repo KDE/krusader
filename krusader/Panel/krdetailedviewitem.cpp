@@ -300,14 +300,6 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 	}
 }
 
-void KrDetailedViewItem::paintFocus(QPainter *p, const QColorGroup &cg, const QRect &r) {
-
-   //makes a solid line around the current items rectangle
-   //dotted default rectangle is ugly
-   p->setPen( Qt::SolidLine );
-   p->drawRect( r );
-}
-
 const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
 {
    #define sqr(x) ((x)*(x))

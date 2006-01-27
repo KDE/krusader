@@ -51,7 +51,6 @@ public:
 	inline void setSelected(bool s) { KListViewItem::setSelected(s); }
 	int compare(QListViewItem *i,int col,bool ascending ) const;
 	void paintCell(QPainter *p, const QColorGroup &cg, int column, int width, int align);
-	void paintFocus(QPainter *p, const QColorGroup &cg, const QRect &r);
 	void repaintItem();
 	static void itemHeightChanged(); // force the items to resize when icon/font size change
 #ifdef FASTER		
