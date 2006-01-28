@@ -63,8 +63,8 @@ public:
 	KEasyProcess();
 	virtual ~KEasyProcess() {}
 
-	const QString& stdout() const { return _stdout; }
-	const QString& stderr() const { return _stderr; }
+	const QString& getStdout() const { return _stdout; }
+	const QString& getStderr() const { return _stderr; }
 
 protected slots:
 	void receivedStdout (KProcess *proc, char *buffer, int buflen);
