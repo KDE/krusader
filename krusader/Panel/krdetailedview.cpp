@@ -949,6 +949,11 @@ mark:       if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
 							// first, show the quicksearch if its hidden
 							if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
 								ACTIVE_PANEL->quickSearch->show();
+								// hack: if the pressed key requires a scroll down, the selected
+								// item is "below" the quick search window, as the list view will
+								// realize its new size after the key processing. The following line
+								// will resize the list view immediately.
+								ACTIVE_PANEL->layout->activate();
 								// second, we need to disable the dirup action - hack!
 								krDirUp->setEnabled( false );
 							}
