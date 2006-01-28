@@ -490,7 +490,7 @@ void Krusader::setupActions() {
    /* Shortcut disabled because of the Terminal Emulator bug. */
    actDirUp = new KAction( i18n( "Up one directory" ), "up", CTRL+Key_PageUp /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
    new KAction( i18n( "&Edit New File" ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
-   new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_red", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
+   new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_root", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
    actTest = new KAction( i18n( "T&est Archive(s)" ), "ark", ALT + Key_E,
                           SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
