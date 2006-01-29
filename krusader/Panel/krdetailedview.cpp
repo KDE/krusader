@@ -1051,7 +1051,7 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       
       int i;
       QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
-      if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() )
+      if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() && COLUMN( Extention ) != -1 )
          if ( ( i = name.findRev( '.' ) ) > 0 ) {
             ext = name.mid( i + 1 );
             name = name.mid( 0, i );
