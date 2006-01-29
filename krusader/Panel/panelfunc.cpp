@@ -596,7 +596,7 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 		// verify non-empty dirs delete... (only for normal vfs)
 		if ( emptyDirVerify && vf->vfile_isDir() && !vf->vfile_isSymLink() ) {
 			dir.setPath( panel->virtualPath().path() + "/" + ( *name ) );
-			if ( dir.count() > 2 ) {
+			if ( dir.entryList(QDir::All | QDir::AccessMask).count() > 2 ) {
 				switch ( KMessageBox::warningYesNoCancel( krApp,
 				                                          i18n( "Directory " ) + ( *name ) + i18n( " is not empty!\nSkip this one or Delete All?" ),
 				                                          QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
