@@ -185,7 +185,7 @@ KAction *Krusader::actShowJSConsole = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Qt::WStyle_ContextHelp),
-sysTray( 0 ), isStarting( true ) {
+status(NULL), sysTray( 0 ), isStarting( true ) {
 	// parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
@@ -389,7 +389,9 @@ bool Krusader::versionControl() {
 
 void Krusader::statusBarUpdate( QString& mess ) {
    // change the message on the statusbar for 2 seconds
-   statusBar() ->message( mess, 5000 );
+   if (status) // ugly!!!! But as statusBar() creates a status bar if there is no, I have to ask status to prevent 
+               // the creation of the KDE default status bar instead of KrusaderStatus.
+      statusBar() ->message( mess, 5000 );
 }
 
 void Krusader::showEvent ( QShowEvent * ) {

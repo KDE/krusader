@@ -423,6 +423,7 @@ void KrDetailedView::slotDoubleClicked( QListViewItem *item ) {
 void KrDetailedView::prepareForActive() {
 	KrView::prepareForActive();
    setFocus();
+   slotItemDescription( currentItem() );
 }
 
 void KrDetailedView::prepareForPassive() {
