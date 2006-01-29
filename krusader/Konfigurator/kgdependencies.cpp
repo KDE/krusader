@@ -36,6 +36,10 @@
 #include <qhbox.h>
 #include <kmessagebox.h>
 
+#define PAGE_GENERAL   0
+#define PAGE_PACKERS   1
+#define PAGE_CHECKSUM  2
+
 KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
 {
@@ -44,7 +48,7 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   kgDependenciesLayout->setMargin( 11 );
 
   //  ---------------------------- GENERAL TAB -------------------------------------
-  QTabWidget *tabWidget = new QTabWidget( parent, "tabWidget" );
+  tabWidget = new QTabWidget( parent, "tabWidget" );
 
   QWidget *general_tab = new QWidget( tabWidget, "tab" );
   tabWidget->insertTab( general_tab, i18n( "General" ) );
@@ -54,18 +58,18 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   pathsGrid->setMargin( 11 );
   pathsGrid->setAlignment( Qt::AlignTop );
   
-  addApplication( "df",       pathsGrid, 0, general_tab );
-  addApplication( "eject",    pathsGrid, 1, general_tab );
-  addApplication( "kdesu",    pathsGrid, 2, general_tab );
-  addApplication( "kget",     pathsGrid, 3, general_tab );
-  addApplication( "kmail",    pathsGrid, 4, general_tab );
-  addApplication( "diff utility",  pathsGrid, 5, general_tab );
-  addApplication( "krename",  pathsGrid, 6, general_tab );
-  addApplication( "krusader", pathsGrid, 7, general_tab );
-  addApplication( "locate",   pathsGrid, 8, general_tab );
-  addApplication( "mount",    pathsGrid, 9, general_tab );
-  addApplication( "umount",   pathsGrid,10, general_tab );
-  addApplication( "updatedb", pathsGrid,11, general_tab );
+  addApplication( "df",       pathsGrid, 0, general_tab, PAGE_GENERAL );
+  addApplication( "eject",    pathsGrid, 1, general_tab, PAGE_GENERAL );
+  addApplication( "kdesu",    pathsGrid, 2, general_tab, PAGE_GENERAL );
+  addApplication( "kget",     pathsGrid, 3, general_tab, PAGE_GENERAL );
+  addApplication( "kmail",    pathsGrid, 4, general_tab, PAGE_GENERAL );
+  addApplication( "diff utility",  pathsGrid, 5, general_tab, PAGE_GENERAL );
+  addApplication( "krename",  pathsGrid, 6, general_tab, PAGE_GENERAL );
+  addApplication( "krusader", pathsGrid, 7, general_tab, PAGE_GENERAL );
+  addApplication( "locate",   pathsGrid, 8, general_tab, PAGE_GENERAL );
+  addApplication( "mount",    pathsGrid, 9, general_tab, PAGE_GENERAL );
+  addApplication( "umount",   pathsGrid,10, general_tab, PAGE_GENERAL );
+  addApplication( "updatedb", pathsGrid,11, general_tab, PAGE_GENERAL );
 
   //  ---------------------------- PACKERS TAB -------------------------------------
   QWidget *packers_tab = new QWidget( tabWidget, "tab_3" );
@@ -76,18 +80,18 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   archGrid1->setMargin( 11 );
   archGrid1->setAlignment( Qt::AlignTop );
 
-  addApplication( "arj",   archGrid1, 0, packers_tab );
-  addApplication( "bzip2", archGrid1, 1, packers_tab );
-  addApplication( "cpio",  archGrid1, 2, packers_tab );
-  addApplication( "gzip",  archGrid1, 3, packers_tab );
-  addApplication( "lha",   archGrid1, 4, packers_tab );
-  addApplication( "rar",   archGrid1, 5, packers_tab );
-  addApplication( "tar",   archGrid1, 6, packers_tab );
-  addApplication( "unace", archGrid1, 7, packers_tab );
-  addApplication( "unarj", archGrid1, 8, packers_tab );
-  addApplication( "unrar", archGrid1, 9, packers_tab );
-  addApplication( "unzip", archGrid1,10, packers_tab );
-  addApplication( "zip",   archGrid1,11, packers_tab );
+  addApplication( "arj",   archGrid1, 0, packers_tab, PAGE_PACKERS );
+  addApplication( "bzip2", archGrid1, 1, packers_tab, PAGE_PACKERS );
+  addApplication( "cpio",  archGrid1, 2, packers_tab, PAGE_PACKERS );
+  addApplication( "gzip",  archGrid1, 3, packers_tab, PAGE_PACKERS );
+  addApplication( "lha",   archGrid1, 4, packers_tab, PAGE_PACKERS );
+  addApplication( "rar",   archGrid1, 5, packers_tab, PAGE_PACKERS );
+  addApplication( "tar",   archGrid1, 6, packers_tab, PAGE_PACKERS );
+  addApplication( "unace", archGrid1, 7, packers_tab, PAGE_PACKERS );
+  addApplication( "unarj", archGrid1, 8, packers_tab, PAGE_PACKERS );
+  addApplication( "unrar", archGrid1, 9, packers_tab, PAGE_PACKERS );
+  addApplication( "unzip", archGrid1,10, packers_tab, PAGE_PACKERS );
+  addApplication( "zip",   archGrid1,11, packers_tab, PAGE_PACKERS );
 
   //  ---------------------------- CHECKSUM TAB -------------------------------------
   QWidget *checksum_tab = new QWidget( tabWidget, "tab_4" );
@@ -98,24 +102,24 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
   archGrid2->setMargin( 11 );
   archGrid2->setAlignment( Qt::AlignTop );
 
-  addApplication( "md5sum",			archGrid2, 0, checksum_tab );
-  addApplication( "sha1sum",			archGrid2, 1, checksum_tab );
-  addApplication( "md5deep",			archGrid2, 2, checksum_tab );
-  addApplication( "sha1deep",			archGrid2, 3, checksum_tab );
-  addApplication( "sha256deep",		archGrid2, 4, checksum_tab );
-  addApplication( "tigerdeep",		archGrid2, 5, checksum_tab );
-  addApplication( "whirlpooldeep",	archGrid2, 6, checksum_tab );
-  addApplication( "cfv", 				archGrid2, 7, checksum_tab );
+  addApplication( "md5sum",         archGrid2, 0, checksum_tab, PAGE_CHECKSUM );
+  addApplication( "sha1sum",        archGrid2, 1, checksum_tab, PAGE_CHECKSUM );
+  addApplication( "md5deep",        archGrid2, 2, checksum_tab, PAGE_CHECKSUM );
+  addApplication( "sha1deep",       archGrid2, 3, checksum_tab, PAGE_CHECKSUM );
+  addApplication( "sha256deep",     archGrid2, 4, checksum_tab, PAGE_CHECKSUM );
+  addApplication( "tigerdeep",      archGrid2, 5, checksum_tab, PAGE_CHECKSUM );
+  addApplication( "whirlpooldeep",  archGrid2, 6, checksum_tab, PAGE_CHECKSUM );
+  addApplication( "cfv",            archGrid2, 7, checksum_tab, PAGE_CHECKSUM );
 
   kgDependenciesLayout->addWidget( tabWidget, 0, 0 );
 }
 
-void KgDependencies::addApplication( QString name, QGridLayout *grid, int row, QWidget *parent  )
+void KgDependencies::addApplication( QString name, QGridLayout *grid, int row, QWidget *parent, int page )
 {
   QString dflt = KrServices::fullPathName( name ); /* try to autodetect the full path name */
   addLabel( grid, row, 0, name, parent, (QString( "label:" )+name).ascii() );
 
-  KonfiguratorURLRequester *fullPath = createURLRequester( "Dependencies", name, dflt, parent, false );
+  KonfiguratorURLRequester *fullPath = createURLRequester( "Dependencies", name, dflt, parent, false, page );
   connect( fullPath->extension(), SIGNAL( applyManually( QObject *, QString, QString ) ),
            this, SLOT( slotApply( QObject *, QString, QString ) ) );
   grid->addWidget( fullPath, row, 1 );
@@ -141,6 +145,10 @@ void KgDependencies::slotApply( QObject *obj, QString cls, QString name )
                           .arg( urlRequester->url() ).arg( usedPath ) );
     urlRequester->setURL( usedPath );
   }
+}
+
+int KgDependencies::activeSubPage() {
+  return tabWidget->currentPageIndex();
 }
 
 #include "kgdependencies.moc"

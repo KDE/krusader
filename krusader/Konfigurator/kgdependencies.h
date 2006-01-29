@@ -33,6 +33,9 @@
 
 #include "konfiguratorpage.h"
 
+class QTabWidget;
+
+
 class KgDependencies : public KonfiguratorPage
 {
   Q_OBJECT
@@ -40,11 +43,16 @@ class KgDependencies : public KonfiguratorPage
 public:
   KgDependencies( bool first, QWidget* parent=0,  const char* name=0 );
 
+  virtual int activeSubPage();
+  
 private:
-  void addApplication( QString name, QGridLayout *grid, int row, QWidget *parent  );
+  void addApplication( QString name, QGridLayout *grid, int row, QWidget *parent, int page );
   
 public slots:
   void slotApply( QObject *obj, QString cls, QString name );
+  
+private:
+  QTabWidget *tabWidget;
 };
 
 #endif /* __KGDEPENDENCIES_H__ */

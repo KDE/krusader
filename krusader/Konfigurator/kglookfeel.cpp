@@ -42,6 +42,12 @@
 #include <kstandarddirs.h>
 #include "../Panel/krselectionmode.h"
 
+#define PAGE_OPERATION     0
+#define PAGE_PANEL         1
+#define PAGE_TOOLBAR       2
+#define PAGE_KEYBINDINGS   3
+#define PAGE_PANELTOOLBAR  4
+
 KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
 {
@@ -50,7 +56,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   kgLookAndFeelLayout->setMargin( 11 );
 
   //  ---------------------------- GENERAL TAB -------------------------------------
-  QTabWidget *tabWidget = new QTabWidget( parent, "tabWidget" );
+  tabWidget = new QTabWidget( parent, "tabWidget" );
 
   QWidget *tab = new QWidget( tabWidget, "tab" );
   tabWidget->insertTab( tab, i18n( "Operation" ) );
@@ -75,7 +81,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Show splashscreen",  _ShowSplashScreen, i18n( "Show splashscreen"  ), false,  i18n( "Display a splashscreen when starting krusader.") },
     };
 
-  cbs = createCheckBoxGroup( 2, 0, settings, 10, lookFeelGrp );
+  cbs = createCheckBoxGroup( 2, 0, settings, 10, lookFeelGrp, 0, PAGE_OPERATION );
   lookFeelGrid->addWidget( cbs, 0, 0 );
   connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
@@ -88,7 +94,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   //          name                                               value  tooltip
     {{ i18n( "Double-click selects (classic)" ),                   "0", i18n( "A single click on a file will select and focus, a double click opens the file or steps into the directory." ) },
      { i18n( "Obey KDE's global selection policy" ),               "1", i18n( "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>" ) }};    
-  KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, lookFeelGrp, "myLook&FeelRadio0", true );
+  KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, lookFeelGrp, "myLook&FeelRadio0", true, PAGE_OPERATION );
   lookFeelGrid->addWidget( clickRadio, 8, 0 );
   
   
@@ -103,7 +109,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      { i18n( "Total-Commander Mode" ), "2", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection. The right mouse button selects multiple files and the right-click menu is invoked by pressing and holding the right mouse button." ) },
 	  { i18n( "Custom Selection Mode" ),       "3", i18n( "Design your own selection mode!" ) }};
  mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
-      "0", 1, 0, mouseSelection, 4, lookFeelGrp, "myLook&FeelRadio", true );
+      "0", 1, 0, mouseSelection, 4, lookFeelGrp, "myLook&FeelRadio", true, PAGE_OPERATION );
   lookFeelGrid->addWidget( mouseRadio, 11, 0 );
   connect(mouseRadio, SIGNAL(clicked(int)), this, SLOT(slotSelectionModeChanged(int)));
 	
@@ -121,7 +127,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   QHBox *hbox = new QHBox( panelGrp, "lookAndFeelHBox1" );
   new QLabel( i18n( "Panel font:" ), hbox, "lookAndFeelLabel" );
-  createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hbox, true );
+  createFontChooser( "Look&Feel", "Filelist Font", _FilelistFont, hbox, true, PAGE_PANEL );
   createSpacer ( hbox );
   panelGrid->addWidget( hbox, 0, 0 );
 
@@ -133,7 +139,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      { i18n( "22" ),  "22" },
      { i18n( "32" ),  "32" },
      { i18n( "48" ),  "48" }};
-  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hbox2, true, true );
+  KonfiguratorComboBox *iconCombo = createComboBox( "Look&Feel", "Filelist Icon Size", _FilelistIconSize, iconSizes, 4, hbox2, true, true, PAGE_PANEL );
   iconCombo->lineEdit()->setValidator( new QRegExpValidator( QRegExp( "[1-9]\\d{0,1}" ), iconCombo ) );
   createSpacer ( hbox2 );
   panelGrid->addWidget( hbox2, 1, 0 );
@@ -147,7 +153,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 	 {"Look&Feel","Human Readable Size",  _HumanReadableSize, i18n( "Use human-readable file size" ), true ,  i18n( "File sizes are displayed in B, KB, MB and GB, not just in bytes." ) },
     };
 
-  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 0, 2, panelSettings, 2, panelGrp );
+  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 0, 2, panelSettings, 2, panelGrp, 0, PAGE_PANEL );
   panelGrid->addWidget( panelSett, 3, 0 );
   
   panelLayout->addWidget( panelGrp, 0, 0 );
@@ -157,7 +163,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   tabWidget->insertTab( tab_2, i18n( "Toolbar" ) );
 
   toolBarLayout = new QGridLayout( tab_2 );
-  KonfiguratorEditToolbarWidget *editToolbar = new KonfiguratorEditToolbarWidget(krApp->factory(),tab_2);
+  KonfiguratorEditToolbarWidget *editToolbar = new KonfiguratorEditToolbarWidget(krApp->factory(),tab_2, false, PAGE_TOOLBAR );
   connect( editToolbar, SIGNAL( reload( KonfiguratorEditToolbarWidget * ) ), this, SLOT( slotReload( KonfiguratorEditToolbarWidget *) ) );
   toolBarLayout->addWidget(editToolbar->editToolbarWidget(),0,0);
   registerObject( editToolbar );
@@ -167,7 +173,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   tabWidget->insertTab( tab_3, i18n( "Keybindings" ) );
 
   keyBindingsLayout = new QGridLayout( tab_3 );
-  keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3);
+  keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3, false, PAGE_KEYBINDINGS );
   connect( keyBindings, SIGNAL( reload( KonfiguratorKeyChooser * ) ), this, SLOT( slotReload( KonfiguratorKeyChooser *) ) );
   keyBindingsLayout->addMultiCellWidget(keyBindings->keyChooserWidget(),0,0,0,2);
   registerObject( keyBindings );
@@ -196,7 +202,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
     {{"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n( "Show Panel Toolbar" ), true,   i18n( "The panel toolbar will be visible." ) }
   };
 
-  panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive");
+  panelToolbarActive = createCheckBoxGroup( 1, 0, panelToolbarActiveCheckbox, 1, tab_4, "panelToolbarActive", PAGE_PANELTOOLBAR);
   connect( panelToolbarActive->find( "Panel Toolbar visible" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotEnablePanelToolbar() ) );
     
   QGroupBox * panelToolbarGrp = createFrame( i18n( "Visible Panel Toolbar buttons" ), tab_4, "panelToolbarGrp");
@@ -216,7 +222,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   
   
   pnlcbs = createCheckBoxGroup(1, 0, panelToolbarCheckboxes, 7,
-                                       panelToolbarGrp, "panelToolbarChecks");
+                                       panelToolbarGrp, "panelToolbarChecks", PAGE_PANELTOOLBAR);
   
   panelToolbarVLayout->addWidget( panelToolbarActive, 0, 0 );
   panelToolbarGrid->addWidget( pnlcbs, 0, 0 );
@@ -303,6 +309,10 @@ void KgLookFeel::slotSelectionModeChanged(int mode) {
 		if (UserSelectionModeDlg::createCustomMode(this) == QDialog::Accepted)
 			mouseRadio->extension()->setChanged();
 	}
+}
+
+int KgLookFeel::activeSubPage() {
+	return tabWidget->currentPageIndex();
 }
 
 #include "kglookfeel.moc"

@@ -45,11 +45,13 @@ class KgLookFeel : public KonfiguratorPage
 public:
   KgLookFeel( bool first, QWidget* parent=0,  const char* name=0 );
 
+  virtual int activeSubPage();
+
 protected:
   KonfiguratorCheckBoxGroup *cbs;
   KonfiguratorCheckBoxGroup *pnlcbs;
   KonfiguratorCheckBoxGroup *panelToolbarActive;
-  KonfiguratorRadioButtons *mouseRadio;
+  KonfiguratorRadioButtons  *mouseRadio;
   
   QWidget     *tab_panel;
   
@@ -69,6 +71,7 @@ protected slots:
   
 private:
   KonfiguratorKeyChooser *keyBindings;
+  QTabWidget *tabWidget;
 };
 
 class KonfiguratorEditToolbarWidget : public KonfiguratorExtension
@@ -76,8 +79,8 @@ class KonfiguratorEditToolbarWidget : public KonfiguratorExtension
   Q_OBJECT
 
 public:
-  KonfiguratorEditToolbarWidget( KXMLGUIFactory *factory, QWidget *parent, bool restart=false ) :
-    KonfiguratorExtension( this, QString(), QString(), restart )
+  KonfiguratorEditToolbarWidget( KXMLGUIFactory *factory, QWidget *parent, bool restart=false, int pg=FIRST_PAGE ) :
+    KonfiguratorExtension( this, QString(), QString(), restart, pg )
   {
     editToolbar = new KEditToolbarWidget( factory, parent );
     connect( editToolbar, SIGNAL( enableOk( bool ) ), this, SLOT( setChanged() ) );
@@ -114,8 +117,8 @@ class KonfiguratorKeyChooser : public KonfiguratorExtension
   Q_OBJECT
   
 public:
-  KonfiguratorKeyChooser( KActionCollection *actColl, QWidget *parent, bool restart=false ) :
-    KonfiguratorExtension( this, QString(), QString(), restart )
+  KonfiguratorKeyChooser( KActionCollection *actColl, QWidget *parent, bool restart=false, int pg=FIRST_PAGE  ) :
+    KonfiguratorExtension( this, QString(), QString(), restart, pg )
   {
     keyChooser = new KKeyChooser( actColl, parent );
     connect( keyChooser, SIGNAL( keyChange() ), this, SLOT( setChanged() ) );
@@ -137,7 +140,11 @@ public:
     return restartNeeded;
   }
 
-  virtual void setDefaults()      { if( changed ) emit reload( this ); }
+  virtual void setDefaults()      
+  {
+    keyChooser->allDefault();
+  }
+  
   virtual void loadInitialValue() { if( changed ) emit reload( this ); }
 
 signals:

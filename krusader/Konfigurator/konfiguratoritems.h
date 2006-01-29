@@ -50,26 +50,30 @@
 #include <qtoolbutton.h>
 #include <qcombobox.h>
 
+#define FIRST_PAGE        0
+
 class KonfiguratorExtension : public QObject
 {
   Q_OBJECT
 
 public:
-  KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst = false );
+  KonfiguratorExtension(QObject *obj, QString cfgClass, QString cfgName, bool rst = false, int pg=FIRST_PAGE );
 
   virtual void    loadInitialValue();
   virtual bool    apply();
   virtual void    setDefaults();
   virtual bool    isChanged();
+  virtual void    setSubPage(int pg) {subpage = pg;}
+  virtual int     subPage()          {return subpage;}
 
-  inline QObject *object()        {return objectPtr;}
+  inline QObject *object()           {return objectPtr;}
 
-  inline QString  getCfgClass()   {return configClass;}
-  inline QString  getCfgName()    {return configName;}
+  inline QString  getCfgClass()      {return configClass;}
+  inline QString  getCfgName()       {return configName;}
 
 public slots:
-  void    setChanged()            {emit sigChanged( changed = true);}
-  void    setChanged( bool chg )  {emit sigChanged( changed = chg);}
+  void    setChanged()               {emit sigChanged( changed = true);}
+  void    setChanged( bool chg )     {emit sigChanged( changed = chg);}
 
 signals:
   void    applyManually(QObject *,QString, QString);
@@ -86,6 +90,7 @@ protected:
   bool    setDefaultsConnected;
   bool    changed;
   bool    restartNeeded;
+  int     subpage;
 
   QString configClass;
   QString configName;
@@ -103,7 +108,7 @@ class KonfiguratorCheckBox : public QCheckBox
 
 public:
   KonfiguratorCheckBox( QString cls, QString name, bool dflt, QString text,
-                        QWidget *parent=0, const char *widgetName=0, bool rst=false );
+                        QWidget *parent=0, const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorCheckBox();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -127,7 +132,7 @@ class KonfiguratorSpinBox : public QSpinBox
 
 public:
   KonfiguratorSpinBox( QString cls, QString name, int dflt, int min, int max,
-                       QWidget *parent=0, const char *widgetName=0, bool rst=false );
+                       QWidget *parent=0, const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorSpinBox();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -168,7 +173,7 @@ class KonfiguratorRadioButtons : public QButtonGroup
 
 public:
   KonfiguratorRadioButtons( QString cls, QString name, QString dflt, QWidget *parent=0,
-                            const char *widgetName=0, bool rst=false );
+                            const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorRadioButtons();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -205,7 +210,7 @@ class KonfiguratorEditBox : public QLineEdit
 
 public:
   KonfiguratorEditBox( QString cls, QString name, QString dflt, QWidget *parent=0,
-                       const char *widgetName=0, bool rst=false );
+                       const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorEditBox();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -230,7 +235,7 @@ class KonfiguratorURLRequester : public KURLRequester
 
 public:
   KonfiguratorURLRequester( QString cls, QString name, QString dflt, QWidget *parent=0,
-                       const char *widgetName=0, bool rst=false );
+                       const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorURLRequester();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -254,7 +259,7 @@ class KonfiguratorFontChooser : public QHBox
 
 public:
   KonfiguratorFontChooser( QString cls, QString name, QFont *dflt, QWidget *parent=0,
-                            const char *widgetName=0, bool rst=false );
+                            const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
   ~KonfiguratorFontChooser();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -306,7 +311,7 @@ public:
   KonfiguratorComboBox( QString cls, QString name, QString dflt,
                         KONFIGURATOR_NAME_VALUE_PAIR *listIn, int listInLen,
                         QWidget *parent=0, const char *widgetName=0,
-                        bool rst=false,  bool editable=false );
+                        bool rst=false,  bool editable=false, int pg=FIRST_PAGE );
   ~KonfiguratorComboBox();
 
   inline KonfiguratorExtension *extension()   {return ext;}
@@ -343,7 +348,7 @@ class KonfiguratorColorChooser : public QComboBox
 public:
   KonfiguratorColorChooser( QString cls, QString name, QColor dflt,
                             QWidget *parent=0, const char *widgetName=0, bool rst=false,
-                            ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0 );
+                            ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0, int pg=FIRST_PAGE );
   ~KonfiguratorColorChooser();
 
   inline KonfiguratorExtension *extension()   {return ext;}

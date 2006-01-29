@@ -57,10 +57,12 @@ bool KonfiguratorPage::apply()
 void KonfiguratorPage::setDefaults()
 {
   KonfiguratorExtension *item = itemList.first();
+  int activePage = activeSubPage();
 
   while( item )
   {
-    item->setDefaults();
+    if( item->subPage() == activePage )
+      item->setDefaults();
     item = itemList.next();
   }
 }
@@ -94,10 +96,10 @@ bool KonfiguratorPage::isChanged()
 }
 
 KonfiguratorCheckBox* KonfiguratorPage::createCheckBox( QString cls, QString name,
-    bool dflt, QString text, QWidget *parent, bool rst, QString toolTip )
+    bool dflt, QString text, QWidget *parent, bool rst, QString toolTip, int pg )
 {
   KonfiguratorCheckBox *checkBox = new KonfiguratorCheckBox( cls, name, dflt, text,
-                                 parent, QString(cls + "/" + name).ascii(), rst );
+                                 parent, QString(cls + "/" + name).ascii(), rst, pg );
   if( !toolTip.isEmpty() )
     QWhatsThis::add( checkBox, toolTip );
   
@@ -106,30 +108,30 @@ KonfiguratorCheckBox* KonfiguratorPage::createCheckBox( QString cls, QString nam
 }
 
 KonfiguratorSpinBox* KonfiguratorPage::createSpinBox(  QString cls, QString name,
-    int dflt, int min, int max, QWidget *parent, bool rst )
+    int dflt, int min, int max, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorSpinBox *spinBox = new KonfiguratorSpinBox( cls, name, dflt, min, max,
-                                 parent, QString(cls + "/" + name).ascii(), rst );
+                                 parent, QString(cls + "/" + name).ascii(), rst, pg );
 
   registerObject( spinBox->extension() );
   return spinBox;
 }
 
 KonfiguratorEditBox* KonfiguratorPage::createEditBox(  QString cls, QString name,
-    QString dflt, QWidget *parent, bool rst )
+    QString dflt, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorEditBox *editBox = new KonfiguratorEditBox( cls, name, dflt, parent,
-                                        QString(cls + "/" + name).ascii(), rst );
+                                        QString(cls + "/" + name).ascii(), rst, pg );
 
   registerObject( editBox->extension() );
   return editBox;
 }
 
 KonfiguratorURLRequester* KonfiguratorPage::createURLRequester(  QString cls, QString name,
-    QString dflt, QWidget *parent, bool rst )
+    QString dflt, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorURLRequester *urlRequester = new KonfiguratorURLRequester( cls, name, dflt,
-                                        parent, QString(cls + "/" + name).ascii(), rst );
+                                        parent, QString(cls + "/" + name).ascii(), rst, pg );
 
   registerObject( urlRequester->extension() );
   return urlRequester;
@@ -177,7 +179,7 @@ QWidget* KonfiguratorPage::createSpacer( QWidget *parent, const char *widgetName
 
 KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int sizey,
     KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum, QWidget *parent,
-    const char *widgetName )
+    const char *widgetName, int pg )
 {
   KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup( parent, widgetName );
   QGridLayout *layout = new QGridLayout( groupWidget );
@@ -190,7 +192,7 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int
   {
     KonfiguratorCheckBox *checkBox = createCheckBox( params[i].configClass,
       params[i].configName, params[i].defaultValue, params[i].text, groupWidget,
-      params[i].restart, params[i].toolTip );
+      params[i].restart, params[i].toolTip, pg );
 
     groupWidget->add( checkBox );
     layout->addWidget( checkBox, y, x );
@@ -212,9 +214,9 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int
 
 KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
     QString name, QString dflt, int sizex, int sizey, KONFIGURATOR_NAME_VALUE_TIP *params,
-    int paramNum, QWidget *parent, const char *widgetName, bool rst )
+    int paramNum, QWidget *parent, const char *widgetName, bool rst, int pg )
 {
-  KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, parent, widgetName, rst );
+  KonfiguratorRadioButtons *radioWidget = new KonfiguratorRadioButtons( cls, name, dflt, parent, widgetName, rst, pg );
   radioWidget->setFrameShape( QButtonGroup::NoFrame );
   radioWidget->setFrameShadow( QButtonGroup::Sunken );
   radioWidget->setTitle( "" );
@@ -259,21 +261,21 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
 }
 
 KonfiguratorFontChooser *KonfiguratorPage::createFontChooser( QString cls, QString name,
-  QFont *dflt, QWidget *parent, bool rst )
+  QFont *dflt, QWidget *parent, bool rst, int pg )
 {
   KonfiguratorFontChooser *fontChooser = new KonfiguratorFontChooser( cls, name, dflt, parent,
-                                        QString(cls + "/" + name).ascii(), rst );
+                                        QString(cls + "/" + name).ascii(), rst, pg );
 
   registerObject( fontChooser->extension() );
   return fontChooser;
 }
 
 KonfiguratorComboBox *KonfiguratorPage::createComboBox(  QString cls, QString name, QString dflt,
-    KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool rst, bool editable )
+    KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum, QWidget *parent, bool rst, bool editable, int pg )
 {
   KonfiguratorComboBox *comboBox = new KonfiguratorComboBox( cls, name, dflt, params,
                                         paramNum, parent, QString(cls + "/" + name).ascii(),
-                                        rst, editable );
+                                        rst, editable, pg );
 
   registerObject( comboBox->extension() );
   return comboBox;
@@ -310,10 +312,10 @@ void KonfiguratorPage::removeObject( KonfiguratorExtension *item )
 
 KonfiguratorColorChooser *KonfiguratorPage::createColorChooser( QString cls, QString name, QColor dflt,
                                                                 QWidget *parent, bool rst,
-                                                                ADDITIONAL_COLOR *addColPtr, int addColNum )
+                                                                ADDITIONAL_COLOR *addColPtr, int addColNum, int pg )
 {
   KonfiguratorColorChooser *colorChooser = new KonfiguratorColorChooser( cls, name, dflt,  parent,
-                                        QString(cls + "/" + name).ascii(), rst, addColPtr, addColNum );
+                                        QString(cls + "/" + name).ascii(), rst, addColPtr, addColNum, pg );
 
   registerObject( colorChooser->extension() );
   return colorChooser;

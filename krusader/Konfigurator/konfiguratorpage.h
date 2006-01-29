@@ -109,6 +109,12 @@ public:
   inline  bool isFirst()   {return firstCall;}
 
   /**
+    * This method is used to query the active subpage from the Konfigurator
+    * @return             the active page (by default the first page)
+    */
+  virtual int activeSubPage() {return FIRST_PAGE;}
+
+  /**
     * Adds a new checkbox item to the page.
     * <br>The checkbox widget's name is QString(cls + "/" + name).ascii()<br>
     *
@@ -123,12 +129,13 @@ public:
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
     * @param  toolTip     Tooltip used for this checkbox
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created checkbox
     */
   KonfiguratorCheckBox    *createCheckBox( QString cls, QString name, bool dflt,
                                            QString text, QWidget *parent=0, bool rst=false,
-                                           QString toolTip = QString::null );
+                                           QString toolTip = QString::null, int pg=FIRST_PAGE );
 
   /**
     * Adds a new spinbox item to the page.
@@ -145,11 +152,12 @@ public:
     * @param  max         The maximum value of the spinbox
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created spinbox
     */
   KonfiguratorSpinBox     *createSpinBox(  QString cls, QString name, int dflt, int min,
-                                           int max, QWidget *parent = 0, bool rst = false );
+                                           int max, QWidget *parent = 0, bool rst = false, int pg=FIRST_PAGE );
 
   /**
     * Adds a new editbox item to the page.
@@ -165,11 +173,12 @@ public:
     * @param  text        The text field of the editbox
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created editbox
     */
   KonfiguratorEditBox     *createEditBox(  QString cls, QString name, QString dflt,
-                                           QWidget *parent=0, bool rst=false );
+                                           QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
 
   /**
     * Adds a new URL requester item to the page.
@@ -185,11 +194,12 @@ public:
     * @param  text        The text field of the URL requester
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created URL requester
     */
   KonfiguratorURLRequester *createURLRequester(  QString cls, QString name,
-                                           QString dflt, QWidget *parent, bool rst );
+                                           QString dflt, QWidget *parent, bool rst, int pg=FIRST_PAGE );
 
   /**
     * Adds a new font chooser item to the page.
@@ -202,14 +212,14 @@ public:
     * @param  cls         The class name used in KConfig (ex. "Archives")
     * @param  name        The item name used in KConfig (ex. "Do Tar")
     * @param  dflt        The default value of the font chooser
-    * @param  text        The text field of the font chooser
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created font chooser
     */
   KonfiguratorFontChooser *createFontChooser(  QString cls, QString name, QFont *dflt,
-                                           QWidget *parent=0, bool rst=false );
+                                           QWidget *parent=0, bool rst=false, int pg=FIRST_PAGE );
 
   /**
     * Adds a new combobox item to the page.
@@ -232,12 +242,13 @@ public:
     * @param  parent      Reference to the parent widget
     * @param  rst         The change of this parameter requires Krusader restart
     * @param  editable    Flag indicates that the combo can be edited
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created combobox
     */
   KonfiguratorComboBox    *createComboBox(  QString cls, QString name, QString dflt,
                                            KONFIGURATOR_NAME_VALUE_PAIR *params, int paramNum,
-                                           QWidget *parent=0, bool rst=false, bool editable=false );
+                                           QWidget *parent=0, bool rst=false, bool editable=false, int pg=FIRST_PAGE );
 
   /**
     * Creates a frame on the page.
@@ -346,12 +357,13 @@ public:
     * @param  paramNum    number of the checkbox elements
     * @param  parent      Reference to the parent widget
     * @param  widgetName  The name of the newly created checkbox group widget
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created checkbox group widget
     */
   KonfiguratorCheckBoxGroup *createCheckBoxGroup( int sizex, int sizey,
                                            KONFIGURATOR_CHECKBOX_PARAM *params, int paramNum,
-                                           QWidget *parent=0, const char *widgetName=0 );
+                                           QWidget *parent=0, const char *widgetName=0, int pg=FIRST_PAGE );
   /**
     * Creates a radio button group. A radio button group contains a lot of radio buttons.
     * The grouped buttons are embedded into one widget, which can be placed anywhere
@@ -382,13 +394,14 @@ public:
     * @param  parent      Reference to the parent widget
     * @param  widgetName  The name of the newly created button group widget
     * @param  rst         The change of this parameter requires Krusader restart
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created radio button group widget
     */
   KonfiguratorRadioButtons *createRadioButtonGroup( QString cls, QString name, 
                                            QString dflt, int sizex, int sizey,
                                            KONFIGURATOR_NAME_VALUE_TIP *params, int paramNum,
-                                           QWidget *parent=0, const char *widgetName=0, bool rst=false );
+                                           QWidget *parent=0, const char *widgetName=0, bool rst=false, int pg=FIRST_PAGE );
 
   /**
     * This function is used to insert new, unknown items into KonfiguratorPage. The
@@ -431,12 +444,13 @@ public:
     * @param  rst         The change of this parameter requires Krusader restart
     * @param  addColPtr   The additional color values
     * @param  rst         Number of additional colors
+    * @param  pg          The subpage of a Konfigurator page (because of setDefaults)
     *
     * @return             reference to the newly created combobox
     */
   KonfiguratorColorChooser *createColorChooser(  QString cls, QString name, QColor dflt,
                                                  QWidget *parent=0, bool rst=false,
-                                                 ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0  );
+                                                 ADDITIONAL_COLOR *addColPtr = 0, int addColNum = 0, int pg=FIRST_PAGE );
 signals:
   /**
     * The signal is emitted if the changed flag was modified in any konfigurator item.
