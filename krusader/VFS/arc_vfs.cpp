@@ -504,7 +504,7 @@ void arc_vfs::getFilesToPack(QStringList* filesToPack,QString dir_name){
     if( S_ISDIR(stat_p.st_mode) ){ // recurse on all sub dirs
       if( !findDir(dir_name+name) ){
       	// add to the list only new && empty dirs
-				if( newDir && QDir(dir_name+name).count() <= 2 )
+				if( newDir && QDir(dir_name+name).entryList(QDir::All | QDir::AccessMask).count() <= 2 )
 					filesToPack->append( dir_name+name);
       }
 			getFilesToPack(filesToPack,dir_name+name);
