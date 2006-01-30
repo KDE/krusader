@@ -84,6 +84,10 @@ class SynchronizerFileItem
     time_t                m_rightDate;    // the file date at the left directory
     QString               m_leftLink;     // the left file's symbolic link destination
     QString               m_rightLink;    // the right file's symbolic link destination
+    QString               m_leftOwner;    // the left file's owner
+    QString               m_rightOwner;   // the right file's owner
+    QString               m_leftGroup;    // the left file's group
+    QString               m_rightGroup;   // the right file's group
     TaskType              m_task;         // the task with the file
     bool                  m_isDir;        // flag, indicates that the file is a directory
     SynchronizerFileItem *m_parent;       // pointer to the parent directory item or 0
@@ -96,13 +100,15 @@ class SynchronizerFileItem
   public:
     SynchronizerFileItem(QString leftNam, QString rightNam, QString leftDir, QString rightDir, bool mark, 
                        bool exL, bool exR, KIO::filesize_t leftSize, KIO::filesize_t rightSize,
-                       time_t leftDate, time_t rightDate, QString leftLink, QString rightLink, TaskType tsk, 
-                       bool isDir, bool tmp, SynchronizerFileItem *parent ) :
+                       time_t leftDate, time_t rightDate, QString leftLink, QString rightLink, 
+                       QString leftOwner, QString rightOwner, QString leftGroup, QString rightGroup, 
+                       TaskType tsk, bool isDir, bool tmp, SynchronizerFileItem *parent ) :
                        m_leftName( leftNam ), m_rightName( rightNam ), m_leftDirectory( leftDir ),  m_rightDirectory( rightDir ),
                        m_marked( mark ),  m_existsLeft( exL ), m_existsRight( exR ), m_leftSize( leftSize ),
                        m_rightSize( rightSize ), m_leftDate( leftDate ), m_rightDate( rightDate ),
-                       m_leftLink( leftLink ), m_rightLink( rightLink ), m_task( tsk ), m_isDir( isDir ),
-                       m_parent(parent), m_userData( 0 ), m_overWrite( false ),
+                       m_leftLink( leftLink ), m_rightLink( rightLink ), m_leftOwner( leftOwner ),
+                       m_rightOwner( rightOwner ), m_leftGroup( leftGroup ), m_rightGroup( rightGroup ),
+                       m_task( tsk ), m_isDir( isDir ), m_parent(parent), m_userData( 0 ), m_overWrite( false ),
                        m_destination( QString::null ), m_temporary( tmp ),
                        m_originalTask( tsk ) {}
 
@@ -121,6 +127,10 @@ class SynchronizerFileItem
     inline time_t                 rightDate()             {return m_rightDate;}
     inline QString                leftLink()              {return m_leftLink;}
     inline QString                rightLink()             {return m_rightLink;}
+    inline QString                leftOwner()             {return m_leftOwner;}
+    inline QString                rightOwner()            {return m_rightOwner;}
+    inline QString                leftGroup()             {return m_leftGroup;}
+    inline QString                rightGroup()            {return m_rightGroup;}
     inline TaskType               task()                  {return m_task;}
     inline bool                   isDir()                 {return m_isDir;}
     inline SynchronizerFileItem * parent()                {return m_parent;}
@@ -140,6 +150,8 @@ class SynchronizerFileItem
                                                            SWAP( m_leftSize, m_rightSize, KIO::filesize_t );
                                                            SWAP( m_leftDate, m_rightDate, time_t );
                                                            SWAP( m_leftLink, m_rightLink, QString );
+                                                           SWAP( m_leftOwner, m_rightOwner, QString );
+                                                           SWAP( m_leftGroup, m_rightGroup, QString );
                                                            REVERSE_TASK( m_originalTask, asym );
                                                            REVERSE_TASK( m_task, asym );}
 };
@@ -206,18 +218,25 @@ class Synchronizer : public QObject
                               QString leftDir, QString rightDir, QString addLeftName=QString::null,
                               QString addRightName=QString::null, QString addLeftDir=QString::null, 
                               QString addRightDir=QString::null, time_t addLTime=0, time_t addRTime=0,
-                              QString leftLink=QString::null, QString rightLink=QString::null, bool isTemp = false );
-    void    addSingleDirectory( SynchronizerFileItem *, QString, QString, time_t, QString, bool, bool );
+                              QString leftLink=QString::null, QString rightLink=QString::null, 
+                              QString leftOwner=QString::null, QString rightOwner=QString::null, 
+                              QString leftGroup=QString::null, QString rightGroup=QString::null, 
+                              bool isTemp = false );
+    void    addSingleDirectory( SynchronizerFileItem *, QString, QString, time_t, QString, 
+                                QString, QString, bool, bool );
     SynchronizerFileItem * addItem( SynchronizerFileItem *, QString, QString, QString, QString,
-                                    bool, bool, KIO::filesize_t, KIO::filesize_t,
-                                    time_t, time_t, QString, QString, TaskType, bool, bool);
+                                    bool, bool, KIO::filesize_t, KIO::filesize_t, time_t, time_t,
+                                    QString, QString, QString, QString, QString, QString, TaskType, bool, bool);
     SynchronizerFileItem * addLeftOnlyItem( SynchronizerFileItem *, QString, QString,
-                                            KIO::filesize_t, time_t, QString, bool isDir = false, bool isTemp = false );
+                                            KIO::filesize_t, time_t, QString, QString, QString,
+                                            bool isDir = false, bool isTemp = false );
     SynchronizerFileItem * addRightOnlyItem( SynchronizerFileItem *, QString, QString,
-                                             KIO::filesize_t, time_t, QString, bool isDir = false, bool isTemp = false  );
+                                             KIO::filesize_t, time_t, QString,  QString, QString,
+                                             bool isDir = false, bool isTemp = false  );
     SynchronizerFileItem * addDuplicateItem( SynchronizerFileItem *, QString, QString, QString, QString,
                                              KIO::filesize_t, KIO::filesize_t, time_t,
-                                             time_t, QString, QString, bool isDir = false, bool isTemp = false  );
+                                             time_t, QString, QString, QString, QString, QString, 
+                                             QString, bool isDir = false, bool isTemp = false  );
     bool    isMarked( TaskType task, bool dupl );
     bool    markParentDirectories( SynchronizerFileItem * );
     void    executeTask();
