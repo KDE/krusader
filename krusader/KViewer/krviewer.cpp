@@ -388,6 +388,12 @@ void KrViewer::detachTab(){
 
 	manager.removePart(pvb->part());
 	tabBar.removePage(pvb);
+	
+	if( tabBar.count() == 1 ) {
+		//no point in detaching only one tab..
+		viewerMenu->setItemEnabled(detachActionIndex,false);
+	}
+	
 	pvb->reparent(&viewer->tabBar,QPoint(0,0));
 
 	viewer->addTab(pvb,"Viewing",VIEW_ICON,pvb->part());
