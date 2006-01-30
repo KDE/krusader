@@ -9,6 +9,7 @@
   CHANGED: UserActions: addPlaceholderButton now only adds a space after
            an executable. Not after normal placeholders.
 
+    FIXED: [ 1365423 ] synchronizer does not copy symlinks
     FIXED: [ 1393227 ] KURLListRequester uses url completion instead of
                        shell completion (caused problems at spaces)
     FIXED: [ 1391892 ] problem with international characters in the 
