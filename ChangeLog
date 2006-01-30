@@ -9,6 +9,8 @@
   CHANGED: UserActions: addPlaceholderButton now only adds a space after
            an executable. Not after normal placeholders.
 
+    FIXED: [ 1393227 ] KURLListRequester uses url completion instead of
+                       shell completion (caused problems at spaces)
     FIXED: [ 1391892 ] problem with international characters in the 
                        destination of a symlink
     FIXED: [ 1393215 ] searcher, synchronizer: ~,$HOME,... is accepted now

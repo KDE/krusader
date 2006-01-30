@@ -36,7 +36,7 @@
 #include <qtoolbutton.h>
 #include <klineedit.h>
 #include <kurl.h>
-#include <kshellcompletion.h>
+#include <kurlcompletion.h>
 
 class KURLListRequester : public QWidget
 {
@@ -70,7 +70,7 @@ protected:
   QToolButton  *urlAddBtn;
   QToolButton  *urlBrowseBtn;
   
-  KShellCompletion completion;
+  KURLCompletion completion;
 };
 
 #endif /* __KURLLISTREQUESTER_H__ */
