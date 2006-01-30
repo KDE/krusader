@@ -102,11 +102,11 @@ public:
   bool followLinks() { return followLinksP; }
 
   // sets the folders where the searcher will search
-  void setSearchInDirs( KURL::List urls ) { whereToSearch = urls; }
+  void setSearchInDirs( KURL::List urls );
   // gets the folders where the searcher searches
   KURL::List searchInDirs() { return whereToSearch; }
   // sets the folders where search is not permitted
-  void setDontSearchInDirs( KURL::List urls ) { whereNotToSearch = urls; }
+  void setDontSearchInDirs( KURL::List urls );
   // gets the folders where search is not permitted
   KURL::List dontSearchInDirs() { return whereNotToSearch; }
   // checks if a URL is excluded

@@ -53,6 +53,7 @@
 #include <kdialogbase.h>
 #include <kprogress.h>
 #include <qlayout.h>
+#include <kurlcompletion.h>
 
 #include <sys/types.h>
 #include <sys/time.h>
@@ -99,6 +100,9 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   stopped = false;
 
   this->query = query;
+
+  leftURL = KURLCompletion::replacedPath( leftURL, true, true );
+  rightURL = KURLCompletion::replacedPath( rightURL, true, true );
 
   if( !leftURL.endsWith("/" ))  leftURL+="/";
   if( !rightURL.endsWith("/" )) rightURL+="/";

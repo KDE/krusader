@@ -33,6 +33,7 @@
 #include "krquery.h"
 #include "../krusader.h"
 #include "../resources.h"
+#include "../VFS/vfs.h"
 #include "krarchandler.h"
 
 #include <qtextstream.h>
@@ -41,6 +42,7 @@
 #include <klocale.h>
 #include <kmimetype.h>
 #include <qfile.h>
+#include <kurlcompletion.h>
 
 // set the defaults
 KRQuery::KRQuery(): matchesCaseSensitive(true), bNull( true ),
@@ -290,3 +292,20 @@ bool KRQuery::isExcluded( KURL url )
   return false;
 }
 
+void KRQuery::setSearchInDirs( KURL::List urls ) { 
+  whereToSearch.clear();
+  for( unsigned int i = 0; i < urls.count(); ++i ) {
+    QString url = urls[ i ].url();
+    KURL completed = vfs::fromPathOrURL( KURLCompletion::replacedPath( url, true, true ) );
+    whereToSearch.append( completed );
+  }
+}
+
+void KRQuery::setDontSearchInDirs( KURL::List urls ) { 
+  whereNotToSearch.clear();
+  for( unsigned int i = 0; i < urls.count(); ++i ) {
+    QString url = urls[ i ].url();
+    KURL completed = vfs::fromPathOrURL( KURLCompletion::replacedPath( url, true, true ) );
+    whereNotToSearch.append( completed );
+  }
+}
