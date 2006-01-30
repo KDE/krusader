@@ -9,6 +9,8 @@
   CHANGED: UserActions: addPlaceholderButton now only adds a space after
            an executable. Not after normal placeholders.
 
+    FIXED: [ 1391892 ] problem with international characters in the 
+                       destination of a symlink
     FIXED: [ 1393215 ] searcher, synchronizer: ~,$HOME,... is accepted now
     FIXED: [ 1413503 ] viewer: detach wasn't disabled when 1 tab remained
     FIXED: [ 1417969 ] Keybindings: reset to default keybinding fails
