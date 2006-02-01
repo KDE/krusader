@@ -75,7 +75,7 @@ KrDetailedViewItem::KrDetailedViewItem(KrDetailedView *parent, QListViewItem *af
 		_vf = new vfile("..", 0, "drw-r--r--", 0, false, 0, 0, QString::null, QString::null, 0);
 		
 		setText(COLUMN(Name), "..");
-		setText(COLUMN(Size), "<DIR>" );
+		setText(COLUMN(Size), i18n("<DIR>") );
       if ( PROPS->displayIcons )
          setPixmap( COLUMN(Name), FL_LOADICON( "up" ) );
       setSelectable( false );
@@ -107,7 +107,7 @@ void KrDetailedViewItem::repaintItem() {
       setText( id, tmp );
     }
     if ((id = COLUMN(Size)) != -1) {
-      if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, "<DIR>");
+		 if (_vf->vfile_isDir() && _vf->vfile_getSize() <= 0) setText(id, i18n("<DIR>"));
 	    else setText(id, PROPS->humanReadableSize ? KIO::convertSize(_vf->vfile_getSize())+"  " :
 		 						KRpermHandler::parseSize(_vf->vfile_getSize())+" ");
     }
