@@ -157,7 +157,6 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
 	if (e.hasAttribute("icon")) {
 		icon=e.attribute("icon");
 	}
-	
 	// ok: got name and url, let's add a bookmark
 	KrBookmark *bm = KrBookmark::getExistingBookmark(name, _collection);
 	if (!bm) 
@@ -326,7 +325,10 @@ void KrBookmarkHandler::clearBookmarks(KrBookmark *root) {
 	while (bm) {	
 		if (bm->isFolder())
 			clearBookmarks(bm);
-		else bm->unplugAll();
+		else {
+			bm->unplugAll();
+			delete bm;
+		}
 
 		bm = root->children().next();
 	}
