@@ -1,17 +1,17 @@
 # Translation of krusader.pot to German
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2005, Krusader Krew
+# Copyright (C) 2004-2006, Krusader Krew
 # This file is distributed under the same license as the Krusader package
 #
 # Christoph Thielecke <crissi99@gmx.de>, 2003.
-# Dirk Eschler <deschler@users.sourceforge.net>, 2003, 2004, 2005.
+# Dirk Eschler <deschler@users.sourceforge.net>, 2003, 2004, 2005, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0-cvs\n"
+"Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2005-12-28 13:04+0100\n"
-"PO-Revision-Date: 2005-12-28 14:13+0100\n"
+"PO-Revision-Date: 2006-02-01 12:18+0100\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -3205,7 +3205,7 @@ msgstr "Schnelle Navigation"
 
 #: Dialogs/krspwidgets.cpp:279
 msgid "Already at <i>%1</i>"
-msgstr "Ist bereits das aktuelle Verzeichnis: <i>%1</i>"
+msgstr "Verzeichnis aktuell: <i>%1</i>"
 
 #: Dialogs/krspwidgets.cpp:290
 msgid "Click to go to <i>%1</i>"
@@ -4458,9 +4458,8 @@ msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
 msgstr ""
-"Ein einfacher Klick auf eine Datei wählt aus und die Datei erhält den "
-"Fokus.\n"
-"Ein Doppelklick öffnet die Datei oder geht in das Verzeichnis."
+"Ein einfacher Klick auf eine Datei wählt aus, und die Datei erhält den "
+"Fokus. Ein Doppelklick öffnet die Datei, bzw. wechselt in das Verzeichnis."
 
 #: Konfigurator/kglookfeel.cpp:90
 msgid "Obey KDE's global selection policy"
@@ -4566,7 +4565,7 @@ msgstr "Gut lesbare Dateigröße benutzen"
 
 #: Konfigurator/kglookfeel.cpp:147
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr "Die Dateigröße wird in B, KB, MB und GB, und nicht nur in Bytes angezeigt."
+msgstr "Die Dateigröße wird nicht in Bytes, sondern in B, KB, MB und GB angezeigt."
 
 #: Konfigurator/kglookfeel.cpp:157
 msgid "Toolbar"
@@ -4610,7 +4609,7 @@ msgstr "Knöpfe in der Dateifenster-Werkzeugleiste"
 
 #: Konfigurator/kglookfeel.cpp:208
 msgid "Clear location bar button"
-msgstr "Knopf zum Löschen des Adressleisteninhalts"
+msgstr "Löschen des Adressleisteninhalts"
 
 #: Konfigurator/kglookfeel.cpp:208
 msgid "Clears the location bar"
@@ -4713,7 +4712,7 @@ msgstr "Bestätigungen"
 
 #: Konfigurator/kgadvanced.cpp:75
 msgid "Request user confirmation for the following operations:"
-msgstr "Bei folgenden Operationen um Bestätigung bitten:"
+msgstr "Bei diesen Operationen um Bestätigung bitten:"
 
 #: Konfigurator/kgadvanced.cpp:80
 msgid "Deleting non-empty directories"
@@ -5133,7 +5132,7 @@ msgstr ""
 "Definiert das Startprofil. Ein Profil beinhaltet:<ul><li>die Pfade aller "
 "Unterfenster</li><li>das aktuelle Unterfenster</li><li>das aktive "
 "Dateifenster</li></ul><b>&lt;Letzte Sitzung&gt;</b> ist ein spezielles "
-"Profil, welches beim Beenden von Krusader automatisch ausgeführt wird."
+"Profil, welches beim Beenden von Krusader automatisch gespeichert wird."
 
 #: Konfigurator/kgstartup.cpp:52
 msgid "Startup profile:"
