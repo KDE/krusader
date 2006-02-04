@@ -19,7 +19,7 @@ public:
 	virtual KrViewItem *getKrViewItemAt(const QPoint &vp);
 	virtual inline KrViewItem *findItemByName(const QString &name) { return dynamic_cast<KrViewItem*>( findItem( name, Qt::ExactMatch ) ); }
 	virtual void addItems(vfs* v, bool addUpDir = true) {}
-	virtual void addItem(vfile *vf) {}
+	virtual KrViewItem *addItem(vfile *vf) {}
 	virtual void delItem(const QString &name) {}
 	virtual void updateItem(vfile *vf) {}
 	virtual QString getCurrentItem() const;

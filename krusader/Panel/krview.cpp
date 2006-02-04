@@ -66,7 +66,7 @@ void KrViewOperator::startDrag() {
 
 // ----------------------------- krview
 
-KrView::KrView( KConfig *cfg ) : _config( cfg ), _widget(0), _nameToMakeCurrent( QString::null ),
+KrView::KrView( KConfig *cfg ) : _config( cfg ), _widget(0), _nameToMakeCurrent( QString::null ), _nameToMakeCurrentIfAdded( QString::null ),
 _numSelected( 0 ), _count( 0 ), _numDirs( 0 ), _countSize( 0 ), _selectedSize( 0 ), _properties(0), _focused( false ), _nameInKConfig(QString::null) {
 }
 
@@ -254,9 +254,9 @@ void KrView::delItem(const QString &name) {
 	op()->emitSelectionChanged();
 }
 
-void KrView::addItem( vfile *vf ) {
+KrViewItem *KrView::addItem( vfile *vf ) {
 	KrViewItem *item = preAddItem(vf);
-	if (!item) return; // don't add it after all
+	if (!item) return 0; // don't add it after all
 	
 	// add to dictionary
    _dict.insert( vf->vfile_getName(), item );
@@ -265,11 +265,19 @@ void KrView::addItem( vfile *vf ) {
    else _countSize += vf->vfile_getSize();
    ++_count;
    
-   if (item->name() == nameToMakeCurrent() )
+	if (item->name() == nameToMakeCurrent() ) {
       setCurrentItem(item->name()); // dictionary based - quick
+		makeItemVisible( item );
+	}
+   if (item->name() == nameToMakeCurrentIfAdded() ) {
+		setCurrentItem(item->name());
+		setNameToMakeCurrentIfAdded(QString::null);
+		makeItemVisible( item );
+	}
+	
 
-   makeItemVisible( item );
    op()->emitSelectionChanged();
+	return item;
 }
 
 void KrView::updateItem(vfile *vf) {
@@ -282,11 +290,13 @@ void KrView::updateItem(vfile *vf) {
 		bool selected = it->isSelected();
       bool current = ( getCurrentKrViewItem() == it );
       delItem( vf->vfile_getName() );
-      addItem( vf );
+      KrViewItem *updatedItem = addItem( vf );
       // restore settings
       ( _dict[ vf->vfile_getName() ] ) ->setSelected( selected );
-      if ( current )
+		if ( current ) {
          setCurrentItem( vf->vfile_getName() );
+			makeItemVisible( updatedItem );
+		}
    }
 	op()->emitSelectionChanged();
 }

@@ -326,7 +326,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
    // re-enable sorting
    setSorting( cl, as );
    sort();
-
+	
    if ( !currentItem )
       currentItem = firstChild();
    KListView::setCurrentItem( currentItem );

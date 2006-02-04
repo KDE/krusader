@@ -180,7 +180,7 @@ public:
   // the following functions are already implemented, //
   // and normally - should NOT be re-implemented.     //
   //////////////////////////////////////////////////////
-  virtual void addItem(vfile *vf);
+  virtual KrViewItem *addItem(vfile *vf);
   virtual void updateItem(vfile *vf);
   virtual void delItem(const QString &name);
   virtual uint numSelected() const { return _numSelected; }
@@ -198,6 +198,8 @@ public:
   virtual void invertSelection();
   virtual QString nameToMakeCurrent() const { return _nameToMakeCurrent; }
   virtual void setNameToMakeCurrent(const QString name) { _nameToMakeCurrent = name; }
+  virtual QString nameToMakeCurrentIfAdded() const { return _nameToMakeCurrentIfAdded; }
+  virtual void setNameToMakeCurrentIfAdded(const QString name) { _nameToMakeCurrentIfAdded = name; }  
   virtual QString firstUnmarkedBelowCurrent();
   virtual QString statistics();
   virtual const KrViewProperties* properties() const { return _properties; }
@@ -228,6 +230,7 @@ protected:
   KConfig *_config;
   QWidget *_widget;
   QString _nameToMakeCurrent;
+  QString _nameToMakeCurrentIfAdded;
   uint _numSelected, _count, _numDirs;
   KIO::filesize_t _countSize, _selectedSize;
   bool _left;
