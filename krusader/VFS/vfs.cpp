@@ -128,6 +128,9 @@ void vfs::setVfsFilesP(vfileDict* dict){
 }
 
 bool vfs::vfs_refresh(){ 
+	if( invalidated ) // invalidated fs requires total refresh
+		return vfs_refresh( vfs_getOrigin() );
+	
 	dirty = false;
 	// point the vfs_filesP to a NEW (empty) dictionary
 	vfs_filesP = new vfileDict();
