@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
   KAboutData aboutData( "krusader", ( geteuid() ? I18N_NOOP("Krusader") :
                         I18N_NOOP("Krusader - ROOT PRIVILEGES")),
     versionName.latin1(), description, KAboutData::License_GPL,
-    "(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2005, Krusader Krew",
+    "(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2006, Krusader Krew",
     "Feedback:\nhttp://www.krusader.org/phpBB/\n\n"
     "IRC:\nServer: irc.freenode.net, channel: #krusader"
     ,
