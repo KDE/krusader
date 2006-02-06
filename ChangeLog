@@ -9,9 +9,10 @@
   CHANGED: UserActions: addPlaceholderButton now only adds a space after
            an executable. Not after normal placeholders.
 
+    FIXED: cannot umount devices because of a watcher bug (thanks to vaclavj)
     FIXED: 984936 & 1384529 - thanks to heiner
     FIXED: [ 1397828 ] i18n: "dir" is not translated
-	 FIXED: [ 1409160 ] Edited bookmarks require restart to become fully updated
+    FIXED: [ 1409160 ] Edited bookmarks require restart to become fully updated
     FIXED: missing dpkg from Konfigurator-Dependencies
     FIXED: [ 1234213 ] synchronizer keeps owner,group if possible
     FIXED: [ 1365423 ] synchronizer does not copy symlinks

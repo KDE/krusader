@@ -128,10 +128,14 @@ bool normal_vfs::populateVfsList(const KURL& origin, bool showHidden){
 
 // copy a file to the vfs (physical)	
 void normal_vfs::vfs_addFiles(KURL::List *fileUrls,KIO::CopyJob::CopyMode mode,QObject* toNotify,QString dir, PreserveMode pmode ){
-  if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
+  //if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
+  if( watcher ) {
+    delete watcher;   // stopScan is buggy, leaves reference on the directory, that's why we delete the watcher
+    watcher = 0;
+  }
 
-	KURL dest;
-	dest.setPath(vfs_workingDir()+"/"+dir);
+  KURL dest;
+  dest.setPath(vfs_workingDir()+"/"+dir);
 
   KIO::Job* job = PreservingCopyJob::createCopyJob( pmode, *fileUrls,dest,mode,false,true );
   connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh()) );
@@ -146,9 +150,13 @@ void normal_vfs::vfs_delFiles(QStringList *fileNames){
 	KURL::List filesUrls;
 	KURL url;
 	QDir local( vfs_workingDir() );
-  vfile* vf;
+	vfile* vf;
 
-  if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
+//  if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
+	if( watcher ) {
+		delete watcher;   // stopScan is buggy, leaves reference on the directory, that's why we delete the watcher
+		watcher = 0;
+	}
 
 	// names -> urls
 	for(uint i=0 ; i<fileNames->count(); ++i){
@@ -202,14 +210,18 @@ void normal_vfs::vfs_rename(const QString& fileName,const QString& newName){
   KURL::List fileUrls;
   KURL url , dest;
 
-  if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
+  //if( watcher ) watcher->stopScan(); // we will refresh manually this time...	
+  if( watcher ) {
+    delete watcher;   // stopScan is buggy, leaves reference on the directory, that's why we delete the watcher
+    watcher = 0;
+  }
 
   url.setPath( vfs_workingDir()+"/"+fileName );
   fileUrls.append(url);
-	dest.setPath(vfs_workingDir()+"/"+newName);
+  dest.setPath(vfs_workingDir()+"/"+newName);
 
   KIO::Job *job = new KIO::CopyJob(fileUrls,dest,KIO::CopyJob::Move,true,false );
-	connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
+  connect(job,SIGNAL(result(KIO::Job*)),this,SLOT(vfs_refresh(KIO::Job*)));
 }
 
 vfile* normal_vfs::vfileFromName(const QString& name){
