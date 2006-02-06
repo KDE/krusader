@@ -208,6 +208,8 @@ char KRpermHandler::ftpWriteable ( QString fileOwner, QString userName, QString 
 	// so check the user permissions
 	if ( ( perm[ 2 ] != '-' ) && ( fileOwner == userName ) )
 		return ALLOWED_PERM;
+	if ( ( perm[ 2 ] != '-' ) && ( userName.isEmpty() ) )
+		return UNKNOWN_PERM;
 	if ( perm[ 5 ] != '-' ) return UNKNOWN_PERM;
 	return NO_PERM;
 }
@@ -219,6 +221,8 @@ char KRpermHandler::ftpReadable ( QString fileOwner, QString userName, QString p
 	// so check the user permissions
 	if ( ( perm[ 1 ] != '-' ) && ( fileOwner == userName ) )
 		return ALLOWED_PERM;
+	if ( ( perm[ 1 ] != '-' ) && ( userName.isEmpty() ) )
+		return UNKNOWN_PERM;
 	if ( perm[ 4 ] != '-' ) return UNKNOWN_PERM;
 	return NO_PERM;
 }
@@ -230,6 +234,8 @@ char KRpermHandler::ftpExecutable( QString fileOwner, QString userName, QString 
 	// so check the user permissions
 	if ( ( perm[ 3 ] != '-' ) && ( fileOwner == userName ) )
 		return ALLOWED_PERM;
+	if ( ( perm[ 3 ] != '-' ) && ( userName.isEmpty() ) )
+		return UNKNOWN_PERM;
 	if ( perm[ 6 ] != '-' ) return UNKNOWN_PERM;
 	return NO_PERM;
 }

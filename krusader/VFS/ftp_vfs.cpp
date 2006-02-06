@@ -100,8 +100,13 @@ void ftp_vfs::slotAddFiles( KIO::Job *, const KIO::UDSEntryList& entries ) {
 			QString currentUser = vfs_origin.user();
 			if ( currentUser.contains( "@" ) )  /* remove the FTP proxy tags from the username */
 				currentUser.truncate( currentUser.find( '@' ) );
-			if ( currentUser.isEmpty() )
-				currentUser = KRpermHandler::uid2user( getuid() );
+			if ( currentUser.isEmpty() ) {
+				if( vfs_origin.host().isEmpty() )
+					currentUser = KRpermHandler::uid2user( getuid() );
+				else {
+					currentUser = ""; // empty, but not QString::null
+				}
+			}
 			temp = new vfile( name, size, perm, mtime, symLink, kfi.user(), kfi.group(), currentUser, mime, symDest, mode );
 		}
 

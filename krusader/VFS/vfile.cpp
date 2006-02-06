@@ -99,24 +99,24 @@ vfile::vfile(const QString& name,	                  // useful construtor
 }
 
 char vfile::vfile_isReadable() const {
-	if( vfile_userName.isEmpty() )
+	if( vfile_userName.isNull() )
 		return KRpermHandler::readable(vfile_perm,vfile_groupId,vfile_ownerId);
 	else
-		return KRpermHandler::ftpReadable(vfile_userName, vfile_owner, vfile_perm);
+		return KRpermHandler::ftpReadable(vfile_owner, vfile_userName, vfile_perm);
 }
 
 char vfile::vfile_isWriteable() const {
-	if( vfile_userName.isEmpty() )
+	if( vfile_userName.isNull() )
 		return KRpermHandler::writeable(vfile_perm,vfile_groupId,vfile_ownerId);
 	else
-		return KRpermHandler::ftpWriteable(vfile_userName, vfile_owner, vfile_perm);
+		return KRpermHandler::ftpWriteable(vfile_owner, vfile_userName, vfile_perm);
 }
 
 char vfile::vfile_isExecutable() const {
-	if( vfile_userName.isEmpty() )
+	if( vfile_userName.isNull() )
 		return KRpermHandler::executable(vfile_perm,vfile_groupId,vfile_ownerId);
 	else
-		return KRpermHandler::ftpExecutable(vfile_userName, vfile_owner, vfile_perm);
+		return KRpermHandler::ftpExecutable(vfile_owner, vfile_userName, vfile_perm);
 }
 
 const QString& vfile::vfile_getMime(bool fast){
