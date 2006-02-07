@@ -54,6 +54,7 @@ PanelViewer::~PanelViewer() {
 }
 
 KParts::ReadOnlyPart* PanelViewer::openURL( const KURL &url, KrViewer::Mode mode ) {
+	emit urlChanged( this, url );
 	closeURL();
 	curl = url;
 
@@ -203,6 +204,7 @@ PanelEditor::~PanelEditor() {
 }
 
 KParts::ReadOnlyPart* PanelEditor::openURL( const KURL &url, KrViewer::Mode mode ) {
+	emit urlChanged( this, url );
 	closeURL();
 	curl = url;
 

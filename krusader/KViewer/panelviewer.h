@@ -20,8 +20,10 @@ public:
 	PanelViewerBase( QWidget *parent = 0 );
 	virtual ~PanelViewerBase();
 	inline KURL url() const { return curl; }
+	inline void setUrl( KURL url ) { emit urlChanged( this, url ); curl = url; }
 	inline KParts::ReadOnlyPart* part() const { return cpart; }
 	virtual bool isModified() { return false; }
+	virtual bool isEditor() = 0;
 
 public slots:
 	virtual KParts::ReadOnlyPart* openURL( const KURL&, KrViewer::Mode=KrViewer::Generic ){ return 0;} 
@@ -30,6 +32,7 @@ public slots:
 
 signals:
 	void openURLRequest( const KURL &url );
+	void urlChanged( PanelViewerBase *, const KURL & );
 
 protected:
 	QDict<KParts::ReadOnlyPart> *mimes;
@@ -51,6 +54,8 @@ public:
 	PanelViewer( QWidget *parent = 0 );
 	~PanelViewer();
 
+	virtual bool isEditor() { return false; }
+
 protected:
 	KParts::ReadOnlyPart *getPart( QString mimetype );
 	KParts::ReadOnlyPart*  getHexPart();
@@ -61,6 +66,7 @@ class PanelEditor: public PanelViewerBase {
 	Q_OBJECT
 public:
 	virtual bool isModified();
+	virtual bool isEditor() { return true; }
 
 public slots:
 	KParts::ReadOnlyPart* openURL( const KURL &url, KrViewer::Mode mode=KrViewer::Generic );

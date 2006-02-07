@@ -57,6 +57,7 @@ public slots:
 	void editText();
 
 	void tabChanged(QWidget* w);
+	void tabURLChanged( PanelViewerBase * pvb, const KURL &url );
 	void tabCloseRequest(QWidget *w);
 	void tabCloseRequest();
 

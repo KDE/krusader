@@ -243,6 +243,15 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 
 	show();
 	tabBar.show();
+	
+	connect( pvb, SIGNAL( urlChanged( PanelViewerBase *, const KURL & ) ), 
+	         this,  SLOT( tabURLChanged(PanelViewerBase *, const KURL & ) ) );
+}
+
+void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KURL & url ) {
+	QString msg = pvb->isEditor() ? "Editing" : "Viewing";
+	tabBar.setTabLabel( pvb, url.fileName()+"("+msg+")" );
+	tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
 }
 
 void KrViewer::tabChanged(QWidget* w){
@@ -344,6 +353,10 @@ void KrViewer::checkModified(){
 
 	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
 	if( !pvb ) return;
+
+	if( !pvb->part()->url().equals( pvb->url(), true ) ) {
+		pvb->setUrl( pvb->part()->url() );
+	}
 
 	// add a * to modified files.
 	if( pvb->isModified() ){
