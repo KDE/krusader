@@ -128,7 +128,8 @@ aboutData.addAuthor("Matej Urbancic", " Marketing & Product Research", "matej.ur
   aboutData.addCredit("Mitek","Old Czech translation","mitek@email.cz",0);
   aboutData.addCredit("Martin Sixta","Old Czech translation","lukumo84@seznam.cz",0);
   aboutData.addCredit("Vaclav Juza","Czech translation","VaclavJuza@gmail.com",0);
-  aboutData.addCredit("Anders Bruun Olsen", "Danish translation", "anders@bruun-olsen.net", 0);
+  aboutData.addCredit("Anders Bruun Olsen", "Old Danish translation", "anders@bruun-olsen.net", 0);
+  aboutData.addCredit("Peter H. Sorensen", "Danish translation", "peters@skydebanen.net", 0);
   aboutData.addCredit("Frank Schoolmeesters","Dutch translation","frank_schoolmeesters@yahoo.com",0);
   aboutData.addCredit("Rene-Pierre Lehmann","Old French translation","ripi@lepi.org",0);
   aboutData.addCredit("David Guillerm","French translation","dguillerm@gmail.com",0);
