@@ -25,8 +25,8 @@ public:
 protected:
 	void deleteBookmark(KrBookmark *bm);
 	void importFromFile();
-	bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg);
-	bool importFromFileFolder(QDomNode &first, KrBookmark *parent, QString *errorMsg);
+	bool importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString path, QString *errorMsg);
+	bool importFromFileFolder(QDomNode &first, KrBookmark *parent, QString path, QString *errorMsg);
 	void exportToFile();
 	void exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder);
 	void exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm);

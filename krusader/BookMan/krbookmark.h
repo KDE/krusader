@@ -10,7 +10,7 @@ class KActionCollection;
 class KrBookmark: public KAction {
 	Q_OBJECT
 public:
-	KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon = "");
+	KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon = "", QString actionName = QString::null );
 	KrBookmark(QString name, QString icon = ""); // creates a folder
 	// text() and setText() to change the name of the bookmark
 	// icon() and setIcon() to change icons (by name)
@@ -20,7 +20,7 @@ public:
 	inline bool isSeparator() const { return _separator; }
 	QPtrList<KrBookmark>& children() { return _children; }
 
-	static KrBookmark* getExistingBookmark(QString name, KActionCollection *collection);	
+	static KrBookmark* getExistingBookmark(QString actionName, KActionCollection *collection);	
 	// ----- special bookmarks
 	static KrBookmark* devices(KActionCollection *collection);
 	static KrBookmark* virt(KActionCollection *collection);

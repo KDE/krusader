@@ -16,8 +16,8 @@ static const char* NAME_DEVICES = I18N_NOOP("Devices");
 static const char* NAME_VIRTUAL = I18N_NOOP("Virtual Filesystem");
 static const char* NAME_LAN = I18N_NOOP("Local Network");
 
-KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon):
-	KAction(name, 0, 0, 0, parent, BM_NAME(name).latin1()), 
+KrBookmark::KrBookmark(QString name, KURL url, KActionCollection *parent, QString icon, QString actionName ):
+	KAction(name, 0, 0, 0, parent, actionName.isNull() ? BM_NAME(name).latin1() : BM_NAME(actionName).latin1()), 
 	_url(url), _folder(false), _separator(false) {
 	connect(this, SIGNAL(activated()), this, SLOT(activatedProxy()));
 	// do we have an icon?
@@ -42,8 +42,8 @@ KrBookmark::KrBookmark(QString name, QString icon):
 	setIcon(icon=="" ? "folder" : icon);
 }
 
-KrBookmark* KrBookmark::getExistingBookmark(QString name, KActionCollection *collection) {
-	return static_cast<KrBookmark*>(collection->action(BM_NAME(name).latin1()));
+KrBookmark* KrBookmark::getExistingBookmark(QString actionName, KActionCollection *collection) {
+	return static_cast<KrBookmark*>(collection->action(BM_NAME(actionName).latin1()));
 }
 
 KrBookmark* KrBookmark::devices(KActionCollection *collection) {

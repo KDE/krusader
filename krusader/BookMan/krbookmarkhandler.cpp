@@ -135,7 +135,7 @@ void KrBookmarkHandler::exportToFile() {
 	}
 }
 
-bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString *errorMsg) {
+bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *parent, QString path, QString *errorMsg) {
 	QString url, name, icon;
 	// verify tag
 	if (e.tagName() != "bookmark") {
@@ -158,21 +158,22 @@ bool KrBookmarkHandler::importFromFileBookmark(QDomElement &e, KrBookmark *paren
 		icon=e.attribute("icon");
 	}
 	// ok: got name and url, let's add a bookmark
-	KrBookmark *bm = KrBookmark::getExistingBookmark(name, _collection);
-	if (!bm) 
-		bm = new KrBookmark(name, vfs::fromPathOrURL( url ), _collection, icon);
+	KrBookmark *bm = KrBookmark::getExistingBookmark(path+name, _collection);
+	if (!bm) {
+		bm = new KrBookmark(name, vfs::fromPathOrURL( url ), _collection, icon, path+name);
 	parent->children().append(bm);
+	}
 
 	return true;
 }
 
-bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, QString *errorMsg) {
+bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent, QString path, QString *errorMsg) {
 	QString name;
 	QDomNode n = first;
 	while (!n.isNull()) {
 		QDomElement e = n.toElement();
 		if (e.tagName() == "bookmark") {
-			if (!importFromFileBookmark(e, parent, errorMsg))
+			if (!importFromFileBookmark(e, parent, path, errorMsg))
 				return false;
 		} else if (e.tagName() == "folder") {
 			QString iconName = "";
@@ -187,7 +188,7 @@ bool KrBookmarkHandler::importFromFileFolder(QDomNode &first, KrBookmark *parent
 			parent->children().append(folder);
 
 			QDomNode nextOne = tmp.nextSibling();
-			if (!importFromFileFolder(nextOne, folder, errorMsg))
+			if (!importFromFileFolder(nextOne, folder, path + name + "/", errorMsg))
 				return false;
 		} else if (e.tagName() == "separator") {
 			parent->children().append(KrBookmark::separator());
@@ -222,7 +223,7 @@ void KrBookmarkHandler::importFromFile() {
 		errorMsg = filename+i18n(" doesn't seem to be a valid Bookmarks file");
 		goto ERROR;
 	} else n = n.firstChild(); // skip the xbel part
-	importFromFileFolder(n, _root, &errorMsg);
+	importFromFileFolder(n, _root, "", &errorMsg);
 	goto SUCCESS;
 	
 ERROR:
