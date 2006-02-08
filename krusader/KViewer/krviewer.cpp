@@ -99,7 +99,7 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	viewerMenu->insertItem( i18n( "&Next tab" ), this, SLOT( nextTab() ), ALT+Key_Right );
 	viewerMenu->insertItem( i18n( "&Previous tab" ), this, SLOT( prevTab() ), ALT+Key_Left );
 
-	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL + SHIFT + Key_B );
+	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL + SHIFT + Key_D );
 	//no point in detaching only one tab..
 	viewerMenu->setItemEnabled(detachActionIndex,false);	
 
