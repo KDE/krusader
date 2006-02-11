@@ -1,6 +1,5 @@
 1.70.0 "Round Robin"
 ==========================
-    ADDED: Greek translation (thanks Spiros Georgaras)
     ADDED: new splashscreen + button to disable it in the look&feel section
     ADDED: winning icons, SVGs and fixed code to use them
     ADDED: DUMMY splash screen (krusader/splash.jpg) which will be replaced
@@ -16,7 +15,6 @@
     FIXED: [ 1235959 ] problems at viewing 600 permission files
     FIXED: cannot umount devices because of a watcher bug (thanks to vaclavj)
     FIXED: 1076857 & 1384529 - thanks to heiner
-    FIXED: [ 1397828 ] i18n: "dir" is not translated
     FIXED: [ 1409160 ] Edited bookmarks require restart to become fully updated
     FIXED: missing dpkg from Konfigurator-Dependencies
     FIXED: [ 1234213 ] synchronizer keeps owner,group if possible
@@ -53,15 +51,17 @@
     FIXED: terminal emulator has no focus after toggling it on
     FIXED: preserve dates doesn't copy the dates of folders
 
-  UPDATED: Danish translation (thanks Peter H. Sorensen)
-  UPDATED: Hungarian translation (thanks Arpad Biro)
+     I18N: [ 1397828 ] i18n: "dir" is not translated
+     I18N: Added Greek translation (thanks Spiros Georgaras)
+     I18N: Updated French translation (thanks Guillerm David)
+     I18N: Updated Danish translation (thanks Peter H. Sorensen)
+     I18N: Updated Hungarian translation (thanks Arpad Biro)
 
 
 1.70.0-beta2 "Afterburner"
 ==========================
     ADDED: you can now cancel creating and verifying checksums
     ADDED: a (missing) shortcut to bookmark current item (ctrl-shift-d)
-    ADDED: Lithuanian translation (thanks Dovydas Sankauskas)
     ADDED: you can turn off sending CDs to the terminal emulator (general tab)
     ADDED: unpacking from RPM packages (much faster than using krarc)
 
@@ -97,6 +97,8 @@
     FIXED: disk usage crash on remote vfs because of recursion
     FIXED: [ 1262907 ] crash when closing an sftp tab which is loading
 
+     I18N: Added Lithuanian translation (thanks Dovydas Sankauskas)
+
 
 1.70.0-beta1 "Hellfire"
 ==========================
@@ -112,7 +114,6 @@
     ADDED: alt-ctrl-s creates a new symlink
     ADDED: ctrl-h opens history on the current panel
     ADDED: Nicer application search results
-    ADDED: i18n multiple plural support (thanks Vaclav Juza)
     ADDED: right click menu -> trash, delete, shred options
     ADDED: column types can be changed and saved individually to each panel
            (each side)
@@ -137,8 +138,6 @@
            available, indicating the location of the current script
     --architecture-- moved JavaScript-stuff into it's own module KrJS
     --architecture-- Makefile.am's for /krusader and /pics revised
-    ADDED: Serbian translation (thanks Sasa Tomic)
-    ADDED: Brazilian Portuguese translation (thanks Doutor Zero)
     ADDED: synchronize selected files
     ADDED: colorful synchronizer :-)
     ADDED: starting more tabs with --left=tab1,tab2,tab3 --right=tab4,tab5
@@ -158,13 +157,10 @@
     FIXED: preserve date fails at moving
     FIXED: bookmark issues (http://www.krusader.org/phpBB/viewtopic.php?p=6357#6357)
     FIXED: [ 1278534 ] Krusader hangs when packing search results
-    FIXED: [ 1201586 ] wrong encoding of slovenian translation
     FIXED: [ 1169980 ] User Actions Titles are not stored in system encoding
            (thanks Vaclav Juza)
     FIXED: '-icon' as well as '--icon' as command-line arguments are handled
     FIXED: [ 1272583 ] fixes on the .desktop files, thanks Marcin Garski
-    FIXED: [ 1217697 ] Can't translate some Bookman II menu entries
-    FIXED: [ 1243409 ] encoding problem and bad plural in trash files dialog
     FIXED: [ 1253323 ] middle click crash on ".." directory
     FIXED: burst refresh if FAM is enabled
     FIXED: crash when "run in terminal mode" was active on a directory with
@@ -190,18 +186,25 @@
     FIXED: clicking a search result won't jump to it, if it's in the current
            directory (patch by Thomas Jarosch)
 
-  UPDATED: Russian translation (thanks Denis Koryavov)
-  UPDATED: Portuguese translation (thanks Bruno Queiros)
-  UPDATED: Czech translation (thanks Vaclav Juza)
-  UPDATED: Dutch translation
-  UPDATED: French translation (thanks David Guillerm)
-  UPDATED: Spanish translation (thanks Alejandro Araiza Alvarado)
-  UPDATED: Swedish translation (thanks Peter Landgren)
-  UPDATED: Chinese Simplified translation (thanks Jinghua Luo)
-  UPDATED: Italian translation (thanks Giuseppe Bordoni)
-  UPDATED: Polish translation (thanks Pawel Salawa)
-  UPDATED: Slovenian translation (thanks Matej Urbancic)
-  UPDATED: German translation
+     I18N: [ 1201586 ] Wrong encoding of slovenian translation
+     I18N: [ 1243409 ] Encoding problem and bad plural in trash files dialog
+     I18N: [ 1217697 ] Can't translate some Bookman II menu entries
+     I18N: Added multiple plural support
+           (thanks Vaclav Juza for all the help)
+     I18N: Added Serbian translation (thanks Sasa Tomic)
+     I18N: Added Brazilian Portuguese translation (thanks Doutor Zero)
+     I18N: Updated Russian translation (thanks Denis Koryavov)
+     I18N: Updated Portuguese translation (thanks Bruno Queiros)
+     I18N: Updated Czech translation (thanks Vaclav Juza)
+     I18N: Updated Dutch translation
+     I18N: Updated French translation (thanks David Guillerm)
+     I18N: Updated Spanish translation (thanks Alejandro Araiza Alvarado)
+     I18N: Updated Swedish translation (thanks Peter Landgren)
+     I18N: Updated Chinese Simplified translation (thanks Jinghua Luo)
+     I18N: Updated Italian translation (thanks Giuseppe Bordoni)
+     I18N: Updated Polish translation (thanks Pawel Salawa)
+     I18N: Updated Slovenian translation (thanks Matej Urbancic)
+     I18N: Updated German translation
 
 
 1.60.0
