@@ -57,9 +57,9 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //  cfg_class  cfg_name                     default               text                                      restart tooltip
-    {{"Colors","KDE Default",                 _KDEDefaultColors,    i18n( "Use the default KDE colors" ),     false,  "<p><img src='toolbar|kcontrol'></p>" + i18n( "Use KDE's global color configuration.<p><i>KDE Control Center -> Appearance & Themes -> Colors</i>") },
-     {"Colors","Enable Alternate Background", _AlternateBackground, i18n( "Use alternate background color" ),  false, i18n( "The <b>background color</b> and the <b>alternate background</b> color alternates line by line.<p>When you don't use the <i>KDE default colors</i>, you can configure the alternate colors in the <i>colors</i> box.") },
-     {"Colors","Show Current Item Always", _ShowCurrentItemAlways, i18n( "Show current item even if not focused" ),  false, i18n( "Shows the last cursor position in the non active list panel.<p>This option is only available when you don't use the <i>KDE default colors</i>." ) }};
+    {{"Colors","KDE Default",                 _KDEDefaultColors,    i18n( "Use the default KDE colors" ),     false,  "<p><img src='toolbar|kcontrol'></p>" + i18n( "<p>Use KDE's global color configuration.</p><p><i>KDE Control Center -> Appearance & Themes -> Colors</i></p>") },
+     {"Colors","Enable Alternate Background", _AlternateBackground, i18n( "Use alternate background color" ),  false, i18n( "<p>The <b>background color</b> and the <b>alternate background</b> color alternates line by line.</p><p>When you don't use the <i>KDE default colors</i>, you can configure the alternate colors in the <i>colors</i> box.</p>") },
+     {"Colors","Show Current Item Always", _ShowCurrentItemAlways, i18n( "Show current item even if not focused" ),  false, i18n( "<p>Shows the last cursor position in the non active list panel.</p><p>This option is only available when you don't use the <i>KDE default colors</i>.</p>" ) }};
 
   generals = createCheckBoxGroup( 0, 2, generalSettings, sizeof(generalSettings)/sizeof(generalSettings[0]), generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
