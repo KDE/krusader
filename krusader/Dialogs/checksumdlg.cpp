@@ -194,10 +194,10 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 
 	if (tools.count() == 0) { // nothing was suggested?!
 		QString error = i18n("<qt>Can't calculate checksum since no supported tool was found. "
-			"Please check the <b>Dependencies</b> page in Krusader's settings.");
+			"Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
 		if (containFolders) 
 			error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
-			" Krusader currently supports <i>md5deep, sha1deep, sha256deep and tigerdeep</i>");
+			" Krusader currently supports <i>md5deep, sha1deep, sha256deep and tigerdeep</i></qt>");
 		KMessageBox::error(0, error);
 		return;
 	}
@@ -262,7 +262,7 @@ CreateChecksumDlg::CreateChecksumDlg(const QStringList& files, bool containFolde
 	krApp->stopWait();
 	QApplication::restoreOverrideCursor();
 	if (!r || !proc.normalExit()) {	
-		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
+		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.</qt>").arg(mytool->binary));
 		return;
 	}
 	
@@ -295,10 +295,10 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 
 	if (tools.count() == 0) { // nothing was suggested?!
 		QString error = i18n("<qt>Can't verify checksum since no supported tool was found. "
-			"Please check the <b>Dependencies</b> page in Krusader's settings.");
+			"Please check the <b>Dependencies</b> page in Krusader's settings.</qt>");
 		if (containFolders) 
 			error += i18n("<qt><b>Note</b>: you've selected directories, and probably have no recursive checksum tool installed."
-			" Krusader currently supports <i>md5deep, sha1deep, sha256deep and tigerdeep</i>");
+			" Krusader currently supports <i>md5deep, sha1deep, sha256deep and tigerdeep</i></qt>");
 		KMessageBox::error(0, error);
 		return;
 	}
@@ -341,7 +341,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 	QString file = checksumFileReq->url().simplifyWhiteSpace();
 	QString extension;
 	if (!verifyChecksumFile(file, extension)) {
-		KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br>Please specify a valid checksum file.").arg(file));
+		KMessageBox::error(0, i18n("<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid checksum file.</qt>").arg(file));
 		return;
 	}
 	
@@ -354,7 +354,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 			break;
 		}
 	if (!mytool) {
-		KMessageBox::error(0, i18n("<qt>Krusader can't find a checksum tool that handles %1 on your system. Please check the <b>Dependencies</b> page in Krusader's settings.").arg(extension));
+		KMessageBox::error(0, i18n("<qt>Krusader can't find a checksum tool that handles %1 on your system. Please check the <b>Dependencies</b> page in Krusader's settings.</qt>").arg(extension));
 		return;
 	}
 	
@@ -376,7 +376,7 @@ MatchChecksumDlg::MatchChecksumDlg(const QStringList& files, bool containFolders
 		}
    };
 	if (!r || !proc.normalExit()) {	
-		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.").arg(mytool->binary));
+		KMessageBox::error(0, i18n("<qt>There was an error while running <b>%1</b>.</qt>").arg(mytool->binary));
 		return;
 	}
 	QApplication::restoreOverrideCursor();
