@@ -6,6 +6,9 @@
            writes out the error messages of the archiver
            archive type autodetection by its header (first 512 byte)
            
+     I18N: Don't omit paragraphs and close all tags in strings to avoid errors
+           in translation tools (based on patch by Giuseppe Bordoni)
+
 
 1.70.0 "Round Robin"
 ==========================
