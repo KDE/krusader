@@ -47,12 +47,12 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 				
 		setFont( KGlobalSettings::generalFont() );
 		layout=new QGridLayout(this,1,9);	// 9 keys
-		F2=new QPushButton( i18n("F2 Term  ") ,this);
-			QToolTip::add( F2, i18n( "<qt>Open terminal in current directory.<p>"
-									   "You can define terminal in Konfigurator, "
-									   "default is konsole.</qt>" ) );
-			connect(F2,SIGNAL(clicked()), SLOTS, SLOT(terminal()));
-			SETUP(F2);
+    F2=new QPushButton( i18n("F2 Term  ") ,this);
+      QToolTip::add( F2, "<qt>" + i18n( "<p>Open terminal in current directory.</p>"
+                     "<p>The terminal can be defined in Konfigurator, "
+                     "default is <b>konsole</b>.</p>" ) + "</qt>" );
+      connect(F2,SIGNAL(clicked()), SLOTS, SLOT(terminal()));
+      SETUP(F2);
 			
 		F3=new QPushButton( i18n("F3 View  ") ,this);	
 			QToolTip::add( F3, i18n( "Open file in viewer." ) );
@@ -60,9 +60,9 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 			SETUP(F3);
 		
 		F4=new QPushButton( i18n("F4 Edit  ") ,this);
-			QToolTip::add( F4, i18n( "<qt>Edit file.<p>"
-									   "Editor is configurable in Konfigurator, "
-									   "default is 'internal editor'.</qt>" ) );
+			QToolTip::add( F4, "<qt>" + i18n( "<p>Edit file.</p>"
+									   "<p>The editor can be defined in Konfigurator, "
+									   "default is <b>internal editor</b>.</p>" ) + "</qt>" );
 			connect(F4,SIGNAL(clicked()), SLOTS, SLOT(edit()));
 			SETUP(F4);
 			
