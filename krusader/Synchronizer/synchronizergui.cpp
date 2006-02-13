@@ -1089,7 +1089,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   fileFilter->setEditText("*");
   grid->addWidget( fileFilter, 1 ,1 );
 
-  QString wtFilter = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space and patterns are excluded from the search using the pipe symbol.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code></p>'.");
+  QString wtFilter = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space and patterns are excluded from the search using the pipe symbol.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.</p>");
   QWhatsThis::add(fileFilter, wtFilter);
   QWhatsThis::add(filterLabel, wtFilter);
 
