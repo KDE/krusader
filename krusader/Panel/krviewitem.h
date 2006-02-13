@@ -43,8 +43,8 @@ class KrViewItem {
 
 public:
    virtual inline const QString& name() const { return _vf->vfile_getName(); }
-   virtual const QString dateTime() const;
-   virtual const QString description() const;
+   virtual QString dateTime() const;
+   virtual QString description() const;
    virtual bool isSelected() const = 0;
    virtual void setSelected( bool s ) = 0;
    virtual QPixmap icon();
