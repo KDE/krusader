@@ -1089,7 +1089,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   fileFilter->setEditText("*");
   grid->addWidget( fileFilter, 1 ,1 );
 
-  QString wtFilter = "<img src='toolbar|find'><p>" + i18n("The filename filtering criteria is defined here.<p>You can make use of wildcards. Multiple patterns are separated by space and patterns are excluded from the search using the pipe symbol.<p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code>'.");
+  QString wtFilter = "<p><img src='toolbar|find'></p>" + i18n("<p>The filename filtering criteria is defined here.</p><p>You can make use of wildcards. Multiple patterns are separated by space and patterns are excluded from the search using the pipe symbol.</p><p>Examples:<ul><code><li>*.o</li><li>*.h *.c\?\?</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent to '<code>*text*</code></p>'.");
   QWhatsThis::add(fileFilter, wtFilter);
   QWhatsThis::add(filterLabel, wtFilter);
 
@@ -1123,13 +1123,13 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QWhatsThis::add( cbByContent, i18n( "Compare duplicated files with same size by content." ) );
   cbIgnoreDate      = new QCheckBox( i18n( "Ignore Date" ), optionGrid, "cbIgnoreDate" );
   cbIgnoreDate->setChecked( krConfig->readBoolEntry( "Ignore Date", _IgnoreDate  ) );
-  QWhatsThis::add( cbIgnoreDate, i18n( "Ignore date information during the compare process.<p><b>Note</b>: useful if the files are located on network filesystems or in archives." ) );
+  QWhatsThis::add( cbIgnoreDate, i18n( "<p>Ignore date information during the compare process.</p><p><b>Note</b>: useful if the files are located on network filesystems or in archives.</p>" ) );
   cbAsymmetric      = new QCheckBox( i18n( "Asymmetric" ), optionGrid, "cbAsymmetric" );
   cbAsymmetric->setChecked( krConfig->readBoolEntry( "Asymmetric", _Asymmetric  ) );
-  QWhatsThis::add( cbAsymmetric, i18n( "<b>Asymmetric mode</b><p>The left side is the destination, the right is the source directory. Files existing only in the left directory will be deleted, the other differing ones will be copied from right to left.<p><b>Note</b>: useful when updating a directory from a file server." ) );
+  QWhatsThis::add( cbAsymmetric, i18n( "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source directory. Files existing only in the left directory will be deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a directory from a file server.</p>" ) );
   cbIgnoreCase      = new QCheckBox( i18n( "Ignore Case" ), optionGrid, "cbIgnoreCase" );
   cbIgnoreCase->setChecked( krConfig->readBoolEntry( "Ignore Case", _IgnoreCase ) );
-  QWhatsThis::add( cbIgnoreCase, i18n( "Case insensitive filename compare.<p><b>Note</b>: useful when synchronizing Windows filesystems." ) );
+  QWhatsThis::add( cbIgnoreCase, i18n( "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when synchronizing Windows filesystems.</p>" ) );
 
   /* =========================== Show options groupbox ============================= */
 
