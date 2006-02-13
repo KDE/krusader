@@ -89,6 +89,9 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 //	"filesaveas"
 	setCentralWidget( &tabBar );
 
+	printAction = KStdAction::print( this, SLOT( print() ), 0, 0 );
+	copyAction = KStdAction::copy( this, SLOT( copy() ), 0, 0 );
+
 	viewerMenu = new QPopupMenu( this );
 	viewerMenu->insertItem( i18n( "&Generic viewer" ), this, SLOT( viewGeneric() ), CTRL + SHIFT + Key_G, 1 );
 	viewerMenu->insertItem( i18n( "&Text viewer" ), this, SLOT( viewText() ), CTRL + SHIFT + Key_T, 2 );
@@ -102,7 +105,10 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
 	detachActionIndex = viewerMenu->insertItem( i18n( "&Detach tab" ), this, SLOT( detachTab() ), CTRL + SHIFT + Key_D );
 	//no point in detaching only one tab..
 	viewerMenu->setItemEnabled(detachActionIndex,false);	
-
+	viewerMenu->insertSeparator();
+	viewerMenu->insertItem( printAction->text(), this, SLOT( print() ), printAction->shortcut() );
+	viewerMenu->insertItem( copyAction->text(), this, SLOT( copy() ), copyAction->shortcut() );
+	viewerMenu->insertSeparator();
 	viewerMenu->insertItem( i18n( "&Close current tab" ), this, SLOT( tabCloseRequest() ), Key_Escape );
 	viewerMenu->insertItem( i18n( "&Quit" ), this, SLOT( close() ), CTRL + Key_Q );
 
@@ -119,19 +125,26 @@ KrViewer::~KrViewer() {
 	            this, SLOT( createGUI( KParts::Part* ) ) );
 
 	viewers.remove( this );
+	delete printAction;
+	delete copyAction;
 }
 
 void KrViewer::createGUI( KParts::Part* part ) {
 	if ( part == 0 )   /*     KHTMLPart calls this function with 0 at destruction.    */
 		return ;        /*   Can cause crash after JavaScript self.close() if removed  */
 
+	
 	// and show the new part widget
 	connect( part, SIGNAL( setStatusBarText( const QString& ) ),
 	         this, SLOT( slotSetStatusBarText( const QString& ) ) );
 
 	KParts::MainWindow::createGUI( part );
+	toolBar() ->insertLineSeparator(0);
 
-	toolBar() ->insertSeparator(1,1);
+	PanelViewerBase *pvb = getPanelViewerBase( part );
+	if( pvb )
+		updateActions( pvb );
+
 	toolBar() ->show();
 	statusBar() ->show();
 
@@ -235,6 +248,8 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 	tabBar.insertTab(pvb,icon,url.fileName()+"("+msg+")");	
 	tabBar.setCurrentPage(tabBar.indexOf(pvb));
 	tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
+
+	updateActions( pvb );
 
 	// now we can offer the option to detach tabs (we have more than one)
 	if( tabBar.count() > 1 ){
@@ -418,6 +433,46 @@ void KrViewer::detachTab(){
 void KrViewer::windowActivationChange ( bool oldActive ) {
 	if( isActiveWindow() )
 		if( viewers.remove( this ) ) viewers.prepend( this ); // move to first
+}
+
+void KrViewer::print() {
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	if( !pvb ) return;
+	
+	KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( pvb->part() );
+	if( ext && ext->isActionEnabled( "print" ) )
+		Invoker( ext, SLOT( print() ) ).invoke();
+}
+
+void KrViewer::copy() {
+	PanelViewerBase* pvb = static_cast<PanelViewerBase*>( tabBar.currentPage() );
+	if( !pvb ) return;
+	
+	KParts::BrowserExtension * ext = KParts::BrowserExtension::childObject( pvb->part() );
+	if( ext && ext->isActionEnabled( "copy" ) )
+		Invoker( ext, SLOT( copy() ) ).invoke();
+}
+
+PanelViewerBase * KrViewer::getPanelViewerBase( KParts::Part * part ) {
+	for( int i=0; i != tabBar.count(); i++ ) {
+		PanelViewerBase *pvb = static_cast<PanelViewerBase*>( tabBar.page( i ) );
+		if( pvb && pvb->part() == part )
+			return pvb;
+	}
+	return 0;
+}
+
+void KrViewer::updateActions( PanelViewerBase * pvb ) {
+	if( pvb->isEditor() ) {
+		printAction->unplugAll();
+		copyAction->unplugAll();
+	}
+	else {
+		if( !printAction->isPlugged( toolBar() ) )
+			printAction->plug( toolBar(), 0 );
+		if( !copyAction->isPlugged( toolBar() ) )
+			copyAction->plug( toolBar(), 1 );
+	}
 }
 
 #if 0

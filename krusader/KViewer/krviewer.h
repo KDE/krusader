@@ -56,6 +56,9 @@ public slots:
 	void viewHex();
 	void editText();
 
+	void print();
+	void copy();
+
 	void tabChanged(QWidget* w);
 	void tabURLChanged( PanelViewerBase * pvb, const KURL &url );
 	void tabCloseRequest(QWidget *w);
@@ -77,6 +80,9 @@ protected:
 private:
 	KrViewer( QWidget *parent = 0, const char *name = 0 );
 	void addTab(PanelViewerBase* pvb, QString msg,QString iconName, KParts::Part* part);
+	PanelViewerBase * getPanelViewerBase( KParts::Part* part);
+	void updateActions( PanelViewerBase * base );
+	
 	static KrViewer* getViewer(bool new_window);	
 
 	KParts::PartManager manager;
@@ -86,7 +92,26 @@ private:
 	int returnFocusToKrusader;
 	int detachActionIndex;
 
+	KAction *printAction;
+	KAction *copyAction;
+
 	static QPtrList<KrViewer> viewers; // the first viewer is the active one
+};
+
+class Invoker : public QObject {
+	Q_OBJECT
+	
+public:
+	Invoker( QObject *recv, const char * slot ) {
+		connect( this, SIGNAL( invokeSignal() ), recv, slot );
+	}
+	
+	void invoke() {
+		emit invokeSignal();
+	}
+	
+signals:
+	void invokeSignal();
 };
 
 #endif
