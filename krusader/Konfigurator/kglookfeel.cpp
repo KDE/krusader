@@ -93,7 +93,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
    KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
   //          name                                               value  tooltip
     {{ i18n( "Double-click selects (classic)" ),                   "0", i18n( "A single click on a file will select and focus, a double click opens the file or steps into the directory." ) },
-     { i18n( "Obey KDE's global selection policy" ),               "1", i18n( "Use KDE's global setting:<p><i>KDE Control Center -> Peripherals -> Mouse</i>" ) }};    
+     { i18n( "Obey KDE's global selection policy" ),               "1", i18n( "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> Mouse</i></p>" ) }};    
   KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, lookFeelGrp, "myLook&FeelRadio0", true, PAGE_OPERATION );
   lookFeelGrid->addWidget( clickRadio, 8, 0 );
   
