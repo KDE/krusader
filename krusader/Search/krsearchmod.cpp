@@ -165,13 +165,17 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
       if ( KRarcHandler::arcSupported( type ) )
       {
         KURL archiveURL = url;
+        bool encrypted;
+        QString realType = KRarcHandler::getType( encrypted, url.path(), mime );
 
-        if ( type == "-tbz" || type == "-tgz" || type == "tarz" || type == "-tar" )
-          archiveURL.setProtocol( "tar" );
-        else
-          archiveURL.setProtocol( "krarc" );
+        if( !encrypted ) {
+          if ( realType == "-tbz" || realType == "-tgz" || realType == "tarz" || realType == "-tar" )
+            archiveURL.setProtocol( "tar" );
+          else
+            archiveURL.setProtocol( "krarc" );
 
-        unScannedUrls.push( archiveURL );
+          unScannedUrls.push( archiveURL );
+        }
       }
     }
 

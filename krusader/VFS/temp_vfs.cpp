@@ -99,7 +99,7 @@ void temp_vfs::handleAceArj(QString origin, QString type){
   	if (!quietMode) KMessageBox::error(krApp,"This archive type is NOT supported");
     return;
   }
-  else if( !KRarcHandler::unpack(origin,type,tmpDir) ){
+  else if( !KRarcHandler::unpack(origin,type, QString::null, tmpDir) ){
     return;
   }
 }

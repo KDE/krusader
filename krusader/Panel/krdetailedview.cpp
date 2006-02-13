@@ -37,6 +37,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../krusaderview.h"
 #include "../krslots.h"
 #include "../VFS/krpermhandler.h"
+#include "../VFS/krarchandler.h"
 #include "../GUI/kcmdline.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../panelmanager.h"
@@ -326,7 +327,7 @@ void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
    // re-enable sorting
    setSorting( cl, as );
    sort();
-	
+
    if ( !currentItem )
       currentItem = firstChild();
    KListView::setCurrentItem( currentItem );
@@ -852,6 +853,20 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             if ( i->VF->vfile_isDir() ) {             // we create a return-pressed event,
                QString tmp = i->name();
                op()->emitExecuted(tmp); // thereby emulating a chdir
+            } else if( i->VF->vfile_getUrl().isLocalFile() ) {
+               bool encrypted; 
+               KURL url = i->VF->vfile_getUrl();
+               QString mime = ((vfile *)(i->VF))->vfile_getMime();
+               QString type = KRarcHandler::getType( encrypted, url.path(), mime );
+
+               if( KRarcHandler::arcSupported( type ) ) {
+                 KURL url = i->VF->vfile_getUrl();
+                 if( type == "-tar" || type == "-tgz" || type == "-tbz" )
+                   url.setProtocol( "tar" );
+                 else
+                   url.setProtocol( "krarc" );
+                 ACTIVE_FUNC->openUrl( url );
+               }
             }
             return ; // safety
          }
@@ -1178,7 +1193,7 @@ bool KrDetailedView::eventFilter( QObject * watched, QEvent * e )
 
 void KrDetailedView::makeItemVisible( const KrViewItem *item ) {
 //	qApp->processEvents();  // Please don't remove the comment. Causes crash if it is inserted!
-	ensureItemVisible( static_cast<const KrDetailedViewItem*>( item ) );
+	ensureItemVisible( static_cast<const KrDetailedViewItem*>( item ) ); 
 }
 
 void KrDetailedView::initOperator() {

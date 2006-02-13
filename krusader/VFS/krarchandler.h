@@ -34,34 +34,62 @@
 #include <qobject.h>
 #include <kprocess.h>
 #include <kurl.h>
+#include <kwallet.h>
 
 class KRarcHandler: public QObject {
-	Q_OBJECT
+  Q_OBJECT
 public:
   // return the number of files in the archive
-  static long arcFileCount(QString archive, QString type);
+  static long arcFileCount(QString archive, QString type, QString password);
   // unpack an archive to destination directory
-  static bool unpack(QString archive, QString type, QString dest );
+  static bool unpack(QString archive, QString type, QString password, QString dest );
   // pack an archive to destination directory
   static bool pack(QStringList fileNames, QString type, QString dest, long count );
   // test an archive
-  static bool test(QString archive, QString type, long count = 0L, QString password = QString::null);
+  static bool test(QString archive, QString type, QString password, long count = 0L );
   // true - if the right unpacker exist in the system
   static bool arcSupported(QString type);
   // true - if supported and the user want us to handle this kind of archive
   static bool arcHandled(QString type);
   // return the a list of supported packers
   static QStringList supportedPackers();
-  // removes the alias names for a packer
-  static void removeAliases( QString &type );
   // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
   static bool isArchive(const KURL& url);
-  // used to store the current archive password
-  QString password;
-  int inSet;
-  static QString getPassword(QString archive, QString type);
+  // used to determine the type of the archive
+  static QString getType( bool &encrypted, QString fileName, QString mime );
+  // queries the password from the user
+  static QString getPassword( QString path );
+  // detects the archive type
+  static QString detectArchive( bool &encrypted, QString fileName );
+private:
+  // checks if the returned status is correct
+  static bool checkStatus( QString type, int exitCode );
+
+  static KWallet::Wallet * wallet;
+};
+
+class KrShellProcess : public KShellProcess {
+	Q_OBJECT
+public:
+	KrShellProcess() : KShellProcess(), errorMsg( QString::null ) {
+		connect(this,SIGNAL(receivedStderr(KProcess*,char*,int)),
+				this,SLOT(receivedErrorMsg(KProcess*,char*,int)) );
+	}
+	
+	QString getErrorMsg() {
+		return errorMsg.right( 500 );
+	}
+	
 public slots:
-  void setPassword(KProcess *,char *buffer,int buflen);
+	void receivedErrorMsg(KProcess*, char *buf, int len) {
+		QByteArray d(len);
+		d.setRawData(buf,len);
+		errorMsg += QString( d );
+		d.resetRawData(buf,len);
+	}
+	
+private:
+	QString errorMsg;
 };
 
 #endif

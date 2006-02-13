@@ -788,7 +788,6 @@ void ListPanelFunc::testArchive() {
 		return ; // safety
 
 	KURL arcURL = files() ->vfs_getFile( arcName );
-	QString type = files() ->vfs_search( arcName ) ->vfile_getMime().right( 4 );
 	QString url = QString::null;
 
 	// download the file if it's on a remote filesystem
@@ -801,14 +800,20 @@ void ListPanelFunc::testArchive() {
 	} else
 		url = arcURL.path( -1 );
 
+	QString mime = files() ->vfs_search( arcName ) ->vfile_getMime();
+	bool encrypted = false;
+	QString type = KRarcHandler::getType( encrypted, url, mime );
+	
 	// check we that archive is supported
 	if ( !KRarcHandler::arcSupported( type ) ) {
 		KMessageBox::sorry( krApp, i18n( "%1, unknown archive type." ).arg( arcName ) );
 		return ;
 	}
-
+	
+	QString password = encrypted ? KRarcHandler::getPassword( url ) : QString::null;
+	
 	// test the archive
-	if ( KRarcHandler::test( url, type ) )
+	if ( KRarcHandler::test( url, type, password ) )
 		KMessageBox::information( krApp, i18n( "%1, test passed." ).arg( arcName ) );
 	else
 		KMessageBox::error( krApp, i18n( "%1, test failed!" ).arg( arcName ) );
@@ -870,17 +875,19 @@ void ListPanelFunc::unpack() {
 
 		// determining the type
 		QString mime = files() ->vfs_search( arcName ) ->vfile_getMime();
-		QString type = mime.right( 4 );
-		if ( mime.contains( "-rar" ) )
-			type = "-rar";
+		bool encrypted = false;
+		QString type = KRarcHandler::getType( encrypted, url, mime );
 
 		// check we that archive is supported
 		if ( !KRarcHandler::arcSupported( type ) ) {
 			KMessageBox::sorry( krApp, i18n( "%1, unknown archive type" ).arg( arcName ) );
 			continue;
 		}
+		
+		QString password = encrypted ? KRarcHandler::getPassword( url ) : QString::null;
+		
 		// unpack the files
-		KRarcHandler::unpack( url, type, dest.path( -1 ) );
+		KRarcHandler::unpack( url, type, password, dest.path( -1 ) );
 
 		// remove the downloaded file if necessary
 		if ( url != arcURL.path( -1 ) )
