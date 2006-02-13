@@ -5,7 +5,10 @@
            using KWallet to store the passwords
            writes out the error messages of the archiver
            archive type autodetection by its header (first 512 byte)
+
+    FIXED: viewer, detaching tab changes 'Editing' to 'Viewing'
            
+     I18N: viewer: 'Editing', 'Viewing' can be translated
      I18N: Don't omit paragraphs and close all tags in strings to avoid errors
            in translation tools (based on patch by Giuseppe Bordoni)
 

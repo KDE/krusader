@@ -194,7 +194,7 @@ void KrViewer::view( KURL url, Mode mode,  bool new_window ) {
 
 	PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
 	KParts::Part* part = viewWidget->openURL(url,mode);
-	viewer->addTab(viewWidget,"Viewing",VIEW_ICON,part);
+	viewer->addTab(viewWidget,i18n( "Viewing" ),VIEW_ICON,part);
 
 	viewer->returnFocusToKrusader = 2;
 }
@@ -219,7 +219,7 @@ void KrViewer::edit( KURL url, Mode mode, bool new_window ) {
 
 	PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
 	KParts::Part* part = editWidget->openURL(url,mode);
-	viewer->addTab(editWidget,QString("Editing"),EDIT_ICON,part);
+	viewer->addTab(editWidget,i18n("Editing"),EDIT_ICON,part);
 }
 
 void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KParts::Part* part){
@@ -249,7 +249,7 @@ void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KPart
 }
 
 void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KURL & url ) {
-	QString msg = pvb->isEditor() ? "Editing" : "Viewing";
+	QString msg = pvb->isEditor() ? i18n( "Editing" ) : i18n( "Viewing" );
 	tabBar.setTabLabel( pvb, url.fileName()+"("+msg+")" );
 	tabBar.setTabToolTip(pvb,msg+": " + url.prettyURL());
 }
@@ -318,7 +318,7 @@ void KrViewer::viewGeneric(){
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
 	KParts::Part* part = viewerWidget->openURL(pvb->url(),Generic);
-	addTab(viewerWidget,QString("Viewing"),VIEW_ICON,part);
+	addTab(viewerWidget,i18n("Viewing"),VIEW_ICON,part);
 }
 
 void KrViewer::viewText(){
@@ -327,7 +327,7 @@ void KrViewer::viewText(){
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
 	KParts::Part* part = viewerWidget->openURL(pvb->url(),Text);
-	addTab(viewerWidget,QString("Viewing"),VIEW_ICON,part);
+	addTab(viewerWidget,i18n("Viewing"),VIEW_ICON,part);
 }
 
 void KrViewer::viewHex(){
@@ -336,7 +336,7 @@ void KrViewer::viewHex(){
 
 	PanelViewerBase* viewerWidget = new PanelViewer(&tabBar);
 	KParts::Part* part = viewerWidget->openURL(pvb->url(),Hex);
-	addTab(viewerWidget,QString("Viewing"),VIEW_ICON,part);
+	addTab(viewerWidget,i18n("Viewing"),VIEW_ICON,part);
 }
 
 void KrViewer::editText(){
@@ -345,7 +345,7 @@ void KrViewer::editText(){
 
 	PanelViewerBase* editWidget = new PanelEditor(&tabBar);
 	KParts::Part* part = editWidget->openURL(pvb->url(),Text);
-	addTab(editWidget,QString("Editing"),EDIT_ICON,part);
+	addTab(editWidget,i18n("Editing"),EDIT_ICON,part);
 }
 
 void KrViewer::checkModified(){
@@ -409,7 +409,10 @@ void KrViewer::detachTab(){
 	
 	pvb->reparent(&viewer->tabBar,QPoint(0,0));
 
-	viewer->addTab(pvb,"Viewing",VIEW_ICON,pvb->part());
+	if( pvb->isEditor() )
+		viewer->addTab(pvb,i18n( "Editing" ),EDIT_ICON,pvb->part());
+	else
+		viewer->addTab(pvb,i18n( "Viewing" ),VIEW_ICON,pvb->part());
 }
 
 void KrViewer::windowActivationChange ( bool oldActive ) {
