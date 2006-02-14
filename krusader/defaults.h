@@ -46,8 +46,6 @@
 #define _ShowTerminalEmulator false 
 // Remember Position
 #define _RememberPos      true 
-// Panels Save Settings
-#define _PanelsSave       "Tabs"
 // Left Tab Bar
 // Right Tab Bar
 // Left Panel Popup

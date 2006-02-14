@@ -753,14 +753,12 @@ void Krusader::savePosition() {
 void Krusader::saveSettings() {
    toolBar() ->saveSettings( krConfig, "Private" );
    toolBar("actionsToolBar")->saveSettings( krConfig, "Actions Toolbar" );
-   config->setGroup( "Startup" );
-   bool panelsavesettings = config->readEntry( "Panels Save Settings", _PanelsSave ) == "Tabs";
-   if( panelsavesettings ) {
-      config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
-      config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
-      mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
-      mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
-   }
+   config->setGroup( "Startup" );   
+   config->writeEntry( "Left Active Tab", mainView->leftMng->activeTab() );
+   config->writeEntry( "Right Active Tab", mainView->rightMng->activeTab() );
+   mainView->leftMng->saveSettings( krConfig, "Left Tab Bar" );
+   mainView->rightMng->saveSettings( krConfig, "Right Tab Bar" );
+   
    bool rememberpos = config->readBoolEntry( "Remember Position", _RememberPos );
    bool uisavesettings = config->readBoolEntry( "UI Save Settings", _UiSave );
 
