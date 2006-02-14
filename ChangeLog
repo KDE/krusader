@@ -1,12 +1,7 @@
     ADDED: Copy/Move: preserve all attributes (time, owner, group)
     ADDED: viewer, print + copy actions
-    ADDED: new krarc !
-           supports passworded arj, ace, rar, zip
-           step into hidden archives by pressing <RIGHT> on the archive
-           decompressing debian packages by Alt+U
-           using KWallet to store the passwords
-           writes out the error messages of the archiver
-           archive type autodetection by its header (first 512 byte)
+    ADDED: new krarc (password handling, type autodetection, writing
+           out archiver error messages, step into hidden archives,...)
 
     FIXED: last tabs are not saved, if an old config value is present
     FIXED: panel popup gets focus at opening, gives focus to panel at hiding
