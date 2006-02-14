@@ -361,6 +361,8 @@ void ListPanel::togglePanelPopup() {
 		QValueList<int> lst;
 		lst << height() << 0;
 		dynamic_cast<QSplitter*>(popup->parent())->setSizes(lst);
+		if( ACTIVE_PANEL )
+			ACTIVE_PANEL->slotFocusOnMe();
 	}
 }
 

@@ -199,7 +199,7 @@ PanelPopup::~PanelPopup() {}
 
 void PanelPopup::show() {
   QWidget::show();
-  tabSelected(stack->id(stack->visibleWidget()));
+  tabSelected( stack->id(stack->visibleWidget()) );
 }
 
 
@@ -216,15 +216,18 @@ void PanelPopup::handleOpenURLRequest(const KURL &url) {
 
 void PanelPopup::tabSelected( int id ) {
 	KURL url = "";
-   if ( ACTIVE_PANEL && ACTIVE_PANEL->func && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view ) {
-     url = ACTIVE_PANEL->func->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem());
-   }
+	if ( ACTIVE_PANEL && ACTIVE_PANEL->func && ACTIVE_PANEL->func->files() && ACTIVE_PANEL->view ) {
+		url = ACTIVE_PANEL->func->files()->vfs_getFile( ACTIVE_PANEL->view->getCurrentItem());
+	}
 	
-   stack->raiseWidget( id );
+	stack->raiseWidget( id );
+	
 	// if tab is tree, set something logical in the data line
 	switch (id) {
 		case Tree:
 			dataLine->setText( i18n("Tree:") );
+			if( !isHidden() )
+				tree->setFocus();
 			break;
 		case Preview:
 			dataLine->setText( i18n("Preview:") );
@@ -232,10 +235,14 @@ void PanelPopup::tabSelected( int id ) {
 			break;
 		case QuickPanel:
 			dataLine->setText( i18n("Quick Select:") );
+			if( !isHidden() )
+				quickSelectCombo->setFocus();
 			break;
 		case View:
 			dataLine->setText( i18n("View:") );
 			update(url);
+			if( !isHidden() && panelviewer->part() && panelviewer->part()->widget() )
+				panelviewer->part()->widget()->setFocus();
 			break;
 		case DskUsage:
 			dataLine->setText( i18n("Disk Usage:") );
