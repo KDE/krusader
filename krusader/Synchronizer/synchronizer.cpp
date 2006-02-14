@@ -929,7 +929,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
             if ( g != 0L )
               newGroupID = g->gr_gid;
           }
-          chown( (const char *)( leftURL.path( -1 ).local8Bit() ), newOwnerID, (uid_t)-1 );
+          chown( (const char *)( leftURL.path( -1 ).local8Bit() ), newOwnerID, (gid_t)-1 );
           chown( (const char *)( leftURL.path( -1 ).local8Bit() ), (uid_t)-1, newGroupID );
         }
         break;

@@ -140,7 +140,7 @@
 // AutoMount //////////
 #define _AutoMount        false 
 // Preserving date //////////
-#define _PreserveDate     false
+#define _PreserveAttributes false
 // Nonmount Points ////
 #define _NonMountPoints	"/, "
 // Confirm Unempty Dir //     (for delete)

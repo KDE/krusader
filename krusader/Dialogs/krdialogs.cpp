@@ -71,8 +71,8 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 	return u;
 }
 
-KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &preserveDate ) {
-	KURLRequesterDlgForCopy *dlg = new KURLRequesterDlgForCopy(url.prettyURL(1),text, preserveDate, krApp,"" );        
+KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &preserveAttrs ) {
+	KURLRequesterDlgForCopy *dlg = new KURLRequesterDlgForCopy(url.prettyURL(1),text, preserveAttrs, krApp,"" );        
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KURL u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -84,12 +84,12 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &pre
 			u.addPath(temp.url());
 		}
 	}
-	preserveDate = dlg->preserveDate();
+	preserveAttrs = dlg->preserveAttrs();
 	delete dlg;
 	return u;
 }
 
-KURLRequesterDlgForCopy::KURLRequesterDlgForCopy( const QString& urlName, const QString& _text, bool presDate, QWidget *parent,
+KURLRequesterDlgForCopy::KURLRequesterDlgForCopy( const QString& urlName, const QString& _text, bool presAttrs, QWidget *parent,
                                                   const char *name, bool modal )
 			:   KDialogBase( Plain, QString::null, Ok|Cancel|User1, Ok, parent, name, modal, true, KStdGuiItem::clear() ) {
 	QVBoxLayout * topLayout = new QVBoxLayout( plainPage(), 0, spacingHint() );
@@ -100,9 +100,9 @@ KURLRequesterDlgForCopy::KURLRequesterDlgForCopy( const QString& urlName, const 
 	urlRequester_ = new KURLRequester( urlName, plainPage(), "urlRequester" );
 	urlRequester_->setMinimumWidth( urlRequester_->sizeHint().width() * 3 );
 	topLayout->addWidget( urlRequester_ );
-	preserveDateCB = new QCheckBox(i18n("Preserve date (only for local targets)"), plainPage());        
-	preserveDateCB->setChecked( presDate );
-	topLayout->addWidget( preserveDateCB );
+	preserveAttrsCB = new QCheckBox(i18n("Preserve attributes (only for local targets)"), plainPage());        
+	preserveAttrsCB->setChecked( presAttrs );
+	topLayout->addWidget( preserveAttrsCB );
 	urlRequester_->setFocus();
 	connect( urlRequester_->lineEdit(), SIGNAL(textChanged(const QString&)),
 		SLOT(slotTextChanged(const QString&)) );
@@ -115,8 +115,8 @@ KURLRequesterDlgForCopy::KURLRequesterDlgForCopy( const QString& urlName, const 
 KURLRequesterDlgForCopy::KURLRequesterDlgForCopy() {
 }
 
-bool KURLRequesterDlgForCopy::preserveDate() {
-	return preserveDateCB->isChecked();
+bool KURLRequesterDlgForCopy::preserveAttrs() {
+	return preserveAttrsCB->isChecked();
 }
 
 void KURLRequesterDlgForCopy::slotTextChanged(const QString & text) {

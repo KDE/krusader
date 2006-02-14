@@ -36,6 +36,36 @@
 #include <kio/job.h>
 #include <kio/jobclasses.h>
 #include <kfileitem.h>
+#include <qfile.h>
+#include <pwd.h>
+#include <grp.h>
+
+Attributes::Attributes() 
+{
+  time = (time_t)-1;
+  uid = (uid_t)-1;
+  gid = (gid_t)-1;
+}
+
+Attributes::Attributes( time_t tIn, uid_t uIn, gid_t gIn ) 
+{
+  time = tIn, uid = uIn, gid = gIn;
+}
+
+Attributes::Attributes( time_t tIn, QString user, QString group ) 
+{
+  time = tIn;
+  uid = (uid_t)-1;
+  struct passwd* pw = getpwnam(QFile::encodeName( user ));
+  if ( pw != 0L )
+    uid = pw->pw_uid;
+  gid = (gid_t)-1;
+  struct group* g = getgrnam(QFile::encodeName( group ));
+  if ( g != 0L )
+    gid = g->gr_gid;
+}
+
+
 
 PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, CopyMode mode,
   bool asMethod, bool showProgressInfo ) : KIO::CopyJob( src, dest, mode, asMethod, showProgressInfo )
@@ -54,31 +84,79 @@ PreservingCopyJob::PreservingCopyJob( const KURL::List& src, const KURL& dest, C
 void PreservingCopyJob::slotAboutToCreate( KIO::Job */*job*/, const QValueList< KIO::CopyInfo > &files )
 {
   for ( QValueList< KIO::CopyInfo >::ConstIterator it = files.begin(); it != files.end(); ++it ) {
-    time_t mtime = (*it).mtime;
   
-    if( mtime != 0 && mtime != ((time_t) -1 ) ) {       /* is it correct? */
-      fileAttributes[ (*it).uSource ] = mtime;
-    }
-    else if( (*it).uSource.isLocalFile() ) {
+    if( (*it).uSource.isLocalFile() ) {
       KDE_struct_stat stat_p;
       KDE_lstat( (*it).uSource.path(-1).local8Bit(),&stat_p);    /* getting the date information */
       
-      fileAttributes[ (*it).uSource ] = stat_p.st_mtime;      
+      fileAttributes[ (*it).uSource ] = Attributes( stat_p.st_mtime, stat_p.st_uid, stat_p.st_gid );      
+    }
+    else {
+      time_t mtime = (*it).mtime;
+  
+      if( mtime != 0 && mtime != ((time_t) -1 ) )       /* is it correct? */
+        fileAttributes[ (*it).uSource ].time = mtime;
     }
   }
 }
 
 void PreservingCopyJob::slotResult( Job *job ) {
-  if( job->inherits( "KIO::StatJob" ) ) {       /* Unfortunately KIO forgets to set times when the file is in the */
-    KURL url = ((KIO::SimpleJob *)job)->url();  /* base directory. That's why we capture every StatJob and set the */
+  if( !job->error() ) {
+    if( job->inherits( "KIO::StatJob" ) ) {       /* Unfortunately KIO forgets to set times when the file is in the */
+      KURL url = ((KIO::SimpleJob *)job)->url();  /* base directory. That's why we capture every StatJob and set the */
                                                 /* time manually. */
-    KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();      
-    KFileItem kfi(entry, url );
+      KIO::UDSEntry entry = static_cast<KIO::StatJob*>(job)->statResult();      
+      KFileItem kfi(entry, url );
     
-    fileAttributes[ url ] = kfi.time( KIO::UDS_MODIFICATION_TIME );
+      fileAttributes[ url ] = Attributes( kfi.time( KIO::UDS_MODIFICATION_TIME ), kfi.user(), kfi.group() );
+    }
   }
 
   CopyJob::slotResult( job );
+  
+  for( unsigned j=0; j != subjobs.count(); j++ ) {
+    if( subjobs.at( j )->inherits( "KIO::ListJob" ) ) {
+      disconnect( subjobs.at( j ), SIGNAL( entries (KIO::Job *, const KIO::UDSEntryList &) ),
+                  this, SLOT( slotListEntries (KIO::Job *, const KIO::UDSEntryList &) ) );
+      connect( subjobs.at( j ), SIGNAL( entries (KIO::Job *, const KIO::UDSEntryList &) ),
+                  this, SLOT( slotListEntries (KIO::Job *, const KIO::UDSEntryList &) ) );
+    }
+  }
+}
+
+void PreservingCopyJob::slotListEntries(KIO::Job *job, const KIO::UDSEntryList &list) {
+  KIO::UDSEntryListConstIterator it = list.begin();
+  KIO::UDSEntryListConstIterator end = list.end();
+  for (; it != end; ++it) {
+    KURL url = ((KIO::SimpleJob *)job)->url();
+    QString relName, user, group;
+    time_t mtime = (time_t)-1;
+    
+    KIO::UDSEntry::ConstIterator it2 = (*it).begin();
+    for( ; it2 != (*it).end(); it2++ ) {
+      switch ((*it2).m_uds) {
+      case KIO::UDS_NAME:
+        if( relName.isEmpty() )
+          relName = (*it2).m_str;
+        break;
+      case KIO::UDS_URL:
+        relName = KURL((*it2).m_str).fileName();
+        break;
+      case KIO::UDS_MODIFICATION_TIME:
+        mtime = (time_t)((*it2).m_long);
+        break;
+      case KIO::UDS_USER:
+        user = (*it2).m_str;
+        break;
+      case KIO::UDS_GROUP:
+        group = (*it2).m_str;
+        break;
+      }
+    }
+    url.addPath( relName );
+
+    fileAttributes[ url ] = Attributes( mtime, user, group );
+  }
 }
 
 void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KURL &to, bool postpone, bool)
@@ -95,8 +173,16 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KUR
     originalDirectories.insert( originalDirectories.at( i ), from );
   }
   else if( fileAttributes.count( from ) ) {
-    time_t mtime = fileAttributes[ from ];
+    Attributes attrs = fileAttributes[ from ];
     fileAttributes.remove( from );
+
+
+    if( attrs.uid != (uid_t)-1 )
+      chown( (const char *)( to.path( -1 ).local8Bit() ), attrs.uid, (gid_t)-1 );
+    if( attrs.gid != (gid_t)-1 )
+      chown( (const char *)( to.path( -1 ).local8Bit() ), (uid_t)-1, attrs.gid );
+    
+    time_t mtime = attrs.time;
    
     if( !to.isLocalFile() || mtime == 0 || mtime == ((time_t) -1 ) )
       return;
@@ -111,7 +197,7 @@ void PreservingCopyJob::slotCopyingDone( KIO::Job *, const KURL &from, const KUR
 }
 
 void PreservingCopyJob::slotFinished() {
-  for( int i=0; i != directoriesToStamp.count(); i++ ) {
+  for( unsigned i=0; i != directoriesToStamp.count(); i++ ) {
     KURL from = originalDirectories[ i ];
     KURL to = directoriesToStamp[ i ];
 
@@ -128,13 +214,13 @@ KIO::CopyJob * PreservingCopyJob::createCopyJob( PreserveMode pmode, const KURL:
 
   switch( pmode )
   {
-  case PM_PRESERVE_DATE:
+  case PM_PRESERVE_ATTR:
     return new PreservingCopyJob( src, dest, mode, asMethod, showProgressInfo );
   case PM_DEFAULT:
     {
       QString group = krConfig->group();
       krConfig->setGroup( "Advanced" );
-      bool preserve = krConfig->readBoolEntry( "PreserveDate", _PreserveDate );
+      bool preserve = krConfig->readBoolEntry( "PreserveAttributes", _PreserveAttributes );
       krConfig->setGroup( group );
       if( preserve )
         return new PreservingCopyJob( src, dest, mode, asMethod, showProgressInfo );

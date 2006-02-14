@@ -38,10 +38,21 @@
 
 typedef enum {
   PM_NONE          = 0,
-  PM_PRESERVE_DATE = 1,
+  PM_PRESERVE_ATTR = 1,
   PM_DEFAULT       = 2
 } PreserveMode;
 
+
+class Attributes {
+public:
+	Attributes();
+	Attributes( time_t tIn, uid_t uIn, gid_t gIn );
+	Attributes( time_t tIn, QString user, QString group );
+
+	time_t time;
+	uid_t  uid;
+	gid_t  gid;
+};
 
 class PreservingCopyJob : public KIO::CopyJob
 {
@@ -58,9 +69,10 @@ public slots:
   void slotCopyingDone( KIO::Job *, const KURL &, const KURL &, bool, bool);
   void slotFinished();
   virtual void slotResult( Job *job );
+  void slotListEntries(KIO::Job *job, const KIO::UDSEntryList &list);
   
 private:
-  QMap<KURL, time_t>     fileAttributes;
+  QMap<KURL, Attributes> fileAttributes;
   QMap<KIO::Job *, KURL> pendingJobs;
   QValueList<KURL>       directoriesToStamp;
   QValueList<KURL>       originalDirectories;

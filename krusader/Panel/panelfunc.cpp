@@ -395,7 +395,7 @@ void ListPanelFunc::moveFiles() {
 
 	krConfig->setGroup( "Advanced" );
 	if ( krConfig->readBoolEntry( "Confirm Move", _ConfirmMove ) ) {
-		bool preserveDate = krConfig->readBoolEntry( "PreserveDate", _PreserveDate );
+		bool preserveAttrs = krConfig->readBoolEntry( "PreserveAttributes", _PreserveAttributes );
 		QString s;
 
   if( fileNames.count() == 1 )
@@ -404,10 +404,10 @@ void ListPanelFunc::moveFiles() {
     s = i18n("Move %n file to:", "Move %n files to:", fileNames.count());
 
 		// ask the user for the copy dest
-		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveDate);
+		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs);
 		if ( dest.isEmpty() ) return ; // the user canceled
-		if( preserveDate )
-			pmode = PM_PRESERVE_DATE;
+		if( preserveAttrs )
+			pmode = PM_PRESERVE_ATTR;
 		else
 			pmode = PM_NONE;
 	}
@@ -507,7 +507,7 @@ void ListPanelFunc::copyFiles() {
 	// confirm copy
 	krConfig->setGroup( "Advanced" );
 	if ( krConfig->readBoolEntry( "Confirm Copy", _ConfirmCopy ) ) {
-		bool preserveDate = krConfig->readBoolEntry( "PreserveDate", _PreserveDate );
+		bool preserveAttrs = krConfig->readBoolEntry( "PreserveAttributes", _PreserveAttributes );
 		QString s;
 
   if( fileNames.count() == 1 )
@@ -516,10 +516,10 @@ void ListPanelFunc::copyFiles() {
     s = i18n("Copy %n file to:", "Copy %n files to:", fileNames.count());
 
 		// ask the user for the copy dest
-		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveDate );
+		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs );
 		if ( dest.isEmpty() ) return ; // the user canceled
-		if( preserveDate )
-			pmode = PM_PRESERVE_DATE;
+		if( preserveAttrs )
+			pmode = PM_PRESERVE_ATTR;
 		else
 			pmode = PM_NONE;
 	}
