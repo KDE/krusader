@@ -43,6 +43,7 @@
 #include "panelmanager.h"
 #include <klibloader.h> //<>
 #include "GUI/profilemanager.h"
+#include "Dialogs/percentalsplitter.h"
 
 KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" ), activePanel(0), 
 								konsole_part( 0L ) {}
@@ -55,7 +56,7 @@ void KrusaderView::start( QStringList leftTabs, int leftActiveTab, QStringList r
   vert_splitter = new QSplitter( this ); // splits between panels and terminal/cmdline
   vert_splitter->setOrientation( QObject::Vertical );
   // horizontal splitter
-  horiz_splitter = new QSplitter( vert_splitter );
+  horiz_splitter = new PercentalSplitter( vert_splitter );
   ( terminal_dock = new QHBox( vert_splitter ) ) ->hide(); // create it hidden
   // create a command line thing
   cmdLine = new KCMDLine( this );
