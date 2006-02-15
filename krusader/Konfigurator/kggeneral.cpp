@@ -134,6 +134,18 @@ QFrame *line2 = createLine( generalGrp, "line2" );
                                generalGrp, "NoteLabel"  );
   generalGrid->addMultiCellWidget( label4, 14, 14, 0, 1 );
 
+  QFrame *lineUserActions = createLine( generalGrp, "lineUserActions" );
+  generalGrid->addMultiCellWidget( lineUserActions, 15, 15, 0, 1 );
+
+	// terminal for the UserActions
+  QLabel *labelTerminalUserActions = new QLabel( i18n( "Terminal for UserActions:" ), generalGrp, "TerminalUserActionLabel" );
+  generalGrid->addWidget( labelTerminalUserActions, 16, 0 );
+  KonfiguratorURLRequester *urlReqUserActions = createURLRequester( "General", "Terminal UserActions", _TerminalUserActions,
+                                      generalGrp, false );
+  generalGrid->addWidget( urlReqUserActions, 16, 1 );
+
+
+
   kgGeneralLayout->addWidget( generalGrp, 0 ,0 );
 }
 

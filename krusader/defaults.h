@@ -121,6 +121,8 @@
 #define _Terminal      "konsole"
 // Send CDs ///////////
 #define _SendCDs		true
+// Terminal UserActions ///////////
+#define _TerminalUserActions      "konsole --noclose -e"
 // Editor /////////////
 #define _Editor        "internal editor" 
 // Temp Directory /////

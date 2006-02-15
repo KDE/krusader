@@ -24,6 +24,7 @@
 #include "expander.h"
 #include "useractionproperties.h"
 #include "../krusader.h"
+#include "../defaults.h"
 
 //for the availabilitycheck:
 #include <kmimetype.h>
@@ -118,12 +119,15 @@ void KrActionProc::start( QStringList cmdLineList ) {
       }
       // run in terminal
       if ( _properties->execType() == UserActionProperties::Terminal ) {
+        krConfig->setGroup( "General" );
+        QString term = krConfig->readEntry( "Terminal UserActions", _TerminalUserActions );
+
          // TODO read terminal-setting from config
          if ( _properties->user()->isEmpty() )
-            ( *_proc ) << "konsole" << "--noclose" << "-e" << cmd;
+            ( *_proc ) << term << cmd;
          else
 //             ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote("konsole --noclose -e " + KProcess::quote(cmd) );
-            ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote("konsole --noclose -e " + cmd );
+            ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote( term + " " + cmd );
       } else { // no terminal, no output collection
          if ( _properties->user()->isEmpty() )
             ( *_proc ) << cmd;
