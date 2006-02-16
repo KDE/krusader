@@ -836,28 +836,18 @@ bool Krusader::queryClose() {
       QWidgetList * list = QApplication::topLevelWidgets();
       for( w = list->first(); w; ) {
         if( w != this && !w->isHidden() ) {
+          if( w->inherits( "KDialogBase" ) ) { // KDE is funny and rejects the close event for
+            w->hide();                         // playing a fancy animation with the CANCEL button.
+          }                                    // if we hide the widget, KDialogBase accepts the close event
           if( w->close() ) {
             delete list;
             list = QApplication::topLevelWidgets();
             w = list->first();
-           } else {
-            QGuardedPtr<QWidget> gp( w );
-            if( w->inherits( "KDialogBase" ) ) { // KDE is funny and rejects the close event for
-               QTime time;                       // playing a fancy animation with the CANCEL button.
-               time.start();
-               while( time.elapsed() < 500 ) {   // we hope that 500ms is enough for waiting
-                 qApp->processEvents();          // the end of the animation and closing the widget
-                 if( w == 0 || w->isHidden() )   // if it requires less time, step out
-                   break;
-               }
-            }
-            if( w && !w->isHidden() ) {          // didn't manage to close?
-              fprintf( stderr, "Failed to close: %s\n", w->className() );
-              return false;
-            }
-            delete list;                         // managed to close after the animation
-            list = QApplication::topLevelWidgets();
-            w = list->first();
+          } else {
+            if( w->isHidden() )
+              w->show();
+            fprintf( stderr, "Failed to close: %s\n", w->className() );
+            return false;
           }
         }
         w = list->next();
