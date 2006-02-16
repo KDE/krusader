@@ -776,7 +776,7 @@ void KRslots::manageUseractions() {
 }
 
 void KRslots::slotSynchronizeDirs( QStringList selected ) {
-  SynchronizerGUI *sync = new SynchronizerGUI( krApp,
+  SynchronizerGUI *sync = new SynchronizerGUI( 0,
                 MAIN_VIEW->left->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol),
                 MAIN_VIEW->right->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol), selected );
 
@@ -836,15 +836,19 @@ void KRslots::slotDiskUsage()
 
 // when window becomes focused, enable the refresh in the visible panels
 void KRslots::windowActive() {
-	MAIN_VIEW->left->panelActive();
-	MAIN_VIEW->right->panelActive();
+	if( MAIN_VIEW != 0 ) { /* CRASH FIX: it's possible that the method is called after destroying the main view */
+		MAIN_VIEW->left->panelActive();
+		MAIN_VIEW->right->panelActive();
+	}
 }
 
 // when another application becomes focused, do a windows-commander style refresh: don't
 // refresh at all until krusader becomes focused again
 void KRslots::windowInactive() {
-	MAIN_VIEW->left->panelInactive();
-	MAIN_VIEW->right->panelInactive();
+	if( MAIN_VIEW != 0 ) { /* CRASH FIX: it's possible that the method is called after destroying the main view */
+		MAIN_VIEW->left->panelInactive();
+		MAIN_VIEW->right->panelInactive();
+	}
 }
 
 void KRslots::slotLocationBar() {

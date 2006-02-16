@@ -486,7 +486,7 @@ QString exp_Sync::expFunc( const ListPanel*, const QStringList& parameter, const
       return UA_CANCEL;
    }
 
-   new SynchronizerGUI( MAIN_VIEW, parameter[0] );
+   new SynchronizerGUI( 0, parameter[0] );
 
    return QString::null;  // this doesn't return everything, that's normal!
 }

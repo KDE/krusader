@@ -61,6 +61,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qprogressdialog.h>
 #include <qvaluelist.h>
 #include <qwhatsthis.h> 
+#include <qwidgetlist.h>
+#include <qdatetime.h>
 // Krusader includes
 #include "krusader.h"
 #include "kicons.h"
@@ -461,7 +463,7 @@ void Krusader::setupActions() {
 	new KToggleAction(i18n("Show Actions Toolbar"), 0, SLOTS, SLOT( toggleActionsToolbar() ),
 		actionCollection(), "toggle actions toolbar");
    actShowStatusBar = KStdAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
-   KStdAction::quit( this, SLOT( quitKrusader() ), actionCollection(), "std_quit" );
+   KStdAction::quit( this, SLOT( close() ), actionCollection(), "std_quit" );
    KStdAction::configureToolbars( SLOTS, SLOT( configToolbar() ), actionCollection(), "std_config_toolbar" );
    KStdAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
    
@@ -647,7 +649,7 @@ void Krusader::setupActions() {
 	actF9 = new KAction( i18n( "F9 - Rename" ), Key_F9,
                 SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
 	actF10 = new KAction( i18n( "F10 - Quit" ), Key_F10,
-                this, SLOT( quitKrusader() ) , actionCollection(), "F10_Quit" );
+                this, SLOT( close() ) , actionCollection(), "F10_Quit" );
 	actPopularUrls = new KAction( i18n("Popular URLs"), CTRL+Key_Z,
 					popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
 	actLocationBar = new KAction( i18n("Go to location bar"), CTRL+Key_L,
@@ -819,19 +821,54 @@ bool Krusader::queryClose() {
       }
    }
    if ( quit ) {
-      // close all open VFS
-      //delete krApp->mainView->left->func;
-      //delete krApp->mainView->right->func;
+      /* First try to close the child windows, because it's the safer
+         way to avoid crashes, then close the main window.
+         If closing a child is not successful, then we cannot let the
+         main window close. */
+
+      QWidget *w;
+      while( w = QApplication::activeModalWidget() ) {
+        if( w->isHidden() )
+          break;
+        if( !w->close() )
+          break;
+      }
+      QWidgetList * list = QApplication::topLevelWidgets();
+      for( w = list->first(); w; ) {
+        if( w != this && !w->isHidden() ) {
+          if( w->close() ) {
+            delete list;
+            list = QApplication::topLevelWidgets();
+            w = list->first();
+           } else {
+            QGuardedPtr<QWidget> gp( w );
+            if( w->inherits( "KDialogBase" ) ) { // KDE is funny and rejects the close event for
+               QTime time;                       // playing a fancy animation with the CANCEL button.
+               time.start();
+               while( time.elapsed() < 500 ) {   // we hope that 500ms is enough for waiting
+                 qApp->processEvents();          // the end of the animation and closing the widget
+                 if( w == 0 || w->isHidden() )   // if it requires less time, step out
+                   break;
+               }
+            }
+            if( w && !w->isHidden() ) {          // didn't manage to close?
+              fprintf( stderr, "Failed to close: %s\n", w->className() );
+              return false;
+            }
+            delete list;                         // managed to close after the animation
+            list = QApplication::topLevelWidgets();
+            w = list->first();
+          }
+        }
+        w = list->next();
+      }
+      delete list;
+
       saveSettings();
       delete MAIN_VIEW;
+      MAIN_VIEW = 0;
       return true;
    } else return false;
-
-}
-
-void Krusader::quitKrusader() {
-   connect( kapp, SIGNAL( lastWindowClosed() ), kapp, SLOT( quit() ) );
-   kapp->closeAllWindows();
 }
 
 // the please wait dialog functions

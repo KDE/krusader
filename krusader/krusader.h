@@ -91,7 +91,6 @@ class Krusader : public KParts::MainWindow {
     // in use by Krusader only
     void saveSettings();
     void savePosition();
-    void quitKrusader();
     void updateGUI( bool enforce = false );
 
   protected:
