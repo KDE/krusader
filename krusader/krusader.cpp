@@ -871,6 +871,10 @@ bool Krusader::queryClose() {
       isExiting = true;
       hide();        // hide 
       kapp->deref(); // FIX: krusader exits at closing the viewer when minimized to tray
+
+      if( kapp->sessionSaving() ) // KDE is logging out, accept the close 
+        return true;              // this will also kill the pending jobs
+
       kapp->deref(); // and close the application
       return false;  // don't let the main widget close. It stops the pending copies!
    } else return false;
