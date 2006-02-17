@@ -75,6 +75,7 @@ A
 #include "../resources.h"
 #include "../krservices.h"
 #include "../GUI/syncbrowsebutton.h"
+#include "../Queue/queue_mgr.h"
 #include "krdrag.h"
 #include <kurldrag.h>
 

@@ -77,6 +77,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "Konfigurator/kgprotocols.h"
 #include "MountMan/kmountman.h"
 #include "Panel/panelpopup.h"
+#include "Queue/queue_mgr.h"
 #include "defaults.h"
 #include "resources.h"
 #include "GUI/kfnkeys.h"
@@ -236,6 +237,8 @@ status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
 
 	popularUrls = new PopularUrls(this);
 	
+	queueManager = new QueueManager();
+	
    // create the main view
    mainView = new KrusaderView( this );
    
@@ -357,6 +360,7 @@ status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
 
 Krusader::~Krusader() {
    delete mainView;
+   delete queueManager;
    mainView = 0;
 }
 

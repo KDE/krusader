@@ -23,6 +23,7 @@ SUBDIRS = \
 	KViewer \
 	Locate \
 	MountMan \
+	Queue \
 	Panel \
 	RemoteMan \
 	Search \
@@ -76,6 +77,7 @@ krusader_LDADD   = \
 	KViewer/libKViewer.a \
 	MountMan/libMountMan.a \
 	Panel/libPanel.a \
+	Queue/libQueue.a \
 	RemoteMan/libRemoteMan.a \
 	VFS/libVFS.a \
 	Search/libSearch.a \
