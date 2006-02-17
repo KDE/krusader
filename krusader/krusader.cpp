@@ -187,9 +187,11 @@ KAction *Krusader::actShowJSConsole = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Qt::WStyle_ContextHelp),
-status(NULL), sysTray( 0 ), isStarting( true ) {
+status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
 	// parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
+
+   kapp->ref(); // FIX: krusader exits at closing the viewer when minimized to tray
 
    // create the "krusader"
    App = this;
@@ -353,7 +355,10 @@ status(NULL), sysTray( 0 ), isStarting( true ) {
    isStarting = false;
 }
 
-Krusader::~Krusader() {}
+Krusader::~Krusader() {
+   delete mainView;
+   mainView = 0;
+}
 
 bool Krusader::versionControl() {
 #define FIRST_RUN	"First Time"
@@ -397,12 +402,19 @@ void Krusader::statusBarUpdate( QString& mess ) {
 }
 
 void Krusader::showEvent ( QShowEvent * ) {
+   if( isExiting )
+     return;
    sysTray->hide();
    show(); // needed to make sure krusader is removed from
    // the taskbar when minimizing (system tray issue)
 }
 
 void Krusader::hideEvent ( QHideEvent *e ) {
+   if( isExiting ) {
+     KParts::MainWindow::hideEvent( e );
+     sysTray->hide();
+     return;
+   }
    QString lastGroup = config->group();
    config->setGroup( "Look&Feel" );
    bool showTrayIcon = krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray );
@@ -853,11 +865,14 @@ bool Krusader::queryClose() {
         w = list->next();
       }
       delete list;
-
+   
       saveSettings();
-      delete MAIN_VIEW;
-      MAIN_VIEW = 0;
-      return true;
+
+      isExiting = true;
+      hide();        // hide 
+      kapp->deref(); // FIX: krusader exits at closing the viewer when minimized to tray
+      kapp->deref(); // and close the application
+      return false;  // don't let the main widget close. It stops the pending copies!
    } else return false;
 }
 

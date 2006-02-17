@@ -323,7 +323,6 @@ bool KrViewer::queryClose() {
 }
 
 bool KrViewer::queryExit() {
-	kapp->ref(); // FIX: krusader exits at closing the viewer when minimized to tray
 	return true; // don't let the reference counter reach zero
 }
 

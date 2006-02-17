@@ -180,7 +180,6 @@ aboutData.addAuthor("Matej Urbancic", " Marketing & Product Research", "matej.ur
 
   Krusader *krusader = new Krusader();
   // make sure we receive X's focus in/out events
-  QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT( quit() ) );
   QObject::connect(&app, SIGNAL(windowActive()), krusader->slot, SLOT(windowActive()));
   QObject::connect(&app, SIGNAL(windowInactive()), krusader->slot, SLOT(windowInactive()));
 	

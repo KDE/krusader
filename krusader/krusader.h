@@ -167,6 +167,7 @@ class Krusader : public KParts::MainWindow {
     QPoint       oldPos;
     QSize        oldSize;
     bool         isStarting;
+    bool         isExiting;
 };
 
 // main modules
