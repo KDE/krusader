@@ -182,9 +182,23 @@ bool KRQuery::match( vfile *vf ) const
 // takes the string and adds BOLD to it, so that when it is displayed,
 // the grepped text will be bold
 void fixFoundTextForDisplay(QString& haystack, int start, int length) {
-  haystack.insert(start+length, "</b>");
-  haystack.insert(start, "<b>");
-  haystack = ("<qt>"+haystack);
+  QString before = haystack.left( start );
+  QString text = haystack.mid( start, length );
+  QString after = haystack.mid( start + length );
+
+  before.replace( '&', "&amp;" );
+  before.replace( '<', "&lt;" );
+  before.replace( '>', "&gt;" );
+
+  text.replace( '&', "&amp;" );
+  text.replace( '<', "&lt;" );
+  text.replace( '>', "&gt;" );
+
+  after.replace( '&', "&amp;" );
+  after.replace( '<', "&lt;" );
+  after.replace( '>', "&gt;" );
+
+  haystack = ("<qt>"+before+"<b>"+text+"</b>"+after+"</qt>" );
 }
 
 bool KRQuery::containsContent( QString file ) const

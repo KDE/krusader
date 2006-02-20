@@ -4,6 +4,7 @@
     ADDED: new krarc (password handling, type autodetection, writing
            out archiver error messages, step into hidden archives,...)
 
+    FIXED: HTML tags cause problem to the searcher
     FIXED: [ 1415250 ] searching large directories, doesn't process UI events
     FIXED: search by content goes into infinite loop if the file cannot be opened
     FIXED: after exiting the pending jobs stall
