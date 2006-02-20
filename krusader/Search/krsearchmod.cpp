@@ -50,6 +50,8 @@
 
 #include <kmimetype.h>
 
+#define  EVENT_PROCESS_DELAY     250
+
 KRSearchMod::KRSearchMod( const KRQuery* q )
 {
   stopSearch = false; /// ===> added
@@ -72,7 +74,8 @@ void KRSearchMod::start()
 {
   unScannedUrls.clear();
   scannedUrls.clear();
-
+  timer.start();
+  
   KURL::List whereToSearch = query->searchInDirs();
 
   // search every dir that needs to be searched
@@ -111,15 +114,12 @@ void KRSearchMod::scanURL( KURL url )
       scanLocalDir( urlToCheck );
     else
       scanRemoteDir( urlToCheck );
-
-    qApp->processEvents(); // do a last one, in case passes%50 != 0
   }
 }
 
 void KRSearchMod::scanLocalDir( KURL urlToScan )
 {
   int passes = 0;
-  const int NO_OF_PASSES = 50;
 
   QString dir = urlToScan.path( 1 );
 
@@ -184,9 +184,14 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
       // if we got here - we got a winner
       results.append( dir + name );
       emit found( name, dir, ( KIO::filesize_t ) stat_p.st_size, stat_p.st_mtime, KRpermHandler::mode2QString( stat_p.st_mode ), query->foundText() );
-      if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
     }
     delete vf;
+
+    if( timer.elapsed() >= EVENT_PROCESS_DELAY ) {
+      qApp->processEvents();
+      timer.start();
+      if( stopSearch ) return;    
+    }
   }
   // clean up
   closedir( d );
@@ -195,7 +200,6 @@ void KRSearchMod::scanLocalDir( KURL urlToScan )
 void KRSearchMod::scanRemoteDir( KURL url )
 {
   int passes = 0;
-  const int NO_OF_PASSES = 50;
   
   vfs * vfs_;
   
@@ -229,7 +233,12 @@ void KRSearchMod::scanRemoteDir( KURL url )
       results.append( fileURL.prettyURL( -1, KURL::StripFileProtocol ) );
       
       emit found( fileURL.fileName(), fileURL.upURL().prettyURL( -1, KURL::StripFileProtocol ), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm(), query->foundText() );
-      if ( passes++ % NO_OF_PASSES == 0 ) qApp->processEvents();
+    }
+
+    if( timer.elapsed() >= EVENT_PROCESS_DELAY ) {
+      qApp->processEvents();
+      timer.start();
+      if( stopSearch ) return;    
     }
   }
 }

@@ -36,6 +36,7 @@
 #include <qobject.h>
 #include <qvaluestack.h>
 #include <qstringlist.h>
+#include <qdatetime.h>
 #include <time.h>
 #include <kio/global.h>
 #include <kurl.h>
@@ -74,6 +75,8 @@ private:
   
   ftp_vfs *remote_vfs;
   virt_vfs *virtual_vfs;
+  
+  QTime timer;
 };
 
 #endif

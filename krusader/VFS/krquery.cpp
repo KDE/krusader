@@ -190,8 +190,8 @@ void fixFoundTextForDisplay(QString& haystack, int start, int length) {
 bool KRQuery::containsContent( QString file ) const
 {
   QFile qf( file );
-
-  qf.open( IO_ReadOnly );
+  if( !qf.open( IO_ReadOnly ) )
+    return false;
   QTextStream text( &qf );
   text.setEncoding( QTextStream::Locale );
   QString line;

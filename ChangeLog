@@ -4,6 +4,8 @@
     ADDED: new krarc (password handling, type autodetection, writing
            out archiver error messages, step into hidden archives,...)
 
+    FIXED: [ 1415250 ] searching large directories, doesn't process UI events
+    FIXED: search by content goes into infinite loop if the file cannot be opened
     FIXED: after exiting the pending jobs stall
     FIXED: [ 1193239 ] crash at 'Closing Current Session'
     FIXED: synchronizer is always on the top of the panels
