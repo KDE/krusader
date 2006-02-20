@@ -33,14 +33,21 @@
 #include <qstringlist.h>
 #include <time.h>
 #include <kurl.h>
+#include <kio/jobclasses.h>
 #include "vfile.h"
 
-class KRQuery {
+class KRQuery : public QObject {
+  Q_OBJECT
+
 public:
   // null query
   KRQuery();
   // query only with name filter
   KRQuery( QString name, bool matchCase = true );
+  // copy constructor
+  KRQuery( const KRQuery & );
+  // let operator
+  KRQuery& operator=(const KRQuery &);
 
   // matching a file with the query
   bool match( vfile *file ) const;// checks if the given vfile object matches the conditions
@@ -58,7 +65,7 @@ public:
   bool isNull() {return bNull;};
 
   // sets the content part of the query
-  void setContent( QString content, bool cs=true, bool wholeWord=false );
+  void setContent( QString content, bool cs=true, bool wholeWord=false, bool remoteSearch=false );
 
   // sets the minimum file size limit
   void setMinimumFileSize( KIO::filesize_t );
@@ -111,7 +118,9 @@ public:
   KURL::List dontSearchInDirs() { return whereNotToSearch; }
   // checks if a URL is excluded
   bool isExcluded( KURL url );
-
+  // gives whether we search for content
+  bool isContentSearched() const { return !contain.isEmpty(); }
+  
   const QString& foundText() const { return lastSuccessfulGrep; }
 
 protected:
@@ -124,6 +133,7 @@ protected:
   QString contain;               // file must contain this string
   bool containCaseSensetive;
   bool containWholeWord;
+  bool containOnRemote;
 
   KIO::filesize_t minSize;
   KIO::filesize_t maxSize;
@@ -149,8 +159,18 @@ private:
   bool checkPerm(QString perm) const;
   bool checkType(QString mime) const;
   bool containsContent( QString file ) const;
+  bool containsContent( KURL url ) const;
+  bool checkLine( QString line ) const;
 
+private slots:
+  void containsContentData(KIO::Job *, const QByteArray &);
+  void containsContentFinished(KIO::Job*);
+
+private:
   QString origFilter;
+  mutable bool busy;
+  mutable bool containsContentResult;
+  mutable QString receivedString;
   mutable QString lastSuccessfulGrep;
 };
 
