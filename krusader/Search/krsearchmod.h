@@ -66,6 +66,9 @@ signals:
   void searching(const QString&);
   void found(QString what, QString where, KIO::filesize_t size, time_t mtime, QString perm, QString textFound);
 
+private slots:
+  void slotProcessEvents( bool & stopped );
+
 private:
   bool stopSearch;
   QValueStack<KURL> scannedUrls;

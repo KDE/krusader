@@ -31,6 +31,7 @@
 #define KRQUERY_H
 
 #include <qstringlist.h>
+#include <qdatetime.h>
 #include <time.h>
 #include <kurl.h>
 #include <kio/jobclasses.h>
@@ -48,6 +49,8 @@ public:
   KRQuery( const KRQuery & );
   // let operator
   KRQuery& operator=(const KRQuery &);
+  // destructor
+  virtual ~KRQuery();
 
   // matching a file with the query
   bool match( vfile *file ) const;// checks if the given vfile object matches the conditions
@@ -124,6 +127,12 @@ public:
   const QString& foundText() const { return lastSuccessfulGrep; }
 
 protected:
+  // important to know whether the event processor is connected
+  virtual void connectNotify ( const char * signal );
+  // important to know whether the event processor is connected
+  virtual void disconnectNotify ( const char * signal );
+
+protected:
   QStringList matches;           // what to search
   QStringList excludes;          // what to exclude
   bool matchesCaseSensitive;
@@ -155,23 +164,35 @@ protected:
   KURL::List whereToSearch;     // directorys to search
   KURL::List whereNotToSearch;  // directorys NOT to search
 
+signals:
+  void status( const QString &name );
+  void processEvents( bool & stopped );
+
 private:
   bool checkPerm(QString perm) const;
   bool checkType(QString mime) const;
   bool containsContent( QString file ) const;
   bool containsContent( KURL url ) const;
-  bool checkLine( QString line ) const;
+  bool checkBuffer( const char *buffer, int len ) const;
+  bool checkLines( QString line ) const;
+  bool checkTimer() const;
 
 private slots:
   void containsContentData(KIO::Job *, const QByteArray &);
   void containsContentFinished(KIO::Job*);
 
 private:
-  QString origFilter;
-  mutable bool busy;
-  mutable bool containsContentResult;
-  mutable QString receivedString;
-  mutable QString lastSuccessfulGrep;
+  QString                  origFilter;
+  mutable bool             busy;
+  mutable bool             containsContentResult;
+  mutable char *           receivedBuffer;
+  mutable int              receivedBufferLen;
+  mutable QString          lastSuccessfulGrep;
+  mutable QString          fileName;
+  mutable KIO::filesize_t  receivedBytes;
+  mutable KIO::filesize_t  totalBytes;
+  mutable int              processEventsConnected;
+  mutable QTime            timer;
 };
 
 #endif

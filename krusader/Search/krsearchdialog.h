@@ -111,6 +111,7 @@ private:
   static QString lastSearchText;
   static int     lastSearchType;
   static bool    lastSearchForCase;
+  static bool    lastRemoteContentSearch;
   static bool    lastContainsWholeWord;
   static bool    lastContainsWithCase;
   static bool    lastSearchInSubDirs;

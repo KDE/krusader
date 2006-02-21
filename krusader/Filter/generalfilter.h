@@ -70,6 +70,7 @@ public slots:
   
 public:
   QCheckBox* searchForCase;
+  QCheckBox* remoteContentSearch;
   QCheckBox* containsTextCase;
   QCheckBox* containsWholeWord;
   QCheckBox* searchInDirs;

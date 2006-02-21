@@ -221,6 +221,14 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   QSpacerItem* cbSpacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
   containsCbsLayout->addItem( cbSpacer );
 
+  remoteContentSearch = new QCheckBox( containsGroup, "remoteContentSearch" );
+  remoteContentSearch->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, remoteContentSearch->sizePolicy().hasHeightForWidth() ) );
+  remoteContentSearch->setText( i18n( "&Remote content search" ) );
+  remoteContentSearch->setChecked( false );
+  containsCbsLayout->addWidget( remoteContentSearch );
+  if( !( properties & FilterTabs::HasRemoteContentSearch ) )
+    remoteContentSearch->hide();
+
   containsWholeWord = new QCheckBox( containsGroup, "containsWholeWord" );
   containsWholeWord->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)5, (QSizePolicy::SizeType)0, containsWholeWord->sizePolicy().hasHeightForWidth() ) );
   containsWholeWord->setText( i18n( "&Match whole word only" ) );
@@ -276,12 +284,6 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
     connect( profileManager,      SIGNAL(saveToProfile(QString )), fltTabs, SLOT( saveToProfile(QString ) ) );
   }
 
-  if( properties & FilterTabs::HasRecurseOptions )
-  {
-    connect( searchInArchives, SIGNAL(toggled(bool)), containsText, SLOT(setDisabled(bool)));
-    connect( searchInArchives, SIGNAL(toggled(bool)), containsTextCase, SLOT(setDisabled(bool)));
-    connect( searchInArchives, SIGNAL(toggled(bool)), containsWholeWord, SLOT(setDisabled(bool)));
-  }
   connect( searchFor, SIGNAL(activated(const QString&)), searchFor, SLOT(addToHistory(const QString&)));
   connect( containsText, SIGNAL(activated(const QString&)), containsText, SLOT(addToHistory(const QString&)));
 
@@ -332,10 +334,13 @@ bool GeneralFilter::fillQuery( KRQuery *query )
 
   query->setNameFilter( searchFor->currentText().stripWhiteSpace(), searchForCase->isChecked() );
 
-  if (containsText->isEnabled())
-    query->setContent( containsText->currentText(),
-                       containsTextCase->isChecked(),
-                       containsWholeWord->isChecked() );
+  bool remoteContent = (properties & FilterTabs::HasRemoteContentSearch ) ? 
+                       remoteContentSearch->isChecked() : false;
+
+  query->setContent( containsText->currentText(),
+                     containsTextCase->isChecked(),
+                     containsWholeWord->isChecked(),
+                     remoteContent );
 
   if (ofType->currentText()!=i18n("All Files"))
     query->setMimeType( ofType->currentText() );
@@ -380,9 +385,10 @@ void GeneralFilter::loadFromProfile( QString name )
 
   searchForCase->setChecked( krConfig->readBoolEntry( "Case Sensitive Search", false ) );
   containsTextCase->setChecked( krConfig->readBoolEntry( "Case Sensitive Content", false ) );
+  remoteContentSearch->setChecked( krConfig->readBoolEntry( "Remote Content Search", false ) );
   containsWholeWord->setChecked( krConfig->readBoolEntry( "Match Whole Word Only", false ) );
-  searchFor->setEditText( krConfig->readEntry( "Search For", "" ) );
   containsText->setEditText( krConfig->readEntry( "Contains Text", "" ) );
+  searchFor->setEditText( krConfig->readEntry( "Search For", "" ) );
 
   QString mime = krConfig->readEntry( "Mime Type", "" );
   for( int i = ofType->count(); i >= 0; i-- )
@@ -426,9 +432,10 @@ void GeneralFilter::saveToProfile( QString name )
 
   krConfig->writeEntry( "Case Sensitive Search", searchForCase->isChecked() );
   krConfig->writeEntry( "Case Sensitive Content", containsTextCase->isChecked() );
+  krConfig->writeEntry( "Remote Content Search", remoteContentSearch->isChecked() );
   krConfig->writeEntry( "Match Whole Word Only", containsWholeWord->isChecked() );
-  krConfig->writeEntry( "Search For", searchFor->currentText() );
   krConfig->writeEntry( "Contains Text", containsText->currentText() );
+  krConfig->writeEntry( "Search For", searchFor->currentText() );
 
   krConfig->writeEntry( "Mime Type", ofType->currentText() );
 

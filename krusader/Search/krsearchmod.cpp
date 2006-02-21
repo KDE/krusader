@@ -56,6 +56,10 @@ KRSearchMod::KRSearchMod( const KRQuery* q )
 {
   stopSearch = false; /// ===> added
   query = new KRQuery( *q );
+  connect( query, SIGNAL( status( const QString & ) ), 
+           this,  SIGNAL( searching(const QString&) ) );
+  connect( query, SIGNAL( processEvents( bool & ) ), 
+           this,  SLOT  ( slotProcessEvents( bool & ) ) );
 
   remote_vfs = 0;
   virtual_vfs = 0;
@@ -241,6 +245,11 @@ void KRSearchMod::scanRemoteDir( KURL url )
       if( stopSearch ) return;    
     }
   }
+}
+
+void KRSearchMod::slotProcessEvents( bool & stopped ) {
+  qApp->processEvents();
+  stopped = stopSearch;
 }
 
 #include "krsearchmod.moc"

@@ -37,6 +37,7 @@
 #include "krarchandler.h"
 
 #include <qtextstream.h>
+#include <qtextcodec.h>
 #include <qregexp.h>
 #include <klargefile.h>
 #include <klocale.h>
@@ -44,26 +45,38 @@
 #include <qfile.h>
 #include <kurlcompletion.h>
 #include <kio/job.h>
-#include <qeventloop.h>
+
+#define  STATUS_SEND_DELAY     250
+#define  MAX_LINE_LEN          500
 
 // set the defaults
 KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull( true ),
                     contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false),containOnRemote(false),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
-                    owner(QString::null),group(QString::null),
-                    perm(QString::null),type(QString::null),
-                    inArchive(false),recurse(true),followLinksP(true)  {}
+                    owner(QString::null),group(QString::null),perm(QString::null),
+                    type(QString::null),inArchive(false),recurse(true),
+                    followLinksP(true), receivedBuffer( 0 ), processEventsConnected(0)  {}
 
 // set the defaults
 KRQuery::KRQuery( QString name, bool matchCase ) : QObject(),
                     bNull( true ),contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false), containOnRemote(false),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
-                    owner(QString::null),group(QString::null),
-                    perm(QString::null),type(QString::null),
-                    inArchive(false),recurse(true),followLinksP(true) {
+                    owner(QString::null),group(QString::null),perm(QString::null),
+                    type(QString::null),inArchive(false),recurse(true),
+                    followLinksP(true), receivedBuffer( 0 ), processEventsConnected(0) {
   setNameFilter( name, matchCase );
+}
+
+KRQuery::KRQuery( const KRQuery & that ) : QObject(), receivedBuffer( 0 ), processEventsConnected(0) {
+  *this = that;
+}
+
+KRQuery::~KRQuery() {
+  if( receivedBuffer )
+    delete []receivedBuffer;
+  receivedBuffer = 0;
 }
 
 KRQuery& KRQuery::operator=(const KRQuery &old) {
@@ -94,8 +107,18 @@ KRQuery& KRQuery::operator=(const KRQuery &old) {
   return *this;
 }
 
-KRQuery::KRQuery( const KRQuery & that ) : QObject() {
-  *this = that;
+void KRQuery::connectNotify ( const char * signal ) {
+  QString signalString  = QString( signal ).replace( " ", "" );
+  QString processString = QString( SIGNAL( processEvents( bool & ) ) ).replace( " ", "" );
+  if( signalString == processString )
+    processEventsConnected++;
+}
+
+void KRQuery::disconnectNotify ( const char * signal ) {
+  QString signalString  = QString( signal ).replace( " ", "" );
+  QString processString = QString( SIGNAL( processEvents( bool & ) ) ).replace( " ", "" );
+  if( signalString == processString )
+    processEventsConnected--;
 }
 
 bool KRQuery::checkPerm( QString filePerm ) const
@@ -165,14 +188,26 @@ bool KRQuery::match( vfile *vf ) const
 
   if ( !contain.isEmpty() )
   {
+    if( (totalBytes = vf->vfile_getSize()) == 0 )
+      totalBytes++; // sanity
+    receivedBytes = 0;
+    if( receivedBuffer ) {
+      delete []receivedBuffer;
+      receivedBuffer = 0;
+    }
+    fileName = vf->vfile_getName();
+    timer.start();
+
     if( vf->vfile_getUrl().isLocalFile() )
     {
       if( !containsContent( vf->vfile_getUrl().path() ) ) return false;
     }
     else
     {
-      if( containOnRemote )
+      if( containOnRemote ) {
+        if( processEventsConnected == 0 ) return false;
         if( !containsContent( vf->vfile_getUrl() ) ) return false;
+      }
     }
   }
 
@@ -201,52 +236,122 @@ void fixFoundTextForDisplay(QString& haystack, int start, int length) {
   haystack = ("<qt>"+before+"<b>"+text+"</b>"+after+"</qt>" );
 }
 
+bool KRQuery::checkBuffer( const char *buf, int len ) const {
+  if( len == 0 )  { // last block?
+    if( receivedBuffer ) {
+      bool result = checkLines( QTextCodec::codecForLocale()->toUnicode( receivedBuffer, 
+                                receivedBufferLen ) );
+      delete []receivedBuffer;
+      receivedBuffer = 0;
+      return result;
+    }
+    return false;
+  }
+
+  int after = len;
+  while( buf[after-1] != '\n' && after > len - MAX_LINE_LEN )
+    after--;
+  if( buf[ after-1 ] != '\n' )
+    after = len; // if there's no <ENTER> don't break the stream
+
+  if( receivedBuffer ) {
+    int previous = 0;
+    while( buf[previous] != '\n' && previous < after && previous < MAX_LINE_LEN )
+      previous++;
+
+    char * str = new char[ receivedBufferLen + previous ];
+    memcpy( str, receivedBuffer, receivedBufferLen );
+    delete []receivedBuffer;
+    receivedBuffer = 0;
+    memcpy( str + receivedBufferLen, buf, previous );
+
+    if( checkLines( QTextCodec::codecForLocale()->toUnicode( str, receivedBufferLen+previous ) ) ) {
+      delete []str;
+      return true;
+    }
+    delete []str;
+
+    if( after > previous && checkLines( QTextCodec::codecForLocale()->
+      toUnicode( buf+previous, after-previous ) ) )
+      return true; 
+
+  } else if( checkLines( QTextCodec::codecForLocale()->toUnicode( buf, after ) ) )
+      return true;
+
+  if( after < len ) {
+    receivedBufferLen = len-after;
+    receivedBuffer = new char [ receivedBufferLen ];
+    memcpy( receivedBuffer, buf+after, receivedBufferLen );
+  }
+  return false;
+}
+
+bool KRQuery::checkLines( QString lines ) const
+{
+  QStringList list = QStringList::split( '\n', lines );
+
+  for( unsigned int i=0; i != list.count(); i++ ) {
+    QString line = list[ i ];
+
+    int ndx = 0;
+    if ( line.isNull() ) return false;
+    if ( containWholeWord )
+    {
+      while ( ( ndx = line.find( contain, ndx, containCaseSensetive ) ) != -1 )
+      {
+        QChar before = line.at( ndx - 1 );
+        QChar after = line.at( ndx + contain.length() );
+
+        if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
+          after != '_' && before != '_' ) {
+            lastSuccessfulGrep = line;
+            fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
+            return true;
+           }
+        ndx++;
+      }
+    }
+    else if ( (ndx = line.find( contain, 0, containCaseSensetive )) != -1 ) {
+      lastSuccessfulGrep = line;
+      fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
+      return true;
+    }
+  }
+  return false;
+}
+
 bool KRQuery::containsContent( QString file ) const
 {
   QFile qf( file );
   if( !qf.open( IO_ReadOnly ) )
     return false;
-  QTextStream text( &qf );
-  text.setEncoding( QTextStream::Locale );
-  QString line;
-  while ( !text.atEnd() )
+
+  char buffer[ 1440 ]; // 2k buffer
+
+  while ( !qf.atEnd() )
   {
-    line = text.readLine();
-    if( checkLine( line ) )
+    int bytes = qf.readBlock( buffer, sizeof( buffer ) );
+    if( bytes <= 0 )
+      break;
+
+    receivedBytes += bytes;
+
+    if( checkBuffer( buffer, bytes ) )
       return true;
+
+    if( checkTimer() ) {
+      bool stopped = false;
+      emit ((KRQuery *)this)->processEvents( stopped );
+      if( stopped )
+        return false;
+    }
   }
+  if( checkBuffer( buffer, 0 ) )
+    return true;
+
   lastSuccessfulGrep = QString::null; // nothing was found
   return false;
 }
-
-bool KRQuery::checkLine( QString line ) const
-{
-  int ndx = 0;
-  if ( line.isNull() ) return false;
-  if ( containWholeWord )
-  {
-    while ( ( ndx = line.find( contain, ndx, containCaseSensetive ) ) != -1 )
-    {
-      QChar before = line.at( ndx - 1 );
-      QChar after = line.at( ndx + contain.length() );
-
-      if ( !before.isLetterOrNumber() && !after.isLetterOrNumber() &&
-        after != '_' && before != '_' ) {
-          lastSuccessfulGrep = line;
-          fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
-          return true;
-         }
-      ndx++;
-    }
-  }
-  else if ( (ndx = line.find( contain, 0, containCaseSensetive )) != -1 ) {
-    lastSuccessfulGrep = line;
-    fixFoundTextForDisplay(lastSuccessfulGrep, ndx, contain.length());
-    return true;
-  }
-  return false;
-}
-
 
 bool KRQuery::containsContent( KURL url ) const
 {
@@ -255,40 +360,49 @@ bool KRQuery::containsContent( KURL url ) const
           this, SLOT(containsContentData(KIO::Job *, const QByteArray &)));
   connect(contentReader, SIGNAL( result( KIO::Job* ) ),
           this, SLOT(containsContentFinished( KIO::Job* ) ) );
-  
+
   busy = true;
   containsContentResult = false;
-  receivedString = "";
+  bool stopped = false;
 
-  qApp->eventLoop()->enterLoop();
+  while( busy && !stopped ) {
+    checkTimer();
+    emit ((KRQuery *)this)->processEvents( stopped );
+  }
+
+  if( busy ) {
+    contentReader->kill();
+    busy = false;
+  }
 
   return containsContentResult;
 }
 
 void KRQuery::containsContentData(KIO::Job *job, const QByteArray &array) {
-  receivedString += QString( array );
-
-  QStringList list = QStringList::split( '\n', receivedString );
-  if( array.size() != 0 && list.count() > 0 ) {
-    receivedString = list.last();
-    list.pop_back();
+  receivedBytes  += array.size();
+  if( checkBuffer( array.data(), array.size() ) ) {
+    containsContentResult = true;
+    containsContentFinished( job );
+    job->kill();
+    return;
   }
-
-  for( unsigned int i=0; i != list.count(); i++ ) {
-    if( checkLine( list[ i ] ) ) {
-      containsContentResult = true;
-      containsContentFinished( job );
-      job->kill();
-      return;
-    }
-  }
+  checkTimer();
 }
 
 void KRQuery::containsContentFinished( KIO::Job * ) {
-  if( busy )
-    qApp->eventLoop()->exitLoop();
-
   busy = false;
+}
+
+bool KRQuery::checkTimer() const {
+  if( timer.elapsed() >= STATUS_SEND_DELAY ) {
+    int pcnt = (int)(100.*(double)receivedBytes/(double)totalBytes + .5);
+    QString message = i18n( "Searching content of '%1' (%2%)" )
+                      .arg( fileName ).arg( pcnt );
+    timer.start();
+    emit ((KRQuery *)this)->status( message );
+    return true;
+  }
+  return false;
 }
 
 void KRQuery::setNameFilter( QString text, bool cs )

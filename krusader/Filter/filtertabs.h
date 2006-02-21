@@ -44,6 +44,7 @@ class FilterTabs : public QObject
 
     enum
     {
+      HasRemoteContentSearch  =   0x0800,
       HasProfileHandler       =   0x1000,
       HasRecurseOptions       =   0x2000,
       HasSearchIn             =   0x4000,
