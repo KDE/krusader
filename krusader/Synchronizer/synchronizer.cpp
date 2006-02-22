@@ -221,6 +221,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
         if( excludedPaths.contains( leftDir.isEmpty() ? left_file_name : leftDir+"/"+left_file_name ) )
           continue;
 
+        if( !query->matchDirName( left_file_name ) )
+          continue;
+
         if( (right_file = searchFile( right_directory, left_file_name )) == 0 )
           addSingleDirectory( parent, left_file_name, leftDir, left_file->vfile_getTime_t(), readLink( left_file ), 
                               left_file->vfile_getOwner(), left_file->vfile_getGroup(), true, !query->match( left_file ) );
@@ -251,6 +254,9 @@ void Synchronizer::compareDirectory( SynchronizerFileItem *parent, QString leftU
           continue;
           
         if( excludedPaths.contains( rightDir.isEmpty() ? file_name : rightDir+"/"+file_name ) )
+          continue;
+
+        if( !query->matchDirName( file_name ) )
           continue;
 
         if( searchFile( left_directory, file_name ) == 0 )
@@ -472,6 +478,9 @@ void Synchronizer::addSingleDirectory( SynchronizerFileItem *parent, QString nam
         file_name =  file->vfile_getName();
 
         if( excludedPaths.contains( dirName.isEmpty() ? file_name : dirName+"/"+file_name ) )
+          continue;
+
+        if( !query->matchDirName( file_name ) )
           continue;
 
         addSingleDirectory( parent, file_name, dirName, file->vfile_getTime_t(), readLink( file ), 

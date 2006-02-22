@@ -105,8 +105,10 @@ void KRSearchMod::scanURL( KURL url )
 
     if( stopSearch ) return;
 
-    if( query->isExcluded( urlToCheck ) )
-      continue;
+    if( query->isExcluded( urlToCheck ) ) {
+      if( !query->searchInDirs().contains( urlToCheck ) )
+        continue;
+    }
 
     if( scannedUrls.contains( urlToCheck ) )
       continue;

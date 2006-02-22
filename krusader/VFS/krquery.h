@@ -44,7 +44,7 @@ public:
   // null query
   KRQuery();
   // query only with name filter
-  KRQuery( QString name, bool matchCase = true );
+  KRQuery( const QString &name, bool matchCase = true );
   // copy constructor
   KRQuery( const KRQuery & );
   // let operator
@@ -55,10 +55,12 @@ public:
   // matching a file with the query
   bool match( vfile *file ) const;// checks if the given vfile object matches the conditions
   // matching a name with the query
-  bool match( QString name ) const;// matching the filename only
+  bool match( const QString &name ) const;// matching the filename only
+  // matching the name of the directory
+  bool matchDirName( const QString &name ) const;
 
   // sets the text for name filtering
-  void setNameFilter( QString text, bool cs=true );
+  void setNameFilter( const QString &text, bool cs=true );
   // returns the current filter mask
   const QString& nameFilter() const { return origFilter; }
   // returns whether the filter is case sensitive
@@ -68,7 +70,7 @@ public:
   bool isNull() {return bNull;};
 
   // sets the content part of the query
-  void setContent( QString content, bool cs=true, bool wholeWord=false, bool remoteSearch=false );
+  void setContent( const QString &content, bool cs=true, bool wholeWord=false, bool remoteSearch=false );
 
   // sets the minimum file size limit
   void setMinimumFileSize( KIO::filesize_t );
@@ -81,11 +83,11 @@ public:
   void setOlderThan( time_t time );
 
   // sets the owner
-  void setOwner( QString ownerIn );
+  void setOwner( const QString &ownerIn );
   // sets the group
-  void setGroup( QString groupIn );
+  void setGroup( const QString &groupIn );
   // sets the permissions
-  void setPermissions( QString permIn );
+  void setPermissions( const QString &permIn );
 
   // sets the mimetype for the query
   // type, must be one of the following:
@@ -94,7 +96,7 @@ public:
   //            i18n("Text Files"), i18n("Video Files"), i18n("Audio Files")
   // 3. i18n("Custom") in which case you must supply a list of valid mime-types
   //    in the member QStringList customType
-  void setMimeType( QString typeIn, QStringList customList = QStringList() );
+  void setMimeType( const QString &typeIn, QStringList customList = QStringList() );
   // true if setMimeType was called
   bool hasMimeType()  { return type.isEmpty(); }
 
@@ -112,15 +114,15 @@ public:
   bool followLinks() { return followLinksP; }
 
   // sets the folders where the searcher will search
-  void setSearchInDirs( KURL::List urls );
+  void setSearchInDirs( const KURL::List &urls );
   // gets the folders where the searcher searches
-  KURL::List searchInDirs() { return whereToSearch; }
+  const KURL::List & searchInDirs() { return whereToSearch; }
   // sets the folders where search is not permitted
-  void setDontSearchInDirs( KURL::List urls );
+  void setDontSearchInDirs( const KURL::List &urls );
   // gets the folders where search is not permitted
-  KURL::List dontSearchInDirs() { return whereNotToSearch; }
+  const KURL::List & dontSearchInDirs() { return whereNotToSearch; }
   // checks if a URL is excluded
-  bool isExcluded( KURL url );
+  bool isExcluded( const KURL &url );
   // gives whether we search for content
   bool isContentSearched() const { return !contain.isEmpty(); }
   
@@ -135,6 +137,8 @@ protected:
 protected:
   QStringList matches;           // what to search
   QStringList excludes;          // what to exclude
+  QStringList includedDirs;      // what dirs to include
+  QStringList excludedDirs;      // what dirs to exclude
   bool matchesCaseSensitive;
 
   bool bNull;                    // flag if the query is null
@@ -169,6 +173,7 @@ signals:
   void processEvents( bool & stopped );
 
 private:
+  bool matchCommon( const QString &, const QStringList &, const QStringList & ) const;
   bool checkPerm(QString perm) const;
   bool checkType(QString mime) const;
   bool containsContent( QString file ) const;

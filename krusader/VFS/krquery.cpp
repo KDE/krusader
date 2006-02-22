@@ -59,7 +59,7 @@ KRQuery::KRQuery(): QObject(), matchesCaseSensitive(true), bNull( true ),
                     followLinksP(true), receivedBuffer( 0 ), processEventsConnected(0)  {}
 
 // set the defaults
-KRQuery::KRQuery( QString name, bool matchCase ) : QObject(),
+KRQuery::KRQuery( const QString &name, bool matchCase ) : QObject(),
                     bNull( true ),contain(QString::null),containCaseSensetive(true),
                     containWholeWord(false), containOnRemote(false),
                     minSize(0),maxSize(0),newerThen(0),olderThen(0),
@@ -82,6 +82,8 @@ KRQuery::~KRQuery() {
 KRQuery& KRQuery::operator=(const KRQuery &old) {
   matches = old.matches;
   excludes = old.excludes;
+  includedDirs = old.includedDirs;
+  excludedDirs = old.excludedDirs;
   matchesCaseSensitive = old.matchesCaseSensitive;
   bNull = old.bNull;
   contain = old.contain;
@@ -141,9 +143,17 @@ bool KRQuery::checkType( QString mime ) const
   return false;
 }
 
-bool KRQuery::match( const QString nameIn ) const
+bool KRQuery::match( const QString & name ) const {
+  return matchCommon( name, matches, excludes );
+}
+
+bool KRQuery::matchDirName( const QString & name ) const {
+  return matchCommon( name, includedDirs, excludedDirs );
+}
+
+bool KRQuery::matchCommon( const QString &nameIn, const QStringList &matchList, const QStringList &excludeList ) const
 {
-  if( excludes.count() == 0 && matches.count() == 0 ) /* true if there's no match condition */
+  if( excludeList.count() == 0 && matchList.count() == 0 ) /* true if there's no match condition */
     return true;
 
   QString name( nameIn );
@@ -152,14 +162,18 @@ bool KRQuery::match( const QString nameIn ) const
     name = nameIn.mid( ndx + 1 );
 
   unsigned int len;
-  for ( unsigned int i = 0; i < excludes.count(); ++i )
+  for ( unsigned int i = 0; i < excludeList.count(); ++i )
   {
-    QRegExp( *excludes.at( i ), matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
+    QRegExp( *excludeList.at( i ), matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
     if ( len == name.length() ) return false;
   }
-  for ( unsigned int i = 0; i < matches.count(); ++i )
+
+  if( matchList.count() == 0 )
+    return true;
+
+  for ( unsigned int i = 0; i < matchList.count(); ++i )
   {
-    QRegExp( *matches.at( i ), matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
+    QRegExp( *matchList.at( i ), matchesCaseSensitive, true ).match( name, 0, ( int* ) & len );
     if ( len == name.length() ) return true;
   }
   return false;
@@ -167,6 +181,7 @@ bool KRQuery::match( const QString nameIn ) const
 
 bool KRQuery::match( vfile *vf ) const
 {
+  if( vf->vfile_isDir() && !matchDirName( vf->vfile_getName() ) ) return false;
   // see if the name matches
   if ( !match( vf->vfile_getName() ) ) return false;
   // checking the mime
@@ -405,7 +420,7 @@ bool KRQuery::checkTimer() const {
   return false;
 }
 
-void KRQuery::setNameFilter( QString text, bool cs )
+void KRQuery::setNameFilter( const QString &text, bool cs )
 {
   bNull = false;
   matchesCaseSensitive = cs;
@@ -424,21 +439,46 @@ void KRQuery::setNameFilter( QString text, bool cs )
       matchText = "*";
   }
 
+  int i;
+
   matches  = QStringList::split(QChar(' '), matchText );
-  
-  if( !matchText.contains( "*" ) && !matchText.contains( "?" ) ) {
-    for ( unsigned int i = 0; i < matches.count(); ++i )
+  includedDirs.clear();
+
+  for( i=0; i < matches.count(); ) {
+    matches[ i ] = matches[ i ].stripWhiteSpace();
+
+    if( matches[ i ].endsWith( "/" ) ) {
+      includedDirs.push_back( matches[ i ].left( matches[ i ].length() - 1 ) );
+      matches.remove( matches.at( i ) );
+      continue;
+    }
+
+    if( !matches[ i ].contains( "*" ) && !matches[ i ].contains( "?" ) ) 
       matches[ i ] = "*" + matches[ i ] + "*";
+
+    i++;
   }
-  
+
   excludes = QStringList::split(QChar(' '), excludeText );
-  if( !excludeText.contains( "*" ) && !excludeText.contains( "?" ) ) {
-    for ( unsigned int i = 0; i < excludes.count(); ++i )
+  excludedDirs.clear();
+
+  for( i=0; i < excludes.count(); ) {
+    excludes[ i ] = excludes[ i ].stripWhiteSpace();
+
+    if( excludes[ i ].endsWith( "/" ) ) {
+      excludedDirs.push_back( excludes[ i ].left( excludes[ i ].length() - 1 ) );
+      excludes.remove( excludes.at( i ) );
+      continue;
+    }
+
+    if( !excludes[ i ].contains( "*" ) && !excludes[ i ].contains( "?" ) ) 
       excludes[ i ] = "*" + excludes[ i ] + "*";
+
+    i++;
   }
 }
 
-void KRQuery::setContent( QString content, bool cs, bool wholeWord, bool remoteSearch )
+void KRQuery::setContent( const QString &content, bool cs, bool wholeWord, bool remoteSearch )
 {
   bNull = false;
   contain = content;
@@ -471,41 +511,44 @@ void KRQuery::setOlderThan( time_t time )
   olderThen = time;
 }
 
-void KRQuery::setOwner( QString ownerIn )
+void KRQuery::setOwner( const QString &ownerIn )
 {
   bNull = false;
   owner = ownerIn;
 }
 
-void KRQuery::setGroup( QString groupIn )
+void KRQuery::setGroup( const QString &groupIn )
 {
   bNull = false;
   group = groupIn;
 }
 
-void KRQuery::setPermissions( QString permIn )
+void KRQuery::setPermissions( const QString &permIn )
 {
   bNull = false;
   perm = permIn;
 }
 
-void KRQuery::setMimeType( QString typeIn, QStringList customList )
+void KRQuery::setMimeType( const QString &typeIn, QStringList customList )
 {
   bNull = false;
   type = typeIn;
   customType = customList;
 }
 
-bool KRQuery::isExcluded( KURL url )
+bool KRQuery::isExcluded( const KURL &url )
 {
   for ( unsigned int i = 0; i < whereNotToSearch.count(); ++i )
     if( whereNotToSearch [ i ].isParentOf( url ) || url.equals( whereNotToSearch [ i ], true ) )
       return true;
 
+  if( !matchDirName( url.fileName() ) )
+    return true;
+
   return false;
 }
 
-void KRQuery::setSearchInDirs( KURL::List urls ) { 
+void KRQuery::setSearchInDirs( const KURL::List &urls ) { 
   whereToSearch.clear();
   for( unsigned int i = 0; i < urls.count(); ++i ) {
     QString url = urls[ i ].url();
@@ -514,7 +557,7 @@ void KRQuery::setSearchInDirs( KURL::List urls ) {
   }
 }
 
-void KRQuery::setDontSearchInDirs( KURL::List urls ) { 
+void KRQuery::setDontSearchInDirs( const KURL::List &urls ) { 
   whereNotToSearch.clear();
   for( unsigned int i = 0; i < urls.count(); ++i ) {
     QString url = urls[ i ].url();
