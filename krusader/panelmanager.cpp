@@ -15,8 +15,10 @@
 #define SHOW  { _newTab->show(); _tabbar->show(); _closeTab->show(); }
 #define HIDE  { _newTab->hide(); _tabbar->hide(); _closeTab->hide(); }
 
-PanelManager::PanelManager( QWidget *parent, bool left, ListPanel* &self, ListPanel* &other, ListPanel* &active ) :
-QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ), _self( self ), _other( other ), _active( active ) {
+PanelManager::PanelManager( QWidget *parent, bool left ) :
+QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ), 
+       _self( _left ? MAIN_VIEW->left : MAIN_VIEW->right ), 
+       _other( _left ? MAIN_VIEW->right : MAIN_VIEW->left ) {   
    _layout = new QGridLayout( this, 1, 1 );
    _stack = new QWidgetStack( this );
 
@@ -299,6 +301,12 @@ void PanelManager::deletePanel( ListPanel * p ) {
     return;
   }
   delete p;
+}
+
+void PanelManager::swapPanels() {
+   _left = !_left; 
+   _self = _left ? MAIN_VIEW->left : MAIN_VIEW->right;
+   _other = _left ? MAIN_VIEW->right : MAIN_VIEW->left;
 }
 
 #include "panelmanager.moc"

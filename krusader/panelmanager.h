@@ -22,7 +22,7 @@ class PanelManager: public QWidget {
      * (self, other, active), which enables it to manage pointers held by the panels transparently.
      * It also receives a bool (left) which is true if the manager is the left one, or false otherwise.
      */
-    PanelManager( QWidget *parent, bool left, ListPanel* &self, ListPanel* &other, ListPanel* &active);
+    PanelManager( QWidget *parent, bool left );
     /**
      * Called once by KrusaderView to create the first panel. Subsequent called are done internally
      * Note: only creates the panel, but doesn't start the VFS inside it. Use startPanel() for that.
@@ -36,7 +36,7 @@ class PanelManager: public QWidget {
     /**
      * Swaps the left / right directions of the panel
      */
-    void swapPanels()             {_left = !_left;}
+    void swapPanels();
     
     void saveSettings(KConfig *config, const QString& key, bool localOnly = true );
     void loadSettings(KConfig *config, const QString& key);
@@ -71,7 +71,7 @@ class PanelManager: public QWidget {
     PanelTabBar *_tabbar;
     QWidgetStack *_stack;
     QToolButton *_newTab, *_closeTab;
-    ListPanel *&_self, *&_other, *&_active;
+    ListPanel *&_self, *&_other;
 };
 
 
