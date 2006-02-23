@@ -42,12 +42,16 @@ public:
     remove( parentWidget() );
   }
   
-  void maybeTip( const QPoint & ) {
+  void maybeTip( const QPoint & point ) {
     if( parentWidget()->inherits( "PercentalSplitter" ) ) {
       PercentalSplitter *splitter = (PercentalSplitter *)parentWidget();
       
       QString tipString = splitter->toolTipString();
-      tip( parentWidget()->rect(), tipString );
+      QRect rect = QRect( parentWidget()->rect() );
+      rect.setX( splitter->sizes()[ 0 ] );
+      rect.setWidth( splitter->handleWidth() );
+      if( rect.contains( point ) )
+        tip( rect, tipString );
     }
   }
 };
