@@ -598,7 +598,15 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    if (callDefaultHandler)
    {
      dragStartPos = QPoint( -1, -1 );
+
+     QString name = QString::null;    // will the file be deleted by the mouse event?
+     if( newCurrent )                 // save the name of the file
+       name = static_cast<KrDetailedViewItem*>( newCurrent ) ->name();
+
      KListView::contentsMousePressEvent( e );
+
+     if( name.isEmpty() || _dict.find( name ) == 0 ) // is the file still valid?
+       newCurrent = 0;                // if not, don't do any crash...
    }
    //   if (i != 0) // comment in, if click sould NOT select
    //     setSelected(i, FALSE);

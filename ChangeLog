@@ -6,6 +6,12 @@
     ADDED: new krarc (password handling, type autodetection, writing
            out archiver error messages, step into hidden archives,...)
 
+    FIXED: valgrind: Free Memory Read          - KrDetailedView::contentsMousePressEvent()
+    FIXED: valgrind: Mismatched delete/delete[]- RadialMap::Builder::Builder()
+    FIXED: valgrind: Uninitialized Memory Read - DUFileLight::slotAboutToShow()
+    FIXED: valgrind: Free Memory Read          - KViewer::tabCloseRequest()
+    FIXED: valgrind: Uninitialized Memory Read - KViewer::tabChanged()
+    FIXED: valgrind: Free Memory Read          - PanelManager::slotCloseTab()
     FIXED: [ 1435352 ] crash after NewPanel->Ctrl+U->DeletePanel
     FIXED: HTML tags cause problem to the searcher
     FIXED: [ 1415250 ] searching large directories, doesn't process UI events

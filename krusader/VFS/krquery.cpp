@@ -264,10 +264,13 @@ bool KRQuery::checkBuffer( const char *buf, int len ) const {
   }
 
   int after = len;
-  while( buf[after-1] != '\n' && after > len - MAX_LINE_LEN )
+  while( buf[ after-1 ] != '\n' ) {
     after--;
-  if( buf[ after-1 ] != '\n' )
-    after = len; // if there's no <ENTER> don't break the stream
+    if( after <= 0 || after <= len - MAX_LINE_LEN ) {
+      after = len;  // if there's no <ENTER> in MAX_LINE_LEN, we break the line
+      break;        // breaking the line causes problems at Unicode characters
+    }
+  }
 
   if( receivedBuffer ) {
     int previous = 0;

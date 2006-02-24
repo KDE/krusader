@@ -53,7 +53,7 @@
 QPtrList<KrViewer> KrViewer::viewers;
 
 KrViewer::KrViewer( QWidget *parent, const char *name ) :
-KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ) {
+KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusToKrusader( 0 ) {
 
 	//setWFlags(WType_TopLevel | WDestructiveClose);
 	setXMLFile( "krviewer.rc" ); // kpart-related xml file
@@ -292,7 +292,10 @@ void KrViewer::tabCloseRequest(QWidget *w){
 	tabBar.removePage(w);
 
 	if( tabBar.count() <= 0 ){
+		krApp->raise();
+		krApp->setActiveWindow();
 		delete this;
+		return;
 	} else if( tabBar.count() == 1 ){
 		//no point in detaching only one tab..
 		viewerMenu->setItemEnabled(detachActionIndex,false);

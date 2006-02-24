@@ -250,6 +250,7 @@ void KrView::delItem(const QString &name) {
 		_countSize -= it->VF->vfile_getSize();
 	}
 	--_count;	
+	_dict.remove( name );
 	delete it;
 	op()->emitSelectionChanged();
 }

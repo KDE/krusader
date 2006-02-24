@@ -37,7 +37,7 @@
 #define SCHEME_POPUP_ID    6730
 
 DUFilelight::DUFilelight( DiskUsage *usage, const char *name )
-  : RadialMap::Widget( usage, name ), diskUsage( usage ), currentDir( 0 )
+  : RadialMap::Widget( usage, name ), diskUsage( usage ), currentDir( 0 ), refreshNeeded( true )
 {
    setFocusPolicy( QWidget::StrongFocus );
 

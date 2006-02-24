@@ -157,6 +157,9 @@ void PanelManager::slotCloseTab() {
    _stack->removeWidget( oldp );
    deletePanel( oldp );
 
+   if( ACTIVE_PANEL == oldp )
+     ACTIVE_PANEL = _self;
+
    // setup pointers
    _self->otherPanel = _other;
    _other->otherPanel = _self;
