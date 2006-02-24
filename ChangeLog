@@ -6,6 +6,7 @@
     ADDED: new krarc (password handling, type autodetection, writing
            out archiver error messages, step into hidden archives,...)
 
+    FIXED: valgrind: Free Memory Read          - RadialMap::Widget::paintExplodedLabels()
     FIXED: valgrind: Free Memory Read          - DULines::slotChanged()
     FIXED: valgrind: Free Memory Read          - DULines::slotDeleted()
     FIXED: valgrind: Free Memory Read          - KrDetailedView::contentsMousePressEvent()
