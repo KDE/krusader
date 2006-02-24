@@ -479,35 +479,41 @@ File * DULines::getCurrentFile()
 
 void DULines::slotChanged( File * item )
 {
-  DULinesItem *duItem = (DULinesItem *)firstChild();
-  while( duItem )
+  QListViewItem *lvitem = firstChild();
+  while( lvitem )
   {
-    if( duItem->getFile() == item )
-    {
-      duItem->setVisible( !item->isExcluded() );
-      duItem->setText( 1, item->percent() );
-      if( !refreshNeeded )
+    if( lvitem->text( 0 ) != ".." ) {
+      DULinesItem *duItem = (DULinesItem *)( lvitem );
+      if( duItem->getFile() == item )
       {
-        refreshNeeded = true;
-        QTimer::singleShot( 0, this, SLOT( slotRefresh() ) );
+        duItem->setVisible( !item->isExcluded() );
+        duItem->setText( 1, item->percent() );
+        if( !refreshNeeded )
+        {
+          refreshNeeded = true;
+          QTimer::singleShot( 0, this, SLOT( slotRefresh() ) );
+        }
+        break;
       }
-      break;
     }
-    duItem = (DULinesItem *)duItem->nextSibling();
+    lvitem = lvitem->nextSibling();
   }
 }
 
 void DULines::slotDeleted( File * item )
 {
-  DULinesItem *duItem = (DULinesItem *)firstChild();
-  while( duItem )
+  QListViewItem *lvitem = firstChild();
+  while( lvitem )
   {
-    if( duItem->getFile() == item )
-    {
-      delete duItem;
-      break;
+    if( lvitem->text( 0 ) != ".." ) {
+      DULinesItem *duItem = (DULinesItem *)( lvitem );
+      if( duItem->getFile() == item )
+      {
+        delete duItem;
+        break;
+      }
     }
-    duItem = (DULinesItem *)duItem->nextSibling();
+    lvitem = lvitem->nextSibling();
   }
 }
 
