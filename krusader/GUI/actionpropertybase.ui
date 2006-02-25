@@ -245,7 +245,7 @@
                             <string>Identifier:</string>
                         </property>
                         <property name="whatsThis" stdset="0">
-                            <string>Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and doesn't appear in any other menu.&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.</string>
+                            <string>&lt;p&gt;Unique name of the &lt;b&gt;Useraction&lt;/b&gt;. It is only used in the &lt;i&gt;Konfigurator&lt;/i&gt; and doesn't appear in any other menu.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Note&lt;/b&gt;: The &lt;i&gt;Title&lt;/i&gt; shown in the &lt;b&gt;Usermenu&lt;/b&gt; can be set below.&lt;/p&gt;</string>
                         </property>
                     </widget>
                     <widget class="QLabel" row="7" column="0">
@@ -264,9 +264,8 @@
                             <string>Command:</string>
                         </property>
                         <property name="whatsThis" stdset="0">
-                            <string>The &lt;i&gt;Command&lt;/i&gt; defines the command that will be executed when the &lt;b&gt;Useraction&lt;/b&gt; is used. It can be a simple shell command or a complex sequence of multiple commands with &lt;b&gt;Placeholders&lt;/b&gt;.&lt;p&gt;
-Examples:&lt;ul&gt;&lt;code&gt;&lt;li&gt;eject /mnt/cdrom&lt;/li&gt;&lt;li&gt;amarok --append %aList("Selected")%&lt;/li&gt;&lt;/code&gt;&lt;/ul&gt;
-Please consult the handbook to learn more about the syntax.</string>
+                            <string>&lt;p&gt;The &lt;i&gt;Command&lt;/i&gt; defines the command that will be executed when the &lt;b&gt;Useraction&lt;/b&gt; is used. It can be a simple shell command or a complex sequence of multiple commands with &lt;b&gt;Placeholders&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;Examples:&lt;ul&gt;&lt;code&gt;&lt;li&gt;eject /mnt/cdrom&lt;/li&gt;&lt;li&gt;amarok --append %aList("Selected")%&lt;/li&gt;&lt;/code&gt;&lt;/ul&gt;
+Please consult the handbook to learn more about the syntax.&lt;/p&gt;</string>
                         </property>
                     </widget>
                     <widget class="KLineEdit" row="3" column="1" rowspan="1" colspan="3">
