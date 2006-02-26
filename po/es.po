@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net\n"
 "POT-Creation-Date: 2006-02-25 17:37+0100\n"
-"PO-Revision-Date: 2006-02-14 15:00-0600\n"
+"PO-Revision-Date: 2006-02-25 22:50-0600\n"
 "Last-Translator: Alejandro Araiza Alvarado <mebrelith@gmail.com>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -191,16 +191,11 @@ msgid "Title:"
 msgstr "Titulo:"
 
 #: GUI/actionpropertybase.cpp:398
-#, fuzzy
 msgid ""
 "Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
 "<i>Title</i> shown in the <b>Usermenu</b> can be set below."
-msgstr ""
-"Nombre único para la <b>acción de usuario</b>. Solo se usa en el "
-"<i>Konfigurador</i> y no aparece en ningún menú.<p><b>Nota</b>: El "
-"<i>titulo</i> mostrado en menú de usuario</b> puede ser establecido mas "
-"abajo."
+msgstr "Nombre único para la <b>acción de usuario</b>. Solo se usa en el <i>Konfigurador</i> y no aparece en ningún menú.<p><b>Nota</b>: El <i>titulo</i> mostrado en <b>menú de usuario</b> puede ser establecido mas abajo."
 
 #: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:418
 msgid ""
@@ -251,7 +246,6 @@ msgid "Command:"
 msgstr "Comandos:"
 
 #: GUI/actionpropertybase.cpp:407
-#, fuzzy
 msgid ""
 "<p>The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -259,13 +253,7 @@ msgid ""
 "<ul><code><li>eject /mnt/cdrom</li><li>amarok --append %aList(\"Selected\")%"
 "</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax.</p>"
-msgstr ""
-"El <i>Comando</i> define el comando que será ejecutado cuando la <b>acción "
-"de usuario</b> sea usada. Puede ser un simple comando de terminal o una "
-"secuencia de múltiples comandos con un nombre.<p>\n"
-" Ejemplos:<ul><code><li>eject /mnt/cdrom</code></li><li>amarok --append %"
-"aList (\"Selected\")%</li></code></ul>\n"
-" Por favor consulte el manual para mas comandos y la sintaxis apropiada."
+msgstr "<p>El <i>Comando</i> define el comando que será ejecutado cuando la <b>acción de usuario</b> sea usada. Puede ser un simple comando de terminal o una secuencia de múltiples comandos con un nombre.</p><p>\nEjemplos:<ul><code><li>eject /mnt/cdrom</code></li><li>amarok --append % aList (\"Selected\")%</li></code></ul>\nPor favor consulte el manual para mas comandos y la sintaxis apropiada.</p>"
 
 #: GUI/actionpropertybase.cpp:409 GUI/actionpropertybase.cpp:412
 msgid ""
@@ -288,7 +276,6 @@ msgid "Tooltip:"
 msgstr "Tip:"
 
 #: GUI/actionpropertybase.cpp:414
-#, fuzzy
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -297,12 +284,8 @@ msgid ""
 "(\"Selected\")%</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
-"El <i>Comando</i> define el comando que será ejecutado cuando la <b>acción "
-"de usuario</b> sea usada. Puede ser un simple comando de terminal o una "
-"secuencia de múltiples comandos con un nombre.<p>\n"
-" Ejemplos:<ul><code><li>eject /mnt/cdrom</code></li><li>amarok --append %"
-"aList (\"Selected\")%</li></code></ul>\n"
-"Por favor consulte el manual para mas comandos y la sintaxis apropiada."
+"<p>El <i>Comando</i> define el comando que será ejecutado cuando la <b>acción de usuario</b> sea usada. Puede ser un simple comando de terminal o una secuencia de múltiples comandos con un nombre.</p><p>\nEjemplos:<ul><code><li>eject /mnt/cdrom</code></li><li>amarok --append % aList (\"Selected\")%</li></code></ul>\n"
+"Por favor consulte el manual para mas comandos y la sintaxis apropiada.</p>"
 
 #: GUI/actionpropertybase.cpp:417
 msgid "Category:"
@@ -390,8 +373,7 @@ msgstr "Borrar"
 #: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:442
 #: GUI/actionpropertybase.cpp:447
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr ""
-"Mostrar la <b>acción de usuario</b> solo para estos valores definidos aquí."
+msgstr "Mostrar la <b>acción de usuario</b> solo para estos valores definidos aquí."
 
 #: GUI/actionpropertybase.cpp:441
 msgid "Protocol"
@@ -730,7 +712,7 @@ msgstr "Personalizado"
 
 #: VFS/krquery.cpp:417
 msgid "Searching content of '%1' (%2%)"
-msgstr ""
+msgstr "Buscando contenido de '%1' (%2%)"
 
 #: VFS/krarchandler.cpp:170
 msgid "Counting files in archive"
@@ -837,7 +819,6 @@ msgid "Search &for:"
 msgstr "&Buscar por:"
 
 #: Filter/generalfilter.cpp:79 Synchronizer/synchronizergui.cpp:1092
-#, fuzzy
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
 "of wildcards. Multiple patterns are separated by space and patterns are "
@@ -846,12 +827,9 @@ msgid ""
 "| CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</"
 "code>' is equivalent to '<code>*text*</code>'.</p>"
 msgstr ""
-"Los criterios para el filtrado de nombres de archivo se define aquí.<p>Puede "
-"usar comodines. Múltiples patrones separados por un espacio y los patrones "
-"de exclusión se usan con el símbolo de tubo.<p>Ejemplos:<ul><code><li>*.o</"
-"li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Nota</b>: "
-"el termino de busqueda '<code>text</code>' es equivalente a '<code>*text*</"
-"code>'."
+"<p>Los criterios para el filtrado de nombres de archivo se define aquí.</p><p>Puede usar comodines. Múltiples patrones separados por un espacio y los patrones "
+"de exclusión se usan con el símbolo de tubo.</p> <p>Ejemplos:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h |*.moc.cpp</li></code></ul><b>Nota</b>: "
+"el termino de busqueda '<code>text</code>' es equivalente a '<code>*text*</code>'.</p>"
 
 #: Filter/generalfilter.cpp:84
 msgid "&Of type:"
@@ -895,7 +873,7 @@ msgstr "&Texto:"
 
 #: Filter/generalfilter.cpp:226
 msgid "&Remote content search"
-msgstr ""
+msgstr "Busqueda de contenido &remoto"
 
 #: Filter/generalfilter.cpp:234
 msgid "&Match whole word only"
@@ -1211,8 +1189,7 @@ msgstr "Que debe ser copiado"
 
 #: UserAction/expander.cpp:416
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Agregar al contenido actual del portapapeles usando este separador (opcional)"
+msgstr "Agregar al contenido actual del portapapeles usando este separador (opcional)"
 
 #: UserAction/expander.cpp:430
 msgid "Copy a file/folder"
@@ -1430,7 +1407,7 @@ msgstr "/"
 #: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
 #: krusader.cpp:596
 msgid "Root"
-msgstr "Root"
+msgstr "Raíz"
 
 #: Panel/listpanel.cpp:353
 msgid "Close the popup panel"
@@ -2133,8 +2110,7 @@ msgstr "Aquí usted puede nombrar la colección de archivos"
 
 #: krusader.cpp:320
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"La barra de estado mostrará información básica sobre el fichero seleccionado."
+msgstr "La barra de estado mostrará información básica sobre el fichero seleccionado."
 
 #: krusader.cpp:380
 msgid ""
@@ -2209,7 +2185,7 @@ msgstr "&Edita un archivo nuevo"
 
 #: krusader.cpp:513
 msgid "Start &Root Mode Krusader"
-msgstr "Arrancar Krusader Modo &Root"
+msgstr "Arrancar Krusader Modo Administ&rador"
 
 #: krusader.cpp:515
 msgid "T&est Archive(s)"
@@ -2546,8 +2522,7 @@ msgstr "¿Esta seguro de que quiere salir?"
 
 #: KViewer/panelviewer.cpp:33
 msgid "No file selected or selected file can't be displayed."
-msgstr ""
-"No se seleccione un archivo o el archivo seleccionado no puede mostrarse."
+msgstr "No se seleccione un archivo o el archivo seleccionado no puede mostrarse."
 
 #: KViewer/krviewer.cpp:578 KViewer/panelviewer.cpp:151
 msgid "KrViewer is unable to download: "
@@ -2595,15 +2570,13 @@ msgstr "&KrViewer"
 
 #: KViewer/krviewer.cpp:210 KViewer/krviewer.cpp:267 KViewer/krviewer.cpp:338
 #: KViewer/krviewer.cpp:347 KViewer/krviewer.cpp:356 KViewer/krviewer.cpp:432
-#, fuzzy
 msgid "Viewing"
-msgstr "Vista"
+msgstr "Viendo"
 
 #: KViewer/krviewer.cpp:235 KViewer/krviewer.cpp:267 KViewer/krviewer.cpp:365
 #: KViewer/krviewer.cpp:430
-#, fuzzy
 msgid "Editing"
-msgstr " Editar"
+msgstr "Editando"
 
 #: KViewer/krviewer.cpp:508
 msgid "Sorry, can't find internal editor"
@@ -2829,10 +2802,8 @@ msgstr ""
 " Llame a los desarrolladores"
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
-msgstr ""
-"MountMan tiene un error interno. Notifíquelo a los desarrolladores. Gracias."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgstr "MountMan tiene un error interno. Notifíquelo a los desarrolladores. Gracias."
 
 #: MountMan/kmountmangui.cpp:330
 msgid "MountMan"
@@ -2846,13 +2817,13 @@ msgstr "Formato"
 msgid ""
 "_: NAME OF TRANSLATORS\n"
 "Your names"
-msgstr "Alejandro Araiza Alvarado"
+msgstr "Rafael Munoz Rodriguez,Alejandro Araiza Alvarado"
 
 #: _translatorinfo.cpp:3
 msgid ""
 "_: EMAIL OF TRANSLATORS\n"
 "Your emails"
-msgstr "mebrelith@gmail.com"
+msgstr "rafaluco@netscape.net,mebrelith@gmail.com"
 
 #: main.cpp:46
 msgid ""
@@ -2884,13 +2855,11 @@ msgstr "Krusader - PRIVILEGIOS DE ADMINISTRADOR"
 
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Las teclas de función permiten realizar operaciones rápidas en archivos."
+msgstr "Las teclas de función permiten realizar operaciones rápidas en archivos."
 
 #: Dialogs/krdialogs.cpp:103
-#, fuzzy
 msgid "Preserve attributes (only for local targets)"
-msgstr "Mantener fecha (solo para objetivos locales)"
+msgstr "Mantener atributos (solo para objetivos locales)"
 
 #: Dialogs/krdialogs.cpp:198 Konfigurator/kglookfeel.cpp:110
 msgid "Custom Selection Mode"
@@ -3515,13 +3484,11 @@ msgstr "Filtro de archivos:"
 
 #: Synchronizer/synchronizergui.cpp:1077
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"El directorio base a la izquierda usado durante el proceso de sincronización."
+msgstr "El directorio base a la izquierda usado durante el proceso de sincronización."
 
 #: Synchronizer/synchronizergui.cpp:1108
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"El directorio base a la derecha usado durante el proceso de sincronización."
+msgstr "El directorio base a la derecha usado durante el proceso de sincronización."
 
 #: Synchronizer/synchronizergui.cpp:1114
 msgid "Recurse subdirectories"
@@ -4233,8 +4200,7 @@ msgstr "Modo hexadecimal"
 
 #: Konfigurator/kggeneral.cpp:94
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
-"Ver el archivo en modo hexadecimal (se recomienda para archivos binarios)"
+msgstr "Ver el archivo en modo hexadecimal (se recomienda para archivos binarios)"
 
 #: Konfigurator/kggeneral.cpp:100
 msgid "Viewer opens each file in a separate window"
@@ -4273,25 +4239,22 @@ msgid "Note: you must have full permissions for the temporary directory!"
 msgstr "Nota: ¡Debe tener permiso total para el directorio temporal!"
 
 #: Konfigurator/kggeneral.cpp:141
-#, fuzzy
 msgid "Terminal for UserActions:"
-msgstr "Remover acciones de usuario"
+msgstr "Terminal para acciones de usuario:"
 
 #: Konfigurator/kggeneral.cpp:163
 msgid "Searching for tools..."
 msgstr "Buscando herramientas..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Asegúrese de instalar nuevas herramientas en su <code>$PATH</code> (i.e. /"
 "usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:120
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj no pudo ser encontrado, se encontró arj, será usado para descomprimir"
+msgstr "unarj no pudo ser encontrado, se encontró arj, será usado para descomprimir"
 
 #: Konfigurator/krresulttable.cpp:126
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -4723,7 +4686,7 @@ msgstr "Cambia el directorio del panel al directorio de inicio"
 
 #: Konfigurator/kglookfeel.cpp:219
 msgid "Root button (/)"
-msgstr "Botón de raiz (/)"
+msgstr "Botón de raíz (/)"
 
 #: Konfigurator/kglookfeel.cpp:219
 msgid "Changes the panel directory to the root directory."
@@ -4734,8 +4697,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Botón de activación de la navegación sincronizada"
 
 #: Konfigurator/kglookfeel.cpp:220
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Cada cambio de directorio se realiza tambien en el otro panel."
 
 #: Konfigurator/kglookfeel.cpp:284 Konfigurator/kglookfeel.cpp:301
@@ -4751,9 +4713,8 @@ msgstr ""
 "desea importar estas asociaciones de teclas?"
 
 #: Konfigurator/kgadvanced.cpp:52
-#, fuzzy
 msgid "Preserve attributes for local copy/move (slower)"
-msgstr "Preservar información local al copiar/mover (más lento)"
+msgstr "Preservar atributos al copiar/mover (más lento)"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid ""
@@ -5364,8 +5325,7 @@ msgid "Test archive before unpacking"
 msgstr "Comprobar archivos después de descomprimir"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Algunos archivos corruptos pueden provocar cuelgues, por ello comprobarlos "
 "es recomendable"
@@ -5375,8 +5335,7 @@ msgid "Searching for packers..."
 msgstr "Buscando compresores..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Asegúrese de instalar nuevos compresores en su <code>$PATH</code> (i.e. /usr/"
 "bin)"
@@ -5672,8 +5631,7 @@ msgid "Not a valid CRC file!"
 msgstr "¡Archivo CRC no válido!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "La comprobación de validez es imposible sin un archivo CRC bueno. ¿Continuar "
 "la combinación?"
@@ -5714,17 +5672,3 @@ msgstr "¡Error leyendo el archivo %1!"
 msgid "Error at writing file %1!"
 msgstr "¡Error escribiendo el archivo %1!"
 
-#~ msgid ""
-#~ "The filename filtering criteria is defined here.<p>You can make use of "
-#~ "wildcards. Multiple patterns are separated by space and patterns are "
-#~ "excluded from the search using the pipe symbol.</p><p>Examples:"
-#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li></"
-#~ "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent "
-#~ "to '<code>*text*</code>'.</p>"
-#~ msgstr ""
-#~ "Los criterios para el filtrado de nombres de archivo se define aquí."
-#~ "<p>Puede usar comodines. Múltiples patrones separados por un espacio y "
-#~ "los patrones de exclusión se usan con el símbolo de tubo.<p>Ejemplos:"
-#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h |. moc.cpp</li></"
-#~ "code></ul><b>Nota</b>: el termino de busqueda '<code>text</code>' es "
-#~ "equivalente a '<code>*text*</code>'."
