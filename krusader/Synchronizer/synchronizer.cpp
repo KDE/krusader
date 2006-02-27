@@ -63,8 +63,9 @@
 
 #define  DISPLAY_UPDATE_PERIOD        2
 
-Synchronizer::Synchronizer() : displayUpdateCount( 0 ), markEquals( true ), markDiffers ( true ),
-                               markCopyToLeft( true ), markCopyToRight( true ), markDeletable( true )
+Synchronizer::Synchronizer() : displayUpdateCount( 0 ), markEquals( true ), 
+        markDiffers ( true ), markCopyToLeft( true ), markCopyToRight( true ), markDeletable( true ),
+        parentWidget( 0 )
 {
   resultList.setAutoDelete( true );
 }
@@ -294,7 +295,7 @@ vfs * Synchronizer::getDirectory( QString url )
 
   if ( !result )
   {
-    KMessageBox::error(0, i18n("Error at opening URL:%1!").arg( url ));
+    KMessageBox::error(parentWidget, i18n("Error at opening URL:%1!").arg( url ));
     delete v;
     return 0;
   }
@@ -1255,7 +1256,7 @@ void Synchronizer::slotFinished(KIO::Job *job)
   {
     timer->stop();
     errorPrinted = true;
-    KMessageBox::error(0, i18n("IO error at comparing file %1 with %2!")
+    KMessageBox::error(parentWidget, i18n("IO error at comparing file %1 with %2!")
                        .arg( leftURL. prettyURL(0,KURL::StripFileProtocol) )
                        .arg( rightURL.prettyURL(0,KURL::StripFileProtocol) ) );
     abortContentComparing();
@@ -1429,7 +1430,7 @@ void Synchronizer::synchronizeWithKGet()
 
         p << KrServices::fullPathName( "kget" ) << source << destURL.path();
         if (!p.start(KProcess::Block))
-          KMessageBox::error(0,i18n("Error executing ")+KrServices::fullPathName( "kget" )+" !");
+          KMessageBox::error(parentWidget,i18n("Error executing ")+KrServices::fullPathName( "kget" )+" !");
         else
           p.detach();
       }

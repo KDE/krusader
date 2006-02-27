@@ -115,6 +115,7 @@ public slots:
   void compare();
   void synchronize();
   void stop();
+  void feedToListBox();
   void closeDialog();
   void refresh();
   void swapSides();
@@ -167,6 +168,7 @@ protected:
   QPushButton   *btnCompareDirs;
   QPushButton   *btnStopComparing;
   QPushButton   *btnSynchronize;
+  QPushButton   *btnFeedToListBox;
   QPushButton   *btnScrollResults;
   
   QPushButton   *btnLeftToRight;

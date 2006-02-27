@@ -192,6 +192,8 @@ class Synchronizer : public QObject
 
     SynchronizerFileItem *getItemAt( unsigned ndx ) {return resultList.at(ndx);}
 
+    void     setParentWidget( QWidget * widget )    {parentWidget = widget;}
+
   signals:
     void    comparedFileData( SynchronizerFileItem * );
     void    markChanged( SynchronizerFileItem * );
@@ -308,6 +310,7 @@ class Synchronizer : public QObject
     QByteArray                        compareArray;   // the array for comparing
     QTimer                           *timer;          // timer to show the process dialog at compare by content        
     QStringList                       selectedFiles;  // the selected files to compare
+    QWidget                          *parentWidget;   // the parent widget
 };
 
 #endif /* __SYNCHRONIZER_H__ */

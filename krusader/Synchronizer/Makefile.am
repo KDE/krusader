@@ -7,4 +7,5 @@ libSynchronizer_a_METASOURCES = AUTO
 libSynchronizer_a_SOURCES = \
 	synchronizedialog.cpp \
 	synchronizer.cpp \
-	synchronizergui.cpp
+	synchronizergui.cpp \
+	feedtolistboxdialog.cpp

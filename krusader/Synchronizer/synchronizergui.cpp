@@ -38,6 +38,7 @@
 #include "../krservices.h"
 #include "../krslots.h"
 #include "synchronizedialog.h"
+#include "feedtolistboxdialog.h"
 #include <qlayout.h>
 #include <kurlrequester.h>
 #include <klocale.h>
@@ -1312,6 +1313,12 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   btnStopComparing->setEnabled(false);
   buttons->addWidget( btnStopComparing );
 
+  btnFeedToListBox = new QPushButton( this, "btnFeedToListBox" );
+  btnFeedToListBox->setText( i18n( "Feed to listbox" ) );
+  btnFeedToListBox->setEnabled(false);
+  btnFeedToListBox->hide();
+  buttons->addWidget( btnFeedToListBox );
+  
   btnSynchronize = new QPushButton( this, "btnSynchronize" );
   btnSynchronize->setText( i18n( "Synchronize" ) );
   btnSynchronize->setEnabled(false);
@@ -1334,6 +1341,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   connect( btnSwapSides,      SIGNAL( clicked() ), this, SLOT( swapSides() ) );
   connect( btnCompareDirs,    SIGNAL( clicked() ), this, SLOT( compare() ) );
   connect( btnStopComparing,  SIGNAL( clicked() ), this, SLOT( stop() ) );
+  connect( btnFeedToListBox,  SIGNAL( clicked() ), this, SLOT( feedToListBox() ) );
   connect( btnSynchronize,    SIGNAL( clicked() ), this, SLOT( synchronize() ) );
   connect( btnScrollResults,  SIGNAL( toggled(bool) ), this, SLOT( setScrolling(bool) ) );
   connect( btnCloseSync,      SIGNAL( clicked() ), this, SLOT( closeDialog() ) );
@@ -1406,6 +1414,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   if( !profileName.isNull() )
     profileManager->loadProfile( profileName );
+
+  synchronizer.setParentWidget( this );
 
   exec();
 }
@@ -1717,6 +1727,9 @@ void SynchronizerGUI::compare()
   profileManager->setEnabled( false );
   btnSwapSides->setEnabled( false );
   btnStopComparing->setEnabled( isComparing = true );
+  btnStopComparing->show();
+  btnFeedToListBox->setEnabled( false );
+  btnFeedToListBox->hide();
   btnSynchronize->setEnabled( false );
   btnCompareDirs->hide();
   btnScrollResults->show();
@@ -1728,13 +1741,17 @@ void SynchronizerGUI::compare()
                        cbIgnoreCase->isChecked(), btnScrollResults->isOn(), selectedFiles );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
+  btnStopComparing->hide();
+  btnFeedToListBox->show();
   btnCompareDirs->setEnabled( true );
   profileManager->setEnabled( true );
   btnSwapSides->setEnabled( true );
   btnCompareDirs->show();
   btnScrollResults->hide();
-  if( fileCount )
+  if( fileCount ) {
     btnSynchronize->setEnabled( true );
+    btnFeedToListBox->setEnabled( true );
+  }
 
   if( wasClosed )
     closeDialog();
@@ -1743,6 +1760,13 @@ void SynchronizerGUI::compare()
 void SynchronizerGUI::stop()
 {
   synchronizer.stop();
+}
+
+void SynchronizerGUI::feedToListBox()
+{
+  FeedToListBoxDialog listBox( this, "feedToListBoxDialog", &synchronizer, syncList, btnEquals->isOn() );
+  if( listBox.isAccepted() )
+    closeDialog();
 }
 
 void SynchronizerGUI::reject()
@@ -1893,14 +1917,17 @@ void SynchronizerGUI::refresh()
     profileManager->setEnabled( false );
     btnSwapSides->setEnabled( false );
     btnSynchronize->setEnabled( false );
+    btnFeedToListBox->setEnabled( false );
     disableMarkButtons();
     int fileCount = synchronizer.refresh();
     enableMarkButtons();
     btnCompareDirs->setEnabled( true );
     profileManager->setEnabled( true );
     btnSwapSides->setEnabled( true );
-    if( fileCount )
+    if( fileCount ) {
+      btnFeedToListBox->setEnabled( true );
       btnSynchronize->setEnabled( true );
+    }
   }
 }
 
@@ -1912,7 +1939,7 @@ void SynchronizerGUI::synchronize()
   if( !synchronizer.totalSizes( &copyToLeftNr, &copyToLeftSize, &copyToRightNr, &copyToRightSize,
                                 &deleteNr, &deleteSize ) )
   {
-    KMessageBox::sorry(0, i18n("Synchronizer has nothing to do!"));
+    KMessageBox::sorry(parentWidget(), i18n("Synchronizer has nothing to do!"));
     return;
   }
 
@@ -2014,6 +2041,7 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   syncList->clear();
   isComparing = wasClosed = false;
   btnSynchronize->setEnabled( false );
+  btnFeedToListBox->setEnabled( false );
 
   krConfig->setGroup( profile );
 
