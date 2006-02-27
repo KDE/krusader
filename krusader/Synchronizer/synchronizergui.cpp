@@ -2037,8 +2037,8 @@ void SynchronizerGUI::keyPressEvent( QKeyEvent *e )
 
 void SynchronizerGUI::loadFromProfile( QString profile )
 {
-  synchronizer.reset();
   syncList->clear();
+  synchronizer.reset();
   isComparing = wasClosed = false;
   btnSynchronize->setEnabled( false );
   btnFeedToListBox->setEnabled( false );

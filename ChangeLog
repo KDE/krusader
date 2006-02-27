@@ -8,6 +8,7 @@
            out archiver error messages, step into hidden archives,...)
 
     FIXED: disk usage crash at deleting files
+    FIXED: valgrind: Free Memory Read          - SynchronizerGUI::loadFromProfile()
     FIXED: valgrind: Free Memory Read          - RadialMap::Widget::paintExplodedLabels()
     FIXED: valgrind: Free Memory Read          - DULines::slotChanged()
     FIXED: valgrind: Free Memory Read          - DULines::slotDeleted()
