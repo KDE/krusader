@@ -56,7 +56,7 @@ void DiskUsageViewer::openURL( KURL url )
     diskUsage = new DiskUsage( "DiskUsageViewer", this );
     
     connect( diskUsage, SIGNAL( enteringDirectory( Directory * ) ), this, SLOT( slotUpdateStatus() ) );
-    connect( diskUsage, SIGNAL( status( QString ) ), this, SLOT( slotUpdateStatus() ) );
+    connect( diskUsage, SIGNAL( status( QString ) ), this, SLOT( slotUpdateStatus( QString ) ) );
     connect( diskUsage, SIGNAL( newSearch() ), this, SLOT( slotNewSearch() ) );
     layout->addWidget( diskUsage, 0, 0 );
     this->show();
@@ -108,13 +108,16 @@ void DiskUsageViewer::setStatusLabel( QLabel *statLabel, QString pref )
   prefix = pref;
 }
 
-void DiskUsageViewer::slotUpdateStatus()
+void DiskUsageViewer::slotUpdateStatus( QString status )
 {
-  Directory * dir = diskUsage->getCurrentDir();
-  if( dir && statusLabel )
-  {
-    statusLabel->setText( prefix + dir->fileName() + "  [" + KIO::convertSize( dir->size() ) + "]" );
-  }  
+  if( statusLabel ) {
+    if( status.isEmpty() ) {
+      Directory * dir = diskUsage->getCurrentDir();
+      if( dir )
+        status = prefix + dir->fileName() + "  [" + KIO::convertSize( dir->size() ) + "]";
+    }
+    statusLabel->setText( status );
+  }
 }
 
 void DiskUsageViewer::slotNewSearch()

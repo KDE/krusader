@@ -45,6 +45,8 @@ DUFilelight::DUFilelight( DiskUsage *usage, const char *name )
    connect( diskUsage, SIGNAL( clearing() ), this, SLOT( clear() ) );
    connect( diskUsage, SIGNAL( changed( File * ) ), this, SLOT( slotChanged( File * ) ) );
    connect( diskUsage, SIGNAL( deleted( File * ) ), this, SLOT( slotChanged( File * ) ) );
+   connect( diskUsage, SIGNAL( changeFinished()  ), this, SLOT( slotRefresh() ) );
+   connect( diskUsage, SIGNAL( deleteFinished()  ), this, SLOT( slotRefresh() ) );
    connect( diskUsage, SIGNAL( aboutToShow( QWidget * ) ), this, SLOT( slotAboutToShow( QWidget * ) ) );
    connect( this, SIGNAL( activated( const KURL& ) ), this, SLOT( slotActivated( const KURL& ) ) );
 }
@@ -247,7 +249,6 @@ void DUFilelight::slotChanged( File * )
    {
      invalidate( false );
      refreshNeeded = true;
-     QTimer::singleShot( 0, this, SLOT( slotRefresh() ) );
    }
 }
 

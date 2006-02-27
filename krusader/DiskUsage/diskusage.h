@@ -85,10 +85,10 @@ public:
   void       addProperty( File *, QString, void * );
   void       removeProperty( File *, QString );
   
-  void       exclude( File *file, bool calcPercents = true );
+  int        exclude( File *file, bool calcPercents = true, int depth = 0 );
   void       includeAll();
   
-  void       del( File *file, bool calcPercents = true );
+  int        del( File *file, bool calcPercents = true, int depth = 0 );
   
   QString    getToolTip( File * );
   
@@ -111,7 +111,9 @@ signals:
   void       enteringDirectory( Directory * );
   void       clearing();
   void       changed( File * );
+  void       changeFinished();
   void       deleted( File * );
+  void       deleteFinished();
   void       status( QString );
   void       viewChanged( int );
   void       loadFinished( bool );
@@ -130,9 +132,9 @@ protected:
   virtual void keyPressEvent( QKeyEvent * );
   virtual bool event( QEvent * );
   
-  void       calculateSizes( Directory *dir = 0, bool emitSig = false );
-  void       calculatePercents( bool emitSig = false, Directory *dir = 0  );
-  void       include( Directory *dir );
+  int        calculateSizes( Directory *dir = 0, bool emitSig = false, int depth = 0 );
+  int        calculatePercents( bool emitSig = false, Directory *dir = 0 , int depth = 0 );
+  int        include( Directory *dir, int depth = 0 );
   void       createStatus();
   void       executeAction( int, File * = 0 );
   
@@ -153,6 +155,7 @@ protected:
   bool       loading;
   bool       abortLoading;
   bool       clearAfterAbort;
+  bool       deleting;
 
   QValueStack<QString> directoryStack;
   QPtrStack<Directory> parentStack;

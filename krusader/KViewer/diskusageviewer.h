@@ -52,7 +52,7 @@ signals:
   void openURLRequest(const KURL &);
   
 protected slots:
-  void slotUpdateStatus();
+  void slotUpdateStatus( QString status = QString() );
   void slotNewSearch();
 
 protected:  

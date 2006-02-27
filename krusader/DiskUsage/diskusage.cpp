@@ -198,7 +198,7 @@ void LoaderWidget::slotCancelled()
 
 DiskUsage::DiskUsage( QString confGroup, QWidget *parent, char *name ) : QWidgetStack( parent, name ),
                       currentDirectory( 0 ), root( 0 ), configGroup( confGroup ), loading( false ),
-                      abortLoading( false ), clearAfterAbort( false ), searchVfs( 0 )
+                      abortLoading( false ), clearAfterAbort( false ), deleting( false ), searchVfs( 0 )
 {
   listView = new DUListView( this, "DU ListView" );
   lineView = new DULines( this, "DU LineView" );
@@ -469,8 +469,10 @@ void DiskUsage::clear()
   root = currentDirectory = 0;
 }
 
-void DiskUsage::calculateSizes( Directory *dirEntry, bool emitSig )
+int DiskUsage::calculateSizes( Directory *dirEntry, bool emitSig, int depth )
 {
+  int changeNr = 0;
+
   if( dirEntry == 0 )
     dirEntry = root;
 
@@ -483,7 +485,7 @@ void DiskUsage::calculateSizes( Directory *dirEntry, bool emitSig )
     if( !item->isExcluded() )
     {
       if( item->isDir() )
-        calculateSizes( dynamic_cast<Directory *>( item ), emitSig );
+        changeNr += calculateSizes( dynamic_cast<Directory *>( item ), emitSig, depth + 1 );
       else
         own += item->size();
 
@@ -497,22 +499,31 @@ void DiskUsage::calculateSizes( Directory *dirEntry, bool emitSig )
   if( dirEntry == currentDirectory )
     currentSize = total;
 
-  if( emitSig && ( own != oldOwn || total != oldTotal ) )
+  if( emitSig && ( own != oldOwn || total != oldTotal ) ) {
     emit changed( dirEntry );
+    changeNr++;
+  }
+
+  if( depth == 0 && changeNr != 0 )
+    emit changeFinished();
+  return changeNr;
 }
 
-void DiskUsage::exclude( File *file, bool calcPercents )
+int DiskUsage::exclude( File *file, bool calcPercents, int depth )
 {
+  int changeNr = 0;
+
   if( !file->isExcluded() )
   {
     file->exclude( true );
     emit changed( file );
+    changeNr++;
 
     if( file->isDir() )
     {
       Directory *dir = dynamic_cast<Directory *>( file );
       for( Iterator<File> it = dir->iterator(); it != dir->end(); ++it )
-        exclude( *it, false );
+        changeNr += exclude( *it, false, depth + 1 );
     }
   }
 
@@ -522,26 +533,39 @@ void DiskUsage::exclude( File *file, bool calcPercents )
     calculatePercents( true );
     createStatus();
   }
+
+  if( depth == 0 && changeNr != 0 )
+    emit changeFinished();
+
+  return changeNr;
 }
 
-void DiskUsage::include( Directory *dir )
+int DiskUsage::include( Directory *dir, int depth )
 {
+  int changeNr = 0;
+
   if( dir == 0 )
-    return;
+    return 0;
 
   for( Iterator<File> it = dir->iterator(); it != dir->end(); ++it )
   {
     File *item = *it;
 
     if( item->isDir() )
-      include( dynamic_cast<Directory *>( item ) );
+      changeNr += include( dynamic_cast<Directory *>( item ), depth + 1 );
 
     if( item->isExcluded() )
     {
       item->exclude( false );
       emit changed( item );
+      changeNr++;
     }
   }
+
+  if( depth == 0 && changeNr != 0 )
+    emit changeFinished();
+
+  return changeNr;
 }
 
 void DiskUsage::includeAll()
@@ -552,10 +576,12 @@ void DiskUsage::includeAll()
   createStatus();
 }
 
-void DiskUsage::del( File *file, bool calcPercents )
+int DiskUsage::del( File *file, bool calcPercents, int depth )
 {
+  int deleteNr = 0;
+
   if( file == root )
-    return;
+    return 0;
 
   krConfig->setGroup( "General" );
   bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
@@ -581,8 +607,10 @@ void DiskUsage::del( File *file, bool calcPercents )
       // note: i'm using continue and not yes/no because the yes/no has cancel as default button
       if ( KMessageBox::warningContinueCancelList( krApp, i18n( "Are you sure you want to " ) + s
                                                  , name, i18n( "Warning" ), b ) != KMessageBox::Continue )
-        return ;
+        return 0;
     }
+
+    emit status( i18n( "Deleting %1..." ).arg( file->fileName() ) );
   }
 
   if( file == currentDirectory )
@@ -594,7 +622,7 @@ void DiskUsage::del( File *file, bool calcPercents )
 
     Iterator<File> it;
     while( ( it = dir->iterator() ) != dir->end() )
-      del( *it, false );
+      deleteNr += del( *it, false, depth + 1 );
 
     QString path;
     for( const Directory *d = (Directory*)file; d != root && d && d->parent() != 0; d = d->parent() )
@@ -609,6 +637,7 @@ void DiskUsage::del( File *file, bool calcPercents )
   }
 
   emit deleted( file );
+  deleteNr++;
 
   QGuardedPtr<KIO::Job> job;
 
@@ -626,11 +655,22 @@ void DiskUsage::del( File *file, bool calcPercents )
     job = new KIO::DeleteJob( vfs::fromPathOrURL( file->fullPath() ), false, false);
   }
 
+  deleting = true;    // during qApp->processEvent strange things can occur
+  grabMouse();        // that's why we disable the mouse and keyboard events
+  grabKeyboard();
+
   while( !job.isNull() )
     qApp->processEvents();
 
+  releaseMouse();
+  releaseKeyboard(); 
+  deleting = false;
+
   ((Directory *)(file->parent()))->remove( file );
   delete file;
+
+  if( depth == 0 )
+    createStatus();
 
   if( calcPercents )
   {
@@ -639,6 +679,11 @@ void DiskUsage::del( File *file, bool calcPercents )
     createStatus();
     emit enteringDirectory( currentDirectory );
   }
+
+  if( depth == 0 && deleteNr != 0 )
+    emit deleteFinished();
+
+  return deleteNr;
 }
 
 void * DiskUsage::getProperty( File *item, QString key )
@@ -934,8 +979,10 @@ QPixmap DiskUsage::getIcon( QString mime )
   return icon;
 }
 
-void DiskUsage::calculatePercents( bool emitSig, Directory *dirEntry )
+int DiskUsage::calculatePercents( bool emitSig, Directory *dirEntry, int depth )
 {
+  int changeNr = 0;
+
   if( dirEntry == 0 )
     dirEntry = root;
 
@@ -957,13 +1004,19 @@ void DiskUsage::calculatePercents( bool emitSig, Directory *dirEntry )
       int oldPerc = item->intPercent();
       item->setPercent( newPerc );
 
-      if( emitSig && newPerc != oldPerc )
+      if( emitSig && newPerc != oldPerc ) {
         emit changed( item );
+        changeNr++;
+      }
 
       if( item->isDir() )
-        calculatePercents( emitSig, dynamic_cast<Directory *>( item ) );
+        changeNr += calculatePercents( emitSig, dynamic_cast<Directory *>( item ), depth + 1 );
     }
   }
+
+  if( depth == 0 && changeNr != 0 )
+    emit changeFinished();
+  return changeNr;
 }
 
 QString DiskUsage::getToolTip( File *item )
@@ -1035,6 +1088,18 @@ File * DiskUsage::getCurrentFile()
 
 bool DiskUsage::event( QEvent * e )
 {
+  if( deleting ) {                       // if we are deleting, disable the mouse and
+    switch( e->type() ) {                // keyboard events
+    case QEvent::MouseButtonPress:
+    case QEvent::MouseButtonRelease:
+    case QEvent::MouseButtonDblClick:
+    case QEvent::MouseMove:
+    case QEvent::KeyPress:
+    case QEvent::KeyRelease:
+      return true;
+    }
+  }
+
   if ( e->type() == QEvent::AccelOverride )
   {
     QKeyEvent* ke = (QKeyEvent*) e;
