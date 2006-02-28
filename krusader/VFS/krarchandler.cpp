@@ -577,21 +577,25 @@ QString KRarcHandler::detectArchive( bool &encrypted, QString fileName ) {
 				}
 				else if( type == "rar" ) {
 					if( sizeMax > 13 && buffer[ 9 ] == (char)0x73 ) {
-						long offset = 7;
-						long mainHeaderSize = ((unsigned char *)buffer)[ offset+5 ] + 256*((unsigned char *)buffer)[ offset+6 ];
-						offset += mainHeaderSize;
-						while( offset + 10 < sizeMax ) {
-							long headerSize = ((unsigned char *)buffer)[ offset+5 ] + 256*((unsigned char *)buffer)[ offset+6 ];
-							bool isDir = (buffer[ offset+7 ] == '\0' ) && (buffer[ offset+8 ] == '\0' ) &&
-							             (buffer[ offset+9 ] == '\0' ) && (buffer[ offset+10 ] == '\0' );
+						if( buffer[ 10 ] & 0x80 ) { // the header is encrypted?
+							encrypted = true;
+						} else {
+							long offset = 7;
+							long mainHeaderSize = ((unsigned char *)buffer)[ offset+5 ] + 256*((unsigned char *)buffer)[ offset+6 ];
+							offset += mainHeaderSize;
+							while( offset + 10 < sizeMax ) {
+								long headerSize = ((unsigned char *)buffer)[ offset+5 ] + 256*((unsigned char *)buffer)[ offset+6 ];
+								bool isDir = (buffer[ offset+7 ] == '\0' ) && (buffer[ offset+8 ] == '\0' ) &&
+								             (buffer[ offset+9 ] == '\0' ) && (buffer[ offset+10 ] == '\0' );
 							             
-							if( buffer[ offset + 2 ] != (char)0x74 )
-								break;
-							if( !isDir ) {
-								encrypted = ( buffer[ offset + 3 ] & 4 ) != 0;
-								break;
+								if( buffer[ offset + 2 ] != (char)0x74 )
+									break;
+								if( !isDir ) {
+									encrypted = ( buffer[ offset + 3 ] & 4 ) != 0;
+									break;
+								}
+								offset += headerSize;
 							}
-							offset += headerSize;
 						}
 					}
 				}
