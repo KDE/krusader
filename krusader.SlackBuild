@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # krusader.SlackBuild  --  use this script to build a Slackware package
 # this script works on Slackware 10.1 for Krusader-1.60.0
 # 
@@ -7,39 +6,71 @@
 # Mateusz Dubiel [ mjd {*} radioemiter {.} pl ]
 # http://mjd.radioemiter.pl/ 
 
+# updated by Andrea Sciucca [ gohanz {*} infinito {.} it ] for krusader-1.70.0
+# http://www.kde-apps.org/usermanager/search.php?username=gohanz
+# http://www.slacky.it/index.php?option=com_remository&Itemid=29&filecatid=385&func=fileinfo
 
 CWD=`pwd`
-if [ "$TMP" = "" ]; then
-  TMP=/tmp
+if ["$TMP" = ""]; then
+ TMP=/tmp
 fi
-PKG=$TMP/package-krusader
 
-VERSION=1.60.0
-ARCH=i686
-BUILD=1mjd
+PKG=$TMP/package-krusader
+NAME=krusader
+VERSION=1.70.0
+TARGET=i486
+ARCH=${ARCH:-i486}
+BUILD=1sl
+
+if [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mcpu=i686"
+elif [ "$ARCH" = "i686" ]; then
+  SLKCFLAGS="-O2 -march=i686 -mcpu=i686"
+elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2"
+fi
 
 if [ ! -d $TMP ]; then
-  mkdir -p $TMP # location to build the source
+ mkdir -p $TMP 
 fi
-rm -rf $PKG
-mkdir -p $PKG
+if [ ! -d $PKG ]; then
+ mkdir -p $PKG
+fi
 
 cd $TMP
-rm -rf krusader-$VERSION
-tar xzvf $CWD/krusader-$VERSION.tar.gz
-cd krusader-$VERSION
+tar xzvf $CWD/$NAME-$VERSION.tar.gz
+cd $NAME-$VERSION
 chown -R root.root .
-CFLAGS="-march=i686 -O2 -s -pipe -fomit-frame-pointer" \
-CXXFLAGS="-march=i686 -O2 -s -pipe " \
-./configure
+CFLAGS="$SLKCFLAGS" \
+CXXFLAGS="$SLKCFLAGS" \
+./configure --prefix=/opt/kde \
+--disable-debug \
+--mandir=/usr/man \
+--program-prefix="" \
+--program-suffix="" \
+$TARGET-slackware-linux
 make
 make install DESTDIR=$PKG
+mkdir -p $PKG/usr/doc/$NAME-$VERSION
+cp -a AUTHORS COPYING CVSNEWS ChangeLog INSTALL README TODO $PKG/usr/doc/$NAME-$VERSION
+
+( cd $PKG
+  find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+  find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+)
+
+find $PKG/usr/man -type f -exec gzip -9 {} \;
 rm -rf $PKG/tmp
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cd $CWD
+cp -a *.SlackBuild slack-desc $PKG/usr/doc/$NAME-$VERSION
+chown -R root.root $PKG/usr/doc/$NAME-$VERSION
 cd $PKG
-makepkg -l y -c n $TMP/krusader-$VERSION-$ARCH-$BUILD.tgz
-mv $TMP/krusader-$VERSION-$ARCH-$BUILD.tgz $CWD
+requiredbuilder -v -y -s $CWD $PKG
+makepkg -l y -c n $CWD/$NAME-$VERSION-$ARCH-$BUILD.tgz
 
-
-
+if [ "$1" = "--cleanup" ]; then
+ rm -rf $TMP/$NAME-$VERSION
+ rm -rf $PKG
+fi
