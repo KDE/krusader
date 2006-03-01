@@ -242,7 +242,8 @@ class Synchronizer : public QObject
     bool    isMarked( TaskType task, bool dupl );
     bool    markParentDirectories( SynchronizerFileItem * );
     void    executeTask();
-    bool    compareByContent( QString, QString, QString, QString );
+    bool    compareByContent( QString, QString, QString, QString, KIO::filesize_t );
+    bool    compareByContentLocal( QString, QString, KIO::filesize_t );
     void    abortContentComparing();
     void    setPermanent( SynchronizerFileItem * );
     void    operate( SynchronizerFileItem *item, void (*)(SynchronizerFileItem *) );

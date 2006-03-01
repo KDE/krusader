@@ -49,6 +49,7 @@
 #include <qeventloop.h>
 #include <qprogressdialog.h>
 #include <qpushbutton.h>
+#include <qdatetime.h>
 #include <kprocess.h>
 #include <kdialogbase.h>
 #include <kprogress.h>
@@ -403,7 +404,7 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
         }
       }
       else {
-        if( cmpByContent && compareByContent(leftName, leftDir, rightName, rightDir) )
+        if( cmpByContent && compareByContent( leftName, leftDir, rightName, rightDir, leftSize ) )
         {
           task = TT_EQUALS;
           break;
@@ -1138,7 +1139,7 @@ QString Synchronizer::rightBaseDirectory()
   return rightBaseDir;
 }
 
-bool Synchronizer::compareByContent( QString leftName, QString leftDir, QString rightName, QString rightDir )
+bool Synchronizer::compareByContent( QString leftName, QString leftDir, QString rightName, QString rightDir, KIO::filesize_t size )
 {
   if( !leftDir.isEmpty() )
     leftDir += "/";
@@ -1147,6 +1148,11 @@ bool Synchronizer::compareByContent( QString leftName, QString leftDir, QString 
 
   leftURL   = vfs::fromPathOrURL( leftBaseDir + leftDir + leftName );
   rightURL  = vfs::fromPathOrURL( rightBaseDir + rightDir + rightName );
+
+  leftReadJob = rightReadJob = 0;
+
+  if( leftURL.isLocalFile() && rightURL.isLocalFile() )
+    return compareByContentLocal( leftURL.path(-1), rightURL.path( -1 ), size );
 
   leftReadJob = KIO::get( leftURL, false, false );
   rightReadJob = KIO::get( rightURL, false, false );
@@ -1187,6 +1193,81 @@ bool Synchronizer::compareByContent( QString leftName, QString leftDir, QString 
     emit statusInfo( i18n( "Scanned directories:%1" ).arg( scannedDirs ) );
 
   return compareResult;
+}
+
+bool Synchronizer::compareByContentLocal( QString left, QString right, KIO::filesize_t total ) {
+  bool same = true;
+
+  QFile leftFile( left );
+  if( !leftFile.open( IO_ReadOnly ) )
+    return false;
+
+  QFile rightFile( right );
+  if( !rightFile.open( IO_ReadOnly ) )
+    return false;
+
+  if( total == 0 )
+    total++;
+  KIO::filesize_t received = 0;
+
+  char leftBuffer[ 1440 ]; 
+  char rightBuffer[ 1440 ];
+
+  QTime timer;
+  timer.start();
+
+  waitWindow = 0;
+  int cnt = 0;
+
+  while ( !stopped && !leftFile.atEnd() && !rightFile.atEnd() )
+  {
+    int leftBytes = leftFile.readBlock( leftBuffer, sizeof( leftBuffer ) );
+    int rightBytes = rightFile.readBlock( rightBuffer, sizeof( rightBuffer ) );
+    
+    if( leftBytes != rightBytes ) {
+      same = false;
+      break;
+    }
+
+    if( leftBytes <= 0 )
+      break;
+
+    received += leftBytes;
+
+    if( memcmp( leftBuffer, rightBuffer, leftBytes ) ) {
+      same = false;
+      break;
+    }
+
+    if( (++cnt % 16) == 0 ) {
+      if( waitWindow == 0 ) {
+        if( timer.elapsed() >= 1500 ) {
+          putWaitWindow();
+          if( waitWindow ) comparePercent( 0, (long)(((double)received/(double)total)*100. + 0.5) );
+          qApp->processEvents();
+          timer.start();
+        }
+      } else if( timer.elapsed() >= 250 ) {
+        if( waitWindow )  comparePercent( 0, (long)(((double)received/(double)total)*100. + 0.5) );
+        qApp->processEvents();
+        timer.start();
+      }
+    }
+  }
+
+  if( !leftFile.atEnd() || !rightFile.atEnd() )
+    same = false;
+
+  leftFile.close();
+  rightFile.close();
+
+  if( waitWindow )
+    delete waitWindow;
+
+  if( statusLineChanged )
+    emit statusInfo( i18n( "Scanned directories:%1" ).arg( scannedDirs ) );
+
+  return same;
 }
 
 void Synchronizer::slotDataReceived(KIO::Job *job, const QByteArray &data)
@@ -1284,7 +1365,7 @@ void Synchronizer::putWaitWindow()
 {
   if( autoScroll )
   {
-    waitWindow = new QProgressDialog( 0, "SynchronizerWait", true );
+    waitWindow = new QProgressDialog( parentWidget, "SynchronizerWait", true );
     waitWindow->setLabelText( i18n( "Comparing file %1..." ).arg( leftURL.fileName() ) );
     waitWindow->setTotalSteps( 100 );
     waitWindow->setAutoClose( false );
