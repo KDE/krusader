@@ -44,6 +44,8 @@
 #include <qlabel.h>
 #include <qtabwidget.h>
 
+class QSpinBox;
+
 class SynchronizerGUI : QDialog
 {
    Q_OBJECT
@@ -140,6 +142,9 @@ private:
   void    disableMarkButtons();
   void    enableMarkButtons();
   
+  int     convertToSeconds( int time, int unit );
+  void    convertFromSeconds( int &time, int &unit, int second );
+
 protected:
   virtual void keyPressEvent( QKeyEvent * );
   virtual void resizeEvent( QResizeEvent *e );
@@ -185,6 +190,11 @@ protected:
   
   QStringList    selectedFiles;
   
+  QSpinBox      *equalitySpinBox;
+  QComboBox     *equalityUnitCombo;
+  QSpinBox      *timeShiftSpinBox;
+  QComboBox     *timeShiftUnitCombo;
+
 private:
   QPixmap        fileIcon;
   QPixmap        folderIcon;

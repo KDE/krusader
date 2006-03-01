@@ -166,7 +166,8 @@ class Synchronizer : public QObject
   public:
     Synchronizer();
     int     compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs, bool symLinks,
-                     bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc, QStringList &selFiles );
+                     bool igDate, bool asymm, bool cmpByCnt, bool igCase, bool autoSc, QStringList &selFiles,
+                     int equThres, int timeOffs );
     void    stop() {stopped = true;}
     void    setMarkFlags( bool left, bool equal, bool differs, bool right, bool dup, bool sing, bool del );
     int     refresh( bool nostatus=false );
@@ -269,6 +270,9 @@ class Synchronizer : public QObject
     QStringList                       excludedPaths;  // list of the excluded paths
     KRQuery                           *query;         // the filter used for the query
     bool                              stopped;        // 'Stop' button was pressed
+
+    int                               equalsThreshold;// threshold to treat files equal
+    int                               timeOffset;     // time offset between the left and right sides
 
     bool                              markEquals;     // show the equal files
     bool                              markDiffers;    // show the different files

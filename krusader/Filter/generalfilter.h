@@ -79,6 +79,7 @@ public:
 
   KURLListRequester *searchIn;
   KURLListRequester *dontSearchIn;
+  QHBoxLayout *middleLayout;
 
   KHistoryCombo* searchFor;
   KHistoryCombo* containsText;

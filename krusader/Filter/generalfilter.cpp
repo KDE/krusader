@@ -99,7 +99,7 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   nameGroupLayout->addWidget( ofType, 1, 1 );
   filterLayout->addWidget( nameGroup, 0, 0 );
 
-  QHBoxLayout *middleLayout = new QHBoxLayout();
+  middleLayout = new QHBoxLayout();
   middleLayout->setSpacing( 6 );
   middleLayout->setMargin( 0 );
   QSpacerItem* middleSpacer = new QSpacerItem( 1, 1, QSizePolicy::Fixed, QSizePolicy::Fixed );

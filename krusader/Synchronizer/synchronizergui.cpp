@@ -52,6 +52,7 @@
 #include <qwhatsthis.h>
 #include <qregexp.h>
 #include <qheader.h>
+#include <qspinbox.h>
 #include <kinputdialog.h>
 
 static const char * const right_arrow_button_data[] = {
@@ -1271,6 +1272,50 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   generalFilter->searchFor->setEditText( fileFilter->currentText() );
   generalFilter->searchForCase->setChecked( true );
 
+  // creating the time shift, equality threshold options
+
+  QGroupBox *timeOptionsGroup = new QGroupBox( generalFilter, "timeOptions" );
+  timeOptionsGroup->setTitle( i18n( "&Time options" ) );
+  timeOptionsGroup->setColumnLayout(0, Qt::Vertical );
+  timeOptionsGroup->layout()->setSpacing( 0 );
+  timeOptionsGroup->layout()->setMargin( 0 );
+  QGridLayout *timeOptionsLayout = new QGridLayout( timeOptionsGroup->layout() );
+  timeOptionsLayout->setAlignment( Qt::AlignTop );
+  timeOptionsLayout->setSpacing( 6 );
+  timeOptionsLayout->setMargin( 11 );
+
+  QLabel * equalityLabel = new QLabel( i18n( "Equality threshold:" ), timeOptionsGroup );
+  timeOptionsLayout->addWidget( equalityLabel, 0, 0 );
+
+  equalitySpinBox = new QSpinBox( timeOptionsGroup, "equalitySpinBox" );
+  equalitySpinBox->setMaxValue( 9999 );
+  timeOptionsLayout->addWidget( equalitySpinBox, 0, 1 );
+
+  equalityUnitCombo = new QComboBox( timeOptionsGroup, "equalityUnitCombo" );
+  equalityUnitCombo->insertItem( i18n( "sec" ) );
+  equalityUnitCombo->insertItem( i18n( "min" ) );
+  equalityUnitCombo->insertItem( i18n( "hour" ) );
+  equalityUnitCombo->insertItem( i18n( "day" ) );
+  timeOptionsLayout->addWidget( equalityUnitCombo, 0, 2 );
+
+  QLabel * timeShiftLabel = new QLabel( i18n( "Time shift (right-left):" ), timeOptionsGroup );
+  timeOptionsLayout->addWidget( timeShiftLabel, 1, 0 );
+
+  timeShiftSpinBox = new QSpinBox( timeOptionsGroup, "timeShiftSpinBox" );
+  timeShiftSpinBox->setMinValue( -9999 );
+  timeShiftSpinBox->setMaxValue( 9999 );
+  timeOptionsLayout->addWidget( timeShiftSpinBox, 1, 1 );
+
+  timeShiftUnitCombo = new QComboBox( timeOptionsGroup, "timeShiftUnitCombo" );
+  timeShiftUnitCombo->insertItem( i18n( "sec" ) );
+  timeShiftUnitCombo->insertItem( i18n( "min" ) );
+  timeShiftUnitCombo->insertItem( i18n( "hour" ) );
+  timeShiftUnitCombo->insertItem( i18n( "day" ) );
+  timeOptionsLayout->addWidget( timeShiftUnitCombo, 1, 2 );
+
+  generalFilter->middleLayout->addWidget( timeOptionsGroup );
+
+
   /* ================================== Buttons =================================== */
 
   QHBoxLayout *buttons = new QHBoxLayout;
@@ -1738,7 +1783,9 @@ void SynchronizerGUI::compare()
   int fileCount = synchronizer.compare(leftLocation->currentText(), rightLocation->currentText(),
                        &query, cbSubdirs->isChecked(), cbSymlinks->isChecked(),
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
-                       cbIgnoreCase->isChecked(), btnScrollResults->isOn(), selectedFiles );
+                       cbIgnoreCase->isChecked(), btnScrollResults->isOn(), selectedFiles,
+                       convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ),
+                       convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnStopComparing->hide();
@@ -2069,6 +2116,18 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   btnDuplicates ->setOn( krConfig->readBoolEntry( "Show Duplicates", true ) );
   btnSingles    ->setOn( krConfig->readBoolEntry( "Show Singles", true ) );
 
+  int equalityThreshold = krConfig->readNumEntry( "Equality Threshold", 0 );
+  int equalityCombo = 0;
+  convertFromSeconds( equalityThreshold, equalityCombo, equalityThreshold );
+  equalitySpinBox->setValue( equalityThreshold );
+  equalityUnitCombo->setCurrentItem( equalityCombo );
+
+  int timeShift = krConfig->readNumEntry( "Time Shift", 0 );
+  int timeShiftCombo = 0;
+  convertFromSeconds( timeShift, timeShiftCombo, timeShift );
+  timeShiftSpinBox->setValue( timeShift );
+  timeShiftUnitCombo->setCurrentItem( timeShiftCombo );
+
   refresh();
 }
 
@@ -2096,6 +2155,9 @@ void SynchronizerGUI::saveToProfile( QString profile )
   krConfig->writeEntry( "Show Deletable", btnDeletable->isOn() );
   krConfig->writeEntry( "Show Duplicates", btnDuplicates->isOn() );
   krConfig->writeEntry( "Show Singles", btnSingles->isOn() );
+
+  krConfig->writeEntry( "Equality Threshold", convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ) );
+  krConfig->writeEntry( "Time Shift", convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );
 }
 
 void SynchronizerGUI::connectFilters( const QString &newString )
@@ -2115,5 +2177,36 @@ void SynchronizerGUI::setScrolling( bool isOn )
 
   synchronizer.setScrolling( isOn );
 }
+
+int SynchronizerGUI::convertToSeconds( int time, int unit ) {
+  switch( unit ) {
+  case 1:
+    return time * 60;
+  case 2:
+    return time * 3600;
+  case 3:
+    return time * 86400;
+  default:
+    return time;
+  }
+}
+
+void SynchronizerGUI::convertFromSeconds( int &time, int &unit, int second ) {
+  unit = 0;
+  time = second;
+  int absTime = (time < 0 ) ? -time: time;
+
+  if( absTime >= 86400 && ( absTime % 86400 ) == 0 ) {
+    time /= 86400;
+    unit = 3;
+  } else if( absTime >= 3600 && ( absTime % 3600 ) == 0 ) {
+    time /= 3600;
+    unit = 2;
+  } else if( absTime >= 60 && ( absTime % 60 ) == 0 ) {
+    time /= 60;
+    unit = 1;
+  }
+}
+
 
 #include "synchronizergui.moc"

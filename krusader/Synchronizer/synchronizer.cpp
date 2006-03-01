@@ -89,7 +89,7 @@ void Synchronizer::reset()
 
 int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bool subDirs,
                             bool symLinks, bool igDate, bool asymm, bool cmpByCnt, bool igCase, 
-                            bool autoSc, QStringList &selFiles )
+                            bool autoSc, QStringList &selFiles, int equThres, int timeOffs )
 {
   resultList.clear();
 
@@ -101,6 +101,9 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   autoScroll     = autoSc;
   ignoreCase     = igCase;
   selectedFiles  = selFiles;
+  equalsThreshold= equThres;
+  timeOffset     = timeOffs;
+
   stopped = false;
 
   this->query = query;
@@ -388,6 +391,8 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
 {
   TaskType        task;
 
+  int checkedRightDate = rightDate - timeOffset;
+
   do
   {
     if( isDir )
@@ -409,10 +414,16 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
           task = TT_EQUALS;
           break;
         }
-        if ( !cmpByContent && ( ignoreDate || leftDate == rightDate) )
-        {
-          task = TT_EQUALS;
-          break;
+        if ( !cmpByContent ) {
+          if( ignoreDate || leftDate == checkedRightDate ) {
+            task = TT_EQUALS;
+            break;
+          }
+          time_t diff = ( leftDate > checkedRightDate ) ? leftDate - checkedRightDate : checkedRightDate - leftDate;
+          if( diff <= equalsThreshold ) {
+            task = TT_EQUALS;
+            break;
+          }
         }
       }
     }
@@ -421,9 +432,9 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
       task = TT_COPY_TO_LEFT;
     else if( ignoreDate )
       task = TT_DIFFERS;
-    else if( leftDate > rightDate )
+    else if( leftDate > checkedRightDate )
       task = TT_COPY_TO_RIGHT;
-    else if( leftDate < rightDate )
+    else if( leftDate < checkedRightDate )
       task = TT_COPY_TO_LEFT;
     else
       task = TT_DIFFERS;
@@ -922,7 +933,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           struct utimbuf timestamp;
 
           timestamp.actime = time( 0 );
-          timestamp.modtime = currentTask->rightDate();
+          timestamp.modtime = currentTask->rightDate() - timeOffset;
 
           utime( (const char *)( leftURL.path( -1 ).local8Bit() ), &timestamp );
 
@@ -950,7 +961,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           struct utimbuf timestamp;
 
           timestamp.actime = time( 0 );
-          timestamp.modtime = currentTask->leftDate();
+          timestamp.modtime = currentTask->leftDate() + timeOffset;
 
           utime( (const char *)( rightURL.path( -1 ).local8Bit() ), &timestamp );
 
