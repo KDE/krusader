@@ -88,7 +88,8 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 QString KrDetailedView::ColumnName[ KrDetailedViewProperties::MAX_COLUMNS ];
 
 KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg, const char *name ) :
-      KListView( parent, name ), KrView( cfg ), _currDragItem( 0L ), currentlyRenamedItem( 0 ) {
+      KListView( parent, name ), KrView( cfg ), _currDragItem( 0L ), currentlyRenamedItem( 0 ),
+      pressedItem( 0 ) {
 	setWidget( this );
 	_nameInKConfig=QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ;
 }
@@ -481,6 +482,8 @@ void KrDetailedView::slotCurrentChanged( QListViewItem * item ) {
 
 void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
    bool callDefaultHandler = true, processEvent = true, selectionChanged = false;
+   pressedItem = 0;
+
    QListViewItem * oldCurrent = currentItem();
    QListViewItem *newCurrent = itemAt( contentsToViewport( e->pos() ) );
    if (e->button() == RightButton)
@@ -607,7 +610,20 @@ void KrDetailedView::contentsMousePressEvent( QMouseEvent * e ) {
 
      if( name.isEmpty() || _dict.find( name ) == 0 ) // is the file still valid?
        newCurrent = 0;                // if not, don't do any crash...
+   } else {
+     // emitting the missing signals from QListView::contentsMousePressEvent();
+     // the right click signal is not emitted as it is used for selection
+
+     QPoint vp = contentsToViewport( e->pos() );
+
+     if( !newCurrent || ( newCurrent && newCurrent->isEnabled() ) ) {
+       emit pressed( pressedItem = newCurrent );
+       emit pressed( newCurrent, viewport()->mapToGlobal( vp ), 0 );
+     }
+
+     emit mouseButtonPressed( e->button(), newCurrent, viewport()->mapToGlobal( vp ), 0 );
    }
+
    //   if (i != 0) // comment in, if click sould NOT select
    //     setSelected(i, FALSE);
    if (newCurrent) QListView::setCurrentItem(newCurrent);
@@ -628,6 +644,25 @@ void KrDetailedView::contentsMouseReleaseEvent( QMouseEvent * e ) {
   if (e->button() == RightButton)
     contextMenuTimer.stop();
   KListView::contentsMouseReleaseEvent( e );
+
+  if( pressedItem ) {
+    QPoint vp = contentsToViewport( e->pos() );
+    QListViewItem *newCurrent = itemAt( vp );
+
+    if( pressedItem == newCurrent ) {
+      // emitting the missing signals from QListView::contentsMouseReleaseEvent();
+      // the right click signal is not emitted as it is used for selection
+
+      if( !newCurrent || ( newCurrent && newCurrent->isEnabled() ) ) {
+        emit clicked( newCurrent );
+        emit clicked( newCurrent, viewport()->mapToGlobal( vp ), 0 );
+      }
+
+      emit mouseButtonClicked( e->button(), newCurrent, viewport()->mapToGlobal( vp ), 0 );
+    }
+
+    pressedItem = 0;
+  }
 }
 
 void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
@@ -672,6 +707,11 @@ void KrDetailedView::contentsMouseMoveEvent ( QMouseEvent * e ) {
            }
            contextMenuTimer.stop();
          }
+         // emitting the missing signals from QListView::contentsMouseMoveEvent();
+         if( newItem )
+           emit onItem( newItem );
+         else
+           emit onViewport();
       }
       else
          KListView::contentsMouseMoveEvent( e );
@@ -1133,6 +1173,7 @@ void KrDetailedView::setNameToMakeCurrent( QListViewItem * it ) {
 }
 
 void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const QPoint&, int ) {
+   pressedItem = 0; // if the signals are emitted, don't emit twice at contentsMouseReleaseEvent
    if ( button == Qt::MidButton )
       emit middleButtonClicked( item );
 }

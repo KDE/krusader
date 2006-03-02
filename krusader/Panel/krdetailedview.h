@@ -168,6 +168,7 @@ private:
    QTimer contextMenuTimer;
    QPoint contextMenuPoint;
    QListViewItem *currentlyRenamedItem;
+   QListViewItem *pressedItem;
 };
 
 #endif /* KRDETAILEDVIEW_H */
