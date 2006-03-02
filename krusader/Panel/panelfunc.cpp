@@ -651,9 +651,8 @@ void ListPanelFunc::execute( QString& name ) {
 	QString protocol = origin.isLocalFile() ? KrServices::registerdProtocol( vf->vfile_getMime() ) : "";
 
 	if ( protocol == "tar" || protocol == "krarc" ) {
-		QString type = vf->vfile_getMime().right( 4 );
-		if ( vf->vfile_getMime().contains( "-rar" ) )
-			type = "-rar";
+		bool encrypted;
+		QString type = KRarcHandler::getType( encrypted, vf->vfile_getUrl().path(), vf->vfile_getMime() );
 		if ( !KRarcHandler::arcHandled( type ) )   // if the specified archive is disabled delete the protocol
 			protocol = "";
 	}
