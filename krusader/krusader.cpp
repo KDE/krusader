@@ -130,6 +130,7 @@ KAction *Krusader::actNewTool = 0;
 KAction *Krusader::actKonfigurator = 0;
 KAction *Krusader::actToolsSetup = 0;
 KAction *Krusader::actSwapPanels = 0;
+KAction *Krusader::actSwapSides = 0;
 KAction *Krusader::actBack = 0;
 KAction *Krusader::actRoot = 0;
 KAction *Krusader::actFind = 0;
@@ -500,7 +501,9 @@ void Krusader::setupActions() {
    actToggleHidden = new KToggleAction( i18n( "Show &Hidden Files" ), CTRL + Key_Period, SLOTS,
                                         SLOT( toggleHidden() ), actionCollection(), "toggle hidden files" );
    actSwapPanels = new KAction( i18n( "S&wap Panels" ), CTRL + Key_U, SLOTS,
-                                SLOT( toggleSwapPanels() ), actionCollection(), "toggle swap panels" );
+                                SLOT( swapPanels() ), actionCollection(), "swap panels" );
+   actSwapSides = new KAction( i18n( "Sw&ap Sides" ), CTRL + SHIFT + Key_U, SLOTS,
+                                SLOT( toggleSwapSides() ), actionCollection(), "toggle swap sides" );
    krConfig->setGroup( "Look&Feel" );
    actToggleHidden->setChecked( krConfig->readBoolEntry( "Show Hidden", _ShowHidden ) );
 

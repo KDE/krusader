@@ -12,13 +12,16 @@
 
 #define HIDE_ON_SINGLE_TAB  false
 
-#define SHOW  { _newTab->show(); _tabbar->show(); _closeTab->show(); }
-#define HIDE  { _newTab->hide(); _tabbar->hide(); _closeTab->hide(); }
+#define SHOW    { _newTab->show(); _tabbar->show(); _closeTab->show(); }
+#define HIDE    { _newTab->hide(); _tabbar->hide(); _closeTab->hide(); }
+
+#define _self   (*_selfPtr)
+#define _other  (*_otherPtr)
 
 PanelManager::PanelManager( QWidget *parent, bool left ) :
 QWidget( parent, "PanelManager" ), _layout( 0 ), _left( left ), 
-       _self( _left ? MAIN_VIEW->left : MAIN_VIEW->right ), 
-       _other( _left ? MAIN_VIEW->right : MAIN_VIEW->left ) {   
+       _selfPtr( _left ? &MAIN_VIEW->left : &MAIN_VIEW->right ), 
+       _otherPtr( _left ? &MAIN_VIEW->right : &MAIN_VIEW->left ) {   
    _layout = new QGridLayout( this, 1, 1 );
    _stack = new QWidgetStack( this );
 
@@ -307,9 +310,9 @@ void PanelManager::deletePanel( ListPanel * p ) {
 }
 
 void PanelManager::swapPanels() {
-   _left = !_left; 
-   _self = _left ? MAIN_VIEW->left : MAIN_VIEW->right;
-   _other = _left ? MAIN_VIEW->right : MAIN_VIEW->left;
+   _left = !_left;
+   _selfPtr = _left ? &MAIN_VIEW->left : &MAIN_VIEW->right;
+   _otherPtr = _left ? &MAIN_VIEW->right : &MAIN_VIEW->left;
 }
 
 #include "panelmanager.moc"

@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="9" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="10" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -59,7 +59,8 @@
    <text>&amp;View</text>
    <Separator/>
    <Action name="toggle hidden files" />
-   <Action name="toggle swap panels" />
+   <Action name="swap panels" />
+   <Action name="toggle swap sides" />
    <Action name="all files" />
    <Action name="exec files" />
    <Action name="custom files" />

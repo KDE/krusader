@@ -71,7 +71,7 @@ class PanelManager: public QWidget {
     PanelTabBar *_tabbar;
     QWidgetStack *_stack;
     QToolButton *_newTab, *_closeTab;
-    ListPanel *&_self, *&_other;
+    ListPanel **_selfPtr, **_otherPtr;
 };
 
 

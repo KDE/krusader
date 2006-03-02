@@ -64,8 +64,9 @@ class KRslots : public QObject {
     void rightclickMenu();
     void insertFileName(bool full_path);
     void rootKrusader();
+    void swapPanels();
     void toggleHidden();
-    void toggleSwapPanels();
+    void toggleSwapSides();
 	 void togglePopupPanel();
     void configToolbar();
     void configKeys();

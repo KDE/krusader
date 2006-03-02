@@ -339,7 +339,15 @@ void KRslots::toggleHidden(){
   MAIN_VIEW->rightMng->refreshAllTabs( true );
 }
 
-void KRslots::toggleSwapPanels(){
+void KRslots::swapPanels(){
+  KURL leftURL = MAIN_VIEW->left->func->files()->vfs_getOrigin();
+  KURL rightURL = MAIN_VIEW->right->func->files()->vfs_getOrigin();
+
+  MAIN_VIEW->left->func->openUrl( rightURL );
+  MAIN_VIEW->right->func->openUrl( leftURL );
+}
+
+void KRslots::toggleSwapSides(){
   QValueList<int> lst = MAIN_VIEW->horiz_splitter->sizes();
 
   MAIN_VIEW->horiz_splitter->moveToLast( MAIN_VIEW->leftMng );
