@@ -1210,12 +1210,16 @@ bool Synchronizer::compareByContentLocal( QString left, QString right, KIO::file
   bool same = true;
 
   QFile leftFile( left );
-  if( !leftFile.open( IO_ReadOnly ) )
+  if( !leftFile.open( IO_ReadOnly ) ) {
+    KMessageBox::error(parentWidget, i18n("Error at opening %1!").arg( left ));
     return false;
+  }
 
   QFile rightFile( right );
-  if( !rightFile.open( IO_ReadOnly ) )
+  if( !rightFile.open( IO_ReadOnly ) ) {
+    KMessageBox::error(parentWidget, i18n("Error at opening %1!").arg( right ));
     return false;
+  }
 
   if( total == 0 )
     total++;
@@ -1229,6 +1233,7 @@ bool Synchronizer::compareByContentLocal( QString left, QString right, KIO::file
 
   waitWindow = 0;
   int cnt = 0;
+  statusLineChanged = false;
 
   while ( !stopped && !leftFile.atEnd() && !rightFile.atEnd() )
   {
