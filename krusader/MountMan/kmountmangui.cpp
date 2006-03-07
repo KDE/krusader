@@ -147,7 +147,7 @@ void KMountManGUI::createMainPage() {
 }
 
 void KMountManGUI::getSpaceData() {
-   fileSystems.clear();
+   fileSystemsTemp.clear();
 	KrMountDetector::getInstance()->hasMountsChanged();
 	
    mounted = KMountPoint::currentMountPoints();
@@ -175,6 +175,7 @@ void KMountManGUI::getSpaceData() {
 // used when certain filesystem (/dev, /sys) can't have the needed stats
 void KMountManGUI::gettingSpaceData() {
    if ( --numOfMountPoints == 0 ) {
+      fileSystems = fileSystemsTemp;
       emit finishedGettingSpaceData();
    }
 }
@@ -194,7 +195,7 @@ void KMountManGUI::gettingSpaceData( const QString &mountPoint, unsigned long kB
    data.setFreeBlks( kBAvail );
    data.setName( m->mountedFrom() );
    data.setType( m->mountType() );
-   fileSystems.append( data );
+   fileSystemsTemp.append( data );
 }
 
 void KMountManGUI::addItemToMountList( QListView *lst, fsData &fs ) {
@@ -345,18 +346,20 @@ void KMountManGUI::clicked( QListViewItem *item, const QPoint& pos, int col ) {
       popup.setItemEnabled( FORMAT_ID, false );
    }
 
+   QString mountPoint = system->mntPoint();
+
    int result = popup.exec( pos );
    // check out the user's option
    switch ( result ) {
          case - 1 : return ;     // the user clicked outside of the menu
          case MOUNT_ID :
          case UNMOUNT_ID :
-         krMtMan.toggleMount( system->mntPoint() );
+         krMtMan.toggleMount( mountPoint );
          break;
          case FORMAT_ID :
          break;
          case EJECT_ID :
-         KMountMan::eject( system->mntPoint() );
+         KMountMan::eject( mountPoint );
          break;
    }
 }

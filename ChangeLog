@@ -10,8 +10,10 @@
     ADDED: new krarc (password handling, type autodetection, writing
            out archiver error messages, step into hidden archives,...)
 
+    FIXED: [ 1103646 ] MountMan exits after umount and a fast click on the device
     FIXED: single click doesn't work in TC selection mode
     FIXED: disk usage crash at deleting files
+    FIXED: valgrind: Free Memory Read          - KMountManGUI::clicked()
     FIXED: valgrind: Free Memory Read          - SynchronizerGUI::loadFromProfile()
     FIXED: valgrind: Free Memory Read          - RadialMap::Widget::paintExplodedLabels()
     FIXED: valgrind: Free Memory Read          - DULines::slotChanged()

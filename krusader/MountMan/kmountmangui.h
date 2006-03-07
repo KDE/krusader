@@ -95,6 +95,7 @@ private:
 	// used for the getSpace - gotSpace functions
 	KMountPoint::List possible, mounted;
 	QValueList<fsData> fileSystems;
+	QValueList<fsData> fileSystemsTemp;  // first collect to a temporary place
 	int numOfMountPoints;
 };
 
