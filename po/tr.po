@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "POT-Creation-Date: 2006-03-06 14:56+0100\n"
-"PO-Revision-Date: 2006-03-11 11:13+0200\n"
+"PO-Revision-Date: 2006-03-12 01:18+0200\n"
 "Last-Translator: Bekir Sonat <bekirsonat@kde.org.tr>\n"
 "Language-Team: Turkish <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "Yenisini Ekle"
 
 #: GUI/profilemanager.cpp:112
 msgid "Krusader::ProfileManager"
-msgstr "Krusader::ProfileManager"
+msgstr "Krusader::GörünümYönetici"
 
 #: GUI/profilemanager.cpp:112
 msgid "Enter the profile name:"
@@ -63,25 +63,25 @@ msgid ""
 "When active, each directory change is performed in the\n"
 "active and inactive panel - if possible."
 msgstr ""
-"Bu düğme Eşgüdümlü-İzlem kipini değiştirir.\n"
+"Bu düğme Eşgüdümlü-İzleme kipini değiştirir.\n"
 "Etkinken, her dizin değiştirme, etkin ve etkin olmayan\n"
 "panellerde uygulanır,-eğer mümkünse."
 
 #: GUI/actionproperty.cpp:195
 msgid "New protocol"
-msgstr "Yeni iletişim-kuralı"
+msgstr "Yeni yordam"
 
 #: GUI/actionproperty.cpp:196
 msgid "Set a protocol:"
-msgstr "İletişim-kuralı tanımla:"
+msgstr "Yordam tanımla:"
 
 #: GUI/actionproperty.cpp:211
 msgid "Edit protocol"
-msgstr "İletişim-kuralı düzenle"
+msgstr "Yordam düzenle"
 
 #: GUI/actionproperty.cpp:212
 msgid "Set another protocol:"
-msgstr "Başka bir iletişim-kuralı tanımla:"
+msgstr "Başka bir yordam tanımla:"
 
 #: GUI/actionproperty.cpp:242
 msgid "Edit path"
@@ -277,8 +277,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Çalışma-dizini</i>, <i>Komut</i>un çalıştırılacağı dizin'i tanımlar."
+msgstr "<i>Çalışma-dizini</i>, <i>Komut</i>un çalıştırılacağı dizin'i tanımlar."
 
 #: GUI/actionpropertybase.cpp:411
 msgid "Tooltip:"
@@ -322,7 +321,7 @@ msgstr "Öntanımlı kısayol:"
 
 #: GUI/actionpropertybase.cpp:425
 msgid "None"
-msgstr "yok"
+msgstr "Yok"
 
 #: GUI/actionpropertybase.cpp:426
 msgid "Set a default keyboard shortcut."
@@ -346,8 +345,7 @@ msgstr "Geleneksel hatayı ayrı-tut"
 
 #: GUI/actionpropertybase.cpp:431
 msgid "Separate standard out and standard error in the output collection."
-msgstr ""
-"Çıktı biriktiriken geleneksel çıktı ve geleneksel hatayı ayrı ayrı tut."
+msgstr "Çıktı biriktiriken geleneksel çıktı ve geleneksel hatayı ayrı ayrı tut."
 
 #: GUI/actionpropertybase.cpp:432
 msgid "Normal"
@@ -391,7 +389,7 @@ msgstr "Sadece burada tanımlanan <b>Kullanıcı-eylemi</b>ni gösterir."
 
 #: GUI/actionpropertybase.cpp:441
 msgid "Protocol"
-msgstr "İletişim kuralı"
+msgstr "Yordam"
 
 #: GUI/actionpropertybase.cpp:446
 msgid "Path"
@@ -498,7 +496,7 @@ msgid ""
 "terminal mode is active."
 msgstr ""
 "'Terminalde çalıştır' düğmesi, Krusader'in komut satırında (konsol) "
-"programlarının çalıştırılması için termina kip'inin etkinleştirilmesini "
+"programlarının çalıştırılması için terminal kip'inin etkinleştirilmesini "
 "sağlar. "
 
 #: GUI/kcmdline.cpp:182
@@ -507,7 +505,7 @@ msgstr "Bu terminal 1 saat içinde kapanacaktır.."
 
 #: GUI/kfnkeys.cpp:50
 msgid "F2 Term  "
-msgstr "F2 Term"
+msgstr "F2 Term  "
 
 #: GUI/kfnkeys.cpp:51
 #, fuzzy
@@ -520,7 +518,7 @@ msgstr ""
 
 #: GUI/kfnkeys.cpp:57
 msgid "F3 View  "
-msgstr "F3 Göster"
+msgstr "F3 Göster  "
 
 #: GUI/kfnkeys.cpp:58
 msgid "Open file in viewer."
@@ -528,7 +526,7 @@ msgstr "Dosya içeriğini gösterir."
 
 #: GUI/kfnkeys.cpp:62
 msgid "F4 Edit  "
-msgstr "F4 Düzenle"
+msgstr "F4 Düzenle  "
 
 #: GUI/kfnkeys.cpp:63
 #, fuzzy
@@ -541,7 +539,7 @@ msgstr ""
 
 #: GUI/kfnkeys.cpp:69
 msgid "F5 Copy  "
-msgstr "F5 Kopyala"
+msgstr "F5 Kopyala  "
 
 #: GUI/kfnkeys.cpp:70
 msgid "Copy file from one panel to the other."
@@ -557,7 +555,7 @@ msgstr "Dosya(lar)ı bir panelden öbürüne taşır."
 
 #: GUI/kfnkeys.cpp:79
 msgid "F7 Mkdir "
-msgstr "F7 DizinYarat"
+msgstr "F7 DizinYarat "
 
 #: GUI/kfnkeys.cpp:80
 msgid "Create directory in current panel."
@@ -581,7 +579,7 @@ msgstr "Seçilen dizin, dosya vs. için yeni ad tanımlar"
 
 #: GUI/kfnkeys.cpp:94
 msgid "F10 Quit "
-msgstr "F10 Çık"
+msgstr "F10 Çık "
 
 #: GUI/kfnkeys.cpp:95
 msgid "Quit Krusader."
@@ -638,7 +636,7 @@ msgid ""
 "Protocol not supported by Krusader:\n"
 "%1"
 msgstr ""
-"Krusader tarafından desteklenmeyen iletişim kuralı:\n"
+"Krusader tarafından desteklenmeyen yordam:\n"
 "%1"
 
 #: VFS/arc_vfs.cpp:217
@@ -696,8 +694,7 @@ msgstr ""
 
 #: VFS/virt_vfs.cpp:156
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr ""
-"Sadece 'virt:/' dizini içinde izin verilen yeni dizinler oluşturuluyor."
+msgstr "Sadece 'virt:/' dizini içinde izin verilen yeni dizinler oluşturuluyor."
 
 #: Filter/generalfilter.cpp:92 Konfigurator/konfigurator.cpp:107
 #: VFS/krquery.cpp:136
@@ -730,7 +727,7 @@ msgstr "Özel"
 
 #: VFS/krquery.cpp:417
 msgid "Searching content of '%1' (%2%)"
-msgstr ""
+msgstr "'%1' içerisinde aranıyor (%2%)"
 
 #: VFS/krarchandler.cpp:170
 msgid "Counting files in archive"
@@ -738,7 +735,7 @@ msgstr "Arşiv içindeki dosyalar sayılıyor"
 
 #: VFS/krarchandler.cpp:184
 msgid "Failed to list the content of the archive (%1)!"
-msgstr ""
+msgstr "(%1) arşivi içindekiler listelenirken hata!"
 
 #: VFS/krarchandler.cpp:204
 msgid "Failed to unpack"
@@ -746,11 +743,11 @@ msgstr "Açma başarısız"
 
 #: VFS/krarchandler.cpp:240
 msgid "Failed to convert rpm (%1) to cpio!"
-msgstr ""
+msgstr "(%1) rpm - cpio çevriminde hata!"
 
 #: VFS/krarchandler.cpp:257
 msgid "Failed to convert deb (%1) to tar!"
-msgstr ""
+msgstr "(%1) deb - tar çevriminde hata!"
 
 #: VFS/krarchandler.cpp:291
 msgid "Unpacking File(s)"
@@ -770,9 +767,8 @@ msgid "Packing File(s)"
 msgstr "Dosya(lar) sıkıştırılıyor"
 
 #: VFS/krarchandler.cpp:416
-#, fuzzy
 msgid "Failed to pack %1!"
-msgstr "Sıkıştırma başarısız:"
+msgstr "%1 Sıkıştırması başarısız!"
 
 #: VFS/krarchandler.cpp:424
 msgid "Failed to pack: "
@@ -824,7 +820,7 @@ msgstr "&ileri Düzey"
 
 #: Filter/filterdialog.cpp:38
 msgid "Krusader::Choose Files"
-msgstr ""
+msgstr "Krusader::Dosya Seçici"
 
 #: Filter/generalfilter.cpp:55
 msgid "File name"
@@ -897,7 +893,7 @@ msgstr "&Metin"
 
 #: Filter/generalfilter.cpp:226
 msgid "&Remote content search"
-msgstr ""
+msgstr "&Uzakta içerik ara"
 
 #: Filter/generalfilter.cpp:234
 msgid "&Match whole word only"
@@ -1072,7 +1068,7 @@ msgstr ""
 
 #: Filter/advancedfilter.cpp:508
 msgid "Specified sizes are inconsistent!"
-msgstr "Belirlenen büyüklükleruyuşmuyor."
+msgstr "Belirlenen büyüklükler uyuşmuyor."
 
 #: Filter/advancedfilter.cpp:509
 msgid ""
@@ -1274,7 +1270,7 @@ msgstr "İki panel arasındaki ilişkiyi belirle"
 
 #: UserAction/expander.cpp:689
 msgid "Set the new size in percent"
-msgstr ""
+msgstr "Yüzde cinsinden yeni büyüklük"
 
 #: UserAction/expander.cpp:725
 msgid "Executes a JavaScript-extension"
@@ -1394,8 +1390,7 @@ msgid ""
 "to move there. Use of Net protocols like ftp or fish is possible."
 msgstr ""
 "Bulunduğunuz dizin'in adı. Buraya, gitmek istediğiniz yeri yazabilirsiniz. "
-"Ayrıca ftp, fish gibi Ağ-iletişim kurallarına uygun konumlar da "
-"kullanabilirsiniz."
+"Ayrıca ftp, fish gibi Ağ-yordamları da kullanabilirsiniz."
 
 #: Panel/listpanel.cpp:225
 msgid "="
@@ -1420,7 +1415,7 @@ msgstr "~"
 #: Panel/listpanel.cpp:238 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
 #: Panel/panelpopup.cpp:106 Panel/panelpopup.cpp:117
 msgid "Home"
-msgstr "Ev"
+msgstr "Home"
 
 #: Panel/listpanel.cpp:243
 msgid "/"
@@ -1446,7 +1441,7 @@ msgstr "Dosya(ları) seçMe"
 
 #: Panel/listpanel.cpp:630
 msgid "No space information on non-local filesystems"
-msgstr "Yerel-olmayayan dosyasistemleri bilgisi için yer yok"
+msgstr "Yerel-olmayan dosya sistemleri bilgisi için yer yok"
 
 #: Panel/listpanel.cpp:637
 msgid "No space information on [dev]"
@@ -1980,9 +1975,8 @@ msgid "&Delete All"
 msgstr "&Hepsini Sil"
 
 #: Panel/panelfunc.cpp:713
-#, fuzzy
 msgid "Cannot pack files onto a virtual destination!"
-msgstr "Sanal hedefe dosya açamazsınız!"
+msgstr "Sanal hedef üzerine dosya açamazsınız!"
 
 #: Panel/panelfunc.cpp:725
 msgid "The Archive "
@@ -2049,11 +2043,11 @@ msgstr "Veritabanını güncelle"
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:314
 msgid "Locate"
-msgstr "Yerini-bul"
+msgstr "Bul"
 
 #: Locate/locate.cpp:74
 msgid "Krusader::Locate"
-msgstr "Krusader::Locate"
+msgstr "Krusader::Bul"
 
 #: Locate/locate.cpp:77
 msgid "Search for:"
@@ -2061,7 +2055,7 @@ msgstr "Aranacak:"
 
 #: Locate/locate.cpp:92
 msgid "Don't search in path"
-msgstr "yol üstünde araştırma"
+msgstr "Aranmayacak yol:"
 
 #: Locate/locate.cpp:94
 msgid "Show only the existing files"
@@ -2069,7 +2063,7 @@ msgstr "Sadece mevcut dosyaları göster"
 
 #: Locate/locate.cpp:96
 msgid "Case Sensitive"
-msgstr "Harf Duyarlı"
+msgstr "BÜYÜK/küçük Duyarlı"
 
 #: Locate/locate.cpp:115
 msgid "Results"
@@ -2086,7 +2080,7 @@ msgid ""
 "Locate produced the following error message:\n"
 "\n"
 msgstr ""
-"Yerini-Bul aşağıdaki hatayı bildiriyor:\n"
+"Bul programı aşağıdaki hatayı bildiriyor:\n"
 "\n"
 
 #: Locate/locate.cpp:234
@@ -2124,7 +2118,7 @@ msgstr "Aranan ifade bulunamadı!"
 
 #: Locate/locate.cpp:487
 msgid "Locate results"
-msgstr "Yerini-bul sonuçları"
+msgstr "Bulunan(lar):"
 
 #: Locate/locate.cpp:495 Search/krsearchdialog.cpp:534
 msgid "Query name"
@@ -2137,8 +2131,7 @@ msgstr "Dosya öbeği için bir isim verebilirsiniz"
 
 #: krusader.cpp:321
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Durum-çubuğu, fare'nin altındaki dosya hakkında temel bilgileri gösterecek."
+msgstr "Durum-çubuğu, fare'nin altındaki dosya hakkında temel bilgileri gösterecek."
 
 #: krusader.cpp:381
 msgid ""
@@ -2158,9 +2151,9 @@ msgid ""
 "will now be checked for external applications. Then the Konfigurator will be "
 "launched where you can customize Krusader to your needs.</p></qt>"
 msgstr ""
-"<qt><b>Krusader !</b><p>As this is your first run, your machine will now be "
-"checked for external applications. Then the Konfigurator will be launched "
-"where you can customize Krusader to your needs.</p></qt>"
+"<qt><b>Hoşgeldiniz!</b><p>Krusader ilk kez çalıştırıldığı için, bilgisayarınızdaki "
+"harici uygulamalar denetlenecek, böylece daha sonra Krusader'i gereksinimlerinize "
+"göre yapılandırırken onları kullanabileceksiniz.</p></qt>"
 
 #: krusader.cpp:454
 msgid "F3 View Dialog"
@@ -2177,32 +2170,31 @@ msgstr "&Yenile"
 
 #: krusader.cpp:480
 msgid "Show Actions Toolbar"
-msgstr "Göster: Eylemler Araç-çubuğu"
+msgstr "Eylemler Araç-çubuğunu göster"
 
 #: krusader.cpp:492
 msgid "Show &FN Keys Bar"
-msgstr "Göster: &FN Tuş-çubuğu"
+msgstr "&FN Tuş-çubuğunu göster"
 
 #: krusader.cpp:495
 msgid "Show &Command Line"
-msgstr "Göster: &Komut Satırı"
+msgstr "&Komut Satırını göster"
 
 #: krusader.cpp:498
 msgid "Show Terminal &Emulator"
-msgstr "Göster: &Terminal Öykünücü"
+msgstr "&Terminal Öykünücüsünü göster"
 
 #: krusader.cpp:501
 msgid "Show &Hidden Files"
-msgstr "Göster: &Gizli Dosyalar"
+msgstr "&Gizli Dosyaları göster"
 
 #: krusader.cpp:503
 msgid "S&wap Panels"
 msgstr "&Panelleri Yerdeğiştir"
 
 #: krusader.cpp:505
-#, fuzzy
 msgid "Sw&ap Sides"
-msgstr "Tarafları yer-değiştir."
+msgstr "Tarafları Yerdeğiştir."
 
 #: krusader.cpp:511
 msgid "popup cmdline"
@@ -2214,7 +2206,7 @@ msgstr "Üst Dizine"
 
 #: krusader.cpp:515
 msgid "&Edit New File"
-msgstr "&Yeni Dosya Düzenle"
+msgstr "&Yeni Dosya Yarat"
 
 #: krusader.cpp:516
 msgid "Start &Root Mode Krusader"
@@ -2576,7 +2568,7 @@ msgstr "&Hex Gösterici"
 
 #: KViewer/krviewer.cpp:100
 msgid "Text &editor"
-msgstr "Metşn &Düzenleyici"
+msgstr "Metin &Düzenleyici"
 
 #: KViewer/krviewer.cpp:102
 msgid "&Next tab"
@@ -2620,7 +2612,7 @@ msgstr "Üzgünüm, dahili düzenleyici bulunamadı"
 
 #: Search/krsearchdialog.cpp:72
 msgid "Krusader::Search"
-msgstr "Krusader::Search"
+msgstr "Krusader::Ara"
 
 #: Search/krsearchdialog.cpp:96
 msgid "Search"
@@ -2837,8 +2829,7 @@ msgstr ""
 "Lütfen geliştiriciyi arayın"
 
 #: MountMan/kmountmangui.cpp:325
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Bağlamacı (MountMan) içsel hatası. Lütfen geliştiriciyi bilgilendirin. "
 "Teşekkürler."
@@ -2855,7 +2846,7 @@ msgstr "Biçimlendir"
 msgid ""
 "_: NAME OF TRANSLATORS\n"
 "Your names"
-msgstr "Çeviri: Bekir SONAT, MD"
+msgstr "Mertcan Mi'ma Bekir"
 
 #: _translatorinfo.cpp:3
 msgid ""
@@ -3182,7 +3173,7 @@ msgstr "Bilgi: Bağlantı..."
 
 #: Dialogs/newftpgui.cpp:70
 msgid "Protocol:"
-msgstr "İletişim-kuralı:"
+msgstr "Yordam:"
 
 #: Dialogs/newftpgui.cpp:71 RemoteMan/remotemanbase.cpp:193
 msgid "Host:"
@@ -3227,11 +3218,11 @@ msgstr "&Vazgeç"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr "Kayıtlı 'Gözde Adresler' geçersiz. Liste temizlenecek.."
+msgstr "Kayıtlı 'Sık Kullanılanlar' geçersiz. Liste temizlenecek.."
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
-msgstr "Gözde Adresler"
+msgstr "Sık Kullanılanlar"
 
 #: Dialogs/popularurls.cpp:245
 msgid " &Search: "
@@ -3406,7 +3397,7 @@ msgstr "Hasaplanan sağlamalar:"
 
 #: Dialogs/checksumdlg.cpp:474
 msgid "Hash"
-msgstr "Hash"
+msgstr "Haşat"
 
 #: Dialogs/checksumdlg.cpp:475 Konfigurator/kgcolors.cpp:365
 msgid "File"
@@ -3658,25 +3649,24 @@ msgid "&Synchronizer"
 msgstr "&Eşgüdümleyici"
 
 #: Synchronizer/synchronizergui.cpp:1278
-#, fuzzy
 msgid "&Time options"
-msgstr "Seçenekleri göster"
+msgstr "&Zaman seçenekleri"
 
 #: Synchronizer/synchronizergui.cpp:1287
 msgid "Equality threshold:"
-msgstr ""
+msgstr "Eşitlik eşiği:"
 
 #: Synchronizer/synchronizergui.cpp:1295 Synchronizer/synchronizergui.cpp:1310
 msgid "sec"
-msgstr ""
+msgstr "sn"
 
 #: Synchronizer/synchronizergui.cpp:1296 Synchronizer/synchronizergui.cpp:1311
 msgid "min"
-msgstr ""
+msgstr "dk"
 
 #: Synchronizer/synchronizergui.cpp:1297 Synchronizer/synchronizergui.cpp:1312
 msgid "hour"
-msgstr ""
+msgstr "saat"
 
 #: Synchronizer/synchronizergui.cpp:1298 Synchronizer/synchronizergui.cpp:1313
 #, fuzzy
@@ -3685,7 +3675,7 @@ msgstr "gün"
 
 #: Synchronizer/synchronizergui.cpp:1301
 msgid "Time shift (right-left):"
-msgstr ""
+msgstr "Zaman değişimi (sağ-sol)"
 
 #: Synchronizer/synchronizergui.cpp:1331
 msgid "Swap sides."
@@ -3807,7 +3797,7 @@ msgstr "Eşgüdümleyicinin yapacağı bir iş yok!"
 
 #: Synchronizer/synchronizedialog.cpp:48
 msgid "Krusader::Synchronize"
-msgstr "Krusader::Synchronize"
+msgstr "Krusader::Eşgüdümle"
 
 #: Synchronizer/synchronizedialog.cpp:52
 msgid "Right to left: Copy %1 files (%2 bytes)"
@@ -3881,7 +3871,7 @@ msgstr "Açılamayan adres:%1!"
 
 #: Synchronizer/synchronizer.cpp:1356
 msgid "IO error at comparing file %1 with %2!"
-msgstr "%1 ile %2 karşılaştırılırken hata!"
+msgstr "%1 ile %2 karşılaştırılırken G/Ç hatası!"
 
 #: Synchronizer/synchronizer.cpp:1385 Synchronizer/synchronizer.cpp:1396
 msgid "Comparing file %1..."
@@ -3889,7 +3879,7 @@ msgstr "%1 karşılaştırılıyor"
 
 #: Synchronizer/synchronizer.cpp:1480
 msgid "Krusader::Synchronizer"
-msgstr "Krusader::Synchronizer"
+msgstr "Krusader::Eşgüdümleyici"
 
 #: Synchronizer/synchronizer.cpp:1481
 msgid "Feeding the URLs to Kget"
@@ -3900,46 +3890,40 @@ msgid "Error executing "
 msgstr "Çalıştırmada hata"
 
 #: Synchronizer/feedtolistboxdialog.cpp:54
-#, fuzzy
 msgid "Krusader::Feed to listbox"
-msgstr "Listele"
+msgstr "Krusader::Listeye dök"
 
 #: Synchronizer/feedtolistboxdialog.cpp:87
 msgid "No elements to feed!"
-msgstr ""
+msgstr "Dökümlenecek öge yok!"
 
 #: Synchronizer/feedtolistboxdialog.cpp:101
-#, fuzzy
 msgid "Synchronize results"
-msgstr "Eşgüdümleyici"
+msgstr "Sonuçları Eşgüdümle"
 
 #: Synchronizer/feedtolistboxdialog.cpp:120
 msgid "Side to feed:"
-msgstr ""
+msgstr "Döküm tarafı:"
 
 #: Synchronizer/feedtolistboxdialog.cpp:125
 msgid "Left"
-msgstr ""
+msgstr "Sol"
 
 #: Synchronizer/feedtolistboxdialog.cpp:126
-#, fuzzy
 msgid "Right"
-msgstr "Sağ panel"
+msgstr "SağSağ panel"
 
 #: Synchronizer/feedtolistboxdialog.cpp:127
-#, fuzzy
 msgid "Both"
-msgstr "ay"
+msgstr "Her ikisi"
 
 #: Synchronizer/feedtolistboxdialog.cpp:141
-#, fuzzy
 msgid "Selected files only"
-msgstr "Dosya(ları) seç"
+msgstr "Sadece seçilen dosyalar"
 
 #: Synchronizer/feedtolistboxdialog.cpp:191
-#, fuzzy
 msgid "Cannot open %1!"
-msgstr "Açılamadı"
+msgstr "%1 Açılamadı"
 
 #: Konfigurator/kglookfeel.cpp:120 paneltabbar.cpp:35
 msgid "Panel"
@@ -4055,11 +4039,11 @@ msgstr "DosyaRenklendirme"
 
 #: DiskUsage/dufilelight.cpp:208
 msgid "Krusader::Filelight"
-msgstr "Krusader::Filelight"
+msgstr "Krusader::DosyaRenklendirme"
 
 #: DiskUsage/diskusagegui.cpp:45
 msgid "Krusader::Disk Usage"
-msgstr "Krusader::Disk Usage"
+msgstr "Krusader::Disk Kullanımı"
 
 #: DiskUsage/diskusagegui.cpp:60
 msgid "Start new disk usage search"
@@ -4127,7 +4111,7 @@ msgstr ""
 
 #: DiskUsage/diskusage.cpp:416
 msgid "Krusader::DiskUsage"
-msgstr "Krusader::DiskUsage"
+msgstr "Krusader::DiskKullanımı"
 
 #: DiskUsage/diskusage.cpp:597
 msgid "trash"
@@ -4142,9 +4126,8 @@ msgid "Are you sure you want to "
 msgstr "Emin misiniz bunu istediğinize:"
 
 #: DiskUsage/diskusage.cpp:613
-#, fuzzy
 msgid "Deleting %1..."
-msgstr "Dosyalar siliniyor.."
+msgstr "%1 siliniyor.."
 
 #: DiskUsage/diskusage.cpp:729
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
@@ -4301,8 +4284,7 @@ msgstr "mime-tipi sihri kullan"
 
 #: Konfigurator/kggeneral.cpp:66
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Mime-tipi sihri dosya tiplerinin daha iyi ayrılmasını sağlar,-ama yavaştır."
+msgstr "Mime-tipi sihri dosya tiplerinin daha iyi ayrılmasını sağlar,-ama yavaştır."
 
 #: Konfigurator/kggeneral.cpp:73
 msgid "Editor:"
@@ -4312,8 +4294,7 @@ msgstr "Düzenleyici:"
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
-msgstr ""
-"İpucu:Krusader'in kendi içindeki düzenleyici gayet hızlı ve yeteneklidir."
+msgstr "İpucu:Krusader'in kendi içindeki düzenleyici gayet hızlı ve yeteneklidir."
 
 #: Konfigurator/kggeneral.cpp:87
 msgid "Default viewer mode:"
@@ -4392,10 +4373,8 @@ msgid "Searching for tools..."
 msgstr "Araçlar araştırılıyor.."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Yeni araçları <code>$PATH</code> içine kurduğunuza emin olun. (Ör. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Yeni araçları <code>$PATH</code> içine kurduğunuza emin olun. (Ör. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:120
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -4469,14 +4448,12 @@ msgid "Startup"
 msgstr "Başlangıç"
 
 #: Konfigurator/konfigurator.cpp:91
-#, fuzzy
 msgid "Krusader's settings upon startup"
 msgstr "Başlangıçtaki Krusader ayarları"
 
 #: Konfigurator/konfigurator.cpp:94 Konfigurator/konfigurator.cpp:95
-#, fuzzy
 msgid "Look & Feel"
-msgstr "Bak & Hisset"
+msgstr "İzlenim"
 
 #: Konfigurator/kgcolors.cpp:78 Konfigurator/kgcolors.cpp:193
 #: Konfigurator/konfigurator.cpp:97 Konfigurator/konfigurator.cpp:98
@@ -4512,14 +4489,12 @@ msgid "Configure your personal actions"
 msgstr "Kişisel eylemlerinizi yapılandırın"
 
 #: Konfigurator/kgprotocols.cpp:102 Konfigurator/konfigurator.cpp:116
-#, fuzzy
 msgid "Protocols"
-msgstr "İletişim Kuralları"
+msgstr "Yordamlar"
 
 #: Konfigurator/konfigurator.cpp:117
-#, fuzzy
 msgid "Link mimes to protocols"
-msgstr "mime-tiplerini kurallara bağla"
+msgstr "mime-tiplerini yordamlara bağla"
 
 #: Konfigurator/konfigurator.cpp:185
 msgid "The current page has been changed. Do you want to apply changes?"
@@ -4531,7 +4506,7 @@ msgstr "İşlem"
 
 #: Konfigurator/kglookfeel.cpp:67
 msgid "Look && Feel"
-msgstr "Bak && Hisset"
+msgstr "İzlenim"
 
 #: Konfigurator/kglookfeel.cpp:72
 msgid "Warn on exit"
@@ -4608,7 +4583,7 @@ msgstr "BÜYÜK/küçük duyarlı hızlı-ara"
 
 #: Konfigurator/kglookfeel.cpp:80
 msgid "Numeric Permissions"
-msgstr "Numara ile Yetkiler"
+msgstr "Numaralandırılmış Yetkiler"
 
 #: Konfigurator/kglookfeel.cpp:80
 msgid ""
@@ -4620,11 +4595,11 @@ msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Show splashscreen"
-msgstr ""
+msgstr "Karşılama ekranı göster"
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Display a splashscreen when starting krusader."
-msgstr ""
+msgstr "Krusader başlarken bir karşılama resmi gösterir."
 
 #: Konfigurator/kglookfeel.cpp:90
 msgid "Single click / Double click Selection:"
@@ -4644,7 +4619,7 @@ msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:96
 msgid "Obey KDE's global selection policy"
-msgstr ""
+msgstr "KDE'nin genel seçimlerine uy"
 
 #: Konfigurator/kglookfeel.cpp:96
 #, fuzzy
@@ -4685,7 +4660,7 @@ msgid ""
 "mouse button."
 msgstr ""
 "Sol fare tuşu ile tıklayarak birden fazla dosya seçebilirsiniz. Sağ tık "
-"menüsü için farenin sağ düğmesine basabilirsiniz."
+"menüsü için farenin sağ düğmesine kısa bir süre basabilirsiniz."
 
 #: Konfigurator/kglookfeel.cpp:109
 msgid "Total-Commander Mode"
@@ -4744,9 +4719,8 @@ msgid "Show the icons for filenames and folders."
 msgstr "Dosya ve dizinler için simgeler göster."
 
 #: Konfigurator/kglookfeel.cpp:153
-#, fuzzy
 msgid "Use human-readable file size"
-msgstr "İnsancıl dosya büyüklüğü kullan"
+msgstr "Okunaklı dosya-büyüklüğü kullan"
 
 #: Konfigurator/kglookfeel.cpp:153
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
@@ -4844,13 +4818,11 @@ msgid "Changes the panel directory to the root directory."
 msgstr "Panel dizinini root dizini olarak değiştirir."
 
 #: Konfigurator/kglookfeel.cpp:220
-#, fuzzy
 msgid "Toggle-button for sync-browsing"
 msgstr "Eşgüdüm-tarayıcı için YerDeğiştir düğmesi"
 
 #: Konfigurator/kglookfeel.cpp:220
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Paneldeki her dizin değişikliği diğer panelde de aynen yapılacak."
 
 #: Konfigurator/kglookfeel.cpp:284 Konfigurator/kglookfeel.cpp:301
@@ -4858,7 +4830,6 @@ msgid "Select a shortcuts file"
 msgstr "Kısayol dosyası seçin"
 
 #: Konfigurator/kglookfeel.cpp:291
-#, fuzzy
 msgid ""
 "The following information was attached to the keymap. Are you sure you want "
 "to import this keymap ?"
@@ -4867,12 +4838,10 @@ msgstr ""
 "emin misiniz?"
 
 #: Konfigurator/kgadvanced.cpp:52
-#, fuzzy
 msgid "Preserve attributes for local copy/move (slower)"
 msgstr "Yerel kopyala/taşı işleminde tarihi koru (yavaş)"
 
 #: Konfigurator/kgadvanced.cpp:52
-#, fuzzy
 msgid ""
 "Change the modification time of local files according to the source one. "
 "This can slow down the copy process."
@@ -4885,7 +4854,6 @@ msgid "Automount filesystems"
 msgstr "Dosya-sistemlerini kendiliğinden bağla"
 
 #: Konfigurator/kgadvanced.cpp:53
-#, fuzzy
 msgid ""
 "When stepping into a directory which is defined as a mount point in the "
 "<b>fstab</b>, try mounting it with the defined parameters."
@@ -4923,16 +4891,15 @@ msgstr "Dosya taşıma"
 
 #: Konfigurator/kgadvanced.cpp:84
 msgid "Confirm feed to listbox"
-msgstr "Liste-kutusuna gönderme onayı"
+msgstr "Liste-kutusuna döküm onayı"
 
 #: Konfigurator/kgadvanced.cpp:84
-#, fuzzy
 msgid ""
 "Ask for a result name when feeding items to the listbox. By default the "
 "standard value is used."
 msgstr ""
-"Liste-kutusuna gönderilen ögeler için bir lakap (tanım) ister. Öntanımlı "
-"olarak halihazırdaki girdiler kullanılacaktır."
+"Liste-kutusuna dökümlenen ögeler için bir lakap (tanım) ister. "
+"Öntanımlı olarak halihazırdaki girdiler kullanılacaktır."
 
 #: Konfigurator/kgadvanced.cpp:85
 msgid "Removing Useractions"
@@ -5064,7 +5031,6 @@ msgid "Use the default KDE colors"
 msgstr "Öntanımlı KDE renklerini kullan"
 
 #: Konfigurator/kgcolors.cpp:60
-#, fuzzy
 msgid ""
 "<p>Use KDE's global color configuration.</p><p><i>KDE Control Center -> "
 "Appearance & Themes -> Colors</i></p>"
@@ -5074,27 +5040,24 @@ msgstr ""
 
 #: Konfigurator/kgcolors.cpp:61
 msgid "Use alternate background color"
-msgstr "Başka-bir arkaplan rengi kullan"
+msgstr "Başka-bir zemin rengi kullan"
 
 #: Konfigurator/kgcolors.cpp:61
-#, fuzzy
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
-"<b>Arkaplan rengi</b> ve <b>arkaplan değiştir</b> seçenekleri ile satırı "
+"<b>Zemin rengi</b> ve <b>zemin değiştir</b> seçenekleri ile satırı "
 "satırına renk değiştirilir.<p><i>KDE öntanımlı renkleri</i> "
 "kullanmadığınızda <i>renkler</i> kutusundaki değişik renkler ile "
 "yapılandırabilirsiniz."
 
 #: Konfigurator/kgcolors.cpp:62
-#, fuzzy
 msgid "Show current item even if not focused"
 msgstr "Bulunulan ögeyi göster,-hatta seçilmese de."
 
 #: Konfigurator/kgcolors.cpp:62
-#, fuzzy
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use the <i>KDE default colors</i>.</"
@@ -5113,65 +5076,65 @@ msgstr "Şeffaf"
 
 #: Konfigurator/kgcolors.cpp:96 Konfigurator/kgcolors.cpp:129
 msgid "Foreground:"
-msgstr "Önplan:"
+msgstr "Ön-alan:"
 
 #: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:131
 msgid "Directory foreground:"
-msgstr "Dizin önplanı:"
+msgstr "Dizin ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:97 Konfigurator/kgcolors.cpp:98
 #: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:100
 #: Konfigurator/kgcolors.cpp:130
 msgid "Same as foreground"
-msgstr "Önplan ile aynı"
+msgstr "Ön-alan ile aynı"
 
 #: Konfigurator/kgcolors.cpp:98 Konfigurator/kgcolors.cpp:132
 msgid "Executable foreground:"
-msgstr "Çalıştırılabilir önplanı:"
+msgstr "Çalıştırılabilir ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:99 Konfigurator/kgcolors.cpp:133
 msgid "Symbolic link foreground:"
-msgstr "Simgesel bağ önplanı:"
+msgstr "Simgesel bağ ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:100 Konfigurator/kgcolors.cpp:134
 msgid "Invalid symlink foreground:"
-msgstr "Geçersiz simge-bağ önplanı:"
+msgstr "Geçersiz simge-bağ ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:101 Konfigurator/kgcolors.cpp:135
 msgid "Background:"
-msgstr "Arkaplan:"
+msgstr "Zemin:"
 
 #: Konfigurator/kgcolors.cpp:102 Konfigurator/kgcolors.cpp:136
 msgid "Same as background"
-msgstr "Arkaplan ile aynı"
+msgstr "Zemin ile aynı"
 
 #: Konfigurator/kgcolors.cpp:103 Konfigurator/kgcolors.cpp:137
 msgid "Alternate background:"
-msgstr "Değişik arkaplan:"
+msgstr "Değişik zemin:"
 
 #: Konfigurator/kgcolors.cpp:104 Konfigurator/kgcolors.cpp:138
 msgid "Marked foreground:"
-msgstr "İşaretli önplan:"
+msgstr "İşaretli ön-alan:"
 
 #: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:139
 msgid "Marked background:"
-msgstr "İşaretli arkaplan:"
+msgstr "İşaretli zemin:"
 
 #: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:140
 msgid "Same as alt. background"
-msgstr "Değişik arkaplan ile aynı"
+msgstr "Değişik zemin ile aynı"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:142
 msgid "Alternate marked background:"
-msgstr "Değişik işaretli arkaplan:"
+msgstr "Değişik işaretli zemin:"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:141
 msgid "Same as marked background"
-msgstr "İşaretli arkaplan ile aynı"
+msgstr "İşaretli zemin ile aynı"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:143
 msgid "Current foreground:"
-msgstr "Şimdiki önplan"
+msgstr "Şimdiki ön-alan"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:110
 #: Konfigurator/kgcolors.cpp:111
@@ -5180,15 +5143,15 @@ msgstr "Kullanılmıyor"
 
 #: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:144
 msgid "Same as marked foreground"
-msgstr "İşaretli önplan ile aynı"
+msgstr "İşaretli ön-alan ile aynı"
 
 #: Konfigurator/kgcolors.cpp:110 Konfigurator/kgcolors.cpp:145
 msgid "Marked current foreground:"
-msgstr "İşaretli şimdiki önplan"
+msgstr "İşaretli şimdiki ön-alan"
 
 #: Konfigurator/kgcolors.cpp:111 Konfigurator/kgcolors.cpp:146
 msgid "Current background:"
-msgstr "Şimdiki arkaplan:"
+msgstr "Şimdiki zemin:"
 
 #: Konfigurator/kgcolors.cpp:121
 msgid "Inactive"
@@ -5214,43 +5177,43 @@ msgstr "KDE Öntanımlı"
 
 #: Konfigurator/kgcolors.cpp:167
 msgid "Equals foreground:"
-msgstr "Aynı'lar önplanı:"
+msgstr "Aynı'lar ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:168
 msgid "Equals background:"
-msgstr "Aynı'lar arkaplanı"
+msgstr "Aynı'lar zeminı"
 
 #: Konfigurator/kgcolors.cpp:169
 msgid "Differing foreground:"
-msgstr "Farklılar önplanı:"
+msgstr "Farklılar ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:170
 msgid "Differing background:"
-msgstr "Farklılar arkaplanı:"
+msgstr "Farklılar zeminı:"
 
 #: Konfigurator/kgcolors.cpp:171
 msgid "Copy to left foreground:"
-msgstr "Sola-kopyala önplanı:"
+msgstr "Sola-kopyala ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:172
 msgid "Copy to left background:"
-msgstr "Sola-kopyala arkaplanı"
+msgstr "Sola-kopyala zeminı"
 
 #: Konfigurator/kgcolors.cpp:173
 msgid "Copy to right foreground:"
-msgstr "Sağa-kopyala önplanı:"
+msgstr "Sağa-kopyala ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:174
 msgid "Copy to right background:"
-msgstr "Sağa-kopyala arkaplanı:"
+msgstr "Sağa-kopyala zeminı:"
 
 #: Konfigurator/kgcolors.cpp:175
 msgid "Delete foreground:"
-msgstr "Silme önplanı:"
+msgstr "Silme ön-alanı:"
 
 #: Konfigurator/kgcolors.cpp:176
 msgid "Delete background:"
-msgstr "Silme arkaplanı:"
+msgstr "Silme zeminı:"
 
 #: Konfigurator/kgcolors.cpp:200
 msgid "Import color-scheme"
@@ -5401,7 +5364,6 @@ msgid "Save last position, size and panel settings"
 msgstr "Son konumu, boyut ve panel ayarlarını sakla"
 
 #: Konfigurator/kgstartup.cpp:83
-#, fuzzy
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
@@ -5485,8 +5447,7 @@ msgid "Test archive before unpacking"
 msgstr "Paket-açma öncesinde arşivi sına"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Bazı hasarlı arşivler çökmelere sebep olabilir,-bu yüzden sınanmaları "
 "önerilir."
@@ -5496,8 +5457,7 @@ msgid "Searching for packers..."
 msgstr "Paketleyiciler aranıyor.."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Yeni paketleyicilerinizin <code>$PATH</code>içinde bulunduğundan emin olun "
 "(Ö.: /usr/bin)"
@@ -5570,8 +5530,7 @@ msgstr ""
 msgid ""
 "Krusader can't find a supported mail client. Please install one to your "
 "path. Hint: Krusader supports Kmail."
-msgstr ""
-"Krusader desteklenen bir ePosta istemcisi (Örn. kMail gibi ) bulamadı. "
+msgstr "Krusader desteklenen bir ePosta istemcisi (Örn. kMail gibi ) bulamadı. "
 
 #: krslots.cpp:110
 msgid "Sending file: "
@@ -5759,7 +5718,7 @@ msgstr "&Böl"
 
 #: Splitter/splittergui.cpp:119
 msgid "Krusader::Splitter"
-msgstr "Krusader::Splitter"
+msgstr "Krusader::Bölücü"
 
 #: Splitter/splittergui.cpp:194
 msgid "The directory path URL is malformed!"
@@ -5767,7 +5726,7 @@ msgstr "Dizin yolu adresi bozulmuş!"
 
 #: Splitter/combiner.cpp:61
 msgid "Krusader::Combining..."
-msgstr "Krusader::Combining..."
+msgstr "Krusader::Birleştiriyor.."
 
 #: Splitter/combiner.cpp:62
 msgid "Combining the file %1..."
@@ -5790,8 +5749,7 @@ msgid "Not a valid CRC file!"
 msgstr "Geçerli bir CRC dosyası değil!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Sağlam bir CRC dosyası olmadan bütünlük denetimi olanaksız. Birleştirmeye "
 "devam mı?"
@@ -5814,7 +5772,7 @@ msgstr "%1 dosyasına yazarken hata!"
 
 #: Splitter/splitter.cpp:71
 msgid "Krusader::Splitting..."
-msgstr "Krusader::Splitting..."
+msgstr "Krusader::Bölüyor.."
 
 #: Splitter/splitter.cpp:72
 msgid "Splitting the file %1..."
@@ -5832,5 +5790,3 @@ msgstr "%1 dosyası okunurken hata!"
 msgid "Error at writing file %1!"
 msgstr "%1 dosyasına yazarken hata!"
 
-#~ msgid "Password Needed"
-#~ msgstr "Gerekli Parola"
