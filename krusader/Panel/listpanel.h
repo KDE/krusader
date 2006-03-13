@@ -66,6 +66,7 @@ class BookmarksButton;
 class KrQuickSearch;
 class DirHistoryButton;
 class DirHistoryQueue;
+class MediaButton;
 class PanelPopup;
 class SyncBrowseButton;
 class KrBookmarkButton;
@@ -176,6 +177,7 @@ public:
    KrBookmarkButton *bookmarksButton;
    DirHistoryQueue* dirHistoryQueue;
    DirHistoryButton* historyButton;
+   MediaButton *mediaButton;
    SyncBrowseButton *syncBrowseButton;
 	KPushButton *inlineRefreshCancelButton;
 	KIO::Job *inlineRefreshJob;

@@ -90,6 +90,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "krpreviewpopup.h"
 #include "../GUI/dirhistorybutton.h"
 #include "../GUI/dirhistoryqueue.h"
+#include "../GUI/mediabutton.h"
 #include "../GUI/syncbrowsebutton.h"
 #include "../krservices.h"
 #include "panelpopup.h" 
@@ -116,6 +117,10 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    func = new ListPanelFunc( this );
    setAcceptDrops( true );
    layout = new QGridLayout( this, 3, 3 );
+
+   mediaButton = new MediaButton( this, "mediaButton" );
+   connect( mediaButton, SIGNAL( pressed() ), this, SLOT( slotFocusOnMe() ) );
+   connect( mediaButton, SIGNAL( openUrl( const KURL& ) ), func, SLOT( openUrl( const KURL& ) ) );
 
    status = new KrSqueezedTextLabel( this );
    krConfig->setGroup( "Look&Feel" );
@@ -311,14 +316,15 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
 	popup->hide();
 	
    // finish the layout
-	layout->addMultiCellWidget( hbox, 0, 0, 0, 2 );
-   layout->addWidget( status, 1, 0 );
-   layout->addWidget( historyButton, 1, 1 );
-   layout->addWidget( bookmarksButton, 1, 2 );
-	layout->addMultiCellWidget( splt, 2, 2, 0, 2 );
-   layout->addMultiCellWidget( quickSearch, 3, 3, 0, 2 );
+	layout->addMultiCellWidget( hbox, 0, 0, 0, 3 );
+   layout->addWidget( mediaButton, 1, 0 );
+   layout->addWidget( status, 1, 1 );
+   layout->addWidget( historyButton, 1, 2 );
+   layout->addWidget( bookmarksButton, 1, 3 );
+	layout->addMultiCellWidget( splt, 2, 2, 0, 3 );
+   layout->addMultiCellWidget( quickSearch, 3, 3, 0, 3 );
    quickSearch->hide();
-   layout->addMultiCellLayout( totalsLayout, 4, 4, 0, 2 );
+   layout->addMultiCellLayout( totalsLayout, 4, 4, 0, 3 );
    //filter = ALL;
 }
 
