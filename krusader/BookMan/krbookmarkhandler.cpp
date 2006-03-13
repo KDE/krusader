@@ -124,10 +124,19 @@ void KrBookmarkHandler::exportToFile() {
    doc.appendChild( root );
 
 	exportToFileFolder(doc, root, _root);
+	if (!doc.firstChild().isProcessingInstruction()) {
+		// adding: <?xml version="1.0" encoding="UTF-8" ?> if not already present 
+		QDomProcessingInstruction instr = doc.createProcessingInstruction( "xml", 
+				"version=\"1.0\" encoding=\"UTF-8\" ");
+		doc.insertBefore( instr, doc.firstChild() ); 
+	}
+
+	
 	QString filename = locateLocal( "data", BOOKMARKS_FILE );
 	QFile file(filename);
 	if ( file.open( IO_WriteOnly ) ) {
 		QTextStream stream( &file );
+		stream.setEncoding(stream.UnicodeUTF8);
 		stream << doc.toString();
 		file.close();
 	} else {
