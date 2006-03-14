@@ -93,11 +93,11 @@ int main(int argc, char *argv[]) {
                         I18N_NOOP("Krusader - ROOT PRIVILEGES")),
     versionName.latin1(), description, KAboutData::License_GPL,
     "(c) 2000-2003, Shie Erlich, Rafi Yanai\n(c) 2004-2006, Krusader Krew",
-    "Feedback:\nhttp://www.krusader.org/phpBB/\n\n"
-    "IRC:\nServer: irc.freenode.net, channel: #krusader"
-    ,
+    I18N_NOOP("Feedback\nhttp://www.krusader.org/phpBB/\n\n"
+              "IRC\nserver: irc.freenode.net, channel: #krusader"),
     "http://www.krusader.org",
     "krusader@users.sourceforge.net");
+
   aboutData.addAuthor("Rafi Yanai","Author", "yanai@users.sourceforge.net");
   aboutData.addAuthor("Shie Erlich","Author", "erlich@users.sourceforge.net");
   aboutData.addAuthor("Karai Csaba", "Developer", "ckarai@users.sourceforge.net", 0);
@@ -105,10 +105,9 @@ int main(int argc, char *argv[]) {
   aboutData.addAuthor("Jonas Baehr", "Developer", "jonas.baehr@web.de", 0);
   aboutData.addAuthor("Dirk Eschler", "Webmaster and i18n coordinator", "deschler@users.sourceforge.net", 0);
   aboutData.addAuthor("Frank Schoolmeesters", "Documentation and marketing coordinator", "frank_schoolmeesters@yahoo.com", 0);
-aboutData.addAuthor("Richard Holt", "Documentation & Proofing", "richard.holt@gmail.com", 0);
-aboutData.addAuthor("Matej Urbancic", " Marketing & Product Research", "matej.urban@gmail.com", 0);
-  aboutData.addCredit("Andrew Neupokoev", "Killer Logo and Icons for Krusader (contest winner)",
-  		"doom-blue@yandex.ru", 0);
+  aboutData.addAuthor("Richard Holt", "Documentation & Proofing", "richard.holt@gmail.com", 0);
+  aboutData.addAuthor("Matej Urbancic", " Marketing & Product Research", "matej.urban@gmail.com", 0);
+  aboutData.addCredit("Andrew Neupokoev", "Killer Logo and Icons for Krusader (contest winner)", "doom-blue@yandex.ru", 0);
   aboutData.addCredit("The UsefulArts Organization", "Icon for krusader", "mail@usefularts.rg", 0);
   aboutData.addCredit("Gábor Lehel", "Viewer module for 3rd Hand", "illissius@gmail.com", 0);
   aboutData.addCredit("Mark Eatough", "Handbook Proof-Reader", "markeatough@yahoo.com", 0);
@@ -153,6 +152,7 @@ aboutData.addAuthor("Matej Urbancic", " Marketing & Product Research", "matej.ur
   aboutData.addCredit("Erik Johanssen","Old Swedish translation","erre@telia.com",0);
   aboutData.addCredit("Anders Linden","Old Swedish translation","connyosis@gmx.net",0);
   aboutData.addCredit("Peter Landgren","Swedish translation","peter.talken@telia.com",0);
+  aboutData.addCredit("Bekir Sonat","Turkish translation","bekirsonat@kde.org.tr",0);
   aboutData.addCredit("Ivan Petrouchtchak","Ukrainian translation","connyosis@gmx.net",0);
 
   // Command line arguments ...
