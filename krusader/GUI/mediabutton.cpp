@@ -261,7 +261,10 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 }
 
 void MediaButton::openPopup() {
-	animateClick();
+	QPopupMenu * pP = popup();
+	if ( pP ) {
+		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
+	}
 }
 
 #include "mediabutton.moc"
