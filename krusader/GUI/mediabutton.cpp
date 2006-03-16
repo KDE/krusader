@@ -173,6 +173,7 @@ QString MediaButton::detectType( KMountPoint *mp )
 	else if (-1!=mp->mountType().find("nfs",0,FALSE)) typeName="nfs";
 	else if (-1!=mp->mountType().find("smb",0,FALSE)) typeName="smb";
 	else if (-1!=mp->mountedFrom().find("//",0,FALSE)) typeName="smb";
+	else typeName="hdd";
 	
 	return typeName;
 }
