@@ -56,12 +56,14 @@ public slots:
   void slotAboutToShow();
   void slotPopupActivated( int );
   void gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail);
-  void openPopup();
+  void openPopup();  
 
 signals:
   void openUrl(const KURL&);
 
 private:
+  void addMountPoint( KMountPoint *mp, bool isMounted );
+
   QPopupMenu *popupMenu;
 
   QValueList<KURL>    urls;

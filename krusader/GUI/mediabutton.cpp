@@ -69,183 +69,119 @@ MediaButton::~MediaButton() {}
 
 void MediaButton::slotAboutToShow() {
 	popupMenu->clear();
-	
 	urls.clear();
 	
-	int index = 0;
+	KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
+	for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
+		addMountPoint( *it, false );
+	}
 	
 	KMountPoint::List mountList = KMountPoint::currentMountPoints();
 	for (KMountPoint::List::iterator it = mountList.begin(); it != mountList.end(); ++it) {
-		if( (*it)->mountPoint() == "/dev/swap" || 
-		    (*it)->mountPoint() == "/dev/pts"  ||
-		    (*it)->mountPoint().find( "/proc" ) == 0 )
-			continue;
-		if( (*it)->mountType() == "swap"       ||
-		    (*it)->mountedFrom() == "sysfs" ||
-		    (*it)->mountType() == "tmpfs" )
-			continue;
-		if( (*it)->mountedFrom() == "none" ||
-		    (*it)->mountedFrom() == "tmpfs" ||
-		    (*it)->mountedFrom().find( "shm" )  != -1 )
-			continue;
-		
-		urls.append( KURL::fromPathOrURL( (*it)->mountPoint() ) );
-		
-		QString mime;
-		QString name;
-		QString type = detectType( (*it) );
-		
-#if KDE_IS_VERSION(3,4,0)
-		QString mimeBase = "media/";
-#else
-		QString mimeBase = "kdedevice/";
-#endif
-
-		if( type == "hdd" ) {
-			mime = "hdd_mounted";
-			name = i18n( "Hard Disc" );
-			
-			KDiskFreeSp *sp = KDiskFreeSp::findUsageInfo( ( *it ) ->mountPoint() );
-			connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
-			         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
-		} else if( type == "cdrom" ) {
-			mime = "cdrom_mounted";
-			name = i18n( "CD-ROM" );
-		} else if( type == "cdwriter" ) {
-			mime = "cdwriter_mounted";
-			name = i18n( "CD Recorder" );
-		} else if( type == "dvd" ) {
-			mime = "dvd_mounted";
-			name = i18n( "DVD" );
-		} else if( type == "smb" ) {
-			mime = "smb_mounted";
-			name = i18n( "Remote Share" );
-		} else if( type == "nfs" ) {
-			mime = "nfs_mounted";
-			name = i18n( "Remote Share" );
-		} else if( type == "floppy" ) {
-			mime = "floppy_mounted";
-			name = i18n( "Floppy" );
-		} else if( type == "floppy5" ) {
-			mime = "floppy5_mounted";
-			name = i18n( "Floppy" );
-		} else if( type == "zip" ) {
-			mime = "zip_mounted";
-			name = i18n( "Zip Disk" );
-		} else {
-			mime = "hdd_mounted";
-			name = i18n( "Unknown" );
-		}
-		
-		QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimeBase+mime ) ->icon( QString::null, true ) );
-		popupMenu->insertItem( pixmap, name + " [" + (*it)->mountPoint() + "]", index, index );
-		index++;
+		addMountPoint( *it, true );
 	}
 }
 
 QString MediaButton::detectType( KMountPoint *mp )
 {
-	QString typeName;
+	QString typeName = QString::null;
 #ifdef Q_OS_LINUX
 	QString str;
 	QString tmpInfo;
 	if (mp->mountedFrom().startsWith("/dev/hd")) {
 		QString tmp=mp->mountedFrom();
-	tmp=tmp.right(tmp.length()-5);
-	tmp=tmp.left(3);
-	QString mediafilename="/proc/ide/"+tmp+"/media";
-	QString modelfilename="/proc/ide/"+tmp+"/model";
+		tmp=tmp.right(tmp.length()-5);
+		tmp=tmp.left(3);
+		QString mediafilename="/proc/ide/"+tmp+"/media";
+		QString modelfilename="/proc/ide/"+tmp+"/model";
 
-	QFile infoFile(mediafilename);
-	if (infoFile.open(IO_ReadOnly))
-	{
-		if (-1 == infoFile.readLine(tmpInfo,20)) 
-			typeName="hdd";
-		else
+		QFile infoFile(mediafilename);
+		if (infoFile.open(IO_ReadOnly))
 		{
-			if (tmpInfo.contains("disk"))   // disks
+			if (-1 == infoFile.readLine(tmpInfo,20)) 
 				typeName="hdd";
-
-			else if (tmpInfo.contains("cdrom")) {    // cdroms and cdwriters
-					QFile modelFile(modelfilename);
-					if(modelFile.open(IO_ReadOnly)) {
-						if( -1 != modelFile.readLine(tmpInfo,80) ) {
-							tmpInfo = tmpInfo.lower();
-							if( tmpInfo.contains("-rw") ||
-							    tmpInfo.contains("cdrw") ||
-							    tmpInfo.contains("dvd-rw") ||
-							    tmpInfo.contains("dvd+rw") )
-								typeName="cdwriter";
-							else 
+			else
+			{
+				fprintf( stderr, "tmpInfo: %s\n", tmpInfo.ascii() );
+				if (tmpInfo.contains("disk"))   // disks
+					typeName="hdd";
+				else if (tmpInfo.contains("cdrom")) {    // cdroms and cdwriters
+						QFile modelFile(modelfilename);
+						if(modelFile.open(IO_ReadOnly)) {
+							if( -1 != modelFile.readLine(tmpInfo,80) ) {
+								tmpInfo = tmpInfo.lower();
+								if( tmpInfo.contains("-rw") ||
+								    tmpInfo.contains("cdrw") ||
+								    tmpInfo.contains("dvd-rw") ||
+								    tmpInfo.contains("dvd+rw") )
+									typeName="cdwriter";
+								else if( tmpInfo.contains("dvd") )
+									typeName="dvd";
+								else
+									typeName="cdrom";
+							}
+							else
 								typeName="cdrom";
+							modelFile.close();
 						}
-						else
+						else 
 							typeName="cdrom";
-						modelFile.close();
-					}
-					else 
-						typeName="cdrom";
+				}
+				else if (tmpInfo.contains("floppy")) 
+					typeName="zip"; // eg IDE zip drives
+				else 
+					typeName="hdd";
 			}
-			else if (tmpInfo.contains("floppy")) 
-				typeName="zip"; // eg IDE zip drives
-					
-			else 
-				typeName="hdd";
-		}
-		infoFile.close();
-	} 
-	else 
-		typeName="hdd"; // this should never be reached
-    }
-    else
+			infoFile.close();
+		} 
+		else 
+			typeName="hdd"; // this should never be reached
+	}
+	else
+
 #elif defined(__FreeBSD__)
-    if (-1!=mp->mountedFrom().find("/acd",0,FALSE)) typeName="cdrom";
-    else if (-1!=mp->mountedFrom().find("/scd",0,FALSE)) typeName="cdrom";
-    else if (-1!=mp->mountedFrom().find("/ad",0,FALSE)) typeName="hdd";
-    else if (-1!=mp->mountedFrom().find("/da",0,FALSE)) typeName="hdd";
-    else if (-1!=mp->mountedFrom().find("/afd",0,FALSE)) typeName="zip";
-#if 0
-    else if (-1!=mp->mountedFrom().find("/ast",0,FALSE)) typeName="tape";
+	if (-1!=mp->mountedFrom().find("/acd",0,FALSE)) typeName="cdrom";
+	else if (-1!=mp->mountedFrom().find("/scd",0,FALSE)) typeName="cdrom";
+	else if (-1!=mp->mountedFrom().find("/ad",0,FALSE)) typeName="hdd";
+	else if (-1!=mp->mountedFrom().find("/da",0,FALSE)) typeName="hdd";
+	else if (-1!=mp->mountedFrom().find("/afd",0,FALSE)) typeName="zip";
+	else
 #endif
-    else
-#endif
+
     /* Guessing of cdrom and cd recorder devices */
-    if (-1!=mp->mountPoint().find("cdrom",0,FALSE)) typeName="cdrom";
-    else if (-1!=mp->mountedFrom().find("cdrom",0,FALSE)) typeName="cdrom";
-    else if (-1!=mp->mountPoint().find("cdwriter",0,FALSE)) typeName="cdwriter";
-    else if (-1!=mp->mountedFrom().find("cdwriter",0,FALSE)) typeName="cdwriter";
-    else if (-1!=mp->mountedFrom().find("cdrw",0,FALSE)) typeName="cdwriter";
-    else if (-1!=mp->mountPoint().find("cdrw",0,FALSE)) typeName="cdwriter";
-    else if (-1!=mp->mountedFrom().find("cdrecorder",0,FALSE)) typeName="cdwriter";
-    else if (-1!=mp->mountPoint().find("dvd",0,FALSE)) typeName="dvd";   
-    else if (-1!=mp->mountedFrom().find("dvd",0,FALSE)) typeName="dvd";   
-    else if (-1!=mp->mountedFrom().find("/dev/scd",0,FALSE)) typeName="cdrom";
-    else if (-1!=mp->mountedFrom().find("/dev/sr",0,FALSE)) typeName="cdrom";
-
-
-    /* Guessing of floppy types */
-    else if (-1!=mp->mountedFrom().find("fd",0,FALSE)) {
-            if (-1!=mp->mountedFrom().find("360",0,FALSE)) typeName="floppy5";
-            if (-1!=mp->mountedFrom().find("1200",0,FALSE)) typeName="floppy5";
-            else typeName+="floppy";
-         }
-    else if (-1!=mp->mountPoint().find("floppy",0,FALSE)) typeName="floppy";
-
-
-    else if (-1!=mp->mountPoint().find("zip",0,FALSE)) typeName+="zip";
-    else if (-1!=mp->mountType().find("nfs",0,FALSE)) typeName="nfs";
-    else if (-1!=mp->mountType().find("smb",0,FALSE)) typeName="smb";
-    else if (-1!=mp->mountedFrom().find("//",0,FALSE)) typeName="smb";
-    else typeName="hdd";
-
-  return typeName;
+	if (-1!=mp->mountPoint().find("cdrom",0,FALSE)) typeName="cdrom";
+	else if (-1!=mp->mountedFrom().find("cdrom",0,FALSE)) typeName="cdrom";
+	else if (-1!=mp->mountPoint().find("cdwriter",0,FALSE)) typeName="cdwriter";
+	else if (-1!=mp->mountedFrom().find("cdwriter",0,FALSE)) typeName="cdwriter";
+	else if (-1!=mp->mountedFrom().find("cdrw",0,FALSE)) typeName="cdwriter";
+	else if (-1!=mp->mountPoint().find("cdrw",0,FALSE)) typeName="cdwriter";
+	else if (-1!=mp->mountedFrom().find("cdrecorder",0,FALSE)) typeName="cdwriter";
+	else if (-1!=mp->mountPoint().find("dvd",0,FALSE)) typeName="dvd";   
+	else if (-1!=mp->mountedFrom().find("dvd",0,FALSE)) typeName="dvd";   
+	else if (-1!=mp->mountedFrom().find("/dev/scd",0,FALSE)) typeName="cdrom";
+	else if (-1!=mp->mountedFrom().find("/dev/sr",0,FALSE)) typeName="cdrom";
+	
+	/* Guessing of floppy types */
+	else if (-1!=mp->mountedFrom().find("fd",0,FALSE)) {
+		if (-1!=mp->mountedFrom().find("360",0,FALSE)) typeName="floppy5";
+			if (-1!=mp->mountedFrom().find("1200",0,FALSE)) typeName="floppy5";
+			else typeName="floppy";
+		}
+	else if (-1!=mp->mountPoint().find("floppy",0,FALSE)) typeName="floppy";
+	
+	else if (-1!=mp->mountPoint().find("zip",0,FALSE)) typeName="zip";
+	else if (-1!=mp->mountType().find("nfs",0,FALSE)) typeName="nfs";
+	else if (-1!=mp->mountType().find("smb",0,FALSE)) typeName="smb";
+	else if (-1!=mp->mountedFrom().find("//",0,FALSE)) typeName="smb";
+	
+	return typeName;
 }
 
 void MediaButton::slotPopupActivated( int elem ) {
 	emit openUrl( urls[ elem ] );
 }
 
-void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail) {
+void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long, unsigned long ) {
 	KURL mediaURL = KURL::fromPathOrURL( mountPoint );
 	
 	KIO::filesize_t size = kBSize;
@@ -265,6 +201,81 @@ void MediaButton::openPopup() {
 	if ( pP ) {
 		popup() ->exec( mapToGlobal( QPoint( 0, height() ) ) );
 	}
+}
+
+void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
+	QString mountString = isMounted ? "_mounted" : "_unmounted";
+	if( mp->mountPoint() == "/dev/swap" || 
+		mp->mountPoint() == "/dev/pts"  ||
+		mp->mountPoint().find( "/proc" ) == 0 )
+		return;
+	if( mp->mountType() == "swap"       ||
+		mp->mountType() == "sysfs" ||
+		mp->mountType() == "tmpfs" )
+		return;
+	if( mp->mountedFrom() == "none" ||
+		mp->mountedFrom() == "tmpfs" ||
+		mp->mountedFrom().find( "shm" )  != -1 )
+		return;
+	
+	int overwrite = -1;
+	KURL mountURL = KURL::fromPathOrURL( mp->mountPoint() );
+	
+	for( unsigned i=0; i != urls.size(); i++ ) 
+		if( urls[ i ].equals( mountURL, true ) ) {
+			overwrite = i;
+			break;
+		}
+	
+	QString name;
+	QString type = detectType( mp );
+		
+#if KDE_IS_VERSION(3,4,0)
+	QString mimeBase = "media/";
+#else
+	QString mimeBase = "kdedevice/";
+#endif
+	
+	QString mime = mimeBase + type + mountString;
+	
+	if( type == "hdd" ) {
+		name = i18n( "Hard Disc" );
+		
+		if( isMounted ) {
+			KDiskFreeSp *sp = KDiskFreeSp::findUsageInfo( mp->mountPoint() );
+			connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
+			         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
+		}
+	} else if( type == "cdrom" )
+		name = i18n( "CD-ROM" );
+	else if( type == "cdwriter" )
+		name = i18n( "CD Recorder" );
+	else if( type == "dvd" )
+		name = i18n( "DVD" );
+	else if( type == "smb" )
+		name = i18n( "Remote Share" );
+	else if( type == "nfs" )
+		name = i18n( "Remote Share" );
+	else if( type == "floppy" )
+		name = i18n( "Floppy" );
+	else if( type == "floppy5" )
+		name = i18n( "Floppy" );
+	else if( type == "zip" )
+		name = i18n( "Zip Disk" );
+	else {
+		mime = mimeBase + "hdd" + mountString;
+		name = i18n( "Unknown" );
+	}
+	
+	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString::null, true ) );
+	
+	if( overwrite == -1 ) {
+		int index = popupMenu->count();
+		urls.append( KURL::fromPathOrURL( mp->mountPoint() ) );
+		popupMenu->insertItem( pixmap, name + " [" + mp->mountPoint() + "]", index, index );
+	}
+	else
+		popupMenu->changeItem( overwrite, pixmap, name + " [" + mp->mountPoint() + "]" );
 }
 
 #include "mediabutton.moc"
