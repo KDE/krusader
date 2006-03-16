@@ -628,6 +628,12 @@ void Krusader::setupActions() {
                 SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
    new KAction( i18n( "Right history" ), ALT + CTRL + Key_Right,
                 SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
+   new KAction( i18n( "Media" ), CTRL + Key_M,
+                SLOTS, SLOT( openMedia() ), actionCollection(), "media" );
+   new KAction( i18n( "Left media" ), CTRL + SHIFT + Key_Left,
+                SLOTS, SLOT( openLeftMedia() ), actionCollection(), "left media" );
+   new KAction( i18n( "Right media" ), CTRL + SHIFT + Key_Right,
+                SLOTS, SLOT( openRightMedia() ), actionCollection(), "right media" );
 	new KAction( i18n( "New symlink" ), CTRL + ALT + Key_S,
 					SLOTS, SLOT( newSymlink() ), actionCollection(), "new symlink");
    new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Key_Down, SLOTS,

@@ -42,6 +42,7 @@
   */
 
 class QPopupMenu;
+class KMountPoint;
 
 class MediaButton : public QToolButton  {
    Q_OBJECT
@@ -49,23 +50,21 @@ public:
   MediaButton(QWidget *parent=0, const char *name=0);
   ~MediaButton();
 
+  QString detectType( KMountPoint *mp );
+
 public slots:
   void slotAboutToShow();
-  void slotAddFiles( KIO::Job*, const KIO::UDSEntryList& );
-  void slotListResult( KIO::Job* );
   void slotPopupActivated( int );
+  void gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail);
+  void openPopup();
 
 signals:
   void openUrl(const KURL&);
 
 private:
-  bool loadInProgress;
-
   QPopupMenu *popupMenu;
 
-  QValueList<QString> names;
   QValueList<KURL>    urls;
-  QValueList<QString> mimes;
 };
 
 #endif /* MEDIABUTTON_H */

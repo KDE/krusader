@@ -42,6 +42,7 @@
 #include "BookMan/krbookmarkbutton.h"
 #include "GUI/kcmdline.h"
 #include "GUI/dirhistorybutton.h"
+#include "GUI/mediabutton.h"
 
 class ListPanel;
 class KURL;
@@ -121,6 +122,9 @@ class KRslots : public QObject {
 	 void openHistory() { ACTIVE_PANEL->historyButton->openPopup(); }
     void openLeftHistory() { LEFT_PANEL->historyButton->openPopup(); }
     void openRightHistory() { RIGHT_PANEL->historyButton->openPopup(); }
+    void openMedia() { ACTIVE_PANEL->mediaButton->openPopup(); }
+    void openLeftMedia() { LEFT_PANEL->mediaButton->openPopup(); }
+    void openRightMedia() { RIGHT_PANEL->mediaButton->openPopup(); }
 	 void syncPanels() {
 	 	ListPanel *t = ACTIVE_PANEL;
 		OTHER_FUNC->openUrl(ACTIVE_PANEL->virtualPath());
