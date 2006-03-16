@@ -74,17 +74,23 @@ void KrBookmarkHandler::deleteBookmark(KrBookmark */*bm*/) {
 }
 
 void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm) {
-	QDomElement bookmark = doc.createElement("bookmark");
-	// url
-	bookmark.setAttribute("href", bm->url().url());
-	// icon
-	bookmark.setAttribute("icon", bm->icon());
-	// title
-	QDomElement title = doc.createElement("title");	
-	title.appendChild(doc.createTextNode(bm->text()));
-	bookmark.appendChild(title);
-
-	where.appendChild(bookmark);
+	if( bm->isSeparator() ) {
+		QDomElement bookmark = doc.createElement("separator");
+		where.appendChild(bookmark);
+	}
+	else {
+		QDomElement bookmark = doc.createElement("bookmark");
+		// url
+		bookmark.setAttribute("href", bm->url().url());
+		// icon
+		bookmark.setAttribute("icon", bm->icon());
+		// title
+		QDomElement title = doc.createElement("title");	
+		title.appendChild(doc.createTextNode(bm->text()));
+		bookmark.appendChild(title);
+		
+		where.appendChild(bookmark);
+	}
 }
 
 void KrBookmarkHandler::exportToFileFolder(QDomDocument &doc, QDomElement &parent, KrBookmark *folder) {
