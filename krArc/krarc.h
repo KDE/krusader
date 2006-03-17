@@ -47,11 +47,12 @@ public:
 
 public slots:
 	void receivedData(KProcess* proc,char* buf,int len);
+	void checkOutputForPassword( KProcess*,char*,int );
 
 protected:
 	virtual bool   initDirDict(const KURL& url,bool forced = false);
 	virtual bool   initArcParameters();
-	static  QString detectArchive( bool &encrypted, QString fileName );
+	QString detectArchive( bool &encrypted, QString fileName );
 	virtual void parseLine(int lineNo, QString line, QFile* temp);
 	virtual bool setArcFile(const KURL& url);
 	virtual QString getPassword();
@@ -96,6 +97,9 @@ private:
 	bool extArcReady;                 //< Used for RPM & DEB files.
 	QString password;                 //< Password for the archives
 	KConfig *krConfig;                //< The configuration file for krusader
+	
+	QString lastData;
+	QString encryptedArchPath;
 };
 
 class KrShellProcess : public KShellProcess {

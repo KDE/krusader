@@ -156,7 +156,7 @@ void kio_krarcProtocol::mkdir(const KURL& url,int permissions){
 	proc << putCmd << convertName( arcFile->url().path() ) + " " << convertName( tmpDir.mid(arcTempDir.length()) );
 	infoMessage(i18n("Creating %1 ...").arg( url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
-	proc.start(KProcess::Block);
+	proc.start(KProcess::Block,KProcess::AllOutput);
 	
 	// delete the temp directory
 	QDir().rmdir(arcTempDir);
@@ -227,7 +227,7 @@ void kio_krarcProtocol::put(const KURL& url,int permissions,bool overwrite,bool 
 	proc << putCmd << convertName( arcFile->url().path() )+ " " <<convertName( tmpFile.mid(arcTempDir.length()) );
 	infoMessage(i18n("Packing %1 ...").arg( url.fileName() ) );
 	QDir::setCurrent(arcTempDir);
-	proc.start(KProcess::Block);
+	proc.start(KProcess::Block,KProcess::AllOutput);
 	// remove the file
 	QFile::remove(tmpFile);
 
@@ -276,7 +276,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 	if( !extArcReady && arcType == "rpm"){
 		KrShellProcess cpio;
 		cpio << "rpm2cpio" << convertName( arcFile->url().path(-1) ) << " > " << arcTempDir+"contents.cpio";
-		cpio.start(KProcess::Block);
+		cpio.start(KProcess::Block,KProcess::AllOutput);
 		if( !cpio.normalExit() || cpio.exitStatus() != 0 )  {
 			error(ERR_COULD_NOT_READ,url.path() + "\n\n" + cpio.getErrorMsg() );
 			return;
@@ -287,7 +287,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 	if ( !extArcReady && arcType == "deb" ) {
 		KrShellProcess dpkg;
 		dpkg << cmd + " --fsys-tarfile" << convertName( arcFile->url().path( -1 ) ) << " > " << arcTempDir + "contents.cpio";
-		dpkg.start( KProcess::Block );
+		dpkg.start( KProcess::Block, KProcess::AllOutput );
 		if( !dpkg.normalExit() || dpkg.exitStatus() != 0 )  {
 			error(ERR_COULD_NOT_READ,url.path() + "\n\n" + dpkg.getErrorMsg() );
 			return;
@@ -300,7 +300,7 @@ void kio_krarcProtocol::get(const KURL& url, int tries ){
 	KrShellProcess proc;
 	if( extArcReady ){
 		proc << getCmd << arcTempDir+"contents.cpio " << convertName( "*"+file );
-	} else if( arcType == "arj" || arcType == "ace" ) {
+	} else if( arcType == "arj" || arcType == "ace" || arcType == "7z" ) {
 		proc << getCmd << convertName( arcFile->url().path(-1) )+ " " << convertName( file );
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 		proc << "<" << "/dev/ptmx"; 
@@ -460,7 +460,7 @@ void kio_krarcProtocol::del(KURL const & url, bool isFile){
 	KrShellProcess proc;
 	proc << delCmd << convertName( arcFile->url().path() )+" " << convertName( file );
 	infoMessage(i18n("Deleting %1 ...").arg( url.fileName() ) );
-	proc.start(KProcess::Block);
+	proc.start(KProcess::Block, KProcess::AllOutput);
 	if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) )  {
 		error(ERR_COULD_NOT_WRITE,url.path() + "\n\n" + proc.getErrorMsg() );
 		return;
@@ -556,7 +556,7 @@ void kio_krarcProtocol::copy (const KURL &url, const KURL &dest, int, bool overw
 				proc << "<" << "/dev/ptmx"; 
 			
 			infoMessage(i18n("Unpacking %1 ...").arg( url.fileName() ) );
-			proc.start(KProcess::Block);
+			proc.start(KProcess::Block, KProcess::AllOutput);
 			if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) )  {
 				error(KIO::ERR_COULD_NOT_WRITE, dest.path(-1) + "\n\n" + proc.getErrorMsg() );
 				return;
@@ -715,7 +715,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 			proc << listCmd << convertName( arcFile->url().path(-1) ) <<" > " << temp.name();
 		if( arcType == "ace" && QFile( "/dev/ptmx" ).exists() ) // Don't remove, unace crashes if missing!!!
 			proc << "<" << "/dev/ptmx";
-		proc.start(KProcess::Block);
+		proc.start(KProcess::Block,KProcess::AllOutput);
 		if( !proc.normalExit() || !checkStatus( proc.exitStatus() ) ) return false;
 	}
 	// clear the dir dictionary
@@ -753,7 +753,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	
 	int lineNo = 0;
 	// the rar list is started with a ------ line.
-	if(arcType == "rar" || arcType == "arj" || arcType == "lha" ){
+	if(arcType == "rar" || arcType == "arj" || arcType == "lha" || arcType == "7z" ){
 		while(temp.file()->readLine(buf,1000) != -1){
 			line = QString::fromLocal8Bit(buf);
 			if( line.startsWith("----------") ) break;
@@ -787,7 +787,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 				line = line+QString::fromLocal8Bit(buf);
 			}
 		}
-		if( arcType == "lha" ) {
+		if( arcType == "lha" || arcType == "7z" ) {
 			// the arj list is ended with a ------ line.
 			if( line.startsWith("----------") ) break;
 		}
@@ -1124,6 +1124,33 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 			fullName = fullName.left(fullName.find("->")-1);
 		}
 	}
+	if(arcType == "7z"){
+		// date & time
+		QString d = nextWord(line);
+		QDate qdate( d.mid(0,4).toInt(), d.mid(5,2).toInt(), d.mid(8,2).toInt() );
+		QString t = nextWord(line);
+		QTime qtime(t.mid(0,2).toInt(),t.mid(3,2).toInt(),t.mid(6,2).toInt() );
+		time = QDateTime(qdate,qtime).toTime_t();
+		
+		// permissions
+		perm = nextWord(line);
+		bool isDir  = ( perm.at(0).lower() == 'd' );
+		bool isReadOnly = ( perm.at(1).lower() == 'r' );
+		perm = isDir ? "drwxr-xr-x" : "-rw-r--r--";
+		if( isReadOnly )
+			perm.at( 2 ) = '-';
+		
+		mode = parsePermString(perm);
+		
+		// size
+		size = nextWord(line).toLong();
+		
+		// ignore the next 15 characters
+		line = line.mid( 15 );
+		
+		// full name
+		fullName = nextWord(line,'\n');
+	}
 
 	if( fullName.right(1) == "/" ) fullName = fullName.left(fullName.length()-1);
 	if( !fullName.startsWith("/") ) fullName = "/"+fullName;
@@ -1295,7 +1322,26 @@ bool kio_krarcProtocol::initArcParameters() {
 		copyCmd = QString::null;
 		delCmd = QString::null;
 		putCmd = QString::null;	
+	} else if (arcType == "7z") {
+		cmd = fullPathName( "7z" );
+		if( KStandardDirs::findExe(cmd).isEmpty() )
+			cmd = fullPathName( "7za" );
+		
+		listCmd = cmd + " l -y ";
+		getCmd  = cmd + " e -y ";
+		copyCmd = cmd + " e -y ";
+		delCmd  = cmd + " d -y ";
+		putCmd  = cmd + " a -y ";
+		if( !getPassword().isEmpty() ) {
+			getCmd += "-p'"+password+"' ";
+			listCmd += "-p'"+password+"' ";
+			copyCmd += "-p'"+password+"' ";
+			if( !putCmd.isEmpty() ) {
+				putCmd += "-p'"+password+"' ";
+				delCmd += "-p'"+password+"' ";
+			}
 		}
+	}
 	else {
 		cmd     = QString::null;
 		listCmd = QString::null;
@@ -1342,7 +1388,8 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 	                                              {"ace",  7, "**ACE**" },
 	                                              {"bzip2",0, "\x42\x5a\x68\x39\x31" },
 	                                              {"gzip", 0, "\x1f\x8b"},
-	                                              {"deb",  0, "!<arch>\ndebian-binary   " } };
+	                                              {"deb",  0, "!<arch>\ndebian-binary   " },
+	                                              {"7z",   0, "7z\xbc\xaf\x27\x1c" } };
 	static int autoDetectElems = sizeof( autoDetectParams ) / sizeof( AutoDetectParams );
 	
 	encrypted = false;
@@ -1433,6 +1480,33 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 							offset += headerSize;
 						}
 				}
+				else if( type == "7z" ) {
+					if( encryptedArchPath == fileName )
+						encrypted = true;
+					else {  // we try to find whether the 7z archive is encrypted
+						// this is hard as the headers are also compresseds
+						QString tester = fullPathName( "7z" );
+						if( KStandardDirs::findExe( tester ).isEmpty() ) {
+							tester = fullPathName( "7za" );
+							if( KStandardDirs::findExe( tester ).isEmpty() ) {
+								return type;
+							}
+						}
+						
+						QString testCmd = tester + " t -y ";
+						lastData = encryptedArchPath = "";
+						
+						KrShellProcess proc;
+						proc << testCmd << convertName( fileName );
+						connect( &proc, SIGNAL( receivedStdout(KProcess*,char*,int) ),
+						         this, SLOT( checkOutputForPassword( KProcess*,char*,int ) ) );
+						proc.start(KProcess::Block,KProcess::AllOutput);
+						encrypted = this->encrypted;
+						
+						if( encrypted )
+							encryptedArchPath = fileName;
+					}
+				}
 				return type;
 			}
 		}
@@ -1457,6 +1531,32 @@ QString kio_krarcProtocol::detectArchive( bool &encrypted, QString fileName ) {
 		}
 	}
 	return QString::null;
+}
+
+void kio_krarcProtocol::checkOutputForPassword( KProcess *proc,char *buf,int len ) {
+	QByteArray d(len);
+	d.setRawData(buf,len);
+	QString data =  QString( d );
+	d.resetRawData(buf,len);
+	
+	QString checkable = lastData + data;
+	
+	QStringList lines = QStringList::split( '\n', checkable );
+	lastData = lines[ lines.count() - 1 ];
+	for( unsigned i=0; i != lines.count(); i++ ) {
+		QString line = lines[ i ].stripWhiteSpace().lower();
+		int ndx = line.find( "testing" );
+		if( ndx >=0 )
+			line.truncate( ndx );
+		if( line.isEmpty() )
+			continue;
+		
+		if( line.contains( "password" ) && line.contains( "enter" ) ) {
+			KRDEBUG( "Encrypted 7z archive found!" );
+			encrypted = true;
+			proc->kill();
+		}
+	}
 }
 
 void kio_krarcProtocol::invalidatePassword() {

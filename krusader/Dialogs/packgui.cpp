@@ -67,6 +67,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
   if (PS("rar")) typeData->insertItem("rar");
   if (PS("lha")) typeData->insertItem("lha");
   if (PS("arj")) typeData->insertItem("arj");
+  if (PS("7z")) typeData->insertItem("7z");
   // set the last used packer as the top one
   QString tmp=krConfig->readEntry("lastUsedPacker",QString::null);
   if (tmp!=QString::null) {

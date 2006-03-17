@@ -905,7 +905,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                bool encrypted; 
                KURL url = i->VF->vfile_getUrl();
                QString mime = ((vfile *)(i->VF))->vfile_getMime();
-               QString type = KRarcHandler::getType( encrypted, url.path(), mime );
+               QString type = KRarcHandler::getType( encrypted, url.path(), mime, false );
 
                if( KRarcHandler::arcSupported( type ) ) {
                  KURL url = i->VF->vfile_getUrl();

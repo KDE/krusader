@@ -56,11 +56,11 @@ public:
   // true - if the url is an archive (ie: tar:/home/test/file.tar.bz2)
   static bool isArchive(const KURL& url);
   // used to determine the type of the archive
-  static QString getType( bool &encrypted, QString fileName, QString mime );
+  static QString getType( bool &encrypted, QString fileName, QString mime, bool checkEncrypted = true );
   // queries the password from the user
   static QString getPassword( QString path );
   // detects the archive type
-  static QString detectArchive( bool &encrypted, QString fileName );
+  static QString detectArchive( bool &encrypted, QString fileName, bool checkEncrypted = true );
 private:
   // checks if the returned status is correct
   static bool checkStatus( QString type, int exitCode );
@@ -90,6 +90,47 @@ public slots:
 	
 private:
 	QString errorMsg;
+};
+
+class Kr7zEncryptionChecker : public KrShellProcess {
+	Q_OBJECT
+	
+public:
+	Kr7zEncryptionChecker() : KrShellProcess(), encrypted( false ), lastData() {
+		connect(this,SIGNAL(receivedStdout(KProcess*,char*,int)),
+				this,SLOT(processStdout(KProcess*,char*,int)) );
+	}
+
+public slots:
+	void processStdout( KProcess *proc,char *buf,int len ) {
+		QByteArray d(len);
+		d.setRawData(buf,len);
+		QString data =  QString( d );
+		d.resetRawData(buf,len);
+		
+		QString checkable = lastData + data;
+		
+		QStringList lines = QStringList::split( '\n', checkable );
+		lastData = lines[ lines.count() - 1 ];
+		for( unsigned i=0; i != lines.count(); i++ ) {
+			QString line = lines[ i ].stripWhiteSpace().lower();
+			int ndx = line.find( "testing" );
+			if( ndx >=0 )
+				line.truncate( ndx );
+			if( line.isEmpty() )
+				continue;
+			
+			if( line.contains( "password" ) && line.contains( "enter" ) ) {
+				encrypted = true;
+				proc->kill();
+			}
+		}
+	}
+
+	bool isEncrypted() { return encrypted; }
+private:
+	bool encrypted;
+	QString lastData;
 };
 
 #endif

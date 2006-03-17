@@ -181,6 +181,8 @@
 #define _DoDEB         true
 // Do Lha /////////////
 #define _DoLha         true 
+// Do 7z /////////////          ====> new
+#define _Do7z          true
 // Allow Move Into Archive //
 #define _MoveIntoArchive false 
 // Test Archives //////
