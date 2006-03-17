@@ -9,7 +9,7 @@ Previous used Docbook
 <!-- **********************************************************************
                               index.docbook
                            +++++++++++++++++++
-  copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005
+  copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006
                           Rafi Yanai, Shie Erlich, Frank Schoolmeesters
                           & the Krusader Krew
   e-mail               : krusader@users.sourceforge.net
@@ -399,12 +399,13 @@ Previous used Docbook
   <copyright>
         <year>2004</year>
         <year>2005</year>
+        <year>2006</year>
         <holder>Krusader Krew</holder>
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2006-01-23</date>
-  <releaseinfo>1.70.0 "Round Robin"</releaseinfo>
+  <date>2006-03-15</date>
+  <releaseinfo>1.71.0 "cvs repository"</releaseinfo>
 
    <abstract>
    <para>&krusader; is an advanced, twin-panel (commander-style) file-manager for KDE, 
@@ -528,21 +529,26 @@ Previous used Docbook
 
   <para><emphasis role="bold">Documentation</emphasis></para>
   <para>Help is needed (we are looking for documentation writers) for keeping the &krusader;
-        documentation up to date.</para>
+        documentation up to date. The draft explanation of new features is done by the
+        developers on the krusader-devel mailinglist, but we need editors to add this 
+        information in the handbook. By playing with the new features these editors
+        can give valuable information to the developers for making the new features even better!</para>
 
   <para><emphasis role="bold">&krusader; extra's</emphasis></para>
   <para>Upload your favorite configurations/extensions/plugins at &kde_files_url;,
         so that they become available for the &krusader; community.
-        Maybe they will be shipped with &krusader; at the next release :-))
+        Maybe they will be shipped by default with &krusader; at the next release :-))
         It features 
         <ulink url="http://www.kde-files.org/index.php?xcontentmode=660">Keymaps</ulink>, 
         <ulink url="http://www.kde-files.org/index.php?xcontentmode=661">Colormaps</ulink>, 
         <ulink url="http://www.kde-files.org/index.php?xcontentmode=662">User Actions</ulink>, 
         <ulink url="http://www.kde-files.org/index.php?xcontentmode=663">JavaScript Extensions</ulink>.
   </para>
+  <para>User Actions can be discussed in our &useractionsforum_url;, please join!</para>
 
   <para><emphasis role="bold">Spread the Word &krusader;</emphasis></para>
-  <para>If you like &krusader;, let people know! 
+  <para>If you like &krusader;, 
+        <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1419">let people know!</ulink> 
         Write articles and reviews for internet or print publications. 
         Encourage your friends to give &krusader; a try. 
         Participate in forums to help others in the community.</para>
@@ -562,17 +568,9 @@ Previous used Docbook
         &krusader; is and always will be free, in all the terms of the GNU Public License. 
         </para>
 
-  <para><emphasis role="bold">UserActions</emphasis></para>
-  <para>Krusader comes with a nice set of &useractions_lnk; , 
-        providing simple and advanced features of all sorts.
-        If you have made a useful User action, please post it in the  &useractionsforum_url;
-        we are collecting UserActions on our website, the "best ones" will be shipped with Krusader.
-        Thanks!</para>
-
   <para><emphasis role="bold">Packagers</emphasis></para>
   <para>We are always in need of packagers for different distro rpm's, deb's, etc. 
         All help is welcome.</para>
-
 
   <para><emphasis role="bold">Users feedback for the &krusader; &MacOS; X port</emphasis></para>
   <para>Krusader is <link linkend="mac-port">ported</link> to &macosx_download_url; with &fink_url; 
@@ -595,7 +593,7 @@ Previous used Docbook
   </para>
 
   <para>On some websites like &freshmeat_url; or &kde_apps_url; you can give a rate,
-       if you like &krusader; go to one of these sites and rate &krusader;, thanks.</para>
+        if you like &krusader; go to one of these sites and rate &krusader;, thanks.</para>
 </preface>
 
 
@@ -603,6 +601,8 @@ Previous used Docbook
   <title>Note from the Editors</title>
 
   <para>As you may notice this handbook is written by various authors.
+        The draft explanation of new features is done by the developers on the 
+        krusader-devel mailinglist, the editors add this information in this handbook.
         We have taken much care in ensuring technical and vocabulary consistency.
         The authors write in English even though it is not their native language;
         therefore, you may notice strange sentence constructions.
@@ -610,7 +610,7 @@ Previous used Docbook
 
   <para>An open source projects greatest strength is derived from getting user
         feedback. That's why we would love to hear what you have to say.
-        Documentation contributors are always welcome, since this is a time consuming task.
+        Documentation contributors are always welcome! , since this is a time consuming task.
         If you have ideas on how to improve the content,
         if you would like to write about an undocumented &krusader; feature, or
         if you have comments or suggestions about the &krusader; Handbook. Please let us know.
