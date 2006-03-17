@@ -39,7 +39,7 @@
 <para>Plus: extensive Archive handling, mounted Filesystem support, &FTP;,
      advanced Search module, viewer/Editor, directory Synchronization,
      file content Comparisons, powerful batch Renaming and much, much more.
-     Supports archive formats: ace, arj, bzip2, gzip, iso, lha, rar, rpm, tar, and zip.
+     Supports archive formats: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.
      Handles other &kioslaves1_url; such as smb:// or fish://.</para>
 
 <para>Almost completely customizable, &krusader; is very user friendly, facile,
@@ -71,20 +71,58 @@ long if we were to include <emphasis>all</emphasis> the features and improvement
 You will discover even more features in this documentation and in the &changelog_url; file.
 </para></note>
 
+
 <para>
 <itemizedlist>
+  <listitem>
+     <para>&ofm_url; features
+         <itemizedlist>
+          <listitem>
+               <para>Two symmetrical OFM <link linkend="panels">panels</link>.</para>
+          </listitem>
+          <listitem>
+               <para>&cmdline_lnk; at below</para>
+          </listitem>
+          <listitem>
+               <para>Strong <link linkend="keyboard">keyboard</link> orientation, 
+                     the ability to perform all functions without mouse.</para>
+          </listitem>
+          <listitem>
+               <para>File extension menu and user menu (start menu).</para>
+          </listitem>
+          <listitem>
+               <para>History for everything.</para>
+          </listitem>
+          <listitem>
+               <para>Virtual file systems(VFS)</para>
+          </listitem>
+          <listitem>
+               <para>Internal <link linkend="krviewer">viewer and editor: via kparts it
+                     supports almost every fileformat.</link></para>
+          </listitem>
+          <listitem>
+               <para>&advanced_search_module_lnk; : can search in archives and search content on remote &URL;s</para>
+          </listitem>
+          <listitem>
+               <para>Several Panel view modes with via the &popup_panel_lnk;.</para>
+          </listitem>
+          <listitem>
+               <para>&remote_connections_lnk; : &FTP;/SAMBA with SFTP/SCP support via &kioslaves1_url;</para>
+          </listitem>
+        </itemizedlist>
+     </para>
+  </listitem>
+
+
+
   <listitem>
      <para>Configurable &main_toolbar_lnk; and
            <link linkend="key_bindings">key-bindings</link>.</para>
   </listitem>
 
   <listitem>
-     <para>Supported &archives_lnk; : ace, arj, bzip2, gzip, iso, lha, rar, rpm, tar and zip.
+     <para>Supported &archives_lnk; : ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar zip and 7-zip.
      </para></listitem>
-  <listitem>
-
-      <para>&advanced_search_module_lnk; that can search in archives.</para>
-  </listitem>
 
   <listitem>
       <para><link linkend="compare-dir">Directory comparison</link> and
@@ -95,9 +133,7 @@ You will discover even more features in this documentation and in the &changelog
       <para><link linkend="panels">(Pre)View and Tree panels</link>.</para>
    </listitem>
 
-  <listitem>
-       <para>&remote_connections_lnk; &eg; &FTP;/SAMBA with SFTP/SCP support.</para>
-  </listitem>
+
 
   <listitem>
        <para>Open a <link linkend="commands-menu">Terminal</link> 
@@ -108,10 +144,6 @@ You will discover even more features in this documentation and in the &changelog
        <para>Built-in &termemu_lnk;.</para>
   </listitem>
 
-  <listitem>
-       <para>A &cmdline_lnk; capable of running something in a terminal with a single click
-             of a button.</para>
-   </listitem>
 
   <listitem>
       <para>&bookmark-manager_lnk;.</para>
@@ -130,9 +162,7 @@ You will discover even more features in this documentation and in the &changelog
       <para><link linkend="calculate">Calculates occupied space</link> by marked files and folders.</para>
   </listitem>
 
-  <listitem>
-      <para>Internal <link linkend="krviewer">viewer and configurable editor.</link></para>
-  </listitem>
+
 
   <listitem>
        <para>Completely supports drag'n'drop: drag from &konqueror; straight into a .tar.gz file, 
