@@ -67,6 +67,7 @@ private:
   QPopupMenu *popupMenu;
 
   QValueList<KURL>    urls;
+  QValueList<QString> types;
 };
 
 #endif /* MEDIABUTTON_H */

@@ -102,7 +102,6 @@ QString MediaButton::detectType( KMountPoint *mp )
 				typeName="hdd";
 			else
 			{
-				fprintf( stderr, "tmpInfo: %s\n", tmpInfo.ascii() );
 				if (tmpInfo.contains("disk"))   // disks
 					typeName="hdd";
 				else if (tmpInfo.contains("cdrom")) {    // cdroms and cdwriters
@@ -191,7 +190,17 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 	
 	for( unsigned i=0; i != urls.size(); i++ ) {
 		if( mediaURL.equals( urls[ i ], true ) ) {
-			popupMenu->changeItem( i, sizeText + " " + popupMenu->text( i ) );
+			if( kBSize == 0 ) { // if df gives 0, it means the device is quasy umounted
+#if KDE_IS_VERSION(3,4,0)
+				QString mimeBase = "media/";
+#else
+				QString mimeBase = "kdedevice/";
+#endif
+				QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimeBase + types[ i ] + "_unmounted" ) ->icon( QString::null, true ) );
+				popupMenu->changeItem( i, pixmap, popupMenu->text( i ) );
+			}
+			else if( types[ i ] == "hdd" )
+				popupMenu->changeItem( i, sizeText + " " + popupMenu->text( i ) );
 			return;
 		}
 	}
@@ -239,15 +248,9 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	
 	QString mime = mimeBase + type + mountString;
 	
-	if( type == "hdd" ) {
+	if( type == "hdd" )
 		name = i18n( "Hard Disc" );
-		
-		if( isMounted ) {
-			KDiskFreeSp *sp = KDiskFreeSp::findUsageInfo( mp->mountPoint() );
-			connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
-			         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
-		}
-	} else if( type == "cdrom" )
+	else if( type == "cdrom" )
 		name = i18n( "CD-ROM" );
 	else if( type == "cdwriter" )
 		name = i18n( "CD Recorder" );
@@ -268,11 +271,18 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		name = i18n( "Unknown" );
 	}
 	
+	if( isMounted ) {
+		KDiskFreeSp *sp = KDiskFreeSp::findUsageInfo( mp->mountPoint() );
+		connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
+		         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
+	}
+
 	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString::null, true ) );
 	
 	if( overwrite == -1 ) {
 		int index = popupMenu->count();
 		urls.append( KURL::fromPathOrURL( mp->mountPoint() ) );
+		types.append( type );
 		popupMenu->insertItem( pixmap, name + " [" + mp->mountPoint() + "]", index, index );
 	}
 	else
