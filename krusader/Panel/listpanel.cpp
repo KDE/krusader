@@ -215,7 +215,9 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
                                   "Use of Net protocols like ftp or fish is possible." ) );
    origin->setMode( KFile::Directory | KFile::ExistingOnly );
    connect( origin, SIGNAL( returnPressed( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
+   connect( origin, SIGNAL( returnPressed( const QString& ) ), this, SLOT( slotFocusOnMe() ) );
    connect( origin, SIGNAL( urlSelected( const QString& ) ), func, SLOT( openUrl( const QString& ) ) );
+   connect( origin, SIGNAL( urlSelected( const QString& ) ), this, SLOT( slotFocusOnMe() ) );
    
 	// this is here on purpose, do not move up!
 	if (clearButton) {
@@ -580,6 +582,7 @@ void ListPanel::start( KURL url, bool immediate ) {
    else
      func->openUrl( virt );
 
+   slotFocusOnMe();
    setJumpBack( virt );
 }
 

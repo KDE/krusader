@@ -356,8 +356,10 @@ QString exp_Goto::expFunc( const ListPanel* panel, const QStringList& parameter,
       else
          krApp->mainView->rightMng->slotNewTab( parameter[0] );
    }
-   else
+   else {
       panel->func->openUrl( parameter[0], "" );
+      ((ListPanel *)panel)->slotFocusOnMe();
+   }
    
    return QString::null;  // this doesn't return everything, that's normal!
 }

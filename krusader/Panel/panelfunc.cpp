@@ -118,8 +118,6 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 		}
 	}
 
-	panel->slotFocusOnMe();
-
 	// if we are not refreshing to current URL
 	bool is_equal_url = files() ->vfs_getOrigin().equals( url, true );
 	
