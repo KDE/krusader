@@ -1413,6 +1413,9 @@ void KrDetailedView::slotSortOrderChanged(int col) {
 		else sp = static_cast<KrViewProperties::SortSpec>(sp | KrViewProperties::Descending);
 	}
 	PROPS->sortMode = sp;
+	
+	if( !_focused )
+		op()->emitNeedFocus();
 }
 
 #include "krdetailedview.moc"
