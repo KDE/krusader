@@ -112,8 +112,12 @@ QString MediaButton::detectType( KMountPoint *mp )
 								if( tmpInfo.contains("-rw") ||
 								    tmpInfo.contains("cdrw") ||
 								    tmpInfo.contains("dvd-rw") ||
-								    tmpInfo.contains("dvd+rw") )
-									typeName="cdwriter";
+								    tmpInfo.contains("dvd+rw") ) {
+									if( tmpInfo.contains("dvd") )
+										typeName="dvdwriter";
+									else
+										typeName="cdwriter";
+								}
 								else if( tmpInfo.contains("dvd") )
 									typeName="dvd";
 								else
@@ -155,6 +159,11 @@ QString MediaButton::detectType( KMountPoint *mp )
 	else if (-1!=mp->mountedFrom().find("cdrw",0,FALSE)) typeName="cdwriter";
 	else if (-1!=mp->mountPoint().find("cdrw",0,FALSE)) typeName="cdwriter";
 	else if (-1!=mp->mountedFrom().find("cdrecorder",0,FALSE)) typeName="cdwriter";
+	else if (-1!=mp->mountPoint().find("cdrecorder",0,FALSE)) typeName="cdwriter";
+	else if (-1!=mp->mountedFrom().find("dvdrecorder",0,FALSE)) typeName="dvdwriter";
+	else if (-1!=mp->mountPoint().find("dvdrecorder",0,FALSE)) typeName="dvdwriter";
+	else if (-1!=mp->mountPoint().find("dvdwriter",0,FALSE)) typeName="dvdwriter";
+	else if (-1!=mp->mountedFrom().find("dvdwriter",0,FALSE)) typeName="dvdwriter";
 	else if (-1!=mp->mountPoint().find("dvd",0,FALSE)) typeName="dvd";   
 	else if (-1!=mp->mountedFrom().find("dvd",0,FALSE)) typeName="dvd";   
 	else if (-1!=mp->mountedFrom().find("/dev/scd",0,FALSE)) typeName="cdrom";
@@ -196,7 +205,8 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 #else
 				QString mimeBase = "kdedevice/";
 #endif
-				QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimeBase + types[ i ] + "_unmounted" ) ->icon( QString::null, true ) );
+				QString realType = ( types[ i ] == "dvdwriter" ) ? "cdwriter" : types[ i ];
+				QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mimeBase +  realType + "_unmounted" ) ->icon( QString::null, true ) );
 				popupMenu->changeItem( i, pixmap, popupMenu->text( i ) );
 			}
 			else if( types[ i ] == "hdd" )
@@ -254,6 +264,10 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		name = i18n( "CD-ROM" );
 	else if( type == "cdwriter" )
 		name = i18n( "CD Recorder" );
+	else if( type == "dvdwriter" ) {
+		mime = mimeBase + "cdwriter" + mountString;
+		name = i18n( "DVD Recorder" );
+	}
 	else if( type == "dvd" )
 		name = i18n( "DVD" );
 	else if( type == "smb" )
@@ -276,7 +290,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		connect( sp, SIGNAL( foundMountPoint( const QString &, unsigned long, unsigned long, unsigned long ) ),
 		         this, SLOT( gettingSpaceData( const QString&, unsigned long, unsigned long, unsigned long ) ) );
 	}
-
+	
 	QPixmap pixmap = FL_LOADICON( KMimeType::mimeType( mime ) ->icon( QString::null, true ) );
 	
 	if( overwrite == -1 ) {
