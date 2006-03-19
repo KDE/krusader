@@ -44,6 +44,24 @@
 #include <kmountpoint.h>
 #include <kmimetype.h>
 
+#ifdef Q_OS_LINUX
+// For CD/DVD drive detection
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <stdint.h>
+#define CDROM_GET_CAPABILITY    0x5331
+#define CDSL_CURRENT            ((int) (~0U>>1))
+#define CDC_DVD_R               0x10000 /* drive can write DVD-R */
+#define CDC_DVD_RAM             0x20000 /* drive can write DVD-RAM */
+#define CDC_CD_R                0x2000  /* drive is a CD-R */
+#define CDC_CD_RW               0x4000  /* drive is a CD-RW */
+#define CDC_DVD                 0x8000  /* drive is a DVD */
+#include <qfile.h>
+#endif
+
+
+
 MediaButton::MediaButton( QWidget *parent, const char *name ) : QToolButton( parent, name ),
 		popupMenu( 0 )
 	 {
@@ -86,61 +104,55 @@ QString MediaButton::detectType( KMountPoint *mp )
 {
 	QString typeName = QString::null;
 #ifdef Q_OS_LINUX
-	QString str;
-	QString tmpInfo;
-	if (mp->mountedFrom().startsWith("/dev/hd")) {
-		QString tmp=mp->mountedFrom();
-		tmp=tmp.right(tmp.length()-5);
-		tmp=tmp.left(3);
-		QString mediafilename="/proc/ide/"+tmp+"/media";
-		QString modelfilename="/proc/ide/"+tmp+"/model";
-
-		QFile infoFile(mediafilename);
-		if (infoFile.open(IO_ReadOnly))
-		{
-			if (-1 == infoFile.readLine(tmpInfo,20)) 
-				typeName="hdd";
-			else
-			{
-				if (tmpInfo.contains("disk"))   // disks
-					typeName="hdd";
-				else if (tmpInfo.contains("cdrom")) {    // cdroms and cdwriters
-						QFile modelFile(modelfilename);
-						if(modelFile.open(IO_ReadOnly)) {
-							if( -1 != modelFile.readLine(tmpInfo,80) ) {
-								tmpInfo = tmpInfo.lower();
-								if( tmpInfo.contains("-rw") ||
-								    tmpInfo.contains("cdrw") ||
-								    tmpInfo.contains("dvd-rw") ||
-								    tmpInfo.contains("dvd+rw") ) {
-									if( tmpInfo.contains("dvd") )
-										typeName="dvdwriter";
-									else
-										typeName="cdwriter";
-								}
-								else if( tmpInfo.contains("dvd") )
-									typeName="dvd";
-								else
-									typeName="cdrom";
-							}
-							else
-								typeName="cdrom";
-							modelFile.close();
-						}
-						else 
-							typeName="cdrom";
-				}
-				else if (tmpInfo.contains("floppy")) 
-					typeName="zip"; // eg IDE zip drives
-				else 
-					typeName="hdd";
-			}
-			infoFile.close();
-		} 
-		else 
-			typeName="hdd"; // this should never be reached
+	// Guessing device types by mount point is not exactly accurate...
+	// Do something accurate first, and fall back if necessary.
+	
+	bool isCd=false;
+	QString devname=mp->mountedFrom().section('/', -1);
+	if(devname.startsWith("scd") || devname.startsWith("sr"))
+	{
+		// SCSI CD/DVD drive
+		isCd=true;
 	}
-	else
+	else if(devname.startsWith("hd"))
+	{
+		// IDE device -- we can't tell if this is a
+		// CD/DVD drive or harddisk by just looking at the
+		// filename
+		QFile m(QString("/proc/ide/") + devname + "/media");
+		if(m.open(IO_ReadOnly))
+		{
+			QTextStream in(&m);
+			QString buf=in.readLine();
+			if(buf.contains("cdrom"))
+				isCd=true;
+			m.close();
+		}
+	}
+	if(isCd)
+	{
+		int device=::open((const char *)QFile::encodeName(mp->mountedFrom()), O_RDONLY | O_NONBLOCK );
+		fprintf( stderr, "Device: %d\n", device );
+		if(device>=0)
+		{
+			int drv=::ioctl(device, CDROM_GET_CAPABILITY, CDSL_CURRENT);
+			if(drv>=0)
+			{
+				if((drv & CDC_DVD_R) || (drv & CDC_DVD_RAM))
+					typeName = "dvdwriter";
+				else if((drv & CDC_CD_R) || (drv & CDC_CD_RW))
+					typeName = "cdwriter";
+				else if(drv & CDC_DVD)
+					typeName = "dvd";
+				else
+					typeName = "cdrom";
+			}
+			
+			::close(device);
+		}
+	}
+	if( !typeName.isNull() )
+		return typeName;
 
 #elif defined(__FreeBSD__)
 	if (-1!=mp->mountedFrom().find("/acd",0,FALSE)) typeName="cdrom";
@@ -229,9 +241,14 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		mp->mountPoint() == "/dev/pts"  ||
 		mp->mountPoint().find( "/proc" ) == 0 )
 		return;
-	if( mp->mountType() == "swap"       ||
+	if( mp->mountType() == "swap" ||
 		mp->mountType() == "sysfs" ||
-		mp->mountType() == "tmpfs" )
+		mp->mountType() == "tmpfs" ||
+		mp->mountType() == "kernfs" ||
+		mp->mountType() == "usbfs" ||
+		mp->mountType() == "unknown" ||
+		mp->mountType() == "none" ||
+		mp->mountType() == "sunrpc" )
 		return;
 	if( mp->mountedFrom() == "none" ||
 		mp->mountedFrom() == "tmpfs" ||
@@ -299,8 +316,10 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		types.append( type );
 		popupMenu->insertItem( pixmap, name + " [" + mp->mountPoint() + "]", index, index );
 	}
-	else
+	else {
+		types[ overwrite ] = type;
 		popupMenu->changeItem( overwrite, pixmap, name + " [" + mp->mountPoint() + "]" );
+	}
 }
 
 #include "mediabutton.moc"
