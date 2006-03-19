@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>407</width>
-            <height>410</height>
+            <width>485</width>
+            <height>470</height>
         </rect>
     </property>
     <property name="caption">
@@ -209,25 +209,6 @@
                                 </property>
                             </widget>
                         </hbox>
-                    </widget>
-                    <widget class="QCheckBox" row="5" column="0">
-                        <property name="name">
-                            <cstring>chkUseTooltip</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>1</hsizetype>
-                                <vsizetype>1</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="text">
-                            <string>Use tooltip</string>
-                        </property>
-                        <property name="whatsThis" stdset="0">
-                            <string>The &lt;i&gt;Tooltip&lt;/i&gt; can be used as &lt;i&gt;Description&lt;/i&gt;.</string>
-                        </property>
                     </widget>
                     <widget class="QLabel" row="0" column="0">
                         <property name="name">
@@ -1115,12 +1096,6 @@ Please consult the handbook to learn more about the syntax.</string>
         <signal>toggled(bool)</signal>
         <receiver>chkSeparateStdError</receiver>
         <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>chkUseTooltip</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>textDescription</receiver>
-        <slot>setDisabled(bool)</slot>
     </connection>
     <connection>
         <sender>chkDifferentUser</sender>

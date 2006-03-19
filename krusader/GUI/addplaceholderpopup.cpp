@@ -61,9 +61,10 @@ AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KPopupMenu( parent
    _independentSub->insertSeparator();
 
    // read the expressions array from the user menu and populate menus
-   for ( int i = 0; i < krExpander->placeholderCount(); ++i ) {
-      if (  krExpander->placeholder( i )->expression().isEmpty() ) {
-         if ( krExpander->placeholder( i )->needPanel() ) {
+   Expander expander;
+   for ( int i = 0; i < expander.placeholderCount(); ++i ) {
+      if (  expander.placeholder( i )->expression().isEmpty() ) {
+         if ( expander.placeholder( i )->needPanel() ) {
             _activeSub->insertSeparator();
             _otherSub->insertSeparator();
             _leftSub->insertSeparator();
@@ -73,14 +74,14 @@ AddPlaceholderPopup::AddPlaceholderPopup( QWidget *parent ) : KPopupMenu( parent
             _independentSub->insertSeparator();
       }
       else {
-         if ( krExpander->placeholder( i )->needPanel() ) {
-            _activeSub->insertItem( krExpander->placeholder( i )->description(), ( i | ACTIVE_MASK ) );
-            _otherSub->insertItem( krExpander->placeholder( i )->description(), ( i | OTHER_MASK ) );
-            _leftSub->insertItem( krExpander->placeholder( i )->description(), ( i | LEFT_MASK ) );
-            _rightSub->insertItem( krExpander->placeholder( i )->description(), ( i | RIGHT_MASK ) );
+         if ( expander.placeholder( i )->needPanel() ) {
+            _activeSub->insertItem( expander.placeholder( i )->description(), ( i | ACTIVE_MASK ) );
+            _otherSub->insertItem( expander.placeholder( i )->description(), ( i | OTHER_MASK ) );
+            _leftSub->insertItem( expander.placeholder( i )->description(), ( i | LEFT_MASK ) );
+            _rightSub->insertItem( expander.placeholder( i )->description(), ( i | RIGHT_MASK ) );
          }
          else
-            _independentSub->insertItem( krExpander->placeholder( i )->description(), ( i | INDEPENDENT_MASK ) );
+            _independentSub->insertItem( expander.placeholder( i )->description(), ( i | INDEPENDENT_MASK ) );
       }
    }
 
@@ -100,7 +101,8 @@ QString AddPlaceholderPopup::getPlaceholder( const QPoint& pos ) {
          return filename + " "; // with extra space
          //return filename; // without extra space
    } else { // user selected something from the menus
-      exp_placeholder* currentPlaceholder = krExpander->placeholder( res & ~( ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK ) );
+      Expander expander;
+      exp_placeholder* currentPlaceholder = expander.placeholder( res & ~( ACTIVE_MASK | OTHER_MASK | LEFT_MASK | RIGHT_MASK | INDEPENDENT_MASK ) );
 //       if ( &currentPlaceholder->expFunc == 0 ) {
 //          KMessageBox::sorry( this, "BOFH Excuse #93:\nFeature not yet implemented" );
 //          return QString::null;

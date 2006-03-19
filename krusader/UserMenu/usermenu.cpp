@@ -22,7 +22,6 @@ email                :
 #include "../Konfigurator/konfigurator.h"
 #include "../UserAction/kraction.h"
 #include "../UserAction/useraction.h"
-#include "../UserAction/useractionxml.h"
 #include "usermenu.h"
 
 
@@ -65,8 +64,9 @@ void UserMenuGui::readEntries() {
    int idx = 1;
 
    //FIXME: don't plug ALL useractions into the usermenu. TODO: read the usermenu-strukture from an other file (krusaderrc ?)
-   for ( UserAction::KrActionList::iterator it = krUserAction->actionList()->begin(); it != krUserAction->actionList()->end(); ++it )
-      ( *it )->plug( this, idx++ );
+   UserAction::KrActionList list = krUserAction->actionList();
+   for ( KrAction* action = list.first(); action; action = list.next() )
+      action->plug( this, idx++ );
 
 }
 

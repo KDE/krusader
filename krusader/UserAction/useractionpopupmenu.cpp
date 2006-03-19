@@ -19,7 +19,8 @@
 #include "kraction.h"
 
 UserActionPopupMenu::UserActionPopupMenu( KURL currentURL, QWidget *parent ) : KPopupMenu( parent, "useraction popupmenu" ) {
-   for ( UserAction::KrActionList::iterator it = krUserAction->actionList()->begin(); it != krUserAction->actionList()->end(); ++it )
-      if ( (*it)->isAvailable( currentURL ) )
-         (*it)->plug( this );
+   UserAction::KrActionList list = krUserAction->actionList();
+   for ( KrAction* action = list.first(); action; action = list.next() )
+      if ( action->isAvailable( currentURL ) )
+         action->plug( this );
 }

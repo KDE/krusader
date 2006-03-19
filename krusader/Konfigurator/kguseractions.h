@@ -1,7 +1,7 @@
 /***************************************************************************
                          kguseractions.h  -  description
                              -------------------
-    copyright            : (C) 2004 by Jonas Bähr
+    copyright            : (C) 2004 by Jonas Bï¿½r
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -33,12 +33,9 @@
 
 #include "konfiguratorpage.h"
 
-class KListBox;
-
-//class QString;
-class UserActionXML;
-class ActionProperty;
 class KPushButton;
+class ActionProperty;
+class UserActionListView;
 
 class KgUserActions : public KonfiguratorPage
 {
@@ -47,7 +44,7 @@ class KgUserActions : public KonfiguratorPage
 public:
   KgUserActions( bool first, QWidget* parent=0,  const char* name=0 );
   ~KgUserActions();
-  
+
   bool isChanged();
   bool apply();
   void setDefaults();
@@ -61,13 +58,17 @@ public slots:
   void slotReset();	//restets the action to the last state where the user had presst "Ok"
   void slotImport();
   void slotExport();
+  void slotToClip();
+  void slotFromClip();
 
 protected:
  bool _needApply;
- KListBox *actionList;
+ UserActionListView *actionTree;
  ActionProperty *actionProperties;
- KPushButton *okButton, *resetButton, *newButton, *removeButton, *importButton, *exportButton;
- UserActionXML *_workXML, *_importXML;	//holds all the actions w/ nameconflicts after an import
+ KPushButton *okButton, *resetButton;
+ KPushButton *newButton, *removeButton;
+ KPushButton *importButton, *exportButton;
+ KPushButton *toClipButton, *fromClipButton;
 };
 
 #endif /* __KGUSERACTIONS_H__ */

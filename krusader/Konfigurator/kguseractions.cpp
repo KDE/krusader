@@ -35,18 +35,19 @@
 #include <klocale.h>
 #include <kpushbutton.h>
 #include <kdebug.h>
-#include <klistbox.h>
+#include <klistview.h>
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <klineedit.h>
+#include <kclipboard.h>
 
 #include <qsplitter.h> 
 
 #include "../UserMenu/usermenu.h"
 #include "../GUI/actionproperty.h"
+#include "../GUI/useractionlistview.h"
 #include "../UserAction/useraction.h"
-#include "../UserAction/useractionxml.h"
-#include "../UserAction/useractionproperties.h"
+#include "../UserAction/kraction.h"
 
 //This is the filter in the KFileDialog of Import/Export:
 static const char* FILE_FILTER = I18N_NOOP("*.xml|xml-files\n*|all files");
@@ -59,121 +60,94 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *kgStartupLayout = new QGridLayout( parent, 1, 1, 0, 6, "kgStartupLayout" );
 
   QSplitter *split = new QSplitter( parent, "kguseractions splitter");
-  actionList = new KListBox( split );
+  actionTree = new UserActionListView( split, "actionTree" );
   actionProperties = new ActionProperty( split );
 
   kgStartupLayout->addWidget( split, 0, 0 );
-  
+
   QVBoxLayout *vboxButtons = new QVBoxLayout( parent, 0, 6, "vboxButtons"); 
   QSpacerItem* spacer = new QSpacerItem( 0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding );
-  
+
   okButton = new KPushButton( i18n("Ok"), parent, "okButton" );
   resetButton = new KPushButton( i18n("Reset"), parent, "resetButton" );
   newButton = new KPushButton( i18n("New Action"), parent, "newButton" );
   removeButton = new KPushButton( i18n("Remove Action"), parent, "removeButton" );
   importButton = new KPushButton( i18n("Import Action"), parent, "importButton" );
   exportButton = new KPushButton( i18n("Export Action"), parent, "exportButton" );
+  toClipButton = new KPushButton( i18n("Action to Clipboard"), parent, "toClipButton" );
+  fromClipButton = new KPushButton( i18n("Action from Clipboard"), parent, "fromClipButton" );
 
   vboxButtons->addWidget( newButton );
   vboxButtons->addWidget( removeButton );
   vboxButtons->addWidget( importButton );
   vboxButtons->addWidget( exportButton );
+  vboxButtons->addWidget( toClipButton );
+  vboxButtons->addWidget( fromClipButton );
   vboxButtons->addItem( spacer );
   vboxButtons->addWidget( okButton );
   vboxButtons->addWidget( resetButton );
-  
+
   kgStartupLayout->addLayout( vboxButtons, 0, 1 );
-  
-  _importXML = 0;
-  _workXML = new UserActionXML();
-  if ( ! _workXML->validDoc() )
-    parent->setEnabled(false);
+
   _needApply = false;
-  
-  // fill the ListBox with all actions
-  //TODO display the titles, not the names
-  //TODO change this to an tree-view, grouped by category
-  actionList->insertStringList( _workXML->getActionNames() ); 
- 
-  
-  connect(  actionList, SIGNAL( currentChanged(QListBoxItem*) ), this, SLOT( slotChangeAction() ) );
+
+  connect(  actionTree, SIGNAL( currentChanged(QListViewItem*) ), this, SLOT( slotChangeAction() ) );
   connect( okButton, SIGNAL( clicked() ), this, SLOT( slotUpdateAction() ) );
   connect( resetButton, SIGNAL( clicked() ), this, SLOT( slotReset() ) );
   connect( newButton, SIGNAL( clicked() ), this, SLOT( slotNewAction() ) );
   connect( removeButton, SIGNAL( clicked() ), this, SLOT( slotRemoveAction() ) );
   connect( importButton, SIGNAL( clicked() ), this, SLOT( slotImport() ) );
   connect( exportButton, SIGNAL( clicked() ), this, SLOT( slotExport() ) );
+  connect( toClipButton, SIGNAL( clicked() ), this, SLOT( slotToClip() ) );
+  connect( fromClipButton, SIGNAL( clicked() ), this, SLOT( slotFromClip() ) );
 
-  if ( actionList->count() > 0 ) {
-    actionList->setCurrentItem( actionList->topItem() );
-    slotChangeAction();
-  }
+  // make the first UserActionListViewItem the current item and update the GUI
+  actionTree->setFirstActionCurrent();
 }
 
 KgUserActions::~KgUserActions() {
-  delete _importXML;
-  delete _workXML;
 }
 
 void KgUserActions::slotChangeAction() {
-  //kdDebug() << "entering KgUserActions::slotChangeAction" << endl;
-  
-  if ( _importXML != 0 ) {
-    actionProperties->leDistinctName->setEnabled(true);
-    actionProperties->updateGUI( _importXML->readAction( actionList->currentText() ) );
-  }
-  else {
-    // the discinct name is used as ID it is not allowd to change it afterwards because it is may referenced anywhere else
-    actionProperties->leDistinctName->setEnabled(false);
-    actionProperties->updateGUI( _workXML->readAction( actionList->currentText() ) );
-  }
-
+   //kdDebug() << "entering KgUserActions::slotChangeAction" << endl;
+   KrAction* action = actionTree->currentAction();
+   if ( action ) {
+      actionProperties->setEnabled( true );
+      // the discinct name is used as ID it is not allowd to change it afterwards because it is may referenced anywhere else
+      actionProperties->leDistinctName->setEnabled( false );
+      actionProperties->updateGUI( action );
+   }
+   else {
+      // If the current item in the tree is no action (i.e. a cathegory), disable the properties
+      actionProperties->clear();
+      actionProperties->setEnabled( false );
+   }
 }
 
 void KgUserActions::slotUpdateAction() {
   //kdDebug() << "entering KgUserActions::slotUpdateAction" << endl;
-  
+
   // check that we have a command line, title and a name
-   if ( ! actionProperties->checkProperties() )
+   if ( ! actionProperties->validProperties() )
      return;
-     
-  // This is to resolve name-conflicts after the import
-  if ( _importXML != 0 ) {
-    _importXML->removeAction( actionList->currentText() );
-    _workXML->addActionToDom( actionProperties->properties() );
-    actionList->removeItem( actionList->currentItem() );
-    
-    //check if there still are imported actions with name-conflicts
-    if ( _importXML->getActionNames().isEmpty() ) {
-      delete _importXML;
-      _importXML = 0;
-      
-      // re-fill the action-list with the stored actions
-      actionList->clear();
-      actionList->insertStringList( _workXML->getActionNames() );
-      
-      newButton->setEnabled( true );
-      importButton->setEnabled( true );
-      exportButton->setEnabled( true );
-    }
-  } //finished with the name-conflict stuff
-  else {
-    if ( actionProperties->leDistinctName->isEnabled() ) {
+
+  if ( actionProperties->leDistinctName->isEnabled() ) {
       // := new entry
-      _workXML->addActionToDom( actionProperties->properties() );
-      actionList->insertItem( *actionProperties->properties()->name() );
+      KrAction* action = new KrAction( krApp->actionCollection(), actionProperties->leDistinctName->text().latin1() );
+      krUserAction->addKrAction( action );
+      actionProperties->updateAction( action );
+      UserActionListViewItem* item = actionTree->insertAction( action );
+      actionTree->setCurrentItem( item );
+      krApp->userMenu->update();
     }
-    else // := edit an existing
-      _workXML->updateAction( actionProperties->properties() );
-      //krUserAction->updateKrAction( actionProperties->properties()->name, actionProperties->properties() );
-  }
-  
+    else { // := edit an existing
+       actionProperties->updateAction();
+       if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(actionTree->currentItem()) )
+          actionTree->update( item ); // this is the same as item->update() but also honors category-changes
+    }
 
   _needApply = true;
   emit sigChanged();
-  
-  slotChangeAction();
-  
   //kdDebug() << "leaving KgUserActions::slotUpdateAction" << endl;
 }
 
@@ -187,138 +161,92 @@ void KgUserActions::slotReset() {
 
 void KgUserActions::slotNewAction() {
   //kdDebug() << "entering KgUserActions::slotNewAction" << endl;
-  
-  actionProperties->leDistinctName->setEnabled(true);
-  
-  UserActionProperties *prop = new UserActionProperties;
-  
-  actionProperties->updateGUI( prop );
-  
-  delete prop;
+  actionProperties->leDistinctName->setEnabled( true );
+  actionProperties->clear();
 }
 
 void KgUserActions::slotRemoveAction() {
-  //kdDebug() << "entering KgUserActions::slotRemoveAction" << endl;
-  if ( actionList->currentText().isEmpty() )
-    return;
-  
-    int MessageDelete = KMessageBox::warningContinueCancel ( this,	//parent
-		i18n("Are you sure that you want to remove this action?\nA recovery is not possible!"),	//text
-		i18n("Remove this action?"), 	//caption
+   //kdDebug() << "entering KgUserActions::slotRemoveAction" << endl;
+   if ( ! dynamic_cast<UserActionListViewItem*>( actionTree->currentItem() ) )
+      return;
+
+   int messageDelete = KMessageBox::warningContinueCancel ( this,	//parent
+		i18n("Are you sure that you want to remove all selected action?"),	//text
+		i18n("Remove selected actions?"), 	//caption
 		i18n("Remove"),	//Label for the continue-button
 		"Confirm Remove UserAction",	//dontAskAgainName (for the config-file)
 		KMessageBox::Dangerous) ;
 
-    if ( MessageDelete != KMessageBox::Continue )
+   if ( messageDelete != KMessageBox::Continue )
       return;
-    
-  // This is to resolve name-conflicts after the import
-  if ( _importXML != 0 ) {
-    _importXML->removeAction( actionList->currentText() );
-    actionList->removeItem( actionList->currentItem() );
-    
-    //check if there still are imported actions with name-conflicts
-    if ( _importXML->getActionNames().isEmpty() ) {
-      delete _importXML;
-      _importXML = 0;
-      
-      // re-fill the action-list with the stored actions
-      actionList->clear();
-      actionList->insertStringList( krUserAction->xml()->getActionNames() );
-      
-      newButton->setEnabled( true );
-      importButton->setEnabled( true );
-      exportButton->setEnabled( true );
-    }
-  } //finished with the name-conflict stuff
-  else {
-    //TODO: make actionList multiselect and remove all selected actions  
-    _workXML->removeAction( actionList->currentText() );
-    actionList->removeItem( actionList->currentItem() );
 
-    _needApply = true;
-    emit sigChanged();
-  }
-  
-  slotChangeAction();  
+   actionTree->removeSelectedActions();
+
+   _needApply = true;
+   emit sigChanged();
 }
 
 void KgUserActions::slotImport() {
-  //kdDebug() << "entering KgUserActions::slotImport" << endl;
-  
-  QString filename = KFileDialog::getOpenFileName(QString::null, i18n(FILE_FILTER), this);
-  if ( filename.isEmpty() )
-    return;
-  
-  _importXML = new UserActionXML( filename );
-  //kdDebug() << "ActionImport: " << filename << " read to DOM" << endl;
-  if ( _importXML == 0 ) {
-    KMessageBox::error( this, i18n("The file you've chosen doesn't seem to be a valid action-file.") );
-    return;
-  }
-  //kdDebug() << "ActionImport: DOM valid, continueing" << endl;
-  
-  QStringList actionNames = _importXML->getActionNames();
-  
-  if ( actionNames.isEmpty() ) {
-    KMessageBox::error( this, i18n("No actions found in this file.") );
-    delete _importXML;
-    _importXML = 0;
-    return;
-  }
-  
-  for ( QStringList::iterator it = actionNames.begin(); it != actionNames.end(); ++it ) {
-    if ( ! krUserAction->xml()->nameExists( *it ) ) {
-      UserActionProperties* prop = _importXML->readAction( *it );
-      _workXML->addActionToDom( prop );
-      _importXML->removeAction( *it );
-      actionList->insertItem( *it );
-    }
-  } //for
-  
-  _needApply = true;
-  emit sigChanged();
-  
-  //check if there still are actions which aren't imported because of name-conflicts
-  actionNames = _importXML->getActionNames();
-  if ( actionNames.isEmpty() ) {
-    //kdDebug() << "KgUserActions::slotImport: All actions imported" << endl;
-    delete _importXML;
-    _importXML = 0;
-  }
-  else {
-    //kdDebug() << "KgUserActions::slotImport: Not all actions importet due to name-conflicts" << endl;
-    KMessageBox::sorry( this, i18n( "Couldn't import all actions because of name conflicts. Check the action-list on the left to fix them.\nPlease note that these actions won't be imported if you close the Konfigurator now!" ) );
-    actionList->clear();
-    actionList->insertStringList( actionNames );
-    
-    newButton->setEnabled( false );
-    importButton->setEnabled( false );
-    exportButton->setEnabled( false );
-  }
-  
-  if ( actionList->count() > 0 ) {
-    actionList->setCurrentItem( actionList->topItem() );
-    slotChangeAction();
-  }
+   //kdDebug() << "entering KgUserActions::slotImport" << endl;
 
+   QString filename = KFileDialog::getOpenFileName(QString::null, i18n(FILE_FILTER), this);
+   if ( filename.isEmpty() )
+      return;
+
+   UserAction::KrActionList newActions;
+   krUserAction->readFromFile( filename, UserAction::renameDoublicated, &newActions );
+   for ( KrAction* action = newActions.first(); action; action = newActions.next() )
+      actionTree->insertAction( action );
+
+   if ( newActions.count() > 0 ) {
+      _needApply = true;
+      emit sigChanged();
+   }
 }
 
 void KgUserActions::slotExport() {
-  //kdDebug() << "entering KgUserActions::slotExport" << endl;
-  if ( actionList->currentText().isEmpty() )
-    return;
-  
-  QString filename = KFileDialog::getSaveFileName(QString::null, i18n(FILE_FILTER), this);
-  if ( filename.isEmpty() )
-    return;
+   //kdDebug() << "entering KgUserActions::slotExport" << endl;
+   if ( ! dynamic_cast<UserActionListViewItem*>( actionTree->currentItem() ) )
+      return;
 
-  //if the file already holds a xml-file with type KrusaderUserAction the new action will be added to this one.
-  UserActionXML* exportXML = new UserActionXML( filename );
-  exportXML->addActionToDom( actionProperties->properties() );
-  exportXML->writeActionDom();
-  
-  delete exportXML;
+   QString filename = KFileDialog::getSaveFileName(QString::null, i18n(FILE_FILTER), this);
+   if ( filename.isEmpty() )
+      return;
+
+   QDomDocument doc = QDomDocument( ACTION_DOCTYPE );
+   QFile file( filename );
+   int answer = 0;
+   if( file.open( IO_ReadOnly ) ) { // getting here, means the file already exists an can be read
+      if( doc.setContent( &file ) ) // getting here means the file exists and already contains an UserAction-XML-tree
+         answer = KMessageBox::warningYesNoCancel( this,	//parent
+         		i18n("This file already contains some useractions.\nDo you want to overwrite it or should it be merged with the selected actions?"),	//text
+         		i18n("Overwrite or merge?"),	//caption
+         		i18n("Overwrite"),	//label for Yes-Button
+         		i18n("Merge")	//label for No-Button
+         	);
+      file.close();
+   }
+   if ( answer == 0 && file.exists() )
+      answer = KMessageBox::warningContinueCancel( this,	//parent
+      		i18n("This file already exists. Do you want to overwrite it?"),	//text
+      		i18n("Overwrite existing file?"),	//caption
+      		i18n("Overwrite")	//label for Continue-Button
+      	);
+
+   if ( answer == KMessageBox::Cancel )
+      return;
+
+   if ( answer == KMessageBox::No ) // that means the merge-button
+      doc = actionTree->dumpSelectedActions( &doc ); // merge
+   else // Yes or Continue means overwrite
+      doc = actionTree->dumpSelectedActions();
+
+   bool success = UserAction::writeToFile( doc, filename );
+   if ( ! success )
+      KMessageBox::error( this,
+      		i18n("Can't open %1 for writing!\nNothing exported.").arg(filename),
+      		i18n("Export failed!")
+      );
 }
 
 bool KgUserActions::isChanged() {
@@ -329,23 +257,15 @@ bool KgUserActions::isChanged() {
 
 bool KgUserActions::apply() {
 
-   _workXML->writeActionDom();
-   delete krUserAction;
-   krUserAction = new UserAction();
-   krApp->userMenu->update();
-   krApp->updateGUI();
-   
+   krUserAction->writeActionFile();
+
    _needApply = false;
    emit sigChanged();   // nessesary to disable the apply-button again
    return KonfiguratorPage::apply();
 }
 
 void KgUserActions::loadInitialValues() {
-  // revert the changes
-   delete _workXML;
-   _workXML = new UserActionXML();
-   actionList->clear();
-   actionList->insertStringList( _workXML->getActionNames() );
+//FIXME: this doesn't make sence with UserActions => move Useractions to ActionMan
 
    _needApply = false;
    emit sigChanged();   // nessesary to disable the apply-button again
@@ -354,14 +274,28 @@ void KgUserActions::loadInitialValues() {
 }
 
 void KgUserActions::setDefaults() {
-   delete _workXML;
-   _workXML = new UserActionXML();
-   actionList->clear();
-   actionList->insertStringList( _workXML->getActionNames() );
+//FIXME: Add a way to disable the default-button as it makes no sence for the useractions or move to ActionMan
 
-   _needApply = false;
-   emit sigChanged();   // nessesary to disable the apply-button again
    return KonfiguratorPage::setDefaults();
+}
+
+void KgUserActions::slotToClip() {
+   if ( ! dynamic_cast<UserActionListViewItem*>( actionTree->currentItem() ) )
+      return;
+
+   QDomDocument doc = actionTree->dumpSelectedActions();
+   KApplication::clipboard()->setText( doc.toString() );
+}
+
+void KgUserActions::slotFromClip() {
+   QDomDocument doc( ACTION_DOCTYPE );
+   if ( doc.setContent( KApplication::clipboard()->text() ) ) {
+      QDomElement root = doc.documentElement();
+      UserAction::KrActionList newActions;
+      krUserAction->readFromElement( root, UserAction::renameDoublicated, &newActions );
+      for ( KrAction* action = newActions.first(); action; action = newActions.next() )
+         actionTree->insertAction( action );
+   }
 }
 
 #include "kguseractions.moc"

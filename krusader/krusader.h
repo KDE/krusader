@@ -153,7 +153,6 @@ class Krusader : public KParts::MainWindow {
     static KPopupMenu *userActionMenu;
     static UserMenu *userMenu;
     static UserAction *userAction;
-    static Expander *expander;
 	 static KrBookmarkHandler *bookman;
 
     #ifdef __KJSEMBED__
@@ -240,7 +239,6 @@ class Krusader : public KParts::MainWindow {
 #define krUserMenu        Krusader::App->actUserMenu
 #define krUserActionMenu      Krusader::App->userActionMenu
 #define krUserAction      Krusader::App->userAction
-#define krExpander        Krusader::App->expander
 #define krF2				  Krusader::App->actF2
 #define krF3				  Krusader::App->actF3
 #define krF4				  Krusader::App->actF4

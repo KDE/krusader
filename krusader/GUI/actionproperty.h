@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author: Jonas Bähr (C) 2004
+// Author: Jonas Bï¿½r (C) 2004
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -15,41 +15,54 @@
 
 #include "actionpropertybase.h"
 
-class UserActionProperties;
-class AddPlaceholderPopup;
+class KrAction;
 class KShortcut;
 
 /**
  * Use this widget where ever you need to manipulate a UserAction
- * @author Jonas Bähr (http://www.jonas-baehr.de)
+ * @author Jonas Bï¿½r (http://www.jonas-baehr.de)
  */
 class ActionProperty : public ActionPropertyBase {
 	Q_OBJECT 
 public:
-	ActionProperty( QWidget *parent=0, const char *name=0, UserActionProperties *prop=0 );
+	ActionProperty( QWidget *parent=0, const char *name=0, KrAction *action=0 );
 	~ActionProperty();
 	
 	/**
-	 * @return the current state of all properties editable within this widget
+	 * @return the currently displayed action
 	 */
-	UserActionProperties* properties();
+	KrAction* action() { return _action; };
 	
 	/**
-	 * Use this to init the widget with some properties
-	 * @param properties the properties which will be displayd
+	 * This inits the widget with the actions properties.
+	 * If no action is provided, the last used will be taken!
+	 * It also resets the changed() state.
+	 * @param action the action which should be displayd
 	 */
-	void updateGUI( UserActionProperties *properties );
+	void updateGUI( KrAction *action = 0 );
+
+	/**
+	 * This writes the displayed properties back into the action.
+	 * If no action is provided, the last used will be taken!
+	 * It also resets the changed() state.
+	 * @param action the action which should be manipulated
+	 */
+	void updateAction( KrAction *action = 0 );
+	
+	/**
+	 * clears everything
+	 */
+	void clear();
 	
 	/**
 	 * @return true if all properties got valid values
 	 */
-	bool checkProperties();
+	bool validProperties();
+	
 	/**
-	 * This checks is the name of the action is unique
-	 * @param name the name which should be checked
-	 * @return true if the name is valid
+	 * @return true if any property got changed
 	 */
-	bool checkName( const QString& name );
+	bool changed() { return _changed; };
 	
 protected slots:
    /**
@@ -108,101 +121,15 @@ protected slots:
     * (availability) removes a file-filter from the lsit
     */
    void removeFile();
-   
+
 private:
-   AddPlaceholderPopup *_popup;
-   UserActionProperties *_properties;
+   KrAction *_action;
+   bool _changed;
 
 private slots:
    /**
-    * keeps the name in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedName();
-   /**
-    * keeps the category in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedCategory();
-   /**
-    * keeps the icon in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedIcon();
-   /**
-    * keeps the title in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedTitle();
-   /**
-    * keeps the tooltip in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedTooltip();
-   /**
-    * keeps the description in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedDescription();
-   /**
-    * keeps useTooltip in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedChkUseTooltip();
-   /**
-    * keeps the commandline in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedCommand();
-   /**
-    * keeps the startpath in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedStartpath();
-   /**
-    * keeps the user in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedUser();
-   /**
-    * keeps the execution-type in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedExecType();
-   /**
-    * keeps useUrl in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedAccept();
-   /**
-    * keeps confirmExecution in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedConfirmExecution();
-   /**
-    * keeps the protocol-list in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedShowonlyProtocol();
-   /**
-    * keeps the path-list in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedShowonlyPath();
-   /**
-    * keeps the mime-type list in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedShowonlyMime();
-   /**
-    * keeps the file-filter list in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    */
-   void changedShowonlyFile();
-   /**
-    * keeps the default shortcut in the internal _properties up to date.
-    * !! don't forget to call them also at the end of updateGUI !!
-    * @param shortcut the new shortcut
+    * This updates the ShortcutButton
+    * @internal
     */
    void changedShortcut(const KShortcut& shortcut);
 };

@@ -177,7 +177,6 @@ KRadioAction  **Krusader::compareArray[] = {&actMarkNewerAndSingle, &actMarkNewe
                                             &actMarkDifferentAndSingle, &actMarkDifferent, 0};
 KPopupMenu *Krusader::userActionMenu = 0;
 UserAction *Krusader::userAction = 0;
-Expander *Krusader::expander = 0;
 UserMenu *Krusader::userMenu = 0;
 KrBookmarkHandler *Krusader::bookman = 0;
 //QTextOStream *Krusader::_krOut = QTextOStream(::stdout);
@@ -694,11 +693,10 @@ void Krusader::setupActions() {
    actFind->setToolTip( i18n( "Search for files" ) );
 
    // setup all UserActions
-   expander = new Expander();
    userAction = new UserAction();
    
    #ifdef __KJSEMBED__
-   actBack = new KAction( i18n( "JavaScript console" ), ALT + CTRL + Key_J, SLOTS, SLOT( jsConsole() ), actionCollection(), "JS_Console" );
+   actShowJSConsole = new KAction( i18n( "JavaScript console" ), ALT + CTRL + Key_J, SLOTS, SLOT( jsConsole() ), actionCollection(), "JS_Console" );
    #endif
 }
 

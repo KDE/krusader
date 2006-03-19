@@ -4,7 +4,7 @@
 // Description: This manages all useractions
 //
 //
-// Author: Jonas Bähr (C) 2004
+// Author: Jonas Bï¿½r (C) 2004
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -13,13 +13,13 @@
 #include <kdebug.h>
 #include <kurl.h>
 #include <kpopupmenu.h>
+#include <kstandarddirs.h>
+#include <kmessagebox.h>
 
 #include <qstring.h>
 #include <qdom.h>
 
 #include "useraction.h"
-#include "useractionxml.h"
-#include "useractionproperties.h"
 #include "kraction.h"
 
 #include "../krusader.h"
@@ -29,56 +29,14 @@
 
 
 UserAction::UserAction() {
-  krOut << "Initialisising useractions..." << endl;
-  _xml = new UserActionXML();
-   if ( _xml != 0 ) {
-     QStringList actionNames = _xml->getActionNames();
-     for ( QStringList::Iterator it = actionNames.begin(); it != actionNames.end(); ++it )
-        addKrAction( _xml->readAction(*it) );
-     krOut << _actions.count() << " useractions read." << endl;
-   }
-}
-
-void UserAction::addKrAction( UserActionProperties* prop ) {
-  if (prop)
-    _actions.append( new KrAction( prop, krApp->actionCollection() ) );
-  else
-    krOut << "WARNING: got invalid UserActionProperties. Your useractions.xml is may damaged!" << endl;
+   _actions.setAutoDelete( false );
+   krOut << "Initialisising useractions..." << endl;
+   readAllFiles();
+   krOut << _actions.count() << " useractions read." << endl;
 }
 
 UserAction::~UserAction() {
-  for ( KrActionList::iterator it = _actions.begin(); it != _actions.end(); ++it )
-    delete *it;
-}
-
-KrAction* UserAction::action( const QString& name ) {
-  for ( KrActionList::iterator it = _actions.begin(); it != _actions.end(); ++it ) {
-    if ( name == *(*it)->properties()->name() )
-      return *it;
-  }
-  return 0;
-}
-
-void UserAction::updateKrAction( const QString& name, UserActionProperties* prop ) {
-   KrAction* a = action( name );
-   if ( a )
-      updateKrAction( a, prop );
-   else
-      addKrAction( prop );
-}
-
-void UserAction::updateKrAction( KrAction* action, UserActionProperties* prop ) {
-   action->setProperties( prop );
-}
-
-void UserAction::removeKrAction( const QString& name ) {
-  for ( KrActionList::iterator it = _actions.begin(); it != _actions.end(); ++it ) {
-    if ( *(*it)->properties()->name() == name ) {
-      delete *it;
-      _actions.remove( it );
-      return;
-    }
-  }
+  _actions.clear(); // this also deletes them since autodelete is true.
 }
 
 void UserAction::setAvailability() {
@@ -88,22 +46,165 @@ void UserAction::setAvailability() {
 void UserAction::setAvailability( const KURL& currentURL ) {
    //kdDebug() << "UserAction::setAvailability currendFile: " << currentURL.url() << endl;
    // disable the entries that should not appear in this folder
-   for ( KrActionList::iterator it = _actions.begin(); it != _actions.end(); ++it )
-      (*it)->setEnabled( (*it)->isAvailable( currentURL ) );
-}
-
-UserActionXML* UserAction::xml() {
-   return _xml;
-}
-
-UserAction::KrActionList* UserAction::actionList() {
-//    kdDebug() << "UserAction::actionList() provide " << _actions.count() << " useractions" << endl;
-   return &_actions;
+   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+      action->setEnabled( action->isAvailable( currentURL ) );
 }
 
 void UserAction::populateMenu( KPopupMenu* menu ) {
-   for ( KrActionList::iterator it = _actions.begin(); it != _actions.end(); ++it )
-      if ( ! (*it)->isPlugged( menu ) )
-         (*it)->plug( menu );
+   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+      if ( ! action->isPlugged( menu ) )
+         action->plug( menu );
 }
+
+QStringList UserAction::allCategories() {
+   QStringList actionCategories;
+
+   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+      if ( actionCategories.find( action->category() ) == actionCategories.end() )
+         actionCategories.append( action->category() );
+
+  return actionCategories;
+}
+
+QStringList UserAction::allNames() {
+   QStringList actionNames;
+
+   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+      actionNames.append( action->name() );
+
+  return actionNames;
+}
+
+void UserAction::readAllFiles() {
+   QString filename = locate( "data", ACTION_XML ); // locate returns the local file if it exists, else the global one is retrieved.
+   if ( ! filename.isEmpty() )
+      readFromFile( locate( "data", ACTION_XML ), renameDoublicated );
+
+   filename = locate( "data", ACTION_XML_EXAMPLES );
+   if ( ! filename.isEmpty() )
+      readFromFile( locate( "data", ACTION_XML_EXAMPLES ), ignoreDoublicated ); // ignore samples which are already in the normal file
+}
+
+void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionList* list ) {
+  QDomDocument* doc = new QDomDocument( ACTION_DOCTYPE );
+  QFile file( filename );
+  if( file.open( IO_ReadOnly ) ) {
+    //kdDebug() << "UserAction::readFromFile - " << filename << "could be opened" << endl;
+    if( ! doc->setContent( &file ) ) {
+      //kdDebug() << "UserAction::readFromFile - content set - failed" << endl;
+      // if the file doesn't exist till now, the content CAN be set but is empty.
+      // if the content can't be set, the file exists and is NOT an xml-file.
+      file.close();
+      delete doc; doc = 0;
+      KMessageBox::error( MAIN_VIEW,
+      		i18n( "This file called %1 which does not contain valid UserActions.\n" ).arg( filename ), // text
+      		i18n("UserActions - can't read from file!") // caption
+      	);
+    }
+    file.close();
+
+    if ( doc ) {
+      QDomElement root = doc->documentElement();
+      // check if the file got the right root-element (ACTION_ROOT) - this finds out if the xml-file read to the DOM is realy an krusader useraction-file
+      if( root.tagName() != ACTION_ROOT ) {
+        KMessageBox::error( MAIN_VIEW,
+        	i18n( "The actionfile's root-element isn't called "ACTION_ROOT", using %1").arg( filename ),
+        	i18n( "UserActions - can't read from file!" )
+        );
+        delete doc; doc = 0;
+      }
+      readFromElement( root, mode, list );
+      delete doc;
+    }
+
+  } // if ( file.open( IO_ReadOnly ) )
+  else {
+      KMessageBox::error( MAIN_VIEW,
+      		i18n( "Unable to open actionfile %1").arg( filename ),
+      		i18n( "UserActions - can't read from file!" )
+      );
+   }
+
+}
+
+void UserAction::readFromElement( const QDomElement& element, ReadMode mode, KrActionList* list ) {
+   for ( QDomNode node = element.firstChild(); ! node.isNull(); node = node.nextSibling() ) {
+      QDomElement e = node.toElement();
+      if ( e.isNull() )
+         continue; // this should skip nodes which are not elements ( i.e. comments, <!-- -->, or text nodes)
+
+      if ( e.tagName() == "action" ) {
+         QString name = e.attribute( "name" );
+         if ( name.isEmpty() ) {
+            KMessageBox::error( MAIN_VIEW,
+           	i18n( "Action without name detected. This action will not be imported!\nThis is an error in the file, you may want to correct it." ),
+           	i18n( "UserActions - invalid action" )
+           );
+           continue;
+         }
+
+         if ( mode == ignoreDoublicated && krApp->actionCollection()->action( name.latin1() ) )
+            continue;
+
+         QString basename = name + "_%1";
+         int i = 0;
+         // appent a counter till the name is unique... (this checks every action, not only useractions)
+         while ( krApp->actionCollection()->action( name.latin1() ) )
+            name = basename.arg( ++i );
+
+         KrAction* act = new KrAction( krApp->actionCollection(), name.latin1() );
+         if ( act->xmlRead( e ) ) {
+            _actions.append( act );
+            if ( list )
+               list->append( act );
+         }
+         else
+            delete act;
+      }
+   } // for
+}
+
+QDomDocument UserAction::createEmptyDoc() {
+   QDomDocument doc = QDomDocument( ACTION_DOCTYPE );
+   // adding: <?xml version="1.0" encoding="UTF-8" ?>
+   doc.appendChild( doc.createProcessingInstruction( "xml", ACTION_PROCESSINSTR ) );
+   //adding root-element
+   doc.appendChild( doc.createElement( ACTION_ROOT ) ); // create new actionfile by adding a root-element ACTION_ROOT
+   return doc;
+}
+
+bool UserAction::writeActionFile() {
+   QString filename = locateLocal( "data", ACTION_XML );
+
+   QDomDocument doc = createEmptyDoc();
+   QDomElement root = doc.documentElement();
+   for ( KrAction* action = _actions.first(); action; action = _actions.next() )
+      root.appendChild( action->xmlDump( doc ) );
+
+   return writeToFile( doc, filename );
+}
+
+bool UserAction::writeToFile( const QDomDocument& doc, const QString& filename ) {
+   QFile file( filename );
+   if( ! file.open( IO_WriteOnly ) )
+      return false;
+
+/* // This is not needed, because each DomDocument created with UserAction::createEmptyDoc already contains the processinstruction
+   if ( ! doc.firstChild().isProcessingInstruction() ) {
+      // adding: <?xml version="1.0" encoding="UTF-8" ?> if not already present
+      QDomProcessingInstruction instr = doc.createProcessingInstruction( "xml", ACTION_PROCESSINSTR );
+      doc.insertBefore( instr, doc.firstChild() );
+   }
+*/
+
+   QTextStream ts( &file );
+   ts.setEncoding(ts.UnicodeUTF8);
+   ts << doc.toString();
+
+   file.close();
+   return true;
+}
+
+
+
 

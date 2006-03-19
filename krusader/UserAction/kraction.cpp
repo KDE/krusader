@@ -22,7 +22,7 @@
 #include <kmessagebox.h>
 #include "kraction.h"
 #include "expander.h"
-#include "useractionproperties.h"
+#include "useraction.h"
 #include "../krusader.h"
 #include "../defaults.h"
 
@@ -84,7 +84,7 @@ void KrActionProcDlg::addStdout( KProcess *, char *buffer, int buflen ) {
 ////////////////////////////////////  KrActionProc  ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-KrActionProc::KrActionProc( UserActionProperties* prop ) : QObject(), _properties( prop ), _proc( new KProcess() ), _output( 0 ) {
+KrActionProc::KrActionProc( KrAction* action ) : QObject(), _action( action ), _proc( new KProcess() ), _output( 0 ) {
    _proc->setUseShell( true );
 
    connect( _proc, SIGNAL( processExited( KProcess* ) ),
@@ -103,14 +103,14 @@ void KrActionProc::start( QString cmdLine ) {
 void KrActionProc::start( QStringList cmdLineList ) {
    _proc->clearArguments();
    QString cmd;
-   
-   if ( ! _properties->startpath()->isEmpty() )
-      _proc->setWorkingDirectory( *_properties->startpath() );
-   
-   if ( _properties->execType() == UserActionProperties::Terminal && cmdLineList.count() > 1)
+
+   if ( ! _action->startpath().isEmpty() )
+      _proc->setWorkingDirectory( _action->startpath() );
+
+   if ( _action->execType() == KrAction::Terminal && cmdLineList.count() > 1)
       KMessageBox::sorry( 0, "Support for more then one command doesn't work in a terminal. Only the first is executed in the terminal" );
 
-   if ( _properties->execType() != UserActionProperties::CollectOutput ) {
+   if ( _action->execType() != KrAction::CollectOutput || _action->execType() != KrAction::CollectOutputSeparateStderr ) {
       //TODO option to run them in paralell (not available for: collect output)
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
          if ( ! cmd.isEmpty() )
@@ -118,26 +118,28 @@ void KrActionProc::start( QStringList cmdLineList ) {
          cmd += *it;
       }
       // run in terminal
-      if ( _properties->execType() == UserActionProperties::Terminal ) {
+      if ( _action->execType() == KrAction::Terminal ) {
         krConfig->setGroup( "General" );
         QString term = krConfig->readEntry( "Terminal UserActions", _TerminalUserActions );
 
-         // TODO read terminal-setting from config
-         if ( _properties->user()->isEmpty() )
+         if ( _action->user().isEmpty() )
             ( *_proc ) << term << cmd;
          else
 //             ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote("konsole --noclose -e " + KProcess::quote(cmd) );
-            ( *_proc )  << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote( term + " " + cmd );
+            ( *_proc )  << "kdesu" << "-u" << _action->user() << "-c" << KProcess::quote( term + " " + cmd );
       } else { // no terminal, no output collection
-         if ( _properties->user()->isEmpty() )
+         if ( _action->user().isEmpty() )
             ( *_proc ) << cmd;
          else
-            ( *_proc ) << "kdesu" << "-u" << *_properties->user() << "-c" << KProcess::quote(cmd);
+            ( *_proc ) << "kdesu" << "-u" << _action->user() << "-c" << KProcess::quote(cmd);
       }
      _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
    else { // collect output
-      _output = new KrActionProcDlg( *_properties->title(), _properties->separateStderr() );
+      bool separateStderr = false;
+      if ( _action->execType() == KrAction::CollectOutputSeparateStderr )
+         separateStderr = true;
+      _output = new KrActionProcDlg( _action->text(), separateStderr );
       // connect the output to the dialog
       connect( _proc, SIGNAL( receivedStderr( KProcess*, char*, int ) ), _output, SLOT( addStderr( KProcess*, char *, int ) ) );
       connect( _proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ), _output, SLOT( addStdout( KProcess*, char *, int ) ) );
@@ -151,11 +153,11 @@ void KrActionProc::start( QStringList cmdLineList ) {
             cmd += "echo --------------------------------------- ; ";
          cmd += *it;
       }
-      if ( _properties->user()->isEmpty() )
+      if ( _action->user().isEmpty() )
          ( *_proc ) << cmd;
       else
          // "-t" is nessesary that kdesu displays the terminal-output of the command
-         ( *_proc ) << "kdesu" << "-t" << "-u" << *_properties->user() << "-c" << KProcess::quote(cmd);
+         ( *_proc ) << "kdesu" << "-t" << "-u" << _action->user() << "-c" << KProcess::quote(cmd);
       _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
 
@@ -175,54 +177,28 @@ void KrActionProc::processExited( KProcess * ) {
 ///////////////////////////////////////  KrAction  ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//KrAction::KrAction( UserActionProperties* prop, KActionCollection *parent ) : KAction( Title, Shortcut, QObject, SLOT(), parent, name ) {
-KrAction::KrAction( UserActionProperties* prop, KActionCollection *parent ) : KAction( *prop->title(), 0, 0, 0, parent, prop->name()->latin1() ) {
-   _properties = 0;
-   setProperties( prop );
+KrAction::KrAction( KActionCollection *parent, const char* name ) : KAction( parent, name ) {
    connect(this, SIGNAL(activated()), this, SLOT(exec()) );
 }
 
 KrAction::~KrAction() {
    unplugAll();
-   delete _properties;
-}
-
-void KrAction::setProperties( UserActionProperties* prop ) {
-   if ( ! prop->icon()->isEmpty() )
-      setIcon( *prop->icon() );
-   if ( ! prop->tooltip()->isEmpty() ) {
-      setToolTip( *prop->tooltip() );
-      if ( prop->descriptionUseTooltip() )
-         setWhatsThis( *prop->tooltip() );
-   }
-   if ( ! prop->description()->isEmpty() && whatsThis().isEmpty() )
-      setWhatsThis( *prop->description() );
-   if ( ! prop->defaultShortcut()->isNull() )
-      setShortcut( *prop->defaultShortcut() );
-        
-   //setGroup( prop->category() ); //FIXME: what is KAction.setGroup(QString) for ???
-   
-   if ( _properties == 0 )
-      _properties = prop;
-   else
-      _properties->copyFrom( prop );	//copy the values, not the pointer
-}
-
-UserActionProperties* KrAction::properties() {
-   return _properties;
+   krUserAction->removeKrAction( this ); // Importent! Else Krusader will crash when writing the actions to file
 }
 
 void KrAction::exec() {
    KrActionProc *proc;
    
    // replace %% and prepare string
-   QStringList commandList = krExpander->expand( *_properties->command(), _properties->acceptURLs() );
+   Expander expander;
+   QStringList commandList = expander.expand( _command, _acceptURLs );
+   //TODO: query expander for status and may skip the rest of the function
    
    // stop here if the commandline is empty
    if ( commandList.count() == 1 && commandList[0].stripWhiteSpace().isEmpty() )
       return;
    
-   if ( _properties->confirmExecution() ) {
+   if ( _confirmExecution ) {
       for ( QStringList::iterator it = commandList.begin(); it != commandList.end(); ++it ) {
          bool exec = true;
          *it = KInputDialog::getText(
@@ -231,13 +207,13 @@ void KrAction::exec() {
       *it,
       &exec, 0 );
          if ( exec ) {
-            proc = new KrActionProc( _properties );
+            proc = new KrActionProc( this );
             proc->start( *it );
          }
       } //for
    } // if ( _properties->confirmExecution() )
    else {
-      proc = new KrActionProc( _properties );
+      proc = new KrActionProc( this );
       proc->start( commandList );
    }
 
@@ -247,9 +223,9 @@ bool KrAction::isAvailable( const KURL& currentURL ) {
    bool available = true; //show per default (FIXME: make the default an attribute of <availability>)
    
    //check protocol
-   if ( ! _properties->showonlyProtocol()->empty() ) {
+   if ( ! _showonlyProtocol.empty() ) {
       available = false;
-      for ( QStringList::Iterator it = _properties->showonlyProtocol()->begin(); it != _properties->showonlyProtocol()->end(); ++it ) {
+      for ( QStringList::Iterator it = _showonlyProtocol.begin(); it != _showonlyProtocol.end(); ++it ) {
          //kdDebug() << "KrAction::isAvailable currendProtocol: " << currentURL.protocol() << " =?= " << *it << endl;
          if ( currentURL.protocol() == *it ) {  // FIXME remove trailing slashes at the xml-parsing (faster because done only once)
             available = true;
@@ -259,9 +235,9 @@ bool KrAction::isAvailable( const KURL& currentURL ) {
    } //check protocol: done
       
    //check the Path-list:
-   if ( ! _properties->showonlyPath()->empty() ) {
+   if ( ! _showonlyPath.empty() ) {
       available = false;
-      for ( QStringList::Iterator it = _properties->showonlyPath()->begin(); it != _properties->showonlyPath()->end(); ++it ) {
+      for ( QStringList::Iterator it = _showonlyPath.begin(); it != _showonlyPath.end(); ++it ) {
          if ( (*it).right(1) == "*" ){
              if ( currentURL.path().find( (*it).left( (*it).length() - 1 ) ) == 0 ) {
                available = true;
@@ -276,10 +252,10 @@ bool KrAction::isAvailable( const KURL& currentURL ) {
    } //check the Path-list: done
    
    //check mime-type
-   if ( ! _properties->showonlyMime()->empty() ) {
+   if ( ! _showonlyMime.empty() ) {
       available = false;
       KMimeType::Ptr mime = KMimeType::findByURL( currentURL );
-      for ( QStringList::Iterator it = _properties->showonlyMime()->begin(); it != _properties->showonlyMime()->end(); ++it ) {
+      for ( QStringList::Iterator it = _showonlyMime.begin(); it != _showonlyMime.end(); ++it ) {
          if ( (*it).contains("/") ) {
             if ( mime->is( *it ) ) {  // don't use ==; use 'is()' instead, which is aware of inheritence (ie: text/x-makefile is also text/plain)
                available = true;
@@ -296,9 +272,9 @@ bool KrAction::isAvailable( const KURL& currentURL ) {
    } //check the mime-type: done
    
    //check filename
-   if ( ! _properties->showonlyFile()->empty() ) {
+   if ( ! _showonlyFile.empty() ) {
       available = false;
-      for ( QStringList::Iterator it = _properties->showonlyFile()->begin(); it != _properties->showonlyFile()->end(); ++it ) {
+      for ( QStringList::Iterator it = _showonlyFile.begin(); it != _showonlyFile.end(); ++it ) {
          QRegExp regex = QRegExp( *it, false, true ); // case-sensitive = false; wildcards = true
          if ( regex.exactMatch( currentURL.fileName() ) ) {
             available = true;
@@ -310,5 +286,231 @@ bool KrAction::isAvailable( const KURL& currentURL ) {
    return available;
 }
 
+
+bool KrAction::xmlRead( const QDomElement& element ) {
+/*
+   This has to be done elsewhere!!
+
+   if ( element.tagName() != "action" )
+      return false;
+
+   Also the name has to be checked before the action is created!
+
+   setName( element.attribute( "name" ).latin1() );
+*/
+
+   for ( QDomNode node = element.firstChild(); !node.isNull(); node = node.nextSibling() ) {
+      QDomElement e = node.toElement();
+      if ( e.isNull() )
+         continue; // this should skip nodes which are not elements ( i.e. comments, <!-- -->, or text nodes)
+
+      if ( e.tagName() == "title" )
+         setText( e.text() );
+      else
+      if ( e.tagName() == "tooltip" )
+         setToolTip( e.text() );
+      else
+      if ( e.tagName() == "icon" )
+         setIcon( e.text() );
+      else
+      if ( e.tagName() == "category" )
+         setCategory( e.text() );
+      else
+      if ( e.tagName() == "description" )
+         setWhatsThis( e.text() );
+      else
+      if (e.tagName() == "command")
+         readCommand( e );
+      else
+      if ( e.tagName() == "startpath" )
+         setStartpath( e.text() );
+      else
+      if (e.tagName() == "availability")
+         readAvailability( e );
+      else
+      if ( e.tagName() == "defaultshortcut" )
+         setShortcut(  KShortcut( e.text() ) );
+      else
+
+      // unknown but not empty
+      if ( ! e.tagName().isEmpty() )
+         krOut << "KrAction::xmlRead() - unrecognized tag found: <action name=\"" << name() << "\"><" << e.tagName() << ">" << endl;
+
+   } // for ( QDomNode node = action->firstChild(); !node.isNull(); node = node.nextSibling() )
+
+   return true;
+} //KrAction::xmlRead
+
+QDomElement KrAction::xmlDump( QDomDocument& doc ) const {
+   QDomElement actionElement = doc.createElement("action");
+   actionElement.setAttribute( "name", name() );
+
+#define TEXT_ELEMENT( TAGNAME, TEXT ) \
+   { \
+   QDomElement e = doc.createElement( TAGNAME ); \
+   e.appendChild( doc.createTextNode( TEXT ) ); \
+   actionElement.appendChild( e ); \
+   }
+
+   TEXT_ELEMENT( "title", text() )
+
+   if ( ! toolTip().isEmpty() )
+      TEXT_ELEMENT( "tooltip", toolTip() )
+
+   if ( ! icon().isEmpty() )
+      TEXT_ELEMENT( "icon", icon() )
+
+   if ( ! category().isEmpty() )
+      TEXT_ELEMENT( "category", category() )
+
+   if ( ! whatsThis().isEmpty() )
+      TEXT_ELEMENT( "description", whatsThis() )
+
+   actionElement.appendChild( dumpCommand( doc ) );
+
+   if ( ! startpath().isEmpty() )
+      TEXT_ELEMENT( "startpath", startpath() )
+
+   QDomElement availabilityElement = dumpAvailability( doc );
+   if ( availabilityElement.hasChildNodes() )
+      actionElement.appendChild( availabilityElement );
+
+   if ( ! shortcut().isNull() )
+      TEXT_ELEMENT( "defaultshortcut", shortcut().toStringInternal() )  //.toString() would return a localised string which can't be read again
+
+   return actionElement;
+} //KrAction::xmlDump
+
+void KrAction::readCommand( const QDomElement& element ) {
+   QString attr;
+
+   attr = element.attribute( "executionmode", "normal" ); // default: "normal"
+   if ( attr == "normal")
+      setExecType( Normal );
+   else
+   if ( attr == "terminal" )
+      setExecType( Terminal );
+   else if ( attr == "collect_output")
+      setExecType( CollectOutput );
+   else if ( attr == "collect_output_separate_stderr")
+      setExecType( CollectOutputSeparateStderr );
+   else
+      krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << name() << "\"><command executionmode=\"" << attr << "\""<< endl;
+
+   attr = element.attribute( "accept", "local" ); // default: "local"
+   if ( attr == "local" )
+      setAcceptURLs( false );
+   else if ( attr == "url")
+      setAcceptURLs( true );
+   else
+        krOut << "KrAction::readCommand() - unrecognized attribute value found: <action name=\"" << name() << "\"><command accept=\"" << attr << "\""<< endl;
+
+   attr = element.attribute( "confirmexecution", "false" ); // default: "false"
+   if ( attr == "true" )
+      setConfirmExecution( true );
+   else
+      setConfirmExecution( false );
+
+   setUser( element.attribute( "run_as" ) );
+
+   setCommand( element.text() );
+
+} //KrAction::readCommand
+
+QDomElement KrAction::dumpCommand( QDomDocument& doc ) const {
+   QDomElement commandElement = doc.createElement("command");
+
+   switch ( execType() ) {
+   case Terminal:
+      commandElement.setAttribute( "executionmode", "terminal" );
+      break;
+   case CollectOutput:
+      commandElement.setAttribute( "executionmode", "collect_output" );
+      break;
+   case CollectOutputSeparateStderr:
+      commandElement.setAttribute( "executionmode", "collect_output_separate_stderr" );
+      break;
+   default:
+      // don't write the default to file
+      break;
+   }
+
+   if ( acceptURLs() )
+      commandElement.setAttribute( "accept", "url" );
+
+   if ( confirmExecution() )
+      commandElement.setAttribute( "confirmexecution", "true" );
+
+   if ( ! user().isEmpty() )
+      commandElement.setAttribute( "run_as", user() );
+
+   commandElement.appendChild( doc.createTextNode( command() ) );
+
+   return commandElement;
+} //KrAction::dumpCommand
+
+void KrAction::readAvailability( const QDomElement& element ) {
+   for ( QDomNode node = element.firstChild(); ! node.isNull(); node = node.nextSibling() ) {
+      QDomElement e = node.toElement();
+      if ( e.isNull() )
+         continue; // this should skip nodes which are not elements ( i.e. comments, <!-- -->, or text nodes)
+
+      QStringList* showlist = 0;
+
+      if ( e.tagName() == "protocol" )
+         showlist = &_showonlyProtocol;
+      else
+      if ( e.tagName() == "path" )
+         showlist = &_showonlyPath;
+      else
+      if ( e.tagName() == "mimetype" )
+         showlist = & _showonlyMime;
+      else
+      if ( e.tagName() == "filename" )
+         showlist = & _showonlyFile;
+      else {
+         krOut << "KrAction::readAvailability() - unrecognized element found: <action name=\"" << name() << "\"><availability><" << e.tagName() << ">"<< endl;
+         showlist = 0;
+      }
+
+      if ( showlist ) {
+          for ( QDomNode subnode = e.firstChild(); ! subnode.isNull(); subnode = subnode.nextSibling() ) {
+            QDomElement subelement = subnode.toElement();
+            if ( subelement.tagName() == "show" )
+              showlist->append( subelement.text() );
+          } // for
+        } // if ( showlist )
+
+   } // for
+} //KrAction::readAvailability
+
+QDomElement KrAction::dumpAvailability( QDomDocument& doc ) const {
+   QDomElement availabilityElement = doc.createElement("command");
+
+# define LIST_ELEMENT( TAGNAME, LIST ) \
+   { \
+   QDomElement e = doc.createElement( TAGNAME ); \
+   for ( QStringList::const_iterator it = LIST.constBegin(); it != LIST.constEnd(); ++it ) { \
+      QDomElement show = doc.createElement( "show" ); \
+      show.appendChild( doc.createTextNode( *it ) ); \
+      e.appendChild( show ); \
+      } \
+   availabilityElement.appendChild( e ); \
+   }
+
+   if ( ! _showonlyProtocol.isEmpty() )
+      LIST_ELEMENT( "protocol", _showonlyProtocol )
+
+   if ( ! _showonlyPath.isEmpty() )
+      LIST_ELEMENT( "path", _showonlyPath )
+
+   if ( ! _showonlyMime.isEmpty() )
+      LIST_ELEMENT( "mimetype", _showonlyMime )
+
+   if ( ! _showonlyFile.isEmpty() )
+      LIST_ELEMENT( "filename", _showonlyFile )
+
+   return availabilityElement;
+} //KrAction::dumpAvailability
 
 #include "kraction.moc"

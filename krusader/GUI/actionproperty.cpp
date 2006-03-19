@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author: Jonas Bähr (C) 2004
+// Author: Jonas Bï¿½r (C) 2004
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -14,8 +14,7 @@
 #include "addplaceholderpopup.h"
 
 #include "../UserAction/useraction.h"
-#include "../UserAction/useractionxml.h"
-#include "../UserAction/useractionproperties.h"
+#include "../UserAction/kraction.h"
 #include "../krusader.h"
 
 #include <qtoolbutton.h>
@@ -34,20 +33,17 @@
 #include <ktextedit.h>
 
 
-ActionProperty::ActionProperty( QWidget *parent, const char *name, UserActionProperties *prop ) : ActionPropertyBase( parent, name ) {
-   if (!prop)
-      _properties = new UserActionProperties;
-   else
-      _properties = prop;
-       
-   updateGUI( _properties );
-   
-   // fill with all existing categories
-   cbCategory->insertStringList( krUserAction->xml()->getActionCategories() );
+ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *action ) : ActionPropertyBase( parent, name ) {
+   if ( action ) {
+      _action = action;
+      updateGUI( _action );
+   }
 
-   // create the 'add' popup menu
-   _popup = new AddPlaceholderPopup( this );
-   
+   _changed = false;
+
+   // fill with all existing categories
+   cbCategory->insertStringList( krUserAction->allCategories() );
+
    connect( ButtonAddPlaceholder, SIGNAL( clicked() ), this, SLOT( addPlaceholder() ) );
    connect( ButtonAddStartpath, SIGNAL( clicked() ), this, SLOT( addStartpath() ) );
    connect( ButtonNewProtocol, SIGNAL( clicked() ), this, SLOT( newProtocol() ) );
@@ -62,130 +58,207 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, UserActionPro
    connect( ButtonNewFile, SIGNAL( clicked() ), this, SLOT( newFile() ) );
    connect( ButtonEditFile, SIGNAL( clicked() ), this, SLOT( editFile() ) );
    connect( ButtonRemoveFile, SIGNAL( clicked() ), this, SLOT( removeFile() ) );
-   
-   //these are used to keep the properties-structure up to date
-   connect( leDistinctName, SIGNAL( textChanged(const QString&) ), this, SLOT( changedName() ) );
-   connect( cbCategory, SIGNAL( textChanged(const QString&) ), this, SLOT( changedCategory() ) );
-   connect( ButtonIcon, SIGNAL( iconChanged(QString) ), this, SLOT( changedIcon() ) );
-   connect( leTitle, SIGNAL( textChanged(const QString&) ), this, SLOT( changedTitle() ) );
-   connect( leTooltip, SIGNAL( textChanged(const QString&) ), this, SLOT( changedTooltip() ) );
-   connect( textDescription, SIGNAL( textChanged() ), this, SLOT( changedDescription() ) );
-   connect( chkUseTooltip, SIGNAL( toggled(bool) ), this, SLOT( changedChkUseTooltip() ) );
-   connect( leCommandline, SIGNAL( textChanged(const QString&) ), this, SLOT( changedCommand() ) );
-   connect( leStartpath, SIGNAL( textChanged(const QString&) ), this, SLOT( changedStartpath() ) );
-   connect( bgExecType, SIGNAL( clicked(int) ), this, SLOT( changedExecType() ) );
-   connect( bgAccept, SIGNAL( clicked(int) ), this, SLOT( changedAccept() ) );
-   connect( chkConfirmExecution, SIGNAL( toggled(bool) ), this, SLOT( changedConfirmExecution() ) );
    connect( KeyButtonShortcut, SIGNAL( capturedShortcut(const KShortcut&) ), this, SLOT( changedShortcut(const KShortcut&) ) );
-   connect( leDifferentUser, SIGNAL( textChanged(const QString&) ), this, SLOT( changedUser() ) );
-   connect( chkDifferentUser, SIGNAL( toggled(bool) ), this, SLOT( changedUser() ) );
 }
 
 ActionProperty::~ActionProperty() {
-   delete _properties;
 }
 
-UserActionProperties* ActionProperty::properties() {
-  return _properties;
+void ActionProperty::changedShortcut( const KShortcut& shortcut ) {
+  KeyButtonShortcut->setShortcut( shortcut, false );
 }
 
-void ActionProperty::updateGUI( UserActionProperties *properties ) {
-    if (!properties)
-        return;
 
-    leDistinctName->setText( *properties->name() );
-    cbCategory->setCurrentText( *properties->category() );
-    leTitle->setText( *properties->title() );
-    leTooltip->setText( *properties->tooltip() );
-    if ( properties->descriptionUseTooltip() ) {
-        textDescription->setText( *properties->tooltip() );
-        chkUseTooltip->setChecked(true);
-    } else {
-        textDescription->setText( *properties->description() );
-        chkUseTooltip->setChecked(false);
-    }
-    leCommandline->setText( *properties->command() );
-    leStartpath->setText( *properties->startpath() );
-    
-    lbShowonlyProtocol->clear();
-    lbShowonlyProtocol->insertStringList( *properties->showonlyProtocol() );
-    lbShowonlyPath->clear();
-    lbShowonlyPath->insertStringList( *properties->showonlyPath() );
-    lbShowonlyMime->clear();
-    lbShowonlyMime->insertStringList( *properties->showonlyMime() );
-    lbShowonlyFile->clear();
-    lbShowonlyFile->insertStringList( *properties->showonlyFile() );
+void ActionProperty::clear() {
+   _action = 0;
 
-    chkSeparateStdError->setChecked( properties->separateStderr() );
-    if ( properties->execType() == UserActionProperties::Normal )
-        radioNormal->setChecked(true);
-    else if ( properties->execType() == UserActionProperties::Terminal )
-        radioTerminal->setChecked(true);
-    else if ( properties->execType() == UserActionProperties::CollectOutput )
-        radioCollectOutput->setChecked(true);
-    
-    if ( properties->acceptURLs() )
-        radioUrl->setChecked(true);
+   leDistinctName->clear();
+   cbCategory->clear();
+   leTitle->clear();
+   leTooltip->clear();
+   textDescription->clear();
+   leCommandline->clear();
+   leStartpath->clear();
+   KeyButtonShortcut->setShortcut( KShortcut(), false );
+
+   lbShowonlyProtocol->clear();
+   lbShowonlyPath->clear();
+   lbShowonlyMime->clear();
+   lbShowonlyFile->clear();
+
+   chkSeparateStdError->setChecked( false );
+   radioNormal->setChecked( true );
+
+   radioLocal->setChecked( true );
+
+   chkConfirmExecution->setChecked( false );
+
+   ButtonIcon->resetIcon();
+
+    leDifferentUser->clear();
+    chkDifferentUser->setChecked( false );
+
+   _changed = false;
+}
+
+void ActionProperty::updateGUI( KrAction *action ) {
+   if ( action )
+      _action = action;
+   if ( ! _action )
+      return;
+
+   leDistinctName->setText( _action->name() );
+   cbCategory->setCurrentText( _action->category() );
+   leTitle->setText( _action->text() );
+   leTooltip->setText( _action->toolTip() );
+   textDescription->setText( _action->whatsThis() );
+   leCommandline->setText( _action->command() );
+   leStartpath->setText( _action->startpath() );
+   KeyButtonShortcut->setShortcut( _action->shortcut(), false );
+
+   lbShowonlyProtocol->clear();
+   lbShowonlyProtocol->insertStringList( _action->showonlyProtocol() );
+   lbShowonlyPath->clear();
+   lbShowonlyPath->insertStringList( _action->showonlyPath() );
+   lbShowonlyMime->clear();
+   lbShowonlyMime->insertStringList( _action->showonlyMime() );
+   lbShowonlyFile->clear();
+   lbShowonlyFile->insertStringList( _action->showonlyFile() );
+
+   chkSeparateStdError->setChecked( false );
+   switch ( _action->execType() ) {
+   case KrAction::CollectOutputSeparateStderr:
+      chkSeparateStdError->setChecked( true );
+      radioCollectOutput->setChecked( true );
+      break;
+   case KrAction::CollectOutput:
+      radioCollectOutput->setChecked( true );
+      break;
+   case KrAction::Terminal:
+      radioTerminal->setChecked( true );
+      break;
+   default: // case KrAction::Normal:
+      radioNormal->setChecked( true );
+      break;
+   }
+
+   if ( _action->acceptURLs() )
+      radioUrl->setChecked( true );
+   else
+      radioLocal->setChecked( true );
+
+   chkConfirmExecution->setChecked( _action->confirmExecution() );
+
+   if ( ! _action->icon().isEmpty() )
+      ButtonIcon->setIcon( _action->icon() );
+   else
+      ButtonIcon->resetIcon();
+
+    leDifferentUser->setText( _action->user() );
+    if ( _action->user().isEmpty() )
+        chkDifferentUser->setChecked( false );
     else
-        radioLocal->setChecked(true);
-    
-    chkConfirmExecution->setChecked( properties->confirmExecution() );
-    
-    if ( ! properties->icon()->isEmpty() )
-        ButtonIcon->setIcon( *properties->icon() );
-    else
-        ButtonIcon->resetIcon();
+        chkDifferentUser->setChecked( true );
 
-    leDifferentUser->setText( *properties->user() );
-    if ( properties->user()->isEmpty() )
-        chkDifferentUser->setChecked(false);
-    else
-        chkDifferentUser->setChecked(true);
-
-   // these functions are updating the internal _properties
-   changedName();
-   changedCategory();
-   changedIcon();
-   changedTitle();
-   changedTooltip();
-   changedDescription();
-   changedChkUseTooltip();
-   changedCommand();
-   changedStartpath();
-   changedUser();
-   changedExecType();
-   changedAccept();
-   changedConfirmExecution();
-   changedShowonlyProtocol();
-   changedShowonlyPath();
-   changedShowonlyMime();
-   changedShowonlyFile();
-   changedShortcut( *properties->defaultShortcut() );
-   //kdDebug() << "Default Shortcut: " << properties->defaultShortcut.toString() << endl;
+   _changed = false;
 }
 
-bool ActionProperty::checkName( const QString& name ) {
-  //check if name is unique (no existing action with same name = true)
-  if ( krUserAction->xml()->nameExists( name ) )
-    return false;
-  else
-    return true;
-}
+void ActionProperty::updateAction( KrAction *action ) {
+   if ( action )
+      _action = action;
+   if ( ! _action )
+      return;
 
+   if ( _action->category() != cbCategory->currentText() ) {
+      _action->setCategory( cbCategory->currentText() );
+      // Update the category-list
+      cbCategory->clear();
+      cbCategory->insertStringList( krUserAction->allCategories() );
+      cbCategory->setCurrentText( _action->category() );
+   }
+
+   _action->setName( leDistinctName->text().latin1() );
+   _action->setText( leTitle->text() );
+   _action->setToolTip( leTooltip->text() );
+   _action->setWhatsThis( textDescription->text() );
+   _action->setCommand( leCommandline->text() );
+   _action->setStartpath( leStartpath->text() );
+   _action->setShortcut( KeyButtonShortcut->shortcut() );
+
+   QListBoxItem* lbi = lbShowonlyProtocol->firstItem();
+   QStringList list;
+   while ( lbi ) {
+      list << lbi->text();
+      lbi = lbi->next();
+   }
+   _action->setShowonlyProtocol( list );
+
+   lbi = lbShowonlyPath->firstItem();
+   list = QStringList();
+   while ( lbi ) {
+      list << lbi->text();
+      lbi = lbi->next();
+   }
+   _action->setShowonlyPath( list );
+
+   lbi = lbShowonlyMime->firstItem();
+   list = QStringList();
+   while ( lbi ) {
+      list << lbi->text();
+      lbi = lbi->next();
+   }
+   _action->setShowonlyMime( list );
+
+   lbi = lbShowonlyFile->firstItem();
+   list = QStringList();
+   while ( lbi ) {
+      list << lbi->text();
+      lbi = lbi->next();
+   }
+   _action->setShowonlyFile( list );
+
+   if ( radioCollectOutput->isChecked() && chkSeparateStdError->isChecked() )
+      _action->setExecType( KrAction::CollectOutputSeparateStderr );
+   else if ( radioCollectOutput->isChecked() && ! chkSeparateStdError->isChecked() )
+      _action->setExecType( KrAction::CollectOutput );
+   else if ( radioTerminal->isChecked() )
+      _action->setExecType( KrAction::Terminal );
+   else
+      _action->setExecType( KrAction::Normal );
+
+   if ( radioUrl->isChecked() )
+      _action->setAcceptURLs( true );
+   else
+      _action->setAcceptURLs( false );
+
+   _action->setConfirmExecution( chkConfirmExecution->isChecked()  );
+
+   _action->setIcon( ButtonIcon->icon() );
+
+   _action->setUser( leDifferentUser->text() );
+
+   _changed = false;
+}
 
 void ActionProperty::addPlaceholder() {
-   QString exp = _popup->getPlaceholder( mapToGlobal(
-                                     QPoint(
-                                        ButtonAddPlaceholder->pos().x() + ButtonAddPlaceholder->width()+6, // 6 is the default margin
-                                        ButtonAddPlaceholder->pos().y()
-                                     ) ) );
+   AddPlaceholderPopup popup( this );
+   QString exp = popup.getPlaceholder( mapToGlobal(
+   		QPoint(
+   			ButtonAddPlaceholder->pos().x() + ButtonAddPlaceholder->width()+6, // 6 is the default margin
+   			ButtonAddPlaceholder->pos().y()
+   		)
+   ) );
    leCommandline->insert( exp );
+   _changed = true;
 }
 
 
 void ActionProperty::addStartpath() {
    QString folder = KFileDialog::getExistingDirectory(QString::null, this);
-   if (folder != QString::null) leStartpath->setText( folder );
+   if (folder != QString::null) {
+      leStartpath->setText( folder );
+      _changed = true;
+   }
 }
 
 
@@ -198,8 +271,8 @@ void ActionProperty::newProtocol() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyProtocol->insertStringList( QStringList::split( ";", text ) );
-      changedShowonlyProtocol();
-    }
+      _changed = true;
+   }
 }
 
 void ActionProperty::editProtocol() {
@@ -214,22 +287,22 @@ void ActionProperty::editProtocol() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyProtocol->changeItem( text, lbShowonlyProtocol->currentItem() );
-      changedShowonlyProtocol();
-    }
+      _changed = true;
+   }
 }
 
 void ActionProperty::removeProtocol() {
    if (lbShowonlyProtocol->currentItem() != -1) {
      lbShowonlyProtocol->removeItem( lbShowonlyProtocol->currentItem() );
-     changedShowonlyProtocol();
-   }
+     _changed = true;
+  }
 }
 
 void ActionProperty::addPath() {
    QString folder = KFileDialog::getExistingDirectory(QString::null, this);
    if (folder != QString::null) {
      lbShowonlyPath->insertItem( folder );
-     changedShowonlyPath();
+     _changed = true;
    }
 }
 
@@ -245,15 +318,15 @@ void ActionProperty::editPath() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyPath->changeItem( text, lbShowonlyPath->currentItem() );
-      changedShowonlyPath();
-    }
+      _changed = true;
+   }
 }
 
 void ActionProperty::removePath() {
    if (lbShowonlyPath->currentItem() != -1) {
      lbShowonlyPath->removeItem( lbShowonlyPath->currentItem() );
-     changedShowonlyPath();
-   }
+     _changed = true;
+  }
 }
 
 void ActionProperty::addMime() { 
@@ -265,8 +338,8 @@ void ActionProperty::addMime() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyMime->insertStringList( QStringList::split( ";", text ) );
-      changedShowonlyMime();
-    }
+      _changed = true;
+   }
 }
 
 void ActionProperty::editMime() { 
@@ -281,15 +354,15 @@ void ActionProperty::editMime() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyMime->changeItem( text, lbShowonlyMime->currentItem() );
-      changedShowonlyMime();
-    }
+      _changed = true;
+   }
 }
 
 void ActionProperty::removeMime() { 
    if (lbShowonlyMime->currentItem() != -1) {
      lbShowonlyMime->removeItem( lbShowonlyMime->currentItem() );
-     changedShowonlyMime();
-   }
+     _changed = true;
+  }
 }
 
 void ActionProperty::newFile() {
@@ -301,8 +374,8 @@ void ActionProperty::newFile() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyFile->insertStringList( QStringList::split( ";", text ) );
-      changedShowonlyFile();
-    }
+      _changed = true;
+   }
 }
 
 void ActionProperty::editFile() {
@@ -317,19 +390,19 @@ void ActionProperty::editFile() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyFile->changeItem( text, lbShowonlyFile->currentItem() );
-      changedShowonlyFile();
-    }
+      _changed = true;
+   }
 }
 
 void ActionProperty::removeFile() {
    if (lbShowonlyFile->currentItem() != -1) {
      lbShowonlyFile->removeItem( lbShowonlyFile->currentItem() );
-     changedShowonlyFile();
-   }
+     _changed = true;
+  }
 }
 
 
-bool ActionProperty::checkProperties() {
+bool ActionProperty::validProperties() {
   if ( leDistinctName->text().simplifyWhiteSpace().isEmpty() ) {
     KMessageBox::error( this, i18n("Please set a unique name for the useraction") );
     leDistinctName->setFocus();
@@ -346,8 +419,11 @@ bool ActionProperty::checkProperties() {
     return false;
   }
   if ( leDistinctName->isEnabled() )
-    if ( !checkName( leDistinctName->text() ) ) {
-      KMessageBox::error( this, i18n("There already is an action with this name") );
+    if ( krApp->actionCollection()->action( leDistinctName->text().latin1() ) ) {
+      KMessageBox::error( this,
+      		i18n("There already is an action with this name\n"
+      		"If you don't have such an useraction the name is used by Krusader for an internal action")
+      	);
       leDistinctName->setFocus();
       return false;
     }
@@ -355,94 +431,5 @@ bool ActionProperty::checkProperties() {
   return true;
 }
 
-
-void ActionProperty::changedName() {
-  _properties->setName( leDistinctName->text().stripWhiteSpace() );
-}
-void ActionProperty::changedCategory() {
-  _properties->setCategory( cbCategory->currentText().stripWhiteSpace() );
-}
-void ActionProperty::changedIcon() {
-  _properties->setIcon( ButtonIcon->icon() );
-}
-void ActionProperty::changedTitle() {
-  _properties->setTitle( leTitle->text().stripWhiteSpace() );
-}
-void ActionProperty::changedTooltip() {
-  _properties->setTooltip( leTooltip->text().stripWhiteSpace() );
-  if ( _properties->descriptionUseTooltip() )
-    textDescription->setText( leTooltip->text().stripWhiteSpace() );
-}
-void ActionProperty::changedDescription() {
-  _properties->setDescription( textDescription->text().stripWhiteSpace() );
-}
-void ActionProperty::changedChkUseTooltip() {
-  _properties->setDescriptionUseTooltip( chkUseTooltip->isChecked() );
-  if ( _properties->descriptionUseTooltip() )
-    textDescription->setText( leTooltip->text().stripWhiteSpace() );
-}
-void ActionProperty::changedCommand() {
-  _properties->setCommand( leCommandline->text().stripWhiteSpace() );
-}
-void ActionProperty::changedStartpath() {
-  _properties->setStartpath( leStartpath->text().stripWhiteSpace() );
-}
-void ActionProperty::changedUser() {
-  if ( chkDifferentUser->isChecked() )
-    _properties->setUser( leDifferentUser->text().stripWhiteSpace() );
-  else
-    _properties->setUser( QString::null );
-}
-void ActionProperty::changedExecType() {
-  _properties->setSeparateStderr( chkSeparateStdError->isChecked() );
-  if ( radioNormal->isChecked() )
-    _properties->setExecType( UserActionProperties::Normal );
-  else  if ( radioTerminal->isChecked() )
-    _properties->setExecType( UserActionProperties::Terminal );
-  else if ( radioCollectOutput->isChecked() )
-    _properties->setExecType( UserActionProperties::CollectOutput );
-}
-void ActionProperty::changedAccept() {
-  if ( radioUrl->isChecked() )
-    _properties->setAcceptURLs( true );
-  else
-    _properties->setAcceptURLs( false );
-}
-void ActionProperty::changedConfirmExecution() {
-  _properties->setConfirmExecution( chkConfirmExecution->isChecked() );
-}
-void ActionProperty::changedShowonlyProtocol() {
-  _properties->showonlyProtocol()->clear();
-  uint count = lbShowonlyProtocol->count();
-  for (uint i = 0; i < count; ++i)
-    if ( _properties->showonlyProtocol()->find( lbShowonlyProtocol->text(i) ) == _properties->showonlyProtocol()->end() )
-      _properties->showonlyProtocol()->append( lbShowonlyProtocol->text(i) );
-}
-void ActionProperty::changedShowonlyPath() {
-  _properties->showonlyPath()->clear();
-  uint count = lbShowonlyPath->count();
-  for (uint i = 0; i < count; ++i)
-    if ( _properties->showonlyPath()->find( lbShowonlyPath->text(i) ) == _properties->showonlyPath()->end() )
-      _properties->showonlyPath()->append( lbShowonlyPath->text(i) );
-}
-void ActionProperty::changedShowonlyMime() {
-  _properties->showonlyMime()->clear();
-  uint count = lbShowonlyMime->count();
-  for (uint i = 0; i < count; ++i)
-    if ( _properties->showonlyMime()->find( lbShowonlyMime->text(i) ) == _properties->showonlyMime()->end() )
-      _properties->showonlyMime()->append( lbShowonlyMime->text(i) );
-}
-void ActionProperty::changedShowonlyFile() {
-  _properties->showonlyFile()->clear();
-  uint count = lbShowonlyFile->count();
-  for (uint i = 0; i < count; ++i)
-    if ( _properties->showonlyFile()->find( lbShowonlyFile->text(i) ) == _properties->showonlyFile()->end() )
-      _properties->showonlyFile()->append( lbShowonlyFile->text(i) );
-}
-
-void ActionProperty::changedShortcut( const KShortcut& shortcut ) {
-  KeyButtonShortcut->setShortcut( shortcut, false );
-  _properties->setDefaultShortcut( shortcut );
-}
 
 #include "actionproperty.moc"

@@ -8,10 +8,5 @@ INCLUDES = $(all_includes)
 
 libUserAction_a_METASOURCES = AUTO
 
-libUserAction_a_SOURCES = \
-	useraction.cpp \
-	kraction.cpp \
-	expander.cpp \
-	useractionxml.cpp \
-	useractionproperties.cpp \
+libUserAction_a_SOURCES = useraction.cpp kraction.cpp expander.cpp \
 	useractionpopupmenu.cpp
