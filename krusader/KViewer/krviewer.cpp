@@ -59,18 +59,6 @@ KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), retur
 	setXMLFile( "krviewer.rc" ); // kpart-related xml file
 	setHelpMenuEnabled( false );
 
-	// KDE HACK START: Viewer fails to resize at maximized mode
-	int scnum = QApplication::desktop() ->screenNumber( parentWidget() );
-	QRect desk = QApplication::desktop() ->screenGeometry( scnum );
-	KGlobal::config() ->setGroup( "KrViewerWindow" );
-	QSize size( KGlobal::config() ->readNumEntry( QString::fromLatin1( "Width %1" ).arg( desk.width() ), 0 ),
-	            KGlobal::config() ->readNumEntry( QString::fromLatin1( "Height %1" ).arg( desk.height() ), 0 ) );
-	if ( size.width() > desk.width() )
-		KGlobal::config() ->writeEntry( QString::fromLatin1( "Width %1" ).arg( desk.width() ), desk.width() );
-	if ( size.height() > desk.height() )
-		KGlobal::config() ->writeEntry( QString::fromLatin1( "Height %1" ).arg( desk.height() ), desk.height() );
-	// KDE HACK END
-
 	setAutoSaveSettings( "KrViewerWindow", true );
 	tmpFile.setAutoDelete( true );
 
