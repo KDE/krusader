@@ -398,22 +398,26 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   else if ( type == "7z" ) {  packer = KrServices::fullPathName( "7z" ) + " -y a"; type = "-7z"; } 
   else return false;
 
+  QString password = QString::null;
+  
   if( extraProps.count( "Password" ) > 0 ) {
-    QString password = extraProps[ "Password" ];
+    password = extraProps[ "Password" ];
 
     if ( !password.isNull() ) {
       if ( type == "-zip" ) 
         packer += " -P '" + password + "'";
-      if ( type == "-arj" )
+      else if ( type == "-arj" )
         packer += " -g'" + password + "'";
-      if ( type == "-ace" || type == "-7z" )
+      else if ( type == "-ace" || type == "-7z" )
         packer += " -p'" + password + "'";
-      if ( type == "-rar" ) {
+      else if ( type == "-rar" ) {
         if( extraProps.count( "EncryptHeaders" ) > 0 )
           packer += " -hp'" + password + "'";
         else
           packer += " -p'" + password + "'";
       }
+      else
+        password = QString::null;
     }
   }
 
@@ -449,7 +453,7 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
 
   krConfig->setGroup( "Archives" );
   if ( krConfig->readBoolEntry( "Test Archives", _TestArchives ) &&
-       !test( dest, type, QString::null, count ) ) {
+       !test( dest, type, password, count ) ) {
     KMessageBox::error( krApp, i18n( "Failed to pack: " ) + dest, i18n( "Error" ) );
     return false;
     }
