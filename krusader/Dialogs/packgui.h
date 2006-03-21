@@ -47,7 +47,7 @@ protected slots:
 
 public:
   static QString filename, destination, type;
-  static bool moveIntoArchive;
+  static QMap<QString, QString> extraProps;
 };
 
 #endif

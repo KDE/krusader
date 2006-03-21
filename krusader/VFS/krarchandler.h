@@ -44,7 +44,7 @@ public:
   // unpack an archive to destination directory
   static bool unpack(QString archive, QString type, QString password, QString dest );
   // pack an archive to destination directory
-  static bool pack(QStringList fileNames, QString type, QString dest, long count );
+  static bool pack(QStringList fileNames, QString type, QString dest, long count, QMap<QString,QString> extraProps );
   // test an archive
   static bool test(QString archive, QString type, QString password, long count = 0L );
   // true - if the right unpacker exist in the system

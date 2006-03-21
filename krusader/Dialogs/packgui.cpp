@@ -44,7 +44,7 @@
 QString PackGUI::filename=0;
 QString PackGUI::destination=0;
 QString PackGUI::type=0;
-bool    PackGUI::moveIntoArchive=false;
+QMap<QString, QString> PackGUI::extraProps;
 
 PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QString filename) :
     PackGUIBase(0,0,true) {
@@ -78,6 +78,8 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
         break;
       }
   }
+  checkPasswordConsistency();
+
   // and go on with the normal stuff
   dirData->setText(defaultPath);
   nameData->setText(defaultName);
@@ -95,10 +97,12 @@ void PackGUI::browse() {
 }
 
 void PackGUI::accept() {
+  if( !extraProperties( extraProps ) )
+    return;
+
   filename=nameData->text();
   destination=dirData->text();
   type=typeData->currentText();
-  moveIntoArchive=false;//moveCheckbox->isChecked();
   // write down the packer chosen, to be lastUsedPacker
   krConfig->setGroup("Archives");
   krConfig->writeEntry("lastUsedPacker",type);
@@ -110,7 +114,6 @@ void PackGUI::reject() {
   filename=QString::null;
   destination=QString::null;
   type=QString::null;
-  moveIntoArchive=false;
   PackGUIBase::reject();
 }
 

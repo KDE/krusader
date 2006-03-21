@@ -761,7 +761,7 @@ void ListPanelFunc::pack() {
 	// we must chdir() first because we supply *names* not URL's
 	QString save = getcwd( 0, 0 );
 	chdir( arcDir.local8Bit() );
-	KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs );
+	KRarcHandler::pack( fileNames, PackGUI::type, arcFile, totalFiles + totalDirs, PackGUI::extraProps );
 	chdir( save.local8Bit() );
 
 	// delete the temporary directory if created

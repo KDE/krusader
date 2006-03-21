@@ -42,6 +42,8 @@
 #include <qimage.h>
 #include <qpixmap.h>
 #include <kiconloader.h>
+#include <kglobalsettings.h>
+#include <kmessagebox.h>
 #include "../krusader.h"
 
 /* 
@@ -52,7 +54,7 @@
  *  TRUE to construct a modal dialog.
  */
 PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags fl )
-    : QDialog( parent, name, modal, fl )
+    : QDialog( parent, name, modal, fl ), expanded( false )
 {
     if ( !name )
 	setName( "PackGUIBase" );
@@ -74,8 +76,9 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     hbox->addWidget( nameData );
 
     typeData = new QComboBox( FALSE, this, "typeData" );
-    typeData->insertItem( i18n( "tar.bz2" ) );
     typeData->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)0 ) );
+    connect( typeData, SIGNAL( activated( const QString & ) ), this,  SLOT( checkPasswordConsistency() ) );
+    connect( typeData, SIGNAL( highlighted( const QString & ) ), this,  SLOT( checkPasswordConsistency() ) );
     hbox->addWidget( typeData );
 
     grid->addLayout( hbox, 1, 0 );
@@ -115,36 +118,82 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
 
     grid->addLayout( hbox_3, 0, 0 );
 
+
     hbox_4 = new QHBoxLayout;
     hbox_4->setSpacing( 6 );
     hbox_4->setMargin( 0 );
+
+    QSpacerItem* spacer_3 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding );
+    hbox_4->addItem( spacer_3 );
+    grid->addLayout( hbox_4, 3, 0 );
+
+    advancedWidget = new QWidget( this, "advancedWidget" );
+
+    grid_5 = new QGridLayout( advancedWidget );
+    grid_5->setSpacing( 6 );
+    grid_5->setMargin( 0 );
+
+    TextLabel4 = new QLabel( advancedWidget, "TextLabel4" );
+    TextLabel4->setText( i18n( "Password"  ) );
+    grid_5->addWidget( TextLabel4, 0, 0 );
+
+    password = new QLineEdit( advancedWidget, "password" );
+    password->setEchoMode( QLineEdit::Password );
+    connect( password, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkPasswordConsistency() ) );
+
+    grid_5->addWidget( password, 0, 1 );
+
+    TextLabel6 = new QLabel( advancedWidget, "TextLabel6" );
+    TextLabel6->setText( i18n( "Password again"  ) );
+    grid_5->addWidget( TextLabel6, 1, 0 );
+
+    passwordAgain = new QLineEdit( advancedWidget, "password" );
+    passwordAgain->setEchoMode( QLineEdit::Password );
+    connect( passwordAgain, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkPasswordConsistency() ) );
+
+    grid_5->addWidget( passwordAgain, 1, 1 );
+
+    QHBoxLayout * pswHbox = new QHBoxLayout;
+    encryptHeaders = new QCheckBox( i18n( "Encrypt headers" ), advancedWidget, "encryptHeaders" );
+    pswHbox->addWidget ( encryptHeaders );
+    pswHbox->layout()->addItem( new QSpacerItem( 20, 26, QSizePolicy::Expanding, QSizePolicy::Fixed ) );
+    passwordConsistencyLabel = new QLabel( advancedWidget, "passwordConsistencyLabel" );
+    pswHbox->addWidget ( passwordConsistencyLabel );
+
+    grid_5->addMultiCellLayout( pswHbox, 2, 2, 0, 1 );
+
+    QSpacerItem* spacer_4 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding );
+    grid_5->addItem( spacer_4, 3, 0 );
+
+    advancedWidget->hide();
+    checkPasswordConsistency();
+
+    grid->addWidget( advancedWidget, 4, 0 );
+
+    hbox_6 = new QHBoxLayout;
+    hbox_6->setSpacing( 6 );
+    hbox_6->setMargin( 0 );
+
+    advancedButton = new QPushButton( this, "advancedButton" );
+    advancedButton->setText( i18n( "&Advanced" ) + " >>" );
+    hbox_6->addWidget( advancedButton );
+
     QSpacerItem* spacer_2 = new QSpacerItem( 140, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );
-    hbox_4->addItem( spacer_2 );
+    hbox_6->addItem( spacer_2 );
 
     okButton = new QPushButton( this, "okButton" );
     okButton->setText( i18n( "Ok"  ) );
-    hbox_4->addWidget( okButton );
+    hbox_6->addWidget( okButton );
 
     cancelButton = new QPushButton( this, "cancelButton" );
     cancelButton->setText( i18n( "Cancel"  ) );
-    hbox_4->addWidget( cancelButton );
+    hbox_6->addWidget( cancelButton );
 
-    grid->addLayout( hbox_4, 4, 0 );
-
-    hbox_5 = new QHBoxLayout;
-    hbox_5->setSpacing( 6 );
-    hbox_5->setMargin( 0 );
-
-/*  moveCheckbox = new QCheckBox( this, "moveCheckbox" );
-    moveCheckbox->setText( i18n( "Move into archive"  ) );
-    hbox_5->addWidget( moveCheckbox );*/
-    QSpacerItem* spacer_3 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding );
-    hbox_5->addItem( spacer_3 );
-
-    grid->addLayout( hbox_5, 3, 0 );
+    grid->addLayout( hbox_6, 5, 0 );
 
     // signals and slots connections
     connect( okButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
+    connect( advancedButton, SIGNAL( clicked() ), this, SLOT( expand() ) );
     connect( cancelButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
     connect( browseButton, SIGNAL( clicked() ), this, SLOT( browse() ) );
 }
@@ -160,6 +209,66 @@ PackGUIBase::~PackGUIBase()
 void PackGUIBase::browse()
 {
     qWarning( "PackGUIBase::browse(): Not implemented yet!" );
+}
+
+void PackGUIBase::expand() {
+    expanded = !expanded;
+    
+    advancedButton->setText( i18n( "&Advanced" ) + ( expanded ?  " <<" : " >>" ) );
+
+    if( expanded )
+      advancedWidget->show();
+    else {
+      advancedWidget->hide();
+      layout()->activate();
+      QSize minSize = minimumSize();
+      resize( width(), minSize.height() );
+    }
+    show();
+}
+
+void PackGUIBase::checkPasswordConsistency() {
+    if( password->text() == passwordAgain->text() ) {
+      passwordConsistencyLabel->setPaletteForegroundColor( KGlobalSettings::textColor() );
+      passwordConsistencyLabel->setText( i18n( "The passwords are equal" ) );
+    }
+    else {
+      passwordConsistencyLabel->setPaletteForegroundColor( Qt::red );
+      passwordConsistencyLabel->setText( i18n( "The passwords are different" ) );
+    }
+
+    QString packer = typeData->currentText();
+
+    bool passworded = false;
+    if( packer == "7z" || packer == "rar" || packer == "zip" || packer == "arj" )
+      passworded = true;
+
+    passwordConsistencyLabel->setEnabled( passworded );
+    password->setEnabled( passworded );
+    passwordAgain->setEnabled( passworded );
+    TextLabel4->setEnabled( passworded );
+    TextLabel6->setEnabled( passworded );
+
+    encryptHeaders->setEnabled( packer == "rar" );
+}
+
+bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
+    inMap.clear();
+
+    if( password->isEnabled() && passwordAgain->isEnabled() ) {
+      if( password->text() != passwordAgain->text() ) {
+        KMessageBox::error( this, i18n( "Cannot pack! The passwords are different!" ) );
+        return false;
+      }
+
+      if( !password->text().isEmpty() ) {
+        inMap[ "Password" ] = password->text();
+
+        if( encryptHeaders->isEnabled() && encryptHeaders->isChecked() )
+          inMap[ "EncryptHeaders" ] = "1";
+      }
+    }
+    return true;
 }
 
 #include "packguibase.moc"

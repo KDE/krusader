@@ -32,6 +32,7 @@
 
 #include <klocale.h>
 #include <qdialog.h>
+#include <qmap.h>
 
 
 class QVBoxLayout; 
@@ -58,22 +59,37 @@ public:
     QLabel* TextLabel5;
     QLineEdit* dirData;
     QToolButton* browseButton;
+    QWidget* advancedWidget;
     QLabel* PixmapLabel1;
     QLabel* TextLabel1;
+    QLabel* TextLabel4;
+    QLabel* TextLabel6;
+    QLineEdit* password;
+    QLineEdit* passwordAgain;
+    QLabel* passwordConsistencyLabel;
     QPushButton* okButton;
     QPushButton* cancelButton;
-    QCheckBox* moveCheckbox;
+    QPushButton* advancedButton;
+    QCheckBox* encryptHeaders;
 
 public slots:
     virtual void browse();
+    virtual bool extraProperties( QMap<QString,QString> & );
+
+    void expand();
+    void checkPasswordConsistency();
 
 protected:
     QHBoxLayout* hbox;
     QHBoxLayout* hbox_2;
     QHBoxLayout* hbox_3;
     QHBoxLayout* hbox_4;
-    QHBoxLayout* hbox_5;
+    QGridLayout* grid_5;
+    QHBoxLayout* hbox_6;
     QGridLayout* grid;
+
+private:
+    bool expanded;
 };
 
 #endif // PACKGUIBASE_H

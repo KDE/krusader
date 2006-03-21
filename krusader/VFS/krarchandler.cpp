@@ -384,7 +384,7 @@ bool KRarcHandler::test( QString archive, QString type, QString password, long c
   return true; // SUCCESS
   }
 
-bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long count ) {
+bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long count, QMap<QString,QString> extraProps ) {
   // set the right packer to do the job
   QString packer;
 
@@ -397,6 +397,25 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   else if ( type == "arj" ) { packer = KrServices::fullPathName( "arj" ) + " -r a"; type = "-arj"; } 
   else if ( type == "7z" ) {  packer = KrServices::fullPathName( "7z" ) + " -y a"; type = "-7z"; } 
   else return false;
+
+  if( extraProps.count( "Password" ) > 0 ) {
+    QString password = extraProps[ "Password" ];
+
+    if ( !password.isNull() ) {
+      if ( type == "-zip" ) 
+        packer += " -P '" + password + "'";
+      if ( type == "-arj" )
+        packer += " -g'" + password + "'";
+      if ( type == "-ace" || type == "-7z" )
+        packer += " -p'" + password + "'";
+      if ( type == "-rar" ) {
+        if( extraProps.count( "EncryptHeaders" ) > 0 )
+          packer += " -hp'" + password + "'";
+        else
+          packer += " -p'" + password + "'";
+      }
+    }
+  }
 
   // prepare to pack
   KrShellProcess proc;
