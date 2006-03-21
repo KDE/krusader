@@ -166,6 +166,15 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 		if ( vfsP->vfs_isDeleting() )
 			break;                
 		vfsP->vfs_setQuiet( true );
+		
+		// if cannot enter to a directory, move the cursor back to its original place
+		if( urlStack.top().equals( urlIn.upURL(), true ) ) {
+			panel->view->setNameToMakeCurrent( urlIn.fileName() );
+			if ( files() ->vfs_getOrigin().equals( urlStack.top(), true ) ) {
+				panel->view->setCurrentItem( nameToMakeCurrent );
+				panel->view->makeItemVisible( panel->view->getCurrentKrViewItem() );
+			}
+		}
 	}
 	vfsP->vfs_setQuiet( false );
 
