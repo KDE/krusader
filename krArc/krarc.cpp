@@ -752,6 +752,7 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 	QString line;
 	
 	int lineNo = 0;
+	bool invalidLine = false;
 	// the rar list is started with a ------ line.
 	if(arcType == "rar" || arcType == "arj" || arcType == "lha" || arcType == "7z" ){
 		while(temp.file()->readLine(buf,1000) != -1){
@@ -763,7 +764,12 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 		line = QString::fromLocal8Bit(buf);
 		if( arcType == "rar" ) {
 			// the rar list is ended with a ------ line.
-			if( line.startsWith("----------") ) break;
+			if( line.startsWith("----------") ) {
+				invalidLine = !invalidLine;
+				continue;
+			}
+			if( invalidLine )
+				continue;
 			else{
 				temp.file()->readLine(buf,1000);
 				line = line+QString::fromLocal8Bit(buf);
@@ -777,7 +783,12 @@ bool kio_krarcProtocol::initDirDict(const KURL&url, bool forced){
 		}
 		if( arcType == "arj" ) {
 			// the arj list is ended with a ------ line.
-			if( line.startsWith("----------") ) break;
+			if( line.startsWith("----------") ) {
+				invalidLine = !invalidLine;
+				continue;
+			}
+			if( invalidLine )
+				continue;
 			else {
 				temp.file()->readLine(buf,1000);
 				line = line+QString::fromLocal8Bit(buf);
@@ -1214,6 +1225,14 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line, QFile*) {
 		}
 	}
 	
+	// multi volume archives can add a file twice, use only one
+	UDSEntryList::iterator dirEntryIt;
+	UDSEntry::iterator dirAtomIt;
+	for ( dirEntryIt = dir->begin(); dirEntryIt != dir->end(); ++dirEntryIt )
+		for( dirAtomIt = (*dirEntryIt).begin(); dirAtomIt != (*dirEntryIt).end(); ++dirAtomIt )
+			if( (*dirAtomIt).m_uds == UDS_NAME && (*dirAtomIt).m_str == name )
+				return;
+	
 	dir->append(entry);
 }
 
@@ -1242,14 +1261,14 @@ bool kio_krarcProtocol::initArcParameters() {
 	} else if (arcType == "rar") {
 		if( KStandardDirs::findExe( "rar" ).isEmpty() ) {
 			cmd     = fullPathName( "unrar" );
-			listCmd = fullPathName( "unrar" ) + " -c- v ";
+			listCmd = fullPathName( "unrar" ) + " -c- -v v ";
 			getCmd  = fullPathName( "unrar" ) + " p -ierr -idp -c- -y ";
 			copyCmd = fullPathName( "unrar" ) + " e -y ";
 			delCmd  = QString::null;
 			putCmd  = QString::null;
 		} else {
 			cmd     = fullPathName( "rar" );
-			listCmd = fullPathName( "rar" ) + " -c- v ";
+			listCmd = fullPathName( "rar" ) + " -c- -v v ";
 			getCmd  = fullPathName( "rar" ) + " p -ierr -idp -c- -y ";
 			copyCmd = fullPathName( "rar" ) + " e -y ";
 			delCmd  = fullPathName( "rar" ) + " d ";
@@ -1287,9 +1306,9 @@ bool kio_krarcProtocol::initArcParameters() {
 		putCmd  = QString::null;
 	} else if(arcType == "arj"){
 		cmd     = fullPathName( "arj" );
-		listCmd = fullPathName( "arj" ) + " v ";
-		getCmd  = fullPathName( "arj" ) + " -jyo e ";
-		copyCmd = fullPathName( "arj" ) + " -jyo e ";
+		listCmd = fullPathName( "arj" ) + " v -y -v ";
+		getCmd  = fullPathName( "arj" ) + " -jyov -v e ";
+		copyCmd = fullPathName( "arj" ) + " -jyov -v e ";
 		delCmd  = fullPathName( "arj" ) + " d ";
 		putCmd  = fullPathName( "arj" ) + " -r a ";
 		if( !getPassword().isEmpty() ) {

@@ -41,9 +41,11 @@
 #include <qwhatsthis.h>
 #include <qimage.h>
 #include <qpixmap.h>
+#include <qspinbox.h>
 #include <kiconloader.h>
 #include <kglobalsettings.h>
 #include <kmessagebox.h>
+#include <kio/global.h>
 #include "../krusader.h"
 
 /* 
@@ -77,8 +79,8 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
 
     typeData = new QComboBox( FALSE, this, "typeData" );
     typeData->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)1, (QSizePolicy::SizeType)0 ) );
-    connect( typeData, SIGNAL( activated( const QString & ) ), this,  SLOT( checkPasswordConsistency() ) );
-    connect( typeData, SIGNAL( highlighted( const QString & ) ), this,  SLOT( checkPasswordConsistency() ) );
+    connect( typeData, SIGNAL( activated( const QString & ) ), this,  SLOT( checkConsistency() ) );
+    connect( typeData, SIGNAL( highlighted( const QString & ) ), this,  SLOT( checkConsistency() ) );
     hbox->addWidget( typeData );
 
     grid->addLayout( hbox, 1, 0 );
@@ -133,25 +135,53 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     grid_5->setSpacing( 6 );
     grid_5->setMargin( 0 );
 
+    multipleVolume = new QCheckBox( i18n( "Multiple volume archive" ), advancedWidget, "multipleVolume" );
+    connect( multipleVolume, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
+    grid_5->addWidget( multipleVolume, 0, 0 );
+
+    QHBoxLayout * volumeHbox = new QHBoxLayout;
+
+    QSpacerItem* spacer_5 = new QSpacerItem( 20, 26, QSizePolicy::Expanding, QSizePolicy::Fixed );
+    volumeHbox->addItem( spacer_5 );
+
+    TextLabel7 = new QLabel( i18n("Size:" ), advancedWidget, "TextLabel7" );
+    volumeHbox->addWidget( TextLabel7 );
+    
+    volumeSpinBox = new QSpinBox( advancedWidget, "volumeSpinBox" );
+    volumeSpinBox->setMinValue( 1 );
+    volumeSpinBox->setMaxValue( 9999 );
+    volumeSpinBox->setValue( 1440 );
+    volumeHbox->addWidget( volumeSpinBox );
+
+    volumeUnitCombo = new QComboBox( FALSE, advancedWidget, "volumeUnitCombo" );
+    volumeUnitCombo->insertItem( "B" );
+    volumeUnitCombo->insertItem( "KB" );
+    volumeUnitCombo->insertItem( "MB" );
+    volumeUnitCombo->setCurrentItem( 1 );
+    volumeHbox->addWidget( volumeUnitCombo );
+
+    grid_5->addLayout ( volumeHbox, 0, 1 );
+
+
     TextLabel4 = new QLabel( advancedWidget, "TextLabel4" );
     TextLabel4->setText( i18n( "Password"  ) );
-    grid_5->addWidget( TextLabel4, 0, 0 );
+    grid_5->addWidget( TextLabel4, 1, 0 );
 
     password = new QLineEdit( advancedWidget, "password" );
     password->setEchoMode( QLineEdit::Password );
-    connect( password, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkPasswordConsistency() ) );
+    connect( password, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkConsistency() ) );
 
-    grid_5->addWidget( password, 0, 1 );
+    grid_5->addWidget( password, 1, 1 );
 
     TextLabel6 = new QLabel( advancedWidget, "TextLabel6" );
     TextLabel6->setText( i18n( "Password again"  ) );
-    grid_5->addWidget( TextLabel6, 1, 0 );
+    grid_5->addWidget( TextLabel6, 2, 0 );
 
     passwordAgain = new QLineEdit( advancedWidget, "password" );
     passwordAgain->setEchoMode( QLineEdit::Password );
-    connect( passwordAgain, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkPasswordConsistency() ) );
+    connect( passwordAgain, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkConsistency() ) );
 
-    grid_5->addWidget( passwordAgain, 1, 1 );
+    grid_5->addWidget( passwordAgain, 2, 1 );
 
     QHBoxLayout * pswHbox = new QHBoxLayout;
     encryptHeaders = new QCheckBox( i18n( "Encrypt headers" ), advancedWidget, "encryptHeaders" );
@@ -160,13 +190,13 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     passwordConsistencyLabel = new QLabel( advancedWidget, "passwordConsistencyLabel" );
     pswHbox->addWidget ( passwordConsistencyLabel );
 
-    grid_5->addMultiCellLayout( pswHbox, 2, 2, 0, 1 );
+    grid_5->addMultiCellLayout( pswHbox, 3, 3, 0, 1 );
 
     QSpacerItem* spacer_4 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding );
-    grid_5->addItem( spacer_4, 3, 0 );
+    grid_5->addItem( spacer_4, 4, 0 );
 
     advancedWidget->hide();
-    checkPasswordConsistency();
+    checkConsistency();
 
     grid->addWidget( advancedWidget, 4, 0 );
 
@@ -227,7 +257,7 @@ void PackGUIBase::expand() {
     show();
 }
 
-void PackGUIBase::checkPasswordConsistency() {
+void PackGUIBase::checkConsistency() {
     if( password->text() == passwordAgain->text() ) {
       passwordConsistencyLabel->setPaletteForegroundColor( KGlobalSettings::textColor() );
       passwordConsistencyLabel->setText( i18n( "The passwords are equal" ) );
@@ -250,6 +280,12 @@ void PackGUIBase::checkPasswordConsistency() {
     TextLabel6->setEnabled( passworded );
 
     encryptHeaders->setEnabled( packer == "rar" );
+
+    multipleVolume->setEnabled( packer == "rar" || packer == "arj" );
+    bool volumeEnabled = multipleVolume->isEnabled() && multipleVolume->isChecked();
+    volumeSpinBox->setEnabled( volumeEnabled );
+    volumeUnitCombo->setEnabled( volumeEnabled );
+    TextLabel7->setEnabled( volumeEnabled );
 }
 
 bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
@@ -266,6 +302,29 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
 
         if( encryptHeaders->isEnabled() && encryptHeaders->isChecked() )
           inMap[ "EncryptHeaders" ] = "1";
+      }
+
+      if( multipleVolume->isEnabled() && multipleVolume->isChecked() ) {
+        KIO::filesize_t size = volumeSpinBox->value();
+
+        switch( volumeUnitCombo->currentItem() ) {
+        case 2:
+          size *= 1000;
+        case 1:
+          size *= 1000;
+        default:
+          break;
+        }
+
+        if( size < 10000 ) {
+          KMessageBox::error( this, i18n( "Invalid volume size!" ) );
+          return false;
+        }
+
+        QString sbuffer;
+        sbuffer.sprintf("%llu",size);
+
+        inMap[ "VolumeSize" ] = sbuffer;
       }
     }
     return true;

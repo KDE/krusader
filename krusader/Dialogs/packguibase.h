@@ -44,6 +44,7 @@ class QLabel;
 class QLineEdit;
 class QPushButton;
 class QToolButton;
+class QSpinBox;
 
 class PackGUIBase : public QDialog
 { 
@@ -64,6 +65,7 @@ public:
     QLabel* TextLabel1;
     QLabel* TextLabel4;
     QLabel* TextLabel6;
+    QLabel* TextLabel7;
     QLineEdit* password;
     QLineEdit* passwordAgain;
     QLabel* passwordConsistencyLabel;
@@ -71,13 +73,16 @@ public:
     QPushButton* cancelButton;
     QPushButton* advancedButton;
     QCheckBox* encryptHeaders;
+    QCheckBox* multipleVolume;
+    QSpinBox* volumeSpinBox;
+    QComboBox* volumeUnitCombo;
 
 public slots:
     virtual void browse();
     virtual bool extraProperties( QMap<QString,QString> & );
 
     void expand();
-    void checkPasswordConsistency();
+    void checkConsistency();
 
 protected:
     QHBoxLayout* hbox;

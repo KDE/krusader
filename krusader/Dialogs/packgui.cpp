@@ -78,7 +78,7 @@ PackGUI::PackGUI(QString defaultName, QString defaultPath, int noOfFiles, QStrin
         break;
       }
   }
-  checkPasswordConsistency();
+  checkConsistency();
 
   // and go on with the normal stuff
   dirData->setText(defaultPath);

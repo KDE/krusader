@@ -38,6 +38,7 @@
 #include <qfile.h>
 #include <kstandarddirs.h>
 #include <ktar.h>
+#include <kio/global.h>
 // Krusader includes
 #include "krarchandler.h"
 #include "../krusader.h"
@@ -141,6 +142,8 @@ bool KRarcHandler::arcHandled( QString type ) {
 
 
 long KRarcHandler::arcFileCount( QString archive, QString type, QString password ) {
+  int divideWith = 1;
+
   // first check if supported
   if ( !arcSupported( type ) ) return 0;
 
@@ -156,9 +159,14 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   else if ( type == "tarz" ) lister = KrServices::fullPathName( "tar" ) + " -tvzf";
   else if ( type == "-tbz" ) lister = KrServices::fullPathName( "tar" ) + " -tjvf";
   else if ( type == "-lha" ) lister = KrServices::fullPathName( "lha" ) + " l";
-  else if ( type == "-rar" ) lister = KrServices::fullPathName( KrServices::cmdExist( "rar" ) ? "rar" : "unrar" ) + " l";
+  else if ( type == "-rar" ) lister = KrServices::fullPathName( KrServices::cmdExist( "rar" ) ? "rar" : "unrar" ) + " l -v";
   else if ( type == "-ace" ) lister = KrServices::fullPathName( "unace" ) + " l";
-  else if ( type == "-arj" ) lister = KrServices::fullPathName( KrServices::cmdExist( "arj" ) ? "arj" : "unarj" ) + " l";
+  else if ( type == "-arj" ) { if( KrServices::cmdExist( "arj" ) )
+                                 lister = KrServices::fullPathName( "arj" ) + " v -y -v",
+                                 divideWith = 4;
+                               else
+                                 lister = KrServices::fullPathName( "unarj" ) + " l";
+                             }
   else if ( type == "-rpm" ) lister = KrServices::fullPathName( "rpm" ) + " --dump -lpq";
   else if ( type == "-deb" ) lister = KrServices::fullPathName( "dpkg" ) + " -c";
   else if ( type == "-7z" )  lister = KrServices::fullPathName( "7z" ) + " -y l";
@@ -183,7 +191,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   list << lister << KrServices::quote( archive ) << ">" << tmpFile.name() ;
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
     list<< "<" << "/dev/ptmx";
-  list.start( KProcess::Block );
+  list.start( KProcess::Block, KProcess::AllOutput );
   
   krApp->stopWait();
   
@@ -200,7 +208,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   //make sure you call stopWait after this function return...
   //krApp->stopWait();
 
-  return count;
+  return count / divideWith;
   }
 
 bool KRarcHandler::unpack( QString archive, QString type, QString password, QString dest ) {
@@ -233,7 +241,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   else if ( type == "-rar" ) packer = KrServices::fullPathName( KrServices::cmdExist( "rar" ) ? "rar" : "unrar" ) + " -y x";
   else if ( type == "-ace" ) packer = KrServices::fullPathName( "unace" ) + " x";
   else if ( type == "-arj" ) packer = KrServices::cmdExist( "arj" ) ?
-                                      KrServices::fullPathName( "arj" ) + " -y x" :
+                                      KrServices::fullPathName( "arj" ) + " -y -v x" :
                                       KrServices::fullPathName( "unarj" ) + " x";
   else if ( type == "-7z" )  packer = KrServices::fullPathName( "7z" ) + " -y x";
   else if ( type == "-rpm" ) {
@@ -243,7 +251,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
 
     KrShellProcess cpio;
     cpio << KrServices::fullPathName( "rpm2cpio" ) << " " + KrServices::quote( archive ) << " > " << cpioName;
-    cpio.start(KProcess::Block);
+    cpio.start(KProcess::Block, KProcess::AllOutput );
     if( !cpio.normalExit() || !checkStatus( "cpio", cpio.exitStatus() ) ) {
       KMessageBox::detailedError (krApp, i18n( "Failed to convert rpm (%1) to cpio!" ).arg( archive ), 
                                   cpio.getErrorMsg(), i18n("Error" ) );
@@ -260,7 +268,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
 
     KrShellProcess dpkg;
     dpkg << KrServices::fullPathName( "dpkg" ) << " --fsys-tarfile " + KrServices::quote( archive ) << " > " << cpioName;
-    dpkg.start(KProcess::Block);
+    dpkg.start(KProcess::Block, KProcess::AllOutput );
     if( !dpkg.normalExit() || !checkStatus( "-deb", dpkg.exitStatus() ) ) {
       KMessageBox::detailedError (krApp, i18n( "Failed to convert deb (%1) to tar!" ).arg( archive ), 
                                   dpkg.getErrorMsg(), i18n("Error" ) );
@@ -394,7 +402,7 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   else if ( type == "tar.bz2" ) { packer = KrServices::fullPathName( "tar" ) + " -cvjf"; type = "-tbz"; } 
   else if ( type == "rar" ) { packer = KrServices::fullPathName( "rar" ) + " -r a"; type = "-rar"; } 
   else if ( type == "lha" ) { packer = KrServices::fullPathName( "lha" ) + " a"; type = "-lha"; } 
-  else if ( type == "arj" ) { packer = KrServices::fullPathName( "arj" ) + " -r a"; type = "-arj"; } 
+  else if ( type == "arj" ) { packer = KrServices::fullPathName( "arj" ) + " -r -y a"; type = "-arj"; } 
   else if ( type == "7z" ) {  packer = KrServices::fullPathName( "7z" ) + " -y a"; type = "-7z"; } 
   else return false;
 
@@ -419,6 +427,16 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
       else
         password = QString::null;
     }
+  }
+
+  if( extraProps.count( "VolumeSize" ) > 0 ) {
+     QString sizeStr = extraProps[ "VolumeSize" ];
+     KIO::filesize_t size = sizeStr.toLongLong();
+
+     if( size >= 10000 ) {
+       if( type == "-arj" || type == "-rar" )
+           packer += QString( " -v%1b" ).arg( sizeStr );
+     }
   }
 
   // prepare to pack
