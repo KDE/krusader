@@ -45,6 +45,7 @@ class QLineEdit;
 class QPushButton;
 class QToolButton;
 class QSpinBox;
+class QSlider;
 
 class PackGUIBase : public QDialog
 { 
@@ -76,6 +77,8 @@ public:
     QCheckBox* multipleVolume;
     QSpinBox* volumeSpinBox;
     QComboBox* volumeUnitCombo;
+    QCheckBox* setCompressionLevel;
+    QSlider*   compressionSlider;
 
 public slots:
     virtual void browse();
@@ -89,7 +92,7 @@ protected:
     QHBoxLayout* hbox_2;
     QHBoxLayout* hbox_3;
     QHBoxLayout* hbox_4;
-    QGridLayout* grid_5;
+    QHBoxLayout* hbox_5;
     QHBoxLayout* hbox_6;
     QGridLayout* grid;
 

@@ -439,6 +439,31 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
      }
   }
 
+  if( extraProps.count( "CompressionLevel" ) > 0 ) {
+     int level = extraProps[ "CompressionLevel" ].toInt() - 1;
+     if ( level < 0 )
+       level = 0;
+     if ( level > 8 )
+       level = 8;
+
+     if( type == "-rar" ) {
+       static const int rarLevels[] = { 0, 1, 2, 2, 3, 3, 4, 4, 5 };
+       packer += QString( " -m%1" ).arg( rarLevels[ level ] );
+     }
+     else if( type == "-arj" ) {
+       static const int arjLevels[] = { 0, 4, 4, 3, 3, 2, 2, 1, 1 };
+       packer += QString( " -m%1" ).arg( arjLevels[ level ] );
+     }
+     else if( type == "-zip" ) {
+       static const int zipLevels[] = { 0, 1, 2, 4, 5, 6, 7, 8, 9 };
+       packer += QString( " -%1" ).arg( zipLevels[ level ] );
+     }
+     else if( type == "-7z" ) {
+       static const int sevenZipLevels[] = { 0, 1, 2, 4, 5, 6, 7, 8, 9 };
+       packer += QString( " -mx%1" ).arg( sevenZipLevels[ level ] );
+     }
+  }
+
   // prepare to pack
   KrShellProcess proc;
   proc << packer << KrServices::quote( dest );

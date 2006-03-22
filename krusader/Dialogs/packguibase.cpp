@@ -42,6 +42,7 @@
 #include <qimage.h>
 #include <qpixmap.h>
 #include <qspinbox.h>
+#include <qslider.h>
 #include <kiconloader.h>
 #include <kglobalsettings.h>
 #include <kmessagebox.h>
@@ -131,17 +132,22 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
 
     advancedWidget = new QWidget( this, "advancedWidget" );
 
-    grid_5 = new QGridLayout( advancedWidget );
-    grid_5->setSpacing( 6 );
-    grid_5->setMargin( 0 );
+    hbox_5 = new QHBoxLayout( advancedWidget );
+    hbox_5->setSpacing( 6 );
+    hbox_5->setMargin( 0 );
+
+
+    QVBoxLayout *compressLayout = new QVBoxLayout;
+    compressLayout->setSpacing( 6 );
+    compressLayout->setMargin( 0 );
 
     multipleVolume = new QCheckBox( i18n( "Multiple volume archive" ), advancedWidget, "multipleVolume" );
     connect( multipleVolume, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
-    grid_5->addWidget( multipleVolume, 0, 0 );
+    compressLayout->addWidget( multipleVolume, 0, 0 );
 
     QHBoxLayout * volumeHbox = new QHBoxLayout;
 
-    QSpacerItem* spacer_5 = new QSpacerItem( 20, 26, QSizePolicy::Expanding, QSizePolicy::Fixed );
+    QSpacerItem* spacer_5 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed );
     volumeHbox->addItem( spacer_5 );
 
     TextLabel7 = new QLabel( i18n("Size:" ), advancedWidget, "TextLabel7" );
@@ -160,40 +166,71 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     volumeUnitCombo->setCurrentItem( 1 );
     volumeHbox->addWidget( volumeUnitCombo );
 
-    grid_5->addLayout ( volumeHbox, 0, 1 );
+    compressLayout->addLayout ( volumeHbox );
 
+    setCompressionLevel = new QCheckBox( i18n( "Set compression level" ), advancedWidget, "multipleVolume" );
+    connect( setCompressionLevel, SIGNAL( toggled( bool ) ), this, SLOT( checkConsistency() ) );
+    compressLayout->addWidget( setCompressionLevel, 0, 0 );
+
+    QHBoxLayout * sliderHbox = new QHBoxLayout;
+
+    QSpacerItem* spacer_6 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Fixed );
+    sliderHbox->addItem( spacer_6 );
+
+    compressionSlider = new QSlider( 1, 9, 1, 5, Qt::Horizontal, advancedWidget, "compressionSlider" );
+    compressionSlider->setTickmarks( QSlider::Below );
+    sliderHbox->addWidget( compressionSlider );
+    compressLayout->addLayout( sliderHbox );
+
+    compressLayout->addStretch( 0 );
+    hbox_5->addLayout( compressLayout );
+
+    QFrame *vline = new QFrame( advancedWidget, "vline" );
+    vline->setFrameStyle( QFrame::VLine | QFrame::Sunken );
+    vline->setMinimumWidth( 20 );
+    hbox_5->addWidget( vline );
+
+
+    QGridLayout * passwordGrid = new QGridLayout;
+    passwordGrid->setSpacing( 6 );
+    passwordGrid->setMargin( 0 );
 
     TextLabel4 = new QLabel( advancedWidget, "TextLabel4" );
     TextLabel4->setText( i18n( "Password"  ) );
-    grid_5->addWidget( TextLabel4, 1, 0 );
+    passwordGrid->addWidget( TextLabel4, 0, 0 );
 
     password = new QLineEdit( advancedWidget, "password" );
     password->setEchoMode( QLineEdit::Password );
     connect( password, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkConsistency() ) );
 
-    grid_5->addWidget( password, 1, 1 );
+    passwordGrid->addWidget( password, 0, 1 );
 
     TextLabel6 = new QLabel( advancedWidget, "TextLabel6" );
-    TextLabel6->setText( i18n( "Password again"  ) );
-    grid_5->addWidget( TextLabel6, 2, 0 );
+    TextLabel6->setText( i18n( "Again"  ) );
+    passwordGrid->addWidget( TextLabel6, 1, 0 );
 
     passwordAgain = new QLineEdit( advancedWidget, "password" );
     passwordAgain->setEchoMode( QLineEdit::Password );
     connect( passwordAgain, SIGNAL( textChanged ( const QString & ) ), this, SLOT( checkConsistency() ) );
 
-    grid_5->addWidget( passwordAgain, 2, 1 );
+    passwordGrid->addWidget( passwordAgain, 1, 1 );
 
-    QHBoxLayout * pswHbox = new QHBoxLayout;
-    encryptHeaders = new QCheckBox( i18n( "Encrypt headers" ), advancedWidget, "encryptHeaders" );
-    pswHbox->addWidget ( encryptHeaders );
-    pswHbox->layout()->addItem( new QSpacerItem( 20, 26, QSizePolicy::Expanding, QSizePolicy::Fixed ) );
+    QHBoxLayout *consistencyHbox = new QHBoxLayout;
+
+    QSpacerItem* spacer_cons = new QSpacerItem( 48, 20, QSizePolicy::Expanding, QSizePolicy::Fixed );
+    consistencyHbox->addItem( spacer_cons );
+
     passwordConsistencyLabel = new QLabel( advancedWidget, "passwordConsistencyLabel" );
-    pswHbox->addWidget ( passwordConsistencyLabel );
+    consistencyHbox->addWidget( passwordConsistencyLabel );
+    passwordGrid->addMultiCellLayout ( consistencyHbox, 2, 2, 0, 1 );
 
-    grid_5->addMultiCellLayout( pswHbox, 3, 3, 0, 1 );
+    encryptHeaders = new QCheckBox( i18n( "Encrypt headers" ), advancedWidget, "encryptHeaders" );
+    passwordGrid->addMultiCellWidget ( encryptHeaders, 3, 3, 0, 1 );
 
-    QSpacerItem* spacer_4 = new QSpacerItem( 20, 26, QSizePolicy::Fixed, QSizePolicy::Expanding );
-    grid_5->addItem( spacer_4, 4, 0 );
+    QSpacerItem* spacer_psw = new QSpacerItem( 20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding );
+    passwordGrid->addItem( spacer_psw, 4, 0 );
+
+    hbox_5->addLayout( passwordGrid );
 
     advancedWidget->hide();
     checkConsistency();
@@ -286,6 +323,12 @@ void PackGUIBase::checkConsistency() {
     volumeSpinBox->setEnabled( volumeEnabled );
     volumeUnitCombo->setEnabled( volumeEnabled );
     TextLabel7->setEnabled( volumeEnabled );
+
+    /* TODO */
+    setCompressionLevel->setEnabled( packer == "rar" || packer == "arj" || packer == "zip" ||
+                                     packer == "7z" );
+    bool sliderEnabled = setCompressionLevel->isEnabled() && setCompressionLevel->isChecked();
+    compressionSlider->setEnabled( sliderEnabled );
 }
 
 bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
@@ -325,6 +368,10 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
         sbuffer.sprintf("%llu",size);
 
         inMap[ "VolumeSize" ] = sbuffer;
+      }
+
+      if( setCompressionLevel->isEnabled() && setCompressionLevel->isChecked() ) {
+        inMap[ "CompressionLevel" ] = QString("%1").arg( compressionSlider->value() );
       }
     }
     return true;
