@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-02-25 17:37+0100\n"
+"POT-Creation-Date: 2006-03-24 00:09+0100\n"
 "PO-Revision-Date: 2004-10-24 20:52+0200\n"
 "Last-Translator: Zdenko Podobny <zdpo@mailbox.sk>\n"
 "Language-Team: Slovak\n"
@@ -52,6 +52,11 @@ msgstr "Krusader::ProfileManager"
 msgid "Enter the profile name:"
 msgstr "Vložte názov profilu:"
 
+#: GUI/useractionlistview.cpp:34
+#, fuzzy
+msgid "Title"
+msgstr "Titulok"
+
 #: GUI/krremoteencodingmenu.cpp:97
 #, fuzzy
 msgid "Reload"
@@ -61,6 +66,50 @@ msgstr "Červená"
 #, fuzzy
 msgid "Default"
 msgstr "Štandardné"
+
+#: GUI/mediabutton.cpp:73
+#, fuzzy
+msgid "Open the available media list"
+msgstr "Otvoriť zoznam s históriou priečinkov"
+
+#: GUI/mediabutton.cpp:279
+msgid "Hard Disc"
+msgstr ""
+
+#: GUI/mediabutton.cpp:281
+msgid "CD-ROM"
+msgstr ""
+
+#: GUI/mediabutton.cpp:283
+msgid "CD Recorder"
+msgstr ""
+
+#: GUI/mediabutton.cpp:286
+msgid "DVD Recorder"
+msgstr ""
+
+#: GUI/mediabutton.cpp:289
+msgid "DVD"
+msgstr ""
+
+#: GUI/mediabutton.cpp:291 GUI/mediabutton.cpp:293
+#, fuzzy
+msgid "Remote Share"
+msgstr "Vzdialený Správca"
+
+#: GUI/mediabutton.cpp:295 GUI/mediabutton.cpp:297
+#, fuzzy
+msgid "Floppy"
+msgstr "Kopírovať"
+
+#: GUI/mediabutton.cpp:299
+msgid "Zip Disk"
+msgstr ""
+
+#: GUI/mediabutton.cpp:302
+#, fuzzy
+msgid "Unknown"
+msgstr "neznámy"
 
 #: GUI/syncbrowsebutton.cpp:45
 #, fuzzy
@@ -73,185 +122,179 @@ msgstr ""
 "Ak je aktívny, každá zmena priečinka\n"
 "v aktívnom aj neaktívnom panely - ak je to možné."
 
-#: GUI/actionproperty.cpp:195
+#: GUI/actionproperty.cpp:268
 msgid "New protocol"
 msgstr "Nový protokol"
 
-#: GUI/actionproperty.cpp:196
+#: GUI/actionproperty.cpp:269
 msgid "Set a protocol:"
 msgstr "Nastaviť protokol:"
 
-#: GUI/actionproperty.cpp:211
+#: GUI/actionproperty.cpp:284
 msgid "Edit protocol"
 msgstr "Upraviť protokol"
 
-#: GUI/actionproperty.cpp:212
+#: GUI/actionproperty.cpp:285
 #, fuzzy
 msgid "Set another protocol:"
 msgstr "Nastaviť iný protokol:"
 
-#: GUI/actionproperty.cpp:242
+#: GUI/actionproperty.cpp:315
 msgid "Edit path"
 msgstr "Upraviť cestu"
 
-#: GUI/actionproperty.cpp:243
+#: GUI/actionproperty.cpp:316
 #, fuzzy
 msgid "Set another path:"
 msgstr "Nastaviť inú cestu:"
 
-#: GUI/actionproperty.cpp:262
+#: GUI/actionproperty.cpp:335
 msgid "New mime-type"
 msgstr "Nový typ súboru"
 
-#: GUI/actionproperty.cpp:263
+#: GUI/actionproperty.cpp:336
 msgid "Set a mime-type:"
 msgstr "Nastaviť typ súboru:"
 
-#: GUI/actionproperty.cpp:278
+#: GUI/actionproperty.cpp:351
 msgid "Edit mime-type"
 msgstr "Upraviť typ súboru"
 
-#: GUI/actionproperty.cpp:279
+#: GUI/actionproperty.cpp:352
 #, fuzzy
 msgid "Set another mime-type:"
 msgstr "Nastaviť iný typ súboru:"
 
-#: GUI/actionproperty.cpp:298
+#: GUI/actionproperty.cpp:371
 msgid "New filename"
 msgstr "Nový názov súboru"
 
-#: GUI/actionproperty.cpp:299
+#: GUI/actionproperty.cpp:372
 msgid "Set a filename:"
 msgstr "Nastavte názov súboru:"
 
-#: GUI/actionproperty.cpp:314
+#: GUI/actionproperty.cpp:387
 msgid "Edit filename"
 msgstr "Upraviť názov súboru"
 
-#: GUI/actionproperty.cpp:315
+#: GUI/actionproperty.cpp:388
 #, fuzzy
 msgid "Set another filename:"
 msgstr "Nastaviť iný názov:"
 
-#: GUI/actionproperty.cpp:334
+#: GUI/actionproperty.cpp:407
 msgid "Please set a unique name for the useraction"
 msgstr "Zadajte prosím jedinečný názov pre používateľskú akciu"
 
-#: GUI/actionproperty.cpp:339
+#: GUI/actionproperty.cpp:412
 msgid "Please set a title for the menu entry"
 msgstr "Zadajte prosím titulok pre položku ponuky"
 
-#: GUI/actionproperty.cpp:344
+#: GUI/actionproperty.cpp:417
 msgid "Command line is empty"
 msgstr "Príkazový riadok je prázdny"
 
-#: GUI/actionproperty.cpp:350
-msgid "There already is an action with this name"
-msgstr "Už existuje akcia s týmto názvom"
+#: GUI/actionproperty.cpp:424
+msgid ""
+"There already is an action with this name\n"
+"If you don't have such an useraction the name is used by Krusader for an "
+"internal action"
+msgstr ""
 
-#: GUI/actionpropertybase.cpp:386
+#: GUI/actionpropertybase.cpp:380
 msgid "Action Property"
 msgstr "Vlastnosť akcie"
 
-#: GUI/actionpropertybase.cpp:387
+#: GUI/actionpropertybase.cpp:381
 msgid "..."
 msgstr "..."
 
-#: GUI/actionpropertybase.cpp:388 RemoteMan/remotemanbase.cpp:142
+#: GUI/actionpropertybase.cpp:382 RemoteMan/remotemanbase.cpp:142
 msgid "Description:"
 msgstr "Popis:"
 
-#: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:421
+#: GUI/actionpropertybase.cpp:383 GUI/actionpropertybase.cpp:413
 #, fuzzy
 msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift-F1</code>."
 msgstr "Popis je zobrazený iba pre Konfigurátor a cez Shift-F1"
 
-#: GUI/actionpropertybase.cpp:390
+#: GUI/actionpropertybase.cpp:384
 msgid "Command accepts"
 msgstr "Príkaz akceptuje"
 
-#: GUI/actionpropertybase.cpp:391
+#: GUI/actionpropertybase.cpp:385
 #, fuzzy
 msgid "Local files only (no URL's)"
 msgstr "Iba lokálne súbory (nie URL)"
 
-#: GUI/actionpropertybase.cpp:392
+#: GUI/actionpropertybase.cpp:386
 #, fuzzy
 msgid "Substitute the <b>Placeholders</b> with local filenames."
 msgstr "Nahradí zástupné znaky s miestnymi názvami súborov"
 
-#: GUI/actionpropertybase.cpp:393
+#: GUI/actionpropertybase.cpp:387
 #, fuzzy
 msgid "URL's (remote and local)"
 msgstr "URL (lokálne a vzdialené)"
 
-#: GUI/actionpropertybase.cpp:394
+#: GUI/actionpropertybase.cpp:388
 #, fuzzy
 msgid "Substitute the <b>Placeholders</b> with valid URL's."
 msgstr "Nahradí zástupné znaky s platnými URL"
 
-#: GUI/actionpropertybase.cpp:395 GUI/actionpropertybase.cpp:397
+#: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:391
 #, fuzzy
 msgid "The title displayed in the <b>Usermenu</b>."
 msgstr "Titulok zobrazený v ponuke"
 
-#: GUI/actionpropertybase.cpp:396
+#: GUI/actionpropertybase.cpp:390
 #, fuzzy
 msgid "Title:"
 msgstr "Titulok"
 
-#: GUI/actionpropertybase.cpp:398
+#: GUI/actionpropertybase.cpp:392
 msgid ""
 "Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
 "<i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:418
+#: GUI/actionpropertybase.cpp:393 GUI/actionpropertybase.cpp:410
 msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:400
+#: GUI/actionpropertybase.cpp:394
 #, fuzzy
 msgid "Icon"
 msgstr "ikona"
 
-#: GUI/actionpropertybase.cpp:401
+#: GUI/actionpropertybase.cpp:395
 msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:402
-#, fuzzy
-msgid "Use tooltip"
-msgstr "použiť tip nástrojov"
-
-#: GUI/actionpropertybase.cpp:403
-msgid "The <i>Tooltip</i> can be used as <i>Description</i>."
-msgstr ""
-
-#: GUI/actionpropertybase.cpp:404
+#: GUI/actionpropertybase.cpp:396
 msgid "Identifier:"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:405
+#: GUI/actionpropertybase.cpp:397
 msgid ""
 "<p>Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.</p><p><b>Note</b>: "
 "The <i>Title</i> shown in the <b>Usermenu</b> can be set below.</p>"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:406
+#: GUI/actionpropertybase.cpp:398
 #, fuzzy
 msgid "Command:"
 msgstr "&Príkazy"
 
-#: GUI/actionpropertybase.cpp:407
+#: GUI/actionpropertybase.cpp:399
 msgid ""
 "<p>The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -261,24 +304,24 @@ msgid ""
 "Please consult the handbook to learn more about the syntax.</p>"
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:409 GUI/actionpropertybase.cpp:412
+#: GUI/actionpropertybase.cpp:401 GUI/actionpropertybase.cpp:404
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:410 GUI/actionpropertybase.cpp:423
+#: GUI/actionpropertybase.cpp:402 GUI/actionpropertybase.cpp:415
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:411
+#: GUI/actionpropertybase.cpp:403
 #, fuzzy
 msgid "Tooltip:"
 msgstr "Tip pre nástroj"
 
-#: GUI/actionpropertybase.cpp:414
+#: GUI/actionpropertybase.cpp:406
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -288,148 +331,148 @@ msgid ""
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:417
+#: GUI/actionpropertybase.cpp:409
 #, fuzzy
 msgid "Category:"
 msgstr "Kategória"
 
-#: Filter/generalfilter.cpp:125 GUI/actionpropertybase.cpp:419
+#: Filter/generalfilter.cpp:125 GUI/actionpropertybase.cpp:411
 #, fuzzy
 msgid "&Add"
 msgstr "&Pokročilé"
 
-#: GUI/actionpropertybase.cpp:420
+#: GUI/actionpropertybase.cpp:412
 #, fuzzy
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr "Pridať zástupné znaky pre zvolené súbory v panely"
 
-#: GUI/actionpropertybase.cpp:422
+#: GUI/actionpropertybase.cpp:414
 #, fuzzy
 msgid "Workdir:"
 msgstr "Pracujem"
 
-#: GUI/actionpropertybase.cpp:424
+#: GUI/actionpropertybase.cpp:416
 msgid "Default shortcut:"
 msgstr "Štandardná skratka:"
 
-#: GUI/actionpropertybase.cpp:425
+#: GUI/actionpropertybase.cpp:417
 msgid "None"
 msgstr "Nič"
 
-#: GUI/actionpropertybase.cpp:426
+#: GUI/actionpropertybase.cpp:418
 #, fuzzy
 msgid "Set a default keyboard shortcut."
 msgstr "nastaví štandardnú klávesovú skratku"
 
-#: GUI/actionpropertybase.cpp:427
+#: GUI/actionpropertybase.cpp:419
 msgid "Execution mode"
 msgstr "Režim spúšťania"
 
-#: GUI/actionpropertybase.cpp:428
+#: GUI/actionpropertybase.cpp:420
 msgid "Collect output"
 msgstr "Zobrazovať výstup"
 
-#: GUI/actionpropertybase.cpp:429
+#: GUI/actionpropertybase.cpp:421
 #, fuzzy
 msgid "Collect the output of the executed program."
 msgstr "Zbierať výstup spusteného programu"
 
-#: GUI/actionpropertybase.cpp:430
+#: GUI/actionpropertybase.cpp:422
 msgid "Separate standard error"
 msgstr "Oddeliť štandardný chybový výstup"
 
-#: GUI/actionpropertybase.cpp:431
+#: GUI/actionpropertybase.cpp:423
 #, fuzzy
 msgid "Separate standard out and standard error in the output collection."
 msgstr "Oddeliť štandardný a chybový výstup"
 
-#: GUI/actionpropertybase.cpp:432
+#: GUI/actionpropertybase.cpp:424
 msgid "Normal"
 msgstr "Normálne"
 
-#: GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:425
 msgid "Run in terminal"
 msgstr "Spustiť v terminály"
 
-#: GUI/actionpropertybase.cpp:434
+#: GUI/actionpropertybase.cpp:426
 #, fuzzy
 msgid "Run the command in a terminal."
 msgstr "Spustiť príkaz v terminály"
 
-#: GUI/actionpropertybase.cpp:435
+#: GUI/actionpropertybase.cpp:427
 msgid "Basic Properties"
 msgstr "Základné nastavenia"
 
-#: GUI/actionpropertybase.cpp:436
+#: GUI/actionpropertybase.cpp:428
 #, fuzzy
 msgid "The Useraction is only available for"
 msgstr "Táto akcia je dostupná iba pre"
 
-#: GUI/actionpropertybase.cpp:437 GUI/actionpropertybase.cpp:443
-#: GUI/actionpropertybase.cpp:448 GUI/actionpropertybase.cpp:453
+#: GUI/actionpropertybase.cpp:429 GUI/actionpropertybase.cpp:435
+#: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:445
 #, fuzzy
 msgid "&New..."
 msgstr "..."
 
-#: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:444
-#: GUI/actionpropertybase.cpp:449 GUI/actionpropertybase.cpp:454
+#: GUI/actionpropertybase.cpp:430 GUI/actionpropertybase.cpp:436
+#: GUI/actionpropertybase.cpp:441 GUI/actionpropertybase.cpp:446
 msgid "Chan&ge..."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:439 GUI/actionpropertybase.cpp:445
-#: GUI/actionpropertybase.cpp:450 GUI/actionpropertybase.cpp:455
+#: GUI/actionpropertybase.cpp:431 GUI/actionpropertybase.cpp:437
+#: GUI/actionpropertybase.cpp:442 GUI/actionpropertybase.cpp:447
 #, fuzzy
 msgid "De&lete"
 msgstr "F8 Zmazať"
 
-#: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:442
-#: GUI/actionpropertybase.cpp:447
+#: GUI/actionpropertybase.cpp:432 GUI/actionpropertybase.cpp:434
+#: GUI/actionpropertybase.cpp:439
 #, fuzzy
 msgid "Show the <b>Useraction</b> only for the values defined here."
 msgstr "Zobraziť akcie iba pre tieto typy súborov"
 
-#: GUI/actionpropertybase.cpp:441
+#: GUI/actionpropertybase.cpp:433
 msgid "Protocol"
 msgstr "Protokol"
 
-#: GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:438
 msgid "Path"
 msgstr "Cesta"
 
-#: GUI/actionpropertybase.cpp:451
+#: GUI/actionpropertybase.cpp:443
 msgid "Mime-type"
 msgstr "Typ súboru"
 
-#: GUI/actionpropertybase.cpp:452
+#: GUI/actionpropertybase.cpp:444
 msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
 msgstr ""
 
-#: GUI/actionpropertybase.cpp:456
+#: GUI/actionpropertybase.cpp:448
 msgid "Filename"
 msgstr "Názov súboru"
 
-#: GUI/actionpropertybase.cpp:457
+#: GUI/actionpropertybase.cpp:449
 msgid "Confirm each program call separately"
 msgstr "Potvrdiť každé volanie programu samostatne"
 
-#: GUI/actionpropertybase.cpp:458
+#: GUI/actionpropertybase.cpp:450
 #, fuzzy
 msgid "Allows to tweak the <i>Command</i> before it is executed."
 msgstr "Toto vám umožní vyladiť príkazový riadok pred tým ako bude spustený"
 
-#: GUI/actionpropertybase.cpp:459
+#: GUI/actionpropertybase.cpp:451
 #, fuzzy
 msgid "Run as different user:"
 msgstr "Spustiť ako iný používateľ"
 
-#: GUI/actionpropertybase.cpp:460 GUI/actionpropertybase.cpp:461
+#: GUI/actionpropertybase.cpp:452 GUI/actionpropertybase.cpp:453
 #, fuzzy
 msgid "Execute the <i>Command</i> under a different user-id."
 msgstr "vykonať príkaz pod inou používateľkou identifikáciou"
 
-#: GUI/actionpropertybase.cpp:462
+#: GUI/actionpropertybase.cpp:454
 msgid "Advanced Properties"
 msgstr "Pokročilé nastavenia"
 
@@ -457,15 +500,15 @@ msgstr "Nezávislé na panely"
 msgid "Executable"
 msgstr "Spustiteľný"
 
-#: GUI/addplaceholderpopup.cpp:133
+#: GUI/addplaceholderpopup.cpp:135
 msgid "User Action Parameter Dialog"
 msgstr "Dialóg parametrov používateľských akcií"
 
-#: GUI/addplaceholderpopup.cpp:141
+#: GUI/addplaceholderpopup.cpp:143
 msgid "This placeholder allows some parameter:"
 msgstr "Tento zástupný znak povoľuje nejaký parameter:"
 
-#: GUI/addplaceholderpopup.cpp:257 GUI/addplaceholderpopup.cpp:443
+#: GUI/addplaceholderpopup.cpp:259 GUI/addplaceholderpopup.cpp:445
 msgid "add"
 msgstr "pridať"
 
@@ -638,7 +681,14 @@ msgstr ""
 "Zle zadaná URL:\n"
 "%1"
 
-#: VFS/ftp_vfs.cpp:153
+#: VFS/ftp_vfs.cpp:154
+msgid ""
+"Krusader doesn't support FTP access via HTTP.\n"
+"If it is not the case, please check and change the Proxy settings in "
+"kcontrol."
+msgstr ""
+
+#: VFS/ftp_vfs.cpp:156
 #, c-format
 msgid ""
 "Protocol not supported by Krusader:\n"
@@ -671,12 +721,12 @@ msgstr "Rekomprimovanie..."
 msgid "Directory %1 does not exist!"
 msgstr "Priečinok %1 neexistuje!"
 
-#: BookMan/krbookmarkhandler.cpp:134 Konfigurator/kgcolors.cpp:492
+#: BookMan/krbookmarkhandler.cpp:149 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
-#: VFS/krarchandler.cpp:185 VFS/krarchandler.cpp:241 VFS/krarchandler.cpp:258
-#: VFS/krarchandler.cpp:316 VFS/krarchandler.cpp:417 VFS/krarchandler.cpp:424
+#: VFS/krarchandler.cpp:200 VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274
+#: VFS/krarchandler.cpp:332 VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503
 #: VFS/normal_vfs.cpp:80 VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96
-#: VFS/virt_vfs.cpp:87 VFS/virt_vfs.cpp:156 krusader.cpp:725
+#: VFS/virt_vfs.cpp:87 VFS/virt_vfs.cpp:156 krusader.cpp:732
 msgid "Error"
 msgstr ""
 
@@ -736,53 +786,53 @@ msgstr "Vlastné"
 msgid "Searching content of '%1' (%2%)"
 msgstr ""
 
-#: VFS/krarchandler.cpp:170
+#: VFS/krarchandler.cpp:185
 msgid "Counting files in archive"
 msgstr "Počítanie súborov v archíve"
 
-#: VFS/krarchandler.cpp:184
+#: VFS/krarchandler.cpp:199
 msgid "Failed to list the content of the archive (%1)!"
 msgstr ""
 
-#: VFS/krarchandler.cpp:204
+#: VFS/krarchandler.cpp:219
 msgid "Failed to unpack"
 msgstr "Dekomprimovanie sa nepodarilo"
 
-#: VFS/krarchandler.cpp:240
+#: VFS/krarchandler.cpp:256
 msgid "Failed to convert rpm (%1) to cpio!"
 msgstr ""
 
-#: VFS/krarchandler.cpp:257
+#: VFS/krarchandler.cpp:273
 msgid "Failed to convert deb (%1) to tar!"
 msgstr ""
 
-#: VFS/krarchandler.cpp:291
+#: VFS/krarchandler.cpp:307
 msgid "Unpacking File(s)"
 msgstr "Dekomprimovanie súborov"
 
-#: VFS/krarchandler.cpp:315
+#: VFS/krarchandler.cpp:331
 #, fuzzy
 msgid "Failed to unpack %1!"
 msgstr "Dekomprimovanie sa nepodarilo"
 
-#: VFS/krarchandler.cpp:358
+#: VFS/krarchandler.cpp:375
 msgid "Testing Archive"
 msgstr "Testovanie archívu"
 
-#: VFS/krarchandler.cpp:400
+#: VFS/krarchandler.cpp:479
 msgid "Packing File(s)"
 msgstr "Komprimovanie súborov"
 
-#: VFS/krarchandler.cpp:416
+#: VFS/krarchandler.cpp:495
 #, fuzzy
 msgid "Failed to pack %1!"
 msgstr "Komprimovanie sa nepodarilo: "
 
-#: VFS/krarchandler.cpp:424
+#: VFS/krarchandler.cpp:503
 msgid "Failed to pack: "
 msgstr "Komprimovanie sa nepodarilo: "
 
-#: VFS/krarchandler.cpp:455
+#: VFS/krarchandler.cpp:534
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Archív je zašifrovaný, poskytnite prosím heslo:"
 
@@ -814,6 +864,7 @@ msgstr ""
 msgid "&General"
 msgstr "&Všeobecné"
 
+#: Dialogs/packguibase.cpp:266 Dialogs/packguibase.cpp:306
 #: Filter/filtertabs.cpp:49
 msgid "&Advanced"
 msgstr "&Pokročilé"
@@ -836,7 +887,7 @@ msgstr "Rozlišovať &veľkosť písmen"
 msgid "Search &for:"
 msgstr "&Hľadať v:"
 
-#: Filter/generalfilter.cpp:79 Synchronizer/synchronizergui.cpp:1092
+#: Filter/generalfilter.cpp:79 Synchronizer/synchronizergui.cpp:1094
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
 "of wildcards. Multiple patterns are separated by space and patterns are "
@@ -863,7 +914,7 @@ msgstr ""
 msgid "&Load"
 msgstr "&Lokalizovať"
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:733
+#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:734
 #, fuzzy
 msgid "&Overwrite"
 msgstr "&Prepísať"
@@ -922,9 +973,9 @@ msgstr "Neboli vložené kritériá pre hľadania!"
 msgid "Please specify a location to search in."
 msgstr "Určite prosím polohu, kde hľadať."
 
-#: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:102
-#: Panel/krdetailedview.cpp:1251 Search/krsearchdialog.cpp:149
-#: Synchronizer/synchronizergui.cpp:1244 Synchronizer/synchronizergui.cpp:1248
+#: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:103
+#: Panel/krdetailedview.cpp:1292 Search/krsearchdialog.cpp:149
+#: Synchronizer/synchronizergui.cpp:1246 Synchronizer/synchronizergui.cpp:1250
 msgid "Size"
 msgstr "Veľkosť"
 
@@ -949,8 +1000,8 @@ msgid "&Smaller than"
 msgstr "&Menšie než"
 
 #: DiskUsage/dulistview.cpp:71 Filter/advancedfilter.cpp:113
-#: Search/krsearchdialog.cpp:150 Synchronizer/synchronizergui.cpp:1245
-#: Synchronizer/synchronizergui.cpp:1247
+#: Search/krsearchdialog.cpp:150 Synchronizer/synchronizergui.cpp:1247
+#: Synchronizer/synchronizergui.cpp:1249
 msgid "Date"
 msgstr "Dátum"
 
@@ -1113,7 +1164,7 @@ msgstr "cesta k panelu"
 
 #: UserAction/expander.cpp:73 UserAction/expander.cpp:135
 #: UserAction/expander.cpp:169 UserAction/expander.cpp:238
-#: UserAction/expander.cpp:538
+#: UserAction/expander.cpp:540
 msgid "Automatic escape spaces"
 msgstr "Automatické únikové medzery"
 
@@ -1135,7 +1186,7 @@ msgid "current file (!= selected file)"
 msgstr "aktuálny súbor (!= zvolený súbor)"
 
 #: UserAction/expander.cpp:134 UserAction/expander.cpp:167
-#: UserAction/expander.cpp:236 UserAction/expander.cpp:536
+#: UserAction/expander.cpp:236 UserAction/expander.cpp:538
 msgid "Omit the current path (optional)"
 msgstr "Vynechať aktuálnu cestu (voliteľné)"
 
@@ -1144,7 +1195,7 @@ msgid "Item list of ..."
 msgstr "Zoznam položiek ..."
 
 #: UserAction/expander.cpp:165 UserAction/expander.cpp:234
-#: UserAction/expander.cpp:535
+#: UserAction/expander.cpp:537
 msgid "Which items"
 msgstr "Ktoré položky"
 
@@ -1153,7 +1204,7 @@ msgid "Separator between the items (optional)"
 msgstr "Oddeľovač medzi položkami (voliteľné)"
 
 #: UserAction/expander.cpp:168 UserAction/expander.cpp:237
-#: UserAction/expander.cpp:537
+#: UserAction/expander.cpp:539
 msgid "Mask (optional, all but 'Selected')"
 msgstr "Maska (voliteľné, všetko ale 'Zvolené')"
 
@@ -1185,139 +1236,139 @@ msgstr "vyberte prosím cestu"
 msgid "open the location in a new tab"
 msgstr "otvoriť umiestnenie v novej karte"
 
-#: UserAction/expander.cpp:378
+#: UserAction/expander.cpp:380
 #, fuzzy
 msgid "Ask the user for a parameter"
 msgstr "Vypýtať si parameter od používateľa"
 
-#: UserAction/expander.cpp:381
+#: UserAction/expander.cpp:383
 msgid "Question"
 msgstr "Otázka"
 
-#: UserAction/expander.cpp:382
+#: UserAction/expander.cpp:384
 msgid "Preset (optional)"
 msgstr "Predvolené (voliteľné)"
 
-#: UserAction/expander.cpp:383
+#: UserAction/expander.cpp:385
 msgid "Caption (optional)"
 msgstr "Titulok (voliteľné)"
 
-#: UserAction/expander.cpp:389
+#: UserAction/expander.cpp:391
 msgid "User Action"
 msgstr "Používateľská akcia"
 
-#: UserAction/expander.cpp:412
+#: UserAction/expander.cpp:414
 msgid "Copy to clipboard"
 msgstr "Kopírovať do schránky"
 
-#: UserAction/expander.cpp:415 UserAction/expander.cpp:433
+#: UserAction/expander.cpp:417 UserAction/expander.cpp:435
 msgid "What should be copied"
 msgstr "Čo sa má kopírovať"
 
-#: UserAction/expander.cpp:416
+#: UserAction/expander.cpp:418
 msgid "Append to the current clipboard-content with this separator (optional)"
 msgstr "Pridať k aktuálnemu obsahu schránky s týmto oddeľovačom (voliteľné)"
 
-#: UserAction/expander.cpp:430
+#: UserAction/expander.cpp:432
 msgid "Copy a file/folder"
 msgstr "Kopírovať súbor/priečinok"
 
-#: UserAction/expander.cpp:434
+#: UserAction/expander.cpp:436
 msgid "Where it should be copied"
 msgstr "Kam by sa to malo kopírovať"
 
-#: UserAction/expander.cpp:454
+#: UserAction/expander.cpp:456
 #, fuzzy
 msgid "Move/Rename a file/folder"
 msgstr "Kopírovať súbor/priečinok"
 
-#: UserAction/expander.cpp:457
+#: UserAction/expander.cpp:459
 msgid "What moved/renamed"
 msgstr ""
 
-#: UserAction/expander.cpp:458
+#: UserAction/expander.cpp:460
 #, fuzzy
 msgid "New target/name"
 msgstr "Nový názov súboru"
 
-#: UserAction/expander.cpp:478
+#: UserAction/expander.cpp:480
 msgid "Open a synchronizer-profile"
 msgstr "Otvoriť synchronizačný profil"
 
-#: UserAction/expander.cpp:481 UserAction/expander.cpp:499
-#: UserAction/expander.cpp:517
+#: UserAction/expander.cpp:483 UserAction/expander.cpp:501
+#: UserAction/expander.cpp:519
 msgid "Choose a profile"
 msgstr "Vyberte profil"
 
-#: UserAction/expander.cpp:496
+#: UserAction/expander.cpp:498
 msgid "Open a searchmodule-profile"
 msgstr "Otvoriť profil hľadania"
 
-#: UserAction/expander.cpp:514
+#: UserAction/expander.cpp:516
 msgid "Load a panel-profile"
 msgstr "Načítať profil panelu"
 
-#: UserAction/expander.cpp:532
+#: UserAction/expander.cpp:534
 msgid "Separate programm call for each..."
 msgstr ""
 
-#: UserAction/expander.cpp:592
+#: UserAction/expander.cpp:594
 msgid "Set the sorting for this panel"
 msgstr ""
 
-#: UserAction/expander.cpp:595
+#: UserAction/expander.cpp:597
 #, fuzzy
 msgid "Choose a column"
 msgstr "Vyberte profil"
 
-#: UserAction/expander.cpp:596
+#: UserAction/expander.cpp:598
 msgid "Choose the sort sequence"
 msgstr ""
 
-#: UserAction/expander.cpp:686
+#: UserAction/expander.cpp:688
 #, fuzzy
 msgid "Set the relation between the two panels"
 msgstr "Oddeľovač medzi položkami (voliteľné)"
 
-#: UserAction/expander.cpp:689
+#: UserAction/expander.cpp:691
 msgid "Set the new size in percent"
 msgstr ""
 
-#: UserAction/expander.cpp:725
+#: UserAction/expander.cpp:727
 msgid "Executes a JavaScript-extension"
 msgstr ""
 
-#: UserAction/expander.cpp:728
+#: UserAction/expander.cpp:730
 msgid "Location of the script"
 msgstr ""
 
-#: UserAction/expander.cpp:729
+#: UserAction/expander.cpp:731
 msgid ""
 "Set some variables for the execution (optional).\n"
 "i.e. \"return=cmd;foo=bar\", consult the handbook for more information"
 msgstr ""
 
-#: UserAction/expander.cpp:775
+#: UserAction/expander.cpp:777
 msgid "View a file with Krusader's internal viewer"
 msgstr ""
 
-#: UserAction/expander.cpp:778
+#: UserAction/expander.cpp:780
 msgid "Which file to view (normally '%aCurrent%')"
 msgstr ""
 
-#: UserAction/expander.cpp:779
+#: UserAction/expander.cpp:781
 #, fuzzy
 msgid "Choose a view-mode"
 msgstr "Vyberte profil"
 
-#: UserAction/expander.cpp:782
+#: UserAction/expander.cpp:784
 #, fuzzy
 msgid "Choose a window-mode"
 msgstr "Vyberte profil"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:106
 #: Synchronizer/synchronizedialog.cpp:116
-#: Synchronizer/synchronizergui.cpp:1321 UserAction/kraction.cpp:41
+#: Synchronizer/synchronizergui.cpp:1373 UserAction/kraction.cpp:41
 #, fuzzy
 msgid "Close"
 msgstr "Farby"
@@ -1342,17 +1393,42 @@ msgstr "Štandardný chybový výstup (stderr)"
 msgid "Output"
 msgstr "Výstup"
 
-#: UserAction/kraction.cpp:229
+#: UserAction/kraction.cpp:205
 msgid "Confirm execution"
 msgstr "Potvrdiť spustenie"
 
-#: UserAction/kraction.cpp:230
+#: UserAction/kraction.cpp:206
 msgid "Command being executed:"
 msgstr "Príkazový riadok bol spustený:"
 
+#: UserAction/useraction.cpp:100
+msgid "This file called %1 which does not contain valid UserActions.\n"
+msgstr ""
+
+#: UserAction/useraction.cpp:101 UserAction/useraction.cpp:112
+#: UserAction/useraction.cpp:124
+#, fuzzy
+msgid "UserActions - can't read from file!"
+msgstr "Chyba pri čítaní súboru %1!"
+
+#: UserAction/useraction.cpp:123
+#, fuzzy, c-format
+msgid "Unable to open actionfile %1"
+msgstr "Nie je možné zapisovať do "
+
+#: UserAction/useraction.cpp:140
+msgid ""
+"Action without name detected. This action will not be imported!\n"
+"This is an error in the file, you may want to correct it."
+msgstr ""
+
+#: UserAction/useraction.cpp:141
+msgid "UserActions - invalid action"
+msgstr ""
+
 #: Panel/krdetailedviewitem.cpp:78 Panel/krdetailedviewitem.cpp:110
-#: Synchronizer/synchronizergui.cpp:1764 Synchronizer/synchronizergui.cpp:1771
-#: Synchronizer/synchronizergui.cpp:1820 Synchronizer/synchronizergui.cpp:1827
+#: Synchronizer/synchronizergui.cpp:1835 Synchronizer/synchronizergui.cpp:1842
+#: Synchronizer/synchronizergui.cpp:1891 Synchronizer/synchronizergui.cpp:1898
 msgid "<DIR>"
 msgstr "<DIR>"
 
@@ -1360,7 +1436,7 @@ msgstr "<DIR>"
 msgid "Preview not available"
 msgstr "Náhľad nie je dostupný"
 
-#: Panel/listpanel.cpp:131
+#: Panel/listpanel.cpp:136
 #, fuzzy
 msgid ""
 "The statusbar displays information about the FILESYSTEM which holds your "
@@ -1370,7 +1446,7 @@ msgstr ""
 "nachádza aktuálny priečinok: Celková veľkosť, voľné miesto, typ súborového "
 "systému atď."
 
-#: Panel/listpanel.cpp:147
+#: Panel/listpanel.cpp:152
 msgid ""
 "Open menu with bookmarks. You can also add current location to the list, "
 "edit bookmarks or add subfolder to the list."
@@ -1378,7 +1454,7 @@ msgstr ""
 "Otvorí ponuku so záložkami. Môžete tiež pridať aktuálne umiestnenie do "
 "zoznamu, upraviť záložky alebo pridať podpriečinok do zoznamu."
 
-#: Panel/listpanel.cpp:161
+#: Panel/listpanel.cpp:166
 msgid ""
 "The totals bar shows how many files exist, how many selected and the bytes "
 "math"
@@ -1386,20 +1462,20 @@ msgstr ""
 "Celkový panel zobrazuje, koľko súborov existuje, koľko ste ich označili a "
 "bytovú matematiku"
 
-#: Panel/listpanel.cpp:177 Panel/listpanel.cpp:359
+#: Panel/listpanel.cpp:182 Panel/listpanel.cpp:367
 msgid "Open the popup panel"
 msgstr "Otvoriť popup panel"
 
-#: Panel/listpanel.cpp:196
+#: Panel/listpanel.cpp:201
 #, fuzzy
 msgid "Clear the location bar"
 msgstr "Skočiť na umiestnenie"
 
-#: Panel/listpanel.cpp:204
+#: Panel/listpanel.cpp:209
 msgid "Use superb KDE file dialog to choose location. "
 msgstr "Použiť superb KDE súborový dialóg pre výber umiestnenia"
 
-#: Panel/listpanel.cpp:208
+#: Panel/listpanel.cpp:213
 msgid ""
 "Name of directory where you are. You can also enter name of desired location "
 "to move there. Use of Net protocols like ftp or fish is possible."
@@ -1407,158 +1483,158 @@ msgstr ""
 "Názov priečinka, v ktorom ste. Môžete tiež vložiť názov umiestnenie, kam sa "
 "chcete presunúť. Použite Net protokoly ako ftp alebo fish, ak je to možné."
 
-#: Panel/listpanel.cpp:225
+#: Panel/listpanel.cpp:232
 msgid "="
 msgstr "="
 
-#: Panel/listpanel.cpp:226
+#: Panel/listpanel.cpp:233
 msgid "Equal"
 msgstr "Rovnaký"
 
-#: Panel/listpanel.cpp:231
+#: Panel/listpanel.cpp:238
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:232
+#: Panel/listpanel.cpp:239
 msgid "Up"
 msgstr "Vyššie"
 
-#: Panel/listpanel.cpp:237
+#: Panel/listpanel.cpp:244
 msgid "~"
 msgstr "~"
 
-#: Panel/listpanel.cpp:238 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
+#: Panel/listpanel.cpp:245 Panel/panelpopup.cpp:104 Panel/panelpopup.cpp:105
 #: Panel/panelpopup.cpp:106 Panel/panelpopup.cpp:117
 msgid "Home"
 msgstr "Domovský priečinok"
 
-#: Panel/listpanel.cpp:243
+#: Panel/listpanel.cpp:250
 msgid "/"
 msgstr "/"
 
-#: Panel/listpanel.cpp:244 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
+#: Panel/listpanel.cpp:251 Panel/panelpopup.cpp:108 Panel/panelpopup.cpp:109
 #: Panel/panelpopup.cpp:111 Panel/panelpopup.cpp:112 Panel/panelpopup.cpp:116
-#: krusader.cpp:596
+#: krusader.cpp:598
 msgid "Root"
 msgstr "Root"
 
-#: Panel/listpanel.cpp:353
+#: Panel/listpanel.cpp:361
 msgid "Close the popup panel"
 msgstr "Zatvoriť popup panel"
 
-#: Panel/listpanel.cpp:457 Panel/listpanel.cpp:815
+#: Panel/listpanel.cpp:465 Panel/listpanel.cpp:824
 msgid " Select Files "
 msgstr " Zvolené súbory "
 
-#: Panel/listpanel.cpp:457
+#: Panel/listpanel.cpp:465
 msgid " Unselect Files "
 msgstr " Odznačiť súbory "
 
-#: Panel/listpanel.cpp:630
+#: Panel/listpanel.cpp:639
 msgid "No space information on non-local filesystems"
 msgstr "Bez info o mieste na nelokálnych súborových systémoch"
 
-#: Panel/listpanel.cpp:637
+#: Panel/listpanel.cpp:646
 msgid "No space information on [dev]"
 msgstr "Žiadne informácie o voľnom mieste v [dev]"
 
-#: Panel/listpanel.cpp:642
+#: Panel/listpanel.cpp:651
 msgid "No space information on [procfs]"
 msgstr "Žiadne informácie o voľnom mieste v [procfs]"
 
-#: Panel/listpanel.cpp:647
+#: Panel/listpanel.cpp:656
 msgid "No space information on [proc]"
 msgstr "Žiadne informácie o voľnom mieste v [proc]"
 
-#: Panel/listpanel.cpp:652
+#: Panel/listpanel.cpp:661
 msgid "Mt.Man: working ..."
 msgstr "Správca pripojení: zaneprázdnený..."
 
-#: Panel/listpanel.cpp:666
+#: Panel/listpanel.cpp:675
 msgid "unknown"
 msgstr "neznámy"
 
-#: Panel/listpanel.cpp:674
+#: Panel/listpanel.cpp:683
 msgid "%1 free out of %2 (%3%) on %4 [ (%5) ]"
 msgstr "%1 voľných z %2 (%3%) na %4 [ (%5) ]"
 
-#: Panel/listpanel.cpp:735
+#: Panel/listpanel.cpp:744
 msgid "Can't drop here, no write permissions."
 msgstr "Sem nie je možné pustiť, nie sú práva k zápisu."
 
-#: Panel/listpanel.cpp:751 Panel/panelpopup.cpp:316
+#: Panel/listpanel.cpp:760 Panel/panelpopup.cpp:316
 msgid "Copy Here"
 msgstr "Sem skopírovať"
 
-#: Panel/listpanel.cpp:753 Panel/panelpopup.cpp:317
+#: Panel/listpanel.cpp:762 Panel/panelpopup.cpp:317
 msgid "Move Here"
 msgstr "Presun sem"
 
-#: Panel/listpanel.cpp:756 Panel/panelpopup.cpp:318
+#: Panel/listpanel.cpp:765 Panel/panelpopup.cpp:318
 msgid "Link Here"
 msgstr "Odkázať sem"
 
-#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:129
-#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:757
+#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:278
+#: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:766
 #: Panel/panelpopup.cpp:319
 #, fuzzy
 msgid "Cancel"
 msgstr "Panel"
 
-#: Panel/listpanel.cpp:967
+#: Panel/listpanel.cpp:976
 #, fuzzy
 msgid ">> Reading..."
 msgstr "Rekomprimovanie..."
 
-#: Panel/listpanel.cpp:979
+#: Panel/listpanel.cpp:988
 #, fuzzy
 msgid "Reading"
 msgstr " (Čítanie)"
 
-#: Panel/listpanel.cpp:984
+#: Panel/listpanel.cpp:993
 #, fuzzy
 msgid "Reading: "
 msgstr " (Čítanie)"
 
 #: DiskUsage/dulines.cpp:238 DiskUsage/dulistview.cpp:56
-#: Konfigurator/krresulttable.cpp:128 MountMan/kmountmangui.cpp:127
-#: Panel/krdetailedview.cpp:99 Search/krsearchdialog.cpp:147
-#: Synchronizer/synchronizergui.cpp:1243 Synchronizer/synchronizergui.cpp:1249
+#: Konfigurator/krresulttable.cpp:129 MountMan/kmountmangui.cpp:127
+#: Panel/krdetailedview.cpp:100 Search/krsearchdialog.cpp:147
+#: Synchronizer/synchronizergui.cpp:1245 Synchronizer/synchronizergui.cpp:1251
 msgid "Name"
 msgstr "Názov"
 
-#: Panel/krdetailedview.cpp:100 Panel/krdetailedview.cpp:1245
+#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1286
 msgid "Ext"
 msgstr "Príp"
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1248
+#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1289
 msgid "Type"
 msgstr "Typ"
 
-#: Panel/krdetailedview.cpp:103 Panel/krdetailedview.cpp:1254
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1295
 msgid "Modified"
 msgstr "Zmenené"
 
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1257
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1298
 msgid "Perms"
 msgstr "Práva"
 
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1260
+#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1301
 msgid "rwx"
 msgstr "rwx"
 
-#: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:106
-#: Panel/krdetailedview.cpp:1263
+#: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:107
+#: Panel/krdetailedview.cpp:1304
 msgid "Owner"
 msgstr "Vlastník"
 
-#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:278
-#: Panel/krdetailedview.cpp:107 Panel/krdetailedview.cpp:1266
+#: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1307
 msgid "Group"
 msgstr "Skupina"
 
-#: Panel/krdetailedview.cpp:1232
+#: Panel/krdetailedview.cpp:1273
 #, fuzzy
 msgid "Columns"
 msgstr "&Príkazy"
@@ -1579,20 +1655,20 @@ msgstr "(neplatný odkaz!)"
 msgid "%1 (Link)"
 msgstr "%1 (Linka)"
 
-#: Panel/krview.cpp:162
+#: Panel/krview.cpp:165
 #, fuzzy
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 z %2 označených, %3 z %4"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:322
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325
 msgid "Rename"
 msgstr "Premenovať"
 
-#: Panel/krview.cpp:322
+#: Panel/krview.cpp:325
 msgid "Rename "
 msgstr "Premenovať "
 
-#: Panel/krview.cpp:322
+#: Panel/krview.cpp:325
 msgid " to:"
 msgstr " na:"
 
@@ -1755,7 +1831,7 @@ msgid "Move to trash"
 msgstr "Presunúť do koša"
 
 #: Dialogs/krmaskchoice.cpp:110 Dialogs/kurllistrequester.cpp:149
-#: DiskUsage/diskusage.cpp:714 Konfigurator/kgcolors.cpp:447
+#: DiskUsage/diskusage.cpp:759 Konfigurator/kgcolors.cpp:447
 #: Panel/krpopupmenu.cpp:145
 #, fuzzy
 msgid "Delete"
@@ -1781,17 +1857,17 @@ msgstr "presmerovaný odkaz"
 msgid "Link handling"
 msgstr "Správa odkazov"
 
-#: MountMan/kmountman.cpp:287 MountMan/kmountmangui.cpp:336
+#: MountMan/kmountman.cpp:287 MountMan/kmountmangui.cpp:337
 #: Panel/krpopupmenu.cpp:172
 msgid "Unmount"
 msgstr "Odpojiť"
 
-#: MountMan/kmountman.cpp:287 MountMan/kmountmangui.cpp:332
+#: MountMan/kmountman.cpp:287 MountMan/kmountmangui.cpp:333
 #: Panel/krpopupmenu.cpp:174
 msgid "Mount"
 msgstr "Pripojiť"
 
-#: MountMan/kmountmangui.cpp:342 Panel/krpopupmenu.cpp:176
+#: MountMan/kmountmangui.cpp:343 Panel/krpopupmenu.cpp:176
 msgid "Eject"
 msgstr "Vysunúť"
 
@@ -1839,155 +1915,155 @@ msgstr "Ste si istý, že chcete zoskartovať "
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr " ? Raz zoskartovaný a súbor je navždy preč !!!"
 
-#: KViewer/krviewer.cpp:227 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:358
-#: krslots.cpp:443
+#: KViewer/krviewer.cpp:215 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:356
+#: krslots.cpp:451
 msgid "Can't open "
 msgstr "Nie je možné otvoriť."
 
-#: Panel/panelfunc.cpp:248
+#: Panel/panelfunc.cpp:246
 msgid "You can edit links only on local file systems"
 msgstr "Môžete upraviť odkazy iba na lokálnom súborovom systéme"
 
-#: Panel/panelfunc.cpp:259
+#: Panel/panelfunc.cpp:257
 #, fuzzy
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Aktuálny súbor nie je odkaz, takže ho nemôžem presmerovať."
 
-#: Panel/panelfunc.cpp:266
+#: Panel/panelfunc.cpp:264
 msgid "Link Redirection"
 msgstr "Presmerovanie odkazu"
 
-#: Panel/panelfunc.cpp:267
+#: Panel/panelfunc.cpp:265
 msgid "Please enter the new link destination:"
 msgstr "Vložte prosím určenie nového odkazu:"
 
-#: Panel/panelfunc.cpp:274
+#: Panel/panelfunc.cpp:272
 msgid "Can't remove old link: "
 msgstr "Nie je možné odstrániť starý odkaz: "
 
-#: Panel/panelfunc.cpp:279 Panel/panelfunc.cpp:319
+#: Panel/panelfunc.cpp:277 Panel/panelfunc.cpp:317
 msgid "Failed to create a new link: "
 msgstr "Nepodarilo sa vytvoriť nový odkaz: "
 
-#: Panel/panelfunc.cpp:286
+#: Panel/panelfunc.cpp:284
 msgid "You can create links only on local file systems"
 msgstr "Môžete vytvoriť odkazy iba na lokálnom súborovom systéme"
 
-#: Panel/panelfunc.cpp:295
+#: Panel/panelfunc.cpp:293
 msgid "New link"
 msgstr "Nový symbolický odkaz"
 
-#: Panel/panelfunc.cpp:295
+#: Panel/panelfunc.cpp:293
 msgid "Create a new link to: "
 msgstr "Vytvoriť nový odkaz na:"
 
-#: Panel/panelfunc.cpp:303 Panel/panelfunc.cpp:480
+#: Panel/panelfunc.cpp:301 Panel/panelfunc.cpp:478
 msgid "A directory or a file with this name already exists."
 msgstr "Priečinok alebo súbor s takýmto názvom už existuje."
 
-#: Panel/panelfunc.cpp:315
+#: Panel/panelfunc.cpp:313
 msgid "Failed to create a new symlink: "
 msgstr "Nepodarilo sa vytvoriť nový symbolický odkaz: "
 
-#: Panel/panelfunc.cpp:316 Panel/panelfunc.cpp:320
+#: Panel/panelfunc.cpp:314 Panel/panelfunc.cpp:318
 msgid " To: "
 msgstr " Do: "
 
-#: Panel/panelfunc.cpp:334
+#: Panel/panelfunc.cpp:332
 msgid "No permissions to view this file."
 msgstr "Nie sú práva k prezeraniu tohoto súboru."
 
-#: Panel/panelfunc.cpp:369
+#: Panel/panelfunc.cpp:367
 msgid "You can't edit a directory"
 msgstr "Nie je možné upraviť tento priečinok"
 
-#: Panel/panelfunc.cpp:374
+#: Panel/panelfunc.cpp:372
 msgid "No permissions to edit this file."
 msgstr "Nie sú práva na úpravu tohoto súboru."
 
-#: Panel/panelfunc.cpp:393
+#: Panel/panelfunc.cpp:391
 msgid "Moving into archive is disabled"
 msgstr "Presun do archívu nie je povolený"
 
-#: Panel/panelfunc.cpp:403
+#: Panel/panelfunc.cpp:401
 #, fuzzy
 msgid "Move %1 to:"
 msgstr "Presunúť %d súbory do:"
 
-#: Panel/panelfunc.cpp:405
+#: Panel/panelfunc.cpp:403
 #, c-format
 msgid ""
 "_n: Move %n file to:\n"
 "Move %n files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:441
+#: Panel/panelfunc.cpp:439
 msgid "You can't move files to this file system"
 msgstr "Nie je možné presunúť súbory do tohoto súborového systému"
 
-#: Panel/panelfunc.cpp:467
+#: Panel/panelfunc.cpp:465
 msgid "New directory"
 msgstr "Nový priečinok"
 
-#: Panel/panelfunc.cpp:467
+#: Panel/panelfunc.cpp:465
 msgid "Directory's name:"
 msgstr "Názov priečinka:"
 
-#: Panel/panelfunc.cpp:515
+#: Panel/panelfunc.cpp:513
 #, fuzzy
 msgid "Copy %1 to:"
 msgstr "Kopírovať %d súborov do:"
 
-#: Panel/panelfunc.cpp:517
+#: Panel/panelfunc.cpp:515
 #, c-format
 msgid ""
 "_n: Copy %n file to:\n"
 "Copy %n files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:545
+#: Panel/panelfunc.cpp:543
 msgid "You can't copy files to this file system"
 msgstr "Nie je možné kopírovať súbory do tohoto súborového systému"
 
-#: Panel/panelfunc.cpp:556
+#: Panel/panelfunc.cpp:554
 msgid "You do not have write permission to this directory"
 msgstr "Nemáte práva prístupu na zapisovanie do toho priečinka"
 
-#: Panel/panelfunc.cpp:574
+#: Panel/panelfunc.cpp:572
 #, c-format
 msgid ""
 "_n: Do you really want to move this item to the trash?\n"
 "Do you really want to move these %n items to the trash?"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:572 Panel/panelfunc.cpp:575
+#: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:573
 msgid "&Trash"
 msgstr "&Kôš"
 
-#: Panel/panelfunc.cpp:577
+#: Panel/panelfunc.cpp:575
 #, c-format
 msgid ""
 "_n: Do you really want to delete this item?\n"
 "Do you really want to delete these %n items?"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:575 DiskUsage/radialMap/widgetEvents.cpp:172
-#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:578
+#: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
+#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:576
 #, fuzzy
 msgid "&Delete"
 msgstr "F8 Zmazať"
 
-#: Dialogs/checksumdlg.cpp:545 DiskUsage/diskusage.cpp:583
-#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:584 krusader.cpp:723
+#: Dialogs/checksumdlg.cpp:545 DiskUsage/diskusage.cpp:609
+#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:582 krusader.cpp:730
 #, fuzzy
 msgid "Warning"
 msgstr "Pracujem"
 
-#: Panel/panelfunc.cpp:602
+#: Panel/panelfunc.cpp:600
 msgid "Directory "
 msgstr "Priečinok "
 
-#: Panel/panelfunc.cpp:602
+#: Panel/panelfunc.cpp:600
 #, fuzzy
 msgid ""
 " is not empty!\n"
@@ -1996,73 +2072,73 @@ msgstr ""
 " nie je prázdny !\n"
 "Preskočiť alebo všetko zmazať?"
 
-#: Panel/panelfunc.cpp:603
+#: Panel/panelfunc.cpp:601
 msgid "&Skip"
 msgstr "&Preskočiť"
 
-#: Panel/panelfunc.cpp:603
+#: Panel/panelfunc.cpp:601
 msgid "&Delete All"
 msgstr "Zmazať &všetko"
 
-#: Panel/panelfunc.cpp:714
+#: Panel/panelfunc.cpp:715
 msgid "Cannot pack files onto a virtual destination!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:726
+#: Panel/panelfunc.cpp:727
 msgid "The Archive "
 msgstr "Archív "
 
-#: Panel/panelfunc.cpp:727
+#: Panel/panelfunc.cpp:728
 #, fuzzy
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " už existuje"
 
-#: Panel/panelfunc.cpp:729
+#: Panel/panelfunc.cpp:730
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
 msgstr ""
 
-#: Panel/panelfunc.cpp:738
+#: Panel/panelfunc.cpp:739
 msgid "Counting files to pack"
 msgstr "Spočítavam súbory na komprimáciu"
 
-#: Panel/panelfunc.cpp:798 Panel/panelfunc.cpp:859 krslots.cpp:191
+#: Panel/panelfunc.cpp:799 Panel/panelfunc.cpp:860 krslots.cpp:191
 #: krslots.cpp:197
 msgid "Krusader is unable to download: "
 msgstr "Krusader nemôže stiahnuť: "
 
-#: Panel/panelfunc.cpp:810
+#: Panel/panelfunc.cpp:811
 msgid "%1, unknown archive type."
 msgstr "%1, neznámy typ archívu."
 
-#: Panel/panelfunc.cpp:818
+#: Panel/panelfunc.cpp:819
 msgid "%1, test passed."
 msgstr "%1, test bol úspešný."
 
-#: Panel/panelfunc.cpp:820
+#: Panel/panelfunc.cpp:821
 #, fuzzy
 msgid "%1, test failed!"
 msgstr "%1, test zlyhal!"
 
-#: Panel/panelfunc.cpp:836
+#: Panel/panelfunc.cpp:837
 #, fuzzy
 msgid "Unpack %1 to:"
 msgstr "Dekomprimovanie "
 
-#: Panel/panelfunc.cpp:838
+#: Panel/panelfunc.cpp:839
 #, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
 "Unpack %n files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:884
+#: Panel/panelfunc.cpp:885
 msgid "%1, unknown archive type"
 msgstr "%1, neznámy typ archívu"
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:204 Search/krsearchdialog.cpp:102
-#: Synchronizer/synchronizergui.cpp:1311
+#: Synchronizer/synchronizergui.cpp:1357
 #, fuzzy
 msgid "Stop"
 msgstr "do"
@@ -2119,6 +2195,7 @@ msgid "Error during the start of 'locate' process!"
 msgstr "Chyba pri spustení procesu 'locate'"
 
 #: Locate/locate.cpp:243 Search/krsearchdialog.cpp:91
+#: Synchronizer/synchronizergui.cpp:1362
 msgid "Feed to listbox"
 msgstr ""
 
@@ -2157,6 +2234,7 @@ msgid "Query name"
 msgstr "Používateľské meno:"
 
 #: Locate/locate.cpp:496 Search/krsearchdialog.cpp:535
+#: Synchronizer/feedtolistboxdialog.cpp:110
 msgid "Here you can name the file collection"
 msgstr ""
 
@@ -2222,388 +2300,410 @@ msgstr "Ukázať &skryté súbory"
 msgid "S&wap Panels"
 msgstr "Prehoden&ie panelov"
 
-#: krusader.cpp:508
+#: krusader.cpp:504
+#, fuzzy
+msgid "Sw&ap Sides"
+msgstr "Prehoden&ie strán"
+
+#: krusader.cpp:510
 msgid "popup cmdline"
 msgstr "prekrývací príkazový riadok"
 
-#: DiskUsage/diskusage.cpp:721 krusader.cpp:511
+#: DiskUsage/diskusage.cpp:766 krusader.cpp:513
 #, fuzzy
 msgid "Up one directory"
 msgstr "Do priečinku"
 
-#: krusader.cpp:512
+#: krusader.cpp:514
 #, fuzzy
 msgid "&Edit New File"
 msgstr "&Upraviť nový súbor"
 
-#: krusader.cpp:513
+#: krusader.cpp:515
 msgid "Start &Root Mode Krusader"
 msgstr "Spustiť K&rusader v režime administrátora"
 
-#: krusader.cpp:515
+#: krusader.cpp:517
 msgid "T&est Archive(s)"
 msgstr "&Testovať archív"
 
-#: krusader.cpp:519
+#: krusader.cpp:521
 msgid "New Net &Connection"
 msgstr "Nové sieťové s&pojenie"
 
-#: krusader.cpp:521
+#: krusader.cpp:523
 msgid "Pro&files"
 msgstr "Pro&fily"
 
-#: krusader.cpp:523
+#: krusader.cpp:525
 msgid "Calculate &Occupied Space"
 msgstr "Zistiť &obsadený priestor"
 
-#: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446 krusader.cpp:525
+#: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446 krusader.cpp:527
 #, fuzzy
 msgid "Create Checksum"
 msgstr "Vytvoriť v:"
 
-#: Dialogs/checksumdlg.cpp:292 Dialogs/checksumdlg.cpp:410 krusader.cpp:527
+#: Dialogs/checksumdlg.cpp:292 Dialogs/checksumdlg.cpp:410 krusader.cpp:529
 msgid "Verify Checksum"
 msgstr ""
 
-#: krusader.cpp:529
+#: krusader.cpp:531
 msgid "&Properties"
 msgstr "&Vlastnosti"
 
-#: krusader.cpp:531
+#: krusader.cpp:533
 msgid "Pac&k"
 msgstr "&Komprimovanie"
 
-#: krusader.cpp:533
+#: krusader.cpp:535
 msgid "&Unpack"
 msgstr "&Dekomprimovanie"
 
-#: krusader.cpp:535
+#: krusader.cpp:537
 #, fuzzy
 msgid "Sp&lit File"
 msgstr "Rozde&liť súbor"
 
-#: krusader.cpp:537
+#: krusader.cpp:539
 #, fuzzy
 msgid "Com&bine Files"
 msgstr "&Spojenie súborov"
 
-#: krusader.cpp:539
+#: krusader.cpp:541
 msgid "Select &Group"
 msgstr "Označiť s&kupinu"
 
-#: krusader.cpp:541
+#: krusader.cpp:543
 msgid "&Select All"
 msgstr "Označiť &všetko"
 
-#: krusader.cpp:543
+#: krusader.cpp:545
 msgid "U&nselect All"
 msgstr "Odz&načiť všetko"
 
-#: krusader.cpp:545
+#: krusader.cpp:547
 msgid "&Compare Directories"
 msgstr "&Porovnanie prečinkov"
 
-#: krusader.cpp:547
+#: krusader.cpp:549
 #, fuzzy
 msgid "&Mark Newer And Single"
 msgstr "Označiť no&všie a jedinečné"
 
-#: krusader.cpp:549
+#: krusader.cpp:551
 msgid "Mark &Newer"
 msgstr ""
 
-#: krusader.cpp:551
+#: krusader.cpp:553
 #, fuzzy
 msgid "Mark &Single"
 msgstr "Samotné"
 
-#: krusader.cpp:553
+#: krusader.cpp:555
 #, fuzzy
 msgid "Mark Different &And Single"
 msgstr "Označiť rôzne &a jedinečné"
 
-#: krusader.cpp:555
+#: krusader.cpp:557
 #, fuzzy
 msgid "Mark &Different"
 msgstr "Označiť &rôzne"
 
-#: krusader.cpp:564
+#: krusader.cpp:566
 msgid "&Terminal"
 msgstr "&Terminál"
 
-#: krusader.cpp:566
+#: krusader.cpp:568
 msgid "Disconnect &From Net"
 msgstr "Odpojiť sa od &Siete"
 
-#: krusader.cpp:569 krusader.cpp:574
+#: krusader.cpp:571 krusader.cpp:576
 msgid "&MountMan"
 msgstr "&Správca pripojení"
 
-#: krusader.cpp:578
+#: krusader.cpp:580
 msgid "&Search"
 msgstr "&Hľadať"
 
-#: krusader.cpp:580
+#: krusader.cpp:582
 msgid "&Locate"
 msgstr "&Lokalizovať"
 
-#: krusader.cpp:582
+#: krusader.cpp:584
 msgid "Synchronize &Directories"
 msgstr "&Synchronizácia priečinkov"
 
-#: krusader.cpp:584
+#: krusader.cpp:586
 #, fuzzy
 msgid "S&ynchron directory changes"
 msgstr "Synchronizovať priečinky"
 
-#: krusader.cpp:586
+#: krusader.cpp:588
 #, fuzzy
 msgid "D&isk Usage"
 msgstr "Krusader::Lokalizovať"
 
-#: krusader.cpp:588
+#: krusader.cpp:590
 msgid "&Invert Selection"
 msgstr "&Invertovať označenie"
 
-#: krusader.cpp:590
+#: krusader.cpp:592
 msgid "&Unselect Group"
 msgstr "Odznačiť skupin&u"
 
-#: krusader.cpp:592
+#: krusader.cpp:594
 msgid "Configure &Krusader"
 msgstr "Nastavenie &Krusadera"
 
-#: krusader.cpp:594
+#: krusader.cpp:596
 #, fuzzy
 msgid "Back"
 msgstr "Čierna"
 
-#: krusader.cpp:598
+#: krusader.cpp:600
 msgid "Save &Position"
 msgstr "Uložiť &pozíciu"
 
-#: krusader.cpp:600
+#: krusader.cpp:602
 msgid "&All Files"
 msgstr "&Všetky súbory"
 
-#: krusader.cpp:604
+#: krusader.cpp:606
 msgid "&Custom"
 msgstr "&Vlastné"
 
-#: krusader.cpp:606
+#: krusader.cpp:608
 #, fuzzy
 msgid "Compare b&y Content"
 msgstr "Porovnať podľa o&bsahu"
 
-#: krusader.cpp:608
+#: krusader.cpp:610
 msgid "Multi &Rename"
 msgstr "Multi p&remenovanie"
 
-#: krusader.cpp:610
+#: krusader.cpp:612
 msgid "Right-click menu"
 msgstr "Ponuka pravého tlačítka"
 
-#: krusader.cpp:612
+#: krusader.cpp:614
 msgid "Right bookmarks"
 msgstr "Pravé záložky"
 
-#: krusader.cpp:614
+#: krusader.cpp:616
 msgid "Left bookmarks"
 msgstr "Ľavé záložky"
 
 #: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:29 krusader.cpp:616
+#: BookMan/krbookmarkhandler.cpp:29 krusader.cpp:618
 #, fuzzy
 msgid "Bookmarks"
 msgstr "Pridať záložku"
 
-#: BookMan/krbookmarkhandler.cpp:312 krusader.cpp:618
+#: BookMan/krbookmarkhandler.cpp:327 krusader.cpp:620
 msgid "Bookmark Current"
 msgstr "Zaradiť medzi záložky"
 
-#: krusader.cpp:620
+#: krusader.cpp:622
 #, fuzzy
 msgid "History"
 msgstr "Ľavá história"
 
-#: krusader.cpp:622
+#: krusader.cpp:624
 msgid "Sync Panels"
 msgstr "Synch. panely"
 
-#: krusader.cpp:624
+#: krusader.cpp:626
 msgid "Left history"
 msgstr "Ľavá história"
 
-#: krusader.cpp:626
+#: krusader.cpp:628
 msgid "Right history"
 msgstr "Pravá história"
 
-#: krusader.cpp:628
+#: BookMan/krbookmark.cpp:12 krusader.cpp:630
+#, fuzzy
+msgid "Media"
+msgstr "upraviť"
+
+#: krusader.cpp:632
+#, fuzzy
+msgid "Left media"
+msgstr "Ľavý panel"
+
+#: krusader.cpp:634
+#, fuzzy
+msgid "Right media"
+msgstr "Pravý panel"
+
+#: krusader.cpp:636
 #, fuzzy
 msgid "New symlink"
 msgstr "nový symbolický odkaz"
 
-#: krusader.cpp:630
+#: krusader.cpp:638
 #, fuzzy
 msgid "Toggle Popup Panel"
 msgstr "Zatvoriť popup panel"
 
-#: krusader.cpp:632
+#: krusader.cpp:640
 msgid "Vertical Mode"
 msgstr ""
 
-#: krusader.cpp:634
+#: krusader.cpp:642
 msgid "New tab"
 msgstr "Nová karta"
 
-#: krusader.cpp:636
+#: krusader.cpp:644
 msgid "Duplicate tab"
 msgstr "Duplikovať kartu"
 
-#: krusader.cpp:638
+#: krusader.cpp:646
 msgid "Close tab"
 msgstr "Zavrieť kartu"
 
-#: krusader.cpp:640
+#: krusader.cpp:648
 msgid "Next tab"
 msgstr "Nasledujúca karta"
 
-#: krusader.cpp:642
+#: krusader.cpp:650
 msgid "Previous tab"
 msgstr "Predchádzajúca karta"
 
-#: UserMenu/usermenu.cpp:52 krusader.cpp:644
+#: UserMenu/usermenu.cpp:51 krusader.cpp:652
 msgid "User Menu"
 msgstr "Používateľská ponuka"
 
-#: UserMenu/usermenu.cpp:59 krusader.cpp:646
+#: UserMenu/usermenu.cpp:58 krusader.cpp:654
 #, fuzzy
 msgid "Manage user actions"
 msgstr "Pridať používateľskú akciu"
 
-#: krusader.cpp:648
+#: krusader.cpp:656
 #, fuzzy
 msgid "Select Remote Charset"
 msgstr "Zvoliť položky"
 
-#: krusader.cpp:651
+#: krusader.cpp:659
 #, fuzzy
 msgid "F2 - Open a terminal"
 msgstr "F2 Terminál"
 
-#: krusader.cpp:653
+#: krusader.cpp:661
 #, fuzzy
 msgid "F3 - View a file"
 msgstr "F3 Zobraziť  "
 
-#: krusader.cpp:655
+#: krusader.cpp:663
 #, fuzzy
 msgid "F4 - Edit a file"
 msgstr "F4 Upraviť"
 
-#: krusader.cpp:657
+#: krusader.cpp:665
 #, fuzzy
 msgid "F5 - Copy"
 msgstr "F5 Kopírovať"
 
-#: krusader.cpp:659
+#: krusader.cpp:667
 #, fuzzy
 msgid "F6 - Move"
 msgstr "F6 Presunúť"
 
-#: krusader.cpp:661
+#: krusader.cpp:669
 #, fuzzy
 msgid "F7 - Mkdir"
 msgstr "F7 Vytvoriť"
 
-#: krusader.cpp:663
+#: krusader.cpp:671
 #, fuzzy
 msgid "F8 - Delete"
 msgstr "F8 Zmazať"
 
-#: krusader.cpp:665
+#: krusader.cpp:673
 #, fuzzy
 msgid "F9 - Rename"
 msgstr "F9 Premenovať"
 
-#: krusader.cpp:667
+#: krusader.cpp:675
 #, fuzzy
 msgid "F10 - Quit"
 msgstr "F10 Skončiť"
 
-#: BookMan/krbookmarkhandler.cpp:271 krusader.cpp:669
+#: BookMan/krbookmarkhandler.cpp:286 krusader.cpp:677
 msgid "Popular URLs"
-msgstr ""
-
-#: krusader.cpp:671
-#, fuzzy
-msgid "Go to location bar"
-msgstr "Skočiť na umiestnenie"
-
-#: krusader.cpp:673
-msgid "Jump back"
-msgstr ""
-
-#: krusader.cpp:675
-msgid "Set jump back point here"
 msgstr ""
 
 #: krusader.cpp:679
 #, fuzzy
+msgid "Go to location bar"
+msgstr "Skočiť na umiestnenie"
+
+#: krusader.cpp:681
+msgid "Jump back"
+msgstr ""
+
+#: krusader.cpp:683
+msgid "Set jump back point here"
+msgstr ""
+
+#: krusader.cpp:687
+#, fuzzy
 msgid "Select files using a filter"
 msgstr "Označiť súbory s použitím filtra"
 
-#: krusader.cpp:680
+#: krusader.cpp:688
 #, fuzzy
 msgid "Select all files in the current directory"
 msgstr "Označiť všetky súbory v aktuálnom priečinku"
 
-#: krusader.cpp:681
+#: krusader.cpp:689
 #, fuzzy
 msgid "Un-select all selected files"
 msgstr "Vyberte iba jeden rozdelený súbor!"
 
-#: krusader.cpp:682
+#: krusader.cpp:690
 msgid "Setup Krusader the way you like it"
 msgstr "Nastavenie Krusadera, tak ako ho chcete mať"
 
-#: krusader.cpp:683
+#: krusader.cpp:691
 msgid "Back to the place you came from"
 msgstr "Späť na miesto, z ktorého ste prišli"
 
-#: krusader.cpp:684
+#: krusader.cpp:692
 msgid "ROOT (/)"
 msgstr "Koreň (/)"
 
-#: krusader.cpp:685
+#: krusader.cpp:693
 msgid "Search for files"
 msgstr "Hľadať súbory"
 
-#: krusader.cpp:692
+#: krusader.cpp:699
 msgid "JavaScript console"
 msgstr ""
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:722
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:729
 #, fuzzy
 msgid "File "
 msgstr "Všetky súbory"
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:722
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:729
 #, fuzzy
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr " už existuje"
 
-#: Dialogs/checksumdlg.cpp:545 Konfigurator/kgcolors.cpp:507 krusader.cpp:723
+#: Dialogs/checksumdlg.cpp:545 Konfigurator/kgcolors.cpp:507
+#: Konfigurator/kguseractions.cpp:224 Konfigurator/kguseractions.cpp:233
+#: krusader.cpp:730
 #, fuzzy
 msgid "Overwrite"
 msgstr "&Prepísať"
 
-#: Konfigurator/kgcolors.cpp:509 krusader.cpp:725
+#: Konfigurator/kgcolors.cpp:509 krusader.cpp:732
 #, fuzzy
 msgid "Error: unable to write to file"
 msgstr "Nie je možné zapisovať do "
 
-#: krusader.cpp:828
+#: krusader.cpp:835
 #, fuzzy
 msgid "Are you sure you want to quit?"
 msgstr "Ste si istý, že chcete "
@@ -2612,68 +2712,68 @@ msgstr "Ste si istý, že chcete "
 msgid "No file selected or selected file can't be displayed."
 msgstr ""
 
-#: KViewer/krviewer.cpp:578 KViewer/panelviewer.cpp:151
+#: KViewer/krviewer.cpp:566 KViewer/panelviewer.cpp:151
 msgid "KrViewer is unable to download: "
 msgstr "KrViewer nemôže stiahnuť: "
 
-#: KViewer/krviewer.cpp:96
+#: KViewer/krviewer.cpp:84
 msgid "&Generic viewer"
 msgstr "&Všeobecné zobrazenie"
 
-#: KViewer/krviewer.cpp:97
+#: KViewer/krviewer.cpp:85
 msgid "&Text viewer"
 msgstr "&Textové zobrazenie"
 
-#: KViewer/krviewer.cpp:98
+#: KViewer/krviewer.cpp:86
 msgid "&Hex viewer"
 msgstr "&Hex zobrazenie"
 
-#: KViewer/krviewer.cpp:100
+#: KViewer/krviewer.cpp:88
 msgid "Text &editor"
 msgstr "Testový &editor"
 
-#: KViewer/krviewer.cpp:102
+#: KViewer/krviewer.cpp:90
 #, fuzzy
 msgid "&Next tab"
 msgstr "Nasledujúca karta"
 
-#: KViewer/krviewer.cpp:103
+#: KViewer/krviewer.cpp:91
 #, fuzzy
 msgid "&Previous tab"
 msgstr "Predchádzajúca karta"
 
-#: KViewer/krviewer.cpp:105
+#: KViewer/krviewer.cpp:93
 #, fuzzy
 msgid "&Detach tab"
 msgstr "Nasledujúca karta"
 
-#: KViewer/krviewer.cpp:112
+#: KViewer/krviewer.cpp:100
 #, fuzzy
 msgid "&Close current tab"
 msgstr "Zatvoriť aktuálnu kartu"
 
-#: KViewer/krviewer.cpp:113
+#: KViewer/krviewer.cpp:101
 #, fuzzy
 msgid "&Quit"
 msgstr "Potichu"
 
-#: KViewer/krviewer.cpp:153
+#: KViewer/krviewer.cpp:141
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: KViewer/krviewer.cpp:210 KViewer/krviewer.cpp:267 KViewer/krviewer.cpp:338
-#: KViewer/krviewer.cpp:347 KViewer/krviewer.cpp:356 KViewer/krviewer.cpp:432
+#: KViewer/krviewer.cpp:198 KViewer/krviewer.cpp:255 KViewer/krviewer.cpp:326
+#: KViewer/krviewer.cpp:335 KViewer/krviewer.cpp:344 KViewer/krviewer.cpp:420
 #, fuzzy
 msgid "Viewing"
 msgstr "F3 Zobraziť"
 
-#: KViewer/krviewer.cpp:235 KViewer/krviewer.cpp:267 KViewer/krviewer.cpp:365
-#: KViewer/krviewer.cpp:430
+#: KViewer/krviewer.cpp:223 KViewer/krviewer.cpp:255 KViewer/krviewer.cpp:353
+#: KViewer/krviewer.cpp:418
 #, fuzzy
 msgid "Editing"
 msgstr "F4 Upraviť"
 
-#: KViewer/krviewer.cpp:508
+#: KViewer/krviewer.cpp:496
 msgid "Sorry, can't find internal editor"
 msgstr "Ľutujem, nie je možné nájsť interný editor"
 
@@ -2736,7 +2836,7 @@ msgstr "Zobraziť súbor (F3)"
 msgid "Edit File (F4)"
 msgstr "Upraviť súbor (F4)"
 
-#: Konfigurator/kgarchives.cpp:113 Konfigurator/kggeneral.cpp:163
+#: Konfigurator/kgarchives.cpp:114 Konfigurator/kggeneral.cpp:163
 #: Search/krsearchdialog.cpp:526
 #, fuzzy
 msgid "Search results"
@@ -2744,11 +2844,11 @@ msgstr ""
 "Výsledky hľadania:\n"
 "\n"
 
-#: panelmanager.cpp:28
+#: panelmanager.cpp:31
 msgid "Open a new tab in home"
 msgstr "Otvoriť novú kartu v domovskom priečinku"
 
-#: panelmanager.cpp:36
+#: panelmanager.cpp:39
 msgid "Close current tab"
 msgstr "Zatvoriť aktuálnu kartu"
 
@@ -2756,35 +2856,30 @@ msgstr "Zatvoriť aktuálnu kartu"
 msgid "BookMan II"
 msgstr "Správca záložiek II"
 
-#: BookMan/krbookmarkhandler.cpp:134
+#: BookMan/krbookmarkhandler.cpp:149
 msgid "Unable to write to "
 msgstr "Nie je možné zapisovať do "
 
-#: BookMan/krbookmarkhandler.cpp:142
+#: BookMan/krbookmarkhandler.cpp:157
 msgid " instead of "
 msgstr " namiesto"
 
-#: BookMan/krbookmarkhandler.cpp:147 BookMan/krbookmarkhandler.cpp:153
-#: BookMan/krbookmarkhandler.cpp:184
+#: BookMan/krbookmarkhandler.cpp:162 BookMan/krbookmarkhandler.cpp:168
+#: BookMan/krbookmarkhandler.cpp:199
 msgid "missing tag "
 msgstr "chýbajúca značka"
 
-#: BookMan/krbookmarkhandler.cpp:223
+#: BookMan/krbookmarkhandler.cpp:238
 msgid " doesn't seem to be a valid Bookmarks file"
 msgstr " nezdá sa, že by bol platným súborom záložiek."
 
-#: BookMan/krbookmarkhandler.cpp:230
+#: BookMan/krbookmarkhandler.cpp:245
 msgid "Error reading bookmarks file: "
 msgstr "Chyba pri čítaní súboru záložiek: "
 
-#: BookMan/krbookmarkhandler.cpp:314
+#: BookMan/krbookmarkhandler.cpp:329
 msgid "Manage Bookmarks"
 msgstr "Správa záložiek"
-
-#: BookMan/krbookmark.cpp:12
-#, fuzzy
-msgid "Media"
-msgstr "upraviť"
 
 #: BookMan/krbookmark.cpp:14
 msgid "Devices"
@@ -2807,7 +2902,7 @@ msgstr "Pridať záložku"
 msgid "New Folder"
 msgstr "Nový priečinok"
 
-#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:979
+#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:1032
 msgid "Name:"
 msgstr "Názov:"
 
@@ -2882,11 +2977,11 @@ msgstr "Voľná veľkosť"
 msgid "Free %"
 msgstr "Voľné %"
 
-#: MountMan/kmountmangui.cpp:186 MountMan/kmountmangui.cpp:293
+#: MountMan/kmountmangui.cpp:187 MountMan/kmountmangui.cpp:294
 msgid "Critical Error"
 msgstr "Kritická chyba"
 
-#: MountMan/kmountmangui.cpp:187
+#: MountMan/kmountmangui.cpp:188
 msgid ""
 "Internal error in MountMan\n"
 "Please email the developers"
@@ -2894,7 +2989,7 @@ msgstr ""
 "Interná chyba v Správcovi pripojení\n"
 "Prosím, pošlite e-mail vývojárom."
 
-#: MountMan/kmountmangui.cpp:293
+#: MountMan/kmountmangui.cpp:294
 msgid ""
 "Internal error in MountMan\n"
 "Call the developers"
@@ -2902,18 +2997,18 @@ msgstr ""
 "Interná chyba v Správcovi pripojení\n"
 "Prosím, zavolajte vývojárom."
 
-#: MountMan/kmountmangui.cpp:325
+#: MountMan/kmountmangui.cpp:326
 msgid ""
 "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správca pripojení ma internú chybu. Upozorníte na to prosím vývojarov. "
 "Ďakujeme."
 
-#: MountMan/kmountmangui.cpp:330
+#: MountMan/kmountmangui.cpp:331
 msgid "MountMan"
 msgstr "Správca pripojení"
 
-#: MountMan/kmountmangui.cpp:344
+#: MountMan/kmountmangui.cpp:345
 msgid "Format"
 msgstr "Formát"
 
@@ -2957,6 +3052,15 @@ msgstr "Krusader"
 #: main.cpp:93
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - privilégiá správcu"
+
+#: main.cpp:96
+msgid ""
+"Feedback\n"
+"http://www.krusader.org/phpBB/\n"
+"\n"
+"IRC\n"
+"server: irc.freenode.net, channel: #krusader"
+msgstr ""
 
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
@@ -3150,7 +3254,7 @@ msgid ""
 "Pack %n files"
 msgstr ""
 
-#: Dialogs/packgui.cpp:91
+#: Dialogs/packgui.cpp:94
 msgid "Please select a directory"
 msgstr "Zvoľte prosím priečinok"
 
@@ -3294,25 +3398,86 @@ msgstr "Voľné: "
 msgid "Not mounted."
 msgstr "Nepripojené."
 
-#: Dialogs/packguibase.cpp:60 Dialogs/packguibase.cpp:113
+#: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
 msgid "Pack"
 msgstr "Komprimovanie"
 
-#: Dialogs/packguibase.cpp:70
+#: Dialogs/packguibase.cpp:76
 msgid "To archive"
 msgstr "Do archívu"
 
-#: Dialogs/packguibase.cpp:77
-msgid "tar.bz2"
-msgstr "tar.bz2"
-
-#: Dialogs/packguibase.cpp:88
+#: Dialogs/packguibase.cpp:95
 msgid "In directory"
 msgstr "Do priečinku"
 
-#: Dialogs/packguibase.cpp:125 Konfigurator/kguseractions.cpp:70
+#: Dialogs/packguibase.cpp:145
+msgid "Multiple volume archive"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1034
+#, fuzzy
+msgid "Size:"
+msgstr "Veľkosť"
+
+#: Dialogs/packguibase.cpp:172
+msgid "Set compression level"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:200
+#, fuzzy
+msgid "Password"
+msgstr "Heslo:"
+
+#: Dialogs/packguibase.cpp:210
+msgid "Again"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:228
+msgid "Encrypt headers"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:240
+#, fuzzy
+msgid "Command line switches:"
+msgstr "Príkazový riadok"
+
+#: Dialogs/packguibase.cpp:273 Konfigurator/kguseractions.cpp:71
 msgid "Ok"
 msgstr "Ok"
+
+#: Dialogs/packguibase.cpp:322
+msgid "The passwords are equal"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:326
+msgid "The passwords are different"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:361
+msgid "Cannot pack! The passwords are different!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:386
+msgid "Invalid volume size!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:416
+msgid ""
+"Invalid command line switch!\n"
+"Switch must start with '-'!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:428
+msgid ""
+"Invalid command line switch!\n"
+"Backslash cannot be the last character"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:436
+msgid ""
+"Invalid command line switch!\n"
+"Unclosed quotation mark!"
+msgstr ""
 
 #: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
@@ -3541,69 +3706,69 @@ msgstr "Port:   "
 msgid "* Warning: Storing your password is not secure !!!"
 msgstr "* Varovanie: Uloženie vášho hesla nie je bezpečné!!!"
 
-#: Synchronizer/synchronizergui.cpp:1022
+#: Synchronizer/synchronizergui.cpp:1024
 msgid "Krusader::Synchronize Directories"
 msgstr "Krusader::Synchronizácia priečinkov"
 
-#: Synchronizer/synchronizergui.cpp:1041
+#: Synchronizer/synchronizergui.cpp:1043
 #, fuzzy
 msgid "Directory Comparison"
 msgstr "Porovnanie priečinkov"
 
-#: Synchronizer/synchronizergui.cpp:1055
+#: Synchronizer/synchronizergui.cpp:1057
 msgid "File Filter:"
 msgstr "Filter súborov:"
 
-#: Synchronizer/synchronizergui.cpp:1077
+#: Synchronizer/synchronizergui.cpp:1079
 msgid "The left base directory used during the synchronisation process."
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1108
+#: Synchronizer/synchronizergui.cpp:1110
 msgid "The right base directory used during the synchronisation process."
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1114
+#: Synchronizer/synchronizergui.cpp:1116
 msgid "Recurse subdirectories"
 msgstr "Vrátane podadresárov"
 
-#: Synchronizer/synchronizergui.cpp:1116
+#: Synchronizer/synchronizergui.cpp:1118
 #, fuzzy
 msgid "Compare not only the base directories but their subdirectories as well."
 msgstr "Porovnať nielen základné priečinky, ale aj ich podpriečinky."
 
-#: Synchronizer/synchronizergui.cpp:1117
+#: Synchronizer/synchronizergui.cpp:1119
 msgid "Follow symlinks"
 msgstr "Sledovať odkazy"
 
-#: Synchronizer/synchronizergui.cpp:1120
+#: Synchronizer/synchronizergui.cpp:1122
 #, fuzzy
 msgid "Follow symbolic links during the compare process."
 msgstr "Sledovať symbolické odkazy tiež pri porovnávaní"
 
-#: Synchronizer/synchronizergui.cpp:1121
+#: Synchronizer/synchronizergui.cpp:1123
 msgid "Compare by content"
 msgstr "Porovnať podľa obsahu"
 
-#: Synchronizer/synchronizergui.cpp:1123
+#: Synchronizer/synchronizergui.cpp:1125
 #, fuzzy
 msgid "Compare duplicated files with same size by content."
 msgstr "Porovná duplicitné súbory s rovnakou veľkosťou podľa ich obsahu"
 
-#: Synchronizer/synchronizergui.cpp:1124
+#: Synchronizer/synchronizergui.cpp:1126
 msgid "Ignore Date"
 msgstr "Ignorovať dátum"
 
-#: Synchronizer/synchronizergui.cpp:1126
+#: Synchronizer/synchronizergui.cpp:1128
 msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1127
+#: Synchronizer/synchronizergui.cpp:1129
 msgid "Asymmetric"
 msgstr "Nesúmerne"
 
-#: Synchronizer/synchronizergui.cpp:1129
+#: Synchronizer/synchronizergui.cpp:1131
 #, fuzzy
 msgid ""
 "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right "
@@ -3616,11 +3781,11 @@ msgstr ""
 "ktoré sa líšia budú skopírované sprava doľava (užitočné pri aktualizácií "
 "priečinka zo súborových serverom)."
 
-#: Synchronizer/synchronizergui.cpp:1130
+#: Synchronizer/synchronizergui.cpp:1132
 msgid "Ignore Case"
 msgstr "Ignorovať veľkosť písmen"
 
-#: Synchronizer/synchronizergui.cpp:1132
+#: Synchronizer/synchronizergui.cpp:1134
 #, fuzzy
 msgid ""
 "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when "
@@ -3629,179 +3794,209 @@ msgstr ""
 "Porovnávanie názvov súborov citlivé na veľkosť písmen. Použite pri "
 "synchonizovaní na Windows súborových systémoch."
 
-#: Synchronizer/synchronizergui.cpp:1137
+#: Synchronizer/synchronizergui.cpp:1139
 msgid "Show options"
 msgstr "Zobraziť možnosti"
 
-#: Synchronizer/synchronizergui.cpp:1157
+#: Synchronizer/synchronizergui.cpp:1159
 #, fuzzy
 msgid "Show files marked to <i>Copy from left to right</i>."
 msgstr "Zobraziť súbory označené pre kopírovanie zľava doprava"
 
-#: Synchronizer/synchronizergui.cpp:1165
+#: Synchronizer/synchronizergui.cpp:1167
 #, fuzzy
 msgid "Show files considered to be identical."
 msgstr "Zobraziť súbory považované za identické"
 
-#: Synchronizer/synchronizergui.cpp:1173
+#: Synchronizer/synchronizergui.cpp:1175
 #, fuzzy
 msgid "Show excluded files."
 msgstr "Zobraziť súbory, ktoré boli vylúčené zo synchronizácie"
 
-#: Synchronizer/synchronizergui.cpp:1181
+#: Synchronizer/synchronizergui.cpp:1183
 #, fuzzy
 msgid "Show files marked to <i>Copy from right to left</i>"
 msgstr "Zobraziť súbory označené pre kopírovanie sprava doľava"
 
-#: Synchronizer/synchronizergui.cpp:1189
+#: Synchronizer/synchronizergui.cpp:1191
 #, fuzzy
 msgid "Show files marked to delete."
 msgstr "Zobraziť súbory označené na zmazanie"
 
-#: Synchronizer/synchronizergui.cpp:1193
+#: Synchronizer/synchronizergui.cpp:1195
 msgid "Duplicates"
 msgstr "Duplikáty"
 
-#: Synchronizer/synchronizergui.cpp:1197
+#: Synchronizer/synchronizergui.cpp:1199
 #, fuzzy
 msgid "Show files that exist on both sides."
 msgstr "Zobraziť tie súbory, ktoré existujú na oboch stranách"
 
-#: Synchronizer/synchronizergui.cpp:1201
+#: Synchronizer/synchronizergui.cpp:1203
 msgid "Singles"
 msgstr "Samotné"
 
-#: Synchronizer/synchronizergui.cpp:1205
+#: Synchronizer/synchronizergui.cpp:1207
 #, fuzzy
 msgid "Show files that exist on one side only."
 msgstr "Zobraziť tie súbory, ktoré existujú na oboch stranách"
 
-#: Synchronizer/synchronizergui.cpp:1246
+#: Synchronizer/synchronizergui.cpp:1248
 msgid "<=>"
 msgstr "<=>"
 
-#: Synchronizer/synchronizergui.cpp:1265
+#: Synchronizer/synchronizergui.cpp:1267
 msgid "&Synchronizer"
 msgstr "&Synchronizácia"
 
-#: Synchronizer/synchronizergui.cpp:1285
+#: Synchronizer/synchronizergui.cpp:1278
+#, fuzzy
+msgid "&Time options"
+msgstr "Zobraziť možnosti"
+
+#: Synchronizer/synchronizergui.cpp:1287
+msgid "Equality threshold:"
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1295 Synchronizer/synchronizergui.cpp:1310
+msgid "sec"
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1296 Synchronizer/synchronizergui.cpp:1311
+msgid "min"
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1297 Synchronizer/synchronizergui.cpp:1312
+msgid "hour"
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1298 Synchronizer/synchronizergui.cpp:1313
+#, fuzzy
+msgid "day"
+msgstr "dní"
+
+#: Synchronizer/synchronizergui.cpp:1301
+msgid "Time shift (right-left):"
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1331
 #, fuzzy
 msgid "Swap sides."
 msgstr "Prehoden&ie strán"
 
-#: Synchronizer/synchronizergui.cpp:1295
+#: Synchronizer/synchronizergui.cpp:1341
 msgid "Compare"
 msgstr "Porovnať"
 
-#: Synchronizer/synchronizergui.cpp:1305 Synchronizer/synchronizergui.cpp:2084
+#: Synchronizer/synchronizergui.cpp:1351 Synchronizer/synchronizergui.cpp:2174
 msgid "Quiet"
 msgstr "Potichu"
 
-#: Synchronizer/synchronizergui.cpp:1307 Synchronizer/synchronizergui.cpp:2086
+#: Synchronizer/synchronizergui.cpp:1353 Synchronizer/synchronizergui.cpp:2176
 msgid "Scroll Results"
 msgstr "Posúvať výsledky"
 
-#: Synchronizer/synchronizergui.cpp:1316
+#: Synchronizer/synchronizergui.cpp:1368
 msgid "Synchronize"
 msgstr "Synchronizovať"
 
-#: Synchronizer/synchronizergui.cpp:1422
+#: Synchronizer/synchronizergui.cpp:1477
 #, fuzzy
 msgid "Selected files from target directory:"
 msgstr "Označiť všetky súbory v aktuálnom priečinku"
 
-#: Synchronizer/synchronizergui.cpp:1423
+#: Synchronizer/synchronizergui.cpp:1478
 #, fuzzy
 msgid "Selected files from source directory:"
 msgstr "Označiť všetky súbory v aktuálnom priečinku"
 
-#: Synchronizer/synchronizergui.cpp:1427
+#: Synchronizer/synchronizergui.cpp:1482
 #, fuzzy
 msgid "Selected files from left directory:"
 msgstr "Rozdeliť súbor %1 do priečinka:"
 
-#: Synchronizer/synchronizergui.cpp:1428
+#: Synchronizer/synchronizergui.cpp:1483
 #, fuzzy
 msgid "Selected files from right directory:"
 msgstr "Rozdeliť súbor %1 do priečinka:"
 
-#: Synchronizer/synchronizergui.cpp:1432
+#: Synchronizer/synchronizergui.cpp:1487
 msgid "Target directory:"
 msgstr "Cieľový priečinok:"
 
-#: Synchronizer/synchronizergui.cpp:1433
+#: Synchronizer/synchronizergui.cpp:1488
 msgid "Source directory:"
 msgstr "Zdrojový priečinok:"
 
-#: Synchronizer/synchronizergui.cpp:1437
+#: Synchronizer/synchronizergui.cpp:1492
 msgid "Left directory:"
 msgstr "Ľavý priečinok:"
 
-#: Synchronizer/synchronizergui.cpp:1438
+#: Synchronizer/synchronizergui.cpp:1493
 msgid "Right directory:"
 msgstr "Pravý priečinok:"
 
-#: Synchronizer/synchronizergui.cpp:1473
+#: Synchronizer/synchronizergui.cpp:1528
 msgid "URL must be the descendant of either the left or the right base URL!"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1512
+#: Synchronizer/synchronizergui.cpp:1567
 msgid "Synchronize Directories"
 msgstr "Synchronizovať priečinky"
 
-#: DiskUsage/diskusage.cpp:716 Synchronizer/synchronizergui.cpp:1514
+#: DiskUsage/diskusage.cpp:761 Synchronizer/synchronizergui.cpp:1569
 msgid "Exclude"
 msgstr "Vylúčiť"
 
-#: Synchronizer/synchronizergui.cpp:1516
+#: Synchronizer/synchronizergui.cpp:1571
 msgid "Restore original operation"
 msgstr "Obnoviť pôvodnú operáciu"
 
-#: Synchronizer/synchronizergui.cpp:1518
+#: Synchronizer/synchronizergui.cpp:1573
 msgid "Reverse direction"
 msgstr "Opačný smer"
 
-#: Synchronizer/synchronizergui.cpp:1520
+#: Synchronizer/synchronizergui.cpp:1575
 msgid "Copy from right to left"
 msgstr "Kopírovať sprava doľava"
 
-#: Synchronizer/synchronizergui.cpp:1522
+#: Synchronizer/synchronizergui.cpp:1577
 msgid "Copy from left to right"
 msgstr "Kopírovať zľava doprava"
 
-#: Synchronizer/synchronizergui.cpp:1524
+#: Synchronizer/synchronizergui.cpp:1579
 msgid "Delete (left single)"
 msgstr "Zmazať (nechať samotné)"
 
-#: Synchronizer/synchronizergui.cpp:1529
+#: Synchronizer/synchronizergui.cpp:1584
 msgid "View left file"
 msgstr "Zobraziť ľavý súbor"
 
-#: Synchronizer/synchronizergui.cpp:1531
+#: Synchronizer/synchronizergui.cpp:1586
 msgid "View right file"
 msgstr "Zobraziť pravý súbor"
 
-#: Synchronizer/synchronizergui.cpp:1533
+#: Synchronizer/synchronizergui.cpp:1588
 msgid "Compare Files"
 msgstr "Porovnať súbory"
 
-#: Synchronizer/synchronizergui.cpp:1538 Synchronizer/synchronizergui.cpp:1617
+#: Synchronizer/synchronizergui.cpp:1593 Synchronizer/synchronizergui.cpp:1672
 msgid "Select items"
 msgstr "Zvoliť položky"
 
-#: Synchronizer/synchronizergui.cpp:1540 Synchronizer/synchronizergui.cpp:1618
+#: Synchronizer/synchronizergui.cpp:1595 Synchronizer/synchronizergui.cpp:1673
 msgid "Deselect items"
 msgstr "Odznačiť položky"
 
-#: Synchronizer/synchronizergui.cpp:1542
+#: Synchronizer/synchronizergui.cpp:1597
 msgid "Invert selection"
 msgstr "Obrátiť výber"
 
-#: Synchronizer/synchronizergui.cpp:1553
+#: Synchronizer/synchronizergui.cpp:1608
 msgid "Synchronize with KGet"
 msgstr "Synchronizovať s KGet"
 
-#: Synchronizer/synchronizergui.cpp:1915
+#: Synchronizer/synchronizergui.cpp:1989
 msgid "Synchronizer has nothing to do!"
 msgstr "Nie je čo synchronizovať!"
 
@@ -3839,61 +4034,109 @@ msgid "Start"
 msgstr "Štart"
 
 #: Synchronizer/synchronizedialog.cpp:113
-#: Synchronizer/synchronizedialog.cpp:185 Synchronizer/synchronizer.cpp:1327
-#: Synchronizer/synchronizer.cpp:1337
+#: Synchronizer/synchronizedialog.cpp:185 Synchronizer/synchronizer.cpp:1425
+#: Synchronizer/synchronizer.cpp:1435
 msgid "Pause"
 msgstr "Pauza"
 
-#: Synchronizer/synchronizedialog.cpp:193 Synchronizer/synchronizer.cpp:1339
+#: Synchronizer/synchronizedialog.cpp:193 Synchronizer/synchronizer.cpp:1437
 msgid "Resume"
 msgstr "Pokračovať"
 
-#: Synchronizer/synchronizer.cpp:124 Synchronizer/synchronizer.cpp:572
+#: Synchronizer/synchronizer.cpp:129 Synchronizer/synchronizer.cpp:585
 #, c-format
 msgid "File number:%1"
 msgstr "Číslo súboru:%1"
 
-#: Synchronizer/synchronizer.cpp:297
+#: Synchronizer/synchronizer.cpp:302
 msgid "Error at opening URL:%1!"
 msgstr "Chyba pri otváraní URL:%1!"
 
-#: Synchronizer/synchronizer.cpp:302 Synchronizer/synchronizer.cpp:1186
+#: Synchronizer/synchronizer.cpp:307 Synchronizer/synchronizer.cpp:1204
+#: Synchronizer/synchronizer.cpp:1284
 #, c-format
 msgid "Scanned directories:%1"
 msgstr "Prehľadané priečinky:%1"
 
-#: Synchronizer/synchronizer.cpp:989 Synchronizer/synchronizer.cpp:997
+#: Synchronizer/synchronizer.cpp:1002 Synchronizer/synchronizer.cpp:1010
 msgid "File Already Exists"
 msgstr "Súbor už existuje"
 
-#: Synchronizer/synchronizer.cpp:1037 Synchronizer/synchronizer.cpp:1042
+#: Synchronizer/synchronizer.cpp:1050 Synchronizer/synchronizer.cpp:1055
 msgid "Error at copying file %1 to %2!"
 msgstr "Chyba pri kopírovaní súboru %1 do %2!"
 
-#: Synchronizer/synchronizer.cpp:1047
+#: Synchronizer/synchronizer.cpp:1060
 msgid "Error at deleting file %1!"
 msgstr "Chyba pri mazaní súboru %1!"
 
-#: Synchronizer/synchronizer.cpp:1258
+#: Synchronizer/synchronizer.cpp:1214 Synchronizer/synchronizer.cpp:1220
+#, fuzzy
+msgid "Error at opening %1!"
+msgstr "Chyba pri otváraní URL:%1!"
+
+#: Synchronizer/synchronizer.cpp:1356
 msgid "IO error at comparing file %1 with %2!"
 msgstr "Chyba vstupu/výstupu pri porovnávaní súboru %1 s %2!"
 
-#: Synchronizer/synchronizer.cpp:1287 Synchronizer/synchronizer.cpp:1298
+#: Synchronizer/synchronizer.cpp:1385 Synchronizer/synchronizer.cpp:1396
 msgid "Comparing file %1..."
 msgstr "Porovnávanie súboru %1..."
 
-#: Synchronizer/synchronizer.cpp:1382
+#: Synchronizer/synchronizer.cpp:1480
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Synchronizácia"
 
-#: Synchronizer/synchronizer.cpp:1383
+#: Synchronizer/synchronizer.cpp:1481
 #, fuzzy
 msgid "Feeding the URLs to Kget"
 msgstr "Presúvanie URL do kget"
 
-#: Synchronizer/synchronizer.cpp:1432 krslots.cpp:116 krslots.cpp:208
+#: Synchronizer/synchronizer.cpp:1530 krslots.cpp:116 krslots.cpp:208
 msgid "Error executing "
 msgstr "Chyba pri spúšťaní "
+
+#: Synchronizer/feedtolistboxdialog.cpp:54
+#, fuzzy
+msgid "Krusader::Feed to listbox"
+msgstr "Krusader::Rozdeliť"
+
+#: Synchronizer/feedtolistboxdialog.cpp:87
+msgid "No elements to feed!"
+msgstr ""
+
+#: Synchronizer/feedtolistboxdialog.cpp:101
+#, fuzzy
+msgid "Synchronize results"
+msgstr "&Synchronizácia"
+
+#: Synchronizer/feedtolistboxdialog.cpp:120
+msgid "Side to feed:"
+msgstr ""
+
+#: Synchronizer/feedtolistboxdialog.cpp:125
+msgid "Left"
+msgstr ""
+
+#: Synchronizer/feedtolistboxdialog.cpp:126
+#, fuzzy
+msgid "Right"
+msgstr "Pravý panel"
+
+#: Synchronizer/feedtolistboxdialog.cpp:127
+#, fuzzy
+msgid "Both"
+msgstr "mesiacov"
+
+#: Synchronizer/feedtolistboxdialog.cpp:141
+#, fuzzy
+msgid "Selected files only"
+msgstr " Zvolené súbory "
+
+#: Synchronizer/feedtolistboxdialog.cpp:191
+#, fuzzy
+msgid "Cannot open %1!"
+msgstr "Nie je možné otvoriť."
 
 #: Konfigurator/kglookfeel.cpp:120 paneltabbar.cpp:35
 msgid "Panel"
@@ -3950,65 +4193,65 @@ msgstr ""
 msgid "Show file sizes"
 msgstr "Max. veľkosť súboru:"
 
-#: DiskUsage/diskusage.cpp:741 DiskUsage/dulines.cpp:461
+#: DiskUsage/diskusage.cpp:786 DiskUsage/dulines.cpp:461
 #, fuzzy
 msgid "Lines"
 msgstr "Odkazy"
 
-#: DiskUsage/dufilelight.cpp:115
+#: DiskUsage/dufilelight.cpp:117
 msgid "Zoom In"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:116
+#: DiskUsage/dufilelight.cpp:118
 msgid "Zoom Out"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:119
+#: DiskUsage/dufilelight.cpp:121
 msgid "Rainbow"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:120
+#: DiskUsage/dufilelight.cpp:122
 msgid "High Contrast"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:121
+#: DiskUsage/dufilelight.cpp:123
 msgid "KDE"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:124
+#: DiskUsage/dufilelight.cpp:126
 msgid "Scheme"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:126
+#: DiskUsage/dufilelight.cpp:128
 msgid "Increase contrast"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:127
+#: DiskUsage/dufilelight.cpp:129
 msgid "Decrease contrast"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:129
+#: DiskUsage/dufilelight.cpp:131
 msgid "Use anti-aliasing"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:132
+#: DiskUsage/dufilelight.cpp:134
 #, fuzzy
 msgid "Show small files"
 msgstr "*|všetky súbory"
 
-#: DiskUsage/dufilelight.cpp:135
+#: DiskUsage/dufilelight.cpp:137
 msgid "Vary label font sizes"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:138 DiskUsage/dufilelight.cpp:207
+#: DiskUsage/dufilelight.cpp:140 DiskUsage/dufilelight.cpp:209
 msgid "Minimum font size"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:745 DiskUsage/dufilelight.cpp:140
+#: DiskUsage/diskusage.cpp:790 DiskUsage/dufilelight.cpp:142
 msgid "Filelight"
 msgstr ""
 
-#: DiskUsage/dufilelight.cpp:206
+#: DiskUsage/dufilelight.cpp:208
 #, fuzzy
 msgid "Krusader::Filelight"
 msgstr "Krusader::Rozdeliť"
@@ -4022,7 +4265,7 @@ msgstr "Krusader::Lokalizovať"
 msgid "Start new disk usage search"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:725 DiskUsage/diskusagegui.cpp:64
+#: DiskUsage/diskusage.cpp:770 DiskUsage/diskusagegui.cpp:64
 msgid "Refresh"
 msgstr ""
 
@@ -4095,84 +4338,84 @@ msgstr ""
 msgid "Krusader::DiskUsage"
 msgstr "Krusader::Lokalizovať"
 
-#: DiskUsage/diskusage.cpp:571
+#: DiskUsage/diskusage.cpp:597
 msgid "trash"
 msgstr "kôš"
 
-#: DiskUsage/diskusage.cpp:574
+#: DiskUsage/diskusage.cpp:600
 msgid "delete"
 msgstr "zmazať"
 
-#: DiskUsage/diskusage.cpp:582
+#: DiskUsage/diskusage.cpp:608
 msgid "Are you sure you want to "
 msgstr "Ste si istý, že chcete "
 
-#: DiskUsage/diskusage.cpp:684
+#: DiskUsage/diskusage.cpp:613
+#, fuzzy
+msgid "Deleting %1..."
+msgstr "Mažem súbory..."
+
+#: DiskUsage/diskusage.cpp:729
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:710
+#: DiskUsage/diskusage.cpp:755
 msgid "Disk Usage"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:723
+#: DiskUsage/diskusage.cpp:768
 #, fuzzy
 msgid "New search"
 msgstr "Nový štýl rýchleho hľadania"
 
-#: DiskUsage/diskusage.cpp:727
+#: DiskUsage/diskusage.cpp:772
 msgid "Include all"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:729
+#: DiskUsage/diskusage.cpp:774
 msgid "Step into"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:743
+#: DiskUsage/diskusage.cpp:788
 #, fuzzy
 msgid "Detailed"
 msgstr "KrDetailedView"
 
-#: DiskUsage/diskusage.cpp:748
+#: DiskUsage/diskusage.cpp:793
 #, fuzzy
 msgid "Next"
 msgstr "Nasledujúca karta"
 
-#: DiskUsage/diskusage.cpp:750
+#: DiskUsage/diskusage.cpp:795
 #, fuzzy
 msgid "Previous"
 msgstr "Predchádzajúca karta"
 
-#: DiskUsage/diskusage.cpp:754
+#: DiskUsage/diskusage.cpp:799
 #, fuzzy
 msgid "View"
 msgstr "F3 Zobraziť"
 
-#: DiskUsage/diskusage.cpp:980
+#: DiskUsage/diskusage.cpp:1033
 #, fuzzy
 msgid "Type:"
 msgstr "Typ"
 
-#: DiskUsage/diskusage.cpp:981
-#, fuzzy
-msgid "Size:"
-msgstr "Veľkosť"
-
-#: DiskUsage/diskusage.cpp:984
+#: DiskUsage/diskusage.cpp:1037
 msgid "Own size:"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:986
+#: DiskUsage/diskusage.cpp:1039
 #, fuzzy
 msgid "Last modified:"
 msgstr "Zmenené"
 
-#: DiskUsage/diskusage.cpp:987
+#: DiskUsage/diskusage.cpp:1040
 #, fuzzy
 msgid "Permissions:"
 msgstr "Práva"
 
-#: DiskUsage/diskusage.cpp:988
+#: DiskUsage/diskusage.cpp:1041
 #, fuzzy
 msgid "Owner:"
 msgstr "Vlastník"
@@ -4207,25 +4450,25 @@ msgstr "&Príkazy"
 msgid "&View"
 msgstr "F3 Zobraziť"
 
-#. i18n: file krusaderui.rc line 76
+#. i18n: file krusaderui.rc line 77
 #: rc.cpp:18
 #, fuzzy, no-c-format
 msgid "&Tools"
 msgstr "Tip pre nástroj"
 
-#. i18n: file krusaderui.rc line 84
+#. i18n: file krusaderui.rc line 85
 #: rc.cpp:21
 #, fuzzy, no-c-format
 msgid "&Settings"
 msgstr "Samotné"
 
-#. i18n: file krusaderui.rc line 93
+#. i18n: file krusaderui.rc line 94
 #: rc.cpp:24
 #, fuzzy, no-c-format
 msgid "&Useractions"
 msgstr "Používateľské akcie"
 
-#. i18n: file krusaderui.rc line 98
+#. i18n: file krusaderui.rc line 99
 #: rc.cpp:27
 #, no-c-format
 msgid "&Help"
@@ -4241,15 +4484,15 @@ msgstr "Všeobecné"
 msgid "Packers"
 msgstr "Archivátory"
 
-#: Konfigurator/kgdependencies.cpp:99
+#: Konfigurator/kgdependencies.cpp:100
 msgid "Checksum Utilities"
 msgstr ""
 
-#: Konfigurator/kgdependencies.cpp:142
+#: Konfigurator/kgdependencies.cpp:153
 msgid "The %1 path is incorrect, no valid path found."
 msgstr "%1 cesta je nesprávna. Žiadna platná cesta nebola nájdená."
 
-#: Konfigurator/kgdependencies.cpp:145
+#: Konfigurator/kgdependencies.cpp:156
 msgid "The %1 path is incorrect, %2 used instead."
 msgstr "%1 cesta je nesprávna, použije sa %2."
 
@@ -4368,68 +4611,68 @@ msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:120
+#: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:126
+#: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:129 Konfigurator/krresulttable.cpp:280
+#: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 #, fuzzy
 msgid "Found"
 msgstr "Popredie:"
 
-#: Konfigurator/krresulttable.cpp:130
+#: Konfigurator/krresulttable.cpp:131
 #, fuzzy
 msgid "Packing"
 msgstr "Komprimovanie"
 
-#: Konfigurator/krresulttable.cpp:131
+#: Konfigurator/krresulttable.cpp:132
 #, fuzzy
 msgid "Unpacking"
 msgstr "Dekomprimovanie súborov"
 
-#: Konfigurator/krresulttable.cpp:132
+#: Konfigurator/krresulttable.cpp:133
 #, fuzzy
 msgid "Note"
 msgstr "Nič"
 
-#: Konfigurator/krresulttable.cpp:193 Konfigurator/krresulttable.cpp:207
-#: Konfigurator/krresulttable.cpp:353
+#: Konfigurator/krresulttable.cpp:196 Konfigurator/krresulttable.cpp:210
+#: Konfigurator/krresulttable.cpp:356
 #, fuzzy
 msgid "enabled"
 msgstr "KrDetailedView"
 
-#: Konfigurator/krresulttable.cpp:196 Konfigurator/krresulttable.cpp:210
-#: Konfigurator/krresulttable.cpp:356
+#: Konfigurator/krresulttable.cpp:199 Konfigurator/krresulttable.cpp:213
+#: Konfigurator/krresulttable.cpp:359
 msgid "disabled"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:273
+#: Konfigurator/krresulttable.cpp:276
 msgid "diff utility"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:274
+#: Konfigurator/krresulttable.cpp:277
 msgid "email client"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:275
+#: Konfigurator/krresulttable.cpp:278
 #, fuzzy
 msgid "batch renamer"
 msgstr "Premenovať"
 
-#: Konfigurator/krresulttable.cpp:276
+#: Konfigurator/krresulttable.cpp:279
 msgid "checksum utility"
 msgstr ""
 
-#: Konfigurator/krresulttable.cpp:279
+#: Konfigurator/krresulttable.cpp:282
 #, fuzzy
 msgid "Tool"
 msgstr "Tip pre nástroj"
 
-#: Konfigurator/krresulttable.cpp:281
+#: Konfigurator/krresulttable.cpp:284
 #, fuzzy
 msgid "Status"
 msgstr "Spustenie"
@@ -4489,7 +4732,7 @@ msgstr "Pre externé aplikácie zadajte úplnú cestu"
 msgid "Configure your personal actions"
 msgstr "Nastavenie vašich osobných akcií"
 
-#: Konfigurator/kgprotocols.cpp:102 Konfigurator/konfigurator.cpp:116
+#: Konfigurator/kgprotocols.cpp:104 Konfigurator/konfigurator.cpp:116
 msgid "Protocols"
 msgstr "Protokoly"
 
@@ -4892,7 +5135,7 @@ msgstr ""
 msgid "Removing Useractions"
 msgstr "Používateľské akcie"
 
-#: Konfigurator/kgadvanced.cpp:96 Konfigurator/kgarchives.cpp:89
+#: Konfigurator/kgadvanced.cpp:96 Konfigurator/kgarchives.cpp:90
 msgid "Fine-Tuning"
 msgstr "Jemné ladenie"
 
@@ -4913,35 +5156,35 @@ msgstr ""
 msgid "Arguments of updatedb:"
 msgstr "Argumenty updatedb:"
 
-#: Konfigurator/kgprotocols.cpp:61
+#: Konfigurator/kgprotocols.cpp:63
 msgid "Links"
 msgstr "Odkazy"
 
-#: Konfigurator/kgprotocols.cpp:65
+#: Konfigurator/kgprotocols.cpp:67
 msgid "Defined Links"
 msgstr "Definované odkazy"
 
-#: Konfigurator/kgprotocols.cpp:79
+#: Konfigurator/kgprotocols.cpp:81
 #, fuzzy
 msgid "Add protocol to the link list."
 msgstr "Pridať protokol do zoznamu odkazov"
 
-#: Konfigurator/kgprotocols.cpp:82
+#: Konfigurator/kgprotocols.cpp:84
 #, fuzzy
 msgid "Remove protocol from the link list."
 msgstr "Odstrániť protokol zo zoznamu odkazov"
 
-#: Konfigurator/kgprotocols.cpp:92
+#: Konfigurator/kgprotocols.cpp:94
 #, fuzzy
 msgid "Add mime to the selected protocol on the link list."
 msgstr "Pridá typ súboru k zvolenému protokolu na zozname odkazov"
 
-#: Konfigurator/kgprotocols.cpp:95
+#: Konfigurator/kgprotocols.cpp:97
 #, fuzzy
 msgid "Remove mime from the link list."
 msgstr "Odstrániť typ súboru zo zoznamu odkazov"
 
-#: Konfigurator/kgprotocols.cpp:113
+#: Konfigurator/kgprotocols.cpp:115
 msgid "Mimes"
 msgstr "Typy súborov"
 
@@ -5421,7 +5664,11 @@ msgstr "Lha"
 msgid "Deb"
 msgstr ""
 
-#: Konfigurator/kgarchives.cpp:75
+#: Konfigurator/kgarchives.cpp:70
+msgid "7zip"
+msgstr ""
+
+#: Konfigurator/kgarchives.cpp:76
 #, fuzzy
 msgid ""
 "The archives that are \"greyed-out\" were unavailable on your\n"
@@ -5432,105 +5679,129 @@ msgstr ""
 "systéme pri poslednej kontrole Krusaderom. Ak si želáte, aby\n"
 "ich Krusader opäť pohľadal, kliknite na tlačítko 'Automatické nastavenie'"
 
-#: Konfigurator/kgarchives.cpp:80
+#: Konfigurator/kgarchives.cpp:81
 msgid "Auto Configure"
 msgstr "Automatické nastavenie"
 
-#: Konfigurator/kgarchives.cpp:95
+#: Konfigurator/kgarchives.cpp:96
 #, fuzzy
 msgid "Test archive after packing"
 msgstr "Testovať archív pred rozbalením"
 
-#: Konfigurator/kgarchives.cpp:95
+#: Konfigurator/kgarchives.cpp:96
 #, fuzzy
 msgid "Check the archive's integrity after packing it."
 msgstr "Ak je zaškrtnuté, Krusader po komprimácií otestuje integritu archívu."
 
-#: Konfigurator/kgarchives.cpp:96
+#: Konfigurator/kgarchives.cpp:97
 msgid "Test archive before unpacking"
 msgstr "Testovať archív pred rozbalením"
 
-#: Konfigurator/kgarchives.cpp:96
+#: Konfigurator/kgarchives.cpp:97
 #, fuzzy
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Niektoré poškodené archívy môžu spôsobiť pád, preto je testovanie odporúčané"
 
-#: Konfigurator/kgarchives.cpp:113
+#: Konfigurator/kgarchives.cpp:114
 #, fuzzy
 msgid "Searching for packers..."
 msgstr "Hľadať súbory"
 
-#: Konfigurator/kgarchives.cpp:114
+#: Konfigurator/kgarchives.cpp:115
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 
-#: Konfigurator/kguseractions.cpp:52
+#: Konfigurator/kguseractions.cpp:53
 #, fuzzy
 msgid ""
 "*.xml|xml-files\n"
 "*|all files"
 msgstr "*.xml|xml-súbory"
 
-#: Konfigurator/kguseractions.cpp:71
+#: Konfigurator/kguseractions.cpp:72
 msgid "Reset"
 msgstr "Obnoviť"
 
-#: Konfigurator/kguseractions.cpp:72
+#: Konfigurator/kguseractions.cpp:73
 msgid "New Action"
 msgstr "Nová akcia"
 
-#: Konfigurator/kguseractions.cpp:73
+#: Konfigurator/kguseractions.cpp:74
 msgid "Remove Action"
 msgstr "Odstrániť akciu"
 
-#: Konfigurator/kguseractions.cpp:74
+#: Konfigurator/kguseractions.cpp:75
 msgid "Import Action"
 msgstr "Importovať akciu"
 
-#: Konfigurator/kguseractions.cpp:75
+#: Konfigurator/kguseractions.cpp:76
 msgid "Export Action"
 msgstr "Exportovať akciu"
 
-#: Konfigurator/kguseractions.cpp:206
-msgid ""
-"Are you sure that you want to remove this action?\n"
-"A recovery is not possible!"
-msgstr ""
-"Ste si istý, že chcete odstrániť túto akciu?\n"
-"Obnova nie je možná!"
+#: Konfigurator/kguseractions.cpp:77
+#, fuzzy
+msgid "Action to Clipboard"
+msgstr "Vystrihnúť do schránky"
 
-#: Konfigurator/kguseractions.cpp:207
-msgid "Remove this action?"
+#: Konfigurator/kguseractions.cpp:78
+#, fuzzy
+msgid "Action from Clipboard"
+msgstr "Vložiť zo schránky"
+
+#: Konfigurator/kguseractions.cpp:174
+#, fuzzy
+msgid "Are you sure that you want to remove all selected action?"
+msgstr "Ste si istý, že chcete "
+
+#: Konfigurator/kguseractions.cpp:175
+#, fuzzy
+msgid "Remove selected actions?"
 msgstr "Odstrániť túto akciu"
 
-#: Konfigurator/kguseractions.cpp:208
+#: Konfigurator/kguseractions.cpp:176
 #, fuzzy
 msgid "Remove"
 msgstr "odstrániť"
 
-#: Konfigurator/kguseractions.cpp:256
-msgid "The file you've chosen doesn't seem to be a valid action-file."
-msgstr "Zdá sa, že súbor, ktorý ste si vybrali, nie je platný súbor akcie."
-
-#: Konfigurator/kguseractions.cpp:264
-msgid "No actions found in this file."
-msgstr "V súbore nebola nájdená akcia."
-
-#: Konfigurator/kguseractions.cpp:291
-#, fuzzy
+#: Konfigurator/kguseractions.cpp:222
 msgid ""
-"Couldn't import all actions because of name conflicts. Check the action-list "
-"on the left to fix them.\n"
-"Please note that these actions won't be imported if you close the "
-"Konfigurator now!"
+"This file already contains some useractions.\n"
+"Do you want to overwrite it or should it be merged with the selected actions?"
 msgstr ""
-"Nie je možné naimportovať všetky akcie kvôli konfliktu názvov. Skontrolujte "
-"zoznam vľavo a vyriešte tento konflikt.\n"
-"Vezmite na vedomie, že ak teraz ukončíte Konfigurátor, tak tieto akcie "
-"nebudú naimportované!"
+
+#: Konfigurator/kguseractions.cpp:223
+#, fuzzy
+msgid "Overwrite or merge?"
+msgstr "Prepísať položku"
+
+#: Konfigurator/kguseractions.cpp:225
+#, fuzzy
+msgid "Merge"
+msgstr "&Ďalšie"
+
+#: Konfigurator/kguseractions.cpp:231
+#, fuzzy
+msgid "This file already exists. Do you want to overwrite it?"
+msgstr " už existuje"
+
+#: Konfigurator/kguseractions.cpp:232
+#, fuzzy
+msgid "Overwrite existing file?"
+msgstr "Zobraziť iba existujúce súbory"
+
+#: Konfigurator/kguseractions.cpp:247
+msgid ""
+"Can't open %1 for writing!\n"
+"Nothing exported."
+msgstr ""
+
+#: Konfigurator/kguseractions.cpp:248
+#, fuzzy
+msgid "Export failed!"
+msgstr "Textové súbory"
 
 #: krslots.cpp:103
 #, fuzzy
@@ -5572,7 +5843,7 @@ msgstr ""
 "Krusader nemôže nájsť žiadnu grafickú nadstavbu pre diff. Nainštalujte si "
 "nejakú. Tip: Krusader podporuje kompare, kdiff3, kdiff a xxdiff."
 
-#: krslots.cpp:389
+#: krslots.cpp:397
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
@@ -5580,7 +5851,7 @@ msgstr ""
 "Nie je možné nájsť príkaz 'locate'. Nainštalujte prosím GNU balík findutils-"
 "locate, alebo správne nastavte naň závislosti v Konfigurátorovi."
 
-#: krslots.cpp:401
+#: krslots.cpp:409
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager. The new "
 "manager handles local files and remote URLs the same way. RemoteMan is being "
@@ -5596,18 +5867,18 @@ msgstr ""
 "Vyskúšajte nového správcu záložiek; otvorte nové vzdialené spojenie, potom "
 "stlačte tlačítko záložiek a vyberte 'Pridať záložku' a je to!"
 
-#: krslots.cpp:420
+#: krslots.cpp:428
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Nie je možné spustiť 'mount'! Skontrolujte stranu 'Závislosti' v "
 "Konfigurátorovi."
 
-#: krslots.cpp:452
+#: krslots.cpp:460
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr ""
 "Nie je možné nájsť \"KsysCtrl\". Prosím, nainštalujte si balík KDE admin"
 
-#: krslots.cpp:460
+#: krslots.cpp:468
 #, fuzzy
 msgid ""
 "Can't find a batch rename tool.\n"
@@ -5616,7 +5887,7 @@ msgstr ""
 "Nedá sa nájsť program pre premenovanie viacerých položiek.\n"
 "Krename môžete získať na http://www.krename.net."
 
-#: krslots.cpp:490
+#: krslots.cpp:498
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
@@ -5624,45 +5895,45 @@ msgstr ""
 "Nie je možné spustiť Krusader v administrátorskom režime, pretože kdesu sa "
 "nenachádza v ceste. Nakonfigurujte prosím závislosti v Konfigurátorovi!"
 
-#: krslots.cpp:545
+#: krslots.cpp:553
 msgid "Enter a URL to view:"
 msgstr "Vložte URL pre zobrazenie:"
 
-#: krslots.cpp:556
+#: krslots.cpp:564
 msgid "Enter the filename to edit:"
 msgstr "Vložte názov súboru pre úpravy:"
 
-#: krslots.cpp:614
+#: krslots.cpp:622
 msgid "Don't know which file to split."
 msgstr "Neviem, čo sa má rozdeliť."
 
-#: krslots.cpp:623
+#: krslots.cpp:631
 msgid "You can't split a directory!"
 msgstr "Nemôžete rozdeliť priečinok!"
 
-#: krslots.cpp:654
+#: krslots.cpp:662
 msgid "Don't know which files to combine."
 msgstr "Neviem, ktoré súbory sa majú spojiť."
 
-#: krslots.cpp:666
+#: krslots.cpp:674
 msgid "You can't combine a directory!"
 msgstr "Nie je možné spojiť priečinky!"
 
-#: krslots.cpp:685
+#: krslots.cpp:693
 #, fuzzy
 msgid "Not a split file %1!"
 msgstr "Súbor %1 nie je rozdelený!"
 
-#: krslots.cpp:700
+#: krslots.cpp:708
 #, fuzzy
 msgid "Select only one split file!"
 msgstr "Vyberte iba jeden rozdelený súbor!"
 
-#: krslots.cpp:748
+#: krslots.cpp:756
 msgid "Not a splitted file %1!"
 msgstr "Súbor %1 nie je rozdelený!"
 
-#: krslots.cpp:755
+#: krslots.cpp:763
 msgid "Combining %1.* to directory:"
 msgstr "Spájanie %1.* do priečinka:"
 
@@ -5811,6 +6082,41 @@ msgstr "Chyba pri čítaní súboru %1!"
 msgid "Error at writing file %1!"
 msgstr "Chyba pri zápise súboru %1!"
 
+#~ msgid "There already is an action with this name"
+#~ msgstr "Už existuje akcia s týmto názvom"
+
+#, fuzzy
+#~ msgid "Use tooltip"
+#~ msgstr "použiť tip nástrojov"
+
+#~ msgid "tar.bz2"
+#~ msgstr "tar.bz2"
+
+#~ msgid ""
+#~ "Are you sure that you want to remove this action?\n"
+#~ "A recovery is not possible!"
+#~ msgstr ""
+#~ "Ste si istý, že chcete odstrániť túto akciu?\n"
+#~ "Obnova nie je možná!"
+
+#~ msgid "The file you've chosen doesn't seem to be a valid action-file."
+#~ msgstr "Zdá sa, že súbor, ktorý ste si vybrali, nie je platný súbor akcie."
+
+#~ msgid "No actions found in this file."
+#~ msgstr "V súbore nebola nájdená akcia."
+
+#, fuzzy
+#~ msgid ""
+#~ "Couldn't import all actions because of name conflicts. Check the action-"
+#~ "list on the left to fix them.\n"
+#~ "Please note that these actions won't be imported if you close the "
+#~ "Konfigurator now!"
+#~ msgstr ""
+#~ "Nie je možné naimportovať všetky akcie kvôli konfliktu názvov. "
+#~ "Skontrolujte zoznam vľavo a vyriešte tento konflikt.\n"
+#~ "Vezmite na vedomie, že ak teraz ukončíte Konfigurátor, tak tieto akcie "
+#~ "nebudú naimportované!"
+
 #, fuzzy
 #~ msgid ""
 #~ "_n: Left to right: Copy %n file (%1 bytes)\n"
@@ -5894,10 +6200,6 @@ msgstr "Chyba pri zápise súboru %1!"
 
 #~ msgid "Distinct name"
 #~ msgstr "Rozlišujúci názov"
-
-#, fuzzy
-#~ msgid "Command line"
-#~ msgstr "Príkazový riadok"
 
 #~ msgid "A tooltip for the action"
 #~ msgstr "Tip nástrojov pre akciu"
@@ -6219,10 +6521,6 @@ msgstr "Chyba pri zápise súboru %1!"
 
 #~ msgid "*|all files"
 #~ msgstr "*|všetky súbory"
-
-#, fuzzy
-#~ msgid "Are you sure you want to delete "
-#~ msgstr "Ste si istý, že chcete "
 
 #, fuzzy
 #~ msgid "Select &Newer"

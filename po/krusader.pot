@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2006-03-20 21:57+0100\n"
+"POT-Creation-Date: 2006-03-24 00:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -650,8 +650,8 @@ msgstr ""
 
 #: BookMan/krbookmarkhandler.cpp:149 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
-#: VFS/krarchandler.cpp:192 VFS/krarchandler.cpp:249 VFS/krarchandler.cpp:266
-#: VFS/krarchandler.cpp:324 VFS/krarchandler.cpp:427 VFS/krarchandler.cpp:434
+#: VFS/krarchandler.cpp:200 VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274
+#: VFS/krarchandler.cpp:332 VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503
 #: VFS/normal_vfs.cpp:80 VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96
 #: VFS/virt_vfs.cpp:87 VFS/virt_vfs.cpp:156 krusader.cpp:732
 msgid "Error"
@@ -712,51 +712,51 @@ msgstr ""
 msgid "Searching content of '%1' (%2%)"
 msgstr ""
 
-#: VFS/krarchandler.cpp:177
+#: VFS/krarchandler.cpp:185
 msgid "Counting files in archive"
 msgstr ""
 
-#: VFS/krarchandler.cpp:191
+#: VFS/krarchandler.cpp:199
 msgid "Failed to list the content of the archive (%1)!"
 msgstr ""
 
-#: VFS/krarchandler.cpp:211
+#: VFS/krarchandler.cpp:219
 msgid "Failed to unpack"
 msgstr ""
 
-#: VFS/krarchandler.cpp:248
+#: VFS/krarchandler.cpp:256
 msgid "Failed to convert rpm (%1) to cpio!"
 msgstr ""
 
-#: VFS/krarchandler.cpp:265
+#: VFS/krarchandler.cpp:273
 msgid "Failed to convert deb (%1) to tar!"
 msgstr ""
 
-#: VFS/krarchandler.cpp:299
+#: VFS/krarchandler.cpp:307
 msgid "Unpacking File(s)"
 msgstr ""
 
-#: VFS/krarchandler.cpp:323
+#: VFS/krarchandler.cpp:331
 msgid "Failed to unpack %1!"
 msgstr ""
 
-#: VFS/krarchandler.cpp:367
+#: VFS/krarchandler.cpp:375
 msgid "Testing Archive"
 msgstr ""
 
-#: VFS/krarchandler.cpp:410
+#: VFS/krarchandler.cpp:479
 msgid "Packing File(s)"
 msgstr ""
 
-#: VFS/krarchandler.cpp:426
+#: VFS/krarchandler.cpp:495
 msgid "Failed to pack %1!"
 msgstr ""
 
-#: VFS/krarchandler.cpp:434
+#: VFS/krarchandler.cpp:503
 msgid "Failed to pack: "
 msgstr ""
 
-#: VFS/krarchandler.cpp:465
+#: VFS/krarchandler.cpp:534
 msgid "This archive is encrypted, please supply the password:"
 msgstr ""
 
@@ -788,6 +788,7 @@ msgstr ""
 msgid "&General"
 msgstr ""
 
+#: Dialogs/packguibase.cpp:266 Dialogs/packguibase.cpp:306
 #: Filter/filtertabs.cpp:49
 msgid "&Advanced"
 msgstr ""
@@ -834,7 +835,7 @@ msgstr ""
 msgid "&Load"
 msgstr ""
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:730
+#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:734
 msgid "&Overwrite"
 msgstr ""
 
@@ -1453,7 +1454,7 @@ msgstr ""
 msgid "Link Here"
 msgstr ""
 
-#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:129
+#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:278
 #: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:766
 #: Panel/panelpopup.cpp:319
 msgid "Cancel"
@@ -1529,19 +1530,19 @@ msgstr ""
 msgid "%1 (Link)"
 msgstr ""
 
-#: Panel/krview.cpp:162
+#: Panel/krview.cpp:165
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:322
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325
 msgid "Rename"
 msgstr ""
 
-#: Panel/krview.cpp:322
+#: Panel/krview.cpp:325
 msgid "Rename "
 msgstr ""
 
-#: Panel/krview.cpp:322
+#: Panel/krview.cpp:325
 msgid " to:"
 msgstr ""
 
@@ -1929,57 +1930,57 @@ msgstr ""
 msgid "&Delete All"
 msgstr ""
 
-#: Panel/panelfunc.cpp:711
+#: Panel/panelfunc.cpp:715
 msgid "Cannot pack files onto a virtual destination!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:723
+#: Panel/panelfunc.cpp:727
 msgid "The Archive "
 msgstr ""
 
-#: Panel/panelfunc.cpp:724
+#: Panel/panelfunc.cpp:728
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr ""
 
-#: Panel/panelfunc.cpp:726
+#: Panel/panelfunc.cpp:730
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
 msgstr ""
 
-#: Panel/panelfunc.cpp:735
+#: Panel/panelfunc.cpp:739
 msgid "Counting files to pack"
 msgstr ""
 
-#: Panel/panelfunc.cpp:795 Panel/panelfunc.cpp:856 krslots.cpp:191
+#: Panel/panelfunc.cpp:799 Panel/panelfunc.cpp:860 krslots.cpp:191
 #: krslots.cpp:197
 msgid "Krusader is unable to download: "
 msgstr ""
 
-#: Panel/panelfunc.cpp:807
+#: Panel/panelfunc.cpp:811
 msgid "%1, unknown archive type."
 msgstr ""
 
-#: Panel/panelfunc.cpp:815
+#: Panel/panelfunc.cpp:819
 msgid "%1, test passed."
 msgstr ""
 
-#: Panel/panelfunc.cpp:817
+#: Panel/panelfunc.cpp:821
 msgid "%1, test failed!"
 msgstr ""
 
-#: Panel/panelfunc.cpp:833
+#: Panel/panelfunc.cpp:837
 msgid "Unpack %1 to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:835
+#: Panel/panelfunc.cpp:839
 #, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
 "Unpack %n files to:"
 msgstr ""
 
-#: Panel/panelfunc.cpp:881
+#: Panel/panelfunc.cpp:885
 msgid "%1, unknown archive type"
 msgstr ""
 
@@ -3016,7 +3017,7 @@ msgid ""
 "Pack %n files"
 msgstr ""
 
-#: Dialogs/packgui.cpp:92
+#: Dialogs/packgui.cpp:94
 msgid "Please select a directory"
 msgstr ""
 
@@ -3148,24 +3149,82 @@ msgstr ""
 msgid "Not mounted."
 msgstr ""
 
-#: Dialogs/packguibase.cpp:60 Dialogs/packguibase.cpp:113
+#: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
 msgid "Pack"
 msgstr ""
 
-#: Dialogs/packguibase.cpp:70
+#: Dialogs/packguibase.cpp:76
 msgid "To archive"
 msgstr ""
 
-#: Dialogs/packguibase.cpp:77
-msgid "tar.bz2"
-msgstr ""
-
-#: Dialogs/packguibase.cpp:88
+#: Dialogs/packguibase.cpp:95
 msgid "In directory"
 msgstr ""
 
-#: Dialogs/packguibase.cpp:125 Konfigurator/kguseractions.cpp:71
+#: Dialogs/packguibase.cpp:145
+msgid "Multiple volume archive"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1034
+msgid "Size:"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:172
+msgid "Set compression level"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:200
+msgid "Password"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:210
+msgid "Again"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:228
+msgid "Encrypt headers"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:240
+msgid "Command line switches:"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:273 Konfigurator/kguseractions.cpp:71
 msgid "Ok"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:322
+msgid "The passwords are equal"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:326
+msgid "The passwords are different"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:361
+msgid "Cannot pack! The passwords are different!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:386
+msgid "Invalid volume size!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:416
+msgid ""
+"Invalid command line switch!\n"
+"Switch must start with '-'!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:428
+msgid ""
+"Invalid command line switch!\n"
+"Backslash cannot be the last character"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:436
+msgid ""
+"Invalid command line switch!\n"
+"Unclosed quotation mark!"
 msgstr ""
 
 #: Dialogs/krspwidgets.cpp:151
@@ -4019,10 +4078,6 @@ msgstr ""
 
 #: DiskUsage/diskusage.cpp:1033
 msgid "Type:"
-msgstr ""
-
-#: DiskUsage/diskusage.cpp:1034
-msgid "Size:"
 msgstr ""
 
 #: DiskUsage/diskusage.cpp:1037

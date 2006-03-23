@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-03-20 21:57+0100\n"
+"POT-Creation-Date: 2006-03-24 00:09+0100\n"
 "PO-Revision-Date: 2006-03-23 16:46+0200\n"
 "Last-Translator: Spiros Georgaras <sngeorgaras@otenet.gr>\n"
 "Language-Team: Greek <krusader-i18n@googlegroups.com>\n"
@@ -720,8 +720,8 @@ msgstr "Ο κατάλογος %1 δεν υπάρχει!"
 
 #: BookMan/krbookmarkhandler.cpp:149 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
-#: VFS/krarchandler.cpp:192 VFS/krarchandler.cpp:249 VFS/krarchandler.cpp:266
-#: VFS/krarchandler.cpp:324 VFS/krarchandler.cpp:427 VFS/krarchandler.cpp:434
+#: VFS/krarchandler.cpp:200 VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274
+#: VFS/krarchandler.cpp:332 VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503
 #: VFS/normal_vfs.cpp:80 VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96
 #: VFS/virt_vfs.cpp:87 VFS/virt_vfs.cpp:156 krusader.cpp:732
 msgid "Error"
@@ -785,51 +785,51 @@ msgstr "Προσαρμοσμένο"
 msgid "Searching content of '%1' (%2%)"
 msgstr "Αναζήτηση στα περιεχόμενα του '%1' (%2%)"
 
-#: VFS/krarchandler.cpp:177
+#: VFS/krarchandler.cpp:185
 msgid "Counting files in archive"
 msgstr "Μέτρηση των αρχείων της αρχειοθήκης"
 
-#: VFS/krarchandler.cpp:191
+#: VFS/krarchandler.cpp:199
 msgid "Failed to list the content of the archive (%1)!"
 msgstr "Η εμφάνιση των περιεχομένων της αρχειοθήκης (%1) απέτυχε!"
 
-#: VFS/krarchandler.cpp:211
+#: VFS/krarchandler.cpp:219
 msgid "Failed to unpack"
 msgstr "Η αποσυμπίεση απέτυχε"
 
-#: VFS/krarchandler.cpp:248
+#: VFS/krarchandler.cpp:256
 msgid "Failed to convert rpm (%1) to cpio!"
 msgstr "Η μετατροπή του rpm (%1) σε cpio απέτυχε!"
 
-#: VFS/krarchandler.cpp:265
+#: VFS/krarchandler.cpp:273
 msgid "Failed to convert deb (%1) to tar!"
 msgstr "Η μετατροπή του deb (%1) σε tar απέτυχε!"
 
-#: VFS/krarchandler.cpp:299
+#: VFS/krarchandler.cpp:307
 msgid "Unpacking File(s)"
 msgstr "Αποσυμπίεση αρχείου(ων)"
 
-#: VFS/krarchandler.cpp:323
+#: VFS/krarchandler.cpp:331
 msgid "Failed to unpack %1!"
 msgstr "Η αποσυμπίεση του %1 απέτυχε!"
 
-#: VFS/krarchandler.cpp:367
+#: VFS/krarchandler.cpp:375
 msgid "Testing Archive"
 msgstr "Έλεγχος αρχειοθήκης"
 
-#: VFS/krarchandler.cpp:410
+#: VFS/krarchandler.cpp:479
 msgid "Packing File(s)"
 msgstr "Συμπίεση αρχείου(ων)"
 
-#: VFS/krarchandler.cpp:426
+#: VFS/krarchandler.cpp:495
 msgid "Failed to pack %1!"
 msgstr "Η συμπίεση του %1 απέτυχε!"
 
-#: VFS/krarchandler.cpp:434
+#: VFS/krarchandler.cpp:503
 msgid "Failed to pack: "
 msgstr "Η συμπίεση απέτυχε: "
 
-#: VFS/krarchandler.cpp:465
+#: VFS/krarchandler.cpp:534
 msgid "This archive is encrypted, please supply the password:"
 msgstr ""
 "Η αρχειοθήκη είναι κρυπτογραφημένη, παρακαλώ δώστε τον κωδικό πρόσβασης:"
@@ -870,6 +870,7 @@ msgstr ""
 msgid "&General"
 msgstr "&Γενικά"
 
+#: Dialogs/packguibase.cpp:266 Dialogs/packguibase.cpp:306
 #: Filter/filtertabs.cpp:49
 msgid "&Advanced"
 msgstr "&Προχωρημένα"
@@ -923,7 +924,7 @@ msgstr "&Διαχείριση προφίλ"
 msgid "&Load"
 msgstr "&Φόρτωση"
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:730
+#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:734
 msgid "&Overwrite"
 msgstr "&Αντικατάσταση"
 
@@ -1571,7 +1572,7 @@ msgstr "Μετακίνηση εδώ"
 msgid "Link Here"
 msgstr "Δεσμός εδώ"
 
-#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:129
+#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:278
 #: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:766
 #: Panel/panelpopup.cpp:319
 msgid "Cancel"
@@ -1647,19 +1648,19 @@ msgstr "(σπασμένος δεσμός!)"
 msgid "%1 (Link)"
 msgstr "%1 (Δεσμός)"
 
-#: Panel/krview.cpp:162
+#: Panel/krview.cpp:165
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 από %2, %3 (%4) από %5 (%6)"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:322
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325
 msgid "Rename"
 msgstr "Μετονομασία"
 
-#: Panel/krview.cpp:322
+#: Panel/krview.cpp:325
 msgid "Rename "
 msgstr "Μετονομασία του "
 
-#: Panel/krview.cpp:322
+#: Panel/krview.cpp:325
 msgid " to:"
 msgstr " σε:"
 
@@ -2065,19 +2066,19 @@ msgstr "Παράβλε&ψη"
 msgid "&Delete All"
 msgstr "&Διαγραφή όλων"
 
-#: Panel/panelfunc.cpp:711
+#: Panel/panelfunc.cpp:715
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Αδύνατη η συμπίεση αρχείων σε εικονικούς προορισμούς!"
 
-#: Panel/panelfunc.cpp:723
+#: Panel/panelfunc.cpp:727
 msgid "The Archive "
 msgstr "Η αρχειοθήκη "
 
-#: Panel/panelfunc.cpp:724
+#: Panel/panelfunc.cpp:728
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " υπάρχει ήδη. Θέλετε να την αντικαταστήσετε;\n"
 
-#: Panel/panelfunc.cpp:726
+#: Panel/panelfunc.cpp:730
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -2085,32 +2086,32 @@ msgstr ""
 "(Το ZIP θα αντικαταστήσει καταχωρήσεις με ταυτόσημα ονόματα στην αρχειοθήκη "
 "zip ή θα προσθέσει νέες καταχωρήσεις για νέα ονόματα)"
 
-#: Panel/panelfunc.cpp:735
+#: Panel/panelfunc.cpp:739
 msgid "Counting files to pack"
 msgstr "Μέτρηση των αρχείων για συμπίεση"
 
-#: Panel/panelfunc.cpp:795 Panel/panelfunc.cpp:856 krslots.cpp:191
+#: Panel/panelfunc.cpp:799 Panel/panelfunc.cpp:860 krslots.cpp:191
 #: krslots.cpp:197
 msgid "Krusader is unable to download: "
 msgstr "Ο Krusader δεν μπορεί να κάνει λήψη του: "
 
-#: Panel/panelfunc.cpp:807
+#: Panel/panelfunc.cpp:811
 msgid "%1, unknown archive type."
 msgstr "%1, άγνωστος τύπος αρχειοθήκης."
 
-#: Panel/panelfunc.cpp:815
+#: Panel/panelfunc.cpp:819
 msgid "%1, test passed."
 msgstr "Το αρχείο %1 πέρασε τον έλεγχο."
 
-#: Panel/panelfunc.cpp:817
+#: Panel/panelfunc.cpp:821
 msgid "%1, test failed!"
 msgstr "Το αρχείο %1 δεν πέρασε τον έλεγχο."
 
-#: Panel/panelfunc.cpp:833
+#: Panel/panelfunc.cpp:837
 msgid "Unpack %1 to:"
 msgstr "Αποσυμπίεση του %1 στο:"
 
-#: Panel/panelfunc.cpp:835
+#: Panel/panelfunc.cpp:839
 #, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
@@ -2119,7 +2120,7 @@ msgstr ""
 "Αποσυμπίεση %n αρχείου στο:\n"
 "Αποσυμπίεση %n αρχείων στο:"
 
-#: Panel/panelfunc.cpp:881
+#: Panel/panelfunc.cpp:885
 msgid "%1, unknown archive type"
 msgstr "%1, άγνωστος τύπος αρχειοθήκης"
 
@@ -3233,7 +3234,7 @@ msgstr ""
 "Συμπίεση %n αρχείου\n"
 "Συμπίεση %n αρχείων"
 
-#: Dialogs/packgui.cpp:92
+#: Dialogs/packgui.cpp:94
 msgid "Please select a directory"
 msgstr "Παρακαλώ επιλέξτε έναν κατάλογο"
 
@@ -3374,25 +3375,84 @@ msgstr "Ελεύθερα: "
 msgid "Not mounted."
 msgstr "Δεν έχει προσαρτηθεί."
 
-#: Dialogs/packguibase.cpp:60 Dialogs/packguibase.cpp:113
+#: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
 msgid "Pack"
 msgstr "Συμπίεση"
 
-#: Dialogs/packguibase.cpp:70
+#: Dialogs/packguibase.cpp:76
 msgid "To archive"
 msgstr "Στην αρχειοθήκη"
 
-#: Dialogs/packguibase.cpp:77
-msgid "tar.bz2"
-msgstr ""
-
-#: Dialogs/packguibase.cpp:88
+#: Dialogs/packguibase.cpp:95
 msgid "In directory"
 msgstr "Στον κατάλογο"
 
-#: Dialogs/packguibase.cpp:125 Konfigurator/kguseractions.cpp:71
+#: Dialogs/packguibase.cpp:145
+msgid "Multiple volume archive"
+msgstr "Αρχειοθήκη πολλαπλών τόμων"
+
+#: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1034
+msgid "Size:"
+msgstr "Μέγεθος:"
+
+#: Dialogs/packguibase.cpp:172
+msgid "Set compression level"
+msgstr "Ορίστε το επίπεδο συμπίεσης"
+
+#: Dialogs/packguibase.cpp:200
+msgid "Password"
+msgstr "Κωδικός πρόσβασης"
+
+#: Dialogs/packguibase.cpp:210
+msgid "Again"
+msgstr "Ξανά"
+
+#: Dialogs/packguibase.cpp:228
+msgid "Encrypt headers"
+msgstr "Κρυπτογράφηση κεφαλίδων"
+
+#: Dialogs/packguibase.cpp:240
+#, fuzzy
+msgid "Command line switches:"
+msgstr "Η γραμμή εντολών είναι κενή"
+
+#: Dialogs/packguibase.cpp:273 Konfigurator/kguseractions.cpp:71
 msgid "Ok"
 msgstr "Εντάξει"
+
+#: Dialogs/packguibase.cpp:322
+msgid "The passwords are equal"
+msgstr "Οι κωδικοί πρόσβασης είναι ίδιοι"
+
+#: Dialogs/packguibase.cpp:326
+msgid "The passwords are different"
+msgstr "Οι κωδικοί πρόσβασης δεν είναι ίδιοι"
+
+#: Dialogs/packguibase.cpp:361
+msgid "Cannot pack! The passwords are different!"
+msgstr "Αδύνατη η συμπίεση! Οι κωδικοί πρόσβασης δεν είναι ίδιοι"
+
+#: Dialogs/packguibase.cpp:386
+msgid "Invalid volume size!"
+msgstr "Μη έγκυρο μέγεθος τόμου!"
+
+#: Dialogs/packguibase.cpp:416
+msgid ""
+"Invalid command line switch!\n"
+"Switch must start with '-'!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:428
+msgid ""
+"Invalid command line switch!\n"
+"Backslash cannot be the last character"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:436
+msgid ""
+"Invalid command line switch!\n"
+"Unclosed quotation mark!"
+msgstr ""
 
 #: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
@@ -4283,10 +4343,6 @@ msgstr "Προβολή"
 #: DiskUsage/diskusage.cpp:1033
 msgid "Type:"
 msgstr "Τύπος:"
-
-#: DiskUsage/diskusage.cpp:1034
-msgid "Size:"
-msgstr "Μέγεθος:"
 
 #: DiskUsage/diskusage.cpp:1037
 msgid "Own size:"
@@ -5958,30 +6014,3 @@ msgstr "Σφάλμα ανάγνωσης του αρχείου %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Σφάλμα εγγραφής του αρχείου %1!"
-
-#~ msgid "Multiple volume archive"
-#~ msgstr "Αρχειοθήκη πολλαπλών τόμων"
-
-#~ msgid "Set compression level"
-#~ msgstr "Ορίστε το επίπεδο συμπίεσης"
-
-#~ msgid "Password"
-#~ msgstr "Κωδικός πρόσβασης"
-
-#~ msgid "Again"
-#~ msgstr "Ξανά"
-
-#~ msgid "Encrypt headers"
-#~ msgstr "Κρυπτογράφηση κεφαλίδων"
-
-#~ msgid "The passwords are equal"
-#~ msgstr "Οι κωδικοί πρόσβασης είναι ίδιοι"
-
-#~ msgid "The passwords are different"
-#~ msgstr "Οι κωδικοί πρόσβασης δεν είναι ίδιοι"
-
-#~ msgid "Cannot pack! The passwords are different!"
-#~ msgstr "Αδύνατη η συμπίεση! Οι κωδικοί πρόσβασης δεν είναι ίδιοι"
-
-#~ msgid "Invalid volume size!"
-#~ msgstr "Μη έγκυρο μέγεθος τόμου!"

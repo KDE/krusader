@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-03-20 21:57+0100\n"
+"POT-Creation-Date: 2006-03-24 00:09+0100\n"
 "PO-Revision-Date: 2006-03-20 15:11+0100\n"
 "Last-Translator: Václav Jůza <vaclavjuza@seznam.cz>\n"
 "Language-Team: Czech <krusader-i18n@googlegroups.com>\n"
@@ -712,8 +712,8 @@ msgstr "Adresář %1 neexistuje!"
 
 #: BookMan/krbookmarkhandler.cpp:149 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
-#: VFS/krarchandler.cpp:192 VFS/krarchandler.cpp:249 VFS/krarchandler.cpp:266
-#: VFS/krarchandler.cpp:324 VFS/krarchandler.cpp:427 VFS/krarchandler.cpp:434
+#: VFS/krarchandler.cpp:200 VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274
+#: VFS/krarchandler.cpp:332 VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503
 #: VFS/normal_vfs.cpp:80 VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96
 #: VFS/virt_vfs.cpp:87 VFS/virt_vfs.cpp:156 krusader.cpp:732
 msgid "Error"
@@ -776,51 +776,51 @@ msgstr "Vlastní"
 msgid "Searching content of '%1' (%2%)"
 msgstr "Hledám obsah %1 (%2)"
 
-#: VFS/krarchandler.cpp:177
+#: VFS/krarchandler.cpp:185
 msgid "Counting files in archive"
 msgstr "Počítám soubory v archívu"
 
-#: VFS/krarchandler.cpp:191
+#: VFS/krarchandler.cpp:199
 msgid "Failed to list the content of the archive (%1)!"
 msgstr "Nepodařilo se vypsat obsah archívu (%1)!"
 
-#: VFS/krarchandler.cpp:211
+#: VFS/krarchandler.cpp:219
 msgid "Failed to unpack"
 msgstr "Selhalo rozbalování"
 
-#: VFS/krarchandler.cpp:248
+#: VFS/krarchandler.cpp:256
 msgid "Failed to convert rpm (%1) to cpio!"
 msgstr "Nepodařilo se převést rpm (%1) na cpio!"
 
-#: VFS/krarchandler.cpp:265
+#: VFS/krarchandler.cpp:273
 msgid "Failed to convert deb (%1) to tar!"
 msgstr "Nepodařilo se převést deb (%1) na tar!"
 
-#: VFS/krarchandler.cpp:299
+#: VFS/krarchandler.cpp:307
 msgid "Unpacking File(s)"
 msgstr "Rozbalování souborů"
 
-#: VFS/krarchandler.cpp:323
+#: VFS/krarchandler.cpp:331
 msgid "Failed to unpack %1!"
 msgstr "Selhalo rozbalování %1!"
 
-#: VFS/krarchandler.cpp:367
+#: VFS/krarchandler.cpp:375
 msgid "Testing Archive"
 msgstr "Ověřování archívu"
 
-#: VFS/krarchandler.cpp:410
+#: VFS/krarchandler.cpp:479
 msgid "Packing File(s)"
 msgstr "Sbalování souborů"
 
-#: VFS/krarchandler.cpp:426
+#: VFS/krarchandler.cpp:495
 msgid "Failed to pack %1!"
 msgstr "Selhalo sbalování %1!"
 
-#: VFS/krarchandler.cpp:434
+#: VFS/krarchandler.cpp:503
 msgid "Failed to pack: "
 msgstr "Sbalování selhalo: "
 
-#: VFS/krarchandler.cpp:465
+#: VFS/krarchandler.cpp:534
 msgid "This archive is encrypted, please supply the password:"
 msgstr "Tento archív je zašifrovaný, zadejte heslo:"
 
@@ -860,6 +860,7 @@ msgstr ""
 msgid "&General"
 msgstr "O&becné"
 
+#: Dialogs/packguibase.cpp:266 Dialogs/packguibase.cpp:306
 #: Filter/filtertabs.cpp:49
 msgid "&Advanced"
 msgstr "&Pokročilé"
@@ -911,7 +912,7 @@ msgstr "Správce &profilů"
 msgid "&Load"
 msgstr "&Načíst"
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:730
+#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:734
 msgid "&Overwrite"
 msgstr "&Přepsat"
 
@@ -1552,7 +1553,7 @@ msgstr "Přesunout na toto místo"
 msgid "Link Here"
 msgstr "Vytvořit odkaz na tomto místě"
 
-#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:129
+#: Dialogs/krmaskchoice.cpp:135 Dialogs/packguibase.cpp:278
 #: DiskUsage/diskusage.cpp:155 Panel/listpanel.cpp:766
 #: Panel/panelpopup.cpp:319
 msgid "Cancel"
@@ -1628,19 +1629,19 @@ msgstr "(neplatný odkaz!)"
 msgid "%1 (Link)"
 msgstr "%1 (Odkaz)"
 
-#: Panel/krview.cpp:162
+#: Panel/krview.cpp:165
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "Označeno %1 z %2 souborů, %3  (%4) z %5 (%6)"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:322
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325
 msgid "Rename"
 msgstr "Přejmenovat"
 
-#: Panel/krview.cpp:322
+#: Panel/krview.cpp:325
 msgid "Rename "
 msgstr "Přejmenovat "
 
-#: Panel/krview.cpp:322
+#: Panel/krview.cpp:325
 msgid " to:"
 msgstr " na:"
 
@@ -2048,19 +2049,19 @@ msgstr "&Přeskočit"
 msgid "&Delete All"
 msgstr "&Smazat vše"
 
-#: Panel/panelfunc.cpp:711
+#: Panel/panelfunc.cpp:715
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Nemohu zabalit soubory na virtuální umístění!"
 
-#: Panel/panelfunc.cpp:723
+#: Panel/panelfunc.cpp:727
 msgid "The Archive "
 msgstr "Archív "
 
-#: Panel/panelfunc.cpp:724
+#: Panel/panelfunc.cpp:728
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " již existuje. Chcete přepsat archív ?\n"
 
-#: Panel/panelfunc.cpp:726
+#: Panel/panelfunc.cpp:730
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -2068,32 +2069,32 @@ msgstr ""
 "(ZIP nahradí stejně nazvané položky v zip archívu nebo přidá položky pro "
 "nové názvy)"
 
-#: Panel/panelfunc.cpp:735
+#: Panel/panelfunc.cpp:739
 msgid "Counting files to pack"
 msgstr "Počítám soubory ke sbalení"
 
-#: Panel/panelfunc.cpp:795 Panel/panelfunc.cpp:856 krslots.cpp:191
+#: Panel/panelfunc.cpp:799 Panel/panelfunc.cpp:860 krslots.cpp:191
 #: krslots.cpp:197
 msgid "Krusader is unable to download: "
 msgstr "Krusader nemůže stáhnout: "
 
-#: Panel/panelfunc.cpp:807
+#: Panel/panelfunc.cpp:811
 msgid "%1, unknown archive type."
 msgstr "%1, neznámý typ archívu."
 
-#: Panel/panelfunc.cpp:815
+#: Panel/panelfunc.cpp:819
 msgid "%1, test passed."
 msgstr "%1, test byl úspěšný."
 
-#: Panel/panelfunc.cpp:817
+#: Panel/panelfunc.cpp:821
 msgid "%1, test failed!"
 msgstr "%1, test selhal!"
 
-#: Panel/panelfunc.cpp:833
+#: Panel/panelfunc.cpp:837
 msgid "Unpack %1 to:"
 msgstr "Rozbalit %1 do:"
 
-#: Panel/panelfunc.cpp:835
+#: Panel/panelfunc.cpp:839
 #, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
@@ -2103,7 +2104,7 @@ msgstr ""
 "Rozbalit %n soubory do:\n"
 "Rozbalit %n souborů do:"
 
-#: Panel/panelfunc.cpp:881
+#: Panel/panelfunc.cpp:885
 msgid "%1, unknown archive type"
 msgstr "%1, neznámý typ archívu"
 
@@ -3204,7 +3205,7 @@ msgstr ""
 "Sbalit %n soubory\n"
 "Sbalit %n souborů"
 
-#: Dialogs/packgui.cpp:92
+#: Dialogs/packgui.cpp:94
 msgid "Please select a directory"
 msgstr "Prosím vyberte adresář"
 
@@ -3342,25 +3343,85 @@ msgstr "Volné: "
 msgid "Not mounted."
 msgstr "Nepřipojeno."
 
-#: Dialogs/packguibase.cpp:60 Dialogs/packguibase.cpp:113
+#: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
 msgid "Pack"
 msgstr "Sbalit"
 
-#: Dialogs/packguibase.cpp:70
+#: Dialogs/packguibase.cpp:76
 msgid "To archive"
 msgstr "Do archívu"
 
-#: Dialogs/packguibase.cpp:77
-msgid "tar.bz2"
-msgstr "tar.bz2"
-
-#: Dialogs/packguibase.cpp:88
+#: Dialogs/packguibase.cpp:95
 msgid "In directory"
 msgstr "V adresáři"
 
-#: Dialogs/packguibase.cpp:125 Konfigurator/kguseractions.cpp:71
+#: Dialogs/packguibase.cpp:145
+msgid "Multiple volume archive"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1034
+msgid "Size:"
+msgstr "Velikost:"
+
+#: Dialogs/packguibase.cpp:172
+msgid "Set compression level"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:200
+#, fuzzy
+msgid "Password"
+msgstr "Heslo:"
+
+#: Dialogs/packguibase.cpp:210
+msgid "Again"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:228
+msgid "Encrypt headers"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:240
+#, fuzzy
+msgid "Command line switches:"
+msgstr "Příkazová řádka je prázdná"
+
+#: Dialogs/packguibase.cpp:273 Konfigurator/kguseractions.cpp:71
 msgid "Ok"
 msgstr "Ok"
+
+#: Dialogs/packguibase.cpp:322
+msgid "The passwords are equal"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:326
+msgid "The passwords are different"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:361
+msgid "Cannot pack! The passwords are different!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:386
+msgid "Invalid volume size!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:416
+msgid ""
+"Invalid command line switch!\n"
+"Switch must start with '-'!"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:428
+msgid ""
+"Invalid command line switch!\n"
+"Backslash cannot be the last character"
+msgstr ""
+
+#: Dialogs/packguibase.cpp:436
+msgid ""
+"Invalid command line switch!\n"
+"Unclosed quotation mark!"
+msgstr ""
 
 #: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
@@ -4243,10 +4304,6 @@ msgstr "Pohled"
 #: DiskUsage/diskusage.cpp:1033
 msgid "Type:"
 msgstr "Typ:"
-
-#: DiskUsage/diskusage.cpp:1034
-msgid "Size:"
-msgstr "Velikost:"
 
 #: DiskUsage/diskusage.cpp:1037
 msgid "Own size:"
@@ -5888,3 +5945,6 @@ msgstr "Chyba při čtení souboru %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
+
+#~ msgid "tar.bz2"
+#~ msgstr "tar.bz2"
