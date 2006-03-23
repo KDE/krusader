@@ -250,6 +250,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
 
     okButton = new QPushButton( this, "okButton" );
     okButton->setText( i18n( "Ok"  ) );
+    okButton->setDefault( true );
     hbox_6->addWidget( okButton );
 
     cancelButton = new QPushButton( this, "cancelButton" );
