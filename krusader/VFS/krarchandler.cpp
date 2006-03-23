@@ -464,6 +464,9 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
      }
   }
 
+  if( extraProps.count( "CommandLineSwitches" ) > 0 )
+     packer += QString( " %1" ).arg( extraProps[ "CommandLineSwitches" ] );
+  
   // prepare to pack
   KrShellProcess proc;
   proc << packer << KrServices::quote( dest );
@@ -581,11 +584,11 @@ QString KRarcHandler::getType( bool &encrypted, QString fileName, QString mime, 
 
 
 bool KRarcHandler::checkStatus( QString type, int exitCode ) {
-	if( type == "-zip" || type == "-rar" )
+	if( type == "-zip" || type == "-rar" || type == "-7z" )
 		return exitCode == 0 || exitCode == 1;
 	else if( type == "-ace" || type == "zip2" || type == "-lha" || type == "-rpm" || type == "cpio" ||
 	         type == "-tar" || type == "tarz" || type == "-tbz" || type == "-tgz" || type == "-arj" ||
- 	         type == "-7z" || type == "-deb" )
+	         type == "-deb" )
 		return exitCode == 0;
 	else if( type == "gzip" )
 		return exitCode == 0 || exitCode == 2;

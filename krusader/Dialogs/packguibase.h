@@ -46,6 +46,7 @@ class QPushButton;
 class QToolButton;
 class QSpinBox;
 class QSlider;
+class KHistoryCombo;
 
 class PackGUIBase : public QDialog
 { 
@@ -67,6 +68,7 @@ public:
     QLabel* TextLabel4;
     QLabel* TextLabel6;
     QLabel* TextLabel7;
+    QLabel* TextLabel8;
     QLineEdit* password;
     QLineEdit* passwordAgain;
     QLabel* passwordConsistencyLabel;
@@ -79,6 +81,7 @@ public:
     QComboBox* volumeUnitCombo;
     QCheckBox* setCompressionLevel;
     QSlider*   compressionSlider;
+    KHistoryCombo *commandLineSwitches;
 
 public slots:
     virtual void browse();
@@ -92,8 +95,9 @@ protected:
     QHBoxLayout* hbox_2;
     QHBoxLayout* hbox_3;
     QHBoxLayout* hbox_4;
-    QHBoxLayout* hbox_5;
+    QGridLayout* hbox_5;
     QHBoxLayout* hbox_6;
+    QHBoxLayout* hbox_7;
     QGridLayout* grid;
 
 private:

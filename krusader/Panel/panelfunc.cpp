@@ -690,19 +690,23 @@ void ListPanelFunc::pack() {
 	if ( fileNames.count() == 1 )
 		defaultName = fileNames.first();
 	// ask the user for archive name and packer
-	new PackGUI( defaultName, panel->otherPanel->virtualPath().prettyURL(), fileNames.count(), fileNames.first() );
+	new PackGUI( defaultName, panel->otherPanel->virtualPath().prettyURL(-1, KURL::StripFileProtocol), fileNames.count(), fileNames.first() );
 	if ( PackGUI::type == QString::null )
 		return ; // the user canceled
 
 	// check for partial URLs	
-	if( !PackGUI::destination.contains(":/") && !PackGUI::destination.startsWith("/")  ){
+	if( !PackGUI::destination.contains(":/") && !PackGUI::destination.startsWith("/") ){
 		PackGUI::destination = panel->virtualPath().prettyURL()+"/"+PackGUI::destination;
 	}
 	
-	bool packToOtherPanel = ( PackGUI::destination == panel->otherPanel->virtualPath().prettyURL() );
+	QString destDir = PackGUI::destination;
+	if( !destDir.endsWith( "/" ) )
+		destDir += "/";
+	
+	bool packToOtherPanel = ( destDir == panel->otherPanel->virtualPath().prettyURL(1) );
 
 	// on remote URL-s first pack into a temp file then copy to its right place
-	KURL destURL = vfs::fromPathOrURL( PackGUI::destination + "/" + PackGUI::filename + "." + PackGUI::type );
+	KURL destURL = vfs::fromPathOrURL( destDir + PackGUI::filename + "." + PackGUI::type );
 	KTempFile *tempDestFile = 0;
 	QString arcFile;
 	if ( destURL.isLocalFile() )

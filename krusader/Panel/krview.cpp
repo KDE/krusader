@@ -96,6 +96,9 @@ QPixmap KrView::getIcon( vfile *vf /*, KRListItem::cmpColor color*/ ) {
    QString icon_name = vf->vfile_getIcon();
    //QPixmapCache::setCacheLimit( krConfig->readNumEntry("Icon Cache Size",_IconCacheSize) );
 
+   if( icon_name.isNull() )
+     icon_name="";
+   
    // first try the cache
    if ( !QPixmapCache::find( icon_name, icon ) ) {
       icon = FL_LOADICON( icon_name );

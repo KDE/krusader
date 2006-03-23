@@ -71,25 +71,37 @@ private:
 class KrShellProcess : public KShellProcess {
 	Q_OBJECT
 public:
-	KrShellProcess() : KShellProcess(), errorMsg( QString::null ) {
+	KrShellProcess() : KShellProcess(), errorMsg( QString::null ), outputMsg( QString::null ) {
 		connect(this,SIGNAL(receivedStderr(KProcess*,char*,int)),
 				this,SLOT(receivedErrorMsg(KProcess*,char*,int)) );
+		connect(this,SIGNAL(receivedStdout(KProcess*,char*,int)),
+				this,SLOT(receivedOutputMsg(KProcess*,char*,int)) );
 	}
 	
 	QString getErrorMsg() {
-		return errorMsg.right( 500 );
+		if( errorMsg.stripWhiteSpace().isEmpty() )
+			return outputMsg.right( 500 );
+		else
+			return errorMsg.right( 500 );
 	}
 	
 public slots:
 	void receivedErrorMsg(KProcess*, char *buf, int len) {
-		QByteArray d(len);
-		d.setRawData(buf,len);
-		errorMsg += QString( d );
-		d.resetRawData(buf,len);
+		errorMsg += QString::fromLocal8Bit( buf, len );
+		if( errorMsg.length() > 500 )
+			errorMsg = errorMsg.right( 500 );
+		receivedOutputMsg( 0, buf, len );
+	}
+	
+	void receivedOutputMsg(KProcess*, char *buf, int len) {
+		outputMsg += QString::fromLocal8Bit( buf, len );
+		if( outputMsg.length() > 500 )
+			outputMsg = outputMsg.right( 500 );
 	}
 	
 private:
 	QString errorMsg;
+	QString outputMsg;
 };
 
 class Kr7zEncryptionChecker : public KrShellProcess {

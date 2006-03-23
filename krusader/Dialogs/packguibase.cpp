@@ -45,6 +45,7 @@
 #include <qslider.h>
 #include <kiconloader.h>
 #include <kglobalsettings.h>
+#include <kcombobox.h>
 #include <kmessagebox.h>
 #include <kio/global.h>
 #include "../krusader.h"
@@ -132,7 +133,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
 
     advancedWidget = new QWidget( this, "advancedWidget" );
 
-    hbox_5 = new QHBoxLayout( advancedWidget );
+    hbox_5 = new QGridLayout( advancedWidget );
     hbox_5->setSpacing( 6 );
     hbox_5->setMargin( 0 );
 
@@ -183,12 +184,12 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     compressLayout->addLayout( sliderHbox );
 
     compressLayout->addStretch( 0 );
-    hbox_5->addLayout( compressLayout );
+    hbox_5->addLayout( compressLayout, 0, 0 );
 
     QFrame *vline = new QFrame( advancedWidget, "vline" );
     vline->setFrameStyle( QFrame::VLine | QFrame::Sunken );
     vline->setMinimumWidth( 20 );
-    hbox_5->addWidget( vline );
+    hbox_5->addWidget( vline, 0, 1 );
 
 
     QGridLayout * passwordGrid = new QGridLayout;
@@ -230,13 +231,33 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     QSpacerItem* spacer_psw = new QSpacerItem( 20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding );
     passwordGrid->addItem( spacer_psw, 4, 0 );
 
-    hbox_5->addLayout( passwordGrid );
+    hbox_5->addLayout( passwordGrid, 0, 2 );
+
+    hbox_7 = new QHBoxLayout;
+    hbox_7->setSpacing( 6 );
+    hbox_7->setMargin( 0 );
+
+    TextLabel8 = new QLabel( i18n( "Command line switches:" ), advancedWidget, "TextLabel8" );
+    TextLabel8->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
+    hbox_7->addWidget( TextLabel8 );
+
+    commandLineSwitches = new KHistoryCombo( advancedWidget, "commandLineSwitches" );
+    commandLineSwitches->setMaxCount(25);  // remember 25 items
+    commandLineSwitches->setDuplicatesEnabled(false);
+    krConfig->setGroup("Archives");
+    QStringList list = krConfig->readListEntry("Command Line Switches");
+    commandLineSwitches->setHistoryItems(list);
+
+    hbox_7->addWidget( commandLineSwitches );
+    
+    hbox_5->addMultiCellLayout( hbox_7, 1, 1, 0, 2 );
+
 
     advancedWidget->hide();
     checkConsistency();
 
     grid->addWidget( advancedWidget, 4, 0 );
-
+    
     hbox_6 = new QHBoxLayout;
     hbox_6->setSpacing( 6 );
     hbox_6->setMargin( 0 );
@@ -257,7 +278,7 @@ PackGUIBase::PackGUIBase( QWidget* parent,  const char* name, bool modal, WFlags
     cancelButton->setText( i18n( "Cancel"  ) );
     hbox_6->addWidget( cancelButton );
 
-    grid->addLayout( hbox_6, 5, 0 );
+    grid->addLayout( hbox_6, 6, 0 );
 
     // signals and slots connections
     connect( okButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
@@ -347,33 +368,81 @@ bool PackGUIBase::extraProperties( QMap<QString,QString> & inMap ) {
         if( encryptHeaders->isEnabled() && encryptHeaders->isChecked() )
           inMap[ "EncryptHeaders" ] = "1";
       }
+    }
 
-      if( multipleVolume->isEnabled() && multipleVolume->isChecked() ) {
-        KIO::filesize_t size = volumeSpinBox->value();
+    if( multipleVolume->isEnabled() && multipleVolume->isChecked() ) {
+      KIO::filesize_t size = volumeSpinBox->value();
 
-        switch( volumeUnitCombo->currentItem() ) {
-        case 2:
-          size *= 1000;
-        case 1:
-          size *= 1000;
-        default:
-          break;
-        }
-
-        if( size < 10000 ) {
-          KMessageBox::error( this, i18n( "Invalid volume size!" ) );
-          return false;
-        }
-
-        QString sbuffer;
-        sbuffer.sprintf("%llu",size);
-
-        inMap[ "VolumeSize" ] = sbuffer;
+      switch( volumeUnitCombo->currentItem() ) {
+      case 2:
+        size *= 1000;
+      case 1:
+        size *= 1000;
+      default:
+        break;
       }
 
-      if( setCompressionLevel->isEnabled() && setCompressionLevel->isChecked() ) {
-        inMap[ "CompressionLevel" ] = QString("%1").arg( compressionSlider->value() );
+      if( size < 10000 ) {
+        KMessageBox::error( this, i18n( "Invalid volume size!" ) );
+        return false;
       }
+
+      QString sbuffer;
+      sbuffer.sprintf("%llu",size);
+
+      inMap[ "VolumeSize" ] = sbuffer;
+    }
+
+    if( setCompressionLevel->isEnabled() && setCompressionLevel->isChecked() ) {
+      inMap[ "CompressionLevel" ] = QString("%1").arg( compressionSlider->value() );
+    }
+
+    QString cmdArgs = commandLineSwitches->currentText().stripWhiteSpace();
+    if( !cmdArgs.isEmpty() ) {
+      bool firstChar = true;
+      QChar quote = '\0';
+      
+      for( unsigned i=0; i < cmdArgs.length(); i++ ) {
+         QChar ch( cmdArgs[ i ] );
+         if( ch.isSpace() )
+           continue;
+
+         if( ch == quote ) {
+           quote = '\0';
+           continue;
+         }
+         
+         if( firstChar && ch != '-' ) {
+           KMessageBox::error( this, i18n( "Invalid command line switch!\nSwitch must start with '-'!" ) );
+           return false;
+         }
+         
+         firstChar = false;
+
+         if( quote == '"' )
+           continue;
+         if( quote == '\0' && ( ch == '\'' || ch == '"' ) )
+           quote = ch;
+         if( ch == '\\' ) {
+           if( i == cmdArgs.length() - 1 ) {
+             KMessageBox::error( this, i18n( "Invalid command line switch!\nBackslash cannot be the last character" ) );
+             return false;
+           }
+           i++;
+         }
+      }
+
+      if( quote != '\0' ) {
+             KMessageBox::error( this, i18n( "Invalid command line switch!\nUnclosed quotation mark!" ) );
+             return false;
+      }
+
+      commandLineSwitches->addToHistory( cmdArgs );
+      QStringList list = commandLineSwitches->historyItems();
+      krConfig->setGroup("Archives");
+      krConfig->writeEntry("Command Line Switches", list);
+
+      inMap[ "CommandLineSwitches" ] = cmdArgs;      
     }
     return true;
 }

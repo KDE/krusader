@@ -1383,7 +1383,7 @@ bool kio_krarcProtocol::initArcParameters() {
 bool kio_krarcProtocol::checkStatus( int exitCode ) {
 	KRDEBUG( exitCode );
 	
-	if( arcType == "zip" || arcType == "rar" )
+	if( arcType == "zip" || arcType == "rar" || arcType == "7z" )
 		return exitCode == 0 || exitCode == 1;
 	else if( arcType == "ace" || arcType == "bzip2" || arcType == "lha" || arcType == "rpm" || arcType == "arj" )
 		return exitCode == 0;
