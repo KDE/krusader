@@ -97,7 +97,7 @@ void UserAction::readFromFile( const QString& filename, ReadMode mode, KrActionL
       file.close();
       delete doc; doc = 0;
       KMessageBox::error( MAIN_VIEW,
-      		i18n( "This file called %1 which does not contain valid UserActions.\n" ).arg( filename ), // text
+      		i18n( "The file %1 does not contain valid UserActions.\n" ).arg( filename ), // text
       		i18n("UserActions - can't read from file!") // caption
       	);
     }
