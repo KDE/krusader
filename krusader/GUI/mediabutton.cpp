@@ -276,7 +276,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	QString mime = mimeBase + type + mountString;
 	
 	if( type == "hdd" )
-		name = i18n( "Hard Disc" );
+		name = i18n( "Hard Disk" );
 	else if( type == "cdrom" )
 		name = i18n( "CD-ROM" );
 	else if( type == "cdwriter" )
