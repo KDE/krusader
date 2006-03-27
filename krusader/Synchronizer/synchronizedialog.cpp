@@ -57,8 +57,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( cbRightToLeft );
 
-  lbRightToLeft = new QLabel( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( 0 )
-                             .arg( leftCopyNr ).arg( 0 ).arg( KRpermHandler::parseSize( leftCopySize ).stripWhiteSpace() ),
+  lbRightToLeft = new QLabel( "\t" + i18n( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", leftCopyNr).arg( 0 )
+                             .arg( 0 ).arg( KRpermHandler::parseSize( leftCopySize ).stripWhiteSpace() ),
                              this, "lbRightToLeft" );
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( lbRightToLeft );
@@ -71,8 +71,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( cbLeftToRight );
 
-  lbLeftToRight = new QLabel( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( 0 )
-                             .arg( rightCopyNr ).arg( 0 ).arg( KRpermHandler::parseSize( rightCopySize ).stripWhiteSpace() ),
+  lbLeftToRight = new QLabel( "\t" + i18n( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", rightCopyNr ).arg( 0 )
+                             .arg( 0 ).arg( KRpermHandler::parseSize( rightCopySize ).stripWhiteSpace() ),
                              this, "lbLeftToRight" );
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( lbLeftToRight );
@@ -85,8 +85,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   cbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( cbDeletable );
 
-  lbDeletable   = new QLabel( i18n( "\tReady: %1/%2 files, %3/%4" ).arg( 0 )
-                             .arg( deleteNr ).arg( 0 ).arg( KRpermHandler::parseSize( deleteSize ).stripWhiteSpace() ),
+  lbDeletable   = new QLabel( "\t" + i18n( "Ready: %1/1 file, %3/%4", "Ready: %1/%n files, %3/%4", deleteNr ).arg( 0 )
+                             .arg( 0 ).arg( KRpermHandler::parseSize( deleteSize ).stripWhiteSpace() ),
                              this, "lbDeletable" );
   lbDeletable->setEnabled( deleteNr != 0 );
   layout->addWidget( lbDeletable );
