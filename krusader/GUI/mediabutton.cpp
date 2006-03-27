@@ -132,7 +132,6 @@ QString MediaButton::detectType( KMountPoint *mp )
 	if(isCd)
 	{
 		int device=::open((const char *)QFile::encodeName(mp->mountedFrom()), O_RDONLY | O_NONBLOCK );
-		fprintf( stderr, "Device: %d\n", device );
 		if(device>=0)
 		{
 			int drv=::ioctl(device, CDROM_GET_CAPABILITY, CDSL_CURRENT);
