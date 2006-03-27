@@ -49,9 +49,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
 
   QVBoxLayout *layout = new QVBoxLayout( this, 11, 6, "SynchronizeDialogLayout" );
 
-  // TODO pluralize second i18n, current arg has to return an int
-  cbRightToLeft = new QCheckBox( i18n("Right to left: Copy 1 file", "Right to left: Copy %n files", leftCopyNr) + " " +
-                                 i18n("(%1 bytes)").arg( KRpermHandler::parseSize( leftCopySize ).stripWhiteSpace() ),
+  cbRightToLeft = new QCheckBox( i18n( "Right to left: Copy 1 file", "Right to left: Copy %n files", leftCopyNr) + " " +
+                                 i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( leftCopySize ).stripWhiteSpace().toInt() ),
                                  this, "labelRightToLeft" );
   cbRightToLeft->setChecked( leftCopyNr != 0 );
   cbRightToLeft->setEnabled( leftCopyNr != 0 );
@@ -63,9 +62,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   lbRightToLeft->setEnabled( leftCopyNr != 0 );
   layout->addWidget( lbRightToLeft );
 
-  // TODO pluralize second i18n, current arg has to return an int
-  cbLeftToRight = new QCheckBox( i18n("Left to right: Copy 1 file", "Left to right: Copy %n files", rightCopyNr) + " " +
-                                 i18n("(%1 bytes)").arg( KRpermHandler::parseSize( rightCopySize ).stripWhiteSpace() ),
+  cbLeftToRight = new QCheckBox( i18n( "Left to right: Copy 1 file", "Left to right: Copy %n files", rightCopyNr) + " " +
+                                 i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( rightCopySize ).stripWhiteSpace().toInt() ),
                                  this, "cbLeftToRight" );
   cbLeftToRight->setChecked( rightCopyNr != 0 );
   cbLeftToRight->setEnabled( rightCopyNr != 0 );
@@ -77,9 +75,8 @@ SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool m
   lbLeftToRight->setEnabled( rightCopyNr != 0 );
   layout->addWidget( lbLeftToRight );
 
-  // TODO pluralize second i18n, current arg has to return an int
-  cbDeletable = new QCheckBox( i18n("Left: Delete 1 file", "Left: Delete %n files", deleteNr) + " " +
-                               i18n("(%1 bytes)").arg( KRpermHandler::parseSize( deleteSize ).stripWhiteSpace() ),
+  cbDeletable = new QCheckBox( i18n( "Left: Delete 1 file", "Left: Delete %n files", deleteNr) + " " +
+                               i18n( "(1 byte)", "(%n bytes)", KRpermHandler::parseSize( deleteSize ).stripWhiteSpace().toInt() ),
                                this, "cbDeletable" );
   cbDeletable->setChecked( deleteNr != 0 );
   cbDeletable->setEnabled( deleteNr != 0 );
