@@ -126,7 +126,7 @@ int Synchronizer::compare( QString leftURL, QString rightURL, KRQuery *query, bo
   if( !autoScroll )
     refresh( true );
 
-  emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
+  emit statusInfo( i18n( "Number of files: %1" ).arg( fileCount ) );
   return fileCount;
 }
 
@@ -304,7 +304,7 @@ vfs * Synchronizer::getDirectory( QString url )
     return 0;
   }
 
-  emit statusInfo( i18n( "Scanned directories:%1" ).arg( ++scannedDirs ) );
+  emit statusInfo( i18n( "Number of scanned directories: %1" ).arg( ++scannedDirs ) );
 
   return v;
 }
@@ -582,7 +582,7 @@ int Synchronizer::refresh(bool nostatus)
   }
 
   if( !nostatus )
-    emit statusInfo( i18n( "File number:%1" ).arg( fileCount ) );
+    emit statusInfo( i18n( "Number of files: %1" ).arg( fileCount ) );
 
   return fileCount;
 }
@@ -1201,7 +1201,7 @@ bool Synchronizer::compareByContent( QString leftName, QString leftDir, QString 
     delete waitWindow;
 
   if( statusLineChanged )
-    emit statusInfo( i18n( "Scanned directories:%1" ).arg( scannedDirs ) );
+    emit statusInfo( i18n( "Number of scanned directories: %1" ).arg( scannedDirs ) );
 
   return compareResult;
 }
@@ -1281,7 +1281,7 @@ bool Synchronizer::compareByContentLocal( QString left, QString right, KIO::file
     delete waitWindow;
 
   if( statusLineChanged )
-    emit statusInfo( i18n( "Scanned directories:%1" ).arg( scannedDirs ) );
+    emit statusInfo( i18n( "Number of scanned directories: %1" ).arg( scannedDirs ) );
 
   return same;
 }
