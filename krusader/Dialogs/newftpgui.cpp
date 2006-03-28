@@ -90,6 +90,8 @@ newFTPGUI::newFTPGUI( QWidget* parent,  const char* name, bool modal, WFlags fl 
 
     url = new KHistoryCombo( grid_host, "url" );
     url->setMaximumHeight( 20 );
+    url->setMaxCount( 25 );
+    url->setDuplicatesEnabled( false );
     connect( url, SIGNAL( activated( const QString& )),
              url, SLOT( addToHistory( const QString& )));
     // load the history and completion list after creating the history combo

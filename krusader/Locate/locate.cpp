@@ -81,6 +81,7 @@ LocateDlg::LocateDlg() : KDialogBase(0,0,false,"Locate", KDialogBase::User1 | KD
   locateSearchFor->setMaxCount(25);  // remember 25 items
   locateSearchFor->setHistoryItems(list);
   locateSearchFor->setEditable( true );
+  locateSearchFor->setDuplicatesEnabled( false );
   locateSearchFor->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
   locateSearchFor->lineEdit()->setFocus();
 

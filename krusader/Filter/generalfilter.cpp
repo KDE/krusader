@@ -73,6 +73,8 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
   searchFor = new KHistoryCombo( false, nameGroup, "searchFor" );
   searchFor->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, searchFor->sizePolicy().hasHeightForWidth() ) );
   searchFor->setEditable( true );
+  searchFor->setDuplicatesEnabled( false );
+  searchFor->setMaxCount( 25 );
   searchForLabel->setBuddy( searchFor );
   nameGroupLayout->addMultiCellWidget( searchFor, 0, 0, 1, 2 );
 
@@ -210,6 +212,8 @@ GeneralFilter::GeneralFilter( FilterTabs *tabs, int properties, QWidget *parent,
 
   containsText = new KHistoryCombo( false, containsGroup, "containsText" );
   containsText->setSizePolicy( QSizePolicy( (QSizePolicy::SizeType)7, (QSizePolicy::SizeType)0, containsText->sizePolicy().hasHeightForWidth() ) );
+  containsText->setDuplicatesEnabled( false );
+  containsText->setMaxCount( 25 );
   containsTextLayout->addWidget( containsText );
   containsLabel->setBuddy(containsText);
 
