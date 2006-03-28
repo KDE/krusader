@@ -34,21 +34,29 @@
      <imageobject><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
      <imageobject><imagedata fileref="mainwindow.png" format="EPS"/></imageobject>
      <textobject><phrase>&krusader; Main Window</phrase></textobject>
-     <caption><para>The &krusader; Main Window with all the different parts labeled.</para></caption>
+     <caption><para>&krusader;'s main window with all the different parts named on the screen.</para></caption>
     </mediaobject>
 </screenshot>
 
-<para>This is &krusader;'s main window with all the different parts named on the screen.
+<para>The User Interface is based on the &ofm_url; paradigm, a 20 years old principle
+      that has proven it's bones. It's known as simple, easy and powerful.  
       In the following sections we'll cover the basic functions of each part with the
       exception of:</para>
 
 <itemizedlist>
-   <listitem><para>The <link linkend="commands">Menu Bar</link> which has a chapter of its own.</para>
-       </listitem>
-   <listitem><para>The <emphasis role="bold">Status Bar</emphasis> shows the properties of the current
-	     file that has the focus. You can use "drag and drop" to drop a &URL; "into" 
-	     the Status Bar.</para>
-       </listitem>
+   <listitem>
+      <para>The <link linkend="commands">Menu Bar</link> which has a chapter of its own.</para>
+   </listitem>
+
+   <listitem>
+      <para>The <link linkend="bookman">Bookmarks</link> which has a chapter of its own.</para>
+   </listitem>
+   
+   <listitem>
+     <para>The <emphasis role="bold">Status Bar</emphasis> shows the properties of the current
+	   file that has the focus. You can use "drag and drop" to drop a &URL; "into" 
+	   the Status Bar.</para>
+   </listitem>
 </itemizedlist>
 </sect2>
 
@@ -71,9 +79,8 @@ in the &konfigstartpg_lnk;, and you can toggle its use in the current session in
 The Main Toolbar contents can be configured from the <guimenuitem>Configure Toolbars</guimenuitem>
 in the &settingsmenu_lnk; or the <guilabel>Toolbar</guilabel> tab in the &konfiglookandfeel_lnk;.
 Since the various commands and options in &krusader; are context dependent, some commands are not 
-always available (&ie;: you can't disconnect from an &FTP; session if you're not already connected), 
-the icon of an inappropriate or inactive action will be deactivated (grayed-out) and you won't 
-be able to click or select it.
+always available, the icon of an inappropriate or inactive action will be deactivated (grayed-out) 
+and you won't  be able to click or select it.
 &bookmarks_lnk; can be placed into the Main Toolbar and the Actions Toolbar
 with the mouse using "drag and drop".</para>
 
@@ -189,7 +196,7 @@ and you control the current session with the &viewmenu_lnk;.
        
      <listitem>
        <para><link linkend="panel_toolbar"><emphasis><guibutton>Panel toolbar</guibutton></emphasis></link> :
-             can have up to five <link linkend="konfig-looknfeel-ptoolbar">configurable</link> buttons.
+             contains <link linkend="panel_toolbar">configurable buttons</link>.
       </para>
      </listitem>
      
@@ -211,7 +218,7 @@ and you control the current session with the &viewmenu_lnk;.
          Default &useractions_lnk; set a keybinding for the Column Headers. 
          The default <guilabel>Column Headers</guilabel> are: <guilabel>Name, Ext, Size, Modified, rwx</guilabel>.
          More <link linkend="konfig-looknfeel-panel">optional Column Headers</link> are
-         available with the &RMB;, allowing you to customize the columns as needed.
+         available with the &RMB;.
          The width <guilabel>Column Headers</guilabel> can be changed with the mouse by single clicking and moving 
          the divider line to the desired width (keep the mouse button pressed).
          Both <guilabel>List Panels</guilabel> remember the sort order and column width.
@@ -240,7 +247,7 @@ and you control the current session with the &viewmenu_lnk;.
           If a directory contains a lot of subdirectories, it may not possible to drop the &URL; onto the panel
           (on which only directories are visible), but the &URL; can be dropped onto the "Status Bar" or 
            "Totals Label" instead.
-           When a <link linkend="view-menu">custom filter</link>is set, it will show the setting. example: [*.cpp]. 
+           When a <link linkend="view-menu">custom filter</link> is set, it will show the setting. example: [*.cpp]. 
            </para>
        </listitem>
     </itemizedlist>
@@ -341,35 +348,35 @@ Click on the arrow down button to close the <guilabel>3rd Hand Panel</guilabel>.
 <sect3 id="panel_toolbar">
 <title>Panel Toolbar</title>
 
-<para>Both panels have a <link linkend="konfig-looknfeel-ptoolbar">configurable</link> Panel Toolbar.
+<para>Both panels have a <link linkend="konfig-looknfeel-ptoolbar">configurable Panel Toolbar</link>.
       The complete Panel Toolbar or specific buttons can be made visible or be hidden.
 
 <itemizedlist>
 
   <listitem>
-     <para><guibutton>"OpenDir Button"</guibutton>: opens the directory browser.</para>
+     <para><guibutton>OpenDir Button</guibutton>: opens the directory browser.</para>
   </listitem>
   
   <listitem>
-     <para><guibutton>"Equals Button (=)"</guibutton>: changes the panel directory to the
+     <para><guibutton>Equals Button (=)</guibutton>: changes the panel directory to the
                      other panel directory.</para>
   </listitem>
   
   <listitem>
-    <para><guibutton>"Up Button (..)"</guibutton>: changes the panel directory to the parent 
+    <para><guibutton>Up Button (..)</guibutton>: changes the panel directory to the parent 
                      directory.</para>
   </listitem>
   
   <listitem>
-    <para><guibutton>"Home Button (~)"</guibutton>: changes the panel directory to the home directory</para>
+    <para><guibutton>Home Button (~)</guibutton>: changes the panel directory to the home directory</para>
   </listitem>
              
   <listitem>
-    <para><guibutton>"Root Button (/)"</guibutton>: changes the panel directory to the root directory.</para>
+    <para><guibutton>Root Button (/)</guibutton>: changes the panel directory to the root directory.</para>
   </listitem>
   
   <listitem>
-    <para><guibutton>"Sync-browsing Button"</guibutton>: when active, each directory-change in the
+    <para><guibutton>Sync-browsing Button</guibutton>: when active, each directory-change in the
                      specific panel is performed in the other panel, also.</para>
   </listitem>
        
@@ -479,18 +486,12 @@ fly &eg; <literal>foo/bar/test</literal>.
 You can choose to display <link linkend="faqu_resize">or not</link> the 
 <guilabel>FN keys bar</guilabel> when starting up &krusader; via the &konfigstartpg_lnk;, 
 and you can toggle its use in the current session with the &viewmenu_lnk;.
+The actions and &keybindigs_lnk; performed by the function keys are configurable since 
+version 1.51 , they will remain active with or without the <guilabel>FN keys bar</guilabel> displayed.
 </para>
 
-
-<note>
- <para>
- The actions and &keybindigs_lnk; performed by the function keys are configurable since 
- version 1.51 , they will remain active with or without the <guilabel>FN keys bar</guilabel> 
- displayed.
- </para>
-</note>
-
 </sect2>
+
 
 <sect2 id="folder_tabs">
 <title>Folder Tabs</title>
@@ -540,7 +541,7 @@ The next &folder_tabs; operations are available:
 
     <listitem>
         <para>To create a <keycap>"home" tab</keycap>: click on the 
-              <guibutton>Tabbed Browsing Bookmark</guibutton> button.
+              <guibutton>Folder Tab Bookmark</guibutton> button.
         </para>
     </listitem>
 
@@ -602,17 +603,31 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 
 <para>The most common way to transfer the focus to a specific panel is to use the mouse to click on that panel.
        But you should be aware of the following:
-     <itemizedlist>
-       <listitem><para>Clicking on the Toolbar, the FN keys bar or the Status Bar does *not* change the
-                  focus.</para></listitem>
-       <listitem><para>The display part of the Quick View Panel does not accept clicks so you should click on the
-                  Location Toolbar of this panel if you want it to have focus.</para></listitem>
-       <listitem><para>Pushing the <guibutton>"History"</guibutton> or the
-                 <guibutton>"Run in Terminal"</guibutton> buttons in the Command Line will not transfer the focus so
-           you have click inside the Input Line.</para></listitem>
-       <listitem><para>The Menu Bar can get the focus by choosing a menu but it keeps the focus until you choose a
-                 command, and then the focus returns to the previous owner.</para></listitem>
-    </itemizedlist>
+<itemizedlist>
+   <listitem>
+     <para>Clicking on the Toolbar, the FN keys bar or the Status Bar does *not* change the
+           focus.</para>
+   </listitem>
+
+<!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->   
+
+   <listitem>
+     <para>Pushing the <guibutton>"History"</guibutton> or the
+           <guibutton>"Run in Terminal"</guibutton> buttons in the Command Line will not transfer
+           the focus so you have click inside the Input Line.</para>
+   </listitem>
+   
+   <listitem>
+     <para>The Menu Bar can get the focus by choosing a menu but it keeps the focus until you choose a
+           command, and then the focus returns to the previous owner.</para>
+   </listitem>
+</itemizedlist>
 </para>
 
 <para>There are, of course, ways to use the keyboard to change the focus
@@ -783,7 +798,7 @@ TODO
 <sect2 id="executing_files">
 <title>Executing Files</title>
 <para>You can only execute files in the Active List Panel.
-       To <keycap>execute</keycap> a file just <keycap>double-click on it or press Enter</keycap>
+       To <keycap>execute</keycap> a file just <keycap>(double-)click on it or press Enter</keycap>
        when it is under the list cursor. &krusader; will open it in the default application
        for this file type (picture, textfile, ...) or the file will be executed (script, binary, ...).
        If you want to use <keycap>another application</keycap> to open the file, then
@@ -812,22 +827,22 @@ TODO
 </sect2>
 
 
-<sect2 id="viewing">
-<title>Viewing and Editing files</title>
-<para><link linkend="krviewer">KrViewer</link> has a chapter of its own.</para>
-</sect2>
-
-
 <sect2 id="renaming">
 <title>Renaming files, Creating Directories, and Link Handling</title>
 <para><keycap>Rename</keycap> the file under the cursor with the <keycap>F9</keycap> key
       or with two single mouseclicks.
       <keycap>Create a new directory</keycap> with the <keycap>F7</keycap> key.
-      <keycap>Right-clicking on a regular file</keycap> will give you the <keycap>option "New Symlink"</keycap>.
-      Clicking it will open a dialog which will prompt you to enter a symlink name.
+      <keycap>Right-clicking on a regular file</keycap> will give you the <keycap>option "New Symlink"</keycap>,
+      a dialog will prompt you to enter a symlink name.
       That name will point to the file/directory you Right-Clicked on.
       If the file you Right-Clicked on is a symlink you will also be presented with the
-      "redirect link" option that will allow you change the link's target.</para>
+      "redirect link" option that will allow you change the link target.</para>
+</sect2>
+
+
+<sect2 id="viewing">
+<title>Viewing and Editing files</title>
+<para><link linkend="krviewer">KrViewer</link> has a chapter of its own.</para>
 </sect2>
 
 </sect1>
@@ -837,8 +852,8 @@ TODO
 
 <sect2 id="browsing-archives">
 <title>Browsing Archives</title>
-<para>Browsing archives is as easy as double-clicking on them. If the archive type is
-      <link linkend="konfig-archives">supported</link> &krusader; will let you browse the archive
+<para>Browsing archives is as easy as (double-)clicking on them. If the archive type is
+      <link linkend="konfig-archives">supported by &krusader;</link>, it will let you browse the archive
        as if it was a directory - with a few exceptions:
 <itemizedlist>
     <listitem><para>You can't bookmark a location in the archive.</para>
@@ -906,11 +921,34 @@ TODO
 <title>Testing Archives</title>
 <para>Krusader will not handle corrupted archives since it may result in data loss.
       If you receive an error message when opening an archive, or if you suspect that there something
-      wrong with the archive you should test it before use. To test an archive, browse (navigate) to the archive location,
+      wrong with the archive you should test it before use. 
+      To test an archive, browse (navigate) to the archive location,
       select the archive. Next select <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Test Archive</guimenuitem></menuchoice></emphasis> or
       <keycombo action="simul">&Alt;<keycap>E</keycap></keycombo>.
       &krusader; will test the archive file and inform you if the archive passed or failed the file integrity test.</para>
+</sect2>
+
+
+<sect2 id="morefeatures-archives">
+<title>More Archive features</title>
+
+<para>
+<itemizedlist>
+    <listitem>
+       <para>Passworded archive support for: arj, ace, rar, zip.</para>
+    </listitem>
+    
+    <listitem>
+       <para>Usage of KWallet to store the passwords.</para>
+    </listitem>
+    
+    <listitem>
+       <para>Step into hidden archives by pressing "RIGHT" on the archive.</para>
+    </listitem>
+
+</itemizedlist>
+</para>
 </sect2>
 
 </sect1>

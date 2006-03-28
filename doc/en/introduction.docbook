@@ -58,7 +58,7 @@
   </mediaobject>
 </screenshot>
 
-<para>More &kru_screenshots_url; can be viewed online.</para>
+<para>More &kru_screenshots_url; can be viewed on our website.</para>
 </chapter>
 
 
@@ -75,10 +75,11 @@ You will discover even more features in this documentation and in the &changelog
 <para>
 <itemizedlist>
   <listitem>
-     <para>&ofm_url; features
+     <para>
          <itemizedlist>
+         <title>&ofm_url; features</title>
           <listitem>
-               <para>Two powerful easy to use OFM <link linkend="panels">panels</link>.</para>
+               <para>Two powerful easy to use <link linkend="panels">OFM panels</link>.</para>
           </listitem>
           <listitem>
                <para>&cmdline_lnk; and optional &termemu_lnk; at below.</para>
@@ -100,7 +101,7 @@ You will discover even more features in this documentation and in the &changelog
           </listitem>
           <listitem>
                <para>Virtual file systems(VFS) for &eg; &remote_connections_lnk;, &archives_lnk;, 
-                     search results, ...</para>
+                     search results, synchronizer, ...</para>
           </listitem>
           <listitem>
                <para>Powerful internal <link linkend="krviewer">viewer and editor</link>
@@ -121,8 +122,9 @@ You will discover even more features in this documentation and in the &changelog
 
 
   <listitem>
-     <para>&krusader; tools
+     <para>
          <itemizedlist>
+         <title>&krusader; tools</title>
           <listitem>
                <para><link linkend="mount-man">Mount-Manager</link></para>
           </listitem>
@@ -162,8 +164,9 @@ You will discover even more features in this documentation and in the &changelog
 
 
   <listitem>
-     <para>&krusader; features
+     <para>
          <itemizedlist>
+         <title>&krusader; features</title>
           <listitem>
                <para>Archive Handling: browsing, unpack, pack, testing. Supported &archives_lnk; : 
                      ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.</para>
@@ -171,7 +174,7 @@ You will discover even more features in this documentation and in the &changelog
           <listitem>
                <para><link linkend="checksum">Checksum creation-verification</link> mechanism that 
                       supports md5, sha1, sha256, tiger, whirlpool.
-                      External supported tools are md5deep and cfv. </para>
+                      External supported tools are md5deep and cfv.</para>
           </listitem>
           <listitem>
                <para><link linkend="calculate">Calculate occupied space</link> of files and folders,
@@ -182,8 +185,8 @@ You will discover even more features in this documentation and in the &changelog
                      <link linkend="view-menu">filtering</link>.</para>
           </listitem>
           <listitem>
-               <para><link linkend="compare-files">Compare files by content</link> via an external diff program
-                     (&kompare;, &kdiff3_url; or &xxdiff_url;).</para>
+               <para><link linkend="compare-files">Compare files by content</link> via external diff 
+                     programs like &kompare;, &kdiff3_url; or &xxdiff_url;.</para>
           </listitem>
           <listitem>
                <para><link linkend="multi_rename">Rename</link> files and folders via &krename_url;</para>
@@ -194,14 +197,14 @@ You will discover even more features in this documentation and in the &changelog
           </listitem>
           <listitem>
                <para><link linkend="konfig-advanced">Preserve date</link> 
-                     for local targets at copy / move operations.</para>
+                     for local targets at copy/move operations.</para>
           </listitem>
           <listitem>
                <para>F2 opens a <link linkend="commands-menu">Terminal Window</link> in the default directory.</para>
           </listitem>
           <listitem>
                <para>Easy editing of <link linkend="file-menu">file permissions</link> 
-                     and ownership. <link linkend="konfig-looknfeel-operation">Numeric permissions</link>.</para>
+                     and ownership and <link linkend="konfig-looknfeel-operation">Numeric permissions</link>.</para>
           </listitem>
           <listitem>
                <para><link linkend="krusearcher">Selection filters</link> 
@@ -220,7 +223,7 @@ You will discover even more features in this documentation and in the &changelog
                      <link linkend="krviewer">Tabbed Editor/Viewer</link>.</para>
           </listitem>
           <listitem>
-               <para>&rootmode_lnk;, &quick_search_lnk; </para>
+               <para>&rootmode_lnk;, &quick_search_lnk;</para>
           </listitem>
           <listitem>
                <para><link linkend="split">File splitter</link> &amp; &combinefiles_lnk;.</para>
@@ -232,10 +235,10 @@ You will discover even more features in this documentation and in the &changelog
                <para><link linkend="list_panel">Quick Navigation</link> in the Location Toolbar.</para>
           </listitem>
           <listitem>
-               <para>&whatsthis_url; Helpfunction in favour of Tooltips where reasonable. </para>
+               <para>&whatsthis_url; Helpfunction in favour of Tooltips where reasonable.</para>
           </listitem>
           <listitem>
-               <para>&sync_browsing_lnk; </para>
+               <para>&sync_browsing_lnk;</para>
           </listitem>
         </itemizedlist>
      </para>
@@ -243,8 +246,9 @@ You will discover even more features in this documentation and in the &changelog
 
 
   <listitem>
-     <para>Modify the way &krusader; does things and customize it to your own needs.
+     <para>
          <itemizedlist>
+         <title>Customize &krusader; to your own needs</title>
           <listitem>
                <para><link linkend="konfig-startup">Konfigurator</link> 
                       &krusader;'s configuration center.</para>
@@ -278,8 +282,9 @@ You will discover even more features in this documentation and in the &changelog
 
 
   <listitem>
-     <para>&krusader; extra's
+     <para>
          <itemizedlist>
+         <title>&krusader; extra's</title>
           <listitem>
                <para>&useractions_lnk;.</para>
           </listitem>
@@ -302,7 +307,8 @@ You will discover even more features in this documentation and in the &changelog
 <itemizedlist>
   <title>New features now in version 1.71.0 "cvs"</title>
   <listitem>
-        <para>New archive handling supports passworded arj, ace, rar and zip.</para>
+        <para><link linkend="morefeatures-archives">Passworded archive support</link> for:
+              arj, ace, rar, zip.</para>
   </listitem>
 
   <listitem>
@@ -360,6 +366,17 @@ You will discover even more features in this documentation and in the &changelog
   </itemizedlist>
 
 
+</para>
+
+<para>
+If you like to know 
+<ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml">how &krusader; feels</ulink> 
+there is only one way to discover,
+install it on your computer and use it for a while!
+To accept a &ofm_url; like &krusader;,
+you need to get used to <emphasis>new ideas</emphasis> who are already 20 years old :)
+If you prefer to waste time and lose a lot of productivity,
+you can always continue to use one panel filemanagers who are based on &Windows; Explorer ;-)  
 </para>
 
 &dev_cvs_note;
