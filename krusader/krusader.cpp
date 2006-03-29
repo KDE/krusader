@@ -430,7 +430,7 @@ void Krusader::hideEvent ( QHideEvent *e ) {
    if ( actWnd )
       isModalTopWidget = actWnd->isModal();
 
-   if ( showTrayIcon && !isModalTopWidget && KWin::windowInfo( winId() ).isMinimized() ) {
+   if ( showTrayIcon  && !isModalTopWidget  && KWin::windowInfo( winId() ).isOnCurrentDesktop() ) {
       sysTray->show();
       hide(); // needed to make sure krusader is removed from
       // the taskbar when minimizing (system tray issue)

@@ -113,7 +113,8 @@ void KrDetailedView::setup() {
       KConfigGroupSaver grpSvr( _config, "Look&Feel" );
       setFont( _config->readFontEntry( "Filelist Font", _FilelistFont ) );
       // decide on single click/double click selection
-      if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) ) {
+      if ( _config->readBoolEntry( "Single Click Selects", _SingleClickSelects ) &&
+           KGlobalSettings::singleClick() ) {
          connect( this, SIGNAL( executed( QListViewItem* ) ), this, SLOT( slotExecuted( QListViewItem* ) ) );
       } else {
          connect( this, SIGNAL( clicked( QListViewItem* ) ), this, SLOT( slotClicked( QListViewItem* ) ) );
