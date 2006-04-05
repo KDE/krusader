@@ -141,7 +141,7 @@ Previous used Docbook
 <!ENTITY kde_files_url '<ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663">kde-files.org</ulink>'>
 
 <!-- internet links, others -->
-<!ENTITY xxdiff_url '<ulink url="http://xxdiff.sourceforge.net"><application>xxdiff</application></ulink>'>
+<!ENTITY xxdiff_url '<ulink url="http://furius.ca/xxdiff/"><application>xxdiff</application></ulink>'>
 <!ENTITY kdiff3_url '<ulink url="http://kdiff3.sourceforge.net"><application>Kdiff3</application></ulink>'>
 <!ENTITY krename_url '<ulink url="http://www.krename.net"><application>Krename</application></ulink>'>
 <!ENTITY kasablanca_url '<ulink url="http://kasablanca.berlios.de/">Kasablanca</ulink>'>
@@ -176,6 +176,7 @@ Previous used Docbook
 
 
 <!-- documentation links -->
+<!ENTITY vfs_lnk '<link linkend="vfs">Virtual file system (VFS)</link>'>
 <!ENTITY selection_modes_lnk '<link linkend="selection_modes">Selection Modes</link>'>
 <!ENTITY konfigstartpg_lnk '<link linkend="konfigurator">Konfigurator Startup page</link>'>
 <!ENTITY konfiglookandfeel_lnk '<link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>'>
@@ -195,9 +196,10 @@ Previous used Docbook
 <!ENTITY keybindigs_lnk '<link linkend="key_bindings">Key-Bindings</link>'>
 <!ENTITY keybindigs_profiles_lnk '<link linkend="konfig-looknfeel-keybindings">Key-binding Profiles</link>'>
 <!ENTITY color_profiles_lnk '<link linkend="konfig-color">Color Profiles</link>'>
-<!ENTITY syncdirs_lnk '<link linkend="krusyncdir">Synchronize Directories</link>'>
-<!ENTITY splitfile_lnk '<link linkend="split">Split file</link>'>
-<!ENTITY combinefiles_lnk '<link linkend="combine">Combine files</link>'>
+<!ENTITY synchronizer_lnk '<link linkend="synchronizer">Synchronizer</link>'>
+<!ENTITY syncdirs_lnk '<link linkend="synchronizer">Synchronizer Directories</link>'>
+<!ENTITY splitfile_lnk '<link linkend="splitter">Split file</link>'>
+<!ENTITY combinefiles_lnk '<link linkend="splitter">Combine files</link>'>
 <!ENTITY kdeqtdir_lnk '<link linkend="kde_qt_dir"><envar>KDEDIR</envar> - <envar>QTDIR</envar></link>'>
 <!ENTITY useractions_lnk '<link linkend="useractions">UserActions</link>'>
 <!ENTITY usermenu_lnk '<link linkend="useractions">User Menu</link>'>
@@ -269,6 +271,7 @@ Previous used Docbook
 <!ENTITY filelight '<application>Filelight</application>'>
 <!ENTITY kdevelop '<application>Kdevelop</application>'>
 <!ENTITY keditbookmarks '<application>KeditBookmarks</application>'>
+<!ENTITY kwallet "<application>Kwallet</application>">
 
 <!-- (TM) Trademark ENTITIES -->
 <!ENTITY fedora '<trademark>Fedora</trademark>'>
@@ -300,6 +303,7 @@ Previous used Docbook
  
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
 <!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
+<!ENTITY openoffice '<trademark class="registered">OpenOffice</trademark>'>
 <!ENTITY firefox '<trademark class="registered">Firefox</trademark>'>
 <!ENTITY safari '<trademark class="registered">Safari</trademark>'>
 <!ENTITY apple '<trademark class="registered">Apple</trademark>'>
@@ -404,7 +408,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2006-03-17</date>
+  <date>2006-04-03</date>
   <releaseinfo>1.71.0 "cvs repository"</releaseinfo>
 
    <abstract>
@@ -473,7 +477,7 @@ Previous used Docbook
   Files can then be copied or moved from and to (except ISO,rpm,tar.gz) these data sources/containers
   with the click of a mouse.
   &krusader; currently supports VFSs for all popular [and some specialized] types of archives
-  (Zip, Tar, GZip, BZip2, Ace, Rar, Arj, Lha), configuration packages (RPM),
+  (ace, arj, bzip2, gzip, iso, lha, rar, tar, zip and 7-zip), configuration packages (rpm, deb),
   and traditional remote filesystem types (&FTP;, NFS, Samba, FISH, SFTP).</para>
 
   <para>

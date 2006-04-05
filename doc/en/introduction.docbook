@@ -100,7 +100,7 @@ You will discover even more features in this documentation and in the &changelog
                      <link linkend="popular_urls">Popular &URL;s</link>, ...</para>
           </listitem>
           <listitem>
-               <para>Virtual file systems(VFS) for &eg; &remote_connections_lnk;, &archives_lnk;, 
+               <para>&vfs_lnk; for &eg; &remote_connections_lnk;, &archives_lnk;, 
                      search results, synchronizer, ...</para>
           </listitem>
           <listitem>
@@ -185,7 +185,7 @@ You will discover even more features in this documentation and in the &changelog
                      <link linkend="view-menu">filtering</link>.</para>
           </listitem>
           <listitem>
-               <para><link linkend="compare-files">Compare files by content</link> via external diff 
+               <para><link linkend="compare-content">Compare files by content</link> via external diff 
                      programs like &kompare;, &kdiff3_url; or &xxdiff_url;.</para>
           </listitem>
           <listitem>
@@ -226,7 +226,7 @@ You will discover even more features in this documentation and in the &changelog
                <para>&rootmode_lnk;, &quick_search_lnk;</para>
           </listitem>
           <listitem>
-               <para><link linkend="split">File splitter</link> &amp; &combinefiles_lnk;.</para>
+               <para><link linkend="splitter">File splitter</link>.</para>
           </listitem>
           <listitem>
                <para><link linkend="mouse_gestures">Mouse Gestures</link>.</para>
@@ -307,12 +307,17 @@ You will discover even more features in this documentation and in the &changelog
 <itemizedlist>
   <title>New features now in version 1.71.0 "cvs"</title>
   <listitem>
-        <para><link linkend="morefeatures-archives">Passworded archive support</link> for:
-              arj, ace, rar, zip.</para>
+        <para><link linkend="archives">Passworded archive support</link> for:
+              arj, ace, rar and zip. Passwords can be stored in &kwallet;</para>
   </listitem>
 
   <listitem>
-        <para>7-zip support, by external applications 7z and 7za.</para>
+        <para><link linkend="archives">7-zip support</link>, by external applications 7z and 7za.</para>
+  </listitem>
+
+  <listitem>
+        <para><link linkend="archives">Archive autodetection</link>, allowing you to open hidden archives 
+              (&eg; &openoffice; documents)</para>
   </listitem>
 
   <listitem>

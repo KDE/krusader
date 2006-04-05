@@ -852,21 +852,29 @@ TODO
 
 <sect2 id="browsing-archives">
 <title>Browsing Archives</title>
-<para>Browsing archives is as easy as (double-)clicking on them. If the archive type is
-      <link linkend="konfig-archives">supported by &krusader;</link>, it will let you browse the archive
-       as if it was a directory - with a few exceptions:
+<para>The &vfs_lnk; allows to browse archives as it was a directory.
+      &krusader; supports currently the following archives types: 
+      ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip and
+      supports the next passworded archives: arj, ace, rar and zip.
+      Passwords can be stored in &kwallet;.
+      Please note that the archive support first needs to be properly 
+      <link linkend="konfig-archives">configured</link> in Konfigurator.
+      To open the archive use &Enter;, (double-)click or the <keycap>Right Arrow</keycap>.
+      &krusader; supports also <emphasis>hidden archives</emphasis>, 
+      these are renamed archives with a *wrong* extension.
+      &eg; &openoffice; uses zip archives with the next extensions: odt, sxw and odw.
+      &Enter; will open the &openoffice; document and the <keycap>Right Arrow</keycap> will open the archive.
+      An other example is J2EE where the rar extension means a zip archive.
+      &krusader; will open with <keycap>Right Arrow</keycap> the archive even if it has an other mime type,
+      since &krusader; autodetects the supported archive types.
+      Please note that browsing archives has a few limitations:
 <itemizedlist>
-    <listitem><para>You can't bookmark a location in the archive.</para>
-               </listitem>
-    <listitem><para>If you leave an archive the "go-back" action (back arrow) will not take you back inside
-                      the archive but to the directory where it is located.</para>
-         </listitem>
     <listitem><para>Not all functions are supported by all archive types.
-                      (&ie;: you can't delete files in ace or rar archives)</para>
-         </listitem>
+                    (&ie;: you can't delete files in ace or rar archives)</para>
+    </listitem>
     <listitem><para>The permissions you have inside the archive are the same as the permissions you have
-                      for the archive.</para>
-          </listitem>
+                    for the archive.</para>
+    </listitem>
     <listitem><para>The command line (if visible) will not follow you inside the archive but will point
                     to the archive directory.</para>
     </listitem>
@@ -874,8 +882,10 @@ TODO
                     must be extracted. The archive will be repacked when you leave it or when &krusader;
                     detects that extracted files have changed.</para>
     </listitem>
-    <listitem><para>Packing and un-packing are "blocking operations" that display a Progress Dialog.</para>
-                </listitem>
+    <listitem><para>Packing and un-packing are "blocking operations" that display a Progress Dialog.
+                    Though, this might change in the future since we are planning to create
+                    more background operations.</para>
+    </listitem>
 </itemizedlist>
 </para>
 </sect2>
@@ -891,9 +901,7 @@ TODO
       <keycombo action="simul">&Alt;<keycap>U</keycap></keycombo>.
       &krusader; will ask you where to put the extracted
       files, the default location is the inactive panel directory. If you don't cancel the operation,
-      &krusader; will try to unpack all the selected files in the inactive panel. The archive type is detected
-      using mimetype magic or "automagically" (or in plain English: automatically) and if an unpacker can't be
-      found an error message will be displayed.</para>
+      &krusader; will try to unpack all the selected files in the inactive panel.</para>
 
 <para>If you only want to extract part of the archive, then
       <link linkend="browsing-archives">browse</link> the archive and copy the files
@@ -912,7 +920,8 @@ TODO
       A dialog will pop-up, prompting you to select the archive name and location, you select the packer by
       selecting one of the <link linkend="konfig-archives">supported filename extensions</link>.</para>
 
-<para>To add files to an existing archives, open the archive in one panel and the files to be copied in the other panel, then simply copy the files into the archive
+<para>To add files to an existing archives, open the archive in one panel and the files to be copied in the
+      other panel, then simply copy the files into the archive
       in exactly the same way you copy files into a "normal" directory.</para>
 </sect2>
 
@@ -930,80 +939,68 @@ TODO
 </sect2>
 
 
-<sect2 id="morefeatures-archives">
-<title>More Archive features</title>
-
-<para>
-<itemizedlist>
-    <listitem>
-       <para>Passworded archive support for: arj, ace, rar, zip.</para>
-    </listitem>
-    
-    <listitem>
-       <para>Usage of KWallet to store the passwords.</para>
-    </listitem>
-    
-    <listitem>
-       <para>Step into hidden archives by pressing "RIGHT" on the archive.</para>
-    </listitem>
-
-</itemizedlist>
-</para>
-</sect2>
-
 </sect1>
 
 
-<sect1 id="advanced">
-<title>Advanced Options</title>
+<sect1 id="more-features">
+<title>More features</title>
 
-<sect2 id="compare-files">
-<title>Comparing Files (Compare by Content)</title>
-<para>To find the difference between two files select one in each panel and select
+<sect2 id="compare">
+<title>Compare</title>
+<para>&krusader; contains several compare functions: <guimenuitem>Compare by content</guimenuitem>,
+      <guimenuitem>Compare Directories</guimenuitem> and the
+      <link linkend="synchronizer">Synchronizer</link> compare function.
+</para>
+
+
+<sect3 id="compare-content">
+<title>Compare by Content</title>
+<para>Select in each panel one file, and use
       <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Compare by content</guimenuitem></menuchoice></emphasis>.
-      Right now &krusader; does not include a built-in graphical difference tool but supports two
-			excellent "diff" utilities: &kompare; (part of the kdebase package), &kdiff3_url; and &xxdiff_url;.
-      If you have one of these installed the selected files will be compared, otherwise you will receive
-      an error message.</para>
-</sect2>
+      &krusader; will open a external graphical difference tool that is 
+      <link linkend="konfig-dependencies">configured</link>, 
+      right now &kompare;, &kdiff3_url; and &xxdiff_url; are supported.
+      </para>
+</sect3>
 
 
-<sect2 id="compare-dir">
+<sect3 id="compare-dir">
 <title>Compare Directories</title>
-
-<para>&krusader; offers a graphical directory compare mode. To activate it select
-      <emphasis role="bold"><menuchoice><guimenu>Select</guimenu>
-      <guimenuitem>Compare Directories</guimenuitem></menuchoice></emphasis>
-
+<para>Compare the files of each panel by using
+      <emphasis role="bold"><menuchoice><guimenu>Mark</guimenu>
+      <guimenuitem>Compare Directories</guimenuitem></menuchoice></emphasis>.
+      By default newer and single files will be selected in each panel, this behaviour can
+      be changed in the <guimenuitem>Compare Setup</guimenuitem> menu.
 <note><para>The files are not compared by content but by their names and dates only.</para></note>
 </para>
 
 <variablelist>
 <varlistentry>
   <term><menuchoice>
-  <guimenu>Select</guimenu>
+  <guimenu>Mark</guimenu>
   <guimenuitem>Compare Setup</guimenuitem>
   </menuchoice></term>
   <listitem><para>Configures the <guimenuitem>Compare Directories</guimenuitem> function.</para>
    <itemizedlist>
-            <listitem><para><guimenuitem>Select Newer and Single</guimenuitem> (default)
+            <listitem><para><guimenuitem>Mark Newer and Single</guimenuitem> (default)
                       </para></listitem>
-            <listitem><para><guimenuitem>Select Single</guimenuitem>
+            <listitem><para><guimenuitem>Mark Single</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Select Newer</guimenuitem>
+            <listitem><para><guimenuitem>Mark Newer</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Select Different and Single</guimenuitem>
+            <listitem><para><guimenuitem>Mark Different and Single</guimenuitem>
                 </para></listitem>
-            <listitem><para><guimenuitem>Select Different</guimenuitem>
+            <listitem><para><guimenuitem>Mark Different</guimenuitem>
                 </para></listitem>
          </itemizedlist>
   </listitem>
   </varlistentry>
 </variablelist>
 
-</sect2>
+</sect3>
 
+</sect2>
 
 <sect2 id="calculate">
 <title>Calculate Occupied Space</title>
@@ -1039,51 +1036,27 @@ TODO
 </para>
 </sect2>
 
-<sect2 id="send-email">
-<title>Send Files by e-mail</title>
-<para>Select a file and use <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
-      <guimenuitem>Send by Email</guimenuitem></menuchoice></emphasis>.
-      Selecting this option will open a new &kmail; window with the file already
-      attached. Just fill in the subject and recipient(s) and send it.  Of course, &kmail; must be properly configured!
-</para>
-</sect2>
+<sect2 id="splitter">
+<title>File Splitter</title>
 
-
-<sect2 id="shred">
-<title>Shred Files</title>
-<para>When you delete files in your local system they are not completely erased and the
-      information stored in them can be recovered using special software and hardware tools. If
-      you want to erase a file without recoverable traces, select the file and use
-      <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
-      <guimenuitem>Shred</guimenuitem></menuchoice></emphasis>.
-    </para>
-    </sect2>
-
-
-<sect2 id="split">
-<title>Split File</title>
-
-<para>
-    Choose
-    <emphasis role="bold"><menuchoice><guimenu>File</guimenu><guimenuitem>Split</guimenuitem></menuchoice>
-    </emphasis>
-    or
-    <keycombo action="simul">&Ctrl;<keycap>P</keycap></keycombo>
-    and
-    the selected (big) file will be split up into multiple smaller files so that it can be placed
-    on several smaller media (like diskettes, zip-drives, ...) or sent by e-mail.
-    The target directory is the inactive panel.</para>
-
-<para>In the upper line you can change the target directory, click on <keycap>Split</keycap>
-      to split the selected file. You can stop the split process by clicking the <keycap>Cancel</keycap>
-      button.</para>
+<para>This function splits one (big) file up into multiple smaller files so that
+      they can be placed on several smaller media (&eg; zip-drives, ...) or sent by e-mail.
+      The multiple files can be combined again to recreate the original file.
+      &krusader; and &tcmd; split/combine functions are compatible.
+      To split a file choose
+      <emphasis role="bold"><menuchoice><guimenu>File</guimenu><guimenuitem>Split</guimenuitem></menuchoice>
+      </emphasis>
+      or
+      <keycombo action="simul">&Ctrl;<keycap>P</keycap></keycombo>
+      A Split dialog will open to confirm the operation.</para>
 
 <para>If the name of the original file is <filename>foo</filename>, then the name of the smaller files
-      will be <filename>foo.000 foo.001 foo.002</filename> &etc; There is no theoretical limit in the number of smaller files,
-      but it is recommended to limit the number to a max of 1023 files. &krusader; creates a <filename>foo.crc</filename> file.
+      will be <filename>foo.000 foo.001 foo.002</filename> &etc; There is no theoretical limit in the 
+      number of smaller files, but it is recommended to limit the number to a max of 1023 files. 
+      &krusader; creates a <filename>foo.crc</filename> file.
       This file contains the name, size and the crc checksum of the original file.
-      It is possible to combine the file without the <filename>foo.crc</filename> file but in this
-      case &krusader; can't test if the the original file was recreated correctly.</para>
+      It's possible to combine the file without the <filename>foo.crc</filename> file but in this
+      case &krusader; can't check if the the original file was recreated correctly.</para>
 
 <para>An example of a <filename>foo.crc</filename> file:
       <programlisting>
@@ -1092,33 +1065,20 @@ TODO
       crc32=21EB719A</programlisting>
 </para>
 
-<para>
-    Later on you can use the &combinefiles_lnk; function to combine the multiple smaller files to the original file.
-</para>
 
-</sect2>
-
-
-<sect2 id="combine">
-<title>Combine Files</title>
-
-<para>This function combines multiple files to one file after the &splitfile_lnk;
-      function was used. Select a partial file <filename>foo.xxx</filename> and choose
+<para>To combine the multiple files choose, select a partial file 
+      <filename>foo.xxx</filename> and choose
       <emphasis role="bold"><menuchoice><guimenu>File</guimenu>
       <guimenuitem>Combine files</guimenuitem></menuchoice></emphasis>
       or
       <keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo>.
-      The target directory is the unactive panel and can be changed.</para>
-
-<para>The file names must be numbered in ascending order: <filename>foo.001, foo.002, foo.003</filename>
+      The target directory is the unactive panel and can be changed.
+      The file names must be numbered in ascending order: <filename>foo.001, foo.002, foo.003</filename>
       &etc; or have letters in ascending order:
       ("<userinput><command>split</command> <option>-b</option></userinput>
-      letter method") <filename>fileaa, fileab, fileac</filename> &etc;</para>
-
-<para>If the file <filename>foo.crc</filename> is found in the same directory as
+      letter method") <filename>fileaa, fileab, fileac</filename> &etc;
+      If the file <filename>foo.crc</filename> is found in the same directory as
       the partial files, &krusader; will use this file to check the combined file for errors.</para>
-
-<note><para>&krusader; can Combine files split with &tcmd; and vice versa.</para></note>
 
 </sect2>
 
@@ -1219,6 +1179,34 @@ TODO
   (sha256, tiger, whirlpool) and cfv.
 </para>
 
+</sect2>
+
+<sect2 id="send-email">
+<title>Send Files by e-mail</title>
+<para>Select a file and use <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
+      <guimenuitem>Send by Email</guimenuitem></menuchoice></emphasis>.
+      Selecting this option will open a new &kmail; window with the file already
+      attached. Just fill in the subject and recipient(s) and send it. 
+      Of course, &kmail; must be properly configured.
+</para>
+</sect2>
+
+
+<sect2 id="shred">
+<title>Shred Files</title>
+<para>When you delete files in your local system they are not completely erased and the
+      information stored in them can be recovered using special software and hardware tools. If
+      you want to erase a file without recoverable traces, select the file and use
+      <emphasis role="bold"><menuchoice><guimenu>Right-Click menu</guimenu>
+      <guimenuitem>Shred</guimenuitem></menuchoice></emphasis>.
+    </para>
+</sect2>
+
+
+<sect2 id="vfs">
+<title>Virtual file systems (VFS)</title>
+<para>TODO
+</para>
 
 </sect2>
 
@@ -1453,7 +1441,7 @@ TODO
 </entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>b</keycap></keycombo></para></entry>
-<entry><para><link linkend="combine">Combine files</link></para></entry></row>
+<entry><para>&combinefiles_lnk;</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>d</keycap></keycombo></para></entry>
 <entry><para><link linkend="bookman">Open Bookmarks</link> in the active panel.</para></entry></row>
@@ -1482,7 +1470,7 @@ TODO
 <entry><para>Select directory dialog to open this directory in the panel.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>p</keycap></keycombo></para></entry>
-<entry><para><link linkend="split">Split file</link></para></entry></row>
+<entry><para><link linkend="splitter">Split file</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>u</keycap></keycombo></para></entry>
 <entry><para><link linkend="view-menu">Swap Panels</link></para></entry></row>

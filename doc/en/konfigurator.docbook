@@ -357,8 +357,7 @@ HTML_PARSING-->
 <sect1 id="konfig-color">
 <title>Colors page</title>
 
-<para>This page configures the colors in the &list_panel_lnk; and the
-      <link linkend="krusyncdir">Synchronizer</link> .
+<para>This page configures the colors in the &list_panel_lnk; and the &synchronizer_lnk;.
       The <guilabel>KDE default colors</guilabel> is the default color configuration,
       <guilabel>Use Alternate Background color</guilabel> checkbox will enable/disable
       the alternate &kde; colors.
@@ -412,7 +411,7 @@ HTML_PARSING-->
   <listitem><para><guilabel>Marked current foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Current background</guilabel></para></listitem>
   </itemizedlist>
-  <para>The following items of the <link linkend="krusyncdir">Synchronizer</link> can be configured:</para>
+  <para>The following items of the &synchronizer_lnk; can be configured:</para>
   <itemizedlist>
   <listitem><para><guilabel>Equals foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Equals background</guilabel></para></listitem>
@@ -582,7 +581,7 @@ you'll see a list of archive formats. Some are checked and some are grayed-out. 
 and let you open them as folders; otherwise, &krusader; will attempt to invoke an application which opens that
 type of archive. If a certain archive is grayed-out, it means that &krusader; couldn't find the appropriate
 executables in the configured path.
-The next archives are supported: tar, gzip, bzip2, zip, rar, arj, rpm, ace, lha, deb.</para>
+The next archives are supported: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.</para>
 
 <!--HTML_PARSING
 <screenshot>
@@ -712,6 +711,10 @@ new archive should be available and checked.</para>
 <entry>configurable full path</entry>
 </row>
 <row>
+<entry><para><command>7z</command></para></entry>
+<entry><para><filename class="directory"><replaceable>usr/bin/7z</replaceable></filename></para></entry>
+</row>
+<row>
 <entry><para><command>arj</command></para></entry>
 <entry><para><filename class="directory"><replaceable>usr/bin/arj</replaceable></filename></para></entry>
 </row>
@@ -722,6 +725,10 @@ new archive should be available and checked.</para>
 <row>
 <entry><para><command>cpio</command></para></entry>
 <entry><para><filename class="directory"><replaceable>/bin/cpio</replaceable></filename></para></entry>
+</row>
+<row>
+<entry><para><command>dpkg</command></para></entry>
+<entry><para><filename class="directory"><replaceable>/bin/dpkg</replaceable></filename></para></entry>
 </row>
 <row>
 <entry><para><command>gzip</command></para></entry>
