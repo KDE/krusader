@@ -313,6 +313,7 @@ const QColor & KrDetailedViewItem::setColorIfContrastIsSufficient(const QColor &
 
 int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const {
   bool ignoreCase = (PROPS->sortMode & KrViewProperties::IgnoreCase);
+	bool alwaysSortDirsByName = (PROPS->sortMode & KrViewProperties::AlwaysSortDirsByName);
   int asc = ( ascending ? -1 : 1 );
   KrViewItem *other = dynamic_cast<KrViewItem*>(i);
 
@@ -326,14 +327,15 @@ int KrDetailedViewItem::compare(QListViewItem *i,int col,bool ascending ) const 
   
   QString itext0 = other->name();
   if (itext0 == "..") return -1*asc;
-
+	
   if( ignoreCase )
   {
     text0  = text0.lower();
     itext0 = itext0.lower();
   }
-
-  if (col == COLUMN(Name) ) {
+	
+  if (col == COLUMN(Name) ||
+			(alwaysSortDirsByName && VF->vfile_isDir() && other->VF->vfile_isDir())) {
       // localeAwareCompare doesn't handle names that start with a dot
 		if (text0.startsWith(".")) {
 			if (!itext0.startsWith(".")) return 1*asc;

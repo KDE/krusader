@@ -1258,8 +1258,10 @@ void KrDetailedView::initProperties() {
 	for (int i=0; i<KrDetailedViewProperties::MAX_COLUMNS;++i)
 		PROPS->column[i]=-1;	
 	PROPS->displayIcons = _config->readBoolEntry( "With Icons", _WithIcons );
+	bool dirsByNameAlways = _config->readBoolEntry("Always sort dirs by name", false);
 	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( KrViewProperties::Name |
-		KrViewProperties::Descending | KrViewProperties::DirsFirst );
+			KrViewProperties::Descending | KrViewProperties::DirsFirst | 
+			(dirsByNameAlways ? KrViewProperties::AlwaysSortDirsByName : 0) );
 	PROPS->numericPermissions = _config->readBoolEntry("Numeric permissions", _NumericPermissions);
 	if ( !_config->readBoolEntry( "Case Sensative Sort", _CaseSensativeSort ) )
       	PROPS->sortMode = static_cast<KrViewProperties::SortSpec>( _properties->sortMode |
