@@ -24,7 +24,7 @@ File::fullPath( const Directory *root /*= 0*/ ) const
       if( !path.isEmpty() )
         path = "/" + path;
         
-      path = d->fileName() + path;
+      path = d->name() + path;
     }
     
     if( d )

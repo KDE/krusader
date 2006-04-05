@@ -182,18 +182,16 @@ public:
     m_owner( ownerIn ), m_group( groupIn ), m_perm( permIn ), m_time( timeIn ), m_symLink( symLinkIn ), 
     m_mimeType( mimeTypeIn ), m_excluded( false ), m_percent( -1 ) {}
     
-  File( const char *nameIn, FileSize sizeIn )
-  : m_parent( 0 ), m_directory( QString::null ), m_size( sizeIn ), m_ownSize( sizeIn ), m_mode( 0 ), 
+  File( const QString &nameIn, FileSize sizeIn )
+  : m_parent( 0 ), m_name( nameIn ), m_directory( QString::null ), m_size( sizeIn ), m_ownSize( sizeIn ), m_mode( 0 ), 
     m_owner( QString::null ), m_group( QString::null ), m_perm( QString::null ), m_time( -1 ), 
     m_symLink( false ), m_mimeType( QString::null ), m_excluded( false ), m_percent( -1 ) 
   {
-    m_name = QString::fromLocal8Bit( nameIn );
   }
   
   virtual ~File() {}
       
-  inline const QString &  fileName()            const  {return m_name;}
-  inline const char *     name()                const  {return m_name.ascii();}
+  inline const QString &  name()                const  {return m_name;}
   inline const QString &  directory()           const  {return m_directory;}
   inline const FileSize   size()                const  {return m_excluded ? 0 : m_size;}
   inline const FileSize   ownSize()             const  {return m_excluded ? 0 : m_ownSize;}
@@ -247,7 +245,7 @@ public:
     m_fileCount( 0 ) 
   {}
  
-  Directory( const char *rootName, QString url ) : File( rootName, 0 ), m_fileCount( 0 )
+  Directory( const QString &name, QString url ) : File( name, 0 ), m_fileCount( 0 )
   {
     m_directory = url;
   }

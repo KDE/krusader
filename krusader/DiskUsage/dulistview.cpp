@@ -139,16 +139,16 @@ void DUListView::addDirectory( Directory *dirEntry, QListViewItem *parent )
     QString percent = item->percent();
     
     if( lastItem == 0 && parent == 0 )
-      lastItem = new DUListViewItem( diskUsage, item, this, item->fileName(), percent, totalSize, ownSize, 
+      lastItem = new DUListViewItem( diskUsage, item, this, item->name(), percent, totalSize, ownSize, 
                                      mime, date, item->perm(), item->owner(), item->group() );
     else if ( lastItem == 0 )
-      lastItem = new DUListViewItem( diskUsage, item, parent, item->fileName(), percent, totalSize, ownSize, 
+      lastItem = new DUListViewItem( diskUsage, item, parent, item->name(), percent, totalSize, ownSize, 
                                      mime, date, item->perm(), item->owner(), item->group() );
     else if ( parent == 0 )
-      lastItem = new DUListViewItem( diskUsage, item, this, lastItem, item->fileName(), percent, totalSize,
+      lastItem = new DUListViewItem( diskUsage, item, this, lastItem, item->name(), percent, totalSize,
                                      ownSize, mime, date, item->perm(), item->owner(), item->group() );
     else
-      lastItem = new DUListViewItem( diskUsage, item, parent, lastItem, item->fileName(), percent, totalSize, 
+      lastItem = new DUListViewItem( diskUsage, item, parent, lastItem, item->name(), percent, totalSize, 
                                      ownSize, mime, date, item->perm(), item->owner(), item->group() );
    
     if( item->isExcluded() )

@@ -247,7 +247,7 @@ void DiskUsage::load( KURL baseDir )
   baseURL = baseDir;
   baseURL.setPath( baseDir.path( -1 ) );
 
-  root = new Directory( baseURL.fileName().local8Bit(), baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
+  root = new Directory( baseURL.fileName(), baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
 
   directoryStack.clear();
   parentStack.clear();
@@ -452,7 +452,7 @@ File * DiskUsage::getFile( QString path )
     return 0;
 
   for( Iterator<File> it = dirEntry->iterator(); it != dirEntry->end(); ++it )
-    if( (*it)->fileName() == file )
+    if( (*it)->name() == file )
       return *it;
 
   return 0;
@@ -610,7 +610,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
         return 0;
     }
 
-    emit status( i18n( "Deleting %1..." ).arg( file->fileName() ) );
+    emit status( i18n( "Deleting %1..." ).arg( file->name() ) );
   }
 
   if( file == currentDirectory )
@@ -630,7 +630,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
       if( !path.isEmpty() )
         path = "/" + path;
 
-      path = d->fileName() + path;
+      path = d->name() + path;
     }
 
     contentMap.remove( path );
@@ -1029,7 +1029,7 @@ QString DiskUsage::getToolTip( File *item )
   QDateTime tmp(QDate(t->tm_year+1900, t->tm_mon+1, t->tm_mday), QTime(t->tm_hour, t->tm_min));
   QString date = KGlobal::locale()->formatDateTime(tmp);
 
-  QString str = "<qt><h5><table><tr><td>" + i18n( "Name:" ) +  "</td><td>" + item->fileName() + "</td></tr>"+
+  QString str = "<qt><h5><table><tr><td>" + i18n( "Name:" ) +  "</td><td>" + item->name() + "</td></tr>"+
                 "<tr><td>" + i18n( "Type:" ) +  "</td><td>" + mime + "</td></tr>"+
                 "<tr><td>" + i18n( "Size:" ) +  "</td><td>" + KRpermHandler::parseSize( item->size() ) + "</td></tr>";
 
@@ -1097,6 +1097,8 @@ bool DiskUsage::event( QEvent * e )
     case QEvent::KeyPress:
     case QEvent::KeyRelease:
       return true;
+    default:
+      break;
     }
   }
 

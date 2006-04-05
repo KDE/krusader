@@ -293,7 +293,7 @@ void DULines::slotDirChanged( Directory *dirEntry )
   { 
     File *item = *it;
     
-    QString fileName = item->fileName();
+    QString fileName = item->name();
     
     unsigned int italicStart = fileName.length();
     

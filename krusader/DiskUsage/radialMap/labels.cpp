@@ -30,7 +30,7 @@ namespace RadialMap
         int x1, y1, x2, y2, x3;
         int tx, ty;
 
-        QCString qs;
+        QString qs;
     };
 
     class LabelList : public QPtrList<Label>
@@ -211,13 +211,11 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
     bool rightSide;
 
-    KStringHandler kstr; //currently using csqueeze //TODO KDE 3.2 has a pixel squeezer
     QFont font;
 
     for( it.toFirst(); it != 0; ++it )
     {
       //** bear in mind that text is drawn with QPoint param as BOTTOM left corner of text box
-      QString qs  = (*it)->segment->file()->name();
       if( varySizes ) font.setPointSize( sizes[(*it)->lvl] );
       QFontMetrics fm( font );
       int fmh  = fm.height(); //used to ensure label texts don't overlap
@@ -225,7 +223,6 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
       fmh += LABEL_TEXT_VMARGIN;
 
-      qs = kstr.csqueeze( qs = (*it)->segment->file()->name(), LABEL_MAX_CHARS ); //**** pointless csqueeze really, want a pixel length variety (wait for KDE 3.2)
       rightSide = ( (*it)->a < 1440 || (*it)->a > 4320 );
 
       ra = M_PI/2880 * (*it)->a; //convert to radians
@@ -254,6 +251,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
       x2 = x1 - int(double(y2 - y1) / tan( ra ));
       ty = y2 + fmhD4;
 
+      QString qs;
       if( rightSide ) {
 
         if( x2 > width() || ty < fmh || x2 < x1 )
@@ -266,7 +264,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
         prevRightY = ty - fmh - fmhD4; //must be after above's "continue"
 
-        qs = KStringHandler::cPixelSqueeze( qs, fm, width() - x2 );
+        qs = KStringHandler::cPixelSqueeze( (*it)->segment->file()->name(), fm, width() - x2 );
 
         x3 = width() - fm.width( qs )
              - LABEL_HMARGIN //outer margin
@@ -287,7 +285,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
 
         prevLeftY = ty + fmh - fmhD4;
 
-        qs = KStringHandler::cPixelSqueeze( qs, fm, x2 );
+        qs = KStringHandler::cPixelSqueeze( (*it)->segment->file()->name(), fm, x2 );
 
         //**** needs a little tweaking:
 
@@ -308,7 +306,7 @@ RadialMap::Widget::paintExplodedLabels( QPainter &paint ) const
       (*it)->x3 = x3;
       (*it)->tx = tx;
       (*it)->ty = ty;
-      (*it)->qs = qs.ascii();
+      (*it)->qs = qs;
     }
 
     //if an element is deleted at this stage, we need to do this whole

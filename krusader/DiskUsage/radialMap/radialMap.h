@@ -67,6 +67,5 @@ namespace RadialMap
 #define LABEL_TEXT_VMARGIN 0
 #define LABEL_ANGLE_MARGIN 32
 #define LABEL_MIN_ANGLE_FACTOR 0.05
-#define LABEL_MAX_CHARS 30
 
 #endif
