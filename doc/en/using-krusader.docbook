@@ -860,7 +860,7 @@ TODO
       Please note that the archive support first needs to be properly 
       <link linkend="konfig-archives">configured</link> in Konfigurator.
       To open the archive use &Enter;, (double-)click or the <keycap>Right Arrow</keycap>.
-      &krusader; supports also <emphasis>hidden archives</emphasis>, 
+      &krusader; supports also <emphasis role="bold">hidden archives</emphasis>, 
       these are renamed archives with a *wrong* extension.
       &eg; &openoffice; uses zip archives with the next extensions: odt, sxw and odw.
       &Enter; will open the &openoffice; document and the <keycap>Right Arrow</keycap> will open the archive.
@@ -944,6 +944,38 @@ TODO
 
 <sect1 id="more-features">
 <title>More features</title>
+
+<sect2 id="vfs">
+<title>Virtual file systems (VFS)</title>
+
+<para>
+ A basic <link linkend="features">OFM feature</link> is  VFS, 
+ this an abstracted layer over all kinds of archived information 
+ (ZIP files, FTP servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images, RPM catalogs, etc.),
+ which allows the user to access all the information in these divergent types of filesystems transparently - 
+ just like entering an ordinary sub-directory!
+ &krusader; supports several VFS:
+<itemizedlist>
+    <listitem><para><link linkend="remote-connections">Remote connections VFS</link>: 
+              provides the capability of working with a remote connection session (FTP, NFS, Samba, FISH, SFTP)
+              like with local filesystems.
+              It's perfect for complex remote operations and almost as powerful as most standalone GUI remote clients.</para>
+    </listitem>
+    <listitem><para><link linkend="archives">Archive VFS</link>:
+     allows to browse archives as it was a directory (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
+    </listitem>
+    <listitem><para><link linkend="archives">Search VFS</link>: <guibutton>Feed to listbox</guibutton> will place the
+     search results in VFS in a new Results-Tab.
+    </para>
+    </listitem>
+    <listitem><para><link linkend="synchronizer">Synchronizer VFS</link>: TODO
+     </para>
+     </listitem>
+</itemizedlist>
+</para>
+
+</sect2>
+
 
 <sect2 id="compare">
 <title>Compare</title>
@@ -1083,74 +1115,6 @@ TODO
 </sect2>
 
 
-<sect2 id="locate">
-<title>Locate &GUI; Frontend</title>
-
-<para>&krusader; has a &GUI; frontend for the <command>locate</command> command (findutils).
-      Locate is used for fast file searching. It does not search from a directory, but from a database.
-      The package contains two files <command>locate</command> and <command>updatedb</command>.
-      Updatedb walks through on the local filesystem and stores the file entries in the database.
-      Often <command>cron</command> will call <command>updatedb</command> every night (set with Kcron).
-      Choose <emphasis role="bold"><menuchoice><guimenu>Commands</guimenu>
-      <guimenuitem>Locate</guimenuitem></menuchoice></emphasis>
-      or
-      <keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo> to start this feature.
-      <link linkend="konfig-advanced">Konfigurator</link> can set additional arguments for
-      <command>updatedb</command>.
-      </para>
-
-<para>Checkbox Options
-<itemizedlist>
-     <listitem><para><guilabel>Show only the existing files</guilabel>:
-               if the database contains entries which do not exist any more (deleted, moved since the
-               last <command>updatedb</command>), <command>locate</command> will not list them.
-               It checks the existence of each file before listing in the results window (slow).</para>
-         </listitem>
-     <listitem><para><guilabel>Case Sensitive</guilabel>:
-               unchecking it will allow lower and upper case search.</para>
-         </listitem>
-</itemizedlist></para>
-
-<para>Action buttons
-<itemizedlist>
-      <listitem><para><guibutton>Locate</guibutton>:
-             executes <command>locate <replaceable>foo foo</replaceable></command>
-       and places its output into the results window.</para></listitem>
-  <listitem><para><guibutton>Stop</guibutton>:
-             stops the locate process.</para></listitem>
-      <listitem><para><guibutton>UpdateDB</guibutton>:
-             starts <command>updatedb</command> for updating the locate database after
-       entering the root password.</para></listitem>
-  <listitem><para><guibutton>Close</guibutton>:
-             closes the locate window.</para></listitem>
-</itemizedlist>
-</para>
-
-<para>Results window
-<itemizedlist>
-  <listitem><para>double click on an item: steps to its directory, makes the item
-                      visible and closes the locate dialog.</para>
-  </listitem>
-     
-  <listitem><para>right click: edit/view/find menu.
-     <itemizedlist>
-      <listitem><para><keycap>F3</keycap>: views the current item.</para></listitem>
-      <listitem><para><keycap>F4</keycap>: edit the current item.</para></listitem>
-      <listitem><para><keycombo action="simul">&Ctrl;<keycap>f</keycap></keycombo>: 
-                      find files in the results window.</para></listitem>
-      <listitem><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo>: 
-                      next search result.</para></listitem>
-      <listitem><para><keycombo action="simul">&Ctrl;<keycap>p</keycap></keycombo>: 
-                      previous search result.</para></listitem>
-  </itemizedlist>
-
-  </para></listitem>
-    
-</itemizedlist>
-
-</para>
-
-</sect2>
 
 <sect2 id="checksum">
 <title>Checksum creation-verification</title>
@@ -1203,12 +1167,6 @@ TODO
 </sect2>
 
 
-<sect2 id="vfs">
-<title>Virtual file systems (VFS)</title>
-<para>TODO
-</para>
-
-</sect2>
 
 </sect1>
 

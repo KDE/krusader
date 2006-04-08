@@ -176,7 +176,7 @@ Previous used Docbook
 
 
 <!-- documentation links -->
-<!ENTITY vfs_lnk '<link linkend="vfs">Virtual file system (VFS)</link>'>
+<!ENTITY vfs_lnk '<link linkend="vfs">Virtual file systems (VFS)</link>'>
 <!ENTITY selection_modes_lnk '<link linkend="selection_modes">Selection Modes</link>'>
 <!ENTITY konfigstartpg_lnk '<link linkend="konfigurator">Konfigurator Startup page</link>'>
 <!ENTITY konfiglookandfeel_lnk '<link linkend="konfig-looknfeel">Konfigurator Look &amp; Feel page</link>'>
@@ -408,7 +408,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2006-04-03</date>
+  <date>2006-04-08</date>
   <releaseinfo>1.71.0 "cvs repository"</releaseinfo>
 
    <abstract>
@@ -470,7 +470,7 @@ Previous used Docbook
 
   <para>
   From the start, virtual filesystems became a main focus.
-  Virtual filesystems (VFSs) are an abstracted layer over all kinds of archived information
+  &vfs_lnk; are an abstracted layer over all kinds of archived information
   (ZIP files, &FTP; servers, TAR archives, NFS filesystems, SAMBA shares, ISO cd/dvd images,
   RPM catalogs, &etc;), which allows the user to access all the information in these divergent
   types of filesystems transparently - just like entering an ordinary sub-directory!
