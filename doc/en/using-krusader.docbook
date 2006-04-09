@@ -204,7 +204,10 @@ and you control the current session with the &viewmenu_lnk;.
        <para><emphasis><guilabel>Information Label</guilabel></emphasis> : shows how much free space
         is physically available on the file system, the file system capacity and where the path is mounted.
         If the information is not available (most often in the case of remote file system) a message will be
-        displayed with the reason for unavailablity instead of the information.</para>
+        displayed with the reason for unavailablity instead of the information.
+        The <guibutton>Media button</guibutton> on the left of the <guilabel>Information Label</guilabel> 
+        displays a list of all available media, where you can select the desired media 
+        (hdd partition, dvd, usb-stick, &etc;).</para>
      </listitem>
      
      <listitem>
@@ -962,13 +965,14 @@ TODO
               It's perfect for complex remote operations and almost as powerful as most standalone GUI remote clients.</para>
     </listitem>
     <listitem><para><link linkend="archives">Archive VFS</link>:
-     allows to browse archives as it was a directory (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
+     allows to browse archives in VFS as it was a directory (ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip).</para>
     </listitem>
     <listitem><para><link linkend="archives">Search VFS</link>: <guibutton>Feed to listbox</guibutton> will place the
-     search results in VFS in a new Results-Tab.
+     search results in VFS.
     </para>
     </listitem>
-    <listitem><para><link linkend="synchronizer">Synchronizer VFS</link>: TODO
+    <listitem><para><link linkend="synchronizer">Synchronizer VFS</link>: places the
+     synchronizer results in VFS.
      </para>
      </listitem>
 </itemizedlist>
@@ -1416,6 +1420,9 @@ TODO
 <entry><para><keycombo action="simul">&Ctrl;<keycap>l</keycap></keycombo></para></entry>
 <entry><para>Go to the &location_toolbar_lnk; (origin) as in &firefox; and &konqueror;</para></entry></row>
 <row>
+<entry><para><keycombo action="simul">&Ctrl;<keycap>m</keycap></keycombo></para></entry>
+<entry><para><link linkend="list_panel">Open media list</link>.</para></entry></row>
+<row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo></para></entry>
 <entry><para><link linkend="commands-menu">New Network Connection</link> dialog.</para></entry></row>
 <!-- TODO: Is this entry gone ????
@@ -1478,6 +1485,12 @@ TODO
 <row>
 <entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>l</keycap></keycombo></para></entry>
 <entry><para>&locate_lnk;</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>Left arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="list_panel">Open left media list</link>.</para></entry></row>
+<row>
+<entry><para><keycombo action="simul">&Ctrl;&Shift;<keycap>Right arrow</keycap></keycombo></para></entry>
+<entry><para><link linkend="list_panel">Open right media list</link>.</para></entry></row>
 </tbody>
 </tgroup>
 </informaltable>
