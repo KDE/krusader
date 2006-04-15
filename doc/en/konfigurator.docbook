@@ -51,11 +51,10 @@ and restart &krusader;.</para>
    <listitem>
    <itemizedlist>
     <listitem><para>
-              <guilabel>Starting Session</guilabel> : 
-                        Starts the selected &panel_profiles_lnk;.
-                        A Panel Profile contains: all the tabs paths, the current tab and the active panel.
+              <guilabel>Startup Profile</guilabel> : 
+                        Starts the selected <link linkend="panel_profiles">Panel profile</link> at startup.
                         <guilabel>&lt;Last session&gt;</guilabel> is a special Panel Profile,
-                        it is saved automaticly when closing &krusader;.              
+                        it is saved automaticly when closing &krusader;.
               </para></listitem>
   </itemizedlist>
   </listitem>
@@ -526,8 +525,8 @@ HTML_PARSING-->
 <varlistentry><term><guilabel>General</guilabel></term>
   <listitem>
   <itemizedlist>
-  <listitem><para><guilabel>Preserve date for local copy/move (slower)</guilabel>: 
-                  If checked, Krusader will change the modification time of the local files according 
+  <listitem><para><guilabel>Preserve attributes for local copy/move (slower)</guilabel>: 
+                  If checked, &krusader; will change all attributes (time, owner, group) of the local files according 
                   to the source one. This can make the copy slower.
                   </para></listitem>
   <listitem><para><guilabel>Automount filesystems</guilabel>: this makes &krusader; try to mount a
@@ -916,6 +915,5 @@ HTML_PARSING-->
 </para>
 
 </sect1>
-
 
 </chapter>

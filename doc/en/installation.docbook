@@ -773,23 +773,32 @@ foo</screen>
     <term><option>--left</option> <replaceable>&lt;path&gt;</replaceable></term>
     <listitem><para><action>start left panel at &lt;path&gt;</action></para></listitem>
   </varlistentry>
-  
+
   <varlistentry>
     <term><option>--right</option> <replaceable>&lt;path&gt;</replaceable></term>
     <listitem><para><action>start right panel at &lt;path&gt;</action></para></listitem>
   </varlistentry>
-  
+
+  <varlistentry>
+    <term><option>--left</option> <replaceable>&lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable></term>
+    <listitem><para><action>start left panel at &lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;, with tabs.</action></para></listitem>
+  </varlistentry>
+
   <varlistentry>
     <term><option>--profile</option> <replaceable>&lt;panel-profile&gt;</replaceable></term>
     <listitem><para><action>load a <link linkend="panel_profiles">panel-profile</link>
-               on startup</action></para></listitem>
+               on startup (this overrides the <link linkend="konfig-startup">default startup profile</link>).
+               </action></para></listitem>
   </varlistentry>
-  
+
 </variablelist>
 
 
 <para>Examples:
+<screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path&gt; --right=&lt;path&gt;</replaceable></userinput></screen>
 <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=/mnt/cdrom --right=ftp://downloads@myserver.net</replaceable></userinput></screen>
+<screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--left=&lt;path1&gt;,&lt;path2&gt; --right=&lt;path1&gt;,&lt;path2&gt;,&lt;path3&gt;</replaceable></userinput></screen>
+<screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile &lt;panel-profile&gt;</replaceable></userinput></screen>
 <screen><prompt>$</prompt> <userinput><command>krusader</command> <replaceable>--profile ftp-managment</replaceable></userinput></screen>
 </para>
 
