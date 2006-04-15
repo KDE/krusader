@@ -511,32 +511,32 @@ void Krusader::setupActions() {
                                   SLOT( cmdlinePopup() ), actionCollection(), "cmdline popup" );
    /* Shortcut disabled because of the Terminal Emulator bug. */
    actDirUp = new KAction( i18n( "Up one directory" ), "up", CTRL+Key_PageUp /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
-   new KAction( i18n( "&Edit New File" ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
-   new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_root", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
+   new KAction( i18n( "&Edit New File..." ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
+   new KAction( i18n( "Start &Root Mode Krusader..." ), "krusader_root", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
-   actTest = new KAction( i18n( "T&est Archive(s)" ), "ark", ALT + Key_E,
+   actTest = new KAction( i18n( "T&est Archive..." ), "ark", ALT + Key_E,
                           SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
    //actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", 0,
    //                             SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
-   actFTPNewConnect = new KAction( i18n( "New Net &Connection" ), "connect_creating", CTRL + Key_N,
+   actFTPNewConnect = new KAction( i18n( "New Net &Connection..." ), "connect_creating", CTRL + Key_N,
                                    SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
    actProfiles = new KAction( i18n( "Pro&files" ), "kr_profile", ALT + Key_L,
                                    MAIN_VIEW, SLOT( profiles() ), actionCollection(), "profile" );
-   actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kcalc", 0,
+   actCalculate = new KAction( i18n( "Calculate &Occupied Space..." ), "kcalc", 0,
                                SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
-   actCreateChecksum = new KAction( i18n( "Create Checksum" ), "binary", 0,
+   actCreateChecksum = new KAction( i18n( "Create Checksum..." ), "binary", 0,
                                SLOTS, SLOT( createChecksum() ), actionCollection(), "create checksum" );
-   actMatchChecksum = new KAction( i18n( "Verify Checksum" ), "match_checksum", 0,
+   actMatchChecksum = new KAction( i18n( "Verify Checksum..." ), "match_checksum", 0,
                                SLOTS, SLOT( matchChecksum() ), actionCollection(), "match checksum" );
-   actProperties = new KAction( i18n( "&Properties" ), "help", ALT+Key_Enter,
+   actProperties = new KAction( i18n( "&Properties..." ), "help", ALT+Key_Enter,
                                 SLOTS, SLOT( properties() ), actionCollection(), "properties" );
-   actPack = new KAction( i18n( "Pac&k" ), "kr_arc_pack", ALT + Key_P,
+   actPack = new KAction( i18n( "Pac&k..." ), "kr_arc_pack", ALT + Key_P,
                           SLOTS, SLOT( slotPack() ), actionCollection(), "pack" );
-   actUnpack = new KAction( i18n( "&Unpack" ), "kr_arc_unpack", ALT + Key_U,
+   actUnpack = new KAction( i18n( "&Unpack..." ), "kr_arc_unpack", ALT + Key_U,
                             SLOTS, SLOT( slotUnpack() ), actionCollection() , "unpack" );
-   actSplit = new KAction( i18n( "Sp&lit File" ), "kr_split", CTRL + Key_P,
+   actSplit = new KAction( i18n( "Sp&lit File..." ), "kr_split", CTRL + Key_P,
                            SLOTS, SLOT( slotSplit() ), actionCollection(), "split" );
-   actCombine = new KAction( i18n( "Com&bine Files" ), "kr_combine", CTRL + Key_B,
+   actCombine = new KAction( i18n( "Com&bine Files..." ), "kr_combine", CTRL + Key_B,
                              SLOTS, SLOT( slotCombine() ), actionCollection() , "combine" );
    actSelect = new KAction( i18n( "Select &Group" ), "kr_select", CTRL + Key_Plus,
                             SLOTS, SLOT( markGroup() ), actionCollection(), "select group" );
@@ -563,35 +563,35 @@ void Krusader::setupActions() {
    actMarkDifferent->setExclusiveGroup( "mark group" );
    if( compareMode < (int)( sizeof( compareArray ) / sizeof( KRadioAction ** ) ) -1 )
      (*compareArray[ compareMode ])->setChecked( true );
-   actHomeTerminal = new KAction( i18n( "&Terminal" ), "konsole", 0,
+   actHomeTerminal = new KAction( i18n( "&Terminal..." ), "konsole", 0,
                                   SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
    actFTPDisconnect = new KAction( i18n( "Disconnect &From Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
                                    SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
 #if KDE_IS_VERSION(3,2,0)	/* new mountman feature is available in kde 3.2 only! */
-   actMountMan = new KToolBarPopupAction( i18n( "&MountMan" ), "kr_mountman", ALT + Key_Slash,
+   actMountMan = new KToolBarPopupAction( i18n( "&MountMan..." ), "kr_mountman", ALT + Key_Slash,
                                           SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
    connect( ( ( KToolBarPopupAction* ) actMountMan ) ->popupMenu(), SIGNAL( aboutToShow() ),
             mountMan, SLOT( quickList() ) );
 #else
-   actMountMan = new KAction( i18n( "&MountMan" ), "kr_mountman", ALT + Key_Slash,
+   actMountMan = new KAction( i18n( "&MountMan..." ), "kr_mountman", ALT + Key_Slash,
                               SLOTS, SLOT( runMountMan() ), actionCollection(), "mountman" );
 #endif /* KDE 3.2 */
 
-   actFind = new KAction( i18n( "&Search" ), "filefind", CTRL + Key_S,
+   actFind = new KAction( i18n( "&Search..." ), "filefind", CTRL + Key_S,
                           SLOTS, SLOT( search() ), actionCollection(), "find" );
-   actLocate = new KAction( i18n( "&Locate" ), "find", SHIFT+CTRL + Key_L,
+   actLocate = new KAction( i18n( "&Locate..." ), "find", SHIFT+CTRL + Key_L,
                             SLOTS, SLOT( locate() ), actionCollection(), "locate" );
-   actSyncDirs = new KAction( i18n( "Synchronize &Directories" ), "kr_syncdirs", CTRL + Key_Y,
+   actSyncDirs = new KAction( i18n( "Synchronize &Directories..." ), "kr_syncdirs", CTRL + Key_Y,
                               SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
    actSyncBrowse = new KAction( i18n( "S&ynchron directory changes" ), "kr_syncbrowse_off", ALT + Key_Y,
                               SLOTS, SLOT( slotSyncBrowse() ), actionCollection(), "sync browse" );
-   actDiskUsage = new KAction( i18n( "D&isk Usage" ), "kchart", ALT + Key_D,
+   actDiskUsage = new KAction( i18n( "D&isk Usage..." ), "kchart", ALT + Key_D,
                               SLOTS, SLOT( slotDiskUsage() ), actionCollection(), "disk usage" );
    actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
                             SLOTS, SLOT( invert() ), actionCollection(), "invert" );
    actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,
                               SLOTS, SLOT( unmarkGroup() ), actionCollection(), "unselect group" );
-   actKonfigurator = new KAction( i18n( "Configure &Krusader" ), "configure", 0,
+   actKonfigurator = new KAction( i18n( "Configure &Krusader..." ), "configure", 0,
                                   SLOTS, SLOT( startKonfigurator() ), actionCollection(), "konfigurator" );
    actBack = new KAction( i18n( "Back" ), "back", 0,
                           SLOTS, SLOT( back() ), actionCollection(), "back" );
@@ -605,9 +605,9 @@ void Krusader::setupActions() {
    //                             SLOTS, SLOT( execFilter() ), actionCollection(), "exec files" );
    actCustomFilter = new KAction( i18n( "&Custom" ), SHIFT + Key_F12,
                                   SLOTS, SLOT( customFilter() ), actionCollection(), "custom files" );
-   actCompare = new KAction( i18n( "Compare b&y Content" ), "kmultiple", 0,
+   actCompare = new KAction( i18n( "Compare b&y Content..." ), "kmultiple", 0,
                              SLOTS, SLOT( compareContent() ), actionCollection(), "compare" );
-   actMultiRename = new KAction( i18n( "Multi &Rename" ), "krename", SHIFT + Key_F9,
+   actMultiRename = new KAction( i18n( "Multi &Rename..." ), "krename", SHIFT + Key_F9,
                                  SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
    new KAction( i18n( "Right-click menu" ), Key_Menu,
                 SLOTS, SLOT( rightclickMenu() ), actionCollection(), "rightclick menu" );
@@ -651,7 +651,7 @@ void Krusader::setupActions() {
 	     SLOT( previousTab() ), actionCollection(), "previous tab" );										
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );
-   actManageUseractions = new KAction( i18n( "Manage user actions" ), 0, SLOTS,
+   actManageUseractions = new KAction( i18n( "Manage user actions..." ), 0, SLOTS,
                               SLOT( manageUseractions() ), actionCollection(), "manage useractions" );
    new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection(), "changeremoteencoding");
 
