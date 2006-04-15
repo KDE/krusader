@@ -49,7 +49,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //   cfg_class  cfg_name             default              text                                                        restart tooltip
-    {{"Advanced","PreserveAttributes", _PreserveAttributes, i18n( "Preserve attributes for local copy/move (slower)" ), false,  i18n( "Change the modification time of local files according to the source one. This can slow down the copy process." ) },
+    {{"Advanced","PreserveAttributes", _PreserveAttributes, i18n( "Preserve attributes for local copy/move (slower)" ), false,  i18n( "Change all attributes (time, owner, group) of local files according to the source one. This can slow down the copy process." ) },
      {"Advanced","AutoMount",          _AutoMount,          i18n( "Automount filesystems" ),                            false,  i18n( "When stepping into a directory which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters." )}};
 
   KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 1, 0, generalSettings, 2, generalGrp );
