@@ -34,8 +34,8 @@
   <guimenuitem>Properties</guimenuitem></menuchoice></term>
   <listitem>
   <para>
-  Pop up the File-Properties dialog which allows you to change the
-        <emphasis role="bold">file permissions</emphasis>, owner, and group (providing you have the rights to do so).
+   Shows the File-Properties dialog which allows you to change the
+   <emphasis role="bold">file permissions</emphasis>, owner, and group (if you have the rights to do so).
   </para>
   </listitem>
 </varlistentry>
@@ -49,8 +49,7 @@
   <guimenuitem>Pack</guimenuitem></menuchoice></term>
   <listitem>
   <para>
-  Pop up a dialog which allows you to <link linkend="pack-archive">pack</link>
-        all the selected files in the active panel.
+  Creates a  <link linkend="pack-archive">new archive</link> of all the selected files in the active panel.
   </para>
   </listitem>
 </varlistentry>
@@ -63,8 +62,7 @@
   <guimenuitem>Unpack</guimenuitem></menuchoice></term>
   <listitem>
   <para>
-  This action tries to <link linkend="unpacking-archives">unpack</link> all the selected files
-  in the active panel.
+  <link linkend="unpacking-archives">Unpack</link> all the selected files in the active panel.
   </para>
   </listitem>
 </varlistentry>
@@ -77,7 +75,7 @@
   <guimenuitem>Test Archive</guimenuitem></menuchoice></term>
   <listitem>
   <para>
-  This menu option <link linkend="test-archive">tests the selected archive for corruption</link>.
+  <link linkend="test-archive">Test archive</link> for corruption.
   </para>
   </listitem>
 </varlistentry>
@@ -89,9 +87,9 @@
   <guimenuitem>Compare by content</guimenuitem></menuchoice></term>
   <listitem>
   <para>
-  This action compares the two current files - one from each panel via an external graphical diff utility.
-        By default &kompare; (part of the kdebase package) is used, but you can also use
-        &eg; &xxdiff_url; or &kdiff3_url; , change it in the &konfigdependencie_lnk;.
+   Compares two current files by content - one from each panel via an external graphical diff utility.
+   By default &kompare; (part of the kdebase package) is used, but you can also use
+   &eg; &xxdiff_url; or &kdiff3_url; , change it in the &konfigdependencie_lnk;.
   </para>
   </listitem>
 </varlistentry>
@@ -104,7 +102,7 @@
   <guimenuitem>Edit new file</guimenuitem></menuchoice></term>
   <listitem>
   <para>
-  This menu option creates a new file to edit.
+   Create a new file to edit.
   </para>
   </listitem>
 </varlistentry>
@@ -157,7 +155,7 @@
   <guimenuitem>Verify Checksum</guimenuitem></menuchoice></term>
   <listitem>
   <para>
-  <link linkend="checksum">Verify Checksum</link> .
+  <link linkend="checksum">Verify Checksum</link>
   </para>
   </listitem>
 </varlistentry>
@@ -186,7 +184,7 @@
   <listitem>
   <para>
   The &splitfile_lnk; function splits a file up into multiple smaller files so that it can be stored
-        on several smaller media (like <hardware>diskettes, zip-drives...</hardware>) or sent by e-mail.
+  on several smaller media (like <hardware>diskettes, zip-drives...</hardware>) or sent by e-mail.
   </para>
   </listitem>
 </varlistentry>
@@ -235,10 +233,16 @@
   </menuchoice></term>
   <listitem><para>
   Opens a dialog which allows you to select files in the active panel.
-  You can enter a list of space-separated file patterns (&ie;: <literal role="extension">*.c,  *.ccp</literal>).
-  With the Profile Handler you can manage your selections for future usage, this will speed up your work. 
+  In the <guilabel>Search for</guilabel> dialog  place the main search criteria.
+  Enter a filename, a wildcard (<literal role="extension">*.o.*</literal>,
+  <literal role="extension">*.c</literal> &etc;) or both - separated by a space.
+  When using <literal>'text'</literal> the results is the same as <literal>'*text*'</literal>.
+  You can exclude files from the search with '|' (&eg; <literal role="extension">'*.cpp *.h | *.moc.cpp'</literal> ).
+  With the <link linkend="profiles">profile handler</link> you can manage your selections for future usage. 
   A double-click on a Profile is the same as entering the selection and pressing
   the <guibutton>OK</guibutton> button.
+  More options for <guilabel>Select Group</guilabel> dialog are explained in the 
+  <link linkend="krusearcher">Search dialog</link>, who are basicly almost the same dialogs.
   </para></listitem>
 </varlistentry>
 
@@ -339,23 +343,23 @@
 
 <varlistentry>
   <term><menuchoice>
-  <shortcut><keycombo action="simul">&Ctrl;<keycap>L</keycap></keycombo></shortcut>
+  <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>L</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
   <guimenuitem>Locate</guimenuitem>
   </menuchoice></term>
   <listitem><para>
-  Opens the &locate_lnk;, allows fast file searching.
+  Opens the &locate_lnk; for fast file searching.
   </para></listitem>
 </varlistentry>
 
 <varlistentry>
   <term><menuchoice>
-  <shortcut><keycombo action="simul">&Ctrl;<keycap>D</keycap></keycombo></shortcut>
+  <shortcut><keycombo action="simul">&Ctrl;<keycap>Y</keycap></keycombo></shortcut>
   <guimenu>Commands</guimenu>
   <guimenuitem>Synchronize Directories</guimenuitem>
   </menuchoice></term>
   <listitem><para>
-  The &syncdirs_lnk; function allows you to compare the left and right panels and show the differences
+  The &syncdirs_lnk; function compares the left and right panels and show the differences
   between them.
   After the compare function, you can move files/directories so that they can be synchronized.
   </para>
@@ -409,9 +413,8 @@
   <guimenuitem>New Net Connection</guimenuitem>
   </menuchoice></term>
   <listitem><para>
-  Opens the <link linkend="remote-connections">New Network Connection</link> dialog which allows
-  you to open a &FTP;, SMB, FISH or SFTP connection to a remote host.
-  Note: we are planning to rewrite this dialog.
+  Opens the <link linkend="remote-connections">New Network Connection</link> dialog to start a
+  &FTP;, SMB, FISH or SFTP connection to a remote host.
   If you leave the username and password fields empty you'll login as anonymous.
   You can <link linkend="bookman">Bookmark</link> these remote sessions.
   </para></listitem>
@@ -487,7 +490,19 @@
   <guimenu>View</guimenu>
   <guimenuitem>Swap Panels</guimenuitem>
   </menuchoice></term>
-  <listitem><para>Swaps the panels. The left panel wil become the right panel and vice versa.</para>
+  <listitem><para>The left panel wil become the right panel and vice versa, 
+                  only the current tabs will be sapped.</para>
+  </listitem>
+</varlistentry>
+
+<varlistentry>
+  <term><menuchoice>
+  <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>U</keycap></keycombo></shortcut>
+  <guimenu>View</guimenu>
+  <guimenuitem>Swap Sides</guimenuitem>
+  </menuchoice></term>
+  <listitem><para>The complete left panel wil become the right panel and vice versa, 
+                  and all tabs will be swapped.</para>
   </listitem>
 </varlistentry>
 
@@ -601,6 +616,7 @@
 
 <varlistentry>
   <term><menuchoice>
+  <shortcut><keycombo action="simul">&Alt;&Ctrl;<keycap>T</keycap></keycombo></shortcut>
   <guimenu>View</guimenu>
   <guimenuitem>Show Terminal Emulator</guimenuitem>
   </menuchoice></term>
@@ -729,9 +745,10 @@
   <guimenu>Help</guimenu>
   <guimenuitem>What's This?</guimenuitem>
   </menuchoice></term>
-  <listitem><para>Changes the mouse cursor to a combination arrow and question mark.
+  <listitem><para>The &whatsthis_url; help function changes the mouse cursor to a combination arrow and question mark.
       Clicking on items within &krusader; will open a help window (if one exists for that particular item)
-      explaining the item's function.</para>
+      explaining the item's function. If you want to know more about a specific item than use this feature,
+      a right-click on an item will also open the &whatsthis_url; help.</para>
   </listitem>
 </varlistentry>
 
