@@ -1,7 +1,7 @@
 /***************************************************************************
                      synchronizedialog.cpp  -  description
                              -------------------
-    copyright            : (C) 2003 by Csaba Karai
+    copyright            : (C) 2003 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -39,11 +39,12 @@
 SynchronizeDialog::SynchronizeDialog( QWidget* parent,  const char* name, bool modal, WFlags fl,
                                       Synchronizer *sync, int pleftCopyNr, KIO::filesize_t pleftCopySize,
                                       int prightCopyNr, KIO::filesize_t prightCopySize, int pdeleteNr,
-                                      KIO::filesize_t pdeleteSize ) : QDialog( parent, name, modal, fl ),
+                                      KIO::filesize_t pdeleteSize, int parThreads ) : QDialog( parent, name, modal, fl ),
                                       synchronizer( sync ), leftCopyNr ( pleftCopyNr ),
                                       leftCopySize( pleftCopySize ), rightCopyNr ( prightCopyNr ),
                                       rightCopySize( prightCopySize ), deleteNr( pdeleteNr ),
-                                      deleteSize( pdeleteSize ), isPause( true ), syncStarted( false )
+                                      deleteSize( pdeleteSize ), parallelThreads( parThreads ),
+                                      isPause( true ), syncStarted( false )
 {
   setCaption( i18n("Krusader::Synchronize") );
 
@@ -142,8 +143,8 @@ void SynchronizeDialog::startSynchronization()
   if( !cbLeftToRight->isChecked() ) rightCopySize = 0;
   if( !cbDeletable->isChecked() )   deleteSize = 0;
   
-  synchronizer->synchronize( cbRightToLeft->isChecked(), cbLeftToRight->isChecked(),
-                             cbDeletable->isChecked(), !cbOverwrite->isChecked() );
+  synchronizer->synchronize( this, cbRightToLeft->isChecked(), cbLeftToRight->isChecked(),
+                             cbDeletable->isChecked(), !cbOverwrite->isChecked(), parallelThreads );
 }
 
 void SynchronizeDialog::synchronizationFinished()

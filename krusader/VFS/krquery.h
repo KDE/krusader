@@ -37,6 +37,8 @@
 #include <kio/jobclasses.h>
 #include "vfile.h"
 
+class KFileItem;
+
 class KRQuery : public QObject {
   Q_OBJECT
 
@@ -54,6 +56,8 @@ public:
 
   // matching a file with the query
   bool match( vfile *file ) const;// checks if the given vfile object matches the conditions
+  // matching a KIO file with the query
+  bool match( KFileItem *file ) const;// checks if the given vfile object matches the conditions
   // matching a name with the query
   bool match( const QString &name ) const;// matching the filename only
   // matching the name of the directory

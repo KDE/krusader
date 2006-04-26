@@ -124,7 +124,10 @@ bool KRpermHandler::fileExecutable( QString localFile ) {
 }
 
 QString KRpermHandler::mode2QString( mode_t m ) {
-	QString perm = "----------";
+	char perm[ 11 ];
+	for( int i=0; i != 10; i++ )
+		perm[ i ] = '-';
+	perm[ 10 ] = 0;
 
 	if ( S_ISLNK( m ) ) perm[ 0 ] = 'l';  // check for symLink
 	if ( S_ISDIR( m ) ) perm[ 0 ] = 'd';  // check for directory
@@ -145,7 +148,7 @@ QString KRpermHandler::mode2QString( mode_t m ) {
 	if ( m & 0001 ) perm[ 9 ] = 'x';
 	if ( m & 01000 ) perm[ 9 ] = 't';
 
-	return perm;
+	return QString( perm );
 }
 
 void KRpermHandler::init() {

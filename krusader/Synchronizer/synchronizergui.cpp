@@ -1,7 +1,7 @@
 /***************************************************************************
                        synchronizergui.cpp  -  description
                              -------------------
-    copyright            : (C) 2003 by Csaba Karai
+    copyright            : (C) 2003 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -1274,46 +1274,57 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   // creating the time shift, equality threshold options
 
-  QGroupBox *timeOptionsGroup = new QGroupBox( generalFilter, "timeOptions" );
-  timeOptionsGroup->setTitle( i18n( "&Time options" ) );
-  timeOptionsGroup->setColumnLayout(0, Qt::Vertical );
-  timeOptionsGroup->layout()->setSpacing( 0 );
-  timeOptionsGroup->layout()->setMargin( 0 );
-  QGridLayout *timeOptionsLayout = new QGridLayout( timeOptionsGroup->layout() );
-  timeOptionsLayout->setAlignment( Qt::AlignTop );
-  timeOptionsLayout->setSpacing( 6 );
-  timeOptionsLayout->setMargin( 11 );
+  QGroupBox *optionsGroup = new QGroupBox( generalFilter, "options" );
+  optionsGroup->setTitle( i18n( "&Options" ) );
+  optionsGroup->setColumnLayout(0, Qt::Vertical );
+  optionsGroup->layout()->setSpacing( 0 );
+  optionsGroup->layout()->setMargin( 0 );
+  QGridLayout *optionsLayout = new QGridLayout( optionsGroup->layout() );
+  optionsLayout->setAlignment( Qt::AlignTop );
+  optionsLayout->setSpacing( 6 );
+  optionsLayout->setMargin( 11 );
 
-  QLabel * equalityLabel = new QLabel( i18n( "Equality threshold:" ), timeOptionsGroup );
-  timeOptionsLayout->addWidget( equalityLabel, 0, 0 );
+  QLabel * parallelThreadsLabel = new QLabel( i18n( "Parallel threads:" ), optionsGroup );
+  optionsLayout->addWidget( parallelThreadsLabel, 0, 0 );
+  parallelThreadsSpinBox = new QSpinBox( optionsGroup, "parallelThreadsSpinBox" );
+  parallelThreadsSpinBox->setMinValue( 1 );
+  parallelThreadsSpinBox->setMaxValue( 15 );
+  krConfig->setGroup( "Synchronize" );
+  int parThreads = krConfig->readNumEntry( "Parallel Threads", 1 );
+  parallelThreadsSpinBox->setValue( parThreads );
 
-  equalitySpinBox = new QSpinBox( timeOptionsGroup, "equalitySpinBox" );
+  optionsLayout->addWidget( parallelThreadsSpinBox, 0, 1 );
+
+  QLabel * equalityLabel = new QLabel( i18n( "Equality threshold:" ), optionsGroup );
+  optionsLayout->addWidget( equalityLabel, 1, 0 );
+
+  equalitySpinBox = new QSpinBox( optionsGroup, "equalitySpinBox" );
   equalitySpinBox->setMaxValue( 9999 );
-  timeOptionsLayout->addWidget( equalitySpinBox, 0, 1 );
+  optionsLayout->addWidget( equalitySpinBox, 1, 1 );
 
-  equalityUnitCombo = new QComboBox( timeOptionsGroup, "equalityUnitCombo" );
+  equalityUnitCombo = new QComboBox( optionsGroup, "equalityUnitCombo" );
   equalityUnitCombo->insertItem( i18n( "sec" ) );
   equalityUnitCombo->insertItem( i18n( "min" ) );
   equalityUnitCombo->insertItem( i18n( "hour" ) );
   equalityUnitCombo->insertItem( i18n( "day" ) );
-  timeOptionsLayout->addWidget( equalityUnitCombo, 0, 2 );
+  optionsLayout->addWidget( equalityUnitCombo, 1, 2 );
 
-  QLabel * timeShiftLabel = new QLabel( i18n( "Time shift (right-left):" ), timeOptionsGroup );
-  timeOptionsLayout->addWidget( timeShiftLabel, 1, 0 );
+  QLabel * timeShiftLabel = new QLabel( i18n( "Time shift (right-left):" ), optionsGroup );
+  optionsLayout->addWidget( timeShiftLabel, 2, 0 );
 
-  timeShiftSpinBox = new QSpinBox( timeOptionsGroup, "timeShiftSpinBox" );
+  timeShiftSpinBox = new QSpinBox( optionsGroup, "timeShiftSpinBox" );
   timeShiftSpinBox->setMinValue( -9999 );
   timeShiftSpinBox->setMaxValue( 9999 );
-  timeOptionsLayout->addWidget( timeShiftSpinBox, 1, 1 );
+  optionsLayout->addWidget( timeShiftSpinBox, 2, 1 );
 
-  timeShiftUnitCombo = new QComboBox( timeOptionsGroup, "timeShiftUnitCombo" );
+  timeShiftUnitCombo = new QComboBox( optionsGroup, "timeShiftUnitCombo" );
   timeShiftUnitCombo->insertItem( i18n( "sec" ) );
   timeShiftUnitCombo->insertItem( i18n( "min" ) );
   timeShiftUnitCombo->insertItem( i18n( "hour" ) );
   timeShiftUnitCombo->insertItem( i18n( "day" ) );
-  timeOptionsLayout->addWidget( timeShiftUnitCombo, 1, 2 );
+  optionsLayout->addWidget( timeShiftUnitCombo, 2, 2 );
 
-  generalFilter->middleLayout->addWidget( timeOptionsGroup );
+  generalFilter->middleLayout->addWidget( optionsGroup );
 
 
   /* ================================== Buttons =================================== */
@@ -1396,8 +1407,8 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
 
   connect( &synchronizer,     SIGNAL( comparedFileData( SynchronizerFileItem * ) ), this,
                               SLOT( addFile( SynchronizerFileItem * ) ) );
-  connect( &synchronizer,     SIGNAL( markChanged( SynchronizerFileItem * ) ), this,
-                              SLOT( markChanged( SynchronizerFileItem * ) ) );
+  connect( &synchronizer,     SIGNAL( markChanged( SynchronizerFileItem *, bool ) ), this,
+                              SLOT( markChanged( SynchronizerFileItem *, bool ) ) );
   connect( &synchronizer,     SIGNAL( statusInfo( QString ) ), this, SLOT( statusInfo( QString ) ) );
 
   connect( btnLeftToRight,    SIGNAL( toggled(bool) ), this, SLOT( refresh() ) );
@@ -1734,6 +1745,8 @@ void SynchronizerGUI::closeDialog()
 
   krConfig->writeEntry("Scroll Results", btnScrollResults->isOn() );
 
+  krConfig->writeEntry("Parallel Threads", parallelThreadsSpinBox->value() );
+
   krConfig->writeEntry("Window Width", sizeX );
   krConfig->writeEntry("Window Height", sizeY );
   krConfig->writeEntry("Window Maximized", isMaximized() );
@@ -1785,7 +1798,8 @@ void SynchronizerGUI::compare()
                        cbIgnoreDate->isChecked(), cbAsymmetric->isChecked(), cbByContent->isChecked(),
                        cbIgnoreCase->isChecked(), btnScrollResults->isOn(), selectedFiles,
                        convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ),
-                       convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );
+                       convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ),
+                       parallelThreadsSpinBox->value() );
   enableMarkButtons();
   btnStopComparing->setEnabled( isComparing = false );
   btnStopComparing->hide();
@@ -1877,37 +1891,44 @@ void SynchronizerGUI::addFile( SynchronizerFileItem *item )
   }
 }
 
-void SynchronizerGUI::markChanged( SynchronizerFileItem *item )
+void SynchronizerGUI::markChanged( SynchronizerFileItem *item, bool ensureVisible )
 {
   SyncViewItem *listItem = (SyncViewItem *)item->userData();
   if( listItem )
   {
-    QString leftName="", rightName="", leftDate="", rightDate="", leftSize="", rightSize="";
-    bool    isDir = item->isDir();
+    if( !item->isMarked() ) {
+      listItem->setVisible( false );
+    } else {
+      QString leftName="", rightName="", leftDate="", rightDate="", leftSize="", rightSize="";
+      bool    isDir = item->isDir();
 
-    if( item->existsInLeft() )
-    {
-      leftName = item->leftName();
-      leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
-      leftDate = SynchronizerGUI::convertTime( item->leftDate() );
+      if( item->existsInLeft() )
+      {
+        leftName = item->leftName();
+        leftSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->leftSize() );
+        leftDate = SynchronizerGUI::convertTime( item->leftDate() );
+      }
+
+      if( item->existsInRight() )
+      {
+        rightName = item->rightName();
+        rightSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->rightSize() );
+        rightDate = SynchronizerGUI::convertTime( item->rightDate() );
+      }
+
+      listItem->setVisible( true );
+      listItem->setText( 0, leftName );
+      listItem->setText( 1, leftSize );
+      listItem->setText( 2, leftDate );
+      listItem->setColors( foreGrounds[ item->task() ], backGrounds[ item->task() ] );
+      listItem->setText( 3, Synchronizer::getTaskTypeName( item->task() ) );
+      listItem->setText( 4, rightDate );
+      listItem->setText( 5, rightSize );
+      listItem->setText( 6, rightName );
+
+      if( ensureVisible )
+        syncList->ensureItemVisible( listItem );
     }
-
-    if( item->existsInRight() )
-    {
-      rightName = item->rightName();
-      rightSize = isDir ? i18n("<DIR>")+" " : KRpermHandler::parseSize( item->rightSize() );
-      rightDate = SynchronizerGUI::convertTime( item->rightDate() );
-    }
-
-    listItem->setVisible( item->isMarked() );
-    listItem->setText( 0, leftName );
-    listItem->setText( 1, leftSize );
-    listItem->setText( 2, leftDate );
-    listItem->setColors( foreGrounds[ item->task() ], backGrounds[ item->task() ] );
-    listItem->setText( 3, Synchronizer::getTaskTypeName( item->task() ) );
-    listItem->setText( 4, rightDate );
-    listItem->setText( 5, rightSize );
-    listItem->setText( 6, rightName );
   }
 }
 
@@ -1992,7 +2013,8 @@ void SynchronizerGUI::synchronize()
 
   SynchronizeDialog *sd = new SynchronizeDialog( this, "SychDialog", true, 0, &synchronizer,
                                                  copyToLeftNr, copyToLeftSize, copyToRightNr,
-                                                 copyToRightSize, deleteNr, deleteSize );
+                                                 copyToRightSize, deleteNr, deleteSize,
+                                                 parallelThreadsSpinBox->value() );
 
   wasSync = sd->wasSyncronizationStarted();
   delete sd;
@@ -2128,6 +2150,9 @@ void SynchronizerGUI::loadFromProfile( QString profile )
   timeShiftSpinBox->setValue( timeShift );
   timeShiftUnitCombo->setCurrentItem( timeShiftCombo );
 
+  int parallelThreads = krConfig->readNumEntry( "Parallel Threads", 1 );
+  parallelThreadsSpinBox->setValue( parallelThreads );
+
   refresh();
 }
 
@@ -2158,6 +2183,7 @@ void SynchronizerGUI::saveToProfile( QString profile )
 
   krConfig->writeEntry( "Equality Threshold", convertToSeconds( equalitySpinBox->value(), equalityUnitCombo->currentItem() ) );
   krConfig->writeEntry( "Time Shift", convertToSeconds( timeShiftSpinBox->value(), timeShiftUnitCombo->currentItem() ) );
+  krConfig->writeEntry( "Parallel Threads", parallelThreadsSpinBox->value() );
 }
 
 void SynchronizerGUI::connectFilters( const QString &newString )

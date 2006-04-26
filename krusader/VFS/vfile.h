@@ -85,7 +85,7 @@ public:
 	inline const QString&   vfile_getName()    const { return vfile_name;           }
 	inline KIO::filesize_t  vfile_getSize()    const { return vfile_size;           }
 	inline const QString&   vfile_getPerm()    const { return vfile_perm;           }
-	inline bool             vfile_isDir()      const { return (vfile_perm[0]=='d'); }
+	inline bool             vfile_isDir()      const { return vfile_isdir;          }
 	inline bool             vfile_isSymLink()  const { return vfile_symLink;        }
 	inline const QString&   vfile_getSymDest() const { return vfile_symDest;        }
 	inline mode_t           vfile_getMode()    const { return vfile_mode;           }
@@ -131,6 +131,7 @@ protected:
 	QString          vfile_symDest;  //< if it's a sym link - its detination
 	KURL             vfile_url;      //< file URL - empty by default
 	QString          vfile_icon;     //< the name of the icon file
+	bool             vfile_isdir;    //< flag, if it's a directory
 };
 
 	

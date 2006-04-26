@@ -33,8 +33,9 @@
 #include "krquery.h"
 #include "../krusader.h"
 #include "../resources.h"
-#include "../VFS/vfs.h"
+#include "vfs.h"
 #include "krarchandler.h"
+#include "krpermhandler.h"
 
 #include <qtextstream.h>
 #include <qtextcodec.h>
@@ -45,6 +46,7 @@
 #include <qfile.h>
 #include <kurlcompletion.h>
 #include <kio/job.h>
+#include <kfileitem.h>
 
 #define  STATUS_SEND_DELAY     250
 #define  MAX_LINE_LEN          500
@@ -185,7 +187,7 @@ bool KRQuery::match( vfile *vf ) const
   // see if the name matches
   if ( !match( vf->vfile_getName() ) ) return false;
   // checking the mime
-  if( !type.isEmpty() && !checkType( vf->vfile_getMime() ) ) return false;
+  if( !type.isEmpty() && !checkType( vf->vfile_getMime( true ) ) ) return false;
   // check that the size fit
   KIO::filesize_t size = vf->vfile_getSize();
   if ( minSize && size < minSize ) return false;
@@ -227,6 +229,19 @@ bool KRQuery::match( vfile *vf ) const
   }
 
   return true;
+}
+
+bool KRQuery::match( KFileItem *kfi ) const {
+  mode_t mode = kfi->mode() | kfi->permissions();
+  QString perm = KRpermHandler::mode2QString( mode );
+  if ( kfi->isDir() ) 
+    perm[ 0 ] = 'd';
+
+  vfile temp( kfi->text(), kfi->size(), perm, kfi->time( KIO::UDS_MODIFICATION_TIME ),
+              kfi->isLink(), kfi->user(), kfi->group(), kfi->user(), 
+              kfi->mimetype(), kfi->linkDest(), mode );
+
+  return match( &temp );
 }
 
 // takes the string and adds BOLD to it, so that when it is displayed,

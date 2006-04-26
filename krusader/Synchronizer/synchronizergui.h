@@ -1,7 +1,7 @@
 /***************************************************************************
                        synchronizergui.h  -  description
                              -------------------
-    copyright            : (C) 2003 by Csaba Karai
+    copyright            : (C) 2003 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -127,7 +127,7 @@ public slots:
 protected slots:
   void reject();
   void addFile( SynchronizerFileItem * );
-  void markChanged( SynchronizerFileItem * );
+  void markChanged( SynchronizerFileItem *, bool );
   void setScrolling( bool );
   void statusInfo( QString );
   void subdirsChecked( bool );
@@ -190,6 +190,7 @@ protected:
   
   QStringList    selectedFiles;
   
+  QSpinBox      *parallelThreadsSpinBox;
   QSpinBox      *equalitySpinBox;
   QComboBox     *equalityUnitCombo;
   QSpinBox      *timeShiftSpinBox;

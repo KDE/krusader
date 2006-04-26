@@ -66,6 +66,7 @@ vfile::vfile(const QString& name,	                  // useful construtor
 	vfile_mimeType=mime;
 	vfile_symDest=symDest;
 	vfile_mode=mode;
+	vfile_isdir = ( perm[ 0 ] == 'd' );
 	if (vfile_isDir() && !vfile_symLink )
 		vfile_size = 0;
 }
@@ -94,6 +95,7 @@ vfile::vfile(const QString& name,	                  // useful construtor
 	vfile_mimeType=mime;
 	vfile_symDest=symDest;
 	vfile_mode=mode;
+	vfile_isdir = ( perm[ 0 ] == 'd' );
 	if ( vfile_isDir() && !vfile_symLink )
 		vfile_size = 0;
 }
@@ -122,7 +124,7 @@ char vfile::vfile_isExecutable() const {
 const QString& vfile::vfile_getMime(bool fast){
 	if( vfile_mimeType == QString::null ){ // mimetype == "" is OK so don't check mimetype.empty() !
 		vfile_mimeType = KMimeType::findByURL( vfile_getUrl(),vfile_getMode(),vfile_getUrl().isLocalFile(),fast)->name();
-		if( vfile_mimeType.contains("directory") ) vfile_perm[0] = 'd';
+		if( vfile_mimeType.contains("directory") ) vfile_perm[0] = 'd', vfile_isdir = true;
 	}
 	return vfile_mimeType;
 }
@@ -216,6 +218,7 @@ vfile& vfile::operator= (const vfile& vf){
 	vfile_mimeType = vf.vfile_mimeType ;
 	vfile_symDest  = vf.vfile_symDest  ;
 	vfile_url      = vf.vfile_url      ;
+	vfile_isdir    = vf.vfile_isdir    ;
 	
 	return (*this);
 } 

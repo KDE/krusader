@@ -8,4 +8,6 @@ libSynchronizer_a_SOURCES = \
 	synchronizedialog.cpp \
 	synchronizer.cpp \
 	synchronizergui.cpp \
-	feedtolistboxdialog.cpp
+	feedtolistboxdialog.cpp \
+	synchronizertask.cpp \
+	synchronizerdirlist.cpp

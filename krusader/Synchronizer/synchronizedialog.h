@@ -1,7 +1,7 @@
 /***************************************************************************
                       synchronizedialog.h  -  description
                              -------------------
-    copyright            : (C) 2003 by Csaba Karai
+    copyright            : (C) 2003 + by Csaba Karai
     e-mail               : krusader@users.sourceforge.net
     web site             : http://krusader.sourceforge.net
  ---------------------------------------------------------------------------
@@ -45,7 +45,7 @@ class SynchronizeDialog : QDialog
   
   public:
     SynchronizeDialog(  QWidget*,  const char*, bool, WFlags, Synchronizer *sync,
-                        int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t);
+                        int, KIO::filesize_t, int, KIO::filesize_t, int, KIO::filesize_t, int);
     ~SynchronizeDialog();
 
     inline bool wasSyncronizationStarted()    { return syncStarted; }
@@ -81,6 +81,8 @@ class SynchronizeDialog : QDialog
     KIO::filesize_t   rightCopySize;
     int               deleteNr;
     KIO::filesize_t   deleteSize;
+
+    int               parallelThreads;
 
     bool           isPause;
     bool           syncStarted;
