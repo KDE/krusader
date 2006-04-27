@@ -37,6 +37,7 @@
 #include <kfileitem.h>
 #include <klargefile.h>
 #include <qapplication.h>
+#include <qdir.h>
 
 SynchronizerDirList::SynchronizerDirList( QWidget *w ) : QObject(), QDict<vfile>(), fileIterator( 0 ),
                                    parentWidget( w ), busy( false ), result( false ), currentUrl() {
@@ -106,23 +107,33 @@ bool SynchronizerDirList::load( const QString &urlIn, bool wait ) {
       KDE_struct_stat stat_p;
       KDE_lstat(fullName.local8Bit(),&stat_p);
 
+      QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
+
       bool symLink= S_ISLNK(stat_p.st_mode);
-      char symDest[256];
-      bzero(symDest,256); 
+      QString symlinkDest;
+
       if( symLink ){  // who the link is pointing to ?
+        char symDest[256];
+        bzero(symDest,256); 
         int endOfName=0;
         endOfName=readlink(fullName.local8Bit(),symDest,256);
+        if ( endOfName != -1 ) {
+          QString absSymDest = symlinkDest = QString::fromLocal8Bit( symDest );
+
+          if( !absSymDest.startsWith( "/" ) )
+            absSymDest = QDir::cleanDirPath( path + "/" + absSymDest );
+
+          if ( QDir( absSymDest ).exists() )
+            perm[0] = 'd';
+        }
       }
 
-      QString symlinkDest = QString::fromLocal8Bit( symDest );
-
       QString mime = QString::null;
-      QString perm = KRpermHandler::mode2QString(stat_p.st_mode);
 
       KURL fileURL = KURL::fromPathOrURL( fullName );
 
       vfile* item=new vfile(name,stat_p.st_size,perm,stat_p.st_mtime,symLink,stat_p.st_uid,
-                        stat_p.st_gid,mime,QString::fromLocal8Bit( symDest ),stat_p.st_mode);
+                        stat_p.st_gid,mime,symlinkDest,stat_p.st_mode);
       item->vfile_setUrl( fileURL );
 
       insert( name, item );
