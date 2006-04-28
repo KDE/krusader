@@ -34,6 +34,7 @@
 
 #include <qpopupmenu.h>
 #include <qfile.h>
+#include <qfontmetrics.h>
 
 #include <klocale.h>
 #include <kiconloader.h>
@@ -88,6 +89,24 @@ MediaButton::~MediaButton() {}
 void MediaButton::slotAboutToShow() {
 	popupMenu->clear();
 	urls.clear();
+	
+	/* WORKAROUND CODE START */
+	
+	/* 1. the menu is drawn when we know all the mount points
+	   2. the menu is corrected, when the HDD volume sizes arrive from df
+	
+	   when the volume sizes are added to the items, some cases widget resize
+	   is necessary. If transparency is set for the widget, QT produces weird
+	   looking widgets, and that's why this workaround is used.
+	   Here we add additional spaces to the mounted HDD elements for avoiding
+	   the buggy widget resize. These are extra spaces. */
+
+	extraSpaces = "";
+	QFontMetrics fm( popupMenu->font() );
+	int requiredWidth = fm.width( "999.9 GB " );
+	while( fm.width( extraSpaces ) < requiredWidth )
+		extraSpaces+=" ";
+	/* WORKAROUND CODE END */
 	
 	KMountPoint::List possibleMountList = KMountPoint::possibleMountPoints();
 	for (KMountPoint::List::iterator it = possibleMountList.begin(); it != possibleMountList.end(); ++it) {
@@ -221,7 +240,7 @@ void MediaButton::gettingSpaceData(const QString &mountPoint, unsigned long kBSi
 				popupMenu->changeItem( i, pixmap, popupMenu->text( i ) );
 			}
 			else if( types[ i ] == "hdd" )
-				popupMenu->changeItem( i, sizeText + " " + popupMenu->text( i ) );
+				popupMenu->changeItem( i, sizeText + " " + popupMenu->text( i ).stripWhiteSpace() );
 			return;
 		}
 	}
@@ -265,6 +284,12 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	
 	QString name;
 	QString type = detectType( mp );
+	
+	/* WORKAROUND CODE START */
+	/* add spaces to avoid widget resize in gettingSpaceData,
+	   which is buggy in QT when transparency is set */
+	QString extSpc = ( isMounted && type == "hdd" ) ? extraSpaces : "";
+	/* WORKAROUND CODE END */
 		
 #if KDE_IS_VERSION(3,4,0)
 	QString mimeBase = "media/";
@@ -275,7 +300,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	QString mime = mimeBase + type + mountString;
 	
 	if( type == "hdd" )
-		name = i18n( "Hard Disk" );
+		name =  i18n( "Hard Disk" ) ;
 	else if( type == "cdrom" )
 		name = i18n( "CD-ROM" );
 	else if( type == "cdwriter" )
@@ -313,11 +338,11 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 		int index = popupMenu->count();
 		urls.append( KURL::fromPathOrURL( mp->mountPoint() ) );
 		types.append( type );
-		popupMenu->insertItem( pixmap, name + " [" + mp->mountPoint() + "]", index, index );
+		popupMenu->insertItem( pixmap, name + " [" + mp->mountPoint() + "]" + extSpc, index, index );
 	}
 	else {
 		types[ overwrite ] = type;
-		popupMenu->changeItem( overwrite, pixmap, name + " [" + mp->mountPoint() + "]" );
+		popupMenu->changeItem( overwrite, pixmap, name + " [" + mp->mountPoint() + "]" + extSpc );
 	}
 }
 

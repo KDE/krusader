@@ -68,6 +68,8 @@ private:
 
   QValueList<KURL>    urls;
   QValueList<QString> types;
+
+  QString extraSpaces;  //prevents from increasing the size of the widget
 };
 
 #endif /* MEDIABUTTON_H */
