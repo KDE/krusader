@@ -1135,6 +1135,8 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
 // TODO: move the whole quicksearch mess out of here and into krview
 void KrDetailedView::quickSearch( const QString & str, int direction ) {
    KrViewItem * item = getCurrentKrViewItem();
+   if (!item)
+      return;
    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
    bool caseSensitive = _config->readBoolEntry( "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch );
    if ( !direction ) {
