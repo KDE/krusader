@@ -1,20 +1,20 @@
 # Translation of krusader.pot to Lithuanian
 #
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
-# Copyright (C) 2004-2006, Krusader Krew
+# Copyright (C) 2004-2005, Krusader Krew
 #
-# Dovydas Sankauskas <laisve@gmail.com>, 2005.
+# Dovydas Sankauskas <laisve@gmail.com>, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
-"POT-Creation-Date: 2006-03-24 00:09+0100\n"
-"PO-Revision-Date: 2005-12-14 18:08+0000\n"
+"POT-Creation-Date: 2006-04-15 13:55+0200\n"
+"PO-Revision-Date: 2006-05-05 16:02+0100\n"
 "Last-Translator: Dovydas Sankauskas <laisve@gmail.com>\n"
-"Language-Team: Lithuanian\n"
+"Language-Team: Lithuanian <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11\n"
+"X-Generator: KBabel 1.11.2\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
 
@@ -51,9 +51,8 @@ msgid "Enter the profile name:"
 msgstr "Įrašykite profilio pavadinimą:"
 
 #: GUI/useractionlistview.cpp:34
-#, fuzzy
 msgid "Title"
-msgstr "Pavadinimas:"
+msgstr "Pavadinimas"
 
 #: GUI/krremoteencodingmenu.cpp:97
 msgid "Reload"
@@ -64,48 +63,45 @@ msgid "Default"
 msgstr "Numatyta"
 
 #: GUI/mediabutton.cpp:73
-#, fuzzy
 msgid "Open the available media list"
-msgstr "Atverti lankytų aplankų sąrašą"
+msgstr "Atverti laikmenų sąrašą"
 
-#: GUI/mediabutton.cpp:279
-msgid "Hard Disc"
-msgstr ""
+#: GUI/mediabutton.cpp:278
+#, fuzzy
+msgid "Hard Disk"
+msgstr "Kietas diskas"
 
-#: GUI/mediabutton.cpp:281
+#: GUI/mediabutton.cpp:280
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
-#: GUI/mediabutton.cpp:283
+#: GUI/mediabutton.cpp:282
 msgid "CD Recorder"
-msgstr ""
+msgstr "Įrašinėjantis CD"
 
-#: GUI/mediabutton.cpp:286
+#: GUI/mediabutton.cpp:285
 msgid "DVD Recorder"
-msgstr ""
+msgstr "Įrašinėjantis DVD"
 
-#: GUI/mediabutton.cpp:289
+#: GUI/mediabutton.cpp:288
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: GUI/mediabutton.cpp:291 GUI/mediabutton.cpp:293
-#, fuzzy
+#: GUI/mediabutton.cpp:290 GUI/mediabutton.cpp:292
 msgid "Remote Share"
-msgstr "Nutolę ryšiai"
+msgstr "Nutolusios bylos"
 
-#: GUI/mediabutton.cpp:295 GUI/mediabutton.cpp:297
-#, fuzzy
+#: GUI/mediabutton.cpp:294 GUI/mediabutton.cpp:296
 msgid "Floppy"
-msgstr "Kopijuoti"
+msgstr "Diskelis"
 
-#: GUI/mediabutton.cpp:299
+#: GUI/mediabutton.cpp:298
 msgid "Zip Disk"
-msgstr ""
+msgstr "Zip įrenginys"
 
-#: GUI/mediabutton.cpp:302
-#, fuzzy
+#: GUI/mediabutton.cpp:301
 msgid "Unknown"
-msgstr "nežinoma"
+msgstr "Nežinoma"
 
 #: GUI/syncbrowsebutton.cpp:45
 msgid ""
@@ -176,7 +172,7 @@ msgstr "Nurodyti kitą bylos pavadinimą:"
 
 #: GUI/actionproperty.cpp:407
 msgid "Please set a unique name for the useraction"
-msgstr "Įrašykite vartotojo veiksmo pavadinimą"
+msgstr "Įrašykite veiksmo pavadinimą"
 
 #: GUI/actionproperty.cpp:412
 msgid "Please set a title for the menu entry"
@@ -192,6 +188,9 @@ msgid ""
 "If you don't have such an useraction the name is used by Krusader for an "
 "internal action"
 msgstr ""
+"Veiksmas tokiu pavadinimu jau yra!\n"
+"Jei veiksmo tokiu pavadinimu sąraše nėra, vadinasi šis pavadinimas "
+"naudojamas Krusader vidiniam veiksmui žymėti."
 
 #: GUI/actionpropertybase.cpp:380
 msgid "Action Property"
@@ -235,31 +234,29 @@ msgstr "<b>Pakaitalus</b> pakeisti į URL."
 
 #: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:391
 msgid "The title displayed in the <b>Usermenu</b>."
-msgstr "Pavadinimas, rodomas <b>Vartotojo meniu</b>."
+msgstr "Pavadinimas, rodomas <b>Meniu</b>."
 
 #: GUI/actionpropertybase.cpp:390
 msgid "Title:"
 msgstr "Pavadinimas:"
 
 #: GUI/actionpropertybase.cpp:392
-#, fuzzy
 msgid ""
 "Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
 "<i>Title</i> shown in the <b>Usermenu</b> can be set below."
 msgstr ""
-"Unikalus <b>Vartotojo veiksmo</b> pavadinimas. Rodomas tik derinant Krusader "
-"– nerodomas niekur kitur. <p><b>Dėmesio</b>: <i>Pavadinimas</i>, rodomas "
-"<b>Vartotojo meniu</b> gali būti nurodytas žemiau."
+"Unikalus <b>Veiksmo</b> pavadinimas. Rodomas tik derinant Krusader – "
+"nerodomas niekur kitur. <p><b>Dėmesio</b>: <i>Pavadinimas</i>, rodomas "
+"<b>Meniu</b> gali būti nurodytas žemiau."
 
 #: GUI/actionpropertybase.cpp:393 GUI/actionpropertybase.cpp:410
 msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
 msgstr ""
-"Norėdami patogiau atskirti <b>Vartotojo veiksmus</b> galite juos sugrupuoti."
-"Parinkite jau esančią <i>Kategoriją</i> arba įveskite naujos Kategorijos "
-"pavadinimą."
+"Norėdami patogiau atskirti <b>Veiksmus</b> galite juos sugrupuoti.Parinkite "
+"jau esančią <i>Kategoriją</i> arba įveskite naujos Kategorijos pavadinimą."
 
 #: GUI/actionpropertybase.cpp:394
 msgid "Icon"
@@ -270,30 +267,28 @@ msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
 msgstr ""
-"Kiekvienas <b>Vartotojo veiksmas</b> gali turėti savo ženkliuką, matomą "
-"<b>Vartotojo meniu</b> prie pavadinimo."
+"Kiekvienas <b>Veiksmas</b> gali turėti savo ženkliuką, matomą <b>Meniu</b> "
+"prie pavadinimo."
 
 #: GUI/actionpropertybase.cpp:396
 msgid "Identifier:"
 msgstr "Identifikatorius:"
 
 #: GUI/actionpropertybase.cpp:397
-#, fuzzy
 msgid ""
 "<p>Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.</p><p><b>Note</b>: "
 "The <i>Title</i> shown in the <b>Usermenu</b> can be set below.</p>"
 msgstr ""
-"Unikalus <b>Vartotojo veiksmo</b> pavadinimas. Rodomas tik derinant Krusader "
-"– nerodomas niekur kitur. <p><b>Dėmesio</b>: <i>Pavadinimas</i>, rodomas "
-"<b>Vartotojo meniu</b> gali būti nurodytas žemiau."
+"<p>Unikalus <b>Veiksmo</b> pavadinimas. Rodomas tik derinant Krusader – "
+"nerodomas niekur kitur.</p><p><b>Dėmesio</b>: <i>Pavadinimas</i>, rodomas "
+"<b>Meniu</b> gali būti nurodytas žemiau.</p>"
 
 #: GUI/actionpropertybase.cpp:398
 msgid "Command:"
 msgstr "Komanda:"
 
 #: GUI/actionpropertybase.cpp:399
-#, fuzzy
 msgid ""
 "<p>The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -302,20 +297,19 @@ msgid ""
 "</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax.</p>"
 msgstr ""
-"Šiame laukelyje nurodykite komandą, kuri bus vykdoma panaudojus <b>Vartotojo "
-"veiksmą</b>. Tai gali būti paprasta komada arba sudėtinga komandų "
-"kombinacija su <b>pakaitalais</b>.<p>\n"
-"Pavyzdžiai:<ul><code><li>eject /mnt/cdrom</li><li>amarok --apend %aList"
-"(\"Selected\")%</li></code></ul>\n"
-"Išsamesnę informaciją apie sintaksę rasite programos vadove."
+"<p>Šiame laukelyje nurodykite komandą, kuri bus vykdoma panaudojus "
+"<b>Veiksmą</b>. Tai gali būti paprasta komada arba sudėtinga komandų "
+"kombinacija su <b>pakaitalais</b>.</p> <p>Pavyzdžiai:<ul><code><li>eject /"
+"mnt/cdrom</li><li>amarok --apend %aList(\"Selected\")%</li></code></ul>\n"
+"Išsamesnę informaciją apie sintaksę rasite programos vadove.</p>"
 
 #: GUI/actionpropertybase.cpp:401 GUI/actionpropertybase.cpp:404
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
 msgstr ""
-"<i>Patarimas</i> rodomas užvedus pelės žymeklį virš mygtuko <b>Vartotojo "
-"veiksmų juostoje</b>."
+"<i>Patarimas</i> rodomas užvedus pelės žymeklį virš mygtuko <b>Veiksmų "
+"juostoje</b>."
 
 #: GUI/actionpropertybase.cpp:402 GUI/actionpropertybase.cpp:415
 msgid ""
@@ -330,7 +324,6 @@ msgid "Tooltip:"
 msgstr "Patarimas:"
 
 #: GUI/actionpropertybase.cpp:406
-#, fuzzy
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -339,9 +332,9 @@ msgid ""
 "(\"Selected\")%</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
-"Šiame laukelyje nurodykite komandą, kuri bus vykdoma panaudojus <b>Vartotojo "
-"veiksmą</b>. Tai gali būti paprasta komada arba sudėtinga komandų "
-"kombinacija su <b>pakaitalais</b>.<p>\n"
+"Šiame laukelyje nurodykite komandą, kuri bus vykdoma panaudojus <b>Veiksmą</"
+"b>. Tai gali būti paprasta komada arba sudėtinga komandų kombinacija su "
+"<b>pakaitalais</b>.<p>\n"
 "Pavyzdžiai:<ul><code><li>eject /mnt/cdrom</li><li>amarok --apend %aList"
 "(\"Selected\")%</li></code></ul>\n"
 "Išsamesnę informaciją apie sintaksę rasite programos vadove."
@@ -350,7 +343,7 @@ msgstr ""
 msgid "Category:"
 msgstr "Kategorija:"
 
-#: Filter/generalfilter.cpp:125 GUI/actionpropertybase.cpp:411
+#: Filter/generalfilter.cpp:127 GUI/actionpropertybase.cpp:411
 msgid "&Add"
 msgstr "&Įdėti"
 
@@ -414,7 +407,7 @@ msgstr "Pagrindinės parinktys"
 
 #: GUI/actionpropertybase.cpp:428
 msgid "The Useraction is only available for"
-msgstr "Vartotojo veiksmas prieinamas tik "
+msgstr "Veiksmas prieinamas tik "
 
 #: GUI/actionpropertybase.cpp:429 GUI/actionpropertybase.cpp:435
 #: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:445
@@ -434,7 +427,7 @@ msgstr "&Pašalinti"
 #: GUI/actionpropertybase.cpp:432 GUI/actionpropertybase.cpp:434
 #: GUI/actionpropertybase.cpp:439
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr "<b>Vartotojo veiksmą</b> rodyti tik čia nurodytoms reikšmėms."
+msgstr "<b>Veiksmą</b> rodyti tik čia nurodytoms reikšmėms."
 
 #: GUI/actionpropertybase.cpp:433
 msgid "Protocol"
@@ -453,8 +446,8 @@ msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
 msgstr ""
-"<b>Vartotojo veiksmą</b> rodyti tik čia nurodytoms byloms. Galite naudoti "
-"pakaitos simbolius „<code>?</code>“ ir „<code>*</code>“."
+"<b>Veiksmą</b> rodyti tik čia nurodytoms byloms. Galite naudoti pakaitos "
+"simbolius „<code>?</code>“ ir „<code>*</code>“."
 
 #: GUI/actionpropertybase.cpp:448
 msgid "Filename"
@@ -470,11 +463,11 @@ msgstr "Leisti keisti <i>Komandą</i> prieš ją įvykdant."
 
 #: GUI/actionpropertybase.cpp:451
 msgid "Run as different user:"
-msgstr "Vykdyti kito vartotojo teisėmis:"
+msgstr "Vykdyti kito naudotojo teisėmis:"
 
 #: GUI/actionpropertybase.cpp:452 GUI/actionpropertybase.cpp:453
 msgid "Execute the <i>Command</i> under a different user-id."
-msgstr "<i>Komandą</i> vykdyti kito vartotojo vardu ir teisėmis."
+msgstr "<i>Komandą</i> vykdyti kito naudotojo vardu ir teisėmis."
 
 #: GUI/actionpropertybase.cpp:454
 msgid "Advanced Properties"
@@ -521,15 +514,14 @@ msgid "Name of directory where command will be processed."
 msgstr "Aplanko, kuriame bus vykdoma komanda, pavadinimas."
 
 #: GUI/kcmdline.cpp:92
-#, fuzzy
 msgid ""
 "<qt><p>Well, it's actually quite simple: You type your command here and "
 "Krusader obeys.</p><p><b>Tip</b>: Move within command line history with &lt;"
 "Up&gt; and &lt;Down&gt; arrows.</p></qt>"
 msgstr ""
-"<qt>Tai labai paprasta: įveskite komandą čia ir Krusader ją įvykdys. <p> "
-"<Tip:>Naršyti po naudotų komandų sąrašą galite klavišais &lt;Aukštyn&gt; ir "
-"&lt;Žemyn&gt;.</qt>"
+"<qt><p>Tai labai paprasta: įveskite komandą čia ir Krusader ją įvykdys.</p> "
+"<p> <b>Tip</b>: Naršyti po naudotų komandų sąrašą galite klavišais &lt;"
+"Aukštyn&gt; ir &lt;Žemyn&gt;.</p></qt>"
 
 #: GUI/kcmdline.cpp:98
 msgid "If pressed, Krusader executes command line in a terminal."
@@ -554,13 +546,13 @@ msgid "F2 Term  "
 msgstr "F2 Terminalas"
 
 #: GUI/kfnkeys.cpp:51
-#, fuzzy
 msgid ""
 "<p>Open terminal in current directory.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p>"
 msgstr ""
-"<qt>Bus atidarytas terminalas su parinktu dabartiniu aplanku.<p> Terminalo "
-"tipą galite parinkti per Konfigurator. Numatytas terminalas – „konsole“.</qt>"
+"<p>Bus atidarytas terminalas su parinktu dabartiniu aplanku.</p><p> "
+"Terminalo tipą galite parinkti per Konfigurator. Numatytas terminalas "
+"<b>konsole</b>.</p>"
 
 #: GUI/kfnkeys.cpp:57
 msgid "F3 View  "
@@ -575,13 +567,12 @@ msgid "F4 Edit  "
 msgstr "F4 Keisti"
 
 #: GUI/kfnkeys.cpp:63
-#, fuzzy
 msgid ""
 "<p>Edit file.</p><p>The editor can be defined in Konfigurator, default is "
 "<b>internal editor</b>.</p>"
 msgstr ""
-"<qt>Keisti bylą.<p> Redaktorių galite nurodyti Krusader derinimo lange. "
-"Numatytas redaktorius yra „internal editor“.</qt>"
+"<p>Keisti bylą.</p><p> Redaktorių galite nurodyti Krusader derinimo lange. "
+"Numatytas redaktorius yra <b>internal editor</b>.</p>"
 
 #: GUI/kfnkeys.cpp:69
 msgid "F5 Copy  "
@@ -682,6 +673,9 @@ msgid ""
 "If it is not the case, please check and change the Proxy settings in "
 "kcontrol."
 msgstr ""
+"Krusader negali pasiekti ftp serverio http protokolu.\n"
+"Jei problema ne čia, pakeiskite atstovaujančio serverio nustatymus KDE "
+"Valdymo centre."
 
 #: VFS/ftp_vfs.cpp:156
 #, c-format
@@ -731,7 +725,7 @@ msgstr "Nepavyko atverti aplanko %1!"
 
 #: VFS/normal_vfs.cpp:96
 msgid "Access denied to"
-msgstr "Prieiga nesuteikta vartotojui"
+msgstr "Prieiga nesuteikta naudotojui"
 
 #: VFS/normal_vfs.cpp:205
 msgid "Can't create a directory. Check your permissions."
@@ -749,28 +743,28 @@ msgstr ""
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr "Kurti naujus aplankus galima tik „virt:/“ aplanke."
 
-#: Filter/generalfilter.cpp:92 Konfigurator/konfigurator.cpp:107
+#: Filter/generalfilter.cpp:94 Konfigurator/konfigurator.cpp:107
 #: VFS/krquery.cpp:136
 msgid "Archives"
 msgstr "Supakuotos bylos"
 
-#: Filter/generalfilter.cpp:93 VFS/krquery.cpp:137
+#: Filter/generalfilter.cpp:95 VFS/krquery.cpp:137
 msgid "Directories"
 msgstr "Aplankai"
 
-#: Filter/generalfilter.cpp:94 VFS/krquery.cpp:138
+#: Filter/generalfilter.cpp:96 VFS/krquery.cpp:138
 msgid "Image Files"
 msgstr "Grafinės bylos"
 
-#: Filter/generalfilter.cpp:95 VFS/krquery.cpp:139
+#: Filter/generalfilter.cpp:97 VFS/krquery.cpp:139
 msgid "Text Files"
 msgstr "Tekstinės bylos"
 
-#: Filter/generalfilter.cpp:96 VFS/krquery.cpp:140
+#: Filter/generalfilter.cpp:98 VFS/krquery.cpp:140
 msgid "Video Files"
 msgstr "Video bylos"
 
-#: Filter/generalfilter.cpp:97 VFS/krquery.cpp:141
+#: Filter/generalfilter.cpp:99 VFS/krquery.cpp:141
 msgid "Audio Files"
 msgstr "Garso bylos"
 
@@ -780,7 +774,7 @@ msgstr "Kitos bylos"
 
 #: VFS/krquery.cpp:417
 msgid "Searching content of '%1' (%2%)"
-msgstr ""
+msgstr "Ieškomas „%1“ turinys (%2%)"
 
 #: VFS/krarchandler.cpp:185
 msgid "Counting files in archive"
@@ -788,7 +782,7 @@ msgstr "Skaičiuojami objektai supakuotoje byloje"
 
 #: VFS/krarchandler.cpp:199
 msgid "Failed to list the content of the archive (%1)!"
-msgstr ""
+msgstr "Nepavyko pateikti supakuotos bylos %1 turinio!"
 
 #: VFS/krarchandler.cpp:219
 msgid "Failed to unpack"
@@ -796,20 +790,19 @@ msgstr "Nepavyko išpakuoti"
 
 #: VFS/krarchandler.cpp:256
 msgid "Failed to convert rpm (%1) to cpio!"
-msgstr ""
+msgstr "Nepavyko rpm bylos %1 pakeisti į cpio!"
 
 #: VFS/krarchandler.cpp:273
 msgid "Failed to convert deb (%1) to tar!"
-msgstr ""
+msgstr "Nepavyko deb bylos %1 pakeisti į tar!"
 
 #: VFS/krarchandler.cpp:307
 msgid "Unpacking File(s)"
 msgstr "Išpakuojamos bylos"
 
 #: VFS/krarchandler.cpp:331
-#, fuzzy
 msgid "Failed to unpack %1!"
-msgstr "Nepavyko išpakuoti"
+msgstr "Nepavyko išpakuoti %1!"
 
 #: VFS/krarchandler.cpp:375
 msgid "Testing Archive"
@@ -820,9 +813,8 @@ msgid "Packing File(s)"
 msgstr "Bylos pakuojamos"
 
 #: VFS/krarchandler.cpp:495
-#, fuzzy
 msgid "Failed to pack %1!"
-msgstr "Nepavyko supakuoti:"
+msgstr "Nepavyko supakuoti %1!"
 
 #: VFS/krarchandler.cpp:503
 msgid "Failed to pack: "
@@ -889,8 +881,7 @@ msgstr "&Svarbu raidžių dydis"
 msgid "Search &for:"
 msgstr "&Ieškoti:"
 
-#: Filter/generalfilter.cpp:79 Synchronizer/synchronizergui.cpp:1094
-#, fuzzy
+#: Filter/generalfilter.cpp:81 Synchronizer/synchronizergui.cpp:1094
 msgid ""
 "<p>The filename filtering criteria is defined here.</p><p>You can make use "
 "of wildcards. Multiple patterns are separated by space and patterns are "
@@ -899,87 +890,88 @@ msgid ""
 "| CVS/ .svn/</li></code></ul><b>Note</b>: the search term '<code>text</"
 "code>' is equivalent to '<code>*text*</code>'.</p>"
 msgstr ""
-"Įveskite bylų pavadinimų filtravimo kriterijus. <p> Galite naudoti pakaitos "
-"simbolius. Galite pateikti kelis kriterijus, atskirtus tarpais. Kriterijaus "
-"už vertikalaus brūkšnio „|“ atitiktys bus išmestos iš bendro rezultato.<p> "
-"Pavyzdžiai:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc."
-"cpp</li></code></ul> <b>Dėmesio</b>: Parašius „<code>tekstas</code>“, "
-"kriterijus bus interpretuojamas kaip „<code>*tekstas*</code>“."
+"<p>Įveskite bylų pavadinimų filtravimo kriterijus.</p><p> Galite naudoti "
+"pakaitos simbolius. Galite pateikti kelis kriterijus, atskirtus tarpais. "
+"Kriterijaus už vertikalaus brūkšnio | atitiktys bus išmestos iš bendro "
+"rezultato.</p><p> Pavyzdžiai:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*."
+"cpp *.h | *.moc.cpp</li><li>* | CVS/ .svn/</li></code></ul><b>Dėmesio</b>: "
+"Parašius <code>tekstas</code>, kriterijus bus interpretuojamas kaip "
+"<code>*tekstas*</code>.</p>"
 
-#: Filter/generalfilter.cpp:84
+#: Filter/generalfilter.cpp:86
 msgid "&Of type:"
 msgstr "&Tipas:"
 
-#: Filter/generalfilter.cpp:91 Filter/generalfilter.cpp:345
+#: Filter/generalfilter.cpp:93 Filter/generalfilter.cpp:349
 msgid "All Files"
 msgstr "Visos bylos"
 
-#: Filter/generalfilter.cpp:113
+#: Filter/generalfilter.cpp:115
 msgid "&Profile handler"
 msgstr "&Profilio tvarkymas"
 
-#: Filter/generalfilter.cpp:128
+#: Filter/generalfilter.cpp:130
 msgid "&Load"
 msgstr "&Įkelti"
 
-#: Filter/generalfilter.cpp:132 Panel/panelfunc.cpp:734
+#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:734
 msgid "&Overwrite"
 msgstr "&Pakeisti"
 
-#: Filter/generalfilter.cpp:136 RemoteMan/remotemanbase.cpp:155
+#: Filter/generalfilter.cpp:138 RemoteMan/remotemanbase.cpp:155
 msgid "&Remove"
 msgstr "P&ašalinti"
 
-#: Filter/generalfilter.cpp:153
+#: Filter/generalfilter.cpp:155
 msgid "&Search in"
 msgstr "&Ieškoti"
 
-#: Filter/generalfilter.cpp:173
+#: Filter/generalfilter.cpp:175
 msgid "&Don't search in"
 msgstr "&Neieškoti"
 
-#: Filter/generalfilter.cpp:193
+#: Filter/generalfilter.cpp:195
 msgid "Containing text"
 msgstr "Turinčių tekstą"
 
-#: Filter/generalfilter.cpp:208
+#: Filter/generalfilter.cpp:210
 msgid "&Text:"
 msgstr "&Tekstas:"
 
-#: Filter/generalfilter.cpp:226
+#: Filter/generalfilter.cpp:230
 msgid "&Remote content search"
-msgstr ""
+msgstr "&Nutolusio turinio paieška"
 
-#: Filter/generalfilter.cpp:234
+#: Filter/generalfilter.cpp:238
 msgid "&Match whole word only"
 msgstr "&Atitikti tik pilnus žodžius"
 
-#: Filter/generalfilter.cpp:240
+#: Filter/generalfilter.cpp:244
 msgid "Cas&e sensitive"
 msgstr "&Svarbu raidžių dydis"
 
-#: Filter/generalfilter.cpp:259
+#: Filter/generalfilter.cpp:263
 msgid "Search in s&ubdirectories"
 msgstr "Ieškoti &gilesniuose aplankuose"
 
-#: Filter/generalfilter.cpp:264
+#: Filter/generalfilter.cpp:268
 msgid "Search in arch&ives"
 msgstr "Ieškoti supakuo&tose bylose"
 
-#: Filter/generalfilter.cpp:268
+#: Filter/generalfilter.cpp:272
 msgid "Follow &links"
 msgstr "S&ekti nuorodas"
 
-#: Filter/generalfilter.cpp:328
+#: Filter/generalfilter.cpp:332
 msgid "No search criteria entered!"
 msgstr "Neįvesti jokie paieškos kriterijai!"
 
-#: Filter/generalfilter.cpp:364
+#: Filter/generalfilter.cpp:368
 msgid "Please specify a location to search in."
 msgstr "Nurodykite adresą, kuriame ieškoti."
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:103
-#: Panel/krdetailedview.cpp:1292 Search/krsearchdialog.cpp:149
+#: Panel/krdetailedview.cpp:1295 Search/krsearchdialog.cpp:149
 #: Synchronizer/synchronizergui.cpp:1246 Synchronizer/synchronizergui.cpp:1250
 msgid "Size"
 msgstr "Dydis"
@@ -1052,7 +1044,7 @@ msgstr "Savininkas"
 
 #: Filter/advancedfilter.cpp:227
 msgid "Belongs to &user"
-msgstr "Priklauso &vartotojui"
+msgstr "Priklauso &naudotojui"
 
 #: Filter/advancedfilter.cpp:236
 msgid "Belongs to gr&oup"
@@ -1233,7 +1225,7 @@ msgstr "Pageidaujamą adresą atverti naujoje kortelėje"
 
 #: UserAction/expander.cpp:380
 msgid "Ask the user for a parameter"
-msgstr "Vartotojo paklausti parametro"
+msgstr "Parametro klausti naudotojo"
 
 #: UserAction/expander.cpp:383
 msgid "Question"
@@ -1249,7 +1241,7 @@ msgstr "Antraštė (nebūtina)"
 
 #: UserAction/expander.cpp:391
 msgid "User Action"
-msgstr "Vartotojo veiksmas"
+msgstr "Veiksmas"
 
 #: UserAction/expander.cpp:414
 msgid "Copy to clipboard"
@@ -1391,29 +1383,31 @@ msgid "Command being executed:"
 msgstr "Bus vykdoma ši komanda:"
 
 #: UserAction/useraction.cpp:100
-msgid "This file called %1 which does not contain valid UserActions.\n"
-msgstr ""
+#, fuzzy
+msgid "The file %1 does not contain valid UserActions.\n"
+msgstr "Nurodytoje byloje %1 nerasta jokių veiksmų.\n"
 
 #: UserAction/useraction.cpp:101 UserAction/useraction.cpp:112
 #: UserAction/useraction.cpp:124
-#, fuzzy
 msgid "UserActions - can't read from file!"
-msgstr "Klaida: nepavyko perskaityti bylos"
+msgstr "Veiksmai: nepavyko perskaityti bylos!"
 
 #: UserAction/useraction.cpp:123
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to open actionfile %1"
-msgstr "Nepavyko įrašyti į"
+msgstr "Nepavyko atverti veiksmų bylos %1"
 
 #: UserAction/useraction.cpp:140
 msgid ""
 "Action without name detected. This action will not be imported!\n"
 "This is an error in the file, you may want to correct it."
 msgstr ""
+"Rastas veiksmas be pavadinimo. Šis veiksmas nebus importuotas!\n"
+"Veiksmų byloje įvelta klaida, galite pamėginti ją pataisyti."
 
 #: UserAction/useraction.cpp:141
 msgid "UserActions - invalid action"
-msgstr ""
+msgstr "Veiksmai: klaidingas veiksmas"
 
 #: Panel/krdetailedviewitem.cpp:78 Panel/krdetailedviewitem.cpp:110
 #: Synchronizer/synchronizergui.cpp:1835 Synchronizer/synchronizergui.cpp:1842
@@ -1586,38 +1580,38 @@ msgstr "Skaitoma: "
 msgid "Name"
 msgstr "Pavadinimas"
 
-#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1286
+#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1289
 msgid "Ext"
 msgstr "Plėtinys"
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1289
+#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1292
 msgid "Type"
 msgstr "Tipas"
 
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1295
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1298
 msgid "Modified"
 msgstr "Data"
 
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1298
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1301
 msgid "Perms"
 msgstr "Teisės"
 
-#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1301
+#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1304
 msgid "rwx"
 msgstr "rwx"
 
 #: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:107
-#: Panel/krdetailedview.cpp:1304
+#: Panel/krdetailedview.cpp:1307
 msgid "Owner"
 msgstr "Savininkas"
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
-#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1307
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1310
 msgid "Group"
 msgstr "Grupė"
 
-#: Panel/krdetailedview.cpp:1273
+#: Panel/krdetailedview.cpp:1276
 msgid "Columns"
 msgstr "Laukeliai"
 
@@ -1671,11 +1665,11 @@ msgstr "Peržiūros langas: dabartinės bylos turinys"
 
 #: Panel/panelpopup.cpp:80
 msgid "Disk Usage Panel: view the usage of a directory"
-msgstr "Išnaudojama vieta: pateikiamas dabartinio aplanko dydis"
+msgstr "Naudojama vieta: pateikiamas dabartinio aplanko dydis"
 
 #: Panel/panelpopup.cpp:132 Panel/panelpopup.cpp:275
 msgid "Disk Usage: "
-msgstr "Išnaudojama vieta:"
+msgstr "Naudojama vieta:"
 
 #: Panel/panelpopup.cpp:141
 msgid "Quick Select"
@@ -1711,7 +1705,7 @@ msgstr "Peržiūra:"
 
 #: Panel/panelpopup.cpp:248
 msgid "Disk Usage:"
-msgstr "Išnaudojama vieta:"
+msgstr "Naudojama vieta:"
 
 #: Panel/panelpopup.cpp:264
 msgid "Preview: "
@@ -1788,7 +1782,7 @@ msgstr "Atverti su"
 
 #: Konfigurator/konfigurator.cpp:113 Panel/krpopupmenu.cpp:109
 msgid "User Actions"
-msgstr "Vartotojo veiksmai"
+msgstr "Veiksmai"
 
 #: Panel/krpopupmenu.cpp:123
 msgid "Konqueror menu"
@@ -2116,7 +2110,7 @@ msgstr ""
 msgid "%1, unknown archive type"
 msgstr "%1, nežinomas supakuotos bylos tipas"
 
-#: Locate/locate.cpp:67 Locate/locate.cpp:204 Search/krsearchdialog.cpp:102
+#: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
 #: Synchronizer/synchronizergui.cpp:1357
 msgid "Stop"
 msgstr "Stop"
@@ -2125,7 +2119,7 @@ msgstr "Stop"
 msgid "Update DB"
 msgstr "Atnaujinti duomenų bazę"
 
-#: Locate/locate.cpp:67 Locate/locate.cpp:314
+#: Locate/locate.cpp:67 Locate/locate.cpp:315
 msgid "Locate"
 msgstr "Ieškoti"
 
@@ -2137,29 +2131,29 @@ msgstr "Krusader::Paieška (locate)"
 msgid "Search for:"
 msgstr "Ko ieškoti:"
 
-#: Locate/locate.cpp:92
+#: Locate/locate.cpp:93
 msgid "Don't search in path"
 msgstr "Neieškoti šiame kelyje"
 
-#: Locate/locate.cpp:94
+#: Locate/locate.cpp:95
 msgid "Show only the existing files"
 msgstr "Rodyti tik egzistuojančias bylas"
 
-#: Locate/locate.cpp:96
+#: Locate/locate.cpp:97
 msgid "Case Sensitive"
 msgstr "Svarbu raidžių dydis"
 
-#: Locate/locate.cpp:115
+#: Locate/locate.cpp:116
 msgid "Results"
 msgstr "Rezultatai"
 
-#: Locate/locate.cpp:194
+#: Locate/locate.cpp:195
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
 msgstr ""
 "Paieška (locate) neprieinama! Patikrinkite skyrelį „Keliai“ Krusader "
 "nustatymų lange."
 
-#: Locate/locate.cpp:231
+#: Locate/locate.cpp:232
 msgid ""
 "Locate produced the following error message:\n"
 "\n"
@@ -2167,48 +2161,48 @@ msgstr ""
 "Ieškant įvyko klaida:\n"
 "\n"
 
-#: Locate/locate.cpp:234
+#: Locate/locate.cpp:235
 msgid "Error during the start of 'locate' process!"
 msgstr "Klaida pradedant vykdyti Paiešką (locate)!"
 
-#: Locate/locate.cpp:243 Search/krsearchdialog.cpp:91
+#: Locate/locate.cpp:244 Search/krsearchdialog.cpp:91
 #: Synchronizer/synchronizergui.cpp:1362
 msgid "Feed to listbox"
 msgstr "Rezultatus į atskirą langą"
 
-#: Locate/locate.cpp:316
+#: Locate/locate.cpp:317
 msgid "View (F3)"
 msgstr "Peržiūrėti (F3)"
 
-#: Locate/locate.cpp:317
+#: Locate/locate.cpp:318
 msgid "Edit (F4)"
 msgstr "Keisti (F4)"
 
-#: Locate/locate.cpp:321
+#: Locate/locate.cpp:322
 msgid "Find (Ctrl+F)"
 msgstr "Ieškoti (Ctrl+F)"
 
-#: Locate/locate.cpp:322
+#: Locate/locate.cpp:323
 msgid "Find next (Ctrl+N)"
 msgstr "Ieškoti kito (Ctrl+N)"
 
-#: Locate/locate.cpp:323
+#: Locate/locate.cpp:324
 msgid "Find previous (Ctrl+P)"
 msgstr "Ieškoti ankstesnio (Ctrl+P)"
 
-#: Locate/locate.cpp:419 Locate/locate.cpp:436
+#: Locate/locate.cpp:420 Locate/locate.cpp:437
 msgid "Search string not found!"
 msgstr "Nieko nerasta!"
 
-#: Locate/locate.cpp:487
+#: Locate/locate.cpp:488
 msgid "Locate results"
 msgstr "Paieškos rezultatai"
 
-#: Locate/locate.cpp:495 Search/krsearchdialog.cpp:534
+#: Locate/locate.cpp:496 Search/krsearchdialog.cpp:534
 msgid "Query name"
 msgstr "Paieškos pavadinimas"
 
-#: Locate/locate.cpp:496 Search/krsearchdialog.cpp:535
+#: Locate/locate.cpp:497 Search/krsearchdialog.cpp:535
 #: Synchronizer/feedtolistboxdialog.cpp:110
 msgid "Here you can name the file collection"
 msgstr "Šiam bylų sąrašui galite suteikti pavadinimą"
@@ -2279,9 +2273,8 @@ msgid "S&wap Panels"
 msgstr "S&ukeisti langus"
 
 #: krusader.cpp:504
-#, fuzzy
 msgid "Sw&ap Sides"
-msgstr "Apkeisti puses."
+msgstr "&Apkeisti puses"
 
 #: krusader.cpp:510
 msgid "popup cmdline"
@@ -2292,19 +2285,23 @@ msgid "Up one directory"
 msgstr "Vienu aplanku aukštyn"
 
 #: krusader.cpp:514
-msgid "&Edit New File"
+#, fuzzy
+msgid "&Edit New File..."
 msgstr "Sukurti ir &keisti naują bylą"
 
 #: krusader.cpp:515
-msgid "Start &Root Mode Krusader"
-msgstr "Krusader &Root vartotojo teisėmis"
+#, fuzzy
+msgid "Start &Root Mode Krusader..."
+msgstr "Krusader &Root naudotojo teisėmis"
 
 #: krusader.cpp:517
-msgid "T&est Archive(s)"
+#, fuzzy
+msgid "T&est Archive..."
 msgstr "&Tikrinti supakuotas bylas"
 
 #: krusader.cpp:521
-msgid "New Net &Connection"
+#, fuzzy
+msgid "New Net &Connection..."
 msgstr "Naujas &ryšio seansas"
 
 #: krusader.cpp:523
@@ -2312,35 +2309,43 @@ msgid "Pro&files"
 msgstr "Pro&filiai"
 
 #: krusader.cpp:525
-msgid "Calculate &Occupied Space"
+#, fuzzy
+msgid "Calculate &Occupied Space..."
 msgstr "Suskaičiuoti &užimtą vietą"
 
-#: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446 krusader.cpp:527
-msgid "Create Checksum"
+#: krusader.cpp:527
+#, fuzzy
+msgid "Create Checksum..."
 msgstr "Kurti kontrolinę sumą"
 
-#: Dialogs/checksumdlg.cpp:292 Dialogs/checksumdlg.cpp:410 krusader.cpp:529
-msgid "Verify Checksum"
+#: krusader.cpp:529
+#, fuzzy
+msgid "Verify Checksum..."
 msgstr "Tikrinti kontrolinę sumą"
 
 #: krusader.cpp:531
-msgid "&Properties"
+#, fuzzy
+msgid "&Properties..."
 msgstr "&Parinktys"
 
 #: krusader.cpp:533
-msgid "Pac&k"
+#, fuzzy
+msgid "Pac&k..."
 msgstr "&Supakuoti"
 
 #: krusader.cpp:535
-msgid "&Unpack"
+#, fuzzy
+msgid "&Unpack..."
 msgstr "&Išpakuoti"
 
 #: krusader.cpp:537
-msgid "Sp&lit File"
+#, fuzzy
+msgid "Sp&lit File..."
 msgstr "S&kaidyti bylą"
 
 #: krusader.cpp:539
-msgid "Com&bine Files"
+#, fuzzy
+msgid "Com&bine Files..."
 msgstr "Su&jungti bylas"
 
 #: krusader.cpp:541
@@ -2380,7 +2385,8 @@ msgid "Mark &Different"
 msgstr "Pažymėti &skirtingus"
 
 #: krusader.cpp:566
-msgid "&Terminal"
+#, fuzzy
+msgid "&Terminal..."
 msgstr "&Terminalas"
 
 #: krusader.cpp:568
@@ -2388,19 +2394,23 @@ msgid "Disconnect &From Net"
 msgstr "Atsij&ungti nuo tinklo"
 
 #: krusader.cpp:571 krusader.cpp:576
-msgid "&MountMan"
+#, fuzzy
+msgid "&MountMan..."
 msgstr "&Prijungiami įrenginiai"
 
 #: krusader.cpp:580
-msgid "&Search"
+#, fuzzy
+msgid "&Search..."
 msgstr "&Paieška"
 
 #: krusader.cpp:582
-msgid "&Locate"
+#, fuzzy
+msgid "&Locate..."
 msgstr "&Paieška (locate)"
 
 #: krusader.cpp:584
-msgid "Synchronize &Directories"
+#, fuzzy
+msgid "Synchronize &Directories..."
 msgstr "&Sinchronizuoti aplankus"
 
 #: krusader.cpp:586
@@ -2408,8 +2418,9 @@ msgid "S&ynchron directory changes"
 msgstr "Sin&chronizuoti aplankų pasikeitimus"
 
 #: krusader.cpp:588
-msgid "D&isk Usage"
-msgstr "Išnaudojama &vieta"
+#, fuzzy
+msgid "D&isk Usage..."
+msgstr "Naudojama &vieta"
 
 #: krusader.cpp:590
 msgid "&Invert Selection"
@@ -2420,7 +2431,8 @@ msgid "&Unselect Group"
 msgstr "&Atžymėti grupę"
 
 #: krusader.cpp:594
-msgid "Configure &Krusader"
+#, fuzzy
+msgid "Configure &Krusader..."
 msgstr "&Derinti Krusader"
 
 #: krusader.cpp:596
@@ -2440,11 +2452,13 @@ msgid "&Custom"
 msgstr "&Tik parinktos bylos"
 
 #: krusader.cpp:608
-msgid "Compare b&y Content"
+#, fuzzy
+msgid "Compare b&y Content..."
 msgstr "Palyginti pagal t&urinį"
 
 #: krusader.cpp:610
-msgid "Multi &Rename"
+#, fuzzy
+msgid "Multi &Rename..."
 msgstr "Bylų p&ervadinimo įrankis"
 
 #: krusader.cpp:612
@@ -2489,14 +2503,12 @@ msgid "Media"
 msgstr "Laikmenos"
 
 #: krusader.cpp:632
-#, fuzzy
 msgid "Left media"
-msgstr "Kairysis langas"
+msgstr "Laikmenos kairėje"
 
 #: krusader.cpp:634
-#, fuzzy
 msgid "Right media"
-msgstr "Dešinysis langas"
+msgstr "Laikmenos dešinėje"
 
 #: krusader.cpp:636
 msgid "New symlink"
@@ -2508,7 +2520,7 @@ msgstr "Įj./išj. pagalbinį langą"
 
 #: krusader.cpp:640
 msgid "Vertical Mode"
-msgstr "Vetikali veiksena"
+msgstr "Vertikali veiksena"
 
 #: krusader.cpp:642
 msgid "New tab"
@@ -2532,11 +2544,12 @@ msgstr "Ankstesnė kortelė"
 
 #: UserMenu/usermenu.cpp:51 krusader.cpp:652
 msgid "User Menu"
-msgstr "Vartotojo meniu"
+msgstr "Meniu"
 
-#: UserMenu/usermenu.cpp:58 krusader.cpp:654
-msgid "Manage user actions"
-msgstr "Tvarkyti vartotojo veiksmus"
+#: krusader.cpp:654
+#, fuzzy
+msgid "Manage user actions..."
+msgstr "Tvarkyti veiksmus"
 
 #: krusader.cpp:656
 msgid "Select Remote Charset"
@@ -2698,15 +2711,13 @@ msgstr "&Žiūriklis"
 
 #: KViewer/krviewer.cpp:198 KViewer/krviewer.cpp:255 KViewer/krviewer.cpp:326
 #: KViewer/krviewer.cpp:335 KViewer/krviewer.cpp:344 KViewer/krviewer.cpp:420
-#, fuzzy
 msgid "Viewing"
 msgstr "Peržiūra"
 
 #: KViewer/krviewer.cpp:223 KViewer/krviewer.cpp:255 KViewer/krviewer.cpp:353
 #: KViewer/krviewer.cpp:418
-#, fuzzy
 msgid "Editing"
-msgstr " Keisti"
+msgstr "Keitimas"
 
 #: KViewer/krviewer.cpp:496
 msgid "Sorry, can't find internal editor"
@@ -2955,7 +2966,6 @@ msgid ""
 msgstr "laisve@gmail.com"
 
 #: main.cpp:46
-#, fuzzy
 msgid ""
 "Krusader\n"
 "Twin-Panel File Manager for KDE"
@@ -2991,19 +3001,23 @@ msgid ""
 "IRC\n"
 "server: irc.freenode.net, channel: #krusader"
 msgstr ""
+"Atsiliepimai\n"
+"http://www.krusader.org/phpBB/\n"
+"\n"
+"IRC\n"
+"serveris: irc.freenode.net, kanalas: #krusader"
 
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
 msgstr "Funkciniai klavišai skirti darbui pagreitinti."
 
 #: Dialogs/krdialogs.cpp:103
-#, fuzzy
 msgid "Preserve attributes (only for local targets)"
-msgstr "Išlaikyti datą (tik vietiniams objektams)"
+msgstr "Išlaikyti atributus (tik vietiniams objektams)"
 
-#: Dialogs/krdialogs.cpp:198 Konfigurator/kglookfeel.cpp:110
+#: Dialogs/krdialogs.cpp:198 Konfigurator/kglookfeel.cpp:111
 msgid "Custom Selection Mode"
-msgstr "Vartotojo nustatyta veiksena"
+msgstr "Naudotojo nustatyta veiksena"
 
 #: Dialogs/krdialogs.cpp:201
 msgid "Based on KDE's selection mode"
@@ -3324,19 +3338,19 @@ msgstr "fish://"
 msgid "sftp://"
 msgstr "sftp://"
 
-#: Dialogs/newftpgui.cpp:111
+#: Dialogs/newftpgui.cpp:113
 msgid "Username:"
-msgstr "Vartotojo vardas:"
+msgstr "Naudotojo vardas:"
 
-#: Dialogs/newftpgui.cpp:113 RemoteMan/remotemanbase.cpp:100
+#: Dialogs/newftpgui.cpp:115 RemoteMan/remotemanbase.cpp:100
 msgid "Password:"
 msgstr "Slaptažodis:"
 
-#: Dialogs/newftpgui.cpp:125
+#: Dialogs/newftpgui.cpp:127
 msgid "&Connect"
 msgstr "&Prisijungti"
 
-#: Dialogs/krpleasewait.cpp:59 Dialogs/newftpgui.cpp:134
+#: Dialogs/krpleasewait.cpp:59 Dialogs/newftpgui.cpp:136
 #: Splitter/splittergui.cpp:114
 msgid "&Cancel"
 msgstr "&Atšaukti"
@@ -3383,7 +3397,7 @@ msgstr "Aplanke"
 
 #: Dialogs/packguibase.cpp:145
 msgid "Multiple volume archive"
-msgstr ""
+msgstr "Daugiatomė supakuota byla"
 
 #: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1034
 msgid "Size:"
@@ -3391,25 +3405,23 @@ msgstr "Talpa:"
 
 #: Dialogs/packguibase.cpp:172
 msgid "Set compression level"
-msgstr ""
+msgstr "Nurodykite pakavimo lygmenį"
 
 #: Dialogs/packguibase.cpp:200
-#, fuzzy
 msgid "Password"
-msgstr "Slaptažodis:"
+msgstr "Slaptažodis"
 
 #: Dialogs/packguibase.cpp:210
 msgid "Again"
-msgstr ""
+msgstr "Dar kartą"
 
 #: Dialogs/packguibase.cpp:228
 msgid "Encrypt headers"
-msgstr ""
+msgstr "Koduoti bylos antraštes"
 
 #: Dialogs/packguibase.cpp:240
-#, fuzzy
 msgid "Command line switches:"
-msgstr "Komandos eilutė tuščia!"
+msgstr "Komandinės eilutės raktai:"
 
 #: Dialogs/packguibase.cpp:273 Konfigurator/kguseractions.cpp:71
 msgid "Ok"
@@ -3417,37 +3429,43 @@ msgstr "Gerai"
 
 #: Dialogs/packguibase.cpp:322
 msgid "The passwords are equal"
-msgstr ""
+msgstr "Slaptažodžiai sutampa"
 
 #: Dialogs/packguibase.cpp:326
 msgid "The passwords are different"
-msgstr ""
+msgstr "Slaptažodžiai nesutampa"
 
 #: Dialogs/packguibase.cpp:361
 msgid "Cannot pack! The passwords are different!"
-msgstr ""
+msgstr "Supakuoti nepavyko! Slaptažodžiai nesutampa!"
 
 #: Dialogs/packguibase.cpp:386
 msgid "Invalid volume size!"
-msgstr ""
+msgstr "Nurodytas neteisingas tomo dydis!"
 
 #: Dialogs/packguibase.cpp:416
 msgid ""
 "Invalid command line switch!\n"
 "Switch must start with '-'!"
 msgstr ""
+"Neteisingas komandinės eilutės raktas!\n"
+"Raktai turi prasidėti simboliu „-“!"
 
 #: Dialogs/packguibase.cpp:428
 msgid ""
 "Invalid command line switch!\n"
 "Backslash cannot be the last character"
 msgstr ""
+"Neteisingas komandinės eilutės raktas!\n"
+"Pasviręs brūkšnys negali būti paskutinis simbolis!"
 
 #: Dialogs/packguibase.cpp:436
 msgid ""
 "Invalid command line switch!\n"
 "Unclosed quotation mark!"
 msgstr ""
+"Neteisingas komandinės eilutės raktas!\n"
+"Neuždarytos kabutės!"
 
 #: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
@@ -3469,17 +3487,19 @@ msgstr "Jau <i>%1</i>"
 msgid "Click to go to <i>%1</i>"
 msgstr "Spragtelėkite norėdami patekti į <i>%1</i>"
 
+#: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446
+msgid "Create Checksum"
+msgstr "Kurti kontrolinę sumą"
+
 #: Dialogs/checksumdlg.cpp:196
-#, fuzzy
 msgid ""
 "<qt>Can't calculate checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
 "<qt>Kontrolinės sumos apskaičiuoti nepavyko, nes nerasta jokių įrankių. "
-"Patikrinkite programų kelius Krusader derinimo skyriuje <b>Keliai</b>."
+"Patikrinkite programų kelius Krusader derinimo skyriuje <b>Keliai</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:199 Dialogs/checksumdlg.cpp:300
-#, fuzzy
 msgid ""
 "<qt><b>Note</b>: you've selected directories, and probably have no recursive "
 "checksum tool installed. Krusader currently supports <i>md5deep, sha1deep, "
@@ -3487,7 +3507,7 @@ msgid ""
 msgstr ""
 "<qt><b>Dėmesio</b>: parinkote aplankus, bet tikriausiai neįdiegėte jokių "
 "rekursyvių kontrolinių sumų skačiavimo įrankių. Krusader dirba su šiais "
-"įrankiais <i>md5deep, sha1deep, sha256deep ir tigerdeep</i>."
+"įrankiais <i>md5deep, sha1deep, sha256deep ir tigerdeep</i>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:215
 msgid "About to calculate checksum for the following files"
@@ -3506,9 +3526,8 @@ msgid "Calculating checksums ..."
 msgstr "Skaičiuojamos kontrolinės sumos..."
 
 #: Dialogs/checksumdlg.cpp:265 Dialogs/checksumdlg.cpp:379
-#, fuzzy
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
-msgstr "<qt>Vykdant <b>%1</b> įvyko klaida."
+msgstr "<qt>Vykdant <b>%1</b> įvyko klaida.</qt>"
 
 #: Dialogs/checksumdlg.cpp:277 Dialogs/checksumdlg.cpp:388
 msgid "Error reading stdout or stderr"
@@ -3516,14 +3535,17 @@ msgstr ""
 "Nepavyko perskaityti arba standartinės išvesties arba standartinės klaidų "
 "išvesties"
 
+#: Dialogs/checksumdlg.cpp:292 Dialogs/checksumdlg.cpp:410
+msgid "Verify Checksum"
+msgstr "Tikrinti kontrolinę sumą"
+
 #: Dialogs/checksumdlg.cpp:297
-#, fuzzy
 msgid ""
 "<qt>Can't verify checksum since no supported tool was found. Please check "
 "the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
 "<qt>Kontrolinės sumos patinkrinti nepavyko, nes nerasta jokių įrankių. "
-"Patikrinkite programų kelius Krusader derinimo skyriuje <b>Keliai</b>."
+"Patikrinkite programų kelius Krusader derinimo skyriuje <b>Keliai</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:316
 msgid "About to verify checksum for the following files"
@@ -3534,22 +3556,20 @@ msgid "Checksum file:"
 msgstr "Kontrolinės sumos byla:"
 
 #: Dialogs/checksumdlg.cpp:344
-#, fuzzy
 msgid ""
 "<qt>Error reading checksum file <i>%1</i>.<br />Please specify a valid "
 "checksum file.</qt>"
 msgstr ""
 "<qt>Skaitant kontrolinės sumos bylą <i>%1</i> įvyko klaida.<br> Nurodykite "
-"teisingą kontrolinės sumos bylą."
+"teisingą kontrolinės sumos bylą.</qt>"
 
 #: Dialogs/checksumdlg.cpp:357
-#, fuzzy
 msgid ""
 "<qt>Krusader can't find a checksum tool that handles %1 on your system. "
 "Please check the <b>Dependencies</b> page in Krusader's settings.</qt>"
 msgstr ""
 "<qt>Nepavyko rasti įrankio, skirto darbui su %1.Patikrinkite programų kelius "
-"Krusader derinimo skyriuje <b>Keliai</b>."
+"Krusader derinimo skyriuje <b>Keliai</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:366
 msgid "Verifying checksums ..."
@@ -3658,7 +3678,7 @@ msgstr "&Daugiau"
 
 #: RemoteMan/remotemanbase.cpp:109
 msgid "User name:"
-msgstr "Vartotojo vardas:"
+msgstr "Naudotojo vardas:"
 
 #: RemoteMan/remotemanbase.cpp:119
 msgid "Anonymous"
@@ -3688,6 +3708,10 @@ msgstr "Prievadas:"
 msgid "* Warning: Storing your password is not secure !!!"
 msgstr "Dėmesio! Įsiminti slaptažodį automatiškai yra nesaugu!"
 
+#: UserMenu/usermenu.cpp:58
+msgid "Manage user actions"
+msgstr "Tvarkyti veiksmus"
+
 #: Synchronizer/synchronizergui.cpp:1024
 msgid "Krusader::Synchronize Directories"
 msgstr "Krusader::Aplankų sinchronizavimas"
@@ -3710,7 +3734,7 @@ msgstr "Bazinis dešinysis aplankas, naudojamas sinchronizavimo metu."
 
 #: Synchronizer/synchronizergui.cpp:1116
 msgid "Recurse subdirectories"
-msgstr "Aplankus apeiti rekursyviai"
+msgstr "Aplankus peržiūrėti rekursyviai"
 
 #: Synchronizer/synchronizergui.cpp:1118
 msgid "Compare not only the base directories but their subdirectories as well."
@@ -3737,43 +3761,40 @@ msgid "Ignore Date"
 msgstr "Ignoruoti datą"
 
 #: Synchronizer/synchronizergui.cpp:1128
-#, fuzzy
 msgid ""
 "<p>Ignore date information during the compare process.</p><p><b>Note</b>: "
 "useful if the files are located on network filesystems or in archives.</p>"
 msgstr ""
-"Palyginimo metu ignoruoti bylų datas.<p> <b>Dėmesio</b>: naudinga tik "
-"tuomet, jei bylos yra nutolusiame tinkle arba supakuotose bylose."
+"<p>Palyginimo metu ignoruoti bylų datas.</p><p> <b>Dėmesio</b>: naudinga tik "
+"tuomet, jei bylos yra nutolusiame tinkle arba supakuotose bylose.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1129
 msgid "Asymmetric"
 msgstr "Asimetriška veiksena"
 
 #: Synchronizer/synchronizergui.cpp:1131
-#, fuzzy
 msgid ""
 "<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right "
 "is the source directory. Files existing only in the left directory will be "
 "deleted, the other differing ones will be copied from right to left.</"
 "p><p><b>Note</b>: useful when updating a directory from a file server.</p>"
 msgstr ""
-"<b>Asimetriška veiksena</b><p>Kairė pusė yra paskirties pusė, dešinė – "
-"pradinė pusė. Bylos, easančios tik kairėje pusėje bus pašalintos,  "
-"besiskiriančios bylos bus pakeistos bylomis iš dešinės pusės. <p> "
-"<b>Dėmesio</b>: naudinga atnaujinant bylas iš bylų serverio."
+"<p><b>Asimetriška veiksena</b></p><p>Kairė pusė yra paskirties pusė, dešinė "
+"– pradinė pusė. Bylos, easančios tik kairėje pusėje bus pašalintos,  "
+"besiskiriančios bylos bus pakeistos bylomis iš dešinės pusės.</p><p> "
+"<b>Dėmesio</b>: naudinga atnaujinant bylas iš bylų serverio.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1132
 msgid "Ignore Case"
 msgstr "Raidžių dydis nesvarbu"
 
 #: Synchronizer/synchronizergui.cpp:1134
-#, fuzzy
 msgid ""
 "<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when "
 "synchronizing Windows filesystems.</p>"
 msgstr ""
-"Lyginant bylas nekreipti dėmesio į bylos pavadinimo raidžių dydį.<p> "
-"<b>Dėmesio</b>: naudinga sinchronizuojant bylas su Windows kompiuteriais."
+"<p>Lyginant bylas nekreipti dėmesio į bylos pavadinimo raidžių dydį.</p><p> "
+"<b>Dėmesio</b>: naudinga sinchronizuojant bylas su Windows kompiuteriais.</p>"
 
 #: Synchronizer/synchronizergui.cpp:1139
 msgid "Show options"
@@ -3824,34 +3845,32 @@ msgid "&Synchronizer"
 msgstr "&Sinchronizavimas"
 
 #: Synchronizer/synchronizergui.cpp:1278
-#, fuzzy
 msgid "&Time options"
-msgstr "Rodyti parinktis"
+msgstr "&Laiko parinktys"
 
 #: Synchronizer/synchronizergui.cpp:1287
 msgid "Equality threshold:"
-msgstr ""
+msgstr "Vienodumo slenkstis:"
 
 #: Synchronizer/synchronizergui.cpp:1295 Synchronizer/synchronizergui.cpp:1310
 msgid "sec"
-msgstr ""
+msgstr "sek."
 
 #: Synchronizer/synchronizergui.cpp:1296 Synchronizer/synchronizergui.cpp:1311
 msgid "min"
-msgstr ""
+msgstr "min."
 
 #: Synchronizer/synchronizergui.cpp:1297 Synchronizer/synchronizergui.cpp:1312
 msgid "hour"
-msgstr ""
+msgstr "val."
 
 #: Synchronizer/synchronizergui.cpp:1298 Synchronizer/synchronizergui.cpp:1313
-#, fuzzy
 msgid "day"
-msgstr "dienas"
+msgstr "dienos"
 
 #: Synchronizer/synchronizergui.cpp:1301
 msgid "Time shift (right-left):"
-msgstr ""
+msgstr "Laiko postūmis (dešinė–kairė):"
 
 #: Synchronizer/synchronizergui.cpp:1331
 msgid "Swap sides."
@@ -3974,24 +3993,49 @@ msgid "Krusader::Synchronize"
 msgstr "Krusader::Sinchronizavimas"
 
 #: Synchronizer/synchronizedialog.cpp:52
-msgid "Right to left: Copy %1 files (%2 bytes)"
-msgstr "Iš dešinės į kairę: kopijuoti %1 bylas (%2 baitus)"
+#, fuzzy, c-format
+msgid ""
+"_n: Right to left: Copy 1 file\n"
+"Right to left: Copy %n files"
+msgstr ""
+"Kopijuoti %n bylą į:\n"
+"Kopijuoti %n bylas į:\n"
+"Kopijuoti %n bylų į:"
+
+#: Synchronizer/synchronizedialog.cpp:53 Synchronizer/synchronizedialog.cpp:66
+#: Synchronizer/synchronizedialog.cpp:79
+#, c-format
+msgid ""
+"_n: (1 byte)\n"
+"(%n bytes)"
+msgstr ""
 
 #: Synchronizer/synchronizedialog.cpp:59 Synchronizer/synchronizedialog.cpp:72
 #: Synchronizer/synchronizedialog.cpp:85
-#: Synchronizer/synchronizedialog.cpp:157
-#: Synchronizer/synchronizedialog.cpp:160
-#: Synchronizer/synchronizedialog.cpp:163
-msgid "\tReady: %1/%2 files, %3/%4"
-msgstr "\tParuošta: %1/%2 bylos, %3/%4"
+#, fuzzy
+msgid ""
+"_n: Ready: %1/1 file, %3/%4\n"
+"Ready: %1/%n files, %3/%4"
+msgstr ""
+"ir %n byloje\n"
+"ir %n bylose\n"
+"ir %n bylų"
 
 #: Synchronizer/synchronizedialog.cpp:65
-#, fuzzy
-msgid "Left to right: Copy %1 files (%2 bytes)"
-msgstr "Iš dešinės į kairę: kopijuoti %1 bylas (%2 baitus)"
+#, fuzzy, c-format
+msgid ""
+"_n: Left to right: Copy 1 file\n"
+"Left to right: Copy %n files"
+msgstr ""
+"Iš kairės į dešinę: kopijuoti %1 bylą (%2 baitų)\n"
+"Iš kairės į dešinę: kopijuoti %1 bylas (%2 baitų)\n"
+"Iš kairės į dešinę: kopijuoti %1 bylų (%2 baitų)"
 
 #: Synchronizer/synchronizedialog.cpp:78
-msgid "Left: Delete %1 files (%2 bytes)"
+#, fuzzy, c-format
+msgid ""
+"_n: Left: Delete 1 file\n"
+"Left: Delete %n files"
 msgstr "Kairė: pašalinti %1 bylas (%2 baitus)"
 
 #: Synchronizer/synchronizedialog.cpp:100
@@ -4003,19 +4047,25 @@ msgid "Start"
 msgstr "Pradėti"
 
 #: Synchronizer/synchronizedialog.cpp:113
-#: Synchronizer/synchronizedialog.cpp:185 Synchronizer/synchronizer.cpp:1425
+#: Synchronizer/synchronizedialog.cpp:195 Synchronizer/synchronizer.cpp:1425
 #: Synchronizer/synchronizer.cpp:1435
 msgid "Pause"
 msgstr "Pristabdyti"
 
-#: Synchronizer/synchronizedialog.cpp:193 Synchronizer/synchronizer.cpp:1437
+#: Synchronizer/synchronizedialog.cpp:157
+#: Synchronizer/synchronizedialog.cpp:160
+#: Synchronizer/synchronizedialog.cpp:163
+msgid "\tReady: %1/%2 files, %3/%4"
+msgstr "\tParuošta: %1/%2 bylos, %3/%4"
+
+#: Synchronizer/synchronizedialog.cpp:203 Synchronizer/synchronizer.cpp:1437
 msgid "Resume"
 msgstr "Pratęsti"
 
 #: Synchronizer/synchronizer.cpp:129 Synchronizer/synchronizer.cpp:585
 #, c-format
-msgid "File number:%1"
-msgstr "Bylų skaičius: %1"
+msgid "Number of files: %1"
+msgstr ""
 
 #: Synchronizer/synchronizer.cpp:302
 msgid "Error at opening URL:%1!"
@@ -4023,8 +4073,8 @@ msgstr "Atveriant URL įvyko klaida: %1!"
 
 #: Synchronizer/synchronizer.cpp:307 Synchronizer/synchronizer.cpp:1204
 #: Synchronizer/synchronizer.cpp:1284
-#, c-format
-msgid "Scanned directories:%1"
+#, fuzzy, c-format
+msgid "Number of scanned directories: %1"
 msgstr "Peržiūrėti aplankai: %1"
 
 #: Synchronizer/synchronizer.cpp:1002 Synchronizer/synchronizer.cpp:1010
@@ -4040,9 +4090,8 @@ msgid "Error at deleting file %1!"
 msgstr "Šalinant bylą %1 įvyko klaida!"
 
 #: Synchronizer/synchronizer.cpp:1214 Synchronizer/synchronizer.cpp:1220
-#, fuzzy
 msgid "Error at opening %1!"
-msgstr "Atveriant URL įvyko klaida: %1!"
+msgstr "Atveriant %1 įvyko klaida!"
 
 #: Synchronizer/synchronizer.cpp:1356
 msgid "IO error at comparing file %1 with %2!"
@@ -4065,48 +4114,42 @@ msgid "Error executing "
 msgstr "Klaida vykdant"
 
 #: Synchronizer/feedtolistboxdialog.cpp:54
-#, fuzzy
 msgid "Krusader::Feed to listbox"
-msgstr "Rezultatus į atskirą langą"
+msgstr "Krusader::Rezultatus į atskirą langą"
 
 #: Synchronizer/feedtolistboxdialog.cpp:87
 msgid "No elements to feed!"
-msgstr ""
+msgstr "Nėra nei vieno įrašo!"
 
 #: Synchronizer/feedtolistboxdialog.cpp:101
-#, fuzzy
 msgid "Synchronize results"
-msgstr "Sinchronizavimas"
+msgstr "Sinchronizuoti rezultatus"
 
 #: Synchronizer/feedtolistboxdialog.cpp:120
 msgid "Side to feed:"
-msgstr ""
+msgstr "Parinkite langą:"
 
 #: Synchronizer/feedtolistboxdialog.cpp:125
 msgid "Left"
-msgstr ""
+msgstr "Kairysis langas"
 
 #: Synchronizer/feedtolistboxdialog.cpp:126
-#, fuzzy
 msgid "Right"
 msgstr "Dešinysis langas"
 
 #: Synchronizer/feedtolistboxdialog.cpp:127
-#, fuzzy
 msgid "Both"
-msgstr "mėnesius"
+msgstr "Abu langai"
 
 #: Synchronizer/feedtolistboxdialog.cpp:141
-#, fuzzy
 msgid "Selected files only"
-msgstr "Pažymėti bylas"
+msgstr "Tik pažymėtas bylas"
 
 #: Synchronizer/feedtolistboxdialog.cpp:191
-#, fuzzy
 msgid "Cannot open %1!"
-msgstr "Nepavyko atverti"
+msgstr "Nepavyko atverti %1!"
 
-#: Konfigurator/kglookfeel.cpp:120 paneltabbar.cpp:35
+#: Konfigurator/kglookfeel.cpp:121 paneltabbar.cpp:35
 msgid "Panel"
 msgstr "Langas"
 
@@ -4127,16 +4170,15 @@ msgid "&Open"
 msgstr "&Atverti"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:192
-#, fuzzy
 msgid ""
 "<qt>The directory at <i>'%1'</i> will be <b>recursively</b> and "
 "<b>permanently</b> deleted!</qt>"
-msgstr "<qt>Aplankas <i>„%1“</i> bus <b>visiškai</b> pašalintas!"
+msgstr ""
+"<qt>Aplankas <i>„%1“</i> bus rekursyviai <b>visiškai</b> pašalintas!</qt>"
 
 #: DiskUsage/radialMap/widgetEvents.cpp:193
-#, fuzzy
 msgid "<qt><i>'%1'</i> will be <b>permanently</b> deleted!</qt>"
-msgstr "<qt><i>„%1“</i> bus <b>visiškai</b> pašalintas!"
+msgstr "<qt><i>„%1“</i> bus <b>visiškai</b> pašalintas!</qt>"
 
 #: DiskUsage/radialMap/builder.cpp:134
 msgid "%1 files: ~ %2"
@@ -4221,11 +4263,11 @@ msgstr "Krusader::Skritulio vaizdas"
 
 #: DiskUsage/diskusagegui.cpp:45
 msgid "Krusader::Disk Usage"
-msgstr "Krusader::Išnaudojama vieta"
+msgstr "Krusader::Naudojama vieta"
 
 #: DiskUsage/diskusagegui.cpp:60
 msgid "Start new disk usage search"
-msgstr "Pradėti naują išnaudojamos vietos paiešką"
+msgstr "Pradėti naują naudojamos vietos paiešką"
 
 #: DiskUsage/diskusage.cpp:770 DiskUsage/diskusagegui.cpp:64
 msgid "Refresh"
@@ -4249,7 +4291,7 @@ msgstr "Skritulio vaizdas"
 
 #: DiskUsage/diskusagegui.cpp:219
 msgid "Viewing the usage of directory:"
-msgstr "Išnaudojama vieta aplanke:"
+msgstr "Naudojama vieta aplanke:"
 
 #: DiskUsage/dulistview.cpp:62
 msgid "Total size"
@@ -4261,7 +4303,7 @@ msgstr "Atskira talpa"
 
 #: DiskUsage/diskusage.cpp:102
 msgid "Loading Usage Information"
-msgstr "Skaičiuojama išnaudojama vieta"
+msgstr "Skaičiuojama naudojama vieta"
 
 #: DiskUsage/diskusage.cpp:106
 msgid "Files:"
@@ -4277,7 +4319,7 @@ msgstr "Talpa:"
 
 #: DiskUsage/diskusage.cpp:243
 msgid "Loading the disk usage information..."
-msgstr "Įkeliama nauja išnaudojamos vietos informacija..."
+msgstr "Įkeliama nauja naudojamos vietos informacija..."
 
 #: DiskUsage/diskusage.cpp:412
 msgid ""
@@ -4289,7 +4331,7 @@ msgstr ""
 
 #: DiskUsage/diskusage.cpp:416
 msgid "Krusader::DiskUsage"
-msgstr "Krusader::Išnaudojama vieta"
+msgstr "Krusader::Naudojama vieta"
 
 #: DiskUsage/diskusage.cpp:597
 msgid "trash"
@@ -4304,9 +4346,8 @@ msgid "Are you sure you want to "
 msgstr "Ar tikrai norite"
 
 #: DiskUsage/diskusage.cpp:613
-#, fuzzy
 msgid "Deleting %1..."
-msgstr "Šalinamos bylos..."
+msgstr "Šalinama %1..."
 
 #: DiskUsage/diskusage.cpp:729
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
@@ -4314,7 +4355,7 @@ msgstr "Dabartinis aplankas: %1, Talpa: %2, Atskira talpa: %3"
 
 #: DiskUsage/diskusage.cpp:755
 msgid "Disk Usage"
-msgstr "Išnaudojama vieta"
+msgstr "Naudojama vieta"
 
 #: DiskUsage/diskusage.cpp:768
 msgid "New search"
@@ -4410,7 +4451,7 @@ msgstr "&Nustatymai"
 #: rc.cpp:24
 #, no-c-format
 msgid "&Useractions"
-msgstr "&Vartotojo veiksmai"
+msgstr "&Veiksmai"
 
 #. i18n: file krusaderui.rc line 99
 #: rc.cpp:27
@@ -4541,9 +4582,8 @@ msgid "Note: you must have full permissions for the temporary directory!"
 msgstr "Dėmesio! Laikinam aplankui būtina turėti visas rašymo teises!"
 
 #: Konfigurator/kggeneral.cpp:141
-#, fuzzy
 msgid "Terminal for UserActions:"
-msgstr "Pašalinti vartotojo sukurtus veiksmus"
+msgstr "Veiksmų terminalas:"
 
 #: Konfigurator/kggeneral.cpp:163
 msgid "Searching for tools..."
@@ -4777,22 +4817,30 @@ msgstr ""
 "raidėmis (rwxr-xr-x) teisių laukelyje."
 
 #: Konfigurator/kglookfeel.cpp:81
-msgid "Show splashscreen"
+msgid "Always sort dirs by name"
 msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:81
-msgid "Display a splashscreen when starting krusader."
+msgid "Directories are sorted by name, regardless of the sort column."
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:90
+#: Konfigurator/kglookfeel.cpp:82
+msgid "Show splashscreen"
+msgstr "Rodyti pasveikinimo langą"
+
+#: Konfigurator/kglookfeel.cpp:82
+msgid "Display a splashscreen when starting krusader."
+msgstr "Paleidžiant Krusader rodyti pasveikinimo langą."
+
+#: Konfigurator/kglookfeel.cpp:91
 msgid "Single click / Double click Selection:"
 msgstr "Viengubas ir dvigubas spragtelėjimas:"
 
-#: Konfigurator/kglookfeel.cpp:95
+#: Konfigurator/kglookfeel.cpp:96
 msgid "Double-click selects (classic)"
 msgstr "Spragtelėti dukart (klasikinis būdas)"
 
-#: Konfigurator/kglookfeel.cpp:95
+#: Konfigurator/kglookfeel.cpp:96
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
@@ -4800,28 +4848,27 @@ msgstr ""
 "Spragtelėjus vienąkart byla bus parinkta ir taps „dabartine byla“. "
 "Spragtelėjus dukart bus atverta byla arba aplankas."
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 msgid "Obey KDE's global selection policy"
 msgstr "Elgtis pagal KDE bendrus nustatymus"
 
-#: Konfigurator/kglookfeel.cpp:96
-#, fuzzy
+#: Konfigurator/kglookfeel.cpp:97
 msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
 "Mouse</i></p>"
 msgstr ""
-"Naudoti KDE valdymo centre įrašytus nustatymus: <p> <i>KDE Valdymo centras-"
-">Periferija->Pelė</i>"
+"<p>Naudoti KDE valdymo centre įrašytus nustatymus:</p> <p> <i>KDE Valdymo "
+"centras–>Periferija–>Pelė</i></p>"
 
-#: Konfigurator/kglookfeel.cpp:103
+#: Konfigurator/kglookfeel.cpp:104
 msgid "Mouse Selection Mode:"
 msgstr "Žymėjimo pele veiksena:"
 
-#: Konfigurator/kglookfeel.cpp:107
+#: Konfigurator/kglookfeel.cpp:108
 msgid "Krusader Mode"
 msgstr "Krusader veiksena"
 
-#: Konfigurator/kglookfeel.cpp:107
+#: Konfigurator/kglookfeel.cpp:108
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
 "key and click the left mouse button. Right-click menu is invoked using a "
@@ -4831,11 +4878,11 @@ msgstr ""
 "Ctrl klavišą ir spustelėkite kairįjį pelės klavišą. Kontekstinis meniu "
 "iškviečiamas paspaudus dešinįjį pelės klavišą."
 
-#: Konfigurator/kglookfeel.cpp:108
+#: Konfigurator/kglookfeel.cpp:109
 msgid "Konqueror Mode"
 msgstr "Konqueror veiksena"
 
-#: Konfigurator/kglookfeel.cpp:108
+#: Konfigurator/kglookfeel.cpp:109
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
 "multiple files. Right-click menu is invoked using a short click on the right "
@@ -4845,11 +4892,11 @@ msgstr ""
 "pažymėsite keletą bylų. Kontekstinis meniu iškviečiamas paspaudus dešinįjį "
 "pelės klavišą."
 
-#: Konfigurator/kglookfeel.cpp:109
+#: Konfigurator/kglookfeel.cpp:110
 msgid "Total-Commander Mode"
 msgstr "Total Commander veiksena"
 
-#: Konfigurator/kglookfeel.cpp:109
+#: Konfigurator/kglookfeel.cpp:110
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button selects multiple "
@@ -4860,157 +4907,157 @@ msgstr ""
 "nekeičia esamo žymėjimo, bet nustato dabartinę bylą jos nepažymėdamas. "
 "Kontekstinis meniu iškviečiamas ilgėliau nuspaudus dešinį pelės klavišą."
 
-#: Konfigurator/kglookfeel.cpp:110
+#: Konfigurator/kglookfeel.cpp:111
 msgid "Design your own selection mode!"
 msgstr "Sukurkite savo žymėjimo veikseną!"
 
-#: Konfigurator/kglookfeel.cpp:125
+#: Konfigurator/kglookfeel.cpp:126
 msgid "Panel settings"
 msgstr "Lango nustatymai"
 
-#: Konfigurator/kglookfeel.cpp:129
+#: Konfigurator/kglookfeel.cpp:130
 msgid "Panel font:"
 msgstr "Lango šriftas:"
 
-#: Konfigurator/kglookfeel.cpp:135
+#: Konfigurator/kglookfeel.cpp:136
 msgid "Filelist icon size:"
 msgstr "Bylų ženkliukų dydis:"
 
-#: Konfigurator/kglookfeel.cpp:138
+#: Konfigurator/kglookfeel.cpp:139
 msgid "16"
 msgstr "16"
 
-#: Konfigurator/kglookfeel.cpp:139
+#: Konfigurator/kglookfeel.cpp:140
 msgid "22"
 msgstr "22"
 
-#: Konfigurator/kglookfeel.cpp:140
+#: Konfigurator/kglookfeel.cpp:141
 msgid "32"
 msgstr "32"
 
-#: Konfigurator/kglookfeel.cpp:141
+#: Konfigurator/kglookfeel.cpp:142
 msgid "48"
 msgstr "48"
 
-#: Konfigurator/kglookfeel.cpp:152
+#: Konfigurator/kglookfeel.cpp:153
 msgid "Use icons in the filenames"
 msgstr "Prie pavadinimų rodyti ženkliukus"
 
-#: Konfigurator/kglookfeel.cpp:152
+#: Konfigurator/kglookfeel.cpp:153
 msgid "Show the icons for filenames and folders."
 msgstr "Prie bylų ir aplankų pavadinimų rodyti ženkliukus."
 
-#: Konfigurator/kglookfeel.cpp:153
+#: Konfigurator/kglookfeel.cpp:154
 msgid "Use human-readable file size"
 msgstr "Bylų dydžius pateikti suprantamiau"
 
-#: Konfigurator/kglookfeel.cpp:153
+#: Konfigurator/kglookfeel.cpp:154
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "Bylų dydžiai matuojami B, KB, MB, ar GB, o ne tik tiesiog baitais."
 
-#: Konfigurator/kglookfeel.cpp:163
+#: Konfigurator/kglookfeel.cpp:164
 msgid "Toolbar"
 msgstr "Mygtukų juosta"
 
-#: Konfigurator/kglookfeel.cpp:173
+#: Konfigurator/kglookfeel.cpp:174
 msgid "Keybindings"
 msgstr "Spartieji klavišai"
 
-#: Konfigurator/kglookfeel.cpp:182
+#: Konfigurator/kglookfeel.cpp:183
 msgid "Import shortcuts"
 msgstr "Importuoti spačiuosius klavišus"
 
-#: Konfigurator/kglookfeel.cpp:184
+#: Konfigurator/kglookfeel.cpp:185
 msgid "Load a keybinding profile, e.g., total_commander.keymap"
 msgstr "Įkelti sparčiųjų klavišų profilį, pvz: total_commander.keymap"
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:186
 msgid "Export shortcuts"
 msgstr "Eksportuoti sparčiuosius klavišus"
 
-#: Konfigurator/kglookfeel.cpp:187
+#: Konfigurator/kglookfeel.cpp:188
 msgid "Save current keybindings in a keymap file."
 msgstr "Įrašyti dabartinius sparčiųjų klavišų nustatymus į keymap bylą."
 
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:195
 msgid "Panel Toolbar"
 msgstr "Lango mygtukai"
 
-#: Konfigurator/kglookfeel.cpp:202
+#: Konfigurator/kglookfeel.cpp:203
 msgid "Show Panel Toolbar"
 msgstr "Rodyti lango mygtukų juostą"
 
-#: Konfigurator/kglookfeel.cpp:202
+#: Konfigurator/kglookfeel.cpp:203
 msgid "The panel toolbar will be visible."
 msgstr "Mygtukų juosta bus matoma."
 
-#: Konfigurator/kglookfeel.cpp:208
+#: Konfigurator/kglookfeel.cpp:209
 msgid "Visible Panel Toolbar buttons"
 msgstr "Rodyti šiuos mygtukus"
 
-#: Konfigurator/kglookfeel.cpp:214
+#: Konfigurator/kglookfeel.cpp:215
 msgid "Clear location bar button"
 msgstr "Išvalyti adreso juostą"
 
-#: Konfigurator/kglookfeel.cpp:214
+#: Konfigurator/kglookfeel.cpp:215
 msgid "Clears the location bar"
 msgstr "Adreso juostos išvalymo mygtukas"
 
-#: Konfigurator/kglookfeel.cpp:215
+#: Konfigurator/kglookfeel.cpp:216
 msgid "Open button"
 msgstr "Atverti aplanką"
 
-#: Konfigurator/kglookfeel.cpp:215
+#: Konfigurator/kglookfeel.cpp:216
 msgid "Opens the directory browser."
 msgstr "Atveriamas aplanko parinkimo langas."
 
-#: Konfigurator/kglookfeel.cpp:216
+#: Konfigurator/kglookfeel.cpp:217
 msgid "Equal button (=)"
 msgstr "Sulyginimo mygtukas (=)"
 
-#: Konfigurator/kglookfeel.cpp:216
+#: Konfigurator/kglookfeel.cpp:217
 msgid "Changes the panel directory to the other panel directory."
 msgstr "Šiame lange bus rodomas tas pats aplankas kaip ir kitame lange."
 
-#: Konfigurator/kglookfeel.cpp:217
+#: Konfigurator/kglookfeel.cpp:218
 msgid "Up button (..)"
 msgstr "Aukštyn (..)"
 
-#: Konfigurator/kglookfeel.cpp:217
+#: Konfigurator/kglookfeel.cpp:218
 msgid "Changes the panel directory to the parent directory."
 msgstr "Lange bus rodomas vienu lygiu aukštesnio aplanko turinys."
 
-#: Konfigurator/kglookfeel.cpp:218
+#: Konfigurator/kglookfeel.cpp:219
 msgid "Home button (~)"
 msgstr "Pradžios mygtukas (~)"
 
-#: Konfigurator/kglookfeel.cpp:218
+#: Konfigurator/kglookfeel.cpp:219
 msgid "Changes the panel directory to the home directory."
 msgstr "Lange bus rodomas pradžios aplankas."
 
-#: Konfigurator/kglookfeel.cpp:219
+#: Konfigurator/kglookfeel.cpp:220
 msgid "Root button (/)"
 msgstr "Šakninis aplankas (/)"
 
-#: Konfigurator/kglookfeel.cpp:219
+#: Konfigurator/kglookfeel.cpp:220
 msgid "Changes the panel directory to the root directory."
 msgstr "Lange bus rodomas šakninio aplanko turinys."
 
-#: Konfigurator/kglookfeel.cpp:220
+#: Konfigurator/kglookfeel.cpp:221
 msgid "Toggle-button for sync-browsing"
 msgstr "Sinchroninio naršymo mygtukas"
 
-#: Konfigurator/kglookfeel.cpp:220
+#: Konfigurator/kglookfeel.cpp:221
 msgid ""
 "Each directory change in the panel is also performed in the other panel."
 msgstr ""
 "Kiekvienas aplanko pakeitimas šiame lange bus pateiktas ir kitame lange."
 
-#: Konfigurator/kglookfeel.cpp:284 Konfigurator/kglookfeel.cpp:301
+#: Konfigurator/kglookfeel.cpp:285 Konfigurator/kglookfeel.cpp:302
 msgid "Select a shortcuts file"
 msgstr "Nurodykite sparčiųjų klavišų bylą"
 
-#: Konfigurator/kglookfeel.cpp:291
+#: Konfigurator/kglookfeel.cpp:292
 msgid ""
 "The following information was attached to the keymap. Are you sure you want "
 "to import this keymap ?"
@@ -5019,9 +5066,9 @@ msgstr ""
 "klavišų bylą?"
 
 #: Konfigurator/kgadvanced.cpp:52
-#, fuzzy
 msgid "Preserve attributes for local copy/move (slower)"
-msgstr "Išlaikyti datą vietiniam kopijavimui ir/ar perkėlimui (veikia lėčiau)"
+msgstr ""
+"Išlaikyti atributus vietiniam kopijavimui ir/ar perkėlimui (veikia lėčiau)"
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid ""
@@ -5053,7 +5100,7 @@ msgstr "Patvirtinimai"
 
 #: Konfigurator/kgadvanced.cpp:75
 msgid "Request user confirmation for the following operations:"
-msgstr "Šiems veiksmams bus reikalaujama vartotojo patvirtinimo:"
+msgstr "Šiems veiksmams bus reikalaujama naudotojo patvirtinimo:"
 
 #: Konfigurator/kgadvanced.cpp:80
 msgid "Deleting non-empty directories"
@@ -5085,7 +5132,7 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:85
 msgid "Removing Useractions"
-msgstr "Pašalinti vartotojo sukurtus veiksmus"
+msgstr "Pašalinti naudotojo sukurtus veiksmus"
 
 #: Konfigurator/kgadvanced.cpp:96 Konfigurator/kgarchives.cpp:90
 msgid "Fine-Tuning"
@@ -5101,7 +5148,7 @@ msgid ""
 "displayed. However, too large a cache might consume your memory."
 msgstr ""
 "Talpyklės dydis nusako kaip greit bus pateiktas lango turinys. Tačiau "
-"didesnė talpyklė išnaudos daugiau darbinės atminties."
+"didesnė talpyklė naudos daugiau darbinės atminties."
 
 #: Konfigurator/kgadvanced.cpp:109
 msgid "Arguments of updatedb:"
@@ -5212,42 +5259,39 @@ msgid "Use the default KDE colors"
 msgstr "Naudoti numatytas KDE spalvas"
 
 #: Konfigurator/kgcolors.cpp:60
-#, fuzzy
 msgid ""
 "<p>Use KDE's global color configuration.</p><p><i>KDE Control Center -> "
 "Appearance & Themes -> Colors</i></p>"
 msgstr ""
-"Naudoti numatytas KDE parinktis.<p> <i>KDE valdymo centras –> Išvaizda ir "
-"temos –> Spalvos</i>"
+"<p>Naudoti numatytas KDE parinktis.</p><p> <i>KDE valdymo centras –> "
+"Išvaizda ir temos –> Spalvos</i></p>"
 
 #: Konfigurator/kgcolors.cpp:61
 msgid "Use alternate background color"
 msgstr "Naudoti besikaitaliojančią fono spalvą"
 
 #: Konfigurator/kgcolors.cpp:61
-#, fuzzy
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
-"<b>Fono spalva</b> ir <b>Kita fono spalva</b> bylų sąraše keičiasi viena po "
-"kitos.<p> Jei nenaudojate <i>numatytų KDE spalvų</i>, galite parinkti "
-"besikaitaliojančias spalvas <i>spalvų derinimo lange</i>."
+"<p><b>Fono spalva</b> ir <b>Kita fono spalva</b> bylų sąraše keičiasi viena "
+"po kitos.</p><p> Jei nenaudojate <i>numatytų KDE spalvų</i>, galite parinkti "
+"besikaitaliojančias spalvas <i>spalvų derinimo lange</i>.</p>"
 
 #: Konfigurator/kgcolors.cpp:62
 msgid "Show current item even if not focused"
 msgstr "Rodyti dabartinį objektą net jei aktyvus kitas langas"
 
 #: Konfigurator/kgcolors.cpp:62
-#, fuzzy
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use the <i>KDE default colors</i>.</"
 "p>"
 msgstr ""
-"Rodyti žymeklio vietą neaktyviame lange. <p> Ši parinktis galima tik "
-"nenaudojant <i>KDE numatytų spalvų</i>."
+"<p>Rodyti žymeklio vietą neaktyviame lange.</p> <p> Ši parinktis galima tik "
+"nenaudojant <i>KDE numatytų spalvų</i>.</p>"
 
 #: Konfigurator/kgcolors.cpp:88
 msgid "Active"
@@ -5488,7 +5532,7 @@ msgstr "Tęsti darbą ten kur buvo baigta"
 
 #: Konfigurator/kgstartup.cpp:72
 msgid "User Interface"
-msgstr "Vartotojo aplinka"
+msgstr "Naudotojo aplinka"
 
 #: Konfigurator/kgstartup.cpp:77
 msgid "Save settings on exit"
@@ -5499,7 +5543,7 @@ msgid ""
 "Check the state of the user interface components and restore them to their "
 "condition when last shutdown."
 msgstr ""
-"Baigiant darbą įsimenami visi vartotojo aplinkos nustatymai ir kitą kartą "
+"Baigiant darbą įsimenami visi naudotojo aplinkos nustatymai ir kitą kartą "
 "pradėjus darbą atstatoma padėtis, buvusi prieš išjungiant Krusader."
 
 #: Konfigurator/kgstartup.cpp:78
@@ -5547,7 +5591,6 @@ msgid "Save last position, size and panel settings"
 msgstr "Įsiminti paskutinę lango vietą, dydį ir langų nustatymus"
 
 #: Konfigurator/kgstartup.cpp:83
-#, fuzzy
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
@@ -5555,11 +5598,12 @@ msgid ""
 "is disabled, you can use the menu <i>Settings -> Save Position</i> option to "
 "manually set the main window's size and position at startup.</p>"
 msgstr ""
-"Pradėjęs darbą Krusader nustatys lango dydžius tokius, kokie buvo paskutinį "
-"kartą prieš baigiant darbą. Langai bus toje pačioje ekrano vietoje, "
-"sudėlioti taip kaip jie buvo anksčiau. <p>Jei ši parinktis išjungta, galite "
-"rankiniu būdu nustatyti kokio dydžio ir kurioje vietoje turi būti Krusader "
-"langas pradedant darbą (<i>Nustatymai->Įsiminti vietą</i>)."
+"<p>Pradėjęs darbą Krusader nustatys lango dydžius tokius, kokie buvo "
+"paskutinį kartą prieš baigiant darbą. Langai bus toje pačioje ekrano "
+"vietoje, sudėlioti taip kaip jie buvo anksčiau.</p><p>Jei ši parinktis "
+"išjungta, galite rankiniu būdu nustatyti kokio dydžio ir kurioje vietoje "
+"turi būti Krusader langas pradedant darbą (<i>Nustatymai->Įsiminti vietą</"
+"i>).</p>"
 
 #: Konfigurator/kgarchives.cpp:55
 msgid "Krusader transparently handles the following types of archives:"
@@ -5603,11 +5647,11 @@ msgstr "Lha"
 
 #: Konfigurator/kgarchives.cpp:69
 msgid "Deb"
-msgstr ""
+msgstr "Deb"
 
 #: Konfigurator/kgarchives.cpp:70
 msgid "7zip"
-msgstr ""
+msgstr "7zip"
 
 #: Konfigurator/kgarchives.cpp:76
 msgid ""
@@ -5683,26 +5727,20 @@ msgid "Export Action"
 msgstr "Eksportuoti veiksmą"
 
 #: Konfigurator/kguseractions.cpp:77
-#, fuzzy
 msgid "Action to Clipboard"
-msgstr "Iškirpti į talpyklę"
+msgstr "Įkelti veiksmą į talpyklę"
 
 #: Konfigurator/kguseractions.cpp:78
-#, fuzzy
 msgid "Action from Clipboard"
-msgstr "Įkelti iš talpyklės"
+msgstr "Įkelti veiksmą iš talpyklės"
 
 #: Konfigurator/kguseractions.cpp:174
-#, fuzzy
 msgid "Are you sure that you want to remove all selected action?"
-msgstr ""
-"Ar tikrai norite pašalinti šį veiksmą? \n"
-"Atgal atstatyti bus neįmanoma!"
+msgstr "Ar tikrai norite pašalinti visus pažymėtus veiksmus?"
 
 #: Konfigurator/kguseractions.cpp:175
-#, fuzzy
 msgid "Remove selected actions?"
-msgstr "Pašalinti šį veiksmą?"
+msgstr "Pašalinti pažymėtus veiksmus?"
 
 #: Konfigurator/kguseractions.cpp:176
 msgid "Remove"
@@ -5713,39 +5751,36 @@ msgid ""
 "This file already contains some useractions.\n"
 "Do you want to overwrite it or should it be merged with the selected actions?"
 msgstr ""
+"Šioje byloje jau yra keli veiksmai.\n"
+"Ar norite pakeisti bylą, ar pažymėtais veiksmais papildyti esančią bylą?"
 
 #: Konfigurator/kguseractions.cpp:223
-#, fuzzy
 msgid "Overwrite or merge?"
-msgstr "Pakeisti"
+msgstr "Pakeisti ar papildyti?"
 
 #: Konfigurator/kguseractions.cpp:225
-#, fuzzy
 msgid "Merge"
-msgstr "&Daugiau"
+msgstr "Papildyti"
 
 #: Konfigurator/kguseractions.cpp:231
-#, fuzzy
 msgid "This file already exists. Do you want to overwrite it?"
-msgstr ""
-"Byla %1 jau egzistuoja.\n"
-"Ar tikrai norite ją perrašyti?"
+msgstr "Byla jau egzistuoja. Ar tikrai norite ją pakeisti?"
 
 #: Konfigurator/kguseractions.cpp:232
-#, fuzzy
 msgid "Overwrite existing file?"
-msgstr "Rodyti tik egzistuojančias bylas"
+msgstr "Pakeisti dabartinę bylą?"
 
 #: Konfigurator/kguseractions.cpp:247
 msgid ""
 "Can't open %1 for writing!\n"
 "Nothing exported."
 msgstr ""
+"Nepavyko atverti %1 rašymui!\n"
+"Duomenys nebuvo eksportuoti."
 
 #: Konfigurator/kguseractions.cpp:248
-#, fuzzy
 msgid "Export failed!"
-msgstr "Tekstinė byla"
+msgstr "Eksportavimas nepavyko!"
 
 #: krslots.cpp:103
 msgid ""
@@ -5832,9 +5867,9 @@ msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
 msgstr ""
-"Nepavyko paleisti Krusader root vartotojo teisėmis, nes programų kelyje "
+"Nepavyko paleisti Krusader root naudotojo teisėmis, nes programų kelyje "
 "nerasta krusader arba kdesu programos. Patikrinkite programų kelius Krusader "
-"derinimo lange „Keliai“."
+"derinimo lange Keliai."
 
 #: krslots.cpp:553
 msgid "Enter a URL to view:"
@@ -5914,7 +5949,7 @@ msgstr "Byla %1 suskaidoma į aplanką:"
 
 #: Splitter/splittergui.cpp:75
 msgid "User Defined"
-msgstr "Vartotojo nustatytas"
+msgstr "Naudotojo nustatytas"
 
 #: Splitter/splittergui.cpp:82
 msgid "Max file size:"
@@ -6015,8 +6050,17 @@ msgstr "Klaida skaitant bylą %1!"
 msgid "Error at writing file %1!"
 msgstr "Klaida įrašant bylą %1!"
 
+#~ msgid "Right to left: Copy %1 files (%2 bytes)"
+#~ msgstr "Iš dešinės į kairę: kopijuoti %1 bylas (%2 baitus)"
+
+#~ msgid "Left to right: Copy %1 files (%2 bytes)"
+#~ msgstr "Iš kairės į dešinę: kopijuoti %1 bylas (%2 baitus)"
+
+#~ msgid "File number:%1"
+#~ msgstr "Bylų skaičius: %1"
+
 #~ msgid "There already is an action with this name"
-#~ msgstr "Vartotojo veiksmas tokiu pavadinimu jau yra"
+#~ msgstr "Veiksmas tokiu pavadinimu jau yra"
 
 #~ msgid "Use tooltip"
 #~ msgstr "Įjungti patarimą"
@@ -6028,7 +6072,7 @@ msgstr "Klaida įrašant bylą %1!"
 #~ msgstr "tar.bz2"
 
 #~ msgid "The file you've chosen doesn't seem to be a valid action-file."
-#~ msgstr "Parinkta byla nėra vartotojo veiksmų byla."
+#~ msgstr "Parinkta byla nėra naudotojo veiksmų byla."
 
 #~ msgid "No actions found in this file."
 #~ msgstr "Šioje byloje nerasta nei vieno veiksmo."
@@ -6045,7 +6089,6 @@ msgstr "Klaida įrašant bylą %1!"
 #~ "importuoti, \n"
 #~ "jei dabar uždarysite derinimo langą!"
 
-#, fuzzy
 #~ msgid ""
 #~ "The filename filtering criteria is defined here.<p>You can make use of "
 #~ "wildcards. Multiple patterns are separated by space and patterns are "
@@ -6057,16 +6100,10 @@ msgstr "Klaida įrašant bylą %1!"
 #~ "Įveskite bylų pavadinimų filtravimo kriterijus. <p> Galite naudoti "
 #~ "pakaitos simbolius. Galite pateikti kelis kriterijus, atskirtus tarpais. "
 #~ "Kriterijaus už vertikalaus brūkšnio „|“ atitiktys bus išmestos iš bendro "
-#~ "rezultato.<p> Pavyzdžiai:<ul><code><li>*.o</li><li>*.h *.c??</li><li>*."
-#~ "cpp *.h | *.moc.cpp</li></code></ul> <b>Dėmesio</b>: Parašius "
+#~ "rezultato.</p><p> Pavyzdžiai:<ul><code><li>*.o</li><li>*.h *.c??</"
+#~ "li><li>*.cpp *.h | *.moc.cpp</li></code></ul> <b>Dėmesio</b>: Parašius "
 #~ "„<code>tekstas</code>“, kriterijus bus interpretuojamas kaip "
-#~ "„<code>*tekstas*</code>“."
-
-#, fuzzy
-#~ msgid ""
-#~ "_n: Left to right: Copy %n file (%1 bytes)\n"
-#~ "Left to right: Copy %n files (%1 bytes)"
-#~ msgstr "Iš kairės į dešinę: kopijuoti %1 bylas (%2 baitus)"
+#~ "„<code>*tekstas*</code>“.</p>"
 
 #~ msgid "Password Needed"
 #~ msgstr "Reikalingas slaptažodis"
