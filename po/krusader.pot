@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2006-04-15 13:55+0200\n"
+"POT-Creation-Date: 2006-05-05 18:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,43 +57,43 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: GUI/mediabutton.cpp:73
+#: GUI/mediabutton.cpp:74
 msgid "Open the available media list"
 msgstr ""
 
-#: GUI/mediabutton.cpp:278
+#: GUI/mediabutton.cpp:303
 msgid "Hard Disk"
 msgstr ""
 
-#: GUI/mediabutton.cpp:280
+#: GUI/mediabutton.cpp:305
 msgid "CD-ROM"
 msgstr ""
 
-#: GUI/mediabutton.cpp:282
+#: GUI/mediabutton.cpp:307
 msgid "CD Recorder"
 msgstr ""
 
-#: GUI/mediabutton.cpp:285
+#: GUI/mediabutton.cpp:310
 msgid "DVD Recorder"
 msgstr ""
 
-#: GUI/mediabutton.cpp:288
+#: GUI/mediabutton.cpp:313
 msgid "DVD"
 msgstr ""
 
-#: GUI/mediabutton.cpp:290 GUI/mediabutton.cpp:292
+#: GUI/mediabutton.cpp:315 GUI/mediabutton.cpp:317
 msgid "Remote Share"
 msgstr ""
 
-#: GUI/mediabutton.cpp:294 GUI/mediabutton.cpp:296
+#: GUI/mediabutton.cpp:319 GUI/mediabutton.cpp:321
 msgid "Floppy"
 msgstr ""
 
-#: GUI/mediabutton.cpp:298
+#: GUI/mediabutton.cpp:323
 msgid "Zip Disk"
 msgstr ""
 
-#: GUI/mediabutton.cpp:301
+#: GUI/mediabutton.cpp:326
 msgid "Unknown"
 msgstr ""
 
@@ -650,14 +650,15 @@ msgstr ""
 
 #: BookMan/krbookmarkhandler.cpp:149 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
-#: VFS/krarchandler.cpp:200 VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274
-#: VFS/krarchandler.cpp:332 VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503
-#: VFS/normal_vfs.cpp:80 VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96
-#: VFS/virt_vfs.cpp:87 VFS/virt_vfs.cpp:156 krusader.cpp:732
+#: Synchronizer/synchronizerdirlist.cpp:92 VFS/krarchandler.cpp:200
+#: VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274 VFS/krarchandler.cpp:332
+#: VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503 VFS/normal_vfs.cpp:80
+#: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
+#: VFS/virt_vfs.cpp:156 krusader.cpp:732
 msgid "Error"
 msgstr ""
 
-#: VFS/normal_vfs.cpp:90
+#: Synchronizer/synchronizerdirlist.cpp:92 VFS/normal_vfs.cpp:90
 msgid "Can't open the %1 directory!"
 msgstr ""
 
@@ -680,35 +681,35 @@ msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr ""
 
 #: Filter/generalfilter.cpp:94 Konfigurator/konfigurator.cpp:107
-#: VFS/krquery.cpp:136
+#: VFS/krquery.cpp:138
 msgid "Archives"
 msgstr ""
 
-#: Filter/generalfilter.cpp:95 VFS/krquery.cpp:137
+#: Filter/generalfilter.cpp:95 VFS/krquery.cpp:139
 msgid "Directories"
 msgstr ""
 
-#: Filter/generalfilter.cpp:96 VFS/krquery.cpp:138
+#: Filter/generalfilter.cpp:96 VFS/krquery.cpp:140
 msgid "Image Files"
 msgstr ""
 
-#: Filter/generalfilter.cpp:97 VFS/krquery.cpp:139
+#: Filter/generalfilter.cpp:97 VFS/krquery.cpp:141
 msgid "Text Files"
 msgstr ""
 
-#: Filter/generalfilter.cpp:98 VFS/krquery.cpp:140
+#: Filter/generalfilter.cpp:98 VFS/krquery.cpp:142
 msgid "Video Files"
 msgstr ""
 
-#: Filter/generalfilter.cpp:99 VFS/krquery.cpp:141
+#: Filter/generalfilter.cpp:99 VFS/krquery.cpp:143
 msgid "Audio Files"
 msgstr ""
 
-#: VFS/krquery.cpp:142
+#: VFS/krquery.cpp:144
 msgid "Custom"
 msgstr ""
 
-#: VFS/krquery.cpp:417
+#: VFS/krquery.cpp:432
 msgid "Searching content of '%1' (%2%)"
 msgstr ""
 
@@ -892,7 +893,7 @@ msgid "Please specify a location to search in."
 msgstr ""
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:103
-#: Panel/krdetailedview.cpp:1295 Search/krsearchdialog.cpp:149
+#: Panel/krdetailedview.cpp:1297 Search/krsearchdialog.cpp:149
 #: Synchronizer/synchronizergui.cpp:1246 Synchronizer/synchronizergui.cpp:1250
 msgid "Size"
 msgstr ""
@@ -1260,8 +1261,8 @@ msgid "Choose a window-mode"
 msgstr ""
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:106
-#: Synchronizer/synchronizedialog.cpp:116
-#: Synchronizer/synchronizergui.cpp:1373 UserAction/kraction.cpp:41
+#: Synchronizer/synchronizedialog.cpp:117
+#: Synchronizer/synchronizergui.cpp:1384 UserAction/kraction.cpp:41
 msgid "Close"
 msgstr ""
 
@@ -1318,8 +1319,8 @@ msgid "UserActions - invalid action"
 msgstr ""
 
 #: Panel/krdetailedviewitem.cpp:78 Panel/krdetailedviewitem.cpp:110
-#: Synchronizer/synchronizergui.cpp:1835 Synchronizer/synchronizergui.cpp:1842
-#: Synchronizer/synchronizergui.cpp:1891 Synchronizer/synchronizergui.cpp:1898
+#: Synchronizer/synchronizergui.cpp:1849 Synchronizer/synchronizergui.cpp:1856
+#: Synchronizer/synchronizergui.cpp:1908 Synchronizer/synchronizergui.cpp:1915
 msgid "<DIR>"
 msgstr ""
 
@@ -1479,38 +1480,38 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1289
+#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1291
 msgid "Ext"
 msgstr ""
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1292
+#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1294
 msgid "Type"
 msgstr ""
 
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1298
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1300
 msgid "Modified"
 msgstr ""
 
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1301
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1303
 msgid "Perms"
 msgstr ""
 
-#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1304
+#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1306
 msgid "rwx"
 msgstr ""
 
 #: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:107
-#: Panel/krdetailedview.cpp:1307
+#: Panel/krdetailedview.cpp:1309
 msgid "Owner"
 msgstr ""
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
-#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1310
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1312
 msgid "Group"
 msgstr ""
 
-#: Panel/krdetailedview.cpp:1276
+#: Panel/krdetailedview.cpp:1278
 msgid "Columns"
 msgstr ""
 
@@ -1985,7 +1986,7 @@ msgid "%1, unknown archive type"
 msgstr ""
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
-#: Synchronizer/synchronizergui.cpp:1357
+#: Synchronizer/synchronizergui.cpp:1368
 msgid "Stop"
 msgstr ""
 
@@ -2036,7 +2037,7 @@ msgid "Error during the start of 'locate' process!"
 msgstr ""
 
 #: Locate/locate.cpp:244 Search/krsearchdialog.cpp:91
-#: Synchronizer/synchronizergui.cpp:1362
+#: Synchronizer/synchronizergui.cpp:1373
 msgid "Feed to listbox"
 msgstr ""
 
@@ -3583,261 +3584,260 @@ msgid "&Synchronizer"
 msgstr ""
 
 #: Synchronizer/synchronizergui.cpp:1278
-msgid "&Time options"
+msgid "&Options"
 msgstr ""
 
 #: Synchronizer/synchronizergui.cpp:1287
+msgid "Parallel threads:"
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1298
 msgid "Equality threshold:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1295 Synchronizer/synchronizergui.cpp:1310
+#: Synchronizer/synchronizergui.cpp:1306 Synchronizer/synchronizergui.cpp:1321
 msgid "sec"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1296 Synchronizer/synchronizergui.cpp:1311
+#: Synchronizer/synchronizergui.cpp:1307 Synchronizer/synchronizergui.cpp:1322
 msgid "min"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1297 Synchronizer/synchronizergui.cpp:1312
+#: Synchronizer/synchronizergui.cpp:1308 Synchronizer/synchronizergui.cpp:1323
 msgid "hour"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1298 Synchronizer/synchronizergui.cpp:1313
+#: Synchronizer/synchronizergui.cpp:1309 Synchronizer/synchronizergui.cpp:1324
 msgid "day"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1301
+#: Synchronizer/synchronizergui.cpp:1312
 msgid "Time shift (right-left):"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1331
+#: Synchronizer/synchronizergui.cpp:1342
 msgid "Swap sides."
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1341
+#: Synchronizer/synchronizergui.cpp:1352
 msgid "Compare"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1351 Synchronizer/synchronizergui.cpp:2174
+#: Synchronizer/synchronizergui.cpp:1362 Synchronizer/synchronizergui.cpp:2200
 msgid "Quiet"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1353 Synchronizer/synchronizergui.cpp:2176
+#: Synchronizer/synchronizergui.cpp:1364 Synchronizer/synchronizergui.cpp:2202
 msgid "Scroll Results"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1368
+#: Synchronizer/synchronizergui.cpp:1379
 msgid "Synchronize"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1477
+#: Synchronizer/synchronizergui.cpp:1488
 msgid "Selected files from target directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1478
+#: Synchronizer/synchronizergui.cpp:1489
 msgid "Selected files from source directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1482
+#: Synchronizer/synchronizergui.cpp:1493
 msgid "Selected files from left directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1483
+#: Synchronizer/synchronizergui.cpp:1494
 msgid "Selected files from right directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1487
+#: Synchronizer/synchronizergui.cpp:1498
 msgid "Target directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1488
+#: Synchronizer/synchronizergui.cpp:1499
 msgid "Source directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1492
+#: Synchronizer/synchronizergui.cpp:1503
 msgid "Left directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1493
+#: Synchronizer/synchronizergui.cpp:1504
 msgid "Right directory:"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1528
+#: Synchronizer/synchronizergui.cpp:1539
 msgid "URL must be the descendant of either the left or the right base URL!"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1567
+#: Synchronizer/synchronizergui.cpp:1578
 msgid "Synchronize Directories"
 msgstr ""
 
-#: DiskUsage/diskusage.cpp:761 Synchronizer/synchronizergui.cpp:1569
+#: DiskUsage/diskusage.cpp:761 Synchronizer/synchronizergui.cpp:1580
 msgid "Exclude"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1571
+#: Synchronizer/synchronizergui.cpp:1582
 msgid "Restore original operation"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1573
+#: Synchronizer/synchronizergui.cpp:1584
 msgid "Reverse direction"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1575
+#: Synchronizer/synchronizergui.cpp:1586
 msgid "Copy from right to left"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1577
+#: Synchronizer/synchronizergui.cpp:1588
 msgid "Copy from left to right"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1579
+#: Synchronizer/synchronizergui.cpp:1590
 msgid "Delete (left single)"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1584
+#: Synchronizer/synchronizergui.cpp:1595
 msgid "View left file"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1586
+#: Synchronizer/synchronizergui.cpp:1597
 msgid "View right file"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1588
+#: Synchronizer/synchronizergui.cpp:1599
 msgid "Compare Files"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1593 Synchronizer/synchronizergui.cpp:1672
+#: Synchronizer/synchronizergui.cpp:1604 Synchronizer/synchronizergui.cpp:1683
 msgid "Select items"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1595 Synchronizer/synchronizergui.cpp:1673
+#: Synchronizer/synchronizergui.cpp:1606 Synchronizer/synchronizergui.cpp:1684
 msgid "Deselect items"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1597
+#: Synchronizer/synchronizergui.cpp:1608
 msgid "Invert selection"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1608
+#: Synchronizer/synchronizergui.cpp:1619
 msgid "Synchronize with KGet"
 msgstr ""
 
-#: Synchronizer/synchronizergui.cpp:1989
+#: Synchronizer/synchronizergui.cpp:2010
 msgid "Synchronizer has nothing to do!"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:48
+#: Synchronizer/synchronizertask.cpp:131 Synchronizer/synchronizertask.cpp:138
+msgid "Error at opening %1!"
+msgstr ""
+
+#: Synchronizer/synchronizertask.cpp:291
+msgid "IO error at comparing file %1 with %2!"
+msgstr ""
+
+#: Synchronizer/synchronizertask.cpp:329
+msgid "Comparing file %1 (%2)..."
+msgstr ""
+
+#: Synchronizer/synchronizedialog.cpp:49
 msgid "Krusader::Synchronize"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:52
+#: Synchronizer/synchronizedialog.cpp:53
 #, c-format
 msgid ""
 "_n: Right to left: Copy 1 file\n"
 "Right to left: Copy %n files"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:53 Synchronizer/synchronizedialog.cpp:66
-#: Synchronizer/synchronizedialog.cpp:79
+#: Synchronizer/synchronizedialog.cpp:54 Synchronizer/synchronizedialog.cpp:67
+#: Synchronizer/synchronizedialog.cpp:80
 #, c-format
 msgid ""
 "_n: (1 byte)\n"
 "(%n bytes)"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:59 Synchronizer/synchronizedialog.cpp:72
-#: Synchronizer/synchronizedialog.cpp:85
+#: Synchronizer/synchronizedialog.cpp:60 Synchronizer/synchronizedialog.cpp:73
+#: Synchronizer/synchronizedialog.cpp:86
 msgid ""
 "_n: Ready: %1/1 file, %3/%4\n"
 "Ready: %1/%n files, %3/%4"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:65
+#: Synchronizer/synchronizedialog.cpp:66
 #, c-format
 msgid ""
 "_n: Left to right: Copy 1 file\n"
 "Left to right: Copy %n files"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:78
+#: Synchronizer/synchronizedialog.cpp:79
 #, c-format
 msgid ""
 "_n: Left: Delete 1 file\n"
 "Left: Delete %n files"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:100
+#: Synchronizer/synchronizedialog.cpp:101
 msgid "Confirm overwrites"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:109
+#: Synchronizer/synchronizedialog.cpp:110
 msgid "Start"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:113
-#: Synchronizer/synchronizedialog.cpp:195 Synchronizer/synchronizer.cpp:1425
-#: Synchronizer/synchronizer.cpp:1435
+#: Synchronizer/synchronizedialog.cpp:114
+#: Synchronizer/synchronizedialog.cpp:196 Synchronizer/synchronizer.cpp:1286
+#: Synchronizer/synchronizer.cpp:1296
 msgid "Pause"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:157
-#: Synchronizer/synchronizedialog.cpp:160
-#: Synchronizer/synchronizedialog.cpp:163
+#: Synchronizer/synchronizedialog.cpp:158
+#: Synchronizer/synchronizedialog.cpp:161
+#: Synchronizer/synchronizedialog.cpp:164
 msgid "\tReady: %1/%2 files, %3/%4"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:203 Synchronizer/synchronizer.cpp:1437
+#: Synchronizer/synchronizedialog.cpp:204 Synchronizer/synchronizer.cpp:1298
 msgid "Resume"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:129 Synchronizer/synchronizer.cpp:585
+#: Synchronizer/synchronizer.cpp:145 Synchronizer/synchronizer.cpp:617
 #, c-format
 msgid "Number of files: %1"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:302
-msgid "Error at opening URL:%1!"
-msgstr ""
-
-#: Synchronizer/synchronizer.cpp:307 Synchronizer/synchronizer.cpp:1204
-#: Synchronizer/synchronizer.cpp:1284
+#: Synchronizer/synchronizer.cpp:176
 #, c-format
-msgid "Number of scanned directories: %1"
+msgid "Number of compared directories: %1"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:1002 Synchronizer/synchronizer.cpp:1010
+#: Synchronizer/synchronizer.cpp:1094 Synchronizer/synchronizer.cpp:1107
 msgid "File Already Exists"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:1050 Synchronizer/synchronizer.cpp:1055
+#: Synchronizer/synchronizer.cpp:1152 Synchronizer/synchronizer.cpp:1157
 msgid "Error at copying file %1 to %2!"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:1060
+#: Synchronizer/synchronizer.cpp:1162
 msgid "Error at deleting file %1!"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:1214 Synchronizer/synchronizer.cpp:1220
-msgid "Error at opening %1!"
-msgstr ""
-
-#: Synchronizer/synchronizer.cpp:1356
-msgid "IO error at comparing file %1 with %2!"
-msgstr ""
-
-#: Synchronizer/synchronizer.cpp:1385 Synchronizer/synchronizer.cpp:1396
-msgid "Comparing file %1..."
-msgstr ""
-
-#: Synchronizer/synchronizer.cpp:1480
+#: Synchronizer/synchronizer.cpp:1341
 msgid "Krusader::Synchronizer"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:1481
+#: Synchronizer/synchronizer.cpp:1342
 msgid "Feeding the URLs to Kget"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:1530 krslots.cpp:116 krslots.cpp:208
+#: Synchronizer/synchronizer.cpp:1391 krslots.cpp:116 krslots.cpp:208
 msgid "Error executing "
 msgstr ""
 
@@ -4755,8 +4755,8 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:52
 msgid ""
-"Change the modification time of local files according to the source one. "
-"This can slow down the copy process."
+"Change all attributes (time, owner, group) of local files according to the "
+"source one. This can slow down the copy process."
 msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:53

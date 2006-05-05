@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
-"POT-Creation-Date: 2006-04-15 13:55+0200\n"
+"POT-Creation-Date: 2006-05-05 18:13+0200\n"
 "PO-Revision-Date: 2006-05-05 16:02+0100\n"
 "Last-Translator: Dovydas Sankauskas <laisve@gmail.com>\n"
 "Language-Team: Lithuanian <krusader-i18n@googlegroups.com>\n"
@@ -62,44 +62,44 @@ msgstr "Įkelti iš naujo"
 msgid "Default"
 msgstr "Numatyta"
 
-#: GUI/mediabutton.cpp:73
+#: GUI/mediabutton.cpp:74
 msgid "Open the available media list"
 msgstr "Atverti laikmenų sąrašą"
 
-#: GUI/mediabutton.cpp:278
+#: GUI/mediabutton.cpp:303
 #, fuzzy
 msgid "Hard Disk"
 msgstr "Kietas diskas"
 
-#: GUI/mediabutton.cpp:280
+#: GUI/mediabutton.cpp:305
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: GUI/mediabutton.cpp:282
+#: GUI/mediabutton.cpp:307
 msgid "CD Recorder"
 msgstr "Įrašinėjantis CD"
 
-#: GUI/mediabutton.cpp:285
+#: GUI/mediabutton.cpp:310
 msgid "DVD Recorder"
 msgstr "Įrašinėjantis DVD"
 
-#: GUI/mediabutton.cpp:288
+#: GUI/mediabutton.cpp:313
 msgid "DVD"
 msgstr "DVD"
 
-#: GUI/mediabutton.cpp:290 GUI/mediabutton.cpp:292
+#: GUI/mediabutton.cpp:315 GUI/mediabutton.cpp:317
 msgid "Remote Share"
 msgstr "Nutolusios bylos"
 
-#: GUI/mediabutton.cpp:294 GUI/mediabutton.cpp:296
+#: GUI/mediabutton.cpp:319 GUI/mediabutton.cpp:321
 msgid "Floppy"
 msgstr "Diskelis"
 
-#: GUI/mediabutton.cpp:298
+#: GUI/mediabutton.cpp:323
 msgid "Zip Disk"
 msgstr "Zip įrenginys"
 
-#: GUI/mediabutton.cpp:301
+#: GUI/mediabutton.cpp:326
 msgid "Unknown"
 msgstr "Nežinoma"
 
@@ -712,14 +712,15 @@ msgstr "Aplankas %1 neegzistuoja!"
 
 #: BookMan/krbookmarkhandler.cpp:149 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
-#: VFS/krarchandler.cpp:200 VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274
-#: VFS/krarchandler.cpp:332 VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503
-#: VFS/normal_vfs.cpp:80 VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96
-#: VFS/virt_vfs.cpp:87 VFS/virt_vfs.cpp:156 krusader.cpp:732
+#: Synchronizer/synchronizerdirlist.cpp:92 VFS/krarchandler.cpp:200
+#: VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274 VFS/krarchandler.cpp:332
+#: VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503 VFS/normal_vfs.cpp:80
+#: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
+#: VFS/virt_vfs.cpp:156 krusader.cpp:732
 msgid "Error"
 msgstr "Klaida"
 
-#: VFS/normal_vfs.cpp:90
+#: Synchronizer/synchronizerdirlist.cpp:92 VFS/normal_vfs.cpp:90
 msgid "Can't open the %1 directory!"
 msgstr "Nepavyko atverti aplanko %1!"
 
@@ -744,35 +745,35 @@ msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr "Kurti naujus aplankus galima tik „virt:/“ aplanke."
 
 #: Filter/generalfilter.cpp:94 Konfigurator/konfigurator.cpp:107
-#: VFS/krquery.cpp:136
+#: VFS/krquery.cpp:138
 msgid "Archives"
 msgstr "Supakuotos bylos"
 
-#: Filter/generalfilter.cpp:95 VFS/krquery.cpp:137
+#: Filter/generalfilter.cpp:95 VFS/krquery.cpp:139
 msgid "Directories"
 msgstr "Aplankai"
 
-#: Filter/generalfilter.cpp:96 VFS/krquery.cpp:138
+#: Filter/generalfilter.cpp:96 VFS/krquery.cpp:140
 msgid "Image Files"
 msgstr "Grafinės bylos"
 
-#: Filter/generalfilter.cpp:97 VFS/krquery.cpp:139
+#: Filter/generalfilter.cpp:97 VFS/krquery.cpp:141
 msgid "Text Files"
 msgstr "Tekstinės bylos"
 
-#: Filter/generalfilter.cpp:98 VFS/krquery.cpp:140
+#: Filter/generalfilter.cpp:98 VFS/krquery.cpp:142
 msgid "Video Files"
 msgstr "Video bylos"
 
-#: Filter/generalfilter.cpp:99 VFS/krquery.cpp:141
+#: Filter/generalfilter.cpp:99 VFS/krquery.cpp:143
 msgid "Audio Files"
 msgstr "Garso bylos"
 
-#: VFS/krquery.cpp:142
+#: VFS/krquery.cpp:144
 msgid "Custom"
 msgstr "Kitos bylos"
 
-#: VFS/krquery.cpp:417
+#: VFS/krquery.cpp:432
 msgid "Searching content of '%1' (%2%)"
 msgstr "Ieškomas „%1“ turinys (%2%)"
 
@@ -971,7 +972,7 @@ msgid "Please specify a location to search in."
 msgstr "Nurodykite adresą, kuriame ieškoti."
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:103
-#: Panel/krdetailedview.cpp:1295 Search/krsearchdialog.cpp:149
+#: Panel/krdetailedview.cpp:1297 Search/krsearchdialog.cpp:149
 #: Synchronizer/synchronizergui.cpp:1246 Synchronizer/synchronizergui.cpp:1250
 msgid "Size"
 msgstr "Dydis"
@@ -1349,8 +1350,8 @@ msgid "Choose a window-mode"
 msgstr "Parinkite lango veikseną"
 
 #: Konfigurator/konfigurator.cpp:69 Search/krsearchdialog.cpp:106
-#: Synchronizer/synchronizedialog.cpp:116
-#: Synchronizer/synchronizergui.cpp:1373 UserAction/kraction.cpp:41
+#: Synchronizer/synchronizedialog.cpp:117
+#: Synchronizer/synchronizergui.cpp:1384 UserAction/kraction.cpp:41
 msgid "Close"
 msgstr "Uždaryti"
 
@@ -1410,8 +1411,8 @@ msgid "UserActions - invalid action"
 msgstr "Veiksmai: klaidingas veiksmas"
 
 #: Panel/krdetailedviewitem.cpp:78 Panel/krdetailedviewitem.cpp:110
-#: Synchronizer/synchronizergui.cpp:1835 Synchronizer/synchronizergui.cpp:1842
-#: Synchronizer/synchronizergui.cpp:1891 Synchronizer/synchronizergui.cpp:1898
+#: Synchronizer/synchronizergui.cpp:1849 Synchronizer/synchronizergui.cpp:1856
+#: Synchronizer/synchronizergui.cpp:1908 Synchronizer/synchronizergui.cpp:1915
 msgid "<DIR>"
 msgstr "<Aplankas>"
 
@@ -1580,38 +1581,38 @@ msgstr "Skaitoma: "
 msgid "Name"
 msgstr "Pavadinimas"
 
-#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1289
+#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1291
 msgid "Ext"
 msgstr "Plėtinys"
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1292
+#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1294
 msgid "Type"
 msgstr "Tipas"
 
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1298
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1300
 msgid "Modified"
 msgstr "Data"
 
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1301
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1303
 msgid "Perms"
 msgstr "Teisės"
 
-#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1304
+#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1306
 msgid "rwx"
 msgstr "rwx"
 
 #: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:107
-#: Panel/krdetailedview.cpp:1307
+#: Panel/krdetailedview.cpp:1309
 msgid "Owner"
 msgstr "Savininkas"
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
-#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1310
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1312
 msgid "Group"
 msgstr "Grupė"
 
-#: Panel/krdetailedview.cpp:1276
+#: Panel/krdetailedview.cpp:1278
 msgid "Columns"
 msgstr "Laukeliai"
 
@@ -2111,7 +2112,7 @@ msgid "%1, unknown archive type"
 msgstr "%1, nežinomas supakuotos bylos tipas"
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
-#: Synchronizer/synchronizergui.cpp:1357
+#: Synchronizer/synchronizergui.cpp:1368
 msgid "Stop"
 msgstr "Stop"
 
@@ -2166,7 +2167,7 @@ msgid "Error during the start of 'locate' process!"
 msgstr "Klaida pradedant vykdyti Paiešką (locate)!"
 
 #: Locate/locate.cpp:244 Search/krsearchdialog.cpp:91
-#: Synchronizer/synchronizergui.cpp:1362
+#: Synchronizer/synchronizergui.cpp:1373
 msgid "Feed to listbox"
 msgstr "Rezultatus į atskirą langą"
 
@@ -3845,154 +3846,172 @@ msgid "&Synchronizer"
 msgstr "&Sinchronizavimas"
 
 #: Synchronizer/synchronizergui.cpp:1278
-msgid "&Time options"
-msgstr "&Laiko parinktys"
+#, fuzzy
+msgid "&Options"
+msgstr "Veiksmai"
 
 #: Synchronizer/synchronizergui.cpp:1287
+msgid "Parallel threads:"
+msgstr ""
+
+#: Synchronizer/synchronizergui.cpp:1298
 msgid "Equality threshold:"
 msgstr "Vienodumo slenkstis:"
 
-#: Synchronizer/synchronizergui.cpp:1295 Synchronizer/synchronizergui.cpp:1310
+#: Synchronizer/synchronizergui.cpp:1306 Synchronizer/synchronizergui.cpp:1321
 msgid "sec"
 msgstr "sek."
 
-#: Synchronizer/synchronizergui.cpp:1296 Synchronizer/synchronizergui.cpp:1311
+#: Synchronizer/synchronizergui.cpp:1307 Synchronizer/synchronizergui.cpp:1322
 msgid "min"
 msgstr "min."
 
-#: Synchronizer/synchronizergui.cpp:1297 Synchronizer/synchronizergui.cpp:1312
+#: Synchronizer/synchronizergui.cpp:1308 Synchronizer/synchronizergui.cpp:1323
 msgid "hour"
 msgstr "val."
 
-#: Synchronizer/synchronizergui.cpp:1298 Synchronizer/synchronizergui.cpp:1313
+#: Synchronizer/synchronizergui.cpp:1309 Synchronizer/synchronizergui.cpp:1324
 msgid "day"
 msgstr "dienos"
 
-#: Synchronizer/synchronizergui.cpp:1301
+#: Synchronizer/synchronizergui.cpp:1312
 msgid "Time shift (right-left):"
 msgstr "Laiko postūmis (dešinė–kairė):"
 
-#: Synchronizer/synchronizergui.cpp:1331
+#: Synchronizer/synchronizergui.cpp:1342
 msgid "Swap sides."
 msgstr "Apkeisti puses."
 
-#: Synchronizer/synchronizergui.cpp:1341
+#: Synchronizer/synchronizergui.cpp:1352
 msgid "Compare"
 msgstr "Palyginti"
 
-#: Synchronizer/synchronizergui.cpp:1351 Synchronizer/synchronizergui.cpp:2174
+#: Synchronizer/synchronizergui.cpp:1362 Synchronizer/synchronizergui.cpp:2200
 msgid "Quiet"
 msgstr "Tyliai"
 
-#: Synchronizer/synchronizergui.cpp:1353 Synchronizer/synchronizergui.cpp:2176
+#: Synchronizer/synchronizergui.cpp:1364 Synchronizer/synchronizergui.cpp:2202
 msgid "Scroll Results"
 msgstr "Peržiūrėti rezultatus"
 
-#: Synchronizer/synchronizergui.cpp:1368
+#: Synchronizer/synchronizergui.cpp:1379
 msgid "Synchronize"
 msgstr "Sinchronizuoti"
 
-#: Synchronizer/synchronizergui.cpp:1477
+#: Synchronizer/synchronizergui.cpp:1488
 msgid "Selected files from target directory:"
 msgstr "Pažymėti bylas paskirties aplanke:"
 
-#: Synchronizer/synchronizergui.cpp:1478
+#: Synchronizer/synchronizergui.cpp:1489
 msgid "Selected files from source directory:"
 msgstr "Pažymėti bylas pradiniame aplanke:"
 
-#: Synchronizer/synchronizergui.cpp:1482
+#: Synchronizer/synchronizergui.cpp:1493
 msgid "Selected files from left directory:"
 msgstr "Pažymėti bylas kairiame aplanke:"
 
-#: Synchronizer/synchronizergui.cpp:1483
+#: Synchronizer/synchronizergui.cpp:1494
 msgid "Selected files from right directory:"
 msgstr "Pažymėti bylas dešiniame aplanke:"
 
-#: Synchronizer/synchronizergui.cpp:1487
+#: Synchronizer/synchronizergui.cpp:1498
 msgid "Target directory:"
 msgstr "Paskirties aplankas:"
 
-#: Synchronizer/synchronizergui.cpp:1488
+#: Synchronizer/synchronizergui.cpp:1499
 msgid "Source directory:"
 msgstr "Pradžios aplankas:"
 
-#: Synchronizer/synchronizergui.cpp:1492
+#: Synchronizer/synchronizergui.cpp:1503
 msgid "Left directory:"
 msgstr "Kairysis aplankas:"
 
-#: Synchronizer/synchronizergui.cpp:1493
+#: Synchronizer/synchronizergui.cpp:1504
 msgid "Right directory:"
 msgstr "Dešinysis aplankas:"
 
-#: Synchronizer/synchronizergui.cpp:1528
+#: Synchronizer/synchronizergui.cpp:1539
 msgid "URL must be the descendant of either the left or the right base URL!"
 msgstr "URL turi prasidėti nuo kairiojo arba dešiniojo bazinio URL!"
 
-#: Synchronizer/synchronizergui.cpp:1567
+#: Synchronizer/synchronizergui.cpp:1578
 msgid "Synchronize Directories"
 msgstr "Sinchronizuoti aplankus"
 
-#: DiskUsage/diskusage.cpp:761 Synchronizer/synchronizergui.cpp:1569
+#: DiskUsage/diskusage.cpp:761 Synchronizer/synchronizergui.cpp:1580
 msgid "Exclude"
 msgstr "Išskyrus"
 
-#: Synchronizer/synchronizergui.cpp:1571
+#: Synchronizer/synchronizergui.cpp:1582
 msgid "Restore original operation"
 msgstr "Atstatyti įprastą veikseną"
 
-#: Synchronizer/synchronizergui.cpp:1573
+#: Synchronizer/synchronizergui.cpp:1584
 msgid "Reverse direction"
 msgstr "Apkeisti kryptį atvirkščiai"
 
-#: Synchronizer/synchronizergui.cpp:1575
+#: Synchronizer/synchronizergui.cpp:1586
 msgid "Copy from right to left"
 msgstr "Kopijuoti iš dešinės į kairę"
 
-#: Synchronizer/synchronizergui.cpp:1577
+#: Synchronizer/synchronizergui.cpp:1588
 msgid "Copy from left to right"
 msgstr "Kopijuoti iš kairės į dešinę"
 
-#: Synchronizer/synchronizergui.cpp:1579
+#: Synchronizer/synchronizergui.cpp:1590
 msgid "Delete (left single)"
 msgstr "Pašalinti (vieną kairėje)"
 
-#: Synchronizer/synchronizergui.cpp:1584
+#: Synchronizer/synchronizergui.cpp:1595
 msgid "View left file"
 msgstr "Peržiūrėti bylą kairėje"
 
-#: Synchronizer/synchronizergui.cpp:1586
+#: Synchronizer/synchronizergui.cpp:1597
 msgid "View right file"
 msgstr "Peržiūrėti bylą dešinėje"
 
-#: Synchronizer/synchronizergui.cpp:1588
+#: Synchronizer/synchronizergui.cpp:1599
 msgid "Compare Files"
 msgstr "Palyginti bylas"
 
-#: Synchronizer/synchronizergui.cpp:1593 Synchronizer/synchronizergui.cpp:1672
+#: Synchronizer/synchronizergui.cpp:1604 Synchronizer/synchronizergui.cpp:1683
 msgid "Select items"
 msgstr "Pažymėti bylas"
 
-#: Synchronizer/synchronizergui.cpp:1595 Synchronizer/synchronizergui.cpp:1673
+#: Synchronizer/synchronizergui.cpp:1606 Synchronizer/synchronizergui.cpp:1684
 msgid "Deselect items"
 msgstr "Atžymėti bylas"
 
-#: Synchronizer/synchronizergui.cpp:1597
+#: Synchronizer/synchronizergui.cpp:1608
 msgid "Invert selection"
 msgstr "Apversti žymėjimą"
 
-#: Synchronizer/synchronizergui.cpp:1608
+#: Synchronizer/synchronizergui.cpp:1619
 msgid "Synchronize with KGet"
 msgstr "Sinchronizuoti su KGet"
 
-#: Synchronizer/synchronizergui.cpp:1989
+#: Synchronizer/synchronizergui.cpp:2010
 msgid "Synchronizer has nothing to do!"
 msgstr "Sinchronizavimui nepateikta užduotis!"
 
-#: Synchronizer/synchronizedialog.cpp:48
+#: Synchronizer/synchronizertask.cpp:131 Synchronizer/synchronizertask.cpp:138
+msgid "Error at opening %1!"
+msgstr "Atveriant %1 įvyko klaida!"
+
+#: Synchronizer/synchronizertask.cpp:291
+msgid "IO error at comparing file %1 with %2!"
+msgstr "Palyginant bylą %1 su byla %2 įvyko skaitymo/rašymo klaida!"
+
+#: Synchronizer/synchronizertask.cpp:329
+#, fuzzy
+msgid "Comparing file %1 (%2)..."
+msgstr "Palyginama byla %1..."
+
+#: Synchronizer/synchronizedialog.cpp:49
 msgid "Krusader::Synchronize"
 msgstr "Krusader::Sinchronizavimas"
 
-#: Synchronizer/synchronizedialog.cpp:52
+#: Synchronizer/synchronizedialog.cpp:53
 #, fuzzy, c-format
 msgid ""
 "_n: Right to left: Copy 1 file\n"
@@ -4002,16 +4021,16 @@ msgstr ""
 "Kopijuoti %n bylas į:\n"
 "Kopijuoti %n bylų į:"
 
-#: Synchronizer/synchronizedialog.cpp:53 Synchronizer/synchronizedialog.cpp:66
-#: Synchronizer/synchronizedialog.cpp:79
+#: Synchronizer/synchronizedialog.cpp:54 Synchronizer/synchronizedialog.cpp:67
+#: Synchronizer/synchronizedialog.cpp:80
 #, c-format
 msgid ""
 "_n: (1 byte)\n"
 "(%n bytes)"
 msgstr ""
 
-#: Synchronizer/synchronizedialog.cpp:59 Synchronizer/synchronizedialog.cpp:72
-#: Synchronizer/synchronizedialog.cpp:85
+#: Synchronizer/synchronizedialog.cpp:60 Synchronizer/synchronizedialog.cpp:73
+#: Synchronizer/synchronizedialog.cpp:86
 #, fuzzy
 msgid ""
 "_n: Ready: %1/1 file, %3/%4\n"
@@ -4021,7 +4040,7 @@ msgstr ""
 "ir %n bylose\n"
 "ir %n bylų"
 
-#: Synchronizer/synchronizedialog.cpp:65
+#: Synchronizer/synchronizedialog.cpp:66
 #, fuzzy, c-format
 msgid ""
 "_n: Left to right: Copy 1 file\n"
@@ -4031,85 +4050,68 @@ msgstr ""
 "Iš kairės į dešinę: kopijuoti %1 bylas (%2 baitų)\n"
 "Iš kairės į dešinę: kopijuoti %1 bylų (%2 baitų)"
 
-#: Synchronizer/synchronizedialog.cpp:78
+#: Synchronizer/synchronizedialog.cpp:79
 #, fuzzy, c-format
 msgid ""
 "_n: Left: Delete 1 file\n"
 "Left: Delete %n files"
 msgstr "Kairė: pašalinti %1 bylas (%2 baitus)"
 
-#: Synchronizer/synchronizedialog.cpp:100
+#: Synchronizer/synchronizedialog.cpp:101
 msgid "Confirm overwrites"
 msgstr "Patvirtinti perrašymą"
 
-#: Synchronizer/synchronizedialog.cpp:109
+#: Synchronizer/synchronizedialog.cpp:110
 msgid "Start"
 msgstr "Pradėti"
 
-#: Synchronizer/synchronizedialog.cpp:113
-#: Synchronizer/synchronizedialog.cpp:195 Synchronizer/synchronizer.cpp:1425
-#: Synchronizer/synchronizer.cpp:1435
+#: Synchronizer/synchronizedialog.cpp:114
+#: Synchronizer/synchronizedialog.cpp:196 Synchronizer/synchronizer.cpp:1286
+#: Synchronizer/synchronizer.cpp:1296
 msgid "Pause"
 msgstr "Pristabdyti"
 
-#: Synchronizer/synchronizedialog.cpp:157
-#: Synchronizer/synchronizedialog.cpp:160
-#: Synchronizer/synchronizedialog.cpp:163
+#: Synchronizer/synchronizedialog.cpp:158
+#: Synchronizer/synchronizedialog.cpp:161
+#: Synchronizer/synchronizedialog.cpp:164
 msgid "\tReady: %1/%2 files, %3/%4"
 msgstr "\tParuošta: %1/%2 bylos, %3/%4"
 
-#: Synchronizer/synchronizedialog.cpp:203 Synchronizer/synchronizer.cpp:1437
+#: Synchronizer/synchronizedialog.cpp:204 Synchronizer/synchronizer.cpp:1298
 msgid "Resume"
 msgstr "Pratęsti"
 
-#: Synchronizer/synchronizer.cpp:129 Synchronizer/synchronizer.cpp:585
+#: Synchronizer/synchronizer.cpp:145 Synchronizer/synchronizer.cpp:617
 #, c-format
 msgid "Number of files: %1"
 msgstr ""
 
-#: Synchronizer/synchronizer.cpp:302
-msgid "Error at opening URL:%1!"
-msgstr "Atveriant URL įvyko klaida: %1!"
-
-#: Synchronizer/synchronizer.cpp:307 Synchronizer/synchronizer.cpp:1204
-#: Synchronizer/synchronizer.cpp:1284
+#: Synchronizer/synchronizer.cpp:176
 #, fuzzy, c-format
-msgid "Number of scanned directories: %1"
+msgid "Number of compared directories: %1"
 msgstr "Peržiūrėti aplankai: %1"
 
-#: Synchronizer/synchronizer.cpp:1002 Synchronizer/synchronizer.cpp:1010
+#: Synchronizer/synchronizer.cpp:1094 Synchronizer/synchronizer.cpp:1107
 msgid "File Already Exists"
 msgstr "Byla jau yra"
 
-#: Synchronizer/synchronizer.cpp:1050 Synchronizer/synchronizer.cpp:1055
+#: Synchronizer/synchronizer.cpp:1152 Synchronizer/synchronizer.cpp:1157
 msgid "Error at copying file %1 to %2!"
 msgstr "Kopijuojant bylą %1 į %2 įvyko klaida!"
 
-#: Synchronizer/synchronizer.cpp:1060
+#: Synchronizer/synchronizer.cpp:1162
 msgid "Error at deleting file %1!"
 msgstr "Šalinant bylą %1 įvyko klaida!"
 
-#: Synchronizer/synchronizer.cpp:1214 Synchronizer/synchronizer.cpp:1220
-msgid "Error at opening %1!"
-msgstr "Atveriant %1 įvyko klaida!"
-
-#: Synchronizer/synchronizer.cpp:1356
-msgid "IO error at comparing file %1 with %2!"
-msgstr "Palyginant bylą %1 su byla %2 įvyko skaitymo/rašymo klaida!"
-
-#: Synchronizer/synchronizer.cpp:1385 Synchronizer/synchronizer.cpp:1396
-msgid "Comparing file %1..."
-msgstr "Palyginama byla %1..."
-
-#: Synchronizer/synchronizer.cpp:1480
+#: Synchronizer/synchronizer.cpp:1341
 msgid "Krusader::Synchronizer"
 msgstr "Krusader::Sinchronizavimas"
 
-#: Synchronizer/synchronizer.cpp:1481
+#: Synchronizer/synchronizer.cpp:1342
 msgid "Feeding the URLs to Kget"
 msgstr "URL pateikiami KGet"
 
-#: Synchronizer/synchronizer.cpp:1530 krslots.cpp:116 krslots.cpp:208
+#: Synchronizer/synchronizer.cpp:1391 krslots.cpp:116 krslots.cpp:208
 msgid "Error executing "
 msgstr "Klaida vykdant"
 
@@ -5071,9 +5073,10 @@ msgstr ""
 "Išlaikyti atributus vietiniam kopijavimui ir/ar perkėlimui (veikia lėčiau)"
 
 #: Konfigurator/kgadvanced.cpp:52
+#, fuzzy
 msgid ""
-"Change the modification time of local files according to the source one. "
-"This can slow down the copy process."
+"Change all attributes (time, owner, group) of local files according to the "
+"source one. This can slow down the copy process."
 msgstr ""
 "Jei įjungta ši parinktis, kopijuojant bylas jų keitimo data bus išlaikyta "
 "tokia pati kaip ir pradinių bylų. Kopijavimas gali šiek sulėtėti."
@@ -6049,6 +6052,12 @@ msgstr "Klaida skaitant bylą %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Klaida įrašant bylą %1!"
+
+#~ msgid "&Time options"
+#~ msgstr "&Laiko parinktys"
+
+#~ msgid "Error at opening URL:%1!"
+#~ msgstr "Atveriant URL įvyko klaida: %1!"
 
 #~ msgid "Right to left: Copy %1 files (%2 bytes)"
 #~ msgstr "Iš dešinės į kairę: kopijuoti %1 bylas (%2 baitus)"
