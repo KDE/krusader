@@ -90,16 +90,23 @@
          (see the next question).</para>
          <para>Here is a (possibly incomplete) list of the required shared libraries when you run &krusader;:</para>
    <para><itemizedlist>
-     <listitem><para>kdelibs (for the required &kde; version see the &install_proc_lnk;) libqt3
-               </para></listitem>
-    <listitem><para>libxfree86  libfreetype6  libfontconfig1
-               </para></listitem>
-    <listitem><para>libjpeg62  libpng3  libmng1  zlib1  libstdc++5  libgcc1
-               </para></listitem>
-    <listitem><para>libfam0  libpcre0  glibc  libart_lgpl2  libexpat0  libnas2
-               </para></listitem>
-    </itemizedlist>
-    If you need more info please take a look at the &shared_libdeps_url; or the &deb_requirements_url; .
+    <listitem><para>kdelibs (for the required &kde; version see the &install_proc_lnk;)
+               </para>
+    </listitem>
+    <listitem><para>libacl1 libart-2.0 libattr1 libaudio2  libc6 libfam0 libfontconfig1
+              </para>
+    </listitem>
+    <listitem><para>libfreetype6 libgcc1 libgcc2 libice6 libidn11 libjpeg62 libkjsembed1 
+              </para>
+    </listitem>
+    <listitem><para>libkonq4 libpcre3  libpng12 libqt3-mt libsm6 libstdc++6 libunwind7 libx11-6
+               </para>
+    </listitem>
+    <listitem><para>libxcursor1 libxext6 libxft2 libxi6 libxinerama1 libxrandr2 libxrender1 libxt6 zlib1g
+              </para>
+    </listitem>
+</itemizedlist>
+    If you need more info please take a look at the &deb_requirements_url; .
     </para>
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -125,7 +132,7 @@
                      <filename>libfam0-devel-2.x.x-5mdk.i586.rpm</filename>)</para></listitem>
      <listitem><para>zlib1 arts libart_lgpl2 libstdc++5 libpcre0</para></listitem>
      <listitem><para>libkjsembed, if you use the &javascript_console_lnk;, often found in a package 
-                     called KDEbindings(-devel)</para></listitem>
+                     called KDEbindings(-devel) and libkonq-dev for the &konqueror; right-click menu entries.</para></listitem>
    </itemizedlist></para>
      <para>Most RPM-based distributions separate the headers from the libs. The headers are needed to compile
            &krusader;. Look for packages in the form foo-devel-*.rpm (&eg;
@@ -145,9 +152,8 @@
    <para>How do I compile &krusader; when I'm using a 64 bit processor ?</para>
    </question>
    <answer>
-   <para>Please check our user forums. We don't have much experience and feedback with 
-         &_64bit_url; microprocessors yet, but we are told Krusader presents no unusual 
-         problems in the &_64bit_url; environment.
+   <para>As far as we know there are no issues, btw. &krusader; is available on 
+         <ulink url="http://packages.debian.org/unstable/utils/krusader">many other architectures</ulink>.
         </para>
     <para> </para> <!-- Empty line to make it more readable -->
    </answer>
@@ -205,7 +211,7 @@ website for an updated RPM.
    If the prompt returns without any message, than everything is OK.</para>
    <para>If the RPM is not OK, try to find another package at &Linux; software
 archives such as &freshmeat_url;
-   or &kde_apps_url;, DO NOT INSTALL A DAMAGED RPM. If you still can't find the
+   or &kde_apps_url;. If you still can't find the
 appropriate package for your &Linux; distribution, we recommend searching for it
 with
    &rpmfind_url; or &rpmpbone_url;.</para>
@@ -736,8 +742,6 @@ places in the &kde; directory tree.
 copy/link the
        <filename>kio_krarc.*</filename> files to the same location.
        Don't forget to run <command># ldconfig</command> on this directory when you're done.
-       This problem can sometimes occur if you are using a &_64bit_url;
-microprocessor.
        For more information click
        <ulink url="www.krusader.org/phpBB/viewtopic.php?t=991">here</ulink> .
  </para>
