@@ -92,6 +92,10 @@ Previous used Docbook
 <!ENTITY online_buglist_url '<ulink url="http://sourceforge.net/tracker/?atid=106488&amp;group_id=6488&amp;func=browse">online bug list</ulink>'>
 <!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/">more translator credits</ulink>'>
 
+
+<!ENTITY subversion_url '<ulink url="http://sourceforge.net/svn/?group_id=6488">Subversion</ulink>'>
+<!ENTITY browse_svn_repo_url '<ulink url="http://svn.sourceforge.net/krusader">Browse the Subversion Repository</ulink>'>
+
 <!ENTITY fhs_url '<ulink url="http://www.pathname.com/fhs/">Filesystem Hierarchy Standard (FHS)</ulink>'>
 
 <!-- internet links, Krusader binaries -->
@@ -102,9 +106,9 @@ Previous used Docbook
 <!ENTITY suse_download_url '<ulink url="http://search.novell.com/qfsearch/SearchServlet?bbshow=true&amp;query0=krusader&amp;operator0=0&amp;collection=Novell&amp;date=&amp;numhits=10&amp;template=ResultListTemplate.html&amp;submit+search=Search">&SuSE;</ulink>'>
 <!ENTITY mandriva_download_url '<ulink url="http://search.belnet.be/packages/mandrake/current/i586/media/contrib/">&mandriva;</ulink>'>
 <!ENTITY freebsd_download_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all">&freebsd;</ulink>'>
-<!ENTITY debian_download_url '<ulink url="http://packages.debian.org/Krusader">&debian;</ulink>'>
-<!ENTITY netbsd_download_url '<ulink url="http://pkgsrc.netbsd.se/?cat=latest&amp;pkg=2183">&netbsd;</ulink>'>
-<!ENTITY yoper_download_url '<ulink url="http://ftp.belnet.be/linux/yoper/yoper/testing/RPMS.testing/">&yoper;</ulink>'>
+<!ENTITY debian_download_url '<ulink url="http://packages.debian.org/krusader">&debian;</ulink>'>
+<!ENTITY netbsd_download_url '<ulink url="http://pkgsrc.se/sysutils/krusader">&netbsd;</ulink>'>
+<!ENTITY yoper_download_url '<ulink url="http://ftp.belnet.be/linux/yoper/devel/yoper-3.0/RPMS.chris/">&yoper;</ulink>'>
 <!ENTITY macosx_download_url '<ulink url="http://www.krusader.org/down.php">&MacOS;-X</ulink>'>
 <!ENTITY ubuntu_kubuntu_download_url '<ulink url="http://packages.ubuntu.com/krusader">&ubuntu;/&kubuntu;</ulink>'>
 <!ENTITY linspire_download_url '<ulink url="http://www.linspire.com/lindows_products_details.php?product_id=3160&amp;pg=specs">&linspire;</ulink>'>
@@ -112,7 +116,10 @@ Previous used Docbook
 <!ENTITY frugalware_linux_download_url '<ulink url="http://frugalware.org/packages.php?id=280">&frugalware_linux;</ulink>'>
 <!ENTITY pclinuxos_download_url '<ulink url="http://www.pclinuxonline.com/pclos/html/package_list.html">&pclinuxos;</ulink>'>
 <!ENTITY altlinux_download_url '<ulink url="http://www.altlinux.com/index.php?module=sisyphus&amp;package=krusader">&altlinux;</ulink>'>
-
+<!ENTITY ccuxlinux_download_url '<ulink url="http://packages.ccux-linux.de/index.php?pdetail=154">&ccuxlinux;</ulink>'>
+<!ENTITY lunarlinux_download_url '<ulink url="http://modules.lunar-linux.org/index.php?option=module&amp;module=krusader">&lunarlinux;</ulink>'>
+<!ENTITY qilinux_download_url '<ulink url="http://www.qilinux.org/modules.php?op=modload&amp;name=distromatic&amp;file=index&amp;tag=devel&amp;pkg=krusader.source">&qilinux;</ulink>'>
+<!ENTITY rocklinux_download_url '<ulink url="http://www.rocklinux.net/packages/krusader.html">&rocklinux;</ulink>'>
 
 <!ENTITY klik_protocol_url '<ulink url="http://klik.atekon.de/">klik protocol</ulink>'>
 <!ENTITY klik_krusader_url '<ulink url="klik://krusader">klik://krusader</ulink>'>
@@ -146,7 +153,8 @@ Previous used Docbook
 <!ENTITY kftpgrabber_url '<ulink url="http://kftpgrabber.sourceforge.net/"><application>Kftpgrabber</application></ulink>'>
 <!ENTITY xbel_url '<ulink url="http://grail.sourceforge.net/info/xbel.html">XBEL standard</ulink>'>
 <!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink>'>
-<!ENTITY maxrpm_url '<ulink url="http://www.rpm.org/max-rpm">Maximum RPM Book</ulink>'>
+<!ENTITY rpm_org_url '<ulink url="http://www.rpm.org/">rpm.org</ulink>'>
+<!ENTITY rpm_guide_url '<ulink url="http://fedora.redhat.com/docs/drafts/rpm-guide-en/">RPM Guide</ulink>'>
 <!ENTITY kioslaves1_url '<ulink url="http://docs.kde.org/en/3.2/kdebase/kioslave/index.html">KIOSlaves</ulink>'>
 <!ENTITY kioslaves2_url '<ulink url="http://developer.kde.org/documentation/library/3.2-api/kio/html/">KIOSlaves</ulink>'>
 <!ENTITY kdelibs_url '<ulink url="http://lxr.kde.org/source/kdelibs/kioslave">&kde;libs</ulink>'>
@@ -298,6 +306,9 @@ Previous used Docbook
 <!ENTITY sourcemage '<trademark class="registered">Source Mage</trademark>'>
 <!ENTITY kanotix '<trademark class="registered">Kanotix</trademark>'>
 <!ENTITY lunarlinux '<trademark class="registered">Lunar Linux</trademark>'>
+<!ENTITY ccuxlinux '<trademark class="registered">CCux Linux</trademark>'>
+<!ENTITY qilinux '<trademark class="registered">QiLinux</trademark>'>
+<!ENTITY rocklinux '<trademark class="registered">ROCK Linux</trademark>'>
  
 <!ENTITY nvidia '<trademark class="registered">NVIDIA</trademark>'>
 <!ENTITY nc '<trademark class="registered">Norton Commander</trademark>'>
@@ -406,7 +417,7 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2006-05-06</date>
+  <date>2006-05-09</date>
   <releaseinfo>1.71.0 "cvs repository"</releaseinfo>
 
    <abstract>

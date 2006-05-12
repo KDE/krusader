@@ -26,7 +26,7 @@
 <sect1 id="requirements">
 <title>Requirements</title>
 
-<para>In order to successfully use the most recent &krusader;, you need &kde;libs &gt;= 3.3</para>
+<para>In order to successfully use the most recent &krusader;, you need &kde;libs &gt;= 3.4</para>
 
 <para>Required &kde; version:
 <itemizedlist>
@@ -40,9 +40,9 @@
               </listitem>
       <listitem><para>&krusader; v1.60.0 - v1.70.0: &kde; 3.3 - &kde; 3.5</para>
               </listitem>
-      <listitem><para>&krusader; 1.70.0: prefers &kde; >= 3.4 (otherwise not all features will be available)</para>
-              </listitem>              
-      <listitem><para>&krusader; v2.xx.x: &kde; 4 - &Qt; 4 The big challenge, a first release maybe in 2006 ;)</para>
+      <listitem><para>&krusader; 1.70.0: prefers &kde; &gt;= 3.4 (otherwise not all features will be available)</para>
+              </listitem>
+      <listitem><para>&krusader; v2.xx.x: &kde; 4 - &Qt; 4 The big challenge, maybe a first release in 2006 ;)</para>
               </listitem>
 </itemizedlist>
 </para>
@@ -76,11 +76,17 @@
 <title>Download &krusader;</title>
 
 <para>
+  It's recommend to use the &krusader; package that is provided by your distribution, 
+  &distrowatch_com_url; is a great resource to check the availability. 
+  If your distribution does not offer &krusader; please contact
+  the creators of your distribution and ask them to provide a &krusader; package, thanks!</para>
+
+<para> 
   The latest version (and older versions) can be found on the &krudownload_url; and on the &sfmirrors_url;.
   It contains the source tarballs, RPM and DEB packages to whatever distro the &krusader;-Krew is using
   and packages build by third-parties and &krusader; users.</para>
 
-<para>Distributions who include &krusader;
+<para>Distributions who provide &krusader;:
 <itemizedlist>
   <listitem>
      <para>&suse_download_url; >= 9.3, Note: please use &krusader;-1.60.0 and not &krusader;-1.51 
@@ -89,19 +95,19 @@
      <listitem>
        <para>&fedora; via &fedora_extras_url; <command># yum install krusader</command> will do the job,
              thanks to Marcin Garski. 
-            &RedHat; RPM packages can usually found on the &krudownload_url;, 
-             &dag_wiers_download_url; or at &dries_verachtert_download_url; .</para>
+             &RedHat; RPM packages can usually found on the &krudownload_url; or at 
+             &dag_wiers_download_url; and &dries_verachtert_download_url; .</para>
      </listitem>
   <listitem>
      <para>&debian_download_url;, on our &krudownload_url; you might find more
            recent "unofficial bleeding-edge" DEB packages.
            Note: usually &debian; packages work also on distributions who are "based on &debian;",
-           some of them provide their own packages.
-           e.g. &mepis;, &ubuntu_kubuntu_download_url;, &linspire_download_url;, &xandros;, ...</para>
+           some of these provide their own (incompatible) packages.
+           &ubuntu_kubuntu_download_url;, &linspire_download_url;, &knoppix; 4.x DVD, &kanotix;, ...</para>
   </listitem>
   <listitem>
      <para>&mandriva_download_url; via the contrib repository <command># urpmi krusader</command> will do the job,
-           &gentoo_download_url;, &knoppix; 4.x DVD, &kanotix;, &yoper_download_url;</para>
+           &gentoo_download_url;, &yoper_download_url;</para>
   </listitem>  
   <listitem>
      <para>&archlinux_download_url;, &frugalware_linux_download_url;, &pclinuxos_download_url;, 
@@ -111,15 +117,16 @@
      <para>&freebsd_download_url;, the port is maintained by <link linkend="credits">Heiner Eichmann</link> .</para>
   </listitem>
   <listitem>
-     <para>&netbsd_download_url;, &arklinux;, &openlx;, &sourcemage;, &lunarlinux;</para>
-  </listitem>          
+     <para>&netbsd_download_url;, &lunarlinux_download_url; ,&arklinux;, &openlx;, &sourcemage;.</para>
+  </listitem>            
   <listitem>
      <para>Even more distributions can be found with &distrowatch_com_url;</para>
   </listitem>          
 </itemizedlist>
-Just use the install tools that the distro uses to install the &krusader; package on your computer,
+Use the installation tools that your distro uses to install the &krusader; package,
 sometimes an internet connection is needed if &krusader; is not available on the &CD; or DVD.
-There are probably more distributions who include &krusader;, sorry we can't mention you all.
+There are probably more distributions out there who include &krusader;, sorry we can't mention you all,
+though feedback is always welcome to improve this distrolist.
 </para>
 
 <para>Others
@@ -148,7 +155,7 @@ There are probably more distributions who include &krusader;, sorry we can't men
      </listitem>
      <listitem>
        <para>&klik_krusader_cvs_url; downloads a &klik_cvs_krusader_url; 
-              provided by &krusader; Krew.</para>
+              provided by the &krusader; Krew.</para>
      </listitem>
 </itemizedlist>
 </para>
@@ -273,7 +280,6 @@ We hope it'd be easy to understand.
   <listitem><para>krusader_kde2: the &kde;2 branch, stable but it's basically v1.01 and there are no
                   planned changes</para></listitem>
   <listitem><para>krusader_kde3: the &kde;3 branch, that we currently use</para></listitem>
-  <listitem><para>krusader_kde4: the &kde;4 branch, for the &krusader; 2.x.x series, NOT yet used.</para></listitem>
   </itemizedlist></para>
 
 <para>To checkout &krusader; from CVS:
@@ -297,6 +303,19 @@ We hope it'd be easy to understand.
 
 </sect2>
 
+
+<sect2 id="krusader_svn">
+<title>Subversion</title>
+<para>&subversion_url; will probably used for the &krusader; 2.x series for &kde;4.
+      It's also possible to &browse_svn_repo_url;.</para>
+
+<para>To checkout the latest &krusader; 1.x for &kde; 3 from SVN: (NOTE: currently it's recommend to use CVS for krusader_kde3)
+  <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option></userinput></screen>
+      To checkout the latest &krusader; 2.x for &kde; 4 from SVN: (NOTE: not yet available at moment of writing)
+  <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
+  </para>
+
+</sect2>
 
 <sect2 id="krusader_old">
 <title>Older releases</title>

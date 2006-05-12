@@ -1,4 +1,4 @@
-.TH krusader 1 "20 September 2005" Linux "Krusader Manpage"
+.TH krusader 1 "08 May 2006" Linux "Krusader Manpage"
 .SH "NAME"
 krusader \- advanced twin-panel file manager and ftp client for KDE
 .SH "USAGE"
@@ -12,8 +12,8 @@ Plus: extensive archive handling,
 mounted filesystem support, FTP, advanced search module,
 viewer/editor, directory synchronisation, file content comparisons,
 powerful batch renaming and much much more.
-It supports the following archive formats: tar, zip, bzip2,
-gzip, rar, ace, arj, lha and rpm
+It supports the following archive formats: ace, arj, bzip2, deb, 
+gzip, iso, lha, rar, rpm, tar, zip and 7-zip
 and can handle other KIOSlaves such as smb:// or fish://
 It is (almost) completely customizable, very user friendly,
 fast and looks great on your desktop! :-)
@@ -51,6 +51,8 @@ show the license
 .SH "EXAMPLE"
 .B $ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net
 .TP
+.B $ krusader --left=/home,/usr,smb://workgroup.net --right=fish://myserver.net
+.TP
 .B $ krusader --profile=ftp_managment
 .SH "FILES"
 Configuration files:
@@ -76,81 +78,49 @@ The latest version of Krusader can be found at the Krusader website.
 
 Note:
 
-Krusader v1.01 needs KDElibs 2.x.x
+Krusader v1.01 needs KDElibs 2
 
-Krusader v1.02 - 1.40 needs KDElibs 3.x.x
+Krusader v1.02 - 1.40 needs KDElibs 3
 
-Krusader 1.40 prefers >= 3.2.x (otherwise not all features will be available)
+Krusader 1.40 prefers >= KDE 3.2
 
-Krusader v1.50 - v1.51: KDE 3.2.x - KDE 3.3.x (Konfigurator crash on KDE 3.4.x)
+Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3
 
-Krusader v1.60.0- v1.70.0: KDE 3.3.x - KDE 3.4.x
+Krusader v1.60.0- v1.70.0: KDE 3.3 - KDE 3.4
 
-Krusader 1.70.0: prefers KDE 3.4.x (otherwise not all features will be available)
+Krusader 1.70.0: KDE 3.4 - KDE 3.5
+
+Krusader 2.xx.x: KDE 4 the future Krusader
 
 .SH "FEATURES"
 
-Configurable toolbar and key-bindings.
+OFM filemanager features.
 
-Full Ace, Arj, Bzip2, Gzip, lha, Tar, Rpm, Rar, Lha, Zip support.
+Strong keyboard orientation.
+
+Powerful internal viewer and editor.
 
 Advanced search module that can search in archives.
+     
+Supports: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.
 
 Directory comparison and filtering.
 
-Quick view and Tree panels.
-
 Ftp/Samba client with a connection manager with SFTP/SCP support.
 
-Opens a terminal to the browsed path.
+Synchronizer, UserActions, Embedded console. Javascript console.
 
-Optional embedded console.
+Compare files by content. Easy editing of file permissions. 
 
-Bookmark module that takes local files and remote ones.
-
-Easy editing of file permissions.
-
-Shows the effective permissions for the current user.
-
-Calculates occupied space by marked files and folders.
-
-Internal viewer and configurable Editor.
-
-Offers a command line capable of running something in a terminal with a single click of a button.
-
-Packs (or unpacks) files into a single archive of your choice, without typing a single command.
-
-Tests the integrity of archives.
-
-Compare files by content (via external diff program such as KDiff)
+Diskusage, Calculate occupied space. Checksum creation-verification.
 
 Fully mimetype-aware (with or without magic!).
 
-Mountmanager
+Mountmanager, Locate, Krename support.
 
-Krename support, a very powerfull external batch renamer for KDE
+Root mode, Tabbed panels, PopUp Panel. Mouse selection modes.
 
-Tabbed Browsing.
-
-Root mode.
-
-File splitter & Combine files.
-
-Synchronize Directories.
-
-Sync-browsing.
-
-UserActions.
-
-Panel profiles.
-
-PopUp Panel.
-
-User actions.
-
-Key-binding Profiles
-
-Color Profiles
+Profiles for: Panels, Key-bindings, Colors. 
 
 For more features read http://krusader.sourceforge.net/handbook/features.html
 
