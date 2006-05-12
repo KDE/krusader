@@ -283,8 +283,8 @@ We hope it'd be easy to understand.
   </itemizedlist></para>
 
 <para>To checkout &krusader; from CVS:
-  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login</option></userinput></screen>
-  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
+  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader login</option></userinput></screen>
+  <screen><prompt>$</prompt> <userinput><command>cvs</command> <option>-z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusader co krusader_kde3</option></userinput></screen>
   (note: updates from within the modules directory do not need the -d parameter)</para>
 
 <para>If you want to checkout a specific version of &krusader; from CVS (&eg; &krusader;-1.60.0) :
@@ -309,9 +309,11 @@ We hope it'd be easy to understand.
 <para>&subversion_url; will probably used for the &krusader; 2.x series for &kde;4.
       It's also possible to &browse_svn_repo_url;.</para>
 
-<para>To checkout the latest &krusader; 1.x for &kde; 3 from SVN: (NOTE: currently it's recommend to use CVS for krusader_kde3)
+<para>To checkout the latest &krusader; 1.x for &kde; 3 from SVN: 
+      (NOTE: at moment of writing it's recommend to use CVS for krusader_kde3, since krusader_kde3 is developed in CVS and not in SVN)
   <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde3</option></userinput></screen>
-      To checkout the latest &krusader; 2.x for &kde; 4 from SVN: (NOTE: not yet available at moment of writing)
+      To checkout the latest &krusader; 2.x for &kde; 4 from SVN: 
+      (NOTE: not yet available at moment of writing)
   <screen><prompt>$</prompt> <userinput><command>svn</command> <option>co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kde4</option></userinput></screen>
   </para>
 
