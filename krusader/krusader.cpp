@@ -763,6 +763,8 @@ void Krusader::savePosition() {
    config->writeEntry( "Terminal Size", mainView->vert_splitter->sizes() [ 1 ] );
    QValueList<int> lst = mainView->horiz_splitter->sizes();
    config->writeEntry( "Splitter Sizes", lst );
+   mainView->left->popup->saveSizes();
+   mainView->right->popup->saveSizes();
    if( !MAIN_VIEW->getTerminalEmulatorSplitterSizes().isEmpty() )
      config->writeEntry( "Terminal Emulator Splitter Sizes", MAIN_VIEW->getTerminalEmulatorSplitterSizes() );
    

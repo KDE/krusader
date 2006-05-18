@@ -4,6 +4,7 @@
 #include <qwidget.h>
 #include <qwidgetstack.h>
 #include <qpixmap.h>
+#include <qvaluelist.h>
 #include <kfileitem.h>
 #include <qguardedptr.h>
 #include <kio/previewjob.h>
@@ -12,6 +13,7 @@
 class QButtonGroup;
 class QLabel;
 class QListViewItem;
+class QSplitter;
 class KFileTreeView;
 class QToolButton;
 class KrSqueezedTextLabel;
@@ -25,9 +27,11 @@ class PanelPopup: public QWidget {
    Q_OBJECT
    enum Parts { Tree, Preview, QuickPanel, View, DskUsage, Last=0xFF };
 public:
-   PanelPopup( QWidget *parent, bool left );
+   PanelPopup( QSplitter *splitter, bool left );
    ~PanelPopup();
 	inline int currentPage() const { return stack->id(stack->visibleWidget()); }
+
+	void saveSizes();
 
 public slots:
    void update(KURL url);
@@ -48,7 +52,9 @@ protected slots:
         void quickSelectStore();
 
 protected:
-   QWidgetStack *stack;
+	bool _left;
+	bool _hidden;
+	QWidgetStack *stack;
 	KImageFilePreview *viewer;
 	KrSqueezedTextLabel *dataLine;
 	QGuardedPtr<KIO::PreviewJob> pjob;
@@ -59,6 +65,8 @@ protected:
 	KComboBox *quickSelectCombo;
 	PanelViewer *panelviewer;
 	DiskUsageViewer *diskusage;
+	QValueList<int> splitterSizes;
+	QSplitter *splitter;
 };
 
 #endif // _PANELPOPUP_H

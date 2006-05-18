@@ -22,9 +22,23 @@
 #include "../KViewer/panelviewer.h"
 #include "../KViewer/diskusageviewer.h"
 
-PanelPopup::PanelPopup( QWidget *parent, bool left ) : QWidget( parent ), 
-	stack( 0 ), viewer( 0 ), pjob( 0 ) {
-   QGridLayout * layout = new QGridLayout(this, 1, 1);
+PanelPopup::PanelPopup( QSplitter *parent, bool left ) : QWidget( parent ), 
+	_left( left ), _hidden(true), stack( 0 ), viewer( 0 ), pjob( 0 ), splitterSizes() {
+	splitter = parent;
+	QGridLayout * layout = new QGridLayout(this, 1, 1);
+	
+	// loading the splitter sizes
+	krConfig->setGroup( "Private" );
+	if( left )
+		splitterSizes = krConfig->readIntListEntry( "Left PanelPopup Splitter Sizes" );
+	else
+		splitterSizes = krConfig->readIntListEntry( "Right PanelPopup Splitter Sizes" );
+	
+	if( splitterSizes.count() < 2 ) {
+		splitterSizes.clear();
+		splitterSizes.push_back( 100 );
+		splitterSizes.push_back( 100 );
+	}
 	
 	// create the label+buttons setup
 	dataLine = new KrSqueezedTextLabel(this);
@@ -199,14 +213,32 @@ PanelPopup::~PanelPopup() {}
 
 void PanelPopup::show() {
   QWidget::show();
+  if( _hidden )
+    splitter->setSizes( splitterSizes );
+  _hidden = false;
   tabSelected( stack->id(stack->visibleWidget()) );
 }
 
 
 void PanelPopup::hide() {
+  if( !_hidden )
+    splitterSizes = splitter->sizes();
   QWidget::hide();
+  _hidden = true;
   if (stack->id(stack->visibleWidget()) == View) panelviewer->closeURL();
   if (stack->id(stack->visibleWidget()) == DskUsage) diskusage->closeURL();
+}
+
+void PanelPopup::saveSizes() {
+  krConfig->setGroup( "Private" );
+
+  if( !isHidden() )
+    splitterSizes = splitter->sizes();
+
+  if( _left )
+    krConfig->writeEntry( "Left PanelPopup Splitter Sizes", splitterSizes );
+  else
+    krConfig->writeEntry( "Right PanelPopup Splitter Sizes", splitterSizes );
 }
 
 void PanelPopup::handleOpenURLRequest(const KURL &url) {

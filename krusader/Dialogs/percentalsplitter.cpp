@@ -48,8 +48,15 @@ public:
       
       QString tipString = splitter->toolTipString();
       QRect rect = QRect( parentWidget()->rect() );
-      rect.setX( splitter->sizes()[ 0 ] );
-      rect.setWidth( splitter->handleWidth() );
+
+      if( splitter->orientation() == Qt::Vertical ) {
+        rect.setY( splitter->sizes()[ 0 ] );
+        rect.setHeight( splitter->handleWidth() );
+      }
+      else {
+        rect.setX( splitter->sizes()[ 0 ] );
+        rect.setWidth( splitter->handleWidth() );
+      }
       if( rect.contains( point ) )
         tip( rect, tipString );
     }
@@ -76,6 +83,9 @@ QString PercentalSplitter::toolTipString( int p ) {
 }
   
 void PercentalSplitter::setRubberband ( int p ) {  
+  if( p == opaqueOldPos )
+    return;
+
   QPainter paint( this );
   paint.setPen( gray );
   paint.setBrush( gray );
@@ -84,15 +94,29 @@ void PercentalSplitter::setRubberband ( int p ) {
   const int rBord = 3; // customizable?
   int hw = handleWidth();
     
-  if ( opaqueOldPos >= 0 ) {
-    if( label == 0 )
-      paint.drawRect( opaqueOldPos + hw / 2 - rBord, r.y(), 2 * rBord, r.height() );
-    else {
-      QPoint labelLoc = mapFromGlobal( labelLocation );
-      if( labelLoc.y() > r.y() )
-        paint.drawRect( opaqueOldPos + hw / 2 - rBord, r.y(), 2 * rBord, labelLoc.y() );
-      if( labelLoc.y() + label->height() < r.height() )
-        paint.drawRect( opaqueOldPos + hw / 2 - rBord, labelLoc.y() + label->height(), 2 * rBord, r.height() - labelLoc.y() - label->height() );
+  if( orientation() == Qt::Horizontal ) {
+    if ( opaqueOldPos >= 0 ) {
+      if( label == 0 )
+        paint.drawRect( opaqueOldPos + hw / 2 - rBord, r.y(), 2 * rBord, r.height() );
+      else {
+        QPoint labelLoc = mapFromGlobal( labelLocation );
+        if( labelLoc.y() > r.y() )
+          paint.drawRect( opaqueOldPos + hw / 2 - rBord, r.y(), 2 * rBord, labelLoc.y() );
+        if( labelLoc.y() + label->height() < r.height() )
+          paint.drawRect( opaqueOldPos + hw / 2 - rBord, labelLoc.y() + label->height(), 2 * rBord, r.height() - labelLoc.y() - label->height() );
+      }
+    }
+  } else {
+    if ( opaqueOldPos >= 0 ) {
+      if( label == 0 )
+        paint.drawRect( r.x(), opaqueOldPos + hw / 2 - rBord, r.width(), 2 * rBord );
+      else {
+        QPoint labelLoc = mapFromGlobal( labelLocation );
+        if( labelLoc.x() > r.x() )
+          paint.drawRect( r.x(), opaqueOldPos + hw / 2 - rBord, labelLoc.x(), 2 * rBord );
+        if( labelLoc.x() + label->width() < r.width() )
+          paint.drawRect( labelLoc.x() + label->width(), opaqueOldPos + hw / 2 - rBord, r.width() - labelLoc.x() - label->width(), 2 * rBord );
+      }
     }
   }
 
@@ -114,14 +138,25 @@ void PercentalSplitter::setRubberband ( int p ) {
       label->setLineWidth( 1 );
       label->setAlignment( AlignAuto | AlignTop );
       label->setIndent(0);
+
+      QFontMetrics fm = label->fontMetrics();
+      label->setMinimumWidth( fm.width( "99.99%" ) + 5 );
+
       label->polish();
     }
 
     label->setText( toolTipString( p ) );
     label->adjustSize();
-    labelLocation = mapToGlobal( QPoint( p - label->width()/2, r.y() + r.height()/2 ) );
-    if( labelLocation.x() < 0 )
-      labelLocation.setX( 0 );
+
+    if( orientation() == Qt::Horizontal ) {
+      labelLocation = mapToGlobal( QPoint( p - label->width()/2, r.y() + r.height()/2 ) );
+      if( labelLocation.x() < 0 )
+        labelLocation.setX( 0 );
+    } else {
+      labelLocation = mapToGlobal( QPoint( r.x() + r.width()/2, p - label->height()/2 ) );
+      if( labelLocation.y() < 0 )
+        labelLocation.setY( 0 );
+    }
 
 #ifdef Q_WS_MAC
     QRect screen = QApplication::desktop()->availableGeometry( scr );
@@ -129,16 +164,28 @@ void PercentalSplitter::setRubberband ( int p ) {
     QRect screen = QApplication::desktop()->screenGeometry( scr );
 #endif
 
-    if( labelLocation.x() + label->width() > screen.width() )
-      labelLocation.setX( screen.width() - label->width() );
-    label->move( labelLocation );
-    label->show();
-    
     QPoint labelLoc = mapFromGlobal( labelLocation );
-    if( labelLoc.y() > r.y() )
-      paint.drawRect( p + hw / 2 - rBord, r.y(), 2 * rBord, labelLoc.y() );
-    if( labelLoc.y() + label->height() < r.height() )
-      paint.drawRect( p + hw / 2 - rBord, labelLoc.y() + label->height(), 2 * rBord, r.height() - labelLoc.y() - label->height() );
+    if( orientation() == Qt::Horizontal ) {
+      if( labelLocation.x() + label->width() > screen.width() )
+        labelLocation.setX( screen.width() - label->width() );
+      label->move( labelLocation );
+      label->show();
+    
+      if( labelLoc.y() > r.y() )
+        paint.drawRect( p + hw / 2 - rBord, r.y(), 2 * rBord, labelLoc.y() );
+      if( labelLoc.y() + label->height() < r.height() )
+        paint.drawRect( p + hw / 2 - rBord, labelLoc.y() + label->height(), 2 * rBord, r.height() - labelLoc.y() - label->height() );
+    } else {
+      if( labelLocation.y() + label->height() > screen.height() )
+        labelLocation.setY( screen.height() - label->height() );
+      label->move( labelLocation );
+      label->show();
+    
+      if( labelLoc.x() > r.x() )
+        paint.drawRect( r.x(), p + hw / 2 - rBord, labelLoc.x(), 2 * rBord );
+      if( labelLoc.x() + label->width() < r.width() )
+        paint.drawRect( labelLoc.x() + label->width(), p + hw / 2 - rBord, r.width() - labelLoc.x() - label->width(), 2 * rBord );
+    }
   }
   opaqueOldPos = p;
 }

@@ -83,6 +83,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include "../Dialogs/krspwidgets.h"
 #include "../Dialogs/krspecialwidgets.h"
 #include "../GUI/kcmdline.h"
+#include "../Dialogs/percentalsplitter.h"
 #include "krdetailedview.h"
 #ifdef TESTING_BRIEF_VIEW
 #include "krbriefview.h"
@@ -257,7 +258,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
    setPanelToolbar();
 
 	// create a splitter to hold the view and the popup
-	QSplitter *splt = new QSplitter(this);
+	QSplitter *splt = new PercentalSplitter(this);
 	splt->setChildrenCollapsible(true);
 	splt->setOrientation(QObject::Vertical);
 
