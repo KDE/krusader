@@ -3,17 +3,17 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2006, Krusader Krew
 # This file is distributed under the same license as the Krusader package.
-# FIRST AUTHOR Frank Schoolmeesters [frank_schoolmeesters {*} yahoo {.} com] 2003-2006.
+#
+# Frank Schoolmeesters [frank_schoolmeesters {*} yahoo {.} com] 2003-2006.
 # Proofread and fixes by Monkey 9 <monkey9@iae.nl>, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0\n"
+"Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-05-21 13:49+0200\n"
-"PO-Revision-Date: 2006-03-25 17:41+0100\n"
-"Last-Translator: Frank Schoolmeesters <frank_schoolmeesters at yahoo dot "
-"com>\n"
-"Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
+"PO-Revision-Date: 2006-05-22 19:11+0200\n"
+"Last-Translator: frank\n"
+"Language-Team:  <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,7 +69,6 @@ msgid "Open the available media list"
 msgstr "Beschikbare medialijst openen"
 
 #: GUI/mediabutton.cpp:303
-#, fuzzy
 msgid "Hard Disk"
 msgstr "Harde schijf"
 
@@ -318,8 +317,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
+msgstr "<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
 
 #: GUI/actionpropertybase.cpp:403
 msgid "Tooltip:"
@@ -530,8 +528,7 @@ msgstr ""
 
 #: GUI/kcmdline.cpp:98
 msgid "If pressed, Krusader executes command line in a terminal."
-msgstr ""
-"Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
+msgstr "Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
 
 #: GUI/kcmdline.cpp:104
 msgid ""
@@ -1391,7 +1388,6 @@ msgid "Command being executed:"
 msgstr "Commando dat uitgevoerd wordt:"
 
 #: UserAction/useraction.cpp:100
-#, fuzzy
 msgid "The file %1 does not contain valid UserActions.\n"
 msgstr "Bestand %1 bevat geen geldige gebruikersacties.\n"
 
@@ -1657,8 +1653,7 @@ msgstr " naar:"
 
 #: Panel/panelpopup.cpp:65
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
+msgstr "Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
 
 #: Panel/panelpopup.cpp:73
 msgid "Preview Panel: display a preview of the current file"
@@ -2287,68 +2282,56 @@ msgid "Up one directory"
 msgstr "Eén directory omhoog"
 
 #: krusader.cpp:514
-#, fuzzy
 msgid "&Edit New File..."
-msgstr "Nieuw Bestand &Bewerken"
+msgstr "Nieuw Bestand &Bewerken..."
 
 #: krusader.cpp:515
-#, fuzzy
 msgid "Start &Root Mode Krusader..."
-msgstr "Krusader in &Root Modus Starten"
+msgstr "Krusader in &Root Modus Starten..."
 
 #: krusader.cpp:517
-#, fuzzy
 msgid "T&est Archive..."
-msgstr "Archief(ven) T&esten"
+msgstr "Archief T&esten..."
 
 #: krusader.cpp:521
-#, fuzzy
 msgid "New Net &Connection..."
-msgstr "Nieuwe Net &Verbinding"
+msgstr "Nieuwe Net &Verbinding..."
 
 #: krusader.cpp:523
 msgid "Pro&files"
 msgstr "Pro&fielen"
 
 #: krusader.cpp:525
-#, fuzzy
 msgid "Calculate &Occupied Space..."
-msgstr "&Benodigde Ruimte Berekenen"
+msgstr "&Benodigde Ruimte Berekenen..."
 
 #: krusader.cpp:527
-#, fuzzy
 msgid "Create Checksum..."
-msgstr "Controlesom aanmaken"
+msgstr "Controlesom aanmaken..."
 
 #: krusader.cpp:529
-#, fuzzy
 msgid "Verify Checksum..."
-msgstr "Controlesom nazien"
+msgstr "Controlesom nazien..."
 
 #: krusader.cpp:531
-#, fuzzy
 msgid "&Properties..."
-msgstr "&Eigenschappen"
+msgstr "&Eigenschappen..."
 
 #: krusader.cpp:533
-#, fuzzy
 msgid "Pac&k..."
-msgstr "Inpa&kken"
+msgstr "Inpa&kken..."
 
 #: krusader.cpp:535
-#, fuzzy
 msgid "&Unpack..."
-msgstr "&Uitpakken"
+msgstr "&Uitpakken..."
 
 #: krusader.cpp:537
-#, fuzzy
 msgid "Sp&lit File..."
-msgstr "Bestand Sp&litsen"
+msgstr "Bestand Sp&litsen..."
 
 #: krusader.cpp:539
-#, fuzzy
 msgid "Com&bine Files..."
-msgstr "Bestanden Com&bineren"
+msgstr "Bestanden Com&bineren..."
 
 #: krusader.cpp:541
 msgid "Select &Group"
@@ -2387,42 +2370,36 @@ msgid "Mark &Different"
 msgstr "&Verschillen Markeren"
 
 #: krusader.cpp:566
-#, fuzzy
 msgid "&Terminal..."
-msgstr "&Terminal   F2"
+msgstr "&Terminal..."
 
 #: krusader.cpp:568
 msgid "Disconnect &From Net"
 msgstr "&Van het Net Deconnecteren"
 
 #: krusader.cpp:571 krusader.cpp:576
-#, fuzzy
 msgid "&MountMan..."
-msgstr "&MountMan"
+msgstr "&MountMan..."
 
 #: krusader.cpp:580
-#, fuzzy
 msgid "&Search..."
-msgstr "&Zoeken"
+msgstr "&Zoeken..."
 
 #: krusader.cpp:582
-#, fuzzy
 msgid "&Locate..."
-msgstr "&Locate"
+msgstr "&Locate..."
 
 #: krusader.cpp:584
-#, fuzzy
 msgid "Synchronize &Directories..."
-msgstr "&Mappen Synchroniseren"
+msgstr "&Mappen Synchroniseren..."
 
 #: krusader.cpp:586
 msgid "S&ynchron directory changes"
 msgstr "Mapwijzigingen s&ynchroniseren"
 
 #: krusader.cpp:588
-#, fuzzy
 msgid "D&isk Usage..."
-msgstr "D&isk Gebruik"
+msgstr "D&isk Gebruik..."
 
 #: krusader.cpp:590
 msgid "&Invert Selection"
@@ -2433,9 +2410,8 @@ msgid "&Unselect Group"
 msgstr "Groep &deseleceteren"
 
 #: krusader.cpp:594
-#, fuzzy
 msgid "Configure &Krusader..."
-msgstr "&Krusader configureren"
+msgstr "&Krusader configureren..."
 
 #: krusader.cpp:596
 msgid "Back"
@@ -2454,14 +2430,12 @@ msgid "&Custom"
 msgstr "&Aangepast"
 
 #: krusader.cpp:608
-#, fuzzy
 msgid "Compare b&y Content..."
-msgstr "Inhoud &vergelijken"
+msgstr "Inhoud &vergelijken..."
 
 #: krusader.cpp:610
-#, fuzzy
 msgid "Multi &Rename..."
-msgstr "Meervoudig &hernoemen"
+msgstr "Meervoudig &hernoemen..."
 
 #: krusader.cpp:612
 msgid "Right-click menu"
@@ -2549,9 +2523,8 @@ msgid "User Menu"
 msgstr "Gebruikersmenu"
 
 #: krusader.cpp:654
-#, fuzzy
 msgid "Manage user actions..."
-msgstr "Gebruikers acties beheren"
+msgstr "Gebruikers acties beheren..."
 
 #: krusader.cpp:656
 msgid "Select Remote Charset"
@@ -2942,8 +2915,7 @@ msgstr ""
 "Verwittig gelieve de Krusader ontwikkelaars"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan heeft een interne fout. Verwittig gelieve de Krusader "
 "ontwikkelaars. Dank U."
@@ -3149,7 +3121,7 @@ msgid ""
 "Otherwise, user needs to click and hold the right mouse button for 500ms."
 msgstr ""
 "Indien aangevinkt, rechts klikken zal onmiddellijk het context menu tonen. \n"
-" Anders, de gebruiker moet de rechter muisknop klikken en gedurende 500ms "
+"Anders, de gebruiker moet de rechter muisknop klikken en gedurende 500ms "
 "houden."
 
 #: Dialogs/krprogress.cpp:59
@@ -3517,8 +3489,7 @@ msgstr "Berekening van de controlesommen ..."
 
 #: Dialogs/checksumdlg.cpp:265 Dialogs/checksumdlg.cpp:379
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
-msgstr ""
-"<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
+msgstr "<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:277 Dialogs/checksumdlg.cpp:388
 msgid "Error reading stdout or stderr"
@@ -3568,8 +3539,7 @@ msgstr "Controlesom verifieren ..."
 
 #: Dialogs/checksumdlg.cpp:423
 msgid "Errors were detected while verifying the checksums"
-msgstr ""
-"Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
+msgstr "Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
 
 #: Dialogs/checksumdlg.cpp:424
 msgid "Checksums were verified successfully"
@@ -3724,8 +3694,7 @@ msgstr "De linkse basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1110
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
+msgstr "De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1116
 msgid "Recurse subdirectories"
@@ -3798,8 +3767,7 @@ msgstr "Opties tonen"
 
 #: Synchronizer/synchronizergui.cpp:1159
 msgid "Show files marked to <i>Copy from left to right</i>."
-msgstr ""
-"Toon bestanden gemarkeerd om te <i>kopiëren van links naar rechts.</i>."
+msgstr "Toon bestanden gemarkeerd om te <i>kopiëren van links naar rechts.</i>."
 
 #: Synchronizer/synchronizergui.cpp:1167
 msgid "Show files considered to be identical."
@@ -3842,13 +3810,12 @@ msgid "&Synchronizer"
 msgstr "&Synchronisatie"
 
 #: Synchronizer/synchronizergui.cpp:1278
-#, fuzzy
 msgid "&Options"
-msgstr "Werking"
+msgstr "&Opties"
 
 #: Synchronizer/synchronizergui.cpp:1287
 msgid "Parallel threads:"
-msgstr ""
+msgstr "Parallelle verwerking (threads):"
 
 #: Synchronizer/synchronizergui.cpp:1298
 msgid "Equality threshold:"
@@ -3999,22 +3966,21 @@ msgid "IO error at comparing file %1 with %2!"
 msgstr "IO fout bij het vergelijken van bestand %1 met %2!"
 
 #: Synchronizer/synchronizertask.cpp:329
-#, fuzzy
 msgid "Comparing file %1 (%2)..."
-msgstr "Bestand vergelijken %1..."
+msgstr "Bestanden vergelijken %1 (%2)..."
 
 #: Synchronizer/synchronizedialog.cpp:49
 msgid "Krusader::Synchronize"
 msgstr "Krusader::Synchroniseren"
 
 #: Synchronizer/synchronizedialog.cpp:53
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Right to left: Copy 1 file\n"
 "Right to left: Copy %n files"
 msgstr ""
-"_n: Kopieër %n bestand naar:\n"
-"%n bestanden kopiëren naar:"
+"_n: Rechts naar links: kopieër 1 bestand\n"
+"Rechts naar links: %n bestanden kopiëren"
 
 #: Synchronizer/synchronizedialog.cpp:54 Synchronizer/synchronizedialog.cpp:67
 #: Synchronizer/synchronizedialog.cpp:80
@@ -4023,32 +3989,35 @@ msgid ""
 "_n: (1 byte)\n"
 "(%n bytes)"
 msgstr ""
+"_n: (1 byte)\n"
+"(%n bytes)"
 
 #: Synchronizer/synchronizedialog.cpp:60 Synchronizer/synchronizedialog.cpp:73
 #: Synchronizer/synchronizedialog.cpp:86
-#, fuzzy
 msgid ""
 "_n: Ready: %1/1 file, %3/%4\n"
 "Ready: %1/%n files, %3/%4"
 msgstr ""
-"_n: en %n bestand\n"
-"en %n bestanden"
+"_n: Klaar: %1/1 bestand, %3/%4\n"
+"Klaar: %1/%n bestanden, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:66
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Left to right: Copy 1 file\n"
 "Left to right: Copy %n files"
 msgstr ""
-"_n: Kopieër %n bestand naar:\n"
-"%n bestanden kopiëren naar:"
+"_n: Links naar rechts: kopieër 1 bestand\n"
+"Links naar rechts: %n bestanden kopiëren"
 
 #: Synchronizer/synchronizedialog.cpp:79
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Left: Delete 1 file\n"
 "Left: Delete %n files"
-msgstr "Links: Wis %1 bestanden (%2 bytes)"
+msgstr ""
+"_n: Links: Wis %1 bestand"
+"Links: Wis %1 bestanden"
 
 #: Synchronizer/synchronizedialog.cpp:101
 msgid "Confirm overwrites"
@@ -4077,12 +4046,12 @@ msgstr "Hervatten"
 #: Synchronizer/synchronizer.cpp:145 Synchronizer/synchronizer.cpp:617
 #, c-format
 msgid "Number of files: %1"
-msgstr ""
+msgstr "Aantal bestanden: %1"
 
 #: Synchronizer/synchronizer.cpp:176
-#, fuzzy, c-format
+#, c-format
 msgid "Number of compared directories: %1"
-msgstr "%1 Gescande mappen"
+msgstr "Aantal vergeleken mappen: %1"
 
 #: Synchronizer/synchronizer.cpp:1094 Synchronizer/synchronizer.cpp:1107
 msgid "File Already Exists"
@@ -4586,8 +4555,7 @@ msgid "Searching for tools..."
 msgstr "Zoeken naar gereedschap..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw gereedschap installeert in uw <code>$PATH</"
 "code> (bv. /usr/bin)"
@@ -4600,8 +4568,7 @@ msgstr ""
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr ""
-"rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
+msgstr "rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -4760,8 +4727,7 @@ msgstr "Mappen automatisch markeren"
 
 #: Konfigurator/kglookfeel.cpp:75
 msgid "When matching the select criteria, directories will also be marked."
-msgstr ""
-"Wanneer de criteria overeenstemmen zullen de mappen ook geselecteerd worden."
+msgstr "Wanneer de criteria overeenstemmen zullen de mappen ook geselecteerd worden."
 
 #: Konfigurator/kglookfeel.cpp:76
 msgid "Case sensitive sorting"
@@ -4813,11 +4779,11 @@ msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Always sort dirs by name"
-msgstr ""
+msgstr "Altijd mappen per naam sorteren"
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Directories are sorted by name, regardless of the sort column."
-msgstr ""
+msgstr "Mappen per naam sorteren, ongeacht de sorteerkolom."
 
 #: Konfigurator/kglookfeel.cpp:82
 msgid "Show splashscreen"
@@ -5044,8 +5010,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Knop voor synchroon bladeren omschakelen"
 
 #: Konfigurator/kglookfeel.cpp:221
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr ""
 "Elke map verandering in het venster wordt ook uitgevoerd in het andere "
 "venster."
@@ -5067,13 +5032,12 @@ msgid "Preserve attributes for local copy/move (slower)"
 msgstr "Attributen behouden bij lokaal kopiëren/verplaatsen (trager)"
 
 #: Konfigurator/kgadvanced.cpp:52
-#, fuzzy
 msgid ""
 "Change all attributes (time, owner, group) of local files according to the "
 "source one. This can slow down the copy process."
 msgstr ""
-"De wijzigingstijd van de lokale bestanden wijzigen volgens het bronbestand. "
-"Dit kan het kopiëren langzamer maken."
+"Alle attributen (tijd, eigenaar, groep) van locale bestanden wijzigen overeenstemmend "
+"met het bronbestand. Dit kan het kopiëren langzamer maken."
 
 #: Konfigurator/kgadvanced.cpp:53
 msgid "Automount filesystems"
@@ -5683,8 +5647,7 @@ msgid "Test archive before unpacking"
 msgstr "Archief eerst testen voor het uitpakken"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
 "testen aangeraden"
@@ -5694,8 +5657,7 @@ msgid "Searching for packers..."
 msgstr "Naar inpakgereedschap zoeken..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw inpak gereedschap installeert in uw <code>"
 "$PATH</code> (bv. /usr/bin)"
@@ -6011,8 +5973,7 @@ msgid "Not a valid CRC file!"
 msgstr "Ongeldig CRC bestand!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Geldigheids controle is onmogelijk zonder een goed CRC bestand. Doorgaan met "
 "combineren?"
@@ -6053,17 +6014,3 @@ msgstr "Fout bij het lezen van bestand %1!"
 msgid "Error at writing file %1!"
 msgstr "Fout bij het schrijven van bestand %1!"
 
-#~ msgid "&Time options"
-#~ msgstr "&Tijd opties"
-
-#~ msgid "Right to left: Copy %1 files (%2 bytes)"
-#~ msgstr "Rechts naar links: Kopiëer %1 bestanden (%2 bytes)"
-
-#~ msgid "Left to right: Copy %1 files (%2 bytes)"
-#~ msgstr "Rechts naar links: Kopiëer %1 bestanden (%2 bytes)"
-
-#~ msgid "File number:%1"
-#~ msgstr "Bestand nummer:%1"
-
-#~ msgid "Error at opening URL:%1!"
-#~ msgstr "Fout bij het openenen van URL:%1!"
