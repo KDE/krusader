@@ -36,6 +36,7 @@
 #include <kurl.h>
 #include <kio/jobclasses.h>
 #include <qvaluelist.h>
+#include <kmountpoint.h>
 
 /**
   *@author Csaba Karai
@@ -56,17 +57,29 @@ public slots:
   void slotAboutToShow();
   void slotPopupActivated( int );
   void gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail);
-  void openPopup();  
+  void openPopup();
+  void slotEntries( KIO::Job*, const KIO::UDSEntryList& );
+  void slotListResult( KIO::Job* );
 
 signals:
   void openUrl(const KURL&);
 
 private:
+  void createListWithMedia();
+  void createListWithoutMedia();
+
+  KURL getLocalPath( const KURL &, KMountPoint::List * list = 0 );
+  bool mount( int );
+  bool umount( int );
+
   void addMountPoint( KMountPoint *mp, bool isMounted );
 
   QPopupMenu *popupMenu;
+  bool        hasMedia;
+  bool        busy;
 
   QValueList<KURL>    urls;
+  QValueList<KURL>    mediaUrls;
   QValueList<QString> types;
 
   QString extraSpaces;  //prevents from increasing the size of the widget

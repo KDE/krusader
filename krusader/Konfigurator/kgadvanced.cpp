@@ -34,6 +34,8 @@
 #include <qhbox.h>
 #include <qwhatsthis.h>
 #include <sys/param.h>
+#include <kdeversion.h>
+#include <kprotocolinfo.h>
 
 KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -47,12 +49,27 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   QGroupBox *generalGrp = createFrame( i18n( "General" ), parent, "kgAdvGeneralGrp" );
   QGridLayout *generalGrid = createGridLayout( generalGrp->layout() );
 
+#if KDE_IS_VERSION( 3,5,1 )
+  bool dontUseMedia = false;
+#else
+  bool dontUseMedia = true;
+#endif
+
+  bool isMediaProtocolPresent = KProtocolInfo::isKnownProtocol( QString( "media" ) );
+  if( !isMediaProtocolPresent )
+    dontUseMedia = true;
+
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //   cfg_class  cfg_name             default              text                                                        restart tooltip
     {{"Advanced","PreserveAttributes", _PreserveAttributes, i18n( "Preserve attributes for local copy/move (slower)" ), false,  i18n( "Change all attributes (time, owner, group) of local files according to the source one. This can slow down the copy process." ) },
-     {"Advanced","AutoMount",          _AutoMount,          i18n( "Automount filesystems" ),                            false,  i18n( "When stepping into a directory which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters." )}};
+     {"Advanced","AutoMount",          _AutoMount,          i18n( "Automount filesystems" ),                            false,  i18n( "When stepping into a directory which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters." )},
+     {"Advanced","DontUseMediaProt",   dontUseMedia,        i18n( "Don't use KDE's media protocol for media button (if it's buggy or missing)" ),  false,  i18n( "Select if your media protocol is buggy (in some older KDE-s), or not present (no kdebase package)" )}};
 
-  KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 1, 0, generalSettings, 2, generalGrp );
+  KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 1, 0, generalSettings, 3, generalGrp );
+
+  if( !isMediaProtocolPresent )
+    generals->find( "DontUseMediaProt" )->setEnabled( false );
+
   generalGrid->addWidget( generals, 1, 0 );
 
   addLabel( generalGrid, 2, 0, i18n( "MountMan won't (un)mount the following mount-points:" ),
