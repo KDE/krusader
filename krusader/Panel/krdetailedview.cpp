@@ -270,6 +270,21 @@ KrViewItem *KrDetailedView::preAddItem( vfile *vf ) {
 	return new KrDetailedViewItem( this, lastItem(), vf );
 }
 
+bool KrDetailedView::preDelItem(KrViewItem *item) {
+   /* KDE HACK START - the renaming item is not disappeared after delete */
+   /* solution: we send an ESC key event to terminate the rename */
+   if( item ) {
+      QListViewItem * viewItem = dynamic_cast<QListViewItem*>( item );
+      if( viewItem == currentlyRenamedItem ) {
+         currentlyRenamedItem = 0;
+         QKeyEvent escEvent( QEvent::KeyPress, Key_Escape, 27, 0 );
+         QApplication::sendEvent( renameLineEdit(), &escEvent );
+      }
+   }
+   /* KDE HACK END */
+   return true;
+}
+
 void KrDetailedView::addItems( vfs *v, bool addUpDir ) {
    QListViewItem * item = firstChild();
    QListViewItem *currentItem = item;
@@ -351,7 +366,16 @@ void KrDetailedView::setCurrentItem( const QString& name ) {
 }
 
 void KrDetailedView::clear() {
-	op()->emitSelectionChanged(); /* to avoid rename crash at refresh */
+   /* KDE HACK START - the renaming item is not disappeared after clear */
+   /* solution: we send an ESC key event to terminate the rename */
+   if( currentlyRenamedItem ) {
+      currentlyRenamedItem = 0;
+      QKeyEvent escEvent( QEvent::KeyPress, Key_Escape, 27, 0 );
+      QApplication::sendEvent( renameLineEdit(), &escEvent );
+   }
+   /* KDE HACK END */
+
+   op()->emitSelectionChanged(); /* to avoid rename crash at refresh */
    KListView::clear();
    KrView::clear();
 }
@@ -1049,9 +1073,9 @@ void KrDetailedView::rename( QListViewItem * item, int c ) {
       item->setText( COLUMN( Name ), static_cast<KrDetailedViewItem*>( item ) ->name() );
       item->setText( COLUMN( Extention ), QString::null );
       repaintItem( item );
-      currentlyRenamedItem = item;
    }
 
+   currentlyRenamedItem = item;
    renameLineEdit()->setBackgroundMode(Qt::FixedColor);
    renameLineEdit()->setPaletteBackgroundColor(Qt::white);
    renameLineEdit()->setPaletteForegroundColor(Qt::black);
@@ -1093,6 +1117,9 @@ void KrDetailedView::renameCurrentItem() {
 }
 
 void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
+   if( currentlyRenamedItem == 0 )
+      return;
+
    if ( !it ) { // major failure - call developers
       krOut << "Major failure at inplaceRenameFinished(): item is null" << endl;
       return;

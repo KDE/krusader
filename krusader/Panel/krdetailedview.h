@@ -106,7 +106,8 @@ protected:
 	virtual void initProperties();
 	virtual void initOperator();
 	virtual KrViewItem *preAddItem(vfile *vf);
-	virtual inline bool preDelItem(KrViewItem *item) { return true; } // nothing special to do
+	virtual bool preDelItem(KrViewItem *item);
+
    void newColumn( KrDetailedViewProperties::ColumnType type );
    void selectColumns();
    
