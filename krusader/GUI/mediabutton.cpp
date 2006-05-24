@@ -257,6 +257,7 @@ void MediaButton::addMountPoint( KMountPoint * mp, bool isMounted ) {
 	QString mountString = isMounted ? "_mounted" : "_unmounted";
 	if( mp->mountPoint() == "/dev/swap" || 
 		mp->mountPoint() == "/dev/pts"  ||
+		mp->mountPoint().startsWith( "/sys/kernel" ) ||
 		mp->mountPoint().find( "/proc" ) == 0 )
 		return;
 	if( mp->mountType() == "swap" ||
