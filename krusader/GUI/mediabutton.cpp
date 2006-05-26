@@ -170,9 +170,11 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 				if( !mime.endsWith( "unmounted" ) )
 					mounted = true;
 				break;
+#if KDE_IS_VERSION(3,4,0)
 			case KIO::UDS_LOCAL_PATH:
 				localPath = (*it2).m_str;
 				break;
+#endif
 			}
 		}
 		
@@ -183,7 +185,7 @@ void MediaButton::slotEntries( KIO::Job *, const KIO::UDSEntryList& entries )
 			
 			mediaUrls.append( url );
 			
-			if( mounted && !localPath )
+			if( mounted && !localPath.isEmpty() )
 				url = KURL::fromPathOrURL( localPath );
 			else if( mounted )
 				url = getLocalPath( url, &mountList );
@@ -348,7 +350,7 @@ QString MediaButton::detectType( KMountPoint *mp )
 }
 
 void MediaButton::slotPopupActivated( int elem ) {
-	if( mimes[ elem ].endsWith( "_unmounted" ) ) {
+	if( !quasiMounted[ elem ] && mimes[ elem ].endsWith( "_unmounted" ) ) {
 		mount( elem );
 		waitingForMount = elem;
 		maxMountWait = 20;
@@ -535,7 +537,7 @@ void MediaButton::rightClickMenu( int index ) {
 	case 1:
 	case 2:
 		popupMenu->close();
-		if( mounted ) {
+		if( mounted || quasiMounted[ index ] ) {
 			if( result == 1 )
 				emit openUrl( urls[ index ] );
 			else
