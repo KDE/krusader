@@ -37,6 +37,7 @@
 #include <kio/jobclasses.h>
 #include <qvaluelist.h>
 #include <kmountpoint.h>
+#include <qtimer.h>
 
 /**
   *@author Csaba Karai
@@ -55,6 +56,8 @@ public:
 
 public slots:
   void slotAboutToShow();
+  void slotAboutToHide();
+  void slotTimeout();
   void slotPopupActivated( int );
   void gettingSpaceData(const QString &mountPoint, unsigned long kBSize, unsigned long kBUsed, unsigned long kBAvail);
   void openPopup();
@@ -64,6 +67,9 @@ public slots:
 signals:
   void openUrl(const KURL&);
 
+protected:
+  bool eventFilter( QObject *o, QEvent *e );
+
 private:
   void createListWithMedia();
   void createListWithoutMedia();
@@ -71,18 +77,30 @@ private:
   KURL getLocalPath( const KURL &, KMountPoint::List * list = 0 );
   bool mount( int );
   bool umount( int );
+  bool eject( int );
+
+  void rightClickMenu( int );
 
   void addMountPoint( KMountPoint *mp, bool isMounted );
 
   QPopupMenu *popupMenu;
+  QPopupMenu *rightMenu;
+
   bool        hasMedia;
   bool        busy;
 
+  int         waitingForMount;
+  bool        newTabAfterMount;
+  int         maxMountWait;
+
   QValueList<KURL>    urls;
   QValueList<KURL>    mediaUrls;
-  QValueList<QString> types;
+  QValueList<QString> mimes;
+  QValueList<bool>    quasiMounted;
 
   QString extraSpaces;  //prevents from increasing the size of the widget
+
+  QTimer      mountCheckerTimer;
 };
 
 #endif /* MEDIABUTTON_H */
