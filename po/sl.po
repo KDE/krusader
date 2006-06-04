@@ -3,14 +3,14 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2006, Krusader Krew
 # This file is distributed under the same license as the Krusader package
-#
 # Matej Urbančič <matej.urban@gmail.com>, 2005, 2006.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-05-21 13:49+0200\n"
-"PO-Revision-Date: 2006-03-28 18:26+0200\n"
+"PO-Revision-Date: 2006-06-02 21:27+0200\n"
 "Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
 "Language-Team: Slovenian <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,9 +19,9 @@ msgstr ""
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: KBabel 1.11.1\n"
-"Plural-Forms: plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? "
-"2 : 3);\n"
+"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -69,7 +69,7 @@ msgstr "Privzeto"
 
 #: GUI/mediabutton.cpp:74
 msgid "Open the available media list"
-msgstr "Odpri listo priklopov"
+msgstr "Odpri media listo"
 
 #: GUI/mediabutton.cpp:303
 msgid "Hard Disk"
@@ -93,7 +93,7 @@ msgstr "DVD"
 
 #: GUI/mediabutton.cpp:315 GUI/mediabutton.cpp:317
 msgid "Remote Share"
-msgstr "Oddaljena povezava"
+msgstr "Oddaljeno mesto"
 
 #: GUI/mediabutton.cpp:319 GUI/mediabutton.cpp:321
 msgid "Floppy"
@@ -192,7 +192,7 @@ msgid ""
 "internal action"
 msgstr ""
 "Skript s tem imenom že obstaja\n"
-"Če skripta s tem imenom ni, potem je ime verjetno rezervirano za sistem."
+"Če nimate takega skripta, enako ime uporablja Krusader za svoj interni skript"
 
 #: GUI/actionpropertybase.cpp:380
 msgid "Action Property"
@@ -671,7 +671,7 @@ msgid ""
 "kcontrol."
 msgstr ""
 "Krusader ne podpira FTP dostopa preko HTTP.\n"
-"Če ni v tem problem, potem preverite nastavitve Proxy strežnika v Kcontrolu."
+"Če ni v tem problem, prosim, preverite Proxy nastavitve v kcontrol."
 
 #: VFS/ftp_vfs.cpp:156
 #, c-format
@@ -1384,7 +1384,7 @@ msgstr "Datoteka %1 ne vsebuje veljavnega skripta.\n"
 #: UserAction/useraction.cpp:101 UserAction/useraction.cpp:112
 #: UserAction/useraction.cpp:124
 msgid "UserActions - can't read from file!"
-msgstr "Skripti - ne morem brati datoteke"
+msgstr "Uporabniški skripti - ne morem brati iz datoteke!"
 
 #: UserAction/useraction.cpp:123
 #, c-format
@@ -1396,12 +1396,12 @@ msgid ""
 "Action without name detected. This action will not be imported!\n"
 "This is an error in the file, you may want to correct it."
 msgstr ""
-"Zaznan je skript brez imena, zato ga ne morem uvoziti!\n"
-"To je napaka v datoteki. Popravite jo lahko ročno."
+"Skript je brez imena, zato ga ne morem uvoziti!\n"
+"To je napaka v datoteki. Lahko jo popravite ročno."
 
 #: UserAction/useraction.cpp:141
 msgid "UserActions - invalid action"
-msgstr "Skripti - neveljaven skript"
+msgstr "Uporabniški skripti - neveljaven skript"
 
 #: Panel/krdetailedviewitem.cpp:78 Panel/krdetailedviewitem.cpp:110
 #: Synchronizer/synchronizergui.cpp:1849 Synchronizer/synchronizergui.cpp:1856
@@ -2204,7 +2204,7 @@ msgstr "Ime poizvedbe"
 #: Locate/locate.cpp:497 Search/krsearchdialog.cpp:535
 #: Synchronizer/feedtolistboxdialog.cpp:110
 msgid "Here you can name the file collection"
-msgstr "Ime izbora datotek"
+msgstr "Tu lahko poimenujete izbor datotek"
 
 #: krusader.cpp:320
 msgid "Statusbar will show basic information about file below mouse pointer."
@@ -2281,68 +2281,56 @@ msgid "Up one directory"
 msgstr "Mapa višje"
 
 #: krusader.cpp:514
-#, fuzzy
 msgid "&Edit New File..."
-msgstr "Ustvari &novo datoteko"
+msgstr "Ur&edi novo datoteko"
 
 #: krusader.cpp:515
-#, fuzzy
 msgid "Start &Root Mode Krusader..."
 msgstr "&Skrbniški zagon"
 
 #: krusader.cpp:517
-#, fuzzy
 msgid "T&est Archive..."
-msgstr "&Testiranje arhivov"
+msgstr "&Test arhiva ..."
 
 #: krusader.cpp:521
-#, fuzzy
 msgid "New Net &Connection..."
-msgstr "Nova omrežna &povezava"
+msgstr "Nova omrežna &povezava..."
 
 #: krusader.cpp:523
 msgid "Pro&files"
 msgstr "&Profili"
 
 #: krusader.cpp:525
-#, fuzzy
 msgid "Calculate &Occupied Space..."
-msgstr "&Zasedenost prostora"
+msgstr "&Zasedenost prostora ..."
 
 #: krusader.cpp:527
-#, fuzzy
 msgid "Create Checksum..."
-msgstr "Izračunaj kontrolno vsoto"
+msgstr "Ustvari kontrolno vsoto ..."
 
 #: krusader.cpp:529
-#, fuzzy
 msgid "Verify Checksum..."
-msgstr "Overi kontrolno vsoto"
+msgstr "Overi kontrolno vsoto ..."
 
 #: krusader.cpp:531
-#, fuzzy
 msgid "&Properties..."
-msgstr "&Lastnosti"
+msgstr "&Lastnosti ..."
 
 #: krusader.cpp:533
-#, fuzzy
 msgid "Pac&k..."
-msgstr "&Stiskanje"
+msgstr "&Stiskanje ..."
 
 #: krusader.cpp:535
-#, fuzzy
 msgid "&Unpack..."
-msgstr "&Razširjanje"
+msgstr "&Razširjanje ..."
 
 #: krusader.cpp:537
-#, fuzzy
 msgid "Sp&lit File..."
-msgstr "Raz&deljevanje"
+msgstr "Raz&deljevanje ..."
 
 #: krusader.cpp:539
-#, fuzzy
 msgid "Com&bine Files..."
-msgstr "Spa&janje"
+msgstr "Spa&janje ..."
 
 #: krusader.cpp:541
 msgid "Select &Group"
@@ -2381,42 +2369,36 @@ msgid "Mark &Different"
 msgstr "Označi &drugačne"
 
 #: krusader.cpp:566
-#, fuzzy
 msgid "&Terminal..."
-msgstr "&Terminal"
+msgstr "&Terminal ..."
 
 #: krusader.cpp:568
 msgid "Disconnect &From Net"
 msgstr "&Odklopi se z Mreže"
 
 #: krusader.cpp:571 krusader.cpp:576
-#, fuzzy
 msgid "&MountMan..."
-msgstr "&Priklopnik"
+msgstr "&Priklopnik ..."
 
 #: krusader.cpp:580
-#, fuzzy
 msgid "&Search..."
-msgstr "&Iskanje"
+msgstr "&Iskanje ..."
 
 #: krusader.cpp:582
-#, fuzzy
 msgid "&Locate..."
-msgstr "&Lociranje"
+msgstr "&Lociranje ..."
 
 #: krusader.cpp:584
-#, fuzzy
 msgid "Synchronize &Directories..."
-msgstr "Uskladi &mape"
+msgstr "Uskladi &mape ..."
 
 #: krusader.cpp:586
 msgid "S&ynchron directory changes"
 msgstr "&Usklajene spremembe map"
 
 #: krusader.cpp:588
-#, fuzzy
 msgid "D&isk Usage..."
-msgstr "Zasedenost &diska"
+msgstr "Zasedenost &diska ..."
 
 #: krusader.cpp:590
 msgid "&Invert Selection"
@@ -2427,9 +2409,8 @@ msgid "&Unselect Group"
 msgstr "Počisti s&kupine"
 
 #: krusader.cpp:594
-#, fuzzy
 msgid "Configure &Krusader..."
-msgstr "&Nastavitve"
+msgstr "&Nastavitve ..."
 
 #: krusader.cpp:596
 msgid "Back"
@@ -2448,14 +2429,12 @@ msgid "&Custom"
 msgstr "&Po meri"
 
 #: krusader.cpp:608
-#, fuzzy
 msgid "Compare b&y Content..."
-msgstr "&Vsebinska primerjava"
+msgstr "&Primerjaj po vsebini ..."
 
 #: krusader.cpp:610
-#, fuzzy
 msgid "Multi &Rename..."
-msgstr "&Preimenovanje"
+msgstr "&Preimenovanje ..."
 
 #: krusader.cpp:612
 msgid "Right-click menu"
@@ -2500,11 +2479,11 @@ msgstr "Priklopi"
 
 #: krusader.cpp:632
 msgid "Left media"
-msgstr "Levi mediji"
+msgstr "Levi priklopi"
 
 #: krusader.cpp:634
 msgid "Right media"
-msgstr "Desni mediji"
+msgstr "DesnI priklopi"
 
 #: krusader.cpp:636
 msgid "New symlink"
@@ -2543,9 +2522,8 @@ msgid "User Menu"
 msgstr "Uporabniški meni"
 
 #: krusader.cpp:654
-#, fuzzy
 msgid "Manage user actions..."
-msgstr "Upravljaj s skripti"
+msgstr "Upravljaj s skripti ..."
 
 #: krusader.cpp:656
 msgid "Select Remote Charset"
@@ -2988,11 +2966,11 @@ msgid ""
 "IRC\n"
 "server: irc.freenode.net, channel: #krusader"
 msgstr ""
-"Povratne informacije\n"
+"Feedback\n"
 "http://www.krusader.org/phpBB/\n"
 "\n"
 "IRC\n"
-"strežnik: irc.freenode.net, kanal: #krusader"
+"server: irc.freenode.net, kanal: #krusader"
 
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
@@ -3374,7 +3352,7 @@ msgstr "v mapo"
 
 #: Dialogs/packguibase.cpp:145
 msgid "Multiple volume archive"
-msgstr "Večdelni arhiv."
+msgstr "Več enotni arhiv"
 
 #: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1034
 msgid "Size:"
@@ -3382,7 +3360,7 @@ msgstr "Velikost:"
 
 #: Dialogs/packguibase.cpp:172
 msgid "Set compression level"
-msgstr "Stopnja stiskanja"
+msgstr "Določi stopnjo stiskanja"
 
 #: Dialogs/packguibase.cpp:200
 msgid "Password"
@@ -3390,7 +3368,7 @@ msgstr "Geslo"
 
 #: Dialogs/packguibase.cpp:210
 msgid "Again"
-msgstr "Ponovno"
+msgstr "Znova"
 
 #: Dialogs/packguibase.cpp:228
 msgid "Encrypt headers"
@@ -3398,7 +3376,7 @@ msgstr "Kodiraj glavo"
 
 #: Dialogs/packguibase.cpp:240
 msgid "Command line switches:"
-msgstr "Ukazna stikala:"
+msgstr "Zastavice ukazne vrstice:"
 
 #: Dialogs/packguibase.cpp:273 Konfigurator/kguseractions.cpp:71
 msgid "Ok"
@@ -3406,43 +3384,43 @@ msgstr "V redu"
 
 #: Dialogs/packguibase.cpp:322
 msgid "The passwords are equal"
-msgstr "Gesli sta enaki."
+msgstr "Gesli sta enaki"
 
 #: Dialogs/packguibase.cpp:326
 msgid "The passwords are different"
-msgstr "Gesli sta različni!"
+msgstr "Gesli sta različni"
 
 #: Dialogs/packguibase.cpp:361
 msgid "Cannot pack! The passwords are different!"
-msgstr "Ne morem stisniti datotek! Gesli sta različni!"
+msgstr "Ne morem stisniti! Gesli nista enaki!"
 
 #: Dialogs/packguibase.cpp:386
 msgid "Invalid volume size!"
-msgstr "Nepodprta velikost medija"
+msgstr "Napačna velikost enote!"
 
 #: Dialogs/packguibase.cpp:416
 msgid ""
 "Invalid command line switch!\n"
 "Switch must start with '-'!"
 msgstr ""
-"Napačno ukazno stikalo!\n"
-"Stikalo mora slediti znaku '-'!"
+"Nepravilna zastavica ukaza!\n"
+"Zastavica se mora začeti z '-'!"
 
 #: Dialogs/packguibase.cpp:428
 msgid ""
 "Invalid command line switch!\n"
 "Backslash cannot be the last character"
 msgstr ""
-"Napačno ukazno stikalo!\n"
-"Stikal se ne sme končati z znakom '\\'!"
+"Nepravilna zastavica ukaza!\n"
+"Povratni delivec ne more biti zadnji znak."
 
 #: Dialogs/packguibase.cpp:436
 msgid ""
 "Invalid command line switch!\n"
 "Unclosed quotation mark!"
 msgstr ""
-"Napačno ukazno stikalo!\n"
-"Narekovaj ni zaključen!"
+"Nepravilna zastavica ukaza!\n"
+"Nezaključeni znaki \"\"!"
 
 #: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
@@ -3821,13 +3799,12 @@ msgid "&Synchronizer"
 msgstr "&Usklajevalnik"
 
 #: Synchronizer/synchronizergui.cpp:1278
-#, fuzzy
 msgid "&Options"
-msgstr "Operacije"
+msgstr "&Možnosti"
 
 #: Synchronizer/synchronizergui.cpp:1287
 msgid "Parallel threads:"
-msgstr ""
+msgstr "Vzporedni prenosi:"
 
 #: Synchronizer/synchronizergui.cpp:1298
 msgid "Equality threshold:"
@@ -3851,7 +3828,7 @@ msgstr "dan"
 
 #: Synchronizer/synchronizergui.cpp:1312
 msgid "Time shift (right-left):"
-msgstr "Privzemi čas (desno - levo):"
+msgstr "Določilo časa (desno - levo):"
 
 #: Synchronizer/synchronizergui.cpp:1342
 msgid "Swap sides."
@@ -3971,16 +3948,15 @@ msgstr "Usklajevalnik nima dela!"
 
 #: Synchronizer/synchronizertask.cpp:131 Synchronizer/synchronizertask.cpp:138
 msgid "Error at opening %1!"
-msgstr "Napaka pri odpiranju: %1!"
+msgstr "Napaka pri odpiranju %1!"
 
 #: Synchronizer/synchronizertask.cpp:291
 msgid "IO error at comparing file %1 with %2!"
 msgstr "IO napaka pri primerjavi datoteke %1 z %2!"
 
 #: Synchronizer/synchronizertask.cpp:329
-#, fuzzy
 msgid "Comparing file %1 (%2)..."
-msgstr "Primerjam datoteko %1..."
+msgstr "Primerjam datoteko %1 (%2) ..."
 
 #: Synchronizer/synchronizedialog.cpp:49
 msgid "Krusader::Synchronize"
@@ -3992,10 +3968,10 @@ msgid ""
 "_n: Right to left: Copy 1 file\n"
 "Right to left: Copy %n files"
 msgstr ""
-"Z desne na levo: Kopiram %n datotek\n"
-"Z desne na levo: Kopiram %n datoteko\n"
-"Z desne na levo: Kopiram %n datoteki\n"
-"Z desne na levo: Kopiram %n datoteke"
+"_n: Z desne na levo: kopiraj %n datotek\n"
+"Z desne na levo: kopiraj %n datoteko\n"
+"Z desne na levo: kopiraj %n datoteki\n"
+"Z desne na levo: kopiraj %n datoteke"
 
 #: Synchronizer/synchronizedialog.cpp:54 Synchronizer/synchronizedialog.cpp:67
 #: Synchronizer/synchronizedialog.cpp:80
@@ -4004,10 +3980,8 @@ msgid ""
 "_n: (1 byte)\n"
 "(%n bytes)"
 msgstr ""
-"(%n bajtov)\n"
-"(%n bajt)\n"
-"(%n bajta)\n"
-"(%n bajti)"
+"_n: (1 bajt)\n"
+"(%n bajtov)"
 
 #: Synchronizer/synchronizedialog.cpp:60 Synchronizer/synchronizedialog.cpp:73
 #: Synchronizer/synchronizedialog.cpp:86
@@ -4015,10 +3989,10 @@ msgid ""
 "_n: Ready: %1/1 file, %3/%4\n"
 "Ready: %1/%n files, %3/%4"
 msgstr ""
-"Končano: %1/%n datotek, %3/%4 B\n"
-"Končano: %1/%n datoteke, %3/%4 B\n"
-"Končano: %1/%n datotek, %3/%4 B\n"
-"Končano: %1/%n datotek, %3/%4 B"
+"_n: Pripravljeno: %1/%n datotek, %3/%4\n"
+"Pripravljeno: %1/%n datoteke, %3/%4\n"
+"Pripravljeno: %1/%n datotek, %3/%4\n"
+"Pripravljeno: %1/%n datotek, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:66
 #, c-format
@@ -4026,10 +4000,10 @@ msgid ""
 "_n: Left to right: Copy 1 file\n"
 "Left to right: Copy %n files"
 msgstr ""
-"Z leve na desno: Kopiram %n datotek\n"
-"Z leve na desno: Kopiram %n datoteko\n"
-"Z leve na desno: Kopiram %n datoteki\n"
-"Z leve na desno: Kopiram %n datoteke"
+"_n: Z leve na desno: kopiraj %n datotek\n"
+"Z leve na desno: kopiraj %n datoteko\n"
+"Z leve na desno: kopiraj %n datoteki\n"
+"Z leve na desno: kopiraj %n datoteke"
 
 #: Synchronizer/synchronizedialog.cpp:79
 #, c-format
@@ -4037,7 +4011,7 @@ msgid ""
 "_n: Left: Delete 1 file\n"
 "Left: Delete %n files"
 msgstr ""
-"Levo: Brišem %n datotek\n"
+"_n: Levo: Brišem %n datotek\n"
 "Levo: Brišem %n datoteko\n"
 "Levo: Brišem %n datoteki\n"
 "Levo: Brišem %n datoteke"
@@ -4060,7 +4034,7 @@ msgstr "Pavza"
 #: Synchronizer/synchronizedialog.cpp:161
 #: Synchronizer/synchronizedialog.cpp:164
 msgid "\tReady: %1/%2 files, %3/%4"
-msgstr "\tKončano: %1/%2 datotek, %3/%4"
+msgstr "\tPripravljen: %1/%2 datotek, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:194 Synchronizer/synchronizer.cpp:1298
 msgid "Resume"
@@ -4072,9 +4046,9 @@ msgid "Number of files: %1"
 msgstr "Število datotek: %1"
 
 #: Synchronizer/synchronizer.cpp:176
-#, fuzzy, c-format
+#, c-format
 msgid "Number of compared directories: %1"
-msgstr "Število skeniranih map: %1"
+msgstr "Število primerjanih map: %1"
 
 #: Synchronizer/synchronizer.cpp:1094 Synchronizer/synchronizer.cpp:1107
 msgid "File Already Exists"
@@ -4106,31 +4080,31 @@ msgstr "Krusader::Napolni listo"
 
 #: Synchronizer/feedtolistboxdialog.cpp:87
 msgid "No elements to feed!"
-msgstr "Ni elementov za prenos!"
+msgstr "Ni elementov za polnjenje liste!"
 
 #: Synchronizer/feedtolistboxdialog.cpp:101
 msgid "Synchronize results"
-msgstr "Usklajevanje rezultatov"
+msgstr "Uskladi rezultate"
 
 #: Synchronizer/feedtolistboxdialog.cpp:120
 msgid "Side to feed:"
-msgstr "Stran za prenos:"
+msgstr "Stran za napolnitev:"
 
 #: Synchronizer/feedtolistboxdialog.cpp:125
 msgid "Left"
-msgstr "leva"
+msgstr "Levo"
 
 #: Synchronizer/feedtolistboxdialog.cpp:126
 msgid "Right"
-msgstr "desna"
+msgstr "Desno"
 
 #: Synchronizer/feedtolistboxdialog.cpp:127
 msgid "Both"
-msgstr "obe"
+msgstr "Oba"
 
 #: Synchronizer/feedtolistboxdialog.cpp:141
 msgid "Selected files only"
-msgstr "Samo izbrane datoteke"
+msgstr "Označi samo datoteke"
 
 #: Synchronizer/feedtolistboxdialog.cpp:191
 msgid "Cannot open %1!"
@@ -4331,7 +4305,7 @@ msgstr "Res želite "
 
 #: DiskUsage/diskusage.cpp:613
 msgid "Deleting %1..."
-msgstr "Brišem %1..."
+msgstr "Brišem %1 ..."
 
 #: DiskUsage/diskusage.cpp:729
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
@@ -4793,11 +4767,11 @@ msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Always sort dirs by name"
-msgstr ""
+msgstr "Vedno zloži mape po imenih"
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Directories are sorted by name, regardless of the sort column."
-msgstr ""
+msgstr "Mape so zložene po imenu neglede na sortiranje datotek."
 
 #: Konfigurator/kglookfeel.cpp:82
 msgid "Show splashscreen"
@@ -5043,13 +5017,12 @@ msgid "Preserve attributes for local copy/move (slower)"
 msgstr "Ohrani atribute pri lokalnem kopiranju/premikanju (počasneje)"
 
 #: Konfigurator/kgadvanced.cpp:52
-#, fuzzy
 msgid ""
 "Change all attributes (time, owner, group) of local files according to the "
 "source one. This can slow down the copy process."
 msgstr ""
-"Spremeni čas zadnje spremembe lokalnih datotek glede na izvorne datoteke. To "
-"lahko upočasni kopiranje."
+"Spremeni vse atribute (čas, lastnik, skupina) lokalnih datotek glede na "
+"izvorne datoteke. To lahko upočasni kopiranje."
 
 #: Konfigurator/kgadvanced.cpp:53
 msgid "Automount filesystems"
@@ -5694,11 +5667,11 @@ msgstr "Izvozi skript"
 
 #: Konfigurator/kguseractions.cpp:77
 msgid "Action to Clipboard"
-msgstr "Pošlji v odložišče"
+msgstr "Skript v odložišče"
 
 #: Konfigurator/kguseractions.cpp:78
 msgid "Action from Clipboard"
-msgstr "Prilepi iz odložišča"
+msgstr "Skript iz odložišča"
 
 #: Konfigurator/kguseractions.cpp:174
 msgid "Are you sure that you want to remove all selected action?"
@@ -5706,7 +5679,7 @@ msgstr "Zares želite odstraniti vse izbrane skripte?"
 
 #: Konfigurator/kguseractions.cpp:175
 msgid "Remove selected actions?"
-msgstr "Odstrani izbrane skripte?"
+msgstr "Odstranim te skripte?"
 
 #: Konfigurator/kguseractions.cpp:176
 msgid "Remove"
@@ -5717,8 +5690,8 @@ msgid ""
 "This file already contains some useractions.\n"
 "Do you want to overwrite it or should it be merged with the selected actions?"
 msgstr ""
-"Ta datoteka že vsebuje nekaj skriptov.\n"
-"Želite datoteko prepisati ali pripeti še vsebino tega skripta?"
+"Datoteka že vsebuje skripte.\n"
+"Jo želite prepisati ali želite, da združim vsebino?"
 
 #: Konfigurator/kguseractions.cpp:223
 msgid "Overwrite or merge?"
@@ -5746,7 +5719,7 @@ msgstr ""
 
 #: Konfigurator/kguseractions.cpp:248
 msgid "Export failed!"
-msgstr "Napaka pri izvozu!"
+msgstr "Izvoz ni uspel!"
 
 #: krslots.cpp:103
 msgid ""
@@ -6007,9 +5980,3 @@ msgstr "Napaka pri branju datoteke %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Napaka pri pisanju datoteke %1!"
-
-#~ msgid "&Time options"
-#~ msgstr "Časovne možnos&ti"
-
-#~ msgid "Error at opening URL:%1!"
-#~ msgstr "Napaka pri odpiranju naslova: %1!"
