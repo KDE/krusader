@@ -171,7 +171,7 @@ void KgUserActions::slotRemoveAction() {
       return;
 
    int messageDelete = KMessageBox::warningContinueCancel ( this,	//parent
-		i18n("Are you sure that you want to remove all selected action?"),	//text
+		i18n("Are you sure that you want to remove all selected actions?"),	//text
 		i18n("Remove selected actions?"), 	//caption
 		i18n("Remove"),	//Label for the continue-button
 		"Confirm Remove UserAction",	//dontAskAgainName (for the config-file)
