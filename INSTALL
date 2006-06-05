@@ -1,21 +1,20 @@
 --------------------------------------------
-- Documentation version:  1.70.0
-- Documentation date:  2005-12-09
-- Parsing date: Sat Dec 10 16:59:28 UTC 2005
+- Documentation version:  1.71.0 "cvs repository"
+- Documentation date:  2006-05-23
+- Parsing date: Mon Jun  5 06:11:29 UTC 2006
 --------------------------------------------
  
 This file contains the TXT install instructions for Krusader.
 This file is parsed from Docbook/XML source files.
 
 NOTE:
-after the parsing process to generate this TXT file all te URL's are
-gone, to see the URL's again please take a look at the HTML version of
-this file.
+after the parsing process to generate this TXT file all te URL's are gone,
+to see the URL's again please take a look at the HTML version of this file.
 
 Feedback for the documentation is always welcome.
 
 Frank Schoolmeesters, documentation coordinator
-[frank_schoolmeesters * yahoo com]
+[frank_schoolmeesters {*} yahoo {.} com]
 
 The most recent version of this document is available online at: 
 http://krusader.sourceforge.net/handbook/installation.html
@@ -53,21 +52,21 @@ Appendix A. Installation
 A.1. Requirements
 
    In order to successfully use the most recent Krusader, you
-   need KDElibs >= 3.3.x.
+   need KDElibs >= 3.4
 
    Required KDE version:
 
-     * Krusader v1.01: KDE 2.x.x
-     * Krusader v1.02 - 1.40: KDE 3.0.x - KDE 3.2.x
-     * Krusader 1.40: prefers KDE 3.2.x (otherwise not all
+     * Krusader v1.01: KDE 2
+     * Krusader v1.02 - 1.40: KDE 3.0 - KDE 3.2
+     * Krusader 1.40: prefers KDE 3.2 (otherwise not all features
+       will be available)
+     * Krusader v1.50 - v1.51: KDE 3.2 - KDE 3.3 (Konfigurator
+       crash on KDE 3.4)
+     * Krusader v1.60.0 - v1.70.0: KDE 3.3 - KDE 3.5
+     * Krusader 1.70.0: prefers KDE >= 3.4 (otherwise not all
        features will be available)
-     * Krusader v1.50 - v1.51: KDE 3.2.x - KDE 3.3.x
-       (Konfigurator crash on KDE 3.4.x)
-     * Krusader v1.60.0- v1.70.0: KDE 3.3.x - KDE 3.4.x
-     * Krusader 1.70.0: prefers KDE 3.4.x (otherwise not all
-       features will be available)
-     * Krusader v2.xx.x: KDE 4.x - Qt(TM) 4.x The big challenge,
-       a first release maybe in 2006 ;)
+     * Krusader v2.xx.x: KDE 4 - Qt(TM) 4 The big challenge,
+       maybe a first release in 2006 ;)
 
    Platforms:
 
@@ -95,39 +94,46 @@ A.2. How to obtain Krusader
 
 A.2.1. Download Krusader
 
+   It's recommend to use the Krusader package that is provided by
+   your distribution, Distrowatch.com is a great resource to
+   check the availability. If your distribution does not offer
+   Krusader please contact the creators of your distribution and
+   ask them to provide a Krusader package, thanks!
+
    The latest version (and older versions) can be found on the
    Krusader downloadpage and on the Sourceforge mirrors. It
    contains the source tarballs, RPM and DEB packages to whatever
    distro the Krusader-Krew is using and packages build by
    third-parties and Krusader users.
 
-   Distributions who include Krusader
+   Distributions who provide Krusader:
 
      * SuSE >= 9.3, Note: please use Krusader-1.60.0 and not
        Krusader-1.51 (might be instable on SuSE9.3-KDE3.4)
      * Fedora(TM) via Fedora(TM) Extras # yum install krusader
        will do the job, thanks to Marcin Garski. Red Hat RPM
-       packages can usually found on the Krusader downloadpage,
-       dag.wieers.com or at Dries Verachtert RPM Repository .
+       packages can usually found on the Krusader downloadpage or
+       at dag.wieers.com and Dries Verachtert RPM Repository .
      * Debian, on our Krusader downloadpage you might find more
        recent "unofficial bleeding-edge" DEB packages. Note:
        usually Debian packages work also on distributions who
-       are "based on Debian", some of them provide their own
-       packages. e.g. Mepis, Ubuntu/Kubuntu, Linspire,
-       Xandros, ...
+       are "based on Debian", some of these provide their own
+       (incompatible) packages. Ubuntu/Kubuntu, Linspire,
+       Knoppix 4.x DVD, Kanotix, ...
      * Mandriva via the contrib repository # urpmi krusader will
-       do the job, Gentoo, Knoppix 4.x DVD, Kanotix, Yoper(TM)
+       do the job, Gentoo, Yoper(TM)
      * Arch Linux, Frugalware Linux, PCLinuxOS, altlinux
      * FreeBSD, the port is maintained by Heiner Eichmann .
-     * NetBSD, Ark Linux, OpenLX(TM), Source Mage, Lunar
-       Linux
+     * NetBSD, Lunar Linux ,Ark Linux, OpenLX(TM), Source
+       Mage.
      * Even more distributions can be found with Distrowatch.com
 
-   Just use the install tools that the distro uses to install the
-   Krusader package on your computer, sometimes an internet
-   connection is needed if Krusader is not available on the CD or
-   DVD. There are probably more distributions who include
-   Krusader, sorry we can't mention you all.
+   Use the installation tools that your distro uses to install
+   the Krusader package, sometimes an internet connection is
+   needed if Krusader is not available on the CD or DVD. There
+   are probably more distributions out there who include
+   Krusader, sorry we can't mention you all, though feedback is
+   always welcome to improve this distrolist.
 
    Others
 
@@ -144,7 +150,7 @@ A.2.1. Download Krusader
      * klik://krusader-latest downloads the latest stable
        Krusader provided by the Krusader Krew.
      * klik://krusader-cvs downloads a cvs snapshot of Krusader
-       provided by Krusader Krew.
+       provided by the Krusader Krew.
 
    Search engines
 
@@ -265,13 +271,12 @@ A.2.5. CVS builds
      * krusader_kde2: the KDE2 branch, stable but it's basically
        v1.01 and there are no planned changes
      * krusader_kde3: the KDE3 branch, that we currently use
-     * krusader_kde4: the KDE4 branch, for the Krusader 2.x.x
-       series, NOT yet used.
 
    To checkout Krusader from CVS:
-$ cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader login
-$ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
- krusader_kde3
+$ cvs -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/krusad
+er login
+$ cvs -z3 -d:pserver:anonymous@krusader.cvs.sourceforge.net:/cvsroot/kr
+usader co krusader_kde3
 
    (note: updates from within the modules directory do not need
    the -d parameter)
@@ -295,7 +300,25 @@ $ cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/krusader co
    We also provide ViewCVS to browse the CVS repository.
      _________________________________________________________
 
-A.2.6. Older releases
+A.2.6. Subversion
+
+   Subversion will probably used for the Krusader 2.x series for
+   KDE4. It's also possible to Browse the Subversion Repository.
+
+   To checkout the latest Krusader 1.x for KDE 3 from SVN: (NOTE:
+   at moment of writing it's recommend to use CVS for
+   krusader_kde3, since krusader_kde3 is developed in CVS and not
+   in SVN)
+$ svn co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kd
+e3
+
+   To checkout the latest Krusader 2.x for KDE 4 from SVN: (NOTE:
+   not yet available at moment of writing)
+$ svn co https://svn.sourceforge.net/svnroot/krusader/trunk/krusader_kd
+e4
+     _________________________________________________________
+
+A.2.7. Older releases
 
    Looking for older releases? Try the Sourceforge mirrors
    available from our project page.
@@ -646,11 +669,18 @@ foo
    --right <path>
           start right panel at <path>
 
+   --left <path1>,<path2>,<path3>
+          start left panel at <path1>,<path2>,<path3>, with tabs.
+
    --profile <panel-profile>
-          load a panel-profile on startup
+          load a panel-profile on startup (this overrides the
+          default startup profile).
 
    Examples:
+$ krusader --left=<path> --right=<path>
 $ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net
+$ krusader --left=<path1>,<path2> --right=<path1>,<path2>,<path3>
+$ krusader --profile <panel-profile>
 $ krusader --profile ftp-managment
 
    The standard Qt(TM) and KDE command-line options are

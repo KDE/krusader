@@ -1,7 +1,7 @@
 --------------------------------------------
-- Documentation version:  1.70.0
-- Documentation date:  2005-12-09
-- Parsing date: Sat Dec 10 16:59:28 UTC 2005
+- Documentation version:  1.71.0 "cvs repository"
+- Documentation date:  2006-05-23
+- Parsing date: Mon Jun  5 06:11:29 UTC 2006
 --------------------------------------------
  
 
@@ -9,14 +9,13 @@ This file contains the FAQ
 This file is parsed from Docbook/XML source files.
 
 NOTE:
-after the parsing process to generate this TXT file all te URL's are
-gone, to see the URL's again please take a look at the HTML version of
-this file.
+after the parsing process to generate this TXT file all te URL's are gone,
+to see the URL's again please take a look at the HTML version of this file.
 
 Feedback for the documentation is always welcome.
 
 Frank Schoolmeesters, documentation coordinator
-[frank_schoolmeesters * yahoo . com]
+[frank_schoolmeesters {*} yahoo {.} com]
 
 The most recent version of this document is available online at: 
 http://krusader.sourceforge.net/handbook/faq.html
@@ -159,13 +158,18 @@ Chapter 7. Frequently Asked Questions (FAQ)
    libraries when you run Krusader:
 
      * kdelibs (for the required KDE version see the Installation
-       procedure) libqt3
-     * libxfree86 libfreetype6 libfontconfig1
-     * libjpeg62 libpng3 libmng1 zlib1 libstdc++5 libgcc1
-     * libfam0 libpcre0 glibc libart_lgpl2 libexpat0 libnas2
+       procedure)
+     * libacl1 libart-2.0 libattr1 libaudio2 libc6 libfam0
+       libfontconfig1
+     * libfreetype6 libgcc1 libgcc2 libice6 libidn11 libjpeg62
+       libkjsembed1
+     * libkonq4 libpcre3 libpng12 libqt3-mt libsm6 libstdc++6
+       libunwind7 libx11-6
+     * libxcursor1 libxext6 libxft2 libxi6 libxinerama1
+       libxrandr2 libxrender1 libxt6 zlib1g
 
-   If you need more info please take a look at the shared library
-   dependencies or the requirements on Debian .
+   If you need more info please take a look at the requirements
+   on Debian .
 
    7.1.3. I have followed all steps but configure complains about
    missing libs or headers. What do I need to do?
@@ -181,17 +185,17 @@ Chapter 7. Frequently Asked Questions (FAQ)
      * libqt3 libqt-devel
      * kdelibs kdelibs-devel
      * libjpeg62 libjpeg-devel libpng3 libmng1
-     * fam libfam-devel (e.g. fam-2.x.x-xmdk.rpm and
-       libfam0-devel-2.x.x-5mdk.i586.rpm)
+     * fam libfam-devel
      * zlib1 arts libart_lgpl2 libstdc++5 libpcre0
      * libkjsembed, if you use the JavaScript console, often
-       found in a package called KDEbindings(-devel)
+       found in a package called KDEbindings(-devel) and
+       libkonq-dev for the Konqueror right-click menu entries.
 
    Most RPM-based distributions separate the headers from the
    libs. The headers are needed to compile Krusader. Look for
    packages in the form foo-devel-*.rpm (e.g.
-   kdelibs-devel-3.1-58mdk.i586.rpm) or foo-dev-*.deb for Debian
-   based distributions. These are usua lly included with your
+   kdelibs-devel-foo.i586.rpm) or foo-dev-*.deb for Debian based
+   distributions. These are usually included with your
    distribution.
 
    Tip
@@ -204,10 +208,8 @@ Chapter 7. Frequently Asked Questions (FAQ)
    7.1.4. How do I compile Krusader when I'm using a 64 bit
    processor ?
 
-   Please check our user forums. We don't have much experience
-   and feedback with 64 bit microprocessors yet, but we are told
-   Krusader presents no unusual problems in the 64 bit
-   environment.
+   As far as we know there are no issues, btw. Krusader is
+   available on many other architectures.
 
    7.1.5. I have downloaded the Source RPM
    krusader-x.xx.dist.src.rpm What now?
@@ -232,31 +234,26 @@ $ su -c 'rpm -Uvh  </path/to/rpmfile> krusader-x.xx.dist.rpm'
 
    Tip
 
-   For more information about RPM, take a look at the Maximum RPM
-   Book. This book is very good but it dates from the year 2000,
-   so some issues are obsolete/changed/improved now. If you know
-   a better (or updated) RPM book on the internet please let me
-   know.
+   For more information about RPM, visit rpm.org and read the RPM
+   Guide by Eric Foster-Johnson.
 
    7.1.6. I'm trying to install binary foo (RPM or DEB package),
    but it fails. What's wrong?
 
    Since we only prepare (and use) the source, we cannot know
-   this. Did you test the binary RPM before installing? Corrupted
-   or damaged RPM's are the typical problem. RPM's downloaded
-   from our website are provided by the respective distro makers
-   and are pre-tested by them. Visit your distro's website for an
-   updated RPM.
+   this. Did you test the binary RPM before installing?
 $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
 
    If the prompt returns without any message, than everything is
-   OK.
+   OK. RPM's downloaded from our website are usually provided by
+   Krusader users. Visit your distro website and search for an
+   updated RPM.
 
    If the RPM is not OK, try to find another package at Linux
-   software archives such as freshmeat.net or KDE-APPS.org, DO
-   NOT INSTALL A DAMAGED RPM. If you still can't find the
-   appropriate package for your Linux distribution, we recommend
-   searching for it with rpmfind or rpmpbone.
+   software archives such as freshmeat.net or KDE-APPS.org. If
+   you still can't find the appropriate package for your Linux
+   distribution, we recommend searching for it with rpmfind or
+   rpmpbone.
 
    In general, a package for an older version of your
    distrubution or even for another distribution might work on
@@ -369,11 +366,12 @@ $ export CPP=/usr/bin/cpp-3.2
    header files (which get included into Krusader) but doesn't
    set the libGL links correctly. The best solution is to use the
    NVIDIA packages provided by your distributor or a new NVIDIA
-   installer, the current version is 7114. If, for some reason,
-   you must use an old NVIDIA driver, one solution is the
-   following (bad? :) hack, the exact commands depend on the
-   distribution used and the version of the NVIDIA driver (6111
-   in this example), but it should read something like this:
+   installer, the current version at moment of writing is 7114.
+   If, for some reason, you must use an old NVIDIA driver, one
+   solution is the following (bad? :) hack, the exact commands
+   depend on the distribution used and the version of the NVIDIA
+   driver (6111 in this example), but it should read something
+   like this:
 $ ln -s libGLcore.so.1.0.6111  libGLcore.so.0
 $ ln -s libGLcore.so.1.0.6111  libGLcore.so
 $ ln -s libGLcore.so.1.0.6111  libGLcore.so.1.0.0
@@ -402,11 +400,11 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
 
    Please read our detailed installation procedure and the FAQ.
    If you can't find a solution to your problem then feel free to
-   post a help request at our Krusader forum. But before posting
-   a help request at our Krusader forum, please try the
-   following:
+   post a help request at our Krusader forum or use the
+   Krusader-users mailinglist. But before posting a help request,
+   please try the following:
 
-    1. Use the Search function of the Krusader Forum , your
+    1. Use the Search function of the Krusader Forum, your
        problem might be solved or discussed already.
     2. If you can't find a solution, please make a note of the
        following issues:
@@ -422,16 +420,17 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
    please start with the FIRST error message, all the error
    messages who are following the first error message are
    consequences and not the cause of your problem.
-    3. Post a help request with the information of the previous
-       point at our General Discussion Forum.
+    3. Send out the help request ;)
 
    Thanks for your cooperation!
 
    7.1.15. How can I build an RPM package for Krusader?
 
    If you have experience with compiling from source, you will
-   probably be able to build a Krusader RPM too. Follow the next
-   steps to build an RPM.
+   probably be able to build a Krusader RPM too. Information
+   about RPM can be found at rpm.org and in the RPM Guide by Eric
+   Foster-Johnson. The next is the short procedure howto to build
+   an RPM.
 
    Warning
 
@@ -444,20 +443,19 @@ $ ln -s  /usr/lib/libGLU.la   /usr/X11R6/lib/libGLU.la
     2. Check the ownership and the permissions on /usr/src/RPM/
        and all recursive directories, that your normal user can
        read-write-execute in these directories.
-    3. Copy kusader1.xx.tar.gz to /usr/scr/RPM/SOURCE
+    3. Copy kusader-1.xx.tar.gz to /usr/scr/RPM/SOURCE
     4. Copy kusader.spec to /usr/scr/RPM/SPECS Tip: the latest
        kusader.spec can be found in CVS.
     5. Edit kusader.spec and add your name, your e-mail address,
-       the rpm name, ... (please read the comments in
-       kusader.spec). Other changes may be needed if rpmbuild
+       the rpm name, ... Other changes may be needed if rpmbuild
        fails.
     6. Build the binary and the source RPM with:
 $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
        If everything went OK you will have a binary RPM in
        /usr/src/RPM/RPMS/i586 (depending on your architecture)
        and a sourceRPM in /usr/src/RPM/SRPMS/ e.g.
-       krusader-1.50-beta1.suse91.i586.rpm and
-       krusader-1.50-beta1.suse91.src.rpm
+       krusader-1.70-beta1.suse10.i586.rpm and
+       krusader-1.70-beta1.suse10.src.rpm
     7. If the build is not OK you will receive an error message
        during the rpmbuild process, try to fix it and re-run
        rpmbuild again.
@@ -486,20 +484,20 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
    7.2.7. Krusader reports "krarc:... protocol not supported"
           error at opening an archive file.
 
-   7.2.8. Why have i trouble with my FTP connection?
-   7.2.9. I get "FTP protocol not supported by Krusader" error at
-          trying to open a remote FTP directory.
-
-   7.2.10. How can i close a remote connection (e.g. a FTP
-          connection) ?
-
-   7.2.11. Why do i have some trouble with the media:// protocol?
-   7.2.12. How can I disable the default sounds e.g. when I do a
-          delete action ?
-
-   7.2.13. I get the error message "Protocol not supported by
+   7.2.8. I get the error message "Protocol not supported by
           Krusader: "krarc:/path/to/foo-archive", when I try to
           open foo-Archive
+
+   7.2.9. Why have i trouble with my FTP connection?
+   7.2.10. I get "FTP protocol not supported by Krusader" error
+          at trying to open a remote FTP directory.
+
+   7.2.11. How can i close a remote connection (e.g. a FTP
+          connection) ?
+
+   7.2.12. Why do i have some trouble with the media:// protocol?
+   7.2.13. How can I disable the default sounds e.g. when I do a
+          delete action ?
 
    7.2.14. Where is RemoteMan, the remote connection manager ?
    7.2.15. Why mimetype magic isn't sometimes working inside
@@ -509,18 +507,19 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
 
    7.2.1. Why does Krusader crash?
 
-   We've been getting a lot of emails and bug reports regarding
-   random crashes in Krusader, especially during some file
-   operations (copy/move etc.). These crashes are related to
-   Qt(TM) 3.3.5 and NOT Krusader. It seems that Qt(TM) 3.3.5
-   introduced a serious bug which is currently (December 2005)
-   causing random crashes in many KDE applications including
-   Konqueror. You can Google for it to find out more. As far as
-   we know, Debian-Sid and SuSE already posted new Qt(TM)
-   binaries that fix the problem, and Gentoo has masked Qt(TM)
-   3.3.5 completely. As for now, you either need Qt(TM) 3.3.4 or
-   a fixed Qt(TM) 3.3.5, depending on your distribution. More
-   information is available on our website.
+   We've been received a lot of emails and bug reports (December
+   2005) regarding random crashes in Krusader, especially during
+   some file operations (copy/move etc.). These crashes are
+   related to Qt(TM) 3.3.5 and NOT Krusader. It seems that Qt(TM)
+   3.3.5 introduced a serious bug which is currently (December
+   2005) causing random crashes in many KDE applications
+   including Konqueror. You can Google for it to find out more.
+   As far as we know, Debian-Sid and SuSE already posted new
+   Qt(TM) binaries that fix the problem, and Gentoo has masked
+   Qt(TM) 3.3.5 completely. As for now, you either need Qt(TM)
+   3.3.4 or a fixed Qt(TM) 3.3.5 or a higer version, depending on
+   your distribution. More information is available on our
+   website.
 
    7.2.2. When I try to mount/unmount my cdrom/floppy, Krusader
    says something about supermount, what's this about?
@@ -617,7 +616,18 @@ $ su -c 'fam -l'
    or the directory where the KIO slaves are placed in your
    Linux distribution.
 
-   7.2.8. Why have i trouble with my FTP connection?
+   7.2.8. I get the error message "Protocol not supported by
+   Krusader: "krarc:/path/to/foo-archive", when I try to open
+   foo-Archive
+
+   The icons, kio_slaves and documentation must be installed in
+   the correct places in the KDE directory tree. The kio_krarc.*
+   files must be in the same directory with the other KIO slaves.
+   Try: locate kio_tar.* and copy/link the kio_krarc.* files to
+   the same location. Don't forget to run # ldconfig on this
+   directory when you're done. For more information click here .
+
+   7.2.9. Why have i trouble with my FTP connection?
 
    This problem often occurs when you are behind a firewall or
    proxy. Open KDE Control Center->Network->Preferences , "Enable
@@ -628,8 +638,8 @@ $ su -c 'fam -l'
    More information information can be found in Active FTP vs.
    Passive FTP, a Definitive Explanation .
 
-   7.2.9. I get "FTP protocol not supported by Krusader" error at
-   trying to open a remote FTP directory.
+   7.2.10. I get "FTP protocol not supported by Krusader" error
+   at trying to open a remote FTP directory.
 
    The reason for this error is that 'FTP via HTTP proxy' feature
    is not yet supported by Krusader. This error can occur from
@@ -637,19 +647,19 @@ $ su -c 'fam -l'
    Center. Modify the proxy settings to not use HTTP proxy and
    FTP will work.
 
-   7.2.10. How can i close a remote connection (e.g. a FTP
+   7.2.11. How can i close a remote connection (e.g. a FTP
    connection) ?
 
    It's explained in the remote connections chapter .
 
-   7.2.11. Why do i have some trouble with the media:// protocol?
+   7.2.12. Why do i have some trouble with the media:// protocol?
 
    At the moment of writing the media:// protocol is instable, we
    need to wait until the KDE team corrects it, every other
    protocol works properly with Krusader, only media fails. More
    information regarding this issue is available in our forum .
 
-   7.2.12. How can I disable the default sounds e.g. when I do a
+   7.2.13. How can I disable the default sounds e.g. when I do a
    delete action ?
 
    Those are the default KDE System sounds, and not related to
@@ -657,19 +667,6 @@ $ su -c 'fam -l'
    KDE Control Center (kcontrol): KDE Control Center->Sound &
    Multimedia->System Notifications , Event Source: "KDE System
    Notifications" and uncheck sound items you don't like.
-
-   7.2.13. I get the error message "Protocol not supported by
-   Krusader: "krarc:/path/to/foo-archive", when I try to open
-   foo-Archive
-
-   The icons, kio_slaves and documentation must be installed in
-   the correct places in the KDE directory tree. The kio_krarc.*
-   files must be in the same directory with the other KIO slaves.
-   Try: locate kio_tar.* and copy/link the kio_krarc.* files to
-   the same location. Don't forget to run # ldconfig on this
-   directory when you're done. This problem can sometimes occur
-   if you are using a 64 bit microprocessor. For more information
-   click here .
 
    7.2.14. Where is RemoteMan, the remote connection manager ?
 
@@ -713,7 +710,7 @@ $ su -c 'fam -l'
    with root priveleges ("File->Unpack" with Krusader) to create
    foo.docbook files. Now the handbook will work. This error is
    fixed in the krusader_1.60.0-1_i386.deb package and higher
-   numbers.
+   versions.
      _________________________________________________________
 
 7.3. General FAQ
