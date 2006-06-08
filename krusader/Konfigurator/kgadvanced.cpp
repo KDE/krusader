@@ -63,7 +63,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
   //   cfg_class  cfg_name             default              text                                                        restart tooltip
     {{"Advanced","PreserveAttributes", _PreserveAttributes, i18n( "Preserve attributes for local copy/move (slower)" ), false,  i18n( "Change all attributes (time, owner, group) of local files according to the source one. This can slow down the copy process." ) },
      {"Advanced","AutoMount",          _AutoMount,          i18n( "Automount filesystems" ),                            false,  i18n( "When stepping into a directory which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters." )},
-     {"Advanced","DontUseMediaProt",   dontUseMedia,        i18n( "Don't use KDE's media protocol for media button (if it's buggy or missing)" ),  false,  i18n( "Select if your media protocol is buggy (in some older KDE-s), or not present (no kdebase package)" )}};
+     {"Advanced","DontUseMediaProt",   dontUseMedia,        i18n( "Don't use KDE's media protocol for media button (if it's buggy or missing)" ),  false,  i18n( "Select if your media protocol is buggy (in some older KDE versions), or not present (no kdebase package installed)." )}};
 
   KonfiguratorCheckBoxGroup *generals = createCheckBoxGroup( 1, 0, generalSettings, 3, generalGrp );
 
