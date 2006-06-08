@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-05-21 13:49+0200\n"
-"PO-Revision-Date: 2006-03-23 16:46+0200\n"
+"POT-Creation-Date: 2006-06-08 19:41+0200\n"
+"PO-Revision-Date: 2006-06-08 02:32+0300\n"
 "Last-Translator: Spiros Georgaras <sngeorgaras@otenet.gr>\n"
 "Language-Team: Greek <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -62,46 +62,68 @@ msgstr "Επαναφόρτωση"
 msgid "Default"
 msgstr "Προκαθορισμένο"
 
-#: GUI/mediabutton.cpp:74
+#: GUI/mediabutton.cpp:81
 msgid "Open the available media list"
 msgstr "Άνοιγμα της λίστας διαθέσιμων μέσων"
 
-#: GUI/mediabutton.cpp:303
-#, fuzzy
+#: GUI/mediabutton.cpp:445
 msgid "Hard Disk"
 msgstr "Σκληρός Δίσκος"
 
-#: GUI/mediabutton.cpp:305
+#: GUI/mediabutton.cpp:447
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: GUI/mediabutton.cpp:307
+#: GUI/mediabutton.cpp:449
 msgid "CD Recorder"
 msgstr "Εγγραφέας CD"
 
-#: GUI/mediabutton.cpp:310
+#: GUI/mediabutton.cpp:452
 msgid "DVD Recorder"
 msgstr "Εγγραφέας DVD"
 
-#: GUI/mediabutton.cpp:313
+#: GUI/mediabutton.cpp:455
 msgid "DVD"
 msgstr "DVD"
 
-#: GUI/mediabutton.cpp:315 GUI/mediabutton.cpp:317
+#: GUI/mediabutton.cpp:457 GUI/mediabutton.cpp:459
 msgid "Remote Share"
 msgstr "Απομακρυσμένο κοινόχρηστο"
 
-#: GUI/mediabutton.cpp:319 GUI/mediabutton.cpp:321
+#: GUI/mediabutton.cpp:461 GUI/mediabutton.cpp:463
 msgid "Floppy"
 msgstr "Δισκέτα"
 
-#: GUI/mediabutton.cpp:323
+#: GUI/mediabutton.cpp:465
 msgid "Zip Disk"
 msgstr "Δίσκος zip"
 
-#: GUI/mediabutton.cpp:326
+#: GUI/mediabutton.cpp:468
 msgid "Unknown"
 msgstr "Άγνωστο"
+
+#: GUI/mediabutton.cpp:520 Panel/krpopupmenu.cpp:61
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: GUI/mediabutton.cpp:521 Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
+msgid "Open in a new tab"
+msgstr "Άνοιγμα σε νέα καρτέλα"
+
+#: GUI/mediabutton.cpp:524 MountMan/kmountman.cpp:287
+#: MountMan/kmountmangui.cpp:333 Panel/krpopupmenu.cpp:174
+msgid "Mount"
+msgstr "Προσάρτηση"
+
+#: GUI/mediabutton.cpp:526 MountMan/kmountman.cpp:287
+#: MountMan/kmountmangui.cpp:337 Panel/krpopupmenu.cpp:172
+msgid "Unmount"
+msgstr "Αποπροσάρτηση"
+
+#: GUI/mediabutton.cpp:528 MountMan/kmountmangui.cpp:343
+#: Panel/krpopupmenu.cpp:176
+msgid "Eject"
+msgstr "Εξαγωγή"
 
 #: GUI/syncbrowsebutton.cpp:45
 msgid ""
@@ -983,7 +1005,7 @@ msgid "Please specify a location to search in."
 msgstr "Παρακαλώ καθορίστε μία τοποθεσία για αναζήτηση."
 
 #: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:103
-#: Panel/krdetailedview.cpp:1297 Search/krsearchdialog.cpp:149
+#: Panel/krdetailedview.cpp:1324 Search/krsearchdialog.cpp:149
 #: Synchronizer/synchronizergui.cpp:1246 Synchronizer/synchronizergui.cpp:1250
 msgid "Size"
 msgstr "Μέγεθος"
@@ -1399,10 +1421,8 @@ msgid "Command being executed:"
 msgstr "Εντολή που εκτελείται:"
 
 #: UserAction/useraction.cpp:100
-#, fuzzy
 msgid "The file %1 does not contain valid UserActions.\n"
-msgstr ""
-"Αυτό το αρχείο που ονομάζεται %1 και δεν περιέχει έγκυρες ενέργειες χρήστη.\n"
+msgstr "Tο αρχείο %1 δεν περιέχει έγκυρες ενέργειες χρήστη.\n"
 
 #: UserAction/useraction.cpp:101 UserAction/useraction.cpp:112
 #: UserAction/useraction.cpp:124
@@ -1600,38 +1620,38 @@ msgstr "Ανάγνωση: "
 msgid "Name"
 msgstr "Όνομα"
 
-#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1291
+#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1318
 msgid "Ext"
 msgstr "Κατ"
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1294
+#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1321
 msgid "Type"
 msgstr "Τύπος"
 
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1300
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1327
 msgid "Modified"
 msgstr "Τροποποιήθηκε"
 
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1303
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1330
 msgid "Perms"
 msgstr "Άδειες"
 
-#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1306
+#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1333
 msgid "rwx"
 msgstr "rwx"
 
 #: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:107
-#: Panel/krdetailedview.cpp:1309
+#: Panel/krdetailedview.cpp:1336
 msgid "Owner"
 msgstr "Ιδιοκτήτης"
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
-#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1312
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1339
 msgid "Group"
 msgstr "Ομάδα"
 
-#: Panel/krdetailedview.cpp:1278
+#: Panel/krdetailedview.cpp:1305
 msgid "Columns"
 msgstr "Στήλες"
 
@@ -1776,14 +1796,6 @@ msgstr "Άνοιγμα/Εκτέλεση"
 msgid "Run"
 msgstr "Εκτέλεση"
 
-#: Panel/krpopupmenu.cpp:61
-msgid "Open"
-msgstr "Άνοιγμα"
-
-#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
-msgid "Open in a new tab"
-msgstr "Άνοιγμα σε νέα καρτέλα"
-
 #: Konfigurator/kgcolors.cpp:184 Panel/krpopupmenu.cpp:76
 msgid "Preview"
 msgstr "Προεπισκόπηση"
@@ -1845,20 +1857,6 @@ msgstr "ανακατεύθυνση δεσμού"
 #: Panel/krpopupmenu.cpp:161
 msgid "Link handling"
 msgstr "Διαχείριση δεσμών"
-
-#: MountMan/kmountman.cpp:287 MountMan/kmountmangui.cpp:337
-#: Panel/krpopupmenu.cpp:172
-msgid "Unmount"
-msgstr "Αποπροσάρτηση"
-
-#: MountMan/kmountman.cpp:287 MountMan/kmountmangui.cpp:333
-#: Panel/krpopupmenu.cpp:174
-msgid "Mount"
-msgstr "Προσάρτηση"
-
-#: MountMan/kmountmangui.cpp:343 Panel/krpopupmenu.cpp:176
-msgid "Eject"
-msgstr "Εξαγωγή"
 
 #: Panel/krpopupmenu.cpp:181
 msgid "Send by email"
@@ -2304,68 +2302,56 @@ msgid "Up one directory"
 msgstr "Ένας κατάλογος πάνω"
 
 #: krusader.cpp:514
-#, fuzzy
 msgid "&Edit New File..."
-msgstr "&Επεξεργασία νέου αρχείου"
+msgstr "&Επεξεργασία νέου αρχείου..."
 
 #: krusader.cpp:515
-#, fuzzy
 msgid "Start &Root Mode Krusader..."
-msgstr "Εκκίνηση του K&rusader σε λειτουργία υπερχρήστη"
+msgstr "Εκκίνηση του K&rusader σε λειτουργία υπερχρήστη..."
 
 #: krusader.cpp:517
-#, fuzzy
 msgid "T&est Archive..."
-msgstr "Έλ&εγχος αρχειοθήκης(ων)"
+msgstr "Έλ&εγχος αρχειοθήκης(ων)..."
 
 #: krusader.cpp:521
-#, fuzzy
 msgid "New Net &Connection..."
-msgstr "Νέα δικτυακή &σύνδεση"
+msgstr "Νέα δικτυακή &σύνδεση..."
 
 #: krusader.cpp:523
 msgid "Pro&files"
 msgstr "Προ&φίλ"
 
 #: krusader.cpp:525
-#, fuzzy
 msgid "Calculate &Occupied Space..."
-msgstr "Υπολογισμός &κατειλημμένου χώρου"
+msgstr "Υπολογισμός &κατειλημμένου χώρου..."
 
 #: krusader.cpp:527
-#, fuzzy
 msgid "Create Checksum..."
-msgstr "Δημιουργία αθροίσματος ελέγχου"
+msgstr "Δημιουργία αθροίσματος ελέγχου..."
 
 #: krusader.cpp:529
-#, fuzzy
 msgid "Verify Checksum..."
-msgstr "Επαλήθευση αθροίσματος ελέγχου"
+msgstr "Επαλήθευση αθροίσματος ελέγχου..."
 
 #: krusader.cpp:531
-#, fuzzy
 msgid "&Properties..."
-msgstr "&Ιδιότητες"
+msgstr "&Ιδιότητες..."
 
 #: krusader.cpp:533
-#, fuzzy
 msgid "Pac&k..."
-msgstr "&Συμπίεση"
+msgstr "&Συμπίεση..."
 
 #: krusader.cpp:535
-#, fuzzy
 msgid "&Unpack..."
-msgstr "&Αποσυμπίεση"
+msgstr "&Αποσυμπίεση..."
 
 #: krusader.cpp:537
-#, fuzzy
 msgid "Sp&lit File..."
-msgstr "&Χωρισμός αρχείου"
+msgstr "&Χωρισμός αρχείου..."
 
 #: krusader.cpp:539
-#, fuzzy
 msgid "Com&bine Files..."
-msgstr "Έν&ωση αρχείων"
+msgstr "Έν&ωση αρχείων..."
 
 #: krusader.cpp:541
 msgid "Select &Group"
@@ -2404,42 +2390,36 @@ msgid "Mark &Different"
 msgstr "Επιλογή &διαφορετικών"
 
 #: krusader.cpp:566
-#, fuzzy
 msgid "&Terminal..."
-msgstr "&Τερματικό"
+msgstr "&Τερματικό..."
 
 #: krusader.cpp:568
 msgid "Disconnect &From Net"
 msgstr "Αποσύνδεση από το &δίκτυο"
 
 #: krusader.cpp:571 krusader.cpp:576
-#, fuzzy
 msgid "&MountMan..."
-msgstr "&MountMan"
+msgstr "&MountMan..."
 
 #: krusader.cpp:580
-#, fuzzy
 msgid "&Search..."
-msgstr "&Αναζήτηση"
+msgstr "&Αναζήτηση..."
 
 #: krusader.cpp:582
-#, fuzzy
 msgid "&Locate..."
-msgstr "&Εντοπισμός (Locate)"
+msgstr "&Εντοπισμός (Locate)..."
 
 #: krusader.cpp:584
-#, fuzzy
 msgid "Synchronize &Directories..."
-msgstr "Συγχρονισμός &καταλόγων"
+msgstr "Συγχρονισμός &καταλόγων..."
 
 #: krusader.cpp:586
 msgid "S&ynchron directory changes"
 msgstr "Σ&υγχρονισμένες αλλαγές καταλόγων"
 
 #: krusader.cpp:588
-#, fuzzy
 msgid "D&isk Usage..."
-msgstr "Χρήση &δίσκου"
+msgstr "Χρήση &δίσκου..."
 
 #: krusader.cpp:590
 msgid "&Invert Selection"
@@ -2450,9 +2430,8 @@ msgid "&Unselect Group"
 msgstr "Α&ποεπιλογή ομάδας"
 
 #: krusader.cpp:594
-#, fuzzy
 msgid "Configure &Krusader..."
-msgstr "Ρύθμιση του &Krusader"
+msgstr "Ρύθμιση του &Krusader..."
 
 #: krusader.cpp:596
 msgid "Back"
@@ -2471,14 +2450,12 @@ msgid "&Custom"
 msgstr "Πρ&οσαρμογή"
 
 #: krusader.cpp:608
-#, fuzzy
 msgid "Compare b&y Content..."
-msgstr "Σύγκριση &περιεχομένων"
+msgstr "Σύγκριση &περιεχομένων..."
 
 #: krusader.cpp:610
-#, fuzzy
 msgid "Multi &Rename..."
-msgstr "Μετονομασία πολλαπλών α&ρχείων"
+msgstr "Μετονομασία πολλαπλών α&ρχείων..."
 
 #: krusader.cpp:612
 msgid "Right-click menu"
@@ -2566,9 +2543,8 @@ msgid "User Menu"
 msgstr "Μενού χρήστη"
 
 #: krusader.cpp:654
-#, fuzzy
 msgid "Manage user actions..."
-msgstr "Διαχείριση ενεργειών χρήστη"
+msgstr "Διαχείριση ενεργειών χρήστη..."
 
 #: krusader.cpp:656
 msgid "Select Remote Charset"
@@ -3437,9 +3413,8 @@ msgid "Encrypt headers"
 msgstr "Κρυπτογράφηση κεφαλίδων"
 
 #: Dialogs/packguibase.cpp:240
-#, fuzzy
 msgid "Command line switches:"
-msgstr "Η γραμμή εντολών είναι κενή"
+msgstr "Παράμετροι γραμμής εντολών:"
 
 #: Dialogs/packguibase.cpp:273 Konfigurator/kguseractions.cpp:71
 msgid "Ok"
@@ -3466,18 +3441,24 @@ msgid ""
 "Invalid command line switch!\n"
 "Switch must start with '-'!"
 msgstr ""
+"Μη έγκυρη παράμετρος γραμμής εντολών!\n"
+"Οι παράμετροι πρέπει να αρχίζουν με '-'!"
 
 #: Dialogs/packguibase.cpp:428
 msgid ""
 "Invalid command line switch!\n"
 "Backslash cannot be the last character"
 msgstr ""
+"Μη έγκυρη παράμετρος γραμμής εντολών!\n"
+"Ο τελευταίος χαρακτήρας δεν μπορεί να είναι η ανάποδη κάθετος"
 
 #: Dialogs/packguibase.cpp:436
 msgid ""
 "Invalid command line switch!\n"
 "Unclosed quotation mark!"
 msgstr ""
+"Μη έγκυρη παράμετρος γραμμής εντολών!\n"
+"Μη ολοκληρωμένα σχόλια/εισαγωγικά!"
 
 #: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
@@ -3867,13 +3848,12 @@ msgid "&Synchronizer"
 msgstr "&Συγχρονισμός"
 
 #: Synchronizer/synchronizergui.cpp:1278
-#, fuzzy
 msgid "&Options"
-msgstr "Λειτουργία"
+msgstr "&Επιλογές"
 
 #: Synchronizer/synchronizergui.cpp:1287
 msgid "Parallel threads:"
-msgstr ""
+msgstr "Παράλληλες διεργασίες:"
 
 #: Synchronizer/synchronizergui.cpp:1298
 msgid "Equality threshold:"
@@ -4025,22 +4005,21 @@ msgid "IO error at comparing file %1 with %2!"
 msgstr "Σφάλμα Ει/Εξ κατά τη σύγκριση του αρχείου %1 με το %2!"
 
 #: Synchronizer/synchronizertask.cpp:329
-#, fuzzy
 msgid "Comparing file %1 (%2)..."
-msgstr "Σύγκριση του αρχείου %1..."
+msgstr "Σύγκριση του αρχείου %1 (%2)..."
 
 #: Synchronizer/synchronizedialog.cpp:49
 msgid "Krusader::Synchronize"
 msgstr "Krusader::Συγχρονισμός"
 
 #: Synchronizer/synchronizedialog.cpp:53
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Right to left: Copy 1 file\n"
 "Right to left: Copy %n files"
 msgstr ""
-"Αντιγραφή %n αρχείου στο:\n"
-"Αντιγραφή %n αρχείων στο:"
+"Δεξιά προς αριστερά: Αντιγραφή %n αρχείου στο:\n"
+"Δεξιά προς αριστερά: Αντιγραφή %n αρχείων στο:"
 
 #: Synchronizer/synchronizedialog.cpp:54 Synchronizer/synchronizedialog.cpp:67
 #: Synchronizer/synchronizedialog.cpp:80
@@ -4049,32 +4028,35 @@ msgid ""
 "_n: (1 byte)\n"
 "(%n bytes)"
 msgstr ""
+"(1 byte)\n"
+"(%n bytes)"
 
 #: Synchronizer/synchronizedialog.cpp:60 Synchronizer/synchronizedialog.cpp:73
 #: Synchronizer/synchronizedialog.cpp:86
-#, fuzzy
 msgid ""
 "_n: Ready: %1/1 file, %3/%4\n"
 "Ready: %1/%n files, %3/%4"
 msgstr ""
-"και %n αρχείο\n"
-"και %n αρχεία"
+"Ολοκληρώθηκε: %1/1 αρχείο, %3/%4\n"
+"Ολοκληρώθηκαν: %1/%n αρχεία, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:66
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Left to right: Copy 1 file\n"
 "Left to right: Copy %n files"
 msgstr ""
-"Αντιγραφή %n αρχείου στο:\n"
-"Αντιγραφή %n αρχείων στο:"
+"Αριστερά προς τα δεξιά: Αντιγραφή ενός αρχείου\n"
+"Αριστερά προς τα δεξιά: Αντιγραφή %n αρχείων"
 
 #: Synchronizer/synchronizedialog.cpp:79
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Left: Delete 1 file\n"
 "Left: Delete %n files"
-msgstr "Αριστερά: Διαγραφή %1 αρχείων (%2 bytes)"
+msgstr ""
+"Αριστερά: Διαγραφή ενός αρχείου\n"
+"Αριστερά: Διαγραφή %1 αρχείων"
 
 #: Synchronizer/synchronizedialog.cpp:101
 msgid "Confirm overwrites"
@@ -4103,12 +4085,12 @@ msgstr "Συνέχιση"
 #: Synchronizer/synchronizer.cpp:145 Synchronizer/synchronizer.cpp:617
 #, c-format
 msgid "Number of files: %1"
-msgstr ""
+msgstr "Αριθμός αρχείων: %1"
 
 #: Synchronizer/synchronizer.cpp:176
-#, fuzzy, c-format
+#, c-format
 msgid "Number of compared directories: %1"
-msgstr "Σαρωμένοι κατάλογοι :%1"
+msgstr "Αριθμός σαρωμένων καταλόγων :%1"
 
 #: Synchronizer/synchronizer.cpp:1094 Synchronizer/synchronizer.cpp:1107
 msgid "File Already Exists"
@@ -4481,7 +4463,7 @@ msgstr "Ενέργειες &χρήστη"
 msgid "&Help"
 msgstr "&Βοήθεια"
 
-#: Konfigurator/kgadvanced.cpp:47 Konfigurator/kgarchives.cpp:52
+#: Konfigurator/kgadvanced.cpp:49 Konfigurator/kgarchives.cpp:52
 #: Konfigurator/kgcolors.cpp:52 Konfigurator/kgdependencies.cpp:54
 #: Konfigurator/kggeneral.cpp:52 Konfigurator/konfigurator.cpp:100
 msgid "General"
@@ -4842,11 +4824,13 @@ msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Always sort dirs by name"
-msgstr ""
+msgstr "Πάντα ταξινόμηση καταλόγων κατ' όνομα"
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Directories are sorted by name, regardless of the sort column."
 msgstr ""
+"Οι κατάλογοι ταξινομούνται κατ' όνομα, ανεξάρτητα από την επιλογή στήλης "
+"ταξινόμησης."
 
 #: Konfigurator/kglookfeel.cpp:82
 msgid "Show splashscreen"
@@ -5094,24 +5078,24 @@ msgstr ""
 "Οι παρακάτω πληροφορίες υπάρχουν στο αρχείο συντομεύσεων. Είστε σίγουροι ότι "
 "θέλετε να εισάγετε αυτό το αρχείο συντομεύσεων;"
 
-#: Konfigurator/kgadvanced.cpp:52
+#: Konfigurator/kgadvanced.cpp:64
 msgid "Preserve attributes for local copy/move (slower)"
 msgstr "Διατήρηση ιδιοτήτων στις τοπικές αντιγραφές/μετακινήσεις (πιο αργό)"
 
-#: Konfigurator/kgadvanced.cpp:52
-#, fuzzy
+#: Konfigurator/kgadvanced.cpp:64
 msgid ""
 "Change all attributes (time, owner, group) of local files according to the "
 "source one. This can slow down the copy process."
 msgstr ""
-"Αλλαγή της ώρας τροποποίησης των τοπικών αρχείων σε σχέση με τα αρχεία "
-"προορισμού. Αυτό μπορεί να επιβραδύνει τη διαδικασία της αντιγραφής."
+"Αλλαγή όλων των ιδιοτήτων των τοπικών αρχείων (ώρα, ιδιοκτήτης, ομάδα) σε "
+"σχέση με τα αρχεία προορισμού. Αυτό μπορεί να επιβραδύνει τη διαδικασία της "
+"αντιγραφής."
 
-#: Konfigurator/kgadvanced.cpp:53
+#: Konfigurator/kgadvanced.cpp:65
 msgid "Automount filesystems"
 msgstr "Αυτόματη προσάρτηση συστημάτων αρχείων"
 
-#: Konfigurator/kgadvanced.cpp:53
+#: Konfigurator/kgadvanced.cpp:65
 msgid ""
 "When stepping into a directory which is defined as a mount point in the "
 "<b>fstab</b>, try mounting it with the defined parameters."
@@ -5120,39 +5104,50 @@ msgstr ""
 "<b>fstab</b>, θα γίνεται προσπάθεια προσάρτησής του με χρήση των δηλωμένων "
 "παραμέτρων."
 
-#: Konfigurator/kgadvanced.cpp:58
+#: Konfigurator/kgadvanced.cpp:66
+msgid ""
+"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgstr ""
+
+#: Konfigurator/kgadvanced.cpp:66
+msgid ""
+"Select if your media protocol is buggy (in some older KDE versions), or not "
+"present (no kdebase package installed)."
+msgstr ""
+
+#: Konfigurator/kgadvanced.cpp:75
 msgid "MountMan won't (un)mount the following mount-points:"
 msgstr "Το MountMan δε θα (απο)προσαρτεί τα ακόλουθα σημεία προσάρτησης:"
 
-#: Konfigurator/kgadvanced.cpp:72
+#: Konfigurator/kgadvanced.cpp:89
 msgid "Confirmations"
 msgstr "Επιβεβαιώσεις"
 
-#: Konfigurator/kgadvanced.cpp:75
+#: Konfigurator/kgadvanced.cpp:92
 msgid "Request user confirmation for the following operations:"
 msgstr "Να ζητείται επιβεβαίωση για τις ακόλουθες λειτουργίες:"
 
-#: Konfigurator/kgadvanced.cpp:80
+#: Konfigurator/kgadvanced.cpp:97
 msgid "Deleting non-empty directories"
 msgstr "Διαγραφή μη κενών καταλόγων"
 
-#: Konfigurator/kgadvanced.cpp:81
+#: Konfigurator/kgadvanced.cpp:98
 msgid "Deleting files"
 msgstr "Διαγραφή αρχείων"
 
-#: Konfigurator/kgadvanced.cpp:82
+#: Konfigurator/kgadvanced.cpp:99
 msgid "Copying files"
 msgstr "Αντιγραφή αρχείων"
 
-#: Konfigurator/kgadvanced.cpp:83
+#: Konfigurator/kgadvanced.cpp:100
 msgid "Moving files"
 msgstr "Μετακίνηση αρχείων"
 
-#: Konfigurator/kgadvanced.cpp:84
+#: Konfigurator/kgadvanced.cpp:101
 msgid "Confirm feed to listbox"
 msgstr "Επιβεβαίωση τοποθέτησης στη λίστα"
 
-#: Konfigurator/kgadvanced.cpp:84
+#: Konfigurator/kgadvanced.cpp:101
 msgid ""
 "Ask for a result name when feeding items to the listbox. By default the "
 "standard value is used."
@@ -5160,19 +5155,19 @@ msgstr ""
 "Ερώτηση για όνομα του αποτελέσματος πριν την τοποθέτησή του στη λίστα. Εξ "
 "ορισμού χρησιμοποιείται η τυπική τιμή."
 
-#: Konfigurator/kgadvanced.cpp:85
+#: Konfigurator/kgadvanced.cpp:102
 msgid "Removing Useractions"
 msgstr "Αφαίρεση ενεργειών χρήστη"
 
-#: Konfigurator/kgadvanced.cpp:96 Konfigurator/kgarchives.cpp:90
+#: Konfigurator/kgadvanced.cpp:113 Konfigurator/kgarchives.cpp:90
 msgid "Fine-Tuning"
 msgstr "Λεπτομερής ρύθμιση"
 
-#: Konfigurator/kgadvanced.cpp:100
+#: Konfigurator/kgadvanced.cpp:117
 msgid "Icon cache size (KB):"
 msgstr "Μέγεθος λανθάνουσας μνήμης εικονιδίων (KB):"
 
-#: Konfigurator/kgadvanced.cpp:101 Konfigurator/kgadvanced.cpp:105
+#: Konfigurator/kgadvanced.cpp:118 Konfigurator/kgadvanced.cpp:122
 msgid ""
 "The icon cache size influences how fast the contents of a panel can be "
 "displayed. However, too large a cache might consume your memory."
@@ -5181,7 +5176,7 @@ msgstr ""
 "ταχύτητα εμφάνισης των περιεχομένων του πίνακα. Όμως, όσο μεγαλύτερη είναι η "
 "λανθάνουσα μνήμη, τόσο περισσότερη μνήμη δεσμεύει."
 
-#: Konfigurator/kgadvanced.cpp:109
+#: Konfigurator/kgadvanced.cpp:126
 msgid "Arguments of updatedb:"
 msgstr "Παράμετροι του updatedb:"
 
@@ -5769,7 +5764,8 @@ msgid "Action from Clipboard"
 msgstr "Ενέργεια από το πρόχειρο"
 
 #: Konfigurator/kguseractions.cpp:174
-msgid "Are you sure that you want to remove all selected action?"
+#, fuzzy
+msgid "Are you sure that you want to remove all selected actions?"
 msgstr ""
 "Είστε σίγουροι ότι θέλετε να αφαιρέσετε όλες τις επιλεγμένες ενέργειες;"
 
@@ -6090,18 +6086,3 @@ msgstr "Σφάλμα ανάγνωσης του αρχείου %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Σφάλμα εγγραφής του αρχείου %1!"
-
-#~ msgid "&Time options"
-#~ msgstr "Επιλογές &χρόνου"
-
-#~ msgid "Right to left: Copy %1 files (%2 bytes)"
-#~ msgstr "Δεξιά προς τα αριστερά: Αντιγραφή %1 αρχείων (%2 bytes)"
-
-#~ msgid "Left to right: Copy %1 files (%2 bytes)"
-#~ msgstr "Δεξιά προς τα αριστερά: Αντιγραφή %1 αρχείων (%2 bytes)"
-
-#~ msgid "File number:%1"
-#~ msgstr "Αριθμός αρχείου: %1"
-
-#~ msgid "Error at opening URL:%1!"
-#~ msgstr "Σφάλμα κατά το άνοιγμα του URL:%1!"
