@@ -478,8 +478,8 @@ SynchronizerFileItem * Synchronizer::addDuplicateItem( SynchronizerFileItem *par
                                          (TaskType)(task + uncertain), isDir, isTemp );
 
   if( uncertain == TT_UNKNOWN ) {
-    KURL leftURL  = vfs::fromPathOrURL( leftBaseDir + leftDir + "/" + leftName );
-    KURL rightURL = vfs::fromPathOrURL( rightBaseDir + rightDir + "/" + rightName );
+    KURL leftURL  = vfs::fromPathOrURL( leftDir.isEmpty() ? leftBaseDir + leftName : leftBaseDir + leftDir + "/" + leftName );
+    KURL rightURL = vfs::fromPathOrURL( rightDir.isEmpty() ? rightBaseDir + rightName : rightBaseDir + rightDir + "/" + rightName );
     stack.append( new CompareContentTask( this, item, leftURL, rightURL, leftSize ) );
   }
 
