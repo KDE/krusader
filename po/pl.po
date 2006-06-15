@@ -14,15 +14,14 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-06-08 19:41+0200\n"
-"PO-Revision-Date: 2006-05-25 20:07+0200\n"
+"PO-Revision-Date: 2006-06-13 15:26+0200\n"
 "Last-Translator: Tomek Grzejszczyk <tgrzej10@gazeta.pl>\n"
 "Language-Team: Polish <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -456,8 +455,7 @@ msgstr "&Usuń"
 #: GUI/actionpropertybase.cpp:432 GUI/actionpropertybase.cpp:434
 #: GUI/actionpropertybase.cpp:439
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr ""
-"Pokaż <b>Akcję użytkownika</b> tylko dla typów plików zdefiniowanych tutaj."
+msgstr "Pokaż <b>Akcję użytkownika</b> tylko dla typów plików zdefiniowanych tutaj."
 
 #: GUI/actionpropertybase.cpp:433
 msgid "Protocol"
@@ -1284,7 +1282,7 @@ msgstr "Co powinno być skopiowane"
 
 #: UserAction/expander.cpp:418
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr "Dołącz aktualną zawartość schowka z tym separatorem (opcjonalnie)"
+msgstr "Dołącz do aktualnej zawartości schowka z tym separatorem (opcjonalnie)"
 
 #: UserAction/expander.cpp:432
 msgid "Copy a file/folder"
@@ -1544,8 +1542,7 @@ msgstr " Odznaczanie plików "
 
 #: Panel/listpanel.cpp:640
 msgid "No space information on non-local filesystems"
-msgstr ""
-"Brak informacji o ilości wolnego miejsca na nielokalnych systemach plików"
+msgstr "Brak informacji o ilości wolnego miejsca na nielokalnych systemach plików"
 
 #: Panel/listpanel.cpp:647
 msgid "No space information on [dev]"
@@ -1701,7 +1698,7 @@ msgstr "Panel miejsca na dysku: pokazuje rozmiar katalogu"
 
 #: Panel/panelpopup.cpp:146 Panel/panelpopup.cpp:307
 msgid "Disk Usage: "
-msgstr "Miejsce na dysku:"
+msgstr "Miejsce na dysku: "
 
 #: Panel/panelpopup.cpp:155
 msgid "Quick Select"
@@ -2159,8 +2156,7 @@ msgstr "Wyniki"
 
 #: Locate/locate.cpp:195
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Nie można uruchomić 'locate'! Sprawdź stronę 'Zależności' w konfiguratorze."
+msgstr "Nie można uruchomić 'locate'! Sprawdź stronę 'Zależności' w konfiguratorze."
 
 #: Locate/locate.cpp:232
 msgid ""
@@ -2926,8 +2922,7 @@ msgstr ""
 "Daj znać autorom"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "Wewnętrzny błąd MountMana. Proszę powiadomić twórców. Dziękuję."
 
 #: MountMan/kmountmangui.cpp:331
@@ -2994,8 +2989,7 @@ msgstr ""
 
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
+msgstr "Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
 
 #: Dialogs/krdialogs.cpp:103
 msgid "Preserve attributes (only for local targets)"
@@ -3331,8 +3325,7 @@ msgstr "&Anuluj"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
-"Zapisane 'Popularne adresy URL' są niepoprawne. Lista zostanie wyczyszczona"
+msgstr "Zapisane 'Popularne adresy URL' są niepoprawne. Lista zostanie wyczyszczona"
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -3782,8 +3775,7 @@ msgstr "Pokaż opcje"
 
 #: Synchronizer/synchronizergui.cpp:1159
 msgid "Show files marked to <i>Copy from left to right</i>."
-msgstr ""
-"Wyświetla pliki zaznaczone do <i>skopiowania z lewej strony na prawą</i>."
+msgstr "Wyświetla pliki zaznaczone do <i>skopiowania z lewej strony na prawą</i>."
 
 #: Synchronizer/synchronizergui.cpp:1167
 msgid "Show files considered to be identical."
@@ -3795,8 +3787,7 @@ msgstr "Wyświetla pliki wykluczone."
 
 #: Synchronizer/synchronizergui.cpp:1183
 msgid "Show files marked to <i>Copy from right to left</i>"
-msgstr ""
-"Wyświetla pliki zaznaczone do <i>skopiowania z prawej strony na lewą</i>"
+msgstr "Wyświetla pliki zaznaczone do <i>skopiowania z prawej strony na lewą</i>"
 
 #: Synchronizer/synchronizergui.cpp:1191
 msgid "Show files marked to delete."
@@ -4022,14 +4013,14 @@ msgstr ""
 "Gotowe: %1/%n plików, %3/%4"
 
 #: Synchronizer/synchronizedialog.cpp:66
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: Left to right: Copy 1 file\n"
 "Left to right: Copy %n files"
 msgstr ""
-"Z lewego do prawego: Skopiuj %1 plik (%2 bajtów)\n"
-"Z lewego do prawego: Skopiuj %1 pliki (%2 bajtów)\n"
-"Z lewego do prawego: Skopiuj %1 plików (%2 bajtów)"
+"Z lewego do prawego: Skopiuj %n plik\n"
+"Z lewego do prawego: Skopiuj %n pliki\n"
+"Z lewego do prawego: Skopiuj %n plików"
 
 #: Synchronizer/synchronizedialog.cpp:79
 #, c-format
@@ -4575,8 +4566,7 @@ msgid "Searching for tools..."
 msgstr "Poszukiwanie narzędzi..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Upewnij się czy zainstalowałeś nowe narzędzia w twojej ścieżce <code>$PATH</"
 "code> (np. /usr/bin)"
@@ -5037,10 +5027,8 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Przycisk przełączający przeglądanie synchroniczne"
 
 #: Konfigurator/kglookfeel.cpp:221
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
-msgstr ""
-"Każda zmiana katalogu w panelu jest dokonywana również w drugim panelu."
+msgid "Each directory change in the panel is also performed in the other panel."
+msgstr "Każda zmiana katalogu w panelu jest dokonywana również w drugim panelu."
 
 #: Konfigurator/kglookfeel.cpp:285 Konfigurator/kglookfeel.cpp:302
 msgid "Select a shortcuts file"
@@ -5079,15 +5067,14 @@ msgstr ""
 "montowania w <b>fstab</b>, próbuje go montować ze zdefiniowanymi parametrami."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
-msgstr ""
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgstr "Nie używaj protokołu \"media\" KDE dla przycisku urządzeń peryferyjnych (jeśli go brak, bądź nie działa poprawnie)"
 
 #: Konfigurator/kgadvanced.cpp:66
 msgid ""
 "Select if your media protocol is buggy (in some older KDE versions), or not "
 "present (no kdebase package installed)."
-msgstr ""
+msgstr "Wybierz jeśli Twój protokół \"media\" ma błędy (niektóre starsze wersje KDE) lub nie jest dostępny (pakiet kdebase nie jest zainstalowany)."
 
 #: Konfigurator/kgadvanced.cpp:75
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -5199,7 +5186,7 @@ msgstr "Niebieski"
 
 #: Konfigurator/konfiguratoritems.cpp:550
 msgid "Cyan"
-msgstr "Cyan"
+msgstr "Cyjan"
 
 #: Konfigurator/konfiguratoritems.cpp:551
 msgid "Magenta"
@@ -5395,7 +5382,7 @@ msgstr "Taki sam jak aktywny"
 
 #: Konfigurator/kgcolors.cpp:156
 msgid "Synchronizer"
-msgstr "Synchronizer"
+msgstr "Synchronizator"
 
 #: Konfigurator/kgcolors.cpp:162 Konfigurator/kgcolors.cpp:163
 msgid "KDE default"
@@ -5680,8 +5667,7 @@ msgid "Test archive before unpacking"
 msgstr "Testowanie archiwum przed rozpakowaniem"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Niektóre uszkodzone archiwa mogą spowodować upadek, dlatego sugerowane jest "
 "testowanie."
@@ -5691,8 +5677,7 @@ msgid "Searching for packers..."
 msgstr "Szukanie narzędzie pakujących..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Upewnij się że zainstalowałeś nowe narzędzia pakujące w ścieżce <code>$PATH</"
 "code> (np. /usr/bin)"
@@ -5734,7 +5719,6 @@ msgid "Action from Clipboard"
 msgstr "Wklej akcję ze schowka"
 
 #: Konfigurator/kguseractions.cpp:174
-#, fuzzy
 msgid "Are you sure that you want to remove all selected actions?"
 msgstr "Jesteś pewien, że chcesz usunąć wszystkie wybrane akcje?"
 
@@ -5848,8 +5832,7 @@ msgstr ""
 
 #: krslots.cpp:428
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Nie można uruchomić 'mount'! Sprawdź stronę 'Zależności' w Konfiguratorze."
+msgstr "Nie można uruchomić 'mount'! Sprawdź stronę 'Zależności' w Konfiguratorze."
 
 #: krslots.cpp:460
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
@@ -6009,8 +5992,7 @@ msgid "Not a valid CRC file!"
 msgstr "Nieprawidłowy plik CRC!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Sprawdzanie poprawności bez dobrego pliku CRC jest niemożliwe. Kontynuować "
 "łączenie?"
@@ -6050,3 +6032,4 @@ msgstr "Błąd podczas odczytu pliku %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Błąd podczas zapisu pliku %1!"
+
