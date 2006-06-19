@@ -66,6 +66,7 @@ A
 #include "../VFS/krpermhandler.h"
 #include "../VFS/krvfshandler.h"
 #include "../VFS/preservingcopyjob.h"
+#include "../VFS/virtualcopyjob.h"
 #include "../Dialogs/packgui.h"
 #include "../Dialogs/krdialogs.h"
 #include "../Dialogs/krpleasewait.h"
@@ -385,6 +386,7 @@ void ListPanelFunc::moveFiles() {
 		return ;  // safety
 
 	KURL dest = panel->otherPanel->virtualPath();
+	KURL virtualBaseURL;
 
 	QString destProtocol = dest.protocol();
 	if ( destProtocol == "krarc" || destProtocol == "tar" || destProtocol == "zip" ) {
@@ -403,7 +405,8 @@ void ListPanelFunc::moveFiles() {
     s = i18n("Move %n file to:", "Move %n files to:", fileNames.count());
 
 		// ask the user for the copy dest
-		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs);
+		virtualBaseURL = getVirtualBaseURL();
+		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs, virtualBaseURL);
 		if ( dest.isEmpty() ) return ; // the user canceled
 		if( preserveAttrs )
 			pmode = PM_PRESERVE_ATTR;
@@ -420,8 +423,15 @@ void ListPanelFunc::moveFiles() {
 	// file above the current item;
 	panel->prepareToDelete();
 
+	if( !virtualBaseURL.isEmpty() ) {
+		// keep the directory structure for virtual paths
+		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Move, false, true );
+		connect( vjob, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
+		if ( dest.equals( panel->otherPanel->virtualPath(), true ) )
+			connect( vjob, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+	}
 	// if we are not moving to the other panel :
-	if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
+	else if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(1);
@@ -493,6 +503,40 @@ void ListPanelFunc::mkdir() {
 	} // for
 }
 
+KURL ListPanelFunc::getVirtualBaseURL() {
+	if( files()->vfs_getType() != vfs::VIRT || otherFunc()->files()->vfs_getType() == vfs::VIRT )
+		return KURL();
+	
+	QStringList fileNames;
+	panel->getSelectedNames( &fileNames );
+	
+	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
+	if( fileUrls->count() == 0 )
+		return KURL();
+	
+	KURL base = (*fileUrls)[ 0 ].upURL();
+	
+	if( base.protocol() == "virt" ) // is it a virtual subfolder?
+		return KURL();          // --> cannot keep the directory structure
+	
+	for( unsigned i=1; i < fileUrls->count(); i++ ) {
+		if( base.isParentOf( (*fileUrls)[ i ] ) )
+			continue;
+		if( base.protocol() != (*fileUrls)[ i ].protocol() )
+			return KURL();
+		
+		do {
+			KURL oldBase = base;
+			base = base.upURL();
+			if( oldBase.equals( base, true ) )
+				return KURL();
+			if( base.isParentOf( (*fileUrls)[ i ] ) )
+				break;
+		}while( true );
+	}
+	return base;
+}
+
 void ListPanelFunc::copyFiles() {
 	PreserveMode pmode = PM_DEFAULT;
 
@@ -502,6 +546,7 @@ void ListPanelFunc::copyFiles() {
 		return ;  // safety
 
 	KURL dest = panel->otherPanel->virtualPath();
+	KURL virtualBaseURL;
 
 	// confirm copy
 	krConfig->setGroup( "Advanced" );
@@ -515,7 +560,8 @@ void ListPanelFunc::copyFiles() {
     s = i18n("Copy %n file to:", "Copy %n files to:", fileNames.count());
 
 		// ask the user for the copy dest
-		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs );
+		virtualBaseURL = getVirtualBaseURL();
+		dest = KChooseDir::getDir(s, dest, panel->virtualPath(), preserveAttrs, virtualBaseURL );
 		if ( dest.isEmpty() ) return ; // the user canceled
 		if( preserveAttrs )
 			pmode = PM_PRESERVE_ATTR;
@@ -525,8 +571,15 @@ void ListPanelFunc::copyFiles() {
 
 	KURL::List* fileUrls = files() ->vfs_getFiles( &fileNames );
 
+	if( !virtualBaseURL.isEmpty() ) {
+		// keep the directory structure for virtual paths
+		VirtualCopyJob *vjob = new VirtualCopyJob( &fileNames, files(), dest, virtualBaseURL, pmode, KIO::CopyJob::Copy, false, true );
+		connect( vjob, SIGNAL( result( KIO::Job* ) ), this, SLOT( refresh() ) );
+		if ( dest.equals( panel->otherPanel->virtualPath(), true ) )
+			connect( vjob, SIGNAL( result( KIO::Job* ) ), panel->otherPanel->func, SLOT( refresh() ) );
+	}
 	// if we are  not copying to the other panel :
-	if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
+	else if ( !dest.equals( panel->otherPanel->virtualPath(), true ) ) {
 		// you can rename only *one* file not a batch,
 		// so a batch dest must alwayes be a directory
 		if ( fileNames.count() > 1 ) dest.adjustPath(1);

@@ -15,4 +15,5 @@ libVFS_a_SOURCES = \
 	krdirwatch.cpp \
 	krarchandler.cpp \
 	preservingcopyjob.cpp \
+	virtualcopyjob.cpp \
 	ftp_vfs.cpp krquery.cpp

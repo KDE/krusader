@@ -7,6 +7,27 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+New feature: keeping the directory structure of copying/moving from
+             virtual folders
+  - assume we have 3 URL-s in a virtual subfolder
+    /home/myhome/mydir1/myfile1
+    /home/myhome/mydir1/myfile2
+    /home/myhome/mydir2/myfile3
+  - in the destination folder we would like to get:
+    mydir1/myfile1
+    mydir1/myfile2
+    mydir2/myfile3
+  - Just press F5 for copy (dialog appears)
+    source MUST be a virtual subfolder!
+    target MUST NOT be a virtual folder!
+  - in the dialog, there's a new option: "Keep virtual directory structure"
+  - check it on
+  - select /home/myhome/ for base URL
+  - start the copy / move
+
+  - AND: the directory structure will be kept at copying!
+    that's it! :-)
+
 New option in look&feel: directories are always sorted by name
 
 Big cleanup in the UserAction module:

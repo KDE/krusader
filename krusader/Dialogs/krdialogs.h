@@ -47,6 +47,7 @@
 #include <qprogressdialog.h>
 #include <qsemimodal.h>
 #include <qcheckbox.h>
+#include <qcombobox.h>
 
 /** \class KChooseDir
  * Used for asking the user for a folder.
@@ -70,25 +71,31 @@ public:
 	 */
 	static KURL getDir(QString text,const KURL& url, const KURL& cwd);
 	static KURL getDir(QString text,const KURL& url, const KURL& cwd, bool & preserveAttrs );
+	static KURL getDir(QString text,const KURL& url, const KURL& cwd, bool & preserveAttrs, KURL &baseURL );
 };
 
 class KURLRequesterDlgForCopy : public KDialogBase {
   Q_OBJECT
 public:
 	KURLRequesterDlgForCopy( const QString& url, const QString& text, bool presAttrs,
-				QWidget *parent, const char *name, bool modal=true );
+				QWidget *parent, const char *name, bool modal=true, KURL baseURL = KURL() );
 	KURLRequesterDlgForCopy();
 
 	KURL selectedURL() const;
-	bool preserveAttrs();        
+	KURL baseURL() const;
+	bool preserveAttrs();
+	bool copyDirStructure();
         
 	KURLRequester *urlRequester();
 private slots:
 	void slotClear();
 	void slotTextChanged(const QString &);
+	void slotDirStructCBChanged();
 private:
 	KURLRequester *urlRequester_;
+	QComboBox *baseUrlCombo;
 	QCheckBox *preserveAttrsCB;
+	QCheckBox *copyDirStructureCB;
 };
 
 class KRGetDate : public KDialog {

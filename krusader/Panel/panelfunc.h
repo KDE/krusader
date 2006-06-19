@@ -89,6 +89,9 @@ public:
 	void newFTPconnection();
 	inline ListPanelFunc* otherFunc(){ return panel->otherPanel->func; }
 
+private:
+	KURL getVirtualBaseURL();
+
 protected:
 	ListPanel*           panel;     // our ListPanel
 	QValueStack<KURL>    urlStack;  // Path stack for the "back" button
