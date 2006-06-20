@@ -624,6 +624,12 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 		if ( !reallyDelete && trash && files() ->vfs_getType() == vfs::NORMAL ) {
 			s = i18n( "Do you really want to move this item to the trash?", "Do you really want to move these %n items to the trash?", fileNames.count() );
 			b = i18n( "&Trash" );
+		} else if( files() ->vfs_getType() == vfs::VIRT && files()->vfs_getOrigin().equals( KURL("virt:/"), true ) ) {
+			s = i18n( "Do you really want to delete this URL collection (URLs inside won't be deleted)?", "Do you really want to delete these URL collections (URLs inside won't be deleted)?", fileNames.count() );
+			b = i18n( "&Delete" );
+		} else if( files() ->vfs_getType() == vfs::VIRT ) {
+			s = i18n( "Do you really want to delete this item (physically, not just removing from the URL collection)?", "Do you really want to delete these %n items (physically, not just removing from the URL collection)?", fileNames.count() );
+			b = i18n( "&Delete" );
 		} else {
 			s = i18n( "Do you really want to delete this item?", "Do you really want to delete these %n items?", fileNames.count() );
 			b = i18n( "&Delete" );
