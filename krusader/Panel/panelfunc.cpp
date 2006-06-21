@@ -1122,6 +1122,14 @@ vfs* ListPanelFunc::files() {
 
 
 void ListPanelFunc::copyToClipboard( bool move ) {
+	if( files()->vfs_getOrigin().equals( KURL("virt:/"), true ) ) {
+		if( move )
+			KMessageBox::error( krApp, i18n( "Cannot cut a virtual URL collection to the clipboard!" ) );
+		else
+			KMessageBox::error( krApp, i18n( "Cannot copy a virtual URL collection onto the clipboard!" ) );
+		return;
+	}
+	
 	QStringList fileNames;
 
 	panel->getSelectedNames( &fileNames );
@@ -1132,6 +1140,10 @@ void ListPanelFunc::copyToClipboard( bool move ) {
 	if ( fileUrls ) {
 		KRDrag * urlData = KRDrag::newDrag( *fileUrls, move, krApp->mainView, "krusader" );
 		QApplication::clipboard() ->setData( urlData );
+		
+		if( move && files()->vfs_getType() == vfs::VIRT )
+			( static_cast<virt_vfs*>( files() ) )->vfs_removeFiles( &fileNames );
+		
 		delete fileUrls;
 	}
 }
@@ -1146,10 +1158,8 @@ void ListPanelFunc::pasteFromClipboard() {
 
 		KURL destUrl = panel->virtualPath();
 
-		KIO::Job* job = PreservingCopyJob::createCopyJob( PM_DEFAULT, urls,
-			 destUrl, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, false, true );
-		job->setAutoErrorHandlingEnabled( true );
-		connect( job, SIGNAL( result( KIO::Job* ) ), SLOTS, SLOT( refresh() ) );
+		files()->vfs_addFiles( &urls, cutSelection ? KIO::CopyJob::Move : KIO::CopyJob::Copy, otherFunc()->files(),
+			"", PM_DEFAULT );
 	}
 }
 

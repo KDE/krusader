@@ -89,7 +89,10 @@ void virt_vfs::vfs_addFiles( KURL::List *fileUrls, KIO::CopyJob::CopyMode /*mode
 	}
 	
 	KURL::List* urlList = virtVfsDict[ path ];
-	(*urlList)+=(*fileUrls);
+	for( unsigned i=0; i != fileUrls->count(); i++ ) {
+		if( !urlList->contains( (*fileUrls)[ i ] ) )
+			urlList->push_back( (*fileUrls)[ i ] );
+	}
 
 	vfs_refresh();
 }
@@ -129,6 +132,20 @@ void virt_vfs::vfs_delFiles( QStringList *fileNames ) {
 
 	// refresh will remove the deleted files...
 	connect( job, SIGNAL( result( KIO::Job* ) ), this, SLOT( vfs_refresh( KIO::Job* ) ) );
+}
+
+void virt_vfs::vfs_removeFiles( QStringList *fileNames ) {
+	if ( path == "/" )
+		return; 
+	
+	// removing the URLs from the collection
+	for ( uint i = 0 ; i < fileNames->count(); ++i ) {
+		KURL::List* urlList = virtVfsDict[ path ];
+		if( urlList )
+			urlList->remove( vfs_getFile( ( *fileNames ) [ i ] ) );
+	}
+	
+	vfs_refresh();
 }
 
 KURL::List* virt_vfs::vfs_getFiles( QStringList* names ) {
