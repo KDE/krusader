@@ -10,15 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-06-20 20:18+0200\n"
-"PO-Revision-Date: 2006-06-20 16:38+0200\n"
-"Last-Translator: Vaclav Juza <vaclavjuza@seznam.cz>\n"
+"POT-Creation-Date: 2006-06-20 19:42+0200\n"
+"PO-Revision-Date: 2006-06-20 20:08+0200\n"
+"Last-Translator: Václav Jůza <vaclavjuza@seznam.cz>\n"
 "Language-Team: Czech <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.11.2\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -343,8 +342,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
+msgstr "<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
 
 #: GUI/actionpropertybase.cpp:403
 msgid "Tooltip:"
@@ -2012,19 +2010,15 @@ msgid "&Trash"
 msgstr "Vyhodit do &koše"
 
 #: Panel/panelfunc.cpp:628
-#, fuzzy
 msgid ""
 "_n: Do you really want to delete this virtual item (physical files stay "
 "untouched)?\n"
 "Do you really want to delete these virtual items (physical files stay "
 "untouched)?"
 msgstr ""
-"Opravdu chcete smazat tuto %n položku (fyzicky, nejen odstranění ze "
-"seznamu)?\n"
-"Opravdu chcete smazat tyto %n položky (fyzicky, nejen odstranění ze "
-"seznamu)?\n"
-"Opravdu chcete smazat těchto %n položek (fyzicky, nejen odstranění ze "
-"seznamu)?"
+"Opravdu chcete smazat tuto %n virtuální položku (fyzické soubory zůstanou nedotčeny)?\n"
+"Opravdu chcete smazat tyto %n virtuální položky (fyzické soubory zůstanou nedotčeny)?\n"
+"Opravdu chcete smazat těchto %n virtuálních položek (fyzické soubory zůstanou nedotčeny)?"
 
 #: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
 #: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:629
@@ -2033,19 +2027,19 @@ msgid "&Delete"
 msgstr "&Smazat"
 
 #: Panel/panelfunc.cpp:631
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "_n: <qt>Do you really want to delete this item <b>physically</b> (not just "
 "removing it from the virtual items)?</qt>\n"
 "<qt>Do you really want to delete these %n items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr ""
-"Opravdu chcete smazat tuto %n položku (fyzicky, nejen odstranění ze "
-"seznamu)?\n"
-"Opravdu chcete smazat tyto %n položky (fyzicky, nejen odstranění ze "
-"seznamu)?\n"
-"Opravdu chcete smazat těchto %n položek (fyzicky, nejen odstranění ze "
-"seznamu)?"
+"<qt>Opravdu chcete smazat tuto %n položku (<b>fyzicky</b>, nejen odstranění ze "
+"seznamu)?</qt>\n"
+"<qt>Opravdu chcete smazat tyto %n položky (<b>fyzicky</b>, nejen odstranění ze "
+"seznamu)</qt>?\n"
+"<qt>Opravdu chcete smazat těchto %n položek (<b>fyzicky</b>, nejen odstranění ze "
+"seznamu)</qt>?"
 
 #: Panel/panelfunc.cpp:634
 #, c-format
@@ -2238,8 +2232,7 @@ msgstr "Zde můžete pojmenovat skupinu souborů"
 
 #: krusader.cpp:320
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
+msgstr "Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
 
 #: krusader.cpp:380
 msgid ""
@@ -2944,8 +2937,7 @@ msgstr ""
 "Volejte vývojáře (v angličtině samozřejmě :-)."
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správce připojení dospěl k vnitřní chybě. Upozorněte prosím vývojáře. "
 "(anglicky)Děkujeme."
@@ -3727,13 +3719,11 @@ msgstr "Filtr souborů"
 
 #: Synchronizer/synchronizergui.cpp:1079
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"Během synchronizačního procesu se použil základní adresář levého panelu."
+msgstr "Během synchronizačního procesu se použil základní adresář levého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1110
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"Během synchronizačního procesu se použil základní adresář pravého panelu."
+msgstr "Během synchronizačního procesu se použil základní adresář pravého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1116
 msgid "Recurse subdirectories"
@@ -4508,8 +4498,7 @@ msgstr "Používat magická čísla MIME typů"
 
 #: Konfigurator/kggeneral.cpp:66
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr ""
-"Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
+msgstr "Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
 
 #: Konfigurator/kggeneral.cpp:73
 msgid "Editor:"
@@ -4596,8 +4585,7 @@ msgid "Searching for tools..."
 msgstr "Hledání nástrojů ..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové nástroje do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -5051,8 +5039,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Přepínací tlačítko pro synchronizované prohlížení"
 
 #: Konfigurator/kglookfeel.cpp:221
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Každá změna v jednom panelu se provede rovněž v protilehlém panelu."
 
 #: Konfigurator/kglookfeel.cpp:285 Konfigurator/kglookfeel.cpp:302
@@ -5092,8 +5079,7 @@ msgstr ""
 "se snažit připojit s určenými parametry."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Nepoužívat protokol media z KDE pro tlačítko Media (pokud nefunguje nebo "
 "chybí)"
@@ -5108,8 +5094,7 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:75
 msgid "MountMan won't (un)mount the following mount-points:"
-msgstr ""
-"Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
+msgstr "Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
 
 #: Konfigurator/kgadvanced.cpp:89
 msgid "Confirmations"
@@ -5697,8 +5682,7 @@ msgid "Test archive before unpacking"
 msgstr "Zkontrolovat archív před rozbalením"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Některé poškozené archívy mohou způsobit spadnutí programu. Proto se "
 "doporučuje zapnout testování archívů."
@@ -5708,8 +5692,7 @@ msgid "Searching for packers..."
 msgstr "Hledání archivátorů..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové archivátory do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -6022,8 +6005,7 @@ msgid "Not a valid CRC file!"
 msgstr "Neplatný CRC soubor!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Kontrola platnosti je nemožná bez platného CRC (kontrolní součet) souboru. "
 "Pokračovat ve slučování?"
@@ -6064,12 +6046,3 @@ msgstr "Chyba při čtení souboru %1!"
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
 
-#~ msgid ""
-#~ "_n: Do you really want to delete this URL collection (URLs inside won't "
-#~ "be deleted)?\n"
-#~ "Do you really want to delete these URL collections (URLs inside won't be "
-#~ "deleted)?"
-#~ msgstr ""
-#~ "Opravdu chcete smazat tento %n seznam URL (URL uvnitř smazána nebudou)?\n"
-#~ "Opravdu chcete smazat tyto %n seznamy URL (URL uvnitř smazána nebudou)?\n"
-#~ "Opravdu chcete smazat těchto %n seznamů URL (URL uvnitř smazána nebudou)?"
