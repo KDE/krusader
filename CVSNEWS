@@ -7,6 +7,28 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+New feature: right click menu for bookmarks
+  - after right clicking on a bookmark, a popup menu appears with
+  
+      Open
+      Open in new tab
+      Delete
+
+    menu items.
+
+New feature: enable/disable the special bookmarks
+  - right click on a special bookmark
+    (Popular URLs, Devices, Local Network, Virtual Filesystem, Jumb back,
+     Set jump back, Bookmark Current or Manage Bookmarks)
+  - a new rightclick menu appears containing the special bookmark items
+    if a menu item is checked then the bookmark is enabled
+  - one can enable/disable separately the following special bookmarks
+      - the "Popular URLs" bookmark
+      - the "Devices" bookmark
+      - the "Local Network" bookmark
+      - the "Virtual Filesystem"
+      - the "Jump back" and "Set jump back" bookmarks
+
 New feature: keeping the directory structure of copying/moving from
              virtual folders
   - assume we have 3 URL-s in a virtual subfolder

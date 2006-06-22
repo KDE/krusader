@@ -13,6 +13,7 @@
 #include <kbookmarkmanager.h>
 #include <kstandarddirs.h>
 #include <qfile.h>
+#include <qcursor.h>
 
 #define SPECIAL_BOOKMARKS	true
 
@@ -20,14 +21,16 @@
 #define BOOKMARKS_FILE	"krusader/krbookmarks.xml"
 #define CONNECT_BM(X)	{ disconnect(X, SIGNAL(activated(const KURL&)), 0, 0); connect(X, SIGNAL(activated(const KURL&)), this, SLOT(slotActivated(const KURL&))); }
 											
-KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false) {
+KrBookmarkHandler::KrBookmarkHandler(): QObject(0), _middleClick(false), _mainBookmarkPopup( 0 ), _specialBookmarkIDs(), _bookmarkIDTable() {
 	// create our own action collection and make the shortcuts apply only to parent
 	_privateCollection = new KActionCollection(krApp, "private collection");
 	_collection = krApp->actionCollection();
 
 	// create _root: father of all bookmarks. it is a dummy bookmark and never shown
 	_root = new KrBookmark(i18n("Bookmarks"));
-
+	
+	_bookmarkIDTable.setAutoDelete( true );
+	
 	// load bookmarks 
 	importFromFile();
 
@@ -70,7 +73,27 @@ void KrBookmarkHandler::addBookmark(KrBookmark *bm, KrBookmark *folder) {
 	exportToFile();
 }
 
-void KrBookmarkHandler::deleteBookmark(KrBookmark */*bm*/) {
+void KrBookmarkHandler::deleteBookmark(KrBookmark *bm) {
+	if( bm->isFolder() )
+		clearBookmarks( bm ); // remove the child bookmarks
+	removeReferences( _root, bm );
+	bm->unplugAll();
+	delete bm;
+	
+	exportToFile();
+}
+
+void KrBookmarkHandler::removeReferences( KrBookmark *root, KrBookmark *bmToRemove ) {
+	int index = root->children().find( bmToRemove );
+	if( index >= 0 )
+		root->children().take( index );
+	
+	KrBookmark *bm = root->children().first();
+	while (bm) {
+		if (bm->isFolder())
+			removeReferences(bm, bmToRemove);
+		bm = root->children().next();
+	}
 }
 
 void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &where, KrBookmark *bm) {
@@ -249,7 +272,10 @@ SUCCESS:
 }
 
 void KrBookmarkHandler::populate(KPopupMenu *menu) {
+	_mainBookmarkPopup = menu;
 	menu->clear();
+	_bookmarkIDTable.clear();
+	_specialBookmarkIDs.clear();
 	buildMenu(_root, menu);
 }
 
@@ -261,8 +287,13 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 	for (KrBookmark *bm = parent->children().first(); bm; bm = parent->children().next()) {
 		if (!bm->isFolder()) continue;
 		KPopupMenu *newMenu = new KPopupMenu(menu);
-		menu->insertItem(QIconSet(krLoader->loadIcon(bm->icon(), KIcon::Small)),
+		int id = menu->insertItem(QIconSet(krLoader->loadIcon(bm->icon(), KIcon::Small)),
 									bm->text(), newMenu, -1 /* dummy id */, -1 /* end of list */);
+		
+		if( !_bookmarkIDTable.find( menu ) )
+			_bookmarkIDTable.insert( menu, new QMap<int, KrBookmark *> );
+		(*_bookmarkIDTable[ menu ])[ id ] = bm;
+		
 		++inSecondaryMenu;
 		buildMenu(bm, newMenu);
 		--inSecondaryMenu;
@@ -273,60 +304,103 @@ void KrBookmarkHandler::buildMenu(KrBookmark *parent, KPopupMenu *menu) {
 			menu->insertSeparator();
 			continue;
 		}
-		bm->plug(menu, -1 /* end of list */);
+		int itemIndex = bm->plug(menu, -1 /* end of list */);
 		CONNECT_BM(bm);
+		
+		int id = bm->itemId( itemIndex );
+		if( !_bookmarkIDTable.find( menu ) )
+			_bookmarkIDTable.insert( menu, new QMap<int, KrBookmark *> );
+		(*_bookmarkIDTable[ menu ])[ id ] = bm;
 	}
 
 	if (!inSecondaryMenu) {
-		menu->insertSeparator();
+		krConfig->setGroup( "Private" );
+		bool hasPopularURLs = krConfig->readBoolEntry( "BM Popular URLs", true );
+		bool hasDevices     = krConfig->readBoolEntry( "BM Devices",      true );
+		bool hasLan         = krConfig->readBoolEntry( "BM Lan",          true );
+		bool hasVirtualFS   = krConfig->readBoolEntry( "BM Virtual FS",   true );
+		bool hasJumpback    = krConfig->readBoolEntry( "BM Jumpback",     true );
 		
-		// add the popular links submenu
-		KPopupMenu *newMenu = new KPopupMenu(menu);
-		menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
-									i18n("Popular URLs"), newMenu, -1 /* dummy id */, -1 /* end of list */);
-		// add the top 15 urls
-		#define MAX 15
-		KURL::List list = krApp->popularUrls->getMostPopularUrls(MAX);
-		KURL::List::Iterator it;
-		for (it = list.begin(); it != list.end(); ++it) {
-			QString name;
-			if ((*it).isLocalFile()) name = (*it).path();
-			else name = (*it).prettyURL();
-			// note: these bookmark are put into the private collection
-			// as to not spam the general collection
-			KrBookmark *bm = KrBookmark::getExistingBookmark(name, _privateCollection);
-			if (!bm)
-				bm = new KrBookmark(name, *it, _privateCollection);
-			bm->plug(newMenu);
-			CONNECT_BM(bm);
+		int itemIndex;
+		
+		if( hasPopularURLs ) {
+			menu->insertSeparator();
+			
+			// add the popular links submenu
+			KPopupMenu *newMenu = new KPopupMenu(menu);
+			itemIndex = menu->insertItem(QIconSet(krLoader->loadIcon("bookmark_folder", KIcon::Small)),
+										i18n("Popular URLs"), newMenu, -1 /* dummy id */, -1 /* end of list */);
+			_specialBookmarkIDs.append( itemIndex );
+			// add the top 15 urls
+			#define MAX 15
+			KURL::List list = krApp->popularUrls->getMostPopularUrls(MAX);
+			KURL::List::Iterator it;
+			for (it = list.begin(); it != list.end(); ++it) {
+				QString name;
+				if ((*it).isLocalFile()) name = (*it).path();
+				else name = (*it).prettyURL();
+				// note: these bookmark are put into the private collection
+				// as to not spam the general collection
+				KrBookmark *bm = KrBookmark::getExistingBookmark(name, _privateCollection);
+				if (!bm)
+					bm = new KrBookmark(name, *it, _privateCollection);
+				bm->plug(newMenu);
+				CONNECT_BM(bm);
+			}
+			
+			newMenu->insertSeparator();
+			krPopularUrls->plug(newMenu);
+			newMenu->installEventFilter(this);
 		}
-		newMenu->insertSeparator();
-		krPopularUrls->plug(newMenu);
-		newMenu->installEventFilter(this);
-		menu->insertSeparator();
 		
 		// do we need to add special bookmarks?
 		if (SPECIAL_BOOKMARKS) {
+			if( hasDevices || hasLan || hasVirtualFS || hasJumpback )
+				menu->insertSeparator();
+			
+			KrBookmark *bm;
+			
 			// note: special bookmarks are not kept inside the _bookmarks list and added ad-hoc
-			KrBookmark *bm = KrBookmark::devices(_collection);
-			bm->plug(menu);
-			CONNECT_BM(bm);
-			bm = KrBookmark::lan(_collection);
-			bm->plug(menu);
-			CONNECT_BM(bm);
-			bm = KrBookmark::virt(_collection);
-			bm->plug(menu);
-			CONNECT_BM(bm);
+			if( hasDevices ) {
+				bm = KrBookmark::devices(_collection);
+				itemIndex = bm->plug(menu);
+				_specialBookmarkIDs.append( bm->itemId( itemIndex ) );
+				CONNECT_BM(bm);
+			}
+			
+			if( hasLan ) {
+				bm = KrBookmark::lan(_collection);
+				itemIndex = bm->plug(menu);
+				_specialBookmarkIDs.append( bm->itemId( itemIndex ) );
+				CONNECT_BM(bm);
+			}
+			
+			if( hasVirtualFS ) {
+				bm = KrBookmark::virt(_collection);
+				itemIndex = bm->plug(menu);
+				_specialBookmarkIDs.append( bm->itemId( itemIndex ) );
+				CONNECT_BM(bm);
+			}
+			
+			if( hasJumpback ) {
+				// add the jump-back button
+				itemIndex = krJumpBack->plug(menu);
+				_specialBookmarkIDs.append( krJumpBack->itemId( itemIndex ) );
+				menu->insertSeparator();
+				itemIndex = krSetJumpBack->plug(menu);
+				_specialBookmarkIDs.append( krSetJumpBack->itemId( itemIndex ) );
+			}
 		} 
 		
-		// add the jump-back button
-		krJumpBack->plug(menu);
-		menu->insertSeparator();
-		krSetJumpBack->plug(menu);
-		menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
+		if( !hasJumpback )
+			menu->insertSeparator();
+		
+		itemIndex = menu->insertItem(krLoader->loadIcon("bookmark_add", KIcon::Small),
 			i18n("Bookmark Current"), BookmarkCurrent);
-		menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
+		_specialBookmarkIDs.append( itemIndex );
+		itemIndex = menu->insertItem(krLoader->loadIcon("bookmark", KIcon::Small),
 			i18n("Manage Bookmarks"), ManageBookmarks);
+		_specialBookmarkIDs.append( itemIndex );
 	
 		// make sure the menu is connected to us
 		disconnect(menu, SIGNAL(activated(int)), 0, 0);
@@ -358,8 +432,26 @@ void KrBookmarkHandler::bookmarksChanged(const QString&, const QString&) {
 bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 	if (ev->type() == QEvent::MouseButtonRelease) {
 		switch (static_cast<QMouseEvent*>(ev)->button()) {
-			case LeftButton:
 			case RightButton:
+				_middleClick = false;
+				if( obj->inherits( "QPopupMenu" ) ) {
+					int id = static_cast<QPopupMenu*>(obj)->idAt( static_cast<QMouseEvent*>(ev)->pos() );
+					
+					if( obj == _mainBookmarkPopup && _specialBookmarkIDs.contains( id ) ) {
+						rightClickOnSpecialBookmark();
+						return true;
+					}
+					
+					if( _bookmarkIDTable.find( obj ) ) {
+						QMap<int, KrBookmark*> * table = _bookmarkIDTable[ obj ];
+						if( table && table->count( id ) ) {
+							KrBookmark *bm = (*table)[ id ];
+							rightClicked( static_cast<QPopupMenu*>(obj), id, bm );
+							return true;
+						}
+					}
+				}
+			case LeftButton:
 				_middleClick = false;
 				break;
 			case MidButton:
@@ -370,6 +462,105 @@ bool KrBookmarkHandler::eventFilter( QObject *obj, QEvent *ev ) {
 		}
 	}
 	return QObject::eventFilter(obj, ev);
+}
+
+#define POPULAR_URLS_ID        100100
+#define DEVICES_ID             100101
+#define LAN_ID                 100103
+#define VIRTUAL_FS_ID          100102
+#define JUMP_BACK_ID           100104
+
+void KrBookmarkHandler::rightClickOnSpecialBookmark() {
+	krConfig->setGroup( "Private" );
+	bool hasPopularURLs = krConfig->readBoolEntry( "BM Popular URLs", true );
+	bool hasDevices     = krConfig->readBoolEntry( "BM Devices",      true );
+	bool hasLan         = krConfig->readBoolEntry( "BM Lan",          true );
+	bool hasVirtualFS   = krConfig->readBoolEntry( "BM Virtual FS",   true );
+	bool hasJumpback    = krConfig->readBoolEntry( "BM Jumpback",     true );
+	
+	QPopupMenu menu( _mainBookmarkPopup );
+	menu.setCaption( i18n( "Enable special bookmarks" ) );
+	menu.setCheckable( true );
+	
+	menu.insertItem( i18n( "Popular URLs" ), POPULAR_URLS_ID );
+	menu.setItemChecked( POPULAR_URLS_ID, hasPopularURLs );
+	menu.insertItem( i18n( "Devices" ), DEVICES_ID );
+	menu.setItemChecked( DEVICES_ID, hasDevices );
+	menu.insertItem( i18n( "Local Network" ), LAN_ID );
+	menu.setItemChecked( LAN_ID, hasLan );
+	menu.insertItem( i18n( "Virtual Filesystem" ), VIRTUAL_FS_ID );
+	menu.setItemChecked( VIRTUAL_FS_ID, hasVirtualFS );
+	menu.insertItem( i18n( "Jump back" ), JUMP_BACK_ID );
+	menu.setItemChecked( JUMP_BACK_ID, hasJumpback );
+	
+	connect( _mainBookmarkPopup, SIGNAL( highlighted( int ) ), &menu, SLOT( close() ) );
+	connect( _mainBookmarkPopup, SIGNAL( activated( int ) ), &menu, SLOT( close() ) );
+	
+	int result = menu.exec( QCursor::pos() );
+	bool doCloseMain = true;
+	
+	krConfig->setGroup( "Private" );
+	
+	switch( result ) {
+	case POPULAR_URLS_ID:
+		krConfig->writeEntry( "BM Popular URLs", !hasPopularURLs );
+		break;
+	case DEVICES_ID:
+		krConfig->writeEntry( "BM Devices", !hasDevices );
+		break;
+	case LAN_ID:
+		krConfig->writeEntry( "BM Lan", !hasLan );
+		break;
+	case VIRTUAL_FS_ID:
+		krConfig->writeEntry( "BM Virtual FS", !hasVirtualFS );
+		break;
+	case JUMP_BACK_ID:
+		krConfig->writeEntry( "BM Jumpback", !hasJumpback );
+		break;
+	default:
+		doCloseMain = false;
+		break;
+	}
+	
+	menu.close();
+	
+	if( doCloseMain && _mainBookmarkPopup )
+		_mainBookmarkPopup->close();
+}
+
+#define OPEN_ID           100200
+#define OPEN_NEW_TAB_ID   100201
+#define DELETE_ID         100202
+
+void KrBookmarkHandler::rightClicked( QPopupMenu *menu, int /*id*/, KrBookmark * bm ) {
+	QPopupMenu popup( _mainBookmarkPopup );
+	
+	popup.insertItem( krLoader->loadIcon( "fileopen", KIcon::Panel ), i18n( "Open" ), OPEN_ID );
+	popup.insertItem( krLoader->loadIcon( "tab_new", KIcon::Panel ), i18n( "Open in a new tab" ), OPEN_NEW_TAB_ID );
+	popup.insertSeparator();
+	popup.insertItem( krLoader->loadIcon( "editdelete", KIcon::Panel ), i18n( "Delete" ), DELETE_ID );
+	
+	connect( menu, SIGNAL( highlighted( int ) ), &popup, SLOT( close() ) );
+	connect( menu, SIGNAL( activated( int ) ), &popup, SLOT( close() ) );
+	
+	int result = popup.exec( QCursor::pos() );
+	
+	popup.close();
+	if( _mainBookmarkPopup && result >= OPEN_ID && result <= DELETE_ID ) {
+		_mainBookmarkPopup->close();
+	}
+	
+	switch( result ) {
+	case OPEN_ID:
+		SLOTS->refresh( bm->url() );
+		break;
+	case OPEN_NEW_TAB_ID:
+		SLOTS->newTab( bm->url() );
+		break;
+	case DELETE_ID:
+		deleteBookmark( bm );
+		break;
+	}
 }
 
 // used to monitor middle clicks. if mid is found, then the
