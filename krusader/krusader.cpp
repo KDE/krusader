@@ -861,18 +861,24 @@ bool Krusader::queryClose() {
       QWidgetList * list = QApplication::topLevelWidgets();
       for( w = list->first(); w; ) {
         if( w != this && !w->isHidden() ) {
+          bool hid = false;
+
           if( w->inherits( "KDialogBase" ) ) { // KDE is funny and rejects the close event for
             w->hide();                         // playing a fancy animation with the CANCEL button.
-          }                                    // if we hide the widget, KDialogBase accepts the close event
+            hid = true;                        // if we hide the widget, KDialogBase accepts the close event
+          }
           if( w->close() ) {
             delete list;
             list = QApplication::topLevelWidgets();
             w = list->first();
           } else {
-            if( w->isHidden() )
+            if( hid )
               w->show();
-            fprintf( stderr, "Failed to close: %s\n", w->className() );
-            return false;
+
+            if( w->inherits( "QDialog" ) ) {
+              fprintf( stderr, "Failed to close: %s\n", w->className() );
+              return false;
+            }
           }
         }
         w = list->next();
