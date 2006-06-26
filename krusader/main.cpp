@@ -42,6 +42,7 @@
 #include "krusaderapp.h"
 #include "defaults.h"
 #include <dcopclient.h>
+#include <kstartupinfo.h>
 
 static const char *description =
 	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
@@ -179,6 +180,8 @@ int main(int argc, char *argv[]) {
 
       DCOPClient::mainClient()->send( KApplication::kApplication() ->name(), "Krusader-Interface",
                                     "moveToTop()", QByteArray() );
+      KStartupInfo::appStarted();
+
       exit( 0 );
     }
   }
