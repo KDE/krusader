@@ -41,7 +41,6 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <ksystemtray.h>
 #include <kmenubar.h>
 #include <kapplication.h>
-#include <dcopclient.h>
 #include <kcmdlineargs.h>
 #include <kglobal.h>
 #include <klocale.h>
@@ -188,7 +187,7 @@ KAction *Krusader::actShowJSConsole = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Qt::WStyle_ContextHelp),
-status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
+   DCOPObject("Krusader-Interface"), status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
 	// parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
@@ -218,13 +217,6 @@ status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
    if ( message != "" ) {
       KMessageBox::error( krApp, message );
    }
-
-
-   // register with the dcop server
-   DCOPClient* client = KApplication::kApplication() ->dcopClient();
-   if ( !client->attach() )
-      exit( 0 );
-   client->registerAs( KApplication::kApplication() ->name() );
 
    // create an icon loader
    iconLoader = KGlobal::iconLoader();
@@ -325,9 +317,21 @@ status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
    // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
    sysTray->setPixmap( iconLoader->loadIcon( privIcon(), KIcon::Panel, 22 ) );
    sysTray->hide();
+   
+   connect( sysTray, SIGNAL( quitSelected() ), this, SLOT( slotClose() ) );
 
    setCentralWidget( mainView );
+   config->setGroup( "Startup" );
+   bool startToTray = config->readBoolEntry( "Start To Tray", _StartToTray );
    config->setGroup( "Look&Feel" );
+   bool minimizeToTray = config->readBoolEntry( "Minimize To Tray", _MinimizeToTray );
+   bool singleInstanceMode = config->readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
+   
+   startToTray = startToTray && minimizeToTray;
+   
+   if( singleInstanceMode && minimizeToTray )
+     sysTray->show();
+   
 
    // manage our keyboard short-cuts
    //KAcceleratorManager::manage(this,true);
@@ -341,13 +345,17 @@ status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
 		config->setGroup( "Private" );
 		if ( krConfig->readBoolEntry( "Maximized" ) )
 			restoreWindowSize(config);
-		else
-		{
-			// first, resize and move to starting point
+		else {
 			move( oldPos = krConfig->readPointEntry( "Start Position", _StartPosition ) );
-			resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ) );
-			show();
+			resize( oldSize = krConfig->readSizeEntry( "Start Size", _StartSize ));
 		}
+			
+		if( startToTray ) {
+			sysTray->show();
+			hide();
+		}
+		else
+			show();
 	}
    // let the good times rool :)
    updateGUI( true );
@@ -408,7 +416,12 @@ void Krusader::statusBarUpdate( QString& mess ) {
 void Krusader::showEvent ( QShowEvent * ) {
    if( isExiting )
      return;
-   sysTray->hide();
+   config->setGroup( "Look&Feel" );
+   bool showTrayIcon = krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray );
+   bool singleInstanceMode = krConfig->readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
+   
+   if( !showTrayIcon && !singleInstanceMode )
+     sysTray->hide();
    show(); // needed to make sure krusader is removed from
    // the taskbar when minimizing (system tray issue)
 }
@@ -479,7 +492,7 @@ void Krusader::setupActions() {
 	new KToggleAction(i18n("Show Actions Toolbar"), 0, SLOTS, SLOT( toggleActionsToolbar() ),
 		actionCollection(), "toggle actions toolbar");
    actShowStatusBar = KStdAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
-   KStdAction::quit( this, SLOT( close() ), actionCollection(), "std_quit" );
+   KStdAction::quit( this, SLOT( slotClose() ), actionCollection(), "std_quit" );
    KStdAction::configureToolbars( SLOTS, SLOT( configToolbar() ), actionCollection(), "std_config_toolbar" );
    KStdAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
    
@@ -673,7 +686,7 @@ void Krusader::setupActions() {
 	actF9 = new KAction( i18n( "F9 - Rename" ), Key_F9,
                 SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
 	actF10 = new KAction( i18n( "F10 - Quit" ), Key_F10,
-                this, SLOT( close() ) , actionCollection(), "F10_Quit" );
+                this, SLOT( slotClose() ) , actionCollection(), "F10_Quit" );
 	actPopularUrls = new KAction( i18n("Popular URLs"), CTRL+Key_Z,
 					popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
 	actLocationBar = new KAction( i18n("Go to location bar"), CTRL+Key_L,
@@ -807,6 +820,7 @@ void Krusader::saveSettings() {
       config->writeEntry( "Show Cmd Line", actToggleCmdline->isChecked() );
       config->writeEntry( "Show Terminal Emulator", actToggleTerminal->isChecked() );
       config->writeEntry( "Vertical Mode", actVerticalMode->isChecked());
+      config->writeEntry( "Start To Tray", isHidden());
    }
 
    // save popular links
@@ -826,12 +840,43 @@ void Krusader::refreshView() {
    show();
 }
 
+void Krusader::configChanged() {
+   config->setGroup( "Look&Feel" );
+   bool minimizeToTray = config->readBoolEntry( "Minimize To Tray", _MinimizeToTray );
+   bool singleInstanceMode = config->readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
+   
+   if( !isHidden() ) {
+     if( singleInstanceMode && minimizeToTray )
+       sysTray->show();
+     else
+       sysTray->hide();
+   } else {
+     if( minimizeToTray )
+       sysTray->show();
+   }
+}
+
+void Krusader::slotClose() {
+   isExiting = true;
+   close();
+}
+
 bool Krusader::queryClose() {
    if( isStarting )
      return false;
+      
+   if( kapp->sessionSaving() ) // KDE is logging out, accept the close 
+     return true;              // this will also kill the pending jobs
+   
+   krConfig->setGroup( "Look&Feel" );
+   if( !isExiting && krConfig->readBoolEntry( "Single Instance Mode", _SingleInstanceMode ) && 
+                      krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
+     hide();
+     return false;
+   }
 
    bool quit = true;
-   krConfig->setGroup( "Look&Feel" );
+   
    if ( krConfig->readBoolEntry( "Warn On Exit", _WarnOnExit ) ) {
       switch ( KMessageBox::warningYesNo( this,
                                           i18n( "Are you sure you want to quit?" ) ) ) {
@@ -890,13 +935,10 @@ bool Krusader::queryClose() {
       isExiting = true;
       hide();        // hide 
       kapp->deref(); // FIX: krusader exits at closing the viewer when minimized to tray
-
-      if( kapp->sessionSaving() ) // KDE is logging out, accept the close 
-        return true;              // this will also kill the pending jobs
-
       kapp->deref(); // and close the application
       return false;  // don't let the main widget close. It stops the pending copies!
-   } else return false;
+   } else
+      return false;
 }
 
 // the please wait dialog functions
@@ -1112,5 +1154,21 @@ char* Krusader::privIcon() {
       return "krusader_root";
 }
 
+bool Krusader::process(const QCString &fun, const QByteArray &data, QCString &replyType, QByteArray &replyData) {
+   if (fun == "moveToTop()") {
+      moveToTop();
+      return true;
+   } else {
+      fprintf( stderr, "Processing DCOP call failed. Function unknown!\n" );
+      return false;
+   }
+}
+
+void Krusader::moveToTop() {
+   if( isHidden() )
+     show();
+   
+   KWin::forceActiveWindow( winId() );
+}
 
 #include "krusader.moc"

@@ -41,6 +41,7 @@
 #include "krslots.h"
 #include "krusaderapp.h"
 #include "defaults.h"
+#include <dcopclient.h>
 
 static const char *description =
 	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
@@ -163,7 +164,25 @@ int main(int argc, char *argv[]) {
 
   // create the application
   KrusaderApp app;
-  
+
+  {
+    KConfigGroupSaver saver(app.config(), "Look&Feel");
+    bool singleInstanceMode = app.config()->readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
+
+    // register with the dcop server
+    DCOPClient* client = KApplication::kApplication() ->dcopClient();
+    if ( !client->attach() )
+       exit( 0 );
+    QCString regName = client->registerAs( KApplication::kApplication() ->name(), !singleInstanceMode );
+    if( singleInstanceMode && regName != KApplication::kApplication()->name() ) {
+      fprintf( stderr, i18n( "Application already running!\n" ).ascii() );
+
+      DCOPClient::mainClient()->send( KApplication::kApplication() ->name(), "Krusader-Interface",
+                                    "moveToTop()", QByteArray() );
+      exit( 0 );
+    }
+  }
+    
   // splash screen - if the user wants one
   KSplashScreen *splash = 0;
   { // don't remove bracket
@@ -182,10 +201,9 @@ int main(int argc, char *argv[]) {
   // make sure we receive X's focus in/out events
   QObject::connect(&app, SIGNAL(windowActive()), krusader->slot, SLOT(windowActive()));
   QObject::connect(&app, SIGNAL(windowInactive()), krusader->slot, SLOT(windowInactive()));
-	
+
   // and set krusader to be the main widget in it
   app.setMainWidget(krusader);
-  krusader->show();
   
   // hide splashscreen
   if (splash) {

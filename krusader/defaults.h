@@ -46,6 +46,8 @@
 #define _ShowTerminalEmulator false 
 // Remember Position
 #define _RememberPos      true 
+// Start to tray
+#define _StartToTray      false
 // Left Tab Bar
 // Right Tab Bar
 // Left Panel Popup
@@ -111,6 +113,8 @@
 #define _NumericPermissions false
 // Show splashscreen
 #define _ShowSplashScreen true
+// Single instance mode
+#define _SingleInstanceMode false
 
 /////////////////////// [General]
 // Mimetype Magic /////

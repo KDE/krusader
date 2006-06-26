@@ -318,14 +318,15 @@ void KRslots::runKonfigurator(bool firstTime) {
       QPixmapCache::clear();
       
     KrDetailedViewItem::itemHeightChanged(); // needed when icon size / font size changes
-	 KrBriefViewItem::itemHeightChanged();
+    KrBriefViewItem::itemHeightChanged();
 
     MAIN_VIEW->leftMng->slotRecreatePanels();
     MAIN_VIEW->rightMng->slotRecreatePanels();
-	  MAIN_VIEW->fnKeys->updateShortcuts();
-		KrSelectionMode::resetSelectionHandler();
+    MAIN_VIEW->fnKeys->updateShortcuts();
+    KrSelectionMode::resetSelectionHandler();
   }
   
+  krApp->configChanged();
   delete konfigurator;
 }
 

@@ -47,6 +47,7 @@
 #include <qstringlist.h>
 #include <qtextstream.h>
 #include <kdebug.h>
+#include <dcopobject.h>
 
 #ifdef __KJSEMBED__
 class KrJS;
@@ -70,21 +71,25 @@ class QueueManager;
 //static QTextOStream krOut(stdout);
 #define krOut kdDebug(50010)
 
-class Krusader : public KParts::MainWindow {
+class Krusader : public KParts::MainWindow, public DCOPObject {
     Q_OBJECT
   public:
     Krusader();
-    ~Krusader();
+    virtual ~Krusader();
     void refreshView();				 // re-create the main view
+    void configChanged();
     /**
      * This returns a defferent icon if krusader runs with root-privileges
      * @return a character string with the specitif icon-name
      */
     static char* privIcon();
     static QStringList supportedTools(); // find supported tools
-	 void importKeyboardShortcuts(QString filename);
-	 void exportKeyboardShortcuts(QString filename);
-		
+    void importKeyboardShortcuts(QString filename);
+    void exportKeyboardShortcuts(QString filename);
+ 
+    virtual bool process (const QCString &fun, const QByteArray &data, QCString &replyType, QByteArray &replyData);
+    void moveToTop();
+
   public slots:
     // increase the internal progress bar
     void incProgress( KProcess *, char *buffer, int buflen );
@@ -93,6 +98,7 @@ class Krusader : public KParts::MainWindow {
     void saveSettings();
     void savePosition();
     void updateGUI( bool enforce = false );
+    void slotClose();
 
   protected:
     bool queryExit() {
@@ -159,7 +165,7 @@ class Krusader : public KParts::MainWindow {
     static KrJS *js;
     static KAction *actShowJSConsole;
     #endif
-  
+
   signals:
     void changeMessage( QString );
 

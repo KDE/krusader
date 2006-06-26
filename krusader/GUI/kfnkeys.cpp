@@ -93,7 +93,7 @@ KFnKeys::KFnKeys(QWidget *parent, char *name): QWidget(parent,name) {
 			
 		F10=new QPushButton( i18n("F10 Quit ") ,this);
 			QToolTip::add( F10, i18n( "Quit Krusader." ) );
-			connect(F10,SIGNAL(clicked()),krApp, SLOT(close()));
+			connect(F10,SIGNAL(clicked()),krApp, SLOT(slotClose()));
 			SETUP(F10);
 
     // set a tighter box around the keys
