@@ -1,0 +1,19 @@
+[Protocol]
+exec=kio_virt
+protocol=virt
+input=filesystem
+output=filesystem
+listing=Name,Type,Size,Date,AccessDate,Access,Owner,Group,Link
+reading=true
+writing=true
+makedir=true
+deleting=true
+linking=true
+moving=true
+Icon=system
+maxInstances=4
+copyFromFile=true
+#TODO DocPath=kioslave/virt.html
+Class=:local
+#deleteRecursive=true
+#fileNameUsedForCopying=Name
