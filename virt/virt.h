@@ -21,8 +21,7 @@
 #include <sys/types.h>
 #include <qdict.h>
 #include <kconfig.h>
-//#include <kio/slavebase.h>
-#include <kio/forwardingslavebase.h>
+#include <kio/slavebase.h>
 
 class VirtProtocol : public KIO::SlaveBase {
 public:
