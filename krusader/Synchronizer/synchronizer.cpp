@@ -879,7 +879,7 @@ void Synchronizer::synchronizeLoop() {
 
 SynchronizerFileItem * Synchronizer::getNextTask() {
   TaskType task;
-  SynchronizerFileItem * currentTask = lastTask = resultList.current();
+  SynchronizerFileItem * currentTask = resultList.current();
 
   do {
     if( currentTask == 0 )
@@ -901,7 +901,7 @@ SynchronizerFileItem * Synchronizer::getNextTask() {
   }while( true );
 
   resultList.next();
-  return currentTask;
+  return lastTask = currentTask;
 }
 
 
