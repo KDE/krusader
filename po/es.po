@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net\n"
 "POT-Creation-Date: 2006-07-12 16:01+0200\n"
-"PO-Revision-Date: 2006-05-30 17:22-0500\n"
+"PO-Revision-Date: 2006-07-12 11:13-0500\n"
 "Last-Translator: Alejandro Araiza Alvarado <mebrelith@gmail.com>\n"
 "Language-Team: Spanish <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -454,8 +454,7 @@ msgstr "Borrar"
 #: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:440
 #: GUI/actionpropertybase.cpp:445
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr ""
-"Mostrar la <b>acción de usuario</b> solo para estos valores definidos aquí."
+msgstr "Mostrar la <b>acción de usuario</b> solo para estos valores definidos aquí."
 
 #: GUI/actionpropertybase.cpp:439
 msgid "Protocol"
@@ -1286,8 +1285,7 @@ msgstr "Que debe ser copiado"
 
 #: UserAction/expander.cpp:418
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Agregar al contenido actual del portapapeles usando este separador (opcional)"
+msgstr "Agregar al contenido actual del portapapeles usando este separador (opcional)"
 
 #: UserAction/expander.cpp:432
 msgid "Copy a file/folder"
@@ -2019,15 +2017,14 @@ msgid "&Trash"
 msgstr "&Papelera"
 
 #: Panel/panelfunc.cpp:628
-#, fuzzy
 msgid ""
 "_n: Do you really want to delete this virtual item (physical files stay "
 "untouched)?\n"
 "Do you really want to delete these virtual items (physical files stay "
 "untouched)?"
 msgstr ""
-"¿Esta seguro que desea borrar este objeto?\n"
-"¿Esta seguro que desea borrar estos %n objetos?"
+"¿Esta seguro que desea borrar este objeto virtual (los archivos físicos no serán tocados)?\n"
+"¿Esta seguro que desea borrar estos objetos virtuales (los archivos físicos no serán tocados)?"
 
 #: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
 #: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:629
@@ -2043,6 +2040,8 @@ msgid ""
 "<qt>Do you really want to delete these %n items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr ""
+"<qt>¿Esta seguro que desea borrar este archivo <b>físicamente</b> (no solamente el objeto virtual)?</qt>\n"
+"<qt>¿Esta seguro que desea borrar estos %n objetos <b>físicamente</b> (no solamente los objetos virtuales)?</qt>"
 
 #: Panel/panelfunc.cpp:634
 #, c-format
@@ -2138,11 +2137,11 @@ msgstr "%1, tipo de archivo desconocido"
 
 #: Panel/panelfunc.cpp:1127
 msgid "Cannot cut a virtual URL collection to the clipboard!"
-msgstr ""
+msgstr "¡No se puede cortar un URL virtual al portapapeles!"
 
 #: Panel/panelfunc.cpp:1129
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
-msgstr ""
+msgstr "¡No se puede copiar un URL virtual al portapapeles!"
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
 #: Synchronizer/synchronizergui.cpp:1368
@@ -2243,8 +2242,7 @@ msgstr "Aquí usted puede nombrar la colección de archivos"
 
 #: krusader.cpp:312
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"La barra de estado mostrará información básica sobre el fichero seleccionado."
+msgstr "La barra de estado mostrará información básica sobre el fichero seleccionado."
 
 #: krusader.cpp:388
 msgid ""
@@ -2675,8 +2673,7 @@ msgstr "¿Esta seguro de que quiere salir?"
 
 #: KViewer/panelviewer.cpp:33
 msgid "No file selected or selected file can't be displayed."
-msgstr ""
-"No se seleccione un archivo o el archivo seleccionado no puede mostrarse."
+msgstr "No se seleccione un archivo o el archivo seleccionado no puede mostrarse."
 
 #: KViewer/krviewer.cpp:566 KViewer/panelviewer.cpp:151
 msgid "KrViewer is unable to download: "
@@ -2839,9 +2836,8 @@ msgid "Manage Bookmarks"
 msgstr "Administrar marcadores"
 
 #: BookMan/krbookmarkhandler.cpp:482
-#, fuzzy
 msgid "Enable special bookmarks"
-msgstr "Administrar marcadores"
+msgstr "Activar marcadores especiales"
 
 #: BookMan/krbookmark.cpp:14 BookMan/krbookmarkhandler.cpp:487
 msgid "Devices"
@@ -2957,10 +2953,8 @@ msgstr ""
 " Llame a los desarrolladores"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
-msgstr ""
-"MountMan tiene un error interno. Notifíquelo a los desarrolladores. Gracias."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgstr "MountMan tiene un error interno. Notifíquelo a los desarrolladores. Gracias."
 
 #: MountMan/kmountmangui.cpp:331
 msgid "MountMan"
@@ -3026,24 +3020,21 @@ msgstr ""
 
 #: main.cpp:179
 msgid "Application already running!\n"
-msgstr ""
+msgstr "¡La aplicación ya se esta ejecutando!\n"
 
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Las teclas de función permiten realizar operaciones rápidas en archivos."
+msgstr "Las teclas de función permiten realizar operaciones rápidas en archivos."
 
 #: Dialogs/krdialogs.cpp:130
 msgid "Preserve attributes (only for local targets)"
 msgstr "Mantener atributos (solo para objetivos locales)"
 
 #: Dialogs/krdialogs.cpp:137
-#, fuzzy
 msgid "Keep virtual directory structure"
-msgstr "Renombrar archivos, directorios, etc."
+msgstr "Mantener la estructura del directorio virtual"
 
 #: Dialogs/krdialogs.cpp:142
-#, fuzzy
 msgid "Base URL:"
 msgstr "URL:"
 
@@ -3746,13 +3737,11 @@ msgstr "Filtro de archivos:"
 
 #: Synchronizer/synchronizergui.cpp:1079
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"El directorio base a la izquierda usado durante el proceso de sincronización."
+msgstr "El directorio base a la izquierda usado durante el proceso de sincronización."
 
 #: Synchronizer/synchronizergui.cpp:1110
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"El directorio base a la derecha usado durante el proceso de sincronización."
+msgstr "El directorio base a la derecha usado durante el proceso de sincronización."
 
 #: Synchronizer/synchronizergui.cpp:1116
 msgid "Recurse subdirectories"
@@ -4564,8 +4553,7 @@ msgstr "Modo hexadecimal"
 
 #: Konfigurator/kggeneral.cpp:94
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
-"Ver el archivo en modo hexadecimal (se recomienda para archivos binarios)"
+msgstr "Ver el archivo en modo hexadecimal (se recomienda para archivos binarios)"
 
 #: Konfigurator/kggeneral.cpp:100
 msgid "Viewer opens each file in a separate window"
@@ -4612,16 +4600,14 @@ msgid "Searching for tools..."
 msgstr "Buscando herramientas..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Asegúrese de instalar nuevas herramientas en su <code>$PATH</code> (i.e. /"
 "usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj no pudo ser encontrado, se encontró arj, será usado para descomprimir"
+msgstr "unarj no pudo ser encontrado, se encontró arj, será usado para descomprimir"
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -4842,8 +4828,7 @@ msgstr "Siempre organizar directorios por nombre"
 
 #: Konfigurator/kglookfeel.cpp:81
 msgid "Directories are sorted by name, regardless of the sort column."
-msgstr ""
-"Los directorios se organizan por nombre, sin importar que columna se organice"
+msgstr "Los directorios se organizan por nombre, sin importar que columna se organice"
 
 #: Konfigurator/kglookfeel.cpp:82
 msgid "Show splashscreen"
@@ -4855,11 +4840,11 @@ msgstr "Muestra una pantalla de bienvenida al comenzar Krusader."
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Single instance mode"
-msgstr ""
+msgstr "Modo de una sola copia"
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Only one Krusader instance is allowed to run."
-msgstr ""
+msgstr "Solo una copia de Krusader puede ejecutarse."
 
 #: Konfigurator/kglookfeel.cpp:92
 msgid "Single click / Double click Selection:"
@@ -5081,8 +5066,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Botón de activación de la navegación sincronizada"
 
 #: Konfigurator/kglookfeel.cpp:222
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Cada cambio de directorio se realiza tambien en el otro panel."
 
 #: Konfigurator/kglookfeel.cpp:286 Konfigurator/kglookfeel.cpp:303
@@ -5122,15 +5106,14 @@ msgstr ""
 "<b>fstab</b>, se intentara montar con los parametros definidos."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
-msgstr ""
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgstr "No usar el protocolo media de KDE para el botón media ( si esta fallando o no se encuentra presente)"
 
 #: Konfigurator/kgadvanced.cpp:66
 msgid ""
 "Select if your media protocol is buggy (in some older KDE versions), or not "
 "present (no kdebase package installed)."
-msgstr ""
+msgstr "Seleccione si se protocolo media presenta falles (como en algunas versiones anteriores de KDE), o si no se encuentra presente (si no se instaló kdebase)."
 
 #: Konfigurator/kgadvanced.cpp:75
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -5650,13 +5633,13 @@ msgstr ""
 
 #: Konfigurator/kgstartup.cpp:84
 msgid "Start to tray"
-msgstr ""
+msgstr "Iniciar en la bandeja"
 
 #: Konfigurator/kgstartup.cpp:84
 msgid ""
 "Krusader starts to tray (if minimize to tray is set), without showing the "
 "main window"
-msgstr ""
+msgstr "Krusader inicia en la bandeja (si minimizar a bandeja esta activado), sin mostrar la ventana principal"
 
 #: Konfigurator/kgarchives.cpp:55
 msgid "Krusader transparently handles the following types of archives:"
@@ -5735,8 +5718,7 @@ msgid "Test archive before unpacking"
 msgstr "Comprobar archivos después de descomprimir"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Algunos archivos corruptos pueden provocar cuelgues, por ello comprobarlos "
 "es recomendable"
@@ -5746,8 +5728,7 @@ msgid "Searching for packers..."
 msgstr "Buscando compresores..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Asegúrese de instalar nuevos compresores en su <code>$PATH</code> (i.e. /usr/"
 "bin)"
@@ -5789,9 +5770,8 @@ msgid "Action from Clipboard"
 msgstr "Acción del portapapeles"
 
 #: Konfigurator/kguseractions.cpp:174
-#, fuzzy
 msgid "Are you sure that you want to remove all selected actions?"
-msgstr "¿Está seguro que desea borrar la acción seleccionada?"
+msgstr "¡Esta seguro que desea borrar las acciones seleccionadas?"
 
 #: Konfigurator/kguseractions.cpp:175
 msgid "Remove selected actions?"
@@ -6064,8 +6044,7 @@ msgid "Not a valid CRC file!"
 msgstr "¡Archivo CRC no válido!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "La comprobación de validez es imposible sin un archivo CRC bueno. ¿Continuar "
 "la combinación?"
@@ -6105,3 +6084,4 @@ msgstr "¡Error leyendo el archivo %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "¡Error escribiendo el archivo %1!"
+
