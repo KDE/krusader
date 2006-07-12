@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-06-08 19:41+0200\n"
+"POT-Creation-Date: 2006-07-12 16:01+0200\n"
 "PO-Revision-Date: 2006-06-13 15:26+0200\n"
 "Last-Translator: Tomek Grzejszczyk <tgrzej10@gazeta.pl>\n"
 "Language-Team: Polish <krusader-i18n@googlegroups.com>\n"
@@ -21,7 +21,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -107,11 +108,13 @@ msgstr "Dysk ZIP"
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: GUI/mediabutton.cpp:520 Panel/krpopupmenu.cpp:61
+#: BookMan/krbookmarkhandler.cpp:538 GUI/mediabutton.cpp:520
+#: Panel/krpopupmenu.cpp:61
 msgid "Open"
 msgstr "Otwórz"
 
-#: GUI/mediabutton.cpp:521 Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
+#: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:521
+#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
 msgid "Open in a new tab"
 msgstr "Otwórz w nowej karcie"
 
@@ -218,19 +221,19 @@ msgstr ""
 "Jeśli nie posiadasz takiej akcji użytkownika, nazwa ta jest wykorzystywana "
 "przez Krusader-a wewnętrzenie"
 
-#: GUI/actionpropertybase.cpp:380
+#: GUI/actionpropertybase.cpp:386
 msgid "Action Property"
 msgstr "Właściwości Akcji"
 
-#: GUI/actionpropertybase.cpp:381
+#: GUI/actionpropertybase.cpp:387
 msgid "..."
 msgstr "..."
 
-#: GUI/actionpropertybase.cpp:382 RemoteMan/remotemanbase.cpp:142
+#: GUI/actionpropertybase.cpp:388 RemoteMan/remotemanbase.cpp:142
 msgid "Description:"
 msgstr "Opis:"
 
-#: GUI/actionpropertybase.cpp:383 GUI/actionpropertybase.cpp:413
+#: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:419
 msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift-F1</code>."
@@ -238,35 +241,35 @@ msgstr ""
 "Dokłady opis <b>Akcji użytkownika</b> jest wyświetlany tylko w "
 "<i>Konfiguratorze</i> lub przez <code>ShiftF1</code>."
 
-#: GUI/actionpropertybase.cpp:384
+#: GUI/actionpropertybase.cpp:390
 msgid "Command accepts"
 msgstr "Komenda akceptuje"
 
-#: GUI/actionpropertybase.cpp:385
+#: GUI/actionpropertybase.cpp:391
 msgid "Local files only (no URL's)"
 msgstr "Tylko lokalne pliki (nie adresy URL)"
 
-#: GUI/actionpropertybase.cpp:386
+#: GUI/actionpropertybase.cpp:392
 msgid "Substitute the <b>Placeholders</b> with local filenames."
 msgstr "Podmień <b>wyrażenia kluczowe</b> na nazwy lokalnych plików."
 
-#: GUI/actionpropertybase.cpp:387
+#: GUI/actionpropertybase.cpp:393
 msgid "URL's (remote and local)"
 msgstr "Adresy URL (zdalne i lokalne)"
 
-#: GUI/actionpropertybase.cpp:388
+#: GUI/actionpropertybase.cpp:394
 msgid "Substitute the <b>Placeholders</b> with valid URL's."
 msgstr "Podmień <b>wyrażenia kluczowe</b> na poprawne adresy URL."
 
-#: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:391
+#: GUI/actionpropertybase.cpp:395 GUI/actionpropertybase.cpp:397
 msgid "The title displayed in the <b>Usermenu</b>."
 msgstr "Tytuł wyświetlany w <b>menu akcji użytkownika</b>."
 
-#: GUI/actionpropertybase.cpp:390
+#: GUI/actionpropertybase.cpp:396
 msgid "Title:"
 msgstr "Tytuł:"
 
-#: GUI/actionpropertybase.cpp:392
+#: GUI/actionpropertybase.cpp:398
 msgid ""
 "Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
@@ -277,7 +280,7 @@ msgstr ""
 "b>: <i>Tytuł</i> który jest pokazywany w <b>Menu akcji użytkownika</b> może "
 "być ustawiony poniżej."
 
-#: GUI/actionpropertybase.cpp:393 GUI/actionpropertybase.cpp:410
+#: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:416
 msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
@@ -286,11 +289,11 @@ msgstr ""
 "orientacji. Wybierz istniejącą <i>Kategorię</i> lub utwórz nową, wpisując "
 "jej nazwę."
 
-#: GUI/actionpropertybase.cpp:394
+#: GUI/actionpropertybase.cpp:400
 msgid "Icon"
 msgstr "Ikona"
 
-#: GUI/actionpropertybase.cpp:395
+#: GUI/actionpropertybase.cpp:401
 msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
@@ -298,11 +301,11 @@ msgstr ""
 "Każda <b>akcja użytkownika</b> może mieć swoją własną ikonę. Pojawi się ona "
 "na początku tytułu w <b>Menu akcji użytkownika</b>."
 
-#: GUI/actionpropertybase.cpp:396
+#: GUI/actionpropertybase.cpp:402
 msgid "Identifier:"
 msgstr "Identyfikator:"
 
-#: GUI/actionpropertybase.cpp:397
+#: GUI/actionpropertybase.cpp:403
 msgid ""
 "<p>Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.</p><p><b>Note</b>: "
@@ -313,11 +316,11 @@ msgstr ""
 "p><p><b>Adnotacja</b>: <i>Tytuł</i>, który jest pokazywany w <b>menu</b> "
 "może być ustawiony poniżej.</p>"
 
-#: GUI/actionpropertybase.cpp:398
+#: GUI/actionpropertybase.cpp:404
 msgid "Command:"
 msgstr "Polecenie:"
 
-#: GUI/actionpropertybase.cpp:399
+#: GUI/actionpropertybase.cpp:405
 msgid ""
 "<p>The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -333,7 +336,7 @@ msgstr ""
 "(\"Selected\")%</li></code></ul>\n"
 "Aby nauczyć się więcej o składni, zajrzyj do podręcznika.</p>"
 
-#: GUI/actionpropertybase.cpp:401 GUI/actionpropertybase.cpp:404
+#: GUI/actionpropertybase.cpp:407 GUI/actionpropertybase.cpp:410
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
@@ -341,7 +344,7 @@ msgstr ""
 "<i>Podpowiedź</i> jest pokazywana, kiedy kursor myszy jest przytrzymany nad "
 "wpisem paska narzędziowego <b>Akcji użytkownika</b>."
 
-#: GUI/actionpropertybase.cpp:402 GUI/actionpropertybase.cpp:415
+#: GUI/actionpropertybase.cpp:408 GUI/actionpropertybase.cpp:421
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
@@ -349,11 +352,11 @@ msgstr ""
 "<i>Katalog roboczy</i> definiuje w którym katalogu <i>komenda</i> będzie "
 "wykonana."
 
-#: GUI/actionpropertybase.cpp:403
+#: GUI/actionpropertybase.cpp:409
 msgid "Tooltip:"
 msgstr "Podpowiedź:"
 
-#: GUI/actionpropertybase.cpp:406
+#: GUI/actionpropertybase.cpp:412
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -369,107 +372,108 @@ msgstr ""
 "(\"Selected\")%</li></code></ul>\n"
 "Aby nauczyć się więcej o składni, zajrzyj do podręcznika."
 
-#: GUI/actionpropertybase.cpp:409
+#: GUI/actionpropertybase.cpp:415
 msgid "Category:"
 msgstr "Kategoria:"
 
-#: Filter/generalfilter.cpp:127 GUI/actionpropertybase.cpp:411
+#: Filter/generalfilter.cpp:127 GUI/actionpropertybase.cpp:417
 msgid "&Add"
 msgstr "Dod&aj"
 
-#: GUI/actionpropertybase.cpp:412
+#: GUI/actionpropertybase.cpp:418
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr "Dodaj <b>Wyrażenia kluczowe</b> dla wybranych plików w panelu."
 
-#: GUI/actionpropertybase.cpp:414
+#: GUI/actionpropertybase.cpp:420
 msgid "Workdir:"
 msgstr "Katalog roboczy:"
 
-#: GUI/actionpropertybase.cpp:416
+#: GUI/actionpropertybase.cpp:422
 msgid "Default shortcut:"
 msgstr "Domyślny skrót:"
 
-#: GUI/actionpropertybase.cpp:417
+#: GUI/actionpropertybase.cpp:423
 msgid "None"
 msgstr "Brak"
 
-#: GUI/actionpropertybase.cpp:418
+#: GUI/actionpropertybase.cpp:424
 msgid "Set a default keyboard shortcut."
 msgstr "Ustaw domyślny skrót klawiaturowy."
 
-#: GUI/actionpropertybase.cpp:419
+#: GUI/actionpropertybase.cpp:425
 msgid "Execution mode"
 msgstr "Tryb wykonywania"
 
-#: GUI/actionpropertybase.cpp:420
+#: GUI/actionpropertybase.cpp:426
 msgid "Collect output"
 msgstr "Gromadź dane wyjściowe"
 
-#: GUI/actionpropertybase.cpp:421
+#: GUI/actionpropertybase.cpp:427
 msgid "Collect the output of the executed program."
 msgstr "Gromadzi dane wyjściowe wykonywanego programu."
 
-#: GUI/actionpropertybase.cpp:422
+#: GUI/actionpropertybase.cpp:428
 msgid "Separate standard error"
 msgstr "Oddziel wyjście błędów"
 
-#: GUI/actionpropertybase.cpp:423
+#: GUI/actionpropertybase.cpp:429
 msgid "Separate standard out and standard error in the output collection."
 msgstr "Oddziela standardowe wyjście od standardowego wyjścia błędów."
 
-#: GUI/actionpropertybase.cpp:424
+#: GUI/actionpropertybase.cpp:430
 msgid "Normal"
 msgstr "Normalny"
 
-#: GUI/actionpropertybase.cpp:425
+#: GUI/actionpropertybase.cpp:431
 msgid "Run in terminal"
 msgstr "Uruchom w terminalu"
 
-#: GUI/actionpropertybase.cpp:426
+#: GUI/actionpropertybase.cpp:432
 msgid "Run the command in a terminal."
 msgstr "Uruchamia polecenie w terminalu."
 
-#: GUI/actionpropertybase.cpp:427
+#: GUI/actionpropertybase.cpp:433
 msgid "Basic Properties"
 msgstr "Właściwości podstawowe"
 
-#: GUI/actionpropertybase.cpp:428
+#: GUI/actionpropertybase.cpp:434
 msgid "The Useraction is only available for"
 msgstr "Ta Akcja użytkownika jest dostępna tylko dla"
 
-#: GUI/actionpropertybase.cpp:429 GUI/actionpropertybase.cpp:435
-#: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:435 GUI/actionpropertybase.cpp:441
+#: GUI/actionpropertybase.cpp:446 GUI/actionpropertybase.cpp:451
 msgid "&New..."
 msgstr "&Nowy..."
 
-#: GUI/actionpropertybase.cpp:430 GUI/actionpropertybase.cpp:436
-#: GUI/actionpropertybase.cpp:441 GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:436 GUI/actionpropertybase.cpp:442
+#: GUI/actionpropertybase.cpp:447 GUI/actionpropertybase.cpp:452
 msgid "Chan&ge..."
 msgstr "&Zmień..."
 
-#: GUI/actionpropertybase.cpp:431 GUI/actionpropertybase.cpp:437
-#: GUI/actionpropertybase.cpp:442 GUI/actionpropertybase.cpp:447
+#: GUI/actionpropertybase.cpp:437 GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:448 GUI/actionpropertybase.cpp:453
 msgid "De&lete"
 msgstr "&Usuń"
 
-#: GUI/actionpropertybase.cpp:432 GUI/actionpropertybase.cpp:434
-#: GUI/actionpropertybase.cpp:439
+#: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:440
+#: GUI/actionpropertybase.cpp:445
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr "Pokaż <b>Akcję użytkownika</b> tylko dla typów plików zdefiniowanych tutaj."
+msgstr ""
+"Pokaż <b>Akcję użytkownika</b> tylko dla typów plików zdefiniowanych tutaj."
 
-#: GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:439
 msgid "Protocol"
 msgstr "Protokół"
 
-#: GUI/actionpropertybase.cpp:438
+#: GUI/actionpropertybase.cpp:444
 msgid "Path"
 msgstr "Ścieżka"
 
-#: GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:449
 msgid "Mime-type"
 msgstr "Typy plików"
 
-#: GUI/actionpropertybase.cpp:444
+#: GUI/actionpropertybase.cpp:450
 msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
@@ -477,27 +481,27 @@ msgstr ""
 "Pokaż <b>Akcję użytkownika</b> tylko dla nazw plików zdefiniowanych tutaj. "
 "Znaki maskujące <code>?</code> i <code>*</code> mogą być użyte."
 
-#: GUI/actionpropertybase.cpp:448
+#: GUI/actionpropertybase.cpp:454
 msgid "Filename"
 msgstr "Nazwa pliku"
 
-#: GUI/actionpropertybase.cpp:449
+#: GUI/actionpropertybase.cpp:455
 msgid "Confirm each program call separately"
 msgstr "Potwierdzaj każde wywołanie programu osobno"
 
-#: GUI/actionpropertybase.cpp:450
+#: GUI/actionpropertybase.cpp:456
 msgid "Allows to tweak the <i>Command</i> before it is executed."
 msgstr "To pozwala ci na dostrojenie <i>Komendy</i> przed jej wywołaniem."
 
-#: GUI/actionpropertybase.cpp:451
+#: GUI/actionpropertybase.cpp:457
 msgid "Run as different user:"
 msgstr "Uruchom jako inny użytkownik:"
 
-#: GUI/actionpropertybase.cpp:452 GUI/actionpropertybase.cpp:453
+#: GUI/actionpropertybase.cpp:458 GUI/actionpropertybase.cpp:459
 msgid "Execute the <i>Command</i> under a different user-id."
 msgstr "Uruchom tę <i>komendę</i> jako inny użytkownik."
 
-#: GUI/actionpropertybase.cpp:454
+#: GUI/actionpropertybase.cpp:460
 msgid "Advanced Properties"
 msgstr "Właściwości zaawansowane"
 
@@ -737,13 +741,13 @@ msgstr "Przepakowywanie..."
 msgid "Directory %1 does not exist!"
 msgstr "Katalog %1 nie istnieje!"
 
-#: BookMan/krbookmarkhandler.cpp:149 Konfigurator/kgcolors.cpp:492
+#: BookMan/krbookmarkhandler.cpp:172 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
 #: Synchronizer/synchronizerdirlist.cpp:92 VFS/krarchandler.cpp:200
 #: VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274 VFS/krarchandler.cpp:332
 #: VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:156 krusader.cpp:732
+#: VFS/virt_vfs.cpp:173 krusader.cpp:745
 msgid "Error"
 msgstr "Błąd"
 
@@ -767,7 +771,7 @@ msgstr ""
 "Nie możesz kopiować plików bezpośrednio do katalogu 'virt:/'.\n"
 "Możesz stworzyć podkatalog i wtedy kopiować pliki do niego."
 
-#: VFS/virt_vfs.cpp:156
+#: VFS/virt_vfs.cpp:173
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr "Tworzenie nowych katalogów jest dozwolone jedynie w katalogu 'virt:/'."
 
@@ -941,7 +945,7 @@ msgstr "Zarządca &profili"
 msgid "&Load"
 msgstr "&Wczytaj"
 
-#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:734
+#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:793
 msgid "&Overwrite"
 msgstr "&Nadpisz"
 
@@ -1524,7 +1528,7 @@ msgstr "/"
 
 #: Panel/listpanel.cpp:252 Panel/panelpopup.cpp:122 Panel/panelpopup.cpp:123
 #: Panel/panelpopup.cpp:125 Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:130
-#: krusader.cpp:598
+#: krusader.cpp:611
 msgid "Root"
 msgstr "Katalog główny"
 
@@ -1542,7 +1546,8 @@ msgstr " Odznaczanie plików "
 
 #: Panel/listpanel.cpp:640
 msgid "No space information on non-local filesystems"
-msgstr "Brak informacji o ilości wolnego miejsca na nielokalnych systemach plików"
+msgstr ""
+"Brak informacji o ilości wolnego miejsca na nielokalnych systemach plików"
 
 #: Panel/listpanel.cpp:647
 msgid "No space information on [dev]"
@@ -1821,9 +1826,9 @@ msgstr "Przenieś"
 msgid "Move to trash"
 msgstr "Przenieś do Śmietnika"
 
-#: Dialogs/krmaskchoice.cpp:110 Dialogs/kurllistrequester.cpp:149
-#: DiskUsage/diskusage.cpp:759 Konfigurator/kgcolors.cpp:447
-#: Panel/krpopupmenu.cpp:145
+#: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
+#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:759
+#: Konfigurator/kgcolors.cpp:447 Panel/krpopupmenu.cpp:145
 msgid "Delete"
 msgstr "Usuń"
 
@@ -1887,80 +1892,80 @@ msgstr "Czy jesteś pewien, że chcesz usunąć"
 msgid " ? Once shred, the file is gone forever !!!"
 msgstr " ? Raz zniszczony, plik jest stracony na zawsze !!!"
 
-#: KViewer/krviewer.cpp:215 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:356
-#: krslots.cpp:451
+#: KViewer/krviewer.cpp:215 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:357
+#: krslots.cpp:452
 msgid "Can't open "
 msgstr "Nie można otworzyć "
 
-#: Panel/panelfunc.cpp:246
+#: Panel/panelfunc.cpp:247
 msgid "You can edit links only on local file systems"
 msgstr "Możesz edytować dowiązania tylko na lokalnym systemie plików"
 
-#: Panel/panelfunc.cpp:257
+#: Panel/panelfunc.cpp:258
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Ten plik nie jest dowiązaniem, więc nie można go przekierować."
 
-#: Panel/panelfunc.cpp:264
+#: Panel/panelfunc.cpp:265
 msgid "Link Redirection"
 msgstr "Przekierowanie Linkiem"
 
-#: Panel/panelfunc.cpp:265
+#: Panel/panelfunc.cpp:266
 msgid "Please enter the new link destination:"
 msgstr "Proszę wprowadzić miejsce docelowe nowego dowiązania:"
 
-#: Panel/panelfunc.cpp:272
+#: Panel/panelfunc.cpp:273
 msgid "Can't remove old link: "
 msgstr "Nie można usunąć starego dowiązania: "
 
-#: Panel/panelfunc.cpp:277 Panel/panelfunc.cpp:317
+#: Panel/panelfunc.cpp:278 Panel/panelfunc.cpp:318
 msgid "Failed to create a new link: "
 msgstr "Nie można utworzyć nowego dowiązania: "
 
-#: Panel/panelfunc.cpp:284
+#: Panel/panelfunc.cpp:285
 msgid "You can create links only on local file systems"
 msgstr "Możesz tworzyć dowiązania tylko na lokalnym systemie plików"
 
-#: Panel/panelfunc.cpp:293
+#: Panel/panelfunc.cpp:294
 msgid "New link"
 msgstr "Nowe dowiązanie symboliczne"
 
-#: Panel/panelfunc.cpp:293
+#: Panel/panelfunc.cpp:294
 msgid "Create a new link to: "
 msgstr "Utwórz nowe dowiązanie do: "
 
-#: Panel/panelfunc.cpp:301 Panel/panelfunc.cpp:478
+#: Panel/panelfunc.cpp:302 Panel/panelfunc.cpp:488
 msgid "A directory or a file with this name already exists."
 msgstr "Katalog lub plik o tej nazwie już istnieje."
 
-#: Panel/panelfunc.cpp:313
+#: Panel/panelfunc.cpp:314
 msgid "Failed to create a new symlink: "
 msgstr "Nie można utworzyć nowego dowiązania symbolicznego: "
 
-#: Panel/panelfunc.cpp:314 Panel/panelfunc.cpp:318
+#: Panel/panelfunc.cpp:315 Panel/panelfunc.cpp:319
 msgid " To: "
 msgstr " do: "
 
-#: Panel/panelfunc.cpp:332
+#: Panel/panelfunc.cpp:333
 msgid "No permissions to view this file."
 msgstr "Nie masz praw do czytania tego pliku."
 
-#: Panel/panelfunc.cpp:367
+#: Panel/panelfunc.cpp:368
 msgid "You can't edit a directory"
 msgstr "Nie możesz edytować katalogu"
 
-#: Panel/panelfunc.cpp:372
+#: Panel/panelfunc.cpp:373
 msgid "No permissions to edit this file."
 msgstr "Nie masz praw do edytowania tego pliku."
 
-#: Panel/panelfunc.cpp:391
+#: Panel/panelfunc.cpp:393
 msgid "Moving into archive is disabled"
 msgstr "Przenoszenie do archiwum jest wyłączone"
 
-#: Panel/panelfunc.cpp:401
+#: Panel/panelfunc.cpp:403
 msgid "Move %1 to:"
 msgstr "Przenieś %1 do:"
 
-#: Panel/panelfunc.cpp:403
+#: Panel/panelfunc.cpp:405
 #, c-format
 msgid ""
 "_n: Move %n file to:\n"
@@ -1970,23 +1975,23 @@ msgstr ""
 "Przenieś %n pliki do:\n"
 "Przenieś %n plików do:"
 
-#: Panel/panelfunc.cpp:439
+#: Panel/panelfunc.cpp:449
 msgid "You can't move files to this file system"
 msgstr "Nie możesz przenieść plików do tego systemu plików"
 
-#: Panel/panelfunc.cpp:465
+#: Panel/panelfunc.cpp:475
 msgid "New directory"
 msgstr "Nowy katalog"
 
-#: Panel/panelfunc.cpp:465
+#: Panel/panelfunc.cpp:475
 msgid "Directory's name:"
 msgstr "Nazwa katalogu:"
 
-#: Panel/panelfunc.cpp:513
+#: Panel/panelfunc.cpp:558
 msgid "Copy %1 to:"
 msgstr "Kopiuj %1 do:"
 
-#: Panel/panelfunc.cpp:515
+#: Panel/panelfunc.cpp:560
 #, c-format
 msgid ""
 "_n: Copy %n file to:\n"
@@ -1996,15 +2001,15 @@ msgstr ""
 "Skopiuj %n pliki do:\n"
 "Skopiuj %n plików do:"
 
-#: Panel/panelfunc.cpp:543
+#: Panel/panelfunc.cpp:596
 msgid "You can't copy files to this file system"
 msgstr "Nie możesz skopiować plików do tego systemu plików"
 
-#: Panel/panelfunc.cpp:554
+#: Panel/panelfunc.cpp:607
 msgid "You do not have write permission to this directory"
 msgstr "Nie masz praw do zapisu w tym katalogu"
 
-#: Panel/panelfunc.cpp:572
+#: Panel/panelfunc.cpp:625
 #, c-format
 msgid ""
 "_n: Do you really want to move this item to the trash?\n"
@@ -2014,11 +2019,38 @@ msgstr ""
 "Czy na pewno chcesz przenieść te %n pozycje do kosza?\n"
 "Czy na pewno chcesz przenieść te %n pozycji do kosza?"
 
-#: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:573
+#: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:626
 msgid "&Trash"
 msgstr "Śmie&tnik"
 
-#: Panel/panelfunc.cpp:575
+#: Panel/panelfunc.cpp:628
+#, fuzzy
+msgid ""
+"_n: Do you really want to delete this virtual item (physical files stay "
+"untouched)?\n"
+"Do you really want to delete these virtual items (physical files stay "
+"untouched)?"
+msgstr ""
+"Czy na pewno chcesz usunąć tę pozycję?\n"
+"Czy na pewno chcesz usunąć te %n pozycje?\n"
+"Czy na pewno chcesz usunąć te %n pozycji?"
+
+#: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
+#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:629
+#: Panel/panelfunc.cpp:632 Panel/panelfunc.cpp:635
+msgid "&Delete"
+msgstr "&Usuń"
+
+#: Panel/panelfunc.cpp:631
+#, c-format
+msgid ""
+"_n: <qt>Do you really want to delete this item <b>physically</b> (not just "
+"removing it from the virtual items)?</qt>\n"
+"<qt>Do you really want to delete these %n items <b>physically</b> (not just "
+"removing them from the virtual items)?</qt>"
+msgstr ""
+
+#: Panel/panelfunc.cpp:634
 #, c-format
 msgid ""
 "_n: Do you really want to delete this item?\n"
@@ -2028,21 +2060,16 @@ msgstr ""
 "Czy na pewno chcesz usunąć te %n pozycje?\n"
 "Czy na pewno chcesz usunąć te %n pozycji?"
 
-#: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
-#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:576
-msgid "&Delete"
-msgstr "&Usuń"
-
 #: Dialogs/checksumdlg.cpp:545 DiskUsage/diskusage.cpp:609
-#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:582 krusader.cpp:730
+#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:641 krusader.cpp:743
 msgid "Warning"
 msgstr "Uwaga"
 
-#: Panel/panelfunc.cpp:600
+#: Panel/panelfunc.cpp:659
 msgid "Directory "
 msgstr "Katalog "
 
-#: Panel/panelfunc.cpp:600
+#: Panel/panelfunc.cpp:659
 msgid ""
 " is not empty!\n"
 "Skip this one or Delete All?"
@@ -2050,27 +2077,27 @@ msgstr ""
 " nie jest pusty !\n"
 "Pominąć go czy usunąć wszystko ?"
 
-#: Panel/panelfunc.cpp:601
+#: Panel/panelfunc.cpp:660
 msgid "&Skip"
 msgstr "&Pomiń"
 
-#: Panel/panelfunc.cpp:601
+#: Panel/panelfunc.cpp:660
 msgid "&Delete All"
 msgstr "U&suń wszystko"
 
-#: Panel/panelfunc.cpp:715
+#: Panel/panelfunc.cpp:774
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Nie można pakować plików w wirtualnym miejscu!"
 
-#: Panel/panelfunc.cpp:727
+#: Panel/panelfunc.cpp:786
 msgid "The Archive "
 msgstr "Archiwum "
 
-#: Panel/panelfunc.cpp:728
+#: Panel/panelfunc.cpp:787
 msgid " already exists. Do you want to overwrite the archive ?\n"
 msgstr " już istnieje. Czy chcesz nadpisać archiwum?\n"
 
-#: Panel/panelfunc.cpp:730
+#: Panel/panelfunc.cpp:789
 msgid ""
 "(ZIP will replace identically named entries in the zip archive or add "
 "entries for new names)"
@@ -2078,32 +2105,32 @@ msgstr ""
 "(ZIP zastąpi identycznie nazwane wpisy w archiwum zip, lub doda wpisy dla "
 "nowych nazw)"
 
-#: Panel/panelfunc.cpp:739
+#: Panel/panelfunc.cpp:798
 msgid "Counting files to pack"
 msgstr "Zliczanie ilości plików do spakowania"
 
-#: Panel/panelfunc.cpp:799 Panel/panelfunc.cpp:860 krslots.cpp:191
+#: Panel/panelfunc.cpp:858 Panel/panelfunc.cpp:919 krslots.cpp:191
 #: krslots.cpp:197
 msgid "Krusader is unable to download: "
 msgstr "Krusader nie może pobrać: "
 
-#: Panel/panelfunc.cpp:811
+#: Panel/panelfunc.cpp:870
 msgid "%1, unknown archive type."
 msgstr "%1, nieznany typ archiwum."
 
-#: Panel/panelfunc.cpp:819
+#: Panel/panelfunc.cpp:878
 msgid "%1, test passed."
 msgstr "%1, test zakończony pomyślnie."
 
-#: Panel/panelfunc.cpp:821
+#: Panel/panelfunc.cpp:880
 msgid "%1, test failed!"
 msgstr "%1, test nie powiódł się!"
 
-#: Panel/panelfunc.cpp:837
+#: Panel/panelfunc.cpp:896
 msgid "Unpack %1 to:"
 msgstr "Rozpakuj %1 do:"
 
-#: Panel/panelfunc.cpp:839
+#: Panel/panelfunc.cpp:898
 #, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
@@ -2113,9 +2140,17 @@ msgstr ""
 "Rozpakuj %n pliki do:\n"
 "Rozpakuj %n plików do:"
 
-#: Panel/panelfunc.cpp:885
+#: Panel/panelfunc.cpp:944
 msgid "%1, unknown archive type"
 msgstr "%1, nieznany typ archiwum"
+
+#: Panel/panelfunc.cpp:1127
+msgid "Cannot cut a virtual URL collection to the clipboard!"
+msgstr ""
+
+#: Panel/panelfunc.cpp:1129
+msgid "Cannot copy a virtual URL collection onto the clipboard!"
+msgstr ""
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
 #: Synchronizer/synchronizergui.cpp:1368
@@ -2156,7 +2191,8 @@ msgstr "Wyniki"
 
 #: Locate/locate.cpp:195
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr "Nie można uruchomić 'locate'! Sprawdź stronę 'Zależności' w konfiguratorze."
+msgstr ""
+"Nie można uruchomić 'locate'! Sprawdź stronę 'Zależności' w konfiguratorze."
 
 #: Locate/locate.cpp:232
 msgid ""
@@ -2212,13 +2248,13 @@ msgstr "Nazwa zapytania"
 msgid "Here you can name the file collection"
 msgstr "Tutaj możesz nazwać kolekcję plików"
 
-#: krusader.cpp:320
+#: krusader.cpp:312
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
 "Pasek stanu pokaże podstawowe informacje o pliku będącym pod wskaźnikiem "
 "myszy."
 
-#: krusader.cpp:380
+#: krusader.cpp:388
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
 "configuration to default values.\n"
@@ -2230,7 +2266,7 @@ msgstr ""
 "Twoje zakładki i skróty klawiaturowe pozostaną nietkniętne.\n"
 "Krusader uruchomi Konfiguratora."
 
-#: krusader.cpp:392
+#: krusader.cpp:400
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
 "will now be checked for external applications. Then the Konfigurator will be "
@@ -2241,406 +2277,407 @@ msgstr ""
 "zostanie uruchomiony Konfigurator, gdzie będziesz mógł dostosować Krusadera "
 "do swoich potrzeb.</p></qt>"
 
-#: krusader.cpp:453
+#: krusader.cpp:466
 msgid "F3 View Dialog"
 msgstr "F3 Podgląd"
 
-#: krusader.cpp:456
+#: krusader.cpp:469
 msgid "Tab: switch panel"
 msgstr "Tab: zmienia panel"
 
-#: krusader.cpp:477
+#: krusader.cpp:490
 msgid "&Reload"
 msgstr "P&rzeładuj"
 
-#: krusader.cpp:479
+#: krusader.cpp:492
 msgid "Show Actions Toolbar"
 msgstr "Pokaż pasek narzędziowy Akcji"
 
-#: krusader.cpp:491
+#: krusader.cpp:504
 msgid "Show &FN Keys Bar"
 msgstr "Pokaż pasek klawiszy &funkcyjnych"
 
-#: krusader.cpp:494
+#: krusader.cpp:507
 msgid "Show &Command Line"
 msgstr "Pokaż linię pole&ceń"
 
-#: krusader.cpp:497
+#: krusader.cpp:510
 msgid "Show Terminal &Emulator"
 msgstr "Pokaż &emulator terminala"
 
-#: krusader.cpp:500
+#: krusader.cpp:513
 msgid "Show &Hidden Files"
 msgstr "Pokazuj ukryte pl&iki"
 
-#: krusader.cpp:502
+#: krusader.cpp:515
 msgid "S&wap Panels"
 msgstr "Z&amień zawartość paneli"
 
-#: krusader.cpp:504
+#: krusader.cpp:517
 msgid "Sw&ap Sides"
 msgstr "Za&mień panele stronami"
 
-#: krusader.cpp:510
+#: krusader.cpp:523
 msgid "popup cmdline"
 msgstr "pokaż linię komend"
 
-#: DiskUsage/diskusage.cpp:766 krusader.cpp:513
+#: DiskUsage/diskusage.cpp:766 krusader.cpp:526
 msgid "Up one directory"
 msgstr "Katalog wyżej"
 
-#: krusader.cpp:514
+#: krusader.cpp:527
 msgid "&Edit New File..."
 msgstr "&Edytuj nowy plik..."
 
-#: krusader.cpp:515
+#: krusader.cpp:528
 msgid "Start &Root Mode Krusader..."
 msgstr "U&ruchom Krusadera w trybie administratora..."
 
-#: krusader.cpp:517
+#: krusader.cpp:530
 msgid "T&est Archive..."
 msgstr "T&estuj archiwum(a)..."
 
-#: krusader.cpp:521
+#: krusader.cpp:534
 msgid "New Net &Connection..."
 msgstr "&Nowe połączenie sieciowe..."
 
-#: krusader.cpp:523
+#: krusader.cpp:536
 msgid "Pro&files"
 msgstr "Pro&file"
 
-#: krusader.cpp:525
+#: krusader.cpp:538
 msgid "Calculate &Occupied Space..."
 msgstr "&Oblicz zajmowane miejsce..."
 
-#: krusader.cpp:527
+#: krusader.cpp:540
 msgid "Create Checksum..."
 msgstr "Oblicz sumy kontrolne..."
 
-#: krusader.cpp:529
+#: krusader.cpp:542
 msgid "Verify Checksum..."
 msgstr "Sprawdź sumy kontrolne..."
 
-#: krusader.cpp:531
+#: krusader.cpp:544
 msgid "&Properties..."
 msgstr "&Właściwości..."
 
-#: krusader.cpp:533
+#: krusader.cpp:546
 msgid "Pac&k..."
 msgstr "Pa&kuj..."
 
-#: krusader.cpp:535
+#: krusader.cpp:548
 msgid "&Unpack..."
 msgstr "Rozpak&uj..."
 
-#: krusader.cpp:537
+#: krusader.cpp:550
 msgid "Sp&lit File..."
 msgstr "Podzie&l plik..."
 
-#: krusader.cpp:539
+#: krusader.cpp:552
 msgid "Com&bine Files..."
 msgstr "P&ołącz pliki..."
 
-#: krusader.cpp:541
+#: krusader.cpp:554
 msgid "Select &Group"
 msgstr "Zaznacz &grupę"
 
-#: krusader.cpp:543
+#: krusader.cpp:556
 msgid "&Select All"
 msgstr "Zaznacz w&szystko"
 
-#: krusader.cpp:545
+#: krusader.cpp:558
 msgid "U&nselect All"
 msgstr "Odz&nacz wszystko"
 
-#: krusader.cpp:547
+#: krusader.cpp:560
 msgid "&Compare Directories"
 msgstr "&Porównaj katalogi"
 
-#: krusader.cpp:549
+#: krusader.cpp:562
 msgid "&Mark Newer And Single"
 msgstr "&Zaznacz nowsze i pojedyncze"
 
-#: krusader.cpp:551
+#: krusader.cpp:564
 msgid "Mark &Newer"
 msgstr "Zaznacz &nowsze"
 
-#: krusader.cpp:553
+#: krusader.cpp:566
 msgid "Mark &Single"
 msgstr "Zaznacz &pojedyncze"
 
-#: krusader.cpp:555
+#: krusader.cpp:568
 msgid "Mark Different &And Single"
 msgstr "Zaznacz &różne i pojedyncze"
 
-#: krusader.cpp:557
+#: krusader.cpp:570
 msgid "Mark &Different"
 msgstr "Zaznacz &różne"
 
-#: krusader.cpp:566
+#: krusader.cpp:579
 msgid "&Terminal..."
 msgstr "&Terminal..."
 
-#: krusader.cpp:568
+#: krusader.cpp:581
 msgid "Disconnect &From Net"
 msgstr "&Rozłącz z siecią"
 
-#: krusader.cpp:571 krusader.cpp:576
+#: krusader.cpp:584 krusader.cpp:589
 msgid "&MountMan..."
 msgstr "&MountMan..."
 
-#: krusader.cpp:580
+#: krusader.cpp:593
 msgid "&Search..."
 msgstr "&Szukaj..."
 
-#: krusader.cpp:582
+#: krusader.cpp:595
 msgid "&Locate..."
 msgstr "Szukaj (&locate)..."
 
-#: krusader.cpp:584
+#: krusader.cpp:597
 msgid "Synchronize &Directories..."
 msgstr "Synchronizuj &katalogi..."
 
-#: krusader.cpp:586
+#: krusader.cpp:599
 msgid "S&ynchron directory changes"
 msgstr "S&ynchronizuj zmiany katalogu"
 
-#: krusader.cpp:588
+#: krusader.cpp:601
 msgid "D&isk Usage..."
 msgstr "Miejsce na d&ysku..."
 
-#: krusader.cpp:590
+#: krusader.cpp:603
 msgid "&Invert Selection"
 msgstr "Odwróć zaznaczen&ie"
 
-#: krusader.cpp:592
+#: krusader.cpp:605
 msgid "&Unselect Group"
 msgstr "Odznacz gr&upę"
 
-#: krusader.cpp:594
+#: krusader.cpp:607
 msgid "Configure &Krusader..."
 msgstr "Konfiguruj &Krusadera..."
 
-#: krusader.cpp:596
+#: krusader.cpp:609
 msgid "Back"
 msgstr "Wróć"
 
-#: krusader.cpp:600
+#: krusader.cpp:613
 msgid "Save &Position"
 msgstr "Zachowaj &pozycję"
 
-#: krusader.cpp:602
+#: krusader.cpp:615
 msgid "&All Files"
 msgstr "&Wszystkie pliki"
 
-#: krusader.cpp:606
+#: krusader.cpp:619
 msgid "&Custom"
 msgstr "&Dostosowany"
 
-#: krusader.cpp:608
+#: krusader.cpp:621
 msgid "Compare b&y Content..."
 msgstr "Porównaj &zawartość..."
 
-#: krusader.cpp:610
+#: krusader.cpp:623
 msgid "Multi &Rename..."
 msgstr "Masowa &zmiana nazw..."
 
-#: krusader.cpp:612
+#: krusader.cpp:625
 msgid "Right-click menu"
 msgstr "Menu prawego przycisku myszki"
 
-#: krusader.cpp:614
+#: krusader.cpp:627
 msgid "Right bookmarks"
 msgstr "Zakładki po prawej"
 
-#: krusader.cpp:616
+#: krusader.cpp:629
 msgid "Left bookmarks"
 msgstr "Zakładki po lewej"
 
 #: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:29 krusader.cpp:618
+#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:631
 msgid "Bookmarks"
 msgstr "Zakładki"
 
-#: BookMan/krbookmarkhandler.cpp:327 krusader.cpp:620
+#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:633
 msgid "Bookmark Current"
 msgstr "Dodaj zakładkę"
 
-#: krusader.cpp:622
+#: krusader.cpp:635
 msgid "History"
 msgstr "Historia"
 
-#: krusader.cpp:624
+#: krusader.cpp:637
 msgid "Sync Panels"
 msgstr "Synchronizuj Panele"
 
-#: krusader.cpp:626
+#: krusader.cpp:639
 msgid "Left history"
 msgstr "Historia po lewej"
 
-#: krusader.cpp:628
+#: krusader.cpp:641
 msgid "Right history"
 msgstr "Historia po prawej"
 
-#: BookMan/krbookmark.cpp:12 krusader.cpp:630
+#: BookMan/krbookmark.cpp:12 krusader.cpp:643
 msgid "Media"
 msgstr "Media"
 
-#: krusader.cpp:632
+#: krusader.cpp:645
 msgid "Left media"
 msgstr "Lewy panel zasoby"
 
-#: krusader.cpp:634
+#: krusader.cpp:647
 msgid "Right media"
 msgstr "Prawy panel zasoby"
 
-#: krusader.cpp:636
+#: krusader.cpp:649
 msgid "New symlink"
 msgstr "Nowe dowiązanie symboliczne"
 
-#: krusader.cpp:638
+#: krusader.cpp:651
 msgid "Toggle Popup Panel"
 msgstr "Przełącz wyskakujący panel"
 
-#: krusader.cpp:640
+#: krusader.cpp:653
 msgid "Vertical Mode"
 msgstr "Tryb poziomy"
 
-#: krusader.cpp:642
+#: krusader.cpp:655
 msgid "New tab"
 msgstr "Nowa zakładka"
 
-#: krusader.cpp:644
+#: krusader.cpp:657
 msgid "Duplicate tab"
 msgstr "Powiel zakładkę"
 
-#: krusader.cpp:646
+#: krusader.cpp:659
 msgid "Close tab"
 msgstr "Zamknij zakładkę"
 
-#: krusader.cpp:648
+#: krusader.cpp:661
 msgid "Next tab"
 msgstr "Następna zakładka"
 
-#: krusader.cpp:650
+#: krusader.cpp:663
 msgid "Previous tab"
 msgstr "Poprzednia zakładka"
 
-#: UserMenu/usermenu.cpp:51 krusader.cpp:652
+#: UserMenu/usermenu.cpp:51 krusader.cpp:665
 msgid "User Menu"
 msgstr "Menu akcji użytkownika"
 
-#: krusader.cpp:654
+#: krusader.cpp:667
 msgid "Manage user actions..."
 msgstr "Zarządzaj akcjami użytkownika..."
 
-#: krusader.cpp:656
+#: krusader.cpp:669
 msgid "Select Remote Charset"
 msgstr "Wybierz zdalne kodowanie znaków"
 
-#: krusader.cpp:659
+#: krusader.cpp:672
 msgid "F2 - Open a terminal"
 msgstr "F2 - Terminal"
 
-#: krusader.cpp:661
+#: krusader.cpp:674
 msgid "F3 - View a file"
 msgstr "F3 - Podgl."
 
-#: krusader.cpp:663
+#: krusader.cpp:676
 msgid "F4 - Edit a file"
 msgstr "F4 - Edycja"
 
-#: krusader.cpp:665
+#: krusader.cpp:678
 msgid "F5 - Copy"
 msgstr "F5 - Kopiuj"
 
-#: krusader.cpp:667
+#: krusader.cpp:680
 msgid "F6 - Move"
 msgstr "F6 - Przenieś"
 
-#: krusader.cpp:669
+#: krusader.cpp:682
 msgid "F7 - Mkdir"
 msgstr "F7 - Utwórz kat."
 
-#: krusader.cpp:671
+#: krusader.cpp:684
 msgid "F8 - Delete"
 msgstr "F8 - Usuń"
 
-#: krusader.cpp:673
+#: krusader.cpp:686
 msgid "F9 - Rename"
 msgstr "F9 - Zm. nazwę"
 
-#: krusader.cpp:675
+#: krusader.cpp:688
 msgid "F10 - Quit"
 msgstr "F10 - Zakończ"
 
-#: BookMan/krbookmarkhandler.cpp:286 krusader.cpp:677
+#: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
+#: krusader.cpp:690
 msgid "Popular URLs"
 msgstr "Popularne adresy URL"
 
-#: krusader.cpp:679
+#: krusader.cpp:692
 msgid "Go to location bar"
 msgstr "Skocz do belki adresu"
 
-#: krusader.cpp:681
+#: BookMan/krbookmarkhandler.cpp:493 krusader.cpp:694
 msgid "Jump back"
 msgstr "Skocz wstecz"
 
-#: krusader.cpp:683
+#: krusader.cpp:696
 msgid "Set jump back point here"
 msgstr "Ustaw punkt skoku wstecz tutaj"
 
-#: krusader.cpp:687
+#: krusader.cpp:700
 msgid "Select files using a filter"
 msgstr "Zaznacz pliki używając filtru"
 
-#: krusader.cpp:688
+#: krusader.cpp:701
 msgid "Select all files in the current directory"
 msgstr "Zaznacz wszystkie pliki w bieżącym katalogu"
 
-#: krusader.cpp:689
+#: krusader.cpp:702
 msgid "Un-select all selected files"
 msgstr "Odznacz wszystkie wybrane pliki"
 
-#: krusader.cpp:690
+#: krusader.cpp:703
 msgid "Setup Krusader the way you like it"
 msgstr "Konfiguruj Krusadera tak jak lubisz"
 
-#: krusader.cpp:691
+#: krusader.cpp:704
 msgid "Back to the place you came from"
 msgstr "Wróć do miejsca, w którym zacząłeś"
 
-#: krusader.cpp:692
+#: krusader.cpp:705
 msgid "ROOT (/)"
 msgstr "Katalog główny (/)"
 
-#: krusader.cpp:693
+#: krusader.cpp:706
 msgid "Search for files"
 msgstr "Szukaj plików"
 
-#: krusader.cpp:699
+#: krusader.cpp:712
 msgid "JavaScript console"
 msgstr "Konsola JavaScript"
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:729
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:742
 msgid "File "
 msgstr "Plik "
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:729
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:742
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr " już istnieje. Jesteś pewien że chcesz go nadpisać?"
 
 #: Dialogs/checksumdlg.cpp:545 Konfigurator/kgcolors.cpp:507
 #: Konfigurator/kguseractions.cpp:224 Konfigurator/kguseractions.cpp:233
-#: krusader.cpp:730
+#: krusader.cpp:743
 msgid "Overwrite"
 msgstr "Nadpisz"
 
-#: Konfigurator/kgcolors.cpp:509 krusader.cpp:732
+#: Konfigurator/kgcolors.cpp:509 krusader.cpp:745
 msgid "Error: unable to write to file"
 msgstr "Błąd: nie można pisać do pliku"
 
-#: krusader.cpp:837
+#: krusader.cpp:882
 msgid "Are you sure you want to quit?"
 msgstr "Czy na pewno chcesz zakończyć?"
 
@@ -2781,42 +2818,47 @@ msgstr "Zamknij bieżącą zakładkę"
 msgid "BookMan II"
 msgstr "Zakładki II"
 
-#: BookMan/krbookmarkhandler.cpp:149
+#: BookMan/krbookmarkhandler.cpp:172
 msgid "Unable to write to "
 msgstr "Nie można pisać do "
 
-#: BookMan/krbookmarkhandler.cpp:157
+#: BookMan/krbookmarkhandler.cpp:180
 msgid " instead of "
 msgstr " zamiast "
 
-#: BookMan/krbookmarkhandler.cpp:162 BookMan/krbookmarkhandler.cpp:168
-#: BookMan/krbookmarkhandler.cpp:199
+#: BookMan/krbookmarkhandler.cpp:185 BookMan/krbookmarkhandler.cpp:191
+#: BookMan/krbookmarkhandler.cpp:222
 msgid "missing tag "
 msgstr "brakuje znacznika "
 
-#: BookMan/krbookmarkhandler.cpp:238
+#: BookMan/krbookmarkhandler.cpp:261
 msgid " doesn't seem to be a valid Bookmarks file"
 msgstr " nie wygląda na poprawny plik Zakładek"
 
-#: BookMan/krbookmarkhandler.cpp:245
+#: BookMan/krbookmarkhandler.cpp:268
 msgid "Error reading bookmarks file: "
 msgstr "Błąd podczas odczytu pliku zakładek: "
 
-#: BookMan/krbookmarkhandler.cpp:329
+#: BookMan/krbookmarkhandler.cpp:402
 msgid "Manage Bookmarks"
 msgstr "Zarządzaj Zakładkami"
 
-#: BookMan/krbookmark.cpp:14
+#: BookMan/krbookmarkhandler.cpp:482
+#, fuzzy
+msgid "Enable special bookmarks"
+msgstr "Zarządzaj Zakładkami"
+
+#: BookMan/krbookmark.cpp:14 BookMan/krbookmarkhandler.cpp:487
 msgid "Devices"
 msgstr "Urządzenia"
 
-#: BookMan/krbookmark.cpp:16
-msgid "Virtual Filesystem"
-msgstr "Wirtualny systemy plików"
-
-#: BookMan/krbookmark.cpp:17
+#: BookMan/krbookmark.cpp:17 BookMan/krbookmarkhandler.cpp:489
 msgid "Local Network"
 msgstr "Sieć lokalna"
+
+#: BookMan/krbookmark.cpp:16 BookMan/krbookmarkhandler.cpp:491
+msgid "Virtual Filesystem"
+msgstr "Wirtualny systemy plików"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2922,7 +2964,8 @@ msgstr ""
 "Daj znać autorom"
 
 #: MountMan/kmountmangui.cpp:326
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "Wewnętrzny błąd MountMana. Proszę powiadomić twórców. Dziękuję."
 
 #: MountMan/kmountmangui.cpp:331
@@ -2945,7 +2988,7 @@ msgid ""
 "Your emails"
 msgstr "mgarski@post.pl,ljan@wp.pl,jm_sz@poczta.onet.pl"
 
-#: main.cpp:46
+#: main.cpp:48
 msgid ""
 "Krusader\n"
 "Twin-Panel File Manager for KDE"
@@ -2953,27 +2996,27 @@ msgstr ""
 "Krusader\n"
 "Menedżer plików dla KDE"
 
-#: main.cpp:51
+#: main.cpp:53
 msgid "Start left panel at <path>"
 msgstr "Lewy panel startuje w <path>"
 
-#: main.cpp:52
+#: main.cpp:54
 msgid "Start right panel at <path>"
 msgstr "Prawy panel startuje w <path>"
 
-#: main.cpp:53
+#: main.cpp:55
 msgid "Load this profile on startup"
 msgstr "Załaduj ten profil na starcie"
 
-#: main.cpp:92
+#: main.cpp:94
 msgid "Krusader"
 msgstr "Krusader"
 
-#: main.cpp:93
+#: main.cpp:95
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - UPRAWNIENIA ADMINISTRATORA"
 
-#: main.cpp:96
+#: main.cpp:98
 msgid ""
 "Feedback\n"
 "http://www.krusader.org/phpBB/\n"
@@ -2987,71 +3030,86 @@ msgstr ""
 "IRC\n"
 "serwer: irc.freenode.net, kanał: #krusader"
 
+#: main.cpp:179
+msgid "Application already running!\n"
+msgstr ""
+
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
-msgstr "Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
+msgstr ""
+"Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
 
-#: Dialogs/krdialogs.cpp:103
+#: Dialogs/krdialogs.cpp:130
 msgid "Preserve attributes (only for local targets)"
 msgstr "Zachowaj atrybuty (tylko dla obiektów lokalnych)"
 
-#: Dialogs/krdialogs.cpp:198 Konfigurator/kglookfeel.cpp:111
+#: Dialogs/krdialogs.cpp:137
+#, fuzzy
+msgid "Keep virtual directory structure"
+msgstr "Zmienia nazwę pliku, katalogu, itd."
+
+#: Dialogs/krdialogs.cpp:142
+#, fuzzy
+msgid "Base URL:"
+msgstr "Adres URL:"
+
+#: Dialogs/krdialogs.cpp:266 Konfigurator/kglookfeel.cpp:112
 msgid "Custom Selection Mode"
 msgstr "Własny Tryb Wybierania"
 
-#: Dialogs/krdialogs.cpp:201
+#: Dialogs/krdialogs.cpp:269
 msgid "Based on KDE's selection mode"
 msgstr "Tryb wyboru bazowany na KDE"
 
-#: Dialogs/krdialogs.cpp:202
+#: Dialogs/krdialogs.cpp:270
 msgid "Left mouse button selects"
 msgstr "Lewy przycisk myszy wybiera"
 
-#: Dialogs/krdialogs.cpp:203
+#: Dialogs/krdialogs.cpp:271
 msgid "Left mouse button preserves selection"
 msgstr "Lewy przycisk myszy zachowuje wybranie"
 
-#: Dialogs/krdialogs.cpp:204
+#: Dialogs/krdialogs.cpp:272
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr "Shift/Ctrl-Lewy przycisk przycisk myszy wybiera"
 
-#: Dialogs/krdialogs.cpp:205
+#: Dialogs/krdialogs.cpp:273
 msgid "Right mouse button selects"
 msgstr "Prawy przycisk myszy wybiera"
 
-#: Dialogs/krdialogs.cpp:206
+#: Dialogs/krdialogs.cpp:274
 msgid "Right mouse button preserves selection"
 msgstr "Prawy przycisk myszy zachowuje wybranie"
 
-#: Dialogs/krdialogs.cpp:207
+#: Dialogs/krdialogs.cpp:275
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr "Shift/Ctrl-Prawy przycisk myszy wybiera"
 
-#: Dialogs/krdialogs.cpp:208
+#: Dialogs/krdialogs.cpp:276
 msgid "Spacebar moves down"
 msgstr "Spacja przechodzi w dół"
 
-#: Dialogs/krdialogs.cpp:209
+#: Dialogs/krdialogs.cpp:277
 msgid "Spacebar calculates disk space"
 msgstr "Spacja oblicza miejsce na dysku"
 
-#: Dialogs/krdialogs.cpp:210
+#: Dialogs/krdialogs.cpp:278
 msgid "Insert moves down"
 msgstr "Insert przechodzi w dół"
 
-#: Dialogs/krdialogs.cpp:211
+#: Dialogs/krdialogs.cpp:279
 msgid "Right clicking pops context menu immediately"
 msgstr "Prawe kliknięcie pokazuje natychmiast menu kontekstowe"
 
-#: Dialogs/krdialogs.cpp:213
+#: Dialogs/krdialogs.cpp:281
 msgid "If checked, use a mode based on KDE's style."
 msgstr "Zaznaczenie tego utworzy tryb bazowany na stylu KDE."
 
-#: Dialogs/krdialogs.cpp:214
+#: Dialogs/krdialogs.cpp:282
 msgid "If checked, left clicking an item will select it."
 msgstr "Jeśli zaznaczone, lewe kliknięcie na elemencie wybierze go."
 
-#: Dialogs/krdialogs.cpp:215
+#: Dialogs/krdialogs.cpp:283
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
 "other, already selected items."
@@ -3059,7 +3117,7 @@ msgstr ""
 "Jeśli zaznaczony, lewe kliknięcie na elemencie wybierze go, ale nie odznaczy "
 "innych, już wybranych elementów."
 
-#: Dialogs/krdialogs.cpp:217
+#: Dialogs/krdialogs.cpp:285
 msgid ""
 "If checked, shift/ctrl left clicking will select items. \n"
 "Note: This is meaningless if 'Left Button Selects' is checked."
@@ -3067,11 +3125,11 @@ msgstr ""
 "Jeśli zaznaczony, shift/ctrl lewe kliknięcie będzie wybierać elementy. "
 "Zauważ: To jest mniej istotne, gdy 'Lewy przycisk wybiera' jest zaznaczone."
 
-#: Dialogs/krdialogs.cpp:219
+#: Dialogs/krdialogs.cpp:287
 msgid "If checked, right clicking an item will select it."
 msgstr "Jeśli zaznaczone, prawe kliknięcie na elemencie wybierze go."
 
-#: Dialogs/krdialogs.cpp:220
+#: Dialogs/krdialogs.cpp:288
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
 "other, already selected items."
@@ -3079,7 +3137,7 @@ msgstr ""
 "Jeśli zaznaczone, prawe kliknięcie na elemencie wybierze go, ale nie\n"
 "odznaczy innych, już wybranych elementów."
 
-#: Dialogs/krdialogs.cpp:222
+#: Dialogs/krdialogs.cpp:290
 msgid ""
 "If checked, shift/ctrl right clicking will select items. \n"
 "Note: This is meaningless if 'Right Button Selects' is checked."
@@ -3087,7 +3145,7 @@ msgstr ""
 "Jeśli zaznaczone, shift/ctrl prawe kliknięcie będzie wybierać elementy. "
 "Zauważ: To jest mniej istotne, gdy 'Prawy przycisk wybiera' jest zaznaczone."
 
-#: Dialogs/krdialogs.cpp:224
+#: Dialogs/krdialogs.cpp:292
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
 "down. \n"
@@ -3097,7 +3155,7 @@ msgstr ""
 "dół. W przeciwnym wypadku bieżący element jest wybrany, ale pozostaje\n"
 "bieżącym."
 
-#: Dialogs/krdialogs.cpp:226
+#: Dialogs/krdialogs.cpp:294
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
 "(except from selecting the folder) \n"
@@ -3107,7 +3165,7 @@ msgstr ""
 "folder, obliczone zostanie (dodatkowo, oprócz wybrania katalogu) miejsce\n"
 "jakie zajmuje ten katalog (rekursywnie)."
 
-#: Dialogs/krdialogs.cpp:228
+#: Dialogs/krdialogs.cpp:296
 msgid ""
 "If checked, pressing INSERT will select the current item, and move down to "
 "the next item. \n"
@@ -3117,7 +3175,7 @@ msgstr ""
 "dół, do następnego elementu. W przeciwnym wypadku bieżący element nie jest\n"
 "zmieniany."
 
-#: Dialogs/krdialogs.cpp:230
+#: Dialogs/krdialogs.cpp:298
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
 "context menu. \n"
@@ -3325,7 +3383,8 @@ msgstr "&Anuluj"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr "Zapisane 'Popularne adresy URL' są niepoprawne. Lista zostanie wyczyszczona"
+msgstr ""
+"Zapisane 'Popularne adresy URL' są niepoprawne. Lista zostanie wyczyszczona"
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -3775,7 +3834,8 @@ msgstr "Pokaż opcje"
 
 #: Synchronizer/synchronizergui.cpp:1159
 msgid "Show files marked to <i>Copy from left to right</i>."
-msgstr "Wyświetla pliki zaznaczone do <i>skopiowania z lewej strony na prawą</i>."
+msgstr ""
+"Wyświetla pliki zaznaczone do <i>skopiowania z lewej strony na prawą</i>."
 
 #: Synchronizer/synchronizergui.cpp:1167
 msgid "Show files considered to be identical."
@@ -3787,7 +3847,8 @@ msgstr "Wyświetla pliki wykluczone."
 
 #: Synchronizer/synchronizergui.cpp:1183
 msgid "Show files marked to <i>Copy from right to left</i>"
-msgstr "Wyświetla pliki zaznaczone do <i>skopiowania z prawej strony na lewą</i>"
+msgstr ""
+"Wyświetla pliki zaznaczone do <i>skopiowania z prawej strony na lewą</i>"
 
 #: Synchronizer/synchronizergui.cpp:1191
 msgid "Show files marked to delete."
@@ -4126,7 +4187,7 @@ msgstr "Tylko zaznaczone pliki"
 msgid "Cannot open %1!"
 msgstr "Nie można otworzyć %1!"
 
-#: Konfigurator/kglookfeel.cpp:121 paneltabbar.cpp:35
+#: Konfigurator/kglookfeel.cpp:122 paneltabbar.cpp:35
 msgid "Panel"
 msgstr "Panel"
 
@@ -4566,7 +4627,8 @@ msgid "Searching for tools..."
 msgstr "Poszukiwanie narzędzi..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Upewnij się czy zainstalowałeś nowe narzędzia w twojej ścieżce <code>$PATH</"
 "code> (np. /usr/bin)"
@@ -4810,15 +4872,23 @@ msgstr "Pokaż ekran powitalny"
 msgid "Display a splashscreen when starting krusader."
 msgstr "Wyświetla ekran powitalny podczas startu Krusadera."
 
-#: Konfigurator/kglookfeel.cpp:91
+#: Konfigurator/kglookfeel.cpp:83
+msgid "Single instance mode"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:83
+msgid "Only one Krusader instance is allowed to run."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:92
 msgid "Single click / Double click Selection:"
 msgstr "Pojedyncze kliknięcie / Podwójne kliknięcie wybiera:"
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 msgid "Double-click selects (classic)"
 msgstr "Podwójne kliknięcie wybiera (klasycznie)"
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
@@ -4826,11 +4896,11 @@ msgstr ""
 "Pojedyncze kliknięcie na pliku wybierze go, a podwójne kliknięcie otworzy "
 "plik lub wejdzie do katalogu."
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:98
 msgid "Obey KDE's global selection policy"
 msgstr "Przestrzegaj globalnych zasad wybierania KDE"
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:98
 msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
 "Mouse</i></p>"
@@ -4838,15 +4908,15 @@ msgstr ""
 "<p>Użyj ustawień KDE:</p><p><i>Centrum Sterowania KDE->Urządzenia "
 "peryferyjne->Mysz</i></p>"
 
-#: Konfigurator/kglookfeel.cpp:104
+#: Konfigurator/kglookfeel.cpp:105
 msgid "Mouse Selection Mode:"
 msgstr "Tryb wyboru myszką:"
 
-#: Konfigurator/kglookfeel.cpp:108
+#: Konfigurator/kglookfeel.cpp:109
 msgid "Krusader Mode"
 msgstr "Tryb Krusadera"
 
-#: Konfigurator/kglookfeel.cpp:108
+#: Konfigurator/kglookfeel.cpp:109
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
 "key and click the left mouse button. Right-click menu is invoked using a "
@@ -4856,11 +4926,11 @@ msgstr ""
 "przytrzymaj klawisz Ctrl i kliknij lewym przyciskiem myszy. Menu prawego "
 "kliknięcia jest wywoływane krótkim kliknięciem na prawym przycisku myszy."
 
-#: Konfigurator/kglookfeel.cpp:109
+#: Konfigurator/kglookfeel.cpp:110
 msgid "Konqueror Mode"
 msgstr "Tryb Konquerora"
 
-#: Konfigurator/kglookfeel.cpp:109
+#: Konfigurator/kglookfeel.cpp:110
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
 "multiple files. Right-click menu is invoked using a short click on the right "
@@ -4870,11 +4940,11 @@ msgstr ""
 "wiele plików naraz. Menu kontekstowe jest wywoływane krótkim kliknięciem na "
 "prawym przycisku myszy."
 
-#: Konfigurator/kglookfeel.cpp:110
+#: Konfigurator/kglookfeel.cpp:111
 msgid "Total-Commander Mode"
 msgstr "Tryb Total-Commandera"
 
-#: Konfigurator/kglookfeel.cpp:110
+#: Konfigurator/kglookfeel.cpp:111
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button selects multiple "
@@ -4886,155 +4956,157 @@ msgstr ""
 "plików naraz, a menu kontekstowe jest wywoływane przez kliknięcie na prawym "
 "przycisku myszy i przytrzymanie go."
 
-#: Konfigurator/kglookfeel.cpp:111
+#: Konfigurator/kglookfeel.cpp:112
 msgid "Design your own selection mode!"
 msgstr "Zaprojektuj swój własny tryb wybierania!"
 
-#: Konfigurator/kglookfeel.cpp:126
+#: Konfigurator/kglookfeel.cpp:127
 msgid "Panel settings"
 msgstr "Ustawienia panelu"
 
-#: Konfigurator/kglookfeel.cpp:130
+#: Konfigurator/kglookfeel.cpp:131
 msgid "Panel font:"
 msgstr "Czcionka panelu:"
 
-#: Konfigurator/kglookfeel.cpp:136
+#: Konfigurator/kglookfeel.cpp:137
 msgid "Filelist icon size:"
 msgstr "Rozmiar ikon listy plików:"
 
-#: Konfigurator/kglookfeel.cpp:139
+#: Konfigurator/kglookfeel.cpp:140
 msgid "16"
 msgstr "16"
 
-#: Konfigurator/kglookfeel.cpp:140
+#: Konfigurator/kglookfeel.cpp:141
 msgid "22"
 msgstr "22"
 
-#: Konfigurator/kglookfeel.cpp:141
+#: Konfigurator/kglookfeel.cpp:142
 msgid "32"
 msgstr "32"
 
-#: Konfigurator/kglookfeel.cpp:142
+#: Konfigurator/kglookfeel.cpp:143
 msgid "48"
 msgstr "48"
 
-#: Konfigurator/kglookfeel.cpp:153
+#: Konfigurator/kglookfeel.cpp:154
 msgid "Use icons in the filenames"
 msgstr "Używaj ikon przy nazwach plików"
 
-#: Konfigurator/kglookfeel.cpp:153
+#: Konfigurator/kglookfeel.cpp:154
 msgid "Show the icons for filenames and folders."
 msgstr "Pokaż ikony dla plików i folderów."
 
-#: Konfigurator/kglookfeel.cpp:154
+#: Konfigurator/kglookfeel.cpp:155
 msgid "Use human-readable file size"
 msgstr "Użyj czytelnej formy rozmiarów plików"
 
-#: Konfigurator/kglookfeel.cpp:154
+#: Konfigurator/kglookfeel.cpp:155
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "Rozmiary plików są wyświetlane w B, KB, MB i GB, nie tylko w bajtach."
 
-#: Konfigurator/kglookfeel.cpp:164
+#: Konfigurator/kglookfeel.cpp:165
 msgid "Toolbar"
 msgstr "Pasek narzędzi"
 
-#: Konfigurator/kglookfeel.cpp:174
+#: Konfigurator/kglookfeel.cpp:175
 msgid "Keybindings"
 msgstr "Skróty klawiaturowe"
 
-#: Konfigurator/kglookfeel.cpp:183
+#: Konfigurator/kglookfeel.cpp:184
 msgid "Import shortcuts"
 msgstr "Importuj skróty"
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:186
 msgid "Load a keybinding profile, e.g., total_commander.keymap"
 msgstr "Załaduj profil skrótów klawiaturowych, np. total_commander.keymap"
 
-#: Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:187
 msgid "Export shortcuts"
 msgstr "Eksportuj skróty"
 
-#: Konfigurator/kglookfeel.cpp:188
+#: Konfigurator/kglookfeel.cpp:189
 msgid "Save current keybindings in a keymap file."
 msgstr "Zapisz bieżące skróty klawiaturowe w pliku mapy klawiszy."
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Panel Toolbar"
 msgstr "Pasek narzędzi panelu"
 
-#: Konfigurator/kglookfeel.cpp:203
+#: Konfigurator/kglookfeel.cpp:204
 msgid "Show Panel Toolbar"
 msgstr "Pokaż Pasek narzędzi panelu"
 
-#: Konfigurator/kglookfeel.cpp:203
+#: Konfigurator/kglookfeel.cpp:204
 msgid "The panel toolbar will be visible."
 msgstr "Pasek narzędzi będzie widoczny po starcie."
 
-#: Konfigurator/kglookfeel.cpp:209
+#: Konfigurator/kglookfeel.cpp:210
 msgid "Visible Panel Toolbar buttons"
 msgstr "Widoczne przyciski paska narzędziowego panelu"
 
-#: Konfigurator/kglookfeel.cpp:215
+#: Konfigurator/kglookfeel.cpp:216
 msgid "Clear location bar button"
 msgstr "Przycisk czyszczenia paska adresu"
 
-#: Konfigurator/kglookfeel.cpp:215
+#: Konfigurator/kglookfeel.cpp:216
 msgid "Clears the location bar"
 msgstr "Czyści pasek adresu"
 
-#: Konfigurator/kglookfeel.cpp:216
+#: Konfigurator/kglookfeel.cpp:217
 msgid "Open button"
 msgstr "Otwórz przycisk"
 
-#: Konfigurator/kglookfeel.cpp:216
+#: Konfigurator/kglookfeel.cpp:217
 msgid "Opens the directory browser."
 msgstr "Otwiera przeglądarkę katalogu."
 
-#: Konfigurator/kglookfeel.cpp:217
+#: Konfigurator/kglookfeel.cpp:218
 msgid "Equal button (=)"
 msgstr "Przycisk równości (=)"
 
-#: Konfigurator/kglookfeel.cpp:217
+#: Konfigurator/kglookfeel.cpp:218
 msgid "Changes the panel directory to the other panel directory."
 msgstr "Zmienia katalog panelu na katalog z drugiego panelu."
 
-#: Konfigurator/kglookfeel.cpp:218
+#: Konfigurator/kglookfeel.cpp:219
 msgid "Up button (..)"
 msgstr "Przycisk 'w górę' (..)"
 
-#: Konfigurator/kglookfeel.cpp:218
+#: Konfigurator/kglookfeel.cpp:219
 msgid "Changes the panel directory to the parent directory."
 msgstr "Zmienia katalog panelu na nadrzędny."
 
-#: Konfigurator/kglookfeel.cpp:219
+#: Konfigurator/kglookfeel.cpp:220
 msgid "Home button (~)"
 msgstr "Przycisk katalogu domowego (~)"
 
-#: Konfigurator/kglookfeel.cpp:219
+#: Konfigurator/kglookfeel.cpp:220
 msgid "Changes the panel directory to the home directory."
 msgstr "Zmienia katalog panelu na katalog domowy."
 
-#: Konfigurator/kglookfeel.cpp:220
+#: Konfigurator/kglookfeel.cpp:221
 msgid "Root button (/)"
 msgstr "Katalog "
 
-#: Konfigurator/kglookfeel.cpp:220
+#: Konfigurator/kglookfeel.cpp:221
 msgid "Changes the panel directory to the root directory."
 msgstr "Zmienia katalog panelu na katalog główny."
 
-#: Konfigurator/kglookfeel.cpp:221
+#: Konfigurator/kglookfeel.cpp:222
 msgid "Toggle-button for sync-browsing"
 msgstr "Przycisk przełączający przeglądanie synchroniczne"
 
-#: Konfigurator/kglookfeel.cpp:221
-msgid "Each directory change in the panel is also performed in the other panel."
-msgstr "Każda zmiana katalogu w panelu jest dokonywana również w drugim panelu."
+#: Konfigurator/kglookfeel.cpp:222
+msgid ""
+"Each directory change in the panel is also performed in the other panel."
+msgstr ""
+"Każda zmiana katalogu w panelu jest dokonywana również w drugim panelu."
 
-#: Konfigurator/kglookfeel.cpp:285 Konfigurator/kglookfeel.cpp:302
+#: Konfigurator/kglookfeel.cpp:286 Konfigurator/kglookfeel.cpp:303
 msgid "Select a shortcuts file"
 msgstr "Wybierz plik skrótów"
 
-#: Konfigurator/kglookfeel.cpp:292
+#: Konfigurator/kglookfeel.cpp:293
 msgid ""
 "The following information was attached to the keymap. Are you sure you want "
 "to import this keymap ?"
@@ -5067,14 +5139,19 @@ msgstr ""
 "montowania w <b>fstab</b>, próbuje go montować ze zdefiniowanymi parametrami."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
-msgstr "Nie używaj protokołu \"media\" KDE dla przycisku urządzeń peryferyjnych (jeśli go brak, bądź nie działa poprawnie)"
+msgid ""
+"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgstr ""
+"Nie używaj protokołu \"media\" KDE dla przycisku urządzeń peryferyjnych "
+"(jeśli go brak, bądź nie działa poprawnie)"
 
 #: Konfigurator/kgadvanced.cpp:66
 msgid ""
 "Select if your media protocol is buggy (in some older KDE versions), or not "
 "present (no kdebase package installed)."
-msgstr "Wybierz jeśli Twój protokół \"media\" ma błędy (niektóre starsze wersje KDE) lub nie jest dostępny (pakiet kdebase nie jest zainstalowany)."
+msgstr ""
+"Wybierz jeśli Twój protokół \"media\" ma błędy (niektóre starsze wersje KDE) "
+"lub nie jest dostępny (pakiet kdebase nie jest zainstalowany)."
 
 #: Konfigurator/kgadvanced.cpp:75
 msgid "MountMan won't (un)mount the following mount-points:"
@@ -5591,6 +5668,16 @@ msgstr ""
 "<i>Ustawienia -> Zachowaj pozycję</i> aby ręcznie ustawić rozmiar i "
 "położenie Krusadera przy starcie.</p>"
 
+#: Konfigurator/kgstartup.cpp:84
+msgid "Start to tray"
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:84
+msgid ""
+"Krusader starts to tray (if minimize to tray is set), without showing the "
+"main window"
+msgstr ""
+
 #: Konfigurator/kgarchives.cpp:55
 msgid "Krusader transparently handles the following types of archives:"
 msgstr "Krusader obsługuje następujące typy archiwów:"
@@ -5667,7 +5754,8 @@ msgid "Test archive before unpacking"
 msgstr "Testowanie archiwum przed rozpakowaniem"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid ""
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Niektóre uszkodzone archiwa mogą spowodować upadek, dlatego sugerowane jest "
 "testowanie."
@@ -5677,7 +5765,8 @@ msgid "Searching for packers..."
 msgstr "Szukanie narzędzie pakujących..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Upewnij się że zainstalowałeś nowe narzędzia pakujące w ścieżce <code>$PATH</"
 "code> (np. /usr/bin)"
@@ -5805,7 +5894,7 @@ msgstr ""
 "diff. Proszę zainstalować jednego z nich. Wskazówka: Krusader obsługuje "
 "Kompare, Kdiff3 i Xxdiff."
 
-#: krslots.cpp:397
+#: krslots.cpp:398
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
@@ -5813,7 +5902,7 @@ msgstr ""
 "Nie można odnaleźć komendy 'locate'. Proszę zainstalować pakiet 'findutils-"
 "locate' z GNU, lub ustawić jego zależności w Konfiguratorze"
 
-#: krslots.cpp:409
+#: krslots.cpp:410
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager. The new "
 "manager handles local files and remote URLs the same way. RemoteMan is being "
@@ -5830,15 +5919,16 @@ msgstr ""
 "Następnie, naciśnij przycisk zakładek i wybierz 'Dodaj zakładkę', to "
 "wszystko!"
 
-#: krslots.cpp:428
+#: krslots.cpp:429
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr "Nie można uruchomić 'mount'! Sprawdź stronę 'Zależności' w Konfiguratorze."
+msgstr ""
+"Nie można uruchomić 'mount'! Sprawdź stronę 'Zależności' w Konfiguratorze."
 
-#: krslots.cpp:460
+#: krslots.cpp:461
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr "Nie można znaleźć \"KsysCtrl\". Proszę zainstalować pakiet KDE admin"
 
-#: krslots.cpp:468
+#: krslots.cpp:469
 msgid ""
 "Can't find a batch rename tool.\n"
 "You can get Krename at http://www.krename.net"
@@ -5846,7 +5936,7 @@ msgstr ""
 "Nie można znaleźć narzędzia do zmiany nazw.\n"
 "Możesz pobrać Krename z http://krename.sf.net"
 
-#: krslots.cpp:498
+#: krslots.cpp:499
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
@@ -5855,43 +5945,43 @@ msgstr ""
 "lub 'kdesu' nie znajduje się w ścieżce. Proszę skonfigurować zależności w "
 "Konfiguratorze!"
 
-#: krslots.cpp:553
+#: krslots.cpp:554
 msgid "Enter a URL to view:"
 msgstr "Wpisz adres URL do pokazania:"
 
-#: krslots.cpp:564
+#: krslots.cpp:565
 msgid "Enter the filename to edit:"
 msgstr "Wprowadź nazwę pliku do edycji:"
 
-#: krslots.cpp:622
+#: krslots.cpp:623
 msgid "Don't know which file to split."
 msgstr "Nie wiadomo jaki plik podzielić."
 
-#: krslots.cpp:631
+#: krslots.cpp:632
 msgid "You can't split a directory!"
 msgstr "Nie możesz dzielić katalogu!"
 
-#: krslots.cpp:662
+#: krslots.cpp:663
 msgid "Don't know which files to combine."
 msgstr "Nie wiadomo jakie pliki połączyć."
 
-#: krslots.cpp:674
+#: krslots.cpp:675
 msgid "You can't combine a directory!"
 msgstr "Nie możesz łączyć katalogu!"
 
-#: krslots.cpp:693
+#: krslots.cpp:694
 msgid "Not a split file %1!"
 msgstr "Plik %1 nie jest podzielonym plikiem!"
 
-#: krslots.cpp:708
+#: krslots.cpp:709
 msgid "Select only one split file!"
 msgstr "Wybierz tylko jeden podzielony plik!"
 
-#: krslots.cpp:756
+#: krslots.cpp:757
 msgid "Not a splitted file %1!"
 msgstr "Plik %1 nie jest podzielonym plikiem!"
 
-#: krslots.cpp:763
+#: krslots.cpp:764
 msgid "Combining %1.* to directory:"
 msgstr "Łączenie %1.* do katalogu:"
 
@@ -5992,7 +6082,8 @@ msgid "Not a valid CRC file!"
 msgstr "Nieprawidłowy plik CRC!"
 
 #: Splitter/combiner.cpp:152
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Sprawdzanie poprawności bez dobrego pliku CRC jest niemożliwe. Kontynuować "
 "łączenie?"
@@ -6032,4 +6123,3 @@ msgstr "Błąd podczas odczytu pliku %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Błąd podczas zapisu pliku %1!"
-

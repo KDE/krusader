@@ -10,14 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-06-20 19:42+0200\n"
+"POT-Creation-Date: 2006-07-12 16:01+0200\n"
 "PO-Revision-Date: 2006-06-20 20:08+0200\n"
 "Last-Translator: Václav Jůza <vaclavjuza@seznam.cz>\n"
 "Language-Team: Czech <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: KBabel 1.11.2\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -104,11 +105,13 @@ msgstr "Zip disk"
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: GUI/mediabutton.cpp:520 Panel/krpopupmenu.cpp:61
+#: BookMan/krbookmarkhandler.cpp:538 GUI/mediabutton.cpp:520
+#: Panel/krpopupmenu.cpp:61
 msgid "Open"
 msgstr "Otevřít"
 
-#: GUI/mediabutton.cpp:521 Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
+#: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:521
+#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
 msgid "Open in a new tab"
 msgstr "Otevřít v nové záložce"
 
@@ -215,19 +218,19 @@ msgstr ""
 "Pokud nemáte takovou uživatelskou akci, název je použit pro akci zabudovanou "
 "v Krusaderu."
 
-#: GUI/actionpropertybase.cpp:380
+#: GUI/actionpropertybase.cpp:386
 msgid "Action Property"
 msgstr "Vlastnost akce"
 
-#: GUI/actionpropertybase.cpp:381
+#: GUI/actionpropertybase.cpp:387
 msgid "..."
 msgstr "..."
 
-#: GUI/actionpropertybase.cpp:382 RemoteMan/remotemanbase.cpp:142
+#: GUI/actionpropertybase.cpp:388 RemoteMan/remotemanbase.cpp:142
 msgid "Description:"
 msgstr "Popis:"
 
-#: GUI/actionpropertybase.cpp:383 GUI/actionpropertybase.cpp:413
+#: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:419
 msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift-F1</code>."
@@ -235,35 +238,35 @@ msgstr ""
 "Podrobný popis <b>Uživatelské akce</b>. Zobrazí se jen v <i>Konfigurátoru</"
 "i> a přes <code>Shift-F1</code>."
 
-#: GUI/actionpropertybase.cpp:384
+#: GUI/actionpropertybase.cpp:390
 msgid "Command accepts"
 msgstr "Příkaz přijímá"
 
-#: GUI/actionpropertybase.cpp:385
+#: GUI/actionpropertybase.cpp:391
 msgid "Local files only (no URL's)"
 msgstr "Pouze místní soubory (ne URL)"
 
-#: GUI/actionpropertybase.cpp:386
+#: GUI/actionpropertybase.cpp:392
 msgid "Substitute the <b>Placeholders</b> with local filenames."
 msgstr "Nahradit <b>zástupce</b> názvy místních souborů."
 
-#: GUI/actionpropertybase.cpp:387
+#: GUI/actionpropertybase.cpp:393
 msgid "URL's (remote and local)"
 msgstr "URL (místní i vzdálená)"
 
-#: GUI/actionpropertybase.cpp:388
+#: GUI/actionpropertybase.cpp:394
 msgid "Substitute the <b>Placeholders</b> with valid URL's."
 msgstr "Nahradit <b>zástupce</b> platnými URL."
 
-#: GUI/actionpropertybase.cpp:389 GUI/actionpropertybase.cpp:391
+#: GUI/actionpropertybase.cpp:395 GUI/actionpropertybase.cpp:397
 msgid "The title displayed in the <b>Usermenu</b>."
 msgstr "Titulek, který se zobrazí v <b>Uživatelské nabídce</b>."
 
-#: GUI/actionpropertybase.cpp:390
+#: GUI/actionpropertybase.cpp:396
 msgid "Title:"
 msgstr "Titulek:"
 
-#: GUI/actionpropertybase.cpp:392
+#: GUI/actionpropertybase.cpp:398
 msgid ""
 "Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
@@ -274,7 +277,7 @@ msgstr ""
 "b>: <i>Titulek</i> ukazovaný v <b>Uživatelské nabídce</b> mohou být "
 "nastaveny níže.</p>"
 
-#: GUI/actionpropertybase.cpp:393 GUI/actionpropertybase.cpp:410
+#: GUI/actionpropertybase.cpp:399 GUI/actionpropertybase.cpp:416
 msgid ""
 "<b>Useractions</b> can be grouped in categories for better distinction. "
 "Choose a existing <i>Category</i> or create a new one by entering a name."
@@ -283,11 +286,11 @@ msgstr ""
 "kategorií. Vyberte existující <i>Kategorii</i> nebo vytvořte novou zadáním "
 "názvu."
 
-#: GUI/actionpropertybase.cpp:394
+#: GUI/actionpropertybase.cpp:400
 msgid "Icon"
 msgstr "Ikona"
 
-#: GUI/actionpropertybase.cpp:395
+#: GUI/actionpropertybase.cpp:401
 msgid ""
 "Each <b>Useraction</b> can have its own icon. It will appear in front of the "
 "title in the <b>Usermenu</b>."
@@ -295,11 +298,11 @@ msgstr ""
 "Každá <b>Uživatelská akce</b> může mít svoji vlastní ikonu. Objeví se před "
 "titulkem v <b>Uživatelské nabídce</b>."
 
-#: GUI/actionpropertybase.cpp:396
+#: GUI/actionpropertybase.cpp:402
 msgid "Identifier:"
 msgstr "Identifikátor:"
 
-#: GUI/actionpropertybase.cpp:397
+#: GUI/actionpropertybase.cpp:403
 msgid ""
 "<p>Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.</p><p><b>Note</b>: "
@@ -310,11 +313,11 @@ msgstr ""
 "b>: <i>Titulek</i> ukazovaný v <b>Uživatelské nabídce</b> mohou být "
 "nastaveny níže.</p>"
 
-#: GUI/actionpropertybase.cpp:398
+#: GUI/actionpropertybase.cpp:404
 msgid "Command:"
 msgstr "Příkaz:"
 
-#: GUI/actionpropertybase.cpp:399
+#: GUI/actionpropertybase.cpp:405
 msgid ""
 "<p>The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -330,7 +333,7 @@ msgstr ""
 "(\"Selected\")%</li></code> </ul>\n"
 "Pokud chcete vědět více o syntaxi, poraďte se prosím s příručkou.</p>"
 
-#: GUI/actionpropertybase.cpp:401 GUI/actionpropertybase.cpp:404
+#: GUI/actionpropertybase.cpp:407 GUI/actionpropertybase.cpp:410
 msgid ""
 "The <i>Tooltip</i> is shown when the mouse cursor is hold over an entry of "
 "the <b>Useraction Toolbar</b>."
@@ -338,17 +341,18 @@ msgstr ""
 "<i>Bublina</i> se ukáže, když se ukazatel myši podrží nad položkou z "
 "<b>Nástrojové lišty uživatelských akcí</b>."
 
-#: GUI/actionpropertybase.cpp:402 GUI/actionpropertybase.cpp:415
+#: GUI/actionpropertybase.cpp:408 GUI/actionpropertybase.cpp:421
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr "<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
+msgstr ""
+"<i>Pracovní adresář</i> určí, ve kterém adresáři se <i>Příkaz</i> vykoná."
 
-#: GUI/actionpropertybase.cpp:403
+#: GUI/actionpropertybase.cpp:409
 msgid "Tooltip:"
 msgstr "Bublina:"
 
-#: GUI/actionpropertybase.cpp:406
+#: GUI/actionpropertybase.cpp:412
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -364,107 +368,107 @@ msgstr ""
 "(\"Selected\")%</li></code> </ul>\n"
 "Pokud chcete vědět více o syntaxi, poraďte se prosím s příručkou.</p>"
 
-#: GUI/actionpropertybase.cpp:409
+#: GUI/actionpropertybase.cpp:415
 msgid "Category:"
 msgstr "Kategorie:"
 
-#: Filter/generalfilter.cpp:127 GUI/actionpropertybase.cpp:411
+#: Filter/generalfilter.cpp:127 GUI/actionpropertybase.cpp:417
 msgid "&Add"
 msgstr "&Přidat"
 
-#: GUI/actionpropertybase.cpp:412
+#: GUI/actionpropertybase.cpp:418
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
 msgstr "Přidat <b>zástupce</b> pro soubory vybrané v panelu."
 
-#: GUI/actionpropertybase.cpp:414
+#: GUI/actionpropertybase.cpp:420
 msgid "Workdir:"
 msgstr "Pracovní adresář:"
 
-#: GUI/actionpropertybase.cpp:416
+#: GUI/actionpropertybase.cpp:422
 msgid "Default shortcut:"
 msgstr "Výchozí klávesová zkratka:"
 
-#: GUI/actionpropertybase.cpp:417
+#: GUI/actionpropertybase.cpp:423
 msgid "None"
 msgstr "Žádný"
 
-#: GUI/actionpropertybase.cpp:418
+#: GUI/actionpropertybase.cpp:424
 msgid "Set a default keyboard shortcut."
 msgstr "Nastavit výchozí klávesovou zkratku."
 
-#: GUI/actionpropertybase.cpp:419
+#: GUI/actionpropertybase.cpp:425
 msgid "Execution mode"
 msgstr "Režim spuštění"
 
-#: GUI/actionpropertybase.cpp:420
+#: GUI/actionpropertybase.cpp:426
 msgid "Collect output"
 msgstr "Zobrazit výstup"
 
-#: GUI/actionpropertybase.cpp:421
+#: GUI/actionpropertybase.cpp:427
 msgid "Collect the output of the executed program."
 msgstr "Zachytit výstup vykonaného programu."
 
-#: GUI/actionpropertybase.cpp:422
+#: GUI/actionpropertybase.cpp:428
 msgid "Separate standard error"
 msgstr "Oddělit standardní chybový výstup"
 
-#: GUI/actionpropertybase.cpp:423
+#: GUI/actionpropertybase.cpp:429
 msgid "Separate standard out and standard error in the output collection."
 msgstr "Oddělit standardní výstup a standardní výstup chyb."
 
-#: GUI/actionpropertybase.cpp:424
+#: GUI/actionpropertybase.cpp:430
 msgid "Normal"
 msgstr "Normální"
 
-#: GUI/actionpropertybase.cpp:425
+#: GUI/actionpropertybase.cpp:431
 msgid "Run in terminal"
 msgstr "Spustit v terminálu"
 
-#: GUI/actionpropertybase.cpp:426
+#: GUI/actionpropertybase.cpp:432
 msgid "Run the command in a terminal."
 msgstr "Spustit příkaz v terminálu."
 
-#: GUI/actionpropertybase.cpp:427
+#: GUI/actionpropertybase.cpp:433
 msgid "Basic Properties"
 msgstr "Základní vlastnosti"
 
-#: GUI/actionpropertybase.cpp:428
+#: GUI/actionpropertybase.cpp:434
 msgid "The Useraction is only available for"
 msgstr "Tato uživatelská akce je dostupná pouze pro"
 
-#: GUI/actionpropertybase.cpp:429 GUI/actionpropertybase.cpp:435
-#: GUI/actionpropertybase.cpp:440 GUI/actionpropertybase.cpp:445
+#: GUI/actionpropertybase.cpp:435 GUI/actionpropertybase.cpp:441
+#: GUI/actionpropertybase.cpp:446 GUI/actionpropertybase.cpp:451
 msgid "&New..."
 msgstr "&Nový..."
 
-#: GUI/actionpropertybase.cpp:430 GUI/actionpropertybase.cpp:436
-#: GUI/actionpropertybase.cpp:441 GUI/actionpropertybase.cpp:446
+#: GUI/actionpropertybase.cpp:436 GUI/actionpropertybase.cpp:442
+#: GUI/actionpropertybase.cpp:447 GUI/actionpropertybase.cpp:452
 msgid "Chan&ge..."
 msgstr "Z&měnit..."
 
-#: GUI/actionpropertybase.cpp:431 GUI/actionpropertybase.cpp:437
-#: GUI/actionpropertybase.cpp:442 GUI/actionpropertybase.cpp:447
+#: GUI/actionpropertybase.cpp:437 GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:448 GUI/actionpropertybase.cpp:453
 msgid "De&lete"
 msgstr "&Smazat"
 
-#: GUI/actionpropertybase.cpp:432 GUI/actionpropertybase.cpp:434
-#: GUI/actionpropertybase.cpp:439
+#: GUI/actionpropertybase.cpp:438 GUI/actionpropertybase.cpp:440
+#: GUI/actionpropertybase.cpp:445
 msgid "Show the <b>Useraction</b> only for the values defined here."
 msgstr "Ukázat <b>uživatelskou akci</b> jen pro hodnoty zde definované."
 
-#: GUI/actionpropertybase.cpp:433
+#: GUI/actionpropertybase.cpp:439
 msgid "Protocol"
 msgstr "Protokol"
 
-#: GUI/actionpropertybase.cpp:438
+#: GUI/actionpropertybase.cpp:444
 msgid "Path"
 msgstr "Cesta"
 
-#: GUI/actionpropertybase.cpp:443
+#: GUI/actionpropertybase.cpp:449
 msgid "Mime-type"
 msgstr "mime-typ souboru"
 
-#: GUI/actionpropertybase.cpp:444
+#: GUI/actionpropertybase.cpp:450
 msgid ""
 "Show the <b>Useraction</b> only for the filenames defined here. The "
 "wildcards '<code>?</code>' and '<code>*</code>' can be used."
@@ -472,27 +476,27 @@ msgstr ""
 "Ukázat <b>Uživatelskou akci</b> jen pro názvy souborů určené zde. Masky "
 "'<code>?</code>' a '<code>*</code>' se mohou použít."
 
-#: GUI/actionpropertybase.cpp:448
+#: GUI/actionpropertybase.cpp:454
 msgid "Filename"
 msgstr "Název souboru"
 
-#: GUI/actionpropertybase.cpp:449
+#: GUI/actionpropertybase.cpp:455
 msgid "Confirm each program call separately"
 msgstr "Potvrdit každé volání programu zvlášť"
 
-#: GUI/actionpropertybase.cpp:450
+#: GUI/actionpropertybase.cpp:456
 msgid "Allows to tweak the <i>Command</i> before it is executed."
 msgstr "Umožní Vám hrabat se před vykonáním v <i>Příkazu</i>."
 
-#: GUI/actionpropertybase.cpp:451
+#: GUI/actionpropertybase.cpp:457
 msgid "Run as different user:"
 msgstr "Spustit jako jiný uživatel:"
 
-#: GUI/actionpropertybase.cpp:452 GUI/actionpropertybase.cpp:453
+#: GUI/actionpropertybase.cpp:458 GUI/actionpropertybase.cpp:459
 msgid "Execute the <i>Command</i> under a different user-id."
 msgstr "Spustit <i>příkaz</i> pod jiným uživatelským účtem."
 
-#: GUI/actionpropertybase.cpp:454
+#: GUI/actionpropertybase.cpp:460
 msgid "Advanced Properties"
 msgstr "Rozšířené vlastnosti"
 
@@ -731,13 +735,13 @@ msgstr "Přebaluji ..."
 msgid "Directory %1 does not exist!"
 msgstr "Adresář %1 neexistuje!"
 
-#: BookMan/krbookmarkhandler.cpp:149 Konfigurator/kgcolors.cpp:492
+#: BookMan/krbookmarkhandler.cpp:172 Konfigurator/kgcolors.cpp:492
 #: Konfigurator/kgcolors.cpp:509 MountMan/kmountman.cpp:197
 #: Synchronizer/synchronizerdirlist.cpp:92 VFS/krarchandler.cpp:200
 #: VFS/krarchandler.cpp:257 VFS/krarchandler.cpp:274 VFS/krarchandler.cpp:332
 #: VFS/krarchandler.cpp:496 VFS/krarchandler.cpp:503 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:156 krusader.cpp:732
+#: VFS/virt_vfs.cpp:173 krusader.cpp:745
 msgid "Error"
 msgstr "Chyba"
 
@@ -761,7 +765,7 @@ msgstr ""
 "Nemůžete kopírovat soubory přímo do adresáře virt:/.\n"
 "Můžete vytvořit podadresář a kopírovat soubory do něj."
 
-#: VFS/virt_vfs.cpp:156
+#: VFS/virt_vfs.cpp:173
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
 msgstr "Vytváření nových adresářů povoleno jen v adresáři virt:/."
 
@@ -1513,7 +1517,7 @@ msgstr "/"
 
 #: Panel/listpanel.cpp:252 Panel/panelpopup.cpp:122 Panel/panelpopup.cpp:123
 #: Panel/panelpopup.cpp:125 Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:130
-#: krusader.cpp:598
+#: krusader.cpp:611
 msgid "Root"
 msgstr "Kořenový adresář"
 
@@ -1812,9 +1816,9 @@ msgstr "Přesunout"
 msgid "Move to trash"
 msgstr "Přesunout do koše"
 
-#: Dialogs/krmaskchoice.cpp:110 Dialogs/kurllistrequester.cpp:149
-#: DiskUsage/diskusage.cpp:759 Konfigurator/kgcolors.cpp:447
-#: Panel/krpopupmenu.cpp:145
+#: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
+#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:759
+#: Konfigurator/kgcolors.cpp:447 Panel/krpopupmenu.cpp:145
 msgid "Delete"
 msgstr "Smazat"
 
@@ -1879,7 +1883,7 @@ msgid " ? Once shred, the file is gone forever !!!"
 msgstr " ? Jak se jednou skartuje, je nenávratně pryč !!!"
 
 #: KViewer/krviewer.cpp:215 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:357
-#: krslots.cpp:451
+#: krslots.cpp:452
 msgid "Can't open "
 msgstr "Nelze otevřít "
 
@@ -2016,9 +2020,12 @@ msgid ""
 "Do you really want to delete these virtual items (physical files stay "
 "untouched)?"
 msgstr ""
-"Opravdu chcete smazat tuto %n virtuální položku (fyzické soubory zůstanou nedotčeny)?\n"
-"Opravdu chcete smazat tyto %n virtuální položky (fyzické soubory zůstanou nedotčeny)?\n"
-"Opravdu chcete smazat těchto %n virtuálních položek (fyzické soubory zůstanou nedotčeny)?"
+"Opravdu chcete smazat tuto %n virtuální položku (fyzické soubory zůstanou "
+"nedotčeny)?\n"
+"Opravdu chcete smazat tyto %n virtuální položky (fyzické soubory zůstanou "
+"nedotčeny)?\n"
+"Opravdu chcete smazat těchto %n virtuálních položek (fyzické soubory "
+"zůstanou nedotčeny)?"
 
 #: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
 #: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:629
@@ -2034,12 +2041,12 @@ msgid ""
 "<qt>Do you really want to delete these %n items <b>physically</b> (not just "
 "removing them from the virtual items)?</qt>"
 msgstr ""
-"<qt>Opravdu chcete smazat tuto %n položku (<b>fyzicky</b>, nejen odstranění ze "
-"seznamu)?</qt>\n"
-"<qt>Opravdu chcete smazat tyto %n položky (<b>fyzicky</b>, nejen odstranění ze "
-"seznamu)</qt>?\n"
-"<qt>Opravdu chcete smazat těchto %n položek (<b>fyzicky</b>, nejen odstranění ze "
-"seznamu)</qt>?"
+"<qt>Opravdu chcete smazat tuto %n položku (<b>fyzicky</b>, nejen odstranění "
+"ze seznamu)?</qt>\n"
+"<qt>Opravdu chcete smazat tyto %n položky (<b>fyzicky</b>, nejen odstranění "
+"ze seznamu)</qt>?\n"
+"<qt>Opravdu chcete smazat těchto %n položek (<b>fyzicky</b>, nejen "
+"odstranění ze seznamu)</qt>?"
 
 #: Panel/panelfunc.cpp:634
 #, c-format
@@ -2052,7 +2059,7 @@ msgstr ""
 "Opravdu chcete smazat těchto %n položek?"
 
 #: Dialogs/checksumdlg.cpp:545 DiskUsage/diskusage.cpp:609
-#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:641 krusader.cpp:730
+#: Konfigurator/kgcolors.cpp:507 Panel/panelfunc.cpp:641 krusader.cpp:743
 msgid "Warning"
 msgstr "Varování"
 
@@ -2134,6 +2141,14 @@ msgstr ""
 #: Panel/panelfunc.cpp:944
 msgid "%1, unknown archive type"
 msgstr "%1, neznámý typ archívu"
+
+#: Panel/panelfunc.cpp:1127
+msgid "Cannot cut a virtual URL collection to the clipboard!"
+msgstr ""
+
+#: Panel/panelfunc.cpp:1129
+msgid "Cannot copy a virtual URL collection onto the clipboard!"
+msgstr ""
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
 #: Synchronizer/synchronizergui.cpp:1368
@@ -2230,11 +2245,12 @@ msgstr "Název dotazu"
 msgid "Here you can name the file collection"
 msgstr "Zde můžete pojmenovat skupinu souborů"
 
-#: krusader.cpp:320
+#: krusader.cpp:312
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr "Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
+msgstr ""
+"Stavová lišta zobrazí základní informace o souboru pod ukazatelem myši."
 
-#: krusader.cpp:380
+#: krusader.cpp:388
 msgid ""
 "A configuration of 1.51 or older was detected. Krusader has to reset your "
 "configuration to default values.\n"
@@ -2246,7 +2262,7 @@ msgstr ""
 "Poznámka: Vaše záložky a klávesové zkratky zůstanou zachovány.\n"
 "Krusader nyní spustí Konfigurátor."
 
-#: krusader.cpp:392
+#: krusader.cpp:400
 msgid ""
 "<qt><b>Welcome to Krusader!</b><p>As this is your first run, your machine "
 "will now be checked for external applications. Then the Konfigurator will be "
@@ -2256,406 +2272,407 @@ msgstr ""
 "Vašem stroji programy, které používám. Pak spustím Konfigurátor, kde si "
 "můžete Krusader přizpůsobit svým potřebám.</p></qt>"
 
-#: krusader.cpp:453
+#: krusader.cpp:466
 msgid "F3 View Dialog"
 msgstr "F3 Dialog zobrazení"
 
-#: krusader.cpp:456
+#: krusader.cpp:469
 msgid "Tab: switch panel"
 msgstr "Záložka: prohodit panel"
 
-#: krusader.cpp:477
+#: krusader.cpp:490
 msgid "&Reload"
 msgstr "&Obnovit"
 
-#: krusader.cpp:479
+#: krusader.cpp:492
 msgid "Show Actions Toolbar"
 msgstr "Zobrazovat lištu akcí"
 
-#: krusader.cpp:491
+#: krusader.cpp:504
 msgid "Show &FN Keys Bar"
 msgstr "Zobrazovat lištu &FN kláves"
 
-#: krusader.cpp:494
+#: krusader.cpp:507
 msgid "Show &Command Line"
 msgstr "Zobrazovat &příkazovou řádku"
 
-#: krusader.cpp:497
+#: krusader.cpp:510
 msgid "Show Terminal &Emulator"
 msgstr "Zobrazit &emulátor terminálu"
 
-#: krusader.cpp:500
+#: krusader.cpp:513
 msgid "Show &Hidden Files"
 msgstr "&Zobrazovat skryté soubory"
 
-#: krusader.cpp:502
+#: krusader.cpp:515
 msgid "S&wap Panels"
 msgstr "Proho&dit panely"
 
-#: krusader.cpp:504
+#: krusader.cpp:517
 msgid "Sw&ap Sides"
 msgstr "Pro&hodit strany"
 
-#: krusader.cpp:510
+#: krusader.cpp:523
 msgid "popup cmdline"
 msgstr "Zobrazit historii příkazové řádky"
 
-#: DiskUsage/diskusage.cpp:766 krusader.cpp:513
+#: DiskUsage/diskusage.cpp:766 krusader.cpp:526
 msgid "Up one directory"
 msgstr "O adresář výše"
 
-#: krusader.cpp:514
+#: krusader.cpp:527
 msgid "&Edit New File..."
 msgstr "&Upravovat nový soubor"
 
-#: krusader.cpp:515
+#: krusader.cpp:528
 msgid "Start &Root Mode Krusader..."
 msgstr "Spustit Krusadera v &Superuživatelském režimu..."
 
-#: krusader.cpp:517
+#: krusader.cpp:530
 msgid "T&est Archive..."
 msgstr "T&estovat archív(y)"
 
-#: krusader.cpp:521
+#: krusader.cpp:534
 msgid "New Net &Connection..."
 msgstr "&Nové síťové spojení..."
 
-#: krusader.cpp:523
+#: krusader.cpp:536
 msgid "Pro&files"
 msgstr "Pro&fily"
 
-#: krusader.cpp:525
+#: krusader.cpp:538
 msgid "Calculate &Occupied Space..."
 msgstr "Spočítat &obsazené místo..."
 
-#: krusader.cpp:527
+#: krusader.cpp:540
 msgid "Create Checksum..."
 msgstr "Spočítat kontrolní součet..."
 
-#: krusader.cpp:529
+#: krusader.cpp:542
 msgid "Verify Checksum..."
 msgstr "Ověřit kontrolní součet..."
 
-#: krusader.cpp:531
+#: krusader.cpp:544
 msgid "&Properties..."
 msgstr "&Vlastnosti..."
 
-#: krusader.cpp:533
+#: krusader.cpp:546
 msgid "Pac&k..."
 msgstr "Sbal&it..."
 
-#: krusader.cpp:535
+#: krusader.cpp:548
 msgid "&Unpack..."
 msgstr "&Rozbalit..."
 
-#: krusader.cpp:537
+#: krusader.cpp:550
 msgid "Sp&lit File..."
 msgstr "&Rozdělit soubor..."
 
-#: krusader.cpp:539
+#: krusader.cpp:552
 msgid "Com&bine Files..."
 msgstr "S&loučit soubory..."
 
-#: krusader.cpp:541
+#: krusader.cpp:554
 msgid "Select &Group"
 msgstr "Označit &skupinu"
 
-#: krusader.cpp:543
+#: krusader.cpp:556
 msgid "&Select All"
 msgstr "&Vybrat vše"
 
-#: krusader.cpp:545
+#: krusader.cpp:558
 msgid "U&nselect All"
 msgstr "Odz&načit vše"
 
-#: krusader.cpp:547
+#: krusader.cpp:560
 msgid "&Compare Directories"
 msgstr "&Porovnat adresáře"
 
-#: krusader.cpp:549
+#: krusader.cpp:562
 msgid "&Mark Newer And Single"
 msgstr "&Označit novější a samotné"
 
-#: krusader.cpp:551
+#: krusader.cpp:564
 msgid "Mark &Newer"
 msgstr "Označit &novější"
 
-#: krusader.cpp:553
+#: krusader.cpp:566
 msgid "Mark &Single"
 msgstr "označit &Samotné"
 
-#: krusader.cpp:555
+#: krusader.cpp:568
 msgid "Mark Different &And Single"
 msgstr "Označit rozdílné &a samotné"
 
-#: krusader.cpp:557
+#: krusader.cpp:570
 msgid "Mark &Different"
 msgstr "Označit &rozdílné"
 
-#: krusader.cpp:566
+#: krusader.cpp:579
 msgid "&Terminal..."
 msgstr "&Terminál..."
 
-#: krusader.cpp:568
+#: krusader.cpp:581
 msgid "Disconnect &From Net"
 msgstr "&Odpojit"
 
-#: krusader.cpp:571 krusader.cpp:576
+#: krusader.cpp:584 krusader.cpp:589
 msgid "&MountMan..."
 msgstr "Správce &připojení disků..."
 
-#: krusader.cpp:580
+#: krusader.cpp:593
 msgid "&Search..."
 msgstr "&Hledat..."
 
-#: krusader.cpp:582
+#: krusader.cpp:595
 msgid "&Locate..."
 msgstr "&Locate (rychlé hledání)..."
 
-#: krusader.cpp:584
+#: krusader.cpp:597
 msgid "Synchronize &Directories..."
 msgstr "Synchronizovat a&dresáře..."
 
-#: krusader.cpp:586
+#: krusader.cpp:599
 msgid "S&ynchron directory changes"
 msgstr "Společné změn&y adresáře"
 
-#: krusader.cpp:588
+#: krusader.cpp:601
 msgid "D&isk Usage..."
 msgstr "Obsazenost d&isku..."
 
-#: krusader.cpp:590
+#: krusader.cpp:603
 msgid "&Invert Selection"
 msgstr "&Obrátit výběr"
 
-#: krusader.cpp:592
+#: krusader.cpp:605
 msgid "&Unselect Group"
 msgstr "&Odznačit skupinu"
 
-#: krusader.cpp:594
+#: krusader.cpp:607
 msgid "Configure &Krusader..."
 msgstr "Konfigurovat &Krusader..."
 
-#: krusader.cpp:596
+#: krusader.cpp:609
 msgid "Back"
 msgstr "Zpět"
 
-#: krusader.cpp:600
+#: krusader.cpp:613
 msgid "Save &Position"
 msgstr "Uložit &Pozici"
 
-#: krusader.cpp:602
+#: krusader.cpp:615
 msgid "&All Files"
 msgstr "&Všechny soubory"
 
-#: krusader.cpp:606
+#: krusader.cpp:619
 msgid "&Custom"
 msgstr "&Vlastní výběr"
 
-#: krusader.cpp:608
+#: krusader.cpp:621
 msgid "Compare b&y Content..."
 msgstr "Porovnat obsah&y..."
 
-#: krusader.cpp:610
+#: krusader.cpp:623
 msgid "Multi &Rename..."
 msgstr "Přejmenovat více &položek..."
 
-#: krusader.cpp:612
+#: krusader.cpp:625
 msgid "Right-click menu"
 msgstr "Nabídka pravého tlačítka"
 
-#: krusader.cpp:614
+#: krusader.cpp:627
 msgid "Right bookmarks"
 msgstr "Záložky vpravo"
 
-#: krusader.cpp:616
+#: krusader.cpp:629
 msgid "Left bookmarks"
 msgstr "Záložky vlevo"
 
 #: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:29 krusader.cpp:618
+#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:631
 msgid "Bookmarks"
 msgstr "Záložky"
 
-#: BookMan/krbookmarkhandler.cpp:327 krusader.cpp:620
+#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:633
 msgid "Bookmark Current"
 msgstr "Přidat do záložek"
 
-#: krusader.cpp:622
+#: krusader.cpp:635
 msgid "History"
 msgstr "Historie"
 
-#: krusader.cpp:624
+#: krusader.cpp:637
 msgid "Sync Panels"
 msgstr "Synchronizovat panely"
 
-#: krusader.cpp:626
+#: krusader.cpp:639
 msgid "Left history"
 msgstr "historie levého"
 
-#: krusader.cpp:628
+#: krusader.cpp:641
 msgid "Right history"
 msgstr "historie pravého"
 
-#: BookMan/krbookmark.cpp:12 krusader.cpp:630
+#: BookMan/krbookmark.cpp:12 krusader.cpp:643
 msgid "Media"
 msgstr "Media"
 
-#: krusader.cpp:632
+#: krusader.cpp:645
 msgid "Left media"
 msgstr "Levé médium"
 
-#: krusader.cpp:634
+#: krusader.cpp:647
 msgid "Right media"
 msgstr "Pravé médium"
 
-#: krusader.cpp:636
+#: krusader.cpp:649
 msgid "New symlink"
 msgstr "Nový symb. odkaz"
 
-#: krusader.cpp:638
+#: krusader.cpp:651
 msgid "Toggle Popup Panel"
 msgstr "Přepnout vyskakovací panel"
 
-#: krusader.cpp:640
+#: krusader.cpp:653
 msgid "Vertical Mode"
 msgstr "Svislé uspořádání"
 
-#: krusader.cpp:642
+#: krusader.cpp:655
 msgid "New tab"
 msgstr "Nová záložka"
 
-#: krusader.cpp:644
+#: krusader.cpp:657
 msgid "Duplicate tab"
 msgstr "Duplikovat záložku"
 
-#: krusader.cpp:646
+#: krusader.cpp:659
 msgid "Close tab"
 msgstr "Zavřít záložku"
 
-#: krusader.cpp:648
+#: krusader.cpp:661
 msgid "Next tab"
 msgstr "Další záložka"
 
-#: krusader.cpp:650
+#: krusader.cpp:663
 msgid "Previous tab"
 msgstr "Předchozí záložka"
 
-#: UserMenu/usermenu.cpp:51 krusader.cpp:652
+#: UserMenu/usermenu.cpp:51 krusader.cpp:665
 msgid "User Menu"
 msgstr "Nabídka uživatele"
 
-#: krusader.cpp:654
+#: krusader.cpp:667
 msgid "Manage user actions..."
 msgstr "Upravovat uživatelské akce..."
 
-#: krusader.cpp:656
+#: krusader.cpp:669
 msgid "Select Remote Charset"
 msgstr "Nastavit vzdálenou znakovou sadu"
 
-#: krusader.cpp:659
+#: krusader.cpp:672
 msgid "F2 - Open a terminal"
 msgstr "F2 - Otevřít terminál"
 
-#: krusader.cpp:661
+#: krusader.cpp:674
 msgid "F3 - View a file"
 msgstr "F3 - Zobrazit soubor"
 
-#: krusader.cpp:663
+#: krusader.cpp:676
 msgid "F4 - Edit a file"
 msgstr "F4 - Upravit soubor"
 
-#: krusader.cpp:665
+#: krusader.cpp:678
 msgid "F5 - Copy"
 msgstr "F5 - Kopírovat"
 
-#: krusader.cpp:667
+#: krusader.cpp:680
 msgid "F6 - Move"
 msgstr "F6 - Přesunout"
 
-#: krusader.cpp:669
+#: krusader.cpp:682
 msgid "F7 - Mkdir"
 msgstr "F7 - VytvAdr"
 
-#: krusader.cpp:671
+#: krusader.cpp:684
 msgid "F8 - Delete"
 msgstr "F8 - Smazat"
 
-#: krusader.cpp:673
+#: krusader.cpp:686
 msgid "F9 - Rename"
 msgstr "F9 - Přejmenovat"
 
-#: krusader.cpp:675
+#: krusader.cpp:688
 msgid "F10 - Quit"
 msgstr "F10 - Ukončit"
 
-#: BookMan/krbookmarkhandler.cpp:286 krusader.cpp:677
+#: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
+#: krusader.cpp:690
 msgid "Popular URLs"
 msgstr "Oblíbená URL"
 
-#: krusader.cpp:679
+#: krusader.cpp:692
 msgid "Go to location bar"
 msgstr "Přejít na řádek umístění"
 
-#: krusader.cpp:681
+#: BookMan/krbookmarkhandler.cpp:493 krusader.cpp:694
 msgid "Jump back"
 msgstr "Skok zpět"
 
-#: krusader.cpp:683
+#: krusader.cpp:696
 msgid "Set jump back point here"
 msgstr "Nastavit zde bod pro Skok zpět"
 
-#: krusader.cpp:687
+#: krusader.cpp:700
 msgid "Select files using a filter"
 msgstr "Vybrat soubory filtrem"
 
-#: krusader.cpp:688
+#: krusader.cpp:701
 msgid "Select all files in the current directory"
 msgstr "Vybrat všechny soubory v aktuálním adresáři"
 
-#: krusader.cpp:689
+#: krusader.cpp:702
 msgid "Un-select all selected files"
 msgstr "Odznačit všechny soubory"
 
-#: krusader.cpp:690
+#: krusader.cpp:703
 msgid "Setup Krusader the way you like it"
 msgstr "Nastavte si Krusader tak jak vám vyhovuje"
 
-#: krusader.cpp:691
+#: krusader.cpp:704
 msgid "Back to the place you came from"
 msgstr "Zpět na místo, odkud jste přišli"
 
-#: krusader.cpp:692
+#: krusader.cpp:705
 msgid "ROOT (/)"
 msgstr "KOŘEN (/)"
 
-#: krusader.cpp:693
+#: krusader.cpp:706
 msgid "Search for files"
 msgstr "Hledat soubory"
 
-#: krusader.cpp:699
+#: krusader.cpp:712
 msgid "JavaScript console"
 msgstr "Konzole Javaskriptu"
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:729
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:742
 msgid "File "
 msgstr "Soubor"
 
-#: Konfigurator/kgcolors.cpp:506 krusader.cpp:729
+#: Konfigurator/kgcolors.cpp:506 krusader.cpp:742
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr " již existuje. Opravdu ho chcete přepsat?"
 
 #: Dialogs/checksumdlg.cpp:545 Konfigurator/kgcolors.cpp:507
 #: Konfigurator/kguseractions.cpp:224 Konfigurator/kguseractions.cpp:233
-#: krusader.cpp:730
+#: krusader.cpp:743
 msgid "Overwrite"
 msgstr "Přepsat"
 
-#: Konfigurator/kgcolors.cpp:509 krusader.cpp:732
+#: Konfigurator/kgcolors.cpp:509 krusader.cpp:745
 msgid "Error: unable to write to file"
 msgstr "Chyba: nemohu zapisovat do souboru"
 
-#: krusader.cpp:837
+#: krusader.cpp:882
 msgid "Are you sure you want to quit?"
 msgstr "Jste si jistý, že chcete odejít?"
 
@@ -2796,42 +2813,47 @@ msgstr "Zavřít záložku"
 msgid "BookMan II"
 msgstr "Záložky (oblíbené)"
 
-#: BookMan/krbookmarkhandler.cpp:149
+#: BookMan/krbookmarkhandler.cpp:172
 msgid "Unable to write to "
 msgstr "Nemohu psát do "
 
-#: BookMan/krbookmarkhandler.cpp:157
+#: BookMan/krbookmarkhandler.cpp:180
 msgid " instead of "
 msgstr " místo "
 
-#: BookMan/krbookmarkhandler.cpp:162 BookMan/krbookmarkhandler.cpp:168
-#: BookMan/krbookmarkhandler.cpp:199
+#: BookMan/krbookmarkhandler.cpp:185 BookMan/krbookmarkhandler.cpp:191
+#: BookMan/krbookmarkhandler.cpp:222
 msgid "missing tag "
 msgstr "chybějící značka "
 
-#: BookMan/krbookmarkhandler.cpp:238
+#: BookMan/krbookmarkhandler.cpp:261
 msgid " doesn't seem to be a valid Bookmarks file"
 msgstr " nevypadá jako platný soubor záložek"
 
-#: BookMan/krbookmarkhandler.cpp:245
+#: BookMan/krbookmarkhandler.cpp:268
 msgid "Error reading bookmarks file: "
 msgstr "Chyba při čtení souboru záložek: "
 
-#: BookMan/krbookmarkhandler.cpp:329
+#: BookMan/krbookmarkhandler.cpp:402
 msgid "Manage Bookmarks"
 msgstr "Upravit záložky"
 
-#: BookMan/krbookmark.cpp:14
+#: BookMan/krbookmarkhandler.cpp:482
+#, fuzzy
+msgid "Enable special bookmarks"
+msgstr "Upravit záložky"
+
+#: BookMan/krbookmark.cpp:14 BookMan/krbookmarkhandler.cpp:487
 msgid "Devices"
 msgstr "Zařízení"
 
-#: BookMan/krbookmark.cpp:16
-msgid "Virtual Filesystem"
-msgstr "Virtuální souborový systém"
-
-#: BookMan/krbookmark.cpp:17
+#: BookMan/krbookmark.cpp:17 BookMan/krbookmarkhandler.cpp:489
 msgid "Local Network"
 msgstr "Místní síť"
+
+#: BookMan/krbookmark.cpp:16 BookMan/krbookmarkhandler.cpp:491
+msgid "Virtual Filesystem"
+msgstr "Virtuální souborový systém"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2937,7 +2959,8 @@ msgstr ""
 "Volejte vývojáře (v angličtině samozřejmě :-)."
 
 #: MountMan/kmountmangui.cpp:326
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Správce připojení dospěl k vnitřní chybě. Upozorněte prosím vývojáře. "
 "(anglicky)Děkujeme."
@@ -2962,7 +2985,7 @@ msgid ""
 "Your emails"
 msgstr "mitek@email.cz,lukumo84@seznam.cz,vaclavjuza@seznam.cz"
 
-#: main.cpp:46
+#: main.cpp:48
 msgid ""
 "Krusader\n"
 "Twin-Panel File Manager for KDE"
@@ -2970,27 +2993,27 @@ msgstr ""
 "Krusader\n"
 "Dvoupanelový správce souborovů pro KDE"
 
-#: main.cpp:51
+#: main.cpp:53
 msgid "Start left panel at <path>"
 msgstr "Levý panel začíná na <path>"
 
-#: main.cpp:52
+#: main.cpp:54
 msgid "Start right panel at <path>"
 msgstr "Pravý panel začíná na <path>"
 
-#: main.cpp:53
+#: main.cpp:55
 msgid "Load this profile on startup"
 msgstr "Načíst tento profil při startu "
 
-#: main.cpp:92
+#: main.cpp:94
 msgid "Krusader"
 msgstr "Krusader"
 
-#: main.cpp:93
+#: main.cpp:95
 msgid "Krusader - ROOT PRIVILEGES"
 msgstr "Krusader - Práva SUPERUŽIVATELE"
 
-#: main.cpp:96
+#: main.cpp:98
 msgid ""
 "Feedback\n"
 "http://www.krusader.org/phpBB/\n"
@@ -3003,6 +3026,10 @@ msgstr ""
 "\n"
 "IRC\n"
 "server: irc.freenode.net, kanál: #krusader"
+
+#: main.cpp:179
+msgid "Application already running!\n"
+msgstr ""
 
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
@@ -3020,7 +3047,7 @@ msgstr "Ponechat virtuální adresářovou strukturu"
 msgid "Base URL:"
 msgstr "Základní URL:"
 
-#: Dialogs/krdialogs.cpp:266 Konfigurator/kglookfeel.cpp:111
+#: Dialogs/krdialogs.cpp:266 Konfigurator/kglookfeel.cpp:112
 msgid "Custom Selection Mode"
 msgstr "Vlastní režim označování"
 
@@ -3719,11 +3746,13 @@ msgstr "Filtr souborů"
 
 #: Synchronizer/synchronizergui.cpp:1079
 msgid "The left base directory used during the synchronisation process."
-msgstr "Během synchronizačního procesu se použil základní adresář levého panelu."
+msgstr ""
+"Během synchronizačního procesu se použil základní adresář levého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1110
 msgid "The right base directory used during the synchronisation process."
-msgstr "Během synchronizačního procesu se použil základní adresář pravého panelu."
+msgstr ""
+"Během synchronizačního procesu se použil základní adresář pravého panelu."
 
 #: Synchronizer/synchronizergui.cpp:1116
 msgid "Recurse subdirectories"
@@ -4147,7 +4176,7 @@ msgstr "Jen označené soubory"
 msgid "Cannot open %1!"
 msgstr "Nemohu otevřít %1!"
 
-#: Konfigurator/kglookfeel.cpp:121 paneltabbar.cpp:35
+#: Konfigurator/kglookfeel.cpp:122 paneltabbar.cpp:35
 msgid "Panel"
 msgstr "Panel"
 
@@ -4498,7 +4527,8 @@ msgstr "Používat magická čísla MIME typů"
 
 #: Konfigurator/kggeneral.cpp:66
 msgid "Mimetype magic allows better distinction of file types, but is slower."
-msgstr "Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
+msgstr ""
+"Magická čísla poskytují lepší rozlišení typů souborů, ale jsou pomalejší."
 
 #: Konfigurator/kggeneral.cpp:73
 msgid "Editor:"
@@ -4585,7 +4615,8 @@ msgid "Searching for tools..."
 msgstr "Hledání nástrojů ..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové nástroje do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -4824,15 +4855,23 @@ msgstr "Ukazovat úvodní obrazovku"
 msgid "Display a splashscreen when starting krusader."
 msgstr "Při spuštění Krusaderu se zobrazí úvodní obrázek."
 
-#: Konfigurator/kglookfeel.cpp:91
+#: Konfigurator/kglookfeel.cpp:83
+msgid "Single instance mode"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:83
+msgid "Only one Krusader instance is allowed to run."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:92
 msgid "Single click / Double click Selection:"
 msgstr "Výběr klik/dvojklik:"
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 msgid "Double-click selects (classic)"
 msgstr "Klik označí, dvojklik otevře (klasické)"
 
-#: Konfigurator/kglookfeel.cpp:96
+#: Konfigurator/kglookfeel.cpp:97
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
@@ -4840,11 +4879,11 @@ msgstr ""
 "Jednoduché kliknutí na soubor ho označí a zaměří, dvojité kliknutí ho otevře "
 "nebo vkročí do adresáře."
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:98
 msgid "Obey KDE's global selection policy"
 msgstr "Přizpůsobit se nastavení KDE"
 
-#: Konfigurator/kglookfeel.cpp:97
+#: Konfigurator/kglookfeel.cpp:98
 msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
 "Mouse</i></p>"
@@ -4852,15 +4891,15 @@ msgstr ""
 "<p>Použije globální nastavení KDE:</p><p><i>Ovládací Centrum KDE (Kcontrol) -"
 "> Periférie -> Myš</i></p>"
 
-#: Konfigurator/kglookfeel.cpp:104
+#: Konfigurator/kglookfeel.cpp:105
 msgid "Mouse Selection Mode:"
 msgstr "Režim výběru myší:"
 
-#: Konfigurator/kglookfeel.cpp:108
+#: Konfigurator/kglookfeel.cpp:109
 msgid "Krusader Mode"
 msgstr "Režim Krusaderu"
 
-#: Konfigurator/kglookfeel.cpp:108
+#: Konfigurator/kglookfeel.cpp:109
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
 "key and click the left mouse button. Right-click menu is invoked using a "
@@ -4870,11 +4909,11 @@ msgstr ""
 "klávesu Ctrl a klikněte levým tlačítkem myši.Kontextová nabídka je vyvolána "
 "krátkým kliknutím na pravé tlačítko myši."
 
-#: Konfigurator/kglookfeel.cpp:109
+#: Konfigurator/kglookfeel.cpp:110
 msgid "Konqueror Mode"
 msgstr "Režim Konqueroru"
 
-#: Konfigurator/kglookfeel.cpp:109
+#: Konfigurator/kglookfeel.cpp:110
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
 "multiple files. Right-click menu is invoked using a short click on the right "
@@ -4883,11 +4922,11 @@ msgstr ""
 "Stisknutí levého tlačítka myši označí soubor - můžete kliknout a označit "
 "více souborů.Kontextová nabídka se vyvolá krátkým kliknutím pravým tlačítkem."
 
-#: Konfigurator/kglookfeel.cpp:110
+#: Konfigurator/kglookfeel.cpp:111
 msgid "Total-Commander Mode"
 msgstr "Režim Total-Commanderu"
 
-#: Konfigurator/kglookfeel.cpp:110
+#: Konfigurator/kglookfeel.cpp:111
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button selects multiple "
@@ -4898,155 +4937,156 @@ msgstr ""
 "tlačítko vybírá více souborů a kontextová nabídka se vyvolá stisknutím a "
 "držením pravého tlačítka."
 
-#: Konfigurator/kglookfeel.cpp:111
+#: Konfigurator/kglookfeel.cpp:112
 msgid "Design your own selection mode!"
 msgstr "Navrhněte si svůj vlastní režim výběru."
 
-#: Konfigurator/kglookfeel.cpp:126
+#: Konfigurator/kglookfeel.cpp:127
 msgid "Panel settings"
 msgstr "Nastavení panelů"
 
-#: Konfigurator/kglookfeel.cpp:130
+#: Konfigurator/kglookfeel.cpp:131
 msgid "Panel font:"
 msgstr "Písmo panelu:"
 
-#: Konfigurator/kglookfeel.cpp:136
+#: Konfigurator/kglookfeel.cpp:137
 msgid "Filelist icon size:"
 msgstr "Velikost ikon v panelu:"
 
-#: Konfigurator/kglookfeel.cpp:139
+#: Konfigurator/kglookfeel.cpp:140
 msgid "16"
 msgstr "16"
 
-#: Konfigurator/kglookfeel.cpp:140
+#: Konfigurator/kglookfeel.cpp:141
 msgid "22"
 msgstr "22"
 
-#: Konfigurator/kglookfeel.cpp:141
+#: Konfigurator/kglookfeel.cpp:142
 msgid "32"
 msgstr "32"
 
-#: Konfigurator/kglookfeel.cpp:142
+#: Konfigurator/kglookfeel.cpp:143
 msgid "48"
 msgstr "48"
 
-#: Konfigurator/kglookfeel.cpp:153
+#: Konfigurator/kglookfeel.cpp:154
 msgid "Use icons in the filenames"
 msgstr "Zobrazit ikony v názvech souborů"
 
-#: Konfigurator/kglookfeel.cpp:153
+#: Konfigurator/kglookfeel.cpp:154
 msgid "Show the icons for filenames and folders."
 msgstr "Zobrazit ikony u názvů souborů a složek."
 
-#: Konfigurator/kglookfeel.cpp:154
+#: Konfigurator/kglookfeel.cpp:155
 msgid "Use human-readable file size"
 msgstr "Používat lidmi čitelné velikosti souborů"
 
-#: Konfigurator/kglookfeel.cpp:154
+#: Konfigurator/kglookfeel.cpp:155
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "Velikosti souborů se zobrazují v B,KB,MB a GB, ne jen v bajtech."
 
-#: Konfigurator/kglookfeel.cpp:164
+#: Konfigurator/kglookfeel.cpp:165
 msgid "Toolbar"
 msgstr "Panel nástrojů"
 
-#: Konfigurator/kglookfeel.cpp:174
+#: Konfigurator/kglookfeel.cpp:175
 msgid "Keybindings"
 msgstr "Klávesové zkratky"
 
-#: Konfigurator/kglookfeel.cpp:183
+#: Konfigurator/kglookfeel.cpp:184
 msgid "Import shortcuts"
 msgstr "Importovat klávesové zkratky"
 
-#: Konfigurator/kglookfeel.cpp:185
+#: Konfigurator/kglookfeel.cpp:186
 msgid "Load a keybinding profile, e.g., total_commander.keymap"
 msgstr "Načte profil klávesových zkratek, např. total_commander.keymap"
 
-#: Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:187
 msgid "Export shortcuts"
 msgstr "Exportovat klávesové zkratky"
 
-#: Konfigurator/kglookfeel.cpp:188
+#: Konfigurator/kglookfeel.cpp:189
 msgid "Save current keybindings in a keymap file."
 msgstr "Uloží současné klávesové zkratky do souboru keymap."
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Panel Toolbar"
 msgstr "Panel Nástrojové lišty"
 
-#: Konfigurator/kglookfeel.cpp:203
+#: Konfigurator/kglookfeel.cpp:204
 msgid "Show Panel Toolbar"
 msgstr "Zobrazit Panel nástrojové lištu"
 
-#: Konfigurator/kglookfeel.cpp:203
+#: Konfigurator/kglookfeel.cpp:204
 msgid "The panel toolbar will be visible."
 msgstr "Panel nástrojů bude po viditelný."
 
-#: Konfigurator/kglookfeel.cpp:209
+#: Konfigurator/kglookfeel.cpp:210
 msgid "Visible Panel Toolbar buttons"
 msgstr "Viditelná tlačítka Panelu nástrojové lišty"
 
-#: Konfigurator/kglookfeel.cpp:215
+#: Konfigurator/kglookfeel.cpp:216
 msgid "Clear location bar button"
 msgstr "Tlačítko vymazat řádek s umístěním"
 
-#: Konfigurator/kglookfeel.cpp:215
+#: Konfigurator/kglookfeel.cpp:216
 msgid "Clears the location bar"
 msgstr "Vyčistí řádek s umístěním"
 
-#: Konfigurator/kglookfeel.cpp:216
+#: Konfigurator/kglookfeel.cpp:217
 msgid "Open button"
 msgstr "Tlačítko Otevřít"
 
-#: Konfigurator/kglookfeel.cpp:216
+#: Konfigurator/kglookfeel.cpp:217
 msgid "Opens the directory browser."
 msgstr "Otevře prohlížeč adresářů."
 
-#: Konfigurator/kglookfeel.cpp:217
+#: Konfigurator/kglookfeel.cpp:218
 msgid "Equal button (=)"
 msgstr "Zobrazit tlačítko rovná se (=)"
 
-#: Konfigurator/kglookfeel.cpp:217
+#: Konfigurator/kglookfeel.cpp:218
 msgid "Changes the panel directory to the other panel directory."
 msgstr "Nastaví adresář panelu stejně jako v protilehlém panelu."
 
-#: Konfigurator/kglookfeel.cpp:218
+#: Konfigurator/kglookfeel.cpp:219
 msgid "Up button (..)"
 msgstr "Zobrazit tlačítko nahoru (..)"
 
-#: Konfigurator/kglookfeel.cpp:218
+#: Konfigurator/kglookfeel.cpp:219
 msgid "Changes the panel directory to the parent directory."
 msgstr "Přejde do rodičovského adresáře."
 
-#: Konfigurator/kglookfeel.cpp:219
+#: Konfigurator/kglookfeel.cpp:220
 msgid "Home button (~)"
 msgstr "Zobrazit tlačítko domovského adresáře (~)"
 
-#: Konfigurator/kglookfeel.cpp:219
+#: Konfigurator/kglookfeel.cpp:220
 msgid "Changes the panel directory to the home directory."
 msgstr "Změní adresář panelu na domovský adresář uživatele."
 
-#: Konfigurator/kglookfeel.cpp:220
+#: Konfigurator/kglookfeel.cpp:221
 msgid "Root button (/)"
 msgstr "Zobrazit tlačítko kořenového adresáře (/)"
 
-#: Konfigurator/kglookfeel.cpp:220
+#: Konfigurator/kglookfeel.cpp:221
 msgid "Changes the panel directory to the root directory."
 msgstr "Změní adresář panelu na kořenový adresář (/),"
 
-#: Konfigurator/kglookfeel.cpp:221
+#: Konfigurator/kglookfeel.cpp:222
 msgid "Toggle-button for sync-browsing"
 msgstr "Přepínací tlačítko pro synchronizované prohlížení"
 
-#: Konfigurator/kglookfeel.cpp:221
-msgid "Each directory change in the panel is also performed in the other panel."
+#: Konfigurator/kglookfeel.cpp:222
+msgid ""
+"Each directory change in the panel is also performed in the other panel."
 msgstr "Každá změna v jednom panelu se provede rovněž v protilehlém panelu."
 
-#: Konfigurator/kglookfeel.cpp:285 Konfigurator/kglookfeel.cpp:302
+#: Konfigurator/kglookfeel.cpp:286 Konfigurator/kglookfeel.cpp:303
 msgid "Select a shortcuts file"
 msgstr "Vyberte soubor klávesových zkratek"
 
-#: Konfigurator/kglookfeel.cpp:292
+#: Konfigurator/kglookfeel.cpp:293
 msgid ""
 "The following information was attached to the keymap. Are you sure you want "
 "to import this keymap ?"
@@ -5079,7 +5119,8 @@ msgstr ""
 "se snažit připojit s určenými parametry."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid ""
+"Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Nepoužívat protokol media z KDE pro tlačítko Media (pokud nefunguje nebo "
 "chybí)"
@@ -5094,7 +5135,8 @@ msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:75
 msgid "MountMan won't (un)mount the following mount-points:"
-msgstr "Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
+msgstr ""
+"Správce připojení disků nebude při(/od)pojovat následující přípojné body:"
 
 #: Konfigurator/kgadvanced.cpp:89
 msgid "Confirmations"
@@ -5607,6 +5649,16 @@ msgstr ""
 "použít nabídku <i>Nastavení -> Uložit Pozici</i>,čímž ručně nastavíte "
 "velikost a polohu při spuštění.</p>"
 
+#: Konfigurator/kgstartup.cpp:84
+msgid "Start to tray"
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:84
+msgid ""
+"Krusader starts to tray (if minimize to tray is set), without showing the "
+"main window"
+msgstr ""
+
 #: Konfigurator/kgarchives.cpp:55
 msgid "Krusader transparently handles the following types of archives:"
 msgstr "Krusader průhledně pracuje s následujícími typy archívů"
@@ -5682,7 +5734,8 @@ msgid "Test archive before unpacking"
 msgstr "Zkontrolovat archív před rozbalením"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid ""
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Některé poškozené archívy mohou způsobit spadnutí programu. Proto se "
 "doporučuje zapnout testování archívů."
@@ -5692,7 +5745,8 @@ msgid "Searching for packers..."
 msgstr "Hledání archivátorů..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Ujistěte se, že instalujete nové archivátory do cesty v <code>$PATH</code> "
 "(např. /usr/bin)"
@@ -5818,7 +5872,7 @@ msgstr ""
 "diff. Prosím, nainstalujte ji do cesty, kam směřuje vaše proměnná PATH. "
 "Krusader podporuje kdiff a xxdiff."
 
-#: krslots.cpp:397
+#: krslots.cpp:398
 msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
@@ -5826,7 +5880,7 @@ msgstr ""
 "Nelze najít příkaz 'locate'. Prosím, nainstalujte balíček GNU findutils-"
 "locate, nebo správně nastavte závislosti v Konfigurátoru."
 
-#: krslots.cpp:409
+#: krslots.cpp:410
 msgid ""
 "Important: RemoteMan has been replaced by our new bookmark manager. The new "
 "manager handles local files and remote URLs the same way. RemoteMan is being "
@@ -5842,17 +5896,17 @@ msgstr ""
 "Vyzkoušejte nového správce záložek: otevřete nové vzdálené spojení, poté "
 "stiskněte tlačítko Záložky a vyberte Přidat k záložkám. A to je vše."
 
-#: krslots.cpp:428
+#: krslots.cpp:429
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
 msgstr "Nemohu spustit 'mount'.  Zkontrolujte závislosti v Konfigurátoru."
 
-#: krslots.cpp:460
+#: krslots.cpp:461
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
 msgstr ""
 "Nelze nalézt \"KsysCtrl\"\n"
 "Prosím, nainstalujte balíček KDE admin"
 
-#: krslots.cpp:468
+#: krslots.cpp:469
 msgid ""
 "Can't find a batch rename tool.\n"
 "You can get Krename at http://www.krename.net"
@@ -5860,7 +5914,7 @@ msgstr ""
 "Nenalezen program pro přejmenovávání více položek\n"
 "Na adrese http://krename.sf.net můžete nalézt program Krename."
 
-#: krslots.cpp:498
+#: krslots.cpp:499
 msgid ""
 "Can't start root mode krusader, because krusader or kdesu is missing from "
 "the path. Please configure the dependencies in Konfigurator!"
@@ -5868,43 +5922,43 @@ msgstr ""
 "Nelze spustit Superuživatelský režim, protože nelze nalézt krusader nebo "
 "kdesu. Nastavte prosím závislosti v Konfigurátoru."
 
-#: krslots.cpp:553
+#: krslots.cpp:554
 msgid "Enter a URL to view:"
 msgstr "Zadejte URL, které má být zobrazeno: "
 
-#: krslots.cpp:564
+#: krslots.cpp:565
 msgid "Enter the filename to edit:"
 msgstr "Zadejte název souboru k úpravě:"
 
-#: krslots.cpp:622
+#: krslots.cpp:623
 msgid "Don't know which file to split."
 msgstr "Nevím, které soubory rozdělit."
 
-#: krslots.cpp:631
+#: krslots.cpp:632
 msgid "You can't split a directory!"
 msgstr "Nelze rozdělit adresář!"
 
-#: krslots.cpp:662
+#: krslots.cpp:663
 msgid "Don't know which files to combine."
 msgstr "Nevím, které soubory sloučit."
 
-#: krslots.cpp:674
+#: krslots.cpp:675
 msgid "You can't combine a directory!"
 msgstr "Nelze sloučit adresář!"
 
-#: krslots.cpp:693
+#: krslots.cpp:694
 msgid "Not a split file %1!"
 msgstr "Soubor %1 nebyl rozdělen!"
 
-#: krslots.cpp:708
+#: krslots.cpp:709
 msgid "Select only one split file!"
 msgstr "Vyber pouze jeden rozdělený soubor!"
 
-#: krslots.cpp:756
+#: krslots.cpp:757
 msgid "Not a splitted file %1!"
 msgstr "Soubor %1 nebyl rozdělen!"
 
-#: krslots.cpp:763
+#: krslots.cpp:764
 msgid "Combining %1.* to directory:"
 msgstr "Slučování %1.* do adresáře:"
 
@@ -6005,7 +6059,8 @@ msgid "Not a valid CRC file!"
 msgstr "Neplatný CRC soubor!"
 
 #: Splitter/combiner.cpp:152
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Kontrola platnosti je nemožná bez platného CRC (kontrolní součet) souboru. "
 "Pokračovat ve slučování?"
@@ -6045,4 +6100,3 @@ msgstr "Chyba při čtení souboru %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
-
