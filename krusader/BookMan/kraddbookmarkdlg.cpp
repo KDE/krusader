@@ -34,7 +34,7 @@ KrAddBookmarkDlg::KrAddBookmarkDlg(QWidget *parent, KURL url):
 	_url = new KLineEdit(page);
 	layout->addWidget(lb2, 1, 0);	
 	layout->addWidget(_url, 1, 1);
-	_url->setText(url.url()); // set the url in the field
+	_url->setText(url.prettyURL()); // set the url in the field
 
 	// create in linedit and button
 	QLabel *lb3 = new QLabel(i18n("Create in:"), page);

@@ -104,7 +104,7 @@ void KrBookmarkHandler::exportToFileBookmark(QDomDocument &doc, QDomElement &whe
 	else {
 		QDomElement bookmark = doc.createElement("bookmark");
 		// url
-		bookmark.setAttribute("href", bm->url().url());
+		bookmark.setAttribute("href", bm->url().prettyURL());
 		// icon
 		bookmark.setAttribute("icon", bm->icon());
 		// title
