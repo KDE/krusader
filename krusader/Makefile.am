@@ -14,6 +14,7 @@ endif
 
 # these subdirs are also visited during the build-process
 SUBDIRS = \
+	ActionMan \
 	BookMan \
 	Dialogs \
 	DiskUsage \
@@ -30,7 +31,6 @@ SUBDIRS = \
 	Splitter \
 	Synchronizer \
 	UserAction \
-	ActionMan \
 	$(KRJSDIR) \
 	UserMenu \
 	VFS
