@@ -46,6 +46,10 @@ UserActionListView::~UserActionListView()
 {
 }
 
+QSize UserActionListView::sizeHint() const {
+   return QSize(200, 400);
+}
+
 
 void UserActionListView::update( UserActionListViewItem* item ) {
    if ( item ) {
@@ -101,6 +105,19 @@ KrAction * UserActionListView::currentAction() const {
       return item->action();
    else
       return 0;
+}
+
+void UserActionListView::setCurrentAction( const KrAction* action) {
+  for ( QListViewItemIterator it( this ); it.current(); ++it ) {
+    if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( it.current() ) ) {
+      if ( item->action() == action ) {
+        setCurrentItem( item );
+//         setSelected( item, true );
+//         repaintItem( item );
+        break;
+      }
+    }
+  } //for
 }
 
 void UserActionListView::setFirstActionCurrent() {
@@ -196,6 +213,5 @@ int UserActionListViewItem::compare( QListViewItem* i, int col, bool ascending )
 //    else
       return QListViewItem::compare( i, col, ascending );
 }
-
 
 

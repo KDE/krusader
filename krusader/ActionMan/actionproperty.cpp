@@ -33,13 +33,13 @@
 #include <ktextedit.h>
 
 
-ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *action ) : ActionPropertyBase( parent, name ) {
+ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *action )
+ : ActionPropertyBase( parent, name ), _modified(false)
+ {
    if ( action ) {
       _action = action;
       updateGUI( _action );
    }
-
-   _changed = false;
 
    // fill with all existing categories
    cbCategory->insertStringList( krUserAction->allCategories() );
@@ -59,6 +59,23 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *act
    connect( ButtonEditFile, SIGNAL( clicked() ), this, SLOT( editFile() ) );
    connect( ButtonRemoveFile, SIGNAL( clicked() ), this, SLOT( removeFile() ) );
    connect( KeyButtonShortcut, SIGNAL( capturedShortcut(const KShortcut&) ), this, SLOT( changedShortcut(const KShortcut&) ) );
+   // track modifications:
+   connect( leDistinctName, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
+   connect( leTitle, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
+   connect( ButtonIcon, SIGNAL( iconChanged(QString) ), SLOT( setModified() ) );
+   connect( cbCategory, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
+   connect( leTooltip, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
+   connect( textDescription, SIGNAL( textChanged() ), SLOT( setModified() ) );
+   connect( leDistinctName, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
+   connect( leCommandline, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
+   connect( leStartpath, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
+   connect( bgExecType, SIGNAL( clicked(int) ), SLOT( setModified() ) );
+   connect( bgAccept, SIGNAL( clicked(int) ), SLOT( setModified() ) );
+   connect( KeyButtonShortcut, SIGNAL( capturedShortcut(const KShortcut&) ), SLOT( setModified() ) );
+   connect( leDifferentUser, SIGNAL( textChanged(const QString&) ), SLOT( setModified() ) );
+   connect( chkDifferentUser, SIGNAL( clicked() ), SLOT( setModified() ) );
+   connect( chkConfirmExecution, SIGNAL( clicked() ), SLOT( setModified() ) );
+   // The modified-state of the ShowOnly-lists is tracked in the access-functions below
 }
 
 ActionProperty::~ActionProperty() {
@@ -73,7 +90,7 @@ void ActionProperty::clear() {
    _action = 0;
 
    leDistinctName->clear();
-   cbCategory->clear();
+   cbCategory->clearEdit();
    leTitle->clear();
    leTooltip->clear();
    textDescription->clear();
@@ -98,7 +115,7 @@ void ActionProperty::clear() {
     leDifferentUser->clear();
     chkDifferentUser->setChecked( false );
 
-   _changed = false;
+   setModified( false );
 }
 
 void ActionProperty::updateGUI( KrAction *action ) {
@@ -160,7 +177,7 @@ void ActionProperty::updateGUI( KrAction *action ) {
     else
         chkDifferentUser->setChecked( true );
 
-   _changed = false;
+   setModified( false );
 }
 
 void ActionProperty::updateAction( KrAction *action ) {
@@ -237,7 +254,7 @@ void ActionProperty::updateAction( KrAction *action ) {
 
    _action->setUser( leDifferentUser->text() );
 
-   _changed = false;
+   setModified( false );
 }
 
 void ActionProperty::addPlaceholder() {
@@ -249,7 +266,6 @@ void ActionProperty::addPlaceholder() {
    		)
    ) );
    leCommandline->insert( exp );
-   _changed = true;
 }
 
 
@@ -257,7 +273,6 @@ void ActionProperty::addStartpath() {
    QString folder = KFileDialog::getExistingDirectory(QString::null, this);
    if (folder != QString::null) {
       leStartpath->setText( folder );
-      _changed = true;
    }
 }
 
@@ -271,7 +286,7 @@ void ActionProperty::newProtocol() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyProtocol->insertStringList( QStringList::split( ";", text ) );
-      _changed = true;
+      setModified();
    }
 }
 
@@ -287,14 +302,14 @@ void ActionProperty::editProtocol() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyProtocol->changeItem( text, lbShowonlyProtocol->currentItem() );
-      _changed = true;
+      setModified();
    }
 }
 
 void ActionProperty::removeProtocol() {
    if (lbShowonlyProtocol->currentItem() != -1) {
      lbShowonlyProtocol->removeItem( lbShowonlyProtocol->currentItem() );
-     _changed = true;
+      setModified();
   }
 }
 
@@ -302,7 +317,7 @@ void ActionProperty::addPath() {
    QString folder = KFileDialog::getExistingDirectory(QString::null, this);
    if (folder != QString::null) {
      lbShowonlyPath->insertItem( folder );
-     _changed = true;
+     setModified();
    }
 }
 
@@ -318,14 +333,14 @@ void ActionProperty::editPath() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyPath->changeItem( text, lbShowonlyPath->currentItem() );
-      _changed = true;
+      setModified();
    }
 }
 
 void ActionProperty::removePath() {
    if (lbShowonlyPath->currentItem() != -1) {
      lbShowonlyPath->removeItem( lbShowonlyPath->currentItem() );
-     _changed = true;
+     setModified();
   }
 }
 
@@ -338,7 +353,7 @@ void ActionProperty::addMime() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyMime->insertStringList( QStringList::split( ";", text ) );
-      _changed = true;
+      setModified();
    }
 }
 
@@ -354,14 +369,14 @@ void ActionProperty::editMime() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyMime->changeItem( text, lbShowonlyMime->currentItem() );
-      _changed = true;
+      setModified();
    }
 }
 
 void ActionProperty::removeMime() { 
    if (lbShowonlyMime->currentItem() != -1) {
      lbShowonlyMime->removeItem( lbShowonlyMime->currentItem() );
-     _changed = true;
+     setModified();
   }
 }
 
@@ -374,7 +389,7 @@ void ActionProperty::newFile() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyFile->insertStringList( QStringList::split( ";", text ) );
-      _changed = true;
+      setModified();
    }
 }
 
@@ -390,14 +405,14 @@ void ActionProperty::editFile() {
 		&ok, this );
     if ( ok && !text.isEmpty() ) {
       lbShowonlyFile->changeItem( text, lbShowonlyFile->currentItem() );
-      _changed = true;
+      setModified();
    }
 }
 
 void ActionProperty::removeFile() {
    if (lbShowonlyFile->currentItem() != -1) {
      lbShowonlyFile->removeItem( lbShowonlyFile->currentItem() );
-     _changed = true;
+     setModified();
   }
 }
 

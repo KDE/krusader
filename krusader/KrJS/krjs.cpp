@@ -1,6 +1,6 @@
 // Implementation of our JavaScript-Interpreter
 //
-// Author: Jonas Bähr (C) 2005
+// Author: Jonas Bï¿½r (C) 2005
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -53,7 +53,7 @@ bool KrJS::runFile(const QString & filename) {
             {
 #if KDE_IS_VERSION(3,4,0)
             KJS::Object exception = jsres.value().toObject(exec);
-            int line = exception.get( exec, KJS::Identifier("line") ).toNumber(exec);
+            int line = int( exception.get( exec, KJS::Identifier("line") ).toNumber(exec) );
             QString type = exception.get( exec, KJS::Identifier("name") ).toString(exec).qstring();
             QString message = exception.get( exec, KJS::Identifier("message") ).toString(exec).qstring();
 

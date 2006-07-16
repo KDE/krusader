@@ -62,9 +62,10 @@ public:
 	/**
 	 * @return true if any property got changed
 	 */
-	bool changed() { return _changed; };
+	bool isModified() { return _modified; };
 	
 protected slots:
+   void setModified( bool m = true ) { _modified = m; };
    /**
     * executes the AddPlaceholderPopup
     */
@@ -124,7 +125,7 @@ protected slots:
 
 private:
    KrAction *_action;
-   bool _changed;
+   bool _modified;
 
 private slots:
    /**

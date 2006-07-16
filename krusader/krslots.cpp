@@ -81,6 +81,7 @@
 #include "Splitter/splittergui.h"
 #include "Splitter/splitter.h"
 #include "Splitter/combiner.h"
+#include "ActionMan/actionman.h"
 #include "UserMenu/usermenu.h"
 #include "Panel/panelpopup.h"
 #include "Synchronizer/synchronizergui.h"
@@ -781,7 +782,7 @@ void KRslots::userMenu() {
 }
 
 void KRslots::manageUseractions() {
-   Konfigurator konfigurator( false, 7 ); // page 7 are the UserActions
+   ActionMan actionMan( MAIN_VIEW );
 }
 
 void KRslots::slotSynchronizeDirs( QStringList selected ) {

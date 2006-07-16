@@ -26,11 +26,13 @@ class UserActionListView : public KListView {
 public:
    UserActionListView( QWidget* parent = 0, const char* name = 0 );
    ~UserActionListView();
+   virtual QSize sizeHint() const;
 
    void update( UserActionListViewItem* item = 0 );
    UserActionListViewItem* insertAction( KrAction* action );
 
    KrAction* currentAction() const;
+   void setCurrentAction( const KrAction* );
 
    QDomDocument dumpSelectedActions( QDomDocument* mergeDoc = 0 ) const;
 

@@ -4,8 +4,14 @@ INCLUDES = $(all_includes)
 
 libGUI_a_METASOURCES = AUTO
 
-libGUI_a_SOURCES = dirhistoryqueue.cpp dirhistorybutton.cpp krusaderstatus.cpp \
-	kfnkeys.cpp kcmdline.cpp actionproperty.cpp actionpropertybase.ui \
-	addplaceholderpopup.cpp syncbrowsebutton.cpp profilemanager.cpp krremoteencodingmenu.cpp \
-	mediabutton.cpp useractionlistview.cpp
-noinst_HEADERS = krremoteencodingmenu.h useractionlistview.h
+libGUI_a_SOURCES = \
+	dirhistoryqueue.cpp \
+	dirhistorybutton.cpp \
+	krusaderstatus.cpp \
+	kfnkeys.cpp \
+	kcmdline.cpp \
+	syncbrowsebutton.cpp \
+	profilemanager.cpp \
+	krremoteencodingmenu.cpp \
+	mediabutton.cpp
+

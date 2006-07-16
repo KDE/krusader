@@ -44,8 +44,8 @@
 #include <qsplitter.h> 
 
 #include "../UserMenu/usermenu.h"
-#include "../GUI/actionproperty.h"
-#include "../GUI/useractionlistview.h"
+#include "../ActionMan/actionproperty.h"
+#include "../ActionMan/useractionlistview.h"
 #include "../UserAction/useraction.h"
 #include "../UserAction/kraction.h"
 

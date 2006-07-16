@@ -21,7 +21,7 @@
 // for ParameterDialog
 #include "../krusader.h" // for konfig-access
 #include "../BookMan/krbookmarkbutton.h"
-#include "profilemanager.h"
+#include "../GUI/profilemanager.h"
 
 #include <qlayout.h>
 #include <qhbox.h>

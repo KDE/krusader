@@ -30,6 +30,7 @@ SUBDIRS = \
 	Splitter \
 	Synchronizer \
 	UserAction \
+	ActionMan \
 	$(KRJSDIR) \
 	UserMenu \
 	VFS
@@ -86,6 +87,7 @@ krusader_LDADD   = \
 	UserMenu/libUserMenu.a \
 	Locate/libLocate.a \
 	UserAction/libUserAction.a \
+	ActionMan/libActionMan.a \
 	$(LIB_KRJS) \
 	KViewer/libKViewer.a \
 	Filter/libFilter.a \
