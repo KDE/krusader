@@ -106,7 +106,7 @@ void KURLListRequester::slotBrowse()
 {
   KURL url = KFileDialog::getExistingURL( QString::null, this );
   if( !url.isEmpty())
-    urlLineEdit->setText( url.prettyURL( 0,KURL::StripFileProtocol ) );
+    urlLineEdit->setText( vfs::pathOrURL( url ) );
   urlLineEdit->setFocus();
 }
 
@@ -196,7 +196,7 @@ void KURLListRequester::setUrlList( KURL::List urlList )
   KURL::List::iterator it;
     
   for ( it = urlList.begin(); it != urlList.end(); ++it )
-    urlListBox->insertItem( (*it).prettyURL( 0,KURL::StripFileProtocol ) );
+    urlListBox->insertItem( vfs::pathOrURL(*it) );
 }
 
 #include "kurllistrequester.moc"

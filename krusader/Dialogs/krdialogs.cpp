@@ -56,7 +56,7 @@
 #include "../defaults.h"
 
 KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
-	KURLRequesterDlg *dlg = new KURLRequesterDlg(url.prettyURL(1),text,krApp,"");
+	KURLRequesterDlg *dlg = new KURLRequesterDlg( vfs::pathOrURL( url, 1 ),text,krApp,"");
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KURL u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -73,7 +73,7 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd) {
 }
 
 KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &preserveAttrs ) {
-	KURLRequesterDlgForCopy *dlg = new KURLRequesterDlgForCopy(url.prettyURL(1),text, preserveAttrs, krApp,"" );
+	KURLRequesterDlgForCopy *dlg = new KURLRequesterDlgForCopy( vfs::pathOrURL( url, 1 ),text, preserveAttrs, krApp,"" );
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KURL u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -91,7 +91,7 @@ KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &pre
 }
 
 KURL KChooseDir::getDir(QString text,const KURL& url, const KURL& cwd, bool &preserveAttrs, KURL &baseURL ) {
-	KURLRequesterDlgForCopy *dlg = new KURLRequesterDlgForCopy(url.prettyURL(1),text, preserveAttrs, krApp,"", true, baseURL );
+	KURLRequesterDlgForCopy *dlg = new KURLRequesterDlgForCopy( vfs::pathOrURL( url, 1 ),text, preserveAttrs, krApp,"", true, baseURL );
 	dlg->urlRequester()->completionObject()->setDir(cwd.url());
 	KURL u;
 	if (dlg->exec() == QDialog::Accepted) {
@@ -146,7 +146,7 @@ KURLRequesterDlgForCopy::KURLRequesterDlgForCopy( const QString& urlName, const 
 		baseUrlCombo->setEnabled( copyDirStructureCB->isChecked() );
 		KURL temp = baseURL, tempOld;
 		do {
-			QString baseURLText = temp.prettyURL( 0, KURL::StripFileProtocol );
+			QString baseURLText = vfs::pathOrURL( temp );
 			baseUrlCombo->insertItem( baseURLText );
 			tempOld = temp;
 			temp = temp.upURL();

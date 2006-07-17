@@ -43,7 +43,7 @@ class Splitter : public QProgressDialog
   
 private:
   KURL            fileName;
-  QString         destinationDir;
+  KURL            destinationDir;
   KIO::filesize_t splitSize;
 
   KIO::filesize_t fileSize;
@@ -61,7 +61,7 @@ private:
   KIO::TransferJob *splitWriteJob;
     
 public:
-  Splitter( QWidget* parent,  QString fileNameIn, QString destinationDirIn );
+  Splitter( QWidget* parent,  KURL fileNameIn, KURL destinationDirIn );
   ~Splitter();
   
   void split( KIO::filesize_t splitSizeIn );

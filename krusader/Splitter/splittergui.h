@@ -39,6 +39,8 @@
 #include <kurlrequester.h>
 #include <kio/global.h>
 
+#include "../VFS/vfs.h"
+
 struct PredefinedDevice
 {
   QString name;
@@ -59,7 +61,6 @@ private:
   int                             resultCode;
 
   static PredefinedDevice predefinedDevices[];
-  QString fileToSplit;
 
   SplitterSpinBox *spinBox;
   QComboBox       *deviceCombo;
@@ -67,9 +68,9 @@ private:
   KURLRequester   *urlReq;
   
 public:
-  SplitterGUI( QWidget* parent,  QString fileName, QString defaultDir );
+  SplitterGUI( QWidget* parent,  KURL fileURL, KURL defaultDir );
 
-  QString getDestinationDir()     {return urlReq->url();}
+  KURL    getDestinationDir()     {return vfs::fromPathOrURL( urlReq->url() );}
   KIO::filesize_t getSplitSize()  {return spinBox->longValue();}
   int     result()                {return resultCode;}
 

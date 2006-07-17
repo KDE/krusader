@@ -264,7 +264,7 @@ void KRslots::insertFileName(bool full_path)
     return;
   
   if( full_path ){
-    QString path=ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1,KURL::StripFileProtocol);
+    QString path=vfs::pathOrURL( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );
     filename = path+filename;
   }
 
@@ -625,8 +625,8 @@ void KRslots::slotSplit()
     return;
   }
 
-  QString fileName = ACTIVE_FUNC->files()->vfs_getFile(name).prettyURL(-1,KURL::StripFileProtocol);
-  if( fileName == QString::null )
+  KURL fileURL = ACTIVE_FUNC->files()->vfs_getFile(name);
+  if( fileURL.isEmpty() )
     return;
 
   if ( ACTIVE_FUNC->files()->vfs_search( name )->vfile_isDir() ) {
@@ -634,15 +634,15 @@ void KRslots::slotSplit()
     return ;
   }
 
-  QString destDir  = ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin().prettyURL(-1,KURL::StripFileProtocol);
+  KURL destDir  = ACTIVE_PANEL->otherPanel->func->files()->vfs_getOrigin();
 
-  SplitterGUI splitterGUI( MAIN_VIEW, fileName, destDir );
+  SplitterGUI splitterGUI( MAIN_VIEW, fileURL, destDir );
 
   if( splitterGUI.result() == QDialog::Accepted )
   {
-    bool splitToOtherPanel = ( vfs::fromPathOrURL( splitterGUI.getDestinationDir() ).equals( ACTIVE_PANEL->otherPanel->virtualPath(), true ) );
+    bool splitToOtherPanel = ( splitterGUI.getDestinationDir().equals( ACTIVE_PANEL->otherPanel->virtualPath(), true ) );
 
-    Splitter split( MAIN_VIEW, fileName, splitterGUI.getDestinationDir() );
+    Splitter split( MAIN_VIEW, fileURL, splitterGUI.getDestinationDir() );
     split.split( splitterGUI.getSplitSize() );
 
     if ( splitToOtherPanel )
@@ -692,7 +692,7 @@ void KRslots::slotCombine(){
       {
         if( windowsStyle )
         {
-          KMessageBox::error(0,i18n("Not a split file %1!").arg( url.prettyURL(0, KURL::StripFileProtocol ) ));
+          KMessageBox::error(0,i18n("Not a split file %1!").arg( vfs::pathOrURL( url ) ));
           return;
         }
         unixStyle = true;
@@ -755,14 +755,14 @@ void KRslots::slotCombine(){
 
       if( error )
       {
-        KMessageBox::error(0,i18n("Not a splitted file %1!").arg( url.prettyURL(0, KURL::StripFileProtocol ) ));
+        KMessageBox::error(0,i18n("Not a splitted file %1!").arg( vfs::pathOrURL( url ) ));
         return;
       }
     }
   }
 
    // ask the user for the copy dest
-  KURL dest = KChooseDir::getDir(i18n("Combining %1.* to directory:" ).arg( baseURL.prettyURL( 0, KURL::StripFileProtocol ) ),
+  KURL dest = KChooseDir::getDir(i18n("Combining %1.* to directory:" ).arg( vfs::pathOrURL( baseURL ) ),
                                  ACTIVE_PANEL->otherPanel->virtualPath(), ACTIVE_PANEL->virtualPath());
   if ( dest.isEmpty() ) return ; // the user canceled
 
@@ -787,8 +787,8 @@ void KRslots::manageUseractions() {
 
 void KRslots::slotSynchronizeDirs( QStringList selected ) {
   SynchronizerGUI *sync = new SynchronizerGUI( 0,
-                MAIN_VIEW->left->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol),
-                MAIN_VIEW->right->func->files()->vfs_getOrigin().prettyURL(0,KURL::StripFileProtocol), selected );
+                MAIN_VIEW->left->func->files()->vfs_getOrigin(),
+                MAIN_VIEW->right->func->files()->vfs_getOrigin(), selected );
 
   bool refresh = sync->wasSynchronization();
   delete sync;
@@ -841,7 +841,7 @@ void KRslots::togglePopupPanel() {
 
 void KRslots::slotDiskUsage()
 {
-  DiskUsageGUI du( ACTIVE_FUNC->files()->vfs_getOrigin().prettyURL(1,KURL::StripFileProtocol), MAIN_VIEW, "DiskUsage" );
+  DiskUsageGUI du( ACTIVE_FUNC->files()->vfs_getOrigin(), MAIN_VIEW, "DiskUsage" );
 }
 
 // when window becomes focused, enable the refresh in the visible panels

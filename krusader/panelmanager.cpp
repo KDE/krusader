@@ -98,7 +98,7 @@ void PanelManager::saveSettings( KConfig *config, const QString& key, bool local
    while (cnt < _tabbar->count()) {
       PanelTab *t = dynamic_cast<PanelTab*>(_tabbar->tabAt(i));
       if (t && t->panel) {
-         l << ( localOnly ? t->panel->realPath() : t->panel->virtualPath().prettyURL(0, KURL::StripFileProtocol ) );
+         l << ( localOnly ? t->panel->realPath() : vfs::pathOrURL( t->panel->virtualPath() ) );
          ++cnt;
       }
       ++i;

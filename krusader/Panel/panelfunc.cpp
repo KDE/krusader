@@ -749,7 +749,7 @@ void ListPanelFunc::pack() {
 	if ( fileNames.count() == 1 )
 		defaultName = fileNames.first();
 	// ask the user for archive name and packer
-	new PackGUI( defaultName, panel->otherPanel->virtualPath().prettyURL(-1, KURL::StripFileProtocol), fileNames.count(), fileNames.first() );
+	new PackGUI( defaultName, vfs::pathOrURL( panel->otherPanel->virtualPath(), -1 ), fileNames.count(), fileNames.first() );
 	if ( PackGUI::type == QString::null )
 		return ; // the user canceled
 

@@ -603,7 +603,7 @@ void ListPanel::slotStartUpdate() {
 
    if ( func->files() ->vfs_getType() == vfs::NORMAL )
       _realPath = virtualPath();
-   this->origin->setURL( virtualPath().prettyURL() );
+   this->origin->setURL( vfs::pathOrURL( virtualPath() ) );
    emit pathChanged( this );
    emit cmdLineUpdate( realPath() );	// update the command line
 

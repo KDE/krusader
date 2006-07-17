@@ -114,7 +114,7 @@ void KRSearchMod::scanURL( KURL url )
       continue;
     scannedUrls.push( urlToCheck );
 
-    emit searching( urlToCheck.prettyURL(0,KURL::StripFileProtocol) );
+    emit searching( vfs::pathOrURL( urlToCheck ) );
 
     if ( urlToCheck.isLocalFile() )
       scanLocalDir( urlToCheck );
@@ -236,9 +236,9 @@ void KRSearchMod::scanRemoteDir( KURL url )
     if( query->match( vf ) )
     {
       // if we got here - we got a winner
-      results.append( fileURL.prettyURL( -1, KURL::StripFileProtocol ) );
+      results.append( vfs::pathOrURL( fileURL, -1 ) );
       
-      emit found( fileURL.fileName(), fileURL.upURL().prettyURL( -1, KURL::StripFileProtocol ), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm(), query->foundText() );
+      emit found( fileURL.fileName(), vfs::pathOrURL( fileURL.upURL(), -1 ), vf->vfile_getSize(), vf->vfile_getTime_t(), vf->vfile_getPerm(), query->foundText() );
     }
 
     if( timer.elapsed() >= EVENT_PROCESS_DELAY ) {

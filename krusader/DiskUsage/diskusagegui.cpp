@@ -39,12 +39,12 @@
 #include <klocale.h>
 #include <qtooltip.h>
 
-DiskUsageGUI::DiskUsageGUI( QString openDir, QWidget* parent, char *name ) 
+DiskUsageGUI::DiskUsageGUI( KURL openDir, QWidget* parent, char *name ) 
   : QDialog( parent, name, false, 0 ), exitAtFailure( true )
 {  
   setCaption( i18n("Krusader::Disk Usage") );
   
-  baseDirectory = vfs::fromPathOrURL( openDir );
+  baseDirectory = openDir;
   if( !newSearch() )
     return;
   

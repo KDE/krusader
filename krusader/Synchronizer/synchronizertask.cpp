@@ -36,6 +36,7 @@
 #include <qfile.h>
 #include <klocale.h>
 #include <kmessagebox.h>
+#include "../VFS/vfs.h"
 
 CompareTask::CompareTask( SynchronizerFileItem *parentIn, const QString &leftURL,
                           const QString &rightURL, const QString &leftDir,
@@ -289,8 +290,8 @@ void CompareContentTask::slotFinished(KIO::Job *job)
     timer->stop();
     errorPrinted = true;
     KMessageBox::error(parentWidget, i18n("IO error at comparing file %1 with %2!")
-                       .arg( leftURL. prettyURL(0,KURL::StripFileProtocol) )
-                       .arg( rightURL.prettyURL(0,KURL::StripFileProtocol) ) );
+                       .arg( vfs::pathOrURL( leftURL ) )
+                       .arg( vfs::pathOrURL( rightURL ) ) );
     abortContentComparing();
   }
 

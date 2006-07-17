@@ -1007,20 +1007,29 @@ static const char * const swap_sides_data[] = {
 "                                                      ",
 "                                                      "};
 
-SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QString rightDirectory, QStringList selList ) :
-    QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ), selectedFiles( selList ), isComparing( false ),
-    wasClosed( false ), wasSync( false ), firstResize( true ), sizeX( -1 ), sizeY( -1 )
-{
-  QString profileName = QString::null;
+SynchronizerGUI::SynchronizerGUI(QWidget* parent,  KURL leftURL, KURL rightURL, QStringList selList ) :
+    QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ) {
+   initGUI( parent, QString::null, leftURL, rightURL, selList );
+}
+
+SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString profile ) :
+    QDialog( parent, "Krusader::SynchronizerGUI", false, 0 ) {
+   initGUI( parent, profile, KURL(), KURL(), QStringList() );
+}
+
+void SynchronizerGUI::initGUI(QWidget* parent, QString profileName, KURL leftURL, KURL rightURL, QStringList selList) {
+  selectedFiles = selList;
+  isComparing = wasClosed = wasSync = false;
+  firstResize = true;
+  sizeX = sizeY = -1;
 
   hasSelectedFiles = ( selectedFiles.count() != 0 );
-  
-  if( rightDirectory.isNull() ) // if rightDirectory is null, leftDirectory is actually the profile name to load
-  {
-    profileName = leftDirectory;
-    leftDirectory = rightDirectory = "/";
-  }
 
+  if( leftURL.isEmpty() )
+    leftURL = KURL("/");
+  if( rightURL.isEmpty() )
+    rightURL = KURL("/");
+    
   setCaption( i18n("Krusader::Synchronize Directories") );
   QGridLayout *synchGrid = new QGridLayout( this );
   synchGrid->setSpacing( 6 );
@@ -1072,7 +1081,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   QStringList list = krConfig->readListEntry("Left Directory History");
   leftLocation->setHistoryItems(list);
   KURLRequester *leftUrlReq = new KURLRequester( leftLocation, compareDirs, "LeftDirectory" );
-  leftUrlReq->setURL( leftDirectory );
+  leftUrlReq->setURL( vfs::pathOrURL( leftURL ) );
   leftUrlReq->setMode( KFile::Directory );
   leftUrlReq->setMinimumWidth( 250 );
   grid->addWidget( leftUrlReq, 1 ,0 );
@@ -1103,7 +1112,7 @@ SynchronizerGUI::SynchronizerGUI(QWidget* parent,  QString leftDirectory, QStrin
   list = krConfig->readListEntry("Right Directory History");
   rightLocation->setHistoryItems(list);
   KURLRequester *rightUrlReq = new KURLRequester( rightLocation, compareDirs, "RightDirectory" );
-  rightUrlReq->setURL( rightDirectory );
+  rightUrlReq->setURL( vfs::pathOrURL( rightURL ) );
   rightUrlReq->setMode( KFile::Directory );
   rightUrlReq->setMinimumWidth( 250 );
   grid->addWidget( rightUrlReq, 1 ,2 );

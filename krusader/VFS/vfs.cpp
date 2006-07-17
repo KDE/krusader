@@ -119,6 +119,13 @@ KURL vfs::fromPathOrURL( const QString &originIn )
   return url;
 }
 
+QString vfs::pathOrURL( const KURL &originIn, int trailingSlash )
+{
+  if( originIn.isLocalFile() )
+    return originIn.path( trailingSlash );
+  return originIn.prettyURL( trailingSlash );
+}  
+
 void vfs::setVfsFilesP(vfileDict* dict){
 	vfs_filesP=dict;
 	vfs_searchP = dict;

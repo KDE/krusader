@@ -1092,7 +1092,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           qApp->setMainWidget( syncDlgWidget );
 
           result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"),
-            rightURL.prettyURL(0,KURL::StripFileProtocol), leftURL.prettyURL(0,KURL::StripFileProtocol),
+            vfs::pathOrURL( rightURL ), vfs::pathOrURL( leftURL ),
             (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->rightSize(), item->leftSize(), (time_t)-1, (time_t)-1,
             item->rightDate(), item->leftDate());
@@ -1105,7 +1105,7 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
           qApp->setMainWidget( syncDlgWidget );
 
           result = Observer::self()->open_RenameDlg ( job, i18n("File Already Exists"),
-            leftURL.prettyURL(0,KURL::StripFileProtocol), rightURL.prettyURL(0,KURL::StripFileProtocol),
+            vfs::pathOrURL( leftURL ), vfs::pathOrURL( rightURL ),
             (KIO::RenameDlg_Mode)( KIO::M_OVERWRITE | KIO::M_SKIP | KIO::M_MULTI ), newDest,
             item->leftSize(), item->rightSize(), (time_t)-1, (time_t)-1,
             item->leftDate(), item->rightDate());
@@ -1150,16 +1150,16 @@ void Synchronizer::slotTaskFinished(KIO::Job *job )
         {
         case TT_COPY_TO_LEFT:
           error = i18n("Error at copying file %1 to %2!")
-                       .arg( rightURL.prettyURL(0,KURL::StripFileProtocol) )
-                       .arg( leftURL .prettyURL(0,KURL::StripFileProtocol) );
+                       .arg( vfs::pathOrURL( rightURL ) )
+                       .arg( vfs::pathOrURL( leftURL ) );
           break;
         case TT_COPY_TO_RIGHT:
           error = i18n("Error at copying file %1 to %2!")
-                       .arg( leftURL.prettyURL(0,KURL::StripFileProtocol) )
-                       .arg( rightURL .prettyURL(0,KURL::StripFileProtocol) );
+                       .arg( vfs::pathOrURL( leftURL ) )
+                       .arg( vfs::pathOrURL( rightURL ) );
           break;
         case TT_DELETE:
-          error = i18n("Error at deleting file %1!").arg( leftURL.prettyURL(0,KURL::StripFileProtocol) );
+          error = i18n("Error at deleting file %1!").arg( vfs::pathOrURL( leftURL ) );
           break;
         default:
           break;

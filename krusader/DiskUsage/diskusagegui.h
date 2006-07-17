@@ -44,7 +44,7 @@ class DiskUsageGUI : public QDialog
   Q_OBJECT
   
 public:
-  DiskUsageGUI( QString openDir, QWidget* parent=0, char *name = 0 );
+  DiskUsageGUI( KURL openDir, QWidget* parent=0, char *name = 0 );
   ~DiskUsageGUI();
   
 

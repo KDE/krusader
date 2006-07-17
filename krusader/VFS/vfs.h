@@ -109,6 +109,7 @@ public:
 	virtual bool vfs_isDeleting()    { return deleteRequested; }
    // KDE FTP proxy bug correction
    static KURL fromPathOrURL( const QString &originIn );
+   static QString pathOrURL( const KURL &originIn, int trailingSlash = 0 );
 
 
 public slots:

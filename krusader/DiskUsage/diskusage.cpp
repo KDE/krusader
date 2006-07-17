@@ -181,7 +181,7 @@ void LoaderWidget::init()
 
 void LoaderWidget::setCurrentURL( KURL url )
 {
-  searchedDirectory->setText( url.prettyURL(1,KURL::StripFileProtocol) );
+  searchedDirectory->setText( vfs::pathOrURL( url, 1) );
 }
 
 void LoaderWidget::setValues( int fileNum, int dirNum, KIO::filesize_t total )
@@ -247,7 +247,7 @@ void DiskUsage::load( KURL baseDir )
   baseURL = baseDir;
   baseURL.setPath( baseDir.path( -1 ) );
 
-  root = new Directory( baseURL.fileName(), baseDir.prettyURL( 0, KURL::StripFileProtocol ) );
+  root = new Directory( baseURL.fileName(), vfs::pathOrURL( baseDir ) );
 
   directoryStack.clear();
   parentStack.clear();
@@ -412,7 +412,7 @@ void DiskUsage::dirUp()
       if( KMessageBox::questionYesNo( this, i18n( "Stepping into the parent directory requires "
                                                   "loading the content of the \"%1\" URL. Do you wish "
                                                   "to continue?" )
-                                            .arg( up.prettyURL( 0, KURL::StripFileProtocol ) ),
+                                            .arg( vfs::pathOrURL( up ) ),
                                             i18n( "Krusader::DiskUsage" ), KStdGuiItem::yes(),
                                             KStdGuiItem::no(), "DiskUsageLoadParentDir"
                                             ) == KMessageBox::Yes )
@@ -727,7 +727,7 @@ void DiskUsage::createStatus()
       url.addPath( dirEntry->directory() );
 
   emit status( i18n( "Current directory:%1,  Total size:%2,  Own size:%3" )
-               .arg( url.prettyURL(-1,KURL::StripFileProtocol) )
+               .arg( vfs::pathOrURL( url, -1 ) )
                .arg( " "+KRpermHandler::parseSize( dirEntry->size() ) )
                .arg( " "+KRpermHandler::parseSize( dirEntry->ownSize() ) ) );
 }

@@ -37,14 +37,12 @@
 #include <kfileitem.h>
 #include <qfileinfo.h>
     
-Splitter::Splitter( QWidget* parent,  QString fileNameIn, QString destinationDirIn ) :
+Splitter::Splitter( QWidget* parent,  KURL fileNameIn, KURL destinationDirIn ) :
   QProgressDialog( parent, "Krusader::Splitter", true, 0 ), splitSize( 0 )
 {
-  fileName       = vfs::fromPathOrURL( fileNameIn );
+  fileName = fileNameIn;
 
   destinationDir = destinationDirIn;
-  if( !destinationDir.endsWith("/") )
-    destinationDir += "/";
 
   crcContext = new CRC32();
   
@@ -69,7 +67,7 @@ void Splitter::split( KIO::filesize_t splitSizeIn )
   splitSize = splitSizeIn;
 
   setCaption( i18n("Krusader::Splitting...") );
-  setLabelText( i18n("Splitting the file %1...").arg( fileName.prettyURL(0,KURL::StripFileProtocol) ));
+  setLabelText( i18n("Splitting the file %1...").arg( vfs::pathOrURL( fileName ) ) );
 
   if( file.isDir() )
   {
@@ -124,7 +122,7 @@ void Splitter::splitReceiveFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     splitAbortJobs();
-    KMessageBox::error(0, i18n("Error reading file %1!").arg( fileName.prettyURL(0,KURL::StripFileProtocol) ) );
+    KMessageBox::error(0, i18n("Error reading file %1!").arg( vfs::pathOrURL( fileName ) ) );
     emit reject();
     return;
   }
@@ -147,7 +145,9 @@ void Splitter::splitCreateWriteJob()
   QString index( "%1" );                   /* making the splitted filename */
   index = index.arg(++fileNumber).rightJustify( 3, '0' );
   QString outFileName = fileName.fileName() + "." + index;
-  writeURL = vfs::fromPathOrURL( destinationDir + outFileName );
+  
+  writeURL = destinationDir;
+  writeURL.addPath( outFileName );
 
       /* creating a write job */
   splitWriteJob = KIO::put( writeURL, permissions, true, false, false );
@@ -198,7 +198,7 @@ void Splitter::splitSendFinished(KIO::Job *job)
   if( job->error() )    /* any error occurred? */
   {
     splitAbortJobs();
-    KMessageBox::error(0, i18n("Error writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
+    KMessageBox::error(0, i18n("Error writing file %1!").arg( vfs::pathOrURL( writeURL ) ) );
     emit reject();
     return;
   }
@@ -208,7 +208,8 @@ void Splitter::splitSendFinished(KIO::Job *job)
   else
   {
       /* writing the split information file out */
-    writeURL      = vfs::fromPathOrURL( destinationDir + fileName.fileName() + ".crc" );
+    writeURL      = destinationDir;
+    writeURL.addPath( fileName.fileName() + ".crc" );
     splitWriteJob = KIO::put( writeURL, permissions, true, false, false );
     connect(splitWriteJob, SIGNAL(dataReq(KIO::Job *, QByteArray &)),
                            this, SLOT(splitFileSend(KIO::Job *, QByteArray &)));
@@ -240,7 +241,7 @@ void Splitter::splitFileFinished(KIO::Job *job)
 
   if( job->error() )    /* any error occurred? */
   {
-    KMessageBox::error(0, i18n("Error at writing file %1!").arg( writeURL.prettyURL(0,KURL::StripFileProtocol) ) );
+    KMessageBox::error(0, i18n("Error at writing file %1!").arg( vfs::pathOrURL( writeURL ) ) );
     emit reject();
     return;
   }

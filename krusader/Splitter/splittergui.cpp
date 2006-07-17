@@ -46,11 +46,10 @@ PredefinedDevice SplitterGUI::predefinedDevices[] = {
   {i18n( "700 MB (CD-R)" ), 700*0x100000}
   };
 
-SplitterGUI::SplitterGUI( QWidget* parent,  QString fileName, QString defaultDir ) :
+SplitterGUI::SplitterGUI( QWidget* parent,  KURL fileURL, KURL defaultDir ) :
     QDialog( parent, "Krusader::SplitterGUI", true, 0 ), 
     userDefinedSize ( 0x100000 ), lastSelectedDevice( 0 ), resultCode( QDialog::Rejected )
 {
-  fileToSplit = fileName;
   predefinedDeviceNum = sizeof( predefinedDevices ) / sizeof( PredefinedDevice );
 
   QGridLayout *grid = new QGridLayout( this );
@@ -58,12 +57,12 @@ SplitterGUI::SplitterGUI( QWidget* parent,  QString fileName, QString defaultDir
   grid->setMargin( 11 );
 
   QLabel *splitterLabel = new QLabel( this, "SplitterLabel" );
-  splitterLabel->setText( i18n( "Split the file %1 to directory:"  ).arg( fileName ) );
+  splitterLabel->setText( i18n( "Split the file %1 to directory:"  ).arg( vfs::pathOrURL( fileURL ) ) );
   splitterLabel->setMinimumWidth( 400 );
   grid->addWidget( splitterLabel,0 ,0 );
 
   urlReq = new KURLRequester( this, "DestinationDirectory" );
-  urlReq->setURL( defaultDir );
+  urlReq->setURL( vfs::pathOrURL( defaultDir ) );
   urlReq->setMode( KFile::Directory );
   grid->addWidget( urlReq, 1 ,0 );
 
