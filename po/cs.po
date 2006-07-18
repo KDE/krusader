@@ -8,10 +8,10 @@
 # Václav Jůza <vaclavjuza@seznam.cz>, 2005, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.0\n"
+"Project-Id-Version: krusader-1.70.1\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-07-12 16:01+0200\n"
-"PO-Revision-Date: 2006-06-20 20:08+0200\n"
+"PO-Revision-Date: 2006-07-18 21:29+0200\n"
 "Last-Translator: Václav Jůza <vaclavjuza@seznam.cz>\n"
 "Language-Team: Czech <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -2144,11 +2144,11 @@ msgstr "%1, neznámý typ archívu"
 
 #: Panel/panelfunc.cpp:1127
 msgid "Cannot cut a virtual URL collection to the clipboard!"
-msgstr ""
+msgstr "Nemohu vyjmout seznam virtuálních URL do schránky!"
 
 #: Panel/panelfunc.cpp:1129
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
-msgstr ""
+msgstr "Nemohu zkopírovat seznam virtuálních URL do schránky."
 
 #: Locate/locate.cpp:67 Locate/locate.cpp:205 Search/krsearchdialog.cpp:102
 #: Synchronizer/synchronizergui.cpp:1368
@@ -2839,9 +2839,8 @@ msgid "Manage Bookmarks"
 msgstr "Upravit záložky"
 
 #: BookMan/krbookmarkhandler.cpp:482
-#, fuzzy
 msgid "Enable special bookmarks"
-msgstr "Upravit záložky"
+msgstr "Povolit speciální záložky"
 
 #: BookMan/krbookmark.cpp:14 BookMan/krbookmarkhandler.cpp:487
 msgid "Devices"
@@ -3029,7 +3028,7 @@ msgstr ""
 
 #: main.cpp:179
 msgid "Application already running!\n"
-msgstr ""
+msgstr "Aplikace již běží!\n"
 
 #: krusaderview.cpp:81
 msgid "Function keys allow performing fast operations on files."
@@ -4048,7 +4047,7 @@ msgid ""
 "_n: (1 byte)\n"
 "(%n bytes)"
 msgstr ""
-"_n: (%n bajt)\n"
+"(%n bajt)\n"
 "(%n bajty)\n"
 "(%n bajtů)"
 
@@ -4857,11 +4856,11 @@ msgstr "Při spuštění Krusaderu se zobrazí úvodní obrázek."
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Single instance mode"
-msgstr ""
+msgstr "Režim jediné instance"
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Only one Krusader instance is allowed to run."
-msgstr ""
+msgstr "Nemůže běžet více Krusaderů současně."
 
 #: Konfigurator/kglookfeel.cpp:92
 msgid "Single click / Double click Selection:"
@@ -5651,13 +5650,15 @@ msgstr ""
 
 #: Konfigurator/kgstartup.cpp:84
 msgid "Start to tray"
-msgstr ""
+msgstr "Startovat do systémové části panelu"
 
 #: Konfigurator/kgstartup.cpp:84
 msgid ""
 "Krusader starts to tray (if minimize to tray is set), without showing the "
 "main window"
 msgstr ""
+"Krusader nastartuje do systémové části programu (pokud je nastaveno "
+"minimalizovat do systémové části panelu), aniž by se ukázalo hlavní okno."
 
 #: Konfigurator/kgarchives.cpp:55
 msgid "Krusader transparently handles the following types of archives:"
@@ -6100,3 +6101,47 @@ msgstr "Chyba při čtení souboru %1!"
 #: Splitter/splitter.cpp:243
 msgid "Error at writing file %1!"
 msgstr "Chyba při zapisování souboru %1!"
+
+#~ msgid "create a new useraction"
+#~ msgstr "vytvořit novou uživatelskou akci"
+
+#~ msgid "import useractions"
+#~ msgstr "Importovat akce"
+
+#~ msgid "export useractions"
+#~ msgstr "Exportovat akce"
+
+#~ msgid "copy useractions to clipboard"
+#~ msgstr "kopírovat akce do schránky"
+
+#~ msgid "paste useractions from clipboard"
+#~ msgstr "vložit akce ze schránky"
+
+#~ msgid "delete selected useractions"
+#~ msgstr "odstranit označené akce"
+
+#~ msgid ""
+#~ "When you apply changes to an action, the modifications become available "
+#~ "imediately in the current session.\n"
+#~ "When closing ActionMan, you will be ask to save the changes permanently."
+#~ msgstr ""
+#~ "Když dáte použít změny akce, projeví se tyto změny okamžitě v aktuálním "
+#~ "sezení.\n"
+#~ "Při zavření ActionMana budete dotázáni, jestli se mají uložit trvale."
+
+#~ msgid ""
+#~ "The current action has been modified. Do you want to apply these changes?"
+#~ msgstr "Současná akce byla změněna. Chcete použít tyto změny?"
+
+#~ msgid "Are you sure that you want to remove all selected action?"
+#~ msgstr "Opravdu chcete odstranit všechny označené akce?"
+
+#~ msgid "ActionMan - Manage Your Useractions"
+#~ msgstr "ActionMan - Spravujte své uživatelské akce"
+
+#~ msgid ""
+#~ "Useractions in this session are modified. Do you want to save these "
+#~ "changes permanently?"
+#~ msgstr ""
+#~ "Uživatelské akce v tomto sezení jsou změněny. Chcete uložit tyto změny "
+#~ "trvale?"
