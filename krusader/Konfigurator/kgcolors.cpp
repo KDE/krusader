@@ -56,10 +56,11 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   generalGrid->setMargin( 5 );
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
-  //  cfg_class  cfg_name                     default               text                                      restart tooltip
-    {{"Colors","KDE Default",                 _KDEDefaultColors,    i18n( "Use the default KDE colors" ),     false,  "<p><img src='toolbar|kcontrol'></p>" + i18n( "<p>Use KDE's global color configuration.</p><p><i>KDE Control Center -> Appearance & Themes -> Colors</i></p>") },
-     {"Colors","Enable Alternate Background", _AlternateBackground, i18n( "Use alternate background color" ),  false, i18n( "<p>The <b>background color</b> and the <b>alternate background</b> color alternates line by line.</p><p>When you don't use the <i>KDE default colors</i>, you can configure the alternate colors in the <i>colors</i> box.</p>") },
-     {"Colors","Show Current Item Always", _ShowCurrentItemAlways, i18n( "Show current item even if not focused" ),  false, i18n( "<p>Shows the last cursor position in the non active list panel.</p><p>This option is only available when you don't use the <i>KDE default colors</i>.</p>" ) }};
+  //  cfg_class  cfg_name                     default                 text                                              restart tooltip
+    {{"Colors","KDE Default",                 _KDEDefaultColors,      i18n( "Use the default KDE colors" ),             false,  "<p><img src='toolbar|kcontrol'></p>" + i18n( "<p>Use KDE's global color configuration.</p><p><i>KDE Control Center -> Appearance & Themes -> Colors</i></p>") },
+     {"Colors","Enable Alternate Background", _AlternateBackground,   i18n( "Use alternate background color" ),         false, i18n( "<p>The <b>background color</b> and the <b>alternate background</b> color alternates line by line.</p><p>When you don't use the <i>KDE default colors</i>, you can configure the alternate colors in the <i>colors</i> box.</p>") },
+     {"Colors","Show Current Item Always",    _ShowCurrentItemAlways, i18n( "Show current item even if not focused" ),  false, i18n( "<p>Shows the last cursor position in the non active list panel.</p><p>This option is only available when you don't use the <i>KDE default colors</i>.</p>" ) },
+     {"Colors","Dim Inactive Colors",         _DimInactiveColors,     i18n( "Dim the colors of the inactive panel" ),   false, i18n( "<p>The colors of the inactive panel are calculated</p><p>by a dim color and a dim factor.</p>" ) }};
 
   generals = createCheckBoxGroup( 0, 2, generalSettings, sizeof(generalSettings)/sizeof(generalSettings[0]), generalGrp );
   generalGrid->addWidget( generals, 1, 0 );
@@ -69,6 +70,7 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   connect( generals->find( "KDE Default" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
   connect( generals->find( "Enable Alternate Background" ), SIGNAL( stateChanged( int ) ), this, SLOT( generatePreview() ) );
   connect( generals->find( "Show Current Item Always" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
+  connect( generals->find( "Dim Inactive Colors" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
   kgColorsLayout->addMultiCellWidget( generalGrp, 0 ,0, 0, 2 );
   QHBox *hbox = new QHBox( parent );
@@ -117,10 +119,12 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   connect( getColorSelector( "Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotAltBackgroundChanged() ) );
   connect( getColorSelector( "Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotMarkedBackgroundChanged() ) );
 
-  colorsGrp = new QWidget( colorTabWidget, "colorTab2" );
-  colorTabWidget->insertTab( colorsGrp, i18n( "Inactive" ) );
+  inactiveColorStack = new QWidgetStack( colorTabWidget, "colorTab2" );
+  colorTabWidget->insertTab( inactiveColorStack, i18n( "Inactive" ) );
 
-  colorsGrid = new QGridLayout( colorsGrp );
+  colorsGrp = normalInactiveWidget = new QWidget( inactiveColorStack, "colorTab2" );
+
+  colorsGrid = new QGridLayout( normalInactiveWidget );
   colorsGrid->setSpacing( 0 );
   colorsGrid->setMargin( 2 );
 
@@ -145,12 +149,37 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Inactive Marked Current Foreground",          i18n( "Marked current foreground:" ),          getColorSelector( "Marked Current Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactMarkedForegnd, 1 );
   addColorSelector( "Inactive Current Background",          i18n( "Current background:" ),          getColorSelector( "Current Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
 
-  colorsGrid->addWidget(createSpacer(colorsGrp, ""), itemList.count() - offset, 1);
+  colorsGrid->addWidget(createSpacer(normalInactiveWidget, ""), itemList.count() - offset, 1);
 
   connect( getColorSelector( "Inactive Foreground" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveForegroundChanged() ) );
   connect( getColorSelector( "Inactive Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveBackgroundChanged() ) );
   connect( getColorSelector( "Inactive Alternate Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveAltBackgroundChanged() ) );
   connect( getColorSelector( "Inactive Marked Background" ), SIGNAL( colorChanged() ), this, SLOT( slotInactiveMarkedBackgroundChanged() ) );
+
+  offset = endOfPanelColors = itemList.count();
+
+  inactiveColorStack->addWidget( normalInactiveWidget );
+
+  colorsGrp = dimmedInactiveWidget = new QWidget( inactiveColorStack, "colorTab2dimmed" );
+
+  colorsGrid = new QGridLayout( dimmedInactiveWidget );
+  colorsGrid->setSpacing( 0 );
+  colorsGrid->setMargin( 2 );
+
+  addColorSelector( "Dim Target Color", i18n( "Dim target color:" ), Qt::white);
+
+  int index = itemList.count() - offset;
+  labelList.append( addLabel( colorsGrid, index, 0, i18n("Dim factor:"), colorsGrp, QString( "ColorsLabel%1" ).arg( index ).ascii() ) );
+  dimFactor = createSpinBox("Colors", "Dim Factor", 100, 0, 100, colorsGrp);
+  dimFactor->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+  connect( dimFactor, SIGNAL( valueChanged( int ) ), this, SLOT( generatePreview() ) );
+  colorsGrid->addWidget( dimFactor, index++, 1 );
+
+  colorsGrid->addWidget(createSpacer(dimmedInactiveWidget, ""), itemList.count() + 1 - offset, 1);
+
+  inactiveColorStack->addWidget( dimmedInactiveWidget );
+
+  inactiveColorStack->raiseWidget( normalInactiveWidget );
 
   colorsGrp = new QWidget( colorTabWidget, "colorTab3" );
   colorTabWidget->insertTab( colorsGrp, i18n( "Synchronizer" ) );
@@ -271,6 +300,13 @@ void KgColors::slotDisable()
 
   generals->find("Enable Alternate Background")->setEnabled( enabled );
   generals->find("Show Current Item Always")->setEnabled( !enabled );
+  generals->find("Dim Inactive Colors")->setEnabled( !enabled );
+
+  bool dimmed = !enabled && generals->find("Dim Inactive Colors")->isChecked();
+  if( dimmed )
+    inactiveColorStack->raiseWidget( dimmedInactiveWidget );
+  else
+    inactiveColorStack->raiseWidget( normalInactiveWidget );
 
   enabled = enabled || !generals->find( "Show Current Item Always" )->isChecked();
 
@@ -348,6 +384,23 @@ void KgColors::slotInactiveMarkedBackgroundChanged()
   getColorSelector( "Inactive Alternate Marked Background" )->changeAdditionalColor( 1, color );
 }
 
+void KgColors::setColorWithDimming(PreviewItem * item, QColor foreground, QColor background, bool dimmed )
+{
+   if ( dimmed && dimFactor->value() < 100)
+   {
+     int dim = dimFactor->value();
+     QColor dimColor = getColorSelector("Dim Target Color")->getColor();
+
+     foreground = QColor((dimColor.red() * (100 - dim) + foreground.red() * dim) / 100,
+                         (dimColor.green() * (100 - dim) + foreground.green() * dim) / 100,
+                         (dimColor.blue() * (100 - dim) + foreground.blue() * dim) / 100);
+     background = QColor((dimColor.red() * (100 - dim) + background.red() * dim) / 100,
+                         (dimColor.green() * (100 - dim) + background.green() * dim) / 100,
+                         (dimColor.blue() * (100 - dim) + background.blue() * dim) / 100);
+   }
+   item->setColor(foreground, background);
+}
+
 void KgColors::generatePreview()
 {
   int currentPage = colorTabWidget->currentPageIndex();
@@ -385,9 +438,10 @@ void KgColors::generatePreview()
     else
     {
       bool isInactive = currentPage == 1;
+      bool dimmed = isInactive && generals->find("Dim Inactive Colors")->isChecked();
       QString prefix="";
 
-      if( isInactive )
+      if( isInactive && !dimmed )
         prefix = "Inactive ";
 
       QColor  bck   = getColorSelector( prefix + "Background" )->getColor();
@@ -396,11 +450,11 @@ void KgColors::generatePreview()
       QColor currentFore;
       QColor currentBck = altBck;
 
-      pwFile->setColor( currentFore = getColorSelector( prefix + "Foreground" )->getColor(), altBck );
-      pwDir->setColor( getColorSelector( prefix + "Directory Foreground" )->getColor(), bck );
-      pwApp->setColor( getColorSelector( prefix + "Executable Foreground" )->getColor(), bck );
-      pwSymLink->setColor( getColorSelector( prefix + "Symlink Foreground" )->getColor(), altBck );
-      pwInvLink->setColor( getColorSelector( prefix + "Invalid Symlink Foreground" )->getColor(), bck );
+      setColorWithDimming( pwFile, currentFore = getColorSelector( prefix + "Foreground" )->getColor(), altBck, dimmed );
+      setColorWithDimming( pwDir, getColorSelector( prefix + "Directory Foreground" )->getColor(), bck, dimmed );
+      setColorWithDimming( pwApp, getColorSelector( prefix + "Executable Foreground" )->getColor(), bck, dimmed );
+      setColorWithDimming( pwSymLink, getColorSelector( prefix + "Symlink Foreground" )->getColor(), altBck, dimmed );
+      setColorWithDimming( pwInvLink, getColorSelector( prefix + "Invalid Symlink Foreground" )->getColor(), bck, dimmed );
 
       if( isInactive )
       {
@@ -431,7 +485,7 @@ void KgColors::generatePreview()
         else currentFore = setColorIfContrastIsSufficient(currentBck, getColorSelector( prefix + "Foreground" )->getColor(), bck);
       }
 
-      pwCurrent->setColor( currentFore, currentBck );
+      setColorWithDimming( pwCurrent, currentFore, currentBck, dimmed );
 
       QColor markFore = getColorSelector( prefix + "Marked Foreground" )->getColor();
 
@@ -439,8 +493,8 @@ void KgColors::generatePreview()
         if( getColorSelector( "Marked Foreground" )->currentItem() == 2 )
           markFore = currentFore;
 
-      pwMark1->setColor( markFore, getColorSelector( prefix + "Marked Background" )->getColor() );
-      pwMark2->setColor( markFore, getColorSelector( prefix + "Alternate Marked Background" )->getColor() );
+      setColorWithDimming( pwMark1, markFore, getColorSelector( prefix + "Marked Background" )->getColor(), dimmed );
+      setColorWithDimming( pwMark2, markFore, getColorSelector( prefix + "Alternate Marked Background" )->getColor(), dimmed );
     }
   }else if( currentPage == 2 )
   {
@@ -539,6 +593,9 @@ void KgColors::serialize(QDataStream & stream)
    serializeItem(stream, "Inactive Executable Foreground");
    serializeItem(stream, "Inactive Symlink Foreground");
    serializeItem(stream, "Inactive Invalid Symlink Foreground");
+   serializeItem(stream, "Dim Inactive Colors");
+   serializeItem(stream, "Dim Target Color");
+   serializeItem(stream, "Dim Factor");
    serializeItem(stream, "KDE Default");
    serializeItem(stream, "Marked Background");
    serializeItem(stream, "Marked Current Foreground");
@@ -566,7 +623,8 @@ void KgColors::deserialize(QDataStream & stream)
       if (name == "")
          break;
 
-      if (name == "KDE Default" || name == "Enable Alternate Background" || name == "Show Current Item Always" )
+      if (name == "KDE Default" || name == "Enable Alternate Background" ||
+          name == "Show Current Item Always" || name == "Dim Inactive Colors" )
       {
         bool bValue = false;
         value = value.lower();
@@ -576,6 +634,13 @@ void KgColors::deserialize(QDataStream & stream)
         generals->find( name )->setChecked( bValue );
         continue;
       }
+
+      if( name == "Dim Factor" )
+      {
+        dimFactor->setValue( value.toInt() );
+        continue;
+      }
+
       KonfiguratorColorChooser *selector = getColorSelector( name );
       if( selector == 0 )
         break;
@@ -586,11 +651,14 @@ void KgColors::deserialize(QDataStream & stream)
 void KgColors::serializeItem(class QDataStream & stream, const char * name)
 {
    stream << QString(name);
-   if( name == "KDE Default" || name == "Enable Alternate Background" || name == "Show Current Item Always" )
+   if( name == "KDE Default" || name == "Enable Alternate Background" ||
+       name == "Show Current Item Always" || name == "Dim Inactive Colors" )
    {
      bool bValue = generals->find( name )->isChecked();
      stream << QString( bValue ? "true" : "false" );
    }
+   else if( name == "Dim Factor" )
+     stream << QString::number(dimFactor->value());
    else
    {
      KonfiguratorColorChooser *selector = getColorSelector( name );

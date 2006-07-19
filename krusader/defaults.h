@@ -103,6 +103,8 @@
 #define _AlternateBackground  true
 // Show current item even if not focussed
 #define _ShowCurrentItemAlways false
+// Dim the colors of the inactive panel
+#define _DimInactiveColors     false
 // Human Readable Size
 #define _HumanReadableSize		true
 // With Icons

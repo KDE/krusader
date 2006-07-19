@@ -66,26 +66,45 @@ const QString & KrColorCache::getTextValue(const QString & textName) const
    return *text;
 }
 
-const QColor & KrColorCache::getColor(const QString & colorName) const
+QColor KrColorCache::dimColor(const QColor & color, int dim, const QColor & targetColor)
 {
-   QColor * color = colorCache.find(colorName);
-   if (!color)
-   {
-      color = new QColor();
-      krConfig->setGroup("Colors");
-      *color = krConfig->readColorEntry(colorName);
-      ((KrColorCache *)this)->colorCache.replace(colorName, color);
-      if (colorCache.count() >= colorCache.size())
-         ((KrColorCache *)this)->colorCache.resize(colorCache.count()*2+1);
-   }
-   return * color;
+   return QColor((targetColor.red() * (100 - dim) + color.red() * dim) / 100, 
+		(targetColor.green() * (100 - dim) + color.green() * dim) / 100, 
+		(targetColor.blue() * (100 - dim) + color.blue() * dim) / 100);
+}
+
+void KrColorCache::setColor(const QString & colorName, QColor * color, bool isActive, bool isBackgroundColor)
+{
+   krConfig->setGroup("Colors");
+   int dimFactor = krConfig->readNumEntry("Dim Factor", 100);
+   QColor defaultColor = QColor(255, 255, 255);
+   QColor targetColor = krConfig->readColorEntry("Dim Target Color", & defaultColor);
+   bool dimBackground = krConfig->readBoolEntry("Dim Inactive Colors", false);
+   bool dim = dimFactor >= 0 && dimFactor < 100 && !isActive;
+   if (dim && isBackgroundColor && !dimBackground)
+      dim = false;
+   if (dim)
+      *color = dimColor(* color, dimFactor, targetColor);
+   colorCache.replace(colorName, color);
+   if (colorCache.count() >= colorCache.size())
+      colorCache.resize(colorCache.count()*2+1);
+}
+
+QColor KrColorCache::getColor(const QString & colorName) const
+{
+    krConfig->setGroup("Colors");
+    if( colorName.startsWith( "Inactive " ) && krConfig->readBoolEntry("Dim Inactive Colors", false) ) {
+       QString dimmedColorName = colorName.mid( 9 ); // remove the Inactive prefix
+       return krConfig->readColorEntry(dimmedColorName);
+    }
+    return krConfig->readColorEntry(colorName);
 }
 
 
 // Macro: set target = col, if col is valid
 #define SETCOLOR(target, col) { if (col.isValid()) target = col; }
 
-QColor KrColorCache::getForegroundColor(bool isActive) const
+QColor KrColorCache::getForegroundColor_Int(bool isActive) const
 {
    QColor color = KGlobalSettings::textColor();
    SETCOLOR(color, getColor("Foreground"))
@@ -93,51 +112,116 @@ QColor KrColorCache::getForegroundColor(bool isActive) const
    return color;
 }
 
-QColor KrColorCache::getDirectoryForegroundColor(bool isActive) const
+QColor KrColorCache::getForegroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Foreground":"Inactive Foreground";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getForegroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getDirectoryForegroundColor_Int(bool isActive) const
 {
    if (!isActive && getTextValue("Inactive Directory Foreground") == "Inactive Foreground")
-      return getForegroundColor(false);
+      return getForegroundColor_Int(false);
    QColor color = getColor("Directory Foreground");
    if (!isActive) SETCOLOR(color, getColor("Inactive Directory Foreground"))
    if (!color.isValid())
-      return getForegroundColor(isActive);
+      return getForegroundColor_Int(isActive);
+   return color;
+}
+
+QColor KrColorCache::getDirectoryForegroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Directory Foreground":"Inactive Directory Foreground";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getDirectoryForegroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getExecutableForegroundColor_Int(bool isActive) const
+{
+   if (!isActive && getTextValue("Inactive Executable Foreground") == "Inactive Foreground")
+      return getForegroundColor_Int(false);
+   QColor color = getColor("Executable Foreground");
+   if (!isActive) SETCOLOR(color, getColor("Inactive Executable Foreground"))
+   if (!color.isValid())
+      return getForegroundColor_Int(isActive);
    return color;
 }
 
 QColor KrColorCache::getExecutableForegroundColor(bool isActive) const
 {
-   if (!isActive && getTextValue("Inactive Executable Foreground") == "Inactive Foreground")
-      return getForegroundColor(false);
-   QColor color = getColor("Executable Foreground");
-   if (!isActive) SETCOLOR(color, getColor("Inactive Executable Foreground"))
+   QString colorName = isActive?"Executable Foreground":"Inactive Executable Foreground";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getExecutableForegroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getSymlinkForegroundColor_Int(bool isActive) const
+{
+   if (!isActive && getTextValue("Inactive Symlink Foreground") == "Inactive Foreground")
+      return getForegroundColor_Int(false);
+   QColor color = getColor("Symlink Foreground");
+   if (!isActive) SETCOLOR(color, getColor("Inactive Symlink Foreground"))
    if (!color.isValid())
-      return getForegroundColor(isActive);
+      return getForegroundColor_Int(isActive);
    return color;
 }
 
 QColor KrColorCache::getSymlinkForegroundColor(bool isActive) const
 {
-   if (!isActive && getTextValue("Inactive Symlink Foreground") == "Inactive Foreground")
-      return getForegroundColor(false);
-   QColor color = getColor("Symlink Foreground");
-   if (!isActive) SETCOLOR(color, getColor("Inactive Symlink Foreground"))
+   QString colorName = isActive?"Symlink Foreground":"Inactive Symlink Foreground";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getSymlinkForegroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getInvalidSymlinkForegroundColor_Int(bool isActive) const
+{
+   if (!isActive && getTextValue("Inactive Invalid Symlink Foreground") == "Inactive Foreground")
+      return getForegroundColor_Int(false);
+   QColor color = getColor("Invalid Symlink Foreground");
+   if (!isActive) SETCOLOR(color, getColor("Inactive Invalid Symlink Foreground"))
    if (!color.isValid())
-      return getForegroundColor(isActive);
+      return getForegroundColor_Int(isActive);
    return color;
 }
 
 QColor KrColorCache::getInvalidSymlinkForegroundColor(bool isActive) const
 {
-   if (!isActive && getTextValue("Inactive Invalid Symlink Foreground") == "Inactive Foreground")
-      return getForegroundColor(false);
-   QColor color = getColor("Invalid Symlink Foreground");
-   if (!isActive) SETCOLOR(color, getColor("Inactive Invalid Symlink Foreground"))
-   if (!color.isValid())
-      return getForegroundColor(isActive);
-   return color;
+   QString colorName = isActive?"Invalid Symlink Foreground":"Inactive Invalid Symlink Foreground";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getInvalidSymlinkForegroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive);
+   }
+   return * color;
 }
 
-QColor KrColorCache::getMarkedForegroundColor(bool isActive) const
+QColor KrColorCache::getMarkedForegroundColor_Int(bool isActive) const
 {
    QString colorName = isActive?"Marked Foreground":"Inactive Marked Foreground";
    if (getTextValue(colorName) == "transparent")
@@ -145,58 +229,123 @@ QColor KrColorCache::getMarkedForegroundColor(bool isActive) const
    if (isActive && getTextValue(colorName) == "")
       return KGlobalSettings::highlightedTextColor();
    if (!isActive && getTextValue(colorName) == "")
-      return getMarkedForegroundColor(true);
+      return getMarkedForegroundColor_Int(true);
    return getColor(colorName);
 }
 
-QColor KrColorCache::getMarkedBackgroundColor(bool isActive) const
+QColor KrColorCache::getMarkedForegroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Marked Foreground":"Inactive Marked Foreground";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getMarkedForegroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getMarkedBackgroundColor_Int(bool isActive) const
 {
    if (isActive && getTextValue("Marked Background") == "")
       return KGlobalSettings::highlightColor();
    if (isActive && getTextValue("Marked Background") == "Background")
-      return getBackgroundColor(true);
+      return getBackgroundColor_Int(true);
    if (!isActive && getTextValue("Inactive Marked Background") == "")
-      return getMarkedBackgroundColor(true);
+      return getMarkedBackgroundColor_Int(true);
    if (!isActive && getTextValue("Inactive Marked Background") == "Inactive Background")
-      return getBackgroundColor(false);
+      return getBackgroundColor_Int(false);
    return isActive?KrColorCache::getColor("Marked Background"):KrColorCache::getColor("Inactive Marked Background");
 }
 
-QColor KrColorCache::getCurrentForegroundColor(bool isActive) const
+QColor KrColorCache::getMarkedBackgroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Marked Background":"Inactive Marked Background";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getMarkedBackgroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive, true);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getCurrentForegroundColor_Int(bool isActive) const
 {
    QColor color = getColor("Current Foreground");
    if (!isActive) SETCOLOR(color, getColor("Inactive Current Foreground"))
    return color;
 }
 
-QColor KrColorCache::getCurrentBackgroundColor(bool isActive) const
+QColor KrColorCache::getCurrentForegroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Current Foreground":"Inactive Current Foreground";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getCurrentForegroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getCurrentBackgroundColor_Int(bool isActive) const
 {
    if (isActive && getTextValue("Current Background") == "")
       return QColor();
    if (isActive && getTextValue("Current Background") == "Background")
-      return getBackgroundColor(true);
+      return getBackgroundColor_Int(true);
    if (!isActive && getTextValue("Inactive Current Background") == "")
-      return getCurrentBackgroundColor(true);
+      return getCurrentBackgroundColor_Int(true);
    if (!isActive && getTextValue("Inactive Current Background") == "Inactive Background")
-      return getBackgroundColor(false);
+      return getBackgroundColor_Int(false);
    return isActive?getColor("Current Background"):getColor("Inactive Current Background");
 }
 
-QColor KrColorCache::getCurrentMarkedForegroundColor(bool isActive) const
+QColor KrColorCache::getCurrentBackgroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Current Background":"Inactive Current Background";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getCurrentBackgroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive, true);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getCurrentMarkedForegroundColor_Int(bool isActive) const
 {
    QString colorName = isActive?"Marked Current Foreground":"Inactive Marked Current Foreground";
    if (isActive && getTextValue(colorName) == "")
        return QColor();
    if (isActive && getTextValue(colorName) == "Marked Foreground")
-       return getMarkedForegroundColor(true);
+       return getMarkedForegroundColor_Int(true);
    if (!isActive && getTextValue(colorName) == "")
-       return getCurrentMarkedForegroundColor(true);
+       return getCurrentMarkedForegroundColor_Int(true);
    if (!isActive && getTextValue(colorName) == "Inactive Marked Foreground")
-       return getMarkedForegroundColor(false);
+       return getMarkedForegroundColor_Int(false);
    return getColor(colorName);
 }
 
-QColor KrColorCache::getBackgroundColor(bool isActive) const
+QColor KrColorCache::getCurrentMarkedForegroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Marked Current Foreground":"Inactive Marked Current Foreground";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getCurrentMarkedForegroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getBackgroundColor_Int(bool isActive) const
 {
    QColor color = KGlobalSettings::baseColor();
    SETCOLOR(color, getColor("Background"))
@@ -204,14 +353,27 @@ QColor KrColorCache::getBackgroundColor(bool isActive) const
    return color;
 }
 
-QColor KrColorCache::getAlternateBackgroundColor(bool isActive) const
+QColor KrColorCache::getBackgroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Background":"Inactive Background";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getBackgroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive, true);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getAlternateBackgroundColor_Int(bool isActive) const
 {
    if (isActive && getTextValue("Alternate Background") == "Background")
-      return getBackgroundColor(true);
+      return getBackgroundColor_Int(true);
    if (!isActive && getTextValue("Inactive Alternate Background") == "")
-      return getAlternateBackgroundColor(true);
+      return getAlternateBackgroundColor_Int(true);
    if (!isActive && getTextValue("Inactive Alternate Background") == "Inactive Background")
-      return getBackgroundColor(false);
+      return getBackgroundColor_Int(false);
    QColor color = isActive?getColor("Alternate Background"):getColor("Inactive Alternate Background");
    if (!color.isValid())
       color = KGlobalSettings::alternateBackgroundColor();
@@ -220,19 +382,45 @@ QColor KrColorCache::getAlternateBackgroundColor(bool isActive) const
    return color;
 }
 
-QColor KrColorCache::getAlternateMarkedBackgroundColor(bool isActive) const
+QColor KrColorCache::getAlternateBackgroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Alternate Background":"Inactive Alternate Background";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getAlternateBackgroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive, true);
+   }
+   return * color;
+}
+
+QColor KrColorCache::getAlternateMarkedBackgroundColor_Int(bool isActive) const
 {
    if (isActive && getTextValue("Alternate Marked Background") == "Alternate Background")
-      return getAlternateBackgroundColor(true);
+      return getAlternateBackgroundColor_Int(true);
    if (isActive && getTextValue("Alternate Marked Background") == "")
-      return getMarkedBackgroundColor(true);
+      return getMarkedBackgroundColor_Int(true);
    if (!isActive && getTextValue("Inactive Alternate Marked Background") == "")
-      return getAlternateMarkedBackgroundColor(true);
+      return getAlternateMarkedBackgroundColor_Int(true);
    if (!isActive && getTextValue("Inactive Alternate Marked Background") == "Inactive Alternate Background")
-      return getAlternateBackgroundColor(false);
+      return getAlternateBackgroundColor_Int(false);
    if (!isActive && getTextValue("Inactive Alternate Marked Background") == "Inactive Marked Background")
-      return getMarkedBackgroundColor(false);
+      return getMarkedBackgroundColor_Int(false);
    return isActive?KrColorCache::getColor("Alternate Marked Background"):KrColorCache::getColor("Inactive Alternate Marked Background");
+}
+
+QColor KrColorCache::getAlternateMarkedBackgroundColor(bool isActive) const
+{
+   QString colorName = isActive?"Alternate Marked Background":"Inactive Alternate Marked Background";
+   QColor * color = colorCache.find(colorName);
+   if (!color)
+   {
+      color = new QColor();
+      *color = getAlternateMarkedBackgroundColor_Int(isActive);
+      ((KrColorCache *)this)->setColor(colorName, color, isActive, true);
+   }
+   return * color;
 }
 
 void KrColorCache::refreshColors()

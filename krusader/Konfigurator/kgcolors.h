@@ -35,6 +35,7 @@
 #include <qptrlist.h>
 #include <qvaluelist.h>
 #include <qlistview.h>
+#include <qwidgetstack.h>
 
 class KgColors : public KonfiguratorPage
 {
@@ -63,6 +64,8 @@ protected slots:
   void slotExportColors();
 
 private:
+  class PreviewItem;
+
   int                        addColorSelector( QString cfgName, QString name, QColor dflt, QString dfltName = QString::null,
                                                ADDITIONAL_COLOR *addColor = 0, int addColNum = 0);
   KonfiguratorColorChooser  *getColorSelector( QString name );
@@ -71,6 +74,7 @@ private:
   void                       serialize(class QDataStream &);
   void                       deserialize(class QDataStream &);
   void                       serializeItem(class QDataStream &, const char * name);
+  void                       setColorWithDimming(PreviewItem * item, QColor foreground, QColor background, bool dimmed );
 
 private:
   QWidget                            *colorsGrp;
@@ -82,6 +86,11 @@ private:
   QGroupBox                          *previewGrp;
   QGridLayout                        *previewGrid;
   QTabWidget                         *colorTabWidget;
+
+  QWidgetStack                       *inactiveColorStack;
+  QWidget                            *normalInactiveWidget;
+  QWidget                            *dimmedInactiveWidget;
+  KonfiguratorSpinBox                *dimFactor;
 
   KonfiguratorCheckBoxGroup          *generals;
 
