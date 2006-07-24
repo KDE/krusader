@@ -460,19 +460,20 @@ void KgColors::generatePreview()
       {
         if( generals->find( "Show Current Item Always" )->isChecked() )
         {
-          if( getColorSelector( "Inactive Current Foreground" )->currentItem() != 1 )
-            currentFore = getColorSelector( "Inactive Current Foreground" )->getColor();
-          else
-          {
-            if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
-              currentFore = getColorSelector( "Current Foreground" )->getColor();
-          }
-          if( getColorSelector( "Inactive Current Background" )->currentItem() != 1 )
+          if( getColorSelector( "Inactive Current Background" )->currentItem() != 1 && !dimmed )
             currentBck = getColorSelector( "Inactive Current Background" )->getColor();
           else
           {
             if( getColorSelector( "Current Background" )->currentItem() != 1 )
               currentBck = getColorSelector( "Current Background" )->getColor();
+          }
+          if( getColorSelector( "Inactive Current Foreground" )->currentItem() != 1 && !dimmed )
+            currentFore = getColorSelector( "Inactive Current Foreground" )->getColor();
+          else
+          {
+            if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
+              currentFore = getColorSelector( "Current Foreground" )->getColor();
+            else currentFore = setColorIfContrastIsSufficient(currentBck, getColorSelector( prefix + "Foreground" )->getColor(), bck);
           }
         }
       }
