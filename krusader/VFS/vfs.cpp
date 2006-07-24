@@ -307,14 +307,7 @@ void vfs::vfs_calcSpaceLocal(QString name ,KIO::filesize_t *totalSize,unsigned l
   }
   else{  // handle directories
     // avoid a nasty crash on un-readable dirs
-    bool readable = false;
-    if( stat_p.st_uid == getuid() )
-      readable = !!(S_IRUSR & stat_p.st_mode);
-    else if ( stat_p.st_gid == getgid() )
-      readable = !!(S_IRGRP & stat_p.st_mode );
-    else
-      readable = !!(S_IROTH & stat_p.st_mode );
-    
+    bool readable = ::access( name.local8Bit(), R_OK | X_OK ) == 0;
     if( !readable )
       return;
       
