@@ -42,9 +42,10 @@ public:
 	
 	enum Mode{Generic,Text,Hex};
 
-	static void view( KURL url );
-	static void view( KURL url, Mode mode, bool new_window );
-	static void edit( KURL url, Mode mode=Text, bool new_window=false  );
+	static void view( KURL url, QWidget * parent = 0 );
+	static void view( KURL url, Mode mode, bool new_window, QWidget * parent = 0 );
+	static void edit( KURL url, QWidget * parent );
+	static void edit( KURL url, Mode mode=Text, bool new_window=false, QWidget * parent = 0 );
 
 
 public slots:
@@ -89,7 +90,9 @@ private:
 	QPopupMenu* viewerMenu;
 	KTempFile tmpFile;
 	KTabWidget tabBar;
-	int returnFocusToKrusader;
+	QGuardedPtr<QWidget> returnFocusTo;
+	PanelViewerBase * returnFocusTab;
+	
 	int detachActionIndex;
 
 	KAction *printAction;

@@ -53,7 +53,7 @@
 QPtrList<KrViewer> KrViewer::viewers;
 
 KrViewer::KrViewer( QWidget *parent, const char *name ) :
-KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusToKrusader( 0 ) {
+KParts::MainWindow( parent, name ), manager( this, this ), tabBar( this ), returnFocusTo( 0 ), returnFocusTab( 0 ) {
 
 	//setWFlags(WType_TopLevel | WDestructiveClose);
 	setXMLFile( "krviewer.rc" ); // kpart-related xml file
@@ -174,7 +174,7 @@ KrViewer* KrViewer::getViewer(bool new_window){
 	}
 }	
 
-void KrViewer::view( KURL url ) {
+void KrViewer::view( KURL url, QWidget * parent ) {
 	Mode defaultMode = Generic;
 	bool defaultWindow = false;
 
@@ -187,20 +187,25 @@ void KrViewer::view( KURL url ) {
 	else if( modeString == "text" ) defaultMode = Text;
 	else if( modeString == "hex" ) defaultMode = Hex;
 
-	view(url,defaultMode,defaultWindow);
+	view(url,defaultMode,defaultWindow, parent );
 }
 
-void KrViewer::view( KURL url, Mode mode,  bool new_window ) {
+void KrViewer::view( KURL url, Mode mode,  bool new_window, QWidget * parent ) {
 	KrViewer* viewer = getViewer(new_window);
 
 	PanelViewerBase* viewWidget = new PanelViewer(&viewer->tabBar);
 	KParts::Part* part = viewWidget->openURL(url,mode);
 	viewer->addTab(viewWidget,i18n( "Viewing" ),VIEW_ICON,part);
 
-	viewer->returnFocusToKrusader = 2;
+	viewer->returnFocusTo = parent;
+	viewer->returnFocusTab = viewWidget;
 }
 
-void KrViewer::edit( KURL url, Mode mode, bool new_window ) {
+void KrViewer::edit( KURL url, QWidget * parent ) {
+	edit( url, Text, false, parent );
+}
+
+void KrViewer::edit( KURL url, Mode mode, bool new_window, QWidget * parent ) {
 	krConfig->setGroup( "General" );
 	QString edit = krConfig->readEntry( "Editor", _Editor );
 
@@ -221,6 +226,9 @@ void KrViewer::edit( KURL url, Mode mode, bool new_window ) {
 	PanelViewerBase* editWidget = new PanelEditor(&viewer->tabBar);
 	KParts::Part* part = editWidget->openURL(url,mode);
 	viewer->addTab(editWidget,i18n("Editing"),EDIT_ICON,part);
+	
+	viewer->returnFocusTo = parent;
+	viewer->returnFocusTab = editWidget;
 }
 
 void KrViewer::addTab(PanelViewerBase* pvb, QString msg, QString iconName ,KParts::Part* part){
@@ -259,15 +267,22 @@ void KrViewer::tabURLChanged( PanelViewerBase *pvb, const KURL & url ) {
 
 void KrViewer::tabChanged(QWidget* w){
 	manager.setActivePart( static_cast<PanelViewerBase*>(w)->part() );
-	if( returnFocusToKrusader ) --returnFocusToKrusader;
-
+	
+	if( static_cast<PanelViewerBase*>(w) != returnFocusTab ) {
+		returnFocusTo = 0;
+		returnFocusTab = 0;
+	}
+	
 	// set this viewer to be the main viewer
 	if( viewers.remove( this ) ) viewers.prepend( this ); // move to first
 }
 
 void KrViewer::tabCloseRequest(QWidget *w){
 	if( !w ) return;
-
+	
+	// important to save as returnFocusTo will be cleared at removePart
+	QWidget * returnFocusToThisWidget = returnFocusTo;
+	
 	PanelViewerBase* pvb = static_cast<PanelViewerBase*>(w);
 	
 	if( !pvb->queryClose() )
@@ -280,8 +295,14 @@ void KrViewer::tabCloseRequest(QWidget *w){
 	tabBar.removePage(w);
 
 	if( tabBar.count() <= 0 ){
-		krApp->raise();
-		krApp->setActiveWindow();
+		if( returnFocusToThisWidget ){ 
+			returnFocusToThisWidget->raise();
+			returnFocusToThisWidget->setActiveWindow();
+		}
+		else {
+			krApp->raise();
+			krApp->setActiveWindow();
+		}
 		delete this;
 		return;
 	} else if( tabBar.count() == 1 ){
@@ -289,9 +310,9 @@ void KrViewer::tabCloseRequest(QWidget *w){
 		viewerMenu->setItemEnabled(detachActionIndex,false);
 	}
 
-	if( returnFocusToKrusader ){ 
-		krApp->raise();
-		krApp->setActiveWindow();
+	if( returnFocusToThisWidget ){ 
+		returnFocusToThisWidget->raise();
+		returnFocusToThisWidget->setActiveWindow();
 	}
 }
 

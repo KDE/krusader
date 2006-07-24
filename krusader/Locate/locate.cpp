@@ -387,10 +387,10 @@ void LocateDlg::operate( QListViewItem *item, int task )
   switch ( task )
   {
   case VIEW_ID:
-    KrViewer::view( name ); // view the file
+    KrViewer::view( name, this ); // view the file
     break;
   case EDIT_ID:
-    KrViewer::edit( name ); // view the file
+    KrViewer::edit( name, this ); // view the file
     break;
   case FIND_ID:
     {
