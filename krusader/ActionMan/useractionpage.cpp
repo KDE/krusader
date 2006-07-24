@@ -45,32 +45,32 @@ UserActionPage::UserActionPage( QWidget* parent )
    newButton = new QToolButton( this, "newButton" );
    newButton->setPixmap( ICON("filenew") );
    newButton->setAutoRaise(true);
-   QToolTip::add( newButton, i18n("create a new useraction") );
+   QToolTip::add( newButton, i18n("Create new useraction") );
 
    importButton = new QToolButton( this, "importButton" );
    importButton->setPixmap( ICON("fileimport") );
    importButton->setAutoRaise(true);
-   QToolTip::add( importButton, i18n("import useractions") );
+   QToolTip::add( importButton, i18n("Import useractions") );
 
    exportButton = new QToolButton( this, "exportButton" );
    exportButton->setPixmap( ICON("fileexport") );
    exportButton->setAutoRaise(true);
-   QToolTip::add( exportButton, i18n("export useractions") );
+   QToolTip::add( exportButton, i18n("Export useractions") );
 
    copyButton = new QToolButton( this, "copyButton" );
    copyButton->setPixmap( ICON("editcopy") );
    copyButton->setAutoRaise(true);
-   QToolTip::add( copyButton, i18n("copy useractions to clipboard") );
+   QToolTip::add( copyButton, i18n("Copy useractions to clipboard") );
 
    pasteButton = new QToolButton( this, "pasteButton" );
    pasteButton->setPixmap( ICON("editpaste") );
    pasteButton->setAutoRaise(true);
-   QToolTip::add( pasteButton, i18n("paste useractions from clipboard") );
+   QToolTip::add( pasteButton, i18n("Paste useractions from clipboard") );
 
    removeButton = new QToolButton( this, "removeButton" );
    removeButton->setPixmap( ICON("editdelete") );
    removeButton->setAutoRaise(true);
-   QToolTip::add( removeButton, i18n("delete selected useractions") );
+   QToolTip::add( removeButton, i18n("Delete selected useractions") );
 
    toolbarLayout->addWidget( newButton );
    toolbarLayout->addWidget( importButton );
@@ -85,8 +85,8 @@ UserActionPage::UserActionPage( QWidget* parent )
    // Display some help
    KMessageBox::information( this,	// parent
    		i18n( "When you apply changes to an action, the modifications "
-   			"become available imediately in the current session.\n"
-   			"When closing ActionMan, you will be ask to save the changes permanently."
+   			"become available in the current session immediately.\n"
+   			"When closing ActionMan, you will be asked to save the changes permanently."
    		),
   		QString::null,	// caption
   		"show UserAction help"	//dontShowAgainName for the config
@@ -191,7 +191,7 @@ void UserActionPage::slotRemoveAction() {
       return;
 
    int messageDelete = KMessageBox::warningContinueCancel ( this,	//parent
-		i18n("Are you sure that you want to remove all selected action?"),	//text
+		i18n("Are you sure that you want to remove all selected actions?"),	//text
 		i18n("Remove selected actions?"), 	//caption
 		i18n("Remove"),	//Label for the continue-button
 		"Confirm Remove UserAction",	//dontAskAgainName (for the config-file)
