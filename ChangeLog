@@ -24,6 +24,7 @@
 
     --architecture-- refactoring in the useractions, see CVSNEWS
 
+    FIXED: rare compile problem where exit() isn't defined
     FIXED: [ 1519955 ] wrong permission handling in vfs::vfs_calcSpaceLocal
     FIXED: viewer gives back the focus to the search/locate widgets after ESC
     FIXED: problems with local directory names containing '@' character
