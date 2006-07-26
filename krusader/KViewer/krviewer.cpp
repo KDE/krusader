@@ -162,6 +162,8 @@ KrViewer* KrViewer::getViewer(bool new_window){
 			viewers.prepend( new KrViewer( krApp ) ); // add to first (active)
 		}
 		else {
+			if( viewers.first()->isMinimized() ) // minimized? -> show it again
+				viewers.first()->showNormal();
 			viewers.first()->raise();
 			viewers.first()->setActiveWindow();
 		}
