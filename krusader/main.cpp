@@ -43,6 +43,7 @@
 #include "defaults.h"
 #include <dcopclient.h>
 #include <kstartupinfo.h>
+#include <stdlib.h>
 
 static const char *description =
 	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
