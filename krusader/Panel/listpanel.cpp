@@ -753,6 +753,13 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
       return ;
    }
 
+   bool isLocal = true;
+   for( unsigned u = 0; u != URLs.count(); u++ )
+     if( !URLs[ u ].isLocalFile() ) {
+       isLocal = false;
+       break;
+     }
+
    KIO::CopyJob::CopyMode mode = KIO::CopyJob::Copy;
 
    // the KURL::List is finished, let's go
@@ -762,7 +769,7 @@ void ListPanel::handleDropOnView( QDropEvent *e, QWidget *widget ) {
    if ( func->files() ->vfs_isWritable() )
       popup.insertItem( i18n( "Move Here" ), 2 );
    if ( func->files() ->vfs_getType() == vfs::NORMAL &&
-         otherPanel->func->files() ->vfs_getType() == vfs::NORMAL )
+         isLocal )
       popup.insertItem( i18n( "Link Here" ), 3 );
    popup.insertItem( i18n( "Cancel" ), 4 );
    QPoint tmp = widget->mapToGlobal( e->pos() );
