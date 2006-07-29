@@ -62,6 +62,7 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 #include <qwhatsthis.h> 
 #include <qwidgetlist.h>
 #include <qdatetime.h>
+#include <dcopclient.h>
 // Krusader includes
 #include "krusader.h"
 #include "kicons.h"
@@ -934,6 +935,9 @@ bool Krusader::queryClose() {
 
       isExiting = true;
       hide();        // hide 
+
+      kapp->dcopClient()->detach(); // detach from DCOP
+
       kapp->deref(); // FIX: krusader exits at closing the viewer when minimized to tray
       kapp->deref(); // and close the application
       return false;  // don't let the main widget close. It stops the pending copies!

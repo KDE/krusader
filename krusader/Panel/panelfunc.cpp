@@ -795,7 +795,7 @@ void ListPanelFunc::pack() {
 			return ; // stop operation
 	}
 	// tell the user to wait
-	krApp->startWaiting( i18n( "Counting files to pack" ), 0 );
+	krApp->startWaiting( i18n( "Counting files to pack" ), 0, true );
 
 	// get the files to be packed:
 	files() ->vfs_getFiles( &fileNames );

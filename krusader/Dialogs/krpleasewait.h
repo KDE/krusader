@@ -36,22 +36,29 @@
 #include <qguardedptr.h>
 #include <kio/jobclasses.h>
 
+class KProcess;
 class KRPleaseWait;
 
 class KRPleaseWaitHandler : public QObject {
   Q_OBJECT
+
+public:
+  KRPleaseWaitHandler();
+
 public slots:
-  void startWaiting(QString msg, int count, bool cancel);
+
+  void startWaiting(QString msg, int count = 0, bool cancel = false);
   void stopWait();
   void cycleProgress();
   void incProgress(int i);
+  void incProgress( KProcess *, char *buffer, int buflen );
   void killJob();
   void setJob(KIO::Job* j);
   bool wasCancelled() const { return _wasCancelled; }
 
 private:
   QGuardedPtr<KIO::Job> job;
-	static KRPleaseWait * dlg;
+  KRPleaseWait * dlg;
   bool cycle, cycleMutex, incMutex, _wasCancelled;
 };
 

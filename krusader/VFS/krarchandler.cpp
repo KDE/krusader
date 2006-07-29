@@ -44,6 +44,7 @@
 #include "../krusader.h"
 #include "../defaults.h"
 #include "../krservices.h"
+#include "../Dialogs/krpleasewait.h"
 
 static QStringList arcProtocols = QStringList::split(";", "tar;bzip;bzip2;gzip;krarc;zip");
 
@@ -182,7 +183,7 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   }
 
   // tell the user to wait
-  krApp->startWaiting( i18n( "Counting files in archive" ) );
+  krApp->startWaiting( i18n( "Counting files in archive" ), 0, true );
 
   // count the number of files in the archive
   long count = 1;
@@ -191,7 +192,14 @@ long KRarcHandler::arcFileCount( QString archive, QString type, QString password
   list << lister << KrServices::quote( archive ) << ">" << tmpFile.name() ;
   if( type == "-ace" && QFile( "/dev/ptmx" ).exists() )  // Don't remove, unace crashes if missing!!!
     list<< "<" << "/dev/ptmx";
-  list.start( KProcess::Block, KProcess::AllOutput );
+  list.start( KProcess::NotifyOnExit, KProcess::AllOutput );
+  while ( list.isRunning() ) {
+    usleep( 1000 );
+    qApp->processEvents();
+    if( krApp->wasWaitingCancelled() )
+      list.kill();
+    }
+  ; // busy wait - need to find something better...
   
   krApp->stopWait();
   
@@ -304,7 +312,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   chdir( dest.local8Bit() );
 
   // tell the user to wait
-  krApp->startWaiting( i18n( "Unpacking File(s)" ), count );
+  krApp->startWaiting( i18n( "Unpacking File(s)" ), count, true );
   if ( count != 0 ) {
     connect( &proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
              krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
@@ -318,6 +326,8 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   while ( proc.isRunning() ) {
     usleep( 1000 );
     qApp->processEvents();
+    if( krApp->wasWaitingCancelled() )
+      proc.kill();
     }
   ; // busy wait - need to find something better...
   krApp->stopWait();
@@ -329,6 +339,7 @@ bool KRarcHandler::unpack( QString archive, QString type, QString password, QStr
   // check the return value
   if ( !proc.normalExit() || !checkStatus( type, proc.exitStatus() ) ) {
     KMessageBox::detailedError (krApp, i18n( "Failed to unpack %1!" ).arg( archive ), 
+                                krApp->wasWaitingCancelled() ? i18n( "User cancelled." ) : 
                                 proc.getErrorMsg(), i18n("Error" ) );
     return false;
     }
@@ -372,7 +383,7 @@ bool KRarcHandler::test( QString archive, QString type, QString password, long c
     proc << "<" << "/dev/ptmx";
   
   // tell the user to wait
-  krApp->startWaiting( i18n( "Testing Archive" ), count );
+  krApp->startWaiting( i18n( "Testing Archive" ), count, true );
   if ( count != 0 ) connect( &proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
                                krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
 
@@ -381,6 +392,8 @@ bool KRarcHandler::test( QString archive, QString type, QString password, long c
   while ( proc.isRunning() ) {
     usleep( 1000 );
     qApp->processEvents();
+    if( krApp->wasWaitingCancelled() )
+      proc.kill();
     }
   ; // busy wait - need to find something better...
   krApp->stopWait();
@@ -476,7 +489,7 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
     }
 
   // tell the user to wait
-  krApp->startWaiting( i18n( "Packing File(s)" ), count );
+  krApp->startWaiting( i18n( "Packing File(s)" ), count, true );
   if ( count != 0 )
     connect( &proc, SIGNAL( receivedStdout( KProcess*, char*, int ) ),
              krApp, SLOT( incProgress( KProcess*, char*, int ) ) );
@@ -486,6 +499,8 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   while ( proc.isRunning() ) {
     usleep( 1000 );
     qApp->processEvents();
+    if( krApp->wasWaitingCancelled() )
+      proc.kill();
     }
   ; // busy wait - need to find something better...
   krApp->stopWait();
@@ -493,7 +508,8 @@ bool KRarcHandler::pack( QStringList fileNames, QString type, QString dest, long
   // check the return value
   if ( !proc.normalExit() || !checkStatus( type, proc.exitStatus() ) ) {
     KMessageBox::detailedError (krApp, i18n( "Failed to pack %1!" ).arg( dest ), 
-                                proc.getErrorMsg(), i18n("Error" ) );
+                                krApp->wasWaitingCancelled() ? i18n( "User cancelled." ) : proc.getErrorMsg(), 
+                                i18n("Error" ) );
     return false;
     }
 

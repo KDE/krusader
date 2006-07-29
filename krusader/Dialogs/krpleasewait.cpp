@@ -39,9 +39,10 @@
 #include <kcursor.h>
 
 KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
-	QProgressDialog(krApp,0,true) , inc(true) {
+	QProgressDialog( cancel ? 0 : krApp,0, !cancel) , inc(true) {
 	
 	timer = new QTimer(this);
+	setCaption( i18n( "Krusader::Wait" ) );
 
 	setMinimumDuration(500);
   setAutoClose(false);
@@ -67,9 +68,10 @@ KRPleaseWait::KRPleaseWait( QString msg, int count, bool cancel ):
 
 void KRPleaseWait::closeEvent ( QCloseEvent * e )
 {
-  if( canClose )
+  if( canClose ) {
+    emit cancelled();
     e->accept();
-  else              /* if cancel is not allowed, we disable */
+  } else              /* if cancel is not allowed, we disable */
     e->ignore();         /* the window closing [x] also */
 }
 
@@ -82,6 +84,9 @@ void KRPleaseWait::cycleProgress(){
   else     setProgress(progress()-1);
 	if ( progress() >= 9 ) inc = false;
   if ( progress() <= 0 ) inc = true;
+}
+
+KRPleaseWaitHandler::KRPleaseWaitHandler() : QObject(), job(), dlg( 0 ) {
 }
 
 void KRPleaseWaitHandler::stopWait(){
@@ -121,8 +126,6 @@ void KRPleaseWaitHandler::cycleProgress(){
   cycleMutex=false;
 }
 
-KRPleaseWait* KRPleaseWaitHandler::dlg = 0;
-
 void KRPleaseWaitHandler::killJob(){
 	if( !job.isNull() ) job->kill(false);
 	stopWait();
@@ -136,6 +139,15 @@ void KRPleaseWaitHandler::incProgress(int i){
   incMutex=true;
   if(dlg) dlg->incProgress(i);
   incMutex=false;
+}
+
+void KRPleaseWaitHandler::incProgress( KProcess *, char *buffer, int buflen ) {
+   int howMuch = 0;
+   for ( int i = 0 ; i < buflen; ++i )
+      if ( buffer[ i ] == '\n' )
+         ++howMuch;
+
+   incProgress( howMuch );
 }
 
 #include "krpleasewait.moc"
