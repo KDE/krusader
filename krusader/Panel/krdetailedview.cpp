@@ -1107,6 +1107,14 @@ void KrDetailedView::renameCurrentItem() {
 
    if ( c >= 0 ) {
       rename( static_cast<QListViewItem*>( it ), c );
+      // if applicable, select only the name without extension
+      KConfigGroupSaver svr(krConfig,"Look&Feel");
+      if (!krConfig->readBoolEntry("Rename Selects Extension", true)) {
+      	int loc = it->name().findRev('.');
+      	if (loc>0) { // avoid mishandling of .bashrc and friend
+      		renameLineEdit()->setSelection(0, loc);
+      	}
+      }
       // signal will be emited when renaming is done, and finalization
       // will occur in inplaceRenameFinished()
    } else {

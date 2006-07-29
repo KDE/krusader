@@ -73,6 +73,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  i18n( "The icon will appear in the system tray instead of the taskbar, when Krusader is minimized." ) },
      {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  i18n( "When matching the select criteria, directories will also be marked." ) },
+     {"Look&Feel","Rename Selects Extension",true,          i18n( "Rename selects extension" ),   false,  i18n( "When renaming a file, the whole text is selected. If you want total-commander like renaming of just the name, without extension, unmark this." ) },
      {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
      {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the folder tabs. By default only the last part of the path is displayed." ) },
      {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  i18n( "Opens a quick search dialog box." ) },
