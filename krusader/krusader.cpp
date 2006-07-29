@@ -966,17 +966,6 @@ void Krusader::stopWait() {
 void Krusader::updateGUI( bool enforce ) {
    // now, check if we need to create a konsole_part
    config->setGroup( "Startup" );
-   if ( config->readBoolEntry( "Show Terminal Emulator", _ShowTerminalEmulator ) ) {
-      if ( enforce ) {
-         mainView->slotTerminalEmulator( true ); // create konsole_part
-         config->setGroup( "Private" );
-         QValueList<int> lst;
-         lst.append( config->readNumEntry( "Panel Size", _PanelSize ) );
-         lst.append( config->readNumEntry( "Terminal Size", _TerminalSize ) );
-         mainView->vert_splitter->setSizes( lst );
-         config->setGroup( "Startup" );
-      }
-   }
 
    // call the XML GUI function to draw the UI
    createGUI( mainView->konsole_part );
@@ -1015,8 +1004,8 @@ void Krusader::updateGUI( bool enforce ) {
          mainView->cmdLine->show();
          actToggleCmdline->setChecked( true );
       }
-		// update the Fn bar to the shortcuts selected by the user
-		mainView->fnKeys->updateShortcuts();
+      // update the Fn bar to the shortcuts selected by the user
+      mainView->fnKeys->updateShortcuts();
       if ( !krConfig->readBoolEntry( "Show FN Keys", _ShowFNkeys ) ) {
          mainView->fnKeys->hide();
          actToggleFnkeys->setChecked( false );
@@ -1032,6 +1021,18 @@ void Krusader::updateGUI( bool enforce ) {
    }
 	// popular urls
 	popularUrls->load();
+	if ( config->readBoolEntry( "Show Terminal Emulator", _ShowTerminalEmulator ) ) {
+		if ( enforce ) {
+			mainView->slotTerminalEmulator( true ); // create konsole_part
+			config->setGroup( "Private" );
+			QValueList<int> lst;
+			lst.append( config->readNumEntry( "Panel Size", _PanelSize ) );
+			lst.append( config->readNumEntry( "Terminal Size", _TerminalSize ) );
+			mainView->vert_splitter->setSizes( lst );
+			config->setGroup( "Startup" );
+		}
+	}
+
 }
 
 // return a list in the format of TOOLS,PATH. for example

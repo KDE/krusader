@@ -30,6 +30,8 @@
 
 // Qt includes
 #include <qwhatsthis.h> 
+#include <kstatusbar.h>
+#include <kmenubar.h>
 // Krusader includes
 #include "krusaderview.h"
 #include "krusader.h"
@@ -144,6 +146,14 @@ void KrusaderView::panelSwitch() { activePanel->otherPanel->slotFocusOnMe(); }
 void KrusaderView::slotSetActivePanel( ListPanel *p ) { activePanel = p; }
 
 void KrusaderView::slotTerminalEmulator( bool show ) {
+  KConfigGroupSaver grp(krConfig, "Look&Feel");
+  bool fullscreen = krConfig->readBoolEntry("Fullscreen Terminal Emulator", false);
+  static bool fnKeysShown=true; // first time init. should be overridden
+  static bool cmdLineShown=true;
+  static bool statusBarShown=true;
+  static bool toolBarShown=true;
+  static bool menuBarShown=true;
+
   if ( !show ) {  // hiding the terminal
     activePanel->slotFocusOnMe();
     if( terminal_dock->isVisible() )
@@ -153,6 +163,19 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     newSizes.push_back( vert_splitter->height() );
     newSizes.push_back( 0 );
     vert_splitter->setSizes( newSizes );
+    // in full screen, we unhide everything that was hidden before
+    if (fullscreen) {
+	leftMng->show(); 
+	rightMng->show();
+	if (fnKeysShown) fnKeys->show();
+	if (cmdLineShown) cmdLine->show();
+	if (statusBarShown) krApp->statusBar()->show();
+	if (toolBarShown) {
+		krApp->toolBar()->show();
+		krApp->toolBar("actionsToolBar")->show();
+	}
+	if (menuBarShown) krApp->menuBar()->show();
+    }
     return ;
   }
   // else implied
@@ -174,6 +197,22 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     if( konsole_part->widget() )
       konsole_part->widget()->setFocus();
     krToggleTerminal->setChecked( true );
+    // in full screen mode, we hide everything else, but first, see what was actually shown
+    if (fullscreen) {
+	fnKeysShown = !fnKeys->isHidden();
+    	cmdLineShown = !cmdLine->isHidden();
+    	statusBarShown = !krApp->statusBar()->isHidden();
+    	toolBarShown = !krApp->toolBar()->isHidden();
+	menuBarShown = !krApp->menuBar()->isHidden();
+    	leftMng->hide(); 
+    	rightMng->hide();
+    	fnKeys->hide();
+    	cmdLine->hide();
+    	krApp->statusBar()->hide();
+    	krApp->toolBar()->hide();
+    	krApp->toolBar("actionsToolBar")->hide();
+	krApp->menuBar()->hide();
+    }
   } else {
     activePanel->slotFocusOnMe();
     terminal_dock->hide();
