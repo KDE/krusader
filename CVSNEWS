@@ -7,6 +7,9 @@
 - extension to the ChangeLog.
 ------------------------------------------------------------------------
 
+New feature: atomic extension. extensions known to be atomic (tar.gz, tar.bz2)
+are now handled properly both in the panel and during rename
+
 New feature: rename just the filename, without extension
   - in the look&feel page, disable "rename selects extension", and then,
     when you rename a file, only the filename will be selected, but not the extension

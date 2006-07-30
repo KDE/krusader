@@ -8,6 +8,38 @@
 
 #define PROPS	static_cast<const KrViewProperties*>(_viewProperties)
 
+QString atomicExtensions[] = { 
+	".tar.gz", 
+	".tar.bz2" 
+};
+
+KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties): 
+	_vf(vf), dummyVfile(false), _viewProperties(properties), _hasExtension(false) {
+	if (vf) {
+		// check if the file has an extension
+		const QString& vfName = vf->vfile_getName();
+		int loc = vfName.findRev('.');
+		if (loc>0) { // avoid mishandling of .bashrc and friend
+			// check if it has one of the predefined 'atomic extensions'
+			for (int i=0; i<(sizeof(atomicExtensions)/sizeof(QString)); ++i) {
+				int aloc = vfName.findRev(atomicExtensions[i]);
+				if (aloc>0) {
+					loc = aloc;
+					break;
+				}
+			}
+			_name = vfName.left(loc);
+			_extension = vfName.mid(loc+1);
+			_hasExtension=true;
+		}
+	}
+}
+
+const QString& KrViewItem::name(bool withExtension) const {
+	if (!withExtension && _hasExtension) return _name;
+	else return _vf->vfile_getName();
+}
+
 QString KrViewItem::description() const {
 	if (dummyVfile) return i18n("Climb up the directory tree");
 	// else is implied

@@ -1110,10 +1110,8 @@ void KrDetailedView::renameCurrentItem() {
       // if applicable, select only the name without extension
       KConfigGroupSaver svr(krConfig,"Look&Feel");
       if (!krConfig->readBoolEntry("Rename Selects Extension", true)) {
-      	int loc = it->name().findRev('.');
-      	if (loc>0) { // avoid mishandling of .bashrc and friend
-      		renameLineEdit()->setSelection(0, loc);
-      	}
+	if (it->hasExtension()) 
+		renameLineEdit()->setSelection(0, it->name().findRev(it->extension())-1);
       }
       // signal will be emited when renaming is done, and finalization
       // will occur in inplaceRenameFinished()
@@ -1150,11 +1148,10 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
       
       int i;
       QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
-      if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() && COLUMN( Extention ) != -1 )
-         if ( ( i = name.findRev( '.' ) ) > 0 ) {
-            ext = name.mid( i + 1 );
-            name = name.mid( 0, i );
-         }
+      if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() && COLUMN( Extention ) != -1 ) {
+		ext = static_cast<KrDetailedViewItem*>( it ) ->extension();
+		name = static_cast<KrDetailedViewItem*>( it ) ->name();
+      }
       it->setText( COLUMN( Name ), name );
       it->setText( COLUMN( Extention ), ext );
       repaintItem( it );

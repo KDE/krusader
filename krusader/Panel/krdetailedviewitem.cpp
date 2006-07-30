@@ -148,12 +148,9 @@ void KrDetailedViewItem::repaintItem() {
     // if we've got an extention column, clip the name accordingly
     QString name = _vf->vfile_getName(), ext = "";
     if ((id = COLUMN(Extention)) != -1 && !_vf->vfile_isDir()) {
-      int i;
-      if ((i = name.findRev('.')) > 0) {
-        ext = name.mid(i+1);
-        name = name.mid(0, i);
-      }
-      setText(id, ext);
+    	ext = this->extension();
+	name = this->name(false); // request name without extension
+      	setText(id, ext);
     }
     setText(COLUMN(Name), name);
 #ifndef FASTER
