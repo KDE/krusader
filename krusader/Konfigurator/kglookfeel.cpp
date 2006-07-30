@@ -85,7 +85,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      {"Look&Feel","Fullscreen Terminal Emulator", false, i18n( "Fullscreen terminal (mc-style)"  ), false,  i18n( "Terminal is shown instead of the krusader window (full screen).") },
     };
 
-  cbs = createCheckBoxGroup( 2, 0, settings, 13, lookFeelGrp, 0, PAGE_OPERATION );
+  cbs = createCheckBoxGroup( 2, 0, settings, 14, lookFeelGrp, 0, PAGE_OPERATION );
   lookFeelGrid->addWidget( cbs, 0, 0 );
   connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
