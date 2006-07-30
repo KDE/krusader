@@ -27,6 +27,8 @@
 
     --architecture-- refactoring in the useractions, see CVSNEWS
 
+    FIXED: terminal emulator sends the CD commands too frequently
+    FIXED: terminal emulator scrolls up its content after hide/show
     FIXED: [ 1501740 ] can not link from a search result's virtfs
     FIXED: rare compile problem where exit() isn't defined
     FIXED: [ 1519955 ] wrong permission handling in vfs::vfs_calcSpaceLocal

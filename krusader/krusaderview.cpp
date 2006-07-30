@@ -126,10 +126,11 @@ void KrusaderView::start( QStringList leftTabs, int leftActiveTab, QStringList r
 //////////////////////////////////////////////////////////
 void KrusaderView::slotCurrentChanged( QString p ) {
   cmdLine->setCurrent( p );
-  if ( konsole_part != 0L ) {
+  if ( konsole_part != 0L && terminal_dock->isVisible() ) {
 	 KConfigGroupSaver grp(krConfig, "General");
     if (krConfig->readBoolEntry("Send CDs", _SendCDs)) // hopefully, this is cached in kconfig
-    	konsole_part->openURL( KURL( p ) );
+        if( !konsole_part->url().equals( KURL( p ), true ) )
+           konsole_part->openURL( KURL( p ) );
   }
 }
 
@@ -158,6 +159,15 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     activePanel->slotFocusOnMe();
     if( terminal_dock->isVisible() )
       verticalSplitterSizes = vert_splitter->sizes();
+
+    // BUGFIX: when the terminal emulator is toggled on, first it is shown in minimum size
+    //         then QSplitter resizes it to the desired size.
+    //         this minimum resize scrolls up the content of the konsole widget
+    // SOLUTION:
+    //         we hide the console widget while the resize ceremony happens, then reenable it
+    if( konsole_part )
+      konsole_part->widget()->hide(); // hide the widget to prevent from resize
+
     terminal_dock->hide();
     QValueList<int> newSizes;
     newSizes.push_back( vert_splitter->height() );
@@ -194,6 +204,12 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
       vert_splitter->setSizes( verticalSplitterSizes );
       
     terminal_dock->show();
+    slotCurrentChanged( activePanel->realPath() );
+
+    // BUGFIX: TE scrolling bug (see upper)
+    //         show the Konsole part delayed
+    QTimer::singleShot( 0, konsole_part->widget(), SLOT( show() ) );
+
     if( konsole_part->widget() )
       konsole_part->widget()->setFocus();
     krToggleTerminal->setChecked( true );
