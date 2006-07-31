@@ -233,9 +233,11 @@
    <para>I can't find a RPM or DEB package for &krusader;, What now?</para>
    </question>
    <answer>
-   <para>
-   Did you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and nothing found?
-   Then you will have to compile &krusader; from source :)
+   <para>Check if your distribution provides &krusader;, if it doesn't than contact your distribution
+   creator and ask them to include &krusader;!</para>
+   
+   <para>Did you take a look at the &URL;'s on the &install_proc_lnk; page? Yes, and nothing found?
+   Then you can compile &krusader; from source :)
    Even if you think that you have no skills, you will probably succeed in compiling  &krusader;!
    We provide a very detailed installation procedure. This HowTo enables
    newcomers to compile &krusader; from source, even if they have never done a
@@ -389,7 +391,7 @@
   </para>
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
- </qandaentry>
+</qandaentry>
    
    
   <qandaentry>
@@ -478,6 +480,21 @@
 
    <para> </para> <!-- Empty line to make it more readable -->
    </answer>
+</qandaentry>
+
+
+<qandaentry>
+  <question id="faqi_cvs_verion">
+  <para>Why does &krusader;-cvs shows an old version number in the about box?</para>
+  </question>
+  <answer>
+  <para>Because we only change the version number just before we do a new release.
+        &krusader;-cvs will show an older version number, so ignore the version number
+        and check the download date.
+        We just haven't decided yet what will be the next version number :)    
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
 </qandaentry>
 
 
@@ -831,8 +848,8 @@ copy/link the
 <qandaset>
 
   <qandaentry>
-  <question id="faqg_wish_patch">
-  <para>How can I report a wish, a patch, a suggestion, or a comment?</para>
+  <question id="faqg_wish">
+  <para>How can I report a wish, a suggestion, or a comment?</para>
   </question>
   <answer>
   <para>An open source project's greatest strength is derived from getting user feedback.
@@ -840,12 +857,9 @@ copy/link the
       Your "Gripes" are our instructions. After about 6 months, programmers can no longer see their own mistakes. 
       It's natural. We want the ideas, xritiques, and feedback because we all want to make &krusader; the best, 
       most useful, file manager available anywhere.</para>
-      
-  <para>If you like to send in a patch, please discuss it first with Shie Erlich before writing a patch.
-      Sometimes we can't apply a patch if the patch is in conflict with the "general design" of the code,
-      this would be very pity and a waste of your precious time.</para>
-        
-  <para>The most convenient way to contact us is to use the &forum_lnk;, or by &mail_url;.
+              
+  <para>The most convenient way to contact us is to use the &forum_lnk;, or the krusader-users
+      &mailing_lists_url;.
       For information on what remains to be done look at the &todoforum_url;.
       Adding ToDo items into the &todoforum_url; is for developers only, but feel free to post to the 
       &featureforum_url; for things that aren't on the &todoforum_url;, but should be. If you have a nice 
@@ -853,6 +867,76 @@ copy/link the
       We review and discuss every submission.
       For more information how the forum works click <link linkend="faqg_kru_forum">here</link> .
   </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
+  <qandaentry>
+  <question id="faqg_patch">
+  <para>How can I send a patch?</para>
+  </question>
+  <answer>
+  <para>It's not easy to write some patch guidlines, but here we give a try.
+
+  <orderedlist numeration="arabic">
+  <listitem>
+     <para>Patches, new code or new features are always welcome!
+     </para>
+  </listitem>
+
+  <listitem>
+     <para>If you like you can always start a discussion with the developers on the krusader-users 
+           &mailing_lists_url; or on the &forum_lnk;.
+           Unfortunatly, we can't apply a patch if the patch is in conflict with the 
+           "general design" of the &krusader; code (continue to read for more instructions).
+      </para>
+  </listitem>
+
+  <listitem>
+     <para>At one time focus only one problem, so the developers may easily 
+           understand and commit if it works. 
+           Please send one change request per mail, 
+           so that the discussion is easier to follow!
+           The modifications should be committed step by step, checking each line.
+     </para>
+  </listitem>
+
+  <listitem>
+     <para>Send the patches or all the changed files to us.
+           Mail attachments are usually okay, zipped or tar.gz'ed archives, or links to code.
+           Do not copy changes into a mail. Most mailers will change the white spaces, 
+           so that the diff will not apply or the code snipped does not diff.</para>
+  </listitem>
+
+  <listitem>
+     <para>Use portable solutions, &krusader; should run on:
+      <itemizedlist>
+       <listitem><para>All POSIX (&Linux;/BSD/&UNIX;-like OSes), &Solaris;.</para>
+               </listitem>
+       <listitem><para>All BSD Platforms (&freebsd;/&netbsd;/&openbsd;/&MacOS;).</para>
+               </listitem>
+        <listitem><para>&kde; 3.3- &kde; 3.5.3 and even on GNOME with &kde;libs.</para>
+               </listitem>
+        <listitem><para>GCC 2.95 - GCC 4.1</para>
+               </listitem>
+      </itemizedlist>
+     Architecure changes are made by the team only.</para>
+    </listitem>
+
+  <listitem>
+     <para>A final thing to note is: Keep always in mind, a patch might be reject. Either 
+           it has side effects, which we could not fix or it does contradict the idea 
+           behind the patched module. Here a software project differs from lets say a 
+           wiki: in a software project there is someone, who makes the final decission. 
+           Otherwise software will not work.
+           Furthermore: Keep in mind, that the examination of patches might take time, as 
+           we all have private lifes.
+     </para>
+  </listitem>
+
+  </orderedlist>
+  </para>
+
   <para> </para> <!-- Empty line to make it more readable -->
   </answer>
   </qandaentry>
@@ -1007,7 +1091,7 @@ copy/link the
                if you don't care about a feature just simply don't vote on that feature.
                Unregistered users may only browse the &todoforum_url;.
                The &todoranking_url; contains the results based on the votes.
-               <link linkend="faqg_wish_patch">Adding ToDo items</link> or removing ToDo items which
+               <link linkend="faqg_patch">Adding ToDo items</link> or removing ToDo items which
                have been implemented will be done by the &krusader; Krew.
                </para></listitem>
      <listitem><para>&useractionsforum_url; discussions about &useractions_lnk;.
@@ -1046,7 +1130,7 @@ copy/link the
   <answer>
   <para>You can <link linkend="help_krusader">support</link> &krusader; in many different ways:
         please send us
-        <link linkend="faqg_wish_patch">feedback</link>, &faqbugreports_lnk;, patches,  
+        <link linkend="faqg_wish">feedback</link>, &faqbugreports_lnk;, patches,  
         <link linkend="help_krusader">donations</link>, translations, ...
   </para>
   <para> </para> <!-- Empty line to make it more readable -->

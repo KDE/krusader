@@ -1,9 +1,27 @@
 The Krusader Handbook ChangeLog
 -------------------------------
 
-  ADDED:   Subversion checkout
-  ADDED:   Profiles chapter
-  ADDED:   Media button, Ctrl+M, Ctrl+Shift+Left, Ctrl+Shift+Right
+  TODO: atomic extensions (see CVSNEWS)
+  TODO: archive packing / unpacking are now in the background
+  TODO: renaming of just the filename, without extension
+  TODO: full screen terminal window (mc-style)
+  TODO: Inactive panel color dimming (thanks to Heiner)
+  TODO: ActionMan for useraction configuration
+  TODO: single instance mode
+  TODO: start to system tray
+  TODO: right click menu for bookmarks
+  TODO: enable/disable special bookmarks by right clicking on them
+  TODO: keeping the directory structures for virt folders at copy/move
+  TODO: synchronizer, parallel threads for slow FTP servers
+  TODO: an option for directories to be always sorted by name
+  TODO: passwords krusader-tools (bookman)
+
+  ADDED: FAQ: How can I send a patch?
+  ADDED: FAQ: Why does krusader-cvs shows an old version number in the about box?  
+  ADDED: kioslaves:  trash:/ and ipod:/
+  ADDED: Subversion checkout
+  ADDED: Profiles chapter
+  ADDED: Media button, Ctrl+M, Ctrl+Shift+Left, Ctrl+Shift+Right
 
 UPDATED: New cvs checkout url
          cvs.sourceforge -> krusader.cvs.sourceforge
@@ -107,7 +125,7 @@ UPDATED: FAQ, Why have i trouble with my FTP connection?
 UPDATED: How to obtain Krusader
 UPDATED: changed locate-gui shortcut from ctrl-l to ctrl+shift+l
 
-FIXED:   Some manpage issues, thanks Sönke Dibbern
+FIXED:   Some manpage issues, thanks Sï¿½ke Dibbern
 
 REMOVED: RemoteMan, the FTP/SMB connection manager
          RemoteMan has been replaced by our new bookmark manager since Krusader 1.25-beta1

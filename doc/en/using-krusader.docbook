@@ -163,6 +163,8 @@ and you control the current session with the &viewmenu_lnk;.
  		 When entering archives the path will consist of the
  		 "archive name:/directory/archive_filename/the directory inside the archive".
  		 This format makes the paths uniform and easy to read.
+ 		 The <guibutton>Location Toolbar</guibutton> supports also supports &kioslaves1_url; but not all of them,
+ 		 some can only be used with the <link linkend="krviewer">viewer</link> and some can not be used.
                  With a single mouse click you can enter the desired path &eg;
 
      <itemizedlist>
@@ -177,6 +179,13 @@ and you control the current session with the &viewmenu_lnk;.
          
         <listitem><para><userinput><command>devices:/</command></userinput> gives an overiew of the devices 
                   &eg; <hardware>floppy</hardware> or <hardware>cdrom</hardware> drives.</para>
+        </listitem>
+
+        <listitem><para><userinput><command>trash:/</command></userinput> opens &kde;'s trash.</para>
+        </listitem>
+
+        <listitem><para><userinput><command>ipod:/</command></userinput> uses the &kio_ipodslave_url; to 
+        access, upload and organize the Music stored on an &appleipod;.</para>
         </listitem>
          
         <listitem><para>And last but not least &remote_connections_lnk; !</para>

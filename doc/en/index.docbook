@@ -155,8 +155,9 @@ Previous used Docbook
 <!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org/content/show.php?content=10214">KDE-APPS.org</ulink>'>
 <!ENTITY rpm_org_url '<ulink url="http://www.rpm.org/">rpm.org</ulink>'>
 <!ENTITY rpm_guide_url '<ulink url="http://fedora.redhat.com/docs/drafts/rpm-guide-en/">RPM Guide</ulink>'>
-<!ENTITY kioslaves1_url '<ulink url="http://docs.kde.org/en/3.2/kdebase/kioslave/index.html">KIOSlaves</ulink>'>
-<!ENTITY kioslaves2_url '<ulink url="http://developer.kde.org/documentation/library/3.2-api/kio/html/">KIOSlaves</ulink>'>
+<!ENTITY kioslaves1_url '<ulink url="http://docs.kde.org/stable/en/kdebase/kioslave/index.html">KIOSlaves</ulink>'>
+<!ENTITY kioslaves2_url '<ulink url="http://developer.kde.org/documentation/library/3.4-api/kio/html/index.html">KIOSlaves</ulink>'>
+<!ENTITY kio_ipodslave_url '<ulink url="http://sourceforge.net/projects/kpod">KIOipod-slave</ulink>'>
 <!ENTITY kdelibs_url '<ulink url="http://lxr.kde.org/source/kdelibs/kioslave">&kde;libs</ulink>'>
 <!ENTITY kdebase_url '<ulink url="http://lxr.kde.org/source/kdebase/kioslave">&kde;base</ulink>'>
 <!ENTITY gnome_url '<ulink url="http://www.gnome.org"><application>GNOME</application></ulink>'>
@@ -237,12 +238,12 @@ Previous used Docbook
 <!ENTITY faqbugreports_lnk '<link linkend="faqg_bug_report">bug reports</link>'>
 <!ENTITY hesbugreport_lnk 'Don&apos;t hesitate to send <link linkend="faqg_bug_report">Bug reports</link>.'>
 <!ENTITY betafeaturenote '<note><para>This is a new feature that can be considered as "beta". &hesbugreport_lnk;
-       <link linkend="faqg_wish_patch">User feedback</link> is always welcome!</para></note>'>
+       <link linkend="faqg_wish">User feedback</link> is always welcome!</para></note>'>
 <!ENTITY newfeaturenote '<note><para>This is a new feature under development. Some descriptions may become obsolete if functionality changes during development. &hesbugreport_lnk;
-       <link linkend="faqg_wish_patch">User feedback</link> is always welcome!</para></note>'>
+       <link linkend="faqg_wish">User feedback</link> is always welcome!</para></note>'>
 <!ENTITY rwfeaturenote '<note><para>This module was rewritten. Some descriptions may become obsolete if
                          functionality changes during development. &hesbugreport_lnk;
-       <link linkend="faqg_wish_patch">User feedback</link> is always welcome!</para></note>'>
+       <link linkend="faqg_wish">User feedback</link> is always welcome!</para></note>'>
 <!ENTITY krusaderui_rc_text '<para>If you install a CVS or beta version and if &krusader; was previously
          installed on your computer, then you should delete the <filename>krusaderui.rc</filename> file
          in your home directory to activate the new menu entries
@@ -259,7 +260,7 @@ Previous used Docbook
                  sources to find out more about the new features.
                  For a brief description, please read the &cvsnews_url; file online
                  or in the &krusader; sources.
-                       <link linkend="faqg_wish_patch">User feedback</link> and
+                       <link linkend="faqg_wish">User feedback</link> and
                        <link linkend="faqg_bug_report">Bug reports</link> are always welcome!
                  </para></note>'>
 
@@ -283,6 +284,7 @@ Previous used Docbook
 <!ENTITY fedora '<trademark>Fedora</trademark>'>
 <!ENTITY yoper '<trademark>Yoper</trademark>'>
 <!ENTITY openlx '<trademark>OpenLX</trademark>'>
+<!ENTITY appleipod '<trademark>Apple ipod</trademark>'>
 
 <!-- (R) Registered ENTITIES -->
 <!ENTITY freebsd '<trademark class="registered">FreeBSD</trademark>'>
@@ -417,8 +419,8 @@ Previous used Docbook
   </copyright>
 
   <legalnotice>&FDLNotice;</legalnotice>
-  <date>2006-05-23</date>
-  <releaseinfo>1.71.0 "cvs repository"</releaseinfo>
+  <date>2006-07-31</date>
+  <releaseinfo>1.80.0 "cvs repository"</releaseinfo>
 
    <abstract>
    <para>&krusader; is an advanced, twin-panel (commander-style) file-manager for KDE, 
@@ -561,7 +563,7 @@ Previous used Docbook
 
   <para><emphasis role="bold">Spread the Word &krusader;</emphasis></para>
   <para>If you like &krusader;, 
-        <ulink url="http://krusader.sourceforge.net/phpBB/viewtopic.php?t=1419">let people know!</ulink> 
+        <ulink url="http://krusader.sourceforge.net/spread.php">let people know!</ulink> 
         Write articles and reviews for internet or print publications. 
         Encourage your friends to give &krusader; a try. 
         Participate in forums to help others in the community.</para>
@@ -600,7 +602,7 @@ Previous used Docbook
   <para>If you have a question that is missing in the &faq_lnk;, we would like to hear it.</para>
 
   <para><emphasis role="bold">Others</emphasis></para>
-  <para><link linkend="faqg_wish_patch">Feedback</link>,
+  <para><link linkend="faqg_wish">Feedback</link>,
   <link linkend="faqg_bug_report">Bug reports</link>, patches, &etc; are always welcome!
   An open source project's greatest strength is derived from getting user feedback.
   </para>
