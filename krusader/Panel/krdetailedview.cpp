@@ -483,17 +483,27 @@ void KrDetailedView::slotItemDescription( QListViewItem * item ) {
 void KrDetailedView::handleQuickSearchEvent( QKeyEvent * e ) {
    switch ( e->key() ) {
          case Key_Insert:
-         KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
-         keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 ) );
-         break;
+         {
+            QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 );
+            KListView::keyPressEvent( & ev );
+            ev = QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 );
+            keyPressEvent( & ev );
+            break;
+         }
          case Key_Home:
-         QListView::setCurrentItem( firstChild() );
-         keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 ) );
-         break;
+         {
+            QListView::setCurrentItem( firstChild() );
+            QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Down, 0, 0 );
+            keyPressEvent( & ev );
+            break;
+         }
          case Key_End:
-         QListView::setCurrentItem( firstChild() );
-         keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Up, 0, 0 ) );
-         break;
+         {
+            QListView::setCurrentItem( firstChild() );
+            QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Up, 0, 0 );
+            keyPressEvent( & ev );
+            break;
+         }
    }
 }
 
@@ -972,14 +982,20 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
             if (KrSelectionMode::getSelectionHandler()->insertMovesDown())
                KListView::keyPressEvent( e );
             else
-               KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 ) );
+            {
+               QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Space, 0, 0 );
+               KListView::keyPressEvent( & ev );
+            }
             break ; 
          }
          case Key_Space : {
             KrDetailedViewItem * viewItem = static_cast<KrDetailedViewItem *> ( getCurrentKrViewItem() );
             if ( !viewItem || viewItem->name() == ".." ) { // wrong type, just mark(unmark it)
                if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
-                  KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
+               {
+                  QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 );
+                  KListView::keyPressEvent( & ev );
+               }
                else
                   KListView::keyPressEvent( e );
                break ; 
@@ -1005,7 +1021,10 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
                }
             }
 mark:       if (KrSelectionMode::getSelectionHandler()->spaceMovesDown())
-               KListView::keyPressEvent( new QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 ) );
+            {
+               QKeyEvent ev = QKeyEvent( QKeyEvent::KeyPress, Key_Insert, 0, 0 );
+               KListView::keyPressEvent( & ev );
+            }
             else
                KListView::keyPressEvent( e );
          }
