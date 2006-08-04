@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-07-30 21:58+0200\n"
-"PO-Revision-Date: 2006-08-02 19:20+0200\n"
+"PO-Revision-Date: 2006-08-04 22:03+0200\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>\n"
 "Language-Team: Nederlands <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -151,8 +151,7 @@ msgstr ""
 
 #: GUI/kcmdline.cpp:98
 msgid "If pressed, Krusader executes command line in a terminal."
-msgstr ""
-"Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
+msgstr "Indien ingedrukt, voert Krusader het commando uit in een terminalvenster."
 
 #: GUI/kcmdline.cpp:104
 msgid ""
@@ -433,7 +432,7 @@ msgstr "Het uitpakken van %1 is mislukt!"
 
 #: VFS/krarchandler.cpp:342 VFS/krarchandler.cpp:511
 msgid "User cancelled."
-msgstr ""
+msgstr "Annulatie door gebruiker"
 
 #: VFS/krarchandler.cpp:386
 msgid "Testing Archive"
@@ -1285,8 +1284,7 @@ msgstr " naar:"
 
 #: Panel/panelpopup.cpp:65
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
+msgstr "Boomstruktuur venster: boomstruktuurweergave van het lokale bestandsysteem"
 
 #: Panel/panelpopup.cpp:73
 msgid "Preview Panel: display a preview of the current file"
@@ -2566,8 +2564,7 @@ msgstr ""
 "Verwittig gelieve de Krusader ontwikkelaars"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "MountMan heeft een interne fout. Verwittig gelieve de Krusader "
 "ontwikkelaars. Dank U."
@@ -3113,9 +3110,8 @@ msgid "Click to go to <i>%1</i>"
 msgstr "Klik om naar <i>%1</i> te gaan"
 
 #: Dialogs/krpleasewait.cpp:45
-#, fuzzy
 msgid "Krusader::Wait"
-msgstr "Krusader::Locate"
+msgstr "Krusader::Wachten"
 
 #: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446
 msgid "Create Checksum"
@@ -3158,8 +3154,7 @@ msgstr "Berekening van de controlesommen ..."
 
 #: Dialogs/checksumdlg.cpp:265 Dialogs/checksumdlg.cpp:379
 msgid "<qt>There was an error while running <b>%1</b>.</qt>"
-msgstr ""
-"<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
+msgstr "<qt>De volgende fout is opgetreden tijdens het uitvoeren <b>%1</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:277 Dialogs/checksumdlg.cpp:388
 msgid "Error reading stdout or stderr"
@@ -3209,8 +3204,7 @@ msgstr "Controlesom verifieren ..."
 
 #: Dialogs/checksumdlg.cpp:423
 msgid "Errors were detected while verifying the checksums"
-msgstr ""
-"Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
+msgstr "Fouten werden gedetecteerd tijdens het verifieren van de controlesommen."
 
 #: Dialogs/checksumdlg.cpp:424
 msgid "Checksums were verified successfully"
@@ -3292,34 +3286,28 @@ msgstr ""
 "*|alle bestanden"
 
 #: ActionMan/useractionpage.cpp:48
-#, fuzzy
 msgid "Create new useraction"
-msgstr "Gebruikers acties beheren"
+msgstr "Nieuwe actie aanmaken"
 
 #: ActionMan/useractionpage.cpp:53
-#, fuzzy
 msgid "Import useractions"
-msgstr "Actie importeren"
+msgstr "Acties importeren"
 
 #: ActionMan/useractionpage.cpp:58
-#, fuzzy
 msgid "Export useractions"
-msgstr "Actie exporteren"
+msgstr "Acties exporteren"
 
 #: ActionMan/useractionpage.cpp:63
-#, fuzzy
 msgid "Copy useractions to clipboard"
-msgstr "Naar klembord kopiëren"
+msgstr "Acties naar klembord kopiëren"
 
 #: ActionMan/useractionpage.cpp:68
-#, fuzzy
 msgid "Paste useractions from clipboard"
-msgstr "Klembordinhoud plakken"
+msgstr "Acties van het klembord plakken"
 
 #: ActionMan/useractionpage.cpp:73
-#, fuzzy
 msgid "Delete selected useractions"
-msgstr "Geselecteerde acties verwijderen?"
+msgstr "Geselecteerde acties verwijderen"
 
 #: ActionMan/useractionpage.cpp:87
 msgid ""
@@ -3327,12 +3315,12 @@ msgid ""
 "the current session immediately.\n"
 "When closing ActionMan, you will be asked to save the changes permanently."
 msgstr ""
+"Wanneer u veranderingen aan een actie toepast, zullen de wijzigingen direct beschikbaar zijn in de huidige sessie.\n"
+"Wanneer u Actieman afsluit, zal u gevraagd worden of u deze wijzigingen permanent wil bewaren."
 
 #: ActionMan/useractionpage.cpp:119
-#, fuzzy
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
-msgstr "De huidige pagina is gewijzigd. Wilt u deze wijzigingen toepassen?"
+msgid "The current action has been modified. Do you want to apply these changes?"
+msgstr "De huidige actie is gewijzigd. Wilt u deze wijzigingen toepassen?"
 
 #: ActionMan/useractionpage.cpp:194 Konfigurator/kguseractions.cpp:174
 msgid "Are you sure that you want to remove all selected actions?"
@@ -3461,15 +3449,14 @@ msgstr ""
 "gebruikt door Krusader voor een interne actie."
 
 #: ActionMan/actionman.cpp:26
-#, fuzzy
 msgid "ActionMan - Manage Your Useractions"
-msgstr "Gebruikers acties beheren"
+msgstr "Actieman - Uw gebruikers acties beheren"
 
 #: ActionMan/actionman.cpp:40
 msgid ""
 "Useractions in this session are modified. Do you want to save these changes "
 "permanently?"
-msgstr ""
+msgstr "De acties van deze sessie zijn gewijzigd.Wilt u deze wijzigingen permanent bewaren?"
 
 #: ActionMan/actionpropertybase.cpp:386
 msgid "Action Property"
@@ -3596,8 +3583,7 @@ msgstr ""
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
-msgstr ""
-"<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
+msgstr "<i>Werkmap</i> is de map waar het <i>Commando</i> zal worden uitgevoerd."
 
 #: ActionMan/actionpropertybase.cpp:409
 msgid "Tooltip:"
@@ -3874,8 +3860,7 @@ msgstr "De linkse basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1119
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
+msgstr "De rechter basismap wordt gebruikt gedurende het synchronisatieprocess."
 
 #: Synchronizer/synchronizergui.cpp:1125
 msgid "Recurse subdirectories"
@@ -3948,8 +3933,7 @@ msgstr "Opties tonen"
 
 #: Synchronizer/synchronizergui.cpp:1168
 msgid "Show files marked to <i>Copy from left to right</i>."
-msgstr ""
-"Toon bestanden gemarkeerd om te <i>kopiëren van links naar rechts.</i>."
+msgstr "Toon bestanden gemarkeerd om te <i>kopiëren van links naar rechts.</i>."
 
 #: Synchronizer/synchronizergui.cpp:1176
 msgid "Show files considered to be identical."
@@ -4735,8 +4719,7 @@ msgid "Searching for tools..."
 msgstr "Zoeken naar gereedschap..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw gereedschap installeert in uw <code>$PATH</"
 "code> (bv. /usr/bin)"
@@ -4749,8 +4732,7 @@ msgstr ""
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr ""
-"rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
+msgstr "rpm gevonden, maar cpio niet gevonden wat noodzakelijk is om uit te pakken."
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -4909,19 +4891,17 @@ msgstr "Mappen automatisch markeren"
 
 #: Konfigurator/kglookfeel.cpp:75
 msgid "When matching the select criteria, directories will also be marked."
-msgstr ""
-"Wanneer de criteria overeenstemmen zullen de mappen ook geselecteerd worden."
+msgstr "Wanneer de criteria overeenstemmen zullen de mappen ook geselecteerd worden."
 
 #: Konfigurator/kglookfeel.cpp:76
-#, fuzzy
 msgid "Rename selects extension"
-msgstr "Geselecteerde acties verwijderen?"
+msgstr "Hernoemen zal de extensie selecteren"
 
 #: Konfigurator/kglookfeel.cpp:76
 msgid ""
 "When renaming a file, the whole text is selected. If you want total-"
 "commander like renaming of just the name, without extension, unmark this."
-msgstr ""
+msgstr "Wanneer u een bestand hernoemd is de hele tekst geselecteerd. Indien u de Total Commander selectie mannier wil gebruiken (zonder de extensie te selecteren), dit item niet aanvinken"
 
 #: Konfigurator/kglookfeel.cpp:77
 msgid "Case sensitive sorting"
@@ -4997,11 +4977,11 @@ msgstr "Slecht één programma (proces) van Krusader is toegelaten"
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Fullscreen terminal (mc-style)"
-msgstr ""
+msgstr "Schermvullende terminal (mc stijl)"
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Terminal is shown instead of the krusader window (full screen)."
-msgstr ""
+msgstr "Het terminal venster tonen i.p.v. het krusader venster (Schermvullende terminal)."
 
 #: Konfigurator/kglookfeel.cpp:94
 msgid "Single click / Double click Selection:"
@@ -5220,8 +5200,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Knop voor synchroon bladeren omschakelen"
 
 #: Konfigurator/kglookfeel.cpp:224
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr ""
 "Elke map verandering in het venster wordt ook uitgevoerd in het andere "
 "venster."
@@ -5264,8 +5243,7 @@ msgstr ""
 "parameters."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Het KDE media protocol niet gebruiken voor de media knop (als het fouten "
 "bevat of als het niet aanwezig is)"
@@ -5486,13 +5464,13 @@ msgstr ""
 
 #: Konfigurator/kgcolors.cpp:63
 msgid "Dim the colors of the inactive panel"
-msgstr ""
+msgstr "De kleuren van het inactieve venster dimmen."
 
 #: Konfigurator/kgcolors.cpp:63
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
-msgstr ""
+msgstr "<p>De kleuren van het inactief paneel worden berekend aan de hand van de dimkleur en dimfactor.</p>"
 
 #: Konfigurator/kgcolors.cpp:90
 msgid "Active"
@@ -5597,12 +5575,11 @@ msgstr "Zelfde als actief"
 
 #: Konfigurator/kgcolors.cpp:169
 msgid "Dim target color:"
-msgstr ""
+msgstr "Dimkleur:"
 
 #: Konfigurator/kgcolors.cpp:172
-#, fuzzy
 msgid "Dim factor:"
-msgstr "Mappen:"
+msgstr "Dimfactor:"
 
 #: Konfigurator/kgcolors.cpp:185
 msgid "Synchronizer"
@@ -5905,8 +5882,7 @@ msgid "Test archive before unpacking"
 msgstr "Archief eerst testen voor het uitpakken"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
 "testen aangeraden"
@@ -5916,8 +5892,7 @@ msgid "Searching for packers..."
 msgstr "Naar inpakgereedschap zoeken..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Vergewis u er van dat u nieuw inpak gereedschap installeert in uw <code>"
 "$PATH</code> (bv. /usr/bin)"
@@ -6177,8 +6152,7 @@ msgid "Not a valid CRC file!"
 msgstr "Ongeldig CRC bestand!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Geldigheids controle is onmogelijk zonder een goed CRC bestand. Doorgaan met "
 "combineren?"
@@ -6218,3 +6192,4 @@ msgstr "Fout bij het lezen van bestand %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Fout bij het schrijven van bestand %1!"
+
