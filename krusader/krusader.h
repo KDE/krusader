@@ -82,7 +82,7 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
      * This returns a defferent icon if krusader runs with root-privileges
      * @return a character string with the specitif icon-name
      */
-    static char* privIcon();
+    static const char* privIcon();
     static QStringList supportedTools(); // find supported tools
     void importKeyboardShortcuts(QString filename);
     void exportKeyboardShortcuts(QString filename);

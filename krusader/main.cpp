@@ -74,12 +74,19 @@ int main(int argc, char *argv[]) {
      hasIcon = true;
   }
 
+  static const char* const icon_text="--icon";
+  const char* icon_name=Krusader::privIcon();
+  char addedParams[strlen(icon_text)+strlen(icon_name)+2];
+
   if ( ! hasIcon ) {
     for ( i = 0; i < argc; ++i )
       myArgv[ i ] = argv[ i ];
 
-    myArgv[ argc ] = "--icon";
-    myArgv[ ++argc ] = Krusader::privIcon();
+    strcpy(addedParams,icon_text);
+    strcpy(addedParams+strlen(icon_text)+1,icon_name);
+
+    myArgv[ argc ] = addedParams;
+    myArgv[ ++argc ] = addedParams+strlen(icon_text)+1;
     myArgv[ ++argc ] = 0;
 
     argv = myArgv;

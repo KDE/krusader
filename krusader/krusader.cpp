@@ -1152,7 +1152,7 @@ QString Krusader::getTempFile() {
    return tmpDir;
 }
 
-char* Krusader::privIcon() {
+const char* Krusader::privIcon() {
    if ( geteuid() )
       return "krusader_user";
    else
