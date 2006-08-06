@@ -14,15 +14,14 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-07-30 21:58+0200\n"
-"PO-Revision-Date: 2006-07-28 18:11+0200\n"
+"PO-Revision-Date: 2006-08-05 15:19+0200\n"
 "Last-Translator: Tomek Grzejszczyk <tgrzej@onet.eu>\n"
 "Language-Team: Polski <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -436,7 +435,7 @@ msgstr "Rozpakowanie %1 nie powiodło się!"
 
 #: VFS/krarchandler.cpp:342 VFS/krarchandler.cpp:511
 msgid "User cancelled."
-msgstr ""
+msgstr "Operacja przerwana przez użytkownika."
 
 #: VFS/krarchandler.cpp:386
 msgid "Testing Archive"
@@ -1152,8 +1151,7 @@ msgstr " Odznaczanie plików "
 
 #: Panel/listpanel.cpp:640
 msgid "No space information on non-local filesystems"
-msgstr ""
-"Brak informacji o ilości wolnego miejsca na nielokalnych systemach plików"
+msgstr "Brak informacji o ilości wolnego miejsca na nielokalnych systemach plików"
 
 #: Panel/listpanel.cpp:647
 msgid "No space information on [dev]"
@@ -1805,8 +1803,7 @@ msgstr "Wyniki"
 
 #: Locate/locate.cpp:195
 msgid "Can't start 'locate'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Nie można uruchomić 'locate'! Sprawdź stronę 'Zależności' w konfiguratorze."
+msgstr "Nie można uruchomić 'locate'! Sprawdź stronę 'Zależności' w konfiguratorze."
 
 #: Locate/locate.cpp:232
 msgid ""
@@ -2578,8 +2575,7 @@ msgstr ""
 "Daj znać autorom"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "Wewnętrzny błąd MountMana. Proszę powiadomić twórców. Dziękuję."
 
 #: MountMan/kmountmangui.cpp:331
@@ -2650,8 +2646,7 @@ msgstr "Aplikacja jest już uruchomiona!\n"
 
 #: krusaderview.cpp:83
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
+msgstr "Klawisze funkcyjne umożliwiają wykonywanie szybkich operacji na plikach."
 
 #: Dialogs/krdialogs.cpp:130
 msgid "Preserve attributes (only for local targets)"
@@ -2995,8 +2990,7 @@ msgstr "&Anuluj"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr ""
-"Zapisane 'Popularne adresy URL' są niepoprawne. Lista zostanie wyczyszczona"
+msgstr "Zapisane 'Popularne adresy URL' są niepoprawne. Lista zostanie wyczyszczona"
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -3127,9 +3121,8 @@ msgid "Click to go to <i>%1</i>"
 msgstr "Kliknij aby przejść do <i>%1</i>"
 
 #: Dialogs/krpleasewait.cpp:45
-#, fuzzy
 msgid "Krusader::Wait"
-msgstr "Krusader::Szukaj (locate)"
+msgstr "Krusader::Czekaj"
 
 #: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446
 msgid "Create Checksum"
@@ -3303,34 +3296,28 @@ msgstr ""
 "*|wszystkie pliki"
 
 #: ActionMan/useractionpage.cpp:48
-#, fuzzy
 msgid "Create new useraction"
-msgstr "Zarządzaj akcjami użytkownika"
+msgstr "Utwórz akcję użytkownika"
 
 #: ActionMan/useractionpage.cpp:53
-#, fuzzy
 msgid "Import useractions"
-msgstr "Importuj akcję"
+msgstr "Importuj akcje użytkownika"
 
 #: ActionMan/useractionpage.cpp:58
-#, fuzzy
 msgid "Export useractions"
-msgstr "Eksportuj akcję"
+msgstr "Eksportuj akcje użytkownika"
 
 #: ActionMan/useractionpage.cpp:63
-#, fuzzy
 msgid "Copy useractions to clipboard"
-msgstr "Skopiuj do schowka"
+msgstr "Skopiuj akcje użytkownika do schowka"
 
 #: ActionMan/useractionpage.cpp:68
-#, fuzzy
 msgid "Paste useractions from clipboard"
-msgstr "Wklej ze schowka"
+msgstr "Wklej akcje użytkownika ze schowka"
 
 #: ActionMan/useractionpage.cpp:73
-#, fuzzy
 msgid "Delete selected useractions"
-msgstr "Usunąć wybrane akcje?"
+msgstr "Usuń wybrane akcje użytkownika"
 
 #: ActionMan/useractionpage.cpp:87
 msgid ""
@@ -3338,12 +3325,14 @@ msgid ""
 "the current session immediately.\n"
 "When closing ActionMan, you will be asked to save the changes permanently."
 msgstr ""
+"Jeśli zastosujesz zmiany dokonane w akcji, będą one dostępne od razu "
+"w aktualnej sesji.\n"
+"Przy zamykaniu ActionaMana zostaniesz zapytany, czy chcesz zachować "
+"zmiany na trwałe."
 
 #: ActionMan/useractionpage.cpp:119
-#, fuzzy
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
-msgstr "Bieżąca strona została zmieniona. Chcesz zastosować zmiany?"
+msgid "The current action has been modified. Do you want to apply these changes?"
+msgstr "Bieżąca akcja została zmieniona. Czy chcesz zastosować wprowadzone zmiany?"
 
 #: ActionMan/useractionpage.cpp:194 Konfigurator/kguseractions.cpp:174
 msgid "Are you sure that you want to remove all selected actions?"
@@ -3474,15 +3463,14 @@ msgstr ""
 "przez Krusadera wewnętrznie"
 
 #: ActionMan/actionman.cpp:26
-#, fuzzy
 msgid "ActionMan - Manage Your Useractions"
-msgstr "Zarządzaj akcjami użytkownika"
+msgstr "ActionMan - Zarządzaj akcjami użytkownika"
 
 #: ActionMan/actionman.cpp:40
 msgid ""
 "Useractions in this session are modified. Do you want to save these changes "
 "permanently?"
-msgstr ""
+msgstr "Akcje użytkownika zostały zmodyfikowane. Czy chcesz zachować te zmiany?"
 
 #: ActionMan/actionpropertybase.cpp:386
 msgid "Action Property"
@@ -3717,8 +3705,7 @@ msgstr "&Usuń"
 #: ActionMan/actionpropertybase.cpp:438 ActionMan/actionpropertybase.cpp:440
 #: ActionMan/actionpropertybase.cpp:445
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr ""
-"Pokaż <b>Akcję użytkownika</b> tylko dla typów plików zdefiniowanych tutaj."
+msgstr "Pokaż <b>Akcję użytkownika</b> tylko dla typów plików zdefiniowanych tutaj."
 
 #: ActionMan/actionpropertybase.cpp:439
 msgid "Protocol"
@@ -3961,8 +3948,7 @@ msgstr "Pokaż opcje"
 
 #: Synchronizer/synchronizergui.cpp:1168
 msgid "Show files marked to <i>Copy from left to right</i>."
-msgstr ""
-"Wyświetla pliki zaznaczone do <i>skopiowania z lewej strony na prawą</i>."
+msgstr "Wyświetla pliki zaznaczone do <i>skopiowania z lewej strony na prawą</i>."
 
 #: Synchronizer/synchronizergui.cpp:1176
 msgid "Show files considered to be identical."
@@ -3974,8 +3960,7 @@ msgstr "Wyświetla pliki wykluczone."
 
 #: Synchronizer/synchronizergui.cpp:1192
 msgid "Show files marked to <i>Copy from right to left</i>"
-msgstr ""
-"Wyświetla pliki zaznaczone do <i>skopiowania z prawej strony na lewą</i>"
+msgstr "Wyświetla pliki zaznaczone do <i>skopiowania z prawej strony na lewą</i>"
 
 #: Synchronizer/synchronizergui.cpp:1200
 msgid "Show files marked to delete."
@@ -4754,8 +4739,7 @@ msgid "Searching for tools..."
 msgstr "Poszukiwanie narzędzi..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Upewnij się czy zainstalowałeś nowe narzędzia w twojej ścieżce <code>$PATH</"
 "code> (np. /usr/bin)"
@@ -4934,15 +4918,16 @@ msgstr ""
 "zaznaczane."
 
 #: Konfigurator/kglookfeel.cpp:76
-#, fuzzy
 msgid "Rename selects extension"
-msgstr "Usunąć wybrane akcje?"
+msgstr "Masowa zmiana nazw razem z rozszerzeniem"
 
 #: Konfigurator/kglookfeel.cpp:76
 msgid ""
 "When renaming a file, the whole text is selected. If you want total-"
 "commander like renaming of just the name, without extension, unmark this."
 msgstr ""
+"Podczas zmiany nazw plików, wybierana jest cała nazwa. Jeśli chcesz, by zmiana nazw nie "
+"obejmowała rozszerzenia, tak jak w Total Commanderze, odznacz to pole."
 
 #: Konfigurator/kglookfeel.cpp:77
 msgid "Case sensitive sorting"
@@ -5020,11 +5005,11 @@ msgstr "Tylko jeden proces Krusadera może być uruchomiony."
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Fullscreen terminal (mc-style)"
-msgstr ""
+msgstr "Terminal pełnoekranowy (jak w mc)"
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Terminal is shown instead of the krusader window (full screen)."
-msgstr ""
+msgstr "Zamiast okna krusadera wyświetlany jest terminal (w trybie pełnoekranowym)."
 
 #: Konfigurator/kglookfeel.cpp:94
 msgid "Single click / Double click Selection:"
@@ -5243,10 +5228,8 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Przycisk przełączający przeglądanie synchroniczne"
 
 #: Konfigurator/kglookfeel.cpp:224
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
-msgstr ""
-"Każda zmiana katalogu w panelu jest dokonywana również w drugim panelu."
+msgid "Each directory change in the panel is also performed in the other panel."
+msgstr "Każda zmiana katalogu w panelu jest dokonywana również w drugim panelu."
 
 #: Konfigurator/kglookfeel.cpp:288 Konfigurator/kglookfeel.cpp:305
 msgid "Select a shortcuts file"
@@ -5285,8 +5268,7 @@ msgstr ""
 "montowania w <b>fstab</b>, próbuje go montować ze zdefiniowanymi parametrami."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Nie używaj protokołu \"media\" KDE dla przycisku urządzeń peryferyjnych "
 "(jeśli go brak, bądź nie działa poprawnie)"
@@ -5504,13 +5486,15 @@ msgstr ""
 
 #: Konfigurator/kgcolors.cpp:63
 msgid "Dim the colors of the inactive panel"
-msgstr ""
+msgstr "Przyciemnij kolory nieaktywnego panelu"
 
 #: Konfigurator/kgcolors.cpp:63
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
 msgstr ""
+"<p>Kolory nieaktywnego panelu są zmieniane w zależności od ustawionych koloru i współczynnika "
+"przyciemnienia.</p>"
 
 #: Konfigurator/kgcolors.cpp:90
 msgid "Active"
@@ -5615,12 +5599,11 @@ msgstr "Taki sam jak aktywny"
 
 #: Konfigurator/kgcolors.cpp:169
 msgid "Dim target color:"
-msgstr ""
+msgstr "Kolor przyciemnienia:"
 
 #: Konfigurator/kgcolors.cpp:172
-#, fuzzy
 msgid "Dim factor:"
-msgstr "Katalogi:"
+msgstr "Współczynnik przyciemnienia:"
 
 #: Konfigurator/kgcolors.cpp:185
 msgid "Synchronizer"
@@ -5921,8 +5904,7 @@ msgid "Test archive before unpacking"
 msgstr "Testowanie archiwum przed rozpakowaniem"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Niektóre uszkodzone archiwa mogą spowodować upadek, dlatego sugerowane jest "
 "testowanie."
@@ -5932,8 +5914,7 @@ msgid "Searching for packers..."
 msgstr "Szukanie narzędzie pakujących..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Upewnij się że zainstalowałeś nowe narzędzia pakujące w ścieżce <code>$PATH</"
 "code> (np. /usr/bin)"
@@ -6030,8 +6011,7 @@ msgstr ""
 
 #: krslots.cpp:430
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
-msgstr ""
-"Nie można uruchomić 'mount'! Sprawdź stronę 'Zależności' w Konfiguratorze."
+msgstr "Nie można uruchomić 'mount'! Sprawdź stronę 'Zależności' w Konfiguratorze."
 
 #: krslots.cpp:462
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
@@ -6191,8 +6171,7 @@ msgid "Not a valid CRC file!"
 msgstr "Nieprawidłowy plik CRC!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Sprawdzanie poprawności bez dobrego pliku CRC jest niemożliwe. Kontynuować "
 "łączenie?"
@@ -6232,3 +6211,4 @@ msgstr "Błąd podczas odczytu pliku %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Błąd podczas zapisu pliku %1!"
+
