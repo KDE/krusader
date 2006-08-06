@@ -46,6 +46,7 @@
 #include <klibloader.h> //<>
 #include "GUI/profilemanager.h"
 #include "Dialogs/percentalsplitter.h"
+#include "krservices.h"
 
 KrusaderView::KrusaderView( QWidget *parent ) : QWidget( parent, "KrusaderView" ), activePanel(0), 
 								konsole_part( 0L ) {}
@@ -210,8 +211,11 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     //         show the Konsole part delayed
     QTimer::singleShot( 0, konsole_part->widget(), SLOT( show() ) );
 
-    if( konsole_part->widget() )
+    if( konsole_part->widget() ) {
       konsole_part->widget()->setFocus();
+
+      qApp->installEventFilter( this );
+    }
     krToggleTerminal->setChecked( true );
     // in full screen mode, we hide everything else, but first, see what was actually shown
     if (fullscreen) {
@@ -233,7 +237,33 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
     activePanel->slotFocusOnMe();
     terminal_dock->hide();
     krToggleTerminal->setChecked( false );
+    qApp->removeEventFilter( this );
   }
+}
+
+bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
+  if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
+    QKeyEvent *ke = (QKeyEvent *)e;
+    if( ( ke->key() == Key_Enter || ke->key() == Key_Return ) && ( ke->state() & ControlButton ) ) {
+
+      QString filename = ACTIVE_PANEL->view->getCurrentItem();
+      if( filename == QString::null || filename == ".." )
+        return (ke->state() == ControlButton || ke->state() == (ShiftButton | ControlButton) );
+      if( ke->state() & ShiftButton ) {
+        QString path=vfs::pathOrURL( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );
+        filename = path+filename;
+      }
+
+      filename = KrServices::quote( filename );
+
+      if( ( ke->state() & ~ShiftButton ) == ControlButton ) {
+        QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0, QString( " " ) + filename + QString( " " ));
+        QApplication::sendEvent( konsole_part->widget(), &keyEvent );
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 QValueList<int> KrusaderView::getTerminalEmulatorSplitterSizes() {

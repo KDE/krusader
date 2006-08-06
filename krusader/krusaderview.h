@@ -59,13 +59,14 @@ class KrusaderView : public QWidget  {
 
 public:
 	KrusaderView(QWidget *parent=0);
-	~KrusaderView(){}
+	virtual ~KrusaderView(){}
   void start(QStringList leftTabs, int leftActiveTab, QStringList rightTabs, int rightActiveTab);
   void cmdLineFocus();  // command line receive's keyboard focus
   void cmdLineUnFocus();// return focus from command line to active panel
   inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
   inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
   QValueList<int> getTerminalEmulatorSplitterSizes();
+  virtual bool eventFilter ( QObject * watched, QEvent * e );
   
 public slots:
   void slotCurrentChanged(QString p);
