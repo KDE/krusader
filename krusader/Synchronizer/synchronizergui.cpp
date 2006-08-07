@@ -1399,6 +1399,8 @@ void SynchronizerGUI::initGUI(QWidget* parent, QString profileName, KURL leftURL
 
   connect( syncList,SIGNAL(rightButtonPressed(QListViewItem *, const QPoint &, int)),
            this, SLOT(rightMouseClicked(QListViewItem *)));
+  connect( syncList,SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
+           this, SLOT(doubleClicked(QListViewItem *)));
 
   connect( profileManager, SIGNAL( loadFromProfile( QString ) ), this, SLOT( loadFromProfile( QString ) ) );
   connect( profileManager, SIGNAL( saveToProfile( QString ) ), this, SLOT( saveToProfile( QString ) ) );
@@ -1546,6 +1548,24 @@ void SynchronizerGUI::checkExcludeURLValidity( QString &text, QString &error )
   }
 
   error = i18n("URL must be the descendant of either the left or the right base URL!");
+}
+
+void SynchronizerGUI::doubleClicked(QListViewItem *itemIn)
+{
+  if (!itemIn)
+    return;
+
+  SyncViewItem *syncItem = (SyncViewItem *)itemIn;
+  SynchronizerFileItem *item = syncItem->synchronizerItemRef();
+  if( item && item->existsInLeft() && item->existsInRight() && !item->isDir() )
+  {
+    QString leftDirName     = item->leftDirectory().isEmpty() ? "" : item->leftDirectory() + "/";
+    QString rightDirName     = item->rightDirectory().isEmpty() ? "" : item->rightDirectory() + "/";
+    KURL leftURL  = vfs::fromPathOrURL( synchronizer.leftBaseDirectory()  + leftDirName + item->leftName() );
+    KURL rightURL = vfs::fromPathOrURL( synchronizer.rightBaseDirectory() + rightDirName + item->rightName() );
+
+    SLOTS->compareContent( leftURL, rightURL );
+  }
 }
 
 void SynchronizerGUI::rightMouseClicked(QListViewItem *itemIn)

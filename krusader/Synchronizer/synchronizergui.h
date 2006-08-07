@@ -115,6 +115,7 @@ public:
 
 public slots:
   void rightMouseClicked(QListViewItem *);
+  void doubleClicked(QListViewItem *);
   void compare();
   void synchronize();
   void stop();
