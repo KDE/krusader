@@ -175,6 +175,7 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
     QSize        oldSize;
     bool         isStarting;
     bool         isExiting;
+    bool         directExit;
 };
 
 // main modules

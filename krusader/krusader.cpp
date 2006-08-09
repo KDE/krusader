@@ -188,7 +188,7 @@ KAction *Krusader::actShowJSConsole = 0;
 
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Qt::WStyle_ContextHelp),
-   DCOPObject("Krusader-Interface"), status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ) {
+   DCOPObject("Krusader-Interface"), status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ), directExit( false ) {
 	// parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
@@ -318,6 +318,15 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
    sysTray->setPixmap( iconLoader->loadIcon( privIcon(), KIcon::Panel, 22 ) );
    sysTray->hide();
+   
+   // the quitAction of KDE automatically calls the SLOT( close() ) function.
+   // SLOT( close() ) in single instance mode doesn't exit, only hides the main
+   // window. If we are not in single instance mode, SLOT( close() ) calls 
+   // kapp->deref() twice, which means immediate exit, event if background copy is
+   // in progress.
+   // That's why we disconnect here the SIGNAL( activated() ) from the quit action
+   KAction * quitAction = sysTray->actionCollection()->action(KStdAction::name(KStdAction::Quit));
+   quitAction->disconnect( this );
    
    connect( sysTray, SIGNAL( quitSelected() ), this, SLOT( slotClose() ) );
 
@@ -858,7 +867,7 @@ void Krusader::configChanged() {
 }
 
 void Krusader::slotClose() {
-   isExiting = true;
+   directExit = true;
    close();
 }
 
@@ -870,7 +879,7 @@ bool Krusader::queryClose() {
      return true;              // this will also kill the pending jobs
    
    krConfig->setGroup( "Look&Feel" );
-   if( !isExiting && krConfig->readBoolEntry( "Single Instance Mode", _SingleInstanceMode ) && 
+   if( !directExit && krConfig->readBoolEntry( "Single Instance Mode", _SingleInstanceMode ) && 
                       krConfig->readBoolEntry( "Minimize To Tray", _MinimizeToTray ) ) {
      hide();
      return false;
@@ -897,50 +906,51 @@ bool Krusader::queryClose() {
          If closing a child is not successful, then we cannot let the
          main window close. */
 
-      QWidget *w;
-      while( w = QApplication::activeModalWidget() ) {
-        if( w->isHidden() )
-          break;
-        if( !w->close() )
-          break;
-      }
-      QWidgetList * list = QApplication::topLevelWidgets();
-      for( w = list->first(); w; ) {
-        if( w != this && !w->isHidden() ) {
-          bool hid = false;
+      for(;;) {
+        QWidgetList * list = QApplication::topLevelWidgets();
+        QWidget *activeModal = QApplication::activeModalWidget();
+        QWidget *w = list->first();
 
-          if( w->inherits( "KDialogBase" ) ) { // KDE is funny and rejects the close event for
-            w->hide();                         // playing a fancy animation with the CANCEL button.
-            hid = true;                        // if we hide the widget, KDialogBase accepts the close event
-          }
-          if( w->close() ) {
-            delete list;
-            list = QApplication::topLevelWidgets();
-            w = list->first();
-          } else {
-            if( hid )
-              w->show();
-
-            if( w->inherits( "QDialog" ) ) {
-              fprintf( stderr, "Failed to close: %s\n", w->className() );
-              return false;
-            }
-          }
+        if( activeModal && activeModal != this && activeModal != sysTray && list->contains( activeModal ) && !activeModal->isHidden() )
+          w = activeModal;
+        else {
+          while(w && (w==this || w==sysTray || w->isHidden()))
+            w = list->next();
         }
-        w = list->next();
+        delete list;
+
+        if(!w) break;
+        bool hid = false;
+
+        if( w->inherits( "KDialogBase" ) ) { // KDE is funny and rejects the close event for
+          w->hide();                         // playing a fancy animation with the CANCEL button.
+          hid = true;                        // if we hide the widget, KDialogBase accepts the close event
+        }
+
+        if( !w->close() ) {
+          if( hid )
+            w->show();
+
+          if( w->inherits( "QDialog" ) )
+            fprintf( stderr, "Failed to close: %s\n", w->className() );
+  
+          return false;
+        }
       }
-      delete list;
    
       saveSettings();
 
       isExiting = true;
-      hide();        // hide 
+      hide();        // hide
 
-      kapp->dcopClient()->detach(); // detach from DCOP
+      // Changes the name of the application. Single instance mode requires unique appid.
+      // As Krusader is exiting, we release that unique appid, so new Krusader instances
+      // can be started.
+      kapp->dcopClient()->registerAs( KApplication::kApplication()->name(), true );
 
       kapp->deref(); // FIX: krusader exits at closing the viewer when minimized to tray
       kapp->deref(); // and close the application
-      return false;  // don't let the main widget close. It stops the pending copies!
+      return false;  // don't let the main widget close. It stops the pendig copies!
    } else
       return false;
 }
