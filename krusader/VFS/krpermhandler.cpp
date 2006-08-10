@@ -178,7 +178,7 @@ void KRpermHandler::init() {
 	uid_t* uid_temp;
 	while ( ( pass = getpwent() ) != 0L ) {
 		uid_temp = new uid_t( pass->pw_uid );
-		passwdCache->insert( qstrdup( pass->pw_name ), uid_temp );
+		passwdCache->insert( pass->pw_name, uid_temp );
 		uidCache->insert( pass->pw_uid, new QString( pass->pw_name ) );
 	}
 	delete pass;
@@ -189,7 +189,7 @@ void KRpermHandler::init() {
 	gid_t* gid_temp;
 	while ( ( gr = getgrent() ) != 0L ) {
 		gid_temp = new gid_t( gr->gr_gid );
-		groupCache->insert( qstrdup( gr->gr_name ), gid_temp );
+		groupCache->insert( gr->gr_name, gid_temp );
 		gidCache->insert( gr->gr_gid, new QString( gr->gr_name ) );
 	}
 	delete gr;
