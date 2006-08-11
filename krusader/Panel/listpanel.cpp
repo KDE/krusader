@@ -154,7 +154,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
                                "current location to the list, edit bookmarks "
                                "or add subfolder to the list." ) );
 										 
-   QHBoxLayout *totalsLayout = new QHBoxLayout(this);
+   QHBoxLayout *totalsLayout = new QHBoxLayout;
 	totals = new KrSqueezedTextLabel( this );
    krConfig->setGroup( "Look&Feel" );
    totals->setFont( krConfig->readFontEntry( "Filelist Font", _FilelistFont ) );
@@ -611,7 +611,7 @@ void ListPanel::slotStartUpdate() {
    slotUpdate();
    if ( compareMode ) {
       otherPanel->view->clear();
-      ( ( ListPanel* ) otherPanel ) ->slotUpdate();
+      otherPanel->slotUpdate();
    }
    // return cursor to normal arrow
    setCursor( KCursor::arrowCursor() );
