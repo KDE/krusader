@@ -190,7 +190,7 @@ int main(int argc, char *argv[]) {
                                     "moveToTop()", QByteArray() );
       KStartupInfo::appStarted();
 
-      exit( 0 );
+      return 1;
     }
   }
     
