@@ -30,6 +30,7 @@
 
     --architecture-- refactoring in the useractions, see CVSNEWS
 
+    FIXED: Nice shutdown at SIGTERM,SIGHUP,SIGQUIT (thanks toJiri Palacek)
     FIXED: QLayout warnings in ListPanel (patch by Jiri Palecek)
     FIXED: memory leaks in KRpermHandler (patch by Jiri Palecek)
     FIXED: shutdown bugs (thanks to Jiri Palacek)

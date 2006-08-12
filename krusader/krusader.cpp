@@ -872,7 +872,7 @@ void Krusader::slotClose() {
 }
 
 bool Krusader::queryClose() {
-   if( isStarting )
+   if( isStarting || isExiting )
      return false;
       
    if( kapp->sessionSaving() ) // KDE is logging out, accept the close 

@@ -35,6 +35,7 @@
 #include <kstandarddirs.h>
 #include <ksplashscreen.h>
 #include <unistd.h>
+#include <signal.h>
 
 // Krusader includes
 #include "krusader.h"
@@ -44,6 +45,8 @@
 #include <dcopclient.h>
 #include <kstartupinfo.h>
 #include <stdlib.h>
+
+Krusader * krusader = 0;
 
 static const char *description =
 	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
@@ -57,6 +60,13 @@ static KCmdLineOptions options[] =
   { 0, 0, 0 }
   // INSERT YOUR COMMANDLINE OPTIONS HERE
 };
+
+static void sigterm_handler(int i)
+{
+  fprintf(stderr,"Signal: %d\n",i);
+  if( krusader != 0 )
+    krusader->slotClose();
+}
 
 int main(int argc, char *argv[]) {
 
@@ -208,7 +218,13 @@ int main(int argc, char *argv[]) {
   }
   } // don't remove bracket
 
-  Krusader *krusader = new Krusader();
+  krusader = new Krusader();
+  
+  // catching SIGTERM, SIGHUP, SIGQUIT
+  signal(SIGTERM,sigterm_handler);
+  signal(SIGPIPE,sigterm_handler);
+  signal(SIGHUP,sigterm_handler);
+
   // make sure we receive X's focus in/out events
   QObject::connect(&app, SIGNAL(windowActive()), krusader->slot, SLOT(windowActive()));
   QObject::connect(&app, SIGNAL(windowInactive()), krusader->slot, SLOT(windowInactive()));
