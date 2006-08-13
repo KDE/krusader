@@ -319,16 +319,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    sysTray->setPixmap( iconLoader->loadIcon( privIcon(), KIcon::Panel, 22 ) );
    sysTray->hide();
    
-   // the quitAction of KDE automatically calls the SLOT( close() ) function.
-   // SLOT( close() ) in single instance mode doesn't exit, only hides the main
-   // window. If we are not in single instance mode, SLOT( close() ) calls 
-   // kapp->deref() twice, which means immediate exit, event if background copy is
-   // in progress.
-   // That's why we disconnect here the SIGNAL( activated() ) from the quit action
-   KAction * quitAction = sysTray->actionCollection()->action(KStdAction::name(KStdAction::Quit));
-   quitAction->disconnect( this );
-   
-   connect( sysTray, SIGNAL( quitSelected() ), this, SLOT( slotClose() ) );
+   connect( sysTray, SIGNAL( quitSelected() ), this, SLOT( setDirectExit() ) );
 
    setCentralWidget( mainView );
    config->setGroup( "Startup" );
@@ -884,6 +875,10 @@ bool Krusader::queryClose() {
      hide();
      return false;
    }
+
+   // the shutdown process can be cancelled. That's why
+   // the directExit variable is set to normal here.
+   directExit = false;
 
    bool quit = true;
    

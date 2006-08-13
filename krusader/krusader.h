@@ -99,6 +99,7 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
     void savePosition();
     void updateGUI( bool enforce = false );
     void slotClose();
+    void setDirectExit() { directExit = true; }
 
   protected:
     bool queryExit() {
