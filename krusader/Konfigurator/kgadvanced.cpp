@@ -61,7 +61,7 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 
   KONFIGURATOR_CHECKBOX_PARAM generalSettings[] =
   //   cfg_class  cfg_name             default              text                                                        restart tooltip
-    {{"Advanced","PreserveAttributes", _PreserveAttributes, i18n( "Preserve attributes for local copy/move (slower)" ), false,  i18n( "Change all attributes (time, owner, group) of local files according to the source one. This can slow down the copy process." ) },
+    {{"Advanced","PreserveAttributes", _PreserveAttributes, i18n( "Preserve attributes for local copy/move (slower)" ), false,  i18n( "<p>Krusader will try to preserve all attributes (time, owner, group) of the local files according to the source depending on your permissions: <p><ul><li>User preserving if you are root</li><li>Group preserving if you are root or member of the group</li><li>Preserving the timestamp</li></ul><b>Note</b>: This can slow down the copy process.</p>" ) },
      {"Advanced","AutoMount",          _AutoMount,          i18n( "Automount filesystems" ),                            false,  i18n( "When stepping into a directory which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters." )},
      {"Advanced","DontUseMediaProt",   dontUseMedia,        i18n( "Don't use KDE's media protocol for media button (if it's buggy or missing)" ),  false,  i18n( "Select if your media protocol is buggy (in some older KDE versions), or not present (no kdebase package installed)." )}};
 
