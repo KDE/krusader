@@ -822,18 +822,35 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 
 
 <sect2 id="copying">
-<title>Deleting, Copying, and Moving files</title>
+<title>Copying and Moving files</title>
 <para>To copy or move files just select the files/directories you want to copy/move
        and press <keycap>F5</keycap> to <keycap>copy</keycap> files or <keycap>F6</keycap> to
        <keycap>move</keycap> them.
-       A dialog will appear and allow you to choose the operation destination, the default
-       destination is the other-panel browsed directory. If you enter a partial &URL; &krusader; will use
-       the current panel directory as the &URL; base. Deleting files is done by marking them and
-       pressing <keycap>F8</keycap> or <keycap>Delete</keycap>.
-       By <link linkend="konfig-general">default</link> it will be moved to Trash,
-       <keycombo action="simul">&Shift;<keycap>Delete</keycap></keycombo> will delete the file permanently.
+       If checked the <guimenuitem>Preserve attributes (only on local targets)</guimenuitem> option, 
+       &krusader; will try to preserve all attributes (time, owner, group) of the local files 
+       according to the source depending on your permissions:
+       <itemizedlist>
+        <listitem><para>User preserving if you are root</para></listitem>
+        <listitem><para>Group preserving if you are root or member of the group</para></listitem>
+        <listitem><para>Preserving the timestamp</para></listitem>
+       </itemizedlist> Using this option might slow down the copy/move process.
+       A dialog will appear and allow you to choose the operation destination, 
+       the default destination is the other-panel browsed directory. 
+       If you enter a partial &URL; &krusader; will use
+       the current panel directory as the &URL; base.</para>
+</sect2>
+
+
+<sect2 id="deleting">
+<title>Deleting files</title>
+<para>Deleting files is done by marking them and pressing <keycap>F8</keycap> 
+       or <keycap>Delete</keycap>.
+       By <link linkend="konfig-general">default</link> it will be moved to &kde;'s Trash,
+       <keycombo action="simul">&Shift;<keycap>Delete</keycap></keycombo> will delete
+       the file permanently.
        A dialog will ask for your confirmation and will warn you when deleting non-empty directories.
-       Of course only operations that you are permitted to do by the Operating System will be performed - you will be notified otherwise.
+       Of course only operations that you are permitted to do by the Operating System will 
+       be performed - you will be notified otherwise.
        If you don't wish to see the confirmation dialogs, you can disable them in the
        <link linkend="konfig-advanced">Konfigurator advanced tab</link>.</para>
 </sect2>

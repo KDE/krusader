@@ -526,8 +526,9 @@ HTML_PARSING-->
   <listitem>
   <itemizedlist>
   <listitem><para><guilabel>Preserve attributes for local copy/move (slower)</guilabel>: 
-                  If checked, &krusader; will change all attributes (time, owner, group) of the local files according 
-                  to the source one. This can make the copy slower.
+                  If checked, &krusader; will try to preserve all attributes (time, owner, group) 
+                  of the local files according to the source one depending on your
+                  <link linkend="copying">permissions</link>.
                   </para></listitem>
   <listitem><para><guilabel>Automount filesystems</guilabel>: this makes &krusader; try to mount a
         filesystem before entering it. For example, if you click on
