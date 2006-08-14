@@ -12,13 +12,13 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net\n"
 "POT-Creation-Date: 2006-07-30 21:58+0200\n"
-"PO-Revision-Date: 2006-07-12 11:13-0500\n"
+"PO-Revision-Date: 2006-08-13 20:14-0500\n"
 "Last-Translator: Alejandro Araiza Alvarado <mebrelith@gmail.com>\n"
 "Language-Team: Spanish <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -434,7 +434,7 @@ msgstr "¡Error al descomprimir %1!"
 
 #: VFS/krarchandler.cpp:342 VFS/krarchandler.cpp:511
 msgid "User cancelled."
-msgstr ""
+msgstr "El usuario canceló."
 
 #: VFS/krarchandler.cpp:386
 msgid "Testing Archive"
@@ -891,8 +891,7 @@ msgstr "Que debe ser copiado"
 
 #: UserAction/expander.cpp:418
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Agregar al contenido actual del portapapeles usando este separador (opcional)"
+msgstr "Agregar al contenido actual del portapapeles usando este separador (opcional)"
 
 #: UserAction/expander.cpp:432
 msgid "Copy a file/folder"
@@ -1853,8 +1852,7 @@ msgstr "Aquí usted puede nombrar la colección de archivos"
 
 #: krusader.cpp:313
 msgid "Statusbar will show basic information about file below mouse pointer."
-msgstr ""
-"La barra de estado mostrará información básica sobre el fichero seleccionado."
+msgstr "La barra de estado mostrará información básica sobre el fichero seleccionado."
 
 #: krusader.cpp:389
 msgid ""
@@ -2286,8 +2284,7 @@ msgstr "¿Esta seguro de que quiere salir?"
 
 #: KViewer/panelviewer.cpp:33
 msgid "No file selected or selected file can't be displayed."
-msgstr ""
-"No se seleccione un archivo o el archivo seleccionado no puede mostrarse."
+msgstr "No se seleccione un archivo o el archivo seleccionado no puede mostrarse."
 
 #: KViewer/krviewer.cpp:589 KViewer/panelviewer.cpp:151
 msgid "KrViewer is unable to download: "
@@ -2567,10 +2564,8 @@ msgstr ""
 " Llame a los desarrolladores"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
-msgstr ""
-"MountMan tiene un error interno. Notifíquelo a los desarrolladores. Gracias."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgstr "MountMan tiene un error interno. Notifíquelo a los desarrolladores. Gracias."
 
 #: MountMan/kmountmangui.cpp:331
 msgid "MountMan"
@@ -2640,8 +2635,7 @@ msgstr "¡La aplicación ya se esta ejecutando!\n"
 
 #: krusaderview.cpp:83
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Las teclas de función permiten realizar operaciones rápidas en archivos."
+msgstr "Las teclas de función permiten realizar operaciones rápidas en archivos."
 
 #: Dialogs/krdialogs.cpp:130
 msgid "Preserve attributes (only for local targets)"
@@ -3112,9 +3106,8 @@ msgid "Click to go to <i>%1</i>"
 msgstr "Haga click para ir a <i>%1</i>"
 
 #: Dialogs/krpleasewait.cpp:45
-#, fuzzy
 msgid "Krusader::Wait"
-msgstr "Krusader::Localizar"
+msgstr "Krusader::Esperar"
 
 #: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446
 msgid "Create Checksum"
@@ -3290,34 +3283,28 @@ msgstr ""
 "* | todos los archivos"
 
 #: ActionMan/useractionpage.cpp:48
-#, fuzzy
 msgid "Create new useraction"
-msgstr "Administrar acciones de usuario"
+msgstr "Crear nueva acción de usuario"
 
 #: ActionMan/useractionpage.cpp:53
-#, fuzzy
 msgid "Import useractions"
-msgstr "Importar acción"
+msgstr "Importar acción de usuario"
 
 #: ActionMan/useractionpage.cpp:58
-#, fuzzy
 msgid "Export useractions"
-msgstr "Exportar acción"
+msgstr "Exportar acción de usuario"
 
 #: ActionMan/useractionpage.cpp:63
-#, fuzzy
 msgid "Copy useractions to clipboard"
-msgstr "Copiar a portapapeles"
+msgstr "Copiar acción de usuario al portapapeles"
 
 #: ActionMan/useractionpage.cpp:68
-#, fuzzy
 msgid "Paste useractions from clipboard"
-msgstr "Pegar del portapapeles"
+msgstr "Pegar acción de usuario del portapapeles"
 
 #: ActionMan/useractionpage.cpp:73
-#, fuzzy
 msgid "Delete selected useractions"
-msgstr "¿Remover las acciones seleccionadas?"
+msgstr "Remover las acciones seleccionadas"
 
 #: ActionMan/useractionpage.cpp:87
 msgid ""
@@ -3325,12 +3312,12 @@ msgid ""
 "the current session immediately.\n"
 "When closing ActionMan, you will be asked to save the changes permanently."
 msgstr ""
+"Cuando aplique cambios a una acción, las modificaciones se volverán aplicables inmediatamente en la sesión actual.\n"
+"Cuando cierre el administrador de acciones, se le preguntará si desea guardar los cambios permanentemente."
 
 #: ActionMan/useractionpage.cpp:119
-#, fuzzy
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
-msgstr "La sección actual ha sufrido cambios. ¿Desea aplicarlos?"
+msgid "The current action has been modified. Do you want to apply these changes?"
+msgstr "La acción actual ha sufrido cambios. ¿Desea aplicarlos?"
 
 #: ActionMan/useractionpage.cpp:194 Konfigurator/kguseractions.cpp:174
 msgid "Are you sure that you want to remove all selected actions?"
@@ -3459,7 +3446,6 @@ msgstr ""
 "usando el nombre para un proceso del programa"
 
 #: ActionMan/actionman.cpp:26
-#, fuzzy
 msgid "ActionMan - Manage Your Useractions"
 msgstr "Administrar acciones de usuario"
 
@@ -3467,7 +3453,7 @@ msgstr "Administrar acciones de usuario"
 msgid ""
 "Useractions in this session are modified. Do you want to save these changes "
 "permanently?"
-msgstr ""
+msgstr "Las acciones de usuario de esta sesión han sido modificadas. ¿Desea guardar los cambios permanentemente?"
 
 #: ActionMan/actionpropertybase.cpp:386
 msgid "Action Property"
@@ -3702,8 +3688,7 @@ msgstr "Borrar"
 #: ActionMan/actionpropertybase.cpp:438 ActionMan/actionpropertybase.cpp:440
 #: ActionMan/actionpropertybase.cpp:445
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr ""
-"Mostrar la <b>acción de usuario</b> solo para estos valores definidos aquí."
+msgstr "Mostrar la <b>acción de usuario</b> solo para estos valores definidos aquí."
 
 #: ActionMan/actionpropertybase.cpp:439
 msgid "Protocol"
@@ -3868,13 +3853,11 @@ msgstr "Filtro de archivos:"
 
 #: Synchronizer/synchronizergui.cpp:1088
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"El directorio base a la izquierda usado durante el proceso de sincronización."
+msgstr "El directorio base a la izquierda usado durante el proceso de sincronización."
 
 #: Synchronizer/synchronizergui.cpp:1119
 msgid "The right base directory used during the synchronisation process."
-msgstr ""
-"El directorio base a la derecha usado durante el proceso de sincronización."
+msgstr "El directorio base a la derecha usado durante el proceso de sincronización."
 
 #: Synchronizer/synchronizergui.cpp:1125
 msgid "Recurse subdirectories"
@@ -4686,8 +4669,7 @@ msgstr "Modo hexadecimal"
 
 #: Konfigurator/kggeneral.cpp:94
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
-"Ver el archivo en modo hexadecimal (se recomienda para archivos binarios)"
+msgstr "Ver el archivo en modo hexadecimal (se recomienda para archivos binarios)"
 
 #: Konfigurator/kggeneral.cpp:100
 msgid "Viewer opens each file in a separate window"
@@ -4734,16 +4716,14 @@ msgid "Searching for tools..."
 msgstr "Buscando herramientas..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Asegúrese de instalar nuevas herramientas en su <code>$PATH</code> (i.e. /"
 "usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj no pudo ser encontrado, se encontró arj, será usado para descomprimir"
+msgstr "unarj no pudo ser encontrado, se encontró arj, será usado para descomprimir"
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -4911,7 +4891,6 @@ msgstr ""
 "serán marcados."
 
 #: Konfigurator/kglookfeel.cpp:76
-#, fuzzy
 msgid "Rename selects extension"
 msgstr "¿Remover las acciones seleccionadas?"
 
@@ -4919,7 +4898,7 @@ msgstr "¿Remover las acciones seleccionadas?"
 msgid ""
 "When renaming a file, the whole text is selected. If you want total-"
 "commander like renaming of just the name, without extension, unmark this."
-msgstr ""
+msgstr "Cuando se le cambie el nombre a un archivos, todo el texto será seleccionado. Si desea cambiar solo el nombre -no la extensión-, desmarque esta opción."
 
 #: Konfigurator/kglookfeel.cpp:77
 msgid "Case sensitive sorting"
@@ -4975,8 +4954,7 @@ msgstr "Siempre organizar directorios por nombre"
 
 #: Konfigurator/kglookfeel.cpp:82
 msgid "Directories are sorted by name, regardless of the sort column."
-msgstr ""
-"Los directorios se organizan por nombre, sin importar que columna se organice"
+msgstr "Los directorios se organizan por nombre, sin importar que columna se organice"
 
 #: Konfigurator/kglookfeel.cpp:83
 msgid "Show splashscreen"
@@ -4996,11 +4974,11 @@ msgstr "Solo una copia de Krusader puede ejecutarse."
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Fullscreen terminal (mc-style)"
-msgstr ""
+msgstr "Terminal a pantalla completa"
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Terminal is shown instead of the krusader window (full screen)."
-msgstr ""
+msgstr "Se muestra la terminal en lugar de la ventana de Krusader (pantalla completa)."
 
 #: Konfigurator/kglookfeel.cpp:94
 msgid "Single click / Double click Selection:"
@@ -5222,8 +5200,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Botón de activación de la navegación sincronizada"
 
 #: Konfigurator/kglookfeel.cpp:224
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Cada cambio de directorio se realiza tambien en el otro panel."
 
 #: Konfigurator/kglookfeel.cpp:288 Konfigurator/kglookfeel.cpp:305
@@ -5263,8 +5240,7 @@ msgstr ""
 "<b>fstab</b>, se intentara montar con los parametros definidos."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "No usar el protocolo media de KDE para el botón media ( si esta fallando o "
 "no se encuentra presente)"
@@ -5484,13 +5460,13 @@ msgstr ""
 
 #: Konfigurator/kgcolors.cpp:63
 msgid "Dim the colors of the inactive panel"
-msgstr ""
+msgstr "Atenuar los colores del panel inactivo"
 
 #: Konfigurator/kgcolors.cpp:63
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
-msgstr ""
+msgstr "<p>Los colores del panel inactivo son calculados por un color atenuado y un factor de atenuado.</p>"
 
 #: Konfigurator/kgcolors.cpp:90
 msgid "Active"
@@ -5595,12 +5571,11 @@ msgstr "Igual que el activo"
 
 #: Konfigurator/kgcolors.cpp:169
 msgid "Dim target color:"
-msgstr ""
+msgstr "Atenuar el color objetivo:"
 
 #: Konfigurator/kgcolors.cpp:172
-#, fuzzy
 msgid "Dim factor:"
-msgstr "Directorios:"
+msgstr "Factor de atenuado:"
 
 #: Konfigurator/kgcolors.cpp:185
 msgid "Synchronizer"
@@ -5901,8 +5876,7 @@ msgid "Test archive before unpacking"
 msgstr "Comprobar archivos después de descomprimir"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Algunos archivos corruptos pueden provocar cuelgues, por ello comprobarlos "
 "es recomendable"
@@ -5912,8 +5886,7 @@ msgid "Searching for packers..."
 msgstr "Buscando compresores..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Asegúrese de instalar nuevos compresores en su <code>$PATH</code> (i.e. /usr/"
 "bin)"
@@ -6173,8 +6146,7 @@ msgid "Not a valid CRC file!"
 msgstr "¡Archivo CRC no válido!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "La comprobación de validez es imposible sin un archivo CRC bueno. ¿Continuar "
 "la combinación?"
@@ -6214,3 +6186,4 @@ msgstr "¡Error leyendo el archivo %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "¡Error escribiendo el archivo %1!"
+
