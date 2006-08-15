@@ -29,14 +29,14 @@
 
 
 UserAction::UserAction() {
-   _actions.setAutoDelete( false );
+   _actions.setAutoDelete( false ); // the actions are "owned" by Krusader's KActionCollection, so they should not be deleted
    krOut << "Initialisising useractions..." << endl;
    readAllFiles();
    krOut << _actions.count() << " useractions read." << endl;
 }
 
 UserAction::~UserAction() {
-  _actions.clear(); // this also deletes them since autodelete is true.
+  // KrActions are deleted by Krusader's KActionCollection
 }
 
 void UserAction::setAvailability() {
