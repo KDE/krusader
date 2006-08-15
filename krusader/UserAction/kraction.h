@@ -26,7 +26,7 @@ class QDomDocument;
 
 /**
  * This subclass of KAction extends it with an individual executor and a struct UserActionProperties. It is used to integrate useractions into KDE's KAction-System
- * @author Jonas B�r (http://www.jonas-baehr.de)
+ * @author Jonas Bähr (http://www.jonas-baehr.de)
  */
 class KrAction: public KAction {
    Q_OBJECT

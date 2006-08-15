@@ -286,5 +286,23 @@ void UserActionPage::slotFromClip() {
    } // if ( doc.setContent )
 }
 
+bool UserActionPage::readyToQuit() {
+   // Check if the current UserAction has changed
+   if ( ! continueInSpiteOfChanges() )
+      return false;
+
+   if ( _modified ) {
+      int answer = KMessageBox::questionYesNoCancel( this,
+   		i18n("Useractions in this session are modified. Do you want to save these changes permanently?")
+   	);
+      if ( answer == KMessageBox::Cancel )
+         return false;
+      if ( answer == KMessageBox::Yes )
+         krUserAction->writeActionFile();
+   } // if modified
+   return true;
+
+}
+
 
 #include "useractionpage.moc"

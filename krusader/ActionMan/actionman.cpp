@@ -4,7 +4,7 @@
 // Description: This manages all useractions
 //
 //
-// Author: Jonas B�r (C) 2006
+// Author: Jonas Bähr (C) 2006
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -35,16 +35,8 @@ ActionMan::~ActionMan() {
 }
 
 void ActionMan::slotClose() {
-   if ( userActionPage->isModified() ) {
-      int answer = KMessageBox::questionYesNoCancel( this,
-   		i18n("Useractions in this session are modified. Do you want to save these changes permanently?")
-   	);
-      if ( answer == KMessageBox::Cancel )
-         return;
-      if ( answer == KMessageBox::Yes )
-         krUserAction->writeActionFile();
-   }
-   reject();
+   if ( userActionPage->readyToQuit() )
+      reject();
 }
 
 

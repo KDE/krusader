@@ -28,9 +28,10 @@ public:
    ~UserActionPage();
 
    /**
-    * @return true if any action was changed, added or removed
+    * Be sure to call this function before you delete this page!!
+    * @return true if this page can be closed
     */
-   bool isModified() { return _modified; };
+   bool readyToQuit();
 
 private:
    /**
