@@ -123,6 +123,7 @@ KDE_ICON = AUTO
 
 # These paths are KDE specific. Use them (jonas: taken from the old Makefile.am):
 # kde_appsdir		Where your application's menu entry (.desktop) should go to.
+# xdg_appsdir		Where your application's .desktop-files should go acording to freedesktop.org's standard
 # kde_icondir		Where your icon should go to - better use KDE_ICON.
 # kde_sounddir		Where your sounds should go to.
 # kde_htmldir		Where your docs should go to. (contains lang subdirs)
@@ -143,7 +144,8 @@ KDE_ICON = AUTO
 
 
 # this installes the .desktop-files at hte right place
-kde_apps_DATA = \
+# use 'xdg' instead of 'kde' here to follow freedesktop.org's standard (jonas)
+xdg_apps_DATA = \
 	krusader.desktop \
 	krusader_root-mode.desktop
 

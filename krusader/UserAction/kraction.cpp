@@ -136,7 +136,6 @@ void KrActionProc::start( QStringList cmdLineList ) {
      _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
    else { // collect output
-   kdDebug() << "LALALA" << endl;
       bool separateStderr = false;
       if ( _action->execType() == KrAction::CollectOutputSeparateStderr )
          separateStderr = true;
