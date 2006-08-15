@@ -110,7 +110,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
    if ( _action->execType() == KrAction::Terminal && cmdLineList.count() > 1)
       KMessageBox::sorry( 0, "Support for more then one command doesn't work in a terminal. Only the first is executed in the terminal" );
 
-   if ( _action->execType() != KrAction::CollectOutput || _action->execType() != KrAction::CollectOutputSeparateStderr ) {
+   if ( _action->execType() != KrAction::CollectOutput && _action->execType() != KrAction::CollectOutputSeparateStderr ) {
       //TODO option to run them in paralell (not available for: collect output)
       for ( QStringList::Iterator it = cmdLineList.begin(); it != cmdLineList.end(); ++it) {
          if ( ! cmd.isEmpty() )
@@ -136,6 +136,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
      _proc->start( KProcess::NotifyOnExit, ( KProcess::Communication ) ( KProcess::Stdout | KProcess::Stderr ) );
    }
    else { // collect output
+   kdDebug() << "LALALA" << endl;
       bool separateStderr = false;
       if ( _action->execType() == KrAction::CollectOutputSeparateStderr )
          separateStderr = true;
