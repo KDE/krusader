@@ -11,10 +11,11 @@
 QString atomicExtensions[] = { 
 	".tar.gz", 
 	".tar.bz2" 
+	".moc.cpp"
 };
 
 KrViewItem::KrViewItem(vfile *vf, const KrViewProperties* properties): 
-	_vf(vf), dummyVfile(false), _viewProperties(properties), _hasExtension(false) {
+	_vf(vf), dummyVfile(false), _viewProperties(properties), _hasExtension(false), _extension("") {
 	if (vf) {
 		// check if the file has an extension
 		const QString& vfName = vf->vfile_getName();
