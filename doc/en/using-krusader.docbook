@@ -213,10 +213,13 @@ and you control the current session with the &viewmenu_lnk;.
        <para><emphasis><guilabel>Information Label</guilabel></emphasis> : shows how much free space
         is physically available on the file system, the file system capacity and where the path is mounted.
         If the information is not available (most often in the case of remote file system) a message will be
-        displayed with the reason for unavailablity instead of the information.
-        The <guibutton>Media button</guibutton> on the left of the <guilabel>Information Label</guilabel> 
+        displayed with the reason for unavailablity instead of the information.</para>
+        
+        <para>The <guibutton>Media button</guibutton> on the left of the <guilabel>Information Label</guilabel> 
         displays a list of all available media, where you can select the desired media 
-        (hdd partition, dvd, usb-stick, &etc;).</para>
+        (hdd partition, dvd, usb-stick, &etc;). The context menu gives several options
+        like <guilabel>Mount</guilabel>, <guilabel>Open in a new tab</guilabel>, &etc;.
+        The <guibutton>Media button</guibutton> is <link linkend="konfig-advanced">configurable</link>.</para>
      </listitem>
      
      <listitem>
