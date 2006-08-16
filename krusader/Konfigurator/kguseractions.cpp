@@ -142,8 +142,7 @@ void KgUserActions::slotUpdateAction() {
     }
     else { // := edit an existing
        actionProperties->updateAction();
-       if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(actionTree->currentItem()) )
-          actionTree->update( item ); // this is the same as item->update() but also honors category-changes
+       actionTree->update(actionProperties->action()); // update the listviewitem as well
     }
 
   _needApply = true;
