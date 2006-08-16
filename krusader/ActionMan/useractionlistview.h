@@ -28,7 +28,8 @@ public:
    ~UserActionListView();
    virtual QSize sizeHint() const;
 
-   void update( UserActionListViewItem* item = 0 );
+   void update();
+   void update( KrAction* action );
    UserActionListViewItem* insertAction( KrAction* action );
 
    KrAction* currentAction() const;
@@ -50,6 +51,7 @@ public:
 
 protected:
    QListViewItem* findCategoryItem( const QString& category );
+   UserActionListViewItem* findActionItem( const KrAction* action );
 };
 
 

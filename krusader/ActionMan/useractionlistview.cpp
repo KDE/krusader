@@ -51,25 +51,22 @@ QSize UserActionListView::sizeHint() const {
 }
 
 
-void UserActionListView::update( UserActionListViewItem* item ) {
-   if ( item ) {
-      item->update();
-      //TODO honor category-changes!
-//       if ( item->parent() )
-//          if ( item->parent()->text( COL_TITLE ) != item->action()->category() ) {
-//             takeItem( item );
-//             
-//          }
-   }
-   else {
-      clear();
-      UserAction::KrActionList list = krUserAction->actionList();
-      for ( KrAction* action = list.first(); action; action = list.next() )
-         insertAction( action );
-      //sort(); // this is done automaticly
-   }
+void UserActionListView::update() {
+   clear();
+   UserAction::KrActionList list = krUserAction->actionList();
+   for ( KrAction* action = list.first(); action; action = list.next() )
+      insertAction( action );
+   //sort(); // this is done automaticly
 }
 
+void UserActionListView::update( KrAction* action ) {
+   UserActionListViewItem* item = findActionItem( action );
+   if ( item ) {
+      // This is _much_easyer then tracking all possible cases of category changes!
+      delete item;
+      insertAction( action );
+   }
+}
 
 UserActionListViewItem* UserActionListView::insertAction( KrAction* action ) {
    if ( ! action )
@@ -100,6 +97,16 @@ QListViewItem* UserActionListView::findCategoryItem( const QString& category ) {
    return 0;
 }
 
+UserActionListViewItem* UserActionListView::findActionItem( const KrAction* action ) {
+   for ( QListViewItemIterator it( this ); it.current(); ++it ) {
+      if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( it.current() ) ) {
+         if ( item->action() == action )
+            return item;
+      }
+   } //for
+   return 0;
+}
+
 KrAction * UserActionListView::currentAction() const {
    if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( currentItem() ) )
       return item->action();
@@ -108,16 +115,12 @@ KrAction * UserActionListView::currentAction() const {
 }
 
 void UserActionListView::setCurrentAction( const KrAction* action) {
-  for ( QListViewItemIterator it( this ); it.current(); ++it ) {
-    if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>( it.current() ) ) {
-      if ( item->action() == action ) {
-        setCurrentItem( item );
-//         setSelected( item, true );
-//         repaintItem( item );
-        break;
-      }
-    }
-  } //for
+   UserActionListViewItem* item = findActionItem( action );
+   if ( item ) {
+      setCurrentItem( item );
+//       setSelected( item, true );
+//       repaintItem( item );
+   }
 }
 
 void UserActionListView::setFirstActionCurrent() {
@@ -130,6 +133,8 @@ void UserActionListView::setFirstActionCurrent() {
 }
 
 void UserActionListView::setCurrentItem( QListViewItem* item ) {
+   if ( ! item )
+      return;
    ensureItemVisible( item );
    QListView::setCurrentItem( item );
 }
@@ -178,7 +183,11 @@ UserActionListViewItem::UserActionListViewItem( QListViewItem* item, KrAction * 
 }
 
 UserActionListViewItem::~UserActionListViewItem() {
-// TODO if this is last child => parent->deleteLater()
+/*   // remove category-item if the last member ofthiscategory disappears
+   if ( QListViewItem* item = dynamic_cast<QListViewItem*>( parent() ) ) {
+      if ( item->childCount() <= 1 )
+         item->deleteLater(); // not possible since not inherited from QObject
+   }*/
 }
 
 

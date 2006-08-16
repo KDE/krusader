@@ -31,7 +31,9 @@
 #include <kcombobox.h>
 #include <kicondialog.h>
 #include <ktextedit.h>
+#include <kiconloader.h>
 
+#define ICON(N)		KGlobal::iconLoader()->loadIcon(N, KIcon::Small)
 
 ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *action )
  : ActionPropertyBase( parent, name ), _modified(false)
@@ -40,6 +42,9 @@ ActionProperty::ActionProperty( QWidget *parent, const char *name, KrAction *act
       _action = action;
       updateGUI( _action );
    }
+
+   ButtonAddPlaceholder->setPixmap( ICON("add") );
+   ButtonAddStartpath->setPixmap( ICON("fileopen") );
 
    // fill with all existing categories
    cbCategory->insertStringList( krUserAction->allCategories() );

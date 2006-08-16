@@ -97,6 +97,7 @@ UserActionPage::UserActionPage( QWidget* parent )
 
    actionTree = new UserActionListView( split, "actionTree" );
    actionProperties = new ActionProperty( split, "actionProperties" );
+   actionProperties->setEnabled( false ); // if there are any actions in the list, the first is displayed and this widget is enabled
 
    connect(  actionTree, SIGNAL( currentChanged(QListViewItem*) ), SLOT( slotChangeCurrent() ) );
    connect( newButton, SIGNAL( clicked() ), SLOT( slotNewAction() ) );
@@ -105,6 +106,9 @@ UserActionPage::UserActionPage( QWidget* parent )
    connect( exportButton, SIGNAL( clicked() ), SLOT( slotExport() ) );
    connect( copyButton, SIGNAL( clicked() ), SLOT( slotToClip() ) );
    connect( pasteButton, SIGNAL( clicked() ), SLOT( slotFromClip() ) );
+
+   actionTree->setFirstActionCurrent();
+   actionTree->setFocus();
 }
 
 UserActionPage::~UserActionPage()
@@ -171,8 +175,7 @@ void UserActionPage::slotUpdateAction() {
     }
     else { // := edit an existing
        actionProperties->updateAction();
-       if ( UserActionListViewItem* item = dynamic_cast<UserActionListViewItem*>(actionTree->currentItem()) )
-          actionTree->update( item ); // this is the same as item->update() but also honors category-changes
+       actionTree->update( actionProperties->action() ); // update the listviewitem as well...
     }
 
    _modified = true;
@@ -181,8 +184,11 @@ void UserActionPage::slotUpdateAction() {
 
 void UserActionPage::slotNewAction() {
    if ( continueInSpiteOfChanges() ) {
-      actionProperties->leDistinctName->setEnabled( true );
+      actionTree->clearSelection();  // else the user may think that he is overwriting the selected action
       actionProperties->clear();
+      actionProperties->setEnabled( true ); // it may be disabled because the tree has the focus on a category
+      actionProperties->leDistinctName->setEnabled( true );
+      actionProperties->leDistinctName->setFocus();
    }
 }
 
