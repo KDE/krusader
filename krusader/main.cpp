@@ -36,6 +36,7 @@
 #include <ksplashscreen.h>
 #include <unistd.h>
 #include <signal.h>
+#include <qeventloop.h>
 
 // Krusader includes
 #include "krusader.h"
@@ -45,8 +46,6 @@
 #include <dcopclient.h>
 #include <kstartupinfo.h>
 #include <stdlib.h>
-
-Krusader * krusader = 0;
 
 static const char *description =
 	I18N_NOOP("Krusader\nTwin-Panel File Manager for KDE");
@@ -64,8 +63,12 @@ static KCmdLineOptions options[] =
 static void sigterm_handler(int i)
 {
   fprintf(stderr,"Signal: %d\n",i);
+  Krusader * krusader = Krusader::App;
   if( krusader != 0 )
-    krusader->slotClose();
+    krusader->saveSettings();
+ 
+  QApplication::eventLoop()->wakeUp();
+  KApplication::exit( - 15 );
 }
 
 int main(int argc, char *argv[]) {
@@ -218,7 +221,7 @@ int main(int argc, char *argv[]) {
   }
   } // don't remove bracket
 
-  krusader = new Krusader();
+  Krusader krusader;
   
   // catching SIGTERM, SIGHUP, SIGQUIT
   signal(SIGTERM,sigterm_handler);
@@ -226,15 +229,15 @@ int main(int argc, char *argv[]) {
   signal(SIGHUP,sigterm_handler);
 
   // make sure we receive X's focus in/out events
-  QObject::connect(&app, SIGNAL(windowActive()), krusader->slot, SLOT(windowActive()));
-  QObject::connect(&app, SIGNAL(windowInactive()), krusader->slot, SLOT(windowInactive()));
+  QObject::connect(&app, SIGNAL(windowActive()), krusader.slot, SLOT(windowActive()));
+  QObject::connect(&app, SIGNAL(windowInactive()), krusader.slot, SLOT(windowInactive()));
 
   // and set krusader to be the main widget in it
-  app.setMainWidget(krusader);
+  app.setMainWidget(&krusader);
   
   // hide splashscreen
   if (splash) {
-    splash->finish(krusader);
+    splash->finish( &krusader );
     delete splash;
   }
 

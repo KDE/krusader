@@ -373,6 +373,7 @@ Krusader::~Krusader() {
    delete mainView;
    delete queueManager;
    mainView = 0;
+   App = 0;
 }
 
 bool Krusader::versionControl() {
