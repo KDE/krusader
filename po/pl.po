@@ -6,7 +6,7 @@
 #
 # Marcin Szafran <jm_sz@poczta.onet.pl>, 2002, 2003.
 # Lukasz Janyst <ljan@wp.pl>, 2002, 2003.
-# Marcin Garski <mgarski@post.pl>, 2004.
+# Marcin Garski <mgarski@post.pl>, 2004, 2006.
 # Pawel Salawa <boogie@myslenice.one.pl>, 2005.
 # Tomek Grzejszczyk <tgrzej@onet.eu>, 2006.
 msgid ""
@@ -1018,7 +1018,7 @@ msgstr "Potwierdzanie"
 
 #: UserAction/kraction.cpp:206
 msgid "Command being executed:"
-msgstr "Komenda aktualnie wykonywana:"
+msgstr "Polecenie aktualnie wykonywane:"
 
 #: UserAction/useraction.cpp:100
 msgid "The file %1 does not contain valid UserActions.\n"
@@ -1428,7 +1428,7 @@ msgstr "Przenieś"
 
 #: Konfigurator/kggeneral.cpp:58 Panel/krpopupmenu.cpp:143
 msgid "Move to trash"
-msgstr "Przenieś do Śmietnika"
+msgstr "Przenieś do kosza"
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
 #: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:759
@@ -1625,7 +1625,7 @@ msgstr ""
 
 #: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:626
 msgid "&Trash"
-msgstr "Śmie&tnik"
+msgstr "&Kosz"
 
 #: Panel/panelfunc.cpp:628
 msgid ""
@@ -1874,7 +1874,7 @@ msgid ""
 msgstr ""
 "Wykryto starszą konfigurację niż w wersji 1.51. Krusader musiał zresetować "
 "twoją konfigurację do domyślnych wartości.\n"
-"Twoje zakładki i skróty klawiaturowe pozostaną nietkniętne.\n"
+"Twoje zakładki i skróty klawiaturowe pozostaną nietknięte.\n"
 "Krusader uruchomi Konfiguratora."
 
 #: krusader.cpp:401
@@ -1902,7 +1902,7 @@ msgstr "P&rzeładuj"
 
 #: krusader.cpp:493
 msgid "Show Actions Toolbar"
-msgstr "Pokaż pasek narzędziowy Akcji"
+msgstr "Pokaż pasek narzędzi Akcji"
 
 #: krusader.cpp:505
 msgid "Show &FN Keys Bar"
@@ -1930,7 +1930,7 @@ msgstr "Za&mień panele stronami"
 
 #: krusader.cpp:524
 msgid "popup cmdline"
-msgstr "pokaż linię komend"
+msgstr "pokaż linię poleceń"
 
 #: DiskUsage/diskusage.cpp:766 krusader.cpp:527
 msgid "Up one directory"
@@ -2556,7 +2556,7 @@ msgstr "Wolne %"
 
 #: MountMan/kmountmangui.cpp:187 MountMan/kmountmangui.cpp:294
 msgid "Critical Error"
-msgstr "Błąd Krytyczny"
+msgstr "Błąd krytyczny"
 
 #: MountMan/kmountmangui.cpp:188
 msgid ""
@@ -2590,13 +2590,13 @@ msgstr "Formatuj"
 msgid ""
 "_: NAME OF TRANSLATORS\n"
 "Your names"
-msgstr "Marcin Garski (aktualny tłumacz),Lukasz Janyst,Marcin Szafran"
+msgstr "Tomek Grzejszczyk (aktualny tłumacz),Pawel Salawa,Marcin Garski,Lukasz Janyst,Marcin Szafran"
 
 #: _translatorinfo.cpp:3
 msgid ""
 "_: EMAIL OF TRANSLATORS\n"
 "Your emails"
-msgstr "mgarski@post.pl,ljan@wp.pl,jm_sz@poczta.onet.pl"
+msgstr "tgrzej@onet.eu,boogie@myslenice.one.pl,mgarski@post.pl,ljan@wp.pl,jm_sz@poczta.onet.pl"
 
 #: main.cpp:49
 msgid ""
@@ -3263,7 +3263,7 @@ msgid ""
 "File %1 already exists.\n"
 "Are you sure you want to overwrite it?"
 msgstr ""
-"PLik %1 już istnieje.\n"
+"Plik %1 już istnieje.\n"
 "Jesteś pewien że chcesz go nadpisać?"
 
 #: Dialogs/checksumdlg.cpp:547
@@ -3489,12 +3489,12 @@ msgid ""
 "A detailed description of the <b>Useraction</b>. It is only displayed in the "
 "<i>Konfigurator</i> and via <code>Shift-F1</code>."
 msgstr ""
-"Dokłady opis <b>Akcji użytkownika</b> jest wyświetlany tylko w "
+"Dokładny opis <b>Akcji użytkownika</b> jest wyświetlany tylko w "
 "<i>Konfiguratorze</i> lub przez <code>Shift + F1</code>."
 
 #: ActionMan/actionpropertybase.cpp:390
 msgid "Command accepts"
-msgstr "Komenda akceptuje"
+msgstr "Polecenie akceptuje"
 
 #: ActionMan/actionpropertybase.cpp:391
 msgid "Local files only (no URL's)"
@@ -3580,9 +3580,9 @@ msgid ""
 "</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax.</p>"
 msgstr ""
-"<p><i>Komenda</i> definiuje komendę, która będzie wykonana, kiedy <b>Akcja "
-"użytkownika</b> zostanie użyta. Może to być prosta komenda powłoki, lub "
-"złożona sekwencja wielu komend ze <b>słowami kluczowymi</b>.</p> "
+"<p><i>Polecenie</i> definiuje polecenie, które będzie wykonane, kiedy <b>Akcja "
+"użytkownika</b> zostanie użyta. Może to być proste polecenie powłoki, lub "
+"złożona sekwencja wielu poleceń ze <b>słowami kluczowymi</b>.</p> "
 "<p>Przykłady:<ul><code><li>eject /mnt/cdrom</li><li>amarok --append %aList"
 "(\"Selected\")%</li></code></ul>\n"
 "Aby nauczyć się więcej o składni, zajrzyj do podręcznika.</p>"
@@ -3593,15 +3593,15 @@ msgid ""
 "the <b>Useraction Toolbar</b>."
 msgstr ""
 "<i>Podpowiedź</i> jest pokazywana, kiedy kursor myszy jest przytrzymany nad "
-"wpisem paska narzędziowego <b>Akcji użytkownika</b>."
+"wpisem paska narzędzi <b>Akcji użytkownika</b>."
 
 #: ActionMan/actionpropertybase.cpp:408 ActionMan/actionpropertybase.cpp:421
 msgid ""
 "The <i>Workdir</i> defines in which directory the <i>Command</i> will be "
 "executed."
 msgstr ""
-"<i>Katalog roboczy</i> definiuje w którym katalogu <i>komenda</i> będzie "
-"wykonana."
+"<i>Katalog roboczy</i> definiuje w którym katalogu <i>polecenie</i> będzie "
+"wykonane."
 
 #: ActionMan/actionpropertybase.cpp:409
 msgid "Tooltip:"
@@ -3616,9 +3616,9 @@ msgid ""
 "(\"Selected\")%</li></code></ul>\n"
 "Please consult the handbook to learn more about the syntax."
 msgstr ""
-"<i>Komenda</i> definiuje komendę, która będzie wykonana, kiedy <b>Akcja "
-"użytkownika</b> zostanie użyta. Może to być prosta komenda powłoki, lub "
-"złożona sekwencja wielu komend ze <b>słowami kluczowymi</b>.<p>\n"
+"<i>Polecenie</i> definiuje polecenie, które będzie wykonane, kiedy <b>Akcja "
+"użytkownika</b> zostanie użyta. Może to być proste polecenie powłoki, lub "
+"złożona sekwencja wielu poleceń ze <b>słowami kluczowymi</b>.<p>\n"
 "Przykłady:<ul><code><li>eject /mnt/cdrom</li><li>amarok --append %aList"
 "(\"Selected\")%</li></code></ul>\n"
 "Aby nauczyć się więcej o składni, zajrzyj do podręcznika."
@@ -3737,7 +3737,7 @@ msgstr "Potwierdzaj każde wywołanie programu osobno"
 
 #: ActionMan/actionpropertybase.cpp:456
 msgid "Allows to tweak the <i>Command</i> before it is executed."
-msgstr "To pozwala ci na dostrojenie <i>Komendy</i> przed jej wywołaniem."
+msgstr "To pozwala ci na dostrojenie <i>Polecenia</i> przed jego wywołaniem."
 
 #: ActionMan/actionpropertybase.cpp:457
 msgid "Run as different user:"
@@ -3745,7 +3745,7 @@ msgstr "Uruchom jako inny użytkownik:"
 
 #: ActionMan/actionpropertybase.cpp:458 ActionMan/actionpropertybase.cpp:459
 msgid "Execute the <i>Command</i> under a different user-id."
-msgstr "Uruchom tę <i>komendę</i> jako inny użytkownik."
+msgstr "Uruchom to <i>Polecenie</i> jako inny użytkownik."
 
 #: ActionMan/actionpropertybase.cpp:460
 msgid "Advanced Properties"
@@ -3924,7 +3924,7 @@ msgid ""
 "p><p><b>Note</b>: useful when updating a directory from a file server.</p>"
 msgstr ""
 "<p><b>Tryb asymetryczny</b></p><p>Lewa strona jest katalogiem docelowym, "
-"prawa źródłowym.Pliki istniejące tylko w lewym katalogu zostaną skasowane, "
+"prawa źródłowym. Pliki istniejące tylko w lewym katalogu zostaną skasowane, "
 "pozostałe, nieistniejące w lewym, zostaną skopiowane z prawego do lewego.</"
 "p><p><b>Adnotacja</b>: Przydatne podczas aktualizowania katalogu z serwera "
 "plików.</p>"
@@ -4036,7 +4036,7 @@ msgstr "Cichy"
 
 #: Synchronizer/synchronizergui.cpp:1373 Synchronizer/synchronizergui.cpp:2211
 msgid "Scroll Results"
-msgstr "Przewiń Wyniki"
+msgstr "Przewiń wyniki"
 
 #: Synchronizer/synchronizergui.cpp:1388
 msgid "Synchronize"
@@ -4486,7 +4486,7 @@ msgstr "Krusader::Miejsce na dysku"
 
 #: DiskUsage/diskusage.cpp:597
 msgid "trash"
-msgstr "wyrzucić do śmietnika"
+msgstr "wyrzucić do kosza"
 
 #: DiskUsage/diskusage.cpp:600
 msgid "delete"
@@ -5173,7 +5173,7 @@ msgstr "Pasek narzędzi będzie widoczny po starcie."
 
 #: Konfigurator/kglookfeel.cpp:212
 msgid "Visible Panel Toolbar buttons"
-msgstr "Widoczne przyciski paska narzędziowego panelu"
+msgstr "Widoczne przyciski paska narzędzi panelu"
 
 #: Konfigurator/kglookfeel.cpp:218
 msgid "Clear location bar button"
@@ -5989,7 +5989,7 @@ msgid ""
 "Can't find the 'locate' command. Please install the findutils-locate package "
 "of GNU, or set its dependencies in Konfigurator"
 msgstr ""
-"Nie można odnaleźć komendy 'locate'. Proszę zainstalować pakiet 'findutils-"
+"Nie można odnaleźć polecenia 'locate'. Proszę zainstalować pakiet 'findutils-"
 "locate' z GNU, lub ustawić jego zależności w Konfiguratorze"
 
 #: krslots.cpp:411
