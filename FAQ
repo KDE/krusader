@@ -1,9 +1,8 @@
 --------------------------------------------
-- Documentation version:  1.71.0 "cvs repository"
-- Documentation date:  2006-05-23
-- Parsing date: Mon Jun  5 06:11:29 UTC 2006
+- Documentation version:  1.80.0 "cvs repository"
+- Documentation date:  2006-08-12
+- Parsing date: Fri Aug 25 17:56:46 UTC 2006
 --------------------------------------------
- 
 
 This file contains the FAQ
 This file is parsed from Docbook/XML source files.
@@ -114,6 +113,8 @@ Chapter 7. Frequently Asked Questions (FAQ)
           how do I send a help request?
 
    7.1.15. How can I build an RPM package for Krusader?
+   7.1.16. Why does Krusader-cvs shows an old version number in
+          the about box?
 
    7.1.1. Does Krusader need KDE to run?
 
@@ -273,15 +274,19 @@ $ rpm -i --test  </path/to/rpmfile> krusader-x.xx.dist.rpm
    7.1.7. I can't find a RPM or DEB package for Krusader, What
    now?
 
+   Check if your distribution provides Krusader, if it doesn't
+   than contact your distribution creator and ask them to include
+   Krusader!
+
    Did you take a look at the URL's on the Installation procedure
-   page? Yes, and nothing found? Then you will have to compile
-   Krusader from source :) Even if you think that you have no
-   skills, you will probably succeed in compiling Krusader! We
-   provide a very detailed installation procedure. This HowTo
-   enables newcomers to compile Krusader from source, even if
-   they have never done a compilation from source before; just
-   follow the instructions carefully. Feel free to post a help
-   request if you encounter problems.
+   page? Yes, and nothing found? Then you can compile Krusader
+   from source :) Even if you think that you have no skills, you
+   will probably succeed in compiling Krusader! We provide a very
+   detailed installation procedure. This HowTo enables newcomers
+   to compile Krusader from source, even if they have never done
+   a compilation from source before; just follow the instructions
+   carefully. Feel free to post a help request if you encounter
+   problems.
 
    7.1.8. I've installed Krusader, but when I start it, only the
    "Help" menu appears. Why?
@@ -460,6 +465,15 @@ $ rpmbuild -ba /usr/scr/RPM/SPECS/krusader.spec
        during the rpmbuild process, try to fix it and re-run
        rpmbuild again.
     8. And finally: test the RPM before sending it in.
+
+   7.1.16. Why does Krusader-cvs shows an old version number in
+   the about box?
+
+   Because we only change the version number just before we do a
+   new release. Krusader-cvs will show an older version number,
+   so ignore the version number and check the download date. We
+   just haven't decided yet what will be the next version number
+   :)
      _________________________________________________________
 
 7.2. Usage FAQ
@@ -715,21 +729,19 @@ $ su -c 'fam -l'
 
 7.3. General FAQ
 
-   7.3.1. How can I report a wish, a patch, a suggestion, or a
-          comment?
+   7.3.1. How can I report a wish, a suggestion, or a comment?
+   7.3.2. How can I send a patch?
+   7.3.3. How can I report a bug?
+   7.3.4. Does Krusader have a mailing list?
+   7.3.5. Does Krusader provides newsfeeds?
+   7.3.6. Does Krusader have a IRC channel?
+   7.3.7. How does the Krusader forum work?
+   7.3.8. How can I translate Krusader to my native language?
+   7.3.9. How can I support Krusader?
+   7.3.10. Is there a Mac OS X port?
+   7.3.11. Is there a Windows port?
 
-   7.3.2. How can I report a bug?
-   7.3.3. Does Krusader have a mailing list?
-   7.3.4. Does Krusader provides newsfeeds?
-   7.3.5. Does Krusader have a IRC channel?
-   7.3.6. How does the Krusader forum work?
-   7.3.7. How can I translate Krusader to my native language?
-   7.3.8. How can I support Krusader?
-   7.3.9. Is there a Mac OS X port?
-   7.3.10. Is there a Windows port?
-
-   7.3.1. How can I report a wish, a patch, a suggestion, or a
-   comment?
+   7.3.1. How can I report a wish, a suggestion, or a comment?
 
    An open source project's greatest strength is derived from
    getting user feedback. That is why we love to hear what you
@@ -739,23 +751,55 @@ $ su -c 'fam -l'
    all want to make Krusader the best, most useful, file manager
    available anywhere.
 
-   If you like to send in a patch, please discuss it first with
-   Shie Erlich before writing a patch. Sometimes we can't apply a
-   patch if the patch is in conflict with the "general design" of
-   the code, this would be very pity and a waste of your precious
-   time.
-
    The most convenient way to contact us is to use the Krusader
-   Forum, or by mail. For information on what remains to be done
-   look at the ToDo Forum. Adding ToDo items into the ToDo Forum
-   is for developers only, but feel free to post to the New
-   Features Discussion/Requests Forum for things that aren't on
-   the ToDo Forum, but should be. If you have a nice feature
-   request, the Krusader Krew will add your request to the ToDo
-   Forum. We review and discuss every submission. For more
-   information how the forum works click here .
+   Forum, or the krusader-users mailing lists. For information on
+   what remains to be done look at the ToDo Forum. Adding ToDo
+   items into the ToDo Forum is for developers only, but feel
+   free to post to the New Features Discussion/Requests Forum for
+   things that aren't on the ToDo Forum, but should be. If you
+   have a nice feature request, the Krusader Krew will add your
+   request to the ToDo Forum. We review and discuss every
+   submission. For more information how the forum works click
+   here .
 
-   7.3.2. How can I report a bug?
+   7.3.2. How can I send a patch?
+
+   It's not easy to write some patch guidlines, but here we give
+   a try.
+
+    1. Patches, new code or new features are always welcome!
+    2. If you like you can always start a discussion with the
+       developers on the krusader-users mailing lists or on the
+       Krusader Forum. Unfortunatly, we can't apply a patch if
+       the patch is in conflict with the "general design" of the
+       Krusader code (continue to read for more instructions).
+    3. At one time focus only one problem, so the developers may
+       easily understand and commit if it works. Please send one
+       change request per mail, so that the discussion is easier
+       to follow! The modifications should be committed step by
+       step, checking each line.
+    4. Send the patches or all the changed files to us. Mail
+       attachments are usually okay, zipped or tar.gz'ed
+       archives, or links to code. Do not copy changes into a
+       mail. Most mailers will change the white spaces, so that
+       the diff will not apply or the code snipped does not diff.
+    5. Use portable solutions, Krusader should run on:
+          + All POSIX (Linux/BSD/UNIX-like OSes), Solaris(TM).
+          + All BSD Platforms (FreeBSD/NetBSD/OpenBSD/Mac
+            OS).
+          + KDE 3.3- KDE 3.5.3 and even on GNOME with KDElibs.
+          + GCC 2.95 - GCC 4.1
+       Architecure changes are made by the team only.
+    6. A final thing to note is: Keep always in mind, a patch
+       might be reject. Either it has side effects, which we
+       could not fix or it does contradict the idea behind the
+       patched module. Here a software project differs from lets
+       say a wiki: in a software project there is someone, who
+       makes the final decission. Otherwise software will not
+       work. Furthermore: Keep in mind, that the examination of
+       patches might take time, as we all have private lifes.
+
+   7.3.3. How can I report a bug?
 
    Bugs?!?!? Well, ok.... We have an online Bug Tracking System.
 
@@ -794,7 +838,7 @@ $ su -c 'fam -l'
 
    Note
 
-   7.3.3. Does Krusader have a mailing list?
+   7.3.4. Does Krusader have a mailing list?
 
    Yes, currently have 6 mailing lists. No spam, no bother, just
    Krusader. Feel free to (un)subscribe.
@@ -822,7 +866,7 @@ $ su -c 'fam -l'
        ... live! Want to keep track? Waiting for a certain
        feature/bugfix?
 
-   7.3.4. Does Krusader provides newsfeeds?
+   7.3.5. Does Krusader provides newsfeeds?
 
    Yes, we do. Several newsfeeds in various formats are
    available. rss-filerelease feed, rss-forumfeed, krusader-news
@@ -830,14 +874,14 @@ $ su -c 'fam -l'
    gmane.org. krusader-users feed, krusader-i18n feed,
    krusader-doc feed.
 
-   7.3.5. Does Krusader have a IRC channel?
+   7.3.6. Does Krusader have a IRC channel?
 
    Yes, we have. Feel free to talk to the Krusader Krew, and of
    course fellow-users via freenode.org servers. The server is
    irc.freenode.org, the channel is #krusader. Everyone is
    welcome.
 
-   7.3.6. How does the Krusader forum work?
+   7.3.7. How does the Krusader forum work?
 
    In the spirit of freedom of speech, everything that is
    Krusader related can be discussed in our forum. It does not
@@ -896,25 +940,25 @@ $ su -c 'fam -l'
    to you! To make use of them, simply point your RSS aggregator
    to here.
 
-   7.3.7. How can I translate Krusader to my native language?
+   7.3.8. How can I translate Krusader to my native language?
 
    Please read the i18n page. It's not difficult to translate!
    Most anyone can do it, it just takes some time.
 
-   7.3.8. How can I support Krusader?
+   7.3.9. How can I support Krusader?
 
    You can support Krusader in many different ways: please send
    us feedback, bug reports, patches, donations, translations,
    ...
 
-   7.3.9. Is there a Mac OS X port?
+   7.3.10. Is there a Mac OS X port?
 
    Yes, there is Mac OS X port, but you will not have (yet) the
    all the power like on Linux. Please read the Mac OS X port
    section for more information. A recommended native file
    manager for Mac OS is Disk Order (shareware).
 
-   7.3.10. Is there a Windows port?
+   7.3.11. Is there a Windows port?
 
    No, but this might change in the future. Please help us,
    thanks. A recommended native file manager for Windows is
