@@ -356,10 +356,8 @@ HTML_PARSING-->
 <sect1 id="konfig-color">
 <title>Colors page</title>
 
-<para>This page configures the colors in the &list_panel_lnk; and the &synchronizer_lnk;.
-      The <guilabel>KDE default colors</guilabel> is the default color configuration,
-      <guilabel>Use Alternate Background color</guilabel> checkbox will enable/disable
-      the alternate &kde; colors.
+<para>This page configures the colors of the &list_panel_lnk; and the &synchronizer_lnk;.
+      The <guilabel>KDE default colors</guilabel> is the default color configuration.
       </para>
 
 <!--HTML_PARSING
@@ -378,16 +376,29 @@ HTML_PARSING-->
  <varlistentry><term><guilabel>General</guilabel></term>
   <listitem>
   <itemizedlist>
-  <listitem><para><guilabel>Use Alternate Background color</guilabel>:
+      <listitem><para><guilabel>Use the default KDE colors</guilabel>: this is the default,
+                 it uses &kde;'s the color settings of <command>kcontrol</command>.</para>
+      </listitem>
+
+      <listitem><para><guilabel>Use Alternate Background color</guilabel>:
                      If checked, the <guilabel>Background</guilabel> color and the
                      <guilabel>Alternate background</guilabel> color alternates line by line.
-                           When you don't use the &kde; default colors, you can configure the
-                           alternate colors in the <guilabel>Colors</guilabel> box.</para>
-        </listitem>
+                     When you don't use the &kde; default colors, you can configure the
+                     alternate colors in the <guilabel>Colors</guilabel> box.</para>
+      </listitem>
+
   <listitem><para><guilabel>Show current item even if not focused</guilabel>:
                     If checked, shows the last cursor position in the non active list panel.
-        This option is only available when you don't use the &kde; default colors.</para>
-        </listitem>
+                    This option is only available when you don't use the &kde; default colors.</para>
+   </listitem>
+
+  <listitem><para><guilabel>Dim the colors of the inactive panel</guilabel>:
+                    If checked, the colors of the inactive panel are calculated by a dim color and
+                    a dim factor, these settings can be configured in the <guilabel>Inactive</guilabel> 
+                    tab of the <guilabel>Colors</guilabel> box.
+                    This option is only available when you don't use the &kde; default colors.</para>
+   </listitem>
+
   </itemizedlist>
   </listitem>
  </varlistentry>
@@ -422,11 +433,11 @@ HTML_PARSING-->
   <listitem><para><guilabel>Copy to left background</guilabel></para></listitem>
   <listitem><para><guilabel>Delete foreground</guilabel></para></listitem>
   <listitem><para><guilabel>Delete background</guilabel></para></listitem>
-  </itemizedlist>  
+  </itemizedlist>
   </listitem>
  </varlistentry>
 
-  
+
  <varlistentry><term><guilabel>Preview</guilabel></term>
   <listitem><para>Here you see a preview of the configured colors.</para>
   </listitem></varlistentry>
@@ -437,7 +448,7 @@ HTML_PARSING-->
       This allows that &krusader; can have the &tcmd;, &mc;, foo-commander or your custom colors.
       The Color Schemes are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
       the <filename>foo.color</filename> is a binary file that holds the Color Scheme.</para>
-      
+
       <tip><para>
       A &mc; and &tcmd; Color scheme file is provided.
       Please <link linkend="help_krusader">upload your favorite Color schemes</link> 
