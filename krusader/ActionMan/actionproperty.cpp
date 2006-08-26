@@ -459,10 +459,8 @@ bool ActionProperty::validProperties() {
 
 void ActionProperty::setModified( bool m )
 {
-   kdDebug() << "m: " << m << "; _modified: " << _modified << endl;
    if ( m && !_modified ) { // emit only when the state _changes_to_true_,
       emit changed();
-      kdDebug() << "signal: changed" << endl;
       }
    _modified = m;
 }
