@@ -35,7 +35,7 @@ static const char* FILE_FILTER = I18N_NOOP("*.xml|xml-files\n*|all files");
 
 
 UserActionPage::UserActionPage( QWidget* parent )
- : QWidget( parent, "UserActionPage" ), _modified( false )
+ : QWidget( parent, "UserActionPage" )
 {
    QVBoxLayout* layout = new QVBoxLayout( this, 0, 6, "UserActionPageLayout" ); // 0px margin, 6px item-spacing
 
@@ -81,7 +81,7 @@ UserActionPage::UserActionPage( QWidget* parent )
    toolbarLayout->addWidget( removeButton );
    toolbarLayout->addStretch( 1000 ); // some very large stretch-factor
    // ======== pseudo-toolbar end ========
-
+/* This seems obsolete now!
    // Display some help
    KMessageBox::information( this,	// parent
    		i18n( "When you apply changes to an action, the modifications "
@@ -91,8 +91,8 @@ UserActionPage::UserActionPage( QWidget* parent )
   		QString::null,	// caption
   		"show UserAction help"	//dontShowAgainName for the config
   	);
-
-   QSplitter *split = new QSplitter( this, "kguseractions splitter");
+*/
+   QSplitter *split = new QSplitter( this, "useractionpage splitter");
    layout->addWidget( split, 1000 ); // again a very large stretch-factor to fix the height of the toolbar
 
    actionTree = new UserActionListView( split, "actionTree" );
@@ -106,6 +106,9 @@ UserActionPage::UserActionPage( QWidget* parent )
    connect( exportButton, SIGNAL( clicked() ), SLOT( slotExport() ) );
    connect( copyButton, SIGNAL( clicked() ), SLOT( slotToClip() ) );
    connect( pasteButton, SIGNAL( clicked() ), SLOT( slotFromClip() ) );
+
+   // forwards the changed signal of the properties
+   connect ( actionProperties, SIGNAL( changed() ), SIGNAL( changed() ) );
 
    actionTree->setFirstActionCurrent();
    actionTree->setFocus();
@@ -156,6 +159,7 @@ void UserActionPage::slotChangeCurrent() {
       actionProperties->clear();
       actionProperties->setEnabled( false );
    }
+   emit applied(); // to disable the apply-button
 }
 
 
@@ -177,8 +181,7 @@ void UserActionPage::slotUpdateAction() {
        actionProperties->updateAction();
        actionTree->update( actionProperties->action() ); // update the listviewitem as well...
     }
-
-   _modified = true;
+   apply();
 }
 
 
@@ -208,7 +211,7 @@ void UserActionPage::slotRemoveAction() {
 
    actionTree->removeSelectedActions();
 
-   _modified = true;
+   apply();
 }
 
 void UserActionPage::slotImport() {
@@ -222,7 +225,7 @@ void UserActionPage::slotImport() {
       actionTree->insertAction( action );
 
    if ( newActions.count() > 0 ) {
-      _modified = true;
+      apply();
    }
 }
 
@@ -287,7 +290,7 @@ void UserActionPage::slotFromClip() {
       for ( KrAction* action = newActions.first(); action; action = newActions.next() )
          actionTree->insertAction( action );
       if ( newActions.count() > 0 ) {
-         _modified = true;
+         apply();
       }
    } // if ( doc.setContent )
 }
@@ -297,17 +300,17 @@ bool UserActionPage::readyToQuit() {
    if ( ! continueInSpiteOfChanges() )
       return false;
 
-   if ( _modified ) {
-      int answer = KMessageBox::questionYesNoCancel( this,
-   		i18n("Useractions in this session are modified. Do you want to save these changes permanently?")
-   	);
-      if ( answer == KMessageBox::Cancel )
-         return false;
-      if ( answer == KMessageBox::Yes )
-         krUserAction->writeActionFile();
-   } // if modified
+   krUserAction->writeActionFile();
    return true;
+}
 
+void UserActionPage::apply() {
+   krUserAction->writeActionFile();
+   emit applied();
+}
+
+void UserActionPage::applyChanges() {
+   slotUpdateAction();
 }
 
 

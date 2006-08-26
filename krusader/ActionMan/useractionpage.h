@@ -33,6 +33,12 @@ public:
     */
    bool readyToQuit();
 
+   void applyChanges();
+
+signals:
+   void changed(); ///< emited on changes to an action (used to enable the apply-button)
+   void applied(); ///< emited when changes are applied to an action (used to disable the apply-button)
+
 private:
    /**
     * If there are modifications in the property-widget, the user is asked
@@ -41,7 +47,12 @@ private:
     * @return true if a new action can be loaded in the property-widget.
     */
    bool continueInSpiteOfChanges();
-   bool _modified;
+   /**
+    * applyes all changes by writing the actionfile and emits "applied"
+    */
+   void apply();
+
+   //bool _modified; ///< true if the action-tree was changed (= changes were applied to an action)
    UserActionListView *actionTree;
    ActionProperty *actionProperties;
    QToolButton *importButton, *exportButton;

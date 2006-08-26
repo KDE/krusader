@@ -94,6 +94,9 @@ void ActionProperty::changedShortcut( const KShortcut& shortcut ) {
 void ActionProperty::clear() {
    _action = 0;
 
+   // This prevents the changed-signal from being emited during the GUI-update
+   _modified = true; // The real state is set at the end of this function.
+
    leDistinctName->clear();
    cbCategory->clearEdit();
    leTitle->clear();
@@ -128,6 +131,9 @@ void ActionProperty::updateGUI( KrAction *action ) {
       _action = action;
    if ( ! _action )
       return;
+
+   // This prevents the changed-signal from being emited during the GUI-update.
+   _modified = true; // The real state is set at the end of this function.
 
    leDistinctName->setText( _action->name() );
    cbCategory->setCurrentText( _action->category() );
@@ -449,6 +455,16 @@ bool ActionProperty::validProperties() {
     }
 
   return true;
+}
+
+void ActionProperty::setModified( bool m )
+{
+   kdDebug() << "m: " << m << "; _modified: " << _modified << endl;
+   if ( m && !_modified ) { // emit only when the state _changes_to_true_,
+      emit changed();
+      kdDebug() << "signal: changed" << endl;
+      }
+   _modified = m;
 }
 
 

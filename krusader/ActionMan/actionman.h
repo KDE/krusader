@@ -25,6 +25,9 @@ public:
 
 protected slots:
    void slotClose();
+   void slotApply();
+   void slotEnableApplyButton();
+   void slotDisableApplyButton();
 
 private:
   UserActionPage* userActionPage;

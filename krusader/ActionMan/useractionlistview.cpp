@@ -62,9 +62,15 @@ void UserActionListView::update() {
 void UserActionListView::update( KrAction* action ) {
    UserActionListViewItem* item = findActionItem( action );
    if ( item ) {
-      // This is _much_easyer then tracking all possible cases of category changes!
+      // deleting & re-inserting is _much_easyer then tracking all possible cases of category changes!
+      bool current = ( item == currentItem() );
+      bool selected = item->isSelected();
       delete item;
-      insertAction( action );
+      item = insertAction( action );
+      if ( current )
+         setCurrentItem( item );
+      if ( selected )
+         setSelected( item, true );
    }
 }
 

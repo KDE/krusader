@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author: Jonas B�r (C) 2004
+// Author: Jonas Bähr (C) 2004
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -20,7 +20,7 @@ class KShortcut;
 
 /**
  * Use this widget where ever you need to manipulate a UserAction
- * @author Jonas B�r (http://www.jonas-baehr.de)
+ * @author Jonas Bähr (http://www.jonas-baehr.de)
  */
 class ActionProperty : public ActionPropertyBase {
 	Q_OBJECT 
@@ -63,9 +63,17 @@ public:
 	 * @return true if any property got changed
 	 */
 	bool isModified() { return _modified; };
+
+signals:
+	/**
+	 * emited when any actionproperty changed. This signal is only emited when
+	 * the _modified attribute changes to true. If there are changes made and
+	 * _modified is already true, no signal is emited!
+	 */
+	void changed();
 	
 protected slots:
-   void setModified( bool m = true ) { _modified = m; };
+   void setModified( bool m = true );
    /**
     * executes the AddPlaceholderPopup
     */
