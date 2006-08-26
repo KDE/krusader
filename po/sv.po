@@ -3,22 +3,22 @@
 # Copyright (C) 2000-2003, Shie Erlich, Rafi Yanai
 # Copyright (C) 2004-2006, Krusader Krew
 # This file is distributed under the same license as the Krusader package
+#
 # Erik Johansson <erre@telia.com>, 2001.
 # Anders Lindén <connyosis@gmx.net>, 2004.
-# Peter Landgren <peter.talken@telia.com>, 2005.
-#
+# Peter Landgren <peter.talken@telia.com>, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-07-30 21:58+0200\n"
-"PO-Revision-Date: 2005-12-27 16:23+0100\n"
+"PO-Revision-Date: 2006-08-25 18:21+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
-"Language-Team: Swedish\n"
+"Language-Team: Swedish <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: GUI/dirhistorybutton.cpp:35
@@ -3329,9 +3329,8 @@ msgid "Paste useractions from clipboard"
 msgstr "Klistar in från urklipp"
 
 #: ActionMan/useractionpage.cpp:73
-#, fuzzy
 msgid "Delete selected useractions"
-msgstr "Ta bort denna åtgärd?"
+msgstr ""
 
 #: ActionMan/useractionpage.cpp:87
 msgid ""
@@ -3536,7 +3535,6 @@ msgid "Title:"
 msgstr "Titel:"
 
 #: ActionMan/actionpropertybase.cpp:398
-#, fuzzy
 msgid ""
 "Unique name of the <b>Useraction</b>. It is only used in the "
 "<i>Konfigurator</i> and doesn't appear in any other menu.<p><b>Note</b>: The "
@@ -3624,7 +3622,6 @@ msgid "Tooltip:"
 msgstr "Verktygstips:"
 
 #: ActionMan/actionpropertybase.cpp:412
-#, fuzzy
 msgid ""
 "The <i>Command</i> defines the command that will be executed when the "
 "<b>Useraction</b> is used. It can be a simple shell command or a complex "
@@ -4208,7 +4205,9 @@ msgstr ""
 msgid ""
 "_n: Left to right: Copy 1 file\n"
 "Left to right: Copy %n files"
-msgstr "Kopiering från vänster till höger: %1 filer (%2 byte)"
+msgstr ""
+"Kopiera %n fil till:\n"
+"Kopiera %n filer till:"
 
 #: Synchronizer/synchronizedialog.cpp:79
 #, fuzzy, c-format
@@ -4766,7 +4765,7 @@ msgstr "Söker efter verktyg..."
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
-"Se till att ionstallera ny verktyg i din <code>$PATH</code> (e.g. /usr/bin)"
+"Se till att installera ny verktyg i din <code>$PATH</code> (t. ex. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
@@ -4941,7 +4940,7 @@ msgstr "Vid matchning av urvalsvillkoren kommer mappar att markeras."
 #: Konfigurator/kglookfeel.cpp:76
 #, fuzzy
 msgid "Rename selects extension"
-msgstr "Ta bort denna åtgärd?"
+msgstr "Invertera markering"
 
 #: Konfigurator/kglookfeel.cpp:76
 msgid ""
@@ -5943,7 +5942,7 @@ msgstr "Sök efter packare..."
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
-"Se till att installera nya packare i din <code>$PATH</code> (e.g. /usr/bin)"
+"Se till att installera nya packare i din <code>$PATH</code> (t. ex. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:72
 msgid "Reset"
@@ -6240,23 +6239,6 @@ msgstr "Fel vid läsning av fil %1!"
 msgid "Error at writing file %1!"
 msgstr "Fel vid skrivning av fil %1!"
 
-#, fuzzy
-#~ msgid "&Time options"
-#~ msgstr "Visa alternativ"
-
-#~ msgid "Right to left: Copy %1 files (%2 bytes)"
-#~ msgstr "Kopiering från höger till vänster: %1 filer (%2 byte)"
-
-#, fuzzy
-#~ msgid "Left to right: Copy %1 files (%2 bytes)"
-#~ msgstr "Kopiering från höger till vänster: %1 filer (%2 byte)"
-
-#~ msgid "File number:%1"
-#~ msgstr "Filnummer: %1"
-
-#~ msgid "Error at opening URL:%1!"
-#~ msgstr "Fel vid öppning URL: %1!"
-
 #~ msgid "There already is an action with this name"
 #~ msgstr "Det finns redan en åtgärd med detta namn"
 
@@ -6266,8 +6248,20 @@ msgstr "Fel vid skrivning av fil %1!"
 #~ msgid "The <i>Tooltip</i> can be used as <i>Description</i>."
 #~ msgstr "<i>Verktygstips</i> kan användas som <i>Beskrivning</i>."
 
+#~ msgid "Password Needed"
+#~ msgstr "Lösenord behövs"
+
 #~ msgid "tar.bz2"
 #~ msgstr "tar.bz2"
+
+#~ msgid "Right to left: Copy %1 files (%2 bytes)"
+#~ msgstr "Kopiering från höger till vänster: %1 filer (%2 byte)"
+
+#~ msgid "Left to right: Copy %1 files (%2 bytes)"
+#~ msgstr "Kopiering från vänster till höger: %1 filer (%2 byte)"
+
+#~ msgid "File number:%1"
+#~ msgstr "Filnummer: %1"
 
 #~ msgid "The file you've chosen doesn't seem to be a valid action-file."
 #~ msgstr "Den fil du valt verkar inte vara en giltig åtgärdsfil."
@@ -6285,21 +6279,3 @@ msgstr "Fel vid skrivning av fil %1!"
 #~ "Kontrollera åtgärdslistan till vänster för rätta till dem.\n"
 #~ "Vänligen notera att dessa åtgärder inte kommer att importeras om du "
 #~ "stänger Konfigurator nu!"
-
-#, fuzzy
-#~ msgid ""
-#~ "The filename filtering criteria is defined here.<p>You can make use of "
-#~ "wildcards. Multiple patterns are separated by space and patterns are "
-#~ "excluded from the search using the pipe symbol.</p><p>Examples:"
-#~ "<ul><code><li>*.o</li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li></"
-#~ "code></ul><b>Note</b>: the search term '<code>text</code>' is equivalent "
-#~ "to '<code>*text*</code>'.</p>"
-#~ msgstr ""
-#~ "Filnamnsfiltreringsvillkoren definieras här.<p>Du kan använad "
-#~ "jokertecken.  Mönster separeras av mellanslag och mönster utesluts från "
-#~ "sökningen genom att använda rör symbol.<p>Exampel:<ul><code><li>*.o</"
-#~ "li><li>*.h *.c??</li><li>*.cpp *.h | *.moc.cpp</li></code></ul><b>Notera</"
-#~ "b>: sökbegreppet'<code>text</code>' är detsamma som '<code>*text*</code>'."
-
-#~ msgid "Password Needed"
-#~ msgstr "Lösenord behövs"
