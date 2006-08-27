@@ -18,4 +18,5 @@ libDialogs_a_SOURCES = \
 	kurllistrequester.cpp \
 	popularurls.cpp \
 	checksumdlg.cpp \
-	percentalsplitter.cpp
+	percentalsplitter.cpp \
+	krkeydialog.cpp

@@ -39,7 +39,6 @@
 #include <kprocess.h>
 #include <kmessagebox.h>
 #include <klineeditdlg.h>
-#include <kkeydialog.h>
 #include <kdirnotify_stub.h>
 #include <kio/netaccess.h>
 #include <kedittoolbar.h>
@@ -62,6 +61,7 @@
 #include "Panel/krbriefviewitem.h"
 #include "Dialogs/krdialogs.h"
 #include "Dialogs/krspwidgets.h"
+#include "Dialogs/krkeydialog.h"
 #include "GUI/krusaderstatus.h"
 #include "RemoteMan/remoteman.h"
 #include "Panel/panelfunc.h"
@@ -516,7 +516,7 @@ void KRslots::configToolbar(){
 }
 
 void KRslots::configKeys(){
-  KKeyDialog::configure(krApp->actionCollection(), 0, true);
+  KrKeyDialog( MAIN_VIEW );
 }
 
 // misc
