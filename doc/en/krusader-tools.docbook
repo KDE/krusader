@@ -181,7 +181,8 @@
 <sect1 id = "bookman">
 <title>BookMan: Organize your Bookmarks</title>
 
-<para>BookMan is &krusader;'s Bookmark tool to bookmark folders and (remote)&URL;'s,
+<para>BookMan is &krusader;'s Bookmark tool to bookmark folders, 
+      local- and <link linkend="remote-connections">remote URL's</link>,
       and later return to them in a click of a button. 
       The Bookman menu is devided in four sections:
   <itemizedlist>
@@ -318,7 +319,7 @@
  <itemizedlist>
     <listitem><para><guilabel>Media</guilabel> uses &kde;'s 
               <link linkend="konfig-advanced">Media protocol</link> 
-              <filename>media:/</filename>.</para>
+              <filename>media:/</filename></para>
     </listitem>
 
     <listitem><para><guilabel>Local Network</guilabel> uses &kde;'s 
@@ -329,11 +330,8 @@
     <listitem><para><guilabel>Virtual Filesystem</guilabel>
      &vfs_lnk; <filename>virt:/</filename> is not a virtual folder, but a container for &URL;'s 
      from different file systems.
-     It is used for &eg; the <guilabel>Feed to Listbox</guilabel> feature of the search module.
-     Actions you perform on the files in this VFS are performed on the 'real' files.
-     You don't just delete files from the VFS - you delete them from your hard drive.
-     Limitations: you can't create directories inside in a VFS.
-     The location toolbar will display &eg; <filename>virt:/Search results 1</filename>,
+     It is used for &eg; the <guilabel>Feed to Listbox</guilabel> feature of the search module and the synchronizer.
+     The location toolbar will display &eg; <filename>virt:/Search results 1</filename> or 
      <filename>virt:/Synchronise results 1</filename>.
      </para></listitem>
 
@@ -354,16 +352,6 @@
 <sect2 id = "manage_bookmarks">
 <title>Manage bookmarks</title>
 
-<screenshot>
-  <screeninfo>&keditbookmarks; your Bookmark Manager</screeninfo>
-  <mediaobject>
-  <imageobject><imagedata fileref="bookmanedit.png" format="PNG"/></imageobject>
-  <imageobject><imagedata fileref="bookmanedit.png" format="EPS"/></imageobject>
-  <textobject><phrase>&keditbookmarks; edit and organize your Bookmarks</phrase></textobject>
-  <caption><para>&keditbookmarks;: your Bookmark Manager.</para></caption>
-  </mediaobject>
-</screenshot>
-
 <para>To edit and organize your bookmarks, click the <guibutton>Bookmark</guibutton> button and select
       <guimenuitem>Manage Bookmarks</guimenuitem>, &keditbookmarks; will be displayed.
       This is where you can edit/remove and re-arrange the bookmarks.
@@ -375,7 +363,21 @@
        &keditbookmarks; is easy to use, please read the &keditbookmarks; or the &konqueror; handbook if you need more
        info.</para>
 
-<para><emphasis role="bold">Bookmarks as action buttons on the Toolbar</emphasis></para>
+<screenshot>
+  <screeninfo>&keditbookmarks; your Bookmark Manager</screeninfo>
+  <mediaobject>
+  <imageobject><imagedata fileref="bookmanedit.png" format="PNG"/></imageobject>
+  <imageobject><imagedata fileref="bookmanedit.png" format="EPS"/></imageobject>
+  <textobject><phrase>&keditbookmarks; edit and organize your Bookmarks</phrase></textobject>
+  <caption><para>&keditbookmarks;: your Bookmark Manager.</para></caption>
+  </mediaobject>
+</screenshot>
+
+</sect2>
+
+<sect2 id = "bookmark_buttons">
+<title>Bookmarks as action buttons on the Toolbar</title>
+
 <para>Bookmarks can be placed as buttons on the &main_toolbar_lnk; or the &actions_toolbar_lnk;,
       you can even make a key-binding for them.
  <itemizedlist>
