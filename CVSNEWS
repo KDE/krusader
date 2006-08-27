@@ -68,16 +68,16 @@ Big cleanup in the UserAction module:
   - dropped need for a manual name-conflict-resolution, now a nummer is
     append on double names
   - reduced the memory-consumption drasticly due to internal changes
-  - the list in Konfigurator is now a categorized tree with icon and
-    title instead of the identifyer
   - added copy actions to clipboard / past actions from clipboard
   - multiselection for export/remove/copy
   - renamed the actionfile we provide to useraction_examples.xml,
     so that we can merge new examples with existing installations
   - on export one can now choose between overwrite and merge is the
     file already exists and contains useractions
-  TODO
-  - remove useraction config from Konfigurator
+  - Actions are now manages with ActionMan; the list is now a
+    categorized tree with icon and title instead of the identifyer.
+  - On the UserAction page in Konfigurator you can now change the
+    Terminal for UserActions and the font for the output-collection.
 
 New archive handling:
   supports passworded arj, ace, rar, zip

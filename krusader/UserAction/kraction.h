@@ -107,7 +107,7 @@ class KrAction: public KAction {
 
 };
 
-
+class QFont;
 /**
  * This diesplays the output of a process
  * @author Shie Erlich
@@ -120,9 +120,11 @@ class KrActionProcDlg: public KDialogBase {
    protected slots:
       void addStderr( KProcess *proc, char *buffer, int buflen );
       void addStdout( KProcess *proc, char *buffer, int buflen );
+      void toggleFixedFont( bool state );
 
    private:
       QTextEdit *_stdout, *_stderr;
+      QFont normalFont, fixedFont;
 };
 
 /**

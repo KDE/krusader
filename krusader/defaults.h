@@ -127,8 +127,6 @@
 #define _Terminal      "konsole"
 // Send CDs ///////////
 #define _SendCDs		true
-// Terminal UserActions ///////////
-#define _TerminalUserActions      "konsole --noclose -e"
 // Editor /////////////
 #define _Editor        "internal editor" 
 // Temp Directory /////
@@ -196,6 +194,16 @@
 // Test Before Unpack ////
 #define _TestBeforeUnpack	true 
 // Supported Packers // ====> a QStringList of SYSTEM supported archives ( also new )
+
+/////////////////////// [UserActions]
+// Terminal for UserActions ///////////
+#define _UserActions_Terminal      "konsole --noclose -e"
+// Normal font for output collection ///////
+#define _UserActions_NormalFont   new QFont(KGlobalSettings::generalFont())
+// Font for output collection with fixed width ///////
+#define _UserActions_FixedFont   new QFont(KGlobalSettings::fixedFont())
+// Use for output collection  fixed width font as default ///////
+#define _UserActions_UseFixedFont   false
 
 /////////////////////// [Private]
 // Start Position /////

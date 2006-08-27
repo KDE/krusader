@@ -43,32 +43,9 @@ class KgUserActions : public KonfiguratorPage
 
 public:
   KgUserActions( bool first, QWidget* parent=0,  const char* name=0 );
-  ~KgUserActions();
-
-  bool isChanged();
-  bool apply();
-  void setDefaults();
-  void loadInitialValues();
 
 public slots:
-  void slotChangeAction();	//loads a new action into the detail-view
-  void slotUpdateAction();	//updates the action to the xml-file
-  void slotNewAction();
-  void slotRemoveAction();
-  void slotReset();	//restets the action to the last state where the user had presst "Ok"
-  void slotImport();
-  void slotExport();
-  void slotToClip();
-  void slotFromClip();
-
-protected:
- bool _needApply;
- UserActionListView *actionTree;
- ActionProperty *actionProperties;
- KPushButton *okButton, *resetButton;
- KPushButton *newButton, *removeButton;
- KPushButton *importButton, *exportButton;
- KPushButton *toClipButton, *fromClipButton;
+  void startActionMan();
 };
 
 #endif /* __KGUSERACTIONS_H__ */

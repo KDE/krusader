@@ -1,3 +1,5 @@
+    ADDED: UserAction: Outputcollection now supports fonts with fixed or
+           variable width
     ADDED: ActionMan: some improvements
     ADDED: synchronizer: double click on a file calls the diff utility (kompare)
     ADDED: terminal emulator: Ctrl+Enter,Ctrl+Shift+Enter paste the filename
@@ -30,6 +32,9 @@
            out archiver error messages, step into hidden archives,...)
 
     --architecture-- refactoring in the useractions, see CVSNEWS
+
+    CHANGED: UserActions are now managed with ActionMan. In Konfigurator
+           you can change settings _about_ useractions.
 
     FIXED: ActionMan: Save modifications on current action
     FIXED: [Debian: 378138] Changed the location of the .desktop-files to match

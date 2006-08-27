@@ -16,6 +16,8 @@
 #include <kinputdialog.h>
 #include <qtextedit.h>
 #include <qvbox.h>
+#include <qsplitter.h>
+#include <qpushbutton.h>
 #include <qlabel.h>
 #include <kaction.h>
 #include <kurl.h>
@@ -36,7 +38,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
-KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ), _stdout(0), _stderr(0) {
+KDialogBase( parent, 0, false, caption, KDialogBase::User1 | KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ), _stdout(0), _stderr(0) {
 
    setButtonOK( i18n( "Close" ) );
    enableButtonOK( false ); // disable the close button, until the process finishes
@@ -46,14 +48,19 @@ KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, K
    QVBox *page = makeVBoxMainWidget();
    // do we need to separate stderr and stdout?
    if ( enableStderr ) {
+      QSplitter *splitt = new QSplitter( QSplitter::Vertical, page );
       // create stdout
-      new QLabel( i18n( "Standard Output (stdout)" ), page );
-      _stdout = new QTextEdit( page );
+      QVBox *stdoutBox = new QVBox( splitt, "stdout VBox" );
+      stdoutBox->setSpacing( 6 );
+      new QLabel( i18n( "Standard Output (stdout)" ), stdoutBox );
+      _stdout = new QTextEdit( stdoutBox );
       _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
       // create stderr
-      new QLabel( i18n( "Standard Error (stderr)" ), page );
-      _stderr = new QTextEdit( page );
+      QVBox *stderrBox = new QVBox( splitt, "stderr VBox" );
+      stderrBox->setSpacing( 6 );
+      new QLabel( i18n( "Standard Error (stderr)" ), stderrBox );
+      _stderr = new QTextEdit( stderrBox );
       _stderr->setReadOnly( true );
       _stderr->setMinimumWidth( fontMetrics().maxWidth() * 40 );
    } else {
@@ -63,6 +70,18 @@ KDialogBase( parent, 0, false, caption, KDialogBase::Ok | KDialogBase::Cancel, K
       _stdout->setReadOnly( true );
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
    }
+
+   krConfig->setGroup( "UserActions" );
+   normalFont = krConfig->readFontEntry( "Normal Font", _UserActions_NormalFont );
+   fixedFont = krConfig->readFontEntry( "Fixed Font", _UserActions_FixedFont );
+   bool startupState = krConfig->readBoolEntry( "Use Fixed Font", _UserActions_UseFixedFont );
+   toggleFixedFont( startupState );
+
+   setButtonText(KDialogBase::User1, i18n("Use font with fixed width") );
+   QPushButton* fixedButton = actionButton( KDialogBase::User1 );
+   fixedButton->setToggleButton( true );
+   fixedButton->setOn( startupState );
+   connect( fixedButton, SIGNAL( toggled(bool) ), SLOT( toggleFixedFont(bool) ) );
 }
 
 void KrActionProcDlg::addStderr( KProcess *, char *buffer, int buflen ) {
@@ -79,6 +98,18 @@ void KrActionProcDlg::addStdout( KProcess *, char *buffer, int buflen ) {
    _stdout->append( QString::fromLatin1( buffer, buflen ) );
 }
 
+void KrActionProcDlg::toggleFixedFont( bool state ) {
+   if ( state ) {
+      _stdout->setFont( fixedFont );
+      if ( _stderr )
+         _stderr->setFont( fixedFont );
+   }
+   else {
+      _stdout->setFont( normalFont );
+      if ( _stderr )
+         _stderr->setFont( normalFont );
+   }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////  KrActionProc  ////////////////////////////////////////////
@@ -119,8 +150,8 @@ void KrActionProc::start( QStringList cmdLineList ) {
       }
       // run in terminal
       if ( _action->execType() == KrAction::Terminal ) {
-        krConfig->setGroup( "General" );
-        QString term = krConfig->readEntry( "Terminal UserActions", _TerminalUserActions );
+        krConfig->setGroup( "UserActions" );
+        QString term = krConfig->readEntry( "Terminal", _UserActions_Terminal );
 
          if ( _action->user().isEmpty() )
             ( *_proc ) << term << cmd;
