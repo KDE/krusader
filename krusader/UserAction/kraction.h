@@ -110,7 +110,7 @@ class KrAction: public KAction {
 class QFont;
 /**
  * This diesplays the output of a process
- * @author Shie Erlich
+ * @author Shie Erlich, Jonas Bähr
  */
 class KrActionProcDlg: public KDialogBase {
       Q_OBJECT
@@ -121,15 +121,18 @@ class KrActionProcDlg: public KDialogBase {
       void addStderr( KProcess *proc, char *buffer, int buflen );
       void addStdout( KProcess *proc, char *buffer, int buflen );
       void toggleFixedFont( bool state );
+      void slotUser1(); ///< This is used to save the buffer to disc
 
    private:
-      QTextEdit *_stdout, *_stderr;
+      QTextEdit *_stdout, *_stderr, *_currentTextEdit;
       QFont normalFont, fixedFont;
+   private slots:
+      void currentTextEditChanged();
 };
 
 /**
  * This executes a command of a UserAction
- * @author Shie Erlich
+ * @author Shie Erlich, Jonas Bähr
  * @todo jonas: call a list of commands separately (I began it but it doesn't work)
  */
 class KrActionProc: public QObject {

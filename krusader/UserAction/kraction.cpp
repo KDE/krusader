@@ -16,12 +16,16 @@
 #include <kinputdialog.h>
 #include <qtextedit.h>
 #include <qvbox.h>
+#include <qlayout.h>
 #include <qsplitter.h>
 #include <qpushbutton.h>
+#include <qcheckbox.h>
+#include <qfile.h>
 #include <qlabel.h>
 #include <kaction.h>
 #include <kurl.h>
 #include <kmessagebox.h>
+#include <kfiledialog.h>
 #include "kraction.h"
 #include "expander.h"
 #include "useraction.h"
@@ -36,14 +40,17 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////  KrActionProcDlg  /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
+#include <qlayout.h>
 KrActionProcDlg::KrActionProcDlg( QString caption, bool enableStderr, QWidget *parent ) :
-KDialogBase( parent, 0, false, caption, KDialogBase::User1 | KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ), _stdout(0), _stderr(0) {
+KDialogBase( parent, 0, false, caption, KDialogBase::User1 | KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Cancel ),
+_stdout(0), _stderr(0), _currentTextEdit(0) {
 
    setButtonOK( i18n( "Close" ) );
    enableButtonOK( false ); // disable the close button, until the process finishes
 
    setButtonCancel( KGuiItem(i18n("Kill"), i18n( "Kill the running process" )) );
+
+   setButtonText(KDialogBase::User1, i18n("Save as") );
 
    QVBox *page = makeVBoxMainWidget();
    // do we need to separate stderr and stdout?
@@ -71,17 +78,25 @@ KDialogBase( parent, 0, false, caption, KDialogBase::User1 | KDialogBase::Ok | K
       _stdout->setMinimumWidth( fontMetrics().maxWidth() * 40 );
    }
 
+   _currentTextEdit = _stdout;
+   connect( _stderr, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
+   connect( _stdout, SIGNAL( clicked(int, int) ), SLOT( currentTextEditChanged() ) );
+
    krConfig->setGroup( "UserActions" );
    normalFont = krConfig->readFontEntry( "Normal Font", _UserActions_NormalFont );
    fixedFont = krConfig->readFontEntry( "Fixed Font", _UserActions_FixedFont );
    bool startupState = krConfig->readBoolEntry( "Use Fixed Font", _UserActions_UseFixedFont );
    toggleFixedFont( startupState );
 
-   setButtonText(KDialogBase::User1, i18n("Use font with fixed width") );
-   QPushButton* fixedButton = actionButton( KDialogBase::User1 );
-   fixedButton->setToggleButton( true );
-   fixedButton->setOn( startupState );
-   connect( fixedButton, SIGNAL( toggled(bool) ), SLOT( toggleFixedFont(bool) ) );
+   // HACK This fetches the layout of the buttonbox from KDialogBase, although it is not accessable with KDialogBase's API
+   // None the less it's quite save to use since this implementation hasn't changed since KDE-3.3 (I haven't looked at earlier
+   // versions since we don't support them) and now all work is done in KDE-4.
+   QWidget* buttonBox = static_cast<QWidget*>( actionButton(KDialogBase::Ok)->parent() );
+   QBoxLayout* buttonBoxLayout = static_cast<QBoxLayout*>( buttonBox->layout() );
+   QCheckBox* useFixedFont = new QCheckBox( i18n("Use font with fixed width"), buttonBox );
+   buttonBoxLayout->insertWidget( 0, useFixedFont );
+   useFixedFont->setChecked( startupState );
+   connect( useFixedFont, SIGNAL( toggled(bool) ), SLOT( toggleFixedFont(bool) ) );
 }
 
 void KrActionProcDlg::addStderr( KProcess *, char *buffer, int buflen ) {
@@ -109,6 +124,47 @@ void KrActionProcDlg::toggleFixedFont( bool state ) {
       if ( _stderr )
          _stderr->setFont( normalFont );
    }
+}
+
+void KrActionProcDlg::slotUser1() {
+   QString filename = KFileDialog::getSaveFileName(QString::null, i18n("*.txt|Text files\n*|all files"), this);
+   if ( filename.isEmpty() )
+      return;
+   QFile file( filename );
+   int answer = KMessageBox::Yes;
+   if ( file.exists() )
+      answer = KMessageBox::warningYesNoCancel( this,	//parent
+      		i18n("This file already Exists.\nDo you want to overwrite it or append the output?"),	//text
+      		i18n("Overwrite or append?"),	//caption
+      		i18n("Overwrite"),	//label for Yes-Button
+      		i18n("Append")	//label for No-Button
+      	);
+   if ( answer == KMessageBox::Cancel )
+      return;
+   bool open;
+   if ( answer == KMessageBox::No ) // this means to append
+      open = file.open( IO_WriteOnly | IO_Append );
+   else
+      open = file.open( IO_WriteOnly );
+
+   if ( ! open ) {
+      KMessageBox::error( this,
+      		i18n("Can't open %1 for writing!\nNothing exported.").arg(filename),
+      		i18n("Export failed!")
+      	);
+      return;
+   }
+
+   QTextStream stream( &file );
+   stream << _currentTextEdit->text();
+   file.close();
+}
+
+void KrActionProcDlg::currentTextEditChanged() {
+   if ( _stderr && _stderr->hasFocus() )
+      _currentTextEdit = _stderr;
+   else
+      _currentTextEdit = _stdout;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
