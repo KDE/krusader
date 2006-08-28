@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: krusader-1.70.1\n"
+"Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-07-30 21:58+0200\n"
-"PO-Revision-Date: 2006-07-25 13:13+0100\n"
+"PO-Revision-Date: 2006-08-27 13:51+0200\n"
 "Last-Translator: Matej Urbancic <matej.urban@gmail.com>\n"
 "Language-Team: Slovenian <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,8 +20,7 @@ msgstr ""
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: KBabel 1.11.2\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -434,7 +433,7 @@ msgstr "Napaka pri razširjanju %1!"
 
 #: VFS/krarchandler.cpp:342 VFS/krarchandler.cpp:511
 msgid "User cancelled."
-msgstr ""
+msgstr "Uporabnik preklican."
 
 #: VFS/krarchandler.cpp:386
 msgid "Testing Archive"
@@ -2571,8 +2570,7 @@ msgid ""
 msgstr "Notranja napaka v Priklopniku. Obvesti razvijalce programa."
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr "Notranja napaka v Priklopniku. Obvesti razvijalce programa."
 
 #: MountMan/kmountmangui.cpp:331
@@ -3120,9 +3118,8 @@ msgid "Click to go to <i>%1</i>"
 msgstr "Klikni za odhod na <i>%1</i>"
 
 #: Dialogs/krpleasewait.cpp:45
-#, fuzzy
 msgid "Krusader::Wait"
-msgstr "Krusader::Lociraj"
+msgstr "Krusader::Čakanje"
 
 #: Dialogs/checksumdlg.cpp:191 Dialogs/checksumdlg.cpp:446
 msgid "Create Checksum"
@@ -3292,34 +3289,28 @@ msgstr ""
 "*|vse datoteke"
 
 #: ActionMan/useractionpage.cpp:48
-#, fuzzy
 msgid "Create new useraction"
-msgstr "Upravljaj s skripti"
+msgstr "Ustvari nov skript"
 
 #: ActionMan/useractionpage.cpp:53
-#, fuzzy
 msgid "Import useractions"
-msgstr "Uvozi skript"
+msgstr "Uvozi skripte"
 
 #: ActionMan/useractionpage.cpp:58
-#, fuzzy
 msgid "Export useractions"
-msgstr "Izvozi skript"
+msgstr "Izvozi skripte"
 
 #: ActionMan/useractionpage.cpp:63
-#, fuzzy
 msgid "Copy useractions to clipboard"
-msgstr "Kopiraj v odložišče"
+msgstr "Kopiraj skripte v odložišče"
 
 #: ActionMan/useractionpage.cpp:68
-#, fuzzy
 msgid "Paste useractions from clipboard"
-msgstr "Prilepi iz odložišča"
+msgstr "Prilepi skripte iz odložišča"
 
 #: ActionMan/useractionpage.cpp:73
-#, fuzzy
 msgid "Delete selected useractions"
-msgstr "Odstranim te skripte?"
+msgstr "Odstrani izbrane skripte"
 
 #: ActionMan/useractionpage.cpp:87
 msgid ""
@@ -3327,12 +3318,12 @@ msgid ""
 "the current session immediately.\n"
 "When closing ActionMan, you will be asked to save the changes permanently."
 msgstr ""
+"Ko sprejmete spremembe v skriptu, te takoj postanejo uporabne v trenutni seji.\n"
+"Ob izhodu iz ActionMana boste lahko trejno shranili spremembe."
 
 #: ActionMan/useractionpage.cpp:119
-#, fuzzy
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
-msgstr "Trenutna stran je bila spremenjena. Naj sprejmem spremembe?"
+msgid "The current action has been modified. Do you want to apply these changes?"
+msgstr "Trenutni skript je bil spremenjen. Želite sprejeti spremembe?"
 
 #: ActionMan/useractionpage.cpp:194 Konfigurator/kguseractions.cpp:174
 msgid "Are you sure that you want to remove all selected actions?"
@@ -3460,15 +3451,14 @@ msgstr ""
 "Če nimate takega skripta, enako ime uporablja Krusader za svoj interni skript"
 
 #: ActionMan/actionman.cpp:26
-#, fuzzy
 msgid "ActionMan - Manage Your Useractions"
-msgstr "Upravljaj s skripti"
+msgstr "ActionMan - Upravljanje s skripti"
 
 #: ActionMan/actionman.cpp:40
 msgid ""
 "Useractions in this session are modified. Do you want to save these changes "
 "permanently?"
-msgstr ""
+msgstr "Skripti so bili spremenjeni. Želite trajno shraniti spremembe?"
 
 #: ActionMan/actionpropertybase.cpp:386
 msgid "Action Property"
@@ -4651,8 +4641,7 @@ msgstr "Urejevalnik:"
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
-msgstr ""
-"Namig: Uporabljajte 'vgrajeni urejevalnik' če želite izkoristiti hitrost"
+msgstr "Namig: Uporabljajte 'vgrajeni urejevalnik' če želite izkoristiti hitrost"
 
 #: Konfigurator/kggeneral.cpp:87
 msgid "Default viewer mode:"
@@ -4727,14 +4716,12 @@ msgid "Searching for tools..."
 msgstr "Iščem orodja ..."
 
 #: Konfigurator/kggeneral.cpp:164
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr "Orodja morajo biti naložena v <code>$PATH</code> (e.g. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj manjka, vendar je najden arj, ki bo uporabljen tudi za razširjanje"
+msgstr "unarj manjka, vendar je najden arj, ki bo uporabljen tudi za razširjanje"
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -4900,15 +4887,14 @@ msgid "When matching the select criteria, directories will also be marked."
 msgstr "Ob izpisu kriterijev izbora bodo označene tudi mape."
 
 #: Konfigurator/kglookfeel.cpp:76
-#, fuzzy
 msgid "Rename selects extension"
-msgstr "Odstranim te skripte?"
+msgstr "Ob preimenovanju se označi končnica"
 
 #: Konfigurator/kglookfeel.cpp:76
 msgid ""
 "When renaming a file, the whole text is selected. If you want total-"
 "commander like renaming of just the name, without extension, unmark this."
-msgstr ""
+msgstr "Ob preimenovanju datoteke, se označi celotno ime. Če želite označiti samo ime brez končnice datoteke, odkljukajte to možnost."
 
 #: Konfigurator/kglookfeel.cpp:77
 msgid "Case sensitive sorting"
@@ -4984,11 +4970,11 @@ msgstr "Dovoljen samo en sočasen zagon Krusaderja."
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Fullscreen terminal (mc-style)"
-msgstr ""
+msgstr "Celo-zaslonski terminal (stil mc)"
 
 #: Konfigurator/kglookfeel.cpp:85
 msgid "Terminal is shown instead of the krusader window (full screen)."
-msgstr ""
+msgstr "Terminal je prikazan v celotnem oknu Krusaderja. (cel zaslon)"
 
 #: Konfigurator/kglookfeel.cpp:94
 msgid "Single click / Double click Selection:"
@@ -5205,8 +5191,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Gumb za preklop med brskanjem in usklajevanjem"
 
 #: Konfigurator/kglookfeel.cpp:224
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Vsaka sprememba mape se odraža v obeh oknih."
 
 #: Konfigurator/kglookfeel.cpp:288 Konfigurator/kglookfeel.cpp:305
@@ -5246,8 +5231,7 @@ msgstr ""
 "poskusi točko priklopiti z določenimi parametri."
 
 #: Konfigurator/kgadvanced.cpp:66
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr "Ne uporabljaj KDE media protokola za media gumb."
 
 #: Konfigurator/kgadvanced.cpp:66
@@ -5461,13 +5445,13 @@ msgstr ""
 
 #: Konfigurator/kgcolors.cpp:63
 msgid "Dim the colors of the inactive panel"
-msgstr ""
+msgstr "Zameglitev barv neaktivnega okna"
 
 #: Konfigurator/kgcolors.cpp:63
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
-msgstr ""
+msgstr "<p>Barve neaktivega okna so določene z barvo zameglitve in faktorja zameglitve.</p>"
 
 #: Konfigurator/kgcolors.cpp:90
 msgid "Active"
@@ -5572,12 +5556,11 @@ msgstr "Enako kot aktivno"
 
 #: Konfigurator/kgcolors.cpp:169
 msgid "Dim target color:"
-msgstr ""
+msgstr "Cilna zamegljena barva:"
 
 #: Konfigurator/kgcolors.cpp:172
-#, fuzzy
 msgid "Dim factor:"
-msgstr "Mape:"
+msgstr "Zameglitveni faktor:"
 
 #: Konfigurator/kgcolors.cpp:185
 msgid "Synchronizer"
@@ -5876,8 +5859,7 @@ msgid "Test archive before unpacking"
 msgstr "Testiraj arhivu pred razširjanjem"
 
 #: Konfigurator/kgarchives.cpp:97
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr "Nekateri arhivi so lahko poškodovani, zato je testiranje priporočeno."
 
 #: Konfigurator/kgarchives.cpp:114
@@ -5885,10 +5867,8 @@ msgid "Searching for packers..."
 msgstr "Iščem programe za arhiviranje..."
 
 #: Konfigurator/kgarchives.cpp:115
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Nova orodja za stiskanje namestite v <code>$PATH</code> (npr. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Nova orodja za stiskanje namestite v <code>$PATH</code> (npr. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:72
 msgid "Reset"
@@ -5971,8 +5951,7 @@ msgid ""
 "bookmarks. IT WILL BE REMOVED SOON!\n"
 "Try the new bookmark-manager: open a new remote connection, once done, press "
 "the bookmark button, select 'Add bookmark' and that's it!"
-msgstr ""
-"Pomembno: Od verzije 1.60.0 je RemoteMan zamenjan z Upravljavcem zaznamkov!"
+msgstr "Pomembno: Od verzije 1.60.0 je RemoteMan zamenjan z Upravljavcem zaznamkov!"
 
 #: krslots.cpp:430
 msgid "Can't start 'mount'! Check the 'Dependencies' page in konfigurator."
@@ -5980,8 +5959,7 @@ msgstr "Ne morem zagnati priklopa! Preverite 'Odvisnosti' v Konfiguratorju."
 
 #: krslots.cpp:462
 msgid "Can't find \"KsysCtrl\". Please install KDE admin package"
-msgstr ""
-"Ne najdem \"KsysCtrl\". Naložiti bo potrebno KDE administratorski paket"
+msgstr "Ne najdem \"KsysCtrl\". Naložiti bo potrebno KDE administratorski paket"
 
 #: krslots.cpp:470
 msgid ""
@@ -6136,8 +6114,7 @@ msgid "Not a valid CRC file!"
 msgstr "Datoteka CRC ni prava!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Preverjanje pravilnosti ni mogoče brez CRC datoteke. Želite nadaljevati "
 "lepljenje?"
@@ -6177,3 +6154,4 @@ msgstr "Napaka pri branju datoteke %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Napaka pri pisanju datoteke %1!"
+
