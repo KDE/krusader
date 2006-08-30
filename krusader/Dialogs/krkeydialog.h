@@ -25,9 +25,13 @@ public:
     KrKeyDialog( QWidget* parent = 0 );
     ~KrKeyDialog();
 
-protected slots:
+private slots:
     void slotImportShortcuts();
     void slotExportShortcuts();
+
+private:
+    void importLegacyShortcuts( const QString& file );
+    KKeyChooser* _chooser;
 };
 
 #endif

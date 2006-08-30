@@ -2,7 +2,6 @@
     ADDED: UserAction: Outputcollectionwindow can now save the buffer
     ADDED: UserAction: Outputcollection now supports fonts with fixed or
            variable width
-    ADDED: ActionMan: some improvements
     ADDED: synchronizer: double click on a file calls the diff utility (kompare)
     ADDED: terminal emulator: Ctrl+Enter,Ctrl+Shift+Enter paste the filename
     ADDED: atomic extensions (see CVSNEWS)
@@ -35,9 +34,13 @@
 
     --architecture-- refactoring in the useractions, see CVSNEWS
 
+    CHANGED: Shortcuts are now exported in as plaintext, legacy import still works.
     CHANGED: UserActions are now managed with ActionMan. In Konfigurator
            you can change settings _about_ useractions.
 
+    FIXED: KeyDialog: alternative shortcuts are ex-/imported as well
+    FIXED: KeyDialog: canceling the dialog undoes import
+    FIXED: ActionMan: creating a new actions doesn't seem to modify the current
     FIXED: ActionMan: Save modifications on current action
     FIXED: [Debian: 378138] Changed the location of the .desktop-files to match
            freedesktop.org's standards

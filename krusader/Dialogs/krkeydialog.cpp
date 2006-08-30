@@ -19,9 +19,15 @@
 #include <kfiledialog.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
+#include <kconfig.h>
+#include <kactionshortcutlist.h>
 #include <kdebug.h>
 
 #include "../krusader.h"
+
+//This is the filter in the KFileDialog of Import/Export:
+static const char* FILE_FILTER = I18N_NOOP("*.keymap|Krusader keymaps\n*|all files");
+
 
 KrKeyDialog::KrKeyDialog( QWidget * parent ) : KKeyDialog( false /* allow letter shortcuts */, parent ) {
    insert( krApp->actionCollection() );
@@ -35,12 +41,15 @@ KrKeyDialog::KrKeyDialog( QWidget * parent ) : KKeyDialog( false /* allow letter
    KPushButton* importButton = new KPushButton( i18n("Import shortcuts"), buttonBox );
    QWhatsThis::add( importButton, i18n( "Load a keybinding profile, e.g., total_commander.keymap" ) );
    buttonBoxLayout->insertWidget( 1, importButton ); // the defaults-button should stay on position 0
+   connect( importButton, SIGNAL( clicked() ), SLOT( slotImportShortcuts() ) );
+
    KPushButton* exportButton = new KPushButton( i18n("Export shortcuts"), buttonBox );
    QWhatsThis::add( exportButton, i18n( "Save current keybindings in a keymap file." ) );
    buttonBoxLayout->insertWidget( 2, exportButton );
-
-   connect( importButton, SIGNAL( clicked() ), SLOT( slotImportShortcuts() ) );
    connect( exportButton, SIGNAL( clicked() ), SLOT( slotExportShortcuts() ) );
+
+   // Also quite HACK 'isch but unfortunately KKeyDialog don't giveus access to this widget
+   _chooser = static_cast<KKeyChooser*>( mainWidget() );
 
    configure( true /* SaveSettings */ ); // this runs the dialog
 }
@@ -48,25 +57,36 @@ KrKeyDialog::KrKeyDialog( QWidget * parent ) : KKeyDialog( false /* allow letter
 KrKeyDialog::~KrKeyDialog() {
 }
 
-/* TODO
-
-I suggest to change the binary format from the keymap to an xml-format.
-This could be load step by step. This makes it possible to revert the changes
-when the user presses cancel and also to update the view.
-In addition it's nicer then a binary-format and is portable acress different platforms
-XML also saves us from having to files, one for the shortcuts and one for the info.
-
-*/
-
 void KrKeyDialog::slotImportShortcuts() {
+   // find $KDEDIR/share/apps/krusader
+   QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
+   // let the user select a file to load
+   QString filename = KFileDialog::getOpenFileName(basedir, i18n(FILE_FILTER), 0, i18n("Select a keymap file"));
+   if ( filename.isEmpty() )
+      return;
+
+   KConfig conf( filename, true /*read only*/, false /*no KDEGlobal*/ );
+   if ( ! conf.hasGroup("Shortcuts") ) {
+      int answer = KMessageBox::warningContinueCancel( this,	//parent
+		i18n("This file does not seem to be a valid keymap.\n"
+			"It may be a keymap using a legacy format. The import can't be undone!"),	//text
+		i18n("Try to import legacy format?"), 	//caption
+		i18n("Import anyway"),	//Label for the continue-button
+		"Confirm Import Legacy Shortcuts"	//dontAskAgainName (for the config-file)
+	);
+      if ( answer == KMessageBox::Continue )
+         importLegacyShortcuts( filename );
+      else
+         return;
+   }
+   else
+      _chooser->syncToConfig( "Shortcuts", &conf, false /* don't delete shortcuts of actions not listed in conf */ );
+}
+
+void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 /*
- * This is Shie's code. It's copied from Kronfigurator's loog&feel page
+ * This is basicaly Shie's code. It's copied from Kronfigurator's loog&feel page and adapted to the dialog
  */
-	// find $KDEDIR/share/apps/krusader
-	QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
-	// let the user select a file to load
-	QString file = KFileDialog::getOpenFileName(basedir, "*.keymap", 0, i18n("Select a shortcuts file"));
-	if (file == QString::null) return;
 	// check if there's an info file with the keymap
 	QFile info(file+".info");
 	if (info.open(IO_ReadOnly)) {
@@ -76,17 +96,42 @@ void KrKeyDialog::slotImportShortcuts() {
 			return;
 	}
 	// ok, import away
+	//TODO once shortcuts are removed from Konfigurator, move the code from this fonction from krusader.cpp here.
 	krApp->importKeyboardShortcuts(file);
-//TODO reload after import!
+	KMessageBox::information( this, // parent
+		i18n("Please restart this dialog in order to see the changes"), // text
+		i18n("Legacy import compleated") // caption
+		);
 }
 
 void KrKeyDialog::slotExportShortcuts() {
-/*
- * This is Shie's code. It's copied from Kronfigurator's loog&feel page
- */
-	QString file = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a shortcuts file"));
-	if (file == QString::null) return;
-	krApp->exportKeyboardShortcuts(file);
+   QString filename = KFileDialog::getSaveFileName( QString::null, i18n(FILE_FILTER), 0, i18n("Select a keymap file") );
+   if ( filename.isEmpty() )
+      return;
+   QFile f( filename );
+   if ( f.exists() &&
+   		KMessageBox::warningContinueCancel( this, 
+		i18n("File %1 already exists. Are you sure you want to overwrite it?").arg(filename),
+		i18n("Warning"), i18n("Overwrite") )
+	!= KMessageBox::Continue)
+	return;
+   if ( f.open( IO_WriteOnly ) )
+      f.close();
+   else {
+      KMessageBox::error( this, i18n("Can't open %1 for writing!").arg(filename) );
+      return;
+   }
+
+   KConfig conf( filename, false /*read only*/, false /*no KDEGlobal*/ );
+   if ( conf.hasGroup("Shortcuts") )
+      conf.deleteGroup("Shortcuts"); // this prevents merging if the file already contains some shortcuts
+
+   // unfortunately we can't use this function since it only writes the actions which are different from default.
+   //krApp->actionCollection()->writeShortcutSettings( "Shortcuts", &conf );
+   KActionShortcutList list( krApp->actionCollection() );
+   list.writeSettings( "Shortcuts", &conf, true /* write all actions */ );
+   // That does KActionShortcutList::writeSettings for us
+   //conf.sync(); // write back all changes
 }
 
 #include "krkeydialog.moc"
