@@ -1,3 +1,7 @@
+    ADDED: TerminalEmulator: Ctrl+Shift+Up/Down always focus/unfocus TE
+           independently whether the command line is shown or not
+    ADDED: TerminalEmulator: if the command line is hidden, TE receives Ctrl+Up / 
+           Ctrl+Down (thanks to Vaclav Juza)
     ADDED: Pimped KDE's KeyDialog in order to provide import/export abilities
     ADDED: UserAction: Outputcollectionwindow can now save the buffer
     ADDED: UserAction: Outputcollection now supports fonts with fixed or
@@ -38,6 +42,7 @@
     CHANGED: UserActions are now managed with ActionMan. In Konfigurator
            you can change settings _about_ useractions.
 
+    FIXED: TerminalEmulator didn't hide for all shortcuts
     FIXED: Konfigurator layout: should fit into 800x600 again
     FIXED: KeyDialog: alternative shortcuts are ex-/imported as well
     FIXED: KeyDialog: canceling the dialog undoes import

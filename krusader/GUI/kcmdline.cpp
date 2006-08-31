@@ -210,8 +210,15 @@ void KrHistoryCombo::keyPressEvent( QKeyEvent *e ) {
          }
          KHistoryCombo::keyPressEvent(e);
          break;
+      case Key_Down:
+         if (e->state()  == ( ControlButton | ShiftButton ) ) {
+            MAIN_VIEW->focusTerminalEmulator();
+            return;
+         } else
+            KHistoryCombo::keyPressEvent(e);
+         break;
       case Key_Up:
-         if (e->state() == ControlButton) {
+         if (e->state() == ControlButton || e->state() == ( ControlButton | ShiftButton ) ) {
             emit returnToPanel();
             return;
          }

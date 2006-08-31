@@ -137,7 +137,7 @@ void KrusaderView::slotCurrentChanged( QString p ) {
 }
 
 void KrusaderView::cmdLineFocus() {  // command line receive's keyboard focus
-  cmdLine->setFocus();
+    cmdLine->setFocus();
 }
 
 void KrusaderView::cmdLineUnFocus() { // return focus to the active panel
@@ -242,6 +242,13 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
   }
 }
 
+void KrusaderView::focusTerminalEmulator()
+{
+  if ( MAIN_VIEW->terminal_dock->isVisible() && MAIN_VIEW->konsole_part && MAIN_VIEW->konsole_part->widget() )
+    MAIN_VIEW->konsole_part->widget()->setFocus();
+}
+
+
 bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
   if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
@@ -269,6 +276,14 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
         QApplication::sendEvent( konsole_part->widget(), &keyEvent );
         return true;
       }
+    } else if( ( ke->key() ==  Key_Down ) && ( ke->state() == ControlButton ) ) {
+      if( cmdLine->isVisible() )
+        cmdLine->setFocus();
+      return true;
+    } else if( ( ( ke->key() ==  Key_Up ) && ( ke->state()  == ControlButton ) ) || 
+               ( ke->state()  == ( ControlButton | ShiftButton ) ) ) {
+      ACTIVE_PANEL->slotFocusOnMe();
+      return true;
     }
   }
   return false;

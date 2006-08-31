@@ -63,6 +63,7 @@ public:
   void start(QStringList leftTabs, int leftActiveTab, QStringList rightTabs, int rightActiveTab);
   void cmdLineFocus();  // command line receive's keyboard focus
   void cmdLineUnFocus();// return focus from command line to active panel
+  void focusTerminalEmulator();
   inline PanelManager *activeManager() const { return (activePanel==left ? leftMng : rightMng); }
   inline PanelManager *inactiveManager() const { return (activePanel==left ? rightMng : leftMng); }
   QValueList<int> getTerminalEmulatorSplitterSizes();

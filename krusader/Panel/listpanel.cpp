@@ -898,9 +898,11 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
             if ( MAIN_VIEW->cmdLine->isVisible() )
                MAIN_VIEW->cmdLineFocus();
-            else if ( MAIN_VIEW->terminal_dock->isVisible() )
-              MAIN_VIEW->terminal_dock->setFocus();
+            else 
+               MAIN_VIEW->focusTerminalEmulator();
             return ;
+         } else if ( e->state() == ( ControlButton | ShiftButton ) ) { // give the keyboard focus to TE
+           MAIN_VIEW->focusTerminalEmulator();
          } else
             e->ignore();
          break;

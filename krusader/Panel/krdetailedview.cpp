@@ -839,7 +839,7 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
          } else KListView::keyPressEvent(e);
          break;
          case Key_Down :
-         if ( e->state() == ControlButton ) { // let the panel handle it - jump to command line
+         if ( e->state() == ControlButton || e->state() == ( ControlButton | ShiftButton ) ) { // let the panel handle it - jump to command line
             e->ignore();
             break;
          } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()){
