@@ -36,7 +36,6 @@ KgWelcome::KgWelcome( bool first, QWidget* parent,  const char* name ) :
 {
   QGridLayout *kgWelcomeLayout = new QGridLayout( parent );
   kgWelcomeLayout->setSpacing( 6 );
-  kgWelcomeLayout->setMargin( 11 );
 
   QString pix=KGlobal::dirs()->findResource("appdata","konfig_small.jpg");
   QPixmap image0( pix );

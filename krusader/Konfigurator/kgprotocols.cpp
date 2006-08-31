@@ -56,7 +56,6 @@ KgProtocols::KgProtocols( bool first, QWidget* parent,  const char* name ) :
 {
   QGridLayout *KgProtocolsLayout = new QGridLayout( parent );
   KgProtocolsLayout->setSpacing( 6 );
-  KgProtocolsLayout->setMargin( 11 );
 
   //  -------------------------- LINK VIEW ----------------------------------
   

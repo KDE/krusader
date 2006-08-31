@@ -45,7 +45,6 @@ if( first )
 
   QGridLayout *kgGeneralLayout = new QGridLayout( parent );
   kgGeneralLayout->setSpacing( 6 );
-  kgGeneralLayout->setMargin( 11 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 

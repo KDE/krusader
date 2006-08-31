@@ -42,7 +42,7 @@ KgUserActions::KgUserActions( bool first, QWidget* parent,  const char* name ) :
   KonfiguratorPage( first, parent, name )
 {
    QGridLayout *kgUserActionLayout = new QGridLayout( parent, 2, 1,
-   		11 /* margin */, 6 /* spacing */, "kgUserActionLayout" );
+   		0 /* margin */, 6 /* spacing */, "kgUserActionLayout" );
 
    // ============= Info Group =============
    QGroupBox *InfoGroup = createFrame( i18n( "Information" ), parent, "kgUserActionInfoGroup" );

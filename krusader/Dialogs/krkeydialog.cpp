@@ -116,6 +116,8 @@ void KrKeyDialog::slotExportShortcuts() {
 	!= KMessageBox::Continue)
 	return;
    if ( f.open( IO_WriteOnly ) )
+      // This is the only way to detect if the file is writable since we don't get feetback from KConfig's sync
+      // Additionaly this prevents merging if the file already contains some shortcuts
       f.close();
    else {
       KMessageBox::error( this, i18n("Can't open %1 for writing!").arg(filename) );
@@ -123,8 +125,6 @@ void KrKeyDialog::slotExportShortcuts() {
    }
 
    KConfig conf( filename, false /*read only*/, false /*no KDEGlobal*/ );
-   if ( conf.hasGroup("Shortcuts") )
-      conf.deleteGroup("Shortcuts"); // this prevents merging if the file already contains some shortcuts
 
    // unfortunately we can't use this function since it only writes the actions which are different from default.
    //krApp->actionCollection()->writeShortcutSettings( "Shortcuts", &conf );

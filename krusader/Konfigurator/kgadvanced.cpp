@@ -42,7 +42,6 @@ KgAdvanced::KgAdvanced( bool first, QWidget* parent,  const char* name ) :
 {
   QGridLayout *kgAdvancedLayout = new QGridLayout( parent );
   kgAdvancedLayout->setSpacing( 6 );
-  kgAdvancedLayout->setMargin( 11 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
   

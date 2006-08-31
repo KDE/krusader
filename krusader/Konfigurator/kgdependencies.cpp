@@ -45,7 +45,6 @@ KgDependencies::KgDependencies( bool first, QWidget* parent,  const char* name )
 {
   QGridLayout *kgDependenciesLayout = new QGridLayout( parent );
   kgDependenciesLayout->setSpacing( 6 );
-  kgDependenciesLayout->setMargin( 11 );
 
   //  ---------------------------- GENERAL TAB -------------------------------------
   tabWidget = new QTabWidget( parent, "tabWidget" );

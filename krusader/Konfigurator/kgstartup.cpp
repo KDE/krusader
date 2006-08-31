@@ -41,7 +41,6 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 {
   QGridLayout *kgStartupLayout = new QGridLayout( parent );
   kgStartupLayout->setSpacing( 6 );
-  kgStartupLayout->setMargin( 11 );
 
   //  --------------------------- PANELS GROUPBOX ----------------------------------
 

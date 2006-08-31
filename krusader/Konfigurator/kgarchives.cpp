@@ -45,7 +45,6 @@ KgArchives::KgArchives( bool first, QWidget* parent,  const char* name ) :
 {
   QGridLayout *kgArchivesLayout = new QGridLayout( parent );
   kgArchivesLayout->setSpacing( 6 );
-  kgArchivesLayout->setMargin( 11 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 

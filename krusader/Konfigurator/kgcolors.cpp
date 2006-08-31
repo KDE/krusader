@@ -45,7 +45,6 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
 {
   QGridLayout *kgColorsLayout = new QGridLayout( parent );
   kgColorsLayout->setSpacing( 6 );
-  kgColorsLayout->setMargin( 5 );
 
   //  -------------------------- GENERAL GROUPBOX ----------------------------------
 

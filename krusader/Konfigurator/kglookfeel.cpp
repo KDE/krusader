@@ -47,17 +47,18 @@
 #define PAGE_TOOLBAR       2
 #define PAGE_KEYBINDINGS   3
 #define PAGE_PANELTOOLBAR  4
+#define PAGE_MOUSE  4
 
 KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
 {
   QGridLayout *kgLookAndFeelLayout = new QGridLayout( parent );
   kgLookAndFeelLayout->setSpacing( 6 );
-  kgLookAndFeelLayout->setMargin( 11 );
 
-  //  ---------------------------- GENERAL TAB -------------------------------------
+  //======== END TAB-WIDGET ================
   tabWidget = new QTabWidget( parent, "tabWidget" );
 
+  //  ---------------------------- GENERAL TAB -------------------------------------
   QWidget *tab = new QWidget( tabWidget, "tab" );
   tabWidget->insertTab( tab, i18n( "Operation" ) );
 
@@ -88,37 +89,10 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   cbs = createCheckBoxGroup( 2, 0, settings, 14, lookFeelGrp, 0, PAGE_OPERATION );
   lookFeelGrid->addWidget( cbs, 0, 0 );
   connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
+  slotDisable();
 
-  lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep1" ), 1, 0 );
-  
-  addLabel( lookFeelGrid, 7, 0, i18n( "Single click / Double click Selection:" ),
-            lookFeelGrp, "lookAndFeelLabel0" );
-
-   KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
-  //          name                                               value  tooltip
-    {{ i18n( "Double-click selects (classic)" ),                   "0", i18n( "A single click on a file will select and focus, a double click opens the file or steps into the directory." ) },
-     { i18n( "Obey KDE's global selection policy" ),               "1", i18n( "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> Mouse</i></p>" ) }};    
-  KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, lookFeelGrp, "myLook&FeelRadio0", true, PAGE_OPERATION );
-  lookFeelGrid->addWidget( clickRadio, 8, 0 );
-  
-  
-  lookFeelGrid->addWidget( createLine( lookFeelGrp, "lookSep2" ), 9, 0 );
-  
-  addLabel( lookFeelGrid, 10, 0, i18n( "Mouse Selection Mode:" ),
-            lookFeelGrp, "lookAndFeelLabel4" );
-  KONFIGURATOR_NAME_VALUE_TIP mouseSelection[] =
-  //            name                 value  tooltip
-    {{ i18n( "Krusader Mode" ),        "0", i18n( "Both keys allow selecting files. To select more than one file, hold the Ctrl key and click the left mouse button. Right-click menu is invoked using a short click on the right mouse button." ) },
-     { i18n( "Konqueror Mode" ),       "1", i18n( "Pressing the left mouse button selects files - you can click and select multiple files. Right-click menu is invoked using a short click on the right mouse button." ) },    
-     { i18n( "Total-Commander Mode" ), "2", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection. The right mouse button selects multiple files and the right-click menu is invoked by pressing and holding the right mouse button." ) },
-	  { i18n( "Custom Selection Mode" ),       "3", i18n( "Design your own selection mode!" ) }};
- mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection",
-      "0", 1, 0, mouseSelection, 4, lookFeelGrp, "myLook&FeelRadio", true, PAGE_OPERATION );
-  lookFeelGrid->addWidget( mouseRadio, 11, 0 );
-  connect(mouseRadio, SIGNAL(clicked(int)), this, SLOT(slotSelectionModeChanged(int)));
-	
   lookAndFeelLayout->addWidget( lookFeelGrp, 0, 0 );
-  
+
   //  ---------------------------- PANEL TAB -------------------------------------
   tab_panel = new QWidget( tabWidget, "tab_panel" );
   tabWidget->insertTab( tab_panel, i18n( "Panel" ) );
@@ -235,8 +209,53 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   // Enable panel toolbar checkboxes
   slotEnablePanelToolbar();
 
-  slotDisable();
+  //  -------------------------- Mouse TAB ----------------------------------
+  QWidget *tab_mouse = new QWidget( tabWidget, "tab_mouse" );
+  tabWidget->insertTab( tab_mouse, i18n( "Mouse mode" ) );
+  QGridLayout *mouseLayout = new QGridLayout( tab_mouse );
+  mouseLayout->setSpacing( 6 );
+  mouseLayout->setMargin( 11 );
 
+  QGroupBox *mouseGeneralGroup = createFrame( i18n( "General" ), tab_mouse, "mouseGeneralGroup" );
+  QGridLayout *mouseGeneralGrid = createGridLayout( mouseGeneralGroup->layout() );
+  mouseGeneralGrid->setSpacing( 0 );
+  mouseGeneralGrid->setMargin( 5 );
+
+  KONFIGURATOR_NAME_VALUE_TIP mouseSelection[] =
+    {
+    	//     name           value          tooltip
+    	{ i18n( "Krusader Mode" ), "0", i18n( "Both keys allow selecting files. To select more than one file, hold the Ctrl key and click the left mouse button. Right-click menu is invoked using a short click on the right mouse button." ) },
+     	{ i18n( "Konqueror Mode" ), "1", i18n( "Pressing the left mouse button selects files - you can click and select multiple files. Right-click menu is invoked using a short click on the right mouse button." ) },
+     	{ i18n( "Total-Commander Mode" ), "2", i18n( "The left mouse button does not select, but sets the current file without affecting the current selection. The right mouse button selects multiple files and the right-click menu is invoked by pressing and holding the right mouse button." ) },
+     	{ i18n( "Custom Selection Mode" ), "3", i18n( "Design your own selection mode!" ) }
+     };
+  mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection", "0", 2, 2, mouseSelection, 4, mouseGeneralGroup, "myLook&FeelRadio", true, PAGE_MOUSE );
+  mouseGeneralGrid->addWidget( mouseRadio, 0, 0 );
+  connect(mouseRadio, SIGNAL(clicked(int)), this, SLOT(slotSelectionModeChanged(int)));
+
+  mouseLayout->addMultiCellWidget( mouseGeneralGroup, 0,0, 0,1 );
+
+  QGroupBox *mouseDetailGroup = createFrame( i18n( "Details" ), tab_mouse, "mouseDetailGroup" );
+  QGridLayout *mouseDetailGrid = createGridLayout( mouseDetailGroup->layout() );
+
+   KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
+    {
+    	//          name            value            tooltip
+    	{ i18n( "Double-click selects (classic)" ), "0", i18n( "A single click on a file will select and focus, a double click opens the file or steps into the directory." ) },
+    	{ i18n( "Obey KDE's global selection policy" ), "1", i18n( "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> Mouse</i></p>" ) }
+    };
+  KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, mouseDetailGroup, "myLook&FeelRadio0", true, PAGE_MOUSE );
+  mouseDetailGrid->addWidget( clickRadio, 0, 0 );
+  mouseDetailGrid->addItem( new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding ), 1,0 );
+
+  mouseLayout->addWidget( mouseDetailGroup, 1,0 );
+
+  QGroupBox *mousePreviewGroup = createFrame( i18n( "Preview" ), tab_mouse, "mousePreviewGroup" );
+  QGridLayout *mousePreviewGrid = createGridLayout( mousePreviewGroup->layout() );
+  // TODO preview
+  mouseLayout->addWidget( mousePreviewGroup, 1,1 );
+
+  //======== END TAB-WIDGET ================
   kgLookAndFeelLayout->addWidget( tabWidget, 0, 0 );
 }
 
