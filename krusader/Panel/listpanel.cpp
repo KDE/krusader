@@ -865,7 +865,6 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          		if (vf && vf->vfile_isDir()) SLOTS->newTab(vf->vfile_getUrl());
          	} else {
 					SLOTS->insertFileName( ( e->state() & ShiftButton ) != 0 );
-					MAIN_VIEW->cmdLine->setFocus();
             }
          } else e->ignore();
          break;

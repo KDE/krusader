@@ -268,10 +268,22 @@ void KRslots::insertFileName(bool full_path)
     filename = path+filename;
   }
 
-  QString current = MAIN_VIEW->cmdLine->text();
-  if( current.length() != 0 && !current.endsWith( " " ) )
-    current += " ";
-  MAIN_VIEW->cmdLine->setText( current + filename );
+  filename = KrServices::quote( filename );
+
+  if(MAIN_VIEW->cmdLine->isVisible() || !MAIN_VIEW->konsole_part || !MAIN_VIEW->konsole_part->widget() ||
+    !MAIN_VIEW->konsole_part->widget()->isVisible() ){
+    QString current = MAIN_VIEW->cmdLine->text();
+    if( current.length() != 0 && !current.endsWith( " " ) )
+      current += " ";
+    MAIN_VIEW->cmdLine->setText( current + filename );
+	MAIN_VIEW->cmdLine->setFocus();
+  }
+  else if(MAIN_VIEW->konsole_part){
+    filename = QString( " " ) + filename + QString( " " );
+    QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0,  filename);
+    QApplication::sendEvent( MAIN_VIEW->konsole_part->widget(), &keyEvent );
+    MAIN_VIEW->konsole_part->widget()->setFocus();
+  }
 }
 
 // directory list functions
