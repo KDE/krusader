@@ -32,6 +32,7 @@
 #include <qwhatsthis.h> 
 #include <kstatusbar.h>
 #include <kmenubar.h>
+#include <kshortcut.h>
 // Krusader includes
 #include "krusaderview.h"
 #include "krusader.h"
@@ -244,6 +245,13 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
 bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
   if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
     QKeyEvent *ke = (QKeyEvent *)e;
+    KKey pressedKey( ke );
+
+    if( Krusader::actToggleTerminal->shortcut().contains( pressedKey ) ) {
+        Krusader::actToggleTerminal->activate();
+        return true;
+    }
+
     if( ( ke->key() == Key_Enter || ke->key() == Key_Return ) && ( ke->state() & ControlButton ) ) {
 
       QString filename = ACTIVE_PANEL->view->getCurrentItem();
