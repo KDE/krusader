@@ -210,6 +210,7 @@ ListPanel::ListPanel( QWidget *parent, bool &left, const char *name ) :
       ( origin, i18n( "Use superb KDE file dialog to choose location. " ) );
    origin->setShowLocalProtocol( false );
    origin->lineEdit() ->setURLDropsEnabled( true );
+   origin->lineEdit() ->installEventFilter( this );
    QWhatsThis::add
       ( origin->lineEdit(), i18n( "Name of directory where you are. You can also "
                                   "enter name of desired location to move there. "
@@ -346,6 +347,19 @@ ListPanel::~ListPanel() {
    delete syncBrowseButton;
    delete layout;
 }
+
+bool ListPanel::eventFilter ( QObject * watched, QEvent * e ) {
+	if( e->type() == QEvent::KeyPress && origin->lineEdit() == watched ) {
+		QKeyEvent *ke = (QKeyEvent *)e;
+		
+		if( ( ke->key() ==  Key_Down ) && ( ke->state() == ControlButton ) ) {
+			slotFocusOnMe();
+			return true;
+		}
+	}
+	return false;
+}
+
 
 void ListPanel::togglePanelPopup() {
 	if (popup->isHidden()) {
@@ -908,6 +922,11 @@ void ListPanel::keyPressEvent( QKeyEvent *e ) {
          break;
 
 			case Key_Up :
+          if ( e->state() == ControlButton ) { // give the keyboard focus to the command line
+            origin->lineEdit()->setFocus();
+            return ;
+          } else
+             e->ignore();
 			break;
 
          default:

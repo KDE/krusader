@@ -132,6 +132,7 @@ protected:
    virtual void keyPressEvent( QKeyEvent *e );
    virtual void showEvent( QShowEvent * );
    virtual void hideEvent( QHideEvent * );
+   virtual bool eventFilter ( QObject * watched, QEvent * e );
 
 protected slots:
    void handleDropOnView(QDropEvent *, QWidget *destWidget=0); // handles drops on the view only

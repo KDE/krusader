@@ -827,7 +827,10 @@ void KrDetailedView::keyPressEvent( QKeyEvent * e ) {
    }
    switch ( e->key() ) {
          case Key_Up :
-			if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
+         if ( e->state() == ControlButton ) { // let the panel handle it - jump to the Location Bar
+            e->ignore();
+            break;
+         } else if (!KrSelectionMode::getSelectionHandler()->useQTSelection()) {
             QListViewItem * i = currentItem();
             if ( !i ) break;
             if ( e->state() == ShiftButton ) setSelected( i, !i->isSelected() );
