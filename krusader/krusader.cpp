@@ -137,6 +137,7 @@ KAction *Krusader::actBack = 0;
 KAction *Krusader::actRoot = 0;
 KAction *Krusader::actFind = 0;
 KAction *Krusader::actLocate = 0;
+KAction *Krusader::actSwitchFullScreenTE = 0;
 //KAction *Krusader::actAddBookmark = 0;
 KAction *Krusader::actSavePosition = 0;
 KAction *Krusader::actSelectColorMask = 0;
@@ -699,6 +700,8 @@ void Krusader::setupActions() {
 					SLOTS, SLOT( slotJumpBack() ), actionCollection(), "jump_back");
 	actSetJumpBack = new KAction( i18n("Set jump back point here"), "kr_setjumpback", CTRL+SHIFT+Key_J,
 					SLOTS, SLOT( slotSetJumpBack() ), actionCollection(), "set_jump_back");
+	actSwitchFullScreenTE = new KAction( i18n( "Toggle fullscreen terminal emulator" ), 0, CTRL + Key_F,
+                                         MAIN_VIEW, SLOT( switchFullScreenTE() ), actionCollection(), "switch_fullscreen_te" );
    
    // and at last we can set the tool-tips
    actSelect->setToolTip( i18n( "Select files using a filter" ) );

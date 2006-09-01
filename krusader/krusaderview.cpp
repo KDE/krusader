@@ -159,7 +159,7 @@ void KrusaderView::slotTerminalEmulator( bool show ) {
 
   if ( !show ) {  // hiding the terminal
     activePanel->slotFocusOnMe();
-    if( terminal_dock->isVisible() )
+    if( terminal_dock->isVisible() && !fullscreen )
       verticalSplitterSizes = vert_splitter->sizes();
 
     // BUGFIX: when the terminal emulator is toggled on, first it is shown in minimum size
@@ -248,6 +248,17 @@ void KrusaderView::focusTerminalEmulator()
     MAIN_VIEW->konsole_part->widget()->setFocus();
 }
 
+void KrusaderView::switchFullScreenTE()
+{
+  if( terminal_dock->isVisible() && konsole_part && konsole_part->widget() && konsole_part->widget()->isVisible() ) {
+    KConfigGroup grp(krConfig, "Look&Feel");
+    bool fullscreen=grp.readBoolEntry("Fullscreen Terminal Emulator", false);
+    slotTerminalEmulator( false );
+    grp.writeEntry("Fullscreen Terminal Emulator", !fullscreen);
+    slotTerminalEmulator( true );
+  }
+}
+
 
 bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
   if( e->type() == QEvent::KeyPress && konsole_part && konsole_part->widget() == watched ) {
@@ -259,11 +270,16 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
         return true;
     }
 
-    if( ( ke->key() == Key_Enter || ke->key() == Key_Return ) && ( ke->state() & ControlButton ) ) {
+    if( Krusader::actSwitchFullScreenTE->shortcut().contains( pressedKey ) ) {
+        Krusader::actSwitchFullScreenTE->activate();
+        return true;
+    }
+
+    if( ( ke->key() == Key_Enter || ke->key() == Key_Return ) && ( ( ke->state() & ~ShiftButton ) == ControlButton ) ) {
 
       QString filename = ACTIVE_PANEL->view->getCurrentItem();
       if( filename == QString::null || filename == ".." )
-        return (ke->state() == ControlButton || ke->state() == (ShiftButton | ControlButton) );
+        return true;
       if( ke->state() & ShiftButton ) {
         QString path=vfs::pathOrURL( ACTIVE_FUNC->files()->vfs_getOrigin(), 1 );
         filename = path+filename;
@@ -271,11 +287,9 @@ bool KrusaderView::eventFilter ( QObject * watched, QEvent * e ) {
 
       filename = KrServices::quote( filename );
 
-      if( ( ke->state() & ~ShiftButton ) == ControlButton ) {
-        QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0, QString( " " ) + filename + QString( " " ));
-        QApplication::sendEvent( konsole_part->widget(), &keyEvent );
-        return true;
-      }
+      QKeyEvent keyEvent( QEvent::KeyPress, 0, -1, 0, QString( " " ) + filename + QString( " " ));
+      QApplication::sendEvent( konsole_part->widget(), &keyEvent );
+      return true;
     } else if( ( ke->key() ==  Key_Down ) && ( ke->state() == ControlButton ) ) {
       if( cmdLine->isVisible() )
         cmdLine->setFocus();

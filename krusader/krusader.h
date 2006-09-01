@@ -125,7 +125,7 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
 	 QueueManager *queueManager;
     // Actions
     static KAction *actProperties, *actPack, *actUnpack, *actTest, *actCompare, *actCmdlinePopup;
-    static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate;
+    static KAction *actCalculate, *actSelect, *actUnselect, *actSelectAll, *actLocate, *actSwitchFullScreenTE;
     static KAction *actUnselectAll, *actInvert, *actSync, *actDiskUsage, *actSavePosition, *actCompDirs;
     static KAction *actHomeTerminal, *actFTPConnect, *actFTPNewConnect, *actFTPDisconnect, *actProfiles;
     static KAction *actExecFilter, *actCustomFilter, *actMountMan, *actNewTool, *actSwapPanels, *actSwapSides;
