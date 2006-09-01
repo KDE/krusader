@@ -700,7 +700,7 @@ void Krusader::setupActions() {
 					SLOTS, SLOT( slotJumpBack() ), actionCollection(), "jump_back");
 	actSetJumpBack = new KAction( i18n("Set jump back point here"), "kr_setjumpback", CTRL+SHIFT+Key_J,
 					SLOTS, SLOT( slotSetJumpBack() ), actionCollection(), "set_jump_back");
-	actSwitchFullScreenTE = new KAction( i18n( "Toggle fullscreen terminal emulator" ), 0, CTRL + Key_F,
+	actSwitchFullScreenTE = new KAction( i18n( "Toggle fullwidget terminal emulator" ), 0, CTRL + Key_F,
                                          MAIN_VIEW, SLOT( switchFullScreenTE() ), actionCollection(), "switch_fullscreen_te" );
    
    // and at last we can set the tool-tips
