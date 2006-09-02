@@ -100,7 +100,7 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 	krApp->importKeyboardShortcuts(file);
 	KMessageBox::information( this, // parent
 		i18n("Please restart this dialog in order to see the changes"), // text
-		i18n("Legacy import compleated") // caption
+		i18n("Legacy import completed") // caption
 		);
 }
 
