@@ -371,6 +371,9 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 }
 
 Krusader::~Krusader() {
+   if( !isExiting )   // save the settings if it was not saved (SIGTERM)
+      saveSettings();
+
    delete mainView;
    delete queueManager;
    mainView = 0;

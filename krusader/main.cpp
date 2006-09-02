@@ -63,10 +63,7 @@ static KCmdLineOptions options[] =
 static void sigterm_handler(int i)
 {
   fprintf(stderr,"Signal: %d\n",i);
-  Krusader * krusader = Krusader::App;
-  if( krusader != 0 )
-    krusader->saveSettings();
- 
+
   QApplication::eventLoop()->wakeUp();
   KApplication::exit( - 15 );
 }
