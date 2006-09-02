@@ -134,7 +134,7 @@ void KrActionProcDlg::slotUser1() {
    int answer = KMessageBox::Yes;
    if ( file.exists() )
       answer = KMessageBox::warningYesNoCancel( this,	//parent
-      		i18n("This file already Exists.\nDo you want to overwrite it or append the output?"),	//text
+      		i18n("This file already exists.\nDo you want to overwrite it or append the output?"),	//text
       		i18n("Overwrite or append?"),	//caption
       		i18n("Overwrite"),	//label for Yes-Button
       		i18n("Append")	//label for No-Button
@@ -195,7 +195,7 @@ void KrActionProc::start( QStringList cmdLineList ) {
       _proc->setWorkingDirectory( _action->startpath() );
 
    if ( _action->execType() == KrAction::Terminal && cmdLineList.count() > 1)
-      KMessageBox::sorry( 0, "Support for more then one command doesn't work in a terminal. Only the first is executed in the terminal" );
+      KMessageBox::sorry( 0, "Support for more than one command doesn't work in a terminal. Only the first is executed in the terminal" );
 
    if ( _action->execType() != KrAction::CollectOutput && _action->execType() != KrAction::CollectOutputSeparateStderr ) {
       //TODO option to run them in paralell (not available for: collect output)
