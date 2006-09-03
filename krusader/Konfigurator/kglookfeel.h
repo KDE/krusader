@@ -32,11 +32,6 @@
 #define __KGLOOKFEEL_H__
 
 #include "konfiguratorpage.h"
-#include <kedittoolbar.h>
-#include <kkeydialog.h>
-
-class KonfiguratorEditToolbarWidget;
-class KonfiguratorKeyChooser;
 
 class KgLookFeel : public KonfiguratorPage
 {
@@ -55,103 +50,18 @@ protected:
   
   QWidget     *tab_panel;
   
-  QGridLayout *toolBarLayout;
-  QWidget     *tab_2;
-  QGridLayout *keyBindingsLayout;
-  QWidget     *tab_3;
+//   QGridLayout *toolBarLayout;
+//   QWidget     *tab_2;
+//   QGridLayout *keyBindingsLayout;
+//   QWidget     *tab_3;
 
 protected slots:
-  void slotReload( KonfiguratorEditToolbarWidget * oldEditToolbar );
-  void slotReload( KonfiguratorKeyChooser * oldChooser );
   void slotDisable();
   void slotEnablePanelToolbar();
-  void slotImportShortcuts();
-  void slotExportShortcuts();
   void slotSelectionModeChanged(int mode);
   
 private:
-  KonfiguratorKeyChooser *keyBindings;
   QTabWidget *tabWidget;
-};
-
-class KonfiguratorEditToolbarWidget : public KonfiguratorExtension
-{
-  Q_OBJECT
-
-public:
-  KonfiguratorEditToolbarWidget( KXMLGUIFactory *factory, QWidget *parent, bool restart=false, int pg=FIRST_PAGE ) :
-    KonfiguratorExtension( this, QString(), QString(), restart, pg )
-  {
-    editToolbar = new KEditToolbarWidget( factory, parent );
-    connect( editToolbar, SIGNAL( enableOk( bool ) ), this, SLOT( setChanged() ) );
-  }
-
-  ~KonfiguratorEditToolbarWidget()
-  {
-    delete editToolbar;
-  }
-  
-  KEditToolbarWidget *editToolbarWidget() { return editToolbar; }
-
-  virtual bool apply()
-  {
-    if( !changed )
-      return false;
-    editToolbar->save();
-    setChanged( false );
-    return restartNeeded;
-  }
-  
-  virtual void setDefaults()      { if( changed ) emit reload( this ); }
-  virtual void loadInitialValue() { if( changed ) emit reload( this ); }
-
-signals:
-  void reload( KonfiguratorEditToolbarWidget * );
-  
-private:  
-  KEditToolbarWidget *editToolbar;
-};
-
-class KonfiguratorKeyChooser : public KonfiguratorExtension
-{
-  Q_OBJECT
-  
-public:
-  KonfiguratorKeyChooser( KActionCollection *actColl, QWidget *parent, bool restart=false, int pg=FIRST_PAGE  ) :
-    KonfiguratorExtension( this, QString(), QString(), restart, pg )
-  {
-    keyChooser = new KKeyChooser( actColl, parent );
-    connect( keyChooser, SIGNAL( keyChange() ), this, SLOT( setChanged() ) );
-  }
-
-  ~KonfiguratorKeyChooser()
-  {
-    delete keyChooser;
-  }
-  
-  KKeyChooser *keyChooserWidget() { return keyChooser; }
-
-  virtual bool apply()
-  {
-    if( !changed )
-      return false;
-    keyChooser->save();
-    setChanged( false );
-    return restartNeeded;
-  }
-
-  virtual void setDefaults()      
-  {
-    keyChooser->allDefault();
-  }
-  
-  virtual void loadInitialValue() { if( changed ) emit reload( this ); }
-
-signals:
-  void reload( KonfiguratorKeyChooser * );
-
-private:
-  KKeyChooser *keyChooser;
 };
 
 #endif /* __KGLOOKFEEL_H__ */

@@ -44,10 +44,8 @@
 
 #define PAGE_OPERATION     0
 #define PAGE_PANEL         1
-#define PAGE_TOOLBAR       2
-#define PAGE_KEYBINDINGS   3
-#define PAGE_PANELTOOLBAR  4
-#define PAGE_MOUSE  4
+#define PAGE_PANELTOOLBAR  2
+#define PAGE_MOUSE  3
 
 KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
       KonfiguratorPage( first, parent, name )
@@ -55,7 +53,7 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *kgLookAndFeelLayout = new QGridLayout( parent );
   kgLookAndFeelLayout->setSpacing( 6 );
 
-  //======== END TAB-WIDGET ================
+  //======== START TAB-WIDGET ================
   tabWidget = new QTabWidget( parent, "tabWidget" );
 
   //  ---------------------------- GENERAL TAB -------------------------------------
@@ -135,37 +133,6 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   panelGrid->addWidget( panelSett, 3, 0 );
   
   panelLayout->addWidget( panelGrp, 0, 0 );
-
-  //  ---------------------------- TOOLBAR TAB -------------------------------------
-  tab_2 = new QWidget( tabWidget, "tab_2" );
-  tabWidget->insertTab( tab_2, i18n( "Toolbar" ) );
-
-  toolBarLayout = new QGridLayout( tab_2 );
-  KonfiguratorEditToolbarWidget *editToolbar = new KonfiguratorEditToolbarWidget(krApp->factory(),tab_2, false, PAGE_TOOLBAR );
-  connect( editToolbar, SIGNAL( reload( KonfiguratorEditToolbarWidget * ) ), this, SLOT( slotReload( KonfiguratorEditToolbarWidget *) ) );
-  toolBarLayout->addWidget(editToolbar->editToolbarWidget(),0,0);
-  registerObject( editToolbar );
-
-  //  -------------------------- KEY-BINDINGS TAB ----------------------------------
-  tab_3 = new QWidget( tabWidget, "tab_3" );
-  tabWidget->insertTab( tab_3, i18n( "Keybindings" ) );
-
-  keyBindingsLayout = new QGridLayout( tab_3 );
-  keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3, false, PAGE_KEYBINDINGS );
-  connect( keyBindings, SIGNAL( reload( KonfiguratorKeyChooser * ) ), this, SLOT( slotReload( KonfiguratorKeyChooser *) ) );
-  keyBindingsLayout->addMultiCellWidget(keyBindings->keyChooserWidget(),0,0,0,2);
-  registerObject( keyBindings );
-  
-  // import and export shortcuts
-  KPushButton *importBtn = new KPushButton(i18n("Import shortcuts"),tab_3);
-  keyBindingsLayout->addWidget(importBtn,1,0);
-  QWhatsThis::add( importBtn, i18n( "Load a keybinding profile, e.g., total_commander.keymap" ) );
-  KPushButton *exportBtn = new KPushButton(i18n("Export shortcuts"),tab_3);
-  keyBindingsLayout->addWidget(exportBtn,1,1);
-  QWhatsThis::add( exportBtn, i18n( "Save current keybindings in a keymap file." ) );
-  keyBindingsLayout->addWidget(createSpacer(tab_3, "tab3spacer"), 1,2);
-  connect(importBtn, SIGNAL(clicked()), this, SLOT(slotImportShortcuts()));
-  connect(exportBtn, SIGNAL(clicked()), this, SLOT(slotExportShortcuts()));
 
   //  -------------------------- Panel Toolbar TAB ----------------------------------
   QWidget     *tab_4 = new QWidget( tabWidget, "tab_4" );
@@ -259,30 +226,6 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   kgLookAndFeelLayout->addWidget( tabWidget, 0, 0 );
 }
 
-void KgLookFeel::slotReload( KonfiguratorKeyChooser * oldChooser )
-{
-  removeObject( oldChooser );
-  delete oldChooser;
-
-  keyBindings = new KonfiguratorKeyChooser(krApp->actionCollection(),tab_3);
-  connect( keyBindings, SIGNAL( reload( KonfiguratorKeyChooser * ) ), this, SLOT( slotReload( KonfiguratorKeyChooser *) ) );
-  keyBindingsLayout->addMultiCellWidget(keyBindings->keyChooserWidget(),0,0,0,2);
-  registerObject( keyBindings );
-  keyBindings->keyChooserWidget()->show();
-}
-
-void KgLookFeel::slotReload( KonfiguratorEditToolbarWidget * oldEditToolbar )
-{
-  removeObject( oldEditToolbar );
-  delete oldEditToolbar;
-
-  KonfiguratorEditToolbarWidget *editToolbar = new KonfiguratorEditToolbarWidget(krApp->factory(),tab_2);
-  connect( editToolbar, SIGNAL( reload( KonfiguratorEditToolbarWidget * ) ), this, SLOT( slotReload( KonfiguratorEditToolbarWidget *) ) );
-  toolBarLayout->addWidget(editToolbar->editToolbarWidget(),0,0);
-  registerObject( editToolbar );
-  editToolbar->editToolbarWidget()->show();
-}
-
 void KgLookFeel::slotDisable()
 {
   bool isNewStyleQuickSearch = cbs->find( "New Style Quicksearch" )->isChecked();
@@ -298,32 +241,6 @@ void KgLookFeel::slotEnablePanelToolbar()
   pnlcbs->find( "Equal Button Visible"    )->setEnabled(enableTB);
   pnlcbs->find( "Open Button Visible"     )->setEnabled(enableTB);  
   pnlcbs->find("SyncBrowse Button Visible")->setEnabled(enableTB);  
-}
-
-void KgLookFeel::slotImportShortcuts() {
-	// find $KDEDIR/share/apps/krusader
-	QString basedir = KGlobal::dirs()->findResourceDir("appdata", "total_commander.keymap");
-	// let the user select a file to load
-	QString file = KFileDialog::getOpenFileName(basedir, "*.keymap", 0, i18n("Select a shortcuts file"));
-	if (file == QString::null) return;
-	// check if there's an info file with the keymap
-	QFile info(file+".info");
-	if (info.open(IO_ReadOnly)) {
-		QTextStream stream(&info);
-		QStringList infoText = QStringList::split("\n", stream.read());
-		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap. Are you sure you want to import this keymap ?"), infoText)!=KMessageBox::Yes)
-			return;
-	}
-	// ok, import away
-	krApp->importKeyboardShortcuts(file);
-	slotReload(keyBindings);	
-	keyBindings->setChanged();
-}
-
-void KgLookFeel::slotExportShortcuts() {
-	QString file = KFileDialog::getSaveFileName(QString::null, "*", 0, i18n("Select a shortcuts file"));
-	if (file == QString::null) return;
-	krApp->exportKeyboardShortcuts(file);
 }
 
 void KgLookFeel::slotSelectionModeChanged(int mode) {
