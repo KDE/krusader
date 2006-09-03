@@ -36,6 +36,7 @@
 #include <klocale.h>
 #include <qwhatsthis.h>
 #include <qvalidator.h>
+#include <qlistview.h>
 #include <kmessagebox.h>
 #include <kfiledialog.h>
 #include <kglobal.h>
@@ -53,46 +54,73 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *kgLookAndFeelLayout = new QGridLayout( parent );
   kgLookAndFeelLayout->setSpacing( 6 );
 
-  //======== START TAB-WIDGET ================
   tabWidget = new QTabWidget( parent, "tabWidget" );
 
-  //  ---------------------------- GENERAL TAB -------------------------------------
-  QWidget *tab = new QWidget( tabWidget, "tab" );
+  setupOperationTab();
+  setupPanelTab();
+  setupPanelToolbarTab();
+  setupMouseModeTab();
+
+  kgLookAndFeelLayout->addWidget( tabWidget, 0, 0 );
+}
+
+// ---------------------------------------------------------------------------------------
+//  ---------------------------- OPERATION TAB -------------------------------------
+// ---------------------------------------------------------------------------------------
+void KgLookFeel::setupOperationTab() {
+  QWidget *tab = new QWidget( tabWidget, "tab_operation" );
   tabWidget->insertTab( tab, i18n( "Operation" ) );
 
   QGridLayout *lookAndFeelLayout = new QGridLayout( tab );
   lookAndFeelLayout->setSpacing( 6 );
   lookAndFeelLayout->setMargin( 11 );
+
+  // -------------- General -----------------
   QGroupBox *lookFeelGrp = createFrame( i18n( "Look && Feel" ), tab, "kgLookAndFeelGrp" );
   QGridLayout *lookFeelGrid = createGridLayout( lookFeelGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM settings[] =
-  //   cfg_class  cfg_name                default             text                              restart tooltip
-    {{"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  i18n( "Display a warning when trying to close the main window." ) },
+    { //   cfg_class  cfg_name                default             text                              restart tooltip
+     {"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  i18n( "Display a warning when trying to close the main window." ) }, // KDE4: move warn on exit to the other confirmations
      {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  i18n( "The icon will appear in the system tray instead of the taskbar, when Krusader is minimized." ) },
      {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  i18n( "When matching the select criteria, directories will also be marked." ) },
      {"Look&Feel","Rename Selects Extension",true,          i18n( "Rename selects extension" ),   false,  i18n( "When renaming a file, the whole text is selected. If you want total-commander like renaming of just the name, without extension, unmark this." ) },
      {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
      {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the folder tabs. By default only the last part of the path is displayed." ) },
-     {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  i18n( "Opens a quick search dialog box." ) },
-     {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
      {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
      {"Look&Feel","Always sort dirs by name",  false, i18n( "Always sort dirs by name"  ), true,  i18n( "Directories are sorted by name, regardless of the sort column.") },
-     {"Look&Feel","Show splashscreen",  _ShowSplashScreen, i18n( "Show splashscreen"  ), false,  i18n( "Display a splashscreen when starting krusader.") },
-     {"Look&Feel","Single Instance Mode", _SingleInstanceMode, i18n( "Single instance mode"  ), false,  i18n( "Only one Krusader instance is allowed to run.") },
      {"Look&Feel","Fullscreen Terminal Emulator", false, i18n( "Fullscreen terminal (mc-style)"  ), false,  i18n( "Terminal is shown instead of the krusader window (full screen).") },
     };
 
-  cbs = createCheckBoxGroup( 2, 0, settings, 14, lookFeelGrp, 0, PAGE_OPERATION );
+  cbs = createCheckBoxGroup( 2, 0, settings, 10 /*count*/, lookFeelGrp, 0, PAGE_OPERATION );
   lookFeelGrid->addWidget( cbs, 0, 0 );
-  connect( cbs->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
-  slotDisable();
 
   lookAndFeelLayout->addWidget( lookFeelGrp, 0, 0 );
 
-  //  ---------------------------- PANEL TAB -------------------------------------
-  tab_panel = new QWidget( tabWidget, "tab_panel" );
+  // -------------- Quicksearch -----------------
+  QGroupBox *quicksearchGroup = createFrame( i18n( "Quicksearch" ), tab, "kgQuicksearchGrp" );
+  QGridLayout *quicksearchGrid = createGridLayout( quicksearchGroup->layout() );
+
+  KONFIGURATOR_CHECKBOX_PARAM quicksearch[] =
+   { //   cfg_class  cfg_name                default             text                              restart tooltip
+     {"Look&Feel","New Style Quicksearch",  _NewStyleQuicksearch, i18n( "New style quicksearch" ), false,  i18n( "Opens a quick search dialog box." ) },
+     {"Look&Feel","Case Sensitive Quicksearch",  _CaseSensitiveQuicksearch, i18n( "Case sensitive quicksearch" ), false,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
+    };
+
+  quicksearchCheckboxes = createCheckBoxGroup( 2, 0, quicksearch, 2 /*count*/, quicksearchGroup, 0, PAGE_OPERATION );
+  quicksearchGrid->addWidget( quicksearchCheckboxes, 0, 0 );
+  connect( quicksearchCheckboxes->find( "New Style Quicksearch" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
+  slotDisable();
+
+  lookAndFeelLayout->addWidget( quicksearchGroup, 1, 0 );
+}
+
+// ----------------------------------------------------------------------------------
+//  ---------------------------- PANEL TAB -------------------------------------
+// ----------------------------------------------------------------------------------
+void KgLookFeel::setupPanelTab() {
+  QWidget* tab_panel = new QWidget( tabWidget, "tab_panel" );
   tabWidget->insertTab( tab_panel, i18n( "Panel" ) );
 
   QGridLayout *panelLayout = new QGridLayout( tab_panel );
@@ -131,10 +159,14 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 0, 2, panelSettings, 2, panelGrp, 0, PAGE_PANEL );
   panelGrid->addWidget( panelSett, 3, 0 );
-  
-  panelLayout->addWidget( panelGrp, 0, 0 );
 
-  //  -------------------------- Panel Toolbar TAB ----------------------------------
+  panelLayout->addWidget( panelGrp, 0, 0 );
+}
+
+// -----------------------------------------------------------------------------------
+//  -------------------------- Panel Toolbar TAB ----------------------------------
+// -----------------------------------------------------------------------------------
+void KgLookFeel::setupPanelToolbarTab() {
   QWidget     *tab_4 = new QWidget( tabWidget, "tab_4" );
   tabWidget->insertTab( tab_4, i18n( "Panel Toolbar" ) );
 
@@ -175,14 +207,19 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
 
   // Enable panel toolbar checkboxes
   slotEnablePanelToolbar();
+}
 
-  //  -------------------------- Mouse TAB ----------------------------------
+// ---------------------------------------------------------------------------
+//  -------------------------- Mouse TAB ----------------------------------
+// ---------------------------------------------------------------------------
+void KgLookFeel::setupMouseModeTab() {
   QWidget *tab_mouse = new QWidget( tabWidget, "tab_mouse" );
   tabWidget->insertTab( tab_mouse, i18n( "Mouse mode" ) );
   QGridLayout *mouseLayout = new QGridLayout( tab_mouse );
   mouseLayout->setSpacing( 6 );
   mouseLayout->setMargin( 11 );
 
+  // -------------- General -----------------
   QGroupBox *mouseGeneralGroup = createFrame( i18n( "General" ), tab_mouse, "mouseGeneralGroup" );
   QGridLayout *mouseGeneralGrid = createGridLayout( mouseGeneralGroup->layout() );
   mouseGeneralGrid->setSpacing( 0 );
@@ -197,13 +234,17 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
      	{ i18n( "Custom Selection Mode" ), "3", i18n( "Design your own selection mode!" ) }
      };
   mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection", "0", 2, 2, mouseSelection, 4, mouseGeneralGroup, "myLook&FeelRadio", true, PAGE_MOUSE );
+  mouseRadio->layout()->setMargin( 0 );
   mouseGeneralGrid->addWidget( mouseRadio, 0, 0 );
   connect(mouseRadio, SIGNAL(clicked(int)), this, SLOT(slotSelectionModeChanged(int)));
 
   mouseLayout->addMultiCellWidget( mouseGeneralGroup, 0,0, 0,1 );
 
+  // -------------- Details -----------------
   QGroupBox *mouseDetailGroup = createFrame( i18n( "Details" ), tab_mouse, "mouseDetailGroup" );
   QGridLayout *mouseDetailGrid = createGridLayout( mouseDetailGroup->layout() );
+  mouseDetailGrid->setSpacing( 0 );
+  mouseDetailGrid->setMargin( 5 );
 
    KONFIGURATOR_NAME_VALUE_TIP singleOrDoubleClick[] =
     {
@@ -212,24 +253,27 @@ KgLookFeel::KgLookFeel( bool first, QWidget* parent,  const char* name ) :
     	{ i18n( "Obey KDE's global selection policy" ), "1", i18n( "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> Mouse</i></p>" ) }
     };
   KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, mouseDetailGroup, "myLook&FeelRadio0", true, PAGE_MOUSE );
+  mouseRadio->layout()->setMargin( 0 );
   mouseDetailGrid->addWidget( clickRadio, 0, 0 );
   mouseDetailGrid->addItem( new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding ), 1,0 );
 
   mouseLayout->addWidget( mouseDetailGroup, 1,0 );
 
+  // -------------- Preview -----------------
   QGroupBox *mousePreviewGroup = createFrame( i18n( "Preview" ), tab_mouse, "mousePreviewGroup" );
   QGridLayout *mousePreviewGrid = createGridLayout( mousePreviewGroup->layout() );
   // TODO preview
-  mouseLayout->addWidget( mousePreviewGroup, 1,1 );
+  mousePreview = new QListView( mousePreviewGroup, "mousePreview" );
+  mousePreviewGrid->addWidget( mousePreview, 0 ,0 );
 
-  //======== END TAB-WIDGET ================
-  kgLookAndFeelLayout->addWidget( tabWidget, 0, 0 );
+  // ------------------------------------------
+  mouseLayout->addWidget( mousePreviewGroup, 1,1 );
 }
 
 void KgLookFeel::slotDisable()
 {
-  bool isNewStyleQuickSearch = cbs->find( "New Style Quicksearch" )->isChecked();
-  cbs->find( "Case Sensitive Quicksearch" )->setEnabled( isNewStyleQuickSearch );
+  bool isNewStyleQuickSearch = quicksearchCheckboxes->find( "New Style Quicksearch" )->isChecked();
+  quicksearchCheckboxes->find( "Case Sensitive Quicksearch" )->setEnabled( isNewStyleQuickSearch );
 }
 
 void KgLookFeel::slotEnablePanelToolbar()

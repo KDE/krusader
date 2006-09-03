@@ -183,7 +183,7 @@ KonfiguratorCheckBoxGroup* KonfiguratorPage::createCheckBoxGroup( int sizex, int
 {
   KonfiguratorCheckBoxGroup *groupWidget = new KonfiguratorCheckBoxGroup( parent, widgetName );
   QGridLayout *layout = new QGridLayout( groupWidget );
-  layout->setSpacing( 11 );
+  layout->setSpacing( 6 );
   layout->setMargin( 0 );
   
   int x = 0, y = 0;
@@ -226,7 +226,7 @@ KonfiguratorRadioButtons* KonfiguratorPage::createRadioButtonGroup( QString cls,
 
   QGridLayout *layout = new QGridLayout( radioWidget->layout() );
   layout->setAlignment( Qt::AlignTop );
-  layout->setSpacing( 11 );
+  layout->setSpacing( 6 );
   layout->setMargin( 0 );
 
   int x = 0, y = 0;

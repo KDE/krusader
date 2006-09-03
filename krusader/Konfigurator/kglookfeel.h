@@ -33,6 +33,8 @@
 
 #include "konfiguratorpage.h"
 
+class QListView;
+
 class KgLookFeel : public KonfiguratorPage
 {
   Q_OBJECT
@@ -44,16 +46,11 @@ public:
 
 protected:
   KonfiguratorCheckBoxGroup *cbs;
+  KonfiguratorCheckBoxGroup* quicksearchCheckboxes;
   KonfiguratorCheckBoxGroup *pnlcbs;
   KonfiguratorCheckBoxGroup *panelToolbarActive;
   KonfiguratorRadioButtons  *mouseRadio;
-  
-  QWidget     *tab_panel;
-  
-//   QGridLayout *toolBarLayout;
-//   QWidget     *tab_2;
-//   QGridLayout *keyBindingsLayout;
-//   QWidget     *tab_3;
+  QListView* mousePreview;
 
 protected slots:
   void slotDisable();
@@ -61,6 +58,10 @@ protected slots:
   void slotSelectionModeChanged(int mode);
   
 private:
+  void setupOperationTab();
+  void setupPanelTab();
+  void setupPanelToolbarTab();
+  void setupMouseModeTab();
   QTabWidget *tabWidget;
 };
 

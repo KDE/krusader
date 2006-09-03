@@ -44,7 +44,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
 
   //  --------------------------- PANELS GROUPBOX ----------------------------------
 
-  QGroupBox *panelsGrp = createFrame( i18n( "Panels" ), parent, "panelsGrp" );
+  QGroupBox *panelsGrp = createFrame( i18n( "General" ), parent, "panelsGrp" );
   QGridLayout *panelsGrid = createGridLayout( panelsGrp->layout() );
 
   QString s = "<p><img src='toolbar|kr_profile'></p>" + i18n( "Defines the panel profile used at startup. A panel profile contains:<ul><li>all the tabs paths</li><li>the current tab</li><li>the active panel</li></ul><b>&lt;Last session&gt;</b> is a special panel profile which is saved automatically when Krusader is closed.");
@@ -59,11 +59,23 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   for(unsigned int i=0; i != profileList.count(); i++ )
     comboItems[ i ].text = comboItems[ i ].value = profileList [ i ];    
   comboItems[ 0 ].value = "";
-      
+
   profileCombo = createComboBox( "Startup", "Starter Profile Name", comboItems[ 0 ].value, comboItems, profileList.count(), panelsGrp, false, false );
   profileCombo->setSizePolicy(  QSizePolicy::Expanding, QSizePolicy::Fixed);
   panelsGrid->addWidget( profileCombo, 0, 1 );
-  
+
+  //------------------------------------------------
+  panelsGrid->addMultiCellWidget( createLine( panelsGrp, "lookSep3" ), 1, 1, 0, 1 );
+
+  KONFIGURATOR_CHECKBOX_PARAM settings[] =
+    { //   cfg_class  cfg_name                default             text                              restart tooltip
+     {"Look&Feel","Show splashscreen",  _ShowSplashScreen, i18n( "Show splashscreen"  ), false,  i18n( "Display a splashscreen when starting krusader.") },
+     {"Look&Feel","Single Instance Mode", _SingleInstanceMode, i18n( "Single instance mode"  ), false,  i18n( "Only one Krusader instance is allowed to run.") }
+    };
+
+  KonfiguratorCheckBoxGroup* cbs = createCheckBoxGroup( 2, 0, settings, 2 /* settings count */, panelsGrp );
+  panelsGrid->addMultiCellWidget( cbs, 2, 2, 0, 1 );
+
   kgStartupLayout->addWidget( panelsGrp, 0, 0 );
 
   //  ------------------------ USERINTERFACE GROUPBOX ------------------------------
@@ -72,8 +84,8 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
   QGridLayout *uiGrid = createGridLayout( uiGrp->layout() );
 
   KONFIGURATOR_CHECKBOX_PARAM uiCheckBoxes[] =
-  //   cfg_class  cfg_name                default               text                                   restart ToolTip
-    {{"Startup","UI Save Settings",      _UiSave,               i18n( "Save settings on exit" ),       false,  i18n( "Check the state of the user interface components and restore them to their condition when last shutdown." ) },
+    { //   cfg_class  cfg_name                default               text                                   restart ToolTip
+     {"Startup","UI Save Settings",      _UiSave,               i18n( "Save settings on exit" ),       false,  i18n( "Check the state of the user interface components and restore them to their condition when last shutdown." ) },
      {"Startup","Show tool bar",         _ShowToolBar,          i18n( "Show toolbar" ),                false,  i18n( "Toolbar will be visible after startup." ) },
      {"Startup","Show status bar",       _ShowStatusBar,        i18n( "Show statusbar" ),              false,  i18n( "Statusbar will be visible after startup." ) },
      {"Startup","Show FN Keys",          _ShowFNkeys,           i18n( "Show function keys" ),          false,  i18n( "Function keys will be visible after startup." ) },
@@ -83,7 +95,7 @@ KgStartup::KgStartup( bool first, QWidget* parent,  const char* name ) :
      {"Startup","Start To Tray",         _StartToTray,          i18n( "Start to tray" ),               false,  i18n( "Krusader starts to tray (if minimize to tray is set), without showing the main window" ) },
     };
 
-  uiCbGroup = createCheckBoxGroup( 1, 0, uiCheckBoxes, 8, uiGrp );
+  uiCbGroup = createCheckBoxGroup( 2, 0, uiCheckBoxes, 8, uiGrp );
   connect( uiCbGroup->find( "UI Save Settings" ), SIGNAL( stateChanged( int ) ), this, SLOT( slotDisable() ) );
 
   uiGrid->addWidget( uiCbGroup, 1, 0 );
