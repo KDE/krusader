@@ -112,20 +112,4 @@ private:
   QDate chosenDate, originalDate;
 };
 
-class QCheckbox;
-
-class UserSelectionModeDlg: public KDialogBase {
-  Q_OBJECT
-public:
-	static int createCustomMode(QWidget *parent);
-	~UserSelectionModeDlg();
-	
-protected:
-	UserSelectionModeDlg(QWidget *parent);
-	QCheckBox *qtSelection, *leftButtonSelects, *leftButtonPreserves, *shiftCtrlLeftSelects;
-	QCheckBox *rightButtonSelects, *rightButtonPreserves, *shiftCtrlRightSelects, *spaceMovesDown;
-	QCheckBox *insertMovesDown, *spaceCalcSpace, *contextMenuImmediate;
-};
-
-
 #endif

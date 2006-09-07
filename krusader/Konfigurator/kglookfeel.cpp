@@ -83,17 +83,13 @@ void KgLookFeel::setupOperationTab() {
     { //   cfg_class  cfg_name                default             text                              restart tooltip
      {"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  i18n( "Display a warning when trying to close the main window." ) }, // KDE4: move warn on exit to the other confirmations
      {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  i18n( "The icon will appear in the system tray instead of the taskbar, when Krusader is minimized." ) },
-     {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
      {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  i18n( "When matching the select criteria, directories will also be marked." ) },
      {"Look&Feel","Rename Selects Extension",true,          i18n( "Rename selects extension" ),   false,  i18n( "When renaming a file, the whole text is selected. If you want total-commander like renaming of just the name, without extension, unmark this." ) },
-     {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
      {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the folder tabs. By default only the last part of the path is displayed." ) },
-     {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
-     {"Look&Feel","Always sort dirs by name",  false, i18n( "Always sort dirs by name"  ), true,  i18n( "Directories are sorted by name, regardless of the sort column.") },
      {"Look&Feel","Fullscreen Terminal Emulator", false, i18n( "Fullscreen terminal (mc-style)"  ), false,  i18n( "Terminal is shown instead of the krusader window (full screen).") },
     };
 
-  cbs = createCheckBoxGroup( 2, 0, settings, 10 /*count*/, lookFeelGrp, 0, PAGE_OPERATION );
+  cbs = createCheckBoxGroup( 2, 0, settings, 6 /*count*/, lookFeelGrp, 0, PAGE_OPERATION );
   lookFeelGrid->addWidget( cbs, 0, 0 );
 
   lookAndFeelLayout->addWidget( lookFeelGrp, 0, 0 );
@@ -155,9 +151,13 @@ void KgLookFeel::setupPanelTab() {
     {
 	 {"Look&Feel","With Icons",           _WithIcons,   i18n( "Use icons in the filenames" ), true ,  i18n( "Show the icons for filenames and folders." ) },
 	 {"Look&Feel","Human Readable Size",  _HumanReadableSize, i18n( "Use human-readable file size" ), true ,  i18n( "File sizes are displayed in B, KB, MB and GB, not just in bytes." ) },
+	 {"Look&Feel","Show Hidden",          _ShowHidden,        i18n( "Show hidden files" ),      false,  i18n( "Display files beginning with a dot." ) },
+	 {"Look&Feel","Case Sensative Sort",  _CaseSensativeSort, i18n( "Case sensitive sorting" ), true ,  i18n( "All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default)." ) },
+	 {"Look&Feel","Always sort dirs by name",  false, i18n( "Always sort dirs by name"  ), true,  i18n( "Directories are sorted by name, regardless of the sort column.") },
+	 {"Look&Feel","Numeric permissions",  _NumericPermissions, i18n( "Numeric Permissions"  ), true,  i18n( "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.") },
     };
 
-  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 0, 2, panelSettings, 2, panelGrp, 0, PAGE_PANEL );
+  KonfiguratorCheckBoxGroup *panelSett = createCheckBoxGroup( 2, 0, panelSettings, 6 /*count*/, panelGrp, 0, PAGE_PANEL );
   panelGrid->addWidget( panelSett, 3, 0 );
 
   panelLayout->addWidget( panelGrp, 0, 0 );
@@ -236,7 +236,7 @@ void KgLookFeel::setupMouseModeTab() {
   mouseRadio = createRadioButtonGroup( "Look&Feel", "Mouse Selection", "0", 2, 2, mouseSelection, 4, mouseGeneralGroup, "myLook&FeelRadio", true, PAGE_MOUSE );
   mouseRadio->layout()->setMargin( 0 );
   mouseGeneralGrid->addWidget( mouseRadio, 0, 0 );
-  connect(mouseRadio, SIGNAL(clicked(int)), this, SLOT(slotSelectionModeChanged(int)));
+  connect( mouseRadio, SIGNAL( clicked(int) ), SLOT( slotSelectionModeChanged() ) );
 
   mouseLayout->addMultiCellWidget( mouseGeneralGroup, 0,0, 0,1 );
 
@@ -253,11 +253,57 @@ void KgLookFeel::setupMouseModeTab() {
     	{ i18n( "Obey KDE's global selection policy" ), "1", i18n( "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> Mouse</i></p>" ) }
     };
   KonfiguratorRadioButtons *clickRadio = createRadioButtonGroup( "Look&Feel", "Single Click Selects", "0", 1, 0, singleOrDoubleClick, 2, mouseDetailGroup, "myLook&FeelRadio0", true, PAGE_MOUSE );
-  mouseRadio->layout()->setMargin( 0 );
+  clickRadio->layout()->setMargin( 0 );
   mouseDetailGrid->addWidget( clickRadio, 0, 0 );
-  mouseDetailGrid->addItem( new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding ), 1,0 );
+  
+  KONFIGURATOR_CHECKBOX_PARAM mouseCheckboxesParam[] = 
+    {
+     // {cfg_class,   cfg_name,   default
+     // 	text,  restart,
+     // 	tooltip }
+     {"Custom Selection Mode",  "QT Selection",  _QtSelection,
+     	i18n( "Based on KDE's selection mode" ), true,
+     	i18n( "If checked, use a mode based on KDE's style." ) },
+     {"Custom Selection Mode",  "Left Selects",  _LeftSelects,
+     	i18n( "Left mouse button selects" ), true,
+     	i18n( "If checked, left clicking an item will select it." ) },
+     {"Custom Selection Mode",  "Left Preserves", _LeftPreserves,
+     	i18n( "Left mouse button preserves selection" ), true,
+     	i18n( "If checked, left clicking an item will select it, but will not unselect other, already selected items." ) },
+     {"Custom Selection Mode",  "ShiftCtrl Left Selects",  _ShiftCtrlLeft,
+     	i18n( "Shift/Ctrl-Left mouse button selects" ), true,
+     	i18n( "If checked, shift/ctrl left clicking will select items. \nNote: This is meaningless if 'Left Button Selects' is checked." ) },
+     {"Custom Selection Mode",  "Right Selects",  _RightSelects,
+     	i18n( "Right mouse button selects" ), true,
+     	i18n( "If checked, right clicking an item will select it." ) },
+     {"Custom Selection Mode",  "Right Preserves",  _RightPreserves,
+     	i18n( "Right mouse button preserves selection" ), true,
+     	i18n( "If checked, right clicking an item will select it, but will not unselect other, already selected items." ) },
+     {"Custom Selection Mode",  "ShiftCtrl Right Selects",  _ShiftCtrlRight,
+     	i18n( "Shift/Ctrl-Right mouse button selects" ), true,
+     	i18n( "If checked, shift/ctrl right clicking will select items. \nNote: This is meaningless if 'Right Button Selects' is checked." ) },
+     {"Custom Selection Mode",  "Space Moves Down",  _SpaceMovesDown,
+     	i18n( "Spacebar moves down" ), true,
+     	i18n( "If checked, pressing the spacebar will select the current item and move down. \nOtherwise, current item is selected, but remains the current item." ) },
+     {"Custom Selection Mode",  "Space Calc Space",  _SpaceCalcSpace,
+     	i18n( "Spacebar calculates disk space" ), true,
+     	i18n( "If checked, pressing the spacebar while the current item is a folder, will (except from selecting the folder) \ncalculate space occupied by the folder (recursively)." ) },
+     {"Custom Selection Mode",  "Insert Moves Down",  _InsertMovesDown,
+     	i18n( "Insert moves down" ), true,
+     	i18n( "If checked, pressing INSERT will select the current item, and move down to the next item. \nOtherwise, current item is not changed." ) },
+     {"Custom Selection Mode",  "Immediate Context Menu",  _ImmediateContextMenu,
+     	i18n( "Right clicking pops context menu immediately" ), true,
+     	i18n( "If checked, right clicking will result in an immediate showing of the context menu. \nOtherwise, user needs to click and hold the right mouse button for 500ms." ) },
+    };
+  
+  
+  mouseCheckboxes = createCheckBoxGroup(1, 0, mouseCheckboxesParam, 11 /*count*/, mouseDetailGroup, "customMouseModeChecks", PAGE_MOUSE);
+  mouseDetailGrid->addWidget( mouseCheckboxes, 1, 0 );
 
   mouseLayout->addWidget( mouseDetailGroup, 1,0 );
+
+  // Disable the details-button if not in custom-mode
+  slotSelectionModeChanged();
 
   // -------------- Preview -----------------
   QGroupBox *mousePreviewGroup = createFrame( i18n( "Preview" ), tab_mouse, "mousePreviewGroup" );
@@ -287,12 +333,19 @@ void KgLookFeel::slotEnablePanelToolbar()
   pnlcbs->find("SyncBrowse Button Visible")->setEnabled(enableTB);  
 }
 
-void KgLookFeel::slotSelectionModeChanged(int mode) {
-	// mode 3 == user defined mode (ugly, but no #defines yet)
-	if (mode == 3) {
-		if (UserSelectionModeDlg::createCustomMode(this) == QDialog::Accepted)
-			mouseRadio->extension()->setChanged();
-	}
+void KgLookFeel::slotSelectionModeChanged() {
+  bool enable = mouseRadio->find( i18n("Custom Selection Mode") )->isChecked();
+  mouseCheckboxes->find( "QT Selection" )->setEnabled( enable );
+  mouseCheckboxes->find( "Left Selects" )->setEnabled( enable );
+  mouseCheckboxes->find( "Left Preserves" )->setEnabled( enable );
+  mouseCheckboxes->find( "ShiftCtrl Left Selects" )->setEnabled( enable );
+  mouseCheckboxes->find( "Right Selects" )->setEnabled( enable );
+  mouseCheckboxes->find( "Right Preserves" )->setEnabled( enable );
+  mouseCheckboxes->find( "ShiftCtrl Right Selects" )->setEnabled( enable );
+  mouseCheckboxes->find( "Space Moves Down" )->setEnabled( enable );
+  mouseCheckboxes->find( "Space Calc Space" )->setEnabled( enable );
+  mouseCheckboxes->find( "Insert Moves Down" )->setEnabled( enable );
+  mouseCheckboxes->find( "Immediate Context Menu" )->setEnabled( enable );
 }
 
 int KgLookFeel::activeSubPage() {

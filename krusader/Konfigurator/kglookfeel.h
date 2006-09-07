@@ -50,12 +50,13 @@ protected:
   KonfiguratorCheckBoxGroup *pnlcbs;
   KonfiguratorCheckBoxGroup *panelToolbarActive;
   KonfiguratorRadioButtons  *mouseRadio;
+  KonfiguratorCheckBoxGroup *mouseCheckboxes;
   QListView* mousePreview;
 
 protected slots:
   void slotDisable();
   void slotEnablePanelToolbar();
-  void slotSelectionModeChanged(int mode);
+  void slotSelectionModeChanged();
   
 private:
   void setupOperationTab();
