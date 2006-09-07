@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net\n"
 "POT-Creation-Date: 2006-09-02 23:32+0200\n"
-"PO-Revision-Date: 2006-08-13 20:14-0500\n"
+"PO-Revision-Date: 2006-09-06 17:09-0500\n"
 "Last-Translator: Alejandro Araiza Alvarado <mebrelith@gmail.com>\n"
 "Language-Team: Spanish <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -1003,7 +1003,7 @@ msgstr "Mata el proceso en ejecución"
 
 #: UserAction/kraction.cpp:53
 msgid "Save as"
-msgstr ""
+msgstr "Guardar como"
 
 #: UserAction/kraction.cpp:62
 msgid "Standard Output (stdout)"
@@ -1019,26 +1019,25 @@ msgstr "Salida"
 
 #: UserAction/kraction.cpp:96
 msgid "Use font with fixed width"
-msgstr ""
+msgstr "Usar fuente con ancho fijo"
 
 #: UserAction/kraction.cpp:130
-#, fuzzy
 msgid ""
 "*.txt|Text files\n"
 "*|all files"
 msgstr ""
-"*.xml|archivos-xml\n"
-"* | todos los archivos"
+"*.txt|Archivos de texto\n"
+"*|todos los archivos"
 
 #: UserAction/kraction.cpp:137
-#, fuzzy
 msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
-msgstr "Este archivo ya existe. ¿Desea sobreescribirlo?"
+msgstr ""
+"Este archivo ya existe.\n"
+"¿Desea sobreescribirlo o agregar?"
 
 #: UserAction/kraction.cpp:138
-#, fuzzy
 msgid "Overwrite or append?"
 msgstr "¿Sobreescribir o agregar?"
 
@@ -1049,9 +1048,8 @@ msgid "Overwrite"
 msgstr "Sobreescribir"
 
 #: UserAction/kraction.cpp:140
-#, fuzzy
 msgid "Append"
-msgstr "Abrir"
+msgstr "Agregar"
 
 #: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:152
 msgid ""
@@ -2284,7 +2282,6 @@ msgid "Set jump back point here"
 msgstr "Establecer punto de retorno"
 
 #: krusader.cpp:706
-#, fuzzy
 msgid "Toggle fullwidget terminal emulator"
 msgstr "Mostrar emulador de terminal"
 
@@ -3064,6 +3061,8 @@ msgid ""
 "*.keymap|Krusader keymaps\n"
 "*|all files"
 msgstr ""
+"*.keymap|Mapas de caracteres de Krusader\n"
+"*|todos los archivos"
 
 #: Dialogs/krkeydialog.cpp:41 Konfigurator/kglookfeel.cpp:160
 msgid "Import shortcuts"
@@ -3082,24 +3081,25 @@ msgid "Save current keybindings in a keymap file."
 msgstr "Guardar las asignaciones de teclas en un archivo keymap."
 
 #: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:108
-#, fuzzy
 msgid "Select a keymap file"
-msgstr "Seleccione un archivo de esquema de color"
+msgstr "Seleccione un archivo de mapa de caracteres"
 
 #: Dialogs/krkeydialog.cpp:71
 msgid ""
 "This file does not seem to be a valid keymap.\n"
 "It may be a keymap using a legacy format. The import can't be undone!"
 msgstr ""
+"Este archivo no para ser un mapa de caracteres válido.\n"
+"Puede que sea un mapa de caracteres contenido en un formato antiguo. ¡Los "
+"cambios de importación no pueden revertirse!"
 
 #: Dialogs/krkeydialog.cpp:73
 msgid "Try to import legacy format?"
-msgstr ""
+msgstr "¿Intentar importar formato antiguo?"
 
 #: Dialogs/krkeydialog.cpp:74
-#, fuzzy
 msgid "Import anyway"
-msgstr "Importar acción"
+msgstr "Importar"
 
 #: Dialogs/krkeydialog.cpp:95 Konfigurator/kglookfeel.cpp:314
 msgid ""
@@ -3111,25 +3111,19 @@ msgstr ""
 
 #: Dialogs/krkeydialog.cpp:102
 msgid "Please restart this dialog in order to see the changes"
-msgstr ""
+msgstr "Por favor reinicie este dialogo para ver los cambios"
 
 #: Dialogs/krkeydialog.cpp:103
 msgid "Legacy import completed"
-msgstr ""
+msgstr "Importación de formato completada"
 
 #: Dialogs/krkeydialog.cpp:114
-#, fuzzy
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"El archivo %1 ya existe.\n"
-"¿Esta seguro que desea sobreescribirlo?"
+msgstr "El archivo %1 ya existe. ¿Esta seguro que desea sobreescribirlo?"
 
 #: Dialogs/krkeydialog.cpp:123
-#, fuzzy
 msgid "Can't open %1 for writing!"
-msgstr ""
-"¡No se puede abrir %1 para escritura!\n"
-"No se exportó nada."
+msgstr "¡No se puede abrir %1 para escritura!"
 
 #: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
 msgid "Pack"
@@ -5221,9 +5215,8 @@ msgid ""
 msgstr "Cada cambio de directorio se realiza tambien en el otro panel."
 
 #: Konfigurator/kglookfeel.cpp:214
-#, fuzzy
 msgid "Mouse mode"
-msgstr "Modo hexadecimal"
+msgstr "Modo ratón"
 
 #: Konfigurator/kglookfeel.cpp:227
 msgid "Krusader Mode"
@@ -5275,9 +5268,8 @@ msgid "Design your own selection mode!"
 msgstr "¡Diseñe su propio modo de selección!"
 
 #: Konfigurator/kglookfeel.cpp:238
-#, fuzzy
 msgid "Details"
-msgstr "Detallado"
+msgstr "Detalles"
 
 #: Konfigurator/kglookfeel.cpp:244
 msgid "Double-click selects (classic)"
@@ -5319,6 +5311,11 @@ msgid ""
 "root or member of the group</li><li>Preserving the timestamp</li></"
 "ul><b>Note</b>: This can slow down the copy process."
 msgstr ""
+"Krusader intentará mantener todos los atributos (hora, propietario, grupo) "
+"de los archivos locales de acuerdo a la fuente conforme a los permisos: "
+"<ul><li>Preserva usuario si es administrador</li><li>Preserva el grupo si es "
+"administrador o miembro del grupo</li>Preserva la hora</li></ul><b>Nota</b>: "
+"Esto 'puede hacer lento el proceso de copiado."
 
 #: Konfigurator/kgadvanced.cpp:64
 msgid "Automount filesystems"
@@ -5990,25 +5987,25 @@ msgstr ""
 "bin)"
 
 #: Konfigurator/kguseractions.cpp:48
-#, fuzzy
 msgid "Information"
-msgstr "Confirmaciones"
+msgstr "Información"
 
 #: Konfigurator/kguseractions.cpp:53
 msgid ""
 "Here you can configure settings about useractions.\n"
 "To set up, configure and manage your useractions please use ActionMan."
 msgstr ""
+"Aquí puede cambiar la configuración de las acciones de usuario.\n"
+" Para crear, configurar y administrar sus acciones de usuario por favor use "
+"el Administrador."
 
 #: Konfigurator/kguseractions.cpp:57
-#, fuzzy
 msgid "Start ActionMan"
-msgstr "Iniciar en la bandeja"
+msgstr "Iniciar el Administrador"
 
 #: Konfigurator/kguseractions.cpp:64
-#, fuzzy
 msgid "Terminal execution"
-msgstr "Terminal para acciones de usuario:"
+msgstr "Ejecución de terminal"
 
 #: Konfigurator/kguseractions.cpp:68
 msgid "Terminal for UserActions:"
@@ -6016,20 +6013,19 @@ msgstr "Terminal para acciones de usuario:"
 
 #: Konfigurator/kguseractions.cpp:78
 msgid "Output collection"
-msgstr ""
+msgstr "Recolección de salida"
 
 #: Konfigurator/kguseractions.cpp:83
-#, fuzzy
 msgid "Normal font:"
-msgstr "Fuente del panel:"
+msgstr "Fuente normal:"
 
 #: Konfigurator/kguseractions.cpp:89
 msgid "Font with fixed width:"
-msgstr ""
+msgstr "Fuente de ancho fijo:"
 
 #: Konfigurator/kguseractions.cpp:95
 msgid "Use fixed width font as default"
-msgstr ""
+msgstr "Use fuente de ancho fijo por omisión"
 
 #: krslots.cpp:104
 msgid ""
@@ -6299,52 +6295,3 @@ msgstr "¡Error leyendo el archivo %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "¡Error escribiendo el archivo %1!"
-
-#~ msgid ""
-#~ "When you apply changes to an action, the modifications become available "
-#~ "in the current session immediately.\n"
-#~ "When closing ActionMan, you will be asked to save the changes permanently."
-#~ msgstr ""
-#~ "Cuando aplique cambios a una acción, las modificaciones se volverán "
-#~ "aplicables inmediatamente en la sesión actual.\n"
-#~ "Cuando cierre el administrador de acciones, se le preguntará si desea "
-#~ "guardar los cambios permanentemente."
-
-#~ msgid ""
-#~ "Useractions in this session are modified. Do you want to save these "
-#~ "changes permanently?"
-#~ msgstr ""
-#~ "Las acciones de usuario de esta sesión han sido modificadas. ¿Desea "
-#~ "guardar los cambios permanentemente?"
-
-#~ msgid "Single click / Double click Selection:"
-#~ msgstr "Selección en click sencillo / doble click:"
-
-#~ msgid "Mouse Selection Mode:"
-#~ msgstr "Modo de selección del ratón:"
-
-#~ msgid ""
-#~ "Change all attributes (time, owner, group) of local files according to "
-#~ "the source one. This can slow down the copy process."
-#~ msgstr ""
-#~ "Cambiar todos los atributos (hora, propietario, grupo) de los archivos "
-#~ "locales de acuerdo a la fuente. Esto puede ralentizar el proceso de "
-#~ "copiado."
-
-#~ msgid "Reset"
-#~ msgstr "Restaurar"
-
-#~ msgid "New Action"
-#~ msgstr "Nueva acción"
-
-#~ msgid "Remove Action"
-#~ msgstr "Remover acción"
-
-#~ msgid "Export Action"
-#~ msgstr "Exportar acción"
-
-#~ msgid "Action to Clipboard"
-#~ msgstr "Acción al portapapeles"
-
-#~ msgid "Action from Clipboard"
-#~ msgstr "Acción del portapapeles"
