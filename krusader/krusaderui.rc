@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="10" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="11" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -9,8 +9,8 @@
    <Action name="compare" />
    <Action name="edit_new_file" />
    <Action name="multirename" />
-	<Action name="create checksum" />
-	<Action name="match checksum" />
+   <Action name="create checksum" />
+   <Action name="match checksum" />
    <Action name="calculate" />
    <Action name="std_print" />
    <Separator/>
@@ -104,10 +104,10 @@
   <Action name="dirUp" />
   <Action name="std_home" />
   <Action name="std_redisplay" />
-  <Separator name="separator_3" />
-  <Action name="select group" />
+  <Separator name="separator_4" />
   <Action name="select all" />
   <Action name="unselect all" />
+  <Separator name="separator_3" />
   <Action name="edit_new_file" />
   <Action name="unpack" />
   <Action name="pack" />
