@@ -257,11 +257,10 @@ void KrPopupMenu::performAction(int id) {
          	KMountMan::eject( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
          	break;
          case SHRED_ID :
-         	if ( KMessageBox::warningContinueCancel( krApp,
-               	i18n( "Are you sure you want to shred " ) + "\"" + item->name() + "\"" +
-               	i18n(" ? Once shred, the file is gone forever !!!"),
-               	QString::null, KStdGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
-					KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
+            if ( KMessageBox::warningContinueCancel( krApp,
+                 i18n("<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone forever!</qt>").arg(item->name()),
+                 QString::null, KStdGuiItem::cont(), "Shred" ) == KMessageBox::Continue )
+               KShred::shred( panel->func->files() ->vfs_getFile( item->name() ).path( -1 ) );
          	break;
          case OPEN_KONQ_ID :
          	kapp->startServiceByDesktopName( "konqueror", panel->func->files() ->vfs_getFile( item->name() ).url() );
