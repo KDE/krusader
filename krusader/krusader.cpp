@@ -192,7 +192,7 @@ KAction *Krusader::actShowJSConsole = 0;
 // construct the views, statusbar and menu bars and prepare Krusader to start
 Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Qt::WStyle_ContextHelp),
    DCOPObject("Krusader-Interface"), status(NULL), sysTray( 0 ), isStarting( true ), isExiting( false ), directExit( false ) {
-	// parse command line arguments
+   // parse command line arguments
    KCmdLineArgs * args = KCmdLineArgs::parsedArgs();
 
    kapp->ref(); // FIX: krusader exits at closing the viewer when minimized to tray
@@ -231,13 +231,13 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    // create bookman
    bookman = new KrBookmarkHandler();
 
-	popularUrls = new PopularUrls(this);
-	
-	queueManager = new QueueManager();
-	
+   popularUrls = new PopularUrls(this);
+
+   queueManager = new QueueManager();
+
    // create the main view
    mainView = new KrusaderView( this );
-   
+
    // setup all the krusader's actions
    setupActions();
 
@@ -246,23 +246,23 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 
    // init the protocol handler
    KgProtocols::init();
-   
+
    // init the checksum tools
    initChecksumModule();
 
-   krConfig->setGroup( "Startup" );             
+   krConfig->setGroup( "Startup" );
    QStringList leftTabs = krConfig->readPathListEntry( "Left Tab Bar" );
    QStringList rightTabs = krConfig->readPathListEntry( "Right Tab Bar" );
    int         leftActiveTab = krConfig->readNumEntry( "Left Active Tab", 0 );
    int         rightActiveTab = krConfig->readNumEntry( "Right Active Tab", 0 );
    QString     startProfile = krConfig->readEntry("Starter Profile Name", QString::null );
-   
+
    // get command-line arguments
    if ( args->isSet( "left" ) ) {
       leftTabs = QStringList::split( ',', args->getOption( "left" ) );
-      
+
       leftActiveTab = 0;
-      
+
       // make sure left or right are not relative paths
       for(unsigned int i = 0; i != leftTabs.count(); i++ )
       {
@@ -274,9 +274,9 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    }
    if ( args->isSet( "right" ) ) {
       rightTabs = QStringList::split( ',', args->getOption( "right" ) );
-      
+
       rightActiveTab = 0;
-      
+
       // make sure left or right are not relative paths
       for(unsigned int i = 0; i != rightTabs.count(); i++ )
       {
@@ -286,24 +286,24 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
       }
       startProfile = QString::null;
    }
-            
+
    if ( args->isSet( "profile" ) )
     startProfile = args->getOption( "profile" );
-   
+
    if( !startProfile.isEmpty() ) {
       leftTabs.clear();
       rightTabs.clear();      
       leftActiveTab = rightActiveTab = 0;
    }
-   
+
    if( leftTabs.count() == 0 )
      leftTabs.push_back( QDir::homeDirPath() );
    if( rightTabs.count() == 0 )
      rightTabs.push_back( QDir::homeDirPath() );
-   
+
    // starting the panels
    mainView->start( leftTabs, leftActiveTab, rightTabs, rightActiveTab );
-   
+
    // create the user menu
    userMenu = new UserMenu( this );
    userMenu->hide();
@@ -321,7 +321,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    // Krusader::privIcon() returns either "krusader_blue" or "krusader_red" if the user got root-privileges
    sysTray->setPixmap( iconLoader->loadIcon( privIcon(), KIcon::Panel, 22 ) );
    sysTray->hide();
-   
+
    connect( sysTray, SIGNAL( quitSelected() ), this, SLOT( setDirectExit() ) );
 
    setCentralWidget( mainView );
@@ -330,12 +330,12 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
    config->setGroup( "Look&Feel" );
    bool minimizeToTray = config->readBoolEntry( "Minimize To Tray", _MinimizeToTray );
    bool singleInstanceMode = config->readBoolEntry( "Single Instance Mode", _SingleInstanceMode );
-   
+
    startToTray = startToTray && minimizeToTray;
-   
+
    if( singleInstanceMode && minimizeToTray )
      sysTray->show();
-   
+
 
    // manage our keyboard short-cuts
    //KAcceleratorManager::manage(this,true);
@@ -344,7 +344,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 
    if ( ! startProfile.isEmpty() )
        mainView->profiles( startProfile );
-   
+
    if (!runKonfig) {
 		config->setGroup( "Private" );
 		if ( krConfig->readBoolEntry( "Maximized" ) )
@@ -363,7 +363,7 @@ Krusader::Krusader() : KParts::MainWindow(0,0,WType_TopLevel|WDestructiveClose|Q
 	}
    // let the good times rool :)
    updateGUI( true );
-   
+
    if ( runKonfig )
       slot->runKonfigurator( true );
 
@@ -486,6 +486,7 @@ void Krusader::setupActions() {
    //actNewTool =    0;//new KAction(i18n("&Add a new tool"),                          0, this, 0, actionCollection(), "add tool");
    //actToolsSetup = 0;//new KAction(i18n("&Tools Menu Setup"),                        0, 0, this, 0, actionCollection(), "tools setup");
    //KStdAction::print(SLOTS, 0,actionCollection(),"std_print");
+   //KStdAction::showMenubar( SLOTS, SLOT( showMenubar() ), actionCollection(), "std_menubar" );
 
 
    // second, the KDE standard action
@@ -493,17 +494,17 @@ void Krusader::setupActions() {
    /* Shortcut disabled because of the Terminal Emulator bug. */
    krConfig->setGroup( "Private" );
    int compareMode = krConfig->readNumEntry( "Compare Mode", 0 );
-   
-   KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" ); /*->setShortcut(Key_QuoteLeft);*/
-   new KAction(  i18n( "&Reload" ), "reload", CTRL + Key_R, SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
+
+   KStdAction::home( SLOTS, SLOT( home() ), actionCollection(), "std_home" )->setText( i18n("Home") ); /*->setShortcut(Key_QuoteLeft);*/
+   new KAction( i18n( "&Reload" ), "reload", CTRL + Key_R, SLOTS, SLOT( refresh() ), actionCollection(), "std_redisplay" );
    actShowToolBar = KStdAction::showToolbar( SLOTS, SLOT( toggleToolbar() ), actionCollection(), "std_toolbar" );
-	new KToggleAction(i18n("Show Actions Toolbar"), 0, SLOTS, SLOT( toggleActionsToolbar() ),
-		actionCollection(), "toggle actions toolbar");
+   new KToggleAction( i18n("Show Actions Toolbar"), 0, SLOTS, SLOT( toggleActionsToolbar() ),
+                      actionCollection(), "toggle actions toolbar" );
    actShowStatusBar = KStdAction::showStatusbar( SLOTS, SLOT( toggleStatusbar() ), actionCollection(), "std_statusbar" );
    KStdAction::quit( this, SLOT( slotClose() ), actionCollection(), "std_quit" );
    KStdAction::configureToolbars( SLOTS, SLOT( configToolbar() ), actionCollection(), "std_config_toolbar" );
    KStdAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
-   
+
    KStdAction::cut( SLOTS, SLOT( cut() ), actionCollection(), "std_cut" );
    KStdAction::copy( SLOTS, SLOT( copy() ), actionCollection(), "std_copy" );
    KStdAction::paste( SLOTS, SLOT( paste() ), actionCollection(), "std_paste" );
@@ -531,11 +532,11 @@ void Krusader::setupActions() {
    actCmdlinePopup = new KAction( i18n( "popup cmdline" ), 0, CTRL + Key_Slash, SLOTS,
                                   SLOT( cmdlinePopup() ), actionCollection(), "cmdline popup" );
    /* Shortcut disabled because of the Terminal Emulator bug. */
-   actDirUp = new KAction( i18n( "Up one directory" ), "up", CTRL+Key_PageUp /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
+   actDirUp = new KAction( i18n( "Up" ), "up", CTRL+Key_PageUp /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
    new KAction( i18n( "&Edit New File..." ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
-   new KAction( i18n( "Start &Root Mode Krusader..." ), "krusader_root", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
+   new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_root", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
-   actTest = new KAction( i18n( "T&est Archive..." ), "ark", ALT + Key_E,
+   actTest = new KAction( i18n( "T&est Archive" ), "ark", ALT + Key_E,
                           SLOTS, SLOT( testArchive() ), actionCollection(), "test archives" );
    //actFTPConnect = new KAction( i18n( "&Net Connections" ), "domtreeviewer", 0,
    //                             SLOTS, SLOT( runRemoteMan() ), actionCollection(), "ftp connect" );
@@ -543,13 +544,13 @@ void Krusader::setupActions() {
                                    SLOTS, SLOT( newFTPconnection() ), actionCollection(), "ftp new connection" );
    actProfiles = new KAction( i18n( "Pro&files" ), "kr_profile", ALT + Key_L,
                                    MAIN_VIEW, SLOT( profiles() ), actionCollection(), "profile" );
-   actCalculate = new KAction( i18n( "Calculate &Occupied Space..." ), "kcalc", 0,
+   actCalculate = new KAction( i18n( "Calculate &Occupied Space" ), "kcalc", 0,
                                SLOTS, SLOT( calcSpace() ), actionCollection(), "calculate" );
    actCreateChecksum = new KAction( i18n( "Create Checksum..." ), "binary", 0,
                                SLOTS, SLOT( createChecksum() ), actionCollection(), "create checksum" );
    actMatchChecksum = new KAction( i18n( "Verify Checksum..." ), "match_checksum", 0,
                                SLOTS, SLOT( matchChecksum() ), actionCollection(), "match checksum" );
-   actProperties = new KAction( i18n( "&Properties..." ), "help", ALT+Key_Enter,
+   actProperties = new KAction( i18n( "&Properties..." ), 0, ALT+Key_Enter,
                                 SLOTS, SLOT( properties() ), actionCollection(), "properties" );
    actPack = new KAction( i18n( "Pac&k..." ), "kr_arc_pack", ALT + Key_P,
                           SLOTS, SLOT( slotPack() ), actionCollection(), "pack" );
@@ -559,21 +560,25 @@ void Krusader::setupActions() {
                            SLOTS, SLOT( slotSplit() ), actionCollection(), "split" );
    actCombine = new KAction( i18n( "Com&bine Files..." ), "kr_combine", CTRL + Key_B,
                              SLOTS, SLOT( slotCombine() ), actionCollection() , "combine" );
-   actSelect = new KAction( i18n( "Select &Group" ), "kr_select", CTRL + Key_Plus,
+   actSelect = new KAction( i18n( "Select &Group..." ), "kr_select", CTRL + Key_Plus,
                             SLOTS, SLOT( markGroup() ), actionCollection(), "select group" );
    actSelectAll = new KAction( i18n( "&Select All" ), "kr_selectall", ALT + Key_Plus,
                                SLOTS, SLOT( markAll() ), actionCollection(), "select all" );
+   actUnselect = new KAction( i18n( "&Unselect Group..." ), "kr_unselect", CTRL + Key_Minus,
+                              SLOTS, SLOT( unmarkGroup() ), actionCollection(), "unselect group" );
    actUnselectAll = new KAction( i18n( "U&nselect All" ), "kr_unselectall", ALT + Key_Minus,
                                  SLOTS, SLOT( unmarkAll() ), actionCollection(), "unselect all" );
+   actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
+                            SLOTS, SLOT( invert() ), actionCollection(), "invert" );
    actCompDirs = new KAction( i18n( "&Compare Directories" ), "view_left_right", 0,
-                                 SLOTS, SLOT( compareDirs() ), actionCollection(), "compare dirs" );
-   actMarkNewerAndSingle = new KRadioAction( i18n( "&Mark Newer And Single" ), 0,
+                              SLOTS, SLOT( compareDirs() ), actionCollection(), "compare dirs" );
+   actMarkNewerAndSingle = new KRadioAction( i18n( "&Mark Newer and Single" ), 0,
                                  SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_newer_and_single" );
    actMarkNewer = new KRadioAction( i18n( "Mark &Newer" ), 0,
                                  SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_newer" );
    actMarkSingle = new KRadioAction( i18n( "Mark &Single" ), 0,
                                  SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_single" );
-   actMarkDifferentAndSingle = new KRadioAction( i18n( "Mark Different &And Single" ), 0,
+   actMarkDifferentAndSingle = new KRadioAction( i18n( "Mark Different &and Single" ), 0,
                                  SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_different_and_single" );
    actMarkDifferent = new KRadioAction( i18n( "Mark &Different" ), 0,
                                  SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_different" );
@@ -584,9 +589,9 @@ void Krusader::setupActions() {
    actMarkDifferent->setExclusiveGroup( "mark group" );
    if( compareMode < (int)( sizeof( compareArray ) / sizeof( KRadioAction ** ) ) -1 )
      (*compareArray[ compareMode ])->setChecked( true );
-   actHomeTerminal = new KAction( i18n( "&Terminal..." ), "konsole", 0,
+   actHomeTerminal = new KAction( i18n( "Start &Terminal" ), "konsole", 0,
                                   SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
-   actFTPDisconnect = new KAction( i18n( "Disconnect &From Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
+   actFTPDisconnect = new KAction( i18n( "Disconnect &from Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
                                    SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
 #if KDE_IS_VERSION(3,2,0)	/* new mountman feature is available in kde 3.2 only! */
    actMountMan = new KToolBarPopupAction( i18n( "&MountMan..." ), "kr_mountman", ALT + Key_Slash,
@@ -604,14 +609,10 @@ void Krusader::setupActions() {
                             SLOTS, SLOT( locate() ), actionCollection(), "locate" );
    actSyncDirs = new KAction( i18n( "Synchronize &Directories..." ), "kr_syncdirs", CTRL + Key_Y,
                               SLOTS, SLOT( slotSynchronizeDirs() ), actionCollection(), "sync dirs" );
-   actSyncBrowse = new KAction( i18n( "S&ynchron directory changes" ), "kr_syncbrowse_off", ALT + Key_Y,
+   actSyncBrowse = new KAction( i18n( "S&ynchron Directory Changes" ), "kr_syncbrowse_off", ALT + Key_Y,
                               SLOTS, SLOT( slotSyncBrowse() ), actionCollection(), "sync browse" );
    actDiskUsage = new KAction( i18n( "D&isk Usage..." ), "kchart", ALT + Key_D,
                               SLOTS, SLOT( slotDiskUsage() ), actionCollection(), "disk usage" );
-   actInvert = new KAction( i18n( "&Invert Selection" ), "kr_invert", ALT + Key_Asterisk,
-                            SLOTS, SLOT( invert() ), actionCollection(), "invert" );
-   actUnselect = new KAction( i18n( "&Unselect Group" ), "kr_unselect", CTRL + Key_Minus,
-                              SLOTS, SLOT( unmarkGroup() ), actionCollection(), "unselect group" );
    actKonfigurator = new KAction( i18n( "Configure &Krusader..." ), "configure", 0,
                                   SLOTS, SLOT( startKonfigurator() ), actionCollection(), "konfigurator" );
    actBack = new KAction( i18n( "Back" ), "back", 0,
@@ -630,86 +631,88 @@ void Krusader::setupActions() {
                              SLOTS, SLOT( compareContent() ), actionCollection(), "compare" );
    actMultiRename = new KAction( i18n( "Multi &Rename..." ), "krename", SHIFT + Key_F9,
                                  SLOTS, SLOT( multiRename() ), actionCollection(), "multirename" );
-   new KAction( i18n( "Right-click menu" ), Key_Menu,
+   new KAction( i18n( "Right-click Menu" ), Key_Menu,
                 SLOTS, SLOT( rightclickMenu() ), actionCollection(), "rightclick menu" );
-   new KAction( i18n( "Right bookmarks" ), ALT + Key_Right,
+   new KAction( i18n( "Right Bookmarks" ), ALT + Key_Right,
                 SLOTS, SLOT( openRightBookmarks() ), actionCollection(), "right bookmarks" );
-   new KAction( i18n( "Left bookmarks" ), ALT + Key_Left,
+   new KAction( i18n( "Left Bookmarks" ), ALT + Key_Left,
                 SLOTS, SLOT( openLeftBookmarks() ), actionCollection(), "left bookmarks" );
-	new KAction( i18n( "Bookmarks" ), CTRL + Key_D,
+   new KAction( i18n( "Bookmarks" ), CTRL + Key_D,
                 SLOTS, SLOT( openBookmarks() ), actionCollection(), "bookmarks" );
-	new KAction( i18n( "Bookmark Current" ), CTRL + SHIFT + Key_D,
+   new KAction( i18n( "Bookmark Current" ), CTRL + SHIFT + Key_D,
                 SLOTS, SLOT( bookmarkCurrent() ), actionCollection(), "bookmark current" );
-	new KAction( i18n( "History" ), CTRL + Key_H,
+   new KAction( i18n( "History" ), CTRL + Key_H,
                 SLOTS, SLOT( openHistory() ), actionCollection(), "history" );
-	new KAction( i18n( "Sync Panels" ), ALT + Key_O,
-					 SLOTS, SLOT( syncPanels() ), actionCollection(), "sync panels");
-   new KAction( i18n( "Left history" ), ALT + CTRL + Key_Left,
+   new KAction( i18n( "Sync Panels" ), ALT + Key_O,
+                SLOTS, SLOT( syncPanels() ), actionCollection(), "sync panels");
+   new KAction( i18n( "Left History" ), ALT + CTRL + Key_Left,
                 SLOTS, SLOT( openLeftHistory() ), actionCollection(), "left history" );
-   new KAction( i18n( "Right history" ), ALT + CTRL + Key_Right,
+   new KAction( i18n( "Right History" ), ALT + CTRL + Key_Right,
                 SLOTS, SLOT( openRightHistory() ), actionCollection(), "right history" );
    new KAction( i18n( "Media" ), CTRL + Key_M,
                 SLOTS, SLOT( openMedia() ), actionCollection(), "media" );
-   new KAction( i18n( "Left media" ), CTRL + SHIFT + Key_Left,
+   new KAction( i18n( "Left Media" ), CTRL + SHIFT + Key_Left,
                 SLOTS, SLOT( openLeftMedia() ), actionCollection(), "left media" );
-   new KAction( i18n( "Right media" ), CTRL + SHIFT + Key_Right,
+   new KAction( i18n( "Right Media" ), CTRL + SHIFT + Key_Right,
                 SLOTS, SLOT( openRightMedia() ), actionCollection(), "right media" );
-	new KAction( i18n( "New symlink" ), CTRL + ALT + Key_S,
-					SLOTS, SLOT( newSymlink() ), actionCollection(), "new symlink");
+   new KAction( i18n( "New Symlink..." ), CTRL + ALT + Key_S,
+                SLOTS, SLOT( newSymlink() ), actionCollection(), "new symlink");
    new KToggleAction( i18n( "Toggle Popup Panel" ), ALT + Key_Down, SLOTS,
-                                          SLOT( togglePopupPanel() ), actionCollection(), "toggle popup panel" );
-	actVerticalMode = new KToggleAction( i18n( "Vertical Mode" ), ALT + CTRL + Key_R, MAIN_VIEW, 
+                            SLOT( togglePopupPanel() ), actionCollection(), "toggle popup panel" );
+   actVerticalMode = new KToggleAction( i18n( "Vertical Mode" ), "view_top_bottom", ALT + CTRL + Key_R, MAIN_VIEW, 
                                         SLOT( toggleVerticalMode() ), actionCollection(), "toggle vertical mode" );
-   actNewTab = new KAction( i18n( "New tab" ), ALT + CTRL + Key_N, SLOTS,
+   actNewTab = new KAction( i18n( "New Tab" ), "tab_new", ALT + CTRL + Key_N, SLOTS,
                             SLOT( newTab() ), actionCollection(), "new tab" );
-   actDupTab = new KAction( i18n( "Duplicate tab" ), ALT + CTRL + SHIFT + Key_N, SLOTS,
+   actDupTab = new KAction( i18n( "Duplicate Current Tab" ), "tab_duplicate", ALT + CTRL + SHIFT + Key_N, SLOTS,
                             SLOT( duplicateTab() ), actionCollection(), "duplicate tab" );
-   actCloseTab = new KAction( i18n( "Close tab" ), CTRL + Key_W, SLOTS,
+   actCloseTab = new KAction( i18n( "Close Current Tab" ), "tab_remove", CTRL + Key_W, SLOTS,
                               SLOT( closeTab() ), actionCollection(), "close tab" );
-   actNextTab  = new KAction( i18n( "Next tab" ), SHIFT + Key_Right, SLOTS,
-	     SLOT( nextTab() ), actionCollection(), "next tab" );
-   actPreviousTab  = new KAction( i18n( "Previous tab" ), SHIFT + Key_Left, SLOTS,
-	     SLOT( previousTab() ), actionCollection(), "previous tab" );										
+   actNextTab  = new KAction( i18n( "Next Tab" ), SHIFT + Key_Right, SLOTS,
+                              SLOT( nextTab() ), actionCollection(), "next tab" );
+   actPreviousTab  = new KAction( i18n( "Previous Tab" ), SHIFT + Key_Left, SLOTS,
+                                  SLOT( previousTab() ), actionCollection(), "previous tab" );
+/*
    actUserMenu = new KAction( i18n( "User Menu" ), ALT + Key_QuoteLeft, SLOTS,
                               SLOT( userMenu() ), actionCollection(), "user menu" );
-   actManageUseractions = new KAction( i18n( "Manage user actions..." ), 0, SLOTS,
+*/
+   actManageUseractions = new KAction( i18n( "Manage User Actions..." ), 0, SLOTS,
                               SLOT( manageUseractions() ), actionCollection(), "manage useractions" );
    new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection(), "changeremoteencoding");
 
-        // setup the Fn keys
-        actF2 = new KAction( i18n( "F2 - Open a terminal" ), Key_F2,
-                SLOTS, SLOT( terminal() ) , actionCollection(), "F2_Terminal" );
-        actF3 = new KAction( i18n( "F3 - View a file" ), Key_F3,
-                SLOTS, SLOT( view() ) , actionCollection(), "F3_View" );
-        actF4 = new KAction( i18n( "F4 - Edit a file" ), Key_F4,
-                SLOTS, SLOT( edit() ) , actionCollection(), "F4_Edit" );
-	actF5 = new KAction( i18n( "F5 - Copy" ), Key_F5,
-                SLOTS, SLOT( copyFiles() ) , actionCollection(), "F5_Copy" );
-	actF6 = new KAction( i18n( "F6 - Move" ), Key_F6,
-                SLOTS, SLOT( moveFiles() ) , actionCollection(), "F6_Move" );
-	actF7 = new KAction( i18n( "F7 - Mkdir" ), Key_F7,
-                SLOTS, SLOT( mkdir() ) , actionCollection(), "F7_Mkdir" );
-	actF8 = new KAction( i18n( "F8 - Delete" ), Key_F8,
-                SLOTS, SLOT( deleteFiles() ) , actionCollection(), "F8_Delete" );
-	actF9 = new KAction( i18n( "F9 - Rename" ), Key_F9,
-                SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
-	actF10 = new KAction( i18n( "F10 - Quit" ), Key_F10,
-                this, SLOT( slotClose() ) , actionCollection(), "F10_Quit" );
-	actPopularUrls = new KAction( i18n("Popular URLs"), CTRL+Key_Z,
-					popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
-	actLocationBar = new KAction( i18n("Go to location bar"), CTRL+Key_L,
-					SLOTS, SLOT( slotLocationBar() ), actionCollection(), "location_bar");
-	actJumpBack = new KAction( i18n("Jump back"), "kr_jumpback", CTRL+Key_J,
-					SLOTS, SLOT( slotJumpBack() ), actionCollection(), "jump_back");
-	actSetJumpBack = new KAction( i18n("Set jump back point here"), "kr_setjumpback", CTRL+SHIFT+Key_J,
-					SLOTS, SLOT( slotSetJumpBack() ), actionCollection(), "set_jump_back");
-	actSwitchFullScreenTE = new KAction( i18n( "Toggle fullwidget terminal emulator" ), 0, CTRL + Key_F,
-                                         MAIN_VIEW, SLOT( switchFullScreenTE() ), actionCollection(), "switch_fullscreen_te" );
-   
+   // setup the Fn keys
+   actF2 = new KAction( i18n( "F2 - Open a terminal" ), Key_F2,
+                        SLOTS, SLOT( terminal() ) , actionCollection(), "F2_Terminal" );
+   actF3 = new KAction( i18n( "F3 - View a file" ), Key_F3,
+                        SLOTS, SLOT( view() ) , actionCollection(), "F3_View" );
+   actF4 = new KAction( i18n( "F4 - Edit a file" ), Key_F4,
+                        SLOTS, SLOT( edit() ) , actionCollection(), "F4_Edit" );
+   actF5 = new KAction( i18n( "F5 - Copy" ), Key_F5,
+                        SLOTS, SLOT( copyFiles() ) , actionCollection(), "F5_Copy" );
+   actF6 = new KAction( i18n( "F6 - Move" ), Key_F6,
+                        SLOTS, SLOT( moveFiles() ) , actionCollection(), "F6_Move" );
+   actF7 = new KAction( i18n( "F7 - Mkdir" ), Key_F7,
+                        SLOTS, SLOT( mkdir() ) , actionCollection(), "F7_Mkdir" );
+   actF8 = new KAction( i18n( "F8 - Delete" ), Key_F8,
+                        SLOTS, SLOT( deleteFiles() ) , actionCollection(), "F8_Delete" );
+   actF9 = new KAction( i18n( "F9 - Rename" ), Key_F9,
+                        SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
+   actF10 = new KAction( i18n( "F10 - Quit" ), Key_F10,
+                         this, SLOT( slotClose() ) , actionCollection(), "F10_Quit" );
+   actPopularUrls = new KAction( i18n("Popular URLs..."), CTRL+Key_Z,
+                                 popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");
+   actLocationBar = new KAction( i18n("Go to Location Bar"), CTRL+Key_L,
+                                 SLOTS, SLOT( slotLocationBar() ), actionCollection(), "location_bar");
+   actJumpBack = new KAction( i18n("Jump Back"), "kr_jumpback", CTRL+Key_J,
+                              SLOTS, SLOT( slotJumpBack() ), actionCollection(), "jump_back");
+   actSetJumpBack = new KAction( i18n("Set Jump Back Point"), "kr_setjumpback", CTRL+SHIFT+Key_J,
+                                 SLOTS, SLOT( slotSetJumpBack() ), actionCollection(), "set_jump_back");
+   actSwitchFullScreenTE = new KAction( i18n( "Toggle Fullwidget Terminal Emulator" ), 0, CTRL + Key_F,
+                                        MAIN_VIEW, SLOT( switchFullScreenTE() ), actionCollection(), "switch_fullscreen_te" );
+
    // and at last we can set the tool-tips
    actSelect->setToolTip( i18n( "Select files using a filter" ) );
    actSelectAll->setToolTip( i18n("Select all files in the current directory" ) );
-   actUnselectAll->setToolTip( i18n( "Un-select all selected files" ) );
+   actUnselectAll->setToolTip( i18n( "Unselect all selected files" ) );
    actKonfigurator->setToolTip( i18n( "Setup Krusader the way you like it" ) );
    actBack->setToolTip( i18n( "Back to the place you came from" ) );
    actRoot->setToolTip( i18n( "ROOT (/)" ) );
@@ -717,9 +720,9 @@ void Krusader::setupActions() {
 
    // setup all UserActions
    userAction = new UserAction();
-   
+
    #ifdef __KJSEMBED__
-   actShowJSConsole = new KAction( i18n( "JavaScript console" ), ALT + CTRL + Key_J, SLOTS, SLOT( jsConsole() ), actionCollection(), "JS_Console" );
+   actShowJSConsole = new KAction( i18n( "JavaScript Console..." ), ALT + CTRL + Key_J, SLOTS, SLOT( jsConsole() ), actionCollection(), "JS_Console" );
    #endif
 }
 
@@ -1186,7 +1189,7 @@ bool Krusader::process(const QCString &fun, const QByteArray &data, QCString &re
 void Krusader::moveToTop() {
    if( isHidden() )
      show();
-   
+
    KWin::forceActiveWindow( winId() );
 }
 
