@@ -62,7 +62,7 @@ public:
 
   PreservingCopyJob( const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
 
-  static KIO::CopyJob *createCopyJob( PreserveMode mode, const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
+  static KIO::CopyJob *createCopyJob( PreserveMode pmode, const KURL::List& src, const KURL& dest, CopyMode mode, bool asMethod, bool showProgressInfo );
 
 public slots:
   void slotAboutToCreate (KIO::Job *, const QValueList< KIO::CopyInfo > &);
