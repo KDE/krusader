@@ -92,7 +92,7 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 	if (info.open(IO_ReadOnly)) {
 		QTextStream stream(&info);
 		QStringList infoText = QStringList::split("\n", stream.read());
-		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap. Are you sure you want to import this keymap ?"), infoText)!=KMessageBox::Yes)
+		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap. Do you really want to import this keymap?"), infoText)!=KMessageBox::Yes)
 			return;
 	}
 	// ok, import away
@@ -111,7 +111,7 @@ void KrKeyDialog::slotExportShortcuts() {
    QFile f( filename );
    if ( f.exists() &&
    		KMessageBox::warningContinueCancel( this, 
-		i18n("File %1 already exists. Are you sure you want to overwrite it?").arg(filename),
+		i18n("<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>").arg(filename),
 		i18n("Warning"), i18n("Overwrite") )
 	!= KMessageBox::Continue)
 	return;
@@ -120,7 +120,7 @@ void KrKeyDialog::slotExportShortcuts() {
       // Additionaly this prevents merging if the file already contains some shortcuts
       f.close();
    else {
-      KMessageBox::error( this, i18n("Can't open %1 for writing!").arg(filename) );
+      KMessageBox::error( this, i18n("<qt>Can't open <b>%1</b> for writing!</qt>").arg(filename) );
       return;
    }
 
