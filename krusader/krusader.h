@@ -84,9 +84,7 @@ class Krusader : public KParts::MainWindow, public DCOPObject {
      */
     static const char* privIcon();
     static QStringList supportedTools(); // find supported tools
-    void importKeyboardShortcuts(QString filename);
-    void exportKeyboardShortcuts(QString filename);
- 
+
     virtual bool process (const QCString &fun, const QByteArray &data, QCString &replyType, QByteArray &replyData);
     void moveToTop();
 

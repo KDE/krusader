@@ -726,52 +726,6 @@ void Krusader::setupActions() {
    #endif
 }
 
-void Krusader::importKeyboardShortcuts(QString filename) {
-	QFile f(filename);
-	if (!f.open(IO_ReadOnly)) {
-		krOut << "Error opening " << filename << endl;
-		return;
-	}
-	char *actionName;
-	QDataStream stream(&f);
-	int key;
-	KAction *action;
-	while (!stream.atEnd()) {
-		stream >> actionName >> key;
-		action = actionCollection()->action(actionName);
-		if (action) {
-			action->setShortcut(key);
-//			krOut << "set shortcut for " << actionName <<endl;
-		} else {
-		   krOut << "unknown action " << actionName << endl;
-		}
-	}
-	f.close();
-}
-
-void Krusader::exportKeyboardShortcuts(QString filename) {
-	QFile f(filename);
-   if (f.exists() && KMessageBox::warningContinueCancel(this, 
-      i18n("<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>").arg(filename),
-      i18n("Warning"), i18n("Overwrite")) != KMessageBox::Continue) return;
-	if (!f.open(IO_WriteOnly)) {
-		KMessageBox::error(this, i18n("Error: unable to write to file"), i18n("Error"));
-		return;
-	}
-	QDataStream stream(&f);
-	
-	KAction *action;
-	for (unsigned int i=0; i<actionCollection()->count(); ++i) {
-		action = actionCollection()->action(i);
-		int key = action->shortcut().keyCodeQt();
-		if (key) { // if a valid shortcut exists
-			stream << action->name() << key;
-		}
-	}
-	
-	f.close();
-}
-
 ///////////////////////////////////////////////////////////////////////////
 //////////////////// implementation of slots //////////////////////////////
 ///////////////////////////////////////////////////////////////////////////

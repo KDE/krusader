@@ -95,9 +95,29 @@ void KrKeyDialog::importLegacyShortcuts( const QString& file ) {
 		if (KMessageBox::questionYesNoList(krApp, i18n("The following information was attached to the keymap. Do you really want to import this keymap?"), infoText)!=KMessageBox::Yes)
 			return;
 	}
+
 	// ok, import away
-	//TODO once shortcuts are removed from Konfigurator, move the code from this fonction from krusader.cpp here.
-	krApp->importKeyboardShortcuts(file);
+	QFile f(file);
+	if (!f.open(IO_ReadOnly)) {
+		krOut << "Error opening " << file << endl;
+		return;
+	}
+	char *actionName;
+	QDataStream stream(&f);
+	int key;
+	KAction *action;
+	while (!stream.atEnd()) {
+		stream >> actionName >> key;
+		action = krApp->actionCollection()->action(actionName);
+		if (action) {
+			action->setShortcut(key);
+//			krOut << "set shortcut for " << actionName <<endl;
+		} else {
+		   krOut << "unknown action " << actionName << endl;
+		}
+	}
+	f.close();
+
 	KMessageBox::information( this, // parent
 		i18n("Please restart this dialog in order to see the changes"), // text
 		i18n("Legacy import completed") // caption
