@@ -61,8 +61,8 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
 		changeItem( OPEN_ID, item->icon(), vf->vfile_isExecutable() && !vf->vfile_isDir() ? i18n("Run") : i18n("Open") );
       // open in a new tab (if folder)
       if ( vf->vfile_isDir() ) {
-         insertItem( i18n( "Open in a new tab" ), OPEN_TAB_ID );
-         changeItem( OPEN_TAB_ID, krLoader->loadIcon( "tab_new", KIcon::Panel ), i18n( "Open in a new tab" ) );
+         insertItem( i18n( "Open in New Tab" ), OPEN_TAB_ID );
+         changeItem( OPEN_TAB_ID, krLoader->loadIcon( "tab_new", KIcon::Panel ), i18n( "Open in New Tab" ) );
       }
       insertSeparator();
    }
@@ -101,7 +101,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
          openWith.insertItem( krLoader->loadIcon( "konsole", KIcon::Small ), i18n( "Terminal" ), OPEN_TERM_ID );
       openWith.insertItem( i18n( "Other..." ), CHOOSE_ID );
       insertItem( QPixmap(), &openWith, OPEN_WITH_ID );
-      changeItem( OPEN_WITH_ID, i18n( "Open with" ) );
+      changeItem( OPEN_WITH_ID, i18n( "Open With" ) );
       insertSeparator();
    }
 	
@@ -120,7 +120,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
 	konqMenu = new KonqPopupMenu( KonqBookmarkManager::self(), _items, panel->func->files()->vfs_getOrigin(), *actions, 0, this, 
                            KonqPopupMenu::NoFlags, KParts::BrowserExtension::DefaultPopupItems );
    insertItem( QPixmap(), konqMenu, KONQ_MENU_ID );
-   changeItem( KONQ_MENU_ID, i18n( "Konqueror menu" ) );
+   changeItem( KONQ_MENU_ID, i18n( "Konqueror Menu" ) );
 #endif
    
 	// ------------- 'create new' submenu
@@ -140,7 +140,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
       KConfigGroupSaver saver(krConfig, "General");
       bool trash = krConfig->readBoolEntry( "Move To Trash", _MoveToTrash );
       if( trash )
-        insertItem( i18n( "Move to trash" ), TRASH_ID );
+        insertItem( i18n( "Move to Trash" ), TRASH_ID );
       // -------- DELETE
       insertItem( i18n( "Delete" ), DELETE_ID );
       // -------- SHRED - only one file
@@ -153,12 +153,12 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    // create new shortcut or redirect links - only on local directories:
    if ( panel->func->files() ->vfs_getType() == vfs::NORMAL ) {
       insertSeparator();
-      linkPopup.insertItem( i18n( "new symlink" ), NEW_SYMLINK_ID );
-      linkPopup.insertItem( i18n( "new hardlink" ), NEW_LINK_ID );
+      linkPopup.insertItem( i18n( "New Symlink" ), NEW_SYMLINK_ID );
+      linkPopup.insertItem( i18n( "New Hardlink" ), NEW_LINK_ID );
       if ( panel->func->getVFile(item)->vfile_isSymLink() )
-         linkPopup.insertItem( i18n( "redirect link" ), REDIRECT_LINK_ID);
+         linkPopup.insertItem( i18n( "Redirect Link" ), REDIRECT_LINK_ID);
       insertItem( QPixmap(), &linkPopup, LINK_HANDLING_ID );
-      changeItem( LINK_HANDLING_ID, i18n( "Link handling" ) );
+      changeItem( LINK_HANDLING_ID, i18n( "Link Handling" ) );
    }
    insertSeparator();
 
@@ -178,12 +178,12 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    
    // --------- send by mail
    if ( Krusader::supportedTools().contains( "MAIL" ) && !vf->vfile_isDir() ) {
-      insertItem( i18n( "Send by email" ), SEND_BY_EMAIL_ID );
+      insertItem( i18n( "Send by Email" ), SEND_BY_EMAIL_ID );
    }
    
    // --------- synchronize
    if ( panel->view->numSelected() ) {
-      insertItem( i18n( "Synchronize selected files" ), SYNC_SELECTED_ID );
+      insertItem( i18n( "Synchronize Selected Files" ), SYNC_SELECTED_ID );
    }
    
    // --------- copy/paste
@@ -212,11 +212,11 @@ void KrPopupMenu::addEmptyMenuEntries() {
 }
 
 void KrPopupMenu::addCreateNewMenu() {
-	createNewPopup.insertItem( krLoader->loadIcon( "folder", KIcon::Small ), i18n("Folder"), MKDIR_ID);
-	createNewPopup.insertItem( krLoader->loadIcon( "txt", KIcon::Small ), i18n("Text file"), NEW_TEXT_FILE_ID);
+	createNewPopup.insertItem( krLoader->loadIcon( "folder", KIcon::Small ), i18n("Folder..."), MKDIR_ID);
+	createNewPopup.insertItem( krLoader->loadIcon( "txt", KIcon::Small ), i18n("Text File..."), NEW_TEXT_FILE_ID);
 	
 	insertItem( QPixmap(), &createNewPopup, CREATE_NEW_ID);
-	changeItem( CREATE_NEW_ID, i18n( "Create new" ) );
+	changeItem( CREATE_NEW_ID, i18n( "Create New" ) );
 	
 }
 
