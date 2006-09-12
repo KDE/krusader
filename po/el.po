@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-09-02 23:32+0200\n"
-"PO-Revision-Date: 2006-08-03 12:46+0300\n"
+"POT-Creation-Date: 2006-09-10 22:51+0200\n"
+"PO-Revision-Date: 2006-09-12 23:16+0300\n"
 "Last-Translator: Spiros Georgaras <sngeorgaras@otenet.gr>\n"
 "Language-Team: Greek <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: GUI/dirhistorybutton.cpp:35
 msgid "Open the directory history list"
@@ -149,8 +149,7 @@ msgstr ""
 
 #: GUI/kcmdline.cpp:98
 msgid "If pressed, Krusader executes command line in a terminal."
-msgstr ""
-"Αν ενεργοποιηθεί, ο Krusader θα εκτελέσει τη γραμμή εντολών σε ένα τερματικό."
+msgstr "Αν ενεργοποιηθεί, ο Krusader θα εκτελέσει τη γραμμή εντολών σε ένα τερματικό."
 
 #: GUI/kcmdline.cpp:104
 msgid ""
@@ -341,7 +340,7 @@ msgstr "Ο κατάλογος %1 δεν υπάρχει!"
 #: VFS/krarchandler.cpp:265 VFS/krarchandler.cpp:282 VFS/krarchandler.cpp:343
 #: VFS/krarchandler.cpp:512 VFS/krarchandler.cpp:519 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:173 krusader.cpp:755
+#: VFS/virt_vfs.cpp:173 krusader.cpp:758
 msgid "Error"
 msgstr "Σφάλμα"
 
@@ -453,8 +452,7 @@ msgstr "Η συμπίεση απέτυχε: "
 
 #: VFS/krarchandler.cpp:550
 msgid "This archive is encrypted, please supply the password:"
-msgstr ""
-"Η αρχειοθήκη είναι κρυπτογραφημένη, παρακαλώ δώστε τον κωδικό πρόσβασης:"
+msgstr "Η αρχειοθήκη είναι κρυπτογραφημένη, παρακαλώ δώστε τον κωδικό πρόσβασης:"
 
 #: KrJS/krjs.cpp:65
 msgid ""
@@ -891,8 +889,7 @@ msgstr "Τι θα αντιγραφεί"
 
 #: UserAction/expander.cpp:418
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Προσθήκη στα περιεχόμενα του προχείρου με αυτό το διαχωριστικό (προαιρετικό)"
+msgstr "Προσθήκη στα περιεχόμενα του προχείρου με αυτό το διαχωριστικό (προαιρετικό)"
 
 #: UserAction/expander.cpp:432
 msgid "Copy a file/folder"
@@ -1004,7 +1001,7 @@ msgstr "Σκότωμα της εκτελούμενης διεργασίας"
 
 #: UserAction/kraction.cpp:53
 msgid "Save as"
-msgstr ""
+msgstr "Αποθήκευση ως..."
 
 #: UserAction/kraction.cpp:62
 msgid "Standard Output (stdout)"
@@ -1020,39 +1017,37 @@ msgstr "Έξοδος"
 
 #: UserAction/kraction.cpp:96
 msgid "Use font with fixed width"
-msgstr ""
+msgstr "Χρήση γραμματοσειράς σταθερού πλάτους"
 
 #: UserAction/kraction.cpp:130
-#, fuzzy
 msgid ""
 "*.txt|Text files\n"
 "*|all files"
 msgstr ""
-"*.xml|Αρχεία xlm\n"
+"*.txt|Αρχεία κειμένου\n"
 "*|Όλα τα αρχεία"
 
 #: UserAction/kraction.cpp:137
-#, fuzzy
 msgid ""
 "This file already exists.\n"
 "Do you want to overwrite it or append the output?"
-msgstr "Το αρχείο %1 υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;"
+msgstr ""
+"Το αρχείο υπάρχει ήδη.\n"
+"Θέλετε να το αντικαταστήσετε ή να προσθέσετε την έξοδο σε αυτό;"
 
 #: UserAction/kraction.cpp:138
-#, fuzzy
 msgid "Overwrite or append?"
-msgstr "Αντικατάσταση ή συγχώνευση;"
+msgstr "Αντικατάσταση ή προσθήκη;"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
 #: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:115
-#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139 krusader.cpp:753
+#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139 krusader.cpp:756
 msgid "Overwrite"
 msgstr "Αντικατάσταση"
 
 #: UserAction/kraction.cpp:140
-#, fuzzy
 msgid "Append"
-msgstr "Άνοιγμα"
+msgstr "Προσθήκη"
 
 #: ActionMan/useractionpage.cpp:271 UserAction/kraction.cpp:152
 msgid ""
@@ -1146,8 +1141,7 @@ msgstr "Καθαρισμός της γραμμής τοποθεσίας"
 
 #: Panel/listpanel.cpp:210
 msgid "Use superb KDE file dialog to choose location. "
-msgstr ""
-"Χρήση του εξαιρετικού διαλόγου αρχείων του KDE για την επιλογή τοποθεσίας. "
+msgstr "Χρήση του εξαιρετικού διαλόγου αρχείων του KDE για την επιλογή τοποθεσίας. "
 
 #: Panel/listpanel.cpp:215
 msgid ""
@@ -1170,7 +1164,7 @@ msgstr "Ίσο"
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:241
+#: Panel/listpanel.cpp:241 krusader.cpp:535
 msgid "Up"
 msgstr "Πάνω"
 
@@ -1179,7 +1173,7 @@ msgid "~"
 msgstr "~"
 
 #: Panel/listpanel.cpp:247 Panel/panelpopup.cpp:118 Panel/panelpopup.cpp:119
-#: Panel/panelpopup.cpp:120 Panel/panelpopup.cpp:131
+#: Panel/panelpopup.cpp:120 Panel/panelpopup.cpp:131 krusader.cpp:498
 msgid "Home"
 msgstr "Προσωπικός κατάλογος"
 
@@ -1189,7 +1183,7 @@ msgstr "/"
 
 #: Panel/listpanel.cpp:253 Panel/panelpopup.cpp:122 Panel/panelpopup.cpp:123
 #: Panel/panelpopup.cpp:125 Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:130
-#: krusader.cpp:619
+#: krusader.cpp:620
 msgid "Root"
 msgstr "Ριζικός κατάλογος"
 
@@ -1343,13 +1337,11 @@ msgstr " σε:"
 
 #: Panel/panelpopup.cpp:65
 msgid "Tree Panel: a tree view of the local file system"
-msgstr ""
-"Πίνακα δέντρου: προβολή της δεντρικής δομής του τοπικού συστήματος αρχείων"
+msgstr "Πίνακα δέντρου: προβολή της δεντρικής δομής του τοπικού συστήματος αρχείων"
 
 #: Panel/panelpopup.cpp:73
 msgid "Preview Panel: display a preview of the current file"
-msgstr ""
-"Πίνακας προεπισκόπησης: εμφάνιση της προεπισκόπησης: του τρέχοντος αρχείου"
+msgstr "Πίνακας προεπισκόπησης: εμφάνιση της προεπισκόπησης: του τρέχοντος αρχείου"
 
 #: Panel/panelpopup.cpp:80
 msgid "Quick Panel: quick way to perform actions"
@@ -1450,7 +1442,7 @@ msgstr "Άνοιγμα/Εκτέλεση"
 msgid "Run"
 msgstr "Εκτέλεση"
 
-#: Konfigurator/kgcolors.cpp:212 Konfigurator/kglookfeel.cpp:253
+#: Konfigurator/kgcolors.cpp:212 Konfigurator/kglookfeel.cpp:309
 #: Panel/krpopupmenu.cpp:76
 msgid "Preview"
 msgstr "Προεπισκόπηση"
@@ -1546,14 +1538,12 @@ msgid "Create new"
 msgstr "Δημιουργία νέου"
 
 #: Panel/krpopupmenu.cpp:261
-msgid "Are you sure you want to shred "
-msgstr "Είστε σίγουροι ότι θέλετε να καταστρέψετε το "
+msgid ""
+"<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
+"forever!</qt>"
+msgstr "<qt>Θέλετε πραγματικά να καταστρέψετε το <b>%1</b>; Αφού καταστραφεί, το αρχείο θα χαθεί για πάντα!"
 
-#: Panel/krpopupmenu.cpp:262
-msgid " ? Once shred, the file is gone forever !!!"
-msgstr "; Αφού καταστραφεί, το αρχείο θα χαθεί για πάντα!"
-
-#: KViewer/krviewer.cpp:222 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:357
+#: KViewer/krviewer.cpp:222 Panel/krpopupmenu.cpp:339 Panel/panelfunc.cpp:357
 #: krslots.cpp:465
 msgid "Can't open "
 msgstr "Αδύνατο το άνοιγμα του "
@@ -1725,7 +1715,7 @@ msgstr ""
 
 #: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:115
 #: DiskUsage/diskusage.cpp:609 Konfigurator/kgcolors.cpp:561
-#: Panel/panelfunc.cpp:641 krusader.cpp:753
+#: Panel/panelfunc.cpp:641 krusader.cpp:756
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
@@ -1951,398 +1941,384 @@ msgstr "F3 Διάλογος προβολής"
 msgid "Tab: switch panel"
 msgstr "Tab: αλλαγή πίνακα"
 
-#: krusader.cpp:498
+#: krusader.cpp:499
 msgid "&Reload"
 msgstr "&Επαναφόρτωση"
 
-#: krusader.cpp:500
+#: krusader.cpp:501
 msgid "Show Actions Toolbar"
 msgstr "Εμφάνιση γραμμής ενεργειών"
 
-#: krusader.cpp:512
+#: krusader.cpp:513
 msgid "Show &FN Keys Bar"
 msgstr "Εμφάνιση γραμμής πλήκτρων &FN"
 
-#: krusader.cpp:515
+#: krusader.cpp:516
 msgid "Show &Command Line"
 msgstr "Εμφάνιση γραμμής &εντολών"
 
-#: krusader.cpp:518
+#: krusader.cpp:519
 msgid "Show Terminal &Emulator"
 msgstr "Εμφάνιση εξομοιωτή &τερματικού"
 
-#: krusader.cpp:521
+#: krusader.cpp:522
 msgid "Show &Hidden Files"
 msgstr "Εμφάνιση &κρυφών αρχείων"
 
-#: krusader.cpp:523
+#: krusader.cpp:524
 msgid "S&wap Panels"
 msgstr "Ε&ναλλαγή πινάκων"
 
-#: krusader.cpp:525
+#: krusader.cpp:526
 msgid "Sw&ap Sides"
 msgstr "Εν&αλλαγή πλευρών"
 
-#: krusader.cpp:531
+#: krusader.cpp:532
 msgid "popup cmdline"
 msgstr "αναδυόμενη γραμμή εντολών"
 
-#: DiskUsage/diskusage.cpp:766 krusader.cpp:534
-msgid "Up one directory"
-msgstr "Ένας κατάλογος πάνω"
-
-#: krusader.cpp:535
+#: krusader.cpp:536
 msgid "&Edit New File..."
 msgstr "&Επεξεργασία νέου αρχείου..."
 
-#: krusader.cpp:536
-msgid "Start &Root Mode Krusader..."
-msgstr "Εκκίνηση του K&rusader σε λειτουργία υπερχρήστη..."
+#: krusader.cpp:537
+msgid "Start &Root Mode Krusader"
+msgstr "Εκκίνηση του K&rusader σε λειτουργία υπερχρήστη"
 
-#: krusader.cpp:538
-msgid "T&est Archive..."
-msgstr "Έλ&εγχος αρχειοθήκης(ων)..."
+#: krusader.cpp:539
+msgid "T&est Archive"
+msgstr "Έλ&εγχος αρχειοθήκης."
 
-#: krusader.cpp:542
+#: krusader.cpp:543
 msgid "New Net &Connection..."
 msgstr "Νέα δικτυακή &σύνδεση..."
 
-#: krusader.cpp:544
+#: krusader.cpp:545
 msgid "Pro&files"
 msgstr "Προ&φίλ"
 
-#: krusader.cpp:546
-msgid "Calculate &Occupied Space..."
-msgstr "Υπολογισμός &κατειλημμένου χώρου..."
+#: krusader.cpp:547
+msgid "Calculate &Occupied Space"
+msgstr "Υπ&ολογισμός κατειλημμένου χώρου"
 
-#: krusader.cpp:548
+#: krusader.cpp:549
 msgid "Create Checksum..."
 msgstr "Δημιουργία αθροίσματος ελέγχου..."
 
-#: krusader.cpp:550
+#: krusader.cpp:551
 msgid "Verify Checksum..."
 msgstr "Επαλήθευση αθροίσματος ελέγχου..."
 
-#: krusader.cpp:552
+#: krusader.cpp:553
 msgid "&Properties..."
 msgstr "&Ιδιότητες..."
 
-#: krusader.cpp:554
+#: krusader.cpp:555
 msgid "Pac&k..."
 msgstr "&Συμπίεση..."
 
-#: krusader.cpp:556
+#: krusader.cpp:557
 msgid "&Unpack..."
 msgstr "&Αποσυμπίεση..."
 
-#: krusader.cpp:558
+#: krusader.cpp:559
 msgid "Sp&lit File..."
 msgstr "&Χωρισμός αρχείου..."
 
-#: krusader.cpp:560
+#: krusader.cpp:561
 msgid "Com&bine Files..."
 msgstr "Έν&ωση αρχείων..."
 
-#: krusader.cpp:562
-msgid "Select &Group"
-msgstr "&Επιλογή ομάδας"
+#: krusader.cpp:563
+msgid "Select &Group..."
+msgstr "Ορισμός &ομάδας..."
 
-#: krusader.cpp:564
+#: krusader.cpp:565
 msgid "&Select All"
 msgstr "Επι&λογή όλων"
 
-#: krusader.cpp:566
+#: krusader.cpp:567
+msgid "&Unselect Group..."
+msgstr "Α&ποεπιλογή ομάδας..."
+
+#: krusader.cpp:569
 msgid "U&nselect All"
 msgstr "Αποεπιλο&γή όλων"
 
-#: krusader.cpp:568
-msgid "&Compare Directories"
-msgstr "&Σύγκριση καταλόγων"
-
-#: krusader.cpp:570
-msgid "&Mark Newer And Single"
-msgstr "&Επιλογή νεότερων και μοναδικών"
-
-#: krusader.cpp:572
-msgid "Mark &Newer"
-msgstr "Επιλογή &νεότερων"
-
-#: krusader.cpp:574
-msgid "Mark &Single"
-msgstr "Επιλογή &μοναδικών"
-
-#: krusader.cpp:576
-msgid "Mark Different &And Single"
-msgstr "Ε&πιλογή διαφορετικών και μοναδικών"
-
-#: krusader.cpp:578
-msgid "Mark &Different"
-msgstr "Επιλογή &διαφορετικών"
-
-#: krusader.cpp:587
-msgid "&Terminal..."
-msgstr "&Τερματικό..."
-
-#: krusader.cpp:589
-msgid "Disconnect &From Net"
-msgstr "Αποσύνδεση από το &δίκτυο"
-
-#: krusader.cpp:592 krusader.cpp:597
-msgid "&MountMan..."
-msgstr "&MountMan..."
-
-#: krusader.cpp:601
-msgid "&Search..."
-msgstr "&Αναζήτηση..."
-
-#: krusader.cpp:603
-msgid "&Locate..."
-msgstr "&Εντοπισμός (Locate)..."
-
-#: krusader.cpp:605
-msgid "Synchronize &Directories..."
-msgstr "Συγχρονισμός &καταλόγων..."
-
-#: krusader.cpp:607
-msgid "S&ynchron directory changes"
-msgstr "Σ&υγχρονισμένες αλλαγές καταλόγων"
-
-#: krusader.cpp:609
-msgid "D&isk Usage..."
-msgstr "Χρήση &δίσκου..."
-
-#: krusader.cpp:611
+#: krusader.cpp:571
 msgid "&Invert Selection"
 msgstr "&Αντιστροφή επιλογής"
 
-#: krusader.cpp:613
-msgid "&Unselect Group"
-msgstr "Α&ποεπιλογή ομάδας"
+#: krusader.cpp:573
+msgid "&Compare Directories"
+msgstr "&Σύγκριση καταλόγων"
 
-#: krusader.cpp:615
+#: krusader.cpp:575
+msgid "&Mark Newer and Single"
+msgstr "Επιλογή νεότερων και &μοναδικών"
+
+#: krusader.cpp:577
+msgid "Mark &Newer"
+msgstr "Επιλογή &νεότερων"
+
+#: krusader.cpp:579
+msgid "Mark &Single"
+msgstr "Επιλογή &μοναδικών"
+
+#: krusader.cpp:581
+msgid "Mark Different &and Single"
+msgstr "Ε&πιλογή διαφορετικών και μοναδικών"
+
+#: krusader.cpp:583
+msgid "Mark &Different"
+msgstr "Επιλογή &διαφορετικών"
+
+#: krusader.cpp:592
+msgid "Start &Terminal"
+msgstr "Εκκίνηση &τερματικού"
+
+#: krusader.cpp:594
+msgid "Disconnect &from Net"
+msgstr "Αποσύνδεση από το &δίκτυο"
+
+#: krusader.cpp:597 krusader.cpp:602
+msgid "&MountMan..."
+msgstr "&MountMan..."
+
+#: krusader.cpp:606
+msgid "&Search..."
+msgstr "&Αναζήτηση..."
+
+#: krusader.cpp:608
+msgid "&Locate..."
+msgstr "&Εντοπισμός (Locate)..."
+
+#: krusader.cpp:610
+msgid "Synchronize &Directories..."
+msgstr "Συγχρονισμός &καταλόγων..."
+
+#: krusader.cpp:612
+msgid "S&ynchron Directory Changes"
+msgstr "Σ&υγχρονισμένες αλλαγές καταλόγων"
+
+#: krusader.cpp:614
+msgid "D&isk Usage..."
+msgstr "Χρήση &δίσκου..."
+
+#: krusader.cpp:616
 msgid "Configure &Krusader..."
 msgstr "Ρύθμιση του &Krusader..."
 
-#: krusader.cpp:617
+#: krusader.cpp:618
 msgid "Back"
 msgstr "Πίσω"
 
-#: krusader.cpp:621
+#: krusader.cpp:622
 msgid "Save &Position"
 msgstr "Αποθήκευση &θέσης"
 
-#: krusader.cpp:623
+#: krusader.cpp:624
 msgid "&All Files"
 msgstr "Όλα τα &αρχεία"
 
-#: krusader.cpp:627
+#: krusader.cpp:628
 msgid "&Custom"
 msgstr "Πρ&οσαρμογή"
 
-#: krusader.cpp:629
+#: krusader.cpp:630
 msgid "Compare b&y Content..."
 msgstr "Σύγκριση &περιεχομένων..."
 
-#: krusader.cpp:631
+#: krusader.cpp:632
 msgid "Multi &Rename..."
 msgstr "Μετονομασία πολλαπλών α&ρχείων..."
 
-#: krusader.cpp:633
-msgid "Right-click menu"
+#: krusader.cpp:634
+msgid "Right-click Menu"
 msgstr "Μενού δεξιού κλικ"
 
-#: krusader.cpp:635
-msgid "Right bookmarks"
+#: krusader.cpp:636
+msgid "Right Bookmarks"
 msgstr "Σελιδοδείκτες αριστερού πινάκα"
 
-#: krusader.cpp:637
-msgid "Left bookmarks"
-msgstr "Σελιδοδείκτες δεξιού πινάκα"
+#: krusader.cpp:638
+msgid "Left Bookmarks"
+msgstr "Σελιδοδείκτες αριστερού πινάκα"
 
 #: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:639
+#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:640
 msgid "Bookmarks"
 msgstr "Σελιδοδείκτες"
 
-#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:641
+#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:642
 msgid "Bookmark Current"
 msgstr "Σελιδοδείκτης εδώ"
 
-#: krusader.cpp:643
+#: krusader.cpp:644
 msgid "History"
 msgstr "Ιστορικό"
 
-#: krusader.cpp:645
+#: krusader.cpp:646
 msgid "Sync Panels"
 msgstr "Συγχρονισμός πινάκων"
 
-#: krusader.cpp:647
-msgid "Left history"
-msgstr "Αριστερό ιστορικό"
+#: krusader.cpp:648
+msgid "Left History"
+msgstr "Ιστορικό αριστερού πινάκα"
 
-#: krusader.cpp:649
-msgid "Right history"
-msgstr "Δεξί ιστορικό"
+#: krusader.cpp:650
+msgid "Right History"
+msgstr "Ιστορικό δεξιού πινάκα"
 
-#: BookMan/krbookmark.cpp:12 krusader.cpp:651
+#: BookMan/krbookmark.cpp:12 krusader.cpp:652
 msgid "Media"
 msgstr "Μέσο"
 
-#: krusader.cpp:653
-msgid "Left media"
-msgstr "Αριστερό μέσο"
+#: krusader.cpp:654
+msgid "Left Media"
+msgstr "Μέσο αριστερού πινάκα"
 
-#: krusader.cpp:655
-msgid "Right media"
-msgstr "Δεξιό μέσο"
+#: krusader.cpp:656
+msgid "Right Media"
+msgstr "Μέοσ δεξιού πινάκα"
 
-#: krusader.cpp:657
-msgid "New symlink"
-msgstr "Νέος συμβολικός δεσμός"
+#: krusader.cpp:658
+msgid "New Symlink..."
+msgstr "Νέος συμβολικός δεσμός..."
 
-#: krusader.cpp:659
+#: krusader.cpp:660
 msgid "Toggle Popup Panel"
 msgstr "Εναλλαγή αναδυόμενου πίνακα"
 
-#: krusader.cpp:661
+#: krusader.cpp:662
 msgid "Vertical Mode"
 msgstr "Κατακόρυφη παράθεση"
 
-#: krusader.cpp:663
-msgid "New tab"
+#: krusader.cpp:664
+msgid "New Tab"
 msgstr "Νέα καρτέλα"
 
-#: krusader.cpp:665
-msgid "Duplicate tab"
-msgstr "Αντίγραφο καρτέλας"
+#: krusader.cpp:666
+msgid "Duplicate Current Tab"
+msgstr "Αντίγραφο τρέχουσας καρτέλας"
 
-#: krusader.cpp:667
-msgid "Close tab"
-msgstr "Κλείσιμο καρτέλας"
+#: krusader.cpp:668
+msgid "Close Current Tab"
+msgstr "Κλείσιμο της τρέχουσας καρτέλας"
 
-#: krusader.cpp:669
-msgid "Next tab"
+#: krusader.cpp:670
+msgid "Next Tab"
 msgstr "Επόμενη καρτέλα"
 
-#: krusader.cpp:671
-msgid "Previous tab"
+#: krusader.cpp:672
+msgid "Previous Tab"
 msgstr "Προηγούμενη καρτέλα"
 
-#: UserMenu/usermenu.cpp:51 krusader.cpp:673
-msgid "User Menu"
-msgstr "Μενού χρήστη"
-
-#: krusader.cpp:675
-msgid "Manage user actions..."
+#: krusader.cpp:678
+msgid "Manage User Actions..."
 msgstr "Διαχείριση ενεργειών χρήστη..."
 
-#: krusader.cpp:677
+#: krusader.cpp:680
 msgid "Select Remote Charset"
 msgstr "Επιλογή απομακρυσμένου συνόλου χαρακτήρων"
 
-#: krusader.cpp:680
+#: krusader.cpp:683
 msgid "F2 - Open a terminal"
 msgstr "F2 - Άνοιγμα τερματικού"
 
-#: krusader.cpp:682
+#: krusader.cpp:685
 msgid "F3 - View a file"
 msgstr "F3 - Προβολή αρχείου"
 
-#: krusader.cpp:684
+#: krusader.cpp:687
 msgid "F4 - Edit a file"
 msgstr "F4 - Επεξεργασία αρχείου"
 
-#: krusader.cpp:686
+#: krusader.cpp:689
 msgid "F5 - Copy"
 msgstr "F5 - Αντιγραφή"
 
-#: krusader.cpp:688
+#: krusader.cpp:691
 msgid "F6 - Move"
 msgstr "F6 - Μετακίνηση"
 
-#: krusader.cpp:690
+#: krusader.cpp:693
 msgid "F7 - Mkdir"
 msgstr "F7 - Mkdir"
 
-#: krusader.cpp:692
+#: krusader.cpp:695
 msgid "F8 - Delete"
 msgstr "F8 - Διαγραφή"
 
-#: krusader.cpp:694
+#: krusader.cpp:697
 msgid "F9 - Rename"
 msgstr "F9 - Μετονομασία"
 
-#: krusader.cpp:696
+#: krusader.cpp:699
 msgid "F10 - Quit"
 msgstr "F10 - Τερματισμός"
 
-#: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
-#: krusader.cpp:698
-msgid "Popular URLs"
-msgstr "Δημοφιλείς URL"
+#: krusader.cpp:701
+msgid "Popular URLs..."
+msgstr "Δημοφιλείς URL..."
 
-#: krusader.cpp:700
-msgid "Go to location bar"
+#: krusader.cpp:703
+msgid "Go to Location Bar"
 msgstr "Μετάβαση στη γραμμή τοποθεσίας"
 
-#: BookMan/krbookmarkhandler.cpp:493 krusader.cpp:702
-msgid "Jump back"
+#: krusader.cpp:705
+msgid "Jump Back"
 msgstr "Μετάβαση πίσω"
 
-#: krusader.cpp:704
-msgid "Set jump back point here"
-msgstr "Ορισμός σημείου μετάβασης εδώ"
+#: krusader.cpp:707
+msgid "Set Jump Back Point"
+msgstr "Ορισμός σημείου μετάβασης πίσω"
 
-#: krusader.cpp:706
-#, fuzzy
-msgid "Toggle fullwidget terminal emulator"
-msgstr "Εμφάνιση εξομοιωτή τερματικού"
+#: krusader.cpp:709
+msgid "Toggle Fullwidget Terminal Emulator"
+msgstr "Εμφάνιση εξομοιωτή τερματικού (πλήρης οθόνη)"
 
-#: krusader.cpp:710
+#: krusader.cpp:713
 msgid "Select files using a filter"
 msgstr "Επιλογή αρχείων με χρήση ενός φίλτρου"
 
-#: krusader.cpp:711
+#: krusader.cpp:714
 msgid "Select all files in the current directory"
 msgstr "Επιλογή όλων των αρχείων του τρέχοντος καταλόγου"
 
-#: krusader.cpp:712
-msgid "Un-select all selected files"
+#: krusader.cpp:715
+msgid "Unselect all selected files"
 msgstr "Αποεπιλογή όλων των επιλεγμένων αρχείων"
 
-#: krusader.cpp:713
+#: krusader.cpp:716
 msgid "Setup Krusader the way you like it"
 msgstr "Ρυθμίστε τον Krusader όπως θέλετε"
 
-#: krusader.cpp:714
+#: krusader.cpp:717
 msgid "Back to the place you came from"
 msgstr "Πίσω στην τοποθεσία από όπου ήλθατε"
 
-#: krusader.cpp:715
+#: krusader.cpp:718
 msgid "ROOT (/)"
 msgstr "Ριζικός φάκελος (/)"
 
-#: krusader.cpp:716
+#: krusader.cpp:719
 msgid "Search for files"
 msgstr "Αναζήτηση αρχείων"
 
-#: krusader.cpp:722
-msgid "JavaScript console"
-msgstr "Κονσόλα JavaScript"
+#: krusader.cpp:725
+msgid "JavaScript Console..."
+msgstr "Κονσόλα JavaScript..."
 
-#: Konfigurator/kgcolors.cpp:560 krusader.cpp:752
-msgid "File "
-msgstr "Το αρχείο "
+#: Dialogs/krkeydialog.cpp:114 krusader.cpp:755
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgstr "<qt>Το αρχείο <b>%1</b> υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;</qt>"
 
-#: Konfigurator/kgcolors.cpp:560 krusader.cpp:752
-msgid " already exists. Are you sure you want to overwrite it?"
-msgstr "υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;"
-
-#: Konfigurator/kgcolors.cpp:563 krusader.cpp:755
+#: Konfigurator/kgcolors.cpp:563 krusader.cpp:758
 msgid "Error: unable to write to file"
 msgstr "Σφάλμα: αδύνατη η εγγραφή στο αρχείο"
 
-#: krusader.cpp:896
+#: krusader.cpp:899
 msgid "Are you sure you want to quit?"
 msgstr "Είστε σίγουροι ότι θέλετε να τερματίσετε το πρόγραμμα;"
 
@@ -2507,6 +2483,10 @@ msgstr " δε φαίνεται να είναι ένα έγκυρο αρχεία 
 msgid "Error reading bookmarks file: "
 msgstr "Σφάλμα ανάγνωσης αρχείου σελιδοδεικτών: "
 
+#: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
+msgid "Popular URLs"
+msgstr "Δημοφιλείς URL"
+
 #: BookMan/krbookmarkhandler.cpp:402
 msgid "Manage Bookmarks"
 msgstr "Διαχείριση σελιδοδεικτών"
@@ -2526,6 +2506,10 @@ msgstr "Τοπικό δίκτυο"
 #: BookMan/krbookmark.cpp:16 BookMan/krbookmarkhandler.cpp:491
 msgid "Virtual Filesystem"
 msgstr "Εικονικό σύστημα αρχείων"
+
+#: BookMan/krbookmarkhandler.cpp:493
+msgid "Jump back"
+msgstr "Μετάβαση πίσω"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2631,8 +2615,7 @@ msgstr ""
 "Παρακαλώ ενημερώστε τους προγραμματιστές"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Εσωτερικό σφάλμα του MountMan\n"
 "Παρακαλώ ενημερώστε τους προγραμματιστές. Ευχαριστώ."
@@ -2705,8 +2688,7 @@ msgstr "Η εφαρμογή εκτελείται ήδη!\n"
 
 #: krusaderview.cpp:85
 msgid "Function keys allow performing fast operations on files."
-msgstr ""
-"Τα πλήκτρα λειτουργιών σας επιτρέπουν τη γρήγορη εκτέλεση εντολών στα αρχεία."
+msgstr "Τα πλήκτρα λειτουργιών σας επιτρέπουν τη γρήγορη εκτέλεση εντολών στα αρχεία."
 
 #: Dialogs/krdialogs.cpp:130
 msgid "Preserve attributes (only for local targets)"
@@ -2719,147 +2701,6 @@ msgstr "Διατήρηση της εικονικής δεντρικής δομή
 #: Dialogs/krdialogs.cpp:142
 msgid "Base URL:"
 msgstr "Βασικό URL:"
-
-#: Dialogs/krdialogs.cpp:266 Konfigurator/kglookfeel.cpp:230
-msgid "Custom Selection Mode"
-msgstr "Προσαρμοσμένη λειτουργία επιλογής"
-
-#: Dialogs/krdialogs.cpp:269
-msgid "Based on KDE's selection mode"
-msgstr "Βασισμένη στη λειτουργία επιλογής του KDE"
-
-#: Dialogs/krdialogs.cpp:270
-msgid "Left mouse button selects"
-msgstr "Επιλογή με το αριστερό πλήκτρο του ποντικιού"
-
-#: Dialogs/krdialogs.cpp:271
-msgid "Left mouse button preserves selection"
-msgstr "Διατήρηση επιλογής με το αριστερό πλήκτρο του ποντικιού"
-
-#: Dialogs/krdialogs.cpp:272
-msgid "Shift/Ctrl-Left mouse button selects"
-msgstr "Επιλογή με Shift/Ctrl-αριστερό πλήκτρο του ποντικιού"
-
-#: Dialogs/krdialogs.cpp:273
-msgid "Right mouse button selects"
-msgstr "Επιλογή με το δεξί πλήκτρο του ποντικιού"
-
-#: Dialogs/krdialogs.cpp:274
-msgid "Right mouse button preserves selection"
-msgstr "Διατήρηση επιλογής με το δεξί πλήκτρο του ποντικιού"
-
-#: Dialogs/krdialogs.cpp:275
-msgid "Shift/Ctrl-Right mouse button selects"
-msgstr "Επιλογή με Shift/Ctrl-δεξί πλήκτρο του ποντικιού"
-
-#: Dialogs/krdialogs.cpp:276
-msgid "Spacebar moves down"
-msgstr "Το πλήκτρο 'κενό' μετακινεί προς τα κάτω"
-
-#: Dialogs/krdialogs.cpp:277
-msgid "Spacebar calculates disk space"
-msgstr "Το πλήκτρο 'κενό' υπολογίζει το χώρο του δίσκου"
-
-#: Dialogs/krdialogs.cpp:278
-msgid "Insert moves down"
-msgstr "Το πλήκτρο 'εισαγωγή' μετακινεί προς τα κάτω"
-
-#: Dialogs/krdialogs.cpp:279
-msgid "Right clicking pops context menu immediately"
-msgstr "Με δεξί κλικ εμφανίζεται αμέσως το βοηθητικό μενού"
-
-#: Dialogs/krdialogs.cpp:281
-msgid "If checked, use a mode based on KDE's style."
-msgstr ""
-"Αν ενεργοποιηθεί, θα χρησιμοποιηθεί μία λειτουργία που βασίζεται στο στυλ "
-"του KDE."
-
-#: Dialogs/krdialogs.cpp:282
-msgid "If checked, left clicking an item will select it."
-msgstr ""
-"Αν ενεργοποιηθεί, κάνοντας αριστερό κλικ σε ένα αντικείμενο θα το επιλέγει."
-
-#: Dialogs/krdialogs.cpp:283
-msgid ""
-"If checked, left clicking an item will select it, but will not unselect "
-"other, already selected items."
-msgstr ""
-"Αν ενεργοποιηθεί, κάνοντας αριστερό κλικ σε ένα αντικείμενο θα το επιλέγει, "
-"αλλά δε θα αποεπιλέγει άλλα, ήδη επιλεγμένα αντικείμενα."
-
-#: Dialogs/krdialogs.cpp:285
-msgid ""
-"If checked, shift/ctrl left clicking will select items. \n"
-"Note: This is meaningless if 'Left Button Selects' is checked."
-msgstr ""
-"Αν ενεργοποιηθεί, κάνοντας shift/ctrl και αριστερό κλικ θα επιλέγετε "
-"αντικείμενα.\n"
-"Σημείωση: Αυτό δεν έχει νόημα να είναι ενεργοποιημένο το 'Επιλογή με το "
-"αριστερό πλήκτρο'."
-
-#: Dialogs/krdialogs.cpp:287
-msgid "If checked, right clicking an item will select it."
-msgstr ""
-"Αν ενεργοποιηθεί, κάνοντας δεξί κλικ σε ένα αντικείμενο θα το επιλέγει."
-
-#: Dialogs/krdialogs.cpp:288
-msgid ""
-"If checked, right clicking an item will select it, but will not unselect "
-"other, already selected items."
-msgstr ""
-"Αν ενεργοποιηθεί, κάνοντας δεξί κλικ σε ένα αντικείμενο θα το επιλέγει, αλλά "
-"δε θα αποεπιλέγει άλλα, ήδη επιλεγμένα αντικείμενα."
-
-#: Dialogs/krdialogs.cpp:290
-msgid ""
-"If checked, shift/ctrl right clicking will select items. \n"
-"Note: This is meaningless if 'Right Button Selects' is checked."
-msgstr ""
-"Αν ενεργοποιηθεί, κάνοντας shift/ctrl και δεξί κλικ θα επιλέγετε "
-"αντικείμενα.\n"
-"Σημείωση: Αυτό δεν έχει νόημα να είναι ενεργοποιημένο το 'Επιλογή με το δεξί "
-"πλήκτρο'."
-
-#: Dialogs/krdialogs.cpp:292
-msgid ""
-"If checked, pressing the spacebar will select the current item and move "
-"down. \n"
-"Otherwise, current item is selected, but remains the current item."
-msgstr ""
-"Αν ενεργοποιηθεί, πατώντας την μπάρα κενού θα επιλεχθεί το τρέχον "
-"αντικείμενο και θα μετακινηθεί προς τα κάτω.\n"
-"Διαφορετικά, επιλέγεται το τρέχον αντικείμενο, και παραμένει τρέχον."
-
-#: Dialogs/krdialogs.cpp:294
-msgid ""
-"If checked, pressing the spacebar while the current item is a folder, will "
-"(except from selecting the folder) \n"
-"calculate space occupied by the folder (recursively)."
-msgstr ""
-"Αν ενεργοποιηθεί, πατώντας την μπάρα κενού όταν το τρέχον αντικείμενο είναι "
-"ένας φάκελος, εκτός από την επιλογή του φακέλου, θα υπολογιστεί και ο χώρος "
-"που καταλαμβάνεται από το φάκελο (αναδρομικά)."
-
-#: Dialogs/krdialogs.cpp:296
-msgid ""
-"If checked, pressing INSERT will select the current item, and move down to "
-"the next item. \n"
-"Otherwise, current item is not changed."
-msgstr ""
-"Αν ενεργοποιηθεί, πατώντας το πλήκτρο INSERT θα επιλεχθεί το τρέχον "
-"αντικείμενο και θα μετακινηθεί προς τα κάτω.\n"
-"Διαφορετικά, δε θα αλλάξει το τρέχον αντικείμενο."
-
-#: Dialogs/krdialogs.cpp:298
-msgid ""
-"If checked, right clicking will result in an immediate showing of the "
-"context menu. \n"
-"Otherwise, user needs to click and hold the right mouse button for 500ms."
-msgstr ""
-"Αν ενεργοποιηθεί, κάνοντας δεξί κλικ θα εμφανιστεί άμεσα το βοηθητικό "
-"μενού.\n"
-"Διαφορετικά, ο χρήστης θα πρέπει να κάνει κλικ και να κρατήσει πατημένο το "
-"δεξί πλήκτρο του ποντικιού για 500ms."
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -3087,74 +2928,67 @@ msgid ""
 "*.keymap|Krusader keymaps\n"
 "*|all files"
 msgstr ""
+"*.keymap|Αρχεία keymap του Krusader\n"
+"*|Όλα τα αρχεία"
 
-#: Dialogs/krkeydialog.cpp:41 Konfigurator/kglookfeel.cpp:160
+#: Dialogs/krkeydialog.cpp:41
 msgid "Import shortcuts"
 msgstr "Εισαγωγή συντομεύσεων"
 
-#: Dialogs/krkeydialog.cpp:42 Konfigurator/kglookfeel.cpp:162
+#: Dialogs/krkeydialog.cpp:42
 msgid "Load a keybinding profile, e.g., total_commander.keymap"
 msgstr ""
 "Φόρτωση ενός προφίλ συντομεύσεων πληκτρολογίου, π.χ. το total_commander."
 "keymap"
 
-#: Dialogs/krkeydialog.cpp:46 Konfigurator/kglookfeel.cpp:163
+#: Dialogs/krkeydialog.cpp:46
 msgid "Export shortcuts"
 msgstr "Εξαγωγή συντομεύσεων"
 
-#: Dialogs/krkeydialog.cpp:47 Konfigurator/kglookfeel.cpp:165
+#: Dialogs/krkeydialog.cpp:47
 msgid "Save current keybindings in a keymap file."
 msgstr "Αποθήκευση των τρεχόντων συντομεύσεων πληκτρολογίου σε αρχείο."
 
 #: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:108
-#, fuzzy
 msgid "Select a keymap file"
-msgstr "Επιλογή ενός αρχείου θέματος χρώματος"
+msgstr "Επιλογή ενός αρχείου keymap"
 
 #: Dialogs/krkeydialog.cpp:71
 msgid ""
 "This file does not seem to be a valid keymap.\n"
 "It may be a keymap using a legacy format. The import can't be undone!"
 msgstr ""
+"Αυτό δε φαίνεται να είναι ένα έγκυρο αρχείο keymap.\n"
+"Μπορεί να χρησιμοποιεί κάποια κληροδοτημένη μορφή keymap. Η ενέργεια δεν "
+"μπορεί να αναιρεθεί!"
 
 #: Dialogs/krkeydialog.cpp:73
 msgid "Try to import legacy format?"
-msgstr ""
+msgstr "Να γίνει προσπάθεια εισαγωγής της κληροδοτημένης μορφής;"
 
 #: Dialogs/krkeydialog.cpp:74
-#, fuzzy
 msgid "Import anyway"
-msgstr "Εισαγωγή ενέργειας"
+msgstr "Εισαγωγή όπως και να 'χει"
 
-#: Dialogs/krkeydialog.cpp:95 Konfigurator/kglookfeel.cpp:314
+#: Dialogs/krkeydialog.cpp:95
 msgid ""
-"The following information was attached to the keymap. Are you sure you want "
-"to import this keymap ?"
+"The following information was attached to the keymap. Do you really want to "
+"import this keymap?"
 msgstr ""
-"Οι παρακάτω πληροφορίες υπάρχουν στο αρχείο συντομεύσεων. Είστε σίγουροι ότι "
-"θέλετε να εισάγετε αυτό το αρχείο συντομεύσεων;"
+"Οι παρακάτω πληροφορίες υπάρχουν στο αρχείο keymap. Είστε σίγουροι ότι "
+"θέλετε να εισάγετε αυτό το αρχείο keymap;"
 
 #: Dialogs/krkeydialog.cpp:102
 msgid "Please restart this dialog in order to see the changes"
-msgstr ""
+msgstr "Παρακαλώ επανεκκινήστε το διάλογο για να δείτε τις αλλαγές"
 
 #: Dialogs/krkeydialog.cpp:103
 msgid "Legacy import completed"
-msgstr ""
-
-#: Dialogs/krkeydialog.cpp:114
-#, fuzzy
-msgid "File %1 already exists. Are you sure you want to overwrite it?"
-msgstr ""
-"Το αρχείο %1 υπάρχει ήδη.\n"
-"Θέλετε να το αντικαταστήσετε;"
+msgstr "Η εισαγωγή της κληροδοτημένης μορφής ολοκληρώθηκε"
 
 #: Dialogs/krkeydialog.cpp:123
-#, fuzzy
-msgid "Can't open %1 for writing!"
-msgstr ""
-"Αδύνατο το άνοιγμα του αρχείου %1 για εγγραφή!\n"
-"Δεν εξήχθη τίποτα."
+msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
+msgstr "<qt>Αδύνατο το άνοιγμα του αρχείου <b>%1</b> για εγγραφή!</qt>"
 
 #: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
 msgid "Pack"
@@ -3327,8 +3161,7 @@ msgstr ""
 
 #: Dialogs/checksumdlg.cpp:316
 msgid "About to verify checksum for the following files"
-msgstr ""
-"Πρόκειται να γίνει επαλήθευση του αθροίσματος ελέγχου για τα ακόλουθα αρχεία"
+msgstr "Πρόκειται να γίνει επαλήθευση του αθροίσματος ελέγχου για τα ακόλουθα αρχεία"
 
 #: Dialogs/checksumdlg.cpp:330
 msgid "Checksum file:"
@@ -3463,15 +3296,12 @@ msgid "Delete selected useractions"
 msgstr "Αφαίρεση των επιλεγμένων ενεργειών χρήστη"
 
 #: ActionMan/useractionpage.cpp:126
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
-msgstr ""
-"Η τρέχουσα ενέργεια έχει τροποποιηθεί. Θέλετε να εφαρμοστούν οι αλλαγές;"
+msgid "The current action has been modified. Do you want to apply these changes?"
+msgstr "Η τρέχουσα ενέργεια έχει τροποποιηθεί. Θέλετε να εφαρμοστούν οι αλλαγές;"
 
 #: ActionMan/useractionpage.cpp:203
 msgid "Are you sure that you want to remove all selected actions?"
-msgstr ""
-"Είστε σίγουροι ότι θέλετε να αφαιρέσετε όλες τις επιλεγμένες ενέργειες;"
+msgstr "Είστε σίγουροι ότι θέλετε να αφαιρέσετε όλες τις επιλεγμένες ενέργειες;"
 
 #: ActionMan/useractionpage.cpp:204
 msgid "Remove selected actions?"
@@ -3747,8 +3577,7 @@ msgstr "Κατηγορία:"
 
 #: ActionMan/actionpropertybase.cpp:418
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
-msgstr ""
-"Προσθήκη <b>Δεσμευτικού θέσης </b> για τα επιλεγμένα αρχεία του πίνακα."
+msgstr "Προσθήκη <b>Δεσμευτικού θέσης </b> για τα επιλεγμένα αρχεία του πίνακα."
 
 #: ActionMan/actionpropertybase.cpp:420
 msgid "Workdir:"
@@ -3826,8 +3655,7 @@ msgstr "Δια&γραφή"
 #: ActionMan/actionpropertybase.cpp:438 ActionMan/actionpropertybase.cpp:440
 #: ActionMan/actionpropertybase.cpp:445
 msgid "Show the <b>Useraction</b> only for the values defined here."
-msgstr ""
-"Εμφάνιση της <b>Ενέργειας χρήστη</b> μόνο για τις τιμές που ορίζονται εδώ."
+msgstr "Εμφάνιση της <b>Ενέργειας χρήστη</b> μόνο για τις τιμές που ορίζονται εδώ."
 
 #: ActionMan/actionpropertybase.cpp:439
 msgid "Protocol"
@@ -3972,8 +3800,11 @@ msgstr "Θύρα:   "
 
 #: RemoteMan/remotemanbase.cpp:235
 msgid "* Warning: Storing your password is not secure !!!"
-msgstr ""
-"* Προειδοποίηση: Η αποθήκευση του κωδικού πρόσβασής σας δεν είναι ασφαλής!!!"
+msgstr "* Προειδοποίηση: Η αποθήκευση του κωδικού πρόσβασής σας δεν είναι ασφαλής!!!"
+
+#: UserMenu/usermenu.cpp:51
+msgid "User Menu"
+msgstr "Μενού χρήστη"
 
 #: UserMenu/usermenu.cpp:58
 msgid "Manage user actions"
@@ -3993,8 +3824,7 @@ msgstr "Φίλτρο αρχείων:"
 
 #: Synchronizer/synchronizergui.cpp:1088
 msgid "The left base directory used during the synchronisation process."
-msgstr ""
-"Ο αριστερός βασικός κατάλογος που θα χρησιμοποιηθεί για το συγχρονισμό."
+msgstr "Ο αριστερός βασικός κατάλογος που θα χρησιμοποιηθεί για το συγχρονισμό."
 
 #: Synchronizer/synchronizergui.cpp:1119
 msgid "The right base directory used during the synchronisation process."
@@ -4006,8 +3836,7 @@ msgstr "Αναδρομικά στους υποκαταλόγους"
 
 #: Synchronizer/synchronizergui.cpp:1127
 msgid "Compare not only the base directories but their subdirectories as well."
-msgstr ""
-"Σύγκριση όχι μόνο των βασικών καταλόγων αλλά και των υποκαταλόγων τους."
+msgstr "Σύγκριση όχι μόνο των βασικών καταλόγων αλλά και των υποκαταλόγων τους."
 
 #: Synchronizer/synchronizergui.cpp:1128
 msgid "Follow symlinks"
@@ -4201,8 +4030,7 @@ msgstr "Δεξιός κατάλογος:"
 
 #: Synchronizer/synchronizergui.cpp:1550
 msgid "URL must be the descendant of either the left or the right base URL!"
-msgstr ""
-"Το URL θα πρέπει να είναι απόγονος του αριστερού ή του δεξιού βασικού URL!"
+msgstr "Το URL θα πρέπει να είναι απόγονος του αριστερού ή του δεξιού βασικού URL!"
 
 #: Synchronizer/synchronizergui.cpp:1607
 msgid "Synchronize Directories"
@@ -4420,7 +4248,7 @@ msgstr "Μόνο επιλεγμένα αρχεία"
 msgid "Cannot open %1!"
 msgstr "Αδύνατο το άνοιγμα του %1!"
 
-#: Konfigurator/kglookfeel.cpp:98 paneltabbar.cpp:35
+#: Konfigurator/kglookfeel.cpp:120 paneltabbar.cpp:35
 msgid "Panel"
 msgstr "Πίνακας"
 
@@ -4629,6 +4457,10 @@ msgstr "Τρέχων κατάλογος: %1, Συνολικό μέγεθος: %2
 msgid "Disk Usage"
 msgstr "Χρήση δίσκου"
 
+#: DiskUsage/diskusage.cpp:766
+msgid "Up one directory"
+msgstr "Ένας κατάλογος πάνω"
+
 #: DiskUsage/diskusage.cpp:768
 msgid "New search"
 msgstr "Νέα αναζήτηση"
@@ -4683,58 +4515,64 @@ msgstr "Ιδιοκτήτης:"
 msgid "&File"
 msgstr "&Αρχείο"
 
-#. i18n: file krusaderui.rc line 25
+#. i18n: file krusaderui.rc line 30
 #: rc.cpp:6
 #, no-c-format
-msgid "&Mark"
-msgstr "&Επιλογή"
+msgid "&Edit"
+msgstr "&Επεξεργασία"
 
-#. i18n: file krusaderui.rc line 34
+#. i18n: file krusaderui.rc line 43
 #: rc.cpp:9
 #, no-c-format
 msgid "Compare Se&tup"
 msgstr "Ρύ&θμιση σύγκρισης"
 
-#. i18n: file krusaderui.rc line 43
+#. i18n: file krusaderui.rc line 55
 #: rc.cpp:12
-#, no-c-format
-msgid "&Commands"
-msgstr "Ε&ντολές"
-
-#. i18n: file krusaderui.rc line 59
-#: rc.cpp:15
 #, no-c-format
 msgid "&View"
 msgstr "Π&ροβολή"
 
+#. i18n: file krusaderui.rc line 66
+#: rc.cpp:15
+#, no-c-format
+msgid "&Go"
+msgstr "&Μετάβαση"
+
 #. i18n: file krusaderui.rc line 77
 #: rc.cpp:18
-#, no-c-format
-msgid "&Tools"
-msgstr "Ερ&γαλεία"
-
-#. i18n: file krusaderui.rc line 85
-#: rc.cpp:21
-#, no-c-format
-msgid "&Settings"
-msgstr "Ρ&υθμίσεις"
-
-#. i18n: file krusaderui.rc line 94
-#: rc.cpp:24
 #, no-c-format
 msgid "&Useractions"
 msgstr "Ενέργειες &χρήστη"
 
-#. i18n: file krusaderui.rc line 99
+#. i18n: file krusaderui.rc line 82
+#: rc.cpp:21
+#, no-c-format
+msgid "&Tools"
+msgstr "Ερ&γαλεία"
+
+#. i18n: file krusaderui.rc line 105
+#: rc.cpp:24
+#, no-c-format
+msgid "&Settings"
+msgstr "Ρ&υθμίσεις"
+
+#. i18n: file krusaderui.rc line 121
 #: rc.cpp:27
+#, no-c-format
+msgid "&Window"
+msgstr "&Παράθυρο"
+
+#. i18n: file krusaderui.rc line 138
+#: rc.cpp:30
 #, no-c-format
 msgid "&Help"
 msgstr "&Βοήθεια"
 
 #: Konfigurator/kgadvanced.cpp:48 Konfigurator/kgarchives.cpp:51
 #: Konfigurator/kgcolors.cpp:51 Konfigurator/kgdependencies.cpp:53
-#: Konfigurator/kggeneral.cpp:51 Konfigurator/kglookfeel.cpp:219
-#: Konfigurator/konfigurator.cpp:100
+#: Konfigurator/kggeneral.cpp:51 Konfigurator/kglookfeel.cpp:223
+#: Konfigurator/kgstartup.cpp:47 Konfigurator/konfigurator.cpp:100
 msgid "General"
 msgstr "Γενικά"
 
@@ -4814,8 +4652,7 @@ msgstr "Δεκαεξαδική προβολή"
 
 #: Konfigurator/kggeneral.cpp:93
 msgid "View the file in hex-mode (better for binary files)"
-msgstr ""
-"Εμφάνιση του αρχείου σε δεκαεξαδική μορφή (καλύτερο για δυαδικά αρχεία)"
+msgstr "Εμφάνιση του αρχείου σε δεκαεξαδική μορφή (καλύτερο για δυαδικά αρχεία)"
 
 #: Konfigurator/kggeneral.cpp:99
 msgid "Viewer opens each file in a separate window"
@@ -4861,8 +4698,7 @@ msgid "Searching for tools..."
 msgstr "Αναζήτηση για εργαλεία..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Σιγουρευτείτε ότι εγκαθιστάτε τα νέα εργαλεία στο <code>$PATH</code> σας (π."
 "χ. /usr/bin)"
@@ -4875,8 +4711,7 @@ msgstr ""
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr ""
-"Το rpm βρέθηκε, αλλά όχι και το cpio, το οποίο απαιτείται για την αποσυμπίεση"
+msgstr "Το rpm βρέθηκε, αλλά όχι και το cpio, το οποίο απαιτείται για την αποσυμπίεση"
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -4993,29 +4828,29 @@ msgstr "Σύνδεση τύπων mime με πρωτόκολλα"
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr "Η τρέχουσα σελίδα έχει τροποποιηθεί. Θέλετε να εφαρμοστούν οι αλλαγές;"
 
-#: Konfigurator/kglookfeel.cpp:63
+#: Konfigurator/kglookfeel.cpp:72
 msgid "Operation"
 msgstr "Λειτουργία"
 
-#: Konfigurator/kglookfeel.cpp:68
+#: Konfigurator/kglookfeel.cpp:79
 msgid "Look && Feel"
 msgstr "Εμφάνιση && Αίσθηση"
 
-#: Konfigurator/kglookfeel.cpp:73
+#: Konfigurator/kglookfeel.cpp:84
 msgid "Warn on exit"
 msgstr "Προειδοποίηση στην έξοδο"
 
-#: Konfigurator/kglookfeel.cpp:73
+#: Konfigurator/kglookfeel.cpp:84
 msgid "Display a warning when trying to close the main window."
 msgstr ""
 "Εμφανίζεται ένα προειδοποιητικό μήνυμα όταν προσπαθήσετε να κλείσετε το "
 "κύριο παράθυρο."
 
-#: Konfigurator/kglookfeel.cpp:74
+#: Konfigurator/kglookfeel.cpp:85
 msgid "Minimize to tray"
 msgstr "Ελαχιστοποίηση στο πλαίσιο συστήματος"
 
-#: Konfigurator/kglookfeel.cpp:74
+#: Konfigurator/kglookfeel.cpp:85
 msgid ""
 "The icon will appear in the system tray instead of the taskbar, when "
 "Krusader is minimized."
@@ -5023,27 +4858,19 @@ msgstr ""
 "Το εικονίδιο του προγράμματος θα εμφανίζεται στο πλαίσιο συστήματος αντί της "
 "γραμμής εργασιών, όταν ο Krusader είναι ελαχιστοποιημένος."
 
-#: Konfigurator/kglookfeel.cpp:75
-msgid "Show hidden files"
-msgstr "Εμφάνιση κρυφών αρχείων"
-
-#: Konfigurator/kglookfeel.cpp:75
-msgid "Display files beginning with a dot."
-msgstr "Εμφάνιση των αρχείων που αρχίζουν με τελεία."
-
-#: Konfigurator/kglookfeel.cpp:76
+#: Konfigurator/kglookfeel.cpp:86
 msgid "Automark directories"
 msgstr "Αυτόματη επιλογή καταλόγων"
 
-#: Konfigurator/kglookfeel.cpp:76
+#: Konfigurator/kglookfeel.cpp:86
 msgid "When matching the select criteria, directories will also be marked."
 msgstr "Κατά την αναζήτηση θα επιλέγονται και οι κατάλογοι που ταιριάζουν."
 
-#: Konfigurator/kglookfeel.cpp:77
+#: Konfigurator/kglookfeel.cpp:87
 msgid "Rename selects extension"
 msgstr "Επιλογή της επέκτασης στη μετονομασία"
 
-#: Konfigurator/kglookfeel.cpp:77
+#: Konfigurator/kglookfeel.cpp:87
 msgid ""
 "When renaming a file, the whole text is selected. If you want total-"
 "commander like renaming of just the name, without extension, unmark this."
@@ -5052,23 +4879,11 @@ msgstr ""
 "γίνεται μετονομασία μόνο του ονόματος, χωρίς την επέκταση του αρχείου, όπως "
 "στον total-commander, αποεπιλέξτε αυτήν την επιλογή."
 
-#: Konfigurator/kglookfeel.cpp:78
-msgid "Case sensitive sorting"
-msgstr "Ταξινόμηση με διάκριση πεζών/κεφαλαίων"
-
-#: Konfigurator/kglookfeel.cpp:78 Konfigurator/kglookfeel.cpp:81
-msgid ""
-"All files beginning with capital letters appear before files beginning with "
-"non-capital letters (UNIX default)."
-msgstr ""
-"Τα αρχεία που αρχίζουν με κεφαλαίο γράμμα εμφανίζονται πριν από τα αρχεία "
-"που αρχίζουν με πεζό (προκαθορισμένο στο UNIX)."
-
-#: Konfigurator/kglookfeel.cpp:79
+#: Konfigurator/kglookfeel.cpp:88
 msgid "Use full path tab names"
 msgstr "Χρήση πλήρους διαδρομής στις καρτέλες"
 
-#: Konfigurator/kglookfeel.cpp:79
+#: Konfigurator/kglookfeel.cpp:88
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
@@ -5076,23 +4891,109 @@ msgstr ""
 "Εμφάνιση της πλήρους διαδρομής στις καρτέλες φακέλων. Εξ ορισμού, "
 "εμφανίζεται μόνο το τελευταίο τμήμα της διαδρομής."
 
-#: Konfigurator/kglookfeel.cpp:80
+#: Konfigurator/kglookfeel.cpp:89
+msgid "Fullscreen terminal (mc-style)"
+msgstr "Τερματικό πλήρους οθόνης (όπως στο mc)"
+
+#: Konfigurator/kglookfeel.cpp:89
+msgid "Terminal is shown instead of the krusader window (full screen)."
+msgstr "Εμφανίζεται το τερματικό αντί του παραθύρου του krusader (πλήρης οθόνη)"
+
+#: Konfigurator/kglookfeel.cpp:98
+msgid "Quicksearch"
+msgstr "Γρήγορη αναζήτηση"
+
+#: Konfigurator/kglookfeel.cpp:103
 msgid "New style quicksearch"
 msgstr "Νέου στυλ γρήγορη αναζήτηση"
 
-#: Konfigurator/kglookfeel.cpp:80
+#: Konfigurator/kglookfeel.cpp:103
 msgid "Opens a quick search dialog box."
 msgstr "Ανοίγει ένα διάλογο γρήγορης αναζήτησης."
 
-#: Konfigurator/kglookfeel.cpp:81
+#: Konfigurator/kglookfeel.cpp:104
 msgid "Case sensitive quicksearch"
 msgstr "Γρήγορη αναζήτηση με διάκριση πεζών/κεφαλαίων"
 
-#: Konfigurator/kglookfeel.cpp:82
+#: Konfigurator/kglookfeel.cpp:104 Konfigurator/kglookfeel.cpp:155
+msgid ""
+"All files beginning with capital letters appear before files beginning with "
+"non-capital letters (UNIX default)."
+msgstr ""
+"Τα αρχεία που αρχίζουν με κεφαλαίο γράμμα εμφανίζονται πριν από τα αρχεία "
+"που αρχίζουν με πεζό (προκαθορισμένο στο UNIX)."
+
+#: Konfigurator/kglookfeel.cpp:125
+msgid "Panel settings"
+msgstr "Ρυθμίσεις πίνακα"
+
+#: Konfigurator/kglookfeel.cpp:129
+msgid "Panel font:"
+msgstr "Γραμματοσειρά πίνακα: "
+
+#: Konfigurator/kglookfeel.cpp:135
+msgid "Filelist icon size:"
+msgstr "Μέγεθος εικονιδίων της λίστας αρχείων: "
+
+#: Konfigurator/kglookfeel.cpp:138
+msgid "16"
+msgstr "16"
+
+#: Konfigurator/kglookfeel.cpp:139
+msgid "22"
+msgstr "22"
+
+#: Konfigurator/kglookfeel.cpp:140
+msgid "32"
+msgstr "32"
+
+#: Konfigurator/kglookfeel.cpp:141
+msgid "48"
+msgstr "48"
+
+#: Konfigurator/kglookfeel.cpp:152
+msgid "Use icons in the filenames"
+msgstr "Χρήση εικονιδίων στα ονόματα αρχείων"
+
+#: Konfigurator/kglookfeel.cpp:152
+msgid "Show the icons for filenames and folders."
+msgstr "Εμφάνιση εικονιδίων για ονόματα αρχείων και φακέλους."
+
+#: Konfigurator/kglookfeel.cpp:153
+msgid "Use human-readable file size"
+msgstr "Εναλλακτική εμφάνιση μεγέθους αρχείων"
+
+#: Konfigurator/kglookfeel.cpp:153
+msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
+msgstr "Το μέγεθος εμφανίζεται σε B, KB, MB και GB, και όχι απλά σε bytes."
+
+#: Konfigurator/kglookfeel.cpp:154
+msgid "Show hidden files"
+msgstr "Εμφάνιση κρυφών αρχείων"
+
+#: Konfigurator/kglookfeel.cpp:154
+msgid "Display files beginning with a dot."
+msgstr "Εμφάνιση των αρχείων που αρχίζουν με τελεία."
+
+#: Konfigurator/kglookfeel.cpp:155
+msgid "Case sensitive sorting"
+msgstr "Ταξινόμηση με διάκριση πεζών/κεφαλαίων"
+
+#: Konfigurator/kglookfeel.cpp:156
+msgid "Always sort dirs by name"
+msgstr "Πάντα ταξινόμηση καταλόγων κατ' όνομα"
+
+#: Konfigurator/kglookfeel.cpp:156
+msgid "Directories are sorted by name, regardless of the sort column."
+msgstr ""
+"Οι κατάλογοι ταξινομούνται κατ' όνομα, ανεξάρτητα από την επιλογή στήλης "
+"ταξινόμησης."
+
+#: Konfigurator/kglookfeel.cpp:157
 msgid "Numeric Permissions"
 msgstr "Αριθμητικές άδειες"
 
-#: Konfigurator/kglookfeel.cpp:82
+#: Konfigurator/kglookfeel.cpp:157
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
@@ -5100,176 +5001,87 @@ msgstr ""
 "Εμφάνιση οκταδικών αριθμών (0755) αντί των τυπικών αδειών (rwxr-xr-x) στη "
 "στήλη των αδειών."
 
-#: Konfigurator/kglookfeel.cpp:83
-msgid "Always sort dirs by name"
-msgstr "Πάντα ταξινόμηση καταλόγων κατ' όνομα"
-
-#: Konfigurator/kglookfeel.cpp:83
-msgid "Directories are sorted by name, regardless of the sort column."
-msgstr ""
-"Οι κατάλογοι ταξινομούνται κατ' όνομα, ανεξάρτητα από την επιλογή στήλης "
-"ταξινόμησης."
-
-#: Konfigurator/kglookfeel.cpp:84
-msgid "Show splashscreen"
-msgstr "Εμφάνιση αρχικής οθόνης"
-
-#: Konfigurator/kglookfeel.cpp:84
-msgid "Display a splashscreen when starting krusader."
-msgstr "Εμφάνιση αρχικής οθόνης κατά την εκκίνηση του krusader."
-
-#: Konfigurator/kglookfeel.cpp:85
-msgid "Single instance mode"
-msgstr "Λειτουργία μίας διεργασίας"
-
-#: Konfigurator/kglookfeel.cpp:85
-msgid "Only one Krusader instance is allowed to run."
-msgstr "Επιτρέπεται να εκτελείται μόνο μία διεργασία του Krusader."
-
-#: Konfigurator/kglookfeel.cpp:86
-msgid "Fullscreen terminal (mc-style)"
-msgstr "Τερματικό πλήρους οθόνης (όπως στο mc)"
-
-#: Konfigurator/kglookfeel.cpp:86
-msgid "Terminal is shown instead of the krusader window (full screen)."
-msgstr ""
-"Εμφανίζεται το τερματικό αντί του παραθύρου του krusader (πλήρης οθόνη)"
-
-#: Konfigurator/kglookfeel.cpp:103
-msgid "Panel settings"
-msgstr "Ρυθμίσεις πίνακα"
-
-#: Konfigurator/kglookfeel.cpp:107
-msgid "Panel font:"
-msgstr "Γραμματοσειρά πίνακα: "
-
-#: Konfigurator/kglookfeel.cpp:113
-msgid "Filelist icon size:"
-msgstr "Μέγεθος εικονιδίων της λίστας αρχείων: "
-
-#: Konfigurator/kglookfeel.cpp:116
-msgid "16"
-msgstr "16"
-
-#: Konfigurator/kglookfeel.cpp:117
-msgid "22"
-msgstr "22"
-
-#: Konfigurator/kglookfeel.cpp:118
-msgid "32"
-msgstr "32"
-
-#: Konfigurator/kglookfeel.cpp:119
-msgid "48"
-msgstr "48"
-
-#: Konfigurator/kglookfeel.cpp:130
-msgid "Use icons in the filenames"
-msgstr "Χρήση εικονιδίων στα ονόματα αρχείων"
-
-#: Konfigurator/kglookfeel.cpp:130
-msgid "Show the icons for filenames and folders."
-msgstr "Εμφάνιση εικονιδίων για ονόματα αρχείων και φακέλους."
-
-#: Konfigurator/kglookfeel.cpp:131
-msgid "Use human-readable file size"
-msgstr "Εναλλακτική εμφάνιση μεγέθους αρχείων"
-
-#: Konfigurator/kglookfeel.cpp:131
-msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr "Το μέγεθος εμφανίζεται σε B, KB, MB και GB, και όχι απλά σε bytes."
-
-#: Konfigurator/kglookfeel.cpp:141
-msgid "Toolbar"
-msgstr "Γραμμή εργαλείων"
-
-#: Konfigurator/kglookfeel.cpp:151
-msgid "Keybindings"
-msgstr "Συντομεύσεις πληκτρολογίου"
-
-#: Konfigurator/kglookfeel.cpp:172
+#: Konfigurator/kglookfeel.cpp:171
 msgid "Panel Toolbar"
 msgstr "Γραμμή εργαλείων πίνακα"
 
-#: Konfigurator/kglookfeel.cpp:180
+#: Konfigurator/kglookfeel.cpp:179
 msgid "Show Panel Toolbar"
 msgstr "Εμφάνιση της γραμμής εργαλείων πίνακα"
 
-#: Konfigurator/kglookfeel.cpp:180
+#: Konfigurator/kglookfeel.cpp:179
 msgid "The panel toolbar will be visible."
 msgstr "Η γραμμή εργαλείων του πίνακα θα είναι ορατή"
 
-#: Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:185
 msgid "Visible Panel Toolbar buttons"
 msgstr "Ορατά κουμπιά γραμμής εργαλείων πίνακα"
 
-#: Konfigurator/kglookfeel.cpp:192
+#: Konfigurator/kglookfeel.cpp:191
 msgid "Clear location bar button"
 msgstr "Κουμπί καθαρισμού της γραμμής τοποθεσίας"
 
-#: Konfigurator/kglookfeel.cpp:192
+#: Konfigurator/kglookfeel.cpp:191
 msgid "Clears the location bar"
 msgstr "Καθαρίζει την γραμμή τοποθεσίας"
 
-#: Konfigurator/kglookfeel.cpp:193
+#: Konfigurator/kglookfeel.cpp:192
 msgid "Open button"
 msgstr "Κουμπί ανοίγματος"
 
-#: Konfigurator/kglookfeel.cpp:193
+#: Konfigurator/kglookfeel.cpp:192
 msgid "Opens the directory browser."
 msgstr "Ανοίγει τον περιηγητή καταλόγων."
 
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:193
 msgid "Equal button (=)"
 msgstr "Κουμπί ίσον (=)"
 
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:193
 msgid "Changes the panel directory to the other panel directory."
 msgstr "Αλλάζει τον κατάλογο του πίνακα στον κατάλογο του άλλου πίνακα."
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:194
 msgid "Up button (..)"
 msgstr "Κουμπί πάνω (..)"
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:194
 msgid "Changes the panel directory to the parent directory."
 msgstr "Αλλάζει τον κατάλογο του πίνακα στο γονικό του κατάλογο."
 
-#: Konfigurator/kglookfeel.cpp:196
+#: Konfigurator/kglookfeel.cpp:195
 msgid "Home button (~)"
 msgstr "Κουμπί προσωπικού καταλόγου (~)"
 
-#: Konfigurator/kglookfeel.cpp:196
+#: Konfigurator/kglookfeel.cpp:195
 msgid "Changes the panel directory to the home directory."
 msgstr "Αλλάζει τον κατάλογο του πίνακα στον προσωπικό σας κατάλογο."
 
-#: Konfigurator/kglookfeel.cpp:197
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Root button (/)"
 msgstr "Κουμπί ριζικού καταλόγου (/)"
 
-#: Konfigurator/kglookfeel.cpp:197
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Changes the panel directory to the root directory."
 msgstr "Αλλάζει τον κατάλογο του πίνακα στον ριζικό κατάλογο."
 
-#: Konfigurator/kglookfeel.cpp:198
+#: Konfigurator/kglookfeel.cpp:197
 msgid "Toggle-button for sync-browsing"
 msgstr "Κουμπί εναλλαγής συγχρονισμένης περιήγησης"
 
-#: Konfigurator/kglookfeel.cpp:198
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+#: Konfigurator/kglookfeel.cpp:197
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Κάθε αλλαγή στον κατάλογο του πίνακα γίνεται και στον άλλο πίνακα."
 
-#: Konfigurator/kglookfeel.cpp:214
-#, fuzzy
+#: Konfigurator/kglookfeel.cpp:217
 msgid "Mouse mode"
-msgstr "Δεκαεξαδική προβολή"
+msgstr "Λειτουργία ποντικιού"
 
-#: Konfigurator/kglookfeel.cpp:227
+#: Konfigurator/kglookfeel.cpp:231
 msgid "Krusader Mode"
 msgstr "Λειτουργία συμβατή με Krusader"
 
-#: Konfigurator/kglookfeel.cpp:227
+#: Konfigurator/kglookfeel.cpp:231
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
 "key and click the left mouse button. Right-click menu is invoked using a "
@@ -5280,11 +5092,11 @@ msgstr ""
 "κάντε κλικ με το αριστερό πλήκτρο του ποντικιού. Το μενού δεξιού κλικ "
 "εμφανίζεται με ένα μικρής διάρκειας κλικ του δεξιού πλήκτρου του ποντικιού."
 
-#: Konfigurator/kglookfeel.cpp:228
+#: Konfigurator/kglookfeel.cpp:232
 msgid "Konqueror Mode"
 msgstr "Λειτουργία συμβατή με Konqueror"
 
-#: Konfigurator/kglookfeel.cpp:228
+#: Konfigurator/kglookfeel.cpp:232
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
 "multiple files. Right-click menu is invoked using a short click on the right "
@@ -5294,11 +5106,11 @@ msgstr ""
 "να κάνετε κλικ για να επιλέξετε περισσότερα αρχεία. Το μενού δεξιού κλικ "
 "εμφανίζεται με ένα μικρής διάρκειας κλικ του δεξιού πλήκτρου του ποντικιού."
 
-#: Konfigurator/kglookfeel.cpp:229
+#: Konfigurator/kglookfeel.cpp:233
 msgid "Total-Commander Mode"
 msgstr "Λειτουργία συμβατή με Total-Commander"
 
-#: Konfigurator/kglookfeel.cpp:229
+#: Konfigurator/kglookfeel.cpp:233
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button selects multiple "
@@ -5311,20 +5123,23 @@ msgstr ""
 "και το μενού δεξιού κλικ εμφανίζεται πατώντας και κρατώντας πατημένο το δεξί "
 "πλήκτρο του ποντικιού."
 
-#: Konfigurator/kglookfeel.cpp:230
+#: Konfigurator/kglookfeel.cpp:234 Konfigurator/kglookfeel.cpp:337
+msgid "Custom Selection Mode"
+msgstr "Προσαρμοσμένη λειτουργία επιλογής"
+
+#: Konfigurator/kglookfeel.cpp:234
 msgid "Design your own selection mode!"
 msgstr "Σχεδιάστε τη δική σας λειτουργία επιλογής!"
 
-#: Konfigurator/kglookfeel.cpp:238
-#, fuzzy
-msgid "Details"
-msgstr "Λεπτομερώς"
-
 #: Konfigurator/kglookfeel.cpp:244
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
+#: Konfigurator/kglookfeel.cpp:252
 msgid "Double-click selects (classic)"
 msgstr "Το διπλό κλικ επιλέγει (κλασικό)"
 
-#: Konfigurator/kglookfeel.cpp:244
+#: Konfigurator/kglookfeel.cpp:252
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
@@ -5333,11 +5148,11 @@ msgstr ""
 "διπλό κλικ θα ανοίξει με το κατάλληλο πρόγραμμα ή αν πρόκειται για κατάλογο "
 "θα εμφανιστούν τα περιεχόμενά του."
 
-#: Konfigurator/kglookfeel.cpp:245
+#: Konfigurator/kglookfeel.cpp:253
 msgid "Obey KDE's global selection policy"
 msgstr "Συμμόρφωση με την καθολική πολιτική επιλογής του KDE"
 
-#: Konfigurator/kglookfeel.cpp:245
+#: Konfigurator/kglookfeel.cpp:253
 msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
 "Mouse</i></p>"
@@ -5345,9 +5160,140 @@ msgstr ""
 "<p>Χρήση των καθολικών ρυθμίσεων του KDE:</p><p><i>Κέντρο ελέγχου του KDE -> "
 "Περιφερειακά -> Ποντίκι</i></p>"
 
-#: Konfigurator/kglookfeel.cpp:307 Konfigurator/kglookfeel.cpp:324
-msgid "Select a shortcuts file"
-msgstr "Επιλογή ενός αρχείου συντομεύσεων"
+#: Konfigurator/kglookfeel.cpp:265
+msgid "Based on KDE's selection mode"
+msgstr "Βασισμένη στη λειτουργία επιλογής του KDE"
+
+#: Konfigurator/kglookfeel.cpp:266
+msgid "If checked, use a mode based on KDE's style."
+msgstr ""
+"Αν ενεργοποιηθεί, θα χρησιμοποιηθεί μία λειτουργία που βασίζεται στο στυλ "
+"του KDE."
+
+#: Konfigurator/kglookfeel.cpp:268
+msgid "Left mouse button selects"
+msgstr "Επιλογή με το αριστερό πλήκτρο του ποντικιού"
+
+#: Konfigurator/kglookfeel.cpp:269
+msgid "If checked, left clicking an item will select it."
+msgstr "Αν ενεργοποιηθεί, κάνοντας αριστερό κλικ σε ένα αντικείμενο θα το επιλέγει."
+
+#: Konfigurator/kglookfeel.cpp:271
+msgid "Left mouse button preserves selection"
+msgstr "Διατήρηση επιλογής με το αριστερό πλήκτρο του ποντικιού"
+
+#: Konfigurator/kglookfeel.cpp:272
+msgid ""
+"If checked, left clicking an item will select it, but will not unselect "
+"other, already selected items."
+msgstr ""
+"Αν ενεργοποιηθεί, κάνοντας αριστερό κλικ σε ένα αντικείμενο θα το επιλέγει, "
+"αλλά δε θα αποεπιλέγει άλλα, ήδη επιλεγμένα αντικείμενα."
+
+#: Konfigurator/kglookfeel.cpp:274
+msgid "Shift/Ctrl-Left mouse button selects"
+msgstr "Επιλογή με Shift/Ctrl-αριστερό πλήκτρο του ποντικιού"
+
+#: Konfigurator/kglookfeel.cpp:275
+msgid ""
+"If checked, shift/ctrl left clicking will select items. \n"
+"Note: This is meaningless if 'Left Button Selects' is checked."
+msgstr ""
+"Αν ενεργοποιηθεί, κάνοντας shift/ctrl και αριστερό κλικ θα επιλέγετε "
+"αντικείμενα.\n"
+"Σημείωση: Αυτό δεν έχει νόημα να είναι ενεργοποιημένο το 'Επιλογή με το "
+"αριστερό πλήκτρο'."
+
+#: Konfigurator/kglookfeel.cpp:277
+msgid "Right mouse button selects"
+msgstr "Επιλογή με το δεξί πλήκτρο του ποντικιού"
+
+#: Konfigurator/kglookfeel.cpp:278
+msgid "If checked, right clicking an item will select it."
+msgstr "Αν ενεργοποιηθεί, κάνοντας δεξί κλικ σε ένα αντικείμενο θα το επιλέγει."
+
+#: Konfigurator/kglookfeel.cpp:280
+msgid "Right mouse button preserves selection"
+msgstr "Διατήρηση επιλογής με το δεξί πλήκτρο του ποντικιού"
+
+#: Konfigurator/kglookfeel.cpp:281
+msgid ""
+"If checked, right clicking an item will select it, but will not unselect "
+"other, already selected items."
+msgstr ""
+"Αν ενεργοποιηθεί, κάνοντας δεξί κλικ σε ένα αντικείμενο θα το επιλέγει, αλλά "
+"δε θα αποεπιλέγει άλλα, ήδη επιλεγμένα αντικείμενα."
+
+#: Konfigurator/kglookfeel.cpp:283
+msgid "Shift/Ctrl-Right mouse button selects"
+msgstr "Επιλογή με Shift/Ctrl-δεξί πλήκτρο του ποντικιού"
+
+#: Konfigurator/kglookfeel.cpp:284
+msgid ""
+"If checked, shift/ctrl right clicking will select items. \n"
+"Note: This is meaningless if 'Right Button Selects' is checked."
+msgstr ""
+"Αν ενεργοποιηθεί, κάνοντας shift/ctrl και δεξί κλικ θα επιλέγετε "
+"αντικείμενα.\n"
+"Σημείωση: Αυτό δεν έχει νόημα να είναι ενεργοποιημένο το 'Επιλογή με το δεξί "
+"πλήκτρο'."
+
+#: Konfigurator/kglookfeel.cpp:286
+msgid "Spacebar moves down"
+msgstr "Το πλήκτρο 'κενό' μετακινεί προς τα κάτω"
+
+#: Konfigurator/kglookfeel.cpp:287
+msgid ""
+"If checked, pressing the spacebar will select the current item and move "
+"down. \n"
+"Otherwise, current item is selected, but remains the current item."
+msgstr ""
+"Αν ενεργοποιηθεί, πατώντας την μπάρα κενού θα επιλεχθεί το τρέχον "
+"αντικείμενο και θα μετακινηθεί προς τα κάτω.\n"
+"Διαφορετικά, επιλέγεται το τρέχον αντικείμενο, και παραμένει τρέχον."
+
+#: Konfigurator/kglookfeel.cpp:289
+msgid "Spacebar calculates disk space"
+msgstr "Το πλήκτρο 'κενό' υπολογίζει το χώρο του δίσκου"
+
+#: Konfigurator/kglookfeel.cpp:290
+msgid ""
+"If checked, pressing the spacebar while the current item is a folder, will "
+"(except from selecting the folder) \n"
+"calculate space occupied by the folder (recursively)."
+msgstr ""
+"Αν ενεργοποιηθεί, πατώντας την μπάρα κενού όταν το τρέχον αντικείμενο είναι "
+"ένας φάκελος, εκτός από την επιλογή του φακέλου, θα υπολογιστεί και ο χώρος "
+"που καταλαμβάνεται από το φάκελο (αναδρομικά)."
+
+#: Konfigurator/kglookfeel.cpp:292
+msgid "Insert moves down"
+msgstr "Το πλήκτρο 'εισαγωγή' μετακινεί προς τα κάτω"
+
+#: Konfigurator/kglookfeel.cpp:293
+msgid ""
+"If checked, pressing INSERT will select the current item, and move down to "
+"the next item. \n"
+"Otherwise, current item is not changed."
+msgstr ""
+"Αν ενεργοποιηθεί, πατώντας το πλήκτρο INSERT θα επιλεχθεί το τρέχον "
+"αντικείμενο και θα μετακινηθεί προς τα κάτω.\n"
+"Διαφορετικά, δε θα αλλάξει το τρέχον αντικείμενο."
+
+#: Konfigurator/kglookfeel.cpp:295
+msgid "Right clicking pops context menu immediately"
+msgstr "Με δεξί κλικ εμφανίζεται αμέσως το βοηθητικό μενού"
+
+#: Konfigurator/kglookfeel.cpp:296
+msgid ""
+"If checked, right clicking will result in an immediate showing of the "
+"context menu. \n"
+"Otherwise, user needs to click and hold the right mouse button for 500ms."
+msgstr ""
+"Αν ενεργοποιηθεί, κάνοντας δεξί κλικ θα εμφανιστεί άμεσα το βοηθητικό "
+"μενού.\n"
+"Διαφορετικά, ο χρήστης θα πρέπει να κάνει κλικ και να κρατήσει πατημένο το "
+"δεξί πλήκτρο του ποντικιού για 500ms."
 
 #: Konfigurator/kgadvanced.cpp:63
 msgid "Preserve attributes for local copy/move (slower)"
@@ -5361,6 +5307,12 @@ msgid ""
 "root or member of the group</li><li>Preserving the timestamp</li></"
 "ul><b>Note</b>: This can slow down the copy process."
 msgstr ""
+"Ο Krusader θα προσπαθήσει να διατηρήσει τις ιδιότητες (ώρα, ιδιοκτήτης, ομάδα) "
+"του τοπικού αρχείου σε συμφωνία με το αρχικό αρχείο και ανάλογα με τις άδειές σας: "
+"<ul><li>Διατήρηση του χρήστη αν είστε ο υπερχρήστης</li><li>Διατήρηση ομάδας "
+" αν είστε ο υπερχρήστης ή μέλος της ομάδας</li><li>Διατήρηση της χρονικής "
+"ένδειξης</li></ul><b>Σημείωση</b>: Αυτό μπορεί να επιβραδύνει τη διαδικασία "
+"της αντιγραφής."
 
 #: Konfigurator/kgadvanced.cpp:64
 msgid "Automount filesystems"
@@ -5376,8 +5328,7 @@ msgstr ""
 "παραμέτρων."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr "Να μη χρησιμοποιηθεί το πρωτόκολλο media του KDE για το κουμπί μέσων"
 
 #: Konfigurator/kgadvanced.cpp:65
@@ -5828,9 +5779,13 @@ msgstr "Σφάλμα: αδύνατη η ανάγνωση του αρχείου"
 msgid "Select a color scheme file"
 msgstr "Επιλογή ενός αρχείου θέματος χρώματος"
 
-#: Konfigurator/kgstartup.cpp:47
-msgid "Panels"
-msgstr "Πίνακες"
+#: Konfigurator/kgcolors.cpp:560
+msgid "File "
+msgstr "Το αρχείο "
+
+#: Konfigurator/kgcolors.cpp:560
+msgid " already exists. Are you sure you want to overwrite it?"
+msgstr "υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;"
 
 #: Konfigurator/kgstartup.cpp:50
 msgid ""
@@ -5853,15 +5808,31 @@ msgstr "Προφίλ εκκίνησης:"
 msgid "Last session"
 msgstr "Τελευταία συνεδρία"
 
-#: Konfigurator/kgstartup.cpp:71
+#: Konfigurator/kgstartup.cpp:72
+msgid "Show splashscreen"
+msgstr "Εμφάνιση αρχικής οθόνης"
+
+#: Konfigurator/kgstartup.cpp:72
+msgid "Display a splashscreen when starting krusader."
+msgstr "Εμφάνιση αρχικής οθόνης κατά την εκκίνηση του krusader."
+
+#: Konfigurator/kgstartup.cpp:73
+msgid "Single instance mode"
+msgstr "Λειτουργία μίας διεργασίας"
+
+#: Konfigurator/kgstartup.cpp:73
+msgid "Only one Krusader instance is allowed to run."
+msgstr "Επιτρέπεται να εκτελείται μόνο μία διεργασία του Krusader."
+
+#: Konfigurator/kgstartup.cpp:83
 msgid "User Interface"
 msgstr "Περιβάλλον χρήστη"
 
-#: Konfigurator/kgstartup.cpp:76
+#: Konfigurator/kgstartup.cpp:88
 msgid "Save settings on exit"
 msgstr "Αποθήκευση των αλλαγών κατά την έξοδο"
 
-#: Konfigurator/kgstartup.cpp:76
+#: Konfigurator/kgstartup.cpp:88
 msgid ""
 "Check the state of the user interface components and restore them to their "
 "condition when last shutdown."
@@ -5869,51 +5840,51 @@ msgstr ""
 "Έλεγχος της κατάστασης του περιβάλλοντος χρήστη και επαναφορά του στην "
 "κατάσταση που ήταν στο τελευταίο τερματισμό."
 
-#: Konfigurator/kgstartup.cpp:77
+#: Konfigurator/kgstartup.cpp:89
 msgid "Show toolbar"
 msgstr "Εμφάνιση γραμμής εργαλείων"
 
-#: Konfigurator/kgstartup.cpp:77
+#: Konfigurator/kgstartup.cpp:89
 msgid "Toolbar will be visible after startup."
 msgstr "Η γραμμή εργαλείων θα είναι ορατή μετά την εκκίνηση."
 
-#: Konfigurator/kgstartup.cpp:78
+#: Konfigurator/kgstartup.cpp:90
 msgid "Show statusbar"
 msgstr "Εμφάνιση γραμμής κατάστασης"
 
-#: Konfigurator/kgstartup.cpp:78
+#: Konfigurator/kgstartup.cpp:90
 msgid "Statusbar will be visible after startup."
 msgstr "Η γραμμής κατάστασης θα είναι ορατή μετά την εκκίνηση."
 
-#: Konfigurator/kgstartup.cpp:79
+#: Konfigurator/kgstartup.cpp:91
 msgid "Show function keys"
 msgstr "Εμφάνιση πλήκτρων λειτουργιών"
 
-#: Konfigurator/kgstartup.cpp:79
+#: Konfigurator/kgstartup.cpp:91
 msgid "Function keys will be visible after startup."
 msgstr "Τα πλήκτρα λειτουργών θα είναι ορατά μετά την εκκίνηση."
 
-#: Konfigurator/kgstartup.cpp:80
+#: Konfigurator/kgstartup.cpp:92
 msgid "Show command line"
 msgstr "Εμφάνιση της γραμμής εντολών θα είναι ορατή μετά την εκκίνηση."
 
-#: Konfigurator/kgstartup.cpp:80
+#: Konfigurator/kgstartup.cpp:92
 msgid "Command line will be visible after startup."
 msgstr "Η γραμμή εντολών "
 
-#: Konfigurator/kgstartup.cpp:81
+#: Konfigurator/kgstartup.cpp:93
 msgid "Show terminal emulator"
 msgstr "Εμφάνιση εξομοιωτή τερματικού"
 
-#: Konfigurator/kgstartup.cpp:81
+#: Konfigurator/kgstartup.cpp:93
 msgid "Terminal emulator will be visible after startup."
 msgstr "Ο εξομοιωτής τερματικού θα είναι ορατός μετά την εκκίνηση."
 
-#: Konfigurator/kgstartup.cpp:82
+#: Konfigurator/kgstartup.cpp:94
 msgid "Save last position, size and panel settings"
 msgstr "Αποθήκευση της τελευταίας θέσης, μεγέθους και ρυθμίσεων πινάκων"
 
-#: Konfigurator/kgstartup.cpp:82
+#: Konfigurator/kgstartup.cpp:94
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
 "last shutdown. It will also appear in the same location of the screen, "
@@ -5929,11 +5900,11 @@ msgstr ""
 "για την επόμενη εκκίνηση, από το μενού <i>Ρυθμίσεις -> Αποθήκευση θέσης</i>."
 "</p>"
 
-#: Konfigurator/kgstartup.cpp:83
+#: Konfigurator/kgstartup.cpp:95
 msgid "Start to tray"
 msgstr "Εκκίνηση στο πλαίσιο συστήματος"
 
-#: Konfigurator/kgstartup.cpp:83
+#: Konfigurator/kgstartup.cpp:95
 msgid ""
 "Krusader starts to tray (if minimize to tray is set), without showing the "
 "main window"
@@ -6017,8 +5988,7 @@ msgid "Test archive before unpacking"
 msgstr "Έλεγχος αρχειοθήκης πριν την αποσυμπίεση"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Κάποιες κατεστραμμένες αρχειοθήκες ίσως οδηγήσουν σε κατάρρευση της "
 "εφαρμογής. Γι' αυτό προτείνεται να ενεργοποιηθεί ο έλεγχος."
@@ -6028,32 +5998,30 @@ msgid "Searching for packers..."
 msgstr "Αναζήτηση εργαλείων συμπίεσης..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Σιγουρευτείτε ότι εγκαθιστάτε τα νέα εργαλεία συμπίεσης στο <code>$PATH</"
 "code> σας (π.χ. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:48
-#, fuzzy
 msgid "Information"
-msgstr "Επιβεβαιώσεις"
+msgstr "Πληροφορίες"
 
 #: Konfigurator/kguseractions.cpp:53
 msgid ""
 "Here you can configure settings about useractions.\n"
 "To set up, configure and manage your useractions please use ActionMan."
 msgstr ""
+"Εδώ μπορείτε να ρυθμίσετε τις επιλογές των ενεργειών χρήστη.\n"
+"Για να ρυθμίσετε και να διαχειριστείτε τις ενέργειες, χρησιμοποιήστε το ActionMan."
 
 #: Konfigurator/kguseractions.cpp:57
-#, fuzzy
 msgid "Start ActionMan"
-msgstr "Εκκίνηση στο πλαίσιο συστήματος"
+msgstr "Εκκίνηση του ActionMan"
 
 #: Konfigurator/kguseractions.cpp:64
-#, fuzzy
 msgid "Terminal execution"
-msgstr "Τερματικό ενεργειών χρήστη:"
+msgstr "Εκτέλεση του τερματικού"
 
 #: Konfigurator/kguseractions.cpp:68
 msgid "Terminal for UserActions:"
@@ -6061,20 +6029,19 @@ msgstr "Τερματικό ενεργειών χρήστη:"
 
 #: Konfigurator/kguseractions.cpp:78
 msgid "Output collection"
-msgstr ""
+msgstr "Συλλογή της εξόδου"
 
 #: Konfigurator/kguseractions.cpp:83
-#, fuzzy
 msgid "Normal font:"
-msgstr "Γραμματοσειρά πίνακα: "
+msgstr "Τυπική γραμματοσειρά:"
 
 #: Konfigurator/kguseractions.cpp:89
 msgid "Font with fixed width:"
-msgstr ""
+msgstr "Γραμματοσειρά σταθερού πλάτους:"
 
 #: Konfigurator/kguseractions.cpp:95
 msgid "Use fixed width font as default"
-msgstr ""
+msgstr "Χρήση της γραμματοσειράς σταθερού πλάτους ως προκαθορισμένη"
 
 #: krslots.cpp:104
 msgid ""
@@ -6307,8 +6274,7 @@ msgid "Not a valid CRC file!"
 msgstr "Μη έγκυρο αρχείο CRC!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Ο έλεγχος εγκυρότητας είναι αδύνατος χωρίς ένα 'καλό' αρχείο CRC. Να "
 "συνεχιστεί η ένωση;"
@@ -6349,51 +6315,3 @@ msgstr "Σφάλμα ανάγνωσης του αρχείου %1!"
 msgid "Error at writing file %1!"
 msgstr "Σφάλμα εγγραφής του αρχείου %1!"
 
-#~ msgid ""
-#~ "When you apply changes to an action, the modifications become available "
-#~ "in the current session immediately.\n"
-#~ "When closing ActionMan, you will be asked to save the changes permanently."
-#~ msgstr ""
-#~ "Όταν κάνετε αλλαγές σε μία ενέργεια, αυτές είναι διαθέσιμες στην εφαρμογή "
-#~ "άμεσα.\n"
-#~ "Όταν τερματίζετε το ActionMan, θα σας ζητηθεί να αποθηκεύσετε τις αλλαγές "
-#~ "αυτές."
-
-#~ msgid ""
-#~ "Useractions in this session are modified. Do you want to save these "
-#~ "changes permanently?"
-#~ msgstr ""
-#~ "Κάποιες ενέργειες χρήστη έχουν τροποποιηθεί σε αυτήν τη συνεδρία. Θέλετε "
-#~ "να αποθηκευτούν οι αλλαγές;"
-
-#~ msgid "Single click / Double click Selection:"
-#~ msgstr "Επιλογή μονού/διπλού κλικ:"
-
-#~ msgid "Mouse Selection Mode:"
-#~ msgstr "Επιλογή με το ποντίκι:"
-
-#~ msgid ""
-#~ "Change all attributes (time, owner, group) of local files according to "
-#~ "the source one. This can slow down the copy process."
-#~ msgstr ""
-#~ "Αλλαγή όλων των ιδιοτήτων των τοπικών αρχείων (ώρα, ιδιοκτήτης, ομάδα) σε "
-#~ "σχέση με τα αρχεία προορισμού. Αυτό μπορεί να επιβραδύνει τη διαδικασία "
-#~ "της αντιγραφής."
-
-#~ msgid "Reset"
-#~ msgstr "Επαναφορά"
-
-#~ msgid "New Action"
-#~ msgstr "Νέα ενέργεια"
-
-#~ msgid "Remove Action"
-#~ msgstr "Αφαίρεση ενέργειας"
-
-#~ msgid "Export Action"
-#~ msgstr "Εξαγωγή ενέργειας"
-
-#~ msgid "Action to Clipboard"
-#~ msgstr "Ενέργεια στο πρόχειρο"
-
-#~ msgid "Action from Clipboard"
-#~ msgstr "Ενέργεια από το πρόχειρο"

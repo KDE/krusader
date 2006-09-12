@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-09-10 22:51+0200\n"
-"PO-Revision-Date: 2006-09-10 22:57+0200\n"
+"PO-Revision-Date: 2006-09-12 21:26+0200\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -242,7 +242,7 @@ msgstr "Datei, Verzeichnis, etc. umbenennen."
 
 #: GUI/kfnkeys.cpp:94
 msgid "F10 Quit "
-msgstr "F10 Ende "
+msgstr "F10 Beenden "
 
 #: GUI/kfnkeys.cpp:95
 msgid "Quit Krusader."
@@ -5301,6 +5301,9 @@ msgid ""
 "root or member of the group</li><li>Preserving the timestamp</li></"
 "ul><b>Note</b>: This can slow down the copy process."
 msgstr ""
+"Krusader wird versuchen sämtliche Attribute (Zeitstempel, Besitzer, Gruppe) lokaler Dateien beizubehalten. Die Auswirkungen richten sich dabei nach Ihren Berechtigungen: "
+"<ul><li>Der Besitzer wird beihalten, falls Sie der Systemverwalter (root) sind.</li><li>Die Gruppe wird beihalten, falls Sie der Systemverwalter (root), oder ein Mitglied der Gruppe sind.</li><li>Der Zeitstempel wird immer beibehalten.</li></"
+"ul><b>Hinweis</b>: Dies kann unter Umständen den Kopierprozess verlangsamen. "
 
 #: Konfigurator/kgadvanced.cpp:64
 msgid "Automount filesystems"
