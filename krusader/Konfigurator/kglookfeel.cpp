@@ -214,7 +214,7 @@ void KgLookFeel::setupPanelToolbarTab() {
 // ---------------------------------------------------------------------------
 void KgLookFeel::setupMouseModeTab() {
   QWidget *tab_mouse = new QWidget( tabWidget, "tab_mouse" );
-  tabWidget->insertTab( tab_mouse, i18n( "Mouse mode" ) );
+  tabWidget->insertTab( tab_mouse, i18n( "Selection Mode" ) );
   QGridLayout *mouseLayout = new QGridLayout( tab_mouse );
   mouseLayout->setSpacing( 6 );
   mouseLayout->setMargin( 11 );
