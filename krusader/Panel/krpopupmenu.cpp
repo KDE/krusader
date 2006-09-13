@@ -336,7 +336,7 @@ void KrPopupMenu::performAction(int id) {
             	proc.setUseShell( true );
          	}
          	if ( !proc.start( KProcess::DontCare ) )
-            	KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + term + "\"" );
+               KMessageBox::sorry( krApp, i18n( "Can't open \"%1\"" ).arg(term) );
 				} // group-saver is blown out of scope here
          	chdir( save.local8Bit() );
          	break;
