@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2006-09-10 22:51+0200\n"
+"POT-Creation-Date: 2006-09-14 00:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,7 +99,6 @@ msgid "Open"
 msgstr ""
 
 #: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:521
-#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
 msgid "Open in a new tab"
 msgstr ""
 
@@ -121,8 +120,8 @@ msgstr ""
 #: GUI/syncbrowsebutton.cpp:45
 msgid ""
 "This button toggles the sync-browse mode.\n"
-"When active, each directory change is performed in the\n"
-"active and inactive panel - if possible."
+"When active, each directory change is performed in the active and inactive "
+"panel - if possible."
 msgstr ""
 
 #: GUI/kcmdline.cpp:62
@@ -314,7 +313,7 @@ msgstr ""
 #: VFS/krarchandler.cpp:265 VFS/krarchandler.cpp:282 VFS/krarchandler.cpp:343
 #: VFS/krarchandler.cpp:512 VFS/krarchandler.cpp:519 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:173 krusader.cpp:758
+#: VFS/virt_vfs.cpp:173
 msgid "Error"
 msgstr ""
 
@@ -979,8 +978,8 @@ msgid "Overwrite or append?"
 msgstr ""
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:115
-#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139 krusader.cpp:756
+#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
+#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139
 msgid "Overwrite"
 msgstr ""
 
@@ -1247,7 +1246,7 @@ msgstr ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325 krusader.cpp:697
 msgid "Rename"
 msgstr ""
 
@@ -1362,6 +1361,10 @@ msgstr ""
 msgid "Run"
 msgstr ""
 
+#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
+msgid "Open in New Tab"
+msgstr ""
+
 #: Konfigurator/kgcolors.cpp:212 Konfigurator/kglookfeel.cpp:309
 #: Panel/krpopupmenu.cpp:76
 msgid "Preview"
@@ -1376,7 +1379,7 @@ msgid "Other..."
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:104
-msgid "Open with"
+msgid "Open With"
 msgstr ""
 
 #: Konfigurator/konfigurator.cpp:113 Panel/krpopupmenu.cpp:109
@@ -1384,7 +1387,7 @@ msgid "User Actions"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:123
-msgid "Konqueror menu"
+msgid "Konqueror Menu"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:131
@@ -1395,13 +1398,13 @@ msgstr ""
 msgid "Move"
 msgstr ""
 
-#: Konfigurator/kggeneral.cpp:57 Panel/krpopupmenu.cpp:143
-msgid "Move to trash"
+#: Panel/krpopupmenu.cpp:143
+msgid "Move to Trash"
 msgstr ""
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
 #: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:759
-#: Konfigurator/kgcolors.cpp:501 Panel/krpopupmenu.cpp:145
+#: Konfigurator/kgcolors.cpp:501 Panel/krpopupmenu.cpp:145 krusader.cpp:695
 msgid "Delete"
 msgstr ""
 
@@ -1410,51 +1413,51 @@ msgid "Shred"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:156
-msgid "new symlink"
+msgid "New Symlink"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:157
-msgid "new hardlink"
+msgid "New Hardlink"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:159
-msgid "redirect link"
+msgid "Redirect Link"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:161
-msgid "Link handling"
+msgid "Link Handling"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:181
-msgid "Send by email"
+msgid "Send by Email"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:186
-msgid "Synchronize selected files"
+msgid "Synchronize Selected Files"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:191
+#: Panel/krpopupmenu.cpp:191 krusader.cpp:509
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:194
+#: Panel/krpopupmenu.cpp:194 krusader.cpp:508
 msgid "Cut to Clipboard"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211
+#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:510
 msgid "Paste from Clipboard"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:215
-msgid "Folder"
+msgid "Folder..."
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:216
-msgid "Text file"
+msgid "Text File..."
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:219
-msgid "Create new"
+msgid "Create New"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:261
@@ -1463,9 +1466,8 @@ msgid ""
 "forever!</qt>"
 msgstr ""
 
-#: KViewer/krviewer.cpp:222 Panel/krpopupmenu.cpp:339 Panel/panelfunc.cpp:357
-#: krslots.cpp:465
-msgid "Can't open "
+#: Panel/krpopupmenu.cpp:339
+msgid "Can't open \"%1\""
 msgstr ""
 
 #: Panel/panelfunc.cpp:247
@@ -1518,6 +1520,10 @@ msgstr ""
 
 #: Panel/panelfunc.cpp:333
 msgid "No permissions to view this file."
+msgstr ""
+
+#: KViewer/krviewer.cpp:222 Panel/panelfunc.cpp:357 krslots.cpp:465
+msgid "Can't open "
 msgstr ""
 
 #: Panel/panelfunc.cpp:368
@@ -1615,9 +1621,9 @@ msgid ""
 "Do you really want to delete these %n items?"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:115
+#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
 #: DiskUsage/diskusage.cpp:609 Konfigurator/kgcolors.cpp:561
-#: Panel/panelfunc.cpp:641 krusader.cpp:756
+#: Panel/panelfunc.cpp:641
 msgid "Warning"
 msgstr ""
 
@@ -2103,39 +2109,31 @@ msgid "Select Remote Charset"
 msgstr ""
 
 #: krusader.cpp:683
-msgid "F2 - Open a terminal"
+msgid "Start Terminal Here"
 msgstr ""
 
 #: krusader.cpp:685
-msgid "F3 - View a file"
+msgid "View File"
 msgstr ""
 
 #: krusader.cpp:687
-msgid "F4 - Edit a file"
+msgid "Edit File"
 msgstr ""
 
 #: krusader.cpp:689
-msgid "F5 - Copy"
+msgid "Copy..."
 msgstr ""
 
 #: krusader.cpp:691
-msgid "F6 - Move"
+msgid "Move..."
 msgstr ""
 
 #: krusader.cpp:693
-msgid "F7 - Mkdir"
-msgstr ""
-
-#: krusader.cpp:695
-msgid "F8 - Delete"
-msgstr ""
-
-#: krusader.cpp:697
-msgid "F9 - Rename"
+msgid "Create Directory..."
 msgstr ""
 
 #: krusader.cpp:699
-msgid "F10 - Quit"
+msgid "Quit"
 msgstr ""
 
 #: krusader.cpp:701
@@ -2190,16 +2188,7 @@ msgstr ""
 msgid "JavaScript Console..."
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:114 krusader.cpp:755
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
-msgstr ""
-
-#: Konfigurator/kgcolors.cpp:563 krusader.cpp:758
-msgid "Error: unable to write to file"
-msgstr ""
-
-#: krusader.cpp:899
+#: krusader.cpp:853
 msgid "Are you sure you want to quit?"
 msgstr ""
 
@@ -2787,7 +2776,7 @@ msgstr ""
 msgid "Save current keybindings in a keymap file."
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:108
+#: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:128
 msgid "Select a keymap file"
 msgstr ""
 
@@ -2811,15 +2800,20 @@ msgid ""
 "import this keymap?"
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:102
+#: Dialogs/krkeydialog.cpp:122
 msgid "Please restart this dialog in order to see the changes"
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:103
+#: Dialogs/krkeydialog.cpp:123
 msgid "Legacy import completed"
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:123
+#: Dialogs/krkeydialog.cpp:134
+msgid ""
+"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgstr ""
+
+#: Dialogs/krkeydialog.cpp:143
 msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
 msgstr ""
 
@@ -4341,6 +4335,10 @@ msgid "Files will be permanently deleted."
 msgstr ""
 
 #: Konfigurator/kggeneral.cpp:57
+msgid "Move to trash"
+msgstr ""
+
+#: Konfigurator/kggeneral.cpp:57
 msgid "Files will be moved to trash when deleted."
 msgstr ""
 
@@ -4787,7 +4785,7 @@ msgid ""
 msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:217
-msgid "Mouse mode"
+msgid "Selection Mode"
 msgstr ""
 
 #: Konfigurator/kglookfeel.cpp:231
@@ -5428,6 +5426,10 @@ msgstr ""
 
 #: Konfigurator/kgcolors.cpp:560
 msgid " already exists. Are you sure you want to overwrite it?"
+msgstr ""
+
+#: Konfigurator/kgcolors.cpp:563
+msgid "Error: unable to write to file"
 msgstr ""
 
 #: Konfigurator/kgstartup.cpp:50
