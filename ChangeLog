@@ -40,7 +40,7 @@
     ADDED: new krarc (password handling, type autodetection, writing
            out archiver error messages, step into hidden archives,...)
 
-    --architecture-- refactoring in the useractions, see CVSNEWS
+     ARCH: refactoring in the useractions, see CVSNEWS
 
   CHANGED: Heavily extended and reordered menubar (honouring the KDE HIG where
            possible). All available actions are connected to the menus now.
@@ -261,14 +261,10 @@
     ADDED: right click menu -> trash, delete, shred options
     ADDED: column types can be changed and saved individually to each panel
            (each side)
-    --architecture-- refactoring in the view. enforcement of getVfile and
-                     getMutableVfile
-    --architecture-- removed a lot of KrViewItem's API
     ADDED: select remote encoding menu for fish, ftp and sftp protocols
     ADDED: clear-location-bar button a-la konqueror (configurable)
     ADDED: permissions column as octal numbers
     ADDED: right-click menu now has a "create new..." submenu
-    --architecture-- right-click menu code moved to a new class KrPopupMenu
     ADDED: ctrl-alt-enter opens the current folder in a new tab
     ADDED: calculate space in archives and remote FS (KDE >= 3.3.0) 
     ADDED: experimental support for mimetype-on-demand 
@@ -280,8 +276,6 @@
     ADDED: preserve date for local targets at copy / move
     ADDED: useraction: For JS-extensions the global variable scriptDir is
            available, indicating the location of the current script
-    --architecture-- moved JavaScript-stuff into it's own module KrJS
-    --architecture-- Makefile.am's for /krusader and /pics revised
     ADDED: synchronize selected files
     ADDED: colorful synchronizer :-)
     ADDED: starting more tabs with --left=tab1,tab2,tab3 --right=tab4,tab5
@@ -293,6 +287,12 @@
     ADDED: filters for selecting files
     ADDED: New zip/tar slave - based on KDE's but support writing to archive
 
+     ARCH: refactoring in the view. enforcement of getVfile and getMutableVfile
+     ARCH: removed a lot of KrViewItem's API
+     ARCH: right-click menu code moved to a new class KrPopupMenu
+     ARCH: moved JavaScript-stuff into it's own module KrJS
+     ARCH: Makefile.am's for /krusader and /pics revised
+  
   CHANGED: Use WhatsThis in favour of tooltips where reasonable
   CHANGED: the panel startup is profile based instead of directory based
 
@@ -391,9 +391,6 @@
     ADDED: some nice sample useractions
     ADDED: PopularUrls was rewritten for a nice-like algorithm
     ADDED: Useractions in the menubar (need an update of krusaderui.rc)
-    --architecture-- KChooseDir was rewritten. plz have a look at the code/email
-    --architecture-- move listpanel from qstring to kurl. plz read email before
-                     continuing! --
     ADDED: searcher: ask for a collection-name on feed to listbox
     ADDED: popular urls is now persistent
     ADDED: popular-urls - krusader's answer to google-ranking ;-)
@@ -426,6 +423,10 @@
     ADDED: mouse selection modes are back! thanks to heiner for doing the work
     ADDED: virtual VFS (try virt:/somthing/)
 
+     ARCH: KChooseDir was rewritten. plz have a look at the code/email
+     ARCH: move listpanel from qstring to kurl. plz read email before
+           continuing!
+    
     FIXED: useraction: cancel a useraction now works for recursive expansion too
     FIXED: useraction: problems with international characters
     FIXED: panel profiles sometimes hang
