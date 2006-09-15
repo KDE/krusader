@@ -505,9 +505,9 @@ void Krusader::setupActions() {
    KStdAction::configureToolbars( SLOTS, SLOT( configToolbar() ), actionCollection(), "std_config_toolbar" );
    KStdAction::keyBindings( SLOTS, SLOT( configKeys() ), actionCollection(), "std_config_keys" );
 
-   KStdAction::cut( SLOTS, SLOT( cut() ), actionCollection(), "std_cut" );
-   KStdAction::copy( SLOTS, SLOT( copy() ), actionCollection(), "std_copy" );
-   KStdAction::paste( SLOTS, SLOT( paste() ), actionCollection(), "std_paste" );
+   KStdAction::cut( SLOTS, SLOT( cut() ), actionCollection(), "std_cut" )->setText( i18n("Cut to Clipboard") );
+   KStdAction::copy( SLOTS, SLOT( copy() ), actionCollection(), "std_copy" )->setText( i18n("Copy to Clipboard") );
+   KStdAction::paste( SLOTS, SLOT( paste() ), actionCollection(), "std_paste" )->setText( i18n("Paste from Clipboard") );
 
    // the toggle actions
    actToggleFnkeys = new KToggleAction( i18n( "Show &FN Keys Bar" ), 0, SLOTS,
@@ -533,7 +533,7 @@ void Krusader::setupActions() {
                                   SLOT( cmdlinePopup() ), actionCollection(), "cmdline popup" );
    /* Shortcut disabled because of the Terminal Emulator bug. */
    actDirUp = new KAction( i18n( "Up" ), "up", CTRL+Key_PageUp /*Key_Backspace*/, SLOTS, SLOT( dirUp() ), actionCollection(), "dirUp" );
-   new KAction( i18n( "&Edit New File..." ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
+   new KAction( i18n( "&New Text File..." ), "filenew", SHIFT + Key_F4, SLOTS, SLOT( editDlg() ), actionCollection(), "edit_new_file" );
    new KAction( i18n( "Start &Root Mode Krusader" ), "krusader_root", ALT + Key_K, SLOTS, SLOT( rootKrusader() ), actionCollection(), "root krusader" );
 
    actTest = new KAction( i18n( "T&est Archive" ), "ark", ALT + Key_E,
@@ -589,7 +589,7 @@ void Krusader::setupActions() {
    actMarkDifferent->setExclusiveGroup( "mark group" );
    if( compareMode < (int)( sizeof( compareArray ) / sizeof( KRadioAction ** ) ) -1 )
      (*compareArray[ compareMode ])->setChecked( true );
-   actHomeTerminal = new KAction( i18n( "Start &Terminal" ), "konsole", 0,
+   actHomeTerminal = new KAction( i18n( "Start &Terminal" ), "terminal", 0,
                                   SLOTS, SLOT( homeTerminal() ), actionCollection(), "terminal@home" );
    actFTPDisconnect = new KAction( i18n( "Disconnect &from Net" ), "kr_ftp_disconnect", SHIFT + CTRL + Key_F,
                                    SLOTS, SLOT( FTPDisconnect() ), actionCollection(), "ftp disconnect" );
@@ -680,23 +680,23 @@ void Krusader::setupActions() {
    new KrRemoteEncodingMenu(i18n("Select Remote Charset"), "charset", actionCollection(), "changeremoteencoding");
 
    // setup the Fn keys
-   actF2 = new KAction( i18n( "F2 - Open a terminal" ), Key_F2,
+   actF2 = new KAction( i18n( "Start Terminal Here" ), "terminal", Key_F2,
                         SLOTS, SLOT( terminal() ) , actionCollection(), "F2_Terminal" );
-   actF3 = new KAction( i18n( "F3 - View a file" ), Key_F3,
+   actF3 = new KAction( i18n( "View File" ), Key_F3,
                         SLOTS, SLOT( view() ) , actionCollection(), "F3_View" );
-   actF4 = new KAction( i18n( "F4 - Edit a file" ), Key_F4,
+   actF4 = new KAction( i18n( "Edit File" ), Key_F4,
                         SLOTS, SLOT( edit() ) , actionCollection(), "F4_Edit" );
-   actF5 = new KAction( i18n( "F5 - Copy" ), Key_F5,
+   actF5 = new KAction( i18n( "Copy..." ), Key_F5,
                         SLOTS, SLOT( copyFiles() ) , actionCollection(), "F5_Copy" );
-   actF6 = new KAction( i18n( "F6 - Move" ), Key_F6,
+   actF6 = new KAction( i18n( "Move..." ), Key_F6,
                         SLOTS, SLOT( moveFiles() ) , actionCollection(), "F6_Move" );
-   actF7 = new KAction( i18n( "F7 - Mkdir" ), Key_F7,
+   actF7 = new KAction( i18n( "New Directory..." ), "folder_new", Key_F7,
                         SLOTS, SLOT( mkdir() ) , actionCollection(), "F7_Mkdir" );
-   actF8 = new KAction( i18n( "F8 - Delete" ), Key_F8,
+   actF8 = new KAction( i18n( "Delete" ), "editdelete", Key_F8,
                         SLOTS, SLOT( deleteFiles() ) , actionCollection(), "F8_Delete" );
-   actF9 = new KAction( i18n( "F9 - Rename" ), Key_F9,
+   actF9 = new KAction( i18n( "Rename" ), Key_F9,
                         SLOTS, SLOT( rename() ) , actionCollection(), "F9_Rename" );
-   actF10 = new KAction( i18n( "F10 - Quit" ), Key_F10,
+   actF10 = new KAction( i18n( "Quit" ), Key_F10,
                          this, SLOT( slotClose() ) , actionCollection(), "F10_Quit" );
    actPopularUrls = new KAction( i18n("Popular URLs..."), CTRL+Key_Z,
                                  popularUrls, SLOT( showDialog() ), actionCollection(), "Popular_Urls");

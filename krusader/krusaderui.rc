@@ -1,9 +1,15 @@
-<!DOCTYPE kpartgui ><kpartgui version="11" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="12" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
    <Action name="edit_new_file" />
+   <Action name="F7_Mkdir" />
    <Action name="new symlink" />
+   <Separator/>
+   <Action name="F3_View" />
+   <Action name="F4_Edit" />
+   <Action name="F5_Copy" />
+   <Action name="F6_Move" />
    <Separator/>
    <Action name="pack" />
    <Action name="unpack" />
@@ -14,14 +20,14 @@
    <Separator/>
    <Action name="create checksum" />
    <Action name="match checksum" />
-   <!--
-   <Separator/>
-   <Action name="std_print" />
-   -->
    <Separator/>
    <Action name="split" />
    <Action name="combine" />
    <Separator/>
+   <!--
+   <Action name="std_print" />
+   <Separator/>
+   -->
    <Action name="std_quit" />
   </Menu>
   <Action name="rightclick menu" />
@@ -31,6 +37,8 @@
    <Action name="std_cut" />
    <Action name="std_copy" />
    <Action name="std_paste" />
+   <Action name="F9_Rename" />
+   <Action name="F8_Delete" />
    <Separator/>
    <Action name="select group" />
    <Action name="unselect group" />
@@ -91,6 +99,7 @@
    <Action name="ftp disconnect" />
    <Separator/>
    <Action name="terminal@home" />
+   <Action name="F2_Terminal" />
    <Action name="root krusader" />
    <Separator/>
    <Action name="JS_Console" />
