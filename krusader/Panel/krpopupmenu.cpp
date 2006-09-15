@@ -128,10 +128,10 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
 	insertSeparator();
    
    // ---------- COPY
-   insertItem( i18n( "Copy" ), COPY_ID );
+   insertItem( i18n( "Copy..." ), COPY_ID );
    if ( panel->func->files() ->vfs_isWritable() ) {
       // ------- MOVE
-      insertItem( i18n( "Move" ), MOVE_ID );
+      insertItem( i18n( "Move..." ), MOVE_ID );
       // ------- RENAME - only one file
       if ( !multipleSelections )
          insertItem( i18n( "Rename" ), RENAME_ID );
@@ -153,10 +153,10 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    // create new shortcut or redirect links - only on local directories:
    if ( panel->func->files() ->vfs_getType() == vfs::NORMAL ) {
       insertSeparator();
-      linkPopup.insertItem( i18n( "New Symlink" ), NEW_SYMLINK_ID );
-      linkPopup.insertItem( i18n( "New Hardlink" ), NEW_LINK_ID );
+      linkPopup.insertItem( i18n( "New Symlink..." ), NEW_SYMLINK_ID );
+      linkPopup.insertItem( i18n( "New Hardlink..." ), NEW_LINK_ID );
       if ( panel->func->getVFile(item)->vfile_isSymLink() )
-         linkPopup.insertItem( i18n( "Redirect Link" ), REDIRECT_LINK_ID);
+         linkPopup.insertItem( i18n( "Redirect Link..." ), REDIRECT_LINK_ID);
       insertItem( QPixmap(), &linkPopup, LINK_HANDLING_ID );
       changeItem( LINK_HANDLING_ID, i18n( "Link Handling" ) );
    }
@@ -183,7 +183,7 @@ KrPopupMenu::KrPopupMenu(ListPanel *thePanel, QWidget *parent) : KPopupMenu(pare
    
    // --------- synchronize
    if ( panel->view->numSelected() ) {
-      insertItem( i18n( "Synchronize Selected Files" ), SYNC_SELECTED_ID );
+      insertItem( i18n( "Synchronize Selected Files..." ), SYNC_SELECTED_ID );
    }
    
    // --------- copy/paste
