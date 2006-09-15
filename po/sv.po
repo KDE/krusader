@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-09-14 00:53+0200\n"
+"POT-Creation-Date: 2006-09-15 14:48+0200\n"
 "PO-Revision-Date: 2006-09-13 20:34+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <krusader-i18n@googlegroups.com>\n"
@@ -129,8 +129,8 @@ msgstr "Mata ut"
 #, fuzzy
 msgid ""
 "This button toggles the sync-browse mode.\n"
-"When active, each directory change is performed in the active and inactive "
-"panel - if possible."
+"When active, each directory change is performed in the\n"
+"active and inactive panel - if possible."
 msgstr ""
 "Denna knapp växlar sykronisering/bläddrings-läge\n"
 "Om aktiverad, utförs varje mappförändring i den \n"
@@ -1468,12 +1468,14 @@ msgstr "Användaråtgärder"
 msgid "Konqueror Menu"
 msgstr "Konquerormeny"
 
-#: Panel/krpopupmenu.cpp:131
-msgid "Copy"
+#: Panel/krpopupmenu.cpp:131 krusader.cpp:689
+#, fuzzy
+msgid "Copy..."
 msgstr "Kopiera"
 
-#: Panel/krpopupmenu.cpp:134
-msgid "Move"
+#: Panel/krpopupmenu.cpp:134 krusader.cpp:691
+#, fuzzy
+msgid "Move..."
 msgstr "Flytta"
 
 #: Panel/krpopupmenu.cpp:143
@@ -1491,19 +1493,19 @@ msgstr "Ta bort"
 msgid "Shred"
 msgstr "Förstör"
 
-#: Panel/krpopupmenu.cpp:156
+#: Panel/krpopupmenu.cpp:156 krusader.cpp:658
 #, fuzzy
-msgid "New Symlink"
+msgid "New Symlink..."
 msgstr "Ny symbolisk länk"
 
 #: Panel/krpopupmenu.cpp:157
 #, fuzzy
-msgid "New Hardlink"
+msgid "New Hardlink..."
 msgstr "ny hård länk"
 
 #: Panel/krpopupmenu.cpp:159
 #, fuzzy
-msgid "Redirect Link"
+msgid "Redirect Link..."
 msgstr "omdirigera länk"
 
 #: Panel/krpopupmenu.cpp:161
@@ -1518,7 +1520,7 @@ msgstr "Skicka med e-post"
 
 #: Panel/krpopupmenu.cpp:186
 #, fuzzy
-msgid "Synchronize Selected Files"
+msgid "Synchronize Selected Files..."
 msgstr "Synkronisera valda filer"
 
 #: Panel/krpopupmenu.cpp:191 krusader.cpp:509
@@ -1992,8 +1994,9 @@ msgid "popup cmdline"
 msgstr "pop-upp-kommandorad"
 
 #: krusader.cpp:536
-msgid "&Edit New File..."
-msgstr "R&edigera ny fil..."
+#, fuzzy
+msgid "&New Text File..."
+msgstr "Textfiler"
 
 #: krusader.cpp:537
 #, fuzzy
@@ -2213,11 +2216,6 @@ msgstr "Vänstra media"
 msgid "Right Media"
 msgstr "Högra media"
 
-#: krusader.cpp:658
-#, fuzzy
-msgid "New Symlink..."
-msgstr "Ny symbolisk länk"
-
 #: krusader.cpp:660
 msgid "Toggle Popup Panel"
 msgstr "Växla pop-upp-panel"
@@ -2274,20 +2272,10 @@ msgstr "Videofiler"
 msgid "Edit File"
 msgstr "Redigera fil (F4)"
 
-#: krusader.cpp:689
-#, fuzzy
-msgid "Copy..."
-msgstr "Kopiera"
-
-#: krusader.cpp:691
-#, fuzzy
-msgid "Move..."
-msgstr "Flytta"
-
 #: krusader.cpp:693
 #, fuzzy
-msgid "Create Directory..."
-msgstr "Föräldramapp"
+msgid "New Directory..."
+msgstr "Ny mapp"
 
 #: krusader.cpp:699
 #, fuzzy
@@ -4543,55 +4531,55 @@ msgstr "Ägare:"
 msgid "&File"
 msgstr "&Fil"
 
-#. i18n: file krusaderui.rc line 30
+#. i18n: file krusaderui.rc line 36
 #: rc.cpp:6
 #, fuzzy, no-c-format
 msgid "&Edit"
 msgstr " Redigera"
 
-#. i18n: file krusaderui.rc line 43
+#. i18n: file krusaderui.rc line 51
 #: rc.cpp:9
 #, no-c-format
 msgid "Compare Se&tup"
 msgstr "Jämför ins&tällningar"
 
-#. i18n: file krusaderui.rc line 55
+#. i18n: file krusaderui.rc line 63
 #: rc.cpp:12
 #, no-c-format
 msgid "&View"
 msgstr "&Granska"
 
-#. i18n: file krusaderui.rc line 66
+#. i18n: file krusaderui.rc line 74
 #: rc.cpp:15
 #, no-c-format
 msgid "&Go"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 77
+#. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
 #, no-c-format
 msgid "&Useractions"
 msgstr "A&nvändaråtgärder"
 
-#. i18n: file krusaderui.rc line 82
+#. i18n: file krusaderui.rc line 90
 #: rc.cpp:21
 #, no-c-format
 msgid "&Tools"
 msgstr "&Verktyg"
 
-#. i18n: file krusaderui.rc line 105
+#. i18n: file krusaderui.rc line 114
 #: rc.cpp:24
 #, no-c-format
 msgid "&Settings"
 msgstr "&Inställningar"
 
-#. i18n: file krusaderui.rc line 121
+#. i18n: file krusaderui.rc line 130
 #: rc.cpp:27
 #, no-c-format
 msgid "&Window"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 138
+#. i18n: file krusaderui.rc line 147
 #: rc.cpp:30
 #, no-c-format
 msgid "&Help"
@@ -6330,6 +6318,23 @@ msgstr "Fel vid läsning av fil %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Fel vid skrivning av fil %1!"
+
+#~ msgid "Copy"
+#~ msgstr "Kopiera"
+
+#~ msgid "Move"
+#~ msgstr "Flytta"
+
+#, fuzzy
+#~ msgid "New Symlink"
+#~ msgstr "Ny symbolisk länk"
+
+#~ msgid "&Edit New File..."
+#~ msgstr "R&edigera ny fil..."
+
+#, fuzzy
+#~ msgid "Create Directory..."
+#~ msgstr "Föräldramapp"
 
 #~ msgid "new symlink"
 #~ msgstr "ny symbolisk länk"

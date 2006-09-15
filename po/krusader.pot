@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2006-09-14 00:53+0200\n"
+"POT-Creation-Date: 2006-09-15 14:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,8 +120,8 @@ msgstr ""
 #: GUI/syncbrowsebutton.cpp:45
 msgid ""
 "This button toggles the sync-browse mode.\n"
-"When active, each directory change is performed in the active and inactive "
-"panel - if possible."
+"When active, each directory change is performed in the\n"
+"active and inactive panel - if possible."
 msgstr ""
 
 #: GUI/kcmdline.cpp:62
@@ -1390,12 +1390,12 @@ msgstr ""
 msgid "Konqueror Menu"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:131
-msgid "Copy"
+#: Panel/krpopupmenu.cpp:131 krusader.cpp:689
+msgid "Copy..."
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:134
-msgid "Move"
+#: Panel/krpopupmenu.cpp:134 krusader.cpp:691
+msgid "Move..."
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:143
@@ -1412,16 +1412,16 @@ msgstr ""
 msgid "Shred"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:156
-msgid "New Symlink"
+#: Panel/krpopupmenu.cpp:156 krusader.cpp:658
+msgid "New Symlink..."
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:157
-msgid "New Hardlink"
+msgid "New Hardlink..."
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:159
-msgid "Redirect Link"
+msgid "Redirect Link..."
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:161
@@ -1433,7 +1433,7 @@ msgid "Send by Email"
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:186
-msgid "Synchronize Selected Files"
+msgid "Synchronize Selected Files..."
 msgstr ""
 
 #: Panel/krpopupmenu.cpp:191 krusader.cpp:509
@@ -1864,7 +1864,7 @@ msgid "popup cmdline"
 msgstr ""
 
 #: krusader.cpp:536
-msgid "&Edit New File..."
+msgid "&New Text File..."
 msgstr ""
 
 #: krusader.cpp:537
@@ -2068,10 +2068,6 @@ msgstr ""
 msgid "Right Media"
 msgstr ""
 
-#: krusader.cpp:658
-msgid "New Symlink..."
-msgstr ""
-
 #: krusader.cpp:660
 msgid "Toggle Popup Panel"
 msgstr ""
@@ -2120,16 +2116,8 @@ msgstr ""
 msgid "Edit File"
 msgstr ""
 
-#: krusader.cpp:689
-msgid "Copy..."
-msgstr ""
-
-#: krusader.cpp:691
-msgid "Move..."
-msgstr ""
-
 #: krusader.cpp:693
-msgid "Create Directory..."
+msgid "New Directory..."
 msgstr ""
 
 #: krusader.cpp:699
@@ -4249,55 +4237,55 @@ msgstr ""
 msgid "&File"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 30
+#. i18n: file krusaderui.rc line 36
 #: rc.cpp:6
 #, no-c-format
 msgid "&Edit"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 43
+#. i18n: file krusaderui.rc line 51
 #: rc.cpp:9
 #, no-c-format
 msgid "Compare Se&tup"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 55
+#. i18n: file krusaderui.rc line 63
 #: rc.cpp:12
 #, no-c-format
 msgid "&View"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 66
+#. i18n: file krusaderui.rc line 74
 #: rc.cpp:15
 #, no-c-format
 msgid "&Go"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 77
+#. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
 #, no-c-format
 msgid "&Useractions"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 82
+#. i18n: file krusaderui.rc line 90
 #: rc.cpp:21
 #, no-c-format
 msgid "&Tools"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 105
+#. i18n: file krusaderui.rc line 114
 #: rc.cpp:24
 #, no-c-format
 msgid "&Settings"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 121
+#. i18n: file krusaderui.rc line 130
 #: rc.cpp:27
 #, no-c-format
 msgid "&Window"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 138
+#. i18n: file krusaderui.rc line 147
 #: rc.cpp:30
 #, no-c-format
 msgid "&Help"

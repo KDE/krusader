@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-09-14 00:53+0200\n"
+"POT-Creation-Date: 2006-09-15 14:48+0200\n"
 "PO-Revision-Date: 2006-09-13 19:50+0200\n"
-"Last-Translator: Matej Urbancic <matej.urban@gmail.com>"
-"Language-Team: Slovenian <krusader-i18n@googlegroups.com>\n"
+"Last-Translator: Matej Urbancic <matej.urban@gmail.com>Language-Team: "
+"Slovenian <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -131,8 +131,8 @@ msgstr "Izvrzi"
 #, fuzzy
 msgid ""
 "This button toggles the sync-browse mode.\n"
-"When active, each directory change is performed in the active and inactive "
-"panel - if possible."
+"When active, each directory change is performed in the\n"
+"active and inactive panel - if possible."
 msgstr ""
 "Ta gumb preklopi med brskanjem in usklajevanjem.\n"
 "V primeru, da je aktiviran se vsaka sprememba\n"
@@ -1474,12 +1474,14 @@ msgstr "Skripti"
 msgid "Konqueror Menu"
 msgstr "Konqueror meni"
 
-#: Panel/krpopupmenu.cpp:131
-msgid "Copy"
+#: Panel/krpopupmenu.cpp:131 krusader.cpp:689
+#, fuzzy
+msgid "Copy..."
 msgstr "Kopiraj"
 
-#: Panel/krpopupmenu.cpp:134
-msgid "Move"
+#: Panel/krpopupmenu.cpp:134 krusader.cpp:691
+#, fuzzy
+msgid "Move..."
 msgstr "Premakni"
 
 #: Panel/krpopupmenu.cpp:143
@@ -1497,19 +1499,19 @@ msgstr "Izbriši"
 msgid "Shred"
 msgstr "Razcefraj"
 
-#: Panel/krpopupmenu.cpp:156
+#: Panel/krpopupmenu.cpp:156 krusader.cpp:658
 #, fuzzy
-msgid "New Symlink"
+msgid "New Symlink..."
 msgstr "Nova simbolična povezava"
 
 #: Panel/krpopupmenu.cpp:157
 #, fuzzy
-msgid "New Hardlink"
+msgid "New Hardlink..."
 msgstr "nova čvrsta povezava"
 
 #: Panel/krpopupmenu.cpp:159
 #, fuzzy
-msgid "Redirect Link"
+msgid "Redirect Link..."
 msgstr "preusmeri povezavo"
 
 #: Panel/krpopupmenu.cpp:161
@@ -1524,7 +1526,7 @@ msgstr "Pošlji z e-pošto"
 
 #: Panel/krpopupmenu.cpp:186
 #, fuzzy
-msgid "Synchronize Selected Files"
+msgid "Synchronize Selected Files..."
 msgstr "Uskladi izbrane datoteke"
 
 #: Panel/krpopupmenu.cpp:191 krusader.cpp:509
@@ -2009,8 +2011,9 @@ msgid "popup cmdline"
 msgstr "pojavna ukazna vrstica"
 
 #: krusader.cpp:536
-msgid "&Edit New File..."
-msgstr "Ur&edi novo datoteko"
+#, fuzzy
+msgid "&New Text File..."
+msgstr "Tekstovne datoteke"
 
 #: krusader.cpp:537
 #, fuzzy
@@ -2230,11 +2233,6 @@ msgstr "Levi priklopi"
 msgid "Right Media"
 msgstr "DesnI priklopi"
 
-#: krusader.cpp:658
-#, fuzzy
-msgid "New Symlink..."
-msgstr "Nova simbolična povezava"
-
 #: krusader.cpp:660
 msgid "Toggle Popup Panel"
 msgstr "Preklopi pojavno okno"
@@ -2291,20 +2289,10 @@ msgstr "Video datoteke"
 msgid "Edit File"
 msgstr "Uredi datoteko (F4)"
 
-#: krusader.cpp:689
-#, fuzzy
-msgid "Copy..."
-msgstr "Kopiraj"
-
-#: krusader.cpp:691
-#, fuzzy
-msgid "Move..."
-msgstr "Premakni"
-
 #: krusader.cpp:693
 #, fuzzy
-msgid "Create Directory..."
-msgstr "Mapa višje"
+msgid "New Directory..."
+msgstr "Nova mapa"
 
 #: krusader.cpp:699
 #, fuzzy
@@ -4552,55 +4540,55 @@ msgstr "Lastnik:"
 msgid "&File"
 msgstr "&Datoteka"
 
-#. i18n: file krusaderui.rc line 30
+#. i18n: file krusaderui.rc line 36
 #: rc.cpp:6
 #, fuzzy, no-c-format
 msgid "&Edit"
 msgstr " Uredi"
 
-#. i18n: file krusaderui.rc line 43
+#. i18n: file krusaderui.rc line 51
 #: rc.cpp:9
 #, no-c-format
 msgid "Compare Se&tup"
 msgstr "&Priredi Primerjanje"
 
-#. i18n: file krusaderui.rc line 55
+#. i18n: file krusaderui.rc line 63
 #: rc.cpp:12
 #, no-c-format
 msgid "&View"
 msgstr "&Pogled"
 
-#. i18n: file krusaderui.rc line 66
+#. i18n: file krusaderui.rc line 74
 #: rc.cpp:15
 #, no-c-format
 msgid "&Go"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 77
+#. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
 #, no-c-format
 msgid "&Useractions"
 msgstr "&Skripti"
 
-#. i18n: file krusaderui.rc line 82
+#. i18n: file krusaderui.rc line 90
 #: rc.cpp:21
 #, no-c-format
 msgid "&Tools"
 msgstr "&Orodja"
 
-#. i18n: file krusaderui.rc line 105
+#. i18n: file krusaderui.rc line 114
 #: rc.cpp:24
 #, no-c-format
 msgid "&Settings"
 msgstr "Na&stavitve"
 
-#. i18n: file krusaderui.rc line 121
+#. i18n: file krusaderui.rc line 130
 #: rc.cpp:27
 #, no-c-format
 msgid "&Window"
 msgstr ""
 
-#. i18n: file krusaderui.rc line 138
+#. i18n: file krusaderui.rc line 147
 #: rc.cpp:30
 #, no-c-format
 msgid "&Help"
@@ -6315,6 +6303,23 @@ msgstr "Napaka pri branju datoteke %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Napaka pri pisanju datoteke %1!"
+
+#~ msgid "Copy"
+#~ msgstr "Kopiraj"
+
+#~ msgid "Move"
+#~ msgstr "Premakni"
+
+#, fuzzy
+#~ msgid "New Symlink"
+#~ msgstr "Nova simbolična povezava"
+
+#~ msgid "&Edit New File..."
+#~ msgstr "Ur&edi novo datoteko"
+
+#, fuzzy
+#~ msgid "Create Directory..."
+#~ msgstr "Mapa višje"
 
 #~ msgid "new symlink"
 #~ msgstr "nova simbolična povezava"

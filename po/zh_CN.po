@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-09-02 23:32+0200\n"
+"POT-Creation-Date: 2006-09-15 14:48+0200\n"
 "PO-Revision-Date: 2005-08-19 08:18+0800\n"
 "Last-Translator: Jinghua Luo <luojinghua@msn.com>\n"
 "Language-Team: Chinese Simplified\n"
@@ -109,7 +109,6 @@ msgid "Open"
 msgstr "打开"
 
 #: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:521
-#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
 msgid "Open in a new tab"
 msgstr "在新标签打开"
 
@@ -341,7 +340,7 @@ msgstr "目录 %1 不存在！"
 #: VFS/krarchandler.cpp:265 VFS/krarchandler.cpp:282 VFS/krarchandler.cpp:343
 #: VFS/krarchandler.cpp:512 VFS/krarchandler.cpp:519 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:173 krusader.cpp:755
+#: VFS/virt_vfs.cpp:173
 msgid "Error"
 msgstr ""
 
@@ -1024,8 +1023,8 @@ msgid "Overwrite or append?"
 msgstr "覆盖项目"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:115
-#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139 krusader.cpp:753
+#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
+#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139
 msgid "Overwrite"
 msgstr "覆盖"
 
@@ -1141,7 +1140,7 @@ msgstr "等于"
 msgid ".."
 msgstr ".."
 
-#: Panel/listpanel.cpp:241
+#: Panel/listpanel.cpp:241 krusader.cpp:535
 msgid "Up"
 msgstr "向上"
 
@@ -1150,7 +1149,7 @@ msgid "~"
 msgstr "~"
 
 #: Panel/listpanel.cpp:247 Panel/panelpopup.cpp:118 Panel/panelpopup.cpp:119
-#: Panel/panelpopup.cpp:120 Panel/panelpopup.cpp:131
+#: Panel/panelpopup.cpp:120 Panel/panelpopup.cpp:131 krusader.cpp:498
 msgid "Home"
 msgstr "主目录"
 
@@ -1160,7 +1159,7 @@ msgstr "/"
 
 #: Panel/listpanel.cpp:253 Panel/panelpopup.cpp:122 Panel/panelpopup.cpp:123
 #: Panel/panelpopup.cpp:125 Panel/panelpopup.cpp:126 Panel/panelpopup.cpp:130
-#: krusader.cpp:619
+#: krusader.cpp:620
 msgid "Root"
 msgstr "根目录"
 
@@ -1300,7 +1299,7 @@ msgstr "%1 (连接)"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr ""
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325 krusader.cpp:697
 msgid "Rename"
 msgstr "重命名"
 
@@ -1415,7 +1414,12 @@ msgstr "打开/运行"
 msgid "Run"
 msgstr "运行"
 
-#: Konfigurator/kgcolors.cpp:212 Konfigurator/kglookfeel.cpp:253
+#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
+#, fuzzy
+msgid "Open in New Tab"
+msgstr "在新标签打开"
+
+#: Konfigurator/kgcolors.cpp:212 Konfigurator/kglookfeel.cpp:309
 #: Panel/krpopupmenu.cpp:76
 msgid "Preview"
 msgstr "预览"
@@ -1429,7 +1433,8 @@ msgid "Other..."
 msgstr "其它的..."
 
 #: Panel/krpopupmenu.cpp:104
-msgid "Open with"
+#, fuzzy
+msgid "Open With"
 msgstr "用其它的程序打开..."
 
 #: Konfigurator/konfigurator.cpp:113 Panel/krpopupmenu.cpp:109
@@ -1437,24 +1442,28 @@ msgid "User Actions"
 msgstr "用户宏"
 
 #: Panel/krpopupmenu.cpp:123
-msgid "Konqueror menu"
+#, fuzzy
+msgid "Konqueror Menu"
 msgstr "Konqueror 菜单"
 
-#: Panel/krpopupmenu.cpp:131
-msgid "Copy"
+#: Panel/krpopupmenu.cpp:131 krusader.cpp:689
+#, fuzzy
+msgid "Copy..."
 msgstr "复制"
 
-#: Panel/krpopupmenu.cpp:134
-msgid "Move"
+#: Panel/krpopupmenu.cpp:134 krusader.cpp:691
+#, fuzzy
+msgid "Move..."
 msgstr "移动"
 
-#: Konfigurator/kggeneral.cpp:57 Panel/krpopupmenu.cpp:143
-msgid "Move to trash"
+#: Panel/krpopupmenu.cpp:143
+#, fuzzy
+msgid "Move to Trash"
 msgstr "移动到回收站"
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
 #: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:759
-#: Konfigurator/kgcolors.cpp:501 Panel/krpopupmenu.cpp:145
+#: Konfigurator/kgcolors.cpp:501 Panel/krpopupmenu.cpp:145 krusader.cpp:695
 msgid "Delete"
 msgstr "删除"
 
@@ -1462,65 +1471,73 @@ msgstr "删除"
 msgid "Shred"
 msgstr "粉碎"
 
-#: Panel/krpopupmenu.cpp:156
-msgid "new symlink"
+#: Panel/krpopupmenu.cpp:156 krusader.cpp:658
+#, fuzzy
+msgid "New Symlink..."
 msgstr "新建符号连接"
 
 #: Panel/krpopupmenu.cpp:157
-msgid "new hardlink"
+#, fuzzy
+msgid "New Hardlink..."
 msgstr "新建硬连接"
 
 #: Panel/krpopupmenu.cpp:159
-msgid "redirect link"
+#, fuzzy
+msgid "Redirect Link..."
 msgstr "重定向连接"
 
 #: Panel/krpopupmenu.cpp:161
-msgid "Link handling"
+#, fuzzy
+msgid "Link Handling"
 msgstr "管理连接"
 
 #: Panel/krpopupmenu.cpp:181
-msgid "Send by email"
+#, fuzzy
+msgid "Send by Email"
 msgstr "用邮件发送"
 
 #: Panel/krpopupmenu.cpp:186
-msgid "Synchronize selected files"
+#, fuzzy
+msgid "Synchronize Selected Files..."
 msgstr "同步选择的文件"
 
-#: Panel/krpopupmenu.cpp:191
+#: Panel/krpopupmenu.cpp:191 krusader.cpp:509
 msgid "Copy to Clipboard"
 msgstr "复制到剪切板"
 
-#: Panel/krpopupmenu.cpp:194
+#: Panel/krpopupmenu.cpp:194 krusader.cpp:508
 msgid "Cut to Clipboard"
 msgstr "剪切到剪切板"
 
-#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211
+#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:510
 msgid "Paste from Clipboard"
 msgstr "从剪切板中粘贴"
 
 #: Panel/krpopupmenu.cpp:215
-msgid "Folder"
+#, fuzzy
+msgid "Folder..."
 msgstr "文件夹"
 
 #: Panel/krpopupmenu.cpp:216
-msgid "Text file"
+#, fuzzy
+msgid "Text File..."
 msgstr "文本文件"
 
 #: Panel/krpopupmenu.cpp:219
-msgid "Create new"
+#, fuzzy
+msgid "Create New"
 msgstr "新建"
 
 #: Panel/krpopupmenu.cpp:261
-msgid "Are you sure you want to shred "
-msgstr "您确定要粉碎 "
-
-#: Panel/krpopupmenu.cpp:262
-msgid " ? Once shred, the file is gone forever !!!"
+#, fuzzy
+msgid ""
+"<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
+"forever!</qt>"
 msgstr "? 一旦粉碎, 文件将永远失去！！！"
 
-#: KViewer/krviewer.cpp:222 Panel/krpopupmenu.cpp:340 Panel/panelfunc.cpp:357
-#: krslots.cpp:465
-msgid "Can't open "
+#: Panel/krpopupmenu.cpp:339
+#, fuzzy
+msgid "Can't open \"%1\""
 msgstr "不能打开"
 
 #: Panel/panelfunc.cpp:247
@@ -1574,6 +1591,10 @@ msgstr "到："
 #: Panel/panelfunc.cpp:333
 msgid "No permissions to view this file."
 msgstr "没有查看此文件的权限."
+
+#: KViewer/krviewer.cpp:222 Panel/panelfunc.cpp:357 krslots.cpp:465
+msgid "Can't open "
+msgstr "不能打开"
 
 #: Panel/panelfunc.cpp:368
 msgid "You can't edit a directory"
@@ -1670,9 +1691,9 @@ msgid ""
 "Do you really want to delete these %n items?"
 msgstr ""
 
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:115
+#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
 #: DiskUsage/diskusage.cpp:609 Konfigurator/kgcolors.cpp:561
-#: Panel/panelfunc.cpp:641 krusader.cpp:753
+#: Panel/panelfunc.cpp:641
 msgid "Warning"
 msgstr "警告"
 
@@ -1883,423 +1904,408 @@ msgstr "F3 查看对话框  "
 msgid "Tab: switch panel"
 msgstr "Tab： 交换面板"
 
-#: krusader.cpp:498
+#: krusader.cpp:499
 msgid "&Reload"
 msgstr "重新载入(&R)"
 
-#: krusader.cpp:500
+#: krusader.cpp:501
 msgid "Show Actions Toolbar"
 msgstr "显示宏工具栏"
 
-#: krusader.cpp:512
+#: krusader.cpp:513
 msgid "Show &FN Keys Bar"
 msgstr "显示 &FN 键工具栏"
 
-#: krusader.cpp:515
+#: krusader.cpp:516
 msgid "Show &Command Line"
 msgstr "显示命令行(&C)"
 
-#: krusader.cpp:518
+#: krusader.cpp:519
 msgid "Show Terminal &Emulator"
 msgstr "显示终端模拟器(&E)"
 
-#: krusader.cpp:521
+#: krusader.cpp:522
 msgid "Show &Hidden Files"
 msgstr "显示隐藏文件(&H)"
 
-#: krusader.cpp:523
+#: krusader.cpp:524
 msgid "S&wap Panels"
 msgstr "交换面板(&W)"
 
-#: krusader.cpp:525
+#: krusader.cpp:526
 #, fuzzy
 msgid "Sw&ap Sides"
 msgstr "交换左右两侧"
 
-#: krusader.cpp:531
+#: krusader.cpp:532
 msgid "popup cmdline"
 msgstr "弹出命令行"
 
-#: DiskUsage/diskusage.cpp:766 krusader.cpp:534
-msgid "Up one directory"
-msgstr "返回上一级目录"
-
-#: krusader.cpp:535
-#, fuzzy
-msgid "&Edit New File..."
-msgstr "新建文件(&E)"
-
 #: krusader.cpp:536
 #, fuzzy
-msgid "Start &Root Mode Krusader..."
+msgid "&New Text File..."
+msgstr "新建文件(&E)"
+
+#: krusader.cpp:537
+#, fuzzy
+msgid "Start &Root Mode Krusader"
 msgstr "启动超级用户模式 Krusader(&R)"
 
-#: krusader.cpp:538
+#: krusader.cpp:539
 #, fuzzy
-msgid "T&est Archive..."
+msgid "T&est Archive"
 msgstr "检测档案(&V)"
 
-#: krusader.cpp:542
+#: krusader.cpp:543
 #, fuzzy
 msgid "New Net &Connection..."
 msgstr "新建网络连接(&T)"
 
-#: krusader.cpp:544
+#: krusader.cpp:545
 msgid "Pro&files"
 msgstr "配置(&P)"
 
-#: krusader.cpp:546
+#: krusader.cpp:547
 #, fuzzy
-msgid "Calculate &Occupied Space..."
-msgstr "占用空间大小(&O)"
+msgid "Calculate &Occupied Space"
+msgstr "计算占用的空间"
 
-#: krusader.cpp:548
+#: krusader.cpp:549
 #, fuzzy
 msgid "Create Checksum..."
 msgstr "生成校验和"
 
-#: krusader.cpp:550
+#: krusader.cpp:551
 #, fuzzy
 msgid "Verify Checksum..."
 msgstr "检查校验和"
 
-#: krusader.cpp:552
+#: krusader.cpp:553
 #, fuzzy
 msgid "&Properties..."
 msgstr "属性(&P)"
 
-#: krusader.cpp:554
+#: krusader.cpp:555
 #, fuzzy
 msgid "Pac&k..."
 msgstr "打包(&K)"
 
-#: krusader.cpp:556
+#: krusader.cpp:557
 #, fuzzy
 msgid "&Unpack..."
 msgstr "解包(&U)"
 
-#: krusader.cpp:558
+#: krusader.cpp:559
 #, fuzzy
 msgid "Sp&lit File..."
 msgstr "分解文件(&L)"
 
-#: krusader.cpp:560
+#: krusader.cpp:561
 #, fuzzy
 msgid "Com&bine Files..."
 msgstr "合并文件(&B)"
 
-#: krusader.cpp:562
-msgid "Select &Group"
+#: krusader.cpp:563
+#, fuzzy
+msgid "Select &Group..."
 msgstr "选择组(&G)"
 
-#: krusader.cpp:564
+#: krusader.cpp:565
 msgid "&Select All"
 msgstr "全部选择(&S)"
 
-#: krusader.cpp:566
+#: krusader.cpp:567
+#, fuzzy
+msgid "&Unselect Group..."
+msgstr "取消选择组(&U)"
+
+#: krusader.cpp:569
 msgid "U&nselect All"
 msgstr "取消全部选择(&N)"
 
-#: krusader.cpp:568
+#: krusader.cpp:571
+msgid "&Invert Selection"
+msgstr "反向选择(&I)"
+
+#: krusader.cpp:573
 msgid "&Compare Directories"
 msgstr "比较目录(&C)"
 
-#: krusader.cpp:570
-msgid "&Mark Newer And Single"
+#: krusader.cpp:575
+#, fuzzy
+msgid "&Mark Newer and Single"
 msgstr "标记较新的和单独的(&M)"
 
-#: krusader.cpp:572
+#: krusader.cpp:577
 msgid "Mark &Newer"
 msgstr "标较新的(&N)"
 
-#: krusader.cpp:574
+#: krusader.cpp:579
 msgid "Mark &Single"
 msgstr "标记单个的(&S)"
 
-#: krusader.cpp:576
-msgid "Mark Different &And Single"
+#: krusader.cpp:581
+#, fuzzy
+msgid "Mark Different &and Single"
 msgstr "标记有差异的和单个的(&A)"
 
-#: krusader.cpp:578
+#: krusader.cpp:583
 msgid "Mark &Different"
 msgstr "标记有差异的(&D)"
 
-#: krusader.cpp:587
+#: krusader.cpp:592
 #, fuzzy
-msgid "&Terminal..."
-msgstr "终端(&T)"
+msgid "Start &Terminal"
+msgstr "终端"
 
-#: krusader.cpp:589
-msgid "Disconnect &From Net"
+#: krusader.cpp:594
+#, fuzzy
+msgid "Disconnect &from Net"
 msgstr "断开网络连接(&F)"
 
-#: krusader.cpp:592 krusader.cpp:597
+#: krusader.cpp:597 krusader.cpp:602
 #, fuzzy
 msgid "&MountMan..."
 msgstr "挂载管理器(&M)"
 
-#: krusader.cpp:601
+#: krusader.cpp:606
 #, fuzzy
 msgid "&Search..."
 msgstr "搜索(&S)"
 
-#: krusader.cpp:603
+#: krusader.cpp:608
 #, fuzzy
 msgid "&Locate..."
 msgstr "定位(&L)"
 
-#: krusader.cpp:605
+#: krusader.cpp:610
 #, fuzzy
 msgid "Synchronize &Directories..."
 msgstr "同步目录(&D)"
 
-#: krusader.cpp:607
-msgid "S&ynchron directory changes"
+#: krusader.cpp:612
+#, fuzzy
+msgid "S&ynchron Directory Changes"
 msgstr "同步目录更改(&Y)"
 
-#: krusader.cpp:609
+#: krusader.cpp:614
 #, fuzzy
 msgid "D&isk Usage..."
 msgstr "D&isk Usage"
 
-#: krusader.cpp:611
-msgid "&Invert Selection"
-msgstr "反向选择(&I)"
-
-#: krusader.cpp:613
-msgid "&Unselect Group"
-msgstr "取消选择组(&U)"
-
-#: krusader.cpp:615
+#: krusader.cpp:616
 #, fuzzy
 msgid "Configure &Krusader..."
 msgstr "配置 Krusader (&K)"
 
-#: krusader.cpp:617
+#: krusader.cpp:618
 msgid "Back"
 msgstr "后退"
 
-#: krusader.cpp:621
+#: krusader.cpp:622
 msgid "Save &Position"
 msgstr "保存位置(&P)"
 
-#: krusader.cpp:623
+#: krusader.cpp:624
 msgid "&All Files"
 msgstr "所有文件(&A)"
 
-#: krusader.cpp:627
+#: krusader.cpp:628
 msgid "&Custom"
 msgstr "自定义(&C)"
 
-#: krusader.cpp:629
+#: krusader.cpp:630
 #, fuzzy
 msgid "Compare b&y Content..."
 msgstr "比较内容(&Y)"
 
-#: krusader.cpp:631
+#: krusader.cpp:632
 #, fuzzy
 msgid "Multi &Rename..."
 msgstr "重命名(&R)"
 
-#: krusader.cpp:633
-msgid "Right-click menu"
+#: krusader.cpp:634
+#, fuzzy
+msgid "Right-click Menu"
 msgstr "右键菜单"
 
-#: krusader.cpp:635
-msgid "Right bookmarks"
+#: krusader.cpp:636
+#, fuzzy
+msgid "Right Bookmarks"
 msgstr "右侧面板书签"
 
-#: krusader.cpp:637
-msgid "Left bookmarks"
+#: krusader.cpp:638
+#, fuzzy
+msgid "Left Bookmarks"
 msgstr "左侧面板书签"
 
 #: BookMan/kraddbookmarkdlg.cpp:71 BookMan/krbookmarkbutton.cpp:19
-#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:639
+#: BookMan/krbookmarkhandler.cpp:30 krusader.cpp:640
 msgid "Bookmarks"
 msgstr "书签"
 
-#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:641
+#: BookMan/krbookmarkhandler.cpp:399 krusader.cpp:642
 msgid "Bookmark Current"
 msgstr "书签当前"
 
-#: krusader.cpp:643
+#: krusader.cpp:644
 msgid "History"
 msgstr "历史记录"
 
-#: krusader.cpp:645
+#: krusader.cpp:646
 msgid "Sync Panels"
 msgstr "同步面板"
 
-#: krusader.cpp:647
-msgid "Left history"
+#: krusader.cpp:648
+#, fuzzy
+msgid "Left History"
 msgstr "左侧面板历史记录"
 
-#: krusader.cpp:649
-msgid "Right history"
+#: krusader.cpp:650
+#, fuzzy
+msgid "Right History"
 msgstr "左侧面板历史记录"
 
-#: BookMan/krbookmark.cpp:12 krusader.cpp:651
+#: BookMan/krbookmark.cpp:12 krusader.cpp:652
 msgid "Media"
 msgstr "介质"
 
-#: krusader.cpp:653
+#: krusader.cpp:654
 #, fuzzy
-msgid "Left media"
+msgid "Left Media"
 msgstr "左侧面板"
 
-#: krusader.cpp:655
+#: krusader.cpp:656
 #, fuzzy
-msgid "Right media"
+msgid "Right Media"
 msgstr "右侧面板"
 
-#: krusader.cpp:657
-msgid "New symlink"
-msgstr "新建符号连接"
-
-#: krusader.cpp:659
+#: krusader.cpp:660
 msgid "Toggle Popup Panel"
 msgstr "激活弹出面板"
 
-#: krusader.cpp:661
+#: krusader.cpp:662
 msgid "Vertical Mode"
 msgstr "垂直模式"
 
-#: krusader.cpp:663
-msgid "New tab"
+#: krusader.cpp:664
+#, fuzzy
+msgid "New Tab"
 msgstr "新建标签"
 
-#: krusader.cpp:665
-msgid "Duplicate tab"
+#: krusader.cpp:666
+#, fuzzy
+msgid "Duplicate Current Tab"
 msgstr "复制标签"
 
-#: krusader.cpp:667
-msgid "Close tab"
-msgstr "关闭标签"
+#: krusader.cpp:668
+#, fuzzy
+msgid "Close Current Tab"
+msgstr "关闭当前标签"
 
-#: krusader.cpp:669
-msgid "Next tab"
+#: krusader.cpp:670
+#, fuzzy
+msgid "Next Tab"
 msgstr "下一个标签"
 
-#: krusader.cpp:671
-msgid "Previous tab"
+#: krusader.cpp:672
+#, fuzzy
+msgid "Previous Tab"
 msgstr "上一个标签"
 
-#: UserMenu/usermenu.cpp:51 krusader.cpp:673
-msgid "User Menu"
-msgstr "用户自定义菜单"
-
-#: krusader.cpp:675
+#: krusader.cpp:678
 #, fuzzy
-msgid "Manage user actions..."
+msgid "Manage User Actions..."
 msgstr "管理用户宏"
 
-#: krusader.cpp:677
+#: krusader.cpp:680
 msgid "Select Remote Charset"
 msgstr "选择远程主机编码"
 
-#: krusader.cpp:680
-msgid "F2 - Open a terminal"
-msgstr "F2 - 打开终端"
+#: krusader.cpp:683
+msgid "Start Terminal Here"
+msgstr ""
 
-#: krusader.cpp:682
-msgid "F3 - View a file"
-msgstr "F3 - 查看文件  "
+#: krusader.cpp:685
+#, fuzzy
+msgid "View File"
+msgstr "视频文件"
 
-#: krusader.cpp:684
-msgid "F4 - Edit a file"
-msgstr "F4 - 编辑文件"
+#: krusader.cpp:687
+#, fuzzy
+msgid "Edit File"
+msgstr "编辑文件 (F4)"
 
-#: krusader.cpp:686
-msgid "F5 - Copy"
-msgstr "F5 - 复制 "
+#: krusader.cpp:693
+#, fuzzy
+msgid "New Directory..."
+msgstr "新建目录"
 
-#: krusader.cpp:688
-msgid "F6 - Move"
-msgstr "F6 - 移动"
+#: krusader.cpp:699
+#, fuzzy
+msgid "Quit"
+msgstr "安静"
 
-#: krusader.cpp:690
-msgid "F7 - Mkdir"
-msgstr "F7 - 新建目录"
-
-#: krusader.cpp:692
-msgid "F8 - Delete"
-msgstr "F8 - 删除"
-
-#: krusader.cpp:694
-msgid "F9 - Rename"
-msgstr "F9 - 重命名"
-
-#: krusader.cpp:696
-msgid "F10 - Quit"
-msgstr "F10 - 退出"
-
-#: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
-#: krusader.cpp:698
-msgid "Popular URLs"
+#: krusader.cpp:701
+#, fuzzy
+msgid "Popular URLs..."
 msgstr "最常用的 URLs"
 
-#: krusader.cpp:700
-msgid "Go to location bar"
+#: krusader.cpp:703
+#, fuzzy
+msgid "Go to Location Bar"
 msgstr "转到位置条"
 
-#: BookMan/krbookmarkhandler.cpp:493 krusader.cpp:702
-msgid "Jump back"
+#: krusader.cpp:705
+#, fuzzy
+msgid "Jump Back"
 msgstr "跳回"
 
-#: krusader.cpp:704
-msgid "Set jump back point here"
+#: krusader.cpp:707
+#, fuzzy
+msgid "Set Jump Back Point"
 msgstr "在这时设置跳回点"
 
-#: krusader.cpp:706
+#: krusader.cpp:709
 #, fuzzy
-msgid "Toggle fullwidget terminal emulator"
+msgid "Toggle Fullwidget Terminal Emulator"
 msgstr "显示虚拟终端"
 
-#: krusader.cpp:710
+#: krusader.cpp:713
 msgid "Select files using a filter"
 msgstr "使用过滤器选择文件"
 
-#: krusader.cpp:711
+#: krusader.cpp:714
 msgid "Select all files in the current directory"
 msgstr "选中当前目录中所有的文件"
 
-#: krusader.cpp:712
-msgid "Un-select all selected files"
+#: krusader.cpp:715
+#, fuzzy
+msgid "Unselect all selected files"
 msgstr "取消所有选择的文件"
 
-#: krusader.cpp:713
+#: krusader.cpp:716
 msgid "Setup Krusader the way you like it"
 msgstr "自定义 Krusader"
 
-#: krusader.cpp:714
+#: krusader.cpp:717
 msgid "Back to the place you came from"
 msgstr "返回您上一次所在的位置"
 
-#: krusader.cpp:715
+#: krusader.cpp:718
 msgid "ROOT (/)"
 msgstr "根目录 (/)"
 
-#: krusader.cpp:716
+#: krusader.cpp:719
 msgid "Search for files"
 msgstr "搜索文件"
 
-#: krusader.cpp:722
-msgid "JavaScript console"
+#: krusader.cpp:725
+#, fuzzy
+msgid "JavaScript Console..."
 msgstr "JavaScript 控制台"
 
-#: Konfigurator/kgcolors.cpp:560 krusader.cpp:752
-msgid "File "
-msgstr "文件"
-
-#: Konfigurator/kgcolors.cpp:560 krusader.cpp:752
-msgid " already exists. Are you sure you want to overwrite it?"
-msgstr "已经存在，您确定要覆盖它吗？"
-
-#: Konfigurator/kgcolors.cpp:563 krusader.cpp:755
-msgid "Error: unable to write to file"
-msgstr "错误：写入文件错误"
-
-#: krusader.cpp:896
+#: krusader.cpp:853
 msgid "Are you sure you want to quit?"
 msgstr "您确定要退出么？"
 
@@ -2466,6 +2472,10 @@ msgstr "不像是有效的书签文件"
 msgid "Error reading bookmarks file: "
 msgstr "读取书签文件错误："
 
+#: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
+msgid "Popular URLs"
+msgstr "最常用的 URLs"
+
 #: BookMan/krbookmarkhandler.cpp:402
 msgid "Manage Bookmarks"
 msgstr "管理书签"
@@ -2486,6 +2496,10 @@ msgstr "局域网"
 #: BookMan/krbookmark.cpp:16 BookMan/krbookmarkhandler.cpp:491
 msgid "Virtual Filesystem"
 msgstr "虚拟文件系统"
+
+#: BookMan/krbookmarkhandler.cpp:493
+msgid "Jump back"
+msgstr "跳回"
 
 #: BookMan/kraddbookmarkdlg.cpp:13
 msgid "Add Bookmark"
@@ -2673,122 +2687,6 @@ msgstr "重命名文件, 目录, 等等。"
 #, fuzzy
 msgid "Base URL:"
 msgstr "URL："
-
-#: Dialogs/krdialogs.cpp:266 Konfigurator/kglookfeel.cpp:230
-msgid "Custom Selection Mode"
-msgstr "自定义选择模式："
-
-#: Dialogs/krdialogs.cpp:269
-msgid "Based on KDE's selection mode"
-msgstr "遵循 KDE 的选择模式"
-
-#: Dialogs/krdialogs.cpp:270
-msgid "Left mouse button selects"
-msgstr "鼠标按键选择"
-
-#: Dialogs/krdialogs.cpp:271
-msgid "Left mouse button preserves selection"
-msgstr "鼠标左键取消选择"
-
-#: Dialogs/krdialogs.cpp:272
-msgid "Shift/Ctrl-Left mouse button selects"
-msgstr "Shift/Ctrl-Left 加鼠标键选择"
-
-#: Dialogs/krdialogs.cpp:273
-msgid "Right mouse button selects"
-msgstr "右键选择"
-
-#: Dialogs/krdialogs.cpp:274
-msgid "Right mouse button preserves selection"
-msgstr "右键取消选择"
-
-#: Dialogs/krdialogs.cpp:275
-msgid "Shift/Ctrl-Right mouse button selects"
-msgstr "Shift/Ctrl-Right 加鼠标按键选择"
-
-#: Dialogs/krdialogs.cpp:276
-msgid "Spacebar moves down"
-msgstr "空格键向下移"
-
-#: Dialogs/krdialogs.cpp:277
-msgid "Spacebar calculates disk space"
-msgstr "空格键计算硬盘空间"
-
-#: Dialogs/krdialogs.cpp:278
-msgid "Insert moves down"
-msgstr "插入键向下移"
-
-#: Dialogs/krdialogs.cpp:279
-msgid "Right clicking pops context menu immediately"
-msgstr "右键单击立即弹出菜单"
-
-#: Dialogs/krdialogs.cpp:281
-msgid "If checked, use a mode based on KDE's style."
-msgstr "选择这个将会创建基于 kde 样式的模式"
-
-#: Dialogs/krdialogs.cpp:282
-msgid "If checked, left clicking an item will select it."
-msgstr "如果您选择了它，左键单击项目将会选择它。"
-
-#: Dialogs/krdialogs.cpp:283
-msgid ""
-"If checked, left clicking an item will select it, but will not unselect "
-"other, already selected items."
-msgstr "如果您选择了它，左键单击将会选择项目， 但不是取消其它已经的项目。"
-
-#: Dialogs/krdialogs.cpp:285
-msgid ""
-"If checked, shift/ctrl left clicking will select items. \n"
-"Note: This is meaningless if 'Left Button Selects' is checked."
-msgstr ""
-"如果您选择了它， shift/ctrl 同时单击左键将会选择您的项目。\n"
-"注意， 如果您选择了左键选择，这项选择是没有任何意义的。"
-
-#: Dialogs/krdialogs.cpp:287
-msgid "If checked, right clicking an item will select it."
-msgstr "如果您选择了它，右键单击将会选择一个您单击的项目。"
-
-#: Dialogs/krdialogs.cpp:288
-msgid ""
-"If checked, right clicking an item will select it, but will not unselect "
-"other, already selected items."
-msgstr ""
-
-#: Dialogs/krdialogs.cpp:290
-msgid ""
-"If checked, shift/ctrl right clicking will select items. \n"
-"Note: This is meaningless if 'Right Button Selects' is checked."
-msgstr ""
-"如果您选择了它， shift/ctrl 同时单击左键将会选择您的项目。\n"
-"注意， 如果您选择了左键选择，这项选择是没有任何意义的。"
-
-#: Dialogs/krdialogs.cpp:292
-msgid ""
-"If checked, pressing the spacebar will select the current item and move "
-"down. \n"
-"Otherwise, current item is selected, but remains the current item."
-msgstr ""
-
-#: Dialogs/krdialogs.cpp:294
-msgid ""
-"If checked, pressing the spacebar while the current item is a folder, will "
-"(except from selecting the folder) \n"
-"calculate space occupied by the folder (recursively)."
-msgstr ""
-
-#: Dialogs/krdialogs.cpp:296
-msgid ""
-"If checked, pressing INSERT will select the current item, and move down to "
-"the next item. \n"
-"Otherwise, current item is not changed."
-msgstr ""
-
-#: Dialogs/krdialogs.cpp:298
-msgid ""
-"If checked, right clicking will result in an immediate showing of the "
-"context menu. \n"
-"Otherwise, user needs to click and hold the right mouse button for 500ms."
-msgstr ""
 
 #: Dialogs/krprogress.cpp:59
 msgid "Source:"
@@ -2998,23 +2896,23 @@ msgid ""
 "*|all files"
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:41 Konfigurator/kglookfeel.cpp:160
+#: Dialogs/krkeydialog.cpp:41
 msgid "Import shortcuts"
 msgstr "导入快键键设置"
 
-#: Dialogs/krkeydialog.cpp:42 Konfigurator/kglookfeel.cpp:162
+#: Dialogs/krkeydialog.cpp:42
 msgid "Load a keybinding profile, e.g., total_commander.keymap"
 msgstr "加载一个快捷键配置文件，比如 total_commander.keymap"
 
-#: Dialogs/krkeydialog.cpp:46 Konfigurator/kglookfeel.cpp:163
+#: Dialogs/krkeydialog.cpp:46
 msgid "Export shortcuts"
 msgstr "导出快捷键设置"
 
-#: Dialogs/krkeydialog.cpp:47 Konfigurator/kglookfeel.cpp:165
+#: Dialogs/krkeydialog.cpp:47
 msgid "Save current keybindings in a keymap file."
 msgstr "保存当然的快键键到 keymap 文件。"
 
-#: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:108
+#: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:128
 #, fuzzy
 msgid "Select a keymap file"
 msgstr "选择一个颜色方案"
@@ -3034,30 +2932,31 @@ msgstr ""
 msgid "Import anyway"
 msgstr "导入宏"
 
-#: Dialogs/krkeydialog.cpp:95 Konfigurator/kglookfeel.cpp:314
+#: Dialogs/krkeydialog.cpp:95
 msgid ""
-"The following information was attached to the keymap. Are you sure you want "
-"to import this keymap ?"
+"The following information was attached to the keymap. Do you really want to "
+"import this keymap?"
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:102
+#: Dialogs/krkeydialog.cpp:122
 msgid "Please restart this dialog in order to see the changes"
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:103
+#: Dialogs/krkeydialog.cpp:123
 msgid "Legacy import completed"
 msgstr ""
 
-#: Dialogs/krkeydialog.cpp:114
+#: Dialogs/krkeydialog.cpp:134
 #, fuzzy
-msgid "File %1 already exists. Are you sure you want to overwrite it?"
+msgid ""
+"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr ""
 "文件 %1 已存在。\n"
 "您确定要覆盖它吗？"
 
-#: Dialogs/krkeydialog.cpp:123
+#: Dialogs/krkeydialog.cpp:143
 #, fuzzy
-msgid "Can't open %1 for writing!"
+msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
 msgstr "不能打开"
 
 #: Dialogs/packguibase.cpp:66 Dialogs/packguibase.cpp:120
@@ -3832,6 +3731,10 @@ msgstr "端口："
 msgid "* Warning: Storing your password is not secure !!!"
 msgstr "* 警告： 保存您的密码是不安全的！！！"
 
+#: UserMenu/usermenu.cpp:51
+msgid "User Menu"
+msgstr "用户自定义菜单"
+
 #: UserMenu/usermenu.cpp:58
 msgid "Manage user actions"
 msgstr "管理用户宏"
@@ -4267,7 +4170,7 @@ msgstr "选择文件"
 msgid "Cannot open %1!"
 msgstr "不能打开"
 
-#: Konfigurator/kglookfeel.cpp:98 paneltabbar.cpp:35
+#: Konfigurator/kglookfeel.cpp:120 paneltabbar.cpp:35
 msgid "Panel"
 msgstr "面板"
 
@@ -4475,6 +4378,10 @@ msgstr "当前目录: %1， 总共大小: %2, 占用空间: %3"
 msgid "Disk Usage"
 msgstr "磁盘使用情况"
 
+#: DiskUsage/diskusage.cpp:766
+msgid "Up one directory"
+msgstr "返回上一级目录"
+
 #: DiskUsage/diskusage.cpp:768
 msgid "New search"
 msgstr "新建搜索"
@@ -4529,58 +4436,64 @@ msgstr "所有者："
 msgid "&File"
 msgstr "文件(&F)"
 
-#. i18n: file krusaderui.rc line 25
+#. i18n: file krusaderui.rc line 36
 #: rc.cpp:6
-#, no-c-format
-msgid "&Mark"
-msgstr "标记(&M)"
+#, fuzzy, no-c-format
+msgid "&Edit"
+msgstr "编辑 "
 
-#. i18n: file krusaderui.rc line 34
+#. i18n: file krusaderui.rc line 51
 #: rc.cpp:9
 #, no-c-format
 msgid "Compare Se&tup"
 msgstr "比较设置(&T)"
 
-#. i18n: file krusaderui.rc line 43
+#. i18n: file krusaderui.rc line 63
 #: rc.cpp:12
-#, no-c-format
-msgid "&Commands"
-msgstr "命令(&C)"
-
-#. i18n: file krusaderui.rc line 59
-#: rc.cpp:15
 #, no-c-format
 msgid "&View"
 msgstr "查看(&V)"
 
-#. i18n: file krusaderui.rc line 77
-#: rc.cpp:18
+#. i18n: file krusaderui.rc line 74
+#: rc.cpp:15
 #, no-c-format
-msgid "&Tools"
-msgstr "工具(&T)"
+msgid "&Go"
+msgstr ""
 
 #. i18n: file krusaderui.rc line 85
-#: rc.cpp:21
-#, no-c-format
-msgid "&Settings"
-msgstr "设置(&S)"
-
-#. i18n: file krusaderui.rc line 94
-#: rc.cpp:24
+#: rc.cpp:18
 #, no-c-format
 msgid "&Useractions"
 msgstr "用户宏(&U)"
 
-#. i18n: file krusaderui.rc line 99
+#. i18n: file krusaderui.rc line 90
+#: rc.cpp:21
+#, no-c-format
+msgid "&Tools"
+msgstr "工具(&T)"
+
+#. i18n: file krusaderui.rc line 114
+#: rc.cpp:24
+#, no-c-format
+msgid "&Settings"
+msgstr "设置(&S)"
+
+#. i18n: file krusaderui.rc line 130
 #: rc.cpp:27
+#, no-c-format
+msgid "&Window"
+msgstr ""
+
+#. i18n: file krusaderui.rc line 147
+#: rc.cpp:30
 #, no-c-format
 msgid "&Help"
 msgstr "Help(&H)"
 
 #: Konfigurator/kgadvanced.cpp:48 Konfigurator/kgarchives.cpp:51
 #: Konfigurator/kgcolors.cpp:51 Konfigurator/kgdependencies.cpp:53
-#: Konfigurator/kggeneral.cpp:51 Konfigurator/kglookfeel.cpp:219
-#: Konfigurator/konfigurator.cpp:100
+#: Konfigurator/kggeneral.cpp:51 Konfigurator/kglookfeel.cpp:223
+#: Konfigurator/kgstartup.cpp:47 Konfigurator/konfigurator.cpp:100
 msgid "General"
 msgstr "常规"
 
@@ -4607,6 +4520,10 @@ msgstr "删除文件"
 #: Konfigurator/kggeneral.cpp:56
 msgid "Files will be permanently deleted."
 msgstr "文件将会永久的删除。"
+
+#: Konfigurator/kggeneral.cpp:57
+msgid "Move to trash"
+msgstr "移动到回收站"
 
 #: Konfigurator/kggeneral.cpp:57
 msgid "Files will be moved to trash when deleted."
@@ -4824,268 +4741,249 @@ msgstr "把协议连接到 mime"
 msgid "The current page has been changed. Do you want to apply changes?"
 msgstr "当前页已经改变。您要应用这些修改吗?"
 
-#: Konfigurator/kglookfeel.cpp:63
+#: Konfigurator/kglookfeel.cpp:72
 msgid "Operation"
 msgstr "操作"
 
-#: Konfigurator/kglookfeel.cpp:68
+#: Konfigurator/kglookfeel.cpp:79
 msgid "Look && Feel"
 msgstr "外观和观感"
 
-#: Konfigurator/kglookfeel.cpp:73
+#: Konfigurator/kglookfeel.cpp:84
 msgid "Warn on exit"
 msgstr "退出时警告"
 
-#: Konfigurator/kglookfeel.cpp:73
+#: Konfigurator/kglookfeel.cpp:84
 msgid "Display a warning when trying to close the main window."
 msgstr "显示一个警告当您要退出 Krusader 时。"
 
-#: Konfigurator/kglookfeel.cpp:74
+#: Konfigurator/kglookfeel.cpp:85
 msgid "Minimize to tray"
 msgstr "最小化时隐藏到系统托盘。"
 
-#: Konfigurator/kglookfeel.cpp:74
+#: Konfigurator/kglookfeel.cpp:85
 msgid ""
 "The icon will appear in the system tray instead of the taskbar, when "
 "Krusader is minimized."
 msgstr "当最小化 Krusader 时， 它的图标会出现在系统托盘里而不是任务栏里。"
 
-#: Konfigurator/kglookfeel.cpp:75
-msgid "Show hidden files"
-msgstr "显示隐藏的文件"
-
-#: Konfigurator/kglookfeel.cpp:75
-msgid "Display files beginning with a dot."
-msgstr "显示以 . 开头的文件。"
-
-#: Konfigurator/kglookfeel.cpp:76
+#: Konfigurator/kglookfeel.cpp:86
 msgid "Automark directories"
 msgstr "自动标记目录"
 
-#: Konfigurator/kglookfeel.cpp:76
+#: Konfigurator/kglookfeel.cpp:86
 msgid "When matching the select criteria, directories will also be marked."
 msgstr "当匹配选择的规则时， 则标记目录。"
 
-#: Konfigurator/kglookfeel.cpp:77
+#: Konfigurator/kglookfeel.cpp:87
 #, fuzzy
 msgid "Rename selects extension"
 msgstr "删除这个宏？"
 
-#: Konfigurator/kglookfeel.cpp:77
+#: Konfigurator/kglookfeel.cpp:87
 msgid ""
 "When renaming a file, the whole text is selected. If you want total-"
 "commander like renaming of just the name, without extension, unmark this."
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:78
-msgid "Case sensitive sorting"
-msgstr "大小写敏感排序"
-
-#: Konfigurator/kglookfeel.cpp:78 Konfigurator/kglookfeel.cpp:81
-msgid ""
-"All files beginning with capital letters appear before files beginning with "
-"non-capital letters (UNIX default)."
-msgstr "以大写字母开头的文件显示在小富字体开头的文件卷面 (UNIX 默认的)。"
-
-#: Konfigurator/kglookfeel.cpp:79
+#: Konfigurator/kglookfeel.cpp:88
 msgid "Use full path tab names"
 msgstr "标签名称使用完整路径名"
 
-#: Konfigurator/kglookfeel.cpp:79
+#: Konfigurator/kglookfeel.cpp:88
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
 msgstr "在标签中显示完整的路径名， 否则，只是路径的最后一部分被显示。"
 
-#: Konfigurator/kglookfeel.cpp:80
+#: Konfigurator/kglookfeel.cpp:89
+msgid "Fullscreen terminal (mc-style)"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:89
+msgid "Terminal is shown instead of the krusader window (full screen)."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:98
+#, fuzzy
+msgid "Quicksearch"
+msgstr "新建样式快速搜索"
+
+#: Konfigurator/kglookfeel.cpp:103
 msgid "New style quicksearch"
 msgstr "新建样式快速搜索"
 
-#: Konfigurator/kglookfeel.cpp:80
+#: Konfigurator/kglookfeel.cpp:103
 msgid "Opens a quick search dialog box."
 msgstr "打开一个快速搜索对话框"
 
-#: Konfigurator/kglookfeel.cpp:81
+#: Konfigurator/kglookfeel.cpp:104
 msgid "Case sensitive quicksearch"
 msgstr "大小写敏感快速搜索"
 
-#: Konfigurator/kglookfeel.cpp:82
+#: Konfigurator/kglookfeel.cpp:104 Konfigurator/kglookfeel.cpp:155
+msgid ""
+"All files beginning with capital letters appear before files beginning with "
+"non-capital letters (UNIX default)."
+msgstr "以大写字母开头的文件显示在小富字体开头的文件卷面 (UNIX 默认的)。"
+
+#: Konfigurator/kglookfeel.cpp:125
+msgid "Panel settings"
+msgstr "面板设置"
+
+#: Konfigurator/kglookfeel.cpp:129
+msgid "Panel font:"
+msgstr "面板字体："
+
+#: Konfigurator/kglookfeel.cpp:135
+msgid "Filelist icon size:"
+msgstr "文件列表图标大小："
+
+#: Konfigurator/kglookfeel.cpp:138
+msgid "16"
+msgstr "16"
+
+#: Konfigurator/kglookfeel.cpp:139
+msgid "22"
+msgstr "22"
+
+#: Konfigurator/kglookfeel.cpp:140
+msgid "32"
+msgstr "32"
+
+#: Konfigurator/kglookfeel.cpp:141
+msgid "48"
+msgstr "48"
+
+#: Konfigurator/kglookfeel.cpp:152
+msgid "Use icons in the filenames"
+msgstr "在文件名中使用图标"
+
+#: Konfigurator/kglookfeel.cpp:152
+msgid "Show the icons for filenames and folders."
+msgstr "显示文件名和文件夹的图标"
+
+#: Konfigurator/kglookfeel.cpp:153
+msgid "Use human-readable file size"
+msgstr "文件大小使用可读性好的文字"
+
+#: Konfigurator/kglookfeel.cpp:153
+msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
+msgstr "文件‘大小’以 B, KB, MB 和 GB 来表示而不是字节数。"
+
+#: Konfigurator/kglookfeel.cpp:154
+msgid "Show hidden files"
+msgstr "显示隐藏的文件"
+
+#: Konfigurator/kglookfeel.cpp:154
+msgid "Display files beginning with a dot."
+msgstr "显示以 . 开头的文件。"
+
+#: Konfigurator/kglookfeel.cpp:155
+msgid "Case sensitive sorting"
+msgstr "大小写敏感排序"
+
+#: Konfigurator/kglookfeel.cpp:156
+msgid "Always sort dirs by name"
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:156
+msgid "Directories are sorted by name, regardless of the sort column."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:157
 msgid "Numeric Permissions"
 msgstr "数字式权限"
 
-#: Konfigurator/kglookfeel.cpp:82
+#: Konfigurator/kglookfeel.cpp:157
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
 "the permission column."
 msgstr ""
 
-#: Konfigurator/kglookfeel.cpp:83
-msgid "Always sort dirs by name"
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:83
-msgid "Directories are sorted by name, regardless of the sort column."
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:84
-msgid "Show splashscreen"
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:84
-msgid "Display a splashscreen when starting krusader."
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:85
-msgid "Single instance mode"
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:85
-msgid "Only one Krusader instance is allowed to run."
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:86
-msgid "Fullscreen terminal (mc-style)"
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:86
-msgid "Terminal is shown instead of the krusader window (full screen)."
-msgstr ""
-
-#: Konfigurator/kglookfeel.cpp:103
-msgid "Panel settings"
-msgstr "面板设置"
-
-#: Konfigurator/kglookfeel.cpp:107
-msgid "Panel font:"
-msgstr "面板字体："
-
-#: Konfigurator/kglookfeel.cpp:113
-msgid "Filelist icon size:"
-msgstr "文件列表图标大小："
-
-#: Konfigurator/kglookfeel.cpp:116
-msgid "16"
-msgstr "16"
-
-#: Konfigurator/kglookfeel.cpp:117
-msgid "22"
-msgstr "22"
-
-#: Konfigurator/kglookfeel.cpp:118
-msgid "32"
-msgstr "32"
-
-#: Konfigurator/kglookfeel.cpp:119
-msgid "48"
-msgstr "48"
-
-#: Konfigurator/kglookfeel.cpp:130
-msgid "Use icons in the filenames"
-msgstr "在文件名中使用图标"
-
-#: Konfigurator/kglookfeel.cpp:130
-msgid "Show the icons for filenames and folders."
-msgstr "显示文件名和文件夹的图标"
-
-#: Konfigurator/kglookfeel.cpp:131
-msgid "Use human-readable file size"
-msgstr "文件大小使用可读性好的文字"
-
-#: Konfigurator/kglookfeel.cpp:131
-msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr "文件‘大小’以 B, KB, MB 和 GB 来表示而不是字节数。"
-
-#: Konfigurator/kglookfeel.cpp:141
-msgid "Toolbar"
-msgstr "工具栏"
-
-#: Konfigurator/kglookfeel.cpp:151
-msgid "Keybindings"
-msgstr "快捷键"
-
-#: Konfigurator/kglookfeel.cpp:172
+#: Konfigurator/kglookfeel.cpp:171
 msgid "Panel Toolbar"
 msgstr "面板工具栏"
 
-#: Konfigurator/kglookfeel.cpp:180
+#: Konfigurator/kglookfeel.cpp:179
 msgid "Show Panel Toolbar"
 msgstr "显示面板工具栏"
 
-#: Konfigurator/kglookfeel.cpp:180
+#: Konfigurator/kglookfeel.cpp:179
 msgid "The panel toolbar will be visible."
 msgstr "显示面板工具栏。"
 
-#: Konfigurator/kglookfeel.cpp:186
+#: Konfigurator/kglookfeel.cpp:185
 msgid "Visible Panel Toolbar buttons"
 msgstr "显示面板工具栏按钮"
 
-#: Konfigurator/kglookfeel.cpp:192
+#: Konfigurator/kglookfeel.cpp:191
 msgid "Clear location bar button"
 msgstr "位置栏清除按钮"
 
-#: Konfigurator/kglookfeel.cpp:192
+#: Konfigurator/kglookfeel.cpp:191
 msgid "Clears the location bar"
 msgstr "清除位置栏"
 
-#: Konfigurator/kglookfeel.cpp:193
+#: Konfigurator/kglookfeel.cpp:192
 msgid "Open button"
 msgstr "打开按钮"
 
-#: Konfigurator/kglookfeel.cpp:193
+#: Konfigurator/kglookfeel.cpp:192
 msgid "Opens the directory browser."
 msgstr "打开目录浏览器。"
 
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:193
 msgid "Equal button (=)"
 msgstr "相等按钮 (=)"
 
-#: Konfigurator/kglookfeel.cpp:194
+#: Konfigurator/kglookfeel.cpp:193
 msgid "Changes the panel directory to the other panel directory."
 msgstr "改变面板目录到另外一个面板中的目录。"
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:194
 msgid "Up button (..)"
 msgstr "向上按钮 (..) "
 
-#: Konfigurator/kglookfeel.cpp:195
+#: Konfigurator/kglookfeel.cpp:194
 msgid "Changes the panel directory to the parent directory."
 msgstr "改变面板目录到父目录。"
 
-#: Konfigurator/kglookfeel.cpp:196
+#: Konfigurator/kglookfeel.cpp:195
 msgid "Home button (~)"
 msgstr "主目录按钮 (~)"
 
-#: Konfigurator/kglookfeel.cpp:196
+#: Konfigurator/kglookfeel.cpp:195
 msgid "Changes the panel directory to the home directory."
 msgstr "改变面板目录到主目录。"
 
-#: Konfigurator/kglookfeel.cpp:197
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Root button (/)"
 msgstr "根目录按钮 (/)"
 
-#: Konfigurator/kglookfeel.cpp:197
+#: Konfigurator/kglookfeel.cpp:196
 msgid "Changes the panel directory to the root directory."
 msgstr "改变面板目录到根目录。"
 
-#: Konfigurator/kglookfeel.cpp:198
+#: Konfigurator/kglookfeel.cpp:197
 msgid "Toggle-button for sync-browsing"
 msgstr "同步浏览按钮"
 
-#: Konfigurator/kglookfeel.cpp:198
+#: Konfigurator/kglookfeel.cpp:197
 msgid ""
 "Each directory change in the panel is also performed in the other panel."
 msgstr "对两个面板同步进行操作。"
 
-#: Konfigurator/kglookfeel.cpp:214
+#: Konfigurator/kglookfeel.cpp:217
 #, fuzzy
-msgid "Mouse mode"
-msgstr "十六进制模式"
+msgid "Selection Mode"
+msgstr "自定义选择模式："
 
-#: Konfigurator/kglookfeel.cpp:227
+#: Konfigurator/kglookfeel.cpp:231
 msgid "Krusader Mode"
 msgstr "Krusader 模式"
 
-#: Konfigurator/kglookfeel.cpp:227
+#: Konfigurator/kglookfeel.cpp:231
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
 "key and click the left mouse button. Right-click menu is invoked using a "
@@ -5094,11 +4992,11 @@ msgstr ""
 "所有的键都可以选择文件。要选择多个文件， 请按住 Ctrl 键 并且单击鼠标左键。\n"
 "缓慢的右键单击将会打开右键菜单。"
 
-#: Konfigurator/kglookfeel.cpp:228
+#: Konfigurator/kglookfeel.cpp:232
 msgid "Konqueror Mode"
 msgstr "Konqueror 模式"
 
-#: Konfigurator/kglookfeel.cpp:228
+#: Konfigurator/kglookfeel.cpp:232
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
 "multiple files. Right-click menu is invoked using a short click on the right "
@@ -5107,11 +5005,11 @@ msgstr ""
 "鼠标左键都可以选择文件 - 你可以单击和选择多个文件， 快速点击右键可以打开右键"
 "菜单。"
 
-#: Konfigurator/kglookfeel.cpp:229
+#: Konfigurator/kglookfeel.cpp:233
 msgid "Total-Commander Mode"
 msgstr "Total-Commander 模式"
 
-#: Konfigurator/kglookfeel.cpp:229
+#: Konfigurator/kglookfeel.cpp:233
 msgid ""
 "The left mouse button does not select, but sets the current file without "
 "affecting the current selection. The right mouse button selects multiple "
@@ -5121,39 +5019,151 @@ msgstr ""
 "鼠标左键并不是选择文件， 而只是设置当前的文件不影响当前的选择。右键可以选择多"
 "个文件， 右键菜单可以用一直按住右键的方式来调出。"
 
-#: Konfigurator/kglookfeel.cpp:230
+#: Konfigurator/kglookfeel.cpp:234 Konfigurator/kglookfeel.cpp:337
+msgid "Custom Selection Mode"
+msgstr "自定义选择模式："
+
+#: Konfigurator/kglookfeel.cpp:234
 msgid "Design your own selection mode!"
 msgstr "设置您自己的选择模式！ "
 
-#: Konfigurator/kglookfeel.cpp:238
+#: Konfigurator/kglookfeel.cpp:244
 #, fuzzy
 msgid "Details"
 msgstr "详细的"
 
-#: Konfigurator/kglookfeel.cpp:244
+#: Konfigurator/kglookfeel.cpp:252
 msgid "Double-click selects (classic)"
 msgstr "双击选择 (经典)"
 
-#: Konfigurator/kglookfeel.cpp:244
+#: Konfigurator/kglookfeel.cpp:252
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
 "file or steps into the directory."
 msgstr "单击一个文件来选择它，双击打开文件或者进入一个目录。"
 
-#: Konfigurator/kglookfeel.cpp:245
+#: Konfigurator/kglookfeel.cpp:253
 msgid "Obey KDE's global selection policy"
 msgstr "遵循 KDE 全局规则"
 
-#: Konfigurator/kglookfeel.cpp:245
+#: Konfigurator/kglookfeel.cpp:253
 #, fuzzy
 msgid ""
 "<p>Use KDE's global setting:</p><p><i>KDE Control Center -> Peripherals -> "
 "Mouse</i></p>"
 msgstr "使用 KDE 控制中心： <p><i>KDE 控制中心->外设->鼠标</i>"
 
-#: Konfigurator/kglookfeel.cpp:307 Konfigurator/kglookfeel.cpp:324
-msgid "Select a shortcuts file"
-msgstr "只选择了一个快捷键设置文件！"
+#: Konfigurator/kglookfeel.cpp:265
+msgid "Based on KDE's selection mode"
+msgstr "遵循 KDE 的选择模式"
+
+#: Konfigurator/kglookfeel.cpp:266
+msgid "If checked, use a mode based on KDE's style."
+msgstr "选择这个将会创建基于 kde 样式的模式"
+
+#: Konfigurator/kglookfeel.cpp:268
+msgid "Left mouse button selects"
+msgstr "鼠标按键选择"
+
+#: Konfigurator/kglookfeel.cpp:269
+msgid "If checked, left clicking an item will select it."
+msgstr "如果您选择了它，左键单击项目将会选择它。"
+
+#: Konfigurator/kglookfeel.cpp:271
+msgid "Left mouse button preserves selection"
+msgstr "鼠标左键取消选择"
+
+#: Konfigurator/kglookfeel.cpp:272
+msgid ""
+"If checked, left clicking an item will select it, but will not unselect "
+"other, already selected items."
+msgstr "如果您选择了它，左键单击将会选择项目， 但不是取消其它已经的项目。"
+
+#: Konfigurator/kglookfeel.cpp:274
+msgid "Shift/Ctrl-Left mouse button selects"
+msgstr "Shift/Ctrl-Left 加鼠标键选择"
+
+#: Konfigurator/kglookfeel.cpp:275
+msgid ""
+"If checked, shift/ctrl left clicking will select items. \n"
+"Note: This is meaningless if 'Left Button Selects' is checked."
+msgstr ""
+"如果您选择了它， shift/ctrl 同时单击左键将会选择您的项目。\n"
+"注意， 如果您选择了左键选择，这项选择是没有任何意义的。"
+
+#: Konfigurator/kglookfeel.cpp:277
+msgid "Right mouse button selects"
+msgstr "右键选择"
+
+#: Konfigurator/kglookfeel.cpp:278
+msgid "If checked, right clicking an item will select it."
+msgstr "如果您选择了它，右键单击将会选择一个您单击的项目。"
+
+#: Konfigurator/kglookfeel.cpp:280
+msgid "Right mouse button preserves selection"
+msgstr "右键取消选择"
+
+#: Konfigurator/kglookfeel.cpp:281
+msgid ""
+"If checked, right clicking an item will select it, but will not unselect "
+"other, already selected items."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:283
+msgid "Shift/Ctrl-Right mouse button selects"
+msgstr "Shift/Ctrl-Right 加鼠标按键选择"
+
+#: Konfigurator/kglookfeel.cpp:284
+msgid ""
+"If checked, shift/ctrl right clicking will select items. \n"
+"Note: This is meaningless if 'Right Button Selects' is checked."
+msgstr ""
+"如果您选择了它， shift/ctrl 同时单击左键将会选择您的项目。\n"
+"注意， 如果您选择了左键选择，这项选择是没有任何意义的。"
+
+#: Konfigurator/kglookfeel.cpp:286
+msgid "Spacebar moves down"
+msgstr "空格键向下移"
+
+#: Konfigurator/kglookfeel.cpp:287
+msgid ""
+"If checked, pressing the spacebar will select the current item and move "
+"down. \n"
+"Otherwise, current item is selected, but remains the current item."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:289
+msgid "Spacebar calculates disk space"
+msgstr "空格键计算硬盘空间"
+
+#: Konfigurator/kglookfeel.cpp:290
+msgid ""
+"If checked, pressing the spacebar while the current item is a folder, will "
+"(except from selecting the folder) \n"
+"calculate space occupied by the folder (recursively)."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:292
+msgid "Insert moves down"
+msgstr "插入键向下移"
+
+#: Konfigurator/kglookfeel.cpp:293
+msgid ""
+"If checked, pressing INSERT will select the current item, and move down to "
+"the next item. \n"
+"Otherwise, current item is not changed."
+msgstr ""
+
+#: Konfigurator/kglookfeel.cpp:295
+msgid "Right clicking pops context menu immediately"
+msgstr "右键单击立即弹出菜单"
+
+#: Konfigurator/kglookfeel.cpp:296
+msgid ""
+"If checked, right clicking will result in an immediate showing of the "
+"context menu. \n"
+"Otherwise, user needs to click and hold the right mouse button for 500ms."
+msgstr ""
 
 #: Konfigurator/kgadvanced.cpp:63
 #, fuzzy
@@ -5617,9 +5627,17 @@ msgstr "读取文件 %1 错误！"
 msgid "Select a color scheme file"
 msgstr "选择一个颜色方案"
 
-#: Konfigurator/kgstartup.cpp:47
-msgid "Panels"
-msgstr "面板"
+#: Konfigurator/kgcolors.cpp:560
+msgid "File "
+msgstr "文件"
+
+#: Konfigurator/kgcolors.cpp:560
+msgid " already exists. Are you sure you want to overwrite it?"
+msgstr "已经存在，您确定要覆盖它吗？"
+
+#: Konfigurator/kgcolors.cpp:563
+msgid "Error: unable to write to file"
+msgstr "错误：写入文件错误"
 
 #: Konfigurator/kgstartup.cpp:50
 msgid ""
@@ -5641,65 +5659,81 @@ msgstr "启动时的配置文件："
 msgid "Last session"
 msgstr "上一次的会话"
 
-#: Konfigurator/kgstartup.cpp:71
+#: Konfigurator/kgstartup.cpp:72
+msgid "Show splashscreen"
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:72
+msgid "Display a splashscreen when starting krusader."
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:73
+msgid "Single instance mode"
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:73
+msgid "Only one Krusader instance is allowed to run."
+msgstr ""
+
+#: Konfigurator/kgstartup.cpp:83
 msgid "User Interface"
 msgstr "用户界面"
 
-#: Konfigurator/kgstartup.cpp:76
+#: Konfigurator/kgstartup.cpp:88
 msgid "Save settings on exit"
 msgstr "退出时保存设置"
 
-#: Konfigurator/kgstartup.cpp:76
+#: Konfigurator/kgstartup.cpp:88
 msgid ""
 "Check the state of the user interface components and restore them to their "
 "condition when last shutdown."
 msgstr "Krusader 检查每个用户界面的状态，并且保存它们最后关闭时的状态。"
 
-#: Konfigurator/kgstartup.cpp:77
+#: Konfigurator/kgstartup.cpp:89
 msgid "Show toolbar"
 msgstr "显示工具栏"
 
-#: Konfigurator/kgstartup.cpp:77
+#: Konfigurator/kgstartup.cpp:89
 msgid "Toolbar will be visible after startup."
 msgstr "在启动之后显示工具栏。"
 
-#: Konfigurator/kgstartup.cpp:78
+#: Konfigurator/kgstartup.cpp:90
 msgid "Show statusbar"
 msgstr "显示状态栏"
 
-#: Konfigurator/kgstartup.cpp:78
+#: Konfigurator/kgstartup.cpp:90
 msgid "Statusbar will be visible after startup."
 msgstr "在启动之后显示状态栏。"
 
-#: Konfigurator/kgstartup.cpp:79
+#: Konfigurator/kgstartup.cpp:91
 msgid "Show function keys"
 msgstr "显示功能键"
 
-#: Konfigurator/kgstartup.cpp:79
+#: Konfigurator/kgstartup.cpp:91
 msgid "Function keys will be visible after startup."
 msgstr "在启动之后显示功能键。"
 
-#: Konfigurator/kgstartup.cpp:80
+#: Konfigurator/kgstartup.cpp:92
 msgid "Show command line"
 msgstr "显示命令行"
 
-#: Konfigurator/kgstartup.cpp:80
+#: Konfigurator/kgstartup.cpp:92
 msgid "Command line will be visible after startup."
 msgstr "在启动之后显示命令行。"
 
-#: Konfigurator/kgstartup.cpp:81
+#: Konfigurator/kgstartup.cpp:93
 msgid "Show terminal emulator"
 msgstr "显示虚拟终端"
 
-#: Konfigurator/kgstartup.cpp:81
+#: Konfigurator/kgstartup.cpp:93
 msgid "Terminal emulator will be visible after startup."
 msgstr "在启动之后显示虚拟终端"
 
-#: Konfigurator/kgstartup.cpp:82
+#: Konfigurator/kgstartup.cpp:94
 msgid "Save last position, size and panel settings"
 msgstr "保存上一次的位置和大小和面板的设置"
 
-#: Konfigurator/kgstartup.cpp:82
+#: Konfigurator/kgstartup.cpp:94
 #, fuzzy
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
@@ -5712,11 +5746,11 @@ msgstr ""
 "如果此选项禁用了, 您还可以使用菜单 <i>设置 -> 保存位置</i> 来手动设置主窗口的"
 "位置和大小"
 
-#: Konfigurator/kgstartup.cpp:83
+#: Konfigurator/kgstartup.cpp:95
 msgid "Start to tray"
 msgstr ""
 
-#: Konfigurator/kgstartup.cpp:83
+#: Konfigurator/kgstartup.cpp:95
 msgid ""
 "Krusader starts to tray (if minimize to tray is set), without showing the "
 "main window"
@@ -6113,6 +6147,75 @@ msgstr "读取文件 %1 错误！"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "写文件 %1 错误！"
+
+#~ msgid "new symlink"
+#~ msgstr "新建符号连接"
+
+#~ msgid "Text file"
+#~ msgstr "文本文件"
+
+#~ msgid "Are you sure you want to shred "
+#~ msgstr "您确定要粉碎 "
+
+#, fuzzy
+#~ msgid "Calculate &Occupied Space..."
+#~ msgstr "占用空间大小(&O)"
+
+#, fuzzy
+#~ msgid "&Terminal..."
+#~ msgstr "终端(&T)"
+
+#~ msgid "Close tab"
+#~ msgstr "关闭标签"
+
+#~ msgid "F2 - Open a terminal"
+#~ msgstr "F2 - 打开终端"
+
+#~ msgid "F3 - View a file"
+#~ msgstr "F3 - 查看文件  "
+
+#~ msgid "F4 - Edit a file"
+#~ msgstr "F4 - 编辑文件"
+
+#~ msgid "F5 - Copy"
+#~ msgstr "F5 - 复制 "
+
+#~ msgid "F6 - Move"
+#~ msgstr "F6 - 移动"
+
+#~ msgid "F7 - Mkdir"
+#~ msgstr "F7 - 新建目录"
+
+#~ msgid "F8 - Delete"
+#~ msgstr "F8 - 删除"
+
+#~ msgid "F9 - Rename"
+#~ msgstr "F9 - 重命名"
+
+#~ msgid "F10 - Quit"
+#~ msgstr "F10 - 退出"
+
+#~ msgid "&Mark"
+#~ msgstr "标记(&M)"
+
+#~ msgid "&Commands"
+#~ msgstr "命令(&C)"
+
+#~ msgid "Toolbar"
+#~ msgstr "工具栏"
+
+#~ msgid "Keybindings"
+#~ msgstr "快捷键"
+
+#, fuzzy
+#~ msgid "Mouse mode"
+#~ msgstr "十六进制模式"
+
+#~ msgid "Select a shortcuts file"
+#~ msgstr "只选择了一个快捷键设置文件！"
+
+#~ msgid "Panels"
+#~ msgstr "面板"
 
 #~ msgid "Single click / Double click Selection:"
 #~ msgstr "单击/双击选择："

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-09-10 22:51+0200\n"
-"PO-Revision-Date: 2006-09-12 21:26+0200\n"
+"POT-Creation-Date: 2006-09-15 14:48+0200\n"
+"PO-Revision-Date: 2006-09-15 14:53+0200\n"
 "Last-Translator: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "Language-Team: German <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,6 @@ msgid "Open"
 msgstr "Öffnen"
 
 #: BookMan/krbookmarkhandler.cpp:539 GUI/mediabutton.cpp:521
-#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
 msgid "Open in a new tab"
 msgstr "In neuem Unterfenster öffnen"
 
@@ -342,7 +341,7 @@ msgstr "Verzeichnis %1 existiert nicht!"
 #: VFS/krarchandler.cpp:265 VFS/krarchandler.cpp:282 VFS/krarchandler.cpp:343
 #: VFS/krarchandler.cpp:512 VFS/krarchandler.cpp:519 VFS/normal_vfs.cpp:80
 #: VFS/normal_vfs.cpp:90 VFS/normal_vfs.cpp:96 VFS/virt_vfs.cpp:87
-#: VFS/virt_vfs.cpp:173 krusader.cpp:758
+#: VFS/virt_vfs.cpp:173
 msgid "Error"
 msgstr "Fehler"
 
@@ -369,7 +368,8 @@ msgstr ""
 
 #: VFS/virt_vfs.cpp:173
 msgid "Creating new directories is allowed only in the 'virt:/' directory."
-msgstr "Das Erstellen neuer Verzeichnisse ist nur im 'virt:/'-Verzeichnis erlaubt."
+msgstr ""
+"Das Erstellen neuer Verzeichnisse ist nur im 'virt:/'-Verzeichnis erlaubt."
 
 #: Filter/generalfilter.cpp:94 Konfigurator/konfigurator.cpp:107
 #: VFS/krquery.cpp:138
@@ -882,7 +882,7 @@ msgstr "Aktion"
 
 #: UserAction/expander.cpp:414
 msgid "Copy to clipboard"
-msgstr "In die Zwischenablage kopieren ..."
+msgstr "In Zwischenablage kopieren ..."
 
 #: UserAction/expander.cpp:417 UserAction/expander.cpp:435
 msgid "What should be copied"
@@ -1042,8 +1042,8 @@ msgid "Overwrite or append?"
 msgstr "Überschreiben oder anhängen?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:115
-#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139 krusader.cpp:756
+#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
+#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139
 msgid "Overwrite"
 msgstr "Überschreiben"
 
@@ -1231,7 +1231,8 @@ msgstr "%1 frei von %2 (%3%) auf %4 [ (%5) ]"
 
 #: Panel/listpanel.cpp:759
 msgid "Can't drop here, no write permissions."
-msgstr "Aufgrund mangelnder Schreibberechtigung kann hier nichts abgelegt werden."
+msgstr ""
+"Aufgrund mangelnder Schreibberechtigung kann hier nichts abgelegt werden."
 
 #: Panel/listpanel.cpp:782 Panel/panelpopup.cpp:348
 msgid "Copy Here"
@@ -1325,7 +1326,7 @@ msgstr "%1 (Verknüpfung)"
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 von %2, %3 (%4) von %5 (%6)"
 
-#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325
+#: Panel/krpopupmenu.cpp:137 Panel/krview.cpp:325 krusader.cpp:697
 msgid "Rename"
 msgstr "Umbenennen"
 
@@ -1446,6 +1447,10 @@ msgstr "Öffnen/Ausführen"
 msgid "Run"
 msgstr "Ausführen"
 
+#: Panel/krpopupmenu.cpp:64 Panel/krpopupmenu.cpp:65
+msgid "Open in New Tab"
+msgstr "In neuem Unterfenster öffnen"
+
 #: Konfigurator/kgcolors.cpp:212 Konfigurator/kglookfeel.cpp:309
 #: Panel/krpopupmenu.cpp:76
 msgid "Preview"
@@ -1460,7 +1465,7 @@ msgid "Other..."
 msgstr "Andere..."
 
 #: Panel/krpopupmenu.cpp:104
-msgid "Open with"
+msgid "Open With"
 msgstr "Öffnen mit"
 
 #: Konfigurator/konfigurator.cpp:113 Panel/krpopupmenu.cpp:109
@@ -1468,24 +1473,24 @@ msgid "User Actions"
 msgstr "Aktionen"
 
 #: Panel/krpopupmenu.cpp:123
-msgid "Konqueror menu"
+msgid "Konqueror Menu"
 msgstr "Konqueror Menü"
 
-#: Panel/krpopupmenu.cpp:131
-msgid "Copy"
-msgstr "Kopieren"
+#: Panel/krpopupmenu.cpp:131 krusader.cpp:689
+msgid "Copy..."
+msgstr "Kopieren ..."
 
-#: Panel/krpopupmenu.cpp:134
-msgid "Move"
-msgstr "Verschieben"
+#: Panel/krpopupmenu.cpp:134 krusader.cpp:691
+msgid "Move..."
+msgstr "Verschieben ..."
 
-#: Konfigurator/kggeneral.cpp:57 Panel/krpopupmenu.cpp:143
-msgid "Move to trash"
+#: Panel/krpopupmenu.cpp:143
+msgid "Move to Trash"
 msgstr "In den Mülleimer werfen"
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
 #: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:759
-#: Konfigurator/kgcolors.cpp:501 Panel/krpopupmenu.cpp:145
+#: Konfigurator/kgcolors.cpp:501 Panel/krpopupmenu.cpp:145 krusader.cpp:695
 msgid "Delete"
 msgstr "Entfernen"
 
@@ -1493,64 +1498,65 @@ msgstr "Entfernen"
 msgid "Shred"
 msgstr "In den Reißwolf schieben"
 
-#: Panel/krpopupmenu.cpp:156
-msgid "new symlink"
-msgstr "Neue symbolische Verknüpfung"
+#: Panel/krpopupmenu.cpp:156 krusader.cpp:658
+msgid "New Symlink..."
+msgstr "Neue symbolische Verknüpfung ..."
 
 #: Panel/krpopupmenu.cpp:157
-msgid "new hardlink"
-msgstr "Neue harte Verknüpfung"
+msgid "New Hardlink..."
+msgstr "Neue harte Verknüpfung ..."
 
 #: Panel/krpopupmenu.cpp:159
-msgid "redirect link"
-msgstr "Verknüpfungsziel ändern"
+msgid "Redirect Link..."
+msgstr "Verknüpfungsziel ändern ..."
 
 #: Panel/krpopupmenu.cpp:161
-msgid "Link handling"
+msgid "Link Handling"
 msgstr "Verknüpfungsbehandlung"
 
 #: Panel/krpopupmenu.cpp:181
-msgid "Send by email"
+msgid "Send by Email"
 msgstr "Per E-Mail verschicken"
 
 #: Panel/krpopupmenu.cpp:186
-msgid "Synchronize selected files"
-msgstr "Ausgewählte Dateien synchronisieren"
+msgid "Synchronize Selected Files..."
+msgstr "Ausgewählte Dateien synchronisieren ..."
 
-#: Panel/krpopupmenu.cpp:191
+#: Panel/krpopupmenu.cpp:191 krusader.cpp:509
 msgid "Copy to Clipboard"
 msgstr "In die Zwischenablage kopieren"
 
-#: Panel/krpopupmenu.cpp:194
+#: Panel/krpopupmenu.cpp:194 krusader.cpp:508
 msgid "Cut to Clipboard"
-msgstr "In die Zwischenablage ausschneiden"
+msgstr "In Zwischenablage ausschneiden"
 
-#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211
+#: Panel/krpopupmenu.cpp:195 Panel/krpopupmenu.cpp:211 krusader.cpp:510
 msgid "Paste from Clipboard"
-msgstr "Aus der Zwischenablage einfügen"
+msgstr "Aus Zwischenablage einfügen"
 
 #: Panel/krpopupmenu.cpp:215
-msgid "Folder"
-msgstr "Verzeichnis"
+msgid "Folder..."
+msgstr "Verzeichnis ..."
 
 #: Panel/krpopupmenu.cpp:216
-msgid "Text file"
-msgstr "Textdatei"
+msgid "Text File..."
+msgstr "Textdatei ..."
 
 #: Panel/krpopupmenu.cpp:219
-msgid "Create new"
+msgid "Create New"
 msgstr "Neu erstellen"
 
 #: Panel/krpopupmenu.cpp:261
 msgid ""
 "<qt>Do you really want to shred <b>%1</b>? Once shred, the file is gone "
 "forever!</qt>"
-msgstr "<qt>Möchten Sie <b>%1</b> wirklich in den Reißwolf schieben? Einmal in den Reißwolf geschoben, ist diese Datei für immer verloren!</qt>"
+msgstr ""
+"<qt>Möchten Sie <b>%1</b> wirklich in den Reißwolf schieben? Einmal in den "
+"Reißwolf geschoben, ist diese Datei für immer verloren!</qt>"
 
-#: KViewer/krviewer.cpp:222 Panel/krpopupmenu.cpp:339 Panel/panelfunc.cpp:357
-#: krslots.cpp:465
-msgid "Can't open "
-msgstr "Kann nicht geöffnet werden "
+#: Panel/krpopupmenu.cpp:339
+msgid "Can't open \"%1\""
+msgstr "\"%1\" kann nicht geöffnet werden"
 
 #: Panel/panelfunc.cpp:247
 msgid "You can edit links only on local file systems"
@@ -1606,13 +1612,18 @@ msgstr " nach: "
 msgid "No permissions to view this file."
 msgstr "Sie verfügen nicht über die nötigen Rechte, um diese Datei anzuzeigen."
 
+#: KViewer/krviewer.cpp:222 Panel/panelfunc.cpp:357 krslots.cpp:465
+msgid "Can't open "
+msgstr "Kann nicht geöffnet werden "
+
 #: Panel/panelfunc.cpp:368
 msgid "You can't edit a directory"
 msgstr "Ein Verzeichnis kann nicht editiert werden"
 
 #: Panel/panelfunc.cpp:373
 msgid "No permissions to edit this file."
-msgstr "Sie verfügen nicht über die nötigen Rechte, um diese Datei zu editieren."
+msgstr ""
+"Sie verfügen nicht über die nötigen Rechte, um diese Datei zu editieren."
 
 #: Panel/panelfunc.cpp:393
 msgid "Moving into archive is disabled"
@@ -1717,9 +1728,9 @@ msgstr ""
 "Möchten Sie dieses Element wirklich löschen?\n"
 "Möchten Sie diese %n Elemente wirklich löschen?"
 
-#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:115
+#: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
 #: DiskUsage/diskusage.cpp:609 Konfigurator/kgcolors.cpp:561
-#: Panel/panelfunc.cpp:641 krusader.cpp:756
+#: Panel/panelfunc.cpp:641
 msgid "Warning"
 msgstr "Warnung"
 
@@ -1803,7 +1814,8 @@ msgstr "%1, unbekannter Archivtyp."
 
 #: Panel/panelfunc.cpp:1127
 msgid "Cannot cut a virtual URL collection to the clipboard!"
-msgstr "Virtuelle Elemente können nicht in die Zwischenablage ausgeschnitten werden!"
+msgstr ""
+"Virtuelle Elemente können nicht in die Zwischenablage ausgeschnitten werden!"
 
 #: Panel/panelfunc.cpp:1129
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
@@ -1980,8 +1992,8 @@ msgid "popup cmdline"
 msgstr "popup cmdline"
 
 #: krusader.cpp:536
-msgid "&Edit New File..."
-msgstr "&Neue Datei editieren ..."
+msgid "&New Text File..."
+msgstr "&Neue Textdatei ..."
 
 #: krusader.cpp:537
 msgid "Start &Root Mode Krusader"
@@ -2184,10 +2196,6 @@ msgstr "Linke Geräte"
 msgid "Right Media"
 msgstr "Rechte Geräte"
 
-#: krusader.cpp:658
-msgid "New Symlink..."
-msgstr "Neue symbolische Verknüpfung ..."
-
 #: krusader.cpp:660
 msgid "Toggle Popup Panel"
 msgstr "Popup-Panel umschalten"
@@ -2225,40 +2233,24 @@ msgid "Select Remote Charset"
 msgstr "Remote-Kodierung festlegen"
 
 #: krusader.cpp:683
-msgid "F2 - Open a terminal"
-msgstr "F2 - Ein Terminal öffnen"
+msgid "Start Terminal Here"
+msgstr "Terminal im aktuellen Verzeichnis starten"
 
 #: krusader.cpp:685
-msgid "F3 - View a file"
-msgstr "F3 - Eine Datei anzeigen"
+msgid "View File"
+msgstr "Datei anzeigen"
 
 #: krusader.cpp:687
-msgid "F4 - Edit a file"
-msgstr "F4 - Eine Datei bearbeiten"
-
-#: krusader.cpp:689
-msgid "F5 - Copy"
-msgstr "F5 - Kopieren"
-
-#: krusader.cpp:691
-msgid "F6 - Move"
-msgstr "F6 - Verschieben"
+msgid "Edit File"
+msgstr "Datei editieren"
 
 #: krusader.cpp:693
-msgid "F7 - Mkdir"
-msgstr "F7 - Mkdir"
-
-#: krusader.cpp:695
-msgid "F8 - Delete"
-msgstr "F8 - Löschen"
-
-#: krusader.cpp:697
-msgid "F9 - Rename"
-msgstr "F9 - Umbenennen"
+msgid "New Directory..."
+msgstr "Neues Verzeichnis ..."
 
 #: krusader.cpp:699
-msgid "F10 - Quit"
-msgstr "F10 - Ende"
+msgid "Quit"
+msgstr "Beenden"
 
 #: krusader.cpp:701
 msgid "Popular URLs..."
@@ -2312,21 +2304,14 @@ msgstr "Nach Dateien suchen"
 msgid "JavaScript Console..."
 msgstr "JavaScript Konsole ..."
 
-#: Dialogs/krkeydialog.cpp:114 krusader.cpp:755
-msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
-msgstr "<qt>Datei <b>%1</b> existiert bereits. Wirklich überschreiben?"
-
-#: Konfigurator/kgcolors.cpp:563 krusader.cpp:758
-msgid "Error: unable to write to file"
-msgstr "Fehler: Kann nicht schreiben in Datei"
-
-#: krusader.cpp:899
+#: krusader.cpp:853
 msgid "Are you sure you want to quit?"
 msgstr "Wirklich beenden?"
 
 #: KViewer/panelviewer.cpp:33
 msgid "No file selected or selected file can't be displayed."
-msgstr "Keine Datei ausgewählt oder ausgewählte Datei kann nicht angezeigt werden."
+msgstr ""
+"Keine Datei ausgewählt oder ausgewählte Datei kann nicht angezeigt werden."
 
 #: KViewer/krviewer.cpp:589 KViewer/panelviewer.cpp:151
 msgid "KrViewer is unable to download: "
@@ -2615,7 +2600,8 @@ msgstr ""
 "Bitte benachrichtigen Sie die Entwickler"
 
 #: MountMan/kmountmangui.cpp:326
-msgid "MountMan has an internal error. Please notify the developers. Thank you."
+msgid ""
+"MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Interner Fehler in MountMan\n"
 "Bitte benachrichtigen Sie die Entwickler"
@@ -2688,7 +2674,8 @@ msgstr "Die Anwendung läuft bereits!\n"
 
 #: krusaderview.cpp:85
 msgid "Function keys allow performing fast operations on files."
-msgstr "Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen."
+msgstr ""
+"Funktionstasten ermöglichen eine schnelle Ausführung von Datei-Operationen."
 
 #: Dialogs/krdialogs.cpp:130
 msgid "Preserve attributes (only for local targets)"
@@ -2895,7 +2882,8 @@ msgstr "A&bbrechen"
 
 #: Dialogs/popularurls.cpp:62
 msgid "Saved 'Popular Urls' are invalid. List will be cleared"
-msgstr "Die gespeicherten 'Beliebten Adressen' sind ungültig. Die Liste wird geleert."
+msgstr ""
+"Die gespeicherten 'Beliebten Adressen' sind ungültig. Die Liste wird geleert."
 
 #: Dialogs/popularurls.cpp:230
 msgid "Popular Urls"
@@ -2945,7 +2933,7 @@ msgstr "Kurzbefehle exportieren"
 msgid "Save current keybindings in a keymap file."
 msgstr "Das aktuelle Kurzbefehl-Profil in einer Keymap-Datei speichern."
 
-#: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:108
+#: Dialogs/krkeydialog.cpp:64 Dialogs/krkeydialog.cpp:128
 msgid "Select a keymap file"
 msgstr "Eine Keymap-Datei auswählen"
 
@@ -2974,15 +2962,20 @@ msgstr ""
 "Die folgenden Informationen wurden der Keymap beigefügt. Möchten Sie diese "
 "Keymap wirklich importieren?"
 
-#: Dialogs/krkeydialog.cpp:102
+#: Dialogs/krkeydialog.cpp:122
 msgid "Please restart this dialog in order to see the changes"
 msgstr "Den Dialog erneut starten um die Änderungen zu sehen"
 
-#: Dialogs/krkeydialog.cpp:103
+#: Dialogs/krkeydialog.cpp:123
 msgid "Legacy import completed"
 msgstr "Legacy-Import abgeschlossen"
 
-#: Dialogs/krkeydialog.cpp:123
+#: Dialogs/krkeydialog.cpp:134
+msgid ""
+"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgstr "<qt>Datei <b>%1</b> existiert bereits. Wirklich überschreiben?"
+
+#: Dialogs/krkeydialog.cpp:143
 msgid "<qt>Can't open <b>%1</b> for writing!</qt>"
 msgstr "<qt><b>%1</b> kann nicht zum Schreiben geöffnet werden!</qt>"
 
@@ -3141,7 +3134,8 @@ msgstr "<qt>Fehler beim Ausführen von <b>%1</b>.</qt>"
 
 #: Dialogs/checksumdlg.cpp:277 Dialogs/checksumdlg.cpp:388
 msgid "Error reading stdout or stderr"
-msgstr "Fehler beim Lesen von Standardausgabe (stdout) und Standardfehler (stderr)"
+msgstr ""
+"Fehler beim Lesen von Standardausgabe (stdout) und Standardfehler (stderr)"
 
 #: Dialogs/checksumdlg.cpp:292 Dialogs/checksumdlg.cpp:410
 msgid "Verify Checksum"
@@ -3251,7 +3245,8 @@ msgstr "Speichere Prüfsummendateien..."
 
 #: Dialogs/checksumdlg.cpp:569
 msgid "Errors occured while saving multiple checksums. Stopping"
-msgstr "Beim Erstellen der Prüfsummen wurden Fehler gefunden. Vorgang abgebrochen."
+msgstr ""
+"Beim Erstellen der Prüfsummen wurden Fehler gefunden. Vorgang abgebrochen."
 
 #: ActionMan/useractionlistview.cpp:34
 msgid "Title"
@@ -3290,8 +3285,10 @@ msgid "Delete selected useractions"
 msgstr "Ausgewählte Aktionen löschen"
 
 #: ActionMan/useractionpage.cpp:126
-msgid "The current action has been modified. Do you want to apply these changes?"
-msgstr "Die aktuelle Aktion wurde verändert. Möchten Sie die Änderungen übernehmen?"
+msgid ""
+"The current action has been modified. Do you want to apply these changes?"
+msgstr ""
+"Die aktuelle Aktion wurde verändert. Möchten Sie die Änderungen übernehmen?"
 
 #: ActionMan/useractionpage.cpp:203
 msgid "Are you sure that you want to remove all selected actions?"
@@ -3571,7 +3568,8 @@ msgstr "Kategorie:"
 
 #: ActionMan/actionpropertybase.cpp:418
 msgid "Add <b>Placeholders</b> for the selected files in the panel."
-msgstr "<b>Platzhalter</b> für die im Dateifenster selektierten Dateien hinzufügen."
+msgstr ""
+"<b>Platzhalter</b> für die im Dateifenster selektierten Dateien hinzufügen."
 
 #: ActionMan/actionpropertybase.cpp:420
 msgid "Workdir:"
@@ -3841,7 +3839,8 @@ msgstr "Symbolischen Verknüpfungen folgen"
 
 #: Synchronizer/synchronizergui.cpp:1131
 msgid "Follow symbolic links during the compare process."
-msgstr "Symbolischen Verknüpfungen während des Synchronisationsprozesses folgen."
+msgstr ""
+"Symbolischen Verknüpfungen während des Synchronisationsprozesses folgen."
 
 #: Synchronizer/synchronizergui.cpp:1132
 msgid "Compare by content"
@@ -4520,55 +4519,55 @@ msgstr "Eigentümer:"
 msgid "&File"
 msgstr "Da&tei"
 
-#. i18n: file krusaderui.rc line 30
+#. i18n: file krusaderui.rc line 36
 #: rc.cpp:6
 #, no-c-format
 msgid "&Edit"
 msgstr "Bearbeiten"
 
-#. i18n: file krusaderui.rc line 43
+#. i18n: file krusaderui.rc line 51
 #: rc.cpp:9
 #, no-c-format
 msgid "Compare Se&tup"
 msgstr "Vergleichen einrich&ten"
 
-#. i18n: file krusaderui.rc line 55
+#. i18n: file krusaderui.rc line 63
 #: rc.cpp:12
 #, no-c-format
 msgid "&View"
 msgstr "&Ansicht"
 
-#. i18n: file krusaderui.rc line 66
+#. i18n: file krusaderui.rc line 74
 #: rc.cpp:15
 #, no-c-format
 msgid "&Go"
 msgstr "&Gehe zu"
 
-#. i18n: file krusaderui.rc line 77
+#. i18n: file krusaderui.rc line 85
 #: rc.cpp:18
 #, no-c-format
 msgid "&Useractions"
 msgstr "Aktio&nen"
 
-#. i18n: file krusaderui.rc line 82
+#. i18n: file krusaderui.rc line 90
 #: rc.cpp:21
 #, no-c-format
 msgid "&Tools"
 msgstr "&Extras"
 
-#. i18n: file krusaderui.rc line 105
+#. i18n: file krusaderui.rc line 114
 #: rc.cpp:24
 #, no-c-format
 msgid "&Settings"
 msgstr "E&instellungen"
 
-#. i18n: file krusaderui.rc line 121
+#. i18n: file krusaderui.rc line 130
 #: rc.cpp:27
 #, no-c-format
 msgid "&Window"
 msgstr "&Fenster"
 
-#. i18n: file krusaderui.rc line 138
+#. i18n: file krusaderui.rc line 147
 #: rc.cpp:30
 #, no-c-format
 msgid "&Help"
@@ -4606,6 +4605,10 @@ msgid "Files will be permanently deleted."
 msgstr "Dateien werden permanent gelöscht."
 
 #: Konfigurator/kggeneral.cpp:57
+msgid "Move to trash"
+msgstr "In den Mülleimer werfen"
+
+#: Konfigurator/kggeneral.cpp:57
 msgid "Files will be moved to trash when deleted."
 msgstr "Dateien werden beim Löschen in den Mülleimer geworfen."
 
@@ -4627,7 +4630,8 @@ msgstr "Editor:"
 msgid ""
 "Hint: use 'internal editor' if you want to use Krusader's fast built-in "
 "editor"
-msgstr "Tipp: 'internal editor' für Krusaders schnellen, internen Editor verweden"
+msgstr ""
+"Tipp: 'internal editor' für Krusaders schnellen, internen Editor verweden"
 
 #: Konfigurator/kggeneral.cpp:86
 msgid "Default viewer mode:"
@@ -4698,7 +4702,8 @@ msgid "Searching for tools..."
 msgstr "Suche nach Werkzeugen..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Neue Werkzeuge müssen sich in Ihrem Suchpfad (<code>$PATH</code>) befinden "
 "(z.B. /usr/bin)"
@@ -4709,7 +4714,8 @@ msgstr "unarj nicht gefunden, arj wird zum Entpacken benutzt"
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
-msgstr "rpm gefunden, aber cpio nicht gefunden, welches zum Entpacken benötigt wird"
+msgstr ""
+"rpm gefunden, aber cpio nicht gefunden, welches zum Entpacken benötigt wird"
 
 #: Konfigurator/krresulttable.cpp:130 Konfigurator/krresulttable.cpp:283
 msgid "Found"
@@ -4824,7 +4830,8 @@ msgstr "Dateitypen mit Protokollen verknüpfen"
 
 #: Konfigurator/konfigurator.cpp:185
 msgid "The current page has been changed. Do you want to apply changes?"
-msgstr "Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
+msgstr ""
+"Die aktuelle Seite wurde verändert. Möchten Sie die Änderungen übernehmen?"
 
 #: Konfigurator/kglookfeel.cpp:72
 msgid "Operation"
@@ -4966,7 +4973,8 @@ msgstr "Gut lesbare Dateigröße benutzen"
 
 #: Konfigurator/kglookfeel.cpp:153
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
-msgstr "Die Dateigröße wird nicht in Bytes, sondern in B, KB, MB und GB angezeigt."
+msgstr ""
+"Die Dateigröße wird nicht in Bytes, sondern in B, KB, MB und GB angezeigt."
 
 #: Konfigurator/kglookfeel.cpp:154
 msgid "Show hidden files"
@@ -5071,13 +5079,14 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Umschalten von Synchron-Browsing"
 
 #: Konfigurator/kglookfeel.cpp:197
-msgid "Each directory change in the panel is also performed in the other panel."
+msgid ""
+"Each directory change in the panel is also performed in the other panel."
 msgstr ""
 "Jeder Verzeichniswechsel im aktuellen Dateifenster wird auch im anderen "
 "Dateifenster durchgeführt."
 
 #: Konfigurator/kglookfeel.cpp:217
-msgid "Mouse mode"
+msgid "Selection Mode"
 msgstr "Auswahlmodus"
 
 #: Konfigurator/kglookfeel.cpp:231
@@ -5301,9 +5310,13 @@ msgid ""
 "root or member of the group</li><li>Preserving the timestamp</li></"
 "ul><b>Note</b>: This can slow down the copy process."
 msgstr ""
-"Krusader wird versuchen sämtliche Attribute (Zeitstempel, Besitzer, Gruppe) lokaler Dateien beizubehalten. Die Auswirkungen richten sich dabei nach Ihren Berechtigungen: "
-"<ul><li>Der Besitzer wird beihalten, falls Sie der Systemverwalter (root) sind.</li><li>Die Gruppe wird beihalten, falls Sie der Systemverwalter (root), oder ein Mitglied der Gruppe sind.</li><li>Der Zeitstempel wird immer beibehalten.</li></"
-"ul><b>Hinweis</b>: Dies kann unter Umständen den Kopierprozess verlangsamen. "
+"Krusader wird versuchen sämtliche Attribute (Zeitstempel, Besitzer, Gruppe) "
+"lokaler Dateien beizubehalten. Die Auswirkungen richten sich dabei nach "
+"Ihren Berechtigungen: <ul><li>Der Besitzer wird beihalten, falls Sie der "
+"Systemverwalter (root) sind.</li><li>Die Gruppe wird beihalten, falls Sie "
+"der Systemverwalter (root), oder ein Mitglied der Gruppe sind.</li><li>Der "
+"Zeitstempel wird immer beibehalten.</li></ul><b>Hinweis</b>: Dies kann unter "
+"Umständen den Kopierprozess verlangsamen. "
 
 #: Konfigurator/kgadvanced.cpp:64
 msgid "Automount filesystems"
@@ -5319,7 +5332,8 @@ msgstr ""
 "einzuhängen."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid ""
+"Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "KDE's Geräte-Protokoll nicht für den Geräte-Knopf verwenden (falls "
 "fehlerhaft oder nicht vorhanden)"
@@ -5416,7 +5430,8 @@ msgstr "Protokoll aus der Verknüpfungsliste entfernen."
 
 #: Konfigurator/kgprotocols.cpp:93
 msgid "Add mime to the selected protocol on the link list."
-msgstr "Dateityp zum ausgewählten Protokoll in der Verknüpfungsliste hinzufügen."
+msgstr ""
+"Dateityp zum ausgewählten Protokoll in der Verknüpfungsliste hinzufügen."
 
 #: Konfigurator/kgprotocols.cpp:96
 msgid "Remove mime from the link list."
@@ -5779,6 +5794,10 @@ msgstr "Datei "
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr " existiert bereits. Das Archiv wirklich überschreiben?"
 
+#: Konfigurator/kgcolors.cpp:563
+msgid "Error: unable to write to file"
+msgstr "Fehler: Kann nicht schreiben in Datei"
+
 #: Konfigurator/kgstartup.cpp:50
 msgid ""
 "Defines the panel profile used at startup. A panel profile contains:"
@@ -5977,7 +5996,8 @@ msgid "Test archive before unpacking"
 msgstr "Archiv vor dem Entpacken testen"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgid ""
+"Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr ""
 "Einige korrupte Archive können einen Absturz verursachen, daher ist das "
 "Testen zu empfehlen."
@@ -5987,7 +6007,8 @@ msgid "Searching for packers..."
 msgstr "Suche nach Packern..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgid ""
+"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 "Neue Packer müssen sich in Ihrem Suchpfad (<code>$PATH</code>) befinden (z."
 "B. /usr/bin)"
@@ -6134,7 +6155,7 @@ msgstr "Die anzuzeigende Adresse eingeben:"
 
 #: krslots.cpp:578
 msgid "Enter the filename to edit:"
-msgstr "Den zu editierenden Dateinamen eingeben:"
+msgstr "Zu editierenden Dateinamen eingeben:"
 
 #: krslots.cpp:636
 msgid "Don't know which file to split."
@@ -6266,7 +6287,8 @@ msgid "Not a valid CRC file!"
 msgstr "Keine gültige CRC-Datei!"
 
 #: Splitter/combiner.cpp:152
-msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgid ""
+"Validity checking is impossible without a good CRC file. Continue combining?"
 msgstr ""
 "Eine Gültigkeitsüberprüfung ist ohne eine gültige CRC-Datei unmöglich. Mit "
 "dem Zusammenfügen fortfahren?"
@@ -6306,4 +6328,3 @@ msgstr "Fehler beim Lesen der Datei %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Fehler beim Schreiben der Datei %1!"
-
