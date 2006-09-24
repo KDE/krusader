@@ -656,8 +656,8 @@ void ListPanelFunc::deleteFiles(bool reallyDelete) {
 			dir.setPath( panel->virtualPath().path() + "/" + ( *name ) );
 			if ( dir.entryList(QDir::All | QDir::AccessMask).count() > 2 ) {
 				switch ( KMessageBox::warningYesNoCancel( krApp,
-				                                          i18n( "Directory " ) + ( *name ) + i18n( " is not empty!\nSkip this one or Delete All?" ),
-				                                          QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
+																		i18n( "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</p></qt>" ).arg(*name),
+																		QString::null, i18n( "&Skip" ), i18n( "&Delete All" ) ) ) {
 						case KMessageBox::Cancel :
 						return ;
 						case KMessageBox::No :
