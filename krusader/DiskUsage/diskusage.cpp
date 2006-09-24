@@ -593,11 +593,11 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
     krConfig->setGroup( "Advanced" );
     if ( krConfig->readBoolEntry( "Confirm Delete", _ConfirmDelete ) ) {
       QString s, b;
-        if ( trash && url.isLocalFile() ) {
-          s = i18n( "trash" );
-          b = i18n( "&Trash" );
+      if ( trash && url.isLocalFile() ) {
+        s = i18n( "Do you really want to move this item to the trash?" );
+        b = i18n( "&Trash" );
       } else {
-        s = i18n( "delete" ) + s;
+        s = i18n( "Do you really want to delete this item?" );
         b = i18n( "&Delete" );
       }
 
@@ -605,8 +605,7 @@ int DiskUsage::del( File *file, bool calcPercents, int depth )
       name.append( file->fullPath() );
       // show message
       // note: i'm using continue and not yes/no because the yes/no has cancel as default button
-      if ( KMessageBox::warningContinueCancelList( krApp, i18n( "Are you sure you want to " ) + s
-                                                 , name, i18n( "Warning" ), b ) != KMessageBox::Continue )
+      if ( KMessageBox::warningContinueCancelList( krApp, s, name, i18n( "Warning" ), b ) != KMessageBox::Continue )
         return 0;
     }
 
