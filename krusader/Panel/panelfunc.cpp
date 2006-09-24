@@ -783,12 +783,9 @@ void ListPanelFunc::pack() {
 	}
 
 	if (  QFileInfo( arcFile ).exists() ) {
-		QString msg = i18n( "The Archive " ) + PackGUI::filename + "." + PackGUI::type+
-		              i18n(" already exists. Do you want to overwrite the archive ?\n");
-		if( PackGUI::type == "zip" ){
-			msg = msg + i18n("(ZIP will replace identically named entries in the zip archive or add entries for new names)"); 
-		} else {
-			msg = msg+ ("(all data in previous archive will be lost)");
+		QString msg = i18n( "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>All data in the previous archive will be lost!</p></qt>").arg(PackGUI::filename).arg(PackGUI::type);
+		if( PackGUI::type == "zip" ) {
+			msg = i18n( "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?</p><p>Zip will replace identically named entries in the zip archive or add entries for new names.</p></qt>").arg(PackGUI::filename).arg(PackGUI::type);
 		}
 		if ( KMessageBox::warningContinueCancel( krApp,msg,QString::null,i18n( "&Overwrite" ))
 		        == KMessageBox::Cancel )
