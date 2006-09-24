@@ -840,6 +840,28 @@ copy/link the
   </qandaentry>
 
 
+  <qandaentry>
+  <question id="faqu_save_last_location">
+  <para>Why "save last location" doesn't work?</para>
+  </question>
+  <answer>
+  <para>Unfortunately the 1.70.x version contains a bug.
+        The tabs are not saved if a "Panels Save Settings=Tabs"
+        item is present in the configuration files.
+        The fix is easy:
+       <itemizedlist>
+         <listitem><para>open and edit <filename>~/.kde/share/config/krusaderrc</filename></para></listitem>
+         <listitem><para>remove the "Panels Save Settings" item</para></listitem>
+       </itemizedlist>
+        and it'll work with the &lt;Last Session&gt; thing in Konfigurator.
+        More info can be found in 
+        <ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=1357">our forum</ulink> .
+  </para>
+  <para> </para> <!-- Empty line to make it more readable -->
+  </answer>
+  </qandaentry>
+
+
 </qandaset>
 </sect1>
 
