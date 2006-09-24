@@ -354,7 +354,7 @@ void ListPanelFunc::terminal() {
 	}
 
 	if ( !proc.start( KProcess::DontCare ) )
-		KMessageBox::sorry( krApp, i18n( "Can't open " ) + "\"" + term + "\"" );
+		KMessageBox::sorry( krApp, i18n( "<qt>Can't open <b>%1</b></qt>" ).arg(term) );
 
 	chdir( save.local8Bit() );
 }
