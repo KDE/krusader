@@ -699,6 +699,11 @@ QString KonfiguratorColorChooser::getValue()
     return QString( "%1,%2,%3" ).arg( color.red() ).arg( color.green() ).arg( color.blue() );
 }
 
+bool KonfiguratorColorChooser::isValueRGB()
+{
+  return !( currentItem() >= 1 && (unsigned)currentItem() < 2 + additionalColors.size() );
+}
+
 void KonfiguratorColorChooser::slotSetDefaults(QObject *)
 {
   ext->setChanged();

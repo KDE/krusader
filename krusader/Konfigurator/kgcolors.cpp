@@ -408,6 +408,7 @@ void KgColors::generatePreview()
 
   if( currentPage == 0 || currentPage == 1 )
   {
+    PreviewItem *pwMarkCur = new PreviewItem( preview, i18n( "Marked + Current" ) );
     PreviewItem *pwMark2   = new PreviewItem( preview, i18n( "Marked 2" ) );
     PreviewItem *pwMark1   = new PreviewItem( preview, i18n( "Marked 1" ) );
     PreviewItem *pwCurrent = new PreviewItem( preview, i18n( "Current" ) );
@@ -417,85 +418,57 @@ void KgColors::generatePreview()
     PreviewItem *pwFile    = new PreviewItem( preview, i18n( "File" ) );
     PreviewItem *pwDir     = new PreviewItem( preview, i18n( "Directory" ) );
 
-    if( generals->find( "KDE Default" )->isChecked() )
+    bool isActive = currentPage == 0;
+
+    // create local color cache instance, which does NOT affect the color cache instance using to paint the panels
+    KrColorCache colCache;
+
+    // create local color settings instance, which initially contains the setings from krConfig
+    KrColorSettings colorSettings;
+
+    // copy over local settings to color settings instance, which does not affect the persisted krConfig settings
+    QValueList<QString> names = KrColorSettings::getColorNames();
+    for ( QStringList::Iterator it = names.begin(); it != names.end(); ++it )
     {
-      QColor bck    = KGlobalSettings::baseColor();
-      QColor altBck = KGlobalSettings::alternateBackgroundColor();
-      if( !generals->find("Enable Alternate Background")->isChecked() )
-        altBck = bck;
-      QColor fore   = KGlobalSettings::textColor();
-
-      pwFile->setColor( fore, altBck );
-      pwDir->setColor( fore, bck );
-      pwApp->setColor( fore, bck );
-      pwSymLink->setColor( fore, altBck );
-      pwInvLink->setColor( fore, bck );
-      pwCurrent->setColor( fore, altBck );
-      pwMark1->setColor( KGlobalSettings::highlightedTextColor(), KGlobalSettings::highlightColor() );
-      pwMark2->setColor( KGlobalSettings::highlightedTextColor(), KGlobalSettings::highlightColor() );
+        KonfiguratorColorChooser * chooser = getColorSelector( *it );
+        if (!chooser)
+            continue;
+        colorSettings.setColorTextValue( *it, chooser->getValue());
+        if (chooser->isValueRGB())
+            colorSettings.setColorValue( *it, chooser->getColor());
+        else
+            colorSettings.setColorValue( *it, QColor());
     }
-    else
-    {
-      bool isInactive = currentPage == 1;
-      bool dimmed = isInactive && generals->find("Dim Inactive Colors")->isChecked();
-      QString prefix="";
 
-      if( isInactive && !dimmed )
-        prefix = "Inactive ";
+    colorSettings.setBoolValue("KDE Default", generals->find( "KDE Default" )->isChecked());
+    colorSettings.setBoolValue("Enable Alternate Background", generals->find( "Enable Alternate Background" )->isChecked());
+    colorSettings.setBoolValue("Show Current Item Always", generals->find( "Show Current Item Always" )->isChecked());
+    colorSettings.setBoolValue("Dim Inactive Colors", generals->find( "Dim Inactive Colors" )->isChecked());
+    colorSettings.setNumValue("Dim Factor", dimFactor->value());
 
-      QColor  bck   = getColorSelector( prefix + "Background" )->getColor();
-      QColor altBck = getColorSelector( prefix + "Alternate Background" )->getColor();
+    // let the color cache use the local color settings
+    colCache.setColors( colorSettings );
 
-      QColor currentFore;
-      QColor currentBck = altBck;
-
-      setColorWithDimming( pwFile, currentFore = getColorSelector( prefix + "Foreground" )->getColor(), altBck, dimmed );
-      setColorWithDimming( pwDir, getColorSelector( prefix + "Directory Foreground" )->getColor(), bck, dimmed );
-      setColorWithDimming( pwApp, getColorSelector( prefix + "Executable Foreground" )->getColor(), bck, dimmed );
-      setColorWithDimming( pwSymLink, getColorSelector( prefix + "Symlink Foreground" )->getColor(), altBck, dimmed );
-      setColorWithDimming( pwInvLink, getColorSelector( prefix + "Invalid Symlink Foreground" )->getColor(), bck, dimmed );
-
-      if( isInactive )
-      {
-        if( generals->find( "Show Current Item Always" )->isChecked() )
-        {
-          if( getColorSelector( "Inactive Current Background" )->currentItem() != 1 && !dimmed )
-            currentBck = getColorSelector( "Inactive Current Background" )->getColor();
-          else
-          {
-            if( getColorSelector( "Current Background" )->currentItem() != 1 )
-              currentBck = getColorSelector( "Current Background" )->getColor();
-          }
-          if( getColorSelector( "Inactive Current Foreground" )->currentItem() != 1 && !dimmed )
-            currentFore = getColorSelector( "Inactive Current Foreground" )->getColor();
-          else
-          {
-            if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
-              currentFore = getColorSelector( "Current Foreground" )->getColor();
-            else currentFore = setColorIfContrastIsSufficient(currentBck, getColorSelector( prefix + "Foreground" )->getColor(), bck);
-          }
-        }
-      }
-      else
-      {
-        if( getColorSelector( "Current Background" )->currentItem() != 1 )
-          currentBck = getColorSelector( "Current Background" )->getColor();
-        if( getColorSelector( "Current Foreground" )->currentItem() != 1 )
-          currentFore = getColorSelector( "Current Foreground" )->getColor();
-        else currentFore = setColorIfContrastIsSufficient(currentBck, getColorSelector( prefix + "Foreground" )->getColor(), bck);
-      }
-
-      setColorWithDimming( pwCurrent, currentFore, currentBck, dimmed );
-
-      QColor markFore = getColorSelector( prefix + "Marked Foreground" )->getColor();
-
-      if( !isInactive || getColorSelector( "Inactive Marked Foreground" )->currentItem() == 1 )
-        if( getColorSelector( "Marked Foreground" )->currentItem() == 2 )
-          markFore = currentFore;
-
-      setColorWithDimming( pwMark1, markFore, getColorSelector( prefix + "Marked Background" )->getColor(), dimmed );
-      setColorWithDimming( pwMark2, markFore, getColorSelector( prefix + "Alternate Marked Background" )->getColor(), dimmed );
-    }
+    // ask the local color cache for certain color groups and use them to color the preview
+    QColorGroup cg;
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::Directory, false, isActive, false, false));
+    pwDir->setColor( cg.text(), cg.background() );
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, false, false));
+    pwFile->setColor( cg.text(), cg.background() );
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::Executable, false, isActive, false, false));
+    pwApp->setColor( cg.text(), cg.background() );
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::Symlink, true, isActive, false, false));
+    pwSymLink->setColor( cg.text(), cg.background() );
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::InvalidSymlink, false, isActive, false, false));
+    pwInvLink->setColor( cg.text(), cg.background() );
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, true, false));
+    pwCurrent->setColor( cg.highlightedText(), cg.highlight() );
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, true));
+    pwMark1->setColor( cg.highlightedText(), cg.highlight() );
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, false, true));
+    pwMark2->setColor( cg.highlightedText(), cg.highlight() );
+    colCache.getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, true, true));
+    pwMarkCur->setColor( cg.highlightedText(), cg.highlight() );
   }else if( currentPage == 2 )
   {
     PreviewItem *pwDelete    = new PreviewItem( preview, i18n( "Delete" ) );
@@ -515,17 +488,6 @@ void KgColors::generatePreview()
     pwDelete->setColor(    getColorSelector( "Synchronizer Delete Foreground" )->getColor(),
                            getColorSelector( "Synchronizer Delete Background" )->getColor() );
   }
-}
-
-const QColor & KgColors::setColorIfContrastIsSufficient(const QColor & background, const QColor & color1, const QColor & color2)
-{
-   #define sqr(x) ((x)*(x))
-   int contrast = sqr(color1.red() - background.red()) + sqr(color1.green() - background.green()) + sqr(color1.blue() - background.blue());
-
-   // if the contrast between background and color1 is too small, take color2 instead.
-   if (contrast < 1000)
-      return color2;
-   return color1;
 }
 
 bool KgColors::apply()

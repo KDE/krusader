@@ -358,6 +358,7 @@ public:
   QColor        getColor();
   void          changeAdditionalColor( unsigned int num, QColor color );
   QString       getValue();
+  bool          isValueRGB();
   void          setValue( QString value );
 
 public slots:

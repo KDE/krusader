@@ -1168,7 +1168,6 @@ void KrDetailedView::inplaceRenameFinished( QListViewItem * it, int ) {
    if ( COLUMN( Extention ) != -1 && restoreView ) { // nothing happened, restore the view (if needed)
 #endif
       
-      int i;
       QString ext, name = static_cast<KrDetailedViewItem*>( it ) ->name();
       if ( !static_cast<KrDetailedViewItem*>( it ) ->VF->vfile_isDir() && COLUMN( Extention ) != -1 ) {
 		ext = static_cast<KrDetailedViewItem*>( it ) ->extension();
@@ -1236,20 +1235,25 @@ void KrDetailedView::slotMouseClicked( int button, QListViewItem * item, const Q
 }
 
 void KrDetailedView::refreshColors() {
-   if ( !KrColorCache::getColorCache().isKDEDefault() ) {
-      // KDE deafult is not choosen: set the background color (as this paints the empty areas) and the alternate color
+   krConfig->setGroup("Colors");
+   bool kdeDefault = krConfig->readBoolEntry("KDE Default"); 
+   bool alternateBackgroundEnabled = krConfig->readBoolEntry("Enable Alternate Background"); 
+   if ( !kdeDefault ) {
+      // KDE default is not choosen: set the background color (as this paints the empty areas) and the alternate color
       bool isActive = hasFocus();
       if ( MAIN_VIEW && ACTIVE_PANEL && ACTIVE_PANEL->view )
          isActive = ( static_cast<KrView *>( this ) == ACTIVE_PANEL->view );
-      QColor color = KrColorCache::getColorCache().getBackgroundColor( isActive );
-      setPaletteBackgroundColor( color );
-      color = KrColorCache::getColorCache().getAlternateBackgroundColor( isActive );
-      setAlternateBackground( color );
+      QColorGroup cg;
+      KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, false, isActive, false, false));
+      setPaletteBackgroundColor( cg.background() );
+
+      KrColorCache::getColorCache().getColors(cg, KrColorItemType(KrColorItemType::File, true, isActive, false, false));
+      setAlternateBackground( cg.background() );
    } else {
-      // KDE deaful tis choosen: set back the background color
+      // KDE default is choosen: set back the background color
       setPaletteBackgroundColor( KGlobalSettings::baseColor() );
       // Set the alternate color to its default or to an invalid color, to turn alternate the background off.
-      setAlternateBackground( KrColorCache::getColorCache().isAlternateBackgroundEnabled() ? KGlobalSettings::alternateBackgroundColor() : QColor() );
+      setAlternateBackground( alternateBackgroundEnabled ? KGlobalSettings::alternateBackgroundColor() : QColor() );
    }
 }
 

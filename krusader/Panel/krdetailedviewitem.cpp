@@ -200,89 +200,25 @@ void KrDetailedViewItem::paintCell(QPainter *p, const QColorGroup &cg, int colum
 
   // end of uglyness
 
-  
-  // begin of custom color calculation
-  krConfig->setGroup("Colors");
-  
-  // if KDE deafault: do not touch color group!
-  if (!KrColorCache::getColorCache().isKDEDefault())
+  KrColorItemType colorItemType;
+  colorItemType.m_activePanel = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);
+  colorItemType.m_alternateBackgroundColor = isAlternate();
+  colorItemType.m_currentItem = (listView()->currentItem() == this);
+  colorItemType.m_selectedItem = isSelected();
+  if (VF->vfile_isSymLink())
   {
-    bool markCurrentAlways = KrColorCache::getColorCache().isShowCurrentItemAlways();
-    bool isActive = (dynamic_cast<KrView *>(listView()) == ACTIVE_PANEL->view);
-    bool isCurrent = listView()->currentItem() == this;
-    
-    // First calculate fore- and background.
-    QColor background = isAlternate()?KrColorCache::getColorCache().getAlternateBackgroundColor(isActive):KrColorCache::getColorCache().getBackgroundColor(isActive);
-    QColor foreground;
-    if (VF->vfile_isSymLink())
-    {
-       if (_vf->vfile_getMime() == "Broken Link !" )
-          foreground = KrColorCache::getColorCache().getInvalidSymlinkForegroundColor(isActive);
-       else
-          foreground = KrColorCache::getColorCache().getSymlinkForegroundColor(isActive);
-    }
-    else if (VF->vfile_isDir())
-       foreground = KrColorCache::getColorCache().getDirectoryForegroundColor(isActive);
-    else if (VF->vfile_isExecutable())
-       foreground = KrColorCache::getColorCache().getExecutableForegroundColor(isActive);
-    else
-       foreground = KrColorCache::getColorCache().getForegroundColor(isActive);
-       
-    // set the background color
-    _cg.setColor(QColorGroup::Base, background);
-    _cg.setColor(QColorGroup::Background, background);
-      
-    // set the foreground color
-    _cg.setColor(QColorGroup::Text, foreground);
-
-    // now the color of a marked item
-    QColor markedBackground = isAlternate()?KrColorCache::getColorCache().getAlternateMarkedBackgroundColor(isActive):KrColorCache::getColorCache().getMarkedBackgroundColor(isActive);
-    QColor markedForeground = KrColorCache::getColorCache().getMarkedForegroundColor(isActive);
-    if (!markedForeground.isValid()) // transparent
-       // choose fore- or background, depending on its contrast compared to markedBackground
-       markedForeground = setColorIfContrastIsSufficient(markedBackground, foreground, background);
-
-      // set it in the color group (different group color than normal foreground!)
-    _cg.setColor(QColorGroup::HighlightedText, markedForeground);
-    _cg.setColor(QColorGroup::Highlight, markedBackground);
-
-    // In case the current item is a selected one, set the fore- and background colors for the contrast calculation below
-    if (isSelected())
-    {
-        background = markedBackground;
-        foreground = markedForeground;
-    }
-
-    // finally the current item
-    if (isCurrent && (markCurrentAlways || isActive))
-    // if this is the current item AND the panels has tho focus OR the current should be marked always
-    {
-       QColor currentBackground = KrColorCache::getColorCache().getCurrentBackgroundColor(isActive);
-       if (!currentBackground.isValid()) // transparent
-          currentBackground = background;
-       
-       // set the background
-       _cg.setColor(QColorGroup::Highlight, currentBackground);
-       _cg.setColor(QColorGroup::Base, currentBackground);
-       _cg.setColor(QColorGroup::Background, currentBackground);
-
-       QColor color;
-       if (isSelected()) 
-          color = KrColorCache::getColorCache().getCurrentMarkedForegroundColor(isActive);
-       if (!color.isValid()) // not used
-       {
-          color = KrColorCache::getColorCache().getCurrentForegroundColor(isActive);
-          if (!color.isValid()) // transparent
-            // choose fore- or background, depending on its contrast compared to markedBackground
-            color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
-       }
-       
-       // set the foreground
-       _cg.setColor(QColorGroup::Text, color);
-       _cg.setColor(QColorGroup::HighlightedText, color);
-    }
+     if (_vf->vfile_getMime() == "Broken Link !" )
+        colorItemType.m_fileType = KrColorItemType::InvalidSymlink;
+     else
+        colorItemType.m_fileType = KrColorItemType::Symlink;
   }
-
+  else if (VF->vfile_isDir())
+     colorItemType.m_fileType = KrColorItemType::Directory;
+  else if (VF->vfile_isExecutable())
+     colorItemType.m_fileType = KrColorItemType::Executable;
+  else
+     colorItemType.m_fileType = KrColorItemType::File;
+  KrColorCache::getColorCache().getColors(_cg, colorItemType);
 	// center the <DIR> thing if needed
 	if(column != COLUMN(Size))
 		QListViewItem::paintCell(p, _cg, column, width, align);
