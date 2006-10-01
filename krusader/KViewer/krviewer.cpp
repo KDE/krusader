@@ -159,7 +159,7 @@ void KrViewer::keyPressEvent( QKeyEvent *e ) {
 KrViewer* KrViewer::getViewer(bool new_window){
 	if( !new_window ){
 		if( !viewers.first() ){	
-			viewers.prepend( new KrViewer( krApp ) ); // add to first (active)
+			viewers.prepend( new KrViewer() ); // add to first (active)
 		}
 		else {
 			if( viewers.first()->isMinimized() ) // minimized? -> show it again
@@ -170,7 +170,7 @@ KrViewer* KrViewer::getViewer(bool new_window){
 		return viewers.first();
 	}
 	else {
-		KrViewer *newViewer = new KrViewer( krApp );
+		KrViewer *newViewer = new KrViewer();
 		viewers.prepend( newViewer );
 		return newViewer;
 	}
