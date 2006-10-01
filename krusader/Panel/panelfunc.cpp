@@ -159,8 +159,9 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 		}
 		connect( files(), SIGNAL(startJob(KIO::Job* )),
 				panel, SLOT(slotJobStarted(KIO::Job* )));
-		if ( vfsP->vfs_refresh( u ) )
+		if ( vfsP->vfs_refresh( u ) ) {
 			break; // we have a valid refreshed URL now
+		}
 		if ( vfsP == 0 )  // the object was deleted during vfs_refresh? Hoping the best...
 			return;                
 		// prevent repeated error messages
@@ -192,6 +193,13 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	// on local file system change the working directory
 	if ( files() ->vfs_getType() == vfs::NORMAL )
 		chdir( files() ->vfs_getOrigin().path().local8Bit() );
+	
+	// see if the open url operation failed, and if so, 
+	// put the attempted url in the origin bar and let the user change it
+	if (!urlIn.equals(vfsP->vfs_getOrigin(), true)) {
+		panel->origin->setURL(urlIn.prettyURL());
+		panel->origin->setFocus();
+	}
 }
 
 void ListPanelFunc::openUrl( const KURL& url, const QString& nameToMakeCurrent ) {
