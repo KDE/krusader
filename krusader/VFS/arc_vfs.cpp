@@ -214,9 +214,8 @@ bool arc_vfs::getDirs(){
     proc << cmd << listCmd << "\""+arcFile+"\"" <<" > " << tmpDir+"/tempfilelist";
     proc.start(KProcess::Block);
     if( !proc.normalExit() || !proc.exitStatus() == 0 ){
-     if (!quietMode) KMessageBox::error(krApp,i18n("Can't Read ")+
-                    arcFile.mid(arcFile.findRev('/')+1)+
-                    i18n(" Archive might be corrupted !"));
+      if (!quietMode) KMessageBox::error(krApp, i18n("<qt>Can't read <b>%1</b>. Archive "
+                      "might be corrupted!</qt>").arg(arcFile.mid(arcFile.findRev('/')+1)));
      error = true;
 		 return false;
     }
