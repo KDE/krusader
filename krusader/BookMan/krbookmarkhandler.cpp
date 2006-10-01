@@ -169,7 +169,7 @@ void KrBookmarkHandler::exportToFile() {
 		stream << doc.toString();
 		file.close();
 	} else {
-		KMessageBox::error(krApp, i18n("Error"), i18n("Unable to write to ") + filename);
+		KMessageBox::error(krApp, i18n("Error"), i18n("Unable to write to %1").arg(filename));
 	}
 }
 
