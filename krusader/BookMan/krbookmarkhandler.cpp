@@ -258,14 +258,14 @@ void KrBookmarkHandler::importFromFile() {
 		n = n.nextSibling();
 
 	if (n.isNull() || n.toElement().tagName()!="xbel") {
-		errorMsg = filename+i18n(" doesn't seem to be a valid Bookmarks file");
+		errorMsg = i18n("%1 doesn't seem to be a valid Bookmarks file").arg(filename);
 		goto ERROR;
 	} else n = n.firstChild(); // skip the xbel part
 	importFromFileFolder(n, _root, "", &errorMsg);
 	goto SUCCESS;
 	
 ERROR:
-	KMessageBox::error(krApp, "Error", i18n("Error reading bookmarks file: ")+errorMsg);
+	KMessageBox::error(krApp, "Error", i18n("Error reading bookmarks file: %1").arg(errorMsg));
 
 SUCCESS:
 	file.close();
