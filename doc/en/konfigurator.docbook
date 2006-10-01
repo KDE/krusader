@@ -47,7 +47,7 @@ and restart &krusader;.</para>
        It is divided into two main parts:</para>
 
 <variablelist>
-<varlistentry><term><guilabel>Panels</guilabel></term>
+<varlistentry><term><guilabel>General</guilabel></term>
    <listitem>
    <itemizedlist>
     <listitem><para>
@@ -56,6 +56,15 @@ and restart &krusader;.</para>
                         <guilabel>&lt;Last session&gt;</guilabel> is a special Panel Profile,
                         it is saved automaticly when closing &krusader;.
               </para></listitem>
+
+  <listitem><para><guilabel>Show splashscreen</guilabel>: 
+                   Display a splashscreen when starting &krusader;.
+                   </para></listitem> 
+
+  <listitem><para><guilabel>Single Instance Mode</guilabel>: 
+                   Only one Krusader instance is allowed to run.
+                   </para></listitem> 
+
   </itemizedlist>
   </listitem>
  </varlistentry>
@@ -93,6 +102,11 @@ and restart &krusader;.</para>
             <guimenuitem>Save Position</guimenuitem></menuchoice></emphasis> 
             option to manually set &krusader;'s size and position at startup.
           </para></listitem>
+
+  <listitem><para><guilabel>Start to tray</guilabel>: if checked, 
+            &krusader; starts to tray (if minimize to tray is set), without showing the main window.
+         </para></listitem>
+
   </itemizedlist>
   </para></listitem>
    </varlistentry>
@@ -131,43 +145,31 @@ HTML_PARSING-->
                   sure?" warning when you try to shut it down; otherwise, it will exit without 
                   protest.
                   </para></listitem>
+
   <listitem><para><guilabel>Minimize to tray</guilabel>: 
                   if checked, when you minimize &krusader;, it's icon will appear in the system 
                   tray instead of the taskbar.
                   </para></listitem>
-  <listitem><para><guilabel>Show Hidden files</guilabel>: 
-                  if checked, &krusader; will display the "dot-files" which are otherwise hidden.
-                  </para></listitem>
+
   <listitem><para><guilabel>Automark Directories</guilabel>: 
                   when <link linkend="mark-menu">selecting a group of files</link> (either by
                   using Select Group or by using Select All), &krusader; will check this option. 
                   If checked, then directories matching the select criteria will also be marked; 
                   otherwise, only files will be marked.
                    </para></listitem>
-  <listitem><para><guilabel>Case Sensitive Sorting</guilabel>: 
-                  if checked (the &UNIX; default), all files beginning with capital letters appear 
-                  before files beginning with non-capital letters; otherwise, all files beginning 
-                  with a specified letter (capital or otherwise) will appear together.
-                  </para></listitem>
-  <listitem><para><guilabel>Use fullpath tab names</guilabel>: 
+
+  <listitem><para><guilabel>Rename selects extension</guilabel>: 
+                  When renaming a file, the whole text is selected. If you want total-commander 
+                  like renaming of just the name, without extension, unmark this.
+                   </para></listitem>
+
+ <listitem><para><guilabel>Use fullpath tab names</guilabel>: 
                    if checked, display the full path in the &foldertabs_lnk;, otherwise only the 
                    last part of the path will be displayed.
                    </para></listitem>
-  <listitem><para><guilabel>New style Quicksearch</guilabel>: 
-                  The new <link linkend="quicksearch">Quicksearch</link> feature is used.
-                  </para></listitem>
-  <listitem><para><guilabel>Numeric permissions</guilabel>: 
-                   Permission column (Look &amp; Feel <guilabel>Panel</guilabel> Tab) shows octal 
-                   numbers '0755' instead of 'rwxr-xr-x'.
-                   </para></listitem>
-  <listitem><para><guilabel>Case Sensitive Quicksearch</guilabel>: 
-                   When using the <link linkend="quicksearch">Quicksearch</link> feature: 
-                   if checked (the &UNIX; default), all files beginning with capital letters appear 
-                   before files beginning with non-capital letters; otherwise, all files beginning 
-                   with a specified letter (capital or otherwise) will appear together.
-                   </para></listitem>
-  <listitem><para><guilabel>Show splashscreen</guilabel>: 
-                   Display a splashscreen when starting &krusader;.
+
+  <listitem><para><guilabel>Fullscreen terminal (mc-style)</guilabel>: 
+                  Terminal is shown instead of the &krusader; window (full screen).
                    </para></listitem>
 
 <!--
@@ -178,59 +180,20 @@ HTML_PARSING-->
 
 </itemizedlist>
 
-<itemizedlist><title><guilabel>Single click / Double click selection</guilabel></title>
-  <listitem><para><guilabel>Double click executes</guilabel>: if checked,
-                        with a single click on a file it will be selected and focused,
-      with a double click it opens the file or steps into the directory.
-                  </para></listitem>
-        <listitem><para><guilabel>Obeys KDE's global policy</guilabel>: if checked,
-                                 <!-- jade does not like an acronym element for "KDE" here -->
-                  it uses &kde;'s <command>kcontrol</command> setting.
-      <emphasis role="bold"><menuchoice><guimenu>KDE Control Center</guimenu>
-                        <guimenuitem>Peripherals</guimenuitem><guimenuitem>Mouse</guimenuitem></menuchoice></emphasis>
-      here you will have two options:
-      <itemizedlist>
-        <listitem><para>Double-click to open files and folders (select icons on first click).
-                  </para></listitem>
-                          <listitem><para>Single-click to open files and folders.
-                  </para></listitem>
-                        </itemizedlist>
-           </para></listitem>
+
+<itemizedlist><title><guilabel>Quicksearch</guilabel></title>
+  <listitem><para><guilabel>New style Quicksearch</guilabel>: 
+                  The new <link linkend="quicksearch">Quicksearch</link> feature is used.
+            </para></listitem>
+
+  <listitem><para><guilabel>Case Sensitive Quicksearch</guilabel>: 
+                   When using the <link linkend="quicksearch">Quicksearch</link> feature: 
+                   if checked (the &UNIX; default), all files beginning with capital letters appear 
+                   before files beginning with non-capital letters; otherwise, all files beginning 
+                   with a specified letter (capital or otherwise) will appear together.
+                   </para></listitem>
 </itemizedlist>
 
-<itemizedlist id="mouse_selection_modes"><title><guilabel>Mouse Selection Modes</guilabel></title>
-      <listitem><para><guilabel>&krusader; Mode</guilabel>: the way &krusader; has worked from day one.
-         Both mouse keys allow selecting files. To select more than one file, hold the
-         &Ctrl; key and click the &LMB;. Right-click menu is invoked using a short click on
-         the &RMB;.</para></listitem>
-  <listitem><para><guilabel>Konqueror Mode</guilabel>: pressing the &LMB; selects files --
-  <!-- Openjade does not like an application element for "Konqueror" here -->
-          you can click and select multiple files.
-         Right-click menu is invoked using a short click on the &RMB;.
-         </para></listitem>
-  <listitem><para><guilabel>Total commander Mode</guilabel>: pressing the &RMB; selects multiple files
-  <!-- Openjade does not like an trademark element for "Total commander" here -->
-         and the right-click menu is invoked by <guilabel>pressing and holding</guilabel> the &RMB;
-         The &LMB; does not select, but sets the current file without affecting the current selection.
-         </para></listitem>
-  <listitem><para><guilabel>Custom Selection Mode</guilabel>: create your own selection style!
-        The next configurations are available:
-        <itemizedlist>
-         <listitem><para><guilabel>Based on KDE's selection mode</guilabel></para></listitem>
-         <listitem><para><guilabel>Left mouse button selects</guilabel></para></listitem>
-         <listitem><para><guilabel>Left mouse button preserves selection</guilabel></para></listitem>
-         <listitem><para><guilabel>Shift/Ctrl-Left mouse button selects</guilabel></para></listitem>
-         <listitem><para><guilabel>Right mouse button selects</guilabel></para></listitem>
-         <listitem><para><guilabel>Right mouse button preserves selection</guilabel></para></listitem>
-         <listitem><para><guilabel>Shift/Ctrl-Right mouse button selects</guilabel></para></listitem>
-         <listitem><para><guilabel>Spacebar moves down</guilabel></para></listitem>
-         <listitem><para><guilabel>Spacebar calculates diskspace</guilabel></para></listitem>
-         <listitem><para><guilabel>Insert moves down</guilabel></para></listitem>
-         <listitem><para><guilabel>Right clicking pops context-menu immediately</guilabel></para></listitem>
-        </itemizedlist>
-         </para></listitem>
-
-</itemizedlist>
 </sect2>
 
 <sect2 id="konfig-looknfeel-panel">
@@ -280,47 +243,31 @@ HTML_PARSING-->
                     show the group field.
                    </para></listitem>
        </itemizedlist>
-    </para></listitem> 
+       </para></listitem>
+
+ <listitem><para><guilabel>Show Hidden files</guilabel>: 
+                  if checked, &krusader; will display the "dot-files" which are otherwise hidden.
+                  </para></listitem>
+
+  <listitem><para><guilabel>Case Sensitive Sorting</guilabel>: 
+                  if checked (the &UNIX; default), all files beginning with capital letters appear 
+                  before files beginning with non-capital letters; otherwise, all files beginning 
+                  with a specified letter (capital or otherwise) will appear together.
+                  </para></listitem>
+
+  <listitem><para><guilabel>Always sort dirs by name</guilabel>: 
+                   Directories are sorted by name, regardless of the sort column..
+                   </para></listitem> 
+
+ <listitem><para><guilabel>Numeric permissions</guilabel>: 
+                   Permission column (Look &amp; Feel <guilabel>Panel</guilabel> Tab) shows octal 
+                   numbers '0755' instead of 'rwxr-xr-x'.
+                   </para></listitem>
 
 </itemizedlist>
 
 <tip><para>Uncheck the un-used columns, this allows more space for columns in use.
      </para></tip>
-
-</sect2>
-
-
-<sect2 id="konfig-looknfeel-toolbar">
-<title>Toolbar</title>
-<para>Here you can configure the &main_toolbar_lnk; and the &actions_toolbar_lnk; the way you want.
-       Add the action buttons of your favourite functions to the desired Toolbar.</para>
-
-</sect2>
-
-
-<sect2 id="konfig-looknfeel-keybindings">
-<title>Key-bindings</title>
-<para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
-          of your favourite functions the way you want.</para>
-
-<para>With the <guibutton>Import shortcuts</guibutton> <guibutton>Export shortcuts</guibutton> buttons you
-      can load and save a Key-binding profile.
-      This allows &krusader; to have the &tcmd;, &mc;, foo-commander, or your custom Key-bindings.
-      The only limitation is that global &kde; key-bindings and some &krusader; key-bindings can't
-      be changed yet, as well as some features in foo-commander that we either don't have or don't need.
-      The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
-      <filename>foo.keymap.info</filename> contains a description,
-      <filename>foo.keymap</filename> is a binary file that holds the Key-bindings.
-      If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it,
-      showing additional information regarding the loaded Key-bindings file.
-      Here you have a chance to exit without importing the proposed Key-bindings file.
-      </para>
-
-<tip><para>
-      A &tcmd; Key-bindings file is provided. 
-      Please <link linkend="help_krusader">upload your favorite Key-bindings schemes</link> 
-      so that they become available for the &krusader; community. Thanks!
-      </para></tip>
 
 </sect2>
 
@@ -347,8 +294,98 @@ HTML_PARSING-->
                             show the &sync_browsing_lnk; button.</para></listitem>
 </itemizedlist>
 </para>
+</sect2>
+
+
+<sect2 id="konfig-selection_modes">
+<title>Selection Mode</title>
+<para>Here you can configure the selection modes.
+
+<itemizedlist id="mouse_selection_modes"><title><guilabel>General</guilabel></title>
+      <listitem><para><guilabel>&krusader; Mode</guilabel>: the way &krusader; has worked from day one.
+         Both mouse keys allow selecting files. To select more than one file, hold the
+         &Ctrl; key and click the &LMB;. Right-click menu is invoked using a short click on
+         the &RMB;.</para></listitem>
+  <listitem><para><guilabel>Konqueror Mode</guilabel>: pressing the &LMB; selects files --
+  <!-- Openjade does not like an application element for "Konqueror" here -->
+          you can click and select multiple files.
+         Right-click menu is invoked using a short click on the &RMB;.
+         </para></listitem>
+  <listitem><para><guilabel>Total commander Mode</guilabel>: pressing the &RMB; selects multiple files
+  <!-- Openjade does not like an trademark element for "Total commander" here -->
+         and the right-click menu is invoked by <guilabel>pressing and holding</guilabel> the &RMB;
+         The &LMB; does not select, but sets the current file without affecting the current selection.
+         </para></listitem>
+
+  <listitem><para><guilabel>Custom Selection Mode</guilabel>: create your own selection style!
+           </para></listitem>
+</itemizedlist>
+
+<itemizedlist><title><guilabel>Details</guilabel></title>
+      <listitem><para><guilabel>Double-click selects (classic)</guilabel>: 
+      A single click on a file will select and focus, a double click opens the file or steps into the directory.
+      </para></listitem>
+
+  <listitem><para><guilabel>Obey KDE's global selection policy</guilabel>: pressing the &LMB; selects files --
+            Use &kde;'s global setting: &kde; Control Center -> Peripherals -> Mouse.
+         </para></listitem>
+
+  <listitem><para>Custom Selection Mode items: 
+        <itemizedlist>
+         <listitem><para><guilabel>Based on KDE's selection mode</guilabel></para></listitem>
+         <listitem><para><guilabel>Left mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Left mouse button preserves selection</guilabel></para></listitem>
+         <listitem><para><guilabel>Shift/Ctrl-Left mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Right mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Right mouse button preserves selection</guilabel></para></listitem>
+         <listitem><para><guilabel>Shift/Ctrl-Right mouse button selects</guilabel></para></listitem>
+         <listitem><para><guilabel>Spacebar moves down</guilabel></para></listitem>
+         <listitem><para><guilabel>Spacebar calculates diskspace</guilabel></para></listitem>
+         <listitem><para><guilabel>Insert moves down</guilabel></para></listitem>
+         <listitem><para><guilabel>Right clicking pops context-menu immediately</guilabel></para></listitem>
+        </itemizedlist>
+         </para></listitem>
+</itemizedlist>
+
+</para>
+</sect2>
+
+<sect2 id="konfig-looknfeel-toolbar">
+<title>Configure Toolbars (TODO: needs to be moved, Settings -> Configure Toolbars)</title>
+<para>Here you can configure the &main_toolbar_lnk; and the &actions_toolbar_lnk; the way you want.
+       Add the action buttons of your favourite functions to the desired Toolbar.</para>
 
 </sect2>
+
+
+
+<sect2 id="konfig-looknfeel-keybindings">
+<title>Configure Shortcuts (TODO: needs to be moved, Settings -> Configure Shortcuts)</title>
+<para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
+          of your favourite functions the way you want.</para>
+
+<para>With the <guibutton>Import shortcuts</guibutton> <guibutton>Export shortcuts</guibutton> buttons you
+      can load and save a Key-binding profile.
+      This allows &krusader; to have the &tcmd;, &mc;, foo-commander, or your custom Key-bindings.
+      The only limitation is that global &kde; key-bindings and some &krusader; key-bindings can't
+      be changed yet, as well as some features in foo-commander that we either don't have or don't need.
+      The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
+      <filename>foo.keymap.info</filename> contains a description,
+      <filename>foo.keymap</filename> is a binary file that holds the Key-bindings.
+      If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it,
+      showing additional information regarding the loaded Key-bindings file.
+      Here you have a chance to exit without importing the proposed Key-bindings file.
+      </para>
+
+<tip><para>
+      A &tcmd; Key-bindings file is provided. 
+      Please <link linkend="help_krusader">upload your favorite Key-bindings schemes</link> 
+      so that they become available for the &krusader; community. Thanks!
+      </para></tip>
+
+</sect2>
+
+
 
 </sect1>
 
@@ -856,9 +893,16 @@ making the cooperation almost impossible.
 <sect1 id="konfig-useractions">
 <title>User Actions</title>
 
-<para>This page configures the user actions of the &useractions_lnk;.
-      Here you can edit, create, delete, import or export user actions.
-      For more information about this screen, look at the &useractions_lnk; page.</para>
+<para>Here you can configure settings about useractions.
+      To set up, configure and manage your useractions please use ActionMan (&useractions_lnk; url).
+</para>
+
+<para>Terminal for UserActions configuration, the default is <filename>konsole --noclose -e</filename>.
+</para>
+
+
+<para>Output collection font configuration.
+</para>
 
 
 <!--HTML_PARSING
