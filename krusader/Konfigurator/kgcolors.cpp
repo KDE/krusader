@@ -102,13 +102,13 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Background",                 i18n( "Background:" ),                  KGlobalSettings::baseColor()                                                );
   ADDITIONAL_COLOR sameAsBckgnd = { i18n("Same as background"), getColorSelector( "Background" )->getColor(), "Background" };
   addColorSelector( "Alternate Background",       i18n( "Alternate background:" ),        KGlobalSettings::alternateBackgroundColor(),"", &sameAsBckgnd, 1            );
-  addColorSelector( "Marked Foreground",          i18n( "Marked foreground:" ),           KGlobalSettings::highlightedTextColor(), "", &transparent, 1                );
-  addColorSelector( "Marked Background",          i18n( "Marked background:" ),           KGlobalSettings::highlightColor(), "", &sameAsBckgnd, 1                     );
+  addColorSelector( "Marked Foreground",          i18n( "Selected foreground:" ),           KGlobalSettings::highlightedTextColor(), "", &transparent, 1                );
+  addColorSelector( "Marked Background",          i18n( "Selected background:" ),           KGlobalSettings::highlightColor(), "", &sameAsBckgnd, 1                     );
   ADDITIONAL_COLOR sameAsAltern = { i18n("Same as alt. background"), getColorSelector( "Alternate Background" )->getColor(), "Alternate Background" };
-  addColorSelector( "Alternate Marked Background",i18n( "Alternate marked background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as marked background" ), &sameAsAltern, 1 );
+  addColorSelector( "Alternate Marked Background",i18n( "Alternate selected background:" ), getColorSelector( "Marked Background" )->getColor(), i18n( "Same as selected background" ), &sameAsAltern, 1 );
   addColorSelector( "Current Foreground",         i18n( "Current foreground:" ),          Qt::white,                                    i18n( "Not used" )            );
-  ADDITIONAL_COLOR sameAsMarkedForegnd = { i18n("Same as marked foreground"), getColorSelector( "Marked Foreground" )->getColor(), "Marked Foreground" };
-  addColorSelector( "Marked Current Foreground",         i18n( "Marked current foreground:" ),          Qt::white,                                    i18n( "Not used" ), &sameAsMarkedForegnd, 1);
+  ADDITIONAL_COLOR sameAsMarkedForegnd = { i18n("Same as selected foreground"), getColorSelector( "Marked Foreground" )->getColor(), "Marked Foreground" };
+  addColorSelector( "Marked Current Foreground",         i18n( "Selected current foreground:" ),          Qt::white,                                    i18n( "Not used" ), &sameAsMarkedForegnd, 1);
   addColorSelector( "Current Background",         i18n( "Current background:" ),          Qt::white, i18n( "Not used" ), &sameAsBckgnd, 1                             );
 
   colorsGrid->addWidget(createSpacer(colorsGrp, ""), itemList.count() - offset, 1);
@@ -138,14 +138,14 @@ KgColors::KgColors( bool first, QWidget* parent,  const char* name ) :
   addColorSelector( "Inactive Background",                  i18n( "Background:" ),                  getColorSelector( "Background" )->getColor(), i18n( "Same as active" ) );
   ADDITIONAL_COLOR sameAsInactBckgnd = { i18n("Same as background"), getColorSelector( "Inactive Background" )->getColor(), "Inactive Background" };
   addColorSelector( "Inactive Alternate Background",        i18n( "Alternate background:" ),        getColorSelector( "Alternate Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
-  addColorSelector( "Inactive Marked Foreground",           i18n( "Marked foreground:" ),           getColorSelector( "Marked Foreground" )->getColor(), i18n( "Same as active" ), &transparent, 1 );
-  addColorSelector( "Inactive Marked Background",           i18n( "Marked background:" ),           getColorSelector( "Marked Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
+  addColorSelector( "Inactive Marked Foreground",           i18n( "Selected foreground:" ),           getColorSelector( "Marked Foreground" )->getColor(), i18n( "Same as active" ), &transparent, 1 );
+  addColorSelector( "Inactive Marked Background",           i18n( "Selected background:" ),           getColorSelector( "Marked Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
   ADDITIONAL_COLOR sameAsInactAltern[] = {{ i18n("Same as alt. background"), getColorSelector( "Inactive Alternate Background" )->getColor(), "Inactive Alternate Background" },
-                                          { i18n("Same as marked background"), getColorSelector( "Inactive Marked Background" )->getColor(), "Inactive Marked Background" } };
-  addColorSelector( "Inactive Alternate Marked Background", i18n( "Alternate marked background:" ), getColorSelector( "Alternate Marked Background" )->getColor(), i18n( "Same as active" ), sameAsInactAltern, 2 );
+                                          { i18n("Same as selected background"), getColorSelector( "Inactive Marked Background" )->getColor(), "Inactive Marked Background" } };
+  addColorSelector( "Inactive Alternate Marked Background", i18n( "Alternate selected background:" ), getColorSelector( "Alternate Marked Background" )->getColor(), i18n( "Same as active" ), sameAsInactAltern, 2 );
   addColorSelector( "Inactive Current Foreground",          i18n( "Current foreground:" ),          getColorSelector( "Current Foreground" )->getColor(), i18n( "Same as active" ) );
-  ADDITIONAL_COLOR sameAsInactMarkedForegnd = { i18n("Same as marked foreground"), getColorSelector( "Inactive Marked Foreground" )->getColor(), "Inactive Marked Foreground" };
-  addColorSelector( "Inactive Marked Current Foreground",          i18n( "Marked current foreground:" ),          getColorSelector( "Marked Current Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactMarkedForegnd, 1 );
+  ADDITIONAL_COLOR sameAsInactMarkedForegnd = { i18n("Same as selected foreground"), getColorSelector( "Inactive Marked Foreground" )->getColor(), "Inactive Marked Foreground" };
+  addColorSelector( "Inactive Marked Current Foreground",          i18n( "Selected current foreground:" ),          getColorSelector( "Marked Current Foreground" )->getColor(), i18n( "Same as active" ), &sameAsInactMarkedForegnd, 1 );
   addColorSelector( "Inactive Current Background",          i18n( "Current background:" ),          getColorSelector( "Current Background" )->getColor(), i18n( "Same as active" ), &sameAsInactBckgnd, 1 );
 
   colorsGrid->addWidget(createSpacer(normalInactiveWidget, ""), itemList.count() - offset, 1);
@@ -408,9 +408,9 @@ void KgColors::generatePreview()
 
   if( currentPage == 0 || currentPage == 1 )
   {
-    PreviewItem *pwMarkCur = new PreviewItem( preview, i18n( "Marked + Current" ) );
-    PreviewItem *pwMark2   = new PreviewItem( preview, i18n( "Marked 2" ) );
-    PreviewItem *pwMark1   = new PreviewItem( preview, i18n( "Marked 1" ) );
+    PreviewItem *pwMarkCur = new PreviewItem( preview, i18n( "Selected + Current" ) );
+    PreviewItem *pwMark2   = new PreviewItem( preview, i18n( "Selected 2" ) );
+    PreviewItem *pwMark1   = new PreviewItem( preview, i18n( "Selected 1" ) );
     PreviewItem *pwCurrent = new PreviewItem( preview, i18n( "Current" ) );
     PreviewItem *pwInvLink = new PreviewItem( preview, i18n( "Invalid symlink" ) );
     PreviewItem *pwSymLink = new PreviewItem( preview, i18n( "Symbolic link" ) );
