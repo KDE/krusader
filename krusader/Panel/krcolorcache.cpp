@@ -37,14 +37,16 @@ YP   YD 88   YD ~Y8888P' `8888Y' YP   YP Y8888D' Y88888P 88   YD
 // Macro: set target = col, if col is valid
 #define SETCOLOR(target, col) { if (col.isValid()) target = col; }
 
-
+/*
+Static class, which lists all allowed keywords for a quick access. Just call a method to initialize it. 
+*/
 class KrColorSettingNames
 {
 	static QMap<QString, bool> s_colorNames;
 	static QMap<QString, bool> s_numNames;
 	static QMap<QString, bool> s_boolNames;
-public:
 	static void initialize();
+public:
 	static QValueList<QString> getColorNames();
 	static bool isColorNameValid(const QString & settingName);
 	static QValueList<QString> getNumNames();
@@ -105,6 +107,7 @@ QValueList<QString> KrColorSettingNames::getColorNames()
 
 bool KrColorSettingNames::isColorNameValid(const QString & settingName)
 {
+	initialize();
 	return s_colorNames.contains(settingName);
 }
 
@@ -116,6 +119,7 @@ QValueList<QString> KrColorSettingNames::getNumNames()
 
 bool KrColorSettingNames::isNumNameValid(const QString & settingName)
 {
+	initialize();
 	return s_numNames.contains(settingName);
 }
 
@@ -127,12 +131,15 @@ QValueList<QString> KrColorSettingNames::getBoolNames()
 
 bool KrColorSettingNames::isBoolNameValid(const QString & settingName)
 {
+	initialize();
 	return s_boolNames.contains(settingName);
 }
 
 
 
-
+/*
+KrColorSettings implementation. Contains all properties in QMaps. loadFromConfig initializes them from krConfig.
+*/
 class KrColorSettingsImpl
 {
 	friend class KrColorSettings;
@@ -258,6 +265,11 @@ QString KrColorSettings::getColorTextValue(const QString & settingName) const
 	return m_impl->m_colorTextValues[settingName];
 }
 
+QValueList<QString> KrColorSettings::getNumNames()
+{
+	return KrColorSettingNames::getNumNames();
+}
+
 bool KrColorSettings::isNumNameValid(const QString & settingName)
 {
 	return KrColorSettingNames::isNumNameValid(settingName);
@@ -284,6 +296,11 @@ int KrColorSettings::getNumValue(const QString & settingName, int defaultValue) 
 	if (!m_impl->m_numValues.contains(settingName))
 		return defaultValue;
 	return m_impl->m_numValues[settingName];
+}
+
+QValueList<QString> KrColorSettings::getBoolNames()
+{
+	return KrColorSettingNames::getBoolNames();
 }
 
 bool KrColorSettings::isBoolNameValid(const QString & settingName)
@@ -354,7 +371,10 @@ const KrColorItemType & KrColorItemType::operator= (const KrColorItemType & src)
 
 
 
-
+/*
+KrColorCache implementation. Contains the KrColorSettings used for teh calculation and the cache for the results.
+getColors is the only method to call. All other are taken from the previous versions.
+*/
 class KrColorCacheImpl
 {
 	friend class KrColorCache;
@@ -380,6 +400,7 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 	QColorGroup result;
 	if (m_colorSettings.getBoolValue("KDE Default", _KDEDefaultColors))
 	{
+		// KDE default? Getcolors from KGlobalSettings.
 		bool enableAlternateBackground = m_colorSettings.getBoolValue("Enable Alternate Background", _AlternateBackground);
 		QColor background = enableAlternateBackground && type.m_alternateBackgroundColor ? 
 			KGlobalSettings::alternateBackgroundColor()
@@ -393,6 +414,9 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 	}
 	bool markCurrentAlways = m_colorSettings.getBoolValue("Show Current Item Always", _ShowCurrentItemAlways);
 	bool dimBackground = m_colorSettings.getBoolValue("Dim Inactive Colors", false);
+
+	// cache m_activePanel flag. If color dimming is turned on, it is set to true, as the inactive colors
+	// are calculated from the active ones at the end.
 	bool isActive = type.m_activePanel;
 	if (dimBackground)
 		isActive = true;
@@ -468,16 +492,18 @@ QColorGroup KrColorCacheImpl::getColors(const KrColorItemType & type) const
 		{
 			color = getCurrentForegroundColor(isActive);
 			if (!color.isValid()) // transparent
-			// choose fore- or background, depending on its contrast compared to markedBackground
-			color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
+				// choose fore- or background, depending on its contrast compared to markedBackground
+				color = setColorIfContrastIsSufficient(currentBackground, foreground, background);
 		}
 		
 		// set the foreground
 		result.setColor(QColorGroup::Text, color);
 		result.setColor(QColorGroup::HighlightedText, color);
 	}
+
 	if (dimBackground && !type.m_activePanel)
 	{
+		// if color dimming is choosen, dim the colors for the inactive panel 
 		result.setColor(QColorGroup::Base, dimColor(result.base(), true));
 		result.setColor(QColorGroup::Background, dimColor(result.base(), true));
 		result.setColor(QColorGroup::Text, dimColor(result.text(), false));
@@ -667,6 +693,7 @@ KrColorCache & KrColorCache::getColorCache()
 
 void KrColorCache::getColors(QColorGroup  & result, const KrColorItemType & type) const
 {
+	// for the cache lookup: calculate a unique key from the type
 	char hashKey[128];
 	switch(type.m_fileType)
 	{
@@ -693,9 +720,16 @@ void KrColorCache::getColors(QColorGroup  & result, const KrColorItemType & type
 		strcat(hashKey, "-Current");
 	if (type.m_selectedItem)
 		strcat(hashKey, "-Selected");
+
+	// lookup in cache
 	if (!m_impl->m_cachedColors.contains(hashKey))
+		// not found: calculate color group and store it in cache
 		m_impl->m_cachedColors[hashKey] = m_impl->getColors(type);
+
+	// get color group from cache
 	const QColorGroup & col = m_impl->m_cachedColors[hashKey];
+
+	// copy colors in question to result color group
 	result.setColor(QColorGroup::Base, col.base());
 	result.setColor(QColorGroup::Background, col.base());
 	result.setColor(QColorGroup::Text, col.text());
