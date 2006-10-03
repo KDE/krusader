@@ -83,10 +83,10 @@ void KgLookFeel::setupOperationTab() {
     { //   cfg_class  cfg_name                default             text                              restart tooltip
      {"Look&Feel","Warn On Exit",         _WarnOnExit,        i18n( "Warn on exit" ),           false,  i18n( "Display a warning when trying to close the main window." ) }, // KDE4: move warn on exit to the other confirmations
      {"Look&Feel","Minimize To Tray",     _MinimizeToTray,    i18n( "Minimize to tray" ),       false,  i18n( "The icon will appear in the system tray instead of the taskbar, when Krusader is minimized." ) },
-     {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Automark directories" ),   false,  i18n( "When matching the select criteria, directories will also be marked." ) },
-     {"Look&Feel","Rename Selects Extension",true,          i18n( "Rename selects extension" ),   false,  i18n( "When renaming a file, the whole text is selected. If you want total-commander like renaming of just the name, without extension, unmark this." ) },
+     {"Look&Feel","Mark Dirs",            _MarkDirs,          i18n( "Autoselect directories" ),   false,  i18n( "When matching the select criteria, not only files will be selected, but also directories." ) },
+     {"Look&Feel","Rename Selects Extension",true,          i18n( "Rename selects extension" ),   false,  i18n( "When renaming a file, the whole text is selected. If you want Total-Commander like renaming of just the name, without extension, uncheck this option." ) },
      {"Look&Feel","Fullpath Tab Names",   _FullPathTabNames,  i18n( "Use full path tab names" ), true ,  i18n( "Display the full path in the folder tabs. By default only the last part of the path is displayed." ) },
-     {"Look&Feel","Fullscreen Terminal Emulator", false, i18n( "Fullscreen terminal (mc-style)"  ), false,  i18n( "Terminal is shown instead of the krusader window (full screen).") },
+     {"Look&Feel","Fullscreen Terminal Emulator", false, i18n( "Fullscreen terminal (mc-style)"  ), false,  i18n( "Terminal is shown instead of the Krusader window (full screen).") },
     };
 
   cbs = createCheckBoxGroup( 2, 0, settings, 6 /*count*/, lookFeelGrp, 0, PAGE_OPERATION );
