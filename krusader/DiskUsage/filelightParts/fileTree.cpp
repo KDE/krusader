@@ -17,9 +17,9 @@ File::fullPath( const Directory *root /*= 0*/ ) const
 
     if( root == this ) root = 0; //prevent returning empty string when there is something we could return
 
-    const Directory *d;
+    const File *d;
     
-    for( d = (Directory*)this; d != root && d && d->parent() != 0; d = d->parent() )
+    for( d = this; d != root && d && d->parent() != 0; d = d->parent() )
     {
       if( !path.isEmpty() )
         path = "/" + path;
