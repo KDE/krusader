@@ -171,13 +171,13 @@ KAction *Krusader::actJumpBack = 0;
 KAction *Krusader::actSetJumpBack = 0;
 KToggleAction *Krusader::actToggleTerminal = 0;
 KToggleAction *Krusader::actVerticalMode = 0;
-KRadioAction  *Krusader::actMarkNewerAndSingle = 0;
-KRadioAction  *Krusader::actMarkSingle = 0;
-KRadioAction  *Krusader::actMarkNewer = 0;
-KRadioAction  *Krusader::actMarkDifferentAndSingle = 0;
-KRadioAction  *Krusader::actMarkDifferent = 0;
-KRadioAction  **Krusader::compareArray[] = {&actMarkNewerAndSingle, &actMarkNewer, &actMarkSingle, 
-                                            &actMarkDifferentAndSingle, &actMarkDifferent, 0};
+KRadioAction  *Krusader::actSelectNewerAndSingle = 0;
+KRadioAction  *Krusader::actSelectSingle = 0;
+KRadioAction  *Krusader::actSelectNewer = 0;
+KRadioAction  *Krusader::actSelectDifferentAndSingle = 0;
+KRadioAction  *Krusader::actSelectDifferent = 0;
+KRadioAction  **Krusader::compareArray[] = {&actSelectNewerAndSingle, &actSelectNewer, &actSelectSingle, 
+                                            &actSelectDifferentAndSingle, &actSelectDifferent, 0};
 KPopupMenu *Krusader::userActionMenu = 0;
 UserAction *Krusader::userAction = 0;
 UserMenu *Krusader::userMenu = 0;
@@ -572,21 +572,21 @@ void Krusader::setupActions() {
                             SLOTS, SLOT( invert() ), actionCollection(), "invert" );
    actCompDirs = new KAction( i18n( "&Compare Directories" ), "view_left_right", 0,
                               SLOTS, SLOT( compareDirs() ), actionCollection(), "compare dirs" );
-   actMarkNewerAndSingle = new KRadioAction( i18n( "&Mark Newer and Single" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_newer_and_single" );
-   actMarkNewer = new KRadioAction( i18n( "Mark &Newer" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_newer" );
-   actMarkSingle = new KRadioAction( i18n( "Mark &Single" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_single" );
-   actMarkDifferentAndSingle = new KRadioAction( i18n( "Mark Different &and Single" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_different_and_single" );
-   actMarkDifferent = new KRadioAction( i18n( "Mark &Different" ), 0,
-                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "mark_different" );
-   actMarkNewerAndSingle->setExclusiveGroup( "mark group" );
-   actMarkNewer->setExclusiveGroup( "mark group" );
-   actMarkSingle->setExclusiveGroup( "mark group" );
-   actMarkDifferentAndSingle->setExclusiveGroup( "mark group" );
-   actMarkDifferent->setExclusiveGroup( "mark group" );
+   actSelectNewerAndSingle = new KRadioAction( i18n( "&Select Newer and Single" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_newer_and_single" );
+   actSelectNewer = new KRadioAction( i18n( "Select &Newer" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_newer" );
+   actSelectSingle = new KRadioAction( i18n( "Select &Single" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_single" );
+   actSelectDifferentAndSingle = new KRadioAction( i18n( "Select Different &and Single" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_different_and_single" );
+   actSelectDifferent = new KRadioAction( i18n( "Select &Different" ), 0,
+                                 SLOTS, SLOT( compareSetup() ), actionCollection(), "select_different" );
+   actSelectNewerAndSingle->setExclusiveGroup( "the_select_group" );
+   actSelectNewer->setExclusiveGroup( "the_select_group" );
+   actSelectSingle->setExclusiveGroup( "the_select_group" );
+   actSelectDifferentAndSingle->setExclusiveGroup( "the_select_group" );
+   actSelectDifferent->setExclusiveGroup( "the_select_group" );
    if( compareMode < (int)( sizeof( compareArray ) / sizeof( KRadioAction ** ) ) -1 )
      (*compareArray[ compareMode ])->setChecked( true );
    actHomeTerminal = new KAction( i18n( "Start &Terminal" ), "terminal", 0,
