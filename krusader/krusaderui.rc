@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui ><kpartgui version="12" name="krusader" >
+<!DOCTYPE kpartgui ><kpartgui version="13" name="krusader" >
  <MenuBar>
   <Menu name="file" >
    <text>&amp;File</text>
@@ -49,11 +49,11 @@
    <Action name="compare dirs" />
    <Menu name="compare setup">
      <text>Compare Se&amp;tup</text>
-     <Action name="mark_newer_and_single" />
-     <Action name="mark_single" />
-     <Action name="mark_newer" />
-     <Action name="mark_different_and_single" />
-     <Action name="mark_different" />
+     <Action name="select_newer_and_single" />
+     <Action name="select_single" />
+     <Action name="select_newer" />
+     <Action name="select_different_and_single" />
+     <Action name="select_different" />
    </Menu>
    <Separator/>
    <Action name="calculate" />
@@ -156,7 +156,6 @@
   <Action name="select all" />
   <Action name="unselect all" />
   <Action name="select group" />
-  <Action name="profile" />
   <Separator name="separator_1" />
   <Action name="find" />
   <Action name="edit_new_file" />
@@ -167,6 +166,7 @@
   <Action name="mountman" />
   <Action name="ftp connect" />
   <Action name="ftp new connection" />
+  <Action name="profile" />
  </ToolBar>
  <ToolBar noMerge="1" name="actionsToolBar" fullWidth="false" >
  </ToolBar>
