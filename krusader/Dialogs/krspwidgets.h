@@ -101,6 +101,7 @@ protected:
 	void init();
 	
 private:
+	int charCount(const QMouseEvent * const , QString* const =0) ;
 	int _numOfSelectedChars;
 	bool _dummyDisplayed;
 	QGuardedPtr<KPassivePopup> _pop;

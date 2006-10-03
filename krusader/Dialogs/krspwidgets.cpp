@@ -258,9 +258,32 @@ void QuickNavLineEdit::leaveEvent(QEvent *) {
 
 void QuickNavLineEdit::mousePressEvent( QMouseEvent *m ) {
 	if (m->state()!=ControlButton) clearAll();
-	else if (_numOfSelectedChars) 
+	else
+	{
+		if (!_numOfSelectedChars)
+		{
+			_numOfSelectedChars = charCount(m);
+			if (_numOfSelectedChars < 0)
+				_numOfSelectedChars = 0;
+		}
+		if (_numOfSelectedChars)
 			emit returnPressed(text().left(_numOfSelectedChars));
+	}
 	KLineEdit::mousePressEvent(m);
+}
+
+int QuickNavLineEdit::charCount(const QMouseEvent * const m,QString * const str) {
+	// find how much of the string we've selected (approx) 
+	// and select from from the start to the closet slash (on the right)
+	const QString tx = text().simplifyWhiteSpace();
+	if (tx.isEmpty()) {
+		clearAll();
+    return -1;
+	}
+	
+	int numOfChars = findCharFromPos(tx, fontMetrics(), m->x() - 5);
+	if(str) *str=tx;
+	return tx.find('/', numOfChars);
 }
 
 void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
@@ -269,21 +292,10 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 		KLineEdit::mouseMoveEvent(m);
 		return;
 	}
-	
-	// find how much of the string we've selected (approx) 
-	// and select from from the start to the closet slash (on the right)
-	const QString tx = text().simplifyWhiteSpace();
-	if (tx.isEmpty()) {
-		clearAll();
-		return;
-	}
-	
-	int numOfChars = findCharFromPos(tx, fontMetrics(), m->x());
-	if (numOfChars) {
-		int idx = tx.find('/', numOfChars - 1);
+  QString tx;
+  int idx=charCount(m,&tx);
 		if (idx == -1 && !_dummyDisplayed) { // pointing on or after the current directory
 			if (_pop) delete _pop;
-
 			_pop = KPassivePopup::message( i18n("Quick Navigation"),
 				"<qt>" + i18n("Already at <i>%1</i>").arg(tx.left(idx)) + "</qt>",
 				*(KCursor::handCursor().bitmap()), this);
@@ -299,7 +311,6 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 				"<qt>" + i18n("Click to go to <i>%1</i>").arg(tx.left(idx)) + "</qt>",
 				*(KCursor::handCursor().bitmap()), this );
 		}
-	}
 	KLineEdit::mouseMoveEvent(m);
 }
 
