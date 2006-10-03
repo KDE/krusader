@@ -235,6 +235,16 @@ QuickNavLineEdit::QuickNavLineEdit(const QString &string, QWidget *parent, const
 QuickNavLineEdit::QuickNavLineEdit(QWidget *parent, const char *name): 
 	KLineEdit(parent, name) { init(); }
 
+int QuickNavLineEdit::findCharFromPos(const QString & str, const QFontMetrics & metrics, int pos)
+{
+	if (pos < 0)
+		return -1;
+	for (int i = 1; i <= str.length(); ++i)
+		if (metrics.width(str, i) > pos)
+			return i;
+	return str.length();
+}
+
 void QuickNavLineEdit::init() {
 	_numOfSelectedChars=0;
 	_dummyDisplayed=false;
@@ -268,10 +278,9 @@ void QuickNavLineEdit::mouseMoveEvent( QMouseEvent *m) {
 		return;
 	}
 	
-	int avgCharSize = fontMetrics().width(tx)/tx.length();
-	int numOfChars = m->x() / avgCharSize;
+	int numOfChars = findCharFromPos(tx, fontMetrics(), m->x());
 	if (numOfChars) {
-		int idx = tx.find('/', numOfChars);
+		int idx = tx.find('/', numOfChars - 1);
 		if (idx == -1 && !_dummyDisplayed) { // pointing on or after the current directory
 			if (_pop) delete _pop;
 

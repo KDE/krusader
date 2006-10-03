@@ -92,7 +92,7 @@ public:
 	QuickNavLineEdit(const QString &string, QWidget *parent, const char *name=0);
  	QuickNavLineEdit(QWidget *parent=0, const char *name=0);
  	virtual ~QuickNavLineEdit() {}
- 	
+	static int findCharFromPos(const QString &, const QFontMetrics &, int pos);
 protected:
 	void mouseMoveEvent( QMouseEvent *m);
 	void leaveEvent( QEvent * );
