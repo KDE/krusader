@@ -196,7 +196,7 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	
 	// see if the open url operation failed, and if so, 
 	// put the attempted url in the origin bar and let the user change it
-	if (!urlIn.equals(vfsP->vfs_getOrigin(), true)) {
+	if (!url.equals(vfsP->vfs_getOrigin(), true)) {
 		panel->origin->setURL(urlIn.prettyURL());
 		panel->origin->setFocus();
 	}
