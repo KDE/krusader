@@ -139,8 +139,12 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	}
 
 	vfs* v = 0;
+	bool validRefresh=false;
 	if ( !urlStack.top().equals( url ) )
 		urlStack.push( url );
+	// count home many urls is in the stack, so later on, we'll know if the refresh was a success
+	uint stackSize = urlStack.size();
+	bool refreshFailed = true; // assume the worst
 	while ( true ) {
 		KURL u = urlStack.pop();
 		//u.adjustPath(-1); // remove trailing "/"
@@ -171,6 +175,11 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	}
 	vfsP->vfs_setQuiet( false );
 
+	// if we popped exactly 1 url from the stack, it means the url we were
+	// given was refreshed successfully.
+	if (stackSize == urlStack.size() + 1)
+		refreshFailed = false;
+
 	// update the urls stack
 	if ( !files() ->vfs_getOrigin().equals( urlStack.top() ) ) {
 		urlStack.push( files() ->vfs_getOrigin() );
@@ -196,7 +205,7 @@ void ListPanelFunc::immediateOpenUrl( const KURL& urlIn ) {
 	
 	// see if the open url operation failed, and if so, 
 	// put the attempted url in the origin bar and let the user change it
-	if (!url.equals(vfsP->vfs_getOrigin(), true)) {
+	if (refreshFailed) {
 		panel->origin->setURL(urlIn.prettyURL());
 		panel->origin->setFocus();
 	}
