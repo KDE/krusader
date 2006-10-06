@@ -92,6 +92,9 @@ KrDetailedView::KrDetailedView( QWidget *parent, bool &left, KConfig *cfg, const
       pressedItem( 0 ) {
 	setWidget( this );
 	_nameInKConfig=QString( "KrDetailedView" ) + QString( ( left ? "Left" : "Right" ) ) ;
+	krConfig->setGroup("Private");
+	if (krConfig->readBoolEntry("Enable Input Method", true))
+		setInputMethodEnabled(true);
 }
 
 void KrDetailedView::setup() {
@@ -815,6 +818,49 @@ void KrDetailedView::contentsDragMoveEvent( QDragMoveEvent * e ) {
      _currDragItem = 0;
    
    KListView::contentsDragMoveEvent( e );
+}
+
+void KrDetailedView::imStartEvent(QIMEvent* e)
+{
+  if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+    ACTIVE_PANEL->quickSearch->myIMStartEvent( e );
+    return ;
+  }else {
+    KConfigGroupSaver grpSvr( _config, "Look&Feel" );
+    if ( !_config->readBoolEntry( "New Style Quicksearch", _NewStyleQuicksearch ) )
+      KListView::imStartEvent( e );
+    else {
+							// first, show the quicksearch if its hidden
+      if ( ACTIVE_PANEL->quickSearch->isHidden() ) {
+        ACTIVE_PANEL->quickSearch->show();
+								// hack: if the pressed key requires a scroll down, the selected
+								// item is "below" the quick search window, as the list view will
+								// realize its new size after the key processing. The following line
+								// will resize the list view immediately.
+        ACTIVE_PANEL->layout->activate();
+								// second, we need to disable the dirup action - hack!
+        krDirUp->setEnabled( false );
+      }
+							// now, send the key to the quicksearch
+      ACTIVE_PANEL->quickSearch->myIMStartEvent( e );
+    }
+  }
+}
+
+void KrDetailedView::imEndEvent(QIMEvent* e)
+{
+  if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+    ACTIVE_PANEL->quickSearch->myIMEndEvent( e );
+    return ;
+  }
+}
+
+void KrDetailedView::imComposeEvent(QIMEvent* e)
+{
+  if ( ACTIVE_PANEL->quickSearch->isShown() ) {
+    ACTIVE_PANEL->quickSearch->myIMComposeEvent( e );
+    return ;
+  }
 }
 
 // TODO: for brief mode, move as much of this as possible to the viewOperator

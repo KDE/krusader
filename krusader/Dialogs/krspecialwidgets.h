@@ -106,6 +106,15 @@ class KrQuickSearch: public KLineEdit {
       KrQuickSearch(QWidget *parent, const char * name = 0);
       void addText(const QString &str) { setText(text()+str); }
       void myKeyPressEvent(QKeyEvent *e);
+      void myIMStartEvent(QIMEvent* e) {
+        imStartEvent(e);
+      }
+      void myIMEndEvent(QIMEvent* e) {
+        imEndEvent(e);
+      }
+      void myIMComposeEvent(QIMEvent* e) {
+        imComposeEvent(e);
+      }
 
    signals:
       void stop(QKeyEvent *e);

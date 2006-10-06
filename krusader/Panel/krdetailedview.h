@@ -112,6 +112,9 @@ protected:
    void selectColumns();
    
    virtual void keyPressEvent( QKeyEvent *e );
+   virtual void imStartEvent( QIMEvent* e );
+   virtual void imEndEvent( QIMEvent *e );
+   virtual void imComposeEvent( QIMEvent *e );
    virtual void contentsMousePressEvent( QMouseEvent *e );
    virtual void contentsMouseReleaseEvent (QMouseEvent *e);
    virtual void contentsMouseMoveEvent ( QMouseEvent * e );
