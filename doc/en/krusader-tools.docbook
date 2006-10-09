@@ -1891,17 +1891,18 @@
 <!-- Thanks to Jonas Bar -->
 
 <para>
-  With the User-Action-system the user can make his own actions on files in the
+  With ActionMan you can set up, configure and manage your UserActions, some general settings
+  are configured with <link linkend="konfig-useractions">Konfigurator</link>.
+  With the UserActions the user can make his own actions on files in the
   panel or to access krusader-internal functions with parameter directly using placeholder(s).
   The actions integrate seamlessly into &kde;'s action-system, so the standard
-  edit-toolbar/shortcut-dialogs will show/manipulate the User-Actions too.
-  The User-Actions are stored in <filename>~/.kde/share/apps/krusader/useraction.xml</filename>
+  edit-toolbar/shortcut-dialogs will show/manipulate the UserActions too.
+  The UserActions are stored in <filename>~/.kde/share/apps/krusader/useraction.xml</filename>
   (the file-structure is documentated in doxygen-headers of UserActionXML).
   Several <link linkend="useraction_xml">examples</link> are included in the documentation.
-  User-Actions can be edit/add/im-/export using by using the 
-  <link linkend="konfig-useractions">Useractions manager</link> a Konfigurator-module,
-  although we plan to move all action-related to a new ActionMan.
-  User-Actions can appear nearly everywhere where "normal" KActions can be placed. 
+  UserActions can be edit/add/im-/export using by using ActionMan.
+  The default UserActions are stored in <filename>~/.kde/share/apps/krusader/useraction_examples.xml</filename>.
+  UserActions can appear nearly everywhere where "normal" KActions can be placed. 
   They integrate seamless in the well knows Edit-(Toolbar,Shortcut) Dialogs from &kde;.
   It's even possible to place them in the menubar, but for that one has to
   manipulate the <filename>krusaderui.rc</filename> file with an editor.
@@ -1918,8 +1919,8 @@
       <listitem><para>&etc;
                 </para></listitem>
   </itemizedlist>
-  Once you understand how to write User-Actions you will find out that &krusader; has a very powerful,
-  customizable User-Actions tool.
+  Once you understand how to write UserActions you will find out that &krusader; has a very powerful,
+  customizable UserActions tool.
 </para>
 
 <tip><para>
@@ -1930,8 +1931,8 @@
 </para></tip>
 
 <para>
-Basically User-Actions are a method to call external programs with variable parameters.
-You could for example have a useraction with the following
+Basically UserActions are a method to call external programs with variable parameters.
+You could for example have a UserAction with the following
 <command>xmms <option>--enqueue %aList("Selected")%</option></command> to enqueue
 all selected items of the active panel to the current instance of xmms.
 In addition to that, there is limited access to krusader-internal functions
@@ -1941,21 +1942,21 @@ Since the parameter of placeholders can itself contain other placeholders,
 little scripts are possible but real scripting can be done with the &javascript_console_lnk;.
 </para>
 
-<para><emphasis role="bold">Managing User-Actions</emphasis></para>
-<para>Open Konfigurator and choose "User-Actions", here you can add/edit/remove/import/export User-Actions.
+<para><emphasis role="bold">Managing UserActions</emphasis></para>
+<para>Open Konfigurator and choose "User-Actions -> ActionMan", here you can add/edit/remove/import/export UserActions.
   <itemizedlist>
       <listitem><para><guimenuitem>Add Action</guimenuitem>:
                If you add an new action, you get an empty input-mask where you can
                enter all the properties. The action will be added as soon as you press 
                <guimenuitem>Ok</guimenuitem>. Now the name is shown in the list on the left.
                       </para></listitem>
-     <listitem><para>To edit a User-Action:
-               select the User-Action on the left.
+     <listitem><para>To edit a UserAction:
+               select the UserAction on the left.
                Now you can choose it if you want to edit the properties, 
                the changes will only take effect when you press <guimenuitem>Ok</guimenuitem>.
                       </para></listitem>
      <listitem><para><guimenuitem>Remove Action</guimenuitem>:
-               Select the User-Action on the left and click the remove button.
+               Select the UserAction on the left and click the remove button.
                       </para></listitem>
      <listitem><para><guimenuitem>Import Action</guimenuitem>:
                If you import some actions they will be automatically added to your list.
@@ -1965,8 +1966,8 @@ little scripts are possible but real scripting can be done with the &javascript_
                You now can give them new names or remove them.
                      </para></listitem>
      <listitem><para><guimenuitem>Export Action</guimenuitem>:
-                If you export a User-Action you have to give a filename in which to store it.
-                If it does not exist it will be created. If it contains already some User-Actions,
+                If you export a UserAction you have to give a filename in which to store it.
+                If it does not exist it will be created. If it contains already some UserActions,
                 the action you're exporting will be added to that file.
                     </para></listitem>
    </itemizedlist>
@@ -1981,21 +1982,21 @@ little scripts are possible but real scripting can be done with the &javascript_
                    all the other properties are optional.
     <itemizedlist>
     <listitem><para><guimenuitem>"Distinct Name"</guimenuitem>: 
-                     a unique name of the User-Action, used to identiy it for &kde;'s action-system.
+                     a unique name of the UserAction, used to identiy it for &kde;'s action-system.
                     </para></listitem>
-    <listitem><para><guimenuitem>"Icon button"</guimenuitem>: the icon for your User-Action.
+    <listitem><para><guimenuitem>"Icon button"</guimenuitem>: the icon for your UserAction.
                     </para></listitem>
     <listitem><para><guimenuitem>"Category"</guimenuitem>: adds an category for an better overview.
                     NOTE: this property is not used yet. It is planed to be used, but this is not implemented yet.
                     </para></listitem>
     <listitem><para><guimenuitem>"Title"</guimenuitem>: the title displayed in the menus/dialogs.
                     </para></listitem>
-    <listitem><para><guimenuitem>"Tooltip"</guimenuitem>: a tooltip for your User-Action, &eg; 
+    <listitem><para><guimenuitem>"Tooltip"</guimenuitem>: a tooltip for your UserAction, &eg; 
                                  displayed in the toolbar on mouseover.
                     </para></listitem>
-    <listitem><para><guimenuitem>"Description"</guimenuitem>: a description of what the User-Action is doing.
+    <listitem><para><guimenuitem>"Description"</guimenuitem>: a description of what the UserAction is doing.
                     This is also displayed as <guimenuitem>"What's This"</guimenuitem> if you
-        <keycombo action="simul">&Shift;<keycap>F1</keycap></keycombo> click on your User-Action.
+        <keycombo action="simul">&Shift;<keycap>F1</keycap></keycombo> click on your UserAction.
                     </para></listitem>
     <listitem><para><guimenuitem>"Use Tooltip checkbox"</guimenuitem>: uses the tooltip as description.
                     </para></listitem>
@@ -2039,7 +2040,7 @@ little scripts are possible but real scripting can be done with the &javascript_
          </itemizedlist>
       </listitem> -->
       
-      <listitem><para><guimenuitem>"Shortcut button"</guimenuitem>: configures a shortcut for the User-Action.</para></listitem>
+      <listitem><para><guimenuitem>"Shortcut button"</guimenuitem>: configures a shortcut for the UserAction.</para></listitem>
     </itemizedlist>
 </para>
 

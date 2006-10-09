@@ -1,20 +1,43 @@
-The Krusader Handbook ChangeLog
+﻿The Krusader Handbook ChangeLog
 -------------------------------
 
   ...
+  TODO: Experimental input method support in quick search (patch by Jiri Palecek)
+  TODO: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
+           (thanks to Vaclav Juza)
+  TODO: Ctrl+Up from panel focuses the origin editbox, Ctrl+Down from origin
+           editbox focuses the panel (thanks to Vaclav Juza)
+  TODO: TerminalEmulator: Ctrl+Shift+Up/Down always focus/unfocus TE
+           independently whether the command line is shown or not
+  TODO: TerminalEmulator: if the command line is hidden,
+           TE receives Ctrl+Up / Ctrl+Down (thanks to Vaclav Juza)
+  TODO: synchronizer: double click on a file calls the diff utility (kompare)
+
+    
   TODO: atomic extensions (see CVSNEWS)
   TODO: archive packing / unpacking are now in the background
-  TODO: renaming of just the filename, without extension
+  ADDED: renaming of just the filename, without extension
   TODO: full screen terminal window (mc-style)
-  TODO: ActionMan for useraction configuration
-  TODO: single instance mode
-  TODO: start to system tray
-  TODO: right click menu for bookmarks
-  TODO: enable/disable special bookmarks by right clicking on them
+
+  ADDED: ActionMan for useraction configuration
+  ADDED: single instance mode (Konfigurator Startup)
+  ADDED: start to system tray (Konfigurator Startup)
+  ADDED: right click menu for bookmarks (context menu)
+  ADDED: enable/disable special bookmarks by right clicking on them
+  
+  
   TODO: keeping the directory structures for virt folders at copy/move
   TODO: synchronizer, parallel threads for slow FTP servers
-  TODO: an option for directories to be always sorted by name
 
+  TODO: Better quick navigation: first move mouse over subdir, then
+           press ctrl + left mouse button (patch by Jiri Palecek)
+  TODO: Better subdir calculation on quick navigation
+  TODO: Renamed 'mark' to 'select' in konfigurator, colors panel
+  TODO: Heavily extended and reordered menubar (honouring the KDE HIG where
+           possible). All available actions are connected to the menus now.
+  TODO: Shortcut- and Toolbardialogs are removed from Konfigurator 
+  
+  ADDED: an option for directories to be always sorted by name (Konfigurator L&F)
   ADDED: glossary.docbook
   ADDED: FAQ: Why "save last location" doesn't work?
   ADDED: Inactive panel color dimming
@@ -25,7 +48,9 @@ The Krusader Handbook ChangeLog
   ADDED: Profiles chapter
   ADDED: Media button, Ctrl+M, Ctrl+Shift+Left, Ctrl+Shift+Right
 
-
+UPDATED: UserActions are now managed with ActionMan. In Konfigurator
+         you can change settings _about_ useractions.
+UPDATED: Shortcuts are now exported in as plaintext, legacy import still works.
 UPDATED: Konfigurator 
 UPDATED: Konfigurator: MouseMode got now it's own Tab in Look&Feel
 UPDATED: Bookman and passwords

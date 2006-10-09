@@ -160,7 +160,7 @@ HTML_PARSING-->
 
   <listitem><para><guilabel>Rename selects extension</guilabel>: 
                   When renaming a file, the whole text is selected. If you want total-commander 
-                  like renaming of just the name, without extension, unmark this.
+                  like renaming of just the name, without extension, unmark this item.
                    </para></listitem>
 
  <listitem><para><guilabel>Use fullpath tab names</guilabel>: 
@@ -256,7 +256,7 @@ HTML_PARSING-->
                   </para></listitem>
 
   <listitem><para><guilabel>Always sort dirs by name</guilabel>: 
-                   Directories are sorted by name, regardless of the sort column..
+                   Directories are sorted by name, regardless of the sort column.
                    </para></listitem> 
 
  <listitem><para><guilabel>Numeric permissions</guilabel>: 
@@ -371,7 +371,9 @@ HTML_PARSING-->
       be changed yet, as well as some features in foo-commander that we either don't have or don't need.
       The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
       <filename>foo.keymap.info</filename> contains a description,
-      <filename>foo.keymap</filename> is a binary file that holds the Key-bindings.
+      <filename>foo.keymap</filename> is a ini file that holds the Key-bindings.
+      Until &krusader;-1.70.0 this was a binary file, &krusader; is backwards compatible 
+      for importing this legacy binary format.
       If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it,
       showing additional information regarding the loaded Key-bindings file.
       Here you have a chance to exit without importing the proposed Key-bindings file.
@@ -893,15 +895,9 @@ making the cooperation almost impossible.
 <sect1 id="konfig-useractions">
 <title>User Actions</title>
 
-<para>Here you can configure settings about useractions.
-      To set up, configure and manage your useractions please use ActionMan (&useractions_lnk; url).
-</para>
-
-<para>Terminal for UserActions configuration, the default is <filename>konsole --noclose -e</filename>.
-</para>
-
-
-<para>Output collection font configuration.
+<para>Here you can configure the Terminal for UserActions and the font for the output-collection.
+      The default terminal is <filename>konsole --noclose -e</filename>
+      To set up, configure and manage your UserActions use ActionMan (&useractions_lnk; url).
 </para>
 
 

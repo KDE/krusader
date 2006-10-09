@@ -924,9 +924,15 @@ foo</screen>
       The file-structure is documented in doxygen-headers of UserActionXML.</para>
 <para>Location: <filename>~/.kde/share/apps/krusader/useractions.xml</filename></para>
 
+<para><emphasis role="bold">useraction_examples.xml</emphasis></para>
+<para>The default User-Actions provided by us. 
+      The file-structure is documented in doxygen-headers of UserActionXML.</para>
+<para>Location: <filename>$KDEDIR/share/apps/krusader/useraction_examples.xml</filename></para>
 
 <para><emphasis role="bold">foo.keymap</emphasis></para>
-<para>Is a binary file that holds a <link linkend="konfig-looknfeel-keybindings">Key-binding profile</link>.</para>
+<para>Is a ini file that holds a <link linkend="konfig-looknfeel-keybindings">Key-binding profile</link>.
+      Until &krusader;-1.70.0 this was a binary file, &krusader; is backwards compatible 
+      for importing this legacy binary format.</para>
 <para>Location: <filename>$KDEDIR/share/apps/krusader/foo.keymap</filename></para>
 
 
