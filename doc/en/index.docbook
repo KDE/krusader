@@ -332,6 +332,7 @@ Previous used Docbook
 
 <!-- each chapter is in a separate docbook file -->
   <!ENTITY introduction SYSTEM "introduction.docbook">
+  <!ENTITY features SYSTEM "features.docbook">
   <!ENTITY using-krusader SYSTEM "using-krusader.docbook">
   <!ENTITY commands SYSTEM "commands.docbook">
   <!ENTITY konfigurator SYSTEM "konfigurator.docbook">
@@ -339,7 +340,7 @@ Previous used Docbook
   <!ENTITY faq SYSTEM "faq.docbook">
   <!ENTITY credits SYSTEM "credits.docbook">
   <!ENTITY installation SYSTEM "installation.docbook">
-  <!ENTITY kru-glossary SYSTEM "glossary.docbook">
+  <!ENTITY glossary SYSTEM "glossary.docbook">
 ]>
 
 <book lang="&language;">
@@ -668,6 +669,7 @@ or the &onlinehandbook_url;.
 </preface>
 
   &introduction;
+  &features;
   &using-krusader;
   &commands;
   &krusader-tools;
@@ -675,7 +677,7 @@ or the &onlinehandbook_url;.
   &faq;
   &credits;
   &installation;
-  &kru-glossary;
+  &glossary;
   &documentation.index;
 
 </book>

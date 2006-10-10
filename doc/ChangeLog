@@ -1,7 +1,12 @@
-﻿The Krusader Handbook ChangeLog
+The Krusader Handbook ChangeLog
 -------------------------------
 
-  ...
+  TODO: make the Synchronizer chapter more readable and more undertandable
+  TODO: complete Keyboard Usage page 
+  TODO: create more docbook files and improve the chapter/index structure
+  TODO: complete the glossary
+  TODO: complete the Mouse Gestures
+
   TODO: Experimental input method support in quick search (patch by Jiri Palecek)
   TODO: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
            (thanks to Vaclav Juza)
@@ -13,7 +18,7 @@
            TE receives Ctrl+Up / Ctrl+Down (thanks to Vaclav Juza)
   TODO: synchronizer: double click on a file calls the diff utility (kompare)
 
-    
+
   TODO: atomic extensions (see CVSNEWS)
   TODO: archive packing / unpacking are now in the background
   ADDED: renaming of just the filename, without extension
@@ -24,8 +29,8 @@
   ADDED: start to system tray (Konfigurator Startup)
   ADDED: right click menu for bookmarks (context menu)
   ADDED: enable/disable special bookmarks by right clicking on them
-  
-  
+
+ 
   TODO: keeping the directory structures for virt folders at copy/move
   TODO: synchronizer, parallel threads for slow FTP servers
 
@@ -36,8 +41,9 @@
   TODO: Heavily extended and reordered menubar (honouring the KDE HIG where
            possible). All available actions are connected to the menus now.
   TODO: Shortcut- and Toolbardialogs are removed from Konfigurator 
-  
+
   ADDED: an option for directories to be always sorted by name (Konfigurator L&F)
+  ADDED: features.docbook (features was originally part of introduction.docbook)
   ADDED: glossary.docbook
   ADDED: FAQ: Why "save last location" doesn't work?
   ADDED: Inactive panel color dimming
@@ -65,7 +71,7 @@ UPDATED: Archives
 UPDATED: Features list rewritten to make it more clear
 
 1.70.0 "Round Robin"
-==========================
+====================
 Date: 2006-01-23
 
   ADDED: Help: Upload your extensions/plugins at kde.files.org
