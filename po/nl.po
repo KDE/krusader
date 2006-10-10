@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
-"POT-Creation-Date: 2006-09-15 14:48+0200\n"
+"POT-Creation-Date: 2006-10-10 23:09+0200\n"
 "PO-Revision-Date: 2006-08-04 22:03+0200\n"
 "Last-Translator: Frank Schoolmeesters <frank_schoolmeesters@yahoo.com>\n"
 "Language-Team: Nederlands <krusader-i18n@googlegroups.com>\n"
@@ -312,22 +312,19 @@ msgstr ""
 "%1"
 
 #: VFS/arc_vfs.cpp:217
-msgid "Can't Read "
-msgstr "Kan niet lezen "
-
-#: VFS/arc_vfs.cpp:219
-msgid " Archive might be corrupted !"
+#, fuzzy
+msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
 msgstr " Het archief is mogelijk beschadigd !"
 
-#: VFS/arc_vfs.cpp:323 VFS/arc_vfs.cpp:580
+#: VFS/arc_vfs.cpp:322 VFS/arc_vfs.cpp:579
 msgid "Deleting Files..."
 msgstr "Bestanden wissen..."
 
-#: VFS/arc_vfs.cpp:397
+#: VFS/arc_vfs.cpp:396
 msgid "Unpacking Files"
 msgstr "Bestanden uitpakken"
 
-#: VFS/arc_vfs.cpp:604
+#: VFS/arc_vfs.cpp:603
 msgid "Repacking..."
 msgstr "Herinpakken..."
 
@@ -335,8 +332,8 @@ msgstr "Herinpakken..."
 msgid "Directory %1 does not exist!"
 msgstr "Map %1 bestaat niet!"
 
-#: BookMan/krbookmarkhandler.cpp:172 Konfigurator/kgcolors.cpp:546
-#: Konfigurator/kgcolors.cpp:563 MountMan/kmountman.cpp:197
+#: BookMan/krbookmarkhandler.cpp:172 Konfigurator/kgcolors.cpp:508
+#: Konfigurator/kgcolors.cpp:525 MountMan/kmountman.cpp:197
 #: Synchronizer/synchronizerdirlist.cpp:92 VFS/krarchandler.cpp:208
 #: VFS/krarchandler.cpp:265 VFS/krarchandler.cpp:282 VFS/krarchandler.cpp:343
 #: VFS/krarchandler.cpp:512 VFS/krarchandler.cpp:519 VFS/normal_vfs.cpp:80
@@ -547,7 +544,7 @@ msgstr "&Toevoegen"
 msgid "&Load"
 msgstr "&Laden"
 
-#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:793
+#: Filter/generalfilter.cpp:134 Panel/panelfunc.cpp:807
 msgid "&Overwrite"
 msgstr "&Overschrijven"
 
@@ -603,8 +600,8 @@ msgstr "Geen zoekcriteria ingevoerd!"
 msgid "Please specify a location to search in."
 msgstr "Een zoeklocatie invoeren a.u.b."
 
-#: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:103
-#: Panel/krdetailedview.cpp:1351 Search/krsearchdialog.cpp:149
+#: Filter/advancedfilter.cpp:59 Panel/krdetailedview.cpp:106
+#: Panel/krdetailedview.cpp:1401 Search/krsearchdialog.cpp:149
 #: Synchronizer/synchronizergui.cpp:1255 Synchronizer/synchronizergui.cpp:1259
 msgid "Size"
 msgstr "Grootte"
@@ -1041,7 +1038,7 @@ msgstr "Overschrijven of samenvoegen?"
 
 #: ActionMan/useractionpage.cpp:248 ActionMan/useractionpage.cpp:257
 #: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
-#: Konfigurator/kgcolors.cpp:561 UserAction/kraction.cpp:139
+#: Konfigurator/kgcolors.cpp:523 UserAction/kraction.cpp:139
 msgid "Overwrite"
 msgstr "Overschrijven"
 
@@ -1262,43 +1259,43 @@ msgstr "Bezig met lezen: "
 
 #: DiskUsage/dulines.cpp:238 DiskUsage/dulistview.cpp:56
 #: Konfigurator/krresulttable.cpp:129 MountMan/kmountmangui.cpp:127
-#: Panel/krdetailedview.cpp:100 Search/krsearchdialog.cpp:147
+#: Panel/krdetailedview.cpp:103 Search/krsearchdialog.cpp:147
 #: Synchronizer/synchronizergui.cpp:1254 Synchronizer/synchronizergui.cpp:1260
 msgid "Name"
 msgstr "Naam"
 
-#: Panel/krdetailedview.cpp:101 Panel/krdetailedview.cpp:1345
+#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1395
 msgid "Ext"
 msgstr "Ext"
 
 #: DiskUsage/dulistview.cpp:68 MountMan/kmountmangui.cpp:128
-#: Panel/krdetailedview.cpp:102 Panel/krdetailedview.cpp:1348
+#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1398
 msgid "Type"
 msgstr "Type"
 
-#: Panel/krdetailedview.cpp:104 Panel/krdetailedview.cpp:1354
+#: Panel/krdetailedview.cpp:107 Panel/krdetailedview.cpp:1404
 msgid "Modified"
 msgstr "Gewijzigd"
 
-#: Panel/krdetailedview.cpp:105 Panel/krdetailedview.cpp:1357
+#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1407
 msgid "Perms"
 msgstr "Permis"
 
-#: Panel/krdetailedview.cpp:106 Panel/krdetailedview.cpp:1360
+#: Panel/krdetailedview.cpp:109 Panel/krdetailedview.cpp:1410
 msgid "rwx"
 msgstr "rwx"
 
-#: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:107
-#: Panel/krdetailedview.cpp:1363
+#: DiskUsage/dulistview.cpp:77 Panel/krdetailedview.cpp:110
+#: Panel/krdetailedview.cpp:1413
 msgid "Owner"
 msgstr "Eigenaar"
 
 #: DiskUsage/dulistview.cpp:80 Konfigurator/krresulttable.cpp:281
-#: Panel/krdetailedview.cpp:108 Panel/krdetailedview.cpp:1366
+#: Panel/krdetailedview.cpp:111 Panel/krdetailedview.cpp:1416
 msgid "Group"
 msgstr "Groep"
 
-#: Panel/krdetailedview.cpp:1332
+#: Panel/krdetailedview.cpp:1382
 msgid "Columns"
 msgstr "Kolommen"
 
@@ -1490,8 +1487,8 @@ msgid "Move to Trash"
 msgstr "Naar prullenbak verplaatsen"
 
 #: BookMan/krbookmarkhandler.cpp:541 Dialogs/krmaskchoice.cpp:110
-#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:759
-#: Konfigurator/kgcolors.cpp:501 Panel/krpopupmenu.cpp:145 krusader.cpp:695
+#: Dialogs/kurllistrequester.cpp:149 DiskUsage/diskusage.cpp:758
+#: Konfigurator/kgcolors.cpp:474 Panel/krpopupmenu.cpp:145 krusader.cpp:695
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -1568,79 +1565,82 @@ msgstr " ? Eenmaal vernietigd (shred), is het bestand voor altijd verloren !!!"
 msgid "Can't open \"%1\""
 msgstr "Kan niet openen "
 
-#: Panel/panelfunc.cpp:247
+#: Panel/panelfunc.cpp:264
 msgid "You can edit links only on local file systems"
 msgstr "Je kan enkel links bewerken op lokale bestandsystemen"
 
-#: Panel/panelfunc.cpp:258
+#: Panel/panelfunc.cpp:275
 msgid "The current file is not a link, so I can't redirect it."
 msgstr "Het huidig bestand is geen link, zodat ik het niet kan omleiden."
 
-#: Panel/panelfunc.cpp:265
+#: Panel/panelfunc.cpp:282
 msgid "Link Redirection"
 msgstr "Koppeling Omleiding"
 
-#: Panel/panelfunc.cpp:266
+#: Panel/panelfunc.cpp:283
 msgid "Please enter the new link destination:"
 msgstr "Voer a.u.b. de nieuwe koppeling bestemming in:"
 
-#: Panel/panelfunc.cpp:273
+#: Panel/panelfunc.cpp:290
 msgid "Can't remove old link: "
 msgstr "Kan de oude koppeling niet verwijderen: "
 
-#: Panel/panelfunc.cpp:278 Panel/panelfunc.cpp:318
+#: Panel/panelfunc.cpp:295 Panel/panelfunc.cpp:335
 msgid "Failed to create a new link: "
 msgstr "Aanmaken van nieuwe koppeling is mislukt: "
 
-#: Panel/panelfunc.cpp:285
+#: Panel/panelfunc.cpp:302
 msgid "You can create links only on local file systems"
 msgstr "Je kan enkel koppelingen aanmaken op lokale bestandsystemen"
 
-#: Panel/panelfunc.cpp:294
+#: Panel/panelfunc.cpp:311
 msgid "New link"
 msgstr "Nieuwe koppeling"
 
-#: Panel/panelfunc.cpp:294
+#: Panel/panelfunc.cpp:311
 msgid "Create a new link to: "
 msgstr "Een nieuwe koppeling maken naar: "
 
-#: Panel/panelfunc.cpp:302 Panel/panelfunc.cpp:488
+#: Panel/panelfunc.cpp:319 Panel/panelfunc.cpp:505
 msgid "A directory or a file with this name already exists."
 msgstr "Een directory of bestand met deze naam bestaat reeds."
 
-#: Panel/panelfunc.cpp:314
+#: Panel/panelfunc.cpp:331
 msgid "Failed to create a new symlink: "
 msgstr "Aanmaken van nieuwe symbolische koppeling is mislukt:"
 
-#: Panel/panelfunc.cpp:315 Panel/panelfunc.cpp:319
+#: Panel/panelfunc.cpp:332 Panel/panelfunc.cpp:336
 msgid " To: "
 msgstr " Naar: "
 
-#: Panel/panelfunc.cpp:333
+#: Panel/panelfunc.cpp:350
 msgid "No permissions to view this file."
 msgstr "Geen toegangsrechten om dit bestand te bekijken."
 
-#: KViewer/krviewer.cpp:222 Panel/panelfunc.cpp:357 krslots.cpp:465
-msgid "Can't open "
-msgstr "Kan niet openen "
+#: Panel/panelfunc.cpp:374
+#, fuzzy
+msgid "<qt>Can't open <b>%1</b></qt>"
+msgstr ""
+"Kan %1 niet wegschrijven!\n"
+"Niets geëxporteerd."
 
-#: Panel/panelfunc.cpp:368
+#: Panel/panelfunc.cpp:385
 msgid "You can't edit a directory"
 msgstr "Je kan geen map bewerken"
 
-#: Panel/panelfunc.cpp:373
+#: Panel/panelfunc.cpp:390
 msgid "No permissions to edit this file."
 msgstr "Geen toegangsrechten om dit bestand te bewerken."
 
-#: Panel/panelfunc.cpp:393
+#: Panel/panelfunc.cpp:410
 msgid "Moving into archive is disabled"
 msgstr "Verplaatsen naar een archief is uitgeschakeld"
 
-#: Panel/panelfunc.cpp:403
+#: Panel/panelfunc.cpp:420
 msgid "Move %1 to:"
 msgstr "Verplaats %1 naar:"
 
-#: Panel/panelfunc.cpp:405
+#: Panel/panelfunc.cpp:422
 #, c-format
 msgid ""
 "_n: Move %n file to:\n"
@@ -1649,23 +1649,23 @@ msgstr ""
 "_n: Verplaats %n bestand naar:\n"
 "%n bestanden verplaatsen naar:"
 
-#: Panel/panelfunc.cpp:449
+#: Panel/panelfunc.cpp:466
 msgid "You can't move files to this file system"
 msgstr "Je kan geen bestanden verplaatsen naar dit bestandssysteem"
 
-#: Panel/panelfunc.cpp:475
+#: Panel/panelfunc.cpp:492
 msgid "New directory"
 msgstr "Nieuwe map"
 
-#: Panel/panelfunc.cpp:475
+#: Panel/panelfunc.cpp:492
 msgid "Directory's name:"
 msgstr "Mapnaam:"
 
-#: Panel/panelfunc.cpp:558
+#: Panel/panelfunc.cpp:575
 msgid "Copy %1 to:"
 msgstr "Kopieer %1 naar:"
 
-#: Panel/panelfunc.cpp:560
+#: Panel/panelfunc.cpp:577
 #, c-format
 msgid ""
 "_n: Copy %n file to:\n"
@@ -1674,15 +1674,15 @@ msgstr ""
 "_n: Kopieër %n bestand naar:\n"
 "%n bestanden kopiëren naar:"
 
-#: Panel/panelfunc.cpp:596
+#: Panel/panelfunc.cpp:613
 msgid "You can't copy files to this file system"
 msgstr "Je kan geen bestanden kopiëren naar dit bestandssysteem"
 
-#: Panel/panelfunc.cpp:607
+#: Panel/panelfunc.cpp:624
 msgid "You do not have write permission to this directory"
 msgstr "U heeft geen schrijfrechten in deze directory"
 
-#: Panel/panelfunc.cpp:625
+#: Panel/panelfunc.cpp:642
 #, c-format
 msgid ""
 "_n: Do you really want to move this item to the trash?\n"
@@ -1691,11 +1691,11 @@ msgstr ""
 "_n: Bent u er zeker van dat u dit item naar de prullenbak wilt verplaatsen?\n"
 "Bent u er zeker van dat u %n items naar de prullenbak wilt verplaatsen?"
 
-#: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:626
+#: DiskUsage/diskusage.cpp:598 Panel/panelfunc.cpp:643
 msgid "&Trash"
 msgstr "&Prullenbak"
 
-#: Panel/panelfunc.cpp:628
+#: Panel/panelfunc.cpp:645
 msgid ""
 "_n: Do you really want to delete this virtual item (physical files stay "
 "untouched)?\n"
@@ -1708,12 +1708,12 @@ msgstr ""
 "bestanden blijven overanderd)?"
 
 #: DiskUsage/diskusage.cpp:601 DiskUsage/radialMap/widgetEvents.cpp:172
-#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:629
-#: Panel/panelfunc.cpp:632 Panel/panelfunc.cpp:635
+#: DiskUsage/radialMap/widgetEvents.cpp:194 Panel/panelfunc.cpp:646
+#: Panel/panelfunc.cpp:649 Panel/panelfunc.cpp:652
 msgid "&Delete"
 msgstr "&Verwijderen"
 
-#: Panel/panelfunc.cpp:631
+#: Panel/panelfunc.cpp:648
 #, c-format
 msgid ""
 "_n: <qt>Do you really want to delete this item <b>physically</b> (not just "
@@ -1726,7 +1726,7 @@ msgstr ""
 "<qt>Bent u er zeker van dat u deze %n items <b>fysiek</b> wil verwijdreren "
 "(dus niet alleen de virtuele items verwijderen)?</qt>"
 
-#: Panel/panelfunc.cpp:634
+#: Panel/panelfunc.cpp:651
 #, c-format
 msgid ""
 "_n: Do you really want to delete this item?\n"
@@ -1736,77 +1736,77 @@ msgstr ""
 "Bent u er zeker van dat u deze %n items wilt verwijderen?"
 
 #: Dialogs/checksumdlg.cpp:545 Dialogs/krkeydialog.cpp:135
-#: DiskUsage/diskusage.cpp:609 Konfigurator/kgcolors.cpp:561
-#: Panel/panelfunc.cpp:641
+#: DiskUsage/diskusage.cpp:608 Konfigurator/kgcolors.cpp:523
+#: Panel/panelfunc.cpp:658
 msgid "Warning"
 msgstr "Waarschuwing"
 
-#: Panel/panelfunc.cpp:659
-msgid "Directory "
-msgstr "Map "
-
-#: Panel/panelfunc.cpp:659
+#: Panel/panelfunc.cpp:676
+#, fuzzy
 msgid ""
-" is not empty!\n"
-"Skip this one or Delete All?"
+"<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
+"p></qt>"
 msgstr ""
 " is niet leeg !\n"
 "Deze Overslaan of Alles Verwijderen ?"
 
-#: Panel/panelfunc.cpp:660
+#: Panel/panelfunc.cpp:677
 msgid "&Skip"
 msgstr "&Overslaan"
 
-#: Panel/panelfunc.cpp:660
+#: Panel/panelfunc.cpp:677
 msgid "&Delete All"
 msgstr "Alles &Verwijderen"
 
-#: Panel/panelfunc.cpp:774
+#: Panel/panelfunc.cpp:791
 msgid "Cannot pack files onto a virtual destination!"
 msgstr "Kan geen bestanden inpakken in een virtuele bestemmig!"
 
-#: Panel/panelfunc.cpp:786
-msgid "The Archive "
-msgstr "Het archief "
-
-#: Panel/panelfunc.cpp:787
-msgid " already exists. Do you want to overwrite the archive ?\n"
-msgstr " bestaat reeds, wilt u het archief overschrijven ?\n"
-
-#: Panel/panelfunc.cpp:789
+#: Panel/panelfunc.cpp:803
+#, fuzzy
 msgid ""
-"(ZIP will replace identically named entries in the zip archive or add "
-"entries for new names)"
+"<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
+"</p><p>All data in the previous archive will be lost!</p></qt>"
+msgstr ""
+"Bestand %1 bestaat reeds.\n"
+"Bent u er zeker van dat u het wilt overschrijven ?"
+
+#: Panel/panelfunc.cpp:805
+#, fuzzy
+msgid ""
+"<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
+"</p><p>Zip will replace identically named entries in the zip archive or add "
+"entries for new names.</p></qt>"
 msgstr ""
 "(ZIP zal ingangen met een identieke naam vervangen in het zip archief of "
 "nieuwe ingangen toevoegen voor nieuwe namen)"
 
-#: Panel/panelfunc.cpp:798
+#: Panel/panelfunc.cpp:812
 msgid "Counting files to pack"
 msgstr "Bestanden tellen om in te pakken"
 
-#: Panel/panelfunc.cpp:858 Panel/panelfunc.cpp:919 krslots.cpp:192
+#: Panel/panelfunc.cpp:872 Panel/panelfunc.cpp:933 krslots.cpp:192
 #: krslots.cpp:198
 msgid "Krusader is unable to download: "
 msgstr "Krusader is niet in staat om te downloaden: "
 
-#: Panel/panelfunc.cpp:870
+#: Panel/panelfunc.cpp:884
 msgid "%1, unknown archive type."
 msgstr "%1, onbekend archief type"
 
-#: Panel/panelfunc.cpp:878
+#: Panel/panelfunc.cpp:892
 msgid "%1, test passed."
 msgstr "%1, test geslaagd."
 
-#: Panel/panelfunc.cpp:880
+#: Panel/panelfunc.cpp:894
 msgid "%1, test failed!"
 msgstr "%1, test mislukt !"
 
-#: Panel/panelfunc.cpp:896
+#: Panel/panelfunc.cpp:910
 msgid "Unpack %1 to:"
 msgstr "%1 uitpakken naar:"
 
-#: Panel/panelfunc.cpp:898
+#: Panel/panelfunc.cpp:912
 #, c-format
 msgid ""
 "_n: Unpack %n file to:\n"
@@ -1815,15 +1815,15 @@ msgstr ""
 "_n: %n bestand uitpakken naar:\n"
 "%n bestanden uitpakken naar:"
 
-#: Panel/panelfunc.cpp:944
+#: Panel/panelfunc.cpp:958
 msgid "%1, unknown archive type"
 msgstr "%1, onbekend archief type"
 
-#: Panel/panelfunc.cpp:1127
+#: Panel/panelfunc.cpp:1141
 msgid "Cannot cut a virtual URL collection to the clipboard!"
 msgstr "Kan de virtuele URL niet knippen op het klembord!"
 
-#: Panel/panelfunc.cpp:1129
+#: Panel/panelfunc.cpp:1143
 msgid "Cannot copy a virtual URL collection onto the clipboard!"
 msgstr "Kan de virtuele URL niet kopiëren op het klembord!"
 
@@ -2081,24 +2081,27 @@ msgstr "Mappen &Vergelijken"
 
 #: krusader.cpp:575
 #, fuzzy
-msgid "&Mark Newer and Single"
+msgid "&Select Newer and Single"
 msgstr "Nieuwer En Enkelvoudig &Markeren"
 
 #: krusader.cpp:577
-msgid "Mark &Newer"
-msgstr "&Nieuwer Markeren"
+#, fuzzy
+msgid "Select &Newer"
+msgstr "Items selecteren"
 
 #: krusader.cpp:579
-msgid "Mark &Single"
-msgstr "&Enkelvoudig Markeren"
+#, fuzzy
+msgid "Select &Single"
+msgstr " Bestanden selecteren "
 
 #: krusader.cpp:581
 #, fuzzy
-msgid "Mark Different &and Single"
+msgid "Select Different &and Single"
 msgstr "Verschillen &En Enkelvoudig selecteren"
 
 #: krusader.cpp:583
-msgid "Mark &Different"
+#, fuzzy
+msgid "Select &Different"
 msgstr "&Verschillen Markeren"
 
 #: krusader.cpp:592
@@ -2404,6 +2407,10 @@ msgstr "&KrViewer"
 msgid "Viewing"
 msgstr "Tonen"
 
+#: KViewer/krviewer.cpp:222 krslots.cpp:465
+msgid "Can't open "
+msgstr "Kan niet openen "
+
 #: KViewer/krviewer.cpp:230 KViewer/krviewer.cpp:265 KViewer/krviewer.cpp:376
 #: KViewer/krviewer.cpp:441
 msgid "Editing"
@@ -2490,7 +2497,8 @@ msgid "BookMan II"
 msgstr "BladwijzerManager II"
 
 #: BookMan/krbookmarkhandler.cpp:172
-msgid "Unable to write to "
+#, fuzzy, c-format
+msgid "Unable to write to %1"
 msgstr "Niet mogelijk om te schrijven naar "
 
 #: BookMan/krbookmarkhandler.cpp:180
@@ -2503,11 +2511,13 @@ msgid "missing tag "
 msgstr "ontbrekende tag "
 
 #: BookMan/krbookmarkhandler.cpp:261
-msgid " doesn't seem to be a valid Bookmarks file"
+#, fuzzy
+msgid "%1 doesn't seem to be a valid Bookmarks file"
 msgstr " blijkt geen geldig bladwijzerbestand te zijn"
 
 #: BookMan/krbookmarkhandler.cpp:268
-msgid "Error reading bookmarks file: "
+#, fuzzy, c-format
+msgid "Error reading bookmarks file: %1"
 msgstr "Fout bij het lezen van het bladijzerbestand: "
 
 #: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
@@ -2546,7 +2556,7 @@ msgstr "Bladwijzer toevoegen"
 msgid "New Folder"
 msgstr "Nieuwe map"
 
-#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:1032
+#: BookMan/kraddbookmarkdlg.cpp:26 DiskUsage/diskusage.cpp:1031
 msgid "Name:"
 msgstr "Naam:"
 
@@ -2708,7 +2718,7 @@ msgstr ""
 "IRC\n"
 "server: irc.freenode.net, channel: #krusader"
 
-#: main.cpp:197
+#: main.cpp:200
 msgid "Application already running!\n"
 msgstr "De toepassing is reeds actief!\n"
 
@@ -3038,7 +3048,7 @@ msgstr "In map"
 msgid "Multiple volume archive"
 msgstr "Meervoudig volume archief"
 
-#: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1034
+#: Dialogs/packguibase.cpp:154 DiskUsage/diskusage.cpp:1033
 msgid "Size:"
 msgstr "Grootte:"
 
@@ -3114,15 +3124,15 @@ msgstr "Een selectie invoeren:"
 msgid "compare mode"
 msgstr "vergelijk modus"
 
-#: Dialogs/krspwidgets.cpp:278 Dialogs/krspwidgets.cpp:289
+#: Dialogs/krspwidgets.cpp:299 Dialogs/krspwidgets.cpp:310
 msgid "Quick Navigation"
 msgstr "Snelle navigatie"
 
-#: Dialogs/krspwidgets.cpp:279
+#: Dialogs/krspwidgets.cpp:300
 msgid "Already at <i>%1</i>"
 msgstr "Reeds bij <i>%1</i>"
 
-#: Dialogs/krspwidgets.cpp:290
+#: Dialogs/krspwidgets.cpp:311
 msgid "Click to go to <i>%1</i>"
 msgstr "Klik om naar <i>%1</i> te gaan"
 
@@ -3249,7 +3259,7 @@ msgstr "Hier zijn de berekende controlesommen:"
 msgid "Hash"
 msgstr "Hash"
 
-#: Dialogs/checksumdlg.cpp:475 Konfigurator/kgcolors.cpp:417
+#: Dialogs/checksumdlg.cpp:475 Konfigurator/kgcolors.cpp:418
 msgid "File"
 msgstr "Bestand"
 
@@ -4067,7 +4077,7 @@ msgstr "De URL moet de nakomeling zijn van of de linker of rechter basis URL!"
 msgid "Synchronize Directories"
 msgstr "Mappen synchroniseren"
 
-#: DiskUsage/diskusage.cpp:761 Synchronizer/synchronizergui.cpp:1609
+#: DiskUsage/diskusage.cpp:760 Synchronizer/synchronizergui.cpp:1609
 msgid "Exclude"
 msgstr "Uitsluiten"
 
@@ -4330,7 +4340,7 @@ msgstr "Procent"
 msgid "Show file sizes"
 msgstr "Bestandsgrootte tonen"
 
-#: DiskUsage/diskusage.cpp:786 DiskUsage/dulines.cpp:461
+#: DiskUsage/diskusage.cpp:785 DiskUsage/dulines.cpp:461
 msgid "Lines"
 msgstr "Lijnen"
 
@@ -4382,7 +4392,7 @@ msgstr "Variabele tekengrootte voor beschrijvingen"
 msgid "Minimum font size"
 msgstr "Minimum tekengrootte:"
 
-#: DiskUsage/diskusage.cpp:790 DiskUsage/dufilelight.cpp:142
+#: DiskUsage/diskusage.cpp:789 DiskUsage/dufilelight.cpp:142
 msgid "Filelight"
 msgstr "Filelight"
 
@@ -4398,7 +4408,7 @@ msgstr "Krusader::Disk Gebruik"
 msgid "Start new disk usage search"
 msgstr "Nieuwe disk gebruik zoekopdracht starten"
 
-#: DiskUsage/diskusage.cpp:770 DiskUsage/diskusagegui.cpp:64
+#: DiskUsage/diskusage.cpp:769 DiskUsage/diskusagegui.cpp:64
 msgid "Refresh"
 msgstr "Verversen"
 
@@ -4463,78 +4473,78 @@ msgid "Krusader::DiskUsage"
 msgstr "Krusader::Disk Gebruik"
 
 #: DiskUsage/diskusage.cpp:597
-msgid "trash"
-msgstr "vuilnis"
+#, fuzzy
+msgid "Do you really want to move this item to the trash?"
+msgstr ""
+"_n: Bent u er zeker van dat u dit item wilt verwijderen?\n"
+"Bent u er zeker van dat u deze %n items wilt verwijderen?"
 
 #: DiskUsage/diskusage.cpp:600
-msgid "delete"
-msgstr "wissen"
+#, fuzzy
+msgid "Do you really want to delete this item?"
+msgstr "Bent U er zeker van dat u dit item wilt verwijderen ???"
 
-#: DiskUsage/diskusage.cpp:608
-msgid "Are you sure you want to "
-msgstr "Bent u er zeker van dat u "
-
-#: DiskUsage/diskusage.cpp:613
+#: DiskUsage/diskusage.cpp:612
 msgid "Deleting %1..."
 msgstr "%1 wissen ..."
 
-#: DiskUsage/diskusage.cpp:729
+#: DiskUsage/diskusage.cpp:728
 msgid "Current directory:%1,  Total size:%2,  Own size:%3"
 msgstr "Huidige map:%1,  Totale grootte:%2,  Eigen grootte:%3"
 
-#: DiskUsage/diskusage.cpp:755
+#: DiskUsage/diskusage.cpp:754
 msgid "Disk Usage"
 msgstr "Disk Gebruik"
 
-#: DiskUsage/diskusage.cpp:766
+#: DiskUsage/diskusage.cpp:765
 msgid "Up one directory"
 msgstr "Eén directory omhoog"
 
-#: DiskUsage/diskusage.cpp:768
+#: DiskUsage/diskusage.cpp:767
 msgid "New search"
 msgstr "Niewe zoekactie"
 
-#: DiskUsage/diskusage.cpp:772
+#: DiskUsage/diskusage.cpp:771
 msgid "Include all"
 msgstr "Alles invoegen"
 
-#: DiskUsage/diskusage.cpp:774
+#: DiskUsage/diskusage.cpp:773
 msgid "Step into"
 msgstr "Instappen"
 
-#: DiskUsage/diskusage.cpp:788
+#: DiskUsage/diskusage.cpp:787
 msgid "Detailed"
 msgstr "Gedetailleerd"
 
-#: DiskUsage/diskusage.cpp:793
+#: DiskUsage/diskusage.cpp:792
 msgid "Next"
 msgstr "Volgende"
 
-#: DiskUsage/diskusage.cpp:795
+#: DiskUsage/diskusage.cpp:794
 msgid "Previous"
 msgstr "Vorige"
 
-#: DiskUsage/diskusage.cpp:799
+#: DiskUsage/diskusage.cpp:798
 msgid "View"
 msgstr "Tonen"
 
-#: DiskUsage/diskusage.cpp:1033
+#: DiskUsage/diskusage.cpp:1032
 msgid "Type:"
 msgstr "Type:"
 
-#: DiskUsage/diskusage.cpp:1037
+#: DiskUsage/diskusage.cpp:1036
 msgid "Own size:"
 msgstr "Eigen grootte:"
 
-#: DiskUsage/diskusage.cpp:1039
+#: DiskUsage/diskusage.cpp:1038
 msgid "Last modified:"
 msgstr "Laatst gewijzigd:"
 
-#: DiskUsage/diskusage.cpp:1040
+#: DiskUsage/diskusage.cpp:1039
 msgid "Permissions:"
 msgstr "Toegangsrechten:"
 
-#: DiskUsage/diskusage.cpp:1041
+#: DiskUsage/diskusage.cpp:1040
 msgid "Owner:"
 msgstr "Eigenaar:"
 
@@ -4891,11 +4901,15 @@ msgstr ""
 "systeemvak in plaats van de taakbalk."
 
 #: Konfigurator/kglookfeel.cpp:86
-msgid "Automark directories"
+#, fuzzy
+msgid "Autoselect directories"
 msgstr "Mappen automatisch markeren"
 
 #: Konfigurator/kglookfeel.cpp:86
-msgid "When matching the select criteria, directories will also be marked."
+#, fuzzy
+msgid ""
+"When matching the select criteria, not only files will be selected, but also "
+"directories."
 msgstr ""
 "Wanneer de criteria overeenstemmen zullen de mappen ook geselecteerd worden."
 
@@ -4904,9 +4918,11 @@ msgid "Rename selects extension"
 msgstr "Hernoemen zal de extensie selecteren"
 
 #: Konfigurator/kglookfeel.cpp:87
+#, fuzzy
 msgid ""
-"When renaming a file, the whole text is selected. If you want total-"
-"commander like renaming of just the name, without extension, unmark this."
+"When renaming a file, the whole text is selected. If you want Total-"
+"Commander like renaming of just the name, without extension, uncheck this "
+"option."
 msgstr ""
 "Wanneer u een bestand hernoemd is de hele tekst geselecteerd. Indien u de "
 "Total Commander selectie mannier wil gebruiken (zonder de extensie te "
@@ -4929,7 +4945,8 @@ msgid "Fullscreen terminal (mc-style)"
 msgstr "Schermvullende terminal (mc stijl)"
 
 #: Konfigurator/kglookfeel.cpp:89
-msgid "Terminal is shown instead of the krusader window (full screen)."
+#, fuzzy
+msgid "Terminal is shown instead of the Krusader window (full screen)."
 msgstr ""
 "Het terminal venster tonen i.p.v. het krusader venster (Schermvullende "
 "terminal)."
@@ -5632,24 +5649,28 @@ msgid "Alternate background:"
 msgstr "Alternatieve achtergrond:"
 
 #: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:141
-msgid "Marked foreground:"
-msgstr "Gemarkeerde voorgrond:"
+#, fuzzy
+msgid "Selected foreground:"
+msgstr "Wissen voorgrond:"
 
 #: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:142
-msgid "Marked background:"
-msgstr "Gemarkeerde achtergrond:"
+#, fuzzy
+msgid "Selected background:"
+msgstr "Wissen achtergrond:"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:143
 msgid "Same as alt. background"
 msgstr "Zelfde als alternatieve achtergrond"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:145
-msgid "Alternate marked background:"
+#, fuzzy
+msgid "Alternate selected background:"
 msgstr "Alternatief gemarkeerde achtergrond:"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:144
-msgid "Same as marked background"
-msgstr "Zelfde als gemarkeerde achtergrond"
+#, fuzzy
+msgid "Same as selected background"
+msgstr "Zelfde als alternatieve achtergrond"
 
 #: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:146
 msgid "Current foreground:"
@@ -5661,11 +5682,13 @@ msgid "Not used"
 msgstr "Niet gebruikt"
 
 #: Konfigurator/kgcolors.cpp:110 Konfigurator/kgcolors.cpp:147
-msgid "Same as marked foreground"
+#, fuzzy
+msgid "Same as selected foreground"
 msgstr "Zelfde als gemarkeerde voorgrond"
 
 #: Konfigurator/kgcolors.cpp:111 Konfigurator/kgcolors.cpp:148
-msgid "Marked current foreground:"
+#, fuzzy
+msgid "Selected current foreground:"
 msgstr "Gemarkeerde huidige voorgrond:"
 
 #: Konfigurator/kgcolors.cpp:112 Konfigurator/kgcolors.cpp:149
@@ -5751,70 +5774,77 @@ msgid "Export color-scheme"
 msgstr "Kleuren schema exporteren"
 
 #: Konfigurator/kgcolors.cpp:411
-msgid "Marked 2"
-msgstr "Gemarkeerd 2"
+#, fuzzy
+msgid "Selected + Current"
+msgstr "Tab Dupliceren"
 
 #: Konfigurator/kgcolors.cpp:412
-msgid "Marked 1"
-msgstr "Gemarkeerd 1"
+#, fuzzy
+msgid "Selected 2"
+msgstr " Bestanden selecteren "
 
 #: Konfigurator/kgcolors.cpp:413
+#, fuzzy
+msgid "Selected 1"
+msgstr " Bestanden selecteren "
+
+#: Konfigurator/kgcolors.cpp:414
 msgid "Current"
 msgstr "Huidige"
 
-#: Konfigurator/kgcolors.cpp:414
+#: Konfigurator/kgcolors.cpp:415
 msgid "Invalid symlink"
 msgstr "Ongeldige symlink"
 
-#: Konfigurator/kgcolors.cpp:415
+#: Konfigurator/kgcolors.cpp:416
 msgid "Symbolic link"
 msgstr "Symbolische koppeling"
 
-#: Konfigurator/kgcolors.cpp:416
+#: Konfigurator/kgcolors.cpp:417
 msgid "Application"
 msgstr "Toepassing"
 
-#: Konfigurator/kgcolors.cpp:418
+#: Konfigurator/kgcolors.cpp:419
 msgid "Directory"
 msgstr "Map"
 
-#: Konfigurator/kgcolors.cpp:502
+#: Konfigurator/kgcolors.cpp:475
 msgid "Copy to right"
 msgstr "Kopiëren naar rechts"
 
-#: Konfigurator/kgcolors.cpp:503
+#: Konfigurator/kgcolors.cpp:476
 msgid "Copy to left"
 msgstr "Kopiëren naar links"
 
-#: Konfigurator/kgcolors.cpp:504
+#: Konfigurator/kgcolors.cpp:477
 msgid "Differing"
 msgstr "Verschilt van"
 
-#: Konfigurator/kgcolors.cpp:505
+#: Konfigurator/kgcolors.cpp:478
 msgid "Equals"
 msgstr "Gelijk aan"
 
-#: Konfigurator/kgcolors.cpp:542
+#: Konfigurator/kgcolors.cpp:504
 msgid "Select a color-scheme file"
 msgstr "Seletcteer een kleurschema"
 
-#: Konfigurator/kgcolors.cpp:546
+#: Konfigurator/kgcolors.cpp:508
 msgid "Error: unable to read from file"
 msgstr "Fout: niet in staat om het bestand te lezen"
 
-#: Konfigurator/kgcolors.cpp:556
+#: Konfigurator/kgcolors.cpp:518
 msgid "Select a color scheme file"
 msgstr "Kleurschema selecteren"
 
-#: Konfigurator/kgcolors.cpp:560
+#: Konfigurator/kgcolors.cpp:522
 msgid "File "
 msgstr "Bestand "
 
-#: Konfigurator/kgcolors.cpp:560
+#: Konfigurator/kgcolors.cpp:522
 msgid " already exists. Are you sure you want to overwrite it?"
 msgstr " bestaat reeds. Bent u zeker dat u het wilt overschrijven ?"
 
-#: Konfigurator/kgcolors.cpp:563
+#: Konfigurator/kgcolors.cpp:525
 msgid "Error: unable to write to file"
 msgstr "Fout: niet in staat om te schrijven naar het bestand"
 
@@ -6346,6 +6376,48 @@ msgstr "Fout bij het lezen van bestand %1!"
 #: Splitter/splitter.cpp:244
 msgid "Error at writing file %1!"
 msgstr "Fout bij het schrijven van bestand %1!"
+
+#~ msgid "Can't Read "
+#~ msgstr "Kan niet lezen "
+
+#~ msgid "Directory "
+#~ msgstr "Map "
+
+#~ msgid "The Archive "
+#~ msgstr "Het archief "
+
+#~ msgid " already exists. Do you want to overwrite the archive ?\n"
+#~ msgstr " bestaat reeds, wilt u het archief overschrijven ?\n"
+
+#~ msgid "Mark &Newer"
+#~ msgstr "&Nieuwer Markeren"
+
+#~ msgid "Mark &Single"
+#~ msgstr "&Enkelvoudig Markeren"
+
+#~ msgid "trash"
+#~ msgstr "vuilnis"
+
+#~ msgid "delete"
+#~ msgstr "wissen"
+
+#~ msgid "Are you sure you want to "
+#~ msgstr "Bent u er zeker van dat u "
+
+#~ msgid "Marked foreground:"
+#~ msgstr "Gemarkeerde voorgrond:"
+
+#~ msgid "Marked background:"
+#~ msgstr "Gemarkeerde achtergrond:"
+
+#~ msgid "Same as marked background"
+#~ msgstr "Zelfde als gemarkeerde achtergrond"
+
+#~ msgid "Marked 2"
+#~ msgstr "Gemarkeerd 2"
+
+#~ msgid "Marked 1"
+#~ msgstr "Gemarkeerd 1"
 
 #~ msgid "new symlink"
 #~ msgstr "nieuwe symbolische koppeling"
