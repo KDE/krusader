@@ -1,5 +1,3 @@
-    FIXED: When a refresh fails, the attempted URL is kept in the origin bar, and
-           focus remains there for the user to fix. Idea by Vaclav Juza
     ADDED: Experimental input method support in quick search (patch by Jiri Palecek)
     ADDED: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
            (thanks to Vaclav Juza)
@@ -48,7 +46,6 @@
   CHANGED: Better quick navigation: first move mouse over subdir, then
            press ctrl + left mouse button (patch by Jiri Palecek)
   CHANGED: Better subdir calculation on quick navigation
-  CHANGED: Renamed 'mark' to 'select' in konfigurator, colors panel
   CHANGED: Color cache redesigned. Konfigurator preview and actual colors
            should now match
   CHANGED: Heavily extended and reordered menubar (honouring the KDE HIG where
@@ -60,6 +57,8 @@
   CHANGED: UserActions are now managed with ActionMan. In Konfigurator
            you can change settings _about_ useractions.
 
+    FIXED: When a refresh fails, the attempted URL is kept in the origin bar,
+           and focus remains there for the user to fix. Idea by Vaclav Juza
     FIXED: TerminalEmulator didn't hide for all shortcuts
     FIXED: Konfigurator layout: should fit into 800x600 again
     FIXED: KeyDialog: alternative shortcuts are ex-/imported as well
@@ -127,6 +126,8 @@
     FIXED: panel popup gets focus at opening, gives focus to panel at hiding
     FIXED: viewer, detaching tab changes 'Editing' to 'Viewing'
 
+     I18N: Updated Greek translation (thanks Hideki Kimura)
+     I18N: Renamed remaining instances of 'mark' to 'select'
      I18N: Many consistency changes in the menu names
      I18N: Fixed [ 1480646 ] Home button tooltip has a wrong default translation
      I18N: Updated Russian translation (thanks Dmitry A. Bugay)
