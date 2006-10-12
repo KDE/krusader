@@ -1,9 +1,8 @@
 The Krusader Handbook ChangeLog
 -------------------------------
-
+  
   TODO: make the Synchronizer chapter more readable and more undertandable
   TODO: complete Keyboard Usage page 
-  TODO: create more docbook files and improve the chapter/index structure
   TODO: complete the glossary
   TODO: complete the Mouse Gestures
 
@@ -38,13 +37,34 @@ The Krusader Handbook ChangeLog
            press ctrl + left mouse button (patch by Jiri Palecek)
   TODO: Better subdir calculation on quick navigation
   TODO: Renamed 'mark' to 'select' in konfigurator, colors panel
+  
+  
   TODO: Heavily extended and reordered menubar (honouring the KDE HIG where
            possible). All available actions are connected to the menus now.
+        Note: Dan is currently updating commands.docbook
+  
+  Design changes (issues done/todo by Frank):
+  ----------------------------------------------------
   TODO: Shortcut- and Toolbardialogs are removed from Konfigurator 
+  TODO: Command Reference, url updates
+  TODO: Command Reference -> Menu Commands (- The), Keyboard Commands, Mouse Commands, Mouse gestures
+  TODO: Create more docbook files and improve the chapter/index structure
 
-  ADDED: an option for directories to be always sorted by name (Konfigurator L&F)
-  ADDED: features.docbook (features was originally part of introduction.docbook)
+  ADDED: abc-index by using <indexterm>
+  ADDED: List of Figures (index) <screenshot> -> <figure>
+  ADDED: List of Tables (index) <informaltable> -> <table>
+  ADDED: release-overview.docbook (formerly part of installation.docbook)
+  ADDED: useraction-xml.docbook (formerly part of installation.docbook)
+  ADDED: configuration-files.docbook (formerly part of installation.docbook)
+  ADDED: help.docbook (formerly part of index.docbook)
+  ADDED: editorsnote.docbook (formerly part of index.docbook)
+  ADDED: features.docbook (formerly part of introduction.docbook)
   ADDED: glossary.docbook
+  
+  UPDATED: moved the "Foreword" from index.docbbook to introduction.docbook
+  -----------------------------------------------------
+  
+  ADDED: an option for directories to be always sorted by name (Konfigurator L&F)
   ADDED: FAQ: Why "save last location" doesn't work?
   ADDED: Inactive panel color dimming
   ADDED: FAQ: How can I send a patch?
@@ -54,6 +74,7 @@ The Krusader Handbook ChangeLog
   ADDED: Profiles chapter
   ADDED: Media button, Ctrl+M, Ctrl+Shift+Left, Ctrl+Shift+Right
 
+UPDATED: UserActions examples in the documentation appendix
 UPDATED: UserActions are now managed with ActionMan. In Konfigurator
          you can change settings _about_ useractions.
 UPDATED: Shortcuts are now exported in as plaintext, legacy import still works.
