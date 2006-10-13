@@ -135,15 +135,25 @@
       it's type (vfat, ext3, ReiserFS ...) and it's mount-point on your system
       (the directory on which the filesystem is mounted).</para>
 
+<!-- OLD
 <screenshot>
   <screeninfo>MountMan</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="mountman.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="mountman.png" format="EPS"/></imageobject>
   <textobject><phrase>MountMan</phrase></textobject>
-  <caption><para>MountMan.</para></caption>
+  <caption><para>MountMan</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-mountman" float="1">
+<title>MountMan</title>
+<mediaobject>
+<imageobject><imagedata fileref="mountman.png"/></imageobject>
+<textobject><phrase>MountMan</phrase></textobject>
+</mediaobject>
+</figure>
 
 <para>MountMan also displays usage information using total size, free size, and percentage of available space free.
       If those numbers say <guilabel>N/A</guilabel>, it usually means that the filesystem isn't mounted.
@@ -207,15 +217,25 @@
 <note><para>You can bookmark inside a remote filesystem (&FTP; or SAMBA) and later use the bookmark 
        to quickly connect to the remote machine, but You CANNOT bookmark inside an archive.</para></note>
 
+<!-- OLD
 <screenshot>
-  <screeninfo>BookMan: the Bookmark menu</screeninfo>
+  <screeninfo>Bookmark menu</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="bookmanadd.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="bookmanadd.png" format="EPS"/></imageobject>
   <textobject><phrase>BookMan: the Bookmark menu</phrase></textobject>
-  <caption><para>BookMan: the Bookmark menu.</para></caption>
+  <caption><para>Bookmark menu</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-bookmanadd" float="1">
+<title>Bookmark menu</title>
+<mediaobject>
+<imageobject><imagedata fileref="bookmanadd.png"/></imageobject>
+<textobject><phrase>Bookmark menu</phrase></textobject>
+</mediaobject>
+</figure>
 
 
 <sect2 id = "using_bookmarks">
@@ -367,15 +387,27 @@
        &keditbookmarks; is easy to use, please read the &keditbookmarks; or the &konqueror; handbook if you need more
        info.</para>
 
+<!-- OLD
 <screenshot>
-  <screeninfo>&keditbookmarks; your Bookmark Manager</screeninfo>
+  <screeninfo>&keditbookmarks; Bookmark Manager</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="bookmanedit.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="bookmanedit.png" format="EPS"/></imageobject>
   <textobject><phrase>&keditbookmarks; edit and organize your Bookmarks</phrase></textobject>
-  <caption><para>&keditbookmarks;: your Bookmark Manager.</para></caption>
+  <caption><para>&keditbookmarks;: Bookmark Manager.</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-bookmanedit" float="1">
+<title>&keditbookmarks; Bookmark Manager</title>
+<mediaobject>
+<imageobject><imagedata fileref="bookmanedit.png"/></imageobject>
+<textobject><phrase>&keditbookmarks; Bookmark Manager</phrase></textobject>
+</mediaobject>
+</figure>
+
+
 
 </sect2>
 
@@ -411,6 +443,7 @@
       It is divided into two levels, the general and the advanced.
       Let's take a look at the general page ...</para>
 
+<!-- OLD
 <screenshot>
   <screeninfo>Krusearcher General</screeninfo>
   <mediaobject>
@@ -420,6 +453,16 @@
   <caption><para>Krusearcher General.</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-search-general" float="1">
+<title>General Search</title>
+<mediaobject>
+<imageobject><imagedata fileref="search_general.png"/></imageobject>
+<textobject><phrase>General Search</phrase></textobject>
+</mediaobject>
+</figure>
+
 
 <para>The page is divided into four parts: top (search for) part, bottom part - titled 'containing text',
       left part - titled 'search in' and right part which is called 'don't search in'. Obviously, each part
@@ -510,6 +553,7 @@
 <para>Sometimes, you need to narrow your search even more. Krusearcher allows a much finer search, and
       for that, let's look at the <guilabel>Advanced Page</guilabel>...</para>
 
+<!-- OLD
 <screenshot>
   <screeninfo>Krusearcher Advanced</screeninfo>
   <mediaobject>
@@ -519,6 +563,16 @@
   <caption><para>Krusearcher Advanced.</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-search-advanced" float="1">
+<title>Advanced Search</title>
+<mediaobject>
+<imageobject><imagedata fileref="search_advanced.png"/></imageobject>
+<textobject><phrase>Advanced Search</phrase></textobject>
+</mediaobject>
+</figure>
+
 
 <para>This screenshot shows a search for files whose size is between 10KB and 150KB,
       which were modified between October 10th and November 1st,
@@ -1550,6 +1604,7 @@
 
 <note><para>For local files: the synchronizer changes the date information to the original dates.</para></note>
 
+<!-- OLD
 <screenshot>
   <screeninfo>Synchronizer</screeninfo>
   <mediaobject>
@@ -1559,6 +1614,16 @@
   <caption><para>Synchronizer: Synchronize files and directories.</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-syncdir" float="1">
+<title>Synchronizer</title>
+<mediaobject>
+<imageobject><imagedata fileref="syncdir.png"/></imageobject>
+<textobject><phrase>Synchronizer</phrase></textobject>
+</mediaobject>
+</figure>
+
 
 <para>
     <orderedlist><title>Procedure:</title>
@@ -2355,7 +2420,7 @@ You can also set a user under which the command should be executed.
  </itemizedlist>
 </para>
 
-<!--HTML_PARSING
+<!-- OLD
 <screenshot>
   <screeninfo>Disk Usage</screeninfo>
   <mediaobject>
@@ -2365,8 +2430,17 @@ You can also set a user under which the command should be executed.
   <caption><para>Disk Usage</para></caption>
   </mediaobject>
 </screenshot>
-HTML_PARSING-->
+-->
 
+<!--HTML_PARSING
+<figure id="screenshot-diskusage" float="1">
+<title>Disk Usage</title>
+<mediaobject>
+<imageobject><imagedata fileref="diskusage.png"/></imageobject>
+<textobject><phrase>Disk Usage</phrase></textobject>
+</mediaobject>
+</figure>
+HTML_PARSING-->
 
 </sect1>
 

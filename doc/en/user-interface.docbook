@@ -51,6 +51,8 @@ you can always continue to use one panel filemanagers who are based on &Windows;
 
 <sect1 id="mainwindow">
 <title>&krusader; Main Window</title>
+
+<!-- OLD
 <screenshot>
    <screeninfo>&krusader; Main Window</screeninfo>
     <mediaobject>
@@ -60,6 +62,15 @@ you can always continue to use one panel filemanagers who are based on &Windows;
      <caption><para>&krusader;'s main window with all the different parts named on the screen.</para></caption>
     </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-mainwindow" float="1">
+<title>&krusader; Main Window</title>
+<mediaobject>
+<imageobject><imagedata fileref="mainwindow.png"/></imageobject>
+<textobject><phrase>&krusader; Main Window</phrase></textobject>
+</mediaobject>
+</figure> 
 
 <para>The User Interface is based on the &ofm_url; paradigm, a 20 years old principle
       that has proven it's bones. It's known as simple, easy and powerful.  
@@ -85,14 +96,27 @@ you can always continue to use one panel filemanagers who are based on &Windows;
 
 <sect1 id="main_toolbar">
 <title>Main Toolbar</title>
+<indexterm><primary>Toolbar</primary><secondary>Main Toolbar</secondary></indexterm> 
+
+<!-- OLD
 <screenshot>
-    <screeninfo>The Main Toolbar</screeninfo>
+    <screeninfo>Main Toolbar</screeninfo>
     <mediaobject>
      <imageobject><imagedata fileref="toolbar.png" format="PNG"/></imageobject>
      <imageobject><imagedata fileref="toolbar.png" format="EPS"/></imageobject>
-     <textobject><phrase>The Main Toolbar</phrase></textobject>
+     <textobject><phrase>Main Toolbar</phrase></textobject>
     </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-maintoolbar" float="1">
+<title>Main Toolbar</title>
+<mediaobject>
+<imageobject><imagedata fileref="toolbar.png"/></imageobject>
+<textobject><phrase>Main Toolbar</phrase></textobject>
+</mediaobject>
+</figure> 
+
 
 <para>
 The &krusader; Main Toolbar, is a standard &kde; toolbar that can be dragged around 
@@ -111,6 +135,8 @@ with the mouse using "drag and drop".</para>
 
 <sect1 id="actions_toolbar">
 <title>Actions Toolbar</title>
+<indexterm><primary>Toolbar</primary><secondary>Actions Toolbar</secondary></indexterm> 
+
 <para>
 &useractions_lnk; and &bookmarks_lnk; can be "plugged into" the
 <guilabel>Actions Toolbar</guilabel>.
@@ -153,6 +179,7 @@ As always: default startup settings can be modified with the &konfigstartpg_lnk;
 and you control the current session with the &viewmenu_lnk;.
 </para>
 
+<!-- OLD
 <screenshot>
     <screeninfo>List Panel</screeninfo>
     <mediaobject>
@@ -162,9 +189,20 @@ and you control the current session with the &viewmenu_lnk;.
      <caption><para>The List Panel with all the different parts indicated.</para></caption>
     </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-listpanel" float="1">
+<title>List Panel</title>
+<mediaobject>
+<imageobject><imagedata fileref="listpanel.png"/></imageobject>
+<textobject><phrase>List Panel</phrase></textobject>
+</mediaobject>
+</figure> 
+
 
 <sect2 id="list_panel">
 <title>List Panel</title>
+<indexterm><primary>Toolbar</primary><secondary>Location Toolbar</secondary></indexterm>
 <para>
     This is the default panel and the one you'll probably use most of the time. This panel shows the
     contents of one directory which can be local (part of your mounted file systems,
@@ -177,7 +215,7 @@ and you control the current session with the &viewmenu_lnk;.
     <guilabel>List Panel</guilabel> between horizontal and vertical mode.
 </para>
 
-<para>The following items are available:
+<para>The following items are available: 
    <itemizedlist>
 
        <listitem><para><emphasis><guibutton>Location Toolbar</guibutton></emphasis> : shows the path the
@@ -385,6 +423,7 @@ Click on the arrow down button to close the <guilabel>3rd Hand Panel</guilabel>.
 
 <sect2 id="panel_toolbar">
 <title>Panel Toolbar</title>
+<indexterm><primary>Toolbar</primary><secondary>Panel Toolbar</secondary></indexterm> 
 
 <para>Both panels have a <link linkend="konfig-looknfeel-ptoolbar">configurable Panel Toolbar</link>.
       The complete Panel Toolbar or specific buttons can be made visible or be hidden.
@@ -442,6 +481,7 @@ On every new start of Krusader, the history list is empty.
 
 <para>This part of the &GUI; (graphical user interface) can have two modes: </para>
 
+<!-- OLD
 <screenshot>
   <screeninfo>Command line</screeninfo>
   <mediaobject>
@@ -451,6 +491,16 @@ On every new start of Krusader, the history list is empty.
    <caption><para>Command Line</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-commandline" float="1">
+<title>Command line</title>
+<mediaobject>
+<imageobject><imagedata fileref="cmdline.png"/></imageobject>
+<textobject><phrase>Command line</phrase></textobject>
+</mediaobject>
+</figure> 
+
 
 <para>
 The traditional command line mode offers a single line of input to enter commands,
@@ -469,6 +519,7 @@ Cick <link linkend="cmdline_keybindings">here</link> to view the command line
 keybindings.
 </para>
 
+<!--
 <screenshot>
   <screeninfo>Terminal emulator</screeninfo>
   <mediaobject>
@@ -478,6 +529,15 @@ keybindings.
    <caption><para>Terminal emulator</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-terminalemulator" float="1">
+<title>Terminal emulator</title>
+<mediaobject>
+<imageobject><imagedata fileref="terminalEmu.png"/></imageobject>
+<textobject><phrase>Terminal emulator</phrase></textobject>
+</mediaobject>
+</figure> 
 
 
 <para>
@@ -503,6 +563,7 @@ session with the &viewmenu_lnk;.
 <sect1 id="fnkeys">
 <title>Function (FN) Keys Bar</title>
 
+<!-- OLD
 <screenshot>
   <screeninfo>Function (FN) Keys Bar</screeninfo>
   <mediaobject>
@@ -511,6 +572,15 @@ session with the &viewmenu_lnk;.
    <textobject><phrase>Function (FN) Keys Bar</phrase></textobject>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-fnkeys" float="1">
+<title>Function (FN) Keys Bar</title>
+<mediaobject>
+<imageobject><imagedata fileref="fnkeys.png"/></imageobject>
+<textobject><phrase>Function (FN) Keys Bar</phrase></textobject>
+</mediaobject>
+</figure> 
 
 <para>
 This bar gets its name from the function (FN) keys it represents.
@@ -534,6 +604,7 @@ version 1.51 , they will remain active with or without the <guilabel>FN keys bar
 <sect1 id="folder_tabs">
 <title>Folder Tabs</title>
 
+<!-- OLD
 <screenshot>
   <screeninfo>Tabbed browsing</screeninfo>
   <mediaobject>
@@ -542,6 +613,15 @@ version 1.51 , they will remain active with or without the <guilabel>FN keys bar
    <textobject><phrase>Tabbed browsing</phrase></textobject>
   </mediaobject>
 </screenshot>
+-->
+
+<figure id="screenshot-tabbedbrowsing" float="1">
+<title>Folder Tabs</title>
+<mediaobject>
+<imageobject><imagedata fileref="tabbed_browsing.png"/></imageobject>
+<textobject><phrase>Folder Tabs</phrase></textobject>
+</mediaobject>
+</figure> 
 
 
 <para>

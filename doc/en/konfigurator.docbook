@@ -32,17 +32,27 @@ into pages, each containing items related to that page. For some changes to the 
 and restart &krusader;.</para>
 
 <sect1 id="konfig-startup">
-<title>Startup page</title>
+<title>Startup</title>
+
+<!-- OLD
 <screenshot>
-  <screeninfo>Konfigurator startup page</screeninfo>
+  <screeninfo>Startup configuration</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="kgstartup.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="kgstartup.png" format="EPS"/></imageobject>
-  <textobject><phrase>Konfigurator startup page</phrase></textobject>
-  <caption><para>Konfigurator startup page.</para></caption>
+  <textobject><phrase>Startup configuration</phrase></textobject>
+  <caption><para>Configure Startup</para></caption>
   </mediaobject>
 </screenshot>
+-->
 
+<figure id="screenshot-kgstartup" float="1">
+<title>Startup configuration</title>
+<mediaobject>
+<imageobject><imagedata fileref="kgstartup.png"/></imageobject>
+<textobject><phrase>Startup configuration</phrase></textobject>
+</mediaobject>
+</figure>
 
 <para>The startup page determines the way that &krusader; looks (and works) when it is launched.
        It is divided into two main parts:</para>
@@ -116,7 +126,7 @@ and restart &krusader;.</para>
 </sect1>
 
 <sect1 id="konfig-looknfeel">
-<title>Look &amp; Feel page</title>
+<title>Look &amp; Feel</title>
 
 <para>Here you can determine the look &amp; feel of things - which basically means fine-tuning the
       application to your needs. The page is divided into five tabs: <guilabel>Operation</guilabel>,
@@ -125,17 +135,28 @@ and restart &krusader;.</para>
        and <guilabel>Key-bindings</guilabel> are &kde; standard tools, we'll focus on
        the other sections:</para>
 
-<!--HTML_PARSING
+<!-- OLD
 <screenshot>
-  <screeninfo>Konfigurator Look &amp; Feel page</screeninfo>
+  <screeninfo>Look &amp; Feel configurtarion</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="kglookfeel.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="kglookfeel.png" format="EPS"/></imageobject>
-  <textobject><phrase>Konfigurator Look &amp; Feel page</phrase></textobject>
-  <caption><para>Konfigurator Look &amp; Feel page.</para></caption>
+  <textobject><phrase>Look &amp; Feel configurtarion</phrase></textobject>
+  <caption><para>Configure Look &amp; Feel</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<!--HTML_PARSING
+<figure id="screenshot-kglookfeel" float="1">
+<title>Look &amp; Feel configurtarion</title>
+<mediaobject>
+<imageobject><imagedata fileref="kglookfeel.png"/></imageobject>
+<textobject><phrase>Look &amp; Feel configurtarion</phrase></textobject>
+</mediaobject>
+</figure>
 HTML_PARSING-->
+
 
 <sect2 id="konfig-looknfeel-operation">
 <title>Operation</title>
@@ -353,6 +374,7 @@ HTML_PARSING-->
 
 <sect2 id="konfig-looknfeel-toolbar">
 <title>Configure Toolbars (TODO: needs to be moved, Settings -> Configure Toolbars)</title>
+<indexterm><primary>Configure</primary><secondary>Toolbars</secondary></indexterm>
 <para>Here you can configure the &main_toolbar_lnk; and the &actions_toolbar_lnk; the way you want.
        Add the action buttons of your favourite functions to the desired Toolbar.</para>
 
@@ -362,6 +384,7 @@ HTML_PARSING-->
 
 <sect2 id="konfig-looknfeel-keybindings">
 <title>Configure Shortcuts (TODO: needs to be moved, Settings -> Configure Shortcuts)</title>
+<indexterm><primary>Configure</primary><secondary>Shortcuts</secondary></indexterm>
 <para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
           of your favourite functions the way you want.</para>
 
@@ -394,23 +417,35 @@ HTML_PARSING-->
 
 
 <sect1 id="konfig-color">
-<title>Colors page</title>
+<title>Colors</title>
 
 <para>This page configures the colors of the &list_panel_lnk; and the &synchronizer_lnk;.
       The <guilabel>KDE default colors</guilabel> is the default color configuration.
       </para>
 
-<!--HTML_PARSING
+<!-- OLD
 <screenshot>
-  <screeninfo>Konfigurator color page</screeninfo>
+  <screeninfo>Colors configuration</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="kgcolor.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="kgcolor.png" format="EPS"/></imageobject>
-  <textobject><phrase>Konfigurator color page</phrase></textobject>
-  <caption><para>Konfigurator color page.</para></caption>
+  <textobject><phrase>Colors configuration</phrase></textobject>
+  <caption><para>Colors configuration</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+
+<!--HTML_PARSING
+<figure id="screenshot-kgcolor" float="1">
+<title>Colors configuration</title>
+<mediaobject>
+<imageobject><imagedata fileref="kgcolor.png"/></imageobject>
+<textobject><phrase>Colors configuration</phrase></textobject>
+</mediaobject>
+</figure>
 HTML_PARSING-->
+
 
 <variablelist>
  <varlistentry><term><guilabel>General</guilabel></term>
@@ -503,20 +538,31 @@ HTML_PARSING-->
 </sect1>
 
 <sect1 id="konfig-general">
-<title>General page</title>
+<title>General</title>
 <para>Here you configure the basic operations.</para>
 
-<!--HTML_PARSING
+<!-- OLD
 <screenshot>
-  <screeninfo>Konfigurator General page</screeninfo>
+  <screeninfo>General configuration</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="kggeneral.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="kggeneral.png" format="EPS"/></imageobject>
-  <textobject><phrase>Konfigurator General page</phrase></textobject>
-  <caption><para>Konfigurator General page.</para></caption>
+  <textobject><phrase>General configuration</phrase></textobject>
+  <caption><para>General configuration</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<!--HTML_PARSING
+<figure id="screenshot-kggeneral" float="1">
+<title>General configuration</title>
+<mediaobject>
+<imageobject><imagedata fileref="kggeneral.png"/></imageobject>
+<textobject><phrase>General configuration</phrase></textobject>
+</mediaobject>
+</figure>
 HTML_PARSING-->
+
 
 <para>The following options determine basic aspects of operation:
 
@@ -554,21 +600,33 @@ HTML_PARSING-->
 </sect1>
 
 <sect1 id="konfig-advanced">
-<title>Advanced page</title>
+<title>Advanced</title>
 <para>This page handles more advanced issues, so you should double-check what you do here, since modifying
        things around here <remark>makes &krusader; a more powerful AND dangerous tool.</remark></para>
 
-<!--HTML_PARSING
+<!-- OLD
 <screenshot>
-  <screeninfo>Konfigurator Advanced page</screeninfo>
+  <screeninfo>Advanced configuration</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="kgadvanced.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="kgadvanced.png" format="EPS"/></imageobject>
-  <textobject><phrase>Konfigurator Advanced page</phrase></textobject>
-  <caption><para>Konfigurator Advanced page.</para></caption>
+  <textobject><phrase>Advanced configuration</phrase></textobject>
+  <caption><para>Advanced configuration</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+
+<!--HTML_PARSING
+<figure id="screenshot-kgadvanced" float="1">
+<title>Advanced configuration</title>
+<mediaobject>
+<imageobject><imagedata fileref="kgadvanced.png"/></imageobject>
+<textobject><phrase>Advanced configuration</phrase></textobject>
+</mediaobject>
+</figure>
 HTML_PARSING-->
+
 
 <para>The page is divided into three parts:</para>
 
@@ -634,7 +692,7 @@ HTML_PARSING-->
 </sect1>
 
 <sect1 id="konfig-archives">
-<title>Archives page</title>
+<title>Archives</title>
 <para>This page handles the way &krusader; works with archives. In the <guilabel>General</guilabel> section
 you'll see a list of archive formats. Some are checked and some are grayed-out. The ones that are available
 (not grayed-out) are supported by &krusader;. If you check them, then &krusader; will handle them transparently
@@ -643,17 +701,28 @@ type of archive. If a certain archive is grayed-out, it means that &krusader; co
 executables in the configured path.
 The next archives are supported: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip and 7-zip.</para>
 
-<!--HTML_PARSING
+<!-- OLD
 <screenshot>
-  <screeninfo>Konfigurator Archives page</screeninfo>
+  <screeninfo>Archives configuration</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="kgarchives.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="kgarchives.png" format="EPS"/></imageobject>
-  <textobject><phrase>Screenshot</phrase></textobject>
-  <caption><para>Konfigurator Archives page.</para></caption>
+  <textobject><phrase>Archives configuration</phrase></textobject>
+  <caption><para>Archives configuration</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<!--HTML_PARSING
+<figure id="screenshot-kgarchives" float="1">
+<title>Archives configuration</title>
+<mediaobject>
+<imageobject><imagedata fileref="kgarchives.png"/></imageobject>
+<textobject><phrase>Archives configuration</phrase></textobject>
+</mediaobject>
+</figure>
 HTML_PARSING-->
+
 
 <para>If you've installed a certain archive application (let's say <command>arj</command>) and want &krusader;
 to know about it, just click the <guibutton>Auto Configure</guibutton> button. &krusader; will search for all
@@ -894,7 +963,7 @@ making the cooperation almost impossible.
 </sect1>
 
 <sect1 id="konfig-useractions">
-<title>User Actions</title>
+<title>UserActions</title>
 
 <para>Here you can configure the Terminal for UserActions and the font for the output-collection.
       The default terminal is <filename>konsole --noclose -e</filename>
@@ -902,16 +971,26 @@ making the cooperation almost impossible.
 </para>
 
 
-<!--HTML_PARSING
+<!-- OLD
 <screenshot>
-  <screeninfo>Konfigurator Useractions page</screeninfo>
+  <screeninfo>Useractions configuration</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="kguseractions.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="kguseractions.png" format="EPS"/></imageobject>
-  <textobject><phrase>Konfigurator Look &amp; Feel page</phrase></textobject>
-  <caption><para>Konfigurator Useractions page.</para></caption>
+  <textobject><phrase>Useractions configuration</phrase></textobject>
+  <caption><para>Useractions configuration</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<!--HTML_PARSING
+<figure id="screenshot-kguseractions" float="1">
+<title>Useractions configuration</title>
+<mediaobject>
+<imageobject><imagedata fileref="kguseractions.png"/></imageobject>
+<textobject><phrase>Useractions configuration</phrase></textobject>
+</mediaobject>
+</figure>
 HTML_PARSING-->
 
 
@@ -924,17 +1003,28 @@ HTML_PARSING-->
       &eg; protocol "tar" is linked to mime "application/x-tar".</para>
 
 
-<!--HTML_PARSING
+<!-- OLD
 <screenshot>
-  <screeninfo>Konfigurator Protocols page</screeninfo>
+  <screeninfo>Protocols configuration</screeninfo>
   <mediaobject>
   <imageobject><imagedata fileref="kgprotocols.png" format="PNG"/></imageobject>
   <imageobject><imagedata fileref="kgprotocols.png" format="EPS"/></imageobject>
-  <textobject><phrase>Konfigurator Look &amp; Feel page</phrase></textobject>
-  <caption><para>Konfigurator Protocols page.</para></caption>
+  <textobject><phrase>Protocols configuration</phrase></textobject>
+  <caption><para>Protocols configuration</para></caption>
   </mediaobject>
 </screenshot>
+-->
+
+<!--HTML_PARSING
+<figure id="screenshot-kgprotocols" float="1">
+<title>Protocols configuration</title>
+<mediaobject>
+<imageobject><imagedata fileref="kgprotocols.png"/></imageobject>
+<textobject><phrase>Protocols configuration</phrase></textobject>
+</mediaobject>
+</figure>
 HTML_PARSING-->
+
 
 <para>In the <guilabel>Defined Links</guilabel> you will see &eg;
 <itemizedlist>
