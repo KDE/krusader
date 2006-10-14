@@ -344,10 +344,15 @@ void LocateDlg::slotDoubleClick(QListViewItem *item)
     return;
 
   QString dirName = item->text(0);
+  QString fileName;
+
   if( !QDir( dirName ).exists() )
+  {
+    fileName = dirName.mid( dirName.findRev( '/' ) + 1 );
     dirName.truncate( dirName.findRev( '/' ) );
+  }
     
-  ACTIVE_FUNC->openUrl(vfs::fromPathOrURL( dirName ) );
+  ACTIVE_FUNC->openUrl(vfs::fromPathOrURL( dirName ), fileName );
   KDialogBase::accept();
 }
 
