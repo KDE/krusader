@@ -159,7 +159,7 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
     <listitem><para>The ".." entry is not markable.</para>
     </listitem>
 
-    <listitem><para>The &markmenu_lnk; can offer more ways to select your files.</para>
+    <listitem><para>The &editmenu_lnk; can offer more ways to select your files.</para>
     </listitem>
 
 </itemizedlist>
@@ -663,7 +663,7 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
       to Copy F5, Alt+u Unpack, etc.</para>
       
 <para>You can also perform several operations with the &foldertabs_lnk;, 
-      including several <link linkend="mark-menu">selection</link> operations. 
+      including several <link linkend="edit-menu">selection</link> operations. 
       And at the end you can close &krusader; with F10.</para>
 
 </sect1>
@@ -696,7 +696,7 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 <entry><para>Help</para></entry></row>
 <row>
 <entry><para><keycap>F2</keycap></para></entry>
-<entry><para><link linkend="commands-menu">Terminal</link></para></entry></row>
+<entry><para><link linkend="tools-menu">Terminal</link></para></entry></row>
 <row>
 <entry><para><keycap>F3</keycap></para></entry>
 <entry><para><link linkend="krviewer">View files</link></para></entry></row>
@@ -790,13 +790,13 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 <entry><para><link linkend="unpacking-archives">Unpack files</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>+</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Select All</link></para></entry></row>
+<entry><para><link linkend="edit-menu">Select All</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>-</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Unselect All</link></para></entry></row>
+<entry><para><link linkend="edit-menu">Unselect All</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>*</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Invert Selection</link></para></entry></row>
+<entry><para><link linkend="edit-menu">Invert Selection</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Alt;<keycap>/</keycap></keycombo></para></entry>
 <entry><para><link linkend="mount-man">MountMan</link></para></entry></row>
@@ -830,10 +830,10 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 <tbody>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Select Group</link></para></entry></row>
+<entry><para><link linkend="edit-menu">Select Group</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></para></entry>
-<entry><para><link linkend="mark-menu">Unselect Group</link></para></entry></row>
+<entry><para><link linkend="edit-menu">Unselect Group</link></para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>=</keycap></keycombo></para></entry>
 <entry><para><link linkend="view-menu">Compare directories</link> (Compare Mode)</para></entry></row>
@@ -891,7 +891,7 @@ the &keybindigs_lnk; tab at the &konfiglookandfeel_lnk;.</para>
 <entry><para><link linkend="list_panel">Open media list</link>.</para></entry></row>
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>n</keycap></keycombo></para></entry>
-<entry><para><link linkend="commands-menu">New Network Connection</link> dialog.</para></entry></row>
+<entry><para><link linkend="tools-menu">New Network Connection</link> dialog.</para></entry></row>
 <!-- TODO: Is this entry gone ????
 <row>
 <entry><para><keycombo action="simul">&Ctrl;<keycap>o</keycap></keycombo></para></entry>
