@@ -831,9 +831,17 @@ void Krusader::slotClose() {
 bool Krusader::queryClose() {
    if( isStarting || isExiting )
      return false;
-      
-   if( kapp->sessionSaving() ) // KDE is logging out, accept the close 
-     return true;              // this will also kill the pending jobs
+   
+   if( kapp->sessionSaving() ) // KDE is logging out, accept the close
+   { 
+     saveSettings();
+
+     kapp->dcopClient()->registerAs( KApplication::kApplication()->name(), true );
+
+     kapp->deref(); // FIX: krusader exits at closing the viewer when minimized to tray
+     kapp->deref(); // and close the application
+     return isExiting = true;              // this will also kill the pending jobs
+   }
    
    krConfig->setGroup( "Look&Feel" );
    if( !directExit && krConfig->readBoolEntry( "Single Instance Mode", _SingleInstanceMode ) && 
