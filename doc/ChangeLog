@@ -5,6 +5,8 @@ The Krusader Handbook ChangeLog
   TODO: complete Keyboard Usage page 
   TODO: complete the glossary
   TODO: complete the Mouse Gestures
+  
+  --------- 
 
   TODO: Experimental input method support in quick search (patch by Jiri Palecek)
   TODO: TerminalEmulator: Ctrl+F switches between full-widget TE, normal TE
@@ -16,20 +18,10 @@ The Krusader Handbook ChangeLog
   TODO: TerminalEmulator: if the command line is hidden,
            TE receives Ctrl+Up / Ctrl+Down (thanks to Vaclav Juza)
   TODO: synchronizer: double click on a file calls the diff utility (kompare)
-
-
   TODO: atomic extensions (see CVSNEWS)
   TODO: archive packing / unpacking are now in the background
   ADDED: renaming of just the filename, without extension
   TODO: full screen terminal window (mc-style)
-
-  ADDED: ActionMan for useraction configuration
-  ADDED: single instance mode (Konfigurator Startup)
-  ADDED: start to system tray (Konfigurator Startup)
-  ADDED: right click menu for bookmarks (context menu)
-  ADDED: enable/disable special bookmarks by right clicking on them
-
- 
   TODO: keeping the directory structures for virt folders at copy/move
   TODO: synchronizer, parallel threads for slow FTP servers
 
@@ -38,16 +30,14 @@ The Krusader Handbook ChangeLog
   TODO: Better subdir calculation on quick navigation
   TODO: Renamed 'mark' to 'select' in konfigurator, colors panel
   
-  UPDATED: Heavily extended and reordered menubar, 
-           Updated commands.docbook (thanks to Dan Price)
   
   Design changes (issues done/todo by Frank):
-  ----------------------------------------------------
-  TODO: Shortcut- and Toolbardialogs are removed from Konfigurator 
-  TODO: Command Reference, url updates
-  TODO: Command Reference -> Menu Commands (- The), Keyboard Commands, Mouse Commands, Mouse gestures
+  ---------------------------------------------------- 
+  TODO: Menu Commands, url updates
   TODO: Create more docbook files and improve the chapter/index structure
-
+   
+  ADDED: Mouse Commands, mouse.docbook (formerly part of using-krusader.docbook)
+  ADDED: Keyboard Commands, keyboard.docbook (formerly part of using-krusader.docbook)
   ADDED: abc-index by using <indexterm>
   ADDED: List of Figures (index) <screenshot> -> <figure>
   ADDED: List of Tables (index) <informaltable> -> <table>
@@ -59,9 +49,15 @@ The Krusader Handbook ChangeLog
   ADDED: features.docbook (formerly part of introduction.docbook)
   ADDED: glossary.docbook
   
+  UPDATED: Command Reference -> Menu Commands
   UPDATED: moved the "Foreword" from index.docbbook to introduction.docbook
   -----------------------------------------------------
-  
+
+  ADDED: ActionMan for useraction configuration
+  ADDED: single instance mode (Konfigurator Startup)
+  ADDED: start to system tray (Konfigurator Startup)
+  ADDED: right click menu for bookmarks (context menu)
+  ADDED: enable/disable special bookmarks by right clicking on them  
   ADDED: an option for directories to be always sorted by name (Konfigurator L&F)
   ADDED: FAQ: Why "save last location" doesn't work?
   ADDED: Inactive panel color dimming
@@ -72,6 +68,9 @@ The Krusader Handbook ChangeLog
   ADDED: Profiles chapter
   ADDED: Media button, Ctrl+M, Ctrl+Shift+Left, Ctrl+Shift+Right
 
+UPDATED: Shortcut- and Toolbardialogs are removed from Konfigurator
+UPDATED: Heavily extended and reordered menubar, 
+         Updated commands.docbook (thanks to Dan Price)
 UPDATED: UserActions examples in the documentation appendix
 UPDATED: UserActions are now managed with ActionMan. In Konfigurator
          you can change settings _about_ useractions.

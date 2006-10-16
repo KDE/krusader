@@ -372,47 +372,6 @@ HTML_PARSING-->
 </para>
 </sect2>
 
-<sect2 id="konfig-looknfeel-toolbar">
-<title>Configure Toolbars (TODO: needs to be moved, Settings -> Configure Toolbars)</title>
-<indexterm><primary>Configure</primary><secondary>Toolbars</secondary></indexterm>
-<para>Here you can configure the &main_toolbar_lnk; and the &actions_toolbar_lnk; the way you want.
-       Add the action buttons of your favourite functions to the desired Toolbar.</para>
-
-</sect2>
-
-
-
-<sect2 id="konfig-looknfeel-keybindings">
-<title>Configure Shortcuts (TODO: needs to be moved, Settings -> Configure Shortcuts)</title>
-<indexterm><primary>Configure</primary><secondary>Shortcuts</secondary></indexterm>
-<para>Here you can configure the &keybindigs_lnk;. Configure the Key-bindings
-          of your favourite functions the way you want.</para>
-
-<para>With the <guibutton>Import shortcuts</guibutton> <guibutton>Export shortcuts</guibutton> buttons you
-      can load and save a Key-binding profile.
-      This allows &krusader; to have the &tcmd;, &mc;, foo-commander, or your custom Key-bindings.
-      The only limitation is that global &kde; key-bindings and some &krusader; key-bindings can't
-      be changed yet, as well as some features in foo-commander that we either don't have or don't need.
-      The Key-bindings are stored in <filename>$KDEDIR/share/apps/krusader</filename>,
-      <filename>foo.keymap.info</filename> contains a description,
-      <filename>foo.keymap</filename> is a ini file that holds the Key-bindings.
-      Until &krusader;-1.70.0 this was a binary file, &krusader; is backwards compatible 
-      for importing this legacy binary format.
-      If a <filename>*.keymap.info</filename> text file exists, &krusader; will display it,
-      showing additional information regarding the loaded Key-bindings file.
-      Here you have a chance to exit without importing the proposed Key-bindings file.
-      </para>
-
-<tip><para>
-      A &tcmd; Key-bindings file is provided. 
-      Please <link linkend="help_krusader">upload your favorite Key-bindings schemes</link> 
-      so that they become available for the &krusader; community. Thanks!
-      </para></tip>
-
-</sect2>
-
-
-
 </sect1>
 
 

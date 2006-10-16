@@ -204,7 +204,7 @@ Previous used Docbook
 <!ENTITY rootmode_lnk '<link linkend="root-mode">Root mode</link>'>
 <!ENTITY settingsmenu_lnk '<link linkend="settings-menu">Settings menu</link>'>
 <!ENTITY keybindigs_lnk '<link linkend="key_bindings">Key-Bindings</link>'>
-<!ENTITY keybindigs_profiles_lnk '<link linkend="konfig-looknfeel-keybindings">Key-binding Profiles</link>'>
+<!ENTITY keybindigs_profiles_lnk '<link linkend="configure-shortcuts">Key-binding Profiles</link>'>
 <!ENTITY color_profiles_lnk '<link linkend="konfig-color">Color Profiles</link>'>
 <!ENTITY synchronizer_lnk '<link linkend="synchronizer">Synchronizer</link>'>
 <!ENTITY syncdirs_lnk '<link linkend="synchronizer">Synchronize Directories</link>'>
@@ -340,6 +340,8 @@ Previous used Docbook
   <!ENTITY user-interface SYSTEM "user-interface.docbook">
   <!ENTITY using-krusader SYSTEM "using-krusader.docbook">
   <!ENTITY commands SYSTEM "commands.docbook">
+  <!ENTITY keyboard SYSTEM "keyboard.docbook">  
+  <!ENTITY mouse SYSTEM "mouse.docbook">  
   <!ENTITY konfigurator SYSTEM "konfigurator.docbook">
   <!ENTITY krusader-tools SYSTEM "krusader-tools.docbook">
   <!ENTITY faq SYSTEM "faq.docbook">
@@ -472,6 +474,8 @@ Previous used Docbook
   &user-interface;
   &using-krusader;
   &commands;
+  &keyboard;
+  &mouse;
   &krusader-tools;
   &konfigurator;
   &faq;
