@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader-1.70.0\n"
 "Report-Msgid-Bugs-To: Dirk Eschler <deschler@users.sourceforge.net>\n"
 "POT-Creation-Date: 2006-10-10 23:09+0200\n"
-"PO-Revision-Date: 2006-09-29 18:47+0200\n"
+"PO-Revision-Date: 2006-10-17 21:37+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -311,9 +311,8 @@ msgstr ""
 "%1"
 
 #: VFS/arc_vfs.cpp:217
-#, fuzzy
 msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-msgstr " Arkivfilen kan vara skadad !"
+msgstr "<qt>Kan ej läsa <b>%1</b> Arkivfilen kan vara skadad !</qt>"
 
 #: VFS/arc_vfs.cpp:322 VFS/arc_vfs.cpp:579
 msgid "Deleting Files..."
@@ -882,8 +881,7 @@ msgstr "Vad skall kopieras"
 
 #: UserAction/expander.cpp:418
 msgid "Append to the current clipboard-content with this separator (optional)"
-msgstr ""
-"Lägg till till aktuellt urklippsinnehåll med detta skiljetecken (valfritt)"
+msgstr "Lägg till till aktuellt urklippsinnehåll med detta skiljetecken (valfritt)"
 
 #: UserAction/expander.cpp:432
 msgid "Copy a file/folder"
@@ -1598,9 +1596,8 @@ msgid "No permissions to view this file."
 msgstr "Ej tillåtet att granska denna fil."
 
 #: Panel/panelfunc.cpp:374
-#, fuzzy
 msgid "<qt>Can't open <b>%1</b></qt>"
-msgstr "<qt>Kan ej öppna <b>%1</b> för skrivning!</qt>"
+msgstr "<qt>Kan ej öppna <b>%1</b></qt>"
 
 #: Panel/panelfunc.cpp:385
 msgid "You can't edit a directory"
@@ -1720,13 +1717,10 @@ msgid "Warning"
 msgstr "Varning"
 
 #: Panel/panelfunc.cpp:676
-#, fuzzy
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
 "p></qt>"
-msgstr ""
-" är inte tom!\n"
-"Hoppa över denna eller radera alla?"
+msgstr "<qt><p>Mapp <b>%1</b> är inte tom!</p><p>Hoppa över denna eller radera allat?</p></qt>"
 
 #: Panel/panelfunc.cpp:677
 msgid "&Skip"
@@ -1741,21 +1735,20 @@ msgid "Cannot pack files onto a virtual destination!"
 msgstr "Kan ej packa filer till ett virtuellt mål!"
 
 #: Panel/panelfunc.cpp:803
-#, fuzzy
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
-msgstr "<qt>Fil <b>%1</b> finns redan. Vill du verkligen skriva över den?</qt>"
+msgstr "<qt><p>Arkivet <b>%1.%2</b> finns redan. Vill du verkligen skriva över den?</p><p>Samtliga datat i det föregående arkivet kommer att förloras!</p></qt></qt>"
 
 #: Panel/panelfunc.cpp:805
-#, fuzzy
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
-"(ZIP kommer att byta ut identiska namn i ziparkivet eller lägga till poster "
-"med nya namn)"
+"<qt><p>Arkivet <b>%1.%2</b> finns redan. Vill du skriva över det? "
+"</p><p>ZIP kommer att byta ut identiska namn i ziparkivet eller lägga till poster "
+"med nya namn.</p></qt>"
 
 #: Panel/panelfunc.cpp:812
 msgid "Counting files to pack"
@@ -2041,34 +2034,29 @@ msgstr "A&vmarkera allt"
 
 #: krusader.cpp:571
 msgid "&Invert Selection"
-msgstr "&Invertera markering"
+msgstr "&Invertera det utvalda"
 
 #: krusader.cpp:573
 msgid "&Compare Directories"
 msgstr "&Jämför mappar"
 
 #: krusader.cpp:575
-#, fuzzy
 msgid "&Select Newer and Single"
 msgstr "&Markera nyare och enstaka"
 
 #: krusader.cpp:577
-#, fuzzy
 msgid "Select &Newer"
-msgstr "Markera"
+msgstr "Markera &nyare"
 
 #: krusader.cpp:579
-#, fuzzy
 msgid "Select &Single"
-msgstr " Markera filer "
+msgstr "Markera en&staka"
 
 #: krusader.cpp:581
-#, fuzzy
 msgid "Select Different &and Single"
 msgstr "Markera olika och enst&aka"
 
 #: krusader.cpp:583
-#, fuzzy
 msgid "Select &Different"
 msgstr "Markera &olika"
 
@@ -2438,9 +2426,9 @@ msgid "BookMan II"
 msgstr "BookMan II"
 
 #: BookMan/krbookmarkhandler.cpp:172
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write to %1"
-msgstr "Kunde inte skriva till "
+msgstr "Kunde inte skriva till %1"
 
 #: BookMan/krbookmarkhandler.cpp:180
 msgid " instead of "
@@ -2452,14 +2440,13 @@ msgid "missing tag "
 msgstr "felande tagg"
 
 #: BookMan/krbookmarkhandler.cpp:261
-#, fuzzy
 msgid "%1 doesn't seem to be a valid Bookmarks file"
-msgstr " tycks inte vara en giltig bokmärkesfil"
+msgstr "%1 tycks inte vara en giltig bokmärkesfil"
 
 #: BookMan/krbookmarkhandler.cpp:268
-#, fuzzy, c-format
+#, c-format
 msgid "Error reading bookmarks file: %1"
-msgstr "Fel vid läsning av bokmärkesfil: "
+msgstr "Fel vid läsning av bokmärkesfil: %1"
 
 #: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
 msgid "Popular URLs"
@@ -2591,8 +2578,7 @@ msgstr ""
 "Kontakta utvecklarna"
 
 #: MountMan/kmountmangui.cpp:326
-msgid ""
-"MountMan has an internal error. Please notify the developers. Thank you."
+msgid "MountMan has an internal error. Please notify the developers. Thank you."
 msgstr ""
 "Det har uppståt ett internt fel i MountMan.Var vänlig och rapportera detta "
 "till utvecklarna.Tack."
@@ -2785,7 +2771,7 @@ msgid ""
 "Notice that the line in which you edit the mask has it's own history, you "
 "can scroll it, if needed."
 msgstr ""
-"Ett fördefinierat filter är ett filter som du använder ofta, bra\n"
+"Ett fördefinierat urval är ett filter som du använder ofta, bra\n"
 "exempel skulle kunna vara *.c, *.h, *.mp3 etc. \n"
 "Du kan lägga till dessa filter till listan genom att skriva ned dem och "
 "trycka på Lägg till knappen.\n"
@@ -2799,11 +2785,11 @@ msgstr "Lägg till"
 
 #: Dialogs/krmaskchoice.cpp:106
 msgid "Adds the selection in the line-edit to the list"
-msgstr "Lägger till filtret i redigeringsraden till listan"
+msgstr "Lägger till urvalet i redigeringsraden till listan"
 
 #: Dialogs/krmaskchoice.cpp:111
 msgid "Delete the marked selection from the list"
-msgstr "Tar bort det markerade filtret från listan"
+msgstr "Tar bort det markerade urvalet från listan"
 
 #: Dialogs/krmaskchoice.cpp:115
 msgid "Clear"
@@ -2811,7 +2797,7 @@ msgstr "Nollställ"
 
 #: Dialogs/krmaskchoice.cpp:116
 msgid "Clears the entire list of selections"
-msgstr "Tar bort alla filtren från listan"
+msgstr "Tar bort alla urval från listan"
 
 #: Dialogs/krmaskchoice.cpp:131
 msgid "OK"
@@ -2960,8 +2946,7 @@ msgid "Legacy import completed"
 msgstr "Import av förlegat avslutad"
 
 #: Dialogs/krkeydialog.cpp:134
-msgid ""
-"<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
+msgid "<qt>File <b>%1</b> already exists. Do you really want to overwrite it?</qt>"
 msgstr "<qt>Fil <b>%1</b> finns redan. Vill du verkligen skriva över den?</qt>"
 
 #: Dialogs/krkeydialog.cpp:143
@@ -3054,7 +3039,7 @@ msgstr ""
 
 #: Dialogs/krspwidgets.cpp:151
 msgid "Enter a selection:"
-msgstr "Skriv in ett filter:"
+msgstr "Skriv in ett urval:"
 
 #: Dialogs/krspwidgets.cpp:187 Dialogs/krspwidgets.cpp:214
 msgid "compare mode"
@@ -3268,8 +3253,7 @@ msgid "Delete selected useractions"
 msgstr "Tag bort valda användaråtgärder"
 
 #: ActionMan/useractionpage.cpp:126
-msgid ""
-"The current action has been modified. Do you want to apply these changes?"
+msgid "The current action has been modified. Do you want to apply these changes?"
 msgstr "Den aktuella åtgärden har ändrats. Vill du genomföra ändringarna?"
 
 #: ActionMan/useractionpage.cpp:203
@@ -3995,8 +3979,7 @@ msgstr "Höger mapp:"
 
 #: Synchronizer/synchronizergui.cpp:1550
 msgid "URL must be the descendant of either the left or the right base URL!"
-msgstr ""
-"URL måste härstamma från antingen den vänstra eller den högra grund-URL:en!"
+msgstr "URL måste härstamma från antingen den vänstra eller den högra grund-URL:en!"
 
 #: Synchronizer/synchronizergui.cpp:1607
 msgid "Synchronize Directories"
@@ -4048,7 +4031,7 @@ msgstr "Avmarkera"
 
 #: Synchronizer/synchronizergui.cpp:1637
 msgid "Invert selection"
-msgstr "Invertera markering"
+msgstr "Invertera urval"
 
 #: Synchronizer/synchronizergui.cpp:1648
 msgid "Synchronize with KGet"
@@ -4402,16 +4385,12 @@ msgid "Krusader::DiskUsage"
 msgstr "Krusader::Diskanvändning"
 
 #: DiskUsage/diskusage.cpp:597
-#, fuzzy
 msgid "Do you really want to move this item to the trash?"
-msgstr ""
-"Vill du verkligen ta bort detta?\n"
-"Vill du verkligen ta bort dessa %n?"
+msgstr "Vill du verkligen flytta detta till papperskorgen?"
 
 #: DiskUsage/diskusage.cpp:600
-#, fuzzy
 msgid "Do you really want to delete this item?"
-msgstr "Är du säker på att du vill ta bort detta ???"
+msgstr "Är du säker på att du vill ta bort detta?"
 
 #: DiskUsage/diskusage.cpp:612
 msgid "Deleting %1..."
@@ -4667,15 +4646,12 @@ msgid "Searching for tools..."
 msgstr "Söker efter verktyg..."
 
 #: Konfigurator/kggeneral.cpp:152
-msgid ""
-"Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Se till att installera ny verktyg i din <code>$PATH</code> (t. ex. /usr/bin)"
+msgid "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Se till att installera ny verktyg i din <code>$PATH</code> (t. ex. /usr/bin)"
 
 #: Konfigurator/krresulttable.cpp:121
 msgid "unarj not found, but arj found, which will be used for unpacking"
-msgstr ""
-"unarj hittades ej, men arj hittad, vilken kommer att användas till uppackning"
+msgstr "unarj hittades ej, men arj hittad, vilken kommer att användas till uppackning"
 
 #: Konfigurator/krresulttable.cpp:127
 msgid "rpm found, but cpio not found which is required for unpacking"
@@ -4827,23 +4803,20 @@ msgstr ""
 "stället för i aktivitetsfältet."
 
 #: Konfigurator/kglookfeel.cpp:86
-#, fuzzy
 msgid "Autoselect directories"
 msgstr "Markerar mappar automatiskt"
 
 #: Konfigurator/kglookfeel.cpp:86
-#, fuzzy
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "directories."
-msgstr "Vid matchning av urvalsvillkoren kommer mappar att markeras."
+msgstr "Vid matchning av urvalsvillkoren kommer även mappar att väljas ut."
 
 #: Konfigurator/kglookfeel.cpp:87
 msgid "Rename selects extension"
-msgstr "Döpa om väljer utvidgningar"
+msgstr "Döpa om väljer-utvidgningar"
 
 #: Konfigurator/kglookfeel.cpp:87
-#, fuzzy
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
 "Commander like renaming of just the name, without extension, uncheck this "
@@ -4869,7 +4842,6 @@ msgid "Fullscreen terminal (mc-style)"
 msgstr "Fullskärmsterminal (mc-stil)"
 
 #: Konfigurator/kglookfeel.cpp:89
-#, fuzzy
 msgid "Terminal is shown instead of the Krusader window (full screen)."
 msgstr "Terminal visas i ställer för krusader-fönstret (fullkärm)."
 
@@ -5046,8 +5018,7 @@ msgid "Toggle-button for sync-browsing"
 msgstr "Växlarknapp för synkroniseringsläsning"
 
 #: Konfigurator/kglookfeel.cpp:197
-msgid ""
-"Each directory change in the panel is also performed in the other panel."
+msgid "Each directory change in the panel is also performed in the other panel."
 msgstr "Varje mappändring i panelen utförs också i den andra panelen."
 
 #: Konfigurator/kglookfeel.cpp:217
@@ -5291,8 +5262,7 @@ msgstr ""
 "b>, försök montera den med de bestämda parametrarna."
 
 #: Konfigurator/kgadvanced.cpp:65
-msgid ""
-"Don't use KDE's media protocol for media button (if it's buggy or missing)"
+msgid "Don't use KDE's media protocol for media button (if it's buggy or missing)"
 msgstr ""
 "Använd inte KDE's mediaprotokoll för mediaknapp (om den är felaktig eller "
 "saknas)"
@@ -5568,28 +5538,24 @@ msgid "Alternate background:"
 msgstr "Alternativ bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:141
-#, fuzzy
 msgid "Selected foreground:"
-msgstr "Tag bort förgrund:"
+msgstr "Välj förgrund:"
 
 #: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:142
-#, fuzzy
 msgid "Selected background:"
-msgstr "Tag bort bakgrund:"
+msgstr "Välj bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:143
 msgid "Same as alt. background"
 msgstr "Samma som alternativ bakgrund"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:145
-#, fuzzy
 msgid "Alternate selected background:"
 msgstr "Alternativmarkerad bakgrund:"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:144
-#, fuzzy
 msgid "Same as selected background"
-msgstr "Samma som alternativ bakgrund"
+msgstr "Samma som vald bakgrund"
 
 #: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:146
 msgid "Current foreground:"
@@ -5601,12 +5567,10 @@ msgid "Not used"
 msgstr "Oanvänt"
 
 #: Konfigurator/kgcolors.cpp:110 Konfigurator/kgcolors.cpp:147
-#, fuzzy
 msgid "Same as selected foreground"
-msgstr "Samma som markerad förgrund"
+msgstr "Samma som vald förgrund"
 
 #: Konfigurator/kgcolors.cpp:111 Konfigurator/kgcolors.cpp:148
-#, fuzzy
 msgid "Selected current foreground:"
 msgstr "Markerad aktuell förgrund:"
 
@@ -5693,19 +5657,16 @@ msgid "Export color-scheme"
 msgstr "Exportera färgschema"
 
 #: Konfigurator/kgcolors.cpp:411
-#, fuzzy
 msgid "Selected + Current"
-msgstr "Klona aktuell flik"
+msgstr "Välj + aktuellt"
 
 #: Konfigurator/kgcolors.cpp:412
-#, fuzzy
 msgid "Selected 2"
-msgstr " Markera filer "
+msgstr "Valda 2"
 
 #: Konfigurator/kgcolors.cpp:413
-#, fuzzy
 msgid "Selected 1"
-msgstr " Markera filer "
+msgstr "Valda 1"
 
 #: Konfigurator/kgcolors.cpp:414
 msgid "Current"
@@ -5967,20 +5928,16 @@ msgid "Test archive before unpacking"
 msgstr "Testa arkivfil före uppackning"
 
 #: Konfigurator/kgarchives.cpp:96
-msgid ""
-"Some corrupted archives might cause a crash; therefore, testing is suggested."
-msgstr ""
-"Vissa trasiga arkivfiler kan åstadkomma krascher, därför föreslås testning."
+msgid "Some corrupted archives might cause a crash; therefore, testing is suggested."
+msgstr "Vissa trasiga arkivfiler kan åstadkomma krascher, därför föreslås testning."
 
 #: Konfigurator/kgarchives.cpp:113
 msgid "Searching for packers..."
 msgstr "Sök efter packare..."
 
 #: Konfigurator/kgarchives.cpp:114
-msgid ""
-"Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
-msgstr ""
-"Se till att installera nya packare i din <code>$PATH</code> (t. ex. /usr/bin)"
+msgid "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
+msgstr "Se till att installera nya packare i din <code>$PATH</code> (t. ex. /usr/bin)"
 
 #: Konfigurator/kguseractions.cpp:48
 msgid "Information"
@@ -6248,10 +6205,8 @@ msgid "Not a valid CRC file!"
 msgstr "Inte en giltig CRC-fil!"
 
 #: Splitter/combiner.cpp:152
-msgid ""
-"Validity checking is impossible without a good CRC file. Continue combining?"
-msgstr ""
-"Giltighetskontroll är omöjlig utan en giltig CRC-fil. Fortsätta att slå ihop?"
+msgid "Validity checking is impossible without a good CRC file. Continue combining?"
+msgstr "Giltighetskontroll är omöjlig utan en giltig CRC-fil. Fortsätta att slå ihop?"
 
 #: Splitter/combiner.cpp:256
 msgid "Can't open the first split file of %1!"
@@ -6289,44 +6244,3 @@ msgstr "Fel vid läsning av fil %1!"
 msgid "Error at writing file %1!"
 msgstr "Fel vid skrivning av fil %1!"
 
-#~ msgid "Can't Read "
-#~ msgstr "Kan inte läsa "
-
-#~ msgid "Directory "
-#~ msgstr "Mapp "
-
-#~ msgid "The Archive "
-#~ msgstr "Arkivfilen "
-
-#~ msgid " already exists. Do you want to overwrite the archive ?\n"
-#~ msgstr " existerar redan, Vill du skriva över arkivfilen ?\n"
-
-#~ msgid "Mark &Newer"
-#~ msgstr "Markera &Nyare"
-
-#~ msgid "Mark &Single"
-#~ msgstr "Markera en&staka"
-
-#~ msgid "trash"
-#~ msgstr "papperskorg"
-
-#~ msgid "delete"
-#~ msgstr "ta bort"
-
-#~ msgid "Are you sure you want to "
-#~ msgstr "Är du säker på att du vill "
-
-#~ msgid "Marked foreground:"
-#~ msgstr "Markerad förgrund:"
-
-#~ msgid "Marked background:"
-#~ msgstr "Markerad bakgrund:"
-
-#~ msgid "Same as marked background"
-#~ msgstr "Samma som markerad bakgrund"
-
-#~ msgid "Marked 2"
-#~ msgstr "Markerad 2"
-
-#~ msgid "Marked 1"
-#~ msgstr "Markerad 1"
