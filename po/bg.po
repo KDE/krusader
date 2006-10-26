@@ -12,7 +12,7 @@ msgstr ""
 "POT-Creation-Date: 2006-10-10 23:09+0200\n"
 "PO-Revision-Date: 2005-12-04 10:30+0200\n"
 "Last-Translator: Milen Ivanov <milen.kerat@gmail.com>\n"
-"Language-Team: Bulgarian <krusader-i18n@googlegroups.com>\n"
+"Language-Team: krusader-i18n <krusader-i18n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -308,9 +308,8 @@ msgstr ""
 "%1"
 
 #: VFS/arc_vfs.cpp:217
-#, fuzzy
 msgid "<qt>Can't read <b>%1</b>. Archive might be corrupted!</qt>"
-msgstr " Архива може да е повреден!"
+msgstr "<qt>Прочитането на <b>%1</b> е невъзможно. Архива може да е повреден!</qt>"
 
 #: VFS/arc_vfs.cpp:322 VFS/arc_vfs.cpp:579
 msgid "Deleting Files..."
@@ -1594,9 +1593,8 @@ msgid "No permissions to view this file."
 msgstr "Нямате права за преглед на файла."
 
 #: Panel/panelfunc.cpp:374
-#, fuzzy
 msgid "<qt>Can't open <b>%1</b></qt>"
-msgstr "<qt>Отварянето на <b>%1</b> за писане е невъзможно!</qt>"
+msgstr "<qt>Отварянето на <b>%1</b> е невъзможно</qt>"
 
 #: Panel/panelfunc.cpp:385
 msgid "You can't edit a directory"
@@ -1716,13 +1714,12 @@ msgid "Warning"
 msgstr "Предупреждение"
 
 #: Panel/panelfunc.cpp:676
-#, fuzzy
 msgid ""
 "<qt><p>Directory <b>%1</b> is not empty!</p><p>Skip this one or Delete All?</"
 "p></qt>"
 msgstr ""
-" не е празна!\n"
-"Отказвате ли се или изтривате всичко?"
+"<qt><p>Директорията <b>%1</b> не е празна!</p><p>Ще пропуснете ли или ще "
+"изтриете всичко?</p></qt>"
 
 #: Panel/panelfunc.cpp:677
 msgid "&Skip"
@@ -1737,23 +1734,22 @@ msgid "Cannot pack files onto a virtual destination!"
 msgstr "Архивирането на файлове във виртуално местоположение е невъзможно!"
 
 #: Panel/panelfunc.cpp:803
-#, fuzzy
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>All data in the previous archive will be lost!</p></qt>"
 msgstr ""
-"<qt>Файла <b>%1</b> вече съществува. Наистина ли искате ли да го презапишете?"
-"</qt>"
+"<qt><p>Архивът <b>%1.%2</b> вече съществува. Искате ли да го презапишете?"
+"</p><p>Всички данни в стария архив ще бъдат загубени!</p></qt>"
 
 #: Panel/panelfunc.cpp:805
-#, fuzzy
 msgid ""
 "<qt><p>The archive <b>%1.%2</b> already exists. Do you want to overwrite it?"
 "</p><p>Zip will replace identically named entries in the zip archive or add "
 "entries for new names.</p></qt>"
 msgstr ""
-"(ZIP ще замени записите с еднакви име в архива или ще добави записи за "
-"новите имена)"
+"<qt><p>Архивът <b>%1.%2</b> вече съществува. Искате ли да го презапишете?"
+"</p><p>Zip ще замени еднаквите имена на записи в zip архива или ще добави "
+"записи за нови имена.</p></qt>"
 
 #: Panel/panelfunc.cpp:812
 msgid "Counting files to pack"
@@ -2047,27 +2043,22 @@ msgid "&Compare Directories"
 msgstr "&Сравняване на директории"
 
 #: krusader.cpp:575
-#, fuzzy
 msgid "&Select Newer and Single"
 msgstr "&Маркиране на новите и единичните"
 
 #: krusader.cpp:577
-#, fuzzy
 msgid "Select &Newer"
-msgstr "Избор на обекти"
+msgstr "Маркиране на &новите"
 
 #: krusader.cpp:579
-#, fuzzy
 msgid "Select &Single"
-msgstr " Избор на файлове "
+msgstr "Маркиране на &единичните"
 
 #: krusader.cpp:581
-#, fuzzy
 msgid "Select Different &and Single"
 msgstr "Маркиране на различните &и единичните"
 
 #: krusader.cpp:583
-#, fuzzy
 msgid "Select &Different"
 msgstr "Маркиране на &различните"
 
@@ -2433,9 +2424,9 @@ msgid "BookMan II"
 msgstr "Управление на отметки II"
 
 #: BookMan/krbookmarkhandler.cpp:172
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write to %1"
-msgstr "Невъзможен запис в "
+msgstr "Невъзможен запис в %1"
 
 #: BookMan/krbookmarkhandler.cpp:180
 msgid " instead of "
@@ -2447,14 +2438,13 @@ msgid "missing tag "
 msgstr "липсващ таг "
 
 #: BookMan/krbookmarkhandler.cpp:261
-#, fuzzy
 msgid "%1 doesn't seem to be a valid Bookmarks file"
-msgstr " изглежда не е валиден файл с отметки"
+msgstr "%1 изглежда не е валиден файл с отметки"
 
 #: BookMan/krbookmarkhandler.cpp:268
-#, fuzzy, c-format
+#, c-format
 msgid "Error reading bookmarks file: %1"
-msgstr "Грешка при четене на файл с отметки: "
+msgstr "Грешка при четене на файл с отметки: %1"
 
 #: BookMan/krbookmarkhandler.cpp:332 BookMan/krbookmarkhandler.cpp:485
 msgid "Popular URLs"
@@ -4401,16 +4391,12 @@ msgid "Krusader::DiskUsage"
 msgstr "Заето място"
 
 #: DiskUsage/diskusage.cpp:597
-#, fuzzy
 msgid "Do you really want to move this item to the trash?"
-msgstr ""
-"_n: Наистина ли искате да изтриете този елемент?\n"
-"Наистина ли искате да изтриете тези %n елемента?"
+msgstr "Наистина ли искате да преместите елемента в кошчето?"
 
 #: DiskUsage/diskusage.cpp:600
-#, fuzzy
 msgid "Do you really want to delete this item?"
-msgstr "Сигурни ли сте, че искате да изтриете елемента ???"
+msgstr "Сигурни ли сте, че искате да изтриете елемента?"
 
 #: DiskUsage/diskusage.cpp:612
 msgid "Deleting %1..."
@@ -4824,31 +4810,28 @@ msgstr ""
 "вместо на лентата."
 
 #: Konfigurator/kglookfeel.cpp:86
-#, fuzzy
 msgid "Autoselect directories"
-msgstr "Автомаркиране на директории"
+msgstr "Автоматично маркиране на директории"
 
 #: Konfigurator/kglookfeel.cpp:86
-#, fuzzy
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "directories."
-msgstr "При съвпадане с критерия за избор, директориите също ще се маркират."
+msgstr "При съвпадение с критерия за избор, директориите също ще се маркират."
 
 #: Konfigurator/kglookfeel.cpp:87
 msgid "Rename selects extension"
 msgstr "Преименуване на избраните действия"
 
 #: Konfigurator/kglookfeel.cpp:87
-#, fuzzy
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
 "Commander like renaming of just the name, without extension, uncheck this "
 "option."
 msgstr ""
 "Когато преименувате файл, маркира се целия текст. Ако искате "
-"преименуванетода бъде в стил total-commander, т.е. преименуването да става "
-"само с името,а не и с разширението, махнете отметката."
+"преименуването да бъде в стил Total Commander, т.е. преименуването да става "
+"само с името, а не и с разширението, махнете отметката."
 
 #: Konfigurator/kglookfeel.cpp:88
 msgid "Use full path tab names"
@@ -4867,9 +4850,8 @@ msgid "Fullscreen terminal (mc-style)"
 msgstr "Пълноекранен терминал (mc-стил)"
 
 #: Konfigurator/kglookfeel.cpp:89
-#, fuzzy
 msgid "Terminal is shown instead of the Krusader window (full screen)."
-msgstr "Показва се терминал вместо прозореца на krusader (цял екран)."
+msgstr "Показва се терминал вместо прозореца на Krusader (цял екран)."
 
 #: Konfigurator/kglookfeel.cpp:98
 msgid "Quicksearch"
@@ -5563,28 +5545,24 @@ msgid "Alternate background:"
 msgstr "Редуващ се цвят:"
 
 #: Konfigurator/kgcolors.cpp:105 Konfigurator/kgcolors.cpp:141
-#, fuzzy
 msgid "Selected foreground:"
-msgstr "Изтриване цвета на текста:"
+msgstr "Маркиран текст:"
 
 #: Konfigurator/kgcolors.cpp:106 Konfigurator/kgcolors.cpp:142
-#, fuzzy
 msgid "Selected background:"
-msgstr "Изтриване цвета на фона:"
+msgstr "Маркиран фон:"
 
 #: Konfigurator/kgcolors.cpp:107 Konfigurator/kgcolors.cpp:143
 msgid "Same as alt. background"
 msgstr "Като маркиран ред. фон"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:145
-#, fuzzy
 msgid "Alternate selected background:"
-msgstr "Маркиран редуващ фон:"
+msgstr "Редуване на маркиран фон:"
 
 #: Konfigurator/kgcolors.cpp:108 Konfigurator/kgcolors.cpp:144
-#, fuzzy
 msgid "Same as selected background"
-msgstr "Като маркиран ред. фон"
+msgstr "Като маркиран фон"
 
 #: Konfigurator/kgcolors.cpp:109 Konfigurator/kgcolors.cpp:146
 msgid "Current foreground:"
@@ -5596,12 +5574,10 @@ msgid "Not used"
 msgstr "Не се използва"
 
 #: Konfigurator/kgcolors.cpp:110 Konfigurator/kgcolors.cpp:147
-#, fuzzy
 msgid "Same as selected foreground"
-msgstr "Също като маркиран фон"
+msgstr "Също като маркиран текст"
 
 #: Konfigurator/kgcolors.cpp:111 Konfigurator/kgcolors.cpp:148
-#, fuzzy
 msgid "Selected current foreground:"
 msgstr "Маркиран текущ текст:"
 
@@ -5688,19 +5664,16 @@ msgid "Export color-scheme"
 msgstr "Изнасяне на цветова схема"
 
 #: Konfigurator/kgcolors.cpp:411
-#, fuzzy
 msgid "Selected + Current"
-msgstr "Дублиране на подпрозореца"
+msgstr "Маркиран + текущ"
 
 #: Konfigurator/kgcolors.cpp:412
-#, fuzzy
 msgid "Selected 2"
-msgstr " Избор на файлове "
+msgstr "Маркирани 2"
 
 #: Konfigurator/kgcolors.cpp:413
-#, fuzzy
 msgid "Selected 1"
-msgstr " Избор на файлове "
+msgstr "Маркирани 1"
 
 #: Konfigurator/kgcolors.cpp:414
 msgid "Current"
