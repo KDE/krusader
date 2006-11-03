@@ -1,6 +1,6 @@
 ####### kdevelop will overwrite this part!!! (begin)##########
 
-SUBDIRS = en pics 
+SUBDIRS = en ru pics 
 
 EXTRA_DIST = krusader.1 
 

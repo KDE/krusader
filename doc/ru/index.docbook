@@ -1,0 +1,1106 @@
+<!-- <?xml version="1.0" ?> -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+
+<!--
+Previous used Docbook
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+-->
+
+<!-- **********************************************************************
+                              index.docbook
+                           +++++++++++++++++++
+  copyright            : (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006
+                          Rafi Yanai, Shie Erlich, Frank Schoolmeesters
+                          & the Krusader Krew
+  e-mail               : krusader@users.sourceforge.net
+  web site             : http://www.krusader.org
+  description          : a Krusader Documentation File
+
+***************************************************************************
+* Permission is granted to copy, distribute and/or modify this            *
+* document under the terms of the GNU Free Documentation License,         *
+* Version 1.1 or any later version published by the Free Software         *
+* Foundation; with no Invariant Sections, no Front-Cover Texts and        *
+* no Back-Cover Texts.  A copy of the license is available on the         *
+* GNU site http://www.gnu.org/licenses/fdl.html or by writing to:         *
+* Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,    *
+* MA 02111-1307, USA.                                                     *
+*********************************************************************** -->
+
+<!ENTITY krusader 'Krusader'>
+<!ENTITY kapp "&krusader;">
+<!ENTITY kappname "&krusader;">
+<!-- <!ENTITY % addindex "IGNORE"
+> -->
+<!ENTITY % addindex "INCLUDE">
+
+<!-- ONLY If you are writing non-English original documentation, change the language here -->
+<!ENTITY % English "INCLUDE">
+
+<!-- kdebase, kdeadmin, etc. Leave this unchanged if your application is not maintained in KDE CVS -->
+<!ENTITY package "kde-module">
+
+<!-- internet links, Krusader -->
+<!ENTITY onlinehandbook_url '<ulink url="http://www.krusader.org/handbook/"
+>Online Handbook</ulink
+>'>
+<!ENTITY kru_screenshots_url '<ulink url="http://www.krusader.org/scr.php"
+>&krusader; Screenshot</ulink
+>'>
+<!ENTITY mail_url '<ulink url="mailto:krusader * users.sourceforge net"
+>mail</ulink
+>'>
+
+<!ENTITY kruwebsite_url '<ulink url="http://www.krusader.org"
+>Krusader website</ulink
+>'>
+<!ENTITY kruproject_url '<ulink url="http://sourceforge.net/projects/krusader"
+>here</ulink
+>'>
+<!ENTITY contribute_url '<ulink url="http://www.krusader.org/help.php"
+>contribute</ulink
+>'>
+<!ENTITY donate_url '<ulink url="http://sourceforge.net/project/project_donations.php?group_id=6488"
+>Donate</ulink
+>'>
+
+<!ENTITY kruforum_url '<ulink url="http://www.krusader.org/phpBB/index.php"
+>&krusader; Forum</ulink
+>'>
+<!ENTITY kruforumsearch_url '<ulink url="http://www.krusader.org/phpBB/search.php"
+>Search</ulink
+>'>
+<!ENTITY krugenforum_url '<ulink url="http://www.krusader.org/phpBB/viewforum.php?f=1"
+>General Discussion Forum</ulink
+>'>
+<!ENTITY newsforum_url '<ulink url="http://www.krusader.org/phpBB/viewforum.php?f=7"
+>News and Announcements Forum</ulink
+>'>
+<!ENTITY bugforum_url '<ulink url="http://www.krusader.org/phpBB/viewforum.php?f=3"
+>Bug Discussion Forum</ulink
+>'>
+<!ENTITY featureforum_url '<ulink url="http://www.krusader.org/phpBB/viewforum.php?f=6"
+>New Features Discussion/Requests Forum</ulink
+>'>
+<!ENTITY todoforum_url '<ulink url="http://www.krusader.org/phpBB/viewforum.php?f=10"
+>ToDo Forum</ulink
+>'>
+<!ENTITY todoranking_url '<ulink url="http://www.krusader.org/todo.php"
+>ToDo ranking system</ulink
+>'>
+<!ENTITY useractionsforum_url '<ulink url="http://www.krusader.org/phpBB/viewforum.php?f=11"
+>UserActions Forum</ulink
+>'>
+<!ENTITY rss_url '<ulink url="http://krusader.sf.net/phpBB/rss.php"
+>here</ulink
+>'>
+<!ENTITY krucutedge_url '<ulink url="http://www.krusader.org/cvs.php"
+>&krusader;&apos;s Cutting Edge page</ulink
+>'>
+<!ENTITY active_passive_ftp_url '<ulink url="http://slacksite.com/other/ftp.html"
+>Active &FTP; vs. Passive &FTP;, a Definitive Explanation</ulink
+>'>
+
+<!ENTITY viewcvs_url '<ulink url="http://krusader.cvs.sourceforge.net/krusader/"
+>ViewCVS</ulink
+>'>
+<!ENTITY sfmirrors_url '<ulink url="http://sourceforge.net/project/showfiles.php?group_id=6488"
+>Sourceforge mirrors</ulink
+>'>
+<!ENTITY changelog_url
+'<ulink url="http://www.krusader.org/text.php?t=cvs.changelog"
+><filename
+>ChangeLog</filename
+></ulink
+>'>
+<!ENTITY cvsnews_url
+'<ulink url="http://www.krusader.org/text.php?t=cvs.news"
+><filename
+>CVSNEWS</filename
+></ulink
+>'>
+<!ENTITY docchangelog_url '<ulink url="http://cvs.sourceforge.net/viewcvs.py/krusader/krusader_kde3/doc/ChangeLog?view=markup"
+>Documentation ChangeLog</ulink
+>'>
+<!ENTITY i18n_page_url '<ulink url="http://www.krusader.org/i18n.php"
+>i18n page</ulink
+>'>
+
+<!ENTITY deb_requirements_url '<ulink url="http://packages.debian.org/unstable/utils/krusader"
+>requirements on &debian;</ulink
+>'>
+<!ENTITY mailing_lists_url '<ulink url="http://www.krusader.org/lists.php"
+>mailing lists</ulink
+>'>
+<!ENTITY krunews_url '<ulink url="http://groups-beta.google.com/group/krusader-news"
+>&krusader;-news</ulink
+>'>
+<!ENTITY krulatestnews_url '<ulink url="http://www.krusader.org/news.php"
+>latest news</ulink
+>'>
+
+<!ENTITY krucommits_url '<ulink url="http://sourceforge.net/mailarchive/forum.php?forum_id=34772"
+>&krusader;-commits</ulink
+>'>
+<!ENTITY krudevel_url '<ulink url="http://groups-beta.google.com/group/krusader-devel"
+>&krusader;-devel</ulink
+>'>
+<!ENTITY kruusers_url '<ulink url="http://groups-beta.google.com/group/krusader-users"
+>&krusader;-users</ulink
+>'>
+<!ENTITY krudoc_url '<ulink url="http://groups-beta.google.com/group/krusader-doc"
+>&krusader;-doc</ulink
+>'>
+<!ENTITY krui18n_url '<ulink url="http://groups-beta.google.com/group/krusader-i18n"
+>&krusader;-i18n</ulink
+>'>
+
+<!ENTITY forumfeed_url '<ulink url="http://www.krusader.org/phpBB/rss.php"
+>rss-forumfeed</ulink
+>'>
+<!ENTITY filereleasefeed_url '<ulink url="http://sourceforge.net/export/rss2_projfiles.php?group_id=6488"
+>rss-filerelease feed</ulink
+>'>
+<!ENTITY krunewsfeed_url '<ulink url="http://groups.google.com/group/krusader-news/feeds"
+>krusader-news feed</ulink
+>'>
+<!ENTITY krudevelfeed_url '<ulink url="http://groups.google.com/group/krusader-devel/feeds"
+>krusader-devel feed</ulink
+>'>
+<!ENTITY kruusersfeed_url '<ulink url="http://groups.google.com/group/krusader-users/feeds"
+>krusader-users feed</ulink
+>'>
+<!ENTITY krui18nfeed_url '<ulink url="http://groups.google.com/group/krusader-i18n/feeds"
+>krusader-i18n feed</ulink
+>'>
+<!ENTITY krudocfeed_url '<ulink url="http://groups.google.com/group/krusader-doc/feeds"
+>krusader-doc feed</ulink
+>'>
+
+<!ENTITY online_buglist_url '<ulink url="http://sourceforge.net/tracker/?atid=106488&amp;group_id=6488&amp;func=browse"
+>online bug list</ulink
+>'>
+<!ENTITY i18n_credits_url '<ulink url="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/krusader/krusader_kde3/po/"
+>more translator credits</ulink
+>'>
+
+
+<!ENTITY subversion_url '<ulink url="http://sourceforge.net/svn/?group_id=6488"
+>Subversion</ulink
+>'>
+<!ENTITY browse_svn_repo_url '<ulink url="http://svn.sourceforge.net/krusader"
+>Browse the Subversion Repository</ulink
+>'>
+
+<!ENTITY fhs_url '<ulink url="http://www.pathname.com/fhs/"
+>Filesystem Hierarchy Standard (FHS)</ulink
+>'>
+
+<!-- internet links, Krusader binaries -->
+<!ENTITY krudownload_url '<ulink url="http://www.krusader.org/down.php"
+>&krusader; downloadpage</ulink
+>'>
+<!ENTITY gentoo_life_ebuild_url '<ulink url="http://www.krusader.org/data/krusader-cvs-1.ebuild"
+>&gentoo; Live Ebuild</ulink
+>'>
+
+<!ENTITY gentoo_download_url '<ulink url="http://packages.gentoo.org/search/?sstring=krusader"
+>&gentoo;</ulink
+>'>
+<!ENTITY suse_download_url '<ulink url="http://search.novell.com/qfsearch/SearchServlet?bbshow=true&amp;query0=krusader&amp;operator0=0&amp;collection=Novell&amp;date=&amp;numhits=10&amp;template=ResultListTemplate.html&amp;submit+search=Search"
+>&SuSE;</ulink
+>'>
+<!ENTITY mandriva_download_url '<ulink url="http://search.belnet.be/packages/mandrake/current/i586/media/contrib/"
+>&mandriva;</ulink
+>'>
+<!ENTITY freebsd_download_url '<ulink url="http://www.freebsd.org/cgi/ports.cgi?query=krusader&amp;stype=all"
+>&freebsd;</ulink
+>'>
+<!ENTITY debian_download_url '<ulink url="http://packages.debian.org/krusader"
+>&debian;</ulink
+>'>
+<!ENTITY netbsd_download_url '<ulink url="http://pkgsrc.se/sysutils/krusader"
+>&netbsd;</ulink
+>'>
+<!ENTITY yoper_download_url '<ulink url="http://ftp.belnet.be/linux/yoper/devel/yoper-3.0/RPMS.chris/"
+>&yoper;</ulink
+>'>
+<!ENTITY macosx_download_url '<ulink url="http://www.krusader.org/down.php"
+>&MacOS;-X</ulink
+>'>
+<!ENTITY ubuntu_kubuntu_download_url '<ulink url="http://packages.ubuntu.com/krusader"
+>&ubuntu;/&kubuntu;</ulink
+>'>
+<!ENTITY linspire_download_url '<ulink url="http://www.linspire.com/lindows_products_details.php?product_id=3160&amp;pg=specs"
+>&linspire;</ulink
+>'>
+<!ENTITY archlinux_download_url '<ulink url="http://www.archlinux.org/packages.php?id=793"
+>&archlinux;</ulink
+>'>
+<!ENTITY frugalware_linux_download_url '<ulink url="http://frugalware.org/packages.php?id=280"
+>&frugalware_linux;</ulink
+>'>
+<!ENTITY pclinuxos_download_url '<ulink url="http://www.pclinuxonline.com/pclos/html/package_list.html"
+>&pclinuxos;</ulink
+>'>
+<!ENTITY altlinux_download_url '<ulink url="http://www.altlinux.com/index.php?module=sisyphus&amp;package=krusader"
+>&altlinux;</ulink
+>'>
+<!ENTITY ccuxlinux_download_url '<ulink url="http://packages.ccux-linux.de/index.php?pdetail=154"
+>&ccuxlinux;</ulink
+>'>
+<!ENTITY lunarlinux_download_url '<ulink url="http://modules.lunar-linux.org/index.php?option=module&amp;module=krusader"
+>&lunarlinux;</ulink
+>'>
+<!ENTITY qilinux_download_url '<ulink url="http://www.qilinux.org/modules.php?op=modload&amp;name=distromatic&amp;file=index&amp;tag=devel&amp;pkg=krusader.source"
+>&qilinux;</ulink
+>'>
+<!ENTITY rocklinux_download_url '<ulink url="http://www.rocklinux.net/packages/krusader.html"
+>&rocklinux;</ulink
+>'>
+
+<!ENTITY klik_protocol_url '<ulink url="http://klik.atekon.de/"
+>klik protocol</ulink
+>'>
+<!ENTITY klik_krusader_url '<ulink url="klik://krusader"
+>klik://krusader</ulink
+>'>
+<!ENTITY klik_krusader_latest_url '<ulink url="klik://krusader-latest"
+>klik://krusader-latest</ulink
+>'>
+<!ENTITY klik_krusader_cvs_url '<ulink url="klik://krusader-cvs"
+>klik://krusader-cvs</ulink
+>'>
+<!ENTITY klik_available_url '<ulink url="http://klik.atekon.de/details.php?section=utils&amp;package=krusader"
+>available</ulink
+>'>
+<!ENTITY klik_stable_krusader_url '<ulink url="http://klik.atekon.de/details.php?section=utils&amp;package=krusader-latest"
+>stable &krusader;</ulink
+>'>
+<!ENTITY klik_cvs_krusader_url '<ulink url="http://klik.atekon.de/details.php?section=utils&amp;package=krusader-cvs"
+>cvs snapshot of &krusader;</ulink
+>'>
+
+
+<!ENTITY fedora_extras_url '<ulink url="http://fedoraproject.org/wiki/Extras/UsingExtras "
+>&fedora; Extras</ulink
+>'>
+<!ENTITY distrowatch_com_url '<ulink url="http://distrowatch.com/search.php?pkg=krusader&amp;pkgver=1.70.0"
+>Distrowatch.com</ulink
+>'>
+
+<!ENTITY dag_wiers_download_url '<ulink url="http://dag.wieers.com/packages/krusader/"
+>dag.wieers.com</ulink
+>'>
+<!ENTITY dries_verachtert_download_url '<ulink url="http://dries.ulyssis.org/rpm/packages/krusader/info.html"
+>Dries Verachtert RPM Repository</ulink
+>'>
+<!ENTITY portpkg_url '<ulink url="http://portpkg.berlios.de/"
+>Portpkg</ulink
+>'>
+<!ENTITY kru_slackbuild_url '<ulink url="http://cvs.berlios.de/cgi-bin/viewcvs.cgi/portpkg/ports/open/krusader/Attic/"
+>&krusader; SlackBuild</ulink
+>'>
+
+<!ENTITY freshmeat_url '<ulink url="http://freshmeat.net/projects/krusader/"
+>freshmeat.net</ulink
+>'>
+<!ENTITY rpmfind_url '<ulink url="http://rpmfind.net/linux/rpm2html/search.php?query=krusader&amp;submit=Search+..."
+>rpmfind</ulink
+>'>
+<!ENTITY rpmpbone_url '<ulink url="http://rpm.pbone.net/index.php3/stat/3/search/krusader"
+>rpmpbone</ulink
+>'>
+<!ENTITY rpmseek_url '<ulink url="http://rpmseek.com/rpm-pl/krusader.html?hl=com&amp;cx=2155:K:0"
+>rpmseek</ulink
+>'>
+
+<!ENTITY kde_files_url '<ulink url="http://www.kde-files.org/index.php?xcontentmode=660x661x662x663"
+>kde-files.org</ulink
+>'>
+
+<!-- internet links, others -->
+<!ENTITY xxdiff_url '<ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>'>
+<!ENTITY kdiff3_url '<ulink url="http://kdiff3.sourceforge.net"
+><application
+>Kdiff3</application
+></ulink
+>'>
+<!ENTITY krename_url '<ulink url="http://www.krename.net"
+><application
+>Krename</application
+></ulink
+>'>
+<!ENTITY kasablanca_url '<ulink url="http://kasablanca.berlios.de/"
+>Kasablanca</ulink
+>'>
+<!ENTITY kftpgrabber_url '<ulink url="http://kftpgrabber.sourceforge.net/"
+><application
+>Kftpgrabber</application
+></ulink
+>'>
+<!ENTITY xbel_url '<ulink url="http://grail.sourceforge.net/info/xbel.html"
+>XBEL standard</ulink
+>'>
+<!ENTITY kde_apps_url '<ulink url="http://www.kde-apps.org/content/show.php?content=10214"
+>KDE-APPS.org</ulink
+>'>
+<!ENTITY rpm_org_url '<ulink url="http://www.rpm.org/"
+>rpm.org</ulink
+>'>
+<!ENTITY rpm_guide_url '<ulink url="http://fedora.redhat.com/docs/drafts/rpm-guide-en/"
+>RPM Guide</ulink
+>'>
+<!ENTITY kioslaves1_url '<ulink url="http://docs.kde.org/development/en/kdebase/kioslave/index.html"
+>KIOSlaves</ulink
+>'>
+<!ENTITY kioslaves2_url '<ulink url="http://developer.kde.org/documentation/library/3.4-api/kio/html/index.html"
+>KIOSlaves</ulink
+>'>
+<!ENTITY kio_ipodslave_url '<ulink url="http://sourceforge.net/projects/kpod"
+>KIOipod-slave</ulink
+>'>
+<!ENTITY kdelibs_url '<ulink url="http://lxr.kde.org/source/kdelibs/kioslave"
+>&kde;libs</ulink
+>'>
+<!ENTITY kdebase_url '<ulink url="http://lxr.kde.org/source/kdebase/kioslave"
+>&kde;base</ulink
+>'>
+<!ENTITY gnome_url '<ulink url="http://www.gnome.org"
+><application
+>GNOME</application
+></ulink
+>'>
+<!ENTITY afterstep_url '<ulink url="http://www.afterstep.org/"
+><application
+>AfterStep</application
+></ulink
+>'>
+<!ENTITY xfce_url '<ulink url="http://www.xfce.org/"
+><application
+>XFce</application
+></ulink
+>'>
+
+<!ENTITY debian_qt_a_url '<ulink url="http://www.krusader.org/phpBB/viewtopic.php?t=710"
+>in our forum</ulink
+>'>
+<!ENTITY debian_qt_b_url '<ulink url="http://opendoorsoftware.com/cgi/http.pl?p=DebianQTChecklist"
+>instructions</ulink
+>'>
+<!ENTITY freenode_url '<ulink url="http://freenode.net"
+>freenode.org</ulink
+>'>
+<!ENTITY fink_url '<ulink url="http://fink.sourceforge.net"
+>fink</ulink
+>'>
+<!ENTITY kjsembed_url '<ulink url="http://xmelegance.org/kjsembed/"
+>KJSEmbed</ulink
+>'>
+
+<!ENTITY ofm_url '<ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>Orthodox File Manager (OFM)</ulink
+>'>
+<!ENTITY disk_order_url '<ulink url="http://www.likemac.ru/english/"
+><trademark class="copyright"
+>Disk Order</trademark
+></ulink
+>'>
+<!ENTITY apple_x11_url '<ulink url="http://www.apple.com/downloads/macosx/apple/x11formacosx.html"
+>&apple; X11</ulink
+>'>
+<!ENTITY apple_x11_sdk_url '<ulink url="http://developer.apple.com/darwin/runningX11.html"
+>&apple; X11 SDK</ulink
+>'>
+<!ENTITY bodo_tasche_url '<ulink url="http://blog.wannawork.de/about.php"
+>Bodo Tasche</ulink
+>'>
+
+<!ENTITY sourceforge_net_url '<ulink url="http://sourceforge.net/"
+>Sourceforge.net</ulink
+>'>
+<!ENTITY openusability_url '<ulink url="http://openusability.org/projects/krusader/"
+>OpenUsability.org</ulink
+>'>
+
+<!ENTITY whatsthis_url '<ulink url="http://urbanlizard.com/~aseigo/whatsthis_tutorial/"
+>WhatsThis</ulink
+>'>
+
+
+
+<!-- documentation links -->
+<!ENTITY context_menu_lnk '<link linkend="context-menu"
+>Context Menu</link
+>'>
+<!ENTITY vfs_lnk '<link linkend="vfs"
+>Virtual file systems (VFS)</link
+>'>
+<!ENTITY mouse_selection_modes_lnk '<link linkend="mouse_selection_modes"
+>Mouse Selection Modes</link
+>'>
+<!ENTITY konfigstartpg_lnk '<link linkend="konfigurator"
+>Konfigurator Startup page</link
+>'>
+<!ENTITY konfiglookandfeel_lnk '<link linkend="konfig-looknfeel"
+>Konfigurator Look &amp; Feel page</link
+>'>
+<!ENTITY konfiggereral_lnk '<link linkend="konfig-general"
+>Konfigurator General page</link
+>'>
+<!ENTITY konfigdependencie_lnk '<link linkend="konfig-dependencies"
+>Konfigurator Dependencie page</link
+>'>
+<!ENTITY konfigprotocol_lnk '<link linkend="konfig-protocols"
+>Konfigurator Protocol page</link
+>'>
+<!ENTITY viewmenu_lnk '<link linkend="view-menu"
+>View menu</link
+>'>
+<!ENTITY editmenu_lnk '<link linkend="edit-menu"
+>Edit menu</link
+>'>
+<!ENTITY comparedir_lnk '<link linkend="compare-dir"
+>Compare Directories</link
+>'>
+<!ENTITY fnkeybar_lnk '<link linkend="fnkeys"
+>FN Keys Bar</link
+>'>
+<!ENTITY main_toolbar_lnk '<link linkend="mainwindow"
+>Main Toolbar</link
+>'>
+<!ENTITY actions_toolbar_lnk '<link linkend="actions_toolbar"
+>Actions Toolbar</link
+>'>
+<!ENTITY statusbar_lnk '<link linkend="mainwindow"
+>Statusbar</link
+>'>
+<!ENTITY location_toolbar_lnk '<link linkend="list_panel"
+>Location Toolbar</link
+>'>
+<!ENTITY rootmode_lnk '<link linkend="root-mode"
+>Root mode</link
+>'>
+<!ENTITY settingsmenu_lnk '<link linkend="settings-menu"
+>Settings menu</link
+>'>
+<!ENTITY keybindigs_lnk '<link linkend="key_bindings"
+>Key-Bindings</link
+>'>
+<!ENTITY keybindigs_profiles_lnk '<link linkend="configure-shortcuts"
+>Key-binding Profiles</link
+>'>
+<!ENTITY color_profiles_lnk '<link linkend="konfig-color"
+>Color Profiles</link
+>'>
+<!ENTITY synchronizer_lnk '<link linkend="synchronizer"
+>Synchronizer</link
+>'>
+<!ENTITY syncdirs_lnk '<link linkend="synchronizer"
+>Synchronize Directories</link
+>'>
+<!ENTITY splitfile_lnk '<link linkend="splitter"
+>Split file</link
+>'>
+<!ENTITY combinefiles_lnk '<link linkend="splitter"
+>Combine files</link
+>'>
+<!ENTITY kdeqtdir_lnk '<link linkend="kde_qt_dir"
+><envar
+>KDEDIR</envar
+> - <envar
+>QTDIR</envar
+></link
+>'>
+<!ENTITY useractions_lnk '<link linkend="useractions"
+>UserActions</link
+>'>
+<!ENTITY usermenu_lnk '<link linkend="useractions"
+>User Menu</link
+>'>
+<!ENTITY faq_lnk '<link linkend="faq"
+>FAQ</link
+>'>
+<!ENTITY forum_lnk '<link linkend="faqg_kru_forum"
+>&krusader; Forum</link
+>'>
+<!ENTITY help_request_lnk '<link linkend="faqi_help_request"
+>help request</link
+>'>
+<!ENTITY list_panel_lnk '<link linkend="list_panel"
+>List Panel</link
+>'>
+<!ENTITY popup_panel_lnk '<link linkend="popup_panel"
+>PopUp Panel</link
+>'>
+<!ENTITY quick_search_lnk '<link linkend="quicksearch"
+>Quick search</link
+>'>
+<!ENTITY locate_lnk '<link linkend="locate"
+>Locate</link
+> &GUI; frontend'>
+<!ENTITY foldertabs_lnk '<link linkend="folder_tabs"
+>Folder tabs</link
+>'>
+<!ENTITY mountman_lnk '<link linkend="mount-man"
+>MountMan</link
+>'>
+<!ENTITY cmdline_lnk '<link linkend="cmdline"
+>Command Line</link
+>'>
+<!ENTITY termemu_lnk '<link linkend="cmdline"
+>Terminal emulator</link
+>'>
+<!ENTITY missing_libs_lnk '<link linkend="faqi_missing_libs"
+>&FAQ; missing libs or headers</link
+>'>
+<!ENTITY panel_profiles_lnk '<link linkend="panel_profiles"
+>Panel profiles</link
+>'>
+<!ENTITY sync_browsing_lnk '<link linkend="panel_toolbar"
+>Sync-browsing</link
+>'>
+<!ENTITY diskusage_lnk '<link linkend="diskusage"
+>Disk Usage</link
+>'>
+<!ENTITY bookmarks_lnk '<link linkend="bookman"
+>Bookmarks</link
+>'>
+<!ENTITY bookmark-manager_lnk '<link linkend="bookman"
+>Bookmark-Manager</link
+>'>
+<!ENTITY advanced_search_module_lnk '<link linkend="krusearcher"
+>Advanced Search module</link
+>'>
+<!ENTITY javascript_console_lnk '<link linkend="javascript_console"
+>JavaScript console</link
+>'>
+<!ENTITY archives_lnk '<link linkend="archives"
+>archives</link
+>'>
+<!ENTITY remote_connections_lnk '<link linkend="remote-connections"
+>Remote Connections</link
+>'>
+<!ENTITY krusaderrc_lnk '<link linkend="config_files"
+>krusaderrc</link
+>'>
+
+<!ENTITY install_proc_lnk '<link linkend="installation"
+>Installation procedure</link
+>'>
+<!ENTITY disablenote '<note
+><para
+>This feature is temporarily disabled and will be rewritten, sorry.</para
+></note
+>'>
+<!ENTITY faqbugreports_lnk '<link linkend="faqg_bug_report"
+>bug reports</link
+>'>
+<!ENTITY hesbugreport_lnk 'Don&apos;t hesitate to send <link linkend="faqg_bug_report"
+>Bug reports</link
+>.'>
+<!ENTITY betafeaturenote '<note
+><para
+>This is a new feature that can be considered as "beta". &hesbugreport_lnk;
+       <link linkend="faqg_wish"
+>User feedback</link
+> is always welcome!</para
+></note
+>'>
+<!ENTITY newfeaturenote '<note
+><para
+>This is a new feature under development. Some descriptions may become obsolete if functionality changes during development. &hesbugreport_lnk;
+       <link linkend="faqg_wish"
+>User feedback</link
+> is always welcome!</para
+></note
+>'>
+<!ENTITY rwfeaturenote '<note
+><para
+>This module was rewritten. Some descriptions may become obsolete if
+                         functionality changes during development. &hesbugreport_lnk;
+       <link linkend="faqg_wish"
+>User feedback</link
+> is always welcome!</para
+></note
+>'>
+<!ENTITY krusaderui_rc_text '<para
+>If you install a CVS or beta version and if &krusader; was previously
+         installed on your computer, then you should delete the <filename
+>krusaderui.rc</filename
+> file
+         in your home directory to activate the new menu entries
+   <prompt
+>$</prompt
+> <userinput
+><command
+>rm</command
+> <option
+>~/.kde/share/apps/krusader/krusaderui.rc</option
+></userinput>
+         , click <link linkend="faqi_krusaderui_rc"
+>here</link
+> for more info.</para
+>'>
+
+<!ENTITY gpl_lnk '<link linkend="credits"
+>&GNU; General Public License (GPL)</link
+>'>
+
+<!ENTITY dev_cvs_note '<note
+><para>
+                 If you are using a <link linkend="krusader_devel"
+>development</link
+> or
+                 <link linkend="krusader_cvs"
+>CVS</link
+> version, it is possible that the latest
+                 new features are not yet in the "The Krusader Handbook".
+                 Please read the &changelog_url; file online or in the &krusader;
+                 sources to find out more about the new features.
+                 For a brief description, please read the &cvsnews_url; file online
+                 or in the &krusader; sources.
+                       <link linkend="faqg_wish"
+>User feedback</link
+> and
+                       <link linkend="faqg_bug_report"
+>Bug reports</link
+> are always welcome!
+                 </para
+></note
+>'>
+
+
+<!-- markup ENTITIES -->
+<!ENTITY folder_tabs '<guibutton
+>Folder Tabs</guibutton
+>'>
+<!ENTITY right_click '<keycap
+>Right-click</keycap
+>'>
+
+
+<!-- application ENTITIES -->
+<!ENTITY mc '<application
+>Midnight Commander</application
+>'>
+<!ENTITY xxdiff '<application
+>xxdiff</application
+>'>
+<!ENTITY krename '<application
+>Krename</application
+>'>
+<!ENTITY kget '<application
+>kget</application
+>'>
+<!ENTITY filelight '<application
+>Filelight</application
+>'>
+<!ENTITY kdevelop '<application
+>Kdevelop</application
+>'>
+<!ENTITY keditbookmarks '<application
+>KeditBookmarks</application
+>'>
+<!ENTITY kwallet "<application
+>Kwallet</application
+>">
+
+<!-- (TM) Trademark ENTITIES -->
+<!ENTITY fedora '<trademark
+>Fedora</trademark
+>'>
+<!ENTITY yoper '<trademark
+>Yoper</trademark
+>'>
+<!ENTITY openlx '<trademark
+>OpenLX</trademark
+>'>
+<!ENTITY appleipod '<trademark
+>Apple ipod</trademark
+>'>
+
+<!-- (R) Registered ENTITIES -->
+<!ENTITY freebsd '<trademark class="registered"
+>FreeBSD</trademark
+>'>
+<!ENTITY debian '<trademark class="registered"
+>Debian</trademark
+>'>
+<!ENTITY mandriva '<trademark class="registered"
+>Mandriva</trademark
+>'>
+<!ENTITY gentoo '<trademark class="registered"
+>Gentoo</trademark
+>'>
+<!ENTITY mepis '<trademark class="registered"
+>Mepis</trademark
+>'>
+<!ENTITY ubuntu '<trademark class="registered"
+>Ubuntu</trademark
+>'>
+<!ENTITY kubuntu '<trademark class="registered"
+>Kubuntu</trademark
+>'>
+<!ENTITY linspire '<trademark class="registered"
+>Linspire</trademark
+>'>
+<!ENTITY xandros '<trademark class="registered"
+>Xandros</trademark
+>'>
+<!ENTITY slackware '<trademark class="registered"
+>Slackware</trademark
+>'>
+<!ENTITY arklinux '<trademark class="registered"
+>Ark Linux</trademark
+>'>
+<!ENTITY archlinux '<trademark class="registered"
+>Arch Linux</trademark
+>'>
+<!ENTITY netbsd '<trademark class="registered"
+>NetBSD</trademark
+>'>
+<!ENTITY openbsd '<trademark class="registered"
+>OpenBSD</trademark
+>'>
+<!ENTITY knoppix '<trademark class="registered"
+>Knoppix</trademark
+>'>
+<!ENTITY frugalware_linux '<trademark class="registered"
+>Frugalware Linux</trademark
+>'>
+<!ENTITY pclinuxos '<trademark class="registered"
+>PCLinuxOS</trademark
+>'>
+<!ENTITY altlinux '<trademark class="registered"
+>altlinux</trademark
+>'>
+<!ENTITY sourcemage '<trademark class="registered"
+>Source Mage</trademark
+>'>
+<!ENTITY kanotix '<trademark class="registered"
+>Kanotix</trademark
+>'>
+<!ENTITY lunarlinux '<trademark class="registered"
+>Lunar Linux</trademark
+>'>
+<!ENTITY ccuxlinux '<trademark class="registered"
+>CCux Linux</trademark
+>'>
+<!ENTITY qilinux '<trademark class="registered"
+>QiLinux</trademark
+>'>
+<!ENTITY rocklinux '<trademark class="registered"
+>ROCK Linux</trademark
+>'>
+ 
+<!ENTITY nvidia '<trademark class="registered"
+>NVIDIA</trademark
+>'>
+<!ENTITY nc '<trademark class="registered"
+>Norton Commander</trademark
+>'>
+<!ENTITY openoffice '<trademark class="registered"
+>OpenOffice</trademark
+>'>
+<!ENTITY firefox '<trademark class="registered"
+>Firefox</trademark
+>'>
+<!ENTITY safari '<trademark class="registered"
+>Safari</trademark
+>'>
+<!ENTITY apple '<trademark class="registered"
+>Apple</trademark
+>'>
+
+<!-- (C) Copyright ENTITIES -->
+<!ENTITY freebsd '<trademark class="copyright"
+>FreeBSD</trademark
+>'>
+<!ENTITY tcmd '<trademark class="copyright"
+>Total Commander</trademark
+>'>
+<!ENTITY tcmd_url '<ulink url="http://www.ghisler.com/"
+>&tcmd;</ulink
+>'>
+
+<!-- useraction ENTITIES -->
+<!ENTITY useraction_parameter 'Parameter:'>
+<!ENTITY useraction_optional_parameter 'Parameter (optional):'>
+<!ENTITY useraction_default 'Default:'>
+
+<!-- chapters in separate docbook files -->
+  <!ENTITY help SYSTEM "help.docbook">
+  <!ENTITY editors-note SYSTEM "editors-note.docbook">
+  <!ENTITY introduction SYSTEM "introduction.docbook">
+  <!ENTITY features SYSTEM "features.docbook">
+  <!ENTITY user-interface SYSTEM "user-interface.docbook">
+  <!ENTITY using-krusader SYSTEM "using-krusader.docbook">
+  <!ENTITY commands SYSTEM "commands.docbook">
+  <!ENTITY keyboard SYSTEM "keyboard.docbook"
+>  
+  <!ENTITY mouse SYSTEM "mouse.docbook"
+>  
+  <!ENTITY konfigurator SYSTEM "konfigurator.docbook">
+  <!ENTITY krusader-tools SYSTEM "krusader-tools.docbook">
+  <!ENTITY faq SYSTEM "faq.docbook">
+  <!ENTITY credits SYSTEM "credits.docbook">
+  <!ENTITY glossary SYSTEM "glossary.docbook">
+  
+<!-- appendices in separate docbook files -->  
+  <!ENTITY installation SYSTEM "installation.docbook">
+  <!ENTITY configuration-files SYSTEM "configuration-files.docbook">
+  <!ENTITY useraction-xml SYSTEM "useraction-xml.docbook">
+  <!ENTITY release-overview SYSTEM "release-overview.docbook">
+  
+]>
+
+<book lang="&language;">
+<bookinfo id="index">
+<title
+>Руководство Крусадер</title>
+
+<authorgroup>
+  <othercredit role="developer"
+><firstname
+>Shie</firstname
+><surname
+>Erlich</surname
+> <contrib
+>Первый автор Руководства</contrib>
+        <affiliation
+><address
+><email
+>erlich@users.sourceforge.net</email
+></address
+></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer"
+><firstname
+>Rafi</firstname
+><surname
+>Yanai</surname
+> <contrib
+>Первый автор Руководства</contrib>
+        <affiliation
+><address
+><email
+>yanai@users.sourceforge.net</email
+></address
+></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer"
+><firstname
+>Dirk</firstname
+><surname
+>Eschler</surname
+> <contrib
+>Вебмастер &amp; координатор локализации</contrib>
+        <affiliation
+><address
+><email
+>deschler@users.sourceforge.net</email
+></address
+></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer"
+><firstname
+>Csaba</firstname
+><surname
+>Karai</surname
+> <contrib
+>Разработчик</contrib>
+        <affiliation
+><address
+><email
+>ckarai@users.sourceforge.net</email
+></address
+></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer"
+><firstname
+>Heiner</firstname
+><surname
+>Eichmann</surname
+> <contrib
+>Разработчик</contrib>
+        <affiliation
+><address
+><email
+>h.eichmann@gmx.de</email
+></address
+></affiliation>
+  </othercredit>
+  
+  <othercredit role="developer"
+><firstname
+>Jonas</firstname
+><surname
+>B&auml;hr</surname
+> <contrib
+>Разработчик</contrib>
+        <affiliation
+><address
+><email
+>jonas.baehr@web.de</email
+></address
+></affiliation>
+  </othercredit>
+  
+  <author
+><firstname
+>Frank</firstname
+> <surname
+>Schoolmeesters</surname
+> <contrib
+>Документация &amp; маркетиновый координатор</contrib>
+        <affiliation
+><address
+><email
+>frank_schoolmeesters@yahoo.com</email
+></address
+></affiliation>
+  </author>
+  
+  <othercredit role="reviewer"
+><firstname
+>Richard</firstname
+><surname
+>Holt</surname
+> <contrib
+>Документация &amp; корректор</contrib>
+        <affiliation
+><address
+><email
+>richard.holt@gmail.com</email
+></address
+></affiliation>
+  </othercredit>
+
+  <othercredit role="reviewer"
+><firstname
+>Matej</firstname
+><surname
+>Urban&ccaron;i&ccaron;</surname
+> <contrib
+>Маркетинг &amp; исследования</contrib>
+        <affiliation
+><address
+><email
+>matej.urban@gmail.com</email
+></address
+></affiliation>
+  </othercredit>
+
+</authorgroup
+>      
+
+  <copyright>
+        <year
+>2000</year>
+        <year
+>2001</year>
+        <year
+>2002</year>
+        <year
+>2003</year>
+        <holder
+>Rafi Yanai</holder>
+        <holder
+>Shie Erlich</holder>
+  </copyright>
+
+  <copyright>
+        <year
+>2004</year>
+        <year
+>2005</year>
+        <year
+>2006</year>
+        <holder
+>Krusader Krew</holder>
+  </copyright>
+
+  <legalnotice
+><para
+>Разрешается копировать , распространять и/или изменять этот согласно с условиями <ulink url="http://www.gnu.org/copyleft/fdl.html"
+>GNU Free Documentation License</ulink
+> , Версия 1.1 или любая последняя версия , опубликованная Фондом свободного программного обеспечения .Копия лицензии включена в исходные коды &krusader;.</para
+></legalnotice>
+
+  <date
+>2006-08-26</date>
+  <releaseinfo
+>1.80.0 "cvs repository"</releaseinfo>
+
+   <abstract>
+   <para
+>&krusader; - это продвинутый , двухпанельный файловый менеджер для КДЕ и других деcктопов в мире *nix</para>
+   </abstract>
+
+ <keywordset>
+  <keyword
+>КДЕ</keyword>
+  <keyword
+>крусадер</keyword>
+  <keyword
+>КДЕ</keyword>
+  <keyword
+>менеджер</keyword>
+  <keyword
+>файловый менеждер</keyword>
+  <keyword
+>двухпанельный</keyword>
+  <keyword
+>файловый</keyword>
+  <keyword
+>manager</keyword>
+  <keyword
+>двух-панельный</keyword>
+  <keyword
+>менеджер для линукс</keyword>
+  <keyword
+>менеджер для КДЕ</keyword>
+ </keywordset>
+
+</bookinfo>
+
+<!-- preface -->
+  &help;
+  &editors-note;
+
+<!-- chapters -->  
+  &introduction;
+  &features;
+  &user-interface;
+  &using-krusader;
+  &commands;
+  &keyboard;
+  &mouse;
+  &krusader-tools;
+  &konfigurator;
+  &faq;
+  &credits;
+ 
+<!-- appendices -->
+  &installation;
+  &configuration-files;
+  &useraction-xml;
+  &release-overview;
+
+<!-- glossary -->    
+  &glossary;
+
+<!-- index (automagically generated) -->
+  &documentation.index;
+
+</book>
+
